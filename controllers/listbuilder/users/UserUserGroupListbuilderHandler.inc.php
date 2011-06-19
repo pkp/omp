@@ -166,7 +166,11 @@ class UserUserGroupListbuilderHandler extends ListbuilderHandler {
 		$this->addColumn($nameColumn);
 
 		// Designation column
-        $designationColumn = new ListbuilderGridColumn($this, 'designation', 'common.designation');
+        $designationColumn = new ListbuilderGridColumn($this,
+														'designation',
+														'common.designation',
+														null,
+														'controllers/listbuilder/listbuilderNonEditGridCell.tpl');
         $designationColumn->setCellProvider($cellProvider);
 		$this->addColumn($designationColumn);
 
@@ -183,6 +187,7 @@ class UserUserGroupListbuilderHandler extends ListbuilderHandler {
             return parent::getRowDataElement($request, $rowId);
         }
 
+        // Otherwise return from the newRowId
         $userGroupId = (int) $request->getUserVar('newRowId');
         $userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
         $userGroup =& $userGroupDao->getById($userGroupId);
@@ -198,7 +203,7 @@ class UserUserGroupListbuilderHandler extends ListbuilderHandler {
 		$press =& $this->getPress();
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 
-		$userGroupId = (int) $entry->name;
+		$userGroupId = (int) $entry->newRowId;
 		$userId = (int) $this->getUserId();
 
 		// Ensure that:
