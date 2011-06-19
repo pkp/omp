@@ -30,7 +30,7 @@ class StageParticipantGridHandler extends GridHandler {
 		$this->addRoleAssignment(ROLE_ID_PRESS_ASSISTANT, $readAccess = array('fetchGrid', 'fetchRow'));
 		$this->addRoleAssignment(
 			array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
-			array_merge($readAccess, array('addStageParticipant', 'deleteStageParticipant'))
+			array_merge($readAccess, array('editStageParticipantList', 'saveStageParticipantList'))
 		);
 	}
 
@@ -80,47 +80,28 @@ class StageParticipantGridHandler extends GridHandler {
 		// Basic grid configuration
 		$this->setTitle('submission.submit.stageParticipants');
 
-		// Grid actions
-		import('lib.pkp.classes.linkAction.request.AjaxModal');
-		$router =& $request->getRouter();
-		// FIXME: Not all roles should see this action. Bug #5975.
-		$this->addAction(
-			new LinkAction(
-				'addStageParticipant',
-				new AjaxModal(
-					$router->url(
-						$request, null, null, 'addStageParticipant',
-						null, $this->getRequestArgs()
-					),
-					__('submission.submit.addStageParticipant'),
-					'fileManagement'
-				),
-				__('submission.submit.addStageParticipant')
-			)
-		);
-
 		// Columns
-		import('lib.pkp.classes.controllers.grid.ArrayGridCellProvider');
-		$cellProvider = new ArrayGridCellProvider();
+		import('controllers.grid.users.stageParticipant.StageParticipantGridCellProvider');
+		$cellProvider = new StageParticipantGridCellProvider();
 		$this->addColumn(
 			new GridColumn(
-				'userName',
-				'author.users.contributor.name',
-				null,
-				'controllers/grid/gridCell.tpl',
-				$cellProvider
-			)
-		);
-
-		$this->addColumn(
-			new GridColumn(
-				'userGroup',
+				'group',
 				'author.users.contributor.role',
 				null,
 				'controllers/grid/gridCell.tpl',
 				$cellProvider
 			)
 		);
+		$this->addColumn(
+			new GridColumn(
+				'participants',
+				'submission.participants',
+				null,
+				'controllers/grid/gridCell.tpl',
+				$cellProvider
+			)
+		);
+
 	}
 
 
@@ -131,7 +112,8 @@ class StageParticipantGridHandler extends GridHandler {
 	 * @see GridHandler::getRowInstance()
 	 */
 	function &getRowInstance() {
-		$row = new StageParticipantGridRow();
+        $monograph =& $this->getMonograph();
+		$row = new StageParticipantGridRow($monograph, $this->getStageId());
 		return $row;
 	}
 
@@ -152,25 +134,25 @@ class StageParticipantGridHandler extends GridHandler {
 	function loadData($request, $filter) {
 		// Retrieve the signoffs.
 		$monograph =& $this->getMonograph();
-		$signoffDao =& DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
-		$signoffFactory =& $signoffDao->getAllBySymbolic(
-			'SIGNOFF_STAGE', ASSOC_TYPE_MONOGRAPH, $monograph->getId(), null, $this->getStageId()
-		);
+		$press =& $request->getPress();
 
-		// Prepare the element list as an array with the user name
-		// and user group for each sign off.
-		$elements = array();
-		$userDao =& DAORegistry::getDAO('UserDAO');
-		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
-		while($signoff =& $signoffFactory->next()) { /* @var $signoff Signoff */
-			$user =& $userDao->getUser($signoff->getUserId());
-			$userGroup =& $userGroupDao->getById($signoff->getUserGroupId());
-			$elements[(int)$signoff->getId()] = array(
-				'userName' => $user->getFullName(),
-				'userGroup' => $userGroup->getLocalizedAbbrev()
-			);
+		// Get each default user group ID, then load users by that user group ID
+		$userGroupDao = & DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */
+		$userGroups =& $userGroupDao->getUserGroupsByStage($press->getId(), $this->getStageId(), true, true);
+
+		$stageAssignments = array();
+		$userStageAssignmentDao = & DAORegistry::getDAO('UserStageAssignmentDAO');
+		while($userGroup =& $userGroups->next()) {
+            // Skip both Author and Reviewer User Groups (they are not shown by design)
+            // If this changes, special handling will be required, as they are not stored with the stage_assignments
+            if ( !($userGroup->getRoleId() == ROLE_ID_AUTHOR && $userGroup->getRoleId() == ROLE_ID_REVIEWER) ) {
+			    $stageAssignments[$userGroup->getId()] = $userStageAssignmentDao->getUsersBySubmissionAndStageId(
+                                                        $monograph->getId(), $this->getStageId(), $userGroup->getId());
+            }
+			unset($userGroup);
 		}
-		return $elements;
+
+		return $stageAssignments;
 	}
 
 
@@ -178,44 +160,40 @@ class StageParticipantGridHandler extends GridHandler {
 	// Public actions
 	//
 	/**
-	 * An action to manually add a new stage participant
+	 * An action to manually edit the stage participants
 	 * @param $args array
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function addStageParticipant($args, &$request) {
-		// Render the stage participant form.
-		// FIXME: We only need a form class here to gain access to the
-		// form vocab. Make the form vocab globally available and implement this
-		// form as a simple template, see #6505.
-		import('controllers.grid.users.stageParticipant.form.StageParticipantForm');
-		$stageParticipantForm = new StageParticipantForm($this->getMonograph(), $this->getStageId());
-		$json = new JSONMessage(true, $stageParticipantForm->fetch($request));
-		return $json->getString();
+	function editStageParticipantList($args, &$request) {
+        $templateMgr =& TemplateManager::getManager();
+
+		$monograph =& $this->getMonograph();
+		$templateMgr->assign('monographId', $monograph->getId());
+
+		// Assign the stage id to the template.
+		$templateMgr->assign('stageId', $this->getStageId());
+
+        // assign the userGroupId to the template
+        // FIXME: #6199 THis is not authorized anywhere.
+        $userGroupId = (int) $request->getUserVar('userGroupId');
+        $templateMgr->assign('userGroupId', $userGroupId);
+
+        return $templateMgr->fetchJson('controllers/grid/users/stageParticipant/editStageParticipantList.tpl');
 	}
 
 	/**
-	 * Delete a stage participant.
+	 * Update the row for the current userGroup's stage participant list.
 	 * @param $args array
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function deleteStageParticipant($args, &$request) {
-		// Identify the stage participant.
-		$signoffId = (int)$request->getUserVar('signoffId');
+	function saveStageParticipantList($args, &$request) {
+        // assign the userGroupId to the template
+        // FIXME: #6199 THis is not authorized anywhere.
+        $userGroupId = (int) $request->getUserVar('userGroupId');
 
-		// Make sure that the stage participant is actually in this grid.
-		$elements =& $this->getGridDataElements($request);
-		if (!isset($elements[$signoffId])) fatalError('Invalid signoff id');
-
-		// Delete the stage participant.
-		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
-		if($signoffDao->deleteObjectById($signoffId)) {
-			return $json = DAO::getDataChangedEvent($signoffId);
-		} else {
-			$json = new JSONMessage(false);
-			return $json->getString();
-		}
+        return DAO::getDataChangedEvent($userGroupId);
 	}
 }
 

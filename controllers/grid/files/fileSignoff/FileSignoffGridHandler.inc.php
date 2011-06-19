@@ -107,18 +107,17 @@ class FileSignoffGridHandler extends SubmissionFilesGridHandler {
 		// Go through the list of workflow stage participants and
 		// identify all assigned press and series editors.
 		$monograph =& $this->getMonograph();
-		$signoffDao =& DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
-		$signoffFactory =& $signoffDao->getAllBySymbolic(
-			'SIGNOFF_STAGE', ASSOC_TYPE_MONOGRAPH, $monograph->getId(), null, $this->getStageId()
-		);
+		$stageAssignmentDao = & DAORegistry::getDAO('StageAssignmentDAO'); /* @var $stageAssignmentDao StageAssignmentDAO */
+		$stageAssignments = $stageAssignmentDao->getBySubmissionAndStageId($monograph->getId(), $this->getStageId());
+
 		$stageEditors = array();
-		while($signoff =& $signoffFactory->next()) { /* @var $signoff Signoff */
-			if (isset($editorGroups[$signoff->getUserGroupId()])) {
-				if (!isset($stageEditors[$signoff->getUserId()])) {
-					$stageEditors[$signoff->getUserId()] = array();
+		while($stageAssignment =& $stageAssignments->next()) { /* @var $signoff Signoff */
+			if (isset($editorGroups[$stageAssignment->getUserGroupId()])) {
+				if (!isset($stageEditors[$stageAssignment->getUserId()])) {
+					$stageEditors[$stageAssignment->getUserId()] = array();
 				}
-				$stageEditors[$signoff->getUserId()][$signoff->getUserGroupId()] =&
-						$editorGroups[$signoff->getUserGroupId()];
+				$stageEditors[$stageAssignment->getUserId()][$stageAssignment->getUserGroupId()] =&
+						$editorGroups[$stageAssignment->getUserGroupId()];
 			}
 		}
 
@@ -185,7 +184,7 @@ class FileSignoffGridHandler extends SubmissionFilesGridHandler {
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
 		$signoff =& $signoffDao->build(
 			'SIGNOFF_STAGE_FILE', ASSOC_TYPE_MONOGRAPH, $submissionFile->getSubmissionId(), $user->getId(),
-			$this->getStageId(), $userGroupId, $submissionFile->getFileId(), $submissionFile->getRevision()
+			$userGroupId, $submissionFile->getFileId(), $submissionFile->getRevision()
 		);
 		$signoff->setDateCompleted(Core::getCurrentDate());
 		$signoffDao->updateObject($signoff);

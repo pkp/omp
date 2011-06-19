@@ -15,11 +15,13 @@
 import('lib.pkp.classes.controllers.grid.GridRow');
 
 class StageParticipantGridRow extends GridRow {
-
 	/**
 	 * Constructor
 	 */
-	function StageParticipantGridRow() {
+	function StageParticipantGridRow(&$monograph, $stageId) {
+        $this->_monograph =& $monograph;
+        $this->_stageId =& $stageId;
+
 		parent::GridRow();
 	}
 
@@ -38,28 +40,79 @@ class StageParticipantGridRow extends GridRow {
 		// Is this a new row or an existing row?
 		$rowId = $this->getId();
 		if (!empty($rowId) && is_numeric($rowId)) {
+            // FIXME: #6199 authorize userGroupId
+            $this->setUserGroupId($rowId);
+
 			// Only add row actions if this is an existing row.
 			$router =& $request->getRouter();
-			$actionArgs = $this->getRequestArgs();
-			$actionArgs['signoffId'] = $rowId;
-			import('lib.pkp.classes.linkAction.request.ConfirmationModal');
+			$actionArgs = array('monographId' => $this->getMonograph()->getId(),
+                                'stageId' => $this->_stageId,
+                                'userGroupId' => $this->getUserGroupId());
+
+			import('lib.pkp.classes.linkAction.request.AjaxModal');
 			// FIXME: Not all roles should see this action. Bug #5975.
 			$this->addAction(
 				new LinkAction(
-					'remove',
-					new ConfirmationModal(
-						__('common.confirmDelete'),
-						__('common.delete'),
-						$router->url($request, null, null, 'deleteStageParticipant', null, $actionArgs)
-					),
-					__('grid.action.remove'),
-					'delete'
-				)
+					'edit',
+					new AjaxModal(
+						$router->url($request, null, null, 'editStageParticipantList', null, $actionArgs),
+						__('grid.user.edit'),
+						'edit',
+						true
+						),
+					__('grid.user.edit'),
+					'edit')
 			);
 
 			// Set a non-default template that supports row actions
 			$this->setTemplate('controllers/grid/gridRowWithActions.tpl');
 		}
+	}
+
+    //
+    // Getters/Setters
+    //
+    /**
+     * Get the monograph for this row (already authorized)
+     * @return Monograph
+     */
+    function &getMonograph() {
+        return $this->_monograph;
+    }
+
+    /**
+     * Get the stage id for this row
+     * @return int
+     */
+    function getStageId() {
+        return $this->_stageId;
+    }
+
+    /**
+	 * Set the user group id
+	 * @param $userGroupId integer
+	 */
+	function setUserGroupId($userGroupId) {
+		$this->_userGroupId = $userGroupId;
+	}
+
+
+	/**
+	 * Get the user group id
+	 * @return integer
+	 */
+	function getUserGroupId() {
+		return $this->_userGroupId;
+	}
+
+	/**
+	 * Get the grid request parameters.
+	 * @see GridHandler::getRequestArgs()
+	 * @return array
+	 */
+	function getRequestArgs() {
+        // FIXME: #6199 Authorize the user Group ID?
+		return array('userGroupId' => $this->getUserGroupId());
 	}
 }
 

@@ -135,14 +135,15 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 		);
 
 		// Add role columns -- One of each user group currently assigned to the stage:
-		$signoffDao =& DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
-		$signoffs =& $signoffDao->getAllBySymbolic('SIGNOFF_STAGE', ASSOC_TYPE_MONOGRAPH, $monograph->getId(), null, WORKFLOW_STAGE_ID_EDITING);
+		$stageAssignmentDao = & DAORegistry::getDAO('StageAssignmentDAO'); /* @var $stageAssignmentDao StageAssignmentDAO */
+		$stageAssignments = $stageAssignmentDao->getBySubmissionAndStageId($monograph->getId(), WORKFLOW_STAGE_ID_EDITING);
+
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 		$userGroups = array();
-		while($signoff =& $signoffs->next()) {
-			$userGroup =& $userGroupDao->getById($signoff->getUserGroupId());
+		while($stageAssignment =& $stageAssignments->next()) {
+			$userGroup =& $userGroupDao->getById($stageAssignment->getUserGroupId());
 			$userGroups[$userGroup->getId()] = $userGroup->getLocalizedAbbrev();
-			unset($signoff, $userGroup);
+			unset($stageAssignment, $userGroup);
 		}
 		foreach($userGroups as $userGroupId => $userGroupAbbrev) {
 			$this->addColumn(
@@ -254,8 +255,8 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 
 		// Retrieve the users for the autocomplete control: Any author or press assistant user assigned to this stage
-		$signoffDao =& DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
-		$stageUsers =& $signoffDao->getAllBySymbolic('SIGNOFF_STAGE', ASSOC_TYPE_MONOGRAPH, $monograph->getId(), null, WORKFLOW_STAGE_ID_EDITING);
+		$stageAssignmentDao = & DAORegistry::getDAO('StageAssignmentDAO'); /* @var $stageAssignmentDao StageAssignmentDAO */
+		$stageUsers = $stageAssignmentDao->getBySubmissionAndStageId($monograph->getId(), WORKFLOW_STAGE_ID_EDITING);
 
 		$itemList = array();
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */

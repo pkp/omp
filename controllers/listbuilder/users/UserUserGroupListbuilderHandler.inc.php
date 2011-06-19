@@ -122,24 +122,12 @@ class UserUserGroupListbuilderHandler extends ListbuilderHandler {
 	/**
 	 * Initialize the grid with the currently selected set of user groups.
 	 */
-	function loadList() {
-		$items = array();
-		import('lib.pkp.classes.controllers.listbuilder.ListbuilderMap');
-
+	function loadData() {
 		$press =& $this->getPress();
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 		$userGroups =& $userGroupDao->getByUserId($this->getUserId(), $press->getId());
 
-		while (!$userGroups->eof()) {
-			$userGroup =& $userGroups->next();
-			$index = $userGroup->getId();
-			$items[$index] = array(
-				'name' => new ListbuilderMap($index, $userGroup->getLocalizedName()),
-				'designation' => $userGroup->getLocalizedAbbrev()
-			);
-			unset($userGroup);
-		}
-		$this->setGridDataElements($items);
+        return $userGroups;
 	}
 
 
@@ -165,49 +153,41 @@ class UserUserGroupListbuilderHandler extends ListbuilderHandler {
 
 		parent::initialize($request);
 
-		// Load the listbuilder contents
-		$this->loadList();
-
 		// Basic configuration
+		$this->setTitle($request->getUserVar('title'));
 		$this->setSourceType(LISTBUILDER_SOURCE_TYPE_SELECT);
 
+        import('controllers.listbuilder.users/UserGroupListBuilderGridCellProvider');
+        $cellProvider =& new UserGroupListbuilderGridCellProvider();
+
 		// Name column
-		$nameColumn = new ListbuilderGridColumn($this, 'name', 'common.name');
-		import('lib.pkp.classes.controllers.grid.MapGridCellProvider');
-		$nameColumn->setCellProvider(new MapGridCellProvider());
+        $nameColumn = new ListbuilderGridColumn($this, 'name', 'common.name');
+        $nameColumn->setCellProvider($cellProvider);
 		$this->addColumn($nameColumn);
 
 		// Designation column
-		$this->addColumn(new ListbuilderGridColumn($this, 'designation', 'common.designation'));
+        $designationColumn = new ListbuilderGridColumn($this, 'designation', 'common.designation');
+        $designationColumn->setCellProvider($cellProvider);
+		$this->addColumn($designationColumn);
 
 	}
 
+    /**
+     * @see GridHandler::getRowDataElement
+     * Get the data element that corresponds to the current request
+     * Allow for a blank $rowId for when creating a not-yet-persisted row
+     */
+    function &getRowDataElement(&$request, $rowId) {
+        // fallback on the parent if a rowId is found
+        if ( !empty($rowId) ) {
+            return parent::getRowDataElement($request, $rowId);
+        }
 
-	/**
-	 * Create a new data element from a request. This is used to format
-	 * new rows prior to their insertion.
-	 * @param $request PKPRequest
-	 * @param $elementId int
-	 * @return object
-	 */
-	function &getDataElementFromRequest(&$request, &$elementId) {
-		import('lib.pkp.classes.controllers.listbuilder.ListbuilderMap');
-		$options = $this->getOptions(true);
-
-		$nameIndex = $request->getUserVar('name');
-		if ($nameIndex == '') $nameIndex = null;
-		else $nameIndex = (int) $nameIndex;
-		assert($nameIndex === null || isset($options[0][$nameIndex]));
-
-		$newItem = array(
-			'name' => new ListbuilderMap($nameIndex, $nameIndex?$options[0][$nameIndex]:null),
-			'designation' => $nameIndex?$options[1][$nameIndex]:null
-		);
-
-		$elementId = $request->getUserVar('rowId');
-		return $newItem;
-	}
-
+        $userGroupId = (int) $request->getUserVar('newRowId');
+        $userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+        $userGroup =& $userGroupDao->getById($userGroupId);
+        return $userGroup;
+    }
 
 	/**
 	 * Persist a new entry insert.
@@ -239,7 +219,7 @@ class UserUserGroupListbuilderHandler extends ListbuilderHandler {
 		return true;
 	}
 
-	/**             
+	/**
          * Delete an entry.
          * @param $rowId mixed ID of row to modify
          * @return boolean

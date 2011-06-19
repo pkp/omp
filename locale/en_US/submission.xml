@@ -37,6 +37,7 @@
 	<message key="submission.stepX">Step {$step}.</message>
 	<message key="submission.files.downloadAll">Download All Files</message>
 	<message key="submission.mySubmissions">My Submissions</message>
+	<message key="submission.participants">Participants</message>
 
 
 	<!-- Submission wizard -->

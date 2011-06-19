@@ -33,14 +33,26 @@ class UserGroupDAO extends PKPUserGroupDAO {
 		parent::PKPUserGroupDAO();
 	}
 
-	function &getUserGroupsByStage($pressId, $stageId) {
+    /**
+     * Get the user groups assigned to each stage. Provide the ability to omit authors and reviewers
+     * Since these are typically stored differently and displayed in different circumstances
+     * @param  $pressId
+     * @param  $stageId
+     * @return DAOResultFactory
+     */
+	function &getUserGroupsByStage($pressId, $stageId, $omitAuthors = false, $omitReviewers = false) {
+        $params = array((int) $pressId, (int) $stageId);
+        if ( $omitAuthors ) $params[] = ROLE_ID_AUTHOR;
+        if ( $omitReviewers) $params[] = ROLE_ID_REVIEWER;
 		$result =& $this->retrieve(
 			'SELECT	ug.*
 			FROM	user_groups ug
 				JOIN user_group_stage ugs ON ug.user_group_id = ugs.user_group_id AND ug.context_id = ugs.press_id
 			WHERE	ugs.press_id = ? AND
-				ugs.stage_id = ?',
-			array((int) $pressId, (int) $stageId)
+				ugs.stage_id = ?' .
+                ($omitAuthors?' AND ug.role_id <> ?':'') .
+                ($omitReviewers?' AND ug.role_id <> ?':''),
+			$params
 		);
 
 		$returner = new DAOResultFactory($result, $this, '_returnFromRow');

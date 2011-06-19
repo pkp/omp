@@ -65,8 +65,8 @@ class WorkflowSubmissionAssignmentPolicy extends AuthorizationPolicy {
 
 		// Check whether the user is assigned to the submission in
 		// the current user group for the given workflow step.
-		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
-		if(!$signoffDao->signoffExists('SIGNOFF_STAGE', ASSOC_TYPE_MONOGRAPH, $monograph->getId(), $user->getId(), $this->_stageId, $userGroup->getId())) {
+		$stageAssignmentDao = & DAORegistry::getDAO('StageAssignmentDAO'); /* @var $stageAssignmentDao StageAssignmentDAO */
+		if(!$stageAssignmentDao->stageAssignmentExists($monograph->getId(), $this->_stageId, $userGroup->getId(), $user->getId())) {
 			return AUTHORIZATION_DENY;
 		}
 

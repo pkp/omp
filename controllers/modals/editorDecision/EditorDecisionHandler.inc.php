@@ -17,6 +17,9 @@ import('classes.handler.Handler');
 // import JSON class for use with all AJAX requests
 import('lib.pkp.classes.core.JSONMessage');
 
+// Bring in decision constants
+import('classes.submission.common.Action');
+
 class EditorDecisionHandler extends Handler {
 	/**
 	 * Constructor.
@@ -160,6 +163,7 @@ class EditorDecisionHandler extends Handler {
 		$decision = (int)$request->getUserVar('decision');
 
 		$redirectOp = null;
+        // FIXME: get these URL's from the constants
 		if ($decision == SUBMISSION_EDITOR_DECISION_ACCEPT) {
 			$redirectOp = 'copyediting';
 		} elseif ($decision == SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW) {

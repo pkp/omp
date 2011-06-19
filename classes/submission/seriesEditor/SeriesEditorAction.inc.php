@@ -35,13 +35,14 @@ class SeriesEditorAction extends Action {
 	 * @param $decision integer
 	 */
 	function recordDecision($request, $seriesEditorSubmission, $decision) {
-		// FIXME #5557 Make sure this works with signoffs
-		$signoffDao =& DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
-		$signoffs =& $signoffDao->getBySymbolic('SIGNOFF_STAGE', ASSOC_TYPE_MONOGRAPH, $seriesEditorSubmission->getId());
-		if (empty($signoffs)) return;
+		$stageAssignmentDao =& DAORegistry::getDAO('StageAssignmentDAO');
+
+        $editorAssigned = $stageAssignmentDao->editorAssignedToSubmission($seriesEditorSubmission->getId(),
+                                                                          $seriesEditorSubmission->getCurrentStageId());
+        if ( !$editorAssigned ) return;
 
 		$seriesEditorSubmissionDao =& DAORegistry::getDAO('SeriesEditorSubmissionDAO');
-		$user =& Request::getUser();
+		$user =& $request->getUser();
 		$editorDecision = array(
 			'editDecisionId' => null,
 			'editorId' => $user->getId(),
@@ -75,7 +76,6 @@ class SeriesEditorAction extends Action {
 	 * @param $stageId int
 	 */
 	function assignDefaultStageParticipants(&$monograph, $stageId) {
-		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 
 		// Managerial roles are skipped -- They have access by default and
@@ -87,23 +87,19 @@ class SeriesEditorAction extends Action {
 		// Press roles -- For each press role user group assigned to this
 		//  stage in setup, iff there is only one user for the group,
 		//  automatically assign the user to the stage
-		$submissionStageGroups =& $userGroupDao->getUserGroupsByStage($monograph->getPressId(), $stageId);
+        // But skip authors and reviewers, since these are very monograph specific
+        $stageAssignmentDao =& DAORegistry::getDAO('StageAssignmentDAO');
+		$submissionStageGroups =& $userGroupDao->getUserGroupsByStage($monograph->getPressId(), $stageId, true, true);
 		while ($userGroup =& $submissionStageGroups->next()) {
-			if($userGroup->getRoleId() == ROLE_ID_PRESS_ASSISTANT) {
-				$users =& $userGroupDao->getUsersById($userGroup->getId());
-				if($users->getCount() == 1) {
-					$user =& $users->next();
-					$signoffDao->build('SIGNOFF_STAGE', ASSOC_TYPE_MONOGRAPH, $monograph->getId(), $user->getId(), $stageId, $userGroup->getId());
-				}
-			}
+            $users =& $userGroupDao->getUsersById($userGroup->getId());
+            if($users->getCount() == 1) {
+                $user =& $users->next();
+                $stageAssignmentDao->build($monograph->getId(), $stageId, $userGroup->getId(), $user->getId());
+            }
 		}
 
 		// Author roles -- Assign only the submitter
-		// FIXME #6001: If the submission is a monograph, then the user group
-		//   assigned for the submitter should be author; If its a volume,
-		// 	 it should be a volume editor user group.
-		$authorUserGroup =& $userGroupDao->getDefaultByRoleId($monograph->getPressId(), ROLE_ID_AUTHOR);
-		$signoffDao->build('SIGNOFF_STAGE', ASSOC_TYPE_MONOGRAPH, $monograph->getId(), $monograph->getUserId(), $stageId, $authorUserGroup->getId());
+		// FIXME #6001: Should the author groups be assigned here as well? As which user group?
 
 		// Reviewer roles -- Do nothing. Reviewers are not included in the stage participant list, they
 		// are administered via review assignments.
@@ -274,8 +270,8 @@ class SeriesEditorAction extends Action {
 					array(
 						'reviewerName' => $reviewer->getFullName(),
 						'dueDate' => strftime(Config::getVar('general', 'date_format_short'),
-						strtotime($reviewAssignment->getDateDue())),
-						'monographId' => $monographId,
+                                                        strtotime($reviewAssignment->getDateDue())),
+						'monographId' => $monograph->getId(),
 						'reviewType' => $reviewAssignment->getReviewType(),
 						'round' => $reviewAssignment->getRound()
 					)

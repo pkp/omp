@@ -289,12 +289,17 @@ class MonographDAO extends DAO {
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		$reviewAssignmentDao->deleteByMonographId($monographId);
 
-		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
-		$signoffs =& $signoffDao->getBySymbolic('SIGNOFF_STAGE', ASSOC_TYPE_MONOGRAPH, $monographId);
-		foreach ($signoffs as $signoff) {
-			$signoffDao->deleteObject($signoff);
+        // FIXME: #6693# do we need to delete Signoffs?
+
+        // Delete the stage assignments.
+        $stageAssignmentDao =& DAORegistry::getDAO('StageAssignmentDAO');
+        $stageAssignments =& $stageAssignmentDao->getBySubmissionAndStageId($monographId);
+        while ( $stageAssignment =& $stageAssignments->next() ) {
+            $stageAssignmentDao->deleteObject($stageAssignment);
+            unset($stageAssignment);
 		}
 
+        // Delete any comments.
 		$monographCommentDao =& DAORegistry::getDAO('MonographCommentDAO');
 		$monographCommentDao->deleteMonographComments($monographId);
 
@@ -306,7 +311,6 @@ class MonographDAO extends DAO {
 
 	/**
 	 * Get all monographs for a press.
-	 * @param $userId int
 	 * @param $pressId int
 	 * @return DAOResultFactory containing matching Monographs
 	 */
@@ -518,6 +522,48 @@ class MonographDAO extends DAO {
 		$result->Close();
 		unset($result);
 
+		return $returner;
+	}
+
+
+	/**
+	 * Get all unassigned monographs for a press or all presses
+	 * @param $pressId int
+	 * @return DAOResultFactory containing matching Monographs
+	 */
+	function &getUnassignedMonographs($pressId = null) {
+		$primaryLocale = Locale::getPrimaryLocale();
+		$locale = Locale::getLocale();
+
+		$params = array(
+				'title',
+				$primaryLocale,
+				'title',
+				$locale,
+				'abbrev',
+				$primaryLocale,
+				'abbrev',
+				$locale
+			);
+		if ($pressId) $params[] = (int) $pressId;
+
+		$result =& $this->retrieve(
+			'SELECT	m.*,
+				COALESCE(stl.setting_value, stpl.setting_value) AS series_title,
+				COALESCE(sal.setting_value, sapl.setting_value) AS series_abbrev
+			FROM	monographs m
+				LEFT JOIN series s ON s.series_id = m.series_id
+				LEFT JOIN series_settings stpl ON (s.series_id = stpl.series_id AND stpl.setting_name = ? AND stpl.locale = ?)
+				LEFT JOIN series_settings stl ON (s.series_id = stl.series_id AND stl.setting_name = ? AND stl.locale = ?)
+				LEFT JOIN series_settings sapl ON (s.series_id = sapl.series_id AND sapl.setting_name = ? AND sapl.locale = ?)
+				LEFT JOIN series_settings sal ON (s.series_id = sal.series_id AND sal.setting_name = ? AND sal.locale = ?)
+				LEFT JOIN stage_assignments sa ON (m.monograph_id = sa.submission_id)
+			WHERE (sa.stage_id IS NULL AND sa.user_group_id IS NULL AND sa.user_id IS NULL)' .
+					($pressId?' AND m.press_id = ?':''),
+			$params
+		);
+
+		$returner = new DAOResultFactory($result, $this, '_fromRow');
 		return $returner;
 	}
 }

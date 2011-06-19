@@ -219,16 +219,21 @@ class MonographMailTemplate extends MailTemplate {
 		assert(in_array($method, array('addRecipient', 'addCc', 'addBcc')));
 
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
-		$userGroupId = $userGroupDao->getByRoleId($this->press->getId(), $roleId);
+		$userGroups =& $userGroupDao->getByRoleId($this->press->getId(), $roleId);
 
 		$returner = array();
-		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
-		$users =& $signoffDao->getUsersBySymbolic('SIGNOFF_STAGE', ASSOC_TYPE_MONOGRAPH, $monographId, null, $userGroupId);
-		while ($user =& $users->next()) {
-			$this->$method($user->getEmail(), $user->getFullName());
-			$returner[] =& $user;
-			unset($user);
-		}
+        // Cycle through all the userGroups for this role
+        while ( $userGroup =& $userGroups->next() ) {
+            $userStageAssignmentDao =& DAORegistry::getDAO('UserStageAssignmentDAO');
+            // FIXME: #6692# Should maybe be getting assignments for a specific stage only. (also, maybe user group?)
+            $users =& $userStageAssignmentDao->getUsersBySubmissionAndStageId($monographId, null, $userGroup->getId());
+            while ($user =& $users->next()) {
+                $this->$method($user->getEmail(), $user->getFullName());
+                $returner[] =& $user;
+                unset($user);
+            }
+            unset($userGroup);
+        }
 		return $returner;
 	}
 }

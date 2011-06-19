@@ -84,7 +84,7 @@ class CopyeditingUserForm extends Form {
 		$selectedFiles = $this->getData('files');
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
 		foreach ($selectedFiles as $selectedFileId) {
-			$signoff =& $signoffDao->build('SIGNOFF_COPYEDITING', ASSOC_TYPE_MONOGRAPH_FILE, $selectedFileId, $userIdAndGroup[0], WORKFLOW_STAGE_ID_EDITING, $userIdAndGroup[1]); /* @var $signoff Signoff */
+			$signoff =& $signoffDao->build('SIGNOFF_COPYEDITING', ASSOC_TYPE_MONOGRAPH_FILE, $selectedFileId, $userIdAndGroup[0], $userIdAndGroup[1]); /* @var $signoff Signoff */
 
 			// Set the date notified
 			$signoff->setDateNotified(Core::getCurrentDate());

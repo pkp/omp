@@ -66,33 +66,12 @@ class UnassignedSubmissionsListGridHandler extends SubmissionsListGridHandler {
 	 * @see SubmissionListGridHandler::getSubmissions()
 	 */
 	function getSubmissions(&$request, $userId) {
-		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
-		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
-		$pressDao =& DAORegistry::getDAO('PressDAO');
 
-		$editorUserGroupIds = array_merge($userGroupDao->getUserGroupIdsByRoleId(ROLE_ID_PRESS_MANAGER), $userGroupDao->getUserGroupIdsByRoleId(ROLE_ID_SERIES_EDITOR));
+		// Get all monographs for all presses.
+		$monographs =& $monographDao->getUnassignedMonographs();
 
-		$data = array();
-		// Get monographs with only one signoff, make sure that signoff isn't an editor usergroup
-		$presses =& $pressDao->getPresses();
-		while($press =& $presses->next()) { // Iterate over all presses
-			$monographs =& $monographDao->getMonographsByPressId($press->getId()); // Get all monographs for each press
-			while($monograph =& $monographs->next()) {
-				// Get all signoffs in stage 1
-				$signoffs =& $signoffDao->getAllBySymbolic('SIGNOFF_STAGE', ASSOC_TYPE_MONOGRAPH, $monograph->getId(), null, WORKFLOW_STAGE_ID_SUBMISSION);
-				if($signoffs->getCount() == 1) { // Check that there is only one stage participant (the author, as set by default)
-					$signoff = $signoffs->next();
-					if(!in_array($signoff->getUserGroupId(), $editorUserGroupIds)) {
-						$data[$signoff->getAssocId()] = $monographDao->getMonograph($signoff->getAssocId());
-					}
-				}
-				unset($monograph);
-			}
-			unset($press);
-		}
-
-		return $data;
+		return $monographs;
 	}
 
 

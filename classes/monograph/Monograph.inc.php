@@ -202,43 +202,38 @@ class Monograph extends Submission {
 	 * @param $userGroupIds array Only look up the user group IDs in the array
 	 * @return array User IDs
 	 */
-	function getAssociatedUserIds($includeReviewers = false, $userGroupIds = null) {
+	function getAssociatedUserIdsByUserGroupId($stageId = null, $includeReviewers = false, $includeAuthors = false) {
 		$monographId = $this->getId();
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
-		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 
 		$userIds = array();
 
-		// If $userGroupIds is set, iterate through them, adding getUsers to array (with keys as userId)
-		if (is_array($userGroupIds)) {
-			foreach($userGroupIds as $userGroupId) {
-				$users =& $signoffDao->getUsersBySymbolic('SIGNOFF_STAGE', ASSOC_TYPE_MONOGRAPH, $monographId, null, $userGroupId);
-				while ($user =& $users->next()) {
-					$userId = $user->getUserId();
-					if ($userId) $userIds[$userId] = array('id' => $userId);
-					unset($user);
-				}
-				unset($users);
-			}
-		} else {
-				$users =& $signoffDao->getUsersBySymbolic('SIGNOFF_STAGE', ASSOC_TYPE_MONOGRAPH, $monographId);
-
-				while ($user =& $users->next()) {
-					$userId = $user->getUserId();
-					if ($userId) $userIds[$userId] = array('id' => $userId);
-					unset($user);
-				}
-
+		$stageAssignmentDAO =& DAORegistry::getDAO('StageAssignmentDAO');
+		$stageAssignments =& $stageAssignmentDAO->getBySubmissionAndStageId($monographId, $stageId);
+		while ($stageAssignment =& $stageAssignments->next()) {
+			$usersIds[$stageAssignment->getUserGroupId()][] = $stageAssignment->getUserId();
+			unset($stageAssignment);
 		}
 
-		// Get reviewers if necessary
-		if($includeReviewers) {
+		if ( $includeReviewers ) {
+			// FIXME: #6688# reviewers not inluded in stage participants grid
+			// need to add userGroupId's to reviewAssignments.
+			// all this is doing nothing at the moment.
 			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 			$reviewAssignments =& $reviewAssignmentDao->getBySubmissionId($monographId);
 			foreach ($reviewAssignments as $reviewAssignment) {
-				$userId = $reviewAssignment->getReviewerId();
-				if ($userId) $userIds[$userId] = array('id' => $userId, 'role' => 'reviewer');
+				// getReviewerUserGroupId does not exist ... yet.
+				// $userIds[$reviewAssignment->getReviewerUserGroupId()][] = $reviewAssignment->getReviewerId();
 				unset($reviewAssignment);
+			}
+		}
+
+		if ( $includeAuthors ) {
+			$authors =& $this->getAuthors();
+
+			while ($author =& $authors->next()) {
+				$usersIds[$author->getUserGroupId()][] = $author->getUserId();
+				unset($author);
 			}
 		}
 
