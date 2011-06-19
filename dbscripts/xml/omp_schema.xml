@@ -1255,6 +1255,53 @@
 
 	<!--
 	  *
+	  * TABLE stage_assignments
+	  *
+	  -->
+	<table name="stage_assignments">
+		<field name="stage_assignment_id" type="I8">
+			<KEY/>
+			<AUTOINCREMENT/>
+		</field>
+		<field name="submission_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="stage_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="user_group_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="user_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="date_assigned" type="T">
+			<NOTNULL/>
+		</field>
+		<descr>Stage Assignments</descr>
+		<index name="stage_assignment">
+			<col>submission_id</col>
+			<col>stage_id</col>
+			<col>user_group_id</col>
+			<col>user_id</col>
+			<UNIQUE />
+		</index>
+		<index name="stage_assignments_submission_id">
+			<col>submission_id</col>
+		</index>
+		<index name="stage_assignments_stage_id">
+			<col>stage_id</col>
+		</index>
+		<index name="stage_assignments_user_group_id">
+			<col>user_group_id</col>
+		</index>
+		<index name="stage_assignments_user_id">
+			<col>user_id</col>
+		</index>
+	</table>
+
+	<!--
+	  *
 	  * TABLE views
 	  *
 	  -->
