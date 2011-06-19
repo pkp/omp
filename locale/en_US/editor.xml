@@ -72,6 +72,9 @@
 	<message key="editor.monograph.copyediting.form.fileRequired">You must select at least one file to assign the user to.</message>
 	<message key="editor.monograph.copyediting.form.messageRequired">You must include a personal message.</message>
 
+	<!-- Submission stage related -->
+	<message key="editor.submission.noEditorAssigned">An editor must be assigned before you can initiate review.</message>
+
 	<!-- Review related -->
 	<message key="editor.review">Review</message>
 	<message key="editor.review.uploadRevision">Upload Revision</message>

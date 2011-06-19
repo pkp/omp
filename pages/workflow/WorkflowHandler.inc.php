@@ -20,6 +20,9 @@ import('lib.pkp.classes.linkAction.LinkAction');
 import('lib.pkp.classes.linkAction.request.AjaxModal');
 
 class WorkflowHandler extends Handler {
+    /** @var int the id of the current stage **/
+    var $_stageId;
+
 	/**
 	 * Constructor
 	 */
@@ -47,16 +50,11 @@ class WorkflowHandler extends Handler {
 	 * @see PKPHandler::initialize()
 	 */
 	function initialize(&$request, $args) {
-		$this->setupTemplate();
-		$templateMgr =& TemplateManager::getManager();
-
-		// Assign the authorized monograph.
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-		$templateMgr->assign_by_ref('monograph', $monograph);
-
 		// Assign the stage id.
 		$stageId = $this->_identifyStageId($request);
-		$templateMgr->assign('stageId', $stageId);
+        $this->_stageId = $stageId;
+
+		$this->setupTemplate();
 
 		// Call parent method.
 		parent::initialize($request, $args);
@@ -66,7 +64,22 @@ class WorkflowHandler extends Handler {
 	 * @see PKPHandler::setupTemplate()
 	 */
 	function setupTemplate() {
-		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_OMP_EDITOR, LOCALE_COMPONENT_OMP_SUBMISSION));
+		$templateMgr =& TemplateManager::getManager();
+
+        $monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+        $stageId = $this->_stageId;
+
+		// Assign the authorized monograph.
+		$templateMgr->assign_by_ref('monograph', $monograph);
+		$templateMgr->assign('stageId', $stageId);
+
+		$stageAssignmentDao =& DAORegistry::getDAO('StageAssignmentDAO');
+		$templateMgr->assign('editorAssigned',
+                                $stageAssignmentDao->editorAssignedToSubmission($monograph->getId(), $stageId));
+
+		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_SUBMISSION,
+                                       LOCALE_COMPONENT_OMP_EDITOR,
+                                       LOCALE_COMPONENT_OMP_SUBMISSION));
 		parent::setupTemplate();
 	}
 
@@ -80,7 +93,6 @@ class WorkflowHandler extends Handler {
 	 * @param $request PKPRequest
 	 */
 	function submission($args, &$request) {
-		// Assign editor decision actions to the template.
 		$this->_assignEditorDecisionActions($request, '_submissionStageDecisions');
 
 		// Render the view.
@@ -205,7 +217,6 @@ class WorkflowHandler extends Handler {
 		// Import the action and link action to define necessary constants before
 		// retrieving decisions.
 		import('classes.submission.common.Action');
-		import('lib.pkp.classes.linkAction.LegacyLinkAction');
 
 		// Retrieve the editor decisions.
 		$decisions = call_user_func(array($this, $decisionsCallback));

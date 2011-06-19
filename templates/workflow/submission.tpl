@@ -12,12 +12,16 @@
 
 {include file="workflow/header.tpl"}
 
-<!-- Editorial decision actions -->
-<div class="pkp_linkActions">
-	{foreach from=$editorActions item=action}
-		{include file="linkAction/linkAction.tpl" action=$action contextId="submission"}
-	{/foreach}
-</div>
+{if $editorAssigned}
+	<!-- Editorial decision actions -->
+	<div class="pkp_linkActions">
+		{foreach from=$editorActions item=action}
+			{include file="linkAction/linkAction.tpl" action=$action contextId="submission"}
+		{/foreach}
+	</div>
+{else}
+	{translate key="editor.submission.noEditorAssigned"}
+{/if}
 
 {url|assign:submissionFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.submission.EditorSubmissionDetailsFilesGridHandler" op="fetchGrid" monographId=$monograph->getId()}
 {load_url_in_div id="submissionFilesGridDiv" url=$submissionFilesGridUrl}
