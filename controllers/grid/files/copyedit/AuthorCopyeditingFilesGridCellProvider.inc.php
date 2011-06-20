@@ -67,9 +67,13 @@ class AuthorCopyeditingFilesGridCellProvider extends DataObjectGridCellProvider 
 	function getCellActions(&$request, &$row, &$column, $position = GRID_ACTION_POSITION_DEFAULT) {
 		$signoff =& $row->getData();
 
+		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+		import('controllers.api.file.linkAction.DownloadFileLinkAction');
+
 		if ($column->getId() == 'name') {
 			if($fileId = $signoff->getAssocId()) {
-				return $this->_getMonographFile($request, $row, $column, $fileId);
+				$monographFile =& $submissionFileDao->getLatestRevision($fileId);
+				return array(new DownloadFileLinkAction($request, $monographFile, WORKFLOW_STAGE_ID_EDITING));
 			} else {
 				return null;
 			}
@@ -78,7 +82,8 @@ class AuthorCopyeditingFilesGridCellProvider extends DataObjectGridCellProvider 
 		if ($column->getId() == 'responded') {
 			if($fileId = $signoff->getFileId()) {
 				// Let the user download the file
-				return $this->_getMonographFile($request, $row, $column, $fileId);
+				$monographFile =& $submissionFileDao->getLatestRevision($fileId);
+				return array(new DownloadFileLinkAction($request, $monographFile, WORKFLOW_STAGE_ID_EDITING));
 			} else {
 				// If there is no file, let the user open the copyediting file upload modal
 				$router =& $request->getRouter();
@@ -97,40 +102,6 @@ class AuthorCopyeditingFilesGridCellProvider extends DataObjectGridCellProvider 
 		}
 
 		return parent::getCellActions($request, $row, $column, $position);
-	}
-
-	/**
-	 * Get either a file to be copyedited or a copyedit response file
-	 * @param $request Request
-	 * @param $row GridRow
-	 * @param $column GridColumn
-	 * @param $fileId int
-	 * @return LegacyLinkAction
-	 */
-	function _getMonographFile(&$request, &$row, &$column, $fileId) {
-		$state = $this->getCellState($row, $column);
-
-		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-		$monographFile =& $submissionFileDao->getLatestRevision($fileId);
-
-		$router =& $request->getRouter();
-		$actionArgs = array(
-			'gridId' => $row->getGridId(),
-			'monographId' => $monographFile->getMonographId(),
-			'fileId' => $fileId
-		);
-
-		$label = $monographFile->getLocalizedName();
-		$action = new LegacyLinkAction(
-			'downloadFile',
-			LINK_ACTION_MODE_LINK,
-			LINK_ACTION_TYPE_NOTHING,
-			$router->url($request, null, null, 'downloadFile', null, $actionArgs),
-			null,
-			$label,
-			$state
-		);
-		return array($action);
 	}
 }
 
