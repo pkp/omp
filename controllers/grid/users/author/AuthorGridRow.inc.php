@@ -33,7 +33,7 @@ class AuthorGridRow extends GridRow {
 		// Do the default initialization
 		parent::initialize($request);
 
-        // FIXME: #6199
+		// FIXME: #6199
 		// Retrieve the monograph id from the request
 		$monographId = $request->getUserVar('monographId');
 		assert(is_numeric($monographId));
@@ -48,30 +48,30 @@ class AuthorGridRow extends GridRow {
 				'authorId' => $rowId
 			);
 
-	    	// Add row-level actions
-            import('lib.pkp.classes.linkAction.request.AjaxModal');
+			// Add row-level actions
+			import('lib.pkp.classes.linkAction.request.AjaxModal');
 			$this->addAction(
 				new LinkAction(
 					'editAuthor',
-                    new AjaxModal(
-					    $router->url($request, null, null, 'editAuthor', null, $actionArgs),
-					    __('grid.action.edit'),
-                        'edit'
-                   ),
+					new AjaxModal(
+						$router->url($request, null, null, 'editAuthor', null, $actionArgs),
+						__('grid.action.edit'),
+						'edit'
+					),
 					__('grid.action.edit'),
 					'edit'
 				)
 			);
 
-            import('lib.pkp.classes.linkAction.request.ConfirmationModal');
+			import('lib.pkp.classes.linkAction.request.ConfirmationModal');
 			$this->addAction(
 				new LinkAction(
 					'deleteAuthor',
 					new ConfirmationModal(
-                        __('common.confirmDelete'),
-                        null,
-                        $router->url($request, null, null, 'deleteAuthor', null, $actionArgs)
-                    ),
+						__('common.confirmDelete'),
+						null,
+						$router->url($request, null, null, 'deleteAuthor', null, $actionArgs)
+					),
 					__('grid.action.delete'),
 					'delete'
 				)

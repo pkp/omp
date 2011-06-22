@@ -76,7 +76,7 @@ class ReviewGridDataProvider extends FilesGridDataProvider {
 	 * @return integer
 	 */
 	function _getReviewType() {
-	    return $this->_reviewType;
+		return $this->_reviewType;
 	}
 
 	/**
@@ -84,7 +84,7 @@ class ReviewGridDataProvider extends FilesGridDataProvider {
 	 * @return integer
 	 */
 	function _getRound() {
-	    return $this->_round;
+		return $this->_round;
 	}
 }
 

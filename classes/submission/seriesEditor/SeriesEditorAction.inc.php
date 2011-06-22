@@ -90,15 +90,15 @@ class SeriesEditorAction extends Action {
 		// Press roles -- For each press role user group assigned to this
 		//  stage in setup, iff there is only one user for the group,
 		//  automatically assign the user to the stage
-        // But skip authors and reviewers, since these are very monograph specific
-        $stageAssignmentDao =& DAORegistry::getDAO('StageAssignmentDAO');
+		// But skip authors and reviewers, since these are very monograph specific
+		$stageAssignmentDao =& DAORegistry::getDAO('StageAssignmentDAO');
 		$submissionStageGroups =& $userGroupDao->getUserGroupsByStage($monograph->getPressId(), $stageId, true, true);
 		while ($userGroup =& $submissionStageGroups->next()) {
-            $users =& $userGroupDao->getUsersById($userGroup->getId());
-            if($users->getCount() == 1) {
-                $user =& $users->next();
-                $stageAssignmentDao->build($monograph->getId(), $stageId, $userGroup->getId(), $user->getId());
-            }
+			$users =& $userGroupDao->getUsersById($userGroup->getId());
+			if($users->getCount() == 1) {
+				$user =& $users->next();
+				$stageAssignmentDao->build($monograph->getId(), $stageId, $userGroup->getId(), $user->getId());
+			}
 		}
 
 		// Author roles -- Assign only the submitter
@@ -272,8 +272,10 @@ class SeriesEditorAction extends Action {
 					'log.review.reviewDueDateSet',
 					array(
 						'reviewerName' => $reviewer->getFullName(),
-						'dueDate' => strftime(Config::getVar('general', 'date_format_short'),
-                                                        strtotime($reviewAssignment->getDateDue())),
+						'dueDate' => strftime(
+							Config::getVar('general', 'date_format_short'),
+							strtotime($reviewAssignment->getDateDue())
+						),
 						'monographId' => $monograph->getId(),
 						'reviewType' => $reviewAssignment->getReviewType(),
 						'round' => $reviewAssignment->getRound()

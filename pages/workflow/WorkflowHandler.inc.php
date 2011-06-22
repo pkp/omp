@@ -20,8 +20,8 @@ import('lib.pkp.classes.linkAction.LinkAction');
 import('lib.pkp.classes.linkAction.request.AjaxModal');
 
 class WorkflowHandler extends Handler {
-    /** @var int the id of the current stage **/
-    var $_stageId;
+	/** @var int the id of the current stage **/
+	var $_stageId;
 
 	/**
 	 * Constructor
@@ -52,7 +52,7 @@ class WorkflowHandler extends Handler {
 	function initialize(&$request, $args) {
 		// Assign the stage id.
 		$stageId = $this->_identifyStageId($request);
-        $this->_stageId = $stageId;
+		$this->_stageId = $stageId;
 
 		$this->setupTemplate();
 
@@ -66,20 +66,20 @@ class WorkflowHandler extends Handler {
 	function setupTemplate() {
 		$templateMgr =& TemplateManager::getManager();
 
-        $monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-        $stageId = $this->_stageId;
+		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		$stageId = $this->_stageId;
 
 		// Assign the authorized monograph.
 		$templateMgr->assign_by_ref('monograph', $monograph);
 		$templateMgr->assign('stageId', $stageId);
 
 		$stageAssignmentDao =& DAORegistry::getDAO('StageAssignmentDAO');
-		$templateMgr->assign('editorAssigned',
-                                $stageAssignmentDao->editorAssignedToSubmission($monograph->getId(), $stageId));
+		$templateMgr->assign(
+			'editorAssigned',
+			$stageAssignmentDao->editorAssignedToSubmission($monograph->getId(), $stageId)
+		);
 
-		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_SUBMISSION,
-                                       LOCALE_COMPONENT_OMP_EDITOR,
-                                       LOCALE_COMPONENT_OMP_SUBMISSION));
+		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_OMP_EDITOR, LOCALE_COMPONENT_OMP_SUBMISSION));
 		parent::setupTemplate();
 	}
 

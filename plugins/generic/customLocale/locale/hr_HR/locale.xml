@@ -1,7 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
-<locale name="hr_HR"
-        full_name="Hrvatski">
+<locale name="hr_HR" full_name="Hrvatski">
 	<message key="plugins.generic.customLocale.name">Dodatak za prilagođavanje prijevoda</message>
 	<message key="plugins.generic.customLocale.description">Ovaj dodatak služi prilagođavanju standardnog teksta sučelja OMP-a.</message>
 	<message key="plugins.generic.customLocale.longDescription">Ova stranica prikazuje sve prijevode trenutno instalirane u časopisu.</message>

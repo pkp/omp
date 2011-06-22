@@ -23,7 +23,7 @@ class GenreForm extends Form {
 	 * @param $genreId int
 	 */
 	function setGenreId($genreId) {
-	    $this->_genreId = $genreId;
+		$this->_genreId = $genreId;
 	}
 
 	/**
@@ -31,7 +31,7 @@ class GenreForm extends Form {
 	 * @return int
 	 */
 	function getGenreId() {
-	    return $this->_genreId;
+		return $this->_genreId;
 	}
 
 

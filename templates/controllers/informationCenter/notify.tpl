@@ -13,20 +13,19 @@
 		$('.button').button();
 		$('#notifyForm').last().ajaxForm({
 			dataType: 'json',
-	        success: function(returnString) {
-	    		if (returnString.status == true) {
-		    		// Notify that email was sent and clear form fields
-		    		$("#notifyForm").find(':input').each(function() {
+			success: function(returnString) {
+				if (returnString.status == true) {
+					// Notify that email was sent and clear form fields
+					$("#notifyForm").find(':input').each(function() {
 						$(this).val('');
-			    	});
-		    		$("#notifyWarning").remove();
-		    		// FIXME: Display system notification that the message was sent
-	    		} else {
-	    			$("#message").last().after("<p id='notifyWarning'>"+returnString.content+"</p>");
-	    		}
-	        }
-	    });
-
+					});
+					$("#notifyWarning").remove();
+					// FIXME: Display system notification that the message was sent
+				} else {
+					$("#message").last().after("<p id='notifyWarning'>"+returnString.content+"</p>");
+				}
+			}
+		});
 	});
 	{/literal}
 	// -->

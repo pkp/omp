@@ -222,18 +222,18 @@ class MonographMailTemplate extends MailTemplate {
 		$userGroups =& $userGroupDao->getByRoleId($this->press->getId(), $roleId);
 
 		$returner = array();
-        // Cycle through all the userGroups for this role
-        while ( $userGroup =& $userGroups->next() ) {
-            $userStageAssignmentDao =& DAORegistry::getDAO('UserStageAssignmentDAO');
-            // FIXME: #6692# Should maybe be getting assignments for a specific stage only. (also, maybe user group?)
-            $users =& $userStageAssignmentDao->getUsersBySubmissionAndStageId($monographId, null, $userGroup->getId());
-            while ($user =& $users->next()) {
-                $this->$method($user->getEmail(), $user->getFullName());
-                $returner[] =& $user;
-                unset($user);
-            }
-            unset($userGroup);
-        }
+		// Cycle through all the userGroups for this role
+		while ( $userGroup =& $userGroups->next() ) {
+			$userStageAssignmentDao =& DAORegistry::getDAO('UserStageAssignmentDAO');
+			// FIXME: #6692# Should maybe be getting assignments for a specific stage only. (also, maybe user group?)
+			$users =& $userStageAssignmentDao->getUsersBySubmissionAndStageId($monographId, null, $userGroup->getId());
+			while ($user =& $users->next()) {
+				$this->$method($user->getEmail(), $user->getFullName());
+				$returner[] =& $user;
+				unset($user);
+			}
+			unset($userGroup);
+		}
 		return $returner;
 	}
 }

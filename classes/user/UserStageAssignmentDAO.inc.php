@@ -58,9 +58,9 @@ class UserStageAssignmentDAO extends UserDAO {
 	}
 
 
-    //
-    // Private helper method
-    //
+	//
+	// Private helper method
+	//
 	/**
 	 * Retrieve a user by submission and stage IDs.
 	 * Private method because it serves two purposes: returns a single assignment

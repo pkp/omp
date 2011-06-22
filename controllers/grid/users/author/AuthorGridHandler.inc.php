@@ -170,17 +170,17 @@ class AuthorGridHandler extends GridHandler {
 		return $row;
 	}
 
-    /**
+	/**
 	 * Get the arguments that will identify the data in the grid
-     * In this case, the monograph.
+	 * In this case, the monograph.
 	 * @return array
 	 */
-    function getRequestArgs() {
+	function getRequestArgs() {
 		$monograph =& $this->getMonograph();
 		return array(
 			'monographId' => $monograph->getId()
-            );
-    }
+		);
+	}
 
 
 	//
@@ -258,14 +258,13 @@ class AuthorGridHandler extends GridHandler {
 				// If this is the primary contact, redraw the whole grid
 				// so that it takes the checkbox off other rows.
 				return DAO::getDataChangedEvent();
-            } else {
-            	return DAO::getDataChangedEvent($authorId);
+			} else {
+				return DAO::getDataChangedEvent($authorId);
 			}
 		} else {
 			$json = new JSONMessage(false, Locale::translate('editor.monograph.addUserError'));
-            return $json->getString();
+			return $json->getString();
 		}
-
 	}
 
 	/**

@@ -138,8 +138,7 @@ class SeriesEditorSubmission extends Monograph {
 	 */
 	function getSubmissionStatus() {
 			$status = $this->getStatus();
-		if ($status == STATUS_ARCHIVED || $status == STATUS_PUBLISHED ||
-		    $status == STATUS_DECLINED) return $status;
+		if ($status == STATUS_ARCHIVED || $status == STATUS_PUBLISHED || $status == STATUS_DECLINED) return $status;
 
 		// The submission is STATUS_QUEUED or the author's submission was STATUS_INCOMPLETE.
 		if ($this->getSubmissionProgress()) return (STATUS_INCOMPLETE);

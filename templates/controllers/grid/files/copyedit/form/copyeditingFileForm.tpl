@@ -14,46 +14,46 @@
 	{literal}
 	$(function() {
 		// Handle upload form
-	    $('#uploadForm').ajaxForm({
-		    url: '{/literal}{url op="uploadCopyeditedFile" monographId=$monographId signoffId=$signoffId escape=false}{literal}',
-	        target: '#uploadOutput',  // target identifies the element(s) to update with the server response
+		$('#uploadForm').ajaxForm({
+			url: '{/literal}{url op="uploadCopyeditedFile" monographId=$monographId signoffId=$signoffId escape=false}{literal}',
+			target: '#uploadOutput',  // target identifies the element(s) to update with the server response
 			iframe: true,
 			dataType: 'json',
 			beforeSubmit: function() {
 				$('#loading').show();
 				$('#loadingText').fadeIn('slow');
-	    	},
-	        // success identifies the function to invoke when the server response
-	        // has been received; here we show a success message and enable the next tab
-	        success: function(returnString) {
-    			$('#loading').hide();
-	    		if (returnString.status == true) {
-	    			$('#copyeditingFile').attr("disabled", "disabled");
-	    			$('#copyeditingFileSubmit').button("option", "disabled", true);
-	    			$("#submitModalButton").button( "option", "disabled", false);
-		    		$('#deleteUrl').val(returnString.deleteUrl);
-	    			$("#metadataRowId").val(returnString.elementId);
-	    		}
-	    		$('#loadingText').text(returnString.content);  // Set to error or success message
-	        }
-	    });
+			},
+			// success identifies the function to invoke when the server response
+			// has been received; here we show a success message and enable the next tab
+			success: function(returnString) {
+				$('#loading').hide();
+				if (returnString.status == true) {
+					$('#copyeditingFile').attr("disabled", "disabled");
+					$('#copyeditingFileSubmit').button("option", "disabled", true);
+					$("#submitModalButton").button( "option", "disabled", false);
+					$('#deleteUrl').val(returnString.deleteUrl);
+					$("#metadataRowId").val(returnString.elementId);
+				}
+				$('#loadingText').text(returnString.content);  // Set to error or success message
+			}
+		});
 		// Handle metadata form
-	    $('#metadataForm').ajaxForm({
+		$('#metadataForm').ajaxForm({
 			dataType: 'json',
-	        success: function(returnString) {
-	    		if (returnString.status == true) {
-		    		newFile = $('#newFile').val();
-		    		if(newFile != undefined && newFile != "") {
+			success: function(returnString) {
+				if (returnString.status == true) {
+					newFile = $('#newFile').val();
+					if(newFile != undefined && newFile != "") {
 						actType = 'append';
-		    		} else {
+					} else {
 						actType = 'replace';
-		    		}
-	    			updateItem(actType, '#component-'+'{/literal}{$gridId}{literal}'+'-table>tbody:first', returnString.content);
-	    			$('#uploadForm').parent().dialog('close');
-	    		}
-	    		$('#loadingText').text(returnString.content);  // Set to error or success message
-	        }
-	    });
+					}
+					updateItem(actType, '#component-'+'{/literal}{$gridId}{literal}'+'-table>tbody:first', returnString.content);
+					$('#uploadForm').parent().dialog('close');
+				}
+				$('#loadingText').text(returnString.content);  // Set to error or success message
+			}
+		});
 
 		$("#cancelModalButton").click(function() {
 			// User has uploaded a file then pressed cancel--delete the file

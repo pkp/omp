@@ -32,7 +32,7 @@ class AdvancedSearchReviewerFilterForm extends Form {
 	 * @return Object
 	 */
 	function getMonograph() {
-	    return $this->_monograph;
+		return $this->_monograph;
 	}
 
 	/*

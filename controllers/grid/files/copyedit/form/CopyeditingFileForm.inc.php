@@ -51,7 +51,7 @@ class CopyeditingFileForm extends Form {
 	 * @return Monograph
 	 */
 	function getMonograph() {
-	    return $this->_monograph;
+		return $this->_monograph;
 	}
 
 	/**
@@ -59,7 +59,7 @@ class CopyeditingFileForm extends Form {
 	 * @return int
 	 */
 	function getSignoffId() {
-	    return $this->_signoffId;
+		return $this->_signoffId;
 	}
 
 

@@ -19,12 +19,12 @@
 <p>{translate key="submission.submit.addStageParticipant.description"}</p>
 
 <form class="pkp_form" id="editStageParticipantsList" action="{url op="saveStageParticipantList"}" method="post">
-    <input type="hidden" name="monographId" value="{$monographId|escape}" />
-    <input type="hidden" name="stageId" value="{$stageId|escape}" />
-    <input type="hidden" name="userGroupId" value="{$userGroupId|escape}" />
+	<input type="hidden" name="monographId" value="{$monographId|escape}" />
+	<input type="hidden" name="stageId" value="{$stageId|escape}" />
+	<input type="hidden" name="userGroupId" value="{$userGroupId|escape}" />
 
-    {url|assign:submissionParticipantsUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.users.StageParticipantListbuilderHandler" op="fetch" monographId=$monographId stageId=$stageId userGroupId=$userGroupId escape=false}
-    {load_url_in_div id="submissionParticipantsContainer" url=$submissionParticipantsUrl}
+	{url|assign:submissionParticipantsUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.users.StageParticipantListbuilderHandler" op="fetch" monographId=$monographId stageId=$stageId userGroupId=$userGroupId escape=false}
+	{load_url_in_div id="submissionParticipantsContainer" url=$submissionParticipantsUrl}
 
 <div class="">
 <div>

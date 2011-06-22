@@ -45,7 +45,7 @@ class PreparedEmailForm extends Form {
 	 * @param $emailKey string
 	 */
 	function setEmailKey($emailKey) {
-	    $this->_emailKey = $emailKey;
+		$this->_emailKey = $emailKey;
 	}
 
 	/**
@@ -53,7 +53,7 @@ class PreparedEmailForm extends Form {
 	 * @return string
 	 */
 	function getEmailKey() {
-	    return $this->_emailKey;
+		return $this->_emailKey;
 	}
 
 	/**
@@ -61,7 +61,7 @@ class PreparedEmailForm extends Form {
 	 * @return Press
 	 */
 	function &getPress() {
-	    return $this->_press;
+		return $this->_press;
 	}
 
 	/**

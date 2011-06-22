@@ -46,7 +46,7 @@ class ManageReviewFilesForm extends Form {
 	 * @param $monographId int
 	 */
 	function setMonographId($monographId) {
-	    $this->_monographId = $monographId;
+		$this->_monographId = $monographId;
 	}
 
 	/**
@@ -54,7 +54,7 @@ class ManageReviewFilesForm extends Form {
 	 * @return int
 	 */
 	function getMonographId() {
-	    return $this->_monographId;
+		return $this->_monographId;
 	}
 
 	/**
@@ -62,7 +62,7 @@ class ManageReviewFilesForm extends Form {
 	 * @param $reviewType int
 	 */
 	function setReviewType($reviewType) {
-	    $this->_reviewType = $reviewType;
+		$this->_reviewType = $reviewType;
 	}
 
 	/**
@@ -70,7 +70,7 @@ class ManageReviewFilesForm extends Form {
 	 * @return int
 	 */
 	function getReviewType() {
-	    return $this->_reviewType;
+		return $this->_reviewType;
 	}
 
 	/**
@@ -78,7 +78,7 @@ class ManageReviewFilesForm extends Form {
 	 * @param $round int
 	 */
 	function setRound($round) {
-	    $this->_round = $round;
+		$this->_round = $round;
 	}
 
 	/**
@@ -86,7 +86,7 @@ class ManageReviewFilesForm extends Form {
 	 * @return int
 	 */
 	function getRound() {
-	    return $this->_round;
+		return $this->_round;
 	}
 
 

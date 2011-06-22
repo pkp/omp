@@ -70,7 +70,7 @@ class ReviewerGridHandler extends GridHandler {
 	 * @return integer
 	 */
 	function getReviewType() {
-	    return $this->_reviewType;
+		return $this->_reviewType;
 	}
 
 	/**
@@ -78,7 +78,7 @@ class ReviewerGridHandler extends GridHandler {
 	 * @return integer
 	 */
 	function getRound() {
-	    return $this->_round;
+		return $this->_round;
 	}
 
 

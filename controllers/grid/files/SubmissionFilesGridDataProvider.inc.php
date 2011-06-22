@@ -100,7 +100,7 @@ class SubmissionFilesGridDataProvider extends FilesGridDataProvider {
 	 * @return integer
 	 */
 	function _getStageId() {
-	    return $this->_stageId;
+		return $this->_stageId;
 	}
 
 	/**
@@ -108,7 +108,7 @@ class SubmissionFilesGridDataProvider extends FilesGridDataProvider {
 	 * @return integer
 	 */
 	function _getFileStage() {
-	    return $this->_fileStage;
+		return $this->_fileStage;
 	}
 }
 

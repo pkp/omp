@@ -23,7 +23,7 @@ class CopyeditingUserForm extends Form {
 	 * @param $monograph Monograph
 	 */
 	function setMonograph(&$monograph) {
-	    $this->_monograph =& $monograph;
+		$this->_monograph =& $monograph;
 	}
 
 	/**
@@ -31,7 +31,7 @@ class CopyeditingUserForm extends Form {
 	 * @return Monograph
 	 */
 	function getMonograph() {
-	    return $this->_monograph;
+		return $this->_monograph;
 	}
 
 	/**

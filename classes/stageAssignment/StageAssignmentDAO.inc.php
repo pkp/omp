@@ -203,11 +203,10 @@ class StageAssignmentDAO extends DAO {
 				$result->Close();
 		} else {
 			// In any other case, return a list of all assignments
-            $returner = new DAOResultFactory($result, $this, '_fromRow');
+			$returner = new DAOResultFactory($result, $this, '_fromRow');
 		}
 		return $returner;
 	}
-
 }
 
 ?>

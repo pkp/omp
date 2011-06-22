@@ -11,7 +11,7 @@
   -->
 
 <users>
-        <user>
+	<user>
 		<username>testuser1</username>
 		<password>ompomp</password>
 		<salutation>Dr.</salutation>
@@ -41,5 +41,5 @@
 		<biography locale="es_ES">My biograhy (Spanish) - TestUser2.</biography>
 		<userLocales>de_DE:en_US</userLocales>
 		<role type="author"/>
-        </user>
+	</user>
 </users>

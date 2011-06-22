@@ -19,8 +19,8 @@ class StageParticipantGridRow extends GridRow {
 	 * Constructor
 	 */
 	function StageParticipantGridRow(&$monograph, $stageId) {
-        $this->_monograph =& $monograph;
-        $this->_stageId =& $stageId;
+		$this->_monograph =& $monograph;
+		$this->_stageId =& $stageId;
 
 		parent::GridRow();
 	}
@@ -40,14 +40,16 @@ class StageParticipantGridRow extends GridRow {
 		// Is this a new row or an existing row?
 		$rowId = $this->getId();
 		if (!empty($rowId) && is_numeric($rowId)) {
-            // FIXME: #6199 authorize userGroupId
-            $this->setUserGroupId($rowId);
+			// FIXME: #6199 authorize userGroupId
+			$this->setUserGroupId($rowId);
 
 			// Only add row actions if this is an existing row.
 			$router =& $request->getRouter();
-			$actionArgs = array('monographId' => $this->getMonograph()->getId(),
-                                'stageId' => $this->_stageId,
-                                'userGroupId' => $this->getUserGroupId());
+			$actionArgs = array(
+				'monographId' => $this->getMonograph()->getId(),
+				'stageId' => $this->_stageId,
+				'userGroupId' => $this->getUserGroupId()
+			);
 
 			import('lib.pkp.classes.linkAction.request.AjaxModal');
 			// FIXME: Not all roles should see this action. Bug #5975.
@@ -69,26 +71,26 @@ class StageParticipantGridRow extends GridRow {
 		}
 	}
 
-    //
-    // Getters/Setters
-    //
-    /**
-     * Get the monograph for this row (already authorized)
-     * @return Monograph
-     */
-    function &getMonograph() {
-        return $this->_monograph;
-    }
+	//
+	// Getters/Setters
+	//
+	/**
+	 * Get the monograph for this row (already authorized)
+	 * @return Monograph
+	 */
+	function &getMonograph() {
+		return $this->_monograph;
+	}
 
-    /**
-     * Get the stage id for this row
-     * @return int
-     */
-    function getStageId() {
-        return $this->_stageId;
-    }
+	/**
+	 * Get the stage id for this row
+	 * @return int
+	 */
+	function getStageId() {
+		return $this->_stageId;
+	}
 
-    /**
+	/**
 	 * Set the user group id
 	 * @param $userGroupId integer
 	 */
@@ -111,7 +113,7 @@ class StageParticipantGridRow extends GridRow {
 	 * @return array
 	 */
 	function getRequestArgs() {
-        // FIXME: #6199 Authorize the user Group ID?
+		// FIXME: #6199 Authorize the user Group ID?
 		return array('userGroupId' => $this->getUserGroupId());
 	}
 }

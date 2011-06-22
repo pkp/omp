@@ -79,7 +79,7 @@ class buildCss extends CommandLineTool {
 			exit(-1);
 		}
 		exit(0);
-        }
+	}
 }
 
 $tool = new buildCss(isset($argv) ? $argv : array());
