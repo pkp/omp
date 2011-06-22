@@ -35,7 +35,7 @@ class UserGroupListbuilderGridCellProvider extends GridCellProvider {
 	function getTemplateVarsFromRowColumn(&$row, $column) {
 		$userGroup =& $row->getData();
 		$columnId = $column->getId();
-		assert(is_a($userGroup, 'User') && !empty($columnId));
+		assert(is_a($userGroup, 'UserGroup') && !empty($columnId));
 		switch ( $columnId ) {
 			case 'name':
 				return array('labelKey' => $userGroup->getId(), 'label' => $userGroup->getLocalizedName());
@@ -45,6 +45,6 @@ class UserGroupListbuilderGridCellProvider extends GridCellProvider {
 		// we got an unexpected column
 		assert(false);
 	}
-	}
+}
 
 ?>

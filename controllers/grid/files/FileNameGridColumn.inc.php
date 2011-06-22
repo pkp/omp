@@ -28,7 +28,7 @@ class FileNameGridColumn extends GridColumn {
 		$this->_stageId = (int)$stageId;
 		import('lib.pkp.classes.controllers.grid.ColumnBasedGridCellProvider');
 		$cellProvider = new ColumnBasedGridCellProvider();
-		parent::GridColumn('name',	'common.name', null, 'controllers/grid/gridCell.tpl', $cellProvider);
+		parent::GridColumn('name', 'common.name', null, 'controllers/grid/gridCell.tpl', $cellProvider);
 	}
 
 
