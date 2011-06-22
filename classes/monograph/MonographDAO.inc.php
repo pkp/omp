@@ -289,17 +289,17 @@ class MonographDAO extends DAO {
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		$reviewAssignmentDao->deleteByMonographId($monographId);
 
-        // FIXME: #6693# do we need to delete Signoffs?
+		// FIXME: #6693# do we need to delete Signoffs?
 
-        // Delete the stage assignments.
-        $stageAssignmentDao =& DAORegistry::getDAO('StageAssignmentDAO');
-        $stageAssignments =& $stageAssignmentDao->getBySubmissionAndStageId($monographId);
-        while ( $stageAssignment =& $stageAssignments->next() ) {
-            $stageAssignmentDao->deleteObject($stageAssignment);
-            unset($stageAssignment);
+		// Delete the stage assignments.
+		$stageAssignmentDao =& DAORegistry::getDAO('StageAssignmentDAO');
+		$stageAssignments =& $stageAssignmentDao->getBySubmissionAndStageId($monographId);
+		while ( $stageAssignment =& $stageAssignments->next() ) {
+			$stageAssignmentDao->deleteObject($stageAssignment);
+			unset($stageAssignment);
 		}
 
-        // Delete any comments.
+		// Delete any comments.
 		$monographCommentDao =& DAORegistry::getDAO('MonographCommentDAO');
 		$monographCommentDao->deleteMonographComments($monographId);
 

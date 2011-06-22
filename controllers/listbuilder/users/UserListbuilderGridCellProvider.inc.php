@@ -1,12 +1,12 @@
 <?php
 
 /**
- * @file classes/controllers/listbuilder/UserListBuilderGridCellProvider.inc.php
+ * @file classes/controllers/listbuilder/UserListbuilderGridCellProvider.inc.php
  *
  * Copyright (c) 2000-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class UserListBuilderGridCellProvider
+ * @class UserListbuilderGridCellProvider
  * @ingroup controllers_grid
  *
  * @brief Base class for a cell provider that can retrieve labels from arrays
@@ -14,11 +14,11 @@
 
 import('lib.pkp.classes.controllers.grid.GridCellProvider');
 
-class UserListBuilderGridCellProvider extends GridCellProvider {
+class UserListbuilderGridCellProvider extends GridCellProvider {
     /**
      * Constructor
      */
-    function UserListBuilderGridCellProvider() {
+    function UserListbuilderGridCellProvider() {
         parent::GridCellProvider();
     }
 

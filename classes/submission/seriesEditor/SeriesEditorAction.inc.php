@@ -37,9 +37,12 @@ class SeriesEditorAction extends Action {
 	function recordDecision($request, $seriesEditorSubmission, $decision) {
 		$stageAssignmentDao =& DAORegistry::getDAO('StageAssignmentDAO');
 
-        $editorAssigned = $stageAssignmentDao->editorAssignedToSubmission($seriesEditorSubmission->getId(),
-                                                                          $seriesEditorSubmission->getCurrentStageId());
-        if ( !$editorAssigned ) return;
+		$editorAssigned = $stageAssignmentDao->editorAssignedToSubmission(
+			$seriesEditorSubmission->getId(),
+			$seriesEditorSubmission->getCurrentStageId()
+		);
+
+		if ( !$editorAssigned ) return;
 
 		$seriesEditorSubmissionDao =& DAORegistry::getDAO('SeriesEditorSubmissionDAO');
 		$user =& $request->getUser();

@@ -130,9 +130,9 @@ class LibraryFileManager extends FileManager {
 	 * @param $type int LIBRARY_FILE_TYPE_...
 	 */
 	function getNameFromType($type) {
-	        $typeNameMap =& $this->getTypeNameMap();
+		$typeNameMap =& $this->getTypeNameMap();
 		if (!isset($typeNameMap[$type])) fatalError('Invalid library file type!');
-	        return $typeNameMap[$type];
+		return $typeNameMap[$type];
 	}
 
 	/**

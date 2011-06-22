@@ -76,31 +76,31 @@ class StageParticipantListbuilderHandler extends ListbuilderHandler {
 		return array(
 			'monographId' => $monograph->getId(),
 			'stageId' => $this->getStageId(),
-            'userGroupId' => $this->getUserGroupId()
+			'userGroupId' => $this->getUserGroupId()
 		);
 	}
 
-    /**
-     * @see GridHandler::getRowDataElement
-     * Get the data element that corresponds to the current request
-     * Allow for a blank $rowId for when creating a not-yet-persisted row
-     */
-    function &getRowDataElement(&$request, $rowId) {
-        // fallback on the parent if a rowId is found
-        if ( !empty($rowId) ) {
-            return parent::getRowDataElement($request, $rowId);
-        }
+	/**
+	 * @see GridHandler::getRowDataElement
+	 * Get the data element that corresponds to the current request
+	 * Allow for a blank $rowId for when creating a not-yet-persisted row
+	 */
+	function &getRowDataElement(&$request, $rowId) {
+		// fallback on the parent if a rowId is found
+		if ( !empty($rowId) ) {
+			return parent::getRowDataElement($request, $rowId);
+		}
 
-        // Otherwise return from the newRowId
-        $userId = (int) $request->getUserVar('newRowId');
-        $userDao =& DAORegistry::getDAO('UserDAO');
-        $user =& $userDao->getUser($userId);
-        return $user;
-    }
+		// Otherwise return from the newRowId
+		$userId = (int) $request->getUserVar('newRowId');
+		$userDao =& DAORegistry::getDAO('UserDAO');
+		$user =& $userDao->getUser($userId);
+		return $user;
+	}
 
 	/**
 	 * @see ListbuilderHandler::getOptions
-     * @params $userGroupId int A user group id to filter by (defaults to URL)
+	 * @params $userGroupId int A user group id to filter by (defaults to URL)
 	 */
 	function getOptions() {
 
@@ -114,11 +114,11 @@ class StageParticipantListbuilderHandler extends ListbuilderHandler {
 		// if the series editor is assigned to the monograph's series.
 		$userStageAssignmentDao =& DAORegistry::getDAO('UserStageAssignmentDAO');
 		$monograph =& $this->getMonograph();
-        $userGroupId = $this->getUserGroupId();
+		$userGroupId = $this->getUserGroupId();
 
 		$users =& $userStageAssignmentDao->getUsersNotAssignedToStageInUserGroup(
-                                        $monograph->getId(), $this->getStageId(), $userGroupId
-                                    );
+			$monograph->getId(), $this->getStageId(), $userGroupId
+		);
 
 		while ( !$users->eof() ) {
 			$user =& $users->next();
@@ -145,13 +145,13 @@ class StageParticipantListbuilderHandler extends ListbuilderHandler {
 		// Basic configuration.
 		$this->setSourceType(LISTBUILDER_SOURCE_TYPE_SELECT);
 
-        // FIXME: #6199 authorize userGroupId
-        $this->setUserGroupId((int) $request->getUserVar('userGroupId'));
+		// FIXME: #6199 authorize userGroupId
+		$this->setUserGroupId((int) $request->getUserVar('userGroupId'));
 
 		// Name column
 		$nameColumn = new ListbuilderGridColumn($this, 'lastName', 'common.name');
-		import('controllers.listbuilder.users/UserListBuilderGridCellProvider');
-        $cellProvider =& new UserListbuilderGridCellProvider();
+		import('controllers.listbuilder.users.UserListbuilderGridCellProvider');
+		$cellProvider =& new UserListbuilderGridCellProvider();
 		$nameColumn->setCellProvider($cellProvider);
 		$this->addColumn($nameColumn);
 
@@ -173,11 +173,16 @@ class StageParticipantListbuilderHandler extends ListbuilderHandler {
 	function loadData($request, $filter) {
 		// Get each default user group ID, then load users by that user group ID
 		$userStageAssignmentDao = & DAORegistry::getDAO('UserStageAssignmentDAO');
-		$users =& $userStageAssignmentDao->getUsersBySubmissionAndStageId($this->getMonograph()->getId(),
-                                                                          $this->getStageId(), $this->getUserGroupId());
+		$monograph = $this->getMonograph();
+		$users =& $userStageAssignmentDao->getUsersBySubmissionAndStageId(
+			$monograph->getId(),
+			$this->getStageId(),
+			$this->getUserGroupId()
+		);
 
 		return $users;
 	}
+
 	/**
 	 * Persist a new entry insert.
 	 * @param $entry mixed New entry with data to persist
@@ -201,12 +206,12 @@ class StageParticipantListbuilderHandler extends ListbuilderHandler {
 	 * @return boolean
 	 */
 	function deleteEntry($rowId) {
-        $monograph =& $this->getMonograph();
+		$monograph =& $this->getMonograph();
 		$stageAssignmentDao = & DAORegistry::getDAO('StageAssignmentDAO'); /* @var $stageAssignmentDao StageAssignmentDAO */
 		$stageAssignmentDao->deleteByAll($monograph->getId(), $this->getStageId(), $this->getUserGroupId(), $rowId);
 
 		return true;
 	}
-
 }
+
 ?>
