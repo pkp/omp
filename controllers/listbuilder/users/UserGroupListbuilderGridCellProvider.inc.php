@@ -15,9 +15,9 @@
 import('lib.pkp.classes.controllers.grid.GridCellProvider');
 
 class UserGroupListbuilderGridCellProvider extends GridCellProvider {
-    /**
-     * Constructor
-     */
+	/**
+	 * Constructor
+	 */
 	function UserGroupListbuilderGridCellProvider() {
 		parent::GridCellProvider();
 	}

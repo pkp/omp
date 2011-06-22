@@ -145,7 +145,7 @@ class SubmissionFilesUploadForm extends SubmissionFilesUploadBaseForm {
 		$uploaderRoles = $this->getUploaderRoles();
 		$uploaderUserGroups = array();
 		$highestAuthorityUserGroupId = null;
-        $highestAuthorityRoleId = null;
+		$highestAuthorityRoleId = null;
 		while($userGroup =& $assignedUserGroups->next()) { /* @var $userGroup UserGroup */
 			// Add all user groups that belong to any of the uploader roles.
 			if (in_array($userGroup->getRoleId(), $uploaderRoles)) {
@@ -175,10 +175,14 @@ class SubmissionFilesUploadForm extends SubmissionFilesUploadBaseForm {
 			// See whether the current user has been assigned as
 			// a workflow stage participant.
 			$stageAssignmentDao = & DAORegistry::getDAO('StageAssignmentDAO'); /* @var $stageAssignmentDao StageAssignmentDAO */
-			$stageAssignments = $stageAssignmentDao->getBySubmissionAndStageId($this->getData('monographId'),
-                                                                               $this->getStageId(), null, $user->getId());
+			$stageAssignments = $stageAssignmentDao->getBySubmissionAndStageId(
+				$this->getData('monographId'),
+				$this->getStageId(),
+				null,
+				$user->getId()
+			);
 
-			while($stageAssignment =& $stageAssignments->next()) { /* @var $stageSignoff Signoff */
+			while ($stageAssignment =& $stageAssignments->next()) { /* @var $stageSignoff Signoff */
 				if (isset($uploaderUserGroups[$stageAssignment->getUserGroupId()])) {
 					$defaultUserGroupId = $stageAssignment->getUserGroupId();
 					break;

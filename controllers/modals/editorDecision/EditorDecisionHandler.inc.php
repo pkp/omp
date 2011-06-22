@@ -163,7 +163,8 @@ class EditorDecisionHandler extends Handler {
 		$decision = (int)$request->getUserVar('decision');
 
 		$redirectOp = null;
-        // FIXME: get these URL's from the constants
+
+		// FIXME: get these URL's from the constants
 		if ($decision == SUBMISSION_EDITOR_DECISION_ACCEPT) {
 			$redirectOp = 'copyediting';
 		} elseif ($decision == SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW) {

@@ -15,12 +15,12 @@
 import('lib.pkp.classes.controllers.grid.GridCellProvider');
 
 class UserListbuilderGridCellProvider extends GridCellProvider {
-    /**
-     * Constructor
-     */
-    function UserListbuilderGridCellProvider() {
-        parent::GridCellProvider();
-    }
+	/**
+	 * Constructor
+	 */
+	function UserListbuilderGridCellProvider() {
+		parent::GridCellProvider();
+	}
 
 	//
 	// Template methods from GridCellProvider
@@ -34,11 +34,11 @@ class UserListbuilderGridCellProvider extends GridCellProvider {
 	 * @return array
 	 */
 	function getTemplateVarsFromRowColumn(&$row, $column) {
-        $user =& $row->getData();
-        $columnId = $column->getId();
-        assert(is_a($user, 'User') && !empty($columnId));
+		$user =& $row->getData();
+		$columnId = $column->getId();
+		assert(is_a($user, 'User') && !empty($columnId));
 
-       return array('labelKey' => $user->getId(), 'label' => $user->getFullName());
+		return array('labelKey' => $user->getId(), 'label' => $user->getFullName());
 	}
 }
 

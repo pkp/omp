@@ -46,9 +46,9 @@ class StageParticipantGridCellProvider extends DataObjectGridCellProvider {
 				$userNames = array();
 				while ($user =& $users->next()) {
 					$userNames[] = $user->getFullName();
-                    unset($user);
+					unset($user);
 				}
-                unset($users);
+				unset($users);
 
 				// If we have no users for this group, we display a hyphen, else combine the names
 				if (!empty($userNames)) $userNameString = implode (' - ', $userNames);

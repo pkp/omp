@@ -112,7 +112,7 @@ class StageParticipantGridHandler extends GridHandler {
 	 * @see GridHandler::getRowInstance()
 	 */
 	function &getRowInstance() {
-        $monograph =& $this->getMonograph();
+		$monograph =& $this->getMonograph();
 		$row = new StageParticipantGridRow($monograph, $this->getStageId());
 		return $row;
 	}
@@ -143,12 +143,15 @@ class StageParticipantGridHandler extends GridHandler {
 		$stageAssignments = array();
 		$userStageAssignmentDao = & DAORegistry::getDAO('UserStageAssignmentDAO');
 		while($userGroup =& $userGroups->next()) {
-            // Skip both Author and Reviewer User Groups (they are not shown by design)
-            // If this changes, special handling will be required, as they are not stored with the stage_assignments
-            if ( !($userGroup->getRoleId() == ROLE_ID_AUTHOR && $userGroup->getRoleId() == ROLE_ID_REVIEWER) ) {
-			    $stageAssignments[$userGroup->getId()] = $userStageAssignmentDao->getUsersBySubmissionAndStageId(
-                                                        $monograph->getId(), $this->getStageId(), $userGroup->getId());
-            }
+			// Skip both Author and Reviewer User Groups (they are not shown by design)
+			// If this changes, special handling will be required, as they are not stored with the stage_assignments
+			if ( !($userGroup->getRoleId() == ROLE_ID_AUTHOR && $userGroup->getRoleId() == ROLE_ID_REVIEWER) ) {
+				$stageAssignments[$userGroup->getId()] = $userStageAssignmentDao->getUsersBySubmissionAndStageId(
+					$monograph->getId(),
+					$this->getStageId(),
+					$userGroup->getId()
+				);
+			}
 			unset($userGroup);
 		}
 
@@ -166,7 +169,7 @@ class StageParticipantGridHandler extends GridHandler {
 	 * @return string Serialized JSON object
 	 */
 	function editStageParticipantList($args, &$request) {
-        $templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 
 		$monograph =& $this->getMonograph();
 		$templateMgr->assign('monographId', $monograph->getId());
@@ -174,12 +177,12 @@ class StageParticipantGridHandler extends GridHandler {
 		// Assign the stage id to the template.
 		$templateMgr->assign('stageId', $this->getStageId());
 
-        // assign the userGroupId to the template
-        // FIXME: #6199 THis is not authorized anywhere.
-        $userGroupId = (int) $request->getUserVar('userGroupId');
-        $templateMgr->assign('userGroupId', $userGroupId);
+		// assign the userGroupId to the template
+		// FIXME: #6199 This is not authorized anywhere.
+		$userGroupId = (int) $request->getUserVar('userGroupId');
+		$templateMgr->assign('userGroupId', $userGroupId);
 
-        return $templateMgr->fetchJson('controllers/grid/users/stageParticipant/editStageParticipantList.tpl');
+		return $templateMgr->fetchJson('controllers/grid/users/stageParticipant/editStageParticipantList.tpl');
 	}
 
 	/**
@@ -189,11 +192,11 @@ class StageParticipantGridHandler extends GridHandler {
 	 * @return string Serialized JSON object
 	 */
 	function saveStageParticipantList($args, &$request) {
-        // assign the userGroupId to the template
-        // FIXME: #6199 THis is not authorized anywhere.
-        $userGroupId = (int) $request->getUserVar('userGroupId');
+		// assign the userGroupId to the template
+		// FIXME: #6199 This is not authorized anywhere.
+		$userGroupId = (int) $request->getUserVar('userGroupId');
 
-        return DAO::getDataChangedEvent($userGroupId);
+		return DAO::getDataChangedEvent($userGroupId);
 	}
 }
 
