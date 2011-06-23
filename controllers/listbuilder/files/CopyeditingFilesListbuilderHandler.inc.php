@@ -22,7 +22,7 @@ class CopyeditingFilesListbuilderHandler extends ListbuilderHandler {
 		parent::ListbuilderHandler();
 
 		$this->addRoleAssignment(array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER, ROLE_ID_PRESS_ASSISTANT),
-				array('fetch', 'addItem', 'deleteItems', 'fetchRow', 'fetchOptions'));
+				array('fetch', 'fetchRow', 'fetchOptions'));
 	}
 
 
@@ -50,13 +50,10 @@ class CopyeditingFilesListbuilderHandler extends ListbuilderHandler {
 		$this->setSaveType(LISTBUILDER_SAVE_TYPE_EXTERNAL);
 		$this->setSaveFieldName('files');
 
-		// Load the current list of items
-		$this->loadList($request);
-
 		// Add the file column
-		$itemColumn = new ListbuilderGridColumn($this, 'item', 'common.name');
-		import('lib.pkp.classes.controllers.grid.MapGridCellProvider');
-		$itemColumn->setCellProvider(new MapGridCellProvider());
+		$itemColumn = new ListbuilderGridColumn($this, 'name', 'common.name');
+		import('controllers.listbuilder.files.FileListbuilderGridCellProvider');
+		$itemColumn->setCellProvider(new FileListbuilderGridCellProvider());
 		$this->addColumn($itemColumn);
 	}
 
@@ -64,15 +61,6 @@ class CopyeditingFilesListbuilderHandler extends ListbuilderHandler {
 	//
 	// Public methods
 	//
-
-	
-	/**
-	 * Initialize the grid with the currently selected set of files.
-	 */
-	function loadList(&$request) {
-		$data = array();
-		$this->setGridDataElements($data);
-	}
 
 	/**
 	 * Load possible items to populate drop-down list with
@@ -85,25 +73,10 @@ class CopyeditingFilesListbuilderHandler extends ListbuilderHandler {
 		$monographFiles =& $submissionFileDao->getLatestRevisions($monograph->getId(), MONOGRAPH_FILE_COPYEDIT);
 		$itemList = array();
 		foreach ($monographFiles as $monographFile) {
-			$itemList[$monographFile->getFileId()] = $monographFile->getLocalizedName();
+			$itemList[$monographFile->getFileId()] = $monographFile->getFileLabel();
 			unset($monographFile);
 		}
 		return array($itemList);
-	}
-
-
-	/**
-	 * Unpack the list of file IDs from the submitted listbuilder data.
-	 * @param $data String
-	 * @return array
-	 */
-	function unpack($data) {
-		$data = parent::unpack($data);
-		$returner = array();
-		foreach ((array) $data as $item) {
-			if (isset($item->item)) $returner[] = $item->item;
-		}
-		return $returner;
 	}
 
 
@@ -131,70 +104,22 @@ class CopyeditingFilesListbuilderHandler extends ListbuilderHandler {
 	}
 
 	/**
-	 * Create a new data element from a request. This is used to format
-	 * new rows prior to their insertion.
-	 * @param $request PKPRequest
-	 * @param $elementId int
-	 * @return object
+	 * @see GridHandler::getRowDataElement
+	 * Get the data element that corresponds to the current request
+	 * Allow for a blank $rowId for when creating a not-yet-persisted row
 	 */
-	function &getDataElementFromRequest(&$request, &$elementId) {
-		import('lib.pkp.classes.controllers.listbuilder.ListbuilderMap');
-		$options = $this->getOptions();
-
-		$i = $request->getUserVar('item');
-		if ($i == '') $i = null;
-		else $i = (int) $i;
-		assert($i === null || isset($options[0][$i]));
-
-		$newItem = array(
-			'item' => new ListbuilderMap($i, $i?$options[0][$i]:null)
-		);
-
-		$elementId = $request->getUserVar('rowId');
-		return $newItem;
-	}
-
-
-	/**
-	 * Handle adding an item to the list
-	 * NB: This and deleteItems do not change the system's state, but are only interface elements.
-	 * 	State is changed only when the modal form is submitted
-	 */
-	function addItem(&$args, &$request) {
-		$monographId = $request->getUserVar('monographId');
-
-		$rowId = 'selectList-' . $this->getId();
-		$fileId = (int) $args[$rowId];
-
-		if(!isset($fileId)) {
-			$json = new JSONMessage(false);
-			return $json->getString();
-		} else {
-			$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-			$monographFile =& $submissionFileDao->getLatestRevision($fileId);
-
-			// Return JSON with formatted HTML to insert into list
-			$row =& $this->getRowInstance();
-			$row->setGridId($this->getId());
-			$row->setId($fileId);
-			$rowData = array('item' => $monographFile->getLocalizedName());
-			$row->setData($rowData);
-			$row->initialize($request);
-
-			$json = new JSONMessage(true, $this->_renderRowInternally($request, $row));
-			return $json->getString();
+	function &getRowDataElement(&$request, $rowId) {
+		// fallback on the parent if a rowId is found
+		if ( !empty($rowId) ) {
+			return parent::getRowDataElement($request, $rowId);
 		}
-	}
 
-
-	/**
-	 * Handle deleting items from the list
-	 * @param $args array
-	 * @param $request PKPRequest
-	 */
-	function deleteItems(&$args, &$request) {
-		$json = new JSONMessage(true);
-		return $json->getString();
+		// Otherwise return from the newRowId
+		// FIXME Bug #6199
+		$fileId = (int) $request->getUserVar('newRowId');
+		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+		$submissionFile =& $submissionFileDao->getLatestRevision($fileId);
+		return $submissionFile;
 	}
 }
 
