@@ -1,5 +1,5 @@
 /**
- * @defgroup js_controllers_grid_settings_library_form
+ * @defgroup js_controllers_grid_settings_library
  */
 // Create the files form namespace
 jQuery.pkp.controllers.grid.settings =
