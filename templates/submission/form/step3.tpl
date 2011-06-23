@@ -10,9 +10,23 @@
 {assign var="pageTitle" value="submission.submit.step3"}
 {include file="submission/form/submitStepHeader.tpl"}
 
+
+<script type="text/javascript">
+	// Attach the JS form handler.
+	$(function() {ldelim}
+		$('#submitStep3Form').pkpHandler(
+				'$.pkp.pages.submission.SubmissionStep3FormHandler',
+				{ldelim}
+					isEditedVolume: {if $isEditedVolume}true{else}false{/if},
+					chaptersGridContainer: 'chaptersGridContainer',
+					authorsGridContainer: 'authorsGridContainer'
+				{rdelim});
+	{rdelim});
+</script>
+
 <div class="separator"></div>
 
-<form class="pkp_form" id="submitStepForm" method="post" action="{url op="saveStep" path=$submitStep}">
+<form class="pkp_form" id="submitStep3Form" method="post" action="{url op="saveStep" path=$submitStep}">
 	<input type="hidden" name="monographId" value="{$monographId|escape}" />
 	{include file="common/formErrors.tpl"}
 
@@ -37,12 +51,12 @@
 
 	<!--  Contributors -->
 	{url|assign:authorGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.users.author.AuthorGridHandler" op="fetchGrid" monographId=$monographId}
-	{load_url_in_div id="authorGridContainer" url="$authorGridUrl"}
+	{load_url_in_div id="authorsGridContainer" url="$authorGridUrl"}
 
 	<!--  Chapters -->
 	{if $isEditedVolume}
-		{url|assign:chapterGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.users.chapter.ChapterGridHandler" op="fetchGrid" monographId=$monographId}
-		{load_url_in_div id="chaptersGridContainer" url="$chapterGridUrl"}
+		{url|assign:chaptersGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.users.chapter.ChapterGridHandler" op="fetchGrid" monographId=$monographId}
+		{load_url_in_div id="chaptersGridContainer" url="$chaptersGridUrl"}
 	{/if}
 
 	{include file="linkAction/buttonConfirmationLinkAction.tpl" buttonSelector="#submitButton" dialogText="submission.confirmSubmit"}

@@ -156,13 +156,12 @@ class SubmissionHandler extends Handler {
 
 		if (!HookRegistry::call('SubmissionHandler::saveSubmit', array($step, &$monograph, &$submitForm))) {
 			if (!$submitForm->validate()) {
-				$response = new JSONMessage(false);
-				return $response->getString();
+				$this->setupTemplate($request);
+				$submitForm->display($request);
+			} else {
+				$monographId = $submitForm->execute($args, $request);
+				$request->redirect(null, null, 'wizard', $step+1, array('monographId' => $monographId));
 			}
-
-			$monographId = $submitForm->execute($args, $request);
-
-			return $request->redirectUrlJson($router->url($request, null, null, 'wizard', $step+1, array('monographId' => $monographId)));
 		}
 	}
 
