@@ -184,14 +184,13 @@ class StageParticipantListbuilderHandler extends ListbuilderHandler {
 
 	/**
 	 * Persist a new entry insert.
-	 * @param $entry mixed New entry with data to persist
-	 * @return boolean
+	 * @see Listbuilder::insertEntry
 	 */
-	function insertEntry($entry) {
+	function insertEntry(&$request, $newRowId) {
 		$monograph =& $this->getMonograph();
 		$monographId = $monograph->getId();
 		$userGroupId = $this->getUserGroupId();
-		$userId = (int) $entry->newRowId;
+		$userId = (int) $newRowId;
 
 		// Create a new stage assignment.
 		$stageAssignmentDao = & DAORegistry::getDAO('StageAssignmentDAO');
@@ -201,13 +200,13 @@ class StageParticipantListbuilderHandler extends ListbuilderHandler {
 
 	/**
 	 * Delete an entry.
-	 * @param $rowId mixed ID of row to modify
-	 * @return boolean
+	 * @see Listbuilder::deleteEntry
 	 */
-	function deleteEntry($rowId) {
+	function deleteEntry(&$request, $rowId) {
+		$userId = (int) $rowId;
 		$monograph =& $this->getMonograph();
 		$stageAssignmentDao = & DAORegistry::getDAO('StageAssignmentDAO'); /* @var $stageAssignmentDao StageAssignmentDAO */
-		$stageAssignmentDao->deleteByAll($monograph->getId(), $this->getStageId(), $this->getUserGroupId(), $rowId);
+		$stageAssignmentDao->deleteByAll($monograph->getId(), $this->getStageId(), $this->getUserGroupId(), $userId);
 
 		return true;
 	}
