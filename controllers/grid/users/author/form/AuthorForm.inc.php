@@ -164,13 +164,13 @@ class AuthorForm extends Form {
 		if (!$author) {
 			// this is a new submission contributor
 			$author = new Author();
-			$author->setMonographId($monograph->getId());
+			$author->setSubmissionId($monograph->getId());
 			$existingAuthor = false;
 		} else {
 			$existingAuthor = true;
 		}
 
-		assert($monograph->getId() == $author->getMonographId());
+		assert($monograph->getId() == $author->getSubmissionId());
 
 		$author->setFirstName($this->getData('firstName'));
 		$author->setMiddleName($this->getData('middleName'));

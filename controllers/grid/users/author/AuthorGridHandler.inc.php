@@ -34,7 +34,7 @@ class AuthorGridHandler extends GridHandler {
 		parent::GridHandler();
 		$this->addRoleAssignment(
 				array(ROLE_ID_AUTHOR, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
-				array('fetchGrid', 'addAuthor', 'editAuthor',
+				array('fetchGrid', 'fetchRow', 'addAuthor', 'editAuthor',
 				'updateAuthor', 'deleteAuthor'));
 	}
 
@@ -283,11 +283,12 @@ class AuthorGridHandler extends GridHandler {
 		$result = $authorDao->deleteAuthorById($authorId, $monographId);
 
 		if ($result) {
-			$json = new JSONMessage(true);
+			return DAO::getDataChangedEvent($authorId);
 		} else {
 			$json = new JSONMessage(false, Locale::translate('submission.submit.errorDeletingAuthor'));
+			return $json->getString();
 		}
-		return $json->getString();
+
 	}
 }
 
