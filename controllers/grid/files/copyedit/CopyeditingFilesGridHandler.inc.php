@@ -34,7 +34,7 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 		$this->addRoleAssignment(
 			ROLE_ID_AUTHOR,
 			$authorOperations = array(
-				'fetchGrid', 'addCopyeditedFile',
+				'fetchGrid', 'fetchRow', 'addCopyeditedFile',
 				'editCopyeditedFile', 'uploadCopyeditedFile',
 				'returnSignoffRow', 'returnFileRow',
 				'downloadFile', 'deleteFile',
@@ -45,10 +45,22 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 			array_merge(
 				$authorOperations,
 				array(
-					'addUser', 'saveAddUser', 'getCopyeditUserAutocomplete', 'deleteUser'
+					'addUser', 'saveAddUser', 'getCopyeditUserAutocomplete', 'deleteSignoff'
 				)
 			)
 		);
+	}
+
+
+	//
+	// Getters and Setters
+	//
+	/**
+	 * Get the monograph associated with this chapter grid.
+	 * @return Monograph
+	 */
+	function &getMonograph() {
+		return $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 	}
 
 	//
@@ -83,17 +95,10 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 
 		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_COMMON, LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_OMP_EDITOR, LOCALE_COMPONENT_OMP_SUBMISSION));
 
-		// Grab the copyediting files to display as categories
-		import('classes.monograph.MonographFile');
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-		$monographFiles =& $submissionFileDao->getLatestRevisions($monograph->getId(), MONOGRAPH_FILE_COPYEDIT);
+		$monograph =& $this->getMonograph();
 
-		$rowData = array();
-		foreach ($monographFiles as $monographFile) {
-			$rowData[$monographFile->getFileId()] = $monographFile;
-		}
-		$this->setGridDataElements($rowData);
+		// Bring in file constants
+		import('classes.monograph.MonographFile');
 
 		// Grid actions
 		// Action to add a file -- Adds a category row for the file
@@ -156,6 +161,34 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 				)
 			);
 		}
+	}
+
+	/**
+	 * @see GridDataProvider::getRequestArgs()
+	 */
+	function getRequestArgs() {
+		$monograph =& $this->getMonograph();
+		return array(
+			'monographId' => $monograph->getId()
+		);
+	}
+
+	/**
+	 * @see GridHandler::loadData
+	 */
+	function &loadData(&$request, $filter) {
+		// Grab the copyediting files to display as categories
+		$monograph =& $this->getMonograph();
+		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+		$monographFiles =& $submissionFileDao->getLatestRevisions($monograph->getId(), MONOGRAPH_FILE_COPYEDIT);
+
+		// $monographFiles is keyed on file and revision, for the grid we need to key on file only
+		// since the grid shows only the most recent revision.
+		$data = array();
+		foreach ($monographFiles as $monographFile) {
+			$data[$monographFile->getFileId()] = $monographFile;
+		}
+		return $data;
 	}
 
 	//
@@ -235,9 +268,7 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 		if ($copyeditingUserForm->validate()) {
 			$copyeditingUserForm->execute($request);
 
-			$m = new JSONMessage(true);
-			$m->setEvent('dataChanged');
-			return $m->getString();
+			return DAO::getDataChangedEvent();
 		}
 
 		$m = new JSONMessage(false, __('editor.monograph.addUserError'));
@@ -329,18 +360,13 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 		$signoff =& $signoffDao->getById($signoffId);
 
 		if($signoff) {
-			$row =& $this->getRowInstance();
-			$row->setGridId($this->getId());
-			$row->setId($signoffId);
-			$row->setData($signoff);
-			$row->initialize($request);
-
-			$json = new JSONMessage(true, $this->_renderRowInternally($request, $row));
+			return DAO::getDataChangedEvent();
 		} else {
 			$json = new JSONMessage(false, Locale::translate('common.uploadFailed'));
+			return $json->getString();
 		}
 
-		return $json->getString();
+
 	}
 
 	/**
@@ -401,19 +427,21 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 	 * @param $request PKPRequest
 	 * @return string
 	 */
-	function deleteUser($args, &$request) {
+	function deleteSignoff($args, &$request) {
 		$signoffId = (int) $request->getUserVar('signoffId');
+		$fileId = (int) $request->getUserVar('fileId');
 
 		if($signoffId) {
 			// Remove the signoff
 			$signoffDao =& DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
 			$signoffDao->deleteObjectById($signoffId);
 
-			$json = new JSONMessage(true);
+			return DAO::getDataChangedEvent($fileId);
 		} else {
 			$json = new JSONMessage(false, 'manager.setup.errorDeletingItem');
+			return $json->getString();
 		}
-		return $json->getString();
+
 	}
 }
 

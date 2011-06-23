@@ -65,12 +65,11 @@ class CopyeditingUserForm extends Form {
 	 * @see Form::readInputData()
 	 */
 	function readInputData() {
-		$this->readUserVars(array('userId', 'files', 'responseDueDate', 'personalMessage'));
+		$this->readUserVars(array('userId-GroupId', 'files', 'responseDueDate', 'personalMessage'));
 
-		// Decode the "files" list
-		import('controllers.listbuilder.files.CopyeditingFilesListbuilderHandler');
-		$listbuilder = new CopyeditingFilesListbuilderHandler();
-		$this->setData('files', $listbuilder->unpack($this->getData('files')));
+		list($userId, $userGroupId) = explode('-', $this->getData('userId-GroupId'));
+		$this->setData('userId', $userId);
+		$this->setData('userGroupId', $userGroupId);
 	}
 
 	/**
@@ -101,7 +100,7 @@ class CopyeditingUserForm extends Form {
 		$email->setBody($this->getData('personalMessage'));
 
 		$userDao =& DAORegistry::getDAO('UserDAO'); /* @var $userDao UserDAO */
-		$user =& $userDao->getUser($userIdAndGroup[0]);
+		$user =& $userDao->getUser($this->getData('userId'));
 		$email->addRecipient($user->getEmail(), $user->getFullName());
 		$email->setEventType(MONOGRAPH_EMAIL_COPYEDIT_NOTIFY_AUTHOR);
 		$email->send($request);
