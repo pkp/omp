@@ -29,7 +29,8 @@ class UserStageAssignmentDAO extends UserDAO {
 		$result =& $this->retrieve(
 			'SELECT u.* FROM users u
 				LEFT JOIN user_user_groups uug ON (u.user_id = uug.user_id)
-				LEFT JOIN stage_assignments s ON (s.user_id = uug.user_id AND s.submission_id = ? AND s.stage_id = ?)
+				LEFT JOIN stage_assignments s ON (s.user_id = uug.user_id AND s.user_group_id = uug.user_group_id
+												AND s.submission_id = ? AND s.stage_id = ?)
 				WHERE uug.user_group_id = ? AND s.user_group_id IS NULL',
 			$params);
 
