@@ -398,14 +398,14 @@ body {
 .pkp_form label {
   display:block;
   font-weight:bold;
-  margin:0px 0px 3px 0px;
+  padding:12px 0px 3px 0px;
 }
 .pkp_form label.error { color:#990000; }
 .pkp_form span label.sub_label {
   font-size:80%;
   color:#999999;
   font-weight:normal;
-  margin:2px 0px;
+  padding:2px 0px;
 }
 .pkp_form input {
   width:98%;
@@ -436,6 +436,10 @@ body {
   clear:none !important;
   margin-right:2%;
   margin-bottom:0px;
+}
+.pkp_form ul.checkbox_and_radiobutton {
+  margin-bottom:0px;
+  padding-bottom:0px;
 }
 .pkp_form .checkbox_and_radiobutton li {
   padding-right:35px;
