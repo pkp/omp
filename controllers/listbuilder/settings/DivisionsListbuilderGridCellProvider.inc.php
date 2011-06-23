@@ -1,24 +1,24 @@
 <?php
 
 /**
- * @file controllers/listbuilder/users/UserGroupListbuilderGridCellProvider.inc.php
+ * @file controllers/listbuilder/settings/DivisionsListbuilderGridCellProvider.inc.php
  *
  * Copyright (c) 2000-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class UserGroupListbuilderGridCellProvider
- * @ingroup controllers_listbuilder_users_
+ * @class DivisionsListbuilderGridCellProvider
+ * @ingroup controllers_listbuilder_settings
  *
  * @brief Base class for a cell provider that can retrieve labels from arrays
  */
 
 import('lib.pkp.classes.controllers.grid.GridCellProvider');
 
-class UserGroupListbuilderGridCellProvider extends GridCellProvider {
+class DivisionsListbuilderGridCellProvider extends GridCellProvider {
 	/**
 	 * Constructor
 	 */
-	function UserGroupListbuilderGridCellProvider() {
+	function DivisionsListbuilderGridCellProvider() {
 		parent::GridCellProvider();
 	}
 
@@ -33,14 +33,12 @@ class UserGroupListbuilderGridCellProvider extends GridCellProvider {
 	 * @return array
 	 */
 	function getTemplateVarsFromRowColumn(&$row, $column) {
-		$userGroup =& $row->getData();
+		$division =& $row->getData();
 		$columnId = $column->getId();
-		assert(is_a($userGroup, 'UserGroup') && !empty($columnId));
-		switch ( $columnId ) {
-			case 'name':
-				return array('labelKey' => $userGroup->getId(), 'label' => $userGroup->getLocalizedName());
-			case 'designation':
-				return array('labelKey' => $userGroup->getId(), 'label' => $userGroup->getLocalizedAbbrev());
+		assert(is_a($division, 'Division') && !empty($columnId));
+		switch ($columnId) {
+			case 'title':
+				return array('labelKey' => $division->getId(), 'label' => $division->getLocalizedTitle());
 		}
 		// we got an unexpected column
 		assert(false);

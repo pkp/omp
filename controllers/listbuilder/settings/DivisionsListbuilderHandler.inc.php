@@ -38,9 +38,12 @@ class DivisionsListbuilderHandler extends SetupListbuilderHandler {
 		$this->setTitle('manager.setup.division');
 		$this->setSourceType(LISTBUILDER_SOURCE_TYPE_TEXT); // Free text input
 
-		$this->_loadList($request);
+		import('controllers.listbuilder.settings.DivisionsListbuilderGridCellProvider');
+		$cellProvider =& new DivisionsListbuilderGridCellProvider();
 
-		$this->addColumn(new ListbuilderGridColumn($this, 'item', 'manager.setup.currentFormats'));
+		$titleColumn = new ListbuilderGridColumn($this, 'title', 'manager.setup.currentFormats');
+		$titleColumn->setCellProvider($cellProvider);
+		$this->addColumn($titleColumn);
 	}
 
 	/**
@@ -96,42 +99,23 @@ class DivisionsListbuilderHandler extends SetupListbuilderHandler {
 		return true;
 	}
 
-	/**
-	 * Create a new data element from a request. This is used to format
-	 * new rows prior to their insertion.
-	 * @param $request PKPRequest
-	 * @param $elementId int
-	 * @return object
-	 */
-	function &getDataElementFromRequest(&$request, &$elementId) {
-		$newItem = array(
-			'item' => $request->getUserVar('item')
-		);
-		$elementId = $request->getUserVar('rowId');
-		return $newItem;
+	function &getRowDataElement(&$request, $rowId) {
+		$division = new Division();
+		$division->setId($rowId);
+		$division->setTitle($request->getUserVar('title'), 'en_US');
+		return $division;
 	}
 
-
-	//
-	// Private helper methods.
-	//
 	/**
 	 * Load the list from an external source into the grid structure
 	 * @param $request Request
 	 */
-	function _loadList(&$request) {
+	function loadData() {
 		$press =& $this->getPress();
 		$divisionDao =& DAORegistry::getDAO('DivisionDAO');
 
 		$divisions = $divisionDao->getByPressId($press->getId());
-
-		$items = array();
-		while ($division =& $divisions->next()) {
-			$id = $division->getId();
-			$items[$id] = array('item' => $division->getLocalizedTitle());
-			unset($division);
-		}
-		$this->setGridDataElements($items);
+		return $divisions;
 	}
 }
 

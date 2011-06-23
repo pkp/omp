@@ -174,7 +174,6 @@ class UserUserGroupListbuilderHandler extends ListbuilderHandler {
 		);
 		$designationColumn->setCellProvider($cellProvider);
 		$this->addColumn($designationColumn);
-
 	}
 
 	/**
