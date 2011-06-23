@@ -7,10 +7,6 @@
  * Header for the manuscript submission pages.
  *}
 {strip}
-{assign var="pageCrumbTitle" value="submission.submit"}
-{translate|assign:"stepx" key="submission.stepX" step=$submitStep}
-{translate|assign:"stepy" key=$stepTitle}
-{assign var="pageTitleTranslated" value="$stepx $stepy"}
 {include file="common/header.tpl"}
 {/strip}
 

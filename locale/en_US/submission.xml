@@ -34,7 +34,6 @@
 	<message key="submissions.queuedReview">In Review</message>
 	<message key="manuscript.submissions">Manuscript Submissions</message>
 	<message key="submission.confirmSubmit">Are you sure you wish to submit this manuscript to the press?</message>
-	<message key="submission.stepX">Step {$step}.</message>
 	<message key="submission.files.downloadAll">Download All Files</message>
 	<message key="submission.mySubmissions">My Submissions</message>
 	<message key="submission.participants">Participants</message>

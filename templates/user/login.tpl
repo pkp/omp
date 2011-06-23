@@ -44,11 +44,13 @@
 <input type="hidden" name="source" value="{$source|escape}" />
 
 {if ! $implicitAuth}
-	{fbvFormArea id="loginFields"}
-		{fbvFormSection id="login"}
-			{fbvElement type="text" label="user.username" id="username" value=$username|escape size="20" maxlength="32" class="textField"}
-			{fbvElement type="text" password="true" label="user.password" id="password" value=$password|escape size="20" maxlength="32" class="textField"}
+	{fbvFormArea id="loginFields" title="user.login"}
+		{fbvFormSection id="login" title="user.username" for="username"}
+			{fbvElement type="text" id="username" value=$username|escape size="20" maxlength="32" size=$fbvStyles.size.MEDIUM}
 		{/fbvFormSection}
+        {fbvFormSection id="login2" title="user.password" for="password"}
+            {fbvElement type="text" password="true" id="password" value=$password|escape size="20" maxlength="32" size=$fbvStyles.size.MEDIUM}
+        {/fbvFormSection}
 		{if $showRemember}
 			{fbvFormSection list='true'}
 				{fbvElement type="checkbox" label="user.login.rememberUsernameAndPassword" id="loginRemember" value=$remember}
