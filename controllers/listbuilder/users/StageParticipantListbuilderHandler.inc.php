@@ -120,7 +120,7 @@ class StageParticipantListbuilderHandler extends ListbuilderHandler {
 			$monograph->getId(), $this->getStageId(), $userGroupId
 		);
 
-		while ( !$users->eof() ) {
+		while (!$users->eof()) {
 			$user =& $users->next();
 			$items[0][$user->getId()] = $user->getFullName();
 			unset($user);
@@ -149,19 +149,18 @@ class StageParticipantListbuilderHandler extends ListbuilderHandler {
 		$this->setUserGroupId((int) $request->getUserVar('userGroupId'));
 
 		// Name column
-		$nameColumn = new ListbuilderGridColumn($this, 'lastName', 'common.name');
-		import('controllers.listbuilder.users.UserListbuilderGridCellProvider');
+		$nameColumn = new ListbuilderGridColumn($this, 'name', 'common.name');
+		import('controllers.listbuilder.users.UserListBuilderGridCellProvider');
 		$cellProvider =& new UserListbuilderGridCellProvider();
 		$nameColumn->setCellProvider($cellProvider);
 		$this->addColumn($nameColumn);
-
 	}
 
 	/**
 	 * @see PKPHandler::authorize()
 	 */
 	function authorize(&$request, $args, $roleAssignments) {
-		$stageId = (int)$request->getUserVar('stageId');
+		$stageId = (int) $request->getUserVar('stageId');
 		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
 		$this->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', $stageId));
 		return parent::authorize($request, $args, $roleAssignments);
