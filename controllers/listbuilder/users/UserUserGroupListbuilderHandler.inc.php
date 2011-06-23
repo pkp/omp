@@ -197,14 +197,13 @@ class UserUserGroupListbuilderHandler extends ListbuilderHandler {
 
 	/**
 	 * Persist a new entry insert.
-	 * @param $entry mixed New entry with data to persist
-	 * @return boolean
+	 * @see Listbuilder::insertentry
 	 */
-	function insertEntry($entry) {
+	function insertEntry(&$request, $newRowId) {
 		$press =& $this->getPress();
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 
-		$userGroupId = (int) $entry->newRowId;
+		$userGroupId = (int) $newRowId;
 		$userId = (int) $this->getUserId();
 
 		// Ensure that:
@@ -227,10 +226,9 @@ class UserUserGroupListbuilderHandler extends ListbuilderHandler {
 
 	/**
 	 * Delete an entry.
-	 * @param $rowId mixed ID of row to modify
-	 * @return boolean
+	 * @see Listbuilder::deleteEntry
 	 */
-	function deleteEntry($rowId) {
+	function deleteEntry(&$request, $rowId) {
 		$userGroupId = (int) $rowId;
 		$userId = (int) $this->getUserId();
 
