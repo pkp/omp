@@ -25,6 +25,12 @@ class SubmissionSubmitStep3Form extends SubmissionSubmitForm {
 
 		// Validation checks for this form
 		$this->addCheck(new FormValidatorLocale($this, 'title', 'required', 'submission.submit.form.titleRequired'));
+		// Validates that at least one author has been added (note that authors are in grid, so Form does not
+		// directly see the authors value (there is no "authors" input. Hence the $ignore parameter.
+		$this->addCheck(new FormValidatorCustom($this, 'authors', 'required', 'submission.submit.form.authorRequired',
+						// The first parameter is ignored. This
+						create_function('$ignore, $monograph', 'return count($monograph->getAuthors()) > 0;'),
+							array($monograph)));
 	}
 
 	/**
@@ -166,6 +172,10 @@ class SubmissionSubmitStep3Form extends SubmissionSubmitForm {
 			));
 			$mail->send($request);
 		}
+
+		// Resequence the authors (this ensures a primary contact).
+		$authorDao =& DAORegistry::getDAO('AuthorDAO');
+		$authorDao->resequenceAuthors($monograph->getId());
 
 		return $this->monographId;
 	}
