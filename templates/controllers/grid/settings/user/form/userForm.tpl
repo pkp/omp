@@ -51,7 +51,7 @@
 						{fbvElement type="text" name="email" id="email" value=$email maxlength="90"}
 					{/fbvFormSection}
 					{if !$implicitAuth && !$userId}
-						{fbvFormSection title="grid.user.notifyUser" for="sendNotify"}
+						{fbvFormSection title="grid.user.notifyUser" for="sendNotify" list=true}
 							{if $sendNotify}
 								{assign var="checked" value="1"}
 							{else}
@@ -100,7 +100,7 @@
 								{translate key="user.profile.leavePasswordBlank"}
 							{/fbvFormSection}
 						{else}
-							{fbvFormSection title="grid.user.generatePassword" for="generatePassword"}
+							{fbvFormSection title="grid.user.generatePassword" for="generatePassword" list=true}
 								{if $generatePassword}
 									{assign var="checked" value="1"}
 								{else}
@@ -109,7 +109,7 @@
 								{fbvElement type="checkbox" name="generatePassword" id="generatePassword" checked=$checked label="grid.user.generatePasswordDescription" translate="true"}
 							{/fbvFormSection}
 						{/if}{* $userId *}
-						{fbvFormSection title="grid.user.mustChangePassword" for="mustChangePassword"}
+						{fbvFormSection title="grid.user.mustChangePassword" for="mustChangePassword" list=true}
 							{if $mustChangePassword}
 								{assign var="checked" value="1"}
 							{else}
@@ -173,7 +173,7 @@
 						<span class="instruct">{translate key="user.biography.description"}</span>
 					{/fbvFormSection}
 					{if count($availableLocales) > 1}
-						{fbvFormSection title="user.workingLanguages"}
+						{fbvFormSection title="user.workingLanguages" list=true}
 							{foreach from=$availableLocales key=localeKey item=localeName}
 								{if $userLocales && in_array($localeKey, $userLocales)}
 									{assign var="checked" value="true"}
