@@ -78,20 +78,12 @@ class CopyeditingUserForm extends Form {
 	 */
 	function execute(&$request) {
 		// Split the selected user value; index 0 is the user id, index 1 is the user groupID
-		$userIdAndGroup = explode('-', $this->getData('userId'));
 
-		$selectedFiles = $this->getData('files');
-		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
-		foreach ($selectedFiles as $selectedFileId) {
-			$signoff =& $signoffDao->build('SIGNOFF_COPYEDITING', ASSOC_TYPE_MONOGRAPH_FILE, $selectedFileId, $userIdAndGroup[0], $userIdAndGroup[1]); /* @var $signoff Signoff */
 
-			// Set the date notified
-			$signoff->setDateNotified(Core::getCurrentDate());
-			// Set the date response due (stored as date underway in signoffs table)
-			$dueDateParts = explode('-', $this->getData('responseDueDate'));
-			$signoff->setDateUnderway(date('Y-m-d H:i:s', mktime(0, 0, 0, $dueDateParts[0], $dueDateParts[1], $dueDateParts[2])));
-			$signoffDao->updateObject($signoff);
-		}
+		// Decode the "files" list
+		import('lib.pkp.classes.controllers.listbuilder.ListbuilderHandler');
+		$changedFileData = $this->getData('files');
+		ListBuilderHandler::unpack($request, $changedFileData, null, array(&$this, 'insertSignoff'), null);
 
 		// Send the message to the user
 		$monograph =& $this->getMonograph();
@@ -104,6 +96,28 @@ class CopyeditingUserForm extends Form {
 		$email->addRecipient($user->getEmail(), $user->getFullName());
 		$email->setEventType(MONOGRAPH_EMAIL_COPYEDIT_NOTIFY_AUTHOR);
 		$email->send($request);
+	}
+
+	/**
+	 * Persist a signoff insertion
+	 * @see Listbuilder::insertEntry
+	 */
+	function insertSignoff(&$request, $newRowId) {
+		$fileId = (int) $newRowId;
+		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
+		$signoff =& $signoffDao->build('SIGNOFF_COPYEDITING',
+									   ASSOC_TYPE_MONOGRAPH_FILE,
+									   $fileId,
+									   $this->getData('userId'),
+									   $this->getData('userGroupId')
+										); /* @var $signoff Signoff */
+
+		// Set the date notified
+		$signoff->setDateNotified(Core::getCurrentDate());
+		// Set the date response due (stored as date underway in signoffs table)
+		$dueDateParts = explode('-', $this->getData('responseDueDate'));
+		$signoff->setDateUnderway(date('Y-m-d H:i:s', mktime(0, 0, 0, $dueDateParts[0], $dueDateParts[1], $dueDateParts[2])));
+		$signoffDao->updateObject($signoff);
 	}
 }
 
