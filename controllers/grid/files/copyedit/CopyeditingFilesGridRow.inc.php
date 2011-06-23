@@ -48,8 +48,7 @@ class CopyeditingFilesGridRow extends GridRow {
 		$monographFile =& $submissionFileDao->getLatestRevision($monographFileId);
 		$monographDao =& DAORegistry::getDAO('MonographDAO'); /* @var $monographDao MonographDAO */
 		$monographId = $monographFile->getMonographId();
-		$monograph =& $monographDao->getMonograph($monographId);
-		$copyeditedFileId = $signoff->getFileId();
+		$copyeditedFileId = $signoff->getAssocId();
 
 		$user =& $request->getUser();
 
@@ -65,6 +64,17 @@ class CopyeditingFilesGridRow extends GridRow {
 				'monographId' => $monographId,
 				'fileId' => $copyeditedFileId
 			);
+
+			import('lib.pkp.classes.linkAction.request.ConfirmationModal');
+			$this->addAction(new LinkAction(
+									'deleteSignoff',
+									new ConfirmationModal(
+											__('common.confirmDelete'), null,
+											$router->url($request, null, null, 'deleteSignoff', null, $actionArgs)
+									  ),
+									__('common.delete'),
+									'delete'
+							 ));
 
 			if($copyeditedFileId) {
 				$copyeditedFile =& $submissionFileDao->getLatestRevision($copyeditedFileId);
