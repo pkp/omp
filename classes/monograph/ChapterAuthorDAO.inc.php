@@ -147,7 +147,7 @@ class ChapterAuthorDAO extends DAO {
 
 		$chapterAuthor = new ChapterAuthor();
 		$chapterAuthor->setId($author->getId());
-		$chapterAuthor->setMonographId($author->getSubmissionId());
+		$chapterAuthor->setSubmissionId($author->getSubmissionId());
 		$chapterAuthor->setFirstName($author->getFirstName());
 		$chapterAuthor->setMiddleName($author->getMiddleName());
 		$chapterAuthor->setLastName($author->getLastName());

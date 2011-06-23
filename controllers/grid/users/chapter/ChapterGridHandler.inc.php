@@ -24,10 +24,6 @@ import('controllers.grid.users.chapter.ChapterGridCategoryRow');
 import('lib.pkp.classes.linkAction.request.AjaxModal');
 
 class ChapterGridHandler extends CategoryGridHandler {
-
-	/** @var Monograph */
-	var $_monograph;
-
 	/**
 	 * Constructor
 	 */
@@ -35,7 +31,7 @@ class ChapterGridHandler extends CategoryGridHandler {
 		parent::GridHandler();
 		$this->addRoleAssignment(
 				array(ROLE_ID_AUTHOR, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
-				array('fetchGrid', 'fetchCategory', 'addChapter', 'editChapter', 'updateChapter', 'deleteChapter'));
+				array('fetchGrid', 'fetchRow', 'addChapter', 'editChapter', 'updateChapter', 'deleteChapter'));
 	}
 
 
@@ -47,17 +43,8 @@ class ChapterGridHandler extends CategoryGridHandler {
 	 * @return Monograph
 	 */
 	function &getMonograph() {
-		return $this->_monograph;
+		return $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 	}
-
-	/**
-	 * Set the monograph associated with this chapter grid.
-	 * @param $monograph Monograph
-	 */
-	function setMonograph($monograph) {
-		$this->_monograph =& $monograph;
-	}
-
 
 	//
 	// Implement template methods from PKPHandler
@@ -82,18 +69,11 @@ class ChapterGridHandler extends CategoryGridHandler {
 		parent::initialize($request);
 
 		// Retrieve the authorized monograph
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-		assert(is_a($monograph, 'Monograph'));
-		$this->setMonograph($monograph);
+		$monograph =& $this->getMonograph();
 
 		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_DEFAULT_SETTINGS, LOCALE_COMPONENT_OMP_SUBMISSION));
 		// Basic grid configuration
 		$this->setTitle('grid.chapters.title');
-
-		// Set the category data
-		$chapterDao =& DAORegistry::getDAO('ChapterDAO');
-		$chapters =& $chapterDao->getChapters($monograph->getId());
-		$this->setGridDataElements($chapters);
 
 		// Grid actions
 		$router =& $request->getRouter();
@@ -152,6 +132,25 @@ class ChapterGridHandler extends CategoryGridHandler {
 		);
 	}
 
+	/**
+	 * @see GridDataProvider::getRequestArgs()
+	 */
+	function getRequestArgs() {
+		$monograph =& $this->getMonograph();
+		return array(
+			'monographId' => $monograph->getId()
+		);
+	}
+
+	/**
+	 * @see GridHandler::loadData
+	 */
+	function &loadData(&$request, $filter) {
+		$monograph =& $this->getMonograph();
+		$chapterDao =& DAORegistry::getDAO('ChapterDAO');
+		$chapters =& $chapterDao->getChapters($monograph->getId());
+		return $chapters;
+	}
 
 	//
 	// Overridden methods from GridHandler
@@ -206,11 +205,7 @@ class ChapterGridHandler extends CategoryGridHandler {
 		// Form handling
 		import('controllers.grid.users.chapter.form.ChapterForm');
 		$chapterForm = new ChapterForm($this->getMonograph(), $chapterId);
-		if ($chapterForm->isLocaleResubmit()) {
-			$chapterForm->readInputData();
-		} else {
-			$chapterForm->initData();
-		}
+		$chapterForm->initData();
 
 		$json = new JSONMessage(true, $chapterForm->fetch($request));
 		return $json->getString();
@@ -224,6 +219,7 @@ class ChapterGridHandler extends CategoryGridHandler {
 	 */
 	function updateChapter($args, &$request) {
 		// Identify the chapter to be updated
+		// FIXME: #6199.
 		$chapterId = $request->getUserVar('chapterId');
 
 		// Form initialization
@@ -235,21 +231,7 @@ class ChapterGridHandler extends CategoryGridHandler {
 		if ($chapterForm->validate()) {
 			$chapterForm->execute();
 
-			$chapter =& $chapterForm->getChapter();
-
-			// Prepare the grid row data
-			$categoryRow =& $this->getCategoryRowInstance();
-			$categoryRow->setGridId($this->getId());
-			$categoryRow->setId($chapter->getId());
-			$categoryRow->setData($chapter);
-			$categoryRow->initialize($request);
-
-			// Render the row into a JSON response
-			$chapterAuthorDao =& DAORegistry::getDAO('ChapterAuthorDAO');
-			$monograph =& $this->getMonograph();
-			$authors =& $chapterAuthorDao->getAuthors($monograph->getId(), $chapter->getId());
-			$groupIterator = $chapter->getId() % 5;
-			$json = new JSONMessage(true, $this->_renderCategoryInternally($request, $categoryRow, $groupIterator));
+			return DAO::getDataChangedEvent($chapterId);
 		} else {
 			// Return an error
 			$json = new JSONMessage(false);

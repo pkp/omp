@@ -46,7 +46,7 @@ class Chapter extends DataObject {
 	 * @param $locale string
 	 * @return string
 	 */
-	function getTitle($locale) {
+	function getTitle($locale = null) {
 		return $this->getData('title', $locale);
 	}
 
@@ -55,7 +55,7 @@ class Chapter extends DataObject {
 	 * @param $title string
 	 * @param $locale string
 	 */
-	function setTitle($title, $locale) {
+	function setTitle($title, $locale = null) {
 		return $this->setData('title', $title, $locale);
 	}
 

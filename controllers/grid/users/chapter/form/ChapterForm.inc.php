@@ -90,7 +90,7 @@ class ChapterForm extends Form {
 		$chapter =& $this->getChapter();
 		if ($chapter) {
 			$this->setData('chapterId', $chapter->getId());
-			$this->setData('title', $chapter->getLocalizedTitle());
+			$this->setData('title', $chapter->getTitle());
 		} else {
 			$this->setData('title', null);
 		}
