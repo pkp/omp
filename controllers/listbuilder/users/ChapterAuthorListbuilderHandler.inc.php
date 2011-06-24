@@ -85,14 +85,14 @@ class ChapterAuthorListbuilderHandler extends ListbuilderHandler {
 		$this->setTitle('submission.submit.addAuthor');
 		$this->setSourceType(LISTBUILDER_SOURCE_TYPE_SELECT); // Multiselect
 
-        // FIXME: #6199 authorize chapterId
-        $this->setChapterId((int) $request->getUserVar('chapterId'));
+		// FIXME: #6199 authorize chapterId
+		$this->setChapterId((int) $request->getUserVar('chapterId'));
 
 		// Name column
 		$nameColumn = new ListbuilderGridColumn($this, 'name', 'common.name');
 		import('controllers.listbuilder.users/UserListBuilderGridCellProvider');
 		// We can reuse the User cell provider because getFullName
-        $cellProvider =& new UserListbuilderGridCellProvider();
+		$cellProvider =& new UserListbuilderGridCellProvider();
 		$nameColumn->setCellProvider($cellProvider);
 		$this->addColumn($nameColumn);
 
@@ -112,27 +112,28 @@ class ChapterAuthorListbuilderHandler extends ListbuilderHandler {
 		);
 	}
 
-    /**
-     * @see GridHandler::getRowDataElement
-     * Get the data element that corresponds to the current request
-     * Allow for a blank $rowId for when creating a not-yet-persisted row
-     */
-    function &getRowDataElement(&$request, $rowId) {
-        // fallback on the parent if a rowId is found
-        if ( !empty($rowId) ) {
-            return parent::getRowDataElement($request, $rowId);
-        }
+	/**
+	 * @see GridHandler::getRowDataElement
+	 * Get the data element that corresponds to the current request
+	 * Allow for a blank $rowId for when creating a not-yet-persisted row
+	 */
+	function &getRowDataElement(&$request, $rowId) {
+		// fallback on the parent if a rowId is found
+		if ( !empty($rowId) ) {
+			return parent::getRowDataElement($request, $rowId);
+		}
 
-        // Otherwise return from the newRowId
-        $authorId = (int) $request->getUserVar('newRowId');
-        $authorDao =& DAORegistry::getDAO('AuthorDAO');
-        $author =& $authorDao->getAuthor($authorId);
-        return $author;
-    }
+		// Otherwise return from the newRowId
+		// FIXME: #6199 authorize chapterId
+		$authorId = (int) $request->getUserVar('newRowId');
+		$authorDao =& DAORegistry::getDAO('AuthorDAO');
+		$author =& $authorDao->getAuthor($authorId);
+		return $author;
+	}
 
 	/**
 	 * @see ListbuilderHandler::getOptions
-     * @params $chapterId int A user group id to filter by (defaults to URL)
+	 * @params $chapterId int A user group id to filter by (defaults to URL)
 	 */
 	function getOptions() {
 		// Initialize the object to return
