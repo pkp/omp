@@ -125,7 +125,7 @@ class ChapterAuthorListbuilderHandler extends ListbuilderHandler {
 
 		// Otherwise return from the newRowId
 		// FIXME: #6199 authorize chapterId
-		$authorId = (int) $request->getUserVar('newRowId');
+		$authorId = (int) array_shift($request->getUserVar('newRowId'));
 		$authorDao =& DAORegistry::getDAO('AuthorDAO');
 		$author =& $authorDao->getAuthor($authorId);
 		return $author;

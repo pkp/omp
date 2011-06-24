@@ -116,7 +116,7 @@ class CopyeditingFilesListbuilderHandler extends ListbuilderHandler {
 
 		// Otherwise return from the newRowId
 		// FIXME Bug #6199
-		$fileId = (int) $request->getUserVar('newRowId');
+		$fileId = (int) array_shift($request->getUserVar('newRowId'));
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		$submissionFile =& $submissionFileDao->getLatestRevision($fileId);
 		return $submissionFile;

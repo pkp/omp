@@ -92,7 +92,7 @@ class StageParticipantListbuilderHandler extends ListbuilderHandler {
 		}
 
 		// Otherwise return from the newRowId
-		$userId = (int) $request->getUserVar('newRowId');
+		$userId = (int) array_shift($request->getUserVar('newRowId'));
 		$userDao =& DAORegistry::getDAO('UserDAO');
 		$user =& $userDao->getUser($userId);
 		return $user;
