@@ -30,13 +30,13 @@
 		{/foreach}
 		{else}
 	{* There are several submission locales available; allow choice *}
-		{fbvFormSection title="submission.submit.submissionLocale" inline=true size=$fbvStyles.MEDIUM for="locale"}
+		{fbvFormSection title="submission.submit.submissionLocale" inline=true size=$fbvStyles.size.MEDIUM for="locale"}
 			{fbvElement label="submission.submit.submissionLocaleDescription" required="true" type="select" id="locale" from=$supportedSubmissionLocaleNames selected=$locale translate=false}
 		{/fbvFormSection}
 	{/if}{* count($supportedSubmissionLocaleNames) == 1 *}
 
 	<!-- Submission Placement -->
-	{fbvFormSection title="submission.submit.placement" inline=true size=$fbvStyles.MEDIUM}
+	{fbvFormSection title="submission.submit.placement" inline=true size=$fbvStyles.size.MEDIUM}
 		{fbvElement type="select" id="seriesId" from=$seriesOptions selected=$seriesId translate=false}
 	{/fbvFormSection}
 
