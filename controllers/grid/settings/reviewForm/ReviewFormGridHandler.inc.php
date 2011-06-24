@@ -102,9 +102,6 @@ class ReviewFormGridHandler extends SetupGridHandler {
 	 * @param $request PKPRequest
 	 */
 	function createReviewForm($args, &$request) {
-		// Delegate to the row handler
-		$reviewFormRow =& $this->getRow();
-
 		// Calling editReviewForm with an empty row id will add a new review form.
 		return $this->editReviewForm($args, $request);
 	}
@@ -127,7 +124,7 @@ class ReviewFormGridHandler extends SetupGridHandler {
 		$completeCounts = $reviewFormDao->getUseCounts(ASSOC_TYPE_PRESS, $press->getId(), true);
 		$incompleteCounts = $reviewFormDao->getUseCounts(ASSOC_TYPE_PRESS, $press->getId(), false);
 		if ($reviewFormId != null && (!isset($reviewForm) || $completeCounts[$reviewForm->getId()] != 0 || $incompleteCounts[$reviewForm->getId()] != 0)) {
-			Request::redirect(null, null, 'reviewForms');
+			$request->redirect(null, null, 'reviewForms');
 		} else {
 			$templateMgr =& TemplateManager::getManager();
 

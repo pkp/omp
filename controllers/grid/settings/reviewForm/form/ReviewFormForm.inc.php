@@ -111,7 +111,8 @@ class ReviewFormForm extends Form {
 
 		if (!isset($reviewForm)) {
 			$reviewForm = new ReviewForm();
-			$reviewForm->setPressId($pressId);
+			$reviewForm->setAssocType(ASSOC_TYPE_PRESS);
+			$reviewForm->setAssocId($pressId);
 			$reviewForm->setActive(0);
 			$reviewForm->setSequence(REALLY_BIG_NUMBER);
 		}
