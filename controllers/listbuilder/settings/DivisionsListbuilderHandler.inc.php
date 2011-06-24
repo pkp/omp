@@ -99,7 +99,7 @@ class DivisionsListbuilderHandler extends SetupListbuilderHandler {
 		// Update the existing entry.
 		// FIXME: Localize.
 		$locale = Locale::getLocale();
-		$division->setTitle($newRowId, $locale);
+		$division->setTitle(array_shift($newRowId), $locale);
 
 		$divisionDao->updateObject($division);
 		return true;
@@ -117,7 +117,7 @@ class DivisionsListbuilderHandler extends SetupListbuilderHandler {
 		// Populate the entry
 		// FIXME: Localize.
 		$locale = Locale::getLocale();
-		$division->setTitle($request->getUserVar('newRowId'), $locale);
+		$division->setTitle(array_shift((array) $request->getUserVar('newRowId')), $locale);
 
 		return $division;
 	}
