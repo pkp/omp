@@ -43,6 +43,20 @@ class PublicationFormatsListbuilderHandler extends SetupListbuilderHandler {
 
 
 	/**
+	 * Bounce a modified entry back to the client
+	 * @see ListbuilderHandler::getRowDataElement
+	 */
+	function &getRowDataElement(&$request, $rowId) {
+		// FIXME: Localize.
+		$locale = Locale::getLocale();
+		$values = (array) $request->getUserVar('newRowId');
+		return(array(
+			'name' => array_shift($values),
+			'designation' => array_shift($values)
+		));
+	}
+
+	/**
 	 * Persist an update to an entry.
 	 * @param $rowId mixed ID of row to modify
 	 * @param $existingEntry mixed Existing entry to be modified
@@ -104,23 +118,6 @@ class PublicationFormatsListbuilderHandler extends SetupListbuilderHandler {
 		// Configure the listbuilder columns
 		$this->addColumn(new ListbuilderGridColumn($this, 'name', 'common.name'));
 		$this->addColumn(new ListbuilderGridColumn($this, 'designation', 'common.designation'));
-	}
-
-
-	/**
-	 * Create a new data element from a request. This is used to format
-	 * new rows prior to their insertion.
-	 * @param $request PKPRequest
-	 * @param $elementId int
-	 * @return object
-	 */
-	function &getDataElementFromRequest(&$request, &$elementId) {
-		$newItem = array(
-			'name' => $request->getUserVar('name'),
-			'designation' => $request->getUserVar('designation')
-		);
-		$elementId = $request->getUserVar('rowId');
-		return $newItem;
 	}
 }
 
