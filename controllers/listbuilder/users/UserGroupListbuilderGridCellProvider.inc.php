@@ -7,7 +7,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class UserGroupListbuilderGridCellProvider
- * @ingroup controllers_listbuilder_users_
+ * @ingroup controllers_listbuilder_users
  *
  * @brief Base class for a cell provider that can retrieve labels from arrays
  */
