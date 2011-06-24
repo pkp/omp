@@ -62,23 +62,24 @@ class DivisionsListbuilderHandler extends SetupListbuilderHandler {
 	 * @param $entry mixed New entry with data to persist
 	 * @return boolean
 	 */
-	function insertEntry($entry) {
+	function insertEntry(&$request, $rowId) {
 		$divisionDao =& DAORegistry::getDAO('DivisionDAO');
 		$press =& $this->getPress();
 
 		// Make sure the item doesn't already exist
-		$divisions = $divisionDao->getByTitle($entry->item, $press->getId());
-		if (isset($divisions)) {
-			return false;
-		} else {
-			$division =& $divisionDao->newDataObject();
-			$division->setTitle($entry->item, Locale::getLocale()); //FIXME: Get locale from form
-			$division->setPressId($press->getId());
+		$division = $divisionDao->getByTitle($rowId, $press->getId());
+		if (isset($division)) return false;
+		unset($division);
 
-			$divisionDao->insertObject($division);
-			return true;
-		}
+		// Create and populate the new entry.
+		$division =& $divisionDao->newDataObject();
+		$division->setPressId($press->getId());
 
+		//FIXME: Localize.
+		$division->setTitle($rowId, Locale::getLocale());
+
+		$divisionDao->insertObject($division);
+		return true;
 	}
 
 	/**
@@ -88,21 +89,36 @@ class DivisionsListbuilderHandler extends SetupListbuilderHandler {
 	 * @param $newEntry mixed New entry with changes to persist
 	 * @return boolean
 	 */
-	function updateEntry($rowId, $existingEntry, $newEntry) {
+	function updateEntry(&$request, $rowId, $newRowId) {
+		// Get and validate the divison
 		$divisionDao =& DAORegistry::getDAO('DivisionDAO');
 		$division = $divisionDao->getById($rowId);
+		$press =& $this->getPress();
+		assert ($division && $division->getPressId() == $press->getId());
 
-		$locale = Locale::getLocale(); // FIXME: Localize.
-		$division->setTitle($newEntry->item, $locale);
+		// Update the existing entry.
+		// FIXME: Localize.
+		$locale = Locale::getLocale();
+		$division->setTitle($newRowId, $locale);
 
 		$divisionDao->updateObject($division);
 		return true;
 	}
 
+	/**
+	 * Bounce a modified entry back to the client
+	 * @see ListbuilderHandler::getRowDataElement
+	 */
 	function &getRowDataElement(&$request, $rowId) {
+		// Create a non-persisted entry
 		$division = new Division();
 		$division->setId($rowId);
-		$division->setTitle($request->getUserVar('title'), 'en_US');
+
+		// Populate the entry
+		// FIXME: Localize.
+		$locale = Locale::getLocale();
+		$division->setTitle($request->getUserVar('newRowId'), $locale);
+
 		return $division;
 	}
 
@@ -113,7 +129,6 @@ class DivisionsListbuilderHandler extends SetupListbuilderHandler {
 	function loadData() {
 		$press =& $this->getPress();
 		$divisionDao =& DAORegistry::getDAO('DivisionDAO');
-
 		$divisions = $divisionDao->getByPressId($press->getId());
 		return $divisions;
 	}

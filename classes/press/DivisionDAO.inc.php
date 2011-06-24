@@ -140,10 +140,9 @@ class DivisionDAO extends DAO {
 	 */
 	function updateObject($division) {
 		$returner = $this->update(
-			'UPDATE divisions
-				SET
-					press_id = ?,
-				WHERE division_id = ?',
+			'UPDATE	divisions
+			SET	press_id = ?
+			WHERE	division_id = ?',
 			array(
 				$division->getPressId(),
 				$division->getId()
