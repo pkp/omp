@@ -26,7 +26,10 @@ class HomepageForm extends PressSettingsForm {
 			'enableAnnouncements' => 'bool',
 			'enableAnnouncementsHomepage' => 'bool',
 			'numAnnouncementsHomepage' => 'int',
-			'announcementsIntroduction' => 'string'
+			'announcementsIntroduction' => 'string',
+			'readerInformation' => 'string',
+			'authorInformation' => 'string',
+			'librarianInformation' => 'string'
 		);
 
 		parent::PressSettingsForm($settings, 'controllers/tab/settings/homepage/form/homepageForm.tpl', $wizardMode);
@@ -40,7 +43,7 @@ class HomepageForm extends PressSettingsForm {
 	 * @see Form::getLocaleFieldNames()
 	 */
 	function getLocaleFieldNames() {
-		return array('announcementsIntroduction');
+		return array('announcementsIntroduction', 'readerInformation', 'authorInformation', 'librarianInformation');
 	}
 
 

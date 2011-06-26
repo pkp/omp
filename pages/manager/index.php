@@ -17,14 +17,6 @@
 
 switch ($op) {
 	//
-	// Press Setup
-	//
-	case 'setup':
-	case 'saveSetup':
-		import('pages.manager.SetupHandler');
-		define('HANDLER_CLASS', 'SetupHandler');
-		break;
-	//
 	// People Management
 	//
 	case 'people':

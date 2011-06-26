@@ -26,7 +26,8 @@ class MastheadForm extends PressSettingsForm {
 			'initials' => 'string',
 			'description' => 'string',
 			'mailingAddress' => 'string',
-			'pressEnabled' => 'bool'
+			'pressEnabled' => 'bool',
+			'customAboutItems' => 'object'
 		);
 
 		parent::PressSettingsForm($settings, 'controllers/tab/settings/masthead/form/mastheadForm.tpl', $wizardMode);
@@ -43,7 +44,7 @@ class MastheadForm extends PressSettingsForm {
 	 * Get all locale field names
 	 */
 	function getLocaleFieldNames() {
-		return array('name', 'initials', 'description');
+		return array('name', 'initials', 'description', 'customAboutItems');
 	}
 
 

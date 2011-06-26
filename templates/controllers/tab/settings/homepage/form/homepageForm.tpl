@@ -41,5 +41,20 @@
 		{/fbvFormSection}
 	{/fbvFormArea}
 
+	<h3>{translate key="manager.setup.information"}</h3>
+	<p>{translate key="manager.setup.information.description"}</p>
+	{fbvFormArea id="information"}
+		{fbvFormSection title="manager.setup.information.forReaders"}
+			{fbvElement type="textarea" multilingual=true name="readerInformation" id="readerInformation" value=$readerInformation size=$fbvStyles.size.MEDIUM  rich=true}
+		{/fbvFormSection}
+		{fbvFormSection title="manager.setup.information.forAuthors"}
+			{fbvElement type="textarea" multilingual=true name="authorInformation" id="authorInformation" value=$authorInformation size=$fbvStyles.size.MEDIUM  rich=true}
+		{/fbvFormSection}
+		{fbvFormSection title="manager.setup.information.forLibrarians"}
+			{fbvElement type="textarea" multilingual=true name="librarianInformation" id="librarianInformation" value=$librarianInformation size=$fbvStyles.size.MEDIUM  rich=true}
+		{/fbvFormSection}
+	{/fbvFormArea}
+
+
 	{include file="form/formButtons.tpl" submitText="common.save"}
 </form>

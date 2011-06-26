@@ -172,13 +172,18 @@
 
     <div {if $wizardMode}class="pkp_form_hidden"{/if}>
         <h3>{translate key="common.mailingAddress"}</h3>
-    {fbvFormArea id="mailingAddressInformation"}
-        {fbvFormSection title="common.mailingAddress" for="mailingAddress" group=true}
-            {fbvElement type="textarea" id="mailingAddress" value=$mailingAddress size=$fbvStyles.size.SMALL}
-            <p>{translate key="manager.setup.mailingAddressDescription"}</p>
-        {/fbvFormSection}
-    {/fbvFormArea}
-    </div>
+	    {fbvFormArea id="mailingAddressInformation"}
+	        {fbvFormSection title="common.mailingAddress" for="mailingAddress" group=true}
+	            {fbvElement type="textarea" id="mailingAddress" value=$mailingAddress size=$fbvStyles.size.SMALL}
+	            <p>{translate key="manager.setup.mailingAddressDescription"}</p>
+	        {/fbvFormSection}
+	    {/fbvFormArea}
+  		{fbvFormArea id="additionalAboutItems"}
+			{fbvSection}
+				<h4>{translate key="manager.setup.addItemtoAboutPress"}</h4>
+			{/fbvSection}
+		{/fbvFormArea}
+	</div>
 
     <div class="separator"></div>
 
