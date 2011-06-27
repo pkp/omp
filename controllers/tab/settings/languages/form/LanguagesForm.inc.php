@@ -68,12 +68,13 @@ class LanguagesForm extends PressSettingsForm {
 	//
 	/**
 	 * @see PressSettingsForm::initData()
+	 * @param $request Request
 	 */
-	function initData() {
-		$press =& Request::getPress();
+	function initData($request) {
+		$press =& $request->getPress();
 		$this->setData('primaryLocale', $press->getPrimaryLocale());
 
-		parent::initData();
+		parent::initData($request);
 
 		foreach (array('supportedFormLocales', 'supportedSubmissionLocales', 'supportedLocales') as $name) {
 			if ($this->getData($name) == null || !is_array($this->getData($name))) {
@@ -86,7 +87,7 @@ class LanguagesForm extends PressSettingsForm {
 	 * @see PressSettingsForm::fetch()
 	 */
 	function fetch(&$request) {
-		$site =& Request::getSite();
+		$site =& $request->getSite();
 		$availableLocales = $site->getSupportedLocaleNames();
 
 		$reloadDefaultsLinkActions = $this->_getLinkActions($request, $availableLocales);
@@ -101,12 +102,13 @@ class LanguagesForm extends PressSettingsForm {
 
 	/**
 	 * Assign form data to user-submitted data.
+	 * @param $request Request
 	 */
-	function readInputData() {
-		$primaryLocale = Request::getUserVar('primaryLocale');
+	function readInputData($request) {
+		$primaryLocale = $request->getUserVar('primaryLocale');
 		$this->setData('primaryLocale', $primaryLocale);
 
-		parent::readInputData();
+		parent::readInputData($request);
 
 		foreach (array('supportedFormLocales', 'supportedSubmissionLocales', 'supportedLocales') as $name) {
 			if ($this->getData($name) == null || !is_array($this->getData($name))) {
@@ -118,8 +120,8 @@ class LanguagesForm extends PressSettingsForm {
 	/**
 	 * Save modified settings.
 	 */
-	function execute() {
-		$press =& Request::getPress();
+	function execute($request) {
+		$press =& $request->getPress();
 		$settingsDao =& DAORegistry::getDAO('PressSettingsDAO');
 
 		// Verify additional locales

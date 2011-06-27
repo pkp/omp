@@ -123,7 +123,7 @@ class WebsiteSettingsTabHandler extends ManagerSettingsTabHandler {
 		$tabFormName = $request->getUserVar('formName');
 
 		$tabForm = $this->getTabFormByName($tabFormName);
-		$tabForm->initData();
+		$tabForm->initData($request);
 
 		if ($tabForm->deleteFile($settingName, $request)) {
 			return DAO::getDataChangedEvent($settingName);
@@ -145,7 +145,7 @@ class WebsiteSettingsTabHandler extends ManagerSettingsTabHandler {
 
 		// Try to fetch the file.
 		$tabForm = $this->getTabForm();
-		$tabForm->initData();
+		$tabForm->initData($request);
 
 		$renderedElement = $tabForm->renderFileView($settingName, $request);
 

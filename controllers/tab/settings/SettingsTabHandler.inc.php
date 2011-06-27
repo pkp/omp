@@ -40,9 +40,6 @@ class SettingsTabHandler extends Handler {
 					'showTab'
 				)
 		);
-
-		$this->setCurrentTab(Request::getUserVar('tab'));
-		$this->setWizardMode(Request::getUserVar('wizardMode'));
 	}
 
 
@@ -101,6 +98,14 @@ class SettingsTabHandler extends Handler {
 	// Extended methods from Handler
 	//
 	/**
+	 * @see PKPHandler::initialize()
+	 */
+	function initialize($request) {
+		$this->setCurrentTab($request->getUserVar('tab'));
+		$this->setWizardMode($request->getUserVar('wizardMode'));
+	}
+
+	/**
 	 * @see PKPHandler::authorize()
 	 */
 	function authorize(&$request, $args, $roleAssignments) {
@@ -124,7 +129,7 @@ class SettingsTabHandler extends Handler {
 				return $templateMgr->fetchJson($this->_getTabTemplate());
 			} else {
 				$tabForm = $this->getTabForm();
-				$tabForm->initData();
+				$tabForm->initData($request);
 				$json = new JSONMessage(true, $tabForm->fetch($request));
 				return $json->getString();
 			}
@@ -142,7 +147,7 @@ class SettingsTabHandler extends Handler {
 			$tabForm = $this->getTabForm();
 
 			// Try to save the form data.
-			$tabForm->readInputData();
+			$tabForm->readInputData($request);
 			if($tabForm->validate()) {
 				$tabForm->execute($request);
 			} else {

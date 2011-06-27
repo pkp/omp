@@ -98,10 +98,11 @@ class AppearanceForm extends PressSettingsForm {
 	//
 	/**
 	 * @see PressSettingsForm::readInputData()
+	 * @param $request Request
 	 */
-	function readInputData() {
+	function readInputData($request) {
 		$this->readUserVars(array_values($this->getImagesSettingsName()));
-		parent::readInputData();
+		parent::readInputData($request);
 	}
 
 	/**

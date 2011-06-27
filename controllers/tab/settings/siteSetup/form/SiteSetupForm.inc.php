@@ -29,7 +29,7 @@ class SiteSetupForm extends PKPSiteSettingsForm {
 	 * @see Form::fetch()
 	 */
 	function fetch(&$request, $params = null) {
-		$site =& Request::getSite();
+		$site =& $request->getSite();
 		$publicFileManager = new PublicFileManager();
 		$pressDao =& DAORegistry::getDAO('PressDAO');
 		$presses =& $pressDao->getPressNames();
@@ -40,7 +40,7 @@ class SiteSetupForm extends PKPSiteSettingsForm {
 		$templateMgr->assign('originalStyleFilename', $site->getOriginalStyleFilename());
 		$templateMgr->assign('pageHeaderTitleImage', $site->getSetting('pageHeaderTitleImage'));
 		$templateMgr->assign('styleFilename', $site->getSiteStyleFilename());
-		$templateMgr->assign('publicFilesDir', Request::getBasePath() . '/' . $publicFileManager->getSiteFilesPath());
+		$templateMgr->assign('publicFilesDir', $request->getBasePath() . '/' . $publicFileManager->getSiteFilesPath());
 		$templateMgr->assign('dateStyleFileUploaded', file_exists($siteStyleFilename)?filemtime($siteStyleFilename):null);
 		$templateMgr->assign('siteStyleFileExists', file_exists($siteStyleFilename));
 		$templateMgr->assign('helpTopicId', 'site.siteManagement');
