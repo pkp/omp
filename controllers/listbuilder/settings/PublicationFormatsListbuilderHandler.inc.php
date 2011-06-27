@@ -51,8 +51,8 @@ class PublicationFormatsListbuilderHandler extends SetupListbuilderHandler {
 		$locale = Locale::getLocale();
 		list($name, $designation) = $request->getUserVar('newRowId');
 		return(array(
-			'name' => array_shift($values),
-			'designation' => array_shift($values)
+			'name' => $name,
+			'designation' => $designation
 		));
 	}
 
