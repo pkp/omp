@@ -1,12 +1,12 @@
 {**
- * step2.tpl
+ * templates/submission/form/step2.tpl
  *
  * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Step 2 of author monograph submission.
  *}
-{assign var="pageTitle" value="submission.submit.step2"}
+{assign var="pageTitle" value="submission.submit"}
 {include file="submission/form/submitStepHeader.tpl"}
 
 

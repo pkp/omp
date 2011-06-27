@@ -1,5 +1,5 @@
 {**
- * step3.tpl
+ * templates/submission/form/step3.tpl
  *
  * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -7,7 +7,7 @@
  * Step 3 of author monograph submission.
  *}
 
-{assign var="pageTitle" value="submission.submit.step3"}
+{assign var="pageTitle" value="submission.submit"}
 {include file="submission/form/submitStepHeader.tpl"}
 
 
