@@ -60,28 +60,31 @@ jQuery.pkp.pages.submission =
 	/**
 	 * Specifies if there is a chapters grid or not.
 	 * @private
-	 * @type {string}
+	 * @type {boolean}
 	 */
 	$.pkp.pages.submission.SubmissionStep3FormHandler.
 			prototype.isEditedVolume_ = false;
 
+
 	//
-	// Public methods.
+	// Private methods.
 	//
 	/**
 	 * Handler the data changed event from the author's grid
+	 * @private
 	 * @param {$.pkp.pages.submission.SubmissionStep3FormHandler} submissionForm
-	 *  The Submission Form this is attached to
+	 *  the Submission Form this is attached to.
 	 * @param {Event} event A "gridRefreshRequested" event.
-	 * @param {string} gridId The grid Id that was requested
 	 */
 	$.pkp.pages.submission.SubmissionStep3FormHandler.
 			prototype.fetchChaptersGrid_ = function(submissionForm, event) {
 		// redraw the chapters grid if it was the authors grid.
 		var $eventTarget = event.target;
 
-		if ( this.isEditedVolume_ && $eventTarget.id == this.authorsGridContainer_ ) {
-			$("#" + this.chaptersGridContainer_).find('.pkp_controllers_grid').trigger('dataChanged');
+		if (this.isEditedVolume_ &&
+				$eventTarget.id == this.authorsGridContainer_) {
+			$('#' + this.chaptersGridContainer_).find('.pkp_controllers_grid')
+					.trigger('dataChanged');
 		}
 	};
 
