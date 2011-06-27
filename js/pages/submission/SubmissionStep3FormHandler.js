@@ -42,7 +42,7 @@ jQuery.pkp.pages.submission =
 	};
 	$.pkp.classes.Helper.inherits(
 			$.pkp.pages.submission.SubmissionStep3FormHandler,
-			$.pkp.controllers.form.FormHandler);
+			$.pkp.controllers.form.AjaxFormHandler);
 
 
 	//
