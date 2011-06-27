@@ -28,5 +28,3 @@
 	<div id="notesList">
 	</div>
 </div>
-
-
