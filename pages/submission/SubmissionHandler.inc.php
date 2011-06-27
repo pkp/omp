@@ -160,7 +160,7 @@ class SubmissionHandler extends Handler {
 				$submitForm->display($request);
 			} else {
 				$monographId = $submitForm->execute($args, $request);
-				$request->redirect(null, null, 'wizard', $step+1, array('monographId' => $monographId));
+				return $request->redirectUrlJson($router->url($request, null, null, 'wizard', $step+1, array('monographId' => $monographId)));
 			}
 		}
 	}
