@@ -150,7 +150,7 @@ class StageParticipantListbuilderHandler extends ListbuilderHandler {
 
 		// Name column
 		$nameColumn = new ListbuilderGridColumn($this, 'name', 'common.name');
-		import('controllers.listbuilder.users.UserListBuilderGridCellProvider');
+		import('controllers.listbuilder.users.UserListbuilderGridCellProvider');
 		$cellProvider =& new UserListbuilderGridCellProvider();
 		$nameColumn->setCellProvider($cellProvider);
 		$this->addColumn($nameColumn);
