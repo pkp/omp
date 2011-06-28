@@ -16,12 +16,10 @@
 // import grid base classes
 import('lib.pkp.classes.controllers.grid.GridHandler');
 
-
 // import stageParticipant grid specific classes
 import('controllers.grid.users.stageParticipant.StageParticipantGridRow');
 
 class StageParticipantGridHandler extends GridHandler {
-
 	/**
 	 * Constructor
 	 */
@@ -62,7 +60,7 @@ class StageParticipantGridHandler extends GridHandler {
 	 * @see PKPHandler::authorize()
 	 */
 	function authorize(&$request, $args, $roleAssignments) {
-		$stageId = $request->getUserVar('stageId');
+		$stageId = (int) $request->getUserVar('stageId');
 		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
 		$this->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', $stageId));
 		return parent::authorize($request, $args, $roleAssignments);
@@ -177,13 +175,16 @@ class StageParticipantGridHandler extends GridHandler {
 		// Assign the stage id to the template.
 		$templateMgr->assign('stageId', $this->getStageId());
 
-		// assign the userGroupId to the template
-		// FIXME: #6199 This is not authorized anywhere.
+		// Get and validate the user group ID.
 		$userGroupId = (int) $request->getUserVar('userGroupId');
-		$templateMgr->assign('userGroupId', $userGroupId);
+		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+		$userGroup =& $userGroupDao->getById($userGroupId, $monograph->getPressId());
+		if (!$userGroup) fatalError('Invalid userGroupId.');
 
+		$templateMgr->assign('userGroupId', $userGroup->getId());
 		return $templateMgr->fetchJson('controllers/grid/users/stageParticipant/editStageParticipantList.tpl');
 	}
+
 
 	/**
 	 * Update the row for the current userGroup's stage participant list.
@@ -192,9 +193,12 @@ class StageParticipantGridHandler extends GridHandler {
 	 * @return string Serialized JSON object
 	 */
 	function saveStageParticipantList($args, &$request) {
-		// assign the userGroupId to the template
-		// FIXME: #6199 This is not authorized anywhere.
+		// Get and validate the user group ID.
 		$userGroupId = (int) $request->getUserVar('userGroupId');
+		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+		$monograph =& $this->getMonograph();
+		$userGroup =& $userGroupDao->getById($userGroupId, $monograph->getPressId());
+		if (!$userGroup) fatalError('Invalid userGroupId.');
 
 		return DAO::getDataChangedEvent($userGroupId);
 	}
