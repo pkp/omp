@@ -51,7 +51,7 @@ function doSubmit() {
 	{fbvFormSection title="press.path" required=true for="path"}
 		{fbvElement type="text" id="path" value=$path size=$smarty.const.SMALL maxlength="32"}
 		{url|assign:"sampleUrl" press="path"}
-		[** FIXME: is this class instruct still the right one? **}
+		{** FIXME: is this class instruct still the right one? **}
 		<span class="instruct">{translate key="admin.presses.urlWillBe" sampleUrl=$sampleUrl}</span>
 	{/fbvFormSection}
 	{fbvFormSection title="admin.presses.enablePressInstructions" for="enabled" list=true}
