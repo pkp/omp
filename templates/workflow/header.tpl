@@ -44,7 +44,7 @@
 			**}
 		</div>
 		<div class="pkp_workflow_headerStageParticipants">
-			{url|assign:stageParticipantGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.users.stageParticipant.StageParticipantGridHandler" op="fetchGrid" monographId=$monograph->getId() stageId=$monograph->getCurrentStageId() escape=false}
+			{url|assign:stageParticipantGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.users.stageParticipant.StageParticipantGridHandler" op="fetchGrid" monographId=$monograph->getId() stageId=$stageId escape=false}
 			{load_url_in_div id="stageParticipantGridContainer" url="$stageParticipantGridUrl"}
 		</div>
 	</div>

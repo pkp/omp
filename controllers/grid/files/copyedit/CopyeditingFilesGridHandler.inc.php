@@ -302,6 +302,7 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 					'value' => $user->getId() . '-' . $stageUser->getUserGroupId()
 				);
 			}
+			unset($stageUser, $userGroup);
 		}
 
 		import('lib.pkp.classes.core.JSONMessage');

@@ -130,7 +130,7 @@ class StageParticipantGridHandler extends GridHandler {
 	 * @see GridHandler::loadData()
 	 */
 	function loadData($request, $filter) {
-		// Retrieve the signoffs.
+		// Retrieve useful objects.
 		$monograph =& $this->getMonograph();
 		$press =& $request->getPress();
 
