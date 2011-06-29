@@ -92,6 +92,7 @@ class StageParticipantListbuilderHandler extends ListbuilderHandler {
 		}
 
 		// Otherwise return from the newRowId
+		// FIXME: Bug #6199; user ID not validated
 		$userId = (int) array_shift($request->getUserVar('newRowId'));
 		$userDao =& DAORegistry::getDAO('UserDAO');
 		$user =& $userDao->getUser($userId);
