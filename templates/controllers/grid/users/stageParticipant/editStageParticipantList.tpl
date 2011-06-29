@@ -31,7 +31,7 @@
 	<a href="#" id="cancelFormButton" class="">Cancel</a>
 </div>
 <div>
-	<button class="" type="submit" id="submitFormButton">Create New Review Round</button>
+	<button class="" type="submit" id="submitFormButton">{translate key="common.save"}</button>
 </div>
 </div>
 
