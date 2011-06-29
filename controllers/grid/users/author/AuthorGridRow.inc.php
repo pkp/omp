@@ -33,10 +33,8 @@ class AuthorGridRow extends GridRow {
 		// Do the default initialization
 		parent::initialize($request);
 
-		// FIXME: #6199
-		// Retrieve the monograph id from the request
-		$monographId = $request->getUserVar('monographId');
-		assert(is_numeric($monographId));
+		// Retrieve the monograph from the request
+		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 
 		// Is this a new row or an existing row?
 		$rowId = $this->getId();
@@ -44,7 +42,7 @@ class AuthorGridRow extends GridRow {
 			// Only add row actions if this is an existing row
 			$router =& $request->getRouter();
 			$actionArgs = array(
-				'monographId' => $monographId,
+				'monographId' => $monograph->getId(),
 				'authorId' => $rowId
 			);
 

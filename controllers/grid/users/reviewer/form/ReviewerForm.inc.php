@@ -169,13 +169,15 @@ class ReviewerForm extends Form {
 	 * @see Form::readInputData()
 	 */
 	function readInputData() {
-		$this->readUserVars(array('selectionType',
-								'monographId',
-								'reviewType',
-								'round',
-								'personalMessage',
-								'responseDueDate',
-								'reviewDueDate'));
+		$this->readUserVars(array(
+			'selectionType',
+			'monographId',
+			'reviewType',
+			'round',
+			'personalMessage',
+			'responseDueDate',
+			'reviewDueDate'
+		));
 
 		$interests = $this->getData('interestsKeywords');
 		if ($interests != null && is_array($interests)) {

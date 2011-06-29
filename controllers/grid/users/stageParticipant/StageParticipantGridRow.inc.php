@@ -40,8 +40,10 @@ class StageParticipantGridRow extends GridRow {
 		// Is this a new row or an existing row?
 		$rowId = $this->getId();
 		if (!empty($rowId) && is_numeric($rowId)) {
-			// FIXME: #6199 authorize userGroupId
-			$this->setUserGroupId($rowId);
+			$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+			$press =& $request->getPress();
+			$userGroup =& $userGroupDao->getById($rowId, $press->getId());
+			$this->setUserGroupId($userGroup->getId());
 
 			// Only add row actions if this is an existing row.
 			$router =& $request->getRouter();
@@ -63,7 +65,8 @@ class StageParticipantGridRow extends GridRow {
 						true
 						),
 					__('grid.user.edit'),
-					'edit')
+					'edit'
+				)
 			);
 
 			// Set a non-default template that supports row actions
@@ -113,7 +116,6 @@ class StageParticipantGridRow extends GridRow {
 	 * @return array
 	 */
 	function getRequestArgs() {
-		// FIXME: #6199 Authorize the user Group ID?
 		return array('userGroupId' => $this->getUserGroupId());
 	}
 }

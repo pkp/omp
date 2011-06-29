@@ -85,8 +85,14 @@ class ChapterAuthorListbuilderHandler extends ListbuilderHandler {
 		$this->setTitle('submission.submit.addAuthor');
 		$this->setSourceType(LISTBUILDER_SOURCE_TYPE_SELECT); // Multiselect
 
-		// FIXME: #6199 authorize chapterId
-		$this->setChapterId((int) $request->getUserVar('chapterId'));
+		// Fetch and authorize chapter
+		$chapterDao =& DAORegistry::getDAO('ChapterDAO');
+		$monograph =& $this->getMonograph();
+		$chapter =& $chapterDao->getChapter(
+			$request->getUserVar('chapterId'),
+			$monograph->getId()
+		);
+		$this->setChapterId($chapter->getId());
 
 		// Name column
 		$nameColumn = new ListbuilderGridColumn($this, 'name', 'common.name');
@@ -124,10 +130,10 @@ class ChapterAuthorListbuilderHandler extends ListbuilderHandler {
 		}
 
 		// Otherwise return from the newRowId
-		// FIXME: #6199 authorize chapterId
 		$authorId = (int) array_shift($request->getUserVar('newRowId'));
 		$authorDao =& DAORegistry::getDAO('AuthorDAO');
-		$author =& $authorDao->getAuthor($authorId);
+		$monograph =& $this->getMonograph();
+		$author =& $authorDao->getAuthor($authorId, $monograph->getId());
 		return $author;
 	}
 

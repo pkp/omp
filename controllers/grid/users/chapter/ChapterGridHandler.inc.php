@@ -30,8 +30,9 @@ class ChapterGridHandler extends CategoryGridHandler {
 	function ChapterGridHandler() {
 		parent::GridHandler();
 		$this->addRoleAssignment(
-				array(ROLE_ID_AUTHOR, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
-				array('fetchGrid', 'fetchRow', 'addChapter', 'editChapter', 'updateChapter', 'deleteChapter'));
+			array(ROLE_ID_AUTHOR, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
+			array('fetchGrid', 'fetchRow', 'addChapter', 'editChapter', 'updateChapter', 'deleteChapter')
+		);
 	}
 
 
@@ -199,12 +200,11 @@ class ChapterGridHandler extends CategoryGridHandler {
 	 * @return string Serialized JSON object
 	 */
 	function editChapter($args, &$request) {
-		// Identify the chapter to be updated
-		$chapterId = $request->getUserVar('chapterId');
+		$chapter =& $this->_getChapterFromArgs();
 
 		// Form handling
 		import('controllers.grid.users.chapter.form.ChapterForm');
-		$chapterForm = new ChapterForm($this->getMonograph(), $chapterId);
+		$chapterForm = new ChapterForm($this->getMonograph(), $chapter->getId());
 		$chapterForm->initData();
 
 		$json = new JSONMessage(true, $chapterForm->fetch($request));
@@ -219,12 +219,11 @@ class ChapterGridHandler extends CategoryGridHandler {
 	 */
 	function updateChapter($args, &$request) {
 		// Identify the chapter to be updated
-		// FIXME: #6199.
-		$chapterId = $request->getUserVar('chapterId');
+		$chapter =& $this->_getChapterFromArgs($args);
 
 		// Form initialization
 		import('controllers.grid.users.chapter.form.ChapterForm');
-		$chapterForm = new ChapterForm($this->getMonograph(), $chapterId);
+		$chapterForm = new ChapterForm($this->getMonograph(), $chapter->getId());
 		$chapterForm->readInputData();
 
 		// Form validation
@@ -260,6 +259,15 @@ class ChapterGridHandler extends CategoryGridHandler {
 			$json = new JSONMessage(false, Locale::translate('submission.chapters.grid.errorDeletingChapter'));
 		}
 		return $json->getString();
+	}
+
+	/**
+	 * Fetch and validate the chapter from the request arguments
+	 */
+	function &_getChapterFromArgs() {
+		$monograph =& $this->getMonograph();
+		$chapterDao =& DAORegistry::getDAO('ChapterDAO');
+		$chapter =& $chapterDao->getChapter((int) $request->getUserVar('chapterId'), $monograph->getId());
 	}
 }
 

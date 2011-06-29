@@ -92,6 +92,8 @@ class CopyeditingUserForm extends Form {
 		$email->setBody($this->getData('personalMessage'));
 
 		$userDao =& DAORegistry::getDAO('UserDAO'); /* @var $userDao UserDAO */
+
+		// FIXME: Bug #6199: How to validate user IDs?
 		$user =& $userDao->getUser($this->getData('userId'));
 		$email->addRecipient($user->getEmail(), $user->getFullName());
 		$email->setEventType(MONOGRAPH_EMAIL_COPYEDIT_NOTIFY_AUTHOR);
@@ -103,17 +105,35 @@ class CopyeditingUserForm extends Form {
 	 * @see Listbuilder::insertEntry
 	 */
 	function insertSignoff(&$request, $newRowId) {
+		// Fetch and validate the file ID
 		$fileId = (int) $newRowId;
-		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
-		$signoff =& $signoffDao->build('SIGNOFF_COPYEDITING',
-									   ASSOC_TYPE_MONOGRAPH_FILE,
-									   $fileId,
-									   $this->getData('userId'),
-									   $this->getData('userGroupId')
-										); /* @var $signoff Signoff */
+		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO');
+		$monographFiles =& $submissionFileDao->getLatestRevisions($monograph->getId(), MONOGRAPH_FILE_COPYEDIT);
+		$monographFile = null;
+		while ($potentialFile =& $monographFiles->next()) {
+			if ($potentialFile->getId() == $fileId) $monographFile =& $potentialFile;
+		}
+
+		// FIXME: Bug #6199: How to validate user IDs?
+		$userId = (int) $this->getData('userId');
+
+		// Fetch and validate user group ID
+		$userGroupId = (int) $this->getData('userGroupId');
+		$press =& $request->getPress();
+		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+		$userGroup =& $userGroupDao->getById($userGroupId, $press->getId());
+
+		// Build the signoff.
+		$monographFileSignoffDao =& DAORegistry::getDAO('MonographFileSignoffDAO');
+		$signoff =& $monographFileSignoffDao->build(
+			'SIGNOFF_COPYEDITING',
+			$monographFile->getId(),
+			$userId, $userGroup->getId()
+		); /* @var $signoff Signoff */
 
 		// Set the date notified
 		$signoff->setDateNotified(Core::getCurrentDate());
+
 		// Set the date response due (stored as date underway in signoffs table)
 		$dueDateParts = explode('-', $this->getData('responseDueDate'));
 		$signoff->setDateUnderway(date('Y-m-d H:i:s', mktime(0, 0, 0, $dueDateParts[0], $dueDateParts[1], $dueDateParts[2])));

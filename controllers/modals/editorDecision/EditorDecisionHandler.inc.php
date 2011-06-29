@@ -27,9 +27,16 @@ class EditorDecisionHandler extends Handler {
 	function EditorDecisionHandler() {
 		parent::Handler();
 
-		$this->addRoleAssignment(array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
-				array('newReviewRound', 'saveNewReviewRound', 'initiateReview', 'saveInitiateReview', 'sendReviews',
-						'saveSendReviews', 'promote', 'savePromote', 'importPeerReviews', 'sendToProduction'));
+		$this->addRoleAssignment(
+			array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
+			array(
+				'newReviewRound', 'saveNewReviewRound',
+				'initiateReview', 'saveInitiateReview',
+				'sendReviews', 'saveSendReviews',
+				'promote', 'savePromote',
+				'importPeerReviews', 'sendToProduction'
+			)
+		);
 	}
 
 
@@ -160,6 +167,7 @@ class EditorDecisionHandler extends Handler {
 	function savePromote($args, &$request) {
 		// Redirect to the next workflow page after
 		// promoting the submission.
+		// FIXME: Need to validate the decision. See #6199.
 		$decision = (int)$request->getUserVar('decision');
 
 		$redirectOp = null;
@@ -280,4 +288,5 @@ class EditorDecisionHandler extends Handler {
 		return $json->getString();
 	}
 }
+
 ?>

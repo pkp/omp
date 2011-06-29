@@ -148,9 +148,10 @@ class UserUserGroupListbuilderHandler extends ListbuilderHandler {
 	 * @see PKPHandler::initialize()
 	 */
 	function initialize(&$request) {
+		// FIXME Bug #6199
 		$this->setUserId((int) $request->getUserVar('userId'));
-		$this->setPress($request->getPress());
 
+		$this->setPress($request->getPress());
 		parent::initialize($request);
 
 		// Basic configuration
@@ -187,11 +188,11 @@ class UserUserGroupListbuilderHandler extends ListbuilderHandler {
 			return parent::getRowDataElement($request, $rowId);
 		}
 
-		// Otherwise return from the newRowId
-		// FIXME Bug #6199
+		// Otherwise return from the $newRowId
 		$userGroupId = (int) array_shift($request->getUserVar('newRowId'));
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
-		$userGroup =& $userGroupDao->getById($userGroupId);
+		$press =& $this->getPress();
+		$userGroup =& $userGroupDao->getById($userGroupId, $press->getId());
 		return $userGroup;
 	}
 

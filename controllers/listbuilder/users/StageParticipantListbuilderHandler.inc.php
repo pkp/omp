@@ -146,8 +146,14 @@ class StageParticipantListbuilderHandler extends ListbuilderHandler {
 		// Basic configuration.
 		$this->setSourceType(LISTBUILDER_SOURCE_TYPE_SELECT);
 
-		// FIXME: #6199 authorize userGroupId
-		$this->setUserGroupId((int) $request->getUserVar('userGroupId'));
+		// Fetch and authorize userGroupId
+		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+		$press =& $request->getPress();
+		$userGroup =& $userGroupDao->getById(
+			(int) $request->getUserVar('userGroupId'),
+			$press->getId()
+		);
+		$this->setUserGroupId($userGroup->getId());
 
 		// Name column
 		$nameColumn = new ListbuilderGridColumn($this, 'name', 'common.name');
@@ -204,7 +210,7 @@ class StageParticipantListbuilderHandler extends ListbuilderHandler {
 	 * @see Listbuilder::deleteEntry
 	 */
 	function deleteEntry(&$request, $rowId) {
-		$userId = (int) $rowId;
+		$userId = (int) $rowId; // No validation b/c delete is specific
 		$monograph =& $this->getMonograph();
 		$stageAssignmentDao = & DAORegistry::getDAO('StageAssignmentDAO'); /* @var $stageAssignmentDao StageAssignmentDAO */
 		$stageAssignmentDao->deleteByAll($monograph->getId(), $this->getStageId(), $this->getUserGroupId(), $userId);

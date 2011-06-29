@@ -19,14 +19,14 @@ import('lib.pkp.classes.core.PKPApplication');
 
 define('PHP_REQUIRED_VERSION', '4.2.0');
 
-define('ASSOC_TYPE_PRESS', 0x0000200);
-define('ASSOC_TYPE_MONOGRAPH', 0x0000201);
+define('ASSOC_TYPE_PRESS',			0x0000200);
+define('ASSOC_TYPE_MONOGRAPH',			0x0000201);
 define('ASSOC_TYPE_PRODUCTION_ASSIGNMENT',	0x0000202);
-define('ASSOC_TYPE_MONOGRAPH_FILE',	0x0000203);
-define('ASSOC_TYPE_REVIEW_RESPONSE',	0x0000204);
-define('ASSOC_TYPE_REVIEW_ASSIGNMENT',	0x0000205);
-define('ASSOC_TYPE_MONOGRAPH_EMAIL_LOG_ENTRY', 0x0000206);
-define('ASSOC_TYPE_WORKFLOW_STAGE', 0x0000207);
+define('ASSOC_TYPE_MONOGRAPH_FILE',		0x0000203);
+define('ASSOC_TYPE_REVIEW_RESPONSE',		0x0000204);
+define('ASSOC_TYPE_REVIEW_ASSIGNMENT',		0x0000205);
+define('ASSOC_TYPE_MONOGRAPH_EMAIL_LOG_ENTRY',	0x0000206);
+define('ASSOC_TYPE_WORKFLOW_STAGE',		0x0000207);
 
 define('CONTEXT_PRESS', 1);
 
@@ -114,6 +114,7 @@ class Application extends PKPApplication {
 			'MonographEventLogDAO' => 'classes.log.MonographEventLogDAO',
 			'MonographFileEmailLogDAO' => 'classes.log.MonographFileEmailLogDAO',
 			'MonographFileEventLogDAO' => 'classes.log.MonographFileEventLogDAO',
+			'MonographFileSignoffDAO' => 'classes.monograph.MonographFileSignoffDAO',
 			'MonographSearchDAO' => 'classes.search.MonographSearchDAO',
 			'NoteDAO' => 'classes.note.NoteDAO',
 			'NotificationStatusDAO' => 'classes.press.NotificationStatusDAO',

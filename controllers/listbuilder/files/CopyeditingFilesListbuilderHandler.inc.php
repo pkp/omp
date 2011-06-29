@@ -21,8 +21,10 @@ class CopyeditingFilesListbuilderHandler extends ListbuilderHandler {
 	function CopyeditingFilesListbuilderHandler() {
 		parent::ListbuilderHandler();
 
-		$this->addRoleAssignment(array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER, ROLE_ID_PRESS_ASSISTANT),
-				array('fetch', 'fetchRow', 'fetchOptions'));
+		$this->addRoleAssignment(
+			array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER, ROLE_ID_PRESS_ASSISTANT),
+			array('fetch', 'fetchRow', 'fetchOptions')
+		);
 	}
 
 
@@ -46,7 +48,7 @@ class CopyeditingFilesListbuilderHandler extends ListbuilderHandler {
 		parent::initialize($request);
 
 		// Basic configuration
-		$this->setSourceType(LISTBUILDER_SOURCE_TYPE_SELECT); // Multiselect
+		$this->setSourceType(LISTBUILDER_SOURCE_TYPE_SELECT);
 		$this->setSaveType(LISTBUILDER_SAVE_TYPE_EXTERNAL);
 		$this->setSaveFieldName('files');
 
@@ -88,7 +90,6 @@ class CopyeditingFilesListbuilderHandler extends ListbuilderHandler {
 	 */
 	function getRequestArgs() {
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-
 		$args = parent::getRequestArgs();
 		$args['monographId'] = $monograph->getId();
 		return $args;
@@ -115,11 +116,17 @@ class CopyeditingFilesListbuilderHandler extends ListbuilderHandler {
 		}
 
 		// Otherwise return from the newRowId
-		// FIXME Bug #6199
 		$fileId = (int) array_shift($request->getUserVar('newRowId'));
+		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-		$submissionFile =& $submissionFileDao->getLatestRevision($fileId);
-		return $submissionFile;
+		$monographFiles =& $submissionFileDao->getLatestRevisions($monograph->getId(), MONOGRAPH_FILE_COPYEDIT);
+		while ($monographFile =& $monographFiles->next()) {
+			if ($monographFile->getId() == $fileId) {
+				return $monographFile;
+			}
+			unset($monographFile);
+		}
+		fatalError('Invalid file ID specified!');
 	}
 }
 
