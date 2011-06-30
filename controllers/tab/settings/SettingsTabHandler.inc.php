@@ -176,35 +176,6 @@ class SettingsTabHandler extends Handler {
 		return $tabForm;
 	}
 
-	/**
-	 * Return an instance of the form based on its name.
-	 * @param $formName The class name of the form.
-	 * @return mixed Form or false
-	 */
-	function getTabFormByName($formName) {
-		$pageTabs = $this->getPageTabs();
-
-		// Search for a form using its own class name.
-		$returnFormPath = null;
-		foreach ($pageTabs as $tab => $tabFormPath) {
-			$tabFormClassName = $this->_getFormClassName($tabFormPath);
-			if ($tabFormClassName == $formName) {
-				$returnFormPath = $tabFormPath;
-			}
-		}
-
-		if (!is_null($returnFormPath)) {
-			import($returnFormPath);
-			$returnForm = new $formName();
-
-			assert(is_a($returnForm, 'Form'));
-
-			return $returnForm;
-		}
-
-		return false;
-	}
-
 
 	//
 	// Private helper methods.

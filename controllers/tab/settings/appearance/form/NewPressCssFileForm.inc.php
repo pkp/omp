@@ -1,26 +1,26 @@
 <?php
 
 /**
- * @file controllers/tab/settings/appearance/form/CssUploadForm.inc.php
+ * @file controllers/tab/settings/appearance/form/NewPressCssFileForm.inc.php
  *
  * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class CssUploadForm
+ * @class NewPressCssFileForm
  * @ingroup controllers_tab_settings_appearance_form
  *
- * @brief Form for upload an css file.
+ * @brief Form to upload an css file.
  */
 
 import('controllers.tab.settings.form.SettingsFileUploadForm');
 
-class CssUploadForm extends SettingsFileUploadForm {
+class NewPressCssFileForm extends SettingsFileUploadForm {
 
 	/**
 	 * Constructor.
 	 * @param $imageSettingName string
 	 */
-	function CssUploadForm($cssSettingName) {
+	function NewPressCssFileForm($cssSettingName) {
 		parent::SettingsFileUploadForm();
 		$this->setFileSettingName($cssSettingName);
 	}
@@ -33,7 +33,7 @@ class CssUploadForm extends SettingsFileUploadForm {
 	 * @see SettingsFileUploadForm::fetch()
 	 */
 	function fetch($request) {
-		$params = array('formName' => 'CssUploadForm');
+		$params = array('fileType' => 'css');
 		return parent::fetch($request, $params);
 	}
 
@@ -69,13 +69,12 @@ class CssUploadForm extends SettingsFileUploadForm {
 
 				$settingsDao =& DAORegistry::getDAO('PressSettingsDAO');
 				$settingsDao->updateSetting($press->getId(), $settingName, $value, 'object');
+
+				// Clean up the temporary file
+				$this->removeTemporaryFile($request);
+
 				return true;
 			}
-
-			// Clean up the temporary file
-			$this->removeTemporaryFile($request);
-
-			return true;
 		}
 		return false;
 	}

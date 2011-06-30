@@ -8,8 +8,10 @@
  *
  *}
 
-{translate key="common.fileName"}: <a href="{$publicFilesDir}/{$file.uploadName|escape:"url"}" class="file">{$file.name|escape}</a>
-{$file.dateUploaded|date_format:$datetimeFormatShort}
-<div id="{$deleteLinkAction->getId()}" class="pkp_linkActions">
+<div class="inline">
+	{translate key="common.fileName"}: <a href="{$publicFilesDir}/{$file.uploadName|escape:"url"}?{$file.dateUploaded}" class="file">{$file.name|escape}</a>
+	{$file.dateUploaded|date_format:$datetimeFormatShort}
+</div>
+<div id="{$deleteLinkAction->getId()}" class="pkp_linkActions inline">
 	{include file="linkAction/linkAction.tpl" action=$deleteLinkAction contextId=$fileSettingName}
 </div>

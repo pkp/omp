@@ -25,7 +25,7 @@ class SettingsFileUploadForm extends Form {
 	 */
 	function SettingsFileUploadForm($template = null) {
 		if ($template == null) {
-			$template = 'controllers/tab/settings/form/fileUploadForm.tpl';
+			$template = 'controllers/tab/settings/form/newFileUploadForm.tpl';
 		}
 
 		parent::Form($template);
@@ -107,6 +107,22 @@ class SettingsFileUploadForm extends Form {
 		import('classes.file.TemporaryFileManager');
 		$temporaryFileManager = new TemporaryFileManager();
 		$temporaryFileManager->deleteFile($this->getData('temporaryFileId'), $user->getId());
+	}
+
+	/**
+	 * Upload a temporary file.
+	 * @param $request Request
+	 */
+	function uploadFile($request) {
+		$user =& $request->getUser();
+
+		import('classes.file.TemporaryFileManager');
+		$temporaryFileManager = new TemporaryFileManager();
+		$temporaryFile = $temporaryFileManager->handleUpload('uploadedFile', $user->getId());
+
+		if ($temporaryFile) return $temporaryFile->getId();
+
+		return false;
 	}
 }
 

@@ -51,7 +51,7 @@ class AdminHandler extends Handler {
 	function settings() {
 		$templateMgr =& TemplateManager::getManager();
 		$this->setupTemplate(true);
-		$templateMgr->display('admin/adminSettings.tpl');
+		$templateMgr->display('admin/settings.tpl');
 	}
 
 	/**

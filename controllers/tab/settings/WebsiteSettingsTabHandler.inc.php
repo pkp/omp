@@ -14,10 +14,6 @@
 
 // Import the base Handler.
 import('controllers.tab.settings.ManagerSettingsTabHandler');
-// Import form to upload images.
-import('controllers.tab.settings.appearance.form.ImageUploadForm');
-// Import form to upload css.
-import('controllers.tab.settings.appearance.form.CssUploadForm');
 
 class WebsiteSettingsTabHandler extends ManagerSettingsTabHandler {
 
@@ -56,11 +52,8 @@ class WebsiteSettingsTabHandler extends ManagerSettingsTabHandler {
 	 * @return string JSON message
 	 */
 	function showFileUploadForm($args, &$request) {
-		$settingName = $request->getUserVar('fileSettingName');
-		$fileUploadFormName = $request->getUserVar('fileUploadForm');
-
-		$fileUploadForm = new $fileUploadFormName($settingName);
-		$fileUploadForm->initData();
+		$fileUploadForm = $this->_getFileUploadForm($request);
+		$fileUploadForm->initData($request);
 
 		$json = new JSONMessage(true, $fileUploadForm->fetch($request));
 		return $json->getString();
@@ -73,18 +66,18 @@ class WebsiteSettingsTabHandler extends ManagerSettingsTabHandler {
 	 * @return string
 	 */
 	function uploadFile($args, &$request) {
-		$user =& $request->getUser();
+		$fileUploadForm = $this->_getFileUploadForm($request);
+		$json = new JSONMessage();
 
-		import('classes.file.TemporaryFileManager');
-		$temporaryFileManager = new TemporaryFileManager();
-		$temporaryFile = $temporaryFileManager->handleUpload('uploadedFile', $user->getId());
-		if ($temporaryFile) {
-			$json = new JSONMessage(true);
+		$temporaryFileId = $fileUploadForm->uploadFile($request);
+
+		if ($temporaryFileId !== false) {
 			$json->setAdditionalAttributes(array(
-				'temporaryFileId' => $temporaryFile->getId()
+				'temporaryFileId' => $temporaryFileId
 			));
 		} else {
-			$json = new JSONMessage(false, Locale::translate('common.uploadFailed'));
+			$json->setStatus(false);
+			$json->setContent(Locale::translate('common.uploadFailed'));
 		}
 
 		return $json->getString();
@@ -97,19 +90,17 @@ class WebsiteSettingsTabHandler extends ManagerSettingsTabHandler {
 	 * @return string
 	 */
 	function saveFile($args, &$request) {
-		$settingName = $request->getUserVar('fileSettingName');
-		$formName = $request->getUserVar('formName');
+		$fileUploadForm = $this->_getFileUploadForm($request);
+		$fileUploadForm->readInputData();
 
-		$fileForm = new $formName($settingName);
-		$fileForm->readInputData();
-
-		if ($fileForm->validate()) {
-			if ($fileForm->execute($request)) {
+		if ($fileUploadForm->validate()) {
+			if ($fileUploadForm->execute($request)) {
 				// Generate a JSON message with an event
+				$settingName = $request->getUserVar('fileSettingName');
 				return DAO::getDataChangedEvent($settingName);
 			}
 		}
-		return new JSONMessage(false);
+		return new JSONMessage(false, Locale::translate('common.uploadFailed'));
 	}
 
 	/**
@@ -120,9 +111,8 @@ class WebsiteSettingsTabHandler extends ManagerSettingsTabHandler {
 	 */
 	function deleteFile($args, &$request) {
 		$settingName = $request->getUserVar('fileSettingName');
-		$tabFormName = $request->getUserVar('formName');
 
-		$tabForm = $this->getTabFormByName($tabFormName);
+		$tabForm = $this->getTabForm();
 		$tabForm->initData($request);
 
 		if ($tabForm->deleteFile($settingName, $request)) {
@@ -191,6 +181,37 @@ class WebsiteSettingsTabHandler extends ManagerSettingsTabHandler {
 
 		return DAO::getDataChangedEvent();
 	}
+
+
+	//
+	// Private helper methods.
+	//
+	/**
+	 * Returns a file upload form.
+	 * @param $request Request
+	 * @return Form
+	 */
+	function _getFileUploadForm($request) {
+		$settingName = $request->getUserVar('fileSettingName');
+		$fileType = $request->getUserVar('fileType');
+
+		switch ($fileType) {
+			case 'image':
+				import('controllers.tab.settings.appearance.form.NewPressImageFileForm');
+				$fileUploadForm = new NewPressImageFileForm($settingName);
+				break;
+			case 'css':
+				import('controllers.tab.settings.appearance.form.NewPressCssFileForm');
+				$fileUploadForm = new NewPressCssFileForm($settingName);
+				break;
+			default:
+				assert(false);
+				break;
+		}
+
+		return $fileUploadForm;
+	}
+
 }
 
 

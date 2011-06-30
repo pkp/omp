@@ -27,13 +27,13 @@ class AppearanceForm extends PressSettingsForm {
 	 */
 	function AppearanceForm($wizardMode = false) {
 		// Define an array with the image setting name as key and its
-		// alternate text setting name as value.
+		// common alternate text locale key as value.
 		$this->setImagesSettingsName(array(
-			'homeHeaderTitleImage' => 'homeHeaderTitleImageAltText',
-			'homeHeaderLogoImage' => 'homeHeaderLogoImageAltText',
-			'homepageImage' => 'homepageImageAltText',
-			'pageHeaderTitleImage' => 'pageHeaderTitleImageAltText',
-			'pageHeaderLogoImage' => 'pageHeaderLogoImageAltText'
+			'homeHeaderTitleImage' => 'common.homePageHeader.altText',
+			'homeHeaderLogoImage'=> 'common.homePageHeaderLogo.altText',
+			'homepageImage' => 'common.pressHomepageImage.altText',
+			'pageHeaderTitleImage' => 'common.pageHeader.altText',
+			'pageHeaderLogoImage' => 'common.pageHeaderLogo.altText'
 		));
 
 		$settings = array(
@@ -97,15 +97,6 @@ class AppearanceForm extends PressSettingsForm {
 	// Extend methods from PressSettingsForm.
 	//
 	/**
-	 * @see PressSettingsForm::readInputData()
-	 * @param $request Request
-	 */
-	function readInputData($request) {
-		$this->readUserVars(array_values($this->getImagesSettingsName()));
-		parent::readInputData($request);
-	}
-
-	/**
 	 * @see PressSettingsForm::fetch()
 	 */
 	function fetch(&$request) {
@@ -114,10 +105,10 @@ class AppearanceForm extends PressSettingsForm {
 		// Get all upload form image link actions.
 		$uploadImageLinkActions = array();
 		foreach ($this->getImagesSettingsName() as $settingName => $altText) {
-			$uploadImageLinkActions[$settingName] = $this->_getFileUploadLinkAction($settingName, 'ImageUploadForm', $request);
+			$uploadImageLinkActions[$settingName] = $this->_getFileUploadLinkAction($settingName, 'image', $request);
 		}
 		// Get the css upload link action.
-		$uploadCssLinkAction = $this->_getFileUploadLinkAction('pressStyleSheet', 'CssUploadForm', $request);
+		$uploadCssLinkAction = $this->_getFileUploadLinkAction('pressStyleSheet', 'css', $request);
 
 		$imagesViews = $this->_renderAllFormImagesViews($request);
 		$cssView = $this->renderFileView('pressStyleSheet', $request);
@@ -132,22 +123,6 @@ class AppearanceForm extends PressSettingsForm {
 
 		return parent::fetch(&$request, $params);
 	}
-
-		// Save alt text for images
-		$press =& $request->getPress();
-		$pressId = $press->getId();
-		$locale = $this->getFormLocale();
-		$settingsDao =& DAORegistry::getDAO('PressSettingsDAO');
-		$imagesSettingsName = $this->getImagesSettingsName();
-
-		foreach($imagesSettingsName as $image => $altText) {
-			$value = $press->getSetting($image);
-			if (!empty($value)) {
-				$imageAltText = $this->getData($altText);
-				$value[$locale]['altText'] = $imageAltText[$locale];
-				$settingsDao->updateSetting($pressId, $image, $value, 'object', true);
-			}
-		}
 
 
 	//
@@ -170,17 +145,18 @@ class AppearanceForm extends PressSettingsForm {
 			$file = $file[$locale];
 		}
 
+		// Only render the file view if we have a file.
 		if (is_array($file)) {
 			$templateMgr = TemplateManager::getManager();
 			$deleteLinkAction = $this->_getDeleteFileLinkAction($fileSettingName, $request);
 
 			// Get the right template to render the view.
-			$imagesSettingsName = array_keys($this->getImagesSettingsName());
-			if (in_array($fileSettingName, $imagesSettingsName)) {
+			$imagesSettingsName = $this->getImagesSettingsName();
+			if (in_array($fileSettingName, array_keys($imagesSettingsName))) {
 				$template = 'controllers/tab/settings/formImageView.tpl';
 
 				// Get the common alternate text for the image.
-				$localeKey = "common." . $fileSettingName . ".altText";
+				$localeKey = $imagesSettingsName[$fileSettingName];
 				$commonAltText = Locale::translate($localeKey);
 				$templateMgr->assign('commonAltText', $commonAltText);
 			} else {
@@ -193,7 +169,7 @@ class AppearanceForm extends PressSettingsForm {
 
 			return $templateMgr->fetch($template);
 		} else {
-			return false;
+			return null;
 		}
 	}
 
@@ -250,11 +226,11 @@ class AppearanceForm extends PressSettingsForm {
 	/**
 	 * Get a link action for file upload.
 	 * @param $settingName string
-	 * @param $fileUploadForm string
+	 * @param $fileType string The uploaded file type.
 	 * @param $request Request
 	 * @return LinkAction
 	 */
-	function _getFileUploadLinkAction($settingName, $fileUploadForm, $request) {
+	function _getFileUploadLinkAction($settingName, $fileType, $request) {
 		$router =& $request->getRouter();
 		import('lib.pkp.classes.linkAction.request.AjaxModal');
 
@@ -262,7 +238,7 @@ class AppearanceForm extends PressSettingsForm {
 			$router->url(
 				$request, null, null, 'showFileUploadForm', null, array(
 					'fileSettingName' => $settingName,
-					'fileUploadForm' => $fileUploadForm
+					'fileType' => $fileType
 				)
 			)
 		);
@@ -291,7 +267,7 @@ class AppearanceForm extends PressSettingsForm {
 			$router->url(
 				$request, null, null, 'deleteFile', null, array(
 					'fileSettingName' => $settingName,
-					'formName' => get_class($this)
+					'tab' => 'appearance'
 				)
 			)
 		);
