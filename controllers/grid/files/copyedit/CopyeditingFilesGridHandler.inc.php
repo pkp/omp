@@ -209,8 +209,8 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 	 * @return array Signoffs
 	 */
 	function getCategoryData(&$monographFile) {
-		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
-		$signoffFactory =& $signoffDao->getAllBySymbolic('SIGNOFF_COPYEDITING', ASSOC_TYPE_MONOGRAPH_FILE, $monographFile->getFileId()); /* @var $signoffs DAOResultFactory */
+		$monographFileSignoffDao =& DAORegistry::getDAO('MonographFileSignoffDAO');
+		$signoffFactory =& $monographFileSignoffDao->getAllBySymbolic('SIGNOFF_COPYEDITING', $monographFile->getFileId()); /* @var $signoffs DAOResultFactory */
 		$signoffs = $signoffFactory->toAssociativeArray();
 		return $signoffs;
 	}

@@ -99,6 +99,19 @@ class MonographFileSignoffDAO extends SignoffDAO {
 			$fileId, $fileRevision
 		);
 	}
+
+	/**
+	 * Retrieve all signoffs matching the specified input parameters
+	 * @param $symbolic string
+	 * @param $monographFileId int
+	 * @param $userId int
+	 * @param $stageId int
+	 * @param $userGroupId int
+	 * @return DAOResultFactory
+	 */
+	function getAllBySymbolic($symbolic, $monographFileId = null, $userId = null, $userGroupId = null) {
+		return parent::getAllBySymbolic($symbolic, ASSOC_TYPE_MONOGRAPH_FILE, $monographFileId, $userId, $userGroupId);
+	}
 }
 
 ?>
