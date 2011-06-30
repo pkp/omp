@@ -27,10 +27,7 @@ class AuthorCopyeditingFilesGridHandler extends GridHandler {
 		parent::GridHandler();
 
 		$this->addRoleAssignment(array(ROLE_ID_AUTHOR, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER), array(
-			'fetchGrid', 'addCopyeditedFile', 'displayFileForm',
-			'uploadFile', 'editMetadata', 'saveMetadata',
-			'finishFileSubmission', 'returnFileRow', 'downloadFile',
-			'deleteFile'
+			'fetchGrid'
 		));
 	}
 
@@ -62,15 +59,10 @@ class AuthorCopyeditingFilesGridHandler extends GridHandler {
 
 		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_COMMON, LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_OMP_EDITOR, LOCALE_COMPONENT_OMP_SUBMISSION));
 
-		// Grab the copyediting files to display as categories
-		$user =& $request->getUser();
-		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
-		$signoffs =& $signoffDao->getAllBySymbolic('SIGNOFF_COPYEDITING', ASSOC_TYPE_MONOGRAPH_FILE, null, $user->getId());
-
-		$this->setGridDataElements($signoffs);
+		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 
 		// Grid Columns
-		$cellProvider = new AuthorCopyeditingFilesGridCellProvider();
+		$cellProvider = new AuthorCopyeditingFilesGridCellProvider($monograph);
 
 		// Add a column for the file's label
 		$this->addColumn(
@@ -95,242 +87,16 @@ class AuthorCopyeditingFilesGridHandler extends GridHandler {
 		);
 	}
 
-
-	//
-	// Public methods
-	//
-
 	/**
-	 * Show the copyedited file upload form (to add a copyedited response to a file)
-	 * @param $args array
-	 * @param $request PKPRequest
-	 * @return string Serialized JSON object
+	 * @see GridHandler::loadData
 	 */
-	function addCopyeditedFile($args, &$request) {
-		import('classes.monograph.MonographFile');
-		$fileStage = MONOGRAPH_FILE_COPYEDIT;
-
-		$templateMgr =& TemplateManager::getManager();
+	function loadData(&$request, $filter) {
+		// Grab the copyediting files to display as categories
+		$user =& $request->getUser();
+		$monographFileSignoffDao =& DAORegistry::getDAO('MonographFileSignoffDAO');
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-		$templateMgr->assign('monographId', $monograph->getId());
-		$templateMgr->assign('fileStage', $fileStage);
-		$templateMgr->assign('gridId', $this->getId());
-
-		return fetchJson('controllers/grid/files/form/fileUploadForm.tpl');
-	}
-
-	/**
-	 * Display the file upload form
-	 * @param $args array
-	 * @param $request PKPRequest
-	 * @return string Serialized JSON object
-	 */
-	function displayFileForm($args, &$request) {
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-		import('controllers.grid.files.authorCopyeditingFiles.form.AuthorCopyeditingFilesUploadForm');
-		$fileForm = new AuthorCopyeditingFilesUploadForm($monograph, null);
-		if ($fileForm->isLocaleResubmit()) {
-			$fileForm->readInputData();
-		} else {
-			$fileForm->initData($args, $request);
-		}
-		$json = new JSONMessage(true, $fileForm->fetch($request));
-		return $json->getString();
-	}
-
-	/**
-	 * upload a file
-	 * @param $args array
-	 * @param $request PKPRequest
-	 * @return string Serialized JSON Object
-	 */
-	function uploadFile($args, &$request) {
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-
-		// FIXME: Bug #6199
-		$signoffId = $request->getUserVar('copyeditingSignoffId');
-		assert(is_numeric($signoffId));
-
-		import('controllers.grid.files.authorCopyeditingFiles.form.AuthorCopyeditingFilesUploadForm');
-		$fileForm = new AuthorCopyeditingFilesUploadForm($monograph, $signoffId);
-		$fileForm->readInputData();
-
-		if ($fileForm->validate()) {
-			$copyeditedFileId = $fileForm->uploadFile($args, $request);;
-
-			$monographId = $monograph->getId();
-			$router =& $request->getRouter();
-			$additionalAttributes = array(
-				'fileFormUrl' => $router->url($request, null, null, 'displayFileForm', null, array('gridId' => $this->getId(), 'monographId' => $monographId, 'fileId' => $copyeditedFileId)),
-				'metadataUrl' => $router->url($request, null, null, 'editMetadata', null, array('gridId' => $this->getId(), 'monographId' => $monographId, 'fileId' => $copyeditedFileId, 'signoffId' => $signoffId)),
-				'deleteUrl' => $router->url($request, null, null, 'deleteFile', null, array('fileId' => $copyeditedFileId, 'signoffId' => $signoffId))
-			);
-			$json = new JSONMessage(true, Locale::translate('submission.uploadSuccessful'), false, $copyeditedFileId, $additionalAttributes);
-		} else {
-			$json = new JSONMessage(false, Locale::translate('common.uploadFailed'));
-		}
-
-		return $json->getString();
-	}
-
-	/**
-	 * Edit the metadata of a submission file
-	 * @param $args array
-	 * @param $request PKPRequest
-	 * @return string Serialized JSON object
-	 */
-	function editMetadata($args, &$request) {
-		// FIXME: bug #6199
-		$fileId = $request->getUserVar('fileId');
-		$signoffId = $request->getUserVar('signoffId');
-
-		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-		$monographFile =& $submissionFileDao->getLatestRevision($fileId);
-		$genreDao =& DAORegistry::getDAO('GenreDAO');
-		$genre = $genreDao->getById($monographFile->getGenreId());
-		$monographId = $monographFile->getMonographId();
-
-		switch ($genre->getCategory()) {
-			// FIXME: Need a way to determine artwork file type from user-specified artwork file types
-			case GENRE_CATEGORY_ARTWORK:
-				import('controllers.grid.files.form.SubmissionFilesArtworkMetadataForm');
-				$metadataForm = new SubmissionFilesArtworkMetadataForm($monographFile, WORKFLOW_STAGE_ID_EDITING);
-				break;
-			default:
-				import('controllers.grid.files.form.SubmissionFilesMetadataForm');
-				$metadataForm = new SubmissionFilesMetadataForm($monographFile, WORKFLOW_STAGE_ID_EDITING);
-				break;
-		}
-
-		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->assign('gridId', $this->getId());
-		$templateMgr->assign('monographId', $monographId);
-
-		if ($metadataForm->isLocaleResubmit()) {
-			$metadataForm->readInputData();
-		} else {
-			$metadataForm->initData($args, $request);
-		}
-
-		$json = new JSONMessage(true, $metadataForm->fetch($request));
-		return $json->getString();
-	}
-
-
-	/**
-	 * Save the metadata of a submission file
-	 * @param $args array
-	 * @param $request PKPRequest
-	 * @return string Serialized JSON object
-	 */
-	function saveMetadata($args, &$request) {
-		// FIXME: Bug #6199
-		$fileId = $request->getUserVar('fileId');
-
-		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-		$monographFile =& $submissionFileDao->getLatestRevision($fileId);
-		$genreDao =& DAORegistry::getDAO('GenreDAO');
-		$genre = $genreDao->getById($monographFile->getGenreId());
-		$monographId = $monographFile->getMonographId();
-
-		switch ($genre->getCategory()) {
-			// FIXME: Need a way to determine artwork file type from user-specified artwork file types
-			case GENRE_CATEGORY_ARTWORK:
-				import('controllers.grid.files.form.SubmissionFilesArtworkMetadataForm');
-				$metadataForm = new SubmissionFilesArtworkMetadataForm($monographFile, WORKFLOW_STAGE_ID_EDITING);
-				break;
-			default:
-				import('controllers.grid.files.form.SubmissionFilesMetadataForm');
-				$metadataForm = new SubmissionFilesMetadataForm($monographFile, WORKFLOW_STAGE_ID_EDITING);
-				break;
-		}
-
-		$metadataForm->readInputData();
-
-		if ($metadataForm->validate()) {
-			$metadataForm->execute($args, $request);
-			$router =& $request->getRouter();
-
-			$additionalAttributes = array('isEditing' => true, 'finishingUpUrl' => $router->url($request, null, null, 'finishFileSubmission', null, array('gridId' => $this->getId(), 'fileId' => $fileId, 'monographId' => $monographId)));
-			$json = new JSONMessage(true, '', false, $fileId, $additionalAttributes);
-		} else {
-			$json = new JSONMessage(false, Locale::translate('submission.submit.fileNameRequired'));
-		}
-
-		return $json->getString();
-	}
-
-	/**
-	 * Return a grid row with for the submission grid
-	 * @param $args array
-	 * @param $request PKPRequest
-	 * @return string Serialized JSON object
-	 */
-	function returnFileRow($args, &$request) {
-		// FIXME: Bug #6199
-		$signoffId = (int) $request->getUserVar('signoffId');
-
-		$signoffDao =& DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
-		$signoff =& $signoffDao->getById($signoffId);
-
-		if($signoff) {
-			$row =& $this->getRowInstance();
-			$row->setGridId($this->getId());
-			$row->setId($signoffId);
-			$row->setData($signoff);
-			$row->initialize($request);
-
-			$json = new JSONMessage(true, $this->_renderRowInternally($request, $row));
-		} else {
-			$json = new JSONMessage(false, Locale::translate("There was an error with trying to fetch the file"));
-		}
-
-		return $json->getString();
-	}
-
-	/**
-	 * Download the monograph file
-	 * @param $args array
-	 * @param $request PKPRequest
-	 * @return string Serialized JSON object
-	 */
-	function downloadFile($args, &$request) {
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-		$monographId = $monograph->getId();
-
-		// FIXME: Bug #6199
-		$fileId = $request->getUserVar('fileId');
-
-		$sessionManager =& SessionManager::getManager();
-		$session =& $sessionManager->getUserSession();
-		$user =& $session->getUser();
-
-		import('classes.file.MonographFileManager');
-		MonographFileManager::downloadFile($monographId, $fileId);
-	}
-
-	/**
-	 * Delete a file
-	 * @param $args array
-	 * @param $request PKPRequest
-	 * @return string
-	 */
-	function deleteFile($args, &$request) {
-		// FIXME: Bug #6199
-		$signoffId = $request->getUserVar('signoffId');
-
-		$signoffDao =& DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
-		$signoff =& $signoffDao->getById($signoffId);
-
-		if($fileId) {
-			$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-			$submissionFileDao->deleteAllRevisionsById($signoff->getFileId());
-
-			$json = new JSONMessage(true);
-		} else {
-			$json = new JSONMessage(false);
-		}
-		return $json->getString();
+		$signoffs =& $monographFileSignoffDao->getAllByMonograph('SIGNOFF_COPYEDITING', $monograph->getId(), $user->getId());
+		return $signoffs;
 	}
 }
 

@@ -15,11 +15,23 @@
 import('lib.pkp.classes.controllers.grid.DataObjectGridCellProvider');
 
 class AuthorCopyeditingFilesGridCellProvider extends DataObjectGridCellProvider {
+	/** @var $monograph_ Monograph */
+	var $monograph_;
+
 	/**
 	 * Constructor
 	 */
-	function AuthorCopyeditingFilesGridCellProvider() {
+	function AuthorCopyeditingFilesGridCellProvider(&$monograph) {
+		$this->monograph_ =& $monograph;
 		parent::DataObjectGridCellProvider();
+	}
+
+	/**
+	 * Get the monograph this provider refers to.
+	 * @return Monograph
+	 */
+	function &getMonograph() {
+		return $this->monograph_;
 	}
 
 	/**
@@ -88,16 +100,17 @@ class AuthorCopyeditingFilesGridCellProvider extends DataObjectGridCellProvider 
 				// If there is no file, let the user open the copyediting file upload modal
 				$router =& $request->getRouter();
 				$dispatcher =& $router->getDispatcher();
-				$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-				$monographFile =& $submissionFileDao->getLatestRevision($signoff->getAssocId());
-				$actionArgs = array('monographId' => $monographFile->getMonographId());
-				$addCopyeditedFileAction = new LegacyLinkAction(
+				$monograph =& $this->getMonograph();
+				$actionArgs = array('monographId' => $monograph->getId());
+				import('lib.pkp.classes.linkAction.request.AjaxModal');
+				return array(new LinkAction(
 					'addCopyeditedFile',
-					$dispatcher->url($request, ROUTE_COMPONENT, null, 'grid.files.authorCopyeditingFiles.AuthorCopyeditingFilesGridHandler', 'addCopyeditedFile', null, array_merge($actionArgs, array('gridId' => 'authorcopyeditingfilesgrid'))),
+					new AjaxModal(
+						$dispatcher->url($request, ROUTE_COMPONENT, null, 'grid.files.copyedit.AuthorCopyeditingFilesGridHandler', 'addCopyeditedFile', null, array_merge($actionArgs, array('gridId' => 'authorcopyeditingfilesgrid')))
+					),
 					null,
 					'new'
-				);
-				return array($addCopyeditedFileAction);
+				));
 			}
 		}
 

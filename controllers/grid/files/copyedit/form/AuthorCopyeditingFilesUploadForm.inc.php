@@ -40,8 +40,8 @@ class AuthorCopyeditingFilesUploadForm extends CopyeditingFileForm {
 
 		// Retrieve signoffs.
 		$user =& $request->getUser();
-		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
-		$signoffs =& $signoffDao->getAllBySymbolic('SIGNOFF_COPYEDITING', ASSOC_TYPE_MONOGRAPH_FILE, null, $user->getId());
+		$monographFileSignoffDao =& DAORegistry::getDAO('MonographFileSignoffDAO');
+		$signoffs =& $monographFileSignoffDao->getAllByMonograph('SIGNOFF_COPYEDITING', $monograph->getId(), $user->getId());
 
 		// Retrieve monograph files.
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
