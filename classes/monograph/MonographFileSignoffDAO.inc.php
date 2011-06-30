@@ -76,6 +76,7 @@ class MonographFileSignoffDAO extends SignoffDAO {
 	function newDataObject() {
 		$signoff = parent::newDataObject();
 		$signoff->setAssocType(ASSOC_TYPE_MONOGRAPH_FILE);
+		return $signoff;
 	}
 
 	/**
