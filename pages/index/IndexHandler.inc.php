@@ -48,8 +48,13 @@ class IndexHandler extends Handler {
 		// No press requested: should we redirect to a specific press by default?
 		$pressDao =& DAORegistry::getDAO('PressDAO'); /* @var $pressDao PressDAO */
 		$site =& $request->getSite();
-		if ($requestedPressPath == 'index' && $site->getRedirect()) {
-			$press =& $pressDao->getPress($site->getRedirect());
+		if ($requestedPressPath == 'index') {
+			$presses =& $pressDao->getPresses();
+			if ($presses->getCount() == 1) {
+				$press =& $presses->next();
+			} elseif ($site->getRedirect()) {
+				$press =& $pressDao->getPress($site->getRedirect());
+			}
 		} else {
 			$press = & $router->getContext($request);
 		}
