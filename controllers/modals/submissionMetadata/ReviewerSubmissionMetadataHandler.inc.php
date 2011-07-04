@@ -12,7 +12,7 @@
  * @brief Display submission metadata to reviewers
  */
 
-import('controllers.modals.submissionMetadata.SubmissionMetadataHandler');
+import('classes.controllers.modals.submissionMetadata.SubmissionMetadataHandler');
 
 // import JSON class for use with all AJAX requests
 import('lib.pkp.classes.core.JSONMessage');

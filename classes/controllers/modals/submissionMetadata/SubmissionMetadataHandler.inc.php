@@ -1,15 +1,15 @@
 <?php
 
 /**
- * @file controllers/modals/submissionMetadata/SubmissionMetadataHandler.inc.php
+ * @file classes/controllers/modals/submissionMetadata/SubmissionMetadataHandler.inc.php
  *
  * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class SubmissionMetadataHandler
- * @ingroup controllers_modals_submissionMetadata
+ * @ingroup classes_controllers_modals_submissionMetadata
  *
- * @brief Handle requests for editors to make a decision
+ * @brief Base class for submission metadata view/edit operations
  */
 
 import('classes.handler.Handler');

@@ -12,7 +12,7 @@
  * @brief Handle requests for non-reviewers to see a submission's metadata
  */
 
-import('controllers.modals.submissionMetadata.SubmissionMetadataHandler');
+import('classes.controllers.modals.submissionMetadata.SubmissionMetadataHandler');
 
 // import JSON class for use with all AJAX requests
 import('lib.pkp.classes.core.JSONMessage');
