@@ -63,13 +63,14 @@ class PublicationFormatsListbuilderHandler extends SetupListbuilderHandler {
 	 * @param $newEntry mixed New entry with changes to persist
 	 * @return boolean
 	 */
-	function updateEntry($rowId, $existingEntry, $newEntry) {
+	function updateEntry(&$request, $rowId, $newRowId) {
 		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
 		$publicationFormat = $publicationFormatDao->getById($rowId);
 
 		$locale = Locale::getLocale(); // FIXME: Localize.
-		$publicationFormat->setName($newEntry->name, $locale);
-		$publicationFormat->setDesignation($newEntry->designation, $locale);
+		list($name, $designation) = $newRowId;
+		$publicationFormat->setName($name, $locale);
+		$publicationFormat->setDesignation($designation, $locale);
 
 		$publicationFormatDao->updateObject($publicationFormat);
 		return true;
@@ -81,7 +82,7 @@ class PublicationFormatsListbuilderHandler extends SetupListbuilderHandler {
 	 * @param $entry mixed New entry with data to persist
 	 * @return boolean
 	 */
-	function insertEntry($entry) {
+	function insertEntry(&$request, $newRowId) {
 		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
 		$publicationFormat = $publicationFormatDao->newDataObject();
 		$press =& $this->getPress();
@@ -89,8 +90,10 @@ class PublicationFormatsListbuilderHandler extends SetupListbuilderHandler {
 		$publicationFormat->setEnabled(true);
 
 		$locale = Locale::getLocale(); // FIXME: Localize.
-		$publicationFormat->setName($entry->name, $locale);
-		$publicationFormat->setDesignation($entry->designation, $locale);
+
+		list($name, $designation) = $newRowId;
+		$publicationFormat->setName($name, $locale);
+		$publicationFormat->setDesignation($designation, $locale);
 
 		$publicationFormatDao->insertObject($publicationFormat);
 		return true;
