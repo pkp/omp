@@ -28,7 +28,7 @@ class PublicationSettingsTabHandler extends SettingsTabHandler {
 			'submissionStage' => 'controllers.tab.settings.submissionStage.form.SubmissionStageForm',
 			'reviewStage' => 'controllers.tab.settings.reviewStage.form.ReviewStageForm',
 			'editorialStage' => 'controllers/tab/settings/editorialStage.tpl',
-			'productionStage' => 'controllers/tab/settings/productionStage.tpl',
+			'productionStage' => 'controllers.tab.settings.productionStage.form.ProductionStageForm',
 			'emailTemplates' => 'controllers.tab.settings.emailTemplates.form.EmailTemplatesForm'
 		);
 		$this->setPageTabs($pageTabs);
