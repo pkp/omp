@@ -36,19 +36,18 @@ class SubmissionMetadataHandler extends Handler {
 	 * @return string Serialized JSON object
 	 */
 	function fetch($args, &$request) {
-		// Identify the submission Id
-		$monographId = $request->getUserVar('monographId');
+		// Identify the submission
+		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_SUBMISSION));
 
 		// Form handling
 		import('controllers.modals.submissionMetadata.form.SubmissionMetadataForm');
-		$submissionMetadataForm = new SubmissionMetadataForm($monographId);
+		$submissionMetadataForm = new SubmissionMetadataForm($monograph->getId());
 		$submissionMetadataForm->initData($args, $request);
 
 		$json = new JSONMessage(true, $submissionMetadataForm->fetch($request));
 		return $json->getString();
 	}
-
-
 }
+
 ?>
