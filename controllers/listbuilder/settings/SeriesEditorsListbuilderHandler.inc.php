@@ -6,10 +6,10 @@
  * Copyright (c) 2000-2009 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class MastheadMembershipListbuilderHandler
+ * @class SeriesEditorsListbuilderHandler
  * @ingroup listbuilder
  *
- * @brief Class for adding new Press Divisions
+ * @brief Class for adding a series editor
  */
 
 import('controllers.listbuilder.settings.SetupListbuilderHandler');
