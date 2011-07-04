@@ -93,8 +93,10 @@ class AssignedSubmissionsListGridHandler extends SubmissionsListGridHandler {
 
 		$data = array();
 		while($signoff =& $signoffs->next()) {
+			// If it is a monograph signoff (and not, say, a file signoff) and
 			// If this is an author signoff, do not include (it will be in the 'my submissions' grid)
-			if(!in_array($signoff->getUserGroupId(), $authorUserGroupIds)) {
+			if( $signoff->getAssocType() == ASSOC_TYPE_MONOGRAPH &&
+				!in_array($signoff->getUserGroupId(), $authorUserGroupIds)) {
 				$monograph =& $monographDao->getMonograph($signoff->getAssocId());
 				$monographId = $monograph->getId();
 				$data[$monographId] = $monograph;
