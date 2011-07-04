@@ -49,7 +49,7 @@ class CopyeditingFilesGridCellProvider extends GridCellProvider {
 				$userGroup =& $userGroupDao->getById($signoff->getUserGroupId());
 				$user =& $userDao->getUser($signoff->getUserId());
 
-				$label = $user->getFullName() . " (" . $userGroup->getLocalizedName() . ") - " . $monographFile->getLocalizedName();
+				$label = $user->getFullName() . ' (' . $userGroup->getLocalizedName() . ') - ' . $monographFile->getLocalizedName();
 				import('controllers.api.file.linkAction.DownloadFileLinkAction');
 				return array(new DownloadFileLinkAction($request, $monographFile, WORKFLOW_STAGE_ID_EDITING));
 			} else {
@@ -89,9 +89,10 @@ class CopyeditingFilesGridCellProvider extends GridCellProvider {
 					);
 					if($lastViewed) {
 						return 'accepted'; // Green checkbox
-					} else return 'new'; // Gray checkbox
+					} else {
+						return 'new'; // Gray checkbox
+					}
 				}
-
 			} else if ($roleId == ROLE_ID_PRESS_MANAGER || $roleId == ROLE_ID_SERIES_EDITOR || $roleId == ROLE_ID_AUTHOR) {
 				if ($columnId == $element->getUserGroupId()) {
 					// If a file was uploaded, show that this column's user group is the submitter
@@ -101,7 +102,9 @@ class CopyeditingFilesGridCellProvider extends GridCellProvider {
 					if($element->getDateUnderway() > Core::getCurrentDate()) {
 						// Else If the date due is past today's date, show a red envelope icon
 						return 'overdue'; // Red envelope
-					} else return 'new'; // Gray checkbox
+					} else {
+						return 'new'; // Gray checkbox
+					}
 				}
 				// If column is not the submitter, cell is always empty.
 				return '';
@@ -120,6 +123,7 @@ class CopyeditingFilesGridCellProvider extends GridCellProvider {
 		$element =& $row->getData();  /* @var $element Signoff */
 		$columnId = $column->getId();
 		assert(is_a($element, 'Signoff') && !empty($columnId));
+
 		// Numeric columns indicate a user group column.
 		if ( is_numeric($columnId) ) {
 			$state = $this->getCellState($row, $column);
@@ -134,7 +138,7 @@ class CopyeditingFilesGridCellProvider extends GridCellProvider {
 				$userGroup =& $userGroupDao->getById($element->getUserGroupId());
 				$user =& $userDao->getUser($element->getUserId());
 
-				$label = $user->getFullName() . " (" . $userGroup->getLocalizedName() . ")";
+				$label = $user->getFullName() . ' (' . $userGroup->getLocalizedName() . ')';
 				return array('label' => $label);
 		}
 	}

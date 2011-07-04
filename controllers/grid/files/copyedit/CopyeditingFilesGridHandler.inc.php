@@ -14,7 +14,6 @@
 
 // import grid base classes
 import('lib.pkp.classes.controllers.grid.CategoryGridHandler');
-import('lib.pkp.classes.controllers.grid.DataObjectGridCellProvider');
 
 // import copyediting grid specific classes
 import('controllers.grid.files.copyedit.CopyeditingFilesGridCategoryRow');
