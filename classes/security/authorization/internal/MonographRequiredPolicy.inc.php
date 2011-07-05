@@ -41,6 +41,10 @@ class MonographRequiredPolicy extends SubmissionRequiredPolicy {
 		$monograph =& $monographDao->getMonograph($monographId);
 		if (!is_a($monograph, 'Monograph')) return AUTHORIZATION_DENY;
 
+		// Validate that this monograph belongs to the current press.
+		$press =& $this->_request->getPress();
+		if ($press->getId() !== $monograph->getPressId()) return AUTHORIZATION_DENY;
+
 		// Save the monograph to the authorization context.
 		$this->addAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH, $monograph);
 		return AUTHORIZATION_PERMIT;
