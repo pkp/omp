@@ -40,28 +40,8 @@ class MySubmissionsListGridHandler extends SubmissionsListGridHandler {
 	function initialize(&$request) {
 		parent::initialize($request);
 
-		$cellProvider = new MySubmissionsListGridCellProvider();
-		$this->addColumn(
-			new GridColumn(
-				'title',
-				'monograph.title',
-				null,
-				'controllers/grid/gridCell.tpl',
-				$cellProvider,
-				array('html' => true)
-			)
-		);
-
-		$cellProvider = new SubmissionsListGridCellProvider();
-		$this->addColumn(
-			new GridColumn(
-				'status',
-				'common.status',
-				null,
-				'controllers/grid/gridCell.tpl',
-				$cellProvider
-			)
-		);
+		$titleColumn =& $this->getColumn('title');
+		$titleColumn->setCellProvider(new MySubmissionsListGridCellProvider());
 	}
 
 

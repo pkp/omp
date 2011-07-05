@@ -16,9 +16,6 @@
 import('controllers.grid.submissions.SubmissionsListGridHandler');
 import('controllers.grid.submissions.SubmissionsListGridRow');
 
-// Import assigned submissions list specific grid classes.
-import('controllers.grid.submissions.assignedSubmissions.AssignedSubmissionsListGridCellProvider');
-
 // Filter editor
 define('FILTER_EDITOR_ALL', 0);
 define('FILTER_EDITOR_ME', 1);
@@ -46,32 +43,6 @@ class AssignedSubmissionsListGridHandler extends SubmissionsListGridHandler {
 
 		// Set title.
 		$this->setTitle('common.queue.long.myAssigned');
-
-		// Add editor specific locale component.
-		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_EDITOR));
-
-		$cellProvider = new AssignedSubmissionsListGridCellProvider();
-		$this->addColumn(
-			new GridColumn(
-				'title',
-				'monograph.title',
-				null,
-				'controllers/grid/gridCell.tpl',
-				$cellProvider,
-				array('html' => true)
-			)
-		);
-
-		$cellProvider = new SubmissionsListGridCellProvider();
-		$this->addColumn(
-			new GridColumn(
-				'status',
-				'common.status',
-				null,
-				'controllers/grid/gridCell.tpl',
-				$cellProvider
-			)
-		);
 	}
 
 
@@ -85,6 +56,7 @@ class AssignedSubmissionsListGridHandler extends SubmissionsListGridHandler {
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
+		$stageAssignmentDao =& DAORegistry::getDAO('StageAssignmentDAO');
 
 		// Get submissions the user is a stage participant for
 		$signoffs =& $signoffDao->getByUserId($userId);
@@ -92,6 +64,16 @@ class AssignedSubmissionsListGridHandler extends SubmissionsListGridHandler {
 		$authorUserGroupIds = $userGroupDao->getUserGroupIdsByRoleId(ROLE_ID_AUTHOR);
 
 		$data = array();
+
+		// get signoffs and stage assignments
+		$stageAssignments =& $stageAssignmentDao->getByUserId($userId);
+		while($stageAssignment =& $stageAssignments->next()) {
+			$monograph =& $monographDao->getMonograph($stageAssignment->getSubmissionId());
+			$monographId = $monograph->getId();
+			$data[$monographId] = $monograph;
+			unset($monograph, $stageAssignment);
+		}
+
 		while($signoff =& $signoffs->next()) {
 			// If it is a monograph signoff (and not, say, a file signoff) and
 			// If this is an author signoff, do not include (it will be in the 'my submissions' grid)

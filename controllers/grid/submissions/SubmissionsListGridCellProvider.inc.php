@@ -58,7 +58,6 @@ class SubmissionsListGridCellProvider extends DataObjectGridCellProvider {
 				new AjaxModal(
 					$dispatcher->url($request, ROUTE_PAGE, $press->getPath(), 'workflow', 'submission', $monograph->getId())
 				),
-				null,
 				$title
 			);
 			return array($action);
@@ -77,17 +76,17 @@ class SubmissionsListGridCellProvider extends DataObjectGridCellProvider {
 	 * @return array
 	 */
 	function getTemplateVarsFromRowColumn(&$row, $column) {
-		$element =& $row->getData();
+		$monograph =& $row->getData();
 		$columnId = $column->getId();
-		assert(is_a($element, 'DataObject') && !empty($columnId));
+		assert(is_a($monograph, 'DataObject') && !empty($columnId));
 
-		$pressId = $element->getPressId();
+		$pressId = $monograph->getPressId();
 		$pressDao = DAORegistry::getDAO('PressDAO');
 		$press = $pressDao->getPress($pressId);
 
 		switch ($columnId) {
 			case 'title':
-				$title = $element->getLocalizedTitle();
+				$title = $monograph->getLocalizedTitle();
 				if ( empty($title) ) $title = Locale::translate('common.untitled');
 				return array('label' => $title);
 				break;
@@ -95,23 +94,28 @@ class SubmissionsListGridCellProvider extends DataObjectGridCellProvider {
 				return array('label' => $press->getLocalizedName());
 				break;
 			case 'author':
-				return array('label' => $element->getAuthorString(true));
+				return array('label' => $monograph->getAuthorString(true));
 				break;
 			case 'dateAssigned':
-				$dateAssigned = strftime(Config::getVar('general', 'date_format_short'), strtotime($element->getDateAssigned()));
+				$dateAssigned = strftime(Config::getVar('general', 'date_format_short'), strtotime($monograph->getDateAssigned()));
 				if ( empty($dateAssigned) ) $dateAssigned = '--';
 				return array('label' => $dateAssigned);
 				break;
 			case 'dateDue':
-				$dateDue = strftime(Config::getVar('general', 'date_format_short'), strtotime($element->getDateDue()));
+				$dateDue = strftime(Config::getVar('general', 'date_format_short'), strtotime($monograph->getDateDue()));
 				if ( empty($dateDue) ) $dateDue = '--';
 				return array('label' => $dateDue);
 				break;
 			case 'status':
-				$stageId = $element->getCurrentStageId();
+				$stageId = $monograph->getCurrentStageId();
 				switch ($stageId) {
 					case WORKFLOW_STAGE_ID_SUBMISSION: default:
-						$returner = array('label' => Locale::translate('submission.status.submission'));
+						// FIXME: better way to determine if submission still incomplete?
+						if ($monograph->getSubmissionProgress() > 0 && $monograph->getSubmissionProgress() <= 3) {
+							$returner = array('label' => Locale::translate('submissions.incomplete'));
+						} else {
+							$returner = array('label' => Locale::translate('submission.status.submission'));
+						}
 						break;
 					case WORKFLOW_STAGE_ID_INTERNAL_REVIEW:
 						$returner = array('label' => Locale::translate('submission.status.review'));

@@ -85,6 +85,26 @@ class SubmissionsListGridHandler extends GridHandler {
 					$cellProvider
 				)
 			);
+		$this->addColumn(
+			new GridColumn(
+				'title',
+				'monograph.title',
+				null,
+				'controllers/grid/gridCell.tpl',
+				$cellProvider,
+				array('html' => true)
+			)
+		);
+
+		$this->addColumn(
+			new GridColumn(
+				'status',
+				'common.status',
+				null,
+				'controllers/grid/gridCell.tpl',
+				$cellProvider
+			)
+		);
 	}
 
 

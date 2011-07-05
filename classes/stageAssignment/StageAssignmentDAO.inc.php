@@ -29,6 +29,14 @@ class StageAssignmentDAO extends DAO {
 	}
 
 	/**
+	 * @param $userId int
+	 * @return StageAssignment
+	 */
+	function getByUserId($userId) {
+		return $this->_getByIds(null, null, null, $userId);
+	}
+
+	/**
 	 * Test if an editor or a series editor is assigned to the submission
 	 * This test is used to determine what grid to place a submission into,
 	 * and to know if the review stage can be started.
@@ -178,18 +186,29 @@ class StageAssignmentDAO extends DAO {
 	 * @param $single bool specify if only one stage assignment (default is a ResultFactory)
 	 * @return StageAssignment or ResultFactory
 	 */
-	function _getByIds($submissionId, $stageId = null, $userGroupId = null, $userId = null, $single = false) {
-		$params = array((int) $submissionId);
-		if (isset($stageId)) $params[] = (int) $stageId;
-		if (isset($userGroupId)) $params[] = (int) $userGroupId;
-		if (isset($userId)) $params[] = (int) $userId;
+	function _getByIds($submissionId = null, $stageId = null, $userGroupId = null, $userId = null, $single = false) {
+		$conditions = array();
+		$params = array();
+		if (isset($submissionId)) {
+			$conditions[] = 'submission_id = ?';
+			$params[] = (int) $submissionId;
+		}
+		if (isset($stageId)) {
+			$conditions[] = 'stage_id = ?';
+			$params[] = (int) $stageId;
+		}
+		if (isset($userGroupId)) {
+			$conditions[] = 'user_group_id = ?';
+			$params[] = (int) $userGroupId;
+		}
+		if (isset($userId)) {
+			$conditions[] = 'user_id = ?';
+			$params[] = (int) $userId;
+		}
 
 		$result =& $this->retrieve(
 			'SELECT * FROM stage_assignments
-			WHERE submission_id = ?' .
-			(isset($stageId) ? ' AND stage_id = ?' : '') .
-			(isset($userGroupId) ? ' AND user_group_id = ?' : '') .
-			(isset($userId)?' AND user_id = ? ' : ''),
+			WHERE ' . (implode(' AND ', $conditions)),
 			$params
 		);
 

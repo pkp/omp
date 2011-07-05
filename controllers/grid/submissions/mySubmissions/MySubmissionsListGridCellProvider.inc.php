@@ -44,14 +44,21 @@ class MySubmissionsListGridCellProvider extends SubmissionsListGridCellProvider 
 			$pressDao = DAORegistry::getDAO('PressDAO');
 			$press = $pressDao->getPress($pressId);
 
-			$action = new LegacyLinkAction(
+			if ($monograph->getSubmissionProgress() > 0 && $monograph->getSubmissionProgress() <= 3) {
+				$url = $dispatcher->url($request, ROUTE_PAGE, $press->getPath(),
+										'submission', 'wizard', $monograph->getSubmissionProgress(),
+										array('monographId' => $monograph->getId())
+										);
+			} else {
+				$url = $dispatcher->url($request, ROUTE_PAGE, $press->getPath(), 'authorDashboard', null, $monograph->getId());
+			}
+			import('lib.pkp.classes.linkAction.request.RedirectAction');
+			$action = new LinkAction(
 				'details',
-				LINK_ACTION_MODE_LINK,
-				LINK_ACTION_TYPE_NOTHING,
-				$dispatcher->url($request, ROUTE_PAGE, $press->getPath(), 'authorDashboard', null, $monograph->getId()),
-				null,
+				new RedirectAction($url),
 				$title
 			);
+
 			return array($action);
 		}
 		return parent::getCellActions($request, $row, $column, $position);
