@@ -24,15 +24,16 @@ class SendReviewsForm extends EditorDecisionWithEmailForm {
 	 * @param $decision int
 	 */
 	function SendReviewsForm($seriesEditorSubmission, $decision) {
-		assert(
-			in_array(
-				$decision, array(
-					SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS,
-					SUBMISSION_EDITOR_DECISION_RESUBMIT,
-					SUBMISSION_EDITOR_DECISION_DECLINE
-				)
+		if (!in_array(
+			$decision,
+			array(
+				SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS,
+				SUBMISSION_EDITOR_DECISION_RESUBMIT,
+				SUBMISSION_EDITOR_DECISION_DECLINE
 			)
-		);
+		)) {
+			fatalError('Invalid decision!');
+		}
 
 		parent::EditorDecisionWithEmailForm(
 			$seriesEditorSubmission, $decision,
@@ -88,8 +89,7 @@ class SendReviewsForm extends EditorDecisionWithEmailForm {
 				break;
 
 			default:
-				// Unsupported decision.
-				assert(false);
+				fatalError('Unsupported decision!');
 		}
 
 		// Send email to the author.

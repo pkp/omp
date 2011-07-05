@@ -272,20 +272,20 @@ class MonographFileManager extends FileManager {
 
 			// Make sure that the monograph of the revised file is
 			// the same as that of the uploaded file.
-			assert($revisedFile->getMonographId() == $monographId);
+			if($revisedFile->getMonographId() !== $monographId) fatalError('Invalid monograph file!');
 			$nullVar = null;
 			if ($revisedFile->getMonographId() != $monographId) return $nullVar;
 
 			// Copy the file workflow stage.
-			assert(is_null($fileStage) || $fileStage == $revisedFile->getFileStage());
+			if(!is_null($fileStage) && $fileStage !== $revisedFile->getFileStage()) fatalError('Invalid monograph file stage!');
 			$fileStage = (int)$revisedFile->getFileStage();
 
 			// Copy the assoc type.
-			assert(is_null($assocType) || $assocType == $revisedFile->getAssocType());
+			if(!is_null($assocType) && $assocType !== $revisedFile->getAssocType()) fatalError('Invalid monograph file assoc type!');
 			$assocType = (int)$revisedFile->getAssocType();
 
 			// Copy the assoc id.
-			assert(is_null($assocId) || $assocId == $revisedFile->getAssocId());
+			if (!is_null($assocId) && $assocId !== $revisedFile->getAssocId()) fatalError('Invalid monograph file assoc ID!');
 			$assocId = (int)$revisedFile->getAssocId();
 		} else {
 			// Create the first revision of a new file.

@@ -44,4 +44,5 @@ class SubmissionDetailsSubmissionMetadataHandler extends SubmissionMetadataHandl
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 }
+
 ?>

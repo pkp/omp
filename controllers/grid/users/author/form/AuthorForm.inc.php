@@ -168,9 +168,8 @@ class AuthorForm extends Form {
 			$existingAuthor = false;
 		} else {
 			$existingAuthor = true;
+			if ($monograph->getId() !== $author->getSubmissionId()) fatalError('Invalid author!');
 		}
-
-		assert($monograph->getId() == $author->getSubmissionId());
 
 		$author->setFirstName($this->getData('firstName'));
 		$author->setMiddleName($this->getData('middleName'));

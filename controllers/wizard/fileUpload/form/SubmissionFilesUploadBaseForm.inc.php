@@ -48,9 +48,11 @@ class SubmissionFilesUploadBaseForm extends Form {
 			$revisionOnly = false, $reviewType = null, $round = null, $revisedFileId = null) {
 
 		// Check the incoming parameters.
-		assert(is_numeric($monographId) && $monographId > 0);
-		assert(is_numeric($fileStage) && $fileStage > 0);
-		assert(is_numeric($stageId) && $stageId >= 1 && $stageId <= 5);
+		if (	!is_numeric($monographId) || $monographId <= 0 ||
+			!is_numeric($fileStage) || $fileStage <= 0 ||
+			!is_numeric($stageId) || $stageId < 1 || $stageId > 5) {
+			fatalError('Invalid parameters!');
+		}
 
 		// Initialize class.
 		parent::Form($template);

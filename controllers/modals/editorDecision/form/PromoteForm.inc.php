@@ -24,12 +24,12 @@ class PromoteForm extends EditorDecisionWithEmailForm {
 	 * @param $decision int
 	 */
 	function PromoteForm($seriesEditorSubmission, $decision) {
-		assert(
-			in_array(
-				$decision,
-				array(SUBMISSION_EDITOR_DECISION_ACCEPT, SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW)
-			)
-		);
+		if (!in_array(
+			$decision,
+			array(SUBMISSION_EDITOR_DECISION_ACCEPT, SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW)
+		)) {
+			fatalError('Invalid decision!');
+		}
 
 		parent::EditorDecisionWithEmailForm(
 			$seriesEditorSubmission, $decision,
@@ -91,8 +91,7 @@ class PromoteForm extends EditorDecisionWithEmailForm {
 				break;
 
 			default:
-				// Unsupported decision.
-				assert(false);
+				fatalError('Unsupported decision!');
 		}
 
 		// Send email to the author.

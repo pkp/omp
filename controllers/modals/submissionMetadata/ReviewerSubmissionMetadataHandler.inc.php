@@ -41,4 +41,5 @@ class ReviewerSubmissionMetadataHandler extends SubmissionMetadataHandler {
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 }
+
 ?>

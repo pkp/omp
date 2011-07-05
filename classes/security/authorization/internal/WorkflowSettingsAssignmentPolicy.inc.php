@@ -57,7 +57,7 @@ class WorkflowSettingsAssignmentPolicy extends AuthorizationPolicy {
 				break;
 
 			default:
-				assert(false);
+				fatalError('Unknown stage type.');
 		}
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 		$stageId = $userGroupDao->getIdFromPath($stagePath);

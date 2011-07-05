@@ -94,7 +94,7 @@ class DivisionsListbuilderHandler extends SetupListbuilderHandler {
 		$divisionDao =& DAORegistry::getDAO('DivisionDAO');
 		$division = $divisionDao->getById($rowId);
 		$press =& $this->getPress();
-		assert ($division && $division->getPressId() == $press->getId());
+		if (!$division || $division->getPressId() !== $press->getId());
 
 		// Update the existing entry.
 		// FIXME: Localize.

@@ -115,7 +115,7 @@ class InformationCenterHandler extends Handler {
 		$noteId = (int) $request->getUserVar('noteId');
 		$noteDao =& DAORegistry::getDAO('NoteDAO');
 		$note =& $noteDao->getById($noteId);
-		assert ($note && $note->getAssocType() == $this->_getAssocType() && $note->getAssocId() == $this->_getAssocId());
+		if (!$note || $note->getAssocType() !== $this->_getAssocType() || $note->getAssocId() !== $this->_getAssocId()) fatalError('Invalid note!');
 		$noteDao->deleteById($noteId);
 
 		$json = new JSONMessage(true);

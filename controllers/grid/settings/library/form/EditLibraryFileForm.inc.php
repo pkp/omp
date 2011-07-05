@@ -34,7 +34,9 @@ class EditLibraryFileForm extends LibraryFileForm {
 		parent::LibraryFileForm('controllers/grid/settings/library/form/editFileForm.tpl', $pressId, $fileType);
 		$libraryFileDao =& DAORegistry::getDAO('LibraryFileDAO');
 		$this->libraryFile =& $libraryFileDao->getById($fileId);
-		assert ($this->libraryFile && $this->libraryFile->getPressId() == $this->pressId && $this->libraryFile->getType() == $this->fileType);
+		if (!$this->libraryFile || $this->libraryFile->getPressId() !== $this->pressId || $this->libraryFile->getType() !== $this->fileType) {
+			fatalError('Invalid library file!');
+		}
 	}
 
 	/**
