@@ -117,7 +117,7 @@ class DivisionsListbuilderHandler extends SetupListbuilderHandler {
 		// Populate the entry
 		// FIXME: Localize.
 		$locale = Locale::getLocale();
-		$division->setTitle(array_shift($request->getUserVar('newRowId')), $locale);
+		$division->setTitle($this->getNewRowId($request), $locale);
 
 		return $division;
 	}

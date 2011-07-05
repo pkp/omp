@@ -49,7 +49,7 @@ class PublicationFormatsListbuilderHandler extends SetupListbuilderHandler {
 	function &getRowDataElement(&$request, $rowId) {
 		// FIXME: Localize.
 		$locale = Locale::getLocale();
-		list($name, $designation) = $request->getUserVar('newRowId');
+		list($name, $designation) = $this->getNewRowId($request);
 		return(array(
 			'name' => $name,
 			'designation' => $designation

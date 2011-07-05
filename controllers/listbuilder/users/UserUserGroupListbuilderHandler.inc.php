@@ -189,7 +189,7 @@ class UserUserGroupListbuilderHandler extends ListbuilderHandler {
 		}
 
 		// Otherwise return from the $newRowId
-		$userGroupId = (int) array_shift($request->getUserVar('newRowId'));
+		$userGroupId = (int) $this->getNewRowId($request);
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 		$press =& $this->getPress();
 		$userGroup =& $userGroupDao->getById($userGroupId, $press->getId());

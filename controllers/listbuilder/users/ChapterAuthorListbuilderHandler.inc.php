@@ -130,7 +130,7 @@ class ChapterAuthorListbuilderHandler extends ListbuilderHandler {
 		}
 
 		// Otherwise return from the newRowId
-		$authorId = (int) array_shift($request->getUserVar('newRowId'));
+		$authorId = (int) $this->getNewRowId($request);
 		$authorDao =& DAORegistry::getDAO('AuthorDAO');
 		$monograph =& $this->getMonograph();
 		$author =& $authorDao->getAuthor($authorId, $monograph->getId());
