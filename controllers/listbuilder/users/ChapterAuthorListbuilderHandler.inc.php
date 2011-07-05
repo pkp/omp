@@ -182,14 +182,15 @@ class ChapterAuthorListbuilderHandler extends ListbuilderHandler {
 	//
 	/**
 	 * Persist a new entry insert.
-	 * @param $entry mixed New entry with data to persist
+	 * @param $request Request
+	 * @param $newRowId mixed New entry with data to persist
 	 * @return boolean
 	 */
-	function insertEntry($entry) {
+	function insertEntry(&$request, $newRowId) {
 		$monograph =& $this->getMonograph();
 		$monographId = $monograph->getId();
 		$chapterId = $this->getChapterId();
-		$authorId = (int) $entry->newRowId;
+		$authorId = (int) $newRowId;
 
 		// Create a new chapter author.
 		$chapterAuthorDao =& DAORegistry::getDAO('ChapterAuthorDAO');
@@ -199,10 +200,11 @@ class ChapterAuthorListbuilderHandler extends ListbuilderHandler {
 
 	/**
 	 * Delete an entry.
+	 * @param $request Request
 	 * @param $rowId mixed ID of row to modify
 	 * @return boolean
 	 */
-	function deleteEntry($rowId) {
+	function deleteEntry(&$request, $rowId) {
 		$chapterId = $this->getChapterId();
 		$authorId = (int) $rowId;
 
