@@ -18,10 +18,14 @@ import('lib.pkp.classes.controllers.grid.GridCategoryRow');
 import('lib.pkp.classes.linkAction.request.AjaxModal');
 
 class ChapterGridCategoryRow extends GridCategoryRow {
+	/** @var Monograph **/
+	var $_monograph;
+
 	/**
 	 * Constructor
 	 */
-	function ChapterGridCategoryRow() {
+	function ChapterGridCategoryRow(&$monograph) {
+		$this->_monograph =& $monograph;
 		parent::GridCategoryRow();
 	}
 
@@ -37,8 +41,7 @@ class ChapterGridCategoryRow extends GridCategoryRow {
 		parent::initialize($request);
 
 		// Retrieve the monograph id from the request
-		$monographId = $request->getUserVar('monographId');
-		assert(is_numeric($monographId));
+		$monograph =& $this->getMonograph();
 
 		// Is this a new row or an existing row?
 		$chapterId = $this->getId();
@@ -48,11 +51,11 @@ class ChapterGridCategoryRow extends GridCategoryRow {
 			// Only add row actions if this is an existing row
 			$router =& $request->getRouter();
 			$actionArgs = array(
-				'monographId' => $monographId,
+				'monographId' => $monograph->getId(),
 				'chapterId' => $chapterId
 			);
 
-			
+
 			$this->addAction(new LinkAction(
 				'editChapter',
 				new AjaxModal(
@@ -62,6 +65,14 @@ class ChapterGridCategoryRow extends GridCategoryRow {
 				$chapter->getLocalizedTitle()
 			));
 		}
+	}
+
+	/**
+	 * Get the monograph for this row (already authorized)
+	 * @return Monograph
+	 */
+	function &getMonograph() {
+		return $this->_monograph;
 	}
 }
 

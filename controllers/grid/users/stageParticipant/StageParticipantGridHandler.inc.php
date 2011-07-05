@@ -40,7 +40,7 @@ class StageParticipantGridHandler extends GridHandler {
 	 * Get the authorized monograph.
 	 * @return Monograph
 	 */
-	function getMonograph() {
+	function &getMonograph() {
 		return $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 	}
 

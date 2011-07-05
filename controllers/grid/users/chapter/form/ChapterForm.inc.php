@@ -25,13 +25,12 @@ class ChapterForm extends Form {
 	/**
 	 * Constructor.
 	 */
-	function ChapterForm($monograph, $chapterId) {
+	function ChapterForm($monograph, &$chapter) {
 		parent::Form('controllers/grid/users/chapter/form/chapterForm.tpl');
 		$this->setMonograph($monograph);
 
-		if (is_numeric($chapterId)) {
-			$chapterDao =& DAORegistry::getDAO('ChapterDAO');
-			$this->setChapter($chapterDao->getChapter($chapterId));
+		if ($chapter) {
+			$this->setChapter($chapter);
 		}
 
 		// Validation checks for this form

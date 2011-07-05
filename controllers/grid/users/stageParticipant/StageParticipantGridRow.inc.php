@@ -15,6 +15,12 @@
 import('lib.pkp.classes.controllers.grid.GridRow');
 
 class StageParticipantGridRow extends GridRow {
+	/** @var Monograph */
+	var $_monograph;
+
+	/** @var int */
+	var $_stageId;
+
 	/**
 	 * Constructor
 	 */

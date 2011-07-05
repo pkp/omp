@@ -15,10 +15,14 @@
 import('lib.pkp.classes.controllers.grid.GridRow');
 
 class AuthorGridRow extends GridRow {
+	/** @var Monograph **/
+	var $_monograph;
+
 	/**
 	 * Constructor
 	 */
-	function AuthorGridRow() {
+	function AuthorGridRow(&$monograph) {
+		$this->_monograph =& $monograph;
 		parent::GridRow();
 	}
 
@@ -34,7 +38,7 @@ class AuthorGridRow extends GridRow {
 		parent::initialize($request);
 
 		// Retrieve the monograph from the request
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		$monograph =& $this->getMonograph();
 
 		// Is this a new row or an existing row?
 		$rowId = $this->getId();
@@ -78,6 +82,14 @@ class AuthorGridRow extends GridRow {
 			// Set a non-default template that supports row actions
 			$this->setTemplate('controllers/grid/gridRowWithActions.tpl');
 		}
+	}
+
+	/**
+	 * Get the monograph for this row (already authorized)
+	 * @return Monograph
+	 */
+	function &getMonograph() {
+		return $this->_monograph;
 	}
 }
 

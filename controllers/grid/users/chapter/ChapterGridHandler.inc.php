@@ -161,7 +161,8 @@ class ChapterGridHandler extends CategoryGridHandler {
 	 * @return ChapterGridRow
 	 */
 	function &getCategoryRowInstance() {
-		$row = new ChapterGridCategoryRow();
+		$monograph =& $this->getMonograph();
+		$row = new ChapterGridCategoryRow($monograph);
 		return $row;
 	}
 
@@ -200,11 +201,11 @@ class ChapterGridHandler extends CategoryGridHandler {
 	 * @return string Serialized JSON object
 	 */
 	function editChapter($args, &$request) {
-		$chapter =& $this->_getChapterFromArgs();
+		$chapter =& $this->_getChapterFromRequest($request);
 
 		// Form handling
 		import('controllers.grid.users.chapter.form.ChapterForm');
-		$chapterForm = new ChapterForm($this->getMonograph(), $chapter->getId());
+		$chapterForm = new ChapterForm($this->getMonograph(), $chapter);
 		$chapterForm->initData();
 
 		$json = new JSONMessage(true, $chapterForm->fetch($request));
@@ -219,18 +220,20 @@ class ChapterGridHandler extends CategoryGridHandler {
 	 */
 	function updateChapter($args, &$request) {
 		// Identify the chapter to be updated
-		$chapter =& $this->_getChapterFromArgs($args);
+		$chapter =& $this->_getChapterFromRequest($request);
 
 		// Form initialization
 		import('controllers.grid.users.chapter.form.ChapterForm');
-		$chapterForm = new ChapterForm($this->getMonograph(), $chapter->getId());
+		$chapterForm = new ChapterForm($this->getMonograph(), $chapter);
 		$chapterForm->readInputData();
 
 		// Form validation
 		if ($chapterForm->validate()) {
 			$chapterForm->execute();
 
-			return DAO::getDataChangedEvent($chapterId);
+			$newChapter =& $chapterForm->getChapter();
+
+			return DAO::getDataChangedEvent($newChapter->getId());
 		} else {
 			// Return an error
 			$json = new JSONMessage(false);
@@ -248,7 +251,7 @@ class ChapterGridHandler extends CategoryGridHandler {
 	 */
 	function deleteChapter($args, &$request) {
 		// Identify the chapter to be deleted
-		$chapter =& $this->_getChapterFromArgs($args);
+		$chapter =& $this->_getChapterFromRequest($request);
 
 		$chapterDAO = DAORegistry::getDAO('ChapterDAO');
 		$result = $chapterDAO->deleteChapter($chapter);
@@ -264,10 +267,11 @@ class ChapterGridHandler extends CategoryGridHandler {
 	/**
 	 * Fetch and validate the chapter from the request arguments
 	 */
-	function &_getChapterFromArgs() {
+	function &_getChapterFromRequest(&$request) {
 		$monograph =& $this->getMonograph();
 		$chapterDao =& DAORegistry::getDAO('ChapterDAO');
 		$chapter =& $chapterDao->getChapter((int) $request->getUserVar('chapterId'), $monograph->getId());
+		return $chapter;
 	}
 }
 

@@ -166,7 +166,8 @@ class AuthorGridHandler extends GridHandler {
 	 * @return AuthorGridRow
 	 */
 	function &getRowInstance() {
-		$row = new AuthorGridRow();
+		$monograph =& $this->getMonograph();
+		$row = new AuthorGridRow($monograph);
 		return $row;
 	}
 
