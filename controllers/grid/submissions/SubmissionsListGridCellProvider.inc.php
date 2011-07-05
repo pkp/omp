@@ -52,10 +52,10 @@ class SubmissionsListGridCellProvider extends DataObjectGridCellProvider {
 			$pressDao = DAORegistry::getDAO('PressDAO');
 			$press = $pressDao->getPress($pressId);
 
-			import('lib.pkp.classes.linkAction.request.AjaxModal');
+			import('lib.pkp.classes.linkAction.request.RedirectAction');
 			$action = new LinkAction(
 				'details',
-				new AjaxModal(
+				new RedirectAction(
 					$dispatcher->url($request, ROUTE_PAGE, $press->getPath(), 'workflow', 'submission', $monograph->getId())
 				),
 				$title
