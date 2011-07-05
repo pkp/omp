@@ -10,7 +10,6 @@
 {include file="submission/form/submitStepHeader.tpl"}
 
 
-<div class="separator"></div>
 
 <form class="pkp_form" id="submitStepForm" method="post" action="{url op="saveStep" path=$submitStep}" enctype="multipart/form-data">
 	<input type="hidden" name="monographId" value="{$monographId|escape}" />
