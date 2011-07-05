@@ -176,5 +176,4 @@
 			<div id="plupload"></div>
 		{/fbvFormSection}
 	{/fbvFormArea}
-	<div class="separator"></div>
 </form>
