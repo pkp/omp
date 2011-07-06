@@ -94,8 +94,6 @@ class UserAction {
 		$notificationStatusDao->deleteNotificationStatusByUserId($oldUserId);
 		$userSettingsDao =& DAORegistry::getDAO('UserSettingsDAO');
 		$userSettingsDao->deleteSettings($oldUserId);
-		$groupMembershipDao =& DAORegistry::getDAO('GroupMembershipDAO');
-		$groupMembershipDao->deleteMembershipByUserId($oldUserId);
 		$seriesEditorsDao =& DAORegistry::getDAO('SeriesEditorsDAO');
 		$seriesEditorsDao->deleteEditorsByUserId($oldUserId);
 

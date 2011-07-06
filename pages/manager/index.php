@@ -77,23 +77,6 @@ switch ($op) {
 		define('HANDLER_CLASS', 'PluginManagementHandler');
 		import('pages.manager.PluginManagementHandler');
 		break;
-	//
-	// Group Management
-	//
-	case 'groups':
-	case 'createGroup':
-	case 'updateGroup':
-	case 'deleteGroup':
-	case 'editGroup':
-	case 'groupMembership':
-	case 'addMembership':
-	case 'deleteMembership':
-	case 'setBoardEnabled':
-	case 'moveGroup':
-	case 'moveMembership':
-		import('pages.manager.GroupHandler');
-		define('HANDLER_CLASS', 'GroupHandler');
-		break;
 	case 'index':
 	case 'email':
 		define('HANDLER_CLASS', 'ManagerHandler');
