@@ -20,8 +20,9 @@
 			{/literal}{if $existingInterests}{literal}
 			// This is the list of interests in the system used to populate the autocomplete
 			availableTags: [{/literal}{foreach name=existingInterests from=$existingInterests item=interest}"{$interest|escape|escape:'javascript'}"{if !$smarty.foreach.existingInterests.last}, {/if}{/foreach}{literal}],{/literal}{/if}
-			// There are no current interests for the user since they're just registering; Assign an empty list
-			currentTags: []
+			// This is the list of the user's interests that have already been saved
+			{if $interestsKeywords}{literal}currentTags: [{/literal}{foreach name=currentInterests from=$interestsKeywords item=interest}"{$interest|escape|escape:'javascript'}"{if !$smarty.foreach.currentInterests.last}, {/if}{/foreach}{literal}]{/literal}
+			{else}{literal}currentTags: []{/literal}{/if}{literal}
 		});
 	});
 	// -->
@@ -42,8 +43,6 @@
 		<input type="hidden" name="existingUser" value="1"/>
 	{/if}
 
-	<h3>{translate key="user.profile"}</h3>
-
 	{if $existingUser}
 		<p>{translate key="user.register.loginToRegister"}</p>
 	{/if}
@@ -54,160 +53,125 @@
 {/if}
 
 {fbvFormArea id="registration"}
-{if count($formLocales) > 1 && !$existingUser}
-	{fbvFormSection title="form.formLanguage" for="languageSelector"}
-		{url|assign:"registerFormUrl" op="register"}
-		{form_language_chooser form="register" url=$registerFormUrl}
-		<p>{translate key="form.formLanguage.description"}</p>
-	{/fbvFormSection}
-{/if}{* count($formLocales) > 1 && !$existingUser *}
 
 {if !$implicitAuth}
-	{fbvFormSection title="user.accountInformation" required="true"}
-		{fbvElement type="text" label="user.username" id="username" value=$username required="true"}
-		{fbvElement type="text" label="user.password" id="password" value=$password required="true" password="true"}
+	{fbvFormSection title="user.accountInformation"}
+		{fbvElement type="text" label="user.username" id="username" value=$username required="true" size=$fbvStyles.size.MEDIUM}
+		{fbvElement type="text" label="user.password" id="password" value=$password required="true" password="true" size=$fbvStyles.size.MEDIUM}
 		{if !$existingUser}
-			{fbvElement type="text" label="user.repeatPassword" id="password2" value=$password2 required="true" password="true"}
+			{fbvElement type="text" label="user.repeatPassword" id="password2" value=$password2 required="true" password="true" size=$fbvStyles.size.MEDIUM}
 		{/if}{* !$existingUser *}
 	{/fbvFormSection}
 
-  {if !$existingUser}
-	{fbvFormSection title="common.name" required="true"}
-		{fbvElement type="text" label="user.salutation" id="salutation" value=$salutation size=$fbvStyles.size.SMALL}
-		{fbvElement type="text" label="user.firstName" id="firstName" value=$firstName required="true"}
-		{fbvElement type="text" label="user.middleName" id="middleName" value=$middleName}
-		{fbvElement type="text" label="user.lastName" id="lastName" value=$lastName required="true"}
-		{fbvElement type="text" label="user.initials" id="initials" value=$initials size=$fbvStyles.size.SMALL}
-	{/fbvFormSection}
+	{if !$existingUser}
+		{fbvFormSection title="common.name"}
+			{fbvElement type="text" label="user.salutation" id="salutation" value=$salutation size=$fbvStyles.size.SMALL inline="true"}
+			{fbvElement type="text" label="user.firstName" id="firstName" required="true" value=$firstName required="true" size=$fbvStyles.size.SMALL inline="true"}
+			{fbvElement type="text" label="user.middleName" id="middleName" value=$middleName size=$fbvStyles.size.SMALL inline="true"}
+			{fbvElement type="text" label="user.lastName" id="lastName" required="true" value=$lastName required="true" size=$fbvStyles.size.SMALL inline="true"}
+			{fbvElement type="text" label="user.initials" id="initials" value=$initials size=$fbvStyles.size.SMALL inline="true"}
+		{/fbvFormSection}
 
-	{fbvFormSection title="user.gender" for="gender"}
-		{fbvElement type="select" from=$genderOptions selected=$gender id="gender" translate="true"}
-	{/fbvFormSection}
+		{fbvFormSection title="user.gender" for="gender"  size=$fbvStyles.size.SMALL}
+			{fbvElement type="select" from=$genderOptions selected=$gender|escape id="gender" translate="true"}
+		{/fbvFormSection}
 
-	{fbvFormSection title="user.phone" for="phone"}
-		{fbvElement type="text" id="phone" value=$phone}
-	{/fbvFormSection}
+		{fbvFormSection title="user.phone" for="phone"}
+			{fbvElement type="text" id="phone" value=$phone|escape size=$fbvStyles.size.MEDIUM}
+		{/fbvFormSection}
 
-	{fbvFormSection title="user.fax" for="fax"}
-		{fbvElement type="text" id="fax" value=$fax}
-	{/fbvFormSection}
+		{fbvFormSection title="user.fax" for="fax"}
+			{fbvElement type="text" id="fax" value=$fax|escape size=$fbvStyles.size.MEDIUM}
+		{/fbvFormSection}
 
-	{fbvFormSection title="user.email" for="email" required="true"}
-		{fbvElement type="text" id="email" value=$email size=$fbvStyles.size.LARGE} {if $privacyStatement}<a class="action" href="#privacyStatement">{translate key="user.register.privacyStatement"}</a>{/if}
-	{/fbvFormSection}
+		{fbvFormSection title="user.email" for="email" required="true"}
+			{fbvElement type="text" id="email" value=$email|escape size=$fbvStyles.size.MEDIUM}
+			{fbvElement type="text" label="user.confirmEmail" id="confirmEmail" value=$confirmEmail|escape size=$fbvStyles.size.MEDIUM}
+		 	{if $privacyStatement}<a class="action" href="#privacyStatement">{translate key="user.register.privacyStatement"}</a>{/if}
+		{/fbvFormSection}
 
-	{fbvFormSection title="user.confirmEmail" for="confirmEmail" required="true"}
-		{fbvElement type="text" id="confirmEmail" value=$confirmEmail size=$fbvStyles.size.LARGE}
-	{/fbvFormSection}
+		{fbvFormSection title="user.url" for="userUrl"}
+			{fbvElement type="text" id="userUrl" value=$userUrl|escape size=$fbvStyles.size.MEDIUM}
+		{/fbvFormSection}
 
-	{fbvFormSection title="user.url" for="userUrl"}
-		{fbvElement type="text" id="userUrl" value=$userUrl size=$fbvStyles.size.LARGE}
-	{/fbvFormSection}
+		{fbvFormSection title="user.affiliation" for="affiliation"}
+			{fbvElement type="textarea" id="affiliation" multilingual=true value=$affiliation|escape label="user.affiliation.description" size=$fbvStyles.size.MEDIUM}<br/>
+		{/fbvFormSection}
 
-	{fbvFormSection title="user.affiliation" for="affiliation"}
-		{fbvElement type="textarea" id="affiliation" value=$affiliation size=$fbvStyles.size.SMALL}<br/>
-		<span class="instruct">{translate key="user.affiliation.description"}</span>
-	{/fbvFormSection}
+		{fbvFormSection title="user.mailingAddress" for="mailingAddress"}
+			{fbvElement type="textarea" id="mailingAddress" value=$mailingAddress|escape rich=true size=$fbvStyles.size.MEDIUM}
+		{/fbvFormSection}
 
-	{fbvFormSection title="user.mailingAddress" for="mailingAddress"}
-		{fbvElement type="textarea" id="mailingAddress" value=$mailingAddress rich=true size=$fbvStyles.size.SMALL}
-	{/fbvFormSection}
+		{fbvFormSection title="user.biography" for="biography"}
+			{fbvElement type="textarea" id="biography" name="biography" multilingual=true value=$biography|escape rich=true size=$fbvStyles.size.MEDIUM}
+		{/fbvFormSection}
 
-	{fbvFormSection title="user.biography" for="biography"}
-		{fbvElement type="textarea" id="biography" name="biography[$formLocale]" value=$biography[$formLocale] rich=true size=$fbvStyles.size.MEDIUM}
-	{/fbvFormSection}
+		{fbvFormSection title="user.signature" for="signature"}
+			{fbvElement type="textarea" id="signature" name="signature" multilingual=true value=$signature|escape size=$fbvStyles.size.MEDIUM}
+		{/fbvFormSection}
 
-	{fbvFormSection title="user.signature" for="signature"}
-		{fbvElement type="textarea" id="signature" name="signature[$formLocale]" value=$signature[$formLocale] size=$fbvStyles.size.SMALL}
-	{/fbvFormSection}
+		{fbvFormSection title="common.country" for="country" size=$fbvStyles.size.SMALL}
+			{fbvElement type="select" from=$countries selected=$country translate=0 id="country" defaultValue="" defaultLabel=""}
+		{/fbvFormSection}
 
-	{fbvFormSection title="common.country" for="country"}
-		{fbvElement type="select" from=$countries selected=$country translate=0 id="country" defaultValue="" defaultLabel=""}
-	{/fbvFormSection}
+		{if count($availableLocales) > 1}
+		{fbvFormSection title="user.workingLanguages" list="true"}
+			{foreach from=$availableLocales key=localeKey item=localeName}
+				{assign var="controlId" value=userLocales-$localeKey}
+				{if in_array($localeKey, $userLocales)}
+					{fbvElement type="checkbox" name="userLocales[]" id=$controlId value="1" label=$localeName translate="false" checked="checked"}
+				{else}
+					{fbvElement type="checkbox" name="userLocales[]" id=$controlId value="1" label=$localeName translate="false"}
+				{/if}
+			{/foreach}
+		{/fbvFormSection}
+		{/if}{* count($availableLocales) > 1 *}
 
-	{if count($availableLocales) > 1}
-	{fbvFormSection title="user.workingLanguages"}
-		{foreach from=$availableLocales key=localeKey item=localeName}
-			{assign var="controlId" value=userLocales-$localeKey}
-			{if in_array($localeKey, $userLocales)}
-				{fbvElement type="checkbox" name="userLocales[]" id=$controlId value="1" label=$localeName translate="false" checked="checked"}
+		{fbvFormSection label="user.sendPassword" list="true"}
+			{if $sendPassword}
+				{fbvElement type="checkbox" id="sendPassword" value="1" label="user.sendPassword.description" checked="checked"}
 			{else}
-				{fbvElement type="checkbox" name="userLocales[]" id=$controlId value="1" label=$localeName translate="false"}
+				{fbvElement type="checkbox" id="sendPassword" value="1" label="user.sendPassword.description"}
 			{/if}
-		{/foreach}
-	{/fbvFormSection}
-	{/if}{* count($availableLocales) > 1 *}
-
-	{fbvFormSection title="user.sendPassword"}
-		{if $sendPassword}
-			{fbvElement type="checkbox" id="sendPassword" value="1" label="user.sendPassword.description" checked="checked"}
-		{else}
-			{fbvElement type="checkbox" id="sendPassword" value="1" label="user.sendPassword.description"}
-		{/if}
-	{/fbvFormSection}
-
-
-  {/if} {* !$existingUser *}
-{/if}{* !$implicitAuth *}
-
-  {if $allowRegReader || $allowRegReader === null || $allowRegAuthor || $allowRegAuthor === null || $allowRegReviewer || $allowRegReviewer === null}
-	{fbvFormSection title="user.register.registerAs"}
-	{if $allowRegReader || $allowRegReader === null}
-		{if $registerAsReader}
-			{fbvElement type="checkbox" id="registerAsReader" value="1" label="user.register.readerDescription" checked="checked"}
-		{else}
-			{fbvElement type="checkbox" id="registerAsReader" value="1" label="user.register.readerDescription"}
-		{/if}
-	{/if}
-	{if $allowRegAuthor || $allowRegAuthor === null}
-		{if $registerAsAuthor}
-			{fbvElement type="checkbox" id="registerAsAuthor" value="1" label="user.register.authorDescription" checked="checked"}
-		{else}
-			{fbvElement type="checkbox" id="registerAsAuthor" value="1" label="user.register.authorDescription"}
-		{/if}
-	{/if}
-	{assign var="divEnded" value=0}
-	{if $allowRegReviewer || $allowRegReviewer === null}
-		{if $existingUser}
-			{assign var="regReviewerLabel" value="user.register.reviewerDescriptionNoInterests"}
-		{else}
-			{assign var="regReviewerLabel" value="user.register.reviewerDescription"}
-		{/if}
-
-		{if $registerAsReviewer}
-			{fbvElement type="checkbox" id="registerAsReviewer" value="1" label=$regReviewerLabel checked="checked"}
-		{else}
-			{fbvElement type="checkbox" id="registerAsReviewer" value="1" label=$regReviewerLabel}
-		{/if}
-
-	{/if}
-	{/fbvFormSection}
-	<div id="reviewerInterestsContainer" style="margin-left:40px;">
-		<label class="desc">{translate key="user.register.reviewerInterests"}</label>
-		<ul id="interests"><li></li></ul><span class="interestDescription">{fieldLabel for="interests" key="user.interests.description"}</span>
-		<textarea name="interests" id="interestsTextOnly" rows="5" cols="40" class="textArea">{foreach name=currentInterests from=$interestsKeywords item=interest}{$interest|escape}{if !$smarty.foreach.currentInterests.last}, {/if}{/foreach}</textarea>
-	</div>
-	<br />
-  {/if}
-{if !$implicitAuth}
-	{if !existingUser}
-  {if $captchaEnabled}
-  <li>
-	{fieldLabel name="captcha" required="true" key="common.captchaField" class="desc"}
-	<span>
-		<img src="{url page="user" op="viewCaptcha" path=$captchaId}" alt="{translate key="common.captchaField.altText"}" /><br />
-		<p>{translate key="common.captchaField.description"}</p>
-		<input name="captcha" id="captcha" value="" size="20" maxlength="32" class="field text" />
-		<input type="hidden" name="captchaId" value="{$captchaId|escape:"quoted"}" />
-	</span>
-  </li>
-  {/if}{* $captchaEnabled *}
-
+		{/fbvFormSection}
 	{/if} {* !$existingUser *}
 {/if}{* !$implicitAuth *}
+
+	{if $allowRegAuthor || $allowRegAuthor === null || $allowRegReviewer || $allowRegReviewer === null}
+		{fbvFormSection label="user.register.registerAs" list="true"}
+			{if $allowRegAuthor || $allowRegAuthor === null}
+				{if $registerAsAuthor}
+					{fbvElement type="checkbox" id="registerAsAuthor" value="1" label="user.role.author" checked="checked"}
+				{else}
+					{fbvElement type="checkbox" id="registerAsAuthor" value="1" label="user.role.author"}
+				{/if}
+			{/if}
+			{if $allowRegReviewer || $allowRegReviewer === null}
+				{if $registerAsReviewer}
+					{fbvElement type="checkbox" id="registerAsReviewer" value="1" label="user.role.reviewer" checked="checked"}
+				{else}
+					{fbvElement type="checkbox" id="registerAsReviewer" value="1" label="user.role.reviewer"}
+				{/if}
+			{/if}
+		{/fbvFormSection}
+		{fbvFormSection id="reviewerInterestsContainer" label="user.register.reviewerInterests"}
+			{fbvElement type="keyword" id="interests" label="user.interests.description"}
+		{/fbvFormSection}
+	{/if}
+	{if !$implicitAuth && !$existingUser && $captchaEnabled}
+		<li>
+		{fieldLabel name="captcha" required="true" key="common.captchaField" class="desc"}
+		<span>
+			<img src="{url page="user" op="viewCaptcha" path=$captchaId}" alt="{translate key="common.captchaField.altText"}" /><br />
+			<p>{translate key="common.captchaField.description"}</p>
+			<input name="captcha" id="captcha" value="" size="20" maxlength="32" class="field text" />
+			<input type="hidden" name="captchaId" value="{$captchaId|escape:"quoted"}" />
+		</span>
+		</li>
+	{/if}
 {/fbvFormArea}
 {url|assign:"url" page="index" escape=false}
-<p>{fbvElement type="submit" label="user.register"} {fbvElement type="button" label="common.cancel" onclick="document.location.href='$url'"}</p>
+<p>{fbvElement id="submitButton" type="submit" label="user.register"} {fbvElement id="cancelButton" type="button" label="common.cancel" onclick="document.location.href='$url'"}</p>
 
 {if ! $implicitAuth}
 	<p><span class="formRequired">{translate key="common.requiredField"}</span></p>

@@ -268,7 +268,8 @@ class RegistrationForm extends Form {
 			// Add reviewing interests to interests table
 			import('lib.pkp.classes.user.InterestManager');
 			$interestManager = new InterestManager();
-			$interestManager->insertInterests($userId, $this->getData('interestsKeywords'), $this->getData('interests'));
+			$interestsKeywords = $this->getData('interestsKeywords');
+			$interestManager->insertInterests($userId, isset($interestsKeywords) ? $interestsKeywords : array() , $this->getData('interests'));
 
 			$sessionManager =& SessionManager::getManager();
 			$session =& $sessionManager->getUserSession();
@@ -279,7 +280,7 @@ class RegistrationForm extends Form {
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 
 		// Roles users are allowed to register themselves in
-		$allowedRoles = array('reader' => 'registerAsReader', 'author' => 'registerAsAuthor', 'reviewer' => 'registerAsReviewer');
+		$allowedRoles = array('author' => 'registerAsAuthor', 'reviewer' => 'registerAsReviewer');
 
 		$pressSettingsDao =& DAORegistry::getDAO('PressSettingsDAO');
 		if (!$pressSettingsDao->getSetting($press->getId(), 'allowRegReader')) {
@@ -292,14 +293,12 @@ class RegistrationForm extends Form {
 			unset($allowedRoles['reviewer']);
 		}
 
+		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */
 		foreach ($allowedRoles as $k => $v) {
 			$roleId = $roleDao->getRoleIdFromPath($k);
 			if ($this->getData($v) && !$roleDao->userHasRole($press->getId(), $userId, $roleId)) {
-				$role = new Role();
-				$role->setPressId($press->getId());
-				$role->setUserId($userId);
-				$role->setRoleId($roleId);
-				$roleDao->insertRole($role);
+				$userGroupId = $userGroupDao->getDefaultByRoleId($press->getId(), $roleId);
+				$userGroupDao->assignUserToGroup($reviewerId, $userGroupId);
 			}
 		}
 

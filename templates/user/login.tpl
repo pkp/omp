@@ -44,7 +44,7 @@
 <input type="hidden" name="source" value="{$source|escape}" />
 
 {if ! $implicitAuth}
-	{fbvFormArea id="loginFields" title="user.login"}
+	{fbvFormArea id="loginFields"}
 		{fbvFormSection id="login" title="user.username" for="username"}
 			{fbvElement type="text" id="username" value=$username|escape size="20" maxlength="32" size=$fbvStyles.size.MEDIUM}
 		{/fbvFormSection}
