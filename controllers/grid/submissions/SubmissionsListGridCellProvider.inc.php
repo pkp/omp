@@ -52,11 +52,30 @@ class SubmissionsListGridCellProvider extends DataObjectGridCellProvider {
 			$pressDao = DAORegistry::getDAO('PressDAO');
 			$press = $pressDao->getPress($pressId);
 
+			switch ($monograph->getCurrentStageId()) {
+				case WORKFLOW_STAGE_ID_SUBMISSION:
+					$workflowPath = 'submission';
+					break;
+				//FIXME #6200 need separate paths for each review type.
+				case WORKFLOW_STAGE_ID_INTERNAL_REVIEW:
+				case WORKFLOW_STAGE_PATH_EXTERNAL_REVIEW:
+					$workflowPath = 'review';
+					break;
+				case WORKFLOW_STAGE_PATH_EDITING:
+					$workflowPath = 'copyediting';
+					break;
+				case WORKFLOW_STAGE_PATH_PRODUCTION:
+					$workflowPath = 'production';
+					break;
+				default:
+					assert(false);
+			}
+
 			import('lib.pkp.classes.linkAction.request.RedirectAction');
 			$action = new LinkAction(
 				'details',
 				new RedirectAction(
-					$dispatcher->url($request, ROUTE_PAGE, $press->getPath(), 'workflow', 'submission', $monograph->getId())
+					$dispatcher->url($request, ROUTE_PAGE, $press->getPath(), 'workflow', $workflowPath, $monograph->getId())
 				),
 				$title
 			);
