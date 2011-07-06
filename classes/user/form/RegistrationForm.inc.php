@@ -269,7 +269,7 @@ class RegistrationForm extends Form {
 			import('lib.pkp.classes.user.InterestManager');
 			$interestManager = new InterestManager();
 			$interestsKeywords = $this->getData('interestsKeywords');
-			$interestManager->insertInterests($userId, isset($interestsKeywords) ? $interestsKeywords : array() , $this->getData('interests'));
+			$interestManager->insertInterests($userId, $interestsKeywords);
 
 			$sessionManager =& SessionManager::getManager();
 			$session =& $sessionManager->getUserSession();
