@@ -51,7 +51,7 @@ class PreparedEmailsGridRow extends GridRow {
 				$this->addAction(
 					new LinkAction(
 						'deleteEmail',
-						new ConfirmationModal(
+						new RemoteActionConfirmationModal(
 							__('manager.emails.confirmDelete'), null,
 							$router->url($request, null, 'grid.settings.preparedEmails.PreparedEmailsGridHandler',
 								'deleteCustomEmail', null, array('emailKey' => $rowId))
@@ -67,7 +67,7 @@ class PreparedEmailsGridRow extends GridRow {
 						$this->addAction(
 							new LinkAction(
 								'disableEmail',
-								new ConfirmationModal(
+								new RemoteActionConfirmationModal(
 									__('manager.emails.disable.message'), null,
 									$router->url($request, null, 'grid.settings.preparedEmails.PreparedEmailsGridHandler',
 										'disableEmail', null, array('emailKey' => $rowId))
@@ -80,7 +80,7 @@ class PreparedEmailsGridRow extends GridRow {
 						$this->addAction(
 							new LinkAction(
 								'enableEmail',
-								new ConfirmationModal(
+								new RemoteActionConfirmationModal(
 									__('manager.emails.enable.message'), null,
 									$router->url($request, null, 'grid.settings.preparedEmails.PreparedEmailsGridHandler',
 										'enableEmail', null, array('emailKey' => $rowId))
@@ -98,7 +98,7 @@ class PreparedEmailsGridRow extends GridRow {
 				$this->addAction(
 					new LinkAction(
 						'resetEmail',
-						new ConfirmationModal(
+						new RemoteActionConfirmationModal(
 							__('manager.emails.reset.message'), null,
 							$router->url($request, null, 'grid.settings.preparedEmails.PreparedEmailsGridHandler',
 								'resetEmail', null, array('emailKey' => $rowId))

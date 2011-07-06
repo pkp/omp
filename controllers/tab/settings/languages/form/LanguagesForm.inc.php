@@ -169,13 +169,13 @@ class LanguagesForm extends PressSettingsForm {
 	 */
 	function _getLinkActions($request, $availableLocales) {
 		$router =& $request->getRouter();
-		import('lib.pkp.classes.linkAction.request.ConfirmationModal');
+		import('lib.pkp.classes.linkAction.request.RemoteActionConfirmationModal');
 
 		$reloadDefaultsLinkAction = array();
 
 		foreach ($availableLocales as $localeKey => $localeName) {
 			$params = array('localeToLoad' => $localeKey);
-			$confirmationModal = new ConfirmationModal(
+			$confirmationModal = new RemoteActionConfirmationModal(
 				__('manager.language.confirmDefaultSettingsOverwrite'),
 				null,
 				$router->url($request, null, null, 'reloadLocalizedDefaultSettings', null, $params)

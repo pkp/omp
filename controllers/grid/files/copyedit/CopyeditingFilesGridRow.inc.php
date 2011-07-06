@@ -65,10 +65,10 @@ class CopyeditingFilesGridRow extends GridRow {
 				'fileId' => $copyeditedFileId
 			);
 
-			import('lib.pkp.classes.linkAction.request.ConfirmationModal');
+			import('lib.pkp.classes.linkAction.request.RemoteActionConfirmationModal');
 			$this->addAction(new LinkAction(
 									'deleteSignoff',
-									new ConfirmationModal(
+									new RemoteActionConfirmationModal(
 											__('common.confirmDelete'), null,
 											$router->url($request, null, null, 'deleteSignoff', null, $actionArgs)
 									  ),

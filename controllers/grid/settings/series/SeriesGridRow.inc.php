@@ -58,11 +58,11 @@ class SeriesGridRow extends GridRow {
 					'edit')
 			);
 
-			import('lib.pkp.classes.linkAction.request.ConfirmationModal');
+			import('lib.pkp.classes.linkAction.request.RemoteActionConfirmationModal');
 			$this->addAction(
 				new LinkAction(
 					'deleteSeries',
-					new ConfirmationModal(
+					new RemoteActionConfirmationModal(
 						__('common.confirmDelete'),
 						__('grid.action.delete'),
 						$router->url($request, null, null, 'deleteSeries', null, $actionArgs)),

@@ -52,8 +52,8 @@ class UserGroupGridRow extends GridRow {
 			);
 			$this->addAction($editUserGroupLinkAction);
 
-			import('lib.pkp.classes.linkAction.request.ConfirmationModal');
-			$confirmationModal = new ConfirmationModal(
+			import('lib.pkp.classes.linkAction.request.RemoteActionConfirmationModal');
+			$confirmationModal = new RemoteActionConfirmationModal(
 				__('settings.roles.removeText'),
 				null,
 				$router->url($request, null, null, 'removeUserGroup', null, $actionArgs)

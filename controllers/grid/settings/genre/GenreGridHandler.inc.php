@@ -68,11 +68,11 @@ class GenreGridHandler extends SetupGridHandler {
 				'add')
 		);
 
-		import('lib.pkp.classes.linkAction.request.ConfirmationModal');
+		import('lib.pkp.classes.linkAction.request.RemoteActionConfirmationModal');
 		$this->addAction(
 			new LinkAction(
 				'restoreGenres',
-				new ConfirmationModal(
+				new RemoteActionConfirmationModal(
 					__('grid.action.restoreDefaults'),
 					null,
 					$router->url($request, null, null, 'restoreGenres', null, $actionArgs)),

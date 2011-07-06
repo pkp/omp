@@ -67,12 +67,12 @@ class PreparedEmailsGridHandler extends GridHandler {
 
 		// Grid actions
 		import('lib.pkp.classes.linkAction.LinkAction');
-		import('lib.pkp.classes.linkAction.request.ConfirmationModal');
+		import('lib.pkp.classes.linkAction.request.RemoteActionConfirmationModal');
 		$router =& $request->getRouter();
 		$this->addAction(
 			new LinkAction(
 				'resetAll',
-				new ConfirmationModal(
+				new RemoteActionConfirmationModal(
 					__('manager.emails.resetAll.message'), null,
 					$router->url($request, null,
 						'grid.settings.preparedEmails.PreparedEmailsGridHandler', 'resetAllEmails')

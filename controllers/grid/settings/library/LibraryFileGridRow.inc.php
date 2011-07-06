@@ -16,7 +16,7 @@ import('lib.pkp.classes.controllers.grid.GridRow');
 
 // Link action & modal classes
 import('lib.pkp.classes.linkAction.request.AjaxModal');
-import('lib.pkp.classes.linkAction.request.ConfirmationModal');
+import('lib.pkp.classes.linkAction.request.RemoteActionConfirmationModal');
 
 class LibraryFileGridRow extends GridRow {
 	/** @var $fileType int LIBRARY_FILE_TYPE_... */
@@ -83,7 +83,7 @@ class LibraryFileGridRow extends GridRow {
 			$this->addAction(
 				new LinkAction(
 					'deleteFile',
-					new ConfirmationModal(
+					new RemoteActionConfirmationModal(
 						__('common.confirmDelete'), null,
 						$router->url($request, null, null, 'deleteFile', null, $actionArgs)
 					),

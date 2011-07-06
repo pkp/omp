@@ -262,9 +262,9 @@ class AppearanceForm extends PressSettingsForm {
 	 */
 	function &_getDeleteFileLinkAction($settingName, $request) {
 		$router =& $request->getRouter();
-		import('lib.pkp.classes.linkAction.request.ConfirmationModal');
+		import('lib.pkp.classes.linkAction.request.RemoteActionConfirmationModal');
 
-		$confirmationModal = new ConfirmationModal(
+		$confirmationModal = new RemtoeActionConfirmationModal(
 			__('common.confirmDelete'), null,
 			$router->url(
 				$request, null, null, 'deleteFile', null, array(

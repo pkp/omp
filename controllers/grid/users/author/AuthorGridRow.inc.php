@@ -65,11 +65,11 @@ class AuthorGridRow extends GridRow {
 				)
 			);
 
-			import('lib.pkp.classes.linkAction.request.ConfirmationModal');
+			import('lib.pkp.classes.linkAction.request.RemoteActionConfirmationModal');
 			$this->addAction(
 				new LinkAction(
 					'deleteAuthor',
-					new ConfirmationModal(
+					new RemoteActionConfirmationModal(
 						__('common.confirmDelete'),
 						null,
 						$router->url($request, null, null, 'deleteAuthor', null, $actionArgs)
