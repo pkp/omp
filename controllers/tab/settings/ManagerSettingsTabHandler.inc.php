@@ -64,11 +64,4 @@ class ManagerSettingsTabHandler extends SettingsTabHandler {
 		// Load handler specific translations.
 		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_MANAGER, LOCALE_COMPONENT_OMP_MANAGER));
 	}
-
-	/*/**
-	 * @see SettingsTabHandler::showTab()
-
-	function showTab($args, $request) {
-
-	}*/
 }
