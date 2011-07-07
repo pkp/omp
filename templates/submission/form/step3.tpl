@@ -59,11 +59,9 @@
 		{load_url_in_div id="chaptersGridContainer" url="$chaptersGridUrl"}
 	{/if}
 
-	{include file="linkAction/buttonConfirmationLinkAction.tpl" buttonSelector="#submitButton" dialogText="submission.confirmSubmit"}
-	<p><input id="submitButton" type="submit" value="{translate key="submission.submit.finishSubmission"}" class="button defaultButton" /> <input id="cancelForm" type="button" value="{translate key="common.cancel"}" class="button" /></p>
+	{fbvFormButtons id="step2Buttons" submitText="submission.submit.finishSubmission" confirmSubmit="submission.confirmSubmit"}
 
 	<p><span class="formRequired">{translate key="common.requiredField"}</span></p>
-
 </form>
 </div>
 {include file="common/footer.tpl"}

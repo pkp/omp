@@ -529,6 +529,16 @@ body {
   opacity:0;
 }
 .pkp_form .pkp_form_hidden { display:none !important; }
+.pkp_form .formButtons {
+  line-height:30px;
+  margin:0 0 15px;
+  overflow:hidden;
+  padding:0 20px;
+  vertical-align:middle;
+}
+.pkp_form .formButtons .submitFormButton { float:right; }
+.pkp_form .formButtons .cancelFormButton { float:left; }
+.pkp_form .formButtons div.clear { clear:both; }
 table.pkp_listing td { padding:0.25em 1.5em 0.25em 0.5em; }
 table.pkp_listing tr.heading td, table.pkp_listing td.heading {
   font-size:0.85em;
