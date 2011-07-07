@@ -10,12 +10,16 @@
  * @ingroup controllers_tab_settings
  *
  * @brief Handle AJAX operations for tabs on press manangement settings pages.
+ * Implements the wizard mode, to let tabs show basic or advanced settings.
  */
 
 // Import the base Handler.
 import('controllers.tab.settings.SettingsTabHandler');
 
 class ManagerSettingsTabHandler extends SettingsTabHandler {
+
+	/** @var boolean */
+	var $_wizardMode;
 
 	/**
 	 * Constructor
@@ -27,15 +31,44 @@ class ManagerSettingsTabHandler extends SettingsTabHandler {
 
 
 	//
+	// Getters and Setters
+	//
+	/**
+	 * Get if the current tab is in wizard mode.
+	 * @return boolean
+	 */
+	function getWizardMode() {
+		return $this->_wizardMode;
+	}
+
+	/**
+	 * Set if the current tab is in wizard mode.
+	 * @param $wizardMode boolean
+	 */
+	function setWizardMode($wizardMode) {
+		$this->_wizardMode = $wizardMode;
+	}
+
+
+	//
 	// Extended methods from SettingsTabHandler
 	//
 	/**
-	 * @see PKPHandler::initialize()
+	 * @see SettingsTabHandler::initialize()
 	 */
 	function initialize(&$request, $args = null) {
+		$this->setWizardMode($request->getUserVar('wizardMode'));
+
 		parent::initialize($request, $args);
 
-		// Load grid-specific translations
+		// Load handler specific translations.
 		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_MANAGER, LOCALE_COMPONENT_OMP_MANAGER));
 	}
+
+	/*/**
+	 * @see SettingsTabHandler::showTab()
+
+	function showTab($args, $request) {
+
+	}*/
 }
