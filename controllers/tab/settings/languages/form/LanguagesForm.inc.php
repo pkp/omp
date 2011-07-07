@@ -30,7 +30,9 @@ class LanguagesForm extends PressSettingsForm {
 			'supportedFormLocales' => 'object'
 		);
 
-		$site =& Request::getSite();
+		$siteDao = DAORegistry::getDAO('SiteDAO');
+		$site =& $siteDao->getSite();
+
 		$this->setAvailableLocales($site->getSupportedLocales());
 
 		$localeCheck = create_function('$locale,$availableLocales', 'return in_array($locale,$availableLocales);');
