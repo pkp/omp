@@ -100,7 +100,8 @@ class WebsiteSettingsTabHandler extends ManagerSettingsTabHandler {
 				return DAO::getDataChangedEvent($settingName);
 			}
 		}
-		return new JSONMessage(false, Locale::translate('common.uploadFailed'));
+		$json = new JSONMessage(false, Locale::translate('common.invalidFileType'));
+		return $json->getString();
 	}
 
 	/**

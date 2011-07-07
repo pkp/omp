@@ -118,7 +118,8 @@ class AdminSettingsTabHandler extends SettingsTabHandler {
 				return DAO::getDataChangedEvent($settingName);
 			}
 		}
-		return new JSONMessage(false);
+		$json = new JSONMessage(false, Locale::translate('common.invalidFileType'));
+		return $json->getString();
 	}
 
 	/**
