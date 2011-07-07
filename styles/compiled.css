@@ -391,7 +391,7 @@ body {
   padding:10px 5px;
 }
 .pkp_form legend { font-size:110%; }
-.pkp_form div {
+.pkp_form div.section {
   clear:left;
   margin-bottom:15px;
 }
