@@ -11,14 +11,11 @@
 {include file="common/header.tpl"}
 {/strip}
 
-<h3>{translate key="manager.managementPages"}</h3>
-
 <ul class="plain">
 	{if $announcementsEnabled}
 		<li>&#187; <a href="{url op="announcements"}">{translate key="manager.announcements"}</a></li>
 	{/if}
 	<li>&#187; <a href="{url op="files"}">{translate key="manager.filesBrowser"}</a></li>
-	<li>&#187; <a href="{url op="groups"}">{translate key="manager.groups"}</a></li>
 	<li>&#187; <a href="{url op="importexport"}">{translate key="manager.importExport"}</a></li>
 	{call_hook name="Templates::Manager::Index::ManagementPages"}
 </ul>
