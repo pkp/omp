@@ -62,14 +62,8 @@
 	{/fbvFormSection}
 
 	<!-- Buttons -->
-	{include file="form/formButtons.tpl" submitText="common.saveAndContinue"}
-
-{* TODO: Add this to cancel button *}
-{*	<input type="button" value="{translate key="common.cancel"}" class="button"*}
-{*		   onclick="{if $monographId}confirmAction('{url page="dashboard" op="status"}', '{translate|escape:"jsparam" key="submission.submit.cancelSubmission"}'){else}document.location.href='{url page="dashboard" op="status" escape=false}'{/if}"/>*}
-
+	{fbvFormButtons submitText="common.saveAndContinue" hideCancel=true}
 {/fbvFormArea}
 
 </form>
-</div>
 {include file="common/footer.tpl"}
