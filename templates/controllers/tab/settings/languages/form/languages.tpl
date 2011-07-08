@@ -54,7 +54,7 @@
 			{/fbvFormSection}
 		{/fbvFormArea}
 		<p><span class="formRequired">{translate key="common.requiredField"}</span></p>
-		{include file="form/formButtons.tpl" submitText="common.save"}
+		{fbvFormButtons id="languagesFormSubmit" submitText="common.save" hideCancel=true}
 	{else}
 		<div class="separator"></div>
 		<p>{translate key="manager.languages.noneAvailable"}</p>

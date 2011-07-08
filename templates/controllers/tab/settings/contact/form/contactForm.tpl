@@ -65,5 +65,5 @@
 	</div>
 
 	<p><span class="formRequired">{translate key="common.requiredField"}</span></p>
-	{include file="form/formButtons.tpl" submitText="common.save"}
+	{fbvFormButtons id="contactFormSubmit" submitText="common.save" hideCancel=true}
 </form>

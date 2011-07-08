@@ -159,5 +159,5 @@
 		{/fbvFormArea}
 	</div>
 
-	{include file="form/formButtons.tpl" submitText="common.save"}
+	{fbvFormButtons id="appearanceFormSubmit" submitText="common.save" hideCancel=true}
 </form>

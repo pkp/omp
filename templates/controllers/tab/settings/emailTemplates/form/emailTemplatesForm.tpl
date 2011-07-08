@@ -41,5 +41,5 @@
 		{/fbvFormSection}
 	{/fbvFormArea}
 
-	{include file="form/formButtons.tpl" submitText="common.save"}
+	{fbvFormButtons id="emailTemplatesFormSubmit" submitText="common.save" hideCancel=true}
 </form>

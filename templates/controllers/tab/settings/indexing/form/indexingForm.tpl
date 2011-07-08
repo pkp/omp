@@ -52,5 +52,5 @@
 		<p>{translate key="manager.setup.registerPressForIndexingDescription" siteUrl=$oaiSiteUrl oaiUrl=$oaiUrl}</p>
 	</div>
 
-	{include file="form/formButtons.tpl" submitText="common.save"}
+	{fbvFormButtons id="indexingFormSubmit" submitText="common.save" hideCancel=true}
 </form>

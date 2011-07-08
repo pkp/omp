@@ -42,5 +42,5 @@
 	{url|assign:contributorGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.contributor.ContributorGridHandler" op="fetchGrid"}
 	{load_url_in_div id="contributorGridDiv" url=$contributorGridUrl}
 
-	{include file="form/formButtons.tpl" submitText="common.save"}
+	{fbvFormButtons id="affiliationFormSubmit" submitText="common.save" hideCancel=true}
 </form>

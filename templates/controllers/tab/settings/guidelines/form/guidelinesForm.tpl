@@ -27,5 +27,5 @@
 		{/fbvFormSection}
 	{/fbvFormArea}
 
-	{include file="form/formButtons.tpl" submitText="common.save"}
+	{fbvFormButtons id="guidelinesFormSubmit" submitText="common.save" hideCancel=true}
 </form>

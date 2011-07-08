@@ -32,5 +32,5 @@
 		{/fbvFormSection}
 	{/fbvFormArea}
 
-	{include file="form/formButtons.tpl" submitText="common.save"}
+	{fbvFormButtons id="pressIdentificationFormSubmit" submitText="common.save" hideCancel=true}
 </form>
