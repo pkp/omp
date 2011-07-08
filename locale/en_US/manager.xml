@@ -363,8 +363,6 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.openAccessPolicyDescription">If the press will provide readers with immediate free access to all published content, enter an Open Access Policy which will appear in About the Press under Policies.</message>
 	<message key="manager.setup.pageNumberIdentifier">Page Number Option</message>
 	<message key="manager.setup.peerReviewDescription">Outline the press's peer review policy and processes for readers and authors, including the number of reviewers typically used in reviewing a submission, the criteria by which reviewers are asked to judge submissions, typical time taken to conduct the reviews, and the principles for recruiting reviewers. This will appear in About the Press.</message>
-	<message key="manager.setup.peerReviewPolicy">Peer Review</message>
-	<message key="manager.setup.peerReviewPolicy2">Peer review policy</message>
 	<message key="manager.setup.policies">Policies</message>
 	<message key="manager.setup.policies.description">Focus, peer review, sections, privacy, security, and additional about items.</message>
 	<message key="manager.setup.pressDescription">Press Description</message>
