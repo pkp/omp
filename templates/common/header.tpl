@@ -35,9 +35,6 @@
 		<link rel="stylesheet" href="{$cssUrl}" type="text/css" />
 	{/foreach}
 
-	{* FIXME: This should eventually be moved into a theme plugin. *}
-	<link rel="stylesheet" type="text/css" media="all" href="{$baseUrl}/lib/pkp/styles/themes/default/theme.css" />
-
 	<!-- Base Jquery -->
 	{if $allowCDN}
 		<script src="http://www.google.com/jsapi" type="text/javascript"></script>
@@ -89,6 +86,9 @@
 
 	<!-- JavaScript initialization (FIXME: bug #6442) -->
 	{include file="common/javascriptInit.tpl"}
+
+	{* FIXME: This should eventually be moved into a theme plugin. *}
+	<link rel="stylesheet" type="text/css" media="all" href="{$baseUrl}/lib/pkp/styles/themes/default/theme.css" />
 
 	{$additionalHeadData}
 </head>
