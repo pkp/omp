@@ -132,13 +132,13 @@
 				</div>
 				<div class="unit size4of5 lastUnit">
 					<ul class="pkp_helpers_flatlist pkp_structure_breadcrumb align_left">
-						<li class="no_bullet"><a href="#">Breadcrumb Link</a></li>
-						<li><a href="#">Breadcrumb Link</a></li>
-						<li>Breadcrumb Link</li>
+						<li class="no_bullet"><a href="#">{translate key="Breadcrumb Link"}</a></li>
+						<li><a href="#">{translate key="Breadcrumb Link"}</a></li>
+						<li>{translate key="Breadcrumb Link"}</li>
 					</ul>
 					<div class="pkp_structure_search pkp_helpers_align_right">
-						<input type="text" value="Search..." />
-						<button class="go">Go</button>
+						<input type="text" value="{translate key="common.search"}..." />
+						<button class="go">{translate key="common.go"}</button>
 					</div>
 				</div>
 			{if $leftSidebarCode}
