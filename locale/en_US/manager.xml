@@ -170,7 +170,6 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="settings.libraryFiles.nameRequired">A name is required for this library file.</message>
 
 	<!-- Access and Security settings  page -->
-	<message key="settings.access"><![CDATA[Access &amp; Security]]></message>
 	<message key="settings.roles.roleName">Role Name</message>
 	<message key="settings.roles.roleAbbrev">Role Abbreviation</message>
 	<message key="settings.roles.assignedStages">Assigned Stages</message>
@@ -194,11 +193,9 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.website.homepage">Homepage</message>
 	<message key="manager.website.appearance">Appearance</message>
 	<message key="manager.website.languages">Languages</message>
-	<message key="manager.website.website">Website</message>
 	<message key="manager.website.imageFileRequired">An image file is required. Please ensure that you have chosen and uploaded a file.</message>
 	
 	<!-- Publication Process settings -->
-	<message key="manager.publication.publicationProcess">Publication Process</message>
 	<message key="manager.publication.general">General Settings</message>
 	<message key="manager.publication.submissionStage">Submission Stage</message>
 	<message key="manager.publication.reviewStage">Review Stage</message>
@@ -207,7 +204,6 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.publication.preparedEmails">Prepared Emails</message>
 	
 	<!-- Distribution Process settings -->
-	<message key="manager.distribution.distributionProcess">Distribution Process</message>
 	<message key="manager.distribution.indexing">Indexing</message>
 	
 	<!-- System setup -->

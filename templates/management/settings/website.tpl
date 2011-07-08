@@ -8,7 +8,7 @@
  *}
 
 {strip}
-{assign var="pageTitle" value="manager.website.website"}
+{assign var="pageTitle" value="navigation.website"}
 {include file="common/header.tpl"}
 {/strip}
 
