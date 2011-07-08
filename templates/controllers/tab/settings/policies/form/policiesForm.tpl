@@ -19,70 +19,36 @@
 	{include file="common/formErrors.tpl"}
 	{include file="controllers/tab/settings/wizardMode.tpl wizardMode=$wizardMode}
 
-	<h3>{translate key="manager.setup.focusAndScopeOfPress"}</h3>
-
-	<p>{translate key="manager.setup.focusAndScopeDescription"}</p>
-
-	{fbvFormArea id="focusAndScopeDescription"}
-		{fbvFormSection}
+	{fbvFormArea id="policiesFormArea"}
+		{fbvFormSection title="manager.setup.focusAndScopeOfPress"}
+			<p>{translate key="manager.setup.focusAndScopeDescription"}</p>
 			{fbvElement type="textarea" multilingual=true name="focusScopeDesc" id="focusScopeDesc" value=$focusScopeDesc size=$fbvStyles.size.MEDIUM  rich=true}
 		{/fbvFormSection}
-	{/fbvFormArea}
-
-	<div class="separator"></div>
-
-	<h3>{translate key="manager.setup.authorCopyrightNotice"}</h3>
-
-	{url|assign:"sampleCopyrightWordingUrl" page="information" op="sampleCopyrightWording"}
-	<p>{translate key="manager.setup.authorCopyrightNoticeDescription" sampleCopyrightWordingUrl=$sampleCopyrightWordingUrl}</p>
-
-	{fbvFormArea id="authorCopyrightNotice"}
-		{fbvFormSection}
+		{fbvFormSection title="manager.setup.authorCopyrightNotice"}
+			{url|assign:"sampleCopyrightWordingUrl" page="information" op="sampleCopyrightWording"}
+			<p>{translate key="manager.setup.authorCopyrightNoticeDescription" sampleCopyrightWordingUrl=$sampleCopyrightWordingUrl}</p>
 			{fbvElement type="textarea" multilingual="true" name="copyrightNotice" id="copyrightNotice" value=$copyrightNotice size=$fbvStyles.size.MEDIUM}
 		{/fbvFormSection}
-		{fbvFormSection}
+		{fbvFormSection list=true}
 			{fbvElement type="checkbox" id="includeCreativeCommons" value="1" checked=$includeCreativeCommons label="manager.setup.includeCreativeCommons"}
 			{fbvElement type="checkbox" id="copyrightNoticeAgree" value="1" checked=$copyrightNoticeAgree label="manager.setup.authorCopyrightNoticeAgree"}
 		{/fbvFormSection}
-	{/fbvFormArea}
-
-	<div class="separator"></div>
-
-	<h3>{translate key="manager.setup.privacyStatement"}</h3>
-
-	{fbvFormArea id="privacyStatementContainer"}
-		{fbvFormSection}
+		{fbvFormSection title="manager.setup.privacyStatement"}
 			{fbvElement type="textarea" multilingual="true" name="privacyStatement" id="privacyStatement" value=$privacyStatement size=$fbvStyles.size.MEDIUM}
 		{/fbvFormSection}
-	{/fbvFormArea}
 
-	<div class="separator"></div>
-
-	<div {if $wizardMode}class="pkp_form_hidden"{/if}>
-		<h3>{translate key="manager.setup.openAccessPolicy"}</h3>
-
-		<p>{translate key="manager.setup.openAccessPolicyDescription"}</p>
-
-		{fbvFormArea id="openAccessPolicyContainer"}
-			{fbvFormSection}
+		<div {if $wizardMode}class="pkp_form_hidden"{/if}>
+			{fbvFormSection title="manager.setup.openAccessPolicy"}
+				<p>{translate key="manager.setup.openAccessPolicyDescription"}</p>
 				{fbvElement type="textarea" multilingual="true" name="openAccessPolicy" id="openAccessPolicy" value=$openAccessPolicy size=$fbvStyles.size.MEDIUM  rich=true}
+				<p>{translate key="manager.setup.securitySettingsDescription"}</p>
 			{/fbvFormSection}
-		{/fbvFormArea}
-
-		<p>{translate key="manager.setup.securitySettingsDescription"}</p>
-
-		<div class="separator"></div>
-
-		<h3>{translate key="manager.setup.peerReviewPolicy"}</h3>
-
-		<p>{translate key="manager.setup.peerReviewDescription"}</p>
-
-		{fbvFormArea id="peerReviewPolicy"}
 			{fbvFormSection title="manager.setup.reviewPolicy"}
+				<p>{translate key="manager.setup.peerReviewDescription"}</p>
 				{fbvElement type="textarea" multilingual="true" name="reviewPolicy" id="reviewPolicy" value=$reviewPolicy size=$fbvStyles.size.MEDIUM}
 			{/fbvFormSection}
-		{/fbvFormArea}
-	</div>
+		</div>
+	{/fbvFormArea}
 
 	{fbvFormButtons id="policiesFormSubmit" submitText="common.save" hideCancel=true}
 </form>

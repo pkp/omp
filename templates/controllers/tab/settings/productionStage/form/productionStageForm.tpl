@@ -18,14 +18,10 @@
 <form class="pkp_form pkp_controllers_form" id="productionStageForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.PublicationSettingsTabHandler" op="saveFormData" tab="productionStage"}">
 	{include file="common/formErrors.tpl"}
 
-	<h3>{translate key="manager.setup.productionLibrary"}</h3>
-
 	{url|assign:productionLibraryGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.library.LibraryFileGridHandler" op="fetchGrid" fileType=$smarty.const.LIBRARY_FILE_TYPE_PRODUCTION}
 	{load_url_in_div id="productionLibraryGridDiv" url=$productionLibraryGridUrl}
 
 	<div class="separator"></div>
-
-	<h3>{translate key="manager.setup.publicationFormats"}</h3>
 
 	<p>{translate key="manager.setup.publicationFormatsDescription"}</p>
 
@@ -33,8 +29,6 @@
 	{load_url_in_div id="publicationFormatsContainer" url=$publicationFormatsUrl}
 
 	<div class="separator"></div>
-
-	<h3>{translate key="manager.setup.productionTemplates"}</h3>
 
 	{url|assign:productionTemplateLibraryUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.library.LibraryFileGridHandler" op="fetchGrid" fileType=$smarty.const.LIBRARY_FILE_TYPE_PRODUCTION_TEMPLATE}
 	{load_url_in_div id="productionTemplateLibraryDiv" url=$productionTemplateLibraryUrl}

@@ -20,13 +20,9 @@
 	<h3>{translate key="manager.setup.siteAccess"}</h3>
 
 	{fbvFormArea id="siteAccess"}
-		{fbvFormSection}
+		{fbvFormSection list=true}
 			{fbvElement type="checkbox" id="restrictSiteAccess" value="1" checked=$restrictSiteAccess label="manager.setup.restrictSiteAccess"}
-		{/fbvFormSection}
-		{fbvFormSection}
 			{fbvElement type="checkbox" id="restrictMonographAccess" value="1" checked=$restrictMonographAccess label="manager.setup.restrictMonographAccess"}
-		{/fbvFormSection}
-		{fbvFormSection}
 			{fbvElement type="checkbox" id="showGalleyLinks" value="1" checked=$showGalleyLinks label="manager.setup.showGalleyLinksDescription"}
 		{/fbvFormSection}
 	{/fbvFormArea}
@@ -34,7 +30,7 @@
 	<h3>{translate key="manager.setup.userRegistration"}</h3>
 
 	{fbvFormArea id="userRegistration"}
-		{fbvFormSection}
+		{fbvFormSection list=true}
 			{fbvElement type="radio" id="disableUserReg-0" name="disableUserReg" value="0" checked=!$disableUserReg label="manager.setup.enableUserRegistration"}
 			<div style="padding-left: 20px;">
 				{fbvElement type="checkbox" id="allowRegReader" value="1" checked=$allowRegReader disabled=$disableUserReg label="manager.setup.enableUserRegistration.reader"}

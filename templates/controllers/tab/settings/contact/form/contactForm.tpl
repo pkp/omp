@@ -22,7 +22,7 @@
 	<h3>{translate key="manager.setup.principalContact"}</h3>
 	<p>{translate key="manager.setup.principalContactDescription"}</p>
 
-	{fbvFormArea id="principalContact"}
+	{fbvFormArea id="contactFormArea"}
 		{fbvFormSection title="user.name" required=true for="contactName"}
 			{fbvElement type="text" id="contactName" value=$contactName maxlength="60"}
 		{/fbvFormSection}
@@ -44,14 +44,10 @@
 		{fbvFormSection title="common.mailingAddress" for="contactMailingAddress"}
 			{fbvElement type="textarea" multilingual=true name="contactMailingAddress" id="contactMailingAddress" value=$contactMailingAddress size=$fbvStyles.size.SMALL  rich=true}
 		{/fbvFormSection}
-	{/fbvFormArea}
 
-	<div {if $wizardMode}class="pkp_form_hidden"{/if}>
-		<h3>{translate key="manager.setup.technicalSupportContact"}</h3>
-
-		<p>{translate key="manager.setup.technicalSupportContactDescription"}</p>
-
-		{fbvFormArea id="technicalSupportContact"}
+		<div {if $wizardMode}class="pkp_form_hidden"{/if}>
+			<h3>{translate key="manager.setup.technicalSupportContact"}</h3>
+			<p>{translate key="manager.setup.technicalSupportContactDescription"}</p>
 			{fbvFormSection title="user.name" for="supportName" required=true}
 				{fbvElement type="text" id="supportName" value=$supportName maxlength="60"}
 			{/fbvFormSection}
@@ -61,8 +57,8 @@
 			{fbvFormSection title="user.phone" for="supportPhone"}
 				{fbvElement type="text" id="supportPhone" value=$supportPhone maxlength="24"}
 			{/fbvFormSection}
-		{/fbvFormArea}
-	</div>
+		</div>
+	{/fbvFormArea}
 
 	<p><span class="formRequired">{translate key="common.requiredField"}</span></p>
 	{fbvFormButtons id="contactFormSubmit" submitText="common.save" hideCancel=true}

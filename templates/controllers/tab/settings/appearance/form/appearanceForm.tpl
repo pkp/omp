@@ -79,7 +79,6 @@
 
 	<h3>{translate key="manager.setup.pressLayout"}</h3>
 	<p>{translate key="manager.setup.pressLayoutDescription"}</p>
-
 	{fbvFormArea id="pressLayout"}
 		{fbvFormSection title="manager.setup.pressTheme"}
 			{if !$pressTheme}

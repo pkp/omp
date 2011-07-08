@@ -18,8 +18,6 @@
 <form class="pkp_form pkp_controllers_form" id="submissionStageForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.PublicationSettingsTabHandler" op="saveFormData" tab="submissionStage"}">
 	{include file="common/formErrors.tpl"}
 
-	<h3>{translate key="manager.setup.submissionLibrary"}</h3>
-
 	{url|assign:submissionLibraryUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.library.LibraryFileGridHandler" op="fetchGrid" fileType=$smarty.const.LIBRARY_FILE_TYPE_SUBMISSION}
 	{load_url_in_div id="submissionLibraryGridDiv" url=$submissionLibraryUrl}
 

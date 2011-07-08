@@ -19,8 +19,6 @@
 	{include file="common/formErrors.tpl"}
 	{include file="controllers/tab/settings/wizardMode.tpl wizardMode=$wizardMode}
 
-	<h3>{translate key="manager.setup.reviewLibrary"}</h3>
-
 	{url|assign:reviewLibraryGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.library.LibraryFileGridHandler" op="fetchGrid" fileType=$smarty.const.LIBRARY_FILE_TYPE_REVIEW}
 	{load_url_in_div id="reviewLibraryGridDiv" url=$reviewLibraryGridUrl}
 
@@ -30,25 +28,11 @@
 	<p>{translate key="manager.setup.reviewProcessDescription"}</p>
 
 	{fbvFormArea id="reviewProcess"}
-		{fbvFormSection}
+		{fbvFormSection list=true}
 			{fbvElement type="radio" name="mailSubmissionsToReviewers" id="mailSubmissionsToReviewers-0" value="0" checked=!$mailSubmissionsToReviewers label="manager.setup.reviewProcessStandard"}
 			{fbvElement type="radio" name="mailSubmissionsToReviewers" id="mailSubmissionsToReviewers-1" value="1" checked=$mailSubmissionsToReviewers label="manager.setup.reviewProcessEmail"}
 		{/fbvFormSection}
 	{/fbvFormArea}
-
-	<!-- Create a function in form handler for this functionality. See *6654*  -->
-	<script type="text/javascript">
-		{literal}
-		<!--
-			function toggleAllowSetInviteReminder(form) {
-				form.numDaysBeforeInviteReminder.disabled = !form.numDaysBeforeInviteReminder.disabled;
-			}
-			function toggleAllowSetSubmitReminder(form) {
-				form.numDaysBeforeSubmitReminder.disabled = !form.numDaysBeforeSubmitReminder.disabled;
-			}
-		// -->
-		{/literal}
-	</script>
 
 	<h3>{translate key="manager.setup.reviewOptions"}</h3>
 	<p><strong>{translate key="manager.setup.reviewOptions.reviewTime"}</strong></p>
@@ -64,10 +48,22 @@
 			{fbvElement type="text" name="numWeeksPerReview" id="numWeeksPerReview" value=$numWeeksPerReview size=$fbvStyles.size.SMALL}
 			<span>{translate key="common.weeks"}</span>
 		{/fbvFormSection}
+		<p>{translate key="common.note"}: {translate key="manager.setup.reviewOptions.noteOnModification"}</p>
 	{/fbvFormArea}
 
-	<p>{translate key="common.note"}: {translate key="manager.setup.reviewOptions.noteOnModification"}</p>
-
+	<!-- Create a function in form handler for this functionality. See *6654*  -->
+	<script type="text/javascript">
+		{literal}
+		<!--
+			function toggleAllowSetInviteReminder(form) {
+				form.numDaysBeforeInviteReminder.disabled = !form.numDaysBeforeInviteReminder.disabled;
+			}
+			function toggleAllowSetSubmitReminder(form) {
+				form.numDaysBeforeSubmitReminder.disabled = !form.numDaysBeforeSubmitReminder.disabled;
+			}
+		// -->
+		{/literal}
+	</script>
 	<p>
 		<strong>{translate key="manager.setup.reviewOptions.reviewerReminders"}</strong><br/>
 		{translate key="manager.setup.reviewOptions.automatedReminders"}:<br/>
@@ -96,22 +92,20 @@
 	</p>
 
 	{fbvFormArea id="reviewProcessDetails"}
-		{fbvFormSection title="manager.setup.reviewOptions.reviewerRatings"}
+		{fbvFormSection title="manager.setup.reviewOptions.reviewerRatings" list=true}
 			{fbvElement type="checkbox" id="rateReviewerOnQuality" value="1" checked=$rateReviewerOnQuality label="manager.setup.reviewOptions.onQuality"}
 		{/fbvFormSection}
-		{fbvFormSection title="manager.setup.reviewOptions.reviewerAccess"}
+		{fbvFormSection title="manager.setup.reviewOptions.reviewerAccess" list=true}
 			{fbvElement type="checkbox" id="reviewerAccessKeysEnabled" value="1" checked=$reviewerAccessKeysEnabled label="manager.setup.reviewOptions.reviewerAccessKeysEnabled"}
-			<span><p>{translate key="manager.setup.reviewOptions.reviewerAccessKeysEnabled.description"}</p></span>
+			<span>{translate key="manager.setup.reviewOptions.reviewerAccessKeysEnabled.description"}</span>
 			{fbvElement type="checkbox" id="restrictReviewerFileAccess" value="1" checked=$restrictReviewerFileAccess label="manager.setup.reviewOptions.restrictReviewerFileAccess"}
 		{/fbvFormSection}
-		{fbvFormSection title="manager.setup.reviewOptions.blindReview"}
+		{fbvFormSection title="manager.setup.reviewOptions.blindReview" list=true}
 			{fbvElement type="checkbox" id="showEnsuringLink" value="1" checked=$showEnsuringLink label="manager.setup.reviewOptions.showEnsuringLink"}
 		{/fbvFormSection}
 	{/fbvFormArea}
 
 	<div class="separator"></div>
-
-	<h3>{translate key="manager.setup.reviewForms"}</h3>
 
 	{url|assign:reviewFormGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.reviewForm.ReviewFormGridHandler" op="fetchGrid"}
 	{load_url_in_div id="reviewFormGridDiv" url=$reviewFormGridUrl}
@@ -119,11 +113,9 @@
 	<div class="separator"></div>
 
 	<div {if $wizardMode}class="pkp_form_hidden"{/if}>
-		<h3>{translate key="manager.setup.reviewGuidelines"}</h3>
-		<p>{translate key="manager.setup.reviewGuidelinesDescription"}</p>
-
 		{fbvFormArea id="review"}
-			{fbvFormSection}
+			{fbvFormSection title="manager.setup.reviewGuidelines"}
+				<p>{translate key="manager.setup.reviewGuidelinesDescription"}</p>
 				{fbvElement type="textarea" multilingual="true" name="reviewGuidelines" id="reviewGuidelines" value=$reviewGuidelines size=$fbvStyles.size.MEDIUM  rich=true}
 			{/fbvFormSection}
 		{/fbvFormArea}
