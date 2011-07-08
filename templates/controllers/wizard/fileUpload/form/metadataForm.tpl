@@ -50,9 +50,9 @@
 		{/if}
 		{fbvFormSection title="common.note"}
 			{if $note}
-				{fbvElement type="textarea" id="note" value=$note->getContents()}
+				{fbvElement type="textarea" id="note" value=$note->getContents() height=$fbvStyles.height.SHORT}
 			{else}
-				{fbvElement type="textarea" id="note"}
+				{fbvElement type="textarea" id="note" height=$fbvStyles.height.SHORT}
 			{/if}
 		{/fbvFormSection}
 	{/fbvFormArea}

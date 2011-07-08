@@ -427,6 +427,9 @@ body {
 }
 .pkp_form .quarter { width:25%; }
 .pkp_form .half { width:48%; }
+.pkp_form .short { height:5em; }
+.pkp_form .medium { height:10em; }
+.pkp_form .tall { height:15em; }
 .pkp_form .req {
   font-weight:bold;
   color:#cc0000;
