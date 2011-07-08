@@ -105,17 +105,19 @@ class AppearanceForm extends PressSettingsForm {
 		// Get all upload form image link actions.
 		$uploadImageLinkActions = array();
 		foreach ($this->getImagesSettingsName() as $settingName => $altText) {
-			$uploadImageLinkActions[$settingName] = $this->_getFileUploadLinkAction($settingName, 'image', $request);
+			$uploadImageLinkActions[$settingName] =& $this->_getFileUploadLinkAction($settingName, 'image', $request);
 		}
 		// Get the css upload link action.
-		$uploadCssLinkAction = $this->_getFileUploadLinkAction('pressStyleSheet', 'css', $request);
+		$uploadCssLinkAction =& $this->_getFileUploadLinkAction('pressStyleSheet', 'css', $request);
 
 		$imagesViews = $this->_renderAllFormImagesViews($request);
 		$cssView = $this->renderFileView('pressStyleSheet', $request);
 
+		$templateMgr =& TemplateManager::getManager();
+		$templateMgr->assign_by_ref('uploadImageLinkActions', $uploadImageLinkActions);
+		$templateMgr->assign_by_ref('uploadCssLinkAction', $uploadCssLinkAction);
+
 		$params = array(
-			'uploadImageLinkActions' => $uploadImageLinkActions,
-			'uploadCssLinkAction' => $uploadCssLinkAction,
 			'imagesViews' => $imagesViews,
 			'pressStyleSheetView' => $cssView,
 			'locale' => Locale::getLocale()
@@ -148,7 +150,7 @@ class AppearanceForm extends PressSettingsForm {
 		// Only render the file view if we have a file.
 		if (is_array($file)) {
 			$templateMgr = TemplateManager::getManager();
-			$deleteLinkAction = $this->_getDeleteFileLinkAction($fileSettingName, $request);
+			$deleteLinkAction =& $this->_getDeleteFileLinkAction($fileSettingName, $request);
 
 			// Get the right template to render the view.
 			$imagesSettingsName = $this->getImagesSettingsName();
@@ -164,7 +166,7 @@ class AppearanceForm extends PressSettingsForm {
 			}
 
 			$templateMgr->assign('file', $file);
-			$templateMgr->assign('deleteLinkAction', $deleteLinkAction);
+			$templateMgr->assign_by_ref('deleteLinkAction', $deleteLinkAction);
 			$templateMgr->assign('fileSettingName', $fileSettingName);
 
 			return $templateMgr->fetch($template);
@@ -230,7 +232,7 @@ class AppearanceForm extends PressSettingsForm {
 	 * @param $request Request
 	 * @return LinkAction
 	 */
-	function _getFileUploadLinkAction($settingName, $fileType, $request) {
+	function &_getFileUploadLinkAction($settingName, $fileType, $request) {
 		$router =& $request->getRouter();
 		import('lib.pkp.classes.linkAction.request.AjaxModal');
 
@@ -258,7 +260,7 @@ class AppearanceForm extends PressSettingsForm {
 	 * @param $request Request
 	 * @return LinkAction
 	 */
-	function _getDeleteFileLinkAction($settingName, $request) {
+	function &_getDeleteFileLinkAction($settingName, $request) {
 		$router =& $request->getRouter();
 		import('lib.pkp.classes.linkAction.request.ConfirmationModal');
 

@@ -52,8 +52,8 @@ class SiteSetupForm extends PKPSiteSettingsForm {
 		$imageSettingName = 'pageHeaderTitleImage';
 
 		// Get link actions.
-		$uploadCssLinkAction = $this->_getFileUploadLinkAction($cssSettingName, 'css', $request);
-		$uploadImageLinkAction = $this->_getFileUploadLinkAction($imageSettingName, 'image', $request);
+		$uploadCssLinkAction =& $this->_getFileUploadLinkAction($cssSettingName, 'css', $request);
+		$uploadImageLinkAction =& $this->_getFileUploadLinkAction($imageSettingName, 'image', $request);
 
 		// Get the files view.
 		$cssView = $this->renderFileView($cssSettingName, $request);
@@ -62,8 +62,8 @@ class SiteSetupForm extends PKPSiteSettingsForm {
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('locale', Locale::getLocale());
 		$templateMgr->assign('siteStyleFileExists', file_exists($siteStyleFilename));
-		$templateMgr->assign('uploadCssLinkAction', $uploadCssLinkAction);
-		$templateMgr->assign('uploadImageLinkAction', $uploadImageLinkAction);
+		$templateMgr->assign_by_ref('uploadCssLinkAction', $uploadCssLinkAction);
+		$templateMgr->assign_by_ref('uploadImageLinkAction', $uploadImageLinkAction);
 		$templateMgr->assign('cssView', $cssView);
 		$templateMgr->assign('imageView', $imageView);
 		$templateMgr->assign('redirectOptions', $presses);
@@ -89,7 +89,7 @@ class SiteSetupForm extends PKPSiteSettingsForm {
 		// Get the files settings that can be uploaded within this form.
 
 		// FIXME Change the way we get the style sheet setting when
-		// it´s implemented in site settings table, like pageHeaderTitleImage.
+		// it's implemented in site settings table, like pageHeaderTitleImage.
 		$siteStyleSheet = null;
 		if (file_exists($siteStyleFilename)) {
 			$siteStyleSheet = array(
@@ -158,7 +158,7 @@ class SiteSetupForm extends PKPSiteSettingsForm {
 		// Only render the file view if we have a file.
 		if (is_array($file)) {
 			$templateMgr = TemplateManager::getManager();
-			$deleteLinkAction = $this->_getDeleteFileLinkAction($fileSettingName, $request);
+			$deleteLinkAction =& $this->_getDeleteFileLinkAction($fileSettingName, $request);
 
 			// Get the right template to render the view.
 			if ($fileSettingName == 'pageHeaderTitleImage') {
@@ -176,7 +176,7 @@ class SiteSetupForm extends PKPSiteSettingsForm {
 
 			$templateMgr->assign('publicFilesDir', $request->getBasePath() . '/' . $publicFileManager->getSiteFilesPath());
 			$templateMgr->assign('file', $file);
-			$templateMgr->assign('deleteLinkAction', $deleteLinkAction);
+			$templateMgr->assign_by_ref('deleteLinkAction', $deleteLinkAction);
 			$templateMgr->assign('fileSettingName', $fileSettingName);
 
 			return $templateMgr->fetch($template);
@@ -227,7 +227,7 @@ class SiteSetupForm extends PKPSiteSettingsForm {
 	 * @param $request Request
 	 * @return LinkAction
 	 */
-	function _getFileUploadLinkAction($settingName, $fileType, $request) {
+	function &_getFileUploadLinkAction($settingName, $fileType, $request) {
 		$router =& $request->getRouter();
 		import('lib.pkp.classes.linkAction.request.AjaxModal');
 
@@ -255,7 +255,7 @@ class SiteSetupForm extends PKPSiteSettingsForm {
 	 * @param $request Request
 	 * @return LinkAction
 	 */
-	function _getDeleteFileLinkAction($settingName, $request) {
+	function &_getDeleteFileLinkAction($settingName, $request) {
 		$router =& $request->getRouter();
 		import('lib.pkp.classes.linkAction.request.ConfirmationModal');
 

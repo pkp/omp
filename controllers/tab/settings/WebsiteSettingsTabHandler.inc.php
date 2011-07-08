@@ -52,7 +52,7 @@ class WebsiteSettingsTabHandler extends ManagerSettingsTabHandler {
 	 * @return string JSON message
 	 */
 	function showFileUploadForm($args, &$request) {
-		$fileUploadForm = $this->_getFileUploadForm($request);
+		$fileUploadForm =& $this->_getFileUploadForm($request);
 		$fileUploadForm->initData($request);
 
 		$json = new JSONMessage(true, $fileUploadForm->fetch($request));
@@ -66,7 +66,7 @@ class WebsiteSettingsTabHandler extends ManagerSettingsTabHandler {
 	 * @return string
 	 */
 	function uploadFile($args, &$request) {
-		$fileUploadForm = $this->_getFileUploadForm($request);
+		$fileUploadForm =& $this->_getFileUploadForm($request);
 		$json = new JSONMessage();
 
 		$temporaryFileId = $fileUploadForm->uploadFile($request);
@@ -90,7 +90,7 @@ class WebsiteSettingsTabHandler extends ManagerSettingsTabHandler {
 	 * @return string
 	 */
 	function saveFile($args, &$request) {
-		$fileUploadForm = $this->_getFileUploadForm($request);
+		$fileUploadForm =& $this->_getFileUploadForm($request);
 		$fileUploadForm->readInputData();
 
 		if ($fileUploadForm->validate()) {
@@ -192,7 +192,7 @@ class WebsiteSettingsTabHandler extends ManagerSettingsTabHandler {
 	 * @param $request Request
 	 * @return Form
 	 */
-	function _getFileUploadForm($request) {
+	function &_getFileUploadForm($request) {
 		$settingName = $request->getUserVar('fileSettingName');
 		$fileType = $request->getUserVar('fileType');
 
