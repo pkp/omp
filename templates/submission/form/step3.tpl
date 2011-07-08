@@ -24,30 +24,25 @@
 	{rdelim});
 </script>
 
-<div class="separator"></div>
 
 <form class="pkp_form" id="submitStep3Form" method="post" action="{url op="saveStep" path=$submitStep}">
 	<input type="hidden" name="monographId" value="{$monographId|escape}" />
 	{include file="common/formErrors.tpl"}
 
-
 	<!--  General Information -->
-	<div id="bookMetadataContainer" style="width: 97%;">
-		<h3>{translate key="submission.submit.generalInformation"}</h3>
-		{fbvFormArea id="generalInformation"}
-			{fbvFormSection title="monograph.title" for="title"}
-				{fbvElement type="text" name="title[$formLocale]" id="title" value=$title[$formLocale] maxlength="255"}
-			{/fbvFormSection}
-			{fbvFormSection title="submission.submit.briefSummary" for="abstract"}
-				{fbvElement type="textarea" name="abstract[$formLocale]" id="abstract" value=$abstract[$formLocale] size=$fbvStyles.size.MEDIUM  rich=true}
-			{/fbvFormSection}
-			{fbvFormSection title="submission.submit.metadata"}
-				{fbvElement type="keyword" id="disciplines" label="search.discipline"} <br />
-				{fbvElement type="keyword" id="keyword" label="common.keywords"} <br />
-				{fbvElement type="keyword" id="agencies" label="submission.supportingAgencies"}
-			{/fbvFormSection}
-		{/fbvFormArea}
-	</div>
+	{fbvFormArea id="generalInformation" title="submission.submit.generalInformation"}
+		{fbvFormSection title="monograph.title" for="title"}
+			{fbvElement type="text" name="title[$formLocale]" id="title" value=$title[$formLocale] maxlength="255"}
+		{/fbvFormSection}
+		{fbvFormSection title="submission.submit.briefSummary" for="abstract"}
+			{fbvElement type="textarea" name="abstract[$formLocale]" id="abstract" value=$abstract[$formLocale]  rich=true}
+		{/fbvFormSection}
+		{fbvFormSection title="submission.submit.metadata"}
+			{fbvElement type="keyword" id="disciplines" label="search.discipline"}
+			{fbvElement type="keyword" id="keyword" label="common.keywords"}
+			{fbvElement type="keyword" id="agencies" label="submission.supportingAgencies"}
+		{/fbvFormSection}
+	{/fbvFormArea}
 
 	<!--  Contributors -->
 	{url|assign:authorGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.users.author.AuthorGridHandler" op="fetchGrid" monographId=$monographId}
@@ -61,8 +56,6 @@
 
 	{fbvFormButtons id="step2Buttons" submitText="submission.submit.finishSubmission" confirmSubmit="submission.confirmSubmit"}
 
-	<p><span class="formRequired">{translate key="common.requiredField"}</span></p>
 </form>
-</div>
 {include file="common/footer.tpl"}
 

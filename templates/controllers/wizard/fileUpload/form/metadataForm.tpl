@@ -35,10 +35,10 @@
 		{/fbvFormSection}
 		{if is_a($submissionFile, 'ArtworkFile')}
 			{fbvFormSection title="grid.artworkFile.caption" inline=true size=$fbvStyles.size.MEDIUM}
-				{fbvElement type="textarea" id="artworkCaption" value=$submissionFile->getCaption()}
+				{fbvElement type="textarea" id="artworkCaption" height=$fbvStyles.height.SHORT value=$submissionFile->getCaption()}
 			{/fbvFormSection}
 			{fbvFormSection title="grid.artworkFile.credit" inline=true size=$fbvStyles.size.MEDIUM}
-				{fbvElement type="textarea" id="artworkCredit" value=$submissionFile->getCredit()}
+				{fbvElement type="textarea" id="artworkCredit" height=$fbvStyles.height.SHORT value=$submissionFile->getCredit()}
 			{/fbvFormSection}
 			{fbvFormSection title="submission.artwork.permissions"}
 				{fbvElement type="text" inline=true size=$fbvStyles.size.MEDIUM label="grid.artworkFile.copyrightOwner" id="artworkCopyrightOwner" value=$submissionFile->getCopyrightOwner()}
@@ -59,28 +59,28 @@
 
 	{* Read-only meta-data *}
 
-	{fbvFormArea id="fileInfo" title="submission.submit.readOnlyInfo"}
-		{fbvFormSection title="common.fileName"}
+	{fbvFormArea id="fileInfo" title="submission.submit.FileInformation"}
+		{fbvFormSection title="common.fileName" inline=true size=$fbvStyles.size.MEDIUM}
 			{$submissionFile->getFileName()|escape}
 		{/fbvFormSection}
-		{fbvFormSection title="common.originalFileName"}
+		{fbvFormSection title="common.originalFileName" inline=true size=$fbvStyles.size.MEDIUM}
 			{$submissionFile->getOriginalFileName()|escape}
 		{/fbvFormSection}
-		{fbvFormSection title="common.dateUploaded"}
+		{fbvFormSection title="common.dateUploaded" inline=true size=$fbvStyles.size.MEDIUM}
 			{$submissionFile->getDateUploaded()|date_format:$datetimeFormatShort}
 		{/fbvFormSection}
-		{fbvFormSection title="common.type"}
+		{fbvFormSection title="common.type" inline=true size=$fbvStyles.size.MEDIUM}
 			{$submissionFile->getDocumentType()}
 		{/fbvFormSection}
-		{fbvFormSection title="common.fileType"}
+		{fbvFormSection title="common.fileType" inline=true size=$fbvStyles.size.MEDIUM}
 			{$submissionFile->getExtension()|escape}
 		{/fbvFormSection}
-		{fbvFormSection title="common.fileSize"}
+		{fbvFormSection title="common.fileSize" inline=true size=$fbvStyles.size.MEDIUM}
 			{$submissionFile->getNiceFileSize()}
 		{/fbvFormSection}
 
 		{if is_a($submissionFile, 'ArtworkFile') && $submissionFile->getWidth() > 0 && $submissionFile->getHeight() > 0}
-			{fbvFormSection title="common.preview"}
+			{fbvFormSection title="common.preview" inline=true size=$fbvStyles.size.MEDIUM}
 				{* Get scaled thumbnail dimensions to 100px *}
 				{if $submissionFile->getWidth() > $submissionFile->getHeight()}
 					{math assign="thumbnailHeight" equation="(h*100)/w" h=$submissionFile->getHeight() w=$submissionFile->getWidth()}
@@ -99,7 +99,7 @@
 
 			{math assign="imageWidthOnDevice" equation="w/300" w=$submissionFile->getWidth() format="%.2f"}
 			{math assign="imageHeightOnDevice" equation="h/300" h=$submissionFile->getHeight() format="%.2f"}
-			{fbvFormSection title="common.quality"}
+			{fbvFormSection title="common.quality" inline=true size=$fbvStyles.size.MEDIUM}
 				{$imageWidthOnDevice}''&nbsp;x&nbsp;{$imageHeightOnDevice}'' @ 300 DPI/PPI<br />
 				({$submissionFile->getWidth()} x {$submissionFile->getHeight()} pixels)
 			{/fbvFormSection}

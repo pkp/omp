@@ -107,7 +107,7 @@ ul.tagit {
   border-width:1px;
   border-color:#c6c6c6;
   overflow:auto !important;
-  width:500px;
+  width:97%;
   background:white;
   margin-bottom:0px;
 }
@@ -386,26 +386,27 @@ body {
 .pkp_linkActions a.edit { background-image:url(../lib/pkp/templates/images/structure/grid_edit.png); }
 .pkp_linkActions a.more_info { background-image:url(../lib/pkp/templates/images/structure/grid_information.png); }
 .pkp_form .debug div, .pkp_form .debug label { border:1px solid orange; }
-.pkp_form fieldset {
-  border:1px solid eee;
-  padding:10px 5px;
+.pkp_form fieldset { margin:10px 5px; }
+.pkp_form legend {
+  font-size:110%;
+  padding:10px 0px 10px 0px;
 }
-.pkp_form legend { font-size:110%; }
 .pkp_form div.section {
   clear:left;
-  margin-bottom:15px;
+  margin-bottom:10px;
+  overflow:hidden;
 }
 .pkp_form label {
   display:block;
   font-weight:bold;
-  padding:12px 0px 3px 0px;
+  padding:3px 0px 3px 0px;
 }
 .pkp_form label.error { color:#990000; }
 .pkp_form span label.sub_label {
   font-size:80%;
   color:#999999;
   font-weight:normal;
-  padding:2px 0px;
+  padding:2px 0px 4px 0px;
 }
 .pkp_form input {
   width:98%;
@@ -433,6 +434,7 @@ body {
 .pkp_form .req {
   font-weight:bold;
   color:#cc0000;
+  padding-left:3px;
 }
 .pkp_form .inline {
   float:left;
@@ -665,27 +667,32 @@ table.pkp_listing td.separator {
   background-position:98% 97%;
   background-image:url(../lib/pkp/templates/images/structure/flags/te_ST.png) !important;
 }
+div.pkp_controllers_grid { margin-bottom:10px; }
 div.pkp_controllers_grid div.wrapper {
-  margin:10px;
-  padding:20px;
+  padding:15px 20px 20px;
   border:1px solid #b6c9d5;
   background-color:#efefef;
 }
-div.pkp_controllers_grid div.actions { margin-top:10px; }
+div.pkp_controllers_grid .header { margin:0 2px 7px; }
 div.pkp_controllers_grid table {
   width:100%;
   background-color:#ffffff;
   border:1px solid #b6c9d5;
   border-collapse:collapse;
 }
-div.pkp_controllers_grid thead tr {
+div.pkp_controllers_grid th {
+  padding:3px 6px;
   height:30px;
-  padding:4px 0;
-}
-div.pkp_controllers_grid thead th {
-  padding:0 4px;
   vertical-align:middle;
   text-align:center;
+  font-size:90%;
+  color:#20538d;
+  background-color:#ced7e1;
+}
+div.pkp_controllers_grid th.first_column { padding-left:8px !important; }
+div.pkp_controllers_grid th:first-child {
+  padding-left:8px !important;
+  text-align:left !important;
 }
 div.pkp_controllers_grid td {
   text-align:center;
@@ -694,8 +701,9 @@ div.pkp_controllers_grid td {
   font-size:85%;
   vertical-align:middle;
   padding:2px 4px;
+  min-width:40px;
 }
-div.pkp_controllers_grid th:first-child, div.pkp_controllers_grid td:first-child, div.pkp_controllers_grid col.first_column { text-align:left !important; }
+div.pkp_controllers_grid td:first-child, div.pkp_controllers_grid col.first_column { text-align:left !important; }
 div.pkp_controllers_grid td.first_column {
   padding:0 !important;
   margin:0 !important;
@@ -710,48 +718,60 @@ div.pkp_controllers_grid tr.category td {
   background-color:#e3ecea;
   color:#627b81;
 }
-div.pkp_controllers_grid .options {
-  float:right;
-  margin-bottom:10px;
-}
 div.pkp_controllers_grid .options a {
   background-position:0px 50%;
   display:inline;
   padding:5px 0px 5px 20px;
   margin-left:20px;
-  font-size:90%;
+  font-size:85%;
+}
+div.pkp_controllers_grid .actions a {
+  background-position:0px 50%;
+  display:inline;
+  padding:5px 0px 5px 20px;
+  font-size:95%;
+  margin-right:20px;
+}
+div.pkp_controllers_grid .options { float:right; }
+div.pkp_controllers_grid .actions {
+  margin-top:20px;
+  margin-left:2px;
+  margin-right:2px;
 }
 div.pkp_controllers_grid .hidetext {
   visibility:hidden;
   overflow:hidden;
 }
 div.pkp_controllers_grid .row_container {
-  position:relative;
   padding-left:25px;
   padding-right:30px;
   overflow:hidden;
-  background-color:#e8f0f8;
+  background-color:#f9f6f3;
 }
 div.pkp_controllers_grid .row_controls {
-  background-color:#e8f0f8;
+  background-color:#f9f6f3;
   display:none;
+  clear:left;
+  width:100%;
+  height:25px;
   line-height:25px;
   vertical-align:middle;
   overflow:hidden;
-  padding-left:20px;
-  white-space:nowrap;
 }
 div.pkp_controllers_grid .row_actions {
+  position:relative;
+  float:left;
   min-height:40px;
   line-height:40px;
   vertical-align:middle;
-  position:absolute;
-  top:0;
-  left:0;
   width:25px;
+  right:55px;
   padding-top:5px;
+  margin-left:-100%;
 }
 div.pkp_controllers_grid .row_file {
+  position:relative;
+  float:left;
   min-height:40px;
   line-height:40px;
   vertical-align:middle;
@@ -759,10 +779,7 @@ div.pkp_controllers_grid .row_file {
   padding:5px 15px;
   background-color:#ffffff;
 }
-div.pkp_controllers_grid .row_actions a {
-  margin-left:5px;
-  padding:1px 7px;
-}
+div.pkp_controllers_grid .row_actions a { margin-left:5px; }
 div.pkp_controllers_grid .row_file a { padding:2px 20px; }
 div.pkp_controllers_grid .multiline {
   line-height:125%;
@@ -774,10 +791,7 @@ div.pkp_controllers_grid .row_controls a {
   font-size:90%;
   padding:2px 30px 1px 20px;
 }
-div.pkp_controllers_grid .row_controls a:hover {
-  text-decoration:underline;
-  text-decoration:underline;
-}
+div.pkp_controllers_grid .row_controls a:hover { text-decoration:underline; }
 div.pkp_controllers_grid a.sprite {
   background-position:0 top;
   text-decoration:none;
@@ -798,10 +812,6 @@ div.pkp_controllers_grid a.task {
   padding:0;
 }
 div.pkp_controllers_grid tr.alternate_row, div.pkp_controllers_grid tr.alternate_row .row_file { background-color:#f5f5f5; }
-div.pkp_controllers_grid th {
-  color:#20538d;
-  background-color:#ced7e1;
-}
 div.pkp_controllers_grid a.task:hover { background-color:#efefef; }
 div.pkp_controllers_grid .ui-widget { font-size:.9em; }
 div.pkp_controllers_grid .toggleDetailContainer { margin:20px 0 20px 0; }
