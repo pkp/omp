@@ -41,7 +41,7 @@ class FileApiHandler extends FileManagementHandler {
 	 * @return string a serialized JSON object
 	 */
 	function deleteFile($args, &$request) {
-		// FIXME: authorize!
+		// FIXME: authorize! bug #6199
 		$fileId = (int)$request->getUserVar('fileId');
 
 		$success = false;
@@ -74,7 +74,7 @@ class FileApiHandler extends FileManagementHandler {
 	 * @param $request Request
 	 */
 	function downloadFile($args, &$request) {
-		// FIXME: authorize!
+		// FIXME: authorize! bug #6199
 		$fileId = (int)$request->getUserVar('fileId');
 		$revision = (int)$request->getUserVar('fileRevision');
 
@@ -89,7 +89,7 @@ class FileApiHandler extends FileManagementHandler {
 	 * @param $request Request
 	 */
 	function viewFile($args, &$request) {
-		// FIXME: authorize!
+		// FIXME: authorize! bug #6199
 		$fileId = (int)$request->getUserVar('fileId');
 		$revision = (int)$request->getUserVar('fileRevision');
 
@@ -98,4 +98,5 @@ class FileApiHandler extends FileManagementHandler {
 		MonographFileManager::viewFile($monograph->getId(), $fileId, ($revision ? $revision : null));
 	}
 }
+
 ?>
