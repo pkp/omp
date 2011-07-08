@@ -32,7 +32,7 @@ class ReviewerReviewStep2Form extends ReviewerReviewForm {
 	/**
 	 * @see Form::display()
 	 */
-	function display() {
+	function display(&$request) {
 		$templateMgr =& TemplateManager::getManager();
 		$press = $this->request->getPress();
 

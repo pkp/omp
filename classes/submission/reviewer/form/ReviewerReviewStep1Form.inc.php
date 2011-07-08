@@ -33,7 +33,7 @@ class ReviewerReviewStep1Form extends ReviewerReviewForm {
 	/**
 	 * @see Form::display()
 	 */
-	function display() {
+	function display(&$request) {
 		$templateMgr =& TemplateManager::getManager();
 
 		// Add submission parameters.
@@ -62,7 +62,43 @@ class ReviewerReviewStep1Form extends ReviewerReviewForm {
 
 		$templateMgr->assign('reviewerRequest', Locale::translate('reviewer.step1.requestBoilerplate', $reviewerRequestParams));
 
-		parent::display();
+		//
+		// Assign the link actions
+		//
+		import('lib.pkp.classes.linkAction.request.AjaxModal');
+		$dispatcher =& $request->getDispatcher();
+		$viewMetadataLinkAction = new LinkAction(
+						'viewMetadata',
+						new AjaxModal(
+							$dispatcher->url($request,
+										'component',
+										 null,
+										 'modals.submissionMetadata.ReviewerSubmissionMetadataHandler',
+										 'fetch',
+										 null,
+										 array('monographId' => $submission->getId())
+										),
+							__('reviewer.step1.viewAllDetails')
+							),
+						__('reviewer.step1.viewAllDetails')
+						);
+		$templateMgr->assign_by_ref('viewMetadataAction', $viewMetadataLinkAction);
+
+		//
+		// Add the link actions
+		//
+		import('controllers.confirmationModal.linkAction.ViewReviewGuidelinesLinkAction');
+		$competingInterestsAction = new ViewReviewGuidelinesLinkAction($request);
+		$templateMgr->assign_by_ref('competingInterestsAction', $competingInterestsAction);
+
+		import('lib.pkp.classes.linkAction.request.AjaxModal');
+		$declineReviewLinkAction = new LinkAction('declineReview',
+												new AjaxModal($request->url(null, null, 'showDeclineReview', $reviewAssignment->getSubmissionId()),
+												__('reviewer.monograph.declineReview'))
+												);
+		$templateMgr->assign_by_ref('declineReviewAction', $declineReviewLinkAction);
+
+		parent::display($request);
 	}
 
 	/**

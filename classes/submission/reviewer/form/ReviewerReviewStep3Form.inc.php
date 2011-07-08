@@ -74,7 +74,7 @@ class ReviewerReviewStep3Form extends ReviewerReviewForm {
 	/**
 	 * @see Form::display()
 	 */
-	function display() {
+	function display(&$request) {
 		$templateMgr =& TemplateManager::getManager();
 
 		// Assign the press to the template.
@@ -103,7 +103,14 @@ class ReviewerReviewStep3Form extends ReviewerReviewForm {
 			$templateMgr->assign('isLocked', isset($reviewAssignment) && $reviewAssignment->getDateCompleted() != null);
 		}*/
 
-		parent::display();
+		//
+		// Assign the link actions
+		//
+		import('controllers.confirmationModal.linkAction.ViewReviewGuidelinesLinkAction');
+		$viewReviewGuidelinesAction = new ViewReviewGuidelinesLinkAction($request);
+		$templateMgr->assign('viewGuidelinesAction', $viewReviewGuidelinesAction);
+
+		parent::display($request);
 	}
 
 	/**

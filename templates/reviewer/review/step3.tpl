@@ -18,7 +18,7 @@
 	{rdelim});
 </script>
 
-<form class="pkp_form" id="review" method="post" action="{url op="saveStep" path=$submission->getId() step="3"}">
+<form class="pkp_form" id="reviewStep3Form" method="post" action="{url op="saveStep" path=$submission->getId() step="3"}">
 	{include file="common/formErrors.tpl"}
 
 	{url|assign:reviewFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.review.ReviewerReviewFilesGridHandler" op="fetchGrid" monographId=$submission->getId() reviewType=$submission->getCurrentReviewType() round=$submission->getCurrentRound() escape=false}
@@ -72,6 +72,9 @@
 
 				<br />
 			</form>
+		{if $viewGuidelinesAction}
+			<div id="viewGuidelines" class="pkp_helpers_align_right">
+				{include file="linkAction/linkAction.tpl" action=$viewGuidelinesAction contextId="viewGuidelines"}
 			</div>
 		</div>
 		{else}
@@ -90,14 +93,7 @@
 
 	<br />
 
-	<div id="nextSteps">
-		<p>
-			<a href="{url op="submission" path=$submission->getReviewId() step=2}">{translate key="navigation.goBack"}</a>
-			{include file="linkAction/buttonConfirmationLinkAction.tpl" buttonSelector="#submitButton" dialogText="reviewer.confirmSubmit"}
-			<input style="float:right;" type="submit" id="submitButton" value="{translate key='reviewer.monograph.continueToStepFour'}" class="button" />
-		</p>
-	</div>
-	<br />
+	{fbvFormButtons id="step2Buttons" submitText="reviewer.monograph.continueToStepFour" confirmSubmit="reviewer.confirmSubmit" cancelText="navigation.goBack"}
 </form>
 </div>
 {include file="common/footer.tpl"}

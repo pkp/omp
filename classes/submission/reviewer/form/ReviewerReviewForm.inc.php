@@ -72,7 +72,7 @@ class ReviewerReviewForm extends Form {
 	/**
 	 * @see Form::display()
 	 */
-	function display() {
+	function display(&$request) {
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign_by_ref('submission', $this->getReviewerSubmission());
 		$templateMgr->assign('step', $this->getStep());

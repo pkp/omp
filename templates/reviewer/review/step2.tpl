@@ -28,13 +28,8 @@
 <p>{$reviewerGuidelines}</p>
 </div>
 
-<div id="nextSteps">
-	<p>
-		<a href="{url op="submission" path=$submission->getReviewId() step=1}">{translate key="navigation.goBack"}</a>
-		<input style="float:right;" type="submit" id="submit" value="{translate key='reviewer.monograph.continueToStepThree'}" class="button" />
-	</p>
-</div>
-<br />
+	{fbvFormButtons id="step2Buttons" submitText="reviewer.monograph.continueToStepThree" cancelText="navigation.goBack"}
+{/fbvFormArea}
 </form>
 </div>
 {include file="common/footer.tpl"}

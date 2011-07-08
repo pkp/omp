@@ -16,11 +16,11 @@
 <script type="text/javascript">
 	$(function() {ldelim}
 		// Attach the form handler.
-		$('#review').pkpHandler('$.pkp.controllers.form.FormHandler');
+		$('#reviewStep1Form').pkpHandler('$.pkp.controllers.form.FormHandler');
 	{rdelim});
 </script>
 
-<form class="pkp_form" id="review" method="post" action="{url page="reviewer" op="saveStep" path=$submission->getId() step="1" escape=false}">
+<form class="pkp_form" id="reviewStep1Form" method="post" action="{url page="reviewer" op="saveStep" path=$submission->getId() step="1" escape=false}">
 {include file="common/formErrors.tpl"}
 
 <div id="request">
@@ -102,18 +102,12 @@
 </div>
 <br />
 
-{if !$reviewAssignment->getDateConfirmed()}
-	<div id="nextSteps">
-		<p>
-			{url|assign:"declineRequestUrl" op='showDeclineReview'}
-			{modal url="$declineRequestUrl" actOnType="nothing" actOnId="nothing" dialogText='reviewer.monograph.declineReview' button="#declineRequest"}
-
-			<a id="declineRequest" href="{$declineRequestUrl}">{translate key="reviewer.monograph.declineReview"}</a>
-			<input style="float:right;" type="submit" id="submit" value="{translate key='reviewer.monograph.acceptReview'}" class="button" />
-		</p>
-	</div>
-{/if}
 <br />
+	{if $reviewAssignment->getDateConfirmed()}
+		{fbvFormButtons hideCancel=true submitText="reviewer.monograph.acceptReview"}
+	{else}
+		{fbvFormButtons submitText="reviewer.monograph.acceptReview" cancelText="reviewer.monograph.declineReview" cancelAction=$declineReviewAction}
+	{/if}
 </form>
 </div>
 {include file="common/footer.tpl"}
