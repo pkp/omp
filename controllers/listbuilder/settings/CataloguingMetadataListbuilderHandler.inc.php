@@ -28,18 +28,33 @@ class CataloguingMetadataListbuilderHandler extends SetupListbuilderHandler {
 	 * Load the list from an external source into the grid structure
 	 */
 	function loadList() {
-		$publicationFormatDao =& DAORegistry::getDAO('CataloguingMetadataFieldDAO');
+		$cataloguingMetadataFieldDao =& DAORegistry::getDAO('CataloguingMetadataFieldDAO');
 		$pressDao =& DAORegistry::getDAO('PressDAO');
 		$press =& $this->getPress();
 
-		$publicationFormats =& $publicationFormatDao->getEnabledByPressId($press->getId());
+		$cataloguingMetadataFields =& $cataloguingMetadataFieldDao->getEnabledByPressId($press->getId());
 
 		$items = array();
-		foreach($publicationFormats as $item) {
-			$id = $item->getId();
-			$items[$id] = array('name' => $item->getLocalizedName(), 'id' => $id);
+
+		if (!is_null($cataloguingMetadataFields)) {
+			foreach($cataloguingMetadataFields as $item) {
+				$id = $item->getId();
+				$items[$id] = array('name' => $item->getLocalizedName(), 'id' => $id);
+			}
 		}
+
 		$this->setGridDataElements($items);
+	}
+
+	/**
+	 * Bounce a modified entry back to the client
+	 * @see ListbuilderHandler::getRowDataElement
+	 */
+	function &getRowDataElement(&$request, $rowId) {
+		// FIXME: Localize.
+		$locale = Locale::getLocale();
+		$name = $this->getNewRowId($request);
+		return(array('name' => $name));
 	}
 
 
@@ -50,14 +65,15 @@ class CataloguingMetadataListbuilderHandler extends SetupListbuilderHandler {
 	 * @param $newEntry mixed New entry with changes to persist
 	 * @return boolean
 	 */
-	function updateEntry($rowId, $existingEntry, $newEntry) {
-		$publicationFormatDao =& DAORegistry::getDAO('CataloguingMetadataFieldDAO');
-		$publicationFormat = $publicationFormatDao->getById($rowId);
+	function updateEntry(&$request, $rowId, $newRowId) {
+		$cataloguingMetadataFieldDao =& DAORegistry::getDAO('CataloguingMetadataFieldDAO');
+		$cataloguingMetadataField = $cataloguingMetadataFieldDao->getById($rowId);
 
 		$locale = Locale::getLocale(); // FIXME: Localize.
-		$publicationFormat->setName($newEntry->name, $locale);
+		$name = $newRowId;
+		$cataloguingMetadataField->setName($name, $locale);
 
-		$publicationFormatDao->updateObject($publicationFormat);
+		$cataloguingMetadataFieldDao->updateObject($cataloguingMetadataField);
 		return true;
 	}
 
@@ -67,7 +83,7 @@ class CataloguingMetadataListbuilderHandler extends SetupListbuilderHandler {
 	 * @param $entry mixed New entry with data to persist
 	 * @return boolean
 	 */
-	function insertEntry($entry) {
+	function insertEntry(&$request, $newRowId) {
 		$cataloguingMetadataFieldDao =& DAORegistry::getDAO('CataloguingMetadataFieldDAO');
 		$cataloguingMetadataField = $cataloguingMetadataFieldDao->newDataObject();
 		$press =& $this->getPress();
@@ -75,7 +91,9 @@ class CataloguingMetadataListbuilderHandler extends SetupListbuilderHandler {
 		$cataloguingMetadataField->setEnabled(true);
 
 		$locale = Locale::getLocale(); // FIXME: Localize.
-		$cataloguingMetadataField->setName($entry->name, $locale);
+
+		$name = $newRowId;
+		$cataloguingMetadataField->setName($name, $locale);
 
 		$cataloguingMetadataFieldDao->insertObject($cataloguingMetadataField);
 		return true;
@@ -101,22 +119,6 @@ class CataloguingMetadataListbuilderHandler extends SetupListbuilderHandler {
 
 		$nameColumn = new ListbuilderGridColumn($this, 'name', 'common.name');
 		$this->addColumn($nameColumn);
-	}
-
-
-	/**
-	 * Create a new data element from a request. This is used to format
-	 * new rows prior to their insertion.
-	 * @param $request PKPRequest
-	 * @param $elementId int
-	 * @return object
-	 */
-	function &getDataElementFromRequest(&$request, &$elementId) {
-		$newItem = array(
-			'name' => $request->getUserVar('name')
-		);
-		$elementId = $request->getUserVar('rowId');
-		return $newItem;
 	}
 }
 
