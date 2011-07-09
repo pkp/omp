@@ -108,7 +108,7 @@ class SeriesEditorsListbuilderHandler extends SetupListbuilderHandler {
 		$this->setTitle('user.role.seriesEditors');
 		$this->setSourceTitle('common.user');
 		$this->setSourceType(LISTBUILDER_SOURCE_TYPE_SELECT);
-		$this->setListTitle('manager.groups.existingUsers');
+		$this->setListTitle('manager.series.existingUsers');
 
 		$this->setSeriesId($request->getUserVar('seriesId'));
 

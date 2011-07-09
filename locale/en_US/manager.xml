@@ -11,17 +11,6 @@
   -->
 
 <locale name="en_US" full_name = "English">
-	<!-- Groups -->
-	<message key="manager.groups">Masthead</message>
-	<message key="manager.groups.context.editorialTeam">Have title appear under Editorial Team in People section of About the Press (e.g. Editor)</message>
-	<message key="manager.groups.context.editorialTeam.short">Editorial Team</message>
-	<message key="manager.groups.context.people">Have title appear as its own category under People (e.g. Editorial Board)</message>
-	<message key="manager.groups.create">Create Position Title</message>
-	<message key="manager.groups.disableBoard">OMP lists people in Editorial Team under assigned roles (Press Manager, Copyeditor, etc.)</message>
-	<message key="manager.groups.enableBoard">The Press Manager creates titles and adds people under each title.</message>
-	<message key="manager.groups.enableBoard.description"><![CDATA[Under <a href="{$aboutEditorialTeamUrl}">People</a> in About the Press:]]></message>
-	<message key="manager.groups.existingUsers">Existing users</message>
-	<message key="manager.groups.noneCreated">No editorial team positions have been created.</message>
 
 	<!-- Languages -->
  	<message key="manager.language.ui">UI</message>
@@ -127,6 +116,7 @@
 	<message key="manager.series.form.abbrevRequired">An abbreviated title is required for the series.</message>
 	<message key="manager.series.form.titleRequired">A title is required for the series.</message>
 	<message key="manager.series.noneCreated">No series have been created.</message>
+	<message key="manager.series.existingUsers">Existing users</message>
 
 	<!-- Settings management -->
 	<message key="manager.settings">Settings</message>
