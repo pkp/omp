@@ -64,6 +64,7 @@
 								<li><a href="{url page="manager" op="index"}">{translate key="navigation.data"}</a></li>
 								{* <li><a href="{url page="manager" op="data"}">{translate key="navigation.data"}</a></li> *}
 								<li><a href="{url page="management" op="settings" path="access"}">{translate key="navigation.access"}</a></li>
+								<li><a href="{url page="management" op="settings" path="wizard"}">{translate key="navigation.wizard"}</a></li>
 							</ul>
 						</li>
 					</ul>

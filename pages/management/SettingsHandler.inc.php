@@ -72,7 +72,7 @@ class SettingsHandler extends Handler {
 	 */
 	function index() {
 		$templateMgr =& TemplateManager::getManager();
-		$this->setupTemplate(true);
+		$this->setupTemplate();
 		$templateMgr->display('management/settings/index.tpl');
 	}
 
@@ -102,6 +102,9 @@ class SettingsHandler extends Handler {
 			case 'distribution':
 				$this->distribution();
 				break;
+			case 'wizard':
+				$this->wizard();
+				break;
 			default:
 				assert(false);
 		}
@@ -114,7 +117,7 @@ class SettingsHandler extends Handler {
 	 */
 	function access() {
 		$templateMgr =& TemplateManager::getManager();
-		$this->setupTemplate(true);
+		$this->setupTemplate();
 		$templateMgr->display('management/settings/access.tpl');
 	}
 
@@ -125,7 +128,7 @@ class SettingsHandler extends Handler {
 	 */
 	function press() {
 		$templateMgr =& TemplateManager::getManager();
-		$this->setupTemplate(true);
+		$this->setupTemplate();
 		$templateMgr->display('management/settings/press.tpl');
 	}
 
@@ -136,7 +139,7 @@ class SettingsHandler extends Handler {
 	 */
 	function website() {
 		$templateMgr =& TemplateManager::getManager();
-		$this->setupTemplate(true);
+		$this->setupTemplate();
 		$templateMgr->display('management/settings/website.tpl');
 	}
 
@@ -147,7 +150,7 @@ class SettingsHandler extends Handler {
 	 */
 	function publication() {
 		$templateMgr =& TemplateManager::getManager();
-		$this->setupTemplate(true);
+		$this->setupTemplate();
 		$templateMgr->display('management/settings/publication.tpl');
 	}
 
@@ -158,8 +161,19 @@ class SettingsHandler extends Handler {
 	 */
 	function distribution() {
 		$templateMgr =& TemplateManager::getManager();
-		$this->setupTemplate(true);
+		$this->setupTemplate();
 		$templateMgr->display('management/settings/distribution.tpl');
+	}
+
+	/**
+	 * Display settings wizard page.
+	 * @param $request PKPRequest
+	 * @param $args array
+	 */
+	function wizard() {
+		$templateMgr =& TemplateManager::getManager();
+		$this->setupTemplate();
+		$templateMgr->display('management/settings/settingsWizard.tpl');
 	}
 }
 
