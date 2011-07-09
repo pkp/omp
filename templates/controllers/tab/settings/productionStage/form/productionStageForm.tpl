@@ -33,5 +33,7 @@
 	{url|assign:productionTemplateLibraryUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.library.LibraryFileGridHandler" op="fetchGrid" fileType=$smarty.const.LIBRARY_FILE_TYPE_PRODUCTION_TEMPLATE}
 	{load_url_in_div id="productionTemplateLibraryDiv" url=$productionTemplateLibraryUrl}
 
-	{fbvFormButtons id="productionStageFormSubmit" submitText="common.save" hideCancel=true}
+	{if !$wizardMode}
+		{fbvFormButtons id="productionStageFormSubmit" submitText="common.save" hideCancel=true}
+	{/if}
 </form>

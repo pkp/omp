@@ -158,5 +158,7 @@
 		{/fbvFormArea}
 	</div>
 
-	{fbvFormButtons id="appearanceFormSubmit" submitText="common.save" hideCancel=true}
+	{if !$wizardMode}
+		{fbvFormButtons id="appearanceFormSubmit" submitText="common.save" hideCancel=true}
+	{/if}
 </form>

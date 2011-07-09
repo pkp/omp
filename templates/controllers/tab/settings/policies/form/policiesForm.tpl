@@ -49,6 +49,7 @@
 			{/fbvFormSection}
 		</div>
 	{/fbvFormArea}
-
-	{fbvFormButtons id="policiesFormSubmit" submitText="common.save" hideCancel=true}
+	{if !$wizardMode}
+		{fbvFormButtons id="policiesFormSubmit" submitText="common.save" hideCancel=true}
+	{/if}
 </form>

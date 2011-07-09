@@ -48,5 +48,7 @@
 	{/fbvFormArea}
 
     <p><span class="formRequired">{translate key="common.requiredField"}</span></p>
-	{fbvFormButtons id="mastheadFormSubmit" submitText="common.save" hideCancel=true}
+	{if !$wizardMode}
+		{fbvFormButtons id="mastheadFormSubmit" submitText="common.save" hideCancel=true}
+	{/if}
 </form>

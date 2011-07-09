@@ -25,5 +25,7 @@
 		{/fbvFormSection}
 	{/fbvFormArea}
 
-	{fbvFormButtons id="guidelinesFormSubmit" submitText="common.save" hideCancel=true}
+	{if !$wizardMode}
+		{fbvFormButtons id="guidelinesFormSubmit" submitText="common.save" hideCancel=true}
+	{/if}
 </form>

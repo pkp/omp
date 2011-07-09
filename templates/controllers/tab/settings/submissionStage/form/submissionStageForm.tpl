@@ -29,5 +29,7 @@
 	{url|assign:submissionChecklistGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.submissionChecklist.SubmissionChecklistGridHandler" op="fetchGrid"}
 	{load_url_in_div id="submissionChecklistGridDiv" url=$submissionChecklistGridUrl}
 
-	{fbvFormButtons id="submissionStageFormSubmit" submitText="common.save" hideCancel=true}
+	{if !$wizardMode}
+		{fbvFormButtons id="submissionStageFormSubmit" submitText="common.save" hideCancel=true}
+	{/if}
 </form>

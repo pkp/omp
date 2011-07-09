@@ -121,5 +121,7 @@
 		{/fbvFormArea}
 	</div>
 
-	{fbvFormButtons id="reviewStageFormSubmit" submitText="common.save" hideCancel=true}
+	{if !$wizardMode}
+		{fbvFormButtons id="reviewStageFormSubmit" submitText="common.save" hideCancel=true}
+	{/if}
 </form>

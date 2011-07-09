@@ -52,5 +52,7 @@
 		<p>{translate key="manager.setup.registerPressForIndexingDescription" siteUrl=$oaiSiteUrl oaiUrl=$oaiUrl}</p>
 	</div>
 
-	{fbvFormButtons id="indexingFormSubmit" submitText="common.save" hideCancel=true}
+	{if !$wizardMode}
+		{fbvFormButtons id="indexingFormSubmit" submitText="common.save" hideCancel=true}
+	{/if}
 </form>
