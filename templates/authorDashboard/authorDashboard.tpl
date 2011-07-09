@@ -43,17 +43,17 @@
 	<!-- Author actions -->
 	<div id="authorActions" class="pkp_linkActions">
 		{if $uploadFileAction}
-			<div id="{$uploadFileAction->getId()}" class="pkp_authorDashboard_authorAction">
+			<div id="{$uploadFileAction->getId()}">
 				{include file="linkAction/linkAction.tpl" action=$uploadFileAction contextId="authorDashboard"}
 			</div>
 		{/if}
-		<div id="viewMetadata" class="pkp_authorDashboard_authorAction">
+		<div id="viewMetadata">
 			{include file="linkAction/linkAction.tpl" action=$viewMetadataAction contextId="authorDashboard"}
 		</div>
 	</div>
 	<div style="clear:both;"></div>
 
-	<div class="pkp_authorDashboard_stageContainer" id="submission">
+	<div id="submission">
 		<h3><a href="#">{translate key='submission.submission'}</a></h3>
 		<div id="submissionContent">
 			{url|assign:submissionFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.submission.AuthorSubmissionDetailsFilesGridHandler" op="fetchGrid" monographId=$monograph->getId()}
@@ -61,7 +61,7 @@
 		</div>
 	</div>
 
-	<div class="pkp_authorDashboard_stageContainer" id="review">
+	<div id="review">
 		<h3><a href="#">{translate key='submission.review'}</a></h3>
 		<div id="reviewContent">
 			{if $stageId > $smarty.const.WORKFLOW_STAGE_ID_SUBMISSION}
@@ -79,7 +79,7 @@
 		</div>
 	</div>
 
-	<div class="pkp_authorDashboard_stageContainer" id="copyediting">
+	<div id="copyediting">
 		<h3><a href="#">{translate key='submission.copyediting'}</a></h3>
 		<div id="copyeditingContent">
 			<!-- Display editor's message to the author -->
@@ -99,7 +99,7 @@
 		</div>
 	</div>
 
-	<div class="pkp_authorDashboard_stageContainer" id="production">
+	<div id="production">
 		<h3><a href="#">{translate key='submission.production'}</a></h3>
 		<div id="productionContent">&nbsp;</div>
 	</div>

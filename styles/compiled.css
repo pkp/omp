@@ -1024,20 +1024,7 @@ span.pkp_controllers_informationCenter_itemLastEvent {
 .pkp_controllers_timeline .timelineLabelContainer .timelineLabel.right { text-align:right; }
 .pkp_controllers_timeline .timelineLabelContainer .timelineLabel.pastStep { font-weight:bold; }
 .pkp_controllers_timeline .timelineLabelContainer .timelineLabel.futureStep { color:#808080; }
-.pkp_authorDashboard_editorPersonalMessage {
-  width:96%;
-  height:200px;
-  margin:5px 0px 0px 10px;
-}
-.pkp_authorDashboard_stageContainer {
-  width:90%;
-  margin:10px auto;
-}
-.pkp_authorDashboard_authorAction {
-  float:left;
-  width:28%;
-  margin-left:30px;
-}
+@import url("styles/authorDashboard.less");
 .pkp_submissionChecklist ul li label.error { margin-bottom:15px; }
 .pkp_workflow_headerBottom { margin-top:10px; }
 .pkp_workflow_headerBottom .pkp_workflow_headerUserInfo {

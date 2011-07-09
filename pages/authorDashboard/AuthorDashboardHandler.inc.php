@@ -55,7 +55,6 @@ class AuthorDashboardHandler extends Handler {
 		$templateMgr->assign_by_ref('monograph', $monograph);
 
 		// "View metadata" action.
-		$dispatcher =& $this->getDispatcher();
 		import('controllers.modals.submissionMetadata.linkAction.ViewMetadataLinkAction');
 		$viewMetadataAction = new ViewMetadataLinkAction($request, $monograph->getId());
 		$templateMgr->assign('viewMetadataAction', $viewMetadataAction);
@@ -131,7 +130,7 @@ class AuthorDashboardHandler extends Handler {
 		// Editor has taken an action and sent an email; Display the email
 		if($reviewRound->getStatus() != REVIEW_ROUND_STATUS_PENDING_REVIEWERS && $reviewRound->getStatus() != REVIEW_ROUND_STATUS_PENDING_REVIEWS) {
 			$monographEmailLogDao =& DAORegistry::getDAO('MonographEmailLogDAO');
-			$monographEmails =& $monographEmailLogDao->getByEventType($monograph->getId(), MONOGRAPH_EMAIL_TYPE_EDITOR);
+			$monographEmails =& $monographEmailLogDao->getByEventType($monograph->getId(), MONOGRAPH_EMAIL_EDITOR_NOTIFY_AUTHOR);
 
 			$templateMgr->assign_by_ref('monographEmails', $monographEmails);
 			$templateMgr->assign('showReviewAttachments', true);
