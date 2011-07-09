@@ -144,6 +144,17 @@ class WorkflowHandler extends Handler {
 		$reviewRound =& $reviewRoundDao->build($monograph->getId(), $currentReviewType, $selectedRound);
 		$templateMgr->assign('roundStatus', $reviewRound->getStatusKey());
 
+		$dispatcher =& $request->getDispatcher();
+		$newRoundAction = new LinkAction('newRound',
+									new AjaxModal(
+										$dispatcher->url($request, ROUTE_COMPONENT, null,
+												'modals.editorDecision.EditorDecisionHandler',
+												'newReviewRound', null, array('monographId' => $monograph->getId(),
+																		'decision' => SUBMISSION_EDITOR_DECISION_RESUBMIT)),
+												__('editor.monograph.newRound')),
+										__('editor.monograph.newRound')); // FIXME: add icon.
+		$templateMgr->assign_by_ref('newRoundAction', $newRoundAction);
+
 		// Render the view.
 		$templateMgr->display('workflow/review.tpl');
 	}

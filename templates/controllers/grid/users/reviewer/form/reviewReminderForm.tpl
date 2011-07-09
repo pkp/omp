@@ -7,30 +7,38 @@
  * Display the form to send a review reminder--Contains a user-editable message field (all other fields are static)
  *
  *}
+<script type="text/javascript">
+	$(function() {ldelim}
+		// Attach the form handler.
+		$('#sendReminderForm').pkpHandler('$.pkp.controllers.form.AjaxFormHandler');
+	{rdelim});
+</script>
 
-<form class="pkp_form" id="sendReminder" method="post" action="{url op="sendReminder"}" >
-	<input type="hidden" name="monographId" value="{$monographId|escape}" />
-	<input type="hidden" name="reviewAssignmentId" value="{$reviewAssignmentId}" />
+<form class="pkp_form" id="sendReminderForm" method="post" action="{url op="sendReminder"}" >
+	{fbvFormArea id="sendReminder"}
+		<input type="hidden" name="monographId" value="{$monographId|escape}" />
+		<input type="hidden" name="reviewAssignmentId" value="{$reviewAssignmentId}" />
 
-	{fbvFormSection title="user.role.reviewer"}
-		{fbvElement type="text" id="reviewerName" value=$reviewerName disabled="true"}
-	{/fbvFormSection}
+		{fbvFormSection title="user.role.reviewer"}
+			{fbvElement type="text" id="reviewerName" value=$reviewerName disabled="true"}
+		{/fbvFormSection}
 
-	{fbvFormSection title="editor.review.personalMessageToReviewer" for="message"}
-		{fbvElement type="textarea" id="message" value=$message size=$fbvStyles.size.LARGE}
-	{/fbvFormSection}
+		{fbvFormSection title="editor.review.personalMessageToReviewer" for="message"}
+			{fbvElement type="textarea" id="message" value=$message}
+		{/fbvFormSection}
 
-	<table width="100%" style="margin-left: 12px;">
-		<tr>
-			<td><strong>{translate key="editor.responseDueDate"}</strong></td>
-			<td><strong>{translate key="editor.review.dateAccepted"}</strong></td>
-			<td><strong>{translate key="reviewer.monograph.reviewDueDate"}</strong></td>
-		</tr>
-		<tr>
-			<td>{$reviewAssignment->getDateResponseDue()|date_format:$dateFormatShort}</td>
-			<td>{$reviewAssignment->getDateAcknowledged()|date_format:$dateFormatShort}</td>
-			<td>{$reviewAssignment->getDateDue()|date_format:$dateFormatShort}</td>
-		</tr>
-	</table>
-
+		<table width="100%" style="margin-left: 12px;">
+			<tr>
+				<td><strong>{translate key="editor.responseDueDate"}</strong></td>
+				<td><strong>{translate key="editor.review.dateAccepted"}</strong></td>
+				<td><strong>{translate key="reviewer.monograph.reviewDueDate"}</strong></td>
+			</tr>
+			<tr>
+				<td>{$reviewAssignment->getDateResponseDue()|date_format:$dateFormatShort}</td>
+				<td>{$reviewAssignment->getDateAcknowledged()|date_format:$dateFormatShort}</td>
+				<td>{$reviewAssignment->getDateDue()|date_format:$dateFormatShort}</td>
+			</tr>
+		</table>
+	{/fbvFormArea}
+	{include file="form/formButtons.tpl" submitText="editor.review.sendReminder"}
 </form>

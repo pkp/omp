@@ -23,14 +23,13 @@
 <form class="pkp_form" id="review" method="post" action="{url page="reviewer" op="saveStep" path=$submission->getId() step="2" escape=false}">
 {include file="common/formErrors.tpl"}
 
-<div id=guidelines>
-<h3>{translate key="reviewer.monograph.reviewerGuidelines"}</h3>
-<p>{$reviewerGuidelines}</p>
-</div>
+{fbvFormArea id="reviewStep2"}
+	{fbvFormSection label="reviewer.monograph.reviewerGuidelines"}
+		<p>{$reviewerGuidelines}</p>
+	{/fbvFormSection}
 
-	{fbvFormButtons id="step2Buttons" submitText="reviewer.monograph.continueToStepThree" cancelText="navigation.goBack"}
+	{fbvFormButtons submitText="reviewer.monograph.continueToStepThree" cancelText="navigation.goBack"}
 {/fbvFormArea}
 </form>
-</div>
 {include file="common/footer.tpl"}
 

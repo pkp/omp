@@ -96,7 +96,8 @@ class ReviewerGridHandler extends GridHandler {
 		// workaround until we get those variables in the authorized context, see #6200.
 		$reviewType = $request->getUserVar('reviewType');
 		$round = $request->getUserVar('round');
-		assert(!empty($reviewType) && !empty($round));
+		// Not all actions need a reviewType and round. Some work off the reviewAssignment which has the type and round.
+		//assert(!empty($reviewType) && !empty($round));
 		$this->_reviewType = (int)$reviewType;
 		$this->_round = (int)$round;
 

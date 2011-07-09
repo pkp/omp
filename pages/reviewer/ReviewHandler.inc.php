@@ -71,7 +71,7 @@ class ReviewHandler extends Handler {
 			} else {
 				$reviewerForm->initData();
 			}
-			$reviewerForm->display();
+			$reviewerForm->display($request);
 		} else {
 			$templateMgr =& TemplateManager::getManager();
 			$templateMgr->assign_by_ref('submission', $reviewerSubmission);
@@ -105,9 +105,9 @@ class ReviewHandler extends Handler {
 
 		if ($reviewerForm->validate()) {
 			$reviewerForm->execute();
-			$request->redirect(null, null, 'submission', $reviewAssignment->getMonographId());
+			$request->redirect(null, null, 'submission', $reviewAssignment->getSubmissionId());
 		} else {
-			$reviewerForm->display();
+			$reviewerForm->display($request);
 		}
 	}
 
@@ -128,9 +128,9 @@ class ReviewHandler extends Handler {
 		$this->setupTemplate();
 
 		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->assign_by_ref('submission', $reviewerSubmission);
+		$templateMgr->assign('monographId', $reviewerSubmission->getId());
 
-		return $templateMgr->fetchJson('reviewer/review/regretMessage.tpl');
+		return $templateMgr->fetchJson('reviewer/review/modal/regretMessage.tpl');
 	}
 
 	/**

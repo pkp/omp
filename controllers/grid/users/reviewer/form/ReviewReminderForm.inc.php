@@ -78,12 +78,13 @@ class ReviewReminderForm extends Form {
 		if ($reviewDueDate == -1) $reviewDueDate = $dateFormatShort; // Default to something human-readable if no date specified
 		else $reviewDueDate = strftime($dateFormatShort, $reviewDueDate);
 
+		$dispatcher =& $request->getDispatcher();
 		$paramArray = array(
 			'reviewerName' => $reviewer->getFullName(),
 			'reviewDueDate' => $reviewDueDate,
 			'editorialContactSignature' => $user->getContactSignature(),
-			'passwordResetUrl' => Request::url(null, 'login', 'resetPassword', $reviewer->getUsername(), array('confirm' => Validation::generatePasswordResetHash($reviewer->getId()))),
-			'submissionReviewUrl' => Request::url(null, 'reviewer', 'submission', null, array('monographId' => $reviewAssignment->getMonographId()))
+			'passwordResetUrl' => $dispatcher->url($request, 'page', null, 'login', 'resetPassword', $reviewer->getUsername(), array('confirm' => Validation::generatePasswordResetHash($reviewer->getId()))),
+			'submissionReviewUrl' => $dispatcher->url($request, 'page', null, 'reviewer', 'submission', null, array('monographId' => $reviewAssignment->getSubmissionId()))
 		);
 		$email->assignParams($paramArray);
 

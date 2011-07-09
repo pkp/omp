@@ -1,43 +1,41 @@
 {**
- * readReview.tpl
+ * templates/controllers/grid/users/reviewer/readReview.tpl
  *
  * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * Screen to let user read a review
+ * Screen to let user read a review.
  *
  *}
 
-{translate|assign:"reviewTranslated" key="editor.review"}
-{assign var=titleTranslated value="$reviewTranslated"|concat:": ":$monograph->getLocalizedTitle()}
-{modal_title id="#editorReview" keyTranslated=$titleTranslated iconClass="fileManagement" canClose=1}
+<script type="text/javascript">
+	$(function() {ldelim}
+		// Attach the form handler.
+		$('#readReviewForm').pkpHandler('$.pkp.controllers.form.AjaxFormHandler');
+	{rdelim});
+</script>
 
-<div id="editorReview">
-	<table width="100%" style="margin-left: 12px;">
-		<tr>
-			<td><strong>{translate key="user.role.reviewer"}</strong></td>
-			<td><strong>{translate key="editor.review.reviewCompleted"}</strong></td>
-		</tr>
-		<tr>
-			<td>{$reviewAssignment->getReviewerFullName()}</td>
-			<td>{$reviewAssignment->getDateCompleted()}</td>
-		</tr>
-	</table>
+<form class="pkp_form" id="readReviewForm" method="post" action="{url op="reviewRead"}">
+	{fbvFormArea id="readReview"}
+		<input type="hidden" name="reviewId" value="{$reviewAssignment->getId()|escape}" />
+		<input type="hidden" name="monographId" value="{$reviewAssignment->getSubmissionId()|escape}" />
 
-	<br />
+		{fbvFormSection}
+			{fbvElement type="text" id="reviewer" inline=true size=$fbvStyles.size.MEDIUM label="user.role.reviewer" value=$reviewAssignment->getReviewerFullName() disabled=true}
+			{fbvElement type="text" id="reviewCompleted" inline=true size=$fbvStyles.size.MEDIUM label="editor.review.reviewCompleted" value=$reviewAssignment->getDateCompleted() disabled=true}
+		{/fbvFormSection}
 
-	{if $reviewAssignment->getReviewFormId()}
-		{** FIXME: add review forms **}
-	{else}
-		<strong style="margin-left: 12px;">{translate key="editor.review.reviewerComments"}</strong>
-		<p>{$reviewerComment->getComments()}</p>
-	{/if}
-
-	<br />
-
-	<div id="attachments">
-		{url|assign:reviewAttachmentsGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.files.attachment.ReviewerReviewAttachmentsGridHandler" op="fetchGrid" monographId=$monograph->getId() reviewId=$reviewAssignment->getId() escape=false}
-		{load_url_in_div id="readReviewAttachmentsGridContainer" url="$reviewAttachmentsGridUrl"}
-	</div>
-</div>
-
+		{if $reviewAssignment->getReviewFormId()}
+			{** FIXME: add review forms **}
+		{else}
+			{fbvFormSection}
+				{fbvElement type="textarea" id="reviewCompleted" label="editor.review.reviewerComments" value=$reviewerComment->getComments() disabled=true}
+			{/fbvFormSection}
+		{/if}
+		{fbvFormSection}
+			{url|assign:reviewAttachmentsGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.files.attachment.ReviewerReviewAttachmentsGridHandler" op="fetchGrid" monographId=$monograph->getId() reviewId=$reviewAssignment->getId() escape=false}
+			{load_url_in_div id="readReviewAttachmentsGridContainer" url="$reviewAttachmentsGridUrl"}
+		{/fbvFormSection}
+		{fbvElement type="submit" id="closeButton" label="common.close"}
+	{/fbvFormArea}
+</form>

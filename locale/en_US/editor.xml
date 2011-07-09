@@ -86,6 +86,7 @@
 	<message key="editor.review.noReviews">No peer reviews to import</message>
 	<message key="editor.review.reminder">Review Reminder</message>
 	<message key="editor.review.reminderError">Error sending review reminder</message>
+	<message key="editor.review.sendReminder">Send Remidner</message>
 	<message key="editor.review.reviewDueDate">Review Due Date</message>
 	<message key="editor.review.reviewCompleted">Review Completed</message>
 	<message key="editor.review.reviewerComments">Reviewer Comments</message>

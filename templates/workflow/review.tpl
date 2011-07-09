@@ -21,10 +21,8 @@
 		</li>
 	{/section}
 
-	{url|assign:"newRoundUrl" router=$smarty.const.ROUTE_COMPONENT component="modals.editorDecision.EditorDecisionHandler" op="newReviewRound" monographId=$monograph->getId()}
-	{modal url="$newRoundUrl" actOnId="nothing" dialogText='editor.monograph.newRound' button="#newRoundTab"}
 	<li id="newRoundTabContainer" class="ui-state-default ui-corner-top">
-		<a id="newRoundTab" href="#"><img class="ui-icon ui-icon-plus" style="float:left; margin-left:-5px;" />{translate key="editor.monograph.newRound"}</a>
+		{include file="linkAction/linkAction.tpl" action=$newRoundAction contextId="newRoundTabContainer"}
 	</li>
 </ul>
 
