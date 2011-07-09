@@ -51,7 +51,7 @@
 		<p>{translate key="common.note"}: {translate key="manager.setup.reviewOptions.noteOnModification"}</p>
 	{/fbvFormArea}
 
-	<!-- Create a function in form handler for this functionality. See *6654*  -->
+	<!-- FIXME: create a function in form handler for this functionality. See #6654#  -->
 	<script type="text/javascript">
 		{literal}
 		<!--
