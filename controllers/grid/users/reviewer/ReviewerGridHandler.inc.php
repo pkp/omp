@@ -47,7 +47,7 @@ class ReviewerGridHandler extends GridHandler {
 			array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
 			array(
 				'fetchGrid', 'fetchRow', 'addReviewer', 'showReviewerForm', 'editReviewer', 'updateReviewer', 'deleteReviewer',
-				'getReviewersNotAssignedToMonograph', 'getUsersNotAssignedAsReviewers', 'readReview',
+				'getReviewersNotAssignedToMonograph', 'getUsersNotAssignedAsReviewers', 'readReview', 'reviewRead', 'thankReviewer',
 				'createReviewer', 'editReminder', 'sendReminder'
 			)
 		);
@@ -145,14 +145,11 @@ class ReviewerGridHandler extends GridHandler {
 			)
 		);
 
-		// Add a column for the stage editor.
-		// FIXME: We're just adding some placeholder text here until this
-		// is correctly implemented, see #6233.
 		$this->addColumn(
 			new GridColumn(
 				'editor',
+				'user.role.editor',
 				null,
-				'FIXME',
 				'controllers/grid/common/cell/statusCell.tpl',
 				$cellProvider
 			)
@@ -390,13 +387,73 @@ class ReviewerGridHandler extends GridHandler {
 		$monographComments =& $monographCommentDao->getReviewerCommentsByReviewerId($reviewAssignment->getReviewerId(), $reviewAssignment->getSubmissionId(), $reviewAssignment->getId());
 		$templateMgr->assign_by_ref('reviewerComment', $monographComments[0]);
 
+		// Render the response.
+		return $templateMgr->fetchJson('controllers/grid/users/reviewer/readReview.tpl');
+	}
+
+	/**
+	 * Mark the review as read and trigger a rewrite of the row.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return string serialized JSON object
+	 */
+	function reviewRead($args, &$request) {
+		// Retrieve review assignment.
+		$reviewAssignment =& $this->_retrieveReviewAssignment($request);
+
 		// Mark the latest read date of the review by the editor.
 		$user =& $request->getUser();
 		$viewsDao =& DAORegistry::getDAO('ViewsDAO');
 		$viewsDao->recordView(ASSOC_TYPE_REVIEW_RESPONSE, $reviewAssignment->getId(), $user->getId());
+		return DAO::getDataChangedEvent($reviewAssignment->getId());
+	}
 
-		// Render the response.
-		return $templateMgr->fetchJson('controllers/grid/users/reviewer/readReview.tpl');
+
+	/**
+	 * Send the acknowledgement email and trigger a row refresh action.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return string serialized JSON object
+	 */
+	function thankReviewer($args, &$request) {
+		$userDao =& DAORegistry::getDAO('UserDAO');
+		$monographDao =& DAORegistry::getDAO('MonographDAO');
+		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+
+		// Retrieve review assignment.
+		$reviewAssignment =& $this->_retrieveReviewAssignment($request);
+		// Retrieve the monograph.
+		$monograph =& $monographDao->getMonograph($reviewAssignment->getSubmissionId());
+		// Retrieve the reviewer user.
+		$reviewer =& $userDao->getUser($reviewAssignment->getReviewerId());
+		// Retrieve the current user.
+		$user =& $request->getUser();
+
+		assert(isset($monograph) && isset($reviewer));
+
+		import('classes.mail.MonographMailTemplate');
+		$email = new MonographMailTemplate($monograph, 'REVIEW_ACK');
+
+		if (!$email->isEnabled()) {
+			HookRegistry::call('SeriesEditorAction::thankReviewer', array(&$monograph, &$reviewAssignment, &$email));
+
+			// Personalize the email.
+			$email->addRecipient($reviewer->getEmail(), $reviewer->getFullName());
+			$paramArray = array(
+				'reviewerName' => $reviewer->getFullName(),
+				'editorialContactSignature' => $user->getContactSignature()
+			);
+			$email->assignParams($paramArray);
+
+			// Send the email.
+			$email->send($request);
+		}
+		// Mark the review assignment as acknowledged.
+		$reviewAssignment->setDateAcknowledged(Core::getCurrentDate());
+		$reviewAssignment->stampModified();
+		$reviewAssignmentDao->updateReviewAssignment($reviewAssignment);
+
+		return DAO::getDataChangedEvent($reviewAssignment->getId());
 	}
 
 	/**
@@ -463,7 +520,7 @@ class ReviewerGridHandler extends GridHandler {
 		// Assert that the review assignment actually belongs to the
 		// authorized monograph.
 		$monograph =& $this->getMonograph();
-		if ($reviewAssignment->getMonographId() != $monograph->getId()) fatalError('Invalid review assignment!');
+		if ($reviewAssignment->getSubmissionId() != $monograph->getId()) fatalError('Invalid review assignment!');
 		return $reviewAssignment;
 	}
 

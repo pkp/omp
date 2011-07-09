@@ -14,6 +14,9 @@
 
 import('lib.pkp.classes.controllers.grid.DataObjectGridCellProvider');
 
+import('lib.pkp.classes.linkAction.request.AjaxModal');
+import('lib.pkp.classes.linkAction.request.AjaxAction');
+
 class ReviewerGridCellProvider extends DataObjectGridCellProvider {
 	/**
 	 * Constructor
@@ -33,36 +36,69 @@ class ReviewerGridCellProvider extends DataObjectGridCellProvider {
 	 * @return string
 	 */
 	function getCellState(&$row, &$column) {
-		$element =& $row->getData();
+		$reviewAssignment =& $row->getData();
 		$columnId = $column->getId();
-		assert(is_a($element, 'DataObject') && !empty($columnId));
+		assert(is_a($reviewAssignment, 'DataObject') && !empty($columnId));
 		switch ($columnId) {
 			case 'name':
-				return ($element->getDateCompleted())?'linkReview':'';
+				return ($reviewAssignment->getDateCompleted())?'linkReview':'';
 
-			case is_numeric($columnId):
-				// numeric implies a role column.
-				if ($element->getDateCompleted()) {
-					$sessionManager =& SessionManager::getManager();
-					$session =& $sessionManager->getUserSession();
-					$user =& $session->getUser();
-					$viewsDao =& DAORegistry::getDAO('ViewsDAO');
-					$lastViewed = $viewsDao->getLastViewDate(ASSOC_TYPE_REVIEW_RESPONSE, $element->getId(), $user->getId());
-					if($lastViewed) {
+			case 'editor':
+				// The review has been completed.
+				if ($reviewAssignment->getDateCompleted()) {
+					// The reviewer has been sent an acknowledgement.
+					if ($reviewAssignment->getDateAcknowledged()) {
 						return 'completed';
-					} else {
-						return 'new';
 					}
+
+					// Check if the somebody assigned to this monograph stage has read the review.
+					$monographDao =& DAORegistry::getDAO('MonographDAO');
+					$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+					$userStageAssignmentDao =& DAORegistry::getDAO('UserStageAssignmentDAO');
+					$viewsDao =& DAORegistry::getDAO('ViewsDAO');
+
+
+					$monograph =& $monographDao->getMonograph($reviewAssignment->getSubmissionId());
+
+					// Get the user groups for this stage
+					// FIXME #6200 need to determine between external and internal here
+					// From the reviewAssignment?
+					$userGroups =& $userGroupDao->getUserGroupsByStage($monograph->getPressId(),
+																			WORKFLOW_STAGE_ID_REVIEW,
+																			true,
+																			true);
+					while ( $userGroup =& $userGroups->next() ) {
+						if ($userGroup->getRoleId() == ROLE_ID_PRESS_MANAGER ||
+							$userGroup->getRoleId() == ROLE_ID_SERIES_EDITOR) {
+							// Get the users assigned to this stage and user group
+							$stageUsers =& $userStageAssignmentDao->getUsersBySubmissionAndStageId(
+																				$reviewAssignment->getSubmissionId(),
+																				WORKFLOW_STAGE_ID_REVIEW,
+																				$userGroup->getId());
+							// mark as completed (viewed) if any of the manager/editor users viewed it.
+							while ( $user =& $stageUsers->next() ) {
+								if ($viewsDao->getLastViewDate(ASSOC_TYPE_REVIEW_RESPONSE,
+															   $reviewAssignment->getId(), $user->getId())) {
+									// Some user has read the review.
+									return 'read';
+								}
+								unset($user);
+							}
+							unset($stageUsers);
+							// Nobody has read the review.
+							return 'new';
+						}
+					}
+					unset($userGroups);
 				}
 				return '';
-
 			case 'reviewer':
-				if ($element->getDateCompleted()) {
+				if ($reviewAssignment->getDateCompleted()) {
 					return 'completed';
-				} elseif ($element->getDateDue() < Core::getCurrentDate()) {
+				} elseif ($reviewAssignment->getDateDue() < Core::getCurrentDate()) {
 					return 'overdue';
-				} elseif ($element->getDateConfirmed()) {
-					return ($element->getDeclined())?'declined':'accepted';
+				} elseif ($reviewAssignment->getDateConfirmed()) {
+					return ($reviewAssignment->getDeclined())?'declined':'accepted';
 				}
 				return 'new';
 		}
@@ -86,7 +122,7 @@ class ReviewerGridCellProvider extends DataObjectGridCellProvider {
 				}
 				return array('label' => '');
 
-			case is_numeric($columnId):
+			case 'editor':
 			case 'reviewer':
 				return array('status' => $this->getCellState($row, $column));
 		}
@@ -103,7 +139,6 @@ class ReviewerGridCellProvider extends DataObjectGridCellProvider {
 	function getCellActions(&$request, &$row, &$column, $position = GRID_ACTION_POSITION_DEFAULT) {
 		$reviewAssignment =& $row->getData();
 		$actionArgs = array(
-			'gridId' => $row->getGridId(),
 			'monographId' => $reviewAssignment->getSubmissionId(),
 			'reviewId' => $reviewAssignment->getId(),
 			'reviewType' => $reviewAssignment->getReviewType(),
@@ -115,31 +150,43 @@ class ReviewerGridCellProvider extends DataObjectGridCellProvider {
 		$state = $this->getCellState($row, $column);
 		switch ($state) {
 			case 'linkReview':
-				$action = new LegacyLinkAction(
+				$monographDao =& DAORegistry::getDAO('MonographDAO');
+				$monograph =& $monographDao->getMonograph($reviewAssignment->getSubmissionId());
+
+				$action = new LinkAction(
 					'readReview',
-					LINK_ACTION_MODE_MODAL,
-					LINK_ACTION_TYPE_NOTHING,
-					$router->url($request, null, null, 'readReview', null, $actionArgs),
+					new AjaxModal(
+						$router->url($request, null, null, 'readReview', null, $actionArgs),
+						__('editor.review') . ': ' . $monograph->getLocalizedTitle(),
+						'edit' //FIXME: insert icon
+					),
+					$reviewAssignment->getReviewerFullName(),
+					$state
+				);
+				break;
+			case 'new':
+				$monographDao =& DAORegistry::getDAO('MonographDAO');
+				$monograph =& $monographDao->getMonograph($reviewAssignment->getSubmissionId());
+
+				$action = new LinkAction(
+					'readReview',
+					new AjaxModal(
+						$router->url($request, null, null, 'readReview', null, $actionArgs),
+						__('editor.review') . ': ' . $monograph->getLocalizedTitle(),
+						'edit' //FIXME: insert icon
+					),
 					null,
-					$reviewAssignment->getReviewerFullName()
+					$state
 				);
 				break;
 
-			case 'new':
-				// The 'new' state could be for the editor or the reviewer.
-				if (is_numeric($column->getId()) ) {
-					$action = new LegacyLinkAction(
-						'readReview',
-						LINK_ACTION_MODE_MODAL,
-						LINK_ACTION_TYPE_NOTHING,
-						$router->url($request, null, null, 'readReview', null, $actionArgs),
-						null,
-						null,
-						$state
-					);
-				}
-				break;
-
+			case 'read':
+				$action = new LinkAction(
+					'thankReviewer',
+					new AjaxAction($router->url($request, null, null, 'thankReviewer', null, $actionArgs)),
+					null,
+					'accepted'
+				);
 			case 'declined':
 			case 'accepted':
 			case 'completed':
@@ -152,9 +199,9 @@ class ReviewerGridCellProvider extends DataObjectGridCellProvider {
 					new AjaxModal(
 						$router->url($request, null, null, 'editReminder', null, $actionArgs),
 						__('editor.review.reminder'),
-						'edit'
+						'edit' // FIXME: insert icon.
 					),
-					'',
+					null,
 					$state
 				);
 				break;
