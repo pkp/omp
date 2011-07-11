@@ -16,11 +16,11 @@
 <script type="text/javascript">
 	$(function() {ldelim}
 		// Attach the form handler.
-		$('#review').pkpHandler('$.pkp.controllers.form.FormHandler');
+		$('#reviewStep2Form').pkpHandler('$.pkp.controllers.form.FormHandler');
 	{rdelim});
 </script>
 
-<form class="pkp_form" id="review" method="post" action="{url page="reviewer" op="saveStep" path=$submission->getId() step="2" escape=false}">
+<form class="pkp_form" id="reviewStep2Form" method="post" action="{url page="reviewer" op="saveStep" path=$submission->getId() step="2" escape=false}">
 {include file="common/formErrors.tpl"}
 
 {fbvFormArea id="reviewStep2"}
