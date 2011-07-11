@@ -13,15 +13,16 @@
  */
 
 import('controllers.modals.editorDecision.form.EditorDecisionForm');
-import('lib.pkp.monograph.reviewRound.ReviewRound');
+import('classes.monograph.reviewRound.ReviewRound');
 
 class NewReviewRoundForm extends EditorDecisionForm {
 
 	/**
 	 * Constructor.
 	 * @param $seriesEditorSubmission SeriesEditorSubmission
+	 * @param
 	 */
-	function NewReviewRoundForm($seriesEditorSubmission) {
+	function NewReviewRoundForm($seriesEditorSubmission, $decision = SUBMISSION_EDITOR_DECISION_RESUBMIT) {
 		parent::EditorDecisionForm($seriesEditorSubmission, 'controllers/modals/editorDecision/form/newReviewRoundForm.tpl');
 	}
 

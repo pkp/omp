@@ -50,6 +50,14 @@ class ReviewerReviewStep3Form extends ReviewerReviewForm {
 		return $this->_reviewAssignment;
 	}
 
+	function initData() {
+		$templateMgr =& TemplateManager::getManager();
+		$reviewAssignment =& $this->getReviewAssignment();
+		// Retrieve reviewer comment.
+		$monographCommentDao =& DAORegistry::getDAO('MonographCommentDAO');
+		$monographComments =& $monographCommentDao->getReviewerCommentsByReviewerId($reviewAssignment->getReviewerId(), $reviewAssignment->getSubmissionId(), $reviewAssignment->getId());
+		$templateMgr->assign_by_ref('reviewerComment', $monographComments[0]);
+	}
 
 	//
 	// Implement protected template methods from Form
@@ -62,13 +70,6 @@ class ReviewerReviewStep3Form extends ReviewerReviewForm {
 		$this->readUserVars(
 			array(/*'reviewFormResponses', */ 'comments')
 		);
-	}
-
-	/**
-	 * @see Form::getLocaleFieldNames()
-	 */
-	function getLocaleFieldNames() {
-		return array('review');
 	}
 
 	/**

@@ -105,7 +105,7 @@ class ReviewHandler extends Handler {
 
 		if ($reviewerForm->validate()) {
 			$reviewerForm->execute();
-			$request->redirect(null, null, 'submission', $reviewAssignment->getSubmissionId());
+			$request->redirect(null, null, 'submission', $reviewAssignment->getSubmissionId(), array('step' => $step+1));
 		} else {
 			$reviewerForm->display($request);
 		}

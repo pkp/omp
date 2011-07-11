@@ -124,8 +124,13 @@ class ReviewerReviewStep1Form extends ReviewerReviewForm {
 		// Set review to next step.
 		$this->updateReviewStepAndSaveSubmission($reviewerSubmission);
 
+		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+		$reviewAssignment = $reviewAssignmentDao->getById($reviewerSubmission->getReviewId());
+		// if the reviewer has not previously confirmed the review, then
 		// Set that the reviewer has accepted the review.
-		ReviewerAction::confirmReview($this->request, $reviewerSubmission, false, true);
+		if (!$reviewAssignment->getDateConfirmed()) {
+			ReviewerAction::confirmReview($this->request, $reviewerSubmission, false, true);
+		}
 	}
 }
 
