@@ -121,12 +121,13 @@
 	<!-- Settings management -->
 	<message key="manager.settings">Settings</message>
 	<message key="manager.settings.wizard">Settings Wizard</message>
+	<message key="manager.settings.pressSettings">Press Settings</message>
 	<message key="manager.settings.press">Press</message>
 	<message key="manager.settings.pressDescription"><![CDATA[All settings specific to the press (masthead, contact, policies, guidelines, affiliation & support, divisions and series, press identification).]]></message>
 	<message key="manager.settings.accessDescription">All settings related to access and security management for this press (users,roles, site access options).</message>
 	<message key="manager.settings.websiteDescription">All settings specific to the public website pages (homepage, appearance, language)</message>
 	<message key="manager.settings.publicationDescription">All settings specific to the publication process (general settings, submission stage, review stage, editorial stage, production stage, email templates).</message>
-	<message key="manager.settings.distributionDescription">All settings specific to the distribution process (notification, indexing, archiving, payment, reading tools).</message>	
+	<message key="manager.settings.distributionDescription">All settings specific to the distribution process (notification, indexing, archiving, payment, reading tools).</message>
 
 	<!-- User management -->
 	<message key="manager.users">User Management</message>
@@ -175,17 +176,17 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="settings.roles.uniqueAbbrev">You need to define an unique role abbreviature.</message>
 	<message key="settings.roles.roleIdRequired">You need to define a role permission level.</message>
 	<message key="manager.siteAccessOptions.siteAccessOptions">Site Access Options</message>
-	
+
 	<!-- Press settings -->
 	<message key="manager.press.identification">Press Identification</message>
 	<message key="manager.affiliationAndSupport"><![CDATA[Affiliation &amp; Support]]></message>
-	
+
 	<!-- Website settings -->
 	<message key="manager.website.homepage">Homepage</message>
 	<message key="manager.website.appearance">Appearance</message>
 	<message key="manager.website.languages">Languages</message>
 	<message key="manager.website.imageFileRequired">An image file is required. Please ensure that you have chosen and uploaded a file.</message>
-	
+
 	<!-- Publication Process settings -->
 	<message key="manager.publication.general">General Settings</message>
 	<message key="manager.publication.submissionStage">Submission Stage</message>
@@ -193,10 +194,10 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.publication.editorialStage">Editorial Stage</message>
 	<message key="manager.publication.productionStage">Production Stage</message>
 	<message key="manager.publication.preparedEmails">Prepared Emails</message>
-	
+
 	<!-- Distribution Process settings -->
 	<message key="manager.distribution.indexing">Indexing</message>
-	
+
 	<!-- System setup -->
 	<message key="manager.system">System Settings</message>
 	<message key="manager.system.archiving">Archiving</message>

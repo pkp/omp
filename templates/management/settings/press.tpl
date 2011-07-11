@@ -8,7 +8,7 @@
  *}
 
 {strip}
-{assign var="pageTitle" value="manager.settings.press"}
+{assign var="pageTitle" value="manager.settings.pressSettings"}
 {include file="common/header.tpl"}
 {/strip}
 
