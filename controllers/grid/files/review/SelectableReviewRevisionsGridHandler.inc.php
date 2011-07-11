@@ -22,6 +22,7 @@ class SelectableReviewRevisionsGridHandler extends SelectableFileListGridHandler
 	function SelectableReviewRevisionsGridHandler() {
 		import('controllers.grid.files.review.ReviewRevisionsGridDataProvider');
 		$dataProvider = new ReviewRevisionsGridDataProvider();
+		// FIXME: #6244# HARDCODED INTERNAL_REVIEW
 		parent::SelectableFileListGridHandler(
 			$dataProvider,
 			WORKFLOW_STAGE_ID_INTERNAL_REVIEW,

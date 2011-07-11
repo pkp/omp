@@ -25,6 +25,7 @@ class SelectableEditorReviewFilesGridHandler extends SelectableFileListGridHandl
 	 */
 	function SelectableEditorReviewFilesGridHandler() {
 		import('controllers.grid.files.SubmissionFilesGridDataProvider');
+		// FIXME: #6244# HARDCODED INTERNAL_REVIEW
 		$dataProvider = new SubmissionFilesGridDataProvider(WORKFLOW_STAGE_ID_INTERNAL_REVIEW, MONOGRAPH_FILE_SUBMISSION);
 		parent::SelectableFileListGridHandler(
 			$dataProvider,

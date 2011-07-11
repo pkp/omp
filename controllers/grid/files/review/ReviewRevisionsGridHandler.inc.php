@@ -20,6 +20,7 @@ class ReviewRevisionsGridHandler extends FileSignoffGridHandler {
 	 */
 	function ReviewRevisionsGridHandler() {
 		import('controllers.grid.files.review.ReviewRevisionsGridDataProvider');
+		// FIXME: #6244# HARDCODED INTERNAL_REVIEW
 		parent::FileSignoffGridHandler(
 			new ReviewRevisionsGridDataProvider(),
 			WORKFLOW_STAGE_ID_INTERNAL_REVIEW,
