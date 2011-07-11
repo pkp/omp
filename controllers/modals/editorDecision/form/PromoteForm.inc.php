@@ -51,7 +51,7 @@ class PromoteForm extends EditorDecisionWithEmailForm {
 		);
 
 		$seriesEditorSubmission =& $this->getSeriesEditorSubmission();
-		$this->setData('stageId', $seriesEditorSubmission->getCurrentStageId());
+		$this->setData('stageId', $seriesEditorSubmission->getStageId());
 
 		return parent::initData($args, $request, $actionLabels);
 	}
@@ -87,7 +87,7 @@ class PromoteForm extends EditorDecisionWithEmailForm {
 				$seriesEditorAction->incrementWorkflowStage($seriesEditorSubmission, WORKFLOW_STAGE_ID_EXTERNAL_REVIEW);
 
 				// Create an initial external review round.
-				$this->_initiateReviewRound($seriesEditorSubmission, REVIEW_TYPE_EXTERNAL, 1);
+				$this->_initiateReviewRound($seriesEditorSubmission, WORKFLOW_STAGE_ID_EXTERNAL_REVIEW, 1);
 				break;
 
 			default:

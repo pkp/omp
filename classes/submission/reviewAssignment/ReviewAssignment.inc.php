@@ -29,19 +29,19 @@ class ReviewAssignment extends PKPReviewAssignment {
 	// Get/set methods
 	//
 	/**
-	 * Get the type of the review (internal or external).
+	 * Get the id of the review stage (WORKFLOW_[INTERNAL|EXTERNAL]_STAGE_ID
 	 * @return int
 	 */
-	function getReviewType() {
-		return $this->getData('reviewType');
+	function getStageId() {
+		return $this->getData('stageId');
 	}
 
 	/**
 	 * Set the type of review.
-	 * @param $type int
+	 * @param $stageId int
 	 */
-	function setReviewType($type) {
-		return $this->setData('reviewType', $type);
+	function setStageId($stageId) {
+		return $this->setData('stageId', $stageId);
 	}
 
 	/**

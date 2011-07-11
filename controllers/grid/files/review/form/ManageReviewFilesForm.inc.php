@@ -19,7 +19,7 @@ class ManageReviewFilesForm extends Form {
 	var $_monographId;
 
 	/** @var int **/
-	var $_reviewType;
+	var $_stageId;
 
 	/** @var int **/
 	var $_round;
@@ -28,10 +28,10 @@ class ManageReviewFilesForm extends Form {
 	/**
 	 * Constructor.
 	 */
-	function ManageReviewFilesForm($monographId, $reviewType, $round) {
+	function ManageReviewFilesForm($monographId, $stageId, $round) {
 		parent::Form('controllers/grid/files/review/manageReviewFiles.tpl');
 		$this->setMonographId((int)$monographId);
-		$this->setReviewType((int)$reviewType);
+		$this->setStageId((int)$stageId);
 		$this->setRound((int)$round);
 
 		$this->addCheck(new FormValidatorPost($this));
@@ -58,19 +58,19 @@ class ManageReviewFilesForm extends Form {
 	}
 
 	/**
-	 * Set the review type
-	 * @param $reviewType int
+	 * Set the review stage id
+	 * @param $stageId int
 	 */
-	function setReviewType($reviewType) {
-		$this->_reviewType = $reviewType;
+	function setStageId($stageId) {
+		$this->_stageId = $stageId;
 	}
 
 	/**
-	 * Get the review type
+	 * Get the review stage id
 	 * @return int
 	 */
-	function getReviewType() {
-		return $this->_reviewType;
+	function getStageId() {
+		return $this->_stageId;
 	}
 
 	/**
@@ -103,7 +103,7 @@ class ManageReviewFilesForm extends Form {
 		$monograph =& $monographDao->getMonograph($this->_monographId);
 
 		$this->setData('monographId', $this->_monographId);
-		$this->setData('reviewType', $monograph->getCurrentReviewType());
+		$this->setData('stageId', $monograph->getStageId());
 		$this->setData('round', $monograph->getCurrentRound());
 	}
 
@@ -122,15 +122,15 @@ class ManageReviewFilesForm extends Form {
 	 */
 	function execute($args, &$request) {
 		$selectedFiles = $this->getData('selectedFiles');
-		$reviewType = $this->getReviewType();
+		$stageId = $this->getStageId();
 		$round = $this->getRound();
 
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-		$submissionFileDao->deleteAllRevisionsByReviewRound($this->getMonographId(), $reviewType, $round);
+		$submissionFileDao->deleteAllRevisionsByReviewRound($this->getMonographId(), $stageId, $round);
 		if (!empty($selectedFiles)) {
 			foreach ($selectedFiles as $selectedFile) {
 				list($fileId, $revision) = explode("-", $selectedFile);
-				$submissionFileDao->assignRevisionToReviewRound($fileId, $revision, $reviewType, $round, $this->getMonographId());
+				$submissionFileDao->assignRevisionToReviewRound($fileId, $revision, $stageId, $round, $this->getMonographId());
 			}
 		}
 	}

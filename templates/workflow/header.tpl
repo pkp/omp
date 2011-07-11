@@ -12,13 +12,13 @@
 		{include file="common/submissionHeader.tpl" stageId=$stageId monograph=$monograph}
 
 		<div class="action pkp_linkActions">
-			{url|assign:"allParticipantsUrl" router=$smarty.const.ROUTE_COMPONENT component="modals.submissionParticipants.SubmissionParticipantsHandler" op="fetch" stageId=$monograph->getCurrentStageId() monographId=$monograph->getId() escape=false}
+			{url|assign:"allParticipantsUrl" router=$smarty.const.ROUTE_COMPONENT component="modals.submissionParticipants.SubmissionParticipantsHandler" op="fetch" stageId=$monograph->getStageId() monographId=$monograph->getId() escape=false}
 			{modal url="$allParticipantsUrl" actOnType="nothing" actOnId="nothing" dialogText='reviewer.step1.viewAllDetails' button="#allParticipants"}
 			<a id="allParticipants" class="user_list" href="{$metadataUrl}">{translate key="submission.submit.allParticipants"}</a>
 		</div>
 
 		<div class="action pkp_linkActions">
-			{url|assign:"metadataUrl" router=$smarty.const.ROUTE_COMPONENT component="modals.submissionMetadata.SubmissionDetailsSubmissionMetadataHandler" op="fetch" stageId=$monograph->getCurrentStageId() monographId=$monograph->getId() escape=false}
+			{url|assign:"metadataUrl" router=$smarty.const.ROUTE_COMPONENT component="modals.submissionMetadata.SubmissionDetailsSubmissionMetadataHandler" op="fetch" stageId=$monograph->getStageId() monographId=$monograph->getId() escape=false}
 			{modal url="$metadataUrl" actOnType="nothing" actOnId="nothing" dialogText='reviewer.step1.viewAllDetails' button="#viewMetadata"}
 			<a id="viewMetadata" class="more_info" href="{$metadataUrl}">{translate key="submission.submit.metadata"}</a>
 		</div>

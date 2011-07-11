@@ -22,7 +22,7 @@
 	{include file="common/formErrors.tpl"}
 {fbvFormArea id="reviewStep3"}
 	{fbvFormSection label="common.download"}
-		{url|assign:reviewFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.review.ReviewerReviewFilesGridHandler" op="fetchGrid" monographId=$submission->getId() reviewType=$submission->getCurrentReviewType() round=$submission->getCurrentRound() escape=false}
+		{url|assign:reviewFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.review.ReviewerReviewFilesGridHandler" op="fetchGrid" monographId=$submission->getId() stageId=$submission->getStageId() round=$submission->getCurrentRound() escape=false}
 		{load_url_in_div id="reviewFiles" url=$reviewFilesGridUrl}
 	{/fbvFormSection}
 
@@ -34,7 +34,7 @@
 		{/if}
 		{fbvElement type="textarea" id="comments" name="comments" value=$reviewAssignment->getComments()|escape}
 
-		{url|assign:reviewAttachmentsGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.attachment.ReviewerReviewAttachmentsGridHandler" op="fetchGrid" reviewId=$submission->getReviewId() monographId=$submission->getId() escape=false}
+		{url|assign:reviewAttachmentsGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.attachment.ReviewerReviewAttachmentsGridHandler" op="fetchGrid" reviewId=$submission->getReviewId() monographId=$submission->getId() round=1 escape=false}
 		{load_url_in_div id="reviewAttachmentsGridContainer" url="$reviewAttachmentsGridUrl"}
 	{/fbvFormSection}
 

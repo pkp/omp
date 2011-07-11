@@ -192,10 +192,10 @@ class AuthorSubmissionDAO extends DAO {
 		$decisions = array();
 
 		$result =& $this->retrieve(
-				'SELECT edit_decision_id, editor_id, decision, date_decided, review_type, round FROM edit_decisions WHERE monograph_id = ? ORDER BY date_decided ASC', $monographId);
+				'SELECT edit_decision_id, editor_id, decision, date_decided, stage_id, round FROM edit_decisions WHERE monograph_id = ? ORDER BY date_decided ASC', $monographId);
 
 		while (!$result->EOF) {
-			$decisions[$result->fields['review_type']][$result->fields['round']][] = array(
+			$decisions[$result->fields['stage_id']][$result->fields['round']][] = array(
 				'editDecisionId' => $result->fields['edit_decision_id'],
 				'editorId' => $result->fields['editor_id'],
 				'decision' => $result->fields['decision'],

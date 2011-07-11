@@ -106,14 +106,14 @@ class ReviewerForm extends Form {
 		$round = (int) $request->getUserVar('round');
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		// FIXME: Bug #6199
-		$reviewType = (int) $request->getUserVar('reviewType');
+		$stageId = (int) $request->getUserVar('stageId');
 
 		// Get the review method (open, blind, or double-blind)
 		// FIXME: Bug #6403, Need to be able to specify the review method
 		$reviewMethod = SUBMISSION_REVIEW_METHOD_DOUBLEBLIND;
 
 		// Get the response/review due dates or else set defaults
-		$reviewAssignment =& $reviewAssignmentDao->getReviewAssignment($this->getMonographId(), $reviewerId, $round, $reviewType);
+		$reviewAssignment =& $reviewAssignmentDao->getReviewAssignment($this->getMonographId(), $reviewerId, $round, $stageId);
 		if (isset($reviewAssignment) && $reviewAssignment->getDueDate() != null) {
 			$reviewDueDate = strftime(Config::getVar('general', 'date_format_short'), strtotime($reviewAssignment->getDueDate()));
 		} else {
@@ -133,7 +133,7 @@ class ReviewerForm extends Form {
 
 		$this->setData('monographId', $this->getMonographId());
 		$this->setData('reviewAssignmentId', $this->getReviewAssignmentId());
-		$this->setData('reviewType', $reviewType);
+		$this->setData('stageId', $stageId);
 		$this->setData('reviewMethod', $reviewMethod);
 		$this->setData('round', (int) $request->getUserVar('round'));
 		$this->setData('reviewerId', $reviewerId);
@@ -172,7 +172,7 @@ class ReviewerForm extends Form {
 		$this->readUserVars(array(
 			'selectionType',
 			'monographId',
-			'reviewType',
+			'stageId',
 			'round',
 			'personalMessage',
 			'responseDueDate',
@@ -197,7 +197,7 @@ class ReviewerForm extends Form {
 		$press =& $request->getPress();
 
 		// FIXME: Bug #6199
-		$reviewType = $this->getData('reviewType');
+		$stageId = $this->getData('stageId');
 		$round = $this->getData('round');
 		$reviewDueDate = $this->getData('reviewDueDate');
 		$responseDueDate = $this->getData('responseDueDate');
@@ -205,11 +205,11 @@ class ReviewerForm extends Form {
 
 		import('classes.submission.seriesEditor.SeriesEditorAction');
 		$seriesEditorAction = new SeriesEditorAction();
-		$seriesEditorAction->addReviewer($request, $submission, $reviewerId, $reviewType, $round, $reviewDueDate, $responseDueDate);
+		$seriesEditorAction->addReviewer($request, $submission, $reviewerId, $stageId, $round, $reviewDueDate, $responseDueDate);
 
 		// Get the reviewAssignment object now that it has been added
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO'); /* @var $reviewAssignmentDao ReviewAssignmentDAO */
-		$reviewAssignment =& $reviewAssignmentDao->getReviewAssignment($submission->getId(), $reviewerId, $round, $reviewType);
+		$reviewAssignment =& $reviewAssignmentDao->getReviewAssignment($submission->getId(), $reviewerId, $round, $stageId);
 		$reviewAssignment->setDateNotified(Core::getCurrentDate());
 		$reviewAssignment->setCancelled(0);
 		$reviewAssignment->stampModified();
@@ -217,7 +217,7 @@ class ReviewerForm extends Form {
 
 		// Update the review round status if this is the first reviewer added
 		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
-		$currentReviewRound =& $reviewRoundDao->build($this->getMonographId(), $submission->getCurrentReviewType(), $submission->getCurrentRound());
+		$currentReviewRound =& $reviewRoundDao->build($this->getMonographId(), $submission->getStageId(), $submission->getCurrentRound());
 		if ($currentReviewRound->getStatus() == REVIEW_ROUND_STATUS_PENDING_REVIEWERS) {
 			$currentReviewRound->setStatus(REVIEW_ROUND_STATUS_PENDING_REVIEWS);
 			$reviewRoundDao->updateObject($currentReviewRound);

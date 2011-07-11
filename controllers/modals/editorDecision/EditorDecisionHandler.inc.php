@@ -47,8 +47,9 @@ class EditorDecisionHandler extends Handler {
 	 * @see PKPHandler::authorize()
 	 */
 	function authorize(&$request, $args, $roleAssignments) {
+		$stageId = (int) $request->getUserVar('stageId');
 		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
-		$this->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', WORKFLOW_STAGE_ID_SUBMISSION));
+		$this->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', $stageId));
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 

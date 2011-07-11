@@ -34,11 +34,11 @@ class ReviewAssignmentDAO extends PKPReviewAssignmentDAO {
 	/**
 	 * Get all review assignments for a monograph.
 	 * @param $monographId int optional
-	 * @param $reviewType int optional
+	 * @param $stageId int optional
 	 * @return array ReviewAssignments
 	 */
-	function &getByMonographId($monographId, $round = null, $reviewType = null) {
-		$returner =& $this->getBySubmissionId($monographId, $round, $reviewType);
+	function &getByMonographId($monographId, $round = null, $stageId = null) {
+		$returner =& $this->getBySubmissionId($monographId, $round, $stageId);
 		return $returner;
 	}
 

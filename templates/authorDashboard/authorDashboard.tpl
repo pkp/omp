@@ -10,7 +10,7 @@
 {strip}
 {include file="common/header.tpl"}
 {/strip}
-{assign var="stageId" value=$monograph->getCurrentStageId()}
+{assign var="stageId" value=$monograph->getStageId()}
 
 <script type="text/javascript">
 	// Initialise JS handler.

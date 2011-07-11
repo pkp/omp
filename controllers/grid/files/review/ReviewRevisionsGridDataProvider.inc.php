@@ -37,7 +37,7 @@ class ReviewRevisionsGridDataProvider extends ReviewGridDataProvider {
 		// of those currently assigned to the review round.
 		$monograph =& $this->getMonograph();
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-		$monographFiles =& $submissionFileDao->getLatestNewRevisionsByReviewRound($monograph->getId(), $this->_getReviewType(), $this->_getRound());
+		$monographFiles =& $submissionFileDao->getLatestNewRevisionsByReviewRound($monograph->getId(), $this->_getStageId(), $this->_getRound());
 		return $this->prepareSubmissionFileData($monographFiles);
 	}
 
@@ -53,7 +53,7 @@ class ReviewRevisionsGridDataProvider extends ReviewGridDataProvider {
 		$monograph =& $this->getMonograph();
 		$addFileAction = new AddRevisionLinkAction(
 			$request, $monograph->getId(), $this->getUploaderRoles(),
-			$this->_getReviewType(), $this->_getRound()
+			$this->_getStageId(), $this->_getRound()
 		);
 		return $addFileAction;
 	}

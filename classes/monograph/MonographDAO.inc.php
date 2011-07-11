@@ -153,7 +153,7 @@ class MonographDAO extends DAO {
 		$monograph->setDateStatusModified($this->datetimeFromDB($row['date_status_modified']));
 		$monograph->setLastModified($this->datetimeFromDB($row['last_modified']));
 		$monograph->setCurrentRound($row['current_round']);
-		$monograph->setCurrentStageId($row['stage_id']);
+		$monograph->setStageId($row['stage_id']);
 		$monograph->setStatus($row['status']);
 		$monograph->setSubmissionProgress($row['submission_progress']);
 		$monograph->setWorkType($row['edited_volume']);
@@ -193,7 +193,7 @@ class MonographDAO extends DAO {
 				$monograph->getStatus() === null ? 1 : $monograph->getStatus(),
 				$monograph->getSubmissionProgress() === null ? 1 : $monograph->getSubmissionProgress(),
 				$monograph->getCurrentRound() === null ? 1 : $monograph->getCurrentRound(),
-				$monograph->getCurrentStageId() === null ? 1 : $monograph->getCurrentStageId(),
+				$monograph->getStageId() === null ? 1 : $monograph->getStageId(),
 				$monograph->getPages(),
 				$monograph->getHideAuthor() === null ? 0 : $monograph->getHideAuthor(),
 				$monograph->getCommentsStatus() === null ? 0 : $monograph->getCommentsStatus(),
@@ -243,7 +243,7 @@ class MonographDAO extends DAO {
 				$monograph->getPressId(),
 				$monograph->getSubmissionProgress(),
 				$monograph->getCurrentRound(),
-				$monograph->getCurrentStageId(),
+				$monograph->getStageId(),
 				$monograph->getWorkType() == WORK_TYPE_EDITED_VOLUME ? 1 : 0,
 				$monograph->getHideAuthor() == null ? 0 : $monograph->getHideAuthor(),
 
@@ -493,11 +493,11 @@ class MonographDAO extends DAO {
 		$cache->flush();
 		unset($cache);
 
-		//TODO: flush cash of publishedMonographDAO once created
+		//TODO: flush cache of publishedMonographDAO once created
 	}
 
 	/**
-	 * Get an array describing a monograph's current round for each review type
+	 * Get an array describing a monograph's current round for each review stage id
 	 * FIXME: Move to ReviewRoundDAO, see #6455.
 	 * FIXME: Return review round objects rather than an untyped array, see #6406.
 	 * @param $monographId int
@@ -506,16 +506,16 @@ class MonographDAO extends DAO {
 	function &getReviewRoundsInfoById($monographId) {
 		$returner = array();
 		$result =& $this->retrieve(
-			'SELECT	MAX(round) AS current_round, review_type
+			'SELECT	MAX(round) AS current_round, stage_id
 			FROM	review_rounds r
 			WHERE	submission_id = ?
-			GROUP BY review_type',
+			GROUP BY stage_id',
 			$monographId
 		);
 
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
-			$returner[$row['review_type']] = $row['current_round'];
+			$returner[$row['stage_id']] = $row['current_round'];
 			$result->MoveNext();
 		}
 

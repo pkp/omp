@@ -64,7 +64,7 @@ class AuthorDashboardHandler extends Handler {
 
 		// Workflow-stage specific "upload file" action.
 		$fileStage = null;
-		$currentStage = $monograph->getCurrentStageId();
+		$currentStage = $monograph->getStageId();
 		switch ($currentStage) {
 			case WORKFLOW_STAGE_ID_SUBMISSION:
 			case WORKFLOW_STAGE_ID_INTERNAL_REVIEW:
@@ -94,7 +94,7 @@ class AuthorDashboardHandler extends Handler {
 
 		// If the submission is in or past the copyediting stage,
 		// assign the editor's copyediting emails to the template
-		if ($monograph->getCurrentStageId() >= WORKFLOW_STAGE_ID_EDITING) {
+		if ($monograph->getStageId() >= WORKFLOW_STAGE_ID_EDITING) {
 			$monographEmailLogDao =& DAORegistry::getDAO('MonographEmailLogDAO');
 			$monographEmails =& $monographEmailLogDao->getByEventType($monograph->getId(), MONOGRAPH_EMAIL_COPYEDIT_NOTIFY_AUTHOR);
 

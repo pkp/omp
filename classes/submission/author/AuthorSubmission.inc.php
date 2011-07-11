@@ -86,12 +86,12 @@ class AuthorSubmission extends Monograph {
 	 * Get review assignments for this monograph.
 	 * @return array ReviewAssignments
 	 */
-	function &getReviewAssignments($reviewType = null, $round = null) {
-		if ($reviewType == null) {
+	function &getReviewAssignments($stageId = null, $round = null) {
+		if ($stageId == null) {
 			return $this->reviewAssignments;
 		} else {
-			$returner = $round != null && isset($this->reviewAssignments[$reviewType][$round]) ?
-						$this->reviewAssignments[$reviewType][$round] : null;
+			$returner = $round != null && isset($this->reviewAssignments[$stageId][$round]) ?
+						$this->reviewAssignments[$stageId][$round] : null;
 		}
 		return $returner;
 	}
@@ -112,12 +112,12 @@ class AuthorSubmission extends Monograph {
 	 * Get editor decisions.
 	 * @return array
 	 */
-	function getDecisions($reviewType = null, $round = null) {
-		if ($reviewType == null) {
+	function getDecisions($stageId = null, $round = null) {
+		if ($stageId == null) {
 			return $this->editorDecisions;
 		} else {
-			return $round != null && isset($this->editorDecisions[$reviewType][$round]) ?
-					$this->editorDecisions[$reviewType][$round] : null;
+			return $round != null && isset($this->editorDecisions[$stageId][$round]) ?
+					$this->editorDecisions[$stageId][$round] : null;
 		}
 	}
 
@@ -147,7 +147,7 @@ class AuthorSubmission extends Monograph {
 		// The submission is STATUS_QUEUED or the author's submission was STATUS_INCOMPLETE.
 		if ($this->getSubmissionProgress()) return (STATUS_INCOMPLETE);
 
-		if($this->getCurrentStageId() == WORKFLOW_STAGE_ID_INTERNAL_REVIEW || $this->getCurrentStageId() == WORKFLOW_STAGE_ID_EXTERNAL_REVIEW) {
+		if($this->getStageId() == WORKFLOW_STAGE_ID_INTERNAL_REVIEW || $this->getStageId() == WORKFLOW_STAGE_ID_EXTERNAL_REVIEW) {
 			return STATUS_QUEUED_REVIEW;
 		}
 

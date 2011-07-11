@@ -37,7 +37,7 @@ class ReviewFilesGridDataProvider extends ReviewGridDataProvider {
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		$monographFiles =& $submissionFileDao->getRevisionsByReviewRound(
 			$monograph->getId(),
-			$this->_getReviewType(), $this->_getRound()
+			$this->_getStageId(), $this->_getRound()
 		);
 		return $this->prepareSubmissionFileData($monographFiles);
 	}
@@ -53,7 +53,7 @@ class ReviewFilesGridDataProvider extends ReviewGridDataProvider {
 		import('controllers.grid.files.fileList.linkAction.SelectReviewFilesLinkAction');
 		$monograph =& $this->getMonograph();
 		$selectAction = new SelectReviewFilesLinkAction(
-			&$request, $monograph->getId(), $this->_getReviewType(), $this->_getRound(),
+			&$request, $monograph->getId(), $this->_getStageId(), $this->_getRound(),
 			__('editor.submissionArchive.manageReviewFiles')
 		);
 		return $selectAction;

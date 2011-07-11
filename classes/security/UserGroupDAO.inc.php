@@ -17,12 +17,6 @@
  */
 
 
-define('WORKFLOW_STAGE_PATH_SUBMISSION', 'submission');
-define('WORKFLOW_STAGE_PATH_INTERNAL_REVIEW', 'internalReview');
-define('WORKFLOW_STAGE_PATH_EXTERNAL_REVIEW', 'externalReview');
-define('WORKFLOW_STAGE_PATH_EDITING', 'editing');
-define('WORKFLOW_STAGE_PATH_PRODUCTION', 'production');
-
 import('lib.pkp.classes.security.PKPUserGroupDAO');
 
 class UserGroupDAO extends PKPUserGroupDAO {

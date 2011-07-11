@@ -30,17 +30,17 @@
 	{include file="common/reviewRoundStatus.tpl" round=$round roundStatus=$roundStatus}
 {/if}
 
-{url|assign:reviewFileSelectionGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.review.EditorReviewFilesGridHandler" op="fetchGrid" monographId=$monograph->getId() reviewType=$currentReviewType round=$selectedRound escape=false}
+{url|assign:reviewFileSelectionGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.review.EditorReviewFilesGridHandler" op="fetchGrid" monographId=$monograph->getId() stageId=$selectedStageId round=$selectedRound escape=false}
 {load_url_in_div id="reviewFileSelection" url=$reviewFileSelectionGridUrl}
 
 <br />
 
-{url|assign:reviewersGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.users.reviewer.ReviewerGridHandler" op="fetchGrid" monographId=$monograph->getId() reviewType=$currentReviewType round=$selectedRound escape=false}
+{url|assign:reviewersGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.users.reviewer.ReviewerGridHandler" op="fetchGrid" monographId=$monograph->getId() stageId=$selectedStageId round=$selectedRound escape=false}
 {load_url_in_div id="reviewersGrid" url=$reviewersGridUrl}
 
 <br />
 
-{url|assign:revisionsGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.review.ReviewRevisionsGridHandler" op="fetchGrid" monographId=$monograph->getId() reviewType=$currentReviewType round=$selectedRound escape=false}
+{url|assign:revisionsGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.review.ReviewRevisionsGridHandler" op="fetchGrid" monographId=$monograph->getId() stageId=$selectedStageId round=$selectedRound escape=false}
 {load_url_in_div id="revisionsGrid" url=$revisionsGridUrl}
 
 <br />

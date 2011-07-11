@@ -37,6 +37,13 @@ define_exposed('WORKFLOW_STAGE_ID_EXTERNAL_REVIEW', 3);
 define_exposed('WORKFLOW_STAGE_ID_EDITING', 4);
 define_exposed('WORKFLOW_STAGE_ID_PRODUCTION', 5);
 
+// FIXME: these were defined in userGroup. they need to be moved somewhere with classes that do mapping.
+define('WORKFLOW_STAGE_PATH_SUBMISSION', 'submission');
+define('WORKFLOW_STAGE_PATH_INTERNAL_REVIEW', 'internalReview');
+define('WORKFLOW_STAGE_PATH_EXTERNAL_REVIEW', 'externalReview');
+define('WORKFLOW_STAGE_PATH_EDITING', 'copyediting');
+define('WORKFLOW_STAGE_PATH_PRODUCTION', 'production');
+
 // To expose LISTBUILDER_SOURCE_TYPE_... constants via JS
 import('lib.pkp.classes.controllers.listbuilder.ListbuilderHandler');
 

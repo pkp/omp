@@ -34,7 +34,7 @@ class ReviewerGridRow extends GridRow {
 
 		// Retrieve the monograph id from the request
 		$monographId = (int) $request->getUserVar('monographId');
-		$reviewType = (int) $request->getUserVar('reviewType');
+		$stageId = (int) $request->getUserVar('stageId');
 		$round = (int) $request->getUserVar('round');
 
 		// Is this a new row or an existing row?
@@ -45,7 +45,7 @@ class ReviewerGridRow extends GridRow {
 			$actionArgs = array(
 				'monographId' => $monographId,
 				'reviewId' => $rowId,
-				'reviewType' => $reviewType,
+				'stageId' => $stageId,
 				'round' => $round
 			);
 

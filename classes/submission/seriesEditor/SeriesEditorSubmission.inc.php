@@ -55,27 +55,27 @@ class SeriesEditorSubmission extends Monograph {
 			$reviewAssignment->setSubmissionId($this->getMonographId());
 		}
 
-		if (isset($this->reviewAssignments[$reviewAssignment->getReviewType()][$reviewAssignment->getRound()])) {
-			$roundReviewAssignments = $this->reviewAssignments[$reviewAssignment->getReviewType()][$reviewAssignment->getRound()];
+		if (isset($this->reviewAssignments[$reviewAssignment->getStageId()][$reviewAssignment->getRound()])) {
+			$roundReviewAssignments = $this->reviewAssignments[$reviewAssignment->getStageId()][$reviewAssignment->getRound()];
 		} else {
 			$roundReviewAssignments = Array();
 		}
 		array_push($roundReviewAssignments, $reviewAssignment);
 
-		return $this->reviewAssignments[$reviewAssignment->getReviewType()][$reviewAssignment->getRound()] = $roundReviewAssignments;
+		return $this->reviewAssignments[$reviewAssignment->getStageId()][$reviewAssignment->getRound()] = $roundReviewAssignments;
 	}
 
 	/**
 	 * Add an editorial decision for this monograph.
 	 * @param $editorDecision array
-	 * @param $reviewType int
+	 * @param $stageId int
 	 * @param $round int
 	 */
-	function addDecision($editorDecision, $reviewType, $round) {
-		if (isset($this->editorDecisions[$reviewType][$round]) && is_array($this->editorDecisions[$reviewType][$round])) {
-			array_push($this->editorDecisions[$reviewType][$round], $editorDecision);
+	function addDecision($editorDecision, $stageId, $round) {
+		if (isset($this->editorDecisions[$stageId][$round]) && is_array($this->editorDecisions[$stageId][$round])) {
+			array_push($this->editorDecisions[$stageId][$round], $editorDecision);
 		}
-		else $this->editorDecisions[$reviewType][$round] = Array($editorDecision);
+		else $this->editorDecisions[$stageId][$round] = Array($editorDecision);
 	}
 
 	/**
@@ -90,9 +90,9 @@ class SeriesEditorSubmission extends Monograph {
 			// FIXME maintain a hash for quicker get/remove
 			$reviewAssignments = array();
 			$empty = array();
-			foreach ($this->reviewAssignments as $reviewType => $reviewRounds)  {
+			foreach ($this->reviewAssignments as $stageId => $reviewRounds)  {
 				foreach ($reviewRounds as $round => $junk )  {
-					$roundReviewAssignments = $this->reviewAssignments[$reviewType][$round];
+					$roundReviewAssignments = $this->reviewAssignments[$stageId][$round];
 					foreach ( $roundReviewAssignments as $assignment ) {
 						if ($assignment->getReviewId() == $reviewId) {
 							array_push($this->removedReviewAssignments, $reviewId);
@@ -101,7 +101,7 @@ class SeriesEditorSubmission extends Monograph {
 							array_push($reviewAssignments, $assignment);
 						}
 					}
-					$this->reviewAssignments[$reviewType][$round] = $reviewAssignments;
+					$this->reviewAssignments[$stageId][$round] = $reviewAssignments;
 					$reviewAssignments = $empty;
 				}
 			}
@@ -115,7 +115,7 @@ class SeriesEditorSubmission extends Monograph {
 	 */
 	function updateReviewAssignment($reviewAssignment) {
 		$reviewAssignments = array();
-		$roundReviewAssignments = $this->reviewAssignments[$reviewAssignment->getReviewType()][$reviewAssignment->getRound()];
+		$roundReviewAssignments = $this->reviewAssignments[$reviewAssignment->getStageId()][$reviewAssignment->getRound()];
 		for ($i=0, $count=count($roundReviewAssignments); $i < $count; $i++) {
 			if ($roundReviewAssignments[$i]->getReviewId() == $reviewAssignment->getId()) {
 				array_push($reviewAssignments, $reviewAssignment);
@@ -123,7 +123,7 @@ class SeriesEditorSubmission extends Monograph {
 				array_push($reviewAssignments, $roundReviewAssignments[$i]);
 			}
 		}
-		$this->reviewAssignments[$reviewAssignment->getReviewType()][$reviewAssignment->getRound()] = $reviewAssignments;
+		$this->reviewAssignments[$reviewAssignment->getStageId()][$reviewAssignment->getRound()] = $reviewAssignments;
 	}
 
 	/**
@@ -143,7 +143,7 @@ class SeriesEditorSubmission extends Monograph {
 		// The submission is STATUS_QUEUED or the author's submission was STATUS_INCOMPLETE.
 		if ($this->getSubmissionProgress()) return (STATUS_INCOMPLETE);
 
-		if($this->getCurrentStageId() == WORKFLOW_STAGE_ID_INTERNAL_REVIEW || $this->getCurrentStageId() == WORKFLOW_STAGE_ID_EXTERNAL_REVIEW) {
+		if($this->getStageId() == WORKFLOW_STAGE_ID_INTERNAL_REVIEW || $this->getStageId() == WORKFLOW_STAGE_ID_EXTERNAL_REVIEW) {
 			return STATUS_QUEUED_REVIEW;
 		}
 
@@ -170,13 +170,13 @@ class SeriesEditorSubmission extends Monograph {
 	 * Get review assignments for this monograph.
 	 * @return array ReviewAssignments
 	 */
-	function &getReviewAssignments($reviewType = null, $round = null) {
-		if ($reviewType == null) {
+	function &getReviewAssignments($stageId = null, $round = null) {
+		if ($stageId == null) {
 			return $this->reviewAssignments;
 		} elseif ($round == null) {
-			return $this->reviewAssignments[$reviewType];
+			return $this->reviewAssignments[$stageId];
 		} else {
-			return $this->reviewAssignments[$reviewType][$round];
+			return $this->reviewAssignments[$stageId][$round];
 		}
 	}
 
@@ -184,8 +184,8 @@ class SeriesEditorSubmission extends Monograph {
 	 * Set review assignments for this monograph.
 	 * @param $reviewAssignments array ReviewAssignments
 	 */
-	function setReviewAssignments($reviewAssignments, $reviewType, $round) {
-		return $this->reviewAssignments[$reviewType][$round] = $reviewAssignments;
+	function setReviewAssignments($reviewAssignments, $stageId, $round) {
+		return $this->reviewAssignments[$stageId][$round] = $reviewAssignments;
 	}
 
 	/**
@@ -204,13 +204,13 @@ class SeriesEditorSubmission extends Monograph {
 	 * Get editor decisions.
 	 * @return array
 	 */
-	function getDecisions($reviewType = null, $round = null) {
-		if ($reviewType == null) {
+	function getDecisions($stageId = null, $round = null) {
+		if ($stageId == null) {
 			return $this->editorDecisions;
 		} elseif ($round == null) {
-			if (isset($this->editorDecisions[$reviewType])) return $this->editorDecisions[$reviewType];
+			if (isset($this->editorDecisions[$stageId])) return $this->editorDecisions[$stageId];
 		} else {
-			if (isset($this->editorDecisions[$reviewType][$round])) return $this->editorDecisions[$reviewType][$round];
+			if (isset($this->editorDecisions[$stageId][$round])) return $this->editorDecisions[$stageId][$round];
 		}
 
 		return null;
@@ -220,11 +220,11 @@ class SeriesEditorSubmission extends Monograph {
 	/**
 	 * Set editor decisions.
 	 * @param $editorDecisions array
-	 * @param $reviewType int
+	 * @param $stageId int
 	 * @param $round int
 	 */
-	function setDecisions($editorDecisions, $reviewType, $round) {
-		$this->editorDecisions[$reviewType][$round] = $editorDecisions;
+	function setDecisions($editorDecisions, $stageId, $round) {
+		$this->editorDecisions[$stageId][$round] = $editorDecisions;
 	}
 
 	//
@@ -323,6 +323,7 @@ class SeriesEditorSubmission extends Monograph {
 			SUBMISSION_EDITOR_DECISION_ACCEPT => 'editor.monograph.decision.accept',
 			SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS => 'editor.monograph.decision.pendingRevisions',
 			SUBMISSION_EDITOR_DECISION_RESUBMIT => 'editor.monograph.decision.resubmit',
+			SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW => 'editor.monograph.decision.externalReview',
 			SUBMISSION_EDITOR_DECISION_DECLINE => 'editor.monograph.decision.decline'
 		);
 		return $editorDecisionOptions;

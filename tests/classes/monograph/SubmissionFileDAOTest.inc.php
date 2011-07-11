@@ -291,17 +291,17 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 
 		// Insert review round file assignments.
 		$submissionFileDao->assignRevisionToReviewRound($file1Rev1->getFileId(), $file1Rev1->getRevision(),
-				REVIEW_TYPE_INTERNAL, 1, SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID);
+				WORKFLOW_STAGE_ID_INTERNAL_REVIEW, 1, SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID);
 		$submissionFileDao->assignRevisionToReviewRound($file2Rev2->getFileId(), $file2Rev2->getRevision(),
-				REVIEW_TYPE_INTERNAL, 1, SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID);
+				WORKFLOW_STAGE_ID_INTERNAL_REVIEW, 1, SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID);
 
 
 		//
 		// getRevisionsByReviewRound()
 		//
-		// Retrieve assigned review round files by review type and round.
+		// Retrieve assigned review round files by review stage id and round.
 		self::assertEquals(array($uniqueId1_1 => $file1Rev1, $uniqueId2_2 => $file2Rev2),
-				$submissionFileDao->getRevisionsByReviewRound(SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID, REVIEW_TYPE_INTERNAL, 1));
+				$submissionFileDao->getRevisionsByReviewRound(SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID, WORKFLOW_STAGE_ID_INTERNAL_REVIEW, 1));
 		self::assertNull($submissionFileDao->getRevisionsByReviewRound(SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID, null, null));
 
 
@@ -310,16 +310,16 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		//
 		// Retrieve revisions of review round files that are newer than the review round files themselves.
 		self::assertEquals(array($uniqueId1_3 => $file1Rev3),
-				$submissionFileDao->getLatestNewRevisionsByReviewRound(SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID, REVIEW_TYPE_INTERNAL, 1));
+				$submissionFileDao->getLatestNewRevisionsByReviewRound(SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID, WORKFLOW_STAGE_ID_INTERNAL_REVIEW, 1));
 		self::assertNull($submissionFileDao->getLatestNewRevisionsByReviewRound(SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID, null, null));
 
 
 		//
 		// deleteAllRevisionsByReviewRound()
 		//
-		$submissionFileDao->deleteAllRevisionsByReviewRound(SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID, REVIEW_TYPE_INTERNAL, 1);
+		$submissionFileDao->deleteAllRevisionsByReviewRound(SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID, WORKFLOW_STAGE_ID_INTERNAL_REVIEW, 1);
 		self::assertEquals(array(),
-				$submissionFileDao->getRevisionsByReviewRound(SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID, REVIEW_TYPE_INTERNAL, 1));
+				$submissionFileDao->getRevisionsByReviewRound(SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID, WORKFLOW_STAGE_ID_INTERNAL_REVIEW, 1));
 
 
 		//

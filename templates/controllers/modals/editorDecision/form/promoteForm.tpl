@@ -42,8 +42,7 @@
 		{if $stageId == $smarty.const.WORKFLOW_STAGE_ID_SUBMISSION}
 			{url|assign:filesForReviewUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.submission.SelectableSubmissionDetailsFilesGridHandler" op="fetchGrid" monographId=$monographId escape=false}
 		{else}
-			{* FIXME: We need to get reviewType from somewhere, see #6409 *}
-			{url|assign:filesForReviewUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.review.SelectableReviewRevisionsGridHandler" op="fetchGrid" monographId=$monographId round=$round reviewType=$reviewType escape=false}
+			{url|assign:filesForReviewUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.review.SelectableReviewRevisionsGridHandler" op="fetchGrid" monographId=$monographId stageId=$stageId round=$round escape=false}
 		{/if}
 		{load_url_in_div id="filesForReviewGrid" url=$filesForReviewUrl}
 	</div>

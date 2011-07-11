@@ -156,7 +156,7 @@ class Monograph extends Submission {
 	 * Get the monograph's current publication stage ID
 	 * @return int
 	 */
-	function getCurrentStageId() {
+	function getStageId() {
 		return $this->getData('stageId');
 	}
 
@@ -164,7 +164,7 @@ class Monograph extends Submission {
 	 * Set the monograph's current publication stage ID
 	 * @param $stageId int
 	 */
-	function setCurrentStageId($stageId) {
+	function setStageId($stageId) {
 		return $this->setData('stageId', $stageId);
 	}
 
@@ -332,22 +332,6 @@ class Monograph extends Submission {
 	 */
 	function setSupportingAgencies($title, $locale) {
 		return $this->setData('supportingAgencies', $title, $locale);
-	}
-
-	/**
-	 * Get the current review type based on the current stage
-	 * @return int
-	 */
-	function getCurrentReviewType() {
-		import('classes.monograph.reviewRound.ReviewRound');
-		switch($this->getCurrentStageId()) {
-			case WORKFLOW_STAGE_ID_INTERNAL_REVIEW:
-				return REVIEW_TYPE_INTERNAL;
-
-			case WORKFLOW_STAGE_ID_EXTERNAL_REVIEW:
-			default:
-				return REVIEW_TYPE_EXTERNAL;
-		}
 	}
 
 	/**

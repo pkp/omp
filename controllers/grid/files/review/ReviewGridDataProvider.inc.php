@@ -18,7 +18,7 @@ import('controllers.grid.files.FilesGridDataProvider');
 class ReviewGridDataProvider extends FilesGridDataProvider {
 
 	/** @var integer */
-	var $_reviewType;
+	var $_stageId;
 
 	/** @var integer */
 	var $_round;
@@ -41,17 +41,15 @@ class ReviewGridDataProvider extends FilesGridDataProvider {
 	function getAuthorizationPolicy(&$request, $args, $roleAssignments) {
 		$this->setUploaderRoles($roleAssignments);
 
-		// FIXME: Need to authorize review type/round, see #6200.
-		// Get the review round and review type (internal/external) from the request
-		$reviewType = $request->getUserVar('reviewType');
+		// FIXME: Need to authorize review round, see #6200.
+		// Get the review round and review stage id (internal/external) from the request
+		$stageId = $request->getUserVar('stageId');
 		$round = $request->getUserVar('round');
-		assert(!empty($reviewType) && !empty($round));
-		$this->_reviewType = (int)$reviewType;
+		assert(!empty($stageId) && !empty($round));
 		$this->_round = (int)$round;
 
-		// FIXME: Need to join internal and external review, see #6244.
 		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
-		$policy = new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', WORKFLOW_STAGE_ID_INTERNAL_REVIEW);
+		$policy = new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', $stageId);
 		return $policy;
 	}
 
@@ -62,7 +60,7 @@ class ReviewGridDataProvider extends FilesGridDataProvider {
 		$monograph =& $this->getMonograph();
 		return array(
 			'monographId' => $monograph->getId(),
-			'reviewType' => $this->_getReviewType(),
+			'stageId' => $this->_getStageId(),
 			'round' => $this->_getRound()
 		);
 	}
@@ -72,11 +70,11 @@ class ReviewGridDataProvider extends FilesGridDataProvider {
 	// Private helper methods
 	//
 	/**
-	 * Get the review type.
+	 * Get the review stage id.
 	 * @return integer
 	 */
-	function _getReviewType() {
-		return $this->_reviewType;
+	function _getStageId() {
+		return $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
 	}
 
 	/**

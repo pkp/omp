@@ -61,10 +61,8 @@ class ReviewerGridCellProvider extends DataObjectGridCellProvider {
 					$monograph =& $monographDao->getMonograph($reviewAssignment->getSubmissionId());
 
 					// Get the user groups for this stage
-					// FIXME #6200 need to determine between external and internal here
-					// From the reviewAssignment?
 					$userGroups =& $userGroupDao->getUserGroupsByStage($monograph->getPressId(),
-																			WORKFLOW_STAGE_ID_REVIEW,
+																			$reviewAssignment->getStageId(),
 																			true,
 																			true);
 					while ( $userGroup =& $userGroups->next() ) {
@@ -73,7 +71,7 @@ class ReviewerGridCellProvider extends DataObjectGridCellProvider {
 							// Get the users assigned to this stage and user group
 							$stageUsers =& $userStageAssignmentDao->getUsersBySubmissionAndStageId(
 																				$reviewAssignment->getSubmissionId(),
-																				WORKFLOW_STAGE_ID_REVIEW,
+																				$reviewAssignment->getStageId(),
 																				$userGroup->getId());
 							// mark as completed (viewed) if any of the manager/editor users viewed it.
 							while ( $user =& $stageUsers->next() ) {
@@ -141,7 +139,7 @@ class ReviewerGridCellProvider extends DataObjectGridCellProvider {
 		$actionArgs = array(
 			'monographId' => $reviewAssignment->getSubmissionId(),
 			'reviewId' => $reviewAssignment->getId(),
-			'reviewType' => $reviewAssignment->getReviewType(),
+			'stageId' => $reviewAssignment->getStageId(),
 			'round' => $reviewAssignment->getRound()
 		);
 

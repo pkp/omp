@@ -21,7 +21,7 @@
 		{fbvElement type="select" name="userGroupId" id="userGroupId" from=$userGroups translate=false label="editor.review.userGroupSelect" required="true"}
 	{/fbvFormSection}
 	{fbvFormSection}
-		{url|assign:autocompleteUrl op="getUsersNotAssignedAsReviewers" monographId=$monographId reviewType=$reviewType round=$round escape=false}
+		{url|assign:autocompleteUrl op="getUsersNotAssignedAsReviewers" monographId=$monographId stageId=$stageId round=$round escape=false}
 		{fbvElement type="autocomplete" autocompleteUrl=$autocompleteUrl id="userId" label="user.role.reviewer" value=$userNameString|escape}
 	{/fbvFormSection}
 

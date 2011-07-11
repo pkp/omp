@@ -32,14 +32,14 @@ class ReviewRoundDAO extends DAO {
 	/**
 	 * Fetch a review round, creating it if needed.
 	 * @param $submissionId integer
-	 * @param $reviewType integer One of the REVIEW_TYPE_* constants.
+	 * @param $stageId integer One of the WORKFLOW_*_REVIEW_STAGE_ID constants.
 	 * @param $round integer
 	 * @param $status integer One of the REVIEW_ROUND_STATUS_* constants.
 	 * @return ReviewRound
 	 */
-	function build($submissionId, $reviewType, $round, $status = null) {
+	function build($submissionId, $stageId, $round, $status = null) {
 		// If one exists, fetch and return.
-		$reviewRound = $this->getReviewRound($submissionId, $reviewType, $round);
+		$reviewRound = $this->getReviewRound($submissionId, $stageId, $round);
 		if ($reviewRound) return $reviewRound;
 
 		// Otherwise, build one.
@@ -47,7 +47,7 @@ class ReviewRoundDAO extends DAO {
 		$reviewRound =& $this->newDataObject();
 		$reviewRound->setSubmissionId($submissionId);
 		$reviewRound->setRound($round);
-		$reviewRound->setReviewType($reviewType);
+		$reviewRound->setStageId($stageId);
 		$reviewRound->setStatus($status);
 		$this->insertObject($reviewRound);
 		return $reviewRound;
@@ -69,12 +69,12 @@ class ReviewRoundDAO extends DAO {
 	function insertObject(&$reviewRound) {
 		$this->update(
 				'INSERT INTO review_rounds
-				(submission_id, review_type, round, status)
+				(submission_id, stage_id, round, status)
 				VALUES
 				(?, ?, ?, ?)',
 				array(
 					(int)$reviewRound->getSubmissionId(),
-					(int)$reviewRound->getReviewType(),
+					(int)$reviewRound->getStageId(),
 					(int)$reviewRound->getRound(),
 					(int)$reviewRound->getStatus()
 				)
@@ -92,12 +92,12 @@ class ReviewRoundDAO extends DAO {
 			'UPDATE	review_rounds
 			SET	status = ?
 			WHERE	submission_id = ? AND
-				review_type = ? AND
+				stage_id = ? AND
 				round = ?',
 			array(
 				(int)$reviewRound->getStatus(),
 				(int)$reviewRound->getSubmissionId(),
-				(int)$reviewRound->getReviewType(),
+				(int)$reviewRound->getStageId(),
 				(int)$reviewRound->getRound()
 			)
 		);
@@ -107,13 +107,13 @@ class ReviewRoundDAO extends DAO {
 	/**
 	 * Retrieve a review round
 	 * @param $submissionId integer
-	 * @param $reviewType int One of the REVIEW_TYPE_* constants.
+	 * @param $stageId int One of the Stage_id_* constants.
 	 * @param $round int The review round to be retrieved.
 	 */
-	function getReviewRound($submissionId, $reviewType, $round) {
+	function getReviewRound($submissionId, $stageId, $round) {
 		$result =& $this->retrieve(
-				'SELECT * FROM review_rounds WHERE submission_id = ? AND review_type = ? AND round = ?',
-				array((int)$submissionId, (int)$reviewType, (int)$round));
+				'SELECT * FROM review_rounds WHERE submission_id = ? AND stage_id = ? AND round = ?',
+				array((int)$submissionId, (int)$stageId, (int)$round));
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
@@ -129,10 +129,10 @@ class ReviewRoundDAO extends DAO {
 	 * @param $round int
 	 * @return boolean
 	 */
-	function reviewRoundExists($monographId, $reviewType, $round) {
+	function reviewRoundExists($monographId, $stageId, $round) {
 		$result = &$this->retrieve(
-				'SELECT COUNT(*) FROM review_rounds WHERE submission_id = ? AND review_type = ? AND round = ?',
-				array((int)$monographId, (int)$reviewType, (int)$round));
+				'SELECT COUNT(*) FROM review_rounds WHERE submission_id = ? AND stage_id = ? AND round = ?',
+				array((int)$monographId, (int)$stageId, (int)$round));
 		$returner = isset($result->fields[0]) && $result->fields[0] == 1 ? true : false;
 
 		$result->Close();
@@ -154,7 +154,7 @@ class ReviewRoundDAO extends DAO {
 		$reviewRound = $this->newDataObject();
 
 		$reviewRound->setSubmissionId((int)$row['submission_id']);
-		$reviewRound->setReviewType((int)$row['review_type']);
+		$reviewRound->setStageId((int)$row['stage_id']);
 		$reviewRound->setRound((int)$row['round']);
 		$reviewRound->setStatus((int)$row['status']);
 

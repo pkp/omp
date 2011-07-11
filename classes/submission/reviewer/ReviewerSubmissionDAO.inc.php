@@ -128,7 +128,7 @@ class ReviewerSubmissionDAO extends DAO {
 		$reviewerSubmission->setQuality($row['quality']);
 		$reviewerSubmission->setRound($row['round']);
 		$reviewerSubmission->setStep($row['step']);
-		$reviewerSubmission->setReviewType($row['review_type']);
+		$reviewerSubmission->setStageId($row['stage_id']);
 
 		// Monograph attributes
 		$this->monographDao->_monographFromRow($reviewerSubmission, $row);
@@ -146,7 +146,7 @@ class ReviewerSubmissionDAO extends DAO {
 			sprintf('UPDATE review_assignments
 				SET	submission_id = ?,
 					reviewer_id = ?,
-					review_type = ?,
+					stage_id = ?,
 					review_method = ?,
 					round = ?,
 					step = ?,
@@ -168,7 +168,7 @@ class ReviewerSubmissionDAO extends DAO {
 			array(
 				$reviewerSubmission->getId(),
 				$reviewerSubmission->getReviewerId(),
-				$reviewerSubmission->getReviewType(),
+				$reviewerSubmission->getStageId(),
 				$reviewerSubmission->getReviewMethod(),
 				$reviewerSubmission->getRound(),
 				$reviewerSubmission->getStep(),
@@ -258,7 +258,7 @@ class ReviewerSubmissionDAO extends DAO {
 				LEFT JOIN review_assignments r ON (a.monograph_id = r.submission_id)
 				LEFT JOIN series s ON (s.series_id = a.series_id)
 				LEFT JOIN users u ON (r.reviewer_id = u.user_id)
-				LEFT JOIN review_rounds r2 ON (r.submission_id = r2.submission_id AND r.review_type = r2.review_type AND r.round = r2.round)
+				LEFT JOIN review_rounds r2 ON (r.submission_id = r2.submission_id AND r.stage_id = r2.stage_id AND r.round = r2.round)
 			WHERE	a.press_id = ? AND
 				r.reviewer_id = ? AND
 				r.date_notified IS NOT NULL';

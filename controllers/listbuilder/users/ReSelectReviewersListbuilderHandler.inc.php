@@ -36,11 +36,11 @@ class ReSelectReviewersListbuilderHandler extends ListbuilderHandler {
 		$seriesEditorSubmission =& $seriesEditorSubmissionDao->getSeriesEditorSubmission($monographId);
 
 		// Get the review round currently being looked at
-		$reviewType = $request->getUserVar('reviewType');
+		$stageId = $request->getUserVar('stageId');
 		$round = $request->getUserVar('round');
 
 		// Get the existing review assignments for this monograph
-		$reviewAssignments =& $seriesEditorSubmission->getReviewAssignments($reviewType, $round);
+		$reviewAssignments =& $seriesEditorSubmission->getReviewAssignments($stageId, $round);
 
 		$items = array();
 		if(isset($reviewAssignments)) {
@@ -85,12 +85,12 @@ class ReSelectReviewersListbuilderHandler extends ListbuilderHandler {
 		$router =& $request->getRouter();
 
 		$monographId = $request->getUserVar('monographId');
-		$reviewType = $request->getUserVar('reviewType');
+		$stageId = $request->getUserVar('stageId');
 		$round = $request->getUserVar('round');
 
 		$additionalVars = array('itemId' => $monographId,
-			'addUrl' => $router->url($request, array(), null, 'addItem', null, array('monographId' => $monographId, 'reviewType' => $reviewType, 'round' => $round)),
-			'deleteUrl' => $router->url($request, array(), null, 'deleteItems', null, array('monographId' => $monographId, 'reviewType' => $reviewType, 'round' => $round))
+			'addUrl' => $router->url($request, array(), null, 'addItem', null, array('monographId' => $monographId, 'stageId' => $stageId, 'round' => $round)),
+			'deleteUrl' => $router->url($request, array(), null, 'deleteItems', null, array('monographId' => $monographId, 'stageId' => $stageId, 'round' => $round))
 		);
 
 		return parent::fetch($args, &$request, $additionalVars);

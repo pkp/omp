@@ -39,7 +39,7 @@ class SeriesEditorAction extends Action {
 
 		$editorAssigned = $stageAssignmentDao->editorAssignedToSubmission(
 			$seriesEditorSubmission->getId(),
-			$seriesEditorSubmission->getCurrentStageId()
+			$seriesEditorSubmission->getStageId()
 		);
 
 		if ( !$editorAssigned ) return;
@@ -58,7 +58,7 @@ class SeriesEditorAction extends Action {
 			$seriesEditorSubmission->stampStatusModified();
 			$seriesEditorSubmission->addDecision(
 				$editorDecision,
-				$seriesEditorSubmission->getCurrentReviewType(),
+				$seriesEditorSubmission->getStageId(),
 				$seriesEditorSubmission->getCurrentRound()
 			);
 
@@ -115,7 +115,7 @@ class SeriesEditorAction extends Action {
 	 */
 	function incrementWorkflowStage(&$monograph, $newStage) {
 		// Change the monograph's workflow stage.
-		$monograph->setCurrentStageId($newStage);
+		$monograph->setStageId($newStage);
 		$monographDao =& DAORegistry::getDAO('MonographDAO'); /* @var $monographDao MonographDAO */
 		$monographDao->updateMonograph($monograph);
 
@@ -128,12 +128,12 @@ class SeriesEditorAction extends Action {
 	 * @param $request PKPRequest
 	 * @param $seriesEditorSubmission object
 	 * @param $reviewerId int
-	 * @param $reviewType int
+	 * @param $stageId int
 	 * @param $round int optional
 	 * @param $reviewDueDate datetime optional
 	 * @param $responseDueDate datetime optional
 	 */
-	function addReviewer($request, $seriesEditorSubmission, $reviewerId, $reviewType, $round = null, $reviewDueDate = null, $responseDueDate = null) {
+	function addReviewer($request, $seriesEditorSubmission, $reviewerId, $stageId, $round = null, $reviewDueDate = null, $responseDueDate = null) {
 		$seriesEditorSubmissionDao =& DAORegistry::getDAO('SeriesEditorSubmissionDAO');
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		$userDao =& DAORegistry::getDAO('UserDAO');
@@ -146,7 +146,7 @@ class SeriesEditorAction extends Action {
 		if ($round == null) {
 			$round = $seriesEditorSubmission->getCurrentRound();
 		}
-		$assigned = $seriesEditorSubmissionDao->reviewerExists($seriesEditorSubmission->getId(), $reviewerId, $reviewType, $round);
+		$assigned = $seriesEditorSubmissionDao->reviewerExists($seriesEditorSubmission->getId(), $reviewerId, $stageId, $round);
 
 		// Only add the reviewer if he has not already
 		// been assigned to review this monograph.
@@ -155,7 +155,7 @@ class SeriesEditorAction extends Action {
 			$reviewAssignment->setSubmissionId($seriesEditorSubmission->getId());
 			$reviewAssignment->setReviewerId($reviewerId);
 			$reviewAssignment->setDateAssigned(Core::getCurrentDate());
-			$reviewAssignment->setReviewType($reviewType);
+			$reviewAssignment->setStageId($stageId);
 			$reviewAssignment->setRound($round);
 
 			// Assign review form automatically if needed
@@ -166,14 +166,14 @@ class SeriesEditorAction extends Action {
 			$submissionId = $seriesEditorSubmission->getId();
 			$series =& $seriesDao->getById($submissionId, $pressId);
 
-			$seriesEditorSubmission->addReviewAssignment($reviewAssignment, $reviewType, $round);
+			$seriesEditorSubmission->addReviewAssignment($reviewAssignment, $stageId, $round);
 			$seriesEditorSubmissionDao->updateSeriesEditorSubmission($seriesEditorSubmission);
 
 			$reviewAssignment = $reviewAssignmentDao->getReviewAssignment(
 				$seriesEditorSubmission->getId(),
 				$reviewerId,
 				$round,
-				$reviewType
+				$stageId
 			);
 
 			$press =& $request->getPress();
@@ -185,7 +185,7 @@ class SeriesEditorAction extends Action {
 			// Add log
 			import('classes.log.MonographLog');
 			import('classes.log.MonographEventLogEntry');
-			MonographLog::logEvent($request, $seriesEditorSubmission, MONOGRAPH_LOG_REVIEW_ASSIGN, 'log.review.reviewerAssigned', array('reviewerName' => $reviewer->getFullName(), 'monographId' => $seriesEditorSubmission->getId(), 'reviewType' => $reviewType, 'round' => $round));
+			MonographLog::logEvent($request, $seriesEditorSubmission, MONOGRAPH_LOG_REVIEW_ASSIGN, 'log.review.reviewerAssigned', array('reviewerName' => $reviewer->getFullName(), 'monographId' => $seriesEditorSubmission->getId(), 'stageId' => $stageId, 'round' => $round));
 		}
 	}
 
@@ -215,7 +215,7 @@ class SeriesEditorAction extends Action {
 			// Add log
 			import('classes.log.MonographLog');
 			import('classes.log.MonographEventLogEntry');
-			MonographLog::logEvent($request, $seriesEditorSubmission, MONOGRAPH_LOG_REVIEW_CLEAR, 'log.review.reviewCleared', array('reviewerName' => $reviewer->getFullName(), 'monographId' => $seriesEditorSubmission->getId(), 'reviewType' => $reviewAssignment->getReviewType(), 'round' => $reviewAssignment->getRound()));
+			MonographLog::logEvent($request, $seriesEditorSubmission, MONOGRAPH_LOG_REVIEW_CLEAR, 'log.review.reviewCleared', array('reviewerName' => $reviewer->getFullName(), 'monographId' => $seriesEditorSubmission->getId(), 'stageId' => $reviewAssignment->getStageId(), 'round' => $reviewAssignment->getRound()));
 
 			return true;
 		} else return false;
@@ -277,7 +277,7 @@ class SeriesEditorAction extends Action {
 							strtotime($reviewAssignment->getDateDue())
 						),
 						'monographId' => $monograph->getId(),
-						'reviewType' => $reviewAssignment->getReviewType(),
+						'stageId' => $reviewAssignment->getStageId(),
 						'round' => $reviewAssignment->getRound()
 					)
 				);

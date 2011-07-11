@@ -26,9 +26,6 @@ class SubmissionFilesUploadBaseForm extends Form {
 	var $_monographFiles;
 
 	/** @var integer */
-	var $_reviewType;
-
-	/** @var integer */
 	var $_round;
 
 
@@ -40,12 +37,11 @@ class SubmissionFilesUploadBaseForm extends Form {
 	 * @param $stageId integer One of the WORKFLOW_STAGE_ID_* constants.
 	 * @param $fileStage integer
 	 * @param $revisionOnly boolean
-	 * @param $reviewType integer
 	 * @param $round integer
 	 * @param $revisedFileId integer
 	 */
 	function SubmissionFilesUploadBaseForm(&$request, $template, $monographId, $stageId, $fileStage,
-			$revisionOnly = false, $reviewType = null, $round = null, $revisedFileId = null) {
+			$revisionOnly = false, $round = null, $revisedFileId = null) {
 
 		// Check the incoming parameters.
 		if (	!is_numeric($monographId) || $monographId <= 0 ||
@@ -60,7 +56,6 @@ class SubmissionFilesUploadBaseForm extends Form {
 		$this->setData('fileStage', (int)$fileStage);
 		$this->setData('monographId', (int)$monographId);
 		$this->setData('revisionOnly', (boolean)$revisionOnly);
-		$this->_reviewType = $reviewType ? (int)$reviewType : null;
 		$this->_round = $round ? (int)$round : null;
 		$this->setData('revisedFileId', $revisedFileId ? (int)$revisedFileId : null);
 
@@ -78,14 +73,6 @@ class SubmissionFilesUploadBaseForm extends Form {
 	 */
 	function getStageId() {
 		return $this->_stageId;
-	}
-
-	/**
-	 * Get the review type (if any).
-	 * @return integer
-	 */
-	function getReviewType() {
-		return $this->_reviewType;
 	}
 
 	/**
@@ -112,8 +99,8 @@ class SubmissionFilesUploadBaseForm extends Form {
 	function &getMonographFiles() {
 		if (is_null($this->_monographFiles)) {
 			$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-			if ($this->getReviewType()) {
-				// If we have a review type then we also expect a review round.
+			if ($this->getStageId()) {
+				// If we have a review stage id then we also expect a review round.
 				if ($this->getRound() < 1) fatalError('Invalid review round!');
 
 				// Review round files only can point to submission files.
@@ -122,7 +109,7 @@ class SubmissionFilesUploadBaseForm extends Form {
 				// Retrieve the monograph files for the given review round.
 				$this->_monographFiles =& $submissionFileDao->getRevisionsByReviewRound(
 					$this->getData('monographId'),
-					$this->getReviewType(), $this->getRound()
+					$this->getStageId(), $this->getRound()
 				);
 			} else {
 				// Retrieve the monograph files for the given file stage.

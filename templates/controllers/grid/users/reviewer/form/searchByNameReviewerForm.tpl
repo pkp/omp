@@ -17,7 +17,7 @@
 <form class="pkp_form" id="searchByNameReviewerForm" method="post" action="{url op="updateReviewer"}" >
 	<h3>{translate key="manager.reviewerSearch.searchByName"}</h3>
 	{fbvFormSection}
-		{url|assign:autocompleteUrl op="finishFileSubmission" op="getReviewersNotAssignedToMonograph" monographId=$monographId reviewType=$reviewType round=$round escape=false}
+		{url|assign:autocompleteUrl op="finishFileSubmission" op="getReviewersNotAssignedToMonograph" monographId=$monographId stageId=$stageId round=$round escape=false}
 		{fbvElement type="autocomplete" autocompleteUrl=$autocompleteUrl id="reviewerId" label="user.role.reviewer" value=$userNameString|escape}
 	{/fbvFormSection}
 

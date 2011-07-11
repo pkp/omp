@@ -36,9 +36,6 @@ class FileUploadWizardHandler extends FileManagementHandler {
 	var $_revisionOnly;
 
 	/** @var integer */
-	var $_reviewType;
-
-	/** @var integer */
 	var $_round;
 
 	/** @var integer */
@@ -78,7 +75,6 @@ class FileUploadWizardHandler extends FileManagementHandler {
 
 		// Do we allow revisions only?
 		$this->_revisionOnly = (boolean)$request->getUserVar('revisionOnly');
-		$this->_reviewType = $request->getUserVar('reviewType') ? (int)$request->getUserVar('reviewType') : null;
 		$this->_round = $request->getUserVar('round') ? (int)$request->getUserVar('round') : null;
 
 		// The revised file will be non-null if we revise a single existing file.
@@ -109,14 +105,6 @@ class FileUploadWizardHandler extends FileManagementHandler {
 	 */
 	function getRevisionOnly() {
 		return $this->_revisionOnly;
-	}
-
-	/**
-	 * Get the review type (if any).
-	 * @return integer
-	 */
-	function getReviewType() {
-		return $this->_reviewType;
 	}
 
 	/**
@@ -163,7 +151,7 @@ class FileUploadWizardHandler extends FileManagementHandler {
 
 		// Configure the "revision only" feature.
 		$templateMgr->assign('revisionOnly', $this->getRevisionOnly());
-		$templateMgr->assign('reviewType', $this->getReviewType());
+		$templateMgr->assign('stageId', $this->getStageId());
 		$templateMgr->assign('round', $this->getRound());
 		$templateMgr->assign('revisedFileId', $this->getRevisedFileId());
 
@@ -183,7 +171,7 @@ class FileUploadWizardHandler extends FileManagementHandler {
 		$monograph =& $this->getMonograph();
 		$fileForm = new SubmissionFilesUploadForm(
 			$request, $monograph->getId(), $this->getStageId(), $this->getUploaderRoles(), $this->getFileStage(),
-			$this->getRevisionOnly(), $this->getReviewType(), $this->getRound(), $this->getRevisedFileId()
+			$this->getRevisionOnly(), $this->getRound(), $this->getRevisedFileId()
 		);
 		$fileForm->initData($args, $request);
 
@@ -204,7 +192,7 @@ class FileUploadWizardHandler extends FileManagementHandler {
 		import('controllers.wizard.fileUpload.form.SubmissionFilesUploadForm');
 		$uploadForm = new SubmissionFilesUploadForm(
 			$request, $monograph->getId(), $this->getStageId(), null, $this->getFileStage(),
-			$this->getRevisionOnly(), $this->getReviewType(), $this->getRound(), null
+			$this->getRevisionOnly(), $this->getRound(), null
 		);
 		$uploadForm->readInputData();
 

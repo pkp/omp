@@ -31,7 +31,7 @@ class ReviewerGridHandler extends GridHandler {
 	var $_monograph;
 
 	/** @var integer */
-	var $_reviewType;
+	var $_stageId;
 
 	/** @var integer */
 	var $_round;
@@ -66,11 +66,11 @@ class ReviewerGridHandler extends GridHandler {
 	}
 
 	/**
-	 * Get the review type.
+	 * Get the review stage id.
 	 * @return integer
 	 */
-	function getReviewType() {
-		return $this->_reviewType;
+	function getStageId() {
+		return $this->_stageId;
 	}
 
 	/**
@@ -92,13 +92,13 @@ class ReviewerGridHandler extends GridHandler {
 	 * @param $roleAssignments array
 	 */
 	function authorize(&$request, $args, $roleAssignments) {
-		// FIXME: Need to authorize review type/round. This is just a temporary
+		// FIXME: Need to authorize review stage id/round. This is just a temporary
 		// workaround until we get those variables in the authorized context, see #6200.
-		$reviewType = $request->getUserVar('reviewType');
+		$stageId = $request->getUserVar('stageId');
 		$round = $request->getUserVar('round');
-		// Not all actions need a reviewType and round. Some work off the reviewAssignment which has the type and round.
-		//assert(!empty($reviewType) && !empty($round));
-		$this->_reviewType = (int)$reviewType;
+		// Not all actions need a stageId and round. Some work off the reviewAssignment which has the type and round.
+		//assert(!empty($stageId) && !empty($round));
+		$this->_stageId = (int)$stageId;
 		$this->_round = (int)$round;
 
 		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
@@ -188,7 +188,7 @@ class ReviewerGridHandler extends GridHandler {
 		$monograph =& $this->getMonograph();
 		return array(
 			'monographId' => $monograph->getId(),
-			'reviewType' => $this->getReviewType(),
+			'stageId' => $this->getStageId(),
 			'round' => $this->getRound()
 		);
 	}
@@ -199,7 +199,7 @@ class ReviewerGridHandler extends GridHandler {
 	function loadData($request, $filter) {
 		// Get the existing review assignments for this monograph
 		$monograph =& $this->getMonograph(); /* @var $monograph SeriesEditorSubmission */
-		return $monograph->getReviewAssignments($this->getReviewType(), $this->getRound());
+		return $monograph->getReviewAssignments($this->getStageId(), $this->getRound());
 	}
 
 
@@ -214,7 +214,7 @@ class ReviewerGridHandler extends GridHandler {
 	function addReviewer($args, &$request) {
 		$templateMgr =& TemplateManager::getManager();
 		//FIXME: #6200. see other methods in this file.
-		$templateMgr->assign('reviewType', $this->getReviewType());
+		$templateMgr->assign('stageId', $this->getStageId());
 		$templateMgr->assign('round', $this->getRound());
 		$monograph =& $this->getMonograph();
 		$templateMgr->assign('monographId', $monograph->getId());

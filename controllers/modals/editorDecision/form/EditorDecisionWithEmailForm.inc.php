@@ -99,10 +99,10 @@ class EditorDecisionWithEmailForm extends EditorDecisionForm {
 	 * @see Form::fetch()
 	 */
 	function fetch(&$request) {
-		// Review type.
-		//FIXME #6409: What to do with reviewType?
-		$reviewType = (int)$request->getUserVar('reviewType');
-		$this->setData('reviewType', $reviewType);
+		// Review stage id.
+		//FIXME #6199: What to do with stageId? This stage id is then past down to the actions in the grids.
+		$stageId = (int)$request->getUserVar('stageId');
+		$this->setData('stageId', $stageId);
 
 		// Review round.
 		$seriesEditorSubmission =& $this->getSeriesEditorSubmission();
@@ -139,7 +139,7 @@ class EditorDecisionWithEmailForm extends EditorDecisionForm {
 	function _sendReviewMailToAuthor(&$seriesEditorSubmission, $status, $emailKey, $request) {
 		// Retrieve the current review round and update it with the new status.
 		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO'); /* @var $reviewRoundDao ReviewRoundDAO */
-		$currentReviewRound =& $reviewRoundDao->build($seriesEditorSubmission->getId(), $seriesEditorSubmission->getCurrentReviewType(), $seriesEditorSubmission->getCurrentRound());
+		$currentReviewRound =& $reviewRoundDao->build($seriesEditorSubmission->getId(), $seriesEditorSubmission->getStageId(), $seriesEditorSubmission->getCurrentRound());
 		$currentReviewRound->setStatus($status);
 		$reviewRoundDao->updateObject($currentReviewRound);
 

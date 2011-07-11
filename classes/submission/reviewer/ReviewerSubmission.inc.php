@@ -329,19 +329,19 @@ class ReviewerSubmission extends Monograph {
 	}
 
 	/**
-	 * Get reviewType.
+	 * Get stageId.
 	 * @return int
 	 */
-	function getReviewType() {
-		return $this->getData('reviewType');
+	function getStageId() {
+		return $this->getData('stageId');
 	}
 
 	/**
-	 * Set reviewType.
-	 * @param $reviewType int
+	 * Set stageId.
+	 * @param $stageId int
 	 */
-	function setReviewType($reviewType) {
-		return $this->setData('reviewType', $reviewType);
+	function setStageId($stageId) {
+		return $this->setData('stageId', $stageId);
 	}
 
 	/**

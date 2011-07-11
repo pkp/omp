@@ -18,9 +18,9 @@
 			$('#manageReviewFilesForm').pkpHandler('$.pkp.controllers.form.AjaxFormHandler');
 		{rdelim});
 	</script>
-	<form class="pkp_form" id="manageReviewFilesForm" action="{url component="grid.files.review.SelectableEditorReviewFilesGridHandler" op="updateReviewFiles" monographId=$monographId|escape reviewType=$reviewType|escape round=$round|escape}" method="post">
+	<form class="pkp_form" id="manageReviewFilesForm" action="{url component="grid.files.review.SelectableEditorReviewFilesGridHandler" op="updateReviewFiles" monographId=$monographId|escape stageId=$stageId|escape round=$round|escape}" method="post">
 		<!-- Available submission files -->
-		{url|assign:availableReviewFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.review.SelectableEditorReviewFilesGridHandler" op="fetchGrid" monographId=$monographId reviewType=$reviewType round=$round escape=false}
+		{url|assign:availableReviewFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.review.SelectableEditorReviewFilesGridHandler" op="fetchGrid" monographId=$monographId stageId=$stageId round=$round escape=false}
 		{load_url_in_div id="availableReviewFilesGrid" url=$availableReviewFilesGridUrl}
 		{include file="form/formButtons.tpl"}
 	</form>

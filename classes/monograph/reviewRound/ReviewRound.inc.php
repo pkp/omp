@@ -17,9 +17,6 @@
  * @brief Basic class describing a review round.
  */
 
-define('REVIEW_TYPE_INTERNAL', 1);
-define('REVIEW_TYPE_EXTERNAL', 2);
-
 define('REVIEW_ROUND_STATUS_REVISIONS_REQUESTED', 1);
 define('REVIEW_ROUND_STATUS_RESUBMITTED', 2);
 define('REVIEW_ROUND_STATUS_SENT_TO_EXTERNAL', 3);
@@ -50,19 +47,19 @@ class ReviewRound extends DataObject {
 	}
 
 	/**
-	 * Get review type (internal or external review).
+	 * Get review stage id (internal or external review).
 	 * @return int
 	 */
-	function getReviewType() {
-		return $this->getData('reviewType');
+	function getStageId() {
+		return $this->getData('stageId');
 	}
 
 	/**
-	 * Set review Type
-	 * @param $reviewType int
+	 * Set review stage id
+	 * @param $stageId int
 	 */
-	function setReviewType($reviewType) {
-		return $this->setData('reviewType', $reviewType);
+	function setStageId($stageId) {
+		return $this->setData('stageId', $stageId);
 	}
 
 	/**

@@ -14,7 +14,7 @@
 
 import('lib.pkp.classes.form.Form');
 
-// Define review round and review type constants.
+// Define review round and review stage id constants.
 import('classes.monograph.reviewRound.ReviewRound');
 
 class EditorDecisionForm extends Form {
@@ -86,6 +86,7 @@ class EditorDecisionForm extends Form {
 		if (is_null($round)) {
 			$round = $seriesEditorSubmission->getCurrentRound();
 		}
+		$this->setData('stageId', $seriesEditorSubmission->getStageId());
 		$this->setData('round', $round);
 
 		// Set the monograph.
@@ -104,17 +105,16 @@ class EditorDecisionForm extends Form {
 	 * Initiate a new review round and add selected files
 	 * to it. Also saves the new round to the submission.
 	 * @param $monograph Monograph
-	 * @param $reviewType integer One of the REVIEW_TYPE_* constants.
+	 * @param $stageId integer One of the WORKFLOW_STAGE_ID_* constants.
 	 * @param $newRound integer
 	 * @param $status integer One of the REVIEW_ROUND_STATUS_* constants.
 	 */
-	function _initiateReviewRound(&$monograph, $reviewType, $newRound, $status = null) {
+	function _initiateReviewRound(&$monograph, $stageId, $newRound, $status = null) {
 		assert(is_int($newRound));
 
 		// Create a new review round.
-		// FIXME #6409: What to do with reviewType?
 		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO'); /* @var $reviewRoundDao ReviewRoundDAO */
-		$reviewRoundDao->build($monograph->getId(), $reviewType, $newRound, $status);
+		$reviewRoundDao->build($monograph->getId(), $stageId, $newRound, $status);
 
 		// Add the selected files to the new round.
 		$selectedFiles = $this->getData('selectedFiles');
@@ -124,7 +124,7 @@ class EditorDecisionForm extends Form {
 			foreach ($selectedFiles as $selectedFile) {
 				// Split the file into file id and file revision.
 				list($fileId, $revision) = explode('-', $selectedFile);
-				$submissionFileDao->assignRevisionToReviewRound($fileId, $revision, $reviewType, $newRound, $monograph->getId());
+				$submissionFileDao->assignRevisionToReviewRound($fileId, $revision, $stageId, $newRound, $monograph->getId());
 			}
 		}
 

@@ -53,7 +53,7 @@ class ManageFinalDraftFilesForm extends Form {
 	function initData($args, &$request) {
 		$monograph =& $this->getMonograph();
 		$this->setData('monographId', $monograph->getId());
-		$this->setData('reviewType', $monograph->getCurrentReviewType());
+		$this->setData('stageId', $monograph->getStageId());
 		$this->setData('round', $monograph->getCurrentRound());
 	}
 
@@ -62,7 +62,7 @@ class ManageFinalDraftFilesForm extends Form {
 	 * @see Form::readInputData()
 	 */
 	function readInputData() {
-		$this->readUserVars(array('reviewType', 'round', 'selectedFiles'));
+		$this->readUserVars(array('stageId', 'round', 'selectedFiles'));
 	}
 
 	/**

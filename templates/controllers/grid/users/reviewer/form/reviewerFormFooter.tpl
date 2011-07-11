@@ -33,5 +33,5 @@ $("#interests").tagit({ldelim}
 <input type="hidden" name="selectionType" value={$selectionType|escape} />
 <input type="hidden" name="monographId" value={$monographId|escape} />
 <input type="hidden" name="reviewAssignmentId" value="{$reviewAssignmentId|escape}" />
-<input type="hidden" name="reviewType" value="{$reviewType|escape}" />
+<input type="hidden" name="stageId" value="{$stageId|escape}" />
 <input type="hidden" name="round" value="{$round|escape}" />
