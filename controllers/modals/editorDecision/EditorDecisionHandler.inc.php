@@ -76,37 +76,17 @@ class EditorDecisionHandler extends Handler {
 	function saveNewReviewRound($args, &$request) {
 		// Retrieve the authorized monograph.
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-
-		// Form handling.
-		import('controllers.modals.editorDecision.form.NewReviewRoundForm');
-		$newReviewRoundForm = new NewReviewRoundForm($monograph);
-
-		$newReviewRoundForm->readInputData();
-		if ($newReviewRoundForm->validate()) {
-			$round = $newReviewRoundForm->execute($args, $request);
-
-			// FIXME: Sending scripts through JSON is evil. This script
-			// should (and can) be moved to the client side, #see 6357.
-			// When this is done then we can also refactor this method
-			// to work with _saveEditorDecision().
-
-			// Generate the new review round tab script.
-			$router =& $request->getRouter();
-			$dispatcher =& $router->getDispatcher();
-			$newRoundUrl = $dispatcher->url($request, ROUTE_PAGE, null, 'workflow', 'review', array($monograph->getId(), $round));
-			$templateMgr =& TemplateManager::getManager();
-			$templateMgr->assign('newRoundUrl', $newRoundUrl);
-			$templateMgr->assign('round', $round);
-			$reviewRoundTabScript = $templateMgr->fetch('controllers/modals/editorDecision/form/reviewRoundTab.tpl');
-
-			// Create a JSON message with the script.
-			$additionalAttributes = array('script' => $reviewRoundTabScript);
-			$json = new JSONMessage(true, null, true, null, $additionalAttributes);
+		// FIXME: this can probably all be managed somewhere.
+		$stageId = $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
+		if ($stageId == WORKFLOW_STAGE_ID_INTERNAL_REVIEW) {
+			$redirectOp = WORKFLOW_STAGE_PATH_INTERNAL_REVIEW;
+		} elseif ($stageId == WORKFLOW_STAGE_ID_EXTERNAL_REVIEW) {
+			$redirectOp = WORKFLOW_STAGE_PATH_EXTERNAL_REVIEW;
 		} else {
-			$json = new JSONMessage(false);
+			assert(false);
 		}
 
-		return $json->getString();
+		return $this->_saveEditorDecision($args, $request, 'NewReviewRoundForm', $redirectOp);
 	}
 
 	/**
@@ -126,7 +106,17 @@ class EditorDecisionHandler extends Handler {
 	 * @return string Serialized JSON object
 	 */
 	function saveInitiateReview($args, &$request) {
-		return $this->_saveEditorDecision($args, $request, 'InitiateReviewForm', 'review');
+		// FIXME: this can probably all be managed somewhere.
+		$stageId = $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
+		if ($stageId == WORKFLOW_STAGE_ID_SUBMISSION) {
+			$redirectOp = WORKFLOW_STAGE_PATH_INTERNAL_REVIEW;
+		} elseif ($stageId == WORKFLOW_STAGE_ID_INTERNAL_REVIEW) {
+			$redirectOp = WORKFLOW_STAGE_PATH_EXTERNAL_REVIEW;
+		} else {
+			assert(false);
+		}
+
+		return $this->_saveEditorDecision($args, $request, 'InitiateReviewForm', $redirectOp);
 	}
 
 	/**
@@ -173,11 +163,10 @@ class EditorDecisionHandler extends Handler {
 
 		$redirectOp = null;
 
-		// FIXME: get these URL's from the constants
 		if ($decision == SUBMISSION_EDITOR_DECISION_ACCEPT) {
-			$redirectOp = 'copyediting';
+			$redirectOp = WORKFLOW_STAGE_PATH_EDITING;
 		} elseif ($decision == SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW) {
-			$redirectOp = 'review';
+			$redirectOp = WORKFLOW_STAGE_PATH_EXTERNAL_REVIEW;
 		}
 
 		return $this->_saveEditorDecision($args, $request, 'PromoteForm', $redirectOp);

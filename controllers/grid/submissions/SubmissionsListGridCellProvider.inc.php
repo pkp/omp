@@ -52,20 +52,20 @@ class SubmissionsListGridCellProvider extends DataObjectGridCellProvider {
 			$pressDao = DAORegistry::getDAO('PressDAO');
 			$press = $pressDao->getPress($pressId);
 
-			switch ($monograph->getCurrentStageId()) {
+			switch ($monograph->getStageId()) {
 				case WORKFLOW_STAGE_ID_SUBMISSION:
-					$workflowPath = 'submission';
+					$workflowPath = WORKFLOW_STAGE_PATH_SUBMISSION;
 					break;
-				//FIXME #6200 need separate paths for each review type.
 				case WORKFLOW_STAGE_ID_INTERNAL_REVIEW:
-				case WORKFLOW_STAGE_PATH_EXTERNAL_REVIEW:
-					$workflowPath = 'review';
+					$workflowPath = WORKFLOW_STAGE_PATH_INTERNAL_REVIEW;
+				case WORKFLOW_STAGE_ID_EXTERNAL_REVIEW:
+					$workflowPath = WORKFLOW_STAGE_PATH_EXTERNAL_REVIEW;
 					break;
 				case WORKFLOW_STAGE_PATH_EDITING:
-					$workflowPath = 'copyediting';
+					$workflowPath = WORKFLOW_STAGE_PATH_EDITING;
 					break;
 				case WORKFLOW_STAGE_PATH_PRODUCTION:
-					$workflowPath = 'production';
+					$workflowPath = WORKFLOW_STAGE_PATH_PRODUCTION;
 					break;
 				default:
 					assert(false);
@@ -126,7 +126,7 @@ class SubmissionsListGridCellProvider extends DataObjectGridCellProvider {
 				return array('label' => $dateDue);
 				break;
 			case 'status':
-				$stageId = $monograph->getCurrentStageId();
+				$stageId = $monograph->getStageId();
 				switch ($stageId) {
 					case WORKFLOW_STAGE_ID_SUBMISSION: default:
 						// FIXME: better way to determine if submission still incomplete?

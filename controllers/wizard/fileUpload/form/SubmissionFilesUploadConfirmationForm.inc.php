@@ -31,7 +31,7 @@ class SubmissionFilesUploadConfirmationForm extends SubmissionFilesUploadBaseFor
 		// Initialize class.
 		parent::SubmissionFilesUploadBaseForm(
 			$request, 'controllers/wizard/fileUpload/form/fileUploadConfirmationForm.tpl',
-			$monographId, $stageId, $fileStage, false, null, null, $revisedFileId
+			$monographId, $stageId, $fileStage, false, null, $revisedFileId
 		);
 
 		if (is_a($uploadedFile, 'MonographFile')) {

@@ -29,12 +29,12 @@ class SubmissionFilesUploadForm extends SubmissionFilesUploadBaseForm {
 	 * @param $stageId integer One of the WORKFLOW_STAGE_ID_* constants.
 	 * @param $fileStage integer
 	 * @param $revisionOnly boolean
-	 * @param $reviewType integer
+	 * @param $stageId integer
 	 * @param $round integer
 	 * @param $revisedFileId integer
 	 */
 	function SubmissionFilesUploadForm(&$request, $monographId, $stageId, $uploaderRoles, $fileStage,
-			$revisionOnly = false, $reviewType = null, $round = null, $revisedFileId = null) {
+			$revisionOnly = false, $round = null, $revisedFileId = null) {
 
 		// Initialize class.
 		assert(is_null($uploaderRoles) || (is_array($uploaderRoles) && count($uploaderRoles) > 1));
@@ -42,7 +42,7 @@ class SubmissionFilesUploadForm extends SubmissionFilesUploadBaseForm {
 
 		parent::SubmissionFilesUploadBaseForm(
 			$request, 'controllers/wizard/fileUpload/form/fileUploadForm.tpl',
-			$monographId, $stageId, $fileStage, $revisionOnly, $reviewType, $round, $revisedFileId
+			$monographId, $stageId, $fileStage, $revisionOnly, $round, $revisedFileId
 		);
 	}
 

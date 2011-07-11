@@ -26,22 +26,22 @@ class AddRevisionLinkAction extends BaseAddFileLinkAction {
 	 *  uploaded to.
 	 * @param $uploaderRoles array The ids of all roles allowed to upload
 	 *  in the context of this action.
-	 * @param $reviewType integer One of the REVIEW_TYPE_* constants.
+	 * @param $stageId integer One of the WORKFLOW_STAGE_ID_* constants.
 	 * @param $round integer The review round to upload to.
 	 */
-	function AddRevisionLinkAction(&$request, $monographId, $uploaderRoles, $reviewType, $round) {
+	function AddRevisionLinkAction(&$request, $monographId, $uploaderRoles, $stageId, $round) {
 
 		// Create the action arguments array.
 		$actionArgs = array(
 			'fileStage' => MONOGRAPH_FILE_SUBMISSION,
-			'reviewType' => $reviewType,
+			'stageId' => $stageId,
 			'round' => $round,
 			'revisionOnly' => '1'
 		);
 
 		// Call the parent class constructor.
 		parent::BaseAddFileLinkAction(
-			$request, $monographId, WORKFLOW_STAGE_ID_INTERNAL_REVIEW, $uploaderRoles, $actionArgs,
+			$request, $monographId, $stageId, $uploaderRoles, $actionArgs,
 			__('editor.review.uploadRevisionToRound', array('round' => $round)),
 			__('editor.review.uploadRevision')
 		);
