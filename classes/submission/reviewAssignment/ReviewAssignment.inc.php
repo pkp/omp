@@ -28,25 +28,6 @@ class ReviewAssignment extends PKPReviewAssignment {
 	//
 	// Get/set methods
 	//
-
-	/**
-	 * Get ID of monograph.
-	 * @return int
-	 */
-	function getMonographId() {
-		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
-		return $this->getSubmissionId();
-	}
-
-	/**
-	 * Set ID of monograph.
-	 * @param $monographId int
-	 */
-	function setMonographId($monographId) {
-		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
-		return $this->setSubmissionId($monographId);
-	}
-
 	/**
 	 * Get the type of the review (internal or external).
 	 * @return int
