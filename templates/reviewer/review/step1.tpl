@@ -74,7 +74,7 @@
 	{/fbvFormSection}
 
 	{if $reviewAssignment->getDateConfirmed()}
-		{fbvFormButtons hideCancel=true submitText="reviewer.monograph.acceptReview"}
+		{fbvFormButtons hideCancel=true submitText="common.saveAndContinue"}
 	{else}
 		{fbvFormButtons submitText="reviewer.monograph.acceptReview" cancelText="reviewer.monograph.declineReview" cancelAction=$declineReviewAction}
 	{/if}

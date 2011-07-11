@@ -37,7 +37,7 @@
 		{load_url_in_div id="reviewAttachmentsGridContainer" url="$reviewAttachmentsGridUrl"}
 	</div>
 
-	{include file="form/formButtons.tpl" submitText="editor.submissionReview.recordDecision"}
+	{fbvFormButtons submitText="editor.submissionReview.recordDecision"}
 </form>
 
 

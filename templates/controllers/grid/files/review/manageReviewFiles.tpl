@@ -22,7 +22,7 @@
 		<!-- Available submission files -->
 		{url|assign:availableReviewFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.review.SelectableEditorReviewFilesGridHandler" op="fetchGrid" monographId=$monographId stageId=$stageId round=$round escape=false}
 		{load_url_in_div id="availableReviewFilesGrid" url=$availableReviewFilesGridUrl}
-		{include file="form/formButtons.tpl"}
+		{fbvFormButtons}
 	</form>
 </div>
 
