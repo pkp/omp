@@ -20,9 +20,8 @@ class DeleteFileLinkAction extends FileLinkAction {
 	 * @param $request Request
 	 * @param $monographFile MonographFile the monograph file to
 	 *  be deleted.
-	 * @param $stageId integer One of the WORKFLOW_STAGE_ID_* constants.
 	 */
-	function DeleteFileLinkAction(&$request, &$monographFile, $stageId) {
+	function DeleteFileLinkAction(&$request, &$monographFile) {
 		// Instantiate the confirmation modal.
 		$router =& $request->getRouter();
 		import('lib.pkp.classes.linkAction.request.RemoteActionConfirmationModal');
@@ -30,7 +29,7 @@ class DeleteFileLinkAction extends FileLinkAction {
 			__('common.confirmDelete'), null,
 			$router->url(
 				$request, null, 'api.file.FileApiHandler',
-				'deleteFile', null, $this->getActionArgs($monographFile, $stageId)
+				'deleteFile', null, $this->getActionArgs($monographFile)
 			)
 		);
 

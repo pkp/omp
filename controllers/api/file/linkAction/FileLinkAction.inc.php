@@ -30,18 +30,15 @@ class FileLinkAction extends LinkAction {
 	/**
 	 * Return the action arguments to address a file.
 	 * @param $monographFile MonographFile
-	 * @param $stageId integer One of the WORKFLOW_STAGE_ID_* constants.
 	 * @return array
 	 */
-	function getActionArgs(&$monographFile, $stageId) {
+	function getActionArgs(&$monographFile) {
 		assert(is_a($monographFile, 'MonographFile'));
 
 		// Create the action arguments array.
 		return array(
-			'monographId' => $monographFile->getMonographId(),
-			'stageId' => $stageId,
-			'fileStage' => $monographFile->getFileStage(),
-			'fileId' => $monographFile->getFileId()
+			'fileId' => $monographFile->getFileId(),
+			'revision' => $monographFile->getRevision()
 		);
 	}
 }

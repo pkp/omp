@@ -79,12 +79,12 @@ class CopyeditingFilesGridRow extends GridRow {
 			if($copyeditedFileId) {
 				$copyeditedFile =& $submissionFileDao->getLatestRevision($copyeditedFileId);
 				import('controllers.informationCenter.linkAction.FileInfoCenterLinkAction');
-				$this->addAction(new FileInfoCenterLinkAction($request, $monographFile, WORKFLOW_STAGE_ID_EDITING));
+				$this->addAction(new FileInfoCenterLinkAction($request, $monographFile));
 
-				$this->addAction(new DeleteFileLinkAction($request, $copyeditedFile, WORKFLOW_STAGE_ID_EDITING));
+				$this->addAction(new DeleteFileLinkAction($request, $copyeditedFile));
 			} else {
 				// FIXME: Not all roles should see this action. Bug #5975.
-				$this->addAction(new DeleteFileLinkAction($request, $monographFile, WORKFLOW_STAGE_ID_EDITING));
+				$this->addAction(new DeleteFileLinkAction($request, $monographFile));
 			}
 
 			// If there is no file uploaded, allow the user to upload if it is their signoff (i.e. their copyediting assignment)

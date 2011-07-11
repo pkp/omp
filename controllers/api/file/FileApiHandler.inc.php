@@ -47,7 +47,7 @@ class FileApiHandler extends FileManagementHandler {
 		$success = false;
 		if($fileId) {
 			// Delete all revisions or only one?
-			$revision = $request->getUserVar('revision')? (int)$request->getUserVar('revision') : null;
+			$revision = (int) $request->getUserVar('revision') : null;
 
 			// Delete the file/revision but only when it belongs to the authorized monograph
 			// and to the right file stage.
@@ -76,7 +76,7 @@ class FileApiHandler extends FileManagementHandler {
 	function downloadFile($args, &$request) {
 		// FIXME: authorize! bug #6199
 		$fileId = (int)$request->getUserVar('fileId');
-		$revision = (int)$request->getUserVar('fileRevision');
+		$revision = (int)$request->getUserVar('revision');
 
 		$monograph =& $this->getMonograph();
 		import('classes.file.MonographFileManager');
@@ -91,7 +91,7 @@ class FileApiHandler extends FileManagementHandler {
 	function viewFile($args, &$request) {
 		// FIXME: authorize! bug #6199
 		$fileId = (int)$request->getUserVar('fileId');
-		$revision = (int)$request->getUserVar('fileRevision');
+		$revision = (int)$request->getUserVar('revision');
 
 		$monograph =& $this->getMonograph();
 		import('classes.file.MonographFileManager');

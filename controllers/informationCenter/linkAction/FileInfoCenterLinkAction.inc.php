@@ -24,9 +24,8 @@ class FileInfoCenterLinkAction extends FileLinkAction {
 	 * @param $request Request
 	 * @param $monographFile MonographFile the monograph file
 	 *  to show information about.
-	 * @param $stageId integer One of the WORKFLOW_STAGE_ID_* constants.
 	 */
-	function FileInfoCenterLinkAction(&$request, &$monographFile, $stageId) {
+	function FileInfoCenterLinkAction(&$request, &$monographFile) {
 		// Instantiate the information center modal.
 		$router =& $request->getRouter();
 		import('lib.pkp.classes.linkAction.request.AjaxModal');
@@ -34,7 +33,7 @@ class FileInfoCenterLinkAction extends FileLinkAction {
 			$router->url(
 				$request, null,
 				'informationCenter.FileInformationCenterHandler', 'viewInformationCenter',
-				null, $this->getActionArgs($monographFile, $stageId)
+				null, $this->getActionArgs($monographFile)
 			)
 		);
 

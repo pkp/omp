@@ -50,7 +50,7 @@ class CopyeditingFilesGridCategoryRow extends GridCategoryRow {
 			);
 
 			import('controllers.api.file.linkAction.DownloadFileLinkAction');
-			$this->addAction(new DownloadFileLinkAction($request, $monographFile, WORKFLOW_STAGE_ID_EDITING));
+			$this->addAction(new DownloadFileLinkAction($request, $monographFile));
 		}
 	}
 }

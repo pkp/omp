@@ -85,7 +85,7 @@ class AuthorCopyeditingFilesGridCellProvider extends DataObjectGridCellProvider 
 		if ($column->getId() == 'name') {
 			if($fileId = $signoff->getAssocId()) {
 				$monographFile =& $submissionFileDao->getLatestRevision($fileId);
-				return array(new DownloadFileLinkAction($request, $monographFile, WORKFLOW_STAGE_ID_EDITING));
+				return array(new DownloadFileLinkAction($request, $monographFile));
 			} else {
 				return null;
 			}
@@ -95,7 +95,7 @@ class AuthorCopyeditingFilesGridCellProvider extends DataObjectGridCellProvider 
 			if($fileId = $signoff->getFileId()) {
 				// Let the user download the file
 				$monographFile =& $submissionFileDao->getLatestRevision($fileId);
-				return array(new DownloadFileLinkAction($request, $monographFile, WORKFLOW_STAGE_ID_EDITING));
+				return array(new DownloadFileLinkAction($request, $monographFile));
 			} else {
 				// If there is no file, let the user open the copyediting file upload modal
 				$router =& $request->getRouter();

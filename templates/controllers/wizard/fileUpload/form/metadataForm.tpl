@@ -92,7 +92,7 @@
 
 				{if $submissionFile->getFileType() == 'image/tiff'}
 					<embed width="{$thumbnailWidth}" height="{$thumbnailHeight}" src="{url component="api.file.FileApiHandler" op="viewFile" monographId=$submissionFile->getMonographId() stageId=$stageId fileStage=$submissionFile->getFileStage() fileId=$submissionFile->getFileId()}" type="image/tiff" negative=yes>
-				{else}<a target="_blank" href="{url component="api.file.FileApiHandler" op="viewFile" monographId=$submissionFile->getMonographId() stageId=$stageId fileStage=$submissionFile->getFileStage() fileId=$submissionFile->getFileId() fileRevision=$submissionFile->getRevision()}">
+				{else}<a target="_blank" href="{url component="api.file.FileApiHandler" op="viewFile" monographId=$submissionFile->getMonographId() stageId=$stageId fileStage=$submissionFile->getFileStage() fileId=$submissionFile->getFileId() revision=$submissionFile->getRevision()}">
 					<img class="thumbnail" width="{$thumbnailWidth}" height="{$thumbnailHeight}" src="{url component="api.file.FileApiHandler" op="viewFile" monographId=$submissionFile->getMonographId() stageId=$stageId fileStage=$submissionFile->getFileStage() fileId=$submissionFile->getFileId()}" />
 				</a>{/if}
 			{/fbvFormSection}

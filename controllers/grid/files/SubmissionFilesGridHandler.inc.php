@@ -140,7 +140,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 		}
 
 		// The file name column is common to all file grid types.
-		$this->addColumn(new FileNameGridColumn($this->getStageId()));
+		$this->addColumn(new FileNameGridColumn());
 	}
 
 
@@ -151,7 +151,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 	 * @see GridHandler::getRowInstance()
 	 */
 	function &getRowInstance() {
-		$row = new SubmissionFilesGridRow($this->canDelete(), $this->getStageId());
+		$row = new SubmissionFilesGridRow($this->canDelete());
 		return $row;
 	}
 

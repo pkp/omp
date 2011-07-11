@@ -51,7 +51,7 @@ class CopyeditingFilesGridCellProvider extends GridCellProvider {
 
 				$label = $user->getFullName() . ' (' . $userGroup->getLocalizedName() . ') - ' . $monographFile->getLocalizedName();
 				import('controllers.api.file.linkAction.DownloadFileLinkAction');
-				return array(new DownloadFileLinkAction($request, $monographFile, WORKFLOW_STAGE_ID_EDITING));
+				return array(new DownloadFileLinkAction($request, $monographFile));
 			} else {
 				$fileId = $monographFile = null;
 				return null;

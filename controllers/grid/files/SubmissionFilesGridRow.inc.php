@@ -27,9 +27,8 @@ class SubmissionFilesGridRow extends GridRow {
 	/**
 	 * Constructor
 	 */
-	function SubmissionFilesGridRow($canDelete, $stageId) {
+	function SubmissionFilesGridRow($canDelete) {
 		$this->_canDelete = $canDelete;
-		$this->_stageId = $stageId;
 		parent::GridRow();
 	}
 
@@ -73,12 +72,12 @@ class SubmissionFilesGridRow extends GridRow {
 		// 1) Delete file action.
 		if ($this->canDelete()) {
 			import('controllers.api.file.linkAction.DeleteFileLinkAction');
-			$this->addAction(new DeleteFileLinkAction($request, $monographFile, $this->getStageId()));
+			$this->addAction(new DeleteFileLinkAction($request, $monographFile));
 		}
 
 		// 2) Information center action.
 		import('controllers.informationCenter.linkAction.FileInfoCenterLinkAction');
-		$this->addAction(new FileInfoCenterLinkAction($request, $monographFile, $this->getStageId()));
+		$this->addAction(new FileInfoCenterLinkAction($request, $monographFile));
 	}
 }
 
