@@ -19,10 +19,11 @@ import('classes.handler.Handler');
 import('lib.pkp.classes.linkAction.LinkAction');
 import('lib.pkp.classes.linkAction.request.AjaxModal');
 
-class WorkflowHandler extends Handler {
-	/** @var int the id of the current stage **/
-	var $_stageId;
+// Import decision constants.
+import('classes.submission.common.Action');
 
+
+class WorkflowHandler extends Handler {
 	/**
 	 * Constructor
 	 */
@@ -30,7 +31,7 @@ class WorkflowHandler extends Handler {
 		parent::Handler();
 
 		$this->addRoleAssignment(array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER, ROLE_ID_PRESS_ASSISTANT),
-				array('submission', 'review', 'copyediting', 'production'));
+				array('submission', 'internalReview', 'externalReview', 'copyediting', 'production'));
 	}
 
 
@@ -50,10 +51,6 @@ class WorkflowHandler extends Handler {
 	 * @see PKPHandler::initialize()
 	 */
 	function initialize(&$request, $args) {
-		// Assign the stage id.
-		$stageId = $this->_identifyStageId($request);
-		$this->_stageId = $stageId;
-
 		$this->setupTemplate();
 
 		// Call parent method.
@@ -67,7 +64,7 @@ class WorkflowHandler extends Handler {
 		$templateMgr =& TemplateManager::getManager();
 
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-		$stageId = $this->_stageId;
+		$stageId = $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
 
 		// Assign the authorized monograph.
 		$templateMgr->assign_by_ref('monograph', $monograph);
@@ -101,13 +98,32 @@ class WorkflowHandler extends Handler {
 	}
 
 	/**
-	 * Show the review stage
+	 * Show the internal review stage.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 */
+	function internalReview($args, &$request) {
+		$this->_review($args, $request);
+	}
+
+	/**
+	 * Show the external review stage.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 */
+	function externalReview($args, &$request) {
+		$this->_review($args, $request);
+	}
+
+	/**
+	 * Internal function to handle both internal and external reviews
 	 * @param $request PKPRequest
 	 * @param $args array
 	 */
-	function review($args, &$request) {
+	function _review($args, &$request) {
 		// Retrieve the authorized submission.
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		$selectedStageId = $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
 
 		// Retrieve and validate the review round currently being looked at.
 		if (count($args) > 0 && is_numeric($args[0])) {
@@ -116,44 +132,53 @@ class WorkflowHandler extends Handler {
 			$selectedRound = null;
 		}
 
+		$monographDao =& DAORegistry::getDAO('MonographDAO');
+		$reviewRoundInfo = $monographDao->getReviewRoundsInfoById($monograph->getId());
+
+		// A blank reviewRoundInfo means there is no valid round for this review stage yet.
+		$currentRound = isset($reviewRoundInfo[$selectedStageId])?$reviewRoundInfo[$selectedStageId]:1;
+
 		// Make sure round is not higher than the monograph's latest round.
-		$currentRound = $monograph->getCurrentRound();
 		if(!$selectedRound || $selectedRound < 1 || $selectedRound > $currentRound) {
 			$selectedRound = $currentRound;
 		}
 
-		// Add the round information to the template.
+		// Add the review stage and the round information to the template.
 		$templateMgr =& TemplateManager::getManager();
+		$templateMgr->assign('selectedStageId', $selectedStageId);
 		$templateMgr->assign('currentRound', $currentRound);
 		$templateMgr->assign('selectedRound', $selectedRound);
 
-		// Retrieve and assign the current review type.
-		// FIXME: consolidate review type with review workflow steps, see #6244.
-		$currentReviewType = $monograph->getCurrentReviewType();
-		$templateMgr->assign('currentReviewType', $currentReviewType);
-
 		// Assign editor decision actions to the template.
 		$additionalActionArgs = array(
-			'reviewType' => $currentReviewType,
-			'round' => $currentRound
+			'stageId' => $selectedStageId,
+			'round' => $selectedRound
 		);
-		$this->_assignEditorDecisionActions($request, '_reviewStageDecisions', $additionalActionArgs);
+		if ($selectedStageId == WORKFLOW_STAGE_ID_INTERNAL_REVIEW) {
+			$callback = '_internalReviewStageDecisions';
+		} elseif ($selectedStageId == WORKFLOW_STAGE_ID_INTERNAL_REVIEW) {
+			$callback = '_externalReviewStageDecisions';
+		}
+		$this->_assignEditorDecisionActions($request, $callback, $additionalActionArgs);
 
 		// Retrieve and assign the review round status.
 		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO'); /* @var $reviewRoundDao ReviewRoundDAO */
-		$reviewRound =& $reviewRoundDao->build($monograph->getId(), $currentReviewType, $selectedRound);
+		$reviewRound =& $reviewRoundDao->build($monograph->getId(), $selectedStageId, $selectedRound);
 		$templateMgr->assign('roundStatus', $reviewRound->getStatusKey());
 
-		$dispatcher =& $request->getDispatcher();
-		$newRoundAction = new LinkAction('newRound',
-									new AjaxModal(
-										$dispatcher->url($request, ROUTE_COMPONENT, null,
-												'modals.editorDecision.EditorDecisionHandler',
-												'newReviewRound', null, array('monographId' => $monograph->getId(),
-																		'decision' => SUBMISSION_EDITOR_DECISION_RESUBMIT)),
-												__('editor.monograph.newRound')),
-										__('editor.monograph.newRound')); // FIXME: add icon.
-		$templateMgr->assign_by_ref('newRoundAction', $newRoundAction);
+		if ($monograph->getStageId() == $selectedStageId) {
+			$dispatcher =& $request->getDispatcher();
+			$newRoundAction = new LinkAction('newRound',
+										new AjaxModal(
+											$dispatcher->url($request, ROUTE_COMPONENT, null,
+													'modals.editorDecision.EditorDecisionHandler',
+													'newReviewRound', null, array('monographId' => $monograph->getId(),
+																			'decision' => SUBMISSION_EDITOR_DECISION_RESUBMIT,
+																			'stageId' => $selectedStageId)),
+													__('editor.monograph.newRound')),
+											__('editor.monograph.newRound')); // FIXME: add icon.
+			$templateMgr->assign_by_ref('newRoundAction', $newRoundAction);
+		}
 
 		// Render the view.
 		$templateMgr->display('workflow/review.tpl');
@@ -196,7 +221,8 @@ class WorkflowHandler extends Handler {
 	function _identifyStageId(&$request) {
 		static $operationAssignment = array(
 			'submission' => WORKFLOW_STAGE_ID_SUBMISSION,
-			'review' => WORKFLOW_STAGE_ID_INTERNAL_REVIEW, // FIXME: What about external reviews? See #6244.
+			'internalReview' => WORKFLOW_STAGE_ID_INTERNAL_REVIEW,
+			'externalReview' => WORKFLOW_STAGE_ID_EXTERNAL_REVIEW,
 			'copyediting' => WORKFLOW_STAGE_ID_EDITING,
 			'production' => WORKFLOW_STAGE_ID_PRODUCTION
 		);
@@ -222,34 +248,35 @@ class WorkflowHandler extends Handler {
 	function _assignEditorDecisionActions(&$request, $decisionsCallback, $additionalArgs = array()) {
 		// Prepare the action arguments.
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-		$actionArgs = array('monographId' => $monograph->getId());
-		$actionArgs = array_merge($actionArgs, $additionalArgs);
+		$stageId = $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
+		if ($monograph->getStageId() != $stageId) {
+			$editorActions = array();
+		} else {
+			$actionArgs = array('monographId' => $monograph->getId());
+			$actionArgs = array_merge($actionArgs, $additionalArgs);
 
-		// Import the action and link action to define necessary constants before
-		// retrieving decisions.
-		import('classes.submission.common.Action');
+			// Retrieve the editor decisions.
+			$decisions = call_user_func(array($this, $decisionsCallback));
 
-		// Retrieve the editor decisions.
-		$decisions = call_user_func(array($this, $decisionsCallback));
-
-		// Iterate through the editor decisions and create a link action for each decision.
-		$dispatcher =& $this->getDispatcher();
-		foreach($decisions as $decision => $action) {
-			$actionArgs['decision'] = $decision;
-			$editorActions[] = new LinkAction(
-				$action['name'],
-				new AjaxModal(
-					$dispatcher->url(
-						$request, ROUTE_COMPONENT, null,
-						'modals.editorDecision.EditorDecisionHandler',
-						$action['operation'], null, $actionArgs
-					)
-				),
-				__($action['title']),
-				(isset($action['image']) ? $action['image'] : null)
-			);
+			// Iterate through the editor decisions and create a link action for each decision.
+			$dispatcher =& $this->getDispatcher();
+			foreach($decisions as $decision => $action) {
+				$actionArgs['decision'] = $decision;
+				$editorActions[] = new LinkAction(
+					$action['name'],
+					new AjaxModal(
+						$dispatcher->url(
+							$request, ROUTE_COMPONENT, null,
+							'modals.editorDecision.EditorDecisionHandler',
+							$action['operation'], null, $actionArgs
+						),
+						__($action['title'])
+					),
+					__($action['title']),
+					(isset($action['image']) ? $action['image'] : null)
+				);
+			}
 		}
-
 		// Assign the actions to the template.
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('editorActions', $editorActions);
@@ -288,7 +315,7 @@ class WorkflowHandler extends Handler {
 	 * Define and return editor decisions for the review stage.
 	 * @return array
 	 */
-	function _reviewStageDecisions() {
+	function _internalReviewStageDecisions() {
 		static $decisions = array(
 			SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS => array(
 				'operation' => 'sendReviews',
@@ -319,6 +346,38 @@ class WorkflowHandler extends Handler {
 
 		return $decisions;
 	}
+
+	/**
+	 * Define and return editor decisions for the review stage.
+	 * @return array
+	 */
+	function _externalReviewStageDecisions() {
+		static $decisions = array(
+			SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS => array(
+				'operation' => 'sendReviews',
+				'name' => 'requestRevisions',
+				'title' => 'editor.monograph.decision.requestRevisions'
+			),
+			SUBMISSION_EDITOR_DECISION_RESUBMIT => array(
+				'operation' => 'sendReviews',
+				'name' => 'resubmit',
+				'title' => 'editor.monograph.decision.resubmit'
+			),
+			SUBMISSION_EDITOR_DECISION_ACCEPT => array(
+				'operation' => 'promote',
+				'name' => 'accept',
+				'title' => 'editor.monograph.decision.accept',
+			),
+			SUBMISSION_EDITOR_DECISION_DECLINE => array(
+				'operation' => 'sendReviews',
+				'name' => 'decline',
+				'title' => 'editor.monograph.decision.decline'
+			)
+		);
+
+		return $decisions;
+	}
+
 
 	/**
 	 * Define and return editor decisions for the copyediting stage.
