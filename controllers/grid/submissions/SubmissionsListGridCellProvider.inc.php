@@ -58,13 +58,14 @@ class SubmissionsListGridCellProvider extends DataObjectGridCellProvider {
 					break;
 				case WORKFLOW_STAGE_ID_INTERNAL_REVIEW:
 					$workflowPath = WORKFLOW_STAGE_PATH_INTERNAL_REVIEW;
+					break;
 				case WORKFLOW_STAGE_ID_EXTERNAL_REVIEW:
 					$workflowPath = WORKFLOW_STAGE_PATH_EXTERNAL_REVIEW;
 					break;
-				case WORKFLOW_STAGE_PATH_EDITING:
+				case WORKFLOW_STAGE_ID_EDITING:
 					$workflowPath = WORKFLOW_STAGE_PATH_EDITING;
 					break;
-				case WORKFLOW_STAGE_PATH_PRODUCTION:
+				case WORKFLOW_STAGE_ID_PRODUCTION:
 					$workflowPath = WORKFLOW_STAGE_PATH_PRODUCTION;
 					break;
 				default:
