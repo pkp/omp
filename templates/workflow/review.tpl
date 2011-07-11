@@ -21,9 +21,11 @@
 		</li>
 	{/section}
 
-	<li id="newRoundTabContainer" class="ui-state-default ui-corner-top">
-		{include file="linkAction/linkAction.tpl" action=$newRoundAction contextId="newRoundTabContainer"}
-	</li>
+	{if $newRoundAction}
+		<li id="newRoundTabContainer" class="ui-state-default ui-corner-top">
+			{include file="linkAction/linkAction.tpl" action=$newRoundAction contextId="newRoundTabContainer"}
+		</li>
+	{/if}
 </ul>
 
 {if $roundStatus}

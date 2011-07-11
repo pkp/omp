@@ -19,6 +19,7 @@
 
 <form class="pkp_form" id="promote" method="post" action="{url op="savePromote"}" >
 	<input type="hidden" name="monographId" value="{$monographId|escape}" />
+	<input type="hidden" name="stageId" value="{$stageId|escape}" />
 	<input type="hidden" name="decision" value="{$decision|escape}" />
 
 	{fbvFormSection}
@@ -26,7 +27,7 @@
 	{/fbvFormSection}
 
 	<!--  Message to reviewer textarea -->
-	<p style="text-align: right;"><a id="importPeerReviews" href="#">{translate key="submission.comments.importPeerReviews"}</a></p><br />
+	<p style="pkp_helper_align_right"><a id="importPeerReviews" href="#">{translate key="submission.comments.importPeerReviews"}</a></p><br />
 
 	{fbvFormSection}
 		{fbvElement type="textarea" name="personalMessage" id="personalMessage" label="editor.review.personalMessageToAuthor" value=$personalMessage  size=$fbvStyles.size.MEDIUM}

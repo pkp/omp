@@ -154,8 +154,7 @@
 			<input type="hidden" id="revisedFileId" name="revisedFileId" value="{$revisedFileId}" />
 		{elseif $showFileSelector}
 			{* TODO: This should be a radio button selection, where the select is displayed only if the user chooses to replace a file *}
-			{* TODO: In the meantime, update localization for the title below *}
-			{fbvFormSection title="Replacing an Existing File?" required=$revisionOnly}
+			{fbvFormSection title="submission.upload.replacingExistingFile" required=$revisionOnly}
 					{if $revisionOnly}
 						{assign var="revisedFileLabel" value="submission.upload.selectMandatoryFileToRevise"}
 					{else}
