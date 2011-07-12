@@ -26,12 +26,12 @@ class SubmissionFilesUploadConfirmationForm extends SubmissionFilesUploadBaseFor
 	 * @param $uploadedFile integer
 	 */
 	function SubmissionFilesUploadConfirmationForm(&$request, $monographId, $stageId, $fileStage,
-			$revisedFileId = null, $uploadedFile = null) {
+			$round, $revisedFileId = null, $uploadedFile = null) {
 
 		// Initialize class.
 		parent::SubmissionFilesUploadBaseForm(
 			$request, 'controllers/wizard/fileUpload/form/fileUploadConfirmationForm.tpl',
-			$monographId, $stageId, $fileStage, false, null, $revisedFileId
+			$monographId, $stageId, $fileStage, false, $round, $revisedFileId
 		);
 
 		if (is_a($uploadedFile, 'MonographFile')) {

@@ -37,7 +37,7 @@ class AddFileLinkAction extends BaseAddFileLinkAction {
 	 *  associated with.
 	 */
 	function AddFileLinkAction(&$request, $monographId, $stageId, $uploaderRoles,
-			$fileStage, $assocType = null, $assocId = null) {
+			$fileStage, $assocType = null, $assocId = null, $round = null) {
 
 		// Create the action arguments array.
 		$actionArgs = array('fileStage' => $fileStage);
@@ -45,6 +45,10 @@ class AddFileLinkAction extends BaseAddFileLinkAction {
 			$actionArgs['assocType'] = (int)$assocType;
 			$actionArgs['assocId'] = (int)$assocId;
 		}
+		if (is_numeric($round)) {
+			$actionArgs['round'] = (int)$round;
+		}
+
 
 		// Identify text labels based on the file stage.
 		$textLabels = AddFileLinkAction::_getTextLabels($fileStage);

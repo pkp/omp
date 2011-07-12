@@ -38,7 +38,8 @@ class FileLinkAction extends LinkAction {
 		// Create the action arguments array.
 		return array(
 			'fileId' => $monographFile->getFileId(),
-			'revision' => $monographFile->getRevision()
+			'revision' => $monographFile->getRevision(),
+			'monographId' => $monographFile->getMonographId()
 		);
 	}
 }

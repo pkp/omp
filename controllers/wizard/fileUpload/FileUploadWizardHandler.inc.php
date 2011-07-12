@@ -47,9 +47,15 @@ class FileUploadWizardHandler extends FileManagementHandler {
 	 */
 	function FileUploadWizardHandler() {
 		parent::Handler();
-		$this->addRoleAssignment(array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR),
-				array('startWizard', 'displayFileUploadForm', 'uploadFile', 'confirmRevision',
-						'editMetadata', 'saveMetadata', 'finishFileSubmission'));
+		$this->addRoleAssignment(
+			array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR),
+			array(
+				'startWizard', 'displayFileUploadForm',
+				'uploadFile', 'confirmRevision',
+				'editMetadata', 'saveMetadata',
+				'finishFileSubmission'
+			)
+		);
 	}
 
 
@@ -79,6 +85,7 @@ class FileUploadWizardHandler extends FileManagementHandler {
 
 		// The revised file will be non-null if we revise a single existing file.
 		if ($this->getRevisionOnly() && $request->getUserVar('revisedFileId')) {
+			// FIXME: bug #6199
 			$this->_revisedFileId = (int)$request->getUserVar('revisedFileId');
 		}
 
@@ -209,7 +216,7 @@ class FileUploadWizardHandler extends FileManagementHandler {
 					if ($revisedFileId) {
 						// Instantiate the revision confirmation form.
 						import('controllers.wizard.fileUpload.form.SubmissionFilesUploadConfirmationForm');
-						$confirmationForm = new SubmissionFilesUploadConfirmationForm($request, $monograph->getId(), $this->getStageId(), $this->getFileStage(), $revisedFileId, $uploadedFile);
+						$confirmationForm = new SubmissionFilesUploadConfirmationForm($request, $monograph->getId(), $this->getStageId(), $this->getFileStage(), $this->getRound(), $revisedFileId, $uploadedFile);
 						$confirmationForm->initData($args, $request);
 
 						// Render the revision confirmation form.
@@ -221,7 +228,7 @@ class FileUploadWizardHandler extends FileManagementHandler {
 				// Advance to the next step (i.e. meta-data editing).
 				$json = new JSONMessage(true, '', false, '0', $uploadedFileInfo);
 			} else {
-				$json = new JSONMessage(false, Locale::translate('common.uploadFailed'));
+				$json = new JSONMessage(false, __('common.uploadFailed'));
 			}
 		} else {
 			$json = new JSONMessage(false, array_pop($uploadForm->getErrorsArray()));
@@ -241,7 +248,7 @@ class FileUploadWizardHandler extends FileManagementHandler {
 		$monograph =& $this->getMonograph();
 		import('controllers.wizard.fileUpload.form.SubmissionFilesUploadConfirmationForm');
 		$confirmationForm = new SubmissionFilesUploadConfirmationForm(
-			$request, $monograph->getId(), $this->getStageId(), $this->getFileStage()
+			$request, $monograph->getId(), $this->getStageId(), $this->getFileStage(), $this->getRound()
 		);
 		$confirmationForm->readInputData();
 
@@ -251,7 +258,7 @@ class FileUploadWizardHandler extends FileManagementHandler {
 				// Go to the meta-data editing step.
 				$json = new JSONMessage(true, '', false, '0', $this->_getUploadedFileInfo($uploadedFile));
 			} else {
-				$json = new JSONMessage(false, Locale::translate('common.uploadFailed'));
+				$json = new JSONMessage(false, __('common.uploadFailed'));
 			}
 		} else {
 			$json = new JSONMessage(false, array_pop($confirmationForm->getErrorsArray()));
@@ -305,6 +312,8 @@ class FileUploadWizardHandler extends FileManagementHandler {
 	 */
 	function finishFileSubmission($args, &$request) {
 		$monograph =& $this->getMonograph();
+
+		// Validation not req'd -- just generating a JSON update message.
 		$fileId = (int)$request->getUserVar('fileId');
 
 		$templateMgr =& TemplateManager::getManager();
@@ -328,6 +337,7 @@ class FileUploadWizardHandler extends FileManagementHandler {
 		$monograph =& $this->getMonograph();
 
 		// Retrieve the latest revision of the requested monograph file.
+		// FIXME Bug #6199: Validate file ID
 		$fileId = (int)$request->getUserVar('fileId');
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		$submissionFile =& $submissionFileDao->getLatestRevision($fileId, $this->getFileStage(), $monograph->getId());

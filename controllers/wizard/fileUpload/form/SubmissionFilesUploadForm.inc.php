@@ -224,10 +224,18 @@ class SubmissionFilesUploadForm extends SubmissionFilesUploadBaseForm {
 
 		// Upload the file.
 		import('classes.file.MonographFileManager');
-		return MonographFileManager::uploadMonographFile(
+		$monographFile = MonographFileManager::uploadMonographFile(
 			$this->getData('monographId'), 'uploadedFile', $this->getData('fileStage'),
 			$user->getId(), $uploaderUserGroupId, $revisedFileId, $fileGenre
 		);
+
+		if ($monographFile && $this->getData('fileStage') == MONOGRAPH_FILE_REVIEW) {
+			// Add the uploaded review file to the review round.
+			$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO');
+			$submissionFileDao->assignRevisionToReviewRound($monographFile->getFileId(), $monographFile->getRevision(), $this->getStageId(), $this->getData('round'), $this->getData('monographId'));
+		}
+
+		return $monographFile;
 	}
 
 

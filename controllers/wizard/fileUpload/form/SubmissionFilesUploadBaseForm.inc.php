@@ -25,9 +25,6 @@ class SubmissionFilesUploadBaseForm extends Form {
 	/** @var array the monograph files for this monograph and file stage */
 	var $_monographFiles;
 
-	/** @var integer */
-	var $_round;
-
 
 	/**
 	 * Constructor.
@@ -56,7 +53,7 @@ class SubmissionFilesUploadBaseForm extends Form {
 		$this->setData('fileStage', (int)$fileStage);
 		$this->setData('monographId', (int)$monographId);
 		$this->setData('revisionOnly', (boolean)$revisionOnly);
-		$this->_round = $round ? (int)$round : null;
+		$this->setData('round', $round ? (int)$round : null);
 		$this->setData('revisedFileId', $revisedFileId ? (int)$revisedFileId : null);
 
 		// Add validators.
@@ -80,7 +77,7 @@ class SubmissionFilesUploadBaseForm extends Form {
 	 * @return integer
 	 */
 	function getRound() {
-		return $this->_round;
+		return $this->getData('round');
 	}
 
 	/**
@@ -103,8 +100,8 @@ class SubmissionFilesUploadBaseForm extends Form {
 				// If we have a review stage id then we also expect a review round.
 				if ($this->getRound() < 1) fatalError('Invalid review round!');
 
-				// Review round files only can point to submission files.
-				if ($this->getData('fileStage') != MONOGRAPH_FILE_SUBMISSION) fatalError('Invalid file stage!');
+				// Can only upload submission files or review files.
+				if (!in_array($this->getData('fileStage'), array(MONOGRAPH_FILE_SUBMISSION, MONOGRAPH_FILE_REVIEW))) fatalError('Invalid file stage!');
 
 				// Retrieve the monograph files for the given review round.
 				$this->_monographFiles =& $submissionFileDao->getRevisionsByReviewRound(

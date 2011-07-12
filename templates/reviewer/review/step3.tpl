@@ -34,7 +34,7 @@
 		{/if}
 		{fbvElement type="textarea" id="comments" name="comments" value=$reviewAssignment->getComments()|escape}
 
-		{url|assign:reviewAttachmentsGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.attachment.ReviewerReviewAttachmentsGridHandler" op="fetchGrid" reviewId=$submission->getReviewId() monographId=$submission->getId() round=1 escape=false}
+		{url|assign:reviewAttachmentsGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.attachment.ReviewerReviewAttachmentsGridHandler" op="fetchGrid" reviewId=$submission->getReviewId() monographId=$submission->getId() round=$submission->getCurrentRound() stageId=$submission->getStageId() escape=false}
 		{load_url_in_div id="reviewAttachmentsGridContainer" url="$reviewAttachmentsGridUrl"}
 	{/fbvFormSection}
 

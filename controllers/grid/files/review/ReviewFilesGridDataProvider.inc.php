@@ -58,6 +58,20 @@ class ReviewFilesGridDataProvider extends ReviewGridDataProvider {
 		);
 		return $selectAction;
 	}
+
+	/**
+	 * @see FilesGridDataProvider::getAddFileAction()
+	 */
+	function &getAddFileAction($request) {
+		import('controllers.api.file.linkAction.AddFileLinkAction');
+		$monograph =& $this->getMonograph();
+		$addFileAction = new AddFileLinkAction(
+			$request, $monograph->getId(), $this->_getStageId(),
+			$this->getUploaderRoles(), MONOGRAPH_FILE_REVIEW,
+			null, null, $this->_getRound()
+		);
+		return $addFileAction;
+	}
 }
 
 ?>
