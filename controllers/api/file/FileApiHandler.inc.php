@@ -26,8 +26,10 @@ class FileApiHandler extends FileManagementHandler {
 	 */
 	function FileApiHandler() {
 		parent::FileManagementHandler();
-		$this->addRoleAssignment(array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR),
-				array('deleteFile', 'downloadFile', 'viewFile'));
+		$this->addRoleAssignment(
+			array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR),
+			array('deleteFile', 'downloadFile', 'viewFile')
+		);
 	}
 
 
@@ -47,7 +49,7 @@ class FileApiHandler extends FileManagementHandler {
 		$success = false;
 		if($fileId) {
 			// Delete all revisions or only one?
-			$revision = (int) $request->getUserVar('revision') : null;
+			$revision = (int) $request->getUserVar('revision');
 
 			// Delete the file/revision but only when it belongs to the authorized monograph
 			// and to the right file stage.
