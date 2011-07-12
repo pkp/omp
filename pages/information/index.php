@@ -3,7 +3,7 @@
 /**
  * @defgroup pages_information
  */
- 
+
 /**
  * @file pages/information/index.php
  *
@@ -11,7 +11,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @ingroup pages_information
- * @brief Handle information requests. 
+ * @brief Handle information requests.
  *
  */
 
@@ -22,7 +22,7 @@ switch ($op) {
 	case 'readers':
 	case 'authors':
 	case 'librarians':
-	case 'competingInterestGuidelines':
+	case 'competingInterestPolicy':
 	case 'sampleCopyrightWording':
 		define('HANDLER_CLASS', 'InformationHandler');
 		import('pages.information.InformationHandler');

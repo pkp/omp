@@ -28,7 +28,7 @@ class ViewCompetingInterestGuidelinesLinkAction extends LinkAction {
 		// Instantiate the view review guidelines confirmation modal.
 		import('lib.pkp.classes.linkAction.request.ConfirmationModal');
 		$viewGuidelinesModal = new ConfirmationModal(
-								$press->getLocalizedSetting('competingInterestGuidelines'),
+								$press->getLocalizedSetting('competingInterestPolicy'),
 								__('reviewer.monograph.guidelines'),
 								null, null,
 								false

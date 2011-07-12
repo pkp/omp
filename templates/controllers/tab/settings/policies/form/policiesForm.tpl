@@ -47,6 +47,9 @@
 				<p>{translate key="manager.setup.peerReviewDescription"}</p>
 				{fbvElement type="textarea" multilingual="true" name="reviewPolicy" id="reviewPolicy" value=$reviewPolicy size=$fbvStyles.size.MEDIUM}
 			{/fbvFormSection}
+			{fbvFormSection title="navigation.competingInterestPolicy"}
+				{fbvElement type="textarea" multilingual="true" id="competingInterestsPolicy" value=$competingInterestsPolicy size=$fbvStyles.size.MEDIUM}
+			{/fbvFormSection}
 		</div>
 	{/fbvFormArea}
 	{if !$wizardMode}

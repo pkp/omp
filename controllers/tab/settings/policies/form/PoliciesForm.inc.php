@@ -29,8 +29,11 @@ class PoliciesForm extends PressSettingsForm {
 			'copyrightNotice' => 'string',
 			'includeCreativeCommons' => 'bool',
 			'copyrightNoticeAgree' => 'bool',
+			'competingInterestsPolicy' => 'string',
 			'privacyStatement' => 'string'
 		);
+
+		Locale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON));
 
 		parent::PressSettingsForm($settings, 'controllers/tab/settings/policies/form/policiesForm.tpl', $wizardMode);
 	}
@@ -43,7 +46,7 @@ class PoliciesForm extends PressSettingsForm {
 	 * @see Form::getLocaleFieldNames()
 	 */
 	function getLocaleFieldNames() {
-		return array('focusScopeDesc', 'openAccessPolicy', 'reviewPolicy', 'copyrightNotice', 'privacyStatement');
+		return array('focusScopeDesc', 'openAccessPolicy', 'reviewPolicy', 'copyrightNotice', 'privacyStatement', 'competingInterestsPolicy');
 	}
 }
 

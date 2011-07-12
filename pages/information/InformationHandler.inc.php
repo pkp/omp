@@ -54,9 +54,9 @@ class InformationHandler extends Handler {
 				$pageTitle = 'navigation.infoForLibrarians.long';
 				$pageCrumbTitle = 'navigation.infoForLibrarians';
 				break;
-			case 'competingInterestGuidelines':
-				$content = $press->getLocalizedSetting('competingInterestGuidelines');
-				$pageTitle = $pageCrumbTitle = 'navigation.competingInterestGuidelines';
+			case 'competingInterestPolicy':
+				$content = $press->getLocalizedSetting('competingInterestPolicy');
+				$pageTitle = $pageCrumbTitle = 'navigation.competingInterestPolicy';
 				break;
 			case 'sampleCopyrightWording':
 				$content = Locale::translate('manager.setup.authorCopyrightNotice.sample');
@@ -88,8 +88,8 @@ class InformationHandler extends Handler {
 		$this->index(array('librarians'));
 	}
 
-	function competingInterestGuidelines() {
-		return $this->index(array('competingInterestGuidelines'));
+	function competingInterestPolicy() {
+		return $this->index(array('competingInterestPolicy'));
 	}
 
 	function sampleCopyrightWording() {
