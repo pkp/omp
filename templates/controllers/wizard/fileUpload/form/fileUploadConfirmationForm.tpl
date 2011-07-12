@@ -24,7 +24,7 @@
 	{rdelim});
 </script>
 
-<form class="pkp_form pkp_controllers_form pkp_controllers_grid_files" id="uploadConfirmationForm"
+<form class="pkp_form pkp_controllers_grid_files" id="uploadConfirmationForm"
 		action="{url op="confirmRevision" monographId=$monographId stageId=$stageId fileStage=$fileStage uploadedFileId=$uploadedFile->getFileId()}"
 		method="post">
 	{fbvFormArea id="file"}

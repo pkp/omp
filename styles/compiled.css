@@ -385,11 +385,70 @@ body {
 .pkp_linkActions a.disable { background-image:url(../lib/pkp/templates/images/structure/grid_delete.png); }
 .pkp_linkActions a.edit { background-image:url(../lib/pkp/templates/images/structure/grid_edit.png); }
 .pkp_linkActions a.more_info { background-image:url(../lib/pkp/templates/images/structure/grid_information.png); }
+@import url("lib/pkp/styles/form.less");
+table.pkp_listing td { padding:0.25em 1.5em 0.25em 0.5em; }
+table.pkp_listing tr.heading td, table.pkp_listing td.heading {
+  font-size:0.85em;
+  text-transform:uppercase;
+  font-weight:normal;
+  padding:0.75em 1.5em 1em 0.5em;
+}
+table.pkp_listing td.nodata {
+  text-align:center;
+  font-style:italic;
+}
+table.pkp_listing td.headseparator {
+  border-top:1px dotted #000000;
+  font-size:0.1em;
+  line-height:1%;
+}
+table.pkp_listing td.endseparator {
+  border-top:1px dotted #000000;
+  font-size:0.25em;
+  line-height:10%;
+}
+table.pkp_listing td.separator {
+  border-top:1px dotted #ddddd0;
+  font-size:0.1em;
+  line-height:1%;
+}
+.pkp_controllers_fontController_smallFont {
+  background:url(../lib/pkp/templates/images/icons/font-down.png);
+  outline:none;
+  text-indent:-9999px;
+  display:block;
+  float:left;
+  width:20px;
+  height:23px;
+}
+.pkp_controllers_fontController_defaultFont {
+  background:url(../lib/pkp/templates/images/icons/font-default.png);
+  outline:none;
+  text-indent:-9999px;
+  display:block;
+  float:left;
+  width:20px;
+  height:23px;
+}
+.pkp_controllers_fontController_largeFont {
+  background:url(../lib/pkp/templates/images/icons/font-up.png);
+  outline:none;
+  text-indent:-9999px;
+  display:block;
+  float:left;
+  width:20px;
+  height:23px;
+}
+.pkp_controllers_fontController_ldisabled, .pkp_controllers_fontController_sdisabled {
+  opacity:0.3;
+  -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
+  filter:alpha(opacity=30);
+}
 .pkp_form .debug div, .pkp_form .debug label { border:1px solid orange; }
 .pkp_form fieldset { margin:10px 5px; }
 .pkp_form legend {
   font-size:110%;
-  padding:10px 0px 10px 0px;
+  padding:10px 0 10px 0;
 }
 .pkp_form div.section {
   clear:left;
@@ -399,14 +458,25 @@ body {
 .pkp_form label {
   display:block;
   font-weight:bold;
-  padding:3px 0px 3px 0px;
+  padding:3px 0 3px 0;
 }
 .pkp_form label.error { color:#990000; }
+.pkp_form span.pkp_form_error {
+  color:#990000;
+  font-weight:bold;
+  font-size:1em;
+}
+.pkp_form .pkp_form_error_list a { color:#990000; }
+.pkp_form span.pkp_form_success {
+  color:#009900;
+  font-weight:bold;
+  font-size:1em;
+}
 .pkp_form span label.sub_label {
   font-size:80%;
   color:#999999;
   font-weight:normal;
-  padding:2px 0px 4px 0px;
+  padding:2px 0 4px 0;
 }
 .pkp_form input {
   width:98%;
@@ -440,11 +510,12 @@ body {
   float:left;
   clear:none !important;
   margin-right:2%;
-  margin-bottom:0px;
+  margin-bottom:0;
 }
 .pkp_form ul.checkbox_and_radiobutton {
-  margin-bottom:0px;
-  padding-bottom:0px;
+  margin-bottom:0;
+  padding-bottom:0;
+  padding-left:0;
 }
 .pkp_form .checkbox_and_radiobutton li {
   padding-right:35px;
@@ -459,7 +530,7 @@ body {
   width:13px;
   height:13px;
 }
-.pkp_form .checkbox_and_radiobutton label {
+.pkp_form .checkbox_and_radiobutton li label {
   line-height:150%;
   margin:-17px 0 0 20px;
   padding:0 0 5px 0;
@@ -544,81 +615,12 @@ body {
 .pkp_form .formButtons .submitFormButton { float:right; }
 .pkp_form .formButtons .cancelFormButton { float:left; }
 .pkp_form .formButtons div.clear { clear:both; }
-table.pkp_listing td { padding:0.25em 1.5em 0.25em 0.5em; }
-table.pkp_listing tr.heading td, table.pkp_listing td.heading {
-  font-size:0.85em;
-  text-transform:uppercase;
-  font-weight:normal;
-  padding:0.75em 1.5em 1em 0.5em;
-}
-table.pkp_listing td.nodata {
-  text-align:center;
-  font-style:italic;
-}
-table.pkp_listing td.headseparator {
-  border-top:1px dotted #000000;
-  font-size:0.1em;
-  line-height:1%;
-}
-table.pkp_listing td.endseparator {
-  border-top:1px dotted #000000;
-  font-size:0.25em;
-  line-height:10%;
-}
-table.pkp_listing td.separator {
-  border-top:1px dotted #ddddd0;
-  font-size:0.1em;
-  line-height:1%;
-}
-.pkp_controllers_fontController_smallFont {
-  background:url(../lib/pkp/templates/images/icons/font-down.png);
-  outline:none;
-  text-indent:-9999px;
-  display:block;
-  float:left;
-  width:20px;
-  height:23px;
-}
-.pkp_controllers_fontController_defaultFont {
-  background:url(../lib/pkp/templates/images/icons/font-default.png);
-  outline:none;
-  text-indent:-9999px;
-  display:block;
-  float:left;
-  width:20px;
-  height:23px;
-}
-.pkp_controllers_fontController_largeFont {
-  background:url(../lib/pkp/templates/images/icons/font-up.png);
-  outline:none;
-  text-indent:-9999px;
-  display:block;
-  float:left;
-  width:20px;
-  height:23px;
-}
-.pkp_controllers_fontController_ldisabled, .pkp_controllers_fontController_sdisabled {
-  opacity:0.3;
-  -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
-  filter:alpha(opacity=30);
-}
-.pkp_controllers_form span.pkp_controllers_form_error {
-  color:#990000;
-  font-weight:bold;
-  font-size:1em;
-}
-.pkp_controllers_form .pkp_controllers_form_error_list a { color:#990000; }
-.pkp_controllers_form span.pkp_controllers_form_success {
-  color:#009900;
-  font-weight:bold;
-  font-size:1em;
-}
-.pkp_controllers_form .pkp_controllers_form_localization_container {
+.pkp_form .pkp_form_localization_container {
   background-color:#ffffff;
   padding:5px;
 }
-.pkp_controllers_form .pkp_controllers_form_localization_container .pkp_controllers_form_localization_container_focus { background-color:#dddddd !important; }
-.pkp_controllers_form .pkp_controllers_form_localization_container .pkp_controllers_form_localization_popover {
+.pkp_form .pkp_form_localization_container .pkp_form_localization_container_focus { background-color:#dddddd !important; }
+.pkp_form .pkp_form_localization_container .pkp_form_localization_popover {
   margin:2em;
   margin-left:-5px;
   position:absolute;
@@ -626,42 +628,42 @@ table.pkp_listing td.separator {
   background-color:#dddddd;
   display:none;
 }
-.pkp_controllers_form .pkp_controllers_form_localization_container label.multilingual_extra_label {
+.pkp_form .pkp_form_localization_container label.multilingual_extra_label {
   text-indent:-9999px;
   margin:0;
   padding:0;
 }
-.pkp_controllers_form .pkp_controllers_form_localization_container input.locale_en_US {
+.pkp_form .pkp_form_localization_container input.locale_en_US {
   margin:0;
   background-repeat:no-repeat;
   background-position:98% 50%;
   background-image:url(../lib/pkp/templates/images/structure/flags/en_US.png) !important;
 }
-.pkp_controllers_form .pkp_controllers_form_localization_container input.locale_fr_CA {
+.pkp_form .pkp_form_localization_container input.locale_fr_CA {
   margin:0;
   background-repeat:no-repeat;
   background-position:98% 50%;
   background-image:url(../lib/pkp/templates/images/structure/flags/fr_CA.png) !important;
 }
-.pkp_controllers_form .pkp_controllers_form_localization_container input.locale_te_ST {
+.pkp_form .pkp_form_localization_container input.locale_te_ST {
   margin:0;
   background-repeat:no-repeat;
   background-position:98% 50%;
   background-image:url(../lib/pkp/templates/images/structure/flags/te_ST.png) !important;
 }
-.pkp_controllers_form .pkp_controllers_form_localization_container textarea.locale_en_US {
+.pkp_form .pkp_form_localization_container textarea.locale_en_US {
   margin:0;
   background-repeat:no-repeat;
   background-position:98% 97%;
   background-image:url(../lib/pkp/templates/images/structure/flags/en_US.png) !important;
 }
-.pkp_controllers_form .pkp_controllers_form_localization_container textarea.locale_fr_CA {
+.pkp_form .pkp_form_localization_container textarea.locale_fr_CA {
   margin:0;
   background-repeat:no-repeat;
   background-position:98% 97%;
   background-image:url(../lib/pkp/templates/images/structure/flags/fr_CA.png) !important;
 }
-.pkp_controllers_form .pkp_controllers_form_localization_container textarea.locale_te_ST {
+.pkp_form .pkp_form_localization_container textarea.locale_te_ST {
   margin:0;
   background-repeat:no-repeat;
   background-position:98% 97%;

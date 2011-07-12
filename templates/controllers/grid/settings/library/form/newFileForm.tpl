@@ -23,7 +23,7 @@
 	{rdelim});
 </script>
 
-<form class="pkp_form pkp_controllers_form" id="uploadForm" action="{url op="saveFile" fileType=$fileType}" method="post" class="pkp_form">
+<form class="pkp_form" id="uploadForm" action="{url op="saveFile" fileType=$fileType}" method="post" class="pkp_form">
 	<input type="hidden" name="temporaryFileId" id="temporaryFileId" value="" />
 	{fbvFormArea id="name"}
 		{fbvFormSection title="common.name"}

@@ -14,10 +14,12 @@
 
 <p><span class="instruct">{translate key="notification.mailListDescription"}</span></p>
 
+<form class="pkp_form" id="notificationSettings" method="post" action="{url op="saveSubscribeMailList"}">
+
 {if $isError}
 <p>
-	<span class="pkp_controllers_form_error">{translate key="form.errorsOccurred"}:</span>
-	<ul class="pkp_controllers_form_error_list">
+	<span class="pkp_form_error">{translate key="form.errorsOccurred"}:</span>
+	<ul class="pkp_form_error_list">
 	{foreach key=field item=message from=$errors}
 			<li>{$message}</li>
 	{/foreach}
@@ -26,10 +28,8 @@
 {/if}
 
 {if $success}
-	<p><span class="pkp_controllers_form_success">{translate key="$success"}</span></p>
+	<p><span class="pkp_form_success">{translate key="$success"}</span></p>
 {/if}
-
-<form class="pkp_form" id="notificationSettings" method="post" action="{url op="saveSubscribeMailList"}">
 
 <table class="data" width="100%">
 	<tr valign="top">

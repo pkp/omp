@@ -48,9 +48,9 @@
 </table>
 
 {if $isError}
-<p>
-	<span class="pkp_controllers_form_error">{translate key="plugins.importexport.users.import.errorsOccurred"}:</span>
-	<ul class="pkp_controllers_form_error_list">
+<p class="pkp_form">
+	<span class="pkp_form_error">{translate key="plugins.importexport.users.import.errorsOccurred"}:</span>
+	<ul class="pkp_form_error_list">
 	{foreach key=field item=message from=$errors}
 		<li>{$message}</li>
 	{/foreach}

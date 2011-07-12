@@ -14,7 +14,7 @@
 	{rdelim});
 </script>
 
-<form class="pkp_form pkp_controllers_form" id="languagesForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.WebsiteSettingsTabHandler" op="saveFormData" tab="languages"}">
+<form class="pkp_form" id="languagesForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.WebsiteSettingsTabHandler" op="saveFormData" tab="languages"}">
 {include file="common/formErrors.tpl"}
 
 	<p>{translate key="manager.languages.languageInstructions"}</p>

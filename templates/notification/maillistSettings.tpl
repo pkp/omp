@@ -15,15 +15,16 @@
 <p><span class="instruct">{translate key="notification.unsubscribeDescription"}</span></p>
 <br />
 
+<form class="pkp_form" id="notificationSettings" method="post" action="{url op="unsubscribeMailList"}">
+
 {if $error}
-	<p><span class="pkp_controllers_form_error">{translate key="$error"}</span></p>
+	<p><span class="pkp_form_error">{translate key="$error"}</span></p>
 {/if}
 
 {if $success}
 	<p>{translate key="$success"}</p>
 {/if}
 
-<form class="pkp_form" id="notificationSettings" method="post" action="{url op="unsubscribeMailList"}">
 <table class="data" width="100%">
 	<tr valign="top">
 		<td class="label" width="5%">{translate key="email.email"}</td>

@@ -20,8 +20,8 @@
 
 		<form class="pkp_form" method="post" action="{url path="installPlugin"}" enctype="multipart/form-data">
 			{if $error}
-				<span class="pkp_controllers_form_error">{translate key="form.errorsOccurred"}:</span>
-				<ul class="pkp_controllers_form_error_list">
+				<span class="pkp_form_error">{translate key="form.errorsOccurred"}:</span>
+				<ul class="pkp_form_error_list">
 					<li>
 					{if is_array($message)}
 						{translate key=$message[0]} {$message[1]}
@@ -66,8 +66,8 @@
 
 		<form class="pkp_form" method="post" action="{url path="upgradePlugin"|to_array:$category:$plugin}" enctype="multipart/form-data">
 			{if $error}
-				<span class="pkp_controllers_form_error">{translate key="form.errorsOccurred"}:</span>
-				<ul class="pkp_controllers_form_error_list">
+				<span class="pkp_form_error">{translate key="form.errorsOccurred"}:</span>
+				<ul class="pkp_form_error_list">
 					{if is_array($message)}
 						{translate key=$message[0]} {$message[1]}
 					{else}
@@ -109,17 +109,18 @@
 		{/if}
 
 		{if !$deleted}
-			{if !$error}
-				<ul class="pkp_controllers_form_error_list">
-					<li>{translate key="manager.plugins.deleteConfirm"}</li>
-				</ul>
-			{/if}
-
-			<br />
 			<form class="pkp_form" method="post" action="{url path="deletePlugin"|to_array:$category:$plugin}" enctype="multipart/form-data">
+				{if !$error}
+					<ul class="pkp_form_error_list">
+						<li>{translate key="manager.plugins.deleteConfirm"}</li>
+					</ul>
+				{/if}
+
+				<br />
+
 				{if $error}
-					<span class="pkp_controllers_form_error">{translate key="form.errorsOccurred"}:</span>
-					<ul class="pkp_controllers_form_error_list">
+					<span class="pkp_form_error">{translate key="form.errorsOccurred"}:</span>
+					<ul class="pkp_form_error_list">
 						<li>
 						{if is_array($message)}
 							{translate key=$message[0]} {$message[1]}

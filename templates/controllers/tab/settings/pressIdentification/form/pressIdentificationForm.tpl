@@ -15,7 +15,7 @@
 	{rdelim});
 </script>
 
-<form class="pkp_form pkp_controllers_form" id="pressIdentificationForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.PressSettingsTabHandler" op="saveFormData" tab="pressIdentification"}">
+<form class="pkp_form" id="pressIdentificationForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.PressSettingsTabHandler" op="saveFormData" tab="pressIdentification"}">
 	{include file="common/formErrors.tpl"}
 
 	<h3>{translate key="manager.setup.publicIdentifier"}</h3>

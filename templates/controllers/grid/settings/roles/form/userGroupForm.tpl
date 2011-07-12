@@ -16,7 +16,7 @@
 
 {include file="common/formErrors.tpl"}
 
-<form class="pkp_form pkp_controllers_form" id="userGroupForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.settings.roles.UserGroupGridHandler" op="updateUserGroup" form="mastheadForm"}">
+<form class="pkp_form" id="userGroupForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.settings.roles.UserGroupGridHandler" op="updateUserGroup" form="mastheadForm"}">
 	{if $userGroupId}
 		<input type="hidden" id="userGroupId" name="userGroupId" value="{$userGroupId|escape}" />
 	{/if}

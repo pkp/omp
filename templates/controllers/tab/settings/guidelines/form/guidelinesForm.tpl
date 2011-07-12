@@ -15,7 +15,7 @@
 	{rdelim});
 </script>
 
-<form class="pkp_form pkp_controllers_form" id="guidelinesForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.PressSettingsTabHandler" op="saveFormData" tab="guidelines"}">
+<form class="pkp_form" id="guidelinesForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.PressSettingsTabHandler" op="saveFormData" tab="guidelines"}">
 	{include file="common/formErrors.tpl"}
 
 	{fbvFormArea id="focusAndScopeDescription"}

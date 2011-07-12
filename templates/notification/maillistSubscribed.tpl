@@ -4,7 +4,7 @@
  * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * Displays the notification settings page and unchecks  
+ * Displays the notification settings page and unchecks
  *
  *}
 {strip}
@@ -14,7 +14,7 @@
 
 {if $status == 'subscribeError'}
 	<ul>
-		<li><span class="pkp_controllers_form_error">{translate key="notification.subscribeError"}</span></li>
+		<li class="pkp_form"><span class="pkp_form_error">{translate key="notification.subscribeError"}</span></li>
 	<ul>
 {elseif $status == 'subscribeSuccess'}
 	<ul>
@@ -22,7 +22,7 @@
 	</ul>
 {elseif $status == 'confirmError'}
 	<ul>
-		<li><span class="pkp_controllers_form_error">{translate key="notification.confirmError"}</span></li>
+		<li class="pkp_form"><span class="pkp_form_error">{translate key="notification.confirmError"}</span></li>
 	<ul>
 {elseif $status == 'confirmSuccess'}
 	<ul>

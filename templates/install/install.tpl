@@ -39,8 +39,8 @@
 
 	{if $isInstallError}
 	<p>
-		<span class="pkp_controllers_form_error">{translate key="installer.installErrorsOccurred"}:</span>
-		<ul class="pkp_controllers_form_error_list">
+		<span class="pkp_form_error">{translate key="installer.installErrorsOccurred"}:</span>
+		<ul class="pkp_form_error_list">
 			<li class="error">{if $dbErrorMsg}{translate key="common.error.databaseError" error=$dbErrorMsg}{else}{translate key=$errorMsg}{/if}</li>
 		</ul>
 	</p>
@@ -63,7 +63,7 @@
 					{assign var=localeKeyEscaped value=$localeKey|escape}
 					{fbvElement type="checkbox" name="additionalLocales[]" id="additionalLocales-$localeKeyEscaped" value=$localeKeyEscaped translate=false label="manager.people.createUserSendNotify" checked=$sendNotify label=$localeName|escape} ({$localeKey|escape})
 					{if !$localesComplete[$localeKey]}
-							<span class="pkp_controllers_form_error">*</span>
+							<span class="pkp_form_error">*</span>
 							{assign var=incompleteLocaleFound value=1}
 					{/if}<br />
 				{/foreach}

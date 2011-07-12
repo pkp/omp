@@ -14,7 +14,7 @@
 	{rdelim});
 </script>
 
-<form class="pkp_form pkp_controllers_form" id="genreForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.settings.genre.GenreGridHandler" op="updateGenre"}">
+<form class="pkp_form" id="genreForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.settings.genre.GenreGridHandler" op="updateGenre"}">
 {include file="common/formErrors.tpl"}
 
 {fbvFormArea id="genreInfo"}

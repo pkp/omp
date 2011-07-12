@@ -14,7 +14,7 @@
 	{rdelim});
 </script>
 
-<form class="pkp_form pkp_controllers_form" method="post" id="managePreparedEmailForm" action="{url op="updatePreparedEmail"}">
+<form class="pkp_form" method="post" id="managePreparedEmailForm" action="{url op="updatePreparedEmail"}">
 	{include file="common/formErrors.tpl"}
 
 	{if $isNewTemplate}

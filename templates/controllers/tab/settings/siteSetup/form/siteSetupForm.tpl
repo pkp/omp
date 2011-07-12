@@ -18,7 +18,7 @@
 	{rdelim});
 </script>
 
-<form id="siteSetupForm" class="pkp_form pkp_controllers_form" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.AdminSettingsTabHandler" op="saveFormData" tab="siteSetup"}">
+<form id="siteSetupForm" class="pkp_form" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.AdminSettingsTabHandler" op="saveFormData" tab="siteSetup"}">
 	{include file="common/formErrors.tpl"}
 
 	<h4>{translate key="admin.settings.siteTitle"}</h4>

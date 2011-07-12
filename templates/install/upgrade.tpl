@@ -22,8 +22,8 @@
 
 {if $isInstallError}
 <p>
-	<span class="pkp_controllers_form_error">{translate key="installer.installErrorsOccurred"}:</span>
-	<ul class="pkp_controllers_form_error_list">
+	<span class="pkp_form_error">{translate key="installer.installErrorsOccurred"}:</span>
+	<ul class="pkp_form_error_list">
 		<li>{if $dbErrorMsg}{translate key="common.error.databaseError" error=$dbErrorMsg}{else}{translate key=$errorMsg}{/if}</li>
 	</ul>
 </p>
