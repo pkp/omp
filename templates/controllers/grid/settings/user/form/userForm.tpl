@@ -207,7 +207,7 @@
 					</div>
 				</div>
 			{/if}
-			{include file="form/formButtons.tpl" submitText="common.save"}
+			{fbvFormButtons submitText="common.save"}
 		</div>
 	</div>
 </form>

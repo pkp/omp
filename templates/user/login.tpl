@@ -58,7 +58,7 @@
 				{fbvElement type="checkbox" label="user.login.rememberUsernameAndPassword" id="loginRemember" value=$remember}
 			{/fbvFormSection}
 		{/if}{* $showRemember *}
-		{fbvElement id="submitButton" type="submit" label="user.login"}
+		{fbvFormButtons hideCancel=true submitText="user.login"}
 	{/fbvFormArea}
 
 	<p>

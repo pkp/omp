@@ -27,5 +27,5 @@
 		{/fbvFormSection}
 	{/if}
 
-	{include file="form/formButtons.tpl"}
+	{fbvFormButtons}
 </form>

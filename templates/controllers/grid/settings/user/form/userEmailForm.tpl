@@ -28,5 +28,5 @@
 		{fbvElement type="textarea" id="message" value=$message size=$fbvStyles.size.LARGE}
 	{/fbvFormSection}
 
-	{include file="form/formButtons.tpl" submitText="common.sendEmail"}
+	{fbvFormButtons submitText="common.sendEmail"}
 </form>

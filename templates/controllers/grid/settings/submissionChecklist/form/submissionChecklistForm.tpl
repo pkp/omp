@@ -31,5 +31,5 @@
 {if $submissionChecklistId != null}
 	<input type="hidden" name="submissionChecklistId" value="{$submissionChecklistId|escape}" />
 {/if}
-{include file="form/formButtons.tpl" submitText="common.save"}
+{fbvFormButtons submitText="common.save"}
 </form>

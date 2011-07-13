@@ -54,6 +54,6 @@
 		{load_url_in_div id="seriesEditorsContainer" url=$seriesEditorsUrl}
 	</div>
 {/if}
-{include file="form/formButtons.tpl" submitText="common.save"}
+{fbvFormButtons submitText="common.save"}
 </form>
 

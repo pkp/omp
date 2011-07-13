@@ -36,6 +36,6 @@
 			{url|assign:reviewAttachmentsGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.files.attachment.ReviewerReviewAttachmentsGridHandler" op="fetchGrid" monographId=$monograph->getId() reviewId=$reviewAssignment->getId() escape=false}
 			{load_url_in_div id="readReviewAttachmentsGridContainer" url="$reviewAttachmentsGridUrl"}
 		{/fbvFormSection}
-		{fbvElement type="submit" id="closeButton" label="common.close"}
+		{fbvFormButtons id="closeButton" hideCancel=true submitText="common.close"}
 	{/fbvFormArea}
 </form>

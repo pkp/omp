@@ -41,7 +41,7 @@
 			{fbvFormSection title="informationCenter.notify.message" for="supportPhone" required="true"}
 				{fbvElement type="textarea" id="message" size=$fbvStyles.size.MEDIUM}
 			{/fbvFormSection}
-			{fbvElement type="submit" id="notifyButton" label="common.notify"}
+			{fbvFormButtons id="notifyButton" hideCancel=true submitText="common.notify"}
 		{/fbvFormArea}
 	</form>
 </div>

@@ -41,7 +41,7 @@
 		{fbvFormSection}
 			{fbvElement type="textarea" name="personalMessage" id="personalMessage" required=true class="required" label="editor.monograph.copyediting.personalMessageTouser" value=$personalMessage size=$fbvStyles.size.MEDIUM}
 		{/fbvFormSection}
-		{include file="form/formButtons.tpl"}
+		{fbvFormButtons}
 	</form>
 </div>
 

@@ -29,8 +29,11 @@
 </p>
 {/if}
 
-
-<p><input type="submit" value="{translate key="installer.upgradeOMP"}" class="button defaultButton" /> <input type="submit" name="manualInstall" value="{translate key="installer.manualUpgrade"}" class="button" /></p>
+<div class="formButtons">
+	{fbvElement class="inline" type="submit" id="installButton" label="installer.upgradeOMP"}
+	{fbvElement class="inline" type="submit" id="manualInstall" label="installer.manualUpgrade"}
+	<div class="clear"></div>
+</div>
 
 </form>
 

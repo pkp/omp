@@ -58,22 +58,20 @@
 				<br />
 				<span class="instruct">{translate key="installer.localeInstructions"}</span>
 			{/fbvFormSection}
-			{fbvFormSection title="installer.additionalLocales}
+			{fbvFormSection list="true" title="installer.additionalLocales"}
 				{foreach from=$localeOptions key=localeKey item=localeName}
 					{assign var=localeKeyEscaped value=$localeKey|escape}
-					{fbvElement type="checkbox" name="additionalLocales[]" id="additionalLocales-$localeKeyEscaped" value=$localeKeyEscaped translate=false label="manager.people.createUserSendNotify" checked=$sendNotify label=$localeName|escape} ({$localeKey|escape})
+					{fbvElement type="checkbox" name="additionalLocales[]" id="additionalLocales-$localeKeyEscaped" value=$localeKeyEscaped translate=false label="manager.people.createUserSendNotify" checked=$sendNotify label=$localeName|escape}
 					{if !$localesComplete[$localeKey]}
 							<span class="pkp_form_error">*</span>
 							{assign var=incompleteLocaleFound value=1}
-					{/if}<br />
+					{/if}
 				{/foreach}
-				<span class="instruct">{translate key="installer.additionalLocalesInstructions"}</span>
-				{if $incompleteLocaleFound}
-					<br/>
-					<span class="pkp_controlles_form_error">*</span>&nbsp;{translate key="installer.locale.maybeIncomplete"}
-				{/if}{* $incompleteLocaleFound *}
 			{/fbvFormSection}
-
+			<span class="instruct">{translate key="installer.additionalLocalesInstructions"}</span>
+			{if $incompleteLocaleFound}
+				<br /><br /><span class="pkp_form_error">*</span>&nbsp;{translate key="installer.locale.maybeIncomplete"}<br /><br />
+			{/if}{* $incompleteLocaleFound *}
 
 			{fbvFormSection title="installer.clientCharset"}
 				{fbvElement type="select" id="clientCharset" from=$clientCharsetOptions selected=$clientCharset translate=false}
@@ -103,10 +101,11 @@
 		{fbvFormArea id="fileSettingsFormArea"}
 			{fbvFormSection title="installer.filesDir"}
 				{fbvElement type="text" id="filesDir" value=$filesDir|escape maxlength="255" size=$fbvStyles.size.LARGE}
-				{fbvElement type="checkbox" id="skipFilesDir" value="1" checked=$skipFilesDir label="installer.skipFilesDir"}
-				<br />
-				<span class="instruct">{translate key="installer.filesDirInstructions"}</span>
 			{/fbvFormSection}
+			{fbvFormSection list="true"}
+				{fbvElement type="checkbox" id="skipFilesDir" value="1" checked=$skipFilesDir label="installer.skipFilesDir"}
+			{/fbvFormSection}
+			<span class="instruct">{translate key="installer.filesDirInstructions"}</span>
 		{/fbvFormArea}
 
 		<div class="separator"></div>
@@ -136,16 +135,16 @@
 
 		{fbvFormArea id="administratorAccountFormArea"}
 			{fbvFormSection title="user.username"}
-				{fbvElement type="text" id="adminUsername" value=$adminUsername|escape maxlength="32" size=$fbvStyles.size.LARGE}
+				{fbvElement type="text" id="adminUsername" value=$adminUsername|escape maxlength="32" size=$fbvStyles.size.MEDIUM}
 			{/fbvFormSection}
 			{fbvFormSection title="user.password"}
-				{fbvElement type="text" password=true id="adminPassword" value=$adminPassword|escape maxlength="32" size=$fbvStyles.size.LARGE}
+				{fbvElement type="text" password=true id="adminPassword" value=$adminPassword|escape maxlength="32" size=$fbvStyles.size.MEDIUM}
 			{/fbvFormSection}
 			{fbvFormSection title="user.repeatPassword"}
-				{fbvElement type="text" password=true id="adminPassword2" value=$adminPassword2|escape maxlength="32" size=$fbvStyles.size.LARGE}
+				{fbvElement type="text" password=true id="adminPassword2" value=$adminPassword2|escape maxlength="32" size=$fbvStyles.size.MEDIUM}
 			{/fbvFormSection}
 			{fbvFormSection title="user.email"}
-				{fbvElement type="text" id="adminEmail" value=$adminEmail|escape maxlength="90" size=$fbvStyles.size.LARGE}
+				{fbvElement type="text" id="adminEmail" value=$adminEmail|escape maxlength="90" size=$fbvStyles.size.MEDIUM}
 			{/fbvFormSection}
 		{/fbvFormArea}
 	</div>
@@ -165,16 +164,18 @@
 				<span class="instruct">{translate key="installer.databaseDriverInstructions"}</span>
 			{/fbvFormSection}
 			{fbvFormSection title="installer.databaseHost"}
-				{fbvElement type="text" id="databaseHost" value=$databaseHost|escape maxlength="60" size=$fbvStyles.size.LARGE}
+				{fbvElement type="text" id="databaseHost" value=$databaseHost|escape maxlength="60" size=$fbvStyles.size.MEDIUM}
 			{/fbvFormSection}
 			{fbvFormSection title="installer.databaseUsername"}
-				{fbvElement type="text" id="databaseUsername" value=$databaseUsername|escape maxlength="60" size=$fbvStyles.size.LARGE}
+				{fbvElement type="text" id="databaseUsername" value=$databaseUsername|escape maxlength="60" size=$fbvStyles.size.MEDIUM}
 			{/fbvFormSection}
 			{fbvFormSection title="installer.databasePassword"}
-				{fbvElement type="text" id="databasePassword" value=$databasePassword|escape maxlength="60" size=$fbvStyles.size.LARGE}
+				{fbvElement type="text" id="databasePassword" value=$databasePassword|escape maxlength="60" size=$fbvStyles.size.MEDIUM}
 			{/fbvFormSection}
 			{fbvFormSection title="installer.databaseName"}
-				{fbvElement type="text" id="databaseName" value=$databaseName|escape maxlength="60" size=$fbvStyles.size.LARGE}
+				{fbvElement type="text" id="databaseName" value=$databaseName|escape maxlength="60" size=$fbvStyles.size.MEDIUM}
+			{/fbvFormSection}
+			{fbvFormSection list="true"}
 				{fbvElement type="checkbox" id="createDatabase" value="1" checked=$createDatabase label="installer.createDatabase"}
 			{/fbvFormSection}
 		{/fbvFormArea}
@@ -198,8 +199,11 @@
 	</div>
 	{/if}{* !$skipMiscSettings *}
 
-	<p><input type="submit" id="installButton" value="{translate key="installer.installApplication"}" class="button defaultButton" /> <input type="submit" name="manualInstall" value="{translate key="installer.manualInstall"}" class="button" /></p>
-
+	<div class="formButtons">
+		{fbvElement class="inline" type="submit" id="installButton" label="installer.installApplication"}
+		{fbvElement class="inline" type="submit" id="manualInstall" label="installer.manualInstall"}
+		<div class="clear"></div>
+	</div>
 </form>
 
 {include file="common/footer.tpl"}

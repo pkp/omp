@@ -40,5 +40,5 @@
 			</tr>
 		</table>
 	{/fbvFormArea}
-	{include file="form/formButtons.tpl" submitText="editor.review.sendReminder"}
+	{fbvFormButtons submitText="editor.review.sendReminder"}
 </form>

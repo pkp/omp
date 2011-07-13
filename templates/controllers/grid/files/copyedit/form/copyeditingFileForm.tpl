@@ -95,7 +95,7 @@
 	<input type="hidden" id="signoffId" value="" />
 	<input type="hidden" id="newFile" value="{$newFile}" />
 
-	{include file="form/formButtons.tpl"}
+	{fbvFormButtons}
 </form>
 
 

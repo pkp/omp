@@ -21,5 +21,5 @@
 		{url|assign:userRolesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.users.UserUserGroupListbuilderHandler" op="fetch" userId=$userId title="grid.user.addRoles" escape=false}
 		{load_url_in_div id="userRolesContainer" url=$userRolesUrl}
 	</div>
-	{include file="form/formButtons.tpl" submitText="common.save"}
+	{fbvFormButtons submitText="common.save"}
 </form>

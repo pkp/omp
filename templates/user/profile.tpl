@@ -12,168 +12,75 @@
 {include file="common/header.tpl"}
 {/strip}
 
-{literal}
-<script type="text/javascript">
-	<!--
-	$(document).ready(function(){
-		$("#interestsTextOnly").hide();
-		$("#interests").tagit({
-			{/literal}{if $existingInterests}{literal}
-			// This is the list of interests in the system used to populate the autocomplete
-			availableTags: [{/literal}{foreach name=existingInterests from=$existingInterests item=interest}"{$interest|escape|escape:'javascript'}"{if !$smarty.foreach.existingInterests.last}, {/if}{/foreach}{literal}],{/literal}{/if}
-			// This is the list of the user's interests that have already been saved
-			{if $interestsKeywords}{literal}currentTags: [{/literal}{foreach name=currentInterests from=$interestsKeywords item=interest}"{$interest|escape|escape:'javascript'}"{if !$smarty.foreach.currentInterests.last}, {/if}{/foreach}{literal}]{/literal}
-			{else}{literal}currentTags: []{/literal}{/if}{literal}
-		});
-	});
-	// -->
-</script>
-{/literal}
-
 <form class="pkp_form" id="profile" method="post" action="{url op="saveProfile"}" enctype="multipart/form-data">
 
-{include file="common/formErrors.tpl"}
+{fbvFormArea id="profileForm"}
 
-<table class="data" width="100%">
-{if count($formLocales) > 1}
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="formLocale" required="true" key="common.language"}</td>
-		<td width="80%" class="value">
-			{url|assign:"userProfileUrl" page="user" op="profile" escape=false}
-			{form_language_chooser form="profile" url=$userProfileUrl}
-		</td>
-	</tr>
-{/if}
-<tr valign="top">
-	<td width="20%" class="label">{fieldLabel suppressId="true" name="username" key="user.username"}</td>
-	<td width="80%" class="value">{$username|escape}</td>
-</tr>
-<tr valign="top">
-	<td class="label">{fieldLabel name="salutation" key="user.salutation"}</td>
-	<td class="value"><input type="text" name="salutation" id="salutation" value="{$salutation|escape}" size="20" maxlength="40" class="textField" /></td>
-</tr>
-<tr valign="top">
-	<td class="label">{fieldLabel name="firstName" required="true" key="user.firstName"}</td>
-	<td class="value"><input type="text" name="firstName" id="firstName" value="{$firstName|escape}" size="20" maxlength="40" class="textField" /></td>
-</tr>
-<tr valign="top">
-	<td class="label">{fieldLabel name="middleName" key="user.middleName"}</td>
-	<td class="value"><input type="text" name="middleName" id="middleName" value="{$middleName|escape}" size="20" maxlength="40" class="textField" /></td>
-</tr>
-<tr valign="top">
-	<td class="label">{fieldLabel name="lastName" required="true" key="user.lastName"}</td>
-	<td class="value"><input type="text" name="lastName" id="lastName" value="{$lastName|escape}" size="20" maxlength="90" class="textField" /></td>
-</tr>
-<tr valign="top">
-	<td class="label">{fieldLabel name="initials" key="user.initials"}</td>
-	<td class="value"><input type="text" name="initials" id="initials" value="{$initials|escape}" size="5" maxlength="5" class="textField" />&nbsp;&nbsp;{translate key="user.initialsExample"}</td>
-</tr>
-<tr valign="top">
-	<td class="label">{fieldLabel suppressId="true" name="gender" key="user.gender"}</td>
-	<td class="value">
-		<select name="gender" id="gender" size="1" class="selectMenu">
-			{html_options_translate options=$genderOptions selected=$gender}
-		</select>
-	</td>
-</tr>
-<tr valign="top">
-	<td class="label">{fieldLabel name="affiliation" key="user.affiliation"}</td>
-	<td class="value">
-		<textarea name="affiliation[{$formLocale|escape}]" id="affiliation" rows="5" cols="40" class="textArea">{$affiliation[$formLocale]|escape}</textarea><br/>
-		<span class="instruct">{translate key="user.affiliation.description"}</span>
-	</td>
-</tr>
-<tr valign="top">
-	<td class="label">{fieldLabel name="signature" key="user.signature"}</td>
-	<td class="value"><textarea name="signature[{$formLocale|escape}]" id="signature" rows="5" cols="40" class="textArea">{$signature[$formLocale]|escape}</textarea></td>
-</tr>
-<tr valign="top">
-	<td class="label">{fieldLabel name="email" required="true" key="user.email"}</td>
-	<td class="value"><input type="text" name="email" id="email" value="{$email|escape}" size="30" maxlength="90" class="textField" /></td>
-</tr>
-<tr valign="top">
-	<td class="label">{fieldLabel name="userUrl" key="user.url"}</td>
-	<td class="value"><input type="text" name="userUrl" id="userUrl" value="{$userUrl|escape}" size="30" maxlength="90" class="textField" /></td>
-</tr>
-<tr valign="top">
-	<td class="label">{fieldLabel name="phone" key="user.phone"}</td>
-	<td class="value"><input type="text" name="phone" id="phone" value="{$phone|escape}" size="15" maxlength="24" class="textField" /></td>
-</tr>
-<tr valign="top">
-	<td class="label">{fieldLabel name="fax" key="user.fax"}</td>
-	<td class="value"><input type="text" name="fax" id="fax" value="{$fax|escape}" size="15" maxlength="24" class="textField" /></td>
-</tr>
-<tr valign="top">
-	<td class="label">{fieldLabel name="mailingAddress" key="common.mailingAddress"}</td>
-	<td class="value"><textarea name="mailingAddress" id="mailingAddress" rows="3" cols="40" class="textArea richContent">{$mailingAddress|escape}</textarea></td>
-</tr>
-<tr valign="top">
-	<td class="label">{fieldLabel name="country" key="common.country"}</td>
-	<td class="value">
-		<select name="country" id="country" class="selectMenu">
-			<option value=""></option>
-			{html_options options=$countries selected=$country}
-		</select>
-	</td>
-</tr>
+	{fbvFormSection title="user.username"}
+		{$username|escape}
+	{/fbvFormSection}
 
-{if $currentPress}
-	<tr valign="top">
-		<td class="label">{translate key="user.roles"}</td>
-		<td class="value">
-			{if $allowRegReader}
-				{iterate from=readerUserGroups item=userGroup}
-				<input type="checkbox" id="readerGroup-{$userGroup->getId()}" name="readerGroup[{$userGroup->getId()}]" {if in_array($userGroup->getId(), $userGroupIds)}checked="checked" {/if}/>&nbsp;{$userGroup->getLocalizedName()}<br/>
-				{/iterate}
-			{/if}
-			{if $allowRegAuthor}
-				{iterate from=authorUserGroups item=userGroup}
-				<input type="checkbox" id="authorGroup-{$userGroup->getId()}" name="authorGroup[{$userGroup->getId()}]" {if in_array($userGroup->getId(), $userGroupIds)}checked="checked" {/if}/>&nbsp;{$userGroup->getLocalizedName()}<br/>
-				{/iterate}
-			{/if}
-			{if $allowRegReviewer}
-				{iterate from=authorUserGroups item=userGroup}
-				<input type="checkbox" id="reviewerGroup-{$userGroup->getId()}" name="reviewerGroup[{$userGroup->getId()}]" {if in_array($userGroup->getId(), $userGroupIds)}checked="checked" {/if}/>&nbsp;{$userGroup->getLocalizedName()}<br/>
-				{/iterate}
-			{/if}
-		</td>
-	</tr>
-{/if}
-<tr valign="top">
-	<td class="label">{fieldLabel name="interests" key="user.interests"}</td>
-	<td class="value"><ul id="interests"><li></li></ul><span class="interestDescription">{fieldLabel for="interests" key="user.interests.description"}</span><br />
-		<textarea name="interests" id="interestsTextOnly" rows="5" cols="40" class="textArea">
-			{foreach name=currentInterests from=$interestsKeywords item=interest}{$interest|escape}{if !$smarty.foreach.currentInterests.last}, {/if}{/foreach}
-		</textarea>
-	</td>
-</tr>
-<tr valign="top">
-	<td class="label">{fieldLabel name="biography" key="user.biography"}<br />{translate key="user.biography.description"}</td>
-	<td class="value"><textarea name="biography[{$formLocale|escape}]" id="biography" rows="5" cols="40" class="textArea richContent">{$biography[$formLocale]|escape}</textarea></td>
-</tr>
-<tr valign="top">
-	<td class="label">
-		{fieldLabel name="profileImage" key="user.profile.form.profileImage"}
-	</td>
-	<td class="value">
+	{fbvFormSection title="common.name"}
+		{fbvElement type="text" label="user.salutation" id="salutation" value=$salutation size=$fbvStyles.size.SMALL inline="true"}
+		{fbvElement type="text" label="user.firstName" id="firstName" required="true" value=$firstName required="true" size=$fbvStyles.size.SMALL inline="true"}
+		{fbvElement type="text" label="user.middleName" id="middleName" value=$middleName size=$fbvStyles.size.SMALL inline="true"}
+		{fbvElement type="text" label="user.lastName" id="lastName" required="true" value=$lastName required="true" size=$fbvStyles.size.SMALL inline="true"}
+		{fbvElement type="text" label="user.initials" id="initials" value=$initials size=$fbvStyles.size.SMALL inline="true"}
+	{/fbvFormSection}
+
+	{fbvFormSection title="user.gender" for="gender"  size=$fbvStyles.size.SMALL}
+		{fbvElement type="select" from=$genderOptions selected=$gender|escape id="gender" translate="true"}
+	{/fbvFormSection}
+
+	{fbvFormSection title="user.affiliation" for="affiliation"}
+		{fbvElement type="textarea" id="affiliation" multilingual=true value=$affiliation|escape label="user.affiliation.description" size=$fbvStyles.size.MEDIUM}<br/>
+	{/fbvFormSection}
+
+	{fbvFormSection title="user.biography" for="biography"}
+		{fbvElement type="textarea" id="biography" name="biography" multilingual=true value=$biography|escape rich=true size=$fbvStyles.size.MEDIUM}
+	{/fbvFormSection}
+
+	{fbvFormSection title="user.signature" for="signature"}
+		{fbvElement type="textarea" id="signature" name="signature" multilingual=true value=$signature|escape size=$fbvStyles.size.MEDIUM}
+	{/fbvFormSection}
+
+	{fbvFormSection title="user.email" for="email" required="true"}
+		{fbvElement type="text" id="email" value=$email|escape size=$fbvStyles.size.MEDIUM}
+	{/fbvFormSection}
+
+	{fbvFormSection title="user.url" for="userUrl"}
+		{fbvElement type="text" id="userUrl" value=$userUrl|escape size=$fbvStyles.size.MEDIUM}
+	{/fbvFormSection}
+
+	{fbvFormSection title="user.phone" for="phone"}
+		{fbvElement type="text" id="phone" value=$phone|escape size=$fbvStyles.size.MEDIUM}
+	{/fbvFormSection}
+
+	{fbvFormSection title="user.fax" for="fax"}
+		{fbvElement type="text" id="fax" value=$fax|escape size=$fbvStyles.size.MEDIUM}
+	{/fbvFormSection}
+
+	{fbvFormSection title="user.mailingAddress" for="mailingAddress"}
+		{fbvElement type="textarea" id="mailingAddress" value=$mailingAddress|escape rich=true size=$fbvStyles.size.MEDIUM}
+	{/fbvFormSection}
+
+	{fbvFormSection title="common.country" for="country" size=$fbvStyles.size.SMALL}
+		{fbvElement type="select" from=$countries selected=$country translate=0 id="country" defaultValue="" defaultLabel=""}
+	{/fbvFormSection}
+
+	{** FIXME 6760: Fix profile image uploads **}
+	{fbvFormSection id="profileImage" label="user.profile.form.profileImage"}
 		{fbvFileInput id="profileImage" submit="uploadProfileImage"}
 		{if $profileImage}
 			{translate key="common.fileName"}: {$profileImage.name|escape} {$profileImage.dateUploaded|date_format:$datetimeFormatShort} <input type="submit" name="deleteProfileImage" value="{translate key="common.delete"}" class="button" />
 			<br />
 			<img src="{$sitePublicFilesDir}/{$profileImage.uploadName|escape:"url"}" width="{$profileImage.width|escape}" height="{$profileImage.height|escape}" style="border: 0;" alt="{translate key="user.profile.form.profileImage"}" />
 		{/if}
-	</td>
-</tr>
-{if count($availableLocales) > 1}
-<tr valign="top">
-	<td class="label">{translate key="user.workingLanguages"}</td>
-	<td>{foreach from=$availableLocales key=localeKey item=localeName}
-		<input type="checkbox" name="userLocales[]" id="userLocales-{$localeKey|escape}" value="{$localeKey|escape}"{if in_array($localeKey, $userLocales)} checked="checked"{/if} /> <label for="userLocales-{$localeKey|escape}">{$localeName|escape}</label><br />
-	{/foreach}</td>
-</tr>
-{/if}
-</table>
-<p><input type="submit" value="{translate key="common.save"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url page="user"}'" /></p>
+	{/fbvFormSection}
+
+	{url|assign:cancelUrl page="dashboard"}
+	{fbvFormButtons submitText="common.save" cancelUrl=$cancelUrl}
+{/fbvFormArea}
 </form>
 
 <p><span class="formRequired">{translate key="common.requiredField"}</span></p>

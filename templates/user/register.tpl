@@ -11,24 +11,6 @@
 {include file="common/header.tpl"}
 {/strip}
 
-{literal}
-<script type="text/javascript">
-	<!--
-	$(document).ready(function(){
-		$("#interestsTextOnly").hide();
-		$("#interests").tagit({
-			{/literal}{if $existingInterests}{literal}
-			// This is the list of interests in the system used to populate the autocomplete
-			availableTags: [{/literal}{foreach name=existingInterests from=$existingInterests item=interest}"{$interest|escape|escape:'javascript'}"{if !$smarty.foreach.existingInterests.last}, {/if}{/foreach}{literal}],{/literal}{/if}
-			// This is the list of the user's interests that have already been saved
-			{if $interestsKeywords}{literal}currentTags: [{/literal}{foreach name=currentInterests from=$interestsKeywords item=interest}"{$interest|escape|escape:'javascript'}"{if !$smarty.foreach.currentInterests.last}, {/if}{/foreach}{literal}]{/literal}
-			{else}{literal}currentTags: []{/literal}{/if}{literal}
-		});
-	});
-	// -->
-</script>
-{/literal}
-
 <form class="pkp_form" id="register" method="post" action="{url op="registerUser"}">
 
 <p>{translate key="user.register.completeForm"}</p>
@@ -171,7 +153,7 @@
 	{/if}
 {/fbvFormArea}
 {url|assign:"url" page="index" escape=false}
-<p>{fbvElement id="submitButton" type="submit" label="user.register"} {fbvElement id="cancelButton" type="button" label="common.cancel" onclick="document.location.href='$url'"}</p>
+{fbvFormButtons submitText="user.register" cancelUrl=$url}
 
 {if ! $implicitAuth}
 	<p><span class="formRequired">{translate key="common.requiredField"}</span></p>

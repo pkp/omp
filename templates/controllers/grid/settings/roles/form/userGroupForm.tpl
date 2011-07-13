@@ -38,5 +38,5 @@
 			{fbvElement type="select" from=$stageOptions name="assignedStages[]" id="assignedStages" selected=$assignedStages multiple=true}
 		{/fbvFormSection}
 	{/fbvFormArea}
-	{include file="form/formButtons.tpl" submitText="common.save"}
+	{fbvFormButtons submitText="common.save"}
 </form>

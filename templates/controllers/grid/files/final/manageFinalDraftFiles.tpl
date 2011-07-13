@@ -22,6 +22,6 @@
 		<!-- Available submission files -->
 		{url|assign:availableReviewFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.final.SelectableFinalDraftFilesGridHandler" op="fetchGrid" monographId=$monographId}
 		{load_url_in_div id="availableReviewFilesGrid" url=$availableReviewFilesGridUrl}
-		{include file="form/formButtons.tpl"}
+		{fbvFormButtons}
 	</form>
 </div>

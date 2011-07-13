@@ -51,5 +51,5 @@
 		{/fbvFormSection}
 	{/fbvFormArea}
 
-	{include file="form/formButtons.tpl" submitText="common.save"}
+	{fbvFormButtons submitText="common.save"}
 </form>

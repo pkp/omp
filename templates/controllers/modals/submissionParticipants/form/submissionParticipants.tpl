@@ -15,5 +15,5 @@
 	{load_url_in_div id="submissionParticipantsGrid" url=$submissionParticipantsGridUrl}
 </div>
 
-{include file="form/formButtons.tpl"}
+{fbvFormButtons}
 

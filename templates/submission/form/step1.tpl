@@ -61,9 +61,17 @@
 		{fbvElement type="textarea" name="privacyStatement" id="privacyStatement" disabled=true value=$currentPress->getLocalizedSetting('privacyStatement') rich=true}
 	{/fbvFormSection}
 
+	{if $submissionProgress > 1}
+		{assign var="confirmCancelMessage" value="submission.submit.cancelSubmission"}
+	{else}
+		{assign var="confirmCancelMessage" value="submission.submit.cancelSubmissionStep1"}
+	{/if}
+
 	<!-- Buttons -->
-	{fbvFormButtons submitText="common.saveAndContinue" hideCancel=true}
+	{fbvFormButtons id="step1Buttons" submitText="common.saveAndContinue" confirmCancel=$confirmCancelMessage}
+
 {/fbvFormArea}
 
 </form>
+</div>
 {include file="common/footer.tpl"}

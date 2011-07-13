@@ -21,5 +21,5 @@
 
 	{include file="controllers/grid/users/reviewer/form/reviewerFormFooter.tpl"}
 
-	{include file="form/formButtons.tpl" submitText="editor.monograph.addReviewer"}
+	{fbvFormButtons submitText="editor.monograph.addReviewer"}
 </form>

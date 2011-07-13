@@ -59,7 +59,7 @@ function doSubmit() {
 	{/fbvFormSection}
 
 	<p><span class="formRequired">{translate key="common.requiredField"}</span></p>
-	{include file="form/formButtons.tpl" submitText="common.save"}
+	{fbvFormButtons submitText="common.save"}
 {/fbvFormArea}
 
 {include file="common/footer.tpl"}

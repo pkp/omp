@@ -42,6 +42,6 @@
 		{/fbvFormSection}
 	{/fbvFormArea}
 
-	{include file="form/formButtons.tpl"}
+	{fbvFormButtons}
 </form>
 

@@ -34,5 +34,5 @@
 		{url|assign:chapterAuthorUrl router=$smarty.const.ROUTE_COMPONENT  component="listbuilder.users.ChapterAuthorListbuilderHandler" op="fetch" monographId=$monographId chapterId=$chapterId escape=false}
 		{load_url_in_div id="chapterAuthorContainer" url=$chapterAuthorUrl}
 	{/if}
-	{include file="form/formButtons.tpl" submitText="submission.chapter.addChapter"}
+	{fbvFormButtons submitText="submission.chapter.addChapter"}
 </form>

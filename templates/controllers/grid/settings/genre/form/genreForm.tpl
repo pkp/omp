@@ -41,6 +41,6 @@
 {if $genreId}
 	<input type="hidden" name="genreId" value="{$genreId|escape}" />
 {/if}
-{include file="form/formButtons.tpl" submitText="common.save"}
+{fbvFormButtons submitText="common.save"}
 </form>
 
