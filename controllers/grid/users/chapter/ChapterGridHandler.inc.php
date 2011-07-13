@@ -101,7 +101,8 @@ class ChapterGridHandler extends CategoryGridHandler {
 				'author.users.contributor.name',
 				null,
 				'controllers/grid/gridCell.tpl',
-				$cellProvider
+				$cellProvider,
+				array('width' => 50, 'alignment' => COLUMN_ALIGNMENT_LEFT)
 			)
 		);
 		$this->addColumn(
