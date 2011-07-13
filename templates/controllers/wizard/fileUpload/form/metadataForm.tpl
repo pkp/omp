@@ -30,7 +30,7 @@
 	{/if}
 
 	{fbvFormArea id="fileMetaData" title=$metadataFormAreaTitle}
-		{fbvFormSection title="common.name" required=1}
+		{fbvFormSection title="submission.form.name" required=true}
 			{fbvElement type="text" label="Enter a name that describes the contents of this file" id="name" value=$submissionFile->getLocalizedName() maxlength="120"}
 		{/fbvFormSection}
 		{if is_a($submissionFile, 'ArtworkFile')}

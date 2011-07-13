@@ -90,7 +90,7 @@
 	<message key="submission.submit.checklistErrors">Please read and check off the items in the submission checklist.  There are {$itemsRemaining} items left unchecked.</message>
 	<message key="submission.submit.placement">Submission Placement</message>
 	<message key="submission.submit.submissionFiles">Submission Files</message>
-	<message key="submission.submit.readOnlyInfo">Read-only Information</message>
+	<message key="submission.submit.fileInformation">File Information</message>
 	<message key="submission.submit.fileNameRequired">You must enter a file name for this file</message>
 	<message key="submission.submit.fileAdded">Submission File Added</message>
 	<message key="submission.submit.newFile">Upload Another File For This Submission</message>
