@@ -48,7 +48,7 @@ class FileUploadWizardHandler extends FileManagementHandler {
 	function FileUploadWizardHandler() {
 		parent::Handler();
 		$this->addRoleAssignment(
-			array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR),
+			array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_AUTHOR),
 			array(
 				'startWizard', 'displayFileUploadForm',
 				'uploadFile', 'confirmRevision',

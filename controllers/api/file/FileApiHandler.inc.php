@@ -12,77 +12,50 @@
  * @class FileApiHandler
  * @ingroup controllers_api_file
  *
- * @brief Class defining an AJAX API for file manipulation.
+ * @brief Class defining an AJAX API for supplying file information.
  */
 
 // Import the base handler.
-import('classes.file.FileManagementHandler');
+import('classes.handler.Handler');
 import('lib.pkp.classes.core.JSONMessage');
 
-class FileApiHandler extends FileManagementHandler {
+class FileApiHandler extends Handler {
 
 	/**
 	 * Constructor.
 	 */
 	function FileApiHandler() {
-		parent::FileManagementHandler();
+		parent::Handler();
 		$this->addRoleAssignment(
-			array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR),
-			array('deleteFile', 'downloadFile', 'viewFile')
+			array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_REVIEWER, ROLE_ID_AUTHOR),
+			array('downloadFile', 'viewFile')
 		);
 	}
 
 
 	//
-	// Public handler methods
+	// Implement methods from PKPHandler
 	//
-	/**
-	 * Delete a file or revision
-	 * @param $args array
-	 * @param $request Request
-	 * @return string a serialized JSON object
-	 */
-	function deleteFile($args, &$request) {
-		// FIXME: authorize! bug #6199
-		$fileId = (int)$request->getUserVar('fileId');
+	function authorize(&$request, $args, $roleAssignments) {
+		import('classes.security.authorization.OmpMonographFileAccessPolicy');
+		$this->addPolicy(new OmpMonographFileAccessPolicy($request, $args, $roleAssignments, MONOGRAPH_FILE_ACCESS_READ));
 
-		$success = false;
-		if($fileId) {
-			// Delete all revisions or only one?
-			$revision = (int) $request->getUserVar('revision');
-
-			// Delete the file/revision but only when it belongs to the authorized monograph
-			// and to the right file stage.
-			$monograph =& $this->getMonograph();
-			$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-			if ($revision) {
-				$success = (boolean)$submissionFileDao->deleteRevisionById($fileId, $revision, $this->getFileStage(), $monograph->getId());
-			} else {
-				$success = (boolean)$submissionFileDao->deleteAllRevisionsById($fileId, $this->getFileStage(), $monograph->getId());
-			}
-		}
-
-		if ($success) {
-			return DAO::getDataChangedEvent($fileId);
-		} else {
-			$json = new JSONMessage(false);
-			return $json->getString();
-		}
+		return parent::authorize($request, $args, $roleAssignments);
 	}
 
+	//
+	// Public handler methods
+	//
 	/**
 	 * Download a file.
 	 * @param $args array
 	 * @param $request Request
 	 */
 	function downloadFile($args, &$request) {
-		// FIXME: authorize! bug #6199
-		$fileId = (int)$request->getUserVar('fileId');
-		$revision = (int)$request->getUserVar('revision');
-
-		$monograph =& $this->getMonograph();
+		$monographFile =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH_FILE);
+		assert($monographFile); // Should have been validated already
 		import('classes.file.MonographFileManager');
-		MonographFileManager::downloadFile($monograph->getId(), $fileId, ($revision ? $revision : null));
+		MonographFileManager::downloadFile($monographFile->getMonographId(), $monographFile->getFileId(), $monographFile->getRevision());
 	}
 
 	/**
