@@ -220,13 +220,13 @@ class FileUploadWizardHandler extends FileManagementHandler {
 						$confirmationForm->initData($args, $request);
 
 						// Render the revision confirmation form.
-						$json = new JSONMessage(true, $confirmationForm->fetch($request), false, '0', $uploadedFileInfo);
+						$json = new JSONMessage(true, $confirmationForm->fetch($request), '0', $uploadedFileInfo);
 						return $json->getString();
 					}
 				}
 
 				// Advance to the next step (i.e. meta-data editing).
-				$json = new JSONMessage(true, '', false, '0', $uploadedFileInfo);
+				$json = new JSONMessage(true, '', '0', $uploadedFileInfo);
 			} else {
 				$json = new JSONMessage(false, __('common.uploadFailed'));
 			}
@@ -256,7 +256,7 @@ class FileUploadWizardHandler extends FileManagementHandler {
 		if ($confirmationForm->validate($request)) {
 			if (is_a($uploadedFile =& $confirmationForm->execute(), 'MonographFile')) {
 				// Go to the meta-data editing step.
-				$json = new JSONMessage(true, '', false, '0', $this->_getUploadedFileInfo($uploadedFile));
+				$json = new JSONMessage(true, '', '0', $this->_getUploadedFileInfo($uploadedFile));
 			} else {
 				$json = new JSONMessage(false, __('common.uploadFailed'));
 			}

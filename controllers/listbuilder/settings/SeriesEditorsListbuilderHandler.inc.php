@@ -132,7 +132,7 @@ class SeriesEditorsListbuilderHandler extends SetupListbuilderHandler {
 
 		$sourceArray = $this->getPossibleItemList($request);
 
-		$sourceJson = new JSONMessage(true, null, false, 'local');
+		$sourceJson = new JSONMessage(true, null, 'local');
 		$sourceContent = array();
 		foreach ($sourceArray as $id => $item) {
 			// The autocomplete code requires the JSON data to use 'label' as the array key for labels, and 'value' for the id
@@ -140,7 +140,7 @@ class SeriesEditorsListbuilderHandler extends SetupListbuilderHandler {
 				'label' =>  sprintf('%s (%s)', $item['name'], $item['abbrev']),
 				'value' => $id
 			);
-			$itemJson = new JSONMessage(true, '', false, null, $additionalAttributes);
+			$itemJson = new JSONMessage(true, '', null, $additionalAttributes);
 			$sourceContent[] = $itemJson->getString();
 
 			unset($itemJson);
