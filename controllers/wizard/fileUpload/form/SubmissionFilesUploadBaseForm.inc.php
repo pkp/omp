@@ -96,7 +96,7 @@ class SubmissionFilesUploadBaseForm extends Form {
 	function &getMonographFiles() {
 		if (is_null($this->_monographFiles)) {
 			$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-			if ($this->getStageId()) {
+			if ($this->getStageId() == WORKFLOW_STAGE_ID_INTERNAL_REVIEW || $this->getStageId() == WORKFLOW_STAGE_ID_EXTERNAL_REVIEW) {
 				// If we have a review stage id then we also expect a review round.
 				if ($this->getRound() < 1) fatalError('Invalid review round!');
 
