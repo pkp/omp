@@ -93,6 +93,31 @@
 	{$additionalHeadData}
 </head>
 <body>
+	<script type="text/javascript">
+		// Initialise JS handler.
+		$(function() {ldelim}
+			$('div.pkp_structure_page').pkpHandler(
+				'$.pkp.controllers.NotificationHandler',
+				{ldelim}
+				fetchNotificationUrl: '{url|escape:javascript page='notification' op='fetchNotification' escape=false}'
+				{if !empty($systemNotifications)}
+					{translate|assign:"defaultTitleText" key="notification.notification"}
+						,
+						notification: [
+							{foreach from=$systemNotifications item=notification}
+								{ldelim}
+									pnotify_title: '{if $notification->getIsLocalized()}{translate|escape:"js"|default:$defaultTitleText key=$notification->getTitle()}{else}{$notification->getTitle()|escape:"js"|default:$defaultTitleText}{/if}',
+									pnotify_text: '{if $notification->getIsLocalized()}{translate|escape:"js" key=$notification->getContents() param=$notification->getParam()}{else}{$notification->getContents()|escape:"js"}{/if}',
+									pnotify_addclass: '{$notification->getStyleClass()|escape:"js"}',
+									pnotify_notice_icon: 'notifyIcon {$notification->getIconClass()|escape:"js"}'
+								{rdelim}{if !$smarty.foreach.actionRequestOptions.last},{/if}
+							{/foreach}
+						]
+				{/if}{* systemNotifications *}
+				{rdelim}
+			);
+		{rdelim});
+	</script>
 	<div class="pkp_structure_page">
 		<div class="pkp_structure_head">
 			<div class="pkp_structure_content">

@@ -313,7 +313,12 @@ class UserGridHandler extends GridHandler {
 					$userRoleForm->initData($args, $request);
 					$json = new JSONMessage(true, $userRoleForm->display($args, $request));
 				} else {
+
 					// Successful edit of an existing user.
+					import('lib.pkp.classes.notification.NotificationManager');
+					$notificationManager = new NotificationManager();
+					$notificationManager->createTrivialNotification('notification.notification', 'common.changesSaved');
+
 					// Prepare the grid row data.
 					return DAO::getDataChangedEvent($userId);
 				}
