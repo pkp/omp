@@ -235,6 +235,7 @@ strong {
   list-style-type:square;
   list-style-position:inside;
 }
+.pkp_structure_breadcrumb li.no_bullet { list-style-type:none; }
 p {
   font-size:90%;
   padding:10px;

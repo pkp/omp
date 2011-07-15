@@ -131,11 +131,7 @@
 					<div class="pkp_structure_search">&nbsp;</div>
 				</div>
 				<div class="unit size4of5 lastUnit">
-					<ul class="pkp_helpers_flatlist pkp_structure_breadcrumb align_left">
-						<li class="no_bullet"><a href="#">{translate key="Breadcrumb Link"}</a></li>
-						<li><a href="#">{translate key="Breadcrumb Link"}</a></li>
-						<li>{translate key="Breadcrumb Link"}</li>
-					</ul>
+					{include file="common/breadcrumbs.tpl"}
 					<div class="pkp_structure_search pkp_helpers_align_right">
 						<input type="text" value="{translate key="common.search"}..." />
 						<button class="go">{translate key="common.go"}</button>
