@@ -23,8 +23,8 @@ switch ($op) {
 	case 'saveStep':
 	case 'showDeclineReview':
 	case 'saveDeclineReview':
-		define('HANDLER_CLASS', 'ReviewHandler');
-		import('pages.reviewer.ReviewHandler');
+		define('HANDLER_CLASS', 'ReviewerHandler');
+		import('pages.reviewer.ReviewerHandler');
 		break;
 }
 

@@ -1,12 +1,12 @@
 <?php
 
 /**
- * @file pages/reviewer/ReviewHandler.inc.php
+ * @file pages/reviewer/ReviewerHandler.inc.php
  *
  * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class ReviewHandler
+ * @class ReviewerHandler
  * @ingroup pages_reviewer
  *
  * @brief Handle requests for reviewer functions.
@@ -15,11 +15,11 @@
 import('classes.handler.Handler');
 import('classes.submission.reviewer.ReviewerAction');
 
-class ReviewHandler extends Handler {
+class ReviewerHandler extends Handler {
 	/**
 	 * Constructor
 	 **/
-	function ReviewHandler() {
+	function ReviewerHandler() {
 		parent::Handler();
 		$this->addRoleAssignment(ROLE_ID_REVIEWER,
 				array('submission', 'saveStep', 'showDeclineReview', 'saveDeclineReview', 'downloadFile'));
