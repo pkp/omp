@@ -132,7 +132,7 @@ class ReviewerGridCellProvider extends DataObjectGridCellProvider {
 	 * Get cell actions associated with this row/column combination
 	 * @param $row GridRow
 	 * @param $column GridColumn
-	 * @return array an array of LegacyLinkAction instances
+	 * @return array an array of LinkAction instances
 	 */
 	function getCellActions(&$request, &$row, &$column, $position = GRID_ACTION_POSITION_DEFAULT) {
 		$reviewAssignment =& $row->getData();
