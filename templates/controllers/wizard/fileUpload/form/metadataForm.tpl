@@ -31,7 +31,7 @@
 
 	{fbvFormArea id="fileMetaData" title=$metadataFormAreaTitle}
 		{fbvFormSection title="submission.form.name" required=true}
-			{fbvElement type="text" label="Enter a name that describes the contents of this file" id="name" value=$submissionFile->getLocalizedName() maxlength="120"}
+			{fbvElement type="text" id="name" value=$submissionFile->getLocalizedName() maxlength="120"}
 		{/fbvFormSection}
 		{if is_a($submissionFile, 'ArtworkFile')}
 			{fbvFormSection title="grid.artworkFile.caption" inline=true size=$fbvStyles.size.MEDIUM}
@@ -59,7 +59,7 @@
 
 	{* Read-only meta-data *}
 
-	{fbvFormArea id="fileInfo" title="submission.submit.FileInformation"}
+	{fbvFormArea id="fileInfo" title="submission.submit.fileInformation"}
 		{fbvFormSection title="common.fileName" inline=true size=$fbvStyles.size.MEDIUM}
 			{$submissionFile->getFileName()|escape}
 		{/fbvFormSection}
