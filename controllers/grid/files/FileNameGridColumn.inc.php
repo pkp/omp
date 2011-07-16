@@ -22,7 +22,8 @@ class FileNameGridColumn extends GridColumn {
 	function FileNameGridColumn() {
 		import('lib.pkp.classes.controllers.grid.ColumnBasedGridCellProvider');
 		$cellProvider = new ColumnBasedGridCellProvider();
-		parent::GridColumn('name', 'common.name', null, 'controllers/grid/gridCell.tpl', $cellProvider);
+		parent::GridColumn('name', 'common.name', null, 'controllers/grid/gridCell.tpl', $cellProvider,
+			array('alignment' => COLUMN_ALIGNMENT_LEFT));
 	}
 
 

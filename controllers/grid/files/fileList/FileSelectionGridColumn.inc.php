@@ -30,7 +30,8 @@ class FileSelectionGridColumn extends GridColumn {
 
 		import('lib.pkp.classes.controllers.grid.ColumnBasedGridCellProvider');
 		$cellProvider = new ColumnBasedGridCellProvider();
-		parent::GridColumn('select', 'common.select', null, 'controllers/grid/gridRowSelectInput.tpl', $cellProvider);
+		parent::GridColumn('select', 'common.select', null, 'controllers/grid/gridRowSelectInput.tpl', $cellProvider,
+				array('width' => 5));
 	}
 
 
