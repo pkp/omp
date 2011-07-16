@@ -29,9 +29,11 @@
 
 <br />
 
-<div class="pkp_linkActions">
-	{include file="linkAction/linkAction.tpl" action=$editorActions[0] contextId="copyediting"}
-</div>
+{if isset($editorActions[0])}
+	<div class="pkp_linkActions">
+		{include file="linkAction/linkAction.tpl" action=$editorActions[0] contextId="copyediting"}
+	</div>
+{/if}
 
 </div>
 {include file="common/footer.tpl"}
