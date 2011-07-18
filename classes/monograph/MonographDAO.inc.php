@@ -510,7 +510,7 @@ class MonographDAO extends DAO {
 			FROM	review_rounds r
 			WHERE	submission_id = ?
 			GROUP BY stage_id',
-			$monographId
+			(int) $monographId
 		);
 
 		while (!$result->EOF) {

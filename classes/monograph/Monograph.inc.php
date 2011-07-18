@@ -168,20 +168,39 @@ class Monograph extends Submission {
 		return $this->setData('stageId', $stageId);
 	}
 
+
 	//
 	// Peer Review
 	//
 
+	/**
+	 * Set the current review round
+	 * @param $rount int
+	 */
 	function setCurrentRound($round) {
 		 $this->setData('currentRound', $round);
 	}
+
+	/**
+	 * Get the current review round
+	 * @return int
+	 */
 	function getCurrentRound() {
 		 return $this->getData('currentRound');
 	}
+
+	/**
+	 * Set the current review round per stage ID
+	 * @param $reviewRoundsInfo array ($stageId => $currentReviewRound)
+	 */
 	function setReviewRoundsInfo($reviewRoundsInfo) {
 		 $this->setData('reviewRoundsInfo', $reviewRoundsInfo);
 	}
 
+	/**
+	 * Get the current review round per stage ID
+	 * @return array ($stageId => $currentReviewRound)
+	 */
 	function getReviewRoundsInfo() {
 		 return $this->getData('reviewRoundsInfo');
 	}
