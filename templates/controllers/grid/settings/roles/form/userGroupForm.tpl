@@ -32,11 +32,9 @@
 			{fbvElement type="text" multilingual="true" name="abbrev" value=$abbrev id="abbrev"}
 		{/fbvFormSection}
 	{/fbvFormArea}
-	{fbvFormArea id="userGroupAssignedStages"}
-		<h3>{translate key="settings.roles.assignedStages"}</h3>
-		{fbvFormSection title="settings.roles.stages"}
-			{fbvElement type="select" from=$stageOptions name="assignedStages[]" id="assignedStages" selected=$assignedStages multiple=true}
-		{/fbvFormSection}
-	{/fbvFormArea}
+	<div id="userGroupStageContainer" class="full left">
+		{url|assign:stagesUrl Url router=$smarty.const.ROUTE_COMPONENT component="listbuilder.users.UserGroupStageListbuilderHandler" op="fetch" userGroupId=$userGroupId title="grid.roles.stageAssignment" escape=false}
+		{load_url_in_div id="userGroupStageContainer" url=$stagesUrl}
+	</div>
 	{fbvFormButtons submitText="common.save"}
 </form>
