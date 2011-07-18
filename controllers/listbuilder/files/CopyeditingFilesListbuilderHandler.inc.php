@@ -125,7 +125,8 @@ class CopyeditingFilesListbuilderHandler extends ListbuilderHandler {
 				return $monographFile;
 			}
 		}
-		return null;
+		$returner = null;
+		return $returner;
 	}
 }
 

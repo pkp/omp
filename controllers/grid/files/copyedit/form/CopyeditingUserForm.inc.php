@@ -107,11 +107,12 @@ class CopyeditingUserForm extends Form {
 	function insertSignoff(&$request, $newRowId) {
 		// Fetch and validate the file ID
 		$fileId = (int) $newRowId;
+		$monograph =& $this->getMonograph();
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO');
 		$monographFiles =& $submissionFileDao->getLatestRevisions($monograph->getId(), MONOGRAPH_FILE_COPYEDIT);
 		$monographFile = null;
-		while ($potentialFile =& $monographFiles->next()) {
-			if ($potentialFile->getId() == $fileId) $monographFile =& $potentialFile;
+		foreach ($monographFiles as $potentialFile) {
+			if ($potentialFile->getFileId() == $fileId) $monographFile =& $potentialFile;
 		}
 
 		// FIXME: Bug #6199: How to validate user IDs?
@@ -137,7 +138,7 @@ class CopyeditingUserForm extends Form {
 		// Set the date response due (stored as date underway in signoffs table)
 		$dueDateParts = explode('-', $this->getData('responseDueDate'));
 		$signoff->setDateUnderway(date('Y-m-d H:i:s', mktime(0, 0, 0, $dueDateParts[0], $dueDateParts[1], $dueDateParts[2])));
-		$signoffDao->updateObject($signoff);
+		$monographFileSignoffDao->updateObject($signoff);
 	}
 }
 
