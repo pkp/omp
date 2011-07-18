@@ -330,6 +330,7 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 	function editCopyeditedFile($args, &$request) {
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 
+		// FIXME: Bug #6199
 		$signoffId = (int) $request->getUserVar('signoffId');
 		assert(!empty($signoffId));
 
@@ -353,6 +354,7 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 	 * @return string Serialized JSON object
 	 */
 	function returnSignoffRow($args, &$request) {
+		// FIXME: Bug #6199
 		$signoffId = (int) $request->getUserVar('signoffId');
 		assert(!empty($signoffId));
 
@@ -362,26 +364,11 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 		if($signoff) {
 			return DAO::getDataChangedEvent();
 		} else {
-			$json = new JSONMessage(false, Locale::translate('common.uploadFailed'));
+			$json = new JSONMessage(false, __('common.uploadFailed'));
 			return $json->getString();
 		}
 
 
-	}
-
-	/**
-	 * Download the monograph file
-	 * @param $args array
-	 * @param $request PKPRequest
-	 * @return string Serialized JSON object
-	 */
-	function downloadFile($args, &$request) {
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-		$fileId = (int) $request->getUserVar('fileId');
-		assert(!empty($fileId));
-
-		import('classes.file.MonographFileManager');
-		MonographFileManager::downloadFile($monograph->getId(), $fileId);
 	}
 
 	/**
@@ -391,6 +378,7 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 	 * @return string
 	 */
 	function deleteFile($args, &$request) {
+		// FIXME: Bug #6199
 		$fileId = (int) $request->getUserVar('fileId');
 		$signoffId = (int) $request->getUserVar('signoffId');
 
@@ -428,6 +416,7 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 	 * @return string
 	 */
 	function deleteSignoff($args, &$request) {
+		// FIXME: Bug #6199
 		$signoffId = (int) $request->getUserVar('signoffId');
 		$fileId = (int) $request->getUserVar('fileId');
 
@@ -441,7 +430,6 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 			$json = new JSONMessage(false, 'manager.setup.errorDeletingItem');
 			return $json->getString();
 		}
-
 	}
 }
 
