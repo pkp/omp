@@ -76,7 +76,6 @@ class CopyeditingFilesListbuilderHandler extends ListbuilderHandler {
 		$itemList = array();
 		foreach ($monographFiles as $monographFile) {
 			$itemList[$monographFile->getFileId()] = $monographFile->getFileLabel();
-			unset($monographFile);
 		}
 		return array($itemList);
 	}
@@ -119,14 +118,14 @@ class CopyeditingFilesListbuilderHandler extends ListbuilderHandler {
 		$fileId = (int) $this->getNewRowId($request);
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+		import('classes.monograph.MonographFile'); // Bring in const
 		$monographFiles =& $submissionFileDao->getLatestRevisions($monograph->getId(), MONOGRAPH_FILE_COPYEDIT);
-		while ($monographFile =& $monographFiles->next()) {
-			if ($monographFile->getId() == $fileId) {
+		foreach ($monographFiles as $monographFile) {
+			if ($monographFile->getFileId() == $fileId) {
 				return $monographFile;
 			}
-			unset($monographFile);
 		}
-		fatalError('Invalid file ID specified!');
+		return null;
 	}
 }
 
