@@ -121,7 +121,7 @@ class AuthorDashboardHandler extends Handler {
 		$templateMgr->assign_by_ref('monograph', $monograph);
 
 		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
-		$reviewRound =& $reviewRoundDao->getReviewRound($monograph->getId(), 1, $round);
+		$reviewRound =& $reviewRoundDao->getReviewRound($monograph->getId(), $monograph->getCurrentStage(), $round);
 
 		// Get the status message for the round
 		$roundStatus =& $reviewRound->getStatusKey();
