@@ -128,7 +128,7 @@ class CopyeditingUserForm extends Form {
 		$monographFileSignoffDao =& DAORegistry::getDAO('MonographFileSignoffDAO');
 		$signoff =& $monographFileSignoffDao->build(
 			'SIGNOFF_COPYEDITING',
-			$monographFile->getId(),
+			$monographFile->getFileId(),
 			$userId, $userGroup->getId()
 		); /* @var $signoff Signoff */
 
