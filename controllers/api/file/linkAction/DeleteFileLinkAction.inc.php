@@ -19,9 +19,10 @@ class DeleteFileLinkAction extends FileLinkAction {
 	 * Constructor
 	 * @param $request Request
 	 * @param $monographFile MonographFile the monograph file to
+	 * @param $localeKey Locale key to use for delete link
 	 *  be deleted.
 	 */
-	function DeleteFileLinkAction(&$request, &$monographFile) {
+	function DeleteFileLinkAction(&$request, &$monographFile, $localeKey = 'grid.action.delete') {
 		// Instantiate the confirmation modal.
 		$router =& $request->getRouter();
 		import('lib.pkp.classes.linkAction.request.RemoteActionConfirmationModal');
@@ -36,7 +37,7 @@ class DeleteFileLinkAction extends FileLinkAction {
 		// Configure the file link action.
 		parent::FileLinkAction(
 			'deleteFile', $confirmationModal,
-			__('grid.action.delete'), 'delete'
+			__($localeKey), 'delete'
 		);
 	}
 }

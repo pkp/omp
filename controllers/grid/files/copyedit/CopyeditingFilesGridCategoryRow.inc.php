@@ -15,11 +15,15 @@
 import('lib.pkp.classes.controllers.grid.GridCategoryRow');
 
 class CopyeditingFilesGridCategoryRow extends GridCategoryRow {
+	/** @var $_monograph Monograph */
+	var $_monograph;
+
 	/**
 	 * Constructor
 	 */
-	function CopyeditingFilesGridCategoryRow() {
+	function CopyeditingFilesGridCategoryRow(&$monograph) {
 		parent::GridCategoryRow();
+		$this->_monograph =& $monograph;
 	}
 
 	//
@@ -33,10 +37,6 @@ class CopyeditingFilesGridCategoryRow extends GridCategoryRow {
 		// Do the default initialization
 		parent::initialize($request);
 
-		// Retrieve the monograph id from the request
-		$monographId = $request->getUserVar('monographId');
-		assert(is_numeric($monographId));
-
 		// Is this a new row or an existing row?
 		$fileId = $this->getId();
 		if (!empty($fileId) && is_numeric($fileId)) {
@@ -45,10 +45,15 @@ class CopyeditingFilesGridCategoryRow extends GridCategoryRow {
 			// Only add row actions if this is an existing row
 			$router =& $request->getRouter();
 			$actionArgs = array(
-				'monographId' => $monographId,
+				'monographId' => $this->_monograph->getId(),
 				'fileId' => $fileId
 			);
 
+			// Add the row actions.
+			import('controllers.api.file.linkAction.DeleteFileLinkAction');
+			$this->addAction(new DeleteFileLinkAction($request, $monographFile, ''));
+
+			// The title should link to a download action.
 			import('controllers.api.file.linkAction.DownloadFileLinkAction');
 			$this->addAction(new DownloadFileLinkAction($request, $monographFile));
 		}

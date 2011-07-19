@@ -714,6 +714,11 @@ div.pkp_controllers_grid tr.category td {
   padding-left:10px;
   background-color:#e3ecea;
   color:#627b81;
+  top:0;
+}
+div.pkp_controllers_grid tr.category td a {
+  background-position:0px 50%;
+  padding:5px 0px 5px 15px;
 }
 div.pkp_controllers_grid .options {
   float:right;
@@ -790,7 +795,6 @@ div.pkp_controllers_grid a.sprite {
 }
 div.pkp_controllers_grid a.sprite:hover { background-position:0 bottom; }
 div.pkp_controllers_grid a.focus { background-position:0 bottom; }
-div.pkp_controllers_grid .category td:first-child { top:0; }
 div.pkp_controllers_grid a.task {
   width:100%;
   height:100%;

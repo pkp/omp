@@ -198,7 +198,7 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 	 * @return CopyeditingFilesGridCategoryRow
 	 */
 	function &getCategoryRowInstance() {
-		$row = new CopyeditingFilesGridCategoryRow();
+		$row = new CopyeditingFilesGridCategoryRow($this->getMonograph());
 		return $row;
 	}
 
