@@ -88,7 +88,7 @@ class CopyeditingFilesGridRow extends GridRow {
 			}
 
 			// If there is no file uploaded, allow the user to upload if it is their signoff (i.e. their copyediting assignment)
-			if(!$copyeditedFileId && $signoff->getUserid() == $user->getId()) {
+			if(!$copyeditedFileId && $signoff->getUserId() == $user->getId()) {
 				$this->addAction(new LinkAction(
 					'addCopyeditedFile',
 					new AjaxModal(
@@ -100,7 +100,7 @@ class CopyeditingFilesGridRow extends GridRow {
 			}
 
 			// If there is a file uploaded, allow the user to edit it if it is their signoff (i.e. their copyediting assignment)
-			if($copyeditedFileId && $signoff->getUserid() == $user->getId()) {
+			if($copyeditedFileId && $signoff->getUserId() == $user->getId()) {
 				$this->addAction(new LinkAction(
 					'addCopyeditedFile',
 					new AjaxModal(
