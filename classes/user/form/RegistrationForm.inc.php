@@ -37,7 +37,7 @@ class RegistrationForm extends Form {
 	/**
 	 * Constructor.
 	 */
-	function RegistrationForm(&$request) {
+	function RegistrationForm($site, $existingUser = 0) {
 		parent::Form('user/register.tpl');
 		$this->implicitAuth = Config::getVar('security', 'implicit_auth');
 
@@ -45,7 +45,7 @@ class RegistrationForm extends Form {
 			// If implicit auth - it is always an existing user
 			$this->existingUser = 1;
 		} else {
-			$this->existingUser = $request->getUserVar('existingUser') ? 1 : 0;
+			$this->existingUser = $existingUser;
 
 			import('lib.pkp.classes.captcha.CaptchaManager');
 			$captchaManager = new CaptchaManager();
@@ -60,8 +60,6 @@ class RegistrationForm extends Form {
 				$this->addCheck(new FormValidatorCustom($this, 'username', 'required', 'user.login.loginError', create_function('$username,$form', 'return Validation::checkCredentials($form->getData(\'username\'), $form->getData(\'password\'));'), array(&$this)));
 			} else {
 				// New user -- check required profile fields
-				$site =& $request->getSite();
-
 				$this->addCheck(new FormValidatorCustom($this, 'username', 'required', 'user.register.form.usernameExists', array(DAORegistry::getDAO('UserDAO'), 'userExistsByUsername'), array(), true));
 				$this->addCheck(new FormValidatorAlphaNum($this, 'username', 'required', 'user.register.form.usernameAlphaNumeric'));
 				$this->addCheck(new FormValidatorLength($this, 'password', 'required', 'user.register.form.passwordLengthTooShort', '>=', $site->getMinPasswordLength()));

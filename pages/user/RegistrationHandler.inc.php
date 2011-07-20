@@ -33,14 +33,17 @@ class RegistrationHandler extends UserHandler {
 		$this->setupTemplate(true);
 
 		$press =& $request->getPress();
+		$site =& $request->getSite();
 
 		if ($press != null) {
 			import('classes.user.form.RegistrationForm');
 
+			$existingUser = $request->getUserVar('existingUser') ? 1 : 0;
+
 			if (checkPhpVersion('5.0.0')) { // WARNING: This form needs $this in constructor
-				$regForm = new RegistrationForm($request);
+				$regForm = new RegistrationForm($site, $existingUser);
 			} else {
-				$regForm =& new RegistrationForm($request);
+				$regForm =& new RegistrationForm($site, $existingUser);
 			}
 			if ($regForm->isLocaleResubmit()) {
 				$regForm->readInputData();
@@ -69,10 +72,13 @@ class RegistrationHandler extends UserHandler {
 		$this->setupTemplate(true);
 		import('classes.user.form.RegistrationForm');
 
+		$existingUser = $request->getUserVar('existingUser') ? 1 : 0;
+		$site =& $request->getSite();
+
 		if (checkPhpVersion('5.0.0')) { // WARNING: This form needs $this in constructor
-			$regForm = new RegistrationForm($request);
+			$regForm = new RegistrationForm($site, $existingUser);
 		} else {
-			$regForm =& new RegistrationForm($request);
+			$regForm =& new RegistrationForm($site, $existingUser);
 		}
 		$regForm->readInputData();
 
