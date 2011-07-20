@@ -1,5 +1,5 @@
 /**
- * @defgroup js_controllers_grid_files_copyedit_addCopyeditingUser_form
+ * @defgroup js_controllers_grid_files_copyedit_form
  */
 // Create the namespace.
 jQuery.pkp.controllers.grid.files = jQuery.pkp.controllers.grid.files ||
@@ -13,7 +13,7 @@ jQuery.pkp.controllers.grid.files = jQuery.pkp.controllers.grid.files ||
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class AddCopyeditingUserFormHandler
- * @ingroup js_controllers_grid_files_copyedit_addCopyeditingUser_form
+ * @ingroup js_controllers_grid_files_copyedit_form
  *
  * @brief Handle the "add copyediting user" form.
  */

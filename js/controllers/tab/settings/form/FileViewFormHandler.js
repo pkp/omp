@@ -63,7 +63,8 @@ jQuery.pkp.controllers.tab =
 	 * @private
 	 * @type {string}
 	 */
-	$.pkp.controllers.tab.settings.form.FileViewFormHandler.prototype.fetchFileUrl_ = null;
+	$.pkp.controllers.tab.settings.form.FileViewFormHandler.prototype
+			.fetchFileUrl_ = null;
 
 
 	//
@@ -76,6 +77,7 @@ jQuery.pkp.controllers.tab =
 	 *  issued the event.
 	 * @param {Event} event The triggering event.
 	 * @param {string} settingName The setting name of the uploaded file.
+	 * @private
 	 */
 	$.pkp.controllers.tab.settings.form.FileViewFormHandler.prototype.refreshForm_ =
 			function(sourceElement, event, settingName) {
@@ -85,11 +87,13 @@ jQuery.pkp.controllers.tab =
 
 	};
 
+
 	/**
 	 * Show the file rendered data in the form.
 	 *
 	 * @param {Object} ajaxContext The AJAX request context.
 	 * @param {Object} jsonData A parsed JSON response object.
+	 * @private
 	 */
 	$.pkp.controllers.tab.settings.form.FileViewFormHandler.prototype.refreshResponseHandler_ =
 			function(ajaxContext, jsonData) {
@@ -111,13 +115,15 @@ jQuery.pkp.controllers.tab =
 		}
 	};
 
+
 	/**
 	 * Get the file HTML element that contains all the file data markup.
 	 * We assume that the id of the file HTML element it is equal
 	 * to the file setting name.
 	 *
 	 * @param {string} settingName The file setting name.
-	 * @return {jQuery}
+	 * @return {jQuery} JQuery element.
+	 * @private
 	 */
 	$.pkp.controllers.tab.settings.form.FileViewFormHandler.prototype.getFileHtmlElement_ =
 			function(settingName) {
@@ -126,7 +132,4 @@ jQuery.pkp.controllers.tab =
 
 		return $fileHtmlElement;
 	};
-
-
-	/** @param {jQuery} $ jQuery closure. */
 }(jQuery));

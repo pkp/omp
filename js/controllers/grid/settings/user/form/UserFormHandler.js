@@ -3,7 +3,7 @@
  */
 // Create the namespace.
 jQuery.pkp.controllers.grid.settings =
-			jQuery.pkp.controllers.grid.settings || { user : { form: { } }};
+			jQuery.pkp.controllers.grid.settings || { user: { form: { } }};
 
 
 /**
