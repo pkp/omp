@@ -11,6 +11,13 @@
 {include file="common/header.tpl"}
 {/strip}
 
+<script type="text/javascript">
+	$(function() {ldelim}
+		// Attach the form handler.
+		$('#register').pkpHandler('$.pkp.controllers.form.FormHandler');
+	{rdelim});
+</script>
+
 <form class="pkp_form" id="register" method="post" action="{url op="registerUser"}">
 
 <p>{translate key="user.register.completeForm"}</p>
@@ -67,7 +74,7 @@
 		{/fbvFormSection}
 
 		{fbvFormSection title="user.email" for="email" required="true"}
-			{fbvElement type="text" id="email" value=$email|escape size=$fbvStyles.size.MEDIUM}
+			{fbvElement type="text" id="email" value=$email|escape size=$fbvStyles.size.MEDIUM} <br />
 			{fbvElement type="text" label="user.confirmEmail" id="confirmEmail" value=$confirmEmail|escape size=$fbvStyles.size.MEDIUM}
 		 	{if $privacyStatement}<a class="action" href="#privacyStatement">{translate key="user.register.privacyStatement"}</a>{/if}
 		{/fbvFormSection}
@@ -101,9 +108,9 @@
 			{foreach from=$availableLocales key=localeKey item=localeName}
 				{assign var="controlId" value=userLocales-$localeKey}
 				{if in_array($localeKey, $userLocales)}
-					{fbvElement type="checkbox" name="userLocales[]" id=$controlId value="1" label=$localeName translate="false" checked="checked"}
+					{fbvElement type="checkbox" name="userLocales[]" id=$controlId value="1" label=$localeName translate=false checked="checked"}
 				{else}
-					{fbvElement type="checkbox" name="userLocales[]" id=$controlId value="1" label=$localeName translate="false"}
+					{fbvElement type="checkbox" name="userLocales[]" id=$controlId value="1" label=$localeName translate=false}
 				{/if}
 			{/foreach}
 		{/fbvFormSection}
@@ -119,27 +126,28 @@
 	{/if} {* !$existingUser *}
 {/if}{* !$implicitAuth *}
 
-	{if $allowRegAuthor || $allowRegAuthor === null || $allowRegReviewer || $allowRegReviewer === null}
+	{if $currentPress && ($allowRegAuthor || $allowRegReviewer)}
 		{fbvFormSection label="user.register.registerAs" list="true"}
-			{if $allowRegAuthor || $allowRegAuthor === null}
-				{if $registerAsAuthor}
-					{fbvElement type="checkbox" id="registerAsAuthor" value="1" label="user.role.author" checked="checked"}
-				{else}
-					{fbvElement type="checkbox" id="registerAsAuthor" value="1" label="user.role.author"}
-				{/if}
+			{if $allowRegAuthor}
+				{iterate from=authorUserGroups item=userGroup}
+					{assign var="userGroupId" value=$userGroup->getId()}
+					{fbvElement type="checkbox" id="readerGroup-$userGroupId" name="authorGroup[$userGroupId]" label=$userGroup->getLocalizedName() translate=false}
+				{/iterate}
 			{/if}
-			{if $allowRegReviewer || $allowRegReviewer === null}
-				{if $registerAsReviewer}
-					{fbvElement type="checkbox" id="registerAsReviewer" value="1" label="user.role.reviewer" checked="checked"}
-				{else}
-					{fbvElement type="checkbox" id="registerAsReviewer" value="1" label="user.role.reviewer"}
-				{/if}
+			{if $allowRegReviewer}
+				{iterate from=reviewerUserGroups item=userGroup}
+					{assign var="userGroupId" value=$userGroup->getId()}
+					{fbvElement type="checkbox" id="reviewerGroup-$userGroupId" name="reviewerGroup[$userGroupId]" label=$userGroup->getLocalizedName() translate=false}
+				{/iterate}
 			{/if}
 		{/fbvFormSection}
-		{fbvFormSection id="reviewerInterestsContainer" label="user.register.reviewerInterests"}
-			{fbvElement type="keyword" id="interests" label="user.interests.description"}
-		{/fbvFormSection}
+		{if $allowRegReviewer}
+			{fbvFormSection id="reviewerInterestsContainer" label="user.register.reviewerInterests"}
+				{fbvElement type="keyword" id="interests" label="user.interests.description"}
+			{/fbvFormSection}
+		{/if}
 	{/if}
+
 	{if !$implicitAuth && !$existingUser && $captchaEnabled}
 		<li>
 		{fieldLabel name="captcha" required="true" key="common.captchaField" class="desc"}

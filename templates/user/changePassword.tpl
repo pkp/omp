@@ -12,34 +12,30 @@
 {include file="common/header.tpl"}
 {/strip}
 
-<div id="changePassword">
-<form class="pkp_form" method="post" action="{url op="savePassword"}">
+<script type="text/javascript">
+	$(function() {ldelim}
+		// Attach the form handler.
+		$('#changePassword').pkpHandler('$.pkp.controllers.form.FormHandler');
+	{rdelim});
+</script>
 
-{include file="common/formErrors.tpl"}
+<form class="pkp_form" id="changePassword" method="post" action="{url op="savePassword"}">
 
 <p><span class="instruct">{translate key="user.profile.changePasswordInstructions"}</span></p>
 
-<table class="data" width="100%">
-<tr valign="top">
-	<td width="20%" class="label">{fieldLabel name="oldPassword" key="user.profile.oldPassword"}</td>
-	<td width="80%" class="value"><input type="password" name="oldPassword" id="oldPassword" value="{$oldPassword|escape}" size="20" maxlength="32" class="textField" /></td>
-</tr>
-<tr valign="top">
-	<td class="label">{fieldLabel name="password" key="user.profile.newPassword"}</td>
-	<td class="value"><input type="password" name="password" value="{$password|escape}" id="password" size="20" maxlength="32" class="textField" /></td>
-</tr>
-<tr valign="top">
-	<td></td>
-	<td><span class="instruct">{translate key="user.register.passwordLengthRestriction" length=$minPasswordLength}</span></td>
-</tr>
-<tr valign="top">
-	<td class="label">{fieldLabel name="password2" key="user.profile.repeatNewPassword"}</td>
-	<td class="value"><input type="password" name="password2" id="password2" value="{$password2|escape}" size="20" maxlength="32" class="textField" /></td>
-</tr>
-</table>
+{fbvFormArea id="changePasswordForm"}
+	{fbvFormSection label="user.profile.oldPassword"}
+		{fbvElement type="text" password="true" id="oldPassword" value=$oldPassword|escape maxLength="32" size=$fbvStyles.size.MEDIUM}
+	{/fbvFormSection}
+	{fbvFormSection label="user.profile.newPassword"}
+		{translate|assign:"passwordLengthRestriction" key="user.register.passwordLengthRestriction" length=$minPasswordLength}
+		{fbvElement type="text" password="true" id="password" value=$oldPassword|escape label=$passwordLengthRestriction translate=false maxLength="32" size=$fbvStyles.size.MEDIUM}
+		{fbvElement type="text" password="true" id="password2" value=$oldPassword|escape maxLength="32" label="user.profile.repeatNewPassword" size=$fbvStyles.size.MEDIUM}
+	{/fbvFormSection}
 
-<p><input type="submit" value="{translate key="common.save"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url page="user" escape=false}'" /></p>
+	{fbvFormButtons submitText="common.save"}
+{/fbvFormArea}
+
 </form>
-</div>
 {include file="common/footer.tpl"}
 

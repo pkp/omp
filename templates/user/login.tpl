@@ -58,13 +58,13 @@
 				{fbvElement type="checkbox" label="user.login.rememberUsernameAndPassword" id="loginRemember" value=$remember}
 			{/fbvFormSection}
 		{/if}{* $showRemember *}
+		<p>
+			{if !$hideRegisterLink}&#187; <a href="{url page="user" op=$registerOp}">{translate key=$registerLocaleKey}</a><br />{/if}
+			&#187; <a href="{url page="login" op="lostPassword"}">{translate key="user.login.forgotPassword"}</a>
+		</p>
 		{fbvFormButtons hideCancel=true submitText="user.login"}
 	{/fbvFormArea}
 
-	<p>
-		{if !$hideRegisterLink}&#187; <a href="{url page="user" op=$registerOp}">{translate key=$registerLocaleKey}</a><br />{/if}
-		&#187; <a href="{url page="login" op="lostPassword"}">{translate key="user.login.forgotPassword"}</a>
-	</p>
 {/if}{* !$implicitAuth *}
 
 <script type="text/javascript">

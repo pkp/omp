@@ -76,7 +76,6 @@ jQuery.pkp.controllers.tab.settings.siteAccessOptions =
 	$.pkp.controllers.tab.settings.siteAccessOptions.form.
 			SiteAccessOptionsFormHandler.prototype.
 			setRegOptsDisabled_ = function(state) {
-		$('#allowRegReader').attr('disabled', state);
 		$('#allowRegAuthor').attr('disabled', state);
 		$('#allowRegReviewer').attr('disabled', state);
 	};
@@ -90,7 +89,6 @@ jQuery.pkp.controllers.tab.settings.siteAccessOptions =
 	$.pkp.controllers.tab.settings.siteAccessOptions.form.
 			SiteAccessOptionsFormHandler.prototype.
 			setRegOptsChecked_ = function(state) {
-		$('#allowRegReader').attr('checked', state);
 		$('#allowRegAuthor').attr('checked', state);
 		$('#allowRegReviewer').attr('checked', state);
 	};

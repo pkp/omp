@@ -19,18 +19,15 @@ import('lib.pkp.classes.form.Form');
 class ProfileForm extends Form {
 
 	/** @var $user object */
-	var $user;
+	var $_user;
 
 	/**
 	 * Constructor.
 	 */
-	function ProfileForm() {
+	function ProfileForm($user) {
 		parent::Form('user/profile.tpl');
 
-		$user =& Request::getUser();
-		$this->user =& $user;
-
-		$site =& Request::getSite();
+		$this->_user =& $user;
 
 		// Validation checks for this form
 		$this->addCheck(new FormValidator($this, 'firstName', 'required', 'user.profile.form.firstNameRequired'));
@@ -41,11 +38,18 @@ class ProfileForm extends Form {
 		$this->addCheck(new FormValidatorPost($this));
 	}
 
+    /*
+     * Get the user associated with this profile
+     */
+    function getUser() {
+        return $this->_user;
+    }
+
 	/**
 	 * Deletes a profile image.
 	 */
 	function deleteProfileImage() {
-		$user =& Request::getUser();
+		$user =& $this->getUser();
 		$profileImage = $user->getSetting('profileImage');
 		if (!$profileImage) return false;
 
@@ -62,7 +66,7 @@ class ProfileForm extends Form {
 		import('classes.file.PublicFileManager');
 		$fileManager = new PublicFileManager();
 
-		$user =& $this->user;
+		$user =& $this->getUser();
 
 		$type = $fileManager->getUploadedFileType('profileImage');
 		$extension = $fileManager->getImageExtension($type);
@@ -96,13 +100,13 @@ class ProfileForm extends Form {
 	/**
 	 * Display the form.
 	 */
-	function display() {
-		$user =& Request::getUser();
+	function display($args, &$request) {
+		$user =& $this->getUser();
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('username', $user->getUsername());
 
-		$site =& Request::getSite();
+		$site =& $request->getSite();
 		$templateMgr->assign('availableLocales', $site->getSupportedLocaleNames());
 
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
@@ -130,10 +134,8 @@ class ProfileForm extends Form {
 		} else $existingInterests = null;
 		$templateMgr->assign('existingInterests', $existingInterests);
 
-		$press =& Request::getPress();
+		$press =& $request->getPress();
 		if ($press) {
-			// get all this user's userGroups
-			// TODO: maybe this needs to be part of the userGroupAssignmentDAO.
 			$userGroupAssignments =& $userGroupAssignmentDao->getByUserId($user->getId(), $press->getId());
 			$userGroupIds = array();
 			foreach ($userGroupAssignments->toArray() as $assignment) {
@@ -143,11 +145,9 @@ class ProfileForm extends Form {
 			$templateMgr->assign_by_ref('reviewerUserGroups', $userGroupDao->getByRoleId($press->getId(), ROLE_ID_REVIEWER));
 			$templateMgr->assign('allowRegAuthor', $press->getSetting('allowRegAuthor'));
 			$templateMgr->assign_by_ref('authorUserGroups', $userGroupDao->getByRoleId($press->getId(), ROLE_ID_AUTHOR));
-			$templateMgr->assign('allowRegReader', $press->getSetting('allowRegReader'));
-			$templateMgr->assign_by_ref('readerUserGroups', $userGroupDao->getByRoleId($press->getId(), ROLE_ID_READER));
 			$templateMgr->assign('userGroupIds', $userGroupIds);
-
 		}
+
 		$templateMgr->assign('profileImage', $user->getSetting('profileImage'));
 
 		parent::display();
@@ -164,7 +164,7 @@ class ProfileForm extends Form {
 	 * @param $request PKPRequest
 	 */
 	function initData(&$args, &$request) {
-		$user =& Request::getUser();
+		$user =& $this->getUser();
 		$interestDao =& DAORegistry::getDAO('InterestDAO');
 
 		// Get all available interests to populate the autocomplete with
@@ -218,6 +218,8 @@ class ProfileForm extends Form {
 			'mailingAddress',
 			'country',
 			'biography',
+			'reviewerGroup',
+			'authorGroup',
 			'interests',
 			'interestsKeywords',
 			'userLocales'
@@ -237,8 +239,8 @@ class ProfileForm extends Form {
 	/**
 	 * Save profile settings.
 	 */
-	function execute() {
-		$user =& Request::getUser();
+	function execute($request) {
+		$user =& $request->getUser();
 
 		$user->setSalutation($this->getData('salutation'));
 		$user->setFirstName($this->getData('firstName'));
@@ -259,7 +261,7 @@ class ProfileForm extends Form {
 		// Add reviewing interests to interests table
 		import('lib.pkp.classes.user.InterestManager');
 		$interestManager = new InterestManager();
-		$interestManager->insertInterests($user->getId(), $this->getData('interestsKeywords'));
+		$interestManager->insertInterests($user->getId(), $this->getData('interestsKeywords'), $this->getData('interests'));
 
 		$site =& Request::getSite();
 		$availableLocales = $site->getSupportedLocales();
@@ -279,37 +281,38 @@ class ProfileForm extends Form {
 		$pressDao =& DAORegistry::getDAO('PressDAO');
 		$notificationStatusDao =& DAORegistry::getDAO('NotificationStatusDAO');
 
-		// Roles
+		// User Groups
 		$press =& Request::getPress();
 		if ($press) {
 			if ($press->getSetting('allowRegReviewer')) {
-				$reviewerGroup =& $this->getData('reviewerGroup');
-				if (is_array($reviewerGroup)) {
-					foreach ($reviewerGroup as $groupId => $wantsGroup ) {
-						$inGroup = $userGroupDao->userInGroup($user->getId(), $groupId);
-						if ($inGroup && !$wantsGroup) $userGroupDao->removeUserFromGroup($user->getId(), $groupId, $press->getId());
-						if (!$hasRole && $wantsRole) $userGroupDao->assignUserToGroup($user->getId(), $groupId, $press->getId());
+				$reviewerGroup = $this->getData('reviewerGroup');
+				if (!$reviewerGroup) $reviewerGroup = array();
+				$reviewerUserGroups = $userGroupDao->getByRoleId($press->getId(), ROLE_ID_REVIEWER);
+				while ($reviewerUserGroup =& $reviewerUserGroups->next()) {
+					$groupId = $reviewerUserGroup->getId();
+					$inGroup = $userGroupDao->userInGroup($press->getId(), $user->getId(), $groupId);
+					if(!$inGroup && array_key_exists($groupId, $reviewerGroup)) {
+						$userGroupDao->assignUserToGroup($user->getId(), $groupId, $press->getId());
+					} else if($inGroup && !array_key_exists($groupId, $reviewerGroup)) {
+						$userGroupDao->removeUserFromGroup($user->getId(), $groupId, $press->getId());
 					}
+					unset($reviewerUserGroup);
 				}
 			}
+
 			if ($press->getSetting('allowRegAuthor')) {
-				$authorGroup =& $this->getData('authorGroup');
-				if (is_array($authorGroup)) {
-					foreach ($authorGroup as $groupId => $wantsGroup ) {
-						$inGroup = $userGroupDao->userInGroup($user->getId(), $groupId);
-						if ($inGroup && !$wantsGroup) $userGroupDao->removeUserFromGroup($user->getId(), $groupId, $press->getId());
-						if (!$hasRole && $wantsRole) $userGroupDao->assignUserToGroup($user->getId(), $groupId);
+				$authorGroup = $this->getData('authorGroup');
+				if (!$authorGroup) $authorGroup = array();
+				$authorUserGroups = $userGroupDao->getByRoleId($press->getId(), ROLE_ID_AUTHOR);
+				while ($authorUserGroup =& $authorUserGroups->next()) {
+					$groupId = $authorUserGroup->getId();
+					$inGroup = $userGroupDao->userInGroup($press->getId(), $user->getId(), $groupId);
+					if(!$inGroup && array_key_exists($groupId, $authorGroup)) {
+						$userGroupDao->assignUserToGroup($user->getId(), $groupId, $press->getId());
+					} else if($inGroup && !array_key_exists($groupId, $authorGroup)) {
+						$userGroupDao->removeUserFromGroup($user->getId(), $groupId, $press->getId());
 					}
-				}
-			}
-			if ($press->getSetting('allowRegReader')) {
-				$readerGroup =& $this->getData('readerGroup');
-				if (is_array($readerGroup)) {
-					foreach ($readerGroup as $groupId => $wantsGroup ) {
-						$inGroup = $userGroupDao->userInGroup($user->getId(), $groupId);
-						if ($inGroup && !$wantsGroup) $userGroupDao->removeUserFromGroup($user->getId(), $groupId, $press->getId());
-						if (!$hasRole && $wantsRole) $userGroupDao->assignUserToGroup($user->getId(), $groupId);
-					}
+					unset($authorUserGroup);
 				}
 			}
 		}

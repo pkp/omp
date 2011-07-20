@@ -12,12 +12,33 @@
 {include file="common/header.tpl"}
 {/strip}
 
+<script type="text/javascript">
+	$(function() {ldelim}
+		// Attach the form handler.
+		$('#profile').pkpHandler('$.pkp.controllers.form.FormHandler');
+
+		$("#interestsTextOnly").hide();
+		$("#interests").tagit({ldelim}
+			{if $existingInterests}
+			// This is the list of interests in the system used to populate the autocomplete
+			availableTags: [{foreach name=existingInterests from=$existingInterests item=interest}"{$interest|escape|escape:'javascript'}"{if !$smarty.foreach.existingInterests.last}, {/if}{/foreach}],{/if}
+			// This is the list of the user's interests that have already been saved
+			{if $interestsKeywords}{literal}currentTags: [{foreach name=currentInterests from=$interestsKeywords item=interest}"{$interest|escape|escape:'javascript'}"{if !$smarty.foreach.currentInterests.last}, {/if}{/foreach}]
+			{else}currentTags: []{/if}
+		{rdelim});
+	{rdelim});
+</script>
+
 <form class="pkp_form" id="profile" method="post" action="{url op="saveProfile"}" enctype="multipart/form-data">
 
 {fbvFormArea id="profileForm"}
 
 	{fbvFormSection title="user.username"}
 		{$username|escape}
+	{/fbvFormSection}
+
+	{fbvFormSection title="user.password"}
+		<a href="{url op='changePassword'}">{translate key="user.changePassword"}</a>
 	{/fbvFormSection}
 
 	{fbvFormSection title="common.name"}
@@ -68,7 +89,44 @@
 		{fbvElement type="select" from=$countries selected=$country translate=0 id="country" defaultValue="" defaultLabel=""}
 	{/fbvFormSection}
 
-	{** FIXME 6760: Fix profile image uploads **}
+	{if $currentPress && ($allowRegAuthor || $allowRegReviewer)}
+		{fbvFormSection label="user.register.registerAs" list="true"}
+			{if $allowRegAuthor}
+				{iterate from=authorUserGroups item=userGroup}
+					{assign var="userGroupId" value=$userGroup->getId()}
+					{if in_array($userGroup->getId(), $userGroupIds)}
+						{assign var="checked" value=true}
+					{else}
+						{assign var="checked" value=false}
+					{/if}
+					{fbvElement type="checkbox" id="readerGroup-$userGroupId" name="authorGroup[$userGroupId]" checked=$checked label=$userGroup->getLocalizedName() translate=false}
+				{/iterate}
+			{/if}
+			{if $allowRegReviewer}
+				{iterate from=reviewerUserGroups item=userGroup}
+					{assign var="userGroupId" value=$userGroup->getId()}
+					{if in_array($userGroup->getId(), $userGroupIds)}
+						{assign var="checked" value=true}
+					{else}
+						{assign var="checked" value=false}
+					{/if}
+					{fbvElement type="checkbox" id="reviewerGroup-$userGroupId" name="reviewerGroup[$userGroupId]" checked=$checked label=$userGroup->getLocalizedName() translate=false}
+				{/iterate}
+			{/if}
+		{/fbvFormSection}
+		{if $allowRegReviewer}
+			{fbvFormSection id="reviewerInterestsContainer" label="user.register.reviewerInterests"}
+				<!-- The container which will be processed by tag-it.js as the interests widget -->
+				<ul id="interests"><li></li></ul><span class="interestDescription">{fieldLabel for="interests" key="user.interests.description"}</span><br />
+				<!-- If Javascript is disabled, this field will be visible -->
+				<textarea name="interests" id="interestsTextOnly" rows="5" cols="40" class="textArea">
+					{foreach name=currentInterests from=$interestsKeywords item=interest}{$interest|escape}{if !$smarty.foreach.currentInterests.last}, {/if}{/foreach}
+				</textarea>
+			{/fbvFormSection}
+		{/if}
+	{/if}
+
+	{** FIXME 6760: Fix profile image uploads
 	{fbvFormSection id="profileImage" label="user.profile.form.profileImage"}
 		{fbvFileInput id="profileImage" submit="uploadProfileImage"}
 		{if $profileImage}
@@ -76,8 +134,9 @@
 			<br />
 			<img src="{$sitePublicFilesDir}/{$profileImage.uploadName|escape:"url"}" width="{$profileImage.width|escape}" height="{$profileImage.height|escape}" style="border: 0;" alt="{translate key="user.profile.form.profileImage"}" />
 		{/if}
-	{/fbvFormSection}
+	{/fbvFormSection}**}
 
+	<br /><br />
 	{url|assign:cancelUrl page="dashboard"}
 	{fbvFormButtons submitText="common.save" cancelUrl=$cancelUrl}
 {/fbvFormArea}

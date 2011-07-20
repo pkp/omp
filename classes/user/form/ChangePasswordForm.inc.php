@@ -13,18 +13,24 @@
  */
 
 
-
 import('lib.pkp.classes.form.Form');
 
 class ChangePasswordForm extends Form {
 
+	/** @var $user object */
+	var $_user;
+
+	/** @var $site object */
+	var $_site;
+
 	/**
 	 * Constructor.
 	 */
-	function ChangePasswordForm() {
+	function ChangePasswordForm($user, $site) {
 		parent::Form('user/changePassword.tpl');
-		$user =& Request::getUser();
-		$site =& Request::getSite();
+
+		$this->_user =& $user;
+		$this->_site =& $site;
 
 		// Validation checks for this form
 		$this->addCheck(new FormValidatorCustom($this, 'oldPassword', 'required', 'user.profile.form.oldPasswordInvalid', create_function('$password,$username', 'return Validation::checkCredentials($username,$password);'), array($user->getUsername())));
@@ -34,13 +40,27 @@ class ChangePasswordForm extends Form {
 		$this->addCheck(new FormValidatorPost($this));
 	}
 
+	/*
+     * Get the user associated with this password
+     */
+    function getUser() {
+        return $this->_user;
+    }
+
+	/*
+     * Get the site
+     */
+    function getSite() {
+        return $this->_site;
+    }
+
 	/**
 	 * Display the form.
 	 */
 	function display() {
-		$user =& Request::getUser();
+		$user =& $this->getUser();
 		$templateMgr =& TemplateManager::getManager();
-		$site =& Request::getSite();
+		$site =& $this->getSite();
 		$templateMgr->assign('minPasswordLength', $site->getMinPasswordLength());
 		$templateMgr->assign('username', $user->getUsername());
 		parent::display();
@@ -57,7 +77,7 @@ class ChangePasswordForm extends Form {
 	 * Save new password.
 	 */
 	function execute() {
-		$user =& Request::getUser();
+		$user =& $this->getUser();
 
 		if ($user->getAuthId()) {
 			$authDao =& DAORegistry::getDAO('AuthSourceDAO');

@@ -24,7 +24,6 @@ class SiteAccessOptionsForm extends PressSettingsForm {
 	function SiteAccessOptionsForm($wizardMode = false) {
 		$settings = array(
 			'disableUserReg' => 'bool',
-			'allowRegReader' => 'bool',
 			'allowRegAuthor' => 'bool',
 			'allowRegReviewer' => 'bool',
 			'restrictSiteAccess' => 'bool',

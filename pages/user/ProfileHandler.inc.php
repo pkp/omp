@@ -21,98 +21,116 @@ class ProfileHandler extends UserHandler {
 	 */
 	function ProfileHandler() {
 		parent::UserHandler();
+
+        $this->addRoleAssignment(array(ROLE_ID_SITE_ADMIN, ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_AUTHOR, ROLE_ID_REVIEWER, ROLE_ID_PRESS_ASSISTANT),
+				array('profile', 'saveProfile', 'changePassword', 'savePassword'));
+	}
+
+    //
+	// Implement template methods from PKPHandler
+	//
+	/**
+	 * @see PKPHandler::authorize()
+	 * @param $request PKPRequest
+	 * @param $args array
+	 * @param $roleAssignments array
+	 */
+	function authorize(&$request, $args, $roleAssignments) {
+		import('lib.pkp.classes.security.authorization.PKPSiteAccessPolicy');
+		$this->addPolicy(new PKPSiteAccessPolicy($request, null, $roleAssignments));
+		return parent::authorize($request, $args, $roleAssignments);
 	}
 
 	/**
 	 * Display form to edit user's profile.
 	 */
 	function profile($args, &$request) {
-		$this->validate();
 		$this->setupTemplate(true);
 
+		$user =& $request->getUser();
 		import('classes.user.form.ProfileForm');
-
-		$profileForm = new ProfileForm();
+		$profileForm = new ProfileForm($user);
 		if ($profileForm->isLocaleResubmit()) {
 			$profileForm->readInputData();
 		} else {
 			$profileForm->initData($args, $request);
 		}
-		$profileForm->display();
+		$profileForm->display($args, $request);
 	}
 
 	/**
 	 * Validate and save changes to user's profile.
 	 */
-	function saveProfile() {
-		$this->validate();
+	function saveProfile($args, &$request) {
 		$this->setupTemplate();
 		$dataModified = false;
+		$user =& $request->getUser();
 
 		import('classes.user.form.ProfileForm');
-
-		$profileForm = new ProfileForm();
+		$profileForm = new ProfileForm($user);
 		$profileForm->readInputData();
 
-		if (Request::getUserVar('uploadProfileImage')) {
+		if ($request->getUserVar('uploadProfileImage')) {
 			if (!$profileForm->uploadProfileImage()) {
 				$profileForm->addError('profileImage', Locale::translate('user.profile.form.profileImageInvalid'));
 			}
 			$dataModified = true;
-		} else if (Request::getUserVar('deleteProfileImage')) {
+		} else if ($request->getUserVar('deleteProfileImage')) {
 			$profileForm->deleteProfileImage();
 			$dataModified = true;
 		}
 
 		if (!$dataModified && $profileForm->validate()) {
-			$profileForm->execute();
-			Request::redirect(null, Request::getRequestedPage());
+			$profileForm->execute($request);
+			$request->redirect(null, $request->getRequestedPage());
 		} else {
-			$profileForm->display();
+			$profileForm->display($args, $request);
 		}
 	}
 
 	/**
 	 * Display form to change user's password.
 	 */
-	function changePassword() {
-		$this->validate();
+	function changePassword($args, &$request) {
 		$this->setupTemplate(true);
 
-		import('classes.user.form.ChangePasswordForm');
+		$user =& $request->getUser();
+		$site =& $request->getSite();
 
+		import('classes.user.form.ChangePasswordForm');
 		if (checkPhpVersion('5.0.0')) { // WARNING: This form needs $this in constructor
-			$passwordForm = new ChangePasswordForm();
+			$passwordForm = new ChangePasswordForm($user, $site);
 		} else {
-			$passwordForm =& new ChangePasswordForm();
+			$passwordForm =& new ChangePasswordForm($user, $site);
 		}
-		$passwordForm->initData();
-		$passwordForm->display();
+		$passwordForm->initData($args, $request);
+		$passwordForm->display($args, $request);
 	}
 
 	/**
 	 * Save user's new password.
 	 */
-	function savePassword() {
-		$this->validate();
+	function savePassword($args, &$request) {
 		$this->setupTemplate(true);
 
-		import('classes.user.form.ChangePasswordForm');
+		$user =& $request->getUser();
+		$site =& $request->getSite();
 
+		import('classes.user.form.ChangePasswordForm');
 		if (checkPhpVersion('5.0.0')) { // WARNING: This form needs $this in constructor
-			$passwordForm = new ChangePasswordForm();
+			$passwordForm = new ChangePasswordForm($user, $site);
 		} else {
-			$passwordForm =& new ChangePasswordForm();
+			$passwordForm =& new ChangePasswordForm($user, $site);
 		}
 		$passwordForm->readInputData();
 
 		$this->setupTemplate(true);
 		if ($passwordForm->validate()) {
-			$passwordForm->execute();
-			Request::redirect(null, Request::getRequestedPage());
+			$passwordForm->execute($request);
+			$request->redirect(null, $request->getRequestedPage());
 
 		} else {
-			$passwordForm->display();
+			$passwordForm->display($args, $request);
 		}
 	}
 

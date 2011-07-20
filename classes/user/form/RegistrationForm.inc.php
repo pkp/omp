@@ -37,7 +37,7 @@ class RegistrationForm extends Form {
 	/**
 	 * Constructor.
 	 */
-	function RegistrationForm() {
+	function RegistrationForm(&$request) {
 		parent::Form('user/register.tpl');
 		$this->implicitAuth = Config::getVar('security', 'implicit_auth');
 
@@ -45,7 +45,7 @@ class RegistrationForm extends Form {
 			// If implicit auth - it is always an existing user
 			$this->existingUser = 1;
 		} else {
-			$this->existingUser = Request::getUserVar('existingUser') ? 1 : 0;
+			$this->existingUser = $request->getUserVar('existingUser') ? 1 : 0;
 
 			import('lib.pkp.classes.captcha.CaptchaManager');
 			$captchaManager = new CaptchaManager();
@@ -60,7 +60,7 @@ class RegistrationForm extends Form {
 				$this->addCheck(new FormValidatorCustom($this, 'username', 'required', 'user.login.loginError', create_function('$username,$form', 'return Validation::checkCredentials($form->getData(\'username\'), $form->getData(\'password\'));'), array(&$this)));
 			} else {
 				// New user -- check required profile fields
-				$site =& Request::getSite();
+				$site =& $request->getSite();
 
 				$this->addCheck(new FormValidatorCustom($this, 'username', 'required', 'user.register.form.usernameExists', array(DAORegistry::getDAO('UserDAO'), 'userExistsByUsername'), array(), true));
 				$this->addCheck(new FormValidatorAlphaNum($this, 'username', 'required', 'user.register.form.usernameAlphaNumeric'));
@@ -90,11 +90,11 @@ class RegistrationForm extends Form {
 	/**
 	 * Display the form.
 	 */
-	function display() {
+	function display(&$request) {
 		$templateMgr =& TemplateManager::getManager();
-		$site =& Request::getSite();
+		$site =& $request->getSite();
 		$templateMgr->assign('minPasswordLength', $site->getMinPasswordLength());
-		$press =& Request::getPress();
+		$press =& $request->getPress();
 
 		if ($this->captchaEnabled) {
 			import('lib.pkp.classes.captcha.CaptchaManager');
@@ -113,13 +113,22 @@ class RegistrationForm extends Form {
 		$userDao =& DAORegistry::getDAO('UserDAO');
 		$templateMgr->assign('genderOptions', $userDao->getGenderOptions());
 
-		$templateMgr->assign('privacyStatement', $press->getLocalizedSetting('privacyStatement'));
-		$templateMgr->assign('allowRegReader', $press->getSetting('allowRegReader')==1?1:0);
-		$templateMgr->assign('allowRegAuthor', $press->getSetting('allowRegAuthor')==1?1:0);
-		$templateMgr->assign('allowRegReviewer', $press->getSetting('allowRegReviewer')==1?1:0);
-		$templateMgr->assign('source', Request::getUserVar('source'));
+		if ($press) {
+			$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 
-		$site =& Request::getSite();
+			$templateMgr->assign('allowRegReviewer', $press->getSetting('allowRegReviewer'));
+			$templateMgr->assign_by_ref('reviewerUserGroups', $userGroupDao->getByRoleId($press->getId(), ROLE_ID_REVIEWER));
+			$templateMgr->assign('allowRegAuthor', $press->getSetting('allowRegAuthor'));
+			$templateMgr->assign_by_ref('authorUserGroups', $userGroupDao->getByRoleId($press->getId(), ROLE_ID_AUTHOR));
+
+			$templateMgr->assign('privacyStatement', $press->getLocalizedSetting('privacyStatement'));
+			$templateMgr->assign('allowRegAuthor', $press->getSetting('allowRegAuthor')==1?1:0);
+			$templateMgr->assign('allowRegReviewer', $press->getSetting('allowRegReviewer')==1?1:0);
+		}
+
+		$templateMgr->assign('source', $request->getUserVar('source'));
+
+		$site =& $request->getSite();
 		$templateMgr->assign('availableLocales', $site->getSupportedLocaleNames());
 
 		$templateMgr->assign('helpTopicId', 'user.registerAndProfile');
@@ -157,8 +166,8 @@ class RegistrationForm extends Form {
 			'salutation', 'firstName', 'middleName', 'lastName',
 			'gender', 'initials', 'country',
 			'affiliation', 'email', 'confirmEmail', 'userUrl', 'phone', 'fax', 'signature',
+			'reviewerGroup', 'authorGroup',
 			'mailingAddress', 'biography', 'interests', 'interestsKeywords', 'userLocales',
-			'registerAsReader', 'registerAsAuthor',
 			'registerAsReviewer', 'existingUser', 'sendPassword'
 		);
 		if ($this->captchaEnabled) {
@@ -187,7 +196,7 @@ class RegistrationForm extends Form {
 	/**
 	 * Register a new user.
 	 */
-	function execute() {
+	function execute($request) {
 		$requireValidation = Config::getVar('email', 'require_validation');
 
 		if ($this->existingUser) { // If using implicit auth - we hardwire that we are working on an existing user
@@ -232,7 +241,7 @@ class RegistrationForm extends Form {
 			$user->setCountry($this->getData('country'));
 
 
-			$site =& Request::getSite();
+			$site =& $request->getSite();
 			$availableLocales = $site->getSupportedLocales();
 
 			$locales = array();
@@ -276,29 +285,25 @@ class RegistrationForm extends Form {
 			$session->setSessionVar('username', $user->getUsername());
 		}
 
+		// User Groups
 		$press =& Request::getPress();
-		$roleDao =& DAORegistry::getDAO('RoleDAO');
-
-		// Roles users are allowed to register themselves in
-		$allowedRoles = array('author' => 'registerAsAuthor', 'reviewer' => 'registerAsReviewer');
-
-		$pressSettingsDao =& DAORegistry::getDAO('PressSettingsDAO');
-		if (!$pressSettingsDao->getSetting($press->getId(), 'allowRegReader')) {
-			unset($allowedRoles['reader']);
-		}
-		if (!$pressSettingsDao->getSetting($press->getId(), 'allowRegAuthor')) {
-			unset($allowedRoles['author']);
-		}
-		if (!$pressSettingsDao->getSetting($press->getId(), 'allowRegReviewer')) {
-			unset($allowedRoles['reviewer']);
-		}
-
-		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */
-		foreach ($allowedRoles as $k => $v) {
-			$roleId = $roleDao->getRoleIdFromPath($k);
-			if ($this->getData($v) && !$roleDao->userHasRole($press->getId(), $userId, $roleId)) {
-				$userGroupId = $userGroupDao->getDefaultByRoleId($press->getId(), $roleId);
-				$userGroupDao->assignUserToGroup($reviewerId, $userGroupId);
+		if ($press) {
+			$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+			if ($press->getSetting('allowRegReviewer')) {
+				$reviewerGroup =& $this->getData('reviewerGroup');
+				if (is_array($reviewerGroup)) {
+					foreach ($reviewerGroup as $groupId => $wantsGroup ) {
+						if ($wantsGroup) $userGroupDao->assignUserToGroup($userId, $groupId, $press->getId());
+					}
+				}
+			}
+			if ($press->getSetting('allowRegAuthor')) {
+				$authorGroup =& $this->getData('authorGroup');
+				if (is_array($authorGroup)) {
+					foreach ($authorGroup as $groupId => $wantsGroup ) {
+						if ($wantsGroup) $userGroupDao->assignUserToGroup($userId, $groupId);
+					}
+				}
 			}
 		}
 
@@ -315,7 +320,7 @@ class RegistrationForm extends Form {
 				$mail->setFrom($press->getSetting('contactEmail'), $press->getSetting('contactName'));
 				$mail->assignParams(array(
 					'userFullName' => $user->getFullName(),
-					'activateUrl' => Request::url($press->getPath(), 'user', 'activateUser', array($this->getData('username'), $accessKey))
+					'activateUrl' => $request->url($press->getPath(), 'user', 'activateUser', array($this->getData('username'), $accessKey))
 				));
 				$mail->addRecipient($user->getEmail(), $user->getFullName());
 				$mail->send();

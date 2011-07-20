@@ -29,26 +29,25 @@ class RegistrationHandler extends UserHandler {
 	 * @param $request PKPRequest
 	 */
 	function register($args, &$request) {
-		$this->validate();
+		$this->validate($request);
 		$this->setupTemplate(true);
 
-		$press =& Request::getPress();
+		$press =& $request->getPress();
 
 		if ($press != null) {
 			import('classes.user.form.RegistrationForm');
 
 			if (checkPhpVersion('5.0.0')) { // WARNING: This form needs $this in constructor
-				$regForm = new RegistrationForm();
+				$regForm = new RegistrationForm($request);
 			} else {
-				$regForm =& new RegistrationForm();
+				$regForm =& new RegistrationForm($request);
 			}
 			if ($regForm->isLocaleResubmit()) {
 				$regForm->readInputData();
 			} else {
 				$regForm->initData();
 			}
-			$regForm->display();
-
+			$regForm->display($request);
 		} else {
 			$pressDao =& DAORegistry::getDAO('PressDAO');
 			$presses =& $pressDao->getEnabledPresses(); //Enabled added
@@ -66,23 +65,23 @@ class RegistrationHandler extends UserHandler {
 	 * @param $request PKPRequest
 	 */
 	function registerUser($args, &$request) {
-		$this->validate();
+		$this->validate($request);
 		$this->setupTemplate(true);
 		import('classes.user.form.RegistrationForm');
 
 		if (checkPhpVersion('5.0.0')) { // WARNING: This form needs $this in constructor
-			$regForm = new RegistrationForm();
+			$regForm = new RegistrationForm($request);
 		} else {
-			$regForm =& new RegistrationForm();
+			$regForm =& new RegistrationForm($request);
 		}
 		$regForm->readInputData();
 
 		if ($regForm->validate()) {
-			$regForm->execute();
+			$regForm->execute($request);
 			if (Config::getVar('email', 'require_validation')) {
 				// Send them home; they need to deal with the
 				// registration email.
-				Request::redirect(null, 'index');
+				$request->redirect(null, 'index');
 			}
 
 			$reason = null;
@@ -103,13 +102,13 @@ class RegistrationHandler extends UserHandler {
 				$templateMgr->assign('backLinkLabel', 'user.login');
 				return $templateMgr->display('common/error.tpl');
 			}
-			if($source = Request::getUserVar('source'))
-				Request::redirectUrl($source);
+			if($source = $request->getUserVar('source'))
+				$request->redirectUrl($source);
 
-			else Request::redirect(null, 'login');
+			else $request->redirect(null, 'login');
 
 		} else {
-			$regForm->display();
+			$regForm->display($request);
 		}
 	}
 
@@ -130,14 +129,14 @@ class RegistrationHandler extends UserHandler {
 	 * Check credentials and activate a new user
 	 * @author Marc Bria <marc.bria@uab.es>
 	 */
-	function activateUser($args) {
+	function activateUser($args, &$request) {
 		$username = array_shift($args);
 		$accessKeyCode = array_shift($args);
 
-		$press =& Request::getPress();
+		$press =& $request->getPress();
 		$userDao =& DAORegistry::getDAO('UserDAO');
 		$user =& $userDao->getUserByUsername($username);
-		if (!$user) Request::redirect(null, 'login');
+		if (!$user) $request->redirect(null, 'login');
 
 		// Checks user & token
 		import('lib.pkp.classes.security.AccessKeyManager');
@@ -160,16 +159,15 @@ class RegistrationHandler extends UserHandler {
 			$templateMgr->assign('message', 'user.login.activated');
 			return $templateMgr->display('common/message.tpl');
 		}
-		Request::redirect(null, 'login');
+		$request->redirect(null, 'login');
 	}
 
 	/**
 	 * Validation check.
 	 * Checks if press allows user registration.
 	 */
-	function validate() {
-		parent::validate(false);
-		$press = Request::getPress();
+	function validate(&$request) {
+		$press = $request->getPress();
 		if ($press != null) {
 			$pressSettingsDao =& DAORegistry::getDAO('PressSettingsDAO');
 			if ($pressSettingsDao->getSetting($press->getId(), 'disableUserReg')) {
