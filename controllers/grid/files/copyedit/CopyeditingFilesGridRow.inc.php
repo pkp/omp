@@ -48,7 +48,7 @@ class CopyeditingFilesGridRow extends GridRow {
 		$monographFile =& $submissionFileDao->getLatestRevision($monographFileId);
 		$monographDao =& DAORegistry::getDAO('MonographDAO'); /* @var $monographDao MonographDAO */
 		$monographId = $monographFile->getMonographId();
-		$copyeditedFileId = $signoff->getAssocId();
+		$copyeditedFileId = $signoff->getFileId();
 
 		$user =& $request->getUser();
 
@@ -72,23 +72,20 @@ class CopyeditingFilesGridRow extends GridRow {
 					__('common.confirmDelete'), null,
 					$router->url($request, null, null, 'deleteSignoff', null, $actionArgs)
 				),
-				__('common.delete'),
+				__('grid.copyediting.deleteSignoff'),
 				'delete'
 			 ));
 
-			if($copyeditedFileId) {
+			if ($copyeditedFileId) {
 				$copyeditedFile =& $submissionFileDao->getLatestRevision($copyeditedFileId);
 				import('controllers.informationCenter.linkAction.FileInfoCenterLinkAction');
 				$this->addAction(new FileInfoCenterLinkAction($request, $monographFile));
 
-				$this->addAction(new DeleteFileLinkAction($request, $copyeditedFile));
-			} else {
-				// FIXME: Not all roles should see this action. Bug #5975.
-				$this->addAction(new DeleteFileLinkAction($request, $monographFile));
+				$this->addAction(new DeleteFileLinkAction($request, $copyeditedFile, 'grid.copyediting.deleteCopyeditorResponse'));
 			}
 
 			// If there is no file uploaded, allow the user to upload if it is their signoff (i.e. their copyediting assignment)
-			if(!$copyeditedFileId && $signoff->getUserId() == $user->getId()) {
+			if (!$copyeditedFileId && $signoff->getUserId() == $user->getId()) {
 				$this->addAction(new LinkAction(
 					'addCopyeditedFile',
 					new AjaxModal(

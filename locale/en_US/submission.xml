@@ -126,4 +126,8 @@
 	<!-- Chapters Grid -->
 	<message key="grid.chapters.title">Chapters</message>
 	<message key="listbuilder.contributors.addContributor">Add Contributor</message>
+
+	<!-- Copyediting Grid -->
+	<message key="grid.copyediting.deleteCopyeditorResponse">Delete Copyeditor Upload</message>
+	<message key="grid.copyediting.deleteSignoff">Unassign User</message>
 </locale>
