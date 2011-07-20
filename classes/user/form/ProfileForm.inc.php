@@ -38,12 +38,12 @@ class ProfileForm extends Form {
 		$this->addCheck(new FormValidatorPost($this));
 	}
 
-    /*
-     * Get the user associated with this profile
-     */
-    function getUser() {
-        return $this->_user;
-    }
+	/**
+	* Get the user associated with this profile
+	*/
+	function getUser() {
+		return $this->_user;
+	}
 
 	/**
 	 * Deletes a profile image.

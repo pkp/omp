@@ -40,19 +40,19 @@ class ChangePasswordForm extends Form {
 		$this->addCheck(new FormValidatorPost($this));
 	}
 
-	/*
-     * Get the user associated with this password
-     */
-    function getUser() {
-        return $this->_user;
-    }
-
-	/*
-     * Get the site
-     */
-    function getSite() {
-        return $this->_site;
-    }
+	/**
+	 * Get the user associated with this password
+	 */
+	function getUser() {
+		return $this->_user;
+	}
+	
+	/**
+	 * Get the site
+	 */
+	function getSite() {
+		return $this->_site;
+	}
 
 	/**
 	 * Display the form.
