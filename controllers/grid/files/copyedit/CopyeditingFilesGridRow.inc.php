@@ -58,19 +58,19 @@ class CopyeditingFilesGridRow extends GridRow {
 
 			// Actions
 			$router =& $request->getRouter();
-			$actionArgs = array(
-				'gridId' => $this->getGridId(),
-				'signoffId' => $rowId,
-				'monographId' => $monographId,
-				'fileId' => $copyeditedFileId
-			);
 
 			import('lib.pkp.classes.linkAction.request.RemoteActionConfirmationModal');
 			$this->addAction(new LinkAction(
 				'deleteSignoff',
 				new RemoteActionConfirmationModal(
 					__('common.confirmDelete'), null,
-					$router->url($request, null, null, 'deleteSignoff', null, $actionArgs)
+					$router->url(
+						$request, null, null, 'deleteSignoff',
+						null, array(
+							'signoffId' => $rowId,
+							'fileId' => $copyeditedFileId
+						)
+					)
 				),
 				__('grid.copyediting.deleteSignoff'),
 				'delete'
@@ -89,7 +89,13 @@ class CopyeditingFilesGridRow extends GridRow {
 				$this->addAction(new LinkAction(
 					'addCopyeditedFile',
 					new AjaxModal(
-						$router->url($request, null, null, 'addCopyeditedFile', null, $actionArgs)
+						$router->url(
+							$request, null, null, 'addCopyeditedFile',
+							null, array(
+								'signoffId' => $rowId,
+								'monographId' => $monographId
+							)
+						)
 					),
 					__('submission.addFile'),
 					'add'
@@ -101,7 +107,13 @@ class CopyeditingFilesGridRow extends GridRow {
 				$this->addAction(new LinkAction(
 					'addCopyeditedFile',
 					new AjaxModal(
-						$router->url($request, null, null, 'editCopyeditedFile', null, $actionArgs)
+						$router->url(
+							$request, null, null, 'editCopyeditedFile',
+							null, array(
+								'signoffId' => $rowId,
+								'monographId' => $monographId
+							)
+						)
 					),
 					__('common.edit'),
 					'add'
