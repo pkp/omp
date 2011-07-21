@@ -51,11 +51,10 @@ class MonographFileManager extends FileManager {
 	 * @return MonographFile
 	 */
 	function &uploadMonographFile($monographId, $fileName, $fileStage, $uploaderUserId,
-			$uploaderUserGroupId, $revisedFileId = null, $genreId = null) {
-
+			$uploaderUserGroupId, $revisedFileId = null, $genreId = null, $assocType = null, $assocId = null) {
 		return MonographFileManager::_handleUpload(
 			$monographId, $fileName, $fileStage, $uploaderUserId,
-			$uploaderUserGroupId, $revisedFileId, $genreId
+			$uploaderUserGroupId, $revisedFileId, $genreId, $assocType, $assocId
 		);
 	}
 
@@ -166,10 +165,10 @@ class MonographFileManager extends FileManager {
 	 * @param $assocType integer
 	 * @return integer the file ID (false if upload failed)
 	 */
-	function temporaryFileToMonographFile($monographId, &$temporaryFile, $fileStage, $assocId, $assocType) {
+	function temporaryFileToMonographFile($monographId, &$temporaryFile, $fileStage, $assocType, $assocId) {
 		// Instantiate and pre-populate the new target monograph file.
 		$sourceFile = $temporaryFile->getFilePath();
-		$monographFile =& MonographFileManager::_instantiateMonographFile($sourceFile, $monographId, $fileStage, null, null, $assocId, $assocType);
+		$monographFile =& MonographFileManager::_instantiateMonographFile($sourceFile, $monographId, $fileStage, null, null, null, $assocType, $assocId);
 
 		// Transfer data from the temporary file to the monograph file.
 		$monographFile->setFileType($temporaryFile->getFileType());
@@ -219,7 +218,7 @@ class MonographFileManager extends FileManager {
 	 * @return MonographFile the uploaded monograph file or null if an error occured.
 	 */
 	function &_handleUpload($monographId, $fileName, $fileStage, $uploaderUserId, $uploaderUserGroupId,
-			$revisedFileId = null, $genreId = null, $assocId = null, $assocType = null) {
+			$revisedFileId = null, $genreId = null, $assocType = null, $assocId = null) {
 
 		$nullVar = null;
 
@@ -230,7 +229,7 @@ class MonographFileManager extends FileManager {
 		$sourceFile = MonographFileManager::getUploadedFilePath($fileName);
 
 		// Instantiate and pre-populate a new monograph file object.
-		$monographFile = MonographFileManager::_instantiateMonographFile($sourceFile, $monographId, $fileStage, $revisedFileId, $genreId, $assocId, $assocType);
+		$monographFile = MonographFileManager::_instantiateMonographFile($sourceFile, $monographId, $fileStage, $revisedFileId, $genreId, $assocType, $assocId);
 		if (is_null($monographFile)) return $nullVar;
 
 		// Retrieve and copy the file type of the uploaded file.
@@ -264,7 +263,7 @@ class MonographFileManager extends FileManager {
 	 * @param $assocType integer
 	 * @return MonographFile returns the instantiated monograph file or null if an error occurs.
 	 */
-	function &_instantiateMonographFile($sourceFilePath, $monographId, $fileStage, $revisedFileId, $genreId, $assocId, $assocType) {
+	function &_instantiateMonographFile($sourceFilePath, $monographId, $fileStage, $revisedFileId, $genreId, $assocType, $assocId) {
 		$nullVar = null;
 
 		// Retrieve the submission file DAO.

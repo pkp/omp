@@ -150,8 +150,8 @@ class MonographMailTemplate extends MailTemplate {
 				$monograph->getId(),
 				$attachment,
 				MONOGRAPH_FILE_ATTACHMENT,
-				$logEntryId,
-				ASSOC_TYPE_MONOGRAPH_EMAIL_LOG_ENTRY
+				ASSOC_TYPE_MONOGRAPH_EMAIL_LOG_ENTRY,
+				$logEntryId
 			);
 		}
 	}

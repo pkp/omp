@@ -34,15 +34,15 @@ class SubmissionFilesUploadForm extends SubmissionFilesUploadBaseForm {
 	 * @param $revisedFileId integer
 	 */
 	function SubmissionFilesUploadForm(&$request, $monographId, $stageId, $uploaderRoles, $fileStage,
-			$revisionOnly = false, $round = null, $revisedFileId = null) {
+			$revisionOnly = false, $round = null, $revisedFileId = null, $assocType = null, $assocId = null) {
 
 		// Initialize class.
-		assert(is_null($uploaderRoles) || (is_array($uploaderRoles) && count($uploaderRoles) > 1));
+		assert(is_null($uploaderRoles) || (is_array($uploaderRoles) && count($uploaderRoles) >= 1));
 		$this->_uploaderRoles = $uploaderRoles;
 
 		parent::SubmissionFilesUploadBaseForm(
 			$request, 'controllers/wizard/fileUpload/form/fileUploadForm.tpl',
-			$monographId, $stageId, $fileStage, $revisionOnly, $round, $revisedFileId
+			$monographId, $stageId, $fileStage, $revisionOnly, $round, $revisedFileId, $assocType, $assocId
 		);
 	}
 
@@ -222,11 +222,13 @@ class SubmissionFilesUploadForm extends SubmissionFilesUploadBaseForm {
 		$user =& $request->getUser();
 		assert(is_a($user, 'User'));
 
+		$assocType = $this->getData('assocType') ? (int) $this->getData('assocType') : null;
+		$assocId = $this->getData('assocId') ? (int) $this->getData('assocId') : null;
 		// Upload the file.
 		import('classes.file.MonographFileManager');
 		$monographFile = MonographFileManager::uploadMonographFile(
 			$this->getData('monographId'), 'uploadedFile', $this->getData('fileStage'),
-			$user->getId(), $uploaderUserGroupId, $revisedFileId, $fileGenre
+			$user->getId(), $uploaderUserGroupId, $revisedFileId, $fileGenre, $assocType, $assocId
 		);
 
 		if ($monographFile && $this->getData('fileStage') == MONOGRAPH_FILE_REVIEW) {
