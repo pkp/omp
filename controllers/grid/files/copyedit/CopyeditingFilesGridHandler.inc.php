@@ -34,7 +34,7 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 			ROLE_ID_AUTHOR,
 			$authorOperations = array(
 				'fetchGrid', 'fetchRow', 'addCopyeditedFile',
-				'editCopyeditedFile', 'uploadCopyeditedFile',
+				'editCopyeditedFile', 'uploadCopyeditedFile', 'saveCopyeditedFile',
 				'returnSignoffRow', 'returnFileRow',
 				'downloadFile', 'deleteFile',
 			)
@@ -139,7 +139,7 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 		);
 
 		// Add role columns -- One of each user group currently assigned to the stage:
-		$stageAssignmentDao = & DAORegistry::getDAO('StageAssignmentDAO'); /* @var $stageAssignmentDao StageAssignmentDAO */
+		$stageAssignmentDao =& DAORegistry::getDAO('StageAssignmentDAO'); /* @var $stageAssignmentDao StageAssignmentDAO */
 		$stageAssignments = $stageAssignmentDao->getBySubmissionAndStageId($monograph->getId(), WORKFLOW_STAGE_ID_EDITING);
 
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
@@ -332,7 +332,6 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 
 		// FIXME: Bug #6199
 		$signoffId = (int) $request->getUserVar('signoffId');
-		assert(!empty($signoffId));
 
 		import('controllers.grid.files.copyedit.form.CopyeditingFileForm');
 		$copyeditingFileForm = new CopyeditingFileForm($monograph, $signoffId);
@@ -345,6 +344,58 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 
 		$json = new JSONMessage(true, $copyeditingFileForm->fetch($request));
 		return $json->getString();
+	}
+
+	/**
+	 * Upload a new copyedited file.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return string
+	 */
+	function uploadCopyeditedFile($args, &$request) {
+		$router =& $request->getRouter();
+		$context = $request->getContext();
+		$user =& $request->getUser();
+
+		import('classes.file.TemporaryFileManager');
+		$temporaryFileManager = new TemporaryFileManager();
+		$temporaryFile = $temporaryFileManager->handleUpload('uploadedFile', $user->getId());
+		if ($temporaryFile) {
+			$json = new JSONMessage(true);
+			$json->setAdditionalAttributes(array(
+				'temporaryFileId' => $temporaryFile->getId()
+			));
+		} else {
+			$json = new JSONMessage(false, Locale::translate('common.uploadFailed'));
+		}
+
+		return $json->getString();
+	}
+
+	/**
+	 * Save an uploaded file as a copyediting file
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return string
+	 */
+	function saveCopyeditedFile($args, &$request) {
+		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+
+		// FIXME: Bug #6199
+		$signoffId = (int) $request->getUserVar('signoffId');
+ 
+		import('controllers.grid.files.copyedit.form.CopyeditingFileForm');
+		$copyeditingFileForm = new CopyeditingFileForm($monograph, $signoffId);
+		$copyeditingFileForm->readInputData();
+ 
+		if ($copyeditingFileForm->validate()) {
+			$user =& $request->getUser();
+			$copyeditingFileForm->execute($user->getId());
+			return DAO::getDataChangedEvent();
+		} else {
+			$json = new JSONMessage(false, Locale::translate('common.uploadFailed'));
+			echo $json->getString();
+		}
 	}
 
 	/**

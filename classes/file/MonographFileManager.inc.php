@@ -60,16 +60,39 @@ class MonographFileManager extends FileManager {
 	}
 
 	/**
-	 * Upload a copyedited file to the copyedit file folder.
-	 * @param $monographId integer
-	 * @param $fileName string the name of the file used in the POST form
-	 * @param $uploaderUserGroupId int The id of the user group that the uploader acted in
-	 *  when uploading the file.
+	 * Routine to copy a library file from a temporary file.
+	 * @param $temporaryFile object
+	 * @param $monographId int
 	 * @param $revisedFileId int
-	 * @return MonographFile
+	 * @return MonographFile the generated file, or false on failure
 	 */
-	function &uploadCopyeditResponseFile($monographId, $fileName, $revisedFileId = null) {
-		return MonographFileManager::_handleUpload($monographId, $fileName, MONOGRAPH_FILE_COPYEDIT_RESPONSE, null, null, $revisedFileId);
+	function &copyCopyeditorResponseFromTemporaryFile(&$temporaryFile, $monographId, $revisedFileId, $genreId) {
+		$nullVar = null;
+
+		// Instantiate and pre-populate a new monograph file object.
+		$monographFile = MonographFileManager::_instantiateMonographFile(
+			$temporaryFile->getFilePath(),
+			$monographId,
+			MONOGRAPH_FILE_COPYEDIT_RESPONSE,
+			$revisedFileId,
+			$genreId,
+			null,
+			null
+		);
+		if (is_null($monographFile)) return $nullVar;
+
+		// Retrieve and copy the file type of the uploaded file.
+		$monographFile->setFileType($temporaryFile->getFileType());
+		$monographFile->setOriginalFileName($temporaryFile->getOriginalFileName());
+
+		// Set the uploader's user and user group id.
+		$monographFile->setUploaderUserId($temporaryFile->getUserId());
+		$monographFile->setUserGroupId(null); // FIXME? Was per ::uploadCopyeditResponseFile
+
+		// Copy the uploaded file to its final destination and
+		// persist its meta-data to the database.
+		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+		return $submissionFileDao->insertObject($monographFile, $temporaryFile->getFilePath(), false);
 	}
 
 	/**
@@ -242,16 +265,17 @@ class MonographFileManager extends FileManager {
 	 * @return MonographFile returns the instantiated monograph file or null if an error occurs.
 	 */
 	function &_instantiateMonographFile($sourceFilePath, $monographId, $fileStage, $revisedFileId, $genreId, $assocId, $assocType) {
+		$nullVar = null;
+
 		// Retrieve the submission file DAO.
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-
 		// We either need a genre id or a revised file, otherwise
 		// we cannot identify the target file implementation.
 		assert($genreId || $revisedFileId);
 		if (!$genreId || $revisedFileId) {
 			// Retrieve the revised file.
 			$revisedFile =& $submissionFileDao->getLatestRevision($revisedFileId, $fileStage, $monographId);
-			if (!is_a($revisedFile, 'MonographFile')) return false;
+			if (!is_a($revisedFile, 'MonographFile')) return $nullVar;
 		}
 
 		// If we don't have a genre then use the genre from the
@@ -273,7 +297,6 @@ class MonographFileManager extends FileManager {
 			// Make sure that the monograph of the revised file is
 			// the same as that of the uploaded file.
 			if($revisedFile->getMonographId() !== $monographId) fatalError('Invalid monograph file!');
-			$nullVar = null;
 			if ($revisedFile->getMonographId() != $monographId) return $nullVar;
 
 			// Copy the file workflow stage.
@@ -301,7 +324,7 @@ class MonographFileManager extends FileManager {
 		// Set the file genre.
 		$monographFile->setGenreId($genreId);
 
-		// Set modification dates to the current system date.
+		// Set dates to the current system date.
 		$monographFile->setDateUploaded(Core::getCurrentDate());
 		$monographFile->setDateModified(Core::getCurrentDate());
 

@@ -265,6 +265,7 @@ class MonographFile extends SubmissionFile {
 				MONOGRAPH_FILE_FAIR_COPY => 'submission/fairCopy',
 				MONOGRAPH_FILE_EDITOR => 'submission/editor',
 				MONOGRAPH_FILE_COPYEDIT => 'submission/copyedit',
+				MONOGRAPH_FILE_COPYEDIT_RESPONSE => 'submission/copyeditResponse',
 				MONOGRAPH_FILE_PRODUCTION => 'submission/production',
 				MONOGRAPH_FILE_GALLEY => 'submission/galleys',
 				MONOGRAPH_FILE_LAYOUT => 'submission/layout',

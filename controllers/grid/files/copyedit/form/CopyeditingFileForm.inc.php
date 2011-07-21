@@ -28,16 +28,11 @@ class CopyeditingFileForm extends Form {
 	 * @param $signoffId integer
 	 * @param $template string
 	 */
-	function CopyeditingFileForm($monograph, $signoffId, $template = null) {
+	function CopyeditingFileForm($monograph, $signoffId, $template = 'controllers/grid/files/copyedit/form/copyeditingFileForm.tpl') {
 		$this->_monograph =& $monograph;
 		$this->_signoffId = $signoffId;
 
-		if(!$template) {
-			// Use the default template
-			parent::Form('controllers/grid/files/copyedit/form/copyeditingFileForm.tpl');
-		} else {
-			parent::Form($template);
-		}
+		parent::Form($template);
 
 		$this->addCheck(new FormValidatorPost($this));
 	}
@@ -70,9 +65,9 @@ class CopyeditingFileForm extends Form {
 	 * @see Form::initData()
 	 */
 	function initData($args, &$request) {
-		$this->_data['signoffId'] = $this->getSignoffId();
 		$monograph =& $this->getMonograph();
-		$this->_data['monographId'] = $monograph->getId();;
+		$this->_data['monographId'] = $monograph->getId();
+		$this->_data['signoffId'] = $this->getSignoffId();
 	}
 
 	/**
@@ -98,7 +93,8 @@ class CopyeditingFileForm extends Form {
 	 * @see Form::readInputData()
 	 */
 	function readInputData() {
-		$this->readUserVars(array('signoffId'));
+		$this->readUserVars(array('temporaryFileId'));
+		return parent::readInputData();
 	}
 
 
@@ -107,10 +103,10 @@ class CopyeditingFileForm extends Form {
 	//
 	/**
 	 * Upload a copyediting file
-	 * @param $args array
-	 * @param $request PKPRequest
+	 * @param $userId int User ID of current user
+	 * @return int Copyedited file ID
 	 */
-	function uploadFile($args, &$request) {
+	function execute($userId) {
 		// Get the copyediting signoff
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
 		$signoff =& $signoffDao->getById($this->getSignoffId());
@@ -122,6 +118,7 @@ class CopyeditingFileForm extends Form {
 
 		// Get the copyedited file if it exists
 		if($signoff->getFileId()) {
+			die('CASE NOT IMPLEMENTED YET');
 			$copyeditedFile =& $submissionFileDao->getLatestRevision($signoff->getFileId());
 		}
 
@@ -130,24 +127,27 @@ class CopyeditingFileForm extends Form {
 
 		$monograph =& $this->getMonograph();
 		import('classes.file.MonographFileManager');
-		if (MonographFileManager::uploadedFileExists('copyeditingFile')) {
-			// FIXME: Refactor this to use MonographFileManager::uploadMonographFile(), also need to adapt the method signature, see #6125.
-			$copyeditedFileId = MonographFileManager::uploadCopyeditResponseFile($monograph->getId(), 'copyeditingFile', 1, $copyeditedFileId);
-			if (isset($copyeditedFileId)) {
-				// Amend the copyediting signoff with the new file
-				$signoff->setFileId($copyeditedFileId);
-				$signoff->setDateCompleted(Core::getCurrentDate());
-				$signoffDao->updateObject($signoff);
 
-				$copyeditedFile =& $submissionFileDao->getLatestRevision($copyeditedFileId);
-				// Transfer some of the original file's metadata over to the new file
-				$copyeditedFile->setName($copyeditingFile->getLocalizedName(), Locale::getLocale());
-				$copyeditedFile->setGenreId($copyeditingFile->getGenreId());
-				$submissionFileDao->updateObject($copyeditedFile);
-			}
+		// Fetch the temporary file storing the uploaded library file
+		$temporaryFileDao =& DAORegistry::getDAO('TemporaryFileDAO');
+		$temporaryFile =& $temporaryFileDao->getTemporaryFile(
+			$this->getData('temporaryFileId'),
+			$userId
+		);
 
+		$copyeditedFile = MonographFileManager::copyCopyeditorResponseFromTemporaryFile($temporaryFile, $monograph->getId(), $copyeditedFileId, $copyeditingFile->getGenreId());
+		if (isset($copyeditedFile)) {
+			// Amend the copyediting signoff with the new file
+			$signoff->setFileId($copyeditedFile->getFileId());
+			$signoff->setFileRevision($copyeditedFile->getRevision());
+
+			$signoff->setDateCompleted(Core::getCurrentDate());
+
+			$signoffDao->updateObject($signoff);
+			$submissionFileDao->updateObject($copyeditedFile);
 		}
-		return $copyeditedFileId;
+
+		return $copyeditedFile?$copyeditedFile->getFileId():null;
 	}
 }
 
