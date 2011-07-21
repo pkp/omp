@@ -116,17 +116,10 @@ class CopyeditingFileForm extends Form {
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		$copyeditingFile =& $submissionFileDao->getLatestRevision($signoff->getAssocId());
 
-		// Get the copyedited file if it exists
+		// Get the old copyedited file if it exists
 		if($signoff->getFileId()) {
-			die('CASE NOT IMPLEMENTED YET');
-			$copyeditedFile =& $submissionFileDao->getLatestRevision($signoff->getFileId());
+			$oldCopyeditedFile =& $submissionFileDao->getLatestRevision($signoff->getFileId());
 		}
-
-		// If we're updating a file, get its ID for the file manager
-		$copyeditedFileId = isset($copyeditedFile) ? $copyeditedFile->getFileId() : null;
-
-		$monograph =& $this->getMonograph();
-		import('classes.file.MonographFileManager');
 
 		// Fetch the temporary file storing the uploaded library file
 		$temporaryFileDao =& DAORegistry::getDAO('TemporaryFileDAO');
@@ -135,19 +128,18 @@ class CopyeditingFileForm extends Form {
 			$userId
 		);
 
-		$copyeditedFile = MonographFileManager::copyCopyeditorResponseFromTemporaryFile($temporaryFile, $monograph->getId(), $copyeditedFileId, $copyeditingFile->getGenreId());
-		if (isset($copyeditedFile)) {
+		$monograph =& $this->getMonograph();
+		import('classes.file.MonographFileManager');
+		$newCopyeditedFile = MonographFileManager::copyCopyeditorResponseFromTemporaryFile($monograph->getId(), $temporaryFile, $copyeditingFile, $oldCopyeditedFile);
+		if (isset($newCopyeditedFile)) {
 			// Amend the copyediting signoff with the new file
-			$signoff->setFileId($copyeditedFile->getFileId());
-			$signoff->setFileRevision($copyeditedFile->getRevision());
-
+			$signoff->setFileId($newCopyeditedFile->getFileId());
+			$signoff->setFileRevision($newCopyeditedFile->getRevision());
 			$signoff->setDateCompleted(Core::getCurrentDate());
-
 			$signoffDao->updateObject($signoff);
-			$submissionFileDao->updateObject($copyeditedFile);
 		}
 
-		return $copyeditedFile?$copyeditedFile->getFileId():null;
+		return $newCopyeditedFile?$newCopyeditedFile->getFileId():null;
 	}
 }
 

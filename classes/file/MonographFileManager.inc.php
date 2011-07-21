@@ -17,7 +17,7 @@
  * [monograph id]/submission
  * [monograph id]/submission/original
  * [monograph id]/submission/review
- * [monograph_id/submission/review/attachment
+ * [monograph id]/submission/review/attachment
  * [monograph id]/submission/editor
  * [monograph id]/submission/copyedit
  * [monograph id]/submission/layout
@@ -61,12 +61,13 @@ class MonographFileManager extends FileManager {
 
 	/**
 	 * Routine to copy a library file from a temporary file.
-	 * @param $temporaryFile object
 	 * @param $monographId int
-	 * @param $revisedFileId int
+	 * @param $temporaryFile object TemporaryFile representing the newly uploaded copyedited file
+	 * @param $copyeditingFile object MonographFile representing the file to copyedit
+	 * @param $copyeditedFile object Optional MonographFile representing the already-present copyedited file to revise
 	 * @return MonographFile the generated file, or false on failure
 	 */
-	function &copyCopyeditorResponseFromTemporaryFile(&$temporaryFile, $monographId, $revisedFileId, $genreId) {
+	function &copyCopyeditorResponseFromTemporaryFile($monographId, &$temporaryFile, &$copyeditingFile, &$copyeditedFile) {
 		$nullVar = null;
 
 		// Instantiate and pre-populate a new monograph file object.
@@ -74,16 +75,18 @@ class MonographFileManager extends FileManager {
 			$temporaryFile->getFilePath(),
 			$monographId,
 			MONOGRAPH_FILE_COPYEDIT_RESPONSE,
-			$revisedFileId,
-			$genreId,
-			null,
-			null
+			$copyeditedFile?$copyeditedFile->getFileId():null,
+			$copyeditingFile->getGenreId()
 		);
 		if (is_null($monographFile)) return $nullVar;
 
 		// Retrieve and copy the file type of the uploaded file.
 		$monographFile->setFileType($temporaryFile->getFileType());
 		$monographFile->setOriginalFileName($temporaryFile->getOriginalFileName());
+
+		// Keep a link back to the copyediting file this revises.
+		$monographFile->setSourceFileId($copyeditingFile->getFileId());
+		$monographFile->setSourceRevision($copyeditingFile->getRevision());
 
 		// Set the uploader's user and user group id.
 		$monographFile->setUploaderUserId($temporaryFile->getUserId());
@@ -313,7 +316,7 @@ class MonographFileManager extends FileManager {
 	 * @param $assocType integer
 	 * @return MonographFile returns the instantiated monograph file or null if an error occurs.
 	 */
-	function &_instantiateMonographFile($sourceFilePath, $monographId, $fileStage, $revisedFileId, $genreId, $assocType, $assocId) {
+	function &_instantiateMonographFile($sourceFilePath, $monographId, $fileStage, $revisedFileId, $genreId, $assocType = null, $assocId = null) {
 		$nullVar = null;
 
 		// Retrieve the submission file DAO.

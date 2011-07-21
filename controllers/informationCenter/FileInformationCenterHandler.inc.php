@@ -43,7 +43,7 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 		$this->monographFile =& $submissionFileDao->getLatestRevision($request->getUserVar('fileId'));
 
 		// Ensure data integrity.
-		if (!$this->monograph || !$this->monographFile || $this->monograph->getId() !== $this->monographFile->getMonographId()) fatalError('Unknown or invalid monograph!');
+		if (!$this->monograph || !$this->monographFile || $this->monograph->getId() != $this->monographFile->getMonographId()) fatalError('Unknown or invalid monograph or monograph file!');
 	}
 
 	/**

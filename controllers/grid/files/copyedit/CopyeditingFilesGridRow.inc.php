@@ -101,24 +101,6 @@ class CopyeditingFilesGridRow extends GridRow {
 					'add'
 				));
 			}
-
-			// If there is a file uploaded, allow the user to edit it if it is their signoff (i.e. their copyediting assignment)
-			if($copyeditedFileId && $signoff->getUserId() == $user->getId()) {
-				$this->addAction(new LinkAction(
-					'addCopyeditedFile',
-					new AjaxModal(
-						$router->url(
-							$request, null, null, 'editCopyeditedFile',
-							null, array(
-								'signoffId' => $rowId,
-								'monographId' => $monographId
-							)
-						)
-					),
-					__('common.edit'),
-					'add'
-				));
-			}
 		}
 	}
 }

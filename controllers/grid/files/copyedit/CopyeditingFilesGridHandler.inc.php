@@ -34,7 +34,7 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 			ROLE_ID_AUTHOR,
 			$authorOperations = array(
 				'fetchGrid', 'fetchRow', 'addCopyeditedFile',
-				'editCopyeditedFile', 'uploadCopyeditedFile', 'saveCopyeditedFile',
+				'uploadCopyeditedFile', 'saveCopyeditedFile',
 				'returnSignoffRow', 'returnFileRow',
 				'downloadFile', 'deleteFile',
 			)
@@ -310,24 +310,12 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 	}
 
 	/**
-	 * Add a file to a copyediting assignment
-	 * @param $args array
-	 * @param $request PKPRequest
-	 */
-	function addCopyeditedFile($args, &$request) {
-		// Calling editCopyeditedFile with an empty row id will add a new file
-		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->assign('newFile', 'true');
-		return $this->editCopyeditedFile($args, $request);
-	}
-
-	/**
 	 * Show the copyedited file upload form (to add a new or edit an existing copyedited file)
 	 * @param $args array
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function editCopyeditedFile($args, &$request) {
+	function addCopyeditedFile($args, &$request) {
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 
 		// FIXME: Bug #6199
