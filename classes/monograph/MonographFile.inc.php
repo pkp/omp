@@ -263,6 +263,7 @@ class MonographFile extends SubmissionFile {
 				MONOGRAPH_FILE_SUBMISSION => 'submission',
 				MONOGRAPH_FILE_NOTE => 'note',
 				MONOGRAPH_FILE_REVIEW => 'submission/review',
+				MONOGRAPH_FILE_REVIEW_ATTACHMENT => 'submission/review/attachment',
 				MONOGRAPH_FILE_FINAL => 'submission/final',
 				MONOGRAPH_FILE_FAIR_COPY => 'submission/fairCopy',
 				MONOGRAPH_FILE_EDITOR => 'submission/editor',

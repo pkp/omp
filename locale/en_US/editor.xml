@@ -26,7 +26,8 @@
 	<message key="editor.submissionReview.open">Open</message>
 	<message key="editor.submissionReview.blind">Blind</message>
 	<message key="editor.submissionReview.doubleBlind">Double-blind</message>
-	<message key="editor.submissionReview.uploadFile">Upload Review Attachment</message>
+	<message key="editor.submissionReview.uploadFile">Upload Review File</message>
+	<message key="editor.submissionReview.uploadAttachment">Upload Review Attachment</message>
 	<message key="editor.monograph.addReviewer">Add Reviewer</message>
 	<message key="editor.monograph.initiateReview">Initiate Review</message>
 	<message key="editor.monograph.cancelReview">Cancel Request</message>

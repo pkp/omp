@@ -17,6 +17,7 @@
  * [monograph id]/submission
  * [monograph id]/submission/original
  * [monograph id]/submission/review
+ * [monograph_id/submission/review/attachment
  * [monograph id]/submission/editor
  * [monograph id]/submission/copyedit
  * [monograph id]/submission/layout

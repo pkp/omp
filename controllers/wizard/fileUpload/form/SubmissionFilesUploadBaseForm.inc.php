@@ -100,8 +100,8 @@ class SubmissionFilesUploadBaseForm extends Form {
 				// If we have a review stage id then we also expect a review round.
 				if ($this->getRound() < 1) fatalError('Invalid review round!');
 
-				// Can only upload submission files or review files.
-				if (!in_array($this->getData('fileStage'), array(MONOGRAPH_FILE_SUBMISSION, MONOGRAPH_FILE_REVIEW))) fatalError('Invalid file stage!');
+				// Can only upload submission files, review files, or review attachments.
+				if (!in_array($this->getData('fileStage'), array(MONOGRAPH_FILE_SUBMISSION, MONOGRAPH_FILE_REVIEW, MONOGRAPH_FILE_REVIEW_ATTACHMENT))) fatalError('Invalid file stage!');
 
 				// Retrieve the monograph files for the given review round.
 				$this->_monographFiles =& $submissionFileDao->getRevisionsByReviewRound(
