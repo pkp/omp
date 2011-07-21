@@ -1122,6 +1122,7 @@
 			<col>stage_id</col>
 			<col>round</col>
 			<col>file_id</col>
+			<col>revision</col>
 			<UNIQUE/>
 		</index>
 	</table>
