@@ -41,6 +41,12 @@ class FileUploadWizardHandler extends FileManagementHandler {
 	/** @var integer */
 	var $_revisedFileId;
 
+	/** @var integer */
+	var $_assocType;
+
+	/** @var integer */
+	var $_assocId;
+
 
 	/**
 	 * Constructor
@@ -82,6 +88,8 @@ class FileUploadWizardHandler extends FileManagementHandler {
 		// Do we allow revisions only?
 		$this->_revisionOnly = (boolean)$request->getUserVar('revisionOnly');
 		$this->_round = $request->getUserVar('round') ? (int)$request->getUserVar('round') : null;
+		$this->_assocType = $request->getUserVar('assocType') ? (int)$request->getUserVar('assocType') : null;
+		$this->_assocId = $request->getUserVar('assocId') ? (int)$request->getUserVar('assocId') : null;
 
 		// The revised file will be non-null if we revise a single existing file.
 		if ($this->getRevisionOnly() && $request->getUserVar('revisedFileId')) {
@@ -130,6 +138,21 @@ class FileUploadWizardHandler extends FileManagementHandler {
 		return $this->_revisedFileId;
 	}
 
+	/**
+	 * Get the assoc type (if any)
+	 * @return integer
+	 */
+	function getAssocType() {
+		return $this->_assocType;
+	}
+
+	/**
+	 * Get the assoc id (if any)
+	 * @return integer
+	 */
+	function getAssocId() {
+		return $this->_assocId;
+	}
 
 	//
 	// Public handler methods
@@ -161,6 +184,8 @@ class FileUploadWizardHandler extends FileManagementHandler {
 		$templateMgr->assign('stageId', $this->getStageId());
 		$templateMgr->assign('round', $this->getRound());
 		$templateMgr->assign('revisedFileId', $this->getRevisedFileId());
+		$templateMgr->assign('assocType', $this->getAssocType());
+		$templateMgr->assign('assocId', $this->getAssocId());
 
 		// Render the file upload wizard.
 		return $templateMgr->fetchJson('controllers/wizard/fileUpload/fileUploadWizard.tpl');
@@ -178,7 +203,8 @@ class FileUploadWizardHandler extends FileManagementHandler {
 		$monograph =& $this->getMonograph();
 		$fileForm = new SubmissionFilesUploadForm(
 			$request, $monograph->getId(), $this->getStageId(), $this->getUploaderRoles(), $this->getFileStage(),
-			$this->getRevisionOnly(), $this->getRound(), $this->getRevisedFileId()
+			$this->getRevisionOnly(), $this->getRound(), $this->getRevisedFileId(),
+			$this->getAssocType(), $this->getAssocId()
 		);
 		$fileForm->initData($args, $request);
 
@@ -199,7 +225,7 @@ class FileUploadWizardHandler extends FileManagementHandler {
 		import('controllers.wizard.fileUpload.form.SubmissionFilesUploadForm');
 		$uploadForm = new SubmissionFilesUploadForm(
 			$request, $monograph->getId(), $this->getStageId(), null, $this->getFileStage(),
-			$this->getRevisionOnly(), $this->getRound(), null
+			$this->getRevisionOnly(), $this->getRound(), null, $this->getAssocType(), $this->getAssocId()
 		);
 		$uploadForm->readInputData();
 
@@ -216,7 +242,7 @@ class FileUploadWizardHandler extends FileManagementHandler {
 					if ($revisedFileId) {
 						// Instantiate the revision confirmation form.
 						import('controllers.wizard.fileUpload.form.SubmissionFilesUploadConfirmationForm');
-						$confirmationForm = new SubmissionFilesUploadConfirmationForm($request, $monograph->getId(), $this->getStageId(), $this->getFileStage(), $this->getRound(), $revisedFileId, $uploadedFile);
+						$confirmationForm = new SubmissionFilesUploadConfirmationForm($request, $monograph->getId(), $this->getStageId(), $this->getFileStage(), $this->getRound(), $revisedFileId, $this->getAssocType(), $this->getAssocId(), $uploadedFile);
 						$confirmationForm->initData($args, $request);
 
 						// Render the revision confirmation form.
@@ -247,6 +273,7 @@ class FileUploadWizardHandler extends FileManagementHandler {
 		// Instantiate the revision confirmation form.
 		$monograph =& $this->getMonograph();
 		import('controllers.wizard.fileUpload.form.SubmissionFilesUploadConfirmationForm');
+		// FIXME?: need assocType and assocId? Not sure if they would be used, so not adding now.
 		$confirmationForm = new SubmissionFilesUploadConfirmationForm(
 			$request, $monograph->getId(), $this->getStageId(), $this->getFileStage(), $this->getRound()
 		);

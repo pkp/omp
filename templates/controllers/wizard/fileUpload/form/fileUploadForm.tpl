@@ -128,7 +128,7 @@
 				{rdelim},
 				$uploader: $('#uploadForm #plupload'),
 				uploaderOptions: {ldelim}
-					uploadUrl: '{url|escape:javascript op="uploadFile" monographId=$monographId stageId=$stageId fileStage=$fileStage round=$round escape=false}',
+					uploadUrl: '{url|escape:javascript op="uploadFile" monographId=$monographId stageId=$stageId fileStage=$fileStage round=$round assocType=$assocType assocId=$assocId escape=false}',
 					baseUrl: '{$baseUrl|escape:javascript}'
 				{rdelim}
 			{rdelim});
@@ -137,6 +137,10 @@
 
 <form class="pkp_form" id="uploadForm" action="#" method="post">
 	{fbvFormArea id="file"}
+		{if $assocType && $assocId}
+			<input type="hidden" name="assocType" value="{$assocType|escape}" />
+			<input type="hidden" name="assocId" value="{$assocId|escape}" />
+		{/if}
 		{if count($uploaderUserGroups) > 1}
 			{fbvFormSection title="submission.uploaderUserGroup" required=true}
 				{fbvElement type="select" name="uploaderUserGroupId" id="uploaderUserGroupId" from=$uploaderUserGroups selected=$defaultUserGroupId translate=false} <br />

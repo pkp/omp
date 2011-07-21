@@ -184,6 +184,55 @@ class MonographFileManager extends FileManager {
 		return $monographFile->getFileId();
 	}
 
+	/**
+	 * Copies an existing ArticleFile and renames it.
+	 * @param $sourceFileId int
+	 * @param $sourceRevision int
+	 * @param $fileStage int
+	 * @param $destFileId int (optional)
+	 */
+	function copyFileToFileStage($sourceFileId, $sourceRevision, $newFileStage, $destFileId = null) {
+		if (HookRegistry::call('MonographFileManager::copyFileToFileStage', array(&$sourceFileId, &$sourceRevision, &$fileStage, &$destFileId, &$result))) return $result;
+
+		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+		$sourceFile =& $submissionFileDao->getRevision($sourceFileId, $sourceRevision); /* @var $sourceFile MonographFile */
+		if (!$sourceFile) return false;
+
+		// Rename the variable just so that we don't get confused.
+		$destFile =& $sourceFile;
+
+		// Find out where the source file lives.
+		$sourcePath = $sourceFile->getFilePath();
+
+		// Update the ID (or clear if making a new file) and get new revision number.
+		if ($destFileId != null) {
+			$currentRevision = $submissionFileDao->getLatestRevisionNumber($destFileId);
+			$revision = $currentRevision + 1;
+			$destFile->setFileId($destFileId);
+		} else {
+			$destFile->setFileId(null);
+			$revision = 1;
+		}
+
+		// Update the necessary fields of the destination file.
+		$destFile->setRevision($revision);
+		$destFile->setFileStage($newFileStage);
+		$destFile->setDateModified(Core::getCurrentDate());
+		// Set the old file as the source
+		$destFile->setSourceFileId($sourceFileId);
+		$destFile->setSourceRevision($sourceRevision);
+
+		// Find out where the file should go.
+		$destPath = $destFile->getFilePath();
+
+		// Copy the file to the new location.
+		MonographFileManager::copyFile($sourcePath, $destPath);
+
+		// Now insert the row into the DB and get the inserted file id.
+		$insertedFile =& $submissionFileDao->insertObject($destFile, $destPath);
+
+		return array($insertedFile->getFileId(), $insertedFile->getRevision());
+	}
 
 	//
 	// Private helper methods

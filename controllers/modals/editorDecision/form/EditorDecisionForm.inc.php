@@ -86,6 +86,8 @@ class EditorDecisionForm extends Form {
 		if (is_null($round)) {
 			$round = $seriesEditorSubmission->getCurrentRound();
 		}
+		// N.B. The current round and stage are loaded under the assumption that
+		// decisions are only made for the current stage.
 		$this->setData('stageId', $seriesEditorSubmission->getStageId());
 		$this->setData('round', $round);
 
@@ -124,7 +126,12 @@ class EditorDecisionForm extends Form {
 			foreach ($selectedFiles as $selectedFile) {
 				// Split the file into file id and file revision.
 				list($fileId, $revision) = explode('-', $selectedFile);
-				$submissionFileDao->assignRevisionToReviewRound($fileId, $revision, $stageId, $newRound, $monograph->getId());
+				// Bring in the MONOGRAPH_FILE_* constants.
+				import('classes.monograph.MonographFile');
+				// Bring in the Manager (we need it).
+				import('classes.file.MonographFileManager');
+				list($newFileId, $newRevision) = MonographFileManager::copyFileToFileStage($fileId, $revision, MONOGRAPH_FILE_REVIEW);
+				$submissionFileDao->assignRevisionToReviewRound($newFileId, $newRevision, $stageId, $newRound, $monograph->getId());
 			}
 		}
 

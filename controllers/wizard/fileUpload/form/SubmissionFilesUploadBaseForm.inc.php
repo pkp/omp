@@ -38,12 +38,13 @@ class SubmissionFilesUploadBaseForm extends Form {
 	 * @param $revisedFileId integer
 	 */
 	function SubmissionFilesUploadBaseForm(&$request, $template, $monographId, $stageId, $fileStage,
-			$revisionOnly = false, $round = null, $revisedFileId = null) {
+			$revisionOnly = false, $round = null, $revisedFileId = null, $assocType = null, $assocId = null) {
 
 		// Check the incoming parameters.
 		if (	!is_numeric($monographId) || $monographId <= 0 ||
 			!is_numeric($fileStage) || $fileStage <= 0 ||
-			!is_numeric($stageId) || $stageId < 1 || $stageId > 5) {
+			!is_numeric($stageId) || $stageId < 1 || $stageId > 5 ||
+			isset($assocType) !== isset($assocId)) {
 			fatalError('Invalid parameters!');
 		}
 
@@ -55,6 +56,8 @@ class SubmissionFilesUploadBaseForm extends Form {
 		$this->setData('revisionOnly', (boolean)$revisionOnly);
 		$this->setData('round', $round ? (int)$round : null);
 		$this->setData('revisedFileId', $revisedFileId ? (int)$revisedFileId : null);
+		$this->setData('assocType', $assocType ? (int)$assocType : null);
+		$this->setData('assocId', $assocId ? (int)$assocId : null);
 
 		// Add validators.
 		$this->addCheck(new FormValidatorPost($this));
@@ -77,6 +80,12 @@ class SubmissionFilesUploadBaseForm extends Form {
 	 * @return integer
 	 */
 	function getRound() {
+		if ($this->getData('assocType') == ASSOC_TYPE_REVIEW_ASSIGNMENT && !$this->getData('round')) {
+			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO'); /* @var $reviewAssignmentDao ReviewAssignmentDAO */
+			$reviewAssignment =& $reviewAssignmentDao->getById((int) $this->getData('assocId')); /* @var $reviewAssignment ReviewAssignment */
+			$this->setData('round', $reviewAssignment->getRound());
+		}
+
 		return $this->getData('round');
 	}
 
@@ -86,6 +95,22 @@ class SubmissionFilesUploadBaseForm extends Form {
 	 */
 	function getRevisedFileId() {
 		return $this->getData('revisedFileId') ? (int)$this->getData('revisedFileId') : null;
+	}
+
+	/**
+	 * Get the associated type
+	 * @return integer
+	 */
+	function getAssocType() {
+		return $this->getData('assocType');
+	}
+
+	/**
+	 * Get the associated id.
+	 * @return integer
+	 */
+	function getAssocId() {
+		return $this->getData('assocId');
 	}
 
 	/**

@@ -30,7 +30,7 @@
 
 <div id="fileUploadWizard">
 	<ul>
-		<li><a href="{url op="displayFileUploadForm" monographId=$monographId stageId=$stageId uploaderRoles=$uploaderRoles fileStage=$fileStage revisionOnly=$revisionOnly round=$round revisedFileId=$revisedFileId}">1. {translate key="submission.submit.upload"}</a></li>
+		<li><a href="{url op="displayFileUploadForm" monographId=$monographId stageId=$stageId uploaderRoles=$uploaderRoles fileStage=$fileStage revisionOnly=$revisionOnly round=$round revisedFileId=$revisedFileId assocType=$assocType assocId=$assocId}">1. {translate key="submission.submit.upload"}</a></li>
 		<li><a href="metadata">2. {translate key="submission.submit.metadata"}</a></li>
 		<li><a href="finish">3. {translate key="submission.submit.finishingUp"}</a></li>
 	</ul>
