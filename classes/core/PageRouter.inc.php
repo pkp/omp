@@ -50,7 +50,7 @@ class PageRouter extends PKPPageRouter {
 				$pressDao =& DAORegistry::getDAO('PressDAO');
 				$userGroup =& $userGroups->next();
 				$press =& $pressDao->getPress($userGroup->getContextId());
-				if (!isset($press)) $request->redirect('index', 'dashboard');;
+				if (!isset($press)) $request->redirect('index', 'dashboard');
 				if ($userGroup->getRoleId() == ROLE_ID_READER) $request->redirect(null, 'index');
 			}
 			$request->redirect('index', 'dashboard');

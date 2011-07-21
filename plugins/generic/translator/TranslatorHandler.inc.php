@@ -129,7 +129,7 @@ class TranslatorHandler extends Handler {
 	 */
 	function export($args) {
 		$this->validate();
-		$plugin =& $this->plugin;;
+		$plugin =& $this->plugin;
 		$this->setupTemplate();
 
 		$locale = array_shift($args);
