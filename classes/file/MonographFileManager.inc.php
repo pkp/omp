@@ -273,7 +273,7 @@ class MonographFileManager extends FileManager {
 		// we cannot identify the target file implementation.
 		assert($genreId || $revisedFileId);
 		if (!$genreId || $revisedFileId) {
-			// Retrieve the revised file.
+			// Retrieve the revised file. (null $fileStage in case the revision is from a previous stage).
 			$revisedFile =& $submissionFileDao->getLatestRevision($revisedFileId, $fileStage, $monographId);
 			if (!is_a($revisedFile, 'MonographFile')) return $nullVar;
 		}
@@ -285,31 +285,40 @@ class MonographFileManager extends FileManager {
 		}
 
 		// Instantiate a new monograph file implementation.
-		$monographFile =& $submissionFileDao->newDataObjectByGenreId($genreId);
+		$monographFile =& $submissionFileDao->newDataObjectByGenreId($genreId); /* @var $monographFile MonographFile */
 		$monographFile->setMonographId($monographId);
 
 		// Do we create a new file or a new revision of an existing file?
 		if ($revisedFileId) {
-			// Create a new revision of the file with the existing file id.
-			$monographFile->setFileId($revisedFileId);
-			$monographFile->setRevision($revisedFile->getRevision()+1);
-
 			// Make sure that the monograph of the revised file is
 			// the same as that of the uploaded file.
-			if($revisedFile->getMonographId() !== $monographId) fatalError('Invalid monograph file!');
 			if ($revisedFile->getMonographId() != $monographId) return $nullVar;
 
 			// Copy the file workflow stage.
 			if(!is_null($fileStage) && $fileStage !== $revisedFile->getFileStage()) fatalError('Invalid monograph file stage!');
 			$fileStage = (int)$revisedFile->getFileStage();
 
-			// Copy the assoc type.
-			if(!is_null($assocType) && $assocType !== $revisedFile->getAssocType()) fatalError('Invalid monograph file assoc type!');
-			$assocType = (int)$revisedFile->getAssocType();
+			// If file stages are different we reference with the sourceFileId
+			// Otherwise, we keep the file id, update the revision, and copy other fields.
+			if(!is_null($fileStage) && $fileStage !== $revisedFile->getFileStage()) {
+				$monographFile->setSourceFileId($revisedFileId);
+				$monographFile->setSourceRevision($revisedFile->getRevision());
+			} else {
+				// Create a new revision of the file with the existing file id.
+				$monographFile->setFileId($revisedFileId);
+				$monographFile->setRevision($revisedFile->getRevision()+1);
 
-			// Copy the assoc id.
-			if (!is_null($assocId) && $assocId !== $revisedFile->getAssocId()) fatalError('Invalid monograph file assoc ID!');
-			$assocId = (int)$revisedFile->getAssocId();
+				// Copy the file stage (in case of null passed in).
+				$fileStage = (int)$revisedFile->getFileStage();
+
+				// Copy the assoc type.
+				if(!is_null($assocType) && $assocType !== $revisedFile->getAssocType()) fatalError('Invalid monograph file assoc type!');
+				$assocType = (int)$revisedFile->getAssocType();
+
+				// Copy the assoc id.
+				if (!is_null($assocId) && $assocId !== $revisedFile->getAssocId()) fatalError('Invalid monograph file assoc ID!');
+				$assocId = (int)$revisedFile->getAssocId();
+			}
 		} else {
 			// Create the first revision of a new file.
 			$monographFile->setRevision(1);
