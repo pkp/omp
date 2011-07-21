@@ -66,7 +66,7 @@ class UnassignedSubmissionsListGridHandler extends SubmissionsListGridHandler {
 	 * @see SubmissionListGridHandler::getSubmissions()
 	 */
 	function getSubmissions(&$request, $userId) {
-		$monographDao =& DAORegistry::getDAO('MonographDAO');
+		$monographDao =& DAORegistry::getDAO('MonographDAO'); /* @var $monographDao MonographDAO */
 
 		// Get all monographs for all presses.
 		$monographs =& $monographDao->getUnassignedMonographs();

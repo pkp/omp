@@ -45,7 +45,6 @@ class FileSignoffGridHandler extends SubmissionFilesGridHandler {
 		$submissionFiles =& $this->getGridDataElements($request);
 
 		// Go through the list of files and identify all uploader user groups.
-		$uploaderUserGroups = array();
 		$signoffUserGroups = array();
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */
 		foreach($submissionFiles as $submissionFileData) {
@@ -111,7 +110,7 @@ class FileSignoffGridHandler extends SubmissionFilesGridHandler {
 		$stageAssignments = $stageAssignmentDao->getBySubmissionAndStageId($monograph->getId(), $this->getStageId());
 
 		$stageEditors = array();
-		while($stageAssignment =& $stageAssignments->next()) { /* @var $signoff Signoff */
+		while($stageAssignment =& $stageAssignments->next()) { /* @var $stageAssignment StageAssignment */
 			if (isset($editorGroups[$stageAssignment->getUserGroupId()])) {
 				if (!isset($stageEditors[$stageAssignment->getUserId()])) {
 					$stageEditors[$stageAssignment->getUserId()] = array();

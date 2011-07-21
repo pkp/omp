@@ -35,7 +35,7 @@
 			{fbvElement type="rangeSlider" id="active" label="manager.reviewerSearch.activeAmount" min=$reviewerValues.active_min max=$reviewerValues.active_max}
 		{/fbvFormSection}
 		{fbvFormSection}
-			{fbvKeywordInput id="interestSearch" available=$interestSearchKeywords label="manager.reviewerSearch.interests"}
+			{fbvElement type="keyword" id="interestSearch" available=$interestSearchKeywords label="manager.reviewerSearch.interests"}
 		{/fbvFormSection}
 		{fbvFormSection class="center"}
 			{fbvElement type="submit" id="submitFilter" label="common.refresh"}
