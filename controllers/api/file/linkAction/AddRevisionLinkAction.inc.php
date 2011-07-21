@@ -12,7 +12,7 @@
  * @class AddRevisionLinkAction
  * @ingroup controllers_api_file_linkAction
  *
- * @brief An action to uploade a revision of a currently reviewed file.
+ * @brief An action to upload a revision of file currently under review.
  */
 
 import('controllers.api.file.linkAction.BaseAddFileLinkAction');
@@ -30,10 +30,9 @@ class AddRevisionLinkAction extends BaseAddFileLinkAction {
 	 * @param $round integer The review round to upload to.
 	 */
 	function AddRevisionLinkAction(&$request, $monographId, $uploaderRoles, $stageId, $round) {
-
 		// Create the action arguments array.
 		$actionArgs = array(
-			'fileStage' => MONOGRAPH_FILE_SUBMISSION,
+			'fileStage' => MONOGRAPH_FILE_REVIEW,
 			'stageId' => $stageId,
 			'round' => $round,
 			'revisionOnly' => '1'

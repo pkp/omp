@@ -30,9 +30,9 @@ class ManageReviewFilesForm extends Form {
 	 */
 	function ManageReviewFilesForm($monographId, $stageId, $round) {
 		parent::Form('controllers/grid/files/review/manageReviewFiles.tpl');
-		$this->setMonographId((int)$monographId);
-		$this->setStageId((int)$stageId);
-		$this->setRound((int)$round);
+		$this->_monographId = (int)$monographId;
+		$this->_stageId = (int)$stageId;
+		$this->_round = (int)$round;
 
 		$this->addCheck(new FormValidatorPost($this));
 	}
@@ -42,14 +42,6 @@ class ManageReviewFilesForm extends Form {
 	// Getters / Setters
 	//
 	/**
-	 * Set the monograph id
-	 * @param $monographId int
-	 */
-	function setMonographId($monographId) {
-		$this->_monographId = $monographId;
-	}
-
-	/**
 	 * Get the monograph id
 	 * @return int
 	 */
@@ -58,27 +50,11 @@ class ManageReviewFilesForm extends Form {
 	}
 
 	/**
-	 * Set the review stage id
-	 * @param $stageId int
-	 */
-	function setStageId($stageId) {
-		$this->_stageId = $stageId;
-	}
-
-	/**
 	 * Get the review stage id
 	 * @return int
 	 */
 	function getStageId() {
 		return $this->_stageId;
-	}
-
-	/**
-	 * Set the round
-	 * @param $round int
-	 */
-	function setRound($round) {
-		$this->_round = $round;
 	}
 
 	/**
@@ -99,12 +75,9 @@ class ManageReviewFilesForm extends Form {
 	 * @param $request PKPRequest
 	 */
 	function initData($args, &$request) {
-		$monographDao =& DAORegistry::getDAO('MonographDAO');
-		$monograph =& $monographDao->getMonograph($this->_monographId);
-
 		$this->setData('monographId', $this->_monographId);
-		$this->setData('stageId', $monograph->getStageId());
-		$this->setData('round', $monograph->getCurrentRound());
+		$this->setData('stageId', $this->getStageId());
+		$this->setData('round', $this->getRound());
 	}
 
 	/**
@@ -125,6 +98,7 @@ class ManageReviewFilesForm extends Form {
 		$stageId = $this->getStageId();
 		$round = $this->getRound();
 
+		// Delete and assign again.
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		$submissionFileDao->deleteAllRevisionsByReviewRound($this->getMonographId(), $stageId, $round);
 		if (!empty($selectedFiles)) {

@@ -126,8 +126,8 @@ class WorkflowHandler extends Handler {
 		$selectedStageId = $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
 
 		// Retrieve and validate the review round currently being looked at.
-		if (count($args) > 0 && is_numeric($args[0])) {
-			$selectedRound = (int)array_shift($args);
+		if (count($args) > 1 && is_numeric($args[1])) {
+			$selectedRound = (int)$args[1];
 		} else {
 			$selectedRound = null;
 		}
@@ -156,7 +156,7 @@ class WorkflowHandler extends Handler {
 		);
 		if ($selectedStageId == WORKFLOW_STAGE_ID_INTERNAL_REVIEW) {
 			$callback = '_internalReviewStageDecisions';
-		} elseif ($selectedStageId == WORKFLOW_STAGE_ID_INTERNAL_REVIEW) {
+		} elseif ($selectedStageId == WORKFLOW_STAGE_ID_EXTERNAL_REVIEW) {
 			$callback = '_externalReviewStageDecisions';
 		}
 		$this->_assignEditorDecisionActions($request, $callback, $additionalActionArgs);
@@ -252,7 +252,7 @@ class WorkflowHandler extends Handler {
 		if ($monograph->getStageId() != $stageId) {
 			$editorActions = array();
 		} else {
-			$actionArgs = array('monographId' => $monograph->getId());
+			$actionArgs = array('monographId' => $monograph->getId(), 'stageId' => $monograph->getStageId());
 			$actionArgs = array_merge($actionArgs, $additionalArgs);
 
 			// Retrieve the editor decisions.

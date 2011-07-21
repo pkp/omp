@@ -13,13 +13,9 @@
  */
 
 
-import('controllers.grid.files.FilesGridDataProvider');
+import('controllers.grid.files.SubmissionFilesGridDataProvider');
 
-class ReviewGridDataProvider extends FilesGridDataProvider {
-
-	/** @var integer */
-	var $_stageId;
-
+class ReviewGridDataProvider extends SubmissionFilesGridDataProvider {
 	/** @var integer */
 	var $_round;
 
@@ -27,8 +23,8 @@ class ReviewGridDataProvider extends FilesGridDataProvider {
 	/**
 	 * Constructor
 	 */
-	function ReviewGridDataProvider() {
-		parent::FilesGridDataProvider();
+	function ReviewGridDataProvider($stageId, $fileStageId) {
+		parent::SubmissionFilesGridDataProvider($stageId, $fileStageId);
 	}
 
 
@@ -39,44 +35,68 @@ class ReviewGridDataProvider extends FilesGridDataProvider {
 	 * @see GridDataProvider::getAuthorizationPolicy()
 	 */
 	function getAuthorizationPolicy(&$request, $args, $roleAssignments) {
-		$this->setUploaderRoles($roleAssignments);
-
 		// FIXME: Need to authorize review round, see #6200.
 		// Get the review round and review stage id (internal/external) from the request
-		$stageId = $request->getUserVar('stageId');
 		$round = $request->getUserVar('round');
-		assert(!empty($stageId) && !empty($round));
+		assert(!empty($round));
 		$this->_round = (int)$round;
 
-		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
-		$policy = new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', $stageId);
-		return $policy;
+		return parent::getAuthorizationPolicy($request, $args, $roleAssignments);
 	}
 
 	/**
 	 * @see GridDataProvider::getRequestArgs()
 	 */
 	function getRequestArgs() {
-		$monograph =& $this->getMonograph();
-		return array(
-			'monographId' => $monograph->getId(),
-			'stageId' => $this->_getStageId(),
-			'round' => $this->_getRound()
-		);
+		return array_merge(parent::getRequestArgs(), array('round' => $this->_getRound()));
 	}
 
+	/**
+	 * @see GridDataProvider::loadData()
+	 */
+	function &loadData() {
+		// Get all review files assigned to this submission.
+		$monograph =& $this->getMonograph();
+		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+		$monographFiles =& $submissionFileDao->getRevisionsByReviewRound(
+			$monograph->getId(), $this->_getStageId(), $this->_getRound(), $this->_getFileStage()
+		);
+		return $this->prepareSubmissionFileData($monographFiles);
+	}
+
+	//
+	// Overridden public methods from FilesGridDataProvider
+	//
+	/**
+	 * @see FilesGridDataProvider::getSelectAction()
+	 */
+	function &getSelectAction($request) {
+		import('controllers.grid.files.fileList.linkAction.SelectReviewFilesLinkAction');
+		$monograph =& $this->getMonograph();
+		$selectAction = new SelectReviewFilesLinkAction(
+			&$request, $monograph->getId(), $this->_getStageId(), $this->_getRound(),
+			__('editor.submissionArchive.manageReviewFiles')
+		);
+		return $selectAction;
+	}
+
+	/**
+	 * @see FilesGridDataProvider::getAddFileAction()
+	 */
+	function &getAddFileAction($request) {
+		import('controllers.api.file.linkAction.AddFileLinkAction');
+		$monograph =& $this->getMonograph();
+		$addFileAction = new AddFileLinkAction(
+			$request, $monograph->getId(), $this->_getStageId(),
+			$this->getUploaderRoles(), $this->_getFileStage(),
+			null, null, $this->_getRound()
+		);
+		return $addFileAction;
+	}
 
 	//
 	// Private helper methods
 	//
-	/**
-	 * Get the review stage id.
-	 * @return integer
-	 */
-	function _getStageId() {
-		return $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
-	}
-
 	/**
 	 * Get the review round number.
 	 * @return integer

@@ -33,7 +33,7 @@
 			{/fbvFormSection}
 		{/if}
 		{fbvFormSection}
-			{url|assign:reviewAttachmentsGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.files.attachment.ReviewerReviewAttachmentsGridHandler" op="fetchGrid" monographId=$monograph->getId() reviewId=$reviewAssignment->getId() escape=false}
+			{url|assign:reviewAttachmentsGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.attachment.ReviewerReviewAttachmentsGridHandler" op="fetchGrid" monographId=$monograph->getId() reviewId=$reviewAssignment->getId() stageId=$reviewAssignment->getStageId() round=$reviewAssignment->getRound() escape=false}
 			{load_url_in_div id="readReviewAttachmentsGridContainer" url="$reviewAttachmentsGridUrl"}
 		{/fbvFormSection}
 		{fbvFormButtons id="closeButton" hideCancel=true submitText="common.close"}

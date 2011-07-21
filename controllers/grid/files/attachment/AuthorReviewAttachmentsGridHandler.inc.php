@@ -20,11 +20,10 @@ class AuthorReviewAttachmentsGridHandler extends FileListGridHandler {
 	 * Constructor
 	 */
 	function AuthorReviewAttachmentsGridHandler() {
-		import('controllers.grid.files.SubmissionFilesGridDataProvider');
+		import('controllers.grid.files.review.ReviewGridDataProvider');
 		// FIXME: #6244# HARDCODED INTERNAL_REVIEW
-		$dataProvider = new SubmissionFilesGridDataProvider(WORKFLOW_STAGE_ID_INTERNAL_REVIEW, MONOGRAPH_FILE_REVIEW);
 		parent::FileListGridHandler(
-			$dataProvider,
+			new ReviewGridDataProvider(WORKFLOW_STAGE_ID_INTERNAL_REVIEW, MONOGRAPH_FILE_REVIEW_ATTACHMENT),
 			WORKFLOW_STAGE_ID_INTERNAL_REVIEW,
 			FILE_GRID_DOWNLOAD_ALL
 		);

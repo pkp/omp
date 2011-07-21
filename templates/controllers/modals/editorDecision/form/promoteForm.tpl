@@ -33,10 +33,13 @@
 		{fbvElement type="textarea" name="personalMessage" id="personalMessage" label="editor.review.personalMessageToAuthor" value=$personalMessage  size=$fbvStyles.size.MEDIUM}
 	{/fbvFormSection}
 
-	<div id="attachments">
-		{url|assign:reviewAttachmentsGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.files.attachment.EditorReviewAttachmentsGridHandler" op="fetchGrid" monographId=$monographId escape=false}
-		{load_url_in_div id="reviewAttachmentsGridContainer" url="$reviewAttachmentsGridUrl"}
-	</div>
+	{** Some decisions can be made before review is initiated (i.e. no attachments). **}
+	{if $round}
+		<div id="attachments">
+			{url|assign:reviewAttachmentsGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.files.attachment.EditorReviewAttachmentsGridHandler" op="fetchGrid" monographId=$monographId stageId=$stageId round=$round escape=false}
+			{load_url_in_div id="reviewAttachmentsGridContainer" url="$reviewAttachmentsGridUrl"}
+		</div>
+	{/if}
 
 	<div id="availableFiles">
 		{* Show a different grid depending on whether we're in review or before the review stage *}

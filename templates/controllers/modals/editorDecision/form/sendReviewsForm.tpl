@@ -19,6 +19,7 @@
 
 <form class="pkp_form" id="sendReviews" method="post" action="{url op="saveSendReviews"}" >
 	<input type="hidden" name="monographId" value="{$monographId|escape}" />
+	<input type="hidden" name="stageId" value="{$stageId|escape}" />
 	<input type="hidden" name="decision" value="{$decision|escape}" />
 
 	{fbvFormSection}
@@ -29,13 +30,16 @@
 	<p class="pkp_helpers_text_right"><a id="importPeerReviews" href="#">{translate key="submission.comments.importPeerReviews"}</a></p><br />
 
 	{fbvFormSection}
-		{fbvElement type="textarea" name="personalMessage" id="personalMessage" label="editor.review.personalMessageToAuthor" value=$personalMessage  size=$fbvStyles.size.MEDIUM}
+		{fbvElement type="textarea" name="personalMessage" id="personalMessage" label="editor.review.personalMessageToAuthor" value=$personalMessage}
 	{/fbvFormSection}
 
-	<div id="attachments">
-		{url|assign:reviewAttachmentsGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.files.attachment.EditorReviewAttachmentsGridHandler" op="fetchGrid" monographId=$monographId escape=false}
-		{load_url_in_div id="reviewAttachmentsGridContainer" url="$reviewAttachmentsGridUrl"}
-	</div>
+	{** Some decisions can be made before review is initiated (i.e. no attachments). **}
+	{if $round}
+		<div id="attachments">
+			{url|assign:reviewAttachmentsGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.files.attachment.EditorReviewAttachmentsGridHandler" op="fetchGrid" monographId=$monographId stageId=$stageId round=$round escape=false}
+			{load_url_in_div id="reviewAttachmentsGridContainer" url="$reviewAttachmentsGridUrl"}
+		</div>
+	{/if}
 
 	{fbvFormButtons submitText="editor.submissionReview.recordDecision"}
 </form>

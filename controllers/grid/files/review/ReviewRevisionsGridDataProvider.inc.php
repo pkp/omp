@@ -22,7 +22,8 @@ class ReviewRevisionsGridDataProvider extends ReviewGridDataProvider {
 	 * Constructor
 	 */
 	function ReviewRevisionsGridDataProvider() {
-		parent::ReviewGridDataProvider();
+		// FIXME: #6244# HARDCODED INTERNAL_REVIEW
+		parent::ReviewGridDataProvider(WORKFLOW_STAGE_ID_INTERNAL_REVIEW, MONOGRAPH_FILE_REVIEW);
 	}
 
 
@@ -37,7 +38,7 @@ class ReviewRevisionsGridDataProvider extends ReviewGridDataProvider {
 		// of those currently assigned to the review round.
 		$monograph =& $this->getMonograph();
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-		$monographFiles =& $submissionFileDao->getLatestNewRevisionsByReviewRound($monograph->getId(), $this->_getStageId(), $this->_getRound());
+		$monographFiles =& $submissionFileDao->getLatestNewRevisionsByReviewRound($monograph->getId(), $this->_getStageId(), $this->_getRound(), $this->_getFileStage());
 		return $this->prepareSubmissionFileData($monographFiles);
 	}
 

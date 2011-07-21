@@ -18,6 +18,7 @@
 <p>{translate key="editor.monograph.initiateReviewDescription"}</p>
 <form class="pkp_form" id="initiateReview" method="post" action="{url op="saveInitiateReview"}" >
 	<input type="hidden" name="monographId" value="{$monographId|escape}" />
+	<input type="hidden" name="stageId" value="{$stageId|escape}" />
 
 	<!-- Available submission files -->
 	{url|assign:filesForReviewUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.submission.SelectableSubmissionDetailsFilesGridHandler" op="fetchGrid" monographId=$monographId escape=false}

@@ -558,7 +558,7 @@ class MonographDAO extends DAO {
 				LEFT JOIN series_settings sapl ON (s.series_id = sapl.series_id AND sapl.setting_name = ? AND sapl.locale = ?)
 				LEFT JOIN series_settings sal ON (s.series_id = sal.series_id AND sal.setting_name = ? AND sal.locale = ?)
 				LEFT JOIN stage_assignments sa ON (m.monograph_id = sa.submission_id)
-			WHERE m.date_submitted < NOW() AND (sa.stage_id IS NULL AND sa.user_group_id IS NULL AND sa.user_id IS NULL)' .
+			WHERE m.date_submitted IS NOT NULL AND (sa.stage_id IS NULL AND sa.user_group_id IS NULL AND sa.user_id IS NULL)' .
 					($pressId?' AND m.press_id = ?':''),
 			$params
 		);

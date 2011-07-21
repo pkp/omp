@@ -32,9 +32,9 @@
 				{include file="linkAction/linkAction.tpl" action=$viewGuidelinesAction contextId="viewGuidelines"}
 			</div>
 		{/if}
-		{fbvElement type="textarea" id="comments" name="comments" value=$reviewAssignment->getComments()|escape}
+		{fbvElement type="textarea" id="comments" name="comments" required=true value=$reviewAssignment->getComments()|escape}
 
-		{url|assign:reviewAttachmentsGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.attachment.ReviewerReviewAttachmentsGridHandler" op="fetchGrid" reviewId=$submission->getReviewId() monographId=$submission->getId() round=$submission->getCurrentRound() stageId=$submission->getStageId() escape=false}
+		{url|assign:reviewAttachmentsGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.attachment.ReviewerReviewAttachmentsGridHandler" op="fetchGrid" assocType=$smarty.const.ASSOC_TYPE_REVIEW_ASSIGNMENT assocId=$submission->getReviewId() monographId=$submission->getId() stageId=$submission->getStageId() escape=false}
 		{load_url_in_div id="reviewAttachmentsGridContainer" url="$reviewAttachmentsGridUrl"}
 	{/fbvFormSection}
 

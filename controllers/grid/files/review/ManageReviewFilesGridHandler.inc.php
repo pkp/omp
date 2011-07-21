@@ -1,12 +1,12 @@
 <?php
 
 /**
- * @file controllers/grid/files/review/SelectableEditorReviewFilesGridHandler.inc.php
+ * @file controllers/grid/files/review/ManageReviewFilesGridHandler.inc.php
  *
  * Copyright (c) 2003-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class SelectableEditorReviewFilesGridHandler
+ * @class ManageReviewFilesGridHandler
  * @ingroup controllers_grid_files_review
  *
  * @brief Handle the editor review file selection grid (selects which files to send to review or to next review round)
@@ -14,7 +14,7 @@
 
 import('controllers.grid.files.fileList.SelectableFileListGridHandler');
 
-class SelectableEditorReviewFilesGridHandler extends SelectableFileListGridHandler {
+class ManageReviewFilesGridHandler extends SelectableFileListGridHandler {
 
 	/** @var array */
 	var $_selectionArgs;
@@ -23,10 +23,10 @@ class SelectableEditorReviewFilesGridHandler extends SelectableFileListGridHandl
 	/**
 	 * Constructor
 	 */
-	function SelectableEditorReviewFilesGridHandler() {
-		import('controllers.grid.files.SubmissionFilesGridDataProvider');
+	function ManageReviewFilesGridHandler() {
+		import('controllers.grid.files.review.ReviewGridDataProvider');
 		// FIXME: #6244# HARDCODED INTERNAL_REVIEW
-		$dataProvider = new SubmissionFilesGridDataProvider(WORKFLOW_STAGE_ID_INTERNAL_REVIEW, MONOGRAPH_FILE_SUBMISSION);
+		$dataProvider = new ReviewGridDataProvider(WORKFLOW_STAGE_ID_INTERNAL_REVIEW, MONOGRAPH_FILE_REVIEW);
 		parent::SelectableFileListGridHandler(
 			$dataProvider,
 			WORKFLOW_STAGE_ID_INTERNAL_REVIEW,
