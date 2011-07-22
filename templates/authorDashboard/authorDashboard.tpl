@@ -53,7 +53,7 @@
 	</div>
 	<div style="clear:both;"></div>
 
-	<div id="submission">
+	<div class="pkp_authorDashboard_stageContainer" id="submission">
 		<h3><a href="#">{translate key='submission.submission'}</a></h3>
 		<div id="submissionContent">
 			{url|assign:submissionFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.submission.AuthorSubmissionDetailsFilesGridHandler" op="fetchGrid" monographId=$monograph->getId()}
@@ -61,17 +61,19 @@
 		</div>
 	</div>
 
-	<div id="review">
 		<h3><a href="#">{translate key='submission.review'}</a></h3>
 		<div id="reviewContent">
 			{if $stageId > $smarty.const.WORKFLOW_STAGE_ID_SUBMISSION}
 				{assign var="currentReviewRound" value=$monograph->getCurrentRound()}
 
 				<div id="reviewRoundTabs">
+	<div class="pkp_authorDashboard_stageContainer" id="internalReview">
 					<ul>
 						{foreach from=$rounds item=round}
 							<li><a href="{url op="reviewRoundInfo" round=$round monographId=$monograph->getId() escape=false}">{translate key="submission.round" round=$round}</a></li>
 						{/foreach}
+	</div>
+	<div class="pkp_authorDashboard_stageContainer" id="externalReview">
 					</ul>
 				</div>
 
@@ -79,7 +81,7 @@
 		</div>
 	</div>
 
-	<div id="copyediting">
+	<div class="pkp_authorDashboard_stageContainer" id="copyediting">
 		<h3><a href="#">{translate key='submission.copyediting'}</a></h3>
 		<div id="copyeditingContent">
 			<!-- Display editor's message to the author -->
@@ -99,7 +101,7 @@
 		</div>
 	</div>
 
-	<div id="production">
+	<div class="pkp_authorDashboard_stageContainer" id="production">
 		<h3><a href="#">{translate key='submission.production'}</a></h3>
 		<div id="productionContent">&nbsp;</div>
 	</div>

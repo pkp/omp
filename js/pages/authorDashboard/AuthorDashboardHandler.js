@@ -51,7 +51,8 @@ jQuery.pkp.pages =
 		// to the corresponding grids.
 		this.forwardGridEvents_();
 
-		$('#reviewRoundTabs').tabs();
+		$('#internalReviewRoundTabs').tabs();
+		$('#externalReviewRoundTabs').tabs();
 	};
 	$.pkp.classes.Helper.inherits(
 			$.pkp.pages.authorDashboard.AuthorDashboardHandler,
@@ -73,9 +74,9 @@ jQuery.pkp.pages =
 	$.pkp.pages.authorDashboard.AuthorDashboardHandler.CSS_SELECTORS_[
 			$.pkp.cons.WORKFLOW_STAGE_ID_SUBMISSION] = '#submission';
 	$.pkp.pages.authorDashboard.AuthorDashboardHandler.CSS_SELECTORS_[
-			$.pkp.cons.WORKFLOW_STAGE_ID_INTERNAL_REVIEW] = '#review';
+			$.pkp.cons.WORKFLOW_STAGE_ID_INTERNAL_REVIEW] = '#internalReview';
 	$.pkp.pages.authorDashboard.AuthorDashboardHandler.CSS_SELECTORS_[
-			$.pkp.cons.WORKFLOW_STAGE_ID_EXTERNAL_REVIEW] = '#review';
+			$.pkp.cons.WORKFLOW_STAGE_ID_EXTERNAL_REVIEW] = '#externalReview';
 	$.pkp.pages.authorDashboard.AuthorDashboardHandler.CSS_SELECTORS_[
 			$.pkp.cons.WORKFLOW_STAGE_ID_EDITING] = '#copyediting';
 	$.pkp.pages.authorDashboard.AuthorDashboardHandler.CSS_SELECTORS_[
