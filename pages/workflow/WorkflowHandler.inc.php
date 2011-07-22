@@ -132,14 +132,11 @@ class WorkflowHandler extends Handler {
 			$selectedRound = null;
 		}
 
-		$monographDao =& DAORegistry::getDAO('MonographDAO');
-		$reviewRoundInfo = $monographDao->getReviewRoundsInfoById($monograph->getId());
-
-		// A blank reviewRoundInfo means there is no valid round for this review stage yet.
-		$currentRound = isset($reviewRoundInfo[$selectedStageId])?$reviewRoundInfo[$selectedStageId]:1;
+		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
+		$currentRound = $reviewRoundDao->getCurrentRoundByMonographId($monograph->getId(), $selectedStageId);
 
 		// Make sure round is not higher than the monograph's latest round.
-		if(!$selectedRound || $selectedRound < 1 || $selectedRound > $currentRound) {
+		if(!$selectedRound || $selectedRound > $currentRound) {
 			$selectedRound = $currentRound;
 		}
 

@@ -93,19 +93,19 @@ class AuthorSubmissionDAO extends DAO {
 		// Monograph attributes
 		$this->monographDao->_monographFromRow($authorSubmission, $row);
 
-		$reviewRounds =& $authorSubmission->getReviewRoundsInfo();
+		$reviewRounds =& $authorSubmission->getReviewRounds();
 
 		$authorSubmission->setDecisions($this->getEditorDecisions($row['monograph_id']));
 
-		if (isset($reviewRounds)) {
-			foreach ($reviewRounds as $reviewRound => $round) { // Review Assignments
-				for ($i = 1; $i <= $round; $i++) {
-					$authorSubmission->setReviewAssignments($this->reviewAssignmentDao->getBySubmissionId($row['monograph_id'], $i, $reviewRound), $reviewRound, $i); // WARNING: This looks like a bug to me; check the parameters for getBySubmissionId. - AS 2010-05-05
-				}
-			}
+		while ( $reviewRound =& $reviewRounds->next()) {
+			$stageId = $reviewRound->getStageId();
+			$round = $reviewRound->getRound();
+			$authorSubmission->setReviewAssignments(
+						$this->reviewAssignmentDao->getBySubmissionId($row['monograph_id'], $round, $stageId),
+						$stageId,
+						$round);
+			unset($reviewRound);
 		}
-
-
 
 		// Comments
 		$authorSubmission->setMostRecentEditorDecisionComment($this->monographCommentDao->getMostRecentMonographComment($row['monograph_id'], COMMENT_TYPE_EDITOR_DECISION, $row['monograph_id']));

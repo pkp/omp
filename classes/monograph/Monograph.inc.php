@@ -36,6 +36,7 @@ import('lib.pkp.classes.submission.Submission');
 import('classes.monograph.Author');
 
 class Monograph extends Submission {
+	var $_reviewRounds;
 
  	/**
 	 * get monograph id
@@ -190,19 +191,19 @@ class Monograph extends Submission {
 	}
 
 	/**
-	 * Set the current review round per stage ID
-	 * @param $reviewRoundsInfo array ($stageId => $currentReviewRound)
+	 * Get all the review rounds associated with this monograph
+	 * @param $reviewRounds DAOResultFactory ReviewRounds
 	 */
-	function setReviewRoundsInfo($reviewRoundsInfo) {
-		 $this->setData('reviewRoundsInfo', $reviewRoundsInfo);
+	function setReviewRounds(&$reviewRounds) {
+		 $this->_reviewRounds =& $reviewRounds;
 	}
 
 	/**
-	 * Get the current review round per stage ID
-	 * @return array ($stageId => $currentReviewRound)
+	 * Get all the review rounds
+	 * @return DAOResultFactory ReviewRounds
 	 */
-	function getReviewRoundsInfo() {
-		 return $this->getData('reviewRoundsInfo');
+	function &getReviewRounds() {
+		 return $this->_reviewRounds;
 	}
 
 	/**

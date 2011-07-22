@@ -109,13 +109,16 @@ class SeriesEditorSubmissionDAO extends DAO {
 		// Monograph attributes
 		$this->monographDao->_monographFromRow($seriesEditorSubmission, $row);
 
-		$reviewRoundsInfo =& $this->monographDao->getReviewRoundsInfoById($row['monograph_id']);
-
 		// Editor Decisions
-		foreach ( $reviewRoundsInfo as $stageId => $currentReviewRound) {
-			for ($i = 1; $i <= $currentReviewRound; $i++) {
-				$seriesEditorSubmission->setDecisions($this->getEditorDecisions($row['monograph_id'], $stageId, $i), $stageId, $i);
-			}
+		$reviewRounds =& $this->monographDao->getReviewRoundsById($row['monograph_id']);
+		while ( $reviewRound =& $reviewRounds->next()) {
+			$stageId = $reviewRound->getStageId();
+			$round = $reviewRound->getRound();
+			$seriesEditorSubmission->setDecisions(
+						$this->getEditorDecisions($row['monograph_id'], $stageId, $round),
+						$stageId,
+						$round);
+			unset($reviewRound);
 		}
 
 		// Comments
@@ -125,10 +128,15 @@ class SeriesEditorSubmissionDAO extends DAO {
 		$seriesEditorSubmission->setMostRecentProofreadComment($this->monographCommentDao->getMostRecentMonographComment($row['monograph_id'], COMMENT_TYPE_PROOFREAD, $row['monograph_id']));
 
 		// Review Assignments
-		foreach ($reviewRoundsInfo as $stageId => $currentReviewRound) {
-			for ($i = 1; $i <= $currentReviewRound; $i++) {
-				$seriesEditorSubmission->setReviewAssignments($this->reviewAssignmentDao->getBySubmissionId($row['monograph_id'], $i, $stageId), $stageId, $i);
-			}
+		$reviewRounds =& $this->monographDao->getReviewRoundsById($row['monograph_id']);
+		while ( $reviewRound =& $reviewRounds->next()) {
+			$stageId = $reviewRound->getStageId();
+			$round = $reviewRound->getRound();
+			$seriesEditorSubmission->setReviewAssignments(
+						$this->reviewAssignmentDao->getBySubmissionId($row['monograph_id'], $round, $stageId),
+						$stageId,
+						$round);
+			unset($reviewRound);
 		}
 
 		// Proof Assignment
@@ -143,62 +151,66 @@ class SeriesEditorSubmissionDAO extends DAO {
 	 * @param $seriesEditorSubmission SeriesEditorSubmission
 	 */
 	function updateSeriesEditorSubmission(&$seriesEditorSubmission) {
-		$reviewRounds = $seriesEditorSubmission->getReviewRoundsInfo();
+		$reviewRounds = $seriesEditorSubmission->getReviewRounds();
 
 		// Update editor decisions.
-		foreach ($reviewRounds as $stageId => $round) {
-			for ($i = 1; $i <= $round; $i++) {
-				$editorDecisions = $seriesEditorSubmission->getDecisions($stageId, $i);
-				if (is_array($editorDecisions)) {
-					foreach ($editorDecisions as $editorDecision) {
-						if ($editorDecision['editDecisionId'] == null) {
-							$this->update(
-								sprintf(
-									'INSERT INTO edit_decisions
-									(monograph_id, stage_id, round, editor_id, decision, date_decided)
-									VALUES (?, ?, ?, ?, ?, %s)',
-									$this->datetimeToDB($editorDecision['dateDecided'])
-								),
-								array(
-									$seriesEditorSubmission->getId(),
-									$stageId,
-									$i,
-									$editorDecision['editorId'],
-									$editorDecision['decision']
-								)
-							);
-						}
+		while ($reviewRound =& $reviewRounds->next()) {
+			$stageId = $reviewRound->getStageId();
+			$round = $reviewRound->getRound();
+			$editorDecisions = $seriesEditorSubmission->getDecisions($stageId, $round);
+			if (is_array($editorDecisions)) {
+				foreach ($editorDecisions as $editorDecision) {
+					if ($editorDecision['editDecisionId'] == null) {
+						$this->update(
+							sprintf(
+								'INSERT INTO edit_decisions
+								(monograph_id, stage_id, round, editor_id, decision, date_decided)
+								VALUES (?, ?, ?, ?, ?, %s)',
+								$this->datetimeToDB($editorDecision['dateDecided'])
+							),
+							array(
+								$seriesEditorSubmission->getId(),
+								$stageId,
+								$round,
+								$editorDecision['editorId'],
+								$editorDecision['decision']
+							)
+						);
 					}
 				}
 			}
+			unset($reviewRound);
 		}
 
+		$currentStageId = $seriesEditorSubmission->getStageId();
+		$currentRound = $seriesEditorSubmission->getCurrentRound();
+
+		// Make sure the current round exists (FIXME: is this necessary?)
 		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO'); /* @var $reviewRoundDao ReviewRoundDAO */
-
-		$stageId = $seriesEditorSubmission->getStageId();
-
-		if (isset($stageId)) {
-			$reviewRound = $reviewRoundDao->build(
+		if (isset($currentStageId)) {
+			$currentReviewRound =& $reviewRoundDao->build(
 					$seriesEditorSubmission->getId(),
-					$stageId,
-					$round == null ? 1 : $round);
+					$currentStageId,
+					$currentRound == null ? 1 : $currentRound);
 		}
 
 		// update review assignments
 		$removedReviewAssignments =& $seriesEditorSubmission->getRemovedReviewAssignments();
 
-		foreach ($reviewRounds as $stageId => $round) {
-			for ($i = 1; $i <= $round; $i++) {
-				foreach ($seriesEditorSubmission->getReviewAssignments($stageId, $i) as $reviewAssignment) {
-					if (isset($removedReviewAssignments[$reviewAssignment->getId()])) continue;
+		$reviewRounds = $seriesEditorSubmission->getReviewRounds();
+		while ($reviewRound =& $reviewRounds->next()) {
+			$stageId = $reviewRound->getStageId();
+			$round = $reviewRound->getRound();
+			foreach ($seriesEditorSubmission->getReviewAssignments($stageId, $round) as $reviewAssignment) {
+				if (isset($removedReviewAssignments[$reviewAssignment->getId()])) continue;
 
-					if ($reviewAssignment->getId() > 0) {
-						$this->reviewAssignmentDao->updateObject($reviewAssignment);
-					} else {
-						$this->reviewAssignmentDao->insertObject($reviewAssignment);
-					}
+				if ($reviewAssignment->getId() > 0) {
+					$this->reviewAssignmentDao->updateObject($reviewAssignment);
+				} else {
+					$this->reviewAssignmentDao->insertObject($reviewAssignment);
 				}
 			}
+			unset($reviewRound);
 		}
 
 		// Remove deleted review assignments
@@ -300,24 +312,6 @@ class SeriesEditorSubmissionDAO extends DAO {
 		unset($result);
 
 		return $decisions;
-	}
-
-	/**
-	 * Get the highest review round.
-	 * FIXME: Move to ReviewRoundDAO, see #6455.
-	 * @param $monographId int
-	 * @return int
-	 */
-	function getMaxReviewRound($monographId, $stageId) {
-		$result =& $this->retrieve(
-			'SELECT MAX(round) FROM review_rounds WHERE submission_id = ? AND stage_id = ?', array($monographId, $stageId)
-		);
-		$returner = isset($result->fields[0]) ? $result->fields[0] : 0;
-
-		$result->Close();
-		unset($result);
-
-		return $returner;
 	}
 
 	/**

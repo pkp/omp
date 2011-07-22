@@ -162,8 +162,8 @@ class MonographDAO extends DAO {
 
 
 		// set review rounds info
-		$reviewRoundsInfo = $this->getReviewRoundsInfoById($row['monograph_id']);
-		$monograph->setReviewRoundsInfo($reviewRoundsInfo);
+		$reviewRounds =& $this->getReviewRoundsById($row['monograph_id']);
+		$monograph->setReviewRounds($reviewRounds);
 
 		HookRegistry::call('MonographDAO::_monographFromRow', array(&$monograph, &$row));
 
@@ -497,32 +497,14 @@ class MonographDAO extends DAO {
 	}
 
 	/**
-	 * Get an array describing a monograph's current round for each review stage id
-	 * FIXME: Move to ReviewRoundDAO, see #6455.
-	 * FIXME: Return review round objects rather than an untyped array, see #6406.
+	 * Get an iterator describing all the review rounds round for each review stage id
 	 * @param $monographId int
 	 * @return array
 	 */
-	function &getReviewRoundsInfoById($monographId) {
-		$returner = array();
-		$result =& $this->retrieve(
-			'SELECT	MAX(round) AS current_round, stage_id
-			FROM	review_rounds r
-			WHERE	submission_id = ?
-			GROUP BY stage_id',
-			(int) $monographId
-		);
-
-		while (!$result->EOF) {
-			$row = $result->GetRowAssoc(false);
-			$returner[$row['stage_id']] = $row['current_round'];
-			$result->MoveNext();
-		}
-
-		$result->Close();
-		unset($result);
-
-		return $returner;
+	function &getReviewRoundsById($monographId, $stageId = null, $round = null) {
+		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO'); /* @var $reviewRoundDao ReviewRoundDAO */
+		$reviewRounds =& $reviewRoundDao->getByMonographId($monographId, $stageId, $round);
+		return $reviewRounds;
 	}
 
 

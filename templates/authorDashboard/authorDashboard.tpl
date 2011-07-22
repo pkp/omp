@@ -61,22 +61,31 @@
 		</div>
 	</div>
 
-		<h3><a href="#">{translate key='submission.review'}</a></h3>
-		<div id="reviewContent">
-			{if $stageId > $smarty.const.WORKFLOW_STAGE_ID_SUBMISSION}
-				{assign var="currentReviewRound" value=$monograph->getCurrentRound()}
-
-				<div id="reviewRoundTabs">
 	<div class="pkp_authorDashboard_stageContainer" id="internalReview">
+		<h3><a href="#">{translate key='workflow.review.internalReview'}</a></h3>
+		<div id="internalReviewContent">
+			{if !$internalReviewRounds->wasEmpty()}
+				<div id="internalReviewRoundTabs">
 					<ul>
-						{foreach from=$rounds item=round}
-							<li><a href="{url op="reviewRoundInfo" round=$round monographId=$monograph->getId() escape=false}">{translate key="submission.round" round=$round}</a></li>
-						{/foreach}
-	</div>
-	<div class="pkp_authorDashboard_stageContainer" id="externalReview">
+					{iterate from=internalReviewRounds item=reviewRound}
+						<li><a href="{url op="reviewRoundInfo" monographId=$monograph->getId() stageId=$reviewRound->getStageId() round=$reviewRound->getRound() escape=false}">{translate key="submission.round" round=$reviewRound->getRound()}</a></li>
+					{/iterate}
 					</ul>
 				</div>
-
+			{/if}
+		</div>
+	</div>
+	<div class="pkp_authorDashboard_stageContainer" id="externalReview">
+		<h3><a href="#">{translate key='workflow.review.externalReview'}</a></h3>
+		<div id="externalReviewContent">
+			{if !$externalReviewRounds->wasEmpty()}
+				<div id="externalReviewRoundTabs">
+					<ul>
+					{iterate from=externalReviewRounds item=reviewRound}
+						<li><a href="{url op="reviewRoundInfo" monographId=$monograph->getId() stageId=$reviewRound->getStageId() round=$reviewRound->getRound() escape=false}">{translate key="submission.round" round=$reviewRound->getRound()}</a></li>
+					{/iterate}
+					</ul>
+				</div>
 			{/if}
 		</div>
 	</div>

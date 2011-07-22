@@ -125,12 +125,12 @@ class ReviewRoundDAO extends DAO {
 
 	/**
 	 * Check if a review round exists for a specified monograph.
-	 * @param $monographIdId int
+	 * @param $monographId int
 	 * @param $round int
 	 * @return boolean
 	 */
 	function reviewRoundExists($monographId, $stageId, $round) {
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 				'SELECT COUNT(*) FROM review_rounds WHERE submission_id = ? AND stage_id = ? AND round = ?',
 				array((int)$monographId, (int)$stageId, (int)$round));
 		$returner = isset($result->fields[0]) && $result->fields[0] == 1 ? true : false;
@@ -141,6 +141,47 @@ class ReviewRoundDAO extends DAO {
 		return $returner;
 	}
 
+	/**
+	 * Get an iterator of review round objects associated with this monograph
+	 * @param $monographId int
+	 * @param $stageId int (optional)
+	 * @param $round int (optional)
+	 */
+	function getByMonographId($monographId, $stageId = null, $round = null) {
+		$params = array($monographId);
+		if ($stageId) $params[] = $stageId;
+		if ($round) $params[] = $round;
+
+		$result =& $this->retrieve(
+				'SELECT * FROM review_rounds WHERE submission_id = ?' .
+				($stageId ? ' AND stage_id = ?' : '') .
+				($round ? ' AND round = ?' : '') .
+				' ORDER BY stage_id ASC, round ASC',
+				$params
+				);
+
+		$returner = new DAOResultFactory($result, $this, '_fromRow');
+		return $returner;
+	}
+
+	/**
+	 * Get the current review round for a given stage (or for the latest stage)
+	 * @param $monographId int
+	 * @param $stageId int
+	 * @return int
+	 */
+	function getCurrentRoundByMonographId($monographId, $stageId = null) {
+		$params = array($monographId);
+		if ($stageId) $params[] = $stageId;
+		$result =& $this->retrieve('SELECT MAX(stage_id) as stage_id, MAX(round) as round
+									FROM review_rounds
+									WHERE submission_id = ?' .
+									($stageId ? ' AND stage_id = ?' : ''),
+									$params);
+		$returner = isset($result->fields['round']) ? (int)$result->fields['round'] : 1;
+		$result->Close();
+		return $returner;
+	}
 
 	//
 	// Private methods

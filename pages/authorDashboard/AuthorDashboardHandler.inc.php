@@ -65,14 +65,12 @@ class AuthorDashboardHandler extends Handler {
 		// Workflow-stage specific "upload file" action.
 		$fileStage = null;
 		$currentStage = $monograph->getStageId();
-		$currentRound = null;
 		switch ($currentStage) {
 			case WORKFLOW_STAGE_ID_SUBMISSION:
 				$fileStage = MONOGRAPH_FILE_SUBMISSION;
 				break;
 			case WORKFLOW_STAGE_ID_INTERNAL_REVIEW:
 			case WORKFLOW_STAGE_ID_EXTERNAL_REVIEW:
-				$currentRound = $monograph->getCurrentRound();
 				$fileStage = MONOGRAPH_FILE_REVIEW;
 				break;
 
@@ -80,20 +78,20 @@ class AuthorDashboardHandler extends Handler {
 				$fileStage = MONOGRAPH_FILE_FINAL;
 				break;
 		}
+
+		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
+		$internalReviewRounds =& $reviewRoundDao->getByMonographId($monograph->getId(), WORKFLOW_STAGE_ID_INTERNAL_REVIEW);
+		$externalReviewRounds =& $reviewRoundDao->getByMonographId($monograph->getId(), WORKFLOW_STAGE_ID_EXTERNAL_REVIEW);
+		$templateMgr->assign_by_ref('internalReviewRounds', $internalReviewRounds);
+		$templateMgr->assign_by_ref('externalReviewRounds', $externalReviewRounds);
+
 		if ($fileStage) {
 			import('controllers.api.file.linkAction.AddFileLinkAction');
 			$uploadFileAction = new AddFileLinkAction(
 				$request, $monograph->getId(), $currentStage,
-				array(ROLE_ID_AUTHOR), $fileStage, null, null, $currentRound);
+				array(ROLE_ID_AUTHOR), $fileStage, null, null, $monograph->getCurrentRound());
 			$templateMgr->assign('uploadFileAction', $uploadFileAction);
 		}
-
-
-		// Create an array with one entry per review round.
-		// This will determine the tabs to show.
-		$reviewRounds = array();
-		for ($i = 1; $i <= $monograph->getCurrentRound(); $i++) $reviewRounds[] = $i;
-		$templateMgr->assign('rounds', $reviewRounds);
 
 
 		// If the submission is in or past the copyediting stage,
@@ -118,6 +116,12 @@ class AuthorDashboardHandler extends Handler {
 		$this->setupTemplate($request);
 		$templateMgr =& TemplateManager::getManager();
 
+		$stageId = (int)$request->getUserVar('stageId');
+		if ($stageId !== WORKFLOW_STAGE_ID_INTERNAL_REVIEW && $stageId !== WORKFLOW_STAGE_ID_EXTERNAL_REVIEW) {
+			fatalError('Invalid Stage Id');
+		}
+		$templateMgr->assign('stageId', $stageId);
+
 		$round = (int) $request->getUserVar('round');
 		$templateMgr->assign('round', $round);
 
@@ -125,7 +129,8 @@ class AuthorDashboardHandler extends Handler {
 		$templateMgr->assign_by_ref('monograph', $monograph);
 
 		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
-		$reviewRound =& $reviewRoundDao->getReviewRound($monograph->getId(), $monograph->getStageId(), $round);
+		$reviewRound =& $reviewRoundDao->getReviewRound($monograph->getId(), $stageId, $round);
+		assert(isset($reviewRound));
 
 		// Get the status message for the round
 		$roundStatus =& $reviewRound->getStatusKey();
