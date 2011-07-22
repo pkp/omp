@@ -20,10 +20,11 @@ class NewReviewRoundForm extends EditorDecisionForm {
 	/**
 	 * Constructor.
 	 * @param $seriesEditorSubmission SeriesEditorSubmission
-	 * @param
+	 * @param $decision int
+	 * @param stageid int
 	 */
-	function NewReviewRoundForm($seriesEditorSubmission, $decision = SUBMISSION_EDITOR_DECISION_RESUBMIT) {
-		parent::EditorDecisionForm($seriesEditorSubmission, 'controllers/modals/editorDecision/form/newReviewRoundForm.tpl');
+	function NewReviewRoundForm($seriesEditorSubmission, $decision = SUBMISSION_EDITOR_DECISION_RESUBMIT, $stageId) {
+		parent::EditorDecisionForm($seriesEditorSubmission, $stageId, 'controllers/modals/editorDecision/form/newReviewRoundForm.tpl');
 	}
 
 

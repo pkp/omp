@@ -21,14 +21,18 @@ class EditorDecisionForm extends Form {
 	/** @var SeriesEditorSubmission The submission associated with the editor decision **/
 	var $_seriesEditorSubmission;
 
+	/** @var int The StageId where the decision is being made **/
+	var $_stageId;
+
 	/**
 	 * Constructor.
 	 * @param $seriesEditorSubmission SeriesEditorSubmission
 	 * @param $template string The template to display
 	 */
-	function EditorDecisionForm($seriesEditorSubmission, $template) {
+	function EditorDecisionForm($seriesEditorSubmission, $stageId, $template) {
 		parent::Form($template);
-		$this->setSeriesEditorSubmission($seriesEditorSubmission);
+		$this->_seriesEditorSubmission = $seriesEditorSubmission;
+		$this->_stageId = $stageId;
 
 		// Validation checks for this form
 		$this->addCheck(new FormValidatorPost($this));
@@ -46,13 +50,12 @@ class EditorDecisionForm extends Form {
 	}
 
 	/**
-	 * Set the submission
-	 * @param $seriesEditorSubmission SeriesEditorSubmission
+	 * Get the stage Id
+	 * @return int
 	 */
-	function setSeriesEditorSubmission($seriesEditorSubmission) {
-		$this->_seriesEditorSubmission = $seriesEditorSubmission;
+	function getStageId() {
+		return $this->_stageId;
 	}
-
 
 	//
 	// Overridden template methods from Form
@@ -88,7 +91,7 @@ class EditorDecisionForm extends Form {
 		}
 		// N.B. The current round and stage are loaded under the assumption that
 		// decisions are only made for the current stage.
-		$this->setData('stageId', $seriesEditorSubmission->getStageId());
+		$this->setData('stageId', $this->getStageId());
 		$this->setData('round', $round);
 
 		// Set the monograph.

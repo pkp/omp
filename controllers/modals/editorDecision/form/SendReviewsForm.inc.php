@@ -22,8 +22,9 @@ class SendReviewsForm extends EditorDecisionWithEmailForm {
 	 * Constructor.
 	 * @param $seriesEditorSubmission SeriesEditorSubmission
 	 * @param $decision int
+	 * @param $stageId int
 	 */
-	function SendReviewsForm($seriesEditorSubmission, $decision) {
+	function SendReviewsForm($seriesEditorSubmission, $decision, $stageId) {
 		if (!in_array(
 			$decision,
 			array(
@@ -36,7 +37,7 @@ class SendReviewsForm extends EditorDecisionWithEmailForm {
 		}
 
 		parent::EditorDecisionWithEmailForm(
-			$seriesEditorSubmission, $decision,
+			$seriesEditorSubmission, $decision, $stageId,
 			'controllers/modals/editorDecision/form/sendReviewsForm.tpl'
 		);
 	}

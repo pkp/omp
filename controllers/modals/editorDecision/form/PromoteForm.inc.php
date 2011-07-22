@@ -22,8 +22,9 @@ class PromoteForm extends EditorDecisionWithEmailForm {
 	 * Constructor.
 	 * @param $seriesEditorSubmission SeriesEditorSubmission
 	 * @param $decision int
+	 * @param $stageId int
 	 */
-	function PromoteForm($seriesEditorSubmission, $decision) {
+	function PromoteForm($seriesEditorSubmission, $decision, $stageId) {
 		if (!in_array(
 			$decision,
 			array(SUBMISSION_EDITOR_DECISION_ACCEPT, SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW)
@@ -32,7 +33,7 @@ class PromoteForm extends EditorDecisionWithEmailForm {
 		}
 
 		parent::EditorDecisionWithEmailForm(
-			$seriesEditorSubmission, $decision,
+			$seriesEditorSubmission, $decision, $stageId,
 			'controllers/modals/editorDecision/form/promoteForm.tpl'
 		);
 	}

@@ -23,13 +23,13 @@ class EditorDecisionWithEmailForm extends EditorDecisionForm {
 	 * Constructor.
 	 * @param $seriesEditorSubmission SeriesEditorSubmission
 	 * @param $decision integer
+	 * @param $stageId integer
 	 * @param $template string The template to display
 	 */
-	function EditorDecisionWithEmailForm($seriesEditorSubmission, $decision, $template) {
-		parent::EditorDecisionForm($seriesEditorSubmission, $template);
-		$this->setDecision($decision);
+	function EditorDecisionWithEmailForm($seriesEditorSubmission, $decision, $stageId, $template) {
+		parent::EditorDecisionForm($seriesEditorSubmission, $stageId, $template);
+		$this->_decision = $decision;
 	}
-
 
 	//
 	// Getters and Setters
@@ -41,15 +41,6 @@ class EditorDecisionWithEmailForm extends EditorDecisionForm {
 	function getDecision() {
 		return $this->_decision;
 	}
-
-	/**
-	 * Set the decision
-	 * @param $decision integer
-	 */
-	function setDecision($decision) {
-		$this->_decision = (int) $decision;
-	}
-
 
 	//
 	// Implement protected template methods from Form

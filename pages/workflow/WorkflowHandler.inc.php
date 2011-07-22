@@ -246,33 +246,29 @@ class WorkflowHandler extends Handler {
 		// Prepare the action arguments.
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		$stageId = $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
-		if ($monograph->getStageId() != $stageId) {
-			$editorActions = array();
-		} else {
-			$actionArgs = array('monographId' => $monograph->getId(), 'stageId' => $monograph->getStageId());
-			$actionArgs = array_merge($actionArgs, $additionalArgs);
+		$actionArgs = array('monographId' => $monograph->getId(), 'stageId' => $stageId);
+		$actionArgs = array_merge($actionArgs, $additionalArgs);
 
-			// Retrieve the editor decisions.
-			$decisions = call_user_func(array($this, $decisionsCallback));
+		// Retrieve the editor decisions.
+		$decisions = call_user_func(array($this, $decisionsCallback));
 
-			// Iterate through the editor decisions and create a link action for each decision.
-			$dispatcher =& $this->getDispatcher();
-			foreach($decisions as $decision => $action) {
-				$actionArgs['decision'] = $decision;
-				$editorActions[] = new LinkAction(
-					$action['name'],
-					new AjaxModal(
-						$dispatcher->url(
-							$request, ROUTE_COMPONENT, null,
-							'modals.editorDecision.EditorDecisionHandler',
-							$action['operation'], null, $actionArgs
-						),
-						__($action['title'])
+		// Iterate through the editor decisions and create a link action for each decision.
+		$dispatcher =& $this->getDispatcher();
+		foreach($decisions as $decision => $action) {
+			$actionArgs['decision'] = $decision;
+			$editorActions[] = new LinkAction(
+				$action['name'],
+				new AjaxModal(
+					$dispatcher->url(
+						$request, ROUTE_COMPONENT, null,
+						'modals.editorDecision.EditorDecisionHandler',
+						$action['operation'], null, $actionArgs
 					),
-					__($action['title']),
-					(isset($action['image']) ? $action['image'] : null)
-				);
-			}
+					__($action['title'])
+				),
+				__($action['title']),
+				(isset($action['image']) ? $action['image'] : null)
+			);
 		}
 		// Assign the actions to the template.
 		$templateMgr =& TemplateManager::getManager();

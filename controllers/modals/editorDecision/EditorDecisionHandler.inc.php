@@ -228,14 +228,18 @@ class EditorDecisionHandler extends Handler {
 	function _initiateEditorDecision($args, &$request, $formName) {
 		// Retrieve the authorized monograph.
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		// Retrieve the stage id
+		$stageId = $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
 		// FIXME: Need to validate the decision (Does it combine with the
 		// requested operation? Is it a valid decision? Is the user authorized
 		// to take that decision? See #6199.
 		$decision = (int)$request->getUserVar('decision');
 
+
+
 		// Form handling
 		import("controllers.modals.editorDecision.form.$formName");
-		$editorDecisionForm = new $formName($monograph, $decision);
+		$editorDecisionForm = new $formName($monograph, $decision, $stageId);
 		$editorDecisionForm->initData($args, $request);
 
 		$json = new JSONMessage(true, $editorDecisionForm->fetch($request));
@@ -254,12 +258,14 @@ class EditorDecisionHandler extends Handler {
 	function _saveEditorDecision($args, &$request, $formName, $redirectOp = null) {
 		// Retrieve the authorized monograph.
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		// Retrieve the stage id
+		$stageId = $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
 		// FIXME: Need to validate the decision. See #6199.
 		$decision = (int)$request->getUserVar('decision');
 
 		// Form handling
 		import("controllers.modals.editorDecision.form.$formName");
-		$editorDecisionForm = new $formName($monograph, $decision);
+		$editorDecisionForm = new $formName($monograph, $decision, $stageId);
 
 		$editorDecisionForm->readInputData();
 		if ($editorDecisionForm->validate()) {
