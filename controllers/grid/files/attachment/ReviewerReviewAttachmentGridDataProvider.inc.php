@@ -22,8 +22,8 @@ class ReviewerReviewAttachmentGridDataProvider extends SubmissionFilesGridDataPr
 	/**
 	 * Constructor
 	 */
-	function ReviewerReviewAttachmentGridDataProvider($stageId) {
-		parent::SubmissionFilesGridDataProvider($stageId, MONOGRAPH_FILE_REVIEW_ATTACHMENT);
+	function ReviewerReviewAttachmentGridDataProvider() {
+		parent::SubmissionFilesGridDataProvider(MONOGRAPH_FILE_REVIEW_ATTACHMENT);
 	}
 
 

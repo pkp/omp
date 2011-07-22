@@ -20,7 +20,7 @@ class EditorSubmissionDetailsFilesGridHandler extends FileListGridHandler {
 	 */
 	function EditorSubmissionDetailsFilesGridHandler() {
 		import('controllers.grid.files.SubmissionFilesGridDataProvider');
-		$dataProvider = new SubmissionFilesGridDataProvider(WORKFLOW_STAGE_ID_SUBMISSION, MONOGRAPH_FILE_SUBMISSION);
+		$dataProvider = new SubmissionFilesGridDataProvider(MONOGRAPH_FILE_SUBMISSION);
 		parent::FileListGridHandler(
 			$dataProvider,
 			WORKFLOW_STAGE_ID_SUBMISSION,

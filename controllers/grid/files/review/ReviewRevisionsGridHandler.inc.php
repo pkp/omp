@@ -20,10 +20,10 @@ class ReviewRevisionsGridHandler extends FileSignoffGridHandler {
 	 */
 	function ReviewRevisionsGridHandler() {
 		import('controllers.grid.files.review.ReviewRevisionsGridDataProvider');
-		// FIXME: #6244# HARDCODED INTERNAL_REVIEW
+		// Pass in null stageId to be set in initialize from request var.
 		parent::FileSignoffGridHandler(
 			new ReviewRevisionsGridDataProvider(),
-			WORKFLOW_STAGE_ID_INTERNAL_REVIEW,
+			null,
 			FILE_GRID_ADD|FILE_GRID_DOWNLOAD_ALL
 		);
 

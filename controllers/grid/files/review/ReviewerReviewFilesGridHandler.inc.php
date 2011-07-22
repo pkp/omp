@@ -19,12 +19,11 @@ class ReviewerReviewFilesGridHandler extends FileListGridHandler {
 	 * Constructor
 	 */
 	function ReviewerReviewFilesGridHandler() {
-		// FIXME: #6244# HARDCODED INTERNAL_REVIEW x 2
+		// Pass in null stageId to be set in initialize from request var.
 		import('controllers.grid.files.review.ReviewGridDataProvider');
-		$dataProvider = new ReviewGridDataProvider(WORKFLOW_STAGE_ID_INTERNAL_REVIEW, MONOGRAPH_FILE_REVIEW);
 		parent::FileListGridHandler(
-			$dataProvider,
-			WORKFLOW_STAGE_ID_INTERNAL_REVIEW,
+			new ReviewGridDataProvider(MONOGRAPH_FILE_REVIEW),
+			null,
 			FILE_GRID_DOWNLOAD_ALL
 		);
 

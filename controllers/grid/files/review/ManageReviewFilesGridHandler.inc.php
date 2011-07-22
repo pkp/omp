@@ -25,11 +25,10 @@ class ManageReviewFilesGridHandler extends SelectableFileListGridHandler {
 	 */
 	function ManageReviewFilesGridHandler() {
 		import('controllers.grid.files.review.ReviewGridDataProvider');
-		// FIXME: #6244# HARDCODED INTERNAL_REVIEW
-		$dataProvider = new ReviewGridDataProvider(WORKFLOW_STAGE_ID_INTERNAL_REVIEW, MONOGRAPH_FILE_REVIEW);
+		// Pass in null stageId to be set in initialize from request var.
 		parent::SelectableFileListGridHandler(
-			$dataProvider,
-			WORKFLOW_STAGE_ID_INTERNAL_REVIEW,
+			new ReviewGridDataProvider(MONOGRAPH_FILE_REVIEW),
+			null,
 			FILE_GRID_ADD|FILE_GRID_DOWNLOAD_ALL
 		);
 

@@ -21,7 +21,6 @@ class FairCopyFilesGridHandler extends FileSignoffGridHandler {
 	function FairCopyFilesGridHandler() {
 		import('controllers.grid.files.SubmissionFilesGridDataProvider');
 		$dataProvider = new SubmissionFilesGridDataProvider(
-			WORKFLOW_STAGE_ID_EDITING,
 			MONOGRAPH_FILE_FAIR_COPY
 		);
 		parent::FileSignoffGridHandler(

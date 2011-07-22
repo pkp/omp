@@ -29,9 +29,7 @@ class SubmissionFilesGridDataProvider extends FilesGridDataProvider {
 	 * @param $stageId integer One of the WORKFLOW_STAGE_ID_* constants.
 	 * @param $fileStage integer One of the MONOGRAPH_FILE_* constants.
 	 */
-	function SubmissionFilesGridDataProvider($stageId, $fileStage) {
-		assert(is_numeric($stageId) && $stageId > 0);
-		$this->_stageId = (int)$stageId;
+	function SubmissionFilesGridDataProvider($fileStage) {
 		assert(is_numeric($fileStage) && $fileStage > 0);
 		$this->_fileStage = (int)$fileStage;
 		parent::FilesGridDataProvider();
@@ -92,6 +90,16 @@ class SubmissionFilesGridDataProvider extends FilesGridDataProvider {
 		return $addFileAction;
 	}
 
+
+	//
+	// Setter
+	//
+	/**
+	 * Set the workflow stage.
+	 */
+	function setStageId($stageId) {
+		$this->_stageId = $stageId;
+	}
 
 	//
 	// Private helper methods

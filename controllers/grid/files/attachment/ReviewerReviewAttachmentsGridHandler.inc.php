@@ -20,10 +20,10 @@ class ReviewerReviewAttachmentsGridHandler extends FileListGridHandler {
 	 */
 	function ReviewerReviewAttachmentsGridHandler() {
 		import('controllers.grid.files.attachment.ReviewerReviewAttachmentGridDataProvider');
-		// FIXME: #6244# HARDCODED INTERNAL_REVIEW
+		// Pass in null stageId to be set in initialize from request var.
 		parent::FileListGridHandler(
-			new ReviewerReviewAttachmentGridDataProvider(WORKFLOW_STAGE_ID_INTERNAL_REVIEW, MONOGRAPH_FILE_REVIEW_ATTACHMENT),
-			WORKFLOW_STAGE_ID_INTERNAL_REVIEW,
+			new ReviewerReviewAttachmentGridDataProvider(MONOGRAPH_FILE_REVIEW_ATTACHMENT),
+			null,
 			FILE_GRID_ADD|FILE_GRID_DELETE|FILE_GRID_DOWNLOAD_ALL
 		);
 

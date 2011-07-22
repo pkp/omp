@@ -100,8 +100,8 @@ class AuthorSubmission extends Monograph {
 	 * Set review assignments for this monograph.
 	 * @param $reviewAssignments array ReviewAssignments
 	 */
-	function setReviewAssignments($reviewAssignments, $round) {
-		return $this->reviewAssignments[$round] = $reviewAssignments;
+	function setReviewAssignments($reviewAssignments, $stageId, $round) {
+		return $this->reviewAssignments[$stageId][$round] = $reviewAssignments;
 	}
 
 	//

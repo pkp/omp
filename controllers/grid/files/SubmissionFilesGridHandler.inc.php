@@ -50,7 +50,10 @@ class SubmissionFilesGridHandler extends GridHandler {
 	 *  FILE_GRID_* capabilities set.
 	 */
 	function SubmissionFilesGridHandler(&$dataProvider, $stageId, $capabilities) {
-		$this->_stageId = (int)$stageId;
+		// the StageId can be set later if necessary.
+		if ($stageId) {
+			$this->_stageId = (int)$stageId;
+		}
 		$this->_canAdd = (boolean)($capabilities & FILE_GRID_ADD);
 		$this->_canDownloadAll = (boolean)($capabilities & FILE_GRID_DOWNLOAD_ALL);
 		$this->_canDelete = (boolean)($capabilities & FILE_GRID_DELETE);
@@ -111,6 +114,23 @@ class SubmissionFilesGridHandler extends GridHandler {
 	// Implement template methods from PKPHandler
 	//
 	/**
+	 * @see PKPHandler::authorize()
+	 */
+	function authorize(&$request, &$args, $roleAssignments) {
+		// Set the stage id from the request parameter if not set previously.
+		if (!$this->getStageId()) {
+			$stageId = (int) $request->getUserVar('stageId');
+			assert($stageId && $stageId > 0);
+			$this->_stageId = $stageId;
+		}
+		$dataProvider =& $this->getDataProvider();
+		assert(is_a($dataProvider, 'SubmissionFilesGridDataProvider'));
+		$dataProvider->setStageId($this->getStageId());
+
+		return parent::authorize($request, $args, $roleAssignments);
+	}
+
+	/**
 	 * @see PKPHandler::initialize()
 	 */
 	function initialize(&$request) {
@@ -125,7 +145,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 			)
 		);
 
-		// Add grid-level actions.
+		// Add grid actions
 		$dataProvider =& $this->getDataProvider();
 		if($this->canAdd()) {
 			assert($dataProvider);

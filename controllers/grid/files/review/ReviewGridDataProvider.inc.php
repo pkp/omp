@@ -23,8 +23,8 @@ class ReviewGridDataProvider extends SubmissionFilesGridDataProvider {
 	/**
 	 * Constructor
 	 */
-	function ReviewGridDataProvider($stageId, $fileStageId) {
-		parent::SubmissionFilesGridDataProvider($stageId, $fileStageId);
+	function ReviewGridDataProvider($fileStageId) {
+		parent::SubmissionFilesGridDataProvider($fileStageId);
 	}
 
 

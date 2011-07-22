@@ -22,12 +22,8 @@ class SelectableFinalDraftFilesGridHandler extends SelectableFileListGridHandler
 	 */
 	function SelectableFinalDraftFilesGridHandler() {
 		import('controllers.grid.files.SubmissionFilesGridDataProvider');
-		$dataProvider = new SubmissionFilesGridDataProvider(
-			WORKFLOW_STAGE_ID_EDITING,
-			MONOGRAPH_FILE_FINAL
-		);
 		parent::SelectableFileListGridHandler(
-			$dataProvider,
+			new SubmissionFilesGridDataProvider(MONOGRAPH_FILE_FINAL),
 			WORKFLOW_STAGE_ID_EDITING,
 			FILE_GRID_ADD|FILE_GRID_DELETE
 		);

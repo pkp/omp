@@ -20,11 +20,10 @@ class SelectableSubmissionDetailsFilesGridHandler extends SelectableFileListGrid
 	 */
 	function SelectableSubmissionDetailsFilesGridHandler() {
 		import('controllers.grid.files.SubmissionFilesGridDataProvider');
-		// FIXME: #6244# HARDCODED INTERNAL_REVIEW
-		$dataProvider = new SubmissionFilesGridDataProvider(WORKFLOW_STAGE_ID_INTERNAL_REVIEW, MONOGRAPH_FILE_SUBMISSION);
+		// Pass in null stageId to be set in initialize from request var.
 		parent::SelectableFileListGridHandler(
-			$dataProvider,
-			WORKFLOW_STAGE_ID_INTERNAL_REVIEW,
+			new SubmissionFilesGridDataProvider(MONOGRAPH_FILE_SUBMISSION),
+			null,
 			FILE_GRID_ADD|FILE_GRID_DOWNLOAD_ALL
 		);
 

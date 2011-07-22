@@ -22,8 +22,7 @@ class ReviewRevisionsGridDataProvider extends ReviewGridDataProvider {
 	 * Constructor
 	 */
 	function ReviewRevisionsGridDataProvider() {
-		// FIXME: #6244# HARDCODED INTERNAL_REVIEW
-		parent::ReviewGridDataProvider(WORKFLOW_STAGE_ID_INTERNAL_REVIEW, MONOGRAPH_FILE_REVIEW);
+		parent::ReviewGridDataProvider(MONOGRAPH_FILE_REVIEW);
 	}
 
 

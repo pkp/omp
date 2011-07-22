@@ -21,8 +21,9 @@ class SubmissionWizardFilesGridHandler extends FileListGridHandler {
 	 */
 	function SubmissionWizardFilesGridHandler() {
 		import('controllers.grid.files.SubmissionFilesGridDataProvider');
-		$dataProvider = new SubmissionFilesGridDataProvider(WORKFLOW_STAGE_ID_SUBMISSION, MONOGRAPH_FILE_SUBMISSION);
-		parent::FileListGridHandler($dataProvider, WORKFLOW_STAGE_ID_SUBMISSION, FILE_GRID_ADD|FILE_GRID_DELETE);
+		parent::FileListGridHandler(new SubmissionFilesGridDataProvider(MONOGRAPH_FILE_SUBMISSION),
+									WORKFLOW_STAGE_ID_SUBMISSION,
+									FILE_GRID_ADD|FILE_GRID_DELETE);
 		$this->addRoleAssignment(
 			array(ROLE_ID_AUTHOR, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
 			array('fetchGrid', 'fetchRow', 'downloadAllFiles')
