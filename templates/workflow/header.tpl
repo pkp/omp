@@ -14,7 +14,7 @@
 		<div class="action pkp_linkActions">
 			{url|assign:"allParticipantsUrl" router=$smarty.const.ROUTE_COMPONENT component="modals.submissionParticipants.SubmissionParticipantsHandler" op="fetch" stageId=$monograph->getStageId() monographId=$monograph->getId() escape=false}
 			{modal url="$allParticipantsUrl" actOnType="nothing" actOnId="nothing" dialogText='reviewer.step1.viewAllDetails' button="#allParticipants"}
-			<a id="allParticipants" class="user_list" href="{$metadataUrl}">{translate key="submission.submit.allParticipants"}</a>
+			<a id="allParticipants" class="user_list" href="{$allParticipantsUrl}">{translate key="submission.submit.allParticipants"}</a>
 		</div>
 
 		<div class="action pkp_linkActions">
