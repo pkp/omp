@@ -450,7 +450,7 @@ class PeopleHandler extends ManagerHandler {
 			$site =& $request->getSite();
 			$press =& $request->getPress();
 			$roleDao =& DAORegistry::getDAO('RoleDAO');
-			$roles =& $roleDao->getRolesByUserId($user->getId(), $press->getId());
+			$roles =& $roleDao->getByUserId($user->getId(), $press->getId());
 
 			$countryDao =& DAORegistry::getDAO('CountryDAO');
 			$country = null;
