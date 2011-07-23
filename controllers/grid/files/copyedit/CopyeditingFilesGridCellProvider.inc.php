@@ -49,9 +49,8 @@ class CopyeditingFilesGridCellProvider extends GridCellProvider {
 				$userGroup =& $userGroupDao->getById($signoff->getUserGroupId());
 				$user =& $userDao->getUser($signoff->getUserId());
 
-				$label = $user->getFullName() . ' (' . $userGroup->getLocalizedName() . ') - ' . $monographFile->getLocalizedName();
-				import('controllers.api.file.linkAction.DownloadFileLinkAction');
-				return array(new DownloadFileLinkAction($request, $monographFile));
+				import('controllers.api.file.linkAction.DownloadCopyeditedFileLinkAction');
+				return array(new DownloadCopyeditedFileLinkAction($request, $monographFile, $user, $userGroup));
 			} else {
 				$fileId = $monographFile = null;
 				return null;

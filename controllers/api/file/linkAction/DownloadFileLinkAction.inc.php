@@ -34,9 +34,18 @@ class DownloadFileLinkAction extends FileLinkAction {
 
 		// Configure the file link action.
 		parent::FileLinkAction(
-			'downloadFile', $redirectRequest, $monographFile->getFileLabel(),
+			'downloadFile', $redirectRequest, $this->getLabel($monographFile),
 			is_a($monographFile, 'ArtworkFile')?'imageFile':null
 		);
+	}
+
+	/**
+	 * Get the label for the file download action.
+	 * @param $monographFile MonographFile
+	 * @return string
+	 */
+	function getLabel(&$monographFile) {
+		return $monographFile->getFileLabel();
 	}
 }
 
