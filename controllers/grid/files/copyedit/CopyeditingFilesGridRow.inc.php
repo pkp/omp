@@ -88,15 +88,13 @@ class CopyeditingFilesGridRow extends GridRow {
 			if (!$copyeditedFileId && $signoff->getUserId() == $user->getId()) {
 				$this->addAction(new LinkAction(
 					'addCopyeditedFile',
-					new AjaxModal(
-						$router->url(
-							$request, null, null, 'addCopyeditedFile',
-							null, array(
-								'signoffId' => $rowId,
-								'monographId' => $monographId
-							)
+					new AjaxModal($router->url(
+						$request, null, null, 'addCopyeditedFile',
+						null, array(
+							'signoffId' => $rowId,
+							'monographId' => $monographId
 						)
-					),
+					)),
 					__('submission.addFile'),
 					'add'
 				));
