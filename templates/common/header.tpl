@@ -97,7 +97,7 @@
 		// Initialise JS handler.
 		$(function() {ldelim}
 			$('div.pkp_structure_page').pkpHandler(
-				'$.pkp.controllers.NotificationHandler',
+				'$.pkp.controllers.SiteHandler',
 				{ldelim}
 					fetchNotificationUrl: '{url|escape:javascript page='notification' op='fetchNotification' escape=false}',
 					hasSystemNotifications: {if $hasSystemNotifications}true{else}false{/if}
