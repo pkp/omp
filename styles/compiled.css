@@ -451,11 +451,6 @@ table.pkp_listing td.separator {
   font-size:110%;
   padding:10px 0 10px 0;
 }
-.pkp_form div.section {
-  clear:left;
-  margin-bottom:10px;
-  overflow:hidden;
-}
 .pkp_form label {
   display:block;
   font-weight:bold;
@@ -484,6 +479,7 @@ table.pkp_listing td.separator {
   border:1px solid #cccccc;
   padding:2px;
 }
+.pkp_form input:focus { outline:none; }
 .pkp_form textarea {
   width:98%;
   width:97.5%;
@@ -491,12 +487,14 @@ table.pkp_listing td.separator {
   padding:2px;
   height:10em;
 }
+.pkp_form textarea:focus { outline:none; }
 .pkp_form select {
   width:98%;
   width:98.5%;
   border:1px solid #cccccc;
   padding:2px;
 }
+.pkp_form select:focus { outline:none; }
 .pkp_form .quarter { width:25%; }
 .pkp_form .half { width:48%; }
 .pkp_form .short { height:5em; }
@@ -549,7 +547,7 @@ table.pkp_listing td.separator {
   margin-top:-2px;
   background-color:#eeeeee;
   display:block;
-  padding:2px 5px 2px 5px;
+  padding:2px 5px 0px 5px;
   position:relative;
 }
 .pkp_form .localization_popover {
@@ -559,11 +557,25 @@ table.pkp_listing td.separator {
   position:absolute;
   z-index:100;
   width:97.3%;
+  display:none;
 }
 .pkp_form label.locale {
   font-size:1px;
   text-indent:-9999px;
 }
+.pkp_form .localizable {
+  background-color:#ffffff !important;
+  background-repeat:no-repeat;
+  background:url(../lib/pkp/templates/images/structure/icon_globe.png) no-repeat;
+  background-position:100% 50%;
+}
+.pkp_form textarea.localizable { background-position:100% 0; }
+.pkp_form .flag {
+  background-color:#ffffff !important;
+  background-repeat:no-repeat;
+  background-position:100% 50%;
+}
+.pkp_form .flag_te_ST { background-image:url(../lib/pkp/templates/images/structure/flags/te_ST.png) !important; }
 .pkp_form .pkp_form_file_input_container {
   height:30px;
   width:350px;
@@ -616,58 +628,40 @@ table.pkp_listing td.separator {
 .pkp_form .formButtons .submitFormButton { float:right; }
 .pkp_form .formButtons .cancelFormButton { float:left; }
 .pkp_form .formButtons div.clear { clear:both; }
-.pkp_form .pkp_form_localization_container {
-  background-color:#ffffff;
-  padding:5px;
-}
-.pkp_form .pkp_form_localization_container .pkp_form_localization_container_focus { background-color:#dddddd !important; }
-.pkp_form .pkp_form_localization_container .pkp_form_localization_popover {
-  margin:2em;
-  margin-left:-5px;
-  position:absolute;
-  z-index:10001;
-  background-color:#dddddd;
-  display:none;
-}
-.pkp_form .pkp_form_localization_container label.multilingual_extra_label {
-  text-indent:-9999px;
-  margin:0;
-  padding:0;
-}
-.pkp_form .pkp_form_localization_container input.locale_en_US {
+.pkp_form .localization_popover_container input.locale_en_US {
   margin:0;
   background-repeat:no-repeat;
   background-position:98% 50%;
   background-image:url(../lib/pkp/templates/images/structure/flags/en_US.png) !important;
 }
-.pkp_form .pkp_form_localization_container input.locale_fr_CA {
+.pkp_form .localization_popover_container input.locale_fr_CA {
   margin:0;
   background-repeat:no-repeat;
   background-position:98% 50%;
   background-image:url(../lib/pkp/templates/images/structure/flags/fr_CA.png) !important;
 }
-.pkp_form .pkp_form_localization_container input.locale_te_ST {
+.pkp_form .localization_popover_container input.locale_te_ST {
   margin:0;
   background-repeat:no-repeat;
   background-position:98% 50%;
   background-image:url(../lib/pkp/templates/images/structure/flags/te_ST.png) !important;
 }
-.pkp_form .pkp_form_localization_container textarea.locale_en_US {
+.pkp_form .localization_popover_container textarea.locale_en_US {
   margin:0;
   background-repeat:no-repeat;
-  background-position:98% 97%;
+  background-position:99.5% 2px;
   background-image:url(../lib/pkp/templates/images/structure/flags/en_US.png) !important;
 }
-.pkp_form .pkp_form_localization_container textarea.locale_fr_CA {
+.pkp_form .localization_popover_container textarea.locale_fr_CA {
   margin:0;
   background-repeat:no-repeat;
-  background-position:98% 97%;
+  background-position:99.5% 2px;
   background-image:url(../lib/pkp/templates/images/structure/flags/fr_CA.png) !important;
 }
-.pkp_form .pkp_form_localization_container textarea.locale_te_ST {
+.pkp_form .localization_popover_container textarea.locale_te_ST {
   margin:0;
   background-repeat:no-repeat;
-  background-position:98% 97%;
+  background-position:99.5% 2px;
   background-image:url(../lib/pkp/templates/images/structure/flags/te_ST.png) !important;
 }
 div.pkp_controllers_grid div.wrapper {
