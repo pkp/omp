@@ -99,10 +99,9 @@
 			$('div.pkp_structure_page').pkpHandler(
 				'$.pkp.controllers.SiteHandler',
 				{ldelim}
-					fetchNotificationUrl: '{url|escape:javascript page='notification' op='fetchNotification' escape=false}',
+					{include file="common/notification/notificationOptions.tpl"},
 					hasSystemNotifications: {if $hasSystemNotifications}true{else}false{/if}
-				{rdelim}
-			);
+				{rdelim});
 		{rdelim});
 	</script>
 	<div class="pkp_structure_page">
