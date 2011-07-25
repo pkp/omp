@@ -26,6 +26,8 @@ class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
 		$supportedSubmissionLocales = $press->getSetting('supportedSubmissionLocales');
 		if (!is_array($supportedSubmissionLocales) || count($supportedSubmissionLocales) < 1) $supportedSubmissionLocales = array($press->getPrimaryLocale());
 		$this->addCheck(new FormValidatorInSet($this, 'locale', 'required', 'submission.submit.form.localeRequired', $supportedSubmissionLocales));
+		$this->addCheck(new FormValidator($this, 'authorUserGroup', 'required', 'user.authorization.userGroupRequired'));
+
 
 		foreach ($press->getLocalizedSetting('submissionChecklist') as $key => $checklistItem) {
 			$this->addCheck(new FormValidator($this, "checklist-$key", 'required', 'submission.submit.checklistErrors'));
@@ -65,6 +67,46 @@ class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
 				$supportedSubmissionLocales
 			))
 		);
+
+		// Get list of user's author user groups.  If its more than one, we'll need to display an author user group selector
+		$userGroupAssignmentDao =& DAORegistry::getDAO('UserGroupAssignmentDAO');
+		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+		$authorUserGroupAssignments =& $userGroupAssignmentDao->getByUserId($user->getId(), $this->press->getId(), ROLE_ID_AUTHOR);
+		if(isset($authorUserGroupAssignments)) {
+			if($authorUserGroupAssignments->getCount() > 1) {
+				$authorUserGroupNames = array();
+				while($authorUserGroupAssignment =& $authorUserGroupAssignments->next()) {
+					$authorUserGroup =& $userGroupDao->getById($authorUserGroupAssignment->getUserGroupId());
+					$authorUserGroupNames[$authorUserGroup->getId()] = $authorUserGroup->getLocalizedName();
+					unset($authorUserGroupAssignment);
+				}
+				$templateMgr->assign('authorUserGroups', $authorUserGroupNames);
+			} else {
+				$authorUserGroup =& $authorUserGroupAssignments->next();
+				$templateMgr->assign('authorUserGroup', $authorUserGroup->getUserGroupId());
+			}
+		} else {
+			// The user doesn't have any author user group assignments.  They should be either an editor or manager.
+			$userGroupNames = array();
+
+			// Add all manager user groups
+			$managerUserGroupAssignments =& $userGroupAssignmentDao->getByUserId($user->getId(), $this->press->getId(), ROLE_ID_PRESS_MANAGER);
+			if($managerUserGroupAssignments) while($managerUserGroupAssignment =& $managerUserGroupAssignments->next()) {
+				$managerUserGroup =& $userGroupDao->getById($managerUserGroupAssignment->getUserGroupId());
+				$userGroupNames[$managerUserGroup->getId()] = $managerUserGroup->getLocalizedName();
+				unset($managerUserGroupAssignment);
+			}
+
+			// Add all editor user groups
+			$editorUserGroupAssignments =& $userGroupAssignmentDao->getByUserId($user->getId(), $this->press->getId(), ROLE_ID_EDITOR);
+			if($editorUserGroupAssignments) while($editorUserGroupAssignment =& $editorUserGroupAssignments->next()) {
+				$editorUserGroup =& $userGroupDao->getById($editorUserGroupAssignment->getUserGroupId());
+				$userGroupNames[$editorUserGroup->getId()] = $editorUserGroup->getLocalizedName();
+				unset($editorUserGroup);
+			}
+
+			$templateMgr->assign('authorUserGroups', $userGroupNames);
+		}
 
 		parent::display($request);
 	}
@@ -106,7 +148,7 @@ class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
 	 */
 	function readInputData() {
 		$vars = array(
-			'locale', 'isEditedVolume', 'copyrightNoticeAgree', 'seriesId', 'commentsToEditor'
+			'authorUserGroup', 'locale', 'isEditedVolume', 'copyrightNoticeAgree', 'seriesId', 'commentsToEditor'
 		);
 		foreach ($this->press->getLocalizedSetting('submissionChecklist') as $key => $checklistItem) {
 			$vars[] = "checklist-$key";
@@ -133,9 +175,8 @@ class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
 				$this->monograph->setSubmissionProgress($this->step + 1);
 			}
 			$monographDao->updateMonograph($this->monograph);
-
 		} else {
-			$user =& Request::getUser();
+			$user =& $request->getUser();
 
 			// Get the session and the user group id currently used
 			$sessionMgr =& SessionManager::getManager();
@@ -154,13 +195,8 @@ class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
 			$this->monograph->setWorkType($this->getData('isEditedVolume') ? WORK_TYPE_EDITED_VOLUME : WORK_TYPE_AUTHORED_WORK);
 			$this->monograph->setStageId(WORKFLOW_STAGE_ID_SUBMISSION);
 
-			// Get a default user group id for an Author
-			$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
-			$defaultAuthorGroup =& $userGroupDao->getDefaultByRoleId($this->press->getId(), ROLE_ID_AUTHOR);
-
 			// Set user to initial author
 			$authorDao =& DAORegistry::getDAO('AuthorDAO');
-			$user =& Request::getUser();
 			$author = new Author();
 			$author->setFirstName($user->getFirstName());
 			$author->setMiddleName($user->getMiddleName());
@@ -169,9 +205,12 @@ class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
 			$author->setCountry($user->getCountry());
 			$author->setEmail($user->getEmail());
 			$author->setUrl($user->getUrl());
-			$author->setUserGroupId($defaultAuthorGroup->getId());
 			$author->setBiography($user->getBiography(null), null);
 			$author->setPrimaryContact(1);
+
+			// Get the user group to display the submitter as
+			$authorUserGroup = (int) $this->getData('authorUserGroup');
+			$author->setUserGroupId($authorUserGroup);
 
 			$monographDao->insertMonograph($this->monograph);
 			$this->monographId = $this->monograph->getId();

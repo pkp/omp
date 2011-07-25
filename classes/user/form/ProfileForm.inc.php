@@ -39,8 +39,8 @@ class ProfileForm extends Form {
 	}
 
 	/**
-	* Get the user associated with this profile
-	*/
+	 * Get the user associated with this profile
+	 */
 	function getUser() {
 		return $this->_user;
 	}

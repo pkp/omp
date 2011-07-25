@@ -142,7 +142,6 @@ class RegistrationForm extends Form {
 	 * Initialize default data.
 	 */
 	function initData() {
-		$this->setData('registerAsReader', 1);
 		$this->setData('existingUser', $this->existingUser);
 		$this->setData('userLocales', array());
 		$this->setData('sendPassword', 1);
@@ -297,10 +296,8 @@ class RegistrationForm extends Form {
 			}
 			if ($press->getSetting('allowRegAuthor')) {
 				$authorGroup =& $this->getData('authorGroup');
-				if (is_array($authorGroup)) {
-					foreach ($authorGroup as $groupId => $wantsGroup ) {
-						if ($wantsGroup) $userGroupDao->assignUserToGroup($userId, $groupId);
-					}
+				if (isset($authorGroup)) {
+ 					$userGroupDao->assignUserToGroup($userId, $authorGroup, $press->getId());
 				}
 			}
 		}

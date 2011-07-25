@@ -16,6 +16,15 @@
 {include file="common/formErrors.tpl"}
 
 {fbvFormArea id="submissionStep1"}
+	<!-- Author user group selection (only appears if user has > 1 author user groups) -->
+	{if $authorUserGroups}
+		{fbvFormSection title="submission.submitterUserGroup" inline=true size=$fbvStyles.size.MEDIUM}
+			{fbvElement type="select" id="authorUserGroup" from=$authorUserGroups translate=false}
+		{/fbvFormSection}
+	{else}
+		{fbvElement type="hidden" id="authorUserGroup" value=$authorUserGroup}
+	{/if}
+
 	<!-- Submission Type -->
 	{fbvFormSection list="true" label="submission.workType" description="submission.workType.description"}
 		{fbvElement type="radio" name="isEditedVolume" id="isEditedVolume-0" value="1" checked=$isEditedVolume label="submission.workType.editedVolume"}
@@ -26,7 +35,7 @@
 	{if count($supportedSubmissionLocaleNames) == 1}
 	{* There is only one supported submission locale; choose it invisibly *}
 		{foreach from=$supportedSubmissionLocaleNames item=localeName key=locale}
-			<input type="hidden" name="locale" value="{$locale|escape}"/>
+			{fbvElement type="hidden" id="locale" value=$locale|escape}
 		{/foreach}
 		{else}
 	{* There are several submission locales available; allow choice *}

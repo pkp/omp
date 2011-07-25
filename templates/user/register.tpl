@@ -131,9 +131,10 @@
 			{if $allowRegAuthor}
 				{iterate from=authorUserGroups item=userGroup}
 					{assign var="userGroupId" value=$userGroup->getId()}
-					{fbvElement type="checkbox" id="readerGroup-$userGroupId" name="authorGroup[$userGroupId]" label=$userGroup->getLocalizedName() translate=false}
+					{fbvElement type="radio" id="authorGroup-$userGroupId" name="authorGroup" value=$userGroupId label=$userGroup->getLocalizedName() translate=false}
 				{/iterate}
 			{/if}
+			<div class="pkp_helpers_clear"></div>
 			{if $allowRegReviewer}
 				{iterate from=reviewerUserGroups item=userGroup}
 					{assign var="userGroupId" value=$userGroup->getId()}
