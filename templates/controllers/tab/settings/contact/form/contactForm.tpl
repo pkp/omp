@@ -57,20 +57,6 @@
 			{fbvFormSection title="user.phone" for="supportPhone" inline=true size=$fbvStyles.size.MEDIUM}
 				{fbvElement type="text" id="supportPhone" value=$supportPhone maxlength="24"}
 			{/fbvFormSection}
-			<div class="inline half">
-            <span id="localization-container" class="pkp_controllers_form_localization_container pkp_controllers_form_localization_container_focus">
-            <label>Two Column Layout</label>
-            <input name="" type="text" id="" class=""/>
-                <span>
-					<div id="lang" class="pkp_controllers_form_localization_popover">
-                        <input type="text" placeholder="Francais" class="field text large flag flag_fr"/>
-                        <label class="locale">(FR)</label>
-                        <input id="last" type="text" placeholder="Deutch" class="field text large flag flag_de"/>
-                        <label class="locale">(DE)</label>
-                    </div>
-				</span>
-            </span>
-        </div>
 		{/fbvFormArea}
 	</div>
 
