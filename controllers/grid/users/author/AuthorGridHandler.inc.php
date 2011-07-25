@@ -88,7 +88,7 @@ class AuthorGridHandler extends GridHandler {
 		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_SUBMISSION, LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_PKP_USER, LOCALE_COMPONENT_OMP_DEFAULT_SETTINGS));
 
 		// Basic grid configuration
-		$this->setTitle('submission.submit.addAuthor');
+		$this->setTitle('submission.contributors');
 
 		// Get the monograph id
 		$monograph =& $this->getMonograph();
@@ -109,10 +109,10 @@ class AuthorGridHandler extends GridHandler {
 				'addAuthor',
 				new AjaxModal(
 					$router->url($request, null, null, 'addAuthor', null, $actionArgs),
-					__('grid.action.addAuthor'),
+					__('listbuilder.contributors.addContributor'),
 					'addUser'
 				),
-				__('grid.action.addAuthor'),
+				__('listbuilder.contributors.addContributor'),
 				'add_item'
 			)
 		);

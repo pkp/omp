@@ -26,7 +26,8 @@
 			{fbvElement type="text" label="user.middleName" id="middleName" value=$middleName|escape maxlength="40" inline=true size=$fbvStyles.size.SMALL}
 			{fbvElement type="text" label="user.lastName" id="lastName" value=$lastName|escape maxlength="40" inline=true size=$fbvStyles.size.SMALL}
 		{/fbvFormSection}
-		{fbvFormSection title="about.contactInformation"}
+		<div class="pkp_helpers_clear"></div>
+		{fbvFormSection title="about.contact"}
 			{fbvElement type="text" label="user.email" id="email" value=$email|escape maxlength="90" inline=true size=$fbvStyles.size.MEDIUM}
 			{fbvElement type="text" label="user.url" id="url" value=$url|escape maxlength="90" inline=true size=$fbvStyles.size.MEDIUM}
 		{/fbvFormSection}
