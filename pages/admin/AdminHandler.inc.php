@@ -36,12 +36,6 @@ class AdminHandler extends Handler {
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('helpTopicId', 'site.index');
 
-		// Verifies if this is a multiple press installation.
-		$pressDao = DAORegistry::getDAO('PressDAO');
-		if (count($pressDao->getPressNames()) > 1) {
-			$templateMgr->assign('isMultiplePress', true);
-		}
-
 		$templateMgr->display('admin/index.tpl');
 	}
 
