@@ -103,6 +103,22 @@ class TemplateManager extends PKPTemplateManager {
 			}
 
 			if (!$site->getRedirect()) {
+				$pressDao =& DAORegistry::getDAO('PressDAO');
+				$presses =& $pressDao->getPresses();
+				$presses =& $presses->toArray();
+
+				$dispatcher = $request->getDispatcher();
+				$pressesNameAndUrl = array();
+				foreach ($presses as $workingPress) {
+					$pressUrl = $dispatcher->url($request, 'page', $workingPress->getPath());
+					$pressesNameAndUrl[$pressUrl] = $workingPress->getLocalizedName();
+				};
+
+				$currentPressUrl = $dispatcher->url($request, 'page', $press->getPath());
+				$currentPressNameAndUrl = $currentPressUrl;
+
+				$this->assign('currentPressNameAndUrl', $currentPressNameAndUrl);
+				$this->assign('pressesNameAndUrl', $pressesNameAndUrl);
 				$this->assign('hasOtherPresses', true);
 			}
 		}

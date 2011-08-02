@@ -77,6 +77,7 @@
 <script type="text/javascript" src="{$baseUrl}/js/controllers/tab/settings/homepage/form/HomepageFormHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/js/pages/authorDashboard/AuthorDashboardHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/js/pages/submission/SubmissionStep3FormHandler.js"></script>
+<script type="text/javascript" src="{$baseUrl}/js/site/form/PressSwitcherFormHandler.js"></script>
 
 {* Our own plug-in (depends on classes) *}
 <script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/jquery/plugins/jquery.pkp.js"></script>
