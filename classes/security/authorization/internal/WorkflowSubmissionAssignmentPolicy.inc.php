@@ -59,14 +59,10 @@ class WorkflowSubmissionAssignmentPolicy extends AuthorizationPolicy {
 		// Check whether a valid workflow stage has been defined for this policy.
 		if ($this->_stageId < WORKFLOW_STAGE_ID_SUBMISSION || $this->_stageId > WORKFLOW_STAGE_ID_PRODUCTION) return AUTHORIZATION_DENY;
 
-		// Get the authorized user group.
-		$userGroup = $this->getAuthorizedContextObject(ASSOC_TYPE_USER_GROUP);
-		if (!is_a($userGroup, 'UserGroup')) return AUTHORIZATION_DENY;
-
-		// Check whether the user is assigned to the submission in
-		// the current user group for the given workflow step.
+		// Check whether the user is assigned to the submission in any capacity
 		$stageAssignmentDao = & DAORegistry::getDAO('StageAssignmentDAO'); /* @var $stageAssignmentDao StageAssignmentDAO */
-		if(!$stageAssignmentDao->stageAssignmentExists($monograph->getId(), $this->_stageId, $userGroup->getId(), $user->getId())) {
+		$stageAssignments =& $stageAssignmentDao->getBySubmissionAndStageId($monograph->getId(), $this->_stageId, null, $user->getId());
+		if($stageAssignments->wasEmpty()) {
 			return AUTHORIZATION_DENY;
 		}
 
