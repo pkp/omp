@@ -30,18 +30,15 @@ class ViewsDAO extends DAO {
 	 * @return boolean
 	 */
 	function recordView($assocType, $assocId, $userId) {
-		if ($this->getLastViewDate($assocType, $assocId, $userId)) {
-			$sql =
-				'UPDATE	views set date_last_viewed = %s
-				WHERE 	assoc_type = ? AND assoc_id = ? and user_id = ?';
-		} else {
-			$sql =
-				'INSERT INTO	views (assoc_type, assoc_id, user_id, date_last_viewed)
-				VALUES	(?, ?, ?, %s)';
-		}
-		return $this->update(
-			sprintf($sql, $this->datetimeToDB(Core::getCurrentDate())),
-			array((int)$assocType, $assocId, (int)$userId)
+		$this->Replace(
+			'views',
+			array(
+				'date_last_viewed' => strftime('%Y-%m-%d %H:%M:%S'),
+				'assoc_type' => (int) $assocType,
+				'assoc_id' => $assocId,
+				'user_id' => (int) $userId
+			),
+			array('assoc_type', 'assoc_id', 'user_id')
 		);
 	}
 
