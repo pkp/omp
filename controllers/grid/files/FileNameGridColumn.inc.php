@@ -60,6 +60,8 @@ class FileNameGridColumn extends GridColumn {
 		import('controllers.api.file.linkAction.DownloadFileLinkAction');
 		$cellActions = parent::getCellActions($request, $row, $position);
 		$cellActions[] = new DownloadFileLinkAction($request, $monographFile);
+		import('controllers.informationCenter.linkAction.FileInfoCenterLinkAction');
+		$cellActions[] = new FileInfoCenterLinkAction($request, $monographFile, '', 'notes');
 		return $cellActions;
 	}
 }

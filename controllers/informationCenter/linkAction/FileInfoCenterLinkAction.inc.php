@@ -25,7 +25,7 @@ class FileInfoCenterLinkAction extends FileLinkAction {
 	 * @param $monographFile MonographFile the monograph file
 	 *  to show information about.
 	 */
-	function FileInfoCenterLinkAction(&$request, &$monographFile) {
+	function FileInfoCenterLinkAction(&$request, &$monographFile, $titleKey = 'grid.action.moreInformation', $icon = 'more_info') {
 		// Instantiate the information center modal.
 		$router =& $request->getRouter();
 		import('lib.pkp.classes.linkAction.request.AjaxModal');
@@ -40,7 +40,7 @@ class FileInfoCenterLinkAction extends FileLinkAction {
 		// Configure the file link action.
 		parent::FileLinkAction(
 			'moreInfo', $ajaxModal,
-			__('grid.action.moreInformation'), 'more_info'
+			__($titleKey), $icon
 		);
 	}
 }

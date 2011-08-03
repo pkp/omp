@@ -45,7 +45,7 @@
 	{/if}{* count($supportedSubmissionLocaleNames) == 1 *}
 
 	<!-- Submission Placement -->
-	{fbvFormSection title="submission.submit.placement" inline=true size=$fbvStyles.size.MEDIUM}
+	{fbvFormSection title="submission.submit.placement" size=$fbvStyles.size.MEDIUM}
 		{fbvElement type="select" id="seriesId" from=$seriesOptions selected=$seriesId translate=false}
 	{/fbvFormSection}
 
