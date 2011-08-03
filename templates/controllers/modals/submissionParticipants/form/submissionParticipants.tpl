@@ -14,6 +14,3 @@
 	{url|assign:submissionParticipantsGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.users.submissionParticipant.SubmissionParticipantGridHandler" op="fetchGrid" monographId=$monographId stageId=$monograph->getStageId() escape=false}
 	{load_url_in_div id="submissionParticipantsGrid" url=$submissionParticipantsGridUrl}
 </div>
-
-{fbvFormButtons}
-
