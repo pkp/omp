@@ -375,6 +375,10 @@ body {
   margin-left:10px;
   padding-left:18px;
 }
+.pkp_linkActions.gridCellContainer a {
+  margin-left:0px;
+  padding-left:0px;
+}
 .pkp_linkActions a.add { background:url(../lib/pkp/templates/images/structure/grid_new_file.png) no-repeat left; }
 .pkp_linkActions a.notes { background:url(../lib/pkp/templates/images/structure/grid_note.png); }
 .pkp_linkActions .hasnotes { background-position:bottom !important; }
@@ -767,7 +771,7 @@ div.pkp_controllers_grid .row_actions a {
   margin-left:5px;
   padding:1px 7px;
 }
-div.pkp_controllers_grid .row_file a { padding:2px 20px; }
+div.pkp_controllers_grid .row_file a { padding:2px 10px; }
 div.pkp_controllers_grid .multiline {
   line-height:125%;
   line-height:inherit;

@@ -1,23 +1,19 @@
 <?php
 /**
- * @defgroup controllers_informationCenter_linkAction
- */
-
-/**
- * @file controllers/informationCenter/linkAction/FileInfoCenterLinkAction.inc.php
+ * @file controllers/informationCenter/linkAction/FileNotesLinkAction.inc.php
  *
  * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class FileInfoCenterLinkAction
+ * @class FileNotesLinkAction
  * @ingroup controllers_informationCenter_linkAction
  *
- * @brief An action to open up the information center for a file.
+ * @brief An action to open up the notes IC for a file.
  */
 
 import('controllers.api.file.linkAction.FileLinkAction');
 
-class FileInfoCenterLinkAction extends FileLinkAction {
+class FileNotesLinkAction extends FileLinkAction {
 
 	/**
 	 * Constructor
@@ -25,7 +21,7 @@ class FileInfoCenterLinkAction extends FileLinkAction {
 	 * @param $monographFile MonographFile the monograph file
 	 *  to show information about.
 	 */
-	function FileInfoCenterLinkAction(&$request, &$monographFile) {
+	function FileNotesLinkAction(&$request, &$monographFile) {
 		// Instantiate the information center modal.
 		$router =& $request->getRouter();
 		import('lib.pkp.classes.linkAction.request.AjaxModal');
@@ -40,7 +36,7 @@ class FileInfoCenterLinkAction extends FileLinkAction {
 		// Configure the file link action.
 		parent::FileLinkAction(
 			'moreInfo', $ajaxModal,
-			__('grid.action.moreInformation'), 'more_info'
+			'', 'notes'
 		);
 	}
 }
