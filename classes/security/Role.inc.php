@@ -40,12 +40,6 @@ define('ROLE_PATH_EDITOR', 'editor');
 define('ROLE_ID_READER',		0x00020000);
 define('ROLE_PATH_READER', 'reader');
 
-define('ROLE_ID_MARKETING',		0x00100010);
-define('ROLE_PATH_MARKETING', 'marketing');
-
-define('ROLE_ID_FUNDING_COORDINATOR',	0x00100100);
-define('ROLE_PATH_FUNDING_COORDINATOR', 'funding');
-
 
 class Role extends DataObject {
 
