@@ -33,31 +33,12 @@ class StageParticipantGridCellProvider extends DataObjectGridCellProvider {
 	 * @return array
 	 */
 	function getTemplateVarsFromRowColumn(&$row, $column) {
-		$users =& $row->getData();
-		$columnId = $column->getId();
-
-		switch ($columnId) {
+		switch ($column->getId()) {
 			case 'participants':
-				$userNameString = '-';
-				// Put all assigned user names into an array
-				if(!isset($users)) {
-					return array('label' => $userNameString);
-				}
-				$userNames = array();
-				while ($user =& $users->next()) {
-					$userNames[] = $user->getFullName();
-					unset($user);
-				}
-				unset($users);
-
-				// If we have no users for this group, we display a hyphen, else combine the names
-				if (!empty($userNames)) $userNameString = implode (' - ', $userNames);
-
-				return array('label' => $userNameString);
-			case 'group':
-				$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
-				$userGroup =& $userGroupDao->getById($row->getId());
-				return array('label' => $userGroup->getLocalizedName());
+				$user =& $row->getData();
+				return array('label' => $user->getFullName());
+			default:
+				assert(false);
 		}
 	}
 }

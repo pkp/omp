@@ -14,12 +14,13 @@
  */
 
 // import grid base classes
-import('lib.pkp.classes.controllers.grid.GridHandler');
+import('lib.pkp.classes.controllers.grid.CategoryGridHandler');
 
 // import stageParticipant grid specific classes
 import('controllers.grid.users.stageParticipant.StageParticipantGridRow');
+import('controllers.grid.users.stageParticipant.StageParticipantGridCategoryRow');
 
-class StageParticipantGridHandler extends GridHandler {
+class StageParticipantGridHandler extends CategoryGridHandler {
 	/**
 	 * Constructor
 	 */
@@ -52,7 +53,6 @@ class StageParticipantGridHandler extends GridHandler {
 		return $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
 	}
 
-
 	//
 	// Overridden methods from PKPHandler
 	//
@@ -81,37 +81,52 @@ class StageParticipantGridHandler extends GridHandler {
 		// Columns
 		import('controllers.grid.users.stageParticipant.StageParticipantGridCellProvider');
 		$cellProvider = new StageParticipantGridCellProvider();
-		$this->addColumn(
-			new GridColumn(
-				'group',
-				'author.users.contributor.role',
-				null,
-				'controllers/grid/gridCell.tpl',
-				$cellProvider
-			)
-		);
-		$this->addColumn(
-			new GridColumn(
-				'participants',
-				'submission.participants',
-				null,
-				'controllers/grid/gridCell.tpl',
-				$cellProvider
-			)
-		);
+		$this->addColumn(new GridColumn(
+			'participants',
+			'submission.participants',
+			null,
+			'controllers/grid/gridCell.tpl',
+			$cellProvider
+		));
 
 	}
 
 
 	//
-	// Overridden methods from GridHandler
+	// Overridden methods from [Category]GridHandler
 	//
+	/**
+	 * @see CategoryGridHandler::getCategoryData()
+	 */
+	function getCategoryData(&$userGroup) {
+		// Retrieve useful objects.
+		$monograph =& $this->getMonograph();
+
+		$userStageAssignmentDao = & DAORegistry::getDAO('UserStageAssignmentDAO');
+		$returner =& $userStageAssignmentDao->getUsersBySubmissionAndStageId(
+			$monograph->getId(),
+			$this->getStageId(),
+			$userGroup->getId()
+		);
+		$returner = $returner->toArray();
+
+		return $returner;
+	}
+
 	/**
 	 * @see GridHandler::getRowInstance()
 	 */
 	function &getRowInstance() {
 		$monograph =& $this->getMonograph();
 		$row = new StageParticipantGridRow($monograph, $this->getStageId());
+		return $row;
+	}
+
+	/**
+	 * @see CategoryGridHandler::getCategoryRowInstance()
+	 */
+	function &getCategoryRowInstance($userGroup) {
+		$row = new StageParticipantGridCategoryRow();
 		return $row;
 	}
 
@@ -130,30 +145,21 @@ class StageParticipantGridHandler extends GridHandler {
 	 * @see GridHandler::loadData()
 	 */
 	function loadData($request, $filter) {
-		// Retrieve useful objects.
-		$monograph =& $this->getMonograph();
-		$press =& $request->getPress();
-
-		// Get each default user group ID, then load users by that user group ID
 		$userGroupDao = & DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */
+		$press =& $request->getPress();
 		$userGroups =& $userGroupDao->getUserGroupsByStage($press->getId(), $this->getStageId(), true, true);
 
-		$stageAssignments = array();
-		$userStageAssignmentDao = & DAORegistry::getDAO('UserStageAssignmentDAO');
+		$returner = array();
 		while($userGroup =& $userGroups->next()) {
 			// Skip both Author and Reviewer User Groups (they are not shown by design)
 			// If this changes, special handling will be required, as they are not stored with the stage_assignments
 			if ( !($userGroup->getRoleId() == ROLE_ID_AUTHOR && $userGroup->getRoleId() == ROLE_ID_REVIEWER) ) {
-				$stageAssignments[$userGroup->getId()] = $userStageAssignmentDao->getUsersBySubmissionAndStageId(
-					$monograph->getId(),
-					$this->getStageId(),
-					$userGroup->getId()
-				);
+				$returner[$userGroup->getId()] = $userGroup;
 			}
 			unset($userGroup);
 		}
 
-		return $stageAssignments;
+		return $returner;
 	}
 
 
