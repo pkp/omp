@@ -138,8 +138,9 @@ class ProfileForm extends Form {
 		if ($press) {
 			$userGroupAssignments =& $userGroupAssignmentDao->getByUserId($user->getId(), $press->getId());
 			$userGroupIds = array();
-			foreach ($userGroupAssignments->toArray() as $assignment) {
+			while ($assignment =& $userGroupAssignments->next()) {
 				$userGroupIds[] = $assignment->getUserGroupId();
+				unset($assignment);
 			}
 			$templateMgr->assign('allowRegReviewer', $press->getSetting('allowRegReviewer'));
 			$templateMgr->assign_by_ref('reviewerUserGroups', $userGroupDao->getByRoleId($press->getId(), ROLE_ID_REVIEWER));

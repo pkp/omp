@@ -21,9 +21,6 @@ class ProfileHandler extends UserHandler {
 	 */
 	function ProfileHandler() {
 		parent::UserHandler();
-
-		$this->addRoleAssignment(array(ROLE_ID_SITE_ADMIN, ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_AUTHOR, ROLE_ID_REVIEWER, ROLE_ID_PRESS_ASSISTANT),
-				array('profile', 'saveProfile', 'changePassword', 'savePassword'));
 	}
 
 	//
@@ -36,8 +33,9 @@ class ProfileHandler extends UserHandler {
 	 * @param $roleAssignments array
 	 */
 	function authorize(&$request, $args, $roleAssignments) {
+		$operations = array('profile', 'saveProfile', 'changePassword', 'savePassword');
 		import('lib.pkp.classes.security.authorization.PKPSiteAccessPolicy');
-		$this->addPolicy(new PKPSiteAccessPolicy($request, null, $roleAssignments));
+		$this->addPolicy(new PKPSiteAccessPolicy($request, $operations, SITE_ACCESS_ALL_ROLES));
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 
