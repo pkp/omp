@@ -21,7 +21,7 @@ class FileNotesLinkAction extends FileLinkAction {
 	 * @param $monographFile MonographFile the monograph file
 	 *  to show information about.
 	 */
-	function FileNotesLinkAction(&$request, &$monographFile) {
+	function FileNotesLinkAction(&$request, &$monographFile, $user) {
 		// Instantiate the information center modal.
 		$router =& $request->getRouter();
 		import('lib.pkp.classes.linkAction.request.AjaxModal');
@@ -36,8 +36,25 @@ class FileNotesLinkAction extends FileLinkAction {
 		// Configure the file link action.
 		parent::FileLinkAction(
 			'moreInfo', $ajaxModal,
-			'', 'notes'
+			'', $this->getNotesState($monographFile, $user)
 		);
+	}
+
+	function getNotesState($monographFile, $user) {
+		$noteDao =& DAORegistry::getDAO('NoteDAO');
+
+		// If no notes exist, display a dimmed icon.
+		if (!$noteDao->notesExistByAssoc(ASSOC_TYPE_MONOGRAPH_FILE, $monographFile->getFileId())) {
+			return 'notes_none';
+		}
+
+		// If new notes exist, display a bold icon.
+		if ($noteDao->unreadNotesExistByAssoc(ASSOC_TYPE_MONOGRAPH_FILE, $monographFile->getFileId(), $user->getId())) {
+			return 'notes_new';
+		}
+
+		// Otherwise, notes exist but not new ones.
+		return 'notes';
 	}
 }
 

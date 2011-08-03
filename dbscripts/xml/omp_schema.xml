@@ -1310,7 +1310,7 @@
 		<field name="assoc_type" type="I8">
 			<NOTNULL />
 		</field>
-		<field name="assoc_id" type="C2" size="255">
+		<field name="assoc_id" type="C2" size="32">
 			<NOTNULL />
 		</field>
 		<field name="user_id" type="I8" />

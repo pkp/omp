@@ -103,6 +103,9 @@ class InformationCenterHandler extends Handler {
 		$noteDao =& DAORegistry::getDAO('NoteDAO');
 		$templateMgr->assign('notes', $noteDao->getByAssoc($this->_getAssocType(), $this->_getAssocId()));
 
+		$user =& $request->getUser();
+		$templateMgr->assign('currentUserId', $user->getId());
+
 		return $templateMgr->fetchJson('controllers/informationCenter/notesList.tpl');
 	}
 
@@ -115,7 +118,7 @@ class InformationCenterHandler extends Handler {
 		$noteId = (int) $request->getUserVar('noteId');
 		$noteDao =& DAORegistry::getDAO('NoteDAO');
 		$note =& $noteDao->getById($noteId);
-		if (!$note || $note->getAssocType() !== $this->_getAssocType() || $note->getAssocId() !== $this->_getAssocId()) fatalError('Invalid note!');
+		if (!$note || $note->getAssocType() != $this->_getAssocType() || $note->getAssocId() != $this->_getAssocId()) fatalError('Invalid note!');
 		$noteDao->deleteById($noteId);
 
 		$json = new JSONMessage(true);

@@ -10,6 +10,7 @@
 <div id="notesList">
 	{iterate from=notes item=note}
 		{include file="controllers/informationCenter/note.tpl"}
+		{$note->markViewed($currentUserId)}
 	{/iterate}
 	{if $notes->wasEmpty()}
 		<h5 id="noNotes" class="pkp_helpers_text_center">{translate key="informationCenter.noNotes"}</h5>
