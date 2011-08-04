@@ -33,7 +33,11 @@ class IndexHandler extends Handler {
 	 * Otherwise, display the index page for the selected press.
 	 *
 	 * For private access (user is logged in):
-	 * Display the dashboard.
+	 * If no press is selected, display the page to create a press.
+	 * Otherwise, display the press dashboard.
+	 *
+	 * See _getTargetPress to check the logic to get a press
+	 * for both cases (public and private).
 	 *
 	 * @param $args array
 	 * @param $request Request
@@ -41,72 +45,178 @@ class IndexHandler extends Handler {
 	function index($args, &$request) {
 		$this->validate(); // FIXME: Replace with an authorization policy, see #6100.
 
-		// Get the requested press.
-		$router =& $request->getRouter();
-		$requestedPressPath = $router->getRequestedContextPath(&$request);
+		$press = $this->_getTargetPress($request);
+		$user =& $this->_getUserFromRequest($request);
 
-		// No press requested: should we redirect to a specific press by default?
-		$pressDao =& DAORegistry::getDAO('PressDAO'); /* @var $pressDao PressDAO */
-		$site =& $request->getSite();
-		if ($requestedPressPath == 'index') {
-			$presses =& $pressDao->getPresses();
-			if ($presses->getCount() == 1) {
-				$press =& $presses->next();
-			} elseif ($site->getRedirect()) {
-				$press =& $pressDao->getPress($site->getRedirect());
+		if ($user) {
+			// Private access.
+			if ($press) {
+				$request->redirect($press->getPath(), 'dashboard');
+			} else {
+				$request->redirect(null, 'admin', 'createPress');
 			}
 		} else {
-			$press = & $router->getContext($request);
-		}
+			// Public access.
+			$this->setupTemplate();
+			$templateMgr =& TemplateManager::getManager($request);
+			$templateMgr->assign('helpTopicId', 'user.home');
 
-		// Check whether the press exists and identify the actual target press path.
-		if ($press && is_a($press, 'Press')) {
-			$targetPressPath = $press->getPath();
+			if ($press) {
+				$this->_displayPressIndexPage($press, &$templateMgr);
+			} else {
+				$site =& $this->_getSiteFromRequest($request);
+				$this->_displaySiteIndexPage($site, &$templateMgr);
+			}
+		}
+	}
+
+
+	//
+	// Private helper methods.
+	//
+	/**
+	 * Display the site index page.
+	 * @param $site Site
+	 * @param $templateMgr TemplateManager
+	 */
+	function _displaySiteIndexPage($site, &$templateMgr) {
+
+		// Display the overview page with all presses.
+		$templateMgr->assign('intro', $site->getLocalizedIntro());
+		$templateMgr->assign('pressFilesPath', Request::getBaseUrl() . '/' . Config::getVar('files', 'public_files_dir') . '/presses/');
+		$pressDao =& DAORegistry::getDAO('PressDAO'); /* @var $pressDao PressDAO */
+		$presses =& $pressDao->getEnabledPresses();
+		$templateMgr->assign_by_ref('presses', $presses);
+		$templateMgr->setCacheability(CACHEABILITY_PUBLIC);
+		$templateMgr->display('index/site.tpl');
+
+	}
+
+	/**
+	 * Display a given press index page.
+	 * @param $press Press
+	 * @param $templateMgr TemplateManager
+	 */
+	function _displayPressIndexPage($press, &$templateMgr) {
+
+		// Assign header and content for home page.
+		$templateMgr->assign('displayPageHeaderTitle', $press->getPressPageHeaderTitle(true));
+		$templateMgr->assign('displayPageHeaderLogo', $press->getPressPageHeaderLogo(true));
+		$templateMgr->assign('additionalHomeContent', $press->getLocalizedSetting('additionalHomeContent'));
+		$templateMgr->assign('homepageImage', $press->getLocalizedSetting('homepageImage'));
+		$templateMgr->assign('pressDescription', $press->getLocalizedSetting('description'));
+
+		// Display creative commons logo/licence if enabled.
+		$templateMgr->assign('displayCreativeCommons', $press->getSetting('includeCreativeCommons'));
+
+		// Disable announcements if enabled.
+		$enableAnnouncements = $press->getSetting('enableAnnouncements');
+		$templateMgr->display('index/press.tpl');
+	}
+
+	/**
+	 * Returns a press, based in the request data.
+	 * @param $request Request
+	 * @return mixed Either a Press or null
+	 */
+	function _getTargetPress($request) {
+
+		// Get the requested path.
+		$router =& $request->getRouter();
+		$requestedPath = $router->getRequestedContextPath(&$request);
+		$press = null;
+
+		if ($requestedPath == 'index') {
+			// No press requested. Check how many presses has the site.
+			$pressDao =& DAORegistry::getDAO('PressDAO'); /* @var $pressDao PressDAO */
+			$presses =& $pressDao->getPresses();
+			$pressesCount = $presses->getCount();
+			if ($pressesCount === 1) {
+				// Return the unique press.
+				$press =& $presses->next();
+			} elseif ($pressesCount > 1) {
+				// Decide wich press to return.
+				$user =& $this->_getUserFromRequest($request);
+				if ($user) {
+					// We have a user (private access).
+					$press =& $this->_getFirstUserPress($user, $presses->toArray());
+				} else {
+					// Get the site redirect.
+					$press =& $this->_getSiteRedirectPress($request);
+				}
+			}
 		} else {
-			$targetPressPath = 'index';
+			// Return the requested press.
+			$press =& $router->getContext($request);
 		}
+		if (is_a($press, 'Press')) {
+			return $press;
+		}
+		return null;
+	}
 
-		// Is this a private access? Then redirect to the dashboard of the target press.
+	/**
+	 * Get user from request.
+	 * @param $request Request
+	 * @return mixed Either User or boolean
+	 */
+	function _getUserFromRequest($request) {
+		$user = null;
 		$user =& $request->getUser();
 		if (is_a($user, 'User')) {
-			$request->redirect($targetPressPath, 'dashboard');
-			return;
+			return $user;
 		}
+		return false;
+	}
 
-		// Do we have to redirect to another target press?
-		if ($requestedPressPath != $targetPressPath && $targetPressPath != 'index') {
-			$request->redirect($targetPressPath);
-			return;
+	/**
+	 * Get site from request.
+	 * @param $request Request
+	 * @return mixed Either Site or boolean
+	 */
+	function _getSiteFromRequest($request) {
+		$site = null;
+		$site =& $request->getSite();
+		if (is_a($site, 'Site')) {
+			return $site;
 		}
+		return false;
+	}
 
-		// This is a public request: set up the template.
-		$this->setupTemplate();
-		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->assign('helpTopicId', 'user.home');
-
-		// If the request is for the site, display the overview page with all presses.
-		if ($targetPressPath == 'index') {
-			$templateMgr->assign('intro', $site->getLocalizedIntro());
-			$templateMgr->assign('pressFilesPath', Request::getBaseUrl() . '/' . Config::getVar('files', 'public_files_dir') . '/presses/');
-			$presses =& $pressDao->getEnabledPresses();
-			$templateMgr->assign_by_ref('presses', $presses);
-			$templateMgr->setCacheability(CACHEABILITY_PUBLIC);
-			$templateMgr->display('index/site.tpl');
-		} else {
-			// Assign header and content for home page.
-			$templateMgr->assign('displayPageHeaderTitle', $press->getPressPageHeaderTitle(true));
-			$templateMgr->assign('displayPageHeaderLogo', $press->getPressPageHeaderLogo(true));
-			$templateMgr->assign('additionalHomeContent', $press->getLocalizedSetting('additionalHomeContent'));
-			$templateMgr->assign('homepageImage', $press->getLocalizedSetting('homepageImage'));
-			$templateMgr->assign('pressDescription', $press->getLocalizedSetting('description'));
-
-			// Display creative commons logo/licence if enabled.
-			$templateMgr->assign('displayCreativeCommons', $press->getSetting('includeCreativeCommons'));
-
-			// Disable announcements if enabled.
-			$enableAnnouncements = $press->getSetting('enableAnnouncements');
-			$templateMgr->display('index/press.tpl');
+	/**
+	 * Return the first press that user is enrolled with.
+	 * @param $user User
+	 * @param $presses Array
+	 * @return mixed Either Press or null
+	 */
+	function _getFirstUserPress($user, $presses) {
+		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+		$press = null;
+		foreach($presses as $workingPress) {
+			$userIsEnrolled = $userGroupDao->userInAnyGroup($user->getId(), $workingPress->getId());
+			if ($userIsEnrolled) {
+				$press = $workingPress;
+				break;
+			}
 		}
+		return $press;
+	}
+
+	/**
+	 * Return the press that is configured in site redirect setting.
+	 * @param $request Request
+	 * @return mixed Either Press or null
+	 */
+	function _getSiteRedirectPress($request) {
+		$pressDao =& DAORegistry::getDAO('PressDAO'); /* @var $pressDao PressDAO */
+		$site =& $this->_getSiteFromRequest($request);
+		$press = null;
+		if ($site) {
+			if($site->getRedirect()) {
+				$press = $pressDao->getPress($site->getRedirect());
+			}
+		}
+		return $press;
 	}
 }
 
