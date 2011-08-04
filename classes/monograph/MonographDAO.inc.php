@@ -518,15 +518,16 @@ class MonographDAO extends DAO {
 		$locale = Locale::getLocale();
 
 		$params = array(
-				'title',
-				$primaryLocale,
-				'title',
-				$locale,
-				'abbrev',
-				$primaryLocale,
-				'abbrev',
-				$locale
-			);
+			'title',
+			$primaryLocale,
+			'title',
+			$locale,
+			'abbrev',
+			$primaryLocale,
+			'abbrev',
+			$locale,
+			(int) ROLE_ID_SERIES_EDITOR
+		);
 		if ($pressId) $params[] = (int) $pressId;
 
 		$result =& $this->retrieve(
@@ -540,8 +541,10 @@ class MonographDAO extends DAO {
 				LEFT JOIN series_settings sapl ON (s.series_id = sapl.series_id AND sapl.setting_name = ? AND sapl.locale = ?)
 				LEFT JOIN series_settings sal ON (s.series_id = sal.series_id AND sal.setting_name = ? AND sal.locale = ?)
 				LEFT JOIN stage_assignments sa ON (m.monograph_id = sa.submission_id)
-			WHERE m.date_submitted IS NOT NULL AND (sa.stage_id IS NULL AND sa.user_group_id IS NULL AND sa.user_id IS NULL)' .
-					($pressId?' AND m.press_id = ?':''),
+				LEFT JOIN user_groups g ON (sa.user_group_id = g.user_group_id AND g.role_id = ?) 
+			WHERE	m.date_submitted IS NOT NULL AND
+				g.user_group_id IS NULL' .
+				($pressId?' AND m.press_id = ?':''),
 			$params
 		);
 
