@@ -12,7 +12,9 @@
 	<ul class="pkp_helpers_flatlist pkp_helpers_align_left">
 		<li><a href="{url page="index"}">{translate key="navigation.home"}</a></li>
 		{if $isUserLoggedIn}
-			<li><a href="{url page="admin" op="index"}">{translate key="navigation.admin"}</a></li>
+			{if $isAdmin || $isPressManager}
+				<li><a href="{url page="admin" op="index"}">{translate key="navigation.admin"}</a></li>
+			{/if}
 			{if $hasOtherPresses}
 				<li>{include file="common/pressSwitcher.tpl"}</li>
 			{/if}
