@@ -103,12 +103,16 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 		$monograph =& $this->getMonograph();
 
 		$userStageAssignmentDao = & DAORegistry::getDAO('UserStageAssignmentDAO');
-		$returner =& $userStageAssignmentDao->getUsersBySubmissionAndStageId(
+		$users =& $userStageAssignmentDao->getUsersBySubmissionAndStageId(
 			$monograph->getId(),
 			$this->getStageId(),
 			$userGroup->getId()
 		);
-		$returner = $returner->toArray();
+		$returner = array();
+		while ($user =& $users->next()) {
+			$returner[$user->getId()] = $user;
+			unset($user);
+		}
 
 		return $returner;
 	}
