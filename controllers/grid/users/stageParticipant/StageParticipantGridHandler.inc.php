@@ -148,19 +148,9 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 	function loadData($request, $filter) {
 		$userGroupDao = & DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */
 		$press =& $request->getPress();
-		$userGroups =& $userGroupDao->getUserGroupsByStage($press->getId(), $this->getStageId(), true, true);
+		$userGroups =& $userGroupDao->getUserGroupsByStage($press->getId(), $this->getStageId(), false, true);
 
-		$returner = array();
-		while($userGroup =& $userGroups->next()) {
-			// Skip both Author and Reviewer User Groups (they are not shown by design)
-			// If this changes, special handling will be required, as they are not stored with the stage_assignments
-			if ( !($userGroup->getRoleId() == ROLE_ID_AUTHOR && $userGroup->getRoleId() == ROLE_ID_REVIEWER) ) {
-				$returner[$userGroup->getId()] = $userGroup;
-			}
-			unset($userGroup);
-		}
-
-		return $returner;
+		return $userGroups;
 	}
 
 
