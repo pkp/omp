@@ -102,24 +102,25 @@ class TemplateManager extends PKPTemplateManager {
 				$this->assign('siteTitle', $site->getLocalizedTitle());
 			}
 
-			if (!$site->getRedirect()) {
-				$pressDao =& DAORegistry::getDAO('PressDAO');
-				$presses =& $pressDao->getPresses();
-				$presses =& $presses->toArray();
-
-				$dispatcher = $request->getDispatcher();
-				$pressesNameAndUrl = array();
-				foreach ($presses as $workingPress) {
-					$pressUrl = $dispatcher->url($request, 'page', $workingPress->getPath());
-					$pressesNameAndUrl[$pressUrl] = $workingPress->getLocalizedName();
-				};
-
-				$currentPressUrl = $dispatcher->url($request, 'page', $press->getPath());
-				$currentPressNameAndUrl = $currentPressUrl;
-
-				$this->assign('currentPressNameAndUrl', $currentPressNameAndUrl);
-				$this->assign('pressesNameAndUrl', $pressesNameAndUrl);
+			// Check for multiple presses.
+			$pressDao =& DAORegistry::getDAO('PressDAO');
+			$presses =& $pressDao->getPresses();
+			$hasOtherPresses = false;
+			if ($presses->getCount() > 1) {
 				$this->assign('hasOtherPresses', true);
+				$hasOtherPresses = true;
+			}
+
+			$user =& $request->getUser();
+			if (is_a($user, 'User')) {
+				// Decide to assign or not the press switcher data
+				// to the template manager.
+				if ($hasOtherPresses) {
+					$this->_assignPressSwitcherData($request, $presses, $press);
+				}
+				// Check for administrator and manager roles.
+				$this->assign('isAdmin', Validation::isSiteAdmin());
+				$this->assign('isPressManager', Validation::isPressManager());
 			}
 		}
 	}
@@ -195,6 +196,39 @@ class TemplateManager extends PKPTemplateManager {
 		}
 
 		return $value;
+	}
+
+
+	//
+	// Private helper methods.
+	//
+	/**
+	 * Get the press switcher data and assign it to
+	 * the template manager.
+	 * @param $request Request
+	 * @param $presses Array
+	 * @param $currentPress Press
+	 */
+	function _assignPressSwitcherData($request, &$presses, $currentPress = null) {
+		$workingPresses =& $presses->toArray();
+
+		$dispatcher = $request->getDispatcher();
+		$pressesNameAndUrl = array();
+		foreach ($workingPresses as $workingPress) {
+			$pressUrl = $dispatcher->url($request, 'page', $workingPress->getPath());
+			$pressesNameAndUrl[$pressUrl] = $workingPress->getLocalizedName();
+		};
+
+		// Get the current press switcher value. We don´t need to worry about the
+		// value when there is no current press, because then the switcher will not
+		// be visible.
+		$currentPressUrl = null;
+		if ($currentPress) {
+			$currentPressUrl = $dispatcher->url($request, 'page', $currentPress->getPath());
+		}
+
+		$this->assign('currentPressUrl', $currentPressUrl);
+		$this->assign('pressesNameAndUrl', $pressesNameAndUrl);
 	}
 }
 
