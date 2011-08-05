@@ -76,7 +76,8 @@ class WorkflowHandler extends Handler {
 			$stageAssignmentDao->editorAssignedToSubmission($monograph->getId(), $stageId)
 		);
 
-		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_OMP_EDITOR, LOCALE_COMPONENT_OMP_SUBMISSION));
+		// LOCALE_COMPONENT_PKP_GRID brought in for grid.action.moreInformatio
+		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_OMP_EDITOR, LOCALE_COMPONENT_OMP_SUBMISSION, LOCALE_COMPONENT_PKP_GRID));
 		parent::setupTemplate();
 	}
 
