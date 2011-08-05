@@ -1,15 +1,15 @@
 {**
- * authorDashboard.tpl
+ * templates/authorDashboard/authorDashboard.tpl
  *
  * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Display the author dashboard.
  *}
-
 {strip}
 {include file="common/header.tpl"}
 {/strip}
+
 {assign var="stageId" value=$monograph->getStageId()}
 
 <script type="text/javascript">
