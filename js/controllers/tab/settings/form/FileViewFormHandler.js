@@ -61,7 +61,7 @@ jQuery.pkp.controllers.tab =
 	/**
 	 * The url to fetch a file.
 	 * @private
-	 * @type {string}
+	 * @type {string?}
 	 */
 	$.pkp.controllers.tab.settings.form.FileViewFormHandler.prototype
 			.fetchFileUrl_ = null;
@@ -98,6 +98,7 @@ jQuery.pkp.controllers.tab =
 	$.pkp.controllers.tab.settings.form.FileViewFormHandler.prototype.refreshResponseHandler_ =
 			function(ajaxContext, jsonData) {
 
+		var $fileElement;
 		jsonData = this.handleJson(jsonData);
 		if (jsonData.noData) {
 
@@ -105,8 +106,7 @@ jQuery.pkp.controllers.tab =
 			// its markup from the form.
 			$fileElement = this.getFileHtmlElement_(jsonData.noData);
 			$fileElement.empty();
-		}
-		else {
+		} else {
 
 			// The server returned mark-up to replace
 			// or insert the file data in form.
@@ -127,9 +127,9 @@ jQuery.pkp.controllers.tab =
 	 */
 	$.pkp.controllers.tab.settings.form.FileViewFormHandler.prototype.getFileHtmlElement_ =
 			function(settingName) {
-		$form = this.getHtmlElement();
-		$fileHtmlElement = $('#' + settingName, $form);
+		var $form = this.getHtmlElement();
+		var $fileHtmlElement = $('#' + settingName, $form);
 
 		return $fileHtmlElement;
 	};
-}(jQuery));
+})(jQuery);

@@ -62,8 +62,10 @@ jQuery.pkp.site =
 		var $sourceElement = $(sourceElement);
 		var link = $sourceElement.val();
 
-		if (link != '') this.trigger('redirectRequested', link);
+		if (link !== '') {
+			this.trigger('redirectRequested', link);
+		}
 	};
 
 
-}(jQuery));
+})(jQuery);

@@ -22,7 +22,7 @@ jQuery.pkp.pages.submission =
 	/**
 	 * @constructor
 	 *
-	 * @extends $.pkp.controllers.form.FormHandler
+	 * @extends $.pkp.controllers.form.AjaxFormHandler
 	 *
 	 * @param {jQuery} $form the wrapped HTML form element.
 	 * @param {Object} options form options.
