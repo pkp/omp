@@ -30,8 +30,10 @@ class WorkflowHandler extends Handler {
 	function WorkflowHandler() {
 		parent::Handler();
 
-		$this->addRoleAssignment(array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER, ROLE_ID_PRESS_ASSISTANT),
-				array('submission', 'internalReview', 'externalReview', 'copyediting', 'production'));
+		$this->addRoleAssignment(
+			array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER, ROLE_ID_PRESS_ASSISTANT),
+			array('submission', 'internalReview', 'externalReview', 'copyediting', 'production')
+		);
 	}
 
 
@@ -166,15 +168,22 @@ class WorkflowHandler extends Handler {
 
 		if ($monograph->getStageId() == $selectedStageId) {
 			$dispatcher =& $request->getDispatcher();
-			$newRoundAction = new LinkAction('newRound',
-										new AjaxModal(
-											$dispatcher->url($request, ROUTE_COMPONENT, null,
-													'modals.editorDecision.EditorDecisionHandler',
-													'newReviewRound', null, array('monographId' => $monograph->getId(),
-																			'decision' => SUBMISSION_EDITOR_DECISION_RESUBMIT,
-																			'stageId' => $selectedStageId)),
-													__('editor.monograph.newRound')),
-											__('editor.monograph.newRound')); // FIXME: add icon.
+			$newRoundAction = new LinkAction(
+				'newRound',
+				new AjaxModal(
+					$dispatcher->url(
+						$request, ROUTE_COMPONENT, null,
+						'modals.editorDecision.EditorDecisionHandler',
+						'newReviewRound', null, array(
+							'monographId' => $monograph->getId(),
+							'decision' => SUBMISSION_EDITOR_DECISION_RESUBMIT,
+							'stageId' => $selectedStageId
+						)
+					),
+					__('editor.monograph.newRound')
+				),
+				__('editor.monograph.newRound')
+			); // FIXME: add icon.
 			$templateMgr->assign_by_ref('newRoundAction', $newRoundAction);
 		}
 
@@ -390,4 +399,5 @@ class WorkflowHandler extends Handler {
 		return $decisions;
 	}
 }
+
 ?>
