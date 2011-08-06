@@ -291,7 +291,7 @@ class ProfileForm extends Form {
 				$reviewerUserGroups = $userGroupDao->getByRoleId($press->getId(), ROLE_ID_REVIEWER);
 				while ($reviewerUserGroup =& $reviewerUserGroups->next()) {
 					$groupId = $reviewerUserGroup->getId();
-					$inGroup = $userGroupDao->userInGroup($press->getId(), $user->getId(), $groupId);
+					$inGroup = $userGroupDao->userInGroup($user->getId(), $groupId);
 					if(!$inGroup && array_key_exists($groupId, $reviewerGroup)) {
 						$userGroupDao->assignUserToGroup($user->getId(), $groupId, $press->getId());
 					} else if($inGroup && !array_key_exists($groupId, $reviewerGroup)) {
@@ -307,7 +307,7 @@ class ProfileForm extends Form {
 				$authorUserGroups = $userGroupDao->getByRoleId($press->getId(), ROLE_ID_AUTHOR);
 				while ($authorUserGroup =& $authorUserGroups->next()) {
 					$groupId = $authorUserGroup->getId();
-					$inGroup = $userGroupDao->userInGroup($press->getId(), $user->getId(), $groupId);
+					$inGroup = $userGroupDao->userInGroup($user->getId(), $groupId);
 					if(!$inGroup && array_key_exists($groupId, $authorGroup)) {
 						$userGroupDao->assignUserToGroup($user->getId(), $groupId, $press->getId());
 					} else if($inGroup && !array_key_exists($groupId, $authorGroup)) {

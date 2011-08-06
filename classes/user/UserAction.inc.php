@@ -101,7 +101,7 @@ class UserAction {
 		$userGroups =& $userGroupDao->getByUserId($oldUserId);
 		while( !$userGroups->eof() ) {
 			$userGroup =& $userGroups->next();
-			if (!$userGroupDao->userInGroup($userGroup->getContextId(), $newUserId, $userGroup->getId())) {
+			if (!$userGroupDao->userInGroup($newUserId, $userGroup->getId())) {
 				$userGroupDao->assignUserToGroup($newUserId, $userGroup->getId());
 			}
 			unset($userGroup);

@@ -109,8 +109,8 @@ class SubmissionFilesUploadForm extends SubmissionFilesUploadBaseForm {
 					$this, 'uploaderUserGroupId', FORM_VALIDATOR_REQUIRED_VALUE,
 					'submission.upload.invalidUserGroup',
 					create_function(
-						'$userGroupId,$userGroupDao,$userId,$context',
-						'return $userGroupDao->userInGroup($context->getId(), $userId, $userGroupId);'
+						'$userGroupId,$userGroupDao,$userId',
+						'return $userGroupDao->userInGroup($userId, $userGroupId);'
 					),
 					array(DAORegistry::getDAO('UserGroupDAO'), $user->getId(), $context)
 				)

@@ -214,7 +214,7 @@ class UserUserGroupListbuilderHandler extends ListbuilderHandler {
 		if (
 			empty($userGroupId) ||
 			!$userGroupDao->contextHasGroup($press->getId(), $userGroupId) ||
-			$userGroupDao->userInGroup($press->getId(), $userId, $userGroupId)
+			$userGroupDao->userInGroup($userId, $userGroupId)
 		) {
 			return false;
 		} else {
