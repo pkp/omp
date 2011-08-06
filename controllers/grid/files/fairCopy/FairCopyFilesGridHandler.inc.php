@@ -20,12 +20,10 @@ class FairCopyFilesGridHandler extends FileSignoffGridHandler {
 	 */
 	function FairCopyFilesGridHandler() {
 		import('controllers.grid.files.SubmissionFilesGridDataProvider');
-		$dataProvider = new SubmissionFilesGridDataProvider(
-			MONOGRAPH_FILE_FAIR_COPY
-		);
 		parent::FileSignoffGridHandler(
-			$dataProvider,
+			new SubmissionFilesGridDataProvider(MONOGRAPH_FILE_FAIR_COPY),
 			WORKFLOW_STAGE_ID_EDITING,
+			'SIGNOFF_FAIR_COPY',
 			FILE_GRID_ADD|FILE_GRID_DELETE
 		);
 
@@ -39,7 +37,8 @@ class FairCopyFilesGridHandler extends FileSignoffGridHandler {
 				'fetchGrid', 'fetchRow',
 				'addFile',
 				'downloadFile', 'downloadAllFiles',
-				'deleteFile'
+				'deleteFile',
+				'signOffFile'
 			)
 		);
 

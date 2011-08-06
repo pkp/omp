@@ -17,8 +17,12 @@
  */
 
 import('controllers.grid.files.SubmissionFilesGridHandler');
+import('controllers.grid.files.SignoffStatusFromFileGridColumn');
+import('controllers.grid.files.UploaderUserGroupGridColumn');
 
 class FileSignoffGridHandler extends SubmissionFilesGridHandler {
+	/** @var integer */
+	var $_symbolic;
 
 	/**
 	 * Constructor
@@ -27,10 +31,10 @@ class FileSignoffGridHandler extends SubmissionFilesGridHandler {
 	 * @param $capabilities integer A bit map with zero or more
 	 *  FILE_GRID_* capabilities set.
 	 */
-	function FileSignoffGridHandler($dataProvider, $stageId, $capabilities) {
+	function FileSignoffGridHandler($dataProvider, $stageId, $symbolic, $capabilities) {
+		$this->_symbolic = $symbolic;
 		parent::SubmissionFilesGridHandler($dataProvider, $stageId, $capabilities);
 	}
-
 
 	//
 	// Implement template methods from PKPHandler
@@ -40,117 +44,95 @@ class FileSignoffGridHandler extends SubmissionFilesGridHandler {
 	 */
 	function initialize(&$request) {
 		parent::initialize($request);
+		$currentUser =& $request->getUser();
+		$monograph =& $this->getMonograph();
 
-		// Retrieve the submission files in this grid.
-		$submissionFiles =& $this->getGridDataElements($request);
-
-		// Go through the list of files and identify all uploader user groups.
-		$signoffUserGroups = array();
+		$stageAssignmentDao = & DAORegistry::getDAO('StageAssignmentDAO'); /* @var $stageAssignmentDao StageAssignmentDAO */
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */
-		foreach($submissionFiles as $submissionFileData) {
-			assert(isset($submissionFileData['submissionFile']));
-			$monographFile =& $submissionFileData['submissionFile']; /* @var $submissionFile MonographFile */
 
-			// Add the signoff user groups to the signoff
-			// user group list if it had not been added before.
-			assert(isset($submissionFileData['signoffs']));
-			$fileSignoffs = $submissionFileData['signoffs'];
-			foreach($fileSignoffs as $userId => $signoffUserGroups) {
-				foreach($signoffUserGroups as $signoffUserGroup) {/* @var $signoffUserGroup UserGroup */
-					if (!isset($signoffUserGroups[$signoffUserGroup->getId()])) {
-						$signoffUserGroups[$signoffUserGroup->getId()] =& $signoffUserGroup;
-					}
+		// Set up the roles we may include as columns
+		$roles = array(ROLE_ID_PRESS_MANAGER => 'user.role.manager',
+					   ROLE_ID_SERIES_EDITOR => 'user.role.seriesEditor',
+					   ROLE_ID_PRESS_ASSISTANT => 'user.role.pressAssistant');
+
+		// Get all the uploader user group id's
+		$uploaderUserGroupIds = array();
+		$dataElements =& $this->getGridDataElements($request);
+		foreach ($dataElements as $id => $rowElement) {
+			$submissionFile =& $rowElement['submissionFile'];
+			$uploaderUserGroupIds[] = $submissionFile->getUserGroupId();
+		}
+		$uploaderUserGroupIds = array_unique($uploaderUserGroupIds);
+
+		$userGroupIds = array();
+		foreach ($roles as $roleId => $roleName) {
+			$userIds = array();
+			$assignments =& $stageAssignmentDao->getBySubmissionAndRoleId($monograph->getId(), $roleId, $this->getStageId());
+
+			// Only include a role column if there is at least one user assigned from that role to this stage.
+			if (!$assignments->wasEmpty()) {
+				while ($assignment =& $assignments->next()) {
+					$userIds[] = $assignment->getUserId();
+					$userGroupIds[] = $assignment->getUserGroupId();
+					unset($assignment);
 				}
-			}
 
-			// Add the uploader user group if not already.
-			$uploaderUserGroupId = $monographFile->getUserGroupId();
-			if (!isset($signoffUserGroups[$uploaderUserGroupId])) {
-				// Retrieve the user group object.
-				$userGroup =& $userGroupDao->getById($uploaderUserGroupId);
-				assert(is_a($userGroup, 'UserGroup'));
-				$signoffUserGroups[$uploaderUserGroupId] =& $userGroup;
+				$userIds = array_unique($userIds);
+				$flags = array();
+				if (in_array($currentUser->getId(), $userIds)) $flags['myUserGroup'] = true;
+				$this->addColumn(
+					new SignoffStatusFromFileGridColumn('role-' . $roleId,
+												$roleName,
+												null,
+												$this->getSymbolic(),
+												$userIds,
+												$this->getRequestArgs(),
+												$flags));
 			}
+			unset($assignments);
 		}
 
-		// Add user group columns.
-		import('controllers.grid.files.SignoffStatusGridColumn');
-		foreach($signoffUserGroups as $signoffUserGroup) { /* @var $uploaderUserGroup UserGroup */
-			$this->addColumn(new SignoffStatusGridColumn($signoffUserGroup, $this->getStageId(), $this->getRequestArgs()));
+		// Add a column for uploader User Groups not present in the previous groups
+		$uploaderUserGroupIds = array_diff($uploaderUserGroupIds, array_unique($userGroupIds));
+		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+		foreach ($uploaderUserGroupIds as $userGroupId) {
+			$userGroup =& $userGroupDao->getById($userGroupId);
+			assert(is_a($userGroup, 'UserGroup'));
+			$flags = array();
+			if ($userGroupDao->userInGroup($currentUser->getId(), $userGroupId)) {
+				$flags['myUserGroup'] = true;
+			}
+
+			$this->addColumn(new UploaderUserGroupGridColumn($userGroup, $flags));
+			unset($userGroup);
 		}
+
+
+//		$seriesEditorAssignments =& $stageAssignmentDao->getBySubmissionAndRoleId($monograph->getId(), ROLE_ID_SERIES_EDITOR, $this->getStageId());
+//		$assistantAssignments =& $stageAssignmentDao->getBySubmissionAndRoleId($monograph->getId(), ROLE_ID_PRESS_ASSISTANT, $this->getStageId());
 	}
 
-
 	//
-	// Implement protected template methods from GridHandler
+	// Getter/Setters
 	//
 	/**
-	 * @see GridHandler::loadData()
+	 * Get the signoff's symbolic
+	 * @return integer
 	 */
-	function &loadData($request, $filter) {
-		// Retrieve all press and series editor user
-		// groups from the database.
-		$router =& $request->getRouter();
-		$press =& $router->getContext($request);
-		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */
-		$editorGroups = array();
-		foreach(array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR) as $editorRoleId) {
-			$editorGroupFactory =& $userGroupDao->getByRoleId($press->getId(), $editorRoleId);
-			while($editorGroup =& $editorGroupFactory->next()) { /* @var $editorGroup UserGroup */
-				$editorGroups[$editorGroup->getId()] =& $editorGroup;
-				unset($editorGroup);
-			}
-			unset($editorGroupFactory);
-		}
-
-		// Go through the list of workflow stage participants and
-		// identify all assigned press and series editors.
-		$monograph =& $this->getMonograph();
-		$stageAssignmentDao = & DAORegistry::getDAO('StageAssignmentDAO'); /* @var $stageAssignmentDao StageAssignmentDAO */
-		$stageAssignments = $stageAssignmentDao->getBySubmissionAndStageId($monograph->getId(), $this->getStageId());
-
-		$stageEditors = array();
-		while($stageAssignment =& $stageAssignments->next()) { /* @var $stageAssignment StageAssignment */
-			if (isset($editorGroups[$stageAssignment->getUserGroupId()])) {
-				if (!isset($stageEditors[$stageAssignment->getUserId()])) {
-					$stageEditors[$stageAssignment->getUserId()] = array();
-				}
-				$stageEditors[$stageAssignment->getUserId()][$stageAssignment->getUserGroupId()] =&
-						$editorGroups[$stageAssignment->getUserGroupId()];
-			}
-		}
-
-		// Now go through all files and create a signoff for each of
-		// the assigned editors unless that editor is the uploader.
-		$submissionFiles =& parent::loadData($request, $filter);
-		foreach($submissionFiles as $fileId => $submissionFileData) {
-			assert(isset($submissionFileData['submissionFile']));
-			$monographFile =& $submissionFileData['submissionFile']; /* @var $monographFile MonographFile */
-
-			// All press and series editors assigned to the stage except
-			// for those who uploaded the file have to sign off this file.
-			$fileSignoffs = $stageEditors;
-			unset($fileSignoffs[$monographFile->getUploaderUserId()]);
-			$submissionFiles[$fileId]['signoffs'] = $fileSignoffs;
-		}
-
-		return $submissionFiles;
+	function getSymbolic() {
+		return $this->_symbolic;
 	}
 
 
 	//
-	// Public handler methods
+	// Public Methods
 	//
 	/**
 	 * Sign off the given file revision.
 	 * @param $args array
 	 * @param $request Request
 	 */
-	function signOffFiles($args, &$request) {
-		// Retrieve the monograph.
-		$monograph =& $this->getMonograph();
-		$monographId = $monograph->getId();
-
+	function signOffFile($args, &$request) {
 		// Retrieve the file to be signed off.
 		$fileId = (int)$request->getUserVar('fileId');
 
@@ -163,27 +145,12 @@ class FileSignoffGridHandler extends SubmissionFilesGridHandler {
 
 		// Retrieve the user.
 		$user =& $request->getUser();
-		assert(is_a($user, 'User'));
-
-		// Retrieve the user group id.
-		$userGroupId = (int)$request->getUserVar('userGroupId');
-
-		// Make sure that the user group id is one of the
-		// assigned user groups of the current user in this
-		// stage and for this file.
-		assert(isset($submissionFiles[$fileId]['signoffs']));
-		$fileSignoffs =& $submissionFiles[$fileId]['signoffs'];
-		if (
-			!isset($fileSignoffs[$user->getId()]) ||
-			!isset($fileSignoffs[$user->getId()][$userGroupId])
-		) fatalError('Invalid user group id!');
 
 		// Insert or update the sign off corresponding
 		// to this file revision.
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
 		$signoff =& $signoffDao->build(
-			'SIGNOFF_STAGE_FILE', ASSOC_TYPE_MONOGRAPH, $submissionFile->getSubmissionId(), $user->getId(),
-			$userGroupId, $submissionFile->getFileId(), $submissionFile->getRevision()
+			$this->getSymbolic(), ASSOC_TYPE_MONOGRAPH_FILE, $submissionFile->getFileId(), $user->getId()
 		);
 		$signoff->setDateCompleted(Core::getCurrentDate());
 		$signoffDao->updateObject($signoff);
