@@ -45,6 +45,7 @@ class SubmissionFilesGridRow extends GridRow {
 	}
 
 	/**
+	 * FIXME: is this dead code? It could be useful, but I dont' think it is used.
 	 * Get the workflow stage id.
 	 * @return integer
 	 */

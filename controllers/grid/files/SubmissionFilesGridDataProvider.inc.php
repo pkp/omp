@@ -26,7 +26,6 @@ class SubmissionFilesGridDataProvider extends FilesGridDataProvider {
 
 	/**
 	 * Constructor
-	 * @param $stageId integer One of the WORKFLOW_STAGE_ID_* constants.
 	 * @param $fileStage integer One of the MONOGRAPH_FILE_* constants.
 	 */
 	function SubmissionFilesGridDataProvider($fileStage) {

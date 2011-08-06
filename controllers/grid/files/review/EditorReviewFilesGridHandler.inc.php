@@ -20,7 +20,6 @@ class EditorReviewFilesGridHandler extends FileListGridHandler {
 	 * Constructor
 	 */
 	function EditorReviewFilesGridHandler() {
-		// FIXME: #6244# HARDCODED INTERNAL_REVIEW  x 2
 		import('controllers.grid.files.review.ReviewGridDataProvider');
 		$dataProvider = new ReviewGridDataProvider(MONOGRAPH_FILE_REVIEW);
 		parent::FileListGridHandler(

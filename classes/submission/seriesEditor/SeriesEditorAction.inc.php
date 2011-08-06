@@ -101,9 +101,6 @@ class SeriesEditorAction extends Action {
 			}
 		}
 
-		// Author roles -- Assign only the submitter
-		// FIXME #6001: Should the author groups be assigned here as well? As which user group?
-
 		// Reviewer roles -- Do nothing. Reviewers are not included in the stage participant list, they
 		// are administered via review assignments.
 	}
@@ -163,10 +160,8 @@ class SeriesEditorAction extends Action {
 			// Assign review form automatically if needed
 			$pressId = $seriesEditorSubmission->getPressId();
 			$seriesDao =& DAORegistry::getDAO('SeriesDAO');
-			$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
 
 			$submissionId = $seriesEditorSubmission->getId();
-			$series =& $seriesDao->getById($submissionId, $pressId);
 
 			$seriesEditorSubmission->addReviewAssignment($reviewAssignment, $stageId, $round);
 			$seriesEditorSubmissionDao->updateSeriesEditorSubmission($seriesEditorSubmission);
@@ -178,9 +173,6 @@ class SeriesEditorAction extends Action {
 				$stageId
 			);
 
-			$press =& $request->getPress();
-			$settingsDao =& DAORegistry::getDAO('PressSettingsDAO');
-			$settings =& $settingsDao->getPressSettings($press->getId());
 			if (isset($reviewDueDate)) $this->setDueDate($request, $seriesEditorSubmission, $reviewAssignment->getId(), $reviewDueDate);
 			if (isset($responseDueDate)) $this->setResponseDueDate($seriesEditorSubmission->getId(), $reviewAssignment->getId(), $responseDueDate);
 
@@ -201,7 +193,6 @@ class SeriesEditorAction extends Action {
 		$seriesEditorSubmission =& $seriesEditorSubmissionDao->getSeriesEditorSubmission($submissionId);
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		$userDao =& DAORegistry::getDAO('UserDAO');
-		$user =& Request::getUser();
 
 		$reviewAssignment =& $reviewAssignmentDao->getById($reviewId);
 
@@ -235,7 +226,6 @@ class SeriesEditorAction extends Action {
 	function setDueDate($request, $monograph, $reviewId, $dueDate = null, $numWeeks = null, $logEntry = false) {
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		$userDao =& DAORegistry::getDAO('UserDAO');
-		$user =& Request::getUser();
 
 		$reviewAssignment =& $reviewAssignmentDao->getById($reviewId);
 		$reviewer =& $userDao->getUser($reviewAssignment->getReviewerId());
