@@ -41,7 +41,7 @@ class SubmissionFilesUploadBaseForm extends Form {
 			$revisionOnly = false, $round = null, $revisedFileId = null, $assocType = null, $assocId = null) {
 
 		// Check the incoming parameters.
-		if (	!is_numeric($monographId) || $monographId <= 0 ||
+		if ( !is_numeric($monographId) || $monographId <= 0 ||
 			!is_numeric($fileStage) || $fileStage <= 0 ||
 			!is_numeric($stageId) || $stageId < 1 || $stageId > 5 ||
 			isset($assocType) !== isset($assocId)) {
@@ -194,6 +194,16 @@ class SubmissionFilesUploadBaseForm extends Form {
 			if ($monographFile->getRevision() > 1) $fileName .= ' (' . $monographFile->getRevision() . ')';
 			$monographFileOptions[$monographFile->getFileId()] = $fileName;
 			$currentMonographFileGenres[$monographFile->getFileId()] = $monographFile->getGenreId();
+
+			$lastMonographFile = $monographFile;
+		}
+
+		// If there is only one option for a file to review, do not show the selector.
+		if (count($monographFileOptions) == 1) {
+			// There was only one option, use the last added monograph file
+			$this->setData('revisedFileId', $lastMonographFile->getFileId());
+			$this->setData('revisedFileName', $lastMonographFile->getOriginalFileName());
+			$this->setData('genreId', $lastMonographFile->getGenreId());
 		}
 
 		// If this is not a "review only" form then add a default item.
