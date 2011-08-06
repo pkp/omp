@@ -113,6 +113,11 @@
 	<message key="submission.upload.fairCopy">Upload Fair Copy version</message>
 	<message key="submission.upload.signoff">Upload a Response</message>
 
+	<!-- Read/Upload/Perform Signoff -->
+	<message key="submission.signoff.selectFile">Select the file you wish to signoff on</message>
+	<message key="submission.signoff.signoffOnFile">Signoff on this file</message>
+	<message key="submission.signoff.noAvailableSignoffs">There are no files for you respond to at this time.</message>
+
 	<!-- Submission statuses -->
 	<message key="submission.status.editorial">In Copyediting</message>
 	<message key="submission.status.production">In Proofreading</message>

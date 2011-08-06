@@ -53,9 +53,6 @@ class CopyeditingFilesGridRow extends GridRow {
 		$user =& $request->getUser();
 
 		if (!empty($rowId) && is_numeric($rowId)) {
-			import('lib.pkp.classes.linkAction.request.AjaxModal');
-			import('controllers.api.file.linkAction.DeleteFileLinkAction');
-
 			// Actions
 			$router =& $request->getRouter();
 
@@ -67,6 +64,8 @@ class CopyeditingFilesGridRow extends GridRow {
 					$router->url(
 						$request, null, null, 'deleteSignoff',
 						null, array(
+							'monographId' => $monographId,
+							'stageId' => WORKFLOW_STAGE_ID_EDITING,
 							'signoffId' => $rowId,
 							'fileId' => $copyeditedFileId
 						)
@@ -79,25 +78,18 @@ class CopyeditingFilesGridRow extends GridRow {
 			if ($copyeditedFileId) {
 				$copyeditedFile =& $submissionFileDao->getLatestRevision($copyeditedFileId);
 				import('controllers.informationCenter.linkAction.FileInfoCenterLinkAction');
-				$this->addAction(new FileInfoCenterLinkAction($request, $monographFile));
-
-				$this->addAction(new DeleteFileLinkAction($request, $copyeditedFile, 'grid.copyediting.deleteCopyeditorResponse'));
+				$this->addAction(new FileInfoCenterLinkAction($request, $copyeditedFile));
 			}
 
-			// If there is no file uploaded, allow the user to upload if it is their signoff (i.e. their copyediting assignment)
-			if (!$copyeditedFileId && $signoff->getUserId() == $user->getId()) {
-				$this->addAction(new LinkAction(
-					'addCopyeditedFile',
-					new AjaxModal($router->url(
-						$request, null, null, 'addCopyeditedFile',
-						null, array(
-							'signoffId' => $rowId,
-							'monographId' => $monographId
-						)
-					)),
-					__('submission.addFile'),
-					'add'
-				));
+			// If signoff has not been completed, allow the user to upload if it is their signoff (i.e. their copyediting assignment)
+			if (!$signoff->getDateCompleted() && $signoff->getUserId() == $user->getId()) {
+				if ($signoff->getUserId() == $user->getId()) {
+					import('controllers.api.signoff.linkAction.AddSignoffFileLinkAction');
+					$this->addAction(new AddSignoffFileLinkAction(
+						$request, $monographId,
+						WORKFLOW_STAGE_ID_EDITING, 'SIGNOFF_COPYEDITING', $signoff->getId(),
+						__('submission.upload.signoff'), __('submission.upload.signoff')));
+				}
 			}
 		}
 	}

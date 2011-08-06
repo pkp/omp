@@ -31,19 +31,13 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 		parent::CategoryGridHandler();
 
 		$this->addRoleAssignment(
-			ROLE_ID_AUTHOR,
-			$authorOperations = array(
-				'fetchGrid', 'fetchRow', 'addCopyeditedFile',
-				'uploadCopyeditedFile', 'saveCopyeditedFile',
-				'returnSignoffRow', 'returnFileRow',
-				'downloadFile', 'deleteFile',
-			)
-		);
-		$this->addRoleAssignment(
 			array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER, ROLE_ID_PRESS_ASSISTANT),
 			array_merge(
-				$authorOperations,
 				array(
+				'fetchGrid', 'fetchRow', 'addCopyeditedFile',
+				'uploadCopyeditedFile', 'saveCopyeditedFile',
+				'signOffsignOff', 'returnSignoffRow', 'returnFileRow',
+				'downloadFile', 'deleteFile',
 					'addUser', 'saveAddUser', 'getCopyeditUserAutocomplete', 'deleteSignoff'
 				)
 			)
@@ -73,7 +67,7 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 	 */
 	function authorize(&$request, $args, $roleAssignments) {
 		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
-		$this->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', WORKFLOW_STAGE_ID_EDITING));
+		$this->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', $this->getStageId()));
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 
@@ -104,28 +98,35 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 		import('controllers.api.file.linkAction.AddFileLinkAction');
 		$this->addAction(new AddFileLinkAction(
 			$request, $monograph->getId(),
-			WORKFLOW_STAGE_ID_EDITING,
-			array(ROLE_ID_AUTHOR, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER, ROLE_ID_PRESS_ASSISTANT),
+			$this->getStageId(),
+			array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER, ROLE_ID_PRESS_ASSISTANT),
 			MONOGRAPH_FILE_COPYEDIT
 		));
+
+		// Action to signoff on a file -- Lets user interact with their own rows.;
+		import('controllers.api.signoff.linkAction.AddSignoffFileLinkAction');
+		$this->addAction(new AddSignoffFileLinkAction(
+			$request, $monograph->getId(),
+			$this->getStageId(), 'SIGNOFF_COPYEDITING', null,
+			__('submission.upload.signoff'), __('submission.upload.signoff')));
 
 		$router =& $request->getRouter();
 
 		// Action to add a user -- Adds the user as a subcategory to the files selected in its modal
-		// FIXME: Not all roles should see this action. Bug #5975.
 		$this->addAction(new LinkAction(
 			'addUser',
 			new AjaxModal(
 				$router->url($request, null, null, 'addUser', null, array('monographId' => $monograph->getId())),
-				__('editor.monograph.copyediting.addUser'),
+				__('editor.monograph.copyediting.addAuditor'),
 				'add_item'
 			),
-			__('editor.monograph.copyediting.addUser'),
+			__('editor.monograph.copyediting.addAuditor'),
 			'add_item'
 		));
 
+		//
 		// Grid Columns
-		$cellProvider = new CopyeditingFilesGridCellProvider();
+		//
 
 		// Add a column for the file's label
 		$this->addColumn(
@@ -134,32 +135,58 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 				'common.file',
 				null,
 				'controllers/grid/gridCell.tpl',
-				$cellProvider
+				new CopyeditingFilesGridCellProvider($monograph->getId(), $this->getStageId())
 			)
 		);
 
-		// Add role columns -- One of each user group currently assigned to the stage:
-		$stageAssignmentDao =& DAORegistry::getDAO('StageAssignmentDAO'); /* @var $stageAssignmentDao StageAssignmentDAO */
-		$stageAssignments = $stageAssignmentDao->getBySubmissionAndStageId($monograph->getId(), WORKFLOW_STAGE_ID_EDITING);
+		// Get all the users that are assigned to the stage (managers, series editors, and assistants)
+		// FIXME: is there a better way to do this?
+		$userIds = array();
+		$stageAssignmentDao = & DAORegistry::getDAO('StageAssignmentDAO'); /* @var $stageAssignmentDao StageAssignmentDAO */
+		$managerAssignments =& $stageAssignmentDao->getBySubmissionAndRoleId($monograph->getId(), ROLE_ID_PRESS_MANAGER, $this->getStageId());
+		$seriesEditorAssignments =& $stageAssignmentDao->getBySubmissionAndRoleId($monograph->getId(), ROLE_ID_SERIES_EDITOR, $this->getStageId());
+		$assistantAssignments =& $stageAssignmentDao->getBySubmissionAndRoleId($monograph->getId(), ROLE_ID_PRESS_ASSISTANT, $this->getStageId());
 
-		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
-		$userGroups = array();
-		while($stageAssignment =& $stageAssignments->next()) {
-			$userGroup =& $userGroupDao->getById($stageAssignment->getUserGroupId());
-			$userGroups[$userGroup->getId()] = $userGroup->getLocalizedAbbrev();
-			unset($stageAssignment, $userGroup);
+		$allAssignments = array_merge($managerAssignments->toArray(),
+										$seriesEditorAssignments->toArray(),
+										$assistantAssignments->toArray());
+
+		foreach ($allAssignments as $assignment) {
+			$userIds[] = $assignment->getUserId();
 		}
-		foreach($userGroups as $userGroupId => $userGroupAbbrev) {
-			$this->addColumn(
-				new GridColumn(
-					$userGroupId,
-					null,
-					$userGroupAbbrev,
-					'controllers/grid/common/cell/statusCell.tpl',
-					$cellProvider
-				)
-			);
-		}
+		$userIds = array_unique($userIds);
+
+		// Add user group columns.
+		import('controllers.grid.files.SignoffOnSignoffGridColumn');
+		$this->addColumn(new SignoffOnSignoffGridColumn('user.role.editor',
+							 							$userIds, $this->getRequestArgs(),
+							 							array('myUserGroup' => true)
+						 								)
+						);
+
+		// Add the auditor column (the person assigned to signoff.
+		import('controllers.grid.files.SignoffStatusFromSignoffGridColumn');
+		$this->addColumn(new SignoffStatusFromSignoffGridColumn('grid.columns.auditor', $this->getRequestArgs()));
+	}
+
+
+	//
+	// Getters and Setters
+	//
+	/**
+	 * Get the workflow stage id.
+	 * @return integer
+	 */
+	function getStageId() {
+		return WORKFLOW_STAGE_ID_EDITING;
+	}
+
+	/**
+	 * Get the signoff's symbolic
+	 * @return string
+	 */
+	function getSymbolic() {
+		return 'SIGNOFF_COPYEDITING';
 	}
 
 	/**
@@ -198,7 +225,7 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 	 * @return CopyeditingFilesGridCategoryRow
 	 */
 	function &getCategoryRowInstance() {
-		$row = new CopyeditingFilesGridCategoryRow($this->getMonograph());
+		$row = new CopyeditingFilesGridCategoryRow();
 		return $row;
 	}
 
@@ -209,7 +236,7 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 	 */
 	function getCategoryData(&$monographFile) {
 		$monographFileSignoffDao =& DAORegistry::getDAO('MonographFileSignoffDAO');
-		$signoffFactory =& $monographFileSignoffDao->getAllBySymbolic('SIGNOFF_COPYEDITING', $monographFile->getFileId()); /* @var $signoffs DAOResultFactory */
+		$signoffFactory =& $monographFileSignoffDao->getAllBySymbolic($this->getSymbolic(), $monographFile->getFileId()); /* @var $signoffs DAOResultFactory */
 		$signoffs = $signoffFactory->toAssociativeArray();
 		return $signoffs;
 	}
@@ -293,97 +320,17 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 		$userDao =& DAORegistry::getDAO('UserDAO');
 		while($stageUser =& $stageUsers->next()) {
 			$userGroup =& $userGroupDao->getById($stageUser->getUserGroupId());
-			// Disallow if the user's user group is a reviewer role
-			if ($userGroup->getRoleId() != ROLE_ID_REVIEWER) {
-				$user =& $userDao->getUser($stageUser->getUserId());
-				$itemList[] = array(
-					'label' =>  sprintf('%s (%s)', $user->getFullName(), $userGroup->getLocalizedName()),
-					'value' => $user->getId() . '-' . $stageUser->getUserGroupId()
-				);
-			}
+			$user =& $userDao->getUser($stageUser->getUserId());
+			$itemList[] = array(
+				'label' =>  sprintf('%s (%s)', $user->getFullName(), $userGroup->getLocalizedName()),
+				'value' => $user->getId() . '-' . $stageUser->getUserGroupId()
+			);
 			unset($stageUser, $userGroup);
 		}
 
 		import('lib.pkp.classes.core.JSONMessage');
 		$json = new JSONMessage(true, $itemList);
 		echo $json->getString();
-	}
-
-	/**
-	 * Show the copyedited file upload form (to add a new or edit an existing copyedited file)
-	 * @param $args array
-	 * @param $request PKPRequest
-	 * @return string Serialized JSON object
-	 */
-	function addCopyeditedFile($args, &$request) {
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-
-		// FIXME: Bug #6199
-		$signoffId = (int) $request->getUserVar('signoffId');
-
-		import('controllers.grid.files.copyedit.form.CopyeditingFileForm');
-		$copyeditingFileForm = new CopyeditingFileForm($monograph, $signoffId);
-
-		if ($copyeditingFileForm->isLocaleResubmit()) {
-			$copyeditingFileForm->readInputData();
-		} else {
-			$copyeditingFileForm->initData($args, $request);
-		}
-
-		$json = new JSONMessage(true, $copyeditingFileForm->fetch($request));
-		return $json->getString();
-	}
-
-	/**
-	 * Upload a new copyedited file.
-	 * @param $args array
-	 * @param $request PKPRequest
-	 * @return string
-	 */
-	function uploadCopyeditedFile($args, &$request) {
-		$router =& $request->getRouter();
-		$context = $request->getContext();
-		$user =& $request->getUser();
-
-		import('classes.file.TemporaryFileManager');
-		$temporaryFileManager = new TemporaryFileManager();
-		$temporaryFile = $temporaryFileManager->handleUpload('uploadedFile', $user->getId());
-		if ($temporaryFile) {
-			$json = new JSONMessage(true);
-			$json->setAdditionalAttributes(array(
-				'temporaryFileId' => $temporaryFile->getId()
-			));
-		} else {
-			$json = new JSONMessage(false, Locale::translate('common.uploadFailed'));
-		}
-
-		return $json->getString();
-	}
-
-	/**
-	 * Save an uploaded file as a copyediting file
-	 * @param $args array
-	 * @param $request PKPRequest
-	 * @return string
-	 */
-	function saveCopyeditedFile($args, &$request) {
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-
-		// FIXME: Bug #6199
-		$signoffId = (int) $request->getUserVar('signoffId');
- 
-		import('controllers.grid.files.copyedit.form.CopyeditingFileForm');
-		$copyeditingFileForm = new CopyeditingFileForm($monograph, $signoffId);
-		$copyeditingFileForm->readInputData();
- 
-		if ($copyeditingFileForm->validate()) {
-			$user =& $request->getUser();
-			$copyeditingFileForm->execute($user->getId());
-			return DAO::getDataChangedEvent();
-		} else {
-			$json = new JSONMessage(false, Locale::translate('common.uploadFailed'));
-			echo $json->getString();
-		}
 	}
 
 	/**
@@ -469,6 +416,27 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 			$json = new JSONMessage(false, 'manager.setup.errorDeletingItem');
 			return $json->getString();
 		}
+	}
+
+	/**
+	 * Let the user signoff on the signoff
+	 * @param $args array
+	 * @param $request Request
+	 */
+	function signOffsignOff($args, &$request) {
+		// FIXME: bug #6199
+		$signoffId = (int) $request->getUserVar('signoffId');
+		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
+		$rowSignoff = $signoffDao->getById($signoffId);
+		if (!$rowSignoff) fatalError('Invalid Signoff given');
+
+		$user =& $request->getUser();
+		$signoff =& $signoffDao->build('SIGNOFF_SIGNOFF', ASSOC_TYPE_SIGNOFF, $signoffId, $user->getId());
+		$signoff->setDateCompleted(Core::getCurrentDate());
+		$signoffDao->updateObject($signoff);
+
+		// Redraw the category (id by the signoff's assoc id).
+		return DAO::getDataChangedEvent($rowSignoff->getAssocId());
 	}
 }
 

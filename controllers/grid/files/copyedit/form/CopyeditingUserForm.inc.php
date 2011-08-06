@@ -109,11 +109,8 @@ class CopyeditingUserForm extends Form {
 		$fileId = (int) $newRowId;
 		$monograph =& $this->getMonograph();
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO');
-		$monographFiles =& $submissionFileDao->getLatestRevisions($monograph->getId(), MONOGRAPH_FILE_COPYEDIT);
-		$monographFile = null;
-		foreach ($monographFiles as $potentialFile) {
-			if ($potentialFile->getFileId() == $fileId) $monographFile =& $potentialFile;
-		}
+		$monographFile =& $submissionFileDao->getLatestRevision($fileId, MONOGRAPH_FILE_COPYEDIT, $monograph->getId());
+		assert($monographFile);
 
 		// FIXME: Bug #6199: How to validate user IDs?
 		$userId = (int) $this->getData('userId');

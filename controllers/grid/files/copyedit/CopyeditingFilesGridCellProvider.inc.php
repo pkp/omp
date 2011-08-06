@@ -15,11 +15,30 @@
 import('lib.pkp.classes.controllers.grid.GridCellProvider');
 
 class CopyeditingFilesGridCellProvider extends GridCellProvider {
+	/** @var int */
+	var $_monographId;
+
+	/** @var int */
+	var $_stageId;
+
 	/**
 	 * Constructor
 	 */
-	function CopyeditingFilesGridCellProvider() {
+	function CopyeditingFilesGridCellProvider($monographId, $stageId) {
+		$this->_monographId = $monographId;
+		$this->_stageId = $stageId;
 		parent::GridCellProvider();
+	}
+
+	//
+	// Getters
+	//
+	function getMonographId() {
+		return $this->_monographId;
+	}
+
+	function getStageId() {
+		return $this->_stageId;
 	}
 
 	/**
@@ -32,83 +51,19 @@ class CopyeditingFilesGridCellProvider extends GridCellProvider {
 	function getCellActions(&$request, &$row, &$column, $position = GRID_ACTION_POSITION_DEFAULT) {
 		if ($column->getId() == 'name') {
 			$signoff =& $row->getData();
-			$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-			if($signoff->getFileId()) {
-				$monographFile =& $submissionFileDao->getLatestRevision($signoff->getFileId());
-				$fileId = $signoff->getFileId();
+			if($signoff->getDateCompleted()) {
+				$label = $this->_getLabel($signoff);
 
-				$router =& $request->getRouter();
-				$actionArgs = array(
-					'gridId' => $row->getGridId(),
-					'monographId' => $monographFile->getMonographId(),
-					'fileId' => $fileId
-				);
+				import('controllers.api.signoff.linkAction.ReadSignoffLinkAction');
+				$readSignoffAction = new ReadSignoffLinkAction($request, $this->getMonographId(),
+																$this->getStageId(), $signoff->getId(),
+																$label, $label);
 
-				$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
-				$userDao =& DAORegistry::getDAO('UserDAO');
-				$userGroup =& $userGroupDao->getById($signoff->getUserGroupId());
-				$user =& $userDao->getUser($signoff->getUserId());
-
-				import('controllers.api.file.linkAction.DownloadCopyeditedFileLinkAction');
-				return array(new DownloadCopyeditedFileLinkAction($request, $monographFile, $user, $userGroup));
-			} else {
-				$fileId = $monographFile = null;
-				return null;
+				return array($readSignoffAction);
 			}
 		}
 
 		return parent::getCellActions($request, $row, $column, $position);
-	}
-
-	/**
-	 * Gathers the state of a given cell given a $row/$column combination
-	 * @param $row GridRow
-	 * @param $column GridColumn
-	 */
-	function getCellState(&$row, &$column) {
-		$columnId = $column->getId();
-		$element =& $row->getData(); /* @var $element Signoff */
-		assert(is_a($element, 'Signoff') && !empty($columnId));
-
-		// Numeric means its a userGroupId column
-		if (is_numeric($columnId)) {
-			$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
-			$userGroup =& $userGroupDao->getById($columnId);
-			$roleId = $userGroup->getRoleId();
-			if ($roleId == ROLE_ID_PRESS_ASSISTANT) {
-				// If there is no file, leave blank
-				if(!$element->getFileId()) {
-					return '';
-				} else {
-					// Check if the user has read the file
-					$viewsDao =& DAORegistry::getDAO('ViewsDAO');
-					$lastViewed = $viewsDao->getLastViewDate(
-						ASSOC_TYPE_MONOGRAPH_FILE, $element->getFileId().'-'.$element->getFileRevision(),
-						$element->getUserId()
-					);
-					if($lastViewed) {
-						return 'accepted'; // Green checkbox
-					} else {
-						return 'new'; // Gray checkbox
-					}
-				}
-			} else if ($roleId == ROLE_ID_PRESS_MANAGER || $roleId == ROLE_ID_SERIES_EDITOR || $roleId == ROLE_ID_AUTHOR) {
-				if ($columnId == $element->getUserGroupId()) {
-					// If a file was uploaded, show that this column's user group is the submitter
-					if($element->getFileId()) {
-						return 'uploaded'; // File folder
-					}
-					if($element->getDateUnderway() > Core::getCurrentDate()) {
-						// Else If the date due is past today's date, show a red envelope icon
-						return 'overdue'; // Red envelope
-					} else {
-						return 'new'; // Gray checkbox
-					}
-				}
-				// If column is not the submitter, cell is always empty.
-				return '';
-			}
-		}
 	}
 
 	/**
@@ -119,27 +74,27 @@ class CopyeditingFilesGridCellProvider extends GridCellProvider {
 	 * @return array
 	 */
 	function getTemplateVarsFromRowColumn(&$row, &$column) {
-		$element =& $row->getData();  /* @var $element Signoff */
+		$signoff =& $row->getData();  /* @var $element Signoff */
 		$columnId = $column->getId();
-		assert(is_a($element, 'Signoff') && !empty($columnId));
+		assert(is_a($signoff, 'Signoff') && !empty($columnId));
 
-		// Numeric columns indicate a user group column.
-		if ( is_numeric($columnId) ) {
-			$state = $this->getCellState($row, $column);
-			return array('status' => $state);
+		if ($columnId == 'name' && !$signoff->getDateCompleted()) {
+			return array('label' => $this->_getLabel($signoff));
 		}
 
-		// all other columns
-		switch ($columnId) {
-			case 'name':
-				$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
-				$userDao =& DAORegistry::getDAO('UserDAO');
-				$userGroup =& $userGroupDao->getById($element->getUserGroupId());
-				$user =& $userDao->getUser($element->getUserId());
+		return parent::getTemplateVarsFromRowColumn($row, $column);
+	}
 
-				$label = $user->getFullName() . ' (' . $userGroup->getLocalizedName() . ')';
-				return array('label' => $label);
-		}
+	/**
+	 * Build the cell label from the signoff object
+	 */
+	function _getLabel(&$signoff) {
+		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+		$userDao =& DAORegistry::getDAO('UserDAO');
+		$userGroup =& $userGroupDao->getById($signoff->getUserGroupId());
+		$user =& $userDao->getUser($signoff->getUserId());
+
+	 	return $user->getFullName() . ' (' . $userGroup->getLocalizedName() . ')';
 	}
 }
 

@@ -15,15 +15,11 @@
 import('lib.pkp.classes.controllers.grid.GridCategoryRow');
 
 class CopyeditingFilesGridCategoryRow extends GridCategoryRow {
-	/** @var $_monograph Monograph */
-	var $_monograph;
-
 	/**
 	 * Constructor
 	 */
-	function CopyeditingFilesGridCategoryRow(&$monograph) {
+	function CopyeditingFilesGridCategoryRow() {
 		parent::GridCategoryRow();
-		$this->_monograph =& $monograph;
 	}
 
 	//
@@ -41,13 +37,6 @@ class CopyeditingFilesGridCategoryRow extends GridCategoryRow {
 		$fileId = $this->getId();
 		if (!empty($fileId) && is_numeric($fileId)) {
 			$monographFile =& $this->getData();
-
-			// Only add row actions if this is an existing row
-			$router =& $request->getRouter();
-			$actionArgs = array(
-				'monographId' => $this->_monograph->getId(),
-				'fileId' => $fileId
-			);
 
 			// Add the row actions.
 			// FIXME: Not all roles should see this action. Bug #5975.

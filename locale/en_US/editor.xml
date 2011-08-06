@@ -67,7 +67,7 @@
 	<message key="editor.monograph.final.manageFinalDraftFiles">Manage Final Draft Files</message>
 	<message key="editor.monograph.final.currentFiles">Current Final Draft Files</message>
 	<message key="editor.monograph.fairCopy">Fair Copy</message>
-	<message key="editor.monograph.copyediting.addUser">Add User</message>
+	<message key="editor.monograph.copyediting.addAuditor">Add Auditor</message>
 	<message key="editor.monograph.copyediting.currentFiles">Current Files</message>
 	<message key="editor.monograph.copyediting.personalMessageTouser">Personal message to user</message>
 	<message key="editor.monograph.copyediting.form.userRequired">You must select a user to assign.</message>
