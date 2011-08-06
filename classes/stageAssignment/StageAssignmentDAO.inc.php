@@ -28,6 +28,10 @@ class StageAssignmentDAO extends DAO {
 		return $this->_getByIds($submissionId, $stageId, $userGroupId, $userId);
 	}
 
+	function getBySubmissionAndRoleId($submissionId, $roleId, $stageId = null) {
+		return $this->_getByIds($submissionId, $stageId, null, null, $roleId);
+	}
+
 	/**
 	 * @param $userId int
 	 * @return StageAssignment
@@ -70,7 +74,7 @@ class StageAssignmentDAO extends DAO {
 	function build($submissionId, $stageId, $userGroupId, $userId) {
 
 		// If one exists, fetch and return.
-		$stageAssignment = $this->_getByIds($submissionId, $stageId, $userGroupId, $userId, true);
+		$stageAssignment = $this->_getByIds($submissionId, $stageId, $userGroupId, $userId, null, true);
 		if ($stageAssignment) return $stageAssignment;
 
 		// Otherwise, build one.
@@ -93,7 +97,7 @@ class StageAssignmentDAO extends DAO {
 	 * @return boolean
 	 */
 	function stageAssignmentExists($submissionId, $stageId, $userGroupId, $userId) {
-		$stageAssignment = $this->_getByIds($submissionId, $stageId, $userGroupId, $userId, true);
+		$stageAssignment = $this->_getByIds($submissionId, $stageId, $userGroupId, $userId, null, true);
 		return ($stageAssignment)?true:false;
 	}
 
@@ -186,29 +190,35 @@ class StageAssignmentDAO extends DAO {
 	 * @param $single bool specify if only one stage assignment (default is a ResultFactory)
 	 * @return StageAssignment or ResultFactory
 	 */
-	function _getByIds($submissionId = null, $stageId = null, $userGroupId = null, $userId = null, $single = false) {
+	function _getByIds($submissionId = null, $stageId = null, $userGroupId = null, $userId = null, $roleId = null, $single = false) {
 		$conditions = array();
 		$params = array();
 		if (isset($submissionId)) {
-			$conditions[] = 'submission_id = ?';
+			$conditions[] = 'sa.submission_id = ?';
 			$params[] = (int) $submissionId;
 		}
 		if (isset($stageId)) {
-			$conditions[] = 'stage_id = ?';
+			$conditions[] = 'sa.stage_id = ?';
 			$params[] = (int) $stageId;
 		}
 		if (isset($userGroupId)) {
-			$conditions[] = 'user_group_id = ?';
+			$conditions[] = 'sa.user_group_id = ?';
 			$params[] = (int) $userGroupId;
 		}
 		if (isset($userId)) {
-			$conditions[] = 'user_id = ?';
+			$conditions[] = 'sa.user_id = ?';
 			$params[] = (int) $userId;
 		}
 
+		if (isset($roleId)) {
+			$conditions[] = 'ug.role_id = ?';
+			$params[] = (int) $roleId;
+		}
+
 		$result =& $this->retrieve(
-			'SELECT * FROM stage_assignments
-			WHERE ' . (implode(' AND ', $conditions)),
+			'SELECT * FROM stage_assignments sa ' .
+			(isset($roleId)?' LEFT JOIN user_groups ug ON sa.user_group_id = ug.user_group_id ':'') .
+			'WHERE ' . (implode(' AND ', $conditions)),
 			$params
 		);
 

@@ -45,8 +45,8 @@ class UserStageAssignmentDAO extends UserDAO {
 	 * @param $userGroupId int (optional)
 	 * @return DAOResultFactory StageAssignment
 	 */
-	function getUsersBySubmissionAndStageId($submissionId, $stageId = null, $userGroupId = null) {
-		return $this->_getUsersByIds($submissionId, $stageId, $userGroupId);
+	function getUsersBySubmissionAndStageId($submissionId, $stageId = null, $userGroupId = null, $roleId = null) {
+		return $this->_getUsersByIds($submissionId, $stageId, $userGroupId, $roleId);
 	}
 
 	/**
@@ -70,22 +70,26 @@ class UserStageAssignmentDAO extends UserDAO {
 	 * @param $stageId int optional
 	 * @param $userGroupId int optional
 	 * @param $userId int optional
+	 * @param $roleId int optional
 	 * @return object DAOResultFactory
 	 */
-	function _getUsersByIds($submissionId, $stageId = null, $userGroupId = null, $userId = null) {
+	function _getUsersByIds($submissionId, $stageId = null, $userGroupId = null, $userId = null, $roleId = null) {
 		$params = array((int) $submissionId);
 		if (isset($stageId)) $params[] = (int) $stageId;
 		if (isset($userGroupId)) $params[] = (int) $userGroupId;
 		if (isset($userId)) $params[] = (int) $userId;
+		if (isset($roleId)) $params[] = (int) $roleId;
 
 		$result =& $this->retrieve(
 			'SELECT u.*
 			FROM stage_assignments s
-			INNER JOIN users u ON (u.user_id = s.user_id)
-			WHERE submission_id = ?' .
+			INNER JOIN users u ON (u.user_id = s.user_id) ' .
+			(isset($roleId) ? 'INNER JOIN user_groups ug ON (ug.user_group_id = s.user_group_id) ' : '') .
+			'WHERE submission_id = ?' .
 			(isset($stageId) ? ' AND stage_id = ?' : '') .
 			(isset($userGroupId) ? ' AND user_group_id = ?':'') .
-			(isset($userId)?' AND user_id = ? ' : ''),
+			(isset($userId)?' AND u.user_id = ? ' : '') .
+			(isset($roleId)?' AND ug.role_id = ?' : ''),
 			$params);
 
 		$returner = null;
