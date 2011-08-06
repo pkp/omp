@@ -24,13 +24,15 @@ class ReviewRevisionsGridHandler extends FileSignoffGridHandler {
 		parent::FileSignoffGridHandler(
 			new ReviewRevisionsGridDataProvider(),
 			null,
+			'SIGNOFF_REVIEW_REVISION',
 			FILE_GRID_ADD|FILE_GRID_DOWNLOAD_ALL
 		);
 
-		$this->addRoleAssignment(
-			array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
-			array('fetchGrid', 'fetchRow', 'downloadAllFiles', 'signOffFiles')
-		);
+		$this->addRoleAssignment(ROLE_ID_AUTHOR, $readAccess = array('fetchGrid', 'fetchRow'));
+		$this->addRoleAssignment(array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_ASSISTANT),
+								array_merge($readAccess, array('downloadAllFiles', 'signOffFile'))
+								);
+
 
 		// Set the grid title.
 		$this->setTitle('editor.monograph.revisions');

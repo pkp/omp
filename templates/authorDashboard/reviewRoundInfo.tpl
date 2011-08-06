@@ -25,6 +25,9 @@
 	{** need to use the stage id in the div because two of these grids can appear in the dashboard at the same time (one for each stage). *}
 	{url|assign:reviewAttachmentsGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.attachment.AuthorReviewAttachmentsGridHandler" op="fetchGrid" monographId=$monograph->getId() stageId=$stageId round=$round escape=false}
 	{load_url_in_div id="reviewAttachmentsGridContainer-`$stageId`" url="$reviewAttachmentsGridUrl"}
+
+	{url|assign:revisionsGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.review.ReviewRevisionsGridHandler" op="fetchGrid" monographId=$monograph->getId() stageId=$stageId round=$round escape=false}
+	{load_url_in_div id="revisionsGrid" url=$revisionsGridUrl}
 {/if}
 {/fbvFormArea}
 </form>
