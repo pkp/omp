@@ -15,16 +15,16 @@
 import('lib.pkp.classes.form.Form');
 
 class ManageFinalDraftFilesForm extends Form {
-	/** The monograph associated with the submission contributor being edited **/
-	var $_monograph;
+	/* @var int */
+	var $_monographId;
 
 	/**
 	 * Constructor.
 	 * @param $monograph Monograph
 	 */
-	function ManageFinalDraftFilesForm(&$monograph) {
+	function ManageFinalDraftFilesForm($monographId) {
 		parent::Form('controllers/grid/files/final/manageFinalDraftFiles.tpl');
-		$this->_monograph =& $monograph;
+		$this->_monographId = (int)$monographId;
 
 		$this->addCheck(new FormValidatorPost($this));
 	}
@@ -37,8 +37,8 @@ class ManageFinalDraftFilesForm extends Form {
 	 * Get the monograph.
 	 * @return Monograph
 	 */
-	function &getMonograph() {
-		return $this->_monograph;
+	function getMonographId() {
+		return $this->_monographId;
 	}
 
 
@@ -51,10 +51,7 @@ class ManageFinalDraftFilesForm extends Form {
 	 * @param $request PKPRequest
 	 */
 	function initData($args, &$request) {
-		$monograph =& $this->getMonograph();
-		$this->setData('monographId', $monograph->getId());
-		$this->setData('stageId', $monograph->getStageId());
-		$this->setData('round', $monograph->getCurrentRound());
+		$this->setData('monographId', $this->getMonographId());
 	}
 
 	/**
@@ -62,7 +59,7 @@ class ManageFinalDraftFilesForm extends Form {
 	 * @see Form::readInputData()
 	 */
 	function readInputData() {
-		$this->readUserVars(array('stageId', 'round', 'selectedFiles'));
+		$this->readUserVars(array('selectedFiles'));
 	}
 
 	/**

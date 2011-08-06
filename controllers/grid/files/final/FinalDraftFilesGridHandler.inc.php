@@ -22,11 +22,11 @@ class FinalDraftFilesGridHandler extends FileListGridHandler {
 	 *  FILE_GRID_* capabilities set.
 	 */
 	function FinalDraftFilesGridHandler() {
-		import('controllers.grid.files.SubmissionFilesGridDataProvider');
+		import('controllers.grid.files.final.FinalDraftFilesGridDataProvider');
 		parent::FileListGridHandler(
-			new SubmissionFilesGridDataProvider(MONOGRAPH_FILE_FINAL),
-			WORKFLOW_STAGE_ID_EDITING,
-			FILE_GRID_DOWNLOAD_ALL|FILE_GRID_ADD|FILE_GRID_DELETE
+			new FinalDraftFilesGridDataProvider(),
+			null,
+			FILE_GRID_DOWNLOAD_ALL|FILE_GRID_MANAGE
 		);
 		$this->addRoleAssignment(
 			array(
@@ -35,15 +35,37 @@ class FinalDraftFilesGridHandler extends FileListGridHandler {
 				ROLE_ID_PRESS_ASSISTANT
 			),
 			array(
-				'fetchGrid', 'fetchRow',
-				'addFile',
-				'downloadFile', 'downloadAllFiles',
-				'deleteFile'
+				 'fetchGrid', 'fetchRow',
+				 'downloadAllFiles', 'selectFiles'
 			)
 		);
 
 		// Set the grid title
 		$this->setTitle('submission.finalDraft');
+	}
+
+	//
+	// Public handler methods
+	//
+	/**
+	 * Show the form to allow the user to select review files
+	 * (bring in/take out files from submission stage to review stage)
+	 *
+	 * FIXME: Move to it's own handler so that it can be re-used among grids.
+	 *
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return string Serialized JSON object
+	 */
+	function selectFiles($args, &$request) {
+		$monograph =& $this->getMonograph();
+
+		import('controllers.grid.files.final.form.ManageFinalDraftFilesForm');
+		$manageReviewFilesForm = new ManageFinalDraftFilesForm($monograph->getId());
+
+		$manageReviewFilesForm->initData($args, $request);
+		$json = new JSONMessage(true, $manageReviewFilesForm->fetch($request));
+		return $json->getString();
 	}
 }
 
