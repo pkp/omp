@@ -178,10 +178,6 @@ class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
 		} else {
 			$user =& $request->getUser();
 
-			// Get the session and the user group id currently used
-			$sessionMgr =& SessionManager::getManager();
-			$session =& $sessionMgr->getUserSession();
-
 			// Create new monograph
 			$this->monograph = new Monograph();
 			$this->monograph->setLocale($this->getData('locale'));
@@ -209,13 +205,17 @@ class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
 			$author->setPrimaryContact(1);
 
 			// Get the user group to display the submitter as
-			$authorUserGroup = (int) $this->getData('authorUserGroup');
-			$author->setUserGroupId($authorUserGroup);
+			$authorUserGroupId = (int) $this->getData('authorUserGroup');
+			$author->setUserGroupId($authorUserGroupId);
 
 			$monographDao->insertMonograph($this->monograph);
 			$this->monographId = $this->monograph->getId();
 			$author->setSubmissionId($this->monographId);
 			$authorDao->insertAuthor($author);
+
+			// Assign the user author to the stage
+			$stageAssignmentDao =& DAORegistry::getDAO('StageAssignmentDAO');
+			$stageAssignmentDao->build($this->monographId, WORKFLOW_STAGE_ID_SUBMISSION, $authorUserGroupId, $user->getId());
 		}
 
 		return $this->monographId;
