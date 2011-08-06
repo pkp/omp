@@ -87,16 +87,16 @@ class AddFileLinkAction extends BaseAddFileLinkAction {
 				'buttonLabel' => 'editor.submissionReview.uploadAttachment'
 			),
 			MONOGRAPH_FILE_FINAL => array(
-				'wizardTitle' => 'submission.uploadAFinalDraft',
-				'buttonLabel' => 'submission.uploadAFinalDraft'
+				'wizardTitle' => 'submission.upload.finalDraft',
+				'buttonLabel' => 'submission.upload.finalDraft'
 			),
 			MONOGRAPH_FILE_COPYEDIT => array(
-				'wizardTitle' => 'submission.uploadACopyeditedVersion',
-				'buttonLabel' => 'submission.uploadACopyeditedVersion'
+				'wizardTitle' => 'submission.upload.copyeditedVersion',
+				'buttonLabel' => 'submission.upload.copyeditedVersion'
 			),
 			MONOGRAPH_FILE_FAIR_COPY => array(
-				'wizardTitle' => 'submission.uploadFairCopy',
-				'buttonLabel' => 'submission.uploadFairCopy'
+				'wizardTitle' => 'submission.upload.fairCopy',
+				'buttonLabel' => 'submission.upload.fairCopy'
 			)
 		);
 
