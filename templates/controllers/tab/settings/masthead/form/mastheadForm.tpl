@@ -21,6 +21,8 @@
 	{include file="common/formErrors.tpl"}
 	{include file="controllers/tab/settings/wizardMode.tpl" wizardMode=$wizardMode}
 
+	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="mastheadNotification"}
+
 	{fbvFormArea id="mastheadFormArea"}
 	    {fbvFormSection title="manager.setup.pressName" for="name" required=true}
 	        {fbvElement type="text" multilingual=true name="name" id="name" value=$name maxlength="120" }

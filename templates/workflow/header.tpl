@@ -39,15 +39,7 @@
 
 	<div class="pkp_workflow_headerBottom">
 		<div class="pkp_workflow_headerUserInfo">
-			{** FIXME #5734: Leaving blank until we have actual content to display here
-			<div id="roundStatus" class="pkp_workflow_headerStatusContainer">
-				<span class='icon' ></span><span class="alert">User Alert</span>
-			</div>
-			<div class="pkp_workflow_headerStageMetadata">
-				Stage-specific Metadata <br />
-				More-stage Specific metadata
-			</div>
-			**}
+			{include file="controllers/notification/inPlaceNotification.tpl" notificationId="workflowNotification" requestOptions=$workflowNotificationRequestOptions}
 		</div>
 		<div class="pkp_workflow_headerStageParticipants">
 			{url|assign:stageParticipantGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.users.stageParticipant.StageParticipantGridHandler" op="fetchGrid" monographId=$monograph->getId() stageId=$stageId escape=false}

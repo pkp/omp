@@ -95,8 +95,13 @@ class WorkflowHandler extends Handler {
 	function submission($args, &$request) {
 		$this->_assignEditorDecisionActions($request, '_submissionStageDecisions');
 
+		// Notification options.
+		$notificationOptions = array('notificationLevels' => array(
+			NOTIFICATION_LEVEL_TRIVIAL, NOTIFICATION_LEVEL_NORMAL));
+
 		// Render the view.
 		$templateMgr =& TemplateManager::getManager();
+		$templateMgr->assign('workflorNotificationRequestOptions', $notificationOptions);
 		$templateMgr->display('workflow/submission.tpl');
 	}
 
