@@ -19,8 +19,6 @@
 
 	<message key="editor.monograph.addUserError">There was an error trying to add the user.  Please Try again.</message>
 	<message key="editor.submissionArchive">Submission Archive</message>
-	<message key="editor.submissionArchive.manageReviewFiles">Manage Review Files</message>
-	<message key="editor.submissionArchive.currentFiles">Current Review Files For Round {$round}</message>
 	<message key="editor.submissionReview.recordDecision">Record Editorial Decision</message>
 	<message key="editor.submissionReview.reviewType">Review Type</message>
 	<message key="editor.submissionReview.open">Open</message>
@@ -64,7 +62,10 @@
 	<message key="editor.monograph.newRoundDescription">You are about to create a new review round for this submission.  Files that have not been used in other review rounds are listed below.  By default, the reviewers from the previous review round have been selected to participate in this new review round.</message>
 	<message key="editor.monograph.revisions">Revisions</message>
 	<message key="editor.submissions.lastAssigned">Latest</message>
-	<message key="editor.monograph.manageFinalDraftFiles">Manage Final Draft Files</message>
+	<message key="editor.monograph.review.manageReviewFiles">Manage Review Files</message>
+	<message key="editor.monograph.review.currentFiles">Current Review Files For Round {$round}</message>
+	<message key="editor.monograph.final.manageFinalDraftFiles">Manage Final Draft Files</message>
+	<message key="editor.monograph.final.currentFiles">Current Final Draft Files</message>
 	<message key="editor.monograph.fairCopy">Fair Copy</message>
 	<message key="editor.monograph.copyediting.addUser">Add User</message>
 	<message key="editor.monograph.copyediting.currentFiles">Current Files</message>

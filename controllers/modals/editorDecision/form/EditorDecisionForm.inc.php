@@ -122,19 +122,22 @@ class EditorDecisionForm extends Form {
 		$reviewRoundDao->build($monograph->getId(), $stageId, $newRound, $status);
 
 		// Add the selected files to the new round.
-		$selectedFiles = $this->getData('selectedFiles');
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-		if(is_array($selectedFiles)) {
-			$filesWithRevisions = array();
-			foreach ($selectedFiles as $selectedFile) {
-				// Split the file into file id and file revision.
-				list($fileId, $revision) = explode('-', $selectedFile);
-				// Bring in the MONOGRAPH_FILE_* constants.
-				import('classes.monograph.MonographFile');
-				// Bring in the Manager (we need it).
-				import('classes.file.MonographFileManager');
-				list($newFileId, $newRevision) = MonographFileManager::copyFileToFileStage($fileId, $revision, MONOGRAPH_FILE_REVIEW);
-				$submissionFileDao->assignRevisionToReviewRound($newFileId, $newRevision, $stageId, $newRound, $monograph->getId());
+
+		// Bring in the MONOGRAPH_FILE_* constants.
+		import('classes.monograph.MonographFile');
+		// Bring in the Manager (we need it).
+		import('classes.file.MonographFileManager');
+		// FIXME: #6747 Copy all the files to the next stage, but only assign the selected files.
+		foreach (array('selectedFiles', 'selectedAttachments') as $userVar) {
+			$selectedFiles = $this->getData($userVar);
+			if(is_array($selectedFiles)) {
+				foreach ($selectedFiles as $selectedFile) {
+					// Split the file into file id and file revision.
+					list($fileId, $revision) = explode('-', $selectedFile);
+					list($newFileId, $newRevision) = MonographFileManager::copyFileToFileStage($fileId, $revision, MONOGRAPH_FILE_REVIEW);
+					$submissionFileDao->assignRevisionToReviewRound($newFileId, $newRevision, $stageId, $newRound, $monograph->getId());
+				}
 			}
 		}
 

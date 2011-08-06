@@ -78,6 +78,21 @@ class PromoteForm extends EditorDecisionWithEmailForm {
 
 				// Move to the editing stage.
 				$seriesEditorAction->incrementWorkflowStage($seriesEditorSubmission, WORKFLOW_STAGE_ID_EDITING);
+
+				// Bring in the MONOGRAPH_FILE_* constants.
+				import('classes.monograph.MonographFile');
+				// Bring in the Manager (we need it).
+				import('classes.file.MonographFileManager');
+				foreach (array('selectedFiles', 'selectedAttachments') as $userVar) {
+					$selectedFiles = $this->getData($userVar);
+					if(is_array($selectedFiles)) {
+						foreach ($selectedFiles as $selectedFile) {
+							// Split the file into file id and file revision.
+							list($fileId, $revision) = explode('-', $selectedFile);
+							MonographFileManager::copyFileToFileStage($fileId, $revision, MONOGRAPH_FILE_FINAL);
+						}
+					}
+				}
 				break;
 
 			case SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW:

@@ -108,9 +108,9 @@ class EditorDecisionHandler extends Handler {
 	function saveInitiateReview($args, &$request) {
 		// FIXME: this can probably all be managed somewhere.
 		$stageId = $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
-		if ($stageId == WORKFLOW_STAGE_ID_SUBMISSION) {
+		if ($stageId == WORKFLOW_STAGE_ID_INTERNAL_REVIEW) {
 			$redirectOp = WORKFLOW_STAGE_PATH_INTERNAL_REVIEW;
-		} elseif ($stageId == WORKFLOW_STAGE_ID_INTERNAL_REVIEW) {
+		} elseif ($stageId == WORKFLOW_STAGE_ID_EXTERNAL_REVIEW) {
 			$redirectOp = WORKFLOW_STAGE_PATH_EXTERNAL_REVIEW;
 		} else {
 			assert(false);

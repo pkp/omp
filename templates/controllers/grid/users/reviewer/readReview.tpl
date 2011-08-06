@@ -19,6 +19,7 @@
 	{fbvFormArea id="readReview"}
 		<input type="hidden" name="reviewId" value="{$reviewAssignment->getId()|escape}" />
 		<input type="hidden" name="monographId" value="{$reviewAssignment->getSubmissionId()|escape}" />
+		<input type="hidden" name="stageId" value="{$reviewAssignment->getStageId()|escape}" />
 
 		{fbvFormSection}
 			{fbvElement type="text" id="reviewer" inline=true size=$fbvStyles.size.MEDIUM label="user.role.reviewer" value=$reviewAssignment->getReviewerFullName() disabled=true}

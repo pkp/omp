@@ -9,7 +9,7 @@
 
 
 <!-- Current review files -->
-<h4>{translate key="editor.submissionArchive.currentFiles" round=$round}</h4>
+<h4>{translate key="editor.monograph.review.currentFiles" round=$round}</h4>
 
 <div id="existingFilesContainer">
 	<script type="text/javascript">

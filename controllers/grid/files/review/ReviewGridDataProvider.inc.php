@@ -36,7 +36,7 @@ class ReviewGridDataProvider extends SubmissionFilesGridDataProvider {
 	 */
 	function getAuthorizationPolicy(&$request, $args, $roleAssignments) {
 		// FIXME: Need to authorize review round, see #6200.
-		// Get the review round and review stage id (internal/external) from the request
+		// Get the review round from the request
 		$round = $request->getUserVar('round');
 		assert(!empty($round));
 		$this->_round = (int)$round;
@@ -75,7 +75,7 @@ class ReviewGridDataProvider extends SubmissionFilesGridDataProvider {
 		$monograph =& $this->getMonograph();
 		$selectAction = new SelectReviewFilesLinkAction(
 			&$request, $monograph->getId(), $this->_getStageId(), $this->_getRound(),
-			__('editor.submissionArchive.manageReviewFiles')
+			__('editor.monograph.review.manageReviewFiles')
 		);
 		return $selectAction;
 	}
