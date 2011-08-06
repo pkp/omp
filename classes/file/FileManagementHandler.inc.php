@@ -16,14 +16,6 @@
 import('classes.handler.Handler');
 
 class FileManagementHandler extends Handler {
-
-	/** @var Monograph */
-	var $_monograph;
-
-	/** @var integer */
-	var $_fileStage;
-
-
 	/**
 	 * Constructor
 	 */
@@ -51,12 +43,6 @@ class FileManagementHandler extends Handler {
 	 */
 	function initialize(&$request, $args) {
 		parent::initialize($request, $args);
-
-		// Configure the wizard with the authorized monograph and file stage.
-		$this->_monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-		$fileStage = (int)$request->getUserVar('fileStage');
-		assert(is_numeric($fileStage) && $fileStage > 0);
-		$this->_fileStage = $fileStage;
 	}
 
 
@@ -68,7 +54,7 @@ class FileManagementHandler extends Handler {
 	 * @return Monograph
 	 */
 	function &getMonograph() {
-		return $this->_monograph;
+		return $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 	}
 
 	/**
@@ -77,16 +63,6 @@ class FileManagementHandler extends Handler {
 	 */
 	function getStageId() {
 		return $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
-	}
-
-	/**
-	 * Get the workflow stage file storage that
-	 * we upload files to. One of the MONOGRAPH_FILE_*
-	 * constants.
-	 * @return integer
-	 */
-	function getFileStage() {
-		return $this->_fileStage;
 	}
 }
 ?>

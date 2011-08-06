@@ -28,6 +28,8 @@ import('lib.pkp.classes.core.JSONMessage');
 define('SUBMISSION_MIN_SIMILARITY_OF_REVISION', 70);
 
 class FileUploadWizardHandler extends FileManagementHandler {
+	/** @var integer */
+	var $_fileStage;
 
 	/** @var array */
 	var $_uploaderRoles;
@@ -73,6 +75,10 @@ class FileUploadWizardHandler extends FileManagementHandler {
 	 */
 	function initialize(&$request, $args) {
 		parent::initialize($request, $args);
+		// Configure the wizard with the authorized monograph and file stage.
+		$fileStage = (int)$request->getUserVar('fileStage');
+		assert(is_numeric($fileStage) && $fileStage > 0);
+		$this->_fileStage = $fileStage;
 
 		// Set the uploader roles (if given).
 		$uploaderRoles = $request->getUserVar('uploaderRoles');
@@ -106,11 +112,20 @@ class FileUploadWizardHandler extends FileManagementHandler {
 	// Getters and Setters
 	//
 	/**
+	 * Get the workflow stage file storage that
+	 * we upload files to. One of the MONOGRAPH_FILE_*
+	 * constants.
+	 * @return integer
+	 */
+	function getFileStage() {
+		return $this->_fileStage;
+	}
+
+	/**
 	 * Get the uploader roles.
 	 * @return array
 	 */
 	function getUploaderRoles() {
-		assert(!is_null($this->_uploaderRoles));
 		return $this->_uploaderRoles;
 	}
 
