@@ -55,10 +55,10 @@ class ManageFileApiHandler extends Handler {
 		assert($monographFile && $monograph); // Should have been validated already
 
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-		$success = (boolean)$submissionFileDao->deleteRevisionById($monographFile->getFileId(), $fileId->getRevision(), $monographFile->getFileStage(), $monograph->getId());
+		$success = (boolean)$submissionFileDao->deleteRevisionById($monographFile->getFileId(), $monographFile->getRevision(), $monographFile->getFileStage(), $monograph->getId());
 
 		if ($success) {
-			return DAO::getDataChangedEvent($fileId);
+			return DAO::getDataChangedEvent($monographFile->getFileId());
 		} else {
 			$json = new JSONMessage(false);
 			return $json->getString();
