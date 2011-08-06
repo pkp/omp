@@ -29,7 +29,7 @@ class DeleteFileLinkAction extends FileLinkAction {
 		$confirmationModal = new RemoteActionConfirmationModal(
 			__('common.confirmDelete'), null,
 			$router->url(
-				$request, null, 'api.file.FileApiHandler',
+				$request, null, 'api.file.ManageFileApiHandler',
 				'deleteFile', null, $this->getActionArgs($monographFile)
 			)
 		);
