@@ -158,6 +158,8 @@ class SeriesEditorAction extends Action {
 			$reviewAssignment->setStageId($stageId);
 			$reviewAssignment->setRound($round);
 
+			$reviewAssignmentDao->insertObject($reviewAssignment);
+
 			// Assign review form automatically if needed
 			$pressId = $seriesEditorSubmission->getPressId();
 			$seriesDao =& DAORegistry::getDAO('SeriesDAO');
