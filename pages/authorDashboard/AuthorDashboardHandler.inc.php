@@ -101,7 +101,6 @@ class AuthorDashboardHandler extends Handler {
 			$monographEmails =& $monographEmailLogDao->getByEventType($monograph->getId(), MONOGRAPH_EMAIL_COPYEDIT_NOTIFY_AUTHOR);
 
 			$templateMgr->assign_by_ref('monographEmails', $monographEmails);
-			$templateMgr->assign('showCopyeditingFiles', true);
 		}
 
  		$templateMgr->display('authorDashboard/authorDashboard.tpl');

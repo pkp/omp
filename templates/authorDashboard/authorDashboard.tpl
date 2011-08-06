@@ -93,18 +93,18 @@
 	<div class="pkp_authorDashboard_stageContainer" id="copyediting">
 		<h3><a href="#">{translate key='submission.copyediting'}</a></h3>
 		<div id="copyeditingContent">
-			<!-- Display editor's message to the author -->
-			{if $monographEmails}
-				<h6>{translate key="editor.review.personalMessageFromEditor"}:</h6>
-				{iterate from=monographEmails item=monographEmail}
-					<textarea class="pkp_authorDashboard_editorPersonalMessage" disabled=true class="textArea">{$monographEmail->getBody()|escape}</textarea>
-				{/iterate}
-				<br />
-			{/if}
+			{if $stageId >= $smarty.const.WORKFLOW_STAGE_ID_EDITING}
+				<!-- Display editor's message to the author -->
+				{if $monographEmails}
+					<h6>{translate key="editor.review.personalMessageFromEditor"}:</h6>
+					{iterate from=monographEmails item=monographEmail}
+						<textarea class="pkp_authorDashboard_editorPersonalMessage" disabled=true class="textArea">{$monographEmail->getBody()|escape}</textarea>
+					{/iterate}
+					<br />
+				{/if}
 
-			<!-- Display copyediting files grid -->
-			{if $showCopyeditingFiles}
-				{url|assign:copyeditingFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.copyedit.AuthorCopyeditingFilesGridHandler" op="fetchGrid" monographId=$monograph->getId() escape=false}
+				<!-- Display copyediting files grid -->
+				{url|assign:copyeditingFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.copyedit.AuthorCopyeditingSignoffFilesGridHandler" op="fetchGrid" monographId=$monograph->getId() stageId=$smarty.const.WORKFLOW_STAGE_ID_EDITING escape=false}
 				{load_url_in_div id="copyeditingFilesGridDiv" url=$copyeditingFilesGridUrl}
 			{/if}
 		</div>
