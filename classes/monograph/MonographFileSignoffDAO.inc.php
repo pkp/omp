@@ -91,7 +91,7 @@ class MonographFileSignoffDAO extends SignoffDAO {
 	 * @param $fileRevision int
 	 * @return Signoff
 	 */
-	function getBySymbolic($symbolic, $monographFileId, $userId = null,
+	function &getBySymbolic($symbolic, $monographFileId, $userId = null,
 			$userGroupId = null, $fileId = null, $fileRevision = null) {
 		$returner = parent::getBySymbolic(
 			$symbolic,
@@ -99,6 +99,7 @@ class MonographFileSignoffDAO extends SignoffDAO {
 			$userId, $userGroupId,
 			$fileId, $fileRevision
 		);
+		return $returner;
 	}
 
 	/**
