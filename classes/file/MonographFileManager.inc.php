@@ -199,7 +199,7 @@ class MonographFileManager extends FileManager {
 	 * @param $destFileId int (optional)
 	 */
 	function copyFileToFileStage($sourceFileId, $sourceRevision, $newFileStage, $destFileId = null) {
-		if (HookRegistry::call('MonographFileManager::copyFileToFileStage', array(&$sourceFileId, &$sourceRevision, &$fileStage, &$destFileId, &$result))) return $result;
+		if (HookRegistry::call('MonographFileManager::copyFileToFileStage', array(&$sourceFileId, &$sourceRevision, &$newFileStage, &$destFileId, &$result))) return $result;
 
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		$sourceFile =& $submissionFileDao->getRevision($sourceFileId, $sourceRevision); /* @var $sourceFile MonographFile */
@@ -330,7 +330,7 @@ class MonographFileManager extends FileManager {
 		assert($genreId || $revisedFileId);
 		if (!$genreId || $revisedFileId) {
 			// Retrieve the revised file. (null $fileStage in case the revision is from a previous stage).
-			$revisedFile =& $submissionFileDao->getLatestRevision($revisedFileId, $fileStage, $monographId);
+			$revisedFile =& $submissionFileDao->getLatestRevision($revisedFileId, null, $monographId);
 			if (!is_a($revisedFile, 'MonographFile')) return $nullVar;
 		}
 
@@ -350,15 +350,12 @@ class MonographFileManager extends FileManager {
 			// the same as that of the uploaded file.
 			if ($revisedFile->getMonographId() != $monographId) return $nullVar;
 
-			// Copy the file workflow stage.
-			if(!is_null($fileStage) && $fileStage !== $revisedFile->getFileStage()) fatalError('Invalid monograph file stage!');
-			$fileStage = (int)$revisedFile->getFileStage();
-
 			// If file stages are different we reference with the sourceFileId
 			// Otherwise, we keep the file id, update the revision, and copy other fields.
 			if(!is_null($fileStage) && $fileStage !== $revisedFile->getFileStage()) {
 				$monographFile->setSourceFileId($revisedFileId);
 				$monographFile->setSourceRevision($revisedFile->getRevision());
+				$monographFile->setRevision(1);
 			} else {
 				// Create a new revision of the file with the existing file id.
 				$monographFile->setFileId($revisedFileId);
