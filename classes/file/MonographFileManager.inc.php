@@ -169,14 +169,18 @@ class MonographFileManager extends FileManager {
 	 * @param $assocType integer
 	 * @return integer the file ID (false if upload failed)
 	 */
-	function temporaryFileToMonographFile($monographId, &$temporaryFile, $fileStage, $assocType, $assocId) {
+	function temporaryFileToMonographFile($monographId, &$temporaryFile, $fileStage, $uploaderUserId, $uploaderUserGroupId, $revisedFileId, $genreId, $assocType, $assocId) {
 		// Instantiate and pre-populate the new target monograph file.
 		$sourceFile = $temporaryFile->getFilePath();
-		$monographFile =& MonographFileManager::_instantiateMonographFile($sourceFile, $monographId, $fileStage, null, null, null, $assocType, $assocId);
+		$monographFile =& MonographFileManager::_instantiateMonographFile($sourceFile, $monographId, $fileStage, $revisedFileId, $genreId, $assocType, $assocId);
 
 		// Transfer data from the temporary file to the monograph file.
 		$monographFile->setFileType($temporaryFile->getFileType());
 		$monographFile->setOriginalFileName($temporaryFile->getOriginalFileName());
+
+		// Set the user and user group ids
+		$monographFile->setUploaderUserId($uploaderUserId);
+		$monographFile->setUserGroupId($uploaderUserGroupId);
 
 		// Copy the temporary file to it's final destination and persist
 		// its metadata to the database.
