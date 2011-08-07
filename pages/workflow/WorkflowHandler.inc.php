@@ -211,11 +211,17 @@ class WorkflowHandler extends Handler {
 	 * @param $args array
 	 */
 	function production(&$args, &$request) {
-		// Render the view.
 		$templateMgr =& TemplateManager::getManager();
+		$press =& $request->getContext();
+
+		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
+		$publicationFormats =& $publicationFormatDao->getEnabledByPressId($press->getId());
+		$templateMgr->assign_by_ref('publicationFormats', $publicationFormats);
+
+		// Render the view.
+
 		$templateMgr->display('workflow/production.tpl');
 	}
-
 
 	//
 	// Private helper methods

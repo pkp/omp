@@ -21,16 +21,23 @@
 	{rdelim});
 </script>
 
-<div class="ui-widget ui-widget-content ui-corner-all" id="production">
-	<!-- TEMPORARY: Drop a grid in here. Sample content only. -->
-	{url|assign:copyeditingFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.copyedit.AuthorCopyeditingFilesGridHandler" op="fetchGrid" monographId=$monograph->getId() escape=false}
-	{load_url_in_div id="copyeditingFilesGridDiv" url=$copyeditingFilesGridUrl}
+<div id="production">
+	{url|assign:galleyFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.galley.GalleyFilesGridHandler" op="fetchGrid" monographId=$monograph->getId() stageId=$stageId escape=false}
+	{load_url_in_div id="galleyFilesGridDiv" url=$galleyFilesGridUrl}
 
-	<div id="productionAccordion">
-		<h3><a href="#">Accordion</a></h3>
-		<!-- Accordion contents go here -->
-		{url|assign:copyeditingFilesGrid2Url router=$smarty.const.ROUTE_COMPONENT component="grid.files.copyedit.AuthorCopyeditingFilesGridHandler" op="fetchGrid" monographId=$monograph->getId() escape=false}
-		{load_url_in_div id="copyeditingFilesGrid2Div" url=$copyeditingFilesGrid2Url}
+	<div id="metadataAccordion">
+		<h3><a href="#">{translate key="cataloguing metadata"}</a></h3>
+		<div>
+			cataloguing metadata container
+		</div>
+	</div>
+	<div id="publicationFormatContainer">
+		{iterate from=publicationFormats item=publicationFormat}
+			<h3><a href="#">{$publicationFormat->getLocalizedName()}</a></h3>
+			<div>
+				{include file="workflow/publicationFormat.tpl" publicationFormat=$publicationFormat}
+			</div>
+		{/iterate}
 	</div>
 </div>
 

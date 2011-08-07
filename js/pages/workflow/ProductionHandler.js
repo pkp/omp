@@ -34,7 +34,12 @@ jQuery.pkp.pages.workflow = { };
 		this.parent($production, options);
 
 		// Transform the stage sections into jQueryUI accordions.
-		$('#productionAccordion', $production).accordion({
+		$('#metadataAccordion', $production).accordion({
+			autoHeight: false,
+			collapsible: true
+		});
+		var $publicationFormatContainer = $('#publicationFormatContainer', $production);
+		$publicationFormatContainer.accordion({
 			autoHeight: false,
 			collapsible: true
 		});
