@@ -12,28 +12,28 @@
  *  editor submission.
  */
 
-import('lib.pkp.classes.security.authorization.SubmissionRequiredPolicy');
+import('lib.pkp.classes.security.authorization.DataObjectRequiredPolicy');
 
-class SeriesEditorSubmissionRequiredPolicy extends SubmissionRequiredPolicy {
+class SeriesEditorSubmissionRequiredPolicy extends DataObjectRequiredPolicy {
 	/**
 	 * Constructor
 	 * @param $request PKPRequest
 	 * @param $args array
 	 * @param $submissionParameterName string
 	 */
-	function SeriesEditorSubmissionRequiredPolicy(&$request, &$args, $submissionParameterName = 'monographId') {
-		parent::SubmissionRequiredPolicy($request, $args, $submissionParameterName, 'user.authorization.invalidSeriesEditorSubmission');
+	function SeriesEditorSubmissionRequiredPolicy(&$request, &$args, $submissionParameterName = 'monographId', $operations = null) {
+		parent::DataObjectRequiredPolicy($request, $args, $submissionParameterName, 'user.authorization.invalidSeriesEditorSubmission', $operations);
 	}
 
 	//
-	// Implement template methods from AuthorizationPolicy
+	// Implement template methods from DataObjectRequiredPolicy
 	//
 	/**
-	 * @see AuthorizationPolicy::effect()
+	 * @see DataObjectAuthorizationPolicy::dataObjectEffect()
 	 */
-	function effect() {
+	function dataObjectEffect() {
 		// Get the monograph id.
-		$monographId = $this->getSubmissionId();
+		$monographId = $this->getDataObjectId();
 		if ($monographId === false) return AUTHORIZATION_DENY;
 
 		// Validate the monograph id.

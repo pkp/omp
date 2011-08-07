@@ -11,9 +11,9 @@
  * @brief Policy that ensures that the request contains a valid monograph.
  */
 
-import('lib.pkp.classes.security.authorization.SubmissionRequiredPolicy');
+import('lib.pkp.classes.security.authorization.DataObjectRequiredPolicy');
 
-class MonographRequiredPolicy extends SubmissionRequiredPolicy {
+class MonographRequiredPolicy extends DataObjectRequiredPolicy {
 	/**
 	 * Constructor
 	 * @param $request PKPRequest
@@ -21,19 +21,19 @@ class MonographRequiredPolicy extends SubmissionRequiredPolicy {
 	 * @param $submissionParameterName string the request parameter we expect
 	 *  the submission id in.
 	 */
-	function MonographRequiredPolicy(&$request, &$args, $submissionParameterName = 'monographId') {
-		parent::SubmissionRequiredPolicy($request, $args, $submissionParameterName, 'user.authorization.invalidMonograph');
+	function MonographRequiredPolicy(&$request, &$args, $submissionParameterName = 'monographId', $operations = null) {
+		parent::DataObjectRequiredPolicy($request, $args, $submissionParameterName, 'user.authorization.invalidMonograph', $operations);
 	}
 
 	//
 	// Implement template methods from AuthorizationPolicy
 	//
 	/**
-	 * @see AuthorizationPolicy::effect()
+	 * @see DataObjectRequiredPolicy::dataObjectEffect()
 	 */
-	function effect() {
+	function dataObjectEffect() {
 		// Get the monograph id.
-		$monographId = $this->getSubmissionId();
+		$monographId = $this->getDataObjectId();
 		if ($monographId === false) return AUTHORIZATION_DENY;
 
 		// Validate the monograph id.
