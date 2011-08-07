@@ -324,7 +324,8 @@ class SeriesEditorSubmission extends Monograph {
 			SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS => 'editor.monograph.decision.pendingRevisions',
 			SUBMISSION_EDITOR_DECISION_RESUBMIT => 'editor.monograph.decision.resubmit',
 			SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW => 'editor.monograph.decision.externalReview',
-			SUBMISSION_EDITOR_DECISION_DECLINE => 'editor.monograph.decision.decline'
+			SUBMISSION_EDITOR_DECISION_DECLINE => 'editor.monograph.decision.decline',
+			SUBMISSION_EDITOR_DECISION_SEND_TO_PRODUCTION => 'editor.monograph.decision.sendToProduction'
 		);
 		return $editorDecisionOptions;
 	}

@@ -97,6 +97,10 @@ class AddFileLinkAction extends BaseAddFileLinkAction {
 			MONOGRAPH_FILE_FAIR_COPY => array(
 				'wizardTitle' => 'submission.upload.fairCopy',
 				'buttonLabel' => 'submission.upload.fairCopy'
+			),
+			MONOGRAPH_FILE_GALLEY => array(
+				'wizardTitle' => 'submission.upload.galley',
+				'buttonLabel' => 'submission.upload.galley'
 			)
 		);
 

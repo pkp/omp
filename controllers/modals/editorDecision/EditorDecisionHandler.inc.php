@@ -167,6 +167,8 @@ class EditorDecisionHandler extends Handler {
 			$redirectOp = WORKFLOW_STAGE_PATH_EDITING;
 		} elseif ($decision == SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW) {
 			$redirectOp = WORKFLOW_STAGE_PATH_EXTERNAL_REVIEW;
+		} elseif ($decision == SUBMISSION_EDITOR_DECISION_SEND_TO_PRODUCTION) {
+			$redirectOp = WORKFLOW_STAGE_PATH_PRODUCTION;
 		}
 
 		return $this->_saveEditorDecision($args, $request, 'PromoteForm', $redirectOp);
@@ -194,26 +196,6 @@ class EditorDecisionHandler extends Handler {
 		}
 		return $json->getString();
 	}
-
-	/**
-	 * Promote the submission into the production stage
-	 * @param $args array
-	 * @param $request PKPRequest
-	 * @return string Serialized JSON object
-	 */
-	function sendToProduction(&$args, &$request) {
-		// Retrieve the submission.
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-
-		// Move to the production workflow stage
-		import('classes.submission.seriesEditor.SeriesEditorAction');
-		$seriesEditorAction = new SeriesEditorAction();
-		$seriesEditorAction->incrementWorkflowStage($monograph, WORKFLOW_STAGE_ID_PRODUCTION);
-
-		$json = new JSONMessage(true);
-		return $json->getString();
-	}
-
 
 	//
 	// Private helper methods

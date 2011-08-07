@@ -389,10 +389,9 @@ class WorkflowHandler extends Handler {
 	function _copyeditingStageDecisions() {
 		static $decisions = array(
 			SUBMISSION_EDITOR_DECISION_SEND_TO_PRODUCTION => array(
-				'operation' => 'sendToProduction',
+				'operation' => 'promote',
 				'name' => 'sendToProduction',
-				'title' => 'editor.monograph.decision.sendToProduction',
-				'submitAction' => LINK_ACTION_TYPE_REDIRECT
+				'title' => 'editor.monograph.decision.sendToProduction'
 			)
 		);
 

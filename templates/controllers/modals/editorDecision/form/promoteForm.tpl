@@ -46,11 +46,14 @@
 	<div id="availableFiles">
 		{* Show a different grid depending on whether we're in review or before the review stage *}
 		{if $stageId == $smarty.const.WORKFLOW_STAGE_ID_SUBMISSION}
-			{url|assign:filesForReviewUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.submission.SelectableSubmissionDetailsFilesGridHandler" op="fetchGrid" monographId=$monographId stageId=$stageId escape=false}
-		{else}
-			{url|assign:filesForReviewUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.review.SelectableReviewRevisionsGridHandler" op="fetchGrid" monographId=$monographId stageId=$stageId round=$round escape=false}
+			{url|assign:filesToPromoteGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.submission.SelectableSubmissionDetailsFilesGridHandler" op="fetchGrid" monographId=$monographId stageId=$stageId escape=false}
+		{elseif $round}
+			{** a set $round var implies we are INTERNAL_REVIEW or EXTERNAL_REVIEW **}
+			{url|assign:filesToPromoteGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.review.SelectableReviewRevisionsGridHandler" op="fetchGrid" monographId=$monographId stageId=$stageId round=$round escape=false}
+		{elseif $stageId == $smarty.const.WORKFLOW_STAGE_ID_EDITING}
+			{url|assign:filesToPromoteGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.fairCopy.SelectableFairCopyFilesGridHandler" op="fetchGrid" monographId=$monographId stageId=$stageId escape=false}
 		{/if}
-		{load_url_in_div id="filesForReviewGrid" url=$filesForReviewUrl}
+		{load_url_in_div id="filesToPromoteGrid" url=$filesToPromoteGridUrl}
 	</div>
 	{fbvFormButtons submitText="editor.submissionReview.recordDecision"}
 </form>
