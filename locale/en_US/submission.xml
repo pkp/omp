@@ -112,6 +112,7 @@
 	<message key="submission.upload.copyeditedVersion">Upload a Copyedited Version</message>
 	<message key="submission.upload.fairCopy">Upload Fair Copy version</message>
 	<message key="submission.upload.signoff">Upload a Response</message>
+	<message key="submission.upload.galley">Upload a Galley</message>
 
 	<!-- Read/Upload/Perform Signoff -->
 	<message key="submission.signoff.selectFile">Select the file you wish to signoff on</message>
