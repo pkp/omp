@@ -18,8 +18,8 @@ class SearchByNameReviewerForm extends ReviewerForm {
 	/**
 	 * Constructor.
 	 */
-	function SearchByNameReviewerForm($monograph, $reviewAssignmentId) {
-		parent::ReviewerForm($monograph, $reviewAssignmentId);
+	function SearchByNameReviewerForm($monograph) {
+		parent::ReviewerForm($monograph);
 		$this->setTemplate('controllers/grid/users/reviewer/form/searchByNameReviewerForm.tpl');
 
 		$this->addCheck(new FormValidator($this, 'reviewerId', 'required', 'editor.review.mustSelect'));

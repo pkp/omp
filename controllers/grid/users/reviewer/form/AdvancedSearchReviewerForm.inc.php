@@ -18,8 +18,8 @@ class AdvancedSearchReviewerForm extends ReviewerForm {
 	/**
 	 * Constructor.
 	 */
-	function AdvancedSearchReviewerForm($monograph, $reviewAssignmentId) {
-		parent::ReviewerForm($monograph, $reviewAssignmentId);
+	function AdvancedSearchReviewerForm($monograph) {
+		parent::ReviewerForm($monograph);
 		$this->setTemplate('controllers/grid/users/reviewer/form/advancedSearchReviewerForm.tpl');
 
 		$this->addCheck(new FormValidator($this, 'reviewerId', 'required', 'editor.review.mustSelect'));

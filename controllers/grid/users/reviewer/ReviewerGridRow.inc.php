@@ -44,7 +44,7 @@ class ReviewerGridRow extends GridRow {
 			$router =& $request->getRouter();
 			$actionArgs = array(
 				'monographId' => $monographId,
-				'reviewId' => $rowId,
+				'reviewAssignmentId' => $rowId,
 				'stageId' => $stageId,
 				'round' => $round
 			);

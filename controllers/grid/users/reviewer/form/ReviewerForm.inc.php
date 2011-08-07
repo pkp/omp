@@ -19,16 +19,12 @@ class ReviewerForm extends Form {
 	/** The monograph associated with the review assignment **/
 	var $_monograph;
 
-	/** The reviewer associated with the review assignment **/
-	var $_reviewAssignmentId;
-
 	/**
 	 * Constructor.
 	 */
-	function ReviewerForm($monograph, $reviewAssignmentId) {
+	function ReviewerForm($monograph) {
 		parent::Form('controllers/grid/users/reviewer/form/defaultReviewerForm.tpl');
 		$this->setMonograph($monograph);
-		$this->setReviewAssignmentId(empty($reviewAssignmentId)? null: (int) $reviewAssignmentId);
 
 		// Validation checks for this form
 		$this->addCheck(new FormValidator($this, 'responseDueDate', 'required', 'editor.review.errorAddingReviewer'));
@@ -63,22 +59,6 @@ class ReviewerForm extends Form {
 	 */
 	function setMonograph($monograph) {
 		$this->_monograph =& $monograph;
-	}
-
-	/**
-	 * Get the Review assignment's Id
-	 * @return int reviewerId
-	 */
-	function getReviewAssignmentId() {
-		return $this->_reviewAssignmentId;
-	}
-
-	/**
-	 * Get the Review assignment's Id
-	 * @return int reviewerId
-	 */
-	function setReviewAssignmentId($reviewAssignmentId) {
-		$this->_reviewAssignmentId = $reviewAssignmentId;
 	}
 
 	//
@@ -132,7 +112,6 @@ class ReviewerForm extends Form {
 		$selectionType = (int) $request->getUserVar('selectionType');
 
 		$this->setData('monographId', $this->getMonographId());
-		$this->setData('reviewAssignmentId', $this->getReviewAssignmentId());
 		$this->setData('stageId', $stageId);
 		$this->setData('reviewMethod', $reviewMethod);
 		$this->setData('round', (int) $request->getUserVar('round'));

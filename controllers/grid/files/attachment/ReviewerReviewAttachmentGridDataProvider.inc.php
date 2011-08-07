@@ -34,6 +34,10 @@ class ReviewerReviewAttachmentGridDataProvider extends SubmissionFilesGridDataPr
 	 * @see GridDataProvider::getAuthorizationPolicy()
 	 */
 	function getAuthorizationPolicy(&$request, $args, $roleAssignments) {
+		import('classes.security.authorization.internal.ReviewAssignmentRequiredPolicy');
+
+		$authorizationPolicy = parent::getAuthorizationPolicy($request, $args, $roleAssignments);
+
 		// FIXME: #6199 need to use the reviewId because this grid can either be viewed by the
 		// reviewer (in which case, we could do a $request->getUser()->getId() or by the editor when reading
 		// the review. The following covers both cases...
@@ -41,19 +45,14 @@ class ReviewerReviewAttachmentGridDataProvider extends SubmissionFilesGridDataPr
 		$assocId = (int) $request->getUserVar('assocId');
 		if ($assocType && $assocId) {
 			assert($assocType == ASSOC_TYPE_REVIEW_ASSIGNMENT);
-			$reviewId = $assocId;
+			$paramName = 'assocId';
 		} else {
-			$reviewId = (int) $request->getUserVar('reviewId');
+			$paramName = 'reviewId';
 		}
 
-		// Ensure the review id is valid
-		// FIXME: #6199 could also check the user is the reviewerId or the user is allowed to view the review.
-		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO'); /* @var $reviewAssignmentDao ReviewAssignmentDAO */
-		$reviewAssignment =& $reviewAssignmentDao->getById($reviewId); /* @var $reviewAssignment ReviewAssignment */
-		assert(isset($reviewAssignment));
+		$authorizationPolicy->addPolicy(new ReviewAssignmentRequiredPolicy($request, $args, null, $paramName));
 
-		$this->_reviewId = (int) $reviewAssignment->getId();
-		return parent::getAuthorizationPolicy($request, $args, $roleAssignments);
+		return $authorizationPolicy;
 	}
 
 	/**
@@ -69,7 +68,6 @@ class ReviewerReviewAttachmentGridDataProvider extends SubmissionFilesGridDataPr
 	 */
 	function &loadData() {
 		// Get all review files assigned to this submission.
-		$monograph =& $this->getMonograph();
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		$monographFiles =& $submissionFileDao->getAllRevisionsByAssocId(
 			ASSOC_TYPE_REVIEW_ASSIGNMENT, $this->_getReviewId(), $this->_getFileStage()
@@ -101,7 +99,8 @@ class ReviewerReviewAttachmentGridDataProvider extends SubmissionFilesGridDataPr
 	 * @return integer
 	 */
 	function _getReviewId() {
-		return $this->_reviewId;
+		$reviewAssignment =& $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ASSIGNMENT);
+		return $reviewAssignment->getId();
 	}
 }
 

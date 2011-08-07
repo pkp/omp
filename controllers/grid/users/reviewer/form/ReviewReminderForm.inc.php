@@ -16,14 +16,14 @@ import('lib.pkp.classes.form.Form');
 
 class ReviewReminderForm extends Form {
 	/** The review assignment associated with the reviewer **/
-	var $_reviewAssignmentId;
+	var $_reviewAssignment;
 
 	/**
 	 * Constructor.
 	 */
-	function ReviewReminderForm($reviewAssignmentId) {
+	function ReviewReminderForm(&$reviewAssignment) {
 		parent::Form('controllers/grid/users/reviewer/form/reviewReminderForm.tpl');
-		$this->_reviewAssignmentId = (int) $reviewAssignmentId;
+		$this->_reviewAssignment =& $reviewAssignment;
 
 		// Validation checks for this form
 		$this->addCheck(new FormValidatorPost($this));
@@ -33,20 +33,11 @@ class ReviewReminderForm extends Form {
 	// Getters and Setters
 	//
 	/**
-	 * Get the Review assignment's Id
-	 * @return int reviewerId
-	 */
-	function getReviewAssignmentId() {
-		return $this->_reviewAssignmentId;
-	}
-
-	/**
 	 * Get the Monograph
 	 * @return ReviewAssignment
 	 */
-	function getReviewAssignment() {
-		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
-		return $reviewAssignmentDao->getById($this->_reviewAssignmentId);
+	function &getReviewAssignment() {
+		return $this->_reviewAssignment;
 	}
 
 
