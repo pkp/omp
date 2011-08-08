@@ -101,6 +101,10 @@ class AddFileLinkAction extends BaseAddFileLinkAction {
 			MONOGRAPH_FILE_GALLEY => array(
 				'wizardTitle' => 'submission.upload.galley',
 				'buttonLabel' => 'submission.upload.galley'
+			),
+			MONOGRAPH_FILE_PROOF => array(
+				'wizardTitle' => 'submission.upload.proof',
+				'buttonLabel' => 'submission.upload.proof'
 			)
 		);
 

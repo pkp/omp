@@ -27,7 +27,7 @@ define('MONOGRAPH_FILE_FINAL', 6);
 define('MONOGRAPH_FILE_FAIR_COPY', 7);
 define('MONOGRAPH_FILE_EDITOR', 8);
 define('MONOGRAPH_FILE_COPYEDIT', 9);
-define('MONOGRAPH_FILE_PRODUCTION', 10);
+define('MONOGRAPH_FILE_PROOF', 10);
 define('MONOGRAPH_FILE_GALLEY', 11);
 define('MONOGRAPH_FILE_LAYOUT', 12);
 define('MONOGRAPH_FILE_ATTACHMENT', 13);
@@ -268,7 +268,7 @@ class MonographFile extends SubmissionFile {
 				MONOGRAPH_FILE_FAIR_COPY => 'submission/fairCopy',
 				MONOGRAPH_FILE_EDITOR => 'submission/editor',
 				MONOGRAPH_FILE_COPYEDIT => 'submission/copyedit',
-				MONOGRAPH_FILE_PRODUCTION => 'submission/production',
+				MONOGRAPH_FILE_PROOF => 'submission/proof',
 				MONOGRAPH_FILE_GALLEY => 'submission/galleys',
 				MONOGRAPH_FILE_LAYOUT => 'submission/layout',
 				MONOGRAPH_FILE_ATTACHMENT => 'attachment',

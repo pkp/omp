@@ -50,14 +50,7 @@ class PublicationFormatDAO extends DefaultSettingDAO
 			'SELECT * FROM publication_formats WHERE enabled = ? AND press_id = ?', array(1, $pressId)
 		);
 
-		$returner = null;
-		while (!$result->EOF) {
-			$returner[] =& $this->_fromRow($result->GetRowAssoc(false));
-			$result->moveNext();
-		}
-		$result->Close();
-		unset($result);
-
+		$returner = new DAOResultFactory($result, $this, '_fromRow');
 		return $returner;
 	}
 

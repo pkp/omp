@@ -80,7 +80,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		$file1Rev1 = new ArtworkFile();
 		$file1Rev1->setName('test-artwork', 'en_US');
 		$file1Rev1->setCaption('test-caption');
-		$file1Rev1->setFileStage(MONOGRAPH_FILE_PRODUCTION);
+		$file1Rev1->setFileStage(MONOGRAPH_FILE_PROOF);
 		$file1Rev1->setSubmissionId(SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID);
 		$file1Rev1->setFileType('image/jpeg');
 		$file1Rev1->setFileSize(512);
@@ -91,7 +91,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 
 		$file2Rev1 = new MonographFile();
 		$file2Rev1->setName('test-document', 'en_US');
-		$file2Rev1->setFileStage(MONOGRAPH_FILE_PRODUCTION);
+		$file2Rev1->setFileStage(MONOGRAPH_FILE_PROOF);
 		$file2Rev1->setSubmissionId(SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID);
 		$file2Rev1->setFileType('application/pdf');
 		$file2Rev1->setFileSize(256);
@@ -154,7 +154,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		self::assertEquals($file1Rev1, $submissionFileDao->getRevision($file1Rev1->getFileId(), $file1Rev1->getRevision()));
 		self::assertEquals($file1Rev1, $submissionFileDao->getRevision($file1Rev1->getFileId(), $file1Rev1->getRevision(), $file1Rev1->getFileStage()));
 		self::assertEquals($file1Rev1, $submissionFileDao->getRevision($file1Rev1->getFileId(), $file1Rev1->getRevision(), $file1Rev1->getFileStage(), SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID));
-		self::assertNull($submissionFileDao->getRevision($file1Rev1->getFileId(), $file1Rev1->getRevision(), MONOGRAPH_FILE_PRODUCTION+1));
+		self::assertNull($submissionFileDao->getRevision($file1Rev1->getFileId(), $file1Rev1->getRevision(), MONOGRAPH_FILE_PROOF+1));
 		self::assertNull($submissionFileDao->getRevision($file1Rev1->getFileId(), $file1Rev1->getRevision(), null, SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID+1));
 
 
@@ -206,7 +206,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		self::assertEquals($file1Rev2, $submissionFileDao->getLatestRevision($file1Rev1->getFileId()));
 		self::assertEquals($file1Rev2, $submissionFileDao->getLatestRevision($file1Rev1->getFileId(), $file1Rev1->getFileStage()));
 		self::assertEquals($file1Rev2, $submissionFileDao->getLatestRevision($file1Rev1->getFileId(), $file1Rev1->getFileStage(), SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID));
-		self::assertNull($submissionFileDao->getLatestRevision($file1Rev1->getFileId(), MONOGRAPH_FILE_PRODUCTION+1));
+		self::assertNull($submissionFileDao->getLatestRevision($file1Rev1->getFileId(), MONOGRAPH_FILE_PROOF+1));
 		self::assertNull($submissionFileDao->getLatestRevision($file1Rev1->getFileId(), null, SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID+1));
 
 
@@ -224,11 +224,11 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		self::assertEquals(array($uniqueId1_2 => $file1Rev2, $uniqueId2_2 => $file2Rev2),
 				$submissionFileDao->getLatestRevisions(SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID));
 		self::assertEquals(array($uniqueId1_2 => $file1Rev2, $uniqueId2_2 => $file2Rev2),
-				$submissionFileDao->getLatestRevisions(SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID, MONOGRAPH_FILE_PRODUCTION));
+				$submissionFileDao->getLatestRevisions(SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID, MONOGRAPH_FILE_PROOF));
 		self::assertEquals(array(),
 				$submissionFileDao->getLatestRevisions(SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID+1));
 		self::assertEquals(array(),
-				$submissionFileDao->getLatestRevisions(SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID, MONOGRAPH_FILE_PRODUCTION+1));
+				$submissionFileDao->getLatestRevisions(SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID, MONOGRAPH_FILE_PROOF+1));
 
 		// Test paging.
 		$rangeInfo = new DBResultRange(2, 1);
@@ -248,13 +248,13 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		// Retrieve all revisions of file 1.
 		self::assertNull($submissionFileDao->getAllRevisions(null));
 		self::assertEquals(array($uniqueId1_2 => $file1Rev2, $uniqueId1_1 => $file1Rev1),
-				$submissionFileDao->getAllRevisions($file1Rev1->getFileId(), MONOGRAPH_FILE_PRODUCTION));
+				$submissionFileDao->getAllRevisions($file1Rev1->getFileId(), MONOGRAPH_FILE_PROOF));
 		self::assertEquals(array($uniqueId1_2 => $file1Rev2, $uniqueId1_1 => $file1Rev1),
-				$submissionFileDao->getAllRevisions($file1Rev1->getFileId(), MONOGRAPH_FILE_PRODUCTION, SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID));
+				$submissionFileDao->getAllRevisions($file1Rev1->getFileId(), MONOGRAPH_FILE_PROOF, SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID));
 		self::assertEquals(array(),
 				$submissionFileDao->getAllRevisions($file1Rev1->getFileId(), null, SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID+1));
 		self::assertEquals(array(),
-				$submissionFileDao->getAllRevisions($file1Rev1->getFileId(), MONOGRAPH_FILE_PRODUCTION+1, null));
+				$submissionFileDao->getAllRevisions($file1Rev1->getFileId(), MONOGRAPH_FILE_PROOF+1, null));
 
 
 		//
@@ -266,9 +266,9 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		self::assertEquals(array($uniqueId1_2 => $file1Rev2),
 				$submissionFileDao->getLatestRevisionsByAssocId(ASSOC_TYPE_REVIEW_ASSIGNMENT, 5));
 		self::assertEquals(array($uniqueId1_2 => $file1Rev2),
-				$submissionFileDao->getLatestRevisionsByAssocId(ASSOC_TYPE_REVIEW_ASSIGNMENT, 5, MONOGRAPH_FILE_PRODUCTION));
+				$submissionFileDao->getLatestRevisionsByAssocId(ASSOC_TYPE_REVIEW_ASSIGNMENT, 5, MONOGRAPH_FILE_PROOF));
 		self::assertEquals(array(),
-				$submissionFileDao->getLatestRevisionsByAssocId(ASSOC_TYPE_REVIEW_ASSIGNMENT, 5, MONOGRAPH_FILE_PRODUCTION+1));
+				$submissionFileDao->getLatestRevisionsByAssocId(ASSOC_TYPE_REVIEW_ASSIGNMENT, 5, MONOGRAPH_FILE_PROOF+1));
 
 		// Retrieve all revisions by association.
 		self::assertNull($submissionFileDao->getAllRevisionsByAssocId(ASSOC_TYPE_REVIEW_ASSIGNMENT, null));
@@ -276,8 +276,8 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		self::assertEquals(array($uniqueId1_2 => $file1Rev2, $uniqueId1_1 => $file1Rev1),
 				$submissionFileDao->getAllRevisionsByAssocId(ASSOC_TYPE_REVIEW_ASSIGNMENT, 5));
 		self::assertEquals(array($uniqueId1_2 => $file1Rev2, $uniqueId1_1 => $file1Rev1),
-				$submissionFileDao->getAllRevisionsByAssocId(ASSOC_TYPE_REVIEW_ASSIGNMENT, 5, MONOGRAPH_FILE_PRODUCTION));
-		self::assertEquals(array(), $submissionFileDao->getAllRevisionsByAssocId(ASSOC_TYPE_REVIEW_ASSIGNMENT, 5, MONOGRAPH_FILE_PRODUCTION+1));
+				$submissionFileDao->getAllRevisionsByAssocId(ASSOC_TYPE_REVIEW_ASSIGNMENT, 5, MONOGRAPH_FILE_PROOF));
+		self::assertEquals(array(), $submissionFileDao->getAllRevisionsByAssocId(ASSOC_TYPE_REVIEW_ASSIGNMENT, 5, MONOGRAPH_FILE_PROOF+1));
 
 
 		//

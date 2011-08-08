@@ -36,14 +36,22 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 	/* @var string */
 	var $_eventType;
 
+	/* @var int */
+	var $_assocType;
+
+	/* @var int */
+	var $_assocId;
+
 	/**
 	 * Constructor
 	 */
-	function SignoffFilesGridHandler($stageId, $fileStage, $symbolic, $eventType) {
+	function SignoffFilesGridHandler($stageId, $fileStage, $symbolic, $eventType, $assocType = null, $assocId = null) {
 		$this->_stageId = $stageId;
 		$this->_fileStage = $fileStage;
 		$this->_symbolic = $symbolic;
 		$this->_eventType = $eventType;
+		$this->_assocType = $assocType;
+		$this->_assocId = $assocId;
 
 		$this->addRoleAssignment(
 			array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER, ROLE_ID_PRESS_ASSISTANT),
@@ -98,7 +106,8 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 			$request, $monograph->getId(),
 			$this->getStageId(),
 			array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER, ROLE_ID_PRESS_ASSISTANT),
-			$this->getFileStage()
+			$this->getFileStage(),
+			$this->getAssocType(), $this->getAssocId()
 		));
 
 		// Action to signoff on a file -- Lets user interact with their own rows.;
@@ -210,6 +219,27 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 	}
 
 	/**
+	 * Get the assoc type
+	 */
+	function getAssocType() {
+		return $this->_assocType;
+	}
+
+	/**
+	 * set the assoc Id
+	 */
+	function setAssocId($assocId) {
+		$this->_assocId = $assocId;
+	}
+
+	/**
+	 * Get the assoc id
+	 */
+	function getAssocId() {
+		return $this->_assocId;
+	}
+
+	/**
 	 * @see GridDataProvider::getRequestArgs()
 	 */
 	function getRequestArgs() {
@@ -226,7 +256,12 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 		// Grab the files to display as categories
 		$monograph =& $this->getMonograph();
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-		$monographFiles =& $submissionFileDao->getLatestRevisions($monograph->getId(), $this->getFileStage());
+		if ($this->getAssocType() && $this->getAssocId()) {
+			$monographFiles =& $submissionFileDao->getLatestRevisionsByAssocId($this->getAssocType(), $this->getAssocId(),
+																			   $monograph->getId(), $this->getFileStage());
+		} else {
+			$monographFiles =& $submissionFileDao->getLatestRevisions($monograph->getId(), $this->getFileStage());
+		}
 
 		// $monographFiles is keyed on file and revision, for the grid we need to key on file only
 		// since the grid shows only the most recent revision.
