@@ -20,10 +20,6 @@ class SubmissionFilesGridRow extends GridRow {
 	/** @var boolean */
 	var $_canDelete;
 
-	/** @var integer */
-	var $_stageId;
-
-
 	/**
 	 * Constructor
 	 */
@@ -43,16 +39,6 @@ class SubmissionFilesGridRow extends GridRow {
 	function canDelete() {
 		return $this->_canDelete;
 	}
-
-	/**
-	 * FIXME: is this dead code? It could be useful, but I dont' think it is used.
-	 * Get the workflow stage id.
-	 * @return integer
-	 */
-	function getStageId() {
-		return $this->_stageId;
-	}
-
 
 	//
 	// Overridden template methods from GridRow

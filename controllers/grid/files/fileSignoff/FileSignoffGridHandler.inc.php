@@ -106,10 +106,6 @@ class FileSignoffGridHandler extends SubmissionFilesGridHandler {
 			$this->addColumn(new UploaderUserGroupGridColumn($userGroup, $flags));
 			unset($userGroup);
 		}
-
-
-//		$seriesEditorAssignments =& $stageAssignmentDao->getBySubmissionAndRoleId($monograph->getId(), ROLE_ID_SERIES_EDITOR, $this->getStageId());
-//		$assistantAssignments =& $stageAssignmentDao->getBySubmissionAndRoleId($monograph->getId(), ROLE_ID_PRESS_ASSISTANT, $this->getStageId());
 	}
 
 	//

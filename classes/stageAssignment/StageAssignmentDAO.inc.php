@@ -52,8 +52,8 @@ class StageAssignmentDAO extends DAO {
 		$result =& $this->retrieve(
 					'SELECT COUNT(*)
 					FROM stage_assignments sa JOIN user_groups ug ON (sa.user_group_id = ug.user_group_id)
-					WHERE sa.stage_id = ? AND ug.role_id IN (?, ?)',
-					array($stageId, ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR)
+					WHERE sa.submission_id = ? AND sa.stage_id = ? AND ug.role_id IN (?, ?)',
+					array($submissionId, $stageId, ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR)
 					);
 		$returner = isset($result->fields[0]) && $result->fields[0] > 0 ? true : false;
 

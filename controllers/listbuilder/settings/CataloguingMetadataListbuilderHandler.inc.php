@@ -29,7 +29,6 @@ class CataloguingMetadataListbuilderHandler extends SetupListbuilderHandler {
 	 */
 	function loadList() {
 		$cataloguingMetadataFieldDao =& DAORegistry::getDAO('CataloguingMetadataFieldDAO');
-		$pressDao =& DAORegistry::getDAO('PressDAO');
 		$press =& $this->getPress();
 
 		$cataloguingMetadataFields =& $cataloguingMetadataFieldDao->getEnabledByPressId($press->getId());
@@ -54,7 +53,8 @@ class CataloguingMetadataListbuilderHandler extends SetupListbuilderHandler {
 		// FIXME: Localize.
 		$locale = Locale::getLocale();
 		$name = $this->getNewRowId($request);
-		return(array('name' => $name));
+		$returner = array('name' => $name);
+		return $returner;
 	}
 
 

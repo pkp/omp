@@ -39,7 +39,6 @@ class SignoffFilesGridCategoryRow extends GridCategoryRow {
 			$monographFile =& $this->getData();
 
 			// Add the row actions.
-			// FIXME: Not all roles should see this action. Bug #5975.
 			import('controllers.api.file.linkAction.DeleteFileLinkAction');
 			$this->addAction(new DeleteFileLinkAction($request, $monographFile, ''));
 

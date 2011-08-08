@@ -4,7 +4,7 @@
  */
 
 /**
- * @file controllers/wizard/fileUpload/FileUploadWizardHandler.inc.php
+ * @file controllers/modals/signoff/FileSignoffHandler.inc.php
  *
  * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -41,6 +41,7 @@ class FileSignoffHandler extends FileManagementHandler {
 	 */
 	function FileSignoffHandler() {
 		parent::FileManagementHandler();
+		// FIXME #6199: all roles can see readSignoff, but other ops require the user to own the signoff.
 		$this->addRoleAssignment(
 			array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_ASSISTANT, ROLE_ID_AUTHOR),
 			array('displayFileUploadForm', 'uploadFile', 'signoff', 'readSignoff')
