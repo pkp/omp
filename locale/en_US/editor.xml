@@ -17,7 +17,6 @@
 	<message key="editor.responseDueDate">Response Due Date</message>
 
 
-	<message key="editor.monograph.addUserError">There was an error trying to add the user.  Please Try again.</message>
 	<message key="editor.submissionArchive">Submission Archive</message>
 	<message key="editor.submissionReview.recordDecision">Record Editorial Decision</message>
 	<message key="editor.submissionReview.reviewType">Review Type</message>
@@ -70,9 +69,13 @@
 	<message key="editor.monograph.copyediting.addAuditor">Add Auditor</message>
 	<message key="editor.monograph.copyediting.currentFiles">Current Files</message>
 	<message key="editor.monograph.copyediting.personalMessageTouser">Personal message to user</message>
-	<message key="editor.monograph.copyediting.form.userRequired">You must select a user to assign.</message>
-	<message key="editor.monograph.copyediting.form.fileRequired">You must select at least one file to assign the user to.</message>
-	<message key="editor.monograph.copyediting.form.messageRequired">You must include a personal message.</message>
+
+	<!-- Add file or auditor to editor/audit grids -->
+	<message key="editor.monograph.addAuditorError">There was an error trying to add the auditor. Please Try again.</message>
+	<message key="editor.monograph.fileAuditor.form.userRequired">You must select a user to assign.</message>
+	<message key="editor.monograph.fileAuditor.form.fileRequired">You must select at least one file to assign the user to.</message>
+	<message key="editor.monograph.fileAuditor.form.messageRequired">You must include a personal message.</message>
+
 
 	<!-- Submission stage related -->
 	<message key="editor.submission.noEditorAssigned">An editor must be assigned before you can initiate review.</message>

@@ -11,20 +11,20 @@
 <script type="text/javascript">
 	// Attach the file upload form handler.
 	$(function() {ldelim}
-		$('#addCopyeditingUser').pkpHandler(
-			'$.pkp.controllers.grid.files.copyedit.form.AddCopyeditingUserFormHandler'
+		$('#addAuditorForm').pkpHandler(
+			'$.pkp.controllers.grid.files.signoff.form.AddAuditorFormHandler'
 		);
 	{rdelim});
 </script>
 
 <div id="addUserContainer">
-	<form class="pkp_form" id="addCopyeditingUser" action="{url op="saveAddUser" monographId=$monographId|escape}" method="post">
+	<form class="pkp_form" id="addAuditorForm" action="{url op="saveAddAuditor"}" method="post">
 		<input type="hidden" name="monographId" value="{$monographId|escape}" />
 
 		<!-- User autocomplete -->
 		<div id="userAutocomplete">
 			{fbvFormSection}
-				{url|assign:"autocompleteUrl" op="getCopyeditUserAutocomplete" monographId=$monographId escape=false}
+				{url|assign:"autocompleteUrl" op="getAuditorAutocomplete" monographId=$monographId escape=false}
 				{fbvElement type="autocomplete" autocompleteUrl=$autocompleteUrl id="userId-GroupId" name="copyeditUserAutocomplete" label="user.role.copyeditor" value=$userNameString|escape}
 			{/fbvFormSection}
 		</div>

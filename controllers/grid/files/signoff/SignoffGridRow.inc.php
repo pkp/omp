@@ -1,24 +1,28 @@
 <?php
 
 /**
- * @file controllers/grid/files/copyedit/CopyeditingFilesGridRow.inc.php
+ * @file controllers/grid/files/signoff/SignoffGridRow.inc.php
  *
  * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class CopyeditingFilesGridRow
- * @ingroup controllers_grid_files_copyedit
+ * @class SignoffGridRow
+ * @ingroup controllers_grid_files_signoff
  *
- * @brief Handle fair copy file grid row requests.
+ * @brief A row containing a Signoff as its data.
  */
 
 import('lib.pkp.classes.controllers.grid.GridRow');
 
-class CopyeditingFilesGridRow extends GridRow {
+class SignoffGridRow extends GridRow {
+	/** @var integer */
+	var $_stageId;
+
 	/**
 	 * Constructor
 	 */
-	function CopyeditingFilesGridRow() {
+	function SignoffGridRow($stageId) {
+		$this->_stageId = (int)$stageId;
 		parent::GridRow();
 	}
 
@@ -65,7 +69,7 @@ class CopyeditingFilesGridRow extends GridRow {
 						$request, null, null, 'deleteSignoff',
 						null, array(
 							'monographId' => $monographId,
-							'stageId' => WORKFLOW_STAGE_ID_EDITING,
+							'stageId' => $this->getStageId(),
 							'signoffId' => $rowId,
 							'fileId' => $copyeditedFileId
 						)
@@ -87,11 +91,22 @@ class CopyeditingFilesGridRow extends GridRow {
 					import('controllers.api.signoff.linkAction.AddSignoffFileLinkAction');
 					$this->addAction(new AddSignoffFileLinkAction(
 						$request, $monographId,
-						WORKFLOW_STAGE_ID_EDITING, 'SIGNOFF_COPYEDITING', $signoff->getId(),
+						$this->getStageId(), $signoff->getSymbolic(), $signoff->getId(),
 						__('submission.upload.signoff'), __('submission.upload.signoff')));
 				}
 			}
 		}
+	}
+
+	//
+	// Getters
+	//
+	/**
+	 * Get the workflow stage id.
+	 * @return integer
+	 */
+	function getStageId() {
+		return $this->_stageId;
 	}
 }
 

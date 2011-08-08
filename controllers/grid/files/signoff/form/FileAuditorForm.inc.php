@@ -14,16 +14,33 @@
 
 import('lib.pkp.classes.form.Form');
 
-class CopyeditingUserForm extends Form {
+class FileAuditorForm extends Form {
 	/** The monograph associated with the submission contributor being edited **/
 	var $_monograph;
 
+	/* @var int */
+	var $_stageId;
+
+	/* @var string */
+	var $_symbolic;
+
+	/* @var string */
+	var $_eventType;
+
 	/**
-	 * Set the monograph
-	 * @param $monograph Monograph
+	 * Constructor.
 	 */
-	function setMonograph(&$monograph) {
+	function FileAuditorForm($monograph, $stageId, $symbolic, $eventType) {
+		parent::Form('controllers/grid/files/signoff/form/addAuditor.tpl');
 		$this->_monograph =& $monograph;
+		$this->_stageId = $stageId;
+		$this->_symbolic = $symbolic;
+		$this->_eventType = $eventType;
+
+		$this->addCheck(new FormValidator($this, 'userId', 'required', 'editor.monograph.fileAuditor.form.userRequired'));
+		$this->addCheck(new FormValidator($this, 'files', 'required', 'editor.monograph.fileAuditor.form.fileRequired'));
+		$this->addCheck(new FormValidator($this, 'personalMessage', 'required', 'editor.monograph.fileAuditor.form.messageRequired'));
+		$this->addCheck(new FormValidatorPost($this));
 	}
 
 	/**
@@ -35,16 +52,26 @@ class CopyeditingUserForm extends Form {
 	}
 
 	/**
-	 * Constructor.
+	 * Get the workflow stage id.
+	 * @return integer
 	 */
-	function CopyeditingUserForm($monograph) {
-		parent::Form('controllers/grid/files/copyedit/addCopyeditingUser.tpl');
-		$this->setMonograph($monograph);
+	function getStageId() {
+		return $this->_stageId;
+	}
 
-		$this->addCheck(new FormValidator($this, 'userId', 'required', 'editor.monograph.copyediting.form.userRequired'));
-		$this->addCheck(new FormValidator($this, 'files', 'required', 'editor.monograph.copyediting.form.fileRequired'));
-		$this->addCheck(new FormValidator($this, 'personalMessage', 'required', 'editor.monograph.copyediting.form.messageRequired'));
-		$this->addCheck(new FormValidatorPost($this));
+	/**
+	 * Get the signoff's symbolic
+	 * @return string
+	 */
+	function getSymbolic() {
+		return $this->_symbolic;
+	}
+
+	/**
+	 * Get the email key
+	 */
+	function getEventType() {
+		return $this->_eventType;
 	}
 
 	//
@@ -96,7 +123,7 @@ class CopyeditingUserForm extends Form {
 		// FIXME: Bug #6199: How to validate user IDs?
 		$user =& $userDao->getUser($this->getData('userId'));
 		$email->addRecipient($user->getEmail(), $user->getFullName());
-		$email->setEventType(MONOGRAPH_EMAIL_COPYEDIT_NOTIFY_AUTHOR);
+		$email->setEventType($this->getEventType());
 		$email->send($request);
 	}
 
@@ -109,7 +136,7 @@ class CopyeditingUserForm extends Form {
 		$fileId = (int) $newRowId;
 		$monograph =& $this->getMonograph();
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO');
-		$monographFile =& $submissionFileDao->getLatestRevision($fileId, MONOGRAPH_FILE_COPYEDIT, $monograph->getId());
+		$monographFile =& $submissionFileDao->getLatestRevision($fileId, null, $monograph->getId());
 		assert($monographFile);
 
 		// FIXME: Bug #6199: How to validate user IDs?
@@ -124,7 +151,7 @@ class CopyeditingUserForm extends Form {
 		// Build the signoff.
 		$monographFileSignoffDao =& DAORegistry::getDAO('MonographFileSignoffDAO');
 		$signoff =& $monographFileSignoffDao->build(
-			'SIGNOFF_COPYEDITING',
+			$this->getSymbolic(),
 			$monographFile->getFileId(),
 			$userId, $userGroup->getId()
 		); /* @var $signoff Signoff */

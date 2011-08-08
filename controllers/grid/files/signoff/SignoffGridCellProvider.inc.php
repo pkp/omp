@@ -1,20 +1,20 @@
 <?php
 
 /**
- * @file controllers/grid/files/copyedit/CopyeditingFilesGridCellProvider.inc.php
+ * @file controllers/grid/files/signoff/SignoffGridCellProvider.inc.php
  *
  * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class CopyeditingFilesGridCellProvider
- * @ingroup controllers_grid_files_copyedit
+ * @class SignoffGridCellProvider
+ * @ingroup controllers_grid_files_signoff
  *
- * @brief Subclass class for a CopyeditingFiles grid column's cell provider
+ * @brief Cell provider for name column of a signoff (editor/auditor) grid (i.e. copyediting/production).
  */
 
 import('lib.pkp.classes.controllers.grid.GridCellProvider');
 
-class CopyeditingFilesGridCellProvider extends GridCellProvider {
+class SignoffGridCellProvider extends GridCellProvider {
 	/** @var int */
 	var $_monographId;
 
@@ -24,7 +24,7 @@ class CopyeditingFilesGridCellProvider extends GridCellProvider {
 	/**
 	 * Constructor
 	 */
-	function CopyeditingFilesGridCellProvider($monographId, $stageId) {
+	function SignoffGridCellProvider($monographId, $stageId) {
 		$this->_monographId = $monographId;
 		$this->_stageId = $stageId;
 		parent::GridCellProvider();

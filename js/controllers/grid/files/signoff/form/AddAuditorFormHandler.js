@@ -1,21 +1,21 @@
 /**
- * @defgroup js_controllers_grid_files_copyedit_form
+ * @defgroup js_controllers_grid_files_signoff_form
  */
 // Create the namespace.
 jQuery.pkp.controllers.grid.files = jQuery.pkp.controllers.grid.files ||
-			{ copyedit: { form: { } } };
+			{ signoff: { form: { } } };
 
 
 /**
- * @file js/controllers/grid/files/copyedit/AddCopyeditingUserFormHandler.js
+ * @file js/controllers/grid/files/signoff/AddAuditorFormHandler.js
  *
  * Copyright (c) 2000-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class AddCopyeditingUserFormHandler
- * @ingroup js_controllers_grid_files_copyedit_form
+ * @class AddAuditorFormHandler
+ * @ingroup js_controllers_grid_files_signoff_form
  *
- * @brief Handle the "add copyediting user" form.
+ * @brief Handle the "add auditor" form.
  */
 (function($) {
 
@@ -28,7 +28,7 @@ jQuery.pkp.controllers.grid.files = jQuery.pkp.controllers.grid.files ||
 	 * @param {jQuery} $form the wrapped HTML form element.
 	 * @param {Object} options form options.
 	 */
-	$.pkp.controllers.grid.files.copyedit.form.AddCopyeditingUserFormHandler =
+	$.pkp.controllers.grid.files.signoff.form.AddAuditorFormHandler =
 			function($form, options) {
 
 		this.parent($form, options);
@@ -43,8 +43,8 @@ jQuery.pkp.controllers.grid.files = jQuery.pkp.controllers.grid.files ||
 		$('#responseDueDate').datepicker('setDate', month + '-' + day + '-' + year);
 	};
 	$.pkp.classes.Helper.inherits(
-			$.pkp.controllers.grid.files.copyedit.form.
-					AddCopyeditingUserFormHandler,
+			$.pkp.controllers.grid.files.signoff.form.
+					AddAuditorFormHandler,
 			$.pkp.controllers.form.AjaxFormHandler);
 
 

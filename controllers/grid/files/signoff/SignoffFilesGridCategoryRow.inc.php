@@ -1,24 +1,24 @@
 <?php
 
 /**
- * @file controllers/grid/files/copyedit/CopyeditingFilesGridCategoryRow.inc.php
+ * @file controllers/grid/files/signoff/SignoffFilesGridCategoryRow.inc.php
  *
  * Copyright (c) 2000-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class CopyeditingFilesGridCategoryRow
- * @ingroup controllers_grid_files_copyedit
+ * @class SignoffFilesGridCategoryRow
+ * @ingroup controllers_grid_files_signoff
  *
- * @brief CopyeditingFiles grid category row definition
+ * @brief A category row containing the file that users are asked to signoff on.
  */
 
 import('lib.pkp.classes.controllers.grid.GridCategoryRow');
 
-class CopyeditingFilesGridCategoryRow extends GridCategoryRow {
+class SignoffFilesGridCategoryRow extends GridCategoryRow {
 	/**
 	 * Constructor
 	 */
-	function CopyeditingFilesGridCategoryRow() {
+	function SignoffFilesGridCategoryRow() {
 		parent::GridCategoryRow();
 	}
 
