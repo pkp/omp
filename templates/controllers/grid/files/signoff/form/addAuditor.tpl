@@ -24,7 +24,6 @@
 		<!-- User autocomplete -->
 		<div id="userAutocomplete">
 			{fbvFormSection}
-				{url|assign:"autocompleteUrl" op="getAuditorAutocomplete" monographId=$monographId escape=false}
 				{fbvElement type="autocomplete" autocompleteUrl=$autocompleteUrl id="userId-GroupId" name="copyeditUserAutocomplete" label="user.role.copyeditor" value=$userNameString|escape}
 			{/fbvFormSection}
 		</div>

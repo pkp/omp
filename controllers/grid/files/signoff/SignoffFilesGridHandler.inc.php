@@ -123,7 +123,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 		$this->addAction(new LinkAction(
 			'addAuditor',
 			new AjaxModal(
-				$router->url($request, null, null, 'addAuditor', null, array('monographId' => $monograph->getId())),
+				$router->url($request, null, null, 'addAuditor', null, $this->getRequestArgs()),
 				__('editor.monograph.copyediting.addAuditor'),
 				'add_item'
 			),
@@ -320,6 +320,11 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 
 		// Form handling
+		$router =& $request->getRouter();
+		$autocompleteUrl = $router->url($request, null, null, 'getAuditorAutocomplete', null, $this->getRequestArgs());
+		$templateMgr =& TemplateManager::getManager();
+		$templateMgr->assign('autocompleteUrl', $autocompleteUrl);
+
 		import('controllers.grid.files.signoff.form.FileAuditorForm');
 		$auditorForm = new FileAuditorForm($monograph, $this->getStageId(), $this->getSymbolic(), $this->getEventType());
 		if ($auditorForm->isLocaleResubmit()) {
@@ -344,7 +349,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 
 		// Form handling
 		import('controllers.grid.files.signoff.form.FileAuditorForm');
-		$auditorForm = new FileAuditorForm($monograph, $this->getStageId(), $this->getSymbolic(), $this->getEventType());
+		$auditorForm = new FileAuditorForm($monograph, $this->getStageId(), $this->getSymbolic(), $this->getEventType(), $this->getRequestArgs());
 		$auditorForm->readInputData();
 		if ($auditorForm->validate()) {
 			$auditorForm->execute($request);

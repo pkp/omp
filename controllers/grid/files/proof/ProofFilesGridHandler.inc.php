@@ -55,7 +55,7 @@ class ProofFilesGridHandler extends SignoffFilesGridHandler {
 		$publicationFormatId = (int) $request->getUserVar('publicationFormatId');
 		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
 		$publicationFormat =& $publicationFormatDao->getById($publicationFormatId);
-		if (!$publicationFormat) return false;
+		if (!$publicationFormat) fatalError('Invalid publication format!');
 
 		// FIXME: #6199
 		$this->setAssocId($publicationFormat->getId());
