@@ -51,9 +51,11 @@ class FileSignoffGridHandler extends SubmissionFilesGridHandler {
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */
 
 		// Set up the roles we may include as columns
-		$roles = array(ROLE_ID_PRESS_MANAGER => 'user.role.manager',
-					   ROLE_ID_SERIES_EDITOR => 'user.role.seriesEditor',
-					   ROLE_ID_PRESS_ASSISTANT => 'user.role.pressAssistant');
+		$roles = array(
+			ROLE_ID_PRESS_MANAGER => 'user.role.manager',
+			ROLE_ID_SERIES_EDITOR => 'user.role.seriesEditor',
+			ROLE_ID_PRESS_ASSISTANT => 'user.role.pressAssistant'
+		);
 
 		// Get all the uploader user group id's
 		$uploaderUserGroupIds = array();

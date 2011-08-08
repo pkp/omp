@@ -29,9 +29,10 @@ class ReviewRevisionsGridHandler extends FileSignoffGridHandler {
 		);
 
 		$this->addRoleAssignment(ROLE_ID_AUTHOR, $readAccess = array('fetchGrid', 'fetchRow'));
-		$this->addRoleAssignment(array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_ASSISTANT),
-								array_merge($readAccess, array('downloadAllFiles', 'signOffFile'))
-								);
+		$this->addRoleAssignment(
+			array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_ASSISTANT),
+			array_merge($readAccess, array('downloadAllFiles', 'signOffFile'))
+		);
 
 
 		// Set the grid title.

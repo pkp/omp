@@ -57,9 +57,9 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 			array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER, ROLE_ID_PRESS_ASSISTANT),
 			array_merge(
 				array(
-				'fetchGrid', 'fetchRow', 'returnFileRow', 'returnSignoffRow',
+					'fetchGrid', 'fetchRow', 'returnFileRow', 'returnSignoffRow',
 					'addAuditor', 'saveAddAuditor', 'getAuditorAutocomplete',
-				'signOffsignOff', 'deleteSignoff'
+					'signOffsignOff', 'deleteSignoff'
 				)
 			)
 		);
@@ -154,9 +154,11 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 		$seriesEditorAssignments =& $stageAssignmentDao->getBySubmissionAndRoleId($monograph->getId(), ROLE_ID_SERIES_EDITOR, $this->getStageId());
 		$assistantAssignments =& $stageAssignmentDao->getBySubmissionAndRoleId($monograph->getId(), ROLE_ID_PRESS_ASSISTANT, $this->getStageId());
 
-		$allAssignments = array_merge($managerAssignments->toArray(),
-										$seriesEditorAssignments->toArray(),
-										$assistantAssignments->toArray());
+		$allAssignments = array_merge(
+			$managerAssignments->toArray(),
+			$seriesEditorAssignments->toArray(),
+			$assistantAssignments->toArray()
+		);
 
 		foreach ($allAssignments as $assignment) {
 			$userIds[] = $assignment->getUserId();
@@ -165,11 +167,11 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 
 		// Add user group columns.
 		import('controllers.grid.files.SignoffOnSignoffGridColumn');
-		$this->addColumn(new SignoffOnSignoffGridColumn('user.role.editor',
-							 							$userIds, $this->getRequestArgs(),
-							 							array('myUserGroup' => true)
-						 								)
-						);
+		$this->addColumn(new SignoffOnSignoffGridColumn(
+			'user.role.editor',
+			$userIds, $this->getRequestArgs(),
+			array('myUserGroup' => true)
+		));
 
 		// Add the auditor column (the person assigned to signoff.
 		import('controllers.grid.files.SignoffStatusFromSignoffGridColumn');
@@ -257,8 +259,10 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 		$monograph =& $this->getMonograph();
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		if ($this->getAssocType() && $this->getAssocId()) {
-			$monographFiles =& $submissionFileDao->getLatestRevisionsByAssocId($this->getAssocType(), $this->getAssocId(),
-																			   $monograph->getId(), $this->getFileStage());
+			$monographFiles =& $submissionFileDao->getLatestRevisionsByAssocId(
+				$this->getAssocType(), $this->getAssocId(),
+				$monograph->getId(), $this->getFileStage()
+			);
 		} else {
 			$monographFiles =& $submissionFileDao->getLatestRevisions($monograph->getId(), $this->getFileStage());
 		}
@@ -353,7 +357,6 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 		$auditorForm->readInputData();
 		if ($auditorForm->validate()) {
 			$auditorForm->execute($request);
-
 			return DAO::getDataChangedEvent();
 		}
 
