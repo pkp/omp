@@ -201,7 +201,6 @@
 
 	<div class="formButtons">
 		{fbvElement class="inline" type="submit" id="installButton" label="installer.installApplication"}
-		{fbvElement class="inline" type="submit" id="manualInstall" label="installer.manualInstall"}
 		<div class="clear"></div>
 	</div>
 </form>

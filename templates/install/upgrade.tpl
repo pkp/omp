@@ -31,7 +31,6 @@
 
 <div class="formButtons">
 	{fbvElement class="inline" type="submit" id="installButton" label="installer.upgradeOMP"}
-	{fbvElement class="inline" type="submit" id="manualInstall" label="installer.manualUpgrade"}
 	<div class="clear"></div>
 </div>
 
