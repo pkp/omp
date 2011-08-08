@@ -107,7 +107,7 @@ class ReviewerGridHandler extends GridHandler {
 		// Add policy to ensure there is a review assignment for certain operations.
 		$reviewAssignmentOps = array('readReview', 'reviewRead', 'thankReviewer', 'editReminder', 'sendReminder');
 		import('classes.security.authorization.internal.ReviewAssignmentRequiredPolicy');
-		$ompWorkflowStageAccessPolicy->addPolicy(new ReviewAssignmentRequiredPolicy($request, $args, $reviewAssignmentOps));
+		$ompWorkflowStageAccessPolicy->addPolicy(new ReviewAssignmentRequiredPolicy($request, $args, 'reviewAssignmentId', $reviewAssignmentOps));
 		$this->addPolicy($ompWorkflowStageAccessPolicy);
 
 		return parent::authorize($request, $args, $roleAssignments);

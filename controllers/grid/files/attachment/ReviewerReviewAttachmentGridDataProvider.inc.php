@@ -50,7 +50,7 @@ class ReviewerReviewAttachmentGridDataProvider extends SubmissionFilesGridDataPr
 			$paramName = 'reviewId';
 		}
 
-		$authorizationPolicy->addPolicy(new ReviewAssignmentRequiredPolicy($request, $args, null, $paramName));
+		$authorizationPolicy->addPolicy(new ReviewAssignmentRequiredPolicy($request, $args, $paramName));
 
 		return $authorizationPolicy;
 	}
