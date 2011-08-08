@@ -297,7 +297,7 @@ class RegistrationForm extends Form {
 			if ($press->getSetting('allowRegAuthor')) {
 				$authorGroup =& $this->getData('authorGroup');
 				if (isset($authorGroup)) {
- 					$userGroupDao->assignUserToGroup($userId, $authorGroup, $press->getId());
+					$userGroupDao->assignUserToGroup($userId, $authorGroup, $press->getId());
 				}
 			}
 		}

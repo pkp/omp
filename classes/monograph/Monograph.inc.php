@@ -38,17 +38,17 @@ import('classes.monograph.Author');
 class Monograph extends Submission {
 	var $_reviewRounds;
 
- 	/**
+	/**
 	 * get monograph id
 	 * @return int
 	 * Constructor.
- 	 */
+	 */
 	function Monograph() {
 		// Switch on meta-data adapter support.
 		$this->setHasLoadableAdapters(true);
 
 		parent::Submission();
- 	}
+	}
 
 	/**
 	 * @see Submission::getAssocType()

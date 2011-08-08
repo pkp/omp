@@ -38,7 +38,7 @@ class InformationCenterHandler extends Handler {
 		$this->addRoleAssignment(
 			array(ROLE_ID_PRESS_ASSISTANT, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
 			array_merge($authorOps, array(
- 				'deleteNote' // Notes tab
+				'deleteNote' // Notes tab
 			))
 		);
 	}

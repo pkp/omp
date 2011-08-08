@@ -97,7 +97,7 @@ class WorkflowHandler extends Handler {
 
 		// Render the view.
 		$templateMgr =& TemplateManager::getManager();
- 		$templateMgr->display('workflow/submission.tpl');
+		$templateMgr->display('workflow/submission.tpl');
 	}
 
 	/**

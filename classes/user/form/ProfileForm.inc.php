@@ -127,7 +127,7 @@ class ProfileForm extends Form {
 		$templateMgr->assign_by_ref('countries', $countries);
 		$templateMgr->assign('helpTopicId', 'user.registerAndProfile');
 
- 		$interestDao =& DAORegistry::getDAO('InterestDAO');
+		$interestDao =& DAORegistry::getDAO('InterestDAO');
 		// Get all available interests to populate the autocomplete with
 		if ($interestDao->getAllUniqueInterests()) {
 			$existingInterests = $interestDao->getAllUniqueInterests();

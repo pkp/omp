@@ -59,8 +59,13 @@ class ReviewerReviewAttachmentGridDataProvider extends SubmissionFilesGridDataPr
 	 * @see GridDataProvider::getRequestArgs()
 	 */
 	function getRequestArgs() {
-		return array_merge(parent::getRequestArgs(), array('assocType' => ASSOC_TYPE_REVIEW_ASSIGNMENT,
-													 		'assocId' => $this->_getReviewId()));
+		return array_merge(
+			parent::getRequestArgs(),
+			array(
+				'assocType' => ASSOC_TYPE_REVIEW_ASSIGNMENT,
+														'assocId' => $this->_getReviewId()
+			)
+		);
 	}
 
 	/**

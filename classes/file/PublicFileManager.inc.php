@@ -32,9 +32,9 @@ class PublicFileManager extends PKPPublicFileManager {
 	 * @param $destFileName string the destination file name
 	 * @return boolean
 	 */
- 	function uploadPressFile($pressId, $fileName, $destFileName) {
- 		return $this->uploadFile($fileName, $this->getPressFilesPath($pressId) . '/' . $destFileName);
- 	}
+	function uploadPressFile($pressId, $fileName, $destFileName) {
+		return $this->uploadFile($fileName, $this->getPressFilesPath($pressId) . '/' . $destFileName);
+	}
 
 	/**
 	 * Write a file to a press' public directory.
@@ -43,9 +43,9 @@ class PublicFileManager extends PKPPublicFileManager {
 	 * @param $contents string the contents to write to the file
 	 * @return boolean
 	 */
- 	function writePressFile($pressId, $destFileName, &$contents) {
- 		return $this->writeFile($this->getPressFilesPath($pressId) . '/' . $destFileName, $contents);
- 	}
+	function writePressFile($pressId, $destFileName, &$contents) {
+		return $this->writeFile($this->getPressFilesPath($pressId) . '/' . $destFileName, $contents);
+	}
 
 	/**
 	 * Copy a file to a press' public directory.
@@ -54,19 +54,19 @@ class PublicFileManager extends PKPPublicFileManager {
 	 * @param $destFileName string the destination file name
 	 * @return boolean
 	 */
- 	function copyPressFile($pressId, $sourceFile, $destFileName) {
- 		return $this->copyFile($sourceFile, $this->getPressFilesPath($pressId) . '/' . $destFileName);
- 	}
+	function copyPressFile($pressId, $sourceFile, $destFileName) {
+		return $this->copyFile($sourceFile, $this->getPressFilesPath($pressId) . '/' . $destFileName);
+	}
 
- 	/**
+	/**
 	 * Delete a file from a press' public directory.
- 	 * @param $pressId int
- 	 * @param $fileName string the target file name
+	 * @param $pressId int
+	 * @param $fileName string the target file name
 	 * @return boolean
- 	 */
- 	function removePressFile($pressId, $fileName) {
- 		return $this->deleteFile($this->getPressFilesPath($pressId) . '/' . $fileName);
- 	}
+	 */
+	function removePressFile($pressId, $fileName) {
+		return $this->deleteFile($this->getPressFilesPath($pressId) . '/' . $fileName);
+	}
 }
 
 ?>

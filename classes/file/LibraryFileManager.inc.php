@@ -33,7 +33,7 @@ class LibraryFileManager extends FileManager {
 		$this->pressId = $pressId;
 	}
 
- 	/**
+	/**
 	 * Delete a file by ID.
 	 * @param $fileId int
 	 * @return int number of files removed

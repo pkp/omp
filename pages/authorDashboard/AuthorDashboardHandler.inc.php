@@ -103,7 +103,7 @@ class AuthorDashboardHandler extends Handler {
 			$templateMgr->assign_by_ref('monographEmails', $monographEmails);
 		}
 
- 		$templateMgr->display('authorDashboard/authorDashboard.tpl');
+		$templateMgr->display('authorDashboard/authorDashboard.tpl');
 	}
 
 	/**
