@@ -76,6 +76,7 @@ class FileUploadWizardHandler extends FileManagementHandler {
 	function initialize(&$request, $args) {
 		parent::initialize($request, $args);
 		// Configure the wizard with the authorized monograph and file stage.
+		// FIXME: Bug #6199
 		$fileStage = (int)$request->getUserVar('fileStage');
 		assert(is_numeric($fileStage) && $fileStage > 0);
 		$this->_fileStage = $fileStage;
