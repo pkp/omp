@@ -20,10 +20,6 @@
 	{include file="controllers/tab/settings/wizardMode.tpl wizardMode=$wizardMode}
 
 	{fbvFormArea id="policiesFormArea"}
-		{fbvFormSection title="manager.setup.focusAndScopeOfPress"}
-			<p>{translate key="manager.setup.focusAndScopeDescription"}</p>
-			{fbvElement type="textarea" multilingual=true name="focusScopeDesc" id="focusScopeDesc" value=$focusScopeDesc size=$fbvStyles.size.MEDIUM  rich=true}
-		{/fbvFormSection}
 		{fbvFormSection title="manager.setup.authorCopyrightNotice"}
 			{url|assign:"sampleCopyrightWordingUrl" page="information" op="sampleCopyrightWording"}
 			<p>{translate key="manager.setup.authorCopyrightNoticeDescription" sampleCopyrightWordingUrl=$sampleCopyrightWordingUrl}</p>
@@ -38,6 +34,10 @@
 		{/fbvFormSection}
 
 		<div {if $wizardMode}class="pkp_form_hidden"{/if}>
+			{fbvFormSection title="manager.setup.focusAndScopeOfPress"}
+				<p>{translate key="manager.setup.focusAndScopeDescription"}</p>
+				{fbvElement type="textarea" multilingual=true name="focusScopeDesc" id="focusScopeDesc" value=$focusScopeDesc size=$fbvStyles.size.MEDIUM  rich=true}
+			{/fbvFormSection}
 			{fbvFormSection title="manager.setup.openAccessPolicy"}
 				<p>{translate key="manager.setup.openAccessPolicyDescription"}</p>
 				{fbvElement type="textarea" multilingual="true" name="openAccessPolicy" id="openAccessPolicy" value=$openAccessPolicy size=$fbvStyles.size.MEDIUM  rich=true}

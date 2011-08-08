@@ -68,31 +68,9 @@
 				{$imagesViews.homepageImage}
 			</div>
 		{/fbvFormSection}
-		{fbvFormSection title="manager.setup.recentTitles"}
-			{fbvElement type="text" label="manager.setup.numRecentTitlesOnHomepage" id="numRecentTitlesOnHomepage" name="numRecentTitlesOnHomepage" value="$numRecentTitlesOnHomepage" size="3"}
-		{/fbvFormSection}
 		{fbvFormSection title="manager.setup.additionalContent"}
 			<p>{translate key="manager.setup.additionalContentDescription"}</p>
 			{fbvElement type="textarea" multilingual=true name="additionalHomeContent" id="additionalHomeContent" value=$additionalHomeContent size=$fbvStyles.size.MEDIUM  rich=true}
-		{/fbvFormSection}
-	{/fbvFormArea}
-
-	<h3>{translate key="manager.setup.pressLayout"}</h3>
-	<p>{translate key="manager.setup.pressLayoutDescription"}</p>
-	{fbvFormArea id="pressLayout"}
-		{fbvFormSection title="manager.setup.pressTheme"}
-			{if !$pressTheme}
-				{assign var="themeEnabled" value=false}
-			{/if}
-			{fbvElement type="select" id="pressThemes" from=$pressThemes selected=$themeEnabled enanbled=false translate=false}
-		{/fbvFormSection}
-		{fbvFormSection title="manager.setup.usePressStyleSheet"}
-			<div id="{$uploadCssLinkAction->getId()} class="pkp_linkActions">
-				{include file="linkAction/linkAction.tpl" action=$uploadCssLinkAction contextId="appearanceForm"}
-			</div>
-			<div id="pressStyleSheet">
-				{$pressStyleSheetView}
-			</div>
 		{/fbvFormSection}
 	{/fbvFormArea}
 
@@ -142,18 +120,40 @@
 	{/fbvFormArea}
 
 	<div {if $wizardMode}class="pkp_form_hidden"{/if}>
+		<h3>{translate key="manager.setup.pressLayout"}</h3>
+		<p>{translate key="manager.setup.pressLayoutDescription"}</p>
+		{fbvFormArea id="pressLayout"}
+			{fbvFormSection title="manager.setup.pressTheme"}
+				{if !$pressTheme}
+					{assign var="themeEnabled" value=false}
+				{/if}
+				{fbvElement type="select" id="pressThemes" from=$pressThemes selected=$themeEnabled enanbled=false translate=false}
+			{/fbvFormSection}
+			{fbvFormSection title="manager.setup.usePressStyleSheet"}
+				<div id="{$uploadCssLinkAction->getId()} class="pkp_linkActions">
+					{include file="linkAction/linkAction.tpl" action=$uploadCssLinkAction contextId="appearanceForm"}
+				</div>
+				<div id="pressStyleSheet">
+					{$pressStyleSheetView}
+				</div>
+			{/fbvFormSection}
+		{/fbvFormArea}
+
 		<h3>{translate key="manager.setup.navigationBar"}</h3>
 		<p>{translate key="manager.setup.itemsDescription"}</p>
 
 		<h3>{translate key="manager.setup.lists"}</h3>
 		<p>{translate key="manager.setup.listsDescription"}</p>
 
-		{fbvFormArea id="lists"}
+		{fbvFormArea id="advancedAppearanceSettings"}
 			{fbvFormSection}
 				{fbvElement type="text" id="itemsPerPage" value=$itemsPerPage size=$fbvStyles.size.SMALL}
 			{/fbvFormSection}
 			{fbvFormSection}
 				{fbvElement type="text" id="numPageLinks" value=$numPageLinks size=$fbvStyles.size.SMALL}
+			{/fbvFormSection}
+			{fbvFormSection title="manager.setup.recentTitles"}
+				{fbvElement type="text" label="manager.setup.numRecentTitlesOnHomepage" id="numRecentTitlesOnHomepage" name="numRecentTitlesOnHomepage" value="$numRecentTitlesOnHomepage" size="3"}
 			{/fbvFormSection}
 		{/fbvFormArea}
 	</div>
