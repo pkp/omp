@@ -33,7 +33,7 @@
 	</div>
 	<div id="publicationFormatContainer">
 		{iterate from=publicationFormats item=publicationFormat}
-			<h3><a href="#">{$publicationFormat->getLocalizedName()}</a></h3>
+			<h3><a href="#">{$publicationFormat->getLocalizedName()|escape}</a></h3>
 			<div>
 				{include file="workflow/publicationFormat.tpl" publicationFormat=$publicationFormat}
 			</div>
