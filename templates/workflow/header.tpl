@@ -10,17 +10,9 @@
 <div class="pkp_submissionHeader">
 	<div class="pkp_submissionHeaderTop">
 		{include file="common/submissionHeader.tpl" stageId=$stageId monograph=$monograph}
-
-		<div class="action pkp_linkActions">
-			{url|assign:"metadataUrl" router=$smarty.const.ROUTE_COMPONENT component="modals.submissionMetadata.SubmissionDetailsSubmissionMetadataHandler" op="fetch" stageId=$monograph->getStageId() monographId=$monograph->getId() escape=false}
-			{modal url="$metadataUrl" actOnType="nothing" actOnId="nothing" dialogText='reviewer.step1.viewAllDetails' button="#viewMetadata"}
-			<a id="viewMetadata" class="more_info" href="{$metadataUrl}">{translate key="submission.submit.metadata"}</a>
-		</div>
-
-		<div class="action pkp_linkActions">
-			{url|assign:"informationCenterUrl" router=$smarty.const.ROUTE_COMPONENT component="informationCenter.SubmissionInformationCenterHandler" op="viewInformationCenter" monographId=$monograph->getId() escape=false}
-			{modal url="$informationCenterUrl" actOnType="nothing" actOnId="nothing" button="#viewInformationCenter"}
-			<a id="viewInformationCenter" class="more_info" href="{$informationCenterUrl}">{translate key="grid.action.moreInformation"}</a>
+		<div class="pkp_linkActions">
+			{include file="linkAction/linkAction.tpl" action=$editMetadataAction}
+			{include file="linkAction/linkAction.tpl" action=$submissionInformationCentreAction}
 		</div>
 	</div>
 

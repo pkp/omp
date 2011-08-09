@@ -53,16 +53,21 @@ class WorkflowHandler extends Handler {
 	 * @see PKPHandler::initialize()
 	 */
 	function initialize(&$request, $args) {
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 
 		// Call parent method.
 		parent::initialize($request, $args);
 	}
 
 	/**
-	 * @see PKPHandler::setupTemplate()
+	 * Setup variables for the template
+	 * @param $request Request
 	 */
-	function setupTemplate() {
+	function setupTemplate(&$request) {
+		parent::setupTemplate();
+		// LOCALE_COMPONENT_PKP_GRID brought in for grid.action.moreInformatio
+		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_OMP_EDITOR, LOCALE_COMPONENT_OMP_SUBMISSION, LOCALE_COMPONENT_PKP_GRID));
+
 		$templateMgr =& TemplateManager::getManager();
 
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
@@ -78,9 +83,39 @@ class WorkflowHandler extends Handler {
 			$stageAssignmentDao->editorAssignedToSubmission($monograph->getId(), $stageId)
 		);
 
-		// LOCALE_COMPONENT_PKP_GRID brought in for grid.action.moreInformatio
-		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_OMP_EDITOR, LOCALE_COMPONENT_OMP_SUBMISSION, LOCALE_COMPONENT_PKP_GRID));
-		parent::setupTemplate();
+		$dispatcher =& $request->getDispatcher();
+		$editMetadataAction = new LinkAction(
+			'editMetadata',
+			new AjaxModal(
+				$dispatcher->url(
+					$request, ROUTE_COMPONENT, null,
+					'modals.submissionMetadata.SubmissionDetailsSubmissionMetadataHandler',
+					'fetch', null, array('monographId' => $monograph->getId(),
+												'stageId' => $stageId)
+				),
+				__('submission.submit.metadata')
+			),
+			__('submission.submit.metadata'),
+			'more_info'
+		);
+		$templateMgr->assign_by_ref('editMetadataAction', $editMetadataAction);
+
+		$submissionInformationCentreAction = new LinkAction(
+			'informationCentre',
+			new AjaxModal(
+			$dispatcher->url(
+				$request, ROUTE_COMPONENT, null,
+				'informationCenter.SubmissionInformationCenterHandler', 'viewInformationCenter',
+				null, array('monographId' => $monograph->getId())
+			),
+				__('informationCenter.informationCenter')
+			),
+			__('informationCenter.informationCenter'),
+			'more_info'
+		);
+		$templateMgr->assign_by_ref('submissionInformationCentreAction', $submissionInformationCentreAction);
+
+
 	}
 
 
