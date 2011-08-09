@@ -156,7 +156,7 @@ class MonographSearchIndex {
 		$authorText = array();
 		$authorDao =& DAORegistry::getDAO('AuthorDAO');
 		$authors = $authorDao->getAuthorsBySubmissionId($monograph->getId());
-		while($author =& $authors->next()) {
+		foreach ($authors as $author) {
 			array_push($authorText, $author->getFirstName());
 			array_push($authorText, $author->getMiddleName());
 			array_push($authorText, $author->getLastName());
@@ -168,7 +168,6 @@ class MonographSearchIndex {
 			if (is_array($bios)) foreach ($bios as $bio) { // Localized
 				array_push($authorText, strip_tags($bio));
 			}
-			unset($author);
 		}
 
 		// Update search index

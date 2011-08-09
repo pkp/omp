@@ -95,11 +95,6 @@ class AuthorGridHandler extends GridHandler {
 		assert(is_a($monograph, 'Monograph'));
 		$monographId = $monograph->getId();
 
-		// Retrieve the authors associated with this monograph to be displayed in the grid
-		$authorDao =& DAORegistry::getDAO('AuthorDAO');
-		$data =& $authorDao->getAuthorsBySubmissionId($monographId, true);
-		$this->setGridDataElements($data);
-
 		// Grid actions
 		$router =& $request->getRouter();
 		$actionArgs = array('monographId' => $monographId);
@@ -184,6 +179,15 @@ class AuthorGridHandler extends GridHandler {
 		);
 	}
 
+	/**
+	 * @see GridHandler::loadData
+	 */
+	function &loadData($request, $filter = null) {
+		$monograph =& $this->getMonograph();
+		$authorDao =& DAORegistry::getDAO('AuthorDAO');
+		$data =& $authorDao->getAuthorsBySubmissionId($monograph->getId(), true);
+		return $data;
+	}
 
 	//
 	// Public Author Grid Actions
@@ -264,7 +268,7 @@ class AuthorGridHandler extends GridHandler {
 				return DAO::getDataChangedEvent($authorId);
 			}
 		} else {
-			$json = new JSONMessage(false, Locale::translate('editor.monograph.addUserError'));
+			$json = new JSONMessage(true, $authorForm->fetch($request));
 			return $json->getString();
 		}
 	}

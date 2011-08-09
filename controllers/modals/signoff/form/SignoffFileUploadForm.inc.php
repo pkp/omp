@@ -89,7 +89,7 @@ class SignoffFileUploadForm extends Form {
 		// Looking at one signoff only
 		if (!isset($signoff)) {
 			$user =& $request->getUser();
-			$signoffs =& $signoffDao->getAllByMonograph($this->getSymbolic(), $this->getMonographId(), $user->getId());
+			$signoffs =& $signoffDao->getAllByMonograph($this->getMonographId(), $this->getSymbolic(), $user->getId());
 			$availableSignoffs = array();
 			while ($signoff =& $signoffs->next()) {
 				// Only include signoffs that are not yet completed.
