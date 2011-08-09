@@ -114,8 +114,9 @@ class PressSiteSettingsForm extends Form {
 		$press->setPath($this->getData('path'));
 		$press->setEnabled($this->getData('enabled'));
 
+		$isNewPress = false;
+
 		if ($press->getId() != null) {
-			$isNewPress = false;
 			$pressDao->updatePress($press);
 			$series = null;
 		} else {
@@ -175,6 +176,10 @@ class PressSiteSettingsForm extends Form {
 		PluginRegistry::loadAllPlugins();
 
 		HookRegistry::call('PressSiteSettingsForm::execute', array(&$this, &$press, &$series, &$isNewPress));
+
+		if ($isNewPress) {
+			return $press->getPath();
+		}
 	}
 
 }
