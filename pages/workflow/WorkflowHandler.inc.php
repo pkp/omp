@@ -57,23 +57,6 @@ class WorkflowHandler extends Handler {
 
 		// Call parent method.
 		parent::initialize($request, $args);
-
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-		$stageId = $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
-		$user = $request->getUser();
-
-		import('lib.pkp.classes.notification.NotificationManager');
-		$notificationManager = new NotificationManager();
-		$stageAssignmentDao =& DAORegistry::getDAO('StageAssignmentDAO');
-		$userAssignments =& $stageAssignmentDao->getBySubmissionAndStageId($monograph->getId(), $stageId, null, $user->getId());
-		if ($userAssignments->wasEmpty()) {
-			$notificationManager->createTrivialNotification('notification.notification', 'you are not assigned to the stage');
-		}
-		if (!$stageAssignmentDao->editorAssignedToSubmission($monograph->getId(), $stageId)) {
-			$notificationManager->createTrivialNotification('notification.notification', 'no user assigned to the stage');
-		}
-
-
 	}
 
 	/**
