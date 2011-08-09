@@ -99,7 +99,7 @@
 			$('div.pkp_structure_page').pkpHandler(
 				'$.pkp.controllers.SiteHandler',
 				{ldelim}
-					{include file="common/notification/notificationOptions.tpl"},
+					{include file="controllers/notification/notificationOptions.tpl"},
 					hasSystemNotifications: {if $hasSystemNotifications}true{else}false{/if}
 				{rdelim});
 		{rdelim});
