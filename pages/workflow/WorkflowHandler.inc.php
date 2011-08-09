@@ -152,7 +152,7 @@ class WorkflowHandler extends Handler {
 
 		// Render the view.
 		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->assign('workflorNotificationRequestOptions', $notificationOptions);
+		$templateMgr->assign('workflowNotificationRequestOptions', $notificationOptions);
 		$templateMgr->display('workflow/submission.tpl');
 	}
 
