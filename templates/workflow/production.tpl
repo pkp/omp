@@ -33,9 +33,10 @@
 	</div>
 	<div id="publicationFormatContainer">
 		{iterate from=publicationFormats item=publicationFormat}
-			<h3><a href="#">{$publicationFormat->getLocalizedName()}</a></h3>
+			<h3><a href="#">{$publicationFormat->getLocalizedName()|escape}</a></h3>
 			<div>
-				{include file="workflow/publicationFormat.tpl" publicationFormat=$publicationFormat}
+				{url|assign:publicationFormatUrl router=$smarty.const.ROUTE_PAGE op="fetchPublicationFormat" monographId=$monograph->getId() publicationFormatId=$publicationFormat->getId() escape=false}
+				{load_url_in_div id="publicationFormatDiv-"|concat:$publicationFormat->getId() url=$publicationFormatUrl}
 			</div>
 		{/iterate}
 	</div>

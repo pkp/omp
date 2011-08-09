@@ -25,6 +25,10 @@ switch ($op) {
 		define('HANDLER_CLASS', 'WorkflowHandler');
 		import('pages.workflow.WorkflowHandler');
 		break;
+	case 'fetchPublicationFormat':
+		define('HANDLER_CLASS', 'PublicationFormatHandler');
+		import('pages.workflow.PublicationFormatHandler');
+		break;
 }
 
 ?>

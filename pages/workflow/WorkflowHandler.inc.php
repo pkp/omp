@@ -57,6 +57,23 @@ class WorkflowHandler extends Handler {
 
 		// Call parent method.
 		parent::initialize($request, $args);
+
+		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		$stageId = $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
+		$user = $request->getUser();
+
+		import('lib.pkp.classes.notification.NotificationManager');
+		$notificationManager = new NotificationManager();
+		$stageAssignmentDao =& DAORegistry::getDAO('StageAssignmentDAO');
+		$userAssignments =& $stageAssignmentDao->getBySubmissionAndStageId($monograph->getId(), $stageId, null, $user->getId());
+		if ($userAssignments->wasEmpty()) {
+			$notificationManager->createTrivialNotification('notification.notification', 'you are not assigned to the stage');
+		}
+		if (!$stageAssignmentDao->editorAssignedToSubmission($monograph->getId(), $stageId)) {
+			$notificationManager->createTrivialNotification('notification.notification', 'no user assigned to the stage');
+		}
+
+
 	}
 
 	/**
@@ -65,8 +82,7 @@ class WorkflowHandler extends Handler {
 	 */
 	function setupTemplate(&$request) {
 		parent::setupTemplate();
-		// LOCALE_COMPONENT_PKP_GRID brought in for grid.action.moreInformatio
-		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_OMP_EDITOR, LOCALE_COMPONENT_OMP_SUBMISSION, LOCALE_COMPONENT_PKP_GRID));
+		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_OMP_SUBMISSION, LOCALE_COMPONENT_OMP_EDITOR));
 
 		$templateMgr =& TemplateManager::getManager();
 
@@ -253,12 +269,10 @@ class WorkflowHandler extends Handler {
 	function production(&$args, &$request) {
 		$templateMgr =& TemplateManager::getManager();
 		$press =& $request->getContext();
-
 		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
 		$publicationFormats =& $publicationFormatDao->getEnabledByPressId($press->getId());
-		$templateMgr->assign_by_ref('publicationFormats', $publicationFormats);
 
-		// Render the view.
+		$templateMgr->assign_by_ref('publicationFormats', $publicationFormats);
 
 		$templateMgr->display('workflow/production.tpl');
 	}
@@ -272,6 +286,9 @@ class WorkflowHandler extends Handler {
 	 * @return integer One of the WORKFLOW_STAGE_* constants.
 	 */
 	function _identifyStageId(&$request) {
+		if ($stageId = $request->getUserVar('stageId')) {
+			return (int) $stageId;
+		}
 		static $operationAssignment = array(
 			'submission' => WORKFLOW_STAGE_ID_SUBMISSION,
 			'internalReview' => WORKFLOW_STAGE_ID_INTERNAL_REVIEW,

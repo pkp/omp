@@ -34,7 +34,8 @@ class EditorDecisionHandler extends Handler {
 				'initiateReview', 'saveInitiateReview',
 				'sendReviews', 'saveSendReviews',
 				'promote', 'savePromote',
-				'importPeerReviews', 'sendToProduction'
+				'importPeerReviews',
+				'approveProofs', 'saveApproveProofs'
 			)
 		);
 	}
@@ -51,6 +52,15 @@ class EditorDecisionHandler extends Handler {
 		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
 		$this->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', $stageId));
 		return parent::authorize($request, $args, $roleAssignments);
+	}
+
+	/**
+	 * @see PKPHandler::initialize()
+	 */
+	function initialize(&$request, $args) {
+		Locale::requireComponents(
+			array(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_OMP_EDITOR, LOCALE_COMPONENT_PKP_SUBMISSION)
+		);
 	}
 
 
@@ -194,6 +204,36 @@ class EditorDecisionHandler extends Handler {
 		} else {
 			$json = new JSONMessage(true, $peerReviews);
 		}
+		return $json->getString();
+	}
+
+	/**
+	 * Show the approve proofs modal
+	 * @param $args array
+	 * @param $request PKPRequest
+	 */
+	function approveProofs($args, &$request) {
+		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		$stageId = $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
+
+		// TODO: implement init and display the ApproveProofsForm
+		$templateMgr =& TemplateManager::getManager();
+		$templateMgr->assign('monographId', $monograph->getId());
+		$templateMgr->assign('stageId', $stageId);
+
+		// FIXME: setting to one for testing.
+		$templateMgr->assign('publicationFormatId', 1);
+		return $templateMgr->fetchJson('controllers/modals/editorDecision/form/approveProofsForm.tpl');
+	}
+
+	/**
+	 * Save the approved proofs
+	 * @param $args array
+	 * @param $request PKPRequest
+	 */
+	function saveApproveProofs($args, &$request) {
+		// TODO: implement and execute the ApproveProofsForm
+		$json = new JSONMessage(true);
 		return $json->getString();
 	}
 
