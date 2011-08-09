@@ -54,7 +54,7 @@ class ProofFilesGridDataProvider extends SubmissionFilesGridDataProvider {
 	/**
 	 * @see GridHandler::loadData
 	 */
-	function &loadData(&$request, $filter) {
+	function &loadData() {
 		// Grab the files to display as categories
 		$monograph =& $this->getMonograph();
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */

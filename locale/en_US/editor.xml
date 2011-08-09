@@ -46,6 +46,7 @@
 	<message key="editor.monograph.decision.decline">Decline Submission</message>
 	<message key="editor.monograph.decision.sendToProduction">Send To Production</message>
 	<message key="editor.monograph.decision.externalReview">External Review</message>
+	<message key="editor.monograph.decision.approveProofs">Approve Proofs</message>
 	<message key="editor.monograph.roundStatus">Round {$round} Status</message>
 	<message key="editor.monograph.roundStatus.revisionsRequested">Revisions have been requested.</message>
 	<message key="editor.monograph.roundStatus.resubmitted">Submission has been resubmitted for review.</message>
@@ -69,6 +70,10 @@
 	<message key="editor.monograph.copyediting.addAuditor">Add Auditor</message>
 	<message key="editor.monograph.copyediting.currentFiles">Current Files</message>
 	<message key="editor.monograph.copyediting.personalMessageTouser">Personal message to user</message>
+
+	<!-- Production/Proof reading related -->
+	<message key="editor.monograph.proofReading">Proof Reading</message>
+	<message key="editor.monograph.proofs">Proofs</message>
 
 	<!-- Add file or auditor to editor/audit grids -->
 	<message key="editor.monograph.addAuditorError">There was an error trying to add the auditor. Please Try again.</message>

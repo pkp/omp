@@ -33,7 +33,7 @@ class SelectableProofFilesGridHandler extends SelectableFileListGridHandler {
 		);
 
 		// Set the grid title.
-		$this->setTitle('submission.proof');
+		$this->setTitle('editor.monograph.proofs');
 	}
 }
 

@@ -18,6 +18,7 @@
 	<message key="submission.workType.editedVolume">Edited Volume</message>
 	<message key="submission.workType.authoredWork">Authored Work</message>
 	<message key="submission.editorial">Editorial</message>
+	<message key="submission.production">Production</message>
 	<message key="submission.finalDraft">Final Draft</message>
 	<message key="submission.fairCopy">Fair Copy</message>
 	<message key="submission.art">Artwork</message>
@@ -28,9 +29,8 @@
 	<message key="submission.document">Document</message>
 	<message key="submission.overview">Submission Overview</message>
 	<message key="submission.copyediting">Copyediting</message>
-	<message key="submission.production">Production</message>
 	<message key="submission.copyedit">Copyedit</message>
-	<message key="submission.proofReading">Proof Reading</message>
+	<message key="submission.proofs">Proofs</message>
 	<message key="manuscript.submission">Manuscript Submission</message>
 	<message key="submission.round"><![CDATA[Round&nbsp;{$round}]]></message>
 	<message key="submissions.queuedReview">In Review</message>
@@ -39,7 +39,6 @@
 	<message key="submission.files.downloadAll">Download All Files</message>
 	<message key="submission.mySubmissions">My Submissions</message>
 	<message key="submission.participants">Participants</message>
-
 
 	<!-- Submission wizard -->
 	<message key="submission.submit">Start New Book Submission</message>
