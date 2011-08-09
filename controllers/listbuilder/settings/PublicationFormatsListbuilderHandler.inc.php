@@ -32,6 +32,7 @@ class PublicationFormatsListbuilderHandler extends SetupListbuilderHandler {
 		$press =& $this->getPress();
 
 		$publicationFormats =& $publicationFormatDao->getEnabledByPressId($press->getId());
+		$publicationFormats =& $publicationFormats->toArray();
 
 		$items = array();
 		foreach($publicationFormats as $item) {
@@ -46,7 +47,7 @@ class PublicationFormatsListbuilderHandler extends SetupListbuilderHandler {
 	 * Bounce a modified entry back to the client
 	 * @see ListbuilderHandler::getRowDataElement
 	 */
-	function &getRowDataElement(&$request, $rowId) {
+	function getRowDataElement(&$request, $rowId) {
 		// FIXME: Localize.
 		$locale = Locale::getLocale();
 		list($name, $designation) = $this->getNewRowId($request);
