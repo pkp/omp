@@ -32,12 +32,11 @@ class PublicationFormatsListbuilderHandler extends SetupListbuilderHandler {
 		$press =& $this->getPress();
 
 		$publicationFormats =& $publicationFormatDao->getEnabledByPressId($press->getId());
-		$publicationFormats =& $publicationFormats->toArray();
-
 		$items = array();
-		foreach($publicationFormats as $item) {
+		while ($item =& $publicationFormats->next()) {
 			$id = $item->getId();
 			$items[$id] = array('name' => $item->getLocalizedName(), 'designation' => $item->getLocalizedDesignation(), 'id' => $id);
+			unset($item);
 		}
 		$this->setGridDataElements($items);
 	}
@@ -112,6 +111,8 @@ class PublicationFormatsListbuilderHandler extends SetupListbuilderHandler {
 		parent::initialize($request);
 
 		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_MANAGER));
+
+		$this->setTitle('manager.setup.publicationFormats');
 
 		// Basic configuration
 		$this->setSourceType(LISTBUILDER_SOURCE_TYPE_TEXT); // Free text input

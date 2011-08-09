@@ -58,13 +58,6 @@ class SetupListbuilderHandler extends ListbuilderHandler {
 	}
 
 	/**
-	 * @see GridHandler::getIsSubcomponent
-	 */
-	function getIsSubcomponent() {
-		return true;
-	}
-
-	/**
 	 * @see ListbuilderHandler::initialize
 	 */
 	function initialize(&$request) {

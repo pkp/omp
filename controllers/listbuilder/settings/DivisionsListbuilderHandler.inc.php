@@ -35,7 +35,7 @@ class DivisionsListbuilderHandler extends SetupListbuilderHandler {
 		parent::initialize($request);
 
 		// Basic configuration
-		$this->setTitle('manager.setup.division');
+		$this->setTitle('division.divisions');
 		$this->setSourceType(LISTBUILDER_SOURCE_TYPE_TEXT); // Free text input
 
 		import('controllers.listbuilder.settings.DivisionsListbuilderGridCellProvider');

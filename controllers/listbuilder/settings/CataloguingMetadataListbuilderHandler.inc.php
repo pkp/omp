@@ -120,6 +120,13 @@ class CataloguingMetadataListbuilderHandler extends SetupListbuilderHandler {
 		$nameColumn = new ListbuilderGridColumn($this, 'name', 'common.name');
 		$this->addColumn($nameColumn);
 	}
+
+	/**
+	 * @see GridHandler::getIsSubcomponent
+	 */
+	function getIsSubcomponent() {
+		return true;
+	}
 }
 
 ?>

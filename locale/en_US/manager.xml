@@ -493,7 +493,6 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.cataloguingMetadata">Cataloguing Metadata</message>
 	<message key="manager.setup.currentFormats">Current Formats</message>
 	<message key="manager.setup.division">Division</message>
-	<message key="manager.setup.currentDivisions">Current Divisions</message>
 	<message key="manager.setup.divisionsAndSeries">Divisions and Series</message>
 	<message key="manager.setup.reviewForms">Review Forms</message>
 	<message key="manager.setup.roleType">Role Type</message>

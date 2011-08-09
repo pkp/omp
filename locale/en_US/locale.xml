@@ -63,6 +63,7 @@
 
 	<!-- series/categories/series -->
 	<message key="series.series">Series</message>
+	<message key="division.divisions">Divisions</message>
 
 	<!--
 	 *
