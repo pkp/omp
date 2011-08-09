@@ -273,23 +273,30 @@ class MonographDAO extends DAO {
 	function deleteMonographById($monographId) {
 		$this->authorDao->deleteAuthorsByMonograph($monographId);
 
-		// Delete monograph files.
-		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-		$submissionFileDao->deleteAllRevisionsBySubmissionId($monographId);
-
-		// Delete monograph file directory.
-		$monograph =& $this->getMonograph($monographId);
-		assert(is_a($monograph, 'Monograph'));
-		if (is_a($monograph, 'Monograph')) FileManager::rmtree($monograph->getFilePath());
-
 		$seriesEditorSubmissionDao =& DAORegistry::getDAO('SeriesEditorSubmissionDAO');
 		$seriesEditorSubmissionDao->deleteDecisionsByMonograph($monographId);
 		$seriesEditorSubmissionDao->deleteReviewRoundsByMonograph($monographId);
 
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
-		$reviewAssignmentDao->deleteByMonographId($monographId);
+		$reviewAssignmentDao->deleteBySubmissionId($monographId);
 
-		// FIXME: #6693# do we need to delete Signoffs?
+		// Signoff DAOs
+		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
+		$monographFileSignoffDao =& DAORegistry::getDAO('MonographFileSignoffDAO');
+
+		// Delete Signoffs associated with a monogrpah file of this monograph.
+		$monographFileSignoffs = $monographFileSignoffDao->getAllByMonograph($monographId);
+		while ($signoff =& $monographFileSignoffs->next()) {
+			$signoffDao->deleteObject($signoff);
+			unset($signoff);
+		}
+
+		// Delete the Signoffs associated with the monograph itself.
+		$monographSignoffs =& $signoffDao->getAllByAssocType(ASSOC_TYPE_MONOGRAPH, $monographId);
+		while ($signoff =& $monographSignoffs->next()) {
+			$signoffDao->deleteObject($signoff);
+			unset($signoff);
+		}
 
 		// Delete the stage assignments.
 		$stageAssignmentDao =& DAORegistry::getDAO('StageAssignmentDAO');
@@ -298,6 +305,16 @@ class MonographDAO extends DAO {
 			$stageAssignmentDao->deleteObject($stageAssignment);
 			unset($stageAssignment);
 		}
+
+		// N.B. Files must be deleted after signoffs to identify monograph file signoffs.
+		// Delete monograph files.
+		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+		$submissionFileDao->deleteAllRevisionsBySubmissionId($monographId);
+
+		// Delete monograph file directory.
+		$monograph =& $this->getMonograph($monographId);
+		assert(is_a($monograph, 'Monograph'));
+		if (is_a($monograph, 'Monograph')) FileManager::rmtree($monograph->getFilePath());
 
 		// Delete any comments.
 		$monographCommentDao =& DAORegistry::getDAO('MonographCommentDAO');
@@ -541,7 +558,7 @@ class MonographDAO extends DAO {
 				LEFT JOIN series_settings sapl ON (s.series_id = sapl.series_id AND sapl.setting_name = ? AND sapl.locale = ?)
 				LEFT JOIN series_settings sal ON (s.series_id = sal.series_id AND sal.setting_name = ? AND sal.locale = ?)
 				LEFT JOIN stage_assignments sa ON (m.monograph_id = sa.submission_id)
-				LEFT JOIN user_groups g ON (sa.user_group_id = g.user_group_id AND g.role_id = ?) 
+				LEFT JOIN user_groups g ON (sa.user_group_id = g.user_group_id AND g.role_id = ?)
 			WHERE	m.date_submitted IS NOT NULL AND
 				g.user_group_id IS NULL' .
 				($pressId?' AND m.press_id = ?':''),

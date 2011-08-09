@@ -117,18 +117,20 @@ class MonographFileSignoffDAO extends SignoffDAO {
 
 	/**
 	 * Retrieve all signoffs matching the specified input parameters
-	 * @param $symbolic string
-	 * @param $assocType int
-	 * @param $assocId int
+	 * @param $monographId int
+	 * @param $symbolic string (optional)
 	 * @param $userId int
-	 * @param $stageId int
 	 * @param $userGroupId int
 	 * @return DAOResultFactory
 	 */
-	function getAllByMonograph($symbolic, $monographId, $userId = null, $userGroupId = null) {
-		$sql = 'SELECT s.* FROM signoffs s, monograph_files mf WHERE s.symbolic = ? AND s.assoc_type = ? AND s.assoc_id = mf.file_id AND mf.monograph_id = ?';
-		$params = array($symbolic, ASSOC_TYPE_MONOGRAPH_FILE, (int) $monographId);
+	function getAllByMonograph($monographId, $symbolic = null, $userId = null, $userGroupId = null) {
+		$sql = 'SELECT s.* FROM signoffs s, monograph_files mf WHERE s.assoc_type = ? AND s.assoc_id = mf.file_id AND mf.monograph_id = ?';
+		$params = array(ASSOC_TYPE_MONOGRAPH_FILE, (int) $monographId);
 
+		if ($symbolic) {
+			$sql .= ' AND s.symbolic = ?';
+			$params[] = $symbolic;
+		}
 		if ($userId) {
 			$sql .= ' AND user_id = ?';
 			$params[] = (int) $userId;

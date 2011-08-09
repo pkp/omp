@@ -146,7 +146,7 @@ class AuthorSignoffFilesGridHandler extends GridHandler {
 		$user =& $this->getUser();
 		$monographFileSignoffDao =& DAORegistry::getDAO('MonographFileSignoffDAO');
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-		$signoffs =& $monographFileSignoffDao->getAllByMonograph($this->getSymbolic(), $monograph->getId(), $user->getId());
+		$signoffs =& $monographFileSignoffDao->getAllByMonograph($monograph->getId(), $this->getSymbolic(), $user->getId());
 
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		while ($signoff =& $signoffs->next()) {
