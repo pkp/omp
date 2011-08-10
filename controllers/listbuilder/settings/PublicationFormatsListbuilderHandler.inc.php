@@ -65,7 +65,8 @@ class PublicationFormatsListbuilderHandler extends SetupListbuilderHandler {
 	 */
 	function updateEntry(&$request, $rowId, $newRowId) {
 		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
-		$publicationFormat = $publicationFormatDao->getById($rowId);
+		$press =& $this->getPress();
+		$publicationFormat = $publicationFormatDao->getById($rowId, $press->getId());
 
 		$locale = Locale::getLocale(); // FIXME: Localize.
 		list($name, $designation) = $newRowId;
@@ -84,7 +85,8 @@ class PublicationFormatsListbuilderHandler extends SetupListbuilderHandler {
 	 */
 	function deleteEntry(&$request, $rowId) {
 		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
-		$publicationFormatDao->deleteById($rowId);
+		$press =& $this->getPress();
+		$publicationFormatDao->deleteById($rowId, $press->getId());
 		return true;
 	}
 

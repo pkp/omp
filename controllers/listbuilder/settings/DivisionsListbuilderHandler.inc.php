@@ -94,7 +94,7 @@ class DivisionsListbuilderHandler extends SetupListbuilderHandler {
 		$divisionDao =& DAORegistry::getDAO('DivisionDAO');
 		$division = $divisionDao->getById($rowId);
 		$press =& $this->getPress();
-		if (!$division || $division->getPressId() !== $press->getId());
+		if (!$division || $division->getPressId() !== $press->getId()) fatalError('Invalid division!');
 
 		// Update the existing entry.
 		// FIXME: Localize.
@@ -102,6 +102,18 @@ class DivisionsListbuilderHandler extends SetupListbuilderHandler {
 		$division->setTitle($newRowId, $locale);
 
 		$divisionDao->updateObject($division);
+		return true;
+	}
+
+	/**
+	 * Persist the deletion of an entry.
+	 * @param $rowId mixed ID of row to modify
+	 * @return boolean
+	 */
+	function deleteEntry(&$request, $rowId, $newRowId) {
+		$divisionDao =& DAORegistry::getDAO('DivisionDAO');
+		$press =& $this->getPress();
+		$divisionDao->deleteById($rowId, $press->getId());
 		return true;
 	}
 

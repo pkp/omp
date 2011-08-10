@@ -30,8 +30,17 @@ class PublicationFormatDAO extends DefaultSettingDAO
 	 * @param $publicationFormatId int
 	 * @return PublicationFormat
 	 */
-	function &getById($publicationFormatId) {
-		$result =& $this->retrieve('SELECT * FROM publication_formats WHERE publication_format_id = ?', (int) $publicationFormatId);
+	function &getById($publicationFormatId, $pressId = null) {
+		$params = array((int) $publicationFormatId);
+		if ($pressId) $params[] = (int) $pressId;
+
+		$result =& $this->retrieve(
+			'SELECT	*
+			FROM	publication_formats
+			WHERE	publication_format_id = ?
+			' . ($pressId?' AND press_id = ?':''),
+			$params
+		);
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
@@ -132,9 +141,16 @@ class PublicationFormatDAO extends DefaultSettingDAO
 	 * Soft delete a publication format by id.
 	 * @param $publicationFormatId int
 	 */
-	function deleteById($publicationFormatId) {
+	function deleteById($publicationFormatId, $pressId = null) {
+		$params = array(0, (int) $publicationFormatId);
+		if ($pressId) $params[] = (int) $pressId;
+
 		return $this->update(
-			'UPDATE publication_formats SET enabled = ? WHERE publication_format_id = ?', array(0, (int) $publicationFormatId)
+			'UPDATE	publication_formats
+			SET	enabled = ?
+			WHERE	publication_format_id = ?
+			' . ($pressId?' AND press_id = ?':''),
+			$params
 		);
 	}
 
