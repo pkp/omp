@@ -15,30 +15,34 @@
 import('controllers.grid.files.fileList.SelectableFileListGridHandler');
 
 class ManageFinalDraftFilesGridHandler extends SelectableFileListGridHandler {
-
-	/** @var array */
-	var $_selectionArgs;
-
-
 	/**
 	 * Constructor
 	 */
 	function ManageFinalDraftFilesGridHandler() {
 		import('controllers.grid.files.SubmissionFilesGridDataProvider');
-		// Pass in null stageId to be set in initialize from request var.
 		parent::SelectableFileListGridHandler(
 			new SubmissionFilesGridDataProvider(MONOGRAPH_FILE_FINAL),
-			null,
-			FILE_GRID_ADD|FILE_GRID_DOWNLOAD_ALL
+			WORKFLOW_STAGE_ID_EDITING,
+			FILE_GRID_ADD|FILE_GRID_DELETE
 		);
 
 		$this->addRoleAssignment(
-			array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
-			array('fetchGrid', 'fetchRow', 'downloadAllFiles', 'updateFinalDraftFiles')
+			array(
+				ROLE_ID_SERIES_EDITOR,
+				ROLE_ID_PRESS_MANAGER,
+				ROLE_ID_PRESS_ASSISTANT
+			),
+			array(
+				'fetchGrid', 'fetchRow',
+				'addFile',
+				'downloadFile',
+				'deleteFile',
+				'updateFinalDraftFiles'
+			)
 		);
 
 		// Set the grid title.
-		$this->setTitle('reviewer.monograph.finalDraftFiles');
+		$this->setTitle('submission.finalDraft');
 	}
 
 
@@ -46,20 +50,20 @@ class ManageFinalDraftFilesGridHandler extends SelectableFileListGridHandler {
 	// Public handler methods
 	//
 	/**
-	 * Save 'manage review files' form
+	 * Save 'manage final draft files' form
 	 * @param $args array
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function updateReviewFiles($args, &$request) {
+	function updateFinalDraftFiles($args, &$request) {
 		$monograph =& $this->getMonograph();
 
-		import('controllers.grid.files.final.form.ManageReviewFilesForm');
-		$manageReviewFilesForm = new ManageFinalDraftFilesForm($monograph->getId());
-		$manageReviewFilesForm->readInputData();
+		import('controllers.grid.files.final.form.ManageFinalDraftFilesForm');
+		$manageFinalDraftFilesForm = new ManageFinalDraftFilesForm($monograph->getId());
+		$manageFinalDraftFilesForm->readInputData();
 
-		if ($manageReviewFilesForm->validate()) {
-			$manageReviewFilesForm->execute($args, $request);
+		if ($manageFinalDraftFilesForm->validate()) {
+			$manageFinalDraftFilesForm->execute($args, $request);
 
 			// Let the calling grid reload itself
 			return DAO::getDataChangedEvent();
@@ -74,17 +78,19 @@ class ManageFinalDraftFilesGridHandler extends SelectableFileListGridHandler {
 	// Overridden protected methods from SelectableFileListGridHandler
 	//
 	/**
-	 * @see SelectableFileListGridHandler::getSelectedFileIds()
+	 * @see SelectableFileListGridHandler::getSelectedFileIds
 	 */
 	function getSelectedFileIds($submissionFiles) {
-		// Set the already selected elements of the grid (the current review files).
-		$monograph =& $this->getMonograph();
-		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-		$selectedRevisions =& $submissionFileDao->getRevisionsByReviewRound(
-			$monograph->getId(),
-			$this->getRequestArg('stageId'), $this->getRequestArg('round')
-		);
-		return array_keys($selectedRevisions);
+		// By default, select all files.
+		$submissionFileIds = array();
+		foreach($submissionFiles as $fileData) {
+			$file =& $fileData['submissionFile'];
+			if ($file->getViewable()) {
+				$submissionFileIds[] = $file->getFileIdAndRevision();
+			}
+			unset($file);
+		}
+		return $submissionFileIds;
 	}
 }
 

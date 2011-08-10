@@ -27,13 +27,32 @@ class FinalDraftFilesGridDataProvider extends SubmissionFilesGridDataProvider {
 	// Overridden public methods from FilesGridDataProvider
 	//
 	/**
+	 * @see GridDataProvider::loadData()
+	 */
+	function &loadData() {
+		// Get all MONOGRAPH_FILE_FINAL files, but filter out non-viewable ones
+		// (that have been de-selected using the "manage" tool)
+		$data =& parent::loadData();
+
+		foreach ($data as $i => $fileData) {
+			$submissionFile =& $fileData['submissionFile'];
+			if (!$submissionFile->getViewable()) unset($data[$i]);
+			unset($submissionFile);
+		}
+
+		return $data;
+	}
+
+	/**
 	 * @see FilesGridDataProvider::getSelectAction()
 	 */
 	function &getSelectAction($request) {
 		import('controllers.grid.files.fileList.linkAction.SelectFilesLinkAction');
 		$monograph =& $this->getMonograph();
-		$actionArgs = array('monographId' => $monograph->getId(),
-							 'stageId' => $this->_getStageId());
+		$actionArgs = array(
+			'monographId' => $monograph->getId(),
+			'stageId' => $this->_getStageId()
+		);
 		$selectAction = new SelectFilesLinkAction(
 			&$request, $actionArgs,
 			__('editor.monograph.final.manageFinalDraftFiles')
