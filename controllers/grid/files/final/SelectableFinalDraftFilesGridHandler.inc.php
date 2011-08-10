@@ -44,6 +44,21 @@ class SelectableFinalDraftFilesGridHandler extends SelectableFileListGridHandler
 		// Set the grid title
 		$this->setTitle('submission.finalDraft');
 	}
+
+	/**
+	 * @see SelectableFileListGridHandler::getSelectedFileIds
+	 * @return array
+	 */
+	function getSelectedFileIds($submissionFiles) {
+		// By default, select all files.
+		$submissionFileIds = array();
+		foreach($submissionFiles as $fileData) {
+			$file =& $fileData['submissionFile'];
+			$submissionFileIds[] = $file->getFileIdAndRevision();
+			unset($file);
+		}
+		return $submissionFileIds;
+	}
 }
 
 ?>
