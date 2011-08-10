@@ -28,10 +28,20 @@ class CataloguingMetadataFieldDAO extends DefaultSettingDAO
 	/**
 	 * Retrieve a cataloguing metadata field by id.
 	 * @param $cataloguingMetadataFieldId int
+	 * @param $pressId int
 	 * @return CataloguingMetadataField
 	 */
-	function &getById($cataloguingMetadataFieldId) {
-		$result =& $this->retrieve('SELECT * FROM cataloguing_metadata_fields WHERE field_id = ?', (int) $cataloguingMetadataFieldId);
+	function &getById($cataloguingMetadataFieldId, $pressId = null) {
+		$params = array((int) $cataloguingMetadataFieldId);
+		if ($pressId) $params[] = (int) $pressId;
+
+		$result =& $this->retrieve(
+			'SELECT	*
+			FROM	cataloguing_metadata_fields
+			WHERE field_id = ?
+			' . ($pressId?' AND press_id = ?':''),
+			$params
+		);
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
@@ -47,7 +57,11 @@ class CataloguingMetadataFieldDAO extends DefaultSettingDAO
 	 */
 	function &getEnabledByPressId($pressId) {
 		$result =& $this->retrieve(
-			'SELECT * FROM cataloguing_metadata_fields WHERE enabled = ? AND press_id = ?', array(1, $pressId)
+			'SELECT	*
+			FROM	cataloguing_metadata_fields
+			WHERE	enabled = ? AND
+				press_id = ?',
+			array(1, (int) $pressId)
 		);
 
 		$returner = null;
@@ -138,10 +152,18 @@ class CataloguingMetadataFieldDAO extends DefaultSettingDAO
 	/**
 	 * Soft delete a field by id.
 	 * @param $cataloguingMetadataFieldId int
+	 * @param $pressId int optional
 	 */
-	function deleteById($cataloguingMetadataFieldId) {
+	function deleteById($cataloguingMetadataFieldId, $pressId = null) {
+		$params = array(0, (int) $cataloguingMetadataFieldId);
+		if ($pressId) $params[] = (int) $pressId;
+
 		return $this->update(
-			'UPDATE cataloguing_metadata_fields SET enabled = ? WHERE field_id = ?', array(0, (int) $cataloguingMetadataFieldId)
+			'UPDATE	cataloguing_metadata_fields
+			SET	enabled = ?
+			WHERE	field_id = ?
+				' . ($pressId?' AND press_id = ?':''),
+			$params
 		);
 	}
 

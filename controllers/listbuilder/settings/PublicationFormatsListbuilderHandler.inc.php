@@ -58,9 +58,9 @@ class PublicationFormatsListbuilderHandler extends SetupListbuilderHandler {
 
 	/**
 	 * Persist an update to an entry.
+	 * @param $request PKPRequest
 	 * @param $rowId mixed ID of row to modify
-	 * @param $existingEntry mixed Existing entry to be modified
-	 * @param $newEntry mixed New entry with changes to persist
+	 * @param $newRowId mixed New entry with changes to persist
 	 * @return boolean
 	 */
 	function updateEntry(&$request, $rowId, $newRowId) {
@@ -80,6 +80,7 @@ class PublicationFormatsListbuilderHandler extends SetupListbuilderHandler {
 
 	/**
 	 * Persist the deletion of an entry.
+	 * @param $request PKPRequest
 	 * @param $rowId mixed ID of row to modify
 	 * @return boolean
 	 */

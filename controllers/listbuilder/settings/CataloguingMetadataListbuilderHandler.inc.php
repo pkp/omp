@@ -60,14 +60,15 @@ class CataloguingMetadataListbuilderHandler extends SetupListbuilderHandler {
 
 	/**
 	 * Persist an update to an entry.
+	 * @param $request PKPRequest
 	 * @param $rowId mixed ID of row to modify
-	 * @param $existingEntry mixed Existing entry to be modified
-	 * @param $newEntry mixed New entry with changes to persist
+	 * @param $newRowId mixed New entry with changes to persist
 	 * @return boolean
 	 */
 	function updateEntry(&$request, $rowId, $newRowId) {
 		$cataloguingMetadataFieldDao =& DAORegistry::getDAO('CataloguingMetadataFieldDAO');
-		$cataloguingMetadataField = $cataloguingMetadataFieldDao->getById($rowId);
+		$press =& $this->getPress();
+		$cataloguingMetadataField = $cataloguingMetadataFieldDao->getById($rowId, $pressId);
 
 		$locale = Locale::getLocale(); // FIXME: Localize.
 		$name = $newRowId;
@@ -79,8 +80,23 @@ class CataloguingMetadataListbuilderHandler extends SetupListbuilderHandler {
 
 
 	/**
+	 * Persist the deletion of an entry.
+	 * @param $request PKPRequest
+	 * @param $rowId mixed ID of row to modify
+	 * @return boolean
+	 */
+	function deleteEntry(&$request, $rowId) {
+		$cataloguingMetadataFieldDao =& DAORegistry::getDAO('CataloguingMetadataFieldDAO');
+		$press =& $this->getPress();
+		$cataloguingMetadataField = $cataloguingMetadataFieldDao->deleteById($rowId, $pressId);
+		return true;
+	}
+
+
+	/**
 	 * Persist a new entry insert.
-	 * @param $entry mixed New entry with data to persist
+	 * @param $request PKPRequest
+	 * @param $newRowId mixed New entry with data to persist
 	 * @return boolean
 	 */
 	function insertEntry(&$request, $newRowId) {
