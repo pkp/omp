@@ -78,6 +78,18 @@ class PublicationFormatsListbuilderHandler extends SetupListbuilderHandler {
 
 
 	/**
+	 * Persist the deletion of an entry.
+	 * @param $rowId mixed ID of row to modify
+	 * @return boolean
+	 */
+	function deleteEntry(&$request, $rowId) {
+		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
+		$publicationFormatDao->deleteById($rowId);
+		return true;
+	}
+
+
+	/**
 	 * Persist a new entry insert.
 	 * @param $entry mixed New entry with data to persist
 	 * @return boolean
