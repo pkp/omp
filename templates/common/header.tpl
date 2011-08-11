@@ -84,9 +84,6 @@
 		{include file="common/minifiedScripts.tpl"}
 	{/if}
 
-	<!-- JavaScript initialization (FIXME: bug #6442) -->
-	{include file="common/javascriptInit.tpl"}
-
 	{* FIXME: This should eventually be moved into a theme plugin. *}
 	<link rel="stylesheet" type="text/css" media="all" href="{$baseUrl}/lib/pkp/styles/themes/default/theme.css" />
 
