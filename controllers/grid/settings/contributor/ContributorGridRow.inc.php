@@ -42,28 +42,32 @@ class ContributorGridRow extends GridRow {
 				'gridId' => $this->getGridId(),
 				'rowId' => $rowId
 			);
+
 			$this->addAction(
-				new LegacyLinkAction(
+				new LinkAction(
 					'editContributor',
-					LINK_ACTION_MODE_MODAL,
-					LINK_ACTION_TYPE_REPLACE,
-					$router->url($request, null, null, 'editContributor', null, $actionArgs),
-					'grid.action.edit',
-					null,
-					'edit'
-				)
+					new AjaxModal(
+						$router->url($request, null, null, 'editContributor', null, $actionArgs),
+						__('grid.action.edit'),
+						'edit',
+						true
+						),
+					__('grid.action.edit'),
+					'edit')
 			);
+
+			import('lib.pkp.classes.linkAction.request.RemoteActionConfirmationModal');
+
 			$this->addAction(
-				new LegacyLinkAction(
+				new LinkAction(
 					'deleteContributor',
-					LINK_ACTION_MODE_CONFIRM,
-					LINK_ACTION_TYPE_REMOVE,
-					$router->url($request, null, null, 'deleteContributor', null, $actionArgs),
-					'grid.action.delete',
-					null,
-					'delete',
-					'common.confirmDelete'
-				)
+					new RemoteActionConfirmationModal(
+						__('grid.action.delete'),
+						null,
+						$router->url($request, null, null, 'deleteContributor', null, $actionArgs)
+					),
+					__('grid.action.delete'),
+					'delete')
 			);
 
 			$this->setTemplate('controllers/grid/gridRowWithActions.tpl');

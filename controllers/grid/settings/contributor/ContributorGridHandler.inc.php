@@ -18,6 +18,8 @@ import('controllers.grid.settings.SetupGridHandler');
 // Import Contributor grid specific classes
 import('controllers.grid.settings.contributor.ContributorGridRow');
 
+import('lib.pkp.classes.linkAction.request.AjaxModal');
+
 class ContributorGridHandler extends SetupGridHandler {
 	/**
 	 * Constructor
@@ -49,15 +51,18 @@ class ContributorGridHandler extends SetupGridHandler {
 
 		// Add grid-level actions
 		$router =& $request->getRouter();
+
 		$this->addAction(
-			new LegacyLinkAction(
+			new LinkAction(
 				'addContributor',
-				LINK_ACTION_MODE_MODAL,
-				LINK_ACTION_TYPE_APPEND,
-				$router->url($request, null, null, 'addContributor', null, array('gridId' => $this->getId())),
-				'grid.action.addItem'
-			),
-			GRID_ACTION_POSITION_ABOVE
+				new AjaxModal(
+					$router->url($request, null, null, 'addContributor', null, array('gridId' => $this->getId())),
+					__('grid.action.addItem'),
+					'addContributor',
+					true
+					),
+				__('grid.action.addItem'),
+				'addContributor')
 		);
 
 		// Columns
@@ -151,12 +156,10 @@ class ContributorGridHandler extends SetupGridHandler {
 			$row->setData($rowData);
 			$row->initialize($request);
 
-			$json = new JSONMessage(true, $this->_renderRowInternally($request, $row));
+			return DAO::getDataChangedEvent();
 		} else {
-			$json = new JSONMessage(false);
+			return new JSONMessage(false);
 		}
-
-		return $json->getString();
 	}
 
 	/**
@@ -177,11 +180,10 @@ class ContributorGridHandler extends SetupGridHandler {
 		if ( isset($contributors[$contributorId]) ) {
 			unset($contributors[$contributorId]);
 			$pressSettingsDao->updateSetting($press->getId(), 'contributors', $contributors, 'object');
-			$json = new JSONMessage(true);
+			return DAO::getDataChangedEvent();
 		} else {
-			$json = new JSONMessage(false, Locale::translate('manager.setup.errorDeletingItem'));
+			return new JSONMessage(false, Locale::translate('manager.setup.errorDeletingItem'));
 		}
-		return $json->getString();
 	}
 }
 

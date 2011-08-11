@@ -7,8 +7,17 @@
  *
  * Contributors grid form
  *}
+<script type="text/javascript">
+	$(function() {ldelim}
+		// Attach the form handler.
+		$('#contributorForm').pkpHandler('$.pkp.controllers.form.AjaxFormHandler');
+	{rdelim});
+</script>
 
-<form class="pkp_form" id="contributorForm" method="post" action="{url component="grid.settings.contributor.ContributorGridHandler" op="updateContributor"}">
+{include file="common/formErrors.tpl"}
+
+<form class="pkp_form" id="contributorForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.settings.contributor.ContributorGridHandler" op="updateContributor" form="mastheadForm"}">
+
 {include file="common/formErrors.tpl"}
 
 {fbvFormArea id="mastheadInfo"}
@@ -29,6 +38,6 @@
 {if $sponsorId}
 	<input type="hidden" name="sponsorId" value="{$sponsorId|escape}" />
 {/if}
-
+{fbvFormButtons}
 </form>
 
