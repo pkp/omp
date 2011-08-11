@@ -15,6 +15,8 @@
 import('controllers.grid.settings.SetupGridHandler');
 import('controllers.grid.settings.sponsor.SponsorGridRow');
 
+import('lib.pkp.classes.linkAction.request.AjaxModal');
+
 class SponsorGridHandler extends SetupGridHandler {
 	/**
 	 * Constructor
@@ -47,14 +49,16 @@ class SponsorGridHandler extends SetupGridHandler {
 		// Add grid-level actions
 		$router =& $request->getRouter();
 		$this->addAction(
-			new LegacyLinkAction(
+			new LinkAction(
 				'addSponsor',
-				LINK_ACTION_MODE_MODAL,
-				LINK_ACTION_TYPE_APPEND,
-				$router->url($request, null, null, 'addSponsor', null, array('gridId' => $this->getId())),
-				'grid.action.addItem'
-			),
-			GRID_ACTION_POSITION_ABOVE
+				new AjaxModal(
+					$router->url($request, null, null, 'addSponsor', null, array('gridId' => $this->getId())),
+					__('grid.action.addItem'),
+					'addSponsor',
+					true
+					),
+				__('grid.action.addItem'),
+				'addSponsor')
 		);
 
 		// Columns
@@ -96,7 +100,6 @@ class SponsorGridHandler extends SetupGridHandler {
 		// a new sponsor.
 		return $this->editSponsor($args, $request);
 	}
-
 
 	/**
 	 * An action to edit a sponsor
@@ -146,13 +149,10 @@ class SponsorGridHandler extends SetupGridHandler {
 							'url' => $sponsorForm->getData('url'));
 			$row->setData($rowData);
 			$row->initialize($request);
-
-			$json = new JSONMessage(true, $this->_renderRowInternally($request, $row));
+			return DAO::getDataChangedEvent();
 		} else {
-			$json = new JSONMessage(false);
+			return new JSONMessage(false);
 		}
-
-		return $json->getString();
 	}
 
 	/**
@@ -173,11 +173,10 @@ class SponsorGridHandler extends SetupGridHandler {
 		if (isset($sponsors[$sponsorId])) {
 			unset($sponsors[$sponsorId]);
 			$pressSettingsDao->updateSetting($press->getId(), 'sponsors', $sponsors, 'object');
-			$json = new JSONMessage(true);
+			return DAO::getDataChangedEvent();
 		} else {
-			$json = new JSONMessage(false, Locale::translate('manager.setup.errorDeletingItem'));
+			return new JSONMessage(false, Locale::translate('manager.setup.errorDeletingItem'));
 		}
-		return $json->getString();
 	}
 }
 

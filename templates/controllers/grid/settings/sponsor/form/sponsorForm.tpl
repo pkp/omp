@@ -7,6 +7,13 @@
  *
  * Sponsors grid form
  *}
+ <script type="text/javascript">
+	$(function() {ldelim}
+		// Attach the form handler.
+		$('#editSponsorForm').pkpHandler('$.pkp.controllers.form.AjaxFormHandler');
+	{rdelim});
+</script>
+
 <form class="pkp_form" id="editSponsorForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.settings.sponsor.SponsorGridHandler" op="updateSponsor"}">
 {include file="common/formErrors.tpl"}
 
@@ -28,6 +35,5 @@
 {if $sponsorId}
 	<input type="hidden" name="sponsorId" value="{$sponsorId|escape}" />
 {/if}
-
+{fbvFormButtons}
 </form>
-

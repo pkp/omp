@@ -43,30 +43,33 @@ class SponsorGridRow extends GridRow {
 				'rowId' => $rowId
 			);
 			$this->addAction(
-				new LegacyLinkAction(
+				new LinkAction(
 					'editSponsor',
-					LINK_ACTION_MODE_MODAL,
-					LINK_ACTION_TYPE_REPLACE,
-					$router->url($request, null, null, 'editSponsor', null, $actionArgs),
-					'grid.action.edit',
-					null,
-					'edit'
-				)
+					new AjaxModal(
+						$router->url($request, null, null, 'editSponsor', null, $actionArgs),
+						__('grid.action.edit'),
+						'edit',
+						true
+						),
+					__('grid.action.edit'),
+					'edit')
 			);
-			$this->addAction(
-				new LegacyLinkAction(
-					'deleteSponsor',
-					LINK_ACTION_MODE_CONFIRM,
-					LINK_ACTION_TYPE_REMOVE,
-					$router->url($request, null, null, 'deleteSponsor', null, $actionArgs),
-					'grid.action.delete',
-					null,
-					'delete',
-					'common.confirmDelete'
-				)
-			);
-			$this->setTemplate('controllers/grid/gridRowWithActions.tpl');
 
+			import('lib.pkp.classes.linkAction.request.RemoteActionConfirmationModal');
+
+			$this->addAction(
+				new LinkAction(
+					'deleteSponsor',
+					new RemoteActionConfirmationModal(
+						__('grid.action.delete'),
+						null,
+						$router->url($request, null, null, 'deleteSponsor', null, $actionArgs)
+					),
+					__('grid.action.delete'),
+					'delete')
+			);
+
+			$this->setTemplate('controllers/grid/gridRowWithActions.tpl');
 		}
 	}
 }
