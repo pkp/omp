@@ -40,47 +40,6 @@ class ReviewFilesGridDataProvider extends ReviewGridDataProvider {
 
 		return $data;
 	}
-
-	//
-	// Overridden public methods from FilesGridDataProvider
-	//
-	/**
-	 * @see FilesGridDataProvider::getSelectAction()
-	 */
-	function &getSelectAction($request) {
-		import('controllers.grid.files.fileList.linkAction.SelectReviewFilesLinkAction');
-		$monograph =& $this->getMonograph();
-		$selectAction = new SelectReviewFilesLinkAction(
-			&$request, $monograph->getId(), $this->_getStageId(), $this->_getRound(),
-			__('editor.monograph.review.manageReviewFiles')
-		);
-		return $selectAction;
-	}
-
-	/**
-	 * @see FilesGridDataProvider::getAddFileAction()
-	 */
-	function &getAddFileAction($request) {
-		import('controllers.api.file.linkAction.AddFileLinkAction');
-		$monograph =& $this->getMonograph();
-		$addFileAction = new AddFileLinkAction(
-			$request, $monograph->getId(), $this->_getStageId(),
-			$this->getUploaderRoles(), $this->_getFileStage(),
-			null, null, $this->_getRound()
-		);
-		return $addFileAction;
-	}
-
-	//
-	// Private helper methods
-	//
-	/**
-	 * Get the review round number.
-	 * @return integer
-	 */
-	function _getRound() {
-		return $this->_round;
-	}
 }
 
 ?>
