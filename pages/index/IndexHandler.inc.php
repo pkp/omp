@@ -46,7 +46,7 @@ class IndexHandler extends Handler {
 		$this->validate(); // FIXME: Replace with an authorization policy, see #6100.
 
 		$press = $this->_getTargetPress($request);
-		$user =& $this->_getUserFromRequest($request);
+		$user =& $request->getUser();
 
 		if ($user) {
 			// Private access.
@@ -64,7 +64,7 @@ class IndexHandler extends Handler {
 			if ($press) {
 				$this->_displayPressIndexPage($press, &$templateMgr);
 			} else {
-				$site =& $this->_getSiteFromRequest($request);
+				$site =& $request->getSite();
 				$this->_displaySiteIndexPage($site, &$templateMgr);
 			}
 		}
@@ -136,7 +136,7 @@ class IndexHandler extends Handler {
 				$press =& $presses->next();
 			} elseif ($pressesCount > 1) {
 				// Decide wich press to return.
-				$user =& $this->_getUserFromRequest($request);
+				$user =& $request->getUser();
 				if ($user) {
 					// We have a user (private access).
 					$press =& $this->_getFirstUserPress($user, $presses->toArray());
@@ -153,34 +153,6 @@ class IndexHandler extends Handler {
 			return $press;
 		}
 		return null;
-	}
-
-	/**
-	 * Get user from request.
-	 * @param $request Request
-	 * @return mixed Either User or boolean
-	 */
-	function _getUserFromRequest($request) {
-		$user = null;
-		$user =& $request->getUser();
-		if (is_a($user, 'User')) {
-			return $user;
-		}
-		return false;
-	}
-
-	/**
-	 * Get site from request.
-	 * @param $request Request
-	 * @return mixed Either Site or boolean
-	 */
-	function _getSiteFromRequest($request) {
-		$site = null;
-		$site =& $request->getSite();
-		if (is_a($site, 'Site')) {
-			return $site;
-		}
-		return false;
 	}
 
 	/**
@@ -209,7 +181,7 @@ class IndexHandler extends Handler {
 	 */
 	function _getSiteRedirectPress($request) {
 		$pressDao =& DAORegistry::getDAO('PressDAO'); /* @var $pressDao PressDAO */
-		$site =& $this->_getSiteFromRequest($request);
+		$site =& $request->getSite();
 		$press = null;
 		if ($site) {
 			if($site->getRedirect()) {
