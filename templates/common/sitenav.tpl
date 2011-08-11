@@ -22,7 +22,7 @@
 	</ul>
 	<ul class="pkp_helpers_flatlist pkp_helpers_align_right">
 		{if $isUserLoggedIn}
-			<li>{$username|escape}</li>
+			<li>{$loggedInUsername|escape}</li>
 			<li><a href="{url page="user" op="profile"}">{translate key="user.profile"}</a></li>
 			<li><a href="{url page="login" op="signOut"}">{translate key="user.logOut"}</a></li>
 		{else}
