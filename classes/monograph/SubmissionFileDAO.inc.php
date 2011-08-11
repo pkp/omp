@@ -67,7 +67,10 @@ class SubmissionFileDAO extends PKPSubmissionFileDAO {
 	 */
 	function baseQueryForFileSelection() {
 		// Build the basic query that joins the class tables.
-		return 'SELECT	sf.file_id AS monograph_file_id, sf.revision AS monograph_revision,
+		// The DISTINCT is required to de-dupe the review_round_files join in
+		// PKPSubmissionFileDAO.
+		return 'SELECT DISTINCT
+				sf.file_id AS monograph_file_id, sf.revision AS monograph_revision,
 				af.file_id AS artwork_file_id, af.revision AS artwork_revision,
 				sf.*, af.*
 			FROM	monograph_files sf
