@@ -20,10 +20,9 @@ class EditorReviewFilesGridHandler extends FileListGridHandler {
 	 * Constructor
 	 */
 	function EditorReviewFilesGridHandler() {
-		import('controllers.grid.files.review.ReviewGridDataProvider');
-		$dataProvider = new ReviewGridDataProvider(MONOGRAPH_FILE_REVIEW);
+		import('controllers.grid.files.review.ReviewFilesGridDataProvider');
 		parent::FileListGridHandler(
-			$dataProvider,
+			new ReviewFilesGridDataProvider(),
 			null,
 			FILE_GRID_DOWNLOAD_ALL|FILE_GRID_MANAGE
 		);

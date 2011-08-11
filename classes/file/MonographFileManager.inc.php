@@ -197,8 +197,9 @@ class MonographFileManager extends FileManager {
 	 * @param $sourceRevision int
 	 * @param $fileStage int
 	 * @param $destFileId int (optional)
+	 * @param $viewable boolean (optional)
 	 */
-	function copyFileToFileStage($sourceFileId, $sourceRevision, $newFileStage, $destFileId = null) {
+	function copyFileToFileStage($sourceFileId, $sourceRevision, $newFileStage, $destFileId = null, $viewable = false) {
 		if (HookRegistry::call('MonographFileManager::copyFileToFileStage', array(&$sourceFileId, &$sourceRevision, &$newFileStage, &$destFileId, &$result))) return $result;
 
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
@@ -225,6 +226,7 @@ class MonographFileManager extends FileManager {
 		$destFile->setRevision($revision);
 		$destFile->setFileStage($newFileStage);
 		$destFile->setDateModified(Core::getCurrentDate());
+		$destFile->setViewable($viewable);
 		// Set the old file as the source
 		$destFile->setSourceFileId($sourceFileId);
 		$destFile->setSourceRevision($sourceRevision);

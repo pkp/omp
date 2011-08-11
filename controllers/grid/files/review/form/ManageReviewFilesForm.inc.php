@@ -98,14 +98,15 @@ class ManageReviewFilesForm extends Form {
 		$stageId = $this->getStageId();
 		$round = $this->getRound();
 
-		// Delete and assign again.
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-		$submissionFileDao->deleteAllRevisionsByReviewRound($this->getMonographId(), $stageId, $round);
-		if (!empty($selectedFiles)) {
-			foreach ($selectedFiles as $selectedFile) {
-				list($fileId, $revision) = explode("-", $selectedFile);
-				$submissionFileDao->assignRevisionToReviewRound($fileId, $revision, $stageId, $round, $this->getMonographId());
-			}
+		$monographFiles =& $submissionFileDao->getLatestRevisions($this->_monographId, MONOGRAPH_FILE_REVIEW);
+		foreach ($monographFiles as $monographFile) {
+			// Update the "viewable" flag accordingly.
+			$monographFile->setViewable(in_array(
+				$monographFile->getFileIdAndRevision(),
+				$selectedFiles
+			));
+			$submissionFileDao->updateObject($monographFile);
 		}
 	}
 }

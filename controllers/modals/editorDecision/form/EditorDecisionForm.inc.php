@@ -118,14 +118,13 @@ class EditorDecisionForm extends Form {
 		import('classes.monograph.MonographFile');
 		// Bring in the Manager (we need it).
 		import('classes.file.MonographFileManager');
-		// FIXME: #6747 Copy all the files to the next stage, but only assign the selected files.
 		foreach (array('selectedFiles', 'selectedAttachments') as $userVar) {
 			$selectedFiles = $this->getData($userVar);
 			if(is_array($selectedFiles)) {
 				foreach ($selectedFiles as $selectedFile) {
 					// Split the file into file id and file revision.
 					list($fileId, $revision) = explode('-', $selectedFile);
-					list($newFileId, $newRevision) = MonographFileManager::copyFileToFileStage($fileId, $revision, MONOGRAPH_FILE_REVIEW);
+					list($newFileId, $newRevision) = MonographFileManager::copyFileToFileStage($fileId, $revision, MONOGRAPH_FILE_REVIEW, null, true);
 					$submissionFileDao->assignRevisionToReviewRound($newFileId, $newRevision, $stageId, $newRound, $monograph->getId());
 				}
 			}

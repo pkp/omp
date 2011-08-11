@@ -20,9 +20,9 @@ class ReviewerReviewFilesGridHandler extends FileListGridHandler {
 	 */
 	function ReviewerReviewFilesGridHandler() {
 		// Pass in null stageId to be set in initialize from request var.
-		import('controllers.grid.files.review.ReviewGridDataProvider');
+		import('controllers.grid.files.review.ReviewFilesGridDataProvider');
 		parent::FileListGridHandler(
-			new ReviewGridDataProvider(MONOGRAPH_FILE_REVIEW),
+			new ReviewFilesGridDataProvider(),
 			null,
 			FILE_GRID_DOWNLOAD_ALL
 		);

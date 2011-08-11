@@ -104,6 +104,13 @@ class ManageReviewFilesGridHandler extends SelectableFileListGridHandler {
 			$monograph->getId(),
 			$this->getRequestArg('stageId'), $this->getRequestArg('round')
 		);
+
+		// Include only the files marked viewable
+		foreach ($selectedRevisions as $id => $revision) {
+			if (!$revision->getViewable()) unset($selectedRevisions[$id]);
+		}
+
+		// Return the IDs
 		return array_keys($selectedRevisions);
 	}
 }
