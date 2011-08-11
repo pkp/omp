@@ -100,7 +100,6 @@
 				'$.pkp.controllers.SiteHandler',
 				{ldelim}
 					{include file="core:controllers/notification/notificationOptions.tpl"},
-					hasSystemNotifications: {if $hasSystemNotifications}true{else}false{/if}
 				{rdelim});
 		{rdelim});
 	</script>
