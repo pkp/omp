@@ -54,6 +54,10 @@
 			<p>{if $submission->getDateDue()}{$submission->getDateDue()|date_format:$dateFormatShort}{else}&mdash;{/if}</p>
 		</td></tr>
 	</table>
+	<div class="pkp_linkActions">
+		{include file="linkAction/linkAction.tpl" action=$viewMetadataAction contextId="reviewStep1Form"}
+	</div>
+	<br />
 	{/fbvFormSection}
 	{fbvFormSection label="reviewer.competingInterests" description="reviewer.monograph.enterCompetingInterests"}
 		<div class="pkp_linkActions">
