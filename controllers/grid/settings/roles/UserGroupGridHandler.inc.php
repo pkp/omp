@@ -13,13 +13,23 @@
  */
 
 // Import the base GridHandler.
-import('lib.pkp.classes.controllers.grid.GridHandler');
+import('lib.pkp.classes.controllers.grid.CategoryGridHandler');
+import('lib.pkp.classes.controllers.grid.DataObjectGridCellProvider');
 
-class UserGroupGridHandler extends GridHandler {
+// import user group grid specific classes
+import('controllers.grid.settings.roles.UserGroupGridCategoryRow');
+
+// Link action & modal classes
+import('lib.pkp.classes.linkAction.request.AjaxModal');
+
+class UserGroupGridHandler extends CategoryGridHandler {
 
 	/**
 	 * Constructor
 	 */
+
+	var $_pressId;
+
 	function UserGroupGridHandler() {
 		parent::GridHandler();
 		$functions = array(
@@ -27,17 +37,18 @@ class UserGroupGridHandler extends GridHandler {
 			'fetchRow',
 			'addUserGroup',
 			'editUserGroup',
-			'removeUserGroup',
 			'updateUserGroup');
 		$this->addRoleAssignment(array(ROLE_ID_PRESS_MANAGER), $functions);
 	}
-
 
 	//
 	// Overridden methods from PKPHandler.
 	//
 	/**
 	 * @see PKPHandler::authorize()
+	 * @param $request PKPRequest
+	 * @param $args array
+	 * @param $roleAssignments array
 	 */
 	function authorize(&$request, $args, $roleAssignments) {
 		import('classes.security.authorization.OmpPressAccessPolicy');
@@ -47,10 +58,15 @@ class UserGroupGridHandler extends GridHandler {
 
 	/**
 	 * @see PKPHandler::initialize()
+	 * Configure the grid
+	 * @param $request PKPRequest
 	 */
 	function initialize(&$request) {
 
 		parent::initialize($request);
+
+		$press =& $request->getPress();
+		$this->_pressId =& $press->getId();
 
 		// Load user-related translations.
 		Locale::requireComponents(array(
@@ -64,101 +80,112 @@ class UserGroupGridHandler extends GridHandler {
 
 		// Add grid-level actions.
 		$router =& $request->getRouter();
-		import('lib.pkp.classes.linkAction.request.AjaxModal');
-		$ajaxModal = new AjaxModal($router->url($request, null, null, 'addUserGroup'));
-		$linkAction = new LinkAction(
-			'addUserGroup',
-			$ajaxModal,
-			__('grid.roles.add'),
-			'add_item'
+		$this->addAction(
+			new LinkAction(
+				'addUserGroup',
+				new AjaxModal(
+					$router->url($request, null, null, 'addUserGroup'),
+					__('grid.roles.add'),
+					'addUserGroup'
+				),
+				__('grid.roles.add'),
+				'add_item'
+			)
 		);
-		$this->addAction($linkAction);
 
 		// Add grid columns.
 		$this->_addGridColumns();
 	}
 
-
-	//
-	// Implement method from GridHandler.
-	//
 	/**
-	 * @see GridHandler::getRowInstance()
-	 * @return UserGroupGridRow
+	 * Add grid columns objects to this handler.
 	 */
-	function &getRowInstance() {
-		import('controllers.grid.settings.roles.UserGroupGridRow');
+	function _addGridColumns() {
 
-		$row = new UserGroupGridRow();
-		return $row;
+		$cellProvider = new DataObjectGridCellProvider();
+		$cellProvider->setLocale(Locale::getLocale());
+
+		// Set array containing the columns info with the same cell provider.
+		$columnsInfo = array(
+			1 => array('id' => 'name', 'title' => 'settings.roles.roleName', 'template' => 'controllers/grid/gridCell.tpl'),
+			2 => array('id' => 'abbrev', 'title' => 'settings.roles.roleAbbrev', 'template' => 'controllers/grid/gridCell.tpl')
+		);
+
+		// Add array columns to the grid.
+		foreach($columnsInfo as $columnInfo) {
+
+		$this->addColumn(
+				new GridColumn(
+					$columnInfo['id'],
+					$columnInfo['title'],
+					null,
+					$columnInfo['template'],
+					$cellProvider
+				)
+			);
+		}
 	}
 
 	/**
-	 * @see GridHandler::loadData()
-	 * @param $request Request
-	 * @return array Grid data.
+	 * @see GridHandler::loadData
 	 */
 	function &loadData($request, $filter) {
-		$pressId = $this->_getPressId($request);
-
+		$pressId = $this->_getPressId();
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+
 		if (is_array($filter) && isset($filter['selectedRoleId']) && $filter['selectedRoleId'] != 0) {
 			$userGroups =& $userGroupDao->getByRoleId($pressId, $filter['selectedRoleId']);
 		} else {
 			$userGroups =& $userGroupDao->getByContextId($pressId);
 		}
 
-		$items = array();
+		$stages = array();
 		while ($userGroup =& $userGroups->next()) {
-			$userGroupId = $userGroup->getId();
-			$items[$userGroupId] = array(
-				'id' => $userGroupId,
-				'name' => $userGroup->getLocalizedName(),
-				'abbrev' => $userGroup->getLocalizedAbbrev(),
-				'assignedStages' => $this->_getAssignedStages($pressId, $userGroupId)
-			);
-			unset($userGroup);
+			$userGroupStages = $this->_getAssignedStages($pressId, $userGroup->getId());
+			foreach ($userGroupStages as $stageId => $stage) {
+				if ($stage != null) {
+					$stages[$stageId] = array('id' => $stageId, 'name' => $stage);
+				}
+			}
 		}
-		return $items;
+
+		return $stages;
 	}
 
 	/**
-	 * @see GridHandler::renderFilter()
-	 */
-	function renderFilter($request) {
-		// Get filter data.
-		import('classes.security.RoleDAO');
-		$roleOptions = array(0 => 'grid.user.allRoles') + RoleDAO::getRoleNames(true);
-		$filterData = array('roleOptions' => $roleOptions);
-
-		return parent::renderFilter($request, $filterData);
+	* @see GridHandler::getRowInstance()
+	* @return UserGroupGridRow
+	*/
+	function &getRowInstance() {
+		import('controllers.grid.settings.roles.UserGroupGridRow');
+		$row = new UserGroupGridRow();
+		return $row;
 	}
 
 	/**
-	 * @see GridHandler::getFilterSelectionData()
-	 * @return array Filter selection data.
+	 * @see CategoryGridHandler::geCategorytRowInstance()
+	 * @return UserGroupGridCategoryRow
 	 */
-	function getFilterSelectionData($request) {
-		$selectedRoleId = $request->getUserVar('selectedRoleId');
-
-		// Cast or set to grid filter default value (all roles).
-		$selectedRoleId = (is_null($selectedRoleId) ? 0 : (int)$selectedRoleId);
-
-		return array ('selectedRoleId' => $selectedRoleId);
+	function &getCategoryRowInstance() {
+		$row = new UserGroupGridCategoryRow();
+		return $row;
 	}
 
 	/**
-	 * @see GridHandler::getFilterForm()
-	 * @return string Filter template.
+	 * @see CategoryGridHandler::getCategoryData()
 	 */
-	function getFilterForm() {
-		return 'controllers/grid/settings/roles/userGroupsGridFilter.tpl';
+	function getCategoryData(&$stage) {
+		// $stage is an associative array, with id and name (locale key) elements
+		$stageId = $stage['id'];
+
+		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+
+		$assignedGroups =& $userGroupDao->getUserGroupsByStage($this->_getPressId(), $stageId);
+		$returner = $assignedGroups->toAssociativeArray(); // array of UserGroup objects
+
+		return $returner;
 	}
 
-
-	//
-	// Public grid actions
-	//
 	/**
 	 * Handle the add user group operation.
 	 * @param $args array
@@ -176,29 +203,10 @@ class UserGroupGridHandler extends GridHandler {
 	function editUserGroup($args, &$request) {
 		$userGroupForm = $this->_getUserGroupForm($request);
 
-		if($userGroupForm->getUserGroupId() != null) $userGroupForm->initData();
+		$userGroupForm->initData();
 
 		$json = new JSONMessage(true, $userGroupForm->fetch($request));
 		return $json->getString();
-	}
-
-	/**
-	 * Handle the remove user group operation.
-	 * @param $args array
-	 * @param $request Request
-	 */
-	function removeUserGroup($args, &$request) {
-		$userGroupId = $this->_getUserGroupIdVar($request);
-		$pressId = $this->_getPressId($request);
-
-		if ($userGroupId != null) {
-			$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
-			$userGroupDao->deleteById($pressId, $userGroupId);
-			return DAO::getDataChangedEvent($userGroupId);
-		} else {
-			$json = new JSONMessage(false);
-			return $json->getString();
-		}
 	}
 
 	/**
@@ -212,29 +220,29 @@ class UserGroupGridHandler extends GridHandler {
 		$userGroupForm->readInputData();
 		if($userGroupForm->validate()) {
 			$userGroupForm->execute($request);
-			return DAO::getDataChangedEvent($userGroupForm->getUserGroupId());
+			return DAO::getDataChangedEvent();
 		} else {
 			$json = new JSONMessage(false);
 			return $json->getString();
 		}
 	}
 
-
 	//
 	// Private helper methods.
 	//
+
 	/**
-	 * Get a UserGroupForm instance.
-	 * @param $request Request
-	 * @return UserGroupForm
-	 */
+	* Get a UserGroupForm instance.
+	* @param $request Request
+	* @return UserGroupForm
+	*/
 	function _getUserGroupForm($request) {
 		// Identify the user group Id.
 		$userGroupId = $this->_getUserGroupIdVar($request);
 
 		// Instantiate the files form.
 		import('controllers.grid.settings.roles.form.UserGroupForm');
-		$pressId = $this->_getPressId($request);
+		$pressId = $this->_getPressId();
 		return new UserGroupForm($pressId, $userGroupId);
 	}
 
@@ -245,14 +253,13 @@ class UserGroupGridHandler extends GridHandler {
 	 */
 	function _getUserGroupIdVar($request) {
 		(int)$userGroupId = $request->getUserVar('userGroupId');
-
 		return $userGroupId;
 	}
 
 	/**
 	 * Get a list of stages that are assigned to a user group.
-	 * @param $id int User group id
 	 * @param $id int Press id
+	 * @param $id int UserGroup id
 	 * @return array Given user group stages assignments.
 	 */
 	function _getAssignedStages($pressId, $userGroupId) {
@@ -268,40 +275,11 @@ class UserGroupGridHandler extends GridHandler {
 	}
 
 	/**
-	 * Add grid columns objects to this handler.
-	 */
-	function _addGridColumns() {
-		import('lib.pkp.classes.controllers.grid.ArrayGridCellProvider');
-		$cellProvider = new ArrayGridCellProvider();
-
-		// Set array containing the columns info with the same cell provider.
-		$columnsInfo = array(
-			1 => array('id' => 'name', 'title' => 'settings.roles.roleName', 'template' => 'controllers/grid/gridCell.tpl'),
-			2 => array('id' => 'abbrev', 'title' => 'settings.roles.roleAbbrev', 'template' => 'controllers/grid/gridCell.tpl'),
-			3 => array('id' => 'assignedStages', 'title' => 'settings.roles.assignedStages', 'template' => 'controllers/grid/settings/roles/gridCellAssignedStages.tpl')
-		);
-
-		// Add array columns to the grid.
-		foreach($columnsInfo as $columnInfo) {
-			$this->addColumn(
-				new GridColumn(
-					$columnInfo['id'], $columnInfo['title'], null,
-					$columnInfo['template'], $cellProvider
-				)
-			);
-		}
-	}
-
-	/**
 	 * Get press id.
-	 * @param $request PKPRequest
 	 * @return $pressId
 	 */
-	function _getPressId($request) {
-		$router =& $request->getRouter();
-		$press = $router->getContext($request);
-		$pressId = $press->getId();
-
-		return $pressId;
+	function _getPressId() {
+		return $this->_pressId;
 	}
 }
+?>

@@ -33,8 +33,15 @@
 		{/fbvFormSection}
 	{/fbvFormArea}
 	<div id="userGroupStageContainer" class="full left">
-		{url|assign:stagesUrl Url router=$smarty.const.ROUTE_COMPONENT component="listbuilder.users.UserGroupStageListbuilderHandler" op="fetch" userGroupId=$userGroupId title="grid.roles.stageAssignment" escape=false}
-		{load_url_in_div id="userGroupStageContainer" url=$stagesUrl}
+		{fbvFormSection title="grid.roles.stageAssignment" list="true"}
+			{foreach from=$stages key=stageId item=stageName}
+				{if in_array($stageId, $assignedStages)}
+					{fbvElement type="checkbox" name="stages[]" id="stage-$stageId" value=$stageId|escape label=$stageName checked="checked"}
+				{else}
+					{fbvElement type="checkbox" name="stages[]" id="stage-$stageId" value=$stageId|escape label=$stageName}
+				{/if}
+			{/foreach}
+		{/fbvFormSection}
 	</div>
-	{fbvFormButtons submitText="common.save"}
+	{fbvFormButtons}
 </form>

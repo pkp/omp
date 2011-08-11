@@ -12,17 +12,16 @@
  * @brief User group grid row definition
  */
 
-import('lib.pkp.classes.controllers.grid.GridRow');
+import('lib.pkp.classes.controllers.grid.GridCategoryRow');
 
-class UserGroupGridRow extends GridRow {
+class UserGroupGridRow extends GridCategoryRow {
 
 	/**
 	 * Constructor
 	 */
-	function UserGridRow() {
-		parent::GridRow();
+	function UserGroupGridRow() {
+		parent::GridCategoryRow();
 	}
-
 
 	//
 	// Overridden methods from GridRow
@@ -33,14 +32,14 @@ class UserGroupGridRow extends GridRow {
 	function initialize(&$request) {
 		parent::initialize($request, 'controllers/grid/gridRowWithActions.tpl');
 
-		$rowData =& $this->getData();
+		$rowData =& $this->getData(); // a UserGroup object
 		assert($rowData != null);
 
 		$rowId = $this->getId();
 
 		// Only add row actions if this is an existing row.
 		if (!empty($rowId) && is_numeric($rowId)) {
-			$actionArgs = array('userGroupId' => $rowData['id']);
+			$actionArgs = array('userGroupId' => $rowData->getId());
 			$router =& $request->getRouter();
 
 			$ajaxModal = new AjaxModal($router->url($request, null, null, 'editUserGroup', null, $actionArgs));

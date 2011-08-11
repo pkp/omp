@@ -162,8 +162,8 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="settings.libraryFiles.nameRequired">A name is required for this library file.</message>
 
 	<!-- Access and Security settings  page -->
-	<message key="settings.roles.roleName">Role Name</message>
-	<message key="settings.roles.roleAbbrev">Role Abbreviation</message>
+	<message key="settings.roles.roleName">Name</message>
+	<message key="settings.roles.roleAbbrev">Abbreviation</message>
 	<message key="settings.roles.assignedStages">Assigned Stages</message>
 	<message key="settings.roles.stages">Stages</message>
 	<message key="settings.roles.listRoles">List roles from</message>
@@ -175,6 +175,7 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="settings.roles.uniqueName">You need to define an unique role name.</message>
 	<message key="settings.roles.uniqueAbbrev">You need to define an unique role abbreviature.</message>
 	<message key="settings.roles.roleIdRequired">You need to define a role permission level.</message>
+	<message key="settings.roles.stageIdRequired">You need to define a stage to assign to.</message>
 	<message key="manager.siteAccessOptions.siteAccessOptions">Site Access Options</message>
 
 	<!-- Press settings -->

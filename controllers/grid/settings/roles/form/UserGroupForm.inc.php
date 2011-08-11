@@ -36,12 +36,12 @@ class UserGroupForm extends Form {
 		// Validation checks for this form
 		$this->addCheck(new FormValidatorLocale($this, 'name', 'required', 'settings.roles.nameRequired'));
 		$this->addCheck(new FormValidatorLocale($this, 'abbrev', 'required', 'settings.roles.abbrevRequired'));
+		$this->addCheck(new FormValidator($this, 'stages', 'required', 'settings.roles.stageIdRequired'));
 		if ($this->getUserGroupId() == null) {
 			$this->addCheck(new FormValidator($this, 'roleId', 'required', 'settings.roles.roleIdRequired'));
 		}
 		$this->addCheck(new FormValidatorPost($this));
 	}
-
 
 	//
 	// Getters and Setters
@@ -62,7 +62,6 @@ class UserGroupForm extends Form {
 		return $this->_pressId;
 	}
 
-
 	//
 	// Implement template methods from Form.
 	//
@@ -79,12 +78,19 @@ class UserGroupForm extends Form {
 	function initData() {
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 		$userGroup = $userGroupDao->getById($this->getUserGroupId());
+		$stages = $userGroupDao->getWorkflowStageTranslationKeys();
+		$this->setData('stages', $stages);
+		$this->setData('assignedStages', array()); // sensible default
+
 		if ($userGroup) {
+			$assignedStages =& $userGroupDao->getAssignedStagesByUserGroupId($this->getPressId(), $userGroup->getId());
+
 			$data = array(
 				'userGroupId' => $userGroup->getId(),
 				'roleId' => $userGroup->getRoleId(),
 				'name' => $userGroup->getName(null), //Localized
 				'abbrev' => $userGroup->getAbbrev(null), //Localized
+				'assignedStages' => array_keys($assignedStages),
 			);
 			foreach ($data as $field => $value) {
 				$this->setData($field, $value);
@@ -96,7 +102,7 @@ class UserGroupForm extends Form {
 	 * @see Form::readInputData()
 	 */
 	function readInputData() {
-		$this->readUserVars(array('roleId', 'name', 'abbrev'));
+		$this->readUserVars(array('roleId', 'name', 'abbrev', 'stages'));
 	}
 
 	/**
@@ -110,9 +116,14 @@ class UserGroupForm extends Form {
 		$userGroupId = $this->getUserGroupId();
 		$nameData = $this->getData('name');
 		$abbrevData = $this->getData('abbrev');
+		$stages = $this->getData('stages');
 
 		$nameLocales = array_keys($nameData);
 		$abbrevLocales = array_keys($abbrevData);
+
+		if (!$stages) {
+			$this->addError('stages', 'settings.roles.stageIdRequired');
+		}
 
 		while($group =& $userGroupsFromDb->next()) {
 			// Avoid checking for singleness with itself.
@@ -175,8 +186,8 @@ class UserGroupForm extends Form {
 		}
 
 		// After we have created/edited the user group, we assign/update its stages.
-		if($request->getUserVar('stages')) {
-			$this->_setOnDbUserGroupStageAssignment($userGroupId, $request);
+		if ($this->getData('stages')) {
+			$this->_assignStagesToUserGroup($userGroupId, $this->getData('stages'));
 		}
 	}
 
@@ -187,25 +198,23 @@ class UserGroupForm extends Form {
 	/**
 	 * Setup the stages assignments to a user group in database.
 	 * @param $userGroupId int User group id that will receive the stages.
-	 * @param $request Request
+	 * @param $userAssignedStages array of stages currently assigned to a user.
 	 */
-	function _setOnDbUserGroupStageAssignment($userGroupId, $request) {
+	function _assignStagesToUserGroup($userGroupId, $userAssignedStages) {
 		$pressId = $this->getPressId();
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
-
-		// Assign the stages that came from UserGroupStageListbuilderHandler.
-		import('lib.pkp.classes.core.JSONManager');
-		$jsonManager = new JSONManager();
-		$userAssignedStages = $jsonManager->decode($request->getUserVar('stages'));
 
 		// Current existing workflow stages.
 		$stages = $userGroupDao->getWorkflowStageTranslationKeys();
 
-		foreach ($userAssignedStages as $data) {
-			$data = get_object_vars($data);
-			$stageId = $data['newRowId[]'];
+		foreach (array_keys($stages) as $stageId) {
+			$userGroupDao->removeGroupFromStage($pressId, $userGroupId, $stageId);
+		}
+
+		foreach ($userAssignedStages as $stageId) {
+
 			// Check if is a valid stage.
-			if (in_array($stageId, array_flip($stages))) {
+			if (in_array($stageId, array_keys($stages))) {
 				$userGroupDao->assignGroupToStage($pressId, $userGroupId, $stageId);
 			} else {
 				fatalError('Invalid stage id');
