@@ -55,8 +55,8 @@ class AuthorDashboardHandler extends Handler {
 		$templateMgr->assign_by_ref('monograph', $monograph);
 
 		// "View metadata" action.
-		import('controllers.modals.submissionMetadata.linkAction.ViewMetadataLinkAction');
-		$viewMetadataAction = new ViewMetadataLinkAction($request, $monograph->getId());
+		import('controllers.modals.submissionMetadata.linkAction.AuthorViewMetadataLinkAction');
+		$viewMetadataAction = new AuthorViewMetadataLinkAction($request, $monograph->getId());
 		$templateMgr->assign('viewMetadataAction', $viewMetadataAction);
 
 		// Import monograph file to define file stages.

@@ -86,20 +86,9 @@ class WorkflowHandler extends Handler {
 		);
 
 		$dispatcher =& $request->getDispatcher();
-		$editMetadataAction = new LinkAction(
-			'editMetadata',
-			new AjaxModal(
-				$dispatcher->url(
-					$request, ROUTE_COMPONENT, null,
-					'modals.submissionMetadata.SubmissionDetailsSubmissionMetadataHandler',
-					'fetch', null, array('monographId' => $monograph->getId(),
-												'stageId' => $stageId)
-				),
-				__('submission.submit.metadata')
-			),
-			__('submission.submit.metadata'),
-			'more_info'
-		);
+		import('controllers/modals/submissionMetadata/linkAction/WorkflowViewMetadataLinkAction');
+		$editMetadataAction = new WorkflowViewMetadataLinkAction($request, $monograph->getId(), $stageId);
+
 		$templateMgr->assign_by_ref('editMetadataAction', $editMetadataAction);
 
 		$submissionInformationCentreAction = new LinkAction(

@@ -14,8 +14,12 @@
 
 
 import('classes.submission.form.SubmissionSubmitForm');
+import('classes.submission.SubmissionMetadataFormImplementation');
 
 class SubmissionSubmitStep3Form extends SubmissionSubmitForm {
+
+	/** @var SubmissionMetadataFormImplementation */
+	var $_metadataFormImplem;
 
 	/**
 	 * Constructor.
@@ -23,41 +27,18 @@ class SubmissionSubmitStep3Form extends SubmissionSubmitForm {
 	function SubmissionSubmitStep3Form($press, $monograph) {
 		parent::SubmissionSubmitForm($press, $monograph, 3);
 
-		// Validation checks for this form
-		$this->addCheck(new FormValidatorLocale($this, 'title', 'required', 'submission.submit.form.titleRequired'));
-		// Validates that at least one author has been added (note that authors are in grid, so Form does not
-		// directly see the authors value (there is no "authors" input. Hence the $ignore parameter.
-		$this->addCheck(new FormValidatorCustom($this, 'authors', 'required', 'submission.submit.form.authorRequired',
-						// The first parameter is ignored. This
-						create_function('$ignore, $monograph', 'return count($monograph->getAuthors()) > 0;'),
-							array($monograph)));
+		$this->_metadataFormImplem = new SubmissionMetadataFormImplementation($this);
+
+		$this->_metadataFormImplem->addChecks($monograph);
 	}
 
 	/**
 	 * Initialize form data from current monograph.
 	 */
 	function initData() {
-		$seriesDao =& DAORegistry::getDAO('SeriesDAO');
 
-		if (isset($this->monograph)) {
-			$monograph =& $this->monograph;
-			$this->_data = array(
-				'title' => $monograph->getTitle(null), // Localized
-				'abstract' => $monograph->getAbstract(null), // Localized
-				'discipline' => $monograph->getDiscipline(null), // Localized
-				'subjectClass' => $monograph->getSubjectClass(null), // Localized
-				'subject' => $monograph->getSubject(null), // Localized
-				'coverageGeo' => $monograph->getCoverageGeo(null), // Localized
-				'coverageChron' => $monograph->getCoverageChron(null), // Localized
-				'coverageSample' => $monograph->getCoverageSample(null), // Localized
-				'type' => $monograph->getType(null), // Localized
-				'language' => $monograph->getLanguage(),
-				'sponsor' => $monograph->getSponsor(null), // Localized
-				'series' => $seriesDao->getById($monograph->getSeriesId()),
-				'citations' => $monograph->getCitations()
-			);
+		$this->_metadataFormImplem->initData($this->monograph);
 
-		}
 		return parent::initData();
 	}
 
@@ -65,15 +46,8 @@ class SubmissionSubmitStep3Form extends SubmissionSubmitForm {
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
-		$this->readUserVars(
-			array(
-				'title',
-				'abstract',
-				'disciplinesKeywords',
-				'keywordKeywords',
-				'agenciesKeywords',
-			)
-		);
+
+		$this->_metadataFormImplem->readInputData();
 
 		// Load the series. This is used in the step 3 form to
 		// determine whether or not to display indexing options.
@@ -97,7 +71,7 @@ class SubmissionSubmitStep3Form extends SubmissionSubmitForm {
 	 * @return array
 	 */
 	function getLocaleFieldNames() {
-		return array('title', 'abstract');
+		$this->_metadataFormImplem->getLocaleFieldNames();
 	}
 
 	/**
@@ -107,30 +81,28 @@ class SubmissionSubmitStep3Form extends SubmissionSubmitForm {
 	 * @return int the monograph ID
 	 */
 	function execute($args, &$request) {
+
+		// Execute monograph metadata related operations.
+		$this->_metadataFormImplem->execute($this->monograph);
+
+		// Get an updated version of the monograph.
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
+		$monograph =& $monographDao->getMonograph($this->monographId);
 
-		// Update monograph
-		$monograph =& $this->monograph;
-		$monograph->setTitle($this->getData('title'), null); // Localized
-		$monograph->setAbstract($this->getData('abstract'), null); // Localized
-
-		if(is_array($this->getData('agenciesKeywords'))) $monograph->setSupportingAgencies(implode(", ", $this->getData('agenciesKeywords')), null); // Localized
-		if(is_array($this->getData('disciplinesKeywords'))) $monograph->setDiscipline(implode(", ", $this->getData('disciplinesKeywords')), null); // Localized
-		if(is_array($this->getData('keywordKeywords'))) $monograph->setSubject(implode(", ",$this->getData('keywordKeywords')), null); // Localized
-
+		// Set other monograph data.
 		if ($monograph->getSubmissionProgress() <= $this->step) {
 			$monograph->setDateSubmitted(Core::getCurrentDate());
 			$monograph->stampStatusModified();
 			$monograph->setSubmissionProgress(0);
 		}
 
+		// Save the monograph.
+		$monographDao->updateMonograph($monograph);
+
 		// Assign the default users to the submission workflow stage
 		import('classes.submission.seriesEditor.SeriesEditorAction');
 		$seriesEditorAction = new SeriesEditorAction();
 		$seriesEditorAction->assignDefaultStageParticipants($monograph, WORKFLOW_STAGE_ID_SUBMISSION);
-
-		// Save the monograph
-		$monographDao->updateMonograph($monograph);
 
 		// Send a notification to associated users
 		import('lib.pkp.classes.notification.NotificationManager');
@@ -172,10 +144,6 @@ class SubmissionSubmitStep3Form extends SubmissionSubmitForm {
 			));
 			$mail->send($request);
 		}
-
-		// Resequence the authors (this ensures a primary contact).
-		$authorDao =& DAORegistry::getDAO('AuthorDAO');
-		$authorDao->resequenceAuthors($monograph->getId());
 
 		return $this->monographId;
 	}
