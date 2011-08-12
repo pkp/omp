@@ -570,7 +570,6 @@ table.pkp_listing td.separator {
   padding:10px 5px 5px 5px;
   position:absolute;
   z-index:100;
-  width:97.3%;
   display:none;
 }
 .pkp_form label.locale {
