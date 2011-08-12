@@ -197,10 +197,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 			$monographFile =& $submissionFileData['submissionFile']; /* @var $monographFile MonographFile */
 
 			// Remove absolute path so the archive doesn't include it (otherwise all files are organized by absolute path)
-			$filePath = str_replace($filesDir, '', $monographFile->getFilePath());
-
-			// Add files to be archived to array
-			$filePaths[] = escapeshellarg($filePath);
+			$filePaths[] = str_replace($filesDir, '', $monographFile->getFilePath());
 
 			unset($monographFile);
 		}
@@ -217,7 +214,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 		);
 
 		if (file_exists($archivePath)) {
-			FileManager::downloadFile($archivePath);
+			FileManager::downloadFile($archivePath, 'application/x-gtar', false, 'files.tar.gz');
 			FileManager::deleteFile($archivePath);
 		} else {
 			fatalError('Creating archive with submission files failed!');
