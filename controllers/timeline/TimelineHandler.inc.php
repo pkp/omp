@@ -26,7 +26,7 @@ class TimelineHandler extends Handler {
 		// that's not implemented here.)
 		$this->addRoleAssignment(
 			array(ROLE_ID_AUTHOR, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER, ROLE_ID_PRESS_ASSISTANT),
-			array('index')
+			array('fetch')
 		);
 	}
 
@@ -55,14 +55,15 @@ class TimelineHandler extends Handler {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function index($args, $request) {
+	function fetch($args, $request) {
 		// Load locale components
 		Locale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_OMP_SUBMISSION));
 
 		// Give the monograph to the template
 		$templateMgr =& TemplateManager::getManager();
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-		$templateMgr->assign('monograph', $monograph);
+		$templateMgr->assign('monographId', $monograph->getId());
+		$templateMgr->assign('stageId', $monograph->getStageId());
 
 		// Generate & return component contents
 		return $templateMgr->fetchJson('controllers/timeline/index.tpl');

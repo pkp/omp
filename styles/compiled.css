@@ -1039,6 +1039,7 @@ span.pkp_controllers_informationCenter_itemLastEvent {
 .pkp_controllers_timeline .timelineLabelContainer .timelineLabel.center { text-align:center; }
 .pkp_controllers_timeline .timelineLabelContainer .timelineLabel.right { text-align:right; }
 .pkp_controllers_timeline .timelineLabelContainer .timelineLabel.pastStep { font-weight:bold; }
+.pkp_controllers_timeline .timelineLabelContainer .timelineLabel.pastStep a { color:#000000; }
 .pkp_controllers_timeline .timelineLabelContainer .timelineLabel.futureStep { color:#808080; }
 @import url("styles/authorDashboard.less");
 .pkp_submissionChecklist ul li label.error { margin-bottom:15px; }
