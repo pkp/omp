@@ -116,27 +116,6 @@ class WorkflowHandler extends Handler {
 			'more_info'
 		);
 		$templateMgr->assign_by_ref('submissionInformationCentreAction', $submissionInformationCentreAction);
-
-		//
-		// Assign notifications
-		//
-		$user =& $request->getUser();
-		import('lib.pkp.classes.notification.NotificationManager');
-		$notificationManager = new NotificationManager();
-		$stageAssignmentDao =& DAORegistry::getDAO('StageAssignmentDAO');
-		$userAssignments =& $stageAssignmentDao->getBySubmissionAndStageId($monograph->getId(), $stageId, null, $user->getId());
-		if ($userAssignments->wasEmpty()) {
-			$notificationManager->createTrivialNotification('notification.notification', 'you are not assigned to the stage');
-		}
-		if (!$stageAssignmentDao->editorAssignedToSubmission($monograph->getId(), $stageId)) {
-			$notificationManager->createTrivialNotification('notification.notification', 'no editor assigned to the stage');
-		}
-
-		// Notification options.
-		$notificationOptions = array('notificationLevels' => array(
-			NOTIFICATION_LEVEL_TRIVIAL, NOTIFICATION_LEVEL_NORMAL));
-
-		$templateMgr->assign('workflowNotificationRequestOptions', $notificationOptions);
 	}
 
 
