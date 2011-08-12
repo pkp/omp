@@ -63,7 +63,7 @@ class ReviewerReviewAttachmentGridDataProvider extends SubmissionFilesGridDataPr
 			parent::getRequestArgs(),
 			array(
 				'assocType' => ASSOC_TYPE_REVIEW_ASSIGNMENT,
-														'assocId' => $this->_getReviewId()
+				'assocId' => $this->_getReviewId()
 			)
 		);
 	}
