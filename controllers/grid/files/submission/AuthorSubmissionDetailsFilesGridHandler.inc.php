@@ -25,7 +25,7 @@ class AuthorSubmissionDetailsFilesGridHandler extends FileListGridHandler {
 		parent::FileListGridHandler($dataProvider, WORKFLOW_STAGE_ID_SUBMISSION, FILE_GRID_DOWNLOAD_ALL);
 
 		$this->addRoleAssignment(
-			array(ROLE_ID_AUTHOR, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
+			array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_ASSISTANT, ROLE_ID_AUTHOR),
 			array('fetchGrid', 'fetchRow', 'downloadAllFiles')
 		);
 	}

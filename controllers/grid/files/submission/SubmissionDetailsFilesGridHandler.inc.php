@@ -26,7 +26,7 @@ class SubmissionDetailsFilesGridHandler extends FileListGridHandler {
 		$dataProvider = new SubmissionFilesGridDataProvider(MONOGRAPH_FILE_SUBMISSION);
 		parent::FileListGridHandler($dataProvider, WORKFLOW_STAGE_ID_SUBMISSION, $capabilities);
 		$this->addRoleAssignment(
-			array(ROLE_ID_AUTHOR, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
+			array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_ASSISTANT, ROLE_ID_AUTHOR),
 			array('fetchGrid', 'fetchRow', 'downloadAllFiles')
 		);
 	}

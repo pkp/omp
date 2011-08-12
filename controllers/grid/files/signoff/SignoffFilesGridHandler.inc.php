@@ -54,7 +54,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 		$this->_assocId = $assocId;
 
 		$this->addRoleAssignment(
-			array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER, ROLE_ID_PRESS_ASSISTANT),
+			array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_ASSISTANT),
 			array_merge(
 				array(
 					'fetchGrid', 'fetchRow', 'returnFileRow', 'returnSignoffRow',
@@ -105,7 +105,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 		$this->addAction(new AddFileLinkAction(
 			$request, $monograph->getId(),
 			$this->getStageId(),
-			array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER, ROLE_ID_PRESS_ASSISTANT),
+			array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_ASSISTANT),
 			$this->getFileStage(),
 			$this->getAssocType(), $this->getAssocId()
 		));
