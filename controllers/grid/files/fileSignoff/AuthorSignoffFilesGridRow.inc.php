@@ -19,11 +19,25 @@ class AuthorSignoffFilesGridRow extends SubmissionFilesGridRow {
 	/** @var int */
 	var $_stageId;
 
+	/**
+	 * Constructor
+	 * @param $stageId int
+	 */
 	function SignoffFilesGridRow($stageId) {
 		$this->_stageId = $stageId;
 		parent::SubmissionFilesGridRow(false);
 	}
 
+	//
+	// Getter
+	//
+	function getStageId() {
+		return $this->_stageId;
+	}
+
+	/**
+	 * @see GridHandler::initialize
+	 */
 	function initialize(&$request) {
 		parent::initialize($request);
 

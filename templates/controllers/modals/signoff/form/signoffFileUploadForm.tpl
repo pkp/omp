@@ -1,5 +1,5 @@
 {**
- * signoffFileUploadForm.tpl
+ * templates/controllers/modals/signoff/form/
  *
  * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -31,30 +31,25 @@
 		{fbvFormArea id="signoff"}
 			<input type="hidden" name="symbolic" value="{$symbolic|escape}" />
 
+			{fbvFormSection title="submission.signoff.signoffOnFile"}
 			{if $signoffId}
 				<input type="hidden" name="signoffId" value="{$signoffId|escape}" />
-				{translate key="submission.signoff.signoffOnFile"}: <br />
-				<div id="{$downloadFileAction->getId()}">
-					{include file="linkAction/linkAction.tpl" action=$downloadFileAction contextId="uploadForm"}
-				</div>
+				{fbvElement type="text" id="signoffOnFile" disabled=true value=$signoffFileName}
+			{else}
+				{fbvElement type="select" id="signoffId" from=$availableSignoffs translate=false}
 			{/if}
-
-			<input type="hidden" name="temporaryFileId" id="temporaryFileId" value="" />
-
-			{fbvFormSection title="common.note"}
-				{fbvElement type="textarea" id="note" height=$fbvStyles.height.SHORT disabled=$signoffReadOnly}
 			{/fbvFormSection}
 
-			{if !$signoffReadOnly}
-				{fbvFormSection title="submission.submit.selectFile" required=1}
-					{* The uploader widget *}
-					<div id="plupload"></div>
-				{/fbvFormSection}
-				{fbvFormButtons}
-			{else}
-				{include file="linkAction/linkAction.tpl" action=$downloadSignoffFileAction contextId="uploadForm"}
-				{fbvFormButtons id="closeButton" hideCancel=true submitText="common.close"}
-			{/if}
+			{fbvFormSection title="common.note"}
+				{fbvElement type="textarea" id="newNote" size=$fbvStyles.size.MEDIUM}<br/>
+			{/fbvFormSection}
+
+			<input type="hidden" name="temporaryFileId" id="temporaryFileId" value="" />
+			{fbvFormSection title="submission.submit.selectFile" required=1}
+				{* The uploader widget *}
+				<div id="plupload"></div>
+			{/fbvFormSection}
+			{fbvFormButtons}
 		{/fbvFormArea}
 	{else}
 		{** Put a marker in place so the form just closes with no attempt to validate **}

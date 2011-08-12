@@ -43,18 +43,32 @@ class SignoffFileUploadForm extends Form {
 	//
 	// Getters/Setters
 	//
+	/**
+	 * Get the monograph associated with the form
+	 */
 	function getMonographId() {
 		return $this->_monographId;
 	}
 
+	/**
+	 * Get the current stage id
+	 * @return int
+	 */
 	function getStageId() {
 		return $this->_stageId;
 	}
 
+	/**
+	 * Get the signoff's symbolic
+	 * @return string
+	 */
 	function getSymbolic() {
 		return $this->_symbolic;
 	}
 
+	/*
+	 * Get the Signoff ID for this form
+	 */
 	function getSignoffId() {
 		return $this->_signoffId;
 	}
@@ -79,41 +93,46 @@ class SignoffFileUploadForm extends Form {
 		$signoffDao =& DAORegistry::getDAO('MonographFileSignoffDAO'); /* @var $signoffDao MonographFileSignoffDAO */
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 
-		import('controllers.api.file.linkAction.DownloadFileLinkAction');
-
 		$signoffId = $this->getSignoffId();
 		if ($signoffId) {
 			$signoff =& $signoffDao->getById($signoffId);
 		}
 
-		// Looking at one signoff only
-		if (!isset($signoff)) {
-			$user =& $request->getUser();
-			$signoffs =& $signoffDao->getAllByMonograph($this->getMonographId(), $this->getSymbolic(), $user->getId());
-			$availableSignoffs = array();
-			while ($signoff =& $signoffs->next()) {
-				// Only include signoffs that are not yet completed.
-				if (!$signoff->getDateCompleted()) {
-					$availableSignoffs[$signoff->getId()] =& $signoff->getAssocId();
-
-					// FIXME: just breaking out of loop to default to the first one for now.
-					break;
-				}
-				unset($signoff);
-			}
-			// FIXME: code currently defaulting to first signoff off.
-			// Should let user choose from all available.
-//			$templateMgr->assign('availableSignoffs', $availableSignoffs);
-		}
-
+		// Signoff specified. Find related file and show file name
 		if (isset($signoff)) {
 			$templateMgr->assign('signoffId', $signoff->getId());
 
 			$submissionFile =& $submissionFileDao->getLatestRevision($signoff->getAssocId());
 			assert(is_a($submissionFile, 'MonographFile'));
 
-			$downloadFileAction = new DownloadFileLinkAction($request, $submissionFile);
-			$templateMgr->assign('downloadFileAction', $downloadFileAction);
+			$templateMgr->assign('signoffFileName', $submissionFile->getLocalizedName());
+		} else {
+			// No signoff specified, look at all available signoffs
+			$user =& $request->getUser();
+			$signoffs =& $signoffDao->getAllByMonograph($this->getMonographId(), $this->getSymbolic(), $user->getId());
+			$availableSignoffs = array();
+			while ($signoff =& $signoffs->next()) {
+				// Only include signoffs that are not yet completed.
+				if (!$signoff->getDateCompleted()) {
+					$submissionFile =& $submissionFileDao->getLatestRevision($signoff->getAssocId());
+					assert(is_a($submissionFile, 'MonographFile'));
+
+					$availableSignoffs[$signoff->getId()] = $submissionFile->getLocalizedName();
+				}
+				unset($signoff);
+			}
+
+			// Only one, act as if it had been specified originally.
+			if (count($availableSignoffs) == 1) {
+				// Array as quick way of getting key and value. Only one element anyway.
+				foreach ($availableSignoffs as $signoffId => $fileName) {
+					$templateMgr->assign('signoffId', $signoffId);
+					$templateMgr->assign('signoffFileName', $fileName);
+				}
+			} else {
+				// Should let user choose from all available.
+				$templateMgr->assign('availableSignoffs', $availableSignoffs);
+			}
 		}
 
 		return parent::fetch($request);
@@ -123,7 +142,7 @@ class SignoffFileUploadForm extends Form {
 	 * @see Form::readInputData();
 	 */
 	function readInputData() {
-		$this->readUserVars(array('signoffId', 'note', 'temporaryFileId'));
+		$this->readUserVars(array('signoffId', 'newNote', 'temporaryFileId'));
 	}
 
 	/**
@@ -169,6 +188,7 @@ class SignoffFileUploadForm extends Form {
 													  MONOGRAPH_FILE_SIGNOFF, $signoff->getUserId(), $signoff->getUserGroupId(),
 													  $signoff->getAssocId(), null, ASSOC_TYPE_SIGNOFF,  $signoff->getId());
 
+
 			// FIXME: Currently the code allows for a signoff to be added many times. (if the option is presented in the form)
 			// Need to delete previous files uploaded to this signoff.
 			// Partially due to #6799.
@@ -177,8 +197,20 @@ class SignoffFileUploadForm extends Form {
 			$signoff->setFileId($signoffFileId);
 			$signoff->setFileRevision(1);
 		}
-		// FIXME: insert the note
-		$note = $this->getData('note');
+		if ($this->getData('newNote')) {
+			// use the parent form to insert the note
+			$user =& $request->getUser();
+
+			$noteDao =& DAORegistry::getDAO('NoteDAO');
+			$note = $noteDao->newDataObject();
+
+			$note->setUserId($user->getId());
+			$note->setContents($this->getData('newNote'));
+			$note->setAssocType(ASSOC_TYPE_SIGNOFF);
+			$note->setAssocId($signoff->getId());
+
+			$noteDao->insertObject($note);
+		}
 
 		// Now mark the signoff as completed
 		$signoff->setDateCompleted(Core::getCurrentDate());

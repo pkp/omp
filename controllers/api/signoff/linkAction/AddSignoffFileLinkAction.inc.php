@@ -36,10 +36,10 @@ class AddSignoffFileLinkAction extends LinkAction {
 	 *  upload wizard.
 	 * @param $wizardTitle string The title to be displayed in the file
 	 *  upload wizard.
-	 * @param $buttonLabel string The link action's button label.
+	 * @param $buttonLabel string The link action's button label (null for cell action)
 	 */
 	function AddSignoffFileLinkAction(&$request, $monographId, $stageId, $symbolic, $signoffId = null,
-			$modalTitle, $buttonLabel) {
+			$modalTitle, $buttonLabel = null) {
 
 		// Create the actionArgs array
 		$actionArgs = array();

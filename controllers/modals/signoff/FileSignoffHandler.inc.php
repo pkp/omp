@@ -44,7 +44,7 @@ class FileSignoffHandler extends FileManagementHandler {
 		// FIXME #6199: all roles can see readSignoff, but other ops require the user to own the signoff.
 		$this->addRoleAssignment(
 			array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_ASSISTANT, ROLE_ID_AUTHOR),
-			array('displayFileUploadForm', 'uploadFile', 'signoff', 'readSignoff')
+			array('displayFileUploadForm', 'uploadFile', 'signoff', 'readSignoff', 'signoffRead')
 		);
 	}
 
@@ -116,15 +116,55 @@ class FileSignoffHandler extends FileManagementHandler {
 		$signoffDao =& DAORegistry::getDAO('MonographFileSignoffDAO');
 		$signoff =& $signoffDao->getById($signoffId);
 
+		// Sanity check.
 		if (!$signoff) {
 			$json = new JSONMessage(false);
 			return $json->getString();
 		}
 
-		// FIXME: do not display this form. Display something similar to the form, but that just has the
-		// two file download links (original file and uploaded file if any) and a disabled note
-		// with just a close button
-		return $this->displayFileUploadForm($args, $request);
+		// Get related objects for the form to authenticate
+		$monograph =& $this->getMonograph();
+		$stageId = $this->getStageId();
+
+		// Set up the template
+		$templateMgr =& TemplateManager::getManager();
+		$templateMgr->assign('monographId', $monograph->getId());
+		$templateMgr->assign('stageId', $stageId);
+		$templateMgr->assign('signoffId', $signoff->getId());
+
+		// Check if there is a note and assign it for dispaly
+		$noteDao =& DAORegistry::getDAO('NoteDAO'); /* @var $noteDao NoteDAO */
+		$notes =& $noteDao->getByAssoc(ASSOC_TYPE_SIGNOFF, $signoff->getId());
+		if (!$notes->wasEmpty()) {
+			$lastNote =& $notes->next();
+			$templateMgr->assign('noteText', $lastNote->getContents());
+		} else {
+			$templateMgr->assign('noteText', '');
+		}
+
+		// Check if there is a file and assign it for download
+		if ($signoff->getFileId() && $signoff->getFileRevision()) {
+			$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+			$submissionFile =& $submissionFileDao->getRevision($signoff->getFileId(), $signoff->getFileRevision());
+			assert(is_a($submissionFile, 'MonographFile'));
+
+			import('controllers.api.file.linkAction.DownloadFileLinkAction');
+			$downloadFileAction = new DownloadFileLinkAction($request, $submissionFile);
+			$templateMgr->assign('downloadSignoffFileAction', $downloadFileAction);
+		} else {
+			$templateMgr->assign('downloadSignoffFileAction', false);
+		}
+
+		return $templateMgr->fetchJson('controllers/modals/signoff/readSignoff.tpl');
+	}
+
+	/*
+	 * Mark the signoff as viewed?
+	 * For now, this is doing nothing (obviously).
+	 */
+	function signoffRead($args, &$request) {
+		$json = new JSONMessage(true);
+		return $json->getString();
 	}
 
 	/**

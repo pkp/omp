@@ -110,7 +110,7 @@ class FileAuditorForm extends Form {
 		// Decode the "files" list
 		import('lib.pkp.classes.controllers.listbuilder.ListbuilderHandler');
 		$changedFileData = $this->getData('files');
-		ListBuilderHandler::unpack($request, $changedFileData, null, array(&$this, 'insertSignoff'), null);
+		ListBuilderHandler::unpack($request, $changedFileData);
 
 		// Send the message to the user
 		$monograph =& $this->getMonograph();
@@ -131,7 +131,7 @@ class FileAuditorForm extends Form {
 	 * Persist a signoff insertion
 	 * @see Listbuilder::insertEntry
 	 */
-	function insertSignoff(&$request, $newRowId) {
+	function insertEntry(&$request, $newRowId) {
 		// Fetch and validate the file ID
 		$fileId = (int) $newRowId;
 		$monograph =& $this->getMonograph();
@@ -163,6 +163,14 @@ class FileAuditorForm extends Form {
 		$dueDateParts = explode('-', $this->getData('responseDueDate'));
 		$signoff->setDateUnderway(date('Y-m-d H:i:s', mktime(0, 0, 0, $dueDateParts[0], $dueDateParts[1], $dueDateParts[2])));
 		$monographFileSignoffDao->updateObject($signoff);
+	}
+
+	/**
+	 * Delete a signoff
+	 * FIXME: it was throwing a warning when this was not specified. We just want client side delete.
+	 */
+	function deleteEntry(&$request, $rowId) {
+		return true;
 	}
 }
 

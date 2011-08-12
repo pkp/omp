@@ -25,15 +25,6 @@ class SignoffOnSignoffGridColumn extends BaseSignoffStatusColumn {
 		parent::BaseSignoffStatusColumn('editor', $title, null, $userIds, $requestArgs, $flags);
 	}
 
-
-	//
-	// Getters and Setters
-	//
-
-	//
-	// Overridden methods from UserGroupColumn
-	//
-
 	//
 	// Overridden methods from GridColumn
 	//

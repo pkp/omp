@@ -42,24 +42,19 @@ class SignoffStatusFromSignoffGridColumn extends BaseSignoffStatusColumn {
 			// Retrieve the submission file.
 			$monographFile =& $this->getMonographFile($row);
 
-			// Assemble the request arguments for the signoff action.
-			$actionArgs = $this->getRequestArgs();
-			$actionArgs['fileId'] = $monographFile->getFileId();
+			// Retrieve the signoff
+			$signoff =& $row->getData();
 
-			// Instantiate the signoff action.
-			$router =& $request->getRouter();
-			import('lib.pkp.classes.linkAction.request.AjaxAction');
-			$signoffAction = new LinkAction(
-				'fileSignoff',
-				new AjaxAction(
-					$router->url(
-						$request, null, null, 'signOffFile',
-						null, $actionArgs
-					)
-				),
-				__('common.signoff'),
-				'task '. $status
-			);
+			// Action to signoff on a file -- Lets user interact with their own rows.;
+			import('controllers.api.signoff.linkAction.AddSignoffFileLinkAction');
+			$signoffAction = new AddSignoffFileLinkAction(
+														$request, $monographFile->getMonographId(),
+														$row->getStageId(), $signoff->getSymbolic(), $signoff->getId(),
+														__('submission.upload.signoff'), null);
+			// FIXME: not ideal
+			$signoffAction->_image = 'task ' . $status;
+			$signoffAction->_title = null;
+
 			$actions[] = $signoffAction;
 		}
 		return $actions;
