@@ -17,7 +17,7 @@
 
 <form class="pkp_form" id="readReviewForm" method="post" action="{url op="reviewRead"}">
 	{fbvFormArea id="readReview"}
-		<input type="hidden" name="reviewId" value="{$reviewAssignment->getId()|escape}" />
+		<input type="hidden" name="reviewAssignmentId" value="{$reviewAssignment->getId()|escape}" />
 		<input type="hidden" name="monographId" value="{$reviewAssignment->getSubmissionId()|escape}" />
 		<input type="hidden" name="stageId" value="{$reviewAssignment->getStageId()|escape}" />
 

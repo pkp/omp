@@ -14,5 +14,3 @@
 <div id="roundStatus" class="pkp_common_reviewRoundStatusContainer">
 	<p>{translate key="editor.monograph.roundStatus" round=$round}: {translate key="$roundStatus"}</p>
 </div>
-
-<br />

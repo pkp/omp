@@ -168,7 +168,7 @@ class SubmissionSubmitStep3Form extends SubmissionSubmitForm {
 				'authorName' => $user->getFullName(),
 				'authorUsername' => $user->getUsername(),
 				'editorialContactSignature' => $press->getSetting('contactName') . "\n" . $press->getLocalizedName(),
-				'submissionUrl' => $router->url($request, null, 'authorDashboard', 'index', $monograph->getId())
+				'submissionUrl' => $router->url($request, null, 'authorDashboard', 'submission', $monograph->getId())
 			));
 			$mail->send($request);
 		}

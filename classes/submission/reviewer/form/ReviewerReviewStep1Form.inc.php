@@ -72,12 +72,21 @@ class ReviewerReviewStep1Form extends ReviewerReviewForm {
 		$viewMetadataLinkAction = new ReviewerViewMetadataLinkAction($request, $reviewAssignment->getSubmissionId());
 		$templateMgr->assign_by_ref('viewMetadataAction', $viewMetadataLinkAction);
 
-		//
-		// Add the link actions
-		//
 		import('controllers.confirmationModal.linkAction.ViewReviewGuidelinesLinkAction');
 		$competingInterestsAction = new ViewReviewGuidelinesLinkAction($request);
 		$templateMgr->assign_by_ref('competingInterestsAction', $competingInterestsAction);
+
+		// Instantiate the view review guidelines confirmation modal.
+		$aboutDueDateActions = new LinkAction('viewReviewGuidelines',
+										new ConfirmationModal(
+										__('reviewer.aboutDueDates.text'),
+										__('reviewer.aboutDueDates'),
+										null, null,
+										false
+										),
+										__('reviewer.aboutDueDates'));
+		$templateMgr->assign_by_ref('aboutDueDatesAction', $aboutDueDateActions);
+
 
 		import('lib.pkp.classes.linkAction.request.AjaxModal');
 		$declineReviewLinkAction = new LinkAction('declineReview',

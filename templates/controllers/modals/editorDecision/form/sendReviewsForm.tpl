@@ -26,9 +26,12 @@
 		{fbvElement type="text" id="authorName" name="authorName" label="user.role.author" value=$authorName disabled=true}
 	{/fbvFormSection}
 
-	<!-- Message to reviewer textarea -->
-	<p class="pkp_helpers_text_right"><a id="importPeerReviews" href="#">{translate key="submission.comments.importPeerReviews"}</a></p><br />
 
+	{if $stageId == $smarty.const.WORKFLOW_STAGE_ID_INTERNAL_REVIEW || $stageId == $smarty.const.WORKFLOW_STAGE_ID_EXTERNAL_REVIEW}
+		<p class="pkp_helpers_text_right"><a id="importPeerReviews" href="#">{translate key="submission.comments.importPeerReviews"}</a></p><br />
+	{/if}
+
+	<!-- Message to reviewer textarea -->
 	{fbvFormSection}
 		{fbvElement type="textarea" name="personalMessage" id="personalMessage" label="editor.review.personalMessageToAuthor" value=$personalMessage}
 	{/fbvFormSection}

@@ -103,6 +103,20 @@ class SeriesEditorAction extends Action {
 
 		// Reviewer roles -- Do nothing. Reviewers are not included in the stage participant list, they
 		// are administered via review assignments.
+
+		// Author roles
+		// Assign only the submitter in whatever ROLE_ID_AUTHOR capacity they were assigned previously
+		$submitterAssignments =& $stageAssignmentDao->getBySubmissionAndStageId($monograph->getId(), null, null, $monograph->getUserId());
+		while ($assignment =& $submitterAssignments->next()) {
+			$userGroup =& $userGroupDao->getById($assignment->getUserGroupId());
+			if ($userGroup->getRoleId() == ROLE_ID_AUTHOR) {
+				$stageAssignmentDao->build($monograph->getId(), $stageId, $userGroup->getId(), $assignment->getUserId());
+				// Only assign them once, since otherwise we'll one assignment for each previous stage.
+				// And as long as they are assigned once, they will get access to their monograph.
+				break;
+			}
+			unset($assignment, $userGroup);
+		}
 	}
 
 	/**

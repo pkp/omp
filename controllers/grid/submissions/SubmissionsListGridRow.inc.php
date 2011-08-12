@@ -37,12 +37,6 @@ class SubmissionsListGridRow extends GridRow {
 		$this->setTemplate('controllers/grid/gridRowWithActions.tpl');
 		$rowId = $this->getId();
 
-		$monographDao =& DAORegistry::getDAO('MonographDAO');
-		$monograph =& $monographDao->getMonograph($rowId);
-
-		$pressDao =& DAORegistry::getDAO('PressDAO');
-		$press = & $pressDao->getPress($monograph->getPressId());
-
 		if (!empty($rowId) && is_numeric($rowId)) {
 			// Actions
 			$router =& $request->getRouter();

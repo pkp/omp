@@ -71,8 +71,8 @@ class NewNoteForm extends Form {
 	 * @return userId int
 	 * @see Form::execute()
 	 */
-	function execute() {
-		$user =& Request::getUser();
+	function execute(&$request) {
+		$user =& $request->getUser();
 
 		$noteDao =& DAORegistry::getDAO('NoteDAO');
 		$note = $noteDao->newDataObject();

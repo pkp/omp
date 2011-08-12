@@ -7,6 +7,7 @@
  * Display the author dashboard.
  *}
 {strip}
+{assign var="pageTitleTranslated" value=$monograph->getLocalizedTitle()|concat:" - "|concat:$monograph->getAuthorString(true)}
 {include file="common/header.tpl"}
 {/strip}
 
@@ -24,13 +25,12 @@
 <div id="authorDashboard">
 	<div class="pkp_submissionHeader">
 		<div class="pkp_submissionHeaderTop">
-			{include file="common/submissionHeader.tpl" stageId=$stageId monograph=$monograph}
 		</div>
 	</div>
 	<div style="clear:both;"></div>
 
 	<div class="pkp_controllers_timeline">
-		{url|assign:timelineUrl router=$smarty.const.ROUTE_COMPONENT component="timeline.TimelineHandler" op="index" monographId=$monograph->getId() escape=false}
+		{url|assign:timelineUrl router=$smarty.const.ROUTE_COMPONENT component="timeline.TimelineHandler" op="fetch" monographId=$monograph->getId() escape=false}
 		{load_url_in_div id="pkp_submissionTimeline" url="$timelineUrl"}
 	</div>
 

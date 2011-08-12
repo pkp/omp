@@ -21,7 +21,7 @@
 
 <div id="newNoteContainer">
 	<form class="pkp_form" id="newNoteForm" action="{url router=$smarty.const.ROUTE_COMPONENT op="saveNote" params=$linkParams}" method="post">
-		{fbvElement type="textarea" id="newNote" size=$fbvStyles.size.SMALL}<br/>
+		{fbvElement type="textarea" id="newNote" size=$fbvStyles.size.MEDIUM}<br/>
 		{fbvFormButtons hideCancel=true submitText="informationCenter.postNote"}</div>
 	</form>
 </div>

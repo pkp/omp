@@ -158,13 +158,8 @@
 			<input type="hidden" id="revisedFileId" name="revisedFileId" value="{$revisedFileId}" />
 		{elseif $showFileSelector}
 			{* TODO: This should be a radio button selection, where the select is displayed only if the user chooses to replace a file *}
-			{fbvFormSection title="submission.upload.replacingExistingFile" required=$revisionOnly}
-					{if $revisionOnly}
-						{assign var="revisedFileLabel" value="submission.upload.selectMandatoryFileToRevise"}
-					{else}
-						{assign var="revisedFileLabel" value="submission.upload.selectOptionalFileToRevise"}
-					{/if}
-				{fbvElement type="select" name="revisedFileId" label=$revisedFileLabel id="revisedFileId" from=$monographFileOptions selected=$revisedFileId translate=false}
+			{fbvFormSection title="submission.upload.revisingExistingFile" required=$revisionOnly}
+				{fbvElement type="select" name="revisedFileId" label='submission.upload.selectMandatoryFileToRevise' id="revisedFileId" from=$monographFileOptions selected=$revisedFileId translate=false}
 			{/fbvFormSection}
 		{/if}
 

@@ -21,7 +21,7 @@
 <p>{translate key="submission.submit.whatNext.forNow"}</p>
 
 <ul class="plain">
-<li>&#187; <a href={url page="submission" op="authorDetails" path=$monographId}>{translate key="submission.submit.whatNext.review"}</a></li>
+<li>&#187; <a href={url page="authorDashboard" op="submission" path=$monographId|escape}>{translate key="submission.submit.whatNext.review"}</a></li>
 <li>&#187; <a href={url page="submission" op="wizard"}>{translate key="submission.submit.whatNext.create"}</a></li>
 <li>&#187; <a href={url page="dashboard"}>{translate key="submission.submit.whatNext.return"}</a></li>
 </ul>

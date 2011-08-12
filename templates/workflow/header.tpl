@@ -7,9 +7,13 @@
  * Header that contains details about the submission
  *}
 
+{strip}
+{assign var="pageTitleTranslated" value=$monograph->getLocalizedTitle()|concat:" - "|concat:$monograph->getAuthorString(true)}
+{include file="common/header.tpl"}
+{/strip}
+
 <div class="pkp_submissionHeader">
-	<div class="pkp_submissionHeaderTop">
-		{include file="common/submissionHeader.tpl" stageId=$stageId monograph=$monograph}
+	<div class="pkp_submissionHeaderTop pkp_helpers_text_right">
 		<div class="pkp_linkActions">
 			{include file="linkAction/linkAction.tpl" action=$editMetadataAction}
 			{include file="linkAction/linkAction.tpl" action=$submissionInformationCentreAction}
@@ -18,7 +22,7 @@
 
 	<div class="pkp_helpers_clear"></div>
 
-	{url|assign:timelineUrl router=$smarty.const.ROUTE_COMPONENT component="timeline.TimelineHandler" op="index" monographId=$monograph->getId() escape=false}
+	{url|assign:timelineUrl router=$smarty.const.ROUTE_COMPONENT component="timeline.TimelineHandler" op="fetch" monographId=$monograph->getId() escape=false}
 	{load_url_in_div id="pkp_submissionTimeline" url="$timelineUrl"}
 
 	<div class="pkp_helpers_clear"></div>

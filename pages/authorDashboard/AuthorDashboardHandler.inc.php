@@ -22,7 +22,7 @@ class AuthorDashboardHandler extends Handler {
 	 */
 	function AuthorDashboardHandler() {
 		parent::Handler();
-		$this->addRoleAssignment(array(ROLE_ID_AUTHOR), array('index', 'reviewRoundInfo'));
+		$this->addRoleAssignment(array(ROLE_ID_AUTHOR), array('submission', 'reviewRoundInfo'));
 	}
 
 
@@ -47,7 +47,7 @@ class AuthorDashboardHandler extends Handler {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function index($args, &$request) {
+	function submission($args, &$request) {
 		// Pass the authorized monograph on to the template.
 		$this->setupTemplate($request);
 		$templateMgr =& TemplateManager::getManager();

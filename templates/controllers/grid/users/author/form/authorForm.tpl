@@ -40,9 +40,10 @@
 		{/fbvFormSection}
 	{/fbvFormArea}
 	{fbvFormArea id="submissionSpecific"}
-		{fbvFormSection}
-			{* TODO: Render this as a radiobutton list *}
-			{fbvElement type="select" label="author.users.contributor.role" id="userGroupId" from=$authorUserGroups selected=$authorUserGroups translate=false}
+		{fbvFormSection id="userGroupId" label="submission.submit.contributorRole" list=true}
+			{iterate from=authorUserGroups item=userGroup}
+				{fbvElement type="radio" id="userGroup"|concat:$userGroup->getId() name="userGroupId" value=$userGroup->getId() label=$userGroup->getLocalizedName() translate=false}
+			{/iterate}
 		{/fbvFormSection}
 		{fbvFormSection list="true"}
 			{fbvElement type="checkbox" label="submission.submit.selectPrincipalContact" id="primaryContact" checked=$primaryContact}

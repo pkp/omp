@@ -9,7 +9,16 @@
 {assign var="pageTitle" value="submission.submit"}
 {include file="submission/form/submitStepHeader.tpl"}
 
-<form class="pkp_form" id="submitStepForm" method="post" action="{url op="saveStep" path=$submitStep}">
+<script type="text/javascript">
+	$(function() {ldelim}
+		// Attach the form handler.
+		$('#submitStep1Form').pkpHandler('$.pkp.controllers.form.AjaxFormHandler', {ldelim}
+			baseUrl: '{$baseUrl|escape:"javascript"}'
+		{rdelim});
+	{rdelim});
+</script>
+
+<form class="pkp_form" id="submitStep1Form" method="post" action="{url op="saveStep" path=$submitStep}">
 {if $monographId}<input type="hidden" name="monographId" value="{$monographId|escape}"/>{/if}
 	<input type="hidden" name="submissionChecklist" value="1"/>
 

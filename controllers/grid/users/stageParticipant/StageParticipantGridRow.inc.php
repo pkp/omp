@@ -60,7 +60,6 @@ class StageParticipantGridRow extends GridRow {
 			);
 
 			import('lib.pkp.classes.linkAction.request.AjaxModal');
-			// FIXME: Not all roles should see this action. Bug #5975.
 			$this->addAction(
 				new LinkAction(
 					'edit',

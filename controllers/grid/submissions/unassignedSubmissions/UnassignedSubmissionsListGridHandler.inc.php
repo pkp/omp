@@ -42,18 +42,6 @@ class UnassignedSubmissionsListGridHandler extends SubmissionsListGridHandler {
 		// Set title.
 		$this->setTitle('common.queue.long.submissionsUnassigned');
 
-		$cellProvider = new SubmissionsListGridCellProvider();
-		$this->addColumn(
-			new GridColumn(
-				'title',
-				'monograph.title',
-				null,
-				'controllers/grid/gridCell.tpl',
-				$cellProvider,
-				array('html' => true)
-			)
-		);
-
 		// Add editor specific locale component.
 		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_EDITOR));
 	}

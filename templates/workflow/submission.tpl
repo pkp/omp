@@ -6,25 +6,20 @@
  *
  * Display monograph details (metadata, file grid)
  *}
+
 {strip}
-{include file="common/header.tpl"}
+{include file="workflow/header.tpl"}
 {/strip}
 
-{include file="workflow/header.tpl"}
+<div>
+	{url|assign:submissionFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.submission.EditorSubmissionDetailsFilesGridHandler" op="fetchGrid" monographId=$monograph->getId()}
+	{load_url_in_div id="submissionFilesGridDiv" url=$submissionFilesGridUrl}
 
-{if $editorAssigned}
-	<!-- Editorial decision actions -->
 	<div class="pkp_linkActions">
 		{foreach from=$editorActions item=action}
 			{include file="linkAction/linkAction.tpl" action=$action contextId="submission"}
 		{/foreach}
 	</div>
-{else}
-	{translate key="editor.submission.noEditorAssigned"}
-{/if}
-
-{url|assign:submissionFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.submission.EditorSubmissionDetailsFilesGridHandler" op="fetchGrid" monographId=$monograph->getId()}
-{load_url_in_div id="submissionFilesGridDiv" url=$submissionFilesGridUrl}
-
+</div>
 {include file="common/footer.tpl"}
 

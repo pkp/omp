@@ -67,7 +67,10 @@ class WorkflowHandler extends Handler {
 		parent::setupTemplate();
 		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_OMP_SUBMISSION, LOCALE_COMPONENT_OMP_EDITOR));
 
+		$router =& $request->getRouter();
+
 		$templateMgr =& TemplateManager::getManager();
+		$templateMgr->assign('pageHierarchy', array(array($router->url($request, null, 'dashboard', 'status'), 'navigation.submissions')));
 
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		$stageId = $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
@@ -114,7 +117,26 @@ class WorkflowHandler extends Handler {
 		);
 		$templateMgr->assign_by_ref('submissionInformationCentreAction', $submissionInformationCentreAction);
 
+		//
+		// Assign notifications
+		//
+		$user =& $request->getUser();
+		import('lib.pkp.classes.notification.NotificationManager');
+		$notificationManager = new NotificationManager();
+		$stageAssignmentDao =& DAORegistry::getDAO('StageAssignmentDAO');
+		$userAssignments =& $stageAssignmentDao->getBySubmissionAndStageId($monograph->getId(), $stageId, null, $user->getId());
+		if ($userAssignments->wasEmpty()) {
+			$notificationManager->createTrivialNotification('notification.notification', 'you are not assigned to the stage');
+		}
+		if (!$stageAssignmentDao->editorAssignedToSubmission($monograph->getId(), $stageId)) {
+			$notificationManager->createTrivialNotification('notification.notification', 'no editor assigned to the stage');
+		}
 
+		// Notification options.
+		$notificationOptions = array('notificationLevels' => array(
+			NOTIFICATION_LEVEL_TRIVIAL, NOTIFICATION_LEVEL_NORMAL));
+
+		$templateMgr->assign('workflowNotificationRequestOptions', $notificationOptions);
 	}
 
 
@@ -129,13 +151,8 @@ class WorkflowHandler extends Handler {
 	function submission($args, &$request) {
 		$this->_assignEditorDecisionActions($request, '_submissionStageDecisions');
 
-		// Notification options.
-		$notificationOptions = array('notificationLevels' => array(
-			NOTIFICATION_LEVEL_TRIVIAL, NOTIFICATION_LEVEL_NORMAL));
-
 		// Render the view.
 		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->assign('workflowNotificationRequestOptions', $notificationOptions);
 		$templateMgr->display('workflow/submission.tpl');
 	}
 
@@ -353,7 +370,7 @@ class WorkflowHandler extends Handler {
 				'name' => 'initiateReview',
 				'operation' => 'initiateReview',
 				'title' => 'editor.monograph.initiateReview',
-				'image' => 'add_item',
+				'image' => 'add_item'
 			)
 		);
 
@@ -380,16 +397,19 @@ class WorkflowHandler extends Handler {
 				'operation' => 'promote',
 				'name' => 'externalReview',
 				'title' => 'editor.monograph.decision.externalReview',
+				'image' => 'promote'
 			),
 			SUBMISSION_EDITOR_DECISION_ACCEPT => array(
 				'operation' => 'promote',
 				'name' => 'accept',
 				'title' => 'editor.monograph.decision.accept',
+				'image' => 'promote'
 			),
 			SUBMISSION_EDITOR_DECISION_DECLINE => array(
 				'operation' => 'sendReviews',
 				'name' => 'decline',
-				'title' => 'editor.monograph.decision.decline'
+				'title' => 'editor.monograph.decision.decline',
+				'image' => 'delete'
 			)
 		);
 
@@ -416,11 +436,13 @@ class WorkflowHandler extends Handler {
 				'operation' => 'promote',
 				'name' => 'accept',
 				'title' => 'editor.monograph.decision.accept',
+				'image' => 'approve'
 			),
 			SUBMISSION_EDITOR_DECISION_DECLINE => array(
 				'operation' => 'sendReviews',
 				'name' => 'decline',
-				'title' => 'editor.monograph.decision.decline'
+				'title' => 'editor.monograph.decision.decline',
+				'image' => 'delete'
 			)
 		);
 
@@ -437,7 +459,8 @@ class WorkflowHandler extends Handler {
 			SUBMISSION_EDITOR_DECISION_SEND_TO_PRODUCTION => array(
 				'operation' => 'promote',
 				'name' => 'sendToProduction',
-				'title' => 'editor.monograph.decision.sendToProduction'
+				'title' => 'editor.monograph.decision.sendToProduction',
+				'image' => 'approve'
 			)
 		);
 

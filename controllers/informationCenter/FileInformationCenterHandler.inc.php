@@ -106,7 +106,7 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 		$notesForm->readInputData();
 
 		if ($notesForm->validate()) {
-			$notesForm->execute();
+			$notesForm->execute($request);
 			$json = new JSONMessage(true);
 
 			// Save to event log

@@ -39,7 +39,7 @@
 	{/fbvFormSection}
 
 	{url|assign:cancelUrl page="reviewer" op="submission" path=$submission->getId() step=2 escape=false}
-	{fbvFormButtons submitText="reviewer.monograph.continueToStepFour" confirmSubmit="reviewer.confirmSubmit" cancelText="navigation.goBack" cancelUrl=$cancelUrl}
+	{fbvFormButtons submitText="reviewer.monograph.submitReview" confirmSubmit="reviewer.confirmSubmit" cancelText="navigation.goBack" cancelUrl=$cancelUrl}
 {/fbvFormArea}
 </form>
 {include file="common/footer.tpl"}

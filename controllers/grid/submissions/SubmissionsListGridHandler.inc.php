@@ -92,7 +92,8 @@ class SubmissionsListGridHandler extends GridHandler {
 				null,
 				'controllers/grid/gridCell.tpl',
 				$cellProvider,
-				array('html' => true)
+				array('html' => true,
+						'alignment' => COLUMN_ALIGNMENT_LEFT)
 			)
 		);
 

@@ -42,20 +42,21 @@
 			{fbvElement type="keyword" id="keyword" label="common.keywords"}
 			{fbvElement type="keyword" id="agencies" label="submission.supportingAgencies"}
 		{/fbvFormSection}
+
+		{fbvFormSection}
+			<!--  Contributors -->
+			{url|assign:authorGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.users.author.AuthorGridHandler" op="fetchGrid" monographId=$monographId}
+			{load_url_in_div id="authorsGridContainer" url="$authorGridUrl"}
+
+			<!--  Chapters -->
+			{if $isEditedVolume}
+				{url|assign:chaptersGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.users.chapter.ChapterGridHandler" op="fetchGrid" monographId=$monographId}
+				{load_url_in_div id="chaptersGridContainer" url="$chaptersGridUrl"}
+			{/if}
+		{/fbvFormSection}
+
+		{fbvFormButtons id="step2Buttons" submitText="submission.submit.finishSubmission" confirmSubmit="submission.confirmSubmit"}
 	{/fbvFormArea}
-
-	<!--  Contributors -->
-	{url|assign:authorGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.users.author.AuthorGridHandler" op="fetchGrid" monographId=$monographId}
-	{load_url_in_div id="authorsGridContainer" url="$authorGridUrl"}
-
-	<!--  Chapters -->
-	{if $isEditedVolume}
-		{url|assign:chaptersGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.users.chapter.ChapterGridHandler" op="fetchGrid" monographId=$monographId}
-		{load_url_in_div id="chaptersGridContainer" url="$chaptersGridUrl"}
-	{/if}
-
-	{fbvFormButtons id="step2Buttons" submitText="submission.submit.finishSubmission" confirmSubmit="submission.confirmSubmit"}
-
 </form>
 {include file="common/footer.tpl"}
 

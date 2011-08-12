@@ -59,10 +59,13 @@
 	<message key="submission.submit.privacyStatement">Press' Privacy Statement</message>
 	<message key="submission.submit.selectPrincipalContact">Principal contact for editorial correspondence.</message>
 	<message key="submission.submit.briefSummary">Brief Summary of Book</message>
-	<message key="submission.submit.addAuthor">Add Author</message>
+	<message key="submission.submit.addAuthor">Add Contributor</message>
+	<message key="submission.submit.contributorRole">Contributor's role</message>
 	<message key="submission.submit.form.authorRequired">At least one author is required.</message>
 	<message key="submission.submit.form.authorRequiredFields">The first name, last name, and email address of each author is required.</message>
 	<message key="submission.submit.form.titleRequired">Please enter the title of your monograph.</message>
+	<message key="submission.submit.form.contributorRoleRequired">Please select the contributor's role.</message>
+	<message key="submission.submit.errorDeletingAuthor">There was an error removing the author.</message>
 	<message key="submission.submit.currentFile">Current file</message>
 	<message key="submission.submit.selectFile">Select File</message>
 	<message key="submission.submit.submissionFile">Submission File</message>
@@ -101,9 +104,9 @@
 	<message key="submission.upload.invalidUserGroup">Missing or invalid user group!</message>
 	<message key="submission.upload.possibleRevision">Possible Revision Detected</message>
 	<message key="submission.upload.possibleRevisionDescription"><![CDATA[<p>It looks like you may be trying to upload a revision to the previously uploaded file '{$revisedFileName}' whose file name is very similar to the name of the uploaded file. Is this the case?</p><p>If you are uploading a revision for another file, please select it below otherwise select the 'do not replace' option. Then click the 'continue' button to edit the meta-data of the file.</p>]]></message>
-	<message key="submission.upload.replacingExistingFile">Replacing an Existing File?</message>
+	<message key="submission.upload.revisingExistingFile">Revising an Existing File?</message>
 	<message key="submission.upload.selectMandatoryFileToRevise">Please select the file you would like to revise.</message>
-	<message key="submission.upload.selectOptionalFileToRevise">If you like you can select a file you would like to revise (optional). If you leave the default selection then you'll upload a new file.</message>
+	<message key="submission.upload.selectOptionalFileToRevise">If you are uploading a revision of an existing file, please indicate which file.</message>
 	<message key="submission.upload.uploadNewFile">Do not replace an existing file</message>
 
 	<!-- File uploads -->
@@ -118,7 +121,9 @@
 	<!-- Read/Upload/Perform Signoff -->
 	<message key="submission.signoff.selectFile">Select the file you wish to signoff on</message>
 	<message key="submission.signoff.signoffOnFile">Signoff on this file</message>
+	<message key="submission.signoff.signedOffOnFile">Signed off on this file</message>
 	<message key="submission.signoff.noAvailableSignoffs">There are no files for you respond to at this time.</message>
+	<message key="submission.signoff.fileResponse">File Response</message>
 
 	<!-- Submission statuses -->
 	<message key="submission.status.editorial">In Copyediting</message>

@@ -20,7 +20,7 @@ switch ($op) {
 	//
 	// Author Dashboard
 	//
-	case 'index':
+	case 'submission':
 	case 'reviewRoundInfo':
 		import('pages.authorDashboard.AuthorDashboardHandler');
 		define('HANDLER_CLASS', 'AuthorDashboardHandler');

@@ -7,10 +7,8 @@
  * Production workflow stage
  *}
 {strip}
-{include file="common/header.tpl"}
-{/strip}
-
 {include file="workflow/header.tpl"}
+{/strip}
 
 <script type="text/javascript">
 	// Initialise JS handler.

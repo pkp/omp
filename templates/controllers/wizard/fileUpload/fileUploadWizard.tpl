@@ -21,7 +21,7 @@
 					cancelButtonText: '{translate|escape:javascript key="common.cancel"}',
 					continueButtonText: '{translate|escape:javascript key="common.continue"}',
 					finishButtonText: '{translate|escape:javascript key="common.finish"}',
-					deleteUrl: '{url|escape:javascript component="api.file.FileApiHandler" op="deleteFile" monographId=$monographId stageId=$stageId fileStage=$fileStage escape=false}',
+					deleteUrl: '{url|escape:javascript component="api.file.ManageFileApiHandler" op="deleteFile" monographId=$monographId stageId=$stageId fileStage=$fileStage escape=false}',
 					metadataUrl: '{url|escape:javascript op="editMetadata" monographId=$monographId stageId=$stageId fileStage=$fileStage escape=false}',
 					finishUrl: '{url|escape:javascript op="finishFileSubmission" monographId=$monographId stageId=$stageId fileStage=$fileStage escape=false}'
 				{rdelim});

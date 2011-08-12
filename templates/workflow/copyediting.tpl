@@ -7,34 +7,24 @@
  * Copyediting workflow stage
  *}
 {strip}
-{include file="common/header.tpl"}
+{include file="workflow/header.tpl"}
 {/strip}
 
-{include file="workflow/header.tpl"}
+<div id="copyediting">
+	{url|assign:finalDraftGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.final.FinalDraftFilesGridHandler" op="fetchGrid" monographId=$monograph->getId() stageId=$stageId escape=false}
+	{load_url_in_div id="finalDraftGrid" url=$finalDraftGridUrl}
 
-<div class="ui-widget ui-widget-content ui-corner-all">
+	{url|assign:copyeditingGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.copyedit.CopyeditingFilesGridHandler" op="fetchGrid" monographId=$monograph->getId() escape=false}
+	{load_url_in_div id="copyeditingGrid" url=$copyeditingGridUrl}
 
-{url|assign:finalDraftGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.final.FinalDraftFilesGridHandler" op="fetchGrid" monographId=$monograph->getId() stageId=$stageId escape=false}
-{load_url_in_div id="finalDraftGrid" url=$finalDraftGridUrl}
+	{url|assign:fairCopyGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.fairCopy.FairCopyFilesGridHandler" op="fetchGrid" monographId=$monograph->getId() escape=false}
+	{load_url_in_div id="fairCopyGrid" url=$fairCopyGridUrl}
 
-<br />
-
-{url|assign:copyeditingGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.copyedit.CopyeditingFilesGridHandler" op="fetchGrid" monographId=$monograph->getId() escape=false}
-{load_url_in_div id="copyeditingGrid" url=$copyeditingGridUrl}
-
-<br />
-
-{url|assign:fairCopyGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.fairCopy.FairCopyFilesGridHandler" op="fetchGrid" monographId=$monograph->getId() escape=false}
-{load_url_in_div id="fairCopyGrid" url=$fairCopyGridUrl}
-
-<br />
-
-{if isset($editorActions[0])}
 	<div class="pkp_linkActions">
-		{include file="linkAction/linkAction.tpl" action=$editorActions[0] contextId="copyediting"}
+		{foreach from=$editorActions item=action}
+			{include file="linkAction/linkAction.tpl" action=$action contextId="copyediting"}
+		{/foreach}
 	</div>
-{/if}
-
 </div>
 {include file="common/footer.tpl"}
 

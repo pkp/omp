@@ -34,6 +34,7 @@ class AuthorForm extends Form {
 		$this->addCheck(new FormValidator($this, 'lastName', 'required', 'submission.submit.form.authorRequiredFields'));
 		$this->addCheck(new FormValidatorEmail($this, 'email', 'required', 'installer.form.emailRequired'));
 		$this->addCheck(new FormValidatorUrl($this, 'url', 'optional', 'user.profile.form.urlInvalid'));
+		$this->addCheck(new FormValidator($this, 'userGroupId', 'required', 'submission.submit.form.contributorRoleRequired'));
 		$this->addCheck(new FormValidatorPost($this));
 	}
 
@@ -116,13 +117,7 @@ class AuthorForm extends Form {
 		$context =& $router->getContext($request);
 
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
-		$userGroups =& $userGroupDao->getByRoleId($context->getId(), ROLE_ID_AUTHOR);
-		$authorUserGroups = array();
-		while (!$userGroups->eof()) {
-			$userGroup =& $userGroups->next();
-			$authorUserGroups[$userGroup->getId()] = $userGroup->getLocalizedName();
-			unset($userGroup);
-		}
+		$authorUserGroups =& $userGroupDao->getByRoleId($context->getId(), ROLE_ID_AUTHOR);
 		$templateMgr->assign_by_ref('authorUserGroups', $authorUserGroups);
 
 		$monograph =& $this->getMonograph();

@@ -47,12 +47,3 @@
 			</li>
 		{/if}
 	</ul>
-
-	<script type="text/javascript">
-		$(function() {ldelim}
-			// Attach the form handler.
-			$('#submitStepForm').pkpHandler('$.pkp.controllers.form.AjaxFormHandler', {ldelim}
-				baseUrl: '{$baseUrl|escape:"javascript"}'
-			{rdelim});
-		{rdelim});
-	</script>
