@@ -56,8 +56,19 @@ class UnassignedSubmissionsListGridHandler extends SubmissionsListGridHandler {
 	function getSubmissions(&$request, $userId) {
 		$monographDao =& DAORegistry::getDAO('MonographDAO'); /* @var $monographDao MonographDAO */
 
+		// Determine whether this is a Series Editor or Press Manager.
+		// Press Managers can access all submissions, Series Editors
+		// only assigned submissions.
+		$user =& $request->getUser();
+		$press =& $request->getPress();
+		$roleDao =& DAORegistry::getDAO('RoleDAO'); /* @var $roleDao RoleDAO */
+		$isPressManager = $roleDao->userHasRole($press->getId(), $userId, ROLE_ID_PRESS_MANAGER);
+
 		// Get all monographs for all presses.
-		$monographs =& $monographDao->getUnassignedMonographs();
+		$monographs =& $monographDao->getUnassignedMonographs(
+			null,
+			$isPressManager?null:$userId
+		);
 
 		return $monographs;
 	}

@@ -527,10 +527,12 @@ class MonographDAO extends DAO {
 
 	/**
 	 * Get all unassigned monographs for a press or all presses
-	 * @param $pressId int
+	 * @param $pressId int optional the ID of the press to query.
+	 * @param $seriesEditorId int optional the ID of the series editor
+	 * 	whose series will be included in the results (excluding others).
 	 * @return DAOResultFactory containing matching Monographs
 	 */
-	function &getUnassignedMonographs($pressId = null) {
+	function &getUnassignedMonographs($pressId = null, $seriesEditorId = null) {
 		$primaryLocale = Locale::getPrimaryLocale();
 		$locale = Locale::getLocale();
 
@@ -545,6 +547,7 @@ class MonographDAO extends DAO {
 			$locale,
 			(int) ROLE_ID_SERIES_EDITOR
 		);
+		if ($seriesEditorId) $params[] = (int) $seriesEditorId;
 		if ($pressId) $params[] = (int) $pressId;
 
 		$result =& $this->retrieve(
@@ -559,9 +562,11 @@ class MonographDAO extends DAO {
 				LEFT JOIN series_settings sal ON (s.series_id = sal.series_id AND sal.setting_name = ? AND sal.locale = ?)
 				LEFT JOIN stage_assignments sa ON (m.monograph_id = sa.submission_id)
 				LEFT JOIN user_groups g ON (sa.user_group_id = g.user_group_id AND g.role_id = ?)
+				' . ($seriesEditorId?' LEFT JOIN series_editors se ON (se.press_id = m.press_id AND se.user_id = ? AND se.series_id = m.series_id)':'') . '
 			WHERE	m.date_submitted IS NOT NULL AND
-				g.user_group_id IS NULL' .
-				($pressId?' AND m.press_id = ?':''),
+				g.user_group_id IS NULL
+				' . ($pressId?' AND m.press_id = ?':'') . '
+				' . ($seriesEditorId?' AND se.series_id IS NOT NULL':''),
 			$params
 		);
 
