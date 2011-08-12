@@ -180,7 +180,7 @@
 								{else}
 									{assign var="checked" value="false"}
 								{/if}
-								{fbvElement type="checkbox" name="userLocales[]" id="userLocales-$localeKey" value="$localeKey" checked=$checked label="$localeName" }
+								{fbvElement type="checkbox" name="userLocales[]" id="userLocales-$localeKey" value="$localeKey" checked=$checked label="$localeName" translate=false }
 							{/foreach}
 						{/fbvFormSection}
 					{/if}
