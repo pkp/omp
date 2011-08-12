@@ -41,21 +41,20 @@ class NoteDAO extends PKPNoteDAO {
 
 		$result = $this->retrieve(
 			'SELECT	COUNT(*)
-			FROM	notes n, views v
+			FROM	notes n
+				LEFT JOIN views v ON (v.assoc_type = ? AND v.assoc_id = n.note_id AND v.user_id = ?)
 			WHERE	n.assoc_type = ? AND
 				n.assoc_id = ? AND
-				v.assoc_type = ? AND
-				v.assoc_id = n.note_id AND
-				v.user_id = ?',
+				v.assoc_id IS NULL',
 			array(
-				(int) $assocType,
-				(int) $assocId,
 				(int) ASSOC_TYPE_NOTE,
-				(int) $userId
+				(int) $userId,
+				(int) $assocType,
+				(int) $assocId
 			)
 		);
 
-		$returner = isset($result->fields[0]) && $result->fields[0] == 1 ? false : true;
+		$returner = isset($result->fields[0]) && $result->fields[0] == 0 ? false : true;
 		$result->Close();
 
 		return $returner;
