@@ -198,8 +198,8 @@ class SubmissionFilesUploadBaseForm extends Form {
 			$lastMonographFile = $monographFile;
 		}
 
-		// If there is only one option for a file to review, do not show the selector.
-		if (count($monographFileOptions) == 1) {
+		// If there is only one option for a file to review, and user must revise, do not show the selector.
+		if (count($monographFileOptions) == 1 && $this->getData('revisionOnly')) {
 			// There was only one option, use the last added monograph file
 			$this->setData('revisedFileId', $lastMonographFile->getFileId());
 			$this->setData('revisedFileName', $lastMonographFile->getOriginalFileName());

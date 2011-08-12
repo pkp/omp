@@ -121,7 +121,12 @@ class SubmissionFilesMetadataForm extends Form {
 			$note->setAssocType(ASSOC_TYPE_MONOGRAPH_FILE);
 			$note->setAssocId($submissionFile->getFileId());
 
-			$noteDao->insertObject($note);
+			$noteId = $noteDao->insertObject($note);
+
+			// Mark the note as viewed by this user
+			$user =& $request->getUser();
+			$viewsDao =& DAORegistry::getDAO('ViewsDAO');
+			$viewsDao->recordView(ASSOC_TYPE_NOTE, $noteId, $user->getId());
 		}
 	}
 }

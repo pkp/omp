@@ -202,7 +202,7 @@ class MonographFile extends SubmissionFile {
 		}
 
 		// If we have no file name then use a default name.
-		if (empty($fileLabel)) $fileLabel = Locale::translate('common.untitled');
+		if (empty($fileLabel)) $fileLabel = $this->getOriginalFileName();
 
 		// Add the revision number to the label if we have more than one revision.
 		if ($this->getRevision() > 1) $fileLabel .= ' (' . $this->getRevision() . ')';
