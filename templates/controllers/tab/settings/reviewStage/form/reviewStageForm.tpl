@@ -24,11 +24,6 @@
 
 	<div class="separator"></div>
 
-	{url|assign:reviewFormGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.reviewForm.ReviewFormGridHandler" op="fetchGrid"}
-	{load_url_in_div id="reviewFormGridDiv" url=$reviewFormGridUrl}
-
-	<div class="separator"></div>
-
 	<div {if $wizardMode}class="pkp_form_hidden"{/if}>
 		<h3>{translate key="manager.setup.reviewProcess"}</h3>
 		<p>{translate key="manager.setup.reviewProcessDescription"}</p>
