@@ -46,7 +46,7 @@ class ReviewerGridHandler extends GridHandler {
 		$this->addRoleAssignment(
 			array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
 			array(
-				'fetchGrid', 'fetchRow', 'addReviewer', 'showReviewerForm', 'editReviewer', 'updateReviewer', 'deleteReviewer',
+				'fetchGrid', 'fetchRow', 'showReviewerForm', 'reloadReviewerForm', 'editReviewer', 'updateReviewer', 'deleteReviewer',
 				'getReviewersNotAssignedToMonograph', 'getUsersNotAssignedAsReviewers', 'readReview', 'reviewRead', 'thankReviewer',
 				'createReviewer', 'editReminder', 'sendReminder'
 			)
@@ -129,11 +129,12 @@ class ReviewerGridHandler extends GridHandler {
 		// Grid actions
 		import('lib.pkp.classes.linkAction.request.AjaxModal');
 		$router =& $request->getRouter();
+		$actionArgs = array_merge($this->getRequestArgs(), array('selectionType' => REVIEWER_SELECT_SEARCH_BY_NAME));
 		$this->addAction(
 			new LinkAction(
 				'addReviewer',
 				new AjaxModal(
-					$router->url($request, null, null, 'addReviewer', null, $this->getRequestArgs()),
+					$router->url($request, null, null, 'showReviewerForm', null, $actionArgs),
 					__('editor.monograph.addReviewer')
 					),
 				__('editor.monograph.addReviewer')
@@ -213,21 +214,6 @@ class ReviewerGridHandler extends GridHandler {
 	// Public actions
 	//
 	/**
-	 * An action to manually add a new reviewer
-	 * @param $args array
-	 * @param $request PKPRequest
-	 */
-	function addReviewer($args, &$request) {
-		$templateMgr =& TemplateManager::getManager();
-		//FIXME: #6200. see other methods in this file.
-		$templateMgr->assign('stageId', $this->getStageId());
-		$templateMgr->assign('round', $this->getRound());
-		$monograph =& $this->getMonograph();
-		$templateMgr->assign('monographId', $monograph->getId());
-		return $templateMgr->fetchJson('controllers/grid/users/reviewer/form/addReviewerForm.tpl');
-	}
-
-	/**
 	 * Add a reviewer that already exists
 	 * @param $args array
 	 * @param $request PKPRequest
@@ -244,6 +230,21 @@ class ReviewerGridHandler extends GridHandler {
 		$reviewerForm->initData($args, $request);
 
 		$json = new JSONMessage(true, $reviewerForm->fetch($request));
+		return $json->getString();
+	}
+
+	function reloadReviewerForm($args, &$request) {
+		$selectionType = $request->getUserVar('selectionType');
+		assert(!empty($selectionType));
+		$formClassName = $this->_getReviewerFormClassName($selectionType);
+
+		// Form handling.
+		import('controllers.grid.users.reviewer.form.' . $formClassName );
+		$reviewerForm = new $formClassName($this->getMonograph());
+		$reviewerForm->initData($args, $request);
+
+		$json = new JSONMessage(true);
+		$json->setEvent('refreshForm', $reviewerForm->fetch($request));
 		return $json->getString();
 	}
 

@@ -20,6 +20,13 @@
 		{url|assign:autocompleteUrl op="finishFileSubmission" op="getReviewersNotAssignedToMonograph" monographId=$monographId stageId=$stageId round=$round escape=false}
 		{fbvElement type="autocomplete" autocompleteUrl=$autocompleteUrl id="reviewerId" label="user.role.reviewer" value=$userNameString|escape}
 	{/fbvFormSection}
+	<div class="pkp_linkActions">
+		{foreach from=$reviewerActions item=action}
+			{include file="linkAction/linkAction.tpl" action=$action contextId="searchByNameReviewerForm"}
+		{/foreach}
+	</div>
+	<br />
+	<br />
 
 	{include file="controllers/grid/users/reviewer/form/reviewerFormFooter.tpl"}
 

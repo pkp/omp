@@ -19,6 +19,9 @@ class ReviewerForm extends Form {
 	/** The monograph associated with the review assignment **/
 	var $_monograph;
 
+	/** An array of actions for the other reviewer forms */
+	var $_reviewerFormActions;
+
 	/**
 	 * Constructor.
 	 */
@@ -61,6 +64,21 @@ class ReviewerForm extends Form {
 		$this->_monograph =& $monograph;
 	}
 
+	/**
+	 * Set a reviewer form action
+	 * @param $action LinkAction
+	 */
+	function setReviewerFormAction($action) {
+		$this->_reviewerFormActions[$action->getId()] =& $action;
+	}
+
+	/**
+	 * Get all of the reviewer form actions
+	 * @return array
+	 */
+	function getReviewerFormActions() {
+		return $this->_reviewerFormActions;
+	}
 	//
 	// Overridden template methods
 	//
@@ -129,6 +147,9 @@ class ReviewerForm extends Form {
 	 * @see Form::fetch()
 	 */
 	function fetch(&$request) {
+		$templateMgr =& TemplateManager::getManager();
+		$templateMgr->assign('reviewerActions', $this->getReviewerFormActions());
+
 		// Get the reviewer user groups for the create new reviewer/enroll existing user tabs
 		$press =& $request->getPress();
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */
@@ -211,7 +232,6 @@ class ReviewerForm extends Form {
 			$reviewer =& $userDao->getUser($reviewerId);
 			$user = $submission->getUser();
 			$mail->addRecipient($reviewer->getEmail(), $reviewer->getFullName());
-			$press =& $request->getPress();
 
 			$paramArray = array(
 				'reviewerName' => $reviewer->getFullName(),

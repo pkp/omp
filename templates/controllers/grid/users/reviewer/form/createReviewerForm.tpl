@@ -27,19 +27,21 @@
 	{/fbvFormSection}
 
 	{fbvFormSection title="user.affiliation" for="affiliation"}
-		{fbvElement type="textarea" id="affiliation" value=$affiliation size=$fbvStyles.size.SMALL}
+		{fbvElement type="textarea" id="affiliation" value=$affiliation}
 	{/fbvFormSection}
 
-	{fbvFormSection title="user.interests" for="interests"}
-		<ul id="interests"></ul><span class="interestDescription">{fieldLabel for="interests" key="user.interests.description"}</span>
+	{fbvFormSection title="manager.reviewerSearch.interests"}
+		{fbvElement type="keyword" id="interests" label="user.interests.description"}
 	{/fbvFormSection}
 
 	{fbvFormSection title="user.accountInformation"}
 		{fbvElement type="text" label="user.username" id="username" value=$username required="true"} <br />
 	{/fbvFormSection}
 
-	{fbvFormSection for="email"}
-		{fbvElement type="text" label="user.email" id="email" class="email" value=$email required="true"}
+	{fbvFormSection title="user.email"}
+		{fbvElement type="text" id="email" class="email" value=$email required="true"}
+	{/fbvFormSection}
+	{fbvFormSection list=true}
 		{fbvElement type="checkbox" id="sendNotify" value="1" label="manager.people.createUserSendNotify" checked=$sendNotify}
 	{/fbvFormSection}
 

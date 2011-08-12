@@ -42,13 +42,8 @@ class EnrollExistingReviewerForm extends ReviewerForm {
 	 * @param $request PKPRequest
 	 */
 	function execute($args, &$request) {
-		$seriesEditorSubmissionDao =& DAORegistry::getDAO('SeriesEditorSubmissionDAO');
-		$submission =& $seriesEditorSubmissionDao->getSeriesEditorSubmission($this->getMonographId());
-		$press =& $request->getPress();
-
 		// Assign a reviewer user group to an existing non-reviewer
 		$userId = (int) $this->getData('userId');
-		$userGroupId = (int) $this->getData('userGroupId');
 
 		$userGroupId = (int) $this->getData('userGroupId');
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */

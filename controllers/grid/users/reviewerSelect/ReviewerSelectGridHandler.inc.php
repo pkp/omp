@@ -27,7 +27,7 @@ class ReviewerSelectGridHandler extends GridHandler {
 	function ReviewerSelectGridHandler() {
 		parent::GridHandler();
 
-		$this->addRoleAssignment(array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
+		$this->addRoleAssignment(array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER, ROLE_ID_PRESS_ASSISTANT),
 				array('fetchGrid'));
 	}
 
@@ -67,7 +67,8 @@ class ReviewerSelectGridHandler extends GridHandler {
 				'',
 				null,
 				'controllers/grid/users/reviewerSelect/reviewerSelectRadioButton.tpl',
-				$cellProvider
+				$cellProvider,
+				array('width' => 5)
 			)
 		);
 		$this->addColumn(
@@ -76,7 +77,10 @@ class ReviewerSelectGridHandler extends GridHandler {
 				'author.users.contributor.name',
 				null,
 				'controllers/grid/gridCell.tpl',
-				$cellProvider
+				$cellProvider,
+				array('alignment' => COLUMN_ALIGNMENT_LEFT,
+						'width' => 30
+					)
 			)
 		);
 		$this->addColumn(
@@ -121,7 +125,8 @@ class ReviewerSelectGridHandler extends GridHandler {
 				'user.interests',
 				null,
 				'controllers/grid/gridCell.tpl',
-				$cellProvider
+				$cellProvider,
+				array('width' => 20)
 			)
 		);
 	}
@@ -195,8 +200,9 @@ class ReviewerSelectGridHandler extends GridHandler {
 	 */
 	function getFilterForm() {
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		$stageId = $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
 		import('controllers.grid.users.reviewerSelect.form.AdvancedSearchReviewerFilterForm');
-		$filterForm = new AdvancedSearchReviewerFilterForm($monograph);
+		$filterForm = new AdvancedSearchReviewerFilterForm($monograph, $stageId);
 		return $filterForm;
 	}
 
@@ -205,8 +211,6 @@ class ReviewerSelectGridHandler extends GridHandler {
 	 * @return array
 	 */
 	function _getFilterData() {
-		// Get the monograph
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		$filterData = array();
 
 		$interestDao =& DAORegistry::getDAO('InterestDAO');

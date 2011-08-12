@@ -20,13 +20,13 @@ $("#interests").tagit({ldelim}
 
 <!--  Message to reviewer textarea -->
 {fbvFormSection}
-	{fbvElement type="textarea" name="personalMessage" id="personalMessage" label="editor.review.personalMessageToReviewer" value=$personalMessage|escape size=$fbvStyles.size.MEDIUM}
+	{fbvElement type="textarea" name="personalMessage" id="personalMessage" label="editor.review.personalMessageToReviewer" value=$personalMessage|escape}
 {/fbvFormSection}
 
 <!--  Reviewer due dates (see http://jqueryui.com/demos/datepicker/) -->
 {fbvFormSection}
-	{fbvElement type="text" id="responseDueDate" name="responseDueDate" label="editor.responseDueDate" value=$responseDueDate }
-	{fbvElement type="text" id="reviewDueDate" name="reviewDueDate" label="editor.review.reviewDueDate" value=$reviewDueDate }
+	{fbvElement type="text" id="responseDueDate" name="responseDueDate" label="editor.responseDueDate" value=$responseDueDate inline=true size=$fbvStyles.size.MEDIUM}
+	{fbvElement type="text" id="reviewDueDate" name="reviewDueDate" label="editor.review.reviewDueDate" value=$reviewDueDate inline=true size=$fbvStyles.size.MEDIUM}
 {/fbvFormSection}
 
 <!-- All of the hidden inputs -->

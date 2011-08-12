@@ -16,29 +16,27 @@
 </script>
 
 {** This form contains the inputs that will be used to filter the list of reviewers in the grid below **}
-<form class="pkp_form" id="reviewerFilterForm" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.users.reviewerSelect.ReviewerSelectGridHandler" op="fetchGrid" monographId=$monographId}" method="post" class="pkp_controllers_reviewerSelector">
-
+<form class="pkp_form" id="reviewerFilterForm" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.users.reviewerSelect.ReviewerSelectGridHandler" op="fetchGrid"}" method="post" class="pkp_controllers_reviewerSelector">
 	{include file="common/formErrors.tpl"}
-
-	<input type="hidden" id="monographId" name="monographId" value="{$monographId}" />
 	{fbvFormArea id="reviewerSearchForm"}
+		<input type="hidden" id="monographId" name="monographId" value="{$monographId|escape}" />
+		<input type="hidden" id="stageId" name="stageId" value="{$stageId|escape}" />
+		<input type="hidden" name="done_min" value="0" />
+		<input type="hidden" name="avg_min" value="0" />
+		<input type="hidden" name="last_min" value="0" />
+		<input type="hidden" name="active_min" value="0" />
 		{fbvFormSection}
-			{fbvElement type="rangeSlider" id="done" label="manager.reviewerSearch.doneAmount" min=$reviewerValues.done_min max=$reviewerValues.done_max}
+			{fbvElement type="text" id="done_max" name="done_max" value=$reviewerValues.done_max|escape label="manager.reviewerSearch.doneAmount" inline=true size=$fbvStyles.size.MEDIUM}
+			{fbvElement type="text" id="avg_max" name="avg_max" value=$reviewerValues.done_max|escape label="manager.reviewerSearch.avgAmount"  inline=true size=$fbvStyles.size.MEDIUM}
+			{fbvElement type="text" id="last_max" name="last_max" value=$reviewerValues.last_max|escape label="manager.reviewerSearch.lastAmount" inline=true size=$fbvStyles.size.MEDIUM}
+			{fbvElement type="text" id="active_max" name="active_max" value=$reviewerValues.done_max|escape label="manager.reviewerSearch.activeAmount" inline=true size=$fbvStyles.size.MEDIUM}
 		{/fbvFormSection}
-		{fbvFormSection}
-			{fbvElement type="rangeSlider" id="avg" label="manager.reviewerSearch.avgAmount" min=$reviewerValues.avg_min max=$reviewerValues.avg_max}
-		{/fbvFormSection}
-		{fbvFormSection}
-			{fbvElement type="rangeSlider" id="last" label="manager.reviewerSearch.lastAmount" min=$reviewerValues.last_min max=$reviewerValues.last_max}
-		{/fbvFormSection}
-		{fbvFormSection}
-			{fbvElement type="rangeSlider" id="active" label="manager.reviewerSearch.activeAmount" min=$reviewerValues.active_min max=$reviewerValues.active_max}
-		{/fbvFormSection}
+		<br /><br /><br /><br /><br /><br />
 		{fbvFormSection}
 			{fbvElement type="keyword" id="interestSearch" available=$interestSearchKeywords label="manager.reviewerSearch.interests"}
 		{/fbvFormSection}
 		{fbvFormSection class="center"}
-			{fbvElement type="submit" id="submitFilter" label="common.refresh"}
+			{fbvElement type="submit" id="submitFilter" label="common.search"}
 		{/fbvFormSection}
 	{/fbvFormArea}
 </form>

@@ -16,21 +16,25 @@
 </script>
 
 <div id="advancedReviewerSearch" class="pkp_form_advancedReviewerSearch">
-	{** The grid that will display reviewers.  We have a JS handler for handling selections of this grid which will update a hidden element in the form below **}
-	{url|assign:reviewerSelectGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.users.reviewerSelect.ReviewerSelectGridHandler" op="fetchGrid" monographId=$monographId escape=false}
-	{load_url_in_div id='reviewerSelectGridContainer' url="$reviewerSelectGridUrl"}
+	<div id="searchGridAndButton">
+		{** The grid that will display reviewers.  We have a JS handler for handling selections of this grid which will update a hidden element in the form below **}
+		{url|assign:reviewerSelectGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.users.reviewerSelect.ReviewerSelectGridHandler" op="fetchGrid" monographId=$monographId stageId=$stageId escape=false}
+		{load_url_in_div id='reviewerSelectGridContainer' url="$reviewerSelectGridUrl"}
 
-	{** This button will get the reviewer selected in the grid and insert their ID into the form below **}
-	{fbvFormSection class="center"}
-		{fbvElement type="button" id="selectReviewerButton" label="editor.monograph.selectReviewer"}
-	{/fbvFormSection}
-	<br />
+		{** This button will get the reviewer selected in the grid and insert their ID into the form below **}
+		{fbvFormSection class="center"}
+			{fbvElement type="button" id="selectReviewerButton" label="editor.monograph.selectReviewer"}
+		{/fbvFormSection}
+		<br />
+	</div>
 
-	{** Display the name of the selected reviewer so the user knows their button click caused an action **}
-	{fbvFormSection title="editor.monograph.selectedReviewer"}
-		<span id="selectedReviewerName">{translate key="editor.monograph.selectReviewerInstructions"}</span>
-	{/fbvFormSection}
-	<br />
+	<div id="regularReviewerForm">
+		{** Display the name of the selected reviewer so the user knows their button click caused an action **}
+		{fbvFormSection title="editor.monograph.selectedReviewer"}
+			{fbvElement id="selectedReviewerName" type="text" disabled=true size=$fbvStyles.size.MEDIUM}
+		{/fbvFormSection}
+		<br />
 
-	{include file="controllers/grid/users/reviewer/form/advancedSearchReviewerAssignmentForm.tpl"}
+		{include file="controllers/grid/users/reviewer/form/advancedSearchReviewerAssignmentForm.tpl"}
+	</div>
 </div>

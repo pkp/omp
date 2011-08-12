@@ -28,6 +28,8 @@
 
 		$('#selectReviewerButton').click(
 				this.callbackWrapper(this.reviewerSelected));
+
+		$('#regularReviewerForm').hide();
 	};
 	$.pkp.classes.Helper.inherits(
 			$.pkp.controllers.AdvancedReviewerSearchHandler, $.pkp.classes.Handler);
@@ -50,13 +52,17 @@
 		var reviewerId = $selectedInput.val();
 
 		if (reviewerId) {
-			var reviewerName = $selectedInput.parent().next().children('span').html();
+			var reviewerName = $selectedInput.parent().next().children('span').html().trim();
 
 			// Update the hidden review id input
 			$('#reviewerId').val(reviewerId);
 
 			// Update the selected reviewer name container
-			$('#selectedReviewerName').hide().html(reviewerName).show(300);
+			$('#selectedReviewerName').val(reviewerName);
+
+			// Hide the grid now
+			$('#searchGridAndButton').hide();
+			$('#regularReviewerForm').show();
 		}
 	};
 

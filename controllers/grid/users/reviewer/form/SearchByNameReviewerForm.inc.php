@@ -34,6 +34,41 @@ class SearchByNameReviewerForm extends ReviewerForm {
 
 		$this->readUserVars(array('reviewerId'));
 	}
+
+	/**
+	 * Fetch the form
+	 * @see Form::fetch
+	 */
+	function fetch(&$request) {
+		// Pass along the request vars
+		$actionArgs = $request->getUserVars();
+		$actionArgs['selectionType'] = REVIEWER_SELECT_ADVANCED_SEARCH;
+		// but change the selectionType for each action
+		$advancedSearchAction = new LinkAction(
+									'advancedSearch',
+									new AjaxAction($request->url(null, null, 'reloadReviewerForm', null, $actionArgs)),
+									__('manager.reviewerSearch.advancedSearch.short')
+								);
+		$this->setReviewerFormAction($advancedSearchAction);
+		$actionArgs['selectionType'] = REVIEWER_SELECT_CREATE;
+		// but change the selectionType for each action
+		$advancedSearchAction = new LinkAction(
+									'selectCreate',
+									new AjaxAction($request->url(null, null, 'reloadReviewerForm', null, $actionArgs)),
+									__('editor.review.createReviewer')
+								);
+		$this->setReviewerFormAction($advancedSearchAction);
+		$actionArgs['selectionType'] = REVIEWER_SELECT_ENROLL_EXISTING;
+		// but change the selectionType for each action
+		$advancedSearchAction = new LinkAction(
+									'enrolExisting',
+									new AjaxAction($request->url(null, null, 'reloadReviewerForm', null, $actionArgs)),
+									__('editor.review.enrollReviewer.short')
+								);
+		$this->setReviewerFormAction($advancedSearchAction);
+
+		return parent::fetch($request);
+	}
 }
 
 ?>
