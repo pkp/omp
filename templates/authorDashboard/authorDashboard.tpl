@@ -47,7 +47,7 @@
 				{include file="linkAction/linkAction.tpl" action=$uploadFileAction contextId="authorDashboard"}
 			</div>
 		{/if}
-		<div id="viewMetadata">
+		<div id="{$viewMetadataAction->getId()}">
 			{include file="linkAction/linkAction.tpl" action=$viewMetadataAction contextId="authorDashboard"}
 		</div>
 	</div>
