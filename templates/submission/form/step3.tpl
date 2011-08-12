@@ -32,10 +32,10 @@
 	<!--  General Information -->
 	{fbvFormArea id="generalInformation" title="submission.submit.generalInformation"}
 		{fbvFormSection title="monograph.title" for="title"}
-			{fbvElement type="text" name="title[$formLocale]" id="title" value=$title[$formLocale] maxlength="255"}
+			{fbvElement type="text" name="title" id="title" value=$title multilingual=true maxlength="255"}
 		{/fbvFormSection}
 		{fbvFormSection title="submission.submit.briefSummary" for="abstract"}
-			{fbvElement type="textarea" name="abstract[$formLocale]" id="abstract" value=$abstract[$formLocale]  rich=true}
+			{fbvElement type="textarea" name="abstract" id="abstract" value=$abstract multilingual=true rich=true}
 		{/fbvFormSection}
 		{fbvFormSection title="submission.submit.metadata"}
 			{fbvElement type="keyword" id="disciplines" label="search.discipline"}

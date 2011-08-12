@@ -32,7 +32,7 @@ class WorkflowHandler extends Handler {
 
 		$this->addRoleAssignment(
 			array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER, ROLE_ID_PRESS_ASSISTANT),
-			array('submission', 'internalReview', 'externalReview', 'copyediting', 'production')
+			array('submission', 'internalReview', 'internalReviewRound', 'externalReview', 'externalReviewRound', 'copyediting', 'production')
 		);
 	}
 
@@ -141,7 +141,10 @@ class WorkflowHandler extends Handler {
 	 * @param $request PKPRequest
 	 */
 	function internalReview($args, &$request) {
-		$this->_review($args, $request);
+		// Use different ops so we can identify stage by op.
+		$templateMgr =& TemplateManager::getManager();
+		$templateMgr->assign('reviewRoundOp', 'internalReviewRound');
+		return $this->_review($args, $request);
 	}
 
 	/**
@@ -150,7 +153,10 @@ class WorkflowHandler extends Handler {
 	 * @param $request PKPRequest
 	 */
 	function externalReview($args, &$request) {
-		$this->_review($args, $request);
+		// Use different ops so we can identify stage by op.
+		$templateMgr =& TemplateManager::getManager();
+		$templateMgr->assign('reviewRoundOp', 'externalReviewRound');
+		return $this->_review($args, $request);
 	}
 
 	/**
@@ -184,23 +190,6 @@ class WorkflowHandler extends Handler {
 		$templateMgr->assign('currentRound', $currentRound);
 		$templateMgr->assign('selectedRound', $selectedRound);
 
-		// Assign editor decision actions to the template.
-		$additionalActionArgs = array(
-			'stageId' => $selectedStageId,
-			'round' => $selectedRound
-		);
-		if ($selectedStageId == WORKFLOW_STAGE_ID_INTERNAL_REVIEW) {
-			$callback = '_internalReviewStageDecisions';
-		} elseif ($selectedStageId == WORKFLOW_STAGE_ID_EXTERNAL_REVIEW) {
-			$callback = '_externalReviewStageDecisions';
-		}
-		$this->_assignEditorDecisionActions($request, $callback, $additionalActionArgs);
-
-		// Retrieve and assign the review round status.
-		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO'); /* @var $reviewRoundDao ReviewRoundDAO */
-		$reviewRound =& $reviewRoundDao->build($monograph->getId(), $selectedStageId, $selectedRound);
-		$templateMgr->assign('roundStatus', $reviewRound->getStatusKey());
-
 		if ($monograph->getStageId() == $selectedStageId) {
 			$dispatcher =& $request->getDispatcher();
 			$newRoundAction = new LinkAction(
@@ -224,6 +213,63 @@ class WorkflowHandler extends Handler {
 
 		// Render the view.
 		$templateMgr->display('workflow/review.tpl');
+	}
+
+	/**
+	 * JSON fetch the internal review round info (tab).
+	 * @param $args array
+	 * @param $request PKPRequest
+	 */
+	function internalReviewRound($args, &$request) {
+		return $this->_reviewRound($args, $request);
+	}
+
+	/**
+	 * JSON fetch the external review round info (tab).
+	 * @param $args array
+	 * @param $request PKPRequest
+	 */
+	function externalReviewRound($args, &$request) {
+		return $this->_reviewRound($args, $request);
+	}
+
+	/**
+	 * Internal function to handle both internal and external reviews round info (tab content).
+	 * @param $request PKPRequest
+	 * @param $args array
+	 */
+	function _reviewRound($args, &$request) {
+		// Retrieve the authorized submission.
+		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		$stageId = $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
+
+		// FIXME: #6199 make sure this is not creater than the current round for this stage
+		if (!(count($args) > 1 && is_numeric($args[1]))) fatalError('Invalid round given!');
+		$round = (int)$args[1];
+
+		// Add the review stage and the round information to the template.
+		$templateMgr =& TemplateManager::getManager();
+		$templateMgr->assign('stageId', $stageId);
+		$templateMgr->assign('round', $round);
+
+		// Assign editor decision actions to the template.
+		$additionalActionArgs = array(
+			'stageId' => $stageId,
+			'round' => $round
+		);
+		if ($stageId == WORKFLOW_STAGE_ID_INTERNAL_REVIEW) {
+			$callback = '_internalReviewStageDecisions';
+		} elseif ($stageId == WORKFLOW_STAGE_ID_EXTERNAL_REVIEW) {
+			$callback = '_externalReviewStageDecisions';
+		}
+		$this->_assignEditorDecisionActions($request, $callback, $additionalActionArgs);
+
+		// Retrieve and assign the review round status.
+		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO'); /* @var $reviewRoundDao ReviewRoundDAO */
+		$reviewRound =& $reviewRoundDao->build($monograph->getId(), $stageId, $round);
+		$templateMgr->assign('roundStatus', $reviewRound->getStatusKey());
+
+		return $templateMgr->fetchJson('workflow/reviewRound.tpl');
 	}
 
 	/**
@@ -271,7 +317,9 @@ class WorkflowHandler extends Handler {
 		static $operationAssignment = array(
 			'submission' => WORKFLOW_STAGE_ID_SUBMISSION,
 			'internalReview' => WORKFLOW_STAGE_ID_INTERNAL_REVIEW,
+			'internalReviewRound' => WORKFLOW_STAGE_ID_INTERNAL_REVIEW,
 			'externalReview' => WORKFLOW_STAGE_ID_EXTERNAL_REVIEW,
+			'externalReviewRound' => WORKFLOW_STAGE_ID_EXTERNAL_REVIEW,
 			'copyediting' => WORKFLOW_STAGE_ID_EDITING,
 			'production' => WORKFLOW_STAGE_ID_PRODUCTION
 		);

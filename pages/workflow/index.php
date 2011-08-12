@@ -19,7 +19,9 @@
 switch ($op) {
 	case 'submission':
 	case 'internalReview':
+	case 'internalReviewRound':
 	case 'externalReview':
+	case 'externalReviewRound':
 	case 'copyediting':
 	case 'production':
 		define('HANDLER_CLASS', 'WorkflowHandler');
