@@ -26,7 +26,8 @@
 	<div id="metadataAccordion">
 		<h3><a href="#">{translate key="cataloguing metadata"}</a></h3>
 		<div>
-			cataloguing metadata container
+			{url|assign:submissionMetadataViewFormUrl router=$smarty.const.ROUTE_COMPONENT  component="modals.submissionMetadata.ProductionSubmissionMetadataHandler" op="fetch" monographId=$monograph->getId()}
+			{load_url_in_div id="submissionMetadataFormWrapper" url=$submissionMetadataViewFormUrl}
 		</div>
 	</div>
 	<div id="publicationFormatContainer">
