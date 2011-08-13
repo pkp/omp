@@ -10,11 +10,7 @@
 <span id="{$cellId}" class="pkp_linkActions">
 	{if count($actions) gt 0}
 		{assign var=defaultCellAction value=$actions[0]}
-		{if is_a($defaultCellAction, 'LegacyLinkAction')}
-			{include file="linkAction/legacyLinkAction.tpl" id=$cellId|concat:"-action-":$defaultCellAction->getId() action=$defaultCellAction objectId=$cellId actionCss="task"}
-		{else}
-			{include file="linkAction/linkAction.tpl" action=$defaultCellAction contextId=$cellId}
-		{/if}
+		{include file="linkAction/linkAction.tpl" action=$defaultCellAction contextId=$cellId}
 	{else}
 		<a class="task {$status|escape}">status</a>
 	{/if}
