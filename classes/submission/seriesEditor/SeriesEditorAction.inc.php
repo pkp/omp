@@ -144,7 +144,7 @@ class SeriesEditorAction extends Action {
 	 * @param $reviewDueDate datetime optional
 	 * @param $responseDueDate datetime optional
 	 */
-	function addReviewer($request, $seriesEditorSubmission, $reviewerId, $stageId, $round = null, $reviewDueDate = null, $responseDueDate = null) {
+	function addReviewer($request, $seriesEditorSubmission, $reviewerId, $stageId, $round = null, $reviewDueDate = null, $responseDueDate = null, $reviewMethod = null) {
 		$seriesEditorSubmissionDao =& DAORegistry::getDAO('SeriesEditorSubmissionDAO');
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		$userDao =& DAORegistry::getDAO('UserDAO');
@@ -168,7 +168,9 @@ class SeriesEditorAction extends Action {
 			$reviewAssignment->setDateAssigned(Core::getCurrentDate());
 			$reviewAssignment->setStageId($stageId);
 			$reviewAssignment->setRound($round);
-
+			if (isset($reviewMethod)) {
+				$reviewAssignment->setReviewMethod($reviewMethod);
+			}
 			$reviewAssignmentDao->insertObject($reviewAssignment);
 
 			// Assign review form automatically if needed

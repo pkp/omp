@@ -101,17 +101,23 @@ class ReviewerForm extends Form {
 			}
 		}
 
+		// Get review assignment related data;
 		$round = (int) $request->getUserVar('round');
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+
 		// FIXME: Bug #6199
 		$stageId = (int) $request->getUserVar('stageId');
+		$reviewAssignment =& $reviewAssignmentDao->getReviewAssignment($this->getMonographId(), $reviewerId, $round, $stageId);
 
 		// Get the review method (open, blind, or double-blind)
-		// FIXME: Bug #6403, Need to be able to specify the review method
-		$reviewMethod = SUBMISSION_REVIEW_METHOD_DOUBLEBLIND;
+		if (isset($reviewAssignment) && $reviewAssignment->getReviewMethod() != false) {
+			$reviewMethod = $reviewAssignment->getReviewMethod();
+		} else {
+			// Set default value.
+			$reviewMethod = SUBMISSION_REVIEW_METHOD_BLIND;
+		}
 
 		// Get the response/review due dates or else set defaults
-		$reviewAssignment =& $reviewAssignmentDao->getReviewAssignment($this->getMonographId(), $reviewerId, $round, $stageId);
 		if (isset($reviewAssignment) && $reviewAssignment->getDueDate() != null) {
 			$reviewDueDate = strftime(Config::getVar('general', 'date_format_short'), strtotime($reviewAssignment->getDueDate()));
 		} else {
@@ -147,7 +153,16 @@ class ReviewerForm extends Form {
 	 * @see Form::fetch()
 	 */
 	function fetch(&$request) {
+
+		// Get the review method options.
+		$reviewAssignmentDao = DAORegistry::getDAO('ReviewAssignmentDAO');
+		$reviewMethods = $reviewAssignmentDao->getReviewMethodsTranslationKeys();
+
+		// Remove the open method until we can implement it.
+		unset($reviewMethods[SUBMISSION_REVIEW_METHOD_OPEN]);
+
 		$templateMgr =& TemplateManager::getManager();
+		$templateMgr->assign('reviewMethods', $reviewMethods);
 		$templateMgr->assign('reviewerActions', $this->getReviewerFormActions());
 
 		// Get the reviewer user groups for the create new reviewer/enroll existing user tabs
@@ -176,7 +191,8 @@ class ReviewerForm extends Form {
 			'round',
 			'personalMessage',
 			'responseDueDate',
-			'reviewDueDate'
+			'reviewDueDate',
+			'reviewMethod'
 		));
 
 		$interests = $this->getData('interestsKeywords');
@@ -202,10 +218,11 @@ class ReviewerForm extends Form {
 		$reviewDueDate = $this->getData('reviewDueDate');
 		$responseDueDate = $this->getData('responseDueDate');
 		$reviewerId = (int) $this->getData('reviewerId');
+		$reviewMethod = (int) $this->getData('reviewMethod');
 
 		import('classes.submission.seriesEditor.SeriesEditorAction');
 		$seriesEditorAction = new SeriesEditorAction();
-		$seriesEditorAction->addReviewer($request, $submission, $reviewerId, $stageId, $round, $reviewDueDate, $responseDueDate);
+		$seriesEditorAction->addReviewer($request, $submission, $reviewerId, $stageId, $round, $reviewDueDate, $responseDueDate, $reviewMethod);
 
 		// Get the reviewAssignment object now that it has been added
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO'); /* @var $reviewAssignmentDao ReviewAssignmentDAO */

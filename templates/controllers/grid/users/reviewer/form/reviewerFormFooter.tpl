@@ -29,6 +29,18 @@ $("#interests").tagit({ldelim}
 	{fbvElement type="text" id="reviewDueDate" name="reviewDueDate" label="editor.review.reviewDueDate" value=$reviewDueDate inline=true size=$fbvStyles.size.MEDIUM}
 {/fbvFormSection}
 
+{fbvFormSection list=true title="editor.submissionReview.reviewType"}
+	{foreach from=$reviewMethods key=methodId item=methodTranslationKey}
+		{assign var=elementId value="reviewMethod"|concat:"-"|concat:$methodId}
+		{if $reviewMethod == $methodId}
+			{assign var=elementChecked value=true}
+		{else}
+			{assign var=elementChecked value=false}
+		{/if}
+		{fbvElement type="radio" name="reviewMethod" id=$elementId value=$methodId checked=$elementChecked label=$methodTranslationKey}
+	{/foreach}
+{/fbvFormSection}
+
 <!-- All of the hidden inputs -->
 <input type="hidden" name="selectionType" value={$selectionType|escape} />
 <input type="hidden" name="monographId" value={$monographId|escape} />
