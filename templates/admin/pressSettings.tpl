@@ -55,7 +55,8 @@ function doSubmit() {
 		<span class="instruct">{translate key="admin.presses.urlWillBe" sampleUrl=$sampleUrl}</span>
 	{/fbvFormSection}
 	{fbvFormSection title="admin.presses.enablePressInstructions" for="enabled" list=true}
-		{fbvElement type="checkbox" id="enabled" checked=$enabled value=$description}
+		{if $enabled}{assign var="enabled" value="checked"}{/if}
+		{fbvElement type="checkbox" id="enabled" checked=$enabled|escape value="1"}
 	{/fbvFormSection}
 
 	<p><span class="formRequired">{translate key="common.requiredField"}</span></p>

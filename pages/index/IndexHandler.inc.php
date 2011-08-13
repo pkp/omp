@@ -129,7 +129,7 @@ class IndexHandler extends Handler {
 		if ($requestedPath == 'index') {
 			// No press requested. Check how many presses has the site.
 			$pressDao =& DAORegistry::getDAO('PressDAO'); /* @var $pressDao PressDAO */
-			$presses =& $pressDao->getPresses();
+			$presses =& $pressDao->getEnabledPresses();
 			$pressesCount = $presses->getCount();
 			if ($pressesCount === 1) {
 				// Return the unique press.
