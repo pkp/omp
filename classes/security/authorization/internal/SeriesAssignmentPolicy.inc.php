@@ -52,7 +52,7 @@ class SeriesAssignmentPolicy extends AuthorizationPolicy {
 		// Series editors can access all submissions in their series.
 		// Even those they've not been explicitly assigned to.
 		$seriesEditorsDao =& DAORegistry::getDAO('SeriesEditorsDAO');
-		if ($seriesEditorDao->editorExists($press->getId(), $monograph->getSeriesId(), $user->getId())) {
+		if ($seriesEditorsDao->editorExists($press->getId(), $monograph->getSeriesId(), $user->getId())) {
 			return AUTHORIZATION_PERMIT;
 		} else {
 			return AUTHORIZATION_DENY;

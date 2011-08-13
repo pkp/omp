@@ -92,10 +92,17 @@ class UserGroupDAO extends PKPUserGroupDAO {
 		);
 	}
 
-	function assignmentExists($pressId, $userGroupId, $stageId) {
+	/**
+	 * Check to see whether a user is assigned to a stage ID via a user group.
+	 * @param $pressId int
+	 * @param $userId int
+	 * @param $staeId int
+	 * @return boolean
+	 */
+	function userAssignmentExists($pressId, $userId, $stageId) {
 		$result =& $this->retrieve(
-			'SELECT COUNT(*) FROM user_group_stage WHERE press_id = ? AND user_group_id = ? AND stage_id = ?',
-			array((int) $pressId, (int) $userGroupId, (int) $stageId)
+			'SELECT COUNT(*) FROM user_group_stage ugs, user_user_groups uug WHERE ugs.user_group_id = uug.user_group_id AND ugs.press_id = ? AND uug.user_id = ? AND ugs.stage_id = ?',
+			array((int) $pressId, (int) $userId, (int) $stageId)
 		);
 
 		$returner = isset($result->fields[0]) && $result->fields[0] > 0 ? true : false;

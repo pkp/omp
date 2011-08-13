@@ -35,20 +35,17 @@ class WorkflowSettingsAssignmentPolicy extends AuthorizationPolicy {
 	 */
 	function effect() {
 		$router =& $this->_request->getRouter();
+		$user =& $this->_request->getUser();
 
 		// Get the press.
 		$press =& $router->getContext($this->_request);
 		if (!is_a($press, 'Press')) return AUTHORIZATION_DENY;
 
-		// Get the authorized user group.
-		$userGroup = $this->getAuthorizedContextObject(ASSOC_TYPE_USER_GROUP);
-		if (!is_integer($userGroup, 'UserGroup')) return AUTHORIZATION_DENY;
-
 		// Retrieve the requested workflow stage.
 		switch(true) {
 			case is_a($router, 'PKPPageRouter'):
 				// We expect the requested page to be a valid workflow path.
-				$stagePath = $router->getRequestedPage($this->_request);
+				$stagePath = $router->getRequestedOp($this->_request);
 				break;
 
 			case is_a($router, 'PKPComponentRouter'):
@@ -63,9 +60,11 @@ class WorkflowSettingsAssignmentPolicy extends AuthorizationPolicy {
 		$stageId = $userGroupDao->getIdFromPath($stagePath);
 		if (!is_integer($stageId)) return AUTHORIZATION_DENY;
 
+		if (!is_a($user, 'User')) return AUTHORIZATION_DENY;
+
 		// Only grant access to workflow stages that have been explicitly
 		// assigned to the authorized user group in the press setup.
-		if ($userGroupDao->assignmentExists($press->getId(), $userGroup->getId(), $stageId)) {
+		if ($userGroupDao->userAssignmentExists($press->getId(), $user->getId(), $stageId)) {
 			return AUTHORIZATION_PERMIT;
 		} else {
 			return AUTHORIZATION_DENY;
