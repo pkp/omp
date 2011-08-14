@@ -53,7 +53,11 @@ class IndexHandler extends Handler {
 			if ($press) {
 				$request->redirect($press->getPath(), 'dashboard');
 			} else {
-				$request->redirect(null, 'admin', 'createPress');
+				if (Validation::isSiteAdmin()) {
+					$request->redirect(null, 'admin', 'createPress');
+				} else {
+					$request->redirect(null, 'user', 'index');
+				}
 			}
 		} else {
 			// Public access.
@@ -129,7 +133,7 @@ class IndexHandler extends Handler {
 		if ($requestedPath == 'index') {
 			// No press requested. Check how many presses has the site.
 			$pressDao =& DAORegistry::getDAO('PressDAO'); /* @var $pressDao PressDAO */
-			$presses =& $pressDao->getEnabledPresses();
+			$presses =& $pressDao->getPresses();
 			$pressesCount = $presses->getCount();
 			if ($pressesCount === 1) {
 				// Return the unique press.
