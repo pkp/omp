@@ -34,7 +34,8 @@
 	        {fbvElement type="textarea" multilingual=true name="description" id="description" value=$description size=$fbvStyles.size.MEDIUM  rich=true}
 	    {/fbvFormSection}
 	    {fbvFormSection list=true}
-	        {fbvElement type="checkbox" id="pressEnabled" value="1" checked=$pressEnabled label="manager.setup.enablePressInstructions"}
+		{if $enabled}{assign var="enabled" value="checked"}{/if}
+		{fbvElement type="checkbox" id="pressEnabled" value="1" checked=$enabled label="manager.setup.enablePressInstructions"}
 	    {/fbvFormSection}
 		{fbvFormSection title="manager.masthead.title" for="masthead"}
 			{fbvElement type="textarea" multilingual=true id="masthead" value=$masthead rich=true}

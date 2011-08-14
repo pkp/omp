@@ -84,6 +84,7 @@ class PressSettingsForm extends Form {
 	function initData($request) {
 		$press =& $request->getPress();
 		$this->_data = $press->getSettings();
+		$this->setData('enabled', (int)$press->getEnabled()); 
 	}
 
 	/**
