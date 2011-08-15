@@ -17,7 +17,7 @@
 
 <form class="pkp_form" id="policiesForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.PressSettingsTabHandler" op="saveFormData" tab="policies"}">
 	{include file="common/formErrors.tpl"}
-	{include file="controllers/tab/settings/wizardMode.tpl wizardMode=$wizardMode}
+	{include file="controllers/tab/settings/wizardMode.tpl" wizardMode=$wizardMode}
 
 	{fbvFormArea id="policiesFormArea"}
 		{fbvFormSection title="manager.setup.authorCopyrightNotice"}
