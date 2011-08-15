@@ -23,32 +23,28 @@
 		{fbvFormSection title="manager.setup.authorCopyrightNotice"}
 			{url|assign:"sampleCopyrightWordingUrl" page="information" op="sampleCopyrightWording"}
 			<p>{translate key="manager.setup.authorCopyrightNoticeDescription" sampleCopyrightWordingUrl=$sampleCopyrightWordingUrl}</p>
-			{fbvElement type="textarea" multilingual="true" name="copyrightNotice" id="copyrightNotice" value=$copyrightNotice size=$fbvStyles.size.MEDIUM}
+			{fbvElement type="textarea" multilingual="true" name="copyrightNotice" id="copyrightNotice" value=$copyrightNotice}
 		{/fbvFormSection}
 		{fbvFormSection list=true}
 			{fbvElement type="checkbox" id="includeCreativeCommons" value="1" checked=$includeCreativeCommons label="manager.setup.includeCreativeCommons"}
 			{fbvElement type="checkbox" id="copyrightNoticeAgree" value="1" checked=$copyrightNoticeAgree label="manager.setup.authorCopyrightNoticeAgree"}
 		{/fbvFormSection}
 		{fbvFormSection title="manager.setup.privacyStatement"}
-			{fbvElement type="textarea" multilingual="true" name="privacyStatement" id="privacyStatement" value=$privacyStatement size=$fbvStyles.size.MEDIUM}
+			{fbvElement type="textarea" multilingual="true" name="privacyStatement" id="privacyStatement" value=$privacyStatement}
 		{/fbvFormSection}
 
 		<div {if $wizardMode}class="pkp_form_hidden"{/if}>
-			{fbvFormSection title="manager.setup.focusAndScopeOfPress"}
-				<p>{translate key="manager.setup.focusAndScopeDescription"}</p>
-				{fbvElement type="textarea" multilingual=true name="focusScopeDesc" id="focusScopeDesc" value=$focusScopeDesc size=$fbvStyles.size.MEDIUM  rich=true}
+			{fbvFormSection label="manager.setup.focusAndScopeOfPress" description="manager.setup.focusAndScopeDescription"}
+				{fbvElement type="textarea" multilingual=true name="focusScopeDesc" id="focusScopeDesc" value=$focusScopeDesc rich=true}
 			{/fbvFormSection}
-			{fbvFormSection title="manager.setup.openAccessPolicy"}
-				<p>{translate key="manager.setup.openAccessPolicyDescription"}</p>
-				{fbvElement type="textarea" multilingual="true" name="openAccessPolicy" id="openAccessPolicy" value=$openAccessPolicy size=$fbvStyles.size.MEDIUM  rich=true}
-				<p>{translate key="manager.setup.securitySettingsDescription"}</p>
+			{fbvFormSection label="manager.setup.openAccessPolicy" description="manager.setup.openAccessPolicyDescription"}
+				{fbvElement type="textarea" multilingual="true" name="openAccessPolicy" id="openAccessPolicy" value=$openAccessPolicy label="manager.setup.securitySettingsDescription" rich=true}
 			{/fbvFormSection}
-			{fbvFormSection title="manager.setup.reviewPolicy"}
-				<p>{translate key="manager.setup.peerReviewDescription"}</p>
-				{fbvElement type="textarea" multilingual="true" name="reviewPolicy" id="reviewPolicy" value=$reviewPolicy size=$fbvStyles.size.MEDIUM}
+			{fbvFormSection label="manager.setup.reviewPolicy" description="manager.setup.peerReviewDescription"}
+				{fbvElement type="textarea" multilingual="true" name="reviewPolicy" id="reviewPolicy" value=$reviewPolicy}
 			{/fbvFormSection}
 			{fbvFormSection title="navigation.competingInterestPolicy"}
-				{fbvElement type="textarea" multilingual="true" id="competingInterestsPolicy" value=$competingInterestsPolicy size=$fbvStyles.size.MEDIUM}
+				{fbvElement type="textarea" multilingual="true" id="competingInterestsPolicy" value=$competingInterestsPolicy}
 			{/fbvFormSection}
 		</div>
 	{/fbvFormArea}

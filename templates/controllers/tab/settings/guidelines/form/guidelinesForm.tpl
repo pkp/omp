@@ -19,9 +19,8 @@
 	{include file="common/formErrors.tpl"}
 
 	{fbvFormArea id="focusAndScopeDescription"}
-		{fbvFormSection title="manager.setup.authorGuidelines"}
-			<p>{translate key="manager.setup.authorGuidelinesDescription"}</p>
-			{fbvElement type="textarea" multilingual=true name="authorGuidelines" id="authorGuidelines" value=$authorGuidelines size=$fbvStyles.size.MEDIUM  rich=true}
+		{fbvFormSection label="manager.setup.authorGuidelines" description="manager.setup.authorGuidelinesDescription"}
+			{fbvElement type="textarea" multilingual=true name="authorGuidelines" id="authorGuidelines" value=$authorGuidelines rich=true}
 		{/fbvFormSection}
 	{/fbvFormArea}
 

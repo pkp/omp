@@ -18,12 +18,8 @@
 <form class="pkp_form" id="pressIdentificationForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.PressSettingsTabHandler" op="saveFormData" tab="pressIdentification"}">
 	{include file="common/formErrors.tpl"}
 
-	<h3>{translate key="manager.setup.publicIdentifier"}</h3>
-
-	<p>{translate key="manager.setup.uniqueIdentifierDescription"}</p>
-
 	{fbvFormArea id="publicIdentifier"}
-		{fbvFormSection list="true" title="manager.setup.uniqueIdentifier"}
+		{fbvFormSection list="true" label="manager.setup.uniqueIdentifier" description="manager.setup.uniqueIdentifierDescription"}
 			{fbvElement type="checkbox" id="enablePublicMonographId" value="1" checked=$enablePublicMonographId label="manager.setup.enablePublicMonographId"}
 			{fbvElement type="checkbox" id="enablePublicGalleyId" value="1" checked=$enablePublicGalleyId label="manager.setup.enablePublicGalleyId"}
 		{/fbvFormSection}
