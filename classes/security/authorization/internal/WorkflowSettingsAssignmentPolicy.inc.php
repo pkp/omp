@@ -41,23 +41,24 @@ class WorkflowSettingsAssignmentPolicy extends AuthorizationPolicy {
 		$press =& $router->getContext($this->_request);
 		if (!is_a($press, 'Press')) return AUTHORIZATION_DENY;
 
+		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+
 		// Retrieve the requested workflow stage.
 		switch(true) {
 			case is_a($router, 'PKPPageRouter'):
 				// We expect the requested page to be a valid workflow path.
 				$stagePath = $router->getRequestedOp($this->_request);
+				$stageId = $userGroupDao->getIdFromPath($stagePath);
 				break;
 
 			case is_a($router, 'PKPComponentRouter'):
-				// We expect a named 'workflowStage' argument.
-				$stagePath = $this->_request->getUserVar('workflowStage');
+				// We expect a named 'stageId' argument.
+				$stageId = (int) $this->_request->getUserVar('stageId');
 				break;
 
 			default:
 				fatalError('Unknown stage type.');
 		}
-		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
-		$stageId = $userGroupDao->getIdFromPath($stagePath);
 		if (!is_integer($stageId)) return AUTHORIZATION_DENY;
 
 		if (!is_a($user, 'User')) return AUTHORIZATION_DENY;
