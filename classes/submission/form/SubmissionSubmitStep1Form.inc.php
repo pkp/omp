@@ -73,18 +73,13 @@ class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 		$authorUserGroupAssignments =& $userGroupAssignmentDao->getByUserId($user->getId(), $this->press->getId(), ROLE_ID_AUTHOR);
 		if(!$authorUserGroupAssignments->wasEmpty()) {
-			if($authorUserGroupAssignments->getCount() > 1) {
-				$authorUserGroupNames = array();
-				while($authorUserGroupAssignment =& $authorUserGroupAssignments->next()) {
-					$authorUserGroup =& $userGroupDao->getById($authorUserGroupAssignment->getUserGroupId());
-					$authorUserGroupNames[$authorUserGroup->getId()] = $authorUserGroup->getLocalizedName();
-					unset($authorUserGroupAssignment);
-				}
-				$templateMgr->assign('authorUserGroupOptions', $authorUserGroupNames);
-			} else {
-				$authorUserGroup =& $authorUserGroupAssignments->next();
-				$templateMgr->assign('authorUserGroupOptions', $authorUserGroup->getUserGroupId());
+			$authorUserGroupNames = array();
+			while($authorUserGroupAssignment =& $authorUserGroupAssignments->next()) {
+				$authorUserGroup =& $userGroupDao->getById($authorUserGroupAssignment->getUserGroupId());
+				$authorUserGroupNames[$authorUserGroup->getId()] = $authorUserGroup->getLocalizedName();
+				unset($authorUserGroupAssignment);
 			}
+			$templateMgr->assign('authorUserGroupOptions', $authorUserGroupNames);
 		} else {
 			// The user doesn't have any author user group assignments.  They should be either an editor or manager.
 			$userGroupNames = array();

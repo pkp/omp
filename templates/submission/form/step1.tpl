@@ -31,7 +31,8 @@
 			{fbvElement type="select" id="authorUserGroup" from=$authorUserGroupOptions translate=false}
 		{/fbvFormSection}
 	{else}
-		{fbvElement type="hidden" id="authorUserGroup" value=$authorUserGroupOptions}
+		{foreach from=$authorUserGroupOptions key="key" item="authorUserGroupName"}{assign var=authorUserGroupId value=$key}{/foreach}
+		{fbvElement type="hidden" id="authorUserGroup" value=$authorUserGroupId}
 	{/if}
 
 	<!-- Submission Type -->
