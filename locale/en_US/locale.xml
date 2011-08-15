@@ -133,6 +133,7 @@
 	<message key="user.noRoles.submitMonographRegClosed">Submit an Monograph: Author registration is currently disabled.</message>
 	<message key="user.noRoles.regReviewer">Register as a Reviewer</message>
 	<message key="user.noRoles.regReviewerClosed">Register as a Reviewer: Reviewer registration is currently disabled.</message>
+	<message key="user.noRoles.selectUsersWithoutRoles">Include users with no roles in this press.</message>
 
 	<!-- Roles -->
 	<message key="user.role.manager">Press Manager</message>

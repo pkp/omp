@@ -144,18 +144,32 @@ class UserGridHandler extends GridHandler {
 		// Get all users for this press that match search criteria.
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 		$rangeInfo = $this->getRangeInfo('users');
-		$users =& $userGroupDao->getUsersById(
+		$rowData = array();
+		$pressIds = array();
+
+		if ($filter['includeNoRole'] == null) {
+			$pressIds[] = $pressId;
+		} else {
+			$pressDao =& DAORegistry::getDAO('PressDAO');
+			$presses =& $pressDao->getPresses();
+			while ($press =& $presses->next()) {
+				$pressIds[] = $press->getId();
+			}
+		}
+
+		foreach ($pressIds as $pressId) {
+			$users =& $userGroupDao->getUsersById(
 			$filter['userGroup'],
 			$pressId,
 			$filter['searchField'],
 			$filter['search'],
 			$filter['searchMatch'],
 			$rangeInfo
-		);
+			);
 
-		$rowData = array();
-		while ($user =& $users->next()) {
-			$rowData[$user->getId()] = $user;
+			while ($user =& $users->next()) {
+				$rowData[$user->getId()] = $user;
+			}
 		}
 
 		return $rowData;
@@ -204,12 +218,14 @@ class UserGridHandler extends GridHandler {
 	 */
 	function getFilterSelectionData($request) {
 		// Get the search terms.
+		$includeNoRole = $request->getUserVar('includeNoRole') ? (int) $request->getUserVar('includeNoRole') : null;
 		$userGroup = $request->getUserVar('userGroup') ? (int)$request->getUserVar('userGroup') : null;
 		$searchField = $request->getUserVar('searchField');
 		$searchMatch = $request->getUserVar('searchMatch');
 		$search = $request->getUserVar('search');
 
 		return $filterSelectionData = array(
+			'includeNoRole' => $includeNoRole,
 			'userGroup' => $userGroup,
 			'searchField' => $searchField,
 			'searchMatch' => $searchMatch,
