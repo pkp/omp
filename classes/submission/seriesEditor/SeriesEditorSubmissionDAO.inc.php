@@ -391,7 +391,7 @@ class SeriesEditorSubmissionDAO extends DAO {
 		}
 
 		$result =& $this->retrieve(
-			'SELECT	u.*
+			'SELECT	DISTINCT u.*
 			FROM	users u
 				LEFT JOIN user_user_groups uug ON (uug.user_id = u.user_id)
 				LEFT JOIN user_groups ug ON (ug.user_group_id = uug.user_group_id)
