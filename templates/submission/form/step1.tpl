@@ -28,11 +28,11 @@
 	<!-- Author user group selection (only appears if user has > 1 author user groups) -->
 	{if count($authorUserGroupOptions) > 1}
 		{fbvFormSection title="submission.submitterUserGroup" inline=true size=$fbvStyles.size.MEDIUM}
-			{fbvElement type="select" id="authorUserGroup" from=$authorUserGroupOptions translate=false}
+			{fbvElement type="select" id="authorUserGroupId" from=$authorUserGroupOptions translate=false}
 		{/fbvFormSection}
 	{else}
 		{foreach from=$authorUserGroupOptions key="key" item="authorUserGroupName"}{assign var=authorUserGroupId value=$key}{/foreach}
-		{fbvElement type="hidden" id="authorUserGroup" value=$authorUserGroupId}
+		{fbvElement type="hidden" id="authorUserGroupId" value=$authorUserGroupId}
 	{/if}
 
 	<!-- Submission Type -->

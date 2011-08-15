@@ -26,7 +26,7 @@ class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
 		$supportedSubmissionLocales = $press->getSetting('supportedSubmissionLocales');
 		if (!is_array($supportedSubmissionLocales) || count($supportedSubmissionLocales) < 1) $supportedSubmissionLocales = array($press->getPrimaryLocale());
 		$this->addCheck(new FormValidatorInSet($this, 'locale', 'required', 'submission.submit.form.localeRequired', $supportedSubmissionLocales));
-		$this->addCheck(new FormValidator($this, 'authorUserGroup', 'required', 'user.authorization.userGroupRequired'));
+		$this->addCheck(new FormValidator($this, 'authorUserGroupId', 'required', 'user.authorization.userGroupRequired'));
 
 
 		foreach ($press->getLocalizedSetting('submissionChecklist') as $key => $checklistItem) {
@@ -143,7 +143,7 @@ class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
 	 */
 	function readInputData() {
 		$vars = array(
-			'authorUserGroup', 'locale', 'isEditedVolume', 'copyrightNoticeAgree', 'seriesId', 'commentsToEditor'
+			'authorUserGroupId', 'locale', 'isEditedVolume', 'copyrightNoticeAgree', 'seriesId', 'commentsToEditor'
 		);
 		foreach ($this->press->getLocalizedSetting('submissionChecklist') as $key => $checklistItem) {
 			$vars[] = "checklist-$key";
@@ -200,7 +200,7 @@ class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
 			$author->setPrimaryContact(1);
 
 			// Get the user group to display the submitter as
-			$authorUserGroupId = (int) $this->getData('authorUserGroup');
+			$authorUserGroupId = (int) $this->getData('authorUserGroupId');
 			$author->setUserGroupId($authorUserGroupId);
 
 			$monographDao->insertMonograph($this->monograph);
