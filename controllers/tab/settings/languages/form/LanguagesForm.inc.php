@@ -150,7 +150,7 @@ class LanguagesForm extends PressSettingsForm {
 		$this->setData('supportedSubmissionLocales', $supportedSubmissionLocales);
 		$this->setData('supportedFormLocales', $supportedFormLocales);
 
-		parent::execute();
+		parent::execute($request);
 
 		$pressDao =& DAORegistry::getDAO('PressDAO');
 		$press->setPrimaryLocale($this->getData('primaryLocale'));
