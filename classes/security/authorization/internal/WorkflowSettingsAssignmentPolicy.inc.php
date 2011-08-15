@@ -49,6 +49,9 @@ class WorkflowSettingsAssignmentPolicy extends AuthorizationPolicy {
 				// We expect the requested page to be a valid workflow path.
 				$stagePath = $router->getRequestedOp($this->_request);
 				$stageId = $userGroupDao->getIdFromPath($stagePath);
+
+				// If not, try to get it from the stageId parameter.
+				if (!$stageId) $stageId = (int) $this->_request->getUserVar('stageId');
 				break;
 
 			case is_a($router, 'PKPComponentRouter'):

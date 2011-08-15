@@ -27,7 +27,7 @@
 		{section name="rounds" start=0 loop=$currentRound}
 			{assign var="round" value=$smarty.section.rounds.index+1}
 			<li>
-				<a href="{url op=$reviewRoundOp path=$monograph->getId()|to_array:$round}">{translate key="submission.round" round=$round}</a>
+				<a href="{url op=$reviewRoundOp path=$monograph->getId()|to_array:$round stageId=$stageId}">{translate key="submission.round" round=$round}</a>
 			</li>
 		{/section}
 		{if $newRoundAction}
