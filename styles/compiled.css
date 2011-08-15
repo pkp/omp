@@ -498,12 +498,14 @@ table.pkp_listing td.separator {
   padding:2px 0 4px 0;
 }
 .pkp_form input {
+  font-size:90%;
   width:99%;
   border:1px solid #cccccc;
   padding:2px;
 }
 .pkp_form input:focus { outline:none; }
 .pkp_form textarea {
+  font-size:90%;
   width:99%;
   border:1px solid #cccccc;
   padding:2px;
@@ -511,6 +513,7 @@ table.pkp_listing td.separator {
 }
 .pkp_form textarea:focus { outline:none; }
 .pkp_form select {
+  font-size:90%;
   width:99%;
   border:1px solid #cccccc;
   padding:2px;
@@ -518,9 +521,9 @@ table.pkp_listing td.separator {
 .pkp_form select:focus { outline:none; }
 .pkp_form .quarter { width:25%; }
 .pkp_form .half { width:48%; }
-.pkp_form .short { height:5em; }
-.pkp_form .medium { height:10em; }
-.pkp_form .tall { height:15em; }
+.pkp_form .short { height:6em; }
+.pkp_form .medium { height:12em; }
+.pkp_form .tall { height:18em; }
 .pkp_form .req {
   font-weight:bold;
   color:#cc0000;
@@ -686,7 +689,7 @@ table.pkp_listing td.separator {
   background-image:url(../lib/pkp/templates/images/structure/flags/te_ST.png) !important;
 }
 div.pkp_controllers_grid div.wrapper {
-  margin:10px 0;
+  margin:10px;
   padding:20px;
   border:1px solid #b6c9d5;
   background-color:#efefef;
@@ -757,15 +760,6 @@ div.pkp_controllers_grid .row_container {
   overflow:hidden;
   background-color:#e8f0f8;
 }
-div.pkp_controllers_grid .row_controls {
-  background-color:#e8f0f8;
-  display:none;
-  line-height:25px;
-  vertical-align:middle;
-  overflow:hidden;
-  padding-left:20px;
-  white-space:nowrap;
-}
 div.pkp_controllers_grid .row_actions {
   min-height:40px;
   line-height:40px;
@@ -793,11 +787,23 @@ div.pkp_controllers_grid .multiline {
   line-height:125%;
   line-height:inherit;
 }
+div.pkp_controllers_grid .row_controls {
+  display:none;
+  border-bottom:1px solid #999999;
+}
+div.pkp_controllers_grid .row_controls td {
+  vertical-align:middle;
+  overflow:hidden;
+  white-space:nowrap;
+  line-height:25px;
+  height:25px;
+  padding:0px;
+}
 div.pkp_controllers_grid .row_controls a {
   text-decoration:none;
   color:#777777;
   font-size:90%;
-  padding:2px 30px 1px 20px;
+  padding:2px 30px 2px 20px;
 }
 div.pkp_controllers_grid .row_controls a:hover {
   text-decoration:underline;
