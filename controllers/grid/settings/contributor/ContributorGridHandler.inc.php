@@ -57,11 +57,11 @@ class ContributorGridHandler extends SetupGridHandler {
 				'addContributor',
 				new AjaxModal(
 					$router->url($request, null, null, 'addContributor', null, array('gridId' => $this->getId())),
-					__('grid.action.addItem'),
+					__('grid.action.addContributor'),
 					'addContributor',
 					true
 					),
-				__('grid.action.addItem'),
+				__('grid.action.addContributor'),
 				'addContributor')
 		);
 
@@ -71,13 +71,19 @@ class ContributorGridHandler extends SetupGridHandler {
 				'institution',
 				'grid.columns.institution',
 				null,
-				'controllers/grid/gridCell.tpl'
+				'controllers/grid/gridCell.tpl',
+				null,
+				array('width' => 50, 'alignment' => COLUMN_ALIGNMENT_LEFT)
 			)
 		);
 		$this->addColumn(
 			new GridColumn(
 				'url',
-				'grid.columns.url'
+				'grid.columns.url',
+				null,
+				'controllers/grid/gridCell.tpl',
+				null,
+				array('width' => 50, 'alignment' => COLUMN_ALIGNMENT_LEFT)
 			)
 		);
 	}
