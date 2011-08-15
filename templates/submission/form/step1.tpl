@@ -26,12 +26,12 @@
 
 {fbvFormArea id="submissionStep1"}
 	<!-- Author user group selection (only appears if user has > 1 author user groups) -->
-	{if $authorUserGroups}
+	{if count($authorUserGroupOptions) > 1}
 		{fbvFormSection title="submission.submitterUserGroup" inline=true size=$fbvStyles.size.MEDIUM}
-			{fbvElement type="select" id="authorUserGroup" from=$authorUserGroups translate=false}
+			{fbvElement type="select" id="authorUserGroup" from=$authorUserGroupOptions translate=false}
 		{/fbvFormSection}
 	{else}
-		{fbvElement type="hidden" id="authorUserGroup" value=$authorUserGroup}
+		{fbvElement type="hidden" id="authorUserGroup" value=$authorUserGroupOptions}
 	{/if}
 
 	<!-- Submission Type -->
