@@ -563,6 +563,7 @@ table.pkp_listing td.separator {
   display:block;
   padding:2px 5px 0px 5px;
   position:relative;
+  clear:both;
 }
 .pkp_form .localization_popover {
   background-color:#eeeeee;
