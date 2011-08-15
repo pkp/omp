@@ -19,27 +19,47 @@
 	{include file="common/formErrors.tpl"}
 	{include file="controllers/tab/settings/wizardMode.tpl" wizardMode=$wizardMode}
 
-	{fbvFormArea id="contactFormArea"}
-		{fbvFormSection label="manager.setup.principalContact" description="manager.setup.principalContactDescription"}
-			{fbvElement type="text" multilingual=true id="contactTitle" label="user.title" value=$contactTitle inline=true size=$fbvStyles.size.MEDIUM}
-			{fbvElement type="text" id="contactName" label="user.name" value=$contactName required=true inline=true size=$fbvStyles.size.MEDIUM}
-			{fbvElement type="text" id="contactEmail" label="user.email" value=$contactEmail required=true inline=true size=$fbvStyles.size.MEDIUM}
-			{fbvElement type="text" id="contactPhone" label="user.phone" value=$contactPhone inline=true}
-			{fbvElement type="text" id="contactFax" label="user.fax" value=$contactFax inline=true}
-			{fbvElement type="textarea" multilingual=true id="contactAffiliation" label="user.affiliation" value=$contactAffiliation}
-			{fbvElement type="textarea" multilingual=true id="contactMailingAddress" label="common.mailingAddress" value=$contactMailingAddress rich=true}
-		{/fbvFormSection}
+	{fbvFormArea id="contactFormArea" title="manager.setup.principalContact"}
+		<p>{translate key="manager.setup.principalContactDescription"}</p>
 
-		<div {if $wizardMode}class="pkp_form_hidden"{/if}>
-			{fbvFormSection label="manager.setup.technicalSupportContact" description="manager.setup.technicalSupportContactDescription"}
-				{fbvElement type="text" id="supportName" label="user.name" value=$supportName required=true inline=true size=$fbvStyles.size.MEDIUM}
-				{fbvElement type="text" id="supportEmail" label="user.email" value=$supportEmail required=true inline=true size=$fbvStyles.size.MEDIUM}
-				{fbvElement type="text" id="supportPhone" label="user.phone" value=$supportPhone inline=true size=$fbvStyles.size.MEDIUM}
+		{fbvFormSection title="user.name" required=true for="contactName" inline=true size=$fbvStyles.size.MEDIUM}
+			{fbvElement type="text" id="contactName" value=$contactName maxlength="60"}
+		{/fbvFormSection}
+		{fbvFormSection title="user.title" for="contactTitle" inline=true size=$fbvStyles.size.MEDIUM}
+			{fbvElement type="text" multilingual=true name="contactTitle" id="contactTitle" value=$contactTitle maxlength="90"}
+		{/fbvFormSection}
+		{fbvFormSection title="user.email" for="contactEmail" required=true size=$fbvStyles.size.MEDIUM}
+			{fbvElement type="text" id="contactEmail" value=$contactEmail maxlength="90"}
+		{/fbvFormSection}
+		{fbvFormSection title="user.phone" for="contactPhone" inline=true size=$fbvStyles.size.MEDIUM}
+			{fbvElement type="text" id="contactPhone" value=$contactPhone maxlength="24"}
+		{/fbvFormSection}
+		{fbvFormSection title="user.fax" for="contactFax" inline=true size=$fbvStyles.size.MEDIUM}
+			{fbvElement type="text" id="contactFax" value=$contactFax maxlength="24"}
+		{/fbvFormSection}
+		{fbvFormSection title="user.affiliation" for="contactAffiliation" inline=true  size=$fbvStyles.size.MEDIUM}
+			{fbvElement type="textarea" multilingual=true name="contactAffiliation" id="contactAffiliation" value=$contactAffiliation}
+		{/fbvFormSection}
+		{fbvFormSection title="common.mailingAddress" for="contactMailingAddress" inline=true  size=$fbvStyles.size.MEDIUM}
+			{fbvElement type="textarea" multilingual=true name="contactMailingAddress" id="contactMailingAddress" value=$contactMailingAddress rich=true}
+		{/fbvFormSection}
+	{/fbvFormArea}
+
+	<div {if $wizardMode}class="pkp_form_hidden"{/if}>
+		{fbvFormArea id="contactFormArea" title="manager.setup.technicalSupportContact"}
+			<p>{translate key="manager.setup.technicalSupportContactDescription"}</p>
+			{fbvFormSection title="user.name" for="supportName" required=true inline=true size=$fbvStyles.size.MEDIUM}
+				{fbvElement type="text" id="supportName" value=$supportName maxlength="60"}
+			{/fbvFormSection}
+			{fbvFormSection title="user.email" for="supportEmail" required=true inline=true size=$fbvStyles.size.MEDIUM}
+				{fbvElement type="text" id="supportEmail" value=$supportEmail maxlength="90"}
+			{/fbvFormSection}
+			{fbvFormSection title="user.phone" for="supportPhone" inline=true size=$fbvStyles.size.MEDIUM}
+				{fbvElement type="text" id="supportPhone" value=$supportPhone maxlength="24"}
 			{/fbvFormSection}
 		{/fbvFormArea}
 	</div>
 
-	<p><span class="formRequired">{translate key="common.requiredField"}</span></p>
 	{if !$wizardMode}
 		{fbvFormButtons id="contactFormSubmit" submitText="common.save" hideCancel=true}
 	{/if}

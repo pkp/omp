@@ -53,11 +53,11 @@ class SponsorGridHandler extends SetupGridHandler {
 				'addSponsor',
 				new AjaxModal(
 					$router->url($request, null, null, 'addSponsor', null, array('gridId' => $this->getId())),
-					__('grid.action.addItem'),
+					__('grid.action.addSponsor'),
 					'addSponsor',
 					true
 					),
-				__('grid.action.addItem'),
+				__('grid.action.addSponsor'),
 				'addSponsor')
 		);
 
@@ -67,11 +67,20 @@ class SponsorGridHandler extends SetupGridHandler {
 				'institution',
 				'grid.columns.institution',
 				null,
-				'controllers/grid/gridCell.tpl'
+				'controllers/grid/gridCell.tpl',
+				null,
+				array('width' => 50, 'alignment' => COLUMN_ALIGNMENT_LEFT)
 			)
 		);
 		$this->addColumn(
-			new GridColumn('url', 'grid.columns.url')
+			new GridColumn(
+				'url',
+				'grid.columns.url',
+				null,
+				'controllers/grid/gridCell.tpl',
+				null,
+				array('width' => 50, 'alignment' => COLUMN_ALIGNMENT_LEFT)
+			)
 		);
 	}
 

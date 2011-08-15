@@ -88,10 +88,10 @@ class SeriesGridHandler extends SetupGridHandler {
 				'addSeries',
 				new AjaxModal(
 					$router->url($request, null, null, 'addSeries', null, array('gridId' => $this->getId())),
-					__('grid.action.addItem'),
+					__('grid.action.addSeries'),
 					null,
 					true),
-				__('grid.action.addItem'))
+				__('grid.action.addSeries'))
 		);
 
 		// Columns

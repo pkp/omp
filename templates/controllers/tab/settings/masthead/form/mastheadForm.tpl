@@ -26,29 +26,26 @@
 		{fbvFormSection title="manager.setup.pressName" for="name" required=true inline=true size=$fbvStyles.size.MEDIUM}
 	    	{fbvElement type="text" multilingual=true name="name" id="name" value=$name}
 		{/fbvFormSection}
-		{fbvFormSection title="manager.setup.pressInitials" for="initials" required=true inline=true size=$fbvStyles.size.MEDIUM}
+		{fbvFormSection title="manager.setup.pressInitials" for="initials" required=true inline=true size=$fbvStyles.size.SMALL}
 			{fbvElement type="text" multilingual=true name="initials" id="initials" value=$initials}
 		{/fbvFormSection}
 		{fbvFormSection title="manager.setup.pressDescription" for="description"}
-			{fbvElement type="textarea" multilingual=true name="description" id="description" value=$description rich=true}
+			{fbvElement type="textarea" multilingual=true name="description" id="description" value=$description rich=true height=$fbvStyles.height.SHORT}
 		{/fbvFormSection}
 		{fbvFormSection list=true}
 			{if $enabled}{assign var="enabled" value="checked"}{/if}
 			{fbvElement type="checkbox" id="pressEnabled" value="1" checked=$enabled label="manager.setup.enablePressInstructions"}
 		{/fbvFormSection}
 		{fbvFormSection title="manager.masthead.title" for="masthead"}
-			{fbvElement type="textarea" multilingual=true id="masthead" value=$masthead rich=true}
+			{fbvElement type="textarea" multilingual=true id="masthead" value=$masthead rich=true height=$fbvStyles.height.SHORT}
 		{/fbvFormSection}
 		<div {if $wizardMode}class="pkp_form_hidden"{/if}>
 			{fbvFormSection title="common.mailingAddress" for="mailingAddress" group=true}
-				{fbvElement type="textarea" id="mailingAddress" value=$mailingAddress label="manager.setup.mailingAddressDescription"}
-			{/fbvFormSection}
-			{fbvFormSection title="manager.setup.addItemtoAboutPress"}
+				{fbvElement type="textarea" id="mailingAddress" value=$mailingAddress label="manager.setup.mailingAddressDescription" height=$fbvStyles.height.SHORT size=$fbvStyles.size.MEDIUM}
 			{/fbvFormSection}
 		</div>
 	{/fbvFormArea}
 
-	<p><span class="formRequired">{translate key="common.requiredField"}</span></p>
 	{if !$wizardMode}
 		{fbvFormButtons id="mastheadFormSubmit" submitText="common.save" hideCancel=true}
 	{/if}

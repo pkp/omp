@@ -52,35 +52,54 @@ class SubmissionsListGridCellProvider extends DataObjectGridCellProvider {
 			$pressDao = DAORegistry::getDAO('PressDAO');
 			$press = $pressDao->getPress($pressId);
 
-			switch ($monograph->getStageId()) {
-				case WORKFLOW_STAGE_ID_SUBMISSION:
-					$workflowPath = WORKFLOW_STAGE_PATH_SUBMISSION;
-					break;
-				case WORKFLOW_STAGE_ID_INTERNAL_REVIEW:
-					$workflowPath = WORKFLOW_STAGE_PATH_INTERNAL_REVIEW;
-					break;
-				case WORKFLOW_STAGE_ID_EXTERNAL_REVIEW:
-					$workflowPath = WORKFLOW_STAGE_PATH_EXTERNAL_REVIEW;
-					break;
-				case WORKFLOW_STAGE_ID_EDITING:
-					$workflowPath = WORKFLOW_STAGE_PATH_EDITING;
-					break;
-				case WORKFLOW_STAGE_ID_PRODUCTION:
-					$workflowPath = WORKFLOW_STAGE_PATH_PRODUCTION;
-					break;
-				default:
-					assert(false);
+			import('lib.pkp.classes.linkAction.request.RedirectAction');
+
+			if (is_a($monograph, 'ReviewerSubmission')) {
+				// Reviewer: Add a review link action.
+				return array(new LinkAction(
+					'details',
+					new RedirectAction(
+						$dispatcher->url(
+							$request, ROUTE_PAGE,
+							$press->getPath(),
+							'reviewer', 'submission',
+							$monograph->getId()
+						)
+					),
+					$title
+				));
+				return array();
+			} else {
+				// Press assistant, Series Editor, or Press Manager:
+				// Add a workflow link action.
+				$stageIdWorkflowPathMap = array(
+					WORKFLOW_STAGE_ID_SUBMISSION => WORKFLOW_STAGE_PATH_SUBMISSION,
+					WORKFLOW_STAGE_ID_INTERNAL_REVIEW => WORKFLOW_STAGE_PATH_INTERNAL_REVIEW,
+					WORKFLOW_STAGE_ID_EXTERNAL_REVIEW => WORKFLOW_STAGE_PATH_EXTERNAL_REVIEW,
+					WORKFLOW_STAGE_ID_EDITING => WORKFLOW_STAGE_PATH_EDITING,
+					WORKFLOW_STAGE_ID_PRODUCTION => WORKFLOW_STAGE_PATH_PRODUCTION
+				);
+				$stageId = $monograph->getStageId();
+				if (!isset($stageIdWorkflowPathMap[$stageId])) {
+					fatalError('Invalid stage ID!');
+				}
+
+				return array(new LinkAction(
+					'details',
+					new RedirectAction(
+						$dispatcher->url(
+							$request, ROUTE_PAGE,
+							$press->getPath(),
+							'workflow', $stageIdWorkflowPathMap[$stageId],
+							$monograph->getId()
+						)
+					),
+					$title
+				));
 			}
 
-			import('lib.pkp.classes.linkAction.request.RedirectAction');
-			$action = new LinkAction(
-				'details',
-				new RedirectAction(
-					$dispatcher->url($request, ROUTE_PAGE, $press->getPath(), 'workflow', $workflowPath, $monograph->getId())
-				),
-				$title
-			);
-			return array($action);
+			// This should be unreachable code.
+			assert(false);
 		}
 		return parent::getCellActions($request, $row, $column, $position);
 	}

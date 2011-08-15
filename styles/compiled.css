@@ -228,6 +228,11 @@ strong {
   font:130% "Courier New", Courier, mono;
 }
 .pkp_structure_search { padding:5px 10px 0 0; }
+.pkp_structure_search input {
+  border:1px solid #cccccc;
+  padding:2px;
+  font-size:100%;
+}
 .pkp_structure_breadcrumb { margin-left:20px; }
 .pkp_structure_breadcrumb li {
   padding:10px 2px 0 2px;
@@ -465,6 +470,10 @@ table.pkp_listing td.separator {
   font-size:110%;
   padding:10px 0 10px 0;
 }
+.pkp_form div.section {
+  clear:left;
+  margin-bottom:10px;
+}
 .pkp_form label {
   display:block;
   font-weight:bold;
@@ -489,22 +498,20 @@ table.pkp_listing td.separator {
   padding:2px 0 4px 0;
 }
 .pkp_form input {
-  width:98%;
+  width:99%;
   border:1px solid #cccccc;
   padding:2px;
 }
 .pkp_form input:focus { outline:none; }
 .pkp_form textarea {
-  width:98%;
-  width:97.5%;
+  width:99%;
   border:1px solid #cccccc;
   padding:2px;
   height:10em;
 }
 .pkp_form textarea:focus { outline:none; }
 .pkp_form select {
-  width:98%;
-  width:98.5%;
+  width:99%;
   border:1px solid #cccccc;
   padding:2px;
 }
@@ -563,7 +570,6 @@ table.pkp_listing td.separator {
   display:block;
   padding:2px 5px 0px 5px;
   position:relative;
-  clear:both;
 }
 .pkp_form .localization_popover {
   background-color:#eeeeee;
@@ -633,10 +639,11 @@ table.pkp_listing td.separator {
 }
 .pkp_form .pkp_form_hidden { display:none !important; }
 .pkp_form .formButtons {
+  border-top:1px solid #efefef;
   line-height:30px;
   margin:0 0 15px;
   overflow:hidden;
-  padding:0 20px;
+  padding:10px 20px;
   vertical-align:middle;
 }
 .pkp_form .formButtons .submitFormButton { float:right; }
@@ -679,7 +686,7 @@ table.pkp_listing td.separator {
   background-image:url(../lib/pkp/templates/images/structure/flags/te_ST.png) !important;
 }
 div.pkp_controllers_grid div.wrapper {
-  margin:10px;
+  margin:10px 0;
   padding:20px;
   border:1px solid #b6c9d5;
   background-color:#efefef;

@@ -26,7 +26,7 @@ class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
 		$supportedSubmissionLocales = $press->getSetting('supportedSubmissionLocales');
 		if (!is_array($supportedSubmissionLocales) || count($supportedSubmissionLocales) < 1) $supportedSubmissionLocales = array($press->getPrimaryLocale());
 		$this->addCheck(new FormValidatorInSet($this, 'locale', 'required', 'submission.submit.form.localeRequired', $supportedSubmissionLocales));
-		$this->addCheck(new FormValidator($this, 'authorUserGroup', 'required', 'user.authorization.userGroupRequired'));
+		$this->addCheck(new FormValidator($this, 'authorUserGroupId', 'required', 'user.authorization.userGroupRequired'));
 
 
 		foreach ($press->getLocalizedSetting('submissionChecklist') as $key => $checklistItem) {
@@ -72,19 +72,14 @@ class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
 		$userGroupAssignmentDao =& DAORegistry::getDAO('UserGroupAssignmentDAO');
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 		$authorUserGroupAssignments =& $userGroupAssignmentDao->getByUserId($user->getId(), $this->press->getId(), ROLE_ID_AUTHOR);
-		if(isset($authorUserGroupAssignments)) {
-			if($authorUserGroupAssignments->getCount() > 1) {
-				$authorUserGroupNames = array();
-				while($authorUserGroupAssignment =& $authorUserGroupAssignments->next()) {
-					$authorUserGroup =& $userGroupDao->getById($authorUserGroupAssignment->getUserGroupId());
-					$authorUserGroupNames[$authorUserGroup->getId()] = $authorUserGroup->getLocalizedName();
-					unset($authorUserGroupAssignment);
-				}
-				$templateMgr->assign('authorUserGroups', $authorUserGroupNames);
-			} else {
-				$authorUserGroup =& $authorUserGroupAssignments->next();
-				$templateMgr->assign('authorUserGroup', $authorUserGroup->getUserGroupId());
+		if(!$authorUserGroupAssignments->wasEmpty()) {
+			$authorUserGroupNames = array();
+			while($authorUserGroupAssignment =& $authorUserGroupAssignments->next()) {
+				$authorUserGroup =& $userGroupDao->getById($authorUserGroupAssignment->getUserGroupId());
+				$authorUserGroupNames[$authorUserGroup->getId()] = $authorUserGroup->getLocalizedName();
+				unset($authorUserGroupAssignment);
 			}
+			$templateMgr->assign('authorUserGroupOptions', $authorUserGroupNames);
 		} else {
 			// The user doesn't have any author user group assignments.  They should be either an editor or manager.
 			$userGroupNames = array();
@@ -105,7 +100,7 @@ class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
 				unset($editorUserGroup);
 			}
 
-			$templateMgr->assign('authorUserGroups', $userGroupNames);
+			$templateMgr->assign('authorUserGroupOptions', $userGroupNames);
 		}
 
 		parent::display($request);
@@ -148,7 +143,7 @@ class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
 	 */
 	function readInputData() {
 		$vars = array(
-			'authorUserGroup', 'locale', 'isEditedVolume', 'copyrightNoticeAgree', 'seriesId', 'commentsToEditor'
+			'authorUserGroupId', 'locale', 'isEditedVolume', 'copyrightNoticeAgree', 'seriesId', 'commentsToEditor'
 		);
 		foreach ($this->press->getLocalizedSetting('submissionChecklist') as $key => $checklistItem) {
 			$vars[] = "checklist-$key";
@@ -205,7 +200,7 @@ class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
 			$author->setPrimaryContact(1);
 
 			// Get the user group to display the submitter as
-			$authorUserGroupId = (int) $this->getData('authorUserGroup');
+			$authorUserGroupId = (int) $this->getData('authorUserGroupId');
 			$author->setUserGroupId($authorUserGroupId);
 
 			$monographDao->insertMonograph($this->monograph);
