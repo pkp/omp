@@ -37,7 +37,6 @@ class MastheadForm extends PressSettingsForm {
 		$this->addCheck(new FormValidatorLocale($this, 'initials', 'required', 'manager.setup.form.pressInitialsRequired'));
 	}
 
-
 	//
 	// Implement template methods from Form.
 	//
@@ -48,10 +47,20 @@ class MastheadForm extends PressSettingsForm {
 		return array('name', 'initials', 'description', 'customAboutItems', 'masthead');
 	}
 
-
 	//
 	// Overridden methods from PressSettingsForm.
 	//
+	/**
+	 * @see PressSettingsForm::initData.
+	 * @param $request Request
+	 */
+	function initData($request) {
+		parent::initData($request);
+
+		$press =& $request->getPress();
+		$this->setData('enabled', (int)$press->getEnabled());
+	}
+
 	/**
 	 * @see PressSettingsForm::execute()
 	 * @param $request Request
