@@ -136,7 +136,7 @@ class UserGridHandler extends GridHandler {
 	 * @param $request PKPRequest
 	 * @return array Grid data.
 	 */
-	function loadData($request, $filter) {
+	function loadData(&$request, $filter) {
 		// Get the press.
 		$press =& $request->getPress();
 		$pressId = $press->getId();
@@ -178,7 +178,7 @@ class UserGridHandler extends GridHandler {
 	/**
 	 * @see GridHandler::renderFilter()
 	 */
-	function renderFilter($request) {
+	function renderFilter(&$request) {
 		$press =& $request->getPress();
 		$pressId = $press->getId();
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
@@ -216,7 +216,7 @@ class UserGridHandler extends GridHandler {
 	 * @see GridHandler::getFilterSelectionData()
 	 * @return array Filter selection data.
 	 */
-	function getFilterSelectionData($request) {
+	function getFilterSelectionData(&$request) {
 		// Get the search terms.
 		$includeNoRole = $request->getUserVar('includeNoRole') ? (int) $request->getUserVar('includeNoRole') : null;
 		$userGroup = $request->getUserVar('userGroup') ? (int)$request->getUserVar('userGroup') : null;

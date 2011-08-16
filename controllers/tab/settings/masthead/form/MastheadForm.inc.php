@@ -54,7 +54,7 @@ class MastheadForm extends PressSettingsForm {
 	 * @see PressSettingsForm::initData.
 	 * @param $request Request
 	 */
-	function initData($request) {
+	function initData(&$request) {
 		parent::initData($request);
 
 		$press =& $request->getPress();
@@ -65,7 +65,7 @@ class MastheadForm extends PressSettingsForm {
 	 * @see PressSettingsForm::execute()
 	 * @param $request Request
 	 */
-	function execute($request) {
+	function execute(&$request) {
 		$press =& $request->getPress();
 
 		if ($press->getEnabled() !== $this->getData('pressEnabled')) {

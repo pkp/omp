@@ -99,7 +99,7 @@ class SeriesForm extends Form {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function execute($args, $request) {
+	function execute($args, &$request) {
 		$seriesDao =& DAORegistry::getDAO('SeriesDAO');
 		$press =& $request->getPress();
 
@@ -131,7 +131,7 @@ class SeriesForm extends Form {
 	 * @param Request
 	 * @return UserGroup
 	 */
-	function _setSeriesLocaleFields($series, $request) {
+	function _setSeriesLocaleFields($series, &$request) {
 
 		$title = $this->getData('title');
 		$affiliation = $this->getData('affiliation');

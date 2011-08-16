@@ -105,7 +105,7 @@ class AuthorForm extends Form {
 	 * Fetch the form.
 	 * @see Form::fetch()
 	 */
-	function fetch($request) {
+	function fetch(&$request) {
 		$author =& $this->getAuthor();
 
 		$templateMgr =& TemplateManager::getManager();

@@ -236,7 +236,7 @@ class UserGroupGridHandler extends CategoryGridHandler {
 	* @param $request Request
 	* @return UserGroupForm
 	*/
-	function _getUserGroupForm($request) {
+	function _getUserGroupForm(&$request) {
 		// Identify the user group Id.
 		$userGroupId = $this->_getUserGroupIdVar($request);
 
@@ -251,7 +251,7 @@ class UserGroupGridHandler extends CategoryGridHandler {
 	 * @param $request PKPRequest.
 	 * @return int User group id.
 	 */
-	function _getUserGroupIdVar($request) {
+	function _getUserGroupIdVar(&$request) {
 		(int)$userGroupId = $request->getUserVar('userGroupId');
 		return $userGroupId;
 	}

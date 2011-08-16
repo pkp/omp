@@ -137,7 +137,7 @@ class AppearanceForm extends PressSettingsForm {
 	 * @param $request Request
 	 * @return string
 	 */
-	function renderFileView($fileSettingName, $request) {
+	function renderFileView($fileSettingName, &$request) {
 		$file = $this->getData($fileSettingName);
 		$locale = Locale::getLocale();
 
@@ -180,7 +180,7 @@ class AppearanceForm extends PressSettingsForm {
 	 * @param $fileSettingName string
 	 * @return boolean
 	 */
-	function deleteFile($fileSettingName, $request) {
+	function deleteFile($fileSettingName, &$request) {
 		$press =& $request->getPress();
 		$locale = Locale::getLocale();
 
@@ -216,7 +216,7 @@ class AppearanceForm extends PressSettingsForm {
 	 * @param $request Request
 	 * @return array
 	 */
-	function _renderAllFormImagesViews($request) {
+	function _renderAllFormImagesViews(&$request) {
 		$imagesViews = array();
 		foreach ($this->getImagesSettingsName() as $imageSettingName => $altText) {
 			$imagesViews[$imageSettingName] = $this->renderFileView($imageSettingName, $request);
@@ -232,7 +232,7 @@ class AppearanceForm extends PressSettingsForm {
 	 * @param $request Request
 	 * @return LinkAction
 	 */
-	function &_getFileUploadLinkAction($settingName, $fileType, $request) {
+	function &_getFileUploadLinkAction($settingName, $fileType, &$request) {
 		$router =& $request->getRouter();
 		import('lib.pkp.classes.linkAction.request.AjaxModal');
 
@@ -260,7 +260,7 @@ class AppearanceForm extends PressSettingsForm {
 	 * @param $request Request
 	 * @return LinkAction
 	 */
-	function &_getDeleteFileLinkAction($settingName, $request) {
+	function &_getDeleteFileLinkAction($settingName, &$request) {
 		$router =& $request->getRouter();
 		import('lib.pkp.classes.linkAction.request.RemoteActionConfirmationModal');
 
