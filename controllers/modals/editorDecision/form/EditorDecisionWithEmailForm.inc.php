@@ -107,7 +107,8 @@ class EditorDecisionWithEmailForm extends EditorDecisionForm {
 		$submission =& $this->getSeriesEditorSubmission();
 		$this->setData(
 			'peerReviewUrl',
-			$router->url($request, null, null, 'importPeerReviews', null, array('monographId' => $submission->getId()))
+			$router->url($request, null, null, 'importPeerReviews', null, array('monographId' => $submission->getId(),
+																		  'stageId' => $stageId))
 		);
 
 		return parent::fetch($request, $round);

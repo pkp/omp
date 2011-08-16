@@ -1,5 +1,5 @@
 {**
- * profile.tpl
+ * templates/user/profile.tpl
  *
  * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -23,7 +23,7 @@
 			// This is the list of interests in the system used to populate the autocomplete
 			availableTags: [{foreach name=existingInterests from=$existingInterests item=interest}"{$interest|escape|escape:'javascript'}"{if !$smarty.foreach.existingInterests.last}, {/if}{/foreach}],{/if}
 			// This is the list of the user's interests that have already been saved
-			{if $interestsKeywords}{literal}currentTags: [{foreach name=currentInterests from=$interestsKeywords item=interest}"{$interest|escape|escape:'javascript'}"{if !$smarty.foreach.currentInterests.last}, {/if}{/foreach}]
+			{if $interestsKeywords}currentTags: [{foreach name=currentInterests from=$interestsKeywords item=interest}"{$interest|escape|escape:'javascript'}"{if !$smarty.foreach.currentInterests.last}, {/if}{/foreach}]
 			{else}currentTags: []{/if}
 		{rdelim});
 	{rdelim});

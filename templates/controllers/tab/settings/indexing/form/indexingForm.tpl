@@ -17,7 +17,7 @@
 
 <form class="pkp_form" id="indexingForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.DistributionSettingsTabHandler" op="saveFormData" tab="indexing"}">
 	{include file="common/formErrors.tpl"}
-	{include file="controllers/tab/settings/wizardMode.tpl wizardMode=$wizardMode}
+	{include file="controllers/tab/settings/wizardMode.tpl" wizardMode=$wizardMode}
 
 	<h3>{translate key="manager.setup.cataloguingMetadata"}</h3>
 

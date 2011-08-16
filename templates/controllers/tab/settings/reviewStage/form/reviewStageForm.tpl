@@ -17,7 +17,7 @@
 
 <form class="pkp_form" id="reviewStageForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.PublicationSettingsTabHandler" op="saveFormData" tab="reviewStage"}">
 	{include file="common/formErrors.tpl"}
-	{include file="controllers/tab/settings/wizardMode.tpl wizardMode=$wizardMode}
+	{include file="controllers/tab/settings/wizardMode.tpl" wizardMode=$wizardMode}
 
 	{url|assign:reviewLibraryGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.library.LibraryFileGridHandler" op="fetchGrid" fileType=$smarty.const.LIBRARY_FILE_TYPE_REVIEW}
 	{load_url_in_div id="reviewLibraryGridDiv" url=$reviewLibraryGridUrl}
