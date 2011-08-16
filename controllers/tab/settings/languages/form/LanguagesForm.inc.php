@@ -72,7 +72,7 @@ class LanguagesForm extends PressSettingsForm {
 	 * @see PressSettingsForm::initData()
 	 * @param $request Request
 	 */
-	function initData($request) {
+	function initData(&$request) {
 		$press =& $request->getPress();
 		$this->setData('primaryLocale', $press->getPrimaryLocale());
 
@@ -106,7 +106,7 @@ class LanguagesForm extends PressSettingsForm {
 	 * Assign form data to user-submitted data.
 	 * @param $request Request
 	 */
-	function readInputData($request) {
+	function readInputData(&$request) {
 		$primaryLocale = $request->getUserVar('primaryLocale');
 		$this->setData('primaryLocale', $primaryLocale);
 
@@ -122,7 +122,7 @@ class LanguagesForm extends PressSettingsForm {
 	/**
 	 * Save modified settings.
 	 */
-	function execute($request) {
+	function execute(&$request) {
 		$press =& $request->getPress();
 		$settingsDao =& DAORegistry::getDAO('PressSettingsDAO');
 
@@ -167,7 +167,7 @@ class LanguagesForm extends PressSettingsForm {
 	 * @param $availableLocales array
 	 * @return array
 	 */
-	function _getLinkActions($request, $availableLocales) {
+	function _getLinkActions(&$request, $availableLocales) {
 		$router =& $request->getRouter();
 		import('lib.pkp.classes.linkAction.request.RemoteActionConfirmationModal');
 

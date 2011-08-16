@@ -148,7 +148,7 @@ class UserGroupForm extends Form {
 	/**
 	 * @see Form::fetch()
 	 */
-	function fetch($request) {
+	function fetch(&$request) {
 		$templateMgr =& TemplateManager::getManager();
 
 		import('classes.security.RoleDAO');
@@ -165,7 +165,7 @@ class UserGroupForm extends Form {
 	/**
 	 * @see Form::execute()
 	 */
-	function execute($request) {
+	function execute(&$request) {
 		$userGroupId = $this->getUserGroupId();
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 
@@ -228,7 +228,7 @@ class UserGroupForm extends Form {
 	 * @param Request
 	 * @return UserGroup
 	 */
-	function _setUserGroupLocaleFields($userGroup, $request) {
+	function _setUserGroupLocaleFields($userGroup, &$request) {
 		$router = $request->getRouter();
 		$press = $router->getContext($request);
 		$supportedLocales = $press->getSupportedLocaleNames();

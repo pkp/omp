@@ -6,4 +6,10 @@
  *
  * Grid filter search input and submit.
  *}
-<input type="text" size="15" name="search" id="search" class="textField" value="{$search|escape}" />&nbsp;<input type="submit" name="searchButton" id="searchButton" value="{translate key="common.search"}" class="button" />
+{fbvFormSection title="common.search" required="true" for="search"}
+	{fbvElement type="text" name="search" id="search" value=$filterSelectionData.search size=$fbvStyles.size.LONG}
+{/fbvFormSection}
+{if $filterSelectionData.includeNoRole}{assign var="checked" value="checked"}{/if}
+{fbvElement type="checkbox" name="includeNoRole" id="includeNoRole" value="1" checked=$checked label="user.noRoles.selectUsersWithoutRoles" translate="true"}
+
+{fbvElement id="submit" type="submit" label="common.search"}

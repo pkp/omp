@@ -72,8 +72,8 @@ class ReviewerReviewStep1Form extends ReviewerReviewForm {
 		$viewMetadataLinkAction = new ReviewerViewMetadataLinkAction($request, $reviewAssignment->getSubmissionId());
 		$templateMgr->assign_by_ref('viewMetadataAction', $viewMetadataLinkAction);
 
-		import('controllers.confirmationModal.linkAction.ViewReviewGuidelinesLinkAction');
-		$competingInterestsAction = new ViewReviewGuidelinesLinkAction($request);
+		import('controllers.confirmationModal.linkAction.ViewCompetingInterestGuidelinesLinkAction');
+		$competingInterestsAction = new ViewCompetingInterestGuidelinesLinkAction($request);
 		$templateMgr->assign_by_ref('competingInterestsAction', $competingInterestsAction);
 
 		// Instantiate the view review guidelines confirmation modal.

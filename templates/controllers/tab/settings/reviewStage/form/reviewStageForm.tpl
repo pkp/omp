@@ -17,7 +17,7 @@
 
 <form class="pkp_form" id="reviewStageForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.PublicationSettingsTabHandler" op="saveFormData" tab="reviewStage"}">
 	{include file="common/formErrors.tpl"}
-	{include file="controllers/tab/settings/wizardMode.tpl wizardMode=$wizardMode}
+	{include file="controllers/tab/settings/wizardMode.tpl" wizardMode=$wizardMode}
 
 	{url|assign:reviewLibraryGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.library.LibraryFileGridHandler" op="fetchGrid" fileType=$smarty.const.LIBRARY_FILE_TYPE_REVIEW}
 	{load_url_in_div id="reviewLibraryGridDiv" url=$reviewLibraryGridUrl}
@@ -110,6 +110,10 @@
 			{fbvFormSection title="manager.setup.reviewGuidelines"}
 				<p>{translate key="manager.setup.reviewGuidelinesDescription"}</p>
 				{fbvElement type="textarea" multilingual="true" name="reviewGuidelines" id="reviewGuidelines" value=$reviewGuidelines size=$fbvStyles.size.MEDIUM  rich=true}
+			{/fbvFormSection}
+			{fbvFormSection title="manager.setup.competingInterests"}
+				<p>{translate key="manager.setup.competingInterestsDescription"}</p>
+				{fbvElement type="textarea" multilingual="true" id="competingInterests" value=$competingInterests size=$fbvStyles.size.MEDIUM  rich=true}
 			{/fbvFormSection}
 		{/fbvFormArea}
 	</div>

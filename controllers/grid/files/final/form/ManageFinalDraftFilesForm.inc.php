@@ -63,12 +63,12 @@ class ManageFinalDraftFilesForm extends Form {
 	}
 
 	/**
-	 * Save author
+	 * Save Selection of Final Draft files
 	 * @param $args array
 	 * @param $request PKPRequest
 	 * @return array a list of all monograph files marked as "final".
 	 */
-	function &execute($args, &$request) {
+	function execute($args, &$request) {
 		// Identify selected files.
 		$selectedFiles = $this->getData('selectedFiles');
 		if(empty($selectedFiles) || !is_array($selectedFiles)) {

@@ -46,7 +46,7 @@
 	<message key="reviewer.monograph.viewCompetingInterests">View Competing Interests Policy</message>
 	<message key="reviewer.monograph.noCompetingInterests">I do not have any competing interests</message>
 	<message key="reviewer.monograph.hasCompetingInterests">I may have competing interests (Specify below)</message>
-	<message key="reviewer.competingInterests">Competing Interests</message>
+	<message key="reviewer.monograph.competingInterests">Competing Interests</message>
 	<message key="reviewer.monograph.guidelines">Review Guidelines</message>
 	<message key="reviewer.monograph.noGuidelines">This press has not set any reviewer guidelines.</message>
 	<message key="reviewer.complete">Review Submitted</message>
@@ -133,6 +133,7 @@
 	<message key="user.noRoles.submitMonographRegClosed">Submit an Monograph: Author registration is currently disabled.</message>
 	<message key="user.noRoles.regReviewer">Register as a Reviewer</message>
 	<message key="user.noRoles.regReviewerClosed">Register as a Reviewer: Reviewer registration is currently disabled.</message>
+	<message key="user.noRoles.selectUsersWithoutRoles">Include users with no roles in this press.</message>
 
 	<!-- Roles -->
 	<message key="user.role.manager">Press Manager</message>

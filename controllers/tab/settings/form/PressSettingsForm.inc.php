@@ -81,7 +81,7 @@ class PressSettingsForm extends Form {
 	 * @see Form::initData()
 	 * @param $request Request
 	 */
-	function initData($request) {
+	function initData(&$request) {
 		$press =& $request->getPress();
 		$this->_data = $press->getSettings();
 	}
@@ -89,7 +89,7 @@ class PressSettingsForm extends Form {
 	/**
 	 * @see Form::readInputData()
 	 */
-	function readInputData($request) {
+	function readInputData(&$request) {
 		$this->readUserVars(array_keys($this->getSettings()));
 	}
 
@@ -113,7 +113,7 @@ class PressSettingsForm extends Form {
 	/**
 	 * @see Form::execute()
 	 */
-	function execute($request) {
+	function execute(&$request) {
 		$press =& $request->getPress();
 		$settingsDao =& DAORegistry::getDAO('PressSettingsDAO');
 		$settings = $this->getSettings();

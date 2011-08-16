@@ -147,14 +147,14 @@ class ReviewerSelectGridHandler extends GridHandler {
 	/**
 	 * @see GridHandler::renderFilter()
 	 */
-	function renderFilter($request) {
+	function renderFilter(&$request) {
 		return parent::renderFilter($request, $this->_getFilterData());
 	}
 
 	/**
 	 * @see GridHandler::loadData()
 	 */
-	function loadData($request, $filter) {
+	function loadData(&$request, $filter) {
 		$interests = $filter['interestSearchKeywords'];
 		$reviewerValues = $filter['reviewerValues'];
 
@@ -179,7 +179,7 @@ class ReviewerSelectGridHandler extends GridHandler {
 	 * @see GridHandler::getFilterSelectionData()
 	 * @return array Filter selection data.
 	 */
-	function getFilterSelectionData($request) {
+	function getFilterSelectionData(&$request) {
 		$form = $this->getFilterForm();
 
 		// Only read form data if the clientSubmit flag has been checked

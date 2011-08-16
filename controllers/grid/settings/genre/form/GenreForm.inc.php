@@ -109,7 +109,7 @@ class GenreForm extends Form {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function execute($args, $request) {
+	function execute($args, &$request) {
 		$genreDao =& DAORegistry::getDAO('GenreDAO');
 		$press =& $request->getPress();
 

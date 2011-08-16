@@ -81,7 +81,7 @@ class SettingsTabHandler extends Handler {
 	/**
 	 * @see PKPHandler::initialize()
 	 */
-	function initialize($request) {
+	function initialize(&$request) {
 		$this->setCurrentTab($request->getUserVar('tab'));
 	}
 

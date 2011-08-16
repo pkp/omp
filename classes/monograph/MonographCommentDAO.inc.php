@@ -80,17 +80,19 @@ class MonographCommentDAO extends DAO {
 
 	/**
 	 * Retrieve MonographComments made my reviewers on a monograph
-	 * @param $userId int
+	 * @param $reviewerId int The user id of the reviewer.
+	 * @param $monographId int The monograph Id that was reviewered/commented on.
+	 * @param $reviewId int (optional) The review assignment Id the comment pertains to.
 	 * @return MonographComment objects array
 	 */
 	function &getReviewerCommentsByReviewerId($reviewerId, $monographId, $reviewId = null) {
 		$monographComments = array();
 		$params = array($reviewerId, $monographId);
-		if (isset($round)) {
+		if (isset($reviewId)) {
 			$params[] = $reviewId;
 		}
 		$result =& $this->retrieve(
-			'SELECT a.* FROM monograph_comments a WHERE author_id = ? AND monograph_id = ?' . (isset($round) ? ' AND assoc_id = ?' : '') . ' ORDER BY date_posted',
+			'SELECT a.* FROM monograph_comments a WHERE author_id = ? AND monograph_id = ?' . (isset($reviewId) ? ' AND assoc_id = ?' : '') . ' ORDER BY date_posted DESC',
 			$params
 		);
 

@@ -86,7 +86,7 @@ class SettingsFileUploadForm extends Form {
 	 * @param $request Request
 	 * @return TemporaryFile
 	 */
-	function fetchTemporaryFile($request) {
+	function fetchTemporaryFile(&$request) {
 		$user =& $request->getUser();
 
 		$temporaryFileDao =& DAORegistry::getDAO('TemporaryFileDAO');
@@ -101,7 +101,7 @@ class SettingsFileUploadForm extends Form {
 	 * Clean temporary file.
 	 * @param $request Request
 	 */
-	function removeTemporaryFile($request) {
+	function removeTemporaryFile(&$request) {
 		$user =& $request->getUser();
 
 		import('classes.file.TemporaryFileManager');
@@ -113,7 +113,7 @@ class SettingsFileUploadForm extends Form {
 	 * Upload a temporary file.
 	 * @param $request Request
 	 */
-	function uploadFile($request) {
+	function uploadFile(&$request) {
 		$user =& $request->getUser();
 
 		import('classes.file.TemporaryFileManager');

@@ -12,7 +12,7 @@
  * @class ViewCompetingInterestGuidelinesLinkAction
  * @ingroup controllers_confirmationModal_linkAction
  *
- * @brief An action to open the review guidelines confirmation modal.
+ * @brief An action to open the competing interests confirmation modal.
  */
 
 import('lib.pkp.classes.linkAction.LinkAction');
@@ -25,17 +25,17 @@ class ViewCompetingInterestGuidelinesLinkAction extends LinkAction {
 	 */
 	function ViewCompetingInterestGuidelinesLinkAction(&$request) {
 		$press =& $request->getPress();
-		// Instantiate the view review guidelines confirmation modal.
+		// Instantiate the view competing interests modal.
 		import('lib.pkp.classes.linkAction.request.ConfirmationModal');
-		$viewGuidelinesModal = new ConfirmationModal(
-								$press->getLocalizedSetting('competingInterestPolicy'),
-								__('reviewer.monograph.guidelines'),
-								null, null,
+		$viewCompetingInterestsModal = new ConfirmationModal(
+								$press->getLocalizedSetting('competingInterests'),
+								__('reviewer.monograph.competingInterests'),
+								null, null, false,
 								false
 							);
 
 		// Configure the link action.
-		parent::LinkAction('viewCompetingInterestGuidelines', $viewGuidelinesModal, __('reviewer.monograph.guidelines'));
+		parent::LinkAction('viewCompetingInterestGuidelines', $viewCompetingInterestsModal, __('reviewer.monograph.competingInterests'));
 	}
 }
 

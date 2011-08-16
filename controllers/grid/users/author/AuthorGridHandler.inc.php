@@ -90,14 +90,8 @@ class AuthorGridHandler extends GridHandler {
 		// Basic grid configuration
 		$this->setTitle('submission.contributors');
 
-		// Get the monograph id
-		$monograph =& $this->getMonograph();
-		assert(is_a($monograph, 'Monograph'));
-		$monographId = $monograph->getId();
-
 		// Grid actions
 		$router =& $request->getRouter();
-		$actionArgs = array('monographId' => $monographId);
 		$actionArgs = $this->getRequestArgs();
 		$this->addAction(
 			new LinkAction(

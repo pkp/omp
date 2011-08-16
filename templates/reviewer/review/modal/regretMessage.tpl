@@ -24,5 +24,5 @@
 		{/fbvFormSection}
 
 		{fbvFormButtons submitText="form.submit" hideCancel=true}
-	{/fbvFormSection}
+	{/fbvFormArea}
 </form>

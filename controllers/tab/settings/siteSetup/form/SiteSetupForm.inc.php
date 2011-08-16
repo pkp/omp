@@ -81,7 +81,7 @@ class SiteSetupForm extends PKPSiteSettingsForm {
 	 * @see PKPSiteSettingsForm::initData.
 	 * @param $request Request
 	 */
-	function initData($request) {
+	function initData(&$request) {
 		$site =& $request->getSite();
 		$publicFileManager = $publicFileManager = new PublicFileManager();
 		$siteStyleFilename = $publicFileManager->getSiteFilesPath() . '/' . $site->getSiteStyleFilename();
@@ -145,7 +145,7 @@ class SiteSetupForm extends PKPSiteSettingsForm {
 	 * @param $request Request
 	 * @return string
 	 */
-	function renderFileView($fileSettingName, $request) {
+	function renderFileView($fileSettingName, &$request) {
 		$file = $this->getData($fileSettingName);
 		$locale = Locale::getLocale();
 
@@ -190,7 +190,7 @@ class SiteSetupForm extends PKPSiteSettingsForm {
 	 * @param $fileSettingName string
 	 * @return boolean
 	 */
-	function deleteFile($fileSettingName, $request) {
+	function deleteFile($fileSettingName, &$request) {
 		$locale = Locale::getLocale();
 
 		// Get the file.
@@ -227,7 +227,7 @@ class SiteSetupForm extends PKPSiteSettingsForm {
 	 * @param $request Request
 	 * @return LinkAction
 	 */
-	function &_getFileUploadLinkAction($settingName, $fileType, $request) {
+	function &_getFileUploadLinkAction($settingName, $fileType, &$request) {
 		$router =& $request->getRouter();
 		import('lib.pkp.classes.linkAction.request.AjaxModal');
 
@@ -255,7 +255,7 @@ class SiteSetupForm extends PKPSiteSettingsForm {
 	 * @param $request Request
 	 * @return LinkAction
 	 */
-	function &_getDeleteFileLinkAction($settingName, $request) {
+	function &_getDeleteFileLinkAction($settingName, &$request) {
 		$router =& $request->getRouter();
 		import('lib.pkp.classes.linkAction.request.RemoteActionConfirmationModal');
 

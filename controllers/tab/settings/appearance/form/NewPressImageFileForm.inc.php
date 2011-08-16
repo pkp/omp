@@ -32,7 +32,7 @@ class NewPressImageFileForm extends SettingsFileUploadForm {
 	/**
 	 * @see SettingsFileUploadForm::fetch()
 	 */
-	function fetch($request) {
+	function fetch(&$request) {
 		$params = array('fileType' => 'image');
 		return parent::fetch($request, $params);
 	}
@@ -51,7 +51,7 @@ class NewPressImageFileForm extends SettingsFileUploadForm {
 	/**
 	 * @see Form::initData()
 	 */
-	function initData($request) {
+	function initData(&$request) {
 		$press =& $request->getPress();
 		$fileSettingName = $this->getFileSettingName();
 
@@ -79,7 +79,7 @@ class NewPressImageFileForm extends SettingsFileUploadForm {
 	 * Save the new image file.
 	 * @param $request Request.
 	 */
-	function execute($request) {
+	function execute(&$request) {
 		$temporaryFile = $this->fetchTemporaryFile($request);
 
 		import('classes.file.PublicFileManager');

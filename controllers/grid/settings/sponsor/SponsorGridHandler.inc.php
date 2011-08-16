@@ -24,7 +24,7 @@ class SponsorGridHandler extends SetupGridHandler {
 	function SponsorGridHandler() {
 		parent::SetupGridHandler();
 		$this->addRoleAssignment(array(ROLE_ID_PRESS_MANAGER),
-				array('fetchGrid', 'addSponsor', 'editSponsor', 'updateSponsor', 'deleteSponsor'));
+				array('fetchGrid', 'fetchRow', 'addSponsor', 'editSponsor', 'updateSponsor', 'deleteSponsor'));
 	}
 
 	//
@@ -158,7 +158,7 @@ class SponsorGridHandler extends SetupGridHandler {
 							'url' => $sponsorForm->getData('url'));
 			$row->setData($rowData);
 			$row->initialize($request);
-			return DAO::getDataChangedEvent();
+			return DAO::getDataChangedEvent($sponsorForm->sponsorId);
 		} else {
 			return new JSONMessage(false);
 		}
@@ -182,7 +182,7 @@ class SponsorGridHandler extends SetupGridHandler {
 		if (isset($sponsors[$sponsorId])) {
 			unset($sponsors[$sponsorId]);
 			$pressSettingsDao->updateSetting($press->getId(), 'sponsors', $sponsors, 'object');
-			return DAO::getDataChangedEvent();
+			return DAO::getDataChangedEvent($sponsorId);
 		} else {
 			return new JSONMessage(false, Locale::translate('manager.setup.errorDeletingItem'));
 		}
