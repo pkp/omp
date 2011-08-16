@@ -20,15 +20,15 @@ class ReviewerReviewFilesGridHandler extends FileListGridHandler {
 	 */
 	function ReviewerReviewFilesGridHandler() {
 		// Pass in null stageId to be set in initialize from request var.
-		import('controllers.grid.files.review.ReviewFilesGridDataProvider');
+		import('controllers.grid.files.review.ReviewerReviewFilesGridDataProvider');
 		parent::FileListGridHandler(
-			new ReviewFilesGridDataProvider(),
+			new ReviewerReviewFilesGridDataProvider(),
 			null,
 			FILE_GRID_DOWNLOAD_ALL
 		);
 
 		$this->addRoleAssignment(
-			array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_ASSISTANT),
+			array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_ASSISTANT, ROLE_ID_REVIEWER),
 			array('fetchGrid', 'fetchRow', 'downloadAllFiles')
 		);
 

@@ -38,8 +38,7 @@ class ReviewGridDataProvider extends SubmissionFilesGridDataProvider {
 		// FIXME: Need to authorize review round, see #6200.
 		// Get the review round from the request
 		$round = $request->getUserVar('round');
-		assert(!empty($round));
-		$this->_round = (int)$round;
+		$this->setRound((int)$request->getUserVar('round'));
 
 		return parent::getAuthorizationPolicy($request, $args, $roleAssignments);
 	}
@@ -48,7 +47,7 @@ class ReviewGridDataProvider extends SubmissionFilesGridDataProvider {
 	 * @see GridDataProvider::getRequestArgs()
 	 */
 	function getRequestArgs() {
-		return array_merge(parent::getRequestArgs(), array('round' => $this->_getRound()));
+		return array_merge(parent::getRequestArgs(), array('round' => $this->getRound()));
 	}
 
 	/**
@@ -59,7 +58,7 @@ class ReviewGridDataProvider extends SubmissionFilesGridDataProvider {
 		$monograph =& $this->getMonograph();
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		$monographFiles =& $submissionFileDao->getRevisionsByReviewRound(
-			$monograph->getId(), $this->_getStageId(), $this->_getRound(), $this->_getFileStage()
+			$monograph->getId(), $this->_getStageId(), $this->getRound(), $this->_getFileStage()
 		);
 		return $this->prepareSubmissionFileData($monographFiles);
 	}
@@ -74,7 +73,7 @@ class ReviewGridDataProvider extends SubmissionFilesGridDataProvider {
 		import('controllers.grid.files.fileList.linkAction.SelectReviewFilesLinkAction');
 		$monograph =& $this->getMonograph();
 		$selectAction = new SelectReviewFilesLinkAction(
-			&$request, $monograph->getId(), $this->_getStageId(), $this->_getRound(),
+			&$request, $monograph->getId(), $this->_getStageId(), $this->getRound(),
 			__('editor.monograph.review.manageReviewFiles')
 		);
 		return $selectAction;
@@ -89,20 +88,25 @@ class ReviewGridDataProvider extends SubmissionFilesGridDataProvider {
 		$addFileAction = new AddFileLinkAction(
 			$request, $monograph->getId(), $this->_getStageId(),
 			$this->getUploaderRoles(), $this->_getFileStage(),
-			null, null, $this->_getRound()
+			null, null, $this->getRound()
 		);
 		return $addFileAction;
 	}
 
-	//
-	// Private helper methods
-	//
 	/**
 	 * Get the review round number.
 	 * @return integer
 	 */
-	function _getRound() {
+	function getRound() {
 		return $this->_round;
+	}
+
+	/**
+	 * Set the review round number.
+	 * @param $round integer
+	 */
+	function setRound($round) {
+		$this->_round = $round;
 	}
 }
 

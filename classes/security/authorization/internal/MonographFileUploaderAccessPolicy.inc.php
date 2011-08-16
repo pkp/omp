@@ -10,8 +10,6 @@
  *
  * @brief Monograph file policy to check if the current user is the uploader.
  *
- * NB: This policy expects a previously authorized monograph in the
- * authorization context.
  */
 
 import('classes.security.authorization.internal.MonographFileBaseAccessPolicy');

@@ -10,8 +10,6 @@
  *
  * @brief Abstract class for monograph file access policies.
  *
- * NB: This policy expects a previously authorized monograph in the
- * authorization context.
  */
 
 import('lib.pkp.classes.security.authorization.AuthorizationPolicy');

@@ -36,17 +36,25 @@ class ReviewerReviewAttachmentGridDataProvider extends SubmissionFilesGridDataPr
 	function getAuthorizationPolicy(&$request, $args, $roleAssignments) {
 		import('classes.security.authorization.internal.ReviewAssignmentRequiredPolicy');
 
-		$authorizationPolicy = parent::getAuthorizationPolicy($request, $args, $roleAssignments);
-
-		// FIXME: #6199 need to use the reviewId because this grid can either be viewed by the
-		// reviewer (in which case, we could do a $request->getUser()->getId() or by the editor when reading
+		// FIXME: #6199 need to use the reviewId because this grid can
+		// either be viewed by the reviewer (in which case, we could do
+		// a $request->getUser()->getId() or by the editor when reading
 		// the review. The following covers both cases...
 		$assocType = (int) $request->getUserVar('assocType');
 		$assocId = (int) $request->getUserVar('assocId');
 		if ($assocType && $assocId) {
+			// Viewing from a Reviewer perspective.
 			assert($assocType == ASSOC_TYPE_REVIEW_ASSIGNMENT);
+
+			$this->setUploaderRoles($roleAssignments);
+			import('classes.security.authorization.OmpSubmissionAccessPolicy');
+			import('classes.security.authorization.internal.WorkflowStageRequiredPolicy');
+			$authorizationPolicy = new OmpSubmissionAccessPolicy($request, $args, $roleAssignments);
+			$authorizationPolicy->addPolicy(new WorkflowStageRequiredPolicy($request->getUserVar('stageId')));
 			$paramName = 'assocId';
 		} else {
+			// Viewing from a press role perspective.
+			$authorizationPolicy = parent::getAuthorizationPolicy($request, $args, $roleAssignments);
 			$paramName = 'reviewId';
 		}
 

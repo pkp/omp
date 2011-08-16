@@ -334,6 +334,7 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	 *
 	-->
 	<!-- Authorization -->
+	<message key="user.authorization.invalidReviewAssignment">You have been denied access because you do not seem to be a valid reviewer for this monograph.</message>
 	<message key="user.authorization.monographAuthor">You have been denied access because you do not seem to be the author of this monograph.</message>
 	<message key="user.authorization.monographReviewer">You have been denied access because you do not seem to be an assigned reviewer of this monograph.</message>
 	<message key="user.authorization.monographFile">You have been denied access to the specified monograph file.</message>
