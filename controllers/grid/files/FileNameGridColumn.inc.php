@@ -15,11 +15,15 @@
 import('lib.pkp.classes.controllers.grid.GridColumn');
 
 class FileNameGridColumn extends GridColumn {
+	/** @var $_includeNotes boolean */
+	var $_includeNotes;
 
 	/**
 	 * Constructor
 	 */
-	function FileNameGridColumn() {
+	function FileNameGridColumn($includeNotes = true) {
+		$this->_includeNotes = $includeNotes;
+
 		import('lib.pkp.classes.controllers.grid.ColumnBasedGridCellProvider');
 		$cellProvider = new ColumnBasedGridCellProvider();
 		parent::GridColumn('name', 'common.name', null, 'controllers/grid/gridCell.tpl', $cellProvider,
@@ -51,6 +55,8 @@ class FileNameGridColumn extends GridColumn {
 	 * @see GridColumn::getCellActions()
 	 */
 	function getCellActions(&$request, &$row, $position = GRID_ACTION_POSITION_DEFAULT) {
+		$cellActions = parent::getCellActions($request, $row, $position);
+
 		// Retrieve the monograph file.
 		$submissionFileData =& $row->getData();
 		assert(isset($submissionFileData['submissionFile']));
@@ -58,12 +64,24 @@ class FileNameGridColumn extends GridColumn {
 
 		// Create the cell action to download a file.
 		import('controllers.api.file.linkAction.DownloadFileLinkAction');
-		$cellActions = parent::getCellActions($request, $row, $position);
 		$cellActions[] = new DownloadFileLinkAction($request, $monographFile);
-		import('controllers.informationCenter.linkAction.FileNotesLinkAction');
-		$user =& $request->getUser();
-		$cellActions[] = new FileNotesLinkAction($request, $monographFile, $user);
+
+		if ($this->_getIncludeNotes()) {
+			import('controllers.informationCenter.linkAction.FileNotesLinkAction');
+			$user =& $request->getUser();
+			$cellActions[] = new FileNotesLinkAction($request, $monographFile, $user);
+		}
 		return $cellActions;
+	}
+
+	//
+	// Private methods
+	//
+	/**
+	 * Determine whether or not submission note status should be included.
+	 */
+	function _getIncludeNotes() {
+		return $this->_includeNotes;
 	}
 }
 

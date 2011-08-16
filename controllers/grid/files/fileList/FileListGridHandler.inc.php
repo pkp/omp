@@ -19,7 +19,7 @@
 import('controllers.grid.files.SubmissionFilesGridHandler');
 
 // Define file grid capabilities.
-define('FILE_GRID_MANAGE', 0x08);
+define('FILE_GRID_MANAGE',		0x10000008);
 
 class FileListGridHandler extends SubmissionFilesGridHandler {
 	/** @var boolean */

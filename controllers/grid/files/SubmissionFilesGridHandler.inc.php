@@ -23,9 +23,10 @@ import('controllers.grid.files.FileNameGridColumn');
 import('classes.monograph.MonographFile');
 
 // Define the grid capabilities.
-define('FILE_GRID_ADD', 0x01);
-define('FILE_GRID_DOWNLOAD_ALL', 0x02);
-define('FILE_GRID_DELETE', 0x04);
+define('FILE_GRID_ADD',			0x00000001);
+define('FILE_GRID_DOWNLOAD_ALL',	0x00000002);
+define('FILE_GRID_DELETE',		0x00000004);
+define('FILE_GRID_VIEW_NOTES',		0x00000008);
 
 class SubmissionFilesGridHandler extends GridHandler {
 
@@ -34,6 +35,9 @@ class SubmissionFilesGridHandler extends GridHandler {
 
 	/** @var boolean */
 	var $_canAdd;
+
+	/** @var boolean */
+	var $_canViewNotes;
 
 	/** @var boolean */
 	var $_canDownloadAll;
@@ -57,6 +61,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 		$this->_canAdd = (boolean)($capabilities & FILE_GRID_ADD);
 		$this->_canDownloadAll = (boolean)($capabilities & FILE_GRID_DOWNLOAD_ALL);
 		$this->_canDelete = (boolean)($capabilities & FILE_GRID_DELETE);
+		$this->_canViewNotes = (boolean)($capabilities & FILE_GRID_VIEW_NOTES);
 
 		parent::GridHandler($dataProvider);
 	}
@@ -85,12 +90,19 @@ class SubmissionFilesGridHandler extends GridHandler {
 	}
 
 	/**
-	 * Does this grid allow the addition of files
-	 * or revisions?
+	 * Does this grid allow the addition of files or revisions?
 	 * @return boolean
 	 */
 	function canAdd() {
 		return $this->_canAdd;
+	}
+
+	/**
+	 * Does this grid allow viewing of notes?
+	 * @return boolean
+	 */
+	function canViewNotes() {
+		return $this->_canViewNotes;
 	}
 
 	/**
@@ -160,7 +172,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 		}
 
 		// The file name column is common to all file grid types.
-		$this->addColumn(new FileNameGridColumn());
+		$this->addColumn(new FileNameGridColumn($this->canViewNotes()));
 	}
 
 
@@ -171,7 +183,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 	 * @see GridHandler::getRowInstance()
 	 */
 	function &getRowInstance() {
-		$row = new SubmissionFilesGridRow($this->canDelete());
+		$row = new SubmissionFilesGridRow($this->canDelete(), $this->canViewNotes());
 		return $row;
 	}
 

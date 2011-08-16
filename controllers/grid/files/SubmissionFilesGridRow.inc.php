@@ -20,11 +20,15 @@ class SubmissionFilesGridRow extends GridRow {
 	/** @var boolean */
 	var $_canDelete;
 
+	/** @var boolean */
+	var $_canViewNotes;
+
 	/**
 	 * Constructor
 	 */
-	function SubmissionFilesGridRow($canDelete) {
+	function SubmissionFilesGridRow($canDelete, $canViewNotes) {
 		$this->_canDelete = $canDelete;
+		$this->_canViewNotes = $canViewNotes;
 		parent::GridRow();
 	}
 
@@ -38,6 +42,14 @@ class SubmissionFilesGridRow extends GridRow {
 	 */
 	function canDelete() {
 		return $this->_canDelete;
+	}
+
+	/**
+	 * Can the user view file notes on this grid?
+	 * @return boolean
+	 */
+	function canViewNotes() {
+		return $this->_canViewNotes;
 	}
 
 	//
@@ -63,8 +75,10 @@ class SubmissionFilesGridRow extends GridRow {
 		}
 
 		// 2) Information center action.
-		import('controllers.informationCenter.linkAction.FileInfoCenterLinkAction');
-		$this->addAction(new FileInfoCenterLinkAction($request, $monographFile));
+		if ($this->canViewNotes()) {
+			import('controllers.informationCenter.linkAction.FileInfoCenterLinkAction');
+			$this->addAction(new FileInfoCenterLinkAction($request, $monographFile));
+		}
 	}
 }
 

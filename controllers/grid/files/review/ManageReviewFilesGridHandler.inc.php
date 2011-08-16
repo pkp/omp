@@ -29,7 +29,7 @@ class ManageReviewFilesGridHandler extends SelectableFileListGridHandler {
 		parent::SelectableFileListGridHandler(
 			new ReviewGridDataProvider(MONOGRAPH_FILE_REVIEW),
 			null,
-			FILE_GRID_ADD|FILE_GRID_DOWNLOAD_ALL
+			FILE_GRID_ADD|FILE_GRID_DOWNLOAD_ALL|FILE_GRID_VIEW_NOTES
 		);
 
 		$this->addRoleAssignment(

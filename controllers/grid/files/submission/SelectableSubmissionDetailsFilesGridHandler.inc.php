@@ -24,7 +24,7 @@ class SelectableSubmissionDetailsFilesGridHandler extends SelectableFileListGrid
 		parent::SelectableFileListGridHandler(
 			new SubmissionFilesGridDataProvider(MONOGRAPH_FILE_SUBMISSION),
 			null,
-			FILE_GRID_ADD|FILE_GRID_DOWNLOAD_ALL
+			FILE_GRID_ADD|FILE_GRID_DOWNLOAD_ALL|FILE_GRID_VIEW_NOTES
 		);
 
 		$this->addRoleAssignment(
