@@ -95,9 +95,21 @@ class OmpMonographFileAccessPolicy extends PressPolicy {
 			$reviewerFileAccessPolicy = new PolicySet(COMBINING_DENY_OVERRIDES);
 			$reviewerFileAccessPolicy->addPolicy(new RoleBasedHandlerOperationPolicy($request, ROLE_ID_REVIEWER, $roleAssignments[ROLE_ID_REVIEWER]));
 
-			// 2) ... if the requested file is their own.
+			// 2) ...if they meet one of the following requirements:
+			$reviewerFileAccessOptionsPolicy = new PolicySet(COMBINING_PERMIT_OVERRIDES);
+
+			// 2a) If the file was uploaded by the current user, allow.
 			import('classes.security.authorization.internal.MonographFileUploaderAccessPolicy');
-			$reviewerFileAccessPolicy->addPolicy(new MonographFileUploaderAccessPolicy($request));
+			$reviewerFileAccessOptionsPolicy->addPolicy(new MonographFileUploaderAccessPolicy($request));
+
+			// 2b) If the file is part of an assigned review, allow.
+			import('classes.security.authorization.internal.MonographFileAssignedReviewerAccessPolicy');
+			$reviewerFileAccessOptionsPolicy->addPolicy(new MonographFileAssignedReviewerAccessPolicy($request));
+
+			// Add the rules from 2)
+			$reviewerFileAccessPolicy->addPolicy($reviewerFileAccessOptionsPolicy);
+
+			// Add this policy set
 			$fileAccessPolicy->addPolicy($reviewerFileAccessPolicy);
 		}
 
