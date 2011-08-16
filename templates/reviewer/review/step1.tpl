@@ -45,7 +45,7 @@
 		</div>
 	{/fbvFormSection}
 	<br /><br />
-	{fbvFormSection label="reviewer.competingInterests" description="reviewer.monograph.enterCompetingInterests"}
+	{fbvFormSection label="reviewer.monograph.competingInterests" description="reviewer.monograph.enterCompetingInterests"}
 		<div class="pkp_linkActions">
 			{include file="linkAction/linkAction.tpl" action=$competingInterestsAction contextId="reviewStep1"}
 		</div>

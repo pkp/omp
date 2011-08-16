@@ -24,6 +24,7 @@ class ReviewStageForm extends PressSettingsForm {
 	function ReviewStageForm($wizardMode = false) {
 		$settings = array(
 			'reviewGuidelines' => 'string',
+			'competingInterests' => 'string',
 			'mailSubmissionsToReviewers' => 'bool',
 			'numWeeksPerResponse' => 'int',
 			'numWeeksPerReview' => 'int',
@@ -48,7 +49,7 @@ class ReviewStageForm extends PressSettingsForm {
 	 * @see Form::getLocaleFieldNames()
 	 */
 	function getLocaleFieldNames() {
-		return array('reviewGuidelines');
+		return array('reviewGuidelines', 'competingInterests');
 	}
 
 	/**

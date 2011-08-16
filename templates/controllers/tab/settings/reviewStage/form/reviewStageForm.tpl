@@ -111,6 +111,10 @@
 				<p>{translate key="manager.setup.reviewGuidelinesDescription"}</p>
 				{fbvElement type="textarea" multilingual="true" name="reviewGuidelines" id="reviewGuidelines" value=$reviewGuidelines size=$fbvStyles.size.MEDIUM  rich=true}
 			{/fbvFormSection}
+			{fbvFormSection title="manager.setup.competingInterests"}
+				<p>{translate key="manager.setup.competingInterestsDescription"}</p>
+				{fbvElement type="textarea" multilingual="true" id="competingInterests" value=$competingInterests size=$fbvStyles.size.MEDIUM  rich=true}
+			{/fbvFormSection}
 		{/fbvFormArea}
 	</div>
 
