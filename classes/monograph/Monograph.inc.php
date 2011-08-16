@@ -217,50 +217,6 @@ class Monograph extends Submission {
 	}
 
 	/**
-	 * Get an array of user IDs associated with this monograph
-	 * @param $includeReviewers boolean Include reviewers in the array
-	 * @param $userGroupIds array Only look up the user group IDs in the array
-	 * @return array User IDs
-	 */
-	function getAssociatedUserIdsByUserGroupId($stageId = null, $includeReviewers = false, $includeAuthors = false) {
-		$monographId = $this->getId();
-		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
-
-		$userIds = array();
-
-		$stageAssignmentDAO =& DAORegistry::getDAO('StageAssignmentDAO');
-		$stageAssignments =& $stageAssignmentDAO->getBySubmissionAndStageId($monographId, $stageId);
-		while ($stageAssignment =& $stageAssignments->next()) {
-			$usersIds[$stageAssignment->getUserGroupId()][] = $stageAssignment->getUserId();
-			unset($stageAssignment);
-		}
-
-		if ( $includeReviewers ) {
-			// FIXME: #6688# reviewers not inluded in stage participants grid
-			// need to add userGroupId's to reviewAssignments.
-			// all this is doing nothing at the moment.
-			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
-			$reviewAssignments =& $reviewAssignmentDao->getBySubmissionId($monographId);
-			foreach ($reviewAssignments as $reviewAssignment) {
-				// getReviewerUserGroupId does not exist ... yet.
-				// $userIds[$reviewAssignment->getReviewerUserGroupId()][] = $reviewAssignment->getReviewerId();
-				unset($reviewAssignment);
-			}
-		}
-
-		if ( $includeAuthors ) {
-			$authors =& $this->getAuthors();
-
-			while ($author =& $authors->next()) {
-				$usersIds[$author->getUserGroupId()][] = $author->getUserId();
-				unset($author);
-			}
-		}
-
-		return $userIds;
-	}
-
-	/**
 	 * Get the file for this monograph at a given signoff stage
 	 *
 	 * FIXME: Move to some DAO, initialize on load or implement
