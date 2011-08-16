@@ -6,6 +6,6 @@
  *
  * Grid filter user group options.
  *}
-<select name="userGroup" id="userGroup" size="1" class="selectMenu">
-	{html_options options=$filterData.userGroupOptions selected=$filterSelectionData.userGroup|escape}
-</select>
+{fbvFormSection}
+	{fbvElement type="select" name="userGroup" id="userGroup" from=$filterData.userGroupOptions selected=$filterSelectionData.userGroup translate=false}
+{/fbvFormSection}
