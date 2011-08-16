@@ -29,7 +29,7 @@ Link: {$url}
 Link: {$url}
 --
 
-If you wish to stop receiving notification emails, please go to {$unsubscribeLink} and enter your email address and password.
+If you wish to stop receiving notification emails, please go to {$unsubscribeLink}.
 
 {$principalContactSignature}</body>
 		<description>This email is sent to unregistered users on the notification mailing list.</description>
@@ -42,19 +42,8 @@ Please click on this link to confirm your request and add your email address to 
 
 If you wish to stop receiving notification emails, please go to {$unsubscribeLink} and enter your email address and password.
 
-Your password for disabling notification emails is: {$password}
-
 {$principalContactSignature}</body>
 		<description>This email is sent to an unregistered user who just registered with the notification mailing list.</description>
-	</email_text>
-	<email_text key="NOTIFICATION_MAILLIST_PASSWORD">
-		<subject>Your notification mailing list information for {$siteTitle}</subject>
-		<body>Your new password for disabling notification emails is: {$password}
-
-If you wish to stop receiving notification emails, please go to {$unsubscribeLink} and enter your email address and password.
-
-{$principalContactSignature}</body>
-		<description>This email is sent to an unregistered user on the notification mailing list when they indicate that they have forgotten their password or are unable to login. It provides a URL they can follow to reset their password.</description>
 	</email_text>
 	<email_text key="PASSWORD_RESET_CONFIRM">
 		<subject>Password Reset Confirmation</subject>

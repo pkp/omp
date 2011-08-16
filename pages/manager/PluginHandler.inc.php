@@ -86,9 +86,10 @@ class PluginHandler extends ManagerHandler {
 		$message = null;
 		if (!isset($plugins[$plugin]) || !$plugins[$plugin]->manage($verb, $args, $message)) {
 			if ($message) {
-				import('lib.pkp.classes.notification.NotificationManager');
+				import('classes.notification.NotificationManager');
 				$notificationManager = new NotificationManager();
-				$notificationManager->createTrivialNotification(Locale::translate('notification.notification'), $message, NOTIFICATION_TYPE_SUCCESS, null, 0);
+				$user =& $request->getUser();
+				$notificationManager->createTrivialNotification($user->getId(), $message);
 			}
 			$request->redirect(null, null, 'plugins', array($category));
 		}

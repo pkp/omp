@@ -104,24 +104,27 @@ class SubmissionSubmitStep3Form extends SubmissionSubmitForm {
 		$seriesEditorAction = new SeriesEditorAction();
 		$seriesEditorAction->assignDefaultStageParticipants($monograph, WORKFLOW_STAGE_ID_SUBMISSION);
 
+		//
 		// Send a notification to associated users
-		import('lib.pkp.classes.notification.NotificationManager');
-		$notificationManager = new NotificationManager();
-		$roleDao =& DAORegistry::getDAO('RoleDAO');
-		$notificationUsers = array();
+		//
+
+		$roleDao =& DAORegistry::getDAO('RoleDAO'); /* @var $roleDao RoleDAO */
+
+		// Get the managers and editors.
 		$pressManagers = $roleDao->getUsersByRoleId(ROLE_ID_PRESS_MANAGER);
-		$allUsers = $pressManagers->toArray();
 		$editors = $roleDao->getUsersByRoleId(ROLE_ID_EDITOR);
-		$router =& $request->getRouter();
-		array_merge($allUsers, $editors->toArray());
-		foreach ($allUsers as $user) {
-			$notificationUsers[] = array('id' => $user->getId());
-		}
-		foreach ($notificationUsers as $userRole) {
-			$url = $router->url($request, null, 'workflow', 'submission', $monograph->getId());
+
+		$pressManagersArray = $pressManagers->toAssociativeArray();
+		$editorsArray = $editors->toAssociativeArray();
+
+		$allUsers = array_unique(array_merge(array_keys($pressManagersArray), array_keys($editorsArray)));
+
+		import('classes.notification.NotificationManager');
+		$notificationManager = new NotificationManager();
+		foreach ($allUsers as $userId) {
 			$notificationManager->createNotification(
-				$userRole['id'], 'notification.type.monographSubmitted',
-				$monograph->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_MONOGRAPH_SUBMITTED
+				$request, $userId, NOTIFICATION_TYPE_MONOGRAPH_SUBMITTED,
+				$monograph->getPressId(), ASSOC_TYPE_MONOGRAPH, $monograph->getId()
 			);
 		}
 
@@ -130,6 +133,7 @@ class SubmissionSubmitStep3Form extends SubmissionSubmitForm {
 		$mail = new MonographMailTemplate($monograph, 'SUBMISSION_ACK', null, null, null, false);
 		$press =& $request->getPress();
 
+		$router =& $request->getRouter();
 		if ($mail->isEnabled()) {
 			$user = $monograph->getUser();
 			$mail->addRecipient($user->getEmail(), $user->getFullName());

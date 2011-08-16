@@ -116,8 +116,9 @@ class ReviewerReviewStep3Form extends ReviewerReviewForm {
 
 	/**
 	 * @see Form::execute()
+	 * @param $request PKPRequest
 	 */
-	function execute() {
+	function execute(&$request) {
 		$reviewAssignment =& $this->getReviewAssignment();
 		if($reviewAssignment->getReviewFormId()) {
 			$reviewFormResponseDao =& DAORegistry::getDAO('ReviewFormResponseDAO');
@@ -172,6 +173,22 @@ class ReviewerReviewStep3Form extends ReviewerReviewForm {
 			// Persist the monograph comment.
 			$commentDao =& DAORegistry::getDAO('MonographCommentDAO');
 			$commentDao->insertMonographComment($comment);
+
+			$monographDao =& DAORegistry::getDAO('MonographDAO');
+			$monograph =& $monographDao->getMonograph($reviewAssignment->getSubmissionId());
+
+			$stageAssignmentDao =& DAORegistry::getDAO('StageAssignmentDAO');
+			$stageAssignments =& $stageAssignmentDao->getBySubmissionAndStageId($monograph->getId(), $monograph->getStageId());
+
+			import('classes.notification.NotificationManager');
+			$notificationManager = new NotificationManager();
+			while ($stageAssignment =& $stageAssignments->next()) {
+				$notificationManager->createNotification(
+					$request, $stageAssignment->getUserId(), NOTIFICATION_TYPE_REVIEWER_COMMENT,
+					$monograph->getPressId(), ASSOC_TYPE_REVIEW_ASSIGNMENT, $reviewAssignment->getId()
+				);
+				unset($stageAssignment);
+			}
 		}
 
 		// Set review to next step.

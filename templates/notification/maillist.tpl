@@ -12,56 +12,28 @@
 {include file="common/header.tpl"}
 {/strip}
 
+<script type="text/javascript">
+	$(function() {ldelim}
+		// Attach the form handler.
+		$('#notificationMailListForm').pkpHandler('$.pkp.controllers.form.FormHandler');
+	{rdelim});
+</script>
+
 <p><span class="instruct">{translate key="notification.mailListDescription"}</span></p>
 
-<form class="pkp_form" id="notificationSettings" method="post" action="{url op="saveSubscribeMailList"}">
+<form class="pkp_form" id="notificationMailListForm" method="post" action="{url op="saveSubscribeMailList"}">
+	{include file="common/formErrors.tpl"}
 
-{if $isError}
-<p>
-	<span class="pkp_form_error">{translate key="form.errorsOccurred"}:</span>
-	<ul class="pkp_form_error_list">
-	{foreach key=field item=message from=$errors}
-			<li>{$message}</li>
-	{/foreach}
-	</ul>
-</p>
-{/if}
+	{fbvFormArea id="notificationMailList"}
+		{fbvFormSection title="user.email" for="email" required="true"}
+			{fbvElement type="text" id="email" value=$email|escape size=$fbvStyles.size.MEDIUM} <br />
+			{fbvElement type="text" label="user.confirmEmail" id="confirmEmail" value=$confirmEmail|escape size=$fbvStyles.size.MEDIUM}
+		{/fbvFormSection}
+	{/fbvFormArea}
 
-{if $success}
-	<p><span class="pkp_form_success">{translate key="$success"}</span></p>
-{/if}
-
-<table class="data" width="100%">
-	<tr valign="top">
-		<td class="label" width="5%">{fieldLabel name="email" key="user.email"}</td>
-		<td class="value" width="45%"><input type="text" id="email" name="email" size="30" maxlength="90" class="textField" /></td>
-	</tr>
-	<tr valign="top">
-		<td class="label" width="5%">{fieldLabel name="confirmEmail" key="user.confirmEmail"}</td>
-		<td class="value" width="45%"><input type="text" id="confirmEmail" name="confirmEmail" size="30" maxlength="90" class="textField" /></td>
-	</tr>
-	<tr valign="top">
-		<td width="5%">&nbsp;</td>
-		<td><p><input type="submit" value="{translate key="form.submit"}" class="button defaultButton" /></p></td>
-	</tr>
-</table>
+	{url|assign:cancelUrl page="notification"}
+	{fbvFormButtons submitText="form.submit" cancelUrl=$cancelUrl}
 </form>
-<h5 style="margin-left:10%">{translate key="notification.mailList.register"}</h5>
-<ul class="plain" style="margin-left:10%">
-	{if $settings.allowRegReviewer}
-		{url|assign:"url" page="user" op="register"}
-		<li>&#187; {translate key="notification.mailList.review" reviewUrl=$url} </li>
-	{/if}
-	{if $settings.allowRegAuthor}
-		{url|assign:"url" page="information" op="authors"}
-		<li>&#187; {translate key="notification.mailList.submit" submitUrl=$url} </li>
-	{/if}
-	{if $settings.subscriptionsEnabled}
-		{url|assign:"url" page="user" op="register"}
-		<li>&#187; {translate key="notification.mailList.protectedContent" subscribeUrl=$url}
-	{/if}
-<li>&#187; <a href="{url page="about" op="submissions" anchor="privacyStatement"}">{translate key="about.privacyStatement"}</a></li>
-<ul>
 
 </form>
 

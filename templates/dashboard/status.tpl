@@ -9,16 +9,14 @@
 
 <!-- New Submission entry point -->
 {if $pressCount > 1}
-	<script type="text/javascript">{literal}
-		<!--
-		$(function(){
-			$("#pressSelect").change(function() {
+	<script type="text/javascript">
+		$(function() {ldelim}
+			$("#pressSelect").change(function() {ldelim}
 				if($("#pressSelect option:selected").val() == 0) return false; // User has select the default text; do nothing
 				window.location.href = $("#pressSelect option:selected").val();
-			});
-		});
-		// -->
-	{/literal}</script>
+			{rdelim});
+		{rdelim});
+	</script>
 	<h3 class="pkp_helpers_align_left">{translate key="submission.submit.newSubmissionMultiple"}</h3>
 	<select id="pressSelect" class="pkp_helpers_align_left deprecated_selectHeader">
 		<option value="0">{translate key="submission.submit.selectAPress"}</option>

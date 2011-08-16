@@ -201,9 +201,10 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 		$userGroup =& $userGroupDao->getById($userGroupId, $monograph->getPressId());
 		if (!$userGroup) fatalError('Invalid userGroupId.');
 
-		import('lib.pkp.classes.notification.NotificationManager');
+		import('classes.notification.NotificationManager');
 		$notificationManager = new NotificationManager();
-		$notificationManager->createTrivialNotification('notification.notification', 'common.changesSaved');
+		$user =& $request->getUser();
+		$notificationManager->createTrivialNotification($user->getId());
 		return DAO::getDataChangedEvent($userGroupId);
 	}
 }

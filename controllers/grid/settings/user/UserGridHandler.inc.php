@@ -331,9 +331,9 @@ class UserGridHandler extends GridHandler {
 				} else {
 
 					// Successful edit of an existing user.
-					import('lib.pkp.classes.notification.NotificationManager');
+					import('classes.notification.NotificationManager');
 					$notificationManager = new NotificationManager();
-					$notificationManager->createTrivialNotification('notification.notification', 'common.changesSaved');
+					$notificationManager->createTrivialNotification($userId);
 
 					// Prepare the grid row data.
 					return DAO::getDataChangedEvent($userId);

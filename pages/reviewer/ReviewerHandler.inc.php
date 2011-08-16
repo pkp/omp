@@ -104,7 +104,7 @@ class ReviewerHandler extends Handler {
 		$reviewerForm->readInputData();
 
 		if ($reviewerForm->validate()) {
-			$reviewerForm->execute();
+			$reviewerForm->execute($request);
 			$request->redirect(null, null, 'submission', $reviewAssignment->getSubmissionId(), array('step' => $step+1));
 		} else {
 			$reviewerForm->display($request);

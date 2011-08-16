@@ -319,23 +319,14 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<!-- Notification Types -->
 	<message key="notification.mailListDescription">Enter your email address to receive immediate notifications of important new content added to the press.</message>
 	<message key="notification.notificationsPublicDescription">This page shows important updates associated with this press such as new monographs or announcements.  You may subscribe to these notifications through RSS feeds (by clicking on the images to the right), or <![CDATA[  <a href="{$emailUrl}">through email.</a>]]></message>
-	<message key="notification.type.monographSubmitted">A new monograph, "{$param}", has been submitted.</message>
-	<message key="notification.type.copyeditComment">A copyeditor has left a comment on "{$param}".</message>
+	<message key="notification.type.monographSubmitted">A new monograph, "{$title}", has been submitted.</message>
 	<message key="notification.type.editing">Editing Events</message>
-	<message key="notification.type.editorDecisionComment">A comment has been left on the editor decision for "{$param}".</message>
-	<message key="notification.type.galleyModified">A galley has been modified for "{$param}".</message>
-	<message key="notification.type.monographPublished">A new monograph has been published.</message>
-	<message key="notification.type.layoutComment">A comment has been left about "{$param}'s" layout.</message>
-	<message key="notification.type.metadataModified">"{$param}'s" metadata has been modified.</message>
-	<message key="notification.type.newAnnouncement">A new announcement has been created.</message>
-	<message key="notification.type.proofreadComment">A comment has been left by a proofreader on "{$param}".</message>
-	<message key="notification.type.reviewerComment">A reviewer has commented on "{$param}".</message>
-	<message key="notification.type.reviewerFormComment">A review form review has been submitted for "{$param}".</message>
+	<message key="notification.type.metadataModified">"{$title}'s" metadata has been modified.</message>
+	<message key="notification.type.reviewerComment">A reviewer has commented on "{$title}".</message>
 	<message key="notification.type.reviewing">Reviewing Events</message>
 	<message key="notification.type.site">Site Events</message>
-	<message key="notification.type.submissionComment">An editor has made a comment on "{$param}".</message>
 	<message key="notification.type.submissions">Submission Events</message>
-	<message key="notification.type.userComment">A reader has made a comment on "{$param}"</message>
+	<message key="notification.type.userComment">A reader has made a comment on "{$title}"</message>
 
 	<!--
 	 *
