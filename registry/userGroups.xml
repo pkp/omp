@@ -18,7 +18,7 @@
 	<group roleId="0x00000201" stages="1,2,3" name="default.groups.name.seriesEditor" plural="default.groups.plural.seriesEditor" abbrev="default.groups.abbrev.seriesEditor" />
 
 	<!-- Press Role -->
-	<group roleId="0x00001001" stages="2,3,4" name="default.groups.name.copyeditor" plural="default.groups.plural.copyeditor" abbrev="default.groups.abbrev.copyeditor" />
+	<group roleId="0x00001001" stages="4" name="default.groups.name.copyeditor" plural="default.groups.plural.copyeditor" abbrev="default.groups.abbrev.copyeditor" />
 	<group roleId="0x00001001" stages="5" name="default.groups.name.designer" plural="default.groups.plural.designer" abbrev="default.groups.abbrev.designer" />
 	<group roleId="0x00001001" stages="1,2,3" name="default.groups.name.funding" plural="default.groups.plural.funding" abbrev="default.groups.abbrev.funding" />
 	<group roleId="0x00001001" stages="5" name="default.groups.name.indexer" plural="default.groups.plural.indexer" abbrev="default.groups.abbrev.indexer" />
@@ -27,10 +27,10 @@
 	<group roleId="0x00001001" stages="5" name="default.groups.name.proofreader" plural="default.groups.plural.proofreader" abbrev="default.groups.abbrev.proofreader" />
 
 	<!-- Author Role -->
-	<group roleId="0x00010000" stages="" name="default.groups.name.author" plural="default.groups.plural.author" abbrev="default.groups.abbrev.author" />
-	<group roleId="0x00010000" stages="" name="default.groups.name.volumeEditor" plural="default.groups.plural.volumeEditor" abbrev="default.groups.abbrev.volumeEditor" />
-	<group roleId="0x00010000" stages="" name="default.groups.name.chapterAuthor" plural="default.groups.plural.chapterAuthor" abbrev="default.groups.abbrev.chapterAuthor" />
-	<group roleId="0x00010000" stages="" name="default.groups.name.translator" plural="default.groups.plural.translator" abbrev="default.groups.abbrev.translator" />
+	<group roleId="0x00010000" stages="1,2,3,4,5" name="default.groups.name.author" plural="default.groups.plural.author" abbrev="default.groups.abbrev.author" />
+	<group roleId="0x00010000" stages="1,2,3,4,5" name="default.groups.name.volumeEditor" plural="default.groups.plural.volumeEditor" abbrev="default.groups.abbrev.volumeEditor" />
+	<group roleId="0x00010000" stages="4,5" name="default.groups.name.chapterAuthor" plural="default.groups.plural.chapterAuthor" abbrev="default.groups.abbrev.chapterAuthor" />
+	<group roleId="0x00010000" stages="1,2,3,4,5" name="default.groups.name.translator" plural="default.groups.plural.translator" abbrev="default.groups.abbrev.translator" />
 
 	<!-- Reviewer Role -->
 	<group roleId="0x00001000" stages="2" name="default.groups.name.internalReviewer" plural="default.groups.plural.internalReviewer" abbrev="default.groups.abbrev.internalReviewer" />
