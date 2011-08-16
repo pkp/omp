@@ -35,9 +35,9 @@ function doSubmit() {
 	<p>{translate key="admin.presses.createInstructions"}</p>
 {/if}
 
-{fbvElement type="hidden" name="submitted" value="0"}
+{fbvElement id="submitted" type="hidden" name="submitted" value="0"}
 {if $pressId}
-	{fbvElement type="hidden" name="pressId" value=$pressId}
+	{fbvElement id="pressId" type="hidden" name="pressId" value=$pressId}
 {/if}
 
 
@@ -56,11 +56,11 @@ function doSubmit() {
 	{/fbvFormSection}
 	{fbvFormSection title="admin.presses.enablePressInstructions" for="enabled" list=true}
 		{if $enabled}{assign var="enabled" value="checked"}{/if}
-		{fbvElement type="checkbox" id="enabled" checked=$enabled|escape value="1"}
+		{fbvElement type="checkbox" id="enabled" checked=$enabled value="1"}
 	{/fbvFormSection}
 
 	<p><span class="formRequired">{translate key="common.requiredField"}</span></p>
-	{fbvFormButtons submitText="common.save"}
+	{fbvFormButtons id="submit" submitText="common.save"}
 {/fbvFormArea}
 
 {include file="common/footer.tpl"}
