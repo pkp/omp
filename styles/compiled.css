@@ -1058,8 +1058,6 @@ span.pkp_controllers_informationCenter_itemLastEvent {
 .pkp_submissionChecklist ul li label.error { margin-bottom:15px; }
 .pkp_workflow_headerBottom { margin-top:10px; }
 .pkp_workflow_headerBottom .pkp_workflow_headerUserInfo {
-  width:51%;
-  height:100px;
   padding-right:10px;
   float:left;
 }
