@@ -32,9 +32,16 @@ class FileManagementHandler extends Handler {
 	 */
 	function authorize(&$request, $args, $roleAssignments) {
 		// FIXME: Requires file level authorization policy.
-		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
 		$stageId = (int)$request->getUserVar('stageId');
-		$this->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', $stageId));
+
+		// If this is a review stage, allow reviewers. Otherwise just press roles.
+		if ($stageId == WORKFLOW_STAGE_ID_INTERNAL_REVIEW || $stageId == WORKFLOW_STAGE_ID_EXTERNAL_REVIEW) {
+			import('classes.security.authorization.OmpReviewStageAccessPolicy');
+			$this->addPolicy(new OmpReviewStageAccessPolicy($request, $args, $roleAssignments, 'monographId', $stageId));
+		} else {
+			import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
+			$this->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', $stageId));
+		}
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 

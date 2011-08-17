@@ -108,29 +108,6 @@ class FileUploadWizardHandler extends FileManagementHandler {
 		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_SUBMISSION, LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_PKP_COMMON, LOCALE_COMPONENT_APPLICATION_COMMON));
 	}
 
-	/**
-	 * @see PKPHandler::authorize()
-	 */
-	function authorize(&$request, $args, $roleAssignments) {
-		// This can be viewed either with workflow roles or with
-		// reviewer roles. These require different policies.
-		if ($request->getUserVar('assocId') && $request->getUserVar('assocType')) {
-			// Reviewer perspective
-			if ($request->getUserVar('assocType') != ASSOC_TYPE_REVIEW_ASSIGNMENT) fatalError('Invalid association!');
-			import('classes.security.authorization.OmpSubmissionAccessPolicy');
-			import('classes.security.authorization.internal.WorkflowStageRequiredPolicy');
-			$authorizationPolicy = new OmpSubmissionAccessPolicy($request, $args, $roleAssignments);
-			$authorizationPolicy->addPolicy(new WorkflowStageRequiredPolicy($request->getUserVar('stageId')));
-			$this->addPolicy($authorizationPolicy);
-
-			// Skip the parent class's policy addition
-			return Handler::authorize($request, $args, $roleAssignments);
-		} else {
-			// Workflow perspective
-			return parent::authorize($request, $args, $roleAssignments);
-		}
-	}
-
 
 	//
 	// Getters and Setters
@@ -217,6 +194,9 @@ class FileUploadWizardHandler extends FileManagementHandler {
 
 		// Assign the file stage.
 		$templateMgr->assign('fileStage', $this->getFileStage());
+
+		// Preserve the isReviewer flag
+		$templateMgr->assign('isReviewer', $request->getUserVar('isReviewer'));
 
 		// Configure the "revision only" feature.
 		$templateMgr->assign('revisionOnly', $this->getRevisionOnly());
