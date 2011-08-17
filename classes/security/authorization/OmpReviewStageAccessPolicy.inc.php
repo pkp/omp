@@ -34,11 +34,13 @@ class OmpReviewStageAccessPolicy extends PressPolicy {
 		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
 		$workflowStagePolicy->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, $submissionParameterName, $stageId));
 
-		// Add the submission policy, for reviewer roles
-		import('classes.security.authorization.OmpSubmissionAccessPolicy');
-		$submissionPolicy = new OmpSubmissionAccessPolicy($request, $args, $roleAssignments, $submissionParameterName);
-		$submissionPolicy->addPolicy(new WorkflowStageRequiredPolicy($stageId));
-		$workflowStagePolicy->addPolicy($submissionPolicy);
+		if ($stageId == WORKFLOW_STAGE_ID_INTERNAL_REVIEW || $stageId == WORKFLOW_STAGE_ID_EXTERNAL_REVIEW) {
+			// Add the submission policy, for reviewer roles
+			import('classes.security.authorization.OmpSubmissionAccessPolicy');
+			$submissionPolicy = new OmpSubmissionAccessPolicy($request, $args, $roleAssignments, $submissionParameterName);
+			$submissionPolicy->addPolicy(new WorkflowStageRequiredPolicy($stageId));
+			$workflowStagePolicy->addPolicy($submissionPolicy);
+		}
 
 		// Add the role-specific policies to this policy set.
 		$this->addPolicy($workflowStagePolicy);
