@@ -19,11 +19,15 @@ class ReviewGridDataProvider extends SubmissionFilesGridDataProvider {
 	/** @var integer */
 	var $_round;
 
+	/** @var $_viewableOnly boolean */
+	var $_viewableOnly;
+
 
 	/**
 	 * Constructor
 	 */
-	function ReviewGridDataProvider($fileStageId) {
+	function ReviewGridDataProvider($fileStageId, $viewableOnly = false) {
+		$this->_viewableOnly = $viewableOnly;
 		parent::SubmissionFilesGridDataProvider($fileStageId);
 	}
 
@@ -60,7 +64,9 @@ class ReviewGridDataProvider extends SubmissionFilesGridDataProvider {
 		$monographFiles =& $submissionFileDao->getRevisionsByReviewRound(
 			$monograph->getId(), $this->_getStageId(), $this->getRound(), $this->_getFileStage()
 		);
-		return $this->prepareSubmissionFileData($monographFiles);
+		$data = $this->prepareSubmissionFileData($monographFiles, $this->_viewableOnly);
+
+		return $data;
 	}
 
 	//

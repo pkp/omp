@@ -30,17 +30,8 @@ class FinalDraftFilesGridDataProvider extends SubmissionFilesGridDataProvider {
 	 * @see GridDataProvider::loadData()
 	 */
 	function &loadData() {
-		// Get all MONOGRAPH_FILE_FINAL files, but filter out non-viewable ones
-		// (that have been de-selected using the "manage" tool)
-		$data =& parent::loadData();
-
-		foreach ($data as $i => $fileData) {
-			$submissionFile =& $fileData['submissionFile'];
-			if (!$submissionFile->getViewable()) unset($data[$i]);
-			unset($submissionFile);
-		}
-
-		return $data;
+		// Exclude non-viewable files
+		return parent::loadData(true);
 	}
 
 	/**

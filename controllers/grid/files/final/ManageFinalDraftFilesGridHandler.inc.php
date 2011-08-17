@@ -6,7 +6,7 @@
  * Copyright (c) 2003-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class ManageReviewFilesGridHandler
+ * @class ManageFinalDraftFilesGridHandler
  * @ingroup controllers_grid_files_final
  *
  * @brief Handle the editor review file selection grid (selects which files to send to review or to next review round)

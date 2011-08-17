@@ -23,7 +23,7 @@ class AuthorReviewAttachmentsGridHandler extends FileListGridHandler {
 		import('controllers.grid.files.review.ReviewGridDataProvider');
 		// Pass in null stageId to be set in initialize from request var.
 		parent::FileListGridHandler(
-			new ReviewGridDataProvider(MONOGRAPH_FILE_REVIEW_ATTACHMENT),
+			new ReviewGridDataProvider(MONOGRAPH_FILE_REVIEW_ATTACHMENT, true),
 			null,
 			FILE_GRID_DOWNLOAD_ALL
 		);

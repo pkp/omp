@@ -13,14 +13,14 @@
  */
 
 
-import('controllers.grid.files.review.ReviewFilesGridDataProvider');
+import('controllers.grid.files.review.ReviewGridDataProvider');
 
-class ReviewerReviewFilesGridDataProvider extends ReviewFilesGridDataProvider {
+class ReviewerReviewFilesGridDataProvider extends ReviewGridDataProvider {
 	/**
 	 * Constructor
 	 */
 	function ReviewerReviewFilesGridDataProvider() {
-		parent::ReviewFilesGridDataProvider();
+		parent::ReviewGridDataProvider(MONOGRAPH_FILE_REVIEW);
 	}
 
 
