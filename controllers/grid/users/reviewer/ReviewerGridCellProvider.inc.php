@@ -44,52 +44,56 @@ class ReviewerGridCellProvider extends DataObjectGridCellProvider {
 				return ($reviewAssignment->getDateCompleted())?'linkReview':'';
 
 			case 'editor':
-				// The review has been completed.
-				if ($reviewAssignment->getDateCompleted()) {
-					// The reviewer has been sent an acknowledgement.
-					if ($reviewAssignment->getDateAcknowledged()) {
-						return 'completed';
-					}
+				// The review has not been completed.
+				if (!$reviewAssignment->getDateCompleted()) return '';
 
-					// Check if the somebody assigned to this monograph stage has read the review.
-					$monographDao =& DAORegistry::getDAO('MonographDAO');
-					$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
-					$userStageAssignmentDao =& DAORegistry::getDAO('UserStageAssignmentDAO');
-					$viewsDao =& DAORegistry::getDAO('ViewsDAO');
-
-
-					$monograph =& $monographDao->getMonograph($reviewAssignment->getSubmissionId());
-
-					// Get the user groups for this stage
-					$userGroups =& $userGroupDao->getUserGroupsByStage($monograph->getPressId(),
-																			$reviewAssignment->getStageId(),
-																			true,
-																			true);
-					while ( $userGroup =& $userGroups->next() ) {
-						if ($userGroup->getRoleId() == ROLE_ID_PRESS_MANAGER ||
-							$userGroup->getRoleId() == ROLE_ID_SERIES_EDITOR) {
-							// Get the users assigned to this stage and user group
-							$stageUsers =& $userStageAssignmentDao->getUsersBySubmissionAndStageId(
-																				$reviewAssignment->getSubmissionId(),
-																				$reviewAssignment->getStageId(),
-																				$userGroup->getId());
-							// mark as completed (viewed) if any of the manager/editor users viewed it.
-							while ( $user =& $stageUsers->next() ) {
-								if ($viewsDao->getLastViewDate(ASSOC_TYPE_REVIEW_RESPONSE,
-															   $reviewAssignment->getId(), $user->getId())) {
-									// Some user has read the review.
-									return 'read';
-								}
-								unset($user);
-							}
-							unset($stageUsers);
-							// Nobody has read the review.
-							return 'new';
-						}
-					}
-					unset($userGroups);
+				// The reviewer has been sent an acknowledgement.
+				if ($reviewAssignment->getDateAcknowledged()) {
+					return 'completed';
 				}
-				return '';
+
+				// Check if the somebody assigned to this monograph stage has read the review.
+				$monographDao =& DAORegistry::getDAO('MonographDAO');
+				$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+				$userStageAssignmentDao =& DAORegistry::getDAO('UserStageAssignmentDAO');
+				$viewsDao =& DAORegistry::getDAO('ViewsDAO');
+
+				$monograph =& $monographDao->getMonograph($reviewAssignment->getSubmissionId());
+
+				// Get the user groups for this stage
+				$userGroups =& $userGroupDao->getUserGroupsByStage(
+					$monograph->getPressId(),
+					$reviewAssignment->getStageId(),
+					true,
+					true
+				);
+				while ($userGroup = $userGroups->next()) {
+					$roleId = $userGroup->getRoleId();
+					if ($roleId != ROLE_ID_PRESS_MANAGER && $roleId != ROLE_ID_SERIES_EDITOR) continue;
+
+					// Get the users assigned to this stage and user group
+					$stageUsers =& $userStageAssignmentDao->getUsersBySubmissionAndStageId(
+						$reviewAssignment->getSubmissionId(),
+						$reviewAssignment->getStageId(),
+						$userGroup->getId()
+					);
+
+					// mark as completed (viewed) if any of the manager/editor users viewed it.
+					while ($user =& $stageUsers->next()) {
+						if ($viewsDao->getLastViewDate(
+							ASSOC_TYPE_REVIEW_RESPONSE,
+							$reviewAssignment->getId(), $user->getId()
+						)) {
+							// Some user has read the review.
+							return 'read';
+						}
+						unset($user);
+					}
+					unset($stageUsers);
+				}
+
+				// Nobody has read the review.
+				return 'new';
 			case 'reviewer':
 				if ($reviewAssignment->getDateCompleted()) {
 					return 'completed';
