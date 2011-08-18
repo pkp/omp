@@ -36,7 +36,7 @@ class UserGroupForm extends Form {
 		// Validation checks for this form
 		$this->addCheck(new FormValidatorLocale($this, 'name', 'required', 'settings.roles.nameRequired'));
 		$this->addCheck(new FormValidatorLocale($this, 'abbrev', 'required', 'settings.roles.abbrevRequired'));
-		$this->addCheck(new FormValidator($this, 'stages', 'required', 'settings.roles.stageIdRequired'));
+		$this->addCheck(new FormValidatorArray($this, 'stages', 'required', 'settings.roles.stageIdRequired'));
 		if ($this->getUserGroupId() == null) {
 			$this->addCheck(new FormValidator($this, 'roleId', 'required', 'settings.roles.roleIdRequired'));
 		}
@@ -103,46 +103,6 @@ class UserGroupForm extends Form {
 	 */
 	function readInputData() {
 		$this->readUserVars(array('roleId', 'name', 'abbrev', 'stages'));
-	}
-
-	/**
-	 * @see Form::validate()
-	 */
-	function validate($callHooks = true) {
-		// Name and abbrev data validation.
-		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO'); // @var $userGroupDao UserGroupDAO
-		$userGroupsFromDb = $userGroupDao->getByContextId($this->getPressId());
-
-		$userGroupId = $this->getUserGroupId();
-		$nameData = $this->getData('name');
-		$abbrevData = $this->getData('abbrev');
-		$stages = $this->getData('stages');
-
-		$nameLocales = array_keys($nameData);
-		$abbrevLocales = array_keys($abbrevData);
-
-		if (!$stages) {
-			$this->addError('stages', 'settings.roles.stageIdRequired');
-		}
-
-		while($group =& $userGroupsFromDb->next()) {
-			// Avoid checking for singleness with itself.
-			if($group->getId() == $userGroupId) continue;
-
-			foreach($nameLocales as $locale) {
-				if(strtolower($nameData[$locale]) == strtolower($group->getName($locale))) {
-					$this->addError('name[' . $locale . ']', 'settings.roles.uniqueName');
-				};
-			};
-			foreach($abbrevLocales as $locale) {
-				if(strtolower($abbrevData[$locale]) == strtolower($group->getAbbrev($locale))) {
-					$this->addError('abbrev[' . $locale . ']', 'settings.roles.uniqueAbbrev');
-				};
-			}
-			unset($group);
-		}
-
-		return parent::validate($callHooks);
 	}
 
 	/**
