@@ -6,11 +6,7 @@
  *
  * The settings wizard page.
  *}
-
-{strip}
 {assign var="pageTitle" value="manager.settings.wizard"}
-{include file="common/header.tpl"}
-{/strip}
 
 <script type="text/javascript">
 	// Attach the JS file tab handler.
@@ -40,5 +36,3 @@
 		<li><a href="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.AccessSettingsTabHandler" op="showTab" tab="roles" wizardMode=true}">{translate key="manager.roles"}
 	</ul>
 </div>
-
-{include file="common/footer.tpl"}

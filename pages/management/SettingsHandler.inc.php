@@ -102,9 +102,6 @@ class SettingsHandler extends Handler {
 			case 'distribution':
 				$this->distribution();
 				break;
-			case 'wizard':
-				$this->wizard();
-				break;
 			default:
 				assert(false);
 		}
@@ -163,17 +160,6 @@ class SettingsHandler extends Handler {
 		$templateMgr =& TemplateManager::getManager();
 		$this->setupTemplate();
 		$templateMgr->display('management/settings/distribution.tpl');
-	}
-
-	/**
-	 * Display settings wizard page.
-	 * @param $request PKPRequest
-	 * @param $args array
-	 */
-	function wizard() {
-		$templateMgr =& TemplateManager::getManager();
-		$this->setupTemplate();
-		$templateMgr->display('management/settings/settingsWizard.tpl');
 	}
 }
 

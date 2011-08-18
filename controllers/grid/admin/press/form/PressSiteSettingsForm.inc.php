@@ -1,13 +1,13 @@
 <?php
 
 /**
- * @file classes/admin/form/PressSiteSettingsForm.inc.php
+ * @file controllers/grid/admin/press/form/PressSiteSettingsForm.inc.php
  *
  * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class PressSiteSettingsForm
- * @ingroup admin_form
+ * @ingroup controllers_grid_admin_press_form
  *
  * @brief Form for site administrator to edit basic press settings.
  */
@@ -41,11 +41,14 @@ class PressSiteSettingsForm extends Form {
 	/**
 	 * Display the form.
 	 */
-	function display() {
+	function fetch($args, &$request) {
+		$json = new JSONMessage();
+
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('pressId', $this->pressId);
 		$templateMgr->assign('helpTopicId', 'site.siteManagement');
-		parent::display();
+
+		return parent::fetch($request);
 	}
 
 	/**
@@ -111,6 +114,12 @@ class PressSiteSettingsForm extends Form {
 			$press = new Press();
 		}
 
+		// Check if the press path has changed.
+		$pathChanged = false;
+		$pressPath = $press->getPath();
+		if ($pressPath != $this->getData('path')) {
+			$pathChanged = true;
+		}
 		$press->setPath($this->getData('path'));
 		$press->setEnabled($this->getData('enabled'));
 
@@ -178,7 +187,7 @@ class PressSiteSettingsForm extends Form {
 
 		HookRegistry::call('PressSiteSettingsForm::execute', array(&$this, &$press, &$series, &$isNewPress));
 
-		if ($isNewPress) {
+		if ($isNewPress || $pathChanged) {
 			return $press->getPath();
 		}
 	}
