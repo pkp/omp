@@ -33,14 +33,8 @@
 		{/fbvFormSection}
 	{/fbvFormArea}
 	<div id="userGroupStageContainer" class="full left">
-		{fbvFormSection title="grid.roles.stageAssignment" list="true"}
-			{foreach from=$stages key=stageId item=stageName}
-				{if in_array($stageId, $assignedStages)}
-					{fbvElement type="checkbox" name="stages[]" id="stage-$stageId" value=$stageId|escape label=$stageName checked="checked"}
-				{else}
-					{fbvElement type="checkbox" name="stages[]" id="stage-$stageId" value=$stageId|escape label=$stageName}
-				{/if}
-			{/foreach}
+		{fbvFormSection title="grid.roles.stageAssignment" for="stages" required="true"}
+			{fbvElement type="checkboxgroup" name="stages" id="stages" from=$stages selected=$assignedStages}
 		{/fbvFormSection}
 	</div>
 	{fbvFormButtons}
