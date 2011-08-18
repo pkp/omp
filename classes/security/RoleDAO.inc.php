@@ -145,12 +145,15 @@ class RoleDAO extends DAO {
 	 * @return array of Roles
 	 */
 	function getByUserId($userId, $pressId = null) {
-		$params = array($userId);
-		if ($pressId) $params[] = $pressId;
-		$result =& $this->retrieve('SELECT DISTINCT ug.role_id
-									FROM user_groups ug JOIN user_user_groups uug ON ug.user_group_id = uug.user_group_id
-									WHERE uug.user_id = ?' . ($pressId?' AND ug.context_id = ?':''),
-									$params);
+		$params = array((int) $userId);
+		if ($pressId) $params[] = (int) $pressId;
+		$result =& $this->retrieve(
+			'SELECT	DISTINCT ug.role_id
+			FROM	user_groups ug
+				JOIN user_user_groups uug ON ug.user_group_id = uug.user_group_id
+			WHERE	uug.user_id = ?' . ($pressId?' AND ug.context_id = ?':''),
+			$params
+		);
 
 		$roles = array();
 		while ( !$result->EOF ) {

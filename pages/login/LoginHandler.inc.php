@@ -19,17 +19,18 @@ class LoginHandler extends PKPLoginHandler {
 	/**
 	 * Sign in as another user.
 	 * @param $args array ($userId)
+	 * @param $request PKPRequest
 	 */
-	function signInAsUser($args) {
+	function signInAsUser($args, &$request) {
 		$this->addCheck(new HandlerValidatorPress($this));
 		$this->addCheck(new HandlerValidatorRoles($this, true, null, null, array(ROLE_ID_SITE_ADMIN, ROLE_ID_PRESS_MANAGER)));
 		$this->validate();
 
 		if (isset($args[0]) && !empty($args[0])) {
 			$userId = (int)$args[0];
-			$press =& Request::getPress();
+			$user =& $request->getUser();
 
-			if (!Validation::canAdminister($press->getId(), $userId)) {
+			if (!Validation::canAdminister($userId, $user->getId())) {
 				$this->setupTemplate();
 				// We don't have administrative rights
 				// over this user. Display an error.
@@ -43,7 +44,7 @@ class LoginHandler extends PKPLoginHandler {
 
 			$userDao =& DAORegistry::getDAO('UserDAO');
 			$newUser =& $userDao->getUser($userId);
-			$session =& Request::getSession();
+			$session =& $request->getSession();
 
 			// FIXME Support "stack" of signed-in-as user IDs?
 			if (isset($newUser) && $session->getUserId() != $newUser->getId()) {
@@ -51,10 +52,10 @@ class LoginHandler extends PKPLoginHandler {
 				$session->setSessionVar('userId', $userId);
 				$session->setUserId($userId);
 				$session->setSessionVar('username', $newUser->getUsername());
-				Request::redirect(null, 'user');
+				$request->redirect(null, 'user');
 			}
 		}
-		Request::redirect(null, Request::getRequestedPage());
+		$request->redirect(null, Request::getRequestedPage());
 	}
 
 	/**

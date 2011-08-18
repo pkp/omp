@@ -176,6 +176,7 @@ class PeopleHandler extends ManagerHandler {
 		$press =& $request->getPress();
 		$pressId = $press->getId();
 		$templateMgr =& TemplateManager::getManager();
+		$user =& $request->getUser();
 
 		$oldUserIds = (array) $request->getUserVar('oldUserIds');
 		$newUserId = $request->getUserVar('newUserId');
@@ -183,12 +184,12 @@ class PeopleHandler extends ManagerHandler {
 		// Ensure that we have administrative priveleges over the specified user(s).
 		$canAdministerAll = true;
 		foreach ($oldUserIds as $oldUserId) {
-			if (!Validation::canAdminister($pressId, $oldUserId)) $canAdministerAll = false;
+			if (!Validation::canAdminister($oldUserId, $user->getId())) $canAdministerAll = false;
 		}
 
 		if (
 			(!empty($oldUserIds) && !$canAdministerAll) ||
-			(!empty($newUserId) && !Validation::canAdminister($pressId, $newUserId))
+			(!empty($newUserId) && !Validation::canAdminister($newUserId, $user->getId()))
 		) {
 			$templateMgr->assign('pageTitle', 'manager.people');
 			$templateMgr->assign('errorMsg', 'manager.people.noAdministrativeRights');
@@ -248,8 +249,6 @@ class PeopleHandler extends ManagerHandler {
 			$isReviewer = false;
 		}
 
-		//$templateMgr->assign_by_ref('roleSettings', $this->retrieveRoleAssignmentPreferences($press->getId()));
-
 		$templateMgr->assign('currentUrl', $request->url(null, null, 'people', 'all'));
 		$templateMgr->assign('helpTopicId', 'press.managementPages.mergeUsers');
 		$templateMgr->assign_by_ref('users', $users);
@@ -291,10 +290,9 @@ class PeopleHandler extends ManagerHandler {
 
 		$userId = isset($args[0])?$args[0]:$request->getUserVar('userId');
 		$user =& $request->getUser();
-		$press =& $request->getPress();
 
 		if ($userId != null && $userId != $user->getId()) {
-			if (!Validation::canAdminister($press->getId(), $userId)) {
+			if (!Validation::canAdminister($userId, $user->getId())) {
 				// We don't have administrative rights
 				// over this user. Display an error.
 				$templateMgr =& TemplateManager::getManager();
@@ -305,6 +303,7 @@ class PeopleHandler extends ManagerHandler {
 				return $templateMgr->display('common/error.tpl');
 			}
 			$userDao =& DAORegistry::getDAO('UserDAO');
+			unset($user); // Clean up old reference
 			$user =& $userDao->getUser($userId);
 			if ($user) {
 				$user->setDisabled(1);
@@ -367,10 +366,10 @@ class PeopleHandler extends ManagerHandler {
 	function updateUser($args, &$request) {
 		$this->setupTemplate(true);
 
-		$press =& $request->getPress();
 		$userId = $request->getUserVar('userId');
+		$user =& $request->getUser();
 
-		if (!empty($userId) && !Validation::canAdminister($press->getId(), $userId)) {
+		if (!empty($userId) && !Validation::canAdminister($userId, $user->getId())) {
 			// We don't have administrative rights
 			// over this user. Display an error.
 			$templateMgr =& TemplateManager::getManager();

@@ -278,14 +278,12 @@ class UserGridHandler extends GridHandler {
 	 * @return string Serialized JSON object
 	 */
 	function editUser($args, &$request) {
-		// Identify the press.
-		$press =& $request->getPress();
-
 		// Identify the user Id.
 		$userId = $request->getUserVar('rowId');
 		if (!$userId) $userId = $request->getUserVar('userId');
 
-		if ($userId !== null && !Validation::canAdminister($press->getId(), $userId)) {
+		$user =& $request->getUser();
+		if ($userId !== null && !Validation::canAdminister($userId, $user->getId())) {
 			// We don't have administrative rights over this user.
 			$json = new JSONMessage(false, Locale::translate('grid.user.cannotAdminister'));
 		} else {
@@ -305,13 +303,12 @@ class UserGridHandler extends GridHandler {
 	 * @return string Serialized JSON object
 	 */
 	function updateUser($args, &$request) {
-		// Identify the press.
-		$press =& $request->getPress();
+		$user =& $request->getUser();
 
 		// Identify the user Id.
 		$userId = $request->getUserVar('userId');
 
-		if ($userId !== null && !Validation::canAdminister($press->getId(), $userId)) {
+		if ($userId !== null && !Validation::canAdminister($userId, $user->getId())) {
 			// We don't have administrative rights over this user.
 			$json = new JSONMessage(false, Locale::translate('grid.user.cannotAdminister'));
 		} else {
@@ -352,13 +349,12 @@ class UserGridHandler extends GridHandler {
 	 * @return string Serialized JSON object
 	 */
 	function updateUserRoles($args, &$request) {
-		// Identify the press.
-		$press =& $request->getPress();
+		$user =& $request->getUser();
 
 		// Identify the user Id.
 		$userId = $request->getUserVar('userId');
 
-		if ($userId !== null && !Validation::canAdminister($press->getId(), $userId)) {
+		if ($userId !== null && !Validation::canAdminister($userId, $user->getId())) {
 			// We don't have administrative rights over this user.
 			$json = new JSONMessage(false, Locale::translate('grid.user.cannotAdminister'));
 		} else {
@@ -368,7 +364,7 @@ class UserGridHandler extends GridHandler {
 			$userRoleForm->readInputData();
 
 			if ($userRoleForm->validate()) {
-				$user =& $userRoleForm->execute($args, $request);
+				$userRoleForm->execute($args, $request);
 
 				// Successfully managed newly created user's roles.
 				return DAO::getDataChangedEvent($userId);
@@ -386,8 +382,7 @@ class UserGridHandler extends GridHandler {
 	 * @return string Serialized JSON object
 	 */
 	function editDisableUser($args, &$request) {
-		// Identify the press.
-		$press =& $request->getPress();
+		$user =& $request->getUser();
 
 		// Identify the user Id.
 		$userId = $request->getUserVar('rowId');
@@ -396,7 +391,7 @@ class UserGridHandler extends GridHandler {
 		// Are we enabling or disabling this user.
 		$enable = isset($args['enable']) ? (bool) $args['enable'] : false;
 
-		if ($userId !== null && !Validation::canAdminister($press->getId(), $userId)) {
+		if ($userId !== null && !Validation::canAdminister($userId, $user->getId())) {
 			// We don't have administrative rights over this user.
 			$json = new JSONMessage(false, Locale::translate('grid.user.cannotAdminister'));
 		} else {
@@ -418,8 +413,7 @@ class UserGridHandler extends GridHandler {
 	 * @return string Serialized JSON object
 	 */
 	function disableUser($args, &$request) {
-		// Identify the press.
-		$press =& $request->getPress();
+		$user =& $request->getUser();
 
 		// Identify the user Id.
 		$userId = $request->getUserVar('userId');
@@ -427,7 +421,7 @@ class UserGridHandler extends GridHandler {
 		// Are we enabling or disabling this user.
 		$enable = (bool) $request->getUserVar('enable');
 
-		if ($userId !== null && !Validation::canAdminister($press->getId(), $userId)) {
+		if ($userId !== null && !Validation::canAdminister($userId, $user->getId())) {
 			// We don't have administrative rights over this user.
 			$json = new JSONMessage(false, Locale::translate('grid.user.cannotAdminister'));
 		} else {
@@ -458,14 +452,13 @@ class UserGridHandler extends GridHandler {
 	 * @return string Serialized JSON object
 	 */
 	function removeUser($args, &$request) {
-		// Identify the press.
 		$press =& $request->getPress();
-		$pressId = $press->getId();
+		$user =& $request->getUser();
 
 		// Identify the user Id.
 		$userId = $request->getUserVar('rowId');
 
-		if ($userId !== null && !Validation::canAdminister($press->getId(), $userId)) {
+		if ($userId !== null && !Validation::canAdminister($userId, $user->getId())) {
 			// We don't have administrative rights over this user.
 			$json = new JSONMessage(false, Locale::translate('grid.user.cannotAdminister'));
 		} else {
@@ -473,10 +466,10 @@ class UserGridHandler extends GridHandler {
 			$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 
 			// Check if this user has any user group assignments for this press.
-			if (!$userGroupDao->userInAnyGroup($userId, $pressId)) {
+			if (!$userGroupDao->userInAnyGroup($userId, $press->getId())) {
 				$json = new JSONMessage(false, Locale::translate('grid.user.userNoRoles'));
 			} else {
-				$userGroupDao->deleteAssignmentsByContextId($pressId, $userId);
+				$userGroupDao->deleteAssignmentsByContextId($press->getId(), $userId);
 				return DAO::getDataChangedEvent($userId);
 			}
 		}
@@ -490,13 +483,12 @@ class UserGridHandler extends GridHandler {
 	 * @return string Serialized JSON object
 	 */
 	function editEmail($args, &$request) {
-		// Identify the press.
-		$press =& $request->getPress();
+		$user =& $request->getUser();
 
 		// Identify the user Id.
 		$userId = $request->getUserVar('rowId');
 
-		if ($userId !== null && !Validation::canAdminister($press->getId(), $userId)) {
+		if ($userId !== null && !Validation::canAdminister($userId, $user->getId())) {
 			// We don't have administrative rights over this user.
 			$json = new JSONMessage(false, Locale::translate('grid.user.cannotAdminister'));
 		} else {
@@ -517,13 +509,12 @@ class UserGridHandler extends GridHandler {
 	 * @return string Serialized JSON object
 	 */
 	function sendEmail($args, &$request) {
-		// Identify the press.
-		$press =& $request->getPress();
+		$user =& $request->getUser();
 
 		// Identify the user Id.
 		$userId = $request->getUserVar('userId');
 
-		if ($userId !== null && !Validation::canAdminister($press->getId(), $userId)) {
+		if ($userId !== null && !Validation::canAdminister($userId, $user->getId())) {
 			// We don't have administrative rights over this user.
 			$json = new JSONMessage(false, Locale::translate('grid.user.cannotAdminister'));
 		} else {

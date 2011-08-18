@@ -304,24 +304,21 @@ class Validation {
 
 	/**
 	 * Check whether a user is allowed to administer another user.
-	 * @param $pressId int
-	 * @param $userId int
+	 * @param $administeredUserId int
+	 * @param $administratorUserId int
 	 * @return boolean
 	 */
-	function canAdminister($pressId, $userId) {
-		if (Validation::isSiteAdmin()) return true;
-		if (!Validation::isPressManager($pressId)) return false;
-
-		// Check for roles in other presses that this user
-		// doesn't have administrative rights over.
+	function canAdminister($administeredUserId, $administratorUserId) {
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
-		if ( $roleDao->userHasRole(0, $userId, ROLE_ID_SITE_ADMIN) ) return false;
 
-		$pressDao =& DAORegistry::getDAO('PressDAO');
-		$presses =& $pressDao->getPresses();
-		while ( !$presses->eof() ) {
-			$press =& $presses->next();
-			if ( $press->getId() != $pressId && !$roleDao->userHasRole($press->getId(), $userId, ROLE_ID_PRESS_MANAGER) ) {
+		if ($roleDao->userHasRole(0, $administratorUserId, ROLE_ID_SITE_ADMIN)) return true;
+
+		// Check for roles in other presses that this user doesn't have
+		// a manager role in.
+		$roles = $roleDao->getByUserId($userId);
+		foreach ($roles as $role) {
+			if (!$roleDao->userHasRole($role->getPressId(), $administratorUserId, ROLE_ID_PRESS_MANAGER)) {
+				// Found a role: disqualified.
 				return false;
 			}
 		}

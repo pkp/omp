@@ -143,14 +143,11 @@ class UserEnrollmentGridHandler extends UserGridHandler {
 	 * @return string Serialized JSON object
 	 */
 	function removeUser($args, &$request) {
-		// Identify the press
-		$press =& $request->getPress();
-		$pressId = $press->getId();
-
 		// Identify the user Id
 		$userId = $request->getUserVar('rowId');
+		$user =& $request->getUser();
 
-		if ($userId !== null && !Validation::canAdminister($press->getId(), $userId)) {
+		if ($userId !== null && !Validation::canAdminister($userId, $user->getId())) {
 			// We don't have administrative rights over this user.
 			$json = new JSONMessage(false, Locale::translate('grid.user.cannotAdminister'));
 		} else {
@@ -158,10 +155,12 @@ class UserEnrollmentGridHandler extends UserGridHandler {
 			$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 
 			// Check if this user has any user group assignments for this press
-			if (!$userGroupDao->userInAnyGroup($userId, $pressId)) {
+			$press =& $request->getPress();
+			if (!$userGroupDao->userInAnyGroup($userId, $press->getId())) {
 				$json = new JSONMessage(false, Locale::translate('grid.user.userNoRoles'));
 			} else {
-				$userGroupDao->deleteAssignmentsByContextId($pressId, $userId);
+				unset($user); // Clean up earlier reference
+				$userGroupDao->deleteAssignmentsByContextId($press->getId(), $userId);
 
 				// Successfully removed user's user group assignments
 				// Refresh the grid row data to indicate this
