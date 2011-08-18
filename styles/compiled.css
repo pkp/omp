@@ -197,6 +197,21 @@ strong {
   float:left;
   position:relative;
 }
+div.plupload div.plupload_header { display:none; }
+.plupload .plupload_filelist_header { display:none; }
+.plupload_header_content {
+  background-image:none;
+  display:none;
+}
+.plupload_header_content_bw { background-image:none; }
+.plupload_header_title { display:none; }
+.plupload_scroll {
+  max-height:25px;
+  min-height:25px;
+  _height:25px;
+}
+.plupload_hidden { display:none; }
+.plupload_droptext { line-height:25px; }
 .deprecated_throbber {
   display:none;
   background:url(../lib/pkp/templates/images/throbber.gif) no-repeat;
