@@ -17,19 +17,6 @@
 
 switch ($op) {
 	//
-	// People Management
-	//
-	case 'people':
-	case 'mergeUsers':
-	case 'disableUser':
-	case 'enableUser':
-	case 'removeUser':
-	case 'updateUser':
-	case 'userProfile':
-		import('pages.manager.PeopleHandler');
-		define('HANDLER_CLASS', 'PeopleHandler');
-		break;
-	//
 	// Files Browser
 	//
 	case 'files':

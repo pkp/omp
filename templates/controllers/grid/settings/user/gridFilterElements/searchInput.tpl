@@ -9,7 +9,7 @@
 {fbvFormSection title="common.search" required="true" for="search"}
 	{fbvElement type="text" name="search" id="search" value=$filterSelectionData.search size=$fbvStyles.size.LONG}
 {/fbvFormSection}
-{if $filterSelectionData.includeNoRole}{assign var="checked" value="checked"}{/if}
-{fbvElement type="checkbox" name="includeNoRole" id="includeNoRole" value="1" checked=$checked label="user.noRoles.selectUsersWithoutRoles" translate="true"}
-
-{fbvElement id="submit" type="submit" label="common.search"}
+{fbvFormSection list=true}
+	{if $filterSelectionData.includeNoRole}{assign var="checked" value="checked"}{/if}
+	{fbvElement type="checkbox" name="includeNoRole" id="includeNoRole" value="1" checked=$checked label="user.noRoles.selectUsersWithoutRoles" translate="true"}
+{/fbvFormSection}

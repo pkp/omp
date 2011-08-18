@@ -11,9 +11,11 @@
 	$('#userSearchForm').pkpHandler('$.pkp.controllers.form.ClientFormHandler');
 </script>
 <form class="pkp_form" id="userSearchForm" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.settings.user.UserGridHandler" op="fetchGrid"}" method="post">
-	<div id="userSearchFormArea">
+	{fbvFormArea id="userSearchFormArea"}
 		{include file="controllers/grid/settings/user/gridFilterElements/userGroupOptions.tpl"}
 		{include file="controllers/grid/settings/user/gridFilterElements/searchInput.tpl"}
-	</div>
+
+		{fbvFormButtons hideCancel=true submitText="common.search"}
+	{/fbvFormArea}
 </form>
 <div class="pkp_helpers_clear">&nbsp;</div>

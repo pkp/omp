@@ -20,13 +20,5 @@
 	{call_hook name="Templates::Manager::Index::ManagementPages"}
 </ul>
 
-
-<h3>{translate key="manager.users"}</h3>
-
-<ul class="plain">
-	<li>&#187; <a href="{url op="mergeUsers"}">{translate key="manager.people.mergeUsers"}</a></li>
-	{call_hook name="Templates::Manager::Index::Users"}
-</ul>
-
 {include file="common/footer.tpl"}
 

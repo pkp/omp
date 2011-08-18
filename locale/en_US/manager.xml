@@ -133,7 +133,6 @@
 	<message key="manager.users">User Management</message>
 	<message key="manager.users.availableRoles">Available Roles</message>
 	<message key="manager.users.currentRoles">Current Roles</message>
-	<message key="manager.users.enrollment">Enrollment</message>
 	<message key="manager.users.selectRole">Select Role</message>
 	<message key="manager.people.allEnrolledUsers">Users Enrolled in this Press</message>
 	<message key="manager.people.allPresses">All Presses</message>
@@ -144,7 +143,6 @@
 	<message key="manager.people.enrollSyncPress">With press</message>
 	<message key="manager.people.mergeUsers.from.description">Select a user to merge into another user account (e.g., when someone has two user accounts). The account selected first will be deleted and its submissions, assignments, etc. will be attributed to the second account.</message>
 	<message key="manager.people.mergeUsers.into.description">Select a user to whom to attribute the previous user's authorships, editing assignments, etc.</message>
-	<message key="manager.people.roleEnrollment">{$role} Enrollment</message>
 	<message key="manager.people.syncUserDescription">Enrollment synchronization will enroll all users enrolled in the specified role in the specified press into the same role in this press. This function allows a common set of users (e.g., Reviewers) to be synchronized between presses.</message>
 	<message key="manager.people.confirmDisable">Disable this user? This will prevent the user from logging into the system.
 
