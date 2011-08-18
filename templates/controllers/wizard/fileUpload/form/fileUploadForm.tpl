@@ -164,12 +164,12 @@
 		{/if}
 
 		{if $showGenreSelector}
-			{fbvFormSection title="common.fileType" required=1}
+			{fbvFormSection title="common.fileType" required=true}
 				{fbvElement type="select" name="genreId" id="genreId" from=$monographFileGenres translate=false selected=$genreId}
 			{/fbvFormSection}
 		{/if}
 
-		{fbvFormSection title="submission.submit.selectFile" required=1}
+		{fbvFormSection title="submission.submit.selectFile" required=true}
 			{* The uploader widget *}
 			<div id="plupload"></div>
 		{/fbvFormSection}
