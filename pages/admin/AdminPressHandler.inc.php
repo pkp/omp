@@ -30,12 +30,12 @@ class AdminPressHandler extends AdminHandler {
 		$openWizard = $request->getUserVar('openWizard');
 
 		// Get the open wizard link action.
-		import('lib.pkp.classes.linkAction.request.AjaxModal');
+		import('lib.pkp.classes.linkAction.request.WizardModal');
 
 		$openWizardLinkAction = null;
 		if ($openWizard) {
 			$dispatcher =& $request->getDispatcher();
-			$ajaxModal = new AjaxModal(
+			$ajaxModal = new WizardModal(
 				$dispatcher->url($request, ROUTE_COMPONENT, null,
 						'wizard.settings.PressSettingsWizardHandler', 'startWizard', null),
 				__('manager.settings.wizard')
