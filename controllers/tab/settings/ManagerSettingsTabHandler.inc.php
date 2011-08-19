@@ -46,7 +46,7 @@ class ManagerSettingsTabHandler extends SettingsTabHandler {
 	 * @param $wizardMode boolean
 	 */
 	function setWizardMode($wizardMode) {
-		$this->_wizardMode = $wizardMode;
+		$this->_wizardMode = (boolean)$wizardMode;
 	}
 
 
