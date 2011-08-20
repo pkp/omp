@@ -272,7 +272,7 @@ class PressGridHandler extends GridHandler {
 					return $request->redirectUrlJson($url);
 				}
 
-				return DAO::getDataChangedEvent($userId);
+				return DAO::getDataChangedEvent($pressId);
 			} else {
 				$json->setStatus(false);
 			}
