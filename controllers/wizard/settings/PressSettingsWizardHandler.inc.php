@@ -63,7 +63,7 @@ class PressSettingsWizardHandler extends Handler {
 		));
 
 		$this->setupTemplate();
-		return $templateMgr->fetchJson('management/settings/settingsWizard.tpl');
+		return $templateMgr->fetchJson('controllers/wizard/settings/settingsWizard.tpl');
 	}
 }
 
