@@ -1,13 +1,13 @@
 <?php
 
 /**
- * @file controllers/grid/files/galley/GalleyFilesGridHandler.inc.php
+ * @file controllers/grid/files/productionready/ProductionReadyFilesGridHandler.inc.php
  *
  * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class GalleyFilesGridHandler
- * @ingroup controllers_grid_files_galley
+ * @class ProductionReadyFilesGridHandler
+ * @ingroup controllers_grid_files_productionready
  *
  * @brief Handle the fair copy files grid (displays copyedited files ready to move to proofreading)
  */
@@ -15,14 +15,14 @@
 import('controllers.grid.files.SubmissionFilesGridHandler');
 import('controllers.grid.files.UploaderUserGroupGridColumn');
 
-class GalleyFilesGridHandler extends SubmissionFilesGridHandler {
+class ProductionReadyFilesGridHandler extends SubmissionFilesGridHandler {
 	/**
 	 * Constructor
 	 */
-	function GalleyFilesGridHandler() {
+	function ProductionReadyFilesGridHandler() {
 		import('controllers.grid.files.SubmissionFilesGridDataProvider');
 		parent::SubmissionFilesGridHandler(
-			new SubmissionFilesGridDataProvider(MONOGRAPH_FILE_GALLEY),
+			new SubmissionFilesGridDataProvider(MONOGRAPH_FILE_PRODUCTION_READY),
 			WORKFLOW_STAGE_ID_PRODUCTION,
 			FILE_GRID_ADD|FILE_GRID_DELETE|FILE_GRID_VIEW_NOTES
 		);
@@ -42,7 +42,7 @@ class GalleyFilesGridHandler extends SubmissionFilesGridHandler {
 			)
 		);
 
-		$this->setTitle('submission.galley');
+		$this->setTitle('submission.productionReady');
 	}
 
 	/**

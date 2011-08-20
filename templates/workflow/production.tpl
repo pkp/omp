@@ -20,8 +20,8 @@
 </script>
 
 <div id="production">
-	{url|assign:galleyFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.galley.GalleyFilesGridHandler" op="fetchGrid" monographId=$monograph->getId() stageId=$stageId escape=false}
-	{load_url_in_div id="galleyFilesGridDiv" url=$galleyFilesGridUrl}
+	{url|assign:productionReadyFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.productionReady.ProductionReadyFilesGridHandler" op="fetchGrid" monographId=$monograph->getId() stageId=$stageId escape=false}
+	{load_url_in_div id="productionReadyFilesGridDiv" url=$productionReadyFilesGridUrl}
 
 	<div id="metadataAccordion">
 		<h3><a href="#">{translate key="cataloguing metadata"}</a></h3>

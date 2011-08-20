@@ -189,9 +189,12 @@ class MonographSearchIndex {
 	 * @param $monograph Monograph
 	 */
 	function indexMonographFiles(&$monograph) {
+		// FIXME: The below is incorrect.
+
+
 		// Index galley files
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-		$files =& $submissionFileDao->getLatestRevisions($monograph->getId(), MONOGRAPH_FILE_GALLEY);
+		$files =& $submissionFileDao->getLatestRevisions($monograph->getId(), MONOGRAPH_FILE_PROOF);
 		foreach ($files as $file) {
 			if ($file->getFileId()) {
 				MonographSearchIndex::updateFileIndex($monograph->getId(), MONOGRAPH_SEARCH_GALLEY_FILE, $file->getFileId());

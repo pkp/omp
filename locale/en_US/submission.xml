@@ -115,7 +115,7 @@
 	<message key="submission.upload.copyeditedVersion">Upload a Copyedited Version</message>
 	<message key="submission.upload.fairCopy">Upload Fair Copy version</message>
 	<message key="submission.upload.signoff">Upload a Response</message>
-	<message key="submission.upload.galley">Upload a Galley</message>
+	<message key="submission.upload.productionReady">Upload a Production Ready File</message>
 	<message key="submission.upload.proof">Upload a Proof</message>
 
 	<!-- Read/Upload/Perform Signoff -->

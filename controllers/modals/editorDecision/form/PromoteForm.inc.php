@@ -132,7 +132,7 @@ class PromoteForm extends EditorDecisionWithEmailForm {
 						foreach ($selectedFiles as $selectedFile) {
 							// Split the file into file id and file revision.
 							list($fileId, $revision) = explode('-', $selectedFile);
-							MonographFileManager::copyFileToFileStage($fileId, $revision, MONOGRAPH_FILE_GALLEY);
+							MonographFileManager::copyFileToFileStage($fileId, $revision, MONOGRAPH_FILE_PRODUCTION_READY);
 						}
 					}
 				}
