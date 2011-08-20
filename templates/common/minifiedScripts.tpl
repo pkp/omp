@@ -36,6 +36,7 @@
 <script type="text/javascript" src="{$baseUrl}/lib/pkp/js/classes/linkAction/NullAction.js"></script>
 <script type="text/javascript" src="{$baseUrl}/lib/pkp/js/classes/linkAction/AjaxRequest.js"></script>
 <script type="text/javascript" src="{$baseUrl}/lib/pkp/js/classes/linkAction/ModalRequest.js"></script>
+<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/classes/notification/NotificationHelper.js"></script>
 
 {* Generic controllers *}
 <script type="text/javascript" src="{$baseUrl}/lib/pkp/js/controllers/SiteHandler.js"></script>

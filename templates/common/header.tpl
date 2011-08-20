@@ -89,17 +89,17 @@
 
 	{$additionalHeadData}
 </head>
-<body>
-	<script type="text/javascript">
+<script type="text/javascript">
 		// Initialise JS handler.
 		$(function() {ldelim}
-			$('div.pkp_structure_page').pkpHandler(
+			$('body').pkpHandler(
 				'$.pkp.controllers.SiteHandler',
 				{ldelim}
 					{include file="core:controllers/notification/notificationOptions.tpl"},
 				{rdelim});
 		{rdelim});
 	</script>
+<body>
 	<div class="pkp_structure_page">
 		<div class="pkp_structure_head">
 			<div class="pkp_structure_content">
