@@ -15,7 +15,7 @@
 </script>
 
 <form class="pkp_form" id="pressSettingsForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.admin.press.PressGridHandler" op="updatePress"}">
-	{include file="common/formErrors.tpl"}
+	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="pressSettingsNotification"}
 
 	{if $pressId}
 		{fbvElement id="pressId" type="hidden" name="pressId" value=$pressId}
