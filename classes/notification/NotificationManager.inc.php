@@ -60,6 +60,7 @@ class NotificationManager extends PKPNotificationManager {
 	function getNotificationContents(&$request, &$notification) {
 		$type = $notification->getType();
 		assert(isset($type));
+		$contents = array();
 
 		switch ($type) {
 			case NOTIFICATION_TYPE_MONOGRAPH_SUBMITTED:
@@ -67,7 +68,7 @@ class NotificationManager extends PKPNotificationManager {
 				$monographDao =& DAORegistry::getDAO('MonographDAO'); /* @var $monographDao MonographDAO */
 				$monograph =& $monographDao->getMonograph($notification->getAssocId()); /* @var $monograph Monograph */
 				$title = $monograph->getLocalizedTitle();
-				$contents = __('notification.type.monographSubmitted', array('title' => $title));
+				$contents['description'] = __('notification.type.monographSubmitted', array('title' => $title));
 				break;
 			case NOTIFICATION_TYPE_REVIEWER_COMMENT:
 				assert($$notification->getAssocType() == ASSOC_TYPE_REVIEW_ASSIGNMENT && is_numeric($$notification->getAssocId()));
@@ -76,7 +77,7 @@ class NotificationManager extends PKPNotificationManager {
 				$monographDao =& DAORegistry::getDAO('MonographDAO'); /* @var $monographDao MonographDAO */
 				$monograph =& $monographDao->getMonograph($reviewAssignment->getSubmissionId()); /* @var $monograph Monograph */
 				$title = $monograph->getLocalizedTitle();
-				$contents = __('notification.type.reviewerComment', array('title' => $title));
+				$contents['description'] = __('notification.type.reviewerComment', array('title' => $title));
 				break;
 			default:
 				$contents = parent::getNotificationContents($request, $notification);
