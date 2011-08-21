@@ -1005,6 +1005,15 @@ div.pkp_controllers_listbuilder .gridRowEdit .gridCellDisplay { display:none; }
   cursor:pointer;
   float:left;
 }
+.pkp_notification .notification_box {
+  padding:10px;
+  border:1px solid;
+}
+.pkp_notification .notifyFormError {
+  background-color:#ffe7e7;
+  border-color:red;
+}
+.pkp_notification .notifyFormError .pkp_notification_title h4 { color:red; }
 .pkp_controllers_modal_titleBar {
   height:48px;
   width:100%;
