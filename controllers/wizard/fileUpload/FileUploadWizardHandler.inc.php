@@ -428,9 +428,13 @@ class FileUploadWizardHandler extends FileManagementHandler {
 			// Test whether the current monograph file is similar
 			// to the uploaded file. (Transliterate to ASCII -- the
 			// similar_text function can't handle UTF-8.)
+
+			import('lib.pkp.classes.core.Transcoder');
+			$transcoder = new Transcoder('UTF-8', 'ASCII', true);
+
 			similar_text(
-				iconv('UTF-8', 'ASCII//TRANSLIT', $uploadedFileName),
-				iconv('UTF-8', 'ASCII//TRANSLIT', $monographFile->getOriginalFileName()),
+				$transcoder->trans($uploadedFileName),
+				$transcoder->trans($monographFile->getOriginalFileName()),
 				$matchedPercentage
 			);
 			if($matchedPercentage > $minPercentage) {
