@@ -105,7 +105,7 @@ class ReviewerGridHandler extends GridHandler {
 		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
 		$ompWorkflowStageAccessPolicy = new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', $stageId);
 		// Add policy to ensure there is a review assignment for certain operations.
-		$reviewAssignmentOps = array('readReview', 'reviewRead', 'thankReviewer', 'editReminder', 'sendReminder');
+		$reviewAssignmentOps = array('readReview', 'reviewRead', 'thankReviewer', 'editReminder', 'sendReminder', 'deleteReviewer');
 		import('classes.security.authorization.internal.ReviewAssignmentRequiredPolicy');
 		$ompWorkflowStageAccessPolicy->addPolicy(new ReviewAssignmentRequiredPolicy($request, $args, 'reviewAssignmentId', $reviewAssignmentOps));
 		$this->addPolicy($ompWorkflowStageAccessPolicy);
@@ -149,17 +149,19 @@ class ReviewerGridHandler extends GridHandler {
 				'user.name',
 				null,
 				'controllers/grid/gridCell.tpl',
-				$cellProvider
+				$cellProvider,
+				array('width' => 60)
 			)
 		);
 
 		$this->addColumn(
 			new GridColumn(
 				'editor',
-				'user.role.editor',
+				'user.role.pressEditor',
 				null,
 				'controllers/grid/common/cell/statusCell.tpl',
-				$cellProvider
+				$cellProvider,
+				array('myUserGroup' => true)
 			)
 		);
 
@@ -467,7 +469,7 @@ class ReviewerGridHandler extends GridHandler {
 
 		// Initialize form.
 		import('controllers.grid.users.reviewer.form.ReviewReminderForm');
-		$reviewReminderForm = new ReviewReminderForm($reviewAssignment->getId());
+		$reviewReminderForm = new ReviewReminderForm($reviewAssignment);
 		$reviewReminderForm->initData($args, $request);
 
 		// Render form.

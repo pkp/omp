@@ -79,13 +79,12 @@ class ReviewReminderForm extends Form {
 		);
 		$email->assignParams($paramArray);
 
-		$this->_data = array(
-			'monographId' => $monograph->getId(),
-			'reviewAssignmentId' => $this->getReviewAssignmentId(),
-			'reviewAssignment' => $reviewAssignment,
-			'reviewerName' => $reviewer->getFullName(),
-			'message' => $email->getBody()
-		);
+		$this->setData('monographId', $monograph->getId());
+		$this->setData('stageId', $reviewAssignment->getStageId());
+		$this->setData('reviewAssignmentId', $reviewAssignment->getId());
+		$this->setData('reviewAssignment', $reviewAssignment);
+		$this->setData('reviewerName', $reviewer->getFullName());
+		$this->setData('message', $email->getBody());
 	}
 
 	/**

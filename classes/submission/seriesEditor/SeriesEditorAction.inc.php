@@ -148,7 +148,6 @@ class SeriesEditorAction extends Action {
 		$seriesEditorSubmissionDao =& DAORegistry::getDAO('SeriesEditorSubmissionDAO');
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		$userDao =& DAORegistry::getDAO('UserDAO');
-		$user =& $request->getUser();
 
 		$reviewer =& $userDao->getUser($reviewerId);
 
@@ -173,24 +172,10 @@ class SeriesEditorAction extends Action {
 			}
 			$reviewAssignmentDao->insertObject($reviewAssignment);
 
-			// Assign review form automatically if needed
-			$pressId = $seriesEditorSubmission->getPressId();
-			$seriesDao =& DAORegistry::getDAO('SeriesDAO');
-
-			$submissionId = $seriesEditorSubmission->getId();
-
 			$seriesEditorSubmission->addReviewAssignment($reviewAssignment, $stageId, $round);
 			$seriesEditorSubmissionDao->updateSeriesEditorSubmission($seriesEditorSubmission);
 
-			$reviewAssignment = $reviewAssignmentDao->getReviewAssignment(
-				$seriesEditorSubmission->getId(),
-				$reviewerId,
-				$round,
-				$stageId
-			);
-
-			if (isset($reviewDueDate)) $this->setDueDate($request, $seriesEditorSubmission, $reviewAssignment->getId(), $reviewDueDate);
-			if (isset($responseDueDate)) $this->setResponseDueDate($seriesEditorSubmission->getId(), $reviewAssignment->getId(), $responseDueDate);
+			$this->setDueDates($request, $seriesEditorSubmission, $reviewAssignment, $reviewDueDate, $responseDueDate);
 
 			// Add log
 			import('classes.log.MonographLog');
@@ -239,36 +224,29 @@ class SeriesEditorAction extends Action {
 	 * @param $numWeeks int
 	 * @param $logEntry boolean
 	 */
-	function setDueDate($request, $monograph, $reviewId, $dueDate = null, $numWeeks = null, $logEntry = false) {
-		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+	function setDueDates($request, $monograph, $reviewAssignment, $reviewDueDate = null, $responseDueDate = null, $logEntry = false) {
 		$userDao =& DAORegistry::getDAO('UserDAO');
+		$press =& $request->getContext();
 
-		$reviewAssignment =& $reviewAssignmentDao->getById($reviewId);
 		$reviewer =& $userDao->getUser($reviewAssignment->getReviewerId());
 		if (!isset($reviewer)) return false;
 
-		if ($reviewAssignment->getSubmissionId() == $monograph->getId() && !HookRegistry::call('SeriesEditorAction::setDueDate', array(&$reviewAssignment, &$reviewer, &$dueDate, &$numWeeks))) {
-			$today = getDate();
-			$todayTimestamp = mktime(0, 0, 0, $today['mon'], $today['mday'], $today['year']);
-			if ($dueDate != null) {
-				$dueDateParts = explode('-', $dueDate);
+		if ($reviewAssignment->getSubmissionId() == $monograph->getId() && !HookRegistry::call('SeriesEditorAction::setDueDates', array(&$reviewAssignment, &$reviewer, &$reviewDueDate, &$responseDueDate))) {
 
-				// Ensure that the specified due date is today or after today's date.
-				if ($todayTimestamp <= strtotime($dueDate)) {
-					$reviewAssignment->setDateDue(date('Y-m-d H:i:s', mktime(0, 0, 0, $dueDateParts[1], $dueDateParts[2], $dueDateParts[0])));
-				} else {
-					$reviewAssignment->setDateDue(date('Y-m-d H:i:s', $todayTimestamp));
-				}
-			} else {
-				// Add the equivilant of $numWeeks weeks, measured in seconds, to $todaysTimestamp.
-				$numWeeks = max((int) $numWeeks, 2);
-				$newDueDateTimestamp = $todayTimestamp + ($numWeeks * 7 * 24 * 60 * 60);
-				$reviewAssignment->setDateDue(date('Y-m-d H:i:s', $newDueDateTimestamp));
-			}
+			// Set the review due date
+			$defaultNumWeeks = $press->getSetting('numWeeksPerReview');
+			$reviewAssignment->setDateDue($this->_calculateDueDate($reviewDueDate, $defaultNumWeeks));
 
+			// Set the response due date
+			$defaultNumWeeks = $press->getSetting('numWeeksPerReponse');
+			$reviewAssignment->setDateResponseDue($this->_calculateDueDate($responseDueDate, $defaultNumWeeks));
+
+			// update the assignment (with both the new dates)
 			$reviewAssignment->stampModified();
+			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO'); /* @var $reviewAssignmentDao ReviewAssignmentDAO */
 			$reviewAssignmentDao->updateObject($reviewAssignment);
 
+			// N.B. Only logging Date Due
 			if ($logEntry) {
 				// Add log
 				import('classes.log.MonographLog');
@@ -290,45 +268,6 @@ class SeriesEditorAction extends Action {
 					)
 				);
 			}
-		}
-	}
-
-	/**
-	 * Sets the due date for a reviewer to respond to a review request.
-	 * @param $monographId int
-	 * @param $reviewId int
-	 * @param $dueDate string
-	 */
-	function setResponseDueDate($monographId, $reviewId, $dueDate = null, $numWeeks = null) {
-		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
-		$userDao =& DAORegistry::getDAO('UserDAO');
-		$user =& Request::getUser();
-
-		$reviewAssignment =& $reviewAssignmentDao->getById($reviewId);
-		$reviewer =& $userDao->getUser($reviewAssignment->getReviewerId());
-		if (!isset($reviewer)) return false;
-
-		if ($reviewAssignment->getSubmissionId() == $monographId && !HookRegistry::call('SeriesEditorAction::setResponseDueDate', array(&$reviewAssignment, &$reviewer, &$dueDate, &$numWeeks))) {
-			$today = getDate();
-			$todayTimestamp = mktime(0, 0, 0, $today['mon'], $today['mday'], $today['year']);
-			if ($dueDate != null) {
-				$dueDateParts = explode('-', $dueDate);
-
-				// Ensure that the specified due date is today or after today's date.
-				if ($todayTimestamp <= strtotime($dueDate)) {
-					$reviewAssignment->setDateDue(date('Y-m-d H:i:s', mktime(0, 0, 0, $dueDateParts[1], $dueDateParts[2], $dueDateParts[0])));
-				} else {
-					$reviewAssignment->setDateDue(date('Y-m-d H:i:s', $todayTimestamp));
-				}
-			} else {
-				// Add the equivilant of $numWeeks weeks, measured in seconds, to $todaysTimestamp.
-				$numWeeks = max((int) $numWeeks, 2);
-				$newDueDateTimestamp = $todayTimestamp + ($numWeeks * 7 * 24 * 60 * 60);
-				$reviewAssignment->setDateDue(date('Y-m-d H:i:s', $newDueDateTimestamp));
-			}
-
-			$reviewAssignment->stampModified();
-			$reviewAssignmentDao->updateObject($reviewAssignment);
 		}
 	}
 
@@ -408,6 +347,33 @@ class SeriesEditorAction extends Action {
 		}
 
 		return $body;
+	}
+
+	//
+	// Private helper function
+	//
+	function _calculateDueDate($date, $defaultNumWeeks = null) {
+		$today = getDate();
+		$todayTimestamp = mktime(0, 0, 0, $today['mon'], $today['mday'], $today['year']);
+		if ($date != null) {
+			$dueDateParts = explode('-', $date);
+
+			// Ensure that the specified due date is today or after today's date.
+			if ($todayTimestamp <= strtotime($date)) {
+				return date('Y-m-d H:i:s', mktime(0, 0, 0, $dueDateParts[1], $dueDateParts[2], $dueDateParts[0]));
+			} else {
+				return date('Y-m-d H:i:s', $todayTimestamp);
+			}
+		} elseif (isset($defaultNumWeeks)) {
+			// Add the equivilant of $numWeeks weeks, measured in seconds, to $todaysTimestamp.
+			$numWeeks = max((int) $defaultNumWeeks, 2);
+			$newDueDateTimestamp = $todayTimestamp + ($numWeeks * 7 * 24 * 60 * 60);
+			return date('Y-m-d H:i:s', $newDueDateTimestamp);
+		} else {
+			// Either the date or the defaultNumWeeks must be set
+			assert(false);
+			return false;
+		}
 	}
 }
 

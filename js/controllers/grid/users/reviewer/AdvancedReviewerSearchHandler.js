@@ -1,4 +1,16 @@
 /**
+ * @defgroup js_controllers_grid_users_stageParticipant_form
+ */
+// Create the namespace.
+jQuery.pkp.controllers.grid.users = jQuery.pkp.controllers.grid.users ||
+			{ reviewer : { form: { } } };
+/**
+ * @defgroup js_controllers_modal_editorDecision_form
+ */
+// Create the namespace.
+jQuery.pkp.controllers.modals = jQuery.pkp.controllers.modals ||
+			{ editorDecision: { form: { } } };
+/**
  * @file js/controllers/AdvancedReviewerSearchHandler.js
  *
  * Copyright (c) 2000-2011 John Willinsky
@@ -20,7 +32,7 @@
 	 * @param {jQuery} $container the wrapped page element.
 	 * @param {Object} options handler options.
 	 */
-	$.pkp.controllers.AdvancedReviewerSearchHandler =
+	$.pkp.controllers.grid.users.reviewer.AdvancedReviewerSearchHandler =
 			function($container, options) {
 		this.parent($container, options);
 
@@ -32,7 +44,7 @@
 		$('#regularReviewerForm').hide();
 	};
 	$.pkp.classes.Helper.inherits(
-			$.pkp.controllers.AdvancedReviewerSearchHandler, $.pkp.classes.Handler);
+			$.pkp.controllers.grid.users.reviewer.AdvancedReviewerSearchHandler, $.pkp.classes.Handler);
 
 
 	//
@@ -43,7 +55,7 @@
 	 *
 	 * @param {HTMLElement} button The button element clicked.
 	 */
-	$.pkp.controllers.AdvancedReviewerSearchHandler.prototype.
+	$.pkp.controllers.grid.users.reviewer.AdvancedReviewerSearchHandler.prototype.
 			reviewerSelected = function(button) {
 
 		// Get the selected reviewer's ID

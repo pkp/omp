@@ -17,6 +17,7 @@
 <form class="pkp_form" id="sendReminderForm" method="post" action="{url op="sendReminder"}" >
 	{fbvFormArea id="sendReminder"}
 		<input type="hidden" name="monographId" value="{$monographId|escape}" />
+		<input type="hidden" name="stageId" value="{$stageId|escape}" />
 		<input type="hidden" name="reviewAssignmentId" value="{$reviewAssignmentId}" />
 
 		{fbvFormSection title="user.role.reviewer"}
@@ -26,19 +27,15 @@
 		{fbvFormSection title="editor.review.personalMessageToReviewer" for="message"}
 			{fbvElement type="textarea" id="message" value=$message}
 		{/fbvFormSection}
-
-		<table width="100%" style="margin-left: 12px;">
-			<tr>
-				<td><strong>{translate key="editor.responseDueDate"}</strong></td>
-				<td><strong>{translate key="editor.review.dateAccepted"}</strong></td>
-				<td><strong>{translate key="reviewer.monograph.reviewDueDate"}</strong></td>
-			</tr>
-			<tr>
-				<td>{$reviewAssignment->getDateResponseDue()|date_format:$dateFormatShort}</td>
-				<td>{$reviewAssignment->getDateAcknowledged()|date_format:$dateFormatShort}</td>
-				<td>{$reviewAssignment->getDateDue()|date_format:$dateFormatShort}</td>
-			</tr>
-		</table>
+		{fbvFormSection title="reviewer.monograph.reviewSchedule"}
+			{fbvElement type="text" id="dateNotified" label="reviewer.monograph.reviewRequestDate" value=$reviewAssignment->getDateNotified()|date_format:$dateFormatShort disabled=true inline=true size=$fbvStyles.size.SMALL}
+			{if $reviewAssignment->getDateConfirmed()}
+				{fbvElement type="text" id="dateConfirmed" label="editor.review.dateAccepted" value=$reviewAssignment->getDateConfirmed()|date_format:$dateFormatShort disabled=true inline=true size=$fbvStyles.size.SMALL}
+			{else}
+				{fbvElement type="text" id="responseDue" label="reviewer.monograph.responseDueDate" value=$reviewAssignment->getDateResponseDue()|date_format:$dateFormatShort disabled=true inline=true size=$fbvStyles.size.SMALL}
+			{/if}
+			{fbvElement type="text" id="dateDue" label="reviewer.monograph.reviewDueDate" value=$reviewAssignment->getDateDue()|date_format:$dateFormatShort disabled=true inline=true size=$fbvStyles.size.SMALL}
+		{/fbvFormSection}
+		{fbvFormButtons submitText="editor.review.sendReminder"}
 	{/fbvFormArea}
-	{fbvFormButtons submitText="editor.review.sendReminder"}
 </form>

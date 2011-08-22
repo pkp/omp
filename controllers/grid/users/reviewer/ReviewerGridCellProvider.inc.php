@@ -101,8 +101,11 @@ class ReviewerGridCellProvider extends DataObjectGridCellProvider {
 					return 'overdue';
 				} elseif ($reviewAssignment->getDateConfirmed()) {
 					return ($reviewAssignment->getDeclined())?'declined':'accepted';
+				} elseif ($reviewAssignment->getDateResponseDue() < Core::getCurrentDate()) {
+					return 'overdue';
+				} else {
+					return 'new';
 				}
-				return 'new';
 		}
 	}
 
@@ -150,63 +153,58 @@ class ReviewerGridCellProvider extends DataObjectGridCellProvider {
 		$router =& $request->getRouter();
 		$action = false;
 		$state = $this->getCellState($row, $column);
-		switch ($state) {
-			case 'linkReview':
-				$monographDao =& DAORegistry::getDAO('MonographDAO');
-				$monograph =& $monographDao->getMonograph($reviewAssignment->getSubmissionId());
+		if ($state == 'linkReview') {
+			$monographDao =& DAORegistry::getDAO('MonographDAO');
+			$monograph =& $monographDao->getMonograph($reviewAssignment->getSubmissionId());
 
-				$action = new LinkAction(
-					'readReview',
-					new AjaxModal(
-						$router->url($request, null, null, 'readReview', null, $actionArgs),
-						__('editor.review') . ': ' . $monograph->getLocalizedTitle(),
-						'edit' //FIXME: insert icon
-					),
-					$reviewAssignment->getReviewerFullName(),
-					$state
-				);
-				break;
-			case 'new':
-				$monographDao =& DAORegistry::getDAO('MonographDAO');
-				$monograph =& $monographDao->getMonograph($reviewAssignment->getSubmissionId());
+			$action = new LinkAction(
+				'readReview',
+				new AjaxModal(
+					$router->url($request, null, null, 'readReview', null, $actionArgs),
+					__('editor.review') . ': ' . $monograph->getLocalizedTitle(),
+					'edit' //FIXME: insert icon
+				),
+				$reviewAssignment->getReviewerFullName(),
+				$state
+			);
+		} elseif ($state == 'new' && $column->getId() == 'editor') {
+			$monographDao =& DAORegistry::getDAO('MonographDAO');
+			$monograph =& $monographDao->getMonograph($reviewAssignment->getSubmissionId());
 
-				$action = new LinkAction(
-					'readReview',
-					new AjaxModal(
-						$router->url($request, null, null, 'readReview', null, $actionArgs),
-						__('editor.review') . ': ' . $monograph->getLocalizedTitle(),
-						'edit' //FIXME: insert icon
-					),
-					null,
-					$state
-				);
-				break;
-
-			case 'read':
-				$action = new LinkAction(
-					'thankReviewer',
-					new AjaxAction($router->url($request, null, null, 'thankReviewer', null, $actionArgs)),
-					null,
-					'accepted'
-				);
-			case 'declined':
-			case 'accepted':
-			case 'completed':
-				// There are no actions for these states.
-				break;
-
-			case 'overdue':
-				$action = new LinkAction(
-					'sendReminder',
-					new AjaxModal(
-						$router->url($request, null, null, 'editReminder', null, $actionArgs),
-						__('editor.review.reminder'),
-						'edit' // FIXME: insert icon.
-					),
-					null,
-					$state
-				);
-				break;
+			$action = new LinkAction(
+				'readReview',
+				new AjaxModal(
+					$router->url($request, null, null, 'readReview', null, $actionArgs),
+					__('editor.review') . ': ' . $monograph->getLocalizedTitle(),
+					'edit' //FIXME: insert icon
+				),
+				null,
+				$state
+			);
+		} elseif ($state == 'overdue' ||
+				($column->getId() == 'reviewer') && ($state == 'new' || $state == 'accepted')) {
+			$action = new LinkAction(
+				'sendReminder',
+				new AjaxModal(
+					$router->url($request, null, null, 'editReminder', null, $actionArgs),
+					__('editor.review.reminder'),
+					'edit' // FIXME: insert icon.
+				),
+				null,
+				$state
+			);
+		} elseif ($state == 'read') {
+			$action = new LinkAction(
+				'thankReviewer',
+				new AjaxAction($router->url($request, null, null, 'thankReviewer', null, $actionArgs)),
+				null,
+				'accepted'
+			);
+		} elseif (in_array($state, array('', 'declined', 'completed'))) {
+			// do nothing for these actions
+		} else {
+			// Inconsistent state
+			assert(false);
 		}
 
 		return ($action) ? array($action) : array();

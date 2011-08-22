@@ -49,21 +49,25 @@ class ReviewerGridRow extends GridRow {
 				'round' => $round
 			);
 
-			import('lib.pkp.classes.linkAction.request.RemoteActionConfirmationModal');
-			$this->addAction(
-				new LinkAction(
-					'remove',
-					new RemoteActionConfirmationModal(
-							__('common.confirmDelete'), null,
-							$router->url($request, null, null, 'deleteReviewer', null, $actionArgs)
-						),
-					__('grid.action.remove'),
-					'delete'
-					)
-				);
+			$reviewAssignment =& $this->getData();
+			// Only assign actions if the reviewer has not acknowledged yet.
+			if (!$reviewAssignment->getDateAcknowledged()) {
+				import('lib.pkp.classes.linkAction.request.RemoteActionConfirmationModal');
+				$this->addAction(
+					new LinkAction(
+						'remove',
+						new RemoteActionConfirmationModal(
+								__('common.confirmDelete'), null,
+								$router->url($request, null, null, 'deleteReviewer', null, $actionArgs)
+							),
+						__('grid.action.remove'),
+						'delete'
+						)
+					);
 
-			// Set a non-default template that supports row actions
-			$this->setTemplate('controllers/grid/gridRowWithActions.tpl');
+				// Set a non-default template that supports row actions
+				$this->setTemplate('controllers/grid/gridRowWithActions.tpl');
+			}
 		}
 	}
 }
