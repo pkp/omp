@@ -35,6 +35,8 @@ class SelectableReviewRevisionsGridHandler extends SelectableFileListGridHandler
 
 		// Set the grid title.
 		$this->setTitle('editor.monograph.revisions');
+
+		$this->setInstructions('editor.monograph.selectPromoteRevisions');
 	}
 }
 

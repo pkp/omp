@@ -47,6 +47,9 @@
 	<message key="editor.monograph.decision.sendToProduction">Send To Production</message>
 	<message key="editor.monograph.decision.externalReview">External Review</message>
 	<message key="editor.monograph.decision.approveProofs">Approve Proofs</message>
+	<message key="editor.monograph.selectAttachments">Select the review attachments for the author to see</message>
+	<message key="editor.monograph.selectPromoteRevisions">Select revisions to use in the next stage</message>
+	<message key="editor.monograph.selectFairCopy">Select fair copy files for production.</message>
 	<message key="editor.monograph.roundStatus">Round {$round} Status</message>
 	<message key="editor.monograph.roundStatus.revisionsRequested">Revisions have been requested.</message>
 	<message key="editor.monograph.roundStatus.resubmitted">Submission has been resubmitted for review.</message>

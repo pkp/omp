@@ -41,8 +41,19 @@ class FairCopyFilesGridHandler extends FileSignoffGridHandler {
 				'signOffFile'
 			)
 		);
+	}
+
+	/**
+	 * @see PKPHandler::initialize()
+	 */
+	function initialize(&$request) {
+		parent::initialize($request);
 
 		$this->setTitle('submission.fairCopy');
+
+		// Rename the Press Assistant column to copyeditor
+		$pressAssistantColumn =& $this->getColumn('role-' . ROLE_ID_PRESS_ASSISTANT);
+		$pressAssistantColumn->setTitle('user.role.copyeditor');
 	}
 }
 

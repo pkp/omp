@@ -34,6 +34,8 @@ class SelectableFairCopyFilesGridHandler extends SelectableFileListGridHandler {
 
 		// Set the grid title.
 		$this->setTitle('submission.fairCopy');
+
+		$this->setInstructions('editor.monograph.selectFairCopy');
 	}
 }
 

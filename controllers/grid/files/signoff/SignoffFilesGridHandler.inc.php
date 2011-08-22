@@ -127,7 +127,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 				__('editor.monograph.copyediting.addAuditor'),
 				'add_item'
 			),
-			__('editor.monograph.copyediting.addAuditor'),
+			__('editor.monograph.addAuditor'),
 			'add_item'
 		));
 
@@ -177,6 +177,9 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 		// Add the auditor column (the person assigned to signoff.
 		import('controllers.grid.files.SignoffStatusFromSignoffGridColumn');
 		$this->addColumn(new SignoffStatusFromSignoffGridColumn('grid.columns.auditor', $this->getRequestArgs()));
+
+		// Set the no-row locale key
+		$this->setEmptyRowText('editor.monograph.noAuditRequested');
 	}
 
 
