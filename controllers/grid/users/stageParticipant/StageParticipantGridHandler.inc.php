@@ -26,10 +26,9 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 	 */
 	function StageParticipantGridHandler() {
 		parent::GridHandler();
-		$this->addRoleAssignment(ROLE_ID_PRESS_ASSISTANT, $readAccess = array('fetchGrid', 'fetchRow'));
 		$this->addRoleAssignment(
-			array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
-			array_merge($readAccess, array('editStageParticipantList', 'saveStageParticipantList'))
+			array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_ASSISTANT),
+			array('fetchGrid', 'fetchRow', 'addParticipant', 'deleteParticipant', 'saveParticipant', 'userAutocomplete')
 		);
 	}
 
@@ -73,22 +72,39 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 		parent::initialize($request);
 
 		// Load submission-specific translations
-		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_SUBMISSION, LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_PKP_USER, LOCALE_COMPONENT_OMP_DEFAULT_SETTINGS));
+		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_EDITOR, LOCALE_COMPONENT_PKP_USER, LOCALE_COMPONENT_OMP_DEFAULT_SETTINGS));
 
 		// Basic grid configuration
-		$this->setTitle('submission.submit.stageParticipants');
+		$this->setTitle('editor.monograph.stageParticipants');
 
 		// Columns
 		import('controllers.grid.users.stageParticipant.StageParticipantGridCellProvider');
 		$cellProvider = new StageParticipantGridCellProvider();
 		$this->addColumn(new GridColumn(
 			'participants',
-			'submission.participants',
+			'editor.monograph.participant',
 			null,
 			'controllers/grid/gridCell.tpl',
 			$cellProvider
 		));
 
+		// Grid actions
+		$router =& $request->getRouter();
+		$actionArgs = $this->getRequestArgs();
+		$this->addAction(
+			new LinkAction(
+				'requestAccount',
+				new AjaxModal(
+					$router->url($request, null, null, 'addParticipant', null, $actionArgs),
+					__('editor.monograph.addStageParticipant'),
+					'addUser'
+				),
+				__('editor.monograph.addStageParticipant'),
+				'add_item'
+			)
+		);
+
+		$this->setEmptyRowText('editor.monograph.noneAssigned');
 	}
 
 
@@ -101,20 +117,22 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 	function getCategoryData(&$userGroup) {
 		// Retrieve useful objects.
 		$monograph =& $this->getMonograph();
+		$stageId = $this->getStageId();
 
-		$userStageAssignmentDao = & DAORegistry::getDAO('UserStageAssignmentDAO');
-		$users =& $userStageAssignmentDao->getUsersBySubmissionAndStageId(
-			$monograph->getId(),
-			$this->getStageId(),
-			$userGroup->getId()
-		);
-		$returner = array();
-		while ($user =& $users->next()) {
-			$returner[$user->getId()] = $user;
-			unset($user);
-		}
+		$stageAssignmentDao =& DAORegistry::getDAO('StageAssignmentDAO'); /* @var $stageAssignmentDao StageAssignmentDAO */
+		$stageAssignments =& $stageAssignmentDao->getBySubmissionAndStageId($monograph->getId(),
+																			$stageId,
+																			$userGroup->getId()
+																			);
 
-		return $returner;
+		return $stageAssignments->toAssociativeArray();
+	}
+
+	/**
+	 * @see GridHandler::isSubComponent()
+	 */
+	function getIsSubcomponent() {
+		return true;
 	}
 
 	/**
@@ -162,28 +180,22 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 	// Public actions
 	//
 	/**
-	 * An action to manually edit the stage participants
+	 * Add a participant to the stages
 	 * @param $args array
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function editStageParticipantList($args, &$request) {
-		$templateMgr =& TemplateManager::getManager();
-
+	function addParticipant($args, &$request) {
 		$monograph =& $this->getMonograph();
-		$templateMgr->assign('monographId', $monograph->getId());
+		$stageId = $this->getStageId();
+		$userGroups =& $this->getGridDataElements($request);
 
-		// Assign the stage id to the template.
-		$templateMgr->assign('stageId', $this->getStageId());
+		import('controllers.grid.users.stageParticipant.form.AddParticipantForm');
+		$form = new AddParticipantForm($monograph, $stageId, $userGroups);
+		$form->initData();
 
-		// Get and validate the user group ID.
-		$userGroupId = (int) $request->getUserVar('userGroupId');
-		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
-		$userGroup =& $userGroupDao->getById($userGroupId, $monograph->getPressId());
-		if (!$userGroup) fatalError('Invalid userGroupId.');
-
-		$templateMgr->assign('userGroupId', $userGroup->getId());
-		return $templateMgr->fetchJson('controllers/grid/users/stageParticipant/editStageParticipantList.tpl');
+		$json = new JSONMessage(true, $form->fetch($request));
+		return $json->getString();
 	}
 
 
@@ -193,19 +205,86 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function saveStageParticipantList($args, &$request) {
-		// Get and validate the user group ID.
-		$userGroupId = (int) $request->getUserVar('userGroupId');
-		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+	function saveParticipant($args, &$request) {
 		$monograph =& $this->getMonograph();
-		$userGroup =& $userGroupDao->getById($userGroupId, $monograph->getPressId());
-		if (!$userGroup) fatalError('Invalid userGroupId.');
+		$stageId = $this->getStageId();
+		$userGroups =& $this->getGridDataElements($request);
 
-		import('classes.notification.NotificationManager');
-		$notificationManager = new NotificationManager();
-		$user =& $request->getUser();
-		$notificationManager->createTrivialNotification($user->getId());
-		return DAO::getDataChangedEvent($userGroupId);
+		import('controllers.grid.users.stageParticipant.form.AddParticipantForm');
+		$form = new AddParticipantForm($monograph, $stageId, $userGroups);
+		$form->readInputData();
+		if ($form->validate()) {
+			$userGroupId = $form->execute();
+
+			import('classes.notification.NotificationManager');
+			$notificationManager = new NotificationManager();
+			$user =& $request->getUser();
+			$notificationManager->createTrivialNotification($user->getId());
+			return DAO::getDataChangedEvent($userGroupId);
+		} else {
+			$json = new JSONMessage(true, $form->fetch($request));
+			return $json->getString();
+		}
+	}
+
+	/**
+	 * Delete the participant from the user groups
+	 * @param $args
+	 * @param $request
+	 * @return void
+	 */
+	function deleteParticipant($args, &$request) {
+		$monograph =& $this->getMonograph();
+		$stageId = $this->getStageId();
+		$assignmentId = (int) $request->getUserVar('assignmentId');
+
+		$stageAssignmentDao =& DAORegistry::getDAO('StageAssignmentDAO'); /* @var $stageAssignmentDao StageAssignmentDAO */
+		$stageAssignment =& $stageAssignmentDao->getById($assignmentId);
+		// FIXME: #6199
+		if (!$stageAssignment ||
+			$stageAssignment->getSubmissionId() != $monograph->getId() ||
+			$stageAssignment->getStageId() != $stageId) {
+			fatalError('Invalid Assignment');
+		}
+
+		$stages = array(WORKFLOW_STAGE_ID_SUBMISSION,
+				WORKFLOW_STAGE_ID_INTERNAL_REVIEW,
+				WORKFLOW_STAGE_ID_EXTERNAL_REVIEW,
+				WORKFLOW_STAGE_ID_EDITING,
+				WORKFLOW_STAGE_ID_PRODUCTION);
+		foreach ($stages as $stageId) {
+			// remove user's assignment from this user group from all the stages
+			// (no need to check if user group is assigned, since nothing will be deleted if there isn't)
+			$stageAssignmentDao->deleteByAll($monograph->getId(), $stageId, $stageAssignment->getUserGroupId(), $stageAssignment->getUserId());
+		}
+		// Redraw the category
+		return DAO::getDataChangedEvent($stageAssignment->getUserGroupId());
+	}
+
+
+	/**
+	 * Get the list of users for the specified user group
+	 * @param $args array
+	 * @param $request Request
+	 * @return JSON string
+	 */
+	function userAutocomplete($args, &$request) {
+		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		$stageId = $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
+
+		$userGroupId = (int) $request->getUserVar('userGroupId');
+
+		$userStageAssignmentDao =& DAORegistry::getDAO('UserStageAssignmentDAO'); /* @var $userStageAssignmentDao UserStageAssignmentDAO */
+		$users =& $userStageAssignmentDao->getUsersNotAssignedToStageInUserGroup($monograph->getId(), $stageId, $userGroupId);
+
+		$userList = array();
+		while($user =& $users->next()) {
+			$userList[] = array('label' => $user->getFullName(), 'value' => $user->getId());
+			unset($reviewer);
+		}
+
+		$json = new JSONMessage(true, $userList);
+		echo $json->getString();
 	}
 }
 

@@ -70,7 +70,19 @@
 	<message key="editor.monograph.final.manageFinalDraftFiles">Manage Final Draft Files</message>
 	<message key="editor.monograph.final.currentFiles">Current Final Draft Files</message>
 	<message key="editor.monograph.fairCopy">Fair Copy</message>
-	<message key="editor.monograph.copyediting.addAuditor">Add Auditor</message>
+
+	<!-- Stage Participants grid -->
+	<message key="editor.monograph.noneAssigned">None Assigned</message>
+	<message key="editor.monograph.participant">Participant</message>
+	<message key="editor.monograph.stageParticipants">Stage Participants</message>
+	<message key="editor.monograph.addStageParticipant">Add Stage Participant</message>
+	<message key="editor.monograph.addStageParticipant.description"><![CDATA[To add a participant to this stage of the submission, select a user group from the drop-down menu, then add a user.<br /><br />Note: The user will be added to all stages for which this user group is assigned.]]></message>
+	<message key="editor.monograph.removeStageParticipant">Remove Stage Participant</message>
+	<message key="editor.monograph.removeStageParticipant.description"><![CDATA[You are about to remove this participant from <strong>all</strong> stages]]></message>
+	<message key="editor.monograph.addStageParticipant.form.userGroupRequired">You must select a user group.</message>
+	<message key="editor.monograph.addStageParticipant.form.userRequired">You must select a user for the specified user group.</message>
+
+
 	<message key="editor.monograph.copyediting.currentFiles">Current Files</message>
 	<message key="editor.monograph.copyediting.personalMessageTouser">Personal message to user</message>
 
@@ -79,11 +91,12 @@
 	<message key="editor.monograph.proofs">Proofs</message>
 
 	<!-- Add file or auditor to editor/audit grids -->
+	<message key="editor.monograph.addAuditor">Add Auditor</message>
 	<message key="editor.monograph.addAuditorError">There was an error trying to add the auditor. Please Try again.</message>
 	<message key="editor.monograph.fileAuditor.form.userRequired">You must select a user to assign.</message>
 	<message key="editor.monograph.fileAuditor.form.fileRequired">You must select at least one file to assign the user to.</message>
 	<message key="editor.monograph.fileAuditor.form.messageRequired">You must include a personal message.</message>
-
+	<message key="editor.monograph.noAuditRequested">No audit requested for this file</message>
 
 	<!-- Submission stage related -->
 	<message key="editor.submission.noEditorAssigned">An editor must be assigned before you can initiate review.</message>

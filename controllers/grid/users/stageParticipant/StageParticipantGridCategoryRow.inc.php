@@ -37,33 +37,11 @@ class StageParticipantGridCategoryRow extends GridCategoryRow {
 	// Overridden methods from GridCategoryRow
 	//
 	/**
-	 * @see GridCategoryRow::initialize()
-	 * @param $request PKPRequest
+	 * @see GridCategoryRow::getCategoryLabel
 	 */
-	function initialize(&$request) {
-		// Do the default initialization
-		parent::initialize($request);
-
+	function getCategoryLabel() {
 		$userGroup =& $this->getData();
-		$monograph =& $this->getMonograph();
-
-		$router =& $request->getRouter();
-		$this->addAction(new LinkAction(
-			'editStageParticipantList',
-			new AjaxModal(
-				$router->url(
-					$request, null, null,
-					'editStageParticipantList', null,
-					array(
-						'monographId' => $monograph->getId(),
-						'stageId' => $this->getStageId(),
-						'userGroupId' => $userGroup->getId()
-					)
-				),
-				$userGroup->getLocalizedName()
-			),
-			$userGroup->getLocalizedName()
-		));
+		return $userGroup->getLocalizedName();
 	}
 
 	//

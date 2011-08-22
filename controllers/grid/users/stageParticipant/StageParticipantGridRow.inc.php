@@ -46,33 +46,26 @@ class StageParticipantGridRow extends GridRow {
 		// Is this a new row or an existing row?
 		$rowId = $this->getId();
 		if (!empty($rowId) && is_numeric($rowId)) {
-			$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
-			$press =& $request->getPress();
-			$userGroup =& $userGroupDao->getById($rowId, $press->getId());
-			$this->setUserGroupId($userGroup->getId());
-
 			// Only add row actions if this is an existing row.
 			$router =& $request->getRouter();
-			$actionArgs = array(
-				'monographId' => $this->getMonograph()->getId(),
-				'stageId' => $this->_stageId,
-				'userGroupId' => $this->getUserGroupId()
-			);
 
-			import('lib.pkp.classes.linkAction.request.AjaxModal');
+			import('lib.pkp.classes.linkAction.request.RemoteActionConfirmationModal');
 			$this->addAction(
 				new LinkAction(
 					'edit',
-					new AjaxModal(
-						$router->url($request, null, null, 'editStageParticipantList', null, $actionArgs),
-						__('grid.user.edit'),
-						'edit',
-						true
+					new RemoteActionConfirmationModal(
+						__('editor.monograph.removeStageParticipant.description'),
+						__('editor.monograph.removeStageParticipant'),
+						$router->url($request, null, null, 'deleteParticipant', null, $this->getRequestArgs())
 						),
-					__('grid.user.edit'),
-					'edit'
+					__('grid.action.remove'),
+					'delete'
 				)
 			);
+
+			import('controllers.informationCenter.linkAction.NotifyLinkAction');
+			$monograph =& $this->getMonograph();
+			$this->addAction(new NotifyLinkAction($request, $monograph));
 
 			// Set a non-default template that supports row actions
 			$this->setTemplate('controllers/grid/gridRowWithActions.tpl');
@@ -99,29 +92,16 @@ class StageParticipantGridRow extends GridRow {
 	}
 
 	/**
-	 * Set the user group id
-	 * @param $userGroupId integer
-	 */
-	function setUserGroupId($userGroupId) {
-		$this->_userGroupId = $userGroupId;
-	}
-
-
-	/**
-	 * Get the user group id
-	 * @return integer
-	 */
-	function getUserGroupId() {
-		return $this->_userGroupId;
-	}
-
-	/**
 	 * Get the grid request parameters.
 	 * @see GridHandler::getRequestArgs()
 	 * @return array
 	 */
 	function getRequestArgs() {
-		return array('userGroupId' => $this->getUserGroupId());
+		return array(
+			'monographId' => $this->getMonograph()->getId(),
+			'stageId' => $this->_stageId,
+			'assignmentId' => $this->getId()
+		);
 	}
 }
 

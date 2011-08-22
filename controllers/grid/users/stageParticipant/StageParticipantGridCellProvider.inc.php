@@ -9,7 +9,7 @@
  * @class DataObjectGridCellProvider
  * @ingroup controllers_grid_users_submissionContributor
  *
- * @brief Base class for a cell provider that can retrieve labels for submission contributors
+ * @brief Cell provider to retrieve the user's name from the stage assignment
  */
 
 import('lib.pkp.classes.controllers.grid.DataObjectGridCellProvider');
@@ -35,7 +35,9 @@ class StageParticipantGridCellProvider extends DataObjectGridCellProvider {
 	function getTemplateVarsFromRowColumn(&$row, $column) {
 		switch ($column->getId()) {
 			case 'participants':
-				$user =& $row->getData();
+				$stageAssignment =& $row->getData();
+				$userDao =& DAORegistry::getDAO('UserDAO'); /* @var $userDao UserDAO */
+				$user =& $userDao->getUser($stageAssignment->getUserId());
 				return array('label' => $user->getFullName());
 			default:
 				assert(false);
