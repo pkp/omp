@@ -33,6 +33,13 @@
 {if $implicitAuth}
 	<a id="implicitAuthLogin" href="{url page="login" op="implicitAuthLogin"}">Login</a>
 {else}
+	<script type="text/javascript">
+		$(function() {ldelim}
+			// Attach the form handler.
+			$('#signinForm').pkpHandler('$.pkp.controllers.form.FormHandler');
+		{rdelim});
+	</script>
+
 	<form class="pkp_form" id="signinForm" method="post" action="{$loginUrl}">
 {/if}
 
@@ -47,22 +54,24 @@
 
 {if ! $implicitAuth}
 	{fbvFormArea id="loginFields"}
-		{fbvFormSection id="login" title="user.username" for="username"}
-			{fbvElement type="text" id="username" value=$username|escape size="20" maxlength="32" size=$fbvStyles.size.MEDIUM}
+		{fbvFormSection label="user.login" for="username"}
+			{fbvElement type="text" id="username" value=$username|escape maxlength="32" size=$fbvStyles.size.MEDIUM}
 		{/fbvFormSection}
-		{fbvFormSection id="login2" title="user.password" for="password"}
-			{fbvElement type="text" password="true" id="password" value=$password|escape size="20" maxlength="32" size=$fbvStyles.size.MEDIUM}
+		{fbvFormSection label="user.password" for="password"}
+			{fbvElement type="text" password=true id="password" value=$password|escape maxlength="32" size=$fbvStyles.size.MEDIUM}
+			<a href="{url page="login" op="lostPassword"}">{translate key="user.login.forgotPassword"}</a>
 		{/fbvFormSection}
 		{if $showRemember}
-			{fbvFormSection list='true'}
+			{fbvFormSection list=true}
 				{fbvElement type="checkbox" label="user.login.rememberUsernameAndPassword" id="loginRemember" value=$remember}
 			{/fbvFormSection}
 		{/if}{* $showRemember *}
-		<p>
-			{if !$hideRegisterLink}&#187; <a href="{url page="user" op=$registerOp}">{translate key=$registerLocaleKey}</a><br />{/if}
-			&#187; <a href="{url page="login" op="lostPassword"}">{translate key="user.login.forgotPassword"}</a>
-		</p>
-		{fbvFormButtons hideCancel=true submitText="user.login"}
+		{if !$hideRegisterLink}
+			{url|assign:cancelUrl page="user" op=$registerOp}
+			{fbvFormButtons cancelUrl=$cancelUrl cancelText=$registerLocaleKey submitText="user.login"}
+		{else}
+			{fbvFormButtons hideCancel=true submitText="user.login.resetPassword"}
+		{/if}
 	{/fbvFormArea}
 
 {/if}{* !$implicitAuth *}

@@ -45,24 +45,23 @@
 
 {if !$implicitAuth}
 	{fbvFormSection title="user.accountInformation"}
-		{fbvElement type="text" label="user.username" id="username" value=$username required="true" size=$fbvStyles.size.MEDIUM}
-		{fbvElement type="text" label="user.password" id="password" value=$password required="true" password="true" size=$fbvStyles.size.MEDIUM}
+		{fbvElement type="text" label="user.username" id="username" value=$username required=true size=$fbvStyles.size.MEDIUM}
+		{fbvElement type="text" label="user.password" id="password" value=$password required=true password=true size=$fbvStyles.size.MEDIUM}
 		{if !$existingUser}
-			{fbvElement type="text" label="user.repeatPassword" id="password2" value=$password2 required="true" password="true" size=$fbvStyles.size.MEDIUM}
+			{fbvElement type="text" label="user.repeatPassword" id="password2" value=$password2 required=true password=true size=$fbvStyles.size.MEDIUM}
 		{/if}{* !$existingUser *}
 	{/fbvFormSection}
 
 	{if !$existingUser}
 		{fbvFormSection title="common.name"}
-			{fbvElement type="text" label="user.salutation" id="salutation" value=$salutation size=$fbvStyles.size.SMALL inline="true"}
-			{fbvElement type="text" label="user.firstName" id="firstName" required="true" value=$firstName required="true" size=$fbvStyles.size.SMALL inline="true"}
-			{fbvElement type="text" label="user.middleName" id="middleName" value=$middleName size=$fbvStyles.size.SMALL inline="true"}
-			{fbvElement type="text" label="user.lastName" id="lastName" required="true" value=$lastName required="true" size=$fbvStyles.size.SMALL inline="true"}
-			{fbvElement type="text" label="user.initials" id="initials" value=$initials size=$fbvStyles.size.SMALL inline="true"}
+			{fbvElement type="text" label="user.firstName" id="firstName" required=true value=$firstName required=true size=$fbvStyles.size.SMALL inline=true}
+			{fbvElement type="text" label="user.middleName" id="middleName" value=$middleName size=$fbvStyles.size.SMALL inline=true}
+			{fbvElement type="text" label="user.lastName" id="lastName" required=true value=$lastName required=true size=$fbvStyles.size.SMALL inline=true}
+			{fbvElement type="text" label="user.initials" id="initials" value=$initials size=$fbvStyles.size.SMALL inline=true}
 		{/fbvFormSection}
 
 		{fbvFormSection title="user.gender" for="gender"  size=$fbvStyles.size.SMALL}
-			{fbvElement type="select" from=$genderOptions selected=$gender|escape id="gender" translate="true"}
+			{fbvElement type="select" from=$genderOptions selected=$gender|escape id="gender" translate=true}
 		{/fbvFormSection}
 
 		{fbvFormSection title="user.phone" for="phone"}
@@ -73,7 +72,7 @@
 			{fbvElement type="text" id="fax" value=$fax|escape size=$fbvStyles.size.MEDIUM}
 		{/fbvFormSection}
 
-		{fbvFormSection title="user.email" for="email" required="true"}
+		{fbvFormSection title="user.email" for="email" required=true}
 			{fbvElement type="text" id="email" value=$email|escape size=$fbvStyles.size.MEDIUM} <br />
 			{fbvElement type="text" label="user.confirmEmail" id="confirmEmail" value=$confirmEmail|escape size=$fbvStyles.size.MEDIUM}
 		 	{if $privacyStatement}<a class="action" href="#privacyStatement">{translate key="user.register.privacyStatement"}</a>{/if}
@@ -104,7 +103,7 @@
 		{/fbvFormSection}
 
 		{if count($availableLocales) > 1}
-		{fbvFormSection title="user.workingLanguages" list="true"}
+		{fbvFormSection title="user.workingLanguages" list=true}
 			{foreach from=$availableLocales key=localeKey item=localeName}
 				{assign var="controlId" value=userLocales-$localeKey}
 				{if in_array($localeKey, $userLocales)}
@@ -116,7 +115,7 @@
 		{/fbvFormSection}
 		{/if}{* count($availableLocales) > 1 *}
 
-		{fbvFormSection label="user.sendPassword" list="true"}
+		{fbvFormSection label="user.sendPassword" list=true}
 			{if $sendPassword}
 				{fbvElement type="checkbox" id="sendPassword" value="1" label="user.sendPassword.description" checked="checked"}
 			{else}
@@ -127,7 +126,7 @@
 {/if}{* !$implicitAuth *}
 
 	{if $currentPress && ($allowRegAuthor || $allowRegReviewer)}
-		{fbvFormSection label="user.register.registerAs" list="true"}
+		{fbvFormSection label="user.register.registerAs" list=true}
 			{if $allowRegAuthor}
 				{iterate from=authorUserGroups item=userGroup}
 					{assign var="userGroupId" value=$userGroup->getId()}
@@ -151,7 +150,7 @@
 
 	{if !$implicitAuth && !$existingUser && $captchaEnabled}
 		<li>
-		{fieldLabel name="captcha" required="true" key="common.captchaField" class="desc"}
+		{fieldLabel name="captcha" required=true key="common.captchaField" class="desc"}
 		<span>
 			<img src="{url page="user" op="viewCaptcha" path=$captchaId}" alt="{translate key="common.captchaField.altText"}" /><br />
 			<p>{translate key="common.captchaField.description"}</p>
