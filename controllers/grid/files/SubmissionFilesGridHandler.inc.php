@@ -168,11 +168,14 @@ class SubmissionFilesGridHandler extends GridHandler {
 		$tarBinary = Config::getVar('cli', 'tar');
 		if ($this->canDownloadAll() && !empty($tarBinary) && file_exists($tarBinary) && $this->hasGridDataElements($request)) {
 			import('controllers.grid.files.fileList.linkAction.DownloadAllLinkAction');
-			$this->addAction(new DownloadAllLinkAction($request, $this->getRequestArgs()));
+			$this->addAction(new DownloadAllLinkAction($request, $this->getRequestArgs()), GRID_ACTION_POSITION_BELOW);
 		}
 
 		// The file name column is common to all file grid types.
 		$this->addColumn(new FileNameGridColumn($this->canViewNotes()));
+
+		// Set the no items row text
+		$this->setEmptyRowText('grid.noFiles');
 	}
 
 
