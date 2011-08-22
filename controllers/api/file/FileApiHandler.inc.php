@@ -65,12 +65,10 @@ class FileApiHandler extends Handler {
 	 */
 	function viewFile($args, &$request) {
 		// FIXME: authorize! bug #6199
-		$fileId = (int)$request->getUserVar('fileId');
-		$revision = (int)$request->getUserVar('revision');
-
-		$monograph =& $this->getMonograph();
+		$monographFile =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH_FILE);
+		assert($monographFile); // Should have been validated already
 		import('classes.file.MonographFileManager');
-		MonographFileManager::viewFile($monograph->getId(), $fileId, ($revision ? $revision : null));
+		MonographFileManager::viewFile($monographFile->getMonographId(), $monographFile->getFileId(), $monographFile->getRevision());
 	}
 }
 
