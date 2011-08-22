@@ -29,13 +29,6 @@
 	</div>
 	<div style="clear:both;"></div>
 
-	<div class="pkp_controllers_timeline">
-		{url|assign:timelineUrl router=$smarty.const.ROUTE_COMPONENT component="timeline.TimelineHandler" op="fetch" monographId=$monograph->getId() escape=false}
-		{load_url_in_div id="pkp_submissionTimeline" url="$timelineUrl"}
-	</div>
-
-	<div style="clear:both;"></div>
-
 	{** User Alert **}
 	<div id="userAlert"></div>
 	<br />
