@@ -31,9 +31,13 @@
 		<p style="pkp_helper_align_right"><a id="importPeerReviews" href="#">{translate key="submission.comments.importPeerReviews"}</a></p><br />
 	{/if}
 
-	{fbvFormSection}
-		{fbvElement type="textarea" name="personalMessage" id="personalMessage" label="editor.review.personalMessageToAuthor" value=$personalMessage  size=$fbvStyles.size.MEDIUM}
-	{/fbvFormSection}
+	{** FIXME: we're using the PromoteForm for send to production, but there
+	 *	is no email for that action so should probably not use this template. **}
+	{if $stageId < $smarty.const.WORKFLOW_STAGE_ID_EXTERNAL_REVIEW}
+		{fbvFormSection}
+			{fbvElement type="textarea" name="personalMessage" id="personalMessage" label="editor.review.personalMessageToAuthor" value=$personalMessage  size=$fbvStyles.size.MEDIUM}
+		{/fbvFormSection}
+	{/if}
 
 	{** Some decisions can be made before review is initiated (i.e. no attachments). **}
 	{if $round}

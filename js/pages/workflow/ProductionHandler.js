@@ -1,8 +1,8 @@
 /**
- * @defgroup js_pages_production
+ * @defgroup js_pages_workflow
  */
-// Create the pages_authorDashboard namespace.
-jQuery.pkp.pages.workflow = { };
+// Create the pages_workflow namespace.
+$.pkp.pages.workflow = $.pkp.pages.workflow || {};
 
 /**
  * @file js/pages/production/ProductionHandler.js
@@ -36,12 +36,14 @@ jQuery.pkp.pages.workflow = { };
 		// Transform the stage sections into jQueryUI accordions.
 		$('#metadataAccordion', $production).accordion({
 			autoHeight: false,
-			collapsible: true
+			collapsible: true,
+			active: false
 		});
 		var $publicationFormatContainer = $('#publicationFormatContainer', $production);
 		$publicationFormatContainer.accordion({
 			autoHeight: false,
-			collapsible: true
+			collapsible: true,
+			active: false
 		});
 	};
 	$.pkp.classes.Helper.inherits(

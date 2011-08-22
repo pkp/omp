@@ -24,7 +24,7 @@
 	{load_url_in_div id="productionReadyFilesGridDiv" url=$productionReadyFilesGridUrl}
 
 	<div id="metadataAccordion">
-		<h3><a href="#">{translate key="cataloguing metadata"}</a></h3>
+		<h3><a href="#">{translate key="submission.cataloguingMetadata"}</a></h3>
 		<div>
 			{url|assign:submissionMetadataViewFormUrl router=$smarty.const.ROUTE_COMPONENT  component="modals.submissionMetadata.ProductionSubmissionMetadataHandler" op="fetch" monographId=$monograph->getId()}
 			{load_url_in_div id="submissionMetadataFormWrapper" url=$submissionMetadataViewFormUrl}
