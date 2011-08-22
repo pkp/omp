@@ -80,8 +80,9 @@ class SeriesEditorAction extends Action {
 	 * Assign the default participants to a workflow stage.
 	 * @param $monograph Monograph
 	 * @param $stageId int
+	 * @param $request Request
 	 */
-	function assignDefaultStageParticipants(&$monograph, $stageId) {
+	function assignDefaultStageParticipants(&$monograph, $stageId, &$request) {
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 
 		// Managerial roles are skipped -- They have access by default and
@@ -102,6 +103,20 @@ class SeriesEditorAction extends Action {
 				$user =& $users->next();
 				$stageAssignmentDao->build($monograph->getId(), $stageId, $userGroup->getId(), $user->getId());
 			}
+		}
+
+		// Check for editor stage assignment.
+		if (!$stageAssignmentDao->editorAssignedToSubmission($monograph->getId(), $stageId)) {
+			import('classes.notification.NotificationManager');
+			$notificationManager = new NotificationManager();
+
+			// Create a notification.
+			$notificationType = $notificationManager->getEditorAssignmentNotificationTypeByStageId($stageId);
+			$press =& $request->getPress();
+
+			PKPNotificationManager::createNotification(
+				$request, null, $notificationType, $press->getId(), ASSOC_TYPE_MONOGRAPH,
+				$monograph->getId(), NOTIFICATION_LEVEL_TASK);
 		}
 
 		// Reviewer roles -- Do nothing. Reviewers are not included in the stage participant list, they
@@ -126,15 +141,16 @@ class SeriesEditorAction extends Action {
 	 * Increment a monograph's workflow stage.
 	 * @param $monograph Monograph
 	 * @param $newStage integer One of the WORKFLOW_STAGE_* constants.
+	 * @param $request Request
 	 */
-	function incrementWorkflowStage(&$monograph, $newStage) {
+	function incrementWorkflowStage(&$monograph, $newStage, &$request) {
 		// Change the monograph's workflow stage.
 		$monograph->setStageId($newStage);
 		$monographDao =& DAORegistry::getDAO('MonographDAO'); /* @var $monographDao MonographDAO */
 		$monographDao->updateMonograph($monograph);
 
 		// Assign the default users to the next workflow stage.
-		$this->assignDefaultStageParticipants($monograph, $newStage);
+		$this->assignDefaultStageParticipants($monograph, $newStage, $request);
 	}
 
 	/**

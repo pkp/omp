@@ -34,6 +34,7 @@ class NotificationManager extends PKPNotificationManager {
 	function getNotificationUrl(&$request, &$notification) {
 		$router =& $request->getRouter();
 		$dispatcher =& $router->getDispatcher();
+		$url = null;
 
 		$type = $notification->getType();
 		switch ($type) {
@@ -43,6 +44,11 @@ class NotificationManager extends PKPNotificationManager {
 				$url = $dispatcher->url($request, ROUTE_PAGE, null, 'workflow', 'submission', $notification->getAssocId());
 				break;
 			case NOTIFICATION_TYPE_REVIEWER_COMMENT:
+			case NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_SUBMISSION:
+			case NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_INTERNAL_REVIEW:
+			case NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_EXTERNAL_REVIEW:
+			case NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_EDITING:
+			case NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_PRODUCTION:
 				break;
 			default:
 				$url = parent::getNotificationUrl($request, $notification);
@@ -61,11 +67,11 @@ class NotificationManager extends PKPNotificationManager {
 		$type = $notification->getType();
 		assert(isset($type));
 		$contents = array();
+		$monographDao =& DAORegistry::getDAO('MonographDAO'); /* @var $monographDao MonographDAO */
 
 		switch ($type) {
 			case NOTIFICATION_TYPE_MONOGRAPH_SUBMITTED:
 				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
-				$monographDao =& DAORegistry::getDAO('MonographDAO'); /* @var $monographDao MonographDAO */
 				$monograph =& $monographDao->getMonograph($notification->getAssocId()); /* @var $monograph Monograph */
 				$title = $monograph->getLocalizedTitle();
 				$contents['description'] = __('notification.type.monographSubmitted', array('title' => $title));
@@ -74,10 +80,18 @@ class NotificationManager extends PKPNotificationManager {
 				assert($$notification->getAssocType() == ASSOC_TYPE_REVIEW_ASSIGNMENT && is_numeric($$notification->getAssocId()));
 				$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO'); /* @var $reviewAssignmentDao ReviewAssignmentDAO */
 				$reviewAssignment =& $reviewAssignmentDao->getById($notification->getAssocId());
-				$monographDao =& DAORegistry::getDAO('MonographDAO'); /* @var $monographDao MonographDAO */
 				$monograph =& $monographDao->getMonograph($reviewAssignment->getSubmissionId()); /* @var $monograph Monograph */
 				$title = $monograph->getLocalizedTitle();
 				$contents['description'] = __('notification.type.reviewerComment', array('title' => $title));
+				break;
+			case NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_SUBMISSION:
+			// FIXME Create a text and locale key for the rest of the notification types.
+			case NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_INTERNAL_REVIEW:
+			case NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_EXTERNAL_REVIEW:
+			case NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_EDITING:
+			case NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_PRODUCTION:
+				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
+				$contents['description'] = __('notification.type.editorAssignment');
 				break;
 			default:
 				$contents = parent::getNotificationContents($request, $notification);
@@ -99,6 +113,48 @@ class NotificationManager extends PKPNotificationManager {
 			case NOTIFICATION_TYPE_REVIEWER_COMMENT: return 'notifyIconNewComment';
 			default: return parent::getIconClass($notification);
 		}
+	}
+
+	/**
+	 * Get notification style class
+	 * @param $notification Notification
+	 * @return string
+	 */
+	function getStyleClass(&$notification) {
+		switch ($notification->getType()) {
+			case NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_INTERNAL_REVIEW:
+			case NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_EXTERNAL_REVIEW:
+			case NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_EDITING:
+			case NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_PRODUCTION:
+			case NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_SUBMISSION: return 'notifyWarning';
+			default: return parent::getStyleClass($notification);
+		}
+	}
+
+	/**
+	 * Return the editor assignment notification type based on stage id.
+	 * @param $stageId int
+	 */
+	function getEditorAssignmentNotificationTypeByStageId($stageId) {
+		$notificationType = null;
+		switch ($stageId) {
+			case WORKFLOW_STAGE_ID_SUBMISSION:
+				$notificationType = NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_SUBMISSION;
+				break;
+			case WORKFLOW_STAGE_ID_INTERNAL_REVIEW:
+				$notificationType = NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_INTERNAL_REVIEW;
+				break;
+			case WORKFLOW_STAGE_ID_EXTERNAL_REVIEW:
+				$notificationType = NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_EXTERNAL_REVIEW;
+				break;
+			case WORKFLOW_STAGE_ID_EDITING:
+				$notificationType = NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_EDITING;
+				break;
+			case WORKFLOW_STAGE_ID_PRODUCTION:
+				$notificationType = NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_PRODUCTION;
+				break;
+		}
+		return $notificationType;
 	}
 
 }

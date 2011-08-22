@@ -20,6 +20,9 @@ import('lib.pkp.classes.controllers.grid.CategoryGridHandler');
 import('controllers.grid.users.stageParticipant.StageParticipantGridRow');
 import('controllers.grid.users.stageParticipant.StageParticipantGridCategoryRow');
 
+// import notification manager
+import('classes.notification.NotificationManager');
+
 class StageParticipantGridHandler extends CategoryGridHandler {
 	/**
 	 * Constructor
@@ -217,10 +220,30 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 		if ($form->validate()) {
 			$userGroupId = $form->execute();
 
-			import('classes.notification.NotificationManager');
+
 			$notificationManager = new NotificationManager();
-			$user =& $request->getUser();
-			$notificationManager->createTrivialNotification($user->getId());
+
+			// Check user group role id.
+			$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+			$userGroup = $userGroupDao->getById($userGroupId);
+			if ($userGroup->getRoleId() == ROLE_ID_PRESS_MANAGER) {
+				$notificationDao =& DAORegistry::getDAO('NotificationDAO');
+
+				// Remove editor assignment notification for each stage.
+				$stages = $this->_getStages();
+				$stageAssignmentDao =& DAORegistry::getDAO('StageAssignmentDAO'); /* @var $stageAssignmentDao StageAssignmentDAO */
+				foreach ($stages as $workingStageId) {
+					if ($stageAssignmentDao->editorAssignedToSubmission($monograph->getId(), $workingStageId)) {
+						$notificationType = $notificationManager->getEditorAssignmentNotificationTypeByStageId($workingStageId);
+						$notification =& $notificationDao->getNotificationsByAssoc(
+							ASSOC_TYPE_MONOGRAPH, $monograph->getId(), $notificationType);
+						$notification =& $notification->next();
+						if (is_a($notification, 'Notification')) {
+							$notificationDao->deleteNotificationById($notification->getId());
+						}
+					}
+				}
+			}
 			return DAO::getDataChangedEvent($userGroupId);
 		} else {
 			$json = new JSONMessage(true, $form->fetch($request));
@@ -248,20 +271,37 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 			fatalError('Invalid Assignment');
 		}
 
-		$stages = array(WORKFLOW_STAGE_ID_SUBMISSION,
-				WORKFLOW_STAGE_ID_INTERNAL_REVIEW,
-				WORKFLOW_STAGE_ID_EXTERNAL_REVIEW,
-				WORKFLOW_STAGE_ID_EDITING,
-				WORKFLOW_STAGE_ID_PRODUCTION);
-		foreach ($stages as $stageId) {
+		$notificationManager = new NotificationManager();
+		$press = $request->getPress();
+
+		$stages = $this->_getStages();
+		foreach ($stages as $workingStageId) {
 			// remove user's assignment from this user group from all the stages
 			// (no need to check if user group is assigned, since nothing will be deleted if there isn't)
-			$stageAssignmentDao->deleteByAll($monograph->getId(), $stageId, $stageAssignment->getUserGroupId(), $stageAssignment->getUserId());
+			$stageAssignmentDao->deleteByAll($monograph->getId(), $workingStageId, $stageAssignment->getUserGroupId(), $stageAssignment->getUserId());
+
+			// Check for editor stage assignment.
+			if (!$stageAssignmentDao->editorAssignedToSubmission($monograph->getId(), $workingStageId)) {
+
+				// Get the right editor assignment notification type, base on stage.
+				$notificationType = $notificationManager->getEditorAssignmentNotificationTypeByStageId($workingStageId);
+
+				// Check if we don't have a notification for this stage already.
+				$notificationDao =& DAORegistry::getDAO('NotificationDAO');
+				$notification =& $notificationDao->getNotificationsByAssoc(
+							ASSOC_TYPE_MONOGRAPH, $monograph->getId(), $notificationType);
+				if($notification->next()) break;
+
+				// Create a notification.
+				PKPNotificationManager::createNotification(
+					$request, null, $notificationType, $press->getId(), ASSOC_TYPE_MONOGRAPH,
+					$monograph->getId(), NOTIFICATION_LEVEL_TASK);
+			}
 		}
+
 		// Redraw the category
 		return DAO::getDataChangedEvent($stageAssignment->getUserGroupId());
 	}
-
 
 	/**
 	 * Get the list of users for the specified user group
@@ -286,6 +326,22 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 
 		$json = new JSONMessage(true, $userList);
 		return $json->getString();
+	}
+
+
+	//
+	// Private helper methods.
+	//
+	/**
+	 * Return workflow stages.
+	 * @return array
+	 */
+	function _getStages() {
+		return array(WORKFLOW_STAGE_ID_SUBMISSION,
+				WORKFLOW_STAGE_ID_INTERNAL_REVIEW,
+				WORKFLOW_STAGE_ID_EXTERNAL_REVIEW,
+				WORKFLOW_STAGE_ID_EDITING,
+				WORKFLOW_STAGE_ID_PRODUCTION);
 	}
 }
 

@@ -76,7 +76,7 @@ class PromoteForm extends EditorDecisionWithEmailForm {
 				$status = REVIEW_ROUND_STATUS_ACCEPTED;
 
 				// Move to the editing stage.
-				$seriesEditorAction->incrementWorkflowStage($seriesEditorSubmission, WORKFLOW_STAGE_ID_EDITING);
+				$seriesEditorAction->incrementWorkflowStage($seriesEditorSubmission, WORKFLOW_STAGE_ID_EDITING, $request);
 
 				// Bring in the MONOGRAPH_FILE_* constants.
 				import('classes.monograph.MonographFile');
@@ -101,7 +101,7 @@ class PromoteForm extends EditorDecisionWithEmailForm {
 				$status = REVIEW_ROUND_STATUS_SENT_TO_EXTERNAL;
 
 				// Move to the external review stage.
-				$seriesEditorAction->incrementWorkflowStage($seriesEditorSubmission, WORKFLOW_STAGE_ID_EXTERNAL_REVIEW);
+				$seriesEditorAction->incrementWorkflowStage($seriesEditorSubmission, WORKFLOW_STAGE_ID_EXTERNAL_REVIEW, $request);
 
 				// Create an initial external review round.
 				$this->_initiateReviewRound($seriesEditorSubmission, WORKFLOW_STAGE_ID_EXTERNAL_REVIEW, 1);
@@ -113,7 +113,7 @@ class PromoteForm extends EditorDecisionWithEmailForm {
 				// FIXME: this is copy-pasted from above, save the FILE_GALLEY.
 
 				// Move to the editing stage.
-				$seriesEditorAction->incrementWorkflowStage($seriesEditorSubmission, WORKFLOW_STAGE_ID_PRODUCTION);
+				$seriesEditorAction->incrementWorkflowStage($seriesEditorSubmission, WORKFLOW_STAGE_ID_PRODUCTION, $request);
 
 				// Bring in the MONOGRAPH_FILE_* constants.
 				import('classes.monograph.MonographFile');

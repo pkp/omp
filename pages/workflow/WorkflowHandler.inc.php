@@ -80,11 +80,19 @@ class WorkflowHandler extends Handler {
 		$templateMgr->assign('stageId', $stageId);
 		$templateMgr->assign('lastCompletedStageId', $monograph->getStageId());
 
-		$stageAssignmentDao =& DAORegistry::getDAO('StageAssignmentDAO');
-		$templateMgr->assign(
-			'editorAssigned',
-			$stageAssignmentDao->editorAssignedToSubmission($monograph->getId(), $stageId)
+		// Get the right editor assignment notification type based on current stage id.
+		import('classes.notification.NotificationManager');
+		$notificationMgr = new NotificationManager();
+		$editorAssignmentNotificationType = $notificationMgr->getEditorAssignmentNotificationTypeByStageId($stageId);
+
+		// Define the workflow notification options.
+		$notificationRequestOptions = array(
+			NOTIFICATION_LEVEL_TASK => array(
+				$editorAssignmentNotificationType => array(ASSOC_TYPE_MONOGRAPH, $monograph->getId())),
+			NOTIFICATION_LEVEL_TRIVIAL => array()
 		);
+
+		$templateMgr->assign('workflowNotificationRequestOptions', $notificationRequestOptions);
 
 		$dispatcher =& $request->getDispatcher();
 		import('controllers/modals/submissionMetadata/linkAction/WorkflowViewMetadataLinkAction');

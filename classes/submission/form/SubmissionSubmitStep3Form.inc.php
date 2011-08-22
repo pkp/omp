@@ -102,7 +102,7 @@ class SubmissionSubmitStep3Form extends SubmissionSubmitForm {
 		// Assign the default users to the submission workflow stage
 		import('classes.submission.seriesEditor.SeriesEditorAction');
 		$seriesEditorAction = new SeriesEditorAction();
-		$seriesEditorAction->assignDefaultStageParticipants($monograph, WORKFLOW_STAGE_ID_SUBMISSION);
+		$seriesEditorAction->assignDefaultStageParticipants($monograph, WORKFLOW_STAGE_ID_SUBMISSION, $request);
 
 		//
 		// Send a notification to associated users
