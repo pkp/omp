@@ -28,9 +28,10 @@ class FileNotesLinkAction extends FileLinkAction {
 		$ajaxModal = new AjaxModal(
 			$router->url(
 				$request, null,
-				'informationCenter.FileInformationCenterHandler', 'viewInformationCenter',
+				'informationCenter.FileInformationCenterHandler', 'viewNotes',
 				null, $this->getActionArgs($monographFile)
-			)
+			),
+			__('common.notes')
 		);
 
 		// Configure the file link action.
