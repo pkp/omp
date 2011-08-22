@@ -1,11 +1,11 @@
 <?php
 /**
- * @file classes/security/authorization/internal/MonographSignoffExistsAccessPolicy.inc.php
+ * @file classes/security/authorization/internal/SignoffExistsAccessPolicy.inc.php
  *
  * Copyright (c) 2000-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class MonographSignoffExistsAccessPolicy
+ * @class SignoffExistsAccessPolicy
  * @ingroup security_authorization_internal
  *
  * @brief Class to control access to a signoff
@@ -14,7 +14,7 @@
 
 import('lib.pkp.classes.security.authorization.AuthorizationPolicy');
 
-class MonographSignoffExistsAccessPolicy extends AuthorizationPolicy {
+class SignoffExistsAccessPolicy extends AuthorizationPolicy {
 	/** @var PKPRequest */
 	var $_request;
 
@@ -22,7 +22,7 @@ class MonographSignoffExistsAccessPolicy extends AuthorizationPolicy {
 	 * Constructor
 	 * @param $request PKPRequest
 	 */
-	function MonographSignoffExistsAccessPolicy(&$request) {
+	function SignoffExistsAccessPolicy(&$request) {
 		parent::AuthorizationPolicy('user.authorization.monographSignoff');
 		$this->_request =& $request;
 	}
