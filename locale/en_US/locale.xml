@@ -138,6 +138,7 @@
 	<!-- Roles -->
 	<message key="user.role.manager">Press Manager</message>
 	<message key="user.role.editor">Editor</message>
+	<message key="user.role.pressEditor">Press Editor</message>
 	<message key="user.role.seriesEditor">Series Editor</message>
 	<message key="user.role.pressAssistant">Press Assistant</message>
 	<message key="user.role.copyeditor">Copyeditor</message>

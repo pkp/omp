@@ -19,8 +19,10 @@
 	<message key="submission.workType.authoredWork">Authored Work</message>
 	<message key="submission.editorial">Editorial</message>
 	<message key="submission.production">Production</message>
+	<message key="submission.published">Published</message>
 	<message key="submission.finalDraft">Final Draft</message>
 	<message key="submission.fairCopy">Fair Copy</message>
+	<message key="submission.productionReady">Production Ready</message>
 	<message key="submission.art">Artwork</message>
 	<message key="submission.artwork.permissions">Permissions</message>
 	<message key="submission.chapter">Chapter</message>
@@ -38,7 +40,7 @@
 	<message key="submission.confirmSubmit">Are you sure you wish to submit this manuscript to the press?</message>
 	<message key="submission.files.downloadAll">Download All Files</message>
 	<message key="submission.mySubmissions">My Submissions</message>
-	<message key="submission.participants">Participants</message>
+	<message key="submission.cataloguingMetadata">Cataloguing Metadata</message>
 
 	<!-- Submission wizard -->
 	<message key="submission.submit">Start New Book Submission</message>
@@ -94,12 +96,9 @@
 	<message key="submission.submit.fileNameRequired">You must enter a file name for this file</message>
 	<message key="submission.submit.fileAdded">Submission File Added</message>
 	<message key="submission.submit.newFile">Upload Another File For This Submission</message>
-	<message key="submission.submit.allParticipants">All Participants</message>
-	<message key="submission.submit.stageParticipants">Stage Participants</message>
-	<message key="submission.submit.addStageParticipant">Add Stage Participant</message>
-	<message key="submission.submit.addStageParticipant.description">To add a participant to this stage of the submission, select a user group from the drop-down menu, then add members of the user group through the list builder control.</message>
 
 	<!-- File upload wizard -->
+	<message key="submission.upload.noteToAccompanyFile">Note to accompany file</message>
 	<message key="submission.upload.noFileType">Missing or invalid file type!</message>
 	<message key="submission.upload.invalidUserGroup">Missing or invalid user group!</message>
 	<message key="submission.upload.possibleRevision">Possible Revision Detected</message>
@@ -108,6 +107,7 @@
 	<message key="submission.upload.selectMandatoryFileToRevise">Please select the file you would like to revise.</message>
 	<message key="submission.upload.selectOptionalFileToRevise">If you are uploading a revision of an existing file, please indicate which file.</message>
 	<message key="submission.upload.uploadNewFile">Do not replace an existing file</message>
+	<message key="submission.upload.fileContents">File Contents</message>
 
 	<!-- File uploads -->
 	<message key="submission.addFile">Upload Submission File</message>
