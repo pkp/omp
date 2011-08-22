@@ -19,7 +19,7 @@
 	{include file="common/formErrors.tpl"}
 	{include file="controllers/tab/settings/wizardMode.tpl" wizardMode=$wizardMode}
 
-	<h3>{translate key="manager.setup.cataloguingMetadata"}</h3>
+	<h3>{translate key="submission.cataloguingMetadata"}</h3>
 
 	{url|assign:cataloguingMetadataUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.CataloguingMetadataListbuilderHandler" op="fetch"}
 	{load_url_in_div id="cataloguingMetadataContainer" url=$cataloguingMetadataUrl}

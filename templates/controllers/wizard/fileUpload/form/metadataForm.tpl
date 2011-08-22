@@ -22,14 +22,7 @@
 <form class="pkp_form" id="metadataForm" action="{url op="saveMetadata" monographId=$submissionFile->getMonographId() stageId=$stageId fileStage=$submissionFile->getFileStage() fileId=$submissionFile->getFileId() escape=false}" method="post">
 
 	{* Editable metadata *}
-
-	{if is_a($submissionFile, 'ArtworkFile')}
-		{assign var="metadataFormAreaTitle" value="submission.artworkFileDetails"}
-	{else}
-		{assign var="metadataFormAreaTitle" value="submission.fileDetails"}
-	{/if}
-
-	{fbvFormArea id="fileMetaData" title=$metadataFormAreaTitle}
+	{fbvFormArea id="fileMetaData"}
 		{fbvFormSection title="submission.form.name" required=true}
 			{fbvElement type="text" id="name" value=$submissionFile->getLocalizedName() maxlength="120"}
 		{/fbvFormSection}
@@ -48,7 +41,7 @@
 				{fbvElement type="text" id="artworkPlacement"}
 			{/fbvFormSection}
 		{/if}
-		{fbvFormSection title="common.note"}
+		{fbvFormSection title="submission.upload.noteToAccompanyFile"}
 			{if $note}
 				{fbvElement type="textarea" id="note" value=$note->getContents() height=$fbvStyles.height.SHORT}
 			{else}
@@ -63,15 +56,6 @@
 		{fbvFormSection title="common.fileName" inline=true size=$fbvStyles.size.MEDIUM}
 			{$submissionFile->getFileName()|escape}
 		{/fbvFormSection}
-		{fbvFormSection title="common.originalFileName" inline=true size=$fbvStyles.size.MEDIUM}
-			{$submissionFile->getOriginalFileName()|escape}
-		{/fbvFormSection}
-		{fbvFormSection title="common.dateUploaded" inline=true size=$fbvStyles.size.MEDIUM}
-			{$submissionFile->getDateUploaded()|date_format:$datetimeFormatShort}
-		{/fbvFormSection}
-		{fbvFormSection title="common.type" inline=true size=$fbvStyles.size.MEDIUM}
-			{$submissionFile->getDocumentType()}
-		{/fbvFormSection}
 		{fbvFormSection title="common.fileType" inline=true size=$fbvStyles.size.MEDIUM}
 			{$submissionFile->getExtension()|escape}
 		{/fbvFormSection}
@@ -80,6 +64,12 @@
 		{/fbvFormSection}
 
 		{if is_a($submissionFile, 'ArtworkFile') && $submissionFile->getWidth() > 0 && $submissionFile->getHeight() > 0}
+			{math assign="imageWidthOnDevice" equation="w/300" w=$submissionFile->getWidth() format="%.2f"}
+			{math assign="imageHeightOnDevice" equation="h/300" h=$submissionFile->getHeight() format="%.2f"}
+			{fbvFormSection title="common.quality" inline=true size=$fbvStyles.size.MEDIUM}
+				{$imageWidthOnDevice}''&nbsp;x&nbsp;{$imageHeightOnDevice}'' @ 300 DPI/PPI<br />
+				({$submissionFile->getWidth()} x {$submissionFile->getHeight()} pixels)
+			{/fbvFormSection}
 			{fbvFormSection title="common.preview" inline=true size=$fbvStyles.size.MEDIUM}
 				{* Get scaled thumbnail dimensions to 100px *}
 				{if $submissionFile->getWidth() > $submissionFile->getHeight()}
@@ -95,13 +85,6 @@
 				{else}<a target="_blank" href="{url component="api.file.FileApiHandler" op="viewFile" monographId=$submissionFile->getMonographId() stageId=$stageId fileStage=$submissionFile->getFileStage() fileId=$submissionFile->getFileId() revision=$submissionFile->getRevision()}">
 					<img class="thumbnail" width="{$thumbnailWidth}" height="{$thumbnailHeight}" src="{url component="api.file.FileApiHandler" op="viewFile" monographId=$submissionFile->getMonographId() stageId=$stageId fileStage=$submissionFile->getFileStage() fileId=$submissionFile->getFileId()}" />
 				</a>{/if}
-			{/fbvFormSection}
-
-			{math assign="imageWidthOnDevice" equation="w/300" w=$submissionFile->getWidth() format="%.2f"}
-			{math assign="imageHeightOnDevice" equation="h/300" h=$submissionFile->getHeight() format="%.2f"}
-			{fbvFormSection title="common.quality" inline=true size=$fbvStyles.size.MEDIUM}
-				{$imageWidthOnDevice}''&nbsp;x&nbsp;{$imageHeightOnDevice}'' @ 300 DPI/PPI<br />
-				({$submissionFile->getWidth()} x {$submissionFile->getHeight()} pixels)
 			{/fbvFormSection}
 		{/if}
 	{/fbvFormArea}

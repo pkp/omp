@@ -222,7 +222,7 @@ class UserGroupGridHandler extends CategoryGridHandler {
 			$userGroupForm->execute($request);
 			return DAO::getDataChangedEvent();
 		} else {
-			$json = new JSONMessage(false);
+			$json = new JSONMessage(true, $userGroupForm->fetch($request));
 			return $json->getString();
 		}
 	}

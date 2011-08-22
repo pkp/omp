@@ -143,7 +143,7 @@
 		{/if}
 		{if count($uploaderUserGroups) > 1}
 			{fbvFormSection title="submission.uploaderUserGroup" required=true}
-				{fbvElement type="select" name="uploaderUserGroupId" id="uploaderUserGroupId" from=$uploaderUserGroups selected=$defaultUserGroupId translate=false} <br />
+				{fbvElement type="select" name="uploaderUserGroupId" id="uploaderUserGroupId" from=$uploaderUserGroups selected=$defaultUserGroupId translate=false}
 			{/fbvFormSection}
 		{else}
 			<input type="hidden" id="uploaderUserGroupId" name="uploaderUserGroupId" value="{$uploaderUserGroups|@key}" />
@@ -164,7 +164,7 @@
 		{/if}
 
 		{if $showGenreSelector}
-			{fbvFormSection title="common.fileType" required=true}
+			{fbvFormSection title="submission.upload.fileContents" required=true}
 				{fbvElement type="select" name="genreId" id="genreId" from=$monographFileGenres translate=false selected=$genreId}
 			{/fbvFormSection}
 		{/if}

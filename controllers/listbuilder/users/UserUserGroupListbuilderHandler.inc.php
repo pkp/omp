@@ -159,7 +159,7 @@ class UserUserGroupListbuilderHandler extends ListbuilderHandler {
 		$this->setSourceType(LISTBUILDER_SOURCE_TYPE_SELECT);
 
 		import('controllers.listbuilder.users.UserGroupListbuilderGridCellProvider');
-		$cellProvider =& new UserGroupListbuilderGridCellProvider();
+		$cellProvider = new UserGroupListbuilderGridCellProvider();
 
 		// Name column
 		$nameColumn = new ListbuilderGridColumn($this, 'name', 'common.name');

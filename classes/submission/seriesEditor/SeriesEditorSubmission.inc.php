@@ -28,15 +28,6 @@ class SeriesEditorSubmission extends Monograph {
 	/** @var array the editor decisions of this monograph */
 	var $editorDecisions;
 
-	/** @var array the revisions of the editor file */
-	var $editorFileRevisions;
-
-	/** @var array the revisions of the author file */
-	var $authorFileRevisions;
-
-	/** @var array the revisions of the revised copyedit file */
-	var $copyeditFileRevisions;
-
 	/**
 	 * Constructor.
 	 */
@@ -94,7 +85,7 @@ class SeriesEditorSubmission extends Monograph {
 				foreach ($reviewRounds as $round => $junk )  {
 					$roundReviewAssignments = $this->reviewAssignments[$stageId][$round];
 					foreach ( $roundReviewAssignments as $assignment ) {
-						if ($assignment->getReviewId() == $reviewId) {
+						if ($assignment->getId() == $reviewId) {
 							array_push($this->removedReviewAssignments, $reviewId);
 							$found = true;
 						} else {
@@ -117,7 +108,7 @@ class SeriesEditorSubmission extends Monograph {
 		$reviewAssignments = array();
 		$roundReviewAssignments = $this->reviewAssignments[$reviewAssignment->getStageId()][$reviewAssignment->getRound()];
 		for ($i=0, $count=count($roundReviewAssignments); $i < $count; $i++) {
-			if ($roundReviewAssignments[$i]->getReviewId() == $reviewAssignment->getId()) {
+			if ($roundReviewAssignments[$i]->getId() == $reviewAssignment->getId()) {
 				array_push($reviewAssignments, $reviewAssignment);
 			} else {
 				array_push($reviewAssignments, $roundReviewAssignments[$i]);

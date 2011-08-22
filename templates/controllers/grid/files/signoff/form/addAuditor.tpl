@@ -24,7 +24,7 @@
 		<!-- User autocomplete -->
 		<div id="userAutocomplete">
 			{fbvFormSection}
-				{fbvElement type="autocomplete" autocompleteUrl=$autocompleteUrl id="userId-GroupId" name="copyeditUserAutocomplete" label="editor.monograph.copyediting.addAuditor" value=$userNameString|escape}
+				{fbvElement type="autocomplete" autocompleteUrl=$autocompleteUrl id="userId-GroupId" name="copyeditUserAutocomplete" label="editor.monograph.addAuditor" value=$userNameString|escape}
 			{/fbvFormSection}
 		</div>
 

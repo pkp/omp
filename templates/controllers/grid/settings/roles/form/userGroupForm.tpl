@@ -25,10 +25,10 @@
 		{fbvFormSection title="settings.roles.from" for="roleId" required="true"}
 			{fbvElement type="select" name="roleId" from=$roleOptions id="roleId" selected=$roleId disabled=$disableRoleSelect}
 		{/fbvFormSection}
-		{fbvFormSection title="settings.roles.roleName" for="name[$formLocale]" required="true"}
+		{fbvFormSection title="settings.roles.roleName" for="name" required="true"}
 			{fbvElement type="text" multilingual="true" name="name" value=$name id="name"}
 		{/fbvFormSection}
-		{fbvFormSection title="settings.roles.roleAbbrev" for="abbrev[$formLocale]" required="true"}
+		{fbvFormSection title="settings.roles.roleAbbrev" for="abbrev" required="true"}
 			{fbvElement type="text" multilingual="true" name="abbrev" value=$abbrev id="abbrev"}
 		{/fbvFormSection}
 	{/fbvFormArea}
