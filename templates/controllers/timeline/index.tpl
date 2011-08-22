@@ -22,26 +22,10 @@
 
 	<div class="timelineLabelContainer">
 		<span class="timelineLabel pastStep"><a href="{url router=$smarty.const.ROUTE_PAGE page="workflow" op="submission" path=$monographId}">{translate key="submission.submission"}</a></span>
-		{if $stageId >= $smarty.const.WORKFLOW_STAGE_ID_INTERNAL_REVIEW}
-			<span class="timelineLabel center pastStep"><a href="{url router=$smarty.const.ROUTE_PAGE page="workflow" op="internalReview" path=$monographId}">{translate key="workflow.review.internalReview"}</a></span>
-		{else}
-			<span class="timelineLabel center futureStep">{translate key="workflow.review.internalReview"}</span>
-		{/if}
-		{if $stageId >= $smarty.const.WORKFLOW_STAGE_ID_EXTERNAL_REVIEW}
-			<span class="timelineLabel center pastStep"><a href="{url router=$smarty.const.ROUTE_PAGE page="workflow" op="externalReview" path=$monographId}">{translate key="workflow.review.externalReview"}</a></span>
-		{else}
-			<span class="timelineLabel center futureStep">{translate key="workflow.review.externalReview"}</span>
-		{/if}
-		{if $stageId >= $smarty.const.WORKFLOW_STAGE_ID_EDITING}
+			<span class="timelineLabel pastStep"><a href="{url router=$smarty.const.ROUTE_PAGE page="workflow" op="internalReview" path=$monographId}">{translate key="workflow.review.internalReview"}</a></span>
+			<span class="timelineLabel pastStep"><a href="{url router=$smarty.const.ROUTE_PAGE page="workflow" op="externalReview" path=$monographId}">{translate key="workflow.review.externalReview"}</a></span>
 			<span class="timelineLabel center pastStep"><a href="{url router=$smarty.const.ROUTE_PAGE page="workflow" op="copyediting" path=$monographId}">{translate key="submission.editorial"}</a></span>
-		{else}
-			<span class="timelineLabel center futureStep">{translate key="submission.editorial"}</span>
-		{/if}
-		{if $stageId >= $smarty.const.WORKFLOW_STAGE_ID_EDITING}
-			<span class="timelineLabel center pastStep"><a href="{url router=$smarty.const.ROUTE_PAGE page="workflow" op="production" path=$monographId}">{translate key="submission.production"}</a></span>
-		{else}
-			<span class="timelineLabel center futureStep">{translate key="submission.production"}</span>
-		{/if}
+			<span class="timelineLabel right pastStep"><a href="{url router=$smarty.const.ROUTE_PAGE page="workflow" op="production" path=$monographId}">{translate key="submission.production"}</a></span>
 	</div>
 
 </div>

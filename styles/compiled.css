@@ -1052,9 +1052,8 @@ span.pkp_controllers_informationCenter_itemLastEvent {
 }
 .pkp_controllers_timeline .timelineContainer .timelineFiller.accepted { width:25%; }
 .pkp_controllers_timeline .timelineContainer .timelineFiller.internallyReviewed { width:50%; }
-.pkp_controllers_timeline .timelineContainer .timelineFiller.reviewed { width:70%; }
-.pkp_controllers_timeline .timelineContainer .timelineFiller.copyedited { width:80%; }
-.pkp_controllers_timeline .timelineContainer .timelineFiller.published { width:100%; }
+.pkp_controllers_timeline .timelineContainer .timelineFiller.reviewed { width:80%; }
+.pkp_controllers_timeline .timelineContainer .timelineFiller.copyedited { width:100%; }
 .pkp_controllers_timeline .timelineLabelContainer {
   width:90%;
   margin:0 auto;
