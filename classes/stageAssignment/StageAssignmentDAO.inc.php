@@ -17,6 +17,17 @@ import('classes.stageAssignment.StageAssignment');
 
 class StageAssignmentDAO extends DAO {
 	/**
+	 * Retrieve an assignment by  its ID
+	 * @param $stageAssignmentId int
+	 * @return StageAssignment
+	 */
+	function getById($stageAssignmentId) {
+		$result =& $this->retrieve('SELECT * FROM stage_assignments WHERE stage_assignment_id = ?',
+									(int) $stageAssignmentId);
+		return $this->_fromRow($result->GetRowAssoc(false));
+	}
+
+	/**
 	 * Retrieve StageAssignments by submission and stage IDs.
 	 * @param $submissionId int
 	 * @param $stageId int (optional)
@@ -74,7 +85,7 @@ class StageAssignmentDAO extends DAO {
 	function build($submissionId, $stageId, $userGroupId, $userId) {
 
 		// If one exists, fetch and return.
-		$stageAssignment = $this->_getByIds($submissionId, $stageId, $userGroupId, $userId, null, true);
+		$stageAssignment = $this->stageAssignmentExists($submissionId, $stageId, $userGroupId, $userId);
 		if ($stageAssignment) return $stageAssignment;
 
 		// Otherwise, build one.
@@ -117,6 +128,7 @@ class StageAssignmentDAO extends DAO {
 	function _fromRow(&$row) {
 		$stageAssignment = $this->newDataObject();
 
+		$stageAssignment->setId($row['stage_assignment_id']);
 		$stageAssignment->setSubmissionId($row['submission_id']);
 		$stageAssignment->setStageId($row['stage_id']);
 		$stageAssignment->setUserId($row['user_id']);

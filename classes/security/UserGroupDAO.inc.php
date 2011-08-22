@@ -45,7 +45,8 @@ class UserGroupDAO extends PKPUserGroupDAO {
 			WHERE	ugs.press_id = ? AND
 				ugs.stage_id = ?' .
 				($omitAuthors?' AND ug.role_id <> ?':'') .
-				($omitReviewers?' AND ug.role_id <> ?':''),
+				($omitReviewers?' AND ug.role_id <> ?':'') .
+			' ORDER BY role_id ASC',
 			$params
 		);
 
@@ -78,6 +79,33 @@ class UserGroupDAO extends PKPUserGroupDAO {
 		return $returner;
 	}
 
+	/**
+	 * Check if a user group is assigned to a stage
+	 * @param int $userGroupId
+	 * @param int $stageId
+	 * @return bool
+	 */
+	function userGroupAssignedToStage($userGroupId, $stageId) {
+		$result = $this->retrieve('SELECT COUNT(*)
+									FROM user_group_stage
+									WHERE user_group_id = ? AND stage_id = ?',
+								array((int) $userGroupId, (int) $stageId));
+
+		$returner = isset($result->fields[0]) && $result->fields[0] > 0 ? true : false;
+
+		$result->Close();
+		unset($result);
+
+		return $returner;
+	}
+
+	/**
+	 * Assign a user group to a stage
+	 * @param $pressId int
+	 * @param $userGroupId int
+	 * @param $stageId int
+	 * @return bool
+	 */
 	function assignGroupToStage($pressId, $userGroupId, $stageId) {
 		return $this->update(
 			'INSERT INTO user_group_stage (press_id, user_group_id, stage_id) VALUES (?, ?, ?)',
@@ -85,6 +113,13 @@ class UserGroupDAO extends PKPUserGroupDAO {
 		);
 	}
 
+	/**
+	 * Remove a user group from a stage
+	 * @param $pressId int
+	 * @param $userGroupId int
+	 * @param $stageId int
+	 * @return bool
+	 */
 	function removeGroupFromStage($pressId, $userGroupId, $stageId) {
 		return $this->update(
 			'DELETE FROM user_group_stage WHERE press_id = ? AND user_group_id = ? AND stage_id = ?',
