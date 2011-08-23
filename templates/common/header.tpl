@@ -105,7 +105,7 @@
 			<div class="pkp_structure_content">
 				<div class="unit size1of5">
 					<div class="pkp_structure_masthead">
-						<h1>
+						<h1 style="margin: 0; padding: 0;">
 							{if $displayPageHeaderLogo && is_array($displayPageHeaderLogo)}
 								<img src="{$publicFilesDir}/{$displayPageHeaderLogo.uploadName|escape:"url"}" width="{$displayPageHeaderLogo.width|escape}" height="{$displayPageHeaderLogo.height|escape}" {if $displayPageHeaderLogoAltText != ''}alt="{$displayPageHeaderLogoAltText|escape}"{else}alt="{translate key="common.pageHeaderLogo.altText"}"{/if} />
 							{/if}
@@ -115,10 +115,8 @@
 								{$displayPageHeaderTitle}
 							{elseif $alternatePageHeader}
 								{$alternatePageHeader}
-							{elseif $siteTitle}
-								{$siteTitle}
 							{else}
-								{$applicationName}
+								<img src="{$baseUrl}/templates/images/structure/omp_logo.png" alt="{$applicationName}" title="{$applicationName}" width="180" height="90" />
 							{/if}
 						</h1>
 					</div><!-- pkp_structure_masthead -->
@@ -144,6 +142,7 @@
 						<button class="go">{translate key="common.go"}</button>
 					</div>
 				</div>
+
 			{if $leftSidebarCode}
 					<div class="pkp_structure_sidebar pkp_structure_sidebar_left mod simple">
 						{$leftSidebarCode}
@@ -162,5 +161,4 @@
 				</script>
 
 				<div class="pkp_structure_main">
-					<!-- TODO: Place page title here -->
 					<h2 class="title_left">{$pageTitleTranslated}</h2>
