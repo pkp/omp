@@ -83,13 +83,16 @@ class FileSignoffGridHandler extends SubmissionFilesGridHandler {
 				$flags = array();
 				if (in_array($currentUser->getId(), $userIds)) $flags['myUserGroup'] = true;
 				$this->addColumn(
-					new SignoffStatusFromFileGridColumn('role-' . $roleId,
-												$roleName,
-												null,
-												$this->getSymbolic(),
-												$userIds,
-												$this->getRequestArgs(),
-												$flags));
+					new SignoffStatusFromFileGridColumn(
+						'role-' . $roleId,
+						$roleName,
+						null,
+						$this->getSymbolic(),
+						$userIds,
+						$this->getRequestArgs(),
+						$flags
+					)
+				);
 			}
 			unset($assignments);
 		}

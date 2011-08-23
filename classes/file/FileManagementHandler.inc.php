@@ -38,6 +38,7 @@ class FileManagementHandler extends Handler {
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 
+
 	/**
 	 * @see PKPHandler::initialize()
 	 */
@@ -57,6 +58,7 @@ class FileManagementHandler extends Handler {
 		return $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 	}
 
+
 	/**
 	 * Get the authorized workflow stage.
 	 * @return integer One of the WORKFLOW_STAGE_ID_* constants.
@@ -65,4 +67,5 @@ class FileManagementHandler extends Handler {
 		return $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
 	}
 }
+
 ?>

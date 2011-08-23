@@ -34,7 +34,6 @@ class ReviewRevisionsGridHandler extends FileSignoffGridHandler {
 			array_merge($readAccess, array('downloadAllFiles', 'signOffFile'))
 		);
 
-
 		// Set the grid title.
 		$this->setTitle('editor.monograph.revisions');
 	}
