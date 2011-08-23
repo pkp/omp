@@ -284,7 +284,7 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 		}
 
 		$json = new JSONMessage(true, $userList);
-		echo $json->getString();
+		return $json->getString();
 	}
 }
 

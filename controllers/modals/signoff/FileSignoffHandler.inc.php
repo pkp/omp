@@ -36,6 +36,7 @@ class FileSignoffHandler extends FileManagementHandler {
 	/** @var int */
 	var $_signoffId;
 
+
 	/**
 	 * Constructor
 	 */
@@ -80,6 +81,7 @@ class FileSignoffHandler extends FileManagementHandler {
 		return $this->_assocType;
 	}
 
+
 	/**
 	 * Get the assoc id (if any)
 	 * @return integer
@@ -87,6 +89,7 @@ class FileSignoffHandler extends FileManagementHandler {
 	function getAssocId() {
 		return $this->_assocId;
 	}
+
 
 	/**
 	 * Get the Symbolic of the signoff (if any)
@@ -96,14 +99,15 @@ class FileSignoffHandler extends FileManagementHandler {
 		return $this->_symbolic;
 	}
 
+
 	function getSignoffId() {
 		return $this->_signoffId;
 	}
 
+
 	//
 	// Public handler methods
 	//
-
 	/**
 	 * Render the file upload form in its initial state.
 	 * @param $args array
@@ -158,7 +162,8 @@ class FileSignoffHandler extends FileManagementHandler {
 		return $templateMgr->fetchJson('controllers/modals/signoff/readSignoff.tpl');
 	}
 
-	/*
+
+	/**
 	 * Mark the signoff as viewed?
 	 * For now, this is doing nothing (obviously).
 	 */
@@ -166,6 +171,7 @@ class FileSignoffHandler extends FileManagementHandler {
 		$json = new JSONMessage(true);
 		return $json->getString();
 	}
+
 
 	/**
 	 * Render the file upload form in its initial state.
@@ -188,6 +194,7 @@ class FileSignoffHandler extends FileManagementHandler {
 		$json = new JSONMessage(true, $fileForm->fetch($request));
 		return $json->getString();
 	}
+
 
 	/**
 	 * Upload a file and render the modified upload wizard.
@@ -212,6 +219,7 @@ class FileSignoffHandler extends FileManagementHandler {
 
 		return $json->getString();
 	}
+
 
 	/**
 	 * Copy the file to the right place (if any) and add the note
@@ -248,6 +256,7 @@ class FileSignoffHandler extends FileManagementHandler {
 		return $json->getString();
 	}
 
+
 	//
 	// Private helper methods
 	//
@@ -267,4 +276,5 @@ class FileSignoffHandler extends FileManagementHandler {
 		return $uploadedFileInfo;
 	}
 }
+
 ?>

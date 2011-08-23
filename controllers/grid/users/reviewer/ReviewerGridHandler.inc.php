@@ -340,7 +340,7 @@ class ReviewerGridHandler extends GridHandler {
 		}
 
 		$json = new JSONMessage(true, $reviewerList);
-		echo $json->getString();
+		return $json->getString();
 	}
 
 	/**
@@ -363,7 +363,7 @@ class ReviewerGridHandler extends GridHandler {
 		}
 
 		$json = new JSONMessage(true, $userList);
-		echo $json->getString();
+		return $json->getString();
 	}
 
 	/**

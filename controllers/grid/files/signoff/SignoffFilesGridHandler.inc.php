@@ -42,6 +42,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 	/* @var int */
 	var $_assocId;
 
+
 	/**
 	 * Constructor
 	 */
@@ -55,16 +56,15 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 
 		$this->addRoleAssignment(
 			array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_ASSISTANT),
-			array_merge(
-				array(
-					'fetchGrid', 'fetchRow', 'returnFileRow', 'returnSignoffRow',
-					'addAuditor', 'saveAddAuditor', 'getAuditorAutocomplete',
-					'signOffsignOff', 'deleteSignoff'
-				)
+			array(
+				'fetchGrid', 'fetchRow', 'returnFileRow', 'returnSignoffRow',
+				'addAuditor', 'saveAddAuditor', 'getAuditorAutocomplete',
+				'signOffsignOff', 'deleteSignoff'
 			)
 		);
 		parent::CategoryGridHandler();
 	}
+
 
 	//
 	// Implement template methods from PKPHandler
@@ -81,10 +81,10 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 
+
 	//
 	// Implement template methods from PKPHandler
 	//
-
 	/**
 	 * Configure the grid
 	 * @param PKPRequest $request
@@ -194,6 +194,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 		return $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 	}
 
+
 	/**
 	 * Get the workflow stage id.
 	 * @return integer
@@ -201,6 +202,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 	function getStageId() {
 		return $this->_stageId;
 	}
+
 
 	/**
 	 * Get the signoff's symbolic
@@ -210,12 +212,14 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 		return $this->_symbolic;
 	}
 
+
 	/**
 	 * Get the fileStage (for categories)
 	 */
 	function getFileStage() {
 		return $this->_fileStage;
 	}
+
 
 	/**
 	 * Get the email key
@@ -224,6 +228,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 		return $this->_eventType;
 	}
 
+
 	/**
 	 * Get the assoc type
 	 */
@@ -231,12 +236,14 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 		return $this->_assocType;
 	}
 
+
 	/**
-	 * set the assoc Id
+	 * Set the assoc Id
 	 */
 	function setAssocId($assocId) {
 		$this->_assocId = $assocId;
 	}
+
 
 	/**
 	 * Get the assoc id
@@ -244,6 +251,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 	function getAssocId() {
 		return $this->_assocId;
 	}
+
 
 	/**
 	 * @see GridDataProvider::getRequestArgs()
@@ -254,6 +262,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 			'monographId' => $monograph->getId()
 		);
 	}
+
 
 	/**
 	 * @see GridHandler::loadData
@@ -280,6 +289,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 		return $data;
 	}
 
+
 	//
 	// Overridden methods from GridHandler
 	//
@@ -291,6 +301,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 		$row = new SignoffFilesGridCategoryRow();
 		return $row;
 	}
+
 
 	/**
 	 * Get all the signoffs for this category.
@@ -305,6 +316,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 		return $signoffs;
 	}
 
+
 	/**
 	* Get the row handler - override the default row handler
 	* @return CopyeditingFilesGridRow
@@ -313,6 +325,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 		$row = new SignoffGridRow($this->getStageId());
 		return $row;
 	}
+
 
 	//
 	// Public methods
@@ -345,6 +358,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 		return $json->getString();
 	}
 
+
 	/**
 	 * Save the form for adding an auditor to a copyediting file
 	 * @param $args array
@@ -367,6 +381,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 		$json = new JSONMessage(false, __('editor.monograph.addAuditorError'));
 		return $json->getString();
 	}
+
 
 	/**
 	 * Get users for copyediting autocomplete.
@@ -397,8 +412,9 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 
 		import('lib.pkp.classes.core.JSONMessage');
 		$json = new JSONMessage(true, $itemList);
-		echo $json->getString();
+		return $json->getString();
 	}
+
 
 	/**
 	 * Return a grid row with for the copyediting grid
@@ -424,6 +440,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 
 	}
 
+
 	/**
 	 * Delete a user's signoff
 	 * @param $args array
@@ -446,6 +463,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 			return $json->getString();
 		}
 	}
+
 
 	/**
 	 * Let the user signoff on the signoff
