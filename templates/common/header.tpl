@@ -161,4 +161,7 @@
 				</script>
 
 				<div class="pkp_structure_main">
-					<h2 class="title_left">{$pageTitleTranslated}</h2>
+					{** allow pages to provide their own titles **}
+					{if !$suppressPageTitle}
+						<h2 class="title_left">{$pageTitleTranslated}</h2>
+					{/if}

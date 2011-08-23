@@ -40,7 +40,7 @@ class WorkflowViewMetadataLinkAction extends LinkAction {
 				__('submission.viewMetadata'));
 
 		// Configure the link action.
-		parent::LinkAction('viewMetadata', $modal, __('submission.viewMetadata'), 'more_info');
+		parent::LinkAction('viewMetadata', $modal, __('submission.viewMetadata'), 'information');
 	}
 }
 

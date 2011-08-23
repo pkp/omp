@@ -57,14 +57,187 @@
 
 /* Styles specific to template subfolders. */
 @import url("styles/common.less");
-@import url("styles/timeline.less");
-@import url("styles/authorDashboard.less");
 @import url("styles/submission.less");
 @import url("styles/workflow.less");
 
 
 
 /* Styles common to templates in distinct subfolders. */
+
+.pkp_submission_header {
+	position: relative;
+
+	ul.submission_actions {
+		position: relative;
+		z-index: 20;
+		font-size: 90%;
+	}
+
+	ul.submission_actions li {
+		line-height: 24px;
+		margin-left: 20px;
+		padding: 5px 1px 5px 1px;
+	}
+
+	li.participants {
+		margin-right: 10px;
+	}
+
+	li.participants:hover {
+		background: #fff;
+		border: 1px solid #999;
+		border-bottom: 1px solid #fff;
+		padding: 4px 10px 4px 10px;
+		margin: 0px 0px 0px 10px;
+	}
+
+	.participant_popover {
+		border: 1px solid #999;
+		width: 300px;
+		right: 0px;
+		top: 34px;
+		margin-top: -2px;
+		position:absolute;
+		background-color: #fff;
+		z-index: 10;
+	}
+
+	ul.submission_actions a {
+		text-decoration: underline;
+	}
+
+	ul.submission_actions a:before
+	{
+		content: " ";
+		width: 24px;
+		height: 24px;
+		float: left;
+		background: url(../lib/pkp/templates/images/structure/sprites.png);
+		background-repeat: no-repeat;
+	}
+
+	ul.submission_actions a.participants:before
+	{
+		background-position: -290px 0;
+	}
+
+	ul.submission_actions a.participants:hover:before
+	{
+		background-position: -290px -24px;
+	}
+
+	ul.submission_actions a.information:before
+	{
+		background-position: -170px 0;
+	}
+
+	ul.submission_actions a.information:hover:before
+	{
+		background-position: -170px -24px;
+	}
+
+	.submission_progress_wrapper {
+		clear: both;
+		padding-top: 30px;
+	}
+
+	.submission_progress {
+		overflow: hidden;
+		font-size: 90%;
+		height: 40px;
+	}
+
+	.submission_progress li {
+		background-color: #efefef;
+		padding-left: 30px;
+		line-height: 40px;
+	}
+
+	.submission_progress li.first {
+		padding-left: 10px;
+	}
+
+	.submission_progress li:after {
+			content: " ";
+			display: block;
+			width: 0;
+			height: 0;
+			border-top: 50px solid transparent;           /* Go big on the size, and let overflow hide */
+			border-bottom: 50px solid transparent;
+			border-left: 20px solid #efefef;
+			position: absolute;
+			top: 50%;
+			margin-top: -50px;
+			left: 100%;
+			z-index: 2;
+	}
+
+	.submission_progress li.complete {
+		background-color: #e5f4e5;
+	}
+
+	.submission_progress li.complete a:before {
+		content: " ";
+		width: 24px;
+		height: 24px;
+		float: left;
+		background: url(../lib/pkp/templates/images/structure/sprites.png);
+		background-repeat: no-repeat;
+		background-position: -338px 0;
+		margin-top: 7px;
+	}
+
+	.submission_progress li.current a:before {
+		content: " ";
+		width: 24px;
+		height: 24px;
+		float: left;
+		background: url(../lib/pkp/templates/images/structure/sprites.png);
+		background-repeat: no-repeat;
+		background-position: -314px 0;
+		margin-top: 7px;
+	}
+
+	.submission_progress li a:before {
+		content: " ";
+		width: 24px;
+		height: 24px;
+		float: left;
+		background: url(../lib/pkp/templates/images/structure/sprites.png);
+		background-repeat: no-repeat;
+		background-position: -362px 0;
+		margin-top: 7px;
+	}
+
+	.submission_progress li.current {
+ 		background-color: #EAF3F8;
+ 	}
+
+	.submission_progress li.complete:after {
+		border-left-color: #e5f4e5;
+	}
+
+	.submission_progress li.current:after {
+ 		border-left-color: #EAF3F8;
+ 	}
+
+	.submission_progress li:before {
+			content: " ";
+			display: block;
+			width: 0;
+			height: 0;
+			border-top: 50px solid transparent;
+			border-bottom: 50px solid transparent;
+			border-left: 20px solid #fff;
+			position: absolute;
+			top: 50%;
+			margin-top: -50px;
+			margin-left: 2px;
+			left: 100%;
+			z-index: 1;
+	}
+}
+
 .pkp_submissionHeader {
 	width: 95%;
 	margin: 5px 10px 15px 10px;

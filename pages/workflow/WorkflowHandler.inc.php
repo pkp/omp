@@ -78,6 +78,7 @@ class WorkflowHandler extends Handler {
 		// Assign the authorized monograph.
 		$templateMgr->assign_by_ref('monograph', $monograph);
 		$templateMgr->assign('stageId', $stageId);
+		$templateMgr->assign('lastCompletedStageId', $monograph->getStageId());
 
 		$stageAssignmentDao =& DAORegistry::getDAO('StageAssignmentDAO');
 		$templateMgr->assign(
@@ -102,7 +103,7 @@ class WorkflowHandler extends Handler {
 				__('informationCenter.informationCenter')
 			),
 			__('informationCenter.informationCenter'),
-			'more_info'
+			'information'
 		);
 		$templateMgr->assign_by_ref('submissionInformationCentreAction', $submissionInformationCentreAction);
 	}

@@ -33,28 +33,9 @@ $.pkp.pages.workflow = $.pkp.pages.workflow || {};
 
 		this.parent($submissionHeader, options);
 
-		// FIXME: #6834 this CSS should not live here.
-		var $link = $('#stageParticipantToggle');
-		$link.css('float', 'right');
-
-		var $stageParticipantsGridContainer = $submissionHeader.find('.pkp_stage_participant_popover');
-		$stageParticipantsGridContainer.width(300);
-		$stageParticipantsGridContainer.css('position', 'absolute');
-		$stageParticipantsGridContainer.css('z-index', 10);
-
-		$('#stageParticipantToggle').hover(function() {
-			var $popover = $(this).find('.pkp_stage_participant_popover');
-			$popover.show();
-			$popover.position({
-				my: "right top",
-				at: "right top",
-				of: $(this),
-				offset: "10 0",
-				collision: "none"
-			});
-		}, function() {
-			var $popover = $(this).find('.pkp_stage_participant_popover');
-			$popover.hide();
+		// show and hide on click of link
+		$('#participantToggle').click(function() {
+			$('.participant_popover').toggle();
 		});
 	};
 	$.pkp.classes.Helper.inherits(
