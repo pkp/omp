@@ -26,10 +26,12 @@ class CopyeditingFilesGridHandler extends SignoffFilesGridHandler {
 	 * Constructor
 	 */
 	function CopyeditingFilesGridHandler() {
-		parent::SignoffFilesGridHandler(WORKFLOW_STAGE_ID_EDITING,
-										MONOGRAPH_FILE_COPYEDIT,
-										'SIGNOFF_COPYEDITING',
-										MONOGRAPH_EMAIL_COPYEDIT_NOTIFY_AUTHOR);
+		parent::SignoffFilesGridHandler(
+			WORKFLOW_STAGE_ID_EDITING,
+			MONOGRAPH_FILE_COPYEDIT,
+			'SIGNOFF_COPYEDITING',
+			MONOGRAPH_EMAIL_COPYEDIT_NOTIFY_AUTHOR
+		);
 	}
 
 
