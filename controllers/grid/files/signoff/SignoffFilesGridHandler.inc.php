@@ -124,7 +124,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 			'addAuditor',
 			new AjaxModal(
 				$router->url($request, null, null, 'addAuditor', null, $this->getRequestArgs()),
-				__('editor.monograph.copyediting.addAuditor'),
+				__('editor.monograph.addAuditor'),
 				'add_item'
 			),
 			__('editor.monograph.addAuditor'),
@@ -436,8 +436,6 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 			$json = new JSONMessage(false, __('common.uploadFailed'));
 			return $json->getString();
 		}
-
-
 	}
 
 
