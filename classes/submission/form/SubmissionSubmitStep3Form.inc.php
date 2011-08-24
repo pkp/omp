@@ -136,7 +136,20 @@ class SubmissionSubmitStep3Form extends SubmissionSubmitForm {
 		$router =& $request->getRouter();
 		if ($mail->isEnabled()) {
 			$user = $monograph->getUser();
+			$primaryAuthor = $monograph->getPrimaryAuthor();
 			$mail->addRecipient($user->getEmail(), $user->getFullName());
+
+			if ($user->getEmail() == $primaryAuthor->getEmail()) {
+				$mail->addRecipient($primaryAuthor->getEmail(), $primaryAuthor->getFullName());
+			}
+
+			$assignedAuthors = $monograph->getAuthors();
+
+			foreach ($assignedAuthors as $author) {
+				if ($author->getEmail() != $primaryAuthor->getEmail()) {
+					$mail->addCc($author->getEmail(), $author->getFullName());
+				}
+			}
 			$mail->bccAssignedEditors($monograph->getId());
 			$mail->bccAssignedSeriesEditors($monograph->getId());
 
