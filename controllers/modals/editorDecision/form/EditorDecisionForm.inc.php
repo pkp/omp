@@ -124,7 +124,7 @@ class EditorDecisionForm extends Form {
 				foreach ($selectedFiles as $selectedFile) {
 					// Split the file into file id and file revision.
 					list($fileId, $revision) = explode('-', $selectedFile);
-					list($newFileId, $newRevision) = MonographFileManager::copyFileToFileStage($fileId, $revision, MONOGRAPH_FILE_REVIEW, null, true);
+					list($newFileId, $newRevision) = MonographFileManager::copyFileToFileStage($fileId, $revision, MONOGRAPH_FILE_REVIEW_FILE, null, true);
 					$submissionFileDao->assignRevisionToReviewRound($newFileId, $newRevision, $stageId, $newRound, $monograph->getId());
 				}
 			}

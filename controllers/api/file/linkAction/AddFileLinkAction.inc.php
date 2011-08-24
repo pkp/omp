@@ -78,13 +78,17 @@ class AddFileLinkAction extends BaseAddFileLinkAction {
 				'wizardTitle' => 'submission.submit.uploadSubmissionFile',
 				'buttonLabel' => 'submission.addFile'
 			),
-			MONOGRAPH_FILE_REVIEW => array(
+			MONOGRAPH_FILE_REVIEW_FILE => array(
 				'wizardTitle' => 'editor.submissionReview.uploadFile',
 				'buttonLabel' => 'editor.submissionReview.uploadFile'
 			),
 			MONOGRAPH_FILE_REVIEW_ATTACHMENT => array(
 				'wizardTitle' => 'editor.submissionReview.uploadAttachment',
 				'buttonLabel' => 'editor.submissionReview.uploadAttachment'
+			),
+			MONOGRAPH_FILE_REVIEW_REVISION => array(
+				'wizardTitle' => 'editor.submissionReview.uploadFile',
+				'buttonLabel' => 'editor.submissionReview.uploadFile'
 			),
 			MONOGRAPH_FILE_FINAL => array(
 				'wizardTitle' => 'submission.upload.finalDraft',

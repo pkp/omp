@@ -21,8 +21,9 @@ import('lib.pkp.classes.submission.SubmissionFile');
 define('MONOGRAPH_FILE_PUBLIC', 1);
 define('MONOGRAPH_FILE_SUBMISSION', 2);
 define('MONOGRAPH_FILE_NOTE', 3);
-define('MONOGRAPH_FILE_REVIEW', 4);
+define('MONOGRAPH_FILE_REVIEW_FILE', 4);
 define('MONOGRAPH_FILE_REVIEW_ATTACHMENT', 5);
+//	MONOGRAPH_FILE_REVIEW_REVISION defined below (FIXME: re-order before release)
 define('MONOGRAPH_FILE_FINAL', 6);
 define('MONOGRAPH_FILE_FAIR_COPY', 7);
 define('MONOGRAPH_FILE_EDITOR', 8);
@@ -32,7 +33,7 @@ define('MONOGRAPH_FILE_PRODUCTION_READY', 11);
 define('MONOGRAPH_FILE_LAYOUT', 12);
 define('MONOGRAPH_FILE_ATTACHMENT', 13);
 define('MONOGRAPH_FILE_SIGNOFF', 14);
-
+define('MONOGRAPH_FILE_REVIEW_REVISION', 15);
 
 class MonographFile extends SubmissionFile {
 
@@ -262,8 +263,9 @@ class MonographFile extends SubmissionFile {
 				MONOGRAPH_FILE_PUBLIC => 'public',
 				MONOGRAPH_FILE_SUBMISSION => 'submission',
 				MONOGRAPH_FILE_NOTE => 'note',
-				MONOGRAPH_FILE_REVIEW => 'submission/review',
+				MONOGRAPH_FILE_REVIEW_FILE => 'submission/review',
 				MONOGRAPH_FILE_REVIEW_ATTACHMENT => 'submission/review/attachment',
+				MONOGRAPH_FILE_REVIEW_REVISION => 'submission/review/revision',
 				MONOGRAPH_FILE_FINAL => 'submission/final',
 				MONOGRAPH_FILE_FAIR_COPY => 'submission/fairCopy',
 				MONOGRAPH_FILE_EDITOR => 'submission/editor',

@@ -71,7 +71,7 @@ class AuthorDashboardHandler extends Handler {
 				break;
 			case WORKFLOW_STAGE_ID_INTERNAL_REVIEW:
 			case WORKFLOW_STAGE_ID_EXTERNAL_REVIEW:
-				$fileStage = MONOGRAPH_FILE_REVIEW;
+				$fileStage = MONOGRAPH_FILE_REVIEW_REVISION;
 				break;
 
 			case WORKFLOW_STAGE_ID_EDITING:

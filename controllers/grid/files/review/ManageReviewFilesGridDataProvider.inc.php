@@ -21,7 +21,7 @@ class ManageReviewFilesGridDataProvider extends ReviewGridDataProvider {
 	 * Constructor
 	 */
 	function ManageReviewFilesGridDataProvider() {
-		parent::ReviewGridDataProvider(MONOGRAPH_FILE_REVIEW);
+		parent::ReviewGridDataProvider(MONOGRAPH_FILE_REVIEW_FILE);
 	}
 
 

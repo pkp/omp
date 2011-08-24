@@ -99,7 +99,7 @@ class ManageReviewFilesForm extends Form {
 		$round = $this->getRound();
 
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-		$monographFiles =& $submissionFileDao->getLatestRevisions($this->_monographId, MONOGRAPH_FILE_REVIEW);
+		$monographFiles =& $submissionFileDao->getLatestRevisions($this->_monographId, MONOGRAPH_FILE_REVIEW_FILE);
 		foreach ($monographFiles as $monographFile) {
 			// Update the "viewable" flag accordingly.
 			$monographFile->setViewable(in_array(

@@ -32,7 +32,7 @@ class AddRevisionLinkAction extends BaseAddFileLinkAction {
 	function AddRevisionLinkAction(&$request, $monographId, $uploaderRoles, $stageId, $round) {
 		// Create the action arguments array.
 		$actionArgs = array(
-			'fileStage' => MONOGRAPH_FILE_REVIEW,
+			'fileStage' => MONOGRAPH_FILE_REVIEW_REVISION,
 			'stageId' => $stageId,
 			'round' => $round,
 			'revisionOnly' => '1'

@@ -27,7 +27,7 @@ class ManageReviewFilesGridHandler extends SelectableFileListGridHandler {
 		import('controllers.grid.files.review.ReviewGridDataProvider');
 		// Pass in null stageId to be set in initialize from request var.
 		parent::SelectableFileListGridHandler(
-			new ReviewGridDataProvider(MONOGRAPH_FILE_REVIEW),
+			new ReviewGridDataProvider(MONOGRAPH_FILE_REVIEW_FILE),
 			null,
 			FILE_GRID_ADD|FILE_GRID_DOWNLOAD_ALL|FILE_GRID_VIEW_NOTES
 		);

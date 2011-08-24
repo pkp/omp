@@ -50,7 +50,7 @@ class MonographFileAssignedReviewerAccessPolicy extends MonographFileBaseAccessP
 
 			if (
 				$monographFile->getSubmissionId() == $reviewAssignment->getSubmissionId() &&
-				$monographFile->getFileStage() == MONOGRAPH_FILE_REVIEW &&
+				$monographFile->getFileStage() == MONOGRAPH_FILE_REVIEW_FILE &&
 				$monographFile->getViewable()
 			) {
 				$foundValid = true;

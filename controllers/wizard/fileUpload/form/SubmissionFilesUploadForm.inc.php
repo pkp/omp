@@ -90,7 +90,7 @@ class SubmissionFilesUploadForm extends SubmissionFilesUploadBaseForm {
 			$this->addCheck(
 				new FormValidatorCustom(
 					$this, 'genreId', FORM_VALIDATOR_REQUIRED_VALUE,
-					'submission.upload.noFileType',
+					'submission.upload.noGenre',
 					create_function(
 						'$genreId,$genreDao,$context',
 						'return is_a($genreDao->getById($genreId, $context->getId()), "Genre");'
@@ -233,7 +233,7 @@ class SubmissionFilesUploadForm extends SubmissionFilesUploadBaseForm {
 			$user->getId(), $uploaderUserGroupId, $revisedFileId, $fileGenre, $assocType, $assocId
 		);
 
-		if ($monographFile && ($fileStage == MONOGRAPH_FILE_REVIEW || $fileStage == MONOGRAPH_FILE_REVIEW_ATTACHMENT)) {
+		if ($monographFile && ($fileStage == MONOGRAPH_FILE_REVIEW_FILE || $fileStage == MONOGRAPH_FILE_REVIEW_ATTACHMENT || $fileStage == MONOGRAPH_FILE_REVIEW_REVISION)) {
 			// Add the uploaded review file to the review round.
 			$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO');
 			$submissionFileDao->assignRevisionToReviewRound($monographFile->getFileId(), $monographFile->getRevision(), $this->getStageId(), $this->getData('round'), $this->getData('monographId'));
