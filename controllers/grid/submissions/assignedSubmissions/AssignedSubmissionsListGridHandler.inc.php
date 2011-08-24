@@ -69,6 +69,7 @@ class AssignedSubmissionsListGridHandler extends SubmissionsListGridHandler {
 		$stageAssignments =& $stageAssignmentDao->getByUserId($userId);
 		while($stageAssignment =& $stageAssignments->next()) {
 			$monograph =& $monographDao->getMonograph($stageAssignment->getSubmissionId());
+			if ($monograph->getDateSubmitted() == null) { continue; }; // still incomplete, don't add to assigned submissions grid
 			$monographId = $monograph->getId();
 			$data[$monographId] = $monograph;
 			unset($monograph, $stageAssignment);
