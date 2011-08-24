@@ -40,7 +40,7 @@ class SignoffExistsAccessPolicy extends AuthorizationPolicy {
 		$baseSignoff =& $signoff;
 
 		// Check that the signoff exists
-		if (!is_a($reviewAssignment, 'Signoff')) return AUTHORIZATION_DENY;
+		if (!is_a($signoff, 'Signoff')) return AUTHORIZATION_DENY;
 
 		// Check that we know what the current press is
 		$press =& $this->_request->getPress();
@@ -48,7 +48,7 @@ class SignoffExistsAccessPolicy extends AuthorizationPolicy {
 
 		// Ensure that the signoff belongs to the current press
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
-		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
+		$monographFileDao =& DAORegistry::getDAO('SubmissionFileDAO');
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
 		while (true) switch ($signoff->getAssocType()) {
 			case ASSOC_TYPE_SIGNOFF:
@@ -70,11 +70,8 @@ class SignoffExistsAccessPolicy extends AuthorizationPolicy {
 				if (!is_a($monographFile, 'MonographFile')) return AUTHORIZATION_DENY;
 
 				// Get the monograph
-				$monograph =& $monographDao->getById($monographFile->getSubmissionId());
+				$monograph =& $monographDao->getMonograph($monographFile->getSubmissionId(), $press->getId());
 				if (!is_a($monograph, 'Monograph')) return AUTHORIZATION_DENY;
-
-				// Check the integrity
-				if ($monograph->getPressId() != $press->getId()) return AUTHORIZATION_DENY;
 
 				// Integrity checks OK. Permit.
 				$this->addAuthorizedContextObject(ASSOC_TYPE_SIGNOFF, $baseSignoff);

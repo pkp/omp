@@ -23,12 +23,12 @@ class OmpSignoffAccessPolicy extends PressPolicy {
 	 * @param $submissionParameterName string the request parameter we expect
 	 *  the submission id in.
 	 */
-	function OmpMonographFileAccessPolicy(&$request, $args, $roleAssignments) {
+	function OmpSignoffAccessPolicy(&$request, $args, $roleAssignments) {
 		parent::PressPolicy($request);
 
 		// We need a submission matching the file in the request.
-		import('classes.security.authorization.internal.SignoffExistsPolicy');
-		$this->addPolicy(new SignoffExistsPolicy($request, $args));
+		import('classes.security.authorization.internal.SignoffExistsAccessPolicy');
+		$this->addPolicy(new SignoffExistsAccessPolicy($request, $args));
 
 		// Authors, press managers and series editors potentially have
 		// access to submission files. We'll have to define

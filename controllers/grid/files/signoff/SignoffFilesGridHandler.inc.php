@@ -78,6 +78,13 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 	function authorize(&$request, $args, $roleAssignments) {
 		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
 		$this->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', $this->getStageId()));
+
+		// If a signoff ID was specified, authorize it.
+		if ($request->getUserVar('signoffId')) {
+			import('classes.security.authorization.OmpSignoffAccessPolicy');
+			$this->addPolicy(new OmpSignoffAccessPolicy($request, $args, $roleAssignments));
+		}
+
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 
@@ -423,12 +430,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 	 * @return string Serialized JSON object
 	 */
 	function returnSignoffRow($args, &$request) {
-		// FIXME: Bug #6199
-		$signoffId = (int) $request->getUserVar('signoffId');
-		assert(!empty($signoffId));
-
-		$signoffDao =& DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
-		$signoff =& $signoffDao->getById($signoffId);
+		$signoff =& $this->getAuthorizedContextObject(ASSOC_TYPE_SIGNOFF);
 
 		if($signoff) {
 			return DAO::getDataChangedEvent();
@@ -446,14 +448,15 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 	 * @return string
 	 */
 	function deleteSignoff($args, &$request) {
+		$signoff =& $this->getAuthorizedContextObject(ASSOC_TYPE_SIGNOFF);
+
 		// FIXME: Bug #6199
-		$signoffId = (int) $request->getUserVar('signoffId');
 		$fileId = (int) $request->getUserVar('fileId');
 
-		if($signoffId) {
+		if($signoff) {
 			// Remove the signoff
 			$signoffDao =& DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
-			$signoffDao->deleteObjectById($signoffId);
+			$signoffDao->deleteObjectById($signoff->getId());
 
 			return DAO::getDataChangedEvent($fileId);
 		} else {
@@ -469,14 +472,12 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 	 * @param $request Request
 	 */
 	function signOffsignOff($args, &$request) {
-		// FIXME: bug #6199
-		$signoffId = (int) $request->getUserVar('signoffId');
-		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
-		$rowSignoff = $signoffDao->getById($signoffId);
+		$rowSignoff =& $this->getAuthorizedContextObject(ASSOC_TYPE_SIGNOFF);
 		if (!$rowSignoff) fatalError('Invalid Signoff given');
 
 		$user =& $request->getUser();
-		$signoff =& $signoffDao->build('SIGNOFF_SIGNOFF', ASSOC_TYPE_SIGNOFF, $signoffId, $user->getId());
+		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
+		$signoff =& $signoffDao->build('SIGNOFF_SIGNOFF', ASSOC_TYPE_SIGNOFF, $rowSignoff->getId(), $user->getId());
 		$signoff->setDateCompleted(Core::getCurrentDate());
 		$signoffDao->updateObject($signoff);
 

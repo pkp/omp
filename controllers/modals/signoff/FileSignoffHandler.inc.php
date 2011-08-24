@@ -59,14 +59,29 @@ class FileSignoffHandler extends FileManagementHandler {
 	function initialize(&$request, $args) {
 		parent::initialize($request, $args);
 
+		$this->_signoffId = $request->getUserVar('signoffId') ? (int) $request->getUserVar('signoffId') : null;
+
 		// FIXME: bug #6199
 		$this->_assocType = $request->getUserVar('assocType') ? (int)$request->getUserVar('assocType') : null;
 		$this->_assocId = $request->getUserVar('assocId') ? (int)$request->getUserVar('assocId') : null;
 		$this->_symbolic = $request->getUserVar('symbolic')?$request->getUserVar('symbolic') : null;
-		$this->_signoffId = $request->getUserVar('signoffId') ? (int) $request->getUserVar('signoffId') : null;
 
 		// Load translations.
 		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_SUBMISSION, LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_PKP_COMMON, LOCALE_COMPONENT_APPLICATION_COMMON));
+	}
+
+
+	/**
+	 * @see PKPHandler::authorize()
+	 */
+	function authorize(&$request, $args, $roleAssignments) {
+		// If a signoff ID was specified, authorize it.
+		if ($request->getUserVar('signoffId')) {
+			import('classes.security.authorization.OmpSignoffAccessPolicy');
+			$this->addPolicy(new OmpSignoffAccessPolicy($request, $args, $roleAssignments));
+		}
+
+		return parent::authorize($request, $args, $roleAssignments);
 	}
 
 
@@ -115,10 +130,8 @@ class FileSignoffHandler extends FileManagementHandler {
 	 * @return string a serialized JSON object
 	 */
 	function readSignoff($args, &$request) {
-		// FIXME: #6199
-		$signoffId = $request->getUserVar('signoffId');
 		$signoffDao =& DAORegistry::getDAO('MonographFileSignoffDAO');
-		$signoff =& $signoffDao->getById($signoffId);
+		$signoff =& $this->getAuthorizedContextObject(ASSOC_TYPE_SIGNOFF);
 
 		// Sanity check.
 		if (!$signoff) {
