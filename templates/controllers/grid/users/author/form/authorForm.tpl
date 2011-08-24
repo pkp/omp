@@ -42,7 +42,8 @@
 	{fbvFormArea id="submissionSpecific"}
 		{fbvFormSection id="userGroupId" label="submission.submit.contributorRole" list=true}
 			{iterate from=authorUserGroups item=userGroup}
-				{fbvElement type="radio" id="userGroup"|concat:$userGroup->getId() name="userGroupId" value=$userGroup->getId() label=$userGroup->getLocalizedName() translate=false}
+				{if $userGroupId == $userGroup->getId()}{assign var="checked" value=true}{else}{assign var="checked" value=false}{/if}
+				{fbvElement type="radio" id="userGroup"|concat:$userGroup->getId() name="userGroupId" value=$userGroup->getId() checked=$checked label=$userGroup->getLocalizedName() translate=false}
 			{/iterate}
 		{/fbvFormSection}
 		{fbvFormSection list="true"}
