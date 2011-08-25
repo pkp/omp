@@ -59,11 +59,13 @@ class StageAssignmentDAO extends DAO {
 	 * @param $stageId (int) The id of the stage being tested.
 	 * @return bool
 	 */
-	function editorAssignedToSubmission($submissionId, $stageId) {
+	function editorAssignedToStage($submissionId, $stageId) {
 		$result =& $this->retrieve(
 					'SELECT COUNT(*)
-					FROM stage_assignments sa JOIN user_groups ug ON (sa.user_group_id = ug.user_group_id)
-					WHERE sa.submission_id = ? AND sa.stage_id = ? AND ug.role_id IN (?, ?)',
+					FROM stage_assignments sa
+					JOIN user_groups ug ON (sa.user_group_id = ug.user_group_id)
+					JOIN user_group_stage ugs ON (ug.user_group_id = ugs.user_group_id)
+					WHERE sa.submission_id = ? AND ugs.stage_id = ? AND ug.role_id IN (?, ?)',
 					array($submissionId, $stageId, ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR)
 					);
 		$returner = isset($result->fields[0]) && $result->fields[0] > 0 ? true : false;
@@ -77,39 +79,24 @@ class StageAssignmentDAO extends DAO {
 	/**
 	 * Fetch a stageAssignment by symbolic info, building it if needed.
 	 * @param $submissionId int
-	 * @param $stageId int
 	 * @param $userGroupId int
 	 * @param $userId int
 	 * @return StageAssignment
 	 */
-	function build($submissionId, $stageId, $userGroupId, $userId) {
+	function build($submissionId, $userGroupId, $userId) {
 
 		// If one exists, fetch and return.
-		$stageAssignment = $this->stageAssignmentExists($submissionId, $stageId, $userGroupId, $userId);
+		$stageAssignment =& $this->getBySubmissionAndStageId($submissionId, $userGroupId, $userId);
 		if ($stageAssignment) return $stageAssignment;
 
 		// Otherwise, build one.
 		unset($stageAssignment);
 		$stageAssignment = $this->newDataObject();
 		$stageAssignment->setSubmissionId($submissionId);
-		$stageAssignment->setStageId($stageId);
 		$stageAssignment->setUserGroupId($userGroupId);
 		$stageAssignment->setUserId($userId);
 		$this->insertObject($stageAssignment);
 		return $stageAssignment;
-	}
-
-	/**
-	 * Determine if a stageAssignment exists
-	 * @param $submissionId int
-	 * @param $stageId int
-	 * @param $userGroupId int
-	 * @param $userId int
-	 * @return boolean
-	 */
-	function stageAssignmentExists($submissionId, $stageId, $userGroupId, $userId) {
-		$stageAssignment = $this->_getByIds($submissionId, $stageId, $userGroupId, $userId, null, true);
-		return ($stageAssignment)?true:false;
 	}
 
 	/**
@@ -130,7 +117,6 @@ class StageAssignmentDAO extends DAO {
 
 		$stageAssignment->setId($row['stage_assignment_id']);
 		$stageAssignment->setSubmissionId($row['submission_id']);
-		$stageAssignment->setStageId($row['stage_id']);
 		$stageAssignment->setUserId($row['user_id']);
 		$stageAssignment->setUserGroupId($row['user_group_id']);
 		$stageAssignment->setDateAssigned($row['date_assigned']);
@@ -146,13 +132,12 @@ class StageAssignmentDAO extends DAO {
 	function insertObject(&$stageAssignment) {
 		return $this->update(
 				sprintf('INSERT INTO stage_assignments
-				(submission_id, stage_id, user_group_id, user_id, date_assigned)
+				(submission_id, user_group_id, user_id, date_assigned)
 				VALUES
-				(?, ?, ?, ?, %s)',
+				(?, ?, ?, %s)',
 				$this->datetimeToDB(Core::getCurrentDate())),
 			array(
 				$stageAssignment->getSubmissionId(),
-				$stageAssignment->getStageId(),
 				$this->nullOrInt($stageAssignment->getUserGroupId()),
 				$this->nullOrInt($stageAssignment->getUserId())
 			)
@@ -167,7 +152,6 @@ class StageAssignmentDAO extends DAO {
 	function deleteObject($stageAssignment) {
 		return $this->deleteByAll(
 				$stageAssignment->getSubmissionId(),
-				$stageAssignment->getStageId(),
 				$stageAssignment->getUserGroupId(),
 				$stageAssignment->getUserId()
 			);
@@ -176,18 +160,16 @@ class StageAssignmentDAO extends DAO {
 	/**
 	 * Delete a stageAssignment by matching on all fields.
 	 * @param $submissionId int
-	 * @param $stageId int
 	 * @param $userGroupId int
 	 * @param $userId int
 	 * @return boolean
 	 */
-	function deleteByAll($submissionId, $stageId, $userGroupId, $userId) {
+	function deleteByAll($submissionId, $userGroupId, $userId) {
 		return $this->update('DELETE FROM stage_assignments
 					WHERE submission_id = ?
-						AND stage_id = ?
 						AND user_group_id = ?
 						AND user_id = ?',
-				array((int) $submissionId, (int) $stageId, (int) $userGroupId, (int) $userId));
+				array((int) $submissionId, (int) $userGroupId, (int) $userId));
 	}
 
 	/**
@@ -210,7 +192,7 @@ class StageAssignmentDAO extends DAO {
 			$params[] = (int) $submissionId;
 		}
 		if (isset($stageId)) {
-			$conditions[] = 'sa.stage_id = ?';
+			$conditions[] = 'ugs.stage_id = ?';
 			$params[] = (int) $stageId;
 		}
 		if (isset($userGroupId)) {
@@ -228,7 +210,8 @@ class StageAssignmentDAO extends DAO {
 		}
 
 		$result =& $this->retrieve(
-			'SELECT * FROM stage_assignments sa ' .
+			'SELECT sa.* FROM stage_assignments sa ' .
+			(isset($stageId)? 'JOIN user_group_stage ugs ON sa.user_group_id = ugs.user_group_id ':'') .
 			(isset($roleId)?' LEFT JOIN user_groups ug ON sa.user_group_id = ug.user_group_id ':'') .
 			'WHERE ' . (implode(' AND ', $conditions)),
 			$params

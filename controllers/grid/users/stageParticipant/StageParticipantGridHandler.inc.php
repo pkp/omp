@@ -217,7 +217,6 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 		if ($form->validate()) {
 			$userGroupId = $form->execute();
 
-
 			$notificationManager = new NotificationManager();
 
 			// Check user group role id.
@@ -230,7 +229,7 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 				$stages = $this->_getStages();
 				$stageAssignmentDao =& DAORegistry::getDAO('StageAssignmentDAO'); /* @var $stageAssignmentDao StageAssignmentDAO */
 				foreach ($stages as $workingStageId) {
-					if ($stageAssignmentDao->editorAssignedToSubmission($monograph->getId(), $workingStageId)) {
+					if ($stageAssignmentDao->editorAssignedToStage($monograph->getId(), $workingStageId)) {
 						$notificationType = $notificationManager->getEditorAssignmentNotificationTypeByStageId($workingStageId);
 						$notification =& $notificationDao->getNotificationsByAssoc(
 							ASSOC_TYPE_MONOGRAPH, $monograph->getId(), $notificationType);
@@ -263,11 +262,16 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 		$stageAssignment =& $stageAssignmentDao->getById($assignmentId);
 		// FIXME: #6199
 		if (!$stageAssignment ||
-			$stageAssignment->getSubmissionId() != $monograph->getId() ||
-			$stageAssignment->getStageId() != $stageId) {
+			$stageAssignment->getSubmissionId() != $monograph->getId()) {
 			fatalError('Invalid Assignment');
 		}
 
+		// Delete the assignment
+		$stageAssignmentDao->deleteObject($stageAssignment);
+
+		// Add notification for the required stages
+		// FIXME: perhaps we can just insert the notification on page load
+		// instead of having it there all the time?
 		$notificationManager = new NotificationManager();
 		$press = $request->getPress();
 
@@ -278,7 +282,7 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 			$stageAssignmentDao->deleteByAll($monograph->getId(), $workingStageId, $stageAssignment->getUserGroupId(), $stageAssignment->getUserId());
 
 			// Check for editor stage assignment.
-			if (!$stageAssignmentDao->editorAssignedToSubmission($monograph->getId(), $workingStageId)) {
+			if (!$stageAssignmentDao->editorAssignedToStage($monograph->getId(), $workingStageId)) {
 
 				// Get the right editor assignment notification type, base on stage.
 				$notificationType = $notificationManager->getEditorAssignmentNotificationTypeByStageId($workingStageId);

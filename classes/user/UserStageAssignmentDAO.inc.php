@@ -24,15 +24,14 @@ class UserStageAssignmentDAO extends UserDAO {
 	 * @return object DAOResultFactory
 	 */
 	function getUsersNotAssignedToStageInUserGroup($submissionId, $stageId, $userGroupId) {
-		$params = array((int) $submissionId, (int) $stageId, (int) $userGroupId);
-
 		$result =& $this->retrieve(
 			'SELECT u.* FROM users u
 				LEFT JOIN user_user_groups uug ON (u.user_id = uug.user_id)
 				LEFT JOIN stage_assignments s ON (s.user_id = uug.user_id AND s.user_group_id = uug.user_group_id
-												AND s.submission_id = ? AND s.stage_id = ?)
+												AND s.submission_id = ?)
+				 JOIN user_group_stage ugs ON (uug.user_group_id = ugs.user_group_id AND ugs.stage_id = ?)
 				WHERE uug.user_group_id = ? AND s.user_group_id IS NULL',
-			$params);
+			array((int) $submissionId, (int) $stageId, (int) $userGroupId));
 
 		$returner = new DAOResultFactory($result, $this, '_returnUserFromRowWithData');
 		return $returner;
@@ -82,12 +81,13 @@ class UserStageAssignmentDAO extends UserDAO {
 
 		$result =& $this->retrieve(
 			'SELECT u.*
-			FROM stage_assignments s
-			INNER JOIN users u ON (u.user_id = s.user_id) ' .
-			(isset($roleId) ? 'INNER JOIN user_groups ug ON (ug.user_group_id = s.user_group_id) ' : '') .
+			FROM stage_assignments sa
+			INNER JOIN user_group_stage ugs ON (sa.user_group_id = ugs.user_group_id)
+			INNER JOIN users u ON (u.user_id = sa.user_id) ' .
+			(isset($roleId) ? 'INNER JOIN user_groups ug ON (ug.user_group_id = sa.user_group_id) ' : '') .
 			'WHERE submission_id = ?' .
-			(isset($stageId) ? ' AND stage_id = ?' : '') .
-			(isset($userGroupId) ? ' AND user_group_id = ?':'') .
+			(isset($stageId) ? ' AND ugs.stage_id = ?' : '') .
+			(isset($userGroupId) ? ' AND sa.user_group_id = ?':'') .
 			(isset($userId)?' AND u.user_id = ? ' : '') .
 			(isset($roleId)?' AND ug.role_id = ?' : ''),
 			$params);

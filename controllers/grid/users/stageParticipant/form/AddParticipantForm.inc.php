@@ -128,15 +128,10 @@ class AddParticipantForm extends Form {
 		$userGroupId = (int) $this->getData('userGroupId');
 		$userId = (int) $this->getData('userId');
 
-		$stages = array(WORKFLOW_STAGE_ID_SUBMISSION,
-						WORKFLOW_STAGE_ID_INTERNAL_REVIEW,
-						WORKFLOW_STAGE_ID_EXTERNAL_REVIEW,
-						WORKFLOW_STAGE_ID_EDITING,
-						WORKFLOW_STAGE_ID_PRODUCTION);
-		foreach ($stages as $stageId) {
-			if ($userGroupDao->userGroupAssignedToStage($userGroupId, $stageId)) {
-				$stageAssignmentDao->build($monograph->getId(), $stageId, $userGroupId, $userId);
-			}
+		// sanity check
+		if ($userGroupDao->userGroupAssignedToStage($userGroupId, $this->getStageId())) {
+			// insert the assignment
+			$stageAssignmentDao->build($monograph->getId(), $userGroupId, $userId);
 		}
 		return $userGroupId;
 	}
