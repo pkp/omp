@@ -33,8 +33,9 @@ class SeriesEditorAction extends Action {
 	 * @param $request PKPRequest
 	 * @param $seriesEditorSubmission SeriesEditorSubmission
 	 * @param $decision integer
+	 * @param $decisionLabels array(DECISION_CONSTANT => decision.locale.key, ...)
 	 */
-	function recordDecision($request, $seriesEditorSubmission, $decision) {
+	function recordDecision($request, $seriesEditorSubmission, $decision, $decisionLabels) {
 		$stageAssignmentDao =& DAORegistry::getDAO('StageAssignmentDAO');
 
 		$editorAssigned = $stageAssignmentDao->editorAssignedToSubmission(
@@ -42,7 +43,8 @@ class SeriesEditorAction extends Action {
 			$seriesEditorSubmission->getStageId()
 		);
 
-		if ( !$editorAssigned ) return;
+		// Sanity checks
+		if (!$editorAssigned || !isset($decisionLabels[$decision])) return false;
 
 		$seriesEditorSubmissionDao =& DAORegistry::getDAO('SeriesEditorSubmissionDAO');
 		$user =& $request->getUser();
@@ -53,7 +55,8 @@ class SeriesEditorAction extends Action {
 			'dateDecided' => date(Core::getCurrentDate())
 		);
 
-		if (!HookRegistry::call('SeriesEditorAction::recordDecision', array(&$seriesEditorSubmission, $editorDecision))) {
+		$result = true;
+		if (!HookRegistry::call('SeriesEditorAction::recordDecision', array(&$seriesEditorSubmission, &$editorDecision, &$result))) {
 			$seriesEditorSubmission->setStatus(STATUS_QUEUED);
 			$seriesEditorSubmission->stampStatusModified();
 			$seriesEditorSubmission->addDecision(
@@ -65,12 +68,12 @@ class SeriesEditorAction extends Action {
 			$seriesEditorSubmissionDao->updateSeriesEditorSubmission($seriesEditorSubmission);
 
 			// Add log.
-			$decisions = SeriesEditorSubmission::getEditorDecisionOptions();
 			import('classes.log.MonographLog');
 			import('classes.log.MonographEventLogEntry');
 			Locale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_OMP_EDITOR));
-			MonographLog::logEvent($request, $seriesEditorSubmission, MONOGRAPH_LOG_EDITOR_DECISION, 'log.editor.decision', array('editorName' => $user->getFullName(), 'monographId' => $seriesEditorSubmission->getId(), 'decision' => Locale::translate($decisions[$decision])));
+			MonographLog::logEvent($request, $seriesEditorSubmission, MONOGRAPH_LOG_EDITOR_DECISION, 'log.editor.decision', array('editorName' => $user->getFullName(), 'monographId' => $seriesEditorSubmission->getId(), 'decision' => Locale::translate($decisionLabels[$decision])));
 		}
+		return $result;
 	}
 
 	/**

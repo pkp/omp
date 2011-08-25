@@ -302,25 +302,6 @@ class SeriesEditorSubmission extends Monograph {
 	function setGalleys(&$galleys) {
 		return $this->setData('galleys', $galleys);
 	}
-
-	/**
-	 * Return array mapping editor decision constants to their locale strings.
-	 * (Includes default mapping '' => "Choose One".)
-	 * @return array decision => localeString
-	 */
-	function &getEditorDecisionOptions() {
-		static $editorDecisionOptions = array(
-			'' => 'common.chooseOne',
-			SUBMISSION_EDITOR_DECISION_ACCEPT => 'editor.monograph.decision.accept',
-			SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS => 'editor.monograph.decision.pendingRevisions',
-			SUBMISSION_EDITOR_DECISION_RESUBMIT => 'editor.monograph.decision.resubmit',
-			SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW => 'editor.monograph.decision.externalReview',
-			SUBMISSION_EDITOR_DECISION_DECLINE => 'editor.monograph.decision.decline',
-			SUBMISSION_EDITOR_DECISION_SEND_TO_PRODUCTION => 'editor.monograph.decision.sendToProduction'
-		);
-		return $editorDecisionOptions;
-	}
-
 }
 
 ?>

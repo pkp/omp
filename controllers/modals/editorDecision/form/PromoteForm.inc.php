@@ -48,11 +48,7 @@ class PromoteForm extends EditorDecisionWithEmailForm {
 	 * @see Form::initData()
 	 */
 	function initData($args, &$request) {
-		$actionLabels = array(
-			SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW => 'editor.monograph.decision.externalReview',
-			SUBMISSION_EDITOR_DECISION_ACCEPT => 'editor.monograph.decision.accept',
-			SUBMISSION_EDITOR_DECISION_SEND_TO_PRODUCTION => 'editor.monograph.decision.sendToProduction'
-		);
+		$actionLabels = $this->getDecisionLabels();
 
 		$seriesEditorSubmission =& $this->getSeriesEditorSubmission();
 		$this->setData('stageId', $seriesEditorSubmission->getStageId());
@@ -71,7 +67,7 @@ class PromoteForm extends EditorDecisionWithEmailForm {
 		$decision = $this->getDecision();
 		import('classes.submission.seriesEditor.SeriesEditorAction');
 		$seriesEditorAction = new SeriesEditorAction();
-		$seriesEditorAction->recordDecision($request, $seriesEditorSubmission, $decision);
+		$seriesEditorAction->recordDecision($request, $seriesEditorSubmission, $decision, $this->getDecisionLabels());
 
 		// Identify email key and status of round.
 		switch ($decision) {
@@ -137,6 +133,21 @@ class PromoteForm extends EditorDecisionWithEmailForm {
 			default:
 				fatalError('Unsupported decision!');
 		}
+	}
+
+	//
+	// Private functions
+	//
+	/**
+	 * Get the associative array of decisions to decision label locale keys.
+	 * @return array
+	 */
+	function getDecisionLabels() {
+		return array(
+			SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW => 'editor.monograph.decision.externalReview',
+			SUBMISSION_EDITOR_DECISION_ACCEPT => 'editor.monograph.decision.accept',
+			SUBMISSION_EDITOR_DECISION_SEND_TO_PRODUCTION => 'editor.monograph.decision.sendToProduction'
+		);
 	}
 }
 

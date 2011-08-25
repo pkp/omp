@@ -23,8 +23,10 @@ class NewReviewRoundForm extends EditorDecisionForm {
 	 * @param $decision int
 	 * @param stageid int
 	 */
-	function NewReviewRoundForm($seriesEditorSubmission, $decision = SUBMISSION_EDITOR_DECISION_RESUBMIT, $stageId) {
+	function NewReviewRoundForm($seriesEditorSubmission, $decision = SUBMISSION_EDITOR_DECISION_RESUBMIT, $stageId = null) {
 		parent::EditorDecisionForm($seriesEditorSubmission, $stageId, 'controllers/modals/editorDecision/form/newReviewRoundForm.tpl');
+		// WARNING: this constructor may be invoked dynamically by
+		// EditorDecisionHandler::_instantiateEditorDecision.
 	}
 
 
@@ -42,7 +44,7 @@ class NewReviewRoundForm extends EditorDecisionForm {
 		// Record the decision.
 		import('classes.submission.seriesEditor.SeriesEditorAction');
 		$seriesEditorAction = new SeriesEditorAction();
-		$seriesEditorAction->recordDecision($request, $seriesEditorSubmission, SUBMISSION_EDITOR_DECISION_RESUBMIT);
+		$seriesEditorAction->recordDecision($request, $seriesEditorSubmission, SUBMISSION_EDITOR_DECISION_RESUBMIT, $this->getDecisionLabels());
 
 		// Create a new review round.
 		$newRound = $seriesEditorSubmission->getCurrentRound() + 1;
@@ -51,6 +53,24 @@ class NewReviewRoundForm extends EditorDecisionForm {
 			$newRound, REVIEW_ROUND_STATUS_PENDING_REVIEWERS
 		);
 		return $newRound;
+	}
+
+	//
+	// Private functions
+	//
+	/**
+	 * Get the associative array of decisions to decision label locale keys.
+	 * @return array
+	 */
+	function getDecisionLabels() {
+		return array(
+			SUBMISSION_EDITOR_DECISION_ACCEPT => 'editor.monograph.decision.accept',
+			SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS => 'editor.monograph.decision.pendingRevisions',
+			SUBMISSION_EDITOR_DECISION_RESUBMIT => 'editor.monograph.decision.resubmit',
+			SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW => 'editor.monograph.decision.externalReview',
+			SUBMISSION_EDITOR_DECISION_DECLINE => 'editor.monograph.decision.decline',
+			SUBMISSION_EDITOR_DECISION_SEND_TO_PRODUCTION => 'editor.monograph.decision.sendToProduction'
+		);
 	}
 }
 

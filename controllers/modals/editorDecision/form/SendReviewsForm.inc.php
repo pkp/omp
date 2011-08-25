@@ -50,11 +50,7 @@ class SendReviewsForm extends EditorDecisionWithEmailForm {
 	 * @see Form::initData()
 	 */
 	function initData($args, &$request) {
-		$actionLabels = array(
-			SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS => 'editor.monograph.decision.requestRevisions',
-			SUBMISSION_EDITOR_DECISION_RESUBMIT => 'editor.monograph.decision.resubmit',
-			SUBMISSION_EDITOR_DECISION_DECLINE => 'editor.monograph.decision.decline'
-		);
+		$actionLabels = $this->getDecisionLabels();
 
 		return parent::initData($args, $request, $actionLabels);
 	}
@@ -70,7 +66,7 @@ class SendReviewsForm extends EditorDecisionWithEmailForm {
 		$decision = $this->getDecision();
 		import('classes.submission.seriesEditor.SeriesEditorAction');
 		$seriesEditorAction = new SeriesEditorAction();
-		$seriesEditorAction->recordDecision($request, $seriesEditorSubmission, $decision);
+		$seriesEditorAction->recordDecision($request, $seriesEditorSubmission, $decision, $this->getDecisionLabels());
 
 		// Identify email key and status of round.
 		switch ($decision) {
@@ -95,6 +91,21 @@ class SendReviewsForm extends EditorDecisionWithEmailForm {
 
 		// Send email to the author.
 		$this->_sendReviewMailToAuthor($seriesEditorSubmission, $status, $emailKey, $request);
+	}
+
+	//
+	// Private functions
+	//
+	/**
+	 * Get the associative array of decisions to decision label locale keys.
+	 * @return array
+	 */
+	function getDecisionLabels() {
+		return array(
+			SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS => 'editor.monograph.decision.requestRevisions',
+			SUBMISSION_EDITOR_DECISION_RESUBMIT => 'editor.monograph.decision.resubmit',
+			SUBMISSION_EDITOR_DECISION_DECLINE => 'editor.monograph.decision.decline'
+		);
 	}
 }
 
