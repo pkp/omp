@@ -186,7 +186,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 		$this->addColumn(new SignoffStatusFromSignoffGridColumn('grid.columns.auditor', $this->getRequestArgs()));
 
 		// Set the no-row locale key
-		$this->setEmptyRowText('editor.monograph.noAuditRequested');
+		$this->setEmptyRowText('grid.noFiles');
 	}
 
 

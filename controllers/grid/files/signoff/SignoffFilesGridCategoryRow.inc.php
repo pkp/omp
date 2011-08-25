@@ -46,6 +46,9 @@ class SignoffFilesGridCategoryRow extends GridCategoryRow {
 			import('controllers.api.file.linkAction.DownloadFileLinkAction');
 			$this->addAction(new DownloadFileLinkAction($request, $monographFile));
 		}
+
+		// Set the no-row locale key
+		$this->setEmptyCategoryRowText('editor.monograph.noAuditRequested');
 	}
 }
 
