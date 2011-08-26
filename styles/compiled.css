@@ -221,45 +221,6 @@ div.plupload div.plupload_header { display:none; }
   margin-top:5%;
 }
 .deprecated_selectHeader { margin-top:10px; }
-.response {
-  margin-bottom:10px;
-  text-align:left;
-}
-.response_block {
-  background-position:15px 50% !important;
-  background-repeat:no-repeat !important;
-  padding:5px 20px 5px 60px;
-}
-.response .success {
-  background:#daf0da url(../images/structure/response_success.png);
-  border-top:1px solid #5abd5a;
-  border-bottom:1px solid #5abd5a;
-}
-.response .warning {
-  background:#fffae1 url(../images/structure/response_warning.png);
-  border-top:1px solid #ffd324;
-  border-bottom:1px solid #ffd324;
-}
-.response .error {
-  background:#f8dada url(../images/structure/response_error.png);
-  border-top:1px solid #e68080;
-  border-bottom:1px solid #e68080;
-}
-.response .forbidden {
-  background:#f8dada url(../images/structure/response_forbidden.png);
-  border-top:1px solid #e68080;
-  border-bottom:1px solid #e68080;
-}
-.response .information {
-  background:#c9e3f8 url(../images/structure/response_info.png);
-  border-top:1px solid #6aa6d6;
-  border-bottom:1px solid #6aa6d6;
-}
-.response .help {
-  background:#c9e3f8 url(../images/structure/response_help.png);
-  border-top:1px solid #6aa6d6;
-  border-bottom:1px solid #6aa6d6;
-}
 .pkp_structure_head {
   height:90px;
   background-color:#a2c6dc;
@@ -1005,15 +966,45 @@ div.pkp_controllers_listbuilder .gridRowEdit .gridCellDisplay { display:none; }
   cursor:pointer;
   float:left;
 }
-.pkp_notification .notification_box {
-  padding:10px;
-  border:1px solid;
+.pkp_notification {
+  margin-top:10px;
+  text-align:left;
 }
-.pkp_notification .notifyFormError {
-  background-color:#ffe7e7;
-  border-color:red;
+.pkp_notification .notification_block {
+  background-position:15px 50% !important;
+  background-repeat:no-repeat !important;
+  padding:5px 20px 5px 60px;
 }
-.pkp_notification .notifyFormError .pkp_notification_title h4 { color:red; }
+.pkp_notification .notifySuccess {
+  background:#daf0da url(../lib/pkp/templates/images/structure/response_success.png);
+  border-top:1px solid #5abd5a;
+  border-bottom:1px solid #5abd5a;
+}
+.pkp_notification .notifyWarning {
+  background:#fffae1 url(../lib/pkp/templates/images/structure/response_warning.png);
+  border-top:1px solid #ffd324;
+  border-bottom:1px solid #ffd324;
+}
+.pkp_notification .notifyError, .pkp_notification .notifyFormError {
+  background:#f8dada url(../lib/pkp/templates/images/structure/response_error.png);
+  border-top:1px solid #e68080;
+  border-bottom:1px solid #e68080;
+}
+.pkp_notification .notifyForbidden {
+  background:#f8dada url(../lib/pkp/templates/images/structure/response_forbidden.png);
+  border-top:1px solid #e68080;
+  border-bottom:1px solid #e68080;
+}
+.pkp_notification .notifyInformation {
+  background:#c9e3f8 url(../lib/pkp/templates/images/structure/response_info.png);
+  border-top:1px solid #6aa6d6;
+  border-bottom:1px solid #6aa6d6;
+}
+.pkp_notification .notifyHelp {
+  background:#c9e3f8 url(../lib/pkp/templates/images/structure/response_help.png);
+  border-top:1px solid #6aa6d6;
+  border-bottom:1px solid #6aa6d6;
+}
 .pkp_controllers_modal_titleBar {
   height:48px;
   width:100%;
@@ -1088,38 +1079,6 @@ span.pkp_controllers_informationCenter_itemLastEvent {
   float:left;
 }
 .pkp_submissionChecklist ul li label.error { margin-bottom:15px; }
-.pkp_workflow_headerBottom { margin-top:10px; }
-.pkp_workflow_headerBottom .pkp_workflow_headerUserInfo {
-  padding-right:10px;
-  float:left;
-}
-.pkp_workflow_headerBottom .pkp_workflow_headerUserInfo .pkp_workflow_headerStatusContainer { margin-left:0px; }
-.pkp_workflow_headerBottom .pkp_workflow_headerUserInfo .icon {
-  background:url(../lib/pkp/templates/images/structure/response_warning.png) no-repeat;
-  margin:5px;
-  width:32px;
-  height:32px;
-  float:left;
-}
-.pkp_workflow_headerBottom .pkp_workflow_headerUserInfo .alert {
-  float:left;
-  font-size:1.2em;
-  color:orange;
-  margin-top:15px;
-}
-.pkp_workflow_headerBottom .pkp_workflow_headerUserInfo .pkp_workflow_headerStageMetadata { float:left; }
-.pkp_workflow_headerBottom .pkp_workflow_headerStageParticipants {
-  width:45%;
-  padding-left:10px;
-  float:left;
-}
-.pkp_workflow_headerBottom .pkp_workflow_headerStageParticipants .wrapper {
-  background-color:inherit;
-  border:none;
-  margin:0px;
-  padding:0px;
-}
-.pkp_workflow_headerBottom .pkp_workflow_headerStageParticipants h3 { font-size:1.2em; }
 .pkp_submission_header { position:relative; }
 .pkp_submission_header ul.submission_actions {
   position:relative;
