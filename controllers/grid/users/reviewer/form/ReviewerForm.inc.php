@@ -250,12 +250,14 @@ class ReviewerForm extends Form {
 			$user = $submission->getUser();
 			$mail->addRecipient($reviewer->getEmail(), $reviewer->getFullName());
 
+			$dispatcher =& $request->getDispatcher();
 			$paramArray = array(
 				'reviewerName' => $reviewer->getFullName(),
 				'messageToReviewer' => $this->getData('personalMessage'),
 				'responseDueDate' => $responseDueDate,
 				'reviewDueDate' => $reviewDueDate,
-				'editorialContactSignature' => $user->getContactSignature()
+				'editorialContactSignature' => $user->getContactSignature(),
+				'submissionReviewUrl' => $dispatcher->url($request, 'page', null, 'reviewer', 'submission', null, array('monographId' => $reviewAssignment->getSubmissionId()))
 			);
 			$mail->assignParams($paramArray);
 			$mail->send($request);
