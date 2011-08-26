@@ -85,6 +85,9 @@ class FileAuditorForm extends Form {
 	function initData($args, &$request) {
 		$monograph = $this->getMonograph();
 		$this->setData('monographId', $monograph->getId());
+		import('classes.mail.MonographMailTemplate');
+		$email = new MonographMailTemplate($monograph, 'AUDITOR_REQUEST');
+		$this->setData('personalMessage', $email->getBody());
 	}
 
 	/**
@@ -104,9 +107,6 @@ class FileAuditorForm extends Form {
 	 * @see Form::execute()
 	 */
 	function execute(&$request) {
-		// Split the selected user value; index 0 is the user id, index 1 is the user groupID
-
-
 		// Decode the "files" list
 		import('lib.pkp.classes.controllers.listbuilder.ListbuilderHandler');
 		$changedFileData = $this->getData('files');
@@ -115,13 +115,27 @@ class FileAuditorForm extends Form {
 		// Send the message to the user
 		$monograph =& $this->getMonograph();
 		import('classes.mail.MonographMailTemplate');
-		$email = new MonographMailTemplate($monograph);
+		$email = new MonographMailTemplate($monograph, 'AUDITOR_REQUEST');
 		$email->setBody($this->getData('personalMessage'));
 
-		$userDao =& DAORegistry::getDAO('UserDAO'); /* @var $userDao UserDAO */
+		$dateFormatShort = Config::getVar('general', 'date_format_short');
+		$weekLaterDate = time() + 604800;
+		$weekLaterDate = strftime($dateFormatShort, $weekLaterDate);
 
+		$userDao =& DAORegistry::getDAO('UserDAO'); /* @var $userDao UserDAO */
+		$user =& $request->getUser();
+		$contactSignature = $user->getContactSignature();
 		// FIXME: Bug #6199: How to validate user IDs?
 		$user =& $userDao->getUser($this->getData('userId'));
+		$paramArray = array(
+			'auditorName' => $user->getFullName(),
+			'editorialContactSignature' => $contactSignature,
+			'monographTitle' => $monograph->getSeriesTitle(),
+			'weekLaterDate' => $weekLaterDate
+		);
+
+		$email->assignParams($paramArray);
+
 		$email->addRecipient($user->getEmail(), $user->getFullName());
 		$email->setEventType($this->getEventType());
 		$email->send($request);

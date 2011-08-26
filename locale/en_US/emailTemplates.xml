@@ -9,6 +9,21 @@
   * Localized email templates XML file.
   -->
 <email_texts locale="en_US">
+	<email_text key="AUDITOR_REQUEST">
+		<subject>Manuscript Audit Request</subject>
+		<body>{$auditorName}:
+
+I believe that you would serve as an excellent auditor for the manuscript, "{$monographTitle}," and I am asking that you consider undertaking this important task for us.
+
+Please indicate in a return email by {$weekLaterDate} whether you are able and willing to do the audit.
+
+Thank you for considering this request.
+
+{$editorialContactSignature}
+
+</body>
+		<description>This email is sent by the Series Editor to an Auditor to request that they accept or decline the task of auditing a submission.</description>
+	</email_text>
 	<email_text key="NOTIFICATION">
 		<subject>New notification from {$siteTitle}</subject>
 		<body>You have a new notification from {$siteTitle}:
