@@ -329,7 +329,8 @@ class UserGridHandler extends GridHandler {
 
 					// Successful edit of an existing user.
 					$notificationManager = new NotificationManager();
-					$notificationManager->createTrivialNotification($userId);
+					$user =& $request->getUser();
+					$notificationManager->createTrivialNotification($user->getId());
 
 					// Prepare the grid row data.
 					return DAO::getDataChangedEvent($userId);

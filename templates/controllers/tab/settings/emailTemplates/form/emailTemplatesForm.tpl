@@ -16,7 +16,7 @@
 </script>
 
 <form class="pkp_form" id="emailTemplatesForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.PublicationSettingsTabHandler" op="saveFormData" tab="emailTemplates"}">
-	{include file="common/formErrors.tpl"}
+	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="emailTemplatesFormNotification"}
 
 	{url|assign:preparedEmailsGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.preparedEmails.preparedEmailsGridHandler" op="fetchGrid"}
 	{load_url_in_div id="preparedEmailsGridDiv" url=$preparedEmailsGridUrl}

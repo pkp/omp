@@ -159,6 +159,11 @@ class PreparedEmailsGridHandler extends GridHandler {
 		if ($preparedEmailForm->validate()) {
 			$preparedEmailForm->execute();
 
+			// Create notification.
+			$notificationMgr = new NotificationManager();
+			$user =& $request->getUser();
+			$notificationMgr->createTrivialNotification($user->getId());
+
 			// Let the calling grid reload itself
 			return DAO::getDataChangedEvent($emailKey);
 		} else {

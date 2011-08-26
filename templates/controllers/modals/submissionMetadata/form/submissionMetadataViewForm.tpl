@@ -9,10 +9,10 @@
  *}
 
 <script type="text/javascript">
-    $(function() {ldelim}
-        // Attach the form handler.
-        $('#submissionMetadataViewForm').pkpHandler('$.pkp.controllers.form.AjaxFormHandler');
-    {rdelim});
+	$(function() {ldelim}
+		// Attach the form handler.
+		$('#submissionMetadataViewForm').pkpHandler('$.pkp.controllers.form.AjaxFormHandler');
+	{rdelim});
 </script>
 
 <form class="pkp_form" id="submissionMetadataViewForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT op="saveForm"}">
