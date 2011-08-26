@@ -56,7 +56,7 @@ class NotifyUsersListbuilderHandler extends ListbuilderHandler {
 	 * Get the data element that corresponds to the current request
 	 * Allow for a blank $rowId for when creating a not-yet-persisted row
 	 */
-	function &getRowDataElement(&$request, $rowId) {
+	function getRowDataElement(&$request, $rowId) {
 		// fallback on the parent if a rowId is found
 		if ( !empty($rowId) ) {
 			return parent::getRowDataElement($request, $rowId);
@@ -146,7 +146,7 @@ class NotifyUsersListbuilderHandler extends ListbuilderHandler {
 		$monograph =& $this->getMonograph();
 		$monographId = $monograph->getId();
 		$userGroupId = $this->getUserGroupId();
-		$userId = (int) $newRowId;
+		$userId = (int) $newRowId['name'];
 
 		// Create a new stage assignment.
 		$stageAssignmentDao = & DAORegistry::getDAO('StageAssignmentDAO');
@@ -159,7 +159,7 @@ class NotifyUsersListbuilderHandler extends ListbuilderHandler {
 	 * @see Listbuilder::deleteEntry
 	 */
 	function deleteEntry(&$request, $rowId) {
-		$userId = (int) $rowId; // No validation b/c delete is specific
+		$userId = (int) $rowId['name']; // No validation b/c delete is specific
 		$monograph =& $this->getMonograph();
 		$stageAssignmentDao = & DAORegistry::getDAO('StageAssignmentDAO'); /* @var $stageAssignmentDao StageAssignmentDAO */
 		$stageAssignmentDao->deleteByAll($monograph->getId(), $this->getStageId(), $this->getUserGroupId(), $userId);

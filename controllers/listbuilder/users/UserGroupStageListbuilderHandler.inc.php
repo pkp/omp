@@ -181,7 +181,7 @@ class UserGroupStageListbuilderHandler extends ListbuilderHandler {
 	 * Get the data element that corresponds to the current request
 	 * Allow for a blank $rowId for when creating a not-yet-persisted row
 	 */
-	function &getRowDataElement(&$request, $rowId) {
+	function getRowDataElement(&$request, $rowId) {
 		$press = $this->getPress();
 		$userGroupId = $this->getUserGroupId();
 
@@ -195,9 +195,7 @@ class UserGroupStageListbuilderHandler extends ListbuilderHandler {
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 		$stages =& $userGroupDao->getWorkflowStageTranslationKeys();
 
-		$data = $stages[$stageId];
-
-		return $data;
+		return $stages[$stageId];
 	}
 }
 

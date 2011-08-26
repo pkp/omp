@@ -41,7 +41,7 @@ class DivisionsListbuilderHandler extends SetupListbuilderHandler {
 		import('controllers.listbuilder.settings.DivisionsListbuilderGridCellProvider');
 		$cellProvider =& new DivisionsListbuilderGridCellProvider();
 
-		$titleColumn = new ListbuilderGridColumn($this, 'title', 'manager.setup.currentFormats');
+		$titleColumn = new MultilingualListbuilderGridColumn($this, 'title', 'manager.setup.currentFormats');
 		$titleColumn->setCellProvider($cellProvider);
 		$this->addColumn($titleColumn);
 	}
@@ -67,7 +67,7 @@ class DivisionsListbuilderHandler extends SetupListbuilderHandler {
 		$press =& $this->getPress();
 
 		// Make sure the item doesn't already exist
-		$division = $divisionDao->getByTitle($rowId, $press->getId());
+		$division = $divisionDao->getByTitle($rowId['title'], $press->getId());
 		if (isset($division)) return false;
 		unset($division);
 
@@ -75,8 +75,7 @@ class DivisionsListbuilderHandler extends SetupListbuilderHandler {
 		$division =& $divisionDao->newDataObject();
 		$division->setPressId($press->getId());
 
-		//FIXME: Localize.
-		$division->setTitle($rowId, Locale::getLocale());
+		$division->setTitle($rowId['title'], null);
 
 		$divisionDao->insertObject($division);
 		return true;
@@ -97,9 +96,7 @@ class DivisionsListbuilderHandler extends SetupListbuilderHandler {
 		if (!$division || $division->getPressId() !== $press->getId()) fatalError('Invalid division!');
 
 		// Update the existing entry.
-		// FIXME: Localize.
-		$locale = Locale::getLocale();
-		$division->setTitle($newRowId, $locale);
+		$division->setTitle($newRowId['title'], null);
 
 		$divisionDao->updateObject($division);
 		return true;
@@ -114,7 +111,7 @@ class DivisionsListbuilderHandler extends SetupListbuilderHandler {
 	function deleteEntry(&$request, $rowId) {
 		$divisionDao =& DAORegistry::getDAO('DivisionDAO');
 		$press =& $this->getPress();
-		$divisionDao->deleteById($rowId, $press->getId());
+		$divisionDao->deleteById($rowId['title'], $press->getId());
 		return true;
 	}
 
@@ -122,15 +119,13 @@ class DivisionsListbuilderHandler extends SetupListbuilderHandler {
 	 * Bounce a modified entry back to the client
 	 * @see ListbuilderHandler::getRowDataElement
 	 */
-	function &getRowDataElement(&$request, $rowId) {
+	function getRowDataElement(&$request, $rowId) {
 		// Create a non-persisted entry
 		$division = new Division();
 		$division->setId($rowId);
 
 		// Populate the entry
-		// FIXME: Localize.
-		$locale = Locale::getLocale();
-		$division->setTitle($this->getNewRowId($request), $locale);
+		$division->setTitle($this->getNewRowId($request), null);
 
 		return $division;
 	}

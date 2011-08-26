@@ -49,12 +49,8 @@ class CataloguingMetadataListbuilderHandler extends SetupListbuilderHandler {
 	 * Bounce a modified entry back to the client
 	 * @see ListbuilderHandler::getRowDataElement
 	 */
-	function &getRowDataElement(&$request, $rowId) {
-		// FIXME: Localize.
-		$locale = Locale::getLocale();
-		$name = $this->getNewRowId($request);
-		$returner = array('name' => $name);
-		return $returner;
+	function getRowDataElement(&$request, $rowId) {
+		print_r($this->getNewRowId($request));
 	}
 
 
@@ -70,9 +66,7 @@ class CataloguingMetadataListbuilderHandler extends SetupListbuilderHandler {
 		$press =& $this->getPress();
 		$cataloguingMetadataField = $cataloguingMetadataFieldDao->getById($rowId, $pressId);
 
-		$locale = Locale::getLocale(); // FIXME: Localize.
-		$name = $newRowId;
-		$cataloguingMetadataField->setName($name, $locale);
+		$cataloguingMetadataField->setName($newRowId['name'], null); // Localized
 
 		$cataloguingMetadataFieldDao->updateObject($cataloguingMetadataField);
 		return true;
@@ -106,10 +100,7 @@ class CataloguingMetadataListbuilderHandler extends SetupListbuilderHandler {
 		$cataloguingMetadataField->setPressId($press->getId());
 		$cataloguingMetadataField->setEnabled(true);
 
-		$locale = Locale::getLocale(); // FIXME: Localize.
-
-		$name = $newRowId;
-		$cataloguingMetadataField->setName($name, $locale);
+		$cataloguingMetadataField->setName($newRowId['name'], $locale);
 
 		$cataloguingMetadataFieldDao->insertObject($cataloguingMetadataField);
 		return true;
@@ -133,8 +124,7 @@ class CataloguingMetadataListbuilderHandler extends SetupListbuilderHandler {
 
 		$this->loadList();
 
-		$nameColumn = new ListbuilderGridColumn($this, 'name', 'common.name');
-		$this->addColumn($nameColumn);
+		$this->addColumn(new MultilingualListbuilderGridColumn($this, 'name', 'common.name'));
 	}
 
 	/**

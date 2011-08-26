@@ -35,7 +35,7 @@ class PublicationFormatsListbuilderHandler extends SetupListbuilderHandler {
 		$items = array();
 		while ($item =& $publicationFormats->next()) {
 			$id = $item->getId();
-			$items[$id] = array('name' => $item->getLocalizedName(), 'designation' => $item->getLocalizedDesignation(), 'id' => $id);
+			$items[$id] = array('name' => $item->getName(null), 'designation' => $item->getDesignation(null), 'id' => $id);
 			unset($item);
 		}
 		$this->setGridDataElements($items);
@@ -47,13 +47,7 @@ class PublicationFormatsListbuilderHandler extends SetupListbuilderHandler {
 	 * @see ListbuilderHandler::getRowDataElement
 	 */
 	function getRowDataElement(&$request, $rowId) {
-		// FIXME: Localize.
-		$locale = Locale::getLocale();
-		list($name, $designation) = $this->getNewRowId($request);
-		return(array(
-			'name' => $name,
-			'designation' => $designation
-		));
+		return $this->getNewRowId($request);
 	}
 
 	/**
@@ -68,10 +62,8 @@ class PublicationFormatsListbuilderHandler extends SetupListbuilderHandler {
 		$press =& $this->getPress();
 		$publicationFormat = $publicationFormatDao->getById($rowId, $press->getId());
 
-		$locale = Locale::getLocale(); // FIXME: Localize.
-		list($name, $designation) = $newRowId;
-		$publicationFormat->setName($name, $locale);
-		$publicationFormat->setDesignation($designation, $locale);
+		$publicationFormat->setName($newRowId['name'], null); // Localized
+		$publicationFormat->setDesignation($newRowId['designation'], null); // Localized
 
 		$publicationFormatDao->updateObject($publicationFormat);
 		return true;
@@ -104,11 +96,9 @@ class PublicationFormatsListbuilderHandler extends SetupListbuilderHandler {
 		$publicationFormat->setPressId($press->getId());
 		$publicationFormat->setEnabled(true);
 
-		$locale = Locale::getLocale(); // FIXME: Localize.
-
 		list($name, $designation) = $newRowId;
-		$publicationFormat->setName($name, $locale);
-		$publicationFormat->setDesignation($designation, $locale);
+		$publicationFormat->setName($name, null); // Localized
+		$publicationFormat->setDesignation($designation, null); // Localized
 
 		$publicationFormatDao->insertObject($publicationFormat);
 		return true;
@@ -136,8 +126,8 @@ class PublicationFormatsListbuilderHandler extends SetupListbuilderHandler {
 		$this->loadList();
 
 		// Configure the listbuilder columns
-		$this->addColumn(new ListbuilderGridColumn($this, 'name', 'common.name'));
-		$this->addColumn(new ListbuilderGridColumn($this, 'designation', 'common.designation'));
+		$this->addColumn(new MultilingualListbuilderGridColumn($this, 'name', 'common.name'));
+		$this->addColumn(new MultilingualListbuilderGridColumn($this, 'designation', 'common.designation'));
 	}
 }
 

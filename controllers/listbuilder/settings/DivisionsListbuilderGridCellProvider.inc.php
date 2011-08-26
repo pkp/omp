@@ -38,7 +38,7 @@ class DivisionsListbuilderGridCellProvider extends GridCellProvider {
 		assert(is_a($division, 'Division') && !empty($columnId));
 		switch ($columnId) {
 			case 'title':
-				return array('labelKey' => $division->getId(), 'label' => $division->getLocalizedTitle());
+				return array('labelKey' => $division->getId(), 'label' => $division->getTitle(null));
 		}
 		// we got an unexpected column
 		assert(false);

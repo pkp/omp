@@ -101,10 +101,6 @@ class ChapterAuthorListbuilderHandler extends ListbuilderHandler {
 		$cellProvider =& new UserListbuilderGridCellProvider();
 		$nameColumn->setCellProvider($cellProvider);
 		$this->addColumn($nameColumn);
-
-		$nameColumn = new ListbuilderGridColumn($this, 'name', 'common.name');
-		$nameColumn->setCellProvider($cellProvider);
-		$this->addColumn($nameColumn);
 	}
 
 	/**
@@ -123,7 +119,7 @@ class ChapterAuthorListbuilderHandler extends ListbuilderHandler {
 	 * Get the data element that corresponds to the current request
 	 * Allow for a blank $rowId for when creating a not-yet-persisted row
 	 */
-	function &getRowDataElement(&$request, $rowId) {
+	function getRowDataElement(&$request, $rowId) {
 		// fallback on the parent if a rowId is found
 		if ( !empty($rowId) ) {
 			return parent::getRowDataElement($request, $rowId);
@@ -190,7 +186,7 @@ class ChapterAuthorListbuilderHandler extends ListbuilderHandler {
 		$monograph =& $this->getMonograph();
 		$monographId = $monograph->getId();
 		$chapterId = $this->getChapterId();
-		$authorId = (int) $newRowId;
+		$authorId = (int) $newRowId['name'];
 
 		// Create a new chapter author.
 		$chapterAuthorDao =& DAORegistry::getDAO('ChapterAuthorDAO');
@@ -206,7 +202,7 @@ class ChapterAuthorListbuilderHandler extends ListbuilderHandler {
 	 */
 	function deleteEntry(&$request, $rowId) {
 		$chapterId = $this->getChapterId();
-		$authorId = (int) $rowId;
+		$authorId = (int) $rowId['name'];
 
 		// remove the chapter author.
 		$chapterAuthorDao =& DAORegistry::getDAO('ChapterAuthorDAO');
