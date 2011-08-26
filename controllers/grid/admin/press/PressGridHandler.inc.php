@@ -207,7 +207,6 @@ class PressGridHandler extends GridHandler {
 			$newPressPath = $settingsForm->execute();
 
 			// Create the notification.
-			import('classes.notification.NotificationManager');
 			$notificationManager = new NotificationManager();
 			$user =& $request->getUser();
 			$notificationManager->createTrivialNotification($user->getId());

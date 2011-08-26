@@ -328,7 +328,6 @@ class UserGridHandler extends GridHandler {
 				} else {
 
 					// Successful edit of an existing user.
-					import('classes.notification.NotificationManager');
 					$notificationManager = new NotificationManager();
 					$notificationManager->createTrivialNotification($userId);
 

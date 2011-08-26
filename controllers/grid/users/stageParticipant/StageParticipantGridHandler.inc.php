@@ -20,9 +20,6 @@ import('lib.pkp.classes.controllers.grid.CategoryGridHandler');
 import('controllers.grid.users.stageParticipant.StageParticipantGridRow');
 import('controllers.grid.users.stageParticipant.StageParticipantGridCategoryRow');
 
-// import notification manager
-import('classes.notification.NotificationManager');
-
 class StageParticipantGridHandler extends CategoryGridHandler {
 	/**
 	 * Constructor

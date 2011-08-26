@@ -119,7 +119,6 @@ class SubmissionSubmitStep3Form extends SubmissionSubmitForm {
 
 		$allUsers = array_unique(array_merge(array_keys($pressManagersArray), array_keys($editorsArray)));
 
-		import('classes.notification.NotificationManager');
 		$notificationManager = new NotificationManager();
 		foreach ($allUsers as $userId) {
 			$notificationManager->createNotification(

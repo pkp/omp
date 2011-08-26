@@ -107,7 +107,6 @@ class SeriesEditorAction extends Action {
 
 		// Check for editor stage assignment.
 		if (!$stageAssignmentDao->editorAssignedToSubmission($monograph->getId(), $stageId)) {
-			import('classes.notification.NotificationManager');
 			$notificationManager = new NotificationManager();
 
 			// Create a notification.

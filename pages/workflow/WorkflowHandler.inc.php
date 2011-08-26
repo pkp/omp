@@ -81,7 +81,6 @@ class WorkflowHandler extends Handler {
 		$templateMgr->assign('lastCompletedStageId', $monograph->getStageId());
 
 		// Get the right editor assignment notification type based on current stage id.
-		import('classes.notification.NotificationManager');
 		$notificationMgr = new NotificationManager();
 		$editorAssignmentNotificationType = $notificationMgr->getEditorAssignmentNotificationTypeByStageId($stageId);
 

@@ -133,7 +133,6 @@ class SettingsTabHandler extends Handler {
 			$tabForm->readInputData($request);
 			if($tabForm->validate()) {
 				$tabForm->execute($request);
-				import('classes.notification.NotificationManager');
 				$notificationManager = new NotificationManager();
 				$user =& $request->getUser();
 				$notificationManager->createTrivialNotification($user->getId());

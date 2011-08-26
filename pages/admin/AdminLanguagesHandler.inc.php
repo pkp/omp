@@ -93,7 +93,6 @@ class AdminLanguagesHandler extends AdminHandler {
 
 		$this->_removeLocalesFromPresses($request);
 
-		import('classes.notification.NotificationManager');
 		$notificationManager = new NotificationManager();
 		$user =$ $request->getUser();
 		$notificationManager->createTrivialNotification($user->getId());
@@ -235,7 +234,6 @@ class AdminLanguagesHandler extends AdminHandler {
 			return;
 		}
 
-		import('classes.notification.NotificationManager');
 		$notificationManager = new NotificationManager();
 		$user =& $request->getUser();
 		$notificationManager->createTrivialNotification($user->getId(), __('admin.languages.localeInstalled', array('locale' => $locale)));
