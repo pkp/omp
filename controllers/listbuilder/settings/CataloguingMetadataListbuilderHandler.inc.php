@@ -15,7 +15,6 @@
 import('controllers.listbuilder.settings.SetupListbuilderHandler');
 
 class CataloguingMetadataListbuilderHandler extends SetupListbuilderHandler {
-
 	/**
 	 * Constructor
 	 */
@@ -34,11 +33,10 @@ class CataloguingMetadataListbuilderHandler extends SetupListbuilderHandler {
 		$cataloguingMetadataFields =& $cataloguingMetadataFieldDao->getEnabledByPressId($press->getId());
 
 		$items = array();
-
 		if (!is_null($cataloguingMetadataFields)) {
 			foreach($cataloguingMetadataFields as $item) {
 				$id = $item->getId();
-				$items[$id] = array('name' => $item->getLocalizedName(), 'id' => $id);
+				$items[$id] = array('name' => $item->getName(null), 'id' => $id);
 			}
 		}
 
@@ -50,7 +48,7 @@ class CataloguingMetadataListbuilderHandler extends SetupListbuilderHandler {
 	 * @see ListbuilderHandler::getRowDataElement
 	 */
 	function getRowDataElement(&$request, $rowId) {
-		print_r($this->getNewRowId($request));
+		return $this->getNewRowId($request);
 	}
 
 
@@ -100,7 +98,7 @@ class CataloguingMetadataListbuilderHandler extends SetupListbuilderHandler {
 		$cataloguingMetadataField->setPressId($press->getId());
 		$cataloguingMetadataField->setEnabled(true);
 
-		$cataloguingMetadataField->setName($newRowId['name'], $locale);
+		$cataloguingMetadataField->setName($newRowId['name'], null); // Localized
 
 		$cataloguingMetadataFieldDao->insertObject($cataloguingMetadataField);
 		return true;
@@ -110,7 +108,7 @@ class CataloguingMetadataListbuilderHandler extends SetupListbuilderHandler {
 	//
 	// Overridden template methods
 	//
-	/*
+	/**
 	 * Configure the grid
 	 * @param PKPRequest $request
 	 */

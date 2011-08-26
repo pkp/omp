@@ -50,6 +50,7 @@ class PublicationFormatsListbuilderHandler extends SetupListbuilderHandler {
 		return $this->getNewRowId($request);
 	}
 
+
 	/**
 	 * Persist an update to an entry.
 	 * @param $request PKPRequest
@@ -96,9 +97,8 @@ class PublicationFormatsListbuilderHandler extends SetupListbuilderHandler {
 		$publicationFormat->setPressId($press->getId());
 		$publicationFormat->setEnabled(true);
 
-		list($name, $designation) = $newRowId;
-		$publicationFormat->setName($name, null); // Localized
-		$publicationFormat->setDesignation($designation, null); // Localized
+		$publicationFormat->setName($newRowId['name'], null); // Localized
+		$publicationFormat->setDesignation($newRowId['designation'], null); // Localized
 
 		$publicationFormatDao->insertObject($publicationFormat);
 		return true;
