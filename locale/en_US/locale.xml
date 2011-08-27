@@ -329,7 +329,7 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="notification.type.submissions">Submission Events</message>
 	<message key="notification.type.userComment">A reader has made a comment on "{$title}"</message>
 	<message key="notification.type.editorAssignment">An editor must be assigned before you can initiate review.</message>
-	
+
 
 	<!--
 	 *
@@ -345,7 +345,7 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="user.authorization.invalidSeriesEditorSubmission">Invalid series editor submission or no series editor submission requested!</message>
 	<message key="user.authorization.noPress">No press in context!</message>
 	<message key="user.authorization.seriesAssignment">You are trying to access a monograph that is not part of your series.</message>
-	<message key="user.authorization.workflowStageAssignmentMissing">Access denied! You have not been assigned to this monograph's current workflow stage in your currently active user group.</message>
+	<message key="user.authorization.workflowStageAssignmentMissing">Access denied! You have not been assigned to this workflow stage.</message>
 	<message key="user.authorization.workflowStageSettingMissing">Access denied! The user group you are currently acting under has not been assigned to this workflow stage. Please check your press settings.</message>
 
 	<!-- Icons: Default "alt" text -->

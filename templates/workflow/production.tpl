@@ -26,7 +26,7 @@
 	<div id="metadataAccordion">
 		<h3><a href="#">{translate key="submission.cataloguingMetadata"}</a></h3>
 		<div>
-			{url|assign:submissionMetadataViewFormUrl router=$smarty.const.ROUTE_COMPONENT  component="modals.submissionMetadata.ProductionSubmissionMetadataHandler" op="fetch" monographId=$monograph->getId()}
+			{url|assign:submissionMetadataViewFormUrl router=$smarty.const.ROUTE_COMPONENT  component="modals.submissionMetadata.ProductionSubmissionMetadataHandler" op="fetch" monographId=$monograph->getId() stageId=$stageId escape=false}
 			{load_url_in_div id="submissionMetadataFormWrapper" url=$submissionMetadataViewFormUrl}
 		</div>
 	</div>
