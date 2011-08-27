@@ -16,7 +16,7 @@
 </script>
 
 <form class="pkp_form" id="guidelinesForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.PressSettingsTabHandler" op="saveFormData" tab="guidelines"}">
-	{include file="common/formErrors.tpl"}
+	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="guidelinesFormNotification"}
 
 	{fbvFormArea id="focusAndScopeDescription"}
 		{fbvFormSection label="manager.setup.authorGuidelines" description="manager.setup.authorGuidelinesDescription"}

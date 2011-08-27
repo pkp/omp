@@ -17,7 +17,6 @@
 
 <form class="pkp_form" id="mastheadForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.PressSettingsTabHandler" op="saveFormData" tab="masthead"}">
 
-	{include file="common/formErrors.tpl"}
 	{include file="controllers/tab/settings/wizardMode.tpl" wizardMode=$wizardMode}
 
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="mastheadNotification"}

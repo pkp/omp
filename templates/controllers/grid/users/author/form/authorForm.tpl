@@ -18,7 +18,7 @@
 </script>
 
 <form class="pkp_form" id="editAuthor" method="post" action="{url op="updateAuthor" authorId=$authorId}">
-	{include file="common/formErrors.tpl"}
+	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="editAuthorFormNotification"}
 
 	{fbvFormArea id="profile"}
 		{fbvFormSection title="user.name"}

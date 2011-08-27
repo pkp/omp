@@ -15,7 +15,7 @@
 </script>
 
 <form class="pkp_form" id="languagesForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.WebsiteSettingsTabHandler" op="saveFormData" tab="languages"}">
-{include file="common/formErrors.tpl"}
+{include file="controllers/notification/inPlaceNotification.tpl" notificationId="languagesFormNotification"}
 
 	<p>{translate key="manager.languages.languageInstructions"}</p>
 

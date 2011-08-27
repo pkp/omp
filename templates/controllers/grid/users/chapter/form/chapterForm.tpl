@@ -18,7 +18,7 @@
 </script>
 
 <form class="pkp_form" id="editChapterForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.users.chapter.ChapterGridHandler" op="updateChapter"}">
-{include file="common/formErrors.tpl"}
+{include file="controllers/notification/inPlaceNotification.tpl" notificationId="editChapterFormNotification"}
 
 {fbvElement type="hidden" id="monographId" name="monographId" value=$monographId}
 {fbvFormSection title="common.title" for="title"}

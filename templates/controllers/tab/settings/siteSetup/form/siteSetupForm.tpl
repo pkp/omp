@@ -19,7 +19,7 @@
 </script>
 
 <form id="siteSetupForm" class="pkp_form" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.AdminSettingsTabHandler" op="saveFormData" tab="siteSetup"}">
-	{include file="common/formErrors.tpl"}
+	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="siteSetupFormNotification"}
 
 	<h4>{translate key="admin.settings.siteTitle"}</h4>
 	{fbvFormArea id="siteTitle"}

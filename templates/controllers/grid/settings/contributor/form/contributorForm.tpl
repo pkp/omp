@@ -16,7 +16,7 @@
 
 <form class="pkp_form" id="contributorForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.settings.contributor.ContributorGridHandler" op="updateContributor" form="mastheadForm"}">
 
-{include file="common/formErrors.tpl"}
+{include file="controllers/notification/inPlaceNotification.tpl" notificationId="contributorFormNotification"}
 
 {fbvFormArea id="mastheadInfo"}
 {fbvFormSection}

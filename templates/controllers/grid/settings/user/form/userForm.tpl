@@ -35,7 +35,7 @@
 		{if $userId}
 			<input type="hidden" id="userId" name="userId" value="{$userId|escape}" />
 		{/if}
-			{include file="common/formErrors.tpl"}
+			{include file="controllers/notification/inPlaceNotification.tpl" notificationId="userFormNotification"}
 		</div>
 			<div id="userFormCompactLeftContainer" class="half pkp_helpers_align_left">
 				{fbvFormArea id="userFormCompactLeft"}

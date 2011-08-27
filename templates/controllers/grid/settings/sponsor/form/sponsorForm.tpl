@@ -15,7 +15,7 @@
 </script>
 
 <form class="pkp_form" id="editSponsorForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.settings.sponsor.SponsorGridHandler" op="updateSponsor"}">
-{include file="common/formErrors.tpl"}
+{include file="controllers/notification/inPlaceNotification.tpl" notificationId="editSponsorFormNotification"}
 
 {fbvFormArea id="mastheadInfo"}
 {fbvFormSection}

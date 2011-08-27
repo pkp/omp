@@ -16,7 +16,7 @@
 </script>
 
 <form class="pkp_form" id="siteAccessOptionsForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.AccessSettingsTabHandler" op="saveFormData" tab="siteAccessOptions"}">
-	{include file="common/formErrors.tpl"}
+	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="siteAccessOptionsFormNotification"}
 	<h3>{translate key="manager.setup.siteAccess"}</h3>
 
 	{fbvFormArea id="siteAccess"}

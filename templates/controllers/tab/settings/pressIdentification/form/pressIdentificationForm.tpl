@@ -16,7 +16,7 @@
 </script>
 
 <form class="pkp_form" id="pressIdentificationForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.PressSettingsTabHandler" op="saveFormData" tab="pressIdentification"}">
-	{include file="common/formErrors.tpl"}
+	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="pressIdentificationFormNotification"}
 
 	{fbvFormArea id="publicIdentifier"}
 		{fbvFormSection list="true" label="manager.setup.uniqueIdentifier" description="manager.setup.uniqueIdentifierDescription"}

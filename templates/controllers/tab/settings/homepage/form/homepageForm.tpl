@@ -16,7 +16,7 @@
 </script>
 
 <form id="homepageForm" class="pkp_form" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.WebsiteSettingsTabHandler" op="saveFormData" tab="homepage"}">
-	{include file="common/formErrors.tpl"}
+	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="homepageFormNotification"}
 
 	{fbvFormArea id="announcements"}
 		{fbvFormSection list=true label="manager.setup.announcements" description="manager.setup.announcementsDescription"}

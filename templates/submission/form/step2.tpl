@@ -20,7 +20,7 @@
 
 <form class="pkp_form" id="submitStep2Form" method="post" action="{url op="saveStep" path=$submitStep}" enctype="multipart/form-data">
 	<input type="hidden" name="monographId" value="{$monographId|escape}" />
-	{include file="common/formErrors.tpl"}
+	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="submitStep2FormNotification"}
 
 	<!-- Submission upload grid -->
 

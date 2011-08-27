@@ -27,7 +27,7 @@
 
 <form class="pkp_form" id="submitStep3Form" method="post" action="{url op="saveStep" path=$submitStep}">
 	<input type="hidden" name="monographId" value="{$monographId|escape}" />
-	{include file="common/formErrors.tpl"}
+	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="submitStep3FormNotification"}
 
 	{include file="submission/submissionMetadataFormFields.tpl"}
 

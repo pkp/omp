@@ -22,7 +22,7 @@
 {if $monographId}<input type="hidden" name="monographId" value="{$monographId|escape}"/>{/if}
 	<input type="hidden" name="submissionChecklist" value="1"/>
 
-{include file="common/formErrors.tpl"}
+{include file="controllers/notification/inPlaceNotification.tpl" notificationId="submitStep1FormNotification"}
 
 {fbvFormArea id="submissionStep1"}
 	<!-- Author user group selection (only appears if user has > 1 author user groups) -->
