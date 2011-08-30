@@ -96,7 +96,7 @@ class SeriesEditorsListbuilderHandler extends SetupListbuilderHandler {
 		return parent::fetch($args, &$request, $additionalVars);
 	}
 
-	/*
+	/**
 	 * Configure the grid
 	 * @param PKPRequest $request
 	 */
@@ -119,7 +119,7 @@ class SeriesEditorsListbuilderHandler extends SetupListbuilderHandler {
 	// Public AJAX-accessible functions
 	//
 
-	/*
+	/**
 	 * Fetch either a block of data for local autocomplete, or return a URL to another function for AJAX autocomplete
 	 * @param $args array
 	 * @param $request PKPRequest
@@ -148,7 +148,7 @@ class SeriesEditorsListbuilderHandler extends SetupListbuilderHandler {
 		echo $sourceJson->getString();
 	}
 
-	/*
+	/**
 	 * Handle adding an item to the list
 	 * @param $args array
 	 * @param $request PKPRequest
@@ -194,7 +194,7 @@ class SeriesEditorsListbuilderHandler extends SetupListbuilderHandler {
 		}
 	}
 
-	/*
+	/**
 	 * Handle deleting items from the list
 	 * @param $args array
 	 * @param $request PKPRequest
