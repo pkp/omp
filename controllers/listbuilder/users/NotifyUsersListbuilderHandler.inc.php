@@ -26,7 +26,6 @@ class NotifyUsersListbuilderHandler extends ListbuilderHandler {
 		);
 	}
 
-
 	//
 	// Getters/Setters
 	//
@@ -51,6 +50,46 @@ class NotifyUsersListbuilderHandler extends ListbuilderHandler {
 		);
 	}
 
+	//
+	// Implement protected template methods from PKPHandler
+	//
+	/**
+	 * @see PKPHandler::initialize()
+	 */
+	function initialize(&$request) {
+		parent::initialize($request);
+
+		// Load submission-specific translations
+		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_USER));
+
+		// Basic configuration.
+		$this->setSourceType(LISTBUILDER_SOURCE_TYPE_SELECT);
+		$this->setSaveType(LISTBUILDER_SAVE_TYPE_EXTERNAL);
+		$this->setSaveFieldName('users');
+
+		// Name column
+		$nameColumn = new ListbuilderGridColumn($this, 'name', 'common.name');
+		import('controllers.listbuilder.users.UserListbuilderGridCellProvider');
+		$cellProvider =& new UserListbuilderGridCellProvider();
+		$nameColumn->setCellProvider($cellProvider);
+		$this->addColumn($nameColumn);
+	}
+
+	/**
+	 * @see PKPHandler::authorize()
+	 * @param $request PKPRequest
+	 * @param $args array
+	 * @param $roleAssignments array
+	 */
+	function authorize(&$request, $args, $roleAssignments) {
+		import('classes.security.authorization.OmpSubmissionAccessPolicy');
+		$this->addPolicy(new OmpSubmissionAccessPolicy($request, $args, $roleAssignments));
+		return parent::authorize($request, $args, $roleAssignments);
+	}
+
+	//
+	// Implement methods from ListbuilderHandler
+	//
 	/**
 	 * @see GridHandler::getRowDataElement
 	 * Get the data element that corresponds to the current request
@@ -83,88 +122,16 @@ class NotifyUsersListbuilderHandler extends ListbuilderHandler {
 		$userStageAssignmentDao =& DAORegistry::getDAO('UserStageAssignmentDAO');
 		$monograph =& $this->getMonograph();
 
+		// FIXME: add stage id?
 		$users =& $userStageAssignmentDao->getUsersBySubmissionAndStageId($monograph->getId());
 
-		while (!$users->eof()) {
-			$user =& $users->next();
+		while ($user =& $users->next()) {
 			$items[0][$user->getId()] = $user->getFullName();
 			unset($user);
 		}
 		unset($users);
 
 		return $items;
-	}
-
-	//
-	// Implement protected template methods from PKPHandler
-	//
-	/**
-	 * @see PKPHandler::initialize()
-	 */
-	function initialize(&$request) {
-		parent::initialize($request);
-
-		// Load submission-specific translations
-		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_USER));
-
-		// Basic configuration.
-		$this->setSourceType(LISTBUILDER_SOURCE_TYPE_SELECT);
-
-		// Name column
-		$nameColumn = new ListbuilderGridColumn($this, 'name', 'common.name');
-		import('controllers.listbuilder.users.UserListbuilderGridCellProvider');
-		$cellProvider =& new UserListbuilderGridCellProvider();
-		$nameColumn->setCellProvider($cellProvider);
-		$this->addColumn($nameColumn);
-	}
-
-	/**
-	 * @see PKPHandler::authorize()
-	 * @param $request PKPRequest
-	 * @param $args array
-	 * @param $roleAssignments array
-	 */
-	function authorize(&$request, $args, $roleAssignments) {
-		import('classes.security.authorization.OmpSubmissionAccessPolicy');
-		$this->addPolicy(new OmpSubmissionAccessPolicy($request, $args, $roleAssignments));
-		return parent::authorize($request, $args, $roleAssignments);
-	}
-
-	/**
-	 * @see GridHandler::loadData()
-	 */
-	function loadData($request, $filter) {
-		$users = array();
-		return $users;
-	}
-
-	/**
-	 * Persist a new entry insert.
-	 * @see Listbuilder::insertEntry
-	 */
-	function insertEntry(&$request, $newRowId) {
-		$monograph =& $this->getMonograph();
-		$monographId = $monograph->getId();
-		$userGroupId = $this->getUserGroupId();
-		$userId = (int) $newRowId['name'];
-
-		// Create a new stage assignment.
-		$stageAssignmentDao = & DAORegistry::getDAO('StageAssignmentDAO');
-		$stageAssignmentDao->build($monographId, $this->getStageId(), $userGroupId, $userId);
-		return true;
-	}
-
-	/**
-	 * Delete an entry.
-	 * @see Listbuilder::deleteEntry
-	 */
-	function deleteEntry(&$request, $rowId) {
-		$userId = (int) $rowId['name']; // No validation b/c delete is specific
-		$monograph =& $this->getMonograph();
-		$stageAssignmentDao = & DAORegistry::getDAO('StageAssignmentDAO'); /* @var $stageAssignmentDao StageAssignmentDAO */
-		$stageAssignmentDao->deleteByAll($monograph->getId(), $this->getStageId(), $this->getUserGroupId(), $userId);
-
-		return true;
 	}
 }
 

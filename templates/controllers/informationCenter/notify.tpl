@@ -7,31 +7,16 @@
  * Display a form to notify other users about this file.
  *}
 <script type="text/javascript">
-	<!--
-	{literal}
-	$(function() {
-		$('.button').button();
-		$('#notifyForm').last().ajaxForm({
-			dataType: 'json',
-			success: function(returnString) {
-				if (returnString.status == true) {
-					// Notify that email was sent and clear form fields
-					$("#notifyForm").find(':input').each(function() {
-						$(this).val('');
-					});
-					$("#notifyWarning").remove();
-					// FIXME: Display system notification that the message was sent
-				} else {
-					$("#message").last().after("<p id='notifyWarning'>"+returnString.content+"</p>");
-				}
-			}
-		});
-	});
-	{/literal}
-	// -->
+	// Attach the file upload form handler.
+	$(function() {ldelim}
+		$('#notifyForm').pkpHandler(
+			'$.pkp.controllers.form.AjaxFormHandler'
+		);
+	{rdelim});
 </script>
 <div id="informationCenterNotifyTab">
 	<form class="pkp_form" id="notifyForm" action="{url op="sendNotification" params=$linkParams}" method="post">
+		{include file="controllers/notification/inPlaceNotification.tpl" notificationId="notifyFormNotification"}
 		{fbvFormArea id="notifyFormArea"}
 			{fbvFormSection title="email.to" for="notifyUsersContainer" required="true"}
 				{url|assign:notifyUsersUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.users.NotifyUsersListbuilderHandler" op="fetch" params=$linkParams escape=false}
@@ -39,7 +24,7 @@
 			{/fbvFormSection}
 
 			{fbvFormSection title="informationCenter.notify.message" for="supportPhone" required="true"}
-				{fbvElement type="textarea" id="message" size=$fbvStyles.size.MEDIUM}
+				{fbvElement type="textarea" id="message"}
 			{/fbvFormSection}
 			{fbvFormButtons id="notifyButton" hideCancel=true submitText="common.notify"}
 		{/fbvFormArea}

@@ -31,10 +31,10 @@ class InformationCenterNotifyForm extends Form {
 		$this->itemId = $itemId;
 		$this->itemType = $itemType;
 
+		// FIXME: create locale keys for these messages
+		$this->addCheck(new FormValidator($this, 'users', 'required', 'You must select at least one user.'));
+		$this->addCheck(new FormValidator($this, 'message', 'required', 'You must enter a message.'));
 		$this->addCheck(new FormValidatorPost($this));
-		$this->addCheck(new FormValidator($this, 'message', 'required', 'common.required'));
-		$this->addCheck(new FormValidator($this, 'message', 'required', 'common.required'));
-		$this->addCheck(new FormValidatorArray($this, 'selected-listbuilder-users-notifyuserslistbuilder', 'required', 'common.required'));
 	}
 
 	/**
@@ -61,9 +61,7 @@ class InformationCenterNotifyForm extends Form {
 	 * @see Form::readInputData()
 	 */
 	function readInputData() {
-		$this->readUserVars(array(
-			'message', 'selected-listbuilder-users-notifyuserslistbuilder'
-		));
+		$this->readUserVars(array('message', 'users'));
 
 	}
 
@@ -72,11 +70,22 @@ class InformationCenterNotifyForm extends Form {
 	 * @return userId int
 	 */
 	function execute(&$request) {
+		import('lib.pkp.classes.controllers.listbuilder.ListbuilderHandler');
+		$userData = $this->getData('users');
+		ListBuilderHandler::unpack($request, $userData);
+	}
+
+	/**
+	 * Prepare an email for each user and send
+	 * @see ListbuilderHandler::insertEntry
+	 */
+	function insertEntry(&$request, $newRowId) {
 		$user =& $request->getUser();
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
 		$router =& $request->getRouter();
 		$dispatcher =& $router->getDispatcher();
 
+		// FIXME:? Are these the right params?
 		$paramArray = array('sender' => $user->getFullName(),
 				'monographDetailsUrl' => $dispatcher->url($request, ROUTE_PAGE, null, 'workflow', 'submission', $this->itemId),
 				'message' => $this->getData('message')
@@ -84,6 +93,7 @@ class InformationCenterNotifyForm extends Form {
 
 		switch ($this->itemType) {
 			case ASSOC_TYPE_MONOGRAPH_FILE:
+				// FIXME: template to come from selection
 				$emailTemplate = 'NOTIFY_FILE';
 
 				$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
@@ -92,6 +102,7 @@ class InformationCenterNotifyForm extends Form {
 				$paramArray['fileName'] = $monographFile->getLocalizedName();
 				break;
 			default:
+				// FIXME: template to come from selection
 				$emailTemplate = 'NOTIFY_SUBMISSION';
 				$monographId = $this->itemId;
 				break;
@@ -102,12 +113,18 @@ class InformationCenterNotifyForm extends Form {
 		$email->assignParams($paramArray);
 
 		$userDao =& DAORegistry::getDAO('UserDAO');
-		foreach($this->getData('selected-listbuilder-users-notifyuserslistbuilder') as $recipientId) {
-			$user =& $userDao->getUser($recipientId);
-			$email->addRecipient($user->getEmail(), $user->getFullName());
-		}
+		$recepientUser =& $userDao->getUser($newRowId);
+		$email->addRecipient($recepientUser->getEmail(), $recepientUser->getFullName());
 
 		$email->send($request);
+	}
+
+	/**
+	 * Delete a signoff
+	 * FIXME: it was throwing a warning when this was not specified. We just want client side delete.
+	 */
+	function deleteEntry(&$request, $rowId) {
+		return true;
 	}
 }
 
