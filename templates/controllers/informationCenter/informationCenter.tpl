@@ -11,7 +11,9 @@
 	// Attach the Information Center handler.
 	$(function() {ldelim}
 		$('#informationCenter').pkpHandler(
-			'$.pkp.controllers.informationCenter.InformationCenterHandler'
+			'$.pkp.controllers.informationCenter.InformationCenterHandler', {ldelim}
+				selected: {$selectedTabIndex}
+			{rdelim}
 		);
 	{rdelim});
 </script>

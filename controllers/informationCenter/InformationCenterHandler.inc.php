@@ -97,7 +97,7 @@ class InformationCenterHandler extends Handler {
 	 * @param $request PKPRequest
 	 */
 	function listNotes($args, &$request) {
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 
 		$templateMgr =& TemplateManager::getManager();
 		$noteDao =& DAORegistry::getDAO('NoteDAO');
@@ -174,11 +174,25 @@ class InformationCenterHandler extends Handler {
 		assert(false);
 	}
 
-	function setupTemplate() {
+	function setupTemplate(&$request) {
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('linkParams', $this->_getLinkParams());
 
-		parent::setupTemplate();
+		// Preselect tab from keywords 'notes', 'notify', 'history'
+		switch ($request->getUserVar('tab')) {
+			case 'history':
+				$templateMgr->assign('selectedTabIndex', 2);
+				break;
+			case 'notify':
+				$templateMgr->assign('selectedTabIndex', 1);
+				break;
+			// case notes is default
+			default:
+				$templateMgr->assign('selectedTabIndex', 0);
+				break;
+		}
+
+		parent::setupTemplate($request);
 	}
 
 	/**

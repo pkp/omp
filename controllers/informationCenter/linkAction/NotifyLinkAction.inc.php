@@ -19,18 +19,24 @@ class NotifyLinkAction extends LinkAction {
 	 * Constructor
 	 * @param $request Request
 	 * @param $monograph Monograph The monograph
+	 * @param $stageId int
 	 * @param $userId optional
 	 *  to show information about.
 	 */
-	function NotifyLinkAction(&$request, &$monograph, $userId = null) {
-		// Instantiate the information center modal.
-		$router =& $request->getRouter();
+	function NotifyLinkAction(&$request, &$monograph, $stageId, $userId = null) {
+		// Prepare request arguments
+		$requestArgs['monographId'] = $monograph->getId();
+		$requestArgs['stageId'] = $stageId;
+		if ($userId) $requestArgs['userId'] = $userId;
+		$requestArgs['tab'] = 'notify';
+
 		import('lib.pkp.classes.linkAction.request.AjaxModal');
+		$router =& $request->getRouter();
 		$ajaxModal = new AjaxModal(
 			$router->url(
 				$request, null,
-				'informationCenter.SubmissionInformationCenterHandler', 'viewNotify',
-				null, array('monographId' => $monograph->getId())
+				'informationCenter.SubmissionInformationCenterHandler', 'viewInformationCenter',
+				null, $requestArgs
 			),
 			__('common.notify')
 		);

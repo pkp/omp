@@ -52,7 +52,7 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 	 * @param $request PKPRequest
 	 */
 	function viewInformationCenter($args, &$request) {
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 
 		// Get the latest history item to display in the header
 		$monographEventLogDao =& DAORegistry::getDAO('MonographFileEventLogDAO');
@@ -83,7 +83,7 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 	 * @param $request PKPRequest
 	 */
 	function viewNotes($args, &$request) {
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 
 		import('controllers.informationCenter.form.NewFileNoteForm');
 		$notesForm = new NewFileNoteForm($this->monographFile->getFileId());
@@ -99,7 +99,7 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 	 * @param $request PKPRequest
 	 */
 	function saveNote($args, &$request) {
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 
 		import('controllers.informationCenter.form.NewFileNoteForm');
 		$notesForm = new NewFileNoteForm($this->monographFile->getFileId());
@@ -125,7 +125,7 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 	 * @param $request PKPRequest
 	 */
 	function viewNotify ($args, &$request) {
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 
 		import('controllers.informationCenter.form.InformationCenterNotifyForm');
 		$notifyForm = new InformationCenterNotifyForm(ASSOC_TYPE_MONOGRAPH_FILE, $this->monographFile->getFileId());
@@ -141,7 +141,7 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 	 * @param $request PKPRequest
 	 */
 	function sendNotification ($args, &$request) {
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 
 		import('controllers.informationCenter.form.InformationCenterNotifyForm');
 		$notifyForm = new InformationCenterNotifyForm(ASSOC_TYPE_MONOGRAPH_FILE, $this->monographFile->getItemId());
@@ -166,7 +166,7 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 	 * @param $request PKPRequest
 	 */
 	function viewHistory($args, &$request) {
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 
 		// Get all monograph file events
 		$monographFileEventLogDao =& DAORegistry::getDAO('MonographFileEventLogDAO');

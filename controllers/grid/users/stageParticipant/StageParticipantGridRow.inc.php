@@ -52,7 +52,7 @@ class StageParticipantGridRow extends GridRow {
 			import('lib.pkp.classes.linkAction.request.RemoteActionConfirmationModal');
 			$this->addAction(
 				new LinkAction(
-					'edit',
+					'delete',
 					new RemoteActionConfirmationModal(
 						__('editor.monograph.removeStageParticipant.description'),
 						__('editor.monograph.removeStageParticipant'),
@@ -65,7 +65,10 @@ class StageParticipantGridRow extends GridRow {
 
 			import('controllers.informationCenter.linkAction.NotifyLinkAction');
 			$monograph =& $this->getMonograph();
-			$this->addAction(new NotifyLinkAction($request, $monograph));
+			$stageId = $this->getStageId();
+			$stageAssignment =& $this->getData();
+			$userId = $stageAssignment->getUserId();
+			$this->addAction(new NotifyLinkAction($request, $monograph, $stageId, $userId));
 
 			// Set a non-default template that supports row actions
 			$this->setTemplate('controllers/grid/gridRowWithActions.tpl');
