@@ -143,7 +143,7 @@ class FileAuditorForm extends Form {
 
 	/**
 	 * Persist a signoff insertion
-	 * @see Listbuilder::insertEntry
+	 * @see ListbuilderHandler::insertEntry
 	 */
 	function insertEntry(&$request, $newRowId) {
 		// Fetch and validate the file ID
