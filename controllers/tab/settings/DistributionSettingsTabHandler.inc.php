@@ -27,6 +27,8 @@ class DistributionSettingsTabHandler extends ManagerSettingsTabHandler {
 			'indexing' => 'controllers.tab.settings.indexing.form.IndexingForm'
 		);
 		$this->setPageTabs($pageTabs);
+
+		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_SUBMISSION)); // submission.cataloguingMetadata
 	}
 }
 
