@@ -231,7 +231,7 @@ class UserUserGroupListbuilderHandler extends ListbuilderHandler {
 	 * @see Listbuilder::deleteEntry
 	 */
 	function deleteEntry(&$request, $rowId) {
-		$userGroupId = (int) $rowId['name'];
+		$userGroupId = (int) $rowId;
 		$userId = (int) $this->getUserId();
 
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
