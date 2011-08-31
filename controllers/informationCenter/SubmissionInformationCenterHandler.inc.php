@@ -148,7 +148,7 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 			$json = new JSONMessage(true);
 		} else {
 			// Return a JSON string indicating failure
-			$json = new JSONMessage(false, __('informationCenter.notify.warning'));
+			$json = new JSONMessage(false);
 		}
 
 		return $json->getString();
