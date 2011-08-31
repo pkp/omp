@@ -11,20 +11,6 @@
 {include file="common/header.tpl"}
 {/strip}
 
-{if count($editors) > 0}
-	{if count($editors) == 1}
-		<h4>{translate key="user.role.editor"}</h4>
-	{else}
-		<h4>{translate key="user.role.editors"}</h4>
-	{/if}
-
-	<ol class="editorialTeam">
-		{foreach from=$editors item=editor}
-			<li><a href="javascript:openRTWindow('{url op="editorialTeamBio" path=$editor->getId()}')">{$editor->getFullName()|escape}</a>{if $editor->getLocalizedAffiliation()}, {$editor->getLocalizedAffiliation()|escape}{/if}{if $editor->getCountry()}{assign var=countryCode value=$editor->getCountry()}{assign var=country value=$countries.$countryCode}, {$country|escape}{/if}</li>
-		{/foreach}
-	</ol>
-{/if}
-
 {if count($seriesEditors) > 0}
 	{if count($seriesEditors) == 1}
 		<h4>{translate key="user.role.seriesEditor"}</h4>

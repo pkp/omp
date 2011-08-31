@@ -110,17 +110,15 @@ class SubmissionSubmitStep3Form extends SubmissionSubmitForm {
 
 		$roleDao =& DAORegistry::getDAO('RoleDAO'); /* @var $roleDao RoleDAO */
 
-		// Get the managers and editors.
+		// Get the managers.
 		$pressManagers = $roleDao->getUsersByRoleId(ROLE_ID_PRESS_MANAGER);
-		$editors = $roleDao->getUsersByRoleId(ROLE_ID_EDITOR);
 
 		$pressManagersArray = $pressManagers->toAssociativeArray();
-		$editorsArray = $editors->toAssociativeArray();
 
-		$allUsers = array_unique(array_merge(array_keys($pressManagersArray), array_keys($editorsArray)));
+		$allUserIds = array_keys($pressManagersArray);
 
 		$notificationManager = new NotificationManager();
-		foreach ($allUsers as $userId) {
+		foreach ($allUserIds as $userId) {
 			$notificationManager->createNotification(
 				$request, $userId, NOTIFICATION_TYPE_MONOGRAPH_SUBMITTED,
 				$monograph->getPressId(), ASSOC_TYPE_MONOGRAPH, $monograph->getId()

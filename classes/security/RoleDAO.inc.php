@@ -190,8 +190,6 @@ class RoleDAO extends DAO {
 				return ROLE_ID_PRESS_MANAGER;
 			case 'author':
 				return ROLE_ID_AUTHOR;
-			case 'editor':
-				return ROLE_ID_EDITOR;
 			case 'seriesEditor':
 				return ROLE_ID_SERIES_EDITOR;
 			case 'reviewer':

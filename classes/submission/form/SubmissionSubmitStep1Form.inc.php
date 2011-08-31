@@ -45,12 +45,12 @@ class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
 		// Get series for this press
 		$seriesDao =& DAORegistry::getDAO('SeriesDAO');
 
-		// FIXME: If this user is a series editor or an editor, they are
-		// allowed to submit to series flagged as "editor-only" for
+		// FIXME: If this user is a series editor, they are allowed
+		// to submit to series flagged as "editor-only" for
 		// submissions. Otherwise, display only series they are allowed
 		// to submit to.
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
-		$isEditor = $roleDao->userHasRole($this->press->getId(), $user->getId(), ROLE_ID_EDITOR) || $roleDao->userHasRole($this->press->getId(), $user->getId(), ROLE_ID_SERIES_EDITOR);
+		$isEditor = $roleDao->userHasRole($this->press->getId(), $user->getId(), ROLE_ID_SERIES_EDITOR);
 
 		$seriesOptions = array('0' => Locale::translate('submission.submit.selectSeries')) + $seriesDao->getTitlesByPressId($this->press->getId());
 		$templateMgr->assign('seriesOptions', $seriesOptions);
@@ -81,7 +81,7 @@ class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
 			}
 			$templateMgr->assign('authorUserGroupOptions', $authorUserGroupNames);
 		} else {
-			// The user doesn't have any author user group assignments.  They should be either an editor or manager.
+			// The user doesn't have any author user group assignments.  They should be either a manager.
 			$userGroupNames = array();
 
 			// Add all manager user groups
@@ -90,14 +90,6 @@ class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
 				$managerUserGroup =& $userGroupDao->getById($managerUserGroupAssignment->getUserGroupId());
 				$userGroupNames[$managerUserGroup->getId()] = $managerUserGroup->getLocalizedName();
 				unset($managerUserGroupAssignment);
-			}
-
-			// Add all editor user groups
-			$editorUserGroupAssignments =& $userGroupAssignmentDao->getByUserId($user->getId(), $this->press->getId(), ROLE_ID_EDITOR);
-			if($editorUserGroupAssignments) while($editorUserGroupAssignment =& $editorUserGroupAssignments->next()) {
-				$editorUserGroup =& $userGroupDao->getById($editorUserGroupAssignment->getUserGroupId());
-				$userGroupNames[$editorUserGroup->getId()] = $editorUserGroup->getLocalizedName();
-				unset($editorUserGroup);
 			}
 
 			$templateMgr->assign('authorUserGroupOptions', $userGroupNames);

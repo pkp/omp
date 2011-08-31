@@ -139,13 +139,9 @@ class AboutHandler extends Handler {
 			// Editorial Team information using Role info.
 			$roleDao =& DAORegistry::getDAO('RoleDAO');
 
-			$editors =& $roleDao->getUsersByRoleId(ROLE_ID_EDITOR, $press->getId());
-			$editors =& $editors->toArray();
-
 			$seriesEditors =& $roleDao->getUsersByRoleId(ROLE_ID_SERIES_EDITOR, $press->getId());
 			$seriesEditors =& $seriesEditors->toArray();
 
-			$templateMgr->assign_by_ref('editors', $editors);
 			$templateMgr->assign_by_ref('seriesEditors', $seriesEditors);
 			$templateMgr->assign_by_ref('proofreaders', $proofreaders);
 			$templateMgr->display('about/editorialTeam.tpl');
@@ -206,7 +202,6 @@ class AboutHandler extends Handler {
 		if ($press->getSetting('boardEnabled') != true) {
 			$roles =& $roleDao->getRolesByUserId($userId, $press->getId());
 			$acceptableRoles = array(
-				ROLE_ID_EDITOR,
 				ROLE_ID_SERIES_EDITOR
 			);
 			foreach ($roles as $role) {

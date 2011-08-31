@@ -33,10 +33,6 @@ define('ROLE_PATH_REVIEWER', 'reviewer');
 //FIXME: The following new role (="press role") will have to be introduced - see #6113.
 define('ROLE_ID_PRESS_ASSISTANT', 0x00001001);
 
-// FIXME: Remove. Bug #6537.
-define('ROLE_ID_EDITOR',		0x00000100);
-define('ROLE_PATH_EDITOR', 'editor');
-
 define('ROLE_ID_READER',		0x00020000);
 define('ROLE_PATH_READER', 'reader');
 
@@ -97,8 +93,6 @@ class Role extends DataObject {
 				return 'user.role.manager' . ($plural ? 's' : '');
 			case ROLE_ID_AUTHOR:
 				return 'user.role.author' . ($plural ? 's' : '');
-			case ROLE_ID_EDITOR:
-				return 'user.role.editor' . ($plural ? 's' : '');
 			case ROLE_ID_REVIEWER:
 				return 'user.role.reviewer' . ($plural ? 's' : '');
 			case ROLE_ID_SERIES_EDITOR:
@@ -122,8 +116,6 @@ class Role extends DataObject {
 				return 'manager';
 			case ROLE_ID_AUTHOR:
 				return 'author';
-			case ROLE_ID_EDITOR:
-				return 'editor';
 			case ROLE_ID_REVIEWER:
 				return 'reviewer';
 			case ROLE_ID_SERIES_EDITOR:

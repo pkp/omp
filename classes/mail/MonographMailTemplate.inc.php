@@ -156,34 +156,7 @@ class MonographMailTemplate extends MailTemplate {
 		}
 	}
 
-	/*
-	 *  Send this email to all assigned editors
-	 * @param $monographId int
-	 * @return array of Users (note, this differs from OxS which returns EditAssignment objects)
-	 */
-	function toAssignedEditors($monographId) {
-		return $this->_addUsers($monographId, ROLE_ID_EDITOR, 'addRecipient');
-	}
-
-	/*
-	 *  CC this email to all assigned editors
-	 * @param $monographId int
-	 * @return array of Users (note, this differs from OxS which returns EditAssignment objects)
-	 */
-	function ccAssignedEditors($monographId) {
-		return $this->_addUsers($monographId, ROLE_ID_EDITOR, 'addCc');
-	}
-
-	/*
-	 *  BCC this email to all assigned editors
-	 * @param $monographId int
-	 * @return array of Users (note, this differs from OxS which returns EditAssignment objects)
-	 */
-	function bccAssignedEditors($monographId) {
-		return $this->_addUsers($monographId, ROLE_ID_EDITOR, 'addBcc');
-	}
-
-	/*
+	/**
 	 *  Send this email to all assigned series editors
 	 * @param $monographId int
 	 */
@@ -200,7 +173,7 @@ class MonographMailTemplate extends MailTemplate {
 		return $this->_addUsers($monographId, ROLE_ID_SERIES_EDITOR, 'addCc');
 	}
 
-	/*
+	/**
 	 *  BCC this email to all assigned series editors
 	 * @param $monographId int
 	 */
@@ -208,7 +181,7 @@ class MonographMailTemplate extends MailTemplate {
 		return $this->_addUsers($monographId, ROLE_ID_SERIES_EDITOR, 'addBcc');
 	}
 
-	/*
+	/**
 	 * Private method to fetch the requested users and add to the email
 	 * @param $monographId int
 	 * @param $roleId int
