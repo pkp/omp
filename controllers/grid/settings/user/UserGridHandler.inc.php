@@ -155,6 +155,15 @@ class UserGridHandler extends GridHandler {
 			while ($press =& $presses->next()) {
 				$pressIds[] = $press->getId();
 			}
+
+			// Get users with no user group assignment.
+			$userDao =& DAORegistry::getDAO('UserDAO');
+			$usersWithNoUserGroup =& $userDao->getUsersWithNoUserGroupAssignments();
+			if (!$usersWithNoUserGroup->wasEmpty()) {
+				while ($userWithNoUserGroup =& $usersWithNoUserGroup->next()) {
+					$rowData[$userWithNoUserGroup->getId()] = $userWithNoUserGroup;
+				}
+			}
 		}
 
 		foreach ($pressIds as $pressId) {
