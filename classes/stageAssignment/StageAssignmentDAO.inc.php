@@ -86,8 +86,8 @@ class StageAssignmentDAO extends DAO {
 	function build($submissionId, $userGroupId, $userId) {
 
 		// If one exists, fetch and return.
-		$stageAssignment =& $this->getBySubmissionAndStageId($submissionId, $userGroupId, $userId);
-		if ($stageAssignment) return $stageAssignment;
+		$stageAssignment =& $this->getBySubmissionAndStageId($submissionId, null, $userGroupId, $userId);
+		if (!$stageAssignment->wasEmpty()) return $stageAssignment;
 
 		// Otherwise, build one.
 		unset($stageAssignment);

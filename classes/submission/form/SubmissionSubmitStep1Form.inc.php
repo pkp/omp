@@ -210,7 +210,7 @@ class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
 
 			// Assign the user author to the stage
 			$stageAssignmentDao =& DAORegistry::getDAO('StageAssignmentDAO');
-			$stageAssignmentDao->build($this->monographId, WORKFLOW_STAGE_ID_SUBMISSION, $authorUserGroupId, $user->getId());
+			$stageAssignmentDao->build($this->monographId, $authorUserGroupId, $user->getId());
 		}
 
 		return $this->monographId;
