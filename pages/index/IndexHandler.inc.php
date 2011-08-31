@@ -54,7 +54,7 @@ class IndexHandler extends Handler {
 				$request->redirect($press->getPath(), 'dashboard');
 			} else {
 				if (Validation::isSiteAdmin()) {
-					$request->redirect(null, 'admin', 'createPress');
+					$request->redirect(null, 'admin', 'presses');
 				} else {
 					$request->redirect(null, 'user', 'index');
 				}

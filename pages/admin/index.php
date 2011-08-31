@@ -28,11 +28,6 @@ switch ($op) {
 	// Press Management
 	//
 	case 'presses':
-	case 'createPress':
-	case 'editPress':
-	case 'updatePress':
-	case 'deletePress':
-	case 'movePress':
 		import('pages.admin.AdminPressHandler');
 		define('HANDLER_CLASS', 'AdminPressHandler');
 		break;
