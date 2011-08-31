@@ -109,7 +109,13 @@ class UserHandler extends Handler {
 	 */
 	function authorizationDenied($args, &$request) {
 		$this->validate(true);
-		$authorizationMessage = htmlentities($request->getUserVar('message'));
+
+		// Get message with sanity check (for XSS or phishing)
+		$authorizationMessage = $request->getUserVar('message');
+		if (!preg_match('/^[a-zA-Z0-9.]+$/', $authorizationMessage)) {
+			fatalError('Invalid locale key for auth message.');
+		}
+
 		$this->setupTemplate(true);
 		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_USER));
 		$templateMgr =& TemplateManager::getManager();
