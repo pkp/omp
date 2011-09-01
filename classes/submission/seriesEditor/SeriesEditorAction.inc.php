@@ -101,7 +101,7 @@ class SeriesEditorAction extends Action {
 			$users =& $userGroupDao->getUsersById($userGroup->getId());
 			if($users->getCount() == 1) {
 				$user =& $users->next();
-				$stageAssignmentDao->build($monograph->getId(), $stageId, $userGroup->getId(), $user->getId());
+				$stageAssignmentDao->build($monograph->getId(), $userGroup->getId(), $user->getId());
 			}
 		}
 
@@ -127,7 +127,7 @@ class SeriesEditorAction extends Action {
 		while ($assignment =& $submitterAssignments->next()) {
 			$userGroup =& $userGroupDao->getById($assignment->getUserGroupId());
 			if ($userGroup->getRoleId() == ROLE_ID_AUTHOR) {
-				$stageAssignmentDao->build($monograph->getId(), $stageId, $userGroup->getId(), $assignment->getUserId());
+				$stageAssignmentDao->build($monograph->getId(), $userGroup->getId(), $assignment->getUserId());
 				// Only assign them once, since otherwise we'll one assignment for each previous stage.
 				// And as long as they are assigned once, they will get access to their monograph.
 				break;
