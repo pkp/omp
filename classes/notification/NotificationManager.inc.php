@@ -89,9 +89,12 @@ class NotificationManager extends PKPNotificationManager {
 			case NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_INTERNAL_REVIEW:
 			case NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_EXTERNAL_REVIEW:
 			case NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_EDITING:
-			case NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_PRODUCTION:
 				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
 				$contents['description'] = __('notification.type.editorAssignment');
+				break;
+			case NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_PRODUCTION:
+				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
+				$contents['description'] = __('notification.type.editorAssignmentProduction');
 				break;
 			default:
 				$contents = parent::getNotificationContents($request, $notification);
