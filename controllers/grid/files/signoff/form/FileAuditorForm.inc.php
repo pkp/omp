@@ -147,7 +147,7 @@ class FileAuditorForm extends Form {
 	 */
 	function insertEntry(&$request, $newRowId) {
 		// Fetch and validate the file ID
-		$fileId = (int) $newRowId;
+		$fileId = (int) $newRowId['name'];
 		$monograph =& $this->getMonograph();
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO');
 		$monographFile =& $submissionFileDao->getLatestRevision($fileId, null, $monograph->getId());

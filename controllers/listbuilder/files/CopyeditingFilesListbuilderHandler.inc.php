@@ -115,7 +115,8 @@ class CopyeditingFilesListbuilderHandler extends ListbuilderHandler {
 		}
 
 		// Otherwise return from the newRowId
-		$fileId = (int) $this->getNewRowId($request);
+		$newRowId = $this->getNewRowId($request);
+		$fileId = (int) $newRowId['name'];
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		import('classes.monograph.MonographFile'); // Bring in const
