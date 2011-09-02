@@ -313,14 +313,23 @@ class Validation {
 
 		if ($roleDao->userHasRole(0, $administratorUserId, ROLE_ID_SITE_ADMIN)) return true;
 
-		// Check for roles in other presses that this user doesn't have
-		// a manager role in.
-		$roles = $roleDao->getByUserId($userId);
-		foreach ($roles as $role) {
-			if (!$roleDao->userHasRole($role->getPressId(), $administratorUserId, ROLE_ID_PRESS_MANAGER)) {
-				// Found a role: disqualified.
-				return false;
+		// Check for administered user group assignments in other presses
+		// that the administrator user doesn't have a manager role in.
+		$pressDao =& DAORegistry::getDao('PressDAO');
+		$presses =& $pressDao->getPresses();
+		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+		while(!$presses->eof()) {
+			$press = $presses->next();
+			$userGroups = $userGroupDao->getByUserId($administeredUserId, $press->getId());
+			while (!$userGroups->eof()) {
+				$userGroup =& $userGroups->next();
+				if (!$roleDao->userHasRole($userGroup->getContextId(), $administratorUserId, ROLE_ID_PRESS_MANAGER)) {
+					// Found an assignment: disqualified.
+					return false;
+				}
+				unset($userGroup);
 			}
+			unset($press, $userGroups);
 		}
 
 		// There were no conflicting roles.
