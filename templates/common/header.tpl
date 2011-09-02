@@ -89,7 +89,8 @@
 
 	{$additionalHeadData}
 </head>
-<script type="text/javascript">
+<body>
+	<script type="text/javascript">
 		// Initialise JS handler.
 		$(function() {ldelim}
 			$('body').pkpHandler(
@@ -99,7 +100,6 @@
 				{rdelim});
 		{rdelim});
 	</script>
-<body>
 	<div class="pkp_structure_page">
 		<div class="pkp_structure_head">
 			<div class="pkp_structure_content">
