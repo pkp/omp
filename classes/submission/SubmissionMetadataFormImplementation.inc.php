@@ -62,7 +62,6 @@ class SubmissionMetadataFormImplementation {
 			$formData = array(
 				'title' => $monograph->getTitle(null), // Localized
 				'abstract' => $monograph->getAbstract(null), // Localized
-				'discipline' => $monograph->getDiscipline(null), // Localized
 				'subjectClass' => $monograph->getSubjectClass(null), // Localized
 				'subject' => $monograph->getSubject(null), // Localized
 				'coverageGeo' => $monograph->getCoverageGeo(null), // Localized
@@ -78,6 +77,16 @@ class SubmissionMetadataFormImplementation {
 			foreach ($formData as $key => $data) {
 				$this->_parentForm->setData($key, $data);
 			}
+			
+			// load the persisted metadata controlled vocabularies
+			$monographKeywordDao =& DAORegistry::getDAO('MonographKeywordDAO');
+			$this->_parentForm->setData('keywords', $monographKeywordDao->getKeywords($monograph->getId()));
+			
+			$monographDisciplineDao =& DAORegistry::getDAO('MonographDisciplineDAO');
+			$this->_parentForm->setData('disciplines', $monographDisciplineDao->getDisciplines($monograph->getId()));
+			
+			$monographAgencyDao =& DAORegistry::getDAO('MonographAgencyDAO');
+			$this->_parentForm->setData('agencies', $monographAgencyDao->getAgencies($monograph->getId()));
 		}
 	}
 
@@ -122,6 +131,16 @@ class SubmissionMetadataFormImplementation {
 
 		// Save the monograph
 		$monographDao->updateMonograph($monograph);
+
+		// persist the metadata/keyword fields.
+		$monographKeywordDao =& DAORegistry::getDAO('MonographKeywordDAO');
+		$monographKeywordDao->insertKeywords($this->_parentForm->getData('keywordKeywords'), $monograph->getId());
+
+		$monographDisciplineDao =& DAORegistry::getDAO('MonographDisciplineDAO');
+		$monographDisciplineDao->insertDisciplines($this->_parentForm->getData('disciplinesKeywords'), $monograph->getId());
+
+		$monographAgencyDao =& DAORegistry::getDAO('MonographAgencyDAO');
+		$monographAgencyDao->insertAgencies($this->_parentForm->getData('agenciesKeywords'), $monograph->getId());
 
 		// Resequence the authors (this ensures a primary contact).
 		$authorDao =& DAORegistry::getDAO('AuthorDAO');
