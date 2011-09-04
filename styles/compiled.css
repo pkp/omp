@@ -221,6 +221,68 @@ div.plupload div.plupload_header { display:none; }
   margin-top:5%;
 }
 .deprecated_selectHeader { margin-top:10px; }
+a.sprite:before {
+  content:" ";
+  width:24px;
+  height:24px;
+  float:left;
+  background:url(../lib/pkp/templates/images/structure/sprites.png);
+  background-repeat:no-repeat;
+  cursor:pointer;
+}
+a.settings:before {
+  margin-top:8px;
+  background-position:-408px 0;
+}
+a.settings:hover:before { background-position:-408px -24px; }
+a.information:before { background-position:-194px 0; }
+a.information:hover:before { background-position:-194px -24px; }
+a.more_info:before { background-position:-456px 0; }
+a.more_info:hover:before { background-position:-456px -24px; }
+a.delete:before { background-position:-432px 0; }
+a.delete:hover:before { background-position:-432px -24px; }
+a.edit:before { background-position:-240px 0; }
+a.edit:hover:before { background-position:-240px -24px; }
+a.participants:before { background-position:-314px 0; }
+a.participants:hover:before { background-position:-314px -24px; }
+a.notes:before {
+  margin-top:7px;
+  background-position:-264px 0;
+}
+a.notes:hover:before { background-position:-264px -24px; }
+a.notes_new:before {
+  margin-top:7px;
+  background-position:-264px 0;
+}
+a.notes_new:hover:before { background-position:-264px -24px; }
+a.notes_none:before {
+  margin-top:7px;
+  background-position:-264px 0;
+}
+a.notes_none:hover:before { background-position:-264px -24px; }
+a.add:before {
+  margin-right:4px;
+  background-position:-504px 0;
+}
+a.add:hover:before { background-position:-504px -24px; }
+a.add_user:before {
+  margin-right:4px;
+  background-position:-528px 0;
+}
+a.add_user:hover:before { background-position:-528px -24px; }
+a.add_category:before {
+  margin-right:4px;
+  background-position:-552px 0;
+}
+a.add_category:hover:before { background-position:-552px -24px; }
+a.add_item:before {
+  margin-top:1px;
+  margin-right:4px;
+  background-position:-576px 0;
+}
+a.add_item:hover:before { background-position:-576px -24px; }
+a.remove_item:before { background-position:-600px 0; }
+a.remove_item:hover:before { background-position:-600px -24px; }
 .pkp_structure_head {
   height:90px;
   background-color:#a2c6dc;
@@ -396,36 +458,12 @@ body {
   border-top:1px dotted #ffffff;
   background-color:#c1bbaf;
 }
-.pkp_linkActions a {
-  background-repeat:no-repeat;
-  margin-left:10px;
-  padding-left:18px;
-}
-.pkp_linkActions.gridCellContainer a {
-  margin-left:0px;
-  padding-left:0px;
-}
-.pkp_linkActions a.add { background:url(../lib/pkp/templates/images/structure/grid_new_file.png) no-repeat left; }
-.pkp_linkActions a.notes {
-  background:url(../lib/pkp/templates/images/structure/grid_note.png);
-  background-position:bottom;
-}
-.pkp_linkActions a.notes_new {
-  background:url(../lib/pkp/templates/images/structure/grid_note_new.png);
-  background-position:bottom;
-}
-.pkp_linkActions a.notes_none {
-  background:url(../lib/pkp/templates/images/structure/grid_note_none.png);
-  background-position:bottom;
-}
+.pkp_linkActions a { background-repeat:no-repeat; }
 .pkp_linkActions a.add_item { background-image:url(../lib/pkp/templates/images/structure/lb_add.png); }
 .pkp_linkActions a.remove_item { background-image:url(../lib/pkp/templates/images/structure/lb_delete.png); }
 .pkp_linkActions a.promote { background-image:url(../lib/pkp/templates/images/structure/grid_promote.png); }
 .pkp_linkActions a.enable { background-image:url(../lib/pkp/templates/images/structure/grid_promote.png); }
-.pkp_linkActions a.delete { background-image:url(../lib/pkp/templates/images/structure/grid_delete.png); }
 .pkp_linkActions a.disable { background-image:url(../lib/pkp/templates/images/structure/grid_delete.png); }
-.pkp_linkActions a.edit { background-image:url(../lib/pkp/templates/images/structure/grid_edit.png); }
-.pkp_linkActions a.more_info { background-image:url(../lib/pkp/templates/images/structure/grid_information.png); }
 @import url("lib/pkp/styles/form.less");
 table.pkp_listing td { padding:0.25em 1.5em 0.25em 0.5em; }
 table.pkp_listing tr.heading td, table.pkp_listing td.heading {
@@ -737,14 +775,10 @@ div.pkp_controllers_grid td {
   height:40px;
   font-size:85%;
   vertical-align:middle;
-  padding:2px 4px;
+  padding:0px 4px;
 }
 div.pkp_controllers_grid th:first-child, div.pkp_controllers_grid td:first-child, div.pkp_controllers_grid col.first_column { text-align:left !important; }
-div.pkp_controllers_grid td.first_column {
-  padding:0 !important;
-  margin:0 !important;
-}
-div.pkp_controllers_grid td.first_column a { background-repeat:no-repeat; }
+div.pkp_controllers_grid td.first_column { padding:0 !important; }
 div.pkp_controllers_grid tr.category td {
   text-align:left;
   height:20px;
@@ -761,49 +795,45 @@ div.pkp_controllers_grid tr.category td a {
 }
 div.pkp_controllers_grid .options {
   float:right;
+  line-height:24px;
+  height:24px;
+  vertical-align:middle;
   margin-bottom:10px;
 }
-div.pkp_controllers_grid .options a {
-  background-position:0px 50%;
-  display:inline;
-  padding:5px 0px 5px 20px;
-  margin-left:20px;
-  font-size:90%;
-}
+div.pkp_controllers_grid .options a { font-size:90%; }
+div.pkp_controllers_grid .options a:before { margin-left:20px; }
 div.pkp_controllers_grid .hidetext {
   visibility:hidden;
   overflow:hidden;
 }
 div.pkp_controllers_grid .row_container {
   position:relative;
-  padding-left:25px;
+  padding-left:40px;
   padding-right:30px;
   overflow:hidden;
-  background-color:#e8f0f8;
-}
-div.pkp_controllers_grid .row_actions {
+  height:40px;
   min-height:40px;
   line-height:40px;
   vertical-align:middle;
+}
+div.pkp_controllers_grid .row_actions {
   position:absolute;
   top:0;
   left:0;
-  width:25px;
-  padding-top:5px;
-}
-div.pkp_controllers_grid .row_file {
-  min-height:40px;
-  line-height:40px;
-  vertical-align:middle;
-  width:100%;
-  padding:5px 15px;
-  background-color:#ffffff;
+  width:24px;
 }
 div.pkp_controllers_grid .row_actions a {
-  margin-left:5px;
-  padding:1px 7px;
+  display:block;
+  cursor:pointer;
 }
-div.pkp_controllers_grid .row_file a { padding:2px 10px; }
+div.pkp_controllers_grid .row_file {
+  width:100%;
+  background-color:#ffffff;
+}
+div.pkp_controllers_grid .row_file a {
+  float:left;
+  margin-right:20px;
+}
 div.pkp_controllers_grid .multiline {
   line-height:125%;
   line-height:inherit;
@@ -813,29 +843,18 @@ div.pkp_controllers_grid .row_controls {
   border-bottom:1px solid #999999;
 }
 div.pkp_controllers_grid .row_controls td {
-  vertical-align:middle;
-  overflow:hidden;
-  white-space:nowrap;
+  padding-left:30px;
   line-height:25px;
   height:25px;
-  padding:0px;
 }
 div.pkp_controllers_grid .row_controls a {
+  float:left;
+  margin-right:20px;
   text-decoration:none;
   color:#777777;
   font-size:90%;
-  padding:2px 30px 2px 20px;
 }
-div.pkp_controllers_grid .row_controls a:hover {
-  text-decoration:underline;
-  text-decoration:underline;
-}
-div.pkp_controllers_grid a.sprite {
-  background-position:0 top;
-  text-decoration:none;
-  padding:1px 0px;
-}
-div.pkp_controllers_grid a.sprite:hover { background-position:0 bottom; }
+div.pkp_controllers_grid .row_controls a:hover { text-decoration:underline; }
 div.pkp_controllers_grid a.focus { background-position:0 bottom; }
 div.pkp_controllers_grid a.task {
   width:100%;
@@ -890,7 +909,6 @@ div.pkp_controllers_grid .pkp_controllers_grid_settings_stages {
   width:20%;
 }
 .pkp_controllers_grid .options a.sort { background:url(../lib/pkp/templates/images/structure/grid_sort.png) no-repeat left; }
-.pkp_controllers_grid a.settings { background-image:url(../lib/pkp/templates/images/structure/grid_settings.png); }
 .pkp_controllers_grid a.word { background-image:url(../lib/pkp/templates/images/structure/page_white_word.png); }
 .pkp_controllers_grid a.excel { background-image:url(../lib/pkp/templates/images/structure/page_white_excel.png); }
 .pkp_controllers_grid a.pdf { background-image:url(../lib/pkp/templates/images/structure/page_white_acrobat.png); }
@@ -1079,6 +1097,7 @@ span.pkp_controllers_informationCenter_itemLastEvent {
   float:left;
 }
 .pkp_submissionChecklist ul li label.error { margin-bottom:15px; }
+@import url("styles/workflow.less");
 .pkp_submission_header { position:relative; }
 .pkp_submission_header ul.submission_actions {
   position:relative;
@@ -1109,18 +1128,6 @@ span.pkp_controllers_informationCenter_itemLastEvent {
   z-index:10;
 }
 .pkp_submission_header ul.submission_actions a { text-decoration:underline; }
-.pkp_submission_header ul.submission_actions a:before {
-  content:" ";
-  width:24px;
-  height:24px;
-  float:left;
-  background:url(../lib/pkp/templates/images/structure/sprites.png);
-  background-repeat:no-repeat;
-}
-.pkp_submission_header ul.submission_actions a.participants:before { background-position:-290px 0; }
-.pkp_submission_header ul.submission_actions a.participants:hover:before { background-position:-290px -24px; }
-.pkp_submission_header ul.submission_actions a.information:before { background-position:-170px 0; }
-.pkp_submission_header ul.submission_actions a.information:hover:before { background-position:-170px -24px; }
 .pkp_submission_header .submission_progress_wrapper {
   clear:both;
   padding-top:30px;
@@ -1152,33 +1159,15 @@ span.pkp_controllers_informationCenter_itemLastEvent {
 }
 .pkp_submission_header .submission_progress li.complete { background-color:#e5f4e5; }
 .pkp_submission_header .submission_progress li.complete a:before {
-  content:" ";
-  width:24px;
-  height:24px;
-  float:left;
-  background:url(../lib/pkp/templates/images/structure/sprites.png);
-  background-repeat:no-repeat;
-  background-position:-338px 0;
+  background-position:-362px 0;
   margin-top:7px;
 }
 .pkp_submission_header .submission_progress li.current a:before {
-  content:" ";
-  width:24px;
-  height:24px;
-  float:left;
-  background:url(../lib/pkp/templates/images/structure/sprites.png);
-  background-repeat:no-repeat;
-  background-position:-314px 0;
+  background-position:-338px 0;
   margin-top:7px;
 }
 .pkp_submission_header .submission_progress li a:before {
-  content:" ";
-  width:24px;
-  height:24px;
-  float:left;
-  background:url(../lib/pkp/templates/images/structure/sprites.png);
-  background-repeat:no-repeat;
-  background-position:-362px 0;
+  background-position:-386px 0;
   margin-top:7px;
 }
 .pkp_submission_header .submission_progress li.current { background-color:#eaf3f8; }

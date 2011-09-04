@@ -102,7 +102,7 @@ class AuthorGridHandler extends GridHandler {
 					'addUser'
 				),
 				__('listbuilder.contributors.addContributor'),
-				'add_item'
+				'add_user'
 			)
 		);
 

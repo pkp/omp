@@ -91,9 +91,11 @@ class SeriesGridHandler extends SetupGridHandler {
 					__('grid.action.addSeries'),
 					null,
 					true),
-				__('grid.action.addSeries'))
+				__('grid.action.addSeries'),
+				'add_category'
+			)
 		);
-
+		
 		// Columns
 		$this->addColumn(
 			new GridColumn(

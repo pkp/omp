@@ -62,7 +62,7 @@ class ContributorGridHandler extends SetupGridHandler {
 					true
 					),
 				__('grid.action.addContributor'),
-				'addContributor')
+				'add_user')
 		);
 
 		// Columns

@@ -58,7 +58,7 @@ class SponsorGridHandler extends SetupGridHandler {
 					true
 					),
 				__('grid.action.addSponsor'),
-				'addSponsor')
+				'add_user')
 		);
 
 		// Columns
