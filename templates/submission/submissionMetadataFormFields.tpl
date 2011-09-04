@@ -14,7 +14,7 @@
 		{fbvElement type="text" multilingual=true name="title" id="title" value=$title maxlength="255" disabled=$readOnly}
 	{/fbvFormSection}
 	{fbvFormSection title="submission.submit.briefSummary" for="abstract"}
-		{fbvElement type="textarea" multilingual=true name="abstract" id="abstract" value=$abstract disabled=$readOnly}
+		{fbvElement type="textarea" multilingual=true name="abstract" id="abstract" value=$abstract rich=true disabled=$readOnly}
 	{/fbvFormSection}
 	{fbvFormSection title="submission.submit.metadata"}
 		{fbvElement type="keyword" id="disciplines" label="search.discipline" current=$disciplines disabled=$readOnly}
