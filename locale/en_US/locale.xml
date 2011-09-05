@@ -318,6 +318,7 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="log.imported">{$userName} has imported monograph {$monographId}.</message>
 
 	<!-- Notification Types -->
+	<message key="notification.addedAuditor">Auditor added.</message>
 	<message key="notification.mailListDescription">Enter your email address to receive immediate notifications of important new content added to the press.</message>
 	<message key="notification.notificationsPublicDescription">This page shows important updates associated with this press such as new monographs or announcements.  You may subscribe to these notifications through RSS feeds (by clicking on the images to the right), or <![CDATA[  <a href="{$emailUrl}">through email.</a>]]></message>
 	<message key="notification.type.monographSubmitted">A new monograph, "{$title}", has been submitted.</message>
@@ -331,7 +332,7 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="notification.type.editorAssignment">An editor must be assigned before you can initiate review.</message>
 	<message key="notification.type.editorAssignmentProduction">A production editor must be assigned before you can initiate the production process.</message>
 	<message key="notification.type.auditorRequest">You were requested to be an auditor on "{$file}"</message>
-
+	
 	<!--
 	 *
 	 * MISC - Entries that do not belong in the other sections.
