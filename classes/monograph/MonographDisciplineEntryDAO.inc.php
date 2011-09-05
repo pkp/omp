@@ -31,7 +31,7 @@ class MonographDisciplineEntryDAO extends ControlledVocabEntryDAO {
 	 * @return array
 	 */
 	function getAdditionalFieldNames() {
-		return array('monograph_discipline');
+		return array('monographDiscipline');
 	}
 
 	/**

@@ -30,7 +30,7 @@ class MonographAgencyEntryDAO extends ControlledVocabEntryDAO {
 	 * @return array
 	 */
 	function getAdditionalFieldNames() {
-		return array('monograph_agency');
+		return array('monographAgency');
 	}
 
 	/**

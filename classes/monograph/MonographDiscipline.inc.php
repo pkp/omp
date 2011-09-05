@@ -26,7 +26,7 @@ class MonographDiscipline extends ControlledVocabEntry {
 	 * @return string
 	 */
 	function getDiscipline() {
-		return $this->getData('monograph_discipline');
+		return $this->getData('monographDiscipline');
 	}
 
 	/**
@@ -34,7 +34,7 @@ class MonographDiscipline extends ControlledVocabEntry {
 	 * @param discipline
 	 */
 	function setDiscipline($discipline) {
-		$this->setData('monograph_discipline', $discipline);
+		$this->setData('monographDiscipline', $discipline);
 	}
 }
 ?>

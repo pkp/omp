@@ -15,7 +15,7 @@
 
 import('lib.pkp.classes.controlledVocab.ControlledVocabDAO');
 
-define('CONTROLLED_VOCAB_MONOGRAPH_AGENCY', 'monograph_agency');
+define('CONTROLLED_VOCAB_MONOGRAPH_AGENCY', 'monographAgency');
 
 class MonographAgencyDAO extends ControlledVocabDAO {
 
@@ -28,7 +28,7 @@ class MonographAgencyDAO extends ControlledVocabDAO {
 	 * @return array
 	 */
 	function getAdditionalFieldNames() {
-		return array('monograph_agency');
+		return array('monographAgency');
 	}
 
 	function getAgencies($monographId) {

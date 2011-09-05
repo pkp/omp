@@ -30,7 +30,7 @@ class MonographKeywordEntryDAO extends ControlledVocabEntryDAO {
 	 * @return array
 	 */
 	function getAdditionalFieldNames() {
-		return array('monograph_keyword');
+		return array('monographKeyword');
 	}
 
 	/**

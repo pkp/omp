@@ -15,7 +15,7 @@
 
 import('lib.pkp.classes.controlledVocab.ControlledVocabDAO');
 
-define('CONTROLLED_VOCAB_MONOGRAPH_KEYWORD', 'monograph_keyword');
+define('CONTROLLED_VOCAB_MONOGRAPH_KEYWORD', 'monographKeyword');
 
 class MonographKeywordDAO extends ControlledVocabDAO {
 
@@ -28,7 +28,7 @@ class MonographKeywordDAO extends ControlledVocabDAO {
 	 * @return array
 	 */
 	function getAdditionalFieldNames() {
-		return array('monograph_keyword');
+		return array('monographKeyword');
 	}
 
 	function getKeywords($monographId) {

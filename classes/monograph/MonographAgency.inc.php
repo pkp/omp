@@ -25,7 +25,7 @@ class MonographAgency extends ControlledVocabEntry {
 	 * @return string
 	 */
 	function getAgency() {
-		return $this->getData('monograph_agency');
+		return $this->getData('monographAgency');
 	}
 
 	/**
@@ -33,7 +33,7 @@ class MonographAgency extends ControlledVocabEntry {
 	 * @param agency
 	 */
 	function setAgency($agency) {
-		$this->setData('monograph_agency', $agency);
+		$this->setData('monographAgency', $agency);
 	}
 }
 ?>

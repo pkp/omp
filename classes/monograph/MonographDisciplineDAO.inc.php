@@ -15,7 +15,7 @@
 
 import('lib.pkp.classes.controlledVocab.ControlledVocabDAO');
 
-define('CONTROLLED_VOCAB_MONOGRAPH_DISCIPLINE', 'monograph_discipline');
+define('CONTROLLED_VOCAB_MONOGRAPH_DISCIPLINE', 'monographDiscipline');
 
 class MonographDisciplineDAO extends ControlledVocabDAO {
 
@@ -28,7 +28,7 @@ class MonographDisciplineDAO extends ControlledVocabDAO {
 	 * @return array
 	 */
 	function getAdditionalFieldNames() {
-		return array('monograph_discipline');
+		return array('monographDiscipline');
 	}
 
 	function getDisciplines($monographId) {

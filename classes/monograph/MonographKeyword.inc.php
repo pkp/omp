@@ -25,7 +25,7 @@ class MonographKeyword extends ControlledVocabEntry {
 	 * @return string
 	 */
 	function getKeyword() {
-		return $this->getData('monograph_keyword');
+		return $this->getData('monographKeyword');
 	}
 
 	/**
@@ -33,7 +33,7 @@ class MonographKeyword extends ControlledVocabEntry {
 	 * @param keyword
 	 */
 	function setKeyword($keyword) {
-		$this->setData('monograph_keyword', $keyword);
+		$this->setData('monographKeyword', $keyword);
 	}
 }
 ?>
