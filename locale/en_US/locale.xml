@@ -330,6 +330,7 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="notification.type.userComment">A reader has made a comment on "{$title}"</message>
 	<message key="notification.type.editorAssignment">An editor must be assigned before you can initiate review.</message>
 	<message key="notification.type.editorAssignmentProduction">A production editor must be assigned before you can initiate the production process.</message>
+	<message key="notification.type.auditorRequest">You were requested to be an auditor on "{$file}"</message>
 
 	<!--
 	 *

@@ -454,9 +454,24 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 		$fileId = (int) $request->getUserVar('fileId');
 
 		if($signoff) {
+			// Remove the auditor request task notification.
+			$notificationDao =& DAORegistry::getDAO('NotificationDAO');
+			$notification =& $notificationDao->getNotificationsByAssoc(
+				ASSOC_TYPE_SIGNOFF,
+				$signoff->getId(),
+				$signoff->getUserId(),
+				NOTIFICATION_TYPE_AUDITOR_REQUEST
+			);
+			if (!$notification->wasEmpty()) {
+				$notification =& $notification->next();
+				$notificationDao->deleteNotificationById($notification->getId());
+			}
+
 			// Remove the signoff
 			$signoffDao =& DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
 			$signoffDao->deleteObjectById($signoff->getId());
+
+
 
 			return DAO::getDataChangedEvent($fileId);
 		} else {

@@ -177,6 +177,18 @@ class FileAuditorForm extends Form {
 		$dueDateParts = explode('-', $this->getData('responseDueDate'));
 		$signoff->setDateUnderway(date('Y-m-d H:i:s', mktime(0, 0, 0, $dueDateParts[0], $dueDateParts[1], $dueDateParts[2])));
 		$monographFileSignoffDao->updateObject($signoff);
+
+		// Set the task notification to user.
+		$notificationMgr = new NotificationManager();
+		$notificationMgr->createNotification(
+			$request,
+			$userId,
+			NOTIFICATION_TYPE_AUDITOR_REQUEST,
+			$press->getId(),
+			ASSOC_TYPE_SIGNOFF,
+			$signoff->getId(),
+			NOTIFICATION_LEVEL_TASK
+		);
 	}
 
 	/**

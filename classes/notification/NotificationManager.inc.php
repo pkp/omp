@@ -49,6 +49,7 @@ class NotificationManager extends PKPNotificationManager {
 			case NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_EXTERNAL_REVIEW:
 			case NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_EDITING:
 			case NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_PRODUCTION:
+			case NOTIFICATION_TYPE_AUDITOR_REQUEST:
 				break;
 			default:
 				$url = parent::getNotificationUrl($request, $notification);
@@ -96,6 +97,12 @@ class NotificationManager extends PKPNotificationManager {
 				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
 				$contents['description'] = __('notification.type.editorAssignmentProduction');
 				break;
+			case NOTIFICATION_TYPE_AUDITOR_REQUEST:
+				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH_FILE && is_numeric($notification->getAssocId()));
+				$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO');
+				$monographFile =& $submissionFileDao->getLatestRevision($notification->getAssocId());
+				$contents['description'] = __('notification.type.auditorRequest', array('file' => $monographFile->getLocalizedName()));
+				break;
 			default:
 				$contents = parent::getNotificationContents($request, $notification);
 		}
@@ -129,7 +136,10 @@ class NotificationManager extends PKPNotificationManager {
 			case NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_EXTERNAL_REVIEW:
 			case NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_EDITING:
 			case NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_PRODUCTION:
-			case NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_SUBMISSION: return 'notifyWarning';
+			case NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_SUBMISSION:
+			case NOTIFICATION_TYPE_AUDITOR_REQUEST:
+				return 'notifyWarning';
+				break;
 			default: return parent::getStyleClass($notification);
 		}
 	}
