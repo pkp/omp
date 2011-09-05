@@ -244,7 +244,17 @@ class AuthorGridHandler extends GridHandler {
 			if(!isset($author)) {
 				// This is a new contributor
 				$author =& $authorDao->getAuthor($authorId, $monograph->getId());
+				// New added author action notification content.
+				$notificationContent = 'notification.addedAuthor';
+			} else {
+				// Author edition action notification content.
+				$notificationContent = 'notification.editedAuthor';
 			}
+
+			// Create trivial notification.
+			$currentUser =& $request->getUser();
+			$notificationMgr = new NotificationManager();
+			$notificationMgr->createTrivialNotification($currentUser->getId(), $notificationContent);
 
 			// Prepare the grid row data
 			$row =& $this->getRowInstance();
