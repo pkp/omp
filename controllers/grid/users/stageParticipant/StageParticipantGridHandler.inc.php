@@ -232,7 +232,7 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 					if ($stageAssignmentDao->editorAssignedToStage($monograph->getId(), $workingStageId)) {
 						$notificationType = $notificationManager->getEditorAssignmentNotificationTypeByStageId($workingStageId);
 						$notification =& $notificationDao->getNotificationsByAssoc(
-							ASSOC_TYPE_MONOGRAPH, $monograph->getId(), $notificationType);
+							ASSOC_TYPE_MONOGRAPH, $monograph->getId(), null, $notificationType);
 						$notification =& $notification->next();
 						if (is_a($notification, 'Notification')) {
 							$notificationDao->deleteNotificationById($notification->getId());
@@ -290,7 +290,7 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 				// Check if we don't have a notification for this stage already.
 				$notificationDao =& DAORegistry::getDAO('NotificationDAO');
 				$notification =& $notificationDao->getNotificationsByAssoc(
-							ASSOC_TYPE_MONOGRAPH, $monograph->getId(), $notificationType);
+							ASSOC_TYPE_MONOGRAPH, $monograph->getId(), null, $notificationType);
 				if($notification->next()) break;
 
 				// Create a notification.
