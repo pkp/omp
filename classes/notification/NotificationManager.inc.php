@@ -50,6 +50,7 @@ class NotificationManager extends PKPNotificationManager {
 			case NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_EDITING:
 			case NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_PRODUCTION:
 			case NOTIFICATION_TYPE_AUDITOR_REQUEST:
+			case NOTIFICATION_TYPE_COPYEDIT_SIGNOFF:
 				break;
 			default:
 				$url = parent::getNotificationUrl($request, $notification);
@@ -103,6 +104,8 @@ class NotificationManager extends PKPNotificationManager {
 				$monographFile =& $submissionFileDao->getLatestRevision($notification->getAssocId());
 				$contents['description'] = __('notification.type.auditorRequest', array('file' => $monographFile->getLocalizedName()));
 				break;
+			case NOTIFICATION_TYPE_COPYEDIT_SIGNOFF:
+				break;
 			default:
 				$contents = parent::getNotificationContents($request, $notification);
 		}
@@ -138,6 +141,7 @@ class NotificationManager extends PKPNotificationManager {
 			case NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_PRODUCTION:
 			case NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_SUBMISSION:
 			case NOTIFICATION_TYPE_AUDITOR_REQUEST:
+			case NOTIFICATION_TYPE_COPYEDIT_SIGNOFF:
 				return 'notifyWarning';
 				break;
 			default: return parent::getStyleClass($notification);
@@ -170,6 +174,77 @@ class NotificationManager extends PKPNotificationManager {
 		return $notificationType;
 	}
 
+	/**
+	 * Update the NOTIFICATION_TYPE_COPYEDIT_SIGNOFF. The logic to update is:
+	 * if the user have at least one incompleted signoff on the current press,
+	 * a notification must be inserted or keeped for the user. Otherwise, if a
+	 * notification exists, it should be deleted.
+	 * @param $userId int
+	 * @param $request Request
+	 */
+	function updateCopyeditSignoffNotification($userId, &$request) {
+		$press =& $request->getPress();
+		$contextId = $press->getId();
+
+		// Check for an existing NOTIFICATION_TYPE_COPYEDIT_SIGNOFF for this user.
+		$notificationDao =& DAORegistry::getDAO('NotificationDAO');
+		$notificationFactory =& $notificationDao->getNotificationsByUserId(
+			$userId,
+			NOTIFICATION_LEVEL_TASK,
+			NOTIFICATION_TYPE_COPYEDIT_SIGNOFF,
+			$contextId
+		);
+
+		// Check for any user signoff.
+		$signOffDao =& DAORegistry::getDAO('SignoffDAO');
+		$signoffFactory =& $signOffDao->getByUserId($userId);
+
+		$activeSignoffs = false;
+		if (!$signoffFactory->wasEmpty()) {
+			// Loop through signoffs and check for active ones on this press.
+			while (!$signoffFactory->eof()) {
+				$signoff =& $signoffFactory->next();
+
+				// Look only for signoffs associated with monograph files.
+				if ($signoff->getAssocType() != ASSOC_TYPE_MONOGRAPH_FILE) {
+					continue;
+				}
+
+				$monographFileId = $signoff->getAssocId();
+				$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO');
+				$monographFile =& $submissionFileDao->getLatestRevision($monographFileId);
+				$monographId = $monographFile->getMonographId();
+				$monographDao =& DAORegistry::getDAO('MonographDAO');
+				$monograph =& $monographDao->getMonograph($monographId);
+
+				// Look only for signoffs associated with the current context.
+				if ($monograph->getPressId() != $contextId) {
+					continue;
+				}
+
+				if (!$signoff->getDateCompleted()) {
+					$activeSignoffs = true;
+					if ($notificationFactory->wasEmpty()) {
+						// At least one signoff not completed and no notification, create one.
+						$this->createNotification(
+							$request,
+							$signoff->getUserId(),
+							NOTIFICATION_TYPE_COPYEDIT_SIGNOFF,
+							$contextId,
+							null, null,
+							NOTIFICATION_LEVEL_TASK
+						);
+					}
+				}
+				unset($signoff);
+			}
+		}
+		if (!$activeSignoffs && !$notificationFactory->wasEmpty()) {
+			// No signoff but found notification, delete it.
+			$notification =& $notificationFactory->next();
+			$notificationDao->deleteNotificationById($notification->getId());
+		}
+	}
 }
 
 ?>

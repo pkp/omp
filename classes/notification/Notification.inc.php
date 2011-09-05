@@ -23,6 +23,7 @@ define('NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_EXTERNAL_REVIEW',     0x1000006);
 define('NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_EDITING',             0x1000007);
 define('NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_PRODUCTION',          0x1000008);
 define('NOTIFICATION_TYPE_AUDITOR_REQUEST',                       0x1000009);
+define('NOTIFICATION_TYPE_COPYEDIT_SIGNOFF',                          0x1000010);
 
 import('lib.pkp.classes.notification.PKPNotification');
 

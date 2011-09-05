@@ -229,6 +229,12 @@ class SignoffFileUploadForm extends Form {
 		$signoff->setDateCompleted(Core::getCurrentDate());
 		$signoffDao->updateObject($signoff);
 
+		// Update NOTIFICATION_TYPE_COPYEDIT_SIGNOFF if this is a copyedit symbolic.
+		if ($signoff->getSymbolic() == 'SIGNOFF_COPYEDITING') {
+			$notificationMgr = new NotificationManager();
+			$notificationMgr->updateCopyeditSignoffNotification($signoff->getUserId(), $request);
+		}
+
 		return $signoff->getId();
 	}
 }
