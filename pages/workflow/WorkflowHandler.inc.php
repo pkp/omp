@@ -203,7 +203,8 @@ class WorkflowHandler extends Handler {
 					),
 					__('editor.monograph.newRound')
 				),
-				__('editor.monograph.newRound')
+				__('editor.monograph.newRound'),
+				'add_item_small'
 			); // FIXME: add icon.
 			$templateMgr->assign_by_ref('newRoundAction', $newRoundAction);
 		}
@@ -388,13 +389,13 @@ class WorkflowHandler extends Handler {
 				'name' => 'decline',
 				'operation' => 'sendReviews',
 				'title' => 'editor.monograph.decision.decline',
-				'image' => 'delete'
+				'image' => 'decline'
 			),
 			SUBMISSION_EDITOR_DECISION_INITIATE_REVIEW => array(
 				'name' => 'initiateReview',
 				'operation' => 'initiateReview',
 				'title' => 'editor.monograph.initiateReview',
-				'image' => 'add_item'
+				'image' => 'advance'
 			)
 		);
 
@@ -410,18 +411,20 @@ class WorkflowHandler extends Handler {
 			SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS => array(
 				'operation' => 'sendReviews',
 				'name' => 'requestRevisions',
-				'title' => 'editor.monograph.decision.requestRevisions'
+				'title' => 'editor.monograph.decision.requestRevisions',
+				'image' => 'revisions'
 			),
 			SUBMISSION_EDITOR_DECISION_RESUBMIT => array(
 				'operation' => 'sendReviews',
 				'name' => 'resubmit',
-				'title' => 'editor.monograph.decision.resubmit'
+				'title' => 'editor.monograph.decision.resubmit',
+				'image' => 'resubmit'
 			),
 			SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW => array(
 				'operation' => 'promote',
 				'name' => 'externalReview',
 				'title' => 'editor.monograph.decision.externalReview',
-				'image' => 'promote'
+				'image' => 'advance'
 			),
 			SUBMISSION_EDITOR_DECISION_ACCEPT => array(
 				'operation' => 'promote',
@@ -433,7 +436,7 @@ class WorkflowHandler extends Handler {
 				'operation' => 'sendReviews',
 				'name' => 'decline',
 				'title' => 'editor.monograph.decision.decline',
-				'image' => 'delete'
+				'image' => 'decline'
 			)
 		);
 

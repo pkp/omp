@@ -19,7 +19,7 @@
 {load_url_in_div id="revisionsGrid" url=$revisionsGridUrl}
 
 {** editorial decision actions *}
-<div class="pkp_linkActions">
+<div class="grid_actions">
 	{foreach from=$editorActions item=action}
 		{include file="linkAction/linkAction.tpl" action=$action contextId="reviewTabs"}
 	{/foreach}

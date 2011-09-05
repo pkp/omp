@@ -22,32 +22,32 @@
 	<input type="hidden" name="stageId" value="{$stageId|escape}" />
 	<input type="hidden" name="decision" value="{$decision|escape}" />
 
-	{fbvFormSection}
-		{fbvElement type="text" id="authorName" name="authorName" label="user.role.author" value=$authorName disabled=true}
+	{fbvFormSection title="user.role.author" for="authorName" size=$fbvStyles.size.MEDIUM}
+		{fbvElement type="text" id="authorName" name="authorName" value=$authorName disabled=true}
 	{/fbvFormSection}
 
 	{if $stageId == $smarty.const.WORKFLOW_STAGE_ID_INTERNAL_REVIEW || $stageId == $smarty.const.WORKFLOW_STAGE_ID_EXTERNAL_REVIEW}
 		<!--  Message to reviewer textarea -->
-		<p style="pkp_helper_align_right"><a id="importPeerReviews" href="#">{translate key="submission.comments.importPeerReviews"}</a></p><br />
+		<span style="float:right;line-height: 24px;"><a id="importPeerReviews" href="#" class="sprite import">{translate key="submission.comments.importPeerReviews"}</a></span>
 	{/if}
 
 	{** FIXME: we're using the PromoteForm for send to production, but there
 	 *	is no email for that action so should probably not use this template. **}
 	{if $stageId < $smarty.const.WORKFLOW_STAGE_ID_EXTERNAL_REVIEW}
-		{fbvFormSection}
-			{fbvElement type="textarea" name="personalMessage" id="personalMessage" label="editor.review.personalMessageToAuthor" value=$personalMessage  size=$fbvStyles.size.MEDIUM}
+		{fbvFormSection title="editor.review.personalMessageToAuthor" for="personalMessage"}
+			{fbvElement type="textarea" name="personalMessage" id="personalMessage" value=$personalMessage}
 		{/fbvFormSection}
 	{/if}
 
 	{** Some decisions can be made before review is initiated (i.e. no attachments). **}
 	{if $round}
-		<div id="attachments">
+		<div id="attachments" style="margin-top: 30px;">
 			{url|assign:reviewAttachmentsGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.files.attachment.EditorSelectableReviewAttachmentsGridHandler" op="fetchGrid" monographId=$monographId stageId=$stageId round=$round escape=false}
 			{load_url_in_div id="reviewAttachmentsGridContainer" url="$reviewAttachmentsGridUrl"}
 		</div>
 	{/if}
 
-	<div id="availableFiles">
+	<div id="availableFiles" style="margin-top: 30px;">
 		{* Show a different grid depending on whether we're in review or before the review stage *}
 		{if $stageId == $smarty.const.WORKFLOW_STAGE_ID_SUBMISSION}
 			{url|assign:filesToPromoteGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.submission.SelectableSubmissionDetailsFilesGridHandler" op="fetchGrid" monographId=$monographId stageId=$stageId escape=false}

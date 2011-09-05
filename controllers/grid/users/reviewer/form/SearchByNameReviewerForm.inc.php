@@ -47,7 +47,8 @@ class SearchByNameReviewerForm extends ReviewerForm {
 		$advancedSearchAction = new LinkAction(
 									'advancedSearch',
 									new AjaxAction($request->url(null, null, 'reloadReviewerForm', null, $actionArgs)),
-									__('manager.reviewerSearch.advancedSearch.short')
+									__('manager.reviewerSearch.advancedSearch.short'),
+									'user_search'
 								);
 		$this->setReviewerFormAction($advancedSearchAction);
 		$actionArgs['selectionType'] = REVIEWER_SELECT_CREATE;
@@ -55,7 +56,8 @@ class SearchByNameReviewerForm extends ReviewerForm {
 		$advancedSearchAction = new LinkAction(
 									'selectCreate',
 									new AjaxAction($request->url(null, null, 'reloadReviewerForm', null, $actionArgs)),
-									__('editor.review.createReviewer')
+									__('editor.review.createReviewer'),
+									'add_user'
 								);
 		$this->setReviewerFormAction($advancedSearchAction);
 		$actionArgs['selectionType'] = REVIEWER_SELECT_ENROLL_EXISTING;
@@ -63,7 +65,8 @@ class SearchByNameReviewerForm extends ReviewerForm {
 		$advancedSearchAction = new LinkAction(
 									'enrolExisting',
 									new AjaxAction($request->url(null, null, 'reloadReviewerForm', null, $actionArgs)),
-									__('editor.review.enrollReviewer.short')
+									__('editor.review.enrollReviewer.short'),
+									'enroll_user'
 								);
 		$this->setReviewerFormAction($advancedSearchAction);
 

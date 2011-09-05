@@ -12,7 +12,7 @@
 
 <locale name="en_US" full_name = "English">
 	<message key="editor.review.enrollReviewer">Enroll an Existing User as Reviewer</message>
-	<message key="editor.review.enrollReviewer.short">Enroll existing user</message>
+	<message key="editor.review.enrollReviewer.short">Enroll Existing User</message>
 	<message key="editor.review.createReviewer">Create New Reviewer</message>
 	<message key="editor.responseDueDate">Response Due Date</message>
 
@@ -101,9 +101,10 @@
 	<message key="editor.review">Review</message>
 	<message key="editor.review.uploadRevision">Upload Revision</message>
 	<message key="editor.review.uploadRevisionToRound">Upload revision to review round {$round}</message>
-	<message key="editor.review.personalMessageToReviewer">Personal message to reviewer</message>
-	<message key="editor.review.personalMessageFromEditor">Personal message from the editor</message>
-	<message key="editor.review.personalMessageToAuthor">Personal message to author</message>
+	<message key="editor.review.personalMessageToReviewer">Personal Message to Reviewer</message>
+	<message key="editor.review.personalMessageFromEditor">Personal Message from the Editor</message>
+	<message key="editor.review.personalMessageToAuthor">Personal Message to Author</message>
+	<message key="editor.review.importantDates">Important Dates</message>
 	<message key="editor.review.dateAccepted">Review Acceptance Date</message>
 	<message key="editor.review.noReviews">No peer reviews to import</message>
 	<message key="editor.review.reminder">Review Reminder</message>

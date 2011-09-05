@@ -33,9 +33,7 @@
 		{if $newRoundAction}
 			<li>
 				{** FIXME: this <a> tag is here just to get the CSS to work **}
-				<a id="newRoundTabContainer" href="/">+
-				{include file="linkAction/linkAction.tpl" action=$newRoundAction contextId="newRoundTabContainer"}
-				</a>
+				<a id="newRoundTabContainer" href="/" style="padding-left: 0px; padding-right: 0px;">{include file="linkAction/linkAction.tpl" image="add_item" action=$newRoundAction contextId="newRoundTabContainer"}</a>
 			</li>
 		{/if}
 	</ul>

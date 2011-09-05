@@ -15,18 +15,15 @@
 </script>
 
 <form class="pkp_form" id="searchByNameReviewerForm" method="post" action="{url op="updateReviewer"}" >
-	<h3>{translate key="manager.reviewerSearch.searchByName"}</h3>
-	{fbvFormSection}
+	{fbvFormSection title="user.role.reviewer" for="reviewer"}
 		{url|assign:autocompleteUrl op="finishFileSubmission" op="getReviewersNotAssignedToMonograph" monographId=$monographId stageId=$stageId round=$round escape=false}
-		{fbvElement type="autocomplete" autocompleteUrl=$autocompleteUrl id="reviewerId" label="user.role.reviewer" value=$userNameString|escape}
+		{fbvElement type="autocomplete" autocompleteUrl=$autocompleteUrl id="reviewerId" name="reviewer" value=$userNameString|escape}
 	{/fbvFormSection}
-	<div class="pkp_linkActions">
+	<div class="action_links">
 		{foreach from=$reviewerActions item=action}
 			{include file="linkAction/linkAction.tpl" action=$action contextId="searchByNameReviewerForm"}
 		{/foreach}
 	</div>
-	<br />
-	<br />
 
 	{include file="controllers/grid/users/reviewer/form/reviewerFormFooter.tpl"}
 

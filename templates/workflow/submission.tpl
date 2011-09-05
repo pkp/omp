@@ -11,15 +11,13 @@
 {include file="workflow/header.tpl"}
 {/strip}
 
-<div>
-	{url|assign:submissionFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.submission.EditorSubmissionDetailsFilesGridHandler" op="fetchGrid" monographId=$monograph->getId() stageId=$stageId escape=false}
-	{load_url_in_div id="submissionFilesGridDiv" url=$submissionFilesGridUrl}
+{url|assign:submissionFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.submission.EditorSubmissionDetailsFilesGridHandler" op="fetchGrid" monographId=$monograph->getId() stageId=$stageId escape=false}
+{load_url_in_div id="submissionFilesGridDiv" url=$submissionFilesGridUrl}
 
-	<div class="pkp_linkActions">
-		{foreach from=$editorActions item=action}
-			{include file="linkAction/linkAction.tpl" action=$action contextId="submission"}
-		{/foreach}
-	</div>
+<div class="grid_actions">
+	{foreach from=$editorActions item=action}
+		{include file="linkAction/linkAction.tpl" action=$action contextId="submission"}
+	{/foreach}
 </div>
-{include file="common/footer.tpl"}
 
+{include file="common/footer.tpl"}

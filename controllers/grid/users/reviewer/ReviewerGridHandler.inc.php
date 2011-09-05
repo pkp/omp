@@ -137,7 +137,8 @@ class ReviewerGridHandler extends GridHandler {
 					$router->url($request, null, null, 'showReviewerForm', null, $actionArgs),
 					__('editor.monograph.addReviewer')
 					),
-				__('editor.monograph.addReviewer')
+				__('editor.monograph.addReviewer'),
+				'add_user'
 				)
 			);
 
