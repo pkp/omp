@@ -106,7 +106,25 @@ class NotificationManager extends PKPNotificationManager {
 				break;
 			case NOTIFICATION_TYPE_COPYEDIT_SIGNOFF:
 				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
-				$contents['description'] = __('notification.type.copyeditSignoff');
+				$monographId = $notification->getAssocId();
+
+				Locale::requireComponents(array(LOCALE_COMPONENT_OMP_SUBMISSION));
+
+				$monographDao =& DAORegistry::getDAO('MonographDAO');
+				$monograph =& $monographDao->getMonograph($monographId);
+
+				import('controllers.api.signoff.linkAction.AddSignoffFileLinkAction');
+				$signoffFileLinkAction = new AddSignoffFileLinkAction(
+					$request, $monographId,
+					$monograph->getStageId(), 'SIGNOFF_COPYEDITING', null,
+					__('submission.upload.signoff'), __('submission.upload.signoff'));
+
+				$templateMgr =& TemplateManager::getManager();
+				$templateMgr->assign('signoffFileLinkAction', $signoffFileLinkAction);
+				$notificationDescription = $templateMgr->fetch('controllers/notification/copyeditingSignoffNotificationContent.tpl');
+
+				$contents['description'] = $notificationDescription;
+				$contents['title'] = __('notification.type.copyeditSignoff');
 				break;
 			default:
 				$contents = parent::getNotificationContents($request, $notification);

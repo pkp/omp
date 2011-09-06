@@ -1058,6 +1058,8 @@ div.pkp_controllers_listbuilder .gridRowEdit .gridCellDisplay { display:none; }
   background-repeat:no-repeat !important;
   padding:5px 20px 5px 60px;
 }
+.pkp_notification p { display:inline-block; }
+.pkp_notification .pkp_linkActions { line-height:24px; }
 .pkp_notification .notifySuccess {
   background:#daf0da url(../lib/pkp/templates/images/structure/response_success.png);
   border-top:1px solid #5abd5a;
