@@ -95,7 +95,7 @@ class FileAuditorForm extends Form {
 	 * @see Form::readInputData()
 	 */
 	function readInputData() {
-		$this->readUserVars(array('userId-GroupId', 'files', 'responseDueDate', 'personalMessage'));
+		$this->readUserVars(array('userId-GroupId', 'files', 'responseDueDate', 'personalMessage', 'skipEmail'));
 
 		list($userId, $userGroupId) = explode('-', $this->getData('userId-GroupId'));
 		$this->setData('userId', $userId);
@@ -138,7 +138,9 @@ class FileAuditorForm extends Form {
 
 		$email->addRecipient($user->getEmail(), $user->getFullName());
 		$email->setEventType($this->getEventType());
-		$email->send($request);
+		if (!$this->getData('skipEmail')) {
+			$email->send($request);
+		}
 	}
 
 	/**

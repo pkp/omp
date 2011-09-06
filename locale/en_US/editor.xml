@@ -97,6 +97,7 @@
 	<message key="editor.monograph.fileAuditor.form.userRequired">You must select a user to assign.</message>
 	<message key="editor.monograph.fileAuditor.form.fileRequired">You must select at least one file to assign the user to.</message>
 	<message key="editor.monograph.fileAuditor.form.messageRequired">You must include a personal message.</message>
+	<message key="editor.monograph.fileAuditor.skipEmail">Do not send email to the Auditor</message>
 	<message key="editor.monograph.noAuditRequested">No audit requested for this file</message>
 	<!-- Review related -->
 	<message key="editor.review">Review</message>
