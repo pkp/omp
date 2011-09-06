@@ -33,7 +33,7 @@
 		{/fbvFormSection}
 		{fbvFormSection title="common.other"}
 			{fbvElement type="text" label="user.affiliation" id="affiliation" inline=true value=$affiliation|escape maxlength="40" size=$fbvStyles.size.MEDIUM}
-			{fbvElement type="select" label="common.country" id="country" inline=true from=$countries selected=$country translate=false size=$fbvStyles.size.MEDIUM}
+			{fbvElement type="select" label="common.country" id="country" inline=true from=$countries selected=$country translate=false size=$fbvStyles.size.MEDIUM defaultValue="" defaultLabel=""}
 		{/fbvFormSection}
 		{fbvFormSection}
 			{fbvElement type="textArea" label="user.biography" id="biography" value=$biography|escape size=$fbvStyles.size.Large}
