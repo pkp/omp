@@ -15,8 +15,7 @@
 define('DEFAULT_SETTING_GENRES',	1);
 define('DEFAULT_SETTING_PUBLICATION_FORMATS',	2);
 
-class DefaultSettingDAO extends DAO
-{
+class DefaultSettingDAO extends DAO {
 	/**
 	 * Install setting types from an XML file.
 	 * @param $pressId int
