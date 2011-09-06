@@ -331,36 +331,43 @@ a.import:before {
 }
 a.import:hover:before { background-position:-816px -24px; }
 a.pdf:before {
+  margin-top:8px;
   margin-right:4px;
   background-position:-840px 0;
 }
 a.pdf:hover:before { background-position:-840px -24px; }
 a.html:before {
+  margin-top:8px;
   margin-right:4px;
   background-position:-864px 0;
 }
 a.html:hover:before { background-position:-864px -24px; }
 a.word:before {
+  margin-top:8px;
   margin-right:4px;
   background-position:-888px 0;
 }
 a.word:hover:before { background-position:-888px -24px; }
 a.image:before {
+  margin-top:8px;
   margin-right:4px;
   background-position:-912px 0;
 }
 a.image:hover:before { background-position:-912px -24px; }
 a.excel:before {
+  margin-top:8px;
   margin-right:4px;
   background-position:-936px 0;
 }
 a.excel:hover:before { background-position:-936px -24px; }
 a.default:before {
+  margin-top:8px;
   margin-right:4px;
   background-position:-960px 0;
 }
 a.default:hover:before { background-position:-960px -24px; }
 a.zip:before {
+  margin-top:8px;
   margin-right:4px;
   background-position:-984px 0;
 }
@@ -1009,11 +1016,6 @@ div.pkp_controllers_grid .pkp_controllers_grid_settings_stages {
   width:20%;
 }
 .pkp_controllers_grid .options a.sort { background:url(../lib/pkp/templates/images/structure/grid_sort.png) no-repeat left; }
-.pkp_controllers_grid a.word { background-image:url(../lib/pkp/templates/images/structure/page_white_word.png); }
-.pkp_controllers_grid a.excel { background-image:url(../lib/pkp/templates/images/structure/page_white_excel.png); }
-.pkp_controllers_grid a.pdf { background-image:url(../lib/pkp/templates/images/structure/page_white_acrobat.png); }
-.pkp_controllers_grid a.picture { background-image:url(../lib/pkp/templates/images/structure/page_white_picture.png); }
-.pkp_controllers_grid a.html { background-image:url(../lib/pkp/templates/images/structure/page_white_world.png); }
 .pkp_controllers_grid a.new { background-image:url(../lib/pkp/templates/images/structure/grid_task.png); }
 .pkp_controllers_grid a.accepted { background-image:url(../lib/pkp/templates/images/structure/grid_task_accepted.png); }
 .pkp_controllers_grid a.declined { background-image:url(../lib/pkp/templates/images/structure/lb_delete.png); }
