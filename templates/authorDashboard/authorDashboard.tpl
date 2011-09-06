@@ -28,9 +28,7 @@
 		</div>
 	</div>
 	<div style="clear:both;"></div>
-
-	{** User Alert **}
-	<div id="userAlert"></div>
+	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="authorDashboardNotification" requestOptions=$authorDashboardNotificationRequestOptions}
 	<br />
 
 	<!-- Author actions -->

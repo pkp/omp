@@ -478,10 +478,8 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 			$signoffDao->deleteObjectById($signoff->getId());
 
 			// Update NOTIFICATION_TYPE_COPYEDIT_SIGNOFF if this is a copyedit symbolic.
-			if ($this->getSymbolic() == 'SIGNOFF_COPYEDITING') {
-				$notificationMgr = new NotificationManager();
-				$notificationMgr->updateCopyeditSignoffNotification($signoff->getUserId(), $request);
-			}
+			$notificationMgr = new NotificationManager();
+			$notificationMgr->updateCopyeditSignoffNotification($signoff, $request);
 
 			return DAO::getDataChangedEvent($fileId);
 		} else {

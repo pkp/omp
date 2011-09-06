@@ -87,7 +87,8 @@ class WorkflowHandler extends Handler {
 		// Define the workflow notification options.
 		$notificationRequestOptions = array(
 			NOTIFICATION_LEVEL_TASK => array(
-				$editorAssignmentNotificationType => array(ASSOC_TYPE_MONOGRAPH, $monograph->getId())),
+				$editorAssignmentNotificationType => array(ASSOC_TYPE_MONOGRAPH, $monograph->getId(), true),
+				NOTIFICATION_TYPE_COPYEDIT_SIGNOFF => array(ASSOC_TYPE_MONOGRAPH, $monograph->getId())),
 			NOTIFICATION_LEVEL_TRIVIAL => array()
 		);
 

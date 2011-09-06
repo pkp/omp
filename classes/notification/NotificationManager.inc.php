@@ -105,6 +105,8 @@ class NotificationManager extends PKPNotificationManager {
 				$contents['description'] = __('notification.type.auditorRequest', array('file' => $monographFile->getLocalizedName()));
 				break;
 			case NOTIFICATION_TYPE_COPYEDIT_SIGNOFF:
+				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
+				$contents['description'] = __('notification.type.copyeditSignoff');
 				break;
 			default:
 				$contents = parent::getNotificationContents($request, $notification);
@@ -180,69 +182,70 @@ class NotificationManager extends PKPNotificationManager {
 	 * a notification must be inserted or keeped for the user. Otherwise, if a
 	 * notification exists, it should be deleted.
 	 * @param $userId int
+	 * @param $monographId int
 	 * @param $request Request
 	 */
-	function updateCopyeditSignoffNotification($userId, &$request) {
+	function updateCopyeditSignoffNotification($signoff, &$request) {
+
+		// Signoff checks.
+		if ($signoff->getSymbolic() != 'SIGNOFF_COPYEDITING' && $signoff->getAssocType() != ASSOC_TYPE_MONOGRAPH_FILE) {
+			// The signoff it is not notificable by this type of notification.
+			// Do nothing.
+			return;
+		}
+
 		$press =& $request->getPress();
 		$contextId = $press->getId();
+		$userId = $signoff->getUserId();
 
-		// Check for an existing NOTIFICATION_TYPE_COPYEDIT_SIGNOFF for this user.
+		// Get monograph id.
+		$monographFileId = $signoff->getAssocId();
+		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO');
+		$monographFile =& $submissionFileDao->getLatestRevision($monographFileId);
+		$monographId = $monographFile->getMonographId();
+
+		// Check for an existing NOTIFICATION_TYPE_COPYEDIT_SIGNOFF.
 		$notificationDao =& DAORegistry::getDAO('NotificationDAO');
-		$notificationFactory =& $notificationDao->getNotificationsByUserId(
+		$notificationFactory =& $notificationDao->getNotificationsByAssoc(
+			ASSOC_TYPE_MONOGRAPH,
+			$monographId,
 			$userId,
-			NOTIFICATION_LEVEL_TASK,
 			NOTIFICATION_TYPE_COPYEDIT_SIGNOFF,
 			$contextId
 		);
 
-		// Check for any user signoff.
-		$signOffDao =& DAORegistry::getDAO('SignoffDAO');
-		$signoffFactory =& $signOffDao->getByUserId($userId);
-
+		// Check for any active SIGNOFF_COPYEDITING.
+		$monographFileSignOffDao =& DAORegistry::getDAO('MonographFileSignoffDAO');
+		$signoffFactory =& $monographFileSignOffDao->getAllByMonograph($monographId, 'SIGNOFF_COPYEDITING', $userId);
 		$activeSignoffs = false;
 		if (!$signoffFactory->wasEmpty()) {
 			// Loop through signoffs and check for active ones on this press.
 			while (!$signoffFactory->eof()) {
-				$signoff =& $signoffFactory->next();
-
-				// Look only for signoffs associated with monograph files.
-				if ($signoff->getAssocType() != ASSOC_TYPE_MONOGRAPH_FILE) {
-					continue;
-				}
-
-				$monographFileId = $signoff->getAssocId();
-				$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO');
-				$monographFile =& $submissionFileDao->getLatestRevision($monographFileId);
-				$monographId = $monographFile->getMonographId();
-				$monographDao =& DAORegistry::getDAO('MonographDAO');
-				$monograph =& $monographDao->getMonograph($monographId);
-
-				// Look only for signoffs associated with the current context.
-				if ($monograph->getPressId() != $contextId) {
-					continue;
-				}
-
-				if (!$signoff->getDateCompleted()) {
+				$workingSignoff =& $signoffFactory->next();
+				if (!$workingSignoff->getDateCompleted()) {
 					$activeSignoffs = true;
-					if ($notificationFactory->wasEmpty()) {
-						// At least one signoff not completed and no notification, create one.
-						$this->createNotification(
-							$request,
-							$signoff->getUserId(),
-							NOTIFICATION_TYPE_COPYEDIT_SIGNOFF,
-							$contextId,
-							null, null,
-							NOTIFICATION_LEVEL_TASK
-						);
-					}
+					break;
 				}
-				unset($signoff);
+				unset($workingSignoff);
 			}
 		}
+
+		// Decide if we need to create or delete a notification.
 		if (!$activeSignoffs && !$notificationFactory->wasEmpty()) {
 			// No signoff but found notification, delete it.
 			$notification =& $notificationFactory->next();
 			$notificationDao->deleteNotificationById($notification->getId());
+		} else if ($activeSignoffs && $notificationFactory->wasEmpty()) {
+			// At least one signoff not completed and no notification, create one.
+			$this->createNotification(
+				$request,
+				$userId,
+				NOTIFICATION_TYPE_COPYEDIT_SIGNOFF,
+				$contextId,
+				ASSOC_TYPE_MONOGRAPH,
+				$monographId,
+				NOTIFICATION_LEVEL_TASK
+			);
 		}
 	}
 }

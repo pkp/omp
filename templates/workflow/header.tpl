@@ -68,7 +68,7 @@
 			<li class="{$publicationProgress}"><a class="sprite" href="#">{translate key="submission.published"}!</a></li>
 		</ul>
 	</div>
-	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="workflowNotification" requestOptions=$workflowNotificationRequestOptions}
 </div>
+{include file="controllers/notification/inPlaceNotification.tpl" notificationId="workflowNotification" requestOptions=$workflowNotificationRequestOptions}
 <br />
 <div class="pkp_helpers_clear"></div>

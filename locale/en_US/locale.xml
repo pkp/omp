@@ -335,6 +335,7 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="notification.type.editorAssignment">An editor must be assigned before you can initiate review.</message>
 	<message key="notification.type.editorAssignmentProduction">A production editor must be assigned before you can initiate the production process.</message>
 	<message key="notification.type.auditorRequest">You were requested to be an auditor on "{$file}"</message>
+	<message key="notification.type.copyeditSignoff">You have pending auditor tasks.</message>
 	
 	<!--
 	 *
