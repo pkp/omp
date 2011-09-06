@@ -192,7 +192,8 @@ class ReviewerForm extends Form {
 			'personalMessage',
 			'responseDueDate',
 			'reviewDueDate',
-			'reviewMethod'
+			'reviewMethod',
+			'skipEmail'
 		));
 
 		$interests = $this->getData('interestsKeywords');
@@ -244,7 +245,7 @@ class ReviewerForm extends Form {
 		import('classes.mail.MonographMailTemplate');
 		$mail = new MonographMailTemplate($submission, 'REVIEW_REQUEST', null, null, null, false);
 
-		if ($mail->isEnabled()) {
+		if ($mail->isEnabled() && !$this->getData('skipEmail')) {
 			$userDao = & DAORegistry::getDAO('UserDAO'); /* @var $userDao UserDAO */
 			$reviewer =& $userDao->getUser($reviewerId);
 			$user = $submission->getUser();
