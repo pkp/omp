@@ -456,9 +456,6 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 	function deleteSignoff($args, &$request) {
 		$signoff =& $this->getAuthorizedContextObject(ASSOC_TYPE_SIGNOFF);
 
-		// FIXME: Bug #6199
-		$fileId = (int) $request->getUserVar('fileId');
-
 		if($signoff) {
 			// Remove the auditor request task notification.
 			$notificationDao =& DAORegistry::getDAO('NotificationDAO');
@@ -481,7 +478,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 			$notificationMgr = new NotificationManager();
 			$notificationMgr->updateCopyeditSignoffNotification($signoff, $request);
 
-			return DAO::getDataChangedEvent($fileId);
+			return DAO::getDataChangedEvent((int) $request->getUserVar('fileId'));
 		} else {
 			$json = new JSONMessage(false, 'manager.setup.errorDeletingItem');
 			return $json->getString();

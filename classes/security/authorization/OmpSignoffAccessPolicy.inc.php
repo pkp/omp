@@ -33,7 +33,7 @@ class OmpSignoffAccessPolicy extends PressPolicy {
 		// Authors, press managers and series editors potentially have
 		// access to submission files. We'll have to define
 		// differentiated policies for those roles in a policy set.
-		$fileAccessPolicy = new PolicySet(COMBINING_PERMIT_OVERRIDES);
+		$signoffAccessPolicy = new PolicySet(COMBINING_PERMIT_OVERRIDES);
 
 
 		//
@@ -41,7 +41,7 @@ class OmpSignoffAccessPolicy extends PressPolicy {
 		//
 		if (isset($roleAssignments[ROLE_ID_PRESS_MANAGER])) {
 			// Press managers have all access to all submissions.
-			$fileAccessPolicy->addPolicy(new RoleBasedHandlerOperationPolicy($request, ROLE_ID_PRESS_MANAGER, $roleAssignments[ROLE_ID_PRESS_MANAGER]));
+			$signoffAccessPolicy->addPolicy(new RoleBasedHandlerOperationPolicy($request, ROLE_ID_PRESS_MANAGER, $roleAssignments[ROLE_ID_PRESS_MANAGER]));
 		}
 
 
@@ -56,7 +56,7 @@ class OmpSignoffAccessPolicy extends PressPolicy {
 			// 2) ... but only if the requested submission is part of their series.
 			import('classes.security.authorization.internal.SeriesAssignmentPolicy');
 			$seriesEditorFileAccessPolicy->addPolicy(new SeriesAssignmentPolicy($request));
-			$fileAccessPolicy->addPolicy($seriesEditorFileAccessPolicy);
+			$signoffAccessPolicy->addPolicy($seriesEditorFileAccessPolicy);
 		}
 
 
@@ -65,8 +65,8 @@ class OmpSignoffAccessPolicy extends PressPolicy {
 		//
 		import('classes.security.authorization.internal.SignoffAssignedToUserAccessPolicy');
 		$userOwnsSignoffPolicy = new SignoffAssignedToUserAccessPolicy($request);
-		$fileAccessPolicy->addPolicy($userOwnsSignoffPolicy);
-		$this->addPolicy($fileAccessPolicy);
+		$signoffAccessPolicy->addPolicy($userOwnsSignoffPolicy);
+		$this->addPolicy($signoffAccessPolicy);
 	}
 }
 

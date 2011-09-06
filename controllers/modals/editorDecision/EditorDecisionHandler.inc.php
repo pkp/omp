@@ -168,7 +168,6 @@ class EditorDecisionHandler extends Handler {
 	function savePromote($args, &$request) {
 		// Redirect to the next workflow page after
 		// promoting the submission.
-		// FIXME: Need to validate the decision. See #6199.
 		$decision = (int)$request->getUserVar('decision');
 
 		$redirectOp = null;
@@ -252,9 +251,7 @@ class EditorDecisionHandler extends Handler {
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		// Retrieve the stage id
 		$stageId = $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
-		// FIXME: Need to validate the decision (Does it combine with the
-		// requested operation? Is it a valid decision? Is the user authorized
-		// to take that decision? See #6199.
+		// Retrieve the decision
 		$decision = (int)$request->getUserVar('decision');
 
 
@@ -282,7 +279,7 @@ class EditorDecisionHandler extends Handler {
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		// Retrieve the stage id
 		$stageId = $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
-		// FIXME: Need to validate the decision. See #6199.
+		// Retrieve the decision
 		$decision = (int)$request->getUserVar('decision');
 
 		// Form handling

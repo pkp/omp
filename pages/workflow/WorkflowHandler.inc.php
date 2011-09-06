@@ -242,7 +242,6 @@ class WorkflowHandler extends Handler {
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		$stageId = $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
 
-		// FIXME: #6199 make sure this is not creater than the current round for this stage
 		if (!(count($args) > 1 && is_numeric($args[1]))) fatalError('Invalid round given!');
 		$round = (int)$args[1];
 

@@ -260,9 +260,7 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 
 		$stageAssignmentDao =& DAORegistry::getDAO('StageAssignmentDAO'); /* @var $stageAssignmentDao StageAssignmentDAO */
 		$stageAssignment =& $stageAssignmentDao->getById($assignmentId);
-		// FIXME: #6199
-		if (!$stageAssignment ||
-			$stageAssignment->getSubmissionId() != $monograph->getId()) {
+		if (!$stageAssignment || $stageAssignment->getSubmissionId() != $monograph->getId()) {
 			fatalError('Invalid Assignment');
 		}
 

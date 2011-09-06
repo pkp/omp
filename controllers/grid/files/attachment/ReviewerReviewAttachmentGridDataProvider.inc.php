@@ -36,9 +36,9 @@ class ReviewerReviewAttachmentGridDataProvider extends SubmissionFilesGridDataPr
 	function getAuthorizationPolicy(&$request, $args, $roleAssignments) {
 		import('classes.security.authorization.internal.ReviewAssignmentRequiredPolicy');
 
-		// FIXME: #6199 need to use the reviewId because this grid can
-		// either be viewed by the reviewer (in which case, we could do
-		// a $request->getUser()->getId() or by the editor when reading
+		// Need to use the reviewId because this grid can either be
+		// viewed by the reviewer (in which case, we could do a
+		// $request->getUser()->getId() or by the editor when reading
 		// the review. The following covers both cases...
 		$assocType = (int) $request->getUserVar('assocType');
 		$assocId = (int) $request->getUserVar('assocId');

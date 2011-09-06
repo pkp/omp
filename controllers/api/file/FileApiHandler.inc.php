@@ -64,7 +64,6 @@ class FileApiHandler extends Handler {
 	 * @param $request Request
 	 */
 	function viewFile($args, &$request) {
-		// FIXME: authorize! bug #6199
 		$monographFile =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH_FILE);
 		assert($monographFile); // Should have been validated already
 		import('classes.file.MonographFileManager');
