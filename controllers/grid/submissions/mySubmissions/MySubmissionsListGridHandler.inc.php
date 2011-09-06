@@ -56,14 +56,15 @@ class MySubmissionsListGridHandler extends SubmissionsListGridHandler {
 	 * @return string Serialized JSON object
 	 */
 	function deleteSubmission($args, &$request) {
-		$monographId = $request->getUserVar('monographId');
-		$this->validate($monographId);
+		$monographDao =& DAORegistry::getDAO('MonographDAO');
+		$monograph = $monographDao->getMonograph(
+			(int) $request->getUserVar('monographId')
+		);
 
-		$authorSubmissionDao =& DAORegistry::getDAO('AuthorSubmissionDAO');
-		$authorSubmission = $authorSubmissionDao->getAuthorSubmission($monographId);
+		$user =& $request->getUser();
 
 		// If the submission is incomplete, allow the author to delete it.
-		if ($authorSubmission->getSubmissionProgress() != 0) {
+		if ($monograph->getSubmissionProgress() != 0 && $monograph->getUserId() == $user->getId()) {
 			$monographDao =& DAORegistry::getDAO('MonographDAO'); /* @var $monographDao MonographDAO */
 			$monographDao->deleteMonographById($monographId);
 
@@ -86,10 +87,10 @@ class MySubmissionsListGridHandler extends SubmissionsListGridHandler {
 		$this->setTitle('submission.mySubmissions');
 		$active = true;
 
-		$authorSubmissionDao =& DAORegistry::getDAO('AuthorSubmissionDAO');
-		$submissions = $authorSubmissionDao->getAuthorSubmissions($userId);
+		$monographDao =& DAORegistry::getDAO('MonographDAO');
+		$submissions = $monographDao->getByUserId($userId);
 		$data = array();
-		while($submission =& $submissions->next()) {
+		while ($submission =& $submissions->next()) {
 			$submissionId = $submission->getId();
 			$data[$submissionId] =& $submission;
 			unset($submision);

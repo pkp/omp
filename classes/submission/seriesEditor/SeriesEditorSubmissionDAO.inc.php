@@ -19,7 +19,6 @@
 import('classes.submission.seriesEditor.SeriesEditorSubmission');
 
 // Bring in editor decision constants
-import('classes.submission.author.AuthorSubmission');
 import('classes.submission.reviewer.ReviewerSubmission');
 
 class SeriesEditorSubmissionDAO extends DAO {

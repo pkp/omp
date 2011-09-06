@@ -387,15 +387,15 @@ class MonographDAO extends DAO {
 		$primaryLocale = Locale::getPrimaryLocale();
 		$locale = Locale::getLocale();
 		$params = array(
-			'title',
+			'title', // Series title
 			$primaryLocale,
-			'title',
+			'title', // Series title
 			$locale,
-			'abbrev',
+			'abbrev', // Series abbreviation
 			$primaryLocale,
-			'abbrev',
+			'abbrev', // Series abbreviation
 			$locale,
-			$userId
+			(int) $userId
 		);
 		if ($pressId) $params[] = $pressId;
 		$monographs = array();
@@ -415,15 +415,8 @@ class MonographDAO extends DAO {
 			$params
 		);
 
-		while (!$result->EOF) {
-			$monographs[] =& $this->_fromRow($result->GetRowAssoc(false));
-			$result->MoveNext();
-		}
-
-		$result->Close();
-		unset($result);
-
-		return $monographs;
+		$returner = new DAOResultFactory($result, $this, '_fromRow');
+		return $returner;
 	}
 
 	/**

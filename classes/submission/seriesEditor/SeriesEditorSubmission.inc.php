@@ -124,11 +124,9 @@ class SeriesEditorSubmission extends Monograph {
 	 * or STATUS_QUEUED_EDITING). Note that this function never returns
 	 * a value of STATUS_QUEUED -- the three STATUS_QUEUED_... constants
 	 * indicate a queued submission.
-	 * NOTE that this code is similar to getSubmissionStatus in
-	 * the AuthorSubmission class and changes should be made there as well.
 	 */
 	function getSubmissionStatus() {
-			$status = $this->getStatus();
+		$status = $this->getStatus();
 		if ($status == STATUS_ARCHIVED || $status == STATUS_PUBLISHED || $status == STATUS_DECLINED) return $status;
 
 		// The submission is STATUS_QUEUED or the author's submission was STATUS_INCOMPLETE.
