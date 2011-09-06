@@ -43,8 +43,6 @@ class IndexHandler extends Handler {
 	 * @param $request Request
 	 */
 	function index($args, &$request) {
-		$this->validate(); // FIXME: Replace with an authorization policy, see #6100.
-
 		$press = $this->_getTargetPress($request);
 		$user =& $request->getUser();
 
