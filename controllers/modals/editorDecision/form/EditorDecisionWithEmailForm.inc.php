@@ -82,7 +82,7 @@ class EditorDecisionWithEmailForm extends EditorDecisionForm {
 	 * @see Form::readInputData()
 	 */
 	function readInputData() {
-		$this->readUserVars(array('personalMessage', 'selectedAttachments'));
+		$this->readUserVars(array('personalMessage', 'selectedAttachments', 'skipEmail'));
 		parent::readInputData();
 	}
 
@@ -195,7 +195,9 @@ class EditorDecisionWithEmailForm extends EditorDecisionForm {
 		}
 
 		// Send the email.
-		$email->send($request);
+		if (!$this->getData('skipEmail')) {
+			$email->send($request);
+		}
 	}
 }
 
