@@ -125,10 +125,6 @@ class SubmissionMetadataFormImplementation {
 		$monograph->setTitle($this->_parentForm->getData('title'), null); // Localized
 		$monograph->setAbstract($this->_parentForm->getData('abstract'), null); // Localized
 
-		if(is_array($this->_parentForm->getData('agenciesKeywords'))) $monograph->setSupportingAgencies(implode(", ", $this->_parentForm->getData('agenciesKeywords')), null); // Localized
-		if(is_array($this->_parentForm->getData('disciplinesKeywords'))) $monograph->setDiscipline(implode(", ", $this->_parentForm->getData('disciplinesKeywords')), null); // Localized
-		if(is_array($this->_parentForm->getData('keywordKeywords'))) $monograph->setSubject(implode(", ",$this->_parentForm->getData('keywordKeywords')), null); // Localized
-
 		// Save the monograph
 		$monographDao->updateMonograph($monograph);
 
