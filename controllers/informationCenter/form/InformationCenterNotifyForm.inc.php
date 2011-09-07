@@ -31,7 +31,7 @@ class InformationCenterNotifyForm extends Form {
 		$this->itemId = $itemId;
 		$this->itemType = $itemType;
 
-		$this->addCheck(new FormValidator($this, 'newRowId', 'required', 'informationCenter.notify.warning'));
+		$this->addCheck(new FormValidator($this, 'users', 'required', 'informationCenter.notify.warning'));
 		$this->addCheck(new FormValidator($this, 'message', 'required', 'informationCenter.notify.warning'));
 		$this->addCheck(new FormValidatorPost($this));
 	}
@@ -61,19 +61,9 @@ class InformationCenterNotifyForm extends Form {
 	 */
 	function readInputData() {
 		$this->readUserVars(array('message', 'users'));
-
-		import('lib.pkp.classes.core.JSONManager');
-		$jsonManager = new JSONManager();
-		$data = $jsonManager->decode($this->getData('users'));
-		$newRowIds = array();
-
-		if (isset($data->changes[0])) {
-			$ids = $data->changes[0]; // this comes out of the newRowId[name] property in the submitted JSON object, and are userIds
-			foreach ($ids as $property => $value) {
-				$newRowIds[] = (int) $value;
-			}
-		}
-		$this->setData('newRowId', $newRowIds); // we use these in our validate() method.
+		import('lib.pkp.classes.controllers.listbuilder.ListbuilderHandler');
+		$userData = $this->getData('users');
+		ListBuilderHandler::unpack($request, $userData);
 	}
 
 	/**
@@ -81,9 +71,7 @@ class InformationCenterNotifyForm extends Form {
 	 * @return userId int
 	 */
 	function execute(&$request) {
-		import('lib.pkp.classes.controllers.listbuilder.ListbuilderHandler');
-		$userData = $this->getData('users');
-		ListBuilderHandler::unpack($request, $userData);
+		parent::execute($request);
 	}
 
 	/**
@@ -91,8 +79,9 @@ class InformationCenterNotifyForm extends Form {
 	 * @see ListbuilderHandler::insertEntry
 	 */
 	function insertEntry(&$request, $newRowId) {
-		$user =& $request->getUser();
+	
 		$userDao =& DAORegistry::getDAO('UserDAO');
+		$user = $userDao->getUser($newRowId['name']);
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
 		import('classes.mail.MonographMailTemplate');
 
@@ -115,18 +104,7 @@ class InformationCenterNotifyForm extends Form {
 		}
 	}
 
-	/**
-	 * Validate the form
-	 * @see Form::validate();
-	 */
-	function validate() {
-		$userDao =& DAORegistry::getDAO('UserDAO');
-		foreach ($this->getData('newRowId') as $id) { // sanity check to make sure submitted ids correspond to users in the system
-			if ($userDao->getUser($id) == null)
-				return false;
-		}
-		return parent::validate();
-	}
+
 
 	/**
 	 * Delete a signoff
