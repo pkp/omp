@@ -31,7 +31,7 @@ class InformationCenterNotifyForm extends Form {
 		$this->itemId = $itemId;
 		$this->itemType = $itemType;
 
-		$this->addCheck(new FormValidator($this, 'users', 'required', 'informationCenter.notify.warning'));
+		$this->addCheck(new FormValidatorListBuilder($this, 'users', 'informationCenter.notify.warning'));
 		$this->addCheck(new FormValidator($this, 'message', 'required', 'informationCenter.notify.warning'));
 		$this->addCheck(new FormValidatorPost($this));
 	}
@@ -79,7 +79,7 @@ class InformationCenterNotifyForm extends Form {
 	 * @see ListbuilderHandler::insertEntry
 	 */
 	function insertEntry(&$request, $newRowId) {
-	
+
 		$userDao =& DAORegistry::getDAO('UserDAO');
 		$user = $userDao->getUser($newRowId['name']);
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
