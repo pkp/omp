@@ -25,7 +25,6 @@ class ReviewStageForm extends PressSettingsForm {
 		$settings = array(
 			'reviewGuidelines' => 'string',
 			'competingInterests' => 'string',
-			'mailSubmissionsToReviewers' => 'bool',
 			'numWeeksPerResponse' => 'int',
 			'numWeeksPerReview' => 'int',
 			'remindForInvite' => 'bool',
@@ -33,8 +32,6 @@ class ReviewStageForm extends PressSettingsForm {
 			'numDaysBeforeInviteReminder' => 'int',
 			'numDaysBeforeSubmitReminder' => 'int',
 			'rateReviewerOnQuality' => 'bool',
-			'reviewerAccessKeysEnabled' => 'bool',
-			'restrictReviewerFileAccess' => 'bool',
 			'showEnsuringLink' => 'bool'
 		);
 

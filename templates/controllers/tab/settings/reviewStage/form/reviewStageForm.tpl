@@ -25,16 +25,6 @@
 	<div class="separator"></div>
 
 	<div {if $wizardMode}class="pkp_form_hidden"{/if}>
-		<h3>{translate key="manager.setup.reviewProcess"}</h3>
-		<p>{translate key="manager.setup.reviewProcessDescription"}</p>
-
-		{fbvFormArea id="reviewProcess"}
-			{fbvFormSection list=true}
-				{fbvElement type="radio" name="mailSubmissionsToReviewers" id="mailSubmissionsToReviewers-0" value="0" checked=!$mailSubmissionsToReviewers label="manager.setup.reviewProcessStandard"}
-				{fbvElement type="radio" name="mailSubmissionsToReviewers" id="mailSubmissionsToReviewers-1" value="1" checked=$mailSubmissionsToReviewers label="manager.setup.reviewProcessEmail"}
-			{/fbvFormSection}
-		{/fbvFormArea}
-
 		<h3>{translate key="manager.setup.reviewOptions"}</h3>
 		<p><strong>{translate key="manager.setup.reviewOptions.reviewTime"}</strong></p>
 
@@ -95,11 +85,6 @@
 		{fbvFormArea id="reviewProcessDetails"}
 			{fbvFormSection title="manager.setup.reviewOptions.reviewerRatings" list=true}
 				{fbvElement type="checkbox" id="rateReviewerOnQuality" value="1" checked=$rateReviewerOnQuality label="manager.setup.reviewOptions.onQuality"}
-			{/fbvFormSection}
-			{fbvFormSection title="manager.setup.reviewOptions.reviewerAccess" list=true}
-				{fbvElement type="checkbox" id="reviewerAccessKeysEnabled" value="1" checked=$reviewerAccessKeysEnabled label="manager.setup.reviewOptions.reviewerAccessKeysEnabled"}
-				<span>{translate key="manager.setup.reviewOptions.reviewerAccessKeysEnabled.description"}</span>
-				{fbvElement type="checkbox" id="restrictReviewerFileAccess" value="1" checked=$restrictReviewerFileAccess label="manager.setup.reviewOptions.restrictReviewerFileAccess"}
 			{/fbvFormSection}
 			{fbvFormSection title="manager.setup.reviewOptions.blindReview" list=true}
 				{fbvElement type="checkbox" id="showEnsuringLink" value="1" checked=$showEnsuringLink label="manager.setup.reviewOptions.showEnsuringLink"}
