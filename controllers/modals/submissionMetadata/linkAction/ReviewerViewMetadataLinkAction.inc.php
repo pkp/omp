@@ -22,16 +22,17 @@ class ReviewerViewMetadataLinkAction extends LinkAction {
 	/**
 	 * Constructor
 	 * @param $request Request
-	 * @param $monographId integer The submission to show meta-data for.
+	 * @param $monographId integer
+	 * @param $reviewAssignmentId integer
 	 */
-	function ReviewerViewMetadataLinkAction(&$request, $monographId) {
+	function ReviewerViewMetadataLinkAction(&$request, $monographId, $reviewAssignmentId) {
 		// Instantiate the meta-data modal.
 		$dispatcher =& $request->getDispatcher();
 		import('lib.pkp.classes.linkAction.request.AjaxModal');
 		$modal = new AjaxModal(
 				$dispatcher->url($request, ROUTE_COMPONENT, null,
 						'modals.submissionMetadata.ReviewerSubmissionMetadataHandler',
-						'fetch', null, array('monographId' => $monographId)),
+						'fetch', null, array('monographId' => $monographId, 'reviewAssignmentId' => $reviewAssignmentId)),
 				__('reviewer.step1.viewAllDetails'));
 
 		// Configure the link action.

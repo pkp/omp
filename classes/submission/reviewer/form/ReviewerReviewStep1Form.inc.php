@@ -69,7 +69,7 @@ class ReviewerReviewStep1Form extends ReviewerReviewForm {
 		$dispatcher =& $request->getDispatcher();
 		// "View metadata" action.
 		import('controllers.modals.submissionMetadata.linkAction.ReviewerViewMetadataLinkAction');
-		$viewMetadataLinkAction = new ReviewerViewMetadataLinkAction($request, $reviewAssignment->getSubmissionId());
+		$viewMetadataLinkAction = new ReviewerViewMetadataLinkAction($request, $reviewAssignment->getSubmissionId(), $reviewAssignment->getId());
 		$templateMgr->assign_by_ref('viewMetadataAction', $viewMetadataLinkAction);
 
 		import('controllers.confirmationModal.linkAction.ViewCompetingInterestGuidelinesLinkAction');

@@ -129,6 +129,7 @@ class ReviewerSubmissionDAO extends DAO {
 		$reviewerSubmission->setRound($row['round']);
 		$reviewerSubmission->setStep($row['step']);
 		$reviewerSubmission->setStageId($row['stage_id']);
+		$reviewerSubmission->setReviewMethod($row['review_method']);
 
 		// Monograph attributes
 		$this->monographDao->_monographFromRow($reviewerSubmission, $row);

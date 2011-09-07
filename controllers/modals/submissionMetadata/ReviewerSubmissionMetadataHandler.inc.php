@@ -46,8 +46,15 @@ class ReviewerSubmissionMetadataHandler extends SubmissionMetadataHandler {
 	 */
 	function fetch($args, &$request) {
 		$press =& $request->getPress();
-		// FIXME: Need to be able to get/set if a review is blind or not, see #6403.
-		$isBlindReview = false;
+
+		$reviewAssignment =& $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ASSIGNMENT);
+		$reviewMethod = $reviewAssignment->getReviewMethod();
+
+		$isBlindReview = true;
+		if ($reviewMethod == SUBMISSION_REVIEW_METHOD_OPEN) {
+			$isBlindReview = false;
+		}
+
 		$params = array('readOnly' => true, 'anonymous' => $isBlindReview);
 
 		return parent::fetch($args, $request, $params);

@@ -158,9 +158,6 @@ class ReviewerForm extends Form {
 		$reviewAssignmentDao = DAORegistry::getDAO('ReviewAssignmentDAO');
 		$reviewMethods = $reviewAssignmentDao->getReviewMethodsTranslationKeys();
 
-		// Remove the open method until we can implement it.
-		unset($reviewMethods[SUBMISSION_REVIEW_METHOD_OPEN]);
-
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('reviewMethods', $reviewMethods);
 		$templateMgr->assign('reviewerActions', $this->getReviewerFormActions());

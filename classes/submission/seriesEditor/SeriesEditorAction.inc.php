@@ -314,7 +314,13 @@ class SeriesEditorAction extends Action {
 
 				if($monographComments) {
 					$body .= "\n\n$textSeparator\n";
-					$body .= Locale::translate('submission.comments.importPeerReviews.reviewerLetter', array('reviewerLetter' => String::enumerateAlphabetically($reviewIndexes[$reviewAssignment->getId()]))) . "\n";
+					// If it is not a double blind review, show reviewer's name.
+					if ($reviewAssignment->getReviewMethod() != SUBMISSION_REVIEW_METHOD_DOUBLEBLIND) {
+						$body .= $reviewAssignment->getReviewerFullName() . "\n";
+					} else {
+						$body .= Locale::translate('submission.comments.importPeerReviews.reviewerLetter', array('reviewerLetter' => String::enumerateAlphabetically($reviewIndexes[$reviewAssignment->getId()]))) . "\n";
+					}
+
 					if (is_array($monographComments)) {
 						foreach ($monographComments as $comment) {
 							// If the comment is viewable by the author, then add the comment.
