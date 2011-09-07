@@ -2,7 +2,8 @@
  * @defgroup js_controllers_grid_users_stageParticipant_form
  */
 // Create the namespace.
-jQuery.pkp.controllers.grid.users.stageParticipant = jQuery.pkp.controllers.grid.users.stageParticipant ||
+jQuery.pkp.controllers.grid.users.stageParticipant =
+			jQuery.pkp.controllers.grid.users.stageParticipant ||
 			{ form: { } };
 
 /**
@@ -32,12 +33,12 @@ jQuery.pkp.controllers.grid.users.stageParticipant = jQuery.pkp.controllers.grid
 
 		this.parent($form, options);
 
-		$('#userGroupId', $form).change(this.callbackWrapper(this.addUserIdToAutocompleteUrl));
+		$('#userGroupId', $form).change(
+				this.callbackWrapper(this.addUserIdToAutocompleteUrl));
 
 	};
 	$.pkp.classes.Helper.inherits(
-			$.pkp.controllers.grid.users.stageParticipant.form.
-					AddParticipantFormHandler,
+			$.pkp.controllers.grid.users.stageParticipant.form.AddParticipantFormHandler,
 			$.pkp.controllers.form.AjaxFormHandler);
 
 
@@ -46,10 +47,10 @@ jQuery.pkp.controllers.grid.users.stageParticipant = jQuery.pkp.controllers.grid
 	//
 	/**
 	 * Method to add the userGroupId to autocomplete URL for finding users
-	 * @param {jQuery} $select The html element that changed
+	 * @param {Object} eventObject The html element that changed.
 	 */
-	$.pkp.controllers.grid.users.stageParticipant.form.AddParticipantFormHandler
-			.prototype.addUserIdToAutocompleteUrl = function(select) {
+	$.pkp.controllers.grid.users.stageParticipant.form.AddParticipantFormHandler.prototype.addUserIdToAutocompleteUrl =
+			function(eventObject) {
 
 		// FIXME: Should this js handler know the _container part?
 		// It is inside the FBV autocomplete field.
@@ -61,12 +62,14 @@ jQuery.pkp.controllers.grid.users.stageParticipant = jQuery.pkp.controllers.grid
 				function(index) { $(this).val(''); }
 		);
 
-		var autocompleteHandler = $.pkp.classes.Handler.getHandler($autocompleteContainer);
+		var autocompleteHandler =
+				$.pkp.classes.Handler.getHandler($autocompleteContainer);
 
 		var oldUrl = autocompleteHandler.getAutocompleteUrl();
 		// Match with &amp;userGroupId or without and append userGroupId
-		var newUrl = oldUrl.replace(/(&userGroupId=\d+)?$/, '&userGroupId=' + select.value);
+		var newUrl = oldUrl.replace(
+				/(&userGroupId=\d+)?$/, '&userGroupId=' + eventObject.value);
 		autocompleteHandler.setAutocompleteUrl(newUrl);
-	}
+	};
 /** @param {jQuery} $ jQuery closure. */
 })(jQuery);

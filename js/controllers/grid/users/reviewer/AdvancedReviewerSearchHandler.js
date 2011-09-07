@@ -3,7 +3,7 @@
  */
 // Create the namespace.
 jQuery.pkp.controllers.grid.users = jQuery.pkp.controllers.grid.users ||
-			{ reviewer : { form: { } } };
+			{ reviewer: { form: { } } };
 /**
  * @defgroup js_controllers_modal_editorDecision_form
  */
@@ -44,7 +44,8 @@ jQuery.pkp.controllers.modals = jQuery.pkp.controllers.modals ||
 		$('#regularReviewerForm').hide();
 	};
 	$.pkp.classes.Helper.inherits(
-			$.pkp.controllers.grid.users.reviewer.AdvancedReviewerSearchHandler, $.pkp.classes.Handler);
+			$.pkp.controllers.grid.users.reviewer.AdvancedReviewerSearchHandler,
+			$.pkp.classes.Handler);
 
 
 	//
@@ -64,7 +65,8 @@ jQuery.pkp.controllers.modals = jQuery.pkp.controllers.modals ||
 		var reviewerId = $selectedInput.val();
 
 		if (reviewerId) {
-			var reviewerName = $selectedInput.parent().next().children('span').html().trim();
+			var reviewerName = $selectedInput.parent().next()
+					.children('span').html().trim();
 
 			// Update the hidden review id input
 			$('#reviewerId').val(reviewerId);

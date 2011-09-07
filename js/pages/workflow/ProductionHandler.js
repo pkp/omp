@@ -39,7 +39,8 @@ $.pkp.pages.workflow = $.pkp.pages.workflow || {};
 			collapsible: true,
 			active: false
 		});
-		var $publicationFormatContainer = $('#publicationFormatContainer', $production);
+		var $publicationFormatContainer =
+				$('#publicationFormatContainer', $production);
 		$publicationFormatContainer.accordion({
 			autoHeight: false,
 			collapsible: true,
