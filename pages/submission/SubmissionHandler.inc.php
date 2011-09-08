@@ -70,8 +70,6 @@ class SubmissionHandler extends Handler {
 		// submission access policy above.
 		assert(is_a($monograph, 'Monograph'));
 
-		// FIXME: What happens when returning to a prior step? See #5813.
-		// FIXME: What happens when returning to an incomplete submission? See #5752.
 		// Deny if submission is complete (==0 means complete) and at
 		// any step other than the "complete" step (=4)
 		if ($monograph->getSubmissionProgress() == 0 && $step != 4 ) return false;
