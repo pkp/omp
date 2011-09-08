@@ -22,8 +22,8 @@ class ReviewerReviewStep1Form extends ReviewerReviewForm {
 	 * @param $request PKPRequest
 	 * @param $reviewerSubmission ReviewerSubmission
 	 */
-	function ReviewerReviewStep1Form($request, $reviewerSubmission = null) {
-		parent::ReviewerReviewForm($request, $reviewerSubmission, 1);
+	function ReviewerReviewStep1Form($request, $reviewerSubmission, $reviewAssignment) {
+		parent::ReviewerReviewForm($request, $reviewerSubmission, $reviewAssignment, 1);
 	}
 
 

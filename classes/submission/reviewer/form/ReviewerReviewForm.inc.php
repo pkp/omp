@@ -25,6 +25,9 @@ class ReviewerReviewForm extends Form {
 	/** @var ReviewerSubmission current submission */
 	var $_reviewerSubmission;
 
+	/** @var $_reviewAssignment ReviewAssignment */
+	var $_reviewAssignment;
+
 	/** @var int the current step */
 	var $_step;
 
@@ -37,12 +40,13 @@ class ReviewerReviewForm extends Form {
 	 * @param $step integer
 	 * @param $request PKPRequest
 	 */
-	function ReviewerReviewForm($request, $reviewerSubmission, $step) {
+	function ReviewerReviewForm($request, $reviewerSubmission, $reviewAssignment, $step) {
 		parent::Form(sprintf('reviewer/review/step%d.tpl', $step));
 		$this->addCheck(new FormValidatorPost($this));
 		$this->request =& $request;
 		$this->_step = (int) $step;
 		$this->_reviewerSubmission =& $reviewerSubmission;
+		$this->_reviewAssignment =& $reviewAssignment;
 	}
 
 
@@ -55,6 +59,14 @@ class ReviewerReviewForm extends Form {
 	 */
 	function &getReviewerSubmission() {
 		return $this->_reviewerSubmission;
+	}
+
+	/**
+	 * Get the review assignment.
+	 * @return ReviewAssignment
+	 */
+	function &getReviewAssignment() {
+		return $this->_reviewAssignment;
 	}
 
 	/**
@@ -73,8 +85,11 @@ class ReviewerReviewForm extends Form {
 	 * @see Form::display()
 	 */
 	function display(&$request) {
+		$reviewAssignment =& $this->getReviewAssignment();
+
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign_by_ref('submission', $this->getReviewerSubmission());
+		$templateMgr->assign('reviewIsComplete', (boolean) $reviewAssignment->getDateCompleted());
 		$templateMgr->assign('step', $this->getStep());
 		parent::display();
 	}

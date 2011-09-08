@@ -90,11 +90,10 @@ class ReviewerHandler extends Handler {
 		if ($step<1 || $step>3) fatalError('Invalid step!');
 
 		$reviewAssignment =& $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ASSIGNMENT); /* @var $reviewAssignment ReviewAssignment */
-		$reviewId = (int) $reviewAssignment->getId();
-		assert(!empty($reviewId));
+		if ($reviewAssignment->getDateCompleted()) fatalError('Review already completed!');
 
 		$reviewerSubmissionDao =& DAORegistry::getDAO('ReviewerSubmissionDAO');
-		$reviewerSubmission =& $reviewerSubmissionDao->getReviewerSubmission($reviewId);
+		$reviewerSubmission =& $reviewerSubmissionDao->getReviewerSubmission($reviewAssignment->getId());
 		assert(is_a($reviewerSubmission, 'ReviewerSubmission'));
 
 		$formClass = "ReviewerReviewStep{$step}Form";
@@ -118,11 +117,9 @@ class ReviewerHandler extends Handler {
 	 */
 	function showDeclineReview($args, &$request) {
 		$reviewAssignment =& $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ASSIGNMENT); /* @var $reviewAssignment ReviewAssignment */
-		$reviewId = (int) $reviewAssignment->getId();
-		assert(!empty($reviewId));
 
 		$reviewerSubmissionDao =& DAORegistry::getDAO('ReviewerSubmissionDAO');
-		$reviewerSubmission =& $reviewerSubmissionDao->getReviewerSubmission($reviewId);
+		$reviewerSubmission =& $reviewerSubmissionDao->getReviewerSubmission($reviewAssignment->getId());
 		assert(is_a($reviewerSubmission, 'ReviewerSubmission'));
 
 		$this->setupTemplate();
@@ -140,8 +137,9 @@ class ReviewerHandler extends Handler {
 	 */
 	function saveDeclineReview($args, &$request) {
 		$reviewAssignment =& $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ASSIGNMENT); /* @var $reviewAssignment ReviewAssignment */
+		if ($reviewAssignment->getDateCompleted()) fatalError('Review already completed!');
+
 		$reviewId = (int) $reviewAssignment->getId();
-		assert(!empty($reviewId));
 		$declineReviewMessage = $request->getUserVar('declineReviewMessage');
 
 		$reviewerSubmissionDao =& DAORegistry::getDAO('ReviewerSubmissionDAO');

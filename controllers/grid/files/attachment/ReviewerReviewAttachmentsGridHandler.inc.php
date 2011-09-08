@@ -34,6 +34,20 @@ class ReviewerReviewAttachmentsGridHandler extends FileListGridHandler {
 			)
 		);
 	}
+
+	/**
+	 * @see FileListGridHandler::initialize
+	 */
+	function initialize($request) {
+		// Watch for flag from including template to warn about the
+		// review already being complete. If so, remove some capabilities.
+		if ($request->getUserVar('reviewIsComplete')) {
+			$this->setCanAdd(false);
+			$this->setCanDelete(false);
+		}
+
+		parent::initialize($request);
+	}
 }
 
 ?>

@@ -83,6 +83,7 @@ class SubmissionFilesUploadBaseForm extends Form {
 		if ($this->getData('assocType') == ASSOC_TYPE_REVIEW_ASSIGNMENT && !$this->getData('round')) {
 			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO'); /* @var $reviewAssignmentDao ReviewAssignmentDAO */
 			$reviewAssignment =& $reviewAssignmentDao->getById((int) $this->getData('assocId')); /* @var $reviewAssignment ReviewAssignment */
+			if ($reviewAssignment->getDateCompleted()) fatalError('Review already completed!');
 			$this->setData('round', $reviewAssignment->getRound());
 		}
 

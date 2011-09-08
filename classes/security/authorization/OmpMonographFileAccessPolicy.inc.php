@@ -86,9 +86,13 @@ class OmpMonographFileAccessPolicy extends PressPolicy {
 			// 2a) If the file was uploaded by the current user, allow.
 			import('classes.security.authorization.internal.MonographFileUploaderAccessPolicy');
 			$authorFileAccessOptionsPolicy->addPolicy(new MonographFileUploaderAccessPolicy($request));
-			// 2b) If the file is a viewable reviewer response, allow.
-			import('classes.security.authorization.internal.MonographFileViewableReviewerResponseAccessPolicy');
-			$authorFileAccessOptionsPolicy->addPolicy(new MonographFileViewableReviewerResponseAccessPolicy($request));
+			// 2b) If the file is a viewable reviewer response and we don't
+			// want to modify it, allow.
+			if (!($mode & MONOGRAPH_FILE_ACCESS_MODIFY)) {
+				import('classes.security.authorization.internal.MonographFileViewableReviewerResponseAccessPolicy');
+				$authorFileAccessOptionsPolicy->addPolicy(new MonographFileViewableReviewerResponseAccessPolicy($request));
+			}
+
 			// Add the rules from 2)
 			$authorFileAccessPolicy->addPolicy($authorFileAccessOptionsPolicy);
 
@@ -111,9 +115,12 @@ class OmpMonographFileAccessPolicy extends PressPolicy {
 			import('classes.security.authorization.internal.MonographFileUploaderAccessPolicy');
 			$reviewerFileAccessOptionsPolicy->addPolicy(new MonographFileUploaderAccessPolicy($request));
 
-			// 2b) If the file is part of an assigned review, allow.
+			// 2b) If the file is part of an assigned review, and we're not
+			// trying to modify it, allow.
 			import('classes.security.authorization.internal.MonographFileAssignedReviewerAccessPolicy');
-			$reviewerFileAccessOptionsPolicy->addPolicy(new MonographFileAssignedReviewerAccessPolicy($request));
+			if (!($mode & MONOGRAPH_FILE_ACCESS_MODIFY)) {
+				$reviewerFileAccessOptionsPolicy->addPolicy(new MonographFileAssignedReviewerAccessPolicy($request));
+			}
 
 			// Add the rules from 2)
 			$reviewerFileAccessPolicy->addPolicy($reviewerFileAccessOptionsPolicy);

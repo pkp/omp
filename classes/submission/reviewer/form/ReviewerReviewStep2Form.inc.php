@@ -21,8 +21,8 @@ class ReviewerReviewStep2Form extends ReviewerReviewForm {
 	 * Constructor.
 	 * @param $reviewerSubmission ReviewerSubmission
 	 */
-	function ReviewerReviewStep2Form($request, $reviewerSubmission = null) {
-		parent::ReviewerReviewForm($request, $reviewerSubmission, 2);
+	function ReviewerReviewStep2Form($request, $reviewerSubmission, $reviewAssignment) {
+		parent::ReviewerReviewForm($request, $reviewerSubmission, $reviewAssignment, 2);
 	}
 
 

@@ -16,18 +16,13 @@
 import('classes.submission.reviewer.form.ReviewerReviewForm');
 
 class ReviewerReviewStep3Form extends ReviewerReviewForm {
-
-	/** @var ReviewAssignment The review assignment object **/
-	var $_reviewAssignment;
-
 	/**
 	 * Constructor.
 	 * @param $reviewerSubmission ReviewerSubmission
 	 * @param $reviewAssignment ReviewAssignment
 	 */
 	function ReviewerReviewStep3Form($request, $reviewerSubmission, $reviewAssignment) {
-		parent::ReviewerReviewForm($request, $reviewerSubmission, 3);
-		$this->_reviewAssignment =& $reviewAssignment;
+		parent::ReviewerReviewForm($request, $reviewerSubmission, $reviewAssignment, 3);
 
 		// Validation checks for this form
 		// FIXME #5123: Include when review form infrastructure is in place
@@ -38,17 +33,6 @@ class ReviewerReviewStep3Form extends ReviewerReviewForm {
 		$this->addCheck(new FormValidatorPost($this));
 	}
 
-
-	//
-	// Setters and Getters
-	//
-	/**
-	 * Get the review assignment
-	 * @return ReviewAssignment
-	 */
-	function &getReviewAssignment() {
-		return $this->_reviewAssignment;
-	}
 
 	function initData() {
 		$templateMgr =& TemplateManager::getManager();
@@ -81,10 +65,7 @@ class ReviewerReviewStep3Form extends ReviewerReviewForm {
 		// Assign the press to the template.
 		$press = $this->request->getPress();
 		$templateMgr->assign_by_ref('press', $press);
-
-		// Add the review assignment to the template.
-		$reviewAssignment =& $this->getReviewAssignment();
-		$templateMgr->assign_by_ref('reviewAssignment', $reviewAssignment);
+		$templateMgr->assign_by_ref('reviewAssignment', $this->getReviewAssignment());
 
 		/*  FIXME #5123: Include when review form infrastructure is in place
 		if($reviewAssignment->getReviewFormId()) {

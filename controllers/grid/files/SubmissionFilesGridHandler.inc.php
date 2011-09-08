@@ -58,9 +58,9 @@ class SubmissionFilesGridHandler extends GridHandler {
 		if ($stageId) {
 			$this->_stageId = (int)$stageId;
 		}
-		$this->_canAdd = (boolean)($capabilities & FILE_GRID_ADD);
+		$this->setCanAdd($capabilities & FILE_GRID_ADD);
 		$this->_canDownloadAll = (boolean)($capabilities & FILE_GRID_DOWNLOAD_ALL);
-		$this->_canDelete = (boolean)($capabilities & FILE_GRID_DELETE);
+		$this->setCanDelete($capabilities & FILE_GRID_DELETE);
 		$this->_canViewNotes = (boolean)($capabilities & FILE_GRID_VIEW_NOTES);
 
 		parent::GridHandler($dataProvider);
@@ -98,6 +98,14 @@ class SubmissionFilesGridHandler extends GridHandler {
 	}
 
 	/**
+	 * Set whether or not the grid allows the addition of files or revisions.
+	 * @param $canAdd boolean
+	 */
+	function setCanAdd($canAdd) {
+		$this->_canAdd = (boolean) $canAdd;
+	}
+
+	/**
 	 * Does this grid allow viewing of notes?
 	 * @return boolean
 	 */
@@ -119,6 +127,14 @@ class SubmissionFilesGridHandler extends GridHandler {
 	 */
 	function canDelete() {
 		return $this->_canDelete;
+	}
+
+	/**
+	 * Set whether or not the user can delete files from this grid.
+	 * @param $canDelete boolean
+	 */
+	function setCanDelete($canDelete) {
+		$this->_canDelete = (boolean) $canDelete;
 	}
 
 

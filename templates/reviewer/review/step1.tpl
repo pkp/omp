@@ -58,18 +58,18 @@
 			{assign var="hasCI" value=false}
 			{assign var="noCI" value=true}
 		{/if}
-		{fbvElement type="radio" value="noCompetingInterests" id="noCompetingInterests" name="competingInterestOption" checked=$noCI label="reviewer.monograph.noCompetingInterests"}
+		{fbvElement type="radio" value="noCompetingInterests" id="noCompetingInterests" name="competingInterestOption" checked=$noCI label="reviewer.monograph.noCompetingInterests" disabled=$reviewIsComplete}
 		<br /><br />
-		{fbvElement type="radio" value="hasCompetingInterests" id="hasCompetingInterests" name="competingInterestOption" checked=$hasCI label="reviewer.monograph.hasCompetingInterests"}
+		{fbvElement type="radio" value="hasCompetingInterests" id="hasCompetingInterests" name="competingInterestOption" checked=$hasCI label="reviewer.monograph.hasCompetingInterests" disabled=$reviewIsComplete}
 	{/fbvFormSection}
 	{fbvFormSection}
-		{fbvElement type="textarea" name="competingInterestsText" id="competingInterestsText" value=$competingInterestsText size=$fbvStyles.size.MEDIUM}
+		{fbvElement type="textarea" name="competingInterestsText" id="competingInterestsText" value=$competingInterestsText size=$fbvStyles.size.MEDIUM disabled=$reviewIsComplete}
 	{/fbvFormSection}
 
 	{if $reviewAssignment->getDateConfirmed()}
-		{fbvFormButtons hideCancel=true submitText="common.saveAndContinue"}
+		{fbvFormButtons hideCancel=true submitText="common.saveAndContinue" submitDisabled=$reviewIsComplete}
 	{else}
-		{fbvFormButtons submitText="reviewer.monograph.acceptReview" cancelText="reviewer.monograph.declineReview" cancelAction=$declineReviewAction}
+		{fbvFormButtons submitText="reviewer.monograph.acceptReview" cancelText="reviewer.monograph.declineReview" cancelAction=$declineReviewAction submitDisabled=$reviewIsComplete}
 	{/if}
 {/fbvFormArea}
 </form>
