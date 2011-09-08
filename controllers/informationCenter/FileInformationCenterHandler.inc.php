@@ -128,7 +128,7 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 		$this->setupTemplate($request);
 
 		import('controllers.informationCenter.form.InformationCenterNotifyForm');
-		$notifyForm = new InformationCenterNotifyForm(ASSOC_TYPE_MONOGRAPH_FILE, $this->monographFile->getFileId());
+		$notifyForm = new InformationCenterNotifyForm($this->monographFile->getFileId(), ASSOC_TYPE_MONOGRAPH_FILE);
 		$notifyForm->initData();
 
 		$json = new JSONMessage(true, $notifyForm->fetch($request));
@@ -144,7 +144,7 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 		$this->setupTemplate($request);
 
 		import('controllers.informationCenter.form.InformationCenterNotifyForm');
-		$notifyForm = new InformationCenterNotifyForm(ASSOC_TYPE_MONOGRAPH_FILE, $this->monographFile->getItemId());
+		$notifyForm = new InformationCenterNotifyForm($this->monographFile->getFileId(), ASSOC_TYPE_MONOGRAPH_FILE);
 		$notifyForm->readInputData();
 
 		if ($notifyForm->validate()) {
@@ -154,7 +154,7 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 			$json = new JSONMessage(true);
 		} else {
 			// Failure--Return a JSON string indicating so
-			$json = new JSONMessage(false, __('informationCenter.notify.warning'));
+			$json = new JSONMessage(false);
 		}
 
 		return $json->getString();
