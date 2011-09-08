@@ -143,6 +143,18 @@ class EditorDecisionWithEmailForm extends EditorDecisionForm {
 		$email->addRecipient($submitter->getEmail(), $submitter->getFullName());
 		$email->setEventType(MONOGRAPH_EMAIL_EDITOR_NOTIFY_AUTHOR);
 
+		$primaryAuthor = $seriesEditorSubmission->getPrimaryAuthor();
+		if ($submitter->getEmail() != $primaryAuthor->getEmail()) {
+			$email->addRecipient($primaryAuthor->getEmail(), $primaryAuthor->getFullName());
+		}
+
+		$assignedAuthors = $seriesEditorSubmission->getAuthors();
+		foreach ($assignedAuthors as $author) {
+			if ($author->getEmail() != $primaryAuthor->getEmail()) {
+				$email->addCc($author->getEmail(), $author->getFullName());
+			}
+		}
+
 		// Retrieve review indexes.
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO'); /* @var $reviewAssignmentDao ReviewAssignmentDAO */
 		$reviewIndexes =& $reviewAssignmentDao->getReviewIndexesForRound($seriesEditorSubmission->getId(), $seriesEditorSubmission->getCurrentRound());
