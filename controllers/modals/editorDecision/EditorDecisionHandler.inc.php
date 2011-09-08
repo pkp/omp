@@ -49,8 +49,8 @@ class EditorDecisionHandler extends Handler {
 	 */
 	function authorize(&$request, $args, $roleAssignments) {
 		$stageId = (int) $request->getUserVar('stageId');
-		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
-		$this->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', $stageId));
+		import('classes.security.authorization.OmpEditorDecisionAccessPolicy');
+		$this->addPolicy(new OmpEditorDecisionAccessPolicy($request, $args, $roleAssignments, 'monographId', $stageId));
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 
