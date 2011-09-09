@@ -10,7 +10,7 @@
 <span id="{$cellId}" class="pkp_linkActions">
 	{if count($actions) gt 0}
 		{assign var=defaultCellAction value=$actions[0]}
-		{include file="linkAction/linkAction.tpl" action=$defaultCellAction contextId=$cellId}
+		{include file="linkAction/linkAction.tpl" action=$defaultCellAction contextId=$cellId imageClass="task"}
 	{else}
 		<a class="task {$status|escape}">status</a>
 	{/if}
