@@ -382,8 +382,11 @@ class SeriesEditorSubmissionDAO extends DAO {
 	 * @param $name string
 	 * @return array matching Users
 	 */
-	function &getReviewersNotAssignedToMonograph($pressId, $monographId, $round = null, $name = '') {
-		$params = isset($round) ? array($round) : array();
+	function &getReviewersNotAssignedToMonograph($pressId, $monographId, $stageId = null, $round = null, $name = '') {
+		$params = isset($stageId) ? array($stageId) : array();
+		if ($round) {
+			$params[] = $round;
+		}
 		$params = array_merge($params, array($monographId, $pressId, ROLE_ID_REVIEWER));
 		if(!empty($name)) {
 			$params = array_merge($params, array_pad(array(), 4, '%' . $name . '%'));
@@ -394,7 +397,10 @@ class SeriesEditorSubmissionDAO extends DAO {
 			FROM	users u
 				LEFT JOIN user_user_groups uug ON (uug.user_id = u.user_id)
 				LEFT JOIN user_groups ug ON (ug.user_group_id = uug.user_group_id)
-				LEFT JOIN review_assignments r ON (r.reviewer_id = u.user_id' . (isset($round) ? ' AND round = ?' : '') . ' AND r.submission_id = ?)
+				LEFT JOIN review_assignments r ON (r.reviewer_id = u.user_id' .
+					(isset($stageId) ? ' AND stage_id = ?' : '') .
+					(isset($round) ? ' AND round = ?' : '') .
+					' AND r.submission_id = ?)
 			WHERE ug.context_id = ? AND
 				ug.role_id = ? AND
 				r.submission_id IS NULL' .

@@ -99,7 +99,9 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 	function initialize(&$request) {
 		parent::initialize($request);
 
-		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_COMMON, LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_OMP_EDITOR, LOCALE_COMPONENT_OMP_SUBMISSION));
+		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_COMMON, LOCALE_COMPONENT_APPLICATION_COMMON,
+									   LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_OMP_EDITOR,
+									   LOCALE_COMPONENT_OMP_SUBMISSION));
 
 		$monograph =& $this->getMonograph();
 

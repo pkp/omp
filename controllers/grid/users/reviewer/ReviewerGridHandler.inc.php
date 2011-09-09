@@ -328,11 +328,12 @@ class ReviewerGridHandler extends GridHandler {
 	function getReviewersNotAssignedToMonograph($args, &$request) {
 		$press =& $request->getPress();
 		$monograph =& $this->getMonograph();
+		$stageId = $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
 		$round = (int) $request->getUserVar('round');
 		$term = $request->getUserVar('term');
 
 		$seriesEditorSubmissionDao =& DAORegistry::getDAO('SeriesEditorSubmissionDAO'); /* @var $seriesEditorSubmissionDao SeriesEditorSubmissionDAO */
-		$reviewers =& $seriesEditorSubmissionDao->getReviewersNotAssignedToMonograph($press->getId(), $monograph->getId(), $round, $term);
+		$reviewers =& $seriesEditorSubmissionDao->getReviewersNotAssignedToMonograph($press->getId(), $monograph->getId(), $stageId, $round, $term);
 
 		$reviewerList = array();
 		while($reviewer =& $reviewers->next()) {
