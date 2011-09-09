@@ -143,14 +143,12 @@ class EditorDecisionWithEmailForm extends EditorDecisionForm {
 		$email->addRecipient($submitter->getEmail(), $submitter->getFullName());
 		$email->setEventType(MONOGRAPH_EMAIL_EDITOR_NOTIFY_AUTHOR);
 
-		$primaryAuthor = $seriesEditorSubmission->getPrimaryAuthor();
-		if ($submitter->getEmail() != $primaryAuthor->getEmail()) {
-			$email->addRecipient($primaryAuthor->getEmail(), $primaryAuthor->getFullName());
-		}
-
-		$assignedAuthors = $seriesEditorSubmission->getAuthors();
-		foreach ($assignedAuthors as $author) {
-			if ($author->getEmail() != $primaryAuthor->getEmail()) {
+		$userStageAssignmentDao =& DAORegistry::getDAO('UserStageAssignmentDAO');
+		$authorStageParticipants = $userStageAssignmentDao->getUsersBySubmissionAndStageId($seriesEditorSubmission->getId(), $seriesEditorSubmission->getStageId(), null, ROLE_ID_AUTHOR);
+		while ($author =& $authorStageParticipants->next()) {
+			if (preg_match('{^' . quotemeta($submitter->getEmail()) . '$}', $author->getEmail())) {
+				$email->addRecipient($author->getEmail(), $author->getFullName());
+			} else {
 				$email->addCc($author->getEmail(), $author->getFullName());
 			}
 		}
