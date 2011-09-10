@@ -157,38 +157,42 @@ class MonographMailTemplate extends MailTemplate {
 	}
 
 	/**
-	 *  Send this email to all assigned series editors
+	 *  Send this email to all assigned series editors in the given stage
 	 * @param $monographId int
+	 * @param $stageId int
 	 */
-	function toAssignedSeriesEditors($monographId) {
-		return $this->_addUsers($monographId, ROLE_ID_SERIES_EDITOR, 'addRecipient');
+	function toAssignedSeriesEditors($monographId, $stageId) {
+		return $this->_addUsers($monographId, ROLE_ID_SERIES_EDITOR, $stageId, 'addRecipient');
 	}
 
 	/**
-	 *  CC this email to all assigned series editors
+	 *  CC this email to all assigned series editors in the given stage
 	 * @param $monographId int
+	 * @param $stageId int
 	 * @return array of Users (note, this differs from OxS which returns EditAssignment objects)
 	 */
-	function ccAssignedSeriesEditors($monographId) {
-		return $this->_addUsers($monographId, ROLE_ID_SERIES_EDITOR, 'addCc');
+	function ccAssignedSeriesEditors($monographId, $stageId) {
+		return $this->_addUsers($monographId, ROLE_ID_SERIES_EDITOR, $stageId, 'addCc');
 	}
 
 	/**
-	 *  BCC this email to all assigned series editors
+	 *  BCC this email to all assigned series editors in the given stage
 	 * @param $monographId int
+	 * @param $stageId int
 	 */
-	function bccAssignedSeriesEditors($monographId) {
-		return $this->_addUsers($monographId, ROLE_ID_SERIES_EDITOR, 'addBcc');
+	function bccAssignedSeriesEditors($monographId, $stageId) {
+		return $this->_addUsers($monographId, ROLE_ID_SERIES_EDITOR, $stageId, 'addBcc');
 	}
 
 	/**
 	 * Private method to fetch the requested users and add to the email
 	 * @param $monographId int
 	 * @param $roleId int
+	 * @param $stageId int
 	 * @param $method string one of addRecipient, addCC, or addBCC
 	 * @return array of Users (note, this differs from OxS which returns EditAssignment objects)
 	 */
-	function _addUsers($monographId, $roleId, $method) {
+	function _addUsers($monographId, $roleId, $stageId, $method) {
 		assert(in_array($method, array('addRecipient', 'addCc', 'addBcc')));
 
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
@@ -198,8 +202,8 @@ class MonographMailTemplate extends MailTemplate {
 		// Cycle through all the userGroups for this role
 		while ( $userGroup =& $userGroups->next() ) {
 			$userStageAssignmentDao =& DAORegistry::getDAO('UserStageAssignmentDAO');
-			// FIXME: #6692# Should maybe be getting assignments for a specific stage only. (also, maybe user group?)
-			$users =& $userStageAssignmentDao->getUsersBySubmissionAndStageId($monographId, null, $userGroup->getId());
+			// FIXME: #6692# Should this be getting users just for a specific user group?
+			$users =& $userStageAssignmentDao->getUsersBySubmissionAndStageId($monographId, $stageId, $userGroup->getId());
 			while ($user =& $users->next()) {
 				$this->$method($user->getEmail(), $user->getFullName());
 				$returner[] =& $user;

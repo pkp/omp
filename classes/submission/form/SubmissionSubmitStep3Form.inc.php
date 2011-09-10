@@ -147,7 +147,7 @@ class SubmissionSubmitStep3Form extends SubmissionSubmitForm {
 					$mail->addCc($author->getEmail(), $author->getFullName());
 				}
 			}
-			$mail->bccAssignedSeriesEditors($monograph->getId());
+			$mail->bccAssignedSeriesEditors($monograph->getId(), WORKFLOW_STAGE_ID_SUBMISSION);
 
 			$mail->assignParams(array(
 				'authorName' => $user->getFullName(),
