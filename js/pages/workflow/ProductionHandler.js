@@ -5,13 +5,13 @@
 $.pkp.pages.workflow = $.pkp.pages.workflow || {};
 
 /**
- * @file js/pages/production/ProductionHandler.js
+ * @file js/pages/workflow/ProductionHandler.js
  *
  * Copyright (c) 2000-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class ProductionHandler
- * @ingroup js_pages_production
+ * @ingroup js_pages_workflow
  *
  * @brief Handler for the production stage.
  *
