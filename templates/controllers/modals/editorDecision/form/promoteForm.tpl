@@ -30,9 +30,6 @@
 		<!--  Message to reviewer textarea -->
 		<span style="float:right;line-height: 24px;"><a id="importPeerReviews" href="#" class="sprite import">{translate key="submission.comments.importPeerReviews"}</a></span>
 	{/if}
-	{fbvFormSection for="skipEmail" size=$fbvStyles.size.MEDIUM list=true}
-		{fbvElement type="checkbox" id="skipEmail" name="skipEmail" label="editor.submissionReview.skipEmail"}
-	{/fbvFormSection}
 	
 	{** FIXME: we're using the PromoteForm for send to production, but there
 	 *	is no email for that action so should probably not use this template. **}
@@ -40,6 +37,10 @@
 		{fbvFormSection title="editor.review.personalMessageToAuthor" for="personalMessage"}
 			{fbvElement type="textarea" name="personalMessage" id="personalMessage" value=$personalMessage}
 		{/fbvFormSection}
+
+	{fbvFormSection for="skipEmail" size=$fbvStyles.size.MEDIUM list=true}
+		{fbvElement type="checkbox" id="skipEmail" name="skipEmail" label="editor.submissionReview.skipEmail"}
+	{/fbvFormSection}
 	{/if}
 
 	{** Some decisions can be made before review is initiated (i.e. no attachments). **}

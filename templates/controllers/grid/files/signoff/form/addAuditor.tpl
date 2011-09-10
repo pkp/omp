@@ -35,14 +35,14 @@
 			{fbvElement type="text" id="responseDueDate" name="responseDueDate" label="editor.responseDueDate" value=$responseDueDate }
 		{/fbvFormSection}
 
-		<!-- skip email checkbox -->
-			{fbvFormSection for="skipEmail" size=$fbvStyles.size.MEDIUM list=true}
-				{fbvElement type="checkbox" id="skipEmail" name="skipEmail" label="editor.monograph.fileAuditor.skipEmail"}
-			{/fbvFormSection}
-
 		<!-- Message to user -->
 		{fbvFormSection}
 			{fbvElement type="textarea" name="personalMessage" id="personalMessage" required=true class="required" label="editor.monograph.copyediting.personalMessageTouser" value=$personalMessage size=$fbvStyles.size.MEDIUM}
+		{/fbvFormSection}
+
+		<!-- skip email checkbox -->
+		{fbvFormSection for="skipEmail" size=$fbvStyles.size.MEDIUM list=true}
+			{fbvElement type="checkbox" id="skipEmail" name="skipEmail" label="editor.monograph.fileAuditor.skipEmail"}
 		{/fbvFormSection}
 		{fbvFormButtons}
 	</form>

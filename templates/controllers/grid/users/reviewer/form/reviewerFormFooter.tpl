@@ -18,14 +18,14 @@ $("#interests").tagit({ldelim}
 {rdelim});
 </script>
 
-<!-- skip email checkbox -->
-{fbvFormSection for="skipEmail" size=$fbvStyles.size.MEDIUM list=true}
-	{fbvElement type="checkbox" id="skipEmail" name="skipEmail" label="editor.review.skipEmail"}
-{/fbvFormSection}
-
 <!--  Message to reviewer textarea -->
 {fbvFormSection title="editor.review.personalMessageToReviewer" for="personalMessage"}
 	{fbvElement type="textarea" name="personalMessage" id="personalMessage" value=$personalMessage|escape}
+{/fbvFormSection}
+
+<!-- skip email checkbox -->
+{fbvFormSection for="skipEmail" size=$fbvStyles.size.MEDIUM list=true}
+	{fbvElement type="checkbox" id="skipEmail" name="skipEmail" label="editor.review.skipEmail"}
 {/fbvFormSection}
 
 <!--  Reviewer due dates (see http://jqueryui.com/demos/datepicker/) -->
