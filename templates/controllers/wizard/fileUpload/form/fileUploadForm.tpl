@@ -173,5 +173,10 @@
 			{* The uploader widget *}
 			<div id="plupload"></div>
 		{/fbvFormSection}
+		{if $ensuringLink}
+			<div id="{$ensuringLink->getId()}" class="pkp_linkActions">
+				{include file="linkAction/linkAction.tpl" action=$ensuringLink contextId="uploadForm"}
+			</div>
+		{/if}
 	{/fbvFormArea}
 </form>

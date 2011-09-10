@@ -101,6 +101,7 @@ class SettingsTabHandler extends Handler {
 	 * Show a tab.
 	 */
 	function showTab($args, &$request) {
+		$this->setupTemplate();
 		if ($this->_isValidTab()) {
 			if ($this->_isTabTemplate()) {
 				$this->setupTemplate(true);

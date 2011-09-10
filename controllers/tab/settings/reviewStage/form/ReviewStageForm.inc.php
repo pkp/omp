@@ -53,9 +53,20 @@ class ReviewStageForm extends PressSettingsForm {
 	 * @see PressSettingsForm::fetch()
 	 */
 	function fetch(&$request) {
-		$params = null;
+		$params = array();
+
+		// Ensuring blind review link.
+		import('lib.pkp.classes.linkAction.request.ConfirmationModal');
+			$ensuringLink = new LinkAction(
+				'addUser',
+				new ConfirmationModal(
+					__('review.blindPeerReview'),
+					__('review.ensuringBlindReview')),
+				__('review.ensuringBlindReview'));
+		$params['ensuringLink'] = $ensuringLink;
+
 		if (Config::getVar('general', 'scheduled_tasks'))
-			$params = array('scheduledTasksEnabled' => true);
+			$params['scheduledTasksEnabled'] = true;
 
 		return parent::fetch(&$request, $params);
 	}

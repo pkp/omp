@@ -226,6 +226,21 @@ class SubmissionFilesUploadBaseForm extends Form {
 		$this->setData('currentMonographFileGenres', $currentMonographFileGenres);
 		$this->setData('monographFileOptions', $monographFileOptions);
 
+		// Show ensuring a blind review link.
+		$press =& $request->getPress();
+		if ($press->getSetting('showEnsuringLink')) {
+			import('lib.pkp.classes.linkAction.request.ConfirmationModal');
+			$ensuringLink = new LinkAction(
+				'addUser',
+				new ConfirmationModal(
+					__('review.blindPeerReview'),
+					__('review.ensuringBlindReview')),
+				__('review.ensuringBlindReview'));
+
+			$templateMgr =& TemplateManager::getManager();
+			$templateMgr->assign('ensuringLink', $ensuringLink);
+		}
+
 		return parent::fetch($request);
 	}
 }
