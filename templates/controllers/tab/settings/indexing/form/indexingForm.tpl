@@ -37,14 +37,6 @@
 
 	<div class="separator"></div>
 
-	<div {if $wizardMode}class="pkp_form_hidden"{/if}>
-		<h3>{translate key="manager.setup.registerPressForIndexing"}</h3>
-
-		{url|assign:"oaiSiteUrl" press=$currentPress->getPath()}
-		{url|assign:"oaiUrl" page="oai"}
-		<p>{translate key="manager.setup.registerPressForIndexingDescription" siteUrl=$oaiSiteUrl oaiUrl=$oaiUrl}</p>
-	</div>
-
 	{if !$wizardMode}
 		{fbvFormButtons id="indexingFormSubmit" submitText="common.save" hideCancel=true}
 	{/if}
