@@ -28,7 +28,6 @@ class DistributionSettingsTabHandler extends ManagerSettingsTabHandler {
 		);
 		$this->setPageTabs($pageTabs);
 
-		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_SUBMISSION)); // submission.cataloguingMetadata
 	}
 }
 
