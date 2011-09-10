@@ -18,8 +18,10 @@
 <form class="pkp_form" id="submissionStageForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.PublicationSettingsTabHandler" op="saveFormData" tab="submissionStage"}">
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="submissionsStageFormNotification"}
 
-	{url|assign:submissionLibraryUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.library.LibraryFileGridHandler" op="fetchGrid" fileType=$smarty.const.LIBRARY_FILE_TYPE_SUBMISSION}
-	{load_url_in_div id="submissionLibraryGridDiv" url=$submissionLibraryUrl}
+	<div {if $wizardMode}class="pkp_form_hidden"{/if}>
+		{url|assign:submissionLibraryUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.library.LibraryFileGridHandler" op="fetchGrid" fileType=$smarty.const.LIBRARY_FILE_TYPE_SUBMISSION}
+		{load_url_in_div id="submissionLibraryGridDiv" url=$submissionLibraryUrl}
+	</div>
 
 	<div class="separator"></div>
 
