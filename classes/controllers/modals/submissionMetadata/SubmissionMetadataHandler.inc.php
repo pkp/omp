@@ -27,6 +27,17 @@ class SubmissionMetadataHandler extends Handler {
 
 
 	//
+	// Implement template methods from PKPHandler.
+	//
+	/**
+	 * @see PKPHandler::initialize()
+	 */
+	function initialize($request) {
+		$this->setupTemplate();
+	}
+
+
+	//
 	// Public handler methods
 	//
 	/**
@@ -73,7 +84,7 @@ class SubmissionMetadataHandler extends Handler {
 			// Create trivial notification.
 			$notificationManager = new NotificationManager();
 			$user =& $request->getUser();
-			$notificationManager->createTrivialNotification($user->getId(), 'notification.savedSubmissionMetadata');
+			$notificationManager->createTrivialNotification($user->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.savedSubmissionMetadata')));
 		} else {
 			$json->setStatus(false);
 		}

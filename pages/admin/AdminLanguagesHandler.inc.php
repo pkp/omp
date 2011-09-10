@@ -236,7 +236,7 @@ class AdminLanguagesHandler extends AdminHandler {
 
 		$notificationManager = new NotificationManager();
 		$user =& $request->getUser();
-		$notificationManager->createTrivialNotification($user->getId(), __('admin.languages.localeInstalled', array('locale' => $locale)));
+		$notificationManager->createTrivialNotification($user->getId(), NOTIFICATION_TYPE_SUCCESS, array('contentLocaleKey' => __('admin.languages.localeInstalled'), 'params' => array('locale' => $locale)));
 		$request->redirect(null, null, 'languages');
 	}
 }

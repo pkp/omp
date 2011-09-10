@@ -76,7 +76,7 @@ class NotificationManager extends PKPNotificationManager {
 				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
 				$monograph =& $monographDao->getMonograph($notification->getAssocId()); /* @var $monograph Monograph */
 				$title = $monograph->getLocalizedTitle();
-				$contents['description'] = __('notification.type.monographSubmitted', array('title' => $title));
+				return __('notification.type.monographSubmitted', array('title' => $title));
 				break;
 			case NOTIFICATION_TYPE_REVIEWER_COMMENT:
 				assert($$notification->getAssocType() == ASSOC_TYPE_REVIEW_ASSIGNMENT && is_numeric($$notification->getAssocId()));
@@ -84,7 +84,7 @@ class NotificationManager extends PKPNotificationManager {
 				$reviewAssignment =& $reviewAssignmentDao->getById($notification->getAssocId());
 				$monograph =& $monographDao->getMonograph($reviewAssignment->getSubmissionId()); /* @var $monograph Monograph */
 				$title = $monograph->getLocalizedTitle();
-				$contents['description'] = __('notification.type.reviewerComment', array('title' => $title));
+				return __('notification.type.reviewerComment', array('title' => $title));
 				break;
 			case NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_SUBMISSION:
 			// FIXME Create a text and locale key for the rest of the notification types.
@@ -92,17 +92,17 @@ class NotificationManager extends PKPNotificationManager {
 			case NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_EXTERNAL_REVIEW:
 			case NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_EDITING:
 				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
-				$contents['description'] = __('notification.type.editorAssignment');
+				return __('notification.type.editorAssignment');
 				break;
 			case NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_PRODUCTION:
 				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
-				$contents['description'] = __('notification.type.editorAssignmentProduction');
+				return __('notification.type.editorAssignmentProduction');
 				break;
 			case NOTIFICATION_TYPE_AUDITOR_REQUEST:
 				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH_FILE && is_numeric($notification->getAssocId()));
 				$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO');
 				$monographFile =& $submissionFileDao->getLatestRevision($notification->getAssocId());
-				$contents['description'] = __('notification.type.auditorRequest', array('file' => $monographFile->getLocalizedName()));
+				return __('notification.type.auditorRequest', array('file' => $monographFile->getLocalizedName()));
 				break;
 			case NOTIFICATION_TYPE_COPYEDIT_SIGNOFF:
 				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
@@ -123,14 +123,28 @@ class NotificationManager extends PKPNotificationManager {
 				$templateMgr->assign('signoffFileLinkAction', $signoffFileLinkAction);
 				$notificationDescription = $templateMgr->fetch('controllers/notification/copyeditingSignoffNotificationContent.tpl');
 
-				$contents['description'] = $notificationDescription;
-				$contents['title'] = __('notification.type.copyeditSignoff');
+				return $notificationDescription;
 				break;
 			default:
-				$contents = parent::getNotificationContents($request, $notification);
+				return parent::getNotificationContents($request, $notification);
 		}
+	}
 
-		return $contents;
+	/**
+	 * Get the notification's title value
+	 * @param $notification
+	 * @return string
+	 */
+	function getNotificationTitle(&$notification) {
+		$type = $notification->getType();
+		assert(isset($type));
+
+		switch ($type) {
+			case NOTIFICATION_TYPE_COPYEDIT_SIGNOFF:
+				return __('notification.type.copyeditSignoff');
+			default:
+				return parent::getNotificationTitle($notification);
+		}
 	}
 
 
