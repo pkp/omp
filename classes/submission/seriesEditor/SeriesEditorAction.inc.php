@@ -195,6 +195,23 @@ class SeriesEditorAction extends Action {
 
 			$this->setDueDates($request, $seriesEditorSubmission, $reviewAssignment, $reviewDueDate, $responseDueDate);
 
+			// Add notification
+			$notificationMgr = new NotificationManager();
+			$notificationMgr->createNotification(
+				$request,
+				$reviewerId,
+				NOTIFICATION_TYPE_REVIEW_ASSIGNMENT,
+				$seriesEditorSubmission->getPressId(),
+				ASSOC_TYPE_REVIEW_ASSIGNMENT,
+				$reviewAssignment->getId(),
+				NOTIFICATION_LEVEL_TASK
+			);
+
+			// Insert a trivial notification to indicate the reviewer was added successfully.
+			$currentUser =& $request->getUser();
+			$notificationMgr = new NotificationManager();
+			$notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.addedReviewer')));
+
 			// Add log
 			import('classes.log.MonographLog');
 			import('classes.log.MonographEventLogEntry');
@@ -223,6 +240,23 @@ class SeriesEditorAction extends Action {
 
 			// FIXME: Need to change the state of the current review round back to "pending reviewer" when
 			// the last assignment was removed, see #6401.
+
+			$notificationDao =& DAORegistry::getDAO('NotificationDAO');
+			$notifications =& $notificationDao->getNotificationsByAssoc(
+				ASSOC_TYPE_REVIEW_ASSIGNMENT,
+				$reviewAssignment->getId(),
+				$reviewAssignment->getReviewerId(),
+				NOTIFICATION_TYPE_REVIEW_ASSIGNMENT
+			);
+			while ($notification =& $notifications->next()) {
+				$notificationDao->deleteNotificationById($notification->getId());
+				unset($notification);
+			}
+
+			// Insert a trivial notification to indicate the reviewer was removed successfully.
+			$currentUser =& $request->getUser();
+			$notificationMgr = new NotificationManager();
+			$notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.removedReviewer')));
 
 			// Add log
 			import('classes.log.MonographLog');

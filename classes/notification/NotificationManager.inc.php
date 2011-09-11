@@ -49,7 +49,14 @@ class NotificationManager extends PKPNotificationManager {
 			case NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_EXTERNAL_REVIEW:
 			case NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_EDITING:
 			case NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_PRODUCTION:
+				break;
 			case NOTIFICATION_TYPE_AUDITOR_REQUEST:
+				break;
+			case NOTIFICATION_TYPE_REVIEW_ASSIGNMENT:
+				$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO'); /* @var $reviewAssignmentDao ReviewAssignmentDAO */
+				$reviewAssignment =& $reviewAssignmentDao->getById($notification->getAssocId());
+				$url = $dispatcher->url($request, ROUTE_PAGE, null, 'reviewer', 'submission', $reviewAssignment->getSubmissionId());
+				break;
 			case NOTIFICATION_TYPE_COPYEDIT_SIGNOFF:
 				break;
 			default:
@@ -103,6 +110,9 @@ class NotificationManager extends PKPNotificationManager {
 				$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO');
 				$monographFile =& $submissionFileDao->getLatestRevision($notification->getAssocId());
 				return __('notification.type.auditorRequest', array('file' => $monographFile->getLocalizedName()));
+				break;
+			case NOTIFICATION_TYPE_REVIEW_ASSIGNMENT:
+				return __('notification.type.reviewAssignment');
 				break;
 			case NOTIFICATION_TYPE_COPYEDIT_SIGNOFF:
 				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));

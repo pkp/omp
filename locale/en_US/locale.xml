@@ -329,6 +329,8 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="notification.addedAuditor">Auditor added.</message>
 	<message key="notification.addedAuthor">Author added.</message>
 	<message key="notification.editedAuthor">Author edited.</message>
+	<message key="notification.addedReviewer">Reviewer added.</message>
+	<message key="notification.removedReviewer">Reviewer removed.</message>
 	<message key="notification.savedSubmissionMetadata">Submission metadata saved.</message>
 	<message key="notification.mailListDescription">Enter your email address to receive immediate notifications of important new content added to the press.</message>
 	<message key="notification.notificationsPublicDescription">This page shows important updates associated with this press such as new monographs or announcements.  You may subscribe to these notifications through RSS feeds (by clicking on the images to the right), or <![CDATA[  <a href="{$emailUrl}">through email.</a>]]></message>
@@ -343,8 +345,9 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="notification.type.editorAssignment">An editor must be assigned before you can initiate review.</message>
 	<message key="notification.type.editorAssignmentProduction">A production editor must be assigned before you can initiate the production process.</message>
 	<message key="notification.type.auditorRequest">You were requested to be an auditor on "{$file}"</message>
+	<message key="notification.type.reviewAssignment">You have a review pending.</message>
 	<message key="notification.type.copyeditSignoff">You have pending auditor tasks</message>
-	
+
 	<!--
 	 *
 	 * MISC - Entries that do not belong in the other sections.

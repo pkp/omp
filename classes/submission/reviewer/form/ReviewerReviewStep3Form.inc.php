@@ -181,6 +181,19 @@ class ReviewerReviewStep3Form extends ReviewerReviewForm {
 		// Persist the updated review assignment.
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		$reviewAssignmentDao->updateObject($reviewAssignment);
+
+		// Remove the task
+		$notificationDao =& DAORegistry::getDAO('NotificationDAO');
+		$notifications =& $notificationDao->getNotificationsByAssoc(
+			ASSOC_TYPE_REVIEW_ASSIGNMENT,
+			$reviewAssignment->getId(),
+			$reviewAssignment->getReviewerId(),
+			NOTIFICATION_TYPE_REVIEW_ASSIGNMENT
+		);
+		while ($notification =& $notifications->next()) {
+			$notificationDao->deleteNotificationById($notification->getId());
+			unset($notification);
+		}
 	}
 }
 
