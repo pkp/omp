@@ -236,6 +236,12 @@ class ReviewerGridHandler extends GridHandler {
 		return $json->getString();
 	}
 
+	/**
+	 * Load the contents of the reviewer form
+	 * @param $args array
+	 * @param $request Request
+	 * @return string JSON
+	 */
 	function reloadReviewerForm($args, &$request) {
 		$selectionType = $request->getUserVar('selectionType');
 		assert(!empty($selectionType));
