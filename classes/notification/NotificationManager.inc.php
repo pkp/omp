@@ -51,6 +51,22 @@ class NotificationManager extends PKPNotificationManager {
 			case NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_PRODUCTION:
 				break;
 			case NOTIFICATION_TYPE_AUDITOR_REQUEST:
+				$signoffDao =& DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
+				$signoff =& $signoffDao->getById($notification->getAssocId());
+				assert(is_a($signoff, 'Signoff') && $signoff->getAssocType() == ASSOC_TYPE_MONOGRAPH_FILE);
+
+				$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+				$monographFile =& $submissionFileDao->getLatestRevision($signoff->getAssocId());
+				assert(is_a($monographFile, 'MonographFile'));
+
+				if ($signoff->getSymbolic() == 'SIGNOFF_COPYEDITING') {
+					$stage = 'copyediting';
+				} elseif ($signoff->getSymbolic() == 'SIGNOFF_PROOFING') {
+					$stage = 'production';
+				} else {
+					assert(false);
+				}
+				$url = $dispatcher->url($request, ROUTE_PAGE, null, 'workflow', $stage, $monographFile->getMonographId());
 				break;
 			case NOTIFICATION_TYPE_REVIEW_ASSIGNMENT:
 				$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO'); /* @var $reviewAssignmentDao ReviewAssignmentDAO */
@@ -58,6 +74,7 @@ class NotificationManager extends PKPNotificationManager {
 				$url = $dispatcher->url($request, ROUTE_PAGE, null, 'reviewer', 'submission', $reviewAssignment->getSubmissionId());
 				break;
 			case NOTIFICATION_TYPE_COPYEDIT_SIGNOFF:
+				$url = $dispatcher->url($request, ROUTE_PAGE, null, 'workflow', 'copyediting', $notification->getAssocId());
 				break;
 			default:
 				$url = parent::getNotificationUrl($request, $notification);
@@ -106,9 +123,13 @@ class NotificationManager extends PKPNotificationManager {
 				return __('notification.type.editorAssignmentProduction');
 				break;
 			case NOTIFICATION_TYPE_AUDITOR_REQUEST:
-				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH_FILE && is_numeric($notification->getAssocId()));
+				assert($notification->getAssocType() == ASSOC_TYPE_SIGNOFF && is_numeric($notification->getAssocId()));
+				$signoffDao =& DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
+				$signoff =& $signoffDao->getById($notification->getAssocId());
+				assert($signoff->getAssocType() == ASSOC_TYPE_MONOGRAPH_FILE);
+
 				$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO');
-				$monographFile =& $submissionFileDao->getLatestRevision($notification->getAssocId());
+				$monographFile =& $submissionFileDao->getLatestRevision($signoff->getAssocId());
 				return __('notification.type.auditorRequest', array('file' => $monographFile->getLocalizedName()));
 				break;
 			case NOTIFICATION_TYPE_REVIEW_ASSIGNMENT:
@@ -231,7 +252,7 @@ class NotificationManager extends PKPNotificationManager {
 
 		// Signoff checks.
 		if ($signoff->getSymbolic() != 'SIGNOFF_COPYEDITING' && $signoff->getAssocType() != ASSOC_TYPE_MONOGRAPH_FILE) {
-			// The signoff it is not notificable by this type of notification.
+			// The signoff it is not noticeable by this type of notification.
 			// Do nothing.
 			return;
 		}
