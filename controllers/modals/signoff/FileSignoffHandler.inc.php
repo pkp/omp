@@ -259,6 +259,12 @@ class FileSignoffHandler extends FileManagementHandler {
 		// Validate the form and upload the file.
 		if ($uploadForm->validate($request)) {
 			$signoffId = $uploadForm->execute($request);
+
+			// Create trivial notification.
+			$user =& $request->getUser();
+			$notificationMgr = new NotificationManager();
+			$notificationMgr->createTrivialNotification($user->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.uploadedResponse')));
+
 			// FIXME: this is being used for both category grids and file grids
 			// if we return the AssocId() it works for category grids, but not file ones
 			// if we return the signoffId() it works for file grids, but not the category ones.

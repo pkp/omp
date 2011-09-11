@@ -217,7 +217,7 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 		if ($form->validate()) {
 			$userGroupId = $form->execute();
 
-			$notificationManager = new NotificationManager();
+			$notificationMgr = new NotificationManager();
 
 			// Check user group role id.
 			$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
@@ -230,7 +230,7 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 				$stageAssignmentDao =& DAORegistry::getDAO('StageAssignmentDAO'); /* @var $stageAssignmentDao StageAssignmentDAO */
 				foreach ($stages as $workingStageId) {
 					if ($stageAssignmentDao->editorAssignedToStage($monograph->getId(), $workingStageId)) {
-						$notificationType = $notificationManager->getEditorAssignmentNotificationTypeByStageId($workingStageId);
+						$notificationType = $notificationMgr->getEditorAssignmentNotificationTypeByStageId($workingStageId);
 						$notification =& $notificationDao->getNotificationsByAssoc(
 							ASSOC_TYPE_MONOGRAPH, $monograph->getId(), null, $notificationType);
 						$notification =& $notification->next();
@@ -240,6 +240,10 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 					}
 				}
 			}
+
+			// Create trivial notification.
+			$user =& $request->getUser();
+			$notificationMgr->createTrivialNotification($user->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.addedStageParticipant')));
 			return DAO::getDataChangedEvent($userGroupId);
 		} else {
 			$json = new JSONMessage(true, $form->fetch($request));
@@ -270,7 +274,7 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 		// Add notification for the required stages
 		// FIXME: perhaps we can just insert the notification on page load
 		// instead of having it there all the time?
-		$notificationManager = new NotificationManager();
+		$notificationMgr = new NotificationManager();
 		$press = $request->getPress();
 
 		$stages = $this->_getStages();
@@ -283,7 +287,7 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 			if (!$stageAssignmentDao->editorAssignedToStage($monograph->getId(), $workingStageId)) {
 
 				// Get the right editor assignment notification type, base on stage.
-				$notificationType = $notificationManager->getEditorAssignmentNotificationTypeByStageId($workingStageId);
+				$notificationType = $notificationMgr->getEditorAssignmentNotificationTypeByStageId($workingStageId);
 
 				// Check if we don't have a notification for this stage already.
 				$notificationDao =& DAORegistry::getDAO('NotificationDAO');
