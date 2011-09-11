@@ -8,4 +8,6 @@
  *
  *}
 
-<img style="width:700px" src="{$baseUrl}/templates/images/wires/omp_dashboard_tasks.png" alt="Dashboard tasks placeholder" />
+{url|assign:notificationsGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.notifications.NotificationsGridHandler" op="fetchGrid"}
+{load_url_in_div id="notificationsGrid" url=$notificationsGridUrl}
+
