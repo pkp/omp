@@ -52,6 +52,35 @@ class InformationCenterNotifyForm extends Form {
 		$templateMgr->assign_by_ref('monographId', $monographId);
 		$templateMgr->assign_by_ref('itemId', $this->itemId);
 
+		// All stages can choose the default template
+		$templateKeys = array('NOTIFICATION_CENTER_DEFAULT');
+		
+		// template keys indexed by stageId
+		$stageTemplates = array(
+			WORKFLOW_STAGE_ID_SUBMISSION => array(),
+			WORKFLOW_STAGE_ID_INTERNAL_REVIEW => array(),
+			WORKFLOW_STAGE_ID_EXTERNAL_REVIEW => array(),
+			WORKFLOW_STAGE_ID_EDITING => array(),
+			WORKFLOW_STAGE_ID_PRODUCTION => array()
+		);
+		
+		$monographDao =& DAORegistry::getDAO('MonographDAO');
+		$monograph =& $monographDao->getMonograph($monographId);
+		$currentStageId = $monograph->getStageId();
+		
+		$templateKeys = array_merge($templateKeys, $stageTemplates[$currentStageId]);
+		
+		import('classes.mail.MonographMailTemplate');
+		
+		foreach ($templateKeys as $templateKey) {
+			$template = new MonographMailTemplate($monograph, $templateKey);
+			$templates[$template->getBody()] = $template->getSubject();
+			unset($templateKey);
+		}
+		
+		unset($templateKeys);
+		$templateMgr->assign_by_ref('templates', $templates);
+
 		return parent::fetch($request);
 	}
 
@@ -103,8 +132,6 @@ class InformationCenterNotifyForm extends Form {
 			$email->send($request);
 		}
 	}
-
-
 
 	/**
 	 * Delete a signoff

@@ -23,7 +23,11 @@
 				{load_url_in_div id="notifyUsersContainer" url=$notifyUsersUrl}
 			{/fbvFormSection}
 
-			{fbvFormSection title="informationCenter.notify.message" for="supportPhone" required="true"}
+			{fbvFormSection title="informationCenter.notify.chooseMessage" for="template" size=$fbvStyles.size.medium}
+				{fbvElement type="select" from=$templates translate=false id="template" defaultValue="" defaultLabel="" onChange="$('#message').val($('#template').val())"}
+			{/fbvFormSection}
+			
+			{fbvFormSection title="informationCenter.notify.message" for="message" required="true"}
 				{fbvElement type="textarea" id="message"}
 			{/fbvFormSection}
 			{fbvFormButtons id="notifyButton" hideCancel=true submitText="common.notify"}

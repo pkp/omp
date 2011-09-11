@@ -731,4 +731,9 @@ Thank you for completing the proofreading corrections for the galleys associated
 		</body>
 		<description>A notification from a user sent from a file information center modal</description>
 	</email_text>
+		<email_text key="NOTIFICATION_CENTER_DEFAULT">
+		<subject>A message regarding Open Monograph Press</subject>
+		<body>Please enter your message.</body>
+		<description>The default (blank) message used in the Notification Center Message Listbuilder.</description>
+	</email_text>
 </email_texts>
