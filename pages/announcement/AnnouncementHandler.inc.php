@@ -27,16 +27,16 @@ class AnnouncementHandler extends PKPAnnouncementHandler {
 	/**
 	 * @see PKPAnnouncementHandler::_getAnnouncementsEnabled()
 	 */
-	function _getAnnouncementsEnabled() {
-		$press =& Request::getPress();
+	function _getAnnouncementsEnabled($request) {
+		$press =& $request::getPress();
 		return $press->getSetting('enableAnnouncements');
 	}
 
 	/**
 	 * @see PKPAnnouncementHandler::_getAnnouncements()
 	 */
-	function &_getAnnouncements($rangeInfo = null) {
-		$press =& Request::getPress();
+	function &_getAnnouncements($request, $rangeInfo = null) {
+		$press =& $request->getPress();
 
 		$announcementDao =& DAORegistry::getDAO('AnnouncementDAO');
 		$announcements =& $announcementDao->getAnnouncementsNotExpiredByAssocId(ASSOC_TYPE_PRESS, $press->getId(), $rangeInfo);
@@ -47,16 +47,16 @@ class AnnouncementHandler extends PKPAnnouncementHandler {
 	/**
 	 * @see PKPAnnouncementHandler::_getAnnouncementsIntroduction()
 	 */
-	function _getAnnouncementsIntroduction() {
-		$press =& Request::getPress();
+	function _getAnnouncementsIntroduction($request) {
+		$press =& $request->getPress();
 		return $press->getLocalizedSetting('announcementsIntroduction');
 	}
 
 	/**
 	 * @see PKPAnnouncementHandler::_announcementIsValid()
 	 */
-	function _announcementIsValid($announcementId) {
-		$press =& Request::getPress();
+	function _announcementIsValid($request, $announcementId) {
+		$press =& $request->getPress();
 		$announcementDao =& DAORegistry::getDAO('AnnouncementDAO');
 		return ($announcementId != null && $announcementDao->getAnnouncementAssocId($announcementId) == $press->getId());
 	}
