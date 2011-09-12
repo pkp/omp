@@ -19,6 +19,9 @@
 <div id="addUserContainer">
 	<form class="pkp_form" id="addAuditorForm" action="{url op="saveAddAuditor"}" method="post">
 		<input type="hidden" name="monographId" value="{$monographId|escape}" />
+		{if $publicationFormatId}
+			<input type="hidden" name="publicationFormatId" value="{$publicationFormatId|escape}" />
+		{/if}
 
 		<!-- User autocomplete -->
 		<div id="userAutocomplete">
@@ -27,9 +30,16 @@
 			{/fbvFormSection}
 		</div>
 
-		<!-- Available copyediting files listbuilder -->
-		{url|assign:copyeditingFilesListbuilderUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.files.CopyeditingFilesListbuilderHandler" op="fetch" monographId=$monographId}
-		{load_url_in_div id="copyeditingFilesListbuilder" url=$copyeditingFilesListbuilderUrl}
+		<!-- Available files listbuilder -->
+		{if $fileStage == $smarty.const.MONOGRAPH_FILE_COPYEDIT}
+			{url|assign:filesListbuilderUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.files.CopyeditingFilesListbuilderHandler" op="fetch" monographId=$monographId}
+			{assign var="filesListbuilderId" value="copyeditingFilesListbuilder"}
+		{else $fileStage == $smarty.const.MONOGRAPH_FILE_PROOF}
+			{url|assign:filesListbuilderUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.files.ProofFilesListbuilderHandler" op="fetch" monographId=$monographId publicationFormatId=$publicationFormatId escape=false}
+			{assign var="filesListbuilderId" value="proofFilesListbuilder"}
+		{/if}
+
+		{load_url_in_div id=$filesListbuilderId url=$filesListbuilderUrl}
 
 		{fbvFormSection}
 			{fbvElement type="text" id="responseDueDate" name="responseDueDate" label="editor.responseDueDate" value=$responseDueDate }

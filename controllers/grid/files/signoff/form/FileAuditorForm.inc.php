@@ -19,6 +19,9 @@ class FileAuditorForm extends Form {
 	var $_monograph;
 
 	/* @var int */
+	var $_fileStage;
+
+	/* @var int */
 	var $_stageId;
 
 	/* @var string */
@@ -27,15 +30,20 @@ class FileAuditorForm extends Form {
 	/* @var string */
 	var $_eventType;
 
+	/* @var int */
+	var $_assocId;
+
 	/**
 	 * Constructor.
 	 */
-	function FileAuditorForm($monograph, $stageId, $symbolic, $eventType) {
+	function FileAuditorForm($monograph, $fileStage, $stageId, $symbolic, $eventType, $assocId = null) {
 		parent::Form('controllers/grid/files/signoff/form/addAuditor.tpl');
 		$this->_monograph =& $monograph;
+		$this->_fileStage = $fileStage;
 		$this->_stageId = $stageId;
 		$this->_symbolic = $symbolic;
 		$this->_eventType = $eventType;
+		$this->_assocId = $assocId;
 
 		$this->addCheck(new FormValidator($this, 'userId', 'required', 'editor.monograph.fileAuditor.form.userRequired'));
 		$this->addCheck(new FormValidator($this, 'files', 'required', 'editor.monograph.fileAuditor.form.fileRequired'));
@@ -51,6 +59,13 @@ class FileAuditorForm extends Form {
 		return $this->_monograph;
 	}
 
+	/**
+	 * Get the file stage.
+	 * @return integer
+	 */
+	function getFileStage() {
+		return $this->_fileStage;
+	}
 	/**
 	 * Get the workflow stage id.
 	 * @return integer
@@ -74,6 +89,14 @@ class FileAuditorForm extends Form {
 		return $this->_eventType;
 	}
 
+	/**
+	 * Get the assoc id
+	 */
+	function getAssocId() {
+		return $this->_assocId;
+	}
+
+
 	//
 	// Overridden template methods
 	//
@@ -85,6 +108,8 @@ class FileAuditorForm extends Form {
 	function initData($args, &$request) {
 		$monograph = $this->getMonograph();
 		$this->setData('monographId', $monograph->getId());
+		$this->setData('fileStage', $this->getFileStage());
+		$this->setData('publicationFormatId', $this->getAssocId());
 		import('classes.mail.MonographMailTemplate');
 		$email = new MonographMailTemplate($monograph, 'AUDITOR_REQUEST');
 		$this->setData('personalMessage', $email->getBody());

@@ -9,22 +9,19 @@
  * @class CopyeditingFilesListbuilderHandler
  * @ingroup listbuilder
  *
- * @brief Class for selecting files to add a user to for copyediting
+ * @brief Class for selecting files to add a user to for copyediting.
  */
 
-import('lib.pkp.classes.controllers.listbuilder.ListbuilderHandler');
+import('controllers.listbuilder.files.FilesListbuilderHandler');
 
-class CopyeditingFilesListbuilderHandler extends ListbuilderHandler {
+class CopyeditingFilesListbuilderHandler extends FilesListbuilderHandler {
 	/**
 	 * Constructor
 	 */
 	function CopyeditingFilesListbuilderHandler() {
-		parent::ListbuilderHandler();
-
-		$this->addRoleAssignment(
-			array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER, ROLE_ID_PRESS_ASSISTANT),
-			array('fetch', 'fetchRow', 'fetchOptions')
-		);
+		// Get access to the monograph file constants.
+		import('classes.monograph.MonographFile');
+		parent::FilesListbuilderHandler(MONOGRAPH_FILE_COPYEDIT);
 	}
 
 
@@ -35,98 +32,24 @@ class CopyeditingFilesListbuilderHandler extends ListbuilderHandler {
 	 * @see PKPHandler::authorize()
 	 */
 	function authorize(&$request, &$args, $roleAssignments) {
-		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
-		$this->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', WORKFLOW_STAGE_ID_EDITING));
-		return parent::authorize($request, $args, $roleAssignments);
-	}
-
-	/**
-	 * Configure the grid
-	 * @param PKPRequest $request
-	 */
-	function initialize(&$request) {
-		parent::initialize($request);
-
-		// Basic configuration
-		$this->setSourceType(LISTBUILDER_SOURCE_TYPE_SELECT);
-		$this->setSaveType(LISTBUILDER_SAVE_TYPE_EXTERNAL);
-		$this->setSaveFieldName('files');
-
-		// Add the file column
-		$itemColumn = new ListbuilderGridColumn($this, 'name', 'common.name');
-		import('controllers.listbuilder.files.FileListbuilderGridCellProvider');
-		$itemColumn->setCellProvider(new FileListbuilderGridCellProvider());
-		$this->addColumn($itemColumn);
+		return parent::authorize($request, $args, $roleAssignments, WORKFLOW_STAGE_ID_EDITING);
 	}
 
 
 	//
-	// Public methods
+	// Implement methods from FilesListbuilderHandler
 	//
-
 	/**
-	 * Load possible items to populate drop-down list with
+	 * @see controllers/listbuilder/files/FilesListbuilderHandler::getOptions()
 	 */
 	function getOptions() {
 		import('classes.monograph.MonographFile');
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-		$monographFiles =& $submissionFileDao->getLatestRevisions($monograph->getId(), MONOGRAPH_FILE_COPYEDIT);
-		$itemList = array();
-		foreach ($monographFiles as $monographFile) {
-			$itemList[$monographFile->getFileId()] = $monographFile->getFileLabel();
-		}
-		return array($itemList);
-	}
+		$monographFiles =& $submissionFileDao->getLatestRevisions($monograph->getId(), $this->getFileStage());
 
-
-	//
-	// Overridden template methods
-	//
-	/**
-	 * @see GridHandler::getRequestArgs
-	 */
-	function getRequestArgs() {
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-		$args = parent::getRequestArgs();
-		$args['monographId'] = $monograph->getId();
-		return $args;
-	}
-
-	/**
-	 * @see PKPHandler::setupTemplate()
-	 */
-	function setupTemplate() {
-		parent::setupTemplate();
-
-		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_EDITOR, LOCALE_COMPONENT_PKP_SUBMISSION));
-	}
-
-	/**
-	 * @see GridHandler::getRowDataElement
-	 * Get the data element that corresponds to the current request
-	 * Allow for a blank $rowId for when creating a not-yet-persisted row
-	 */
-	function getRowDataElement(&$request, $rowId) {
-		// fallback on the parent if a rowId is found
-		if ( !empty($rowId) ) {
-			return parent::getRowDataElement($request, $rowId);
-		}
-
-		// Otherwise return from the newRowId
-		$newRowId = $this->getNewRowId($request);
-		$fileId = (int) $newRowId['name'];
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-		import('classes.monograph.MonographFile'); // Bring in const
-		$monographFiles =& $submissionFileDao->getLatestRevisions($monograph->getId(), MONOGRAPH_FILE_COPYEDIT);
-		foreach ($monographFiles as $monographFile) {
-			if ($monographFile->getFileId() == $fileId) {
-				return $monographFile;
-			}
-		}
-		return null;
+		return parent::getOptions($monographFiles);
 	}
 }
 

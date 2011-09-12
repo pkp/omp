@@ -356,7 +356,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 		$templateMgr->assign('autocompleteUrl', $autocompleteUrl);
 
 		import('controllers.grid.files.signoff.form.FileAuditorForm');
-		$auditorForm = new FileAuditorForm($monograph, $this->getStageId(), $this->getSymbolic(), $this->getEventType());
+		$auditorForm = new FileAuditorForm($monograph, $this->getFileStage(), $this->getStageId(), $this->getSymbolic(), $this->getEventType(), $this->getAssocId());
 		if ($auditorForm->isLocaleResubmit()) {
 			$auditorForm->readInputData();
 		} else {
@@ -380,7 +380,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 
 		// Form handling
 		import('controllers.grid.files.signoff.form.FileAuditorForm');
-		$auditorForm = new FileAuditorForm($monograph, $this->getStageId(), $this->getSymbolic(), $this->getEventType(), $this->getRequestArgs());
+		$auditorForm = new FileAuditorForm($monograph, $this->getFileStage(), $this->getStageId(), $this->getSymbolic(), $this->getEventType(), $this->getAssocId());
 		$auditorForm->readInputData();
 		if ($auditorForm->validate()) {
 			$auditorForm->execute($request);
