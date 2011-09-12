@@ -111,12 +111,14 @@ class NotificationManager extends PKPNotificationManager {
 				return __('notification.type.reviewerComment', array('title' => $title));
 				break;
 			case NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_SUBMISSION:
-			// FIXME Create a text and locale key for the rest of the notification types.
 			case NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_INTERNAL_REVIEW:
 			case NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_EXTERNAL_REVIEW:
-			case NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_EDITING:
 				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
 				return __('notification.type.editorAssignment');
+				break;
+			case NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_EDITING:
+				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
+				return __('notification.type.editorAssignmentEditing');
 				break;
 			case NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_PRODUCTION:
 				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
