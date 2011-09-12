@@ -9,7 +9,7 @@
  * @class SubmissionHandler
  * @ingroup pages_submission
  *
- * @brief Handle requests for submission monograph submission.
+ * @brief Handle requests for monograph submission.
  */
 
 
