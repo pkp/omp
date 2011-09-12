@@ -37,7 +37,7 @@ class LoginHandler extends PKPLoginHandler {
 				$templateMgr =& TemplateManager::getManager();
 				$templateMgr->assign('pageTitle', 'manager.people');
 				$templateMgr->assign('errorMsg', 'manager.people.noAdministrativeRights');
-				$templateMgr->assign('backLink', Request::url(null, null, 'people', 'all'));
+				$templateMgr->assign('backLink', $request->url(null, null, 'people', 'all'));
 				$templateMgr->assign('backLinkLabel', 'manager.people.allUsers');
 				return $templateMgr->display('common/error.tpl');
 			}
@@ -55,16 +55,18 @@ class LoginHandler extends PKPLoginHandler {
 				$request->redirect(null, 'user');
 			}
 		}
-		$request->redirect(null, Request::getRequestedPage());
+		$request->redirect(null, $request->getRequestedPage());
 	}
 
 	/**
 	 * Restore original user account after signing in as a user.
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
-	function signOutAsUser() {
+	function signOutAsUser($args, &$request) {
 		$this->validate();
 
-		$session =& Request::getSession();
+		$session =& $request->getSession();
 		$signedInAs = $session->getSessionVar('signedInAs');
 
 		if (isset($signedInAs) && !empty($signedInAs)) {
@@ -82,23 +84,25 @@ class LoginHandler extends PKPLoginHandler {
 			}
 		}
 
-		Request::redirect(null, 'user');
+		$request->redirect(null, 'user');
 	}
 
 	/**
 	 * Get the log in URL.
+	 * @param $request PKPRequest
 	 */
-	function _getLoginUrl() {
-		return Request::url(null, 'login', 'signIn');
+	function _getLoginUrl($request) {
+		return $request->url(null, 'login', 'signIn');
 	}
 	
 	/**
 	 * Helper Function - set mail from address
+	 * @param $request PKPRequest
 	 * @param MailTemplate $mail 
 	 */
-	function _setMailFrom(&$mail) {
-		$site =& Request::getSite();
-		$press =& Request::getPress();
+	function _setMailFrom($request, &$mail) {
+		$site =& $request->getSite();
+		$press =& $request->getPress();
 		
 		// Set the sender based on the current context
 		if ($press && $press->getSetting('supportEmail')) {
