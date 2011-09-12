@@ -47,12 +47,12 @@ class DashboardHandler extends Handler {
 
 	/**
 	 * View overview tab
-	 * @param $request PKPRequest
 	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function overview($args, &$request) {
-		$templateMgr = &TemplateManager::getManager();
-		$this->setupTemplate();
+		$templateMgr =& TemplateManager::getManager();
+		$this->setupTemplate($request);
 
 		$templateMgr->assign('selectedTab', 1);
 		$templateMgr->assign('pageToDisplay', 'dashboard/overview.tpl');
@@ -61,12 +61,12 @@ class DashboardHandler extends Handler {
 
 	/**
 	 * View tasks tab
-	 * @param $request PKPRequest
 	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function tasks($args, &$request) {
-		$templateMgr = &TemplateManager::getManager();
-		$this->setupTemplate();
+		$templateMgr =& TemplateManager::getManager();
+		$this->setupTemplate($request);
 
 		$templateMgr->assign('selectedTab', 2);
 		$templateMgr->assign('pageToDisplay', 'dashboard/tasks.tpl');
@@ -75,12 +75,12 @@ class DashboardHandler extends Handler {
 
 	/**
 	 * View status tab
-	 * @param $request PKPRequest
 	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function status($args, &$request) {
-		$templateMgr = &TemplateManager::getManager();
-		$this->setupTemplate();
+		$templateMgr =& TemplateManager::getManager();
+		$this->setupTemplate($request);
 
 		// Get all the presses in the system, to determine which 'new submission' entry point we display
 		$pressDao =& DAORegistry::getDAO('PressDAO'); /* @var $pressDao PressDAO */
@@ -114,15 +114,16 @@ class DashboardHandler extends Handler {
 
 	/**
 	 * Setup common template variables.
+	 * @param $request PKPRequest
 	 * @param $subclass boolean set to true if caller is below this handler in the hierarchy
 	 */
-	function setupTemplate($subclass = false) {
+	function setupTemplate($request, $subclass = false) {
 		parent::setupTemplate();
 
 		$templateMgr =& TemplateManager::getManager();
 		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_MANAGER, LOCALE_COMPONENT_PKP_MANAGER, LOCALE_COMPONENT_OMP_SUBMISSION));
 
-		if ($subclass) $templateMgr->assign('pageHierarchy', array(array(Request::url(null, 'dashboard'), 'dashboard.dashboard')));
+		if ($subclass) $templateMgr->assign('pageHierarchy', array(array($request->url(null, 'dashboard'), 'dashboard.dashboard')));
 	}
 }
 

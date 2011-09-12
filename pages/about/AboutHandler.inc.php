@@ -26,17 +26,19 @@ class AboutHandler extends Handler {
 
 	/**
 	 * Display about index page.
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
-	function index() {
+	function index($args, &$request) {
 		$this->validate();
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 
 		$templateMgr =& TemplateManager::getManager();
 		$pressDao =& DAORegistry::getDAO('PressDAO');
-		$pressPath = Request::getRequestedPressPath();
+		$pressPath = $request->getRequestedPressPath();
 
 		if ($pressPath != 'index' && $pressDao->pressExistsByPath($pressPath)) {
-			$press =& Request::getPress();
+			$press =& $request->getPress();
 
 			$pressSettingsDao =& DAORegistry::getDAO('PressSettingsDAO');
 			$templateMgr->assign_by_ref('pressSettings', $pressSettingsDao->getPressSettings($press->getId()));
@@ -56,7 +58,7 @@ class AboutHandler extends Handler {
 			$templateMgr->assign('helpTopicId', 'user.about');
 			$templateMgr->display('about/index.tpl');
 		} else {
-			$site =& Request::getSite();
+			$site =& $request->getSite();
 			$about = $site->getLocalizedAbout();
 			$templateMgr->assign('about', $about);
 
@@ -71,29 +73,31 @@ class AboutHandler extends Handler {
 	 * Setup common template variables.
 	 * @param $subclass boolean set to true if caller is below this handler in the hierarchy
 	 */
-	function setupTemplate($subclass = false) {
+	function setupTemplate($request, $subclass = false) {
 		parent::setupTemplate();
 
 		$templateMgr =& TemplateManager::getManager();
-		$press =& Request::getPress();
+		$press =& $request->getPress();
 		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_MANAGER, LOCALE_COMPONENT_PKP_MANAGER));
 
 		if (!$press || !$press->getSetting('restrictSiteAccess')) {
 			$templateMgr->setCacheability(CACHEABILITY_PUBLIC);
 		}
-		if ($subclass) $templateMgr->assign('pageHierarchy', array(array(Request::url(null, 'about'), 'about.aboutThePress')));
+		if ($subclass) $templateMgr->assign('pageHierarchy', array(array($request->url(null, 'about'), 'about.aboutThePress')));
 	}
 
 	/**
 	 * Display contact page.
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
-	function contact() {
+	function contact($args, &$request) {
 		$this->addCheck(new HandlerValidatorPress($this));
 		$this->validate();
-		$this->setupTemplate(true);
+		$this->setupTemplate($request, true);
 
 		$pressSettingsDao =& DAORegistry::getDAO('PressSettingsDAO');
-		$press =& Request::getPress();
+		$press =& $request->getPress();
 
 		$templateMgr =& TemplateManager::getManager();
 		$pressSettings =& $pressSettingsDao->getPressSettings($press->getId());
@@ -103,12 +107,14 @@ class AboutHandler extends Handler {
 
 	/**
 	 * Display Press Sponsorship page.
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
-	function pressSponsorship() {
+	function pressSponsorship($args, &$request) {
 		$this->validate();
-		$this->setupTemplate(true);
+		$this->setupTemplate($request, true);
 
-		$press =& Request::getPress();
+		$press =& $request->getPress();
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign_by_ref('contributorNote', $press->getLocalizedSetting('contributorNote'));
@@ -120,13 +126,15 @@ class AboutHandler extends Handler {
 
 	/**
 	 * Display editorialTeam page.
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
-	function editorialTeam() {
+	function editorialTeam($args, &$request) {
 		$this->addCheck(new HandlerValidatorPress($this));
 		$this->validate();
-		$this->setupTemplate(true);
+		$this->setupTemplate($request, true);
 
-		$press =& Request::getPress();
+		$press =& $request->getPress();
 		$templateMgr =& TemplateManager::getManager();
 
 		$countryDao =& DAORegistry::getDAO('CountryDAO');
@@ -178,14 +186,15 @@ class AboutHandler extends Handler {
 	/**
 	 * Display a biography for an editorial team member.
 	 * @param $args array
+	 * @param $request PKPRequest
 	 */
-	function editorialTeamBio($args) {
+	function editorialTeamBio($args, &$request) {
 		$this->addCheck(new HandlerValidatorPress($this));
 		$this->validate();
-		$this->setupTemplate(true);
+		$this->setupTemplate($request, true);
 
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
-		$press =& Request::getPress();
+		$press =& $request->getPress();
 
 		$templateMgr =& TemplateManager::getManager();
 
@@ -237,7 +246,7 @@ class AboutHandler extends Handler {
 			}
 		}
 
-		if (!$user) Request::redirect(null, 'about', 'editorialTeam');
+		if (!$user) $request->redirect(null, 'about', 'editorialTeam');
 
 		$countryDao =& DAORegistry::getDAO('CountryDAO');
 		if ($user && $user->getCountry() != '') {
@@ -253,16 +262,18 @@ class AboutHandler extends Handler {
 
 	/**
 	 * Display editorialPolicies page.
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
-	function editorialPolicies() {
+	function editorialPolicies($args, &$request) {
 		$this->addCheck(new HandlerValidatorPress($this));
 		$this->validate();
-		$this->setupTemplate(true);
+		$this->setupTemplate($request, true);
 
 		$pressSettingsDao =& DAORegistry::getDAO('PressSettingsDAO');
 		$seriesDao =& DAORegistry::getDAO('SeriesDAO');
 		$seriesEditorsDao =& DAORegistry::getDAO('SeriesEditorsDAO');
-		$press =& Request::getPress();
+		$press =& $request->getPress();
 
 		$templateMgr =& TemplateManager::getManager();
 		$series =& $seriesDao->getByPressId($press->getId());
@@ -280,14 +291,16 @@ class AboutHandler extends Handler {
 
 	/**
 	 * Display submissions page.
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
-	function submissions() {
+	function submissions($args, &$request) {
 		$this->addCheck(new HandlerValidatorPress($this));
 		$this->validate();
-		$this->setupTemplate(true);
+		$this->setupTemplate($request, true);
 
 		$settingsDao =& DAORegistry::getDAO('PressSettingsDAO');
-		$press =& Request::getPress();
+		$press =& $request->getPress();
 
 		$templateMgr =& TemplateManager::getManager();
 		$pressSettings =& $settingsDao->getPressSettings($press->getId());
@@ -304,16 +317,18 @@ class AboutHandler extends Handler {
 
 	/**
 	 * Display siteMap page.
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
-	function siteMap() {
+	function siteMap($args, &$request) {
 		$this->validate();
-		$this->setupTemplate(true);
+		$this->setupTemplate($request, true);
 
 		$templateMgr =& TemplateManager::getManager();
 
 		$pressDao =& DAORegistry::getDAO('PressDAO');
 
-		$user =& Request::getUser();
+		$user =& $request->getUser();
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 
 		if ($user) {
@@ -345,10 +360,12 @@ class AboutHandler extends Handler {
 
 	/**
 	 * Display aboutThisPublishingSystem page.
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
-	function aboutThisPublishingSystem() {
+	function aboutThisPublishingSystem($args, &$request) {
 		$this->validate();
-		$this->setupTemplate(true);
+		$this->setupTemplate($request, true);
 
 		$versionDao =& DAORegistry::getDAO('VersionDAO');
 		$version =& $versionDao->getCurrentVersion();
