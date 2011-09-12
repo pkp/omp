@@ -36,6 +36,11 @@
 		{fbvElement type="textarea" name="personalMessage" id="personalMessage" value=$personalMessage}
 	{/fbvFormSection}
 
+	<!-- option to skip sending this email -->
+	{fbvFormSection for="skipEmail" size=$fbvStyles.size.MEDIUM list=true}
+		{fbvElement type="checkbox" id="skipEmail" name="skipEmail" label="editor.submissionReview.skipEmail"}
+	{/fbvFormSection}
+
 	{** Some decisions can be made before review is initiated (i.e. no attachments). **}
 	{if $round}
 		<div id="attachments" style="margin-top: 30px;">
