@@ -44,7 +44,7 @@ class ProofFilesGridHandler extends SignoffFilesGridHandler {
 		parent::initialize($request);
 
 		// Basic grid configuration
-		$this->setId('proofFiles');
+		$this->setId('proofFiles-' . $this->getAssocId());
 		$this->setTitle('editor.monograph.proofReading');
 	}
 
