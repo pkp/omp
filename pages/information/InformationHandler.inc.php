@@ -25,16 +25,18 @@ class InformationHandler extends Handler {
 	}
 
 	/**
-	 * Display the information page for the press..
+	 * Display the information page for the press.
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
-	function index($args) {
+	function index($args, &$request) {
 		$this->validate();
-		$this->setupTemplate();
-		$press = Request::getPress();
-		$contentOnly = Request::getUserVar('contentOnly');
+		$this->setupTemplate($request);
+		$press = $request->getPress();
+		$contentOnly = $request->getUserVar('contentOnly');
 
 		if ($press == null) {
-			Request::redirect('index');
+			$request->redirect('index');
 			return;
 		}
 
@@ -63,7 +65,7 @@ class InformationHandler extends Handler {
 				$pageTitle = $pageCrumbTitle = 'manager.setup.copyrightNotice';
 				break;
 			default:
-				Request::redirect($press->getPath());
+				$request->redirect($press->getPath());
 				return;
 		}
 
@@ -98,9 +100,10 @@ class InformationHandler extends Handler {
 
 	/**
 	 * Initialize the template.
+	 * @param $request PKPRequest
 	 */
-	function setupTemplate() {
-		$press =& Request::getPress();
+	function setupTemplate($request) {
+		$press =& $request->getPress();
 		Locale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_PKP_USER));
 		$templateMgr =& TemplateManager::getManager();
 		if (!$press || !$press->getSetting('restrictSiteAccess')) {

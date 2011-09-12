@@ -23,8 +23,10 @@ class AdminFunctionsHandler extends AdminHandler {
 
 	/**
 	 * Show system information summary.
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
-	function systemInfo() {
+	function systemInfo($args, &$request) {
 		$this->validate();
 		$this->setupTemplate(true);
 
@@ -50,7 +52,7 @@ class AdminFunctionsHandler extends AdminHandler {
 		$templateMgr->assign_by_ref('versionHistory', $versionHistory);
 		$templateMgr->assign_by_ref('configData', $configData);
 		$templateMgr->assign_by_ref('serverInfo', $serverInfo);
-		if (Request::getUserVar('versionCheck')) {
+		if ($request->getUserVar('versionCheck')) {
 			$latestVersionInfo =& VersionCheck::getLatestVersion();
 			$latestVersionInfo['patch'] = VersionCheck::getPatch($latestVersionInfo);
 			$templateMgr->assign_by_ref('latestVersionInfo', $latestVersionInfo);
@@ -61,13 +63,15 @@ class AdminFunctionsHandler extends AdminHandler {
 
 	/**
 	 * Edit the system configuration settings.
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
-	function editSystemConfig() {
+	function editSystemConfig($args, &$request) {
 		$this->validate();
 		$this->setupTemplate(true);
 
 		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->append('pageHierarchy', array(Request::url(null, 'admin', 'systemInfo'), 'admin.systemInformation'));
+		$templateMgr->append('pageHierarchy', array($request->url(null, 'admin', 'systemInfo'), 'admin.systemInformation'));
 
 		$configData =& Config::getData();
 
@@ -79,8 +83,10 @@ class AdminFunctionsHandler extends AdminHandler {
 
 	/**
 	 * Save modified system configuration settings.
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
-	function saveSystemConfig() {
+	function saveSystemConfig($args, &$request) {
 		$this->validate();
 		$this->setupTemplate(true);
 
@@ -88,7 +94,7 @@ class AdminFunctionsHandler extends AdminHandler {
 
 		// Update configuration based on user-supplied data
 		foreach ($configData as $sectionName => $sectionData) {
-			$newData = Request::getUserVar($sectionName);
+			$newData = $request->getUserVar($sectionName);
 			foreach ($sectionData as $settingName => $settingValue) {
 				if (isset($newData[$settingName])) {
 					$newValue = $newData[$settingName];
@@ -109,13 +115,13 @@ class AdminFunctionsHandler extends AdminHandler {
 		if (!$configParser->updateConfig(Config::getConfigFileName(), $configData)) {
 			// Error reading config file (this should never happen)
 			$templateMgr->assign('errorMsg', 'admin.systemConfigFileReadError');
-			$templateMgr->assign('backLink', Request::url(null, null, 'systemInfo'));
+			$templateMgr->assign('backLink', $request->url(null, null, 'systemInfo'));
 			$templateMgr->assign('backLinkLabel', 'admin.systemInformation');
 			$templateMgr->display('common/error.tpl');
 
 		} else {
 			$writeConfigFailed = false;
-			$displayConfigContents = Request::getUserVar('display') == null ? false : true;
+			$displayConfigContents = $request->getUserVar('display') == null ? false : true;
 			$configFileContents = $configParser->getFileContents();
 
 			if (!$displayConfigContents) {
@@ -143,28 +149,34 @@ class AdminFunctionsHandler extends AdminHandler {
 
 	/**
 	 * Expire all user sessions (will log out all users currently logged in).
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
-	function expireSessions() {
+	function expireSessions($args, &$request) {
 		$this->validate();
 		$sessionDao =& DAORegistry::getDAO('SessionDAO');
 		$sessionDao->deleteAllSessions();
-		Request::redirect(null, 'admin');
+		$request->redirect(null, 'admin');
 	}
 
 	/**
 	 * Clear compiled templates.
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
-	function clearTemplateCache() {
+	function clearTemplateCache($args, &$request) {
 		$this->validate();
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->clearTemplateCache();
-		Request::redirect(null, 'admin');
+		$request->redirect(null, 'admin');
 	}
 
 	/**
 	 * Clear the data cache.
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
-	function clearDataCache() {
+	function clearDataCache($args, &$request) {
 		$this->validate();
 
 		// Clear the CacheManager's caches
@@ -175,7 +187,7 @@ class AdminFunctionsHandler extends AdminHandler {
 		$userDao =& DAORegistry::getDAO('UserDAO'); // As good as any
 		$userDao->flushCache();
 
-		Request::redirect(null, 'admin');
+		$request->redirect(null, 'admin');
 	}
 }
 
