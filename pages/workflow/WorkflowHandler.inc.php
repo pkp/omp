@@ -88,7 +88,7 @@ class WorkflowHandler extends Handler {
 		$notificationRequestOptions = array(
 			NOTIFICATION_LEVEL_TASK => array(
 				$editorAssignmentNotificationType => array(ASSOC_TYPE_MONOGRAPH, $monograph->getId(), true),
-				NOTIFICATION_TYPE_COPYEDIT_SIGNOFF => array(ASSOC_TYPE_MONOGRAPH, $monograph->getId())),
+				NOTIFICATION_TYPE_SIGNOFF_COPYEDIT => array(ASSOC_TYPE_MONOGRAPH, $monograph->getId())),
 			NOTIFICATION_LEVEL_TRIVIAL => array()
 		);
 

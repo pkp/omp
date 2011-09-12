@@ -217,7 +217,7 @@ class FileAuditorForm extends Form {
 			NOTIFICATION_LEVEL_TASK
 		);
 
-		// Update NOTIFICATION_TYPE_COPYEDIT_SIGNOFF if this is a copyedit symbolic.
+		// Update NOTIFICATION_TYPE_SIGNOFF_COPYEDIT if this is a copyedit symbolic.
 		$notificationMgr->updateCopyeditSignoffNotification($signoff, $request);
 	}
 

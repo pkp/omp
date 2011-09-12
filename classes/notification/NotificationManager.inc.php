@@ -73,7 +73,7 @@ class NotificationManager extends PKPNotificationManager {
 				$reviewAssignment =& $reviewAssignmentDao->getById($notification->getAssocId());
 				$url = $dispatcher->url($request, ROUTE_PAGE, null, 'reviewer', 'submission', $reviewAssignment->getSubmissionId());
 				break;
-			case NOTIFICATION_TYPE_COPYEDIT_SIGNOFF:
+			case NOTIFICATION_TYPE_SIGNOFF_COPYEDIT:
 				$url = $dispatcher->url($request, ROUTE_PAGE, null, 'workflow', 'copyediting', $notification->getAssocId());
 				break;
 			default:
@@ -137,7 +137,7 @@ class NotificationManager extends PKPNotificationManager {
 			case NOTIFICATION_TYPE_REVIEW_ASSIGNMENT:
 				return __('notification.type.reviewAssignment');
 				break;
-			case NOTIFICATION_TYPE_COPYEDIT_SIGNOFF:
+			case NOTIFICATION_TYPE_SIGNOFF_COPYEDIT:
 				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
 				$monographId = $notification->getAssocId();
 
@@ -154,7 +154,7 @@ class NotificationManager extends PKPNotificationManager {
 
 				$templateMgr =& TemplateManager::getManager();
 				$templateMgr->assign('signoffFileLinkAction', $signoffFileLinkAction);
-				$notificationDescription = $templateMgr->fetch('controllers/notification/copyeditingSignoffNotificationContent.tpl');
+				$notificationDescription = $templateMgr->fetch('controllers/notification/signoffNotificationContent.tpl');
 
 				return $notificationDescription;
 				break;
@@ -173,7 +173,7 @@ class NotificationManager extends PKPNotificationManager {
 		assert(isset($type));
 
 		switch ($type) {
-			case NOTIFICATION_TYPE_COPYEDIT_SIGNOFF:
+			case NOTIFICATION_TYPE_SIGNOFF_COPYEDIT:
 				return __('notification.type.copyeditSignoff');
 			default:
 				return parent::getNotificationTitle($notification);
@@ -208,7 +208,7 @@ class NotificationManager extends PKPNotificationManager {
 			case NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_PRODUCTION:
 			case NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_SUBMISSION:
 			case NOTIFICATION_TYPE_AUDITOR_REQUEST:
-			case NOTIFICATION_TYPE_COPYEDIT_SIGNOFF:
+			case NOTIFICATION_TYPE_SIGNOFF_COPYEDIT:
 				return 'notifyWarning';
 				break;
 			default: return parent::getStyleClass($notification);
@@ -242,7 +242,7 @@ class NotificationManager extends PKPNotificationManager {
 	}
 
 	/**
-	 * Update the NOTIFICATION_TYPE_COPYEDIT_SIGNOFF. The logic to update is:
+	 * Update the NOTIFICATION_TYPE_SIGNOFF_COPYEDIT. The logic to update is:
 	 * if the user have at least one incompleted signoff on the current press,
 	 * a notification must be inserted or keeped for the user. Otherwise, if a
 	 * notification exists, it should be deleted.
@@ -269,13 +269,13 @@ class NotificationManager extends PKPNotificationManager {
 		$monographFile =& $submissionFileDao->getLatestRevision($monographFileId);
 		$monographId = $monographFile->getMonographId();
 
-		// Check for an existing NOTIFICATION_TYPE_COPYEDIT_SIGNOFF.
+		// Check for an existing NOTIFICATION_TYPE_SIGNOFF_COPYEDIT.
 		$notificationDao =& DAORegistry::getDAO('NotificationDAO');
 		$notificationFactory =& $notificationDao->getNotificationsByAssoc(
 			ASSOC_TYPE_MONOGRAPH,
 			$monographId,
 			$userId,
-			NOTIFICATION_TYPE_COPYEDIT_SIGNOFF,
+			NOTIFICATION_TYPE_SIGNOFF_COPYEDIT,
 			$contextId
 		);
 
@@ -305,7 +305,7 @@ class NotificationManager extends PKPNotificationManager {
 			$this->createNotification(
 				$request,
 				$userId,
-				NOTIFICATION_TYPE_COPYEDIT_SIGNOFF,
+				NOTIFICATION_TYPE_SIGNOFF_COPYEDIT,
 				$contextId,
 				ASSOC_TYPE_MONOGRAPH,
 				$monographId,
