@@ -67,7 +67,7 @@ class IndexHandler extends Handler {
 				$this->_displayPressIndexPage($press, &$templateMgr);
 			} else {
 				$site =& $request->getSite();
-				$this->_displaySiteIndexPage($site, &$templateMgr);
+				$this->_displaySiteIndexPage($request, $site, &$templateMgr);
 			}
 		}
 	}
@@ -78,14 +78,15 @@ class IndexHandler extends Handler {
 	//
 	/**
 	 * Display the site index page.
+	 * @param $request PKPRequest
 	 * @param $site Site
 	 * @param $templateMgr TemplateManager
 	 */
-	function _displaySiteIndexPage($site, &$templateMgr) {
+	function _displaySiteIndexPage($request, $site, &$templateMgr) {
 
 		// Display the overview page with all presses.
 		$templateMgr->assign('intro', $site->getLocalizedIntro());
-		$templateMgr->assign('pressFilesPath', Request::getBaseUrl() . '/' . Config::getVar('files', 'public_files_dir') . '/presses/');
+		$templateMgr->assign('pressFilesPath', $request->getBaseUrl() . '/' . Config::getVar('files', 'public_files_dir') . '/presses/');
 		$pressDao =& DAORegistry::getDAO('PressDAO'); /* @var $pressDao PressDAO */
 		$presses =& $pressDao->getEnabledPresses();
 		$templateMgr->assign_by_ref('presses', $presses);
