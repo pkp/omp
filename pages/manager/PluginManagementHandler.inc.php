@@ -26,7 +26,7 @@ import('pages.manager.ManagerHandler');
 class PluginManagementHandler extends ManagerHandler {
 	/**
 	 * Constructor
-	 **/
+	 */
 	function PluginManagementHandler() {
 		parent::ManagerHandler();
 		$this->addRoleAssignment(ROLE_ID_PRESS_MANAGER, 'managePlugins');
@@ -34,33 +34,35 @@ class PluginManagementHandler extends ManagerHandler {
 
 	/**
 	 * Display a list of plugins along with management options.
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
-	function managePlugins($args) {
+	function managePlugins($args, &$request) {
 		$path = isset($args[0])?$args[0]:null;
 		$category = isset($args[1])?$args[1]:null;
 		$plugin = isset($args[2])?$args[2]:null;
 
 		switch($path) {
 			case 'install':
-				$this->showInstallForm();
+				$this->_showInstallForm();
 				break;
 			case 'installPlugin':
-				$this->uploadPlugin('install');
+				$this->_uploadPlugin($request, 'install');
 				break;
 			case 'upgrade':
-				$this->showUpgradeForm($category, $plugin);
+				$this->_showUpgradeForm($category, $plugin);
 				break;
 			case 'upgradePlugin':
-				$this->uploadPlugin('upgrade', $category, $plugin);
+				$this->_uploadPlugin($request, 'upgrade', $category, $plugin);
 				break;
 			case 'delete':
-				$this->showDeleteForm($category, $plugin);
+				$this->_showDeleteForm($category, $plugin);
 				break;
 			case 'deletePlugin':
-				$this->deletePlugin($category, $plugin);
+				$this->_deletePlugin($category, $plugin);
 				break;
 			default:
-				Request::redirect(null, 'manager', 'plugins');
+				$request->redirect(null, 'manager', 'plugins');
 		}
 
 		$this->setupTemplate(true);
@@ -69,7 +71,7 @@ class PluginManagementHandler extends ManagerHandler {
 	/**
 	 * Show plugin installation form.
 	 */
-	function showInstallForm() {
+	function _showInstallForm() {
 		$templateMgr =& TemplateManager::getManager();
 		$this->setupTemplate(true);
 
@@ -87,7 +89,7 @@ class PluginManagementHandler extends ManagerHandler {
 	 * @param $category string
 	 * @param $plugin string
 	 */
-	function showUpgradeForm($category, $plugin) {
+	function _showUpgradeForm($category, $plugin) {
 		$templateMgr =& TemplateManager::getManager();
 		$this->setupTemplate(true);
 
@@ -105,7 +107,7 @@ class PluginManagementHandler extends ManagerHandler {
 	 * @param $category string
 	 * @param $plugin string
 	 */
-	function showDeleteForm($category, $plugin) {
+	function _showDeleteForm($category, $plugin) {
 		$templateMgr =& TemplateManager::getManager();
 		$this->setupTemplate(true);
 
@@ -122,11 +124,12 @@ class PluginManagementHandler extends ManagerHandler {
 
 	/**
 	 * Decompress uploaded plugin and install in the correct plugin directory.
+	 * @param $request PKPRequest
 	 * @param $function string type of operation to perform after upload ('upgrade' or 'install')
 	 * @param $category string the category of the uploaded plugin (upgrade only)
 	 * @param $plugin string the name of the uploaded plugin (upgrade only)
 	 */
-	function uploadPlugin($function, $category = null, $plugin = null) {
+	function _uploadPlugin($request, $function, $category = null, $plugin = null) {
 		$templateMgr =& TemplateManager::getManager();
 		$this->setupTemplate(true);
 
@@ -135,10 +138,10 @@ class PluginManagementHandler extends ManagerHandler {
 		$templateMgr->assign('path', $function);
 
 		$errorMsg = '';
-		if (Request::getUserVar('uploadPlugin')) {
+		if ($request->getUserVar('uploadPlugin')) {
 			import('classes.file.TemporaryFileManager');
 			$temporaryFileManager = new TemporaryFileManager();
-			$user =& Request::getUser();
+			$user =& $request->getUser();
 		} else {
 			$errorMsg = 'manager.plugins.fileSelectError';
 		}
@@ -371,7 +374,7 @@ class PluginManagementHandler extends ManagerHandler {
 	 * @param $category string
 	 * @param $plugin string
 	 */
-	function deletePlugin($category, $plugin) {
+	function _deletePlugin($category, $plugin) {
 		$templateMgr =& TemplateManager::getManager();
 		$this->setupTemplate(true);
 
@@ -435,12 +438,12 @@ class PluginManagementHandler extends ManagerHandler {
 		$templateMgr =& TemplateManager::getManager();
 		$pageCrumbs = array(
 			array(
-				Request::url(null, 'user'),
+				$request->url(null, 'user'),
 				'navigation.user',
 				false
 			),
 			array(
-				Request::url(null, 'manager'),
+				$request->url(null, 'manager'),
 				'manager.pressManagement',
 				false
 			)
@@ -448,7 +451,7 @@ class PluginManagementHandler extends ManagerHandler {
 
 		if ($subclass) {
 			$pageCrumbs[] = array(
-				Request::url(null, 'manager', 'plugins'),
+				$request->url(null, 'manager', 'plugins'),
 				'manager.plugins.pluginManagement',
 				false
 			);
@@ -456,7 +459,7 @@ class PluginManagementHandler extends ManagerHandler {
 
 		if ($category) {
 			$pageCrumbs[] = array(
-				Request::url(null, 'manager', 'plugins', $category),
+				$request->url(null, 'manager', 'plugins', $category),
 				"plugins.categories.$category",
 				false
 			);

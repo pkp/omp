@@ -45,11 +45,13 @@ class ManagerHandler extends Handler {
 
 	/**
 	 * Display press management index page.
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
-	function index() {
-		$this->setupTemplate();
+	function index($args, &$request) {
+		$this->setupTemplate($request);
 
-		$press =& Request::getPress();
+		$press =& $request->getPress();
 		$pressSettingsDao =& DAORegistry::getDAO('PressSettingsDAO');
 		$announcementsEnabled = $pressSettingsDao->getSetting($press->getId(), 'enableAnnouncements');
 		$customSignoffInternal = $pressSettingsDao->getSetting($press->getId(), 'useCustomInternalReviewSignoff');
@@ -62,7 +64,7 @@ class ManagerHandler extends Handler {
 		$userGroups =& $userGroupDao->getByContextId($press->getId());
 		$templateMgr->assign_by_ref('userGroups', $userGroups);
 
-		$session =& Request::getSession();
+		$session =& $request->getSession();
 		$session->unsetSessionVar('enrolmentReferrer');
 
 		$templateMgr->assign('announcementsEnabled', $announcementsEnabled);
@@ -72,28 +74,30 @@ class ManagerHandler extends Handler {
 
 	/**
 	 * Send an email to a user or group of users.
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
-	function email($args) {
-		$this->setupTemplate(true);
+	function email($args, &$request) {
+		$this->setupTemplate($request, true);
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('helpTopicId', 'press.users.emailUsers');
 
 		$userDao =& DAORegistry::getDAO('UserDAO');
 
-		$site =& Request::getSite();
-		$press =& Request::getPress();
-		$user =& Request::getUser();
+		$site =& $request->getSite();
+		$press =& $request->getPress();
+		$user =& $request->getUser();
 
 		import('classes.mail.MailTemplate');
-		$email = new MailTemplate(Request::getUserVar('template'), Request::getUserVar('locale'));
+		$email = new MailTemplate($request->getUserVar('template'), $request->getUserVar('locale'));
 
-		if (Request::getUserVar('send') && !$email->hasErrors()) {
+		if ($request->getUserVar('send') && !$email->hasErrors()) {
 			$email->send();
-			Request::redirect(null, Request::getRequestedPage());
+			$request->redirect(null, $request->getRequestedPage());
 		} else {
 			$email->assignParams(); // FIXME Forces default parameters to be assigned (should do this automatically in MailTemplate?)
-			if (!Request::getUserVar('continued')) {
-				if (($groupId = Request::getUserVar('toGroup')) != '') {
+			if (!$request->getUserVar('continued')) {
+				if (($groupId = $request->getUserVar('toGroup')) != '') {
 					// Special case for emailing entire groups:
 					// Check for a group ID and add recipients.
 					$groupDao =& DAORegistry::getDAO('GroupDAO');
@@ -110,22 +114,27 @@ class ManagerHandler extends Handler {
 				}
 				if (count($email->getRecipients())==0) $email->addRecipient($user->getEmail(), $user->getFullName());
 			}
-			$email->displayEditForm(Request::url(null, null, 'email'), array(), 'manager/people/email.tpl');
+			$email->displayEditForm(
+				$request->url(null, null, 'email'),
+				array(),
+				'manager/people/email.tpl'
+			);
 		}
 	}
 
 	/**
 	 * Setup common template variables.
+	 * @param $request PKPRequest
 	 * @param $subclass boolean set to true if caller is below this handler in the hierarchy
 	 */
-	function setupTemplate($subclass = false) {
+	function setupTemplate($request, $subclass = false) {
 		parent::setupTemplate();
 		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_MANAGER, LOCALE_COMPONENT_OMP_MANAGER));
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('pageHierarchy',
-			$subclass ? array(array(Request::url(null, 'user'), 'navigation.user'), array(Request::url(null, 'manager'), 'manager.pressManagement'))
-				: array(array(Request::url(null, 'user'), 'navigation.user'))
+			$subclass ? array(array($request->url(null, 'user'), 'navigation.user'), array($request->url(null, 'manager'), 'manager.pressManagement'))
+				: array(array($request->url(null, 'user'), 'navigation.user'))
 		);
 	}
 }
