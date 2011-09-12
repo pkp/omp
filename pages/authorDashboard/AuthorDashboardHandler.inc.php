@@ -106,7 +106,8 @@ class AuthorDashboardHandler extends Handler {
 		// Define the notification options.
 		$notificationRequestOptions = array(
 			NOTIFICATION_LEVEL_TASK => array(
-				NOTIFICATION_TYPE_SIGNOFF_COPYEDIT => array(ASSOC_TYPE_MONOGRAPH, $monograph->getId())),
+				NOTIFICATION_TYPE_SIGNOFF_COPYEDIT => array(ASSOC_TYPE_MONOGRAPH, $monograph->getId()),
+				NOTIFICATION_TYPE_SIGNOFF_PROOF => array(ASSOC_TYPE_MONOGRAPH, $monograph->getId())),
 			NOTIFICATION_LEVEL_TRIVIAL => array()
 		);
 		$templateMgr->assign('authorDashboardNotificationRequestOptions', $notificationRequestOptions);

@@ -76,6 +76,9 @@ class NotificationManager extends PKPNotificationManager {
 			case NOTIFICATION_TYPE_SIGNOFF_COPYEDIT:
 				$url = $dispatcher->url($request, ROUTE_PAGE, null, 'workflow', 'copyediting', $notification->getAssocId());
 				break;
+			case NOTIFICATION_TYPE_SIGNOFF_PROOF:
+				$url = $dispatcher->url($request, ROUTE_PAGE, null, 'workflow', 'production', $notification->getAssocId());
+				break;
 			default:
 				$url = parent::getNotificationUrl($request, $notification);
 		}
@@ -139,24 +142,11 @@ class NotificationManager extends PKPNotificationManager {
 				break;
 			case NOTIFICATION_TYPE_SIGNOFF_COPYEDIT:
 				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
-				$monographId = $notification->getAssocId();
-
-				Locale::requireComponents(array(LOCALE_COMPONENT_OMP_SUBMISSION));
-
-				$monographDao =& DAORegistry::getDAO('MonographDAO');
-				$monograph =& $monographDao->getMonograph($monographId);
-
-				import('controllers.api.signoff.linkAction.AddSignoffFileLinkAction');
-				$signoffFileLinkAction = new AddSignoffFileLinkAction(
-					$request, $monographId,
-					$monograph->getStageId(), 'SIGNOFF_COPYEDITING', null,
-					__('submission.upload.signoff'), __('submission.upload.signoff'));
-
-				$templateMgr =& TemplateManager::getManager();
-				$templateMgr->assign('signoffFileLinkAction', $signoffFileLinkAction);
-				$notificationDescription = $templateMgr->fetch('controllers/notification/signoffNotificationContent.tpl');
-
-				return $notificationDescription;
+				return $this->_getSignoffNotificationDescription($request, $notification, 'SIGNOFF_COPYEDITING');
+				break;
+			case NOTIFICATION_TYPE_SIGNOFF_PROOF:
+				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
+				return $this->_getSignoffNotificationDescription($request, $notification, 'SIGNOFF_PROOFING');
 				break;
 			default:
 				return parent::getNotificationContents($request, $notification);
@@ -174,7 +164,9 @@ class NotificationManager extends PKPNotificationManager {
 
 		switch ($type) {
 			case NOTIFICATION_TYPE_SIGNOFF_COPYEDIT:
-				return __('notification.type.copyeditSignoff');
+				return __('notification.type.signoffCopyedit');
+			case NOTIFICATION_TYPE_SIGNOFF_PROOF:
+				return __('notification.type.signoffProof');
 			default:
 				return parent::getNotificationTitle($notification);
 		}
@@ -209,6 +201,7 @@ class NotificationManager extends PKPNotificationManager {
 			case NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_SUBMISSION:
 			case NOTIFICATION_TYPE_AUDITOR_REQUEST:
 			case NOTIFICATION_TYPE_SIGNOFF_COPYEDIT:
+			case NOTIFICATION_TYPE_SIGNOFF_PROOF:
 				return 'notifyWarning';
 				break;
 			default: return parent::getStyleClass($notification);
@@ -218,31 +211,52 @@ class NotificationManager extends PKPNotificationManager {
 	/**
 	 * Return the editor assignment notification type based on stage id.
 	 * @param $stageId int
+	 * @return int
 	 */
 	function getEditorAssignmentNotificationTypeByStageId($stageId) {
-		$notificationType = null;
 		switch ($stageId) {
 			case WORKFLOW_STAGE_ID_SUBMISSION:
-				$notificationType = NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_SUBMISSION;
+				return NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_SUBMISSION;
 				break;
 			case WORKFLOW_STAGE_ID_INTERNAL_REVIEW:
-				$notificationType = NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_INTERNAL_REVIEW;
+				return NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_INTERNAL_REVIEW;
 				break;
 			case WORKFLOW_STAGE_ID_EXTERNAL_REVIEW:
-				$notificationType = NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_EXTERNAL_REVIEW;
+				return NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_EXTERNAL_REVIEW;
 				break;
 			case WORKFLOW_STAGE_ID_EDITING:
-				$notificationType = NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_EDITING;
+				return NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_EDITING;
 				break;
 			case WORKFLOW_STAGE_ID_PRODUCTION:
-				$notificationType = NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_PRODUCTION;
+				return NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_PRODUCTION;
+				break;
+			default:
+				return null;
 				break;
 		}
-		return $notificationType;
 	}
 
 	/**
-	 * Update the NOTIFICATION_TYPE_SIGNOFF_COPYEDIT. The logic to update is:
+	 * Return the signoff notification type based on stage id.
+	 * @param $stageId
+	 * @return int
+	 */
+	function getSignoffNotificationTypeByStageId($stageId) {
+		switch ($stageId) {
+			case WORKFLOW_STAGE_ID_EDITING:
+				return NOTIFICATION_TYPE_SIGNOFF_COPYEDIT;
+				break;
+			case WORKFLOW_STAGE_ID_PRODUCTION:
+				return NOTIFICATION_TYPE_SIGNOFF_PROOF;
+				break;
+			default:
+				return null;
+				break;
+		}
+	}
+
+	/**
+	 * Update the NOTIFICATION_TYPE_SIGNOFF_... The logic to update is:
 	 * if the user have at least one incompleted signoff on the current press,
 	 * a notification must be inserted or keeped for the user. Otherwise, if a
 	 * notification exists, it should be deleted.
@@ -250,12 +264,14 @@ class NotificationManager extends PKPNotificationManager {
 	 * @param $monographId int
 	 * @param $request Request
 	 */
-	function updateCopyeditSignoffNotification($signoff, &$request) {
+	function updateSignoffNotification($signoff, &$request) {
 
-		// Signoff checks.
-		if ($signoff->getSymbolic() != 'SIGNOFF_COPYEDITING' && $signoff->getAssocType() != ASSOC_TYPE_MONOGRAPH_FILE) {
-			// The signoff it is not noticeable by this type of notification.
-			// Do nothing.
+		$symbolic = $signoff->getSymbolic();
+		$notificationType = $this->_getSignoffNotificationTypeBySymbolic($symbolic);
+
+		// Only continue if we have a correspondent notification type
+		// for the current signoff symbolic.
+		if (is_null($notificationType)) {
 			return;
 		}
 
@@ -269,19 +285,19 @@ class NotificationManager extends PKPNotificationManager {
 		$monographFile =& $submissionFileDao->getLatestRevision($monographFileId);
 		$monographId = $monographFile->getMonographId();
 
-		// Check for an existing NOTIFICATION_TYPE_SIGNOFF_COPYEDIT.
+		// Check for an existing NOTIFICATION_TYPE_SIGNOFF_...
 		$notificationDao =& DAORegistry::getDAO('NotificationDAO');
 		$notificationFactory =& $notificationDao->getNotificationsByAssoc(
 			ASSOC_TYPE_MONOGRAPH,
 			$monographId,
 			$userId,
-			NOTIFICATION_TYPE_SIGNOFF_COPYEDIT,
+			$notificationType,
 			$contextId
 		);
 
-		// Check for any active SIGNOFF_COPYEDITING.
+		// Check for any active signoff with the $symbolic value.
 		$monographFileSignOffDao =& DAORegistry::getDAO('MonographFileSignoffDAO');
-		$signoffFactory =& $monographFileSignOffDao->getAllByMonograph($monographId, 'SIGNOFF_COPYEDITING', $userId);
+		$signoffFactory =& $monographFileSignOffDao->getAllByMonograph($monographId, $symbolic, $userId);
 		$activeSignoffs = false;
 		if (!$signoffFactory->wasEmpty()) {
 			// Loop through signoffs and check for active ones on this press.
@@ -305,12 +321,60 @@ class NotificationManager extends PKPNotificationManager {
 			$this->createNotification(
 				$request,
 				$userId,
-				NOTIFICATION_TYPE_SIGNOFF_COPYEDIT,
+				$notificationType,
 				$contextId,
 				ASSOC_TYPE_MONOGRAPH,
 				$monographId,
 				NOTIFICATION_LEVEL_TASK
 			);
+		}
+	}
+
+	//
+	// Private helper methods
+	//
+	/**
+	 * Get signoff notification type description.
+	 * @param $request Request
+	 * @param $notification Notification
+	 * @param $symbolic String The signoff symbolic name.
+	 * @return string
+	 */
+	function _getSignoffNotificationDescription($request, $notification, $symbolic) {
+		$monographId = $notification->getAssocId();
+
+		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_SUBMISSION));
+
+		$monographDao =& DAORegistry::getDAO('MonographDAO');
+		$monograph =& $monographDao->getMonograph($monographId);
+
+		import('controllers.api.signoff.linkAction.AddSignoffFileLinkAction');
+		$signoffFileLinkAction = new AddSignoffFileLinkAction(
+			$request, $monographId,
+			$monograph->getStageId(), $symbolic, null,
+			__('submission.upload.signoff'), __('submission.upload.signoff'));
+
+		$templateMgr =& TemplateManager::getManager();
+		$templateMgr->assign('signoffFileLinkAction', $signoffFileLinkAction);
+		return $templateMgr->fetch('controllers/notification/signoffNotificationContent.tpl');
+	}
+
+	/**
+	 * Get signoff notification type.
+	 * @param $symbolic string The signoff symbolic.
+	 * @return int or null
+	 */
+	function _getSignoffNotificationTypeBySymbolic($symbolic) {
+		switch ($symbolic) {
+			case 'SIGNOFF_COPYEDITING':
+				return NOTIFICATION_TYPE_SIGNOFF_COPYEDIT;
+				break;
+			case 'SIGNOFF_PROOFING':
+				return NOTIFICATION_TYPE_SIGNOFF_PROOF;
+				break;
+			default:
+				return null;
+				break;
 		}
 	}
 }
