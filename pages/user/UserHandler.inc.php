@@ -25,10 +25,12 @@ class UserHandler extends Handler {
 
 	/**
 	 * Display user index page.
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
-	function index() {
+	function index($args, &$request) {
 		$this->validate();
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->display('user/index.tpl');
 	}
@@ -37,11 +39,11 @@ class UserHandler extends Handler {
 	 * Change the locale for the current user.
 	 * @param $args array first parameter is the new locale
 	 */
-	function setLocale($args) {
+	function setLocale($args, &$request) {
 		$setLocale = isset($args[0]) ? $args[0] : null;
 
-		$site =& Request::getSite();
-		$press =& Request::getPress();
+		$site =& $request->getSite();
+		$press =& $request->getPress();
 		if ($press != null) {
 			$pressSupportedLocales = $press->getSetting('supportedLocales');
 			if (!is_array($pressSupportedLocales)) {
@@ -50,30 +52,35 @@ class UserHandler extends Handler {
 		}
 
 		if (Locale::isLocaleValid($setLocale) && (!isset($pressSupportedLocales) || in_array($setLocale, $pressSupportedLocales)) && in_array($setLocale, $site->getSupportedLocales())) {
-			$session =& Request::getSession();
+			$session =& $request->getSession();
 			$session->setSessionVar('currentLocale', $setLocale);
 		}
 
 		if(isset($_SERVER['HTTP_REFERER'])) {
-			Request::redirectUrl($_SERVER['HTTP_REFERER']);
+			$request->redirectUrl($_SERVER['HTTP_REFERER']);
 		}
 
-		$source = Request::getUserVar('source');
+		$source = $request->getUserVar('source');
 		if (isset($source) && !empty($source)) {
-			Request::redirectUrl(Request::getProtocol() . '://' . Request::getServerHost() . $source, false);
+			$request->redirectUrl(
+				$request->getProtocol() . '://' . $request->getServerHost() . $source,
+				false
+			);
 		}
 
-		Request::redirect(null, 'index');
+		$request->redirect(null, 'index');
 	}
 
 	/**
 	 * Become a given role.
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
-	function become($args) {
+	function become($args, &$request) {
 		parent::validate(true);
 
-		$press =& Request::getPress();
-		$user =& Request::getUser();
+		$press =& $request->getPress();
+		$user =& $request->getUser();
 
 		switch (array_shift($args)) {
 			case 'author':
@@ -87,14 +94,14 @@ class UserHandler extends Handler {
 				$deniedKey = 'user.noRoles.regReviewerClosed';
 				break;
 			default:
-				Request::redirect(null, null, 'index');
+				$request->redirect(null, null, 'index');
 		}
 
 		if ($press->getSetting($setting)) {
 			$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 			$userGroup =& $userGroupDao->getDefaultByRoleId($press->getId(), $roleId);
 			$userGroupDao->assignUserToGroup($user->getId(), $userGroup->getId());
-			Request::redirectUrl(Request::getUserVar('source'));
+			$request->redirectUrl($request->getUserVar('source'));
 		} else {
 			$templateMgr =& TemplateManager::getManager();
 			$templateMgr->assign('message', $deniedKey);
@@ -116,7 +123,7 @@ class UserHandler extends Handler {
 			fatalError('Invalid locale key for auth message.');
 		}
 
-		$this->setupTemplate(true);
+		$this->setupTemplate($request, true);
 		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_USER));
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('message', $authorizationMessage);
@@ -137,13 +144,14 @@ class UserHandler extends Handler {
 
 	/**
 	 * Setup common template variables.
+	 * @param $request PKPRequest
 	 * @param $subclass boolean set to true if caller is below this handler in the hierarchy
 	 */
-	function setupTemplate($subclass = false) {
+	function setupTemplate($request, $subclass = false) {
 		parent::setupTemplate();
 		$templateMgr =& TemplateManager::getManager();
 		if ($subclass) {
-			$templateMgr->assign('pageHierarchy', array(array(Request::url(null, 'user'), 'navigation.user')));
+			$templateMgr->assign('pageHierarchy', array(array($request->url(null, 'user'), 'navigation.user')));
 		}
 	}
 
@@ -151,7 +159,12 @@ class UserHandler extends Handler {
 	// Captcha
 	//
 
-	function viewCaptcha($args) {
+	/**
+	 * View a CAPTCHA test.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 */
+	function viewCaptcha($args, &$request) {
 		$captchaId = (int) array_shift($args);
 		import('lib.pkp.classes.captcha.CaptchaManager');
 		$captchaManager = new CaptchaManager();
@@ -163,14 +176,16 @@ class UserHandler extends Handler {
 				exit();
 			}
 		}
-		Request::redirect(null, 'user');
+		$request->redirect(null, 'user');
 	}
 
 	/**
 	 * View the public user profile for a user, specified by user ID,
 	 * if that user should be exposed for public view.
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
-	function viewPublicProfile($args) {
+	function viewPublicProfile($args, &$request) {
 		$this->validate(false);
 		$templateMgr =& TemplateManager::getManager();
 		$userId = (int) array_shift($args);
@@ -185,7 +200,7 @@ class UserHandler extends Handler {
 			$accountIsVisible = true;
 		}
 
-		if(!$accountIsVisible) Request::redirect(null, 'index');
+		if (!$accountIsVisible) $request->redirect(null, 'index');
 
 		$userDao =& DAORegistry::getDAO('UserDAO');
 		$user =& $userDao->getUser($userId);
