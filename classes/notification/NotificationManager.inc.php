@@ -377,6 +377,49 @@ class NotificationManager extends PKPNotificationManager {
 	}
 
 
+	/**
+	 * Update NOTIFICATION_TYPE_AUDITOR_REQUEST
+	 * Create one notification for each user auditor signoff.
+	 * Delete it when signoff is completed.
+	 * @param $signoff Signoff
+	 * @param $request Request
+	 * @param $removed boolean If the signoff was removed.
+	 */
+	function updateAuditorRequestNotification($signoff, &$request, $removed = false) {
+
+		// Check for an existing notification.
+		$notificationDao =& DAORegistry::getDAO('NotificationDAO');
+		$notificationFactory =& $notificationDao->getNotificationsByAssoc(
+			ASSOC_TYPE_SIGNOFF,
+			$signoff->getId(),
+			$signoff->getUserId(),
+			NOTIFICATION_TYPE_AUDITOR_REQUEST
+		);
+
+		// Check for the complete state of the signoff.
+		$signoffCompleted = false;
+		if (!is_null($signoff->getDateCompleted())) {
+			$signoffCompleted = true;
+		}
+
+		// Decide if we have to create or delete a notification.
+		if ($signoffCompleted || $removed && !$notificationFactory->wasEmpty()) {
+			$notification =& $notificationFactory->next();
+			$notificationDao->deleteNotificationById($notification->getId());
+		}  else if (!$signoffCompleted && $notificationFactory->wasEmpty()) {
+			$press =& $request->getPress();
+			PKPNotificationManager::createNotification(
+				$request,
+				$signoff->getUserId(),
+				NOTIFICATION_TYPE_AUDITOR_REQUEST,
+				$press->getId(),
+				ASSOC_TYPE_SIGNOFF,
+				$signoff->getId(),
+				NOTIFICATION_LEVEL_TASK
+			);
+		}
+	}
+
 	//
 	// Private helper methods
 	//

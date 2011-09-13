@@ -212,25 +212,15 @@ class SignoffFileUploadForm extends Form {
 			$noteDao->insertObject($note);
 		}
 
-		// Remove the auditor request task notification.
-		$notificationDao =& DAORegistry::getDAO('NotificationDAO');
-		$notification =& $notificationDao->getNotificationsByAssoc(
-			ASSOC_TYPE_SIGNOFF,
-			$signoff->getId(),
-			$signoff->getUserId(),
-			NOTIFICATION_TYPE_AUDITOR_REQUEST
-		);
-		if (!$notification->wasEmpty()) {
-			$notification =& $notification->next();
-			$notificationDao->deleteNotificationById($notification->getId());
-		}
-
 		// Now mark the signoff as completed
 		$signoff->setDateCompleted(Core::getCurrentDate());
 		$signoffDao->updateObject($signoff);
 
-		// Update NOTIFICATION_TYPE_SIGNOFF_...
+		// Update NOTIFICATION_TYPE_AUDITOR_REQUEST.
 		$notificationMgr = new NotificationManager();
+		$notificationMgr->updateAuditorRequestNotification($signoff, $request);
+
+		// Update NOTIFICATION_TYPE_SIGNOFF_...
 		$notificationMgr->updateSignoffNotification($signoff, $request);
 
 		return $signoff->getId();
