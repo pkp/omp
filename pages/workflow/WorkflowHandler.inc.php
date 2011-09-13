@@ -83,15 +83,18 @@ class WorkflowHandler extends Handler {
 		// Get the right notifications type based on current stage id.
 		$notificationMgr = new NotificationManager();
 		$editorAssignmentNotificationType = $notificationMgr->getEditorAssignmentNotificationTypeByStageId($stageId);
-		$signoffNotificationType = $notificationMgr->getSignoffNotificationTypeByStageId($stageId);
 
 		// Define the workflow notification options.
 		$notificationRequestOptions = array(
 			NOTIFICATION_LEVEL_TASK => array(
-				$editorAssignmentNotificationType => array(ASSOC_TYPE_MONOGRAPH, $monograph->getId(), true),
-				$signoffNotificationType => array(ASSOC_TYPE_MONOGRAPH, $monograph->getId())),
+				$editorAssignmentNotificationType => array(ASSOC_TYPE_MONOGRAPH, $monograph->getId(), true)),
 			NOTIFICATION_LEVEL_TRIVIAL => array()
 		);
+
+		$signoffNotificationType = $notificationMgr->getSignoffNotificationTypeByStageId($stageId);
+		if (!is_null($signoffNotificationType)) {
+			$notificationRequestOptions[NOTIFICATION_LEVEL_TASK][$signoffNotificationType] = array(ASSOC_TYPE_MONOGRAPH, $monograph->getId());
+		}
 
 		$templateMgr->assign('workflowNotificationRequestOptions', $notificationRequestOptions);
 

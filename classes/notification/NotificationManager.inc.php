@@ -209,6 +209,25 @@ class NotificationManager extends PKPNotificationManager {
 	}
 
 	/**
+	 * Return the signoff notification type based on stage id.
+	 * @param $stageId
+	 * @return int
+	 */
+	function getSignoffNotificationTypeByStageId($stageId) {
+		switch ($stageId) {
+			case WORKFLOW_STAGE_ID_EDITING:
+				return NOTIFICATION_TYPE_SIGNOFF_COPYEDIT;
+				break;
+			case WORKFLOW_STAGE_ID_PRODUCTION:
+				return NOTIFICATION_TYPE_SIGNOFF_PROOF;
+				break;
+			default:
+				return null;
+				break;
+		}
+	}
+
+	/**
 	 * Return the editor assignment notification type based on stage id.
 	 * @param $stageId int
 	 * @return int
@@ -237,28 +256,9 @@ class NotificationManager extends PKPNotificationManager {
 	}
 
 	/**
-	 * Return the signoff notification type based on stage id.
-	 * @param $stageId
-	 * @return int
-	 */
-	function getSignoffNotificationTypeByStageId($stageId) {
-		switch ($stageId) {
-			case WORKFLOW_STAGE_ID_EDITING:
-				return NOTIFICATION_TYPE_SIGNOFF_COPYEDIT;
-				break;
-			case WORKFLOW_STAGE_ID_PRODUCTION:
-				return NOTIFICATION_TYPE_SIGNOFF_PROOF;
-				break;
-			default:
-				return null;
-				break;
-		}
-	}
-
-	/**
 	 * Update the NOTIFICATION_TYPE_SIGNOFF_... The logic to update is:
 	 * if the user have at least one incompleted signoff on the current press,
-	 * a notification must be inserted or keeped for the user. Otherwise, if a
+	 * a notification must be inserted or maintained for the user. Otherwise, if a
 	 * notification exists, it should be deleted.
 	 * @param $userId int
 	 * @param $monographId int
@@ -318,7 +318,7 @@ class NotificationManager extends PKPNotificationManager {
 			$notificationDao->deleteNotificationById($notification->getId());
 		} else if ($activeSignoffs && $notificationFactory->wasEmpty()) {
 			// At least one signoff not completed and no notification, create one.
-			$this->createNotification(
+			PKPNotificationManager::createNotification(
 				$request,
 				$userId,
 				$notificationType,
@@ -329,6 +329,53 @@ class NotificationManager extends PKPNotificationManager {
 			);
 		}
 	}
+
+	/**
+	 * Update NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_...
+	 * If we have a stage without a press manager role user, then
+	 * a notification must be inserted or maintained for the monograph.
+	 * If a user with this role is assigned to the stage, the notification
+	 * should be deleted.
+	 * Every user that have access to the stage should see this notification.
+	 * @param $monograph Monograph The monograph that will be used as assoc id
+	 * for this notification.
+	 * @param $stageId int The stage that will define the correct type of the
+	 * notification.
+	 * @param $request Request
+	 */
+	function updateEditorAssignmentNotification($monograph, $stageId, &$request) {
+		$press =& $request->getPress();
+
+		// Get the right notification type based on current stage id.
+		$notificationType = $this->getEditorAssignmentNotificationTypeByStageId($stageId);
+
+		// Check for an existing NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_...
+		$notificationDao =& DAORegistry::getDAO('NotificationDAO');
+		$notificationFactory =& $notificationDao->getNotificationsByAssoc(
+			ASSOC_TYPE_MONOGRAPH,
+			$monograph->getId(),
+			null,
+			$notificationType,
+			$press->getId()
+		);
+
+		// Check for editor stage assignment.
+		$stageAssignmentDao =& DAORegistry::getDAO('StageAssignmentDAO');
+		$editorAssigned = $stageAssignmentDao->editorAssignedToStage($monograph->getId(), $stageId);
+
+		// Decide if we have to create or delete a notification.
+		if ($editorAssigned && !$notificationFactory->wasEmpty()) {
+			// Delete the notification.
+			$notification =& $notificationFactory->next();
+			$notificationDao->deleteNotificationById($notification->getId());
+		} else if (!$editorAssigned && $notificationFactory->wasEmpty()) {
+			// Create a notification.
+			PKPNotificationManager::createNotification(
+				$request, null, $notificationType, $press->getId(), ASSOC_TYPE_MONOGRAPH,
+				$monograph->getId(), NOTIFICATION_LEVEL_TASK);
+		}
+	}
+
 
 	//
 	// Private helper methods

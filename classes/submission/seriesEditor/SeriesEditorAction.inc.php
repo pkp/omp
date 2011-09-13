@@ -105,18 +105,9 @@ class SeriesEditorAction extends Action {
 			}
 		}
 
-		// Check for editor stage assignment.
-		if (!$stageAssignmentDao->editorAssignedToStage($monograph->getId(), $stageId)) {
-			$notificationManager = new NotificationManager();
-
-			// Create a notification.
-			$notificationType = $notificationManager->getEditorAssignmentNotificationTypeByStageId($stageId);
-			$press =& $request->getPress();
-
-			PKPNotificationManager::createNotification(
-				$request, null, $notificationType, $press->getId(), ASSOC_TYPE_MONOGRAPH,
-				$monograph->getId(), NOTIFICATION_LEVEL_TASK);
-		}
+		// Update NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_...
+		$notificationMgr = new NotificationManager();
+		$notificationMgr->updateEditorAssignmentNotification($monograph, $stageId, $request);
 
 		// Reviewer roles -- Do nothing. Reviewers are not included in the stage participant list, they
 		// are administered via review assignments.
