@@ -223,27 +223,17 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 			$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 			$userGroup = $userGroupDao->getById($userGroupId);
 			if ($userGroup->getRoleId() == ROLE_ID_PRESS_MANAGER) {
-				$notificationDao =& DAORegistry::getDAO('NotificationDAO');
-
-				// Remove editor assignment notification for each stage.
+				// Update NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_... for each stage.
 				$stages = $this->_getStages();
-				$stageAssignmentDao =& DAORegistry::getDAO('StageAssignmentDAO'); /* @var $stageAssignmentDao StageAssignmentDAO */
 				foreach ($stages as $workingStageId) {
-					if ($stageAssignmentDao->editorAssignedToStage($monograph->getId(), $workingStageId)) {
-						$notificationType = $notificationMgr->getEditorAssignmentNotificationTypeByStageId($workingStageId);
-						$notification =& $notificationDao->getNotificationsByAssoc(
-							ASSOC_TYPE_MONOGRAPH, $monograph->getId(), null, $notificationType);
-						$notification =& $notification->next();
-						if (is_a($notification, 'Notification')) {
-							$notificationDao->deleteNotificationById($notification->getId());
-						}
-					}
+					$notificationMgr->updateEditorAssignmentNotification($monograph, $workingStageId, $request);
 				}
 			}
 
 			// Create trivial notification.
 			$user =& $request->getUser();
 			$notificationMgr->createTrivialNotification($user->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.addedStageParticipant')));
+
 			return DAO::getDataChangedEvent($userGroupId);
 		} else {
 			$json = new JSONMessage(true, $form->fetch($request));
@@ -271,35 +261,17 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 		// Delete the assignment
 		$stageAssignmentDao->deleteObject($stageAssignment);
 
-		// Add notification for the required stages
 		// FIXME: perhaps we can just insert the notification on page load
 		// instead of having it there all the time?
 		$notificationMgr = new NotificationManager();
-		$press = $request->getPress();
-
 		$stages = $this->_getStages();
 		foreach ($stages as $workingStageId) {
 			// remove user's assignment from this user group from all the stages
 			// (no need to check if user group is assigned, since nothing will be deleted if there isn't)
 			$stageAssignmentDao->deleteByAll($monograph->getId(), $workingStageId, $stageAssignment->getUserGroupId(), $stageAssignment->getUserId());
 
-			// Check for editor stage assignment.
-			if (!$stageAssignmentDao->editorAssignedToStage($monograph->getId(), $workingStageId)) {
-
-				// Get the right editor assignment notification type, base on stage.
-				$notificationType = $notificationMgr->getEditorAssignmentNotificationTypeByStageId($workingStageId);
-
-				// Check if we don't have a notification for this stage already.
-				$notificationDao =& DAORegistry::getDAO('NotificationDAO');
-				$notification =& $notificationDao->getNotificationsByAssoc(
-							ASSOC_TYPE_MONOGRAPH, $monograph->getId(), null, $notificationType);
-				if($notification->next()) break;
-
-				// Create a notification.
-				PKPNotificationManager::createNotification(
-					$request, null, $notificationType, $press->getId(), ASSOC_TYPE_MONOGRAPH,
-					$monograph->getId(), NOTIFICATION_LEVEL_TASK);
-			}
+			// Update NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_...
+			$notificationMgr->updateEditorAssignmentNotification($monograph, $workingStageId, $request);
 		}
 
 		// Redraw the category

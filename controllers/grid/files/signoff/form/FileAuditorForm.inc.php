@@ -109,7 +109,7 @@ class FileAuditorForm extends Form {
 		$monograph = $this->getMonograph();
 		$this->setData('monographId', $monograph->getId());
 		$this->setData('fileStage', $this->getFileStage());
-		$this->setData('publicationFormatId', $this->getAssocId());
+		$this->setData('assocId', $this->getAssocId());
 		import('classes.mail.MonographMailTemplate');
 		$email = new MonographMailTemplate($monograph, 'AUDITOR_REQUEST');
 		$this->setData('personalMessage', $email->getBody());
