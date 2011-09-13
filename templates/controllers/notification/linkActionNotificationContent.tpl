@@ -7,6 +7,6 @@
  * Content for NOTIFICATION_TYPE_SIGNOFF...
  *
  *}
- <span id="{$signoffFileLinkAction->getId()}" class="pkp_linkActions">
-	{include file="linkAction/linkAction.tpl" action=$signoffFileLinkAction}
+ <span id="{$linkAction->getId()}" class="pkp_linkActions">
+	{include file="linkAction/linkAction.tpl" action=$linkAction}
 </span>

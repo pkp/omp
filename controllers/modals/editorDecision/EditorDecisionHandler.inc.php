@@ -118,15 +118,17 @@ class EditorDecisionHandler extends Handler {
 	function saveInitiateReview($args, &$request) {
 		// FIXME: this can probably all be managed somewhere.
 		$stageId = $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
+		$decision = null;
 		if ($stageId == WORKFLOW_STAGE_ID_INTERNAL_REVIEW) {
 			$redirectOp = WORKFLOW_STAGE_PATH_INTERNAL_REVIEW;
+			$decision = SUBMISSION_EDITOR_DECISION_INITIATE_REVIEW;
 		} elseif ($stageId == WORKFLOW_STAGE_ID_EXTERNAL_REVIEW) {
 			$redirectOp = WORKFLOW_STAGE_PATH_EXTERNAL_REVIEW;
 		} else {
 			assert(false);
 		}
 
-		return $this->_saveEditorDecision($args, $request, 'InitiateReviewForm', $redirectOp);
+		return $this->_saveEditorDecision($args, $request, 'InitiateReviewForm', $redirectOp, $decision);
 	}
 
 	/**
@@ -274,13 +276,15 @@ class EditorDecisionHandler extends Handler {
 	 *  redirect to if successful (if any).
 	 * @return string Serialized JSON object
 	 */
-	function _saveEditorDecision($args, &$request, $formName, $redirectOp = null) {
+	function _saveEditorDecision($args, &$request, $formName, $redirectOp = null, $decision = null) {
 		// Retrieve the authorized monograph.
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		// Retrieve the stage id
 		$stageId = $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
 		// Retrieve the decision
-		$decision = (int)$request->getUserVar('decision');
+		if (is_null($decision)) {
+			$decision = (int)$request->getUserVar('decision');
+		}
 
 		// Form handling
 		import("controllers.modals.editorDecision.form.$formName");
@@ -289,6 +293,9 @@ class EditorDecisionHandler extends Handler {
 		$editorDecisionForm->readInputData();
 		if ($editorDecisionForm->validate()) {
 			$editorDecisionForm->execute($args, $request);
+
+			$notificationMgr = new NotificationManager();
+			$notificationMgr->updateEditorDecisionNotification($monograph, $decision, $request);
 
 			if ($redirectOp) {
 				$dispatcher =& $this->getDispatcher();

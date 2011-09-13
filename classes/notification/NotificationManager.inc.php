@@ -49,6 +49,13 @@ class NotificationManager extends PKPNotificationManager {
 			case NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_EXTERNAL_REVIEW:
 			case NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_EDITING:
 			case NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_PRODUCTION:
+			case NOTIFICATION_TYPE_EDITOR_DECISION_INITIATE_REVIEW:
+			case NOTIFICATION_TYPE_EDITOR_DECISION_ACCEPT:
+			case NOTIFICATION_TYPE_EDITOR_DECISION_EXTERNAL_REVIEW:
+			case NOTIFICATION_TYPE_EDITOR_DECISION_PENDING_REVISIONS:
+			case NOTIFICATION_TYPE_EDITOR_DECISION_RESUBMIT:
+			case NOTIFICATION_TYPE_EDITOR_DECISION_DECLINE:
+			case NOTIFICATION_TYPE_EDITOR_DECISION_SEND_TO_PRODUCTION:
 				break;
 			case NOTIFICATION_TYPE_AUDITOR_REQUEST:
 				$signoffDao =& DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
@@ -148,6 +155,34 @@ class NotificationManager extends PKPNotificationManager {
 				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
 				return $this->_getSignoffNotificationDescription($request, $notification, 'SIGNOFF_PROOFING');
 				break;
+			case NOTIFICATION_TYPE_EDITOR_DECISION_INITIATE_REVIEW:
+				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
+				return __('notification.type.editorDecisionInitiateReview');
+				break;
+			case NOTIFICATION_TYPE_EDITOR_DECISION_ACCEPT:
+				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
+				return __('notification.type.editorDecisionAccept');
+				break;
+			case NOTIFICATION_TYPE_EDITOR_DECISION_EXTERNAL_REVIEW:
+				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
+				return __('notification.type.editorDecisionExternalReview');
+				break;
+			case NOTIFICATION_TYPE_EDITOR_DECISION_PENDING_REVISIONS:
+				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
+				return __('notification.type.editorDecisionPendingRevisions');
+				break;
+			case NOTIFICATION_TYPE_EDITOR_DECISION_RESUBMIT:
+				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
+				return __('notification.type.editorDecisionResubmit');
+				break;
+			case NOTIFICATION_TYPE_EDITOR_DECISION_DECLINE:
+				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
+				return __('notification.type.editorDecisionDecline');
+				break;
+			case NOTIFICATION_TYPE_EDITOR_DECISION_SEND_TO_PRODUCTION:
+				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
+				return __('notification.type.editorDecisionSendToProduction');
+				break;
 			default:
 				return parent::getNotificationContents($request, $notification);
 		}
@@ -167,6 +202,14 @@ class NotificationManager extends PKPNotificationManager {
 				return __('notification.type.signoffCopyedit');
 			case NOTIFICATION_TYPE_SIGNOFF_PROOF:
 				return __('notification.type.signoffProof');
+			case NOTIFICATION_TYPE_EDITOR_DECISION_INITIATE_REVIEW:
+			case NOTIFICATION_TYPE_EDITOR_DECISION_ACCEPT:
+			case NOTIFICATION_TYPE_EDITOR_DECISION_EXTERNAL_REVIEW:
+			case NOTIFICATION_TYPE_EDITOR_DECISION_PENDING_REVISIONS:
+			case NOTIFICATION_TYPE_EDITOR_DECISION_RESUBMIT:
+			case NOTIFICATION_TYPE_EDITOR_DECISION_DECLINE:
+			case NOTIFICATION_TYPE_EDITOR_DECISION_SEND_TO_PRODUCTION:
+				return __('notification.type.editorDecisionTitle');
 			default:
 				return parent::getNotificationTitle($notification);
 		}
@@ -203,6 +246,15 @@ class NotificationManager extends PKPNotificationManager {
 			case NOTIFICATION_TYPE_SIGNOFF_COPYEDIT:
 			case NOTIFICATION_TYPE_SIGNOFF_PROOF:
 				return 'notifyWarning';
+				break;
+			case NOTIFICATION_TYPE_EDITOR_DECISION_INITIATE_REVIEW:
+			case NOTIFICATION_TYPE_EDITOR_DECISION_ACCEPT:
+			case NOTIFICATION_TYPE_EDITOR_DECISION_EXTERNAL_REVIEW:
+			case NOTIFICATION_TYPE_EDITOR_DECISION_PENDING_REVISIONS:
+			case NOTIFICATION_TYPE_EDITOR_DECISION_RESUBMIT:
+			case NOTIFICATION_TYPE_EDITOR_DECISION_DECLINE:
+			case NOTIFICATION_TYPE_EDITOR_DECISION_SEND_TO_PRODUCTION:
+				return 'notifyInformation';
 				break;
 			default: return parent::getStyleClass($notification);
 		}
@@ -420,9 +472,70 @@ class NotificationManager extends PKPNotificationManager {
 		}
 	}
 
+	/**
+	 * Create the editor decision notifications to the monographs submitter.
+	 * @param $monograph Monograph
+	 * @param $decision int
+	 * @param $request Request
+	 */
+	function updateEditorDecisionNotification($monograph, $decision, &$request) {
+
+		$press =& $request->getPress();
+
+		// Get the monograph submitter id.
+		$userId = $monograph->getUserId();
+
+		// Remove any existing editor decision notifications.
+		$notificationDao =& DAORegistry::getDAO('NotificationDAO');
+		$notificationFactory =& $notificationDao->getNotificationsByAssoc(
+			ASSOC_TYPE_MONOGRAPH,
+			$monograph->getId(),
+			$userId,
+			null,
+			$press->getId()
+		);
+
+		$editorDecisionNotificationTypes = $this->_getAllEditorDecisionNotificationTypes();
+		while(!$notificationFactory->eof()) {
+			$notification =& $notificationFactory->next();
+			if (in_array($notification->getType(), $editorDecisionNotificationTypes)) {
+				$notificationDao->deleteNotificationById($notification->getId());
+			}
+		}
+
+		// Get the right notification type and level for the current editor decision.
+		$notificationParams = $this->_getEditorDecisionNotificationParameters($decision);
+		if (empty($notificationParams)) {
+			return;
+		}
+
+		// Create the notification.
+		PKPNotificationManager::createNotification(
+			$request,
+			$userId,
+			$notificationParams['type'],
+			$press->getId(),
+			ASSOC_TYPE_MONOGRAPH,
+			$monograph->getId(),
+			$notificationParams['level']
+		);
+	}
+
+
 	//
 	// Private helper methods
 	//
+	/**
+	 * Get a notification content with a link action.
+	 * @param $linkAction LinkAction
+	 * @return string
+	 */
+	function _fetchLinkActionNotificationContent($linkAction) {
+		$templateMgr =& TemplateManager::getManager();
+		$templateMgr->assign('linkAction', $linkAction);
+		return $templateMgr->fetch('controllers/notification/linkActionNotificationContent.tpl');
+	}
+
 	/**
 	 * Get signoff notification type description.
 	 * @param $request Request
@@ -444,9 +557,7 @@ class NotificationManager extends PKPNotificationManager {
 			$monograph->getStageId(), $symbolic, null,
 			__('submission.upload.signoff'), __('submission.upload.signoff'));
 
-		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->assign('signoffFileLinkAction', $signoffFileLinkAction);
-		return $templateMgr->fetch('controllers/notification/signoffNotificationContent.tpl');
+		return $this->_fetchLinkActionNotificationContent($signoffFileLinkAction);
 	}
 
 	/**
@@ -464,6 +575,69 @@ class NotificationManager extends PKPNotificationManager {
 				break;
 			default:
 				return null;
+				break;
+		}
+	}
+
+	function _getAllEditorDecisionNotificationTypes() {
+		return array(
+			NOTIFICATION_TYPE_EDITOR_DECISION_INITIATE_REVIEW,
+			NOTIFICATION_TYPE_EDITOR_DECISION_ACCEPT,
+			NOTIFICATION_TYPE_EDITOR_DECISION_EXTERNAL_REVIEW,
+			NOTIFICATION_TYPE_EDITOR_DECISION_PENDING_REVISIONS,
+			NOTIFICATION_TYPE_EDITOR_DECISION_RESUBMIT,
+			NOTIFICATION_TYPE_EDITOR_DECISION_DECLINE,
+			NOTIFICATION_TYPE_EDITOR_DECISION_SEND_TO_PRODUCTION
+		);
+	}
+
+	/**
+	 * Get editor decision notification type and level by decision.
+	 * @param $decision int
+	 * @return array
+	 */
+	function _getEditorDecisionNotificationParameters($decision) {
+		// Access decision constants.
+		import('classes.submission.common.Action');
+
+		switch ($decision) {
+			case SUBMISSION_EDITOR_DECISION_INITIATE_REVIEW:
+				return array(
+					'level' => NOTIFICATION_LEVEL_NORMAL,
+					'type' => NOTIFICATION_TYPE_EDITOR_DECISION_INITIATE_REVIEW);
+				break;
+			case SUBMISSION_EDITOR_DECISION_ACCEPT:
+				return array(
+					'level' => NOTIFICATION_LEVEL_NORMAL,
+					'type' => NOTIFICATION_TYPE_EDITOR_DECISION_ACCEPT);
+				break;
+			case SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW:
+				return array(
+					'level' => NOTIFICATION_LEVEL_NORMAL,
+					'type' => NOTIFICATION_TYPE_EDITOR_DECISION_EXTERNAL_REVIEW);
+				break;
+			case SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS:
+				return array(
+					'level' => NOTIFICATION_LEVEL_NORMAL,
+					'type' => NOTIFICATION_TYPE_EDITOR_DECISION_PENDING_REVISIONS);
+				break;
+			case SUBMISSION_EDITOR_DECISION_RESUBMIT:
+				return array(
+					'level' => NOTIFICATION_LEVEL_NORMAL,
+					'type' => NOTIFICATION_TYPE_EDITOR_DECISION_RESUBMIT);
+				break;
+			case SUBMISSION_EDITOR_DECISION_DECLINE:
+				return array(
+					'level' => NOTIFICATION_LEVEL_NORMAL,
+					'type' => NOTIFICATION_TYPE_EDITOR_DECISION_DECLINE);
+				break;
+			case SUBMISSION_EDITOR_DECISION_SEND_TO_PRODUCTION:
+				return array(
+					'level' => NOTIFICATION_LEVEL_NORMAL,
+					'type' => NOTIFICATION_TYPE_EDITOR_DECISION_SEND_TO_PRODUCTION);
+				break;
+			default:
+				assert(false);
 				break;
 		}
 	}

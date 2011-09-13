@@ -104,10 +104,19 @@ class AuthorDashboardHandler extends Handler {
 		}
 
 		// Define the notification options.
+		$monographAssocTypeAndIdArray = array(ASSOC_TYPE_MONOGRAPH, $monograph->getId());
 		$notificationRequestOptions = array(
 			NOTIFICATION_LEVEL_TASK => array(
-				NOTIFICATION_TYPE_SIGNOFF_COPYEDIT => array(ASSOC_TYPE_MONOGRAPH, $monograph->getId()),
-				NOTIFICATION_TYPE_SIGNOFF_PROOF => array(ASSOC_TYPE_MONOGRAPH, $monograph->getId())),
+				NOTIFICATION_TYPE_SIGNOFF_COPYEDIT => $monographAssocTypeAndIdArray,
+				NOTIFICATION_TYPE_SIGNOFF_PROOF => $monographAssocTypeAndIdArray),
+			NOTIFICATION_LEVEL_NORMAL => array(
+				NOTIFICATION_TYPE_EDITOR_DECISION_INITIATE_REVIEW => $monographAssocTypeAndIdArray,
+				NOTIFICATION_TYPE_EDITOR_DECISION_ACCEPT => $monographAssocTypeAndIdArray,
+				NOTIFICATION_TYPE_EDITOR_DECISION_EXTERNAL_REVIEW => $monographAssocTypeAndIdArray,
+				NOTIFICATION_TYPE_EDITOR_DECISION_PENDING_REVISIONS => $monographAssocTypeAndIdArray,
+				NOTIFICATION_TYPE_EDITOR_DECISION_RESUBMIT => $monographAssocTypeAndIdArray,
+				NOTIFICATION_TYPE_EDITOR_DECISION_DECLINE => $monographAssocTypeAndIdArray,
+				NOTIFICATION_TYPE_EDITOR_DECISION_SEND_TO_PRODUCTION => $monographAssocTypeAndIdArray),
 			NOTIFICATION_LEVEL_TRIVIAL => array()
 		);
 		$templateMgr->assign('authorDashboardNotificationRequestOptions', $notificationRequestOptions);
