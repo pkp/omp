@@ -16,6 +16,7 @@ import('lib.pkp.classes.controllers.grid.GridCategoryRow');
 
 // Link actions
 import('lib.pkp.classes.linkAction.request.AjaxModal');
+import('lib.pkp.classes.linkAction.request.RemoteActionConfirmationModal');
 
 class ChapterGridCategoryRow extends GridCategoryRow {
 	/** @var Monograph **/
@@ -64,6 +65,19 @@ class ChapterGridCategoryRow extends GridCategoryRow {
 				),
 				$chapter->getLocalizedTitle()
 			));
+
+			$this->addAction(
+				new LinkAction(
+					'deleteChapter',
+					new RemoteActionConfirmationModal(
+						__('common.confirmDelete'),
+						null,
+						$router->url($request, null, null, 'deleteChapter', null, $actionArgs)
+					),
+					__('grid.action.delete'),
+					'delete'
+				)
+			);
 		}
 	}
 
@@ -75,5 +89,4 @@ class ChapterGridCategoryRow extends GridCategoryRow {
 		return $this->_monograph;
 	}
 }
-
 ?>

@@ -124,12 +124,16 @@ class ChapterAuthorListbuilderHandler extends ListbuilderHandler {
 		if ( !empty($rowId) ) {
 			return parent::getRowDataElement($request, $rowId);
 		}
-
+		$id = 0;
 		// Otherwise return from the newRowId
-		$authorId = (int) $this->getNewRowId($request);
+		$authorId = $this->getNewRowId($request); // this is an array:  Example: $authorId['name'] => 25
+		if (isset($authorId['name'])) {
+			$id = (int) $authorId['name'];
+		}
+
 		$authorDao =& DAORegistry::getDAO('AuthorDAO');
 		$monograph =& $this->getMonograph();
-		$author =& $authorDao->getAuthor($authorId, $monograph->getId());
+		$author =& $authorDao->getAuthor($id, $monograph->getId());
 		return $author;
 	}
 
@@ -202,11 +206,12 @@ class ChapterAuthorListbuilderHandler extends ListbuilderHandler {
 	 */
 	function deleteEntry(&$request, $rowId) {
 		$chapterId = $this->getChapterId();
-		$authorId = (int) $rowId['name'];
-
-		// remove the chapter author.
-		$chapterAuthorDao =& DAORegistry::getDAO('ChapterAuthorDAO');
-		return $chapterAuthorDao->deleteChapterAuthorById($authorId, $chapterId);
+		$authorId = (int) $rowId; // this is the authorId to remove and is already an integer
+		if ($authorId) {
+			// remove the chapter author.
+			$chapterAuthorDao =& DAORegistry::getDAO('ChapterAuthorDAO');
+			return $chapterAuthorDao->deleteChapterAuthorById($authorId, $chapterId);
+		}
 	}
 }
 ?>

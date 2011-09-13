@@ -31,7 +31,8 @@ class ChapterGridHandler extends CategoryGridHandler {
 		parent::GridHandler();
 		$this->addRoleAssignment(
 			array(ROLE_ID_AUTHOR, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
-			array('fetchGrid', 'fetchRow', 'addChapter', 'editChapter', 'updateChapter', 'deleteChapter')
+			array('fetchGrid', 'fetchRow', 'addChapter', 'editChapter', 'updateChapter', 'deleteChapter', 'addAuthor', 'editAuthor',
+				'updateAuthor', 'deleteAuthor')
 		);
 	}
 
@@ -78,7 +79,8 @@ class ChapterGridHandler extends CategoryGridHandler {
 
 		// Grid actions
 		$router =& $request->getRouter();
-		$actionArgs = array('monographId' => $monograph->getId());
+		$actionArgs = $this->getRequestArgs();
+
 		$this->addAction(
 			new LinkAction(
 				'addChapter',
@@ -87,7 +89,7 @@ class ChapterGridHandler extends CategoryGridHandler {
 					__('submission.chapter.addChapter'),
 					'fileManagement'
 				),
-				__('grid.action.addItem'),
+				__('submission.chapter.addChapter'),
 				'add_item'
 			)
 		);
@@ -159,14 +161,13 @@ class ChapterGridHandler extends CategoryGridHandler {
 	//
 	/**
 	 * @see GridHandler::getRowInstance()
-	 * @return ChapterGridRow
+	 * @return ChapterGridCategoryRow
 	 */
 	function &getCategoryRowInstance() {
 		$monograph =& $this->getMonograph();
 		$row = new ChapterGridCategoryRow($monograph);
 		return $row;
 	}
-
 
 	//
 	// Implement template methods from CategoryGridHandler
@@ -253,12 +254,21 @@ class ChapterGridHandler extends CategoryGridHandler {
 	function deleteChapter($args, &$request) {
 		// Identify the chapter to be deleted
 		$chapter =& $this->_getChapterFromRequest($request);
+		$chapterId = $chapter->getId();
 
-		$chapterDAO = DAORegistry::getDAO('ChapterDAO');
-		$result = $chapterDAO->deleteChapter($chapter);
+		// remove Authors assigned to this chapter first
+		$chapterAuthorDao =& DAORegistry::getDAO('ChapterAuthorDAO');
+		$assignedAuthorIds = $chapterAuthorDao->getAuthorIdsByChapterId($chapterId);
+
+		foreach ($assignedAuthorIds as $authorId) {
+			$chapterAuthorDao->deleteChapterAuthorById($authorId, $chapterId);
+		}
+
+		$chapterDao = DAORegistry::getDAO('ChapterDAO');
+		$result = $chapterDao->deleteObject($chapter);
 
 		if ($result) {
-			$json = new JSONMessage(true);
+			return DAO::getDataChangedEvent();
 		} else {
 			$json = new JSONMessage(false, Locale::translate('submission.chapters.grid.errorDeletingChapter'));
 		}

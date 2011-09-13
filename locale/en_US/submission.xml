@@ -27,6 +27,7 @@
 	<message key="submission.artwork.permissions">Permissions</message>
 	<message key="submission.chapter">Chapter</message>
 	<message key="submission.chapter.addChapter">Add Chapter</message>
+	<message key="submission.chapter.editChapter">Edit Chapter</message>
 	<message key="submission.contributors">List of Contributors</message>
 	<message key="submission.document">Document</message>
 	<message key="submission.overview">Submission Overview</message>

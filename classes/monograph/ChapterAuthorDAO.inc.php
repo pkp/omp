@@ -131,7 +131,7 @@ class ChapterAuthorDAO extends DAO {
 
 		$sql = 'DELETE FROM monograph_chapter_authors WHERE author_id = ?';
 		if (isset($chapterId)) {
-			$sql .= 'AND chapter_id = ?';
+			$sql .= ' AND chapter_id = ?';
 		}
 		return $this->update($sql, $params);
 	}
