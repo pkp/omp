@@ -25,7 +25,7 @@ class AdminPressHandler extends AdminHandler {
 	 */
 	function presses($args, &$request) {
 		$this->validate();
-		$this->setupTemplate(true);
+		$this->setupTemplate($request, true);
 
 		$openWizard = $request->getUserVar('openWizard');
 
