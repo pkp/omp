@@ -50,7 +50,7 @@ class AnnouncementHandler extends PKPAnnouncementHandler {
 	function announcementTypes($args, &$request) {
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('helpTopicId', 'press.managementPages.announcements');
-		parent::announcementTypes($args, &$request);
+		parent::announcementTypes($args, $request);
 	}
 
 	/**

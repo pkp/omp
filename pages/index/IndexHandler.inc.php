@@ -64,10 +64,10 @@ class IndexHandler extends Handler {
 			$templateMgr->assign('helpTopicId', 'user.home');
 
 			if ($press) {
-				$this->_displayPressIndexPage($press, &$templateMgr);
+				$this->_displayPressIndexPage($press, $templateMgr);
 			} else {
 				$site =& $request->getSite();
-				$this->_displaySiteIndexPage($request, $site, &$templateMgr);
+				$this->_displaySiteIndexPage($request, $site, $templateMgr);
 			}
 		}
 	}
@@ -126,7 +126,7 @@ class IndexHandler extends Handler {
 
 		// Get the requested path.
 		$router =& $request->getRouter();
-		$requestedPath = $router->getRequestedContextPath(&$request);
+		$requestedPath = $router->getRequestedContextPath($request);
 		$press = null;
 
 		if ($requestedPath == 'index') {

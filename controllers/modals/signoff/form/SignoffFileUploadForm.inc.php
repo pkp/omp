@@ -184,9 +184,12 @@ class SignoffFileUploadForm extends Form {
 			import('classes.monograph.MonographFile');
 
 			import('classes.file.MonographFileManager');
-			$signoffFileId = MonographFileManager::temporaryFileToMonographFile($this->getMonographId(), &$temporaryFile,
-													  MONOGRAPH_FILE_SIGNOFF, $signoff->getUserId(), $signoff->getUserGroupId(),
-													  $signoff->getAssocId(), null, ASSOC_TYPE_SIGNOFF,  $signoff->getId());
+			$signoffFileId = MonographFileManager::temporaryFileToMonographFile(
+				$this->getMonographId(), $temporaryFile,
+				MONOGRAPH_FILE_SIGNOFF, $signoff->getUserId(),
+				$signoff->getUserGroupId(), $signoff->getAssocId(), null,
+				ASSOC_TYPE_SIGNOFF,  $signoff->getId()
+			);
 
 
 			// FIXME: Currently the code allows for a signoff to be added many times. (if the option is presented in the form)

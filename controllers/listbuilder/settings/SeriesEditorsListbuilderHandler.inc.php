@@ -93,7 +93,7 @@ class SeriesEditorsListbuilderHandler extends SetupListbuilderHandler {
 			'autocompleteUrl' => $router->url($request, array(), null, 'getAutocompleteSource')
 		);
 
-		return parent::fetch($args, &$request, $additionalVars);
+		return parent::fetch($args, $request, $additionalVars);
 	}
 
 	/**

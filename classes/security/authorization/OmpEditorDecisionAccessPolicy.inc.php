@@ -27,7 +27,7 @@ class OmpEditorDecisionAccessPolicy extends PressPolicy {
 
 		// A decision can only be made if there is a valid workflow stage
 		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
-		$this->addPolicy(new OmpWorkflowStageAccessPolicy(&$request, &$args, $roleAssignments, $submissionParameterName, $stageId));
+		$this->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, $submissionParameterName, $stageId));
 
 		// An editor decision can only be made if there is a press editor assigned to the stage
 		import('classes.security.authorization.internal.PressManagerRequiredPolicy');
