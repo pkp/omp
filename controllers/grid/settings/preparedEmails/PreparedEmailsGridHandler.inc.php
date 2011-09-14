@@ -149,7 +149,7 @@ class PreparedEmailsGridHandler extends GridHandler {
 	 * @return string Serialized JSON object
 	 */
 	function updatePreparedEmail($args, &$request) {
-		$press =& Request::getPress();
+		$press =& $request->getPress();
 		$emailKey = $request->getUserVar('emailKey');
 
 		import('controllers.grid.settings.preparedEmails.form.PreparedEmailForm');

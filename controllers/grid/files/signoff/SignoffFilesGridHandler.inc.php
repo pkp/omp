@@ -360,7 +360,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 		if ($auditorForm->isLocaleResubmit()) {
 			$auditorForm->readInputData();
 		} else {
-			$auditorForm->initData($args, &$request);
+			$auditorForm->initData($args, $request);
 		}
 
 		$json = new JSONMessage(true, $auditorForm->fetch($request));

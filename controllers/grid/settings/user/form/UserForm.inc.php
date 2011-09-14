@@ -21,12 +21,14 @@ class UserForm extends Form {
 
 	/**
 	 * Constructor.
+	 * @param $request PKPRequest
+	 * @param $userId int optional
 	 */
-	function UserForm($userId = null) {
+	function UserForm($request, $userId = null) {
 		parent::Form('controllers/grid/settings/user/form/userForm.tpl');
 
 		$this->userId = isset($userId) ? (int) $userId : null;
-		$site =& Request::getSite();
+		$site =& $request->getSite();
 
 		// Validation checks for this form
 		if ($userId == null) {
@@ -107,7 +109,7 @@ class UserForm extends Form {
 
 		$templateMgr->assign('genderOptions', $userDao->getGenderOptions());
 		$templateMgr->assign('minPasswordLength', $site->getMinPasswordLength());
-		$templateMgr->assign('source', Request::getUserVar('source'));
+		$templateMgr->assign('source', $request->getUserVar('source'));
 		$templateMgr->assign('userId', $this->userId);
 
 		// Get all available interests to populate the autocomplete with

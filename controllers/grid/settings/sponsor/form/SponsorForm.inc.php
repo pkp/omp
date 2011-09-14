@@ -38,7 +38,7 @@ class SponsorForm extends Form {
 	 * @param $request PKPRequest
 	 */
 	function initData($args, &$request) {
-		$press =& Request::getPress();
+		$press =& $request->getPress();
 
 		$sponsors = $press->getSetting('sponsors');
 		if ( $this->sponsorId && isset($sponsors[$this->sponsorId]) ) {
@@ -82,8 +82,8 @@ class SponsorForm extends Form {
 	 * Save email template.
 	 * @see Form::execute()
 	 */
-	function execute() {
-		$press =& Request::getPress();
+	function execute($request) {
+		$press =& $request->getPress();
 		$sponsors = $press->getSetting('sponsors');
 		if (empty($sponsors)) {
 			$sponsors = array();
