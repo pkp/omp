@@ -261,6 +261,20 @@ class NotificationManager extends PKPNotificationManager {
 	}
 
 	/**
+	 * @see PKPNotificationManager::getAllUsersNotificationTypes
+	 */
+	function getAllUsersNotificationTypes() {
+		$notificationTypes = parent::getAllUsersNotificationTypes();
+		return array_merge($notificationTypes, array(
+			NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_SUBMISSION,
+			NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_INTERNAL_REVIEW,
+			NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_EXTERNAL_REVIEW,
+			NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_EDITING,
+			NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_PRODUCTION
+		));
+	}
+
+	/**
 	 * Return the signoff notification type based on stage id.
 	 * @param $stageId
 	 * @return int
