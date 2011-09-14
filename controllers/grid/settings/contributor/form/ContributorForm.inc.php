@@ -38,7 +38,7 @@ class ContributorForm extends Form {
 	 * @param $request PKPRequest
 	 */
 	function initData($args, &$request) {
-		$press =& Request::getPress();
+		$press =& $request->getPress();
 
 		$contributors = $press->getSetting('contributors');
 		if ( $this->contributorId && isset($contributors[$this->contributorId]) ) {
@@ -82,8 +82,8 @@ class ContributorForm extends Form {
 	 * Save email template.
 	 * @see Form::execute()
 	 */
-	function execute() {
-		$press =& Request::getPress();
+	function execute($request) {
+		$press =& $request->getPress();
 		$contributors = $press->getSetting('contributors');
 		if (empty($contributors)) {
 			$contributors = array();

@@ -151,7 +151,7 @@ class ContributorGridHandler extends SetupGridHandler {
 		$contributorForm->readInputData();
 
 		if ($contributorForm->validate()) {
-			$contributorForm->execute($args, $request);
+			$contributorForm->execute($request);
 
 			// prepare the grid row data
 			$row =& $this->getRowInstance();

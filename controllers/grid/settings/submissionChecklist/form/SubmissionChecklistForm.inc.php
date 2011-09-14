@@ -37,7 +37,7 @@ class SubmissionChecklistForm extends Form {
 	 * @param $request PKPRequest
 	 */
 	function initData($args, &$request) {
-		$press =& Request::getPress();
+		$press =& $request->getPress();
 
 		$submissionChecklistAll = $press->getSetting('submissionChecklist');
 		$checklistItem = array();

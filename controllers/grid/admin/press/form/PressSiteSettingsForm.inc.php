@@ -102,8 +102,9 @@ class PressSiteSettingsForm extends Form {
 
 	/**
 	 * Save press settings.
+	 * @param $request PKPRequest
 	 */
-	function execute() {
+	function execute($request) {
 		$pressDao =& DAORegistry::getDAO('PressDAO');
 
 		if (isset($this->pressId)) {
@@ -130,7 +131,7 @@ class PressSiteSettingsForm extends Form {
 			$series = null;
 		} else {
 			$isNewPress = true;
-			$site =& Request::getSite();
+			$site =& $request->getSite();
 
 			// Give it a default primary locale
 			$press->setPrimaryLocale($site->getPrimaryLocale());
@@ -172,7 +173,7 @@ class PressSiteSettingsForm extends Form {
 			$titles = $this->getData('title');
 			Locale::requireComponents(array(LOCALE_COMPONENT_OMP_DEFAULT_SETTINGS));
 			$pressSettingsDao->installSettings($pressId, 'registry/pressSettings.xml', array(
-				'indexUrl' => Request::getIndexUrl(),
+				'indexUrl' => $request->getIndexUrl(),
 				'pressPath' => $this->getData('path'),
 				'primaryLocale' => $site->getPrimaryLocale(),
 				'pressName' => $titles[$site->getPrimaryLocale()]

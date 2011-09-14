@@ -200,7 +200,7 @@ class PressGridHandler extends GridHandler {
 			// The press settings form will return a press path in two cases:
 			// 1 - if a new press was created;
 			// 2 - if a press path of an existing press was edited.
-			$newPressPath = $settingsForm->execute();
+			$newPressPath = $settingsForm->execute($request);
 
 			// Create the notification.
 			$notificationManager = new NotificationManager();

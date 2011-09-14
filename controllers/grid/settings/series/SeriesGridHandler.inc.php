@@ -164,7 +164,7 @@ class SeriesGridHandler extends SetupGridHandler {
 	 * @return string Serialized JSON object
 	 */
 	function updateSeries($args, &$request) {
-		$seriesId = Request::getUserVar('rowId');
+		$seriesId = $request->getUserVar('rowId');
 
 		//FIXME: add validation here?
 		// -> seriesId must be present and valid
