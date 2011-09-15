@@ -322,7 +322,7 @@ class UserGridHandler extends GridHandler {
 			$json = new JSONMessage(false, Locale::translate('grid.user.cannotAdminister'));
 		} else {
 			// Form handling.
-			$userForm = new UserForm($userId);
+			$userForm = new UserForm($request, $userId);
 			$userForm->readInputData();
 
 			if ($userForm->validate()) {
