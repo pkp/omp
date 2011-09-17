@@ -58,6 +58,8 @@ class ManageFileApiHandler extends Handler {
 		$success = (boolean)$submissionFileDao->deleteRevisionById($monographFile->getFileId(), $monographFile->getRevision(), $monographFile->getFileStage(), $monograph->getId());
 
 		if ($success) {
+			import('classes.file.MonographFileManager');
+			MonographFileManager::deleteFile($monographFile->getFileId(), $monographFile->getRevision());
 			return DAO::getDataChangedEvent($monographFile->getFileId());
 		} else {
 			$json = new JSONMessage(false);

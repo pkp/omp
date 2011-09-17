@@ -115,6 +115,21 @@ class MonographFileManager extends FileManager {
 	}
 
 	/**
+	 * Delete a file.
+	 * @param $fileId integer
+	 * @param $revisionId integer
+	 * @return boolean returns true if successful
+	 */
+	function deleteFile($fileId, $revision = null) {
+		$monographFile =& MonographFileManager::_getFile($fileId, $revision);
+		if (isset($monographFile)) {
+			return parent::deleteFile($monographFile->getfilePath());
+		} else {
+			return false;
+		}
+	}
+
+	/**
 	 * Download a file.
 	 * @param $fileId int the file id of the file to download
 	 * @param $revision int the revision of the file to download
