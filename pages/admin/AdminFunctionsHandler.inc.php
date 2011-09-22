@@ -28,7 +28,7 @@ class AdminFunctionsHandler extends AdminHandler {
 	 */
 	function systemInfo($args, &$request) {
 		$this->validate();
-		$this->setupTemplate(true);
+		$this->setupTemplate($request, true);
 
 		$configData =& Config::getData();
 
@@ -68,7 +68,7 @@ class AdminFunctionsHandler extends AdminHandler {
 	 */
 	function editSystemConfig($args, &$request) {
 		$this->validate();
-		$this->setupTemplate(true);
+		$this->setupTemplate($request, true);
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->append('pageHierarchy', array($request->url(null, 'admin', 'systemInfo'), 'admin.systemInformation'));
@@ -88,7 +88,7 @@ class AdminFunctionsHandler extends AdminHandler {
 	 */
 	function saveSystemConfig($args, &$request) {
 		$this->validate();
-		$this->setupTemplate(true);
+		$this->setupTemplate($request, true);
 
 		$configData =& Config::getData();
 

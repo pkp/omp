@@ -30,7 +30,7 @@ class AdminLanguagesHandler extends AdminHandler {
 	 */
 	function languages($args, &$request) {
 		$this->validate();
-		$this->setupTemplate(true);
+		$this->setupTemplate($request, true);
 
 		$site =& $request->getSite();
 
@@ -213,7 +213,7 @@ class AdminLanguagesHandler extends AdminHandler {
 	 */
 	function downloadLocale($args, &$request) {
 		$this->validate();
-		$this->setupTemplate(true);
+		$this->setupTemplate($request, true);
 		$locale = $request->getUserVar('locale');
 
 		import('classes.i18n.LanguageAction');

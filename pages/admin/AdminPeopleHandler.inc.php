@@ -30,7 +30,7 @@ class AdminPeopleHandler extends AdminHandler {
 	 */
 	function mergeUsers($args, &$request) {
 		$this->validate();
-		$this->setupTemplate(true);
+		$this->setupTemplate($request, true);
 
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 		$userDao =& DAORegistry::getDAO('UserDAO');
