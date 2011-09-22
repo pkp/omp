@@ -56,6 +56,18 @@ class ChapterGridCategoryRow extends GridCategoryRow {
 				'chapterId' => $chapterId
 			);
 
+			$this->addAction(
+				new LinkAction(
+					'deleteChapter',
+					new RemoteActionConfirmationModal(
+						__('common.confirmDelete'),
+						null,
+						$router->url($request, null, null, 'deleteChapter', null, $actionArgs)
+					),
+					null,
+					'delete'
+				)
+			);
 
 			$this->addAction(new LinkAction(
 				'editChapter',
@@ -66,18 +78,7 @@ class ChapterGridCategoryRow extends GridCategoryRow {
 				$chapter->getLocalizedTitle()
 			));
 
-			$this->addAction(
-				new LinkAction(
-					'deleteChapter',
-					new RemoteActionConfirmationModal(
-						__('common.confirmDelete'),
-						null,
-						$router->url($request, null, null, 'deleteChapter', null, $actionArgs)
-					),
-					__('grid.action.delete'),
-					'delete'
-				)
-			);
+
 		}
 	}
 
