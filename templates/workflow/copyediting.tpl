@@ -20,7 +20,7 @@
 	{url|assign:fairCopyGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.fairCopy.FairCopyFilesGridHandler" op="fetchGrid" monographId=$monograph->getId() escape=false}
 	{load_url_in_div id="fairCopyGrid" url=$fairCopyGridUrl}
 
-	<div class="pkp_linkActions">
+	<div class="grid_actions">
 		{foreach from=$editorActions item=action}
 			{include file="linkAction/linkAction.tpl" action=$action contextId="copyediting"}
 		{/foreach}

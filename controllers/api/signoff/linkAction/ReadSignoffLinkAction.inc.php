@@ -51,7 +51,7 @@ class ReadSignoffLinkAction extends LinkAction {
 				'modals.signoff.FileSignoffHandler', 'readSignoff',
 				null, $actionArgs
 			),
-			$modalTitle, 'fileManagement'
+			$modalTitle, 'modal_add_file'
 		);
 
 		// Configure the link action.

@@ -134,10 +134,10 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 			new AjaxModal(
 				$router->url($request, null, null, 'addAuditor', null, $this->getRequestArgs()),
 				__('editor.monograph.addAuditor'),
-				'add_item'
+				'modal_add_user'
 			),
 			__('editor.monograph.addAuditor'),
-			'add_item'
+			'add_user'
 		));
 
 		//

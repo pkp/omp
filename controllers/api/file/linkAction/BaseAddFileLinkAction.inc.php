@@ -53,7 +53,7 @@ class BaseAddFileLinkAction extends LinkAction {
 				'wizard.fileUpload.FileUploadWizardHandler', 'startWizard',
 				null, $actionArgs
 			),
-			$wizardTitle, 'fileManagement'
+			$wizardTitle, 'modal_add_file'
 		);
 
 		// Configure the link action.

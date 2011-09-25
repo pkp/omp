@@ -135,7 +135,8 @@ class ReviewerGridHandler extends GridHandler {
 				'addReviewer',
 				new AjaxModal(
 					$router->url($request, null, null, 'showReviewerForm', null, $actionArgs),
-					__('editor.monograph.addReviewer')
+					__('editor.monograph.addReviewer'),
+					'modal_add_user'
 					),
 				__('editor.monograph.addReviewer'),
 				'add_user'

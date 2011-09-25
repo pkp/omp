@@ -40,7 +40,7 @@
 		{rdelim});
 	</script>
 
-	<form class="pkp_form" id="signinForm" method="post" action="{$loginUrl}">
+	<form class="pkp_form" id="signinForm" method="post" action="{$loginUrl}" style="width: 400px;">
 {/if}
 
 
@@ -54,7 +54,7 @@
 
 {if ! $implicitAuth}
 	{fbvFormArea id="loginFields"}
-		{fbvFormSection label="user.login" for="username"}
+		{fbvFormSection label="user.username" for="username"}
 			{fbvElement type="text" id="username" value=$username|escape maxlength="32" size=$fbvStyles.size.MEDIUM}
 		{/fbvFormSection}
 		{fbvFormSection label="user.password" for="password"}

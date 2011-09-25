@@ -58,7 +58,7 @@ class AddSignoffFileLinkAction extends LinkAction {
 				'modals.signoff.FileSignoffHandler', 'displayFileUploadForm',
 				null, $actionArgs
 			),
-			$modalTitle, 'fileManagement'
+			$modalTitle, 'modal_add_file'
 		);
 
 		// Configure the link action.

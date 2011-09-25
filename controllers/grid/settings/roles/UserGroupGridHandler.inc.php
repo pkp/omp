@@ -86,10 +86,10 @@ class UserGroupGridHandler extends CategoryGridHandler {
 				new AjaxModal(
 					$router->url($request, null, null, 'addUserGroup'),
 					__('grid.roles.add'),
-					'addUserGroup'
+					'modal_add_role'
 				),
 				__('grid.roles.add'),
-				'add_item'
+				'add_role'
 			)
 		);
 

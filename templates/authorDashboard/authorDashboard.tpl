@@ -8,7 +8,7 @@
  *}
 {strip}
 {assign var="pageTitleTranslated" value=$monograph->getLocalizedTitle()|concat:" - "|concat:$monograph->getAuthorString(true)}
-{include file="common/header.tpl"}
+{include file="common/header.tpl" suppressPageTitle=true}
 {/strip}
 
 {assign var="stageId" value=$monograph->getStageId()}
@@ -23,26 +23,24 @@
 </script>
 
 <div id="authorDashboard">
-	<div class="pkp_submissionHeader">
-		<div class="pkp_submissionHeaderTop">
+	<div id="submissionHeader" class="pkp_submission_header">
+		<div style="float:right;">
+			<ul class="submission_actions pkp_helpers_flatlist">
+				{if $uploadFileAction}
+					<li id="{$uploadFileAction->getId()}">
+						{include file="linkAction/linkAction.tpl" action=$uploadFileAction contextId="authorDashboard"}
+					</li>
+				{/if}
+				<li id="{$viewMetadataAction->getId()}">
+					{include file="linkAction/linkAction.tpl" action=$viewMetadataAction contextId="authorDashboard"}
+				</li>
+			</ul>
 		</div>
-	</div>
-	<div style="clear:both;"></div>
+		<div style="float: left;"><span class="h2">{$pageTitleTranslated}</span></div>
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="authorDashboardNotification" requestOptions=$authorDashboardNotificationRequestOptions}
-	<br />
 
 	<!-- Author actions -->
-	<div id="authorActions" class="pkp_linkActions">
-		{if $uploadFileAction}
-			<div id="{$uploadFileAction->getId()}">
-				{include file="linkAction/linkAction.tpl" action=$uploadFileAction contextId="authorDashboard"}
-			</div>
-		{/if}
-		<div id="{$viewMetadataAction->getId()}">
-			{include file="linkAction/linkAction.tpl" action=$viewMetadataAction contextId="authorDashboard"}
-		</div>
-	</div>
-	<div style="clear:both;"></div>
+	<div class="pkp_helpers_clear"><br/></div>
 
 	<div class="pkp_authorDashboard_stageContainer" id="submission">
 		<h3><a href="#">{translate key='submission.submission'}</a></h3>

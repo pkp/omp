@@ -230,6 +230,11 @@ a.sprite:before {
   background-repeat:no-repeat;
   cursor:pointer;
 }
+a.notify:before {
+  margin-right:4px;
+  background-position:-24px 0;
+}
+a.notify:hover:before { background-position:-24px -24px; }
 a.settings:before {
   margin-top:8px;
   background-position:-408px 0;
@@ -372,6 +377,33 @@ a.zip:before {
   background-position:-984px 0;
 }
 a.zip:hover:before { background-position:-984px -24px; }
+a.add_role:before {
+  margin-right:4px;
+  background-position:-1032px 0;
+}
+a.add_role:hover:before { background-position:-1032px -24px; }
+.category a.delete:before {
+  margin-left:5px;
+  background-position:-1008px 0;
+}
+.category a.delete:hover:before { background-position:-1008px -24px; }
+.category a.pdf:before, .category a.html:before, .category a.word:before, .category a.image:before, .category a.excel:before, .category a.default:before, .category a.zip:before {
+  margin-left:10px;
+  margin-top:0px;
+}
+.large_sprite:before {
+  content:" ";
+  width:48px;
+  height:48px;
+  margin-right:20px;
+  float:left;
+  background:url(../lib/pkp/templates/images/structure/sprites.png);
+  background-repeat:no-repeat;
+  background-position:0 -48px;
+}
+.modal_add_user:before { background-position:-48px -48px; }
+.modal_add_role:before { background-position:-96px -48px; }
+.modal_add_file:before { background-position:-144px -48px; }
 .grid_actions {
   margin-top:20px;
   padding-bottom:20px;
@@ -876,29 +908,27 @@ div.pkp_controllers_grid thead th {
   vertical-align:middle;
   text-align:center;
 }
+div.pkp_controllers_grid thead th:first-child { padding-left:28px; }
 div.pkp_controllers_grid td {
   text-align:center;
   min-height:40px;
   height:40px;
   font-size:85%;
   vertical-align:middle;
-  padding:0px 4px;
+  padding:0px;
 }
 div.pkp_controllers_grid th:first-child, div.pkp_controllers_grid td:first-child, div.pkp_controllers_grid col.first_column { text-align:left !important; }
 div.pkp_controllers_grid td.first_column { padding:0 !important; }
 div.pkp_controllers_grid tr.category td {
-  text-align:left;
-  height:20px;
+  line-height:24px;
+  height:24px;
   font-size:70%;
   text-transform:uppercase;
-  padding-left:10px;
-  background-color:#e3ecea;
-  color:#627b81;
-  top:0;
 }
-div.pkp_controllers_grid tr.category td a {
-  background-position:0px 50%;
-  padding:5px 0px 5px 15px;
+div.pkp_controllers_grid tr.category td:first-child {
+  top:0;
+  padding-left:10px;
+  background:url(../lib/pkp/templates/images/structure/grid_group_1.png) no-repeat;
 }
 div.pkp_controllers_grid .options {
   float:right;
@@ -1131,28 +1161,18 @@ div.pkp_controllers_listbuilder .gridRowEdit .gridCellDisplay { display:none; }
   height:48px;
   width:100%;
   margin:10px 0 10px 0;
+  padding-bottom:10px;
+  border-bottom:1px solid #efefef;
 }
-.pkp_controllers_modal_titleBar .icon {
-  width:44px;
-  height:44px;
-  float:left;
-  margin-left:15px;
-  vertical-align:middle;
-  background-position:0 50% !important;
-  background-repeat:no-repeat !important;
-}
-.pkp_controllers_modal_titleBar .text {
-  margin-left:15px;
-  line-height:44px;
-  float:left;
+.pkp_controllers_modal_titleBar .h2 {
+  margin-left:20px;
+  line-height:48px;
   vertical-align:middle;
 }
 .pkp_controllers_modal_titleBar .close {
   float:right;
   padding-right:10px;
 }
-.pkp_controllers_modal_titleBar .informationCenter { background:url(../lib/pkp/templates/images/structure/grid_notes.png); }
-.pkp_controllers_modal_titleBar .fileManagement { background:url(../lib/pkp/templates/images/structure/response_warning.png); }
 .modal-buttons {
   margin:0px 0px 15px 0px;
   padding:0px 20px 0px 20px;
