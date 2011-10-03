@@ -74,7 +74,6 @@
 						{/fbvFormSection}
 						{if $userId}
 							{fbvFormSection suppressId="true"}
-								{translate key="user.register.passwordLengthRestriction" length=$minPasswordLength}
 								<br />
 								{translate key="user.profile.leavePasswordBlank"}
 							{/fbvFormSection}
