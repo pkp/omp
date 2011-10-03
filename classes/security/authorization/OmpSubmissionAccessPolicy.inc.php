@@ -67,7 +67,7 @@ class OmpSubmissionAccessPolicy extends PressPolicy {
 		if (isset($roleAssignments[ROLE_ID_AUTHOR])) {
 			// 1) Author role user groups can access whitelisted operations ...
 			$authorSubmissionAccessPolicy = new PolicySet(COMBINING_DENY_OVERRIDES);
-			$authorSubmissionAccessPolicy->addPolicy(new RoleBasedHandlerOperationPolicy($request, ROLE_ID_AUTHOR, $roleAssignments[ROLE_ID_AUTHOR]));
+			$authorSubmissionAccessPolicy->addPolicy(new RoleBasedHandlerOperationPolicy($request, ROLE_ID_AUTHOR, $roleAssignments[ROLE_ID_AUTHOR], 'user.authorization.authorRoleMissing'));
 
 			// 2) ... if the requested submission is their own ...
 			import('classes.security.authorization.internal.MonographAuthorPolicy');
