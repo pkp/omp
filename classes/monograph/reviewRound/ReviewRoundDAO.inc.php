@@ -50,6 +50,8 @@ class ReviewRoundDAO extends DAO {
 		$reviewRound->setStageId($stageId);
 		$reviewRound->setStatus($status);
 		$this->insertObject($reviewRound);
+		$reviewRound->setId($this->getInsertReviewRoundId());
+		
 		return $reviewRound;
 	}
 
@@ -122,6 +124,24 @@ class ReviewRoundDAO extends DAO {
 		$result->Close();
 		return $returner;
 	}
+	
+	/**
+	 * Retrieve a review round by its id.
+	 * @param int $reviewRoundId
+	 * @return ReviewRound
+	 */
+	function getReviewRoundById($reviewRoundId) {
+		$result =& $this->retrieve(
+				'SELECT * FROM review_rounds WHERE review_round_id = ?',
+				array((int)$reviewRoundId));
+		
+		$returner = null;
+		if ($result->RecordCount() != 0) {
+			$returner = $this->_fromRow($result->GetRowAssoc(false));
+		}
+		$result->Close();
+		return $returner;
+	}
 
 	/**
 	 * Check if a review round exists for a specified monograph.
@@ -183,6 +203,15 @@ class ReviewRoundDAO extends DAO {
 		return $returner;
 	}
 
+	/**
+	* Get the ID of the last inserted review round.
+	* @return int
+	*/
+	function getInsertReviewRoundId() {
+		return $this->getInsertId('review_rounds', 'user_id');
+	}
+	
+	
 	//
 	// Private methods
 	//
@@ -194,6 +223,7 @@ class ReviewRoundDAO extends DAO {
 	function _fromRow(&$row) {
 		$reviewRound = $this->newDataObject();
 
+		$reviewRound->setId((int)$row['review_round_id']);
 		$reviewRound->setSubmissionId((int)$row['submission_id']);
 		$reviewRound->setStageId((int)$row['stage_id']);
 		$reviewRound->setRound((int)$row['round']);
