@@ -43,20 +43,6 @@ class NotificationManager extends PKPNotificationManager {
 				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
 				$url = $dispatcher->url($request, ROUTE_PAGE, null, 'workflow', 'submission', $notification->getAssocId());
 				break;
-			case NOTIFICATION_TYPE_REVIEWER_COMMENT:
-			case NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_SUBMISSION:
-			case NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_INTERNAL_REVIEW:
-			case NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_EXTERNAL_REVIEW:
-			case NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_EDITING:
-			case NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_PRODUCTION:
-			case NOTIFICATION_TYPE_EDITOR_DECISION_INITIATE_REVIEW:
-			case NOTIFICATION_TYPE_EDITOR_DECISION_ACCEPT:
-			case NOTIFICATION_TYPE_EDITOR_DECISION_EXTERNAL_REVIEW:
-			case NOTIFICATION_TYPE_EDITOR_DECISION_PENDING_REVISIONS:
-			case NOTIFICATION_TYPE_EDITOR_DECISION_RESUBMIT:
-			case NOTIFICATION_TYPE_EDITOR_DECISION_DECLINE:
-			case NOTIFICATION_TYPE_EDITOR_DECISION_SEND_TO_PRODUCTION:
-				break;
 			case NOTIFICATION_TYPE_AUDITOR_REQUEST:
 				$signoffDao =& DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
 				$signoff =& $signoffDao->getById($notification->getAssocId());
@@ -183,6 +169,13 @@ class NotificationManager extends PKPNotificationManager {
 				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
 				return __('notification.type.editorDecisionSendToProduction');
 				break;
+			case NOTIFICATION_TYPE_REVIEW_ROUND_STATUS:
+				assert($notification->getAssocType() == ASSOC_TYPE_REVIEW_ROUND && is_numeric($notification->getAssocId()));
+				$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
+				$reviewRound =& $reviewRoundDao->getReviewRoundById($notification->getAssocId());
+
+				Locale::requireComponents(array(LOCALE_COMPONENT_OMP_EDITOR));
+				return __($reviewRound->getStatusKey());			
 			default:
 				return parent::getNotificationContents($request, $notification);
 		}
@@ -210,6 +203,10 @@ class NotificationManager extends PKPNotificationManager {
 			case NOTIFICATION_TYPE_EDITOR_DECISION_DECLINE:
 			case NOTIFICATION_TYPE_EDITOR_DECISION_SEND_TO_PRODUCTION:
 				return __('notification.type.editorDecisionTitle');
+			case NOTIFICATION_TYPE_REVIEW_ROUND_STATUS:
+				$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
+				$reviewRound =& $reviewRoundDao->getReviewRoundById($notification->getAssocId());
+				return __('notification.type.roundStatusTitle', array('round' => $reviewRound->getRound()));
 			default:
 				return parent::getNotificationTitle($notification);
 		}
@@ -254,6 +251,7 @@ class NotificationManager extends PKPNotificationManager {
 			case NOTIFICATION_TYPE_EDITOR_DECISION_RESUBMIT:
 			case NOTIFICATION_TYPE_EDITOR_DECISION_DECLINE:
 			case NOTIFICATION_TYPE_EDITOR_DECISION_SEND_TO_PRODUCTION:
+			case NOTIFICATION_TYPE_REVIEW_ROUND_STATUS:
 				return 'notifyInformation';
 				break;
 			default: return parent::getStyleClass($notification);
@@ -270,7 +268,8 @@ class NotificationManager extends PKPNotificationManager {
 			NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_INTERNAL_REVIEW,
 			NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_EXTERNAL_REVIEW,
 			NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_EDITING,
-			NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_PRODUCTION
+			NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_PRODUCTION,
+			NOTIFICATION_TYPE_REVIEW_ROUND_STATUS
 		));
 	}
 

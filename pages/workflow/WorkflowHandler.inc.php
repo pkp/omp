@@ -266,10 +266,16 @@ class WorkflowHandler extends Handler {
 		}
 		$this->_assignEditorDecisionActions($request, $callback, $additionalActionArgs);
 
-		// Retrieve and assign the review round status.
+		// Retrieve review round and assign the review round request notification options.
 		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO'); /* @var $reviewRoundDao ReviewRoundDAO */
 		$reviewRound =& $reviewRoundDao->build($monograph->getId(), $stageId, $round);
-		$templateMgr->assign('roundStatus', $reviewRound->getStatusKey());
+		
+		$notificationRequestOptions = array(
+			NOTIFICATION_LEVEL_NORMAL => array(
+				NOTIFICATION_TYPE_REVIEW_ROUND_STATUS => array(ASSOC_TYPE_REVIEW_ROUND, $reviewRound->getId())),
+			NOTIFICATION_LEVEL_TRIVIAL => array()				
+		);
+		$templateMgr->assign('reviewRoundNotificationRequestOptions', $notificationRequestOptions);
 
 		return $templateMgr->fetchJson('workflow/reviewRound.tpl');
 	}

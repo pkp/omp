@@ -102,15 +102,29 @@ class EditorDecisionForm extends Form {
 	 * @param $monograph Monograph
 	 * @param $stageId integer One of the WORKFLOW_STAGE_ID_* constants.
 	 * @param $newRound integer
+	 * @param $request Request
 	 * @param $status integer One of the REVIEW_ROUND_STATUS_* constants.
 	 */
-	function _initiateReviewRound(&$monograph, $stageId, $newRound, $status = null) {
+	function _initiateReviewRound(&$monograph, $stageId, $newRound, &$request, $status = null) {
 		assert(is_int($newRound));
 
 		// Create a new review round.
 		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO'); /* @var $reviewRoundDao ReviewRoundDAO */
-		$reviewRoundDao->build($monograph->getId(), $stageId, $newRound, $status);
+		$reviewRound =& $reviewRoundDao->build($monograph->getId(), $stageId, $newRound, $status);
 
+		// Create round status notification.
+		$press =& $request->getPress();
+		$notificationMgr = new NotificationManager();
+		$notificationMgr->createNotification(
+			$request,
+			null,
+			NOTIFICATION_TYPE_REVIEW_ROUND_STATUS,
+			$press->getId(),
+			ASSOC_TYPE_REVIEW_ROUND,
+			$reviewRound->getId(),
+			NOTIFICATION_LEVEL_NORMAL
+		);
+		
 		// Add the selected files to the new round.
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 

@@ -41,7 +41,7 @@ class InitiateReviewForm extends EditorDecisionForm {
 		$seriesEditorAction->incrementWorkflowStage($seriesEditorSubmission, WORKFLOW_STAGE_ID_INTERNAL_REVIEW, $request);
 
 		// Create an initial internal review round.
-		$this->_initiateReviewRound($seriesEditorSubmission, WORKFLOW_STAGE_ID_INTERNAL_REVIEW, 1, REVIEW_ROUND_STATUS_PENDING_REVIEWERS);
+		$this->_initiateReviewRound($seriesEditorSubmission, WORKFLOW_STAGE_ID_INTERNAL_REVIEW, 1, $request, REVIEW_ROUND_STATUS_PENDING_REVIEWERS);
 	}
 }
 

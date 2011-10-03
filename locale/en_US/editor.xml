@@ -51,7 +51,6 @@
 	<message key="editor.monograph.selectAttachments">Select the review attachments for the author to see</message>
 	<message key="editor.monograph.selectPromoteRevisions">Select revisions to use in the next stage</message>
 	<message key="editor.monograph.selectFairCopy">Select fair copy files for production.</message>
-	<message key="editor.monograph.roundStatus">Round {$round} Status</message>
 	<message key="editor.monograph.roundStatus.revisionsRequested">Revisions have been requested.</message>
 	<message key="editor.monograph.roundStatus.resubmitted">Submission has been resubmitted for review.</message>
 	<message key="editor.monograph.roundStatus.sentToExternal">Sent to external review.</message>
