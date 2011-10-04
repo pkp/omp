@@ -89,8 +89,10 @@ class SendReviewsForm extends EditorDecisionWithEmailForm {
 				fatalError('Unsupported decision!');
 		}
 
+		$this->_updateReviewRoundStatus($seriesEditorSubmission, $status);
+		
 		// Send email to the author.
-		$this->_sendReviewMailToAuthor($seriesEditorSubmission, $status, $emailKey, $request);
+		$this->_sendReviewMailToAuthor($seriesEditorSubmission, $emailKey, $request);
 	}
 
 	//

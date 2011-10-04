@@ -119,22 +119,30 @@ class EditorDecisionWithEmailForm extends EditorDecisionForm {
 	// Private helper methods
 	//
 	/**
+	* Retrieve the current review round and update it with the new status.
+	* @param $seriesEditorSubmission SeriesEditorSubmission
+	* @param $status integer One of the REVIEW_ROUND_STATUS_* constants.
+	*/
+	function _updateReviewRoundStatus($seriesEditorSubmission, $status) {
+		if ($seriesEditorSubmission->getStageId() == WORKFLOW_STAGE_ID_INTERNAL_REVIEW ||
+		$seriesEditorSubmission->getStageId() == WORKFLOW_STAGE_ID_EXTERNAL_REVIEW) {
+			$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO'); /* @var $reviewRoundDao ReviewRoundDAO */
+			$currentReviewRound =& $reviewRoundDao->build($seriesEditorSubmission->getId(), $seriesEditorSubmission->getStageId(), $seriesEditorSubmission->getCurrentRound());
+			$currentReviewRound->setStatus($status);
+			$reviewRoundDao->updateObject($currentReviewRound);
+		}
+	}
+	
+	/**
 	 * Sends an email with a personal message and the selected
 	 * review attachements to the author. Also updates the status
 	 * of the current review round and marks review attachments
 	 * selected by the editor as "viewable" for the author.
 	 * @param $seriesEditorSubmission SeriesEditorSubmission
-	 * @param $status integer One of the REVIEW_ROUND_STATUS_* constants.
 	 * @param $emailKey string An email template.
 	 * @param $request PKPRequest
 	 */
-	function _sendReviewMailToAuthor(&$seriesEditorSubmission, $status, $emailKey, $request) {
-		// Retrieve the current review round and update it with the new status.
-		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO'); /* @var $reviewRoundDao ReviewRoundDAO */
-		$currentReviewRound =& $reviewRoundDao->build($seriesEditorSubmission->getId(), $seriesEditorSubmission->getStageId(), $seriesEditorSubmission->getCurrentRound());
-		$currentReviewRound->setStatus($status);
-		$reviewRoundDao->updateObject($currentReviewRound);
-
+	function _sendReviewMailToAuthor(&$seriesEditorSubmission, $emailKey, $request) {
 		// Send personal message to author.
 		$submitter =& $seriesEditorSubmission->getUser();
 		import('classes.mail.MonographMailTemplate');

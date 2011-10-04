@@ -48,7 +48,7 @@ class PromoteForm extends EditorDecisionWithEmailForm {
 	 * @see Form::initData()
 	 */
 	function initData($args, &$request) {
-		$actionLabels = $this->getDecisionLabels();
+		$actionLabels = $this->_getDecisionLabels();
 
 		$seriesEditorSubmission =& $this->getSeriesEditorSubmission();
 		$this->setData('stageId', $seriesEditorSubmission->getStageId());
@@ -67,13 +67,15 @@ class PromoteForm extends EditorDecisionWithEmailForm {
 		$decision = $this->getDecision();
 		import('classes.submission.seriesEditor.SeriesEditorAction');
 		$seriesEditorAction = new SeriesEditorAction();
-		$seriesEditorAction->recordDecision($request, $seriesEditorSubmission, $decision, $this->getDecisionLabels());
+		$seriesEditorAction->recordDecision($request, $seriesEditorSubmission, $decision, $this->_getDecisionLabels());
 
 		// Identify email key and status of round.
 		switch ($decision) {
 			case SUBMISSION_EDITOR_DECISION_ACCEPT:
 				$emailKey = 'EDITOR_DECISION_ACCEPT';
 				$status = REVIEW_ROUND_STATUS_ACCEPTED;
+				
+				$this->_updateReviewRoundStatus($seriesEditorSubmission, $status);
 
 				// Move to the editing stage.
 				$seriesEditorAction->incrementWorkflowStage($seriesEditorSubmission, WORKFLOW_STAGE_ID_EDITING, $request);
@@ -91,23 +93,25 @@ class PromoteForm extends EditorDecisionWithEmailForm {
 						MonographFileManager::copyFileToFileStage($fileId, $revision, MONOGRAPH_FILE_FINAL, null, true);
 					}
 				}
+				
 				// Send email to the author.
-
-				$this->_sendReviewMailToAuthor($seriesEditorSubmission, $status, $emailKey, $request);
+				$this->_sendReviewMailToAuthor($seriesEditorSubmission, $emailKey, $request);
 				break;
 
 			case SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW:
 				$emailKey = 'EDITOR_DECISION_SEND_TO_EXTERNAL';
 				$status = REVIEW_ROUND_STATUS_SENT_TO_EXTERNAL;
+				
+				$this->_updateReviewRoundStatus($seriesEditorSubmission, $status);
 
 				// Move to the external review stage.
 				$seriesEditorAction->incrementWorkflowStage($seriesEditorSubmission, WORKFLOW_STAGE_ID_EXTERNAL_REVIEW, $request);
 
 				// Create an initial external review round.
-				$this->_initiateReviewRound($seriesEditorSubmission, WORKFLOW_STAGE_ID_EXTERNAL_REVIEW, 1, $request);
+				$this->_initiateReviewRound($seriesEditorSubmission, WORKFLOW_STAGE_ID_EXTERNAL_REVIEW, 1, $request, REVIEW_ROUND_STATUS_PENDING_REVIEWERS);
 
 				// Send email to the author.
-				$this->_sendReviewMailToAuthor($seriesEditorSubmission, $status, $emailKey, $request);
+				$this->_sendReviewMailToAuthor($seriesEditorSubmission, $emailKey, $request);
 				break;
 			case SUBMISSION_EDITOR_DECISION_SEND_TO_PRODUCTION:
 				// FIXME: this is copy-pasted from above, save the FILE_GALLEY.
@@ -142,7 +146,7 @@ class PromoteForm extends EditorDecisionWithEmailForm {
 	 * Get the associative array of decisions to decision label locale keys.
 	 * @return array
 	 */
-	function getDecisionLabels() {
+	function _getDecisionLabels() {
 		return array(
 			SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW => 'editor.monograph.decision.externalReview',
 			SUBMISSION_EDITOR_DECISION_ACCEPT => 'editor.monograph.decision.accept',
