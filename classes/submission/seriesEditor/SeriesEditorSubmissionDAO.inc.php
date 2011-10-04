@@ -184,14 +184,7 @@ class SeriesEditorSubmissionDAO extends DAO {
 		$currentStageId = $seriesEditorSubmission->getStageId();
 		$currentRound = $seriesEditorSubmission->getCurrentRound();
 
-		// Make sure the current round exists (FIXME: is this necessary?)
-		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO'); /* @var $reviewRoundDao ReviewRoundDAO */
-		if (isset($currentStageId)) {
-			$currentReviewRound =& $reviewRoundDao->build(
-					$seriesEditorSubmission->getId(),
-					$currentStageId,
-					$currentRound == null ? 1 : $currentRound);
-		}
+		
 
 		// update review assignments
 		$removedReviewAssignments =& $seriesEditorSubmission->getRemovedReviewAssignments();
