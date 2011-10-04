@@ -135,8 +135,7 @@ class EditorDecisionWithEmailForm extends EditorDecisionForm {
 	
 	/**
 	 * Sends an email with a personal message and the selected
-	 * review attachements to the author. Also updates the status
-	 * of the current review round and marks review attachments
+	 * review attachements to the author. Also marks review attachments
 	 * selected by the editor as "viewable" for the author.
 	 * @param $seriesEditorSubmission SeriesEditorSubmission
 	 * @param $emailKey string An email template.
