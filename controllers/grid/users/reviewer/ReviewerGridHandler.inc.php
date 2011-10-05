@@ -336,6 +336,7 @@ class ReviewerGridHandler extends GridHandler {
 		$press =& $request->getPress();
 		$monograph =& $this->getMonograph();
 		$stageId = $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
+		// FIXME: Need to authorize review round, see #6200.
 		$round = (int) $request->getUserVar('round');
 		$term = $request->getUserVar('term');
 

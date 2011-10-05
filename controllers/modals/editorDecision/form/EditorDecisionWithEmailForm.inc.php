@@ -97,6 +97,7 @@ class EditorDecisionWithEmailForm extends EditorDecisionForm {
 
 		// Review round.
 		$seriesEditorSubmission =& $this->getSeriesEditorSubmission();
+		// FIXME: Need to authorize review round, see #6200.
 		$round = (int) $request->getUserVar('round');
 		if($round > $seriesEditorSubmission->getCurrentRound() || $round < 0) {
 			fatalError('Invalid review round!');

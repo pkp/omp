@@ -139,6 +139,7 @@ class AuthorDashboardHandler extends Handler {
 		}
 		$templateMgr->assign('stageId', $stageId);
 
+		// FIXME: Need to authorize review round, see #6200.
 		$round = (int) $request->getUserVar('round');
 		$templateMgr->assign('round', $round);
 
