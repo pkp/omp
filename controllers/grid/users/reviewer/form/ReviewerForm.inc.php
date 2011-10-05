@@ -232,7 +232,7 @@ class ReviewerForm extends Form {
 
 		// Update the review round status if this is the first reviewer added
 		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
-		$currentReviewRound =& $reviewRoundDao->build($this->getMonographId(), $submission->getStageId(), $submission->getCurrentRound());
+		$currentReviewRound =& $reviewRoundDao->build($this->getMonographId(), $stageId, $round);
 		if ($currentReviewRound->getStatus() == REVIEW_ROUND_STATUS_PENDING_REVIEWERS) {
 			$currentReviewRound->setStatus(REVIEW_ROUND_STATUS_PENDING_REVIEWS);
 			$reviewRoundDao->updateObject($currentReviewRound);
