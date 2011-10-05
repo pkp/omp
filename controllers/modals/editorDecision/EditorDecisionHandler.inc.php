@@ -302,7 +302,8 @@ class EditorDecisionHandler extends Handler {
 				$redirectUrl = $dispatcher->url($request, ROUTE_PAGE, null, 'workflow', $redirectOp, array($monograph->getId()));
 				return $request->redirectUrlJson($redirectUrl);
 			} else {
-				$json = new JSONMessage(true);
+				// Needed to update review round status notifications.
+				return DAO::getDataChangedEvent();
 			}
 		} else {
 			$json = new JSONMessage(false);
