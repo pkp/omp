@@ -8,7 +8,7 @@
  *}
 
 <!--  Display round status -->
-{include file="common/reviewRoundStatus.tpl" round=$round roundStatus=$roundStatus}
+{include file="controllers/notification/inPlaceNotification.tpl" notificationId="reviewRoundNotification_"|concat:$round requestOptions=$reviewRoundNotificationRequestOptions}
 <form class="pkp_form">
 {fbvFormArea id="reviewRoundInfo"}
 <!-- Display editor's message to the author -->

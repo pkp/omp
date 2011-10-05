@@ -150,10 +150,14 @@ class AuthorDashboardHandler extends Handler {
 		$reviewRound =& $reviewRoundDao->getReviewRound($monograph->getId(), $stageId, $round);
 		assert(isset($reviewRound));
 
-		// Get the status message for the round
-		$roundStatus =& $reviewRound->getStatusKey();
-		$templateMgr->assign('roundStatus', $roundStatus);
-
+		// Review round request notification options.
+		$notificationRequestOptions = array(
+			NOTIFICATION_LEVEL_NORMAL => array(
+				NOTIFICATION_TYPE_REVIEW_ROUND_STATUS => array(ASSOC_TYPE_REVIEW_ROUND, $reviewRound->getId())),
+			NOTIFICATION_LEVEL_TRIVIAL => array()
+		);
+		$templateMgr->assign('reviewRoundNotificationRequestOptions', $notificationRequestOptions);
+		
 		// Editor has taken an action and sent an email; Display the email
 		if($reviewRound->getStatus() != REVIEW_ROUND_STATUS_PENDING_REVIEWERS && $reviewRound->getStatus() != REVIEW_ROUND_STATUS_PENDING_REVIEWS) {
 			$monographEmailLogDao =& DAORegistry::getDAO('MonographEmailLogDAO');
