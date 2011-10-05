@@ -114,17 +114,18 @@ class MonographKeywordDAO extends ControlledVocabDAO {
 				$monographKeywordEntryDao->deleteObjectById($id);
 			}
 		}
-
-		$keywords = array_unique($keywords); // Remove any duplicate keywords
-		$i = 1;
-		foreach ($keywords as $keyword) {
-			$keywordEntry = $monographKeywordEntryDao->newDataObject();
-			$keywordEntry->setControlledVocabId($currentKeywords->getId());
-			$keywordEntry->setKeyword($keyword);
-			$keywordEntry->setSequence($i);
-			$i ++;
-			$keywordEntryId = $monographKeywordEntryDao->insertObject($keywordEntry);
-		}
+		if (is_array($keywords)) {
+			$keywords = array_unique($keywords); // Remove any duplicate keywords
+			$i = 1;
+			foreach ($keywords as $keyword) {
+				$keywordEntry = $monographKeywordEntryDao->newDataObject();
+				$keywordEntry->setControlledVocabId($currentKeywords->getId());
+				$keywordEntry->setKeyword($keyword);
+				$keywordEntry->setSequence($i);
+				$i ++;
+				$keywordEntryId = $monographKeywordEntryDao->insertObject($keywordEntry);
+			}	
+		}		
 	}
 }
 ?>

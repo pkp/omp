@@ -115,16 +115,18 @@ class MonographAgencyDAO extends ControlledVocabDAO {
 			}
 		}
 
-		$agencies = array_unique($agencies); // Remove any duplicate agencies
-		$i = 1;
-		foreach ($agencies as $agency) {
-			$agencyEntry = $monographAgencyEntryDao->newDataObject();
-			$agencyEntry->setControlledVocabId($currentAgencies->getId());
-			$agencyEntry->setAgency($agency);
-			$agencyEntry->setSequence($i);
-			$i ++;
-			$agencyEntryId = $monographAgencyEntryDao->insertObject($agencyEntry);
-		}
+		if (is_array($agencies)) {
+			$agencies = array_unique($agencies); // Remove any duplicate agencies
+			$i = 1;
+			foreach ($agencies as $agency) {
+				$agencyEntry = $monographAgencyEntryDao->newDataObject();
+				$agencyEntry->setControlledVocabId($currentAgencies->getId());
+				$agencyEntry->setAgency($agency);
+				$agencyEntry->setSequence($i);
+				$i ++;
+				$agencyEntryId = $monographAgencyEntryDao->insertObject($agencyEntry);
+			}	
+		}		
 	}
 }
 ?>
