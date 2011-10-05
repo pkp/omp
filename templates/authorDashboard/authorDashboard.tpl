@@ -37,11 +37,10 @@
 			</ul>
 		</div>
 		<div style="float: left;"><span class="h2">{$pageTitleTranslated}</span></div>
-	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="authorDashboardNotification" requestOptions=$authorDashboardNotificationRequestOptions}
-
-	<!-- Author actions -->
-	<div class="pkp_helpers_clear"><br/></div>
-
+		
+		<div class="pkp_helpers_clear"></div>
+		{include file="controllers/notification/inPlaceNotification.tpl" notificationId="authorDashboardNotification" requestOptions=$authorDashboardNotificationRequestOptions}
+	</div>
 	<div class="pkp_authorDashboard_stageContainer" id="submission">
 		<h3><a href="#">{translate key='submission.submission'}</a></h3>
 		<div id="submissionContent">
