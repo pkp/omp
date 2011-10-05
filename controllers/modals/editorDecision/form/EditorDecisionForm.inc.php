@@ -112,18 +112,30 @@ class EditorDecisionForm extends Form {
 		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO'); /* @var $reviewRoundDao ReviewRoundDAO */
 		$reviewRound =& $reviewRoundDao->build($monograph->getId(), $stageId, $newRound, $status);
 
-		// Create round status notification.
+		// Check for a notification already in place for the current review round.
 		$press =& $request->getPress();
-		$notificationMgr = new NotificationManager();
-		$notificationMgr->createNotification(
-			$request,
-			null,
+		$notificationDao =& DAORegistry::getDAO('NotificationDAO');
+		$notificationFactory =& $notificationDao->getNotificationsByAssoc(
+			ASSOC_TYPE_REVIEW_ROUND, 
+			$reviewRound->getId(), 
+			null, 
 			NOTIFICATION_TYPE_REVIEW_ROUND_STATUS,
-			$press->getId(),
-			ASSOC_TYPE_REVIEW_ROUND,
-			$reviewRound->getId(),
-			NOTIFICATION_LEVEL_NORMAL
+			$press->getId()
 		);
+		
+		// Create round status notification if there is no notification already.
+		if ($notificationFactory->wasEmpty()) {
+			$notificationMgr = new NotificationManager();
+			$notificationMgr->createNotification(
+				$request,
+				null,
+				NOTIFICATION_TYPE_REVIEW_ROUND_STATUS,
+				$press->getId(),
+				ASSOC_TYPE_REVIEW_ROUND,
+				$reviewRound->getId(),
+				NOTIFICATION_LEVEL_NORMAL
+			);
+		}
 		
 		// Add the selected files to the new round.
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
