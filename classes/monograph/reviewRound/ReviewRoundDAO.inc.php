@@ -42,17 +42,24 @@ class ReviewRoundDAO extends DAO {
 		$reviewRound = $this->getReviewRound($submissionId, $stageId, $round);
 		if ($reviewRound) return $reviewRound;
 
-		// Otherwise, build one.
-		unset($reviewRound);
-		$reviewRound =& $this->newDataObject();
-		$reviewRound->setSubmissionId($submissionId);
-		$reviewRound->setRound($round);
-		$reviewRound->setStageId($stageId);
-		$reviewRound->setStatus($status);
-		$this->insertObject($reviewRound);
-		$reviewRound->setId($this->getInsertReviewRoundId());
-		
-		return $reviewRound;
+		// Otherwise, check the args to build one.
+		if ($stageId == WORKFLOW_STAGE_ID_INTERNAL_REVIEW ||
+		$stageId == WORKFLOW_STAGE_ID_EXTERNAL_REVIEW &&
+		$round > 0) {
+			unset($reviewRound);
+			$reviewRound =& $this->newDataObject();
+			$reviewRound->setSubmissionId($submissionId);
+			$reviewRound->setRound($round);
+			$reviewRound->setStageId($stageId);
+			$reviewRound->setStatus($status);
+			$this->insertObject($reviewRound);
+			$reviewRound->setId($this->getInsertReviewRoundId());
+			
+			return $reviewRound;
+		} else {
+			assert(false);
+			return null;
+		}	
 	}
 
 	/**
