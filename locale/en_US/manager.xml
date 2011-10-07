@@ -123,7 +123,7 @@
 	<message key="manager.settings.wizard">Settings Wizard</message>
 	<message key="manager.settings.pressSettings">Press Settings</message>
 	<message key="manager.settings.press">Press</message>
-	<message key="manager.settings.pressDescription"><![CDATA[All settings specific to the press (masthead, contact, policies, guidelines, affiliation & support, divisions and series, press identification).]]></message>
+	<message key="manager.settings.pressDescription"><![CDATA[All settings specific to the press (masthead, contact, policies, guidelines, affiliation & support, categories and series, press identification).]]></message>
 	<message key="manager.settings.accessDescription">All settings related to access and security management for this press (users,roles, site access options).</message>
 	<message key="manager.settings.websiteDescription">All settings specific to the public website pages (homepage, appearance, language)</message>
 	<message key="manager.settings.publicationDescription">All settings specific to the publication process (general settings, submission stage, review stage, editorial stage, production stage, email templates).</message>
@@ -493,8 +493,8 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.sortableByComponent">Sortable by component</message>
 	<message key="manager.setup.cataloguingMetadata">Cataloguing Metadata</message>
 	<message key="manager.setup.currentFormats">Current Formats</message>
-	<message key="manager.setup.division">Division</message>
-	<message key="manager.setup.divisionsAndSeries">Divisions and Series</message>
+	<message key="manager.setup.category">Category</message>
+	<message key="manager.setup.categoriesAndSeries">Categories and Series</message>
 	<message key="manager.setup.reviewForms">Review Forms</message>
 	<message key="manager.setup.roleType">Role Type</message>
 	<message key="manager.setup.authorRoles">Author Roles</message>

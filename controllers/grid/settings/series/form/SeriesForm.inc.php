@@ -39,15 +39,15 @@ class SeriesForm extends Form {
 	function initData($args, &$request) {
 		$press =& $request->getPress();
 
-		$divisionDao =& DAORegistry::getDAO('DivisionDAO');
+		$categoryDao =& DAORegistry::getDAO('CategoryDAO');
 		$seriesDao =& DAORegistry::getDAO('SeriesDAO');
 
-		$divisions =& $divisionDao->getByPressId($press->getId());
+		$categories =& $categoryDao->getByPressId($press->getId());
 
-		$divisionsArray = array();
-		while ($division =& $divisions->next()) {
-			$divisionsArray[] = array('id' => $division->getId(), 'title' => $division->getLocalizedTitle());
-			unset($division);
+		$categoryArray = array();
+		while ($category =& $categories->next()) {
+			$categoryArray[] = array('id' => $category->getId(), 'title' => $category->getLocalizedTitle());
+			unset($category);
 		}
 
 		if($this->seriesId) {
@@ -58,14 +58,14 @@ class SeriesForm extends Form {
 			$this->_data = array(
 				'seriesId' => $this->seriesId,
 				'title' => $series->getTitle(null),
-				'divisions' => $divisionsArray,
-				'currentDivision' => $series->getDivisionId(),
+				'categories' => $categoryArray,
+				'currentCategory' => $series->getCategoryId(),
 				'affiliation' => $series->getAffiliation(null)
 			);
 		} else {
 			$this->_data = array(
 				'title' => '',
-				'divisions' => $divisionsArray,
+				'categories' => $categoryArray,
 				'affiliation' => ''
 			);
 		}
@@ -90,7 +90,7 @@ class SeriesForm extends Form {
 	 * @see Form::readInputData()
 	 */
 	function readInputData() {
-		$this->readUserVars(array('seriesId', 'title', 'division', 'affiliation'));
+		$this->readUserVars(array('seriesId', 'title', 'category', 'affiliation'));
 		$this->readUserVars(array('gridId', 'rowId'));
 	}
 
@@ -108,13 +108,13 @@ class SeriesForm extends Form {
 			import('classes.press.Series');
 			$series = new Series();
 			$series->setPressId($press->getId());
-			$series->setDivisionId($this->getData('division'));
+			$series->setCategoryId($this->getData('category'));
 			$series = $this->_setSeriesLocaleFields($series, $request);
 			$this->seriesId = $seriesDao->insertObject($series);
 		} else {
 			$series =& $seriesDao->getById($this->seriesId);
 			$series->setPressId($press->getId());
-			$series->setDivisionId($this->getData('division'));
+			$series->setCategoryId($this->getData('category'));
 			$series = $this->_setSeriesLocaleFields($series, $request);
 			$seriesDao->updateObject($series);
 		}

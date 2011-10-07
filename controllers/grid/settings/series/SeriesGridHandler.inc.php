@@ -45,16 +45,16 @@ class SeriesGridHandler extends SetupGridHandler {
 
 		// Elements to be displayed in the grid
 		$seriesDao =& DAORegistry::getDAO('SeriesDAO');
-		$divisionDao =& DAORegistry::getDAO('DivisionDAO');
+		$categoryDao =& DAORegistry::getDAO('CategoryDAO');
 		$series = $seriesDao->getByPressId($press->getId());
 
 		$seriesArray = array();
 		while ($seriesItem =& $series->next()) {
-			$division = $divisionDao->getById($seriesItem->getDivisionId(), $press->getId());
-			if (isset($division)) {
-				$divisionTitle = $division->getLocalizedTitle();
+			$category = $categoryDao->getById($seriesItem->getCategoryId(), $press->getId());
+			if (isset($category)) {
+				$categoryTitle = $category->getLocalizedTitle();
 			} else {
-				$divisionTitle = Locale::translate('common.none');
+				$categoryTitle = Locale::translate('common.none');
 			}
 
 			$seriesEditorsDao =& DAORegistry::getDAO('SeriesEditorsDAO');
@@ -71,10 +71,12 @@ class SeriesGridHandler extends SetupGridHandler {
 			}
 
 			$seriesId = $seriesItem->getId();
-			$seriesArray[$seriesId] = array('title' => $seriesItem->getLocalizedTitle(),
-							'division' => $divisionTitle,
-							'editors' => $editorsString,
-							'affiliation' => $seriesItem->getLocalizedAffiliation());
+			$seriesArray[$seriesId] = array(
+				'title' => $seriesItem->getLocalizedTitle(),
+				'category' => $categoryTitle,
+				'editors' => $editorsString,
+				'affiliation' => $seriesItem->getLocalizedAffiliation()
+			);
 			unset($seriesItem);
 			unset($editorsString);
 		}
@@ -105,7 +107,7 @@ class SeriesGridHandler extends SetupGridHandler {
 				'controllers/grid/gridCell.tpl'
 			)
 		);
-		$this->addColumn(new GridColumn('division', 'manager.setup.division'));
+		$this->addColumn(new GridColumn('category', 'manager.setup.category'));
 		$this->addColumn(new GridColumn('editors', 'user.role.editors'));
 		$this->addColumn(new GridColumn('affiliation', 'user.affiliation'));
 	}

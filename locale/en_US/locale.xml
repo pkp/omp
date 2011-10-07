@@ -72,7 +72,7 @@
 
 	<!-- series/categories/series -->
 	<message key="series.series">Series</message>
-	<message key="division.divisions">Divisions</message>
+	<message key="category.categories">Categories</message>
 
 	<!--
 	 *
@@ -218,7 +218,7 @@ current password.<br /><br />Enter your email address below to reset your passwo
 	<message key="about.editorialTeam">Editorial Team</message>
 	<message key="about.editorialPolicies">Editorial Policies</message>
 	<message key="about.focusAndScope">Focus and Scope</message>
-	<message key="about.seriesPolicies">Series and Divisions Policies</message>
+	<message key="about.seriesPolicies">Series and Category Policies</message>
 	<message key="about.submissions">Submissions</message>
 	<message key="about.sponsors">Sponsors</message>
 	<message key="about.contributors">Sources of Support</message>

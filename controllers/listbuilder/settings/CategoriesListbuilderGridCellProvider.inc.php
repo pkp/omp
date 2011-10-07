@@ -1,12 +1,12 @@
 <?php
 
 /**
- * @file controllers/listbuilder/settings/DivisionsListbuilderGridCellProvider.inc.php
+ * @file controllers/listbuilder/settings/CategoriesListbuilderGridCellProvider.inc.php
  *
  * Copyright (c) 2000-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class DivisionsListbuilderGridCellProvider
+ * @class CategoriesListbuilderGridCellProvider
  * @ingroup controllers_listbuilder_settings
  *
  * @brief Base class for a cell provider that can retrieve labels from arrays
@@ -14,11 +14,11 @@
 
 import('lib.pkp.classes.controllers.grid.GridCellProvider');
 
-class DivisionsListbuilderGridCellProvider extends GridCellProvider {
+class CategoriesListbuilderGridCellProvider extends GridCellProvider {
 	/**
 	 * Constructor
 	 */
-	function DivisionsListbuilderGridCellProvider() {
+	function CategoriesListbuilderGridCellProvider() {
 		parent::GridCellProvider();
 	}
 
@@ -33,12 +33,12 @@ class DivisionsListbuilderGridCellProvider extends GridCellProvider {
 	 * @return array
 	 */
 	function getTemplateVarsFromRowColumn(&$row, $column) {
-		$division =& $row->getData();
+		$category =& $row->getData();
 		$columnId = $column->getId();
-		assert(is_a($division, 'Division') && !empty($columnId));
+		assert(is_a($category, 'Category') && !empty($columnId));
 		switch ($columnId) {
 			case 'title':
-				return array('labelKey' => $division->getId(), 'label' => $division->getTitle(null));
+				return array('labelKey' => $category->getId(), 'label' => $category->getTitle(null));
 		}
 		// we got an unexpected column
 		assert(false);

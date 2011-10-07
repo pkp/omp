@@ -112,7 +112,7 @@ class Application extends PKPApplication {
 			'CataloguingMetadataFieldDAO' => 'classes.cataloguingMetadata.CataloguingMetadataFieldDAO',
 			'ChapterAuthorDAO' => 'classes.monograph.ChapterAuthorDAO',
 			'ChapterDAO' => 'classes.monograph.ChapterDAO',
-			'DivisionDAO' => 'classes.press.DivisionDAO',
+			'CategoryDAO' => 'classes.press.CategoryDAO',
 			'EditorSubmissionDAO' => 'classes.submission.editor.EditorSubmissionDAO',
 			'EmailTemplateDAO' => 'classes.mail.EmailTemplateDAO',
 			'GenreDAO' => 'classes.monograph.GenreDAO',

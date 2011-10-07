@@ -69,19 +69,19 @@ class Series extends DataObject {
 	}
 
 	/**
-	 * Get series division.
+	 * Get series category ID.
 	 * @return int
 	 */
-	function getDivisionId() {
-		return $this->getData('division');
+	function getCategoryId() {
+		return $this->getData('categoryId');
 	}
 
 	/**
-	 * Set series division.
+	 * Set series category ID.
 	 * @return int
 	 */
-	function setDivisionId($value) {
-		$this->setData('division', $value);
+	function setCategoryId($value) {
+		$this->setData('categoryId', $value);
 	}
 
 	/**

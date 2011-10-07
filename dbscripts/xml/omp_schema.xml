@@ -14,30 +14,34 @@
 
 	<!--
 	  *
-	  * TABLE divisions
+	  * TABLE categories
 	  *
 	  -->
-	<table name="divisions">
-		<field name="division_id" type="I8">
+	<table name="categories">
+		<field name="category_id" type="I8">
 			<KEY />
 			<AUTOINCREMENT />
 		</field>
 		<field name="press_id" type="I8">
 			<NOTNULL/>
 		</field>
-		<descr>Press divisions.</descr>
-		<index name="divisions_press_id">
+		<field name="parent_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<descr>Press categories.</descr>
+		<index name="category_press_id">
 			<col>press_id</col>
+			<col>parent_id</col>
 		</index>
 	</table>
 
 	<!--
 	  *
-	  * TABLE divisions_settings
+	  * TABLE category_settings
 	  *
 	  -->
-	<table name="divisions_settings">
-		<field name="division_id" type="I8">
+	<table name="category_settings">
+		<field name="category_id" type="I8">
 			<NOTNULL />
 		</field>
 		<field name="locale" type="C2" size="5">
@@ -52,9 +56,9 @@
 			<NOTNULL/>
 			<descr>(bool|int|float|string|object)</descr>
 		</field>
-		<descr>Division-specific settings</descr>
-		<index name="division_settings_pkey">
-			<col>division_id</col>
+		<descr>Category-specific settings</descr>
+		<index name="category_settings_pkey">
+			<col>category_id</col>
 			<col>locale</col>
 			<col>setting_name</col>
 			<UNIQUE />
@@ -63,7 +67,7 @@
 
 	<!--
 	  *
-	  * TABLE series (series/divisions)
+	  * TABLE series
 	  *
 	  -->
 	<table name="series">
@@ -74,7 +78,7 @@
 		<field name="press_id" type="I8">
 			<NOTNULL/>
 		</field>
-		<field name="division_id" type="I1">
+		<field name="category_id" type="I1">
 			<NOTNULL/>
 			<DEFAULT VALUE="0"/>
 		</field>
@@ -1187,7 +1191,7 @@
 			<descr>(bool|int|float|string|object)</descr>
 		</field>
 		<descr>User Group-specific settings</descr>
-		<index name="division_settings_pkey">
+		<index name="user_group_settings_pkey">
 			<col>user_group_id</col>
 			<col>locale</col>
 			<col>setting_name</col>

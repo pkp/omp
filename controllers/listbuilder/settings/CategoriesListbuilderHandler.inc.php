@@ -1,25 +1,25 @@
 <?php
 
 /**
- * @file controllers/listbuilder/settings/DivisionsListbuilderHandler.inc.php
+ * @file controllers/listbuilder/settings/CategoriesListbuilderHandler.inc.php
  *
  * Copyright (c) 2000-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class DivisionsListbuilderHandler
+ * @class CategoriesListbuilderHandler
  * @ingroup listbuilder
  *
- * @brief Class for adding Press Divisions
+ * @brief Class for adding Press Categories
  */
 
 import('controllers.listbuilder.settings.SetupListbuilderHandler');
-import('classes.press.Division');
+import('classes.press.Category');
 
-class DivisionsListbuilderHandler extends SetupListbuilderHandler {
+class CategoriesListbuilderHandler extends SetupListbuilderHandler {
 	/**
 	 * Constructor
 	 */
-	function DivisionsListbuilderHandler() {
+	function CategoriesListbuilderHandler() {
 		parent::SetupListbuilderHandler();
 	}
 
@@ -35,11 +35,11 @@ class DivisionsListbuilderHandler extends SetupListbuilderHandler {
 		parent::initialize($request);
 
 		// Basic configuration
-		$this->setTitle('division.divisions');
+		$this->setTitle('category.categories');
 		$this->setSourceType(LISTBUILDER_SOURCE_TYPE_TEXT); // Free text input
 
-		import('controllers.listbuilder.settings.DivisionsListbuilderGridCellProvider');
-		$cellProvider =& new DivisionsListbuilderGridCellProvider();
+		import('controllers.listbuilder.settings.CategoriesListbuilderGridCellProvider');
+		$cellProvider =& new CategoriesListbuilderGridCellProvider();
 
 		$titleColumn = new MultilingualListbuilderGridColumn($this, 'title', 'manager.setup.currentFormats');
 		$titleColumn->setCellProvider($cellProvider);
@@ -63,21 +63,21 @@ class DivisionsListbuilderHandler extends SetupListbuilderHandler {
 	 * @return boolean
 	 */
 	function insertEntry(&$request, $rowId) {
-		$divisionDao =& DAORegistry::getDAO('DivisionDAO');
+		$categoryDao =& DAORegistry::getDAO('CategoryDAO');
 		$press =& $this->getPress();
 
 		// Make sure the item doesn't already exist
-		$division = $divisionDao->getByTitle($rowId['title'], $press->getId());
-		if (isset($division)) return false;
-		unset($division);
+		$category = $categoryDao->getByTitle($rowId['title'], $press->getId());
+		if (isset($category)) return false;
+		unset($category);
 
 		// Create and populate the new entry.
-		$division =& $divisionDao->newDataObject();
-		$division->setPressId($press->getId());
+		$category =& $categoryDao->newDataObject();
+		$category->setPressId($press->getId());
 
-		$division->setTitle($rowId['title'], null);
+		$category->setTitle($rowId['title'], null);
 
-		$divisionDao->insertObject($division);
+		$categoryDao->insertObject($category);
 		return true;
 	}
 
@@ -90,15 +90,15 @@ class DivisionsListbuilderHandler extends SetupListbuilderHandler {
 	 */
 	function updateEntry(&$request, $rowId, $newRowId) {
 		// Get and validate the divison
-		$divisionDao =& DAORegistry::getDAO('DivisionDAO');
-		$division = $divisionDao->getById($rowId);
+		$categoryDao =& DAORegistry::getDAO('CategoryDAO');
+		$category = $categoryDao->getById($rowId);
 		$press =& $this->getPress();
-		if (!$division || $division->getPressId() !== $press->getId()) fatalError('Invalid division!');
+		if (!$category || $category->getPressId() !== $press->getId()) fatalError('Invalid category!');
 
 		// Update the existing entry.
-		$division->setTitle($newRowId['title'], null);
+		$category->setTitle($newRowId['title'], null);
 
-		$divisionDao->updateObject($division);
+		$categoryDao->updateObject($category);
 		return true;
 	}
 
@@ -109,9 +109,9 @@ class DivisionsListbuilderHandler extends SetupListbuilderHandler {
 	 * @return boolean
 	 */
 	function deleteEntry(&$request, $rowId) {
-		$divisionDao =& DAORegistry::getDAO('DivisionDAO');
+		$categoryDao =& DAORegistry::getDAO('CategoryDAO');
 		$press =& $this->getPress();
-		$divisionDao->deleteById($rowId['title'], $press->getId());
+		$categoryDao->deleteById($rowId['title'], $press->getId());
 		return true;
 	}
 
@@ -121,13 +121,13 @@ class DivisionsListbuilderHandler extends SetupListbuilderHandler {
 	 */
 	function getRowDataElement(&$request, $rowId) {
 		// Create a non-persisted entry
-		$division = new Division();
-		$division->setId($rowId);
+		$category = new Category();
+		$category->setId($rowId);
 
 		// Populate the entry
-		$division->setTitle($this->getNewRowId($request), null);
+		$category->setTitle($this->getNewRowId($request), null);
 
-		return $division;
+		return $category;
 	}
 
 	/**
@@ -136,9 +136,9 @@ class DivisionsListbuilderHandler extends SetupListbuilderHandler {
 	 */
 	function loadData() {
 		$press =& $this->getPress();
-		$divisionDao =& DAORegistry::getDAO('DivisionDAO');
-		$divisions = $divisionDao->getByPressId($press->getId());
-		return $divisions;
+		$categoryDao =& DAORegistry::getDAO('CategoryDAO');
+		$categories = $categoryDao->getByPressId($press->getId());
+		return $categories;
 	}
 }
 

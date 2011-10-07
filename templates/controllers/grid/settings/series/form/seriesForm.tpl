@@ -21,11 +21,11 @@
 {fbvFormSection title="common.name" required="true" for="title"}
 	{fbvElement type="text" multilingual="true" id="title" value="$title" maxlength="80"}
 {/fbvFormSection}
-{fbvFormSection title="manager.setup.division" for="context"}
-<select name="division" class="field select">
+{fbvFormSection title="manager.setup.category" for="context"}
+<select name="category" class="field select">
 	<option>{translate key='common.none'}</option>
-	{foreach from=$divisions item=division}
-	<option value="{$division.id}" {if $currentDivision == $division.id}selected="selected"{/if}>{$division.title}</option>
+	{foreach from=$categories item=category}
+	<option value="{$category.id}" {if $currentCategory == $category.id}selected="selected"{/if}>{$category.title}</option>
 	{/foreach}
 </select>
 {/fbvFormSection}

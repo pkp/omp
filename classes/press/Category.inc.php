@@ -1,25 +1,25 @@
 <?php
 
 /**
- * @file classes/press/Division.inc.php
+ * @file classes/press/Category.inc.php
  *
  * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class Division
+ * @class Category
  * @ingroup press
- * @see DivisionDAO
+ * @see CategoryDAO
  *
- * @brief Describes basic Division properties.
+ * @brief Describes basic Category properties.
  */
 
 
-class Division extends DataObject {
+class Category extends DataObject {
 
 	/**
 	 * Constructor.
 	 */
-	function Division() {
+	function Category() {
 		parent::DataObject();
 	}
 
@@ -37,6 +37,22 @@ class Division extends DataObject {
 	 */
 	function setPressId($pressId) {
 		return $this->setData('pressId', $pressId);
+	}
+
+	/**
+	 * Get ID of parent category.
+	 * @return int
+	 */
+	function getParentId() {
+		return $this->getData('parentId');
+	}
+
+	/**
+	 * Set ID of parent category.
+	 * @param $parentId int
+	 */
+	function setParentId($parentId) {
+		return $this->setData('parentId', $parentId);
 	}
 
 	/**

@@ -93,7 +93,7 @@ class SeriesDAO extends DAO {
 
 		$series->setId($row['series_id']);
 		$series->setPressId($row['press_id']);
-		$series->setDivisionId($row['division_id']);
+		$series->setCategoryId($row['category_id']);
 
 		$this->getDataObjectSettings('series_settings', 'series_id', $row['series_id'], $series);
 
@@ -127,12 +127,12 @@ class SeriesDAO extends DAO {
 	function insertObject(&$series) {
 		$this->update(
 			'INSERT INTO series
-				(press_id, division_id)
+				(press_id, category_id)
 				VALUES
 				(?, ?)',
 			array(
 				$series->getPressId(),
-				$series->getDivisionId(),
+				$series->getCategoryId(),
 			)
 		);
 
@@ -150,11 +150,11 @@ class SeriesDAO extends DAO {
 			'UPDATE series
 				SET
 					press_id = ?,
-					division_id = ?
+					category_id = ?
 			WHERE series_id = ?',
 			array(
 				$series->getPressId(),
-				$series->getDivisionId(),
+				$series->getCategoryId(),
 				$series->getId()
 			)
 		);
