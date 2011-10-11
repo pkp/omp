@@ -95,34 +95,24 @@ class UserGroupGridHandler extends CategoryGridHandler {
 		);
 
 		// Add grid columns.
-		$this->_addGridColumns();
-	}
-
-	/**
-	 * Add grid columns objects to this handler.
-	 */
-	function _addGridColumns() {
 		$cellProvider = new DataObjectGridCellProvider();
 		$cellProvider->setLocale(Locale::getLocale());
 
-		// Set array containing the columns info with the same cell provider.
-		$columnsInfo = array(
-			1 => array('id' => 'name', 'title' => 'settings.roles.roleName', 'template' => 'controllers/grid/gridCell.tpl'),
-			2 => array('id' => 'abbrev', 'title' => 'settings.roles.roleAbbrev', 'template' => 'controllers/grid/gridCell.tpl')
-		);
-
 		// Add array columns to the grid.
-		foreach($columnsInfo as $columnInfo) {
-			$this->addColumn(
-				new GridColumn(
-					$columnInfo['id'],
-					$columnInfo['title'],
-					null,
-					$columnInfo['template'],
-					$cellProvider
-				)
-			);
-		}
+		$this->addColumn(new GridColumn(
+			'name',
+			'settings.roles.roleName',
+			null,
+			'controllers/grid/gridCell.tpl',
+			$cellProvider
+		));
+		$this->addColumn(new GridColumn(
+			'abbrev',
+			'settings.roles.roleAbbrev',
+			null,
+			'controllers/grid/gridCell.tpl',
+			$cellProvider
+		));
 	}
 
 	/**
