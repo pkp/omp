@@ -23,22 +23,24 @@ import('controllers.grid.settings.roles.UserGroupGridCategoryRow');
 import('lib.pkp.classes.linkAction.request.AjaxModal');
 
 class UserGroupGridHandler extends CategoryGridHandler {
+	var $_pressId;
 
 	/**
 	 * Constructor
 	 */
-
-	var $_pressId;
-
 	function UserGroupGridHandler() {
 		parent::GridHandler();
-		$functions = array(
-			'fetchGrid',
-			'fetchRow',
-			'addUserGroup',
-			'editUserGroup',
-			'updateUserGroup');
-		$this->addRoleAssignment(array(ROLE_ID_PRESS_MANAGER), $functions);
+
+		$this->addRoleAssignment(
+			array(ROLE_ID_PRESS_MANAGER),
+			array(
+				'fetchGrid',
+				'fetchRow',
+				'addUserGroup',
+				'editUserGroup',
+				'updateUserGroup'
+			)
+		);
 	}
 
 	//
@@ -62,7 +64,6 @@ class UserGroupGridHandler extends CategoryGridHandler {
 	 * @param $request PKPRequest
 	 */
 	function initialize(&$request) {
-
 		parent::initialize($request);
 
 		$press =& $request->getPress();
@@ -101,7 +102,6 @@ class UserGroupGridHandler extends CategoryGridHandler {
 	 * Add grid columns objects to this handler.
 	 */
 	function _addGridColumns() {
-
 		$cellProvider = new DataObjectGridCellProvider();
 		$cellProvider->setLocale(Locale::getLocale());
 
@@ -113,8 +113,7 @@ class UserGroupGridHandler extends CategoryGridHandler {
 
 		// Add array columns to the grid.
 		foreach($columnsInfo as $columnInfo) {
-
-		$this->addColumn(
+			$this->addColumn(
 				new GridColumn(
 					$columnInfo['id'],
 					$columnInfo['title'],
@@ -282,4 +281,5 @@ class UserGroupGridHandler extends CategoryGridHandler {
 		return $this->_pressId;
 	}
 }
+
 ?>
