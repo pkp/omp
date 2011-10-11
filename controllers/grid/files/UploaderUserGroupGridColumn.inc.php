@@ -25,8 +25,12 @@ class UploaderUserGroupGridColumn extends GridColumn {
 		$this->_userGroup =& $userGroup;
 		import('lib.pkp.classes.controllers.grid.ColumnBasedGridCellProvider');
 		$cellProvider = new ColumnBasedGridCellProvider();
-		parent::GridColumn('userGroup-' . $userGroup->getId(), null, $userGroup->getLocalizedName(),
-						   'controllers/grid/common/cell/statusCell.tpl', $cellProvider, $flags);
+		parent::GridColumn(
+			'userGroup-' . $userGroup->getId(),
+			null, $userGroup->getLocalizedName(),
+			'controllers/grid/common/cell/statusCell.tpl',
+			$cellProvider, $flags
+		);
 	}
 
 	//

@@ -45,9 +45,9 @@ class ArtworkFileDAODelegate extends MonographFileDAODelegate {
 		// Now insert the artwork-specific data.
 		$this->update(
 			'INSERT INTO monograph_artwork_files
-			   (file_id, revision, caption, chapter_id, contact_author, copyright_owner, copyright_owner_contact, credit, permission_file_id, permission_terms, placement)
-			 VALUES
-			   (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+				(file_id, revision, caption, chapter_id, contact_author, copyright_owner, copyright_owner_contact, credit, permission_file_id, permission_terms, placement)
+			VALUES
+				(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
 			array(
 				$artworkFile->getFileId(),
 				$artworkFile->getRevision(),

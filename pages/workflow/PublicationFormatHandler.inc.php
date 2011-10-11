@@ -103,9 +103,12 @@ class PublicationFormatHandler extends Handler {
 				$dispatcher->url(
 					$request, ROUTE_COMPONENT, null,
 					'modals.editorDecision.EditorDecisionHandler',
-					'approveProofs', null, array('monographId' => $monograph->getId(),
-												'stageId' => $stageId,
-										   		'publicationFormatId' => $publicationFormat->getId())
+					'approveProofs', null,
+					array(
+						'monographId' => $monograph->getId(),
+						'stageId' => $stageId,
+						'publicationFormatId' => $publicationFormat->getId()
+					)
 				),
 				__('editor.monograph.decision.approveProofs')
 			),

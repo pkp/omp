@@ -69,9 +69,10 @@ class ProofFilesGridHandler extends SignoffFilesGridHandler {
 	 * @see GridHandler::getRequestArgs()
 	 */
 	function getRequestArgs() {
-		return array_merge(parent::getRequestArgs(),
-						   array('publicationFormatId' => $this->getAssocId())
-						   );
+		return array_merge(
+			parent::getRequestArgs(),
+			array('publicationFormatId' => $this->getAssocId())
+		);
 	}
 }
 
