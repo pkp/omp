@@ -65,3 +65,5 @@ class AuthorSignoffFilesGridRow extends SubmissionFilesGridRow {
 		$this->addAction(new FileInfoCenterLinkAction($request, $submissionFile));
 	}
 }
+
+?>

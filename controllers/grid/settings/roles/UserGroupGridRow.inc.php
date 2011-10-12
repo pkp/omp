@@ -67,3 +67,5 @@ class UserGroupGridRow extends GridCategoryRow {
 		}
 	}
 }
+
+?>

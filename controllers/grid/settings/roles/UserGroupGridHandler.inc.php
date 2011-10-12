@@ -136,6 +136,7 @@ class UserGroupGridHandler extends CategoryGridHandler {
 					$stages[$stageId] = array('id' => $stageId, 'name' => $stage);
 				}
 			}
+			unset($userGroup);
 		}
 
 		return $stages;

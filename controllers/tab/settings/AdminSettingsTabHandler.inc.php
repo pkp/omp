@@ -198,3 +198,5 @@ class AdminSettingsTabHandler extends SettingsTabHandler {
 		return $fileUploadForm;
 	}
 }
+
+?>
