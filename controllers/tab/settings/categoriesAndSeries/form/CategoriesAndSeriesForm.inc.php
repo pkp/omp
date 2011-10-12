@@ -9,7 +9,7 @@
  * @class CategoriesAndSeriesForm
  * @ingroup controllers_tab_settings_categoriesAndSeries_form
  *
- * @brief Form to edit categories and series.
+ * @brief Tab to contain categories and series grids.
  */
 
 

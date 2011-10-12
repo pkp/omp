@@ -227,23 +227,13 @@ class UserGroupGridHandler extends CategoryGridHandler {
 	* @return UserGroupForm
 	*/
 	function _getUserGroupForm(&$request) {
-		// Identify the user group Id.
-		$userGroupId = $this->_getUserGroupIdVar($request);
+		// Get the user group Id.
+		$userGroupId = (int) $request->getUserVar('userGroupId');
 
 		// Instantiate the files form.
 		import('controllers.grid.settings.roles.form.UserGroupForm');
 		$pressId = $this->_getPressId();
 		return new UserGroupForm($pressId, $userGroupId);
-	}
-
-	/**
-	 * Get user group id variable from request.
-	 * @param $request PKPRequest.
-	 * @return int User group id.
-	 */
-	function _getUserGroupIdVar(&$request) {
-		(int)$userGroupId = $request->getUserVar('userGroupId');
-		return $userGroupId;
 	}
 
 	/**
@@ -266,7 +256,7 @@ class UserGroupGridHandler extends CategoryGridHandler {
 
 	/**
 	 * Get press id.
-	 * @return $pressId
+	 * @return int
 	 */
 	function _getPressId() {
 		return $this->_pressId;

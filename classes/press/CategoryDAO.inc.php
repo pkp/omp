@@ -65,7 +65,7 @@ class CategoryDAO extends DAO {
 		$result =& $this->retrieve(
 			'SELECT	a.*
 			FROM	categories a,
-				categories_settings l
+				category_settings l
 			WHERE	l.category_id = a.category_id AND
 				l.setting_name = ? AND
 				l.setting_value = ?
@@ -104,7 +104,7 @@ class CategoryDAO extends DAO {
 		$category->setId($row['category_id']);
 		$category->setPressId($row['press_id']);
 
-		$this->getDataObjectSettings('categories_settings', 'category_id', $row['category_id'], $category);
+		$this->getDataObjectSettings('category_settings', 'category_id', $row['category_id'], $category);
 
 		HookRegistry::call('CategoryDAO::_fromRow', array(&$category, &$row));
 
@@ -125,7 +125,7 @@ class CategoryDAO extends DAO {
 	 */
 	function updateLocaleFields(&$category) {
 		$this->updateDataObjectSettings(
-			'categories_settings', $category,
+			'category_settings', $category,
 			array(
 				'category_id' => $category->getId()
 			)
@@ -233,6 +233,26 @@ class CategoryDAO extends DAO {
 		$result =& $this->retrieveRange(
 			'SELECT * FROM categories WHERE press_id = ?',
 			array((int) $pressId)
+		);
+
+		$returner = new DAOResultFactory($result, $this, '_fromRow');
+		return $returner;
+	}
+
+	/**
+	 * Retrieve all categories for a parent category.
+	 * @return DAOResultFactory containing Category ordered by sequence
+	 */
+	function &getByParentId($parentId, $pressId = null, $rangeInfo = null) {
+		$params = array((int) $parentId);
+		if ($pressId) $params[] = (int) $pressId;
+
+		$result =& $this->retrieveRange(
+			'SELECT	*
+			FROM	categories
+			WHERE	parent_id = ?
+			' . ($pressId?' AND press_id = ?':''),
+			$params
 		);
 
 		$returner = new DAOResultFactory($result, $this, '_fromRow');

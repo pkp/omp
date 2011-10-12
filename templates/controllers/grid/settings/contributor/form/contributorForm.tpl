@@ -14,7 +14,7 @@
 	{rdelim});
 </script>
 
-<form class="pkp_form" id="contributorForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.settings.contributor.ContributorGridHandler" op="updateContributor" form="mastheadForm"}">
+<form class="pkp_form" id="contributorForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.settings.contributor.ContributorGridHandler" op="updateContributor"}">
 
 {include file="controllers/notification/inPlaceNotification.tpl" notificationId="contributorFormNotification"}
 
