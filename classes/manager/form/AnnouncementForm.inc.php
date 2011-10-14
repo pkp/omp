@@ -62,7 +62,7 @@ class AnnouncementForm extends PKPAnnouncementForm {
 	 */
 	function execute(&$request) {
 		$announcement = parent::execute();
-		$press =& Request::getPress();
+		$press =& $request->getPress();
 		$pressId = $press->getId();
 
 		// Send a notification to associated users
@@ -74,7 +74,7 @@ class AnnouncementForm extends PKPAnnouncementForm {
 			$notificationUsers[] = array('id' => $user->getId());
 			unset($user);
 		}
-		$url = Request::url(null, 'announcement', 'view', array($announcement->getId()));
+		$url = $request->url(null, 'announcement', 'view', array($announcement->getId()));
 		$notificationManager = new NotificationManager();
 		foreach ($notificationUsers as $userRole) {
 			$notificationManager->createNotification(
