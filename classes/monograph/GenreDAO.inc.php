@@ -16,8 +16,7 @@
 import('classes.monograph.Genre');
 import('classes.press.DefaultSettingDAO');
 
-class GenreDAO extends DefaultSettingDAO
-{
+class GenreDAO extends DefaultSettingDAO {
 	/**
 	 * @see DefaultSettingsDAO::getPrimaryKeyColumnName()
 	 */
@@ -95,6 +94,7 @@ class GenreDAO extends DefaultSettingDAO
 	function &_fromRow(&$row) {
 		$genre = $this->newDataObject();
 		$genre->setId($row['genre_id']);
+		$genre->setPressId($row['press_id']);
 		$genre->setSortable($row['sortable']);
 		$genre->setCategory($row['category']);
 
@@ -110,15 +110,15 @@ class GenreDAO extends DefaultSettingDAO
 	 * @param $genre Genre
 	 */
 	function insertObject(&$genre) {
-		$press =& Request::getPress();
-
 		$this->update(
 			'INSERT INTO genres
 				(sortable, press_id, category)
 			VALUES
 				(?, ?, ?)',
 			array(
-				$genre->getSortable() ? 1 : 0, $press->getId(), $genre->getCategory()
+				$genre->getSortable() ? 1 : 0,
+				(int) $genre->getPressId(),
+				$genre->getCategory()
 			)
 		);
 
@@ -134,7 +134,6 @@ class GenreDAO extends DefaultSettingDAO
 	 * @param $genre Genre
 	 */
 	function updateObject(&$genre) {
-
 		$this->updateLocaleFields($genre);
 	}
 
@@ -152,7 +151,7 @@ class GenreDAO extends DefaultSettingDAO
 	 */
 	function deleteById($entryId) {
 		return $this->update(
-			'UPDATE genres SET enabled = ? WHERE genre_id = ?', array(0, $entryId)
+			'UPDATE genres SET enabled = ? WHERE genre_id = ?', array(0, (int) $entryId)
 		);
 	}
 

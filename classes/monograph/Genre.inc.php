@@ -20,6 +20,21 @@ define('GENRE_CATEGORY_ARTWORK', 2);
 define('GENRE_SORTABLE_DESIGNATION', '##');
 
 class Genre extends DataObject {
+	/**
+	 * Get ID of press.
+	 * @return int
+	 */
+	function getPressId() {
+		return $this->getData('pressId');
+	}
+
+	/**
+	 * Set ID of press.
+	 * @param $pressId int
+	 */
+	function setPressId($pressId) {
+		return $this->setData('pressId', $pressId);
+	}
 
 	/**
 	 * Set the name of the genre

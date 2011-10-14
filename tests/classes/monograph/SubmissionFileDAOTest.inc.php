@@ -458,6 +458,8 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 				self::fail();
 		}
 		$genre = new Genre();
+		$press =& Request::getPress();
+		$genre->setPressId($press->getId());
 		$genre->setId($genreId);
 		$genre->setName($name, 'en_US');
 		$genre->setDesignation($designation, 'en_US');

@@ -264,7 +264,7 @@ class ProfileForm extends Form {
 		$interestManager = new InterestManager();
 		$interestManager->insertInterests($user->getId(), $this->getData('interestsKeywords'), $this->getData('interests'));
 
-		$site =& Request::getSite();
+		$site =& $request->getSite();
 		$availableLocales = $site->getSupportedLocales();
 
 		$locales = array();
@@ -283,7 +283,7 @@ class ProfileForm extends Form {
 		$notificationStatusDao =& DAORegistry::getDAO('NotificationStatusDAO');
 
 		// User Groups
-		$press =& Request::getPress();
+		$press =& $request->getPress();
 		if ($press) {
 			if ($press->getSetting('allowRegReviewer')) {
 				$reviewerGroup = $this->getData('reviewerGroup');
@@ -322,7 +322,7 @@ class ProfileForm extends Form {
 		$presses =& $presses->toArray();
 		$pressNotifications = $notificationStatusDao->getPressNotifications($user->getId());
 
-		$readerNotify = Request::getUserVar('pressNotify');
+		$readerNotify = $request->getUserVar('pressNotify');
 
 		foreach ($presses as $thisPress) {
 			$thisPressId = $thisPress->getId();
