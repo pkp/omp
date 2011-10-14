@@ -121,6 +121,7 @@ class CategoryForm extends Form {
 
 		// Set the editable properties of the category object
 		$category->setTitle($this->getData('name'), null); // Localized
+		$category->setDescription($this->getData('description'), null); // Localized
 		$category->setParentId($this->getData('parentId'));
 
 		// Update or insert the category object

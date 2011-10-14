@@ -103,6 +103,7 @@ class CategoryDAO extends DAO {
 
 		$category->setId($row['category_id']);
 		$category->setPressId($row['press_id']);
+		$category->setParentId($row['parent_id']);
 
 		$this->getDataObjectSettings('category_settings', 'category_id', $row['category_id'], $category);
 

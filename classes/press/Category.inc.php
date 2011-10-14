@@ -56,7 +56,7 @@ class Category extends DataObject {
 	}
 
 	/**
-	 * Get localized title of the series.
+	 * Get localized title of the category.
 	 * @return string
 	 */
 	function getLocalizedTitle() {
@@ -64,7 +64,7 @@ class Category extends DataObject {
 	}
 
 	/**
-	 * Get title of series.
+	 * Get title of category.
 	 * @param $locale string
 	 * @return string
 	 */
@@ -73,12 +73,38 @@ class Category extends DataObject {
 	}
 
 	/**
-	 * Set title of series.
+	 * Set title of category.
 	 * @param $title string
 	 * @param $locale string
 	 */
 	function setTitle($title, $locale) {
 		return $this->setData('title', $title, $locale);
+	}
+
+	/**
+	 * Get localized description of the category.
+	 * @return string
+	 */
+	function getLocalizedDescription() {
+		return $this->getLocalizedData('description');
+	}
+
+	/**
+	 * Get description of category.
+	 * @param $locale string
+	 * @return string
+	 */
+	function getDescription($locale) {
+		return $this->getData('description', $locale);
+	}
+
+	/**
+	 * Set description of category.
+	 * @param $description string
+	 * @param $locale string
+	 */
+	function setDescription($description, $locale) {
+		return $this->setData('description', $description, $locale);
 	}
 }
 
