@@ -78,7 +78,7 @@ class Monograph extends Submission {
 	 * @return int
 	 */
 	function getSeriesId() {
-		 return $this->getData('seriesId');
+		return $this->getData('seriesId');
 	}
 
 	/**
@@ -86,7 +86,7 @@ class Monograph extends Submission {
 	 * @param $id int
 	 */
 	function setSeriesId($id) {
-		 $this->setData('seriesId', $id);
+		$this->setData('seriesId', $id);
 	}
 
 	/**
@@ -94,7 +94,7 @@ class Monograph extends Submission {
 	 * @return string
 	 */
 	function getSeriesTitle() {
-		 return $this->getData('seriesTitle');
+		return $this->getData('seriesTitle');
 	}
 
 	/**
@@ -102,7 +102,7 @@ class Monograph extends Submission {
 	 * @param $title string
 	 */
 	function setSeriesTitle($title) {
-		 $this->setData('seriesTitle', $title);
+		$this->setData('seriesTitle', $title);
 	}
 
 	/**
@@ -110,7 +110,7 @@ class Monograph extends Submission {
 	 * @return string
 	 */
 	function getSeriesAbbrev() {
-		 return $this->getData('seriesAbbrev');
+		return $this->getData('seriesAbbrev');
 	}
 
 	/**
@@ -118,7 +118,7 @@ class Monograph extends Submission {
 	 * @param $abbrev string
 	 */
 	function setSeriesAbbrev($abbrev) {
-		 $this->setData('seriesAbbrev', $abbrev);
+		$this->setData('seriesAbbrev', $abbrev);
 	}
 
 	/**
@@ -179,7 +179,7 @@ class Monograph extends Submission {
 	 * @param $rount int
 	 */
 	function setCurrentRound($round) {
-		 $this->setData('currentRound', $round);
+		$this->setData('currentRound', $round);
 	}
 
 	/**
@@ -187,7 +187,7 @@ class Monograph extends Submission {
 	 * @return int
 	 */
 	function getCurrentRound() {
-		 return $this->getData('currentRound');
+		return $this->getData('currentRound');
 	}
 
 	/**
@@ -195,7 +195,7 @@ class Monograph extends Submission {
 	 * @param $reviewRounds DAOResultFactory ReviewRounds
 	 */
 	function setReviewRounds(&$reviewRounds) {
-		 $this->_reviewRounds =& $reviewRounds;
+		$this->_reviewRounds =& $reviewRounds;
 	}
 
 	/**
@@ -203,7 +203,7 @@ class Monograph extends Submission {
 	 * @return DAOResultFactory ReviewRounds
 	 */
 	function &getReviewRounds() {
-		 return $this->_reviewRounds;
+		return $this->_reviewRounds;
 	}
 
 	function getWorkType() {

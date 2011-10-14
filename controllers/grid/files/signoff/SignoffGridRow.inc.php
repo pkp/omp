@@ -77,7 +77,7 @@ class SignoffGridRow extends GridRow {
 				),
 				__('grid.copyediting.deleteSignoff'),
 				'delete'
-			 ));
+			));
 
 			if ($copyeditedFileId) {
 				$copyeditedFile =& $submissionFileDao->getLatestRevision($copyeditedFileId);

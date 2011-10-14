@@ -35,8 +35,8 @@ class FinalDraftFilesGridHandler extends FileListGridHandler {
 				ROLE_ID_PRESS_ASSISTANT
 			),
 			array(
-				 'fetchGrid', 'fetchRow',
-				 'downloadAllFiles', 'selectFiles'
+				'fetchGrid', 'fetchRow',
+				'downloadAllFiles', 'selectFiles'
 			)
 		);
 

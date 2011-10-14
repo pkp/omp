@@ -29,7 +29,7 @@ class UserStageAssignmentDAO extends UserDAO {
 				LEFT JOIN user_user_groups uug ON (u.user_id = uug.user_id)
 				LEFT JOIN stage_assignments s ON (s.user_id = uug.user_id AND s.user_group_id = uug.user_group_id
 												AND s.submission_id = ?)
-				 JOIN user_group_stage ugs ON (uug.user_group_id = ugs.user_group_id AND ugs.stage_id = ?)
+				JOIN user_group_stage ugs ON (uug.user_group_id = ugs.user_group_id AND ugs.stage_id = ?)
 				WHERE uug.user_group_id = ? AND s.user_group_id IS NULL',
 			array((int) $submissionId, (int) $stageId, (int) $userGroupId));
 

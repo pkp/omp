@@ -120,9 +120,10 @@ class SignoffStatusFromFileGridColumn extends BaseSignoffStatusColumn {
 			$lastViewed = false;
 			foreach ($userIds as $userId) {
 				$signoffs =& $signoffDao->getAllBySymbolic(
-								 $this->getSymbolic(),
-								ASSOC_TYPE_MONOGRAPH_FILE,$monographFile->getFileId(),
-								$userId);
+					$this->getSymbolic(),
+					ASSOC_TYPE_MONOGRAPH_FILE, $monographFile->getFileId(),
+					$userId
+				);
 
 				// Check if any of the signoffs signed off.
 				while($signoff =& $signoffs->next()) {

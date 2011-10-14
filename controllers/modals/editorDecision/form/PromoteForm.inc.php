@@ -27,9 +27,10 @@ class PromoteForm extends EditorDecisionWithEmailForm {
 	function PromoteForm($seriesEditorSubmission, $decision, $stageId) {
 		if (!in_array(
 			$decision,
-			array(SUBMISSION_EDITOR_DECISION_ACCEPT,
-				 SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW,
-				 SUBMISSION_EDITOR_DECISION_SEND_TO_PRODUCTION)
+			array(
+				SUBMISSION_EDITOR_DECISION_ACCEPT,
+				SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW,
+				SUBMISSION_EDITOR_DECISION_SEND_TO_PRODUCTION)
 		)) {
 			fatalError('Invalid decision!');
 		}
