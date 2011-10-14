@@ -12,14 +12,14 @@
  * @brief Category grid row definition
  */
 
-import('lib.pkp.classes.controllers.grid.GridCategoryRow');
+import('lib.pkp.classes.controllers.grid.GridRow');
 
-class CategoryGridRow extends GridCategoryRow {
+class CategoryGridRow extends GridRow {
 	/**
 	 * Constructor
 	 */
 	function CategoryGridRow() {
-		parent::GridCategoryRow();
+		parent::GridRow();
 	}
 
 	//

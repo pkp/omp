@@ -116,7 +116,7 @@ class CategoryDAO extends DAO {
 	 * @return array
 	 */
 	function getLocaleFieldNames() {
-		return array('title');
+		return array('title', 'description');
 	}
 
 	/**

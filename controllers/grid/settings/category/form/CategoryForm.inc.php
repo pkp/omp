@@ -63,7 +63,8 @@ class CategoryForm extends Form {
 	 * Get all locale field names
 	 */
 	function getLocaleFieldNames() {
-		return array('name');
+		$categoryDao =& DAORegistry::getDAO('CategoryDAO');
+		return $categoryDao->getLocaleFieldNames();
 	}
 
 	/**
@@ -75,6 +76,8 @@ class CategoryForm extends Form {
 
 		if ($category) {
 			$this->setData('name', $category->getTitle(null)); // Localized
+			$this->setData('description', $category->getDescription(null)); // Localized
+			$this->setData('parentId', $category->getParentId());
 		}
 	}
 
@@ -82,7 +85,7 @@ class CategoryForm extends Form {
 	 * @see Form::readInputData()
 	 */
 	function readInputData() {
-		$this->readUserVars(array('name'));
+		$this->readUserVars(array('name', 'parentId', 'description'));
 	}
 
 	/**
@@ -91,6 +94,13 @@ class CategoryForm extends Form {
 	function fetch($request) {
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('categoryId', $this->getCategoryId());
+
+		// Provide a list of root categories to the template
+		$press =& $request->getPress();
+		$categoryDao =& DAORegistry::getDAO('CategoryDAO');
+		$rootCategories =& $categoryDao->getByParentId(0, $press->getId());
+		$templateMgr->assign_by_ref('rootCategories', $rootCategories);
+
 		return parent::fetch($request);
 	}
 
@@ -101,15 +111,22 @@ class CategoryForm extends Form {
 		$categoryId = $this->getCategoryId();
 		$categoryDao =& DAORegistry::getDAO('CategoryDAO');
 
-		// Check if we are editing an existing user group or creating another one.
+		// Get a category object to edit or create
 		if ($categoryId == null) {
 			$category = $categoryDao->newDataObject();
 			$category->setPressId($this->getPressId());
-			$category->setTitle($this->getData('name'), null); // Localized
+		} else {
+			$category = $categoryDao->getById($categoryId, $this->getPressId());
+		}
+
+		// Set the editable properties of the category object
+		$category->setTitle($this->getData('name'), null); // Localized
+		$category->setParentId($this->getData('parentId'));
+
+		// Update or insert the category object
+		if ($categoryId == null) {
 			$categoryId = $categoryDao->insertObject($category);
 		} else {
-			$category = $categoryDao->getById($categoryId);
-			$category->setTitle($this->getData('name'), null); // Localized
 			$categoryDao->updateObject($category);
 		}
 	}

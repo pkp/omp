@@ -28,14 +28,52 @@ class CategoryGridCategoryRow extends GridCategoryRow {
 	//
 	// Overridden methods from GridCategoryRow
 	//
+	/**
+	 * @see GridCategoryRow::initialize()
+	 * @param $request PKPRequest
+	 */
+	function initialize(&$request) {
+		// Do the default initialization
+		parent::initialize($request);
+
+		// Is this a new row or an existing row?
+		$categoryId = $this->getId();
+		if (!empty($categoryId) && is_numeric($categoryId)) {
+			$category =& $this->getData();
+
+			// Only add row actions if this is an existing row
+			import('lib.pkp.classes.linkAction.request.RemoteActionConfirmationModal');
+			$router =& $request->getRouter();
+			$this->addAction(
+				new LinkAction(
+					'deleteCategory',
+					new RemoteActionConfirmationModal(
+						__('common.confirmDelete'),
+						null,
+						$router->url($request, null, null, 'deleteCategory', null, array('categoryId' => $categoryId))
+					),
+					null,
+					'delete'
+				)
+			);
+
+			$this->addAction(new LinkAction(
+				'editCategory',
+				new AjaxModal(
+					$router->url($request, null, null, 'editCategory', null, array('categoryId' => $categoryId)),
+					$category->getLocalizedTitle()
+				),
+				$category->getLocalizedTitle()
+			));
+		}
+	}
 
 	/**
 	 * Category rows only have one cell and one label.  This is it.
 	 * return string
 	 */
 	function getCategoryLabel() {
-		$data =& $this->getData();
-		return $data->getLocalizedTitle();
+		return '';
 	}
 }
 

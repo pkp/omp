@@ -37,7 +37,8 @@ class CategoryCategoryGridHandler extends CategoryGridHandler {
 				'fetchRow',
 				'addCategory',
 				'editCategory',
-				'updateCategory'
+				'updateCategory',
+				'deleteCategory'
 			)
 		);
 	}
@@ -69,13 +70,6 @@ class CategoryCategoryGridHandler extends CategoryGridHandler {
 
 		$press =& $request->getPress();
 		$this->_pressId =& $press->getId();
-
-		// Load user-related translations.
-		/* Locale::requireComponents(array(
-			LOCALE_COMPONENT_PKP_USER,
-			LOCALE_COMPONENT_OMP_SUBMISSION,
-			LOCALE_COMPONENT_OMP_MANAGER)
-		);*/
 
 		// Basic grid configuration.
 		$this->setTitle('grid.category.categories');
@@ -198,10 +192,32 @@ class CategoryCategoryGridHandler extends CategoryGridHandler {
 		}
 	}
 
+	/**
+	 * Delete a category
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return string Serialized JSON object
+	 */
+	function deleteCategory($args, &$request) {
+		// Identify the category to be deleted
+		$categoryDao =& DAORegistry::getDAO('CategoryDAO');
+		$press =& $request->getPress();
+		$category =& $categoryDao->getById(
+			$request->getUserVar('categoryId'),
+			$press->getId()
+		);
+		$categoryId = $category->getId();
+
+		// FIXME delete dependent objects?
+
+		// Delete the category
+		$categoryDao->deleteObject($category);
+		return DAO::getDataChangedEvent();
+	}
+
 	//
 	// Private helper methods.
 	//
-
 	/**
 	* Get a CategoryForm instance.
 	* @param $request Request
