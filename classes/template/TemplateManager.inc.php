@@ -215,7 +215,7 @@ class TemplateManager extends PKPTemplateManager {
 		$dispatcher = $request->getDispatcher();
 		$pressesNameAndUrl = array();
 		foreach ($workingPresses as $workingPress) {
-			$pressUrl = $dispatcher->url($request, 'page', $workingPress->getPath());
+			$pressUrl = $dispatcher->url($request, ROUTER_PAGE, $workingPress->getPath());
 			$pressesNameAndUrl[$pressUrl] = $workingPress->getLocalizedName();
 		};
 
@@ -224,7 +224,7 @@ class TemplateManager extends PKPTemplateManager {
 		// be visible.
 		$currentPressUrl = null;
 		if ($currentPress) {
-			$currentPressUrl = $dispatcher->url($request, 'page', $currentPress->getPath());
+			$currentPressUrl = $dispatcher->url($request, ROUTER_PAGE, $currentPress->getPath());
 		}
 
 		$this->assign('currentPressUrl', $currentPressUrl);
