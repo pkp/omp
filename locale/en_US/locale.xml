@@ -75,6 +75,7 @@
 
 	<message key="grid.category.categories">Categories</message>
 	<message key="grid.category.add">Add Category</message>
+	<message key="grid.category.edit">Edit Category</message>
 	<message key="grid.category.name">Name</message>
 	<message key="grid.category.description">Description</message>
 	<message key="grid.category.parentCategory">Parent Category</message>

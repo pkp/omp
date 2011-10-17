@@ -92,7 +92,8 @@ class SeriesGridHandler extends SetupGridHandler {
 					$router->url($request, null, null, 'addSeries', null, array('gridId' => $this->getId())),
 					__('grid.action.addSeries'),
 					null,
-					true),
+					true
+				),
 				__('grid.action.addSeries'),
 				'add_category'
 			)

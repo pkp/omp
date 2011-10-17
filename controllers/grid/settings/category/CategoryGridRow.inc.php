@@ -41,14 +41,15 @@ class CategoryGridRow extends GridRow {
 			$actionArgs = array('categoryId' => $rowData->getId());
 			$router =& $request->getRouter();
 
-			$ajaxModal = new AjaxModal($router->url($request, null, null, 'editCategory', null, $actionArgs));
-			$editCategoryLinkAction = new LinkAction(
+			$this->addAction(new LinkAction(
 				'editCategory',
-				$ajaxModal,
+				new AjaxModal(
+					$router->url($request, null, null, 'editCategory', null, $actionArgs),
+					__('grid.category.edit')
+				),
 				__('grid.action.edit'),
 				'edit'
-			);
-			$this->addAction($editCategoryLinkAction);
+			));
 
 			import('lib.pkp.classes.linkAction.request.RemoteActionConfirmationModal');
 			$confirmationModal = new RemoteActionConfirmationModal(
