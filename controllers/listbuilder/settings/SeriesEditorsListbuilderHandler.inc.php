@@ -26,15 +26,26 @@ class SeriesEditorsListbuilderHandler extends SetupListbuilderHandler {
 		$this->addRoleAssignment(ROLE_ID_PRESS_MANAGER, 'getAutocompleteSource');
 	}
 
+	/**
+	 * Set the series ID
+	 * @param $seriesId int
+	 */
 	function setSeriesId($seriesId) {
 		$this->seriesId = $seriesId;
 	}
 
+	/**
+	 * Get the series ID
+	 * @return int
+	 */
 	function getSeriesId() {
 		return $this->seriesId;
 	}
 
-	/* Load the list from an external source into the grid structure */
+	/**
+	 * Load the list from an external source into the grid structure
+	 * @param $request PKPRequest
+	 */
 	function loadList(&$request) {
 		$press =& $this->getPress();
 		$seriesId = $this->getSeriesId();
@@ -53,7 +64,10 @@ class SeriesEditorsListbuilderHandler extends SetupListbuilderHandler {
 	}
 
 
-	/* Get possible items to populate autosuggest list with */
+	/**
+	 * Get possible items to populate autosuggest list with
+	 * @param $request PKPRequest
+	 */
 	function getPossibleItemList(&$request) {
 		$press =& $this->getPress();
 		$seriesId = $this->getSeriesId();
