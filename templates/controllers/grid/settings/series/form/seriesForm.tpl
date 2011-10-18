@@ -26,25 +26,22 @@
 			{fbvElement type="checkbox" id="featured" checked=$featured label="series.featured.description" value=1}
 		{/fbvFormSection}
 
-		{fbvFormSection title="manager.setup.category" for="context"}
+		{fbvFormSection title="common.description" for="context" required="true"}
+		 	{fbvElement type="textarea" multilingual="true" id="description" value=$description maxlength="80"}
+		{/fbvFormSection}
+
+		{fbvFormSection title="manager.setup.category" for="context" inline="true" size=$fbvStyles.size.MEDIUM}
 			{fbvElement type="select" id="categoryId" from=$categories selected=$categoryId translate=false}
 		{/fbvFormSection}
 
-
-		{fbvFormSection title="user.affiliation" for="context" required="true"}
-		 	{fbvElement type="text" multilingual="true" id="affiliation" value="$affiliation" maxlength="80"}
+		{fbvFormSection for="context" inline="true" size=$fbvStyles.size.MEDIUM}
+			<div id="seriesEditorsContainer">
+				<input type="hidden" name="seriesId" value="{$seriesId|escape}"/>
+				{url|assign:seriesEditorsUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.SeriesEditorsListbuilderHandler" op="fetch" seriesId=$seriesId}
+				{load_url_in_div id="seriesEditorsContainer" url=$seriesEditorsUrl}
+			</div>
 		{/fbvFormSection}
 	{/fbvFormArea}
-
-	<br />
-
-	{if $seriesId}
-		<div id="seriesEditorsContainer">
-			<input type="hidden" name="seriesId" value="{$seriesId|escape}"/>
-			{url|assign:seriesEditorsUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.SeriesEditorsListbuilderHandler" op="fetch" seriesId=$seriesId}
-			{load_url_in_div id="seriesEditorsContainer" url=$seriesEditorsUrl}
-		</div>
-	{/if}
 
 	{fbvFormButtons submitText="common.save"}
 </form>

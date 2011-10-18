@@ -82,27 +82,27 @@ class Series extends DataObject {
 	}
 
 	/**
-	 * Get series affiliation.
+	 * Get series description.
 	 * @return string
 	 */
-	function getLocalizedAffiliation() {
-		return $this->getLocalizedData('affiliation');
+	function getLocalizedDescription() {
+		return $this->getLocalizedData('description');
 	}
 
 	/**
-	 * Get series affiliation.
+	 * Get series description.
 	 * @return string
 	 */
-	function getAffiliation($locale) {
-		return $this->getData('affiliation', $locale);
+	function getDescription($locale) {
+		return $this->getData('description', $locale);
 	}
 
 	/**
-	 * Set series affiliation.
+	 * Set series description.
 	 * @param string
 	 */
-	function setAffiliation($affiliation, $locale) {
-		$this->setData('affiliation', $affiliation, $locale);
+	function setDescription($description, $locale) {
+		$this->setData('description', $description, $locale);
 	}
 
 	/**

@@ -81,8 +81,7 @@ class SeriesGridHandler extends SetupGridHandler {
 			$gridData[$seriesId] = array(
 				'title' => $series->getLocalizedTitle(),
 				'category' => $categoryTitle,
-				'editors' => $editorsString,
-				'affiliation' => $series->getLocalizedAffiliation()
+				'editors' => $editorsString
 			);
 			unset($series);
 			unset($editorsString);
@@ -118,7 +117,6 @@ class SeriesGridHandler extends SetupGridHandler {
 		);
 		$this->addColumn(new GridColumn('category', 'manager.setup.category'));
 		$this->addColumn(new GridColumn('editors', 'user.role.editors'));
-		$this->addColumn(new GridColumn('affiliation', 'user.affiliation'));
 	}
 
 	//

@@ -61,7 +61,7 @@ class SeriesForm extends Form {
 				'title' => $series->getTitle(null),
 				'categories' => $categories,
 				'categoryId' => $series->getCategoryId(),
-				'affiliation' => $series->getAffiliation(null),
+				'description' => $series->getDescription(null),
 				'featured' => $series->getFeatured()
 			);
 		} else {
@@ -88,7 +88,7 @@ class SeriesForm extends Form {
 	 * @see Form::readInputData()
 	 */
 	function readInputData() {
-		$this->readUserVars(array('seriesId', 'title', 'categoryId', 'affiliation', 'featured'));
+		$this->readUserVars(array('seriesId', 'title', 'categoryId', 'description', 'featured'));
 	}
 
 	/**
@@ -112,7 +112,7 @@ class SeriesForm extends Form {
 		// Populate/update the series object from the form
 		$series->setCategoryId($this->getData('categoryId'));
 		$series->setTitle($this->getData('title'), null); // Localized
-		$series->setAffiliation($this->getData('affiliation'), null); // Localized
+		$series->setDescription($this->getData('description'), null); // Localized
 		$series->setFeatured($this->getData('featured'));
 
 		// Insert or update the series in the DB
