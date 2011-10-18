@@ -18,8 +18,8 @@ class EnrollExistingReviewerForm extends ReviewerForm {
 	/**
 	 * Constructor.
 	 */
-	function EnrollExistingReviewerForm($monograph) {
-		parent::ReviewerForm($monograph);
+	function EnrollExistingReviewerForm(&$monograph, &$reviewRound) {
+		parent::ReviewerForm($monograph, $reviewRound);
 		$this->setTemplate('controllers/grid/users/reviewer/form/enrollExistingReviewerForm.tpl');
 
 		$this->addCheck(new FormValidator($this, 'userGroupId', 'required', 'user.profile.form.usergroupRequired'));

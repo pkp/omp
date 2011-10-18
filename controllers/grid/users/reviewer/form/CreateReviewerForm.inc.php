@@ -17,9 +17,11 @@ import('controllers.grid.users.reviewer.form.ReviewerForm');
 class CreateReviewerForm extends ReviewerForm {
 	/**
 	 * Constructor.
+	 * @param $monograph Monograph
+	 * @param $reviewRound ReviewRound
 	 */
-	function CreateReviewerForm($monograph) {
-		parent::ReviewerForm($monograph);
+	function CreateReviewerForm(&$monograph, &$reviewRound) {
+		parent::ReviewerForm($monograph, $reviewRound);
 		$this->setTemplate('controllers/grid/users/reviewer/form/createReviewerForm.tpl');
 
 		$this->addCheck(new FormValidator($this, 'firstname', 'required', 'user.profile.form.firstNameRequired'));

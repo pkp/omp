@@ -23,15 +23,16 @@ class PromoteForm extends EditorDecisionWithEmailForm {
 	 * @param $seriesEditorSubmission SeriesEditorSubmission
 	 * @param $decision int
 	 * @param $stageId int
+	 * @param $reviewRound ReviewRound
 	 */
-	function PromoteForm($seriesEditorSubmission, $decision, $stageId) {
+	function PromoteForm(&$seriesEditorSubmission, $decision, $stageId, &$reviewRound = null) {
 		if (!in_array($decision, array_keys($this->_getDecisionLabels))) {
 			fatalError('Invalid decision!');
 		}
 
 		parent::EditorDecisionWithEmailForm(
 			$seriesEditorSubmission, $decision, $stageId,
-			'controllers/modals/editorDecision/form/promoteForm.tpl'
+			'controllers/modals/editorDecision/form/promoteForm.tpl', $reviewRound
 		);
 	}
 
@@ -46,7 +47,7 @@ class PromoteForm extends EditorDecisionWithEmailForm {
 		$actionLabels = $this->_getDecisionLabels();
 
 		$seriesEditorSubmission =& $this->getSeriesEditorSubmission();
-		$this->setData('stageId', $seriesEditorSubmission->getStageId());
+		$this->setData('stageId', $this->getStageId());
 
 		return parent::initData($args, $request, $actionLabels);
 	}

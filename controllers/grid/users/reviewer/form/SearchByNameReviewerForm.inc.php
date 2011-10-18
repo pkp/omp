@@ -17,9 +17,11 @@ import('controllers.grid.users.reviewer.form.ReviewerForm');
 class SearchByNameReviewerForm extends ReviewerForm {
 	/**
 	 * Constructor.
+	 * @param $monograph Monograph
+	 * @param $reviewRound ReviewRound
 	 */
-	function SearchByNameReviewerForm($monograph) {
-		parent::ReviewerForm($monograph);
+	function SearchByNameReviewerForm(&$monograph, &$reviewRound) {
+		parent::ReviewerForm($monograph, $reviewRound);
 		$this->setTemplate('controllers/grid/users/reviewer/form/searchByNameReviewerForm.tpl');
 
 		$this->addCheck(new FormValidator($this, 'reviewerId', 'required', 'editor.review.mustSelect'));
@@ -42,6 +44,8 @@ class SearchByNameReviewerForm extends ReviewerForm {
 	function fetch(&$request) {
 		// Pass along the request vars
 		$actionArgs = $request->getUserVars();
+		$reviewRound =& $this->getReviewRound();
+		$actionArgs['reviewRoundId'] = $reviewRound->getId();
 		$actionArgs['selectionType'] = REVIEWER_SELECT_ADVANCED_SEARCH;
 		// but change the selectionType for each action
 		$advancedSearchAction = new LinkAction(

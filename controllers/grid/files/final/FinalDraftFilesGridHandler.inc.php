@@ -61,10 +61,10 @@ class FinalDraftFilesGridHandler extends FileListGridHandler {
 		$monograph =& $this->getMonograph();
 
 		import('controllers.grid.files.final.form.ManageFinalDraftFilesForm');
-		$manageReviewFilesForm = new ManageFinalDraftFilesForm($monograph->getId());
+		$manageFinalDraftFilesForm = new ManageFinalDraftFilesForm($monograph->getId());
 
-		$manageReviewFilesForm->initData($args, $request);
-		$json = new JSONMessage(true, $manageReviewFilesForm->fetch($request));
+		$manageFinalDraftFilesForm->initData($args, $request);
+		$json = new JSONMessage(true, $manageFinalDraftFilesForm->fetch($request));
 		return $json->getString();
 	}
 }

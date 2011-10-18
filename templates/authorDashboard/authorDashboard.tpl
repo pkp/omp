@@ -55,9 +55,7 @@
 			{if !$internalReviewRounds->wasEmpty()}
 				<div id="internalReviewRoundTabs">
 					<ul>
-					{iterate from=internalReviewRounds item=reviewRound}
-						<li><a href="{url op="reviewRoundInfo" monographId=$monograph->getId() stageId=$reviewRound->getStageId() round=$reviewRound->getRound() escape=false}">{translate key="submission.round" round=$reviewRound->getRound()}</a></li>
-					{/iterate}
+						{include file="authorDashboard/reviewRoundTab.tpl" reviewRounds=$internalReviewRounds} 
 					</ul>
 				</div>
 			{/if}
@@ -69,9 +67,7 @@
 			{if !$externalReviewRounds->wasEmpty()}
 				<div id="externalReviewRoundTabs">
 					<ul>
-					{iterate from=externalReviewRounds item=reviewRound}
-						<li><a href="{url op="reviewRoundInfo" monographId=$monograph->getId() stageId=$reviewRound->getStageId() round=$reviewRound->getRound() escape=false}">{translate key="submission.round" round=$reviewRound->getRound()}</a></li>
-					{/iterate}
+						{include file="authorDashboard/reviewRoundTab.tpl" reviewRounds=$externalReviewRounds}
 					</ul>
 				</div>
 			{/if}

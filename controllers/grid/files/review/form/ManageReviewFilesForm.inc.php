@@ -22,17 +22,17 @@ class ManageReviewFilesForm extends Form {
 	var $_stageId;
 
 	/** @var int **/
-	var $_round;
+	var $_reviewRoundId;
 
 
 	/**
 	 * Constructor.
 	 */
-	function ManageReviewFilesForm($monographId, $stageId, $round) {
+	function ManageReviewFilesForm($monographId, $stageId, $reviewRoundId) {
 		parent::Form('controllers/grid/files/review/manageReviewFiles.tpl');
 		$this->_monographId = (int)$monographId;
 		$this->_stageId = (int)$stageId;
-		$this->_round = (int)$round;
+		$this->_reviewRoundId = (int)$reviewRoundId;
 
 		$this->addCheck(new FormValidatorPost($this));
 	}
@@ -61,8 +61,8 @@ class ManageReviewFilesForm extends Form {
 	 * Get the round
 	 * @return int
 	 */
-	function getRound() {
-		return $this->_round;
+	function getReviewRoundId() {
+		return $this->_reviewRoundId;
 	}
 
 
@@ -77,7 +77,7 @@ class ManageReviewFilesForm extends Form {
 	function initData($args, &$request) {
 		$this->setData('monographId', $this->_monographId);
 		$this->setData('stageId', $this->getStageId());
-		$this->setData('round', $this->getRound());
+		$this->setData('reviewRoundId', $this->getReviewRoundId());
 	}
 
 	/**
@@ -94,9 +94,7 @@ class ManageReviewFilesForm extends Form {
 	 * @param $request PKPRequest
 	 */
 	function execute($args, &$request) {
-		$selectedFiles = $this->getData('selectedFiles');
-		$stageId = $this->getStageId();
-		$round = $this->getRound();
+		$selectedFiles = (array)$this->getData('selectedFiles');
 
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		$monographFiles =& $submissionFileDao->getLatestRevisions($this->_monographId, MONOGRAPH_FILE_REVIEW_FILE);

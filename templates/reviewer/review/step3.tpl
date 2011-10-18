@@ -22,7 +22,7 @@
 	{include file="common/formErrors.tpl"}
 {fbvFormArea id="reviewStep3"}
 	{fbvFormSection label="common.download"}
-		{url|assign:reviewFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.review.ReviewerReviewFilesGridHandler" op="fetchGrid" monographId=$submission->getId() stageId=$submission->getStageId() round=$submission->getCurrentRound() escape=false}
+		{url|assign:reviewFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.review.ReviewerReviewFilesGridHandler" op="fetchGrid" monographId=$submission->getId() stageId=$reviewAssignment->getStageId() reviewRoundId=$reviewRoundId escape=false}
 		{load_url_in_div id="reviewFiles" url=$reviewFilesGridUrl}
 	{/fbvFormSection}
 

@@ -16,7 +16,7 @@
 		$('#reviewTabs').pkpHandler(
 			'$.pkp.controllers.TabHandler',
 			{ldelim}
-				{assign var=roundIndex value=$selectedRound-1}
+						{assign var=roundIndex value=$lastReviewRoundNumber-1}
 				selected: {$roundIndex}
 			{rdelim}
 		);
@@ -24,12 +24,11 @@
 </script>
 <div id=reviewTabs>
 	<ul>
-		{section name="rounds" start=0 loop=$currentRound}
-			{assign var="round" value=$smarty.section.rounds.index+1}
+		{foreach from=$reviewRounds item=reviewRound}
 			<li>
-				<a href="{url op=$reviewRoundOp path=$monograph->getId()|to_array:$round stageId=$stageId}">{translate key="submission.round" round=$round}</a>
+				<a href="{url router=$smarty.const.ROUTE_COMPONENT component="tab.workflow.ReviewRoundTabHandler" op=$reviewRoundOp monographId=$monograph->getId() stageId=$reviewRound->getStageId() reviewRoundId=$reviewRound->getId()}">{translate key="submission.round" round=$reviewRound->getRound()}</a>
 			</li>
-		{/section}
+		{/foreach}
 		{if $newRoundAction}
 			<li>
 				{* FIXME: this <a> tag is here just to get the CSS to work *}

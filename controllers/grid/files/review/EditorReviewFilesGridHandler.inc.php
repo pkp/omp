@@ -54,7 +54,7 @@ class EditorReviewFilesGridHandler extends FileListGridHandler {
 		$monograph =& $this->getMonograph();
 
 		import('controllers.grid.files.review.form.ManageReviewFilesForm');
-		$manageReviewFilesForm = new ManageReviewFilesForm($monograph->getId(), $this->getRequestArg('stageId'), $this->getRequestArg('round'));
+		$manageReviewFilesForm = new ManageReviewFilesForm($monograph->getId(), $this->getRequestArg('stageId'), $this->getRequestArg('reviewRoundId'));
 
 		$manageReviewFilesForm->initData($args, $request);
 		$json = new JSONMessage(true, $manageReviewFilesForm->fetch($request));

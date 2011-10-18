@@ -17,9 +17,11 @@ import('controllers.grid.users.reviewer.form.ReviewerForm');
 class AdvancedSearchReviewerForm extends ReviewerForm {
 	/**
 	 * Constructor.
+	 * @param $monograph Monograph
+	 * @param $reviewRound ReviewRound
 	 */
-	function AdvancedSearchReviewerForm($monograph) {
-		parent::ReviewerForm($monograph);
+	function AdvancedSearchReviewerForm(&$monograph, &$reviewRound) {
+		parent::ReviewerForm($monograph, $reviewRound);
 		$this->setTemplate('controllers/grid/users/reviewer/form/advancedSearchReviewerForm.tpl');
 
 		$this->addCheck(new FormValidator($this, 'reviewerId', 'required', 'editor.review.mustSelect'));

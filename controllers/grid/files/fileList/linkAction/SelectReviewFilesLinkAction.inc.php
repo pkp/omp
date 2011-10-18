@@ -23,12 +23,12 @@ class SelectReviewFilesLinkAction extends SelectFilesLinkAction {
 	 *  from which to select files.
 	 * @param $stageId integer The review stage id required
 	 *  to select review files.
-	 * @param $round integer The review round from which to
+	 * @param $reviewRound ReviewRound The review round from which to
 	 *  select review files.
 	 */
-	function SelectReviewFilesLinkAction(&$request, $monographId, $stageId, $round, $actionLabel) {
+	function SelectReviewFilesLinkAction(&$request, $monographId, $stageId, $reviewRound, $actionLabel) {
 		$actionArgs = array('monographId' => $monographId,
-				'stageId' => $stageId, 'round' => $round);
+				'stageId' => $stageId, 'round' => $reviewRound->getRound(), 'reviewRoundId' => $reviewRound->getId());
 
 		parent::SelectFilesLinkAction($request, $actionArgs, $actionLabel);
 	}

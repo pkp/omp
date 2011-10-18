@@ -55,7 +55,7 @@ class ManageReviewFilesGridHandler extends SelectableFileListGridHandler {
 		$monograph =& $this->getMonograph();
 
 		import('controllers.grid.files.review.form.ManageReviewFilesForm');
-		$manageReviewFilesForm = new ManageReviewFilesForm($monograph->getId(), $this->getRequestArg('stageId'), $this->getRequestArg('round'));
+		$manageReviewFilesForm = new ManageReviewFilesForm($monograph->getId(), $this->getRequestArg('stageId'), $this->getRequestArg('reviewRoundId'));
 		$manageReviewFilesForm->readInputData();
 
 		if ($manageReviewFilesForm->validate()) {
@@ -71,21 +71,28 @@ class ManageReviewFilesGridHandler extends SelectableFileListGridHandler {
 
 
 	//
-	// Overridden protected methods from SelectableFileListGridHandler
+	// Extended methods from SelectableFileListGridHandler
 	//
 	/**
-	 * @see SelectableFileListGridHandler::getSelectionPolicy()
+	 * @see SelectableFileListGridHandler::initialize()
 	 */
-	function getSelectionPolicy(&$request, $args, $roleAssignments) {
-		// FIXME: Authorize review round, see #6200.
-		// Retrieve the authorized selection.
+	function initialize(&$request) {
+		$reviewRound =& $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ROUND);
+		$stageId = $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
+
 		$this->_selectionArgs = array(
-			'stageId' => (int)$request->getUserVar('stageId'),
-			'round' => (int)$request->getUserVar('round')
+					'stageId' => $stageId,
+					'round' => $reviewRound->getRound(),
+					'reviewRoundId' => $reviewRound->getId()
 		);
-		return null;
+
+		parent::initialize($request);
 	}
 
+
+	//
+	// Overridden protected methods from SelectableFileListGridHandler
+	//
 	/**
 	 * @see SelectableFileListGridHandler::getSelectionArgs()
 	 */
@@ -99,6 +106,7 @@ class ManageReviewFilesGridHandler extends SelectableFileListGridHandler {
 	function getSelectedFileIds($submissionFiles) {
 		// Set the already selected elements of the grid (the current review files).
 		$monograph =& $this->getMonograph();
+
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		$selectedRevisions =& $submissionFileDao->getRevisionsByReviewRound(
 			$monograph->getId(),

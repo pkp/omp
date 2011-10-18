@@ -29,14 +29,13 @@ class EditorDecisionHandler extends Handler {
 
 		$this->addRoleAssignment(
 			array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
-			array(
-				'newReviewRound', 'saveNewReviewRound',
+			array_merge(array(
+				'saveNewReviewRound',
 				'initiateReview', 'saveInitiateReview',
-				'sendReviews', 'saveSendReviews',
 				'promote', 'savePromote',
 				'importPeerReviews',
 				'approveProofs', 'saveApproveProofs'
-			)
+			), $this->_getReviewRoundOps())
 		);
 	}
 
@@ -51,6 +50,12 @@ class EditorDecisionHandler extends Handler {
 		$stageId = (int) $request->getUserVar('stageId');
 		import('classes.security.authorization.OmpEditorDecisionAccessPolicy');
 		$this->addPolicy(new OmpEditorDecisionAccessPolicy($request, $args, $roleAssignments, 'monographId', $stageId));
+
+		// Some operations need a review round id in request.
+		$reviewRoundOps = $this->_getReviewRoundOps();
+		import('classes.security.authorization.internal.ReviewRoundRequiredPolicy');
+		$this->addPolicy(new ReviewRoundRequiredPolicy($request, $args, 'reviewRoundId', $reviewRoundOps));
+
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 
@@ -152,12 +157,24 @@ class EditorDecisionHandler extends Handler {
 	}
 
 	/**
-	 * Show a promote form (responsible for external review and accept submission modals)
+	 * Show a promote form (responsible for accept submission modals outside review stage)
 	 * @param $args array
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
 	function promote($args, &$request) {
+		return $this->_initiateEditorDecision($args, $request, 'PromoteForm');
+	}
+
+	/**
+	* Show a promote form (responsible for external review and accept submission modals
+	* in review stages). We need this because the authorization for promoting in review
+	* stages is different when not in review stages (need to authorize review round id).
+	* @param $args array
+	* @param $request PKPRequest
+	* @return string Serialized JSON object
+	*/
+	function promoteInReview($args, &$request) {
 		return $this->_initiateEditorDecision($args, $request, 'PromoteForm');
 	}
 
@@ -249,18 +266,11 @@ class EditorDecisionHandler extends Handler {
 	 * @return string Serialized JSON object
 	 */
 	function _initiateEditorDecision($args, &$request, $formName) {
-		// Retrieve the authorized monograph.
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-		// Retrieve the stage id
-		$stageId = $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
 		// Retrieve the decision
 		$decision = (int)$request->getUserVar('decision');
 
-
-
 		// Form handling
-		import("controllers.modals.editorDecision.form.$formName");
-		$editorDecisionForm = new $formName($monograph, $decision, $stageId);
+		$editorDecisionForm = $this->_getEditorDecisionForm($formName, $decision);
 		$editorDecisionForm->initData($args, $request);
 
 		$json = new JSONMessage(true, $editorDecisionForm->fetch($request));
@@ -279,17 +289,12 @@ class EditorDecisionHandler extends Handler {
 	function _saveEditorDecision($args, &$request, $formName, $redirectOp = null, $decision = null) {
 		// Retrieve the authorized monograph.
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-		// Retrieve the stage id
-		$stageId = $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
 		// Retrieve the decision
 		if (is_null($decision)) {
 			$decision = (int)$request->getUserVar('decision');
 		}
 
-		// Form handling
-		import("controllers.modals.editorDecision.form.$formName");
-		$editorDecisionForm = new $formName($monograph, $decision, $stageId);
-
+		$editorDecisionForm = $this->_getEditorDecisionForm($formName, $decision);
 		$editorDecisionForm->readInputData();
 		if ($editorDecisionForm->validate()) {
 			$editorDecisionForm->execute($args, $request);
@@ -309,6 +314,42 @@ class EditorDecisionHandler extends Handler {
 			$json = new JSONMessage(false);
 		}
 		return $json->getString();
+	}
+
+	/**
+	 * Get operations that need a review round id policy.
+	 * @return array
+	 */
+	function _getReviewRoundOps() {
+		return array('promoteInReview', 'newReviewRound', 'sendReviews', 'saveSendReviews');
+	}
+
+	/**
+	 * Get an instance of an editor decision form.
+	 * @param $formName string
+	 * @param $decision int
+	 * @return EditorDecisionForm
+	 */
+	function _getEditorDecisionForm($formName, $decision) {
+		// Retrieve the authorized monograph.
+		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		// Retrieve the stage id
+		$stageId = $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
+
+		import("controllers.modals.editorDecision.form.$formName");
+		if ($stageId == WORKFLOW_STAGE_ID_INTERNAL_REVIEW || $stageId == WORKFLOW_STAGE_ID_EXTERNAL_REVIEW) {
+			$reviewRound =& $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ROUND);
+			$editorDecisionForm = new $formName($monograph, $decision, $stageId, $reviewRound);
+		} else {
+			$editorDecisionForm = new $formName($monograph, $decision, $stageId);
+		}
+
+		if (is_a($editorDecisionForm, $formName)) {
+			return $editorDecisionForm;
+		} else {
+			assert(false);
+			return null;
+		}
 	}
 }
 

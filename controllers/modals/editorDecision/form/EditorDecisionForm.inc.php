@@ -24,15 +24,22 @@ class EditorDecisionForm extends Form {
 	/** @var int The StageId where the decision is being made **/
 	var $_stageId;
 
+	/** @var ReviewRound Only required when in review stages */
+	var $_reviewRound;
+
+
 	/**
 	 * Constructor.
 	 * @param $seriesEditorSubmission SeriesEditorSubmission
+	 * @param $stageId int
 	 * @param $template string The template to display
+	 * @param $reviewRound ReviewRound
 	 */
-	function EditorDecisionForm($seriesEditorSubmission, $stageId, $template) {
+	function EditorDecisionForm(&$seriesEditorSubmission, $stageId, $template, &$reviewRound = null) {
 		parent::Form($template);
 		$this->_seriesEditorSubmission = $seriesEditorSubmission;
 		$this->_stageId = $stageId;
+		$this->_reviewRound = $reviewRound;
 
 		// Validation checks for this form
 		$this->addCheck(new FormValidatorPost($this));
@@ -45,7 +52,7 @@ class EditorDecisionForm extends Form {
 	 * Get the submission
 	 * @return SeriesEditorSubmission
 	 */
-	function getSeriesEditorSubmission() {
+	function &getSeriesEditorSubmission() {
 		return $this->_seriesEditorSubmission;
 	}
 
@@ -55,6 +62,14 @@ class EditorDecisionForm extends Form {
 	 */
 	function getStageId() {
 		return $this->_stageId;
+	}
+
+	/**
+	* Get the review round object.
+	* @return ReviewRound
+	*/
+	function &getReviewRound() {
+		return $this->_reviewRound;
 	}
 
 	//
@@ -72,17 +87,16 @@ class EditorDecisionForm extends Form {
 	/**
 	 * @see Form::fetch()
 	 */
-	function fetch(&$request, $round = null) {
+	function fetch(&$request) {
 		$seriesEditorSubmission =& $this->getSeriesEditorSubmission();
 
-		// Set the reviewer round.
-		if (is_null($round)) {
-			$round = $seriesEditorSubmission->getCurrentRound();
+		$reviewRound =& $this->getReviewRound();
+		if (is_a($reviewRound, 'ReviewRound')) {
+			$this->setData('round', $reviewRound->getRound());
+			$this->setData('reviewRoundId', $reviewRound->getId());
 		}
-		// N.B. The current round and stage are loaded under the assumption that
-		// decisions are only made for the current stage.
+
 		$this->setData('stageId', $this->getStageId());
-		$this->setData('round', $round);
 
 		// Set the monograph.
 		$templateMgr =& TemplateManager::getManager();
@@ -116,13 +130,13 @@ class EditorDecisionForm extends Form {
 		$press =& $request->getPress();
 		$notificationDao =& DAORegistry::getDAO('NotificationDAO');
 		$notificationFactory =& $notificationDao->getNotificationsByAssoc(
-			ASSOC_TYPE_REVIEW_ROUND, 
-			$reviewRound->getId(), 
-			null, 
+			ASSOC_TYPE_REVIEW_ROUND,
+			$reviewRound->getId(),
+			null,
 			NOTIFICATION_TYPE_REVIEW_ROUND_STATUS,
 			$press->getId()
 		);
-		
+
 		// Create round status notification if there is no notification already.
 		if ($notificationFactory->wasEmpty()) {
 			$notificationMgr = new NotificationManager();
@@ -136,7 +150,7 @@ class EditorDecisionForm extends Form {
 				NOTIFICATION_LEVEL_NORMAL
 			);
 		}
-		
+
 		// Add the selected files to the new round.
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 

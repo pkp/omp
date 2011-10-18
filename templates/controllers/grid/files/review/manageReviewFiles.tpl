@@ -1,5 +1,5 @@
 {**
- * manageReviewFiles.tpl
+ * controllers/grid/files/review/manageReviewFiles.tpl
  *
  * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -18,9 +18,9 @@
 			$('#manageReviewFilesForm').pkpHandler('$.pkp.controllers.form.AjaxFormHandler');
 		{rdelim});
 	</script>
-	<form class="pkp_form" id="manageReviewFilesForm" action="{url component="grid.files.review.ManageReviewFilesGridHandler" op="updateReviewFiles" monographId=$monographId|escape stageId=$stageId|escape round=$round|escape}" method="post">
+	<form class="pkp_form" id="manageReviewFilesForm" action="{url component="grid.files.review.ManageReviewFilesGridHandler" op="updateReviewFiles" monographId=$monographId|escape stageId=$stageId|escape reviewRoundId=$reviewRoundId|escape}" method="post">
 		<!-- Available submission files -->
-		{url|assign:availableReviewFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.review.ManageReviewFilesGridHandler" op="fetchGrid" monographId=$monographId stageId=$stageId round=$round escape=false}
+		{url|assign:availableReviewFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.review.ManageReviewFilesGridHandler" op="fetchGrid" monographId=$monographId stageId=$stageId reviewRoundId=$reviewRoundId escape=false}
 		{load_url_in_div id="availableReviewFilesGrid" url=$availableReviewFilesGridUrl}
 		{fbvFormButtons}
 	</form>

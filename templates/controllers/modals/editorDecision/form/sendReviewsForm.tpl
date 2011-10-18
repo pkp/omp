@@ -21,6 +21,7 @@
 	<input type="hidden" name="monographId" value="{$monographId|escape}" />
 	<input type="hidden" name="stageId" value="{$stageId|escape}" />
 	<input type="hidden" name="decision" value="{$decision|escape}" />
+	<input type="hidden" name="reviewRoundId" value="{$reviewRoundId|escape}" />
 
 	{fbvFormSection title="user.role.author" for="authorName" size=$fbvStyles.size.MEDIUM}
 		{fbvElement type="text" id="authorName" name="authorName" value=$authorName disabled=true}
@@ -42,9 +43,9 @@
 	{/fbvFormSection}
 
 	{** Some decisions can be made before review is initiated (i.e. no attachments). **}
-	{if $round}
+	{if $reviewRoundId}
 		<div id="attachments" style="margin-top: 30px;">
-			{url|assign:reviewAttachmentsGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.files.attachment.EditorSelectableReviewAttachmentsGridHandler" op="fetchGrid" monographId=$monographId stageId=$stageId round=$round escape=false}
+			{url|assign:reviewAttachmentsGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.files.attachment.EditorSelectableReviewAttachmentsGridHandler" op="fetchGrid" monographId=$monographId stageId=$stageId reviewRoundId=$reviewRoundId escape=false}
 			{load_url_in_div id="reviewAttachmentsGridContainer" url="$reviewAttachmentsGridUrl"}
 		</div>
 	{/if}

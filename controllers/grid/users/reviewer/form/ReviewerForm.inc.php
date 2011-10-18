@@ -19,15 +19,21 @@ class ReviewerForm extends Form {
 	/** The monograph associated with the review assignment **/
 	var $_monograph;
 
+	/** The review round associated with the review assignment **/
+	var $_reviewRound;
+
 	/** An array of actions for the other reviewer forms */
 	var $_reviewerFormActions;
 
 	/**
 	 * Constructor.
+	 * @param $monograph Monograph
+	 * @param $reviewRound ReviewRound
 	 */
-	function ReviewerForm($monograph) {
+	function ReviewerForm(&$monograph, &$reviewRound) {
 		parent::Form('controllers/grid/users/reviewer/form/defaultReviewerForm.tpl');
 		$this->setMonograph($monograph);
+		$this->setReviewRound($reviewRound);
 
 		// Validation checks for this form
 		$this->addCheck(new FormValidator($this, 'responseDueDate', 'required', 'editor.review.errorAddingReviewer'));
@@ -52,16 +58,32 @@ class ReviewerForm extends Form {
 	 * Get the Monograph
 	 * @return Monograph
 	 */
-	function getMonograph() {
+	function &getMonograph() {
 		return $this->_monograph;
+	}
+
+	/**
+	* Get the ReviewRound
+	* @return ReviewRound
+	*/
+	function &getReviewRound() {
+		return $this->_reviewRound;
 	}
 
 	/**
 	 * Set the Monograph
 	 * @param $monograph Monograph
 	 */
-	function setMonograph($monograph) {
+	function setMonograph(&$monograph) {
 		$this->_monograph =& $monograph;
+	}
+
+	/**
+	* Set the ReviewRound
+	* @param $reviewRound ReviewRound
+	*/
+	function setReviewRound(&$reviewRound) {
+		$this->_reviewRound =& $reviewRound;
 	}
 
 	/**
@@ -102,11 +124,11 @@ class ReviewerForm extends Form {
 		}
 
 		// Get review assignment related data;
-		$round = (int) $request->getUserVar('round');
+		$reviewRound =& $this->getReviewRound();
+		$round = $reviewRound->getRound();
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 
-		// FIXME: Bug #6199
-		$stageId = (int) $request->getUserVar('stageId');
+		$stageId = $reviewRound->getStageId();
 		$reviewAssignment =& $reviewAssignmentDao->getReviewAssignment($this->getMonographId(), $reviewerId, $round, $stageId);
 
 		// Get the review method (open, blind, or double-blind)
@@ -138,7 +160,8 @@ class ReviewerForm extends Form {
 		$this->setData('monographId', $this->getMonographId());
 		$this->setData('stageId', $stageId);
 		$this->setData('reviewMethod', $reviewMethod);
-		$this->setData('round', (int) $request->getUserVar('round'));
+		$this->setData('round', $round);
+		$this->setData('reviewRoundId', $reviewRound->getId());
 		$this->setData('reviewerId', $reviewerId);
 		$this->setData('personalMessage', __('reviewer.step1.requestBoilerplate'));
 		$this->setData('responseDueDate', $responseDueDate);

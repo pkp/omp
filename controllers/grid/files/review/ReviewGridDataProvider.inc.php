@@ -39,19 +39,26 @@ class ReviewGridDataProvider extends SubmissionFilesGridDataProvider {
 	 * @see GridDataProvider::getAuthorizationPolicy()
 	 */
 	function getAuthorizationPolicy(&$request, $args, $roleAssignments) {
-		// FIXME: Need to authorize review round, see #6200.
-		// Get the review round from the request
-		$round = $request->getUserVar('round');
-		$this->setRound((int)$request->getUserVar('round'));
+		// Get the parent authorization policy.
+		$policy = parent::getAuthorizationPolicy($request, $args, $roleAssignments);
 
-		return parent::getAuthorizationPolicy($request, $args, $roleAssignments);
+		// Add policy to ensure there is a review round id.
+		import('classes.security.authorization.internal.ReviewRoundRequiredPolicy');
+		$policy->addPolicy(new ReviewRoundRequiredPolicy($request, $args));
+
+		return $policy;
 	}
 
 	/**
 	 * @see GridDataProvider::getRequestArgs()
 	 */
 	function getRequestArgs() {
-		return array_merge(parent::getRequestArgs(), array('round' => $this->getRound()));
+		$reviewRound = $this->getReviewRound();
+		return array_merge(parent::getRequestArgs(), array(
+			'round' => $reviewRound->getRound(),
+			'reviewRoundId' => $reviewRound->getId()
+			)
+		);
 	}
 
 	/**
@@ -79,7 +86,7 @@ class ReviewGridDataProvider extends SubmissionFilesGridDataProvider {
 		import('controllers.grid.files.fileList.linkAction.SelectReviewFilesLinkAction');
 		$monograph =& $this->getMonograph();
 		$selectAction = new SelectReviewFilesLinkAction(
-			&$request, $monograph->getId(), $this->_getStageId(), $this->getRound(),
+			&$request, $monograph->getId(), $this->_getStageId(), $this->getReviewRound(),
 			__('editor.monograph.review.manageReviewFiles')
 		);
 		return $selectAction;
@@ -104,7 +111,17 @@ class ReviewGridDataProvider extends SubmissionFilesGridDataProvider {
 	 * @return integer
 	 */
 	function getRound() {
-		return $this->_round;
+		$reviewRound =& $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ROUND);
+		return $reviewRound->getRound();
+	}
+
+	/**
+	 * Get the review round object.
+	 * @return ReviewRound
+	 */
+	function &getReviewRound() {
+		$reviewRound =& $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ROUND);
+		return $reviewRound;
 	}
 
 	/**

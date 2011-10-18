@@ -25,9 +25,10 @@ class EditorDecisionWithEmailForm extends EditorDecisionForm {
 	 * @param $decision integer
 	 * @param $stageId integer
 	 * @param $template string The template to display
+	 * @param $reviewRound ReviewRound
 	 */
-	function EditorDecisionWithEmailForm($seriesEditorSubmission, $decision, $stageId, $template) {
-		parent::EditorDecisionForm($seriesEditorSubmission, $stageId, $template);
+	function EditorDecisionWithEmailForm(&$seriesEditorSubmission, $decision, $stageId, $template, &$reviewRound = null) {
+		parent::EditorDecisionForm($seriesEditorSubmission, $stageId, $template, $reviewRound);
 		$this->_decision = $decision;
 	}
 
@@ -64,6 +65,12 @@ class EditorDecisionWithEmailForm extends EditorDecisionForm {
 		);
 		$email->assignParams($paramArray);
 
+		// If we are in review stage we need a review round.
+		$reviewRound =& $this->getReviewRound();
+		if (is_a($reviewRound, 'ReviewRound')) {
+			$this->setData('reviewRoundId', $reviewRound->getId());
+		}
+
 		$data = array(
 			'monographId' => $seriesEditorSubmission->getId(),
 			'decision' => $this->getDecision(),
@@ -90,35 +97,33 @@ class EditorDecisionWithEmailForm extends EditorDecisionForm {
 	 * @see Form::fetch()
 	 */
 	function fetch(&$request) {
-		// Review stage id.
-		//FIXME #6199: What to do with stageId? This stage id is then past down to the actions in the grids.
-		$stageId = (int)$request->getUserVar('stageId');
-		$this->setData('stageId', $stageId);
+		// No all decision forms need a review round.
+		// FIXME #6902 Stop using round and stage, use review round id instead.
+		$round = null;
 
-		// Review round.
-		$seriesEditorSubmission =& $this->getSeriesEditorSubmission();
-		// FIXME: Need to authorize review round, see #6200.
-		$round = (int) $request->getUserVar('round');
-		if($round > $seriesEditorSubmission->getCurrentRound() || $round < 0) {
-			fatalError('Invalid review round!');
+		// Try to get a review round.
+		$reviewRound =& $this->getReviewRound();
+
+		// If we have a review round, then we are in a review stage.
+		if (is_a($reviewRound, 'ReviewRound')) {
+			// URL to retrieve peer reviews:
+			$router =& $request->getRouter();
+			$submission =& $this->getSeriesEditorSubmission();
+			$stageId = $reviewRound->getStageId();
+			$this->setData(
+				'peerReviewUrl',
+				$router->url(
+					$request, null, null,
+					'importPeerReviews', null,
+					array(
+						'monographId' => $submission->getId(),
+						'stageId' => $stageId
+					)
+				)
+			);
 		}
 
-		// URL to retrieve peer reviews:
-		$router =& $request->getRouter();
-		$submission =& $this->getSeriesEditorSubmission();
-		$this->setData(
-			'peerReviewUrl',
-			$router->url(
-				$request, null, null,
-				'importPeerReviews', null,
-				array(
-					'monographId' => $submission->getId(),
-					'stageId' => $stageId
-				)
-			)
-		);
-
-		return parent::fetch($request, $round);
+		return parent::fetch($request);
 	}
 
 
@@ -139,7 +144,7 @@ class EditorDecisionWithEmailForm extends EditorDecisionForm {
 			$reviewRoundDao->updateObject($currentReviewRound);
 		}
 	}
-	
+
 	/**
 	 * Sends an email with a personal message and the selected
 	 * review attachements to the author. Also marks review attachments

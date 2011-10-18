@@ -33,9 +33,6 @@ class ReviewerGridHandler extends GridHandler {
 	/** @var integer */
 	var $_stageId;
 
-	/** @var integer */
-	var $_round;
-
 
 	/**
 	 * Constructor
@@ -45,11 +42,7 @@ class ReviewerGridHandler extends GridHandler {
 
 		$this->addRoleAssignment(
 			array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_ASSISTANT),
-			array(
-				'fetchGrid', 'fetchRow', 'showReviewerForm', 'reloadReviewerForm', 'editReviewer', 'updateReviewer', 'deleteReviewer',
-				'getReviewersNotAssignedToMonograph', 'getUsersNotAssignedAsReviewers', 'readReview', 'reviewRead', 'thankReviewer',
-				'createReviewer', 'editReminder', 'sendReminder'
-			)
+			array_merge($this->_getReviewAssignmentOps(), $this->_getReviewRoundOps())
 		);
 	}
 
@@ -78,7 +71,33 @@ class ReviewerGridHandler extends GridHandler {
 	 * @return integer
 	 */
 	function getRound() {
-		return $this->_round;
+		$reviewRound =& $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ROUND);
+		if (is_a($reviewRound, 'ReviewRound')) {
+			return $reviewRound->getRound();
+		} else {
+			$reviewAssignment =& $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ASSIGNMENT);
+			return $reviewAssignment->getRound();
+		}
+	}
+
+	/**
+	 * Get review round object.
+	 * @return ReviewRound
+	 */
+	function &getReviewRound() {
+		$reviewRound =& $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ROUND);
+		if (is_a($reviewRound, 'ReviewRound')) {
+			return $reviewRound;
+		} else {
+			// FIXME #6902 Get review round id from review assignment object.
+			$reviewAssignment =& $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ASSIGNMENT);
+			$monograph =& $this->getMonograph();
+			$stageId = $reviewAssignment->getStageId();
+			$round = $reviewAssignment->getRound();
+			$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
+			$reviewRoundFactory =& $reviewRoundDao->getByMonographId($monograph->getId(), $stageId, $round);
+			return $reviewRoundFactory->next();
+		}
 	}
 
 
@@ -92,22 +111,22 @@ class ReviewerGridHandler extends GridHandler {
 	 * @param $roleAssignments array
 	 */
 	function authorize(&$request, $args, $roleAssignments) {
-		// FIXME: Need to authorize review stage id/round. This is just a temporary
-		// workaround until we get those variables in the authorized context, see #6200.
-		$stageId = $request->getUserVar('stageId');
-		$round = $request->getUserVar('round');
+		$stageId = $request->getUserVar('stageId'); // This is being validated in OmpWorkflowStageAccessPolicy
+
 		// Not all actions need a stageId and round. Some work off the reviewAssignment which has the type and round.
-		//assert(!empty($stageId) && !empty($round));
 		$this->_stageId = (int)$stageId;
-		$this->_round = (int)$round;
 
 		// Get the stage access policy
 		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
 		$ompWorkflowStageAccessPolicy = new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', $stageId);
+
+		// Add policy to ensure there is a review round id.
+		import('classes.security.authorization.internal.ReviewRoundRequiredPolicy');
+		$ompWorkflowStageAccessPolicy->addPolicy(new ReviewRoundRequiredPolicy($request, $args, 'reviewRoundId', $this->_getReviewRoundOps()));
+
 		// Add policy to ensure there is a review assignment for certain operations.
-		$reviewAssignmentOps = array('readReview', 'reviewRead', 'thankReviewer', 'editReminder', 'sendReminder', 'deleteReviewer');
 		import('classes.security.authorization.internal.ReviewAssignmentRequiredPolicy');
-		$ompWorkflowStageAccessPolicy->addPolicy(new ReviewAssignmentRequiredPolicy($request, $args, 'reviewAssignmentId', $reviewAssignmentOps));
+		$ompWorkflowStageAccessPolicy->addPolicy(new ReviewAssignmentRequiredPolicy($request, $args, 'reviewAssignmentId', $this->_getReviewAssignmentOps()));
 		$this->addPolicy($ompWorkflowStageAccessPolicy);
 
 		return parent::authorize($request, $args, $roleAssignments);
@@ -197,10 +216,12 @@ class ReviewerGridHandler extends GridHandler {
 	 */
 	function getRequestArgs() {
 		$monograph =& $this->getMonograph();
+		$reviewRound =& $this->getReviewRound();
 		return array(
 			'monographId' => $monograph->getId(),
 			'stageId' => $this->getStageId(),
-			'round' => $this->getRound()
+			'round' => $this->getRound(),
+			'reviewRoundId' => $reviewRound->getId()
 		);
 	}
 
@@ -218,22 +239,13 @@ class ReviewerGridHandler extends GridHandler {
 	// Public actions
 	//
 	/**
-	 * Add a reviewer that already exists
+	 * Add a reviewer.
 	 * @param $args array
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
 	function showReviewerForm($args, &$request) {
-		$selectionType = $request->getUserVar('selectionType');
-		assert(!empty($selectionType));
-		$formClassName = $this->_getReviewerFormClassName($selectionType);
-
-		// Form handling.
-		import('controllers.grid.users.reviewer.form.' . $formClassName );
-		$reviewerForm = new $formClassName($this->getMonograph());
-		$reviewerForm->initData($args, $request);
-
-		$json = new JSONMessage(true, $reviewerForm->fetch($request));
+		$json = new JSONMessage(true, $this->_fetchReviewerForm($args, $request));
 		return $json->getString();
 	}
 
@@ -242,19 +254,10 @@ class ReviewerGridHandler extends GridHandler {
 	 * @param $args array
 	 * @param $request Request
 	 * @return string JSON
-	 */
+	*/
 	function reloadReviewerForm($args, &$request) {
-		$selectionType = $request->getUserVar('selectionType');
-		assert(!empty($selectionType));
-		$formClassName = $this->_getReviewerFormClassName($selectionType);
-
-		// Form handling.
-		import('controllers.grid.users.reviewer.form.' . $formClassName );
-		$reviewerForm = new $formClassName($this->getMonograph());
-		$reviewerForm->initData($args, $request);
-
 		$json = new JSONMessage(true);
-		$json->setEvent('refreshForm', $reviewerForm->fetch($request));
+		$json->setEvent('refreshForm', $this->_fetchReviewerForm($args, $request));
 		return $json->getString();
 	}
 
@@ -286,7 +289,7 @@ class ReviewerGridHandler extends GridHandler {
 
 		// Form handling
 		import('controllers.grid.users.reviewer.form.' . $formClassName );
-		$reviewerForm = new $formClassName($this->getMonograph());
+		$reviewerForm = new $formClassName($this->getMonograph(), $this->getReviewRound());
 		$reviewerForm->readInputData();
 		if ($reviewerForm->validate()) {
 			$reviewAssignment =& $reviewerForm->execute($args, $request);
@@ -336,8 +339,8 @@ class ReviewerGridHandler extends GridHandler {
 		$press =& $request->getPress();
 		$monograph =& $this->getMonograph();
 		$stageId = $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
-		// FIXME: Need to authorize review round, see #6200.
-		$round = (int) $request->getUserVar('round');
+		$reviewRound =& $this->getReviewRound();
+		$round = (int) $reviewRound->getRound();
 		$term = $request->getUserVar('term');
 
 		$seriesEditorSubmissionDao =& DAORegistry::getDAO('SeriesEditorSubmissionDAO'); /* @var $seriesEditorSubmissionDao SeriesEditorSubmissionDAO */
@@ -514,6 +517,25 @@ class ReviewerGridHandler extends GridHandler {
 	// Private helper methods
 	//
 	/**
+	 * Return a fetched reviewer form data in string.
+	 * @param $args Array
+	 * @param $request Request
+	 * @return String
+	 */
+	function _fetchReviewerForm($args, &$request) {
+		$selectionType = $request->getUserVar('selectionType');
+		assert(!empty($selectionType));
+		$formClassName = $this->_getReviewerFormClassName($selectionType);
+
+		// Form handling.
+		import('controllers.grid.users.reviewer.form.' . $formClassName );
+		$reviewerForm = new $formClassName($this->getMonograph(), $this->getReviewRound());
+		$reviewerForm->initData($args, $request);
+
+		return $reviewerForm->fetch($request);
+	}
+
+	/**
 	 * Get the name of ReviewerForm class for the current selection type.
 	 * @param $selectionType String (const)
 	 * @return FormClassName String
@@ -529,6 +551,26 @@ class ReviewerGridHandler extends GridHandler {
 			case REVIEWER_SELECT_ENROLL_EXISTING:
 				return 'EnrollExistingReviewerForm';
 		}
+	}
+
+	/**
+	* Get operations that need a review assignment policy.
+	* @return array
+	*/
+	function _getReviewAssignmentOps() {
+		// Define operations that need a review assignment policy.
+		return array('readReview', 'reviewRead', 'thankReviewer', 'editReminder', 'sendReminder', 'deleteReviewer');
+
+	}
+
+	/**
+	 * Get operations that need a review round policy.
+	 * @return array
+	 */
+	function _getReviewRoundOps() {
+		// Define operations that need a review round policy.
+		return array('fetchGrid', 'fetchRow', 'showReviewerForm', 'reloadReviewerForm', 'editReviewer', 'updateReviewer',
+								'getReviewersNotAssignedToMonograph', 'getUsersNotAssignedAsReviewers', 'createReviewer');
 	}
 }
 

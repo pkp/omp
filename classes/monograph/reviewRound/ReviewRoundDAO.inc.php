@@ -54,12 +54,12 @@ class ReviewRoundDAO extends DAO {
 			$reviewRound->setStatus($status);
 			$this->insertObject($reviewRound);
 			$reviewRound->setId($this->getInsertReviewRoundId());
-			
+
 			return $reviewRound;
 		} else {
 			assert(false);
 			return null;
-		}	
+		}
 	}
 
 	/**
@@ -131,7 +131,7 @@ class ReviewRoundDAO extends DAO {
 		$result->Close();
 		return $returner;
 	}
-	
+
 	/**
 	 * Retrieve a review round by its id.
 	 * @param int $reviewRoundId
@@ -141,7 +141,7 @@ class ReviewRoundDAO extends DAO {
 		$result =& $this->retrieve(
 				'SELECT * FROM review_rounds WHERE review_round_id = ?',
 				array((int)$reviewRoundId));
-		
+
 		$returner = null;
 		if ($result->RecordCount() != 0) {
 			$returner = $this->_fromRow($result->GetRowAssoc(false));
@@ -174,7 +174,7 @@ class ReviewRoundDAO extends DAO {
 	 * @param $stageId int (optional)
 	 * @param $round int (optional)
 	 */
-	function getByMonographId($monographId, $stageId = null, $round = null) {
+	function &getByMonographId($monographId, $stageId = null, $round = null) {
 		$params = array($monographId);
 		if ($stageId) $params[] = $stageId;
 		if ($round) $params[] = $round;
@@ -211,14 +211,38 @@ class ReviewRoundDAO extends DAO {
 	}
 
 	/**
+	 * Get the last review round for a give stage (or for the latest stage)
+	 * @param $monographId int
+	 * @param $stageId int
+	 * @return ReviewRound
+	 */
+	function getLastReviewRoundByMonographId($monographId, $stageId = null) {
+		$params = array($monographId);
+		if ($stageId) $params[] = $stageId;
+		$result =& $this->retrieve('SELECT * FROM review_rounds
+									WHERE submission_id = ?' .
+									($stageId ? ' AND stage_id = ?' : '') .
+									' ORDER BY stage_id, round',
+									$params);
+
+		$returner = null;
+		if ($result->RecordCount() != 0) {
+			$returner = $this->_fromRow($result->GetRowAssoc(false));
+		}
+		$result->Close();
+
+		return $returner;
+	}
+
+	/**
 	* Get the ID of the last inserted review round.
 	* @return int
 	*/
 	function getInsertReviewRoundId() {
 		return $this->getInsertId('review_rounds', 'user_id');
 	}
-	
-	
+
+
 	//
 	// Private methods
 	//
@@ -227,7 +251,7 @@ class ReviewRoundDAO extends DAO {
 	 * @param $row array
 	 * @return Signoff
 	 */
-	function _fromRow(&$row) {
+	function &_fromRow(&$row) {
 		$reviewRound = $this->newDataObject();
 
 		$reviewRound->setId((int)$row['review_round_id']);

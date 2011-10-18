@@ -34,10 +34,17 @@ class ReviewerReviewFilesGridDataProvider extends ReviewGridDataProvider {
 	 */
 	function getAuthorizationPolicy(&$request, $args, $roleAssignments) {
 		import('classes.security.authorization.OmpSubmissionAccessPolicy');
-		// FIXME: Need to authorize review round, see #6200.
-		// Get the review round from the request
-		$this->setRound($request->getUserVar('round'));
-		return new OmpSubmissionAccessPolicy($request, $args, $roleAssignments);
+		$policy = new OmpSubmissionAccessPolicy($request, $args, $roleAssignments);
+
+		$stageId = $request->getUserVar('stageId'); // This will be validated in OmpWorkflowStageAccessPolicy
+		import('classes.security.authorization.internal.WorkflowStageRequiredPolicy');
+		$policy->addPolicy(new WorkflowStageRequiredPolicy($stageId));
+
+		// Add policy to ensure there is a review round id.
+		import('classes.security.authorization.internal.ReviewRoundRequiredPolicy');
+		$policy->addPolicy(new ReviewRoundRequiredPolicy($request, $args));
+
+		return $policy;
 	}
 }
 

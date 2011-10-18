@@ -33,7 +33,7 @@ class ManageReviewFilesGridDataProvider extends ReviewGridDataProvider {
 	 */
 	function &loadData() {
 		// We need ReviewGridDataProvider because is reads and passes
-		// along the round variable, but we use the basic
+		// along the review round id variable, but we use the basic
 		// SubmissionFile loadData because it will load all the review
 		// files, not just a single round.
 		return SubmissionFilesGridDataProvider::loadData();

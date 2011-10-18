@@ -8,7 +8,7 @@
  *}
 
 <!--  Display round status -->
-{include file="controllers/notification/inPlaceNotification.tpl" notificationId="reviewRoundNotification_"|concat:$round requestOptions=$reviewRoundNotificationRequestOptions}
+{include file="controllers/notification/inPlaceNotification.tpl" notificationId="reviewRoundNotification_"|concat:$reviewRoundId requestOptions=$reviewRoundNotificationRequestOptions}
 <form class="pkp_form">
 {fbvFormArea id="reviewRoundInfo"}
 <!-- Display editor's message to the author -->
@@ -23,11 +23,11 @@
 <!-- Display review attachments grid -->
 {if $showReviewAttachments}
 	{** need to use the stage id in the div because two of these grids can appear in the dashboard at the same time (one for each stage). *}
-	{url|assign:reviewAttachmentsGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.attachment.AuthorReviewAttachmentsGridHandler" op="fetchGrid" monographId=$monograph->getId() stageId=$stageId round=$round escape=false}
-	{load_url_in_div id="reviewAttachmentsGridContainer-`$stageId`-`$round`" url="$reviewAttachmentsGridUrl"}
+	{url|assign:reviewAttachmentsGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.attachment.AuthorReviewAttachmentsGridHandler" op="fetchGrid" monographId=$monograph->getId() stageId=$stageId reviewRoundId=$reviewRoundId escape=false}
+	{load_url_in_div id="reviewAttachmentsGridContainer-`$stageId`-`$reviewRoundId`" url="$reviewAttachmentsGridUrl"}
 
-	{url|assign:revisionsGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.review.ReviewRevisionsGridHandler" op="fetchGrid" monographId=$monograph->getId() stageId=$stageId round=$round escape=false}
-	{load_url_in_div id="revisionsGrid-`$stageId`-`$round`" url=$revisionsGridUrl}
+	{url|assign:revisionsGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.review.ReviewRevisionsGridHandler" op="fetchGrid" monographId=$monograph->getId() stageId=$stageId reviewRoundId=$reviewRoundId escape=false}
+	{load_url_in_div id="revisionsGrid-`$stageId`-`$reviewRoundId`" url=$revisionsGridUrl}
 {/if}
 {/fbvFormArea}
 </form>

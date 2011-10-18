@@ -22,7 +22,7 @@ class AuthorDashboardHandler extends Handler {
 	 */
 	function AuthorDashboardHandler() {
 		parent::Handler();
-		$this->addRoleAssignment(array(ROLE_ID_AUTHOR), array('submission', 'reviewRoundInfo'));
+		$this->addRoleAssignment($this->_getAssignmentRoles(), array('submission'));
 	}
 
 
@@ -34,7 +34,7 @@ class AuthorDashboardHandler extends Handler {
 	 */
 	function authorize(&$request, $args, $roleAssignments) {
 		import('classes.security.authorization.OmpSubmissionAccessPolicy');
-		$this->addPolicy(new OmpSubmissionAccessPolicy($request, $args, $roleAssignments));
+		$this->addPolicy(new OmpSubmissionAccessPolicy($request, $args, $roleAssignments), true);
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 
@@ -124,52 +124,6 @@ class AuthorDashboardHandler extends Handler {
 		$templateMgr->display('authorDashboard/authorDashboard.tpl');
 	}
 
-	/**
-	 * Fetch information for the author on the specified review round
-	 * @param $args array
-	 * @param $request Request
-	 */
-	function reviewRoundInfo($args, &$request) {
-		$this->setupTemplate($request);
-		$templateMgr =& TemplateManager::getManager();
-
-		$stageId = (int)$request->getUserVar('stageId');
-		if ($stageId !== WORKFLOW_STAGE_ID_INTERNAL_REVIEW && $stageId !== WORKFLOW_STAGE_ID_EXTERNAL_REVIEW) {
-			fatalError('Invalid Stage Id');
-		}
-		$templateMgr->assign('stageId', $stageId);
-
-		// FIXME: Need to authorize review round, see #6200.
-		$round = (int) $request->getUserVar('round');
-		$templateMgr->assign('round', $round);
-
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-		$templateMgr->assign_by_ref('monograph', $monograph);
-
-		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
-		$reviewRound =& $reviewRoundDao->getReviewRound($monograph->getId(), $stageId, $round);
-		assert(isset($reviewRound));
-
-		// Review round request notification options.
-		$notificationRequestOptions = array(
-			NOTIFICATION_LEVEL_NORMAL => array(
-				NOTIFICATION_TYPE_REVIEW_ROUND_STATUS => array(ASSOC_TYPE_REVIEW_ROUND, $reviewRound->getId())),
-			NOTIFICATION_LEVEL_TRIVIAL => array()
-		);
-		$templateMgr->assign('reviewRoundNotificationRequestOptions', $notificationRequestOptions);
-		
-		// Editor has taken an action and sent an email; Display the email
-		if($reviewRound->getStatus() != REVIEW_ROUND_STATUS_PENDING_REVIEWERS && $reviewRound->getStatus() != REVIEW_ROUND_STATUS_PENDING_REVIEWS) {
-			$monographEmailLogDao =& DAORegistry::getDAO('MonographEmailLogDAO');
-			$monographEmails =& $monographEmailLogDao->getByEventType($monograph->getId(), MONOGRAPH_EMAIL_EDITOR_NOTIFY_AUTHOR);
-
-			$templateMgr->assign_by_ref('monographEmails', $monographEmails);
-			$templateMgr->assign('showReviewAttachments', true);
-		}
-
-		return $templateMgr->fetch('authorDashboard/reviewRoundInfo.tpl');
-	}
-
 
 	//
 	// Protected helper methods
@@ -180,6 +134,14 @@ class AuthorDashboardHandler extends Handler {
 	function setupTemplate($request) {
 		parent::setupTemplate();
 		AppLocale::requireComponents(array(LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_OMP_SUBMISSION, LOCALE_COMPONENT_OMP_EDITOR));
+	}
+
+	/**
+	 * Get roles to assign to operations in this handler.
+	 * @return array
+	 */
+	function _getAssignmentRoles() {
+		return array(ROLE_ID_AUTHOR);
 	}
 }
 

@@ -23,15 +23,16 @@ class SendReviewsForm extends EditorDecisionWithEmailForm {
 	 * @param $seriesEditorSubmission SeriesEditorSubmission
 	 * @param $decision int
 	 * @param $stageId int
+	 * @param $reviewRound ReviewRound
 	 */
-	function SendReviewsForm($seriesEditorSubmission, $decision, $stageId) {
+	function SendReviewsForm($seriesEditorSubmission, $decision, $stageId, &$reviewRound) {
 		if (!in_array($decision, array_keys($this->_getDecisionLabels()))) {
 			fatalError('Invalid decision!');
 		}
 
 		parent::EditorDecisionWithEmailForm(
 			$seriesEditorSubmission, $decision, $stageId,
-			'controllers/modals/editorDecision/form/sendReviewsForm.tpl'
+			'controllers/modals/editorDecision/form/sendReviewsForm.tpl', $reviewRound
 		);
 	}
 
