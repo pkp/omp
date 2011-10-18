@@ -14,7 +14,7 @@
 	{rdelim});
 </script>
 
-<form class="pkp_form" id="seriesForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.settings.series.SeriesGridHandler" op="updateSeries"}">
+<form class="pkp_form" id="seriesForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.settings.series.SeriesGridHandler" op="updateSeries" seriesId=$seriesId}">
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="seriesFormNotification"}
 
 	{fbvFormArea id="seriesInfo"}
@@ -22,12 +22,7 @@
 			{fbvElement type="text" multilingual="true" id="title" value="$title" maxlength="80"}
 		{/fbvFormSection}
 		{fbvFormSection title="manager.setup.category" for="context"}
-			<select name="category" class="field select">
-				<option>{translate key='common.none'}</option>
-				{foreach from=$categories item=category}
-					<option value="{$category.id|escape}" {if $currentCategory == $category.id}selected="selected"{/if}>{$category.title|escape}</option>
-				{/foreach}
-			</select>
+			{fbvElement type="select" id="categoryId" from=$categories selected=$categoryId translate=false}
 		{/fbvFormSection}
 
 
@@ -36,21 +31,11 @@
 		{/fbvFormSection}
 	{/fbvFormArea}
 
-	{if $gridId}
-		<input type="hidden" name="gridId" value="{$gridId|escape}" />
-	{/if}
-	{if $rowId}
-		<input type="hidden" name="rowId" value="{$rowId|escape}" />
-	{/if}
-	{if $seriesId}
-		<input type="hidden" name="seriesId" value="{$seriesId|escape}" />
-	{/if}
-
 	<br />
 
 	{if $seriesId}
 		<div id="seriesEditorsContainer">
-			<input type="hidden" name="seriesId" value="{$seriesId}"/>
+			<input type="hidden" name="seriesId" value="{$seriesId|escape}"/>
 			{url|assign:seriesEditorsUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.SeriesEditorsListbuilderHandler" op="fetch" seriesId=$seriesId}
 			{load_url_in_div id="seriesEditorsContainer" url=$seriesEditorsUrl}
 		</div>

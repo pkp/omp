@@ -17,13 +17,13 @@ import('lib.pkp.classes.form.Form');
 
 class SeriesForm extends Form {
 	/** the id for the series being edited **/
-	var $seriesId;
+	var $_seriesId;
 
 	/**
 	 * Constructor.
 	 */
 	function SeriesForm($seriesId = null) {
-		$this->seriesId = $seriesId;
+		$this->setSeriesId($seriesId);
 		parent::Form('controllers/grid/settings/series/form/seriesForm.tpl');
 
 		// Validation checks for this form
@@ -42,37 +42,32 @@ class SeriesForm extends Form {
 		$categoryDao =& DAORegistry::getDAO('CategoryDAO');
 		$seriesDao =& DAORegistry::getDAO('SeriesDAO');
 
-		$categories =& $categoryDao->getByPressId($press->getId());
+		$categoryIterator =& $categoryDao->getByPressId($press->getId());
 
-		$categoryArray = array();
-		while ($category =& $categories->next()) {
-			$categoryArray[] = array('id' => $category->getId(), 'title' => $category->getLocalizedTitle());
+		$categories = array(0 => __('common.none'));
+		while ($category =& $categoryIterator->next()) {
+			$categories[$category->getId()] = $category->getLocalizedTitle();
 			unset($category);
 		}
 
-		if($this->seriesId) {
-			$series =& $seriesDao->getById($this->seriesId);
+		$seriesId = $this->getSeriesId();
+		if ($seriesId) {
+			$series =& $seriesDao->getById($seriesId, $press->getId());
 		}
 
 		if (isset($series) ) {
 			$this->_data = array(
-				'seriesId' => $this->seriesId,
+				'seriesId' => $seriesId,
 				'title' => $series->getTitle(null),
-				'categories' => $categoryArray,
-				'currentCategory' => $series->getCategoryId(),
+				'categories' => $categories,
+				'categoryId' => $series->getCategoryId(),
 				'affiliation' => $series->getAffiliation(null)
 			);
 		} else {
 			$this->_data = array(
-				'title' => '',
-				'categories' => $categoryArray,
-				'affiliation' => ''
+				'categories' => $categories
 			);
 		}
-
-		// grid related data
-		$this->_data['gridId'] = $args['gridId'];
-		$this->_data['rowId'] = isset($args['rowId']) ? $args['rowId'] : null;
 	}
 
 	/**
@@ -81,7 +76,9 @@ class SeriesForm extends Form {
 	 * @see Form::fetch()
 	 */
 	function fetch(&$request) {
-		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_MANAGER));
+		$templateMgr =& TemplateManager::getManager();
+		$templateMgr->assign('seriesId', $this->getSeriesId());
+
 		return parent::fetch($request);
 	}
 
@@ -90,8 +87,7 @@ class SeriesForm extends Form {
 	 * @see Form::readInputData()
 	 */
 	function readInputData() {
-		$this->readUserVars(array('seriesId', 'title', 'category', 'affiliation'));
-		$this->readUserVars(array('gridId', 'rowId'));
+		$this->readUserVars(array('seriesId', 'title', 'categoryId', 'affiliation'));
 	}
 
 	/**
@@ -103,43 +99,47 @@ class SeriesForm extends Form {
 		$seriesDao =& DAORegistry::getDAO('SeriesDAO');
 		$press =& $request->getPress();
 
-		// Update or insert series
-		if (!isset($this->seriesId)) {
+		// Get or create the series object
+		if ($this->getSeriesId()) {
+			$series =& $seriesDao->getById($this->getSeriesId(), $press->getId());
+		} else {
 			import('classes.press.Series');
 			$series = new Series();
 			$series->setPressId($press->getId());
-			$series->setCategoryId($this->getData('category'));
-			$series = $this->_setSeriesLocaleFields($series, $request);
-			$this->seriesId = $seriesDao->insertObject($series);
-		} else {
-			$series =& $seriesDao->getById($this->seriesId);
-			$series->setPressId($press->getId());
-			$series->setCategoryId($this->getData('category'));
-			$series = $this->_setSeriesLocaleFields($series, $request);
-			$seriesDao->updateObject($series);
 		}
-		return true;
-	}
 
-
-	//
-	// Private helper methods
-	//
-	/**
-	 * Set locale fields on a Series object.
-	 * @param Series
-	 * @param Request
-	 * @return UserGroup
-	 */
-	function _setSeriesLocaleFields($series, &$request) {
-
+		// Populate/update the series object from the form
+		$series->setCategoryId($this->getData('categoryId'));
 		$title = $this->getData('title');
 		$affiliation = $this->getData('affiliation');
 
-		$series->setData('title', $title, null);
-		$series->setData('affiliation', $affiliation, null);
+		$series->setData('title', $this->getData('title'), null); // Localized
+		$series->setData('affiliation', $this->getData('affiliation'), null); // Localized
 
-		return $series;
+		// Insert or update the series in the DB
+		if ($this->getSeriesId()) {
+			$seriesDao->updateObject($series);
+		} else {
+			$this->setSeriesId($seriesDao->insertObject($series));
+		}
+
+		return true;
+	}
+
+	/**
+	 * Get the series ID for this series.
+	 * @return int
+	 */
+	function getSeriesId() {
+		return $this->_seriesId;
+	}
+
+	/**
+	 * Set the series ID for this series.
+	 * @param $seriesId int
+	 */
+	function setSeriesId($seriesId) {
+		$this->_seriesId = $seriesId;
 	}
 }
 

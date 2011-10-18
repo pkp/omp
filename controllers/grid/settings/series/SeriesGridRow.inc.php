@@ -37,25 +37,22 @@ class SeriesGridRow extends GridRow {
 		$this->setupTemplate();
 
 		// Is this a new row or an existing row?
-		$rowId = $this->getId();
-		if (!empty($rowId) && is_numeric($rowId)) {
+		$seriesId = $this->getId();
+		if (!empty($seriesId) && is_numeric($seriesId)) {
 			$router =& $request->getRouter();
-			$actionArgs = array(
-				'gridId' => $this->getGridId(),
-				'rowId' => $rowId
-			);
 
 			import('lib.pkp.classes.linkAction.request.AjaxModal');
 			$this->addAction(
 				new LinkAction(
 					'editSeries',
 					new AjaxModal(
-						$router->url($request, null, null, 'editSeries', null, $actionArgs),
+						$router->url($request, null, null, 'editSeries', null, array('seriesId' => $seriesId)),
 						__('grid.action.edit'),
 						null,
 						true),
 					__('grid.action.edit'),
-					'edit')
+					'edit'
+				)
 			);
 
 			import('lib.pkp.classes.linkAction.request.RemoteActionConfirmationModal');
@@ -65,20 +62,26 @@ class SeriesGridRow extends GridRow {
 					new RemoteActionConfirmationModal(
 						__('common.confirmDelete'),
 						__('grid.action.delete'),
-						$router->url($request, null, null, 'deleteSeries', null, $actionArgs)),
+						$router->url($request, null, null, 'deleteSeries', null, array('seriesId' => $seriesId))
+					),
 					__('grid.action.delete'),
-					'delete')
+					'delete'
+				)
 			);
 		}
-
 	}
 
 	/**
 	 * @see PKPHandler::setupTemplate()
 	 */
 	function setupTemplate() {
-		// Load manager translations
-		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_MANAGER, LOCALE_COMPONENT_PKP_COMMON, LOCALE_COMPONENT_PKP_USER, LOCALE_COMPONENT_APPLICATION_COMMON));
+		// Load manager translations. FIXME are these needed?
+		Locale::requireComponents(array(
+			LOCALE_COMPONENT_OMP_MANAGER,
+			LOCALE_COMPONENT_PKP_COMMON,
+			LOCALE_COMPONENT_PKP_USER,
+			LOCALE_COMPONENT_APPLICATION_COMMON
+		));
 	}
 }
 

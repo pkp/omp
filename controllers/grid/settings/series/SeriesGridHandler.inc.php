@@ -21,8 +21,10 @@ class SeriesGridHandler extends SetupGridHandler {
 	 */
 	function SeriesGridHandler() {
 		parent::SetupGridHandler();
-		$this->addRoleAssignment(array(ROLE_ID_PRESS_MANAGER),
-				array('fetchGrid', 'fetchRow', 'addSeries', 'editSeries', 'updateSeries', 'deleteSeries'));
+		$this->addRoleAssignment(
+			array(ROLE_ID_PRESS_MANAGER),
+			array('fetchGrid', 'fetchRow', 'addSeries', 'editSeries', 'updateSeries', 'deleteSeries')
+		);
 	}
 
 
@@ -36,9 +38,14 @@ class SeriesGridHandler extends SetupGridHandler {
 	function initialize(&$request) {
 		parent::initialize($request);
 		$press =& $request->getPress();
-		$router =& $request->getRouter();
 
-		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_MANAGER, LOCALE_COMPONENT_PKP_COMMON, LOCALE_COMPONENT_PKP_USER, LOCALE_COMPONENT_APPLICATION_COMMON));
+		// FIXME are these all required?
+		Locale::requireComponents(array(
+			LOCALE_COMPONENT_OMP_MANAGER,
+			LOCALE_COMPONENT_PKP_COMMON,
+			LOCALE_COMPONENT_PKP_USER,
+			LOCALE_COMPONENT_APPLICATION_COMMON
+		));
 
 		// Basic grid configuration
 		$this->setTitle('series.series');
@@ -46,44 +53,45 @@ class SeriesGridHandler extends SetupGridHandler {
 		// Elements to be displayed in the grid
 		$seriesDao =& DAORegistry::getDAO('SeriesDAO');
 		$categoryDao =& DAORegistry::getDAO('CategoryDAO');
-		$series = $seriesDao->getByPressId($press->getId());
+		$seriesEditorsDao =& DAORegistry::getDAO('SeriesEditorsDAO');
+		$seriesIterator = $seriesDao->getByPressId($press->getId());
 
-		$seriesArray = array();
-		while ($seriesItem =& $series->next()) {
-			$category = $categoryDao->getById($seriesItem->getCategoryId(), $press->getId());
-			if (isset($category)) {
+		$gridData = array();
+		while ($series =& $seriesIterator->next()) {
+			$category = $categoryDao->getById($series->getCategoryId(), $press->getId());
+			if ($category) {
 				$categoryTitle = $category->getLocalizedTitle();
 			} else {
-				$categoryTitle = Locale::translate('common.none');
+				$categoryTitle = __('common.none');
 			}
 
-			$seriesEditorsDao =& DAORegistry::getDAO('SeriesEditorsDAO');
-			$assignedSeriesEditors =& $seriesEditorsDao->getEditorsBySeriesId($seriesItem->getId(), $press->getId());
+			$assignedSeriesEditors =& $seriesEditorsDao->getEditorsBySeriesId($series->getId(), $press->getId());
 			if(empty($assignedSeriesEditors)) {
-				$editorsString = Locale::translate('common.none');
+				$editorsString = __('common.none');
 			} else {
 				$editors = array();
 				foreach ($assignedSeriesEditors as $seriesEditor) {
 					$user = $seriesEditor['user'];
 					$editors[] = $user->getLastName();
 				}
-				$editorsString = implode(',', $editors);
+				$editorsString = implode(', ', $editors);
 			}
 
-			$seriesId = $seriesItem->getId();
-			$seriesArray[$seriesId] = array(
-				'title' => $seriesItem->getLocalizedTitle(),
+			$seriesId = $series->getId();
+			$gridData[$seriesId] = array(
+				'title' => $series->getLocalizedTitle(),
 				'category' => $categoryTitle,
 				'editors' => $editorsString,
-				'affiliation' => $seriesItem->getLocalizedAffiliation()
+				'affiliation' => $series->getLocalizedAffiliation()
 			);
-			unset($seriesItem);
+			unset($series);
 			unset($editorsString);
 		}
 
-		$this->setGridDataElements($seriesArray);
+		$this->setGridDataElements($gridData);
 
 		// Add grid-level actions
+		$router =& $request->getRouter();
 		import('lib.pkp.classes.linkAction.request.AjaxModal');
 		$this->addAction(
 			new LinkAction(
@@ -134,7 +142,7 @@ class SeriesGridHandler extends SetupGridHandler {
 	 * @param $request PKPRequest
 	 */
 	function addSeries($args, &$request) {
-		// Calling editSeries with an empty row id will add
+		// Calling editSeries with an empty ID will add
 		// a new series.
 		return $this->editSeries($args, $request);
 	}
@@ -146,16 +154,12 @@ class SeriesGridHandler extends SetupGridHandler {
 	 * @return string Serialized JSON object
 	 */
 	function editSeries($args, &$request) {
-		$seriesId = isset($args['rowId']) ? $args['rowId'] : null;
-
-		//FIXME: add validation here?
+		$seriesId = isset($args['seriesId']) ? $args['seriesId'] : null;
 		$this->setupTemplate();
 
 		import('controllers.grid.settings.series.form.SeriesForm');
 		$seriesForm = new SeriesForm($seriesId);
-
 		$seriesForm->initData($args, $request);
-
 		$json = new JSONMessage(true, $seriesForm->fetch($request));
 		return $json->getString();
 	}
@@ -167,23 +171,16 @@ class SeriesGridHandler extends SetupGridHandler {
 	 * @return string Serialized JSON object
 	 */
 	function updateSeries($args, &$request) {
-		$seriesId = $request->getUserVar('rowId');
-
-		//FIXME: add validation here?
-		// -> seriesId must be present and valid
-		// -> htmlId must be present and valid
+		$seriesId = $request->getUserVar('seriesId');
 		$press =& $request->getPress();
 
 		import('controllers.grid.settings.series.form.SeriesForm');
 		$seriesForm = new SeriesForm($seriesId);
 		$seriesForm->readInputData();
 
-		$router =& $request->getRouter();
-		$context =& $router->getContext($request);
-
 		if ($seriesForm->validate()) {
 			$seriesForm->execute($args, $request);
-			return DAO::getDataChangedEvent($seriesForm->seriesId);
+			return DAO::getDataChangedEvent($seriesForm->getSeriesId());
 		} else {
 			$json = new JSONMessage(false);
 			return $json->getString();
@@ -197,18 +194,19 @@ class SeriesGridHandler extends SetupGridHandler {
 	 * @return string Serialized JSON object
 	 */
 	function deleteSeries($args, &$request) {
-		// FIXME: add validation here?
-
-		$router =& $request->getRouter();
-		$press =& $router->getContext($request);
+		$press =& $request->getPress();
 
 		$seriesDao =& DAORegistry::getDAO('SeriesDAO');
-		$series = $seriesDao->getById($this->getId(), $press->getId());
+		$series = $seriesDao->getById(
+			$request->getUserVar('seriesId'),
+			$press->getId()
+		);
 
 		if (isset($series)) {
 			$seriesDao->deleteObject($series);
 			return DAO::getDataChangedEvent($series->getId());
 		} else {
+			Locale::requireComponents(array(LOCALE_COMPONENT_PKP_MANAGER)); // manager.setup.errorDeletingItem
 			$json = new JSONMessage(false, Locale::translate('manager.setup.errorDeletingItem'));
 		}
 		return $json->getString();
