@@ -56,6 +56,22 @@ class Category extends DataObject {
 	}
 
 	/**
+	 * Get category path.
+	 * @return string
+	 */
+	function getPath() {
+		return $this->getData('path');
+	}
+
+	/**
+	 * Set category path.
+	 * @param $path string
+	 */
+	function setPath($path) {
+		return $this->setData('path', $path);
+	}
+
+	/**
 	 * Get localized title of the category.
 	 * @return string
 	 */

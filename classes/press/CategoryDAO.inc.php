@@ -86,6 +86,23 @@ class CategoryDAO extends DAO {
 	}
 
 	/**
+	 * Check if a category exists with a specified path.
+	 * @param $path the path for the category
+	 * @return boolean
+	 */
+	function categoryExistsByPath($path) {
+		$result =& $this->retrieve(
+			'SELECT COUNT(*) FROM categories WHERE path = ?', $path
+		);
+		$returner = isset($result->fields[0]) && $result->fields[0] == 1 ? true : false;
+
+		$result->Close();
+		unset($result);
+
+		return $returner;
+	}
+
+	/**
 	 * Construct a new data object corresponding to this DAO.
 	 * @return Category
 	 */
@@ -104,6 +121,7 @@ class CategoryDAO extends DAO {
 		$category->setId($row['category_id']);
 		$category->setPressId($row['press_id']);
 		$category->setParentId($row['parent_id']);
+		$category->setPath($row['path']);
 
 		$this->getDataObjectSettings('category_settings', 'category_id', $row['category_id'], $category);
 
@@ -141,12 +159,13 @@ class CategoryDAO extends DAO {
 	function insertObject(&$category) {
 		$this->update(
 			'INSERT INTO categories
-				(press_id, parent_id)
+				(press_id, parent_id, path)
 				VALUES
-				(?, ?)',
+				(?, ?, ?)',
 			array(
 				(int) $category->getPressId(),
-				(int) $category->getParentId()
+				(int) $category->getParentId(),
+				$category->getPath()
 			)
 		);
 
@@ -163,11 +182,13 @@ class CategoryDAO extends DAO {
 		$returner = $this->update(
 			'UPDATE	categories
 			SET	press_id = ?,
-				parent_id = ?
+				parent_id = ?,
+				path = ?
 			WHERE	category_id = ?',
 			array(
 				(int) $category->getPressId(),
 				(int) $category->getParentId(),
+				$category->getPath(),
 				(int) $category->getId()
 			)
 		);

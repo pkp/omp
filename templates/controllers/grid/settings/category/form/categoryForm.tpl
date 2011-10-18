@@ -18,26 +18,28 @@
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="categoryFormNotification"}
 
 	{fbvFormArea id="categoryDetails"}
+
 		<h3>{translate key="grid.category.categoryDetails"}</h3>
-		{fbvFormSection title="grid.category.name" for="name" required="true"}
+
+		{fbvFormSection title="grid.category.name" for="name" required="true" size=$fbvStyles.size.MEDIUM inline="true"}
 			{fbvElement type="text" multilingual="true" name="name" value=$name id="name"}
 		{/fbvFormSection}
+
+		{fbvFormSection title="grid.category.parentCategory" for="context" inline="true" size=$fbvStyles.size.MEDIUM}
+			{fbvElement type="select" id="parentId" from=$rootCategories selected=$parentId translate=false disabled=$cannotSelectChild}
+		{/fbvFormSection}
+
+		{fbvFormSection title="grid.category.description" for="context" required="true"}
+		 	{fbvElement type="textarea" multilingual="true" id="description" value=$description}
+		{/fbvFormSection}
+
+		{fbvFormSection title="grid.category.path" required=true for="path"}
+			{fbvElement type="text" id="path" value=$path size=$smarty.const.SMALL maxlength="32"}
+			{url|assign:"sampleUrl" router=$smarty.const.ROUTE_PAGE press="path" page="FIXME FIXME FIXME"}
+			{** FIXME: is this class instruct still the right one? **}
+			<span class="instruct">{translate key="grid.category.urlWillBe" sampleUrl=$sampleUrl}</span>
+		{/fbvFormSection}
+		{fbvFormButtons}
+
 	{/fbvFormArea}
-	{fbvFormSection title="grid.category.parentCategory" for="context"}
-		<select name="parentId" class="field select">
-			<option>{translate key="common.none"}</option>
-			{iterate from=rootCategories item=rootCategory}
-				{* Exclude the current category from the list of potential parents (time travel paradox) *}
-				{if $rootCategory->getId() != $categoryId}
-					<option value="{$rootCategory->getId()|escape}" {if $parentId == $rootCategory->getId()}selected="selected"{/if}>{$rootCategory->getLocalizedTitle()|escape}</option>
-				{/if}
-			{/iterate}
-		</select>
-	{/fbvFormSection}
-
-	{fbvFormSection title="grid.category.description" for="context" required="true"}
-	 	{fbvElement type="text" multilingual="true" id="description" value=$description maxlength="80"}
-	{/fbvFormSection}
-
-	{fbvFormButtons}
 </form>

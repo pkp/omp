@@ -23,14 +23,17 @@
 
 	{fbvFormArea id="mastheadFormArea"}
 		{fbvFormSection title="manager.setup.pressName" for="name" required=true inline=true size=$fbvStyles.size.MEDIUM}
-	    	{fbvElement type="text" multilingual=true name="name" id="name" value=$name}
+		    	{fbvElement type="text" multilingual=true name="name" id="name" value=$name}
 		{/fbvFormSection}
+
 		{fbvFormSection title="manager.setup.pressInitials" for="initials" required=true inline=true size=$fbvStyles.size.SMALL}
 			{fbvElement type="text" multilingual=true name="initials" id="initials" value=$initials}
 		{/fbvFormSection}
+
 		{fbvFormSection title="manager.setup.pressDescription" for="description"}
 			{fbvElement type="textarea" multilingual=true name="description" id="description" value=$description rich=true height=$fbvStyles.height.SHORT}
 		{/fbvFormSection}
+
 		{fbvFormSection list=true}
 			{if $enabled}{assign var="enabled" value="checked"}{/if}
 			{fbvElement type="checkbox" id="pressEnabled" value="1" checked=$enabled label="manager.setup.enablePressInstructions"}

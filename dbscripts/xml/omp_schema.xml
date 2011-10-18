@@ -28,10 +28,18 @@
 		<field name="parent_id" type="I8">
 			<NOTNULL/>
 		</field>
+		<field name="path" type="C2" size="255">
+			<NOTNULL />
+		</field>
 		<descr>Press categories.</descr>
 		<index name="category_press_id">
 			<col>press_id</col>
 			<col>parent_id</col>
+		</index>
+		<index name="category_path">
+			<col>press_id</col>
+			<col>path</col>
+			<UNIQUE />
 		</index>
 	</table>
 
