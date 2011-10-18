@@ -21,47 +21,17 @@ class SeriesDAO extends DAO {
 	/**
 	 * Retrieve an series by ID.
 	 * @param $seriesId int
+	 * @param $pressId int optional
 	 * @return Series
 	 */
-	function &getById($seriesId, $pressId = null, $type = null) {
+	function &getById($seriesId, $pressId = null) {
 		$sql = 'SELECT * FROM series WHERE series_id = ?';
-		$params = array($seriesId);
-
-		if ($type !== null) {
-			$sql.= ' AND series_type = ?';
-			$params[] = $type;
-		}
+		$params = array((int) $seriesId);
 
 		if ($pressId !== null) {
 			$sql .= ' AND press_id = ?';
-			$params[] = $pressId;
+			$params[] = (int) $pressId;
 		}
-		$result =& $this->retrieve($sql, $params);
-
-		$returner = null;
-		if ($result->RecordCount() != 0) {
-			$returner =& $this->_fromRow($result->GetRowAssoc(false));
-		}
-
-		$result->Close();
-		unset($result);
-
-		return $returner;
-	}
-
-	/**
-	 * Retrieve an series by title.
-	 * @param $seriesTitle string
-	 * @return Series
-	 */
-	function &getByTitle($seriesTitle, $pressId, $locale = null) {
-		$sql = 'SELECT a.* FROM series a, series_settings l WHERE l.series_id = a.series_id AND l.setting_name = ? AND l.setting_value = ? AND s.press_id = ?';
-		$params = array('title', $seriesTitle, $pressId);
-		if ($locale !== null) {
-			$sql .= ' AND l.locale = ?';
-			$params[] = $locale;
-		}
-
 		$result =& $this->retrieve($sql, $params);
 
 		$returner = null;
@@ -94,6 +64,7 @@ class SeriesDAO extends DAO {
 		$series->setId($row['series_id']);
 		$series->setPressId($row['press_id']);
 		$series->setCategoryId($row['category_id']);
+		$series->setFeatured($row['featured']);
 
 		$this->getDataObjectSettings('series_settings', 'series_id', $row['series_id'], $series);
 
@@ -115,9 +86,11 @@ class SeriesDAO extends DAO {
 	 * @param $series object
 	 */
 	function updateLocaleFields(&$series) {
-		$this->updateDataObjectSettings('series_settings', $series, array(
-			'series_id' => $series->getId()
-		));
+		$this->updateDataObjectSettings(
+			'series_settings',
+			$series,
+			array('series_id' => $series->getId())
+		);
 	}
 
 	/**
@@ -127,12 +100,13 @@ class SeriesDAO extends DAO {
 	function insertObject(&$series) {
 		$this->update(
 			'INSERT INTO series
-				(press_id, category_id)
-				VALUES
-				(?, ?)',
+				(press_id, category_id, featured)
+			VALUES
+				(?, ?, ?)',
 			array(
 				$series->getPressId(),
 				$series->getCategoryId(),
+				$series->getFeatured()
 			)
 		);
 
@@ -148,13 +122,14 @@ class SeriesDAO extends DAO {
 	function updateObject($series) {
 		$returner = $this->update(
 			'UPDATE series
-				SET
-					press_id = ?,
-					category_id = ?
-			WHERE series_id = ?',
+			SET	press_id = ?,
+				category_id = ?,
+				featured = ?
+			WHERE	series_id = ?',
 			array(
 				$series->getPressId(),
 				$series->getCategoryId(),
+				$series->getFeatured(),
 				$series->getId()
 			)
 		);
@@ -176,6 +151,9 @@ class SeriesDAO extends DAO {
 	 * @param $pressId int optional
 	 */
 	function deleteById($seriesId, $pressId = null) {
+		// Validate the $pressId, if supplied.
+		if (!$this->seriesExists($seriesId, $pressId)) return false;
+
 		$seriesEditorsDao =& DAORegistry::getDAO('SeriesEditorsDAO');
 		$seriesEditorsDao->deleteEditorsBySeriesId($seriesId, $pressId);
 
@@ -183,9 +161,9 @@ class SeriesDAO extends DAO {
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
 		$monographDao->removeMonographsFromSeries($seriesId);
 
-		if (isset($pressId) && !$this->seriesExists($seriesId, $pressId)) return false;
-		$this->update('DELETE FROM series_settings WHERE series_id = ?', array($seriesId));
-		return $this->update('DELETE FROM series WHERE series_id = ?', array($seriesId));
+		// Delete the series and settings.
+		$this->update('DELETE FROM series WHERE series_id = ?', (int) $seriesId);
+		$this->update('DELETE FROM series_settings WHERE series_id = ?', (int) $seriesId);
 	}
 
 	/**
@@ -207,18 +185,19 @@ class SeriesDAO extends DAO {
 	 * arrays containing the series they edit.
 	 * @return array editorId => array(series they edit)
 	 */
-	function &getEditorSeries($pressId, $type = null) {
+	function &getEditorSeries($pressId) {
+		$result =& $this->retrieve(
+			'SELECT	a.*,
+				ae.user_id AS editor_id
+			FROM	series_editors ae,
+				series a
+			WHERE	ae.series_id = a.series_id AND
+				a.press_id = ae.press_id AND
+				a.press_id = ?',
+			(int) $pressId
+		);
+
 		$returner = array();
-		$sql = 'SELECT a.*, ae.user_id AS editor_id FROM series_editors ae, series a WHERE ae.series_id = a.series_id AND a.press_id = ae.press_id AND a.press_id = ?';
-		$params = array($pressId);
-
-		if ($type !== null) {
-			$params[] = $type;
-			$sql.= ' AND series_type = ?';
-		}
-
-		$result =& $this->retrieve($sql, $params);
-
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
 			$series =& $this->_fromRow($row);
@@ -228,6 +207,7 @@ class SeriesDAO extends DAO {
 				$returner[$row['editor_id']][] = $series;
 			}
 			$result->moveNext();
+			unset($series);
 		}
 
 		$result->Close();
@@ -241,11 +221,11 @@ class SeriesDAO extends DAO {
 	 * @return DAOResultFactory containing Series ordered by sequence
 	 */
 	function &getByPressId($pressId, $rangeInfo = null) {
-
-		$sql = 'SELECT * FROM series WHERE press_id = ?';
-		$params = array($pressId);
-
-		$result =& $this->retrieveRange($sql, $params, $rangeInfo);
+		$result =& $this->retrieveRange(
+			'SELECT * FROM series WHERE press_id = ?',
+			(int) $pressId,
+			$rangeInfo
+		);
 
 		$returner = new DAOResultFactory($result, $this, '_fromRow');
 		return $returner;
@@ -282,7 +262,7 @@ class SeriesDAO extends DAO {
 	function seriesExists($seriesId, $pressId) {
 		$result =& $this->retrieve(
 			'SELECT COUNT(*) FROM series WHERE series_id = ? AND press_id = ?',
-			array($seriesId, $pressId)
+			array((int) $seriesId, (int) $pressId)
 		);
 		$returner = isset($result->fields[0]) && $result->fields[0] == 1 ? true : false;
 
@@ -299,37 +279,6 @@ class SeriesDAO extends DAO {
 	function getInsertSeriesId() {
 		return $this->getInsertId('series', 'series_id');
 	}
-
-	function updateSetting($seriesId, $name, $value) {
-		$this->update('DELETE FROM series_settings WHERE series_id = ? AND setting_name = ?',
-				array($seriesId, $name)
-			);
-		$this->update('INSERT INTO series_settings
-			(series_id, setting_name, setting_value, setting_type)
-			VALUES (?, ?, ?, ?)',
-			array(
-				$seriesId, $name, $value, 'string'
-			)
-		);
-	}
-
-	function getSetting($seriesId, $name) {
-		$result =& $this->retrieve(
-			'SELECT setting_value FROM series_settings WHERE series_id = ? AND setting_name = ?',
-			array($seriesId, $name)
-		);
-
-		if (!$result->EOF) {
-			$row =& $result->getRowAssoc(false);
-			$value = $row['setting_value'];
-		} else $value = null;
-
-		$result->Close();
-		unset($result);
-
-		return $value;
-	}
-
 }
 
 ?>

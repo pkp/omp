@@ -90,6 +90,10 @@
 			<NOTNULL/>
 			<DEFAULT VALUE="0"/>
 		</field>
+		<field name="featured" type="I1">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
 		<descr>Press series.</descr>
 		<index name="series_press_id">
 			<col>press_id</col>

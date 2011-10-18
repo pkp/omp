@@ -14,9 +14,6 @@
  */
 
 
-define('SERIES_TYPE_SERIES',	1);
-define('SERIES_TYPE_CATEGORY',	2);
-
 class Series extends DataObject {
 
 	/**
@@ -106,6 +103,22 @@ class Series extends DataObject {
 	 */
 	function setAffiliation($affiliation, $locale) {
 		$this->setData('affiliation', $affiliation, $locale);
+	}
+
+	/**
+	 * Get the featured flag.
+	 * @return boolean
+	 */
+	function getFeatured() {
+		return $this->getData('featured');
+	}
+
+	/**
+	 * Set the featured flag.
+	 * @param $featured boolean
+	 */
+	function setFeatured($featured) {
+		$this->setData('featured', $featured);
 	}
 }
 

@@ -18,9 +18,14 @@
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="seriesFormNotification"}
 
 	{fbvFormArea id="seriesInfo"}
-		{fbvFormSection title="common.name" required="true" for="title"}
+		{fbvFormSection title="common.name" required="true" for="title" inline="true" size=$fbvStyles.size.MEDIUM}
 			{fbvElement type="text" multilingual="true" id="title" value="$title" maxlength="80"}
 		{/fbvFormSection}
+
+		{fbvFormSection title="series.featured" for="featured" inline="true" size=$fbvStyles.size.MEDIUM list="true"}
+			{fbvElement type="checkbox" id="featured" checked=$featured label="series.featured.description" value=1}
+		{/fbvFormSection}
+
 		{fbvFormSection title="manager.setup.category" for="context"}
 			{fbvElement type="select" id="categoryId" from=$categories selected=$categoryId translate=false}
 		{/fbvFormSection}

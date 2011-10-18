@@ -72,6 +72,8 @@
 
 	<!-- series/categories/series -->
 	<message key="series.series">Series</message>
+	<message key="series.featured">Featured</message>
+	<message key="series.featured.description">This series will appear on the main navigation</message>
 
 	<message key="grid.category.categories">Categories</message>
 	<message key="grid.category.add">Add Category</message>
