@@ -102,13 +102,12 @@ class SeriesEditorsDAO extends DAO {
 		$result =& $this->retrieve(
 			'SELECT	u.*
 			FROM	users u
-				LEFT JOIN user_groups ug ON (ug.user_group_id = u.user_id)
+				JOIN user_user_groups uug ON (u.user_id = uug.user_id)
+				JOIN user_groups ug ON (uug.user_group_id = ug.user_group_id AND ug.role_id = ? AND ug.context_id = ?)
 				LEFT JOIN series_editors e ON (e.user_id = u.user_id AND e.press_id = ug.context_id AND e.series_id = ?)
-			WHERE	ug.context_id = ? AND
-				ug.role_id = ? AND
-				e.series_id IS NULL
+			WHERE	e.series_id IS NULL
 			ORDER BY last_name, first_name',
-			array($seriesId, $pressId, ROLE_ID_SERIES_EDITOR)
+			array(ROLE_ID_SERIES_EDITOR, (int) $pressId, (int) $seriesId)
 		);
 
 		while (!$result->EOF) {

@@ -88,7 +88,7 @@ class SeriesForm extends Form {
 	 * @see Form::readInputData()
 	 */
 	function readInputData() {
-		$this->readUserVars(array('seriesId', 'title', 'categoryId', 'description', 'featured'));
+		$this->readUserVars(array('seriesId', 'title', 'categoryId', 'description', 'featured', 'seriesEditors'));
 	}
 
 	/**
@@ -122,6 +122,10 @@ class SeriesForm extends Form {
 			$this->setSeriesId($seriesDao->insertObject($series));
 		}
 
+		// Save the series editor associations. (See insert/deleteEntry.)
+		import('lib.pkp.classes.controllers.listbuilder.ListbuilderHandler');
+		ListBuilderHandler::unpack($request, $request->getUserVar('seriesEditors'));
+
 		return true;
 	}
 
@@ -139,6 +143,41 @@ class SeriesForm extends Form {
 	 */
 	function setSeriesId($seriesId) {
 		$this->_seriesId = $seriesId;
+	}
+
+	/**
+	 * Persist a signoff insertion
+	 * @see ListbuilderHandler::insertEntry
+	 */
+	function insertEntry(&$request, $newRowId) {
+		$press =& $request->getPress();
+		$seriesId = $this->getSeriesId();
+		$userId = array_shift($newRowId);
+
+		$seriesEditorsDao =& DAORegistry::getDAO('SeriesEditorsDAO');
+
+		// Make sure the membership doesn't already exist
+		if ($seriesEditorsDao->editorExists($press->getId(), $this->getSeriesId(), $userId)) {
+			return false;
+		}
+
+		// Otherwise, insert the row.
+		$seriesEditorsDao->insertEditor($press->getId(), $this->getSeriesId(), $userId, true, true);
+		return true;
+	}
+
+	/**
+	 * Delete a series editor association with this series.
+	 * @see ListbuilderHandler::deleteEntry
+	 * @param $request PKPRequest
+	 * @param $rowId int
+	 */
+	function deleteEntry(&$request, $rowId) {
+		$seriesEditorsDao =& DAORegistry::getDAO('SeriesEditorsDAO');
+		$press =& $request->getPress();
+
+		$seriesEditorsDao->deleteEditor($press->getId(), $this->getSeriesId(), $rowId);
+		return true;
 	}
 }
 

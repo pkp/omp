@@ -23,7 +23,10 @@ class SeriesEditorsListbuilderHandler extends SetupListbuilderHandler {
 	 */
 	function SeriesEditorsListbuilderHandler() {
 		parent::SetupListbuilderHandler();
-		$this->addRoleAssignment(ROLE_ID_PRESS_MANAGER, 'getAutocompleteSource');
+		$this->addRoleAssignment(
+			ROLE_ID_PRESS_MANAGER,
+			array('fetch', 'fetchRow', 'fetchOptions')
+		);
 	}
 
 	/**
@@ -46,45 +49,45 @@ class SeriesEditorsListbuilderHandler extends SetupListbuilderHandler {
 	 * Load the list from an external source into the grid structure
 	 * @param $request PKPRequest
 	 */
-	function loadList(&$request) {
+	function loadData(&$request) {
 		$press =& $this->getPress();
 		$seriesId = $this->getSeriesId();
 
 		$seriesEditorsDao =& DAORegistry::getDAO('SeriesEditorsDAO');
-
 		$assignedSeriesEditors =& $seriesEditorsDao->getEditorsBySeriesId($seriesId, $press->getId());
-
-		$items = array();
-		foreach ($assignedSeriesEditors as $seriesEditor) {
-			$user = $seriesEditor['user'];
-			$id = $user->getId();
-			$items[$id] = array('item' => $user->getFullName(), 'attribute' => $user->getUsername());
+		$returner = array();
+		foreach ($assignedSeriesEditors as $seriesEditorData) {
+			$seriesEditor = $seriesEditorData['user'];
+			$returner[$seriesEditor->getId()] = $seriesEditor;
 		}
-		$this->setGridDataElements($items);
+		return $returner;
 	}
-
 
 	/**
 	 * Get possible items to populate autosuggest list with
-	 * @param $request PKPRequest
 	 */
-	function getPossibleItemList(&$request) {
+	function getOptions() {
 		$press =& $this->getPress();
-		$seriesId = $this->getSeriesId();
-
 		$seriesEditorsDao =& DAORegistry::getDAO('SeriesEditorsDAO');
 
-		$unassignedSeriesEditors =& $seriesEditorsDao->getEditorsNotInSeries($press->getId(), $seriesId);
+		$unassignedSeriesEditors =& $seriesEditorsDao->getEditorsNotInSeries($press->getId(), $this->getSeriesId());
 
-		$itemList = array();
+		$itemList = array(0 => array());
 		foreach ($unassignedSeriesEditors as $seriesEditor) {
-			$itemList[$seriesEditor->getId()] = array(
-				'name' => $seriesEditor->getFullName(),
-				'abbrev' => $seriesEditor->getUsername()
-			);
+			$itemList[0][$seriesEditor->getId()] = $seriesEditor->getFullName();
 		}
 
 		return $itemList;
+	}
+
+	/**
+	 * Preserve the series ID for internal listbuilder requests.
+	 * @see GridHandler::getRequestArgs
+	 */
+	function getRequestArgs() {
+		$args = parent::getRequestArgs();
+		$args['seriesId'] = $this->getSeriesId();
+		return $args;
 	}
 
 
@@ -121,12 +124,18 @@ class SeriesEditorsListbuilderHandler extends SetupListbuilderHandler {
 		// Basic configuration
 		$this->setTitle('user.role.seriesEditors');
 		$this->setSourceType(LISTBUILDER_SOURCE_TYPE_SELECT);
+		$this->setSaveType(LISTBUILDER_SAVE_TYPE_EXTERNAL);
+		$this->setSaveFieldName('seriesEditors');
 
 		$this->setSeriesId($request->getUserVar('seriesId'));
 
-		$this->loadList($request);
+		// Name column
+		$nameColumn = new ListbuilderGridColumn($this, 'name', 'common.name');
 
-		$this->addColumn(new ListbuilderGridColumn($this, 'item', 'common.name'));
+		// We can reuse the User cell provider because getFullName
+		import('controllers.listbuilder.users/UserListbuilderGridCellProvider');
+		$nameColumn->setCellProvider(new UserListbuilderGridCellProvider());
+		$this->addColumn($nameColumn);
 	}
 
 	//
@@ -160,70 +169,6 @@ class SeriesEditorsListbuilderHandler extends SetupListbuilderHandler {
 		$sourceJson->setContent('[' . implode(',', $sourceContent) . ']');
 
 		echo $sourceJson->getString();
-	}
-
-	/**
-	 * Handle adding an item to the list
-	 * @param $args array
-	 * @param $request PKPRequest
-	 */
-	function addItem($args, &$request) {
-		$this->setupTemplate();
-		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
-		$press =& $this->getPress();
-
-		$seriesId = $args['seriesId'];
-		$index = 'sourceId-' . $this->getId() . '-' .$seriesId;
-		$userId = $args[$index];
-
-		if(empty($userId)) {
-			$json = new JSONMessage(false, Locale::translate('common.listbuilder.completeForm'));
-			return $json->getString();
-		} else {
-			$seriesEditorsDao =& DAORegistry::getDAO('SeriesEditorsDAO');
-
-			// Make sure the membership doesn't already exist
-			if ($seriesEditorsDao->editorExists($press->getId(), $seriesId, $userId)) {
-				$json = new JSONMessage(false, Locale::translate('common.listbuilder.itemExists'));
-				return $json->getString();
-				return false;
-			}
-			unset($groupMembership);
-
-			$seriesEditorsDao->insertEditor($press->getId(), $request->getUserVar('seriesId'), $userId, true, true);
-
-			$userDao =& DAORegistry::getDAO('UserDAO');
-			$user =& $userDao->getUser($userId);
-
-			// Return JSON with formatted HTML to insert into list
-			$row =& $this->getRowInstance();
-			$row->setGridId($this->getId());
-			$row->setId($userId);
-			$rowData = array('item' => $user->getFullName(), 'attribute' => $user->getUsername());
-			$row->setData($rowData);
-			$row->initialize($request);
-
-			$json = new JSONMessage(true, $this->_renderRowInternally($request, $row));
-			return $json->getString();
-		}
-	}
-
-	/**
-	 * Handle deleting items from the list
-	 * @param $args array
-	 * @param $request PKPRequest
-	 */
-	function deleteItems($args, &$request) {
-		$seriesEditorsDao =& DAORegistry::getDAO('SeriesEditorsDAO');
-		$press =& $this->getPress();
-		$seriesId = (int) array_shift($args);
-
-		foreach($args as $userId) {
-			$seriesEditorsDao->deleteEditor($press->getId(), $seriesId, $userId);
-		}
-
-		$json = new JSONMessage(true);
-		return $json->getString();
 	}
 }
 

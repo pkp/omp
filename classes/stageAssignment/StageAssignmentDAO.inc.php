@@ -22,8 +22,10 @@ class StageAssignmentDAO extends DAO {
 	 * @return StageAssignment
 	 */
 	function getById($stageAssignmentId) {
-		$result =& $this->retrieve('SELECT * FROM stage_assignments WHERE stage_assignment_id = ?',
-									(int) $stageAssignmentId);
+		$result =& $this->retrieve(
+			'SELECT * FROM stage_assignments WHERE stage_assignment_id = ?',
+			(int) $stageAssignmentId
+		);
 		return $this->_fromRow($result->GetRowAssoc(false));
 	}
 
@@ -61,13 +63,15 @@ class StageAssignmentDAO extends DAO {
 	 */
 	function editorAssignedToStage($submissionId, $stageId) {
 		$result =& $this->retrieve(
-					'SELECT COUNT(*)
-					FROM stage_assignments sa
-					JOIN user_groups ug ON (sa.user_group_id = ug.user_group_id)
-					JOIN user_group_stage ugs ON (ug.user_group_id = ugs.user_group_id)
-					WHERE sa.submission_id = ? AND ugs.stage_id = ? AND ug.role_id IN (?, ?)',
-					array($submissionId, $stageId, ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR)
-					);
+			'SELECT	COUNT(*)
+			FROM	stage_assignments sa
+				JOIN user_groups ug ON (sa.user_group_id = ug.user_group_id)
+				JOIN user_group_stage ugs ON (ug.user_group_id = ugs.user_group_id)
+			WHERE	sa.submission_id = ? AND
+				ugs.stage_id = ? AND
+				ug.role_id IN (?, ?)',
+			array((int) $submissionId, (int) $stageId, ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR)
+		);
 		$returner = isset($result->fields[0]) && $result->fields[0] > 0 ? true : false;
 
 		$result->Close();
@@ -131,11 +135,13 @@ class StageAssignmentDAO extends DAO {
 	 */
 	function insertObject(&$stageAssignment) {
 		return $this->update(
-				sprintf('INSERT INTO stage_assignments
-				(submission_id, user_group_id, user_id, date_assigned)
+			sprintf(
+				'INSERT INTO stage_assignments
+					(submission_id, user_group_id, user_id, date_assigned)
 				VALUES
-				(?, ?, ?, %s)',
-				$this->datetimeToDB(Core::getCurrentDate())),
+					(?, ?, ?, %s)',
+				$this->datetimeToDB(Core::getCurrentDate())
+			),
 			array(
 				$stageAssignment->getSubmissionId(),
 				$this->nullOrInt($stageAssignment->getUserGroupId()),
@@ -151,10 +157,10 @@ class StageAssignmentDAO extends DAO {
 	 */
 	function deleteObject($stageAssignment) {
 		return $this->deleteByAll(
-				$stageAssignment->getSubmissionId(),
-				$stageAssignment->getUserGroupId(),
-				$stageAssignment->getUserId()
-			);
+			$stageAssignment->getSubmissionId(),
+			$stageAssignment->getUserGroupId(),
+			$stageAssignment->getUserId()
+		);
 	}
 
 	/**
@@ -165,11 +171,13 @@ class StageAssignmentDAO extends DAO {
 	 * @return boolean
 	 */
 	function deleteByAll($submissionId, $userGroupId, $userId) {
-		return $this->update('DELETE FROM stage_assignments
-					WHERE submission_id = ?
-						AND user_group_id = ?
-						AND user_id = ?',
-				array((int) $submissionId, (int) $userGroupId, (int) $userId));
+		return $this->update(
+			'DELETE FROM stage_assignments
+			WHERE	submission_id = ?
+				AND user_group_id = ?
+				AND user_id = ?',
+			array((int) $submissionId, (int) $userGroupId, (int) $userId)
+		);
 	}
 
 	/**

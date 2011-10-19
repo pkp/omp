@@ -96,10 +96,9 @@ class ChapterAuthorListbuilderHandler extends ListbuilderHandler {
 
 		// Name column
 		$nameColumn = new ListbuilderGridColumn($this, 'name', 'common.name');
-		import('controllers.listbuilder.users/UserListbuilderGridCellProvider');
 		// We can reuse the User cell provider because getFullName
-		$cellProvider =& new UserListbuilderGridCellProvider();
-		$nameColumn->setCellProvider($cellProvider);
+		import('controllers.listbuilder.users/UserListbuilderGridCellProvider');
+		$nameColumn->setCellProvider(new UserListbuilderGridCellProvider());
 		$this->addColumn($nameColumn);
 	}
 
@@ -139,7 +138,6 @@ class ChapterAuthorListbuilderHandler extends ListbuilderHandler {
 
 	/**
 	 * @see ListbuilderHandler::getOptions
-	 * @params $chapterId int A user group id to filter by (defaults to URL)
 	 */
 	function getOptions() {
 		// Initialize the object to return
@@ -214,4 +212,5 @@ class ChapterAuthorListbuilderHandler extends ListbuilderHandler {
 		}
 	}
 }
+
 ?>
