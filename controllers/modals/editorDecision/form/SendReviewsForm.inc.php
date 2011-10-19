@@ -25,14 +25,7 @@ class SendReviewsForm extends EditorDecisionWithEmailForm {
 	 * @param $stageId int
 	 */
 	function SendReviewsForm($seriesEditorSubmission, $decision, $stageId) {
-		if (!in_array(
-			$decision,
-			array(
-				SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS,
-				SUBMISSION_EDITOR_DECISION_RESUBMIT,
-				SUBMISSION_EDITOR_DECISION_DECLINE
-			)
-		)) {
+		if (!in_array($decision, array_keys($this->_getDecisionLabels()))) {
 			fatalError('Invalid decision!');
 		}
 
@@ -50,7 +43,7 @@ class SendReviewsForm extends EditorDecisionWithEmailForm {
 	 * @see Form::initData()
 	 */
 	function initData($args, &$request) {
-		$actionLabels = $this->getDecisionLabels();
+		$actionLabels = $this->_getDecisionLabels();
 
 		return parent::initData($args, $request, $actionLabels);
 	}
@@ -66,7 +59,7 @@ class SendReviewsForm extends EditorDecisionWithEmailForm {
 		$decision = $this->getDecision();
 		import('classes.submission.seriesEditor.SeriesEditorAction');
 		$seriesEditorAction = new SeriesEditorAction();
-		$seriesEditorAction->recordDecision($request, $seriesEditorSubmission, $decision, $this->getDecisionLabels());
+		$seriesEditorAction->recordDecision($request, $seriesEditorSubmission, $decision, $this->_getDecisionLabels());
 
 		// Identify email key and status of round.
 		switch ($decision) {
@@ -102,7 +95,7 @@ class SendReviewsForm extends EditorDecisionWithEmailForm {
 	 * Get the associative array of decisions to decision label locale keys.
 	 * @return array
 	 */
-	function getDecisionLabels() {
+	function _getDecisionLabels() {
 		return array(
 			SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS => 'editor.monograph.decision.requestRevisions',
 			SUBMISSION_EDITOR_DECISION_RESUBMIT => 'editor.monograph.decision.resubmit',

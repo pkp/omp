@@ -44,7 +44,7 @@ class NewReviewRoundForm extends EditorDecisionForm {
 		// Record the decision.
 		import('classes.submission.seriesEditor.SeriesEditorAction');
 		$seriesEditorAction = new SeriesEditorAction();
-		$seriesEditorAction->recordDecision($request, $seriesEditorSubmission, SUBMISSION_EDITOR_DECISION_RESUBMIT, $this->getDecisionLabels());
+		$seriesEditorAction->recordDecision($request, $seriesEditorSubmission, SUBMISSION_EDITOR_DECISION_RESUBMIT, $this->_getDecisionLabels());
 
 		// Create a new review round.
 		$newRound = $seriesEditorSubmission->getCurrentRound() + 1;
@@ -63,7 +63,7 @@ class NewReviewRoundForm extends EditorDecisionForm {
 	 * Get the associative array of decisions to decision label locale keys.
 	 * @return array
 	 */
-	function getDecisionLabels() {
+	function _getDecisionLabels() {
 		return array(
 			SUBMISSION_EDITOR_DECISION_ACCEPT => 'editor.monograph.decision.accept',
 			SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS => 'editor.monograph.decision.pendingRevisions',
