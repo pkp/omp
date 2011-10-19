@@ -19,8 +19,8 @@ import('classes.handler.Handler');
 import('lib.pkp.classes.linkAction.LinkAction');
 import('lib.pkp.classes.linkAction.request.AjaxModal');
 
-// Import decision constants.
-import('classes.submission.common.Action');
+// Access decision actions constants.
+import('classes.workflow.EditorDecisionActionsManager');
 
 
 class WorkflowHandler extends Handler {
@@ -197,7 +197,7 @@ class WorkflowHandler extends Handler {
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign_by_ref('reviewRounds', $reviewRoundsArray);
 		$templateMgr->assign('lastReviewRoundNumber', $lastReviewRoundNumber);
-		
+
 		if ($monograph->getStageId() == $selectedStageId) {
 			$dispatcher =& $request->getDispatcher();
 			$newRoundAction = new LinkAction(
@@ -261,20 +261,20 @@ class WorkflowHandler extends Handler {
 	/**
 	 * Call editor decision actions manager passing action args array.
 	 * @param $request Request
-	 * @param $decisionCallback String
+	 * @param $decisionFunctionName String
 	 */
-	function _assignEditorDecisionActions($request, $decisionCallback, $additionalArgs = array()) {
+	function _assignEditorDecisionActions($request, $decisionFunctionName, $additionalArgs = array()) {
 		// Prepare the action arguments.
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		$stageId = $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
 		$actionArgs = array('monographId' => $monograph->getId(), 'stageId' => $stageId);
 		$actionArgs = array_merge($actionArgs, $additionalArgs);
-		
+
 		// Use editor decision actions manager to assign the decisions to template.
 		import('classes.workflow.EditorDecisionActionsManager');
-		EditorDecisionActionsManager::assignDecisionsToTemplate($request, $decisionCallback, $actionArgs);
+		EditorDecisionActionsManager::assignDecisionsToTemplate($request, $decisionFunctionName, $actionArgs);
 	}
-	
+
 	/**
 	 * Translate the requested operation to a stage id.
 	 * @param $request Request
@@ -303,7 +303,7 @@ class WorkflowHandler extends Handler {
 
 		// Translate the operation to a workflow stage identifier.
 		return $operationAssignment[$operation];
-	}	
+	}
 }
 
 ?>

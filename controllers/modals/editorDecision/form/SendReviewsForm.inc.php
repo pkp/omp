@@ -15,7 +15,8 @@
 
 import('controllers.modals.editorDecision.form.EditorDecisionWithEmailForm');
 
-import('classes.submission.common.Action');
+// Access decision actions constants.
+import('classes.workflow.EditorDecisionActionsManager');
 
 class SendReviewsForm extends EditorDecisionWithEmailForm {
 	/**
@@ -26,7 +27,7 @@ class SendReviewsForm extends EditorDecisionWithEmailForm {
 	 * @param $reviewRound ReviewRound
 	 */
 	function SendReviewsForm($seriesEditorSubmission, $decision, $stageId, &$reviewRound) {
-		if (!in_array($decision, array_keys($this->_getDecisionLabels()))) {
+		if (!in_array($decision, $this->_getDecisions())) {
 			fatalError('Invalid decision!');
 		}
 
@@ -44,7 +45,7 @@ class SendReviewsForm extends EditorDecisionWithEmailForm {
 	 * @see Form::initData()
 	 */
 	function initData($args, &$request) {
-		$actionLabels = $this->_getDecisionLabels();
+		$actionLabels = EditorDecisionActionsManager::getActionLabels($this->_getDecisions());
 
 		return parent::initData($args, $request, $actionLabels);
 	}
@@ -56,11 +57,14 @@ class SendReviewsForm extends EditorDecisionWithEmailForm {
 		// Retrieve the submission.
 		$seriesEditorSubmission =& $this->getSeriesEditorSubmission();
 
+		// Get this form decision actions labels.
+		$actionLabels = EditorDecisionActionsManager::getActionLabels($this->_getDecisions());
+
 		// Record the decision.
 		$decision = $this->getDecision();
 		import('classes.submission.seriesEditor.SeriesEditorAction');
 		$seriesEditorAction = new SeriesEditorAction();
-		$seriesEditorAction->recordDecision($request, $seriesEditorSubmission, $decision, $this->_getDecisionLabels());
+		$seriesEditorAction->recordDecision($request, $seriesEditorSubmission, $decision, $actionLabels);
 
 		// Identify email key and status of round.
 		switch ($decision) {
@@ -84,7 +88,7 @@ class SendReviewsForm extends EditorDecisionWithEmailForm {
 		}
 
 		$this->_updateReviewRoundStatus($seriesEditorSubmission, $status);
-		
+
 		// Send email to the author.
 		$this->_sendReviewMailToAuthor($seriesEditorSubmission, $emailKey, $request);
 	}
@@ -93,14 +97,14 @@ class SendReviewsForm extends EditorDecisionWithEmailForm {
 	// Private functions
 	//
 	/**
-	 * Get the associative array of decisions to decision label locale keys.
+	 * Get this form decisions.
 	 * @return array
 	 */
-	function _getDecisionLabels() {
+	function _getDecisions() {
 		return array(
-			SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS => 'editor.monograph.decision.requestRevisions',
-			SUBMISSION_EDITOR_DECISION_RESUBMIT => 'editor.monograph.decision.resubmit',
-			SUBMISSION_EDITOR_DECISION_DECLINE => 'editor.monograph.decision.decline'
+			SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS,
+			SUBMISSION_EDITOR_DECISION_RESUBMIT,
+			SUBMISSION_EDITOR_DECISION_DECLINE
 		);
 	}
 }

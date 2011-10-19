@@ -17,19 +17,6 @@
  */
 
 
-// Submission stage decision actions.
-define('SUBMISSION_EDITOR_DECISION_INITIATE_REVIEW', 1);
-
-// Review stage decisions actions.
-define('SUBMISSION_EDITOR_DECISION_ACCEPT', 2);
-define('SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW', 3);
-define('SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS', 4);
-define('SUBMISSION_EDITOR_DECISION_RESUBMIT', 5);
-define('SUBMISSION_EDITOR_DECISION_DECLINE', 6);
-
-// Copyediting stage decision actions.
-define('SUBMISSION_EDITOR_DECISION_SEND_TO_PRODUCTION', 7);
-
 // These constants are used as search fields for the various submission lists.
 define('SUBMISSION_FIELD_AUTHOR', 1);
 define('SUBMISSION_FIELD_EDITOR', 2);

@@ -17,8 +17,8 @@ import('classes.handler.Handler');
 // import JSON class for use with all AJAX requests
 import('lib.pkp.classes.core.JSONMessage');
 
-// Bring in decision constants
-import('classes.submission.common.Action');
+// Access decision actions constants.
+import('classes.workflow.EditorDecisionActionsManager');
 
 class EditorDecisionHandler extends Handler {
 	/**

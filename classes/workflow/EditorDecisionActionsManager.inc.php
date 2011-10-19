@@ -12,25 +12,36 @@
  * @brief Wrapper class for create and assign editor decisions actions to template manager.
  */
 
-// Import decision constants.
-import('classes.submission.common.Action');
+// Submission stage decision actions.
+define('SUBMISSION_EDITOR_DECISION_INITIATE_REVIEW', 1);
 
+// Review stage decisions actions.
+define('SUBMISSION_EDITOR_DECISION_ACCEPT', 2);
+define('SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW', 3);
+define('SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS', 4);
+define('SUBMISSION_EDITOR_DECISION_RESUBMIT', 5);
+define('SUBMISSION_EDITOR_DECISION_DECLINE', 6);
+
+// Copyediting stage decision actions.
+define('SUBMISSION_EDITOR_DECISION_SEND_TO_PRODUCTION', 7);
 
 class EditorDecisionActionsManager {
-	
+
 	/**
 	* Create actions for editor decisions and assign them to the template.
 	* @param $request Request
-	* @param $decisionsCallback string the name of the class method
+	* @param $decisionsFunctionName string the name of the class method
 	*  that will return the decision configuration.
 	* @param $actionArgs array action arguments
 	*/
-	function assignDecisionsToTemplate(&$request, $decisionsCallback, $actionArgs) {
+	function assignDecisionsToTemplate(&$request, $decisionsFunctionName, $actionArgs) {
+		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_EDITOR));
+
 		// Retrieve the editor decisions.
-		$decisions = call_user_func(array('EditorDecisionActionsManager', $decisionsCallback));
-	
+		$decisions = EditorDecisionActionsManager::$decisionsFunctionName();
+
 		// Iterate through the editor decisions and create a link action for each decision.
-		$dispatcher =& $this->getDispatcher();
+		$dispatcher =& $request->getDispatcher();
 		import('classes.linkAction.request.AjaxModal');
 		foreach($decisions as $decision => $action) {
 			$actionArgs['decision'] = $decision;
@@ -52,8 +63,33 @@ class EditorDecisionActionsManager {
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('editorActions', $editorActions);
 	}
-	
-	
+
+	/**
+	 * Get decision actions labels.
+	 * @param $decisions
+	 * @return array
+	 */
+	function getActionLabels($decisions) {
+		$allDecisionsData = array_merge(
+				EditorDecisionActionsManager::_submissionStageDecisions(),
+				EditorDecisionActionsManager::_internalReviewStageDecisions(),
+				EditorDecisionActionsManager::_externalReviewStageDecisions(),
+				EditorDecisionActionsManager::_copyeditingStageDecisions()
+		);
+
+		$actionLabels = array();
+		foreach($decisions as $decision) {
+			if ($allDecisionsData[$decision]['title']) {
+				$actionLabels[$decision] = $allDecisionsData[$decision]['title'];
+			} else {
+				assert(false);
+			}
+		}
+
+		return $actionLabels;
+	}
+
+
 	//
 	// Private helper methods.
 	//
@@ -82,10 +118,10 @@ class EditorDecisionActionsManager {
 					'image' => 'advance'
 		)
 		);
-	
+
 		return $decisions;
 	}
-	
+
 	/**
 	 * Define and return editor decisions for the review stage.
 	 * @return array
@@ -123,10 +159,10 @@ class EditorDecisionActionsManager {
 					'image' => 'decline'
 		)
 		);
-	
+
 		return $decisions;
 	}
-	
+
 	/**
 	 * Define and return editor decisions for the review stage.
 	 * @return array
@@ -156,11 +192,11 @@ class EditorDecisionActionsManager {
 					'image' => 'delete'
 		)
 		);
-	
+
 		return $decisions;
 	}
-	
-	
+
+
 	/**
 	 * Define and return editor decisions for the copyediting stage.
 	 * @return array
@@ -174,7 +210,7 @@ class EditorDecisionActionsManager {
 					'image' => 'approve'
 		)
 		);
-	
+
 		return $decisions;
 	}
 }

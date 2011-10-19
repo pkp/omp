@@ -611,7 +611,7 @@ class NotificationManager extends PKPNotificationManager {
 	 */
 	function _getEditorDecisionNotificationParameters($decision) {
 		// Access decision constants.
-		import('classes.submission.common.Action');
+		import('classes.workflow.EditorDecisionActionsManager');
 
 		switch ($decision) {
 			case SUBMISSION_EDITOR_DECISION_INITIATE_REVIEW:

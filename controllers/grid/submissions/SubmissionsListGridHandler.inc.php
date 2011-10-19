@@ -18,7 +18,8 @@ import('lib.pkp.classes.controllers.grid.GridHandler');
 // Import submissions list grid specific classes.
 import('controllers.grid.submissions.SubmissionsListGridCellProvider');
 
-import('classes.submission.common.Action');
+// Access decision actions constants.
+import('classes.workflow.EditorDecisionActionsManager');
 
 class SubmissionsListGridHandler extends GridHandler {
 

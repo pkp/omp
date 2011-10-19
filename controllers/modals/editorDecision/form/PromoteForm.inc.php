@@ -14,7 +14,8 @@
 
 import('controllers.modals.editorDecision.form.EditorDecisionWithEmailForm');
 
-import('classes.submission.common.Action');
+// Access decision actions constants.
+import('classes.workflow.EditorDecisionActionsManager');
 
 class PromoteForm extends EditorDecisionWithEmailForm {
 
@@ -26,7 +27,7 @@ class PromoteForm extends EditorDecisionWithEmailForm {
 	 * @param $reviewRound ReviewRound
 	 */
 	function PromoteForm(&$seriesEditorSubmission, $decision, $stageId, &$reviewRound = null) {
-		if (!in_array($decision, array_keys($this->_getDecisionLabels))) {
+		if (!in_array($decision, $this->_getDecisions())) {
 			fatalError('Invalid decision!');
 		}
 
@@ -44,7 +45,7 @@ class PromoteForm extends EditorDecisionWithEmailForm {
 	 * @see Form::initData()
 	 */
 	function initData($args, &$request) {
-		$actionLabels = $this->_getDecisionLabels();
+		$actionLabels = EditorDecisionActionsManager::getActionLabels($this->_getDecisions());
 
 		$seriesEditorSubmission =& $this->getSeriesEditorSubmission();
 		$this->setData('stageId', $this->getStageId());
@@ -59,18 +60,21 @@ class PromoteForm extends EditorDecisionWithEmailForm {
 		// Retrieve the submission.
 		$seriesEditorSubmission =& $this->getSeriesEditorSubmission();
 
+		// Get this form decision actions labels.
+		$actionLabels = EditorDecisionActionsManager::getActionLabels($this->_getDecisions());
+
 		// Record the decision.
 		$decision = $this->getDecision();
 		import('classes.submission.seriesEditor.SeriesEditorAction');
 		$seriesEditorAction = new SeriesEditorAction();
-		$seriesEditorAction->recordDecision($request, $seriesEditorSubmission, $decision, $this->_getDecisionLabels());
+		$seriesEditorAction->recordDecision($request, $seriesEditorSubmission, $decision, $actionLabels);
 
 		// Identify email key and status of round.
 		switch ($decision) {
 			case SUBMISSION_EDITOR_DECISION_ACCEPT:
 				$emailKey = 'EDITOR_DECISION_ACCEPT';
 				$status = REVIEW_ROUND_STATUS_ACCEPTED;
-				
+
 				$this->_updateReviewRoundStatus($seriesEditorSubmission, $status);
 
 				// Move to the editing stage.
@@ -89,7 +93,7 @@ class PromoteForm extends EditorDecisionWithEmailForm {
 						MonographFileManager::copyFileToFileStage($fileId, $revision, MONOGRAPH_FILE_FINAL, null, true);
 					}
 				}
-				
+
 				// Send email to the author.
 				$this->_sendReviewMailToAuthor($seriesEditorSubmission, $emailKey, $request);
 				break;
@@ -97,7 +101,7 @@ class PromoteForm extends EditorDecisionWithEmailForm {
 			case SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW:
 				$emailKey = 'EDITOR_DECISION_SEND_TO_EXTERNAL';
 				$status = REVIEW_ROUND_STATUS_SENT_TO_EXTERNAL;
-				
+
 				$this->_updateReviewRoundStatus($seriesEditorSubmission, $status);
 
 				// Move to the external review stage.
@@ -139,14 +143,14 @@ class PromoteForm extends EditorDecisionWithEmailForm {
 	// Private functions
 	//
 	/**
-	 * Get the associative array of decisions to decision label locale keys.
+	 * Get this form decisions.
 	 * @return array
 	 */
-	function _getDecisionLabels() {
+	function _getDecisions() {
 		return array(
-			SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW => 'editor.monograph.decision.externalReview',
-			SUBMISSION_EDITOR_DECISION_ACCEPT => 'editor.monograph.decision.accept',
-			SUBMISSION_EDITOR_DECISION_SEND_TO_PRODUCTION => 'editor.monograph.decision.sendToProduction'
+			SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW,
+			SUBMISSION_EDITOR_DECISION_ACCEPT,
+			SUBMISSION_EDITOR_DECISION_SEND_TO_PRODUCTION
 		);
 	}
 }

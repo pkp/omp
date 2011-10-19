@@ -13,7 +13,8 @@
  */
 
 
-
+// Access decision actions constants.
+import('classes.workflow.EditorDecisionActionsManager');
 import('classes.submission.common.Action');
 
 class ReviewerAction extends Action {

@@ -41,18 +41,21 @@ class NewReviewRoundForm extends EditorDecisionForm {
 		// Retrieve the submission.
 		$seriesEditorSubmission =& $this->getSeriesEditorSubmission();
 
+		// Get this form decision actions labels.
+		$actionLabels = EditorDecisionActionsManager::getActionLabels($this->_getDecisions());
+
 		// Record the decision.
 		import('classes.submission.seriesEditor.SeriesEditorAction');
 		$seriesEditorAction = new SeriesEditorAction();
-		$seriesEditorAction->recordDecision($request, $seriesEditorSubmission, SUBMISSION_EDITOR_DECISION_RESUBMIT, $this->_getDecisionLabels());
+		$seriesEditorAction->recordDecision($request, $seriesEditorSubmission, SUBMISSION_EDITOR_DECISION_RESUBMIT, $actionLabels);
 
 		// Create a new review round.
 		$newRound = $seriesEditorSubmission->getCurrentRound() + 1;
 		$this->_initiateReviewRound(
 			$seriesEditorSubmission, $seriesEditorSubmission->getStageId(),
 			$newRound, $request, REVIEW_ROUND_STATUS_PENDING_REVIEWERS
-		);		
-		
+		);
+
 		return $newRound;
 	}
 
@@ -60,17 +63,12 @@ class NewReviewRoundForm extends EditorDecisionForm {
 	// Private functions
 	//
 	/**
-	 * Get the associative array of decisions to decision label locale keys.
+	 * Get this form decisions.
 	 * @return array
 	 */
-	function _getDecisionLabels() {
+	function _getDecisions() {
 		return array(
-			SUBMISSION_EDITOR_DECISION_ACCEPT => 'editor.monograph.decision.accept',
-			SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS => 'editor.monograph.decision.pendingRevisions',
-			SUBMISSION_EDITOR_DECISION_RESUBMIT => 'editor.monograph.decision.resubmit',
-			SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW => 'editor.monograph.decision.externalReview',
-			SUBMISSION_EDITOR_DECISION_DECLINE => 'editor.monograph.decision.decline',
-			SUBMISSION_EDITOR_DECISION_SEND_TO_PRODUCTION => 'editor.monograph.decision.sendToProduction'
+			SUBMISSION_EDITOR_DECISION_RESUBMIT
 		);
 	}
 }
