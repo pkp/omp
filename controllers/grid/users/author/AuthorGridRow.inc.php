@@ -57,7 +57,7 @@ class AuthorGridRow extends GridRow {
 					'editAuthor',
 					new AjaxModal(
 						$router->url($request, null, null, 'editAuthor', null, $actionArgs),
-						__('grid.action.edit'),
+						__('grid.action.editContributor'),
 						'edit'
 					),
 					__('grid.action.edit'),

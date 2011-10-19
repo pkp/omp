@@ -61,6 +61,6 @@
 		<input type="hidden" name="rowId" value="{$rowId|escape}" />
 	{/if}
 
-	{fbvFormButtons id="step2Buttons" submitText="submission.submit.addAuthor"}
+	{fbvFormButtons id="step2Buttons" submitText="common.save"}
 </form>
 

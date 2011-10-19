@@ -32,9 +32,5 @@
 	{url|assign:chapterAuthorUrl router=$smarty.const.ROUTE_COMPONENT  component="listbuilder.users.ChapterAuthorListbuilderHandler" op="fetch" monographId=$monographId chapterId=$chapterId escape=false}
 	{load_url_in_div id="chapterAuthorContainer" url=$chapterAuthorUrl}
 
-	{if $chapterId}
-		{fbvFormButtons submitText="submission.chapter.editChapter"}
-	{else}
-		{fbvFormButtons submitText="submission.chapter.addChapter"}
-	{/if}
+	{fbvFormButtons submitText="common.save"}
 </form>
