@@ -83,7 +83,9 @@ class ChapterAuthorListbuilderHandler extends ListbuilderHandler {
 
 		// Basic configuration
 		$this->setTitle('submission.submit.addAuthor');
-		$this->setSourceType(LISTBUILDER_SOURCE_TYPE_SELECT); // Multiselect
+		$this->setSourceType(LISTBUILDER_SOURCE_TYPE_SELECT);
+		$this->setSaveType(LISTBUILDER_SAVE_TYPE_EXTERNAL);
+		$this->setSaveFieldName('authors');
 
 		// Fetch and authorize chapter
 		$chapterDao =& DAORegistry::getDAO('ChapterDAO');
@@ -92,7 +94,13 @@ class ChapterAuthorListbuilderHandler extends ListbuilderHandler {
 			$request->getUserVar('chapterId'),
 			$monograph->getId()
 		);
-		$this->setChapterId($chapter->getId());
+		if ($chapter) {
+			// This is an existing chapter
+			$this->setChapterId($chapter->getId());
+		} else {
+			// This is a new chapter
+			$this->setChapterId(null);
+		}
 
 		// Name column
 		$nameColumn = new ListbuilderGridColumn($this, 'name', 'common.name');
@@ -165,51 +173,14 @@ class ChapterAuthorListbuilderHandler extends ListbuilderHandler {
 	function loadData(&$request, $filter) {
 		$monograph =& $this->getMonograph();
 
+		// If it's a new chapter, it has no authors.
+		if (!$this->getChapterId()) return array();
+
 		// Retrieve the contributors associated with this chapter to be displayed in the grid
 		$chapterAuthorDao =& DAORegistry::getDAO('ChapterAuthorDAO');
 		$chapterAuthors =& $chapterAuthorDao->getAuthors($monograph->getId(), $this->getChapterId());
 
 		return $chapterAuthors;
-	}
-
-	//
-	// Overridden template methods
-	//
-	//
-	// Public AJAX-accessible functions
-	//
-	/**
-	 * Persist a new entry insert.
-	 * @param $request Request
-	 * @param $newRowId mixed New entry with data to persist
-	 * @return boolean
-	 */
-	function insertEntry(&$request, $newRowId) {
-		$monograph =& $this->getMonograph();
-		$monographId = $monograph->getId();
-		$chapterId = $this->getChapterId();
-		$authorId = (int) $newRowId['name'];
-
-		// Create a new chapter author.
-		$chapterAuthorDao =& DAORegistry::getDAO('ChapterAuthorDAO');
-		// FIXME: primary authors not set for chapter authors.
-		return $chapterAuthorDao->insertChapterAuthor($authorId, $chapterId, $monographId);
-	}
-
-	/**
-	 * Delete an entry.
-	 * @param $request Request
-	 * @param $rowId mixed ID of row to modify
-	 * @return boolean
-	 */
-	function deleteEntry(&$request, $rowId) {
-		$chapterId = $this->getChapterId();
-		$authorId = (int) $rowId; // this is the authorId to remove and is already an integer
-		if ($authorId) {
-			// remove the chapter author.
-			$chapterAuthorDao =& DAORegistry::getDAO('ChapterAuthorDAO');
-			return $chapterAuthorDao->deleteChapterAuthorById($authorId, $chapterId);
-		}
 	}
 }
 

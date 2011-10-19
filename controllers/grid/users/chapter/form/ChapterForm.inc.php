@@ -100,7 +100,7 @@ class ChapterForm extends Form {
 	 * @see Form::readInputData()
 	 */
 	function readInputData() {
-		$this->readUserVars(array('title'));
+		$this->readUserVars(array('title', 'authors'));
 	}
 
 	/**
@@ -125,7 +125,47 @@ class ChapterForm extends Form {
 
 		$this->setChapter($chapter);
 
+		// Save the author associations. (See insert/deleteEntry.)
+		import('lib.pkp.classes.controllers.listbuilder.ListbuilderHandler');
+		ListBuilderHandler::unpack($request, $this->getData('authors'));
+
 		return true;
+	}
+
+	/**
+	 * Persist a new author entry insert.
+	 * @param $request Request
+	 * @param $newRowId mixed New entry with data to persist
+	 * @return boolean
+	 */
+	function insertEntry(&$request, $newRowId) {
+		$monograph =& $this->getMonograph();
+		$chapter =& $this->getChapter();
+		$authorId = (int) $newRowId['name'];
+
+		// Create a new chapter author.
+		$chapterAuthorDao =& DAORegistry::getDAO('ChapterAuthorDAO');
+		// FIXME: primary authors not set for chapter authors.
+		$chapterAuthorDao->insertChapterAuthor($authorId, $chapter->getId(), $monograph->getId());
+		return true;
+	}
+
+	/**
+	 * Delete an author entry.
+	 * @param $request Request
+	 * @param $rowId mixed ID of row to modify
+	 * @return boolean
+	 */
+	function deleteEntry(&$request, $rowId) {
+		$chapter = $this->getChapter();
+		$authorId = (int) $rowId; // this is the authorId to remove and is already an integer
+		if ($authorId) {
+			// remove the chapter author.
+			$chapterAuthorDao =& DAORegistry::getDAO('ChapterAuthorDAO');
+			$chapterAuthorDao->deleteChapterAuthorById($authorId, $chapter->getId());
+			return true;
+		}
+		return false;
 	}
 }
 

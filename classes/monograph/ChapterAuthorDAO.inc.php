@@ -76,17 +76,17 @@ class ChapterAuthorDAO extends DAO {
 	 */
 	function getAuthorIdsByChapterId($chapterId, $monographId = null) {
 		$params = array((int) $chapterId);
-		if (isset($monographId)) $params[] = (int) $monographId;
-		$authorIds = array();
+		if ($monographId) $params[] = (int) $monographId;
 
-		$sql = 'SELECT author_id
+		$result =& $this->retrieve(
+			'SELECT author_id
 			FROM monograph_chapter_authors
-			WHERE chapter_id = ?';
-		if(isset($monographId)) {
-			$sql .= ' AND monograph_id = ?';
-		}
+			WHERE chapter_id = ?
+			' . ($monographId?' AND monograph_id = ?':''),
+			$params
+		);
 
-		$result =& $this->retrieve($sql, $params);
+		$authorIds = array();
 		while (!$result->EOF) {
 			$authorIds[] = $result->fields[0];
 			$result->moveNext();
@@ -105,7 +105,7 @@ class ChapterAuthorDAO extends DAO {
 	 * @return array
 	 */
 	function insertChapterAuthor($authorId, $chapterId, $monographId, $isPrimary = false, $sequence = 0) {
-	//FIXME: How to handle sequence?
+		//FIXME: How to handle sequence?
 		$this->update(
 			'INSERT INTO monograph_chapter_authors
 				(author_id, chapter_id, monograph_id, primary_contact, seq)
@@ -115,8 +115,8 @@ class ChapterAuthorDAO extends DAO {
 				(int) $authorId,
 				(int) $chapterId,
 				(int) $monographId,
-				$isPrimary,
-				$sequence
+				(int) $isPrimary,
+				(int) $sequence
 			)
 		);
 	}
@@ -127,13 +127,13 @@ class ChapterAuthorDAO extends DAO {
 	 */
 	function deleteChapterAuthorById($authorId, $chapterId = null) {
 		$params = array((int) $authorId);
-		if (isset($chapterId)) $params[] = (int) $chapterId;
+		if ($chapterId) $params[] = (int) $chapterId;
 
-		$sql = 'DELETE FROM monograph_chapter_authors WHERE author_id = ?';
-		if (isset($chapterId)) {
-			$sql .= ' AND chapter_id = ?';
-		}
-		return $this->update($sql, $params);
+		$this->update(
+			'DELETE FROM monograph_chapter_authors WHERE author_id = ?' .
+			($chapterId?' AND chapter_id = ?':''),
+			$params
+		);
 	}
 
 	/**
@@ -142,6 +142,7 @@ class ChapterAuthorDAO extends DAO {
 	 * @return Author
 	 */
 	function _returnFromRow(&$row) {
+		// Start with an Author object and copy the common elements
 		$authorDao =& DAORegistry::getDAO('AuthorDAO');
 		$author =& $authorDao->_returnAuthorFromRow($row);
 
@@ -156,7 +157,8 @@ class ChapterAuthorDAO extends DAO {
 		$chapterAuthor->setEmail($author->getEmail());
 		$chapterAuthor->setUrl($author->getUrl());
 		$chapterAuthor->setUserGroupId($author->getUserGroupId());
-		// and now the thing that is different
+
+		// Add additional data that is chapter author specific
 		$chapterAuthor->setPrimaryContact($row['primary_contact']);
 		$chapterAuthor->setSequence($row['seq']);		;
 		$chapterAuthor->setChapterId($row['chapter_id']);

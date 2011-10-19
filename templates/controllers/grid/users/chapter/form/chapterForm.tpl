@@ -18,21 +18,21 @@
 </script>
 
 <form class="pkp_form" id="editChapterForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.users.chapter.ChapterGridHandler" op="updateChapter"}">
-{include file="controllers/notification/inPlaceNotification.tpl" notificationId="editChapterFormNotification"}
+	<input type="hidden" name="monographId" value="{$monographId|escape}" />
+	<input type="hidden" name="chapterId" value="{$chapterId|escape}" />
 
-{fbvElement type="hidden" id="monographId" name="monographId" value=$monographId}
-{fbvFormSection title="common.title" for="title"}
-	{fbvElement type="text" name="title" id="title" value=$title maxlength="255" multilingual=true}
-{/fbvFormSection}
+	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="editChapterFormNotification"}
 
-<input type="hidden" name="monographId" value="{$monographId|escape}" />
+	{fbvFormSection title="common.title" for="title"}
+		{fbvElement type="text" name="title" id="title" value=$title maxlength="255" multilingual=true}
+	{/fbvFormSection}
+
+
+	<!--  Chapter Contributors -->
+	{url|assign:chapterAuthorUrl router=$smarty.const.ROUTE_COMPONENT  component="listbuilder.users.ChapterAuthorListbuilderHandler" op="fetch" monographId=$monographId chapterId=$chapterId escape=false}
+	{load_url_in_div id="chapterAuthorContainer" url=$chapterAuthorUrl}
+
 	{if $chapterId}
-		{fbvElement type="hidden" id="chapterId" name="chapterId" value=$chapterId}
-
-		{* only show the contributor list builder if the chapter already exists *}
-		<!--  Chapter Contributors -->
-		{url|assign:chapterAuthorUrl router=$smarty.const.ROUTE_COMPONENT  component="listbuilder.users.ChapterAuthorListbuilderHandler" op="fetch" monographId=$monographId chapterId=$chapterId escape=false}
-		{load_url_in_div id="chapterAuthorContainer" url=$chapterAuthorUrl}
 		{fbvFormButtons submitText="submission.chapter.editChapter"}
 	{else}
 		{fbvFormButtons submitText="submission.chapter.addChapter"}
