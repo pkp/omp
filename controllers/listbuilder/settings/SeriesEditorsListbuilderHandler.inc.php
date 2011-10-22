@@ -81,6 +81,25 @@ class SeriesEditorsListbuilderHandler extends SetupListbuilderHandler {
 	}
 
 	/**
+	 * @see GridHandler::getRowDataElement
+	 * Get the data element that corresponds to the current request
+	 * Allow for a blank $rowId for when creating a not-yet-persisted row
+	 */
+	function getRowDataElement(&$request, $rowId) {
+		// fallback on the parent if a rowId is found
+		if ( !empty($rowId) ) {
+			return parent::getRowDataElement($request, $rowId);
+		}
+
+		// Otherwise return from the $newRowId
+		$newRowId = $this->getNewRowId($request);
+		$seriesEditorId = $newRowId['name'];
+		$userDao =& DAORegistry::getDAO('UserDAO');
+		$user =& $userDao->getById($userId);
+		return $user;
+	}
+
+	/**
 	 * Preserve the series ID for internal listbuilder requests.
 	 * @see GridHandler::getRequestArgs
 	 */
@@ -94,25 +113,6 @@ class SeriesEditorsListbuilderHandler extends SetupListbuilderHandler {
 	//
 	// Overridden template methods
 	//
-	/**
-	 * Need to add additional data to the template via the fetch method
-	 * @see Form::fetch()
-	 * @param $args array
-	 * @param $request PKPRequest
-	 */
-	function fetch($args, &$request) {
-		$router =& $request->getRouter();
-
-		$seriesId = $request->getUserVar('seriesId');
-		$additionalVars = array('itemId' => $seriesId,
-			'addUrl' => $router->url($request, array(), null, 'addItem', null, array('seriesId' => $seriesId)),
-			'deleteUrl' => $router->url($request, array(), null, 'deleteItems', null, array('seriesId' => $seriesId)),
-			'autocompleteUrl' => $router->url($request, array(), null, 'getAutocompleteSource')
-		);
-
-		return parent::fetch($args, $request, $additionalVars);
-	}
-
 	/**
 	 * Configure the grid
 	 * @param PKPRequest $request
@@ -133,42 +133,9 @@ class SeriesEditorsListbuilderHandler extends SetupListbuilderHandler {
 		$nameColumn = new ListbuilderGridColumn($this, 'name', 'common.name');
 
 		// We can reuse the User cell provider because getFullName
-		import('controllers.listbuilder.users/UserListbuilderGridCellProvider');
+		import('controllers.listbuilder.users.UserListbuilderGridCellProvider');
 		$nameColumn->setCellProvider(new UserListbuilderGridCellProvider());
 		$this->addColumn($nameColumn);
-	}
-
-	//
-	// Public AJAX-accessible functions
-	//
-
-	/**
-	 * Fetch either a block of data for local autocomplete, or return a URL to another function for AJAX autocomplete
-	 * @param $args array
-	 * @param $request PKPRequest
-	 */
-	function getAutocompleteSource($args, &$request) {
-		//FIXME: add validation here?
-		$this->setupTemplate();
-
-		$sourceArray = $this->getPossibleItemList($request);
-
-		$sourceJson = new JSONMessage(true, null, 'local');
-		$sourceContent = array();
-		foreach ($sourceArray as $id => $item) {
-			// The autocomplete code requires the JSON data to use 'label' as the array key for labels, and 'value' for the id
-			$additionalAttributes = array(
-				'label' =>  sprintf('%s (%s)', $item['name'], $item['abbrev']),
-				'value' => $id
-			);
-			$itemJson = new JSONMessage(true, '', null, $additionalAttributes);
-			$sourceContent[] = $itemJson->getString();
-
-			unset($itemJson);
-		}
-		$sourceJson->setContent('[' . implode(',', $sourceContent) . ']');
-
-		echo $sourceJson->getString();
 	}
 }
 

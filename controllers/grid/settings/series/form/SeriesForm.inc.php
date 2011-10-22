@@ -60,7 +60,6 @@ class SeriesForm extends Form {
 				'seriesId' => $seriesId,
 				'title' => $series->getTitle(null),
 				'categories' => $categories,
-				'categoryId' => $series->getCategoryId(),
 				'description' => $series->getDescription(null),
 				'featured' => $series->getFeatured()
 			);
@@ -110,7 +109,6 @@ class SeriesForm extends Form {
 		}
 
 		// Populate/update the series object from the form
-		$series->setCategoryId($this->getData('categoryId'));
 		$series->setTitle($this->getData('title'), null); // Localized
 		$series->setDescription($this->getData('description'), null); // Localized
 		$series->setFeatured($this->getData('featured'));
@@ -124,7 +122,12 @@ class SeriesForm extends Form {
 
 		// Save the series editor associations. (See insert/deleteEntry.)
 		import('lib.pkp.classes.controllers.listbuilder.ListbuilderHandler');
-		ListBuilderHandler::unpack($request, $this->getData('seriesEditors'));
+		ListBuilderHandler::unpack(
+			$request,
+			$this->getData('seriesEditors'),
+			array(&$this, 'deleteSeriesEditorEntry'),
+			array(&$this, 'insertSeriesEditorEntry')
+		);
 
 		return true;
 	}
@@ -149,7 +152,7 @@ class SeriesForm extends Form {
 	 * Persist a signoff insertion
 	 * @see ListbuilderHandler::insertEntry
 	 */
-	function insertEntry(&$request, $newRowId) {
+	function insertSeriesEditorEntry(&$request, $newRowId) {
 		$press =& $request->getPress();
 		$seriesId = $this->getSeriesId();
 		$userId = array_shift($newRowId);
@@ -172,7 +175,7 @@ class SeriesForm extends Form {
 	 * @param $request PKPRequest
 	 * @param $rowId int
 	 */
-	function deleteEntry(&$request, $rowId) {
+	function deleteSeriesEditorEntry(&$request, $rowId) {
 		$seriesEditorsDao =& DAORegistry::getDAO('SeriesEditorsDAO');
 		$press =& $request->getPress();
 

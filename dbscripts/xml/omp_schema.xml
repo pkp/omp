@@ -86,10 +86,6 @@
 		<field name="press_id" type="I8">
 			<NOTNULL/>
 		</field>
-		<field name="category_id" type="I1">
-			<NOTNULL/>
-			<DEFAULT VALUE="0"/>
-		</field>
 		<field name="featured" type="I1">
 			<NOTNULL/>
 			<DEFAULT VALUE="0"/>
@@ -127,6 +123,26 @@
 			<col>locale</col>
 			<col>setting_name</col>
 			<UNIQUE />
+		</index>
+	</table>
+
+	<!--
+	  *
+	  * TABLE series_categories
+	  *
+	  -->
+	<table name="series_categories">
+		<field name="series_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="category_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<descr>Associations for categories within a series.</descr>
+		<index name="series_categories_id">
+			<col>series_id</col>
+			<col>category_id</col>
+			<UNIQUE/>
 		</index>
 	</table>
 

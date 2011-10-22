@@ -30,13 +30,16 @@
 		 	{fbvElement type="textarea" multilingual="true" id="description" value=$description maxlength="80"}
 		{/fbvFormSection}
 
-		{fbvFormSection title="manager.setup.category" for="context" inline="true" size=$fbvStyles.size.MEDIUM}
-			{fbvElement type="select" id="categoryId" from=$categories selected=$categoryId translate=false}
+		<input type="hidden" name="seriesId" value="{$seriesId|escape}"/>
+		{fbvFormSection for="context" inline="true" size=$fbvStyles.size.MEDIUM}
+			<div id="seriesCategoriesContainer">
+				{url|assign:seriesCategoriesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.CategoriesListbuilderHandler" op="fetch" seriesId=$seriesId}
+				{load_url_in_div id="seriesCategoriesContainer" url=$seriesCategoriesUrl}
+			</div>
 		{/fbvFormSection}
 
 		{fbvFormSection for="context" inline="true" size=$fbvStyles.size.MEDIUM}
 			<div id="seriesEditorsContainer">
-				<input type="hidden" name="seriesId" value="{$seriesId|escape}"/>
 				{url|assign:seriesEditorsUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.SeriesEditorsListbuilderHandler" op="fetch" seriesId=$seriesId}
 				{load_url_in_div id="seriesEditorsContainer" url=$seriesEditorsUrl}
 			</div>

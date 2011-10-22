@@ -66,22 +66,6 @@ class Series extends DataObject {
 	}
 
 	/**
-	 * Get series category ID.
-	 * @return int
-	 */
-	function getCategoryId() {
-		return $this->getData('categoryId');
-	}
-
-	/**
-	 * Set series category ID.
-	 * @return int
-	 */
-	function setCategoryId($value) {
-		$this->setData('categoryId', $value);
-	}
-
-	/**
 	 * Get series description.
 	 * @return string
 	 */

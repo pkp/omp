@@ -58,13 +58,16 @@ class SeriesGridHandler extends SetupGridHandler {
 
 		$gridData = array();
 		while ($series =& $seriesIterator->next()) {
-			$category = $categoryDao->getById($series->getCategoryId(), $press->getId());
-			if ($category) {
-				$categoryTitle = $category->getLocalizedTitle();
-			} else {
-				$categoryTitle = __('common.none');
+			// Get the categories data for the row
+			$categories = $seriesDao->getCategories($series->getId(), $press->getId());
+			while ($category =& $categories->next()) {
+				if (!empty($categoriesString)) $categoriesString .= ', ';
+				$categoriesString .= $category->getLocalizedTitle();
+				unset($category);
 			}
+			if (empty($categoryString)) $categoryString = __('common.none');
 
+			// Get the series editors dta for the row
 			$assignedSeriesEditors =& $seriesEditorsDao->getEditorsBySeriesId($series->getId(), $press->getId());
 			if(empty($assignedSeriesEditors)) {
 				$editorsString = __('common.none');

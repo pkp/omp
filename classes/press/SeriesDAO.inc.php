@@ -63,7 +63,6 @@ class SeriesDAO extends DAO {
 
 		$series->setId($row['series_id']);
 		$series->setPressId($row['press_id']);
-		$series->setCategoryId($row['category_id']);
 		$series->setFeatured($row['featured']);
 
 		$this->getDataObjectSettings('series_settings', 'series_id', $row['series_id'], $series);
@@ -100,12 +99,11 @@ class SeriesDAO extends DAO {
 	function insertObject(&$series) {
 		$this->update(
 			'INSERT INTO series
-				(press_id, category_id, featured)
+				(press_id, featured)
 			VALUES
 				(?, ?, ?)',
 			array(
 				$series->getPressId(),
-				$series->getCategoryId(),
 				$series->getFeatured()
 			)
 		);
@@ -123,12 +121,10 @@ class SeriesDAO extends DAO {
 		$returner = $this->update(
 			'UPDATE series
 			SET	press_id = ?,
-				category_id = ?,
 				featured = ?
 			WHERE	series_id = ?',
 			array(
 				$series->getPressId(),
-				$series->getCategoryId(),
 				$series->getFeatured(),
 				$series->getId()
 			)
@@ -278,6 +274,92 @@ class SeriesDAO extends DAO {
 	 */
 	function getInsertSeriesId() {
 		return $this->getInsertId('series', 'series_id');
+	}
+
+	/**
+	 * Associate a category with a series.
+	 * @param $seriesId int
+	 * @param $categoryId int
+	 */
+	function addCategory($seriesId, $categoryId) {
+		$this->update(
+			'INSERT INTO series_categories
+				(series_id, category_id)
+			VALUES
+				(?, ?)',
+			array(
+				(int) $seriesId,
+				(int) $categoryId
+			)
+		);
+	}
+
+	/**
+	 * Unassociate a category with a series.
+	 * @param $seriesId int
+	 * @param $categoryId int
+	 */
+	function removeCategory($seriesId, $categoryId) {
+		$this->update(
+			'DELETE FROM series_categories WHERE series_id = ? AND category_id = ?',
+			array(
+				(int) $seriesId,
+				(int) $categoryId
+			)
+		);
+	}
+
+	/**
+	 * Get the categories associated with a given series.
+	 * @param $seriesId int
+	 * @return DAOResultFactory
+	 */
+	function getCategories($seriesId, $pressId = null) {
+		$params = array((int) $seriesId);
+		if ($pressId) $params[] = (int) $pressId;
+
+		$categoryDao =& DAORegistry::getDAO('CategoryDAO');
+		$result =& $this->retrieve(
+			'SELECT	c.*
+			FROM	categories c,
+				series_categories sc,
+				series s
+			WHERE	c.category_id = sc.category_id AND
+				s.series_id = sc.series_id AND
+			' . ($pressId?' c.press_id = s.press_id AND s.press_id = ? AND':'') . '
+				s.series_id = ?',
+			$params
+		);
+
+		// Delegate category creation to the category DAO.
+		$returner = new DAOResultFactory($result, $categoryDao, '_fromRow');
+		return $returner;
+	}
+
+	/**
+	 * Get the categories not associated with a given series.
+	 * @param $seriesId int
+	 * @return DAOResultFactory
+	 */
+	function getUnassignedCategories($seriesId, $pressId = null) {
+		$params = array((int) $seriesId);
+		if ($pressId) $params[] = (int) $pressId;
+
+		$categoryDao =& DAORegistry::getDAO('CategoryDAO');
+		$result =& $this->retrieve(
+			'SELECT	c.*
+			FROM	series s
+				JOIN categories c ON (c.press_id = s.press_id)
+				LEFT JOIN series_categories sc ON (s.series_id = sc.series_id AND sc.category_id = c.category_id)
+			WHERE	s.series_id = ? AND
+				' . ($pressId?' s.press_id = ? AND':'') . '
+				sc.series_id IS NULL',
+			$params
+		);
+
+		// Delegate category creation to the category DAO.
+		$returner = new DAOResultFactory($result, $categoryDao, '_fromRow');
+		return $returner;
 	}
 }
 
