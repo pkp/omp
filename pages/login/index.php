@@ -16,7 +16,6 @@
  */
 
 
-
 switch ($op) {
 	case 'signInAsUser':
 	case 'signOutAsUser':

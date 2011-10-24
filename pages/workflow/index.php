@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @defgroup pages_review
+ * @defgroup pages_workflow
  */
 
 /**
@@ -10,8 +10,8 @@
  * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @ingroup pages_review
- * @brief Handle requests for review functions.
+ * @ingroup pages_workflow
+ * @brief Handle requests for workflow functions.
  *
  */
 
