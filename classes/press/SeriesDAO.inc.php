@@ -325,9 +325,9 @@ class SeriesDAO extends DAO {
 				series_categories sc,
 				series s
 			WHERE	c.category_id = sc.category_id AND
-				s.series_id = sc.series_id AND
+				s.series_id = ? AND
 			' . ($pressId?' c.press_id = s.press_id AND s.press_id = ? AND':'') . '
-				s.series_id = ?',
+				s.series_id = sc.series_id',
 			$params
 		);
 
@@ -361,6 +361,26 @@ class SeriesDAO extends DAO {
 		$returner = new DAOResultFactory($result, $categoryDao, '_fromRow');
 		return $returner;
 	}
+
+	/**
+	 * Check if an series exists with the specified ID.
+	 * @param $seriesId int
+	 * @param $pressId int
+	 * @return boolean
+	 */
+	function categoryAssociationExists($seriesId, $categoryId) {
+		$result =& $this->retrieve(
+			'SELECT COUNT(*) FROM series_categories WHERE series_id = ? AND category_id = ?',
+			array((int) $seriesId, (int) $categoryId)
+		);
+		$returner = isset($result->fields[0]) && $result->fields[0] == 1 ? true : false;
+
+		$result->Close();
+		unset($result);
+
+		return $returner;
+	}
+
 }
 
 ?>

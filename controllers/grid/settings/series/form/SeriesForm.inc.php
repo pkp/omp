@@ -39,17 +39,7 @@ class SeriesForm extends Form {
 	function initData($args, &$request) {
 		$press =& $request->getPress();
 
-		$categoryDao =& DAORegistry::getDAO('CategoryDAO');
 		$seriesDao =& DAORegistry::getDAO('SeriesDAO');
-
-		$categoryIterator =& $categoryDao->getByPressId($press->getId());
-
-		$categories = array(0 => __('common.none'));
-		while ($category =& $categoryIterator->next()) {
-			$categories[$category->getId()] = $category->getLocalizedTitle();
-			unset($category);
-		}
-
 		$seriesId = $this->getSeriesId();
 		if ($seriesId) {
 			$series =& $seriesDao->getById($seriesId, $press->getId());
@@ -59,13 +49,8 @@ class SeriesForm extends Form {
 			$this->_data = array(
 				'seriesId' => $seriesId,
 				'title' => $series->getTitle(null),
-				'categories' => $categories,
 				'description' => $series->getDescription(null),
 				'featured' => $series->getFeatured()
-			);
-		} else {
-			$this->_data = array(
-				'categories' => $categories
 			);
 		}
 	}
@@ -87,7 +72,7 @@ class SeriesForm extends Form {
 	 * @see Form::readInputData()
 	 */
 	function readInputData() {
-		$this->readUserVars(array('seriesId', 'title', 'categoryId', 'description', 'featured', 'seriesEditors'));
+		$this->readUserVars(array('seriesId', 'title', 'description', 'featured', 'seriesEditors', 'categories'));
 	}
 
 	/**
@@ -120,13 +105,21 @@ class SeriesForm extends Form {
 			$this->setSeriesId($seriesDao->insertObject($series));
 		}
 
-		// Save the series editor associations. (See insert/deleteEntry.)
 		import('lib.pkp.classes.controllers.listbuilder.ListbuilderHandler');
+		// Save the series editor associations.
 		ListBuilderHandler::unpack(
 			$request,
 			$this->getData('seriesEditors'),
 			array(&$this, 'deleteSeriesEditorEntry'),
 			array(&$this, 'insertSeriesEditorEntry')
+		);
+
+		// Save the category associations.
+		ListBuilderHandler::unpack(
+			$request,
+			$this->getData('categories'),
+			array(&$this, 'deleteCategoryEntry'),
+			array(&$this, 'insertCategoryEntry')
 		);
 
 		return true;
@@ -149,7 +142,7 @@ class SeriesForm extends Form {
 	}
 
 	/**
-	 * Persist a signoff insertion
+	 * Persist a series editor association
 	 * @see ListbuilderHandler::insertEntry
 	 */
 	function insertSeriesEditorEntry(&$request, $newRowId) {
@@ -180,6 +173,41 @@ class SeriesForm extends Form {
 		$press =& $request->getPress();
 
 		$seriesEditorsDao->deleteEditor($press->getId(), $this->getSeriesId(), $rowId);
+		return true;
+	}
+
+	/**
+	 * Persist a category association
+	 * @see ListbuilderHandler::insertEntry
+	 */
+	function insertCategoryEntry(&$request, $newRowId) {
+		$press =& $request->getPress();
+		$seriesId = $this->getSeriesId();
+		$categoryId = array_shift($newRowId);
+
+		$seriesDao =& DAORegistry::getDAO('SeriesDAO');
+
+		// Make sure the membership doesn't already exist
+		if ($seriesDao->categoryAssociationExists($this->getSeriesId(), $categoryId)) {
+			return false;
+		}
+
+		// Otherwise, insert the row.
+		$seriesDao->addCategory($this->getSeriesId(), $categoryId);
+		return true;
+	}
+
+	/**
+	 * Delete a category association with this series.
+	 * @see ListbuilderHandler::deleteEntry
+	 * @param $request PKPRequest
+	 * @param $rowId int
+	 */
+	function deleteCategoryEntry(&$request, $rowId) {
+		$seriesDao =& DAORegistry::getDAO('SeriesDAO');
+		$press =& $request->getPress();
+
+		$seriesDao->removeCategory($this->getSeriesId(), $rowId);
 		return true;
 	}
 }

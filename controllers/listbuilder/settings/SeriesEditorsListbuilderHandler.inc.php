@@ -95,7 +95,7 @@ class SeriesEditorsListbuilderHandler extends SetupListbuilderHandler {
 		$newRowId = $this->getNewRowId($request);
 		$seriesEditorId = $newRowId['name'];
 		$userDao =& DAORegistry::getDAO('UserDAO');
-		$user =& $userDao->getById($userId);
+		$user =& $userDao->getUser($seriesEditorId);
 		return $user;
 	}
 

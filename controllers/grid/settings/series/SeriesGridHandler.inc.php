@@ -65,7 +65,7 @@ class SeriesGridHandler extends SetupGridHandler {
 				$categoriesString .= $category->getLocalizedTitle();
 				unset($category);
 			}
-			if (empty($categoryString)) $categoryString = __('common.none');
+			if (empty($categoriesString)) $categoriesString = __('common.none');
 
 			// Get the series editors dta for the row
 			$assignedSeriesEditors =& $seriesEditorsDao->getEditorsBySeriesId($series->getId(), $press->getId());
@@ -83,7 +83,7 @@ class SeriesGridHandler extends SetupGridHandler {
 			$seriesId = $series->getId();
 			$gridData[$seriesId] = array(
 				'title' => $series->getLocalizedTitle(),
-				'category' => $categoryTitle,
+				'categories' => $categoriesString,
 				'editors' => $editorsString
 			);
 			unset($series);
@@ -118,7 +118,7 @@ class SeriesGridHandler extends SetupGridHandler {
 				'controllers/grid/gridCell.tpl'
 			)
 		);
-		$this->addColumn(new GridColumn('category', 'manager.setup.category'));
+		$this->addColumn(new GridColumn('categories', 'grid.category.categories'));
 		$this->addColumn(new GridColumn('editors', 'user.role.editors'));
 	}
 
