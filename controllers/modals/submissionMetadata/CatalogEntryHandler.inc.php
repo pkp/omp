@@ -44,6 +44,20 @@ class CatalogEntryHandler extends SubmissionMetadataHandler {
 		$this->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', $stageId));
 		return parent::authorize($request, $args, $roleAssignments);
 	}
+
+
+	//
+	// Extend methods from SubmissionMetadataHandler
+	//
+	/**
+	 * Get an instance of the metadata form to be used by this handler.
+	 * @param $monographId int
+	 * @return Form
+	 */
+	function getFormInstance($monographId, $stageId = null, $params = null) {
+		import('controllers.modals.submissionMetadata.form.CatalogEntryForm');
+		return new CatalogEntryForm($monographId, $stageId, $params);
+	}
 }
 
 ?>

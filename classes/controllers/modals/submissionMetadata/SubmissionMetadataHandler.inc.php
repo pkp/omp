@@ -55,8 +55,8 @@ class SubmissionMetadataHandler extends Handler {
 		$stageId = $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
 
 		// Form handling
-		import('controllers.modals.submissionMetadata.form.SubmissionMetadataViewForm');
-		$submissionMetadataViewForm = new SubmissionMetadataViewForm($monograph->getId(), $stageId, $params);
+		$submissionMetadataViewForm = $this->getFormInstance($monograph->getId(), $stageId, $params);
+
 		$submissionMetadataViewForm->initData($args, $request);
 
 		$json = new JSONMessage(true, $submissionMetadataViewForm->fetch($request));
@@ -72,8 +72,7 @@ class SubmissionMetadataHandler extends Handler {
 		$monographId = $request->getUserVar('monographId');
 
 		// Form handling
-		import('controllers.modals.submissionMetadata.form.SubmissionMetadataViewForm');
-		$submissionMetadataViewForm = new SubmissionMetadataViewForm($monographId);
+		$submissionMetadataViewForm = $this->getFormInstance($monographId);
 
 		$json = new JSONMessage();
 
@@ -90,6 +89,16 @@ class SubmissionMetadataHandler extends Handler {
 		}
 
 		return $json->getString();
+	}
+
+	/**
+	 * Get an instance of the metadata form to be used by this handler.
+	 * @param $monographId int
+	 * @return Form
+	 */
+	function getFormInstance($monographId, $stageId = null, $params = null) {
+		import('controllers.modals.submissionMetadata.form.CatalogEntryForm');
+		return new CatalogEntryForm($monographId, $stageId, $params);
 	}
 }
 

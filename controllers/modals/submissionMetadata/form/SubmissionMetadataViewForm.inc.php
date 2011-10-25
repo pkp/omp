@@ -108,6 +108,11 @@ class SubmissionMetadataViewForm extends Form {
 		$this->_metadataFormImplem->initData($this->getMonograph());
 	}
 
+	/**
+	 * Fetch the HTML contents of the form.
+	 * @param $request PKPRequest
+	 * return string
+	 */
 	function fetch(&$request) {
 		$monograph =& $this->getMonograph();
 

@@ -45,10 +45,12 @@ class SubmissionMetadataFormImplementation {
 		$this->_parentForm->addCheck(new FormValidatorLocale($this->_parentForm, 'title', 'required', 'submission.submit.form.titleRequired'));
 		// Validates that at least one author has been added (note that authors are in grid, so Form does not
 		// directly see the authors value (there is no "authors" input. Hence the $ignore parameter.
-		$this->_parentForm->addCheck(new FormValidatorCustom($this->_parentForm, 'authors', 'required', 'submission.submit.form.authorRequired',
-						// The first parameter is ignored. This
-						create_function('$ignore, $monograph', 'return count($monograph->getAuthors()) > 0;'),
-							array($monograph)));
+		$this->_parentForm->addCheck(new FormValidatorCustom(
+			$this->_parentForm, 'authors', 'required', 'submission.submit.form.authorRequired',
+			// The first parameter is ignored. This
+			create_function('$ignore, $monograph', 'return count($monograph->getAuthors()) > 0;'),
+			array($monograph)
+		));
 	}
 
 	/**
