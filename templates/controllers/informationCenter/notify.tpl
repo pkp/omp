@@ -30,7 +30,7 @@
 			{fbvFormSection title="informationCenter.notify.message" for="message" required="true"}
 				{fbvElement type="textarea" id="message"}
 			{/fbvFormSection}
-			{fbvFormButtons id="notifyButton" hideCancel=true submitText="common.notify"}
+			{fbvFormButtons id="notifyButton" hideCancel=true submitText="submission.informationCenter.notify"}
 		{/fbvFormArea}
 	</form>
 </div>

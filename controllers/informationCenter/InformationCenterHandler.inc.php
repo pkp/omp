@@ -30,6 +30,7 @@ class InformationCenterHandler extends Handler {
 			array(ROLE_ID_AUTHOR),
 			$authorOps = array(
 				'viewInformationCenter', // Information Center
+				'metadata', 'saveForm', // Metadata
 				'viewNotes', 'listNotes', 'saveNote', // Notes
 				'viewNotify', 'sendNotification', // Notify tab
 				'viewHistory' // History tab
@@ -41,6 +42,8 @@ class InformationCenterHandler extends Handler {
 				'deleteNote' // Notes tab
 			))
 		);
+
+		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_SUBMISSION));
 	}
 
 
@@ -65,11 +68,29 @@ class InformationCenterHandler extends Handler {
 	//
 	/**
 	 * Display the main information center modal.
-	 * NB: sub-classes must implement this method.
+	 * @param $request PKPRequest
+	 */
+	function viewInformationCenter(&$request) {
+		$this->setupTemplate($request);
+		$templateMgr =& TemplateManager::getManager();
+		return $templateMgr->fetchJson('controllers/informationCenter/informationCenter.tpl');
+	}
+
+	/**
+	 * Display the metadata tab.
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function viewInformationCenter($args, &$request) {
+	function metadata($args, &$request) {
+		assert(false);
+	}
+
+	/**
+	 * Save the metadata tab.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 */
+	function saveForm($args, &$request) {
 		assert(false);
 	}
 

@@ -31,13 +31,17 @@ class WorkflowViewMetadataLinkAction extends LinkAction {
 		import('lib.pkp.classes.linkAction.request.AjaxModal');
 
 		$modal = new AjaxModal(
-				$dispatcher->url($request, ROUTE_COMPONENT, null,
-						'modals.submissionMetadata.SubmissionDetailsSubmissionMetadataHandler',
-						'fetch', null, array(
-							'monographId' => $monographId,
-							'stageId' => $stageId,
-							'readOnly' => $readOnly)),
-				__('submission.viewMetadata'));
+			$dispatcher->url($request, ROUTE_COMPONENT, null,
+				'modals.submissionMetadata.SubmissionDetailsSubmissionMetadataHandler',
+				'fetch', null,
+				array(
+					'monographId' => $monographId,
+					'stageId' => $stageId,
+					'readOnly' => $readOnly
+				)
+			),
+			__('submission.viewMetadata')
+		);
 
 		// Configure the link action.
 		parent::LinkAction('viewMetadata', $modal, __('submission.viewMetadata'), 'information');

@@ -2,7 +2,7 @@
 <!DOCTYPE locale SYSTEM "../../lib/pkp/dtd/locale.dtd">
 
 <!--
-  * author.xml
+  * locale/en_US/submission.xml
   *
   * Copyright (c) 2003-2011 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -147,4 +147,13 @@
 	<!-- Copyediting Grid -->
 	<message key="grid.copyediting.deleteCopyeditorResponse">Delete Copyeditor Upload</message>
 	<message key="grid.copyediting.deleteSignoff">Unassign User</message>
+
+	<!-- Submission-specific catalog info -->
+	<message key="submission.catalogEntry">Catalog Entry</message>
+
+	<!-- Information Center -->
+	<message key="submission.informationCenter.metadata">Metadata</message>
+	<message key="submission.informationCenter.notes">Notes</message>
+	<message key="submission.informationCenter.notify">Notify</message>
+	<message key="submission.informationCenter.history">History</message>
 </locale>

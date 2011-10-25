@@ -123,7 +123,6 @@ class SubmissionMetadataViewForm extends Form {
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
-
 		$this->_metadataFormImplem->readInputData();
 	}
 

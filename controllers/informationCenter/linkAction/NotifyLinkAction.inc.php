@@ -38,13 +38,13 @@ class NotifyLinkAction extends LinkAction {
 				'informationCenter.SubmissionInformationCenterHandler', 'viewInformationCenter',
 				null, $requestArgs
 			),
-			__('common.notify')
+			__('submission.informationCenter.notify')
 		);
 
 		// Configure the file link action.
 		parent::LinkAction(
 			'notify', $ajaxModal,
-			__('common.notify'), 'notify'
+			__('submission.informationCenter.notify'), 'notify'
 		);
 	}
 }

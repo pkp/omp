@@ -25,8 +25,11 @@
 
 <div id="informationCenter" class="pkp_controllers_informationCenter">
 	<ul>
-		<li><a href="{url op="viewNotes" params=$linkParams}">{translate key="common.notes"}</a></li>
-		<li><a href="{url op="viewNotify" params=$linkParams}">{translate key="common.notify"}</a></li>
-		<li><a href="{url op="viewHistory" params=$linkParams}">{translate key="informationCenter.history"}</a></li>
+		{if $showMetadataLink}
+			<li><a href="{url op="metadata" params=$linkParams}">{translate key="submission.informationCenter.metadata"}</a></li>
+		{/if}
+		<li><a href="{url op="viewNotes" params=$linkParams}">{translate key="submission.informationCenter.notes"}</a></li>
+		<li><a href="{url op="viewNotify" params=$linkParams}">{translate key="submission.informationCenter.notify"}</a></li>
+		<li><a href="{url op="viewHistory" params=$linkParams}">{translate key="submission.informationCenter.history"}</a></li>
 	</ul>
 </div>

@@ -52,8 +52,6 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 	 * @param $request PKPRequest
 	 */
 	function viewInformationCenter($args, &$request) {
-		$this->setupTemplate($request);
-
 		// Get the latest history item to display in the header
 		$monographEventLogDao =& DAORegistry::getDAO('MonographFileEventLogDAO');
 		$fileEvents =& $monographEventLogDao->getByFileId($this->monographFile->getFileId());
@@ -74,7 +72,7 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 			$templateMgr->assign_by_ref('lastEventUser', $user);
 		}
 
-		return $templateMgr->fetchJson('controllers/informationCenter/informationCenter.tpl');
+		parent::viewInformationCenter($request);
 	}
 
 	/**

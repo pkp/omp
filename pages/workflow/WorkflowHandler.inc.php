@@ -99,10 +99,10 @@ class WorkflowHandler extends Handler {
 		$templateMgr->assign('workflowNotificationRequestOptions', $notificationRequestOptions);
 
 		$dispatcher =& $request->getDispatcher();
-		import('controllers/modals/submissionMetadata/linkAction/WorkflowViewMetadataLinkAction');
-		$editMetadataAction = new WorkflowViewMetadataLinkAction($request, $monograph->getId(), $stageId);
+		import('controllers/modals/submissionMetadata/linkAction/CatalogEntryLinkAction');
+		$catalogEntryAction = new CatalogEntryLinkAction($request, $monograph->getId());
 
-		$templateMgr->assign_by_ref('editMetadataAction', $editMetadataAction);
+		$templateMgr->assign_by_ref('catalogEntryAction', $catalogEntryAction);
 
 		$submissionInformationCentreAction = new LinkAction(
 			'informationCentre',

@@ -2,7 +2,7 @@
 <!DOCTYPE locale SYSTEM "../../lib/pkp/dtd/locale.dtd">
 
 <!--
-  * locale.xml
+  * locale/en_US/locale.xml
   *
   * Copyright (c) 2003-2011 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -196,7 +196,6 @@ current password.<br /><br />Enter your email address below to reset your passwo
 
 	<!-- Information Center -->
 	<message key="informationCenter.informationCenter">Information Center</message>
-	<message key="informationCenter.history">History</message>
 	<message key="informationCenter.postNote">Post Note</message>
 	<message key="informationCenter.noNotes">There are no notes to display.</message>
 	<message key="informationCenter.lastUpdated">Last Updated</message>

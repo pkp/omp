@@ -42,13 +42,55 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 	}
 
 	/**
+	 * Display the metadata tab.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 */
+	function metadata($args, &$request) {
+		$this->setupTemplate($request);
+
+		import('controllers.modals.submissionMetadata.form.SubmissionMetadataViewForm');
+		$submissionMetadataViewForm = new SubmissionMetadataViewForm($this->_monograph->getId());
+		$submissionMetadataViewForm->initData();
+
+		$json = new JSONMessage(true, $submissionMetadataViewForm->fetch($request));
+		return $json->getString();
+	}
+
+	/**
+	 * Save the metadata tab.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 */
+	function saveForm($args, &$request) {
+		$this->setupTemplate($request);
+
+		import('controllers.modals.submissionMetadata.form.SubmissionMetadataViewForm');
+		$submissionMetadataViewForm = new SubmissionMetadataViewForm($this->_monograph->getId());
+
+		$json = new JSONMessage();
+
+		// Try to save the form data.
+		$submissionMetadataViewForm->readInputData($request);
+		if($submissionMetadataViewForm->validate()) {
+			$submissionMetadataViewForm->execute($request);
+			// Create trivial notification.
+			$notificationManager = new NotificationManager();
+			$user =& $request->getUser();
+			$notificationManager->createTrivialNotification($user->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.savedSubmissionMetadata')));
+		} else {
+			$json->setStatus(false);
+		}
+
+		return $json->getString();
+	}
+
+	/**
 	 * Display the main information center modal.
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
 	function viewInformationCenter($args, &$request) {
-		$this->setupTemplate($request);
-
 		// Get the latest history item to display in the header
 		$monographEventLogDao =& DAORegistry::getDAO('MonographEventLogDAO');
 		$monographEvents =& $monographEventLogDao->getByMonographId($this->_monograph->getId());
@@ -65,7 +107,9 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 			$templateMgr->assign_by_ref('lastEventUser', $user);
 		}
 
-		return $templateMgr->fetchJson('controllers/informationCenter/informationCenter.tpl');
+		$templateMgr->assign('showMetadataLink', true);
+
+		return parent::viewInformationCenter($request);
 	}
 
 	/**

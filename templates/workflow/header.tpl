@@ -28,7 +28,7 @@
 	</div>
 	<div style="float:right;">
 		<ul class="submission_actions pkp_helpers_flatlist">
-			<li>{include file="linkAction/linkAction.tpl" action=$editMetadataAction}</li>
+			<li>{include file="linkAction/linkAction.tpl" action=$catalogEntryAction}</li>
 			<li>{include file="linkAction/linkAction.tpl" action=$submissionInformationCentreAction}</li>
 			<li class="participants"><a href="#" id="participantToggle" class="sprite participants">{translate key="editor.monograph.stageParticipants"}</a></li>
 		</ul>

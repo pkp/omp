@@ -31,7 +31,7 @@ class FileNotesLinkAction extends FileLinkAction {
 				'informationCenter.FileInformationCenterHandler', 'viewInformationCenter',
 				null, $this->getActionArgs($monographFile)
 			),
-			__('common.notes')
+			__('submission.informationCenter.notes')
 		);
 
 		// Configure the file link action.

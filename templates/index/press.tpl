@@ -16,13 +16,15 @@
 {call_hook name="Templates::Index::press"}
 
 {if $homepageImage}
-<br />
-<div id="homepageImage"><img src="{$publicFilesDir}/{$homepageImage.uploadName|escape:"url"}" width="{$homepageImage.width|escape}" height="{$homepageImage.height|escape}" {if $homepageImage.altText != ''}alt="{$homepageImage.altText|escape}"{else}alt="{translate key="common.pressHomepageImage.altText"}"{/if} /></div>
+	<br />
+	<div id="homepageImage">
+		<img src="{$publicFilesDir}/{$homepageImage.uploadName|escape:"url"}" width="{$homepageImage.width|escape}" height="{$homepageImage.height|escape}" {if $homepageImage.altText != ''}alt="{$homepageImage.altText|escape}"{else}alt="{translate key="common.pressHomepageImage.altText"}"{/if} />
+	</div>
 {/if}
 
 {if $additionalHomeContent}
-<br />
-{$additionalHomeContent}
+	<br />
+	{$additionalHomeContent}
 {/if}
 
 {if $enableAnnouncementsHomepage}
