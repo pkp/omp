@@ -27,7 +27,8 @@ class CatalogEntryLinkAction extends LinkAction {
 		import('lib.pkp.classes.linkAction.request.AjaxModal');
 
 		$modal = new AjaxModal(
-			$dispatcher->url($request, ROUTE_COMPONENT, null,
+			$dispatcher->url(
+				$request, ROUTE_COMPONENT, null,
 				'modals.submissionMetadata.CatalogEntryHandler',
 				'fetch', null,
 				array(
@@ -35,7 +36,7 @@ class CatalogEntryLinkAction extends LinkAction {
 					'stageId' => $stageId
 				)
 			),
-			__('submission.viewMetadata')
+			__('submission.catalogEntry.new')
 		);
 
 		// Configure the link action.

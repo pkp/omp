@@ -17,10 +17,9 @@
 {url|assign:revisionsGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.review.ReviewRevisionsGridHandler" op="fetchGrid" monographId=$monograph->getId() stageId=$stageId round=$round escape=false}
 {load_url_in_div id="revisionsGrid-round_"|concat:$round url=$revisionsGridUrl}
 
-{** editorial decision actions *}
+{* editorial decision actions *}
 <div class="grid_actions">
 	{foreach from=$editorActions item=action}
 		{include file="linkAction/linkAction.tpl" action=$action contextId="reviewTabs"}
 	{/foreach}
 </div>
-

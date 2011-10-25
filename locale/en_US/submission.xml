@@ -150,6 +150,7 @@
 
 	<!-- Submission-specific catalog info -->
 	<message key="submission.catalogEntry">Catalog Entry</message>
+	<message key="submission.catalogEntry.new">New Catalog Entry</message>
 
 	<!-- Information Center -->
 	<message key="submission.informationCenter.metadata">Metadata</message>

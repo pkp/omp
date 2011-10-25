@@ -87,7 +87,8 @@ class WorkflowHandler extends Handler {
 		// Define the workflow notification options.
 		$notificationRequestOptions = array(
 			NOTIFICATION_LEVEL_TASK => array(
-				$editorAssignmentNotificationType => array(ASSOC_TYPE_MONOGRAPH, $monograph->getId())),
+				$editorAssignmentNotificationType => array(ASSOC_TYPE_MONOGRAPH, $monograph->getId())
+			),
 			NOTIFICATION_LEVEL_TRIVIAL => array()
 		);
 
@@ -100,7 +101,7 @@ class WorkflowHandler extends Handler {
 
 		$dispatcher =& $request->getDispatcher();
 		import('controllers/modals/submissionMetadata/linkAction/CatalogEntryLinkAction');
-		$catalogEntryAction = new CatalogEntryLinkAction($request, $monograph->getId());
+		$catalogEntryAction = new CatalogEntryLinkAction($request, $monograph->getId(), $stageId);
 
 		$templateMgr->assign_by_ref('catalogEntryAction', $catalogEntryAction);
 

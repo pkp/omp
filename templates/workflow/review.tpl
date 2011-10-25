@@ -14,11 +14,11 @@
 	// Attach the JS file tab handler.
 	$(function() {ldelim}
 		$('#reviewTabs').pkpHandler(
-				'$.pkp.controllers.TabHandler',
-					{ldelim}
-						{assign var=roundIndex value=$selectedRound-1}
-						selected: {$roundIndex}
-					{rdelim}
+			'$.pkp.controllers.TabHandler',
+			{ldelim}
+				{assign var=roundIndex value=$selectedRound-1}
+				selected: {$roundIndex}
+			{rdelim}
 		);
 	{rdelim});
 </script>
@@ -32,7 +32,7 @@
 		{/section}
 		{if $newRoundAction}
 			<li>
-				{** FIXME: this <a> tag is here just to get the CSS to work **}
+				{* FIXME: this <a> tag is here just to get the CSS to work *}
 				<a id="newRoundTabContainer" href="/" style="padding-left: 0px; padding-right: 0px;">{include file="linkAction/linkAction.tpl" image="add_item" action=$newRoundAction contextId="newRoundTabContainer"}</a>
 			</li>
 		{/if}
