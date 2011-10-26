@@ -25,7 +25,7 @@ class CatalogEntryForm extends SubmissionMetadataViewForm {
 	 * @param $formParams array
 	 */
 	function CatalogEntryForm($monographId, $stageId = null, $formParams = null) {
-		parent::SubmissionMetadataViewForm($monographId, $stageId, $formParams);
+		parent::SubmissionMetadataViewForm($monographId, $stageId, $formParams, 'controllers/modals/submissionMetadata/form/catalogEntryForm.tpl');
 	}
 }
 

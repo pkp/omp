@@ -39,8 +39,8 @@ class SubmissionMetadataViewForm extends Form {
 	 * @param $stageId integer
 	 * @param $formParams array
 	 */
-	function SubmissionMetadataViewForm($monographId, $stageId = null, $formParams = null) {
-		parent::Form('controllers/modals/submissionMetadata/form/submissionMetadataViewForm.tpl');
+	function SubmissionMetadataViewForm($monographId, $stageId = null, $formParams = null, $templateName = 'controllers/modals/submissionMetadata/form/submissionMetadataViewForm.tpl') {
+		parent::Form($templateName);
 
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
 		$monograph = $monographDao->getMonograph((int) $monographId);

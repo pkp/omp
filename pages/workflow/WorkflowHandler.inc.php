@@ -99,12 +99,22 @@ class WorkflowHandler extends Handler {
 
 		$templateMgr->assign('workflowNotificationRequestOptions', $notificationRequestOptions);
 
+		// Only Series Editor and Press Manager roles can see the
+		// Catalog Entry modal.
+		$user =& $request->getUser();
+		$press =& $request->getContext();
+		$roleDao =& DAORegistry::getDAO('RoleDAO');
+		if (
+			$roleDao->userHasRole($press->getId(), $user->getId(), ROLE_ID_SERIES_EDITOR) ||
+			$roleDao->userHasRole($press->getId(), $user->getId(), ROLE_ID_PRESS_MANAGER)
+		) {
+			import('controllers/modals/submissionMetadata/linkAction/CatalogEntryLinkAction');
+			$catalogEntryAction = new CatalogEntryLinkAction($request, $monograph->getId(), $stageId);
+
+			$templateMgr->assign_by_ref('catalogEntryAction', $catalogEntryAction);
+		}
+
 		$dispatcher =& $request->getDispatcher();
-		import('controllers/modals/submissionMetadata/linkAction/CatalogEntryLinkAction');
-		$catalogEntryAction = new CatalogEntryLinkAction($request, $monograph->getId(), $stageId);
-
-		$templateMgr->assign_by_ref('catalogEntryAction', $catalogEntryAction);
-
 		$submissionInformationCentreAction = new LinkAction(
 			'informationCentre',
 			new AjaxModal(
