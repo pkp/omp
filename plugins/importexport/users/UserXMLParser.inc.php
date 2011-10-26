@@ -80,7 +80,7 @@ class UserXMLParser {
 								if (isset($encrypted) && $encrypted !== 'plaintext') {
 									$ompEncryptionScheme = Config::getVar('security', 'encryption');
 									if ($encrypted != $ompEncryptionScheme) {
-										$this->errors[] = Locale::translate('plugins.importexport.users.import.encryptionMismatch', array('importHash' => $encrypted, 'ompHash' => $ompEncryptionScheme));
+										$this->errors[] = __('plugins.importexport.users.import.encryptionMismatch', array('importHash' => $encrypted, 'ompHash' => $ompEncryptionScheme));
 									}
 									$newUser->setPassword($attrib->getValue());
 								} else {
@@ -238,7 +238,7 @@ class UserXMLParser {
 				if (!$userDao->insertUser($user)) {
 					// Failed to add user!
 					$this->errors[] = sprintf('%s: %s (%s)',
-						Locale::translate('manager.people.importUsers.failedToImportUser'),
+						__('manager.people.importUsers.failedToImportUser'),
 						$user->getFullName(), $user->getUsername());
 
 					if ($continueOnError) {
@@ -260,7 +260,7 @@ class UserXMLParser {
 					if (!$roleDao->insertRole($role)) {
 						// Failed to add role!
 						$this->errors[] = sprintf('%s: %s - %s (%s)',
-							Locale::translate('manager.people.importUsers.failedToImportRole'),
+							__('manager.people.importUsers.failedToImportRole'),
 							$role->getRoleName(),
 							$user->getFullName(), $user->getUsername());
 

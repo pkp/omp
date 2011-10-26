@@ -261,7 +261,7 @@ class RegistrationForm extends Form {
 				// The account should be created in a disabled
 				// state.
 				$user->setDisabled(true);
-				$user->setDisabledReason(Locale::translate('user.login.accountNotValidated'));
+				$user->setDisabledReason(__('user.login.accountNotValidated'));
 			}
 
 			$userDao =& DAORegistry::getDAO('UserDAO');

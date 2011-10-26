@@ -46,7 +46,7 @@ class SubmissionsListGridCellProvider extends DataObjectGridCellProvider {
 			$dispatcher =& $router->getDispatcher();
 
 			$title = $monograph->getLocalizedTitle();
-			if ( empty($title) ) $title = Locale::translate('common.untitled');
+			if ( empty($title) ) $title = __('common.untitled');
 
 			$pressId = $monograph->getPressId();
 			$pressDao = DAORegistry::getDAO('PressDAO');
@@ -126,7 +126,7 @@ class SubmissionsListGridCellProvider extends DataObjectGridCellProvider {
 		switch ($columnId) {
 			case 'title':
 				$title = $monograph->getLocalizedTitle();
-				if ( empty($title) ) $title = Locale::translate('common.untitled');
+				if ( empty($title) ) $title = __('common.untitled');
 				return array('label' => $title);
 				break;
 			case 'press':
@@ -151,22 +151,22 @@ class SubmissionsListGridCellProvider extends DataObjectGridCellProvider {
 					case WORKFLOW_STAGE_ID_SUBMISSION: default:
 						// FIXME: better way to determine if submission still incomplete?
 						if ($monograph->getSubmissionProgress() > 0 && $monograph->getSubmissionProgress() <= 3) {
-							$returner = array('label' => Locale::translate('submissions.incomplete'));
+							$returner = array('label' => __('submissions.incomplete'));
 						} else {
-							$returner = array('label' => Locale::translate('submission.status.submission'));
+							$returner = array('label' => __('submission.status.submission'));
 						}
 						break;
 					case WORKFLOW_STAGE_ID_INTERNAL_REVIEW:
-						$returner = array('label' => Locale::translate('submission.status.review'));
+						$returner = array('label' => __('submission.status.review'));
 						break;
 					case WORKFLOW_STAGE_ID_EXTERNAL_REVIEW:
-						$returner = array('label' => Locale::translate('submission.status.review'));
+						$returner = array('label' => __('submission.status.review'));
 						break;
 					case WORKFLOW_STAGE_ID_EDITING:
-						$returner = array('label' => Locale::translate('submission.status.editorial'));
+						$returner = array('label' => __('submission.status.editorial'));
 						break;
 					case WORKFLOW_STAGE_ID_PRODUCTION:
-						$returner = array('label' => Locale::translate('submission.status.production'));
+						$returner = array('label' => __('submission.status.production'));
 						break;
 				}
 				return $returner;

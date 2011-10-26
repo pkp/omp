@@ -35,7 +35,7 @@ class LibraryFileGridCellProvider extends GridCellProvider {
 		assert(is_a($element, 'DataObject') && !empty($columnId));
 		switch ($columnId) {
 			case 'files':
-				$label = $element->getLocalizedName() != '' ? $element->getLocalizedName() : Locale::translate('common.untitled');
+				$label = $element->getLocalizedName() != '' ? $element->getLocalizedName() : __('common.untitled');
 				return array('label' => $label);
 		}
 	}

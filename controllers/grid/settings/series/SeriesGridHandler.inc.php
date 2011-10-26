@@ -208,7 +208,7 @@ class SeriesGridHandler extends SetupGridHandler {
 			return DAO::getDataChangedEvent($series->getId());
 		} else {
 			Locale::requireComponents(array(LOCALE_COMPONENT_PKP_MANAGER)); // manager.setup.errorDeletingItem
-			$json = new JSONMessage(false, Locale::translate('manager.setup.errorDeletingItem'));
+			$json = new JSONMessage(false, __('manager.setup.errorDeletingItem'));
 		}
 		return $json->getString();
 	}

@@ -231,8 +231,8 @@ class PublicationFormatDAO extends DefaultSettingDAO
 			$localeKey = $node->getAttribute('localeKey');
 
 			$settings = array(
-				'name' => Locale::translate($localeKey, array(), $locale),
-				'designation' => Locale::translate($localeKey.'.designation', array(), $locale)
+				'name' => __($localeKey, array(), $locale),
+				'designation' => __($localeKey.'.designation', array(), $locale)
 			);
 		}
 		return $settings;

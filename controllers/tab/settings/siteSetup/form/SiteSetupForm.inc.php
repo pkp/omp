@@ -166,7 +166,7 @@ class SiteSetupForm extends PKPSiteSettingsForm {
 
 				// Get the common alternate text for the image.
 				$localeKey = 'admin.settings.homeHeaderImage.altText';
-				$commonAltText = Locale::translate($localeKey);
+				$commonAltText = __($localeKey);
 				$templateMgr->assign('commonAltText', $commonAltText);
 			} else {
 				$template = 'controllers/tab/settings/formFileView.tpl';

@@ -61,7 +61,7 @@ class InformationHandler extends Handler {
 				$pageTitle = $pageCrumbTitle = 'navigation.competingInterestPolicy';
 				break;
 			case 'sampleCopyrightWording':
-				$content = Locale::translate('manager.setup.authorCopyrightNotice.sample');
+				$content = __('manager.setup.authorCopyrightNotice.sample');
 				$pageTitle = $pageCrumbTitle = 'manager.setup.copyrightNotice';
 				break;
 			default:

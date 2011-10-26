@@ -188,7 +188,7 @@ class GenreGridHandler extends SetupGridHandler {
 		if ($result) {
 			return DAO::getDataChangedEvent($genre->getId());
 		} else {
-			$json = new JSONMessage(false, Locale::translate('manager.setup.errorDeletingItem'));
+			$json = new JSONMessage(false, __('manager.setup.errorDeletingItem'));
 		}
 		return $json->getString();
 	}

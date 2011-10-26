@@ -244,7 +244,7 @@ class CataloguingMetadataFieldDAO extends DefaultSettingDAO
 			$localeKey = $node->getAttribute('localeKey');
 
 			$settings = array(
-				'name' => Locale::translate($localeKey, array(), $locale)
+				'name' => __($localeKey, array(), $locale)
 			);
 		}
 		return $settings;

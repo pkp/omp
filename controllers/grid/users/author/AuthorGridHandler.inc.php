@@ -296,7 +296,7 @@ class AuthorGridHandler extends GridHandler {
 		if ($result) {
 			return DAO::getDataChangedEvent($authorId);
 		} else {
-			$json = new JSONMessage(false, Locale::translate('submission.submit.errorDeletingAuthor'));
+			$json = new JSONMessage(false, __('submission.submit.errorDeletingAuthor'));
 			return $json->getString();
 		}
 

@@ -159,7 +159,7 @@ class AppearanceForm extends PressSettingsForm {
 
 				// Get the common alternate text for the image.
 				$localeKey = $imagesSettingsName[$fileSettingName];
-				$commonAltText = Locale::translate($localeKey);
+				$commonAltText = __($localeKey);
 				$templateMgr->assign('commonAltText', $commonAltText);
 			} else {
 				$template = 'controllers/tab/settings/formFileView.tpl';

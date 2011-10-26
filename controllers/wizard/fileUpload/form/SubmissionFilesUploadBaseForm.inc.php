@@ -197,7 +197,7 @@ class SubmissionFilesUploadBaseForm extends Form {
 			// Create an entry in the list of existing files which
 			// the user can select from in case he chooses to upload
 			// a revision.
-			$fileName = $monographFile->getLocalizedName() != '' ? $monographFile->getLocalizedName() : Locale::translate('common.untitled');
+			$fileName = $monographFile->getLocalizedName() != '' ? $monographFile->getLocalizedName() : __('common.untitled');
 			if ($monographFile->getRevision() > 1) $fileName .= ' (' . $monographFile->getRevision() . ')';
 			$monographFileOptions[$monographFile->getFileId()] = $fileName;
 			$currentMonographFileGenres[$monographFile->getFileId()] = $monographFile->getGenreId();
@@ -215,7 +215,7 @@ class SubmissionFilesUploadBaseForm extends Form {
 
 		// If this is not a "review only" form then add a default item.
 		if (count($monographFileOptions) && !$this->getData('revisionOnly')) {
-			$monographFileOptions = array('' => Locale::translate('submission.upload.uploadNewFile')) + $monographFileOptions;
+			$monographFileOptions = array('' => __('submission.upload.uploadNewFile')) + $monographFileOptions;
 		}
 
 		// Make sure that the revised file (if any) really was among

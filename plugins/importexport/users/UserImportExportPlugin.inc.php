@@ -41,11 +41,11 @@ class UserImportExportPlugin extends ImportExportPlugin {
 	}
 
 	function getDisplayName() {
-		return Locale::translate('plugins.importexport.users.displayName');
+		return __('plugins.importexport.users.displayName');
 	}
 
 	function getDescription() {
-		return Locale::translate('plugins.importexport.users.description');
+		return __('plugins.importexport.users.description');
 	}
 
 	function display($args) {
@@ -217,8 +217,8 @@ class UserImportExportPlugin extends ImportExportPlugin {
 
 		if (!$press) {
 			if ($pressPath != '') {
-				echo Locale::translate('plugins.importexport.users.import.errorsOccurred') . ":\n";
-				echo Locale::translate('plugins.importexport.users.unknownPress', array('pressPath' => $pressPath)) . "\n\n";
+				echo __('plugins.importexport.users.import.errorsOccurred') . ":\n";
+				echo __('plugins.importexport.users.unknownPress', array('pressPath' => $pressPath)) . "\n\n";
 			}
 			$this->usage($scriptName);
 			return;
@@ -238,7 +238,7 @@ class UserImportExportPlugin extends ImportExportPlugin {
 
 				if (!$parser->importUsers($sendNotify, $continueOnError)) {
 					// Failure.
-					echo Locale::translate('plugins.importexport.users.import.errorsOccurred') . ":\n";
+					echo __('plugins.importexport.users.import.errorsOccurred') . ":\n";
 					foreach ($parser->getErrors() as $error) {
 						echo "\t$error\n";
 					}
@@ -246,7 +246,7 @@ class UserImportExportPlugin extends ImportExportPlugin {
 				}
 
 				// Success.
-				echo Locale::translate('plugins.importexport.users.import.usersWereImported') . ":\n";
+				echo __('plugins.importexport.users.import.usersWereImported') . ":\n";
 				foreach ($parser->getImportedUsers() as $user) {
 					echo "\t" . $user->getUserName() . "\n";
 				}
@@ -275,8 +275,8 @@ class UserImportExportPlugin extends ImportExportPlugin {
 				}
 				$doc =& UserExportDom::exportUsers($press, $users, $rolePaths);
 				if (($h = fopen($xmlFile, 'wb'))===false) {
-					echo Locale::translate('plugins.importexport.users.export.errorsOccurred') . ":\n";
-					echo Locale::translate('plugins.importexport.users.export.couldNotWriteFile', array('fileName' => $xmlFile)) . "\n";
+					echo __('plugins.importexport.users.export.errorsOccurred') . ":\n";
+					echo __('plugins.importexport.users.export.couldNotWriteFile', array('fileName' => $xmlFile)) . "\n";
 					return false;
 				}
 				fwrite($h, XMLCustomWriter::getXML($doc));
@@ -290,7 +290,7 @@ class UserImportExportPlugin extends ImportExportPlugin {
 	 * Display the command-line usage information
 	 */
 	function usage($scriptName) {
-		echo Locale::translate('plugins.importexport.users.cliUsage', array(
+		echo __('plugins.importexport.users.cliUsage', array(
 			'scriptName' => $scriptName,
 			'pluginName' => $this->getName()
 		)) . "\n";

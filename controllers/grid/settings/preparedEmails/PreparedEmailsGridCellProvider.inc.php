@@ -41,11 +41,11 @@ class PreparedEmailsGridCellProvider extends GridCellProvider {
 			case 'sender':
 				$roleId = $element->getFromRoleId();
 				$label = $roleDao->getRoleNames(false, array($roleId));
-				return array('label' => Locale::translate(array_shift($label)));
+				return array('label' => __(array_shift($label)));
 			case 'recipient':
 				$roleId = $element->getToRoleId();
 				$label = $roleDao->getRoleNames(false, array($roleId));
-				return array('label' => Locale::translate(array_shift($label)));
+				return array('label' => __(array_shift($label)));
 			case 'subject':
 				$locale = Locale::getLocale();
 				$label = $element->getSubject();

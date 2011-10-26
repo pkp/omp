@@ -181,7 +181,7 @@ class LibraryFileGridHandler extends SetupGridHandler {
 				'temporaryFileId' => $temporaryFile->getId()
 			));
 		} else {
-			$json = new JSONMessage(false, Locale::translate('common.uploadFailed'));
+			$json = new JSONMessage(false, __('common.uploadFailed'));
 		}
 
 		return $json->getString();

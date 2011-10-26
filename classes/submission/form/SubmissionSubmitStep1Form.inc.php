@@ -52,7 +52,7 @@ class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		$isEditor = $roleDao->userHasRole($this->press->getId(), $user->getId(), ROLE_ID_SERIES_EDITOR);
 
-		$seriesOptions = array('0' => Locale::translate('submission.submit.selectSeries')) + $seriesDao->getTitlesByPressId($this->press->getId());
+		$seriesOptions = array('0' => __('submission.submit.selectSeries')) + $seriesDao->getTitlesByPressId($this->press->getId());
 		$templateMgr->assign('seriesOptions', $seriesOptions);
 
 		// Provide available submission languages. (Convert the array

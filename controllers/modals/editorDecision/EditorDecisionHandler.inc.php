@@ -201,7 +201,7 @@ class EditorDecisionHandler extends Handler {
 		$peerReviews = $seriesEditorAction->getPeerReviews($seriesEditorSubmission);
 
 		if(empty($peerReviews)) {
-			$json = new JSONMessage(false, Locale::translate('editor.review.noReviews'));
+			$json = new JSONMessage(false, __('editor.review.noReviews'));
 		} else {
 			$json = new JSONMessage(true, $peerReviews);
 		}

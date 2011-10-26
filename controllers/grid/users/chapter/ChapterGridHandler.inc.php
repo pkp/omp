@@ -273,7 +273,7 @@ class ChapterGridHandler extends CategoryGridHandler {
 		if ($result) {
 			return DAO::getDataChangedEvent();
 		} else {
-			$json = new JSONMessage(false, Locale::translate('submission.chapters.grid.errorDeletingChapter'));
+			$json = new JSONMessage(false, __('submission.chapters.grid.errorDeletingChapter'));
 		}
 		return $json->getString();
 	}

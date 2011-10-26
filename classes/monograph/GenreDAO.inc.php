@@ -233,10 +233,10 @@ class GenreDAO extends DefaultSettingDAO {
 			$localeKey = $node->getAttribute('localeKey');
 			$sortable = $node->getAttribute('sortable');
 
-			$designation = $sortable ? GENRE_SORTABLE_DESIGNATION : Locale::translate($localeKey.'.designation', array(), $locale);
+			$designation = $sortable ? GENRE_SORTABLE_DESIGNATION : __($localeKey.'.designation', array(), $locale);
 
 			$settings = array(
-				'name' => Locale::translate($localeKey, array(), $locale),
+				'name' => __($localeKey, array(), $locale),
 				'designation' => $designation
 			);
 		}

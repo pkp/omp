@@ -192,7 +192,7 @@ class UserGridHandler extends GridHandler {
 		$pressId = $press->getId();
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 		$userGroups =& $userGroupDao->getByContextId($press->getId());
-		$userGroupOptions = array('' => Locale::translate('grid.user.allRoles'));
+		$userGroupOptions = array('' => __('grid.user.allRoles'));
 		while (!$userGroups->eof()) {
 			$userGroup =& $userGroups->next();
 			$userGroupOptions[$userGroup->getId()] = $userGroup->getLocalizedName();
@@ -294,7 +294,7 @@ class UserGridHandler extends GridHandler {
 		$user =& $request->getUser();
 		if ($userId !== null && !Validation::canAdminister($userId, $user->getId())) {
 			// We don't have administrative rights over this user.
-			$json = new JSONMessage(false, Locale::translate('grid.user.cannotAdminister'));
+			$json = new JSONMessage(false, __('grid.user.cannotAdminister'));
 		} else {
 			// Form handling.
 			$userForm = new UserForm($request, $userId);
@@ -319,7 +319,7 @@ class UserGridHandler extends GridHandler {
 
 		if ($userId !== null && !Validation::canAdminister($userId, $user->getId())) {
 			// We don't have administrative rights over this user.
-			$json = new JSONMessage(false, Locale::translate('grid.user.cannotAdminister'));
+			$json = new JSONMessage(false, __('grid.user.cannotAdminister'));
 		} else {
 			// Form handling.
 			$userForm = new UserForm($request, $userId);
@@ -365,7 +365,7 @@ class UserGridHandler extends GridHandler {
 
 		if ($userId !== null && !Validation::canAdminister($userId, $user->getId())) {
 			// We don't have administrative rights over this user.
-			$json = new JSONMessage(false, Locale::translate('grid.user.cannotAdminister'));
+			$json = new JSONMessage(false, __('grid.user.cannotAdminister'));
 		} else {
 			// Form handling.
 			import('controllers.grid.settings.user.form.UserRoleForm');
@@ -402,7 +402,7 @@ class UserGridHandler extends GridHandler {
 
 		if ($userId !== null && !Validation::canAdminister($userId, $user->getId())) {
 			// We don't have administrative rights over this user.
-			$json = new JSONMessage(false, Locale::translate('grid.user.cannotAdminister'));
+			$json = new JSONMessage(false, __('grid.user.cannotAdminister'));
 		} else {
 			// Form handling
 			import('controllers.grid.settings.user.form.UserDisableForm');
@@ -432,7 +432,7 @@ class UserGridHandler extends GridHandler {
 
 		if ($userId !== null && !Validation::canAdminister($userId, $user->getId())) {
 			// We don't have administrative rights over this user.
-			$json = new JSONMessage(false, Locale::translate('grid.user.cannotAdminister'));
+			$json = new JSONMessage(false, __('grid.user.cannotAdminister'));
 		} else {
 			// Form handling.
 			import('controllers.grid.settings.user.form.UserDisableForm');
@@ -469,14 +469,14 @@ class UserGridHandler extends GridHandler {
 
 		if ($userId !== null && !Validation::canAdminister($userId, $user->getId())) {
 			// We don't have administrative rights over this user.
-			$json = new JSONMessage(false, Locale::translate('grid.user.cannotAdminister'));
+			$json = new JSONMessage(false, __('grid.user.cannotAdminister'));
 		} else {
 			// Remove user from all user group assignments for this press.
 			$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 
 			// Check if this user has any user group assignments for this press.
 			if (!$userGroupDao->userInAnyGroup($userId, $press->getId())) {
-				$json = new JSONMessage(false, Locale::translate('grid.user.userNoRoles'));
+				$json = new JSONMessage(false, __('grid.user.userNoRoles'));
 			} else {
 				$userGroupDao->deleteAssignmentsByContextId($press->getId(), $userId);
 				return DAO::getDataChangedEvent($userId);
@@ -499,7 +499,7 @@ class UserGridHandler extends GridHandler {
 
 		if ($userId !== null && !Validation::canAdminister($userId, $user->getId())) {
 			// We don't have administrative rights over this user.
-			$json = new JSONMessage(false, Locale::translate('grid.user.cannotAdminister'));
+			$json = new JSONMessage(false, __('grid.user.cannotAdminister'));
 		} else {
 			// Form handling.
 			import('controllers.grid.settings.user.form.UserEmailForm');
@@ -525,7 +525,7 @@ class UserGridHandler extends GridHandler {
 
 		if ($userId !== null && !Validation::canAdminister($userId, $user->getId())) {
 			// We don't have administrative rights over this user.
-			$json = new JSONMessage(false, Locale::translate('grid.user.cannotAdminister'));
+			$json = new JSONMessage(false, __('grid.user.cannotAdminister'));
 		} else {
 			// Form handling.
 			import('controllers.grid.settings.user.form.UserEmailForm');

@@ -188,7 +188,7 @@ class ContributorGridHandler extends SetupGridHandler {
 			$pressSettingsDao->updateSetting($press->getId(), 'contributors', $contributors, 'object');
 			return DAO::getDataChangedEvent();
 		} else {
-			return new JSONMessage(false, Locale::translate('manager.setup.errorDeletingItem'));
+			return new JSONMessage(false, __('manager.setup.errorDeletingItem'));
 		}
 	}
 }

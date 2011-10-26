@@ -184,7 +184,7 @@ class SponsorGridHandler extends SetupGridHandler {
 			$pressSettingsDao->updateSetting($press->getId(), 'sponsors', $sponsors, 'object');
 			return DAO::getDataChangedEvent($sponsorId);
 		} else {
-			return new JSONMessage(false, Locale::translate('manager.setup.errorDeletingItem'));
+			return new JSONMessage(false, __('manager.setup.errorDeletingItem'));
 		}
 	}
 }

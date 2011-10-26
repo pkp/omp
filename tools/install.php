@@ -34,7 +34,7 @@ class OMPInstallTool extends InstallTool {
 	 */
 	function readParams() {
 		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_INSTALLER, LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_PKP_USER));
-		printf("%s\n", Locale::translate('installer.ompInstallation'));
+		printf("%s\n", __('installer.ompInstallation'));
 
 		parent::readParams();
 

@@ -320,7 +320,7 @@ class ReviewerGridHandler extends GridHandler {
 		if ($result) {
 			return DAO::getDataChangedEvent($reviewAssignment->getId());
 		} else {
-			$json = new JSONMessage(false, Locale::translate('editor.review.errorDeletingReviewer'));
+			$json = new JSONMessage(false, __('editor.review.errorDeletingReviewer'));
 			return $json->getString();
 		}
 	}
@@ -504,7 +504,7 @@ class ReviewerGridHandler extends GridHandler {
 			$reviewReminderForm->execute($args, $request);
 			$json = new JSONMessage(true);
 		} else {
-			$json = new JSONMessage(false, Locale::translate('editor.review.reminderError'));
+			$json = new JSONMessage(false, __('editor.review.reminderError'));
 		}
 		return $json->getString();
 	}

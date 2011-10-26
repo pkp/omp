@@ -38,7 +38,7 @@ class MySubmissionsListGridCellProvider extends SubmissionsListGridCellProvider 
 			$dispatcher =& $router->getDispatcher();
 
 			$title = $monograph->getLocalizedTitle();
-			if ( empty($title) ) $title = Locale::translate('common.untitled');
+			if ( empty($title) ) $title = __('common.untitled');
 
 			$pressId = $monograph->getPressId();
 			$pressDao = DAORegistry::getDAO('PressDAO');

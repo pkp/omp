@@ -60,7 +60,7 @@ class ReviewerReviewStep1Form extends ReviewerReviewForm {
 			'editor' => $press->getSetting('contactName')
 		);
 
-		$templateMgr->assign('reviewerRequest', Locale::translate('reviewer.step1.requestBoilerplate', $reviewerRequestParams));
+		$templateMgr->assign('reviewerRequest', __('reviewer.step1.requestBoilerplate', $reviewerRequestParams));
 
 		//
 		// Assign the link actions

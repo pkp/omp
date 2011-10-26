@@ -140,7 +140,7 @@ class ReviewerForm extends Form {
 		$this->setData('reviewMethod', $reviewMethod);
 		$this->setData('round', (int) $request->getUserVar('round'));
 		$this->setData('reviewerId', $reviewerId);
-		$this->setData('personalMessage', Locale::translate('reviewer.step1.requestBoilerplate'));
+		$this->setData('personalMessage', __('reviewer.step1.requestBoilerplate'));
 		$this->setData('responseDueDate', $responseDueDate);
 		$this->setData('reviewDueDate', $reviewDueDate);
 		$this->setData('existingInterests', $interestDao->getAllUniqueInterests());

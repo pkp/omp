@@ -107,7 +107,7 @@ class NotificationsGridCellProvider extends GridCellProvider {
 				assert(is_a($monograph, 'Monograph'));
 
 				$title = $monograph->getLocalizedTitle();
-				if ( empty($title) ) $title = Locale::translate('common.untitled');
+				if ( empty($title) ) $title = __('common.untitled');
 				return array('label' => $title);
 				break;
 			case 'task':

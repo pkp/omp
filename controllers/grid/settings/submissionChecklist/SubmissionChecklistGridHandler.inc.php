@@ -165,7 +165,7 @@ class SubmissionChecklistGridHandler extends SetupGridHandler {
 				// only fail if the currently displayed locale was not set
 				// (this is the one that needs to be removed from the currently displayed grid)
 				if ( $locale == Locale::getLocale() ) {
-					$json = new JSONMessage(false, Locale::translate('manager.setup.errorDeletingSubmissionChecklist'));
+					$json = new JSONMessage(false, __('manager.setup.errorDeletingSubmissionChecklist'));
 					return $json->getString();
 					exit;
 				}

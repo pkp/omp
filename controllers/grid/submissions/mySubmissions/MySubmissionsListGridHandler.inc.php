@@ -70,7 +70,7 @@ class MySubmissionsListGridHandler extends SubmissionsListGridHandler {
 
 			$json = new JSONMessage(true);
 		} else {
-			$json = new JSONMessage(false, Locale::translate('settings.setup.errorDeletingItem'));
+			$json = new JSONMessage(false, __('settings.setup.errorDeletingItem'));
 		}
 
 		return $json->getString();

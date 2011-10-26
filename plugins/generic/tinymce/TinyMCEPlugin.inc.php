@@ -115,7 +115,7 @@ class TinyMCEPlugin extends GenericPlugin {
 	 * @return string
 	 */
 	function getDisplayName() {
-		return Locale::translate('plugins.generic.tinymce.name');
+		return __('plugins.generic.tinymce.name');
 	}
 
 	/**
@@ -123,8 +123,8 @@ class TinyMCEPlugin extends GenericPlugin {
 	 * @return string
 	 */
 	function getDescription() {
-		if ($this->isMCEInstalled()) return Locale::translate('plugins.generic.tinymce.description');
-		return Locale::translate('plugins.generic.tinymce.descriptionDisabled', array('tinyMcePath' => TINYMCE_INSTALL_PATH));
+		if ($this->isMCEInstalled()) return __('plugins.generic.tinymce.description');
+		return __('plugins.generic.tinymce.descriptionDisabled', array('tinyMcePath' => TINYMCE_INSTALL_PATH));
 	}
 
 	/**

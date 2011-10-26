@@ -77,7 +77,7 @@ class WebsiteSettingsTabHandler extends ManagerSettingsTabHandler {
 			));
 		} else {
 			$json->setStatus(false);
-			$json->setContent(Locale::translate('common.uploadFailed'));
+			$json->setContent(__('common.uploadFailed'));
 		}
 
 		return $json->getString();
@@ -100,7 +100,7 @@ class WebsiteSettingsTabHandler extends ManagerSettingsTabHandler {
 				return DAO::getDataChangedEvent($settingName);
 			}
 		}
-		$json = new JSONMessage(false, Locale::translate('common.invalidFileType'));
+		$json = new JSONMessage(false, __('common.invalidFileType'));
 		return $json->getString();
 	}
 

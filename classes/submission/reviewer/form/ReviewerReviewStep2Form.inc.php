@@ -38,7 +38,7 @@ class ReviewerReviewStep2Form extends ReviewerReviewForm {
 
 		$reviewerGuidelines = $press->getLocalizedSetting('reviewGuidelines');
 		if (empty($reviewerGuidelines)) {
-			$reviewerGuidelines = Locale::translate('reviewer.monograph.noGuidelines');
+			$reviewerGuidelines = __('reviewer.monograph.noGuidelines');
 		}
 		$templateMgr->assign('reviewerGuidelines', $reviewerGuidelines);
 

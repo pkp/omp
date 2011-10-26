@@ -71,7 +71,7 @@ class SeriesEditorAction extends Action {
 			import('classes.log.MonographLog');
 			import('classes.log.MonographEventLogEntry');
 			Locale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_OMP_EDITOR));
-			MonographLog::logEvent($request, $seriesEditorSubmission, MONOGRAPH_LOG_EDITOR_DECISION, 'log.editor.decision', array('editorName' => $user->getFullName(), 'monographId' => $seriesEditorSubmission->getId(), 'decision' => Locale::translate($decisionLabels[$decision])));
+			MonographLog::logEvent($request, $seriesEditorSubmission, MONOGRAPH_LOG_EDITOR_DECISION, 'log.editor.decision', array('editorName' => $user->getFullName(), 'monographId' => $seriesEditorSubmission->getId(), 'decision' => __($decisionLabels[$decision])));
 		}
 		return $result;
 	}
@@ -343,7 +343,7 @@ class SeriesEditorAction extends Action {
 					if ($reviewAssignment->getReviewMethod() != SUBMISSION_REVIEW_METHOD_DOUBLEBLIND) {
 						$body .= $reviewAssignment->getReviewerFullName() . "\n";
 					} else {
-						$body .= Locale::translate('submission.comments.importPeerReviews.reviewerLetter', array('reviewerLetter' => String::enumerateAlphabetically($reviewIndexes[$reviewAssignment->getId()]))) . "\n";
+						$body .= __('submission.comments.importPeerReviews.reviewerLetter', array('reviewerLetter' => String::enumerateAlphabetically($reviewIndexes[$reviewAssignment->getId()]))) . "\n";
 					}
 
 					if (is_array($monographComments)) {
@@ -364,7 +364,7 @@ class SeriesEditorAction extends Action {
 					if(!$monographComments) {
 						$body .= "$textSeparator\n";
 
-						$body .= Locale::translate('submission.comments.importPeerReviews.reviewerLetter', array('reviewerLetter' => String::enumerateAlphabetically($reviewIndexes[$reviewAssignment->getId()]))) . "\n\n";
+						$body .= __('submission.comments.importPeerReviews.reviewerLetter', array('reviewerLetter' => String::enumerateAlphabetically($reviewIndexes[$reviewAssignment->getId()]))) . "\n\n";
 					}
 					foreach ($reviewFormElements as $reviewFormElement) {
 						$body .= String::html2text($reviewFormElement->getLocalizedQuestion()) . ": \n";

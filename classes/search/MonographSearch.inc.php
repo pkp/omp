@@ -54,9 +54,9 @@ class MonographSearch {
 		$return = array('+' => array(), '' => array(), '-' => array());
 		$postBool = $preBool = '';
 
-		$notOperator = String::strtolower(Locale::translate('search.operator.not'));
-		$andOperator = String::strtolower(Locale::translate('search.operator.and'));
-		$orOperator = String::strtolower(Locale::translate('search.operator.or'));
+		$notOperator = String::strtolower(__('search.operator.not'));
+		$andOperator = String::strtolower(__('search.operator.and'));
+		$orOperator = String::strtolower(__('search.operator.or'));
 		while ($pos < $total) {
 			if (!empty($signTokens[$pos])) $sign = $signTokens[$pos];
 			else if (empty($sign)) $sign = '+';
