@@ -72,7 +72,7 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 			$templateMgr->assign_by_ref('lastEventUser', $user);
 		}
 
-		parent::viewInformationCenter($request);
+		return parent::viewInformationCenter($request);
 	}
 
 	/**
