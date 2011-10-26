@@ -25,6 +25,8 @@ class SettingsHandler extends Handler {
 			ROLE_ID_PRESS_MANAGER,
 			array(
 				'index',
+				'categories',
+				'series',
 				'settings',
 				'access',
 				'press',
@@ -74,6 +76,30 @@ class SettingsHandler extends Handler {
 		$templateMgr =& TemplateManager::getManager();
 		$this->setupTemplate();
 		$templateMgr->display('management/settings/index.tpl');
+	}
+
+	/**
+	 * Display categories admin page.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 */
+	function categories($args, &$request) {
+		$this->setupTemplate($request);
+
+		$templateMgr =& TemplateManager::getManager();
+		$templateMgr->display('management/categories.tpl');
+	}
+
+	/**
+	 * Display series admin page.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 */
+	function series($args, &$request) {
+		$this->setupTemplate($request);
+
+		$templateMgr =& TemplateManager::getManager();
+		$templateMgr->display('management/series.tpl');
 	}
 
 	/**

@@ -66,7 +66,6 @@ switch ($op) {
 		import('pages.manager.PluginManagementHandler');
 		break;
 	case 'index':
-	case 'email':
 		define('HANDLER_CLASS', 'ManagerHandler');
 		import('pages.manager.ManagerHandler');
 		break;

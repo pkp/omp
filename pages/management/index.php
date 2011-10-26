@@ -21,6 +21,8 @@ switch ($op) {
 	// Settings
 	//
 	case 'settings':
+	case 'categories':
+	case 'series':
 		import('pages.management.SettingsHandler');
 		define('HANDLER_CLASS', 'SettingsHandler');
 		break;

@@ -53,7 +53,7 @@ class AuthorSignoffFilesGridHandler extends GridHandler {
 	}
 
 	/**
-	 * Get the Singoff Symbolic.
+	 * Get the Signoff Symbolic.
 	 * @return string
 	 */
 	function getSymbolic() {

@@ -71,9 +71,6 @@ class CategoryCategoryGridHandler extends CategoryGridHandler {
 		$press =& $request->getPress();
 		$this->_pressId =& $press->getId();
 
-		// Basic grid configuration.
-		$this->setTitle('grid.category.categories');
-
 		// Add grid-level actions.
 		$router =& $request->getRouter();
 		$this->addAction(

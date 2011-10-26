@@ -29,7 +29,6 @@ class PressSettingsTabHandler extends ManagerSettingsTabHandler {
 			'policies' => 'controllers.tab.settings.policies.form.PoliciesForm',
 			'guidelines' => 'controllers.tab.settings.guidelines.form.GuidelinesForm',
 			'affiliationAndSupport' => 'controllers.tab.settings.affiliation.form.AffiliationForm',
-			'categoriesAndSeries' => 'controllers.tab.settings.categoriesAndSeries.form.CategoriesAndSeriesForm',
 			'pressIdentification' => 'controllers.tab.settings.pressIdentification.form.PressIdentificationForm'
 		);
 		$this->setPageTabs($pageTabs);

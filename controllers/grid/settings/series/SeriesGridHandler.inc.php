@@ -47,9 +47,6 @@ class SeriesGridHandler extends SetupGridHandler {
 			LOCALE_COMPONENT_APPLICATION_COMMON
 		));
 
-		// Basic grid configuration
-		$this->setTitle('series.series');
-
 		// Elements to be displayed in the grid
 		$seriesDao =& DAORegistry::getDAO('SeriesDAO');
 		$categoryDao =& DAORegistry::getDAO('CategoryDAO');

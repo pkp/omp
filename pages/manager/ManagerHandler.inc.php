@@ -24,9 +24,7 @@ class ManagerHandler extends Handler {
 		$this->addRoleAssignment(
 			ROLE_ID_PRESS_MANAGER,
 			array(
-				'email',
-				'index',
-				'settings'
+				'index'
 			)
 		);
 	}
@@ -58,7 +56,7 @@ class ManagerHandler extends Handler {
 		$customSignoffExternal = $pressSettingsDao->getSetting($press->getId(), 'useCustomExternalReviewSignoff');
 
 		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->assign('customSingoffEnabled', $customSignoffInternal || $customSignoffExternal );
+		$templateMgr->assign('customSignoffEnabled', $customSignoffInternal || $customSignoffExternal );
 
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 		$userGroups =& $userGroupDao->getByContextId($press->getId());
@@ -70,56 +68,6 @@ class ManagerHandler extends Handler {
 		$templateMgr->assign('announcementsEnabled', $announcementsEnabled);
 		$templateMgr->assign('helpTopicId','press.index');
 		$templateMgr->display('manager/index.tpl');
-	}
-
-	/**
-	 * Send an email to a user or group of users.
-	 * @param $args array
-	 * @param $request PKPRequest
-	 */
-	function email($args, &$request) {
-		$this->setupTemplate($request, true);
-		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->assign('helpTopicId', 'press.users.emailUsers');
-
-		$userDao =& DAORegistry::getDAO('UserDAO');
-
-		$site =& $request->getSite();
-		$press =& $request->getPress();
-		$user =& $request->getUser();
-
-		import('classes.mail.MailTemplate');
-		$email = new MailTemplate($request->getUserVar('template'), $request->getUserVar('locale'));
-
-		if ($request->getUserVar('send') && !$email->hasErrors()) {
-			$email->send();
-			$request->redirect(null, $request->getRequestedPage());
-		} else {
-			$email->assignParams(); // FIXME Forces default parameters to be assigned (should do this automatically in MailTemplate?)
-			if (!$request->getUserVar('continued')) {
-				if (($groupId = $request->getUserVar('toGroup')) != '') {
-					// Special case for emailing entire groups:
-					// Check for a group ID and add recipients.
-					$groupDao =& DAORegistry::getDAO('GroupDAO');
-					$group =& $groupDao->getById($groupId);
-					if ($group && $group->getPressId() == $press->getId()) {
-						$groupMembershipDao =& DAORegistry::getDAO('GroupMembershipDAO');
-						$memberships =& $groupMembershipDao->getMemberships($group->getId());
-						$memberships =& $memberships->toArray();
-						foreach ($memberships as $membership) {
-							$user =& $membership->getUser();
-							$email->addRecipient($user->getEmail(), $user->getFullName());
-						}
-					}
-				}
-				if (count($email->getRecipients())==0) $email->addRecipient($user->getEmail(), $user->getFullName());
-			}
-			$email->displayEditForm(
-				$request->url(null, null, 'email'),
-				array(),
-				'manager/people/email.tpl'
-			);
-		}
 	}
 
 	/**
