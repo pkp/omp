@@ -44,10 +44,14 @@
 				<li>
 					<a href="#">{translate key="navigation.catalog"}</a>
 					<ul>
-						<li><a href="{url page="issue" op="archive"}">{translate key="navigation.published"}</a></li>
-						<li><a href="#">{translate key="navigation.seriesAndEditions"}</a></li>
-						<li><a href="#">{translate key="navigation.featuredBooks"}</a></li>
-						<li><a href="#">{translate key="navigation.admin"}</a></li>
+						<li><a href="#">{translate key="navigation.catalog.manage"}</a></li>
+						<li>
+							<a href="#">{translate key="navigation.catalog.administration"}</a>
+							<ul>
+								<li><a href="#">{translate key="navigation.catalog.administration.categories"}</a></li>
+								<li><a href="#">{translate key="navigation.catalog.administration.series"}</a></li>
+							</ul>
+						</li>
 					</ul>
 				</li>
 				{if $isPressManager}
