@@ -108,7 +108,7 @@ class WorkflowHandler extends Handler {
 			$roleDao->userHasRole($press->getId(), $user->getId(), ROLE_ID_SERIES_EDITOR) ||
 			$roleDao->userHasRole($press->getId(), $user->getId(), ROLE_ID_PRESS_MANAGER)
 		) {
-			import('controllers/modals/submissionMetadata/linkAction/CatalogEntryLinkAction');
+			import('controllers.modals.submissionMetadata.linkAction.CatalogEntryLinkAction');
 			$catalogEntryAction = new CatalogEntryLinkAction($request, $monograph->getId(), $stageId);
 
 			$templateMgr->assign_by_ref('catalogEntryAction', $catalogEntryAction);

@@ -13,7 +13,7 @@
  *
  */
 
-import('controllers/grid/files/BaseSignoffStatusColumn');
+import('controllers.grid.files.BaseSignoffStatusColumn');
 
 class SignoffStatusFromSignoffGridColumn extends BaseSignoffStatusColumn {
 	/**
