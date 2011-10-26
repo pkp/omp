@@ -151,6 +151,8 @@
 	<!-- Submission-specific catalog info -->
 	<message key="submission.catalogEntry">Catalog Entry</message>
 	<message key="submission.catalogEntry.new">New Catalog Entry</message>
+	<message key="submission.catalogEntry.confirm">I acknowledge that the current metadata is accurate and approve it for display on the public site.</message>
+	<message key="submission.catalogEntry.confirm.required">Please confirm that the submission is ready to be placed in the catalog.</message>
 
 	<!-- Information Center -->
 	<message key="submission.informationCenter.metadata">Metadata</message>

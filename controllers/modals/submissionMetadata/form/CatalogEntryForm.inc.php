@@ -26,6 +26,21 @@ class CatalogEntryForm extends SubmissionMetadataViewForm {
 	 */
 	function CatalogEntryForm($monographId, $stageId = null, $formParams = null) {
 		parent::SubmissionMetadataViewForm($monographId, $stageId, $formParams, 'controllers/modals/submissionMetadata/form/catalogEntryForm.tpl');
+
+		$this->addCheck(new FormValidator($this, 'confirm', 'required', 'submission.catalogEntry.confirm.required'));
+
+		// submission.catalogEntry.confirm.required on validation
+		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_SUBMISSION));
+	}
+
+	/**
+	 * Assign form data to user-submitted data.
+	 */
+	function readInputData() {
+		parent::readInputData();
+
+		// Read in the additional confirmation checkbox
+		$this->readUserVars(array('confirm'));
 	}
 }
 
