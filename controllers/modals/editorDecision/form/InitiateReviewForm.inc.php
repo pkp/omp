@@ -20,8 +20,8 @@ class InitiateReviewForm extends EditorDecisionForm {
 	 * Constructor.
 	 * @param $seriesEditorSubmission SeriesEditorSubmission
 	 */
-	function InitiateReviewForm($seriesEditorSubmission) {
-		parent::EditorDecisionForm($seriesEditorSubmission, WORKFLOW_STAGE_ID_INTERNAL_REVIEW, 'controllers/modals/editorDecision/form/initiateReviewForm.tpl');
+	function InitiateReviewForm($seriesEditorSubmission, $decision, $stageId) {
+		parent::EditorDecisionForm($seriesEditorSubmission, $stageId, 'controllers/modals/editorDecision/form/initiateReviewForm.tpl');
 	}
 
 
