@@ -114,11 +114,7 @@ class ReviewerForm extends Form {
 		$press =& $request->getContext();
 		// The reviewer id has been set
 		if (!empty($reviewerId)) {
-			$userDao =& DAORegistry::getDAO('UserDAO');
-			$roleDao =& DAORegistry::getDAO('RoleDAO');
-
-			$user =& $userDao->getUser($reviewerId);
-			if ($user && $roleDao->userHasRole($press->getId(), $user->getId(), ROLE_ID_REVIEWER) ) {
+			if ($this->_isReviewer($press, $reviewerId)) {
 				$this->setData('userNameString', sprintf('%s (%s)', $user->getFullname(), $user->getUsername()));
 			}
 		}
@@ -207,8 +203,6 @@ class ReviewerForm extends Form {
 		$this->readUserVars(array(
 			'selectionType',
 			'monographId',
-			'stageId',
-			'round',
 			'personalMessage',
 			'responseDueDate',
 			'reviewDueDate',
@@ -233,12 +227,18 @@ class ReviewerForm extends Form {
 		$submission =& $seriesEditorSubmissionDao->getSeriesEditorSubmission($this->getMonographId());
 		$press =& $request->getPress();
 
-		// FIXME: Bug #6199
-		$stageId = $this->getData('stageId');
-		$round = $this->getData('round');
+		$reviewRound =& $this->getReviewRound();
+		$stageId = $reviewRound->getStageId();
+		$round = $reviewRound->getRound();
 		$reviewDueDate = $this->getData('reviewDueDate');
 		$responseDueDate = $this->getData('responseDueDate');
+
+		// Get reviewer id and validate it.
 		$reviewerId = (int) $this->getData('reviewerId');
+		if (!$this->_isReviewer($press, $reviewerId)) {
+			$reviewerId = null;
+			assert(false);
+		}
 		$reviewMethod = (int) $this->getData('reviewMethod');
 
 		import('classes.submission.seriesEditor.SeriesEditorAction');
@@ -285,6 +285,27 @@ class ReviewerForm extends Form {
 		}
 
 		return $reviewAssignment;
+	}
+
+	//
+	// Private helper methods
+	//
+	/**
+	 * Check if a given user id is enrolled in reviewer user group.
+	 * @param $press Press
+	 * @param $reviewerId int
+	 * @return boolean
+	 */
+	function _isReviewer(&$press, $reviewerId) {
+		$userDao =& DAORegistry::getDAO('UserDAO');
+		$roleDao =& DAORegistry::getDAO('RoleDAO');
+
+		$user =& $userDao->getUser($reviewerId);
+		if ($user && $roleDao->userHasRole($press->getId(), $user->getId(), ROLE_ID_REVIEWER) ) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 }
 
