@@ -51,7 +51,7 @@ class UserHandler extends Handler {
 			}
 		}
 
-		if (Locale::isLocaleValid($setLocale) && (!isset($pressSupportedLocales) || in_array($setLocale, $pressSupportedLocales)) && in_array($setLocale, $site->getSupportedLocales())) {
+		if (AppLocale::isLocaleValid($setLocale) && (!isset($pressSupportedLocales) || in_array($setLocale, $pressSupportedLocales)) && in_array($setLocale, $site->getSupportedLocales())) {
 			$session =& $request->getSession();
 			$session->setSessionVar('currentLocale', $setLocale);
 		}
@@ -124,7 +124,7 @@ class UserHandler extends Handler {
 		}
 
 		$this->setupTemplate($request, true);
-		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_USER));
+		AppLocale::requireComponents(array(LOCALE_COMPONENT_PKP_USER));
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('message', $authorizationMessage);
 		return $templateMgr->display('common/message.tpl');

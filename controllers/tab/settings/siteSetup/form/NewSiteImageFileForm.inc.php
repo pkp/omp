@@ -39,7 +39,7 @@ class NewSiteImageFileForm extends SettingsFileUploadForm {
 		$image = $site->getSetting($fileSettingName);
 		$imageAltText = array();
 
-		$supportedLocales = Locale::getSupportedLocales();
+		$supportedLocales = AppLocale::getSupportedLocales();
 		foreach ($supportedLocales as $key => $locale) {
 			$imageAltText[$key] = $image[$key]['altText'];
 		}
@@ -87,7 +87,7 @@ class NewSiteImageFileForm extends SettingsFileUploadForm {
 			if (!$extension) {
 				return false;
 			}
-			$locale = Locale::getLocale();
+			$locale = AppLocale::getLocale();
 			$press = $request->getPress();
 
 			$uploadName = $this->getFileSettingName() . '_' . $locale . $extension;

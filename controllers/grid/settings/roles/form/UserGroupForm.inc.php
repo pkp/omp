@@ -201,7 +201,7 @@ class UserGroupForm extends Form {
 				$userGroup->setAbbrev($abbrev[$localeKey], $localeKey);
 			}
 		} else {
-			$localeKey = Locale::getLocale();
+			$localeKey = AppLocale::getLocale();
 			$userGroup->setName($this->getData('name'), $localeKey);
 			$userGroup->setAbbrev($this->getData('abbrev'), $localeKey);
 		}

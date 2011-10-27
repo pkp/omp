@@ -90,7 +90,7 @@ class LanguageToggleBlockPlugin extends BlockPlugin {
 				$locales =& $site->getSupportedLocaleNames();
 			}
 		} else {
-			$locales =& Locale::getAllLocales();
+			$locales =& AppLocale::getAllLocales();
 			$templateMgr->assign('languageToggleNoUser', true);
 		}
 

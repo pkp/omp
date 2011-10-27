@@ -90,12 +90,12 @@ class AuthorForm extends Form {
 				'firstName' => $author->getFirstName(),
 				'middleName' => $author->getMiddleName(),
 				'lastName' => $author->getLastName(),
-				'affiliation' => $author->getAffiliation(Locale::getLocale()),
+				'affiliation' => $author->getAffiliation(AppLocale::getLocale()),
 				'country' => $author->getCountry(),
 				'email' => $author->getEmail(),
 				'url' => $author->getUrl(),
 				'userGroupId' => $author->getUserGroupId(),
-				'biography' => $author->getBiography(Locale::getLocale()),
+				'biography' => $author->getBiography(AppLocale::getLocale()),
 				'primaryContact' => $author->getPrimaryContact()
 			);
 		}
@@ -169,12 +169,12 @@ class AuthorForm extends Form {
 		$author->setFirstName($this->getData('firstName'));
 		$author->setMiddleName($this->getData('middleName'));
 		$author->setLastName($this->getData('lastName'));
-		$author->setAffiliation($this->getData('affiliation'), Locale::getLocale()); // localized
+		$author->setAffiliation($this->getData('affiliation'), AppLocale::getLocale()); // localized
 		$author->setCountry($this->getData('country'));
 		$author->setEmail($this->getData('email'));
 		$author->setUrl($this->getData('url'));
 		$author->setUserGroupId($this->getData('userGroupId'));
-		$author->setBiography($this->getData('biography'), Locale::getLocale()); // localized
+		$author->setBiography($this->getData('biography'), AppLocale::getLocale()); // localized
 		$author->setPrimaryContact(($this->getData('primaryContact') ? true : false));
 
 		if ($existingAuthor) {

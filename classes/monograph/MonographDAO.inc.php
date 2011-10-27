@@ -79,8 +79,8 @@ class MonographDAO extends DAO {
 			return $returner;
 		}
 
-		$primaryLocale = Locale::getPrimaryLocale();
-		$locale = Locale::getLocale();
+		$primaryLocale = AppLocale::getPrimaryLocale();
+		$locale = AppLocale::getLocale();
 		$params = array(
 			'title',
 			$primaryLocale,
@@ -332,8 +332,8 @@ class MonographDAO extends DAO {
 	 * @return DAOResultFactory containing matching Monographs
 	 */
 	function &getMonographsByPressId($pressId) {
-		$primaryLocale = Locale::getPrimaryLocale();
-		$locale = Locale::getLocale();
+		$primaryLocale = AppLocale::getPrimaryLocale();
+		$locale = AppLocale::getLocale();
 		$monographs = array();
 
 		$result =& $this->retrieve(
@@ -384,8 +384,8 @@ class MonographDAO extends DAO {
 	 * @return array Monographs
 	 */
 	function &getByUserId($userId, $pressId = null) {
-		$primaryLocale = Locale::getPrimaryLocale();
-		$locale = Locale::getLocale();
+		$primaryLocale = AppLocale::getPrimaryLocale();
+		$locale = AppLocale::getLocale();
 		$params = array(
 			'title', // Series title
 			$primaryLocale,
@@ -526,8 +526,8 @@ class MonographDAO extends DAO {
 	 * @return DAOResultFactory containing matching Monographs
 	 */
 	function &getUnassignedMonographs($pressId = null, $seriesEditorId = null) {
-		$primaryLocale = Locale::getPrimaryLocale();
-		$locale = Locale::getLocale();
+		$primaryLocale = AppLocale::getPrimaryLocale();
+		$locale = AppLocale::getLocale();
 
 		$params = array(
 			'title',

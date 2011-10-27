@@ -38,7 +38,7 @@ class LanguagesForm extends PressSettingsForm {
 		$localeCheck = create_function('$locale,$availableLocales', 'return in_array($locale,$availableLocales);');
 
 		// Validation checks for this form
-		$this->addCheck(new FormValidator($this, 'primaryLocale', 'required', 'manager.languages.form.primaryLocaleRequired'), array('Locale', 'isLocaleValid'));
+		$this->addCheck(new FormValidator($this, 'primaryLocale', 'required', 'manager.languages.form.primaryLocaleRequired'), array('AppLocale', 'isLocaleValid'));
 		$this->addCheck(new FormValidator($this, 'primaryLocale', 'required', 'manager.languages.form.primaryLocaleRequired'), $localeCheck, array(&$this->availableLocales));
 
 		parent::PressSettingsForm($settings, 'controllers/tab/settings/languages/form/languages.tpl', $wizardMode);
@@ -130,7 +130,7 @@ class LanguagesForm extends PressSettingsForm {
 		foreach (array('supportedLocales', 'supportedSubmissionLocales', 'supportedFormLocales') as $name) {
 			$$name = array();
 			foreach ($this->getData($name) as $locale) {
-				if (Locale::isLocaleValid($locale) && in_array($locale, $this->getAvailableLocales())) {
+				if (AppLocale::isLocaleValid($locale) && in_array($locale, $this->getAvailableLocales())) {
 					array_push($$name, $locale);
 				}
 			}

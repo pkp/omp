@@ -47,7 +47,7 @@ class PreparedEmailsGridCellProvider extends GridCellProvider {
 				$label = $roleDao->getRoleNames(false, array($roleId));
 				return array('label' => __(array_shift($label)));
 			case 'subject':
-				$locale = Locale::getLocale();
+				$locale = AppLocale::getLocale();
 				$label = $element->getSubject();
 				return array('label' => $label);
 			case 'enabled':

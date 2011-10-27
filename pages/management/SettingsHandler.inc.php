@@ -48,7 +48,7 @@ class SettingsHandler extends Handler {
 		parent::initialize($request, $args);
 
 		// Load grid-specific translations
-		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_MANAGER, LOCALE_COMPONENT_OMP_MANAGER));
+		AppLocale::requireComponents(array(LOCALE_COMPONENT_PKP_MANAGER, LOCALE_COMPONENT_OMP_MANAGER));
 	}
 
 	/**

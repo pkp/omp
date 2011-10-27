@@ -88,7 +88,7 @@ class CategoryCategoryGridHandler extends CategoryGridHandler {
 
 		// Add grid columns.
 		$cellProvider = new DataObjectGridCellProvider();
-		$cellProvider->setLocale(Locale::getLocale());
+		$cellProvider->setLocale(AppLocale::getLocale());
 
 		$this->addColumn(
 			new GridColumn(

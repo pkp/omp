@@ -67,7 +67,7 @@ class TinyMCEPlugin extends GenericPlugin {
 
 		$baseUrl = $templateManager->get_template_vars('baseUrl');
 		$additionalHeadData = $templateManager->get_template_vars('additionalHeadData');
-		$allLocales = Locale::getAllLocales();
+		$allLocales = AppLocale::getAllLocales();
 		$localeList = array();
 		foreach ($allLocales as $key => $locale) {
 			$localeList[] = String::substr($key, 0, 2);
@@ -93,7 +93,7 @@ class TinyMCEPlugin extends GenericPlugin {
 				plugins : "paste,ibrowser,fullscreen",
 				mode : "specific_textareas",
 				editor_selector : "richContent",
-				language : "' . String::substr(Locale::getLocale(), 0, 2) . '",
+				language : "' . String::substr(AppLocale::getLocale(), 0, 2) . '",
 				relative_urls : false,
 				forced_root_block : false,
 				paste_auto_cleanup_on_paste : true,

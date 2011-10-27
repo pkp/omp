@@ -52,7 +52,7 @@ class UserGridHandler extends GridHandler {
 		parent::initialize($request);
 
 		// Load user-related translations.
-		Locale::requireComponents(array(
+		AppLocale::requireComponents(array(
 			LOCALE_COMPONENT_PKP_USER,
 			LOCALE_COMPONENT_OMP_MANAGER
 		));

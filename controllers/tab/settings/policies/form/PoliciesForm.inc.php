@@ -33,7 +33,7 @@ class PoliciesForm extends PressSettingsForm {
 			'privacyStatement' => 'string'
 		);
 
-		Locale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON));
+		AppLocale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON));
 
 		parent::PressSettingsForm($settings, 'controllers/tab/settings/policies/form/policiesForm.tpl', $wizardMode);
 	}

@@ -59,7 +59,7 @@ class CustomLocaleHandler extends Handler {
 		$locale = array_shift($args);
 		$file = array_shift($args);
 
-		if (!Locale::isLocaleValid($locale)) {
+		if (!AppLocale::isLocaleValid($locale)) {
 			$path = array($plugin->getCategory(), $plugin->getName(), 'index');
 			Request::redirect(null, null, null, $path);
 		}
@@ -84,7 +84,7 @@ class CustomLocaleHandler extends Handler {
 		$this->setupTemplate($plugin, true);
 
 		$locale = array_shift($args);
-		if (!Locale::isLocaleValid($locale)) {
+		if (!AppLocale::isLocaleValid($locale)) {
 			$path = array($plugin->getCategory(), $plugin->getName(), 'index');
 			Request::redirect(null, null, null, $path);
 		}
@@ -147,7 +147,7 @@ class CustomLocaleHandler extends Handler {
 		$this->setupTemplate($plugin, true);
 
 		$locale = array_shift($args);
-		if (!Locale::isLocaleValid($locale)) {
+		if (!AppLocale::isLocaleValid($locale)) {
 			$path = array($plugin->getCategory(), $plugin->getName(), 'index');
 			Request::redirect(null, null, null, $path);
 		}

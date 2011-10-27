@@ -42,14 +42,14 @@ class SubmissionChecklistForm extends Form {
 		$submissionChecklistAll = $press->getSetting('submissionChecklist');
 		$checklistItem = array();
 		// preparea  localizable array for this checklist Item
-		foreach (Locale::getSupportedLocales() as $locale => $name) {
+		foreach (AppLocale::getSupportedLocales() as $locale => $name) {
 			$checklistItem[$locale] = null;
 		}
 
 		// if editing, set the content
 		// use of 'content' as key is for backwards compatibility
 		if ( isset($this->submissionChecklistId) ) {
-			foreach (Locale::getSupportedLocales() as $locale => $name) {
+			foreach (AppLocale::getSupportedLocales() as $locale => $name) {
 				if ( !isset($submissionChecklistAll[$locale][$this->submissionChecklistId]['content'])) {
 					$checklistItem[$locale] = '';
 				} else {
@@ -71,7 +71,7 @@ class SubmissionChecklistForm extends Form {
 	 * @see Form::fetch()
 	 */
 	function fetch(&$request) {
-		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_MANAGER));
+		AppLocale::requireComponents(array(LOCALE_COMPONENT_OMP_MANAGER));
 		return parent::fetch($request);
 	}
 
@@ -92,10 +92,10 @@ class SubmissionChecklistForm extends Form {
 		$press =& $router->getContext($request);
 		$submissionChecklistAll = $press->getSetting('submissionChecklist');
 		//FIXME: a bit of kludge to get unique submissionChecklist id's
-		$this->submissionChecklistId = ($this->submissionChecklistId != null ? $this->submissionChecklistId:(max(array_keys($submissionChecklistAll[Locale::getPrimaryLocale()])) + 1));
+		$this->submissionChecklistId = ($this->submissionChecklistId != null ? $this->submissionChecklistId:(max(array_keys($submissionChecklistAll[AppLocale::getPrimaryLocale()])) + 1));
 
 		$checklistItem = $this->getData('checklistItem');
-		foreach (Locale::getSupportedLocales() as $locale => $name) {
+		foreach (AppLocale::getSupportedLocales() as $locale => $name) {
 			$submissionChecklistAll[$locale][$this->submissionChecklistId]['content'] = $checklistItem[$locale];
 		}
 

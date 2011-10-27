@@ -318,7 +318,7 @@ class MonographFile extends SubmissionFile {
 			// human readable genre information.
 			$genreName = '';
 			if ($currentIds['genreId']) {
-				$primaryLocale = Locale::getPrimaryLocale();
+				$primaryLocale = AppLocale::getPrimaryLocale();
 				$genreDao =& DAORegistry::getDAO('GenreDAO'); /* @var $genreDao GenreDAO */
 				$genre =& $genreDao->getById($currentIds['genreId']);
 				assert(is_a($genre, 'Genre'));

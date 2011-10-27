@@ -84,14 +84,14 @@ class PreparedEmailForm extends Form {
 				'emailKey' => $emailTemplate->getEmailKey(),
 				'subject' => $subject,
 				'body' => $body,
-				'description' => $emailTemplate->getDescription(Locale::getLocale())
+				'description' => $emailTemplate->getDescription(AppLocale::getLocale())
 			);
 
 		} else {
 			$this->setData('isNewTemplate', true);
 		}
 
-		Locale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_PKP_MANAGER));
+		AppLocale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_PKP_MANAGER));
 		$this->setData('supportedLocales', $press->getSupportedLocaleNames());
 	}
 
@@ -141,7 +141,7 @@ class PreparedEmailForm extends Form {
 				$emailTemplate->setBody($localeKey, $this->_data['body'][$localeKey]);
 			}
 		} else {
-			$localeKey = Locale::getLocale();
+			$localeKey = AppLocale::getLocale();
 			$emailTemplate->setSubject($localeKey, $this->_data['subject'][$localeKey]);
 			$emailTemplate->setBody($localeKey, $this->_data['body'][$localeKey]);
 		}

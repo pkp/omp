@@ -60,7 +60,7 @@ class NotifyUsersListbuilderHandler extends ListbuilderHandler {
 		parent::initialize($request);
 
 		// Load submission-specific translations
-		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_USER));
+		AppLocale::requireComponents(array(LOCALE_COMPONENT_PKP_USER));
 
 		// Basic configuration.
 		$this->setSourceType(LISTBUILDER_SOURCE_TYPE_SELECT);

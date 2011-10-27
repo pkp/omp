@@ -174,7 +174,7 @@ class NotificationManager extends PKPNotificationManager {
 				$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
 				$reviewRound =& $reviewRoundDao->getReviewRoundById($notification->getAssocId());
 
-				Locale::requireComponents(array(LOCALE_COMPONENT_OMP_EDITOR)); // load review round status keys.
+				AppLocale::requireComponents(array(LOCALE_COMPONENT_OMP_EDITOR)); // load review round status keys.
 				return __($reviewRound->getStatusKey());			
 			default:
 				return parent::getNotificationContents($request, $notification);
@@ -559,7 +559,7 @@ class NotificationManager extends PKPNotificationManager {
 	function _getSignoffNotificationDescription($request, $notification, $symbolic) {
 		$monographId = $notification->getAssocId();
 
-		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_SUBMISSION));
+		AppLocale::requireComponents(array(LOCALE_COMPONENT_OMP_SUBMISSION));
 
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
 		$monograph =& $monographDao->getMonograph($monographId);

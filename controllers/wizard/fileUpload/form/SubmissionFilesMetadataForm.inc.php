@@ -105,7 +105,7 @@ class SubmissionFilesMetadataForm extends Form {
 	function execute($args, &$request) {
 		// Update the submission file with data from the form.
 		$submissionFile =& $this->getSubmissionFile();
-		$submissionFile->setName($this->getData('name'), Locale::getLocale());
+		$submissionFile->setName($this->getData('name'), AppLocale::getLocale());
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		$submissionFileDao->updateObject($submissionFile);
 

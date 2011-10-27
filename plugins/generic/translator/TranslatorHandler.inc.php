@@ -44,7 +44,7 @@ class TranslatorHandler extends Handler {
 
 		$templateMgr =& TemplateManager::getManager();
 		import('lib.pkp.classes.core.ArrayItemIterator');
-		$templateMgr->assign('locales', new ArrayItemIterator(Locale::getAllLocales(), $rangeInfo->getPage(), $rangeInfo->getCount()));
+		$templateMgr->assign('locales', new ArrayItemIterator(AppLocale::getAllLocales(), $rangeInfo->getPage(), $rangeInfo->getCount()));
 		$templateMgr->assign('masterLocale', MASTER_LOCALE);
 
 		// Test whether the tar binary is available for the export to work
@@ -57,7 +57,7 @@ class TranslatorHandler extends Handler {
 	function setupTemplate($subclass = true) {
 		parent::setupTemplate();
 		$templateMgr =& TemplateManager::getManager();
-		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_ADMIN, LOCALE_COMPONENT_PKP_MANAGER));
+		AppLocale::requireComponents(array(LOCALE_COMPONENT_PKP_ADMIN, LOCALE_COMPONENT_PKP_MANAGER));
 		$pageHierarchy = array(array(Request::url(null, 'user'), 'navigation.user'), array(Request::url(null, 'admin'), 'admin.siteAdmin'));
 		if ($subclass) $pageHierarchy[] = array(Request::url(null, 'translate'), 'plugins.generic.translator.name');
 		$templateMgr->assign('pageHierarchy', $pageHierarchy);
@@ -72,7 +72,7 @@ class TranslatorHandler extends Handler {
 		$locale = array_shift($args);
 		$file = array_shift($args);
 
-		if (!Locale::isLocaleValid($locale)) Request::redirect(null, null, 'index');
+		if (!AppLocale::isLocaleValid($locale)) Request::redirect(null, null, 'index');
 		$localeFiles = TranslatorAction::getLocaleFiles($locale);
 		$miscFiles = TranslatorAction::getMiscLocaleFiles($locale);
 		$emails = TranslatorAction::getEmailTemplates($locale);
@@ -100,7 +100,7 @@ class TranslatorHandler extends Handler {
 		$this->setupTemplate();
 
 		$locale = array_shift($args);
-		if (!Locale::isLocaleValid($locale)) Request::redirect(null, null, 'index');
+		if (!AppLocale::isLocaleValid($locale)) Request::redirect(null, null, 'index');
 
 		$localeFiles = TranslatorAction::getLocaleFiles($locale);
 		$unwriteableFiles = array();
@@ -133,7 +133,7 @@ class TranslatorHandler extends Handler {
 		$this->setupTemplate();
 
 		$locale = array_shift($args);
-		if (!Locale::isLocaleValid($locale)) Request::redirect(null, null, 'index');
+		if (!AppLocale::isLocaleValid($locale)) Request::redirect(null, null, 'index');
 
 		TranslatorAction::export($locale);
 	}
@@ -144,7 +144,7 @@ class TranslatorHandler extends Handler {
 		$this->setupTemplate();
 
 		$locale = array_shift($args);
-		if (!Locale::isLocaleValid($locale)) Request::redirect(null, null, 'index');
+		if (!AppLocale::isLocaleValid($locale)) Request::redirect(null, null, 'index');
 
 		$localeFiles = TranslatorAction::getLocaleFiles($locale);
 
@@ -214,7 +214,7 @@ class TranslatorHandler extends Handler {
 		$this->setupTemplate();
 
 		$locale = array_shift($args);
-		if (!Locale::isLocaleValid($locale)) Request::redirect(null, null, 'index');
+		if (!AppLocale::isLocaleValid($locale)) Request::redirect(null, null, 'index');
 
 		$filename = urldecode(urldecode(array_shift($args)));
 		if (!TranslatorAction::isLocaleFile($locale, $filename)) {
@@ -233,7 +233,7 @@ class TranslatorHandler extends Handler {
 		$this->setupTemplate();
 
 		$locale = array_shift($args);
-		if (!Locale::isLocaleValid($locale)) Request::redirect(null, null, 'index');
+		if (!AppLocale::isLocaleValid($locale)) Request::redirect(null, null, 'index');
 
 		$filename = urldecode(urldecode(array_shift($args)));
 		if (!TranslatorAction::isLocaleFile($locale, $filename)) {
@@ -285,7 +285,7 @@ class TranslatorHandler extends Handler {
 		$this->setupTemplate();
 
 		$locale = array_shift($args);
-		if (!Locale::isLocaleValid($locale)) Request::redirect(null, null, 'index');
+		if (!AppLocale::isLocaleValid($locale)) Request::redirect(null, null, 'index');
 
 		$filename = urldecode(urldecode(array_shift($args)));
 		if (!TranslatorAction::isLocaleFile($locale, $filename)) {
@@ -307,7 +307,7 @@ class TranslatorHandler extends Handler {
 		$this->setupTemplate();
 
 		$locale = array_shift($args);
-		if (!Locale::isLocaleValid($locale)) Request::redirect(null, null, 'index');
+		if (!AppLocale::isLocaleValid($locale)) Request::redirect(null, null, 'index');
 
 		$filename = urldecode(urldecode(array_shift($args)));
 		if (!TranslatorAction::isLocaleFile($locale, $filename)) {
@@ -335,7 +335,7 @@ class TranslatorHandler extends Handler {
 		$this->setupTemplate();
 
 		$locale = array_shift($args);
-		if (!Locale::isLocaleValid($locale)) Request::redirect(null, null, 'index');
+		if (!AppLocale::isLocaleValid($locale)) Request::redirect(null, null, 'index');
 
 		$filename = urldecode(urldecode(array_shift($args)));
 		if (!TranslatorAction::isLocaleFile($locale, $filename)) {
@@ -355,7 +355,7 @@ class TranslatorHandler extends Handler {
 		$this->setupTemplate();
 
 		$locale = array_shift($args);
-		if (!Locale::isLocaleValid($locale)) Request::redirect(null, null, 'index');
+		if (!AppLocale::isLocaleValid($locale)) Request::redirect(null, null, 'index');
 
 		$filename = urldecode(urldecode(array_shift($args)));
 		if (!TranslatorAction::isLocaleFile($locale, $filename)) {
@@ -377,7 +377,7 @@ class TranslatorHandler extends Handler {
 		$this->setupTemplate();
 
 		$locale = array_shift($args);
-		if (!Locale::isLocaleValid($locale)) Request::redirect(null, null, 'index');
+		if (!AppLocale::isLocaleValid($locale)) Request::redirect(null, null, 'index');
 
 		$emails = TranslatorAction::getEmailTemplates($locale);
 		$referenceEmails = TranslatorAction::getEmailTemplates(MASTER_LOCALE);
@@ -400,7 +400,7 @@ class TranslatorHandler extends Handler {
 		$this->setupTemplate();
 
 		$locale = array_shift($args);
-		if (!Locale::isLocaleValid($locale)) Request::redirect(null, null, 'index');
+		if (!AppLocale::isLocaleValid($locale)) Request::redirect(null, null, 'index');
 
 		$filename = urldecode(urldecode(array_shift($args)));
 		if (!TranslatorAction::isLocaleFile($locale, $filename)) {
@@ -418,7 +418,7 @@ class TranslatorHandler extends Handler {
 		$this->setupTemplate();
 
 		$locale = array_shift($args);
-		if (!Locale::isLocaleValid($locale)) Request::redirect(null, null, 'index');
+		if (!AppLocale::isLocaleValid($locale)) Request::redirect(null, null, 'index');
 
 		$emails = TranslatorAction::getEmailTemplates($locale);
 		$referenceEmails = TranslatorAction::getEmailTemplates(MASTER_LOCALE);
@@ -442,7 +442,7 @@ class TranslatorHandler extends Handler {
 		$this->setupTemplate();
 
 		$locale = array_shift($args);
-		if (!Locale::isLocaleValid($locale)) Request::redirect(null, null, 'index');
+		if (!AppLocale::isLocaleValid($locale)) Request::redirect(null, null, 'index');
 
 		$emails = TranslatorAction::getEmailTemplates($locale);
 		$referenceEmails = TranslatorAction::getEmailTemplates(MASTER_LOCALE);

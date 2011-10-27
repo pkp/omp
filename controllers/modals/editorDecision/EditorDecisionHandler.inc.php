@@ -58,7 +58,7 @@ class EditorDecisionHandler extends Handler {
 	 * @see PKPHandler::initialize()
 	 */
 	function initialize(&$request, $args) {
-		Locale::requireComponents(
+		AppLocale::requireComponents(
 			array(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_OMP_EDITOR, LOCALE_COMPONENT_PKP_SUBMISSION)
 		);
 	}

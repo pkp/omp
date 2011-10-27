@@ -42,7 +42,7 @@ class SubmissionChecklistGridHandler extends SetupGridHandler {
 		$router =& $request->getRouter();
 		$context =& $router->getContext($request);
 		$submissionChecklist = $context->getSetting('submissionChecklist');
-		$this->setGridDataElements($submissionChecklist[Locale::getLocale()]);
+		$this->setGridDataElements($submissionChecklist[AppLocale::getLocale()]);
 
 		// Add grid-level actions
 		import('lib.pkp.classes.linkAction.request.AjaxModal');
@@ -158,13 +158,13 @@ class SubmissionChecklistGridHandler extends SetupGridHandler {
 		// get all of the submissionChecklists
 		$submissionChecklistAll = $press->getSetting('submissionChecklist');
 
-		foreach (Locale::getSupportedLocales() as $locale => $name) {
+		foreach (AppLocale::getSupportedLocales() as $locale => $name) {
 			if ( isset($submissionChecklistAll[$locale][$rowId]) ) {
 				unset($submissionChecklistAll[$locale][$rowId]);
 			} else {
 				// only fail if the currently displayed locale was not set
 				// (this is the one that needs to be removed from the currently displayed grid)
-				if ( $locale == Locale::getLocale() ) {
+				if ( $locale == AppLocale::getLocale() ) {
 					$json = new JSONMessage(false, __('manager.setup.errorDeletingSubmissionChecklist'));
 					return $json->getString();
 					exit;

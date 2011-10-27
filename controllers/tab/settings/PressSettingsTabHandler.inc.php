@@ -44,7 +44,7 @@ class PressSettingsTabHandler extends ManagerSettingsTabHandler {
 		parent::initialize($request, $args);
 
 		// Load grid-specific translations
-		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_USER));
+		AppLocale::requireComponents(array(LOCALE_COMPONENT_PKP_USER));
 	}
 }
 

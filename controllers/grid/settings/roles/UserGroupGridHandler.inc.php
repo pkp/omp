@@ -70,7 +70,7 @@ class UserGroupGridHandler extends CategoryGridHandler {
 		$this->_pressId =& $press->getId();
 
 		// Load user-related translations.
-		Locale::requireComponents(array(
+		AppLocale::requireComponents(array(
 			LOCALE_COMPONENT_PKP_USER,
 			LOCALE_COMPONENT_OMP_SUBMISSION,
 			LOCALE_COMPONENT_OMP_MANAGER)
@@ -96,7 +96,7 @@ class UserGroupGridHandler extends CategoryGridHandler {
 
 		// Add grid columns.
 		$cellProvider = new DataObjectGridCellProvider();
-		$cellProvider->setLocale(Locale::getLocale());
+		$cellProvider->setLocale(AppLocale::getLocale());
 
 		// Add array columns to the grid.
 		$this->addColumn(new GridColumn(

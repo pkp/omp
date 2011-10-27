@@ -49,7 +49,7 @@ class AppearanceForm extends PressSettingsForm {
 			'numPageLinks' => 'int'
 		);
 
-		Locale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON));
+		AppLocale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON));
 
 		parent::PressSettingsForm($settings, 'controllers/tab/settings/appearance/form/appearanceForm.tpl', $wizardMode);
 	}
@@ -120,7 +120,7 @@ class AppearanceForm extends PressSettingsForm {
 		$params = array(
 			'imagesViews' => $imagesViews,
 			'pressStyleSheetView' => $cssView,
-			'locale' => Locale::getLocale()
+			'locale' => AppLocale::getLocale()
 		);
 
 		return parent::fetch(&$request, $params);
@@ -139,7 +139,7 @@ class AppearanceForm extends PressSettingsForm {
 	 */
 	function renderFileView($fileSettingName, &$request) {
 		$file = $this->getData($fileSettingName);
-		$locale = Locale::getLocale();
+		$locale = AppLocale::getLocale();
 
 		// Check if the file is localized.
 		if (!is_null($file) && key_exists($locale, $file)) {
@@ -182,7 +182,7 @@ class AppearanceForm extends PressSettingsForm {
 	 */
 	function deleteFile($fileSettingName, &$request) {
 		$press =& $request->getPress();
-		$locale = Locale::getLocale();
+		$locale = AppLocale::getLocale();
 
 		// Get the file.
 		$file = $this->getData($fileSettingName);

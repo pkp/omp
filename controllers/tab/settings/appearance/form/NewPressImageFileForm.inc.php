@@ -58,7 +58,7 @@ class NewPressImageFileForm extends SettingsFileUploadForm {
 		$image = $press->getSetting($fileSettingName);
 		$imageAltText = array();
 
-		$supportedLocales = Locale::getSupportedLocales();
+		$supportedLocales = AppLocale::getSupportedLocales();
 		foreach ($supportedLocales as $key => $locale) {
 			$imageAltText[$key] = $image[$key]['altText'];
 		}
@@ -91,7 +91,7 @@ class NewPressImageFileForm extends SettingsFileUploadForm {
 			if (!$extension) {
 				return false;
 			}
-			$locale = Locale::getLocale();
+			$locale = AppLocale::getLocale();
 			$press = $request->getPress();
 
 			$uploadName = $this->getFileSettingName() . '_' . $locale . $extension;

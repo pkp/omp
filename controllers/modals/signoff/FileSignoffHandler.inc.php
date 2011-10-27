@@ -67,7 +67,7 @@ class FileSignoffHandler extends FileManagementHandler {
 		$this->_symbolic = $request->getUserVar('symbolic')?$request->getUserVar('symbolic') : null;
 
 		// Load translations.
-		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_SUBMISSION, LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_PKP_COMMON, LOCALE_COMPONENT_APPLICATION_COMMON));
+		AppLocale::requireComponents(array(LOCALE_COMPONENT_OMP_SUBMISSION, LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_PKP_COMMON, LOCALE_COMPONENT_APPLICATION_COMMON));
 	}
 
 

@@ -35,17 +35,17 @@ class AdminLanguagesHandler extends AdminHandler {
 		$site =& $request->getSite();
 
 		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->assign('localeNames', Locale::getAllLocales());
+		$templateMgr->assign('localeNames', AppLocale::getAllLocales());
 		$templateMgr->assign('primaryLocale', $site->getPrimaryLocale());
 		$templateMgr->assign('supportedLocales', $site->getSupportedLocales());
 		$localesComplete = array();
-		foreach (Locale::getAllLocales() as $key => $name) {
-			$localesComplete[$key] = Locale::isLocaleComplete($key);
+		foreach (AppLocale::getAllLocales() as $key => $name) {
+			$localesComplete[$key] = AppLocale::isLocaleComplete($key);
 		}
 		$templateMgr->assign('localesComplete', $localesComplete);
 
 		$templateMgr->assign('installedLocales', $site->getInstalledLocales());
-		$templateMgr->assign('uninstalledLocales', array_diff(array_keys(Locale::getAllLocales()), $site->getInstalledLocales()));
+		$templateMgr->assign('uninstalledLocales', array_diff(array_keys(AppLocale::getAllLocales()), $site->getInstalledLocales()));
 		$templateMgr->assign('helpTopicId', 'site.siteManagement');
 
 		import('classes.i18n.LanguageAction');
@@ -71,14 +71,14 @@ class AdminLanguagesHandler extends AdminHandler {
 		$primaryLocale = $request->getUserVar('primaryLocale');
 		$supportedLocales = $request->getUserVar('supportedLocales');
 
-		if (Locale::isLocaleValid($primaryLocale)) {
+		if (AppLocale::isLocaleValid($primaryLocale)) {
 			$site->setPrimaryLocale($primaryLocale);
 		}
 
 		$newSupportedLocales = array();
 		if (isset($supportedLocales) && is_array($supportedLocales)) {
 			foreach ($supportedLocales as $locale) {
-				if (Locale::isLocaleValid($locale)) {
+				if (AppLocale::isLocaleValid($locale)) {
 					array_push($newSupportedLocales, $locale);
 				}
 			}
@@ -115,9 +115,9 @@ class AdminLanguagesHandler extends AdminHandler {
 			$installedLocales = $site->getInstalledLocales();
 
 			foreach ($installLocale as $locale) {
-				if (Locale::isLocaleValid($locale) && !in_array($locale, $installedLocales)) {
+				if (AppLocale::isLocaleValid($locale) && !in_array($locale, $installedLocales)) {
 					array_push($installedLocales, $locale);
-					Locale::installLocale($locale);
+					AppLocale::installLocale($locale);
 				}
 			}
 
@@ -153,7 +153,7 @@ class AdminLanguagesHandler extends AdminHandler {
 				$siteDao->updateObject($site);
 
 				$this->_removeLocalesFromPresses($request);
-				Locale::uninstallLocale($locale);
+				AppLocale::uninstallLocale($locale);
 			}
 		}
 
@@ -172,7 +172,7 @@ class AdminLanguagesHandler extends AdminHandler {
 		$locale = $request->getUserVar('locale');
 
 		if (in_array($locale, $site->getInstalledLocales())) {
-			Locale::reloadLocale($locale);
+			AppLocale::reloadLocale($locale);
 		}
 
 		$request->redirect(null, null, 'languages');

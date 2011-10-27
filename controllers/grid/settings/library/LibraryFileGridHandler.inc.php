@@ -84,7 +84,7 @@ class LibraryFileGridHandler extends SetupGridHandler {
 		$this->setId('libraryFile' . ucwords(strtolower($name)));
 		$this->setTitle("grid.libraryFiles.$name.title");
 
-		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_COMMON, LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_PKP_SUBMISSION));
+		AppLocale::requireComponents(array(LOCALE_COMPONENT_PKP_COMMON, LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_PKP_SUBMISSION));
 
 		// Elements to be displayed in the grid
 		$libraryFileDao =& DAORegistry::getDAO('LibraryFileDAO');

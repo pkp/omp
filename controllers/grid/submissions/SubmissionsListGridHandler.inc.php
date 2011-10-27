@@ -52,7 +52,7 @@ class SubmissionsListGridHandler extends GridHandler {
 		parent::initialize($request);
 
 		// Load submission-specific translations.
-		Locale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_OMP_SUBMISSION, LOCALE_COMPONENT_PKP_SUBMISSION));
+		AppLocale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_OMP_SUBMISSION, LOCALE_COMPONENT_PKP_SUBMISSION));
 
 		// Load submissions.
 		$router =& $request->getRouter();

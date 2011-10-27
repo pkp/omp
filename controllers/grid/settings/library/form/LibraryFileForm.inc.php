@@ -42,7 +42,7 @@ class LibraryFileForm extends Form {
 	 * @see Form::fetch()
 	 */
 	function fetch(&$request) {
-		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_MANAGER));
+		AppLocale::requireComponents(array(LOCALE_COMPONENT_OMP_MANAGER));
 
 		return parent::fetch($request);
 	}

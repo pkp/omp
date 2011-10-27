@@ -235,7 +235,7 @@ class PressSettingsDAO extends DAO {
 				$this->updateSetting(
 					$pressId,
 					$name,
-					$isLocaleField?array(Locale::getLocale() => $value):$value,
+					$isLocaleField?array(AppLocale::getLocale() => $value):$value,
 					$type,
 					$isLocaleField
 				);
@@ -257,7 +257,7 @@ class PressSettingsDAO extends DAO {
 		$value = preg_replace_callback('{{translate key="([^"]+)"}}',
 		// this only translates from mail locale file 
 		create_function('$matches', 
-		'$locale = "' . $locale . '";'.'$localeFileName = Locale::getMainLocaleFilename($locale);'.
+		'$locale = "' . $locale . '";'.'$localeFileName = AppLocale::getMainLocaleFilename($locale);'.
 		'$localeFile = new LocaleFile($locale, $localeFileName);'.'return $localeFile->translate($matches[1]);'),$rawInput); 
 		foreach ($paramArray as $pKey => $pValue) {
 			$value = str_replace('{$' . $pKey . '}', $pValue, $value);
@@ -327,7 +327,7 @@ class PressSettingsDAO extends DAO {
 					$this->updateSetting(
 						$pressId,
 						$name,
-						$isLocaleField?array(Locale::getLocale() => $value):$value,
+						$isLocaleField?array(AppLocale::getLocale() => $value):$value,
 						$type,
 						$isLocaleField
 					);

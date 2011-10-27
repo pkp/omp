@@ -181,10 +181,10 @@ class Press extends DataObject {
 	}
 
 	function &getLocalizedSetting($name) {
-		$returner = $this->getSetting($name, Locale::getLocale());
+		$returner = $this->getSetting($name, AppLocale::getLocale());
 		if ($returner === null) {
 			unset($returner);
-			$returner = $this->getSetting($name, Locale::getPrimaryLocale());
+			$returner = $this->getSetting($name, AppLocale::getPrimaryLocale());
 		}
 		return $returner;
 	}
@@ -198,7 +198,7 @@ class Press extends DataObject {
 
 		if (!isset($supportedLocales)) {
 			$supportedLocales = array();
-			$localeNames =& Locale::getAllLocales();
+			$localeNames =& AppLocale::getAllLocales();
 
 			$locales = $this->getSetting('supportedFormLocales');
 			if (!isset($locales) || !is_array($locales)) {
@@ -226,7 +226,7 @@ class Press extends DataObject {
 
 		$title = null;
 
-		foreach (array(Locale::getLocale(), Locale::getPrimaryLocale()) as $locale) {
+		foreach (array(AppLocale::getLocale(), AppLocale::getPrimaryLocale()) as $locale) {
 			if (isset($typeArray[$locale]) && $typeArray[$locale]) {
 				if (isset($imageArray[$locale])) $title = $imageArray[$locale];
 			}
@@ -244,7 +244,7 @@ class Press extends DataObject {
 	function getPressPageHeaderLogo($home = false) {
 		$prefix = $home ? 'home' : 'page';
 		$logoArray = $this->getSetting($prefix . 'HeaderLogoImage');
-		foreach (array(Locale::getLocale(), Locale::getPrimaryLocale()) as $locale) {
+		foreach (array(AppLocale::getLocale(), AppLocale::getPrimaryLocale()) as $locale) {
 			if (isset($logoArray[$locale])) return $logoArray[$locale];
 		}
 		return null;
@@ -260,7 +260,7 @@ class Press extends DataObject {
 
 		if (!isset($supportedLocales)) {
 			$supportedLocales = array();
-			$localeNames =& Locale::getAllLocales();
+			$localeNames =& AppLocale::getAllLocales();
 
 			$locales = $this->getSetting('supportedLocales');
 			if (!isset($locales) || !is_array($locales)) {

@@ -53,12 +53,12 @@ class PreparedEmailsGridHandler extends GridHandler {
 		$this->setId('preparedEmailsGrid');
 		$this->setTitle('grid.preparedEmails.currentList');
 
-		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_MANAGER));
+		AppLocale::requireComponents(array(LOCALE_COMPONENT_PKP_MANAGER));
 
 		// Elements to be displayed in the grid
 		$press =& $request->getPress();
 		$emailTemplateDao =& DAORegistry::getDAO('EmailTemplateDAO'); /* @var $emailTemplateDao EmailTemplateDAO */
-		$emailTemplates =& $emailTemplateDao->getEmailTemplates(Locale::getLocale(), $press->getId());
+		$emailTemplates =& $emailTemplateDao->getEmailTemplates(AppLocale::getLocale(), $press->getId());
 		$rowData = array();
 		foreach ($emailTemplates as $emailTemplate) {
 			$rowData[$emailTemplate->getEmailKey()] = $emailTemplate;

@@ -158,7 +158,7 @@ class WebsiteSettingsTabHandler extends ManagerSettingsTabHandler {
 	function reloadLocalizedDefaultSettings($args, &$request) {
 		// make sure the locale is valid
 		$locale = $request->getUserVar('localeToLoad');
-		if ( !Locale::isLocaleValid($locale) ) {
+		if ( !AppLocale::isLocaleValid($locale) ) {
 			$json = new JSONMessage(false);
 			return $json->getString();
 		}

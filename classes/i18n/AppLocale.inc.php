@@ -24,7 +24,7 @@ define('LOCALE_COMPONENT_OMP_EDITOR',		0x00000108);
 define('LOCALE_COMPONENT_OMP_ADMIN',		0x0000010F);
 define('LOCALE_COMPONENT_OMP_DEFAULT_SETTINGS',	0x00000111);
 
-class Locale extends PKPLocale {
+class AppLocale extends PKPLocale {
 	/**
 	 * Get all supported UI locales for the current context.
 	 * @return array
@@ -33,7 +33,7 @@ class Locale extends PKPLocale {
 		static $supportedLocales;
 		if (!isset($supportedLocales)) {
 			if (defined('SESSION_DISABLE_INIT') || !Config::getVar('general', 'installed')) {
-				$supportedLocales = Locale::getAllLocales();
+				$supportedLocales = AppLocale::getAllLocales();
 			} elseif (($press =& Request::getPress())) {
 				$supportedLocales = $press->getSupportedLocaleNames();
 			} else {
@@ -52,7 +52,7 @@ class Locale extends PKPLocale {
 		static $supportedFormLocales;
 		if (!isset($supportedFormLocales)) {
 			if (defined('SESSION_DISABLE_INIT') || !Config::getVar('general', 'installed')) {
-				$supportedFormLocales = Locale::getAllLocales();
+				$supportedFormLocales = AppLocale::getAllLocales();
 			} elseif (($press =& Request::getPress())) {
 				$supportedFormLocales = $press->getSupportedFormLocaleNames();
 			} else {
@@ -76,7 +76,7 @@ class Locale extends PKPLocale {
 				// it to override. (Necessary when locale is
 				// being set, as cookie will not yet be re-set)
 				$locale = Request::getUserVar('setLocale');
-				if (empty($locale) || !in_array($locale, array_keys(Locale::getSupportedLocales()))) $locale = Request::getCookieVar('currentLocale');
+				if (empty($locale) || !in_array($locale, array_keys(AppLocale::getSupportedLocales()))) $locale = Request::getCookieVar('currentLocale');
 			} else {
 				$sessionManager =& SessionManager::getManager();
 				$session =& $sessionManager->getUserSession();
@@ -114,7 +114,7 @@ class Locale extends PKPLocale {
 				}
 			}
 
-			if (!Locale::isLocaleValid($locale)) {
+			if (!AppLocale::isLocaleValid($locale)) {
 				$locale = LOCALE_DEFAULT;
 			}
 
@@ -130,7 +130,7 @@ class Locale extends PKPLocale {
 	function getLocalePrecedence() {
 		static $localePrecedence;
 		if (!isset($localePrecedence)) {
-			$localePrecedence = array(Locale::getLocale());
+			$localePrecedence = array(AppLocale::getLocale());
 
 			$press =& Request::getPress();
 			if ($press && !in_array($press->getPrimaryLocale(), $localePrecedence)) $localePrecedence[] = $press->getPrimaryLocale();
@@ -162,7 +162,7 @@ class Locale extends PKPLocale {
 			$locale = $site->getPrimaryLocale();
 		}
 
-		if (!isset($locale) || !Locale::isLocaleValid($locale)) {
+		if (!isset($locale) || !AppLocale::isLocaleValid($locale)) {
 			$locale = LOCALE_DEFAULT;
 		}
 

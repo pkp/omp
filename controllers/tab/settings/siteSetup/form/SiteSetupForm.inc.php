@@ -32,7 +32,7 @@ class SiteSetupForm extends PKPSiteSettingsForm {
 		$this->addCheck(new FormValidatorCustom($this, 'minPasswordLength', 'required', 'admin.settings.form.minPasswordLengthRequired', create_function('$l', sprintf('return $l >= %d;', SITE_MIN_PASSWORD_LENGTH))));
 		$this->addCheck(new FormValidatorPost($this));
 
-		Locale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON));
+		AppLocale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON));
 	}
 
 	//
@@ -60,7 +60,7 @@ class SiteSetupForm extends PKPSiteSettingsForm {
 		$imageView = $this->renderFileView($imageSettingName, $request);
 
 		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->assign('locale', Locale::getLocale());
+		$templateMgr->assign('locale', AppLocale::getLocale());
 		$templateMgr->assign('siteStyleFileExists', file_exists($siteStyleFilename));
 		$templateMgr->assign_by_ref('uploadCssLinkAction', $uploadCssLinkAction);
 		$templateMgr->assign_by_ref('uploadImageLinkAction', $uploadImageLinkAction);
@@ -147,7 +147,7 @@ class SiteSetupForm extends PKPSiteSettingsForm {
 	 */
 	function renderFileView($fileSettingName, &$request) {
 		$file = $this->getData($fileSettingName);
-		$locale = Locale::getLocale();
+		$locale = AppLocale::getLocale();
 
 		// Check if the file is localized.
 		if (!is_null($file) && key_exists($locale, $file)) {
@@ -191,7 +191,7 @@ class SiteSetupForm extends PKPSiteSettingsForm {
 	 * @return boolean
 	 */
 	function deleteFile($fileSettingName, &$request) {
-		$locale = Locale::getLocale();
+		$locale = AppLocale::getLocale();
 
 		// Get the file.
 		$file = $this->getData($fileSettingName);

@@ -23,8 +23,8 @@ class CustomLocalePlugin extends GenericPlugin {
 				import('lib.pkp.classes.file.FileManager');
 				$press = Request::getPress();
 				$pressId = $press->getId();
-				$locale = Locale::getLocale();
-				$localeFiles = Locale::getLocaleFiles($locale);
+				$locale = AppLocale::getLocale();
+				$localeFiles = AppLocale::getLocaleFiles($locale);
 				$publicFilesDir = Config::getVar('files', 'public_files_dir');
 				$customLocaleDir = $publicFilesDir . DIRECTORY_SEPARATOR . 'presses' . DIRECTORY_SEPARATOR . $pressId . DIRECTORY_SEPARATOR . CUSTOM_LOCALE_DIR;
 
@@ -32,7 +32,7 @@ class CustomLocalePlugin extends GenericPlugin {
 					$localeFilename = $localeFile->getFilename();
 					$customLocalePath = $customLocaleDir . DIRECTORY_SEPARATOR . $locale . DIRECTORY_SEPARATOR . $localeFilename;
 					if (FileManager::fileExists($customLocalePath)) {
-						Locale::registerLocaleFile($locale, $customLocalePath, true);
+						AppLocale::registerLocaleFile($locale, $customLocalePath, true);
 					}
 				}
 			}

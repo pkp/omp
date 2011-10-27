@@ -63,7 +63,7 @@ class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
 		$templateMgr->assign(
 			'supportedSubmissionLocaleNames',
 			array_flip(array_intersect(
-				array_flip(Locale::getAllLocales()),
+				array_flip(AppLocale::getAllLocales()),
 				$supportedSubmissionLocales
 			))
 		);
@@ -115,7 +115,7 @@ class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
 			// supported to use as a default.
 			$tryLocales = array(
 				$this->getFormLocale(), // Current form locale
-				Locale::getLocale(), // Current UI locale
+				AppLocale::getLocale(), // Current UI locale
 				$this->press->getPrimaryLocale(), // Press locale
 				$supportedSubmissionLocales[array_shift(array_keys($supportedSubmissionLocales))] // Fallback: first one on the list
 			);

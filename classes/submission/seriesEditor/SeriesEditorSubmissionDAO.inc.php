@@ -52,8 +52,8 @@ class SeriesEditorSubmissionDAO extends DAO {
 	 * @return EditorSubmission
 	 */
 	function &getSeriesEditorSubmission($monographId) {
-		$primaryLocale = Locale::getPrimaryLocale();
-		$locale = Locale::getLocale();
+		$primaryLocale = AppLocale::getPrimaryLocale();
+		$locale = AppLocale::getLocale();
 		$result =& $this->retrieve(
 			'SELECT	m.*,
 				COALESCE(stl.setting_value, stpl.setting_value) AS series_title,

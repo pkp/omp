@@ -57,7 +57,7 @@ class UserXMLParser {
 
 		$pressDao =& DAORegistry::getDAO('PressDAO');
 		$press =& $pressDao->getPress($this->pressId);
-		$pressPrimaryLocale = Locale::getPrimaryLocale();
+		$pressPrimaryLocale = AppLocale::getPrimaryLocale();
 
 		$site =& Request::getSite();
 		$siteSupportedLocales = $site->getSupportedLocales();
@@ -151,7 +151,7 @@ class UserXMLParser {
 							case 'locales':
 								$locales = array();
 								foreach (explode(':', $attrib->getValue()) as $locale) {
-									if (Locale::isLocaleValid($locale) && in_array($locale, $siteSupportedLocales)) {
+									if (AppLocale::isLocaleValid($locale) && in_array($locale, $siteSupportedLocales)) {
 										array_push($locales, $locale);
 									}
 								}

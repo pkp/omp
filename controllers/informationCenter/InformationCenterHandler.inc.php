@@ -43,7 +43,7 @@ class InformationCenterHandler extends Handler {
 			))
 		);
 
-		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_SUBMISSION));
+		AppLocale::requireComponents(array(LOCALE_COMPONENT_OMP_SUBMISSION));
 	}
 
 

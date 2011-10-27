@@ -28,8 +28,8 @@ class ChapterAuthorDAO extends DAO {
 	 */
 	function &getAuthors($monographId = null, $chapterId = null) {
 		$params = array(
-			'affiliation', Locale::getPrimaryLocale(),
-			'affiliation', Locale::getLocale()
+			'affiliation', AppLocale::getPrimaryLocale(),
+			'affiliation', AppLocale::getLocale()
 		);
 		if (isset($monographId)) $params[] = (int) $monographId;
 		if (isset($chapterId)) $params[] = (int) $chapterId;

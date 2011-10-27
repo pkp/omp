@@ -80,7 +80,7 @@ class LanguageAction {
 		$versionString = $version->getVersionString();
 
 		$descriptorFilename = sprintf(LANGUAGE_PACK_DESCRIPTOR_URL, $versionString);
-		return Locale::loadLocaleList($descriptorFilename);
+		return AppLocale::loadLocaleList($descriptorFilename);
 	}
 
 	/**
@@ -144,7 +144,7 @@ class LanguageAction {
 
 		// The tar file has now been extracted -- check whether the
 		// locales list needs to have the new locale added.
-		$locales = Locale::getAllLocales();
+		$locales = AppLocale::getAllLocales();
 		if (!isset($locales[$locale])) {
 			// The locale does not exist in the local locale list
 			$wrapper =& FileWrapper::wrapper(LOCALE_REGISTRY_FILE);
