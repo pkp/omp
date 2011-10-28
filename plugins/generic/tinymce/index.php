@@ -3,7 +3,7 @@
 /**
  * @defgroup plugins_generic_tinymce
  */
- 
+
 /**
  * @file plugins/generic/tinymce/index.php
  *
@@ -21,4 +21,4 @@ require_once('TinyMCEPlugin.inc.php');
 
 return new TinyMCEPlugin();
 
-?> 
+?>

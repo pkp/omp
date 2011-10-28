@@ -1,9 +1,9 @@
-<?php 
+<?php
 
 /**
  * @defgroup plugins_generic_customLocale
  */
- 
+
 /**
  * @file plugins/generic/customLocale/index.php
  *
@@ -19,6 +19,6 @@
 
 require_once('CustomLocalePlugin.inc.php');
 
-return new CustomLocalePlugin(); 
+return new CustomLocalePlugin();
 
-?> 
+?>

@@ -101,7 +101,7 @@ class PressSettingsDAO extends DAO {
 		$cache->setCache($name, $value);
 
 		$keyFields = array('setting_name', 'locale', 'press_id');
-		
+
 		if (!$isLocalized) {
 			$value = $this->convertToDB($value, $type);
 			$this->replace('press_settings',
@@ -254,11 +254,17 @@ class PressSettingsDAO extends DAO {
 	 * @returns string
 	 */
 	function _performLocalizedReplacement($rawInput, $paramArray = array(), $locale = null) {
-		$value = preg_replace_callback('{{translate key="([^"]+)"}}',
-		// this only translates from mail locale file 
-		create_function('$matches', 
-		'$locale = "' . $locale . '";'.'$localeFileName = AppLocale::getMainLocaleFilename($locale);'.
-		'$localeFile = new LocaleFile($locale, $localeFileName);'.'return $localeFile->translate($matches[1]);'),$rawInput); 
+		$value = preg_replace_callback(
+			'{{translate key="([^"]+)"}}',
+			// this only translates from mail locale file
+			create_function(
+				'$matches',
+				'$locale = "' . $locale . '";'.'$localeFileName = AppLocale::getMainLocaleFilename($locale);' .
+				'$localeFile = new LocaleFile($locale, $localeFileName);'.'return $localeFile->translate($matches[1]);'
+			),
+			$rawInput
+		);
+
 		foreach ($paramArray as $pKey => $pValue) {
 			$value = str_replace('{$' . $pKey . '}', $pValue, $value);
 		}
@@ -376,7 +382,7 @@ class PressSettingsDAO extends DAO {
 				} else {
 					$value = $this->_performLocalizedReplacement($valueNode->getValue(), $paramArray, $locale);
 				}
-				
+
 				// Replace translate calls with translated content
 				$this->updateSetting(
 					$pressId,

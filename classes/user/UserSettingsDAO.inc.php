@@ -45,7 +45,7 @@ class UserSettingsDAO extends PKPUserSettingsDAO {
 	 * Retrieve all settings for a user for a press.
 	 * @param $userId int
 	 * @param $pressId int
-	 * @return array 
+	 * @return array
 	 */
 	function &getSettingsByPress($userId, $pressId = null) {
 		return parent::getSettingsByAssoc($userId, ASSOC_TYPE_PRESS, $pressId);

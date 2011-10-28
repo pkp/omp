@@ -79,14 +79,14 @@ class SubmissionMetadataFormImplementation {
 			foreach ($formData as $key => $data) {
 				$this->_parentForm->setData($key, $data);
 			}
-			
+
 			// load the persisted metadata controlled vocabularies
 			$monographKeywordDao =& DAORegistry::getDAO('MonographKeywordDAO');
 			$this->_parentForm->setData('keywords', $monographKeywordDao->getKeywords($monograph->getId()));
-			
+
 			$monographDisciplineDao =& DAORegistry::getDAO('MonographDisciplineDAO');
 			$this->_parentForm->setData('disciplines', $monographDisciplineDao->getDisciplines($monograph->getId()));
-			
+
 			$monographAgencyDao =& DAORegistry::getDAO('MonographAgencyDAO');
 			$this->_parentForm->setData('agencies', $monographAgencyDao->getAgencies($monograph->getId()));
 		}

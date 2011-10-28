@@ -125,8 +125,9 @@ class MonographAgencyDAO extends ControlledVocabDAO {
 				$agencyEntry->setSequence($i);
 				$i ++;
 				$agencyEntryId = $monographAgencyEntryDao->insertObject($agencyEntry);
-			}	
-		}		
+			}
+		}
 	}
 }
+
 ?>

@@ -34,7 +34,7 @@ import('lib.pkp.classes.form.Form');
 // - access test templates
 // - adjust $baseUrl to obtain proper paths to application js+css
 // - prevent the creation of urls from within templates
-// - modify the initialization procedure, 
+// - modify the initialization procedure,
 //      allowing Form::display() to use FBVTemplateManager
 class FBVTemplateManager extends TemplateManager {
 

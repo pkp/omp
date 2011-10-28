@@ -175,7 +175,7 @@ class NotificationManager extends PKPNotificationManager {
 				$reviewRound =& $reviewRoundDao->getReviewRoundById($notification->getAssocId());
 
 				AppLocale::requireComponents(array(LOCALE_COMPONENT_OMP_EDITOR)); // load review round status keys.
-				return __($reviewRound->getStatusKey());			
+				return __($reviewRound->getStatusKey());
 			default:
 				return parent::getNotificationContents($request, $notification);
 		}

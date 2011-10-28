@@ -124,8 +124,9 @@ class MonographKeywordDAO extends ControlledVocabDAO {
 				$keywordEntry->setSequence($i);
 				$i ++;
 				$keywordEntryId = $monographKeywordEntryDao->insertObject($keywordEntry);
-			}	
-		}		
+			}
+		}
 	}
 }
+
 ?>

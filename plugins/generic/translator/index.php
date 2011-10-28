@@ -1,9 +1,9 @@
-<?php 
+<?php
 
 /**
  * @defgroup plugins_generic_translator
  */
- 
+
 /**
  * @file plugins/generic/translator/index.php
  *
@@ -19,6 +19,6 @@
 
 require_once('TranslatorPlugin.inc.php');
 
-return new TranslatorPlugin(); 
+return new TranslatorPlugin();
 
-?> 
+?>

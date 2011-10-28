@@ -9,9 +9,8 @@
  * @class AdminFunctionsHandler
  * @ingroup pages_admin
  *
- * @brief Handle requests for site administrative/maintenance functions. 
+ * @brief Handle requests for site administrative/maintenance functions.
  */
-
 
 
 import('lib.pkp.classes.site.Version');

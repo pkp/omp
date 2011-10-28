@@ -184,8 +184,6 @@ class SeriesEditorSubmissionDAO extends DAO {
 		$currentStageId = $seriesEditorSubmission->getStageId();
 		$currentRound = $seriesEditorSubmission->getCurrentRound();
 
-		
-
 		// update review assignments
 		$removedReviewAssignments =& $seriesEditorSubmission->getRemovedReviewAssignments();
 

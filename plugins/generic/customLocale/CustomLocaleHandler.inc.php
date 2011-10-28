@@ -21,7 +21,7 @@ import('classes.handler.Handler');
 class CustomLocaleHandler extends Handler {
 	/** Plugin associated with the request */
 	var $plugin;
-	
+
 	/**
 	 * Constructor
 	 **/
@@ -32,7 +32,7 @@ class CustomLocaleHandler extends Handler {
 		$this->addCheck(new HandlerValidatorRoles($this, true, null, null, array(ROLE_ID_SITE_ADMIN, ROLE_ID_JOURNAL_MANAGER)));
 
 		$plugin =& PluginRegistry::getPlugin('generic', 'CustomLocalePlugin');
-		$this->plugin =& $plugin;		
+		$this->plugin =& $plugin;
 	}
 
 	function index() {
@@ -168,7 +168,7 @@ class CustomLocaleHandler extends Handler {
 		import('lib.pkp.classes.file.FileManager');
 		import('lib.pkp.classes.file.EditableLocaleFile');
 		if (!FileManager::fileExists($customFilePath)) {
-			$numParentDirs = substr_count($customFilePath, DIRECTORY_SEPARATOR); 
+			$numParentDirs = substr_count($customFilePath, DIRECTORY_SEPARATOR);
 			$parentDirs = '';
 			for ($i=0; $i<$numParentDirs; $i++) {
 				$parentDirs .= '..' . DIRECTORY_SEPARATOR;

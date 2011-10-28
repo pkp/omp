@@ -99,7 +99,7 @@ class MonographSearchDAO extends DAO {
 				o.monograph_id,
 				COUNT(*) AS count
 			FROM
-				monographs m, 
+				monographs m,
 				monograph_search_objects o NATURAL JOIN ' . $sqlFrom . '
 			WHERE
 				m.monograph_id = pa.monograph_id AND ' . $sqlWhere . '

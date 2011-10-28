@@ -9,7 +9,7 @@
  * @class LoginHandler
  * @ingroup pages_login
  *
- * @brief Handle login/logout requests. 
+ * @brief Handle login/logout requests.
  */
 
 
@@ -94,20 +94,20 @@ class LoginHandler extends PKPLoginHandler {
 	function _getLoginUrl($request) {
 		return $request->url(null, 'login', 'signIn');
 	}
-	
+
 	/**
 	 * Helper Function - set mail from address
 	 * @param $request PKPRequest
-	 * @param MailTemplate $mail 
+	 * @param MailTemplate $mail
 	 */
 	function _setMailFrom($request, &$mail) {
 		$site =& $request->getSite();
 		$press =& $request->getPress();
-		
+
 		// Set the sender based on the current context
 		if ($press && $press->getSetting('supportEmail')) {
 			$mail->setFrom($press->getSetting('supportEmail'), $press->getSetting('supportName'));
-		} else { 
+		} else {
 			$mail->setFrom($site->getLocalizedContactEmail(), $site->getLocalizedContactName());
 		}
 	}

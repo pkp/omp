@@ -3,7 +3,7 @@
 /**
  * @defgroup pages_login
  */
- 
+
 /**
  * @file pages/login/index.php
  *

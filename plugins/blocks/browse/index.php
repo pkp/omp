@@ -3,7 +3,7 @@
 /**
  * @defgroup plugins_blocks_browse
  */
- 
+
 /**
  * @file plugins/blocks/browse/index.php
  *
@@ -15,11 +15,9 @@
  *
  */
 
-// $Id$
-
 
 require_once('BrowseBlockPlugin.inc.php');
 
 return new BrowseBlockPlugin();
 
-?> 
+?>

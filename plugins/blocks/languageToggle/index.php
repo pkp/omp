@@ -3,7 +3,7 @@
 /**
  * @defgroup plugins_blocks_languageToggle
  */
- 
+
 /**
  * @file plugins/blocks/languageToggle/index.php
  *
@@ -15,10 +15,8 @@
  *
  */
 
-
-
 require_once('LanguageToggleBlockPlugin.inc.php');
 
 return new LanguageToggleBlockPlugin();
 
-?> 
+?>

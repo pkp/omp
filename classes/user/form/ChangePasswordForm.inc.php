@@ -46,7 +46,7 @@ class ChangePasswordForm extends Form {
 	function getUser() {
 		return $this->_user;
 	}
-	
+
 	/**
 	 * Get the site
 	 */

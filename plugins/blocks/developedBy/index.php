@@ -3,7 +3,7 @@
 /**
  * @defgroup plugins_blocks_developedBy
  */
- 
+
 /**
  * @file plugins/blocks/developedBy/index.php
  *
@@ -15,10 +15,8 @@
  *
  */
 
-
-
 require_once('DevelopedByBlockPlugin.inc.php');
 
 return new DevelopedByBlockPlugin();
 
-?> 
+?>

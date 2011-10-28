@@ -125,8 +125,9 @@ class MonographDisciplineDAO extends ControlledVocabDAO {
 				$disciplineEntry->setSequence($i);
 				$i ++;
 				$disciplineEntryId = $monographDisciplineEntryDao->insertObject($disciplineEntry);
-			}	
-		}		
+			}
+		}
 	}
 }
+
 ?>

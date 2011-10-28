@@ -13,7 +13,6 @@
  */
 
 
-
 import('classes.plugins.ImportExportPlugin');
 
 import('lib.pkp.classes.xml.XMLCustomWriter');
@@ -203,7 +202,7 @@ class UserImportExportPlugin extends ImportExportPlugin {
 	/**
 	 * Execute import/export tasks using the command-line interface.
 	 * @param $args Parameters to the plugin
-	 */ 
+	 */
 	function executeCLI($scriptName, $args) {
 		$command = array_shift($args);
 		$xmlFile = array_shift($args);

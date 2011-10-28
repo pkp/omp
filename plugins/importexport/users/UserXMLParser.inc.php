@@ -48,7 +48,7 @@ class UserXMLParser {
 	 * @param $file string path to the XML file to parse
 	 * @return array ImportedUsers the collection of users read from the file
 	 */
-	function &parseData($file) {	
+	function &parseData($file) {
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 
 		$success = true;
@@ -276,7 +276,7 @@ class UserXMLParser {
 			}
 
 			if ($sendNotify && !$userExists) {
-				// Send email notification to user as if user just registered themselves			
+				// Send email notification to user as if user just registered themselves
 				$mail->addRecipient($user->getEmail(), $user->getFullName());
 				$mail->sendWithParams(array(
 					'pressName' => $press->getTitle($press->getPrimaryLocale()),
@@ -391,7 +391,7 @@ class ImportedUser extends User {
 	 * @param $unencryptedPassword string
 	 */
 	function setUnencryptedPassword($unencryptedPassword) {
-		$this->setData('unencryptedPassword', $unencryptedPassword);	
+		$this->setData('unencryptedPassword', $unencryptedPassword);
 	}
 
 	/**

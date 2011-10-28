@@ -54,7 +54,7 @@ class InformationCenterNotifyForm extends Form {
 
 		// All stages can choose the default template
 		$templateKeys = array('NOTIFICATION_CENTER_DEFAULT');
-		
+
 		// template keys indexed by stageId
 		$stageTemplates = array(
 			WORKFLOW_STAGE_ID_SUBMISSION => array(),
@@ -63,21 +63,21 @@ class InformationCenterNotifyForm extends Form {
 			WORKFLOW_STAGE_ID_EDITING => array(),
 			WORKFLOW_STAGE_ID_PRODUCTION => array()
 		);
-		
+
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
 		$monograph =& $monographDao->getMonograph($monographId);
 		$currentStageId = $monograph->getStageId();
-		
+
 		$templateKeys = array_merge($templateKeys, $stageTemplates[$currentStageId]);
-		
+
 		import('classes.mail.MonographMailTemplate');
-		
+
 		foreach ($templateKeys as $templateKey) {
 			$template = new MonographMailTemplate($monograph, $templateKey);
 			$templates[$template->getBody()] = $template->getSubject();
 			unset($templateKey);
 		}
-		
+
 		unset($templateKeys);
 		$templateMgr->assign_by_ref('templates', $templates);
 
