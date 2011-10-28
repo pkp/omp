@@ -278,7 +278,7 @@ class ReviewerForm extends Form {
 				'responseDueDate' => $responseDueDate,
 				'reviewDueDate' => $reviewDueDate,
 				'editorialContactSignature' => $user->getContactSignature(),
-				'submissionReviewUrl' => $dispatcher->url($request, 'page', null, 'reviewer', 'submission', null, array('monographId' => $reviewAssignment->getSubmissionId()))
+				'submissionReviewUrl' => $dispatcher->url($request, ROUTER_PAGE, null, 'reviewer', 'submission', null, array('monographId' => $reviewAssignment->getSubmissionId()))
 			);
 			$mail->assignParams($paramArray);
 			$mail->send($request);
