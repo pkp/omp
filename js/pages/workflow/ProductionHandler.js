@@ -1,10 +1,4 @@
 /**
- * @defgroup js_pages_workflow
- */
-// Create the pages_workflow namespace.
-$.pkp.pages.workflow = $.pkp.pages.workflow || {};
-
-/**
  * @file js/pages/workflow/ProductionHandler.js
  *
  * Copyright (c) 2000-2011 John Willinsky

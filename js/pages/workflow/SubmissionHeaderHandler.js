@@ -5,15 +5,15 @@
 $.pkp.pages.workflow = $.pkp.pages.workflow || {};
 
 /**
- * @file js/pages/production/SubmissionHeaderHandler.js
+ * @file js/pages/workflow/SubmissionHeaderHandler.js
  *
  * Copyright (c) 2000-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class SubmissionHeaderHandler
- * @ingroup js_pages_production
+ * @ingroup js_pages_workflow
  *
- * @brief Handler for the production stage.
+ * @brief Handler for the workflow header.
  *
  */
 (function($) {
