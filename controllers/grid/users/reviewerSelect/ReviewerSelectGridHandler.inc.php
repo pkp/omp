@@ -46,6 +46,10 @@ class ReviewerSelectGridHandler extends GridHandler {
 		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
 		// FIXME: #6244# HARDCODED INTERNAL_REVIEW
 		$this->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', $stageId));
+
+		import('classes.security.authorization.internal.ReviewRoundRequiredPolicy');
+		$this->addPolicy(new ReviewRoundRequiredPolicy($request, $args));
+
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 
@@ -170,8 +174,9 @@ class ReviewerSelectGridHandler extends GridHandler {
 
 		$seriesEditorSubmissionDao =& DAORegistry::getDAO('SeriesEditorSubmissionDAO');
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		$reviewRound =& $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ROUND);
 		$data =& $seriesEditorSubmissionDao->getFilteredReviewers($monograph->getPressId(), $done_min, $done_max, $avg_min, $avg_max,
-					$last_min, $last_max, $active_min, $active_max, $interests, $monograph->getId(), $monograph->getCurrentRound());
+					$last_min, $last_max, $active_min, $active_max, $interests, $monograph->getId(), $reviewRound->getId());
 		return $data;
 	}
 

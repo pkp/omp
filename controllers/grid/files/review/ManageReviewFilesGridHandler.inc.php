@@ -81,9 +81,7 @@ class ManageReviewFilesGridHandler extends SelectableFileListGridHandler {
 		$stageId = $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
 
 		$this->_selectionArgs = array(
-					'stageId' => $stageId,
-					'round' => $reviewRound->getRound(),
-					'reviewRoundId' => $reviewRound->getId()
+					'stageId' => $stageId
 		);
 
 		parent::initialize($request);
@@ -108,10 +106,8 @@ class ManageReviewFilesGridHandler extends SelectableFileListGridHandler {
 		$monograph =& $this->getMonograph();
 
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-		$selectedRevisions =& $submissionFileDao->getRevisionsByReviewRound(
-			$monograph->getId(),
-			$this->getRequestArg('stageId'), $this->getRequestArg('round')
-		);
+		$reviewRound =& $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ROUND);
+		$selectedRevisions =& $submissionFileDao->getRevisionsByReviewRound($reviewRound);
 
 		// Include only the files marked viewable
 		foreach ($selectedRevisions as $id => $revision) {

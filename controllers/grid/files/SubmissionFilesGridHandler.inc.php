@@ -184,7 +184,15 @@ class SubmissionFilesGridHandler extends GridHandler {
 		$tarBinary = Config::getVar('cli', 'tar');
 		if ($this->canDownloadAll() && !empty($tarBinary) && file_exists($tarBinary) && $this->hasGridDataElements($request)) {
 			import('controllers.grid.files.fileList.linkAction.DownloadAllLinkAction');
-			$this->addAction(new DownloadAllLinkAction($request, $this->getRequestArgs()), GRID_ACTION_POSITION_BELOW);
+
+			// If we have a review round, pass as link action parameter.
+			$reviewRound =& $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ROUND);
+			if (is_a($reviewRound, 'ReviewRound')) {
+				$linkParams = array_merge($this->getRequestArgs(), array('reviewRoundId' => $reviewRound->getId()));
+			}
+			$linkParams = $this->getRequestArgs();
+
+			$this->addAction(new DownloadAllLinkAction($request, $linkParams), GRID_ACTION_POSITION_BELOW);
 		}
 
 		// The file name column is common to all file grid types.

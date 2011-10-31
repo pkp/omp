@@ -297,6 +297,9 @@
 		<field name="monograph_id" type="I8">
 			<NOTNULL/>
 		</field>
+		<field name="review_round_id" type="I8">
+			<NOTNULL/>
+		</field>
 		<field name="stage_id" type="I8" />
 		<field name="round" type="I1">
 			<NOTNULL/>
@@ -1132,10 +1135,10 @@
 		<field name="monograph_id" type="I8">
 			<NOTNULL/>
 		</field>
-		<field name="stage_id" type="I1">
+		<field name="review_round_id" type="I8">
 			<NOTNULL/>
 		</field>
-		<field name="round" type="I1">
+		<field name="stage_id" type="I1">
 			<NOTNULL/>
 		</field>
 		<field name="file_id" type="I8">
@@ -1151,8 +1154,7 @@
 		</index>
 		<index name="review_round_files_pkey">
 			<col>monograph_id</col>
-			<col>stage_id</col>
-			<col>round</col>
+			<col>review_round_id</col>
 			<col>file_id</col>
 			<col>revision</col>
 			<UNIQUE/>

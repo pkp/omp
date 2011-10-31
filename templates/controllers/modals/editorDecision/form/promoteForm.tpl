@@ -17,10 +17,11 @@
 	{rdelim});
 </script>
 
-<form class="pkp_form" id="promote" method="post" action="{url op="savePromote"}" >
+<form class="pkp_form" id="promote" method="post" action="{url op=$saveFormOperation}" >
 	<input type="hidden" name="monographId" value="{$monographId|escape}" />
 	<input type="hidden" name="stageId" value="{$stageId|escape}" />
 	<input type="hidden" name="decision" value="{$decision|escape}" />
+	<input type="hidden" name="reviewRoundId" value="{$reviewRoundId|escape}" />
 
 	{fbvFormSection title="user.role.author" for="authorName" size=$fbvStyles.size.MEDIUM}
 		{fbvElement type="text" id="authorName" name="authorName" value=$authorName disabled=true}

@@ -46,7 +46,7 @@ class ReviewAssignmentAccessPolicy extends AuthorizationPolicy {
 
 		// Check if a review assignment exists between the submission and the user
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO'); /* @var $reviewAssignmentDao ReviewAssignmentDAO */
-		$reviewAssignment =& $reviewAssignmentDao->getReviewAssignment($monograph->getId(), $user->getId(), $monograph->getCurrentRound());
+		$reviewAssignment =& $reviewAssignmentDao->getLastReviewRoundReviewAssignmentByReviewer($monograph->getId(), $user->getId());
 
 		if (is_a($reviewAssignment, 'ReviewAssignment')) {
 			// Save the review assignment to the authorization context.

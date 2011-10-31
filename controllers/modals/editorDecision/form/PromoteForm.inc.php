@@ -19,6 +19,10 @@ import('classes.workflow.EditorDecisionActionsManager');
 
 class PromoteForm extends EditorDecisionWithEmailForm {
 
+	/** @var String */
+	var $_saveFormOperation;
+
+
 	/**
 	 * Constructor.
 	 * @param $seriesEditorSubmission SeriesEditorSubmission
@@ -26,15 +30,36 @@ class PromoteForm extends EditorDecisionWithEmailForm {
 	 * @param $stageId int
 	 * @param $reviewRound ReviewRound
 	 */
-	function PromoteForm(&$seriesEditorSubmission, $decision, $stageId, &$reviewRound = null) {
+	function PromoteForm(&$seriesEditorSubmission, $decision, $stageId, &$reviewRound = null, $saveFormOperation = 'savePromote') {
 		if (!in_array($decision, $this->_getDecisions())) {
 			fatalError('Invalid decision!');
 		}
+
+		$this->setSaveFormOperation($saveFormOperation);
 
 		parent::EditorDecisionWithEmailForm(
 			$seriesEditorSubmission, $decision, $stageId,
 			'controllers/modals/editorDecision/form/promoteForm.tpl', $reviewRound
 		);
+	}
+
+	//
+	// Getters and Setters
+	//
+	/**
+	 * Get the operation to save this form.
+	 * @return string
+	 */
+	function getSaveFormOperation() {
+		return $this->_saveFormOperation;
+	}
+
+	/**
+	 * Set the operation to save this form.
+	 * @param $saveFormOperation string
+	 */
+	function setSaveFormOperation($saveFormOperation) {
+		$this->_saveFormOperation = $saveFormOperation;
 	}
 
 
@@ -51,6 +76,16 @@ class PromoteForm extends EditorDecisionWithEmailForm {
 		$this->setData('stageId', $this->getStageId());
 
 		return parent::initData($args, $request, $actionLabels);
+	}
+
+	/**
+	 * @see Form::fetch()
+	 */
+	function fetch(&$request) {
+		$templateMgr =& TemplateManager::getManager();
+		$templateMgr->assign('saveFormOperation', $this->getSaveFormOperation());
+
+		return parent::fetch($request);
 	}
 
 	/**

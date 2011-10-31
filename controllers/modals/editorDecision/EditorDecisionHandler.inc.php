@@ -33,7 +33,6 @@ class EditorDecisionHandler extends Handler {
 				'saveNewReviewRound',
 				'initiateReview', 'saveInitiateReview',
 				'promote', 'savePromote',
-				'importPeerReviews',
 				'approveProofs', 'saveApproveProofs'
 			), $this->_getReviewRoundOps())
 		);
@@ -185,21 +184,18 @@ class EditorDecisionHandler extends Handler {
 	 * @return string Serialized JSON object
 	 */
 	function savePromote($args, &$request) {
-		// Redirect to the next workflow page after
-		// promoting the submission.
-		$decision = (int)$request->getUserVar('decision');
+		return $this->_saveGeneralPromote($args, $request);
+	}
 
-		$redirectOp = null;
-
-		if ($decision == SUBMISSION_EDITOR_DECISION_ACCEPT) {
-			$redirectOp = WORKFLOW_STAGE_PATH_EDITING;
-		} elseif ($decision == SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW) {
-			$redirectOp = WORKFLOW_STAGE_PATH_EXTERNAL_REVIEW;
-		} elseif ($decision == SUBMISSION_EDITOR_DECISION_SEND_TO_PRODUCTION) {
-			$redirectOp = WORKFLOW_STAGE_PATH_PRODUCTION;
-		}
-
-		return $this->_saveEditorDecision($args, $request, 'PromoteForm', $redirectOp);
+	/**
+	* Save the send review form (same case of the
+	* promoteInReview() method, see description there).
+	* @param $args array
+	* @param $request PKPRequest
+	* @return string Serialized JSON object
+	*/
+	function savePromoteInReview($args, &$request) {
+		return $this->_saveGeneralPromote($args, $request);
 	}
 
 	/**
@@ -212,10 +208,13 @@ class EditorDecisionHandler extends Handler {
 		// Retrieve the authorized submission.
 		$seriesEditorSubmission =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 
+		// Retrieve the current review round.
+		$reviewRound =& $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ROUND);
+
 		// Retrieve peer reviews.
 		import('classes.submission.seriesEditor.SeriesEditorAction');
 		$seriesEditorAction = new SeriesEditorAction();
-		$peerReviews = $seriesEditorAction->getPeerReviews($seriesEditorSubmission);
+		$peerReviews = $seriesEditorAction->getPeerReviews($seriesEditorSubmission, $reviewRound->getId());
 
 		if(empty($peerReviews)) {
 			$json = new JSONMessage(false, __('editor.review.noReviews'));
@@ -321,7 +320,7 @@ class EditorDecisionHandler extends Handler {
 	 * @return array
 	 */
 	function _getReviewRoundOps() {
-		return array('promoteInReview', 'newReviewRound', 'sendReviews', 'saveSendReviews');
+		return array('promoteInReview', 'savePromoteInReview', 'newReviewRound', 'sendReviews', 'saveSendReviews', 'importPeerReviews');
 	}
 
 	/**
@@ -340,6 +339,11 @@ class EditorDecisionHandler extends Handler {
 		if ($stageId == WORKFLOW_STAGE_ID_INTERNAL_REVIEW || $stageId == WORKFLOW_STAGE_ID_EXTERNAL_REVIEW) {
 			$reviewRound =& $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ROUND);
 			$editorDecisionForm = new $formName($monograph, $decision, $stageId, $reviewRound);
+			// We need a different save operation in review stages to authorize
+			// the review round object.
+			if (is_a($editorDecisionForm, 'PromoteForm')) {
+				$editorDecisionForm->setSaveFormOperation('savePromoteInReview');
+			}
 		} else {
 			$editorDecisionForm = new $formName($monograph, $decision, $stageId);
 		}
@@ -350,6 +354,24 @@ class EditorDecisionHandler extends Handler {
 			assert(false);
 			return null;
 		}
+	}
+
+	function _saveGeneralPromote($args, &$request) {
+		// Redirect to the next workflow page after
+		// promoting the submission.
+		$decision = (int)$request->getUserVar('decision');
+
+		$redirectOp = null;
+
+		if ($decision == SUBMISSION_EDITOR_DECISION_ACCEPT) {
+			$redirectOp = WORKFLOW_STAGE_PATH_EDITING;
+		} elseif ($decision == SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW) {
+			$redirectOp = WORKFLOW_STAGE_PATH_EXTERNAL_REVIEW;
+		} elseif ($decision == SUBMISSION_EDITOR_DECISION_SEND_TO_PRODUCTION) {
+			$redirectOp = WORKFLOW_STAGE_PATH_PRODUCTION;
+		}
+
+		return $this->_saveEditorDecision($args, $request, 'PromoteForm', $redirectOp);
 	}
 }
 

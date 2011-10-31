@@ -30,11 +30,11 @@ class SubmissionFilesUploadForm extends SubmissionFilesUploadBaseForm {
 	 * @param $fileStage integer
 	 * @param $revisionOnly boolean
 	 * @param $stageId integer
-	 * @param $round integer
+	 * @param $reviewRound ReviewRound
 	 * @param $revisedFileId integer
 	 */
 	function SubmissionFilesUploadForm(&$request, $monographId, $stageId, $uploaderRoles, $fileStage,
-			$revisionOnly = false, $round = null, $revisedFileId = null, $assocType = null, $assocId = null) {
+			$revisionOnly = false, &$reviewRound = null, $revisedFileId = null, $assocType = null, $assocId = null) {
 
 		// Initialize class.
 		assert(is_null($uploaderRoles) || (is_array($uploaderRoles) && count($uploaderRoles) >= 1));
@@ -42,7 +42,7 @@ class SubmissionFilesUploadForm extends SubmissionFilesUploadBaseForm {
 
 		parent::SubmissionFilesUploadBaseForm(
 			$request, 'controllers/wizard/fileUpload/form/fileUploadForm.tpl',
-			$monographId, $stageId, $fileStage, $revisionOnly, $round, $revisedFileId, $assocType, $assocId
+			$monographId, $stageId, $fileStage, $revisionOnly, $reviewRound, $revisedFileId, $assocType, $assocId
 		);
 	}
 
@@ -235,8 +235,9 @@ class SubmissionFilesUploadForm extends SubmissionFilesUploadBaseForm {
 
 		if ($monographFile && ($fileStage == MONOGRAPH_FILE_REVIEW_FILE || $fileStage == MONOGRAPH_FILE_REVIEW_ATTACHMENT || $fileStage == MONOGRAPH_FILE_REVIEW_REVISION)) {
 			// Add the uploaded review file to the review round.
+			$reviewRound =& $this->getReviewRound();
 			$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO');
-			$submissionFileDao->assignRevisionToReviewRound($monographFile->getFileId(), $monographFile->getRevision(), $this->getStageId(), $this->getData('round'), $this->getData('monographId'));
+			$submissionFileDao->assignRevisionToReviewRound($monographFile->getFileId(), $monographFile->getRevision(), $reviewRound);
 		}
 
 		return $monographFile;

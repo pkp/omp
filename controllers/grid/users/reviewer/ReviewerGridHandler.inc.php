@@ -67,20 +67,6 @@ class ReviewerGridHandler extends GridHandler {
 	}
 
 	/**
-	 * Get the review round number.
-	 * @return integer
-	 */
-	function getRound() {
-		$reviewRound =& $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ROUND);
-		if (is_a($reviewRound, 'ReviewRound')) {
-			return $reviewRound->getRound();
-		} else {
-			$reviewAssignment =& $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ASSIGNMENT);
-			return $reviewAssignment->getRound();
-		}
-	}
-
-	/**
 	 * Get review round object.
 	 * @return ReviewRound
 	 */
@@ -89,14 +75,10 @@ class ReviewerGridHandler extends GridHandler {
 		if (is_a($reviewRound, 'ReviewRound')) {
 			return $reviewRound;
 		} else {
-			// FIXME #6902 Get review round id from review assignment object.
 			$reviewAssignment =& $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ASSIGNMENT);
-			$monograph =& $this->getMonograph();
-			$stageId = $reviewAssignment->getStageId();
-			$round = $reviewAssignment->getRound();
+			$reviewRoundId = $reviewAssignment->getReviewRoundId();
 			$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
-			$reviewRoundFactory =& $reviewRoundDao->getByMonographId($monograph->getId(), $stageId, $round);
-			return $reviewRoundFactory->next();
+			return $reviewRoundDao->getReviewRoundById($reviewRoundId);
 		}
 	}
 
@@ -113,7 +95,7 @@ class ReviewerGridHandler extends GridHandler {
 	function authorize(&$request, $args, $roleAssignments) {
 		$stageId = $request->getUserVar('stageId'); // This is being validated in OmpWorkflowStageAccessPolicy
 
-		// Not all actions need a stageId and round. Some work off the reviewAssignment which has the type and round.
+		// Not all actions need a stageId. Some work off the reviewAssignment which has the type and round.
 		$this->_stageId = (int)$stageId;
 
 		// Get the stage access policy
@@ -220,7 +202,6 @@ class ReviewerGridHandler extends GridHandler {
 		return array(
 			'monographId' => $monograph->getId(),
 			'stageId' => $this->getStageId(),
-			'round' => $this->getRound(),
 			'reviewRoundId' => $reviewRound->getId()
 		);
 	}
@@ -231,7 +212,8 @@ class ReviewerGridHandler extends GridHandler {
 	function loadData($request, $filter) {
 		// Get the existing review assignments for this monograph
 		$monograph =& $this->getMonograph(); /* @var $monograph SeriesEditorSubmission */
-		return $monograph->getReviewAssignments($this->getStageId(), $this->getRound());
+		$reviewRound =& $this->getReviewRound();
+		return $monograph->getReviewAssignments($this->getStageId(), $reviewRound->getRound());
 	}
 
 
@@ -340,7 +322,7 @@ class ReviewerGridHandler extends GridHandler {
 		$monograph =& $this->getMonograph();
 		$stageId = $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
 		$reviewRound =& $this->getReviewRound();
-		$round = (int) $reviewRound->getRound();
+		$round = $reviewRound->getRound();
 		$term = $request->getUserVar('term');
 
 		$seriesEditorSubmissionDao =& DAORegistry::getDAO('SeriesEditorSubmissionDAO'); /* @var $seriesEditorSubmissionDao SeriesEditorSubmissionDAO */

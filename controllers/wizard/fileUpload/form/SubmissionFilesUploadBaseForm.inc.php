@@ -22,6 +22,9 @@ class SubmissionFilesUploadBaseForm extends Form {
 	/** @var integer */
 	var $_stageId;
 
+	/** @var ReviewRound */
+	var $_reviewRound;
+
 	/** @var array the monograph files for this monograph and file stage */
 	var $_monographFiles;
 
@@ -34,11 +37,11 @@ class SubmissionFilesUploadBaseForm extends Form {
 	 * @param $stageId integer One of the WORKFLOW_STAGE_ID_* constants.
 	 * @param $fileStage integer
 	 * @param $revisionOnly boolean
-	 * @param $round integer
+	 * @param $reviewRound ReviewRound
 	 * @param $revisedFileId integer
 	 */
 	function SubmissionFilesUploadBaseForm(&$request, $template, $monographId, $stageId, $fileStage,
-			$revisionOnly = false, $round = null, $revisedFileId = null, $assocType = null, $assocId = null) {
+			$revisionOnly = false, &$reviewRound = null, $revisedFileId = null, $assocType = null, $assocId = null) {
 
 		// Check the incoming parameters.
 		if ( !is_numeric($monographId) || $monographId <= 0 ||
@@ -51,10 +54,25 @@ class SubmissionFilesUploadBaseForm extends Form {
 		// Initialize class.
 		parent::Form($template);
 		$this->_stageId = $stageId;
+
+		if ($reviewRound) {
+			$this->_reviewRound =& $reviewRound;
+		} else if ($assocType == ASSOC_TYPE_REVIEW_ASSIGNMENT && !$reviewRound) {
+			// Get the review assignment object.
+			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO'); /* @var $reviewAssignmentDao ReviewAssignmentDAO */
+			$reviewAssignment =& $reviewAssignmentDao->getById((int) $assocId); /* @var $reviewAssignment ReviewAssignment */
+			if ($reviewAssignment->getDateCompleted()) fatalError('Review already completed!');
+
+			// Get the review round object.
+			$reviewRoundDao =& DAORegistry::getDAO('ReviewRound');
+			$this->_reviewRound =& $reviewRoundDao->getReviewRoundById($reviewAssignment->getReviewRoundId());
+		} else if (!$assocType && !$reviewRound) {
+			$reviewRound = null;
+		}
+
 		$this->setData('fileStage', (int)$fileStage);
 		$this->setData('monographId', (int)$monographId);
 		$this->setData('revisionOnly', (boolean)$revisionOnly);
-		$this->setData('round', $round ? (int)$round : null);
 		$this->setData('revisedFileId', $revisedFileId ? (int)$revisedFileId : null);
 		$this->setData('assocType', $assocType ? (int)$assocType : null);
 		$this->setData('assocId', $assocId ? (int)$assocId : null);
@@ -76,18 +94,11 @@ class SubmissionFilesUploadBaseForm extends Form {
 	}
 
 	/**
-	 * Get the review round (if any).
-	 * @return integer
+	 * Get the review round object (if any).
+	 * @return ReviewRound
 	 */
-	function getRound() {
-		if ($this->getData('assocType') == ASSOC_TYPE_REVIEW_ASSIGNMENT && !$this->getData('round')) {
-			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO'); /* @var $reviewAssignmentDao ReviewAssignmentDAO */
-			$reviewAssignment =& $reviewAssignmentDao->getById((int) $this->getData('assocId')); /* @var $reviewAssignment ReviewAssignment */
-			if ($reviewAssignment->getDateCompleted()) fatalError('Review already completed!');
-			$this->setData('round', $reviewAssignment->getRound());
-		}
-
-		return $this->getData('round');
+	function &getReviewRound() {
+		return $this->_reviewRound;
 	}
 
 	/**
@@ -124,7 +135,7 @@ class SubmissionFilesUploadBaseForm extends Form {
 			$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 			if ($this->getStageId() == WORKFLOW_STAGE_ID_INTERNAL_REVIEW || $this->getStageId() == WORKFLOW_STAGE_ID_EXTERNAL_REVIEW) {
 				// If we have a review stage id then we also expect a review round.
-				if ($this->getRound() < 1) fatalError('Invalid review round!');
+				if (!is_a($this->getReviewRound(), 'ReviewRound')) assert(false);
 
 				// Can only upload submission files, review files, or review attachments.
 				if (!in_array($this->getData('fileStage'), array(MONOGRAPH_FILE_SUBMISSION, MONOGRAPH_FILE_REVIEW_FILE, MONOGRAPH_FILE_REVIEW_ATTACHMENT, MONOGRAPH_FILE_REVIEW_REVISION))) fatalError('Invalid file stage!');
@@ -135,10 +146,8 @@ class SubmissionFilesUploadBaseForm extends Form {
 					$this->_monographFiles = array();
 				} else {
 					// Retrieve the monograph files for the given review round.
-					$this->_monographFiles =& $submissionFileDao->getRevisionsByReviewRound(
-						$this->getData('monographId'),
-						$this->getStageId() == MONOGRAPH_FILE_REVIEW_REVISION?MONOGRAPH_FILE_REVIEW_FILE:$this->getStageId(), $this->getRound()
-					);
+					$reviewRound =& $this->getReviewRound();
+					$this->_monographFiles =& $submissionFileDao->getRevisionsByReviewRound($reviewRound);
 				}
 			} else {
 				// Retrieve the monograph files for the given file stage.
@@ -170,6 +179,12 @@ class SubmissionFilesUploadBaseForm extends Form {
 	function fetch($request) {
 		// Set the workflow stage.
 		$this->setData('stageId', $this->getStageId());
+
+		// Set the review round id, if any.
+		$reviewRound =& $this->getReviewRound();
+		if (is_a($reviewRound, 'ReviewRound')) {
+			$this->setData('reviewRoundId', $reviewRound->getId());
+		}
 
 		// Retrieve the uploaded file (if any).
 		$uploadedFile =& $this->getData('uploadedFile');

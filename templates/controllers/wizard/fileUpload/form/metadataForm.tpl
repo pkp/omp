@@ -19,7 +19,7 @@
 	{rdelim});
 </script>
 
-<form class="pkp_form" id="metadataForm" action="{url op="saveMetadata" monographId=$submissionFile->getMonographId() stageId=$stageId fileStage=$submissionFile->getFileStage() fileId=$submissionFile->getFileId() escape=false}" method="post">
+<form class="pkp_form" id="metadataForm" action="{url op="saveMetadata" monographId=$submissionFile->getMonographId() stageId=$stageId reviewRoundId=$reviewRoundId fileStage=$submissionFile->getFileStage() fileId=$submissionFile->getFileId() escape=false}" method="post">
 
 	{* Editable metadata *}
 	{fbvFormArea id="fileMetaData"}

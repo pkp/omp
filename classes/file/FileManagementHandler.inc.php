@@ -33,7 +33,7 @@ class FileManagementHandler extends Handler {
 	function authorize(&$request, $args, $roleAssignments) {
 		// Allow both reviewers (if in review) and press roles.
 		import('classes.security.authorization.OmpReviewStageAccessPolicy');
-		$this->addPolicy(new OmpReviewStageAccessPolicy($request, $args, $roleAssignments, 'monographId', $request->getUserVar('stageId')));
+		$this->addPolicy(new OmpReviewStageAccessPolicy($request, $args, $roleAssignments, 'monographId', $request->getUserVar('stageId')), true);
 
 		return parent::authorize($request, $args, $roleAssignments);
 	}

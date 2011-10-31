@@ -37,8 +37,8 @@ class FileUploadWizardHandler extends FileManagementHandler {
 	/** @var boolean */
 	var $_revisionOnly;
 
-	/** @var integer */
-	var $_round;
+	/** @var int */
+	var $_reviewRound;
 
 	/** @var integer */
 	var $_revisedFileId;
@@ -94,7 +94,7 @@ class FileUploadWizardHandler extends FileManagementHandler {
 
 		// Do we allow revisions only?
 		$this->_revisionOnly = (boolean)$request->getUserVar('revisionOnly');
-		$this->_round = $request->getUserVar('round') ? (int)$request->getUserVar('round') : null;
+		$reviewRound =& $this->getReviewRound();
 		$this->_assocType = $request->getUserVar('assocType') ? (int)$request->getUserVar('assocType') : null;
 		$this->_assocId = $request->getUserVar('assocId') ? (int)$request->getUserVar('assocId') : null;
 
@@ -106,6 +106,19 @@ class FileUploadWizardHandler extends FileManagementHandler {
 
 		// Load translations.
 		AppLocale::requireComponents(array(LOCALE_COMPONENT_OMP_SUBMISSION, LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_PKP_COMMON, LOCALE_COMPONENT_APPLICATION_COMMON));
+	}
+
+	function authorize($request, $args, $roleAssignments) {
+		// This is validated in parent's authorization policy.
+		$stageId = (int)$request->getUserVar('stageId');
+
+		// Authorize review round id when this handler is used in review stages.
+		if ($stageId == WORKFLOW_STAGE_ID_INTERNAL_REVIEW || $stageId == WORKFLOW_STAGE_ID_EXTERNAL_REVIEW) {
+			import('classes.security.authorization.internal.ReviewRoundRequiredPolicy');
+			$this->addPolicy(new ReviewRoundRequiredPolicy($request, $args));
+		}
+
+		return parent::authorize($request, $args, $roleAssignments);
 	}
 
 
@@ -139,11 +152,11 @@ class FileUploadWizardHandler extends FileManagementHandler {
 	}
 
 	/**
-	 * Get the review round (if any).
-	 * @return integer
+	 * Get review round object.
+	 * @return ReviewRound
 	 */
-	function getRound() {
-		return $this->_round;
+	function &getReviewRound() {
+		return $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ROUND);
 	}
 
 	/**
@@ -201,7 +214,10 @@ class FileUploadWizardHandler extends FileManagementHandler {
 		// Configure the "revision only" feature.
 		$templateMgr->assign('revisionOnly', $this->getRevisionOnly());
 		$templateMgr->assign('stageId', $this->getStageId());
-		$templateMgr->assign('round', $this->getRound());
+		$reviewRound =& $this->getReviewRound();
+		if (is_a($reviewRound, 'ReviewRound')) {
+			$templateMgr->assign('reviewRoundId', $reviewRound->getId());
+		}
 		$templateMgr->assign('revisedFileId', $this->getRevisedFileId());
 		$templateMgr->assign('assocType', $this->getAssocType());
 		$templateMgr->assign('assocId', $this->getAssocId());
@@ -222,7 +238,7 @@ class FileUploadWizardHandler extends FileManagementHandler {
 		$monograph =& $this->getMonograph();
 		$fileForm = new SubmissionFilesUploadForm(
 			$request, $monograph->getId(), $this->getStageId(), $this->getUploaderRoles(), $this->getFileStage(),
-			$this->getRevisionOnly(), $this->getRound(), $this->getRevisedFileId(),
+			$this->getRevisionOnly(), $this->getReviewRound(), $this->getRevisedFileId(),
 			$this->getAssocType(), $this->getAssocId()
 		);
 		$fileForm->initData($args, $request);
@@ -244,7 +260,7 @@ class FileUploadWizardHandler extends FileManagementHandler {
 		import('controllers.wizard.fileUpload.form.SubmissionFilesUploadForm');
 		$uploadForm = new SubmissionFilesUploadForm(
 			$request, $monograph->getId(), $this->getStageId(), null, $this->getFileStage(),
-			$this->getRevisionOnly(), $this->getRound(), null, $this->getAssocType(), $this->getAssocId()
+			$this->getRevisionOnly(), $this->getReviewRound(), null, $this->getAssocType(), $this->getAssocId()
 		);
 		$uploadForm->readInputData();
 
@@ -260,8 +276,9 @@ class FileUploadWizardHandler extends FileManagementHandler {
 					$revisedFileId = $this->_checkForRevision($uploadedFile, $uploadForm->getMonographFiles());
 					if ($revisedFileId) {
 						// Instantiate the revision confirmation form.
+						$reviewRound =& $this->getReviewRound();
 						import('controllers.wizard.fileUpload.form.SubmissionFilesUploadConfirmationForm');
-						$confirmationForm = new SubmissionFilesUploadConfirmationForm($request, $monograph->getId(), $this->getStageId(), $this->getFileStage(), $this->getRound(), $revisedFileId, $this->getAssocType(), $this->getAssocId(), $uploadedFile);
+						$confirmationForm = new SubmissionFilesUploadConfirmationForm($request, $monograph->getId(), $this->getStageId(), $this->getFileStage(), $reviewRound, $revisedFileId, $this->getAssocType(), $this->getAssocId(), $uploadedFile);
 						$confirmationForm->initData($args, $request);
 
 						// Render the revision confirmation form.
@@ -293,8 +310,9 @@ class FileUploadWizardHandler extends FileManagementHandler {
 		$monograph =& $this->getMonograph();
 		import('controllers.wizard.fileUpload.form.SubmissionFilesUploadConfirmationForm');
 		// FIXME?: need assocType and assocId? Not sure if they would be used, so not adding now.
+		$reviewRound =& $this->getReviewRound();
 		$confirmationForm = new SubmissionFilesUploadConfirmationForm(
-			$request, $monograph->getId(), $this->getStageId(), $this->getFileStage(), $this->getRound()
+			$request, $monograph->getId(), $this->getStageId(), $this->getFileStage(), $reviewRound
 		);
 		$confirmationForm->readInputData();
 
@@ -392,10 +410,10 @@ class FileUploadWizardHandler extends FileManagementHandler {
 		// Import the meta-data form based on the file implementation.
 		if (is_a($submissionFile, 'ArtworkFile')) {
 			import('controllers.wizard.fileUpload.form.SubmissionFilesArtworkMetadataForm');
-			$metadataForm = new SubmissionFilesArtworkMetadataForm($submissionFile, $this->getStageId());
+			$metadataForm = new SubmissionFilesArtworkMetadataForm($submissionFile, $this->getStageId(), $this->getReviewRound());
 		} else {
 			import('controllers.wizard.fileUpload.form.SubmissionFilesMetadataForm');
-			$metadataForm = new SubmissionFilesMetadataForm($submissionFile, $this->getStageId());
+			$metadataForm = new SubmissionFilesMetadataForm($submissionFile, $this->getStageId(), $this->getReviewRound());
 		}
 
 		return $metadataForm;

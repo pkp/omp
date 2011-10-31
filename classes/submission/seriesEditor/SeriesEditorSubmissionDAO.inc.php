@@ -163,12 +163,13 @@ class SeriesEditorSubmissionDAO extends DAO {
 						$this->update(
 							sprintf(
 								'INSERT INTO edit_decisions
-								(monograph_id, stage_id, round, editor_id, decision, date_decided)
-								VALUES (?, ?, ?, ?, ?, %s)',
+								(monograph_id, review_round_id, stage_id, round, editor_id, decision, date_decided)
+								VALUES (?, ?, ?, ?, ?, ?, %s)',
 								$this->datetimeToDB($editorDecision['dateDecided'])
 							),
 							array(
 								$seriesEditorSubmission->getId(),
+								$reviewRound->getId(),
 								$stageId,
 								$round,
 								$editorDecision['editorId'],
@@ -263,7 +264,7 @@ class SeriesEditorSubmissionDAO extends DAO {
 
 		if ($stageId == null) {
 			$result =& $this->retrieve(
-					'SELECT edit_decision_id, editor_id, decision, date_decided, stage_id, round
+					'SELECT edit_decision_id, editor_id, decision, date_decided, review_round_id, stage_id, round
 					FROM edit_decisions
 					WHERE monograph_id = ?
 					ORDER BY date_decided ASC',
@@ -271,7 +272,7 @@ class SeriesEditorSubmissionDAO extends DAO {
 				);
 		} elseif ($round == null) {
 			$result =& $this->retrieve(
-					'SELECT edit_decision_id, editor_id, decision, date_decided, stage_id, round
+					'SELECT edit_decision_id, editor_id, decision, date_decided, review_round_id, stage_id, round
 					FROM edit_decisions
 					WHERE monograph_id = ? AND stage_id = ?
 					ORDER BY date_decided ASC',
@@ -279,7 +280,7 @@ class SeriesEditorSubmissionDAO extends DAO {
 				);
 		} else {
 			$result =& $this->retrieve(
-					'SELECT edit_decision_id, editor_id, decision, date_decided, stage_id, round
+					'SELECT edit_decision_id, editor_id, decision, date_decided, review_round_id, stage_id, round
 					FROM edit_decisions
 					WHERE monograph_id = ? AND stage_id = ? AND round = ?
 					ORDER BY date_decided ASC',
@@ -290,6 +291,9 @@ class SeriesEditorSubmissionDAO extends DAO {
 		while (!$result->EOF) {
 			$value = array(
 					'editDecisionId' => $result->fields['edit_decision_id'],
+					'reviewRoundId' => $result->fields['review_round_id'],
+					'stageId' => $result->fields['stage_id'],
+					'round' => $result->fields['round'],
 					'editorId' => $result->fields['editor_id'],
 					'decision' => $result->fields['decision'],
 					'dateDecided' => $this->datetimeFromDB($result->fields['date_decided'])
@@ -307,13 +311,13 @@ class SeriesEditorSubmissionDAO extends DAO {
 	/**
 	 * Check if a reviewer is assigned to a specified monograph.
 	 * FIXME: Move to ReviewAssigmentDAO, see #6455.
-	 * @param $monographId int
+	 * @param $reviewRoundId int
 	 * @param $reviewerId int
 	 * @return boolean
 	 */
-	function reviewerExists($monographId, $reviewerId, $stageId, $round) {
+	function reviewerExists($reviewRoundId, $reviewerId) {
 		$result =& $this->retrieve(
-			'SELECT COUNT(*) FROM review_assignments WHERE submission_id = ? AND reviewer_id = ? AND stage_id = ? AND round = ? AND cancelled = 0', array($monographId, $reviewerId, $stageId, $round)
+			'SELECT COUNT(*) FROM review_assignments WHERE review_round_id = ? AND reviewer_id = ? AND cancelled = 0', array($reviewRoundId, $reviewerId)
 		);
 		$returner = isset($result->fields[0]) && $result->fields[0] == 1 ? true : false;
 
@@ -536,10 +540,10 @@ class SeriesEditorSubmissionDAO extends DAO {
 	 * @param $activeMax int
 	 * @param $interests array
 	 * @param $monographId int Filter out reviewers assigned to this monograph
-	 * @param $round int Also filter users assigned to this round of the given monograph
+	 * @param $reviewRoundId int Also filter users assigned to this round of the given monograph
 	 * @return array Users
 	 */
-	function getFilteredReviewers($pressId, $doneMin, $doneMax, $avgMin, $avgMax, $lastMin, $lastMax, $activeMin, $activeMax, $interests, $monographId = null, $round = null) {
+	function getFilteredReviewers($pressId, $doneMin, $doneMax, $avgMin, $avgMax, $lastMin, $lastMax, $activeMin, $activeMax, $interests, $monographId = null, $reviewRoundId = null) {
 		$userDao =& DAORegistry::getDAO('UserDAO'); /* @var $userDao UserDAO */
 		$interestDao =& DAORegistry::getDAO('InterestDAO'); /* @var $interestDao InterestDAO */
 		$reviewerStats = $this->getReviewerStatistics($pressId);
@@ -561,7 +565,7 @@ class SeriesEditorSubmissionDAO extends DAO {
 		// If monographId is set, get the list of of reviewers assigned to the monograph
 		if($monographId) {
 			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO'); /* @var $reviewAssignmentDao ReviewAssignmentDAO */
-			$assignedReviewers = $reviewAssignmentDao->getReviewerIdsBySubmissionId($monographId, $round);
+			$assignedReviewers = $reviewAssignmentDao->getReviewerIdsBySubmissionId($monographId, null, $reviewRoundId);
 		}
 
 		$filteredReviewers = array();

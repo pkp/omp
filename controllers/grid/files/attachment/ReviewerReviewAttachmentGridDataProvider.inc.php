@@ -95,10 +95,15 @@ class ReviewerReviewAttachmentGridDataProvider extends SubmissionFilesGridDataPr
 	function &getAddFileAction($request) {
 		import('controllers.api.file.linkAction.AddFileLinkAction');
 		$monograph =& $this->getMonograph();
+
+		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+		$reviewAssignment =& $reviewAssignmentDao->getById($this->_getReviewId());
+
 		$addFileAction = new AddFileLinkAction(
 			$request, $monograph->getId(), $this->_getStageId(),
 			$this->getUploaderRoles(), $this->_getFileStage(),
-			ASSOC_TYPE_REVIEW_ASSIGNMENT, $this->_getReviewId()
+			ASSOC_TYPE_REVIEW_ASSIGNMENT, $this->_getReviewId(),
+			$reviewAssignment->getReviewRoundId()
 		);
 		return $addFileAction;
 	}

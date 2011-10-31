@@ -16,8 +16,6 @@
 import('controllers.grid.files.SubmissionFilesGridDataProvider');
 
 class ReviewGridDataProvider extends SubmissionFilesGridDataProvider {
-	/** @var integer */
-	var $_round;
 
 	/** @var $_viewableOnly boolean */
 	var $_viewableOnly;
@@ -55,7 +53,6 @@ class ReviewGridDataProvider extends SubmissionFilesGridDataProvider {
 	function getRequestArgs() {
 		$reviewRound = $this->getReviewRound();
 		return array_merge(parent::getRequestArgs(), array(
-			'round' => $reviewRound->getRound(),
 			'reviewRoundId' => $reviewRound->getId()
 			)
 		);
@@ -66,11 +63,9 @@ class ReviewGridDataProvider extends SubmissionFilesGridDataProvider {
 	 */
 	function &loadData() {
 		// Get all review files assigned to this submission.
-		$monograph =& $this->getMonograph();
+		$reviewRound =& $this->getReviewRound();
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-		$monographFiles =& $submissionFileDao->getRevisionsByReviewRound(
-			$monograph->getId(), $this->_getStageId(), $this->getRound(), $this->_getFileStage()
-		);
+		$monographFiles =& $submissionFileDao->getRevisionsByReviewRound($reviewRound, $this->_getFileStage());
 		$data = $this->prepareSubmissionFileData($monographFiles, $this->_viewableOnly);
 
 		return $data;
@@ -86,7 +81,7 @@ class ReviewGridDataProvider extends SubmissionFilesGridDataProvider {
 		import('controllers.grid.files.fileList.linkAction.SelectReviewFilesLinkAction');
 		$monograph =& $this->getMonograph();
 		$selectAction = new SelectReviewFilesLinkAction(
-			&$request, $monograph->getId(), $this->_getStageId(), $this->getReviewRound(),
+			&$request, $this->getReviewRound(),
 			__('editor.monograph.review.manageReviewFiles')
 		);
 		return $selectAction;
@@ -98,21 +93,14 @@ class ReviewGridDataProvider extends SubmissionFilesGridDataProvider {
 	function &getAddFileAction($request) {
 		import('controllers.api.file.linkAction.AddFileLinkAction');
 		$monograph =& $this->getMonograph();
+		$reviewRound =& $this->getReviewRound();
+
 		$addFileAction = new AddFileLinkAction(
 			$request, $monograph->getId(), $this->_getStageId(),
 			$this->getUploaderRoles(), $this->_getFileStage(),
-			null, null, $this->getRound()
+			null, null, $reviewRound->getId()
 		);
 		return $addFileAction;
-	}
-
-	/**
-	 * Get the review round number.
-	 * @return integer
-	 */
-	function getRound() {
-		$reviewRound =& $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ROUND);
-		return $reviewRound->getRound();
 	}
 
 	/**
@@ -122,14 +110,6 @@ class ReviewGridDataProvider extends SubmissionFilesGridDataProvider {
 	function &getReviewRound() {
 		$reviewRound =& $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ROUND);
 		return $reviewRound;
-	}
-
-	/**
-	 * Set the review round number.
-	 * @param $round integer
-	 */
-	function setRound($round) {
-		$this->_round = $round;
 	}
 }
 

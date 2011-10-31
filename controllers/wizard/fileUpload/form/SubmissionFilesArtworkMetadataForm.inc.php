@@ -22,9 +22,10 @@ class SubmissionFilesArtworkMetadataForm extends SubmissionFilesMetadataForm {
 	 * Constructor.
 	 * @param $submissionFile SubmissionFile
 	 * @param $stageId integer One of the WORKFLOW_STAGE_ID_* constants.
+	 * @param $reviewRound ReviewRound (optional) Current review round, if any.
 	 */
-	function SubmissionFilesArtworkMetadataForm(&$submissionFile, $stageId) {
-		parent::SubmissionFilesMetadataForm(&$submissionFile, $stageId);
+	function SubmissionFilesArtworkMetadataForm(&$submissionFile, $stageId, &$reviewRound = null) {
+		parent::SubmissionFilesMetadataForm(&$submissionFile, $stageId, $reviewRound);
 	}
 
 

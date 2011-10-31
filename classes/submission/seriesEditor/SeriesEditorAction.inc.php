@@ -149,12 +149,11 @@ class SeriesEditorAction extends Action {
 	 * @param $request PKPRequest
 	 * @param $seriesEditorSubmission object
 	 * @param $reviewerId int
-	 * @param $stageId int
-	 * @param $round int optional
+	 * @param $reviewRound ReviewRound
 	 * @param $reviewDueDate datetime optional
 	 * @param $responseDueDate datetime optional
 	 */
-	function addReviewer($request, $seriesEditorSubmission, $reviewerId, $stageId, $round = null, $reviewDueDate = null, $responseDueDate = null, $reviewMethod = null) {
+	function addReviewer($request, $seriesEditorSubmission, $reviewerId, &$reviewRound, $reviewDueDate = null, $responseDueDate = null, $reviewMethod = null) {
 		$seriesEditorSubmissionDao =& DAORegistry::getDAO('SeriesEditorSubmissionDAO');
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		$userDao =& DAORegistry::getDAO('UserDAO');
@@ -163,13 +162,12 @@ class SeriesEditorAction extends Action {
 
 		// Check to see if the requested reviewer is not already
 		// assigned to review this monograph.
-		if ($round == null) {
-			$round = $seriesEditorSubmission->getCurrentRound();
-		}
-		$assigned = $seriesEditorSubmissionDao->reviewerExists($seriesEditorSubmission->getId(), $reviewerId, $stageId, $round);
+		$assigned = $seriesEditorSubmissionDao->reviewerExists($reviewRound->getId(), $reviewerId);
 
 		// Only add the reviewer if he has not already
 		// been assigned to review this monograph.
+		$stageId = $reviewRound->getStageId();
+		$round = $reviewRound->getRound();
 		if (!$assigned && isset($reviewer) && !HookRegistry::call('SeriesEditorAction::addReviewer', array(&$seriesEditorSubmission, $reviewerId))) {
 			$reviewAssignment = new ReviewAssignment();
 			$reviewAssignment->setSubmissionId($seriesEditorSubmission->getId());
@@ -177,12 +175,13 @@ class SeriesEditorAction extends Action {
 			$reviewAssignment->setDateAssigned(Core::getCurrentDate());
 			$reviewAssignment->setStageId($stageId);
 			$reviewAssignment->setRound($round);
+			$reviewAssignment->setReviewRoundId($reviewRound->getId());
 			if (isset($reviewMethod)) {
 				$reviewAssignment->setReviewMethod($reviewMethod);
 			}
 			$reviewAssignmentDao->insertObject($reviewAssignment);
 
-			$seriesEditorSubmission->addReviewAssignment($reviewAssignment, $stageId, $round);
+			$seriesEditorSubmission->addReviewAssignment($reviewAssignment);
 			$seriesEditorSubmissionDao->updateSeriesEditorSubmission($seriesEditorSubmission);
 
 			$this->setDueDates($request, $seriesEditorSubmission, $reviewAssignment, $reviewDueDate, $responseDueDate);
@@ -318,16 +317,17 @@ class SeriesEditorAction extends Action {
 	/**
 	 * Get the text of all peer reviews for a submission
 	 * @param $seriesEditorSubmission SeriesEditorSubmission
+	 * @param $reviewRoundId int
 	 * @return string
 	 */
-	function getPeerReviews($seriesEditorSubmission) {
+	function getPeerReviews($seriesEditorSubmission, $reviewRoundId) {
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		$monographCommentDao =& DAORegistry::getDAO('MonographCommentDAO');
 		$reviewFormResponseDao =& DAORegistry::getDAO('ReviewFormResponseDAO');
 		$reviewFormElementDao =& DAORegistry::getDAO('ReviewFormElementDAO');
 
 		$reviewAssignments =& $reviewAssignmentDao->getBySubmissionId($seriesEditorSubmission->getId(), $seriesEditorSubmission->getCurrentRound());
-		$reviewIndexes =& $reviewAssignmentDao->getReviewIndexesForRound($seriesEditorSubmission->getId(), $seriesEditorSubmission->getCurrentRound());
+		$reviewIndexes =& $reviewAssignmentDao->getReviewIndexesForRound($seriesEditorSubmission->getId(), $reviewRoundId);
 		AppLocale::requireComponents(array(LOCALE_COMPONENT_PKP_SUBMISSION));
 
 		$body = '';

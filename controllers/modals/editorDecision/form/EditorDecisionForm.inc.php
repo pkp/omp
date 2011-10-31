@@ -92,7 +92,6 @@ class EditorDecisionForm extends Form {
 
 		$reviewRound =& $this->getReviewRound();
 		if (is_a($reviewRound, 'ReviewRound')) {
-			$this->setData('round', $reviewRound->getRound());
 			$this->setData('reviewRoundId', $reviewRound->getId());
 		}
 
@@ -165,7 +164,7 @@ class EditorDecisionForm extends Form {
 					// Split the file into file id and file revision.
 					list($fileId, $revision) = explode('-', $selectedFile);
 					list($newFileId, $newRevision) = MonographFileManager::copyFileToFileStage($fileId, $revision, MONOGRAPH_FILE_REVIEW_FILE, null, true);
-					$submissionFileDao->assignRevisionToReviewRound($newFileId, $newRevision, $stageId, $newRound, $monograph->getId());
+					$submissionFileDao->assignRevisionToReviewRound($newFileId, $newRevision, $reviewRound);
 				}
 			}
 		}

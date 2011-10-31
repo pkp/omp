@@ -63,18 +63,13 @@ class ReviewerReviewStep3Form extends ReviewerReviewForm {
 		$templateMgr =& TemplateManager::getManager();
 
 		$reviewAssignment =& $this->getReviewAssignment();
-
-		// FIXME #6902 Get review round id from review assignment object.
-		$reviewerSubmission =& $this->getReviewerSubmission();
-		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
-		$reviewRoundFactory =& $reviewRoundDao->getByMonographId($reviewerSubmission->getId(), $reviewAssignment->getStageId(), $reviewAssignment->getRound());
-		$reviewRound =& $reviewRoundFactory->next();
+		$reviewRoundId = $reviewAssignment->getReviewRoundId();
 
 		// Assign the objects and data to the template.
 		$press = $this->request->getPress();
 		$templateMgr->assign_by_ref('press', $press);
 		$templateMgr->assign_by_ref('reviewAssignment', $reviewAssignment);
-		$templateMgr->assign('reviewRoundId', $reviewRound->getId());
+		$templateMgr->assign('reviewRoundId', $reviewRoundId);
 
 		/*  FIXME #5123: Include when review form infrastructure is in place
 		if($reviewAssignment->getReviewFormId()) {

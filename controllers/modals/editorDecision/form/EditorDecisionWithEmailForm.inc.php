@@ -98,9 +98,6 @@ class EditorDecisionWithEmailForm extends EditorDecisionForm {
 	 */
 	function fetch(&$request) {
 		// No all decision forms need a review round.
-		// FIXME #6902 Stop using round and stage, use review round id instead.
-		$round = null;
-
 		// Try to get a review round.
 		$reviewRound =& $this->getReviewRound();
 
@@ -117,7 +114,8 @@ class EditorDecisionWithEmailForm extends EditorDecisionForm {
 					'importPeerReviews', null,
 					array(
 						'monographId' => $submission->getId(),
-						'stageId' => $stageId
+						'stageId' => $stageId,
+						'reviewRoundId' => $reviewRound->getId()
 					)
 				)
 			);
@@ -172,9 +170,13 @@ class EditorDecisionWithEmailForm extends EditorDecisionForm {
 			}
 		}
 
+		// Get review round.
+		$reviewRound =& $this->getReviewRound();
+		assert(is_a($reviewRound, 'ReviewRound'));
+
 		// Retrieve review indexes.
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO'); /* @var $reviewAssignmentDao ReviewAssignmentDAO */
-		$reviewIndexes =& $reviewAssignmentDao->getReviewIndexesForRound($seriesEditorSubmission->getId(), $seriesEditorSubmission->getCurrentRound());
+		$reviewIndexes =& $reviewAssignmentDao->getReviewIndexesForRound($seriesEditorSubmission->getId(), $reviewRound->getId());
 		assert(is_array($reviewIndexes));
 
 		// Add a review index for review attachments not associated with

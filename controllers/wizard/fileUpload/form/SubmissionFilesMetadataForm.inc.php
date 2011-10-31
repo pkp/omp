@@ -22,18 +22,25 @@ class SubmissionFilesMetadataForm extends Form {
 	/** @var integer */
 	var $_stageId;
 
+	/** @var ReviewRound */
+	var $_reviewRound;
+
 
 	/**
 	 * Constructor.
 	 * @param $submissionFile SubmissionFile
 	 * @param $stageId integer One of the WORKFLOW_STAGE_ID_* constants.
+	 * @param $reviewRound ReviewRound (optional) Current review round, if any.
 	 */
-	function SubmissionFilesMetadataForm(&$submissionFile, $stageId) {
+	function SubmissionFilesMetadataForm(&$submissionFile, $stageId, &$reviewRound = null) {
 		parent::Form('controllers/wizard/fileUpload/form/metadataForm.tpl');
 
 		// Initialize the object.
 		$this->_submissionFile =& $submissionFile;
 		$this->_stageId = $stageId;
+		if (is_a($reviewRound, 'ReviewRound')) {
+			$this->_reviewRound =& $reviewRound;
+		}
 
 		// Add validation checks.
 		$this->addCheck(new FormValidator($this, 'name', 'required', 'user.profile.form.lastNameRequired'));
@@ -58,6 +65,14 @@ class SubmissionFilesMetadataForm extends Form {
 	 */
 	function getStageId() {
 		return $this->_stageId;
+	}
+
+	/**
+	 * Get review round.
+	 * @return ReviewRound
+	 */
+	function &getReviewRound() {
+		return $this->_reviewRound;
 	}
 
 
@@ -90,6 +105,12 @@ class SubmissionFilesMetadataForm extends Form {
 
 		// Workflow stage.
 		$templateMgr->assign('stageId', $this->getStageId());
+
+		// Review round if we are in review stage.
+		$reviewRound =& $this->getReviewRound();
+		if (is_a($reviewRound, 'ReviewRound')) {
+			$templateMgr->assign('reviewRoundId', $reviewRound->getId());
+		}
 
 		// Note attached to the file.
 		$noteDao =& DAORegistry::getDAO('NoteDAO'); /* @var $noteDao NoteDAO */

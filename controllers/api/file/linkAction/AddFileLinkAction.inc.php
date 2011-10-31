@@ -35,20 +35,17 @@ class AddFileLinkAction extends BaseAddFileLinkAction {
 	 *  be associated with (one fo the ASSOC_TYPE_* constants).
 	 * @param $assocId integer The id of the element the file should be
 	 *  associated with.
+	 * @param $reviewRound ReviewRound The current review round (if any).
 	 */
 	function AddFileLinkAction(&$request, $monographId, $stageId, $uploaderRoles,
-			$fileStage, $assocType = null, $assocId = null, $round = null) {
+			$fileStage, $assocType = null, $assocId = null, $reviewRoundId = null) {
 
 		// Create the action arguments array.
-		$actionArgs = array('fileStage' => $fileStage);
+		$actionArgs = array('fileStage' => $fileStage, 'reviewRoundId' => $reviewRoundId);
 		if (is_numeric($assocType) && is_numeric($assocId)) {
 			$actionArgs['assocType'] = (int)$assocType;
 			$actionArgs['assocId'] = (int)$assocId;
 		}
-		if (is_numeric($round)) {
-			$actionArgs['round'] = (int)$round;
-		}
-
 
 		// Identify text labels based on the file stage.
 		$textLabels = AddFileLinkAction::_getTextLabels($fileStage);

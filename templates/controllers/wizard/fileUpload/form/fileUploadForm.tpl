@@ -128,7 +128,7 @@
 				{rdelim},
 				$uploader: $('#uploadForm #plupload'),
 				uploaderOptions: {ldelim}
-					uploadUrl: '{url|escape:javascript op="uploadFile" monographId=$monographId stageId=$stageId fileStage=$fileStage round=$round assocType=$assocType assocId=$assocId escape=false}',
+					uploadUrl: '{url|escape:javascript op="uploadFile" monographId=$monographId stageId=$stageId fileStage=$fileStage reviewRoundId=$reviewRoundId assocType=$assocType assocId=$assocId escape=false}',
 					baseUrl: '{$baseUrl|escape:javascript}'
 				{rdelim}
 			{rdelim});

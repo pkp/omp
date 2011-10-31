@@ -137,14 +137,14 @@ class ReviewRoundDAO extends DAO {
 	 * @param int $reviewRoundId
 	 * @return ReviewRound
 	 */
-	function getReviewRoundById($reviewRoundId) {
+	function &getReviewRoundById($reviewRoundId) {
 		$result =& $this->retrieve(
 				'SELECT * FROM review_rounds WHERE review_round_id = ?',
 				array((int)$reviewRoundId));
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
-			$returner = $this->_fromRow($result->GetRowAssoc(false));
+			$returner =& $this->_fromRow($result->GetRowAssoc(false));
 		}
 		$result->Close();
 		return $returner;

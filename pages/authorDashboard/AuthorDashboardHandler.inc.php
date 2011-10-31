@@ -85,11 +85,15 @@ class AuthorDashboardHandler extends Handler {
 		$templateMgr->assign_by_ref('internalReviewRounds', $internalReviewRounds);
 		$templateMgr->assign_by_ref('externalReviewRounds', $externalReviewRounds);
 
-		if ($fileStage) {
+		// Get the last review round.
+		$lastReviewRound =& $reviewRoundDao->getLastReviewRoundByMonographId($monograph->getId());
+
+		// Create and assign add file link action.
+		if ($fileStage && is_a($lastReviewRound, 'ReviewRound')) {
 			import('controllers.api.file.linkAction.AddFileLinkAction');
 			$uploadFileAction = new AddFileLinkAction(
 				$request, $monograph->getId(), $currentStage,
-				array(ROLE_ID_AUTHOR), $fileStage, null, null, $monograph->getCurrentRound());
+				array(ROLE_ID_AUTHOR), $fileStage, null, null, $lastReviewRound->getId());
 			$templateMgr->assign('uploadFileAction', $uploadFileAction);
 		}
 

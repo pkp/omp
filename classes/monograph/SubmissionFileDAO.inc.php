@@ -79,6 +79,62 @@ class SubmissionFileDAO extends PKPSubmissionFileDAO {
 
 
 	//
+	// Override methods from PKPSubmissionFileDAO
+	// FIXME *6902* Move this code to PKPSubmissionFileDAO after the review round
+	// refactoring is ported to other applications.
+	//
+	/**
+	* @see PKPSubmissionFileDAO::deleteAllRevisionsByReviewRound()
+	*/
+	function deleteAllRevisionsByReviewRound($reviewRoundId) {
+		// Remove currently assigned review files.
+		return $this->update('DELETE FROM review_round_files
+						WHERE review_round_id = ?',
+		array((int)$reviewRoundId));
+	}
+
+	/**
+	* @see PKPSubmissionFileDAO::assignRevisionToReviewRound()
+	*/
+	function assignRevisionToReviewRound($fileId, $revision, &$reviewRound) {
+		if (!is_numeric($fileId) || !is_numeric($revision)) fatalError('Invalid file!');
+		return $this->update('INSERT INTO review_round_files
+						('.$this->getSubmissionEntityName().'_id, review_round_id, stage_id, file_id, revision)
+						VALUES (?, ?, ?, ?, ?)',
+		array((int)$reviewRound->getSubmissionId(), (int)$reviewRound->getId(), (int)$reviewRound->getStageId(), (int)$fileId, (int)$revision));
+	}
+
+	/**
+	 * @see PKPSubmissionFileDAO::getRevisionsByReviewRound()
+	 */
+	function &getRevisionsByReviewRound(&$reviewRound, $fileStage = null,
+	$uploaderUserId = null, $uploaderUserGroupId = null) {
+		if (!is_a($reviewRound, 'ReviewRound')) {
+			$nullVar = null;
+			return $nullVar;
+		}
+		return $this->_getInternally($reviewRound->getSubmissionId(),
+			$fileStage, null, null, null, null, null,
+			$uploaderUserId, $uploaderUserGroupId, null, $reviewRound->getId()
+		);
+	}
+
+	/**
+	 * @see PKPSubmissionFileDAO::getLatestNewRevisionsByReviewRound()
+	 */
+	function &getLatestNewRevisionsByReviewRound($reviewRound, $fileStage = null) {
+		if (!is_a($reviewRound, 'ReviewRound')) {
+			$emptyArray = array();
+			return $emptyArray;
+		}
+		return $this->_getInternally($reviewRound->getSubmissionId(),
+			$fileStage, null, null, null, null, $reviewRound->getStageId(),
+			null, null, null, $reviewRound->getId(), true
+		);
+	}
+
+
+	//
 	// Protected helper methods
 	//
 	/**
