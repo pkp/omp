@@ -89,6 +89,13 @@
 	<message key="grid.category.nameRequired">Please enter a category name.</message>
 	<message key="grid.category.categoryDetails">Category Details</message>
 
+	<!-- Catalog Management -->
+	<message key="catalog.manage">Catalog Management</message>
+	<message key="catalog.manage.features">Features</message>
+	<message key="catalog.manage.newReleases">New Releases</message>
+	<message key="catalog.manage.category">Category</message>
+	<message key="catalog.manage.seriesEditions">Series &amp;amp; Editions</message>
+
 	<!--
 	 *
 	 * COMMON - This section contains the most frequently-used words

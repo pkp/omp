@@ -8,6 +8,7 @@
  *}
 
 {strip}
+{assign var="pageTitle" value="catalog.manage"}
 {include file="common/header.tpl"}
 {/strip}
 
@@ -21,7 +22,14 @@
 </script>
 
 <div id="catalogHeader" class="pkp_submission_header">
+	<div id="catalogTabs">
+		<ul>
+			<li><a href="#">{translate key="catalog.manage.features"}</a></li>
+			<li><a href="#">{translate key="catalog.manage.newReleases"}</a></li>
+			<li><a href="#">{translate key="catalog.manage.category"}</a></li>
+			<li><a href="#">{translate key="catalog.manage.seriesEditions"}</a></li>
+		</ul>
+	</div>
 </div>
 
 {include file="common/footer.tpl"}
-

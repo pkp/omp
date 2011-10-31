@@ -32,6 +32,8 @@ $.pkp.pages.catalog = $.pkp.pages.catalog || {};
 			function($catalogHeader, options) {
 
 		this.parent($catalogHeader, options);
+
+		$('#catalogTabs').tabs();
 	};
 	$.pkp.classes.Helper.inherits(
 			$.pkp.pages.catalog.CatalogHeaderHandler,
