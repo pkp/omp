@@ -303,6 +303,15 @@ class Validation {
 	}
 
 	/**
+	 * Shortcut for checking authorization as series editor.
+	 * @param $pressId int
+	 * @return boolean
+	 */
+	function isSeriesEditor($pressId = -1) {
+		return Validation::isAuthorized(ROLE_ID_SERIES_EDITOR, $pressId);
+	}
+
+	/**
 	 * Check whether a user is allowed to administer another user.
 	 * @param $administeredUserId int
 	 * @param $administratorUserId int

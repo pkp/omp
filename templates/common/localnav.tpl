@@ -41,21 +41,23 @@
 			<li><a href="{url page="dashboard"}">{translate key="navigation.dashboard"}</a></li>
 			<li><a href="{url page="dashboard" op="status"}">{translate key="navigation.submissions"}</a></li>
 			{if $currentPress}
-				<li>
-					<a href="#">{translate key="navigation.catalog"}</a>
-					<ul>
-						<li><a href="#">{translate key="navigation.catalog.manage"}</a></li>
-						{if $isPressManager}
-							<li>
-								<a href="#">{translate key="navigation.catalog.administration"}</a>
-								<ul>
-									<li><a href="{url page="management" op="categories"}">{translate key="navigation.catalog.administration.categories"}</a></li>
-									<li><a href="{url page="management" op="series"}">{translate key="navigation.catalog.administration.series"}</a></li>
-								</ul>
-							</li>
-						{/if}
-					</ul>
-				</li>
+				{if $isPressManager || $isSeriesEditor}
+					<li>
+						<a href="#">{translate key="navigation.catalog"}</a>
+						<ul>
+							<li><a href="{url page="catalog"}">{translate key="navigation.catalog.manage"}</a></li>
+							{if $isPressManager}
+								<li>
+									<a href="#">{translate key="navigation.catalog.administration"}</a>
+									<ul>
+										<li><a href="{url page="management" op="categories"}">{translate key="navigation.catalog.administration.categories"}</a></li>
+										<li><a href="{url page="management" op="series"}">{translate key="navigation.catalog.administration.series"}</a></li>
+									</ul>
+								</li>
+							{/if}
+						</ul>
+					</li>
+				{/if}{* $isPressManager || $isSeriesEditor *}
 				{if $isPressManager}
 					<li>
 						<a href="#">{translate key="navigation.management"}</a>
