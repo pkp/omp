@@ -79,6 +79,7 @@
 <script type="text/javascript" src="{$baseUrl}/js/controllers/tab/settings/siteAccessOptions/form/SiteAccessOptionsFormHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/js/controllers/tab/settings/homepage/form/HomepageFormHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/js/pages/authorDashboard/AuthorDashboardHandler.js"></script>
+<script type="text/javascript" src="{$baseUrl}/js/pages/catalog/CatalogHeaderHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/js/pages/workflow/SubmissionHeaderHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/js/pages/workflow/ProductionHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/js/pages/submission/SubmissionStep3FormHandler.js"></script>
