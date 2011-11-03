@@ -11,7 +11,7 @@
 <script type="text/javascript">
 	$(function() {ldelim}
 		// Handle moving the reviewer ID from the grid to the second form
-		$('#advancedReviewerSearch').pkpHandler('$.pkp.controllers.users.reviewer.AdvancedReviewerSearchHandler');
+		$('#advancedReviewerSearch').pkpHandler('$.pkp.controllers.grid.users.reviewer.AdvancedReviewerSearchHandler');
 	{rdelim});
 </script>
 
