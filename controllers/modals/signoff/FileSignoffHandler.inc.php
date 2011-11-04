@@ -166,7 +166,7 @@ class FileSignoffHandler extends FileManagementHandler {
 			assert(is_a($submissionFile, 'MonographFile'));
 
 			import('controllers.api.file.linkAction.DownloadFileLinkAction');
-			$downloadFileAction = new DownloadFileLinkAction($request, $submissionFile);
+			$downloadFileAction = new DownloadFileLinkAction($request, $submissionFile, $stageId);
 			$templateMgr->assign('downloadSignoffFileAction', $downloadFileAction);
 		} else {
 			$templateMgr->assign('downloadSignoffFileAction', false);

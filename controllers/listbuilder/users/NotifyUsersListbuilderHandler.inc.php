@@ -37,6 +37,10 @@ class NotifyUsersListbuilderHandler extends ListbuilderHandler {
 		return $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 	}
 
+	function getStageId() {
+		return $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
+	}
+
 	//
 	// Overridden parent class functions
 	//
@@ -46,7 +50,8 @@ class NotifyUsersListbuilderHandler extends ListbuilderHandler {
 	function getRequestArgs() {
 		$monograph =& $this->getMonograph();
 		return array(
-			'monographId' => $monograph->getId()
+			'monographId' => $monograph->getId(),
+			'stageId' => $this->getStageId()
 		);
 	}
 

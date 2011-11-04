@@ -196,7 +196,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 		}
 
 		// The file name column is common to all file grid types.
-		$this->addColumn(new FileNameGridColumn($this->canViewNotes()));
+		$this->addColumn(new FileNameGridColumn($this->canViewNotes(), $this->getStageId()));
 
 		// Set the no items row text
 		$this->setEmptyRowText('grid.noFiles');
@@ -210,7 +210,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 	 * @see GridHandler::getRowInstance()
 	 */
 	function &getRowInstance() {
-		$row = new SubmissionFilesGridRow($this->canDelete(), $this->canViewNotes());
+		$row = new SubmissionFilesGridRow($this->canDelete(), $this->canViewNotes(), $this->getStageId());
 		return $row;
 	}
 

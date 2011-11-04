@@ -30,17 +30,21 @@ class FileLinkAction extends LinkAction {
 	/**
 	 * Return the action arguments to address a file.
 	 * @param $monographFile MonographFile
+	 * @param $stageId int (optional)
 	 * @return array
 	 */
-	function getActionArgs(&$monographFile) {
+	function getActionArgs(&$monographFile, $stageId = null) {
 		assert(is_a($monographFile, 'MonographFile'));
 
 		// Create the action arguments array.
-		return array(
+		$args =  array(
 			'fileId' => $monographFile->getFileId(),
 			'revision' => $monographFile->getRevision(),
 			'monographId' => $monographFile->getMonographId()
 		);
+		if ($stageId) $args['stageId'] = $stageId;
+
+		return $args;
 	}
 }
 

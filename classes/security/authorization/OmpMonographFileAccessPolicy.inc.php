@@ -88,7 +88,7 @@ class OmpMonographFileAccessPolicy extends PressPolicy {
 			$authorFileAccessOptionsPolicy->addPolicy(new MonographFileUploaderAccessPolicy($request));
 			// 2b) If the file is a viewable reviewer response and we don't
 			// want to modify it, allow.
-			if (!($mode & MONOGRAPH_FILE_ACCESS_MODIFY)) {
+			if (!($mode == MONOGRAPH_FILE_ACCESS_MODIFY)) {
 				import('classes.security.authorization.internal.MonographFileViewableReviewerResponseAccessPolicy');
 				$authorFileAccessOptionsPolicy->addPolicy(new MonographFileViewableReviewerResponseAccessPolicy($request));
 			}
@@ -127,6 +127,21 @@ class OmpMonographFileAccessPolicy extends PressPolicy {
 
 			// Add this policy set
 			$fileAccessPolicy->addPolicy($reviewerFileAccessPolicy);
+		}
+
+
+		//
+		// Press assistant role.
+		//
+		if (isset($roleAssignments[ROLE_ID_PRESS_ASSISTANT])) {
+			// 1) Press assistants can access whitelisted operations...
+			$pressAssistantFileAccessPolicy = new PolicySet(COMBINING_DENY_OVERRIDES);
+			$pressAssistantFileAccessPolicy->addPolicy(new RoleBasedHandlerOperationPolicy($request, ROLE_ID_PRESS_ASSISTANT, $roleAssignments[ROLE_ID_PRESS_ASSISTANT]));
+
+			// 2) ... but only if they have been assigned to the submission workflow.
+			import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
+			$pressAssistantFileAccessPolicy->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', $request->getUserVar('stageId')));
+			$fileAccessPolicy->addPolicy($pressAssistantFileAccessPolicy);
 		}
 
 		$this->addPolicy($fileAccessPolicy);

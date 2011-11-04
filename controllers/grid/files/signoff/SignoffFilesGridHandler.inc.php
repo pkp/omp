@@ -309,7 +309,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 	 * @return CopyeditingFilesGridCategoryRow
 	 */
 	function &getCategoryRowInstance() {
-		$row = new SignoffFilesGridCategoryRow();
+		$row = new SignoffFilesGridCategoryRow($this->getStageId());
 		return $row;
 	}
 

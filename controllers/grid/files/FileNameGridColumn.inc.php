@@ -18,11 +18,17 @@ class FileNameGridColumn extends GridColumn {
 	/** @var $_includeNotes boolean */
 	var $_includeNotes;
 
+	/** @var $_stageId int */
+	var $_stageId;
+
 	/**
 	 * Constructor
+	 * @param $includeNotes boolean
+	 * @param $stageId int (optional)
 	 */
-	function FileNameGridColumn($includeNotes = true) {
+	function FileNameGridColumn($includeNotes = true, $stageId = null) {
 		$this->_includeNotes = $includeNotes;
+		$this->_stageId = $stageId;
 
 		import('lib.pkp.classes.controllers.grid.ColumnBasedGridCellProvider');
 		$cellProvider = new ColumnBasedGridCellProvider();
@@ -64,12 +70,12 @@ class FileNameGridColumn extends GridColumn {
 
 		// Create the cell action to download a file.
 		import('controllers.api.file.linkAction.DownloadFileLinkAction');
-		$cellActions[] = new DownloadFileLinkAction($request, $monographFile);
+		$cellActions[] = new DownloadFileLinkAction($request, $monographFile, $this->_getStageId());
 
 		if ($this->_getIncludeNotes()) {
 			import('controllers.informationCenter.linkAction.FileNotesLinkAction');
 			$user =& $request->getUser();
-			$cellActions[] = new FileNotesLinkAction($request, $monographFile, $user);
+			$cellActions[] = new FileNotesLinkAction($request, $monographFile, $user, $this->_getStageId());
 		}
 		return $cellActions;
 	}
@@ -82,6 +88,14 @@ class FileNameGridColumn extends GridColumn {
 	 */
 	function _getIncludeNotes() {
 		return $this->_includeNotes;
+	}
+
+	/**
+	 * Get stage id, if any.
+	 * @return mixed int or null
+	 */
+	function _getStageId() {
+		return $this->_stageId;
 	}
 }
 

@@ -20,15 +20,16 @@ class DownloadFileLinkAction extends FileLinkAction {
 	 * @param $request Request
 	 * @param $monographFile MonographFile the monograph file to
 	 *  link to.
+	 * @param $stageId int (optional)
 	 */
-	function DownloadFileLinkAction(&$request, &$monographFile) {
+	function DownloadFileLinkAction(&$request, &$monographFile, $stageId = null) {
 		// Instantiate the redirect action request.
 		$router =& $request->getRouter();
 		import('lib.pkp.classes.linkAction.request.RedirectAction');
 		$redirectRequest = new RedirectAction(
 			$router->url(
 				$request, null, 'api.file.FileApiHandler', 'downloadFile',
-				null, $this->getActionArgs($monographFile)
+				null, $this->getActionArgs($monographFile, $stageId)
 			)
 		);
 

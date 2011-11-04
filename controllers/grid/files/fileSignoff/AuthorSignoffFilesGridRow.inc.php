@@ -62,7 +62,7 @@ class AuthorSignoffFilesGridRow extends SubmissionFilesGridRow {
 		}
 
 		import('controllers.informationCenter.linkAction.FileInfoCenterLinkAction');
-		$this->addAction(new FileInfoCenterLinkAction($request, $submissionFile));
+		$this->addAction(new FileInfoCenterLinkAction($request, $submissionFile, $this->getStageId()));
 	}
 }
 

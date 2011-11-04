@@ -15,12 +15,19 @@
 import('lib.pkp.classes.controllers.grid.GridCategoryRow');
 
 class SignoffFilesGridCategoryRow extends GridCategoryRow {
+
+	/** @var $stageId int */
+	var $_stageId;
+
 	/**
 	 * Constructor
+	 * @param $stageId int (optional)
 	 */
-	function SignoffFilesGridCategoryRow() {
+	function SignoffFilesGridCategoryRow($stageId = null) {
+		$this->_stageId = $stageId;
 		parent::GridCategoryRow();
 	}
+
 
 	//
 	// Overridden methods from GridRow
@@ -40,15 +47,27 @@ class SignoffFilesGridCategoryRow extends GridCategoryRow {
 
 			// Add the row actions.
 			import('controllers.api.file.linkAction.DeleteFileLinkAction');
-			$this->addAction(new DeleteFileLinkAction($request, $monographFile, ''));
+			$this->addAction(new DeleteFileLinkAction($request, $monographFile, $this->_getStageId()));
 
 			// The title should link to a download action.
 			import('controllers.api.file.linkAction.DownloadFileLinkAction');
-			$this->addAction(new DownloadFileLinkAction($request, $monographFile));
+			$this->addAction(new DownloadFileLinkAction($request, $monographFile, $this->_getStageId()));
 		}
 
 		// Set the no-row locale key
 		$this->setEmptyCategoryRowText('editor.monograph.noAuditRequested');
+	}
+
+
+	//
+	// Private helper methods.
+	//
+	/**
+	 * Get stage id.
+	 * @return int
+	 */
+	function _getStageId() {
+		return $this->_stageId;
 	}
 }
 

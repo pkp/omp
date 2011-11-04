@@ -24,7 +24,7 @@ class ManageFileApiHandler extends Handler {
 	function ManageFileApiHandler() {
 		parent::Handler();
 		$this->addRoleAssignment(
-			array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_REVIEWER, ROLE_ID_AUTHOR),
+			array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_ASSISTANT, ROLE_ID_REVIEWER, ROLE_ID_AUTHOR),
 			array('deleteFile')
 		);
 	}

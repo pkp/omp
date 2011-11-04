@@ -82,7 +82,7 @@ class SignoffGridRow extends GridRow {
 			if ($copyeditedFileId) {
 				$copyeditedFile =& $submissionFileDao->getLatestRevision($copyeditedFileId);
 				import('controllers.informationCenter.linkAction.FileInfoCenterLinkAction');
-				$this->addAction(new FileInfoCenterLinkAction($request, $copyeditedFile));
+				$this->addAction(new FileInfoCenterLinkAction($request, $copyeditedFile, $this->getStageId()));
 			}
 
 			// If signoff has not been completed, allow the user to upload if it is their signoff (i.e. their copyediting assignment)

@@ -23,12 +23,19 @@ class SubmissionFilesGridRow extends GridRow {
 	/** @var boolean */
 	var $_canViewNotes;
 
+	/** @var int */
+	var $_stageId;
+
 	/**
 	 * Constructor
+	 * $canDelete boolean
+	 * $canViewNotes boolean
+	 * $stageId int (optional)
 	 */
-	function SubmissionFilesGridRow($canDelete, $canViewNotes) {
+	function SubmissionFilesGridRow($canDelete, $canViewNotes, $stageId = null) {
 		$this->_canDelete = $canDelete;
 		$this->_canViewNotes = $canViewNotes;
+		$this->_stageId = $stageId;
 		parent::GridRow();
 	}
 
@@ -52,6 +59,14 @@ class SubmissionFilesGridRow extends GridRow {
 		return $this->_canViewNotes;
 	}
 
+	/**
+	 * Get the stage id, if any.
+	 * @return int
+	 */
+	function getStageId() {
+		return $this->_stageId;
+	}
+
 	//
 	// Overridden template methods from GridRow
 	//
@@ -71,13 +86,13 @@ class SubmissionFilesGridRow extends GridRow {
 		// 1) Delete file action.
 		if ($this->canDelete()) {
 			import('controllers.api.file.linkAction.DeleteFileLinkAction');
-			$this->addAction(new DeleteFileLinkAction($request, $monographFile));
+			$this->addAction(new DeleteFileLinkAction($request, $monographFile, $this->getStageId()));
 		}
 
 		// 2) Information center action.
 		if ($this->canViewNotes()) {
 			import('controllers.informationCenter.linkAction.FileInfoCenterLinkAction');
-			$this->addAction(new FileInfoCenterLinkAction($request, $monographFile));
+			$this->addAction(new FileInfoCenterLinkAction($request, $monographFile, $this->getStageId()));
 		}
 	}
 }
