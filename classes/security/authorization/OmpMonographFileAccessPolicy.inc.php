@@ -88,7 +88,7 @@ class OmpMonographFileAccessPolicy extends PressPolicy {
 			$authorFileAccessOptionsPolicy->addPolicy(new MonographFileUploaderAccessPolicy($request));
 			// 2b) If the file is a viewable reviewer response and we don't
 			// want to modify it, allow.
-			if (!($mode == MONOGRAPH_FILE_ACCESS_MODIFY)) {
+			if (!($mode & MONOGRAPH_FILE_ACCESS_MODIFY)) {
 				import('classes.security.authorization.internal.MonographFileViewableReviewerResponseAccessPolicy');
 				$authorFileAccessOptionsPolicy->addPolicy(new MonographFileViewableReviewerResponseAccessPolicy($request));
 			}
