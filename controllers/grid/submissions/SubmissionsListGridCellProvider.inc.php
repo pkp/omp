@@ -42,34 +42,31 @@ class SubmissionsListGridCellProvider extends DataObjectGridCellProvider {
 	function getCellActions(&$request, &$row, &$column, $position = GRID_ACTION_POSITION_DEFAULT) {
 		if ( $column->getId() == 'title' ) {
 			$monograph =& $row->getData();
-			$router =& $request->getRouter();
-			$dispatcher =& $router->getDispatcher();
-
-			$title = $monograph->getLocalizedTitle();
-			if ( empty($title) ) $title = __('common.untitled');
-
-			$pressId = $monograph->getPressId();
-			$pressDao = DAORegistry::getDAO('PressDAO');
-			$press = $pressDao->getPress($pressId);
-
-			import('lib.pkp.classes.linkAction.request.RedirectAction');
 
 			if (is_a($monograph, 'ReviewerSubmission')) {
 				// Reviewer: Add a review link action.
-				return array(new LinkAction(
-					'details',
-					new RedirectAction(
-						$dispatcher->url(
-							$request, ROUTE_PAGE,
-							$press->getPath(),
-							'reviewer', 'submission',
-							$monograph->getId()
-						)
-					),
-					$title
-				));
-				return array();
+				return array($this->_getCellLinkAction($request, 'reviewer', 'submission', $monograph));
 			} else {
+				// If user has only author role user groups stage assignments,
+				// then add an author dashboard link action.
+				$stageAssignmentDao =& DAORegistry::getDAO('StageAssignmentDAO');
+				$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+
+				$authorUserGroupIds = $userGroupDao->getUserGroupIdsByRoleId(ROLE_ID_AUTHOR);
+				$user =& $request->getUser();
+				$stageAssignmentsFactory = $stageAssignmentDao->getBySubmissionAndStageId($monograph->getId(), null, null, $user->getId());
+
+				$authorDashboard = true;
+				while($stageAssignment =& $stageAssignmentsFactory->next()) {
+					if (!in_array($stageAssignment->getUserGroupId(), $authorUserGroupIds)) {
+						$authorDashboard = false;
+						break;
+					}
+				}
+				if ($authorDashboard) {
+					return array($this->_getCellLinkAction($request, 'authorDashboard', 'submission', $monograph));
+				}
+
 				// Press assistant, Series Editor, or Press Manager:
 				// Add a workflow link action.
 				$stageIdWorkflowPathMap = array(
@@ -84,18 +81,7 @@ class SubmissionsListGridCellProvider extends DataObjectGridCellProvider {
 					fatalError('Invalid stage ID!');
 				}
 
-				return array(new LinkAction(
-					'details',
-					new RedirectAction(
-						$dispatcher->url(
-							$request, ROUTE_PAGE,
-							$press->getPath(),
-							'workflow', $stageIdWorkflowPathMap[$stageId],
-							$monograph->getId()
-						)
-					),
-					$title
-				));
+				return array($this->_getCellLinkAction($request, 'workflow', $stageIdWorkflowPathMap[$stageId], $monograph));
 			}
 
 			// This should be unreachable code.
@@ -171,6 +157,45 @@ class SubmissionsListGridCellProvider extends DataObjectGridCellProvider {
 				}
 				return $returner;
 		}
+	}
+
+
+	//
+	// Private helper methods.
+	//
+	/**
+	 * Get the cell link action.
+	 * @param $request Request
+	 * @param $page string
+	 * @param $operation string
+	 * @param $monograph Monograph
+	 * @return LinkAction
+	 */
+	function _getCellLinkAction($request, $page, $operation, &$monograph) {
+		$router =& $request->getRouter();
+		$dispatcher =& $router->getDispatcher();
+
+		$title = $monograph->getLocalizedTitle();
+		if ( empty($title) ) $title = __('common.untitled');
+
+		$pressId = $monograph->getPressId();
+		$pressDao = DAORegistry::getDAO('PressDAO');
+		$press = $pressDao->getPress($pressId);
+
+		import('lib.pkp.classes.linkAction.request.RedirectAction');
+
+		return new LinkAction(
+			'details',
+			new RedirectAction(
+				$dispatcher->url(
+					$request, ROUTE_PAGE,
+					$press->getPath(),
+					$page, $operation,
+					$monograph->getId()
+				)
+			),
+			$title
+		);
 	}
 }
 

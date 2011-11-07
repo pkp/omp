@@ -57,6 +57,7 @@ class AssignedSubmissionsListGridHandler extends SubmissionsListGridHandler {
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
 		$stageAssignmentDao =& DAORegistry::getDAO('StageAssignmentDAO');
+		$authorDao =& DAORegistry::getDAO('AuthorDAO');
 
 		// Get submissions the user is a stage participant for
 		$signoffs =& $signoffDao->getByUserId($userId);
@@ -69,10 +70,14 @@ class AssignedSubmissionsListGridHandler extends SubmissionsListGridHandler {
 		$stageAssignments =& $stageAssignmentDao->getByUserId($userId);
 		while($stageAssignment =& $stageAssignments->next()) {
 			$monograph =& $monographDao->getMonograph($stageAssignment->getSubmissionId());
-			if ($monograph->getDateSubmitted() == null) { continue; }; // still incomplete, don't add to assigned submissions grid
+			if ($monograph->getDateSubmitted() == null) { continue; }; // Still incomplete, don't add to assigned submissions grid.
+
+			// Check if user is a submitter of this monograph.
+			if ($userId == $monograph->getUserId()) { continue; }; // It will be in the 'my submissions' grid.
+
 			$monographId = $monograph->getId();
 			$data[$monographId] = $monograph;
-			unset($monograph, $stageAssignment);
+			unset($monograph, $stageAssignment, $authors);
 		}
 
 		while($signoff =& $signoffs->next()) {
