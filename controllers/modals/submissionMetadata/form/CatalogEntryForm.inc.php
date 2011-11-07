@@ -42,6 +42,29 @@ class CatalogEntryForm extends SubmissionMetadataViewForm {
 		// Read in the additional confirmation checkbox
 		$this->readUserVars(array('confirm'));
 	}
+
+	/**
+	 * Save the metadata and create a catalog entry.
+	 */
+	function execute() {
+		parent::execute();
+
+		$monograph =& $this->getMonograph();
+		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
+		$publishedMonograph =& $publishedMonographDao->getByMonographId($monograph->getId());
+		$isExistingEntry = $publishedMonograph?true:false;
+		if (!$isExistingEntry) {
+			unset($publishedMonograph);
+			$publishedMonograph = $publishedMonographDao->newDataObject();
+			$publishedMonograph->setId($monograph->getId());
+		}
+		$publishedMonograph->setDatePublished(Core::getCurrentDate());
+		if ($isExistingEntry) {
+			$publishedMonographDao->updateObject($publishedMonograph);
+		} else {
+			$publishedMonographDao->insertObject($publishedMonograph);
+		}
+	}
 }
 
 ?>

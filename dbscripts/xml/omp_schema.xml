@@ -391,6 +391,32 @@
 
 	<!--
 	  *
+	  * TABLE published_monograph
+	  *
+	  -->
+	<table name="published_monographs">
+		<field name="pub_id" type="I8">
+			<KEY />
+			<AUTOINCREMENT/>
+			<!-- Deprecated -->
+		</field>
+		<field name="monograph_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="date_published" type="T"/>
+		<field name="seq" type="F">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
+		<descr>Published monographs</descr>
+		<index name="published_monographs_monograph_id">
+			<col>monograph_id</col>
+			<UNIQUE/>
+		</index>
+	</table>
+
+	<!--
+	  *
 	  * TABLE monograph_artwork_files
 	  *
 	  -->
