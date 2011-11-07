@@ -27,7 +27,7 @@
 			<li><a href="#">{translate key="catalog.manage.features"}</a></li>
 			<li><a href="#">{translate key="catalog.manage.newReleases"}</a></li>
 			<li><a href="#">{translate key="catalog.manage.category"}</a></li>
-			<li><a href="#">{translate key="catalog.manage.seriesEditions"}</a></li>
+			<li><a href="#">{translate key="catalog.manage.series"}</a></li>
 		</ul>
 	</div>
 </div>

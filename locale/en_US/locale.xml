@@ -94,7 +94,7 @@
 	<message key="catalog.manage.features">Features</message>
 	<message key="catalog.manage.newReleases">New Releases</message>
 	<message key="catalog.manage.category">Category</message>
-	<message key="catalog.manage.seriesEditions">Series &amp;amp; Editions</message>
+	<message key="catalog.manage.series">Series</message>
 
 	<!--
 	 *
