@@ -60,6 +60,11 @@ class ManageFileApiHandler extends Handler {
 		if ($success) {
 			import('classes.file.MonographFileManager');
 			MonographFileManager::deleteFile($monographFile->getFileId(), $monographFile->getRevision());
+
+			$this->setupTemplate();
+			$user =& $request->getUser();
+			NotificationManager::createTrivialNotification($user->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.removedFile')));
+
 			return DAO::getDataChangedEvent($monographFile->getFileId());
 		} else {
 			$json = new JSONMessage(false);

@@ -18,6 +18,9 @@
 
 <div id="addUserContainer">
 	<form class="pkp_form" id="addAuditorForm" action="{url op="saveAddAuditor"}" method="post">
+		
+		{include file="controllers/notification/inPlaceNotification.tpl" notificationId="addAuditorNotification"}
+				
 		<input type="hidden" name="monographId" value="{$monographId|escape}" />
 		{if $publicationFormatId}
 			<input type="hidden" name="publicationFormatId" value="{$publicationFormatId|escape}" />

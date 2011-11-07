@@ -136,11 +136,16 @@ class InformationCenterHandler extends Handler {
 	 * @param $request PKPRequest
 	 */
 	function deleteNote($args, &$request) {
+		$this->setupTemplate($request);
+
 		$noteId = (int) $request->getUserVar('noteId');
 		$noteDao =& DAORegistry::getDAO('NoteDAO');
 		$note =& $noteDao->getById($noteId);
 		if (!$note || $note->getAssocType() != $this->_getAssocType() || $note->getAssocId() != $this->_getAssocId()) fatalError('Invalid note!');
 		$noteDao->deleteById($noteId);
+
+		$user =& $request->getUser();
+		NotificationManager::createTrivialNotification($user->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.removedNote')));
 
 		$json = new JSONMessage(true);
 		return $json->getString();

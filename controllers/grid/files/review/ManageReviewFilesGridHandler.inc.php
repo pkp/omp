@@ -61,6 +61,10 @@ class ManageReviewFilesGridHandler extends SelectableFileListGridHandler {
 		if ($manageReviewFilesForm->validate()) {
 			$manageReviewFilesForm->execute($args, $request);
 
+			$this->setupTemplate();
+			$user =& $request->getUser();
+			NotificationManager::createTrivialNotification($user->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.updatedReviewFiles')));
+
 			// Let the calling grid reload itself
 			return DAO::getDataChangedEvent();
 		} else {

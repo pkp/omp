@@ -109,6 +109,9 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 
 			// Save to event log
 			$this->_logEvent($request, MONOGRAPH_LOG_NOTE_POSTED);
+
+			$user =& $request->getUser();
+			NotificationManager::createTrivialNotification($user->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.addedNote')));
 		} else {
 			// Return a JSON string indicating failure
 			$json = new JSONMessage(false);
@@ -147,6 +150,9 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 
 		if ($notifyForm->validate()) {
 			$noteId = $notifyForm->execute($request);
+
+			$user =& $request->getUser();
+			NotificationManager::createTrivialNotification($user->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.sentNotification')));
 
 			// Success--Return a JSON string indicating so (will clear the form on return, and indicate success)
 			$json = new JSONMessage(true);

@@ -466,6 +466,10 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 			$signoffDao =& DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
 			$signoffDao->deleteObjectById($signoff->getId());
 
+			// Trivial notifications.
+			$user =& $request->getUser();
+			NotificationManager::createTrivialNotification($user->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.removedAuditor')));
+
 			// Update NOTIFICATION_TYPE_AUDITOR_REQUEST.
 			$notificationMgr = new NotificationManager();
 			$notificationMgr->updateAuditorRequestNotification($signoff, $request, true);
