@@ -58,6 +58,11 @@ class CatalogHandler extends Handler {
 	function index($args, &$request) {
 		// Render the view.
 		$templateMgr =& TemplateManager::getManager();
+
+		import('controllers.modals.submissionMetadata.linkAction.MonographlessCatalogEntryLinkAction');
+		$catalogEntryAction = new MonographlessCatalogEntryLinkAction($request);
+		$templateMgr->assign('catalogEntryAction', $catalogEntryAction);
+
 		$templateMgr->display('catalog/index.tpl');
 	}
 }

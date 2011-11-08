@@ -22,6 +22,11 @@
 </script>
 
 <div id="catalogHeader" class="pkp_submission_header">
+	<div style="float:right">
+		<ul class="submission_actions pkp_helpers_flatlist">
+			<li>{include file="linkAction/linkAction.tpl" action=$catalogEntryAction}</li>
+		</ul>
+	</div>
 	<div id="catalogTabs">
 		<ul>
 			<li><a href="#">{translate key="catalog.manage.features"}</a></li>
