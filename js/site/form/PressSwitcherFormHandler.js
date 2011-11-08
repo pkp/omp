@@ -49,7 +49,7 @@ jQuery.pkp.site =
 	// Private helper methods
 	//
 	/**
-	 * Switch beetween presses.
+	 * Switch between presses.
 	 *
 	 * @param {HTMLElement} sourceElement The element that
 	 *  issued the event.

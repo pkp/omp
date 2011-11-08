@@ -5,7 +5,6 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Site-Wide Navigation Bar
- *
  *}
 
 <div class="pkp_structure_head_siteNav">

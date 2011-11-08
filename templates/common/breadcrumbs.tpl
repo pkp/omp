@@ -1,11 +1,10 @@
 {**
- * breadcrumbs.tpl
+ * templates/common/breadcrumbs.tpl
  *
  * Copyright (c) 2000-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Breadcrumbs
- *
  *}
 <ul class="pkp_helpers_flatlist pkp_structure_breadcrumb align_left">
 	<li class="no_bullet"><a href="{url context=$homeContext page="index"}">{$siteTitle}</a></li>
