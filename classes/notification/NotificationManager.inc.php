@@ -468,7 +468,7 @@ class NotificationManager extends PKPNotificationManager {
 		}
 
 		// Decide if we have to create or delete a notification.
-		if ($signoffCompleted || $removed && !$notificationFactory->wasEmpty()) {
+		if (($signoffCompleted || $removed) && !$notificationFactory->wasEmpty()) {
 			$notification =& $notificationFactory->next();
 			$notificationDao->deleteNotificationById($notification->getId());
 		}  else if (!$signoffCompleted && $notificationFactory->wasEmpty()) {
