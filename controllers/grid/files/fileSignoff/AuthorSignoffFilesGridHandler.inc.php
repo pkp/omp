@@ -99,7 +99,7 @@ class AuthorSignoffFilesGridHandler extends GridHandler {
 
 		// The file name column is common to all file grid types.
 		import('controllers.grid.files.FileNameGridColumn');
-		$this->addColumn(new FileNameGridColumn());
+		$this->addColumn(new FileNameGridColumn(null, $this->getStageId()));
 
 		import('controllers.grid.files.fileSignoff.AuthorSignoffFilesGridCellProvider');
 		$cellProvider = new AuthorSignoffFilesGridCellProvider($monograph, $this->getStageId());

@@ -92,11 +92,7 @@ class OmpWorkflowStageAccessPolicy extends PressPolicy {
 			$authorRoleWorkflowStagePolicy = new PolicySet(COMBINING_DENY_OVERRIDES);
 			$authorRoleWorkflowStagePolicy->addPolicy(new RoleBasedHandlerOperationPolicy($request, ROLE_ID_AUTHOR, $roleAssignments[ROLE_ID_AUTHOR]));
 
-			// 2) ... if the requested submission is their own ...
-			import('classes.security.authorization.internal.MonographAuthorPolicy');
-			$authorRoleWorkflowStagePolicy->addPolicy(new MonographAuthorPolicy($request));
-
-			// 3) ... and only if the requested workflow stage has been assigned to them in the requested submission.
+			// 2) ... only if the requested workflow stage has been assigned to them in the requested submission.
 			import('classes.security.authorization.internal.WorkflowSubmissionAssignmentPolicy');
 			$authorRoleWorkflowStagePolicy->addPolicy(new WorkflowSubmissionAssignmentPolicy($request, $stageId));
 			$workflowStagePolicy->addPolicy($authorRoleWorkflowStagePolicy);

@@ -69,9 +69,18 @@ class OmpSubmissionAccessPolicy extends PressPolicy {
 			$authorSubmissionAccessPolicy = new PolicySet(COMBINING_DENY_OVERRIDES);
 			$authorSubmissionAccessPolicy->addPolicy(new RoleBasedHandlerOperationPolicy($request, ROLE_ID_AUTHOR, $roleAssignments[ROLE_ID_AUTHOR], 'user.authorization.authorRoleMissing'));
 
-			// 2) ... if the requested submission is their own ...
+			// 2) ... if they meet one of the following requirements:
+			$authorSubmissionAccessOptionsPolicy = new PolicySet(COMBINING_PERMIT_OVERRIDES);
+
+			// 2a) ...the requested submission is their own ...
 			import('classes.security.authorization.internal.MonographAuthorPolicy');
-			$authorSubmissionAccessPolicy->addPolicy(new MonographAuthorPolicy($request));
+			$authorSubmissionAccessOptionsPolicy->addPolicy(new MonographAuthorPolicy($request));
+
+			// 2b) ...OR, at least one workflow stage has been assigned to them in the requested submission.
+			import('classes.security.authorization.internal.WorkflowSubmissionAssignmentPolicy');
+			$authorSubmissionAccessOptionsPolicy->addPolicy(new WorkflowSubmissionAssignmentPolicy($request, null));
+
+			$authorSubmissionAccessPolicy->addPolicy($authorSubmissionAccessOptionsPolicy);
 			$submissionAccessPolicy->addPolicy($authorSubmissionAccessPolicy);
 		}
 

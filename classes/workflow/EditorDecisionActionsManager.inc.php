@@ -89,6 +89,13 @@ class EditorDecisionActionsManager {
 		return $actionLabels;
 	}
 
+	function getEditorTakenActionInReviewRound($reviewRound) {
+		if($reviewRound->getStatus() == REVIEW_ROUND_STATUS_PENDING_REVIEWERS || $reviewRound->getStatus() == REVIEW_ROUND_STATUS_PENDING_REVIEWS) {
+			return false;
+		} else {
+			return true;
+		}
+	}
 
 	//
 	// Private helper methods.

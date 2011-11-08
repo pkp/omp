@@ -21,17 +21,22 @@ class WorkflowSubmissionAssignmentPolicy extends AuthorizationPolicy {
 	/** @var Request */
 	var $_request;
 
-	/** @var Request */
+	/** @var int */
 	var $_stageId;
+
+	/** @var int */
+	var $_roleId;
 
 	/**
 	 * Constructor
 	 * @param $request Request
-	 * @param $stageId integer the stage the user has to be assigned to.
+	 * @param $stageId integer (optional) the stage the user has to be assigned to.
+	 * @param $roleId integer (optional) the role that the assignment user group must have.
 	 */
-	function WorkflowSubmissionAssignmentPolicy(&$request, $stageId) {
+	function WorkflowSubmissionAssignmentPolicy(&$request, $stageId = null, $roleId = null) {
 		$this->_request =& $request;
-		$this->_stageId = (int) $stageId;
+		if ($stageId) $this->_stageId = (int) $stageId;
+		if ($roleId) $this->_roleId = (int) $roleId;
 
 		parent::AuthorizationPolicy('user.authorization.workflowStageAssignmentMissing');
 	}
@@ -57,11 +62,14 @@ class WorkflowSubmissionAssignmentPolicy extends AuthorizationPolicy {
 		if (!is_a($monograph, 'Monograph')) return AUTHORIZATION_DENY;
 
 		// Check whether a valid workflow stage has been defined for this policy.
-		if ($this->_stageId < WORKFLOW_STAGE_ID_SUBMISSION || $this->_stageId > WORKFLOW_STAGE_ID_PRODUCTION) return AUTHORIZATION_DENY;
+		if ($this->_stageId) {
+			if ($this->_stageId < WORKFLOW_STAGE_ID_SUBMISSION || $this->_stageId > WORKFLOW_STAGE_ID_PRODUCTION) return AUTHORIZATION_DENY;
+		}
 
-		// Check whether the user is assigned to the submission in any capacity
+		// Check whether the user is assigned to the submission in any capacity.
+		// If a stage id and/or role id was given, use it to check specific stage assignment.
 		$stageAssignmentDao = & DAORegistry::getDAO('StageAssignmentDAO'); /* @var $stageAssignmentDao StageAssignmentDAO */
-		$stageAssignments =& $stageAssignmentDao->getBySubmissionAndStageId($monograph->getId(), $this->_stageId, null, $user->getId());
+		$stageAssignments =& $stageAssignmentDao->getBySubmissionAndRoleId($monograph->getId(), $this->_roleId, $this->_stageId, $user->getId());
 		if($stageAssignments->wasEmpty()) {
 			return AUTHORIZATION_DENY;
 		}

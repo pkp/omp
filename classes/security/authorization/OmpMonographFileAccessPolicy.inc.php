@@ -80,20 +80,34 @@ class OmpMonographFileAccessPolicy extends PressPolicy {
 			$authorFileAccessPolicy = new PolicySet(COMBINING_DENY_OVERRIDES);
 			$authorFileAccessPolicy->addPolicy(new RoleBasedHandlerOperationPolicy($request, ROLE_ID_AUTHOR, $roleAssignments[ROLE_ID_AUTHOR]));
 
-			// 2) ...if they meet one of the following requirements:
+			// 2) ...if they are assigned to the workflow stage.
+			import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
+			$authorFileAccessPolicy->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', $request->getUserVar('stageId')));
+
+			// 3) ...and if they meet one of the following requirements:
 			$authorFileAccessOptionsPolicy = new PolicySet(COMBINING_PERMIT_OVERRIDES);
 
-			// 2a) If the file was uploaded by the current user, allow.
+			// 3a) If the file was uploaded by the current user, allow...
 			import('classes.security.authorization.internal.MonographFileUploaderAccessPolicy');
 			$authorFileAccessOptionsPolicy->addPolicy(new MonographFileUploaderAccessPolicy($request));
-			// 2b) If the file is a viewable reviewer response and we don't
-			// want to modify it, allow.
+
+			// ...or if we don't want to modify the file...
 			if (!($mode & MONOGRAPH_FILE_ACCESS_MODIFY)) {
+
+				// 3b) and the file is a viewable reviewer response...
 				import('classes.security.authorization.internal.MonographFileViewableReviewerResponseAccessPolicy');
 				$authorFileAccessOptionsPolicy->addPolicy(new MonographFileViewableReviewerResponseAccessPolicy($request));
+
+				// 3c) ...or if the file is part of a signoff assigned to the user...
+				import('classes.security.authorization.internal.MonographFileAssignedAuditorAccessPolicy');
+				$authorFileAccessOptionsPolicy->addPolicy(new MonographFileAssignedAuditorAccessPolicy($request));
+
+				// 3d) ...or if the file is a viewable revision to authors, allow.
+				import('classes.security.authorization.internal.MonographFileViewableRevisionAccessPolicy');
+				$authorFileAccessOptionsPolicy->addPolicy(new MonographFileViewableRevisionAccessPolicy($request));
 			}
 
-			// Add the rules from 2)
+			// Add the rules from 3)
 			$authorFileAccessPolicy->addPolicy($authorFileAccessOptionsPolicy);
 
 			$fileAccessPolicy->addPolicy($authorFileAccessPolicy);

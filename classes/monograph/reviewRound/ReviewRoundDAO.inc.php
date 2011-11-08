@@ -151,6 +151,27 @@ class ReviewRoundDAO extends DAO {
 	}
 
 	/**
+	 * Retrieve a review round by a monograph file id.
+	 * @param $monographFileId int
+	 * @return ReviewRound
+	 */
+	function &getByMonographFileId($monographFileId) {
+		$result =& $this->retrieve(
+				'SELECT * FROM review_rounds rr
+				INNER JOIN review_round_files rrf
+				ON rr.review_round_id = rrf.review_round_id
+				WHERE rrf.file_id = ?',
+				array((int) $monographFileId));
+
+		$returner = null;
+		if ($result->RecordCount() != 0) {
+			$returner =& $this->_fromRow($result->GetRowAssoc(false));
+		}
+		$result->Close();
+		return $returner;
+	}
+
+	/**
 	 * Check if a review round exists for a specified monograph.
 	 * @param $monographId int
 	 * @param $round int
