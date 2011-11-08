@@ -28,7 +28,7 @@ class MonographlessCatalogEntryLinkAction extends LinkAction {
 		$modal = new AjaxModal(
 			$dispatcher->url(
 				$request, ROUTE_COMPONENT, null,
-				'modals.submissionMetadata.MonographlessCatalogEntryHandler',
+				'modals.submissionMetadata.SelectMonographHandler',
 				'fetch', null
 			),
 			__('submission.catalogEntry.new')

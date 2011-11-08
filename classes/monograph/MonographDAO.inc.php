@@ -337,16 +337,16 @@ class MonographDAO extends DAO {
 		$monographs = array();
 
 		$result =& $this->retrieve(
-			'SELECT	a.*,
+			'SELECT	m.*,
 				COALESCE(stl.setting_value, stpl.setting_value) AS series_title,
 				COALESCE(sal.setting_value, sapl.setting_value) AS series_abbrev
-			FROM	monographs a
-				LEFT JOIN series s ON s.series_id = a.series_id
+			FROM	monographs m
+				LEFT JOIN series s ON s.series_id = m.series_id
 				LEFT JOIN series_settings stpl ON (s.series_id = stpl.series_id AND stpl.setting_name = ? AND stpl.locale = ?)
 				LEFT JOIN series_settings stl ON (s.series_id = stl.series_id AND stl.setting_name = ? AND stl.locale = ?)
 				LEFT JOIN series_settings sapl ON (s.series_id = sapl.series_id AND sapl.setting_name = ? AND sapl.locale = ?)
 				LEFT JOIN series_settings sal ON (s.series_id = sal.series_id AND sal.setting_name = ? AND sal.locale = ?)
-			WHERE a.press_id = ?',
+			WHERE	m.press_id = ?',
 			array(
 				'title',
 				$primaryLocale,
@@ -356,13 +356,55 @@ class MonographDAO extends DAO {
 				$primaryLocale,
 				'abbrev',
 				$locale,
-				$pressId
+				(int) $pressId
 			)
 		);
 
 		$returner = new DAOResultFactory($result, $this, '_fromRow');
 		return $returner;
 	}
+
+	/**
+	 * Get unpublished monographs for a press.
+	 * @param $pressId int
+	 * @return DAOResultFactory containing matching Monographs
+	 */
+	function &getUnpublishedMonographsByPressId($pressId) {
+		$primaryLocale = AppLocale::getPrimaryLocale();
+		$locale = AppLocale::getLocale();
+		$monographs = array();
+
+		$result =& $this->retrieve(
+			'SELECT	m.*,
+				COALESCE(stl.setting_value, stpl.setting_value) AS series_title,
+				COALESCE(sal.setting_value, sapl.setting_value) AS series_abbrev
+			FROM	monographs m
+				LEFT JOIN series s ON s.series_id = m.series_id
+				LEFT JOIN series_settings stpl ON (s.series_id = stpl.series_id AND stpl.setting_name = ? AND stpl.locale = ?)
+				LEFT JOIN series_settings stl ON (s.series_id = stl.series_id AND stl.setting_name = ? AND stl.locale = ?)
+				LEFT JOIN series_settings sapl ON (s.series_id = sapl.series_id AND sapl.setting_name = ? AND sapl.locale = ?)
+				LEFT JOIN series_settings sal ON (s.series_id = sal.series_id AND sal.setting_name = ? AND sal.locale = ?)
+				LEFT JOIN published_monographs pm ON (m.monograph_id = pm.monograph_id)
+			WHERE	m.press_id = ? AND
+				pm.monograph_id IS NULL AND
+				m.submission_progress = 0',
+			array(
+				'title',
+				$primaryLocale,
+				'title',
+				$locale,
+				'abbrev',
+				$primaryLocale,
+				'abbrev',
+				$locale,
+				(int) $pressId
+			)
+		);
+
+		$returner = new DAOResultFactory($result, $this, '_fromRow');
+		return $returner;
+	}
+
 
 	/**
 	 * Delete all monographs by press ID.

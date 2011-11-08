@@ -30,16 +30,14 @@ class PublishedMonographDAO extends DAO {
 	 * @param $rangeInfo object
 	 * @return object
 	 */
-	function &getPublishedMonographsByPressId($pressId = null, $rangeInfo = null) {
-		$primaryLocale = AppLocale::getPrimaryLocale();
-		$locale = AppLocale::getLocale();
+	function &getPublishedMonographs($pressId = null, $rangeInfo = null) {
 		$params = array();
 		if ($pressId !== null) $params[] = (int) $pressId;
 		$result =& $this->retrieveRange(
 			'SELECT	pm.*
 			FROM	published_monographs pm
 				JOIN monographs m ON pm.monograph_id = m.monograph_id
-			' . ($journalId !== null?'WHERE m.press_id = ?':'') . '
+			' . ($pressId !== null?'WHERE m.press_id = ?':'') . '
 			ORDER BY pm.date_published',
 			$params,
 			$rangeInfo
