@@ -70,7 +70,7 @@ class SignoffExistsAccessPolicy extends AuthorizationPolicy {
 				if (!is_a($monographFile, 'MonographFile')) return AUTHORIZATION_DENY;
 
 				// Get the monograph
-				$monograph =& $monographDao->getMonograph($monographFile->getSubmissionId(), $press->getId());
+				$monograph =& $monographDao->getById($monographFile->getSubmissionId(), $press->getId());
 				if (!is_a($monograph, 'Monograph')) return AUTHORIZATION_DENY;
 
 				// Integrity checks OK. Permit.

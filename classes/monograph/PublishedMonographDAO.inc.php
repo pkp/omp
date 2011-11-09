@@ -15,59 +15,98 @@
 
 
 import('classes.monograph.PublishedMonograph');
+import('classes.monograph.MonographDAO');
 
-class PublishedMonographDAO extends DAO {
+class PublishedMonographDAO extends MonographDAO {
  	/**
 	 * Constructor.
 	 */
 	function PublishedMonographDAO() {
-		parent::DAO();
+		parent::MonographDAO();
 	}
 
 	/**
 	 * Retrieve all published monographs in a press.
 	 * @param $pressId int
-	 * @param $rangeInfo object
-	 * @return object
+	 * @param $rangeInfo object optional
+	 * @return DAOResultFactory
 	 */
-	function &getPublishedMonographs($pressId = null, $rangeInfo = null) {
-		$params = array();
-		if ($pressId !== null) $params[] = (int) $pressId;
+	function &getPublishedMonographs($pressId, $rangeInfo = null) {
+		$primaryLocale = AppLocale::getPrimaryLocale();
+		$locale = AppLocale::getLocale();
+
 		$result =& $this->retrieveRange(
-			'SELECT	pm.*
+			'SELECT	pm.*,
+				m.*,
+				COALESCE(stl.setting_value, stpl.setting_value) AS series_title,
+				COALESCE(sal.setting_value, sapl.setting_value) AS series_abbrev
 			FROM	published_monographs pm
 				JOIN monographs m ON pm.monograph_id = m.monograph_id
-			' . ($pressId !== null?'WHERE m.press_id = ?':'') . '
+				LEFT JOIN series s ON s.series_id = m.series_id
+				LEFT JOIN series_settings stpl ON (s.series_id = stpl.series_id AND stpl.setting_name = ? AND stpl.locale = ?)
+				LEFT JOIN series_settings stl ON (s.series_id = stl.series_id AND stl.setting_name = ? AND stl.locale = ?)
+				LEFT JOIN series_settings sapl ON (s.series_id = sapl.series_id AND sapl.setting_name = ? AND sapl.locale = ?)
+				LEFT JOIN series_settings sal ON (s.series_id = sal.series_id AND sal.setting_name = ? AND sal.locale = ?)
+			WHERE	m.press_id = ?
 			ORDER BY pm.date_published',
-			$params,
+			array(
+				'title', $primaryLocale, // Series title
+				'title', $locale, // Series title
+				'abbrev', $primaryLocale, // Series abbreviation
+				'abbrev', $locale, // Series abbreviation
+				(int) $pressId
+			),
 			$rangeInfo
 		);
 
-		$returner = new DAOResultFactory($result, $this, '_returnPublishedMonographFromRow');
+		$returner = new DAOResultFactory($result, $this, '_fromRow');
 		return $returner;
 	}
 
 	/**
 	 * Retrieve Published Monograph by monograph id
 	 * @param $monographId int
+	 * @param $pressId int
 	 * @return PublishedMonograph object
 	 */
-	function &getByMonographId($monographId) {
-		$result =& $this->retrieve(
-			'SELECT * FROM published_monographs WHERE monograph_id = ?', (int) $monographId
+	function &getById($monographId, $pressId = null) {
+		$primaryLocale = AppLocale::getPrimaryLocale();
+		$locale = AppLocale::getLocale();
+		$params = array(
+			'title', $primaryLocale, // Series title
+			'title', $locale, // Series title
+			'abbrev', $primaryLocale, // Series abbreviation
+			'abbrev', $locale, // Series abbreviation
+			(int) $monographId
 		);
-		if ($result->RecordCount() == 0) {
-			$returner = null;
-			return $returner;
+		if ($pressId) $params[] = (int) $pressId;
+
+		$result =& $this->retrieve(
+			'SELECT	m.*,
+				pm.*,
+				COALESCE(stl.setting_value, stpl.setting_value) AS series_title,
+				COALESCE(sal.setting_value, sapl.setting_value) AS series_abbrev
+			FROM	monographs m
+				JOIN published_monographs pm ON (pm.monograph_id = m.monograph_id)
+				LEFT JOIN series s ON s.series_id = m.series_id
+				LEFT JOIN series_settings stpl ON (s.series_id = stpl.series_id AND stpl.setting_name = ? AND stpl.locale = ?)
+				LEFT JOIN series_settings stl ON (s.series_id = stl.series_id AND stl.setting_name = ? AND stl.locale = ?)
+				LEFT JOIN series_settings sapl ON (s.series_id = sapl.series_id AND sapl.setting_name = ? AND sapl.locale = ?)
+				LEFT JOIN series_settings sal ON (s.series_id = sal.series_id AND sal.setting_name = ? AND sal.locale = ?)
+			WHERE	m.monograph_id = ?
+				' . ($pressId?' AND m.press_id = ?':''),
+			$params
+		);
+
+		$returner = null;
+		if ($result->RecordCount() != 0) {
+			$returner =& $this->_fromRow($result->GetRowAssoc(false));
 		}
 
-		$row = $result->GetRowAssoc(false);
 		$result->Close();
 		unset($result);
 
-		$publishedMonograph = $this->_fromRow($row);
-
-		return $publishedMonograph;
+		return $returner;
 	}
 
 	/**
@@ -85,7 +124,10 @@ class PublishedMonographDAO extends DAO {
 	 * @return PublishedMonograph object
 	 */
 	function &_fromRow($row, $callHooks = true) {
-		$publishedMonograph = $this->newDataObject();
+		// Get the PublishedMonograph object, populated with Monograph data
+		$publishedMonograph =& parent::_fromRow($row, $callHooks);
+
+		// Add the additional PublishedMonograph data
 		$publishedMonograph->setPubId($row['pub_id']); // Deprecated
 		$publishedMonograph->setDatePublished($this->datetimeFromDB($row['date_published']));
 		$publishedMonograph->setSeq($row['seq']);
@@ -107,7 +149,7 @@ class PublishedMonographDAO extends DAO {
 				(?, %s, ?)',
 				$this->datetimeToDB($publishedMonograph->getDatePublished())),
 			array(
-				$publishedMonograph->getId(),
+				(int) $publishedMonograph->getId(),
 				(int) $publishedMonograph->getSeq()
 			)
 		);
@@ -117,7 +159,7 @@ class PublishedMonographDAO extends DAO {
 	 * Removes an published monograph by monograph id
 	 * @param monographId int
 	 */
-	function deleteByMonographId($monographId) {
+	function deleteById($monographId) {
 		$this->update(
 			'DELETE FROM published_monographs WHERE monograph_id = ?',
 			(int) $monographId
@@ -136,8 +178,8 @@ class PublishedMonographDAO extends DAO {
 				WHERE	monograph_id = ?',
 				$this->datetimeToDB($publishedMonograph->getDatePublished())),
 			array(
-				$publishedMonograph->getSeq(),
-				$publishedMonograph->getId()
+				(int) $publishedMonograph->getSeq(),
+				(int) $publishedMonograph->getId()
 			)
 		);
 	}

@@ -103,7 +103,7 @@ class NotificationsGridCellProvider extends GridCellProvider {
 				}
 				assert(is_numeric($monographId));
 				$monographDao =& DAORegistry::getDAO('MonographDAO'); /* @var $monographDao MonographDAO */
-				$monograph =& $monographDao->getMonograph($monographId);
+				$monograph =& $monographDao->getById($monographId);
 				assert(is_a($monograph, 'Monograph'));
 
 				$title = $monograph->getLocalizedTitle();

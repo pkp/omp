@@ -14,7 +14,6 @@
  */
 
 
-
 import('classes.monograph.Monograph');
 
 class MonographDAO extends DAO {
@@ -71,7 +70,7 @@ class MonographDAO extends DAO {
 	 * @param $useCache boolean optional
 	 * @return Monograph
 	 */
-	function &getMonograph($monographId, $pressId = null, $useCache = false) {
+	function &getById($monographId, $pressId = null, $useCache = false) {
 		if ($useCache) {
 			$cache =& $this->_getCache();
 			$returner =& $cache->get($monographId);
@@ -82,39 +81,33 @@ class MonographDAO extends DAO {
 		$primaryLocale = AppLocale::getPrimaryLocale();
 		$locale = AppLocale::getLocale();
 		$params = array(
-			'title',
-			$primaryLocale,
-			'title',
-			$locale,
-			'abbrev',
-			$primaryLocale,
-			'abbrev',
-			$locale,
-			$monographId
+			'title', $primaryLocale, // Series title
+			'title', $locale, // Series title
+			'abbrev', $primaryLocale, // Series abbreviation
+			'abbrev', $locale, // Series abbreviation
+			(int) $monographId
 		);
-		$sql = 'SELECT	a.*,
+		if ($pressId) $params[] = (int) $pressId;
+
+		$result =& $this->retrieve(
+			'SELECT	m.*,
 				COALESCE(stl.setting_value, stpl.setting_value) AS series_title,
 				COALESCE(sal.setting_value, sapl.setting_value) AS series_abbrev
-			FROM	monographs a
-				LEFT JOIN series s ON s.series_id = a.series_id
+			FROM	monographs m
+				LEFT JOIN series s ON s.series_id = m.series_id
 				LEFT JOIN series_settings stpl ON (s.series_id = stpl.series_id AND stpl.setting_name = ? AND stpl.locale = ?)
 				LEFT JOIN series_settings stl ON (s.series_id = stl.series_id AND stl.setting_name = ? AND stl.locale = ?)
 				LEFT JOIN series_settings sapl ON (s.series_id = sapl.series_id AND sapl.setting_name = ? AND sapl.locale = ?)
 				LEFT JOIN series_settings sal ON (s.series_id = sal.series_id AND sal.setting_name = ? AND sal.locale = ?)
-			WHERE	monograph_id = ?';
-		if ($pressId !== null) {
-			$sql .= ' AND a.press_id = ?';
-			$params[] = $pressId;
-		}
-
-		$result =& $this->retrieve($sql, $params);
+			WHERE	m.monograph_id = ?
+				' . ($pressId?' AND m.press_id = ?':''),
+			$params
+		);
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
 			$returner =& $this->_fromRow($result->GetRowAssoc(false));
-
 		}
-
 
 		$result->Close();
 		unset($result);
@@ -128,9 +121,17 @@ class MonographDAO extends DAO {
 	 * @return Monograph
 	 */
 	function &_fromRow(&$row) {
-		$monograph = new Monograph();
+		$monograph = $this->newDataObject();
 		$this->_monographFromRow($monograph, $row);
 		return $monograph;
+	}
+
+	/**
+	 * Get a new data object representing the monograph.
+	 * @return Monograph
+	 */
+	function newDataObject() {
+		return new Monograph();
 	}
 
 	/**
@@ -139,7 +140,6 @@ class MonographDAO extends DAO {
 	 * @param $row array input row
 	 */
 	function _monographFromRow(&$monograph, &$row) {
-
 		$monograph->setId($row['monograph_id']);
 		$monograph->setLocale($row['locale']);
 		$monograph->setUserId($row['user_id']);
@@ -160,13 +160,7 @@ class MonographDAO extends DAO {
 
 		$this->getDataObjectSettings('monograph_settings', 'monograph_id', $row['monograph_id'], $monograph);
 
-
-		// set review rounds info
-		$reviewRounds =& $this->getReviewRoundsById($row['monograph_id']);
-		$monograph->setReviewRounds($reviewRounds);
-
 		HookRegistry::call('MonographDAO::_monographFromRow', array(&$monograph, &$row));
-
 	}
 
 
@@ -185,19 +179,19 @@ class MonographDAO extends DAO {
 				$this->datetimeToDB($monograph->getDateSubmitted()), $this->datetimeToDB($monograph->getDateStatusModified()), $this->datetimeToDB($monograph->getLastModified())),
 			array(
 				$monograph->getLocale(),
-				$monograph->getUserId(),
-				$monograph->getPressId(),
-				$monograph->getSeriesId() ,
+				(int) $monograph->getUserId(),
+				(int) $monograph->getPressId(),
+				(int) $monograph->getSeriesId(),
 				$monograph->getLanguage(),
 				$monograph->getCommentsToEditor(),
-				$monograph->getStatus() === null ? 1 : $monograph->getStatus(),
-				$monograph->getSubmissionProgress() === null ? 1 : $monograph->getSubmissionProgress(),
-				$monograph->getCurrentRound() === null ? 1 : $monograph->getCurrentRound(),
-				$monograph->getStageId() === null ? 1 : $monograph->getStageId(),
+				$monograph->getStatus() === null ? STATUS_QUEUED : (int) $monograph->getStatus(),
+				$monograph->getSubmissionProgress() === null ? 1 : (int) $monograph->getSubmissionProgress(),
+				$monograph->getCurrentRound() === null ? 1 : (int) $monograph->getCurrentRound(),
+				$monograph->getStageId() === null ? 1 : (int) $monograph->getStageId(),
 				$monograph->getPages(),
-				$monograph->getHideAuthor() === null ? 0 : $monograph->getHideAuthor(),
-				$monograph->getCommentsStatus() === null ? 0 : $monograph->getCommentsStatus(),
-				$monograph->getWorkType()
+				(int) $monograph->getHideAuthor(),
+				(int) $monograph->getCommentsStatus(),
+				(int) $monograph->getWorkType()
 			)
 		);
 
@@ -213,11 +207,9 @@ class MonographDAO extends DAO {
 	 * @param Monograph object
 	 */
 	function updateMonograph($monograph) {
-
 		$this->update(
 			sprintf('UPDATE monographs
-				SET
-					user_id = ?,
+				SET	user_id = ?,
 					series_id = ?,
 					language = ?,
 					comments_to_ed = ?,
@@ -232,29 +224,24 @@ class MonographDAO extends DAO {
 					edited_volume = ?,
 					hide_author = ?
 
-				WHERE monograph_id = ?',
+				WHERE	monograph_id = ?',
 				$this->datetimeToDB($monograph->getDateSubmitted()), $this->datetimeToDB($monograph->getDateStatusModified()), $this->datetimeToDB($monograph->getLastModified())),
 			array(
-				$monograph->getUserId(),
-				$monograph->getSeriesId(),
+				(int) $monograph->getUserId(),
+				(int) $monograph->getSeriesId(),
 				$monograph->getLanguage(),
 				$monograph->getCommentsToEditor(),
-				$monograph->getStatus(),
-				$monograph->getPressId(),
-				$monograph->getSubmissionProgress(),
-				$monograph->getCurrentRound(),
-				$monograph->getStageId(),
-				$monograph->getWorkType() == WORK_TYPE_EDITED_VOLUME ? 1 : 0,
-				$monograph->getHideAuthor() == null ? 0 : $monograph->getHideAuthor(),
-
-
-				$monograph->getId()
+				(int) $monograph->getStatus(),
+				(int) $monograph->getPressId(),
+				(int) $monograph->getSubmissionProgress(),
+				(int) $monograph->getCurrentRound(),
+				(int) $monograph->getStageId(),
+				(int) $monograph->getWorkType(),
+				(int) $monograph->getHideAuthor(),
+				(int) $monograph->getId()
 			)
 		);
 		$this->updateLocaleFields($monograph);
-
-		$contributorMap = null;
-
 		$this->flushCache();
 	}
 
@@ -320,11 +307,9 @@ class MonographDAO extends DAO {
 		$monographCommentDao =& DAORegistry::getDAO('MonographCommentDAO');
 		$monographCommentDao->deleteMonographComments($monographId);
 
-		$this->update('DELETE FROM monograph_settings WHERE monograph_id = ?', $monographId);
-		$this->update('DELETE FROM monographs WHERE monograph_id = ?', $monographId);
+		$this->update('DELETE FROM monograph_settings WHERE monograph_id = ?', (int) $monographId);
+		$this->update('DELETE FROM monographs WHERE monograph_id = ?', (int) $monographId);
 	}
-
-
 
 	/**
 	 * Get all monographs for a press.
@@ -334,7 +319,6 @@ class MonographDAO extends DAO {
 	function &getMonographsByPressId($pressId) {
 		$primaryLocale = AppLocale::getPrimaryLocale();
 		$locale = AppLocale::getLocale();
-		$monographs = array();
 
 		$result =& $this->retrieve(
 			'SELECT	m.*,
@@ -348,14 +332,10 @@ class MonographDAO extends DAO {
 				LEFT JOIN series_settings sal ON (s.series_id = sal.series_id AND sal.setting_name = ? AND sal.locale = ?)
 			WHERE	m.press_id = ?',
 			array(
-				'title',
-				$primaryLocale,
-				'title',
-				$locale,
-				'abbrev',
-				$primaryLocale,
-				'abbrev',
-				$locale,
+				'title', $primaryLocale, // Series title
+				'title', $locale, // Series title
+				'abbrev', $primaryLocale, // Series abbreviation
+				'abbrev', $locale, // Series abbreviation
 				(int) $pressId
 			)
 		);
@@ -372,7 +352,6 @@ class MonographDAO extends DAO {
 	function &getUnpublishedMonographsByPressId($pressId) {
 		$primaryLocale = AppLocale::getPrimaryLocale();
 		$locale = AppLocale::getLocale();
-		$monographs = array();
 
 		$result =& $this->retrieve(
 			'SELECT	m.*,
@@ -389,14 +368,10 @@ class MonographDAO extends DAO {
 				pm.monograph_id IS NULL AND
 				m.submission_progress = 0',
 			array(
-				'title',
-				$primaryLocale,
-				'title',
-				$locale,
-				'abbrev',
-				$primaryLocale,
-				'abbrev',
-				$locale,
+				'title', $primaryLocale, // Series title
+				'title', $locale, // Series title
+				'abbrev', $primaryLocale, // Series abbreviation
+				'abbrev', $locale, // Series abbreviation
 				(int) $pressId
 			)
 		);
@@ -405,7 +380,6 @@ class MonographDAO extends DAO {
 		return $returner;
 	}
 
-
 	/**
 	 * Delete all monographs by press ID.
 	 * @param $pressId int
@@ -413,9 +387,9 @@ class MonographDAO extends DAO {
 	function deleteMonographsByPressId($pressId) {
 		$monographs = $this->getMonographsByPressId($pressId);
 
-		while (!$monographs->eof()) {
-			$monograph =& $monographs->next();
+		while ($monograph =& $monographs->next()) {
 			$this->deleteMonographById($monograph->getId());
+			unset($monograph);
 		}
 	}
 
@@ -429,18 +403,13 @@ class MonographDAO extends DAO {
 		$primaryLocale = AppLocale::getPrimaryLocale();
 		$locale = AppLocale::getLocale();
 		$params = array(
-			'title', // Series title
-			$primaryLocale,
-			'title', // Series title
-			$locale,
-			'abbrev', // Series abbreviation
-			$primaryLocale,
-			'abbrev', // Series abbreviation
-			$locale,
+			'title', $primaryLocale, // Series title
+			'title', $locale, // Series title
+			'abbrev', $primaryLocale, // Series abbreviation
+			'abbrev', $locale, // Series abbreviation
 			(int) $userId
 		);
 		if ($pressId) $params[] = $pressId;
-		$monographs = array();
 
 		$result =& $this->retrieve(
 			'SELECT	m.*,
@@ -453,7 +422,7 @@ class MonographDAO extends DAO {
 				LEFT JOIN series_settings aapl ON (aa.series_id = aapl.series_id AND aapl.setting_name = ? AND aapl.locale = ?)
 				LEFT JOIN series_settings aal ON (aa.series_id = aal.series_id AND aal.setting_name = ? AND aal.locale = ?)
 			WHERE	m.user_id = ?' .
-			(isset($pressId)?' AND m.press_id = ?':''),
+				(isset($pressId)?' AND m.press_id = ?':''),
 			$params
 		);
 
@@ -462,69 +431,13 @@ class MonographDAO extends DAO {
 	}
 
 	/**
-	 * Get the ID of the press a monograph is in.
-	 * FIXME: Move to PressDAO, see #6455.
-	 * @param $monographId int
-	 * @return int
-	 */
-	function getMonographPressId($monographId) {
-		$result =& $this->retrieve(
-			'SELECT press_id FROM monographs WHERE monograph_id = ?', $monographId
-		);
-		$returner = isset($result->fields[0]) ? $result->fields[0] : false;
-
-		$result->Close();
-		unset($result);
-
-		return $returner;
-	}
-
-	/**
-	 * Check if the specified incomplete submission exists.
-	 * @param $monographId int
-	 * @param $userId int
-	 * @param $pressId int
-	 * @return int the submission progress
-	 */
-	function incompleteSubmissionExists($monographId, $userId, $pressId) {
-		$result =& $this->retrieve(
-			'SELECT	submission_progress
-			FROM	monographs
-			WHERE	monograph_id = ? AND
-				user_id = ? AND
-				press_id = ? AND
-				date_submitted IS NULL',
-			array($monographId, $userId, $pressId)
-		);
-		$returner = isset($result->fields[0]) ? $result->fields[0] : false;
-
-		$result->Close();
-		unset($result);
-
-		return $returner;
-	}
-
-	/**
-	 * Change the status of the monograph.
-	 * FIXME: Implement with updateMonograph().
-	 * @param $monographId int
-	 * @param $status int
-	 */
-	function changeMonographStatus($monographId, $status) {
-		$this->update(
-			'UPDATE monographs SET status = ? WHERE monograph_id = ?', array($status, $monographId)
-		);
-
-		$this->flushCache();
-	}
-
-	/**
 	 * Remove all monographs from an series.
 	 * @param $seriesId int
 	 */
 	function removeMonographsFromSeries($seriesId) {
 		$this->update(
-			'UPDATE monographs SET series_id = null WHERE series_id = ?', $seriesId
+			'UPDATE monographs SET series_id = null WHERE series_id = ?',
+			(int) $seriesId
 		);
 
 		$this->flushCache();
@@ -549,18 +462,6 @@ class MonographDAO extends DAO {
 	}
 
 	/**
-	 * Get an iterator describing all the review rounds round for each review stage id
-	 * @param $monographId int
-	 * @return array
-	 */
-	function &getReviewRoundsById($monographId, $stageId = null, $round = null) {
-		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO'); /* @var $reviewRoundDao ReviewRoundDAO */
-		$reviewRounds =& $reviewRoundDao->getByMonographId($monographId, $stageId, $round);
-		return $reviewRounds;
-	}
-
-
-	/**
 	 * Get all unassigned monographs for a press or all presses
 	 * @param $pressId int optional the ID of the press to query.
 	 * @param $seriesEditorId int optional the ID of the series editor
@@ -572,14 +473,10 @@ class MonographDAO extends DAO {
 		$locale = AppLocale::getLocale();
 
 		$params = array(
-			'title',
-			$primaryLocale,
-			'title',
-			$locale,
-			'abbrev',
-			$primaryLocale,
-			'abbrev',
-			$locale,
+			'title', $primaryLocale, // Series title
+			'title', $locale, // Series title
+			'abbrev', $primaryLocale, // Series abbreviation
+			'abbrev', $locale, // Series abbreviation
 			(int) ROLE_ID_SERIES_EDITOR
 		);
 		if ($seriesEditorId) $params[] = (int) $seriesEditorId;
@@ -597,11 +494,10 @@ class MonographDAO extends DAO {
 				LEFT JOIN series_settings sal ON (s.series_id = sal.series_id AND sal.setting_name = ? AND sal.locale = ?)
 				LEFT JOIN stage_assignments sa ON (m.monograph_id = sa.submission_id)
 				LEFT JOIN user_groups g ON (sa.user_group_id = g.user_group_id AND g.role_id = ?)
-				' . ($seriesEditorId?' LEFT JOIN series_editors se ON (se.press_id = m.press_id AND se.user_id = ? AND se.series_id = m.series_id)':'') . '
+				' . ($seriesEditorId?' JOIN series_editors se ON (se.press_id = m.press_id AND se.user_id = ? AND se.series_id = m.series_id)':'') . '
 			WHERE	m.date_submitted IS NOT NULL AND
 				g.user_group_id IS NULL
-				' . ($pressId?' AND m.press_id = ?':'') . '
-				' . ($seriesEditorId?' AND se.series_id IS NOT NULL':''),
+				' . ($pressId?' AND m.press_id = ?':''),
 			$params
 		);
 

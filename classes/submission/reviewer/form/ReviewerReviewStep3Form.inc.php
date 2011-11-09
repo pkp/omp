@@ -160,7 +160,7 @@ class ReviewerReviewStep3Form extends ReviewerReviewForm {
 			$commentDao->insertMonographComment($comment);
 
 			$monographDao =& DAORegistry::getDAO('MonographDAO');
-			$monograph =& $monographDao->getMonograph($reviewAssignment->getSubmissionId());
+			$monograph =& $monographDao->getById($reviewAssignment->getSubmissionId());
 
 			$stageAssignmentDao =& DAORegistry::getDAO('StageAssignmentDAO');
 			$stageAssignments =& $stageAssignmentDao->getBySubmissionAndStageId($monograph->getId(), $monograph->getStageId());

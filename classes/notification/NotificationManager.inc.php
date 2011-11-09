@@ -94,7 +94,7 @@ class NotificationManager extends PKPNotificationManager {
 		switch ($type) {
 			case NOTIFICATION_TYPE_MONOGRAPH_SUBMITTED:
 				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
-				$monograph =& $monographDao->getMonograph($notification->getAssocId()); /* @var $monograph Monograph */
+				$monograph =& $monographDao->getById($notification->getAssocId()); /* @var $monograph Monograph */
 				$title = $monograph->getLocalizedTitle();
 				return __('notification.type.monographSubmitted', array('title' => $title));
 				break;
@@ -102,7 +102,7 @@ class NotificationManager extends PKPNotificationManager {
 				assert($$notification->getAssocType() == ASSOC_TYPE_REVIEW_ASSIGNMENT && is_numeric($$notification->getAssocId()));
 				$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO'); /* @var $reviewAssignmentDao ReviewAssignmentDAO */
 				$reviewAssignment =& $reviewAssignmentDao->getById($notification->getAssocId());
-				$monograph =& $monographDao->getMonograph($reviewAssignment->getSubmissionId()); /* @var $monograph Monograph */
+				$monograph =& $monographDao->getById($reviewAssignment->getSubmissionId()); /* @var $monograph Monograph */
 				$title = $monograph->getLocalizedTitle();
 				return __('notification.type.reviewerComment', array('title' => $title));
 				break;
@@ -562,7 +562,7 @@ class NotificationManager extends PKPNotificationManager {
 		AppLocale::requireComponents(array(LOCALE_COMPONENT_OMP_SUBMISSION));
 
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
-		$monograph =& $monographDao->getMonograph($monographId);
+		$monograph =& $monographDao->getById($monographId);
 
 		import('controllers.api.signoff.linkAction.AddSignoffFileLinkAction');
 		$signoffFileLinkAction = new AddSignoffFileLinkAction(

@@ -270,7 +270,7 @@ class MonographFileManager extends FileManager {
 		static $filesDir;
 		if (empty($filesDir)) {
 			$monographDao =& DAORegistry::getDAO('MonographDAO'); /* @var $monographDao MonographDAO */
-			$monograph =& $monographDao->getMonograph($monographId);
+			$monograph =& $monographDao->getById($monographId);
 			assert(is_a($monograph, 'Monograph'));
 			$filesDir = $monograph->getFilePath();
 		}

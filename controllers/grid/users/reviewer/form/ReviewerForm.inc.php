@@ -221,7 +221,7 @@ class ReviewerForm extends Form {
 	 */
 	function execute($args, &$request) {
 		$seriesEditorSubmissionDao =& DAORegistry::getDAO('SeriesEditorSubmissionDAO');
-		$submission =& $seriesEditorSubmissionDao->getSeriesEditorSubmission($this->getMonographId());
+		$submission =& $seriesEditorSubmissionDao->getById($this->getMonographId());
 		$press =& $request->getPress();
 
 		$currentReviewRound =& $this->getReviewRound();

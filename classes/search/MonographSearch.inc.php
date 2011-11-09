@@ -239,7 +239,7 @@ class MonographSearch {
 		foreach ($results as $monographId) {
 			// Get the monograph, storing in cache if necessary.
 			if (!isset($monographCache[$monographId])) {
-				$monographCache[$monographId] =& $monographDao->getMonograph($monographId);
+				$monographCache[$monographId] =& $monographDao->getById($monographId);
 			}
 			unset($monograph);
 			$monograph =& $monographCache[$monographId];

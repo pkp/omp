@@ -15,14 +15,13 @@
  */
 
 
-
 import('classes.submission.seriesEditor.SeriesEditorSubmission');
+import('classes.monograph.MonographDAO');
 
 // Bring in editor decision constants
 import('classes.submission.reviewer.ReviewerSubmission');
 
-class SeriesEditorSubmissionDAO extends DAO {
-	var $monographDao;
+class SeriesEditorSubmissionDAO extends MonographDAO {
 	var $authorDao;
 	var $userDao;
 	var $reviewAssignmentDao;
@@ -30,13 +29,13 @@ class SeriesEditorSubmissionDAO extends DAO {
 	var $signoffDao;
 	var $monographEmailLogDao;
 	var $monographCommentDao;
+	var $reviewRoundDao;
 
 	/**
 	 * Constructor.
 	 */
 	function SeriesEditorSubmissionDAO() {
-		parent::DAO();
-		$this->monographDao =& DAORegistry::getDAO('MonographDAO');
+		parent::MonographDAO();
 		$this->authorDao =& DAORegistry::getDAO('AuthorDAO');
 		$this->userDao =& DAORegistry::getDAO('UserDAO');
 		$this->reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
@@ -44,14 +43,15 @@ class SeriesEditorSubmissionDAO extends DAO {
 		$this->signoffDao =& DAORegistry::getDAO('SignoffDAO');
 		$this->monographEmailLogDao =& DAORegistry::getDAO('MonographEmailLogDAO');
 		$this->monographCommentDao =& DAORegistry::getDAO('MonographCommentDAO');
+		$this->reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
 	}
 
 	/**
-	 * Retrieve an series editor submission by monograph ID.
+	 * Retrieve a series editor submission by monograph ID.
 	 * @param $monographId int
-	 * @return EditorSubmission
+	 * @return SeriesEditorSubmission
 	 */
-	function &getSeriesEditorSubmission($monographId) {
+	function &getById($monographId) {
 		$primaryLocale = AppLocale::getPrimaryLocale();
 		$locale = AppLocale::getLocale();
 		$result =& $this->retrieve(
@@ -66,15 +66,11 @@ class SeriesEditorSubmissionDAO extends DAO {
 				LEFT JOIN series_settings sal ON (s.series_id = sal.series_id AND sal.setting_name = ? AND sal.locale = ?)
 			WHERE	m.monograph_id = ?',
 			array(
-				'title',
-				$primaryLocale,
-				'title',
-				$locale,
-				'abbrev',
-				$primaryLocale,
-				'abbrev',
-				$locale,
-				$monographId
+				'title', $primaryLocale, // Series title
+				'title', $locale, // Series title
+				'abbrev', $primaryLocale, // Series abbreviation
+				'abbrev', $locale, // Series abbreviation
+				(int) $monographId
 			)
 		);
 
@@ -103,20 +99,19 @@ class SeriesEditorSubmissionDAO extends DAO {
 	 * @return SeriesEditorSubmission
 	 */
 	function &_fromRow(&$row) {
-		$seriesEditorSubmission = $this->newDataObject();
-
-		// Monograph attributes
-		$this->monographDao->_monographFromRow($seriesEditorSubmission, $row);
+		// Populate the monograph parts of the object
+		$seriesEditorSubmission =& parent::_fromRow($row);
 
 		// Editor Decisions
-		$reviewRounds =& $this->monographDao->getReviewRoundsById($row['monograph_id']);
-		while ( $reviewRound =& $reviewRounds->next()) {
+		$reviewRounds =& $this->reviewRoundDao->getByMonographId($row['monograph_id']);
+		while ($reviewRound =& $reviewRounds->next()) {
 			$stageId = $reviewRound->getStageId();
 			$round = $reviewRound->getRound();
 			$seriesEditorSubmission->setDecisions(
-						$this->getEditorDecisions($row['monograph_id'], $stageId, $round),
-						$stageId,
-						$round);
+				$this->getEditorDecisions($row['monograph_id'], $stageId, $round),
+				$stageId,
+				$round
+			);
 			unset($reviewRound);
 		}
 
@@ -127,18 +122,17 @@ class SeriesEditorSubmissionDAO extends DAO {
 		$seriesEditorSubmission->setMostRecentProofreadComment($this->monographCommentDao->getMostRecentMonographComment($row['monograph_id'], COMMENT_TYPE_PROOFREAD, $row['monograph_id']));
 
 		// Review Assignments
-		$reviewRounds =& $this->monographDao->getReviewRoundsById($row['monograph_id']);
-		while ( $reviewRound =& $reviewRounds->next()) {
+		$reviewRounds =& $this->reviewRoundDao->getByMonographId($row['monograph_id']);
+		while ($reviewRound =& $reviewRounds->next()) {
 			$stageId = $reviewRound->getStageId();
 			$round = $reviewRound->getRound();
 			$seriesEditorSubmission->setReviewAssignments(
-						$this->reviewAssignmentDao->getBySubmissionId($row['monograph_id'], $round, $stageId),
-						$stageId,
-						$round);
+				$this->reviewAssignmentDao->getBySubmissionId($row['monograph_id'], $round, $stageId),
+				$stageId,
+				$round
+			);
 			unset($reviewRound);
 		}
-
-		// Proof Assignment
 
 		HookRegistry::call('SeriesEditorSubmissionDAO::_fromRow', array(&$seriesEditorSubmission, &$row));
 
@@ -150,7 +144,8 @@ class SeriesEditorSubmissionDAO extends DAO {
 	 * @param $seriesEditorSubmission SeriesEditorSubmission
 	 */
 	function updateSeriesEditorSubmission(&$seriesEditorSubmission) {
-		$reviewRounds = $seriesEditorSubmission->getReviewRounds();
+		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO'); /* @var $reviewRoundDao ReviewRoundDAO */
+		$reviewRounds =& $reviewRoundDao->getByMonographId($seriesEditorSubmission->getId());
 
 		// Update editor decisions.
 		while ($reviewRound =& $reviewRounds->next()) {
@@ -168,11 +163,11 @@ class SeriesEditorSubmissionDAO extends DAO {
 								$this->datetimeToDB($editorDecision['dateDecided'])
 							),
 							array(
-								$seriesEditorSubmission->getId(),
-								$reviewRound->getId(),
-								$stageId,
-								$round,
-								$editorDecision['editorId'],
+								(int) $seriesEditorSubmission->getId(),
+								(int) $reviewRound->getId(),
+								(int) $stageId,
+								(int) $round,
+								(int) $editorDecision['editorId'],
 								$editorDecision['decision']
 							)
 						);
@@ -188,7 +183,9 @@ class SeriesEditorSubmissionDAO extends DAO {
 		// update review assignments
 		$removedReviewAssignments =& $seriesEditorSubmission->getRemovedReviewAssignments();
 
-		$reviewRounds = $seriesEditorSubmission->getReviewRounds();
+		unset($reviewRounds);
+		$reviewRounds =& $reviewRoundDao->getByMonographId($seriesEditorSubmission->getId());
+
 		while ($reviewRound =& $reviewRounds->next()) {
 			$stageId = $reviewRound->getStageId();
 			$round = $reviewRound->getRound();
@@ -211,8 +208,7 @@ class SeriesEditorSubmissionDAO extends DAO {
 
 		// Update monograph
 		if ($seriesEditorSubmission->getId()) {
-
-			$monograph =& $this->monographDao->getMonograph($seriesEditorSubmission->getId());
+			$monograph =& parent::getById($seriesEditorSubmission->getId());
 
 			// Only update fields that can actually be edited.
 			$monograph->setSeriesId($seriesEditorSubmission->getSeriesId());
@@ -221,9 +217,8 @@ class SeriesEditorSubmissionDAO extends DAO {
 			$monograph->setLastModified($seriesEditorSubmission->getLastModified());
 			$monograph->setCommentsStatus($seriesEditorSubmission->getCommentsStatus());
 
-			$this->monographDao->updateMonograph($monograph);
+			parent::updateMonograph($monograph);
 		}
-
 	}
 
 
@@ -238,7 +233,7 @@ class SeriesEditorSubmissionDAO extends DAO {
 	function deleteDecisionsByMonograph($monographId) {
 		return $this->update(
 			'DELETE FROM edit_decisions WHERE monograph_id = ?',
-			$monographId
+			(int) $monographId
 		);
 	}
 
@@ -250,7 +245,7 @@ class SeriesEditorSubmissionDAO extends DAO {
 	function deleteReviewRoundsByMonograph($monographId) {
 		return $this->update(
 			'DELETE FROM review_rounds WHERE submission_id = ?',
-			$monographId
+			(int) $monographId
 		);
 	}
 
@@ -258,49 +253,37 @@ class SeriesEditorSubmissionDAO extends DAO {
 	 * Get the editor decisions for a review round of a monograph.
 	 * FIXME: Create EditorDecisionDAO and move this there, see #6455.
 	 * @param $monographId int
+	 * @param $stageId int optional
+	 * @param $round int optional
 	 */
 	function getEditorDecisions($monographId, $stageId = null, $round = null) {
+		$params = array((int) $monographId);
+		if ($stageId) $params[] = (int) $stageId;
+		if ($round) $params[] = (int) $round;
+
+		$result =& $this->retrieve(
+			'SELECT	edit_decision_id, editor_id, decision,
+				date_decided, review_round_id, stage_id, round
+			FROM	edit_decisions
+			WHERE	monograph_id = ?
+				' . ($stageId?' AND stage_id = ?':'') . '
+				' . ($round?' AND round = ?':'') . '
+			ORDER BY date_decided ASC',
+			$params
+		);
+
 		$decisions = array();
-
-		if ($stageId == null) {
-			$result =& $this->retrieve(
-					'SELECT edit_decision_id, editor_id, decision, date_decided, review_round_id, stage_id, round
-					FROM edit_decisions
-					WHERE monograph_id = ?
-					ORDER BY date_decided ASC',
-					$monographId
-				);
-		} elseif ($round == null) {
-			$result =& $this->retrieve(
-					'SELECT edit_decision_id, editor_id, decision, date_decided, review_round_id, stage_id, round
-					FROM edit_decisions
-					WHERE monograph_id = ? AND stage_id = ?
-					ORDER BY date_decided ASC',
-					array($monographId, $stageId)
-				);
-		} else {
-			$result =& $this->retrieve(
-					'SELECT edit_decision_id, editor_id, decision, date_decided, review_round_id, stage_id, round
-					FROM edit_decisions
-					WHERE monograph_id = ? AND stage_id = ? AND round = ?
-					ORDER BY date_decided ASC',
-					array($monographId, $stageId, $round)
-				);
-		}
-
 		while (!$result->EOF) {
-			$value = array(
-					'editDecisionId' => $result->fields['edit_decision_id'],
-					'reviewRoundId' => $result->fields['review_round_id'],
-					'stageId' => $result->fields['stage_id'],
-					'round' => $result->fields['round'],
-					'editorId' => $result->fields['editor_id'],
-					'decision' => $result->fields['decision'],
-					'dateDecided' => $this->datetimeFromDB($result->fields['date_decided'])
-				);
-
-			$decisions[] = $value;
-			$result->moveNext();
+			$decisions[] = array(
+				'editDecisionId' => $result->fields['edit_decision_id'],
+				'reviewRoundId' => $result->fields['review_round_id'],
+				'stageId' => $result->fields['stage_id'],
+				'round' => $result->fields['round'],
+				'editorId' => $result->fields['editor_id'],
+				'decision' => $result->fields['decision'],
+				'dateDecided' => $this->datetimeFromDB($result->fields['date_decided'])
+			);
+			$result->MoveNext();
 		}
 		$result->Close();
 		unset($result);
@@ -317,7 +300,12 @@ class SeriesEditorSubmissionDAO extends DAO {
 	 */
 	function reviewerExists($reviewRoundId, $reviewerId) {
 		$result =& $this->retrieve(
-			'SELECT COUNT(*) FROM review_assignments WHERE review_round_id = ? AND reviewer_id = ? AND cancelled = 0', array($reviewRoundId, $reviewerId)
+			'SELECT COUNT(*)
+			FROM	review_assignments
+			WHERE	review_round_id = ? AND
+				reviewer_id = ? AND
+				cancelled = 0', 
+			array((int) $reviewRoundId, (int) $reviewerId)
 		);
 		$returner = isset($result->fields[0]) && $result->fields[0] == 1 ? true : false;
 
@@ -332,7 +320,7 @@ class SeriesEditorSubmissionDAO extends DAO {
 	 * FIXME: Move to UserDAO, see #6455.
 	 * @param $pressId int
 	 * @param $monographId int
-	 * @param $round int optional
+	 * @param $round int
 	 * @return DAOResultFactory containing matching Users
 	 */
 	function &getReviewersForMonograph($pressId, $monographId, $round) {
@@ -343,11 +331,16 @@ class SeriesEditorSubmissionDAO extends DAO {
 				LEFT JOIN user_groups ug ON (ug.user_group_id = uug.user_group_id)
 				LEFT JOIN review_assignments r ON (r.reviewer_id = u.user_id)
 			WHERE	ug.context_id = ? AND
-					ug.role_id = ? AND
-					r.submission_id = ? AND
-					r.round = ?
+				ug.role_id = ? AND
+				r.submission_id = ? AND
+				r.round = ?
 			ORDER BY last_name, first_name',
-			array((int) $pressId, ROLE_ID_REVIEWER, (int) $monographId, (int) $round)
+			array(
+				(int) $pressId,
+				ROLE_ID_REVIEWER,
+				(int) $monographId,
+				(int) $round
+			)
 		);
 
 		$returner = new DAOResultFactory($result, $this, '_returnReviewerUserFromRow');
@@ -361,7 +354,7 @@ class SeriesEditorSubmissionDAO extends DAO {
 	 */
 	function &_returnReviewerUserFromRow(&$row) {
 		$user =& $this->userDao->_returnUserFromRowWithData($row);
-		if(isset($row['review_id'])) $user->review_id = $row['review_id'];
+		if (isset($row['review_id'])) $user->review_id = $row['review_id'];
 
 		HookRegistry::call('SeriesEditorSubmissionDAO::_returnReviewerUserFromRow', array(&$user, &$row));
 
@@ -378,35 +371,27 @@ class SeriesEditorSubmissionDAO extends DAO {
 	 * @return array matching Users
 	 */
 	function &getReviewersNotAssignedToMonograph($pressId, $monographId, $stageId = null, $round = null, $name = '') {
-		$params = isset($stageId) ? array($stageId) : array();
-		if ($round) {
-			$params[] = $round;
-		}
-		$params = array_merge($params, array($monographId, $pressId, ROLE_ID_REVIEWER));
-		if(!empty($name)) {
-			$params = array_merge($params, array_pad(array(), 4, '%' . $name . '%'));
-		}
+		$params = array((int) $pressId, ROLE_ID_REVIEWER, (int) $monographId);
+		if ($stageId) $params[] = (int) $stageId;
+		if ($round) $params[] = (int) $round;
+		if (!empty($name)) $params[] = $params[] = $params[] = $params[] = "%$name%";
 
 		$result =& $this->retrieve(
 			'SELECT	DISTINCT u.*
 			FROM	users u
-				LEFT JOIN user_user_groups uug ON (uug.user_id = u.user_id)
-				LEFT JOIN user_groups ug ON (ug.user_group_id = uug.user_group_id)
-				LEFT JOIN review_assignments r ON (r.reviewer_id = u.user_id' .
-					(isset($stageId) ? ' AND stage_id = ?' : '') .
-					(isset($round) ? ' AND round = ?' : '') .
-					' AND r.submission_id = ?)
-			WHERE ug.context_id = ? AND
-				ug.role_id = ? AND
-				r.submission_id IS NULL' .
-				(!empty($name)?' AND (first_name LIKE ? OR last_name LIKE ? OR username LIKE ? OR email LIKE ?)':'') .
+				JOIN user_user_groups uug ON (uug.user_id = u.user_id)
+				JOIN user_groups ug ON (ug.user_group_id = uug.user_group_id AND ug.context_id = ? AND ug.role_id = ?)
+				JOIN review_assignments r ON (r.submission_id = ? AND r.reviewer_id = u.user_id' .
+					($stageId ? ' AND r.stage_id = ?' : '') .
+					($round ? ' AND r.round = ?' : '') .
+				')' .
+				(!empty($name)?' WHERE (first_name LIKE ? OR last_name LIKE ? OR username LIKE ? OR email LIKE ?)':'') .
 			' ORDER BY last_name, first_name',
 			$params
 		);
 
 		$returner = new DAOResultFactory($result, $this, '_returnReviewerUserFromRow');
 		return $returner;
-
 	}
 
 	/**
@@ -424,7 +409,7 @@ class SeriesEditorSubmissionDAO extends DAO {
 			WHERE	ug.context_id = ? AND
 				ug.role_id = ?
 			ORDER BY last_name, first_name',
-			array($pressId, ROLE_ID_REVIEWER)
+			array((int) $pressId, ROLE_ID_REVIEWER)
 		);
 
 		$returner = new DAOResultFactory($result, $this, '_returnReviewerUserFromRow');
@@ -440,20 +425,22 @@ class SeriesEditorSubmissionDAO extends DAO {
 	 */
 	function getAnonymousReviewerStatistics() {
 		// Setup default array -- Minimum values Will always be set to 0 (to accomodate reviewers that have never reviewed, and thus aren't in review_assignment)
-		$reviewerValues =  array('done_min' => 0, // Will always be set to 0
-								'done_max' => 0,
-								'avg_min' => 0, // Will always be set to 0
-								'avg_max' => 0,
-								'last_min' => 0, // Will always be set to 0
-								'last_max' => 0,
-								'active_min' => 0, // Will always be set to 0
-								'active_max' => 0);
+		$reviewerValues =  array(
+			'done_min' => 0, // Will always be set to 0
+			'done_max' => 0,
+			'avg_min' => 0, // Will always be set to 0
+			'avg_max' => 0,
+			'last_min' => 0, // Will always be set to 0
+			'last_max' => 0,
+			'active_min' => 0, // Will always be set to 0
+			'active_max' => 0
+		);
 
 		// Get number of reviews completed
 		$result =& $this->retrieve(
-			'SELECT r.reviewer_id, COUNT(*) as completed_count
-			FROM review_assignments r
-			WHERE r.date_completed IS NOT NULL
+			'SELECT	r.reviewer_id, COUNT(*) as completed_count
+			FROM	review_assignments r
+			WHERE	r.date_completed IS NOT NULL
 			GROUP BY r.reviewer_id'
 		);
 		while (!$result->EOF) {
@@ -464,13 +451,11 @@ class SeriesEditorSubmissionDAO extends DAO {
 		$result->Close();
 		unset($result);
 
-
-
 		// Get average number of days per review and days since last review
 		$result =& $this->retrieve(
-			'SELECT r.reviewer_id, r.date_completed, r.date_notified
-			FROM review_assignments r
-			WHERE r.date_notified IS NOT NULL AND
+			'SELECT	r.reviewer_id, r.date_completed, r.date_notified
+			FROM	review_assignments r
+			WHERE	r.date_notified IS NOT NULL AND
 				r.date_completed IS NOT NULL AND
 				r.declined = 0'
 		);
@@ -503,12 +488,11 @@ class SeriesEditorSubmissionDAO extends DAO {
 		$result->Close();
 		unset($result);
 
-
 		// Get number of currently active reviews
 		$result =& $this->retrieve(
-			'SELECT r.reviewer_id, COUNT(*) AS incomplete
-			FROM review_assignments r
-			WHERE r.date_notified IS NOT NULL AND
+			'SELECT	r.reviewer_id, COUNT(*) AS incomplete
+			FROM	review_assignments r
+			WHERE	r.date_notified IS NOT NULL AND
 				r.date_completed IS NULL AND
 				r.cancelled = 0
 			GROUP BY r.reviewer_id'
@@ -521,7 +505,6 @@ class SeriesEditorSubmissionDAO extends DAO {
 		}
 		$result->Close();
 		unset($result);
-
 
 		return $reviewerValues;
 	}
@@ -553,7 +536,7 @@ class SeriesEditorSubmissionDAO extends DAO {
 		if(isset($interests)) {
 			foreach ($interests as $key => $interest) {
 				$interestIds = $interestDao->getUserIdsByInterest($interest);
-				if(!$interestIds) {
+				if (!$interestIds) {
 					// The interest searched for does not exist -- go to next interest
 					continue;
 				}
@@ -584,13 +567,14 @@ class SeriesEditorSubmissionDAO extends DAO {
 
 			if ($interestCheck && $reviewerStat['completed_review_count'] <= $doneMax && $reviewerStat['completed_review_count'] >= $doneMin &&
 				$reviewerStat['average_span'] <= $avgMax && $reviewerStat['average_span'] >= $avgMin && $lastNotifiedInDays <= $lastMax  &&
-				$lastNotifiedInDays >= $lastMin && $reviewerStat['incomplete'] <= $activeMax && $reviewerStat['incomplete'] >= $activeMin) {
-					if($monographId && in_array($userId, $assignedReviewers)) {
-						continue;
-					} else {
-						$filteredReviewers[] = $userDao->getUser($userId);
-					}
+				$lastNotifiedInDays >= $lastMin && $reviewerStat['incomplete'] <= $activeMax && $reviewerStat['incomplete'] >= $activeMin
+			) {
+				if($monographId && in_array($userId, $assignedReviewers)) {
+					continue;
+				} else {
+					$filteredReviewers[] = $userDao->getUser($userId);
 				}
+			}
 		}
 
 		return $filteredReviewers;
@@ -605,7 +589,7 @@ class SeriesEditorSubmissionDAO extends DAO {
 	function getReviewerStatistics($pressId) {
 		// Build an array of all reviewers and provide a placeholder for all statistics (so even if they don't
 		//  have a value, it will be filled in as 0
-		$statistics = Array();
+		$statistics = array();
 		$reviewerStatsPlaceholder = array('last_notified' => null, 'incomplete' => 0, 'total_span' => 0, 'completed_review_count' => 0, 'average_span' => 0);
 
 		$allReviewers =& $this->getAllReviewers($pressId);

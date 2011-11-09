@@ -57,7 +57,7 @@ class MySubmissionsListGridHandler extends SubmissionsListGridHandler {
 	 */
 	function deleteSubmission($args, &$request) {
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
-		$monograph = $monographDao->getMonograph(
+		$monograph = $monographDao->getById(
 			(int) $request->getUserVar('monographId')
 		);
 

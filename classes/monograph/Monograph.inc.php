@@ -36,8 +36,6 @@ import('lib.pkp.classes.submission.Submission');
 import('classes.monograph.Author');
 
 class Monograph extends Submission {
-	var $_reviewRounds;
-
 	/**
 	 * get monograph id
 	 * @return int
@@ -191,27 +189,19 @@ class Monograph extends Submission {
 	}
 
 	/**
-	 * Get all the review rounds associated with this monograph
-	 * @param $reviewRounds DAOResultFactory ReviewRounds
+	 * Get the work type (constant in WORK_TYPE_...)
+	 * @return int
 	 */
-	function setReviewRounds(&$reviewRounds) {
-		$this->_reviewRounds =& $reviewRounds;
-	}
-
-	/**
-	 * Get all the review rounds
-	 * @return DAOResultFactory ReviewRounds
-	 */
-	function &getReviewRounds() {
-		return $this->_reviewRounds;
-	}
-
 	function getWorkType() {
 		return $this->getData('workType');
 	}
 
-	function setWorkType($type) {
-		$this->setData('workType', $type);
+	/**
+	 * Set the work type (constant in WORK_TYPE_...)
+	 * @param $workType int
+	 */
+	function setWorkType($workType) {
+		$this->setData('workType', $workType);
 	}
 
 	/**

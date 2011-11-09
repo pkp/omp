@@ -58,7 +58,7 @@ class ReviewerGridCellProvider extends DataObjectGridCellProvider {
 				$userStageAssignmentDao =& DAORegistry::getDAO('UserStageAssignmentDAO');
 				$viewsDao =& DAORegistry::getDAO('ViewsDAO');
 
-				$monograph =& $monographDao->getMonograph($reviewAssignment->getSubmissionId());
+				$monograph =& $monographDao->getById($reviewAssignment->getSubmissionId());
 
 				// Get the user groups for this stage
 				$userGroups =& $userGroupDao->getUserGroupsByStage(
@@ -154,7 +154,7 @@ class ReviewerGridCellProvider extends DataObjectGridCellProvider {
 		$state = $this->getCellState($row, $column);
 		if ($state == 'linkReview') {
 			$monographDao =& DAORegistry::getDAO('MonographDAO');
-			$monograph =& $monographDao->getMonograph($reviewAssignment->getSubmissionId());
+			$monograph =& $monographDao->getById($reviewAssignment->getSubmissionId());
 
 			$action = new LinkAction(
 				'readReview',
@@ -168,7 +168,7 @@ class ReviewerGridCellProvider extends DataObjectGridCellProvider {
 			);
 		} elseif ($state == 'new' && $column->getId() == 'editor') {
 			$monographDao =& DAORegistry::getDAO('MonographDAO');
-			$monograph =& $monographDao->getMonograph($reviewAssignment->getSubmissionId());
+			$monograph =& $monographDao->getById($reviewAssignment->getSubmissionId());
 
 			$action = new LinkAction(
 				'readReview',

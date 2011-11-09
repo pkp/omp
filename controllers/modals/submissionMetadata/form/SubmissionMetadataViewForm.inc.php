@@ -43,7 +43,7 @@ class SubmissionMetadataViewForm extends Form {
 		parent::Form($templateName);
 
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
-		$monograph = $monographDao->getMonograph((int) $monographId);
+		$monograph = $monographDao->getById((int) $monographId);
 		if ($monograph) {
 			$this->_monograph = $monograph;
 		}

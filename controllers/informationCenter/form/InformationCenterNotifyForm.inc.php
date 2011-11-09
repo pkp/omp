@@ -65,7 +65,7 @@ class InformationCenterNotifyForm extends Form {
 		);
 
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
-		$monograph =& $monographDao->getMonograph($monographId);
+		$monograph =& $monographDao->getById($monographId);
 		$currentStageId = $monograph->getStageId();
 
 		$templateKeys = array_merge($templateKeys, $stageTemplates[$currentStageId]);
@@ -122,7 +122,7 @@ class InformationCenterNotifyForm extends Form {
 			$monographId = $monographFile->getMonographId();
 		}
 
-		$email = new MonographMailTemplate($monographDao->getMonograph($monographId));
+		$email = new MonographMailTemplate($monographDao->getById($monographId));
 		$email->setFrom($user->getEmail(), $user->getFullName());
 
 		foreach ($newRowId as $id) {

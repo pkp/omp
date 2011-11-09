@@ -69,7 +69,7 @@ class AssignedSubmissionsListGridHandler extends SubmissionsListGridHandler {
 		// get signoffs and stage assignments
 		$stageAssignments =& $stageAssignmentDao->getByUserId($userId);
 		while($stageAssignment =& $stageAssignments->next()) {
-			$monograph =& $monographDao->getMonograph($stageAssignment->getSubmissionId());
+			$monograph =& $monographDao->getById($stageAssignment->getSubmissionId());
 			if ($monograph->getDateSubmitted() == null) { continue; }; // Still incomplete, don't add to assigned submissions grid.
 
 			// Check if user is a submitter of this monograph.
@@ -85,7 +85,7 @@ class AssignedSubmissionsListGridHandler extends SubmissionsListGridHandler {
 			// If this is an author signoff, do not include (it will be in the 'my submissions' grid)
 			if( $signoff->getAssocType() == ASSOC_TYPE_MONOGRAPH &&
 				!in_array($signoff->getUserGroupId(), $authorUserGroupIds)) {
-				$monograph =& $monographDao->getMonograph($signoff->getAssocId());
+				$monograph =& $monographDao->getById($signoff->getAssocId());
 				$monographId = $monograph->getId();
 				$data[$monographId] = $monograph;
 				unset($monograph, $signoff);

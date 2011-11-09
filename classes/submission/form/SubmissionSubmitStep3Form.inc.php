@@ -87,7 +87,7 @@ class SubmissionSubmitStep3Form extends SubmissionSubmitForm {
 
 		// Get an updated version of the monograph.
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
-		$monograph =& $monographDao->getMonograph($this->monographId);
+		$monograph =& $monographDao->getById($this->monographId);
 
 		// Set other monograph data.
 		if ($monograph->getSubmissionProgress() <= $this->step) {
