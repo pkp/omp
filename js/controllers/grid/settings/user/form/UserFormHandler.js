@@ -95,7 +95,7 @@ jQuery.pkp.controllers.grid.settings =
 		var $form = this.getHtmlElement();
 		$('#password', $form).attr('disabled', 0);
 		$('#password2', $form).attr('disabled', 0);
-		var result = this.parent('submitForm', validator, formElement);
+		this.parent('submitForm', validator, formElement);
 	};
 
 

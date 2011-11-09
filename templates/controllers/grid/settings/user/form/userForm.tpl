@@ -22,7 +22,7 @@
 
 {if !$userId}
 	{assign var="passwordRequired" value="true"}
-{/if} {* !$userId *}
+{/if}{* !$userId *}
 
 <form class="pkp_form" id="userForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.settings.user.UserGridHandler" op="updateUser"}">
 	<div id="userFormContainer">
