@@ -42,7 +42,7 @@ class NotificationsGridCellProvider extends GridCellProvider {
 				new RedirectAction(
 					$notificationMgr->getNotificationUrl($request, $notification)
 				),
-				$notificationMgr->getNotificationContents($request, $notification)
+				$notificationMgr->getNotificationMessage($request, $notification)
 			));
 		}
 		// This should be unreachable.

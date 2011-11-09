@@ -25,11 +25,11 @@ class NotificationManager extends PKPNotificationManager {
 	}
 
 
+	//
+	// Public methods.
+	//
 	/**
-	 * Construct a URL for the notification based on its type and associated object
-	 * @param $request PKPRequest
-	 * @param $notification Notification
-	 * @return string
+	 * @see PKPNotificationManager::getNotificationUrl($request, $notification)
 	 */
 	function getNotificationUrl(&$request, &$notification) {
 		$router =& $request->getRouter();
@@ -52,14 +52,7 @@ class NotificationManager extends PKPNotificationManager {
 				$monographFile =& $submissionFileDao->getLatestRevision($signoff->getAssocId());
 				assert(is_a($monographFile, 'MonographFile'));
 
-				if ($signoff->getSymbolic() == 'SIGNOFF_COPYEDITING') {
-					$stage = 'copyediting';
-				} elseif ($signoff->getSymbolic() == 'SIGNOFF_PROOFING') {
-					$stage = 'production';
-				} else {
-					assert(false);
-				}
-				$url = $dispatcher->url($request, ROUTE_PAGE, null, 'workflow', $stage, $monographFile->getMonographId());
+				$url = $dispatcher->url($request, ROUTE_PAGE, null, 'authorDashboard', 'submission', $monographFile->getMonographId());
 				break;
 			case NOTIFICATION_TYPE_REVIEW_ASSIGNMENT:
 				$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO'); /* @var $reviewAssignmentDao ReviewAssignmentDAO */
@@ -67,10 +60,10 @@ class NotificationManager extends PKPNotificationManager {
 				$url = $dispatcher->url($request, ROUTE_PAGE, null, 'reviewer', 'submission', $reviewAssignment->getSubmissionId());
 				break;
 			case NOTIFICATION_TYPE_SIGNOFF_COPYEDIT:
-				$url = $dispatcher->url($request, ROUTE_PAGE, null, 'workflow', 'copyediting', $notification->getAssocId());
+				$url = $dispatcher->url($request, ROUTE_PAGE, null, 'authorDashboard', 'submission', $notification->getAssocId());
 				break;
 			case NOTIFICATION_TYPE_SIGNOFF_PROOF:
-				$url = $dispatcher->url($request, ROUTE_PAGE, null, 'workflow', 'production', $notification->getAssocId());
+				$url = $dispatcher->url($request, ROUTE_PAGE, null, 'authorDashboard', 'submission', $notification->getAssocId());
 				break;
 			default:
 				$url = parent::getNotificationUrl($request, $notification);
@@ -80,12 +73,9 @@ class NotificationManager extends PKPNotificationManager {
 	}
 
 	/**
-	 * Construct the contents for the notification based on its type and associated object
-	 * @param $request PKPRequest
-	 * @param $notification Notification
-	 * @return string
+	 * @see PKPNotificationManager::getNotificationMessage()
 	 */
-	function getNotificationContents(&$request, &$notification) {
+	function getNotificationMessage(&$request, &$notification) {
 		$type = $notification->getType();
 		assert(isset($type));
 		$contents = array();
@@ -134,12 +124,10 @@ class NotificationManager extends PKPNotificationManager {
 				return __('notification.type.reviewAssignment');
 				break;
 			case NOTIFICATION_TYPE_SIGNOFF_COPYEDIT:
-				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
-				return $this->_getSignoffNotificationDescription($request, $notification, 'SIGNOFF_COPYEDITING');
-				break;
 			case NOTIFICATION_TYPE_SIGNOFF_PROOF:
 				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
-				return $this->_getSignoffNotificationDescription($request, $notification, 'SIGNOFF_PROOFING');
+				AppLocale::requireComponents(array(LOCALE_COMPONENT_OMP_SUBMISSION));
+				return __('submission.upload.signoff');
 				break;
 			case NOTIFICATION_TYPE_EDITOR_DECISION_INITIATE_REVIEW:
 				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
@@ -177,7 +165,7 @@ class NotificationManager extends PKPNotificationManager {
 				AppLocale::requireComponents(array(LOCALE_COMPONENT_OMP_EDITOR)); // load review round status keys.
 				return __($reviewRound->getStatusKey());
 			default:
-				return parent::getNotificationContents($request, $notification);
+				return parent::getNotificationMessage($request, $notification);
 		}
 	}
 
@@ -212,6 +200,29 @@ class NotificationManager extends PKPNotificationManager {
 		}
 	}
 
+	/**
+	 * @see PKPNotificationManager::getNotificationContents()
+	 */
+	function getNotificationContents(&$request, &$notification) {
+		$type = $notification->getType();
+		assert(isset($type));
+
+		$notificationMessage = parent::getNotificationContents($request, $notification);
+
+		switch($type) {
+			case NOTIFICATION_TYPE_SIGNOFF_COPYEDIT:
+				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
+				return $this->_getSignoffNotificationContents($request, $notification, 'SIGNOFF_COPYEDITING', $notificationMessage);
+				break;
+			case NOTIFICATION_TYPE_SIGNOFF_PROOF:
+				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
+				return $this->_getSignoffNotificationContents($request, $notification, 'SIGNOFF_PROOFING', $notificationMessage);
+				break;
+			default:
+				return $notificationMessage;
+		}
+
+	}
 
 	/**
 	 * Return a CSS class containing the icon of this notification type
@@ -550,16 +561,15 @@ class NotificationManager extends PKPNotificationManager {
 	}
 
 	/**
-	 * Get signoff notification type description.
+	 * Get signoff notification type contents.
 	 * @param $request Request
 	 * @param $notification Notification
 	 * @param $symbolic String The signoff symbolic name.
+	 * @param $message String The notification message.
 	 * @return string
 	 */
-	function _getSignoffNotificationDescription($request, $notification, $symbolic) {
+	function _getSignoffNotificationContents($request, $notification, $symbolic, $message) {
 		$monographId = $notification->getAssocId();
-
-		AppLocale::requireComponents(array(LOCALE_COMPONENT_OMP_SUBMISSION));
 
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
 		$monograph =& $monographDao->getById($monographId);
@@ -568,7 +578,7 @@ class NotificationManager extends PKPNotificationManager {
 		$signoffFileLinkAction = new AddSignoffFileLinkAction(
 			$request, $monographId,
 			$monograph->getStageId(), $symbolic, null,
-			__('submission.upload.signoff'), __('submission.upload.signoff'));
+			$message, $message);
 
 		return $this->_fetchLinkActionNotificationContent($signoffFileLinkAction);
 	}
