@@ -26,6 +26,9 @@
 			function($containerDiv, options) {
 		this.parent($containerDiv, options);
 
+		// Save the URL template for the metadata form.
+		this.metadataFormUrlTemplate_ = options.metadataFormUrlTemplate;
+
 		// Bind for changes in the note list (e.g.  new note or delete)
 		this.bind('selectMonograph', this.selectMonographHandler);
 	};
@@ -33,6 +36,35 @@
 			$.pkp.controllers.modals.submissionMetadata.MonographlessCatalogEntryHandler,
 			$.pkp.classes.Handler
 	);
+
+	//
+	// Private properties
+	//
+	/**
+	 * The URL template used to fetch the metadata edit form.
+	 * @private
+	 * @type {string}
+	 */
+	$.pkp.controllers.modals.submissionMetadata.MonographlessCatalogEntryHandler.
+			prototype.metadataFormUrlTemplate_ = '';
+
+
+	//
+	// Protected methods
+	//
+	/**
+	 * Get the metadata edit form URL for the given stage and monograph ID.
+	 *
+	 * @param {String} monographId The monograph ID for the edit form.
+	 * @param {String} stageId The stage ID for the edit form.
+	 * @return {String} The URL for the metadata edit form.
+	 */
+	$.pkp.controllers.modals.submissionMetadata.MonographlessCatalogEntryHandler.
+			prototype.getMetadataEditFormUrl_ = function(monographId, stageId) {
+
+		// Look for MONOGRAPH_ID and STAGE_ID tokens in the URL and replace them.
+		return this.metadataFormUrlTemplate_.replace('MONOGRAPH_ID', monographId).replace('STAGE_ID', stageId);
+	};
 
 
 	//
@@ -50,8 +82,29 @@
 	$.pkp.controllers.modals.submissionMetadata.MonographlessCatalogEntryHandler.
 			prototype.selectMonographHandler = function(callingForm, event, monographId) {
 
-		// TBI: Load the metadata form into #metadataFormContainer
-		// for the given monographId.
+		// Fetch the form
+		$.get(this.getMetadataEditFormUrl_(monographId, $.pkp.cons.WORKFLOW_STAGE_ID_PRODUCTION),
+				this.callbackWrapper(this.showFetchedMetadataForm_), 'json');
+	};
+
+	/**
+	 * Show a fetched metadata edit form.
+	 *
+	 * @param {Object} ajaxContext The AJAX request context.
+	 * @param {Object} jsonData A parsed JSON response object.
+	 * @private
+	 */
+	$.pkp.controllers.modals.submissionMetadata.MonographlessCatalogEntryHandler.
+			prototype.showFetchedMetadataForm_ = function(ajaxContext, jsonData) {
+
+		jsonData = this.handleJson(jsonData);
+
+		// Find the container and remove all children.
+		$metadataFormContainer = $('#metadataFormContainer');
+		$metadataFormContainer.children().remove();
+
+		// Replace it with the form content.
+		$metadataFormContainer.append(jsonData.content);
 	};
 
 

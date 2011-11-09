@@ -19,7 +19,12 @@
 			{rdelim}
 		);
 		// Attach the containing div handler. (Consumes selectMonograph event.)
-		$('#selectMonographContainer').pkpHandler('$.pkp.controllers.modals.submissionMetadata.MonographlessCatalogEntryHandler');
+		$('#selectMonographContainer').pkpHandler(
+			'$.pkp.controllers.modals.submissionMetadata.MonographlessCatalogEntryHandler',
+			{ldelim}
+				metadataFormUrlTemplate: '{url|escape:"javascript" router=$smarty.const.ROUTE_COMPONENT component="modals.submissionMetadata.CatalogEntryHandler" op="fetch" monographId=MONOGRAPH_ID stageId=STAGE_ID escape=false}'
+			{rdelim}
+		);
 	{rdelim});
 </script>
 
