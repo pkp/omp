@@ -2,8 +2,7 @@
  * @defgroup js_pages_authorDashboard
  */
 // Create the pages_authorDashboard namespace.
-jQuery.pkp.pages =
-			jQuery.pkp.pages || { authorDashboard: { } };
+jQuery.pkp.pages = jQuery.pkp.pages || { authorDashboard: { } };
 
 
 /**

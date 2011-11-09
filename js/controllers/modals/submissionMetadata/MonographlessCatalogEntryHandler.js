@@ -37,6 +37,7 @@
 			$.pkp.classes.Handler
 	);
 
+
 	//
 	// Private properties
 	//
@@ -50,11 +51,12 @@
 
 
 	//
-	// Protected methods
+	// Private methods
 	//
 	/**
 	 * Get the metadata edit form URL for the given stage and monograph ID.
 	 *
+	 * @private
 	 * @param {String} monographId The monograph ID for the edit form.
 	 * @param {String} stageId The stage ID for the edit form.
 	 * @return {String} The URL for the metadata edit form.
@@ -63,7 +65,8 @@
 			prototype.getMetadataEditFormUrl_ = function(monographId, stageId) {
 
 		// Look for MONOGRAPH_ID and STAGE_ID tokens in the URL and replace them.
-		return this.metadataFormUrlTemplate_.replace('MONOGRAPH_ID', monographId).replace('STAGE_ID', stageId);
+		return this.metadataFormUrlTemplate_.
+				replace('MONOGRAPH_ID', monographId).replace('STAGE_ID', stageId);
 	};
 
 
@@ -80,12 +83,15 @@
 	 * @param {String} monographId The selected monograph ID.
 	 */
 	$.pkp.controllers.modals.submissionMetadata.MonographlessCatalogEntryHandler.
-			prototype.selectMonographHandler = function(callingForm, event, monographId) {
+			prototype.selectMonographHandler =
+			function(callingForm, event, monographId) {
 
 		// Fetch the form
-		$.get(this.getMetadataEditFormUrl_(monographId, $.pkp.cons.WORKFLOW_STAGE_ID_PRODUCTION),
+		$.get(this.getMetadataEditFormUrl_(monographId,
+				$.pkp.cons.WORKFLOW_STAGE_ID_PRODUCTION),
 				this.callbackWrapper(this.showFetchedMetadataForm_), 'json');
 	};
+
 
 	/**
 	 * Show a fetched metadata edit form.
@@ -100,7 +106,7 @@
 		jsonData = this.handleJson(jsonData);
 
 		// Find the container and remove all children.
-		$metadataFormContainer = $('#metadataFormContainer');
+		var $metadataFormContainer = $('#metadataFormContainer');
 		$metadataFormContainer.children().remove();
 
 		// Replace it with the form content.

@@ -40,20 +40,5 @@ $.pkp.pages.catalog = $.pkp.pages.catalog || {};
 			$.pkp.classes.Handler);
 
 
-	//
-	// Private static properties
-	//
-
-
-	//
-	// Private properties
-	//
-
-
-	//
-	// Private methods
-	//
-
-
 /** @param {jQuery} $ jQuery closure. */
 })(jQuery);

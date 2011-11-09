@@ -71,5 +71,7 @@ jQuery.pkp.controllers.grid.users.stageParticipant =
 				/(&userGroupId=\d+)?$/, '&userGroupId=' + eventObject.value);
 		autocompleteHandler.setAutocompleteUrl(newUrl);
 	};
+
+
 /** @param {jQuery} $ jQuery closure. */
 })(jQuery);

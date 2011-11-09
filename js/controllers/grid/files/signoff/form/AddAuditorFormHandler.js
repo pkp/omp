@@ -48,13 +48,5 @@ jQuery.pkp.controllers.grid.files = jQuery.pkp.controllers.grid.files ||
 			$.pkp.controllers.form.AjaxFormHandler);
 
 
-	//
-	// Private properties
-	//
-
-
-	//
-	// Public methods
-	//
 /** @param {jQuery} $ jQuery closure. */
 })(jQuery);

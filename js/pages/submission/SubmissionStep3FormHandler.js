@@ -2,8 +2,7 @@
  * @defgroup js_pages_submission
  */
 // Create the namespace.
-jQuery.pkp.pages.submission =
-			jQuery.pkp.pages.submission || { };
+jQuery.pkp.pages.submission = jQuery.pkp.pages.submission || { };
 
 /**
  * @file js/pages/submission/SubmissionStep3FormHandler.js
@@ -35,6 +34,7 @@ jQuery.pkp.pages.submission =
 		// Bind the handler for the "elements changed" event.
 		this.bind('gridRefreshRequested', this.fetchChaptersGrid_);
 
+		// Save supplied options
 		this.authorsGridContainer_ = options.authorsGridContainer;
 		this.chaptersGridContainer_ = options.chaptersGridContainer;
 		this.isEditedVolume_ = options.isEditedVolume;

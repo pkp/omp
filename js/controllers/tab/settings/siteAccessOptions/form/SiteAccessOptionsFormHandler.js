@@ -36,8 +36,8 @@ jQuery.pkp.controllers.tab.settings.siteAccessOptions =
 		// Attach form elements events.
 		$('#disableUserReg-0', $form).click(
 				this.callbackWrapper(this.changeRegOptsState));
-		$('#disableUserReg-1', $form).
-				click(this.callbackWrapper(this.changeRegOptsState));
+		$('#disableUserReg-1', $form).click(
+				this.callbackWrapper(this.changeRegOptsState));
 
 	};
 	$.pkp.classes.Helper.inherits(

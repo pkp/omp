@@ -49,7 +49,6 @@ jQuery.pkp.controllers.tab =
 
 		this.bind('dataChanged', this.refreshForm_);
 	};
-
 	$.pkp.classes.Helper.inherits(
 			$.pkp.controllers.tab.settings.form.FileViewFormHandler,
 			$.pkp.controllers.form.AjaxFormHandler);

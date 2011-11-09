@@ -40,8 +40,8 @@ jQuery.pkp.controllers.grid.settings =
 		// Attach form elements events.
 		$('#generatePassword', $form).click(
 				this.callbackWrapper(this.setGenerateRandom));
-		$('#suggestUsernameButton', $form).
-				click(this.callbackWrapper(this.generateUsername));
+		$('#suggestUsernameButton', $form).click(
+				this.callbackWrapper(this.generateUsername));
 
 		// Execute code for interests text tagit.
 		var existingInterests = options.existingInterests;
@@ -132,13 +132,20 @@ jQuery.pkp.controllers.grid.settings =
 		var $form = this.getHtmlElement();
 
 		if ($('#lastName', $form).val() === '') {
+			// No last name entered; cannot suggest. Complain.
 			alert(this.usernameSuggestionTextAlert_);
 			return;
 		}
+
+		// Fetch entered names
 		var firstName = $('#firstName', $form).val();
 		var lastName = $('#lastName', $form).val();
+
+		// Replace dummy values in the URL with entered values
 		var fetchUrl = this.fetchUsernameSuggestionUrl_.
-				replace('firstNameDummy', firstName).replace('lastNameDummy', lastName);
+				replace('FIRST_NAME_DUMMY', firstName).
+				replace('LAST_NAME_DUMMY', lastName);
+
 		$.get(fetchUrl, this.callbackWrapper(this.setUsername), 'json');
 	};
 
@@ -184,5 +191,5 @@ jQuery.pkp.controllers.grid.settings =
 	};
 
 
-	/** @param {jQuery} $ jQuery closure. */
+/** @param {jQuery} $ jQuery closure. */
 })(jQuery);
