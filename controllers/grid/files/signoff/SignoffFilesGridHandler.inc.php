@@ -389,8 +389,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 
 			// Create trivial notification.
 			$currentUser =& $request->getUser();
-			$notificationMgr = new NotificationManager();
-			$notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.addedAuditor')));
+			NotificationManager::createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.addedAuditor')));
 
 			return DAO::getDataChangedEvent();
 		}
