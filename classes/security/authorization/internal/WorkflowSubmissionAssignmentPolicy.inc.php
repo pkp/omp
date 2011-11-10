@@ -35,8 +35,8 @@ class WorkflowSubmissionAssignmentPolicy extends AuthorizationPolicy {
 	 */
 	function WorkflowSubmissionAssignmentPolicy(&$request, $stageId = null, $roleId = null) {
 		$this->_request =& $request;
-		if ($stageId) $this->_stageId = (int) $stageId;
-		if ($roleId) $this->_roleId = (int) $roleId;
+		$this->_stageId = (int) $stageId;
+		$this->_roleId = (int) $roleId;
 
 		parent::AuthorizationPolicy('user.authorization.workflowStageAssignmentMissing');
 	}
@@ -69,7 +69,11 @@ class WorkflowSubmissionAssignmentPolicy extends AuthorizationPolicy {
 		// Check whether the user is assigned to the submission in any capacity.
 		// If a stage id and/or role id was given, use it to check specific stage assignment.
 		$stageAssignmentDao = & DAORegistry::getDAO('StageAssignmentDAO'); /* @var $stageAssignmentDao StageAssignmentDAO */
-		$stageAssignments =& $stageAssignmentDao->getBySubmissionAndRoleId($monograph->getId(), $this->_roleId, $this->_stageId, $user->getId());
+		$stageId = null;
+		$roleId = null;
+		if ($this->_stageId) $stageId = $this->_stageId;
+		if ($this->_roleId) $roleId = $this->_roleId;
+		$stageAssignments =& $stageAssignmentDao->getBySubmissionAndRoleId($monograph->getId(), $roleId, $stageId, $user->getId());
 		if($stageAssignments->wasEmpty()) {
 			return AUTHORIZATION_DENY;
 		}

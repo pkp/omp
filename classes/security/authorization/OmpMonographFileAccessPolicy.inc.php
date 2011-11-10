@@ -94,17 +94,21 @@ class OmpMonographFileAccessPolicy extends PressPolicy {
 			// ...or if we don't want to modify the file...
 			if (!($mode & MONOGRAPH_FILE_ACCESS_MODIFY)) {
 
-				// 3b) and the file is a viewable reviewer response...
-				import('classes.security.authorization.internal.MonographFileViewableReviewerResponseAccessPolicy');
-				$authorFileAccessOptionsPolicy->addPolicy(new MonographFileViewableReviewerResponseAccessPolicy($request));
+				// 3b) ...and the file is at submission stage...
+				import('classes.security.authorization.internal.MonographFileSubmissionStageRequiredPolicy');
+				$authorFileAccessOptionsPolicy->addPolicy(new MonographFileSubmissionStageRequiredPolicy($request));
 
-				// 3c) ...or if the file is part of a signoff assigned to the user...
+				// 3c) ...or the file is a viewable reviewer response...
+				import('classes.security.authorization.internal.MonographFileViewableReviewerResponseRequiredPolicy');
+				$authorFileAccessOptionsPolicy->addPolicy(new MonographFileViewableReviewerResponseRequiredPolicy($request));
+
+				// 3d) ...or if the file is part of a signoff assigned to the user...
 				import('classes.security.authorization.internal.MonographFileAssignedAuditorAccessPolicy');
 				$authorFileAccessOptionsPolicy->addPolicy(new MonographFileAssignedAuditorAccessPolicy($request));
 
-				// 3d) ...or if the file is a viewable revision to authors, allow.
-				import('classes.security.authorization.internal.MonographFileViewableRevisionAccessPolicy');
-				$authorFileAccessOptionsPolicy->addPolicy(new MonographFileViewableRevisionAccessPolicy($request));
+				// 3e) ...or if the file is a viewable revision to authors, allow.
+				import('classes.security.authorization.internal.MonographFileViewableRevisionRequiredPolicy');
+				$authorFileAccessOptionsPolicy->addPolicy(new MonographFileViewableRevisionRequiredPolicy($request));
 			}
 
 			// Add the rules from 3)

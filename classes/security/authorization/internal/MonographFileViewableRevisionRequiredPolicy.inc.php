@@ -1,25 +1,25 @@
 <?php
 /**
- * @file classes/security/authorization/internal/MonographFileViewableRevisionAccessPolicy.inc.php
+ * @file classes/security/authorization/internal/MonographFileViewableRevisionRequiredPolicy.inc.php
  *
  * Copyright (c) 2000-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class MonographFileViewableRevisionAccessPolicy
+ * @class MonographFileViewableRevisionRequiredPolicy
  * @ingroup security_authorization_internal
  *
- * @brief Monograph file policy to check if the current user can access a revision file.
+ * @brief Monograph file policy to ensure we have a viewable revision file for authors.
  *
  */
 
 import('classes.security.authorization.internal.MonographFileBaseAccessPolicy');
 
-class MonographFileViewableRevisionAccessPolicy extends MonographFileBaseAccessPolicy {
+class MonographFileViewableRevisionRequiredPolicy extends MonographFileBaseAccessPolicy {
 	/**
 	 * Constructor
 	 * @param $request PKPRequest
 	 */
-	function MonographFileViewableRevisionAccessPolicy(&$request) {
+	function MonographFileViewableRevisionRequiredPolicy(&$request) {
 		parent::MonographFileBaseAccessPolicy($request);
 	}
 
