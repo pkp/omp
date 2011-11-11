@@ -35,7 +35,7 @@
 			<h3><a href="#">{$publicationFormat->getLocalizedName()|escape}</a></h3>
 			<div>
 				{url|assign:publicationFormatUrl router=$smarty.const.ROUTE_PAGE op="fetchPublicationFormat" monographId=$monograph->getId() publicationFormatId=$publicationFormat->getId() escape=false}
-				{load_url_in_div id="publicationFormatDiv-"|concat:$publicationFormat->getId() url=$publicationFormatUrl}
+				{load_url_in_div id="publicationFormatDiv-"|concat:$publicationFormat->getId() class="stageParticipantGridContainer" url=$publicationFormatUrl}
 			</div>
 		{/iterate}
 	</div>

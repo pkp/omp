@@ -263,9 +263,12 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO');
 
-		$signoffsFactory =& $signoffDao->getAllBySymbolic('SIGNOFF_COPYEDITING', ASSOC_TYPE_MONOGRAPH_FILE, null, $userId);
+		$signoffsFactory =& $signoffDao->getByUserId($userId);
 		while($signoff =& $signoffsFactory->next()) {
-			if ($signoff->getDateCompleted()) continue;
+			if (($signoff->getSymbolic() != 'SIGNOFF_COPYEDITING' &&
+				$signoff->getSymbolic() != 'SIGNOFF_PROOFING') ||
+				$signoff->getAssocType() != ASSOC_TYPE_MONOGRAPH_FILE ||
+				$signoff->getDateCompleted()) continue;
 			$monographFileId = $signoff->getAssocId();
 			$monographFile =& $submissionFileDao->getLatestRevision($monographFileId, null, $stageAssignment->getSubmissionId());
 			if (is_a($monographFile, 'MonographFile')) {
