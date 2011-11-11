@@ -18,25 +18,28 @@ class FileAuditorForm extends Form {
 	/** The monograph associated with the submission contributor being edited **/
 	var $_monograph;
 
-	/* @var int */
+	/** @var int */
 	var $_fileStage;
 
-	/* @var int */
+	/** @var int */
 	var $_stageId;
 
-	/* @var string */
+	/** @var string */
 	var $_symbolic;
 
-	/* @var string */
+	/** @var string */
 	var $_eventType;
 
-	/* @var int */
+	/** @var int */
 	var $_assocId;
+
+	/** @var int */
+	var $_publicationFormatId;
 
 	/**
 	 * Constructor.
 	 */
-	function FileAuditorForm($monograph, $fileStage, $stageId, $symbolic, $eventType, $assocId = null) {
+	function FileAuditorForm($monograph, $fileStage, $stageId, $symbolic, $eventType, $assocId = null, $publicationFormatId = null) {
 		parent::Form('controllers/grid/files/signoff/form/addAuditor.tpl');
 		$this->_monograph =& $monograph;
 		$this->_fileStage = $fileStage;
@@ -44,6 +47,7 @@ class FileAuditorForm extends Form {
 		$this->_symbolic = $symbolic;
 		$this->_eventType = $eventType;
 		$this->_assocId = $assocId;
+		$this->_publicationFormatId = $publicationFormatId;
 
 		$this->addCheck(new FormValidator($this, 'userId', 'required', 'editor.monograph.fileAuditor.form.userRequired'));
 		$this->addCheck(new FormValidator($this, 'files', 'required', 'editor.monograph.fileAuditor.form.fileRequired'));
@@ -91,9 +95,18 @@ class FileAuditorForm extends Form {
 
 	/**
 	 * Get the assoc id
+	 * @return int
 	 */
 	function getAssocId() {
 		return $this->_assocId;
+	}
+
+	/**
+	 * Get the publication format id
+	 * @return int
+	 */
+	function getPublicationFormatId() {
+		return $this->_publicationFormatId;
 	}
 
 
@@ -110,6 +123,9 @@ class FileAuditorForm extends Form {
 		$this->setData('monographId', $monograph->getId());
 		$this->setData('fileStage', $this->getFileStage());
 		$this->setData('assocId', $this->getAssocId());
+		if ($this->getPublicationFormatId()) {
+			$this->setData('publicationFormatId', $this->getPublicationFormatId());
+		}
 		import('classes.mail.MonographMailTemplate');
 		$email = new MonographMailTemplate($monograph, 'AUDITOR_REQUEST');
 		$this->setData('personalMessage', $email->getBody());

@@ -85,6 +85,12 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 			$this->addPolicy(new OmpSignoffAccessPolicy($request, $args, $roleAssignments));
 		}
 
+		// If a publication ID was specified, authorize it.
+		if ($request->getUserVar('publicationFormatId')) {
+			import('classes.security.authorization.internal.PublicationFormatRequiredPolicy');
+			$this->addPolicy(new PublicationFormatRequiredPolicy($request, $args));
+		}
+
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 
@@ -263,6 +269,14 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 		return $this->_assocId;
 	}
 
+	/**
+	 * Get publication format, if any.
+	 * @return PublicationFormat
+	 */
+	function &getPublicationFormat() {
+		return $this->getAuthorizedContextObject(ASSOC_TYPE_PUBLICATION_FORMAT);
+	}
+
 
 	/**
 	 * @see GridDataProvider::getRequestArgs()
@@ -358,7 +372,11 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 		$templateMgr->assign('autocompleteUrl', $autocompleteUrl);
 
 		import('controllers.grid.files.signoff.form.FileAuditorForm');
-		$auditorForm = new FileAuditorForm($monograph, $this->getFileStage(), $this->getStageId(), $this->getSymbolic(), $this->getEventType(), $this->getAssocId());
+		$publicationFormat =& $this->getPublicationFormat();
+		if (is_a($publicationFormat, 'PublicationFormat')) {
+			$publicationFormatId = $publicationFormat->getId();
+		}
+		$auditorForm = new FileAuditorForm($monograph, $this->getFileStage(), $this->getStageId(), $this->getSymbolic(), $this->getEventType(), $this->getAssocId(), $publicationFormatId);
 		if ($auditorForm->isLocaleResubmit()) {
 			$auditorForm->readInputData();
 		} else {
