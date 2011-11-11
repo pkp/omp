@@ -78,7 +78,7 @@
 	<message key="editor.monograph.addStageParticipant">Add Participant</message>
 	<message key="editor.monograph.addStageParticipant.description"><![CDATA[To add a participant to this stage of the submission, select a user group from the drop-down menu, then add a user.<br /><br />Note: The user will be added to all stages for which this user group is assigned.]]></message>
 	<message key="editor.monograph.removeStageParticipant">Remove Participant</message>
-	<message key="editor.monograph.removeStageParticipant.description"><![CDATA[You are about to remove this participant from <strong>all</strong> stages]]></message>
+	<message key="editor.monograph.removeStageParticipant.description"><![CDATA[You are about to remove this participant from <strong>all</strong> stages. If the user also have pending auditor tasks, they will be removed too.]]></message>
 	<message key="editor.monograph.addStageParticipant.form.userGroupRequired">You must select a user group.</message>
 	<message key="editor.monograph.addStageParticipant.form.userRequired">You must select a user for the specified user group.</message>
 

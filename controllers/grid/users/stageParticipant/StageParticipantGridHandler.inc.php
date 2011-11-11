@@ -258,6 +258,21 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 			fatalError('Invalid Assignment');
 		}
 
+		// Delete all user monograph file signoffs not completed, if any.
+		$userId = $stageAssignment->getUserId();
+		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
+		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO');
+
+		$signoffsFactory =& $signoffDao->getAllBySymbolic('SIGNOFF_COPYEDITING', ASSOC_TYPE_MONOGRAPH_FILE, null, $userId);
+		while($signoff =& $signoffsFactory->next()) {
+			if ($signoff->getDateCompleted()) continue;
+			$monographFileId = $signoff->getAssocId();
+			$monographFile =& $submissionFileDao->getLatestRevision($monographFileId, null, $stageAssignment->getSubmissionId());
+			if (is_a($monographFile, 'MonographFile')) {
+				$signoffDao->deleteObject($signoff);
+			}
+		}
+
 		// Delete the assignment
 		$stageAssignmentDao->deleteObject($stageAssignment);
 
