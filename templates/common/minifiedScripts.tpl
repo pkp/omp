@@ -86,7 +86,6 @@
 <script type="text/javascript" src="{$baseUrl}/js/pages/catalog/MonographListHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/js/pages/workflow/SubmissionHeaderHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/js/pages/workflow/ProductionHandler.js"></script>
-<script type="text/javascript" src="{$baseUrl}/js/pages/submission/SubmissionStep3FormHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/js/pages/admin/PressesHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/js/site/form/PressSwitcherFormHandler.js"></script>
 
