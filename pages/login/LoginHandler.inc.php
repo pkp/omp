@@ -12,7 +12,6 @@
  * @brief Handle login/logout requests.
  */
 
-
 import('lib.pkp.pages.login.PKPLoginHandler');
 
 class LoginHandler extends PKPLoginHandler {

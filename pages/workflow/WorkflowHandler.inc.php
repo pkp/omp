@@ -12,7 +12,6 @@
  * @brief Handle requests for the copyediting stage of the submssion workflow.
  */
 
-
 import('classes.handler.Handler');
 
 // import UI base classes

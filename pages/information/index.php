@@ -15,7 +15,6 @@
  *
  */
 
-
 switch ($op) {
 	case 'index':
 	case 'readers':

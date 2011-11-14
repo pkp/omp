@@ -12,7 +12,6 @@
  * @brief Handle requests for monograph submission.
  */
 
-
 import('classes.handler.Handler');
 import('lib.pkp.classes.core.JSONMessage');
 

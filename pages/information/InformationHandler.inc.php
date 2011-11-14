@@ -12,8 +12,6 @@
  * @brief Display press information.
  */
 
-
-
 import('classes.handler.Handler');
 
 class InformationHandler extends Handler {

@@ -12,7 +12,6 @@
  * @brief Handle requests for catalog management.
  */
 
-
 import('classes.handler.Handler');
 
 // import UI base classes

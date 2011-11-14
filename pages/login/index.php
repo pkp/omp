@@ -15,7 +15,6 @@
  * @ingroup pages_login
  */
 
-
 switch ($op) {
 	case 'signInAsUser':
 	case 'signOutAsUser':

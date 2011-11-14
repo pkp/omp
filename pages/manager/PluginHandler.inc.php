@@ -22,7 +22,8 @@ class PluginHandler extends ManagerHandler {
 	function PluginHandler() {
 		parent::ManagerHandler();
 		$this->addRoleAssignment(ROLE_ID_PRESS_MANAGER,
-				array('plugins', 'plugin'));
+			array('plugins', 'plugin')
+		);
 	}
 
 	/**

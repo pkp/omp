@@ -12,8 +12,6 @@
  * @brief Handle requests for about functions.
  */
 
-
-
 import('classes.handler.Handler');
 
 class AboutHandler extends Handler {
@@ -67,7 +65,6 @@ class AboutHandler extends Handler {
 			$templateMgr->display('about/site.tpl');
 		}
 	}
-
 
 	/**
 	 * Setup common template variables.
@@ -257,7 +254,6 @@ class AboutHandler extends Handler {
 		$templateMgr->assign_by_ref('user', $user);
 		$templateMgr->assign_by_ref('publishEmail', $publishEmail);
 		$templateMgr->display('about/editorialTeamBio.tpl');
-
 	}
 
 	/**
