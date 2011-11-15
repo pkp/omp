@@ -51,7 +51,7 @@ class CatalogEntryForm extends SubmissionMetadataViewForm {
 
 		$monograph =& $this->getMonograph();
 		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
-		$publishedMonograph =& $publishedMonographDao->getByMonographId($monograph->getId());
+		$publishedMonograph =& $publishedMonographDao->getById($monograph->getId());
 		$isExistingEntry = $publishedMonograph?true:false;
 		if (!$isExistingEntry) {
 			unset($publishedMonograph);

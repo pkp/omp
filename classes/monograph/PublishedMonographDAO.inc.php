@@ -31,12 +31,25 @@ class PublishedMonographDAO extends MonographDAO {
 	 * @param $rangeInfo object optional
 	 * @return DAOResultFactory
 	 */
-	function &getPublishedMonographs($pressId, $rangeInfo = null) {
+	function &getByPressId($pressId, $searchText = null, $rangeInfo = null) {
 		$primaryLocale = AppLocale::getPrimaryLocale();
 		$locale = AppLocale::getLocale();
 
+		$params = array(
+			'title', $primaryLocale, // Series title
+			'title', $locale, // Series title
+			'abbrev', $primaryLocale, // Series abbreviation
+			'abbrev', $locale, // Series abbreviation
+			(int) $pressId
+		);
+
+		if ($searchText !== null) {
+			$params[] = $params[] = $params[] = "%$searchText%";
+		}
+
 		$result =& $this->retrieveRange(
-			'SELECT	pm.*,
+			'SELECT	' . ($searchText !== null?'DISTINCT ':'') . '
+				pm.*,
 				m.*,
 				COALESCE(stl.setting_value, stpl.setting_value) AS series_title,
 				COALESCE(sal.setting_value, sapl.setting_value) AS series_abbrev
@@ -47,15 +60,14 @@ class PublishedMonographDAO extends MonographDAO {
 				LEFT JOIN series_settings stl ON (s.series_id = stl.series_id AND stl.setting_name = ? AND stl.locale = ?)
 				LEFT JOIN series_settings sapl ON (s.series_id = sapl.series_id AND sapl.setting_name = ? AND sapl.locale = ?)
 				LEFT JOIN series_settings sal ON (s.series_id = sal.series_id AND sal.setting_name = ? AND sal.locale = ?)
+				' . ($searchText !== null?'
+					LEFT JOIN authors a ON m.monograph_id = a.submission_id
+					LEFT JOIN monograph_settings mt ON (mt.monograph_id = m.monograph_id AND mt.setting_name = \'title\')
+				':'') . '
 			WHERE	m.press_id = ?
+				' . ($searchText !== null?' AND (mt.setting_value LIKE ? OR a.first_name LIKE ? OR a.last_name LIKE ?)':'') . '
 			ORDER BY pm.date_published',
-			array(
-				'title', $primaryLocale, // Series title
-				'title', $locale, // Series title
-				'abbrev', $primaryLocale, // Series abbreviation
-				'abbrev', $locale, // Series abbreviation
-				(int) $pressId
-			),
+			$params,
 			$rangeInfo
 		);
 

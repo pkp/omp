@@ -107,7 +107,17 @@ class CatalogHandler extends Handler {
 	 * @param $request PKPRequest
 	 */
 	function search($args, &$request) {
-		fatalError('UNIMPLEMENTED');
+		$searchText = array_shift($args);
+
+		$press =& $request->getPress();
+		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
+		$publishedMonographs =& $publishedMonographDao->getByPressId($press->getId(), $searchText);
+
+		$templateMgr =& TemplateManager::getManager();
+
+		$templateMgr->assign('monographs', $publishedMonographs);
+
+		$templateMgr->display('catalog/monographs.tpl');
 	}
 }
 

@@ -6,7 +6,6 @@
  *
  * Header that contains details about the submission
  *}
-
 {strip}
 {assign var="pageTitle" value="catalog.manage"}
 {include file="common/header.tpl"}
@@ -39,7 +38,7 @@
 		</form>
 	</div>
 
-	<div style="float:right">
+	<div class="pkp_submission_header" style="float:right">
 		<ul class="submission_actions pkp_helpers_flatlist">
 			<li>{include file="linkAction/linkAction.tpl" action=$catalogEntryAction}</li>
 		</ul>
