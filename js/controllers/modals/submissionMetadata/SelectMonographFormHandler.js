@@ -14,7 +14,7 @@ jQuery.pkp.controllers.modals.submissionMetadata =
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class SelectMonographFormHandler
- * @ingroup js_controlelrs_modals_submissionMetadata
+ * @ingroup js_controllers_modals_submissionMetadata
  *
  * @brief Handler for the monograph selection form, part of catalog entry
  *   creation.
