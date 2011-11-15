@@ -17,6 +17,11 @@
 
 switch ($op) {
 	case 'index':
+	case 'features':
+	case 'newReleases':
+	case 'category':
+	case 'series':
+	case 'search':
 		define('HANDLER_CLASS', 'CatalogHandler');
 		import('pages.catalog.CatalogHandler');
 		break;

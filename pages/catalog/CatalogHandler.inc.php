@@ -64,6 +64,51 @@ class CatalogHandler extends Handler {
 
 		$templateMgr->display('catalog/index.tpl');
 	}
+
+	/**
+	 * View the tab contents for the Features tab.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 */
+	function features($args, &$request) {
+		fatalError('UNIMPLEMENTED');
+	}
+
+	/**
+	 * View the tab contents for the New Releases tab.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 */
+	function newReleases($args, &$request) {
+		fatalError('UNIMPLEMENTED');
+	}
+
+	/**
+	 * View the tab contents for the Category tab.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 */
+	function category($args, &$request) {
+		fatalError('UNIMPLEMENTED');
+	}
+
+	/**
+	 * View the tab contents for the Series tab.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 */
+	function series($args, &$request) {
+		fatalError('UNIMPLEMENTED');
+	}
+
+	/**
+	 * View the tab contents for the Search Results.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 */
+	function search($args, &$request) {
+		fatalError('UNIMPLEMENTED');
+	}
 }
 
 ?>
