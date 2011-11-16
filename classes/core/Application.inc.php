@@ -115,6 +115,7 @@ class Application extends PKPApplication {
 			'CategoryDAO' => 'classes.press.CategoryDAO',
 			'EditorSubmissionDAO' => 'classes.submission.editor.EditorSubmissionDAO',
 			'EmailTemplateDAO' => 'classes.mail.EmailTemplateDAO',
+			'FeatureDAO' => 'classes.press.FeatureDAO',
 			'GenreDAO' => 'classes.monograph.GenreDAO',
 			'LayoutAssignmentDAO' => 'submission.layoutAssignment.LayoutAssignmentDAO',
 			'LibraryFileDAO' => 'classes.press.LibraryFileDAO',

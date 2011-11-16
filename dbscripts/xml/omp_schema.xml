@@ -75,6 +75,26 @@
 
 	<!--
 	  *
+	  * TABLE features
+	  *
+	  -->
+	<table name="features">
+		<field name="monograph_id" type="I8">
+			<NOTNULL />
+		</field>
+		<field name="assoc_type" type="I8">
+			<NOTNULL />
+		</field>
+		<field name="assoc_id" type="I8">
+			<NOTNULL />
+		</field>
+		<field name="seq_id" type="I8">
+			<NOTNULL />
+		</field>
+	</table>
+
+	<!--
+	  *
 	  * TABLE series
 	  *
 	  -->
