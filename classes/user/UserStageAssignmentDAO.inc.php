@@ -17,6 +17,13 @@ import('classes.user.UserDAO');
 
 class UserStageAssignmentDAO extends UserDAO {
 	/**
+	 * Constructor
+	 */
+	function UserStageAssignmentDAO() {
+		parent::UserDAO();
+	}
+
+	/**
 	 * Retrieve a set of users not assigned to a given submission stage as a user group
 	 * @param $submissionId int
 	 * @param $stageId int

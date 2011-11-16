@@ -19,6 +19,13 @@ import('classes.search.MonographSearch');
 
 class MonographSearchDAO extends DAO {
 	/**
+	 * Constructor
+	 */
+	function MonographSearchDAO() {
+		parent::DAO();
+	}
+
+	/**
 	 * Add a word to the keyword list (if it doesn't already exist).
 	 * @param $keyword string
 	 * @return int the keyword ID

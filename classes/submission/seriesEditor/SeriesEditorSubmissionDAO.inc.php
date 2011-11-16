@@ -14,7 +14,6 @@
  * FIXME #5557: We need a general code cleanup here (remove useless functions), and to integrate with monograph_stage_assignments table
  */
 
-
 import('classes.submission.seriesEditor.SeriesEditorSubmission');
 import('classes.monograph.MonographDAO');
 

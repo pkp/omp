@@ -13,7 +13,6 @@
  * @brief Operations for retrieving and modifying PublishedMonograph objects.
  */
 
-
 import('classes.monograph.PublishedMonograph');
 import('classes.monograph.MonographDAO');
 

@@ -13,8 +13,6 @@
  * @brief Class for DAO relating reviewers to monographs.
  */
 
-
-
 import('classes.submission.reviewAssignment.ReviewAssignment');
 import('lib.pkp.classes.submission.reviewAssignment.PKPReviewAssignmentDAO');
 
@@ -44,15 +42,14 @@ class ReviewAssignmentDAO extends PKPReviewAssignmentDAO {
 		);
 
 		$result =& $this->retrieve(
-						'SELECT r.*, r2.review_revision, u.first_name, u.last_name
-						FROM	review_assignments r
-							INNER JOIN users u ON (r.reviewer_id = u.user_id)
-							INNER JOIN review_rounds r2 ON (r.review_round_id = r2.review_round_id)
-						WHERE	r.submission_id = ? AND
-							r.reviewer_id = ? AND
-							r.cancelled <> 1
-						ORDER BY
-							r2.stage_id DESC, r2.round DESC LIMIT 1',
+			'SELECT r.*, r2.review_revision, u.first_name, u.last_name
+			FROM	review_assignments r
+				INNER JOIN users u ON (r.reviewer_id = u.user_id)
+				INNER JOIN review_rounds r2 ON (r.review_round_id = r2.review_round_id)
+			WHERE	r.submission_id = ? AND
+				r.reviewer_id = ? AND
+				r.cancelled <> 1
+			ORDER BY r2.stage_id DESC, r2.round DESC LIMIT 1',
 			$params
 		);
 
@@ -180,14 +177,15 @@ class ReviewAssignmentDAO extends PKPReviewAssignmentDAO {
 		);
 
 		$result =& $this->retrieve(
-					'SELECT r.*, r2.review_revision, u.first_name, u.last_name
-					FROM	review_assignments r
-						INNER JOIN users u ON (r.reviewer_id = u.user_id)
-						INNER JOIN review_rounds r2 ON (r.review_round_id = r2.review_round_id)
-					WHERE	r.review_round_id = ? AND
-						r.reviewer_id = ? AND
-						r.cancelled <> 1',
-		$params
+			'SELECT r.*, r2.review_revision,
+				u.first_name, u.last_name
+			FROM	review_assignments r
+				INNER JOIN users u ON (r.reviewer_id = u.user_id)
+				INNER JOIN review_rounds r2 ON (r.review_round_id = r2.review_round_id)
+			WHERE	r.review_round_id = ? AND
+				r.reviewer_id = ? AND
+				r.cancelled <> 1',
+			$params
 		);
 
 		$returner = null;
@@ -208,10 +206,10 @@ class ReviewAssignmentDAO extends PKPReviewAssignmentDAO {
 		$reviewAssignments = array();
 
 		$query = 'SELECT r.*, r2.review_revision, u.first_name, u.last_name
-				FROM	review_assignments r
-					LEFT JOIN users u ON (r.reviewer_id = u.user_id)
-					LEFT JOIN review_rounds r2 ON (r.review_round_id = r2.review_round_id)
-				WHERE	r.submission_id = ?';
+			FROM	review_assignments r
+				LEFT JOIN users u ON (r.reviewer_id = u.user_id)
+				LEFT JOIN review_rounds r2 ON (r.review_round_id = r2.review_round_id)
+			WHERE	r.submission_id = ?';
 
 		$orderBy = ' ORDER BY review_id';
 
@@ -251,8 +249,8 @@ class ReviewAssignmentDAO extends PKPReviewAssignmentDAO {
 	 */
 	function &getReviewerIdsBySubmissionId($submissionId, $stageId = null, $reviewRoundId = null) {
 		$query = 'SELECT r.reviewer_id
-					FROM	review_assignments r
-					WHERE r.submission_id = ?';
+			FROM	review_assignments r
+			WHERE r.submission_id = ?';
 
 		$queryParams[] = (int) $submissionId;
 
@@ -286,13 +284,13 @@ class ReviewAssignmentDAO extends PKPReviewAssignmentDAO {
 	 */
 	function &getReviewIndexesForRound($submissionId, $reviewRoundId) {
 		$result =& $this->retrieve(
-				'SELECT	review_id
-				FROM	review_assignments
-				WHERE	submission_id = ? AND
-					review_round_id = ? AND
-					(cancelled = 0 OR cancelled IS NULL)
-				ORDER BY review_id',
-		array((int) $submissionId, (int) $reviewRoundId)
+			'SELECT	review_id
+			FROM	review_assignments
+			WHERE	submission_id = ? AND
+				review_round_id = ? AND
+				(cancelled = 0 OR cancelled IS NULL)
+			ORDER BY review_id',
+			array((int) $submissionId, (int) $reviewRoundId)
 		);
 
 		$index = 0;
@@ -316,11 +314,11 @@ class ReviewAssignmentDAO extends PKPReviewAssignmentDAO {
 		$returner = array();
 
 		$result =& $this->retrieve(
-				'SELECT	review_round_id, MAX(last_modified) as last_modified
-				FROM	review_assignments
-				WHERE	submission_id = ?
-				GROUP BY review_round_id',
-		(int) $submissionId
+			'SELECT	review_round_id, MAX(last_modified) as last_modified
+			FROM	review_assignments
+			WHERE	submission_id = ?
+			GROUP BY review_round_id',
+			(int) $submissionId
 		);
 
 		while (!$result->EOF) {
@@ -342,11 +340,11 @@ class ReviewAssignmentDAO extends PKPReviewAssignmentDAO {
 		$returner = array();
 
 		$result =& $this->retrieve(
-				'SELECT	review_round_id, MIN(date_notified) as earliest_date
-				FROM	review_assignments
-				WHERE	submission_id = ?
-				GROUP BY review_round_id',
-		(int) $submissionId
+			'SELECT	review_round_id, MIN(date_notified) as earliest_date
+			FROM	review_assignments
+			WHERE	submission_id = ?
+			GROUP BY review_round_id',
+			(int) $submissionId
 		);
 
 		while (!$result->EOF) {

@@ -13,18 +13,15 @@
  * @brief Operations for retrieving and modifying ReviewRound objects.
  */
 
-
 import('classes.monograph.reviewRound.ReviewRound');
 
 class ReviewRoundDAO extends DAO {
-
 	/**
 	 * Constructor
 	 */
 	function ReviewRoundDAO() {
 		parent::DAO();
 	}
-
 
 	//
 	// Public methods

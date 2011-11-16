@@ -20,6 +20,13 @@ import('lib.pkp.classes.user.PKPUserDAO');
 
 class UserDAO extends PKPUserDAO {
 	/**
+	 * Constructor
+	 */
+	function UserDAO() {
+		parent::PKPUserDAO();
+	}
+
+	/**
 	 * Retrieve an array of users with no role defined.
 	 * @param $allowDisabled boolean
 	 * @param $dbResultRange object The desired range of results to return

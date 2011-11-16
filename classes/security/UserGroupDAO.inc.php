@@ -16,7 +16,6 @@
  * are ported over to them.
  */
 
-
 import('lib.pkp.classes.security.PKPUserGroupDAO');
 
 class UserGroupDAO extends PKPUserGroupDAO {
@@ -86,10 +85,13 @@ class UserGroupDAO extends PKPUserGroupDAO {
 	 * @return bool
 	 */
 	function userGroupAssignedToStage($userGroupId, $stageId) {
-		$result = $this->retrieve('SELECT COUNT(*)
-									FROM user_group_stage
-									WHERE user_group_id = ? AND stage_id = ?',
-								array((int) $userGroupId, (int) $stageId));
+		$result = $this->retrieve(
+			'SELECT COUNT(*)
+			FROM	user_group_stage
+			WHERE	user_group_id = ? AND
+			stage_id = ?',
+			array((int) $userGroupId, (int) $stageId)
+		);
 
 		$returner = isset($result->fields[0]) && $result->fields[0] > 0 ? true : false;
 
@@ -136,7 +138,13 @@ class UserGroupDAO extends PKPUserGroupDAO {
 	 */
 	function userAssignmentExists($pressId, $userId, $stageId) {
 		$result =& $this->retrieve(
-			'SELECT COUNT(*) FROM user_group_stage ugs, user_user_groups uug WHERE ugs.user_group_id = uug.user_group_id AND ugs.press_id = ? AND uug.user_id = ? AND ugs.stage_id = ?',
+			'SELECT	COUNT(*)
+			FROM	user_group_stage ugs,
+				user_user_groups uug
+			WHERE	ugs.user_group_id = uug.user_group_id AND
+				ugs.press_id = ? AND
+				uug.user_id = ? AND
+				ugs.stage_id = ?',
 			array((int) $pressId, (int) $userId, (int) $stageId)
 		);
 

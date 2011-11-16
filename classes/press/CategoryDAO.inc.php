@@ -14,10 +14,16 @@
  */
 
 
-
 import ('classes.press.Category');
 
 class CategoryDAO extends DAO {
+	/**
+	 * Constructor
+	 */
+	function CategoryDAO() {
+		parent::DAO();
+	}
+
 	/**
 	 * Retrieve an category by ID.
 	 * @param $categoryId int

@@ -18,7 +18,18 @@ import('lib.pkp.classes.controlledVocab.ControlledVocabDAO');
 define('CONTROLLED_VOCAB_MONOGRAPH_DISCIPLINE', 'monographDiscipline');
 
 class MonographDisciplineDAO extends ControlledVocabDAO {
+	/**
+	 * Constructor
+	 */
+	function MonographDisciplineDAO() {
+		parent::ControlledVocabDAO();
+	}
 
+	/**
+	 * Build/fetch a monograph discipline controlled vocabulary.
+	 * @pararm $monographId int
+	 * @return ControlledVocabulary
+	 */
 	function build($monographId) {
 		return parent::build(CONTROLLED_VOCAB_MONOGRAPH_DISCIPLINE, ASSOC_TYPE_MONOGRAPH, $monographId);
 	}
@@ -31,6 +42,11 @@ class MonographDisciplineDAO extends ControlledVocabDAO {
 		return array('monographDiscipline');
 	}
 
+	/**
+	 * Get disciplines for a monograph.
+	 * @param $monographId int
+	 * @return array
+	 */
 	function getDisciplines($monographId) {
 		$disciplines = $this->build($monographId);
 		$monographDisciplineEntryDao =& DAORegistry::getDAO('MonographDisciplineEntryDAO');
@@ -90,8 +106,6 @@ class MonographDisciplineDAO extends ControlledVocabDAO {
 		}
 		$result->Close();
 		return $returner;
-
-
 	}
 
 	/**

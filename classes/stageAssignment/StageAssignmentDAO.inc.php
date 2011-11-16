@@ -17,6 +17,13 @@ import('classes.stageAssignment.StageAssignment');
 
 class StageAssignmentDAO extends DAO {
 	/**
+	 * Constructor
+	 */
+	function StageAssignmentDAO() {
+		parent::DAO();
+	}
+
+	/**
 	 * Retrieve an assignment by  its ID
 	 * @param $stageAssignmentId int
 	 * @return StageAssignment

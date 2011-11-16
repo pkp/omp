@@ -13,7 +13,6 @@
  * @brief Extension to EventLogDAO for monograph-specific log entries.
  */
 
-
 import('lib.pkp.classes.log.EventLogDAO');
 import('classes.log.MonographEventLogEntry');
 
@@ -35,6 +34,11 @@ class MonographEventLogDAO extends EventLogDAO {
 		return $returner;
 	}
 
+	/**
+	 * Get monograph event log entries by monograph ID
+	 * @param $monographId int
+	 * @return DAOResultFactory
+	 */
 	function &getByMonographId($monographId) {
 		$returner =& $this->getByAssoc(ASSOC_TYPE_MONOGRAPH, $monographId);
 		return $returner;

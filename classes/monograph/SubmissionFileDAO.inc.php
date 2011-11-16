@@ -21,7 +21,6 @@
 import('lib.pkp.classes.submission.PKPSubmissionFileDAO');
 
 class SubmissionFileDAO extends PKPSubmissionFileDAO {
-
 	/**
 	 * Constructor
 	 */
@@ -84,8 +83,8 @@ class SubmissionFileDAO extends PKPSubmissionFileDAO {
 	// refactoring is ported to other applications.
 	//
 	/**
-	* @see PKPSubmissionFileDAO::deleteAllRevisionsByReviewRound()
-	*/
+	 * @see PKPSubmissionFileDAO::deleteAllRevisionsByReviewRound()
+	 */
 	function deleteAllRevisionsByReviewRound($reviewRoundId) {
 		// Remove currently assigned review files.
 		return $this->update('DELETE FROM review_round_files
@@ -94,8 +93,8 @@ class SubmissionFileDAO extends PKPSubmissionFileDAO {
 	}
 
 	/**
-	* @see PKPSubmissionFileDAO::assignRevisionToReviewRound()
-	*/
+	 * @see PKPSubmissionFileDAO::assignRevisionToReviewRound()
+	 */
 	function assignRevisionToReviewRound($fileId, $revision, &$reviewRound) {
 		if (!is_numeric($fileId) || !is_numeric($revision)) fatalError('Invalid file!');
 		return $this->update('INSERT INTO review_round_files

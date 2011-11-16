@@ -13,8 +13,19 @@
  */
 
 
-
 class PressSettingsDAO extends DAO {
+	/**
+	 * Constructor
+	 */
+	function PressSettingsDAO() {
+		parent::DAO();
+	}
+
+	/**
+	 * Get the settings cache for a given press ID
+	 * @param $pressId
+	 * @return array
+	 */
 	function &_getCache($pressId) {
 		static $settingCache;
 		if (!isset($settingCache)) {
@@ -51,6 +62,12 @@ class PressSettingsDAO extends DAO {
 		return $returner;
 	}
 
+	/**
+	 * Callback for a cache miss.
+	 * @param $cache Cache
+	 * @param $id string
+	 * @return mixed
+	 */
 	function _cacheMiss(&$cache, $id) {
 		$settings =& $this->getPressSettings($cache->getCacheId());
 		if (!isset($settings[$id])) {
@@ -400,7 +417,10 @@ class PressSettingsDAO extends DAO {
 }
 
 /**
- * Used internally by press setting installation code to perform translation function.
+ * Used internally by press setting installation code to perform translation
+ * function.
+ * @param $matches array
+ * @return string
  */
 function _installer_regexp_callback($matches) {
 	return __($matches[1]);

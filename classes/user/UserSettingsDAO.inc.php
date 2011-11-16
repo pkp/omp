@@ -13,11 +13,16 @@
  * @brief Operations for retrieving and modifying user settings.
  */
 
-
-
 import('lib.pkp.classes.user.PKPUserSettingsDAO');
 
 class UserSettingsDAO extends PKPUserSettingsDAO {
+	/**
+	 * Constructor
+	 */
+	function UserSettingsDAO() {
+		parent::PKPUserSettingsDAO();
+	}
+
 	/**
 	 * Retrieve a user setting value.
 	 * @param $userId int

@@ -13,8 +13,14 @@
  */
 
 
-
 class NotificationStatusDAO extends DAO {
+	/**
+	 * Constructor
+	 */
+	function NotificationStatusDAO() {
+		parent::DAO();
+	}
+
 	function &getPressNotifications($userId) {
 		$returner = array();
 

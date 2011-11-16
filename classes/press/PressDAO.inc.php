@@ -14,8 +14,14 @@
 
 import('classes.press.Press');
 
-class PressDAO extends DAO
-{
+class PressDAO extends DAO {
+	/**
+	 * Constructor
+	 */
+	function PressDAO() {
+		parent::DAO();
+	}
+
 	/**
 	 * Retrieve a press by press ID.
 	 * @param $pressId int
@@ -243,7 +249,6 @@ class PressDAO extends DAO
 		$result->close();
 		unset($result);
 	}
-
 }
 
 ?>

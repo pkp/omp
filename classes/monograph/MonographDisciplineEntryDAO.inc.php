@@ -19,6 +19,13 @@ import('lib.pkp.classes.controlledVocab.ControlledVocabEntryDAO');
 
 class MonographDisciplineEntryDAO extends ControlledVocabEntryDAO {
 	/**
+	 * Constructor
+	 */
+	function MonographDisciplineEntryDAO() {
+		parent::ControlledVocabEntryDAO();
+	}
+
+	/**
 	 * Construct a new data object corresponding to this DAO.
 	 * @return PaperTypeEntry
 	 */

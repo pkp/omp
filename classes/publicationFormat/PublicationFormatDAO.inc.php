@@ -12,12 +12,17 @@
  * @brief Operations for retrieving and modifying PublicationFormat objects.
  */
 
-
 import('classes.publicationFormat.PublicationFormat');
 import('classes.press.DefaultSettingDAO');
 
-class PublicationFormatDAO extends DefaultSettingDAO
-{
+class PublicationFormatDAO extends DefaultSettingDAO {
+	/**
+	 * Constructor
+	 */
+	function PublicationFormatDAO() {
+		parent::DefaultSettingDAO();
+	}
+
 	/**
 	 * @see DefaultSettingsDAO::getPrimaryKeyColumnName()
 	 */

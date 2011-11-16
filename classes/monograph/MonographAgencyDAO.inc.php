@@ -18,7 +18,18 @@ import('lib.pkp.classes.controlledVocab.ControlledVocabDAO');
 define('CONTROLLED_VOCAB_MONOGRAPH_AGENCY', 'monographAgency');
 
 class MonographAgencyDAO extends ControlledVocabDAO {
+	/**
+	 * Constructor
+	 */
+	function MonographAgencyDAO() {
+		parent::ControlledVocabDAO();
+	}
 
+	/**
+	 * Build/fetch and return a controlled vocabulary for agencies.
+	 * @param $monographId int
+	 * @return ControlledVocab
+	 */
 	function build($monographId) {
 		return parent::build(CONTROLLED_VOCAB_MONOGRAPH_AGENCY, ASSOC_TYPE_MONOGRAPH, $monographId);
 	}
@@ -31,6 +42,11 @@ class MonographAgencyDAO extends ControlledVocabDAO {
 		return array('monographAgency');
 	}
 
+	/**
+	 * Get agencies for a specified monograph ID.
+	 * @param $monographId int
+	 * @return array
+	 */
 	function getAgencies($monographId) {
 		$agencies = $this->build($monographId);
 		$monographAgencyEntryDao =& DAORegistry::getDAO('MonographAgencyEntryDAO');

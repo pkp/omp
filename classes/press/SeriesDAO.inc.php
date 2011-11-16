@@ -13,11 +13,16 @@
  * @brief Operations for retrieving and modifying Series objects.
  */
 
-
-
 import ('classes.press.Series');
 
 class SeriesDAO extends DAO {
+	/**
+	 * Constructor
+	 */
+	function SeriesDAO() {
+		parent::DAO();
+	}
+
 	/**
 	 * Retrieve an series by ID.
 	 * @param $seriesId int
@@ -380,7 +385,6 @@ class SeriesDAO extends DAO {
 
 		return $returner;
 	}
-
 }
 
 ?>

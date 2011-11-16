@@ -242,7 +242,6 @@ class RoleDAO extends DAO {
 			return $roleNames;
 		}
 	}
-
 }
 
 ?>

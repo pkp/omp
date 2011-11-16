@@ -13,21 +13,33 @@
  * @brief Extension to EmailLogDAO for monograph-specific log entries.
  */
 
-
 import('lib.pkp.classes.log.EmailLogDAO');
 import('classes.log.MonographEmailLogEntry');
 
 class MonographEmailLogDAO extends EmailLogDAO {
+	/**
+	 * Constructor
+	 */
 	function MonographEmailLogDAO() {
 		parent::EmailLogDAO();
 	}
 
+	/**
+	 * Instantiate and return a MonographEmailLogEntry
+	 * @return MonographEmailLogEntry
+	 */
 	function newDataObject() {
 		$returner = new MonographEmailLogEntry();
 		$returner->setAssocType(ASSOC_TYPE_MONOGRAPH);
 		return $returner;
 	}
 
+	/**
+	 * Get monograph email log entries by monograph ID and event type
+	 * @param $monographId int
+	 * @param $eventType MONOGRAPH_EMAIL_...
+	 * @return DAOResultFactory
+	 */
 	function getByEventType($monographId, $eventType) {
 		return parent::getByEventType(ASSOC_TYPE_MONOGRAPH, $monographId, $eventType);
 	}

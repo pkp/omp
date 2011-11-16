@@ -13,11 +13,16 @@
  * @brief Operations for retrieving and modifying MonographComment objects.
  */
 
-
-
 import('classes.monograph.MonographComment');
 
 class MonographCommentDAO extends DAO {
+	/**
+	 * Constructor
+	 */
+	function MonographCommentDAO() {
+		parent::DAO();
+	}
+
 	/**
 	 * Retrieve MonographComments by monograph id
 	 * @param $monographId int

@@ -16,8 +16,14 @@
 import('classes.cataloguingMetadata.CataloguingMetadataField');
 import('classes.press.DefaultSettingDAO');
 
-class CataloguingMetadataFieldDAO extends DefaultSettingDAO
-{
+class CataloguingMetadataFieldDAO extends DefaultSettingDAO {
+	/**
+	 * Constructor
+	 */
+	function CataloguingMetadataFieldDAO() {
+		parent::DefaultSettingDAO();
+	}
+
 	/**
 	 * @see DefaultSettingsDAO::getPrimaryKeyColumnName()
 	 */

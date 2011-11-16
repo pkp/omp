@@ -13,12 +13,16 @@
  * @brief Operations for retrieving and modifying Announcement objects.
  */
 
-
 import('classes.announcement.Announcement');
 import('lib.pkp.classes.announcement.PKPAnnouncementDAO');
 
 class AnnouncementDAO extends PKPAnnouncementDAO {
-
+	/**
+	 * Constructor
+	 */
+	function AnnouncementDAO() {
+		parent::PKPAnnouncementDAO();
+	}
 }
 
 ?>

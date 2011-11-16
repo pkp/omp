@@ -13,8 +13,14 @@
  */
 
 
-
 class SeriesEditorsDAO extends DAO {
+	/**
+	 * Constructor
+	 */
+	function SeriesEditorsDAO() {
+		parent::DAO();
+	}
+
 	/**
 	 * Insert a new series editor.
 	 * @param $pressId int

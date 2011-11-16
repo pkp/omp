@@ -18,7 +18,18 @@ import('lib.pkp.classes.controlledVocab.ControlledVocabDAO');
 define('CONTROLLED_VOCAB_MONOGRAPH_KEYWORD', 'monographKeyword');
 
 class MonographKeywordDAO extends ControlledVocabDAO {
+	/**
+	 * Constructor
+	 */
+	function MonographKeywordDAO() {
+		parent::ControlledVocabDAO();
+	}
 
+	/**
+	 * Build/fetch and return a controlled vocabulary for keywords.
+	 * @param $monographId int
+	 * @return ControlledVocab
+	 */
 	function build($monographId) {
 		return parent::build(CONTROLLED_VOCAB_MONOGRAPH_KEYWORD, ASSOC_TYPE_MONOGRAPH, $monographId);
 	}
@@ -31,6 +42,11 @@ class MonographKeywordDAO extends ControlledVocabDAO {
 		return array('monographKeyword');
 	}
 
+	/**
+	 * Get keywords for a monograph.
+	 * @param $monographId int
+	 * @return array
+	 */
 	function getKeywords($monographId) {
 		$keywords = $this->build($monographId);
 		$monographKeywordEntryDao =& DAORegistry::getDAO('MonographKeywordEntryDAO');

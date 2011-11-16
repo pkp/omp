@@ -13,8 +13,20 @@
  * @brief Operations for retrieving and modifying plugin settings.
  */
 
-
 class PluginSettingsDAO extends DAO {
+	/**
+	 * Constructor
+	 */
+	function PluginSettingsDAO() {
+		parent::DAO();
+	}
+
+	/**
+	 * Get the cache for plugin settings.
+	 * @param $pressId int
+	 * @param $pluginName string
+	 * @return Cache
+	 */
 	function &_getCache($pressId, $pluginName) {
 		static $settingCache;
 
@@ -49,6 +61,12 @@ class PluginSettingsDAO extends DAO {
 		return $cache->get($name);
 	}
 
+	/**
+	 * Callback for a cache miss.
+	 * @param $cache Cache
+	 * @param $id string
+	 * @return mixed
+	 */
 	function _cacheMiss(&$cache, $id) {
 		$contextParts = explode('-', $cache->getContext());
 		$pressId = array_pop($contextParts);
@@ -262,12 +280,14 @@ class PluginSettingsDAO extends DAO {
 		}
 
 		$xmlParser->destroy();
-
 	}
 }
 
 /**
- * Used internally by plugin setting installation code to perform translation function.
+ * Used internally by plugin setting installation code to perform translation
+ * function.
+ * @param $matches array
+ * @return string
  */
 function _installer_plugin_regexp_callback($matches) {
 	return __($matches[1]);

@@ -18,22 +18,7 @@ import('classes.monograph.Monograph');
 
 class MonographDAO extends DAO {
 	var $authorDao;
-
 	var $cache;
-
-	function _cacheMiss(&$cache, $id) {
-		$monograph =& $this->getMonograph($id, null, false);
-		$cache->setCache($id, $monograph);
-		return $monograph;
-	}
-
-	function &_getCache() {
-		if (!isset($this->cache)) {
-			$cacheManager =& CacheManager::getManager();
-			$this->cache =& $cacheManager->getObjectCache('monographs', 0, array(&$this, '_cacheMiss'));
-		}
-		return $this->cache;
-	}
 
 	/**
 	 * Constructor.
@@ -41,6 +26,30 @@ class MonographDAO extends DAO {
 	function MonographDAO() {
 		parent::DAO();
 		$this->authorDao =& DAORegistry::getDAO('AuthorDAO');
+	}
+
+	/**
+	 * Callback for a cache miss.
+	 * @param $cache Cache
+	 * @param $id string
+	 * @return Monograph
+	 */
+	function _cacheMiss(&$cache, $id) {
+		$monograph =& $this->getMonograph($id, null, false);
+		$cache->setCache($id, $monograph);
+		return $monograph;
+	}
+
+	/**
+	 * Get the monograph cache.
+	 * @return Cache
+	 */
+	function &_getCache() {
+		if (!isset($this->cache)) {
+			$cacheManager =& CacheManager::getManager();
+			$this->cache =& $cacheManager->getObjectCache('monographs', 0, array(&$this, '_cacheMiss'));
+		}
+		return $this->cache;
 	}
 
 	/**
@@ -163,7 +172,6 @@ class MonographDAO extends DAO {
 		HookRegistry::call('MonographDAO::_monographFromRow', array(&$monograph, &$row));
 	}
 
-
 	/**
 	 * inserts a new monograph into monographs table
 	 * @param Monograph object
@@ -199,7 +207,6 @@ class MonographDAO extends DAO {
 		$this->updateLocaleFields($monograph);
 
 		return $monograph->getId();
-
 	}
 
 	/**
@@ -451,6 +458,9 @@ class MonographDAO extends DAO {
 		return $this->getInsertId('monographs', 'monograph_id');
 	}
 
+	/**
+	 * Flush the monograph cache.
+	 */
 	function flushCache() {
 		// Because both publishedMonographs and monographs are cached by
 		// monograph ID, flush both caches on update.

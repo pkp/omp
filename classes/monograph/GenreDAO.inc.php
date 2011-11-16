@@ -12,11 +12,17 @@
  * @brief Operations for retrieving and modifying Genre objects.
  */
 
-
 import('classes.monograph.Genre');
 import('classes.press.DefaultSettingDAO');
 
 class GenreDAO extends DefaultSettingDAO {
+	/**
+	 * Constructor
+	 */
+	function GenreDAO() {
+		parent::DefaultSettingDAO();
+	}
+
 	/**
 	 * @see DefaultSettingsDAO::getPrimaryKeyColumnName()
 	 */

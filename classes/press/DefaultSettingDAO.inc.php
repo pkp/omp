@@ -12,10 +12,17 @@
  * @brief Operations for retrieving and modifying press default settings.
  */
 
-define('DEFAULT_SETTING_GENRES',	1);
+define('DEFAULT_SETTING_GENRES',		1);
 define('DEFAULT_SETTING_PUBLICATION_FORMATS',	2);
 
 class DefaultSettingDAO extends DAO {
+	/**
+	 * Constructor
+	 */
+	function DefaultSettingDAO() {
+		parent::DAO();
+	}
+
 	/**
 	 * Install setting types from an XML file.
 	 * @param $pressId int

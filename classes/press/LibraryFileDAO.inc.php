@@ -13,10 +13,16 @@
  * @brief Operations for retrieving and modifying LibraryFile objects.
  */
 
-
 import('classes.press.LibraryFile');
 
 class LibraryFileDAO extends DAO {
+	/**
+	 * Constructor
+	 */
+	function LibraryFileDAO() {
+		parent::DAO();
+	}
+
 	/**
 	 * Retrieve a library file by ID.
 	 * @param $fileId int
