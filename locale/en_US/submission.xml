@@ -13,6 +13,7 @@
 <locale name="en_US" full_name = "English">
 	<!-- General submission keys -->
 	<message key="submission.submission">Submission</message>
+	<message key="submission.synopsis">Synopsis</message>
 	<message key="submission.workType">Type of Book</message>
 	<message key="submission.workType.description">Select the option that best matches the type of the work that you are submitting.</message>
 	<message key="submission.workType.editedVolume">Edited Volume</message>

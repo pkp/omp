@@ -115,8 +115,9 @@ class CatalogHandler extends Handler {
 
 		$templateMgr =& TemplateManager::getManager();
 
-		$templateMgr->assign('monographs', $publishedMonographs);
+		$templateMgr->assign('publishedMonographs', $publishedMonographs);
 
+		AppLocale::requireComponents(array(LOCALE_COMPONENT_OMP_SUBMISSION));
 		$templateMgr->display('catalog/monographs.tpl');
 	}
 }
