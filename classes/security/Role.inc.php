@@ -15,43 +15,40 @@
 
 /** ID codes and paths for all default roles */
 define('ROLE_ID_SITE_ADMIN',		0x00000001);
-define('ROLE_PATH_SITE_ADMIN', 'admin');
+define('ROLE_PATH_SITE_ADMIN',		'admin');
 
 define('ROLE_ID_PRESS_MANAGER',		0x00000011);
-define('ROLE_PATH_PRESS_MANAGER', 'manager');
+define('ROLE_PATH_PRESS_MANAGER',	 'manager');
 
-define('ROLE_ID_SERIES_EDITOR',	0x00000201);
-define('ROLE_PATH_SERIES_EDITOR', 'seriesEditor');
+define('ROLE_ID_SERIES_EDITOR',		0x00000201);
+define('ROLE_PATH_SERIES_EDITOR',	'seriesEditor');
 
 define('ROLE_ID_AUTHOR',		0x00010000);
-define('ROLE_PATH_AUTHOR', 'author');
+define('ROLE_PATH_AUTHOR',		'author');
 
 define('ROLE_ID_REVIEWER',		0x00001000);
-define('ROLE_PATH_REVIEWER', 'reviewer');
+define('ROLE_PATH_REVIEWER',		'reviewer');
 
-
-//FIXME: The following new role (="press role") will have to be introduced - see #6113.
-define('ROLE_ID_PRESS_ASSISTANT', 0x00001001);
+define('ROLE_ID_PRESS_ASSISTANT',	0x00001001);
 
 define('ROLE_ID_READER',		0x00020000);
-define('ROLE_PATH_READER', 'reader');
-
+define('ROLE_PATH_READER',		'reader');
 
 class Role extends DataObject {
-
 	/**
 	 * Constructor.
-	 * @param $roleId for this role.  Default to null for backwards compatibility
+	 * @param $roleId for this role.  Default to null for backwards
+	 * 	compatibility
 	 */
 	function Role($roleId = null) {
 		parent::DataObject();
 		$this->setId($roleId);
 	}
 
+
 	//
 	// Get/set methods
 	//
-
 	/**
 	 * Get role ID of this role.
 	 * @return int
@@ -103,6 +100,7 @@ class Role extends DataObject {
 				return '';
 		}
 	}
+
 
 	/**
 	 * Get the URL path associated with the specified role's operations.
