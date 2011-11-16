@@ -158,7 +158,7 @@ class RoleDAO extends DAO {
 		$roles = array();
 		while ( !$result->EOF ) {
 			$roles[] = new Role($result->fields[0]);
-			$result->moveNext();
+			$result->MoveNext();
 		}
 		$result->Close();
 		unset($result);

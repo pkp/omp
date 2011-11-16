@@ -186,7 +186,7 @@ class DefaultSettingDAO extends DAO {
 		$returner = null;
 		while (!$result->EOF) {
 			$returner[$result->fields[$this->getDefaultKey()]] =& $result->fields[$this->getPrimaryKeyColumnName()];
-			$result->moveNext();
+			$result->MoveNext();
 		}
 		$result->Close();
 		unset($result);
@@ -238,7 +238,7 @@ class DefaultSettingDAO extends DAO {
 				array($defaultIds[$row['entry_key']], $row['locale'], $row['setting_name'], $row['setting_value'], $row['setting_type'])
 			);
 			unset($row);
-			$result->moveNext();
+			$result->MoveNext();
 		}
 		$result->Close();
 		unset($result);

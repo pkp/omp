@@ -74,7 +74,7 @@ class MonographKeywordDAO extends ControlledVocabDAO {
 
 		while (!$result->EOF) {
 			$keywords[] = $result->fields[0];
-			$result->moveNext();
+			$result->MoveNext();
 		}
 
 		$result->Close();

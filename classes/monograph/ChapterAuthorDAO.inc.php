@@ -96,7 +96,7 @@ class ChapterAuthorDAO extends DAO {
 		$authorIds = array();
 		while (!$result->EOF) {
 			$authorIds[] = $result->fields[0];
-			$result->moveNext();
+			$result->MoveNext();
 		}
 
 		$result->Close();

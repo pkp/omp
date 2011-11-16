@@ -85,7 +85,7 @@ class SeriesEditorsDAO extends DAO {
 				'canReview' => $row['can_review'],
 				'canEdit' => $row['can_edit']
 			);
-			$result->moveNext();
+			$result->MoveNext();
 		}
 
 		$result->Close();
@@ -118,7 +118,7 @@ class SeriesEditorsDAO extends DAO {
 
 		while (!$result->EOF) {
 			$users[] =& $userDao->_returnUserFromRow($result->GetRowAssoc(false));
-			$result->moveNext();
+			$result->MoveNext();
 		}
 
 		$result->Close();

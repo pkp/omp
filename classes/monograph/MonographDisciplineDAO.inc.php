@@ -74,7 +74,7 @@ class MonographDisciplineDAO extends ControlledVocabDAO {
 
 		while (!$result->EOF) {
 			$disciplines[] = $result->fields[0];
-			$result->moveNext();
+			$result->MoveNext();
 		}
 
 		$result->Close();

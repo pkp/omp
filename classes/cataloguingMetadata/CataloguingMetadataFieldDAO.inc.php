@@ -73,7 +73,7 @@ class CataloguingMetadataFieldDAO extends DefaultSettingDAO {
 		$returner = null;
 		while (!$result->EOF) {
 			$returner[] =& $this->_fromRow($result->GetRowAssoc(false));
-			$result->moveNext();
+			$result->MoveNext();
 		}
 		$result->Close();
 		unset($result);

@@ -207,7 +207,7 @@ class SeriesDAO extends DAO {
 			} else {
 				$returner[$row['editor_id']][] = $series;
 			}
-			$result->moveNext();
+			$result->MoveNext();
 			unset($series);
 		}
 

@@ -51,7 +51,7 @@ class MonographCommentDAO extends DAO {
 
 		while (!$result->EOF) {
 			$monographComments[] =& $this->_returnMonographCommentFromRow($result->GetRowAssoc(false));
-			$result->moveNext();
+			$result->MoveNext();
 		}
 
 		$result->Close();
@@ -74,7 +74,7 @@ class MonographCommentDAO extends DAO {
 
 		while (!$result->EOF) {
 			$monographComments[] =& $this->_returnMonographCommentFromRow($result->GetRowAssoc(false));
-			$result->moveNext();
+			$result->MoveNext();
 		}
 
 		$result->Close();
@@ -103,7 +103,7 @@ class MonographCommentDAO extends DAO {
 
 		while (!$result->EOF) {
 			$monographComments[] =& $this->_returnMonographCommentFromRow($result->GetRowAssoc(false));
-			$result->moveNext();
+			$result->MoveNext();
 		}
 
 		$result->Close();

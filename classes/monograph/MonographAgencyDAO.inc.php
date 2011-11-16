@@ -74,7 +74,7 @@ class MonographAgencyDAO extends ControlledVocabDAO {
 
 		while (!$result->EOF) {
 			$agencies[] = $result->fields[0];
-			$result->moveNext();
+			$result->MoveNext();
 		}
 
 		$result->Close();
