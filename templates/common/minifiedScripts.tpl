@@ -83,6 +83,7 @@
 <script type="text/javascript" src="{$baseUrl}/js/pages/authorDashboard/AuthorDashboardHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/js/pages/catalog/CatalogHeaderHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/js/pages/catalog/CatalogSearchFormHandler.js"></script>
+<script type="text/javascript" src="{$baseUrl}/js/pages/catalog/MonographListHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/js/pages/workflow/SubmissionHeaderHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/js/pages/workflow/ProductionHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/js/pages/submission/SubmissionStep3FormHandler.js"></script>

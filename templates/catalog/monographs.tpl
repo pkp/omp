@@ -6,6 +6,16 @@
  *
  * Present a list of monographs.
  *}
+
+<script type="text/javascript">
+	// Initialize JS handler.
+	$(function() {ldelim}
+		$('#monographsContainer').pkpHandler(
+			'$.pkp.pages.catalog.MonographListHandler'
+		);
+	{rdelim});
+</script>
+
 <div id="monographsContainer">
 	<ul class="pkp_catalog_monographList">
 		{iterate from=publishedMonographs item=monograph}
