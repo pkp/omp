@@ -13,9 +13,7 @@
  * @brief Describes basic Category properties.
  */
 
-
 class Category extends DataObject {
-
 	/**
 	 * Constructor.
 	 */

@@ -18,6 +18,12 @@
  */
 
 class Press extends DataObject {
+	/**
+	 * Constructor
+	 */
+	function Press() {
+		parent::DataObject();
+	}
 
 	/**
 	 * Get the ID of the press
@@ -274,8 +280,6 @@ class Press extends DataObject {
 
 		return $supportedLocales;
 	}
-
-
 }
 
 ?>

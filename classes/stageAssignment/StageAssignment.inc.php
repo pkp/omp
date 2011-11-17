@@ -17,8 +17,14 @@
  * @brief Basic class describing a Stage Assignment.
  */
 
-
 class StageAssignment extends DataObject {
+	/**
+	 * Constructor
+	 */
+	function StageAssignment() {
+		parent::DataObject();
+	}
+
 	//
 	// Get/set methods
 	//

@@ -17,9 +17,14 @@
  * @brief Basic class describing a cataloguing metadata field.
  */
 
-
-
 class CataloguingMetadataField extends DataObject {
+	/**
+	 * Constructor
+	 */
+	function CataloguingMetadataField() {
+		parent::DataObject();
+	}
+
 	/**
 	 * get press id
 	 * @return int

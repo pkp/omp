@@ -26,6 +26,13 @@ define('REVIEW_ROUND_STATUS_PENDING_REVIEWERS', 6);
 define('REVIEW_ROUND_STATUS_PENDING_REVIEWS', 7);
 
 class ReviewRound extends DataObject {
+	/**
+	 * Constructor
+	 */
+	function ReviewRound() {
+		parent::DataObject();
+	}
+
 	//
 	// Get/set methods
 	//

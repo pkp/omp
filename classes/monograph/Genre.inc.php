@@ -13,13 +13,19 @@
  * @brief Basic class describing a genre.
  */
 
-
 define('GENRE_CATEGORY_DOCUMENT', 1);
 define('GENRE_CATEGORY_ARTWORK', 2);
 
 define('GENRE_SORTABLE_DESIGNATION', '##');
 
 class Genre extends DataObject {
+	/**
+	 * Constructor
+	 */
+	function Genre() {
+		parent::DataObject();
+	}
+
 	/**
 	 * Get ID of press.
 	 * @return int

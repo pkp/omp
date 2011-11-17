@@ -17,9 +17,14 @@
  * @brief Basic class describing a publication format.
  */
 
-
-
 class PublicationFormat extends DataObject {
+	/**
+	 * Constructor
+	 */
+	function PublicationFormat() {
+		parent::DataObject();
+	}
+
 	/**
 	 * get press id
 	 * @return int

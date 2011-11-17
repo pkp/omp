@@ -13,9 +13,7 @@
  * @brief Describes basic series properties.
  */
 
-
 class Series extends DataObject {
-
 	/**
 	 * Constructor.
 	 */

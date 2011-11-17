@@ -14,6 +14,13 @@
  */
 
 class Chapter extends DataObject {
+	/**
+	 * Constructor
+	 */
+	function Chapter() {
+		parent::DataObject();
+	}
+
 	//
 	// Get/set methods
 	//

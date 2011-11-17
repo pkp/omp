@@ -18,8 +18,8 @@ class ReviewAssignmentRequiredPolicy extends DataObjectRequiredPolicy {
 	 * Constructor
 	 * @param $request PKPRequest
 	 * @param $args array request parameters
-	 * @param $submissionParameterName string the request parameter we expect
-	 *  the submission id in.
+	 * @param $submissionParameterName string the request parameter we
+	 *  expect the submission id in.
 	 */
 	function ReviewAssignmentRequiredPolicy(&$request, &$args, $parameterName = 'reviewAssignmentId', $operations = null) {
 		parent::DataObjectRequiredPolicy($request, $args, $parameterName, 'user.authorization.invalidReviewAssignment', $operations);

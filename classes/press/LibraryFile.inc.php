@@ -20,7 +20,6 @@ define('LIBRARY_FILE_TYPE_PRODUCTION_TEMPLATE',	0x00004);
 define('LIBRARY_FILE_TYPE_EDITORIAL',		0x00005);
 
 class LibraryFile extends DataObject {
-
 	/**
 	 * Constructor.
 	 */
@@ -114,7 +113,6 @@ class LibraryFile extends DataObject {
 	function getLocalizedName() {
 		return $this->getLocalizedData('name');
 	}
-
 
 	/**
 	 * Get file type of the file.
