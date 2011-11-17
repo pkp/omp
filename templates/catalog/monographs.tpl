@@ -17,9 +17,18 @@
 </script>
 
 <div id="monographsContainer">
-	<ul class="pkp_catalog_monographList">
-		{iterate from=publishedMonographs item=monograph}
-			{include file="catalog/monograph.tpl"}
-		{/iterate}
-	</ul>
+	<div style="float:right;">
+		<ul class="submission_actions pkp_helpers_flatlist">
+			<li>{include file="linkAction/linkAction.tpl" action=$organizeAction}</li>
+			<li>{include file="linkAction/linkAction.tpl" action=$listViewAction}</li>
+			<li>{include file="linkAction/linkAction.tpl" action=$gridViewAction}</li>
+		</ul>
+	</div>
+	<div id="monographListContainer">
+		<ul class="pkp_catalog_monographList">
+			{iterate from=publishedMonographs item=monograph}
+				{include file="catalog/monograph.tpl"}
+			{/iterate}
+		</ul>
+	</div>
 </div>

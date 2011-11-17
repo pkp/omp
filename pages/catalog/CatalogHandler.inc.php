@@ -109,15 +109,47 @@ class CatalogHandler extends Handler {
 	function search($args, &$request) {
 		$searchText = array_shift($args);
 
+		$templateMgr =& TemplateManager::getManager();
+		AppLocale::requireComponents(array(LOCALE_COMPONENT_OMP_SUBMISSION));
 		$press =& $request->getPress();
+
+		// Fetch the monographs to display
 		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
 		$publishedMonographs =& $publishedMonographDao->getByPressId($press->getId(), $searchText);
-
-		$templateMgr =& TemplateManager::getManager();
-
 		$templateMgr->assign('publishedMonographs', $publishedMonographs);
 
-		AppLocale::requireComponents(array(LOCALE_COMPONENT_OMP_SUBMISSION));
+		// Add the actions
+		import('lib.pkp.classes.linkAction.request.NullAction');
+		$templateMgr->assign(
+			'organizeAction',
+			new LinkAction(
+				'organize',
+				new NullAction(),
+				__('common.organize'),
+				'organize'
+			)
+		);
+		$templateMgr->assign(
+			'listViewAction',
+			new LinkAction(
+				'listView',
+				new NullAction(),
+				__('common.list'),
+				'list_view'
+			)
+		);
+		import('lib.pkp.classes.linkAction.request.NullAction');
+		$templateMgr->assign(
+			'gridViewAction',
+			new LinkAction(
+				'gridView',
+				new NullAction(),
+				__('common.grid'),
+				'grid_view'
+			)
+		);
+
+		// Display the monograph list
 		$templateMgr->display('catalog/monographs.tpl');
 	}
 }
