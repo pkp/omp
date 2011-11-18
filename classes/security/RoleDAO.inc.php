@@ -167,6 +167,24 @@ class RoleDAO extends DAO {
 	}
 
 	/**
+	 * Return an array of objects corresponding to the roles a given user has,
+	 * grouped by context id.
+	 * @param $userId int
+	 * @return array
+	 */
+	function getByUserIdGroupedByContext($userId) {
+		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+		$userGroupsFactory =& $userGroupDao->getByUserId($userId);
+
+		$roles = array();
+		while ($userGroup =& $userGroupsFactory->next()) {
+			$roles[$userGroup->getContextId()][$userGroup->getRoleId()] = new Role($userGroup->getRoleId());
+		}
+
+		return $roles;
+	}
+
+	/**
 	 * Retrieve the number of users with a given role associated with the specified press.
 	 * @param $pressId int
 	 * @param $roleId int

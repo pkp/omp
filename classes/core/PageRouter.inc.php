@@ -44,7 +44,7 @@ class PageRouter extends PKPPageRouter {
 		} else {
 			// The user is at the site context, check to see if they are
 			// only registered in one place w/ one role
-			$userGroups =& $userGroupDao->getByUserId($userId);
+			$userGroups =& $userGroupDao->getByUserId($userId, 0);
 
 			if($userGroups->getCount() == 1) {
 				$pressDao =& DAORegistry::getDAO('PressDAO');
