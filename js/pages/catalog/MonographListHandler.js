@@ -28,12 +28,14 @@
 		this.parent($monographsContainer, options);
 
 		$monographsContainer.find('ul').sortable();
-console.log($monographsContainer.find('.grid_view'));
+
 		// Attach the view type handlers
 		$monographsContainer.find('.grid_view').click(
-				this.callbackWrapper(this.gridViewHandler_));
+				this.callbackWrapper(this.useGridView));
 		$monographsContainer.find('.list_view').click(
-				this.callbackWrapper(this.listViewHandler_));
+				this.callbackWrapper(this.useListView));
+
+		this.useGridView();
 	};
 	$.pkp.classes.Helper.inherits(
 			$.pkp.pages.catalog.MonographListHandler,
@@ -41,50 +43,46 @@ console.log($monographsContainer.find('.grid_view'));
 
 
 	//
-	// Private Methods
+	// Public Methods
 	//
 	/**
 	 * Callback that will be activated when the "list view" icon is clicked
-	 *
-	 * @private
-	 *
-	 * @param {Object} callingContext The calling element or object.
-	 * @param {Event=} event The triggering event (e.g. a click on
-	 *  a button.
-	 * @return {boolean} Should return false to stop event processing.
+	 * @return {boolean} Always returns false.
 	 */
-	$.pkp.pages.catalog.MonographListHandler.prototype.listViewHandler_ =
-			function(callingContext, event) {
+	$.pkp.pages.catalog.MonographListHandler.prototype.useListView =
+			function() {
 
 		var $htmlElement = $(this.getHtmlElement());
 		$htmlElement.find('.pkp_catalog_monographList')
 			.removeClass('grid_view')
 			.addClass('list_view');
 
-		// The buck stops here
+		// Control enabled/disabled state of buttons
+		$htmlElement.find('.list_view').attr('disabled', 'disabled');
+		$htmlElement.find('.grid_view').attr('disabled', '');
+
+		// In case called as event handler, stop further processing
 		return false;
 	};
 
 
 	/**
 	 * Callback that will be activated when the "grid view" icon is clicked
-	 *
-	 * @private
-	 *
-	 * @param {Object} callingContext The calling element or object.
-	 * @param {Event=} event The triggering event (e.g. a click on
-	 *  a button.
-	 * @return {boolean} Should return false to stop event processing.
+	 * @return {boolean} Always returns false.
 	 */
-	$.pkp.pages.catalog.MonographListHandler.prototype.gridViewHandler_ =
-			function(callingContext, event) {
+	$.pkp.pages.catalog.MonographListHandler.prototype.useGridView =
+			function() {
 
 		var $htmlElement = $(this.getHtmlElement());
 		$htmlElement.find('.pkp_catalog_monographList')
 			.removeClass('list_view')
 			.addClass('grid_view');
 
-		// The buck stops here
+		// Control enabled/disabled state of buttons
+		$htmlElement.find('.grid_view').attr('disabled', 'disabled');
+		$htmlElement.find('.list_view').attr('disabled', '');
+
+		// In case called as event handler, stop further processing
 		return false;
 	};
 /** @param {jQuery} $ jQuery closure. */
