@@ -26,7 +26,7 @@
 		{url|assign:stageParticipantGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.users.stageParticipant.StageParticipantGridHandler" op="fetchGrid" monographId=$monograph->getId() stageId=$stageId escape=false}
 		{load_url_in_div id="stageParticipantGridContainer" url="$stageParticipantGridUrl"}
 	</div>
-	<div style="float:right;">
+	<div class="pkp_helpers_align_right">
 		<ul class="submission_actions pkp_helpers_flatlist">
 			{if $catalogEntryAction}
 				<li>{include file="linkAction/linkAction.tpl" action=$catalogEntryAction}</li>
@@ -35,7 +35,7 @@
 			<li class="participants"><a href="#" id="participantToggle" class="sprite participants">{translate key="editor.monograph.stageParticipants"}</a></li>
 		</ul>
 	</div>
-	<div style="float: left;"><span class="h2">{$pageTitleTranslated}</span></div>
+	<div class="pkp_helpers_align_left"><span class="h2">{$pageTitleTranslated}</span></div>
 	{** figure out how the progress for each level **}
 	{if $lastCompletedStageId eq $smarty.const.WORKFLOW_STAGE_ID_SUBMISSION}
 		{assign var="submissionProgress" value=" current"}

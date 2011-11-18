@@ -1,5 +1,5 @@
 {**
- * editorialTeamBio.tpl
+ * templates/about/editorialTeamBio.tpl
  *
  * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -57,7 +57,7 @@
 </script>
 {/literal}
 
-<div id="profilePicContent" style="float: right;">
+<div id="profilePicContent" class="pkp_helpers_align_right">
 	{assign var="profileImage" value=$user->getSetting('profileImage')}
 	{if $profileImage}
 		<img height="{$profileImage.height|escape}" width="{$profileImage.width|escape}" alt="{translate key="user.profile.profileImage"}" src="{$sitePublicFilesDir}/{$profileImage.uploadName}" />
