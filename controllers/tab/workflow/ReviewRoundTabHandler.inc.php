@@ -77,6 +77,8 @@ class ReviewRoundTabHandler extends Handler {
 	 * @param $args array
 	 */
 	function _reviewRound($args, &$request) {
+		$this->setupTemplate();
+
 		// Retrieve the authorized submission, stage id and review round.
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		$stageId = $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);

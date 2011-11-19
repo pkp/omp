@@ -14,10 +14,5 @@
 {url|assign:submissionFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.submission.EditorSubmissionDetailsFilesGridHandler" op="fetchGrid" monographId=$monograph->getId() stageId=$stageId escape=false}
 {load_url_in_div id="submissionFilesGridDiv" url=$submissionFilesGridUrl}
 
-<div class="grid_actions">
-	{foreach from=$editorActions item=action}
-		{include file="linkAction/linkAction.tpl" action=$action contextId="submission"}
-	{/foreach}
-</div>
-
+{include file="workflow/editorialLinkActions.tpl" contextId="submission"}
 {include file="common/footer.tpl"}
