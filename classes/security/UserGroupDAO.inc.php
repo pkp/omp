@@ -228,6 +228,24 @@ class UserGroupDAO extends PKPUserGroupDAO {
 
 		return $stageMapping;
 	}
+
+	/**
+	 * Return a mapping of workflow stages, its translation keys and
+	 * paths.
+	 * @return array
+	 */
+	function getWorkflowStageKeysAndPaths() {
+		$workflowStages = $this->getWorkflowStageTranslationKeys();
+		$stageMapping = array();
+		foreach ($workflowStages as $stageId => $translationKey) {
+			$stageMapping[$stageId] = array(
+				'translationKey' => $translationKey,
+				'path' => $this->getPathFromId($stageId)
+			);
+		}
+
+		return $stageMapping;
+	}
 }
 
 ?>

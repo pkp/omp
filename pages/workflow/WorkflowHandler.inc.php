@@ -74,10 +74,18 @@ class WorkflowHandler extends Handler {
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		$stageId = $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
 
+		// Construct array with workflow stages data.
+		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+		$workflowStages = $userGroupDao->getWorkflowStageKeysAndPaths();
+		$workflowStages[WORKFLOW_STAGE_ID_PUBLISHED] = array('translationKey' => 'submission.published', 'path' => '');
+
 		// Assign the authorized monograph.
 		$templateMgr->assign_by_ref('monograph', $monograph);
+
+		// Assign workflow stages related data.
 		$templateMgr->assign('stageId', $stageId);
-		$templateMgr->assign('lastCompletedStageId', $monograph->getStageId());
+		$templateMgr->assign('monographStageId', $monograph->getStageId());
+		$templateMgr->assign('workflowStages', $workflowStages);
 
 		// Get the right notifications type based on current stage id.
 		$notificationMgr = new NotificationManager();

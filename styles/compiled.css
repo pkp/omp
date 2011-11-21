@@ -222,6 +222,7 @@ div.plupload div.plupload_header { display:none; }
   margin-top:5%;
 }
 .deprecated_selectHeader { margin-top:10px; }
+a.sprite.pkp_common_disabled:before { cursor:default; }
 a.sprite:before {
   content:" ";
   width:24px;
@@ -1228,6 +1229,7 @@ span.pkp_controllers_informationCenter_itemLastEvent {
   vertical-align:middle;
   float:left;
 }
+a.pkp_common_disabled, a.pkp_common_disabled:hover { color:#666666; }
 .pkp_submissionChecklist ul li label.error { margin-bottom:15px; }
 @import url("styles/workflow.less");
 .pkp_catalog_monographList {
