@@ -21,7 +21,7 @@
 	{rdelim});
 </script>
 
-<div id="submissionHeader" class="pkp_submission_header">
+<div id="submissionHeader" class="pkp_page_header">
 	<div class="participant_popover" style="display: none;">
 		{url|assign:stageParticipantGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.users.stageParticipant.StageParticipantGridHandler" op="fetchGrid" monographId=$monograph->getId() stageId=$stageId escape=false}
 		{load_url_in_div id="stageParticipantGridContainer" url="$stageParticipantGridUrl"}
