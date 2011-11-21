@@ -20,6 +20,7 @@ switch ($op) {
 	case 'features':
 	case 'newReleases':
 	case 'category':
+	case 'getSeries':
 	case 'series':
 	case 'search':
 		define('HANDLER_CLASS', 'CatalogHandler');

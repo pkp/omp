@@ -1,4 +1,12 @@
 /**
+ * @defgroup js_site_form
+ */
+// Create the namespace.
+jQuery.pkp.controllers.modals.submissionMetadata =
+			jQuery.pkp.controllers.modals.submissionMetadata ||
+			{ };
+
+/**
  * @file js/controllers/modals/submissionMetadata/MonographlessCatalogEntryHandler.js
  *
  * Copyright (c) 2000-2011 John Willinsky
@@ -86,10 +94,16 @@
 			prototype.selectMonographHandler =
 			function(callingForm, event, monographId) {
 
-		// Fetch the form
-		$.get(this.getMetadataEditFormUrl_(monographId,
-				$.pkp.cons.WORKFLOW_STAGE_ID_PRODUCTION),
-				this.callbackWrapper(this.showFetchedMetadataForm_), 'json');
+		if (monographId) {
+			// If a monograph was selected, fetch the form
+			$.get(this.getMetadataEditFormUrl_(monographId,
+					$.pkp.cons.WORKFLOW_STAGE_ID_PRODUCTION),
+					this.callbackWrapper(this.showFetchedMetadataForm_), 'json');
+		} else {
+			// Else it was the placeholder; blank out the form
+			var $metadataFormContainer = $('#metadataFormContainer');
+			$metadataFormContainer.children().remove();
+		}
 	};
 
 

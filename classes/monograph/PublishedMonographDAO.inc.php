@@ -75,6 +75,49 @@ class PublishedMonographDAO extends MonographDAO {
 	}
 
 	/**
+	 * Retrieve all published monographs in a series.
+	 * @param $seriesId int
+	 * @param $pressId int
+	 * @param $rangeInfo object optional
+	 * @return DAOResultFactory
+	 */
+	function &getBySeriesId($seriesId, $pressId = null, $rangeInfo = null) {
+		$primaryLocale = AppLocale::getPrimaryLocale();
+		$locale = AppLocale::getLocale();
+
+		$params = array(
+			'title', $primaryLocale, // Series title
+			'title', $locale, // Series title
+			'abbrev', $primaryLocale, // Series abbreviation
+			'abbrev', $locale, // Series abbreviation
+			(int) $seriesId
+		);
+
+		if ($pressId) $params[] = (int) $pressId;
+
+		$result =& $this->retrieveRange(
+			'SELECT	pm.*,
+				m.*,
+				COALESCE(stl.setting_value, stpl.setting_value) AS series_title,
+				COALESCE(sal.setting_value, sapl.setting_value) AS series_abbrev
+			FROM	published_monographs pm
+				JOIN monographs m ON pm.monograph_id = m.monograph_id
+				LEFT JOIN series s ON s.series_id = m.series_id
+				LEFT JOIN series_settings stpl ON (s.series_id = stpl.series_id AND stpl.setting_name = ? AND stpl.locale = ?)
+				LEFT JOIN series_settings stl ON (s.series_id = stl.series_id AND stl.setting_name = ? AND stl.locale = ?)
+				LEFT JOIN series_settings sapl ON (s.series_id = sapl.series_id AND sapl.setting_name = ? AND sapl.locale = ?)
+				LEFT JOIN series_settings sal ON (s.series_id = sal.series_id AND sal.setting_name = ? AND sal.locale = ?)
+			WHERE	m.series_id = ?
+				' . ($pressId?' AND m.press_id = ?':'' ) . '
+			ORDER BY pm.date_published',
+			$params,
+			$rangeInfo
+		);
+
+		$returner = new DAOResultFactory($result, $this, '_fromRow');
+		return $returner;
+	}
+	/**
 	 * Retrieve Published Monograph by monograph id
 	 * @param $monographId int
 	 * @param $pressId int

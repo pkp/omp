@@ -13,9 +13,10 @@
 	$(function() {ldelim}
 		// Attach the form handler. (Triggers selectMonograph event.)
 		$('#selectMonographForm').pkpHandler(
-			'$.pkp.controllers.modals.submissionMetadata.SelectMonographFormHandler',
+			'$.pkp.controllers.form.DropdownFormHandler',
 			{ldelim}
-				getSubmissionsUrl: '{url|escape:"javascript" router=$smarty.const.ROUTE_COMPONENT op="getSubmissions" escape=false}'
+				getOptionsUrl: '{url|escape:"javascript" router=$smarty.const.ROUTE_COMPONENT op="getSubmissions" escape=false}',
+				eventName: 'selectMonograph'
 			{rdelim}
 		);
 		// Attach the containing div handler. (Consumes selectMonograph event.)
@@ -32,7 +33,7 @@
 	<form class="pkp_form" id="selectMonographForm">
 		<select id="monographSelect">
 			{* The JavaScript handler will populate this list. *}
-			<option value="">{translate key="common.loading"}</option>
+			<option value="">{translate key="submission.select"}</option>
 		</select>
 	</form>
 

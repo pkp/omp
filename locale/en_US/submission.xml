@@ -12,6 +12,7 @@
 
 <locale name="en_US" full_name = "English">
 	<!-- General submission keys -->
+	<message key="submission.select">Select Submission</message>
 	<message key="submission.submission">Submission</message>
 	<message key="submission.synopsis">Synopsis</message>
 	<message key="submission.workType">Type of Book</message>

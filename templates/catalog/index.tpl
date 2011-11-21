@@ -27,6 +27,16 @@
 			'$.pkp.pages.catalog.CatalogSearchFormHandler'
 		);
 	{rdelim});
+	// Initialize "Select Series" form handler
+	$(function() {ldelim}
+		$('#selectSeriesForm').pkpHandler(
+			'$.pkp.controllers.form.DropdownFormHandler',
+			{ldelim}
+				getOptionsUrl: '{url|escape:"javascript" op="getSeries" escape=false}',
+				eventName: 'selectSeries'
+			{rdelim}
+		);
+	{rdelim});
 </script>
 
 <div id="catalogHeader">
@@ -49,9 +59,17 @@
 			<li><a href="{url op="features"}">{translate key="catalog.manage.features"}</a></li>
 			<li><a href="{url op="newReleases"}">{translate key="catalog.manage.newReleases"}</a></li>
 			<li><a href="{url op="category"}">{translate key="catalog.manage.category"}</a></li>
-			<li><a href="{url op="series"}">{translate key="catalog.manage.series"}</a></li>
+			<li><a href="#seriesTab">{translate key="catalog.manage.series"}</a></li>
 			<li><a href="{url}">{translate key="search.searchResults"}</a></li>
 		</ul>
+		<div id="seriesTab">
+			<form id="selectSeriesForm">
+				<select id="seriesSelect">
+					{* The JavaScript handler will populate this list. *}
+					<option value="">{translate key="catalog.selectSeries"}</option>
+				</select>
+			</form>
+		</div>
 	</div>
 </div>
 
