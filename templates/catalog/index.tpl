@@ -64,10 +64,11 @@
 		</ul>
 		<div id="seriesTab">
 			<form id="selectSeriesForm">
-				<select id="seriesSelect">
-					{* The JavaScript handler will populate this list. *}
-					<option value="">{translate key="catalog.selectSeries"}</option>
-				</select>
+				{fbvFormArea}
+					{fbvFormSection}
+						{fbvElement type="select" id="seriesSelect" from="catalog.selectSeries"|translate|to_array translate=false}
+					{/fbvFormSection}
+				{/fbvFormArea}
 			</form>
 		</div>
 	</div>

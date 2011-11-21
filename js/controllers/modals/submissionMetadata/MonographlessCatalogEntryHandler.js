@@ -37,7 +37,7 @@ jQuery.pkp.controllers.modals.submissionMetadata =
 		// Save the URL template for the metadata form.
 		this.metadataFormUrlTemplate_ = options.metadataFormUrlTemplate;
 
-		// Bind for changes in the note list (e.g.  new note or delete)
+		// Bind for a change in the monograph list
 		this.bind('selectMonograph', this.selectMonographHandler);
 	};
 	$.pkp.classes.Helper.inherits(
@@ -94,7 +94,7 @@ jQuery.pkp.controllers.modals.submissionMetadata =
 			prototype.selectMonographHandler =
 			function(callingForm, event, monographId) {
 
-		if (monographId) {
+		if (parseInt(monographId)) {
 			// If a monograph was selected, fetch the form
 			$.get(this.getMetadataEditFormUrl_(monographId,
 					$.pkp.cons.WORKFLOW_STAGE_ID_PRODUCTION),

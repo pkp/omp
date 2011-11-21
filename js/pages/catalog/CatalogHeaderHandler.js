@@ -37,7 +37,11 @@ $.pkp.pages.catalog = $.pkp.pages.catalog || {};
 		var $catalogTabs = $('#catalogTabs');
 		$catalogTabs.tabs().tabs('disable', this.searchTabIndex_); // Search results
 
-		this.bind('searchCatalog', this.searchCatalogHandler);
+		// React to "search" events from the search form.
+		this.bind('searchCatalog', this.searchCatalogHandler_);
+
+		// React to "select series" events from the series tab.
+		this.bind('selectSeries', this.selectSeriesHandler_);
 	};
 	$.pkp.classes.Helper.inherits(
 			$.pkp.pages.catalog.CatalogHeaderHandler,
@@ -56,9 +60,13 @@ $.pkp.pages.catalog = $.pkp.pages.catalog || {};
 			prototype.searchTabIndex_ = 0;
 
 
+	//
+	// Private methods
+	//
 	/**
 	 * Handle the "search catalog" event triggered by the
 	 * search form to load the results in the tab.
+	 * @private
 	 *
 	 * @param {$.pkp.controllers.form.AjaxFormHandler} callingForm The form
 	 *  that triggered the event.
@@ -66,7 +74,7 @@ $.pkp.pages.catalog = $.pkp.pages.catalog || {};
 	 * @param {String} searchUrl The URL that will return search results.
 	 */
 	$.pkp.pages.catalog.CatalogHeaderHandler.
-			prototype.searchCatalogHandler =
+			prototype.searchCatalogHandler_ =
 			function(callingForm, event, searchUrl) {
 
 		var tabIndex = this.searchTabIndex_;
@@ -84,6 +92,24 @@ $.pkp.pages.catalog = $.pkp.pages.catalog || {};
 				.tabs('enable', tabIndex)
 				.tabs('select', tabIndex);
 		}
+	};
+
+
+	/**
+	 * Handle the "select series" event triggered by the
+	 * pulldown atop the series form.
+	 * @private
+	 *
+	 * @param {$.pkp.controllers.form.FormHandler} callingForm The form
+	 *  that triggered the event.
+	 * @param {Event} event The upload event.
+	 * @param {String} seriesId The selected series ID.
+	 */
+	$.pkp.pages.catalog.CatalogHeaderHandler.
+			prototype.selectSeriesHandler_ =
+			function(callingForm, event, seriesId) {
+
+
 	};
 /** @param {jQuery} $ jQuery closure. */
 })(jQuery);

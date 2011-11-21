@@ -31,10 +31,11 @@
 
 <div id="selectMonographContainer">
 	<form class="pkp_form" id="selectMonographForm">
-		<select id="monographSelect">
-			{* The JavaScript handler will populate this list. *}
-			<option value="">{translate key="submission.select"}</option>
-		</select>
+		{fbvFormArea}
+			{fbvFormSection}
+				{fbvElement type="select" id="monographSelect" from="submission.select"|translate|to_array translate=false}
+			{/fbvFormSection}
+		{/fbvFormArea}
 	</form>
 
 	<div id="metadataFormContainer">
