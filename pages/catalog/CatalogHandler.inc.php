@@ -43,6 +43,18 @@ class CatalogHandler extends Handler {
 	// Implement template methods from PKPHandler
 	//
 	/**
+	 * @see PKPHandler::authorize()
+	 * @param $request PKPRequest
+	 * @param $args array
+	 * @param $roleAssignments array
+	 */
+	function authorize(&$request, $args, $roleAssignments) {
+		import('lib.pkp.classes.security.authorization.PKPSiteAccessPolicy');
+		$this->addPolicy(new PKPSiteAccessPolicy($request, null, $roleAssignments));
+		return parent::authorize($request, $args, $roleAssignments);
+	}
+
+	/**
 	 * @see PKPHandler::initialize()
 	 */
 	function initialize(&$request, $args) {
