@@ -90,7 +90,7 @@ class TinyMCEPlugin extends GenericPlugin {
 			<!--
 			tinyMCE.init({
 				entity_encoding : "raw",
-				plugins : "paste,ibrowser,fullscreen",
+				plugins : "paste,ibrowser,fullscreen,pkpmultilingualpopover",
 				mode : "specific_textareas",
 				editor_selector : "richContent",
 				language : "' . String::substr(AppLocale::getLocale(), 0, 2) . '",
