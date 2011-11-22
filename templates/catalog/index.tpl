@@ -18,7 +18,8 @@
 			'$.pkp.pages.catalog.CatalogHeaderHandler',
 			{ldelim}
 				searchTabIndex: 4,
-				seriesFetchUrlTemplate: '{url|escape:"javascript" op="series" path=SERIES_PATH escape=false}'
+				seriesFetchUrlTemplate: '{url|escape:"javascript" op="series" path=SERIES_PATH escape=false}',
+				categoryFetchUrlTemplate: '{url|escape:"javascript" op="category" path=CATEGORY_PATH escape=false}'
 			{rdelim}
 		);
 	{rdelim});
@@ -35,6 +36,16 @@
 			{ldelim}
 				getOptionsUrl: '{url|escape:"javascript" op="getSeries" escape=false}',
 				eventName: 'selectSeries'
+			{rdelim}
+		);
+	{rdelim});
+	// Initialize "Select Category" form handler
+	$(function() {ldelim}
+		$('#selectCategoryForm').pkpHandler(
+			'$.pkp.controllers.form.DropdownFormHandler',
+			{ldelim}
+				getOptionsUrl: '{url|escape:"javascript" op="getCategories" escape=false}',
+				eventName: 'selectCategory'
 			{rdelim}
 		);
 	{rdelim});
@@ -59,10 +70,23 @@
 		<ul>
 			<li><a href="{url op="features"}">{translate key="catalog.manage.features"}</a></li>
 			<li><a href="{url op="newReleases"}">{translate key="catalog.manage.newReleases"}</a></li>
-			<li><a href="{url op="category"}">{translate key="catalog.manage.category"}</a></li>
+			<li><a href="#categoryTab">{translate key="catalog.manage.category"}</a></li>
 			<li><a href="#seriesTab">{translate key="catalog.manage.series"}</a></li>
 			<li><a href="{url}">{translate key="search.searchResults"}</a></li>
 		</ul>
+		<div id="categoryTab">
+			<form id="selectCategoryForm" class="pkp_form">
+				{fbvFormArea}
+					{fbvFormSection}
+						{fbvElement type="select" id="categorySelect" from="catalog.selectCategory"|translate|to_array translate=false}
+					{/fbvFormSection}
+				{/fbvFormArea}
+			</form>
+
+			<div id="categoryContainer">
+				{* This will be filled via JS when a category is chosen. *}
+			</div>
+		</div>
 		<div id="seriesTab">
 			<form id="selectSeriesForm" class="pkp_form">
 				{fbvFormArea}

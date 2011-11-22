@@ -6,7 +6,7 @@
  *
  * Present a monograph.
  *}
-<li class="pkp_catalog_monograph">
+<li class="pkp_catalog_monograph monograph_id_{$monograph->getId()|escape}">
 	<div class="pkp_catalog_monograph_image">
 		<!-- FIXME: Image goes here -->
 	</div>

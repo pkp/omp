@@ -31,7 +31,7 @@ class CatalogHandler extends Handler {
 			array(
 				'index',
 				'features', 'newReleases',
-				'category',
+				'getCategories', 'category',
 				'getSeries', 'series',
 				'search'
 			)
@@ -103,18 +103,51 @@ class CatalogHandler extends Handler {
 	}
 
 	/**
-	 * View the tab contents for the Category tab.
+	 * List the available categories.
 	 * @param $args array
 	 * @param $request PKPRequest
+	 * @return string
+	 */
+	function getCategories($args, &$request) {
+		$press =& $request->getPress();
+		$categoryDao =& DAORegistry::getDAO('CategoryDAO');
+		$categoryIterator =& $categoryDao->getByPressId($press->getId());
+		$categoryArray = array();
+		while ($category =& $categoryIterator->next()) {
+			$categoryArray[$category->getPath()] = $category->getLocalizedTitle();
+			unset($category);
+		}
+		$json = new JSONMessage(true, $categoryArray);
+		return $json->getString();
+	}
+
+	/**
+	 * View the content of a category.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return string
 	 */
 	function category($args, &$request) {
-		fatalError('UNIMPLEMENTED');
+		$categoryPath = array_shift($args);
+		$templateMgr =& TemplateManager::getManager();
+		$this->_setupMonographsTemplate(true);
+		$press =& $request->getPress();
+
+		// Fetch the monographs to display
+		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
+		$publishedMonographs =& $publishedMonographDao->getByCategoryPath($categoryPath, $press->getId());
+		$templateMgr->assign('publishedMonographs', $publishedMonographs);
+
+		// Return the monograph list as a JSON message
+		$json = new JSONMessage(true, $templateMgr->fetch('catalog/monographs.tpl'));
+		return $json->getString();
 	}
 
 	/**
 	 * List the available series.
 	 * @param $args array
 	 * @param $request PKPRequest
+	 * @return string
 	 */
 	function getSeries($args, &$request) {
 		$press =& $request->getPress();
@@ -133,6 +166,7 @@ class CatalogHandler extends Handler {
 	 * View the content of a series.
 	 * @param $args array
 	 * @param $request PKPRequest
+	 * @return string
 	 */
 	function series($args, &$request) {
 		$seriesPath = array_shift($args);

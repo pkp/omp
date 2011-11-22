@@ -76,12 +76,12 @@ class PublishedMonographDAO extends MonographDAO {
 
 	/**
 	 * Retrieve all published monographs in a series.
-	 * @param $seriesPath string
+	 * @param $path string
 	 * @param $pressId int
 	 * @param $rangeInfo object optional
 	 * @return DAOResultFactory
 	 */
-	function &getBySeriesPath($seriesPath, $pressId = null, $rangeInfo = null) {
+	function &getBySeriesPath($path, $pressId = null, $rangeInfo = null) {
 		$primaryLocale = AppLocale::getPrimaryLocale();
 		$locale = AppLocale::getLocale();
 
@@ -90,7 +90,7 @@ class PublishedMonographDAO extends MonographDAO {
 			'title', $locale, // Series title
 			'abbrev', $primaryLocale, // Series abbreviation
 			'abbrev', $locale, // Series abbreviation
-			$seriesPath
+			(string) $path
 		);
 
 		if ($pressId) $params[] = (int) $pressId;
@@ -117,6 +117,54 @@ class PublishedMonographDAO extends MonographDAO {
 		$returner = new DAOResultFactory($result, $this, '_fromRow');
 		return $returner;
 	}
+
+	/**
+	 * Retrieve all published monographs in a category.
+	 * @param $path string
+	 * @param $pressId int
+	 * @param $rangeInfo object optional
+	 * @return DAOResultFactory
+	 */
+	function &getByCategoryPath($path, $pressId = null, $rangeInfo = null) {
+		$primaryLocale = AppLocale::getPrimaryLocale();
+		$locale = AppLocale::getLocale();
+
+		$params = array(
+			'title', $primaryLocale, // Series title
+			'title', $locale, // Series title
+			'abbrev', $primaryLocale, // Series abbreviation
+			'abbrev', $locale, // Series abbreviation
+			(string) $path, (string) $path
+		);
+
+		if ($pressId) $params[] = (int) $pressId;
+
+		$result =& $this->retrieveRange(
+			'SELECT	DISTINCT pm.*,
+				m.*,
+				COALESCE(stl.setting_value, stpl.setting_value) AS series_title,
+				COALESCE(sal.setting_value, sapl.setting_value) AS series_abbrev
+			FROM	published_monographs pm
+				JOIN monographs m ON pm.monograph_id = m.monograph_id
+				LEFT JOIN series s ON s.series_id = m.series_id
+				LEFT JOIN series_settings stpl ON (s.series_id = stpl.series_id AND stpl.setting_name = ? AND stpl.locale = ?)
+				LEFT JOIN series_settings stl ON (s.series_id = stl.series_id AND stl.setting_name = ? AND stl.locale = ?)
+				LEFT JOIN series_settings sapl ON (s.series_id = sapl.series_id AND sapl.setting_name = ? AND sapl.locale = ?)
+				LEFT JOIN series_settings sal ON (s.series_id = sal.series_id AND sal.setting_name = ? AND sal.locale = ?)
+				LEFT JOIN categories mc ON (mc.category_id = m.category_id AND mc.path = ?)
+				LEFT JOIN series_categories sca ON (sca.series_id = s.series_id)
+				LEFT JOIN categories sc ON (sc.category_id = sca.category_id AND sc.path = ?)
+			WHERE	(sc.category_id IS NOT NULL OR mc.category_id IS NOT NULL)
+				' . ($pressId?' AND m.press_id = ?':'' ) . '
+			ORDER BY pm.date_published',
+			$params,
+			$rangeInfo
+		);
+
+		$returner = new DAOResultFactory($result, $this, '_fromRow');
+		return $returner;
+	}
+
 	/**
 	 * Retrieve Published Monograph by monograph id
 	 * @param $monographId int

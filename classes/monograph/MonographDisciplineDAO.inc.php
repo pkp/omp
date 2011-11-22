@@ -10,7 +10,8 @@
  * @ingroup monograph
  * @see Monograph
  *
- * @brief Operations for retrieving and modifying a monograph's assigned disciplines
+ * @brief Operations for retrieving and modifying a monograph's assigned
+ * disciplines
  */
 
 import('lib.pkp.classes.controlledVocab.ControlledVocabDAO');

@@ -97,6 +97,7 @@
 	<message key="catalog.manage.category">Category</message>
 	<message key="catalog.manage.series">Series</message>
 	<message key="catalog.selectSeries">Select Series</message>
+	<message key="catalog.selectCategory">Select Category</message>
 
 	<!--
 	 *

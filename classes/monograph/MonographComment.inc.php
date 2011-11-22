@@ -9,6 +9,7 @@
  * @class MonographComment
  * @ingroup monograph
  * @see MonographCommentDAO
+ *
  * @brief Class for MonographComment.
  */
 
