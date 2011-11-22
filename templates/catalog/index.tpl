@@ -18,7 +18,7 @@
 			'$.pkp.pages.catalog.CatalogHeaderHandler',
 			{ldelim}
 				searchTabIndex: 4,
-				seriesFetchUrlTemplate: '{url|escape:"javascript" op="series" path=SERIES_ID escape=false}'
+				seriesFetchUrlTemplate: '{url|escape:"javascript" op="series" path=SERIES_PATH escape=false}'
 			{rdelim}
 		);
 	{rdelim});

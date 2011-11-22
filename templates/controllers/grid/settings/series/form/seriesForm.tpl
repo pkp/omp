@@ -44,6 +44,10 @@
 				{load_url_in_div id="seriesEditorsContainer" url=$seriesEditorsUrl}
 			</div>
 		{/fbvFormSection}
+
+		{fbvFormSection title="series.path" required=true for="path"}
+			{fbvElement type="text" id="path" value=$path size=$smarty.const.SMALL maxlength="32"}
+		{/fbvFormSection}
 	{/fbvFormArea}
 
 	{fbvFormButtons submitText="common.save"}

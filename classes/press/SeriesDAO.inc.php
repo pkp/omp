@@ -69,6 +69,7 @@ class SeriesDAO extends DAO {
 		$series->setId($row['series_id']);
 		$series->setPressId($row['press_id']);
 		$series->setFeatured($row['featured']);
+		$series->setPath($row['path']);
 
 		$this->getDataObjectSettings('series_settings', 'series_id', $row['series_id'], $series);
 
@@ -93,7 +94,7 @@ class SeriesDAO extends DAO {
 		$this->updateDataObjectSettings(
 			'series_settings',
 			$series,
-			array('series_id' => $series->getId())
+			array('series_id' => (int) $series->getId())
 		);
 	}
 
@@ -104,12 +105,13 @@ class SeriesDAO extends DAO {
 	function insertObject(&$series) {
 		$this->update(
 			'INSERT INTO series
-				(press_id, featured)
+				(press_id, featured, path)
 			VALUES
 				(?, ?, ?)',
 			array(
-				$series->getPressId(),
-				$series->getFeatured()
+				(int) $series->getPressId(),
+				(int) $series->getFeatured(),
+				(string) $series->getPath()
 			)
 		);
 
@@ -126,12 +128,14 @@ class SeriesDAO extends DAO {
 		$returner = $this->update(
 			'UPDATE series
 			SET	press_id = ?,
-				featured = ?
+				featured = ?,
+				path = ?
 			WHERE	series_id = ?',
 			array(
-				$series->getPressId(),
-				$series->getFeatured(),
-				$series->getId()
+				(int) $series->getPressId(),
+				(int) $series->getFeatured(),
+				(string) $series->getPath(),
+				(int) $series->getId()
 			)
 		);
 		$this->updateLocaleFields($series);

@@ -79,13 +79,13 @@ $.pkp.pages.catalog = $.pkp.pages.catalog || {};
 	/**
 	 * Get the URL to fetch a series' monograph listing from
 	 * @private
-	 * @param {int} seriesId The series ID to return the fetch URL for.
+	 * @param {String} seriesPath The series path to return the fetch URL for.
 	 * @return {String} The URL to use to fetch series contents.
 	 */
 	$.pkp.pages.catalog.CatalogHeaderHandler.prototype.getSeriesFetchUrl_ =
-			function(seriesId) {
+			function(seriesPath) {
 
-		return (this.seriesFetchUrlTemplate_.replace('SERIES_ID', seriesId));
+		return (this.seriesFetchUrlTemplate_.replace('SERIES_PATH', seriesPath));
 	};
 
 
@@ -129,18 +129,18 @@ $.pkp.pages.catalog = $.pkp.pages.catalog || {};
 	 * @param {$.pkp.controllers.form.FormHandler} callingForm The form
 	 *  that triggered the event.
 	 * @param {Event} event The upload event.
-	 * @param {String} seriesId The selected series ID.
+	 * @param {String?} seriesPath The selected series path.
 	 */
 	$.pkp.pages.catalog.CatalogHeaderHandler.
 			prototype.selectSeriesHandler_ =
-			function(callingForm, event, seriesId) {
+			function(callingForm, event, seriesPath) {
 
 		// Remove any existing contents.
 		$('#seriesContainer').children().remove();
 
-		if (parseInt(seriesId, 10)) {
+		if (seriesPath != '') {
 			// A series was selected. Load and display.
-			$.get(this.getSeriesFetchUrl_(seriesId),
+			$.get(this.getSeriesFetchUrl_(seriesPath),
 					this.callbackWrapper(this.showFetchedSeries_), 'json');
 		}
 	};

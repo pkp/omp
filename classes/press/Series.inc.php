@@ -38,6 +38,22 @@ class Series extends DataObject {
 	}
 
 	/**
+	 * Get path to series (in URL).
+	 * @return string
+	 */
+	function getPath() {
+		return $this->getData('path');
+	}
+
+	/**
+	 * Set path to series (in URL).
+	 * @param $path string
+	 */
+	function setPath($path) {
+		return $this->setData('path', $path);
+	}
+
+	/**
 	 * Get localized title of the series.
 	 * @return string
 	 */

@@ -110,9 +110,17 @@
 			<NOTNULL/>
 			<DEFAULT VALUE="0"/>
 		</field>
+		<field name="path" type="C2" size="255">
+			<NOTNULL />
+		</field>
 		<descr>Press series.</descr>
 		<index name="series_press_id">
 			<col>press_id</col>
+		</index>
+		<index name="series_path">
+			<col>press_id</col>
+			<col>path</col>
+			<UNIQUE />
 		</index>
 	</table>
 

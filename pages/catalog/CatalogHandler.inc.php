@@ -122,7 +122,7 @@ class CatalogHandler extends Handler {
 		$seriesIterator =& $seriesDao->getByPressId($press->getId());
 		$seriesArray = array();
 		while ($series =& $seriesIterator->next()) {
-			$seriesArray[$series->getId()] = $series->getLocalizedTitle();
+			$seriesArray[$series->getPath()] = $series->getLocalizedTitle();
 			unset($series);
 		}
 		$json = new JSONMessage(true, $seriesArray);
@@ -135,13 +135,14 @@ class CatalogHandler extends Handler {
 	 * @param $request PKPRequest
 	 */
 	function series($args, &$request) {
+		$seriesPath = array_shift($args);
 		$templateMgr =& TemplateManager::getManager();
 		$this->_setupMonographsTemplate(true);
 		$press =& $request->getPress();
 
 		// Fetch the monographs to display
 		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
-		$publishedMonographs =& $publishedMonographDao->getByPressId($press->getId(), $searchText);
+		$publishedMonographs =& $publishedMonographDao->getBySeriesPath($seriesPath, $press->getId());
 		$templateMgr->assign('publishedMonographs', $publishedMonographs);
 
 		// Return the monograph list as a JSON message

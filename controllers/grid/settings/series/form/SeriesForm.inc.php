@@ -49,8 +49,9 @@ class SeriesForm extends Form {
 			$this->_data = array(
 				'seriesId' => $seriesId,
 				'title' => $series->getTitle(null),
-				'description' => $series->getDescription(null),
-				'featured' => $series->getFeatured()
+				'featured' => $series->getFeatured(),
+				'path' => $series->getPath(),
+				'description' => $series->getDescription(null)
 			);
 		}
 	}
@@ -72,7 +73,7 @@ class SeriesForm extends Form {
 	 * @see Form::readInputData()
 	 */
 	function readInputData() {
-		$this->readUserVars(array('seriesId', 'title', 'description', 'featured', 'seriesEditors', 'categories'));
+		$this->readUserVars(array('seriesId', 'path', 'featured', 'title', 'description', 'seriesEditors', 'categories'));
 	}
 
 	/**
@@ -94,9 +95,10 @@ class SeriesForm extends Form {
 		}
 
 		// Populate/update the series object from the form
+		$series->setPath($this->getData('path'));
+		$series->setFeatured($this->getData('featured'));
 		$series->setTitle($this->getData('title'), null); // Localized
 		$series->setDescription($this->getData('description'), null); // Localized
-		$series->setFeatured($this->getData('featured'));
 
 		// Insert or update the series in the DB
 		if ($this->getSeriesId()) {
