@@ -17,7 +17,8 @@
 		$('#catalogHeader').pkpHandler(
 			'$.pkp.pages.catalog.CatalogHeaderHandler',
 			{ldelim}
-				searchTabIndex: 4
+				searchTabIndex: 4,
+				seriesFetchUrlTemplate: '{url|escape:"javascript" op="series" path=SERIES_ID escape=false}'
 			{rdelim}
 		);
 	{rdelim});
@@ -63,13 +64,17 @@
 			<li><a href="{url}">{translate key="search.searchResults"}</a></li>
 		</ul>
 		<div id="seriesTab">
-			<form id="selectSeriesForm">
+			<form id="selectSeriesForm" class="pkp_form">
 				{fbvFormArea}
 					{fbvFormSection}
 						{fbvElement type="select" id="seriesSelect" from="catalog.selectSeries"|translate|to_array translate=false}
 					{/fbvFormSection}
 				{/fbvFormArea}
 			</form>
+
+			<div id="seriesContainer">
+				{* This will be filled via JS when a series is chosen. *}
+			</div>
 		</div>
 	</div>
 </div>

@@ -94,7 +94,7 @@ jQuery.pkp.controllers.modals.submissionMetadata =
 			prototype.selectMonographHandler =
 			function(callingForm, event, monographId) {
 
-		if (parseInt(monographId)) {
+		if (parseInt(monographId, 10)) {
 			// If a monograph was selected, fetch the form
 			$.get(this.getMetadataEditFormUrl_(monographId,
 					$.pkp.cons.WORKFLOW_STAGE_ID_PRODUCTION),

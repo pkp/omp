@@ -32,8 +32,12 @@ $.pkp.pages.catalog = $.pkp.pages.catalog || {};
 			function($catalogHeader, options) {
 
 		this.parent($catalogHeader, options);
-		this.searchTabIndex_ = options.searchTabIndex;
 
+		// Save options for later
+		this.searchTabIndex_ = options.searchTabIndex;
+		this.seriesFetchUrlTemplate_ = options.seriesFetchUrlTemplate;
+
+		// Set up the tabs
 		var $catalogTabs = $('#catalogTabs');
 		$catalogTabs.tabs().tabs('disable', this.searchTabIndex_); // Search results
 
@@ -52,17 +56,39 @@ $.pkp.pages.catalog = $.pkp.pages.catalog || {};
 	// Private properties
 	//
 	/**
-	 * The URL template used to fetch the metadata edit form.
+	 * The numeric index of the search results tab among other tabs
 	 * @private
-	 * @type {string}
+	 * @type {int}
 	 */
 	$.pkp.pages.catalog.CatalogHeaderHandler.
 			prototype.searchTabIndex_ = 0;
 
 
+	/**
+	 * The URL template used to fetch the series submission list.
+	 * @private
+	 * @type {string?}
+	 */
+	$.pkp.pages.catalog.CatalogHeaderHandler.
+			prototype.seriesFetchUrlTemplate_ = null;
+
+
 	//
 	// Private methods
 	//
+	/**
+	 * Get the URL to fetch a series' monograph listing from
+	 * @private
+	 * @param {int} seriesId The series ID to return the fetch URL for.
+	 * @return {String} The URL to use to fetch series contents.
+	 */
+	$.pkp.pages.catalog.CatalogHeaderHandler.prototype.getSeriesFetchUrl_ =
+			function(seriesId) {
+
+		return (this.seriesFetchUrlTemplate_.replace('SERIES_ID', seriesId));
+	};
+
+
 	/**
 	 * Handle the "search catalog" event triggered by the
 	 * search form to load the results in the tab.
@@ -109,7 +135,31 @@ $.pkp.pages.catalog = $.pkp.pages.catalog || {};
 			prototype.selectSeriesHandler_ =
 			function(callingForm, event, seriesId) {
 
+		// Remove any existing contents.
+		$('#seriesContainer').children().remove();
 
+		if (parseInt(seriesId, 10)) {
+			// A series was selected. Load and display.
+			$.get(this.getSeriesFetchUrl_(seriesId),
+					this.callbackWrapper(this.showFetchedSeries_), 'json');
+		}
+	};
+
+
+	/**
+	 * Show the contents of a fetched series.
+	 *
+	 * @param {Object} ajaxContext The AJAX request context.
+	 * @param {Object} jsonData A parsed JSON response object.
+	 * @private
+	 */
+	$.pkp.pages.catalog.CatalogHeaderHandler.prototype.showFetchedSeries_ =
+			function(ajaxContext, jsonData) {
+
+		jsonData = this.handleJson(jsonData);
+
+		// Find the container and add fetched content.
+		$('#seriesContainer').append(jsonData.content);
 	};
 /** @param {jQuery} $ jQuery closure. */
 })(jQuery);

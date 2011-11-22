@@ -132,9 +132,9 @@ class CatalogHandler extends Handler {
 		$publishedMonographs =& $publishedMonographDao->getByPressId($press->getId(), $searchText);
 		$templateMgr->assign('publishedMonographs', $publishedMonographs);
 
-
-		// Display the monograph list
-		$templateMgr->display('catalog/monographs.tpl');
+		// Return the monograph list as a JSON message
+		$json = new JSONMessage(true, $templateMgr->fetch('catalog/monographs.tpl'));
+		return $json->getString();
 	}
 
 	/**
