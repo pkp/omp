@@ -55,7 +55,7 @@
 	<message key="submission.submit.cancelSubmission">You can complete this submission at a later date by selecting Active Submissions from the Author home.</message>
 	<message key="submission.submit.howToSubmit"><![CDATA[Encountering difficulties? Contact <a href="mailto:{$supportEmail}">{$supportName}</a> for assistance ({$supportPhone}).]]></message>
 	<message key="submission.submit.howToSubmitNoPhone"><![CDATA[Encountering difficulties? Contact <a href="mailto:{$supportEmail}">{$supportName}</a> for assistance.]]></message>
-	<message key="submission.submit.selectSeries">If applicable, please select a category...</message>
+	<message key="submission.submit.selectSeries">If applicable, please select a series...</message>
 	<message key="submission.submit.submissionLocale">Submission Language</message>
 	<message key="submission.submit.submissionLocaleDescription">This press accepts submissions in several languages. Choose the primary language of the submission from the pulldown below.</message>
 	<message key="submission.submit.form.localeRequired">Please select a submission language.</message>
