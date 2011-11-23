@@ -146,18 +146,23 @@
 		// Find the monograph list
 		var $monographList = $htmlElement.find('#monographListContainer ul');
 
+		// Find the 
+		var $organizeLinks = $monographList.find('.pkp_catalog_organizeTools');
+
 		if (this.inOrganizeMode_) {
 			// We've just entered "Organize" mode.
 			$gridViewButton.addClass('ui-state-disabled');
 			$listViewButton.addClass('ui-state-disabled');
 			$organizeButton.addClass('ui-state-active');
 			$monographList.sortable('option', 'disabled', false);
+			$organizeLinks.removeClass('pkp_helpers_invisible');
 		} else {
 			// We've just left "Organize" mode.
 			$organizeButton.removeClass('ui-state-active');
 			$listViewButton.removeClass('ui-state-disabled');
 			$gridViewButton.removeClass('ui-state-disabled');
 			$monographList.sortable('option', 'disabled', true);
+			$organizeLinks.addClass('pkp_helpers_invisible');
 		}
 
 		// Stop further event processing

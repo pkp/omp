@@ -18,10 +18,10 @@
 
 <div id="monographsContainer">
 	<div class="pkp_helpers_align_right">
-		<ul class="submission_actions pkp_helpers_flatlist">
-			{if $organizeAction}<li>{include file="linkAction/linkAction.tpl" action=$organizeAction}</li>{/if}
-			{if $listViewAction}<li>{include file="linkAction/linkAction.tpl" action=$listViewAction}</li>{/if}
-			{if $gridViewAction}<li>{include file="linkAction/linkAction.tpl" action=$gridViewAction}</li>{/if}
+		<ul class="submission_actions pkp_helpers_flatlist pkp_linkActions">
+			{if $includeOrganizeAction}<li>{null_link_action id="organize" key="common.organize" image="organize"}</li>{/if}
+			<li>{null_link_action id="listView" key="common.list" image="list_view"}</li>
+			<li>{null_link_action id="gridView" key="common.grid" image="grid_view"}</li>
 		</ul>
 	</div>
 	<div id="monographListContainer" class="pkp_helpers_clear">

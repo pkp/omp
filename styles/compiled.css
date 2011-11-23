@@ -169,6 +169,7 @@ strong {
   font-weight:bold;
   font-weight:bold;
 }
+.pkp_helpers_invisible { visibility:hidden; }
 .pkp_helpers_clear { clear:both; }
 .pkp_helpers_align_left { float:left; }
 .pkp_helpers_align_right { float:right; }
@@ -597,8 +598,15 @@ body {
   border-top:1px dotted #ffffff;
   background-color:#c1bbaf;
 }
-.pkp_linkActions a { background-repeat:no-repeat; }
-.pkp_linkActions a.add_item { background-image:url(../lib/pkp/templates/images/structure/lb_add.png); }
+.pkp_linkActions a {
+  background-repeat:no-repeat !important;
+  background-position:0% 0% !important;
+}
+.pkp_linkActions a.grid_view { background-image:url(../lib/pkp/templates/images/structure/grid.png); }
+.pkp_linkActions a.list_view { background-image:url(../lib/pkp/templates/images/structure/list.png); }
+.pkp_linkActions a.organize { background-image:url(../lib/pkp/templates/images/structure/organize.png); }
+.pkp_linkActions a.star { background-image:url(../lib/pkp/templates/images/structure/star_u.png); }
+.pkp_linkActions a.star_highlighted { background-image:url(../lib/pkp/templates/images/structure/star_h.png); }
 .pkp_linkActions a.remove_item { background-image:url(../lib/pkp/templates/images/structure/lb_delete.png); }
 .pkp_linkActions a.promote { background-image:url(../lib/pkp/templates/images/structure/grid_promote.png); }
 .pkp_linkActions a.enable { background-image:url(../lib/pkp/templates/images/structure/grid_promote.png); }

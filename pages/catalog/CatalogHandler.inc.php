@@ -220,37 +220,7 @@ class CatalogHandler extends Handler {
 		import('lib.pkp.classes.linkAction.request.NullAction');
 
 		// Organize action (if enabled)
-		if ($includeOrganizeAction) $templateMgr->assign(
-			'organizeAction',
-			new LinkAction(
-				'organize',
-				new NullAction(),
-				__('common.organize'),
-				'organize'
-			)
-		);
-
-		// List View action
-		$templateMgr->assign(
-			'listViewAction',
-			new LinkAction(
-				'listView',
-				new NullAction(),
-				__('common.list'),
-				'list_view'
-			)
-		);
-
-		// Grid View action
-		$templateMgr->assign(
-			'gridViewAction',
-			new LinkAction(
-				'gridView',
-				new NullAction(),
-				__('common.grid'),
-				'grid_view'
-			)
-		);
+		$templateMgr->assign('includeOrganizeAction', $includeOrganizeAction);
 	}
 }
 
