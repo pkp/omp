@@ -212,7 +212,7 @@ class UserImportExportPlugin extends ImportExportPlugin {
 		$pressDao =& DAORegistry::getDAO('PressDAO');
 		$userDao =& DAORegistry::getDAO('UserDAO');
 
-		$press =& $pressDao->getPressByPath($pressPath);
+		$press =& $pressDao->getByPath($pressPath);
 
 		if (!$press) {
 			if ($pressPath != '') {

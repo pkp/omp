@@ -26,7 +26,8 @@
 		<span class="pkp_catalog_monograph_abstractLabel">{translate key="submission.synopsis"}:</span>
 		{$monograph->getLocalizedAbstract()|strip_unsafe_html|truncate:80}
 	</div>
-	<div class="pkp_catalog_organizeTools pkp_helpers_invisible">
-		{null_link_action id="feature-monograph-"|concat:$monograph->getId() key="FIXME" image="feature"}
+	<div class="pkp_catalog_organizeTools pkp_helpers_invisible pkp_linkActions">
+		{null_link_action id="feature-monograph-"|concat:$monograph->getId() image="star"}
 	</div>
+	<div class="pkp_helpers_clear"></div>
 </li>

@@ -51,6 +51,29 @@ class SeriesDAO extends DAO {
 	}
 
 	/**
+	 * Retrieve a category by path.
+	 * @param $path string
+	 * @param $pressId int
+	 * @return Category
+	 */
+	function &getByPath($path, $pressId) {
+		$returner = null;
+		$result =& $this->retrieve(
+			'SELECT * FROM series WHERE path = ? AND press_id = ?',
+			array((string) $path, (int) $pressId)
+		);
+
+		if ($result->RecordCount() != 0) {
+			$returner =& $this->_fromRow($result->GetRowAssoc(false));
+		}
+
+		$result->Close();
+		unset($result);
+
+		return $returner;
+	}
+
+	/**
 	 * Construct a new data object corresponding to this DAO.
 	 * @return Series
 	 */

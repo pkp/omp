@@ -32,7 +32,7 @@ class PressDAO extends DAO {
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
-			$returner =& $this->_returnPressFromRow($result->GetRowAssoc(false));
+			$returner =& $this->_fromRow($result->GetRowAssoc(false));
 		}
 		$result->Close();
 		return $returner;
@@ -56,19 +56,27 @@ class PressDAO extends DAO {
 	}
 
 	/**
+	 * Construct a new data object corresponding to this DAO.
+	 * @return Press
+	 */
+	function newDataObject() {
+		return new Press();
+	}
+
+	/**
 	 * Internal function to return a Press object from a row.
 	 * @param $row array
 	 * @return Press
 	 */
-	function &_returnPressFromRow(&$row) {
-		$press = new Press();
+	function &_fromRow(&$row) {
+		$press = $this->newDataObject();
 		$press->setId($row['press_id']);
 		$press->setPath($row['path']);
 		$press->setSequence($row['seq']);
 		$press->setEnabled($row['enabled']);
 		$press->setPrimaryLocale($row['primary_locale']);
 
-		HookRegistry::call('PressDAO::_returnPressFromRow', array(&$press, &$row));
+		HookRegistry::call('PressDAO::_fromRow', array(&$press, &$row));
 
 		return $press;
 	}
@@ -90,27 +98,34 @@ class PressDAO extends DAO {
 		return $returner;
 	}
 
+	/**
+	 * Retrieve a press by path.
+	 * (Required by PKPPageRouter; should eventually be removed
+	 * in favour of getByPath.)
+	 * @see PressDAO::getByPath
+	 */
+	function &getPressByPath($path) {
+		$returner =& $this->getByPath($path);
+		return $returner;
+	}
 
 	/**
 	 * Retrieve a press by path.
 	 * @param $path string
 	 * @return Press
 	 */
-	function &getPressByPath($path) {
+	function &getByPath($path) {
 		$returner = null;
 		$result =& $this->retrieve(
-			'SELECT * FROM presses WHERE path = ?', $path
+			'SELECT * FROM presses WHERE path = ?', (string) $path
 		);
 
 		if ($result->RecordCount() != 0) {
-			$returner =& $this->_returnPressFromRow($result->GetRowAssoc(false));
+			$returner =& $this->_fromRow($result->GetRowAssoc(false));
 		}
 		$result->Close();
 		unset($result);
 		return $returner;
-	}
-	function getPrimaryLocale(){
-		return 'en_US';
 	}
 
 	/**
@@ -123,7 +138,7 @@ class PressDAO extends DAO {
 			false, $rangeInfo
 		);
 
-		$returner = new DAOResultFactory($result, $this, '_returnPressFromRow');
+		$returner = new DAOResultFactory($result, $this, '_fromRow');
 		return $returner;
 	}
 
@@ -181,7 +196,7 @@ class PressDAO extends DAO {
 			'SELECT * FROM presses WHERE enabled=1 ORDER BY seq'
 		);
 
-		$resultFactory = new DAOResultFactory($result, $this, '_returnPressFromRow');
+		$resultFactory = new DAOResultFactory($result, $this, '_fromRow');
 		return $resultFactory;
 	}
 

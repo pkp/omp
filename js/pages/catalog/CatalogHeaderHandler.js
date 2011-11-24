@@ -111,7 +111,7 @@ $.pkp.pages.catalog = $.pkp.pages.catalog || {};
 	$.pkp.pages.catalog.CatalogHeaderHandler.prototype.getCategoryFetchUrl_ =
 			function(categoryPath) {
 
-		return (this.seriesFetchUrlTemplate_.replace('SERIES_PATH', categoryPath));
+		return (this.categoryFetchUrlTemplate_.replace('CATEGORY_PATH', categoryPath));
 	};
 
 

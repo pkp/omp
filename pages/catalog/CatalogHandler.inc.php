@@ -122,28 +122,6 @@ class CatalogHandler extends Handler {
 	}
 
 	/**
-	 * View the content of a category.
-	 * @param $args array
-	 * @param $request PKPRequest
-	 * @return string
-	 */
-	function category($args, &$request) {
-		$categoryPath = array_shift($args);
-		$templateMgr =& TemplateManager::getManager();
-		$this->_setupMonographsTemplate(true);
-		$press =& $request->getPress();
-
-		// Fetch the monographs to display
-		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
-		$publishedMonographs =& $publishedMonographDao->getByCategoryPath($categoryPath, $press->getId());
-		$templateMgr->assign('publishedMonographs', $publishedMonographs);
-
-		// Return the monograph list as a JSON message
-		$json = new JSONMessage(true, $templateMgr->fetch('catalog/monographs.tpl'));
-		return $json->getString();
-	}
-
-	/**
 	 * List the available series.
 	 * @param $args array
 	 * @param $request PKPRequest
@@ -163,21 +141,61 @@ class CatalogHandler extends Handler {
 	}
 
 	/**
+	 * View the content of a category.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return string
+	 */
+	function category($args, &$request) {
+		$templateMgr =& TemplateManager::getManager();
+		$this->_setupMonographsTemplate(true);
+		$press =& $request->getPress();
+
+		// Get the category
+		$categoryDao =& DAORegistry::getDAO('CategoryDAO');
+		$categoryPath = array_shift($args);
+		$category =& $categoryDao->getByPath($categoryPath, $press->getId());
+
+		// Fetch the monographs to display
+		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
+		$publishedMonographs =& $publishedMonographDao->getByCategoryId($category->getId(), $press->getId());
+		$templateMgr->assign('publishedMonographs', $publishedMonographs);
+
+		// Fetch the current features
+		$featureDao =& DAORegistry::getDAO('FeatureDAO');
+		$features = $featureDao->getMonographIdsByAssoc(ASSOC_TYPE_CATEGORY, $category->getId);
+		$templateMgr->assign('features', $features);
+
+		// Return the monograph list as a JSON message
+		$json = new JSONMessage(true, $templateMgr->fetch('catalog/monographs.tpl'));
+		return $json->getString();
+	}
+
+	/**
 	 * View the content of a series.
 	 * @param $args array
 	 * @param $request PKPRequest
 	 * @return string
 	 */
 	function series($args, &$request) {
-		$seriesPath = array_shift($args);
 		$templateMgr =& TemplateManager::getManager();
 		$this->_setupMonographsTemplate(true);
 		$press =& $request->getPress();
 
+		// Get the series
+		$seriesDao =& DAORegistry::getDAO('SeriesDAO');
+		$seriesPath = array_shift($args);
+		$series =& $seriesDao->getByPath($seriesPath, $press->getId());
+
 		// Fetch the monographs to display
 		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
-		$publishedMonographs =& $publishedMonographDao->getBySeriesPath($seriesPath, $press->getId());
+		$publishedMonographs =& $publishedMonographDao->getBySeriesId($series->getId(), $press->getId());
 		$templateMgr->assign('publishedMonographs', $publishedMonographs);
+
+		// Fetch the current features
+		$featureDao =& DAORegistry::getDAO('FeatureDAO');
+		$features = $featureDao->getMonographIdsByAssoc(ASSOC_TYPE_SERIES, $series->getId());
+		$templateMgr->assign('features', $features);
 
 		// Return the monograph list as a JSON message
 		$json = new JSONMessage(true, $templateMgr->fetch('catalog/monographs.tpl'));

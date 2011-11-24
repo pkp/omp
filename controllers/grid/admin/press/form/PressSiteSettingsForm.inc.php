@@ -112,7 +112,7 @@ class PressSiteSettingsForm extends Form {
 		}
 
 		if (!isset($press)) {
-			$press = new Press();
+			$press = $pressDao->newDataObject();
 		}
 
 		// Check if the press path has changed.

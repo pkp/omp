@@ -88,9 +88,15 @@
 		<field name="assoc_id" type="I8">
 			<NOTNULL />
 		</field>
-		<field name="seq_id" type="I8">
+		<field name="seq" type="I8">
 			<NOTNULL />
 		</field>
+		<index name="features_pkey">
+			<col>assoc_type</col>
+			<col>assoc_id</col>
+			<col>monograph_id</col>
+			<UNIQUE />
+		</index>
 	</table>
 
 	<!--

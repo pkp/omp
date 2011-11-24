@@ -76,12 +76,12 @@ class PublishedMonographDAO extends MonographDAO {
 
 	/**
 	 * Retrieve all published monographs in a series.
-	 * @param $path string
+	 * @param $seriesId int
 	 * @param $pressId int
 	 * @param $rangeInfo object optional
 	 * @return DAOResultFactory
 	 */
-	function &getBySeriesPath($path, $pressId = null, $rangeInfo = null) {
+	function &getBySeriesId($seriesId, $pressId = null, $rangeInfo = null) {
 		$primaryLocale = AppLocale::getPrimaryLocale();
 		$locale = AppLocale::getLocale();
 
@@ -90,7 +90,7 @@ class PublishedMonographDAO extends MonographDAO {
 			'title', $locale, // Series title
 			'abbrev', $primaryLocale, // Series abbreviation
 			'abbrev', $locale, // Series abbreviation
-			(string) $path
+			(int) $seriesId
 		);
 
 		if ($pressId) $params[] = (int) $pressId;
@@ -107,7 +107,7 @@ class PublishedMonographDAO extends MonographDAO {
 				LEFT JOIN series_settings stl ON (s.series_id = stl.series_id AND stl.setting_name = ? AND stl.locale = ?)
 				LEFT JOIN series_settings sapl ON (s.series_id = sapl.series_id AND sapl.setting_name = ? AND sapl.locale = ?)
 				LEFT JOIN series_settings sal ON (s.series_id = sal.series_id AND sal.setting_name = ? AND sal.locale = ?)
-			WHERE	s.path = ?
+			WHERE	s.series_id = ?
 				' . ($pressId?' AND m.press_id = ?':'' ) . '
 			ORDER BY pm.date_published',
 			$params,
@@ -120,12 +120,12 @@ class PublishedMonographDAO extends MonographDAO {
 
 	/**
 	 * Retrieve all published monographs in a category.
-	 * @param $path string
+	 * @param $categoryId int
 	 * @param $pressId int
 	 * @param $rangeInfo object optional
 	 * @return DAOResultFactory
 	 */
-	function &getByCategoryPath($path, $pressId = null, $rangeInfo = null) {
+	function &getByCategoryId($categoryId, $pressId = null, $rangeInfo = null) {
 		$primaryLocale = AppLocale::getPrimaryLocale();
 		$locale = AppLocale::getLocale();
 
@@ -134,7 +134,7 @@ class PublishedMonographDAO extends MonographDAO {
 			'title', $locale, // Series title
 			'abbrev', $primaryLocale, // Series abbreviation
 			'abbrev', $locale, // Series abbreviation
-			(string) $path, (string) $path
+			(int) $categoryId, (int) $categoryId
 		);
 
 		if ($pressId) $params[] = (int) $pressId;
@@ -151,9 +151,9 @@ class PublishedMonographDAO extends MonographDAO {
 				LEFT JOIN series_settings stl ON (s.series_id = stl.series_id AND stl.setting_name = ? AND stl.locale = ?)
 				LEFT JOIN series_settings sapl ON (s.series_id = sapl.series_id AND sapl.setting_name = ? AND sapl.locale = ?)
 				LEFT JOIN series_settings sal ON (s.series_id = sal.series_id AND sal.setting_name = ? AND sal.locale = ?)
-				LEFT JOIN categories mc ON (mc.category_id = m.category_id AND mc.path = ?)
+				LEFT JOIN categories mc ON (mc.category_id = m.category_id AND mc.category_id = ?)
 				LEFT JOIN series_categories sca ON (sca.series_id = s.series_id)
-				LEFT JOIN categories sc ON (sc.category_id = sca.category_id AND sc.path = ?)
+				LEFT JOIN categories sc ON (sc.category_id = sca.category_id AND sc.category_id = ?)
 			WHERE	(sc.category_id IS NOT NULL OR mc.category_id IS NOT NULL)
 				' . ($pressId?' AND m.press_id = ?':'' ) . '
 			ORDER BY pm.date_published',
