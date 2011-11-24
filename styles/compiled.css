@@ -1059,7 +1059,6 @@ div.pkp_controllers_grid .pkp_controllers_grid_settings_stages {
 .pkp_controllers_grid a.declined { background-image:url(../lib/pkp/templates/images/structure/lb_delete.png); }
 .pkp_controllers_grid a.completed { background-image:url(../lib/pkp/templates/images/structure/grid_task_complete.png); }
 .pkp_controllers_grid a.overdue { background-image:url(../lib/pkp/templates/images/structure/grid_email_overdue.png); }
-.pkp_controllers_grid a.notify { background-image:url(../lib/pkp/templates/images/structure/grid_email.png); }
 .pkp_controllers_grid a.uploaded { background-image:url(../lib/pkp/templates/images/structure/grid_folder.png); }
 .pkp_controllers_grid div.checked {
   background-image:url(../lib/pkp/templates/images/structure/grid_promote.png);
