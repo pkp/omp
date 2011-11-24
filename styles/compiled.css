@@ -231,164 +231,166 @@ a.sprite:before {
   background-repeat:no-repeat;
   cursor:pointer;
 }
-a.notify:before {
+a.sprite.notify:before {
   margin-right:4px;
   background-position:-24px 0;
 }
-a.notify:hover:before { background-position:-24px -24px; }
-a.settings:before {
+a.sprite.notify:hover:before { background-position:-24px -24px; }
+a.sprite.settings:before {
   margin-top:8px;
   background-position:-408px 0;
 }
-a.settings:hover:before { background-position:-408px -24px; }
-a.information:before { background-position:-194px 0; }
-a.information:hover:before { background-position:-194px -24px; }
-a.more_info:before { background-position:-456px 0; }
-a.more_info:hover:before { background-position:-456px -24px; }
-a.delete:before { background-position:-432px 0; }
-a.delete:hover:before { background-position:-432px -24px; }
-a.edit:before { background-position:-240px 0; }
-a.edit:hover:before { background-position:-240px -24px; }
-a.participants:before { background-position:-314px 0; }
-a.participants:hover:before { background-position:-314px -24px; }
-a.notes:before {
+a.sprite.settings:hover:before { background-position:-408px -24px; }
+a.sprite.information:before { background-position:-194px 0; }
+a.sprite.information:hover:before { background-position:-194px -24px; }
+a.sprite.more_info:before { background-position:-456px 0; }
+a.sprite.more_info:hover:before { background-position:-456px -24px; }
+a.sprite.disable:before { background-position:-432px 0; }
+a.sprite.disable:hover:before { background-position:-432px -24px; }
+a.sprite.delete:before { background-position:-432px 0; }
+a.sprite.delete:hover:before { background-position:-432px -24px; }
+a.sprite.edit:before { background-position:-240px 0; }
+a.sprite.edit:hover:before { background-position:-240px -24px; }
+a.sprite.participants:before { background-position:-314px 0; }
+a.sprite.participants:hover:before { background-position:-314px -24px; }
+a.sprite.notes:before {
   margin-top:7px;
   background-position:-264px 0;
 }
-a.notes:hover:before { background-position:-264px -24px; }
-a.notes_new:before {
+a.sprite.notes:hover:before { background-position:-264px -24px; }
+a.sprite.notes_new:before {
   margin-top:7px;
   background-position:-264px 0;
 }
-a.notes_new:hover:before { background-position:-264px -24px; }
-a.notes_none:before {
+a.sprite.notes_new:hover:before { background-position:-264px -24px; }
+a.sprite.notes_none:before {
   margin-top:7px;
   background-position:-264px 0;
 }
-a.notes_none:hover:before { background-position:-264px -24px; }
-a.add:before {
+a.sprite.notes_none:hover:before { background-position:-264px -24px; }
+a.sprite.add:before {
   margin-right:4px;
   background-position:-504px 0;
 }
-a.add:hover:before { background-position:-504px -24px; }
-a.add_user:before {
+a.sprite.add:hover:before { background-position:-504px -24px; }
+a.sprite.add_user:before {
   margin-right:4px;
   background-position:-528px 0;
 }
-a.add_user:hover:before { background-position:-528px -24px; }
-a.add_category:before {
+a.sprite.add_user:hover:before { background-position:-528px -24px; }
+a.sprite.add_category:before {
   margin-right:4px;
   background-position:-552px 0;
 }
-a.add_category:hover:before { background-position:-552px -24px; }
-a.add_item:before {
+a.sprite.add_category:hover:before { background-position:-552px -24px; }
+a.sprite.add_item:before {
   margin-top:1px;
   margin-right:4px;
   background-position:-576px 0;
 }
-a.add_item:hover:before { background-position:-576px -24px; }
-a.remove_item:before { background-position:-600px 0; }
-a.remove_item:hover:before { background-position:-600px -24px; }
-a.decline:before {
+a.sprite.add_item:hover:before { background-position:-576px -24px; }
+a.sprite.remove_item:before { background-position:-600px 0; }
+a.sprite.remove_item:hover:before { background-position:-600px -24px; }
+a.sprite.decline:before {
   margin-right:4px;
   background-position:-624px 0;
 }
-a.decline:hover:before { background-position:-624px -24px; }
-a.advance:before {
+a.sprite.decline:hover:before { background-position:-624px -24px; }
+a.sprite.advance:before {
   margin-right:4px;
   background-position:-648px 0;
 }
-a.advance:hover:before { background-position:-648px -24px; }
-a.promote:before {
+a.sprite.advance:hover:before { background-position:-648px -24px; }
+a.sprite.promote:before {
   margin-right:4px;
   background-position:-672px 0;
 }
-a.promote:hover:before { background-position:-672px -24px; }
-a.revisions:before {
+a.sprite.promote:hover:before { background-position:-672px -24px; }
+a.sprite.revisions:before {
   margin-right:4px;
   background-position:-696px 0;
 }
-a.revisions:hover:before { background-position:-696px -24px; }
-a.resubmit:before {
+a.sprite.revisions:hover:before { background-position:-696px -24px; }
+a.sprite.resubmit:before {
   margin-right:4px;
   background-position:-720px 0;
 }
-a.resubmit:hover:before { background-position:-720px -24px; }
-a.add_item_small:before {
+a.sprite.resubmit:hover:before { background-position:-720px -24px; }
+a.sprite.add_item_small:before {
   margin-top:-5px;
   height:18px;
   margin-right:4px;
   background-position:-744px 0;
 }
-a.add_item_small:hover:before { background-position:-744px -24px; }
-a.enroll_user:before {
+a.sprite.add_item_small:hover:before { background-position:-744px -24px; }
+a.sprite.enroll_user:before {
   margin-right:4px;
   background-position:-768px 0;
 }
-a.enroll_user:hover:before { background-position:-768px -24px; }
-a.user_search:before {
+a.sprite.enroll_user:hover:before { background-position:-768px -24px; }
+a.sprite.user_search:before {
   margin-right:4px;
   background-position:-792px 0;
 }
-a.user_search:hover:before { background-position:-792px -24px; }
-a.import:before {
+a.sprite.user_search:hover:before { background-position:-792px -24px; }
+a.sprite.import:before {
   margin-right:4px;
   background-position:-816px 0;
 }
-a.import:hover:before { background-position:-816px -24px; }
-a.pdf:before {
+a.sprite.import:hover:before { background-position:-816px -24px; }
+a.sprite.pdf:before {
   margin-top:8px;
   margin-right:4px;
   background-position:-840px 0;
 }
-a.pdf:hover:before { background-position:-840px -24px; }
-a.html:before {
+a.sprite.pdf:hover:before { background-position:-840px -24px; }
+a.sprite.html:before {
   margin-top:8px;
   margin-right:4px;
   background-position:-864px 0;
 }
-a.html:hover:before { background-position:-864px -24px; }
-a.word:before {
+a.sprite.html:hover:before { background-position:-864px -24px; }
+a.sprite.word:before {
   margin-top:8px;
   margin-right:4px;
   background-position:-888px 0;
 }
-a.word:hover:before { background-position:-888px -24px; }
-a.image:before {
+a.sprite.word:hover:before { background-position:-888px -24px; }
+a.sprite.image:before {
   margin-top:8px;
   margin-right:4px;
   background-position:-912px 0;
 }
-a.image:hover:before { background-position:-912px -24px; }
-a.excel:before {
+a.sprite.image:hover:before { background-position:-912px -24px; }
+a.sprite.excel:before {
   margin-top:8px;
   margin-right:4px;
   background-position:-936px 0;
 }
-a.excel:hover:before { background-position:-936px -24px; }
-a.default:before {
+a.sprite.excel:hover:before { background-position:-936px -24px; }
+a.sprite.default:before {
   margin-top:8px;
   margin-right:4px;
   background-position:-960px 0;
 }
-a.default:hover:before { background-position:-960px -24px; }
-a.zip:before {
+a.sprite.default:hover:before { background-position:-960px -24px; }
+a.sprite.zip:before {
   margin-top:8px;
   margin-right:4px;
   background-position:-984px 0;
 }
-a.zip:hover:before { background-position:-984px -24px; }
-a.add_role:before {
+a.sprite.zip:hover:before { background-position:-984px -24px; }
+a.sprite.add_role:before {
   margin-right:4px;
   background-position:-1032px 0;
 }
-a.add_role:hover:before { background-position:-1032px -24px; }
-.category a.delete:before {
+a.sprite.add_role:hover:before { background-position:-1032px -24px; }
+.category.delete:before {
   margin-left:5px;
   background-position:-1008px 0;
 }
-.category a.delete:hover:before { background-position:-1008px -24px; }
-.category a.pdf:before, .category a.html:before, .category a.word:before, .category a.image:before, .category a.excel:before, .category a.default:before, .category a.zip:before {
+.category.delete:hover:before { background-position:-1008px -24px; }
+.category.pdf:before, .category.html:before, .category.word:before, .category.image:before, .category.excel:before, .category.default:before, .category.zip:before {
   margin-left:10px;
   margin-top:0px;
 }
@@ -402,9 +404,9 @@ a.add_role:hover:before { background-position:-1032px -24px; }
   background-repeat:no-repeat;
   background-position:0 -48px;
 }
-.modal_add_user:before { background-position:-48px -48px; }
-.modal_add_role:before { background-position:-96px -48px; }
-.modal_add_file:before { background-position:-144px -48px; }
+.large_sprite:before.modal_add_user:before { background-position:-48px -48px; }
+.large_sprite:before.modal_add_role:before { background-position:-96px -48px; }
+.large_sprite:before.modal_add_file:before { background-position:-144px -48px; }
 .grid_actions {
   margin-top:20px;
   padding-bottom:20px;
@@ -610,7 +612,6 @@ body {
 .pkp_linkActions a.remove_item { background-image:url(../lib/pkp/templates/images/structure/lb_delete.png); }
 .pkp_linkActions a.promote { background-image:url(../lib/pkp/templates/images/structure/grid_promote.png); }
 .pkp_linkActions a.enable { background-image:url(../lib/pkp/templates/images/structure/grid_promote.png); }
-.pkp_linkActions a.disable { background-image:url(../lib/pkp/templates/images/structure/grid_delete.png); }
 @import url("lib/pkp/styles/form.less");
 table.pkp_listing td { padding:0.25em 1.5em 0.25em 0.5em; }
 table.pkp_listing tr.heading td, table.pkp_listing td.heading {
