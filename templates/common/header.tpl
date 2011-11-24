@@ -76,6 +76,9 @@
 
 	<!-- Constants for JavaScript -->
 	{include file="common/jsConstants.tpl"}
+	
+	<!-- Default global locale keys for JavaScript -->
+	{include file="common/jsLocaleKeys.tpl" }
 
 	<!-- Compiled scripts -->
 	{if $useMinifiedJavaScript}
