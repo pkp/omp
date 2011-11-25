@@ -94,7 +94,7 @@ class AdminLanguagesHandler extends AdminHandler {
 		$this->_removeLocalesFromPresses($request);
 
 		$notificationManager = new NotificationManager();
-		$user =$ $request->getUser();
+		$user =& $request->getUser();
 		$notificationManager->createTrivialNotification($user->getId());
 
 		$request->redirect(null, null, 'index');
