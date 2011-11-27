@@ -139,6 +139,7 @@ class StageAssignmentDAO extends DAO {
 		$stageAssignment->setUserId($row['user_id']);
 		$stageAssignment->setUserGroupId($row['user_group_id']);
 		$stageAssignment->setDateAssigned($row['date_assigned']);
+		$stageAssignment->setStageId($row['stage_id']);
 
 		return $stageAssignment;
 	}
@@ -233,8 +234,8 @@ class StageAssignmentDAO extends DAO {
 		}
 
 		$result =& $this->retrieve(
-			'SELECT sa.* FROM stage_assignments sa ' .
-			(isset($stageId)? 'JOIN user_group_stage ugs ON sa.user_group_id = ugs.user_group_id ':'') .
+			'SELECT ugs.stage_id AS stage_id, sa.* FROM stage_assignments sa
+			JOIN user_group_stage ugs ON sa.user_group_id = ugs.user_group_id ' .
 			(isset($roleId)?' LEFT JOIN user_groups ug ON sa.user_group_id = ug.user_group_id ':'') .
 			'WHERE ' . (implode(' AND ', $conditions)),
 			$params
