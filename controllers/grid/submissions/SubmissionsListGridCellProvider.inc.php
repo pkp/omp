@@ -15,14 +15,37 @@
 import('lib.pkp.classes.controllers.grid.DataObjectGridCellProvider');
 
 class SubmissionsListGridCellProvider extends DataObjectGridCellProvider {
+
+	/** @var $authorizedRoles Array */
+	var $_authorizedRoles;
+
 	/**
 	 * Constructor
 	 */
-	function SubmissionsListGridCellProvider() {
+	function SubmissionsListGridCellProvider($authorizedRoles = null) {
+		if ($authorizedRoles) {
+			$this->_authorizedRoles = $authorizedRoles;
+		}
+
 		parent::DataObjectGridCellProvider();
 	}
 
 
+	//
+	// Getters and setters.
+	//
+	/**
+	 * Get the user authorized roles.
+	 * @return array
+	 */
+	function getAuthorizedRoles() {
+		return $this->_authorizedRoles;
+	}
+
+
+	//
+	// Public functions.
+	//
 	/**
 	 * Gathers the state of a given cell given a $row/$column combination
 	 * @param $row GridRow
@@ -74,31 +97,39 @@ class SubmissionsListGridCellProvider extends DataObjectGridCellProvider {
 				reset($stageAssignments);
 				unset($stageAssignment);
 				$stageId = $monograph->getStageId();
-
-				// Get the closest workflow stage that user has an assignment.
-				$workflowStagesMap = $userGroupDao->getWorkflowStageKeysAndPaths();
-				$workingStageId = $stageId;
 				$workflowStagePath = null;
-				$reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO');
+				$workflowStagesMap = $userGroupDao->getWorkflowStageKeysAndPaths();
 
-				while ($workingStageId) {
-					foreach ($stageAssignments as $stageAssignment) {
-						if ($stageAssignment->getStageId() == $workingStageId) {
-							// Make sure that, if in review stage, we have at least one
-							// initiated review round.
-							if ($workingStageId == WORKFLOW_STAGE_ID_INTERNAL_REVIEW ||
-							$workingStageId == WORKFLOW_STAGE_ID_EXTERNAL_REVIEW) {
-								$reviewRoundsFactory =& $reviewRoundDao->getByMonographId($monograph->getId(), $workingStageId);
-								if ($reviewRoundsFactory->wasEmpty()) {
-									continue;
+				// FIXME: Duplicating code from workflow stage authorization policy. See #6841
+				// Press managers can access all stages.
+				if (in_array(ROLE_ID_PRESS_MANAGER, $this->getAuthorizedRoles())) {
+					$workflowStagePath = $workflowStagesMap[$stageId]['path'];
+				}
+
+				// Other roles need to have an stage assignment Get the closest workflow stage that user has an assignment.
+				if (is_null($workflowStagePath)) {
+					$workingStageId = $stageId;
+					$reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO');
+
+					while ($workingStageId) {
+						foreach ($stageAssignments as $stageAssignment) {
+							if ($stageAssignment->getStageId() == $workingStageId) {
+								// Make sure that, if in review stage, we have at least one
+								// initiated review round.
+								if ($workingStageId == WORKFLOW_STAGE_ID_INTERNAL_REVIEW ||
+								$workingStageId == WORKFLOW_STAGE_ID_EXTERNAL_REVIEW) {
+									$reviewRoundsFactory =& $reviewRoundDao->getByMonographId($monograph->getId(), $workingStageId);
+									if ($reviewRoundsFactory->wasEmpty()) {
+										continue;
+									}
 								}
+								$workflowStagePath = $workflowStagesMap[$workingStageId]['path'];
+								break 2;
 							}
-							$workflowStagePath = $workflowStagesMap[$workingStageId]['path'];
-							break 2;
 						}
+						$workingStageId--;
+						unset($stageAssignment);
 					}
-					$workingStageId--;
-					unset($stageAssignment);
 				}
 
 				if (is_null($workflowStagePath)) {
