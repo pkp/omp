@@ -93,14 +93,6 @@ class PublishedMonographDAO extends MonographDAO {
 			$windowSeconds = 60 * 60 * 24 * 7 * 2;
 		}
 
-		$params = array(
-			'title', $primaryLocale, // Series title
-			'title', $locale, // Series title
-			'abbrev', $primaryLocale, // Series abbreviation
-			'abbrev', $locale, // Series abbreviation
-			ASSOC_TYPE_NEW_RELEASE,
-			(int) $pressId
-		);
 
 		$result =& $this->retrieveRange(
 			sprintf(
@@ -121,7 +113,55 @@ class PublishedMonographDAO extends MonographDAO {
 				ORDER BY pm.date_published',
 				$this->datetimeToDB(time() - $windowSeconds)
 			),
-			$params,
+			array(
+				'title', $primaryLocale, // Series title
+				'title', $locale, // Series title
+				'abbrev', $primaryLocale, // Series abbreviation
+				'abbrev', $locale, // Series abbreviation
+				ASSOC_TYPE_NEW_RELEASE,
+				(int) $pressId
+			),
+			$rangeInfo
+		);
+
+		$returner = new DAOResultFactory($result, $this, '_fromRow');
+		return $returner;
+	}
+
+	/**
+	 * Retrieve featured monographs for the press homepage.
+	 * @param $pressId int
+	 * @param $rangeInfo object optional
+	 * @return DAOResultFactory
+	 */
+	function &getPressFeatures($pressId, $rangeInfo = null) {
+		$primaryLocale = AppLocale::getPrimaryLocale();
+		$locale = AppLocale::getLocale();
+
+
+		$result =& $this->retrieveRange(
+			'SELECT	pm.*,
+				m.*,
+				COALESCE(stl.setting_value, stpl.setting_value) AS series_title,
+				COALESCE(sal.setting_value, sapl.setting_value) AS series_abbrev
+			FROM	published_monographs pm
+				JOIN monographs m ON pm.monograph_id = m.monograph_id
+				LEFT JOIN series s ON s.series_id = m.series_id
+				LEFT JOIN series_settings stpl ON (s.series_id = stpl.series_id AND stpl.setting_name = ? AND stpl.locale = ?)
+				LEFT JOIN series_settings stl ON (s.series_id = stl.series_id AND stl.setting_name = ? AND stl.locale = ?)
+				LEFT JOIN series_settings sapl ON (s.series_id = sapl.series_id AND sapl.setting_name = ? AND sapl.locale = ?)
+				LEFT JOIN series_settings sal ON (s.series_id = sal.series_id AND sal.setting_name = ? AND sal.locale = ?)
+				JOIN features f ON (f.monograph_id = m.monograph_id AND f.assoc_type = ? AND f.assoc_id = m.press_id)
+			WHERE	m.press_id = ?
+			ORDER BY pm.date_published',
+			array(
+				'title', $primaryLocale, // Series title
+				'title', $locale, // Series title
+				'abbrev', $primaryLocale, // Series abbreviation
+				'abbrev', $locale, // Series abbreviation
+				ASSOC_TYPE_PRESS,
+				(int) $pressId
+			),
 			$rangeInfo
 		);
 
