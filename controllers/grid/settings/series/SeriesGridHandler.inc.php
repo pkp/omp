@@ -57,6 +57,7 @@ class SeriesGridHandler extends SetupGridHandler {
 		while ($series =& $seriesIterator->next()) {
 			// Get the categories data for the row
 			$categories = $seriesDao->getCategories($series->getId(), $press->getId());
+			$categoriesString = null;
 			while ($category =& $categories->next()) {
 				if (!empty($categoriesString)) $categoriesString .= ', ';
 				$categoriesString .= $category->getLocalizedTitle();
