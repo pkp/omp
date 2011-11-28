@@ -30,7 +30,8 @@ class StageAssignmentDAO extends DAO {
 	 */
 	function getById($stageAssignmentId) {
 		$result =& $this->retrieve(
-			'SELECT * FROM stage_assignments WHERE stage_assignment_id = ?',
+			$this->getBaseQueryForAssignmentSelection()
+			. 'WHERE stage_assignment_id = ?',
 			(int) $stageAssignmentId
 		);
 		return $this->_fromRow($result->GetRowAssoc(false));
@@ -234,8 +235,7 @@ class StageAssignmentDAO extends DAO {
 		}
 
 		$result =& $this->retrieve(
-			'SELECT ugs.stage_id AS stage_id, sa.* FROM stage_assignments sa
-			JOIN user_group_stage ugs ON sa.user_group_id = ugs.user_group_id ' .
+			$this->getBaseQueryForAssignmentSelection() .
 			(isset($roleId)?' LEFT JOIN user_groups ug ON sa.user_group_id = ug.user_group_id ':'') .
 			'WHERE ' . (implode(' AND ', $conditions)),
 			$params
@@ -254,6 +254,15 @@ class StageAssignmentDAO extends DAO {
 			$returner = new DAOResultFactory($result, $this, '_fromRow');
 		}
 		return $returner;
+	}
+
+	/**
+	 * Base query to select an stage assignment.
+	 * @return string
+	 */
+	function getBaseQueryForAssignmentSelection() {
+		return 'SELECT ugs.stage_id AS stage_id, sa.* FROM stage_assignments sa
+			JOIN user_group_stage ugs ON sa.user_group_id = ugs.user_group_id ';
 	}
 }
 
