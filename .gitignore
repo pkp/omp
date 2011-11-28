@@ -3,6 +3,7 @@ config.inc.php
 build
 temp
 /files
+.project
 .project/
 .buildpath
 .settings/
