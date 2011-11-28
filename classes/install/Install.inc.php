@@ -100,7 +100,7 @@ class Install extends PKPInstall {
 		$userGroupDao =& DAORegistry::getDao('UserGroupDAO', $this->dbconn);
 		$adminUserGroup = new UserGroup();
 		$adminUserGroup->setRoleId(ROLE_ID_SITE_ADMIN);
-		$adminUserGroup->setContextId(0);
+		$adminUserGroup->setContextId(CONTEXT_ID_NONE);
 		$adminUserGroup->setPath(ROLE_PATH_SITE_ADMIN);
 		$adminUserGroup->setDefault(true);
 		foreach ($this->installedLocales as $locale) {
