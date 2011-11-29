@@ -303,7 +303,7 @@ class SeriesEditorSubmissionDAO extends MonographDAO {
 			FROM	review_assignments
 			WHERE	review_round_id = ? AND
 				reviewer_id = ? AND
-				cancelled = 0', 
+				cancelled = 0',
 			array((int) $reviewRoundId, (int) $reviewerId)
 		);
 		$returner = isset($result->fields[0]) && $result->fields[0] == 1 ? true : false;
@@ -380,11 +380,12 @@ class SeriesEditorSubmissionDAO extends MonographDAO {
 			FROM	users u
 				JOIN user_user_groups uug ON (uug.user_id = u.user_id)
 				JOIN user_groups ug ON (ug.user_group_id = uug.user_group_id AND ug.context_id = ? AND ug.role_id = ?)
-				JOIN review_assignments r ON (r.submission_id = ? AND r.reviewer_id = u.user_id' .
+				LEFT JOIN review_assignments r ON (r.reviewer_id = u.user_id AND r.submission_id = ?' .
 					($stageId ? ' AND r.stage_id = ?' : '') .
 					($round ? ' AND r.round = ?' : '') .
 				')' .
-				(!empty($name)?' WHERE (first_name LIKE ? OR last_name LIKE ? OR username LIKE ? OR email LIKE ?)':'') .
+				' WHERE r.submission_id IS NULL' .
+				(!empty($name)?' AND (first_name LIKE ? OR last_name LIKE ? OR username LIKE ? OR email LIKE ?)':'') .
 			' ORDER BY last_name, first_name',
 			$params
 		);
