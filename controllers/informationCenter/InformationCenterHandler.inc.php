@@ -42,8 +42,6 @@ class InformationCenterHandler extends Handler {
 				'deleteNote' // Notes tab
 			))
 		);
-
-		AppLocale::requireComponents(array(LOCALE_COMPONENT_OMP_SUBMISSION));
 	}
 
 
@@ -201,6 +199,8 @@ class InformationCenterHandler extends Handler {
 	}
 
 	function setupTemplate(&$request) {
+		AppLocale::requireComponents(array(LOCALE_COMPONENT_OMP_SUBMISSION));
+
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('linkParams', $this->_getLinkParams());
 
