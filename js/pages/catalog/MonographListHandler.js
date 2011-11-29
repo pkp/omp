@@ -146,7 +146,7 @@
 		// Find the monograph list
 		var $monographList = $htmlElement.find('#monographListContainer ul');
 
-		// Find the 
+		// Find the organize links
 		var $organizeLinks = $monographList.find('.pkp_catalog_organizeTools');
 
 		if (this.inOrganizeMode_) {
