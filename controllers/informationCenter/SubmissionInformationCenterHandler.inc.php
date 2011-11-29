@@ -51,7 +51,7 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 
 		import('controllers.modals.submissionMetadata.form.SubmissionMetadataViewForm');
 		$submissionMetadataViewForm = new SubmissionMetadataViewForm($this->_monograph->getId());
-		$submissionMetadataViewForm->initData();
+		$submissionMetadataViewForm->initData($args, $request);
 
 		$json = new JSONMessage(true, $submissionMetadataViewForm->fetch($request));
 		return $json->getString();
