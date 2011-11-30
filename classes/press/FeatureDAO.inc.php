@@ -55,7 +55,7 @@ class FeatureDAO extends DAO {
 	function insertFeature($monographId, $assocType, $assocId, $seq) {
 		$this->update(
 			'INSERT INTO features
-				(monograph_id, $assocType, $assocId, $seq)
+				(monograph_id, assoc_type, assoc_id, seq)
 				VALUES
 				(?, ?, ?, ?)',
 			array(

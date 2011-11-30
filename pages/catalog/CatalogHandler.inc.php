@@ -90,10 +90,14 @@ class CatalogHandler extends Handler {
 	 * @param $request PKPRequest
 	 */
 	function features($args, &$request) {
-		$this->_setupMonographsTemplate(true, 'features');
+		// Set up the monograph list template
+		$press =& $request->getPress();
+		$this->_setupMonographsTemplate(
+			true, 'features',
+			ASSOC_TYPE_PRESS, $press->getId()
+		);
 
 		$templateMgr =& TemplateManager::getManager();
-		$press =& $request->getPress();
 
 		// Fetch the monographs to display
 		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
@@ -110,10 +114,14 @@ class CatalogHandler extends Handler {
 	 * @param $request PKPRequest
 	 */
 	function newReleases($args, &$request) {
-		$this->_setupMonographsTemplate(true, 'newReleases');
+		// Set up the monograph list template
+		$press =& $request->getPress();
+		$this->_setupMonographsTemplate(
+			true, 'newReleases',
+			ASSOC_TYPE_NEW_RELEASE, $press->getId()
+		);
 
 		$templateMgr =& TemplateManager::getManager();
-		$press =& $request->getPress();
 
 		// Fetch the monographs to display
 		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
@@ -170,13 +178,18 @@ class CatalogHandler extends Handler {
 	 */
 	function category($args, &$request) {
 		$templateMgr =& TemplateManager::getManager();
-		$this->_setupMonographsTemplate(true, 'category');
 		$press =& $request->getPress();
 
 		// Get the category
 		$categoryDao =& DAORegistry::getDAO('CategoryDAO');
 		$categoryPath = array_shift($args);
 		$category =& $categoryDao->getByPath($categoryPath, $press->getId());
+
+		// Set up the monograph list template
+		$this->_setupMonographsTemplate(
+			true, 'category',
+			ASSOC_TYPE_CATEGORY, $category->getId()
+		);
 
 		// Fetch the monographs to display
 		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
@@ -201,7 +214,6 @@ class CatalogHandler extends Handler {
 	 */
 	function series($args, &$request) {
 		$templateMgr =& TemplateManager::getManager();
-		$this->_setupMonographsTemplate(true, 'series');
 		$press =& $request->getPress();
 
 		// Get the series
@@ -209,15 +221,15 @@ class CatalogHandler extends Handler {
 		$seriesPath = array_shift($args);
 		$series =& $seriesDao->getByPath($seriesPath, $press->getId());
 
+		// Set up the monograph list template
+		$this->_setupMonographsTemplate(true, 'series',
+			ASSOC_TYPE_SERIES, $series->getId()
+		);
+
 		// Fetch the monographs to display
 		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
 		$publishedMonographs =& $publishedMonographDao->getBySeriesId($series->getId(), $press->getId());
 		$templateMgr->assign('publishedMonographs', $publishedMonographs);
-
-		// Fetch the current features
-		$featureDao =& DAORegistry::getDAO('FeatureDAO');
-		$features = $featureDao->getMonographIdsByAssoc(ASSOC_TYPE_SERIES, $series->getId());
-		$templateMgr->assign('features', $features);
 
 		// Return the monograph list as a JSON message
 		$json = new JSONMessage(true, $templateMgr->fetch('catalog/monographs.tpl'));
@@ -251,9 +263,13 @@ class CatalogHandler extends Handler {
 	/**
 	 * Set up template including link actions for the catalog view
 	 * @param $includeOrganizeAction boolean
-	 * @param $listName string
+	 * @param $listName string Unique identifier of monograph list (for
+	 *  disambiguation of HTML element IDs)
+	 * @param $assocType Association type of features to fetch
+	 *  (ASSOC_TYPE_...)
+	 * @param $assocId Association ID of features to fetch
 	 */
-	function _setupMonographsTemplate($includeOrganizeAction, $listName) {
+	function _setupMonographsTemplate($includeOrganizeAction, $listName, $assocType, $assocId) {
 		// Loadubmission locale content for monograph listing
 		AppLocale::requireComponents(array(LOCALE_COMPONENT_OMP_SUBMISSION));
 
@@ -265,6 +281,11 @@ class CatalogHandler extends Handler {
 
 		// Add the list name, for ID differentiation
 		$templateMgr->assign('listName', $listName);
+
+		// Expose the featured monograph IDs
+		$featureDao =& DAORegistry::getDAO('FeatureDAO');
+		$featuredMonographIds = $featureDao->getMonographIdsByAssoc($assocType, $assocId);
+		$templateMgr->assign('featuredMonographIds', $featuredMonographIds);
 	}
 }
 
