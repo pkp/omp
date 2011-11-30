@@ -29,11 +29,11 @@ class CatalogHandler extends Handler {
 		$this->addRoleAssignment(
 			array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
 			array(
-				'index',
-				'features', 'newReleases',
-				'getCategories', 'category',
-				'getSeries', 'series',
-				'search'
+				'index', // Container
+				'features', 'newReleases', 'search',
+				'getCategories', 'category', // By category
+				'getSeries', 'series', // By series
+				'setFeatured'
 			)
 		);
 	}
@@ -257,6 +257,68 @@ class CatalogHandler extends Handler {
 		$templateMgr->display('catalog/monographs.tpl');
 	}
 
+	/**
+	 * Set featured status for a submission.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return string
+	 */
+	function setFeatured($args, &$request) {
+		$press =& $request->getPress();
+
+		// Identification of item to set featured state on
+		$monographId = (int) array_shift($args);
+		$assocType = (int) array_shift($args);
+		$assocId = (int) array_shift($args);
+
+		// Description of new state
+		$newState = (int) array_shift($args);
+		$newSeq = (int) array_shift($args);
+
+		// Validate the monograph ID
+		// FIXME: Can this be done with the auth framework without
+		// needing the policy throughout?
+		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
+		$publishedMonograph =& $publishedMonographDao->getById($monographId, $press->getId());
+		if (!$publishedMonograph) fatalError('Invalid monograph!');
+
+		// Determine the assoc type and ID to be used.
+		switch ($assocType) {
+			case ASSOC_TYPE_PRESS:
+				// Force assocId to press
+				$assocId = $press->getId();
+			case ASSOC_TYPE_NEW_RELEASE:
+				// Force assocId to press
+				$assocId = $press->getId();
+			case ASSOC_TYPE_CATEGORY:
+				// Validate specified assocId
+				$categoryDao =& DAORegistry::getDAO('CategoryDAO');
+				$category =& $categoryDao->getById($assocId, $press->getId());
+				if (!$category) fatalError('Invalid category!');
+			case ASSOC_TYPE_SERIES:
+				// Validate specified assocId
+				$seriesDao =& DAORegistry::getDAO('SeriesDAO');
+				$series =& $seriesDao->getById($assocId, $press->getId());
+				if (!$series) fatalError('Invalid series!');
+				break;
+			default:
+				fatalError('Invalid feature specified.');
+		}
+
+		// Delete the old featured state
+		$featureDao =& DAORegistry::getDAO('FeatureDAO');
+		$featureDao->deleteFeature($monographId, $assocType, $assocId);
+
+		// If necessary, insert the new featured state and resequence.
+		if ($newState) {
+			$featureDao->insertFeature($monographId, $assocType, $assocId, $newSeq);
+			$featureDao->resequenceByAssoc($assocType, $assocId);
+		}
+
+		$json = new JSONMessage(true, $newState);
+		return $json->getString();
+	}
+
 	//
 	// Private functions
 	//
@@ -282,10 +344,12 @@ class CatalogHandler extends Handler {
 		// Add the list name, for ID differentiation
 		$templateMgr->assign('listName', $listName);
 
-		// Expose the featured monograph IDs
+		// Expose the featured monograph IDs and associated params
 		$featureDao =& DAORegistry::getDAO('FeatureDAO');
 		$featuredMonographIds = $featureDao->getMonographIdsByAssoc($assocType, $assocId);
 		$templateMgr->assign('featuredMonographIds', $featuredMonographIds);
+		$templateMgr->assign('featureAssocType', $assocType);
+		$templateMgr->assign('featureAssocId', $assocId);
 	}
 }
 

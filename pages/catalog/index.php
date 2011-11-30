@@ -24,6 +24,7 @@ switch ($op) {
 	case 'getSeries':
 	case 'series':
 	case 'search':
+	case 'setFeatured':
 		define('HANDLER_CLASS', 'CatalogHandler');
 		import('pages.catalog.CatalogHandler');
 		break;
