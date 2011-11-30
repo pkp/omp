@@ -10,13 +10,13 @@
 <script type="text/javascript">
 	// Initialize JS handler.
 	$(function() {ldelim}
-		$('#monographsContainer').pkpHandler(
+		$('#monographsContainer-{$listName|escape:"javascript"}').pkpHandler(
 			'$.pkp.pages.catalog.MonographListHandler'
 		);
 	{rdelim});
 </script>
 
-<div id="monographsContainer">
+<div id="monographsContainer-{$listName|escape}">
 	<div class="pkp_helpers_align_right">
 		<ul class="submission_actions pkp_helpers_flatlist pkp_linkActions">
 			{if $includeOrganizeAction}<li>{null_link_action id="organize" key="common.organize" image="organize"}</li>{/if}

@@ -90,7 +90,7 @@ class CatalogHandler extends Handler {
 	 * @param $request PKPRequest
 	 */
 	function features($args, &$request) {
-		$this->_setupMonographsTemplate(true);
+		$this->_setupMonographsTemplate(true, 'features');
 
 		$templateMgr =& TemplateManager::getManager();
 		$press =& $request->getPress();
@@ -110,7 +110,7 @@ class CatalogHandler extends Handler {
 	 * @param $request PKPRequest
 	 */
 	function newReleases($args, &$request) {
-		$this->_setupMonographsTemplate(true);
+		$this->_setupMonographsTemplate(true, 'newReleases');
 
 		$templateMgr =& TemplateManager::getManager();
 		$press =& $request->getPress();
@@ -170,7 +170,7 @@ class CatalogHandler extends Handler {
 	 */
 	function category($args, &$request) {
 		$templateMgr =& TemplateManager::getManager();
-		$this->_setupMonographsTemplate(true);
+		$this->_setupMonographsTemplate(true, 'category');
 		$press =& $request->getPress();
 
 		// Get the category
@@ -201,7 +201,7 @@ class CatalogHandler extends Handler {
 	 */
 	function series($args, &$request) {
 		$templateMgr =& TemplateManager::getManager();
-		$this->_setupMonographsTemplate(true);
+		$this->_setupMonographsTemplate(true, 'series');
 		$press =& $request->getPress();
 
 		// Get the series
@@ -231,7 +231,7 @@ class CatalogHandler extends Handler {
 	 */
 	function search($args, &$request) {
 		$searchText = array_shift($args);
-		$this->_setupMonographsTemplate(false);
+		$this->_setupMonographsTemplate(false, 'search');
 
 		$templateMgr =& TemplateManager::getManager();
 		$press =& $request->getPress();
@@ -251,8 +251,9 @@ class CatalogHandler extends Handler {
 	/**
 	 * Set up template including link actions for the catalog view
 	 * @param $includeOrganizeAction boolean
+	 * @param $listName string
 	 */
-	function _setupMonographsTemplate($includeOrganizeAction) {
+	function _setupMonographsTemplate($includeOrganizeAction, $listName) {
 		// Loadubmission locale content for monograph listing
 		AppLocale::requireComponents(array(LOCALE_COMPONENT_OMP_SUBMISSION));
 
@@ -261,6 +262,9 @@ class CatalogHandler extends Handler {
 
 		// Organize action (if enabled)
 		$templateMgr->assign('includeOrganizeAction', $includeOrganizeAction);
+
+		// Add the list name, for ID differentiation
+		$templateMgr->assign('listName', $listName);
 	}
 }
 
