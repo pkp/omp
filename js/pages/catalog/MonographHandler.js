@@ -28,12 +28,17 @@
 		// Initialize and save parameters.
 		this.parent($monographsContainer, options);
 		this.monographId_ = options.monographId;
+		this.seq_ = options.seq;
 		this.setFeaturedUrlTemplate_ = options.setFeaturedUrlTemplate;
 		this.isFeatured_ = options.isFeatured;
+		this.datePublished_ = options.datePublished;
 
 		// Attach the view type handlers, if links exist.
 		$monographsContainer.find('.star, .star_highlighted').click(
 				this.callbackWrapper(this.featureButtonHandler_));
+
+		// Expose the monographListChanged event to the container
+		this.publishEvent('monographListChanged');
 	};
 	$.pkp.classes.Helper.inherits(
 			$.pkp.pages.catalog.MonographHandler,
@@ -43,6 +48,22 @@
 	//
 	// Private Properties
 	//
+	/**
+	 * The sequence (sort order) of this monograph entry.
+	 * @private
+	 * @type {int?}
+	 */
+	$.pkp.pages.catalog.MonographHandler.prototype.seq_ = null;
+
+
+	/**
+	 * The publication date of this monograph entry.
+	 * @private
+	 * @type {date?}
+	 */
+	$.pkp.pages.catalog.MonographHandler.prototype.datePublished_ = null;
+
+
 	/**
 	 * The ID of this monograph entry.
 	 * @private
@@ -69,6 +90,42 @@
 
 
 	//
+	// Public Methods
+	//
+	/**
+	 * Get the date published for this monograph.
+	 * @return {Date} Date published.
+	 */
+	$.pkp.pages.catalog.MonographHandler.prototype.getDatePublished =
+			function() {
+
+		return this.datePublished_;
+	};
+
+
+	/**
+	 * Get the featured flag for this monograph.
+	 * @return {boolean?} Featured flag.
+	 */
+	$.pkp.pages.catalog.MonographHandler.prototype.getFeatured =
+			function() {
+
+		return this.isFeatured_;
+	};
+
+
+	/**
+	 * Get the sort sequence for this monograph.
+	 * @return {integer?} Sequence.
+	 */
+	$.pkp.pages.catalog.MonographHandler.prototype.getSeq =
+			function() {
+
+		return this.seq_;
+	};
+
+
+	//
 	// Private Methods
 	//
 	/**
@@ -79,8 +136,9 @@
 	$.pkp.pages.catalog.MonographHandler.prototype.getSetFeaturedUrl_ =
 			function() {
 
-		return this.setFeaturedUrlTemplate_.replace(
-				'FEATURED_DUMMY', this.isFeatured_ ? 0 : 1);
+		return this.setFeaturedUrlTemplate_
+				.replace('FEATURED_DUMMY', this.isFeatured_ ? 0 : 1)
+				.replace('SEQ_DUMMY', this.isFeatured_?this.seq_:$.pkp.cons.REALLY_BIG_NUMBER);
 	};
 
 
@@ -115,21 +173,28 @@
 
 		jsonData = this.handleJson(jsonData);
 
-		// Record the new state of the isFeatured flag
-		this.isFeatured_ = jsonData.content ? 1 : 0;
+		// Record the new state of the isFeatured flag and sequence
+		this.isFeatured_ = jsonData.content !== null ? 1 : 0;
+		this.seq_ = jsonData.content;
 
 		// Update the UI
+		var $htmlElement = this.getHtmlElement();
 		if (this.isFeatured_) {
 			// Now featured; previously not.
-			this.getHtmlElement().find('.star')
+			$htmlElement.removeClass('not_sortable');
+			$htmlElement.find('.star')
 				.removeClass('star')
 				.addClass('star_highlighted');
 		} else {
 			// No longer featured.
-			this.getHtmlElement().find('.star_highlighted')
+			$htmlElement.addClass('not_sortable');
+			$htmlElement.find('.star_highlighted')
 				.addClass('star')
 				.removeClass('star_highlighted');
 		}
+
+		// Let the container know to reset the sortable list
+		this.trigger('monographListChanged');
 	};
 /** @param {jQuery} $ jQuery closure. */
 })(jQuery);

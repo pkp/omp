@@ -122,7 +122,7 @@ $.pkp.pages.catalog = $.pkp.pages.catalog || {};
 	 *
 	 * @param {$.pkp.controllers.form.AjaxFormHandler} callingForm The form
 	 *  that triggered the event.
-	 * @param {Event} event The upload event.
+	 * @param {Event} event The event.
 	 * @param {String} searchUrl The URL that will return search results.
 	 */
 	$.pkp.pages.catalog.CatalogHeaderHandler.
@@ -154,7 +154,7 @@ $.pkp.pages.catalog = $.pkp.pages.catalog || {};
 	 *
 	 * @param {$.pkp.controllers.form.FormHandler} callingForm The form
 	 *  that triggered the event.
-	 * @param {Event} event The upload event.
+	 * @param {Event} event The event.
 	 * @param {String?} seriesPath The selected series path.
 	 */
 	$.pkp.pages.catalog.CatalogHeaderHandler.
@@ -179,7 +179,7 @@ $.pkp.pages.catalog = $.pkp.pages.catalog || {};
 	 *
 	 * @param {$.pkp.controllers.form.FormHandler} callingForm The form
 	 *  that triggered the event.
-	 * @param {Event} event The upload event.
+	 * @param {Event} event The event.
 	 * @param {String?} categoryPath The selected category path.
 	 */
 	$.pkp.pages.catalog.CatalogHeaderHandler.

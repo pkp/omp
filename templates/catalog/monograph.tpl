@@ -23,8 +23,10 @@
 			'$.pkp.pages.catalog.MonographHandler',
 			{ldelim}
 				monographId: {$monograph->getId()},
-				setFeaturedUrlTemplate: '{url|escape:"javascript" op="setFeatured" path=$monograph->getId()|to_array:$featureAssocType:$featureAssocId:"FEATURED_DUMMY" escape=false}',
-				isFeatured: {$isFeatured}
+				setFeaturedUrlTemplate: '{url|escape:"javascript" op="setFeatured" path=$monograph->getId()|to_array:$featureAssocType:$featureAssocId:"FEATURED_DUMMY":"SEQ_DUMMY" escape=false}',
+				isFeatured: {$isFeatured},
+				seq: {$monograph->getSeq()},
+				datePublished: new Date('{$monograph->getDatePublished()|date_format:$datetimeFormatShort|escape:"javascript"}')
 			{rdelim}
 		);
 	{rdelim});

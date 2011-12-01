@@ -315,10 +315,12 @@ class CatalogHandler extends Handler {
 		// If necessary, insert the new featured state and resequence.
 		if ($newState) {
 			$featureDao->insertFeature($monographId, $assocType, $assocId, $newSeq);
-			$featureDao->resequenceByAssoc($assocType, $assocId);
+			$newSeq = $featureDao->resequenceByAssoc($assocType, $assocId, $monographId);
+		} else {
+			$newSeq = null;
 		}
 
-		$json = new JSONMessage(true, $newState);
+		$json = new JSONMessage(true, $newSeq);
 		return $json->getString();
 	}
 

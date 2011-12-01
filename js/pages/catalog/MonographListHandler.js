@@ -27,10 +27,6 @@
 
 		this.parent($monographsContainer, options);
 
-		// Initialize sortable, but disabled until "organize" selected.
-		$monographsContainer.find('#monographListContainer ul')
-				.sortable({disabled: true, items: 'li:not(.not_sortable)'});
-
 		// Attach the view type handlers, if links exist
 		$monographsContainer.find('.grid_view').click(
 				this.callbackWrapper(this.useGridView));
@@ -41,8 +37,15 @@
 		$monographsContainer.find('.organize').click(
 				this.callbackWrapper(this.organizeButtonHandler_));
 
+		// React to "monograph list changed" events.
+		this.bind('monographListChanged',
+				this.monographListChangedHandler_);
+
 		// Start in grid view
 		this.useGridView();
+
+		// Set up the sortables.
+		this.trigger('monographListChanged');
 	};
 	$.pkp.classes.Helper.inherits(
 			$.pkp.pages.catalog.MonographListHandler,
@@ -154,18 +157,69 @@
 			$gridViewButton.addClass('ui-state-disabled');
 			$listViewButton.addClass('ui-state-disabled');
 			$organizeButton.addClass('ui-state-active');
-			$monographList.sortable('option', 'disabled', false);
 			$organizeLinks.removeClass('pkp_helpers_invisible');
 		} else {
 			// We've just left "Organize" mode.
 			$organizeButton.removeClass('ui-state-active');
 			$listViewButton.removeClass('ui-state-disabled');
 			$gridViewButton.removeClass('ui-state-disabled');
-			$monographList.sortable('option', 'disabled', true);
 			$organizeLinks.addClass('pkp_helpers_invisible');
 		}
 
+		// Update the enabled/disabled state of the sortable list
+		this.trigger('monographListChanged');
+
 		// Stop further event processing
+		return false;
+	};
+
+
+	/**
+	 * Handle the "monograph list changed" event to reset the sortable
+	 * JQueryUI initialization.
+	 *
+	 * @private
+	 *
+	 * @param {$.pkp.controllers.handler.Handler} callingHandler The handler
+	 *  that triggered the event.
+	 * @param {Event} event The event.
+	 * @return {boolean} The event handling chain status.
+	 */
+	$.pkp.pages.catalog.MonographListHandler.
+			prototype.monographListChangedHandler_ =
+			function(callingHandler, event) {
+
+		var $listContainer = this.getHtmlElement()
+				.find('#monographListContainer ul');
+
+		// In case the list has changed sort order, re-sort it.
+		$listContainer.find('li').sortElements(function(aNode, bNode) {
+				var a = aNode.pkpHandlerInstance;
+				var b = bNode.pkpHandlerInstance;
+
+				// One is featured and the other is not
+				if (a.getFeatured() && !b.getFeatured()) {
+					return -1;
+				}
+				if (b.getFeatured() && !a.getFeatured()) {
+					return 1;
+				}
+
+				// Both are featured: use sequence.
+				if (a.getFeatured() && b.getFeatured()) {
+					return b.getSeq() - a.getSeq();
+				}
+
+				// Neither are featured: use publication date.
+				return b.getDatePublished() - a.getDatePublished();
+				});
+
+		// Initialize sortable, but disabled unless "organize" selected.
+		$listContainer.sortable({
+					disabled: !this.inOrganizeMode_,
+					items: 'li:not(.not_sortable)'});
+
+		// No further processing
 		return false;
 	};
 /** @param {jQuery} $ jQuery closure. */
