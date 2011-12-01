@@ -30,14 +30,16 @@ class SeriesDAO extends DAO {
 	 * @return Series
 	 */
 	function &getById($seriesId, $pressId = null) {
-		$sql = 'SELECT * FROM series WHERE series_id = ?';
 		$params = array((int) $seriesId);
+		if ($pressId) $params[] = (int) $pressId;
 
-		if ($pressId !== null) {
-			$sql .= ' AND press_id = ?';
-			$params[] = (int) $pressId;
-		}
-		$result =& $this->retrieve($sql, $params);
+		$result =& $this->retrieve(
+			'SELECT	*
+			FROM	series
+			WHERE	series_id = ?
+			' . ($pressId?' AND press_id = ?':''),
+			$params
+		);
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {

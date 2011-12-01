@@ -10,11 +10,22 @@
 {* Generate a unique ID for this monograph *}
 {capture assign=monographContainerId}monographContainer-{$listName}-{$monograph->getId()}{/capture}
 
+{if in_array($monograph->getId(), $featuredMonographIds)}
+	{assign var=isFeatured value=1}
+{else}
+	{assign var=isFeatured value=0}
+{/if}
+
 <script type="text/javascript">
 	// Initialize JS handler.
 	$(function() {ldelim}
 		$('#{$monographContainerId|escape:"javascript"}').pkpHandler(
-			'$.pkp.pages.catalog.MonographHandler'
+			'$.pkp.pages.catalog.MonographHandler',
+			{ldelim}
+				monographId: {$monograph->getId()},
+				setFeaturedUrlTemplate: '{url|escape:"javascript" op="setFeatured" path=$monograph->getId()|to_array:$featureAssocType:$featureAssocId:"FEATURED_DUMMY" escape=false}',
+				isFeatured: {$isFeatured}
+			{rdelim}
 		);
 	{rdelim});
 </script>
@@ -40,7 +51,7 @@
 		{$monograph->getLocalizedAbstract()|strip_unsafe_html|truncate:80}
 	</div>
 	<div class="pkp_catalog_organizeTools pkp_helpers_invisible pkp_linkActions">
-		{if in_array($monograph->getId(), $featuredMonographIds)}
+		{if $isFeatured}
 			{assign var="featureImage" value="star_highlighted"}
 		{else}
 			{assign var="featureImage" value="star"}

@@ -287,14 +287,17 @@ class CatalogHandler extends Handler {
 			case ASSOC_TYPE_PRESS:
 				// Force assocId to press
 				$assocId = $press->getId();
+				break;
 			case ASSOC_TYPE_NEW_RELEASE:
 				// Force assocId to press
 				$assocId = $press->getId();
+				break;
 			case ASSOC_TYPE_CATEGORY:
 				// Validate specified assocId
 				$categoryDao =& DAORegistry::getDAO('CategoryDAO');
 				$category =& $categoryDao->getById($assocId, $press->getId());
 				if (!$category) fatalError('Invalid category!');
+				break;
 			case ASSOC_TYPE_SERIES:
 				// Validate specified assocId
 				$seriesDao =& DAORegistry::getDAO('SeriesDAO');

@@ -32,7 +32,6 @@ class CategoryDAO extends DAO {
 	 * @return Category
 	 */
 	function &getById($categoryId, $pressId = null, $parentId = null) {
-		$sql = 'SELECT * FROM categories WHERE category_id = ?';
 		$params = array((int) $categoryId);
 		if ($pressId) $params[] = (int) $pressId;
 		if ($parentId) $params[] = (int) $parentId;
