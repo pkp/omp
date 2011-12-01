@@ -19,7 +19,7 @@
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="guidelinesFormNotification"}
 
 	{fbvFormArea id="focusAndScopeDescription"}
-		{fbvFormSection label="manager.setup.authorGuidelines" description="manager.setup.authorGuidelinesDescription"}
+		{fbvFormSection label="manager.setup.authorGuidelines" description="manager.setup.authorGuidelines.description"}
 			{fbvElement type="textarea" multilingual=true name="authorGuidelines" id="authorGuidelines" value=$authorGuidelines rich=true}
 		{/fbvFormSection}
 	{/fbvFormArea}

@@ -227,12 +227,12 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.appearInAboutPress">(To appear in About the Press) </message>
 	<message key="manager.setup.authorCopyrightNotice">Copyright Notice</message>
 	<message key="manager.setup.authorCopyrightNoticeAgree">Require authors to agree to Copyright Notice as part of the submission process.</message>
-	<message key="manager.setup.authorCopyrightNoticeDescription"><![CDATA[The Copyright Notice entered below will appear in About the Press and in each published item's metadata. While it is up to the press to determine the nature of its copyright agreement with authors, the Public Knowledge Project recommends the use of the <a href="http://creativecommons.org" target="_new" class="action">Creative Commons</a> license. To that end, it provides <a href="{$sampleCopyrightWordingUrl}" target="_new" class="action">sample Copyright Notice wording</a> that can be cut and pasted into the space below for presses that (a) offer open access, (b) offer delayed open access, or (c) do not offer open access.]]></message>
+	<message key="manager.setup.authorCopyrightNotice.description"><![CDATA[The Copyright Notice entered below will appear in About the Press and in each published item's metadata. While it is up to the press to determine the nature of its copyright agreement with authors, the Public Knowledge Project recommends the use of the <a href="http://creativecommons.org" target="_new" class="action">Creative Commons</a> license. To that end, it provides <a href="{$sampleCopyrightWordingUrl}" target="_new" class="action">sample Copyright Notice wording</a> that can be cut and pasted into the space below for presses that (a) offer open access, (b) offer delayed open access, or (c) do not offer open access.]]></message>
 	<message key="manager.setup.authorGuidelines">Author Guidelines</message>
-	<message key="manager.setup.authorGuidelinesDescription"><![CDATA[Set out for authors the bibliographic and formatting standards used for items submitted to the press (e.g., <em>Publication Manual of the American Psychological Association</em>, 5th edition, 2001). It is often helpful to provide examples of the common citation formats for presses and books to be used in submissions.]]></message>
+	<message key="manager.setup.authorGuidelines.description"><![CDATA[Set out for authors the bibliographic and formatting standards used for items submitted to the press (e.g., <em>Publication Manual of the American Psychological Association</em>, 5th edition, 2001). It is often helpful to provide examples of the common citation formats for presses and books to be used in submissions.]]></message>
 	<message key="manager.setup.contributor">Contributor</message>
 	<message key="manager.setup.contributors">Sources of Support</message>
-	<message key="manager.setup.contributorsDescription">Additional agencies or organizations that provide financial or in-kind support for the press will appear in About the Press and may be accompanied by a note of acknowledgement.</message>
+	<message key="manager.setup.contributors.description">Additional agencies or organizations that provide financial or in-kind support for the press will appear in About the Press and may be accompanied by a note of acknowledgement.</message>
 	<message key="manager.setup.copyediting">Copyeditors</message>
 	<message key="manager.setup.copyeditInstructions">Copyedit Instructions</message>
 	<message key="manager.setup.copyeditInstructionsDescription">The Copyedit Instructions will be made available to Copyeditors, Authors, and Section Editors in the Submission Editing stage. Below is a default set of instructions in HTML, which can be modified or replaced by the Press Manager at any point (in HTML or plain text).</message>
@@ -285,7 +285,7 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.enableUserRegistration.reader">Readers (will receive notifications and be counted as equivalent to a subscriber)</message>
 	<message key="manager.setup.enableUserRegistration.reviewer">Reviewers (available for reviewing submissions)</message>
 	<message key="manager.setup.focusAndScope">Focus and scope</message>
-	<message key="manager.setup.focusAndScopeDescription">Enter a statement below, which will appear in About the Press, that speaks to authors, readers, and librarians about the range of monographs and other items which the press will publish.</message>
+	<message key="manager.setup.focusAndScope.description">Enter a statement below, which will appear in About the Press, that speaks to authors, readers, and librarians about the range of monographs and other items which the press will publish.</message>
 	<message key="manager.setup.focusAndScopeOfPress">Focus and Scope of Press</message>
 	<message key="manager.setup.focusScope">Focus and Scope</message>
 	<message key="manager.setup.focusScopeDescription"><![CDATA[<strong>EXAMPLE HTML DATA</strong>]]></message>
@@ -325,7 +325,7 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.listsDescription">Enter the maximum number of items (for example, submissions, users, or editing assignments) that appear on each page of a list, and the number of pages links to display on each page.</message>
 	<message key="manager.setup.look"><![CDATA[Look & Feel]]></message>
 	<message key="manager.setup.look.description">Homepage header, content, press header, footer, navigation bar, and style sheet.</message>
-	<message key="manager.setup.mailingAddressDescription">The press's physical location and mailing address.</message>
+	<message key="manager.setup.mailingAddress.description">The press's physical location and mailing address.</message>
 	<message key="manager.setup.settings">Settings</message>
 	<message key="manager.setup.management.description">Access and security, scheduling, announcements, copyediting, layout, and proofreading.</message>
 	<message key="manager.setup.managementOfBasicEditorialSteps">Management of Basic Editorial Steps</message>
@@ -351,12 +351,13 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.onlineIssn">Online ISSN</message>
 	<message key="manager.setup.openAccess">The press will provide open access to its contents.</message>
 	<message key="manager.setup.openAccessPolicy">Open Access Policy</message>
-	<message key="manager.setup.openAccessPolicyDescription">If the press will provide readers with immediate free access to all published content, enter an Open Access Policy which will appear in About the Press under Policies.</message>
+	<message key="manager.setup.openAccessPolicy.description">If the press will provide readers with immediate free access to all published content, enter an Open Access Policy which will appear in About the Press under Policies.</message>
 	<message key="manager.setup.pageNumberIdentifier">Page Number Option</message>
-	<message key="manager.setup.peerReviewDescription">Outline the press's peer review policy and processes for readers and authors, including the number of reviewers typically used in reviewing a submission, the criteria by which reviewers are asked to judge submissions, typical time taken to conduct the reviews, and the principles for recruiting reviewers. This will appear in About the Press.</message>
+	<message key="manager.setup.peerReview.description">Outline the press's peer review policy and processes for readers and authors, including the number of reviewers typically used in reviewing a submission, the criteria by which reviewers are asked to judge submissions, typical time taken to conduct the reviews, and the principles for recruiting reviewers. This will appear in About the Press.</message>
 	<message key="manager.setup.policies">Policies</message>
 	<message key="manager.setup.policies.description">Focus, peer review, sections, privacy, security, and additional about items.</message>
 	<message key="manager.setup.pressDescription">Press Description</message>
+	<message key="manager.setup.pressDescription.description">A general description of the press should be included here. This description will be available on the press's homepage.</message>
 	<message key="manager.setup.pressArchiving">Press Archiving</message>
 	<message key="manager.setup.pressDescription">Press Description</message>
 	<message key="manager.setup.pressDescriptionDescription">Add a brief 20-25 word description in text/HTML which will appear just below the navigation links.</message>
@@ -385,7 +386,7 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.printIssn">Print ISSN</message>
 	<message key="manager.setup.privacyStatement">Privacy Statement</message>
 	<message key="manager.setup.privacyStatement2">Privacy statement</message>
-	<message key="manager.setup.privacyStatementDescription">This statement will appear in About the Press, as well as on the Author Submission and Notification sign-up pages. Below is a recommended privacy policy, which can be revised at any point.</message>
+	<message key="manager.setup.privacyStatement.description">This statement will appear in About the Press, as well as on the Author Submission and Notification sign-up pages. Below is a recommended privacy policy, which can be revised at any point.</message>
 	<message key="manager.setup.proofingInstructions">Proofing Instructions</message>
 	<message key="manager.setup.proofingInstructionsDescription">The Proofreading Instructions will be made available to Proofreaders, Authors, Layout Editors, and Section Editors in the Submission Editing stage. Below is a default set of instructions in HTML, which can be edited or replaced by the Press Manager at any point (in HTML or plain text).</message>
 	<message key="manager.setup.proofreading">Proofreaders</message>
@@ -402,7 +403,7 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.reviewGuidelines">Review Guidelines</message>
 	<message key="manager.setup.reviewGuidelinesDescription"><![CDATA[The Review Guidelines will provide reviewers with criteria for judging a submission's suitability for publication in the press, and can include any special instructions for preparing an effective and helpful review. In conducting the review, reviewers are presented with with two open text boxes, the first "for author and editor," and the second "for editor." Alternatively, the Press Manager can create a peer review form under Review Forms. In all cases, editors will have the option of including the reviews in corresponding with the author.]]></message>
 	<message key="manager.setup.competingInterests">Competing Interests</message>
-	<message key="manager.setup.competingInterestsDescription">Reviewers will be asked to comply with the competing interests disclosure policy you specify below.</message>
+	<message key="manager.setup.competingInterestsDescription">Reviewers will be asked to comply with the competing interests disclosure policy you specify below.</message> <!-- FIXME #6843 (JM): should this just reference reviewers? -->
 	<message key="manager.setup.reviewOptions">Review Options</message>
 	<message key="manager.setup.reviewOptions.automatedReminders">Automated email reminders (available in OMP's default Emails) can be sent to reviewers at two points (while the editor can always email the reviewer directly as well)</message>
 	<message key="manager.setup.reviewOptions.automatedRemindersDisabled"><![CDATA[<strong>Note:</strong> To activate these options, the site administrator must enable the <tt>scheduled_tasks</tt> option in the OMP configuration file. Additional server configuration may be required to support this functionality (which may not be possible on all servers), as indicated in the OMP documentation.]]></message>
@@ -435,13 +436,13 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.sectionsDefaultSectionDescription">(If sections are not added, then items are submitted to the Monographs section by default.)</message>
 	<message key="manager.setup.sectionsDescription"><![CDATA[To create or modify sections for the press (e.g., Monographs, Book Reviews, etc.), go to Section Management.<br /><br />Authors on submitting items to the press will designate...]]></message>
 	<message key="manager.setup.securitySettings">Access and Security Settings</message>
-	<message key="manager.setup.securitySettingsDescription">OMP provides a number of security-related options that can be used to restrict the press's contents, and maintain additional information about submissions for auditing purposes.</message>
+	<message key="manager.setup.securitySettings.note"><![CDATA[Other security- and access-related options can be configured from the <a href="{$accessAndSecurityUrl}" target="_new" class="action">Access and Security</a> page.]]></message>
 	<message key="manager.setup.selectEditorDescription">The press editor who will see it through the editorial process.</message>
 	<message key="manager.setup.selectSectionDescription">The press section for which the item will be considered.</message>
 	<message key="manager.setup.showGalleyLinksDescription">Always show galley links and indicate restricted access.</message>
 	<message key="manager.setup.siteAccess">Additional Site and Content Access Restrictions</message>
 	<message key="manager.setup.sponsors">Sponsoring Organizations</message>
-	<message key="manager.setup.sponsorsDescription">The name of the organizations (e.g., scholarly associations, university departments, cooperatives, etc.) sponsoring the press will appear in About the Press and may be accompanied by a note of acknowledgement.</message>
+	<message key="manager.setup.sponsors.description">The name of the organizations (e.g., scholarly associations, university departments, cooperatives, etc.) sponsoring the press will appear in About the Press and may be accompanied by a note of acknowledgement.</message>
 	<message key="manager.setup.stepsToPressSite">Five Steps to a Press Web Site</message>
 	<message key="manager.setup.subjectClassification">Subject Classification</message>
 	<message key="manager.setup.subjectClassificationExamples">(E.g., Mathematics Subject Classification; Library of Congress Classification)</message>
@@ -503,6 +504,7 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.currentRoles">Current Roles</message>
 	<message key="manager.setup.internalReviewRoles">Internal Review Roles</message>
 	<message key="manager.setup.masthead">Masthead</message>
+	<message key="manager.setup.masthead.description">The Masthead should contain a list of editors, managing directors, and other individuals associated with the press. Information entered here will appear in About the Journal.</message>
 	<message key="manager.setup.files">Files</message>
 	<message key="manager.setup.submissionLibrary">Submission Library</message>
 	<message key="manager.setup.reviewLibrary">Review Library</message>

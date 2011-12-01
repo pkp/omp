@@ -19,31 +19,35 @@
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="policiesFormNotification"}
 	{include file="controllers/tab/settings/wizardMode.tpl" wizardMode=$wizardMode}
 
+	{url|assign:"sampleCopyrightWordingUrl" page="information" op="sampleCopyrightWording"}
+	{translate|assign:"authorCopyrightNoticeDescription" key="manager.setup.authorCopyrightNotice.description" sampleCopyrightWordingUrl=$sampleCopyrightWordingUrl}
+	{* FIXME #6843 JM: The above workaround provided by Juan to place a dynamic link into a description text doesn't seem to be working *}
+
 	{fbvFormArea id="policiesFormArea"}
-		{fbvFormSection title="manager.setup.authorCopyrightNotice"}
-			{url|assign:"sampleCopyrightWordingUrl" page="information" op="sampleCopyrightWording"}
-			<p>{translate key="manager.setup.authorCopyrightNoticeDescription" sampleCopyrightWordingUrl=$sampleCopyrightWordingUrl}</p>
+		{fbvFormSection label="manager.setup.authorCopyrightNotice" description=$authorCopyrightNoticeDescription translate=false}
 			{fbvElement type="textarea" multilingual="true" name="copyrightNotice" id="copyrightNotice" value=$copyrightNotice}
 		{/fbvFormSection}
 		{fbvFormSection list=true}
 			{fbvElement type="checkbox" id="includeCreativeCommons" value="1" checked=$includeCreativeCommons label="manager.setup.includeCreativeCommons"}
 			{fbvElement type="checkbox" id="copyrightNoticeAgree" value="1" checked=$copyrightNoticeAgree label="manager.setup.authorCopyrightNoticeAgree"}
 		{/fbvFormSection}
-		{fbvFormSection title="manager.setup.privacyStatement"}
+		{fbvFormSection label="manager.setup.privacyStatement" description="manager.setup.privacyStatement.description"}
 			{fbvElement type="textarea" multilingual="true" name="privacyStatement" id="privacyStatement" value=$privacyStatement}
 		{/fbvFormSection}
 
 		<div {if $wizardMode}class="pkp_form_hidden"{/if}>
-			{fbvFormSection label="manager.setup.focusAndScopeOfPress" description="manager.setup.focusAndScopeDescription"}
+			{fbvFormSection label="manager.setup.focusAndScopeOfPress" description="manager.setup.focusAndScope.description"}
 				{fbvElement type="textarea" multilingual=true name="focusScopeDesc" id="focusScopeDesc" value=$focusScopeDesc rich=true}
 			{/fbvFormSection}
-			{fbvFormSection label="manager.setup.openAccessPolicy" description="manager.setup.openAccessPolicyDescription"}
-				{fbvElement type="textarea" multilingual="true" name="openAccessPolicy" id="openAccessPolicy" value=$openAccessPolicy label="manager.setup.securitySettingsDescription" rich=true}
+			{fbvFormSection label="manager.setup.openAccessPolicy" description="manager.setup.openAccessPolicy.description"}
+				{url|assign:"accessAndSecurityUrl" page="settings" op="access"}
+				{translate|assign:"securitySettingsNote" key="manager.setup.securitySettings.note" accessAndSecurityUrl=$accessAndSecurityUrl}
+				{fbvElement type="textarea" multilingual="true" name="openAccessPolicy" id="openAccessPolicy" value=$openAccessPolicy rich=true}
 			{/fbvFormSection}
-			{fbvFormSection label="manager.setup.reviewPolicy" description="manager.setup.peerReviewDescription"}
+			{fbvFormSection label="manager.setup.reviewPolicy" description="manager.setup.peerReview.description"}
 				{fbvElement type="textarea" multilingual="true" name="reviewPolicy" id="reviewPolicy" value=$reviewPolicy}
 			{/fbvFormSection}
-			{fbvFormSection title="navigation.competingInterestPolicy"}
+			{fbvFormSection label="navigation.competingInterestPolicy" description="manager.setup.competingInterestsDescription"}
 				{fbvElement type="textarea" multilingual="true" id="competingInterestsPolicy" value=$competingInterestsPolicy}
 			{/fbvFormSection}
 		</div>
