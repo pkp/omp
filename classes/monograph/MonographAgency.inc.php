@@ -30,10 +30,15 @@ class MonographAgency extends ControlledVocabEntry {
 
 	/**
 	 * Set the agency text
-	 * @param agency
+	 * @param agency string
+	 * @param locale string
 	 */
-	function setAgency($agency) {
-		$this->setData('monographAgency', $agency);
+	function setAgency($agency, $locale) {
+		$this->setData('monographAgency', $agency, $locale);
+	}
+
+	function getLocaleMetadataFieldNames() {
+		return array('monographAgency');
 	}
 }
 ?>

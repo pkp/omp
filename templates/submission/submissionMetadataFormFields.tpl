@@ -17,8 +17,8 @@
 		{fbvElement type="textarea" multilingual=true name="abstract" id="abstract" value=$abstract rich=true disabled=$readOnly}
 	{/fbvFormSection}
 	{fbvFormSection title="submission.submit.metadata"}
-		{fbvElement type="keyword" id="disciplines" label="search.discipline" current=$disciplines disabled=$readOnly}
-		{fbvElement type="keyword" id="keyword" label="common.keywords" current=$keywords disabled=$readOnly}
-		{fbvElement type="keyword" id="agencies" label="submission.supportingAgencies" current=$agencies disabled=$readOnly}
+		{fbvElement type="keyword" id="disciplines" label="search.discipline" multilingual=true current=$disciplines disabled=$readOnly}
+		{fbvElement type="keyword" id="keyword" label="common.keywords" multilingual=true current=$keywords disabled=$readOnly}
+		{fbvElement type="keyword" id="agencies" label="submission.supportingAgencies" multilingual=true current=$agencies disabled=$readOnly}
 	{/fbvFormSection}
 {/fbvFormArea}

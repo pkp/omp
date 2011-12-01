@@ -36,29 +36,38 @@ class MonographDisciplineDAO extends ControlledVocabDAO {
 	}
 
 	/**
-	 * Get the list of non-localized additional fields to store.
+	 * Get the list of localized additional fields to store.
 	 * @return array
 	 */
-	function getAdditionalFieldNames() {
+	function getLocaleFieldNames() {
 		return array('monographDiscipline');
 	}
 
 	/**
 	 * Get disciplines for a monograph.
 	 * @param $monographId int
+	 * @param $locales array
 	 * @return array
 	 */
-	function getDisciplines($monographId) {
-		$disciplines = $this->build($monographId);
-		$monographDisciplineEntryDao =& DAORegistry::getDAO('MonographDisciplineEntryDAO');
-		$monographDisciplines = $monographDisciplineEntryDao->getByControlledVocabId($disciplines->getId());
+	function getDisciplines($monographId, $locales) {
 
 		$returner = array();
-		while ($discipline =& $monographDisciplines->next()) {
-			$returner[] = $discipline->getDiscipline();
-			unset($discipline);
-		}
 
+		foreach ($locales as $locale) {
+
+			$returner[$locale] = array();
+			$disciplines = $this->build($monographId);
+			$monographDisciplineEntryDao =& DAORegistry::getDAO('MonographDisciplineEntryDAO');
+			$monographDisciplines = $monographDisciplineEntryDao->getByControlledVocabId($disciplines->getId());
+
+			while ($discipline =& $monographDisciplines->next()) {
+				$discipline = $discipline->getDiscipline();
+				if (array_key_exists($locale, $discipline)) { // quiets PHP when there are no disciplines for a given locale
+					$returner[$locale][] = $discipline[$locale];
+					unset($discipline);
+				}
+			}
+		}
 		return $returner;
 	}
 
@@ -129,17 +138,19 @@ class MonographDisciplineDAO extends ControlledVocabDAO {
 				$monographDisciplineEntryDao->deleteObjectById($id);
 			}
 		}
+		if (is_array($disciplines)) { // localized, array of arrays
 
-		if (is_array($disciplines)) {
-			$disciplines = array_unique($disciplines); // Remove any duplicate disciplines
-			$i = 1;
-			foreach ($disciplines as $discipline) {
-				$disciplineEntry = $monographDisciplineEntryDao->newDataObject();
-				$disciplineEntry->setControlledVocabId($currentDisciplines->getId());
-				$disciplineEntry->setDiscipline($discipline);
-				$disciplineEntry->setSequence($i);
-				$i ++;
-				$disciplineEntryId = $monographDisciplineEntryDao->insertObject($disciplineEntry);
+			foreach ($disciplines as $locale => $list) {
+				$list = array_unique($list); // Remove any duplicate keywords
+				$i = 1;
+				foreach ($list as $discipline) {
+					$disciplineEntry = $monographDisciplineEntryDao->newDataObject();
+					$disciplineEntry->setControlledVocabId($currentDisciplines->getID());
+					$disciplineEntry->setDiscipline($discipline, $locale);
+					$disciplineEntry->setSequence($i);
+					$i ++;
+					$disciplineEntryId = $monographDisciplineEntryDao->insertObject($disciplineEntry);
+				}
 			}
 		}
 	}

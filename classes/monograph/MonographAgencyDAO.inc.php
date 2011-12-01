@@ -35,29 +35,35 @@ class MonographAgencyDAO extends ControlledVocabDAO {
 	}
 
 	/**
-	 * Get the list of non-localized additional fields to store.
+	 * Get the list of localized additional fields to store.
 	 * @return array
 	 */
-	function getAdditionalFieldNames() {
+	function getLocaleFieldNames() {
 		return array('monographAgency');
 	}
 
 	/**
 	 * Get agencies for a specified monograph ID.
 	 * @param $monographId int
+	 * @param $locales array
 	 * @return array
 	 */
-	function getAgencies($monographId) {
-		$agencies = $this->build($monographId);
-		$monographAgencyEntryDao =& DAORegistry::getDAO('MonographAgencyEntryDAO');
-		$monographAgencies = $monographAgencyEntryDao->getByControlledVocabId($agencies->getId());
+	function getAgencies($monographId, $locales) {
 
 		$returner = array();
-		while ($agency =& $monographAgencies->next()) {
-			$returner[] = $agency->getAgency();
-			unset($agency);
-		}
+		foreach ($locales as $locale) {
+			$agencies = $this->build($monographId);
+			$monographAgencyEntryDao =& DAORegistry::getDAO('MonographAgencyEntryDAO');
+			$monographAgencies = $monographAgencyEntryDao->getByControlledVocabId($agencies->getId());
 
+			while ($agency =& $monographAgencies->next()) {
+				$agency = $agency->getAgency();
+				if (array_key_exists($locale, $agency)) { // quiets PHP when there are no agencies for a given locale
+					$returner[$locale][] = $agency[$locale];
+					unset($agency);
+				}
+			}
+		}
 		return $returner;
 	}
 
@@ -106,8 +112,6 @@ class MonographAgencyDAO extends ControlledVocabDAO {
 		}
 		$result->Close();
 		return $returner;
-
-
 	}
 
 	/**
@@ -130,17 +134,19 @@ class MonographAgencyDAO extends ControlledVocabDAO {
 				$monographAgencyEntryDao->deleteObjectById($id);
 			}
 		}
+		if (is_array($agencies)) { // localized, array of arrays
 
-		if (is_array($agencies)) {
-			$agencies = array_unique($agencies); // Remove any duplicate agencies
-			$i = 1;
-			foreach ($agencies as $agency) {
-				$agencyEntry = $monographAgencyEntryDao->newDataObject();
-				$agencyEntry->setControlledVocabId($currentAgencies->getId());
-				$agencyEntry->setAgency($agency);
-				$agencyEntry->setSequence($i);
-				$i ++;
-				$agencyEntryId = $monographAgencyEntryDao->insertObject($agencyEntry);
+			foreach ($agencies as $locale => $list) {
+				$list = array_unique($list); // Remove any duplicate keywords
+				$i = 1;
+				foreach ($list as $agency) {
+					$agencyEntry = $monographAgencyEntryDao->newDataObject();
+					$agencyEntry->setControlledVocabId($currentAgencies->getID());
+					$agencyEntry->setAgency($agency, $locale);
+					$agencyEntry->setSequence($i);
+					$i ++;
+					$agencyEntryId = $monographAgencyEntryDao->insertObject($agencyEntry);
+				}
 			}
 		}
 	}

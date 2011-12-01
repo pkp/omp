@@ -31,10 +31,15 @@ class MonographDiscipline extends ControlledVocabEntry {
 
 	/**
 	 * Set the discipline text
-	 * @param discipline
+	 * @param discipline string
+	 * @param locale string
 	 */
-	function setDiscipline($discipline) {
-		$this->setData('monographDiscipline', $discipline);
+	function setDiscipline($discipline, $locale) {
+		$this->setData('monographDiscipline', $discipline, $locale);
+	}
+
+	function getLocaleMetadataFieldNames() {
+		return array('monographDiscipline');
 	}
 }
 ?>

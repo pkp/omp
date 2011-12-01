@@ -33,14 +33,6 @@ class MonographKeywordEntryDAO extends ControlledVocabEntryDAO {
 	}
 
 	/**
-	 * Get the list of non-localized additional fields to store.
-	 * @return array
-	 */
-	function getAdditionalFieldNames() {
-		return array('monographKeyword');
-	}
-
-	/**
 	 * Retrieve an iterator of controlled vocabulary entries matching a
 	 * particular controlled vocabulary ID.
 	 * @param $controlledVocabId int

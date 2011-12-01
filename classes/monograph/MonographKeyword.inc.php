@@ -30,10 +30,15 @@ class MonographKeyword extends ControlledVocabEntry {
 
 	/**
 	 * Set the keyword text
-	 * @param keyword
+	 * @param keyword string
+	 * @param locale string
 	 */
-	function setKeyword($keyword) {
-		$this->setData('monographKeyword', $keyword);
+	function setKeyword($keyword, $locale) {
+		$this->setData('monographKeyword', $keyword, $locale);
+	}
+
+	function getLocaleMetadataFieldNames() {
+		return array('monographKeyword');
 	}
 }
 ?>
