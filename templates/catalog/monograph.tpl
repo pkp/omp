@@ -30,7 +30,7 @@
 	{rdelim});
 </script>
 
-<li id="{$monographContainerId|escape}" class="pkp_catalog_monograph monograph_id_{$monograph->getId()|escape}">
+<li id="{$monographContainerId|escape}" class="pkp_catalog_monograph monograph_id_{$monograph->getId()|escape}{if !$isFeatured} not_sortable{/if}">
 	<div class="pkp_catalog_monograph_image">
 		<!-- FIXME: Image goes here -->
 	</div>

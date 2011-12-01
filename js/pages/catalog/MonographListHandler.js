@@ -29,7 +29,7 @@
 
 		// Initialize sortable, but disabled until "organize" selected.
 		$monographsContainer.find('#monographListContainer ul')
-				.sortable({disabled: true});
+				.sortable({disabled: true, items: 'li:not(.not_sortable)'});
 
 		// Attach the view type handlers, if links exist
 		$monographsContainer.find('.grid_view').click(

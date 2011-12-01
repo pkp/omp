@@ -39,12 +39,15 @@ class PublishedMonographDAO extends MonographDAO {
 			'title', $locale, // Series title
 			'abbrev', $primaryLocale, // Series abbreviation
 			'abbrev', $locale, // Series abbreviation
+			ASSOC_TYPE_PRESS,
 			(int) $pressId
 		);
 
 		if ($searchText !== null) {
 			$params[] = $params[] = $params[] = "%$searchText%";
 		}
+
+		$params[] = REALLY_BIG_NUMBER; // For feature sorting
 
 		$result =& $this->retrieveRange(
 			'SELECT	' . ($searchText !== null?'DISTINCT ':'') . '
@@ -63,9 +66,10 @@ class PublishedMonographDAO extends MonographDAO {
 					LEFT JOIN authors a ON m.monograph_id = a.submission_id
 					LEFT JOIN monograph_settings mt ON (mt.monograph_id = m.monograph_id AND mt.setting_name = \'title\')
 				':'') . '
+				LEFT JOIN features f ON (f.monograph_id = m.monograph_id AND f.assoc_type = ? AND f.press_id = m.press_id)
 			WHERE	m.press_id = ?
 				' . ($searchText !== null?' AND (mt.setting_value LIKE ? OR a.first_name LIKE ? OR a.last_name LIKE ?)':'') . '
-			ORDER BY pm.date_published',
+			ORDER BY COALESCE(f.seq, ?), pm.date_published',
 			$params,
 			$rangeInfo
 		);
@@ -93,7 +97,6 @@ class PublishedMonographDAO extends MonographDAO {
 			$windowSeconds = 60 * 60 * 24 * 7 * 2;
 		}
 
-
 		$result =& $this->retrieveRange(
 			sprintf(
 				'SELECT	pm.*,
@@ -110,7 +113,7 @@ class PublishedMonographDAO extends MonographDAO {
 					LEFT JOIN features f ON (f.monograph_id = m.monograph_id AND f.assoc_type = ? AND f.assoc_id = m.press_id)
 				WHERE	m.press_id = ? AND
 					(f.monograph_id IS NOT NULL OR pm.date_published >= %s)
-				ORDER BY pm.date_published',
+				ORDER BY COALESCE(f.seq, ?), pm.date_published',
 				$this->datetimeToDB(time() - $windowSeconds)
 			),
 			array(
@@ -119,7 +122,8 @@ class PublishedMonographDAO extends MonographDAO {
 				'abbrev', $primaryLocale, // Series abbreviation
 				'abbrev', $locale, // Series abbreviation
 				ASSOC_TYPE_NEW_RELEASE,
-				(int) $pressId
+				(int) $pressId,
+				REALLY_BIG_NUMBER // For feature sorting
 			),
 			$rangeInfo
 		);
@@ -138,7 +142,6 @@ class PublishedMonographDAO extends MonographDAO {
 		$primaryLocale = AppLocale::getPrimaryLocale();
 		$locale = AppLocale::getLocale();
 
-
 		$result =& $this->retrieveRange(
 			'SELECT	pm.*,
 				m.*,
@@ -153,7 +156,7 @@ class PublishedMonographDAO extends MonographDAO {
 				LEFT JOIN series_settings sal ON (s.series_id = sal.series_id AND sal.setting_name = ? AND sal.locale = ?)
 				JOIN features f ON (f.monograph_id = m.monograph_id AND f.assoc_type = ? AND f.assoc_id = m.press_id)
 			WHERE	m.press_id = ?
-			ORDER BY pm.date_published',
+			ORDER BY f.seq, pm.date_published',
 			array(
 				'title', $primaryLocale, // Series title
 				'title', $locale, // Series title
@@ -185,10 +188,13 @@ class PublishedMonographDAO extends MonographDAO {
 			'title', $locale, // Series title
 			'abbrev', $primaryLocale, // Series abbreviation
 			'abbrev', $locale, // Series abbreviation
+			ASSOC_TYPE_SERIES,
 			(int) $seriesId
 		);
 
 		if ($pressId) $params[] = (int) $pressId;
+
+		$params[] = REALLY_BIG_NUMBER; // For feature sorting
 
 		$result =& $this->retrieveRange(
 			'SELECT	pm.*,
@@ -202,9 +208,10 @@ class PublishedMonographDAO extends MonographDAO {
 				LEFT JOIN series_settings stl ON (s.series_id = stl.series_id AND stl.setting_name = ? AND stl.locale = ?)
 				LEFT JOIN series_settings sapl ON (s.series_id = sapl.series_id AND sapl.setting_name = ? AND sapl.locale = ?)
 				LEFT JOIN series_settings sal ON (s.series_id = sal.series_id AND sal.setting_name = ? AND sal.locale = ?)
+				LEFT JOIN features f ON (f.monograph_id = m.monograph_id AND f.assoc_type = ? AND f.assoc_id = s.series_id)
 			WHERE	s.series_id = ?
 				' . ($pressId?' AND m.press_id = ?':'' ) . '
-			ORDER BY pm.date_published',
+			ORDER BY COALESCE(f.seq, ?), pm.date_published',
 			$params,
 			$rangeInfo
 		);
@@ -229,10 +236,13 @@ class PublishedMonographDAO extends MonographDAO {
 			'title', $locale, // Series title
 			'abbrev', $primaryLocale, // Series abbreviation
 			'abbrev', $locale, // Series abbreviation
-			(int) $categoryId, (int) $categoryId
+			(int) $categoryId, (int) $categoryId,
+			ASSOC_TYPE_SERIES
 		);
 
 		if ($pressId) $params[] = (int) $pressId;
+
+		$params[] = REALLY_BIG_NUMBER; // For feature sorting
 
 		$result =& $this->retrieveRange(
 			'SELECT	DISTINCT pm.*,
@@ -249,9 +259,10 @@ class PublishedMonographDAO extends MonographDAO {
 				LEFT JOIN categories mc ON (mc.category_id = m.category_id AND mc.category_id = ?)
 				LEFT JOIN series_categories sca ON (sca.series_id = s.series_id)
 				LEFT JOIN categories sc ON (sc.category_id = sca.category_id AND sc.category_id = ?)
+				LEFT JOIN features f ON (f.monograph_id = m.monograph_id AND f.assoc_type = ? AND f.assoc_id = s.series_id)
 			WHERE	(sc.category_id IS NOT NULL OR mc.category_id IS NOT NULL)
 				' . ($pressId?' AND m.press_id = ?':'' ) . '
-			ORDER BY pm.date_published',
+			ORDER BY COALESCE(f.seq, ?), pm.date_published',
 			$params,
 			$rangeInfo
 		);
