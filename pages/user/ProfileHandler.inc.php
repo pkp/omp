@@ -60,7 +60,7 @@ class ProfileHandler extends UserHandler {
 	 * Validate and save changes to user's profile.
 	 */
 	function saveProfile($args, &$request) {
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 		$dataModified = false;
 		$user =& $request->getUser();
 
