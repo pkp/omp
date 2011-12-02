@@ -244,7 +244,7 @@ class StageAssignmentDAO extends DAO {
 		$returner = null;
 		if ( $single ) {
 				// all four parameters must be specified for a single record to be returned
-				if (count($params) !== 4) return false;
+				if (!$submissionId && !$stageId && !$userGroupId && !$userId) return false;
 				// no matches were found.
 				if ($result->RecordCount() == 0) return false;
 				$returner =& $this->_fromRow($result->GetRowAssoc(false));
