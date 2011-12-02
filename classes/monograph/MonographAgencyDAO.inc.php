@@ -52,6 +52,7 @@ class MonographAgencyDAO extends ControlledVocabDAO {
 
 		$returner = array();
 		foreach ($locales as $locale) {
+			$returner[$locale] = array();
 			$agencies = $this->build($monographId);
 			$monographAgencyEntryDao =& DAORegistry::getDAO('MonographAgencyEntryDAO');
 			$monographAgencies = $monographAgencyEntryDao->getByControlledVocabId($agencies->getId());
@@ -137,15 +138,17 @@ class MonographAgencyDAO extends ControlledVocabDAO {
 		if (is_array($agencies)) { // localized, array of arrays
 
 			foreach ($agencies as $locale => $list) {
-				$list = array_unique($list); // Remove any duplicate keywords
-				$i = 1;
-				foreach ($list as $agency) {
-					$agencyEntry = $monographAgencyEntryDao->newDataObject();
-					$agencyEntry->setControlledVocabId($currentAgencies->getID());
-					$agencyEntry->setAgency($agency, $locale);
-					$agencyEntry->setSequence($i);
-					$i ++;
-					$agencyEntryId = $monographAgencyEntryDao->insertObject($agencyEntry);
+				if (is_array($list)) {
+					$list = array_unique($list); // Remove any duplicate keywords
+					$i = 1;
+					foreach ($list as $agency) {
+						$agencyEntry = $monographAgencyEntryDao->newDataObject();
+						$agencyEntry->setControlledVocabId($currentAgencies->getID());
+						$agencyEntry->setAgency($agency, $locale);
+						$agencyEntry->setSequence($i);
+						$i ++;
+						$agencyEntryId = $monographAgencyEntryDao->insertObject($agencyEntry);
+					}
 				}
 			}
 		}

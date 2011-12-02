@@ -141,15 +141,17 @@ class MonographDisciplineDAO extends ControlledVocabDAO {
 		if (is_array($disciplines)) { // localized, array of arrays
 
 			foreach ($disciplines as $locale => $list) {
-				$list = array_unique($list); // Remove any duplicate keywords
-				$i = 1;
-				foreach ($list as $discipline) {
-					$disciplineEntry = $monographDisciplineEntryDao->newDataObject();
-					$disciplineEntry->setControlledVocabId($currentDisciplines->getID());
-					$disciplineEntry->setDiscipline($discipline, $locale);
-					$disciplineEntry->setSequence($i);
-					$i ++;
-					$disciplineEntryId = $monographDisciplineEntryDao->insertObject($disciplineEntry);
+				if (is_array($list)) {
+					$list = array_unique($list); // Remove any duplicate keywords
+					$i = 1;
+					foreach ($list as $discipline) {
+						$disciplineEntry = $monographDisciplineEntryDao->newDataObject();
+						$disciplineEntry->setControlledVocabId($currentDisciplines->getID());
+						$disciplineEntry->setDiscipline($discipline, $locale);
+						$disciplineEntry->setSequence($i);
+						$i ++;
+						$disciplineEntryId = $monographDisciplineEntryDao->insertObject($disciplineEntry);
+					}
 				}
 			}
 		}

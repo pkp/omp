@@ -52,9 +52,7 @@ class MonographKeywordDAO extends ControlledVocabDAO {
 	function getKeywords($monographId, $locales) {
 
 		$returner = array();
-
 		foreach ($locales as $locale) {
-
 			$returner[$locale] = array();
 			$keywords = $this->build($monographId);
 			$monographKeywordEntryDao =& DAORegistry::getDAO('MonographKeywordEntryDAO');
@@ -116,8 +114,6 @@ class MonographKeywordDAO extends ControlledVocabDAO {
 		}
 		$result->Close();
 		return $returner;
-
-
 	}
 
 	/**
@@ -143,15 +139,17 @@ class MonographKeywordDAO extends ControlledVocabDAO {
 		if (is_array($keywords)) { // localized, array of arrays
 
 			foreach ($keywords as $locale => $list) {
-				$list = array_unique($list); // Remove any duplicate keywords
-				$i = 1;
-				foreach ($list as $keyword) {
-					$keywordEntry = $monographKeywordEntryDao->newDataObject();
-					$keywordEntry->setControlledVocabId($currentKeywords->getID());
-					$keywordEntry->setKeyword($keyword, $locale);
-					$keywordEntry->setSequence($i);
-					$i ++;
-					$keywordEntryId = $monographKeywordEntryDao->insertObject($keywordEntry);
+				if (is_array($list)) {
+					$list = array_unique($list); // Remove any duplicate keywords
+					$i = 1;
+					foreach ($list as $keyword) {
+						$keywordEntry = $monographKeywordEntryDao->newDataObject();
+						$keywordEntry->setControlledVocabId($currentKeywords->getID());
+						$keywordEntry->setKeyword($keyword, $locale);
+						$keywordEntry->setSequence($i);
+						$i ++;
+						$keywordEntryId = $monographKeywordEntryDao->insertObject($keywordEntry);
+					}
 				}
 			}
 		}
