@@ -274,6 +274,27 @@ class MonographDAO extends DAO {
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		$reviewAssignmentDao->deleteBySubmissionId($monographId);
 
+		// Delete chapters and assigned chapter authors.
+		$chapterDao =& DAORegistry::getDAO('ChapterDAO');
+		$chapters =& $chapterDao->getChapters($monographId);
+		while ($chapter =& $chapters->next()) {
+			// also removes Chapter Author associations
+			$chapterDao->deleteObject($chapter);
+		}
+
+		// Delete controlled vocab lists assigned to this Monograph
+		$monographKeywordDao =& DAORegistry::getDAO('MonographKeywordDAO');
+		$monographKeywordVocab =& $monographKeywordDao->getBySymbolic(CONTROLLED_VOCAB_MONOGRAPH_KEYWORD, ASSOC_TYPE_MONOGRAPH, $monographId);
+		$monographKeywordDao->deleteObject($monographKeywordVocab);
+
+		$monographDisciplineDao =& DAORegistry::getDAO('MonographDisciplineDAO');
+		$monographDisciplineVocab =& $monographDisciplineDao->getBySymbolic(CONTROLLED_VOCAB_MONOGRAPH_DISCIPLINE, ASSOC_TYPE_MONOGRAPH, $monographId);
+		$monographDisciplineDao->deleteObject($monographDisciplineVocab);
+
+		$monographAgencyDao =& DAORegistry::getDAO('MonographAgencyDAO');
+		$monographAgencyVocab =& $monographAgencyDao->getBySymbolic(CONTROLLED_VOCAB_MONOGRAPH_AGENCY, ASSOC_TYPE_MONOGRAPH, $monographId);
+		$monographAgencyDao->deleteObject($monographAgencyVocab);
+
 		// Signoff DAOs
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
 		$monographFileSignoffDao =& DAORegistry::getDAO('MonographFileSignoffDAO');
@@ -295,7 +316,7 @@ class MonographDAO extends DAO {
 		// Delete the stage assignments.
 		$stageAssignmentDao =& DAORegistry::getDAO('StageAssignmentDAO');
 		$stageAssignments =& $stageAssignmentDao->getBySubmissionAndStageId($monographId);
-		while ( $stageAssignment =& $stageAssignments->next() ) {
+		while ($stageAssignment =& $stageAssignments->next()) {
 			$stageAssignmentDao->deleteObject($stageAssignment);
 			unset($stageAssignment);
 		}
