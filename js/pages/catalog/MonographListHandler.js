@@ -194,8 +194,8 @@
 
 		// In case the list has changed sort order, re-sort it.
 		$listContainer.find('li').sortElements(function(aNode, bNode) {
-				var a = aNode.pkpHandlerInstance;
-				var b = bNode.pkpHandlerInstance;
+				var a = $.pkp.classes.Handler.getHandler($(aNode));
+				var b = $.pkp.classes.Handler.getHandler($(bNode));
 
 				// One is featured and the other is not
 				if (a.getFeatured() && !b.getFeatured()) {
