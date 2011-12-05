@@ -31,7 +31,7 @@ class InformationCenterNotifyForm extends Form {
 		$this->itemId = $itemId;
 		$this->itemType = $itemType;
 
-		$this->addCheck(new FormValidatorListBuilder($this, 'users', 'informationCenter.notify.warning'));
+		$this->addCheck(new FormValidatorListbuilder($this, 'users', 'informationCenter.notify.warning'));
 		$this->addCheck(new FormValidator($this, 'message', 'required', 'informationCenter.notify.warning'));
 		$this->addCheck(new FormValidatorPost($this));
 	}
@@ -92,7 +92,7 @@ class InformationCenterNotifyForm extends Form {
 		$this->readUserVars(array('message', 'users'));
 		import('lib.pkp.classes.controllers.listbuilder.ListbuilderHandler');
 		$userData = $this->getData('users');
-		ListBuilderHandler::unpack($request, $userData);
+		ListbuilderHandler::unpack($request, $userData);
 	}
 
 	/**

@@ -53,10 +53,10 @@ class SeriesDAO extends DAO {
 	}
 
 	/**
-	 * Retrieve a category by path.
+	 * Retrieve a series by path.
 	 * @param $path string
 	 * @param $pressId int
-	 * @return Category
+	 * @return Series
 	 */
 	function &getByPath($path, $pressId) {
 		$returner = null;

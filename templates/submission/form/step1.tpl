@@ -57,6 +57,10 @@
 	<!-- Submission Placement -->
 	{fbvFormSection title="submission.submit.placement" size=$fbvStyles.size.MEDIUM}
 		{fbvElement type="select" id="seriesId" from=$seriesOptions selected=$seriesId translate=false}
+		<div id="monographCategoriesContainer">
+			{url|assign:monographCategoriesUrl router=$smarty.const.ROUTE_COMPONENT component="submission.CategoriesListbuilderHandler" op="fetch" monographId=$monographId}
+			{load_url_in_div id="monographCategoriesContainer" url=$monographCategoriesUrl}
+		</div>
 	{/fbvFormSection}
 
 	<!-- Submission checklist -->

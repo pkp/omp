@@ -42,9 +42,6 @@ class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
 
 		$templateMgr =& TemplateManager::getManager();
 
-		// Get series for this press
-		$seriesDao =& DAORegistry::getDAO('SeriesDAO');
-
 		// FIXME: If this user is a series editor, they are allowed
 		// to submit to series flagged as "editor-only" for
 		// submissions. Otherwise, display only series they are allowed
@@ -52,6 +49,8 @@ class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		$isEditor = $roleDao->userHasRole($this->press->getId(), $user->getId(), ROLE_ID_SERIES_EDITOR);
 
+		// Get series for this press
+		$seriesDao =& DAORegistry::getDAO('SeriesDAO');
 		$seriesOptions = array('0' => __('submission.submit.selectSeries')) + $seriesDao->getTitlesByPressId($this->press->getId());
 		$templateMgr->assign('seriesOptions', $seriesOptions);
 
@@ -135,12 +134,33 @@ class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
 	 */
 	function readInputData() {
 		$vars = array(
-			'authorUserGroupId', 'locale', 'isEditedVolume', 'copyrightNoticeAgree', 'seriesId', 'commentsToEditor'
+			'authorUserGroupId', 'locale', 'isEditedVolume', 'copyrightNoticeAgree', 'seriesId', 'commentsToEditor', 'categories'
 		);
 		foreach ($this->press->getLocalizedSetting('submissionChecklist') as $key => $checklistItem) {
 			$vars[] = "checklist-$key";
 		}
+
 		$this->readUserVars($vars);
+		// Unpack the categories listbuilder data.
+		// (See insertEntry & co, implemented here.)
+
+		ListbuilderHandler::unpack($request, $this->getData('categories'));
+	}
+
+	/**
+	 * Associate a category with a monograph.
+	 * @see ListbuilderHandler::insertEntry
+	 */
+	function insertEntry(&$request, $newRowId) {
+		$this->_data['categoryIds'][] = $newRowId['name'];
+		return true;
+	}
+
+	/**
+	 * Delete a category association. Noop.
+	 */
+	function deleteEntry(&$request, $rowId) {
+		return true;
 	}
 
 	/**
@@ -177,6 +197,8 @@ class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
 			$this->monograph->setCommentsToEditor($this->getData('commentsToEditor'));
 			$this->monograph->setWorkType($this->getData('isEditedVolume') ? WORK_TYPE_EDITED_VOLUME : WORK_TYPE_AUTHORED_WORK);
 			$this->monograph->setStageId(WORKFLOW_STAGE_ID_SUBMISSION);
+			// Insert the monograph
+			$this->monographId = $monographDao->insertMonograph($this->monograph);
 
 			// Set user to initial author
 			$authorDao =& DAORegistry::getDAO('AuthorDAO');
@@ -195,8 +217,6 @@ class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
 			$authorUserGroupId = (int) $this->getData('authorUserGroupId');
 			$author->setUserGroupId($authorUserGroupId);
 
-			$monographDao->insertMonograph($this->monograph);
-			$this->monographId = $this->monograph->getId();
 			$author->setSubmissionId($this->monographId);
 			$authorDao->insertAuthor($author);
 
@@ -205,6 +225,24 @@ class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
 			$stageAssignmentDao->build($this->monographId, $authorUserGroupId, $user->getId());
 		}
 
+		// Save the category IDs.
+		$categoryIds = $this->getData('categoryIds');
+		$categoryDao =& DAORegistry::getDAO('CategoryDAO');
+		$monographDao->removeCategories($this->monographId);
+		foreach ((array) $categoryIds as $categoryId) {
+			// Fetch and validate category
+			$category =& $categoryDao->getById(
+				$categoryId, $this->press->getId()
+			);
+			if (!$category) continue;
+
+			// Associate the category with the monograph
+			$monographDao->addCategory(
+				$this->monographId,
+				$categoryId
+			);
+			unset($category);
+		}
 		return $this->monographId;
 	}
 }

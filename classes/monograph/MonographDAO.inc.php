@@ -535,6 +535,125 @@ class MonographDAO extends DAO {
 		$returner = new DAOResultFactory($result, $this, '_fromRow');
 		return $returner;
 	}
+
+	/**
+	 * Associate a category with a monograph.
+	 * @param $monographId int
+	 * @param $categoryId int
+	 */
+	function addCategory($monographId, $categoryId) {
+		$this->update(
+			'INSERT INTO monograph_categories
+				(monograph_id, category_id)
+			VALUES
+				(?, ?)',
+			array(
+				(int) $monographId,
+				(int) $categoryId
+			)
+		);
+	}
+
+	/**
+	 * Unassociate a category with a monograph.
+	 * @param $monographId int
+	 * @param $categoryId int
+	 */
+	function removeCategory($monographId, $categoryId) {
+		$this->update(
+			'DELETE FROM monograph_categories WHERE monograph_id = ? AND category_id = ?',
+			array(
+				(int) $monographId,
+				(int) $categoryId
+			)
+		);
+	}
+
+	/**
+	 * Unassociate all categories.
+	 * @param $monographId int
+	 */
+	function removeCategories($monographId) {
+		$this->update(
+			'DELETE FROM monograph_categories WHERE monograph_id = ?',
+			(int) $monographId
+		);
+	}
+
+	/**
+	 * Get the categories associated with a given monograph.
+	 * @param $monographId int
+	 * @return DAOResultFactory
+	 */
+	function getCategories($monographId, $pressId = null) {
+		$params = array((int) $monographId);
+		if ($pressId) $params[] = (int) $pressId;
+
+		$categoryDao =& DAORegistry::getDAO('CategoryDAO');
+		$result =& $this->retrieve(
+			'SELECT	c.*
+			FROM	categories c,
+				monograph_categories mc,
+				monographs m
+			WHERE	c.category_id = mc.category_id AND
+				m.monograph_id = ? AND
+			' . ($pressId?' c.press_id = m.press_id AND m.press_id = ? AND':'') . '
+				m.monograph_id = mc.monograph_id',
+			$params
+		);
+
+		// Delegate category creation to the category DAO.
+		$returner = new DAOResultFactory($result, $categoryDao, '_fromRow');
+		return $returner;
+	}
+
+	/**
+	 * Get the categories not associated with a given monograph.
+	 * @param $monographId int
+	 * @return DAOResultFactory
+	 */
+	function getUnassignedCategories($monographId, $pressId = null) {
+		$params = array((int) $monographId);
+		if ($pressId) $params[] = (int) $pressId;
+
+		$categoryDao =& DAORegistry::getDAO('CategoryDAO');
+		// The strange ORDER BY clause is to return subcategories
+		// immediately after their parent category's entry.
+		$result =& $this->retrieve(
+			'SELECT	c.*
+			FROM	monographs m
+				JOIN categories c ON (c.press_id = m.press_id)
+				LEFT JOIN monograph_categories mc ON (m.monograph_id = mc.monograph_id AND mc.category_id = c.category_id)
+			WHERE	m.monograph_id = ? AND
+				' . ($pressId?' m.press_id = ? AND':'') . '
+				mc.monograph_id IS NULL
+			ORDER BY CASE WHEN c.parent_id = 0 THEN c.category_id * 2 ELSE (c.parent_id * 2) + 1 END ASC',
+			$params
+		);
+
+		// Delegate category creation to the category DAO.
+		$returner = new DAOResultFactory($result, $categoryDao, '_fromRow');
+		return $returner;
+	}
+
+	/**
+	 * Check if an monograph exists with the specified ID.
+	 * @param $monographId int
+	 * @param $pressId int
+	 * @return boolean
+	 */
+	function categoryAssociationExists($monographId, $categoryId) {
+		$result =& $this->retrieve(
+			'SELECT COUNT(*) FROM monograph_categories WHERE monograph_id = ? AND category_id = ?',
+			array((int) $monographId, (int) $categoryId)
+		);
+		$returner = isset($result->fields[0]) && $result->fields[0] == 1 ? true : false;
+
+		$result->Close();
+		unset($result);
+
+		return $returner;
+	}
 }
 
 ?>

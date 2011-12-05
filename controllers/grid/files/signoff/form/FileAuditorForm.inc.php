@@ -151,7 +151,7 @@ class FileAuditorForm extends Form {
 		// Decode the "files" list
 		import('lib.pkp.classes.controllers.listbuilder.ListbuilderHandler');
 		$changedFileData = $this->getData('files');
-		ListBuilderHandler::unpack($request, $changedFileData);
+		ListbuilderHandler::unpack($request, $changedFileData);
 
 		// Send the message to the user
 		$monograph =& $this->getMonograph();

@@ -109,7 +109,7 @@ class SeriesForm extends Form {
 
 		import('lib.pkp.classes.controllers.listbuilder.ListbuilderHandler');
 		// Save the series editor associations.
-		ListBuilderHandler::unpack(
+		ListbuilderHandler::unpack(
 			$request,
 			$this->getData('seriesEditors'),
 			array(&$this, 'deleteSeriesEditorEntry'),
@@ -117,7 +117,7 @@ class SeriesForm extends Form {
 		);
 
 		// Save the category associations.
-		ListBuilderHandler::unpack(
+		ListbuilderHandler::unpack(
 			$request,
 			$this->getData('categories'),
 			array(&$this, 'deleteCategoryEntry'),

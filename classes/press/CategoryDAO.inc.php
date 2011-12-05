@@ -280,8 +280,13 @@ class CategoryDAO extends DAO {
 	 * @return DAOResultFactory containing Category ordered by sequence
 	 */
 	function &getByPressId($pressId, $rangeInfo = null) {
+		// The strange ORDER BY clause is to return subcategories
+		// immediately after their parent category's entry.
 		$result =& $this->retrieveRange(
-			'SELECT * FROM categories WHERE press_id = ?',
+			'SELECT	*
+			FROM	categories
+			WHERE	press_id = ?
+			ORDER BY CASE WHEN parent_id = 0 THEN category_id * 2 ELSE (parent_id * 2) + 1 END ASC',
 			array((int) $pressId)
 		);
 

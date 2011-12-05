@@ -127,7 +127,7 @@ class ChapterForm extends Form {
 
 		// Save the author associations. (See insert/deleteEntry.)
 		import('lib.pkp.classes.controllers.listbuilder.ListbuilderHandler');
-		ListBuilderHandler::unpack($request, $this->getData('authors'));
+		ListbuilderHandler::unpack($request, $this->getData('authors'));
 
 		return true;
 	}

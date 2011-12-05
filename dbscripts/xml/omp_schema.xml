@@ -182,6 +182,26 @@
 
 	<!--
 	  *
+	  * TABLE monograph_categories
+	  *
+	  -->
+	<table name="monograph_categories">
+		<field name="monograph_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="category_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<descr>Associations for categories and monographs.</descr>
+		<index name="monograph_categories_id">
+			<col>monograph_id</col>
+			<col>category_id</col>
+			<UNIQUE/>
+		</index>
+	</table>
+
+	<!--
+	  *
 	  * TABLE series_editors
 	  *
 	  -->
