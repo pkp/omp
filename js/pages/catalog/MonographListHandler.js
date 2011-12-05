@@ -207,7 +207,7 @@
 
 			// Both are featured: use sequence.
 			if (a.getFeatured() && b.getFeatured()) {
-				return b.getSeq() - a.getSeq();
+				return a.getSeq() - b.getSeq();
 			}
 
 			// Neither are featured: use publication date.
@@ -215,11 +215,55 @@
 		});
 
 		// Initialize sortable, but disabled unless "organize" selected.
+		this.getHtmlElement().sortable('destroy');
 		this.getHtmlElement().sortable({
 			disabled: !this.inOrganizeMode_,
-			items: 'li.pkp_catalog_monograph:not(.not_sortable)'});
+			items: 'li.pkp_catalog_monograph:not(.not_sortable)',
+			update: this.callbackWrapper(this.sortUpdateHandler_)});
 
 		// No further processing
+		return false;
+	};
+
+
+	/**
+	 * Handle DOM change events when sortables are rearranged.
+	 *
+	 * @private
+	 *
+	 * @param {$.pkp.controllers.handler.Handler} callingHandler The handler
+	 *  that triggered the event.
+	 * @param {Event} event The event.
+	 * @param {Object} ui The UI element that has changed.
+	 * @return {boolean} The event handling chain status.
+	 */
+	$.pkp.pages.catalog.MonographListHandler.prototype.sortUpdateHandler_ = function(callingHandler, event, ui) {
+		// Figure out where we are in the DOM and choose a new seq num
+		var $monographElement = ui.item;
+		var $prevElement = $monographElement.prev();
+		var $nextElement = $monographElement.next();
+		var newSequence;
+		if ($prevElement) {
+			console.log('prev');
+			var prevHandler = $.pkp.classes.Handler.getHandler($prevElement);
+			console.log(prevHandler);
+			// Move to the previous nodes's sequence plus one.
+			newSequence = prevHandler.getSeq() + 1;
+		} else if ($nextElement) {
+			console.log('next');
+			var nextHandler = $.pkp.classes.Handler.getHandler($nextElement);
+			console.log(nextHandler);
+			// Move to the next node's sequence minus one.
+			newSequence = nextHandler.getSeq() - 1;
+		} else {
+			// It's a one-element list and sorting is irrelevant.
+			return false;
+		}
+
+		// Tell the monograph what the new sequence number is.
+		$monographElement.trigger('setSequence', newSequence);
+
+		// End processing here.
 		return false;
 	};
 /** @param {jQuery} $ jQuery closure. */

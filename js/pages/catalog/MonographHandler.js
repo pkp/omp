@@ -42,6 +42,9 @@
 
 		// Bind for enter/exit of Organize mode
 		this.bind('changeDragMode', this.changeDragModeHandler_);
+
+		// Bind for setting a new sequence
+		this.bind('setSequence', this.setSequenceHandler_);
 	};
 	$.pkp.classes.Helper.inherits(
 			$.pkp.pages.catalog.MonographHandler,
@@ -140,7 +143,7 @@
 			function() {
 
 		return this.setFeaturedUrlTemplate_
-				.replace('FEATURED_DUMMY', this.isFeatured_ ? 0 : 1)
+				.replace('FEATURED_DUMMY', this.isFeatured_ ? 1 : 0)
 				.replace('SEQ_DUMMY', this.isFeatured_ ? this.seq_ : $.pkp.cons.REALLY_BIG_NUMBER);
 	};
 
@@ -155,6 +158,10 @@
 	$.pkp.pages.catalog.MonographHandler.prototype.featureButtonHandler_ =
 			function() {
 
+		// Invert "featured" state
+		this.isFeatured_ = this.isFeatured_ ? 0 : 1;
+
+		// Tell the server
 		$.get(this.getSetFeaturedUrl_(),
 				this.callbackWrapper(this.handleSetFeaturedResponse_), 'json');
 
@@ -200,6 +207,7 @@
 
 		// Let the container know to reset the sortable list
 		this.trigger('monographListChanged');
+		return false;
 	};
 
 
@@ -227,6 +235,57 @@
 		} else {
 			$htmlElement.removeClass('pkp_helpers_moveicon');
 		}
+
+		// Stop processing
+		return false;
 	};
+
+
+	/**
+	 * Handle the "set sequence" event to move a monograph
+	 *
+	 * @private
+	 *
+	 * @param {$.pkp.controllers.handler.Handler} callingHandler The handler
+	 *  that triggered the event.
+	 * @param {Event} event The event.
+	 * @param {integer} seq New sequence number.
+	 * @return {boolean} The event handling chain status.
+	 */
+	$.pkp.pages.catalog.MonographHandler.
+			prototype.setSequenceHandler_ =
+			function(callingHandler, event, seq) {
+
+		// Set the new sequence
+		this.seq_ = seq;
+
+		// Inform the server
+		$.get(this.getSetFeaturedUrl_(),
+				this.callbackWrapper(this.handleSetSequenceResponse_), 'json');
+
+		// Stop processing
+		return false;
+	};
+
+
+	/**
+	 * Handle a callback after a "set sequence" request returns with
+	 * a response.
+	 *
+	 * @param {Object} ajaxContext The AJAX request context.
+	 * @param {Object} jsonData A parsed JSON response object.
+	 * @private
+	 */
+	$.pkp.pages.catalog.MonographHandler.prototype.handleSetSequenceResponse_ =
+			function(ajaxContext, jsonData) {
+
+		jsonData = this.handleJson(jsonData);
+
+		// Record the new state of the sequence
+		this.seq_ = jsonData.content;
+
+		return false;
+	};
+
 /** @param {jQuery} $ jQuery closure. */
 })(jQuery);

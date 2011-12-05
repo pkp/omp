@@ -25,6 +25,7 @@ class FeatureDAO extends DAO {
 	 * Get monograph IDs by association.
 	 * @param $assocType int ASSOC_TYPE_...
 	 * @param $assocId int
+	 * @return array Associative array seq => monograph ID
 	 */
 	function getMonographIdsByAssoc($assocType, $assocId) {
 		$returner = array();
@@ -43,6 +44,16 @@ class FeatureDAO extends DAO {
 		unset($result);
 
 		return $returner;
+	}
+
+	/**
+	 * Get feature sequences by association.
+	 * @param $assocType int ASSOC_TYPE_...
+	 * @param $assocId int
+	 * @return array Associative array monograph ID => seq
+	 */
+	function getSequencesByAssoc($assocType, $assocId) {
+		return array_flip($this->getMonographIdsByAssoc($assocType, $assocId));
 	}
 
 	/**

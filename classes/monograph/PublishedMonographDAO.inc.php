@@ -211,7 +211,7 @@ class PublishedMonographDAO extends MonographDAO {
 				LEFT JOIN features f ON (f.monograph_id = m.monograph_id AND f.assoc_type = ? AND f.assoc_id = s.series_id)
 			WHERE	s.series_id = ?
 				' . ($pressId?' AND m.press_id = ?':'' ) . '
-			ORDER BY COALESCE(f.seq, ?), pm.date_published',
+			ORDER BY COALESCE(f.seq, ?) ASC, pm.date_published',
 			$params,
 			$rangeInfo
 		);
@@ -236,7 +236,7 @@ class PublishedMonographDAO extends MonographDAO {
 			'title', $locale, // Series title
 			'abbrev', $primaryLocale, // Series abbreviation
 			'abbrev', $locale, // Series abbreviation
-			(int) $categoryId, (int) $categoryId,
+			(int) $categoryId, (int) $categoryId, (int) $categoryId,
 			ASSOC_TYPE_SERIES
 		);
 
@@ -259,7 +259,7 @@ class PublishedMonographDAO extends MonographDAO {
 				LEFT JOIN categories mc ON (mc.category_id = m.category_id AND mc.category_id = ?)
 				LEFT JOIN series_categories sca ON (sca.series_id = s.series_id)
 				LEFT JOIN categories sc ON (sc.category_id = sca.category_id AND sc.category_id = ?)
-				LEFT JOIN features f ON (f.monograph_id = m.monograph_id AND f.assoc_type = ? AND f.assoc_id = s.series_id)
+				LEFT JOIN features f ON (f.monograph_id = m.monograph_id AND f.assoc_type = ? AND f.assoc_id = ?)
 			WHERE	(sc.category_id IS NOT NULL OR mc.category_id IS NOT NULL)
 				' . ($pressId?' AND m.press_id = ?':'' ) . '
 			ORDER BY COALESCE(f.seq, ?), pm.date_published',
