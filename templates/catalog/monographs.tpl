@@ -22,16 +22,14 @@
 <div id="{$monographContainerId|escape}">
 	<div class="pkp_helpers_align_right">
 		<ul class="submission_actions pkp_helpers_flatlist pkp_linkActions">
-			{if $includeOrganizeAction}<li>{null_link_action id="organize" key="common.organize" image="organize"}</li>{/if}
-			<li>{null_link_action id="listView" key="common.list" image="list_view"}</li>
-			<li>{null_link_action id="gridView" key="common.grid" image="grid_view"}</li>
+			{if $includeOrganizeAction}<li>{null_link_action id="organize-$monographContinerId" key="common.organize" image="organize"}</li>{/if}
+			<li>{null_link_action key="common.list" id="list-$monographContainerId" image="list_view"}</li>
+			<li>{null_link_action key="common.grid" id="grid-$monographContainerId" image="grid_view"}</li>
 		</ul>
 	</div>
-	<div id="monographListContainer" class="pkp_helpers_clear">
-		<ul class="pkp_catalog_monographList">
-			{iterate from=publishedMonographs item=monograph}
-				{include file="catalog/monograph.tpl"}
-			{/iterate}
-		</ul>
-	</div>
+	<ul class="pkp_catalog_monographList" class="pkp_helpers_clear">
+		{iterate from=publishedMonographs item=monograph}
+			{include file="catalog/monograph.tpl"}
+		{/iterate}
+	</ul>
 </div>

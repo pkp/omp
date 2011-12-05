@@ -198,6 +198,7 @@ strong {
   float:left;
   position:relative;
 }
+.pkp_helpers_moveicon { cursor:move; }
 div.plupload div.plupload_header { display:none; }
 .plupload .plupload_filelist_header { display:none; }
 .plupload_header_content {

@@ -147,7 +147,7 @@
 		var $organizeButton = $actionsContainer.find('.organize');
 
 		// Find the monograph list
-		var $monographList = $htmlElement.find('#monographListContainer ul');
+		var $monographList = $htmlElement.find('ul.pkp_catalog_monographList');
 
 		// Find the organize links
 		var $organizeLinks = $monographList.find('.pkp_catalog_organizeTools');
@@ -165,7 +165,7 @@
 			$gridViewButton.removeClass('ui-state-disabled');
 			$organizeLinks.addClass('pkp_helpers_invisible');
 		}
-
+		$monographList.children().trigger('changeDragMode', this.inOrganizeMode_);
 		// Update the enabled/disabled state of the sortable list
 		this.trigger('monographListChanged');
 
@@ -190,34 +190,34 @@
 			function(callingHandler, event) {
 
 		var $listContainer = this.getHtmlElement()
-				.find('#monographListContainer ul');
+				.find('ul.pkp_catalog_monographList');
 
 		// In case the list has changed sort order, re-sort it.
 		$listContainer.find('li').sortElements(function(aNode, bNode) {
-				var a = $.pkp.classes.Handler.getHandler($(aNode));
-				var b = $.pkp.classes.Handler.getHandler($(bNode));
+			var a = $.pkp.classes.Handler.getHandler($(aNode));
+			var b = $.pkp.classes.Handler.getHandler($(bNode));
 
-				// One is featured and the other is not
-				if (a.getFeatured() && !b.getFeatured()) {
-					return -1;
-				}
-				if (b.getFeatured() && !a.getFeatured()) {
-					return 1;
-				}
+			// One is featured and the other is not
+			if (a.getFeatured() && !b.getFeatured()) {
+				return -1;
+			}
+			if (b.getFeatured() && !a.getFeatured()) {
+				return 1;
+			}
 
-				// Both are featured: use sequence.
-				if (a.getFeatured() && b.getFeatured()) {
-					return b.getSeq() - a.getSeq();
-				}
+			// Both are featured: use sequence.
+			if (a.getFeatured() && b.getFeatured()) {
+				return b.getSeq() - a.getSeq();
+			}
 
-				// Neither are featured: use publication date.
-				return b.getDatePublished() - a.getDatePublished();
-				});
+			// Neither are featured: use publication date.
+			return b.getDatePublished() - a.getDatePublished();
+		});
 
 		// Initialize sortable, but disabled unless "organize" selected.
-		$listContainer.sortable({
-					disabled: !this.inOrganizeMode_,
-					items: 'li:not(.not_sortable)'});
+		this.getHtmlElement().sortable({
+			disabled: !this.inOrganizeMode_,
+			items: 'li.pkp_catalog_monograph:not(.not_sortable)'});
 
 		// No further processing
 		return false;

@@ -39,6 +39,9 @@
 
 		// Expose the monographListChanged event to the container
 		this.publishEvent('monographListChanged');
+
+		// Bind for enter/exit of Organize mode
+		this.bind('changeDragMode', this.changeDragModeHandler_);
 	};
 	$.pkp.classes.Helper.inherits(
 			$.pkp.pages.catalog.MonographHandler,
@@ -138,7 +141,7 @@
 
 		return this.setFeaturedUrlTemplate_
 				.replace('FEATURED_DUMMY', this.isFeatured_ ? 0 : 1)
-				.replace('SEQ_DUMMY', this.isFeatured_?this.seq_:$.pkp.cons.REALLY_BIG_NUMBER);
+				.replace('SEQ_DUMMY', this.isFeatured_ ? this.seq_ : $.pkp.cons.REALLY_BIG_NUMBER);
 	};
 
 
@@ -181,13 +184,15 @@
 		var $htmlElement = this.getHtmlElement();
 		if (this.isFeatured_) {
 			// Now featured; previously not.
-			$htmlElement.removeClass('not_sortable');
+			$htmlElement.removeClass('not_sortable')
+				.addClass('pkp_helpers_moveicon');
 			$htmlElement.find('.star')
 				.removeClass('star')
 				.addClass('star_highlighted');
 		} else {
 			// No longer featured.
-			$htmlElement.addClass('not_sortable');
+			$htmlElement.addClass('not_sortable')
+				.removeClass('pkp_helpers_moveicon');
 			$htmlElement.find('.star_highlighted')
 				.addClass('star')
 				.removeClass('star_highlighted');
@@ -195,6 +200,33 @@
 
 		// Let the container know to reset the sortable list
 		this.trigger('monographListChanged');
+	};
+
+
+	/**
+	 * Handle the "drag mode changed" event to handle drag mode
+	 * UI configuration (i.e. the drag icon upon mouseover)
+	 *
+	 * @private
+	 *
+	 * @param {$.pkp.controllers.handler.Handler} callingHandler The handler
+	 *  that triggered the event.
+	 * @param {Event} event The event.
+	 * @param {integer} canDrag 1/true iff the user should be able to drag.
+	 * @return {boolean} The event handling chain status.
+	 */
+	$.pkp.pages.catalog.MonographHandler.
+			prototype.changeDragModeHandler_ =
+			function(callingHandler, event, canDrag) {
+
+		var $htmlElement = this.getHtmlElement();
+		if (canDrag) {
+			if (!$htmlElement.hasClass('not_sortable')) {
+				$htmlElement.addClass('pkp_helpers_moveicon');
+			}
+		} else {
+			$htmlElement.removeClass('pkp_helpers_moveicon');
+		}
 	};
 /** @param {jQuery} $ jQuery closure. */
 })(jQuery);
