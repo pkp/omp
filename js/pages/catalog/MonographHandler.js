@@ -144,7 +144,8 @@
 
 		return this.setFeaturedUrlTemplate_
 				.replace('FEATURED_DUMMY', this.isFeatured_ ? 1 : 0)
-				.replace('SEQ_DUMMY', this.isFeatured_ ? this.seq_ : $.pkp.cons.REALLY_BIG_NUMBER);
+				.replace('SEQ_DUMMY', this.isFeatured_ ?
+				this.seq_ : $.pkp.cons.REALLY_BIG_NUMBER);
 	};
 
 
@@ -176,6 +177,7 @@
 	 *
 	 * @param {Object} ajaxContext The AJAX request context.
 	 * @param {Object} jsonData A parsed JSON response object.
+	 * @return {boolean} Message handling result.
 	 * @private
 	 */
 	$.pkp.pages.catalog.MonographHandler.prototype.handleSetFeaturedResponse_ =
@@ -274,6 +276,7 @@
 	 *
 	 * @param {Object} ajaxContext The AJAX request context.
 	 * @param {Object} jsonData A parsed JSON response object.
+	 * @return {boolean} Message handling result.
 	 * @private
 	 */
 	$.pkp.pages.catalog.MonographHandler.prototype.handleSetSequenceResponse_ =
