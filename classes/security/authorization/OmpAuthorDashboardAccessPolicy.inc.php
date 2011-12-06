@@ -31,12 +31,10 @@ class OmpAuthorDashboardAccessPolicy extends PressPolicy {
 		import('classes.security.authorization.OmpSubmissionAccessPolicy');
 		$authorDashboardPolicy->addPolicy(new OmpSubmissionAccessPolicy($request, $args, $roleAssignments), true);
 
-		// Check if the user has an author role user group stage assignment for
-		// the monograph in request.
-		import('classes.security.authorization.internal.WorkflowSubmissionAssignmentPolicy');
-		$authorDashboardPolicy->addPolicy(new WorkflowSubmissionAssignmentPolicy($request, null, ROLE_ID_AUTHOR));
+		// Check if the user has an stage assignment with the monograph in request.
+		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
+		$authorDashboardPolicy->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', $request->getUserVar('stageId')));
 
-		// Add the role-specific policies to this policy set.
 		$this->addPolicy($authorDashboardPolicy);
 	}
 }

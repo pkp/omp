@@ -49,10 +49,8 @@ class SeriesAssignmentPolicy extends AuthorizationPolicy {
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		if (!is_a($monograph, 'Monograph')) return AUTHORIZATION_DENY;
 
-		// Series editors can access all submissions in their series.
-		// Even those they've not been explicitly assigned to.
-		$seriesEditorsDao =& DAORegistry::getDAO('SeriesEditorsDAO');
-		if ($seriesEditorsDao->editorExists($press->getId(), $monograph->getSeriesId(), $user->getId())) {
+		import('classes.security.authorization.internal.SeriesAssignmentRule');
+		if (SeriesAssignmentRule::effect($press->getId(), $monograph->getSeriesId(), $user->getId())) {
 			return AUTHORIZATION_PERMIT;
 		} else {
 			return AUTHORIZATION_DENY;
