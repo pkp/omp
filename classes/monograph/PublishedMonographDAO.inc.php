@@ -66,7 +66,7 @@ class PublishedMonographDAO extends MonographDAO {
 					LEFT JOIN authors a ON m.monograph_id = a.submission_id
 					LEFT JOIN monograph_settings mt ON (mt.monograph_id = m.monograph_id AND mt.setting_name = \'title\')
 				':'') . '
-				LEFT JOIN features f ON (f.monograph_id = m.monograph_id AND f.assoc_type = ? AND f.press_id = m.press_id)
+				LEFT JOIN features f ON (f.monograph_id = m.monograph_id AND f.assoc_type = ? AND f.assoc_id = m.press_id)
 			WHERE	m.press_id = ?
 				' . ($searchText !== null?' AND (mt.setting_value LIKE ? OR a.first_name LIKE ? OR a.last_name LIKE ?)':'') . '
 			ORDER BY COALESCE(f.seq, ?), pm.date_published',
