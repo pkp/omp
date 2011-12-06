@@ -637,10 +637,6 @@ body {
   border-top:1px dotted #ffffff;
   background-color:#c1bbaf;
 }
-.pkp_linkActions a {
-  background-repeat:no-repeat !important;
-  background-position:0% 0% !important;
-}
 .pkp_linkActions a.remove_item { background-image:url(../lib/pkp/templates/images/structure/lb_delete.png); }
 .pkp_linkActions a.promote { background-image:url(../lib/pkp/templates/images/structure/grid_promote.png); }
 .pkp_linkActions a.enable { background-image:url(../lib/pkp/templates/images/structure/grid_promote.png); }
