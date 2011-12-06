@@ -244,16 +244,12 @@
 		var $nextElement = $monographElement.next();
 		var newSequence;
 		if ($prevElement) {
-			console.log('prev');
-			var prevHandler = $.pkp.classes.Handler.getHandler($prevElement);
-			console.log(prevHandler);
 			// Move to the previous nodes's sequence plus one.
+			var prevHandler = $.pkp.classes.Handler.getHandler($prevElement);
 			newSequence = prevHandler.getSeq() + 1;
 		} else if ($nextElement) {
-			console.log('next');
-			var nextHandler = $.pkp.classes.Handler.getHandler($nextElement);
-			console.log(nextHandler);
 			// Move to the next node's sequence minus one.
+			var nextHandler = $.pkp.classes.Handler.getHandler($nextElement);
 			newSequence = nextHandler.getSeq() - 1;
 		} else {
 			// It's a one-element list and sorting is irrelevant.
