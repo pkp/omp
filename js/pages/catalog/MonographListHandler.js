@@ -243,11 +243,11 @@
 		var $prevElement = $monographElement.prev();
 		var $nextElement = $monographElement.next();
 		var newSequence;
-		if ($prevElement) {
+		if ($prevElement.length) {
 			// Move to the previous nodes's sequence plus one.
 			var prevHandler = $.pkp.classes.Handler.getHandler($prevElement);
 			newSequence = prevHandler.getSeq() + 1;
-		} else if ($nextElement) {
+		} else if ($nextElement.length) {
 			// Move to the next node's sequence minus one.
 			var nextHandler = $.pkp.classes.Handler.getHandler($nextElement);
 			newSequence = nextHandler.getSeq() - 1;
