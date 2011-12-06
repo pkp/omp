@@ -31,7 +31,7 @@ class WorkflowHandler extends Handler {
 
 		$this->addRoleAssignment(
 			array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER, ROLE_ID_PRESS_ASSISTANT),
-			array('submission', 'internalReview', 'internalReviewRound', 'externalReview', 'externalReviewRound', 'copyediting', 'production')
+			array('access', 'submission', 'internalReview', 'internalReviewRound', 'externalReview', 'externalReviewRound', 'copyediting', 'production')
 		);
 	}
 
@@ -142,6 +142,39 @@ class WorkflowHandler extends Handler {
 	//
 	// Public handler methods
 	//
+	/**
+	 * Redirect users to their most appropriate
+	 * monograph workflow stage.
+	 */
+	function access($args, &$request) {
+		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		$accessibleWorkflowStages = $this->getAuthorizedContextObject(ASSOC_TYPE_ACCESSIBLE_WORKFLOW_STAGES);
+		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
+
+		$stageId = $monograph->getStageId();
+		$userRoles = $this->getAuthorizedContextObject(ASSOC_TYPE_USER_ROLES);
+
+		// Get the closest workflow stage that user has an assignment.
+		for ($workingStageId = $stageId; $workingStageId >= WORKFLOW_STAGE_ID_SUBMISSION; $workingStageId--) {
+			if (array_key_exists($workingStageId, $accessibleWorkflowStages)) {
+				// Make sure that, if in review stage, we have at least one
+				// initiated review round.
+				if ($workingStageId == WORKFLOW_STAGE_ID_INTERNAL_REVIEW ||
+				$workingStageId == WORKFLOW_STAGE_ID_EXTERNAL_REVIEW) {
+					$reviewRoundsFactory =& $reviewRoundDao->getByMonographId($monograph->getId(), $workingStageId);
+					if ($reviewRoundsFactory->wasEmpty()) {
+						continue;
+					}
+				}
+				$stagePath = $userGroupDao->getPathFromId($workingStageId);
+				break;
+			}
+		}
+
+		$router =& $request->getRouter();
+		$request->redirectUrl($router->url($request, null, 'workflow', $stagePath, $monograph->getId()));
+	}
 	/**
 	 * Show the submission stage.
 	 * @param $args array
@@ -291,25 +324,14 @@ class WorkflowHandler extends Handler {
 		if ($stageId = $request->getUserVar('stageId')) {
 			return (int) $stageId;
 		}
-		static $operationAssignment = array(
-			'submission' => WORKFLOW_STAGE_ID_SUBMISSION,
-			'internalReview' => WORKFLOW_STAGE_ID_INTERNAL_REVIEW,
-			'internalReviewRound' => WORKFLOW_STAGE_ID_INTERNAL_REVIEW,
-			'externalReview' => WORKFLOW_STAGE_ID_EXTERNAL_REVIEW,
-			'externalReviewRound' => WORKFLOW_STAGE_ID_EXTERNAL_REVIEW,
-			'copyediting' => WORKFLOW_STAGE_ID_EDITING,
-			'production' => WORKFLOW_STAGE_ID_PRODUCTION
-		);
 
 		// Retrieve the requested operation.
 		$router =& $request->getRouter();
 		$operation = $router->getRequestedOp($request);
 
-		// Reject rogue requests.
-		if(!isset($operationAssignment[$operation])) fatalError('Invalid stage!');
-
 		// Translate the operation to a workflow stage identifier.
-		return $operationAssignment[$operation];
+		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+		return $userGroupDao->getIdFromPath($operation);
 	}
 }
 

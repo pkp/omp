@@ -77,15 +77,15 @@ class SubmissionsListGridCellProvider extends DataObjectGridCellProvider {
 
 				$authorUserGroupIds = $userGroupDao->getUserGroupIdsByRoleId(ROLE_ID_AUTHOR);
 				$user =& $request->getUser();
-				$stageAssignmentsFactory = $stageAssignmentDao->getBySubmissionAndStageId($monograph->getId(), null, null, $user->getId());
-				$stageAssignments =& $stageAssignmentsFactory->toAssociativeArray('stageId');
+				$stageAssignmentsFactory =& $stageAssignmentDao->getBySubmissionAndStageId($monograph->getId(), null, null, $user->getId());
 
-				$authorDashboard = true;
-				foreach ($stageAssignments as $stageAssignment) {
+				$authorDashboard = false;
+				while ($stageAssignment =& $stageAssignmentsFactory->next()) {
 					if (!in_array($stageAssignment->getUserGroupId(), $authorUserGroupIds)) {
 						$authorDashboard = false;
 						break;
 					}
+					$authorDashboard = true;
 					unset($stageAssignment);
 				}
 				if ($authorDashboard) {
@@ -93,50 +93,8 @@ class SubmissionsListGridCellProvider extends DataObjectGridCellProvider {
 				}
 
 				// Press assistant, Series Editor, or Press Manager:
-				// Add a workflow link action.
-				reset($stageAssignments);
-				unset($stageAssignment);
-				$stageId = $monograph->getStageId();
-				$workflowStagePath = null;
-				$workflowStagesMap = $userGroupDao->getWorkflowStageKeysAndPaths();
-
-				// FIXME: Duplicating code from workflow stage authorization policy. See #6841
-				// Press managers can access all stages.
-				if (in_array(ROLE_ID_PRESS_MANAGER, $this->getAuthorizedRoles())) {
-					$workflowStagePath = $workflowStagesMap[$stageId]['path'];
-				}
-
-				// Other roles need to have an stage assignment Get the closest workflow stage that user has an assignment.
-				if (is_null($workflowStagePath)) {
-					$workingStageId = $stageId;
-					$reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO');
-
-					while ($workingStageId) {
-						foreach ($stageAssignments as $stageAssignment) {
-							if ($stageAssignment->getStageId() == $workingStageId) {
-								// Make sure that, if in review stage, we have at least one
-								// initiated review round.
-								if ($workingStageId == WORKFLOW_STAGE_ID_INTERNAL_REVIEW ||
-								$workingStageId == WORKFLOW_STAGE_ID_EXTERNAL_REVIEW) {
-									$reviewRoundsFactory =& $reviewRoundDao->getByMonographId($monograph->getId(), $workingStageId);
-									if ($reviewRoundsFactory->wasEmpty()) {
-										continue;
-									}
-								}
-								$workflowStagePath = $workflowStagesMap[$workingStageId]['path'];
-								break 2;
-							}
-						}
-						$workingStageId--;
-						unset($stageAssignment);
-					}
-				}
-
-				if (is_null($workflowStagePath)) {
-					fatalError('Invalid stage ID!');
-				}
-
-				return array($this->_getCellLinkAction($request, 'workflow', $workflowStagePath, $monograph));
+				// Let the workflow handler decide.
+				return array($this->_getCellLinkAction($request, 'workflow', 'access', $monograph));
 			}
 
 			// This should be unreachable code.

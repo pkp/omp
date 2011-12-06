@@ -16,6 +16,7 @@
  */
 
 switch ($op) {
+	case 'access':
 	case 'submission':
 	case 'internalReview':
 	case 'internalReviewRound':
