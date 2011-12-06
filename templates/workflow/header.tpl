@@ -28,7 +28,7 @@
 	</div>
 	<div class="pkp_helpers_align_right">
 		<ul class="submission_actions pkp_helpers_flatlist">
-			{if $catalogEntryAction}
+			{if array_intersect(array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR), $userRoles)}
 				<li>{include file="linkAction/linkAction.tpl" action=$catalogEntryAction}</li>
 			{/if}
 			<li>{include file="linkAction/linkAction.tpl" action=$submissionInformationCentreAction}</li>
@@ -49,7 +49,8 @@
 					{/if}
 				{/if}
 				<li class="{$progressClass}">
-					{if $progressClass == "current" || $progressClass == "complete"}
+					{if ($progressClass == "current" || $progressClass == "complete") &&
+					array_key_exists($key, $accessibleWorkflowStages)}
 						<a class="sprite" href="{url router=$smarty.const.ROUTE_PAGE page="workflow" op=$stage.path path=$monograph->getId()}">{translate key=$stage.translationKey}</a>
 					{else}
 						<a class="sprite pkp_common_disabled">{translate key=$stage.translationKey}</a>
