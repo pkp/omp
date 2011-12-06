@@ -382,11 +382,46 @@ a.sprite.zip:before {
   background-position:-984px 0;
 }
 a.sprite.zip:hover:before { background-position:-984px -24px; }
+a.sprite.warning:before {
+  margin-right:4px;
+  background-position:-1008px 0;
+}
+a.sprite.warning:hover:before { background-position:-1008px -24px; }
 a.sprite.add_role:before {
   margin-right:4px;
   background-position:-1032px 0;
 }
 a.sprite.add_role:hover:before { background-position:-1032px -24px; }
+a.sprite.star_highlighted:before {
+  margin-right:4px;
+  background-position:-1056px 0;
+}
+a.sprite.star_highlighted:hover:before { background-position:-1056px -24px; }
+a.sprite.star:before {
+  margin-right:4px;
+  background-position:-1080px 0;
+}
+a.sprite.star:hover:before { background-position:-1080px -24px; }
+a.sprite.cross:before {
+  margin-right:4px;
+  background-position:-1104px 0;
+}
+a.sprite.cross:hover:before { background-position:-1104px -24px; }
+a.sprite.organize:before {
+  margin-right:4px;
+  background-position:-1128px 0;
+}
+a.sprite.organize:hover:before { background-position:-1128px -24px; }
+a.sprite.list_view:before {
+  margin-right:4px;
+  background-position:-1152px 0;
+}
+a.sprite.list_view:hover:before { background-position:-1152px -24px; }
+a.sprite.grid_view:before {
+  margin-right:4px;
+  background-position:-1176px 0;
+}
+a.sprite.grid_view:hover:before { background-position:-1176px -24px; }
 .category.delete:before {
   margin-left:5px;
   background-position:-1008px 0;
@@ -606,11 +641,6 @@ body {
   background-repeat:no-repeat !important;
   background-position:0% 0% !important;
 }
-.pkp_linkActions a.grid_view { background-image:url(../lib/pkp/templates/images/structure/grid.png); }
-.pkp_linkActions a.list_view { background-image:url(../lib/pkp/templates/images/structure/list.png); }
-.pkp_linkActions a.organize { background-image:url(../lib/pkp/templates/images/structure/organize.png); }
-.pkp_linkActions a.star { background-image:url(../lib/pkp/templates/images/structure/star-u.png); }
-.pkp_linkActions a.star_highlighted { background-image:url(../lib/pkp/templates/images/structure/star-h.png); }
 .pkp_linkActions a.remove_item { background-image:url(../lib/pkp/templates/images/structure/lb_delete.png); }
 .pkp_linkActions a.promote { background-image:url(../lib/pkp/templates/images/structure/grid_promote.png); }
 .pkp_linkActions a.enable { background-image:url(../lib/pkp/templates/images/structure/grid_promote.png); }
