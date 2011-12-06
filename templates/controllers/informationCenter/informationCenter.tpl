@@ -25,7 +25,7 @@
 
 <div id="informationCenter" class="pkp_controllers_informationCenter">
 	<ul>
-		{if $showMetadataLink}
+		{if array_intersect(array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR), $userRoles) && $showMetadataLink}
 			<li><a href="{url op="metadata" params=$linkParams}">{translate key="submission.informationCenter.metadata"}</a></li>
 		{/if}
 		<li><a href="{url op="viewNotes" params=$linkParams}">{translate key="submission.informationCenter.notes"}</a></li>

@@ -20,9 +20,6 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 	/** @var $_monograph Monograph */
 	var $_monograph;
 
-	/** @var $_stageId int **/
-	var $_stageId;
-
 	/**
 	 * Constructor
 	 */
@@ -38,7 +35,6 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 
 		// Fetch the monograph to display information about
 		$this->_monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-		$this->_stageId =& $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
 	}
 
 	/**
@@ -244,8 +240,7 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 	 * the delete note handler). Subclasses should implement.
 	 */
 	function _getLinkParams() {
-		return array('monographId' => $this->_monograph->getId(),
-					'stageId' => $this->_stageId);
+		return array('monographId' => $this->_monograph->getId());
 	}
 
 	/**
