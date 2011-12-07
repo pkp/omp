@@ -213,7 +213,6 @@ class FileUploadWizardHandler extends FileManagementHandler {
 
 		// Configure the "revision only" feature.
 		$templateMgr->assign('revisionOnly', $this->getRevisionOnly());
-		$templateMgr->assign('stageId', $this->getStageId());
 		$reviewRound =& $this->getReviewRound();
 		if (is_a($reviewRound, 'ReviewRound')) {
 			$templateMgr->assign('reviewRoundId', $reviewRound->getId());
