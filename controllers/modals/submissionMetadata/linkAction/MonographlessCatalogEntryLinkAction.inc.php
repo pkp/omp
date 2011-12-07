@@ -35,6 +35,9 @@ class MonographlessCatalogEntryLinkAction extends LinkAction {
 		);
 
 		// Configure the link action.
+		if (!isset($action)) {
+			$action = null;
+		}
 		parent::LinkAction($action, $modal, __('submission.catalogEntry.new'), 'information');
 	}
 }
