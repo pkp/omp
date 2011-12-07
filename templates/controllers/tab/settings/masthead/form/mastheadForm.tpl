@@ -23,7 +23,7 @@
 
 	{fbvFormArea id="mastheadFormArea"}
 		{fbvFormSection title="manager.setup.pressName" for="name" required=true inline=true size=$fbvStyles.size.MEDIUM}
-		    	{fbvElement type="text" multilingual=true name="name" id="name" value=$name}
+			{fbvElement type="text" multilingual=true name="name" id="name" value=$name}
 		{/fbvFormSection}
 
 		{fbvFormSection title="manager.setup.pressInitials" for="initials" required=true inline=true size=$fbvStyles.size.SMALL}

@@ -156,8 +156,9 @@
 
 	<!--
 	 *
-	 * ENTITIES - This section contains terms pertaining to the system's
-	 *            major entities, e.g. Monograph, Press
+	 * ENTITIES
+	 * This section contains terms pertaining to the system's
+	 * major entities, e.g. Monograph, Press
 	 *
 	-->
 
@@ -200,8 +201,9 @@
 
 	<!--
 	 *
-	 * INTERFACE - Contains phrases organized by the section of the
-	 *             user interface they appear in.
+	 * INTERFACE
+	 * Contains phrases organized by the section of the user
+	 * interface they appear in.
 	 *
 	-->
 
