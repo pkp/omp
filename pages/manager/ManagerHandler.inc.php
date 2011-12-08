@@ -21,12 +21,6 @@ class ManagerHandler extends Handler {
 	 */
 	function ManagerHandler() {
 		parent::Handler();
-		$this->addRoleAssignment(
-			ROLE_ID_PRESS_MANAGER,
-			array(
-				'index'
-			)
-		);
 	}
 
 	/**
@@ -39,35 +33,6 @@ class ManagerHandler extends Handler {
 		import('classes.security.authorization.OmpPressAccessPolicy');
 		$this->addPolicy(new OmpPressAccessPolicy($request, $roleAssignments));
 		return parent::authorize($request, $args, $roleAssignments);
-	}
-
-	/**
-	 * Display press management index page.
-	 * @param $args array
-	 * @param $request PKPRequest
-	 */
-	function index($args, &$request) {
-		$this->setupTemplate($request);
-
-		$press =& $request->getPress();
-		$pressSettingsDao =& DAORegistry::getDAO('PressSettingsDAO');
-		$announcementsEnabled = $pressSettingsDao->getSetting($press->getId(), 'enableAnnouncements');
-		$customSignoffInternal = $pressSettingsDao->getSetting($press->getId(), 'useCustomInternalReviewSignoff');
-		$customSignoffExternal = $pressSettingsDao->getSetting($press->getId(), 'useCustomExternalReviewSignoff');
-
-		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->assign('customSignoffEnabled', $customSignoffInternal || $customSignoffExternal );
-
-		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
-		$userGroups =& $userGroupDao->getByContextId($press->getId());
-		$templateMgr->assign_by_ref('userGroups', $userGroups);
-
-		$session =& $request->getSession();
-		$session->unsetSessionVar('enrolmentReferrer');
-
-		$templateMgr->assign('announcementsEnabled', $announcementsEnabled);
-		$templateMgr->assign('helpTopicId','press.index');
-		$templateMgr->display('manager/index.tpl');
 	}
 
 	/**

@@ -65,10 +65,6 @@ switch ($op) {
 		define('HANDLER_CLASS', 'PluginManagementHandler');
 		import('pages.manager.PluginManagementHandler');
 		break;
-	case 'index':
-		define('HANDLER_CLASS', 'ManagerHandler');
-		import('pages.manager.ManagerHandler');
-		break;
 }
 
 ?>
