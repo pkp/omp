@@ -33,7 +33,6 @@ class PluginHandler extends ManagerHandler {
 	 */
 	function plugins($args, &$request) {
 		$category = isset($args[0])?$args[0]:null;
-
 		$categories = PluginRegistry::getCategories();
 
 		$templateMgr =& TemplateManager::getManager();

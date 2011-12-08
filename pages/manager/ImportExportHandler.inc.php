@@ -12,10 +12,9 @@
  * @brief Handle requests for import/export functions.
  */
 
+define('IMPORTEXPORT_PLUGIN_CATEGORY', 'importexport');
 
 import('pages.manager.ManagerHandler');
-
-define('IMPORTEXPORT_PLUGIN_CATEGORY', 'importexport');
 
 class ImportExportHandler extends ManagerHandler {
 	/**
@@ -26,7 +25,12 @@ class ImportExportHandler extends ManagerHandler {
 		$this->addRoleAssignment(ROLE_ID_PRESS_MANAGER, 'importexport');
 	}
 
-	function importexport($args) {
+	/**
+	 * Import or export data.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 */
+	function importexport($args, &$request) {
 		$this->setupTemplate(true);
 
 		PluginRegistry::loadCategory(IMPORTEXPORT_PLUGIN_CATEGORY);
@@ -35,11 +39,12 @@ class ImportExportHandler extends ManagerHandler {
 		if (array_shift($args) === 'plugin') {
 			$pluginName = array_shift($args);
 			$plugin =& PluginRegistry::getPlugin(IMPORTEXPORT_PLUGIN_CATEGORY, $pluginName);
-			if ($plugin) return $plugin->display($args);
+			if ($plugin) return $plugin->display($args, $request);
 		}
 		$templateMgr->assign_by_ref('plugins', PluginRegistry::getPlugins(IMPORTEXPORT_PLUGIN_CATEGORY));
 		$templateMgr->assign('helpTopicId', 'press.managementPages.importExport');
 		$templateMgr->display('manager/importexport/plugins.tpl');
 	}
 }
+
 ?>

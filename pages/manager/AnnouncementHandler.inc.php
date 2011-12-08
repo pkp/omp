@@ -82,8 +82,7 @@ class AnnouncementHandler extends PKPAnnouncementHandler {
 	 * return bool
 	 */
 	function _announcementIsValid($request, $announcementId) {
-		if ($announcementId == null)
-			return true;
+		if ($announcementId == null) return true;
 
 		$announcementDao =& DAORegistry::getDAO('AnnouncementDAO');
 		$announcement =& $announcementDao->getAnnouncement($announcementId);

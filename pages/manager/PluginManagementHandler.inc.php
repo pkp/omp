@@ -44,22 +44,22 @@ class PluginManagementHandler extends ManagerHandler {
 
 		switch($path) {
 			case 'install':
-				$this->_showInstallForm();
+				$this->_showInstallForm($request);
 				break;
 			case 'installPlugin':
 				$this->_uploadPlugin($request, 'install');
 				break;
 			case 'upgrade':
-				$this->_showUpgradeForm($category, $plugin);
+				$this->_showUpgradeForm($request, $category, $plugin);
 				break;
 			case 'upgradePlugin':
 				$this->_uploadPlugin($request, 'upgrade', $category, $plugin);
 				break;
 			case 'delete':
-				$this->_showDeleteForm($category, $plugin);
+				$this->_showDeleteForm($request, $category, $plugin);
 				break;
 			case 'deletePlugin':
-				$this->_deletePlugin($category, $plugin);
+				$this->_deletePlugin($request, $category, $plugin);
 				break;
 			default:
 				$request->redirect(null, 'manager', 'plugins');
@@ -70,8 +70,9 @@ class PluginManagementHandler extends ManagerHandler {
 
 	/**
 	 * Show plugin installation form.
+	 * @param $request PKPRequest
 	 */
-	function _showInstallForm() {
+	function _showInstallForm($request) {
 		$templateMgr =& TemplateManager::getManager();
 		$this->setupTemplate(true);
 
@@ -79,17 +80,18 @@ class PluginManagementHandler extends ManagerHandler {
 		$templateMgr->assign('uploaded', false);
 		$templateMgr->assign('error', false);
 
-		$templateMgr->assign('pageHierarchy', $this->setBreadcrumbs(true));
+		$templateMgr->assign('pageHierarchy', $this->_setBreadcrumbs($request, true));
 
 		$templateMgr->display('manager/plugins/managePlugins.tpl');
 	}
 
 	/**
 	 * Show form to select plugin for upgrade.
+	 * @param $request PKPRequest
 	 * @param $category string
 	 * @param $plugin string
 	 */
-	function _showUpgradeForm($category, $plugin) {
+	function _showUpgradeForm($request, $category, $plugin) {
 		$templateMgr =& TemplateManager::getManager();
 		$this->setupTemplate(true);
 
@@ -97,17 +99,18 @@ class PluginManagementHandler extends ManagerHandler {
 		$templateMgr->assign('category', $category);
 		$templateMgr->assign('plugin', $plugin);
 		$templateMgr->assign('uploaded', false);
-		$templateMgr->assign('pageHierarchy', $this->setBreadcrumbs(true, $category));
+		$templateMgr->assign('pageHierarchy', $this->_setBreadcrumbs($request, true, $category));
 
 		$templateMgr->display('manager/plugins/managePlugins.tpl');
 	}
 
 	/**
 	 * Confirm deletion of plugin.
+	 * @param $request PKPRequest
 	 * @param $category string
 	 * @param $plugin string
 	 */
-	function _showDeleteForm($category, $plugin) {
+	function _showDeleteForm($request, $category, $plugin) {
 		$templateMgr =& TemplateManager::getManager();
 		$this->setupTemplate(true);
 
@@ -116,7 +119,7 @@ class PluginManagementHandler extends ManagerHandler {
 		$templateMgr->assign('plugin', $plugin);
 		$templateMgr->assign('deleted', false);
 		$templateMgr->assign('error', false);
-		$templateMgr->assign('pageHierarchy', $this->setBreadcrumbs(true, $category));
+		$templateMgr->assign('pageHierarchy', $this->_setBreadcrumbs($request, true, $category));
 
 		$templateMgr->display('manager/plugins/managePlugins.tpl');
 	}
@@ -177,9 +180,9 @@ class PluginManagementHandler extends ManagerHandler {
 			$pluginDir .= DIRECTORY_SEPARATOR . $pluginName;
 			if (is_dir($pluginDir)) {
 				if ($function == 'install') {
-					$this->installPlugin($pluginDir, $templateMgr);
+					$this->_installPlugin($request, $pluginDir, $templateMgr);
 				} else if ($function == 'upgrade') {
-					$this->upgradePlugin($pluginDir, $templateMgr, $category, $plugin);
+					$this->_upgradePlugin($request, $pluginDir, $templateMgr, $category, $plugin);
 				}
 			} else {
 				$errorMsg = 'manager.plugins.invalidPluginArchive';
@@ -196,14 +199,15 @@ class PluginManagementHandler extends ManagerHandler {
 
 	/**
 	 * Installs the uploaded plugin
+	 * @param $request PKPRequest
 	 * @param $path string path to plugin Directory
 	 * @param $templateMgr reference to template manager
 	 * @return boolean
 	 */
-	function installPlugin($path, &$templateMgr) {
+	function _installPlugin($request, $path, &$templateMgr) {
 		$versionFile = $path . VERSION_FILE;
 		$templateMgr->assign('error', true);
-		$templateMgr->assign('pageHierarchy', $this->setBreadcrumbs(true));
+		$templateMgr->assign('pageHierarchy', $this->_setBreadcrumbs($request, true));
 
 		$pluginVersion =& VersionCheck::getValidPluginVersionInfo($versionFile, $templateMgr);
 		if (is_null($pluginVersion)) return false;
@@ -273,16 +277,17 @@ class PluginManagementHandler extends ManagerHandler {
 
 	/**
 	 * Upgrade a plugin to a newer version from the user's filesystem
+	 * @param $request PKPRequest
 	 * @param $path string path to plugin Directory
 	 * @param $templateMgr reference to template manager
 	 * @param $category string
 	 * @param $plugin string
 	 * @return boolean
 	 */
-	function upgradePlugin($path, &$templateMgr, $category, $plugin) {
+	function _upgradePlugin($request, $path, &$templateMgr, $category, $plugin) {
 		$versionFile = $path . VERSION_FILE;
 		$templateMgr->assign('error', true);
-		$templateMgr->assign('pageHierarchy', $this->setBreadcrumbs(true, $category));
+		$templateMgr->assign('pageHierarchy', $this->_setBreadcrumbs($request, true, $category));
 
 		$pluginVersion =& VersionCheck::getValidPluginVersionInfo($versionFile, $templateMgr);
 		if (is_null($pluginVersion)) return false;
@@ -293,6 +298,7 @@ class PluginManagementHandler extends ManagerHandler {
 			$templateMgr->assign('message', 'manager.plugins.wrongCategory');
 			return false;
 		}
+
 		if ($plugin != $pluginVersion->getProduct()) {
 			$templateMgr->assign('message', 'manager.plugins.wrongName');
 			return false;
@@ -371,10 +377,11 @@ class PluginManagementHandler extends ManagerHandler {
 
 	/**
 	 * Delete a plugin from the system
+	 * @param $request PKPRequest
 	 * @param $category string
 	 * @param $plugin string
 	 */
-	function _deletePlugin($category, $plugin) {
+	function _deletePlugin($request, $category, $plugin) {
 		$templateMgr =& TemplateManager::getManager();
 		$this->setupTemplate(true);
 
@@ -409,7 +416,7 @@ class PluginManagementHandler extends ManagerHandler {
 			$templateMgr->assign('message', 'manager.plugins.doesNotExist');
 		}
 
-		$templateMgr->assign('pageHierarchy', $this->setBreadcrumbs(true, $category));
+		$templateMgr->assign('pageHierarchy', $this->_setBreadcrumbs($request, true, $category));
 		$templateMgr->display('manager/plugins/managePlugins.tpl');
 	}
 
@@ -431,10 +438,11 @@ class PluginManagementHandler extends ManagerHandler {
 
 	/**
 	 * Set the page's breadcrumbs
+	 * @param $request PKPRequest
 	 * @param $subclass boolean
 	 * @param $category string
 	 */
-	function setBreadcrumbs($subclass = false, $category = null) {
+	function _setBreadcrumbs($request, $subclass = false, $category = null) {
 		$templateMgr =& TemplateManager::getManager();
 		$pageCrumbs = array(
 			array(
