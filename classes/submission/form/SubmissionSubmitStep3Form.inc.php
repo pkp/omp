@@ -63,6 +63,16 @@ class SubmissionSubmitStep3Form extends SubmissionSubmitForm {
 
 		$templateMgr->assign('isEditedVolume', $this->monograph->getWorkType() == WORK_TYPE_EDITED_VOLUME);
 
+		// load our available languages for the languages keyword field
+		$languageDao =& DAORegistry::getDAO('LanguageDAO');
+		$availableLanguages = array();
+		$locales = array_keys($this->supportedLocales);
+		foreach ($locales as $locale) {
+			$availableLanguages[$locale] =& $languageDao->getLanguageNames($locale);
+		}
+
+		$templateMgr->assign('availableLanguages', $availableLanguages);
+
 		return parent::display($request);
 	}
 

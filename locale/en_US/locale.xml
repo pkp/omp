@@ -14,7 +14,14 @@
 	<!-- General monograph keys -->
 	<message key="monograph.description">Description</message>
 	<message key="monograph.authors">Authors</message>
+	<message key="monograph.coverage.chron">Chronological Coverage</message>
+	<message key="monograph.coverage.geo">Geographical Coverage</message>
+	<message key="monograph.coverage.sample">Sample Coverage</message>
+	<message key="monograph.languages">Language(s)</message>
+	<message key="monograph.subjectClass">Subject Class</message>
+	<message key="monograph.subjects">Subjects</message>
 	<message key="monograph.title">Book Title</message>
+	<message key="monograph.type">Type</message>
 
 	<!-- Editorial policies -->
 	<message key="manager.series.open">Open Submissions</message>

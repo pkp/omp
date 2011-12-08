@@ -295,6 +295,14 @@ class MonographDAO extends DAO {
 		$monographAgencyVocab =& $monographAgencyDao->getBySymbolic(CONTROLLED_VOCAB_MONOGRAPH_AGENCY, ASSOC_TYPE_MONOGRAPH, $monographId);
 		$monographAgencyDao->deleteObject($monographAgencyVocab);
 
+		$monographLanguageDao =& DAORegistry::getDAO('MonographLanguageDAO');
+		$monographLanguageVocab =& $monographLanguageDao->getBySymbolic(CONTROLLED_VOCAB_MONOGRAPH_LANGUAGE, ASSOC_TYPE_MONOGRAPH, $monographId);
+		$monographLanguageDao->deleteObject($monographLanguageVocab);
+
+		$monographSubjectDao =& DAORegistry::getDAO('MonographSubjectDAO');
+		$monographSubjectVocab =& $monographSubjectDao->getBySymbolic(CONTROLLED_VOCAB_MONOGRAPH_SUBJECT, ASSOC_TYPE_MONOGRAPH, $monographId);
+		$monographSubjecDao->deleteObject($monographSubjectVocab);
+
 		// Signoff DAOs
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
 		$monographFileSignoffDao =& DAORegistry::getDAO('MonographFileSignoffDAO');

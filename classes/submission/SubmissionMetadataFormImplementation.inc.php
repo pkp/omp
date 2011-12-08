@@ -65,12 +65,10 @@ class SubmissionMetadataFormImplementation {
 				'title' => $monograph->getTitle(null), // Localized
 				'abstract' => $monograph->getAbstract(null), // Localized
 				'subjectClass' => $monograph->getSubjectClass(null), // Localized
-				'subject' => $monograph->getSubject(null), // Localized
 				'coverageGeo' => $monograph->getCoverageGeo(null), // Localized
 				'coverageChron' => $monograph->getCoverageChron(null), // Localized
 				'coverageSample' => $monograph->getCoverageSample(null), // Localized
 				'type' => $monograph->getType(null), // Localized
-				'language' => $monograph->getLanguage(),
 				'sponsor' => $monograph->getSponsor(null), // Localized
 				'series' => $seriesDao->getById($monograph->getSeriesId()),
 				'citations' => $monograph->getCitations()
@@ -85,12 +83,16 @@ class SubmissionMetadataFormImplementation {
 
 			// load the persisted metadata controlled vocabularies
 			$monographKeywordDao =& DAORegistry::getDAO('MonographKeywordDAO');
+			$monographSubjectDao =& DAORegistry::getDAO('MonographSubjectDAO');
 			$monographDisciplineDao =& DAORegistry::getDAO('MonographDisciplineDAO');
 			$monographAgencyDao =& DAORegistry::getDAO('MonographAgencyDAO');
+			$monographLanguageDao =& DAORegistry::getDAO('MonographLanguageDAO');
 
+			$this->_parentForm->setData('subjects', $monographSubjectDao->getSubjects($monograph->getId(), $locales));
 	 		$this->_parentForm->setData('keywords', $monographKeywordDao->getKeywords($monograph->getId(), $locales));
 			$this->_parentForm->setData('disciplines', $monographDisciplineDao->getDisciplines($monograph->getId(), $locales));
 			$this->_parentForm->setData('agencies', $monographAgencyDao->getAgencies($monograph->getId(), $locales));
+			$this->_parentForm->setData('languages', $monographLanguageDao->getLanguages($monograph->getId(), $locales));
 		}
 	}
 
@@ -99,8 +101,8 @@ class SubmissionMetadataFormImplementation {
 	 */
 	function readInputData() {
 
-		$userVars = array('title', 'abstract');
-		$keywordInputFields = array('disciplines', 'keyword', 'agencies');
+		$userVars = array('title', 'abstract', 'coverageGeo', 'coverageChron', 'coverageSample', 'type', 'subjectClass');
+		$keywordInputFields = array('disciplines', 'keyword', 'agencies', 'languages', 'subjects');
 
 		// The controlled vocabularies are multilingual and have their field names prefixed with the locale code.
 		foreach (array_keys($this->_parentForm->supportedLocales) as $localeKey) {
@@ -117,7 +119,7 @@ class SubmissionMetadataFormImplementation {
 	 * @return array
 	 */
 	function getLocaleFieldNames() {
-		return array('title', 'abstract');
+		return array('title', 'abstract', 'coverageGeo', 'coverageChron', 'coverageSample', 'type', 'subjectClass');
 	}
 
 	/**
@@ -131,6 +133,11 @@ class SubmissionMetadataFormImplementation {
 		// Update monograph
 		$monograph->setTitle($this->_parentForm->getData('title'), null); // Localized
 		$monograph->setAbstract($this->_parentForm->getData('abstract'), null); // Localized
+		$monograph->setCoverageGeo($this->_parentForm->getData('coverageGeo'), null); // Localized
+		$monograph->setCoverageChron($this->_parentForm->getData('coverageChron'), null); // Localized
+		$monograph->setCoverageSample($this->_parentForm->getData('coverageSample'), null); // Localized
+		$monograph->setType($this->_parentForm->getData('type'), null); // Localized
+		$monograph->setSubjectClass($this->_parentForm->getData('subjectClass'), null); // Localized
 
 		// Save the monograph
 		$monographDao->updateMonograph($monograph);
@@ -142,21 +149,29 @@ class SubmissionMetadataFormImplementation {
 		$monographKeywordDao =& DAORegistry::getDAO('MonographKeywordDAO');
 		$monographDisciplineDao =& DAORegistry::getDAO('MonographDisciplineDAO');
 		$monographAgencyDao =& DAORegistry::getDAO('MonographAgencyDAO');
+		$monographSubjectDao =& DAORegistry::getDAO('MonographSubjectDAO');
+		$monographLanguageDao =& DAORegistry::getDAO('MonographLanguageDAO');
 
 		$keywords = array();
 		$agencies = array();
 		$disciplines = array();
+		$languages = array();
+		$subjects = array();
 
 		foreach ($locales as $locale) {
 			$keywords[$locale] = $this->_parentForm->getData($locale . '-keywordKeywords');
 			$agencies[$locale] = $this->_parentForm->getData($locale . '-agenciesKeywords');
 			$disciplines[$locale] = $this->_parentForm->getData($locale . '-disciplinesKeywords');
+			$languages[$locale] = $this->_parentForm->getData($locale . '-languagesKeywords');
+			$subjects[$locale] = $this->_parentForm->getData($locale . '-subjectsKeywords');
 		}
 
 		// persist the controlled vocabs
 		$monographKeywordDao->insertKeywords($keywords, $monograph->getId());
 		$monographAgencyDao->insertAgencies($agencies, $monograph->getId());
 		$monographDisciplineDao->insertDisciplines($disciplines, $monograph->getId());
+		$monographLanguageDao->insertLanguages($languages, $monograph->getId());
+		$monographSubjectDao->insertSubjects($subjects, $monograph->getId());
 
 		// Resequence the authors (this ensures a primary contact).
 		$authorDao =& DAORegistry::getDAO('AuthorDAO');
