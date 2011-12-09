@@ -45,7 +45,7 @@
 					<li>
 						<a href="#">{translate key="navigation.catalog"}</a>
 						<ul>
-							<li><a href="{url page="catalog"}">{translate key="navigation.catalog.manage"}</a></li>
+							<li><a href="{url page="manageCatalog"}">{translate key="navigation.catalog.manage"}</a></li>
 							{if $isPressManager}
 								<li>
 									<a href="#">{translate key="navigation.catalog.administration"}</a>

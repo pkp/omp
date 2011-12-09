@@ -1,10 +1,10 @@
 {**
- * templates/catalog/monograph.tpl
+ * templates/manageCatalog/monograph.tpl
  *
  * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * Present a monograph.
+ * Present a monograph in catalog management.
  *}
 {assign var=monographId value=$monograph->getId()}
 

@@ -1,13 +1,13 @@
 <?php
 
 /**
- * @file pages/catalog/CatalogHandler.inc.php
+ * @file pages/manageCatalog/ManageCatalogHandler.inc.php
  *
  * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class CatalogHandler
- * @ingroup pages_catalog
+ * @class ManageCatalogHandler
+ * @ingroup pages_manageCatalog
  *
  * @brief Handle requests for catalog management.
  */
@@ -19,11 +19,11 @@ import('lib.pkp.classes.linkAction.LinkAction');
 import('lib.pkp.classes.linkAction.request.AjaxModal');
 import('lib.pkp.classes.core.JSONMessage');
 
-class CatalogHandler extends Handler {
+class ManageCatalogHandler extends Handler {
 	/**
 	 * Constructor
 	 */
-	function CatalogHandler() {
+	function ManageCatalogHandler() {
 		parent::Handler();
 
 		$this->addRoleAssignment(
@@ -81,7 +81,7 @@ class CatalogHandler extends Handler {
 		$catalogEntryAction = new MonographlessCatalogEntryLinkAction($request);
 		$templateMgr->assign('catalogEntryAction', $catalogEntryAction);
 
-		$templateMgr->display('catalog/index.tpl');
+		$templateMgr->display('manageCatalog/index.tpl');
 	}
 
 	/**
@@ -105,7 +105,7 @@ class CatalogHandler extends Handler {
 		$templateMgr->assign('publishedMonographs', $publishedMonographs);
 
 		// Display the monograph list
-		$templateMgr->display('catalog/monographs.tpl');
+		$templateMgr->display('manageCatalog/monographs.tpl');
 	}
 
 	/**
@@ -129,7 +129,7 @@ class CatalogHandler extends Handler {
 		$templateMgr->assign('publishedMonographs', $publishedMonographs);
 
 		// Display the monograph list
-		$templateMgr->display('catalog/monographs.tpl');
+		$templateMgr->display('manageCatalog/monographs.tpl');
 	}
 
 	/**
@@ -202,7 +202,7 @@ class CatalogHandler extends Handler {
 		$templateMgr->assign('features', $features);
 
 		// Return the monograph list as a JSON message
-		$json = new JSONMessage(true, $templateMgr->fetch('catalog/monographs.tpl'));
+		$json = new JSONMessage(true, $templateMgr->fetch('manageCatalog/monographs.tpl'));
 		return $json->getString();
 	}
 
@@ -232,7 +232,7 @@ class CatalogHandler extends Handler {
 		$templateMgr->assign('publishedMonographs', $publishedMonographs);
 
 		// Return the monograph list as a JSON message
-		$json = new JSONMessage(true, $templateMgr->fetch('catalog/monographs.tpl'));
+		$json = new JSONMessage(true, $templateMgr->fetch('manageCatalog/monographs.tpl'));
 		return $json->getString();
 	}
 
@@ -254,7 +254,7 @@ class CatalogHandler extends Handler {
 		$templateMgr->assign('publishedMonographs', $publishedMonographs);
 
 		// Display the monograph list
-		$templateMgr->display('catalog/monographs.tpl');
+		$templateMgr->display('manageCatalog/monographs.tpl');
 	}
 
 	/**

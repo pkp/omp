@@ -1,10 +1,10 @@
 {**
- * templates/catalog/monographs.tpl
+ * templates/manageCatalog/monographs.tpl
  *
  * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * Present a list of monographs.
+ * Present a list of monographs for management.
  *}
 
 {* Generate a unique ID for this monograph list *}
@@ -29,7 +29,7 @@
 	</div>
 	<ul class="pkp_catalog_monographList" class="pkp_helpers_clear">
 		{iterate from=publishedMonographs item=monograph}
-			{include file="catalog/monograph.tpl"}
+			{include file="manageCatalog/monograph.tpl"}
 		{/iterate}
 	</ul>
 </div>

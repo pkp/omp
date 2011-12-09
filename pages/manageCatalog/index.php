@@ -1,11 +1,11 @@
 <?php
 
 /**
- * @defgroup pages_catalog
+ * @defgroup pages_manageCatalog
  */
 
 /**
- * @file pages/catalog/index.php
+ * @file pages/manageCatalog/index.php
  *
  * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -25,8 +25,8 @@ switch ($op) {
 	case 'series':
 	case 'search':
 	case 'setFeatured':
-		define('HANDLER_CLASS', 'CatalogHandler');
-		import('pages.catalog.CatalogHandler');
+		define('HANDLER_CLASS', 'ManageCatalogHandler');
+		import('pages.manageCatalog.ManageCatalogHandler');
 		break;
 }
 

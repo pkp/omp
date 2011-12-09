@@ -1,10 +1,10 @@
 {**
- * templates/catalog/index.tpl
+ * templates/manageCatalog/index.tpl
  *
  * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * Header that contains details about the submission
+ * Header for the catalog management tabbed interface
  *}
 {strip}
 {assign var="pageTitle" value="catalog.manage"}
