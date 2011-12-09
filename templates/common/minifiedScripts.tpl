@@ -82,10 +82,10 @@
 <script type="text/javascript" src="{$baseUrl}/js/controllers/tab/settings/siteAccessOptions/form/SiteAccessOptionsFormHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/js/controllers/tab/settings/homepage/form/HomepageFormHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/js/pages/authorDashboard/AuthorDashboardHandler.js"></script>
-<script type="text/javascript" src="{$baseUrl}/js/pages/catalog/CatalogHeaderHandler.js"></script>
-<script type="text/javascript" src="{$baseUrl}/js/pages/catalog/CatalogSearchFormHandler.js"></script>
-<script type="text/javascript" src="{$baseUrl}/js/pages/catalog/MonographListHandler.js"></script>
-<script type="text/javascript" src="{$baseUrl}/js/pages/catalog/MonographHandler.js"></script>
+<script type="text/javascript" src="{$baseUrl}/js/pages/manageCatalog/ManageCatalogHeaderHandler.js"></script>
+<script type="text/javascript" src="{$baseUrl}/js/pages/manageCatalog/ManageCatalogSearchFormHandler.js"></script>
+<script type="text/javascript" src="{$baseUrl}/js/pages/manageCatalog/MonographListHandler.js"></script>
+<script type="text/javascript" src="{$baseUrl}/js/pages/manageCatalog/MonographHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/js/pages/workflow/SubmissionHeaderHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/js/pages/workflow/ProductionHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/js/pages/admin/PressesHandler.js"></script>
