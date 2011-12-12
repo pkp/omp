@@ -90,17 +90,23 @@ class ReviewRoundTabHandler extends Handler {
 		$templateMgr->assign('reviewRoundId', $reviewRound->getId());
 		$templateMgr->assign_by_ref('monograph', $monograph);
 
-		// Assign editor decision actions to the template.
+		// Assign editor decision actions to the template, only if
+		// user is accessing the last review round for this stage.
+		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
+		$lastReviewRound =& $reviewRoundDao->getLastReviewRoundByMonographId($monograph->getId(), $stageId);
+
 		$actionArgs = array('monographId' => $monograph->getId(), 'stageId' => $stageId, 'reviewRoundId' => $reviewRound->getId());
 
-		if ($stageId == WORKFLOW_STAGE_ID_INTERNAL_REVIEW) {
-			$decisionCallback = '_internalReviewStageDecisions';
-		} elseif ($stageId == WORKFLOW_STAGE_ID_EXTERNAL_REVIEW) {
-			$decisionCallback = '_externalReviewStageDecisions';
-		}
+		if ($reviewRound->getRound() == $lastReviewRound->getRound()) {
+			if ($stageId == WORKFLOW_STAGE_ID_INTERNAL_REVIEW) {
+				$decisionCallback = '_internalReviewStageDecisions';
+			} elseif ($stageId == WORKFLOW_STAGE_ID_EXTERNAL_REVIEW) {
+				$decisionCallback = '_externalReviewStageDecisions';
+			}
 
-		import('classes.workflow.EditorDecisionActionsManager');
-		EditorDecisionActionsManager::assignDecisionsToTemplate($request, $decisionCallback, $actionArgs);
+			import('classes.workflow.EditorDecisionActionsManager');
+			EditorDecisionActionsManager::assignDecisionsToTemplate($request, $decisionCallback, $actionArgs);
+		}
 
 		$notificationRequestOptions = array(
 		NOTIFICATION_LEVEL_NORMAL => array(
