@@ -45,9 +45,9 @@ class ArtworkFileDAODelegate extends MonographFileDAODelegate {
 		// Now insert the artwork-specific data.
 		$this->update(
 			'INSERT INTO monograph_artwork_files
-				(file_id, revision, caption, chapter_id, contact_author, copyright_owner, copyright_owner_contact, credit, permission_file_id, permission_terms, placement)
+				(file_id, revision, caption, chapter_id, contact_author, copyright_owner, copyright_owner_contact, credit, permission_file_id, permission_terms)
 			VALUES
-				(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+				(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
 			array(
 				$artworkFile->getFileId(),
 				$artworkFile->getRevision(),
@@ -58,8 +58,7 @@ class ArtworkFileDAODelegate extends MonographFileDAODelegate {
 				$artworkFile->getCopyrightOwnerContactDetails(),
 				$artworkFile->getCredit(),
 				$artworkFile->getPermissionFileId(),
-				$artworkFile->getPermissionTerms(),
-				$artworkFile->getPlacement()
+				$artworkFile->getPermissionTerms()
 			)
 		);
 
@@ -89,7 +88,6 @@ class ArtworkFileDAODelegate extends MonographFileDAODelegate {
 					credit = ?,
 					permission_file_id = ?,
 					permission_terms = ?,
-					placement = ?
 				WHERE file_id = ? and revision = ?',
 			array(
 				(int)$artworkFile->getFileId(),
@@ -102,7 +100,6 @@ class ArtworkFileDAODelegate extends MonographFileDAODelegate {
 				$artworkFile->getCredit(),
 				is_null($artworkFile->getPermissionFileId()) ? null : (int)$artworkFile->getPermissionFileId(),
 				$artworkFile->getPermissionTerms(),
-				$artworkFile->getPlacement(),
 				(int)$previousFile->getFileId(),
 				(int)$previousFile->getRevision()
 			)
@@ -135,7 +132,6 @@ class ArtworkFileDAODelegate extends MonographFileDAODelegate {
 		$artworkFile =& parent::fromRow($row);
 		$artworkFile->setCredit($row['credit']);
 		$artworkFile->setCaption($row['caption']);
-		$artworkFile->setPlacement($row['placement']);
 		$artworkFile->setChapterId(is_null($row['chapter_id']) ? null : (int)$row['chapter_id']);
 		$artworkFile->setContactAuthor($row['contact_author']);
 		$artworkFile->setCopyrightOwner($row['copyright_owner']);

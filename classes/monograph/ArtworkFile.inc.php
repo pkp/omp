@@ -127,22 +127,6 @@ class ArtworkFile extends MonographFile {
 	}
 
 	/**
-	 * Get the placement note for the artwork.
-	 * @return string
-	 */
-	function getPlacement() {
-		return $this->getData('placement');
-	}
-
-	/**
-	 * Set the placement note for the artwork.
-	 * @param $placement string
-	 */
-	function setPlacement($placement) {
-		return $this->setData('placement', $placement);
-	}
-
-	/**
 	 * Get the monograph component id.
 	 * @return int
 	 */

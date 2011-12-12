@@ -37,9 +37,6 @@
 				{fbvElement type="text" inline=true size=$fbvStyles.size.MEDIUM label="grid.artworkFile.copyrightOwner" id="artworkCopyrightOwner" value=$submissionFile->getCopyrightOwner()}
 				{fbvElement type="text" inline=true size=$fbvStyles.size.MEDIUM label="grid.artworkFile.permissionTerms" id="artworkPermissionTerms" value=$submissionFile->getPermissionTerms()}
 			{/fbvFormSection}
-			{fbvFormSection title="grid.artworkFile.placement"}
-				{fbvElement type="text" id="artworkPlacement"}
-			{/fbvFormSection}
 		{/if}
 		{fbvFormSection title="submission.upload.noteToAccompanyFile"}
 			{if $note}

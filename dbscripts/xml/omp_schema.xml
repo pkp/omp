@@ -488,7 +488,6 @@
 		<field name="copyright_owner_contact" type="X"/>
 		<field name="permission_terms" type="X"/>
 		<field name="permission_file_id" type="I8"/>
-		<field name="placement" type="C2" size="255"/>
 		<field name="chapter_id" type="I8"/>
 		<field name="contact_author" type="I8"/>
 		<descr>Book visuals.</descr>
