@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file Onix30ExportPlugin.inc.php
+ * @file plugins/importexport/onix30/Onix30ExportPlugin.inc.php
  *
  * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -11,9 +11,6 @@
  *
  * @brief ONIX 3.0 XML export plugin for monographs
  */
-
-// $Id$
-
 
 import('classes.plugins.ImportExportPlugin');
 
@@ -65,9 +62,9 @@ class Onix30ExportPlugin extends ImportExportPlugin {
 			fwrite($h, XMLCustomWriter::getXML($doc));
 			fclose($h);
 		} else {
-			header("Content-Type: application/xml");
-			header("Cache-Control: private");
-			header("Content-Disposition: attachment; filename=\"onix30.xml\"");
+			header('Content-Type: application/xml');
+			header('Cache-Control: private');
+			header('Content-Disposition: attachment; filename="onix30.xml"');
 			XMLCustomWriter::printXML($doc);
 		}
 		return true;
