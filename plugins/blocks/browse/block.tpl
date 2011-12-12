@@ -11,18 +11,18 @@
 	<span class="blockTitle">{translate key="navigation.browse"}</span>
 	<form class="pkp_form" action="#">
 		<div id="browseCategoryContainer">
-			<select size="1" name="browseCategory" onchange="location.href=('{url|escape:"javascript" page="catalog" categoryId="NEW_CATEGORY"}'.replace('NEW_CATEGORY', this.options[this.selectedIndex].value))" class="selectMenu">
+			<select size="1" name="browseCategory" onchange="location.href=('{url|escape:"javascript" page="catalog" op="category" path="CATEGORY_PATH"}'.replace('CATEGORY_PATH', this.options[this.selectedIndex].value))" class="selectMenu">
 				<option disabled="disabled" selected="selected">{translate key="plugins.block.browse.selectCategory"}</option>
 				{iterate from=browseCategories item=browseCategory}
-					<option value="{$browseCategory->getId()|escape}">{$browseCategory->getLocalizedTitle()}</option>
+					<option value="{$browseCategory->getPath()|escape}">{$browseCategory->getLocalizedTitle()}</option>
 				{/iterate}
 			</select>
 		</div>
 		<div id="browseSeriesContainer">
-			<select size="1" name="browseSeries" onchange="location.href=('{url|escape:"javascript" page="catalog" seriesId="NEW_CATEGORY"}'.replace('NEW_SERIES', this.options[this.selectedIndex].value))" class="selectMenu">
+			<select size="1" name="browseSeries" onchange="location.href=('{url|escape:"javascript" page="catalog" op="series" path="SERIES_PATH"}'.replace('SERIES_PATH', this.options[this.selectedIndex].value))" class="selectMenu">
 				<option disabled="disabled" selected="selected">{translate key="plugins.block.browse.selectSeries"}</option>
 				{iterate from=browseSeries item=browseSeriesItem}
-					<option value="{$browseSeriesItem->getId()|escape}">{$browseSeriesItem->getLocalizedTitle()}</option>
+					<option value="{$browseSeriesItem->getPath()|escape}">{$browseSeriesItem->getLocalizedTitle()}</option>
 				{/iterate}
 			</select>
 		</div>
