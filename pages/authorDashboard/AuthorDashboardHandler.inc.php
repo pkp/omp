@@ -108,30 +108,6 @@ class AuthorDashboardHandler extends Handler {
 			$templateMgr->assign_by_ref('monographEmails', $monographEmails);
 		}
 
-		// Get stages where user has an author role user group assignment.
-		// User may have other assignments, but to see the author dashboard
-		// stage accordions he must have an author role user group assignment.
-		$press =& $request->getPress();
-		$user =& $request->getUser();
-		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
-		$stageAssignmentDao =& DAORegistry::getDAO('StageAssignmentDAO'); /* @var $stageAssignmentDao StageAssignmentDAO */
-
-		$userUserGroupsFactory =& $userGroupDao->getByUserId($user->getId(), $press->getId());
-		$accessibleStages = array();
-		while ($userGroup =& $userUserGroupsFactory->next()) {
-			if ($userGroup->getRoleId() == ROLE_ID_AUTHOR) {
-				// Check stage assignment for this user group.
-				$stageAssignmentsFactory =& $stageAssignmentDao->getBySubmissionAndStageId($monograph->getId(), null, $userGroup->getId(), $user->getId());
-				if (!$stageAssignmentsFactory->wasEmpty()) {
-					$userGroupStages = $userGroupDao->getAssignedStagesByUserGroupId($press->getId(), $userGroup->getId());
-					if (is_array($userGroupStages)) {
-						$accessibleStages = $accessibleStages + $userGroupStages;
-					}
-				}
-			}
-		}
-		$templateMgr->assign('accessibleStages', $accessibleStages);
-
 		// Define the notification options.
 		$monographAssocTypeAndIdArray = array(ASSOC_TYPE_MONOGRAPH, $monograph->getId());
 		$notificationRequestOptions = array(

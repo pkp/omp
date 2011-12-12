@@ -41,7 +41,7 @@
 		<div class="pkp_helpers_clear"></div>
 		{include file="controllers/notification/inPlaceNotification.tpl" notificationId="authorDashboardNotification" requestOptions=$authorDashboardNotificationRequestOptions}
 	</div>
-	{if $accessibleStages[$smarty.const.WORKFLOW_STAGE_ID_SUBMISSION]}
+	{if array_key_exists($smarty.const.WORKFLOW_STAGE_ID_SUBMISSION, $accessibleWorkflowStages)}
 		<div class="pkp_authorDashboard_stageContainer" id="submission">
 			<h3><a href="#">{translate key='submission.submission'}</a></h3>
 			<div id="submissionContent">
@@ -51,7 +51,7 @@
 		</div>
 	{/if}
 
-	{if $accessibleStages[$smarty.const.WORKFLOW_STAGE_ID_INTERNAL_REVIEW]}
+	{if array_key_exists($smarty.const.WORKFLOW_STAGE_ID_INTERNAL_REVIEW, $accessibleWorkflowStages)}
 		<div class="pkp_authorDashboard_stageContainer" id="internalReview">
 			<h3><a href="#">{translate key='workflow.review.internalReview'}</a></h3>
 			<div id="internalReviewContent">
@@ -65,8 +65,8 @@
 			</div>
 		</div>
 	{/if}
-	
-	{if $accessibleStages[$smarty.const.WORKFLOW_STAGE_ID_EXTERNAL_REVIEW]}
+
+	{if array_key_exists($smarty.const.WORKFLOW_STAGE_ID_EXTERNAL_REVIEW, $accessibleWorkflowStages)}
 		<div class="pkp_authorDashboard_stageContainer" id="externalReview">
 			<h3><a href="#">{translate key='workflow.review.externalReview'}</a></h3>
 			<div id="externalReviewContent">
@@ -81,7 +81,7 @@
 		</div>
 	{/if}
 
-	{if $accessibleStages[$smarty.const.WORKFLOW_STAGE_ID_EDITING]}
+	{if array_key_exists($smarty.const.WORKFLOW_STAGE_ID_EDITING, $accessibleWorkflowStages)}
 		<div class="pkp_authorDashboard_stageContainer" id="copyediting">
 			<h3><a href="#">{translate key='submission.copyediting'}</a></h3>
 			<div id="copyeditingContent">
@@ -103,7 +103,7 @@
 		</div>
 	{/if}
 
-	{if $accessibleStages[$smarty.const.WORKFLOW_STAGE_ID_PRODUCTION]}
+	{if array_key_exists($smarty.const.WORKFLOW_STAGE_ID_PRODUCTION, $accessibleWorkflowStages)}
 		<div class="pkp_authorDashboard_stageContainer" id="production">
 			<h3><a href="#">{translate key='submission.production'}</a></h3>
 			<div id="productionContent">&nbsp;</div>
