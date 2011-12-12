@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2003-2011 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the en_US (U.S. English) locale.
+  *
+  * $Id$
+  -->
+ 
+<locale name="en_US" full_name="U.S. English">
+	<message key="plugins.importexport.onix30.displayName">ONIX 3.0 Monograph  Export Plugin</message>
+	<message key="plugins.importexport.onix30.description">Export monograph metdata using the ONIX 3.0 DTD</message>
+	<message key="plugins.importexport.onix30.cliUsage"><![CDATA[Usage: {$scriptName} {$pluginName} [xmlFileName] [pressPath] [monographId] ]]></message>
+	<message key="plugins.importexport.onix30.cliError">ERROR:</message>
+	<message key="plugins.importexport.onix30.error.unknownPress">The specified press path, "{$pressPath}", does not exist.</message>
+	<message key="plugins.importexport.onix30.export.error.couldNotWrite">Could not write to the file "{$fileName}".</message>
+	<message key="plugins.importexport.onix30.export.error.monographNotFound">No monograph matched the specified monograph ID "{$monographId}".</message>
+	<message key="plugins.importexport.onix30.unavailable">Unavailable</message>
+</locale>
