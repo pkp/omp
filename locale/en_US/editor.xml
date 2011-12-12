@@ -14,6 +14,7 @@
 	<message key="editor.review.enrollReviewer">Enroll an Existing User as Reviewer</message>
 	<message key="editor.review.enrollReviewer.short">Enroll Existing User</message>
 	<message key="editor.review.createReviewer">Create New Reviewer</message>
+	<message key="editor.review.notInitiated">The review process has not yet been initiated.</message>
 	<message key="editor.responseDueDate">Response Due Date</message>
 
 

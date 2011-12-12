@@ -211,43 +211,46 @@ class WorkflowHandler extends Handler {
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		$selectedStageId = $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
 
+		$templateMgr =& TemplateManager::getManager();
+
 		// Get all review rounds for this submission, on the current stage.
 		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
 		$reviewRoundsFactory =& $reviewRoundDao->getByMonographId($monograph->getId(), $selectedStageId);
-		$reviewRoundsArray =& $reviewRoundsFactory->toAssociativeArray();
+		if (!$reviewRoundsFactory->wasEmpty()) {
+			$reviewRoundsArray =& $reviewRoundsFactory->toAssociativeArray();
 
-		// Get the review round number of the last review round to be used
-		// as the current review round tab index.
-		$lastReviewRoundNumber = end($reviewRoundsArray)->getRound();
-		$lastReviewRoundId = end($reviewRoundsArray)->getId();
-		reset($reviewRoundsArray);
+			// Get the review round number of the last review round to be used
+			// as the current review round tab index.
+			$lastReviewRoundNumber = end($reviewRoundsArray)->getRound();
+			$lastReviewRoundId = end($reviewRoundsArray)->getId();
+			reset($reviewRoundsArray);
 
-		// Add the round information to the template.
-		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->assign_by_ref('reviewRounds', $reviewRoundsArray);
-		$templateMgr->assign('lastReviewRoundNumber', $lastReviewRoundNumber);
+			// Add the round information to the template.
+			$templateMgr->assign_by_ref('reviewRounds', $reviewRoundsArray);
+			$templateMgr->assign('lastReviewRoundNumber', $lastReviewRoundNumber);
 
-		if ($monograph->getStageId() == $selectedStageId) {
-			$dispatcher =& $request->getDispatcher();
-			$newRoundAction = new LinkAction(
-				'newRound',
-				new AjaxModal(
-					$dispatcher->url(
-						$request, ROUTE_COMPONENT, null,
-						'modals.editorDecision.EditorDecisionHandler',
-						'newReviewRound', null, array(
-							'monographId' => $monograph->getId(),
-							'decision' => SUBMISSION_EDITOR_DECISION_RESUBMIT,
-							'stageId' => $selectedStageId,
-							'reviewRoundId' => $lastReviewRoundId
-						)
+			if ($monograph->getStageId() == $selectedStageId) {
+				$dispatcher =& $request->getDispatcher();
+				$newRoundAction = new LinkAction(
+					'newRound',
+					new AjaxModal(
+						$dispatcher->url(
+							$request, ROUTE_COMPONENT, null,
+							'modals.editorDecision.EditorDecisionHandler',
+							'newReviewRound', null, array(
+								'monographId' => $monograph->getId(),
+								'decision' => SUBMISSION_EDITOR_DECISION_RESUBMIT,
+								'stageId' => $selectedStageId,
+								'reviewRoundId' => $lastReviewRoundId
+							)
+						),
+						__('editor.monograph.newRound')
 					),
-					__('editor.monograph.newRound')
-				),
-				__('editor.monograph.newRound'),
-				'add_item_small'
-			); // FIXME: add icon.
-			$templateMgr->assign_by_ref('newRoundAction', $newRoundAction);
+					__('editor.monograph.newRound'),
+					'add_item_small'
+				); // FIXME: add icon.
+				$templateMgr->assign_by_ref('newRoundAction', $newRoundAction);
+			}
 		}
 
 		// Render the view.
