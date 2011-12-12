@@ -148,7 +148,7 @@ class UserUserGroupListbuilderHandler extends ListbuilderHandler {
 	 * @see PKPHandler::initialize()
 	 */
 	function initialize(&$request) {
-		// FIXME Bug #6199
+		// FIXME Validate user ID?
 		$this->setUserId((int) $request->getUserVar('userId'));
 
 		$this->setPress($request->getPress());

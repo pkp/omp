@@ -26,11 +26,13 @@ class ProofFilesGridHandler extends SignoffFilesGridHandler {
 	 * Constructor
 	 */
 	function ProofFilesGridHandler() {
-		parent::SignoffFilesGridHandler(WORKFLOW_STAGE_ID_PRODUCTION,
-										MONOGRAPH_FILE_PROOF,
-										'SIGNOFF_PROOFING',
-										MONOGRAPH_EMAIL_PROOFREAD_NOTIFY_AUTHOR,
-										ASSOC_TYPE_PUBLICATION_FORMAT);
+		parent::SignoffFilesGridHandler(
+			WORKFLOW_STAGE_ID_PRODUCTION,
+			MONOGRAPH_FILE_PROOF,
+			'SIGNOFF_PROOFING',
+			MONOGRAPH_EMAIL_PROOFREAD_NOTIFY_AUTHOR,
+			ASSOC_TYPE_PUBLICATION_FORMAT
+		);
 	}
 
 	//

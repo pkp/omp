@@ -192,9 +192,10 @@ class SignoffFileUploadForm extends Form {
 			);
 
 
-			// FIXME: Currently the code allows for a signoff to be added many times. (if the option is presented in the form)
-			// Need to delete previous files uploaded to this signoff.
-			// Partially due to #6799.
+			// FIXME: Currently the code allows for a signoff to be
+			// added many times (if the option is presented in the
+			// form). Need to delete previous files uploaded to this
+			// signoff. Partially due to #6799.
 
 			// Mark ALL the signoffs for this user as completed with this file upload.
 			$signoff->setFileId($signoffFileId);

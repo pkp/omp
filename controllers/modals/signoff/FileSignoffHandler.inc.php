@@ -42,7 +42,7 @@ class FileSignoffHandler extends FileManagementHandler {
 	 */
 	function FileSignoffHandler() {
 		parent::FileManagementHandler();
-		// FIXME #6199: all roles can see readSignoff, but other ops require the user to own the signoff.
+		// FIXME #6979: all roles can see readSignoff, but other ops require the user to own the signoff.
 		$this->addRoleAssignment(
 			array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_ASSISTANT, ROLE_ID_AUTHOR),
 			array('displayFileUploadForm', 'uploadFile', 'signoff', 'readSignoff', 'signoffRead')

@@ -76,7 +76,7 @@ class FileUploadWizardHandler extends FileManagementHandler {
 	function initialize(&$request, $args) {
 		parent::initialize($request, $args);
 		// Configure the wizard with the authorized monograph and file stage.
-		// FIXME: Bug #6199
+		// FIXME: #6977 File stage authorization/validation?
 		$fileStage = (int)$request->getUserVar('fileStage');
 		assert(is_numeric($fileStage) && $fileStage > 0);
 		$this->_fileStage = $fileStage;
@@ -100,7 +100,7 @@ class FileUploadWizardHandler extends FileManagementHandler {
 
 		// The revised file will be non-null if we revise a single existing file.
 		if ($this->getRevisionOnly() && $request->getUserVar('revisedFileId')) {
-			// FIXME: bug #6199
+			// FIXME: bug #6978
 			$this->_revisedFileId = (int)$request->getUserVar('revisedFileId');
 		}
 
@@ -400,7 +400,7 @@ class FileUploadWizardHandler extends FileManagementHandler {
 		$monograph =& $this->getMonograph();
 
 		// Retrieve the latest revision of the requested monograph file.
-		// FIXME Bug #6199: Validate file ID
+		// FIXME Bug #6976: Validate file ID
 		$fileId = (int)$request->getUserVar('fileId');
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		$submissionFile =& $submissionFileDao->getLatestRevision($fileId, $this->getFileStage(), $monograph->getId());

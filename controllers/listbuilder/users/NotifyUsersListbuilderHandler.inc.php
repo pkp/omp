@@ -107,7 +107,7 @@ class NotifyUsersListbuilderHandler extends ListbuilderHandler {
 		}
 
 		// Otherwise return from the newRowId
-		// FIXME: Bug #6199; user ID not validated
+		// FIXME: Validate user ID?
 		$newRowId = $this->getNewRowId($request);
 		$userId = (int) $newRowId['name'];
 		$userDao =& DAORegistry::getDAO('UserDAO');

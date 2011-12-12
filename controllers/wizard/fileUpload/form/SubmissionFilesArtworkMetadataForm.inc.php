@@ -46,11 +46,11 @@ class SubmissionFilesArtworkMetadataForm extends SubmissionFilesMetadataForm {
 	 */
 	function execute($args, $request) {
 		//
-		// FIXME: Should caption, credit, or any other fields be localized?
+		// FIXME: Should caption, credit, or any other fields be
+		// localized?
 		// FIXME: How to upload a permissions file?
-		// FIXME: How to assign a chapter to the artwork file?
-		// FIXME: How to select a contact author from the submission author list?
-		// All, see #6416.
+		// FIXME: How to select a contact author from the submission
+		// author list?
 		//
 
 		// Update the sumbission file by reference.

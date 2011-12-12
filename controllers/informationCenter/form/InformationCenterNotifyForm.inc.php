@@ -135,7 +135,8 @@ class InformationCenterNotifyForm extends Form {
 
 	/**
 	 * Delete a signoff
-	 * FIXME: it was throwing a warning when this was not specified. We just want client side delete.
+	 * (It was throwing a warning when this was not specified. We just want
+	 * client side delete.)
 	 */
 	function deleteEntry(&$request, $rowId) {
 		return true;

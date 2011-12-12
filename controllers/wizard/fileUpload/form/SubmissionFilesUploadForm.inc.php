@@ -140,8 +140,9 @@ class SubmissionFilesUploadForm extends SubmissionFilesUploadBaseForm {
 
 		// Check which of these groups make sense in the context
 		// from which the uploader was instantiated.
-		// FIXME: The series editor role may only be displayed if the user
-		// is assigned to the current submission as a series editor, see #6000.
+		// FIXME: The series editor role may only be displayed if the
+		// user is assigned to the current submission as a series
+		// editor, see #6000.
 		$uploaderRoles = $this->getUploaderRoles();
 		$uploaderUserGroups = array();
 		$highestAuthorityUserGroupId = null;
