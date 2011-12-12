@@ -49,8 +49,7 @@
 					{/if}
 				{/if}
 				<li class="{$progressClass}">
-					{if ($progressClass == "current" || $progressClass == "complete") &&
-					array_key_exists($key, $accessibleWorkflowStages)}
+					{if array_key_exists($key, $accessibleWorkflowStages)}
 						<a class="sprite" href="{url router=$smarty.const.ROUTE_PAGE page="workflow" op=$stage.path path=$monograph->getId()}">{translate key=$stage.translationKey}</a>
 					{else}
 						<a class="sprite pkp_common_disabled">{translate key=$stage.translationKey}</a>
