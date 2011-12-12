@@ -256,7 +256,7 @@ class PublishedMonographDAO extends MonographDAO {
 				LEFT JOIN series_settings stl ON (s.series_id = stl.series_id AND stl.setting_name = ? AND stl.locale = ?)
 				LEFT JOIN series_settings sapl ON (s.series_id = sapl.series_id AND sapl.setting_name = ? AND sapl.locale = ?)
 				LEFT JOIN series_settings sal ON (s.series_id = sal.series_id AND sal.setting_name = ? AND sal.locale = ?)
-				LEFT JOIN categories mc ON (mc.category_id = m.category_id AND mc.category_id = ?)
+				LEFT JOIN monograph_categories mc ON (mc.monograph_id = m.monograph_id AND mc.category_id = ?)
 				LEFT JOIN series_categories sca ON (sca.series_id = s.series_id)
 				LEFT JOIN categories sc ON (sc.category_id = sca.category_id AND sc.category_id = ?)
 				LEFT JOIN features f ON (f.monograph_id = m.monograph_id AND f.assoc_type = ? AND f.assoc_id = ?)

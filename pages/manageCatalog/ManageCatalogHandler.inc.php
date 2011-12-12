@@ -16,7 +16,6 @@ import('classes.handler.Handler');
 
 // import UI base classes
 import('lib.pkp.classes.linkAction.LinkAction');
-import('lib.pkp.classes.linkAction.request.AjaxModal');
 import('lib.pkp.classes.core.JSONMessage');
 
 class ManageCatalogHandler extends Handler {
