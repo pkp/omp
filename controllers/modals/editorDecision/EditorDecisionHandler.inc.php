@@ -238,8 +238,7 @@ class EditorDecisionHandler extends Handler {
 		$templateMgr->assign('monographId', $monograph->getId());
 		$templateMgr->assign('stageId', $stageId);
 
-		// FIXME: setting to one for testing.
-		$templateMgr->assign('publicationFormatId', 1);
+		$templateMgr->assign('publicationFormatId', $request->getUserVar('publicationFormatId'));
 		return $templateMgr->fetchJson('controllers/modals/editorDecision/form/approveProofsForm.tpl');
 	}
 
