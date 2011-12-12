@@ -47,7 +47,7 @@ class SignoffFilesGridCategoryRow extends GridCategoryRow {
 
 			// Add the row actions.
 			import('controllers.api.file.linkAction.DeleteFileLinkAction');
-			$this->addAction(new DeleteFileLinkAction($request, $monographFile, $this->_getStageId()));
+			$this->addAction(new DeleteFileLinkAction($request, $monographFile, $this->_getStageId(), ''));
 
 			// The title should link to a download action.
 			import('controllers.api.file.linkAction.DownloadFileLinkAction');
