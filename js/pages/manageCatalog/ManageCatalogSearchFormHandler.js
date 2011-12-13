@@ -1,10 +1,10 @@
 /**
- * @file js/pages/catalog/CatalogSearchFormHandler.js
+ * @file js/pages/manageCatalog/ManageCatalogSearchFormHandler.js
  *
  * Copyright (c) 2000-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class CatalogSearchFormHandler
+ * @class ManageCatalogSearchFormHandler
  * @ingroup js_pages_catalog
  *
  * @brief Handler for the search form in catalog administration.
@@ -21,7 +21,7 @@
 	 * @param {jQuery} $form the wrapped HTML form element.
 	 * @param {Object} options form options.
 	 */
-	$.pkp.pages.catalog.CatalogSearchFormHandler =
+	$.pkp.pages.manageCatalog.ManageCatalogSearchFormHandler =
 			function($form, options) {
 
 		options.submitHandler = this.submitForm;
@@ -32,7 +32,7 @@
 	};
 
 	$.pkp.classes.Helper.inherits(
-			$.pkp.pages.catalog.CatalogSearchFormHandler,
+			$.pkp.pages.manageCatalog.ManageCatalogSearchFormHandler,
 			$.pkp.controllers.form.FormHandler);
 
 
@@ -46,7 +46,7 @@
 	 * @param {Object} validator The validator plug-in.
 	 * @param {HTMLElement} formElement The wrapped HTML form.
 	 */
-	$.pkp.pages.catalog.CatalogSearchFormHandler.prototype.submitForm =
+	$.pkp.pages.manageCatalog.ManageCatalogSearchFormHandler.prototype.submitForm =
 			function(validator, formElement) {
 
 		var $form = this.getHtmlElement();

@@ -22,7 +22,7 @@
 	 *  the monograph list div.
 	 * @param {Object} options Handler options.
 	 */
-	$.pkp.pages.catalog.MonographHandler =
+	$.pkp.pages.manageCatalog.MonographHandler =
 			function($monographsContainer, options) {
 
 		// Initialize and save parameters.
@@ -47,7 +47,7 @@
 		this.bind('setSequence', this.setSequenceHandler_);
 	};
 	$.pkp.classes.Helper.inherits(
-			$.pkp.pages.catalog.MonographHandler,
+			$.pkp.pages.manageCatalog.MonographHandler,
 			$.pkp.classes.Handler);
 
 
@@ -59,7 +59,7 @@
 	 * @private
 	 * @type {int?}
 	 */
-	$.pkp.pages.catalog.MonographHandler.prototype.seq_ = null;
+	$.pkp.pages.manageCatalog.MonographHandler.prototype.seq_ = null;
 
 
 	/**
@@ -67,7 +67,7 @@
 	 * @private
 	 * @type {date?}
 	 */
-	$.pkp.pages.catalog.MonographHandler.prototype.datePublished_ = null;
+	$.pkp.pages.manageCatalog.MonographHandler.prototype.datePublished_ = null;
 
 
 	/**
@@ -75,7 +75,7 @@
 	 * @private
 	 * @type {int?}
 	 */
-	$.pkp.pages.catalog.MonographHandler.prototype.monographId_ = null;
+	$.pkp.pages.manageCatalog.MonographHandler.prototype.monographId_ = null;
 
 
 	/**
@@ -83,7 +83,7 @@
 	 * @private
 	 * @type {boolean?}
 	 */
-	$.pkp.pages.catalog.MonographHandler.prototype.isFeatured_ = null;
+	$.pkp.pages.manageCatalog.MonographHandler.prototype.isFeatured_ = null;
 
 
 	/**
@@ -91,7 +91,7 @@
 	 * @private
 	 * @type {string?}
 	 */
-	$.pkp.pages.catalog.MonographHandler.
+	$.pkp.pages.manageCatalog.MonographHandler.
 			prototype.setFeaturedUrlTemplate_ = null;
 
 
@@ -102,7 +102,7 @@
 	 * Get the date published for this monograph.
 	 * @return {Date} Date published.
 	 */
-	$.pkp.pages.catalog.MonographHandler.prototype.getDatePublished =
+	$.pkp.pages.manageCatalog.MonographHandler.prototype.getDatePublished =
 			function() {
 
 		return this.datePublished_;
@@ -113,7 +113,7 @@
 	 * Get the featured flag for this monograph.
 	 * @return {boolean?} Featured flag.
 	 */
-	$.pkp.pages.catalog.MonographHandler.prototype.getFeatured =
+	$.pkp.pages.manageCatalog.MonographHandler.prototype.getFeatured =
 			function() {
 
 		return this.isFeatured_;
@@ -124,7 +124,7 @@
 	 * Get the sort sequence for this monograph.
 	 * @return {integer?} Sequence.
 	 */
-	$.pkp.pages.catalog.MonographHandler.prototype.getSeq =
+	$.pkp.pages.manageCatalog.MonographHandler.prototype.getSeq =
 			function() {
 
 		return this.seq_;
@@ -139,7 +139,7 @@
 	 * @private
 	 * @return {String} The URL to use to set the monograph feature state.
 	 */
-	$.pkp.pages.catalog.MonographHandler.prototype.getSetFeaturedUrl_ =
+	$.pkp.pages.manageCatalog.MonographHandler.prototype.getSetFeaturedUrl_ =
 			function() {
 
 		return this.setFeaturedUrlTemplate_
@@ -156,7 +156,7 @@
 	 *
 	 * @return {boolean} Always returns false.
 	 */
-	$.pkp.pages.catalog.MonographHandler.prototype.featureButtonHandler_ =
+	$.pkp.pages.manageCatalog.MonographHandler.prototype.featureButtonHandler_ =
 			function() {
 
 		// Invert "featured" state
@@ -180,7 +180,7 @@
 	 * @return {boolean} Message handling result.
 	 * @private
 	 */
-	$.pkp.pages.catalog.MonographHandler.prototype.handleSetFeaturedResponse_ =
+	$.pkp.pages.manageCatalog.MonographHandler.prototype.handleSetFeaturedResponse_ =
 			function(ajaxContext, jsonData) {
 
 		jsonData = this.handleJson(jsonData);
@@ -225,7 +225,7 @@
 	 * @param {integer} canDrag 1/true iff the user should be able to drag.
 	 * @return {boolean} The event handling chain status.
 	 */
-	$.pkp.pages.catalog.MonographHandler.
+	$.pkp.pages.manageCatalog.MonographHandler.
 			prototype.changeDragModeHandler_ =
 			function(callingHandler, event, canDrag) {
 
@@ -254,7 +254,7 @@
 	 * @param {integer} seq New sequence number.
 	 * @return {boolean} The event handling chain status.
 	 */
-	$.pkp.pages.catalog.MonographHandler.
+	$.pkp.pages.manageCatalog.MonographHandler.
 			prototype.setSequenceHandler_ =
 			function(callingHandler, event, seq) {
 
@@ -279,7 +279,7 @@
 	 * @return {boolean} Message handling result.
 	 * @private
 	 */
-	$.pkp.pages.catalog.MonographHandler.prototype.handleSetSequenceResponse_ =
+	$.pkp.pages.manageCatalog.MonographHandler.prototype.handleSetSequenceResponse_ =
 			function(ajaxContext, jsonData) {
 
 		jsonData = this.handleJson(jsonData);

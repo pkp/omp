@@ -1,11 +1,11 @@
 /**
- * @file js/pages/catalog/MonographListHandler.js
+ * @file js/pages/manageCatalog/MonographListHandler.js
  *
  * Copyright (c) 2000-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class MonographListHandler
- * @ingroup js_pages_catalog
+ * @ingroup js_pages_manageCatalog
  *
  * @brief Handler for monograph list.
  *
@@ -22,7 +22,7 @@
 	 *  the monograph list div.
 	 * @param {Object} options Handler options.
 	 */
-	$.pkp.pages.catalog.MonographListHandler =
+	$.pkp.pages.manageCatalog.MonographListHandler =
 			function($monographsContainer, options) {
 
 		this.parent($monographsContainer, options);
@@ -48,7 +48,7 @@
 		this.trigger('monographListChanged');
 	};
 	$.pkp.classes.Helper.inherits(
-			$.pkp.pages.catalog.MonographListHandler,
+			$.pkp.pages.manageCatalog.MonographListHandler,
 			$.pkp.classes.Handler);
 
 
@@ -60,7 +60,7 @@
 	 * @private
 	 * @type {boolean}
 	 */
-	$.pkp.pages.catalog.MonographListHandler.prototype.inOrganizeMode_ = false;
+	$.pkp.pages.manageCatalog.MonographListHandler.prototype.inOrganizeMode_ = false;
 
 
 	/**
@@ -68,7 +68,7 @@
 	 * @private
 	 * @type {boolean?}
 	 */
-	$.pkp.pages.catalog.MonographListHandler.prototype.inGridMode_ = null;
+	$.pkp.pages.manageCatalog.MonographListHandler.prototype.inGridMode_ = null;
 
 
 	//
@@ -78,7 +78,7 @@
 	 * Switch to List View mode.
 	 * @return {boolean} Always returns false.
 	 */
-	$.pkp.pages.catalog.MonographListHandler.prototype.useListView =
+	$.pkp.pages.manageCatalog.MonographListHandler.prototype.useListView =
 			function() {
 
 		var $htmlElement = $(this.getHtmlElement());
@@ -102,7 +102,7 @@
 	 * Switch to Grid View mode.
 	 * @return {boolean} Always returns false.
 	 */
-	$.pkp.pages.catalog.MonographListHandler.prototype.useGridView =
+	$.pkp.pages.manageCatalog.MonographListHandler.prototype.useGridView =
 			function() {
 
 		var $htmlElement = $(this.getHtmlElement());
@@ -132,7 +132,7 @@
 	 *
 	 * @return {boolean} Always returns false.
 	 */
-	$.pkp.pages.catalog.MonographListHandler.prototype.organizeButtonHandler_ =
+	$.pkp.pages.manageCatalog.MonographListHandler.prototype.organizeButtonHandler_ =
 			function() {
 
 		// Toggle the "organize" flag.
@@ -185,7 +185,7 @@
 	 * @param {Event} event The event.
 	 * @return {boolean} The event handling chain status.
 	 */
-	$.pkp.pages.catalog.MonographListHandler.
+	$.pkp.pages.manageCatalog.MonographListHandler.
 			prototype.monographListChangedHandler_ =
 			function(callingHandler, event) {
 
@@ -237,7 +237,7 @@
 	 * @param {Object} ui The UI element that has changed.
 	 * @return {boolean} The event handling chain status.
 	 */
-	$.pkp.pages.catalog.MonographListHandler.prototype.sortUpdateHandler_ = function(callingHandler, event, ui) {
+	$.pkp.pages.manageCatalog.MonographListHandler.prototype.sortUpdateHandler_ = function(callingHandler, event, ui) {
 		// Figure out where we are in the DOM and choose a new seq num
 		var $monographElement = ui.item;
 		var $prevElement = $monographElement.prev();

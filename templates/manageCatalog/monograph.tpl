@@ -23,7 +23,7 @@
 	// Initialize JS handler.
 	$(function() {ldelim}
 		$('#{$monographContainerId|escape:"javascript"}').pkpHandler(
-			'$.pkp.pages.catalog.MonographHandler',
+			'$.pkp.pages.manageCatalog.MonographHandler',
 			{ldelim}
 				monographId: {$monographId},
 				setFeaturedUrlTemplate: '{url|escape:"javascript" op="setFeatured" path=$monographId|to_array:$featureAssocType:$featureAssocId:"FEATURED_DUMMY":"SEQ_DUMMY" escape=false}',

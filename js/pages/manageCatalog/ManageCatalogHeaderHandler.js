@@ -1,17 +1,17 @@
 /**
- * @defgroup js_pages_catalog
+ * @defgroup js_pages_manageCatalog
  */
-// Create the pages_catalog namespace.
-$.pkp.pages.catalog = $.pkp.pages.catalog || {};
+// Create the pages_manageCatalog namespace.
+$.pkp.pages.manageCatalog = $.pkp.pages.manageCatalog || {};
 
 /**
- * @file js/pages/catalog/CatalogHeaderHandler.js
+ * @file js/pages/manageCatalog/ManageCatalogHeaderHandler.js
  *
  * Copyright (c) 2000-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class CatalogHeaderHandler
- * @ingroup js_pages_catalog
+ * @class ManageCatalogHeaderHandler
+ * @ingroup js_pages_manageCatalog
  *
  * @brief Handler for catalog management.
  *
@@ -28,7 +28,7 @@ $.pkp.pages.catalog = $.pkp.pages.catalog || {};
 	 *  the header div.
 	 * @param {Object} options Handler options.
 	 */
-	$.pkp.pages.catalog.CatalogHeaderHandler =
+	$.pkp.pages.manageCatalog.ManageCatalogHeaderHandler =
 			function($catalogHeader, options) {
 
 		this.parent($catalogHeader, options);
@@ -52,7 +52,7 @@ $.pkp.pages.catalog = $.pkp.pages.catalog || {};
 		this.bind('selectSeries', this.selectSeriesHandler_);
 	};
 	$.pkp.classes.Helper.inherits(
-			$.pkp.pages.catalog.CatalogHeaderHandler,
+			$.pkp.pages.manageCatalog.ManageCatalogHeaderHandler,
 			$.pkp.classes.Handler);
 
 
@@ -64,7 +64,7 @@ $.pkp.pages.catalog = $.pkp.pages.catalog || {};
 	 * @private
 	 * @type {int}
 	 */
-	$.pkp.pages.catalog.CatalogHeaderHandler.
+	$.pkp.pages.manageCatalog.ManageCatalogHeaderHandler.
 			prototype.searchTabIndex_ = 0;
 
 
@@ -73,7 +73,7 @@ $.pkp.pages.catalog = $.pkp.pages.catalog || {};
 	 * @private
 	 * @type {string?}
 	 */
-	$.pkp.pages.catalog.CatalogHeaderHandler.
+	$.pkp.pages.manageCatalog.ManageCatalogHeaderHandler.
 			prototype.seriesFetchUrlTemplate_ = null;
 
 
@@ -82,7 +82,7 @@ $.pkp.pages.catalog = $.pkp.pages.catalog || {};
 	 * @private
 	 * @type {string?}
 	 */
-	$.pkp.pages.catalog.CatalogHeaderHandler.
+	$.pkp.pages.manageCatalog.ManageCatalogHeaderHandler.
 			prototype.categoryFetchUrlTemplate_ = null;
 
 
@@ -95,7 +95,7 @@ $.pkp.pages.catalog = $.pkp.pages.catalog || {};
 	 * @param {String} seriesPath The series path to return the fetch URL for.
 	 * @return {String} The URL to use to fetch series contents.
 	 */
-	$.pkp.pages.catalog.CatalogHeaderHandler.prototype.getSeriesFetchUrl_ =
+	$.pkp.pages.manageCatalog.ManageCatalogHeaderHandler.prototype.getSeriesFetchUrl_ =
 			function(seriesPath) {
 
 		return (this.seriesFetchUrlTemplate_.replace('SERIES_PATH', seriesPath));
@@ -108,7 +108,7 @@ $.pkp.pages.catalog = $.pkp.pages.catalog || {};
 	 * @param {String} categoryPath The category path to return the fetch URL for.
 	 * @return {String} The URL to use to fetch series contents.
 	 */
-	$.pkp.pages.catalog.CatalogHeaderHandler.prototype.getCategoryFetchUrl_ =
+	$.pkp.pages.manageCatalog.ManageCatalogHeaderHandler.prototype.getCategoryFetchUrl_ =
 			function(categoryPath) {
 
 		return (this.categoryFetchUrlTemplate_.replace('CATEGORY_PATH', categoryPath));
@@ -125,7 +125,7 @@ $.pkp.pages.catalog = $.pkp.pages.catalog || {};
 	 * @param {Event} event The event.
 	 * @param {String} searchUrl The URL that will return search results.
 	 */
-	$.pkp.pages.catalog.CatalogHeaderHandler.
+	$.pkp.pages.manageCatalog.ManageCatalogHeaderHandler.
 			prototype.searchCatalogHandler_ =
 			function(callingForm, event, searchUrl) {
 
@@ -157,7 +157,7 @@ $.pkp.pages.catalog = $.pkp.pages.catalog || {};
 	 * @param {Event} event The event.
 	 * @param {String?} seriesPath The selected series path.
 	 */
-	$.pkp.pages.catalog.CatalogHeaderHandler.
+	$.pkp.pages.manageCatalog.ManageCatalogHeaderHandler.
 			prototype.selectSeriesHandler_ =
 			function(callingForm, event, seriesPath) {
 
@@ -182,7 +182,7 @@ $.pkp.pages.catalog = $.pkp.pages.catalog || {};
 	 * @param {Event} event The event.
 	 * @param {String?} categoryPath The selected category path.
 	 */
-	$.pkp.pages.catalog.CatalogHeaderHandler.
+	$.pkp.pages.manageCatalog.ManageCatalogHeaderHandler.
 			prototype.selectCategoryHandler_ =
 			function(callingForm, event, categoryPath) {
 
@@ -204,7 +204,7 @@ $.pkp.pages.catalog = $.pkp.pages.catalog || {};
 	 * @param {Object} jsonData A parsed JSON response object.
 	 * @private
 	 */
-	$.pkp.pages.catalog.CatalogHeaderHandler.prototype.showFetchedSeries_ =
+	$.pkp.pages.manageCatalog.ManageCatalogHeaderHandler.prototype.showFetchedSeries_ =
 			function(ajaxContext, jsonData) {
 
 		jsonData = this.handleJson(jsonData);
@@ -221,7 +221,7 @@ $.pkp.pages.catalog = $.pkp.pages.catalog || {};
 	 * @param {Object} jsonData A parsed JSON response object.
 	 * @private
 	 */
-	$.pkp.pages.catalog.CatalogHeaderHandler.prototype.showFetchedCategory_ =
+	$.pkp.pages.manageCatalog.ManageCatalogHeaderHandler.prototype.showFetchedCategory_ =
 			function(ajaxContext, jsonData) {
 
 		jsonData = this.handleJson(jsonData);

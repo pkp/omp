@@ -15,7 +15,7 @@
 	// Initialize JS handler for catalog header.
 	$(function() {ldelim}
 		$('#catalogHeader').pkpHandler(
-			'$.pkp.pages.catalog.CatalogHeaderHandler',
+			'$.pkp.pages.manageCatalog.ManageCatalogHeaderHandler',
 			{ldelim}
 				searchTabIndex: 4,
 				seriesFetchUrlTemplate: '{url|escape:"javascript" op="series" path=SERIES_PATH escape=false}',
@@ -26,7 +26,7 @@
 	// Initialize JS handler for search form.
 	$(function() {ldelim}
 		$('#catalogSearchForm').pkpHandler(
-			'$.pkp.pages.catalog.CatalogSearchFormHandler'
+			'$.pkp.pages.manageCatalog.ManageCatalogSearchFormHandler'
 		);
 	{rdelim});
 	// Initialize "Select Series" form handler
