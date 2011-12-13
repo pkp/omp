@@ -6,7 +6,6 @@
  *
  * The press settings page.
  *}
-
 {strip}
 {assign var="pageTitle" value="navigation.tools.importExport"}
 {include file="common/header.tpl"}

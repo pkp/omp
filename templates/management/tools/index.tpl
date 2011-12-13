@@ -6,7 +6,6 @@
  *
  * Settings index.
  *}
-
 {strip}
 {assign var="pageTitle" value="manager.tools"}
 {include file="common/header.tpl"}
