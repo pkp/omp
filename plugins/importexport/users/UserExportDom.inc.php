@@ -20,6 +20,11 @@ define('USERS_DTD_URL', 'http://pkp.sfu.ca/omp/dtds/users.dtd');
 define('USERS_DTD_ID', '-//PKP/OMP Users XML//EN');
 
 class UserExportDom {
+
+	function UserExportDom() {
+		return true;
+	}
+
 	function &exportUsers(&$press, &$users, $allowedRoles = null) {
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 
@@ -85,9 +90,9 @@ class UserExportDom {
 				}
 			}
 			XMLCustomWriter::createChildWithText($doc, $userNode, 'locales', join(':', $user->getLocales()), false);
-			$roles =& $roleDao->getRolesByUserId($user->getId(), $press->getId());
+			$roles =& $roleDao->getByUserId($user->getId(), $press->getId());
 			foreach ($roles as $role) {
-				$rolePath = $role->getRolePath();
+				$rolePath = $role->getPath();
 				if ($allowedRoles !== null && !in_array($rolePath, $allowedRoles)) {
 					continue;
 				}

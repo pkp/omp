@@ -168,7 +168,9 @@ class UserImportExportPlugin extends ImportExportPlugin {
 				$this->import('UserExportDom');
 				$users =& $roleDao->getUsersByPressId($press->getId());
 				$users =& $users->toArray();
-				$doc =& UserExportDom::exportUsers($press, $users);
+
+				$userExportDom = new UserExportDom();
+				$doc =& $userExportDom->exportUsers($press, $users);
 				header("Content-Type: application/xml");
 				header("Cache-Control: private");
 				header("Content-Disposition: attachment; filename=\"users.xml\"");
@@ -187,7 +189,8 @@ class UserImportExportPlugin extends ImportExportPlugin {
 					$rolePaths[] = $rolePath;
 				}
 				$users = array_values($users);
-				$doc =& UserExportDom::exportUsers($press, $users, $rolePaths);
+				$userExportDom = new UserExportDom();
+				$doc =& $userExportDom->exportUsers($press, $users, $rolePaths);
 				header("Content-Type: application/xml");
 				header("Cache-Control: private");
 				header("Content-Disposition: attachment; filename=\"users.xml\"");
@@ -257,7 +260,7 @@ class UserImportExportPlugin extends ImportExportPlugin {
 				$roleDao =& DAORegistry::getDAO('RoleDAO');
 				$rolePaths = null;
 				if (empty($args)) {
-					$users =& $roleDao->getUsersByPressId($press->getId());
+					$users =& $roleDao->getUsersByRoleId(null, $press->getId());
 					$users =& $users->toArray();
 				} else {
 					$users = array();
@@ -272,7 +275,8 @@ class UserImportExportPlugin extends ImportExportPlugin {
 					}
 					$users = array_values($users);
 				}
-				$doc =& UserExportDom::exportUsers($press, $users, $rolePaths);
+				$userExportDom = new UserExportDom();
+				$doc =& $userExportDom->exportUsers($press, $users, $rolePaths);
 				if (($h = fopen($xmlFile, 'wb'))===false) {
 					echo __('plugins.importexport.users.export.errorsOccurred') . ":\n";
 					echo __('plugins.importexport.users.export.couldNotWriteFile', array('fileName' => $xmlFile)) . "\n";
