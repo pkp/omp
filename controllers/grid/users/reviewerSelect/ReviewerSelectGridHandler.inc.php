@@ -44,7 +44,6 @@ class ReviewerSelectGridHandler extends GridHandler {
 		$stageId = (int)$request->getUserVar('stageId');
 
 		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
-		// FIXME: #6244# HARDCODED INTERNAL_REVIEW
 		$this->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', $stageId));
 
 		import('classes.security.authorization.internal.ReviewRoundRequiredPolicy');
