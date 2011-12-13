@@ -54,7 +54,9 @@ class Onix30ExportPlugin extends ImportExportPlugin {
 	function exportMonograph(&$press, &$monograph, $outputFile = null) {
 		$this->import('Onix30ExportDom');
 		$doc =& XMLCustomWriter::createDocument();
-		$monographNode =& Onix30ExportDom::generateMonographDom($doc, $press, $monograph);
+		$onix30ExportDom = new Onix30ExportDom();
+
+		$monographNode =& $onix30ExportDom->generateMonographDom($doc, $press, $monograph);
 		XMLCustomWriter::appendChild($doc, $monographNode);
 
 		if (!empty($outputFile)) {

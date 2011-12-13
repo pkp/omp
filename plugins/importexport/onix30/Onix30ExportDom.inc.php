@@ -15,6 +15,11 @@
 import('lib.pkp.classes.xml.XMLCustomWriter');
 
 class Onix30ExportDom {
+
+	function Onix30ExportDom() {
+		return true;
+	}
+
 	function &generateMonographDom(&$doc, &$press, &$monograph) {
 		$unavailableString = __('plugins.importexport.onix30.unavailable');
 
