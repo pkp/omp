@@ -112,6 +112,20 @@ class LoginHandler extends PKPLoginHandler {
 	}
 
 	/**
+	 * After a login has completed, direct the user somewhere.
+	 * @param $request PKPRequest
+	 */
+	function _redirectAfterLogin($request) {
+		$press = $this->getTargetPress($request);
+		// If there's a press, send them to the dashboard after login.
+		if ($press) {
+			return $request->redirect($press->getPath(), 'dashboard');
+		}
+		// Fall back on the parent otherwise.
+		return parent::_redirectAfterLogin();
+	}
+
+	/**
 	 * Configure the template for display.
 	 */
 	function setupTemplate() {

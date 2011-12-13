@@ -28,17 +28,22 @@ class IndexHandler extends Handler {
 	// Public handler operations
 	//
 	/**
-	 * For public access:
-	 * If no press is selected, display list of presses associated with this system.
-	 * Otherwise, display the index page for the selected press.
-	 *
-	 * See _getTargetPress to check the logic to get a press.
+	 * Display the site or press index page.
+	 * (If a site admin is logged in and no presses exist, redirect to the
+	 * press administration page -- this may be useful upon install.)
 	 *
 	 * @param $args array
 	 * @param $request Request
 	 */
 	function index($args, &$request) {
-		$press = $this->_getTargetPress($request);
+		$press = $this->getTargetPress($request);
+		$user =& $request->getUser();
+
+		if ($user && !$press && Validation::isSiteAdmin()) {
+			// If the user is a site admin and no press exists,
+			// send them to press administration to create one.
+			return $request->redirect(null, 'admin', 'presses');
+		}
 
 		// Public access.
 		$this->setupTemplate();
@@ -96,83 +101,6 @@ class IndexHandler extends Handler {
 		// Disable announcements if enabled.
 		$enableAnnouncements = $press->getSetting('enableAnnouncements');
 		$templateMgr->display('index/press.tpl');
-	}
-
-	/**
-	 * Returns a press, based in the request data.
-	 * @param $request Request
-	 * @return mixed Either a Press or null
-	 */
-	function _getTargetPress($request) {
-
-		// Get the requested path.
-		$router =& $request->getRouter();
-		$requestedPath = $router->getRequestedContextPath($request);
-		$press = null;
-
-		if ($requestedPath == 'index') {
-			// No press requested. Check how many presses has the site.
-			$pressDao =& DAORegistry::getDAO('PressDAO'); /* @var $pressDao PressDAO */
-			$presses =& $pressDao->getPresses();
-			$pressesCount = $presses->getCount();
-			if ($pressesCount === 1) {
-				// Return the unique press.
-				$press =& $presses->next();
-			} elseif ($pressesCount > 1) {
-				// Decide wich press to return.
-				$user =& $request->getUser();
-				if ($user) {
-					// We have a user (private access).
-					$press =& $this->_getFirstUserPress($user, $presses->toArray());
-				} else {
-					// Get the site redirect.
-					$press =& $this->_getSiteRedirectPress($request);
-				}
-			}
-		} else {
-			// Return the requested press.
-			$press =& $router->getContext($request);
-		}
-		if (is_a($press, 'Press')) {
-			return $press;
-		}
-		return null;
-	}
-
-	/**
-	 * Return the first press that user is enrolled with.
-	 * @param $user User
-	 * @param $presses Array
-	 * @return mixed Either Press or null
-	 */
-	function _getFirstUserPress($user, $presses) {
-		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
-		$press = null;
-		foreach($presses as $workingPress) {
-			$userIsEnrolled = $userGroupDao->userInAnyGroup($user->getId(), $workingPress->getId());
-			if ($userIsEnrolled) {
-				$press = $workingPress;
-				break;
-			}
-		}
-		return $press;
-	}
-
-	/**
-	 * Return the press that is configured in site redirect setting.
-	 * @param $request Request
-	 * @return mixed Either Press or null
-	 */
-	function _getSiteRedirectPress($request) {
-		$pressDao =& DAORegistry::getDAO('PressDAO'); /* @var $pressDao PressDAO */
-		$site =& $request->getSite();
-		$press = null;
-		if ($site) {
-			if($site->getRedirect()) {
-				$press = $pressDao->getPress($site->getRedirect());
-			}
-		}
-		return $press;
 	}
 }
 
