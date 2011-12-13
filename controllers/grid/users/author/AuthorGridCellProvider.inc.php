@@ -42,9 +42,7 @@ class AuthorGridCellProvider extends DataObjectGridCellProvider {
 			case 'role':
 				return array('label' => $element->getLocalizedUserGroupName());
 			case 'email':
-				// FIXME: bug 5459.  Can return to calling parent after bug resolved
-				// return parent::getTemplateVarsFromRowColumn($row, $column);
-				return array('label' => $element->getData($columnId));
+				return parent::getTemplateVarsFromRowColumn($row, $column);
 			case 'principalContact':
 				return array('isPrincipalContact' => $element->getPrimaryContact());
 		}
