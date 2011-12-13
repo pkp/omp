@@ -37,10 +37,23 @@ class InformationCenterHandler extends Handler {
 			)
 		);
 		$this->addRoleAssignment(
-			array(ROLE_ID_PRESS_ASSISTANT, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
+			array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
 			array_merge($authorOps, array(
 				'deleteNote' // Notes tab
 			))
+		);
+	}
+
+	/**
+	 * Determine whether the current user has admin priveleges for this
+	 * controller.
+	 * @return boolean
+	 */
+	function _canAdminister() {
+		// If the current role set includes Manager or Editor, grant.
+		return (boolean) array_intersect(
+			 array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR),
+			$this->getAuthorizedContextObject(ASSOC_TYPE_USER_ROLES)
 		);
 	}
 
@@ -124,6 +137,7 @@ class InformationCenterHandler extends Handler {
 
 		$user =& $request->getUser();
 		$templateMgr->assign('currentUserId', $user->getId());
+		$templateMgr->assign('canAdministerNotes', $this->_canAdminister());
 
 		return $templateMgr->fetchJson('controllers/informationCenter/notesList.tpl');
 	}

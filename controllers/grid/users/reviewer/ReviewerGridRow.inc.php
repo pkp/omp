@@ -33,7 +33,9 @@ class ReviewerGridRow extends GridRow {
 		parent::initialize($request);
 
 		// Retrieve the monograph id from the request
-		// FIXME: Need to authorize those request variables, see #6199 and #6200.
+		// These parameters need not be validated as we're just
+		// passing them along to another request, where they will be
+		// checked before they're used.
 		$monographId = (int) $request->getUserVar('monographId');
 		$stageId = (int) $request->getUserVar('stageId');
 		$round = (int) $request->getUserVar('round');

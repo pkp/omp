@@ -44,7 +44,7 @@ class EditorReviewFilesGridHandler extends FileListGridHandler {
 	 * Show the form to allow the user to select review files
 	 * (bring in/take out files from submission stage to review stage)
 	 *
-	 * FIXME: Move to it's own handler so that it can be re-used among grids.
+	 * FIXME: Move to its own handler so that it can be re-used among grids.
 	 *
 	 * @param $args array
 	 * @param $request PKPRequest

@@ -166,7 +166,7 @@ class FileAuditorForm extends Form {
 		$userDao =& DAORegistry::getDAO('UserDAO'); /* @var $userDao UserDAO */
 		$user =& $request->getUser();
 		$contactSignature = $user->getContactSignature();
-		// FIXME: Bug #6199: How to validate user IDs?
+		// FIXME: How to validate user IDs?
 		$user =& $userDao->getUser($this->getData('userId'));
 		$paramArray = array(
 			'auditorName' => $user->getFullName(),
@@ -196,7 +196,7 @@ class FileAuditorForm extends Form {
 		$monographFile =& $submissionFileDao->getLatestRevision($fileId, null, $monograph->getId());
 		assert($monographFile);
 
-		// FIXME: Bug #6199: How to validate user IDs?
+		// FIXME: How to validate user IDs?
 		$userId = (int) $this->getData('userId');
 
 		// Fetch and validate user group ID
@@ -231,7 +231,7 @@ class FileAuditorForm extends Form {
 
 	/**
 	 * Delete a signoff
-	 * FIXME: it was throwing a warning when this was not specified. We just want client side delete.
+	 * Noop: we just want client side delete.
 	 */
 	function deleteEntry(&$request, $rowId) {
 		return true;

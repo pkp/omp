@@ -30,12 +30,13 @@
 				{$noteUser->getFullName()|escape}
 			</td>
 			<td align="right">
-				<form class="pkp_form" id="{$formId}" action="{url op="deleteNote" noteId=$noteId params=$linkParams}">
-					{assign var=deleteNoteButtonId value="deleteNote-$noteId"}
-					{include file="linkAction/buttonConfirmationLinkAction.tpl" buttonSelector="#$deleteNoteButtonId" dialogText="informationCenter.deleteConfirm"}
-					{* FIXME: Not all roles should see this action. Bug #5975. *}
-					<input type="submit" id="{$deleteNoteButtonId}" class="button" value="{translate key='common.delete'}" />
-				</form>
+				{if $canAdministerNotes}
+					<form class="pkp_form" id="{$formId}" action="{url op="deleteNote" noteId=$noteId params=$linkParams}">
+						{assign var=deleteNoteButtonId value="deleteNote-$noteId"}
+						{include file="linkAction/buttonConfirmationLinkAction.tpl" buttonSelector="#$deleteNoteButtonId" dialogText="informationCenter.deleteConfirm"}
+						<input type="submit" id="{$deleteNoteButtonId}" class="button" value="{translate key='common.delete'}" />
+					</form>
+				{/if}
 			</td>
 		</tr>
 		<tr valign="top">
