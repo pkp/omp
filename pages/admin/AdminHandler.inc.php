@@ -23,7 +23,19 @@ class AdminHandler extends Handler {
 	function AdminHandler() {
 		parent::Handler();
 
-		$this->addCheck(new HandlerValidatorRoles($this, true, null, null, array(ROLE_ID_SITE_ADMIN)));
+		$this->addRoleAssignment(
+			array(ROLE_ID_SITE_ADMIN),
+			array('index', 'settings')
+		);
+	}
+
+	/**
+	 * @see PKPHandler::authorize()
+	 */
+	function authorize($request, $args, $roleAssignments) {
+		import('lib.pkp.classes.security.authorization.PKPSiteAccessPolicy');
+		$this->addPolicy(new PKPSiteAccessPolicy($request, null, $roleAssignments));
+		return parent::authorize($request, $args, $roleAssignments);
 	}
 
 	/**
@@ -32,7 +44,6 @@ class AdminHandler extends Handler {
 	 * @param $request PKPRequest
 	 */
 	function index($args, &$request) {
-		$this->validate();
 		$this->setupTemplate($request);
 
 		$templateMgr =& TemplateManager::getManager();

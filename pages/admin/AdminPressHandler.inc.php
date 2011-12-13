@@ -12,19 +12,23 @@
  * @brief Handle requests for press management in site administration.
  */
 
-
 import('pages.admin.AdminHandler');
 
 class AdminPressHandler extends AdminHandler {
 	function AdminPressHandler() {
+
 		parent::AdminHandler();
+
+		$this->addRoleAssignment(
+			array(ROLE_ID_SITE_ADMIN),
+			array('presses')
+		);
 	}
 
 	/**
 	 * Display a list of the presses hosted on the site.
 	 */
 	function presses($args, &$request) {
-		$this->validate();
 		$this->setupTemplate($request, true);
 
 		$openWizard = $request->getUserVar('openWizard');

@@ -21,6 +21,12 @@ class AdminLanguagesHandler extends AdminHandler {
 	 */
 	function AdminLanguagesHandler() {
 		parent::AdminHandler();
+
+		$this->addRoleAssignment(
+			array(ROLE_ID_SITE_ADMIN),
+			array('languages', 'saveLanguageSettings', 'installLocale',
+				'uninstallLocale', 'reloadLocale', 'downloadLocale')
+		);
 	}
 
 	/**
@@ -29,7 +35,6 @@ class AdminLanguagesHandler extends AdminHandler {
 	 * @param $request object
 	 */
 	function languages($args, &$request) {
-		$this->validate();
 		$this->setupTemplate($request, true);
 
 		$site =& $request->getSite();
@@ -64,8 +69,6 @@ class AdminLanguagesHandler extends AdminHandler {
 	 * @param $request object
 	 */
 	function saveLanguageSettings($args, &$request) {
-		$this->validate();
-
 		$site =& $request->getSite();
 
 		$primaryLocale = $request->getUserVar('primaryLocale');
@@ -106,8 +109,6 @@ class AdminLanguagesHandler extends AdminHandler {
 	 * @param $request object
 	 */
 	function installLocale($args, &$request) {
-		$this->validate();
-
 		$site =& $request->getSite();
 		$installLocale = $request->getUserVar('installLocale');
 
@@ -135,8 +136,6 @@ class AdminLanguagesHandler extends AdminHandler {
 	 * @param $request object
 	 */
 	function uninstallLocale($args, &$request) {
-		$this->validate();
-
 		$site =& $request->getSite();
 		$locale = $request->getUserVar('locale');
 
@@ -166,8 +165,6 @@ class AdminLanguagesHandler extends AdminHandler {
 	 * @param $request object
 	 */
 	function reloadLocale($args, &$request) {
-		$this->validate();
-
 		$site =& $request->getSite();
 		$locale = $request->getUserVar('locale');
 
@@ -212,7 +209,6 @@ class AdminLanguagesHandler extends AdminHandler {
 	 * @param $request object
 	 */
 	function downloadLocale($args, &$request) {
-		$this->validate();
 		$this->setupTemplate($request, true);
 		$locale = $request->getUserVar('locale');
 

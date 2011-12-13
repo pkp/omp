@@ -19,13 +19,22 @@ import('pages.admin.AdminHandler');
 
 class AdminFunctionsHandler extends AdminHandler {
 
+	function AdminFunctionsHandler() {
+		parent::AdminHandler();
+
+		$this->addRoleAssignment(
+			array(ROLE_ID_SITE_ADMIN),
+			array('systemInfo', 'editSystemConfig', 'saveSystemConfig', 'phpinfo',
+			'expireSessions', 'clearTemplateCache', 'clearDataCache')
+		);
+	}
+
 	/**
 	 * Show system information summary.
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
 	function systemInfo($args, &$request) {
-		$this->validate();
 		$this->setupTemplate($request, true);
 
 		$configData =& Config::getData();
@@ -65,7 +74,6 @@ class AdminFunctionsHandler extends AdminHandler {
 	 * @param $request PKPRequest
 	 */
 	function editSystemConfig($args, &$request) {
-		$this->validate();
 		$this->setupTemplate($request, true);
 
 		$templateMgr =& TemplateManager::getManager();
@@ -85,7 +93,6 @@ class AdminFunctionsHandler extends AdminHandler {
 	 * @param $request PKPRequest
 	 */
 	function saveSystemConfig($args, &$request) {
-		$this->validate();
 		$this->setupTemplate($request, true);
 
 		$configData =& Config::getData();
@@ -141,7 +148,6 @@ class AdminFunctionsHandler extends AdminHandler {
 	 * Show full PHP configuration information.
 	 */
 	function phpinfo() {
-		$this->validate();
 		phpinfo();
 	}
 
@@ -151,7 +157,6 @@ class AdminFunctionsHandler extends AdminHandler {
 	 * @param $request PKPRequest
 	 */
 	function expireSessions($args, &$request) {
-		$this->validate();
 		$sessionDao =& DAORegistry::getDAO('SessionDAO');
 		$sessionDao->deleteAllSessions();
 		$request->redirect(null, 'admin');
@@ -163,7 +168,6 @@ class AdminFunctionsHandler extends AdminHandler {
 	 * @param $request PKPRequest
 	 */
 	function clearTemplateCache($args, &$request) {
-		$this->validate();
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->clearTemplateCache();
 		$request->redirect(null, 'admin');
@@ -175,8 +179,6 @@ class AdminFunctionsHandler extends AdminHandler {
 	 * @param $request PKPRequest
 	 */
 	function clearDataCache($args, &$request) {
-		$this->validate();
-
 		// Clear the CacheManager's caches
 		$cacheManager =& CacheManager::getManager();
 		$cacheManager->flush();

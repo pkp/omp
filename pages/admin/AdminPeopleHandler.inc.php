@@ -21,6 +21,11 @@ class AdminPeopleHandler extends AdminHandler {
 	 */
 	function AdminPeopleHandler() {
 		parent::AdminHandler();
+
+		$this->addRoleAssignment(
+			array(ROLE_ID_SITE_ADMIN),
+			array('mergeUsers')
+		);
 	}
 
 	/**
@@ -29,7 +34,6 @@ class AdminPeopleHandler extends AdminHandler {
 	 * @param $request PKPRequest
 	 */
 	function mergeUsers($args, &$request) {
-		$this->validate();
 		$this->setupTemplate($request, true);
 
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
