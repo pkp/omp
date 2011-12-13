@@ -12,6 +12,7 @@
  */
 
 import('lib.pkp.classes.linkAction.LinkAction');
+import('lib.pkp.classes.linkAction.request.AjaxModal');
 
 class MonographlessCatalogEntryLinkAction extends LinkAction {
 
