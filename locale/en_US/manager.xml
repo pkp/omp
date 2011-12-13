@@ -129,6 +129,10 @@
 	<message key="manager.settings.publicationDescription">All settings specific to the publication process (general settings, submission stage, review stage, editorial stage, production stage, email templates).</message>
 	<message key="manager.settings.distributionDescription">All settings specific to the distribution process (notification, indexing, archiving, payment, reading tools).</message>
 
+	<!--  Tools management -->
+	<message key="manager.tools">Tools</message>
+	<message key="manager.tools.importExport"><![CDATA[All tools specific to importing and exporting data (presses, monographs, users)]]></message>
+
 	<!-- User management -->
 	<message key="manager.users">User Management</message>
 	<message key="manager.users.availableRoles">Available Roles</message>

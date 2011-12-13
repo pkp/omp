@@ -74,6 +74,12 @@
 									{* <li><a href="{url page="manager" op="data"}">{translate key="navigation.data"}</a></li> *}
 									<li><a href="{url page="management" op="settings" path="access"}">{translate key="navigation.access"}</a></li>
 								</ul>
+							<li>
+								<a href="{url page="management" op="tools" path="index"}">{translate key="navigation.tools"}</a>
+								<ul>
+									<li><a href="{url page="management" op="tools" path="importExport"}">{translate key="navigation.tools.importExport"}</a></li>
+								</ul>
+							</li>
 							</li>
 						</ul>
 					</li>

@@ -148,6 +148,7 @@
 	<message key="navigation.catalog.administration">Administration</message>
 	<message key="navigation.catalog.administration.categories">Categories</message>
 	<message key="navigation.catalog.administration.series">Series</message>
+	<message key="navigation.distributionProcess">Distribution Process</message>
 	<message key="navigation.featuredBooks">Featured Books</message>
 	<message key="navigation.newReleases">New Releases</message>
 	<message key="navigation.seriesAndEditions">Series &amp;amp; Editions</message>
@@ -158,7 +159,8 @@
 	<message key="navigation.infoForLibrarians.long">Information For Librarians</message>
 	<message key="navigation.published">Published</message>
 	<message key="navigation.publicationProcess">Publication Process</message>
-	<message key="navigation.distributionProcess">Distribution Process</message>
+	<message key="navigation.tools">Tools</message>
+	<message key="navigation.tools.importExport">Import/Export</message>
 	<message key="navigation.wizard">Wizard</message>
 
 	<!--
