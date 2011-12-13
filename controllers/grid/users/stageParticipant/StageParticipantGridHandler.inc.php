@@ -10,7 +10,6 @@
  * @ingroup controllers_grid_users_stageParticipant
  *
  * @brief Handle stageParticipant grid requests.
- * FIXME: The add/delete actions should not be visible to press assistants, see #6298.
  */
 
 // import grid base classes
@@ -26,9 +25,15 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 	 */
 	function StageParticipantGridHandler() {
 		parent::GridHandler();
+		// Press Assistants get read-only access
 		$this->addRoleAssignment(
-			array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_ASSISTANT),
-			array('fetchGrid', 'fetchRow', 'addParticipant', 'deleteParticipant', 'saveParticipant', 'userAutocomplete')
+			array(ROLE_ID_PRESS_ASSISTANT),
+			$peOps = array('fetchGrid', 'fetchRow')
+		);
+		// Managers and Editors additionally get administrative access
+		$this->addRoleAssignment(
+			array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR),
+			array_merge($peOps, array('addParticipant', 'deleteParticipant', 'saveParticipant', 'userAutocomplete'))
 		);
 	}
 
@@ -66,6 +71,20 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 	}
 
 	/**
+	 * Determine whether the current user has admin priveleges for this
+	 * grid.
+	 * @return boolean
+	 */
+	function _canAdminister() {
+		// If the current role set includes Manager or Editor, grant.
+		return (boolean) array_intersect(
+			array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR),
+			$this->getAuthorizedContextObject(ASSOC_TYPE_USER_ROLES)
+		);
+	}
+
+
+	/**
 	 * @see PKPHandler::initialize()
 	 */
 	function initialize(&$request) {
@@ -88,21 +107,23 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 			$cellProvider
 		));
 
-		// Grid actions
-		$router =& $request->getRouter();
-		$actionArgs = $this->getRequestArgs();
-		$this->addAction(
-			new LinkAction(
-				'requestAccount',
-				new AjaxModal(
-					$router->url($request, null, null, 'addParticipant', null, $actionArgs),
+		// The "Add stage participant" grid action is available to
+		// Editors and Managers only
+		if ($this->_canAdminister()) {
+			$router =& $request->getRouter();
+			$this->addAction(
+				new LinkAction(
+					'requestAccount',
+					new AjaxModal(
+						$router->url($request, null, null, 'addParticipant', null, $this->getRequestArgs()),
+						__('editor.monograph.addStageParticipant'),
+						'addUser'
+					),
 					__('editor.monograph.addStageParticipant'),
-					'addUser'
-				),
-				__('editor.monograph.addStageParticipant'),
-				'add_user'
-			)
-		);
+					'add_user'
+				)
+			);
+		}
 
 		$this->setEmptyRowText('editor.monograph.noneAssigned');
 	}

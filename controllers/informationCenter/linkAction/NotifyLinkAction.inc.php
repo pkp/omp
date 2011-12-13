@@ -24,6 +24,7 @@ class NotifyLinkAction extends LinkAction {
 	 *  to show information about.
 	 */
 	function NotifyLinkAction(&$request, &$monograph, $stageId, $userId = null) {
+		AppLocale::requireComponents(array(LOCALE_COMPONENT_OMP_SUBMISSION));
 		// Prepare request arguments
 		$requestArgs['monographId'] = $monograph->getId();
 		$requestArgs['stageId'] = $stageId;

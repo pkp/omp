@@ -15,18 +15,22 @@
 import('lib.pkp.classes.controllers.grid.GridRow');
 
 class StageParticipantGridRow extends GridRow {
-	/** @var Monograph */
+	/** @var $_monograph Monograph */
 	var $_monograph;
 
-	/** @var int */
+	/** @var $_stageId int */
 	var $_stageId;
+
+	/** @var $canAdminister boolean Whether the user can admin this row */
+	var $_canAdminister;
 
 	/**
 	 * Constructor
 	 */
-	function StageParticipantGridRow(&$monograph, $stageId) {
+	function StageParticipantGridRow(&$monograph, $stageId, $canAdminister) {
 		$this->_monograph =& $monograph;
 		$this->_stageId =& $stageId;
+		$this->_canAdminister = $canAdminister;
 
 		parent::GridRow();
 	}
@@ -50,7 +54,7 @@ class StageParticipantGridRow extends GridRow {
 			$router =& $request->getRouter();
 
 			import('lib.pkp.classes.linkAction.request.RemoteActionConfirmationModal');
-			$this->addAction(
+			if ($this->_canAdminister) $this->addAction(
 				new LinkAction(
 					'delete',
 					new RemoteActionConfirmationModal(
