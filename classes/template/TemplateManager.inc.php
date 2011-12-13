@@ -118,10 +118,6 @@ class TemplateManager extends PKPTemplateManager {
 				if ($hasOtherPresses) {
 					$this->_assignPressSwitcherData($request, $presses, $press);
 				}
-				// Check for administrator and manager roles.
-				$this->assign('isAdmin', Validation::isSiteAdmin());
-				$this->assign('isPressManager', Validation::isPressManager());
-				$this->assign('isSeriesEditor', Validation::isSeriesEditor());
 			}
 		}
 	}

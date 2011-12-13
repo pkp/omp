@@ -41,12 +41,12 @@
 			<li><a href="{url page="dashboard"}">{translate key="navigation.dashboard"}</a></li>
 			<li><a href="{url page="dashboard" op="status"}">{translate key="navigation.submissions"}</a></li>
 			{if $currentPress}
-				{if $isPressManager || $isSeriesEditor}
+				{if array_intersect(array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR), $userRoles)}
 					<li>
 						<a href="#">{translate key="navigation.catalog"}</a>
 						<ul>
 							<li><a href="{url page="manageCatalog"}">{translate key="navigation.catalog.manage"}</a></li>
-							{if $isPressManager}
+							{if array_intersect(array(ROLE_ID_PRESS_MANAGER), $userRoles)}
 								<li>
 									<a href="#">{translate key="navigation.catalog.administration"}</a>
 									<ul>
@@ -57,8 +57,8 @@
 							{/if}
 						</ul>
 					</li>
-				{/if}{* $isPressManager || $isSeriesEditor *}
-				{if $isPressManager}
+				{/if}{* ROLE_ID_PRESS_MANAGER || ROLE_ID_SERIES_EDITOR *}
+				{if array_intersect(array(ROLE_ID_PRESS_MANAGER), $userRoles)}
 					<li>
 						<a href="#">{translate key="navigation.management"}</a>
 						<ul>
