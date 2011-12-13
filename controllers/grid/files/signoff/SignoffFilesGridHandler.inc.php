@@ -168,12 +168,10 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 		// FIXME: is there a better way to do this?
 		$userIds = array();
 		$stageAssignmentDao = & DAORegistry::getDAO('StageAssignmentDAO'); /* @var $stageAssignmentDao StageAssignmentDAO */
-		$managerAssignments =& $stageAssignmentDao->getBySubmissionAndRoleId($monograph->getId(), ROLE_ID_PRESS_MANAGER, $this->getStageId());
 		$seriesEditorAssignments =& $stageAssignmentDao->getBySubmissionAndRoleId($monograph->getId(), ROLE_ID_SERIES_EDITOR, $this->getStageId());
 		$assistantAssignments =& $stageAssignmentDao->getBySubmissionAndRoleId($monograph->getId(), ROLE_ID_PRESS_ASSISTANT, $this->getStageId());
 
 		$allAssignments = array_merge(
-			$managerAssignments->toArray(),
 			$seriesEditorAssignments->toArray(),
 			$assistantAssignments->toArray()
 		);
@@ -181,6 +179,21 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 		foreach ($allAssignments as $assignment) {
 			$userIds[] = $assignment->getUserId();
 		}
+
+		// We need to manually include the press editor, because he has access
+		// to all submission and its workflow stages but not always with
+		// an stage assignment (copyediting and production stages, for example).
+		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+		$pressManagerUserGroupsFactory =& $userGroupDao->getByRoleId($monograph->getPressId(), ROLE_ID_PRESS_MANAGER);
+		while ($userGroup =& $pressManagerUserGroupsFactory->next()) {
+			$usersFactory =& $userGroupDao->getUsersById($userGroup->getId(), $monograph->getPressId());
+			while ($user =& $usersFactory->next()) {
+				$userIds[] = $user->getId();
+				unset($user);
+			}
+			unset($userGroup);
+		}
+
 		$userIds = array_unique($userIds);
 
 		// Add user group columns.
