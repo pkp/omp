@@ -32,43 +32,24 @@ class IndexHandler extends Handler {
 	 * If no press is selected, display list of presses associated with this system.
 	 * Otherwise, display the index page for the selected press.
 	 *
-	 * For private access (user is logged in):
-	 * If no press is selected, display the page to create a press.
-	 * Otherwise, display the press dashboard.
-	 *
-	 * See _getTargetPress to check the logic to get a press
-	 * for both cases (public and private).
+	 * See _getTargetPress to check the logic to get a press.
 	 *
 	 * @param $args array
 	 * @param $request Request
 	 */
 	function index($args, &$request) {
 		$press = $this->_getTargetPress($request);
-		$user =& $request->getUser();
 
-		if ($user) {
-			// Private access.
-			if ($press) {
-				$request->redirect($press->getPath(), 'dashboard');
-			} else {
-				if (Validation::isSiteAdmin()) {
-					$request->redirect(null, 'admin', 'presses');
-				} else {
-					$request->redirect(null, 'user', 'index');
-				}
-			}
+		// Public access.
+		$this->setupTemplate();
+		$templateMgr =& TemplateManager::getManager($request);
+		$templateMgr->assign('helpTopicId', 'user.home');
+
+		if ($press) {
+			$this->_displayPressIndexPage($press, $templateMgr);
 		} else {
-			// Public access.
-			$this->setupTemplate();
-			$templateMgr =& TemplateManager::getManager($request);
-			$templateMgr->assign('helpTopicId', 'user.home');
-
-			if ($press) {
-				$this->_displayPressIndexPage($press, $templateMgr);
-			} else {
-				$site =& $request->getSite();
-				$this->_displaySiteIndexPage($request, $site, $templateMgr);
-			}
+			$site =& $request->getSite();
+			$this->_displaySiteIndexPage($request, $site, $templateMgr);
 		}
 	}
 
