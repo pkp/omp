@@ -91,7 +91,7 @@ class PreparedEmailForm extends Form {
 			$this->setData('isNewTemplate', true);
 		}
 
-		AppLocale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_PKP_MANAGER));
+		AppLocale::requireComponents(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_PKP_MANAGER);
 		$this->setData('supportedLocales', $press->getSupportedLocaleNames());
 	}
 

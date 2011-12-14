@@ -115,7 +115,7 @@ class CategoriesListbuilderHandler extends SetupListbuilderHandler {
 	 */
 	function initialize(&$request) {
 		parent::initialize($request);
-		AppLocale::requireComponents(array(LOCALE_COMPONENT_PKP_MANAGER));
+		AppLocale::requireComponents(LOCALE_COMPONENT_PKP_MANAGER);
 
 		// Basic configuration
 		$this->setTitle('grid.category.categories');

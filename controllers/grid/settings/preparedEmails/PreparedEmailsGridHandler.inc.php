@@ -53,7 +53,7 @@ class PreparedEmailsGridHandler extends GridHandler {
 		$this->setId('preparedEmailsGrid');
 		$this->setTitle('grid.preparedEmails.currentList');
 
-		AppLocale::requireComponents(array(LOCALE_COMPONENT_PKP_MANAGER));
+		AppLocale::requireComponents(LOCALE_COMPONENT_PKP_MANAGER);
 
 		// Elements to be displayed in the grid
 		$press =& $request->getPress();

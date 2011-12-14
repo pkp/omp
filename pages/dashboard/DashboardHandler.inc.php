@@ -109,7 +109,7 @@ class DashboardHandler extends Handler {
 		parent::setupTemplate();
 
 		$templateMgr =& TemplateManager::getManager();
-		AppLocale::requireComponents(array(LOCALE_COMPONENT_OMP_MANAGER, LOCALE_COMPONENT_PKP_MANAGER, LOCALE_COMPONENT_OMP_SUBMISSION));
+		AppLocale::requireComponents(LOCALE_COMPONENT_OMP_MANAGER, LOCALE_COMPONENT_PKP_MANAGER, LOCALE_COMPONENT_OMP_SUBMISSION);
 
 		if ($subclass) $templateMgr->assign('pageHierarchy', array(array($request->url(null, 'dashboard'), 'dashboard.dashboard')));
 	}

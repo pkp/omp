@@ -79,7 +79,7 @@ class ChapterAuthorListbuilderHandler extends ListbuilderHandler {
 		parent::initialize($request);
 
 		// Add locale keys
-		AppLocale::requireComponents(array(LOCALE_COMPONENT_OMP_SUBMISSION, LOCALE_COMPONENT_PKP_SUBMISSION));
+		AppLocale::requireComponents(LOCALE_COMPONENT_OMP_SUBMISSION, LOCALE_COMPONENT_PKP_SUBMISSION);
 
 		// Basic configuration
 		$this->setTitle('submission.submit.addAuthor');

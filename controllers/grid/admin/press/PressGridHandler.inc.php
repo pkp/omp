@@ -57,11 +57,11 @@ class PressGridHandler extends GridHandler {
 		parent::initialize($request);
 
 		// Load user-related translations.
-		AppLocale::requireComponents(array(
+		AppLocale::requireComponents(
 			LOCALE_COMPONENT_PKP_USER,
 			LOCALE_COMPONENT_OMP_ADMIN,
 			LOCALE_COMPONENT_OMP_MANAGER
-		));
+		);
 
 		// Basic grid configuration.
 		$this->setTitle('press.presses');

@@ -24,7 +24,7 @@ class MonographlessCatalogEntryLinkAction extends LinkAction {
 		$router =& $request->getRouter();
 		$dispatcher =& $router->getDispatcher();
 
-		AppLocale::requireComponents(array(LOCALE_COMPONENT_OMP_SUBMISSION));
+		AppLocale::requireComponents(LOCALE_COMPONENT_OMP_SUBMISSION);
 
 		$modal = new AjaxModal(
 			$dispatcher->url(

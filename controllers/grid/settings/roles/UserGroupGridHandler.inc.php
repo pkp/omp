@@ -70,10 +70,10 @@ class UserGroupGridHandler extends CategoryGridHandler {
 		$this->_pressId =& $press->getId();
 
 		// Load user-related translations.
-		AppLocale::requireComponents(array(
+		AppLocale::requireComponents(
 			LOCALE_COMPONENT_PKP_USER,
 			LOCALE_COMPONENT_OMP_SUBMISSION,
-			LOCALE_COMPONENT_OMP_MANAGER)
+			LOCALE_COMPONENT_OMP_MANAGER
 		);
 
 		// Basic grid configuration.

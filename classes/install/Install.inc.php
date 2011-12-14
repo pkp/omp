@@ -96,7 +96,7 @@ class Install extends PKPInstall {
 		}
 
 		// Create an admin user group
-		AppLocale::requireComponents(array(LOCALE_COMPONENT_OMP_DEFAULT_SETTINGS));
+		AppLocale::requireComponents(LOCALE_COMPONENT_OMP_DEFAULT_SETTINGS);
 		$userGroupDao =& DAORegistry::getDao('UserGroupDAO', $this->dbconn);
 		$adminUserGroup = new UserGroup();
 		$adminUserGroup->setRoleId(ROLE_ID_SITE_ADMIN);

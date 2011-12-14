@@ -126,7 +126,7 @@ class NotificationManager extends PKPNotificationManager {
 			case NOTIFICATION_TYPE_SIGNOFF_COPYEDIT:
 			case NOTIFICATION_TYPE_SIGNOFF_PROOF:
 				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
-				AppLocale::requireComponents(array(LOCALE_COMPONENT_OMP_SUBMISSION));
+				AppLocale::requireComponents(LOCALE_COMPONENT_OMP_SUBMISSION);
 				return __('submission.upload.signoff');
 				break;
 			case NOTIFICATION_TYPE_EDITOR_DECISION_INITIATE_REVIEW:
@@ -162,7 +162,7 @@ class NotificationManager extends PKPNotificationManager {
 				$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
 				$reviewRound =& $reviewRoundDao->getReviewRoundById($notification->getAssocId());
 
-				AppLocale::requireComponents(array(LOCALE_COMPONENT_OMP_EDITOR)); // load review round status keys.
+				AppLocale::requireComponents(LOCALE_COMPONENT_OMP_EDITOR); // load review round status keys.
 				return __($reviewRound->getStatusKey());
 			default:
 				return parent::getNotificationMessage($request, $notification);

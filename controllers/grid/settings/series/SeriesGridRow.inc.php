@@ -76,12 +76,12 @@ class SeriesGridRow extends GridRow {
 	 */
 	function setupTemplate() {
 		// Load manager translations. FIXME are these needed?
-		AppLocale::requireComponents(array(
+		AppLocale::requireComponents(
 			LOCALE_COMPONENT_OMP_MANAGER,
 			LOCALE_COMPONENT_PKP_COMMON,
 			LOCALE_COMPONENT_PKP_USER,
 			LOCALE_COMPONENT_APPLICATION_COMMON
-		));
+		);
 	}
 }
 

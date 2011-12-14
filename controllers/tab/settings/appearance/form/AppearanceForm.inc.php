@@ -49,7 +49,7 @@ class AppearanceForm extends PressSettingsForm {
 			'numPageLinks' => 'int'
 		);
 
-		AppLocale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON));
+		AppLocale::requireComponents(LOCALE_COMPONENT_APPLICATION_COMMON);
 
 		parent::PressSettingsForm($settings, 'controllers/tab/settings/appearance/form/appearanceForm.tpl', $wizardMode);
 	}

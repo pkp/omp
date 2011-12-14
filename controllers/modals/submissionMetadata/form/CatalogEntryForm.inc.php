@@ -30,7 +30,7 @@ class CatalogEntryForm extends SubmissionMetadataViewForm {
 		$this->addCheck(new FormValidator($this, 'confirm', 'required', 'submission.catalogEntry.confirm.required'));
 
 		// submission.catalogEntry.confirm.required on validation
-		AppLocale::requireComponents(array(LOCALE_COMPONENT_OMP_SUBMISSION));
+		AppLocale::requireComponents(LOCALE_COMPONENT_OMP_SUBMISSION);
 	}
 
 	/**

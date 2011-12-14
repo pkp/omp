@@ -71,7 +71,7 @@ class SeriesEditorAction extends Action {
 			// Add log.
 			import('classes.log.MonographLog');
 			import('classes.log.MonographEventLogEntry');
-			AppLocale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_OMP_EDITOR));
+			AppLocale::requireComponents(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_OMP_EDITOR);
 			MonographLog::logEvent($request, $seriesEditorSubmission, MONOGRAPH_LOG_EDITOR_DECISION, 'log.editor.decision', array('editorName' => $user->getFullName(), 'monographId' => $seriesEditorSubmission->getId(), 'decision' => __($decisionLabels[$decision])));
 		}
 		return $result;
@@ -328,7 +328,7 @@ class SeriesEditorAction extends Action {
 
 		$reviewAssignments =& $reviewAssignmentDao->getBySubmissionId($seriesEditorSubmission->getId(), $seriesEditorSubmission->getCurrentRound());
 		$reviewIndexes =& $reviewAssignmentDao->getReviewIndexesForRound($seriesEditorSubmission->getId(), $reviewRoundId);
-		AppLocale::requireComponents(array(LOCALE_COMPONENT_PKP_SUBMISSION));
+		AppLocale::requireComponents(LOCALE_COMPONENT_PKP_SUBMISSION);
 
 		$body = '';
 		$textSeparator = "------------------------------------------------------";

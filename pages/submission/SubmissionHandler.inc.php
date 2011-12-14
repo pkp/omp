@@ -172,7 +172,7 @@ class SubmissionHandler extends Handler {
 	 */
 	function setupTemplate(&$request) {
 		parent::setupTemplate();
-		AppLocale::requireComponents(array(LOCALE_COMPONENT_OMP_SUBMISSION, LOCALE_COMPONENT_PKP_SUBMISSION));
+		AppLocale::requireComponents(LOCALE_COMPONENT_OMP_SUBMISSION, LOCALE_COMPONENT_PKP_SUBMISSION);
 
 		$router =& $request->getRouter();
 		$pageHierarchy = array(

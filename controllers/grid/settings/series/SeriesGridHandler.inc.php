@@ -40,12 +40,12 @@ class SeriesGridHandler extends SetupGridHandler {
 		$press =& $request->getPress();
 
 		// FIXME are these all required?
-		AppLocale::requireComponents(array(
+		AppLocale::requireComponents(
 			LOCALE_COMPONENT_OMP_MANAGER,
 			LOCALE_COMPONENT_PKP_COMMON,
 			LOCALE_COMPONENT_PKP_USER,
 			LOCALE_COMPONENT_APPLICATION_COMMON
-		));
+		);
 
 		// Elements to be displayed in the grid
 		$seriesDao =& DAORegistry::getDAO('SeriesDAO');
@@ -205,7 +205,7 @@ class SeriesGridHandler extends SetupGridHandler {
 			$seriesDao->deleteObject($series);
 			return DAO::getDataChangedEvent($series->getId());
 		} else {
-			AppLocale::requireComponents(array(LOCALE_COMPONENT_PKP_MANAGER)); // manager.setup.errorDeletingItem
+			AppLocale::requireComponents(LOCALE_COMPONENT_PKP_MANAGER); // manager.setup.errorDeletingItem
 			$json = new JSONMessage(false, __('manager.setup.errorDeletingItem'));
 		}
 		return $json->getString();

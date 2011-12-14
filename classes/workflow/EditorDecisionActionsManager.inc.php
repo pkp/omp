@@ -35,7 +35,7 @@ class EditorDecisionActionsManager {
 	* @param $actionArgs array action arguments
 	*/
 	function assignDecisionsToTemplate(&$request, $decisionsFunctionName, $actionArgs) {
-		AppLocale::requireComponents(array(LOCALE_COMPONENT_OMP_EDITOR));
+		AppLocale::requireComponents(LOCALE_COMPONENT_OMP_EDITOR);
 
 		// Retrieve the editor decisions.
 		$decisions = EditorDecisionActionsManager::$decisionsFunctionName();

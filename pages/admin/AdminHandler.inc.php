@@ -69,9 +69,7 @@ class AdminHandler extends Handler {
 	 */
 	function setupTemplate($request, $subclass = false) {
 		parent::setupTemplate();
-		AppLocale::requireComponents(array(LOCALE_COMPONENT_PKP_ADMIN));
-		AppLocale::requireComponents(array(LOCALE_COMPONENT_OMP_MANAGER));
-		AppLocale::requireComponents(array(LOCALE_COMPONENT_OMP_ADMIN));
+		AppLocale::requireComponents(LOCALE_COMPONENT_PKP_ADMIN, LOCALE_COMPONENT_OMP_MANAGER, LOCALE_COMPONENT_OMP_ADMIN);
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('pageHierarchy',

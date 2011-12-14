@@ -57,10 +57,10 @@ class PressSettingsWizardHandler extends Handler {
 	 */
 	function startWizard($args, &$request) {
 		$templateMgr =& TemplateManager::getManager();
-		AppLocale::requireComponents(array(
+		AppLocale::requireComponents(
 			LOCALE_COMPONENT_OMP_MANAGER,
 			LOCALE_COMPONENT_PKP_MANAGER
-		));
+		);
 
 		$this->setupTemplate();
 		return $templateMgr->fetchJson('controllers/wizard/settings/settingsWizard.tpl');

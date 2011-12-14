@@ -49,7 +49,7 @@ class SubmissionMetadataHandler extends Handler {
 	function fetch(&$request, $args, $params = null) {
 		// Identify the submission
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-		AppLocale::requireComponents(array(LOCALE_COMPONENT_OMP_SUBMISSION));
+		AppLocale::requireComponents(LOCALE_COMPONENT_OMP_SUBMISSION);
 
 		// Identify the stage, if we have one.
 		$stageId = $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);

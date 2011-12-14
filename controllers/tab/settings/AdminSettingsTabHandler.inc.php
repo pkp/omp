@@ -52,11 +52,12 @@ class AdminSettingsTabHandler extends SettingsTabHandler {
 		parent::initialize($request, $args);
 
 		// Load grid-specific translations
-		AppLocale::requireComponents(array(
+		AppLocale::requireComponents(
 			LOCALE_COMPONENT_PKP_ADMIN,
 			LOCALE_COMPONENT_OMP_ADMIN,
 			LOCALE_COMPONENT_PKP_MANAGER,
-			LOCALE_COMPONENT_OMP_MANAGER));
+			LOCALE_COMPONENT_OMP_MANAGER
+		);
 	}
 
 

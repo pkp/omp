@@ -115,7 +115,7 @@ class PublicationFormatsListbuilderHandler extends SetupListbuilderHandler {
 	function initialize(&$request) {
 		parent::initialize($request);
 
-		AppLocale::requireComponents(array(LOCALE_COMPONENT_OMP_MANAGER));
+		AppLocale::requireComponents(LOCALE_COMPONENT_OMP_MANAGER);
 
 		$this->setTitle('manager.setup.publicationFormats');
 

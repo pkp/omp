@@ -171,7 +171,7 @@ class PressSiteSettingsForm extends Form {
 			// Install default press settings
 			$pressSettingsDao =& DAORegistry::getDAO('PressSettingsDAO');
 			$titles = $this->getData('title');
-			AppLocale::requireComponents(array(LOCALE_COMPONENT_OMP_DEFAULT_SETTINGS));
+			AppLocale::requireComponents(LOCALE_COMPONENT_OMP_DEFAULT_SETTINGS);
 			$pressSettingsDao->installSettings($pressId, 'registry/pressSettings.xml', array(
 				'indexUrl' => $request->getIndexUrl(),
 				'pressPath' => $this->getData('path'),

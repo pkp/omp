@@ -103,7 +103,11 @@ class SubmissionMetadataViewForm extends Form {
 	* @param $request PKPRequest
 	*/
 	function initData($args, &$request) {
-		AppLocale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_OMP_SUBMISSION));
+		AppLocale::requireComponents(
+			LOCALE_COMPONENT_APPLICATION_COMMON,
+			LOCALE_COMPONENT_PKP_SUBMISSION,
+			LOCALE_COMPONENT_OMP_SUBMISSION
+		);
 
 		$this->_metadataFormImplem->initData($this->getMonograph());
 	}

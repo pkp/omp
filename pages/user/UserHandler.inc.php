@@ -124,7 +124,7 @@ class UserHandler extends Handler {
 		}
 
 		$this->setupTemplate($request, true);
-		AppLocale::requireComponents(array(LOCALE_COMPONENT_PKP_USER));
+		AppLocale::requireComponents(LOCALE_COMPONENT_PKP_USER);
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('message', $authorizationMessage);
 		return $templateMgr->display('common/message.tpl');

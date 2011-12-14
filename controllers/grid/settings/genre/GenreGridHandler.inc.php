@@ -39,7 +39,14 @@ class GenreGridHandler extends SetupGridHandler {
 		parent::initialize($request);
 
 		// Load language components
-		AppLocale::requireComponents(array(LOCALE_COMPONENT_OMP_MANAGER, LOCALE_COMPONENT_OMP_EDITOR, LOCALE_COMPONENT_PKP_COMMON, LOCALE_COMPONENT_PKP_USER, LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_PKP_GRID));
+		AppLocale::requireComponents(
+			LOCALE_COMPONENT_OMP_MANAGER,
+			LOCALE_COMPONENT_OMP_EDITOR,
+			LOCALE_COMPONENT_PKP_COMMON,
+			LOCALE_COMPONENT_PKP_USER,
+			LOCALE_COMPONENT_APPLICATION_COMMON,
+			LOCALE_COMPONENT_PKP_GRID
+		);
 
 		// Basic grid configuration
 		$this->setTitle('manager.setup.genres');

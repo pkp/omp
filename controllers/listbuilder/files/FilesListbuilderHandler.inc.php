@@ -111,7 +111,7 @@ class FilesListbuilderHandler extends ListbuilderHandler {
 	function setupTemplate() {
 		parent::setupTemplate();
 
-		AppLocale::requireComponents(array(LOCALE_COMPONENT_OMP_EDITOR, LOCALE_COMPONENT_PKP_SUBMISSION));
+		AppLocale::requireComponents(LOCALE_COMPONENT_OMP_EDITOR, LOCALE_COMPONENT_PKP_SUBMISSION);
 	}
 
 	/**

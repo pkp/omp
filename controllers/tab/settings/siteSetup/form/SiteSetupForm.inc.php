@@ -32,7 +32,7 @@ class SiteSetupForm extends PKPSiteSettingsForm {
 		$this->addCheck(new FormValidatorCustom($this, 'minPasswordLength', 'required', 'admin.settings.form.minPasswordLengthRequired', create_function('$l', sprintf('return $l >= %d;', SITE_MIN_PASSWORD_LENGTH))));
 		$this->addCheck(new FormValidatorPost($this));
 
-		AppLocale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON));
+		AppLocale::requireComponents(LOCALE_COMPONENT_APPLICATION_COMMON);
 	}
 
 	//
