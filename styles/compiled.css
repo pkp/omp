@@ -431,7 +431,7 @@ a.sprite.grid_view:hover:before { background-position:-1176px -24px; }
   margin-left:10px;
   margin-top:0px;
 }
-.large_sprite:before {
+.large_sprite {
   content:" ";
   width:48px;
   height:48px;
@@ -441,9 +441,9 @@ a.sprite.grid_view:hover:before { background-position:-1176px -24px; }
   background-repeat:no-repeat;
   background-position:0 -48px;
 }
-.large_sprite:before.modal_add_user:before { background-position:-48px -48px; }
-.large_sprite:before.modal_add_role:before { background-position:-96px -48px; }
-.large_sprite:before.modal_add_file:before { background-position:-144px -48px; }
+.large_sprite.modal_add_user:before { background-position:-48px -48px; }
+.large_sprite.modal_add_role:before { background-position:-96px -48px; }
+.large_sprite.modal_add_file:before { background-position:-144px -48px; }
 .grid_actions {
   margin-top:20px;
   padding-bottom:20px;
@@ -640,7 +640,6 @@ body {
 .pkp_linkActions a.remove_item { background-image:url(../lib/pkp/templates/images/structure/lb_delete.png); }
 .pkp_linkActions a.promote { background-image:url(../lib/pkp/templates/images/structure/grid_promote.png); }
 .pkp_linkActions a.enable { background-image:url(../lib/pkp/templates/images/structure/grid_promote.png); }
-@import url("lib/pkp/styles/form.less");
 table.pkp_listing td { padding:0.25em 1.5em 0.25em 0.5em; }
 table.pkp_listing tr.heading td, table.pkp_listing td.heading {
   font-size:0.85em;
@@ -1258,7 +1257,6 @@ span.pkp_controllers_informationCenter_itemLastEvent {
 }
 a.pkp_common_disabled, a.pkp_common_disabled:hover { color:#666666; }
 .pkp_submissionChecklist ul li label.error { margin-bottom:15px; }
-@import url("styles/workflow.less");
 .pkp_catalog_monographList {
   list-style-type:none;
   margin:0;
@@ -1270,7 +1268,7 @@ a.pkp_common_disabled, a.pkp_common_disabled:hover { color:#666666; }
   margin:3px 3px 3px 0;
   padding:1px;
 }
-.pkp_catalog_monographList.list_view .pkp_catalog_monograph_image: { float:left; }
+.pkp_catalog_monographList.list_view .pkp_catalog_monograph_image { float:left; }
 .pkp_catalog_monographList .pkp_catalog_monograph_image {
   border:1px solid #000000;
   height:100px;
