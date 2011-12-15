@@ -7,22 +7,26 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class CatalogEntryHandler
- * @ingroup controllers_modals_submissionMetadata
+ * @ingroup ingroup controllers_modals_submissionMetadata
  *
- * @brief Handle requests for a submission's catalog entry.
+ * @brief Handle the request to generate the tab structure on the New Catalog Entry page.
  */
 
-import('classes.controllers.modals.submissionMetadata.SubmissionMetadataHandler');
+// Import the base Handler.
+import('classes.handler.Handler');
 
-// import JSON class for use with all AJAX requests
-import('lib.pkp.classes.core.JSONMessage');
-
-class CatalogEntryHandler extends SubmissionMetadataHandler {
+class CatalogEntryHandler extends Handler {
 	/**
 	 * Constructor.
 	 */
+	/** The monograph **/
+	var $_monograph;
+
+	/** The current stage id **/
+	var $_stageId;
+
 	function CatalogEntryHandler() {
-		parent::SubmissionMetadataHandler();
+		parent::Handler();
 		$this->addRoleAssignment(
 			array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
 			array('fetch', 'saveForm'));
@@ -30,8 +34,23 @@ class CatalogEntryHandler extends SubmissionMetadataHandler {
 
 
 	//
-	// Implement template methods from PKPHandler.
+	// Overridden methods from Handler
 	//
+	/**
+	 * @see PKPHandler::initialize()
+	 */
+	function initialize(&$request, $args = null) {
+		parent::initialize($request, $args);
+
+		$monographDao =& DAORegistry::getDAO('MonographDAO');
+		$this->_monograph =& $monographDao->getById($request->getUserVar('monographId'));
+		$this->_stageId =& $request->getUserVar('stageId');
+
+		// Load grid-specific translations
+		AppLocale::requireComponents(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_OMP_SUBMISSION);
+		$this->setupTemplate();
+	}
+
 	/**
 	 * @see PKPHandler::authorize()
 	 * @param $request PKPRequest
@@ -47,16 +66,54 @@ class CatalogEntryHandler extends SubmissionMetadataHandler {
 
 
 	//
-	// Extend methods from SubmissionMetadataHandler
+	// Getters and Setters
 	//
 	/**
-	 * Get an instance of the metadata form to be used by this handler.
-	 * @param $monographId int
-	 * @return Form
+	 * Get the Monograph
+	 * @return Monograph
 	 */
-	function getFormInstance($monographId, $stageId = null, $params = null) {
-		import('controllers.modals.submissionMetadata.form.CatalogEntryForm');
-		return new CatalogEntryForm($monographId, $stageId, $params);
+	function getMonograph() {
+		return $this->_monograph;
+	}
+
+	/**
+	 * Get the Monograph
+	 * @return Monograph
+	 */
+	function getStageId() {
+		return $this->_stageId;
+	}
+
+
+	//
+	// Public handler methods
+	//
+	/**
+	 * Display the tabs index page.
+	 * @param $request PKPRequest
+	 * @param $args array
+	 */
+	function fetch($request, $args) {
+		$templateMgr =& TemplateManager::getManager();
+
+		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+
+		$templateMgr->assign('monographId', $monograph->getId());
+		$templateMgr->assign('stageId', $this->getStageId());
+
+		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
+		$publicationFormats =& $publicationFormatDao->getEnabledByPressId($monograph->getPressId());
+		$formats = array();
+
+		while ($publicationFormat =& $publicationFormats->next()) {
+			$formats[] =& $publicationFormat;
+			unset($publicationFormat);
+		}
+
+		$templateMgr->assign_by_ref('publicationFormats', $formats);
+
+		$this->setupTemplate();
+		return $templateMgr->fetchJson('controllers/modals/submissionMetadata/catalogEntryTabs.tpl');
 	}
 }
 

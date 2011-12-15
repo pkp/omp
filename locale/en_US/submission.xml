@@ -44,6 +44,7 @@
 	<message key="submission.files.downloadAll">Download All Files</message>
 	<message key="submission.mySubmissions">My Submissions</message>
 	<message key="submission.cataloguingMetadata">Cataloguing Metadata</message>
+	<message key="submission.supportingAgencies">Supporting Agencies</message>
 
 	<!-- Submission wizard -->
 	<message key="submission.submit">Start New Book Submission</message>
@@ -155,6 +156,11 @@
 	<message key="submission.catalogEntry.new">New Catalog Entry</message>
 	<message key="submission.catalogEntry.confirm">I acknowledge that the current metadata is accurate and approve it for display on the public site.</message>
 	<message key="submission.catalogEntry.confirm.required">Please confirm that the submission is ready to be placed in the catalog.</message>
+
+	<!--  Catalog Entry Tabs -->
+	<message key="submission.catalogEntry.submissionMetadata">Submission</message>
+	<message key="submission.catalogEntry.catalogMetadata">Catalog</message>
+	<message key="submission.catalogEntry.publicationMetadata">Publication Format</message>
 
 	<!-- Information Center -->
 	<message key="submission.informationCenter.metadata">Metadata</message>
