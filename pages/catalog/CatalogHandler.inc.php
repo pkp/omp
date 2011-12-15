@@ -49,17 +49,23 @@ class CatalogHandler extends Handler {
 	function category($args, &$request) {
 		$templateMgr =& TemplateManager::getManager();
 		$press =& $request->getPress();
+		$this->setupTemplate();
 
 		// Get the category
 		$categoryDao =& DAORegistry::getDAO('CategoryDAO');
 		$categoryPath = array_shift($args);
 		$category =& $categoryDao->getByPath($categoryPath, $press->getId());
+		$templateMgr->assign('category', $category);
 
 		// Fetch the monographs to display
 		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
 		$publishedMonographs =& $publishedMonographDao->getByCategoryId($category->getId(), $press->getId());
-		$templateMgr->assign('publishedMonographs', $publishedMonographs);
+		$templateMgr->assign('publishedMonographs', $publishedMonographs->toAssociativeArray());
 
+		// Expose the featured monograph IDs and associated params
+		$featureDao =& DAORegistry::getDAO('FeatureDAO');
+		$featuredMonographIds = $featureDao->getSequencesByAssoc(ASSOC_TYPE_CATEGORY, $category->getId());
+		$templateMgr->assign('featuredMonographIds', $featuredMonographIds);
 		$templateMgr->display('catalog/category.tpl');
 	}
 
@@ -72,16 +78,23 @@ class CatalogHandler extends Handler {
 	function series($args, &$request) {
 		$templateMgr =& TemplateManager::getManager();
 		$press =& $request->getPress();
+		$this->setupTemplate();
 
 		// Get the series
 		$seriesDao =& DAORegistry::getDAO('SeriesDAO');
 		$seriesPath = array_shift($args);
 		$series =& $seriesDao->getByPath($seriesPath, $press->getId());
+		$templateMgr->assign('series', $series);
 
 		// Fetch the monographs to display
 		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
 		$publishedMonographs =& $publishedMonographDao->getBySeriesId($series->getId(), $press->getId());
-		$templateMgr->assign('publishedMonographs', $publishedMonographs);
+		$templateMgr->assign('publishedMonographs', $publishedMonographs->toAssociativeArray());
+
+		// Expose the featured monograph IDs and associated params
+		$featureDao =& DAORegistry::getDAO('FeatureDAO');
+		$featuredMonographIds = $featureDao->getSequencesByAssoc(ASSOC_TYPE_SERIES, $series->getId());
+		$templateMgr->assign('featuredMonographIds', $featuredMonographIds);
 
 		$templateMgr->display('catalog/series.tpl');
 	}

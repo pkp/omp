@@ -57,6 +57,21 @@ class BrowseBlockPlugin extends BlockPlugin {
 		$categories =& $categoryDao->getByPressId($press->getId());
 		$templateMgr->assign('browseCategories', $categories);
 
+		// If we're currently viewing a series or catalog, detect it
+		// so that we can highlight the current selection in the
+		// dropdown.
+		$router = $request->getRouter();
+		switch ($router->getRequestedPage($request) . '/' . $router->getRequestedOp($request)) {
+			case 'catalog/category':
+				$path = $router->getRequestedArgs($request);
+				if (isset($path[0])) $templateMgr->assign('browseBlockSelectedCategory', $path);
+				break;
+			case 'catalog/series':
+				$path = $router->getRequestedArgs($request);
+				if (isset($path[0])) $templateMgr->assign('browseBlockSelectedSeries', $path);
+				break;
+		}
+
 		return parent::getContents($templateMgr);
 	}
 }

@@ -7,7 +7,7 @@
  * Display a public-facing series view in the catalog.
  *}
 {strip}
-{assign var="pageTitle" value="navigation.catalog"}
+{assign var="pageTitleTranslated" value=$series->getLocalizedTitle()}
 {include file="common/header.tpl"}
 {/strip}
 

@@ -7,7 +7,7 @@
  * Display a public-facing category view in the catalog.
  *}
 {strip}
-{assign var="pageTitle" value="navigation.catalog"}
+{assign var="pageTitleTranslated" value=$category->getLocalizedTitle()}
 {include file="common/header.tpl"}
 {/strip}
 
