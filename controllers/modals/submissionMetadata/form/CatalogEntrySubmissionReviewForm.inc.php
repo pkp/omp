@@ -63,6 +63,7 @@ class CatalogEntrySubmissionReviewForm extends SubmissionMetadataViewForm {
 		if ($isExistingEntry) {
 			$publishedMonographDao->updateObject($publishedMonograph);
 		} else {
+			$publishedMonograph->setDatePublished(Core::getCurrentDate());
 			$publishedMonographDao->insertObject($publishedMonograph);
 		}
 	}

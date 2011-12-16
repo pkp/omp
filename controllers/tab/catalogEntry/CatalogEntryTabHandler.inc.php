@@ -21,6 +21,12 @@ class CatalogEntryTabHandler extends Handler {
 	/** @var string */
 	var $_currentTab;
 
+	/** @var Monograph object */
+	var $_monograph;
+
+	/** @var int stageId */
+	var $_stageId;
+
 	/**
 	 * Constructor
 	 */
@@ -66,14 +72,17 @@ class CatalogEntryTabHandler extends Handler {
 	 */
 	function initialize(&$request) {
 		$this->setCurrentTab($request->getUserVar('tab'));
+		$this->_monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		$this->_stageId =& $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
 	}
 
 	/**
 	 * @see PKPHandler::authorize()
 	 */
 	function authorize(&$request, $args, $roleAssignments) {
-		import('classes.security.authorization.OmpPressAccessPolicy');
-		$this->addPolicy(new OmpPressAccessPolicy($request, $roleAssignments));
+		$stageId = (int) $request->getUserVar('stageId');
+		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
+		$this->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', $stageId));
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 
@@ -88,12 +97,31 @@ class CatalogEntryTabHandler extends Handler {
 	 * @return string JSON message
 	 */
 	function submissionMetadata($args, &$request) {
+
 		import('controllers.modals.submissionMetadata.form.CatalogEntrySubmissionReviewForm');
-		$catalogEntrySubmissionReviewForm = new CatalogEntrySubmissionReviewForm($request->getUserVar('monographId'), $request->getUserVar('stageId'), array('displayedInTab' => true));
+
+		$monograph =& $this->getMonograph();
+		$stageId =& $this->getStageId();
+
+		$catalogEntrySubmissionReviewForm = new CatalogEntrySubmissionReviewForm($monograph->getId(), $stageId, array('displayedInTab' => true));
 
 		$catalogEntrySubmissionReviewForm->initData($args, $request);
 		$json = new JSONMessage(true, $catalogEntrySubmissionReviewForm->fetch($request));
 		return $json->getString();
+	}
+
+	/**
+	 * @return the authorized monograph for this handler
+	 */
+	function getMonograph() {
+		return $this->_monograph;
+	}
+
+	/**
+	 * @return the authorized workflow stage id for this handler
+	 */
+	function getStageId() {
+		return $this->_stageId;
 	}
 
 	/**
@@ -117,10 +145,22 @@ class CatalogEntryTabHandler extends Handler {
 
 		$publicationFormatId =& $request->getUserVar('publicationFormatId');
 		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
+
+		$monograph =& $this->getMonograph();
+
+		$enabledPressFormats =& $publicationFormatDao->getEnabledByPressId($monograph->getPressId());
 		$publicationFormat =& $publicationFormatDao->getById($publicationFormatId);
 
-		$json = new JSONMessage(true, $publicationFormat->getLocalizedName());
-		return $json->getString();
+		$json = new JSONMessage();
+
+		while ($format =& $enabledPressFormats->next()) {
+			if ($format->getId() == $publicationFormat->getId()) { // belongs to current press
+				$json->setContent($publicationFormat->getLocalizedName());
+				return $json->getString();
+			}
+		}
+
+		return $json->getString(false);
 	}
 
 	/**
@@ -134,21 +174,29 @@ class CatalogEntryTabHandler extends Handler {
 		$json = new JSONMessage();
 		$form = null;
 
+		$methodName = null;
+
 		switch ($this->getCurrentTab()) {
 
 			case 'submission':
 
+				$monograph =& $this->getMonograph();
+				$stageId =& $this->getStageId();
+
 				import('controllers.modals.submissionMetadata.form.CatalogEntrySubmissionReviewForm');
-				$form = new CatalogEntrySubmissionReviewForm($request->getUserVar('monographId'), $request->getUserVar('stageId'), array('displayedInTab' => true));
+				$form = new CatalogEntrySubmissionReviewForm($monograph->getId(), $stageId, array('displayedInTab' => true));
+				$methodName = 'submissionMetadata';
 				break;
 			case 'catalog':
+				$methodName = 'catalogMetadata';
 				assert(false); // placeholder
 				break;
 			case 'publication':
+				$methodName = 'publicationMetadata';
 				assert(false); // placeholder
 				break;
 			default:
-				assert(false);
+				fatalError('Invalid Tab');
 		}
 
 		if ($form) {
@@ -164,7 +212,6 @@ class CatalogEntryTabHandler extends Handler {
 			}
 
 			if ($request->getUserVar('displayedInTab')) {
-				$methodName = $this->getCurrentTab() . 'Metadata';
 				return $this->{$methodName}($args, $request); // displays the notification, keeps the modal open
 			} else {
 				return $json->getString(); // closes the modal

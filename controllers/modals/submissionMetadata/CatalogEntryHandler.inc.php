@@ -7,7 +7,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class CatalogEntryHandler
- * @ingroup ingroup controllers_modals_submissionMetadata
+ * @ingroup controllers_modals_submissionMetadata
  *
  * @brief Handle the request to generate the tab structure on the New Catalog Entry page.
  */
@@ -43,8 +43,8 @@ class CatalogEntryHandler extends Handler {
 		parent::initialize($request, $args);
 
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
-		$this->_monograph =& $monographDao->getById($request->getUserVar('monographId'));
-		$this->_stageId =& $request->getUserVar('stageId');
+		$this->_monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		$this->_stageId =& $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
 
 		// Load grid-specific translations
 		AppLocale::requireComponents(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_OMP_SUBMISSION);
@@ -96,7 +96,7 @@ class CatalogEntryHandler extends Handler {
 	function fetch($request, $args) {
 		$templateMgr =& TemplateManager::getManager();
 
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		$monograph =& $this->getMonograph();
 
 		$templateMgr->assign('monographId', $monograph->getId());
 		$templateMgr->assign('stageId', $this->getStageId());
