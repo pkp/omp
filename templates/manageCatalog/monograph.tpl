@@ -37,7 +37,7 @@
 
 <li id="{$monographContainerId|escape}" class="pkp_catalog_monograph monograph_id_{$monographId|escape}{if !$isFeatured} not_sortable{/if}">
 	<div class="pkp_catalog_monograph_image">
-		<!-- FIXME: Image goes here -->
+		<img src="{$baseUrl}/templates/images/book-default-small.png" width="106" height="100" alt="{$monograph->getLocalizedTitle()|escape}" />
 	</div>
 	<div class="pkp_catalog_monograph_title">
 		{$monograph->getLocalizedTitle()|escape}
