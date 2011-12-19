@@ -240,7 +240,7 @@ class ReviewRoundDAO extends DAO {
 		$result =& $this->retrieve('SELECT * FROM review_rounds
 									WHERE submission_id = ?' .
 									($stageId ? ' AND stage_id = ?' : '') .
-									' ORDER BY stage_id, round DESC LIMIT 1',
+									' ORDER BY stage_id DESC, round DESC LIMIT 1',
 									$params);
 
 		$returner = null;
