@@ -166,7 +166,7 @@ class UserImportExportPlugin extends ImportExportPlugin {
 				break;
 			case 'exportAll':
 				$this->import('UserExportDom');
-				$users =& $roleDao->getUsersByPressId($press->getId());
+				$users =& $roleDao->getUsersByRoleId(null, $press->getId());
 				$users =& $users->toArray();
 
 				$userExportDom = new UserExportDom();
