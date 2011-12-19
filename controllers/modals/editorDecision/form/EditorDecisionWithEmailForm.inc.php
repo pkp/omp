@@ -156,18 +156,17 @@ class EditorDecisionWithEmailForm extends EditorDecisionForm {
 	// Private helper methods
 	//
 	/**
-	* Retrieve the current review round and update it with the new status.
+	* Retrieve the last review round and update it with the new status.
 	* @param $seriesEditorSubmission SeriesEditorSubmission
 	* @param $status integer One of the REVIEW_ROUND_STATUS_* constants.
 	*/
-	function _updateReviewRoundStatus($seriesEditorSubmission, $status) {
-		if ($seriesEditorSubmission->getStageId() == WORKFLOW_STAGE_ID_INTERNAL_REVIEW ||
-		$seriesEditorSubmission->getStageId() == WORKFLOW_STAGE_ID_EXTERNAL_REVIEW) {
-			$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO'); /* @var $reviewRoundDao ReviewRoundDAO */
-			$currentReviewRound =& $reviewRoundDao->build($seriesEditorSubmission->getId(), $seriesEditorSubmission->getStageId(), $seriesEditorSubmission->getCurrentRound());
-			$currentReviewRound->setStatus($status);
-			$reviewRoundDao->updateObject($currentReviewRound);
+	function _updateReviewRoundStatus($seriesEditorSubmission, $status, &$reviewRound = null) {
+		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO'); /* @var $reviewRoundDao ReviewRoundDAO */
+		if (!$reviewRound) {
+			$reviewRound =& $reviewRoundDao->getLastReviewRoundByMonographId($seriesEditorSubmission->getId());
 		}
+		$reviewRound->setStatus($status);
+		$reviewRoundDao->updateObject($reviewRound);
 	}
 
 	/**

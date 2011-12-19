@@ -78,7 +78,7 @@ class PromoteForm extends EditorDecisionWithEmailForm {
 				$emailKey = 'EDITOR_DECISION_ACCEPT';
 				$status = REVIEW_ROUND_STATUS_ACCEPTED;
 
-				$this->_updateReviewRoundStatus($seriesEditorSubmission, $status);
+				$this->_updateReviewRoundStatus($seriesEditorSubmission, $status, $reviewRound);
 
 				// Move to the editing stage.
 				$seriesEditorAction->incrementWorkflowStage($seriesEditorSubmission, WORKFLOW_STAGE_ID_EDITING, $request);
@@ -105,7 +105,7 @@ class PromoteForm extends EditorDecisionWithEmailForm {
 				$emailKey = 'EDITOR_DECISION_SEND_TO_EXTERNAL';
 				$status = REVIEW_ROUND_STATUS_SENT_TO_EXTERNAL;
 
-				$this->_updateReviewRoundStatus($seriesEditorSubmission, $status);
+				$this->_updateReviewRoundStatus($seriesEditorSubmission, $status, $reviewRound);
 
 				// Move to the external review stage.
 				$seriesEditorAction->incrementWorkflowStage($seriesEditorSubmission, WORKFLOW_STAGE_ID_EXTERNAL_REVIEW, $request);
