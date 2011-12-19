@@ -19,6 +19,9 @@ class EditorDecisionWithEmailForm extends EditorDecisionForm {
 	/** @var integer The decision being taken **/
 	var $_decision;
 
+	/** @var String */
+	var $_saveFormOperation;
+
 	/**
 	 * Constructor.
 	 * @param $seriesEditorSubmission SeriesEditorSubmission
@@ -41,6 +44,22 @@ class EditorDecisionWithEmailForm extends EditorDecisionForm {
 	 */
 	function getDecision() {
 		return $this->_decision;
+	}
+
+	/**
+	* Get the operation to save this form.
+	* @return string
+	*/
+	function getSaveFormOperation() {
+	return $this->_saveFormOperation;
+	}
+
+	/**
+	* Set the operation to save this form.
+	* @param $saveFormOperation string
+	*/
+	function setSaveFormOperation($saveFormOperation) {
+	$this->_saveFormOperation = $saveFormOperation;
 	}
 
 	//
@@ -119,6 +138,14 @@ class EditorDecisionWithEmailForm extends EditorDecisionForm {
 					)
 				)
 			);
+		}
+
+		// When this form is being used in review stages, we need a different
+		// save operation to allow the EditorDecisionHandler authorize the review
+		// round object.
+		if ($this->getSaveFormOperation()) {
+			$templateMgr =& TemplateManager::getManager();
+			$templateMgr->assign('saveFormOperation', $this->getSaveFormOperation());
 		}
 
 		return parent::fetch($request);

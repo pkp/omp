@@ -19,6 +19,7 @@
 <form class="pkp_form" id="newRoundForm" method="post" action="{url op="saveNewReviewRound"}" >
 	<input type="hidden" name="monographId" value="{$monographId|escape}" />
 	<input type="hidden" name="stageId" value="{$stageId|escape}" />
+	<input type="hidden" name="reviewRoundId" value="{$reviewRoundId|escape}" />
 	{** a new review round always implies a RESUBMIT decision **}
 	<input type="hidden" name="decision" value="{$smarty.const.SUBMISSION_EDITOR_DECISION_RESUBMIT}" />
 

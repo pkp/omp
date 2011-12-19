@@ -45,12 +45,13 @@ class NewReviewRoundForm extends EditorDecisionForm {
 		$actionLabels = EditorDecisionActionsManager::getActionLabels($this->_getDecisions());
 
 		// Record the decision.
+		$reviewRound =& $this->getReviewRound();
 		import('classes.submission.seriesEditor.SeriesEditorAction');
 		$seriesEditorAction = new SeriesEditorAction();
-		$seriesEditorAction->recordDecision($request, $seriesEditorSubmission, SUBMISSION_EDITOR_DECISION_RESUBMIT, $actionLabels);
+		$seriesEditorAction->recordDecision($request, $seriesEditorSubmission, SUBMISSION_EDITOR_DECISION_RESUBMIT, $actionLabels, $reviewRound);
 
 		// Create a new review round.
-		$newRound = $seriesEditorSubmission->getCurrentRound() + 1;
+		$newRound = $reviewRound->getRound() + 1;
 		$this->_initiateReviewRound(
 			$seriesEditorSubmission, $seriesEditorSubmission->getStageId(),
 			$newRound, $request, REVIEW_ROUND_STATUS_PENDING_REVIEWERS

@@ -15,12 +15,14 @@
 // Submission stage decision actions.
 define('SUBMISSION_EDITOR_DECISION_INITIATE_REVIEW', 1);
 
-// Review stage decisions actions.
+// Submission and review stages decision actions.
 define('SUBMISSION_EDITOR_DECISION_ACCEPT', 2);
+define('SUBMISSION_EDITOR_DECISION_DECLINE', 6);
+
+// Review stage decisions actions.
 define('SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW', 3);
 define('SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS', 4);
 define('SUBMISSION_EDITOR_DECISION_RESUBMIT', 5);
-define('SUBMISSION_EDITOR_DECISION_DECLINE', 6);
 
 // Copyediting stage decision actions.
 define('SUBMISSION_EDITOR_DECISION_SEND_TO_PRODUCTION', 7);
@@ -136,13 +138,13 @@ class EditorDecisionActionsManager {
 	function _internalReviewStageDecisions() {
 		static $decisions = array(
 		SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS => array(
-					'operation' => 'sendReviews',
+					'operation' => 'sendReviewsInReview',
 					'name' => 'requestRevisions',
 					'title' => 'editor.monograph.decision.requestRevisions',
 					'image' => 'revisions'
 		),
 		SUBMISSION_EDITOR_DECISION_RESUBMIT => array(
-					'operation' => 'sendReviews',
+					'operation' => 'sendReviewsInReview',
 					'name' => 'resubmit',
 					'title' => 'editor.monograph.decision.resubmit',
 					'image' => 'resubmit'
@@ -160,7 +162,7 @@ class EditorDecisionActionsManager {
 					'image' => 'promote'
 		),
 		SUBMISSION_EDITOR_DECISION_DECLINE => array(
-					'operation' => 'sendReviews',
+					'operation' => 'sendReviewsInReview',
 					'name' => 'decline',
 					'title' => 'editor.monograph.decision.decline',
 					'image' => 'decline'
@@ -177,12 +179,12 @@ class EditorDecisionActionsManager {
 	function _externalReviewStageDecisions() {
 		static $decisions = array(
 		SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS => array(
-					'operation' => 'sendReviews',
+					'operation' => 'sendReviewsInReview',
 					'name' => 'requestRevisions',
 					'title' => 'editor.monograph.decision.requestRevisions'
 		),
 		SUBMISSION_EDITOR_DECISION_RESUBMIT => array(
-					'operation' => 'sendReviews',
+					'operation' => 'sendReviewsInReview',
 					'name' => 'resubmit',
 					'title' => 'editor.monograph.decision.resubmit'
 		),
@@ -193,7 +195,7 @@ class EditorDecisionActionsManager {
 					'image' => 'approve'
 		),
 		SUBMISSION_EDITOR_DECISION_DECLINE => array(
-					'operation' => 'sendReviews',
+					'operation' => 'sendReviewsInReview',
 					'name' => 'decline',
 					'title' => 'editor.monograph.decision.decline',
 					'image' => 'delete'

@@ -17,7 +17,7 @@
 	{rdelim});
 </script>
 
-<form class="pkp_form" id="sendReviews" method="post" action="{url op="saveSendReviews"}" >
+<form class="pkp_form" id="sendReviews" method="post" action="{url op=$saveFormOperation}" >
 	<input type="hidden" name="monographId" value="{$monographId|escape}" />
 	<input type="hidden" name="stageId" value="{$stageId|escape}" />
 	<input type="hidden" name="decision" value="{$decision|escape}" />

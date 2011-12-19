@@ -35,6 +35,13 @@ class InitiateReviewForm extends EditorDecisionForm {
 		// Retrieve the submission.
 		$seriesEditorSubmission =& $this->getSeriesEditorSubmission();
 
+		// Record the decision.
+		import('classes.workflow.EditorDecisionActionsManager');
+		$actionLabels = EditorDecisionActionsManager::getActionLabels(array(SUBMISSION_EDITOR_DECISION_INITIATE_REVIEW));
+		import('classes.submission.seriesEditor.SeriesEditorAction');
+		$seriesEditorAction = new SeriesEditorAction();
+		$seriesEditorAction->recordDecision($request, $seriesEditorSubmission, SUBMISSION_EDITOR_DECISION_INITIATE_REVIEW, $actionLabels);
+
 		// Move to the internal review stage.
 		import('classes.submission.seriesEditor.SeriesEditorAction');
 		$seriesEditorAction = new SeriesEditorAction();

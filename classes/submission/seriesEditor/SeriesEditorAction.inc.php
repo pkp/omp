@@ -35,13 +35,28 @@ class SeriesEditorAction extends Action {
 	 * @param $seriesEditorSubmission SeriesEditorSubmission
 	 * @param $decision integer
 	 * @param $decisionLabels array(DECISION_CONSTANT => decision.locale.key, ...)
+	 * @param $reviewRound ReviewRound Current review round that user is taking the decision, if any.
+	 * @param $stageId int
 	 */
-	function recordDecision($request, $seriesEditorSubmission, $decision, $decisionLabels) {
+	function recordDecision($request, $seriesEditorSubmission, $decision, $decisionLabels, $reviewRound = null, $stageId = null) {
 		$stageAssignmentDao =& DAORegistry::getDAO('StageAssignmentDAO');
+
+		// Define the stage and round data.
+		if (!is_null($reviewRound)) {
+			$stageId = $reviewRound->getStageId();
+			$round = $reviewRound->getRound();
+		} else {
+			$round = REVIEW_ROUND_NONE;
+			if ($stageId == null) {
+				// We consider that the decision is being made for the current
+				// submission stage.
+				$stageId = $seriesEditorSubmission->getStageId();
+			}
+		}
 
 		$editorAssigned = $stageAssignmentDao->editorAssignedToStage(
 			$seriesEditorSubmission->getId(),
-			$seriesEditorSubmission->getStageId()
+			$stageId
 		);
 
 		// Sanity checks
@@ -62,8 +77,8 @@ class SeriesEditorAction extends Action {
 			$seriesEditorSubmission->stampStatusModified();
 			$seriesEditorSubmission->addDecision(
 				$editorDecision,
-				$seriesEditorSubmission->getStageId(),
-				$seriesEditorSubmission->getCurrentRound()
+				$stageId,
+				$round
 			);
 
 			$seriesEditorSubmissionDao->updateSeriesEditorSubmission($seriesEditorSubmission);

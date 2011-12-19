@@ -26,10 +26,12 @@ class SendReviewsForm extends EditorDecisionWithEmailForm {
 	 * @param $stageId int
 	 * @param $reviewRound ReviewRound
 	 */
-	function SendReviewsForm($seriesEditorSubmission, $decision, $stageId, &$reviewRound) {
+	function SendReviewsForm($seriesEditorSubmission, $decision, $stageId, &$reviewRound = null) {
 		if (!in_array($decision, $this->_getDecisions())) {
 			fatalError('Invalid decision!');
 		}
+
+		$this->setSaveFormOperation('saveSendReviews');
 
 		parent::EditorDecisionWithEmailForm(
 			$seriesEditorSubmission, $decision, $stageId,
@@ -61,10 +63,12 @@ class SendReviewsForm extends EditorDecisionWithEmailForm {
 		$actionLabels = EditorDecisionActionsManager::getActionLabels($this->_getDecisions());
 
 		// Record the decision.
+		$reviewRound =& $this->getReviewRound();
 		$decision = $this->getDecision();
+		$stageId = $this->getStageId();
 		import('classes.submission.seriesEditor.SeriesEditorAction');
 		$seriesEditorAction = new SeriesEditorAction();
-		$seriesEditorAction->recordDecision($request, $seriesEditorSubmission, $decision, $actionLabels);
+		$seriesEditorAction->recordDecision($request, $seriesEditorSubmission, $decision, $actionLabels, $reviewRound, $stageId);
 
 		// Identify email key and status of round.
 		switch ($decision) {

@@ -30,8 +30,8 @@ class EditorDecisionHandler extends Handler {
 		$this->addRoleAssignment(
 			array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
 			array_merge(array(
-				'saveNewReviewRound',
 				'initiateReview', 'saveInitiateReview',
+				'sendReviews', 'saveSendReviews',
 				'promote', 'savePromote',
 				'approveProofs', 'saveApproveProofs'
 			), $this->_getReviewRoundOps())
@@ -138,7 +138,7 @@ class EditorDecisionHandler extends Handler {
 	}
 
 	/**
-	 * Show a save review form (responsible for request revisions, resubmit for review, and decline submission modals)
+	 * Show a save review form (responsible for decline submission modals when not in review stage)
 	 * @param $args array
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
@@ -148,12 +148,35 @@ class EditorDecisionHandler extends Handler {
 	}
 
 	/**
-	 * Save the send review form
+	* Show a save review form (responsible for request revisions,
+	* resubmit for review, and decline submission modals in review stages).
+	* We need this because the authorization in review stages is different
+	* when not in review stages (need to authorize review round id).
+	* @param $args array
+	* @param $request PKPRequest
+	* @return string Serialized JSON object
+	*/
+	function sendReviewsInReview($args, &$request) {
+		return $this->_initiateEditorDecision($args, $request, 'SendReviewsForm');
+	}
+
+	/**
+	 * Save the send review form when user is not in review stage.
 	 * @param $args array
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
 	function saveSendReviews($args, &$request) {
+		return $this->_saveEditorDecision($args, $request, 'SendReviewsForm');
+	}
+
+	/**
+	* Save the send review form when user is in review stages.
+	* @param $args array
+	* @param $request PKPRequest
+	* @return string Serialized JSON object
+	*/
+	function saveSendReviewsInReview($args, &$request) {
 		return $this->_saveEditorDecision($args, $request, 'SendReviewsForm');
 	}
 
@@ -321,7 +344,7 @@ class EditorDecisionHandler extends Handler {
 	 * @return array
 	 */
 	function _getReviewRoundOps() {
-		return array('promoteInReview', 'savePromoteInReview', 'newReviewRound', 'sendReviews', 'saveSendReviews', 'importPeerReviews');
+		return array('promoteInReview', 'savePromoteInReview', 'newReviewRound', 'saveNewReviewRound', 'sendReviewsInReview', 'saveSendReviewsInReview', 'importPeerReviews');
 	}
 
 	/**
@@ -344,6 +367,8 @@ class EditorDecisionHandler extends Handler {
 			// the review round object.
 			if (is_a($editorDecisionForm, 'PromoteForm')) {
 				$editorDecisionForm->setSaveFormOperation('savePromoteInReview');
+			} else if (is_a($editorDecisionForm, 'SendReviewsForm')) {
+				$editorDecisionForm->setSaveFormOperation('saveSendReviewsInReview');
 			}
 		} else {
 			$editorDecisionForm = new $formName($monograph, $decision, $stageId);

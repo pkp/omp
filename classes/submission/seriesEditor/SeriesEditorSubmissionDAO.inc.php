@@ -143,47 +143,44 @@ class SeriesEditorSubmissionDAO extends MonographDAO {
 	 * @param $seriesEditorSubmission SeriesEditorSubmission
 	 */
 	function updateSeriesEditorSubmission(&$seriesEditorSubmission) {
-		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO'); /* @var $reviewRoundDao ReviewRoundDAO */
-		$reviewRounds =& $reviewRoundDao->getByMonographId($seriesEditorSubmission->getId());
+		$monographId = $seriesEditorSubmission->getId();
 
-		// Update editor decisions.
+		// Get all submission editor decisions.
+		$editorDecisions = $seriesEditorSubmission->getDecisions();
+
+		// Update review stages editor decisions.
+		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO'); /* @var $reviewRoundDao ReviewRoundDAO */
+		$reviewRounds =& $reviewRoundDao->getByMonographId($monographId);
+
 		while ($reviewRound =& $reviewRounds->next()) {
 			$stageId = $reviewRound->getStageId();
 			$round = $reviewRound->getRound();
-			$editorDecisions = $seriesEditorSubmission->getDecisions($stageId, $round);
-			if (is_array($editorDecisions)) {
-				foreach ($editorDecisions as $editorDecision) {
-					if ($editorDecision['editDecisionId'] == null) {
-						$this->update(
-							sprintf(
-								'INSERT INTO edit_decisions
-								(monograph_id, review_round_id, stage_id, round, editor_id, decision, date_decided)
-								VALUES (?, ?, ?, ?, ?, ?, %s)',
-								$this->datetimeToDB($editorDecision['dateDecided'])
-							),
-							array(
-								(int) $seriesEditorSubmission->getId(),
-								(int) $reviewRound->getId(),
-								(int) $stageId,
-								(int) $round,
-								(int) $editorDecision['editorId'],
-								$editorDecision['decision']
-							)
-						);
-					}
-				}
+			$reviewStageEditorDecisions = array();
+			if (isset($editorDecisions[$stageId][$round])) {
+				$reviewStageEditorDecisions = $editorDecisions[$stageId][$round];
+				unset($editorDecisions[$stageId][$round]);
+			}
+			foreach ($reviewStageEditorDecisions as $editorDecision) {
+				$this->_updateEditorDecision($monographId, $editorDecision, $stageId, $reviewRound);
 			}
 			unset($reviewRound);
+			unset($editorDecision);
 		}
 
-		$currentStageId = $seriesEditorSubmission->getStageId();
-		$currentRound = $seriesEditorSubmission->getCurrentRound();
+		// Update the remaining stages editor decisions.
+		foreach ($editorDecisions as $stageId => $stageEditorDecision) {
+			if (isset($stageEditorDecision[REVIEW_ROUND_NONE])) {
+				foreach ($stageEditorDecision[REVIEW_ROUND_NONE] as $editorDecision) {
+					$this->_updateEditorDecision($monographId, $editorDecision, $stageId);
+				}
+			}
+		}
 
 		// update review assignments
 		$removedReviewAssignments =& $seriesEditorSubmission->getRemovedReviewAssignments();
 
 		unset($reviewRounds);
-		$reviewRounds =& $reviewRoundDao->getByMonographId($seriesEditorSubmission->getId());
+		$reviewRounds =& $reviewRoundDao->getByMonographId($monographId);
 
 		while ($reviewRound =& $reviewRounds->next()) {
 			$stageId = $reviewRound->getStageId();
@@ -207,7 +204,7 @@ class SeriesEditorSubmissionDAO extends MonographDAO {
 
 		// Update monograph
 		if ($seriesEditorSubmission->getId()) {
-			$monograph =& parent::getById($seriesEditorSubmission->getId());
+			$monograph =& parent::getById($monographId);
 
 			// Only update fields that can actually be edited.
 			$monograph->setSeriesId($seriesEditorSubmission->getSeriesId());
@@ -217,6 +214,34 @@ class SeriesEditorSubmissionDAO extends MonographDAO {
 			$monograph->setCommentsStatus($seriesEditorSubmission->getCommentsStatus());
 
 			parent::updateMonograph($monograph);
+		}
+	}
+
+	/**
+	 * Update the editor decision table.
+	 * @param $monographId int
+	 * @param $editorDecision array
+	 * @param $reviewRound ReviewRound (optional)
+	 */
+	function _updateEditorDecision($monographId, $editorDecision, $stageId = null, $reviewRound = null) {
+		if ($editorDecision['editDecisionId'] == null) {
+
+			$this->update(
+				sprintf(
+					'INSERT INTO edit_decisions
+					(monograph_id, review_round_id, stage_id, round, editor_id, decision, date_decided)
+					VALUES (?, ?, ?, ?, ?, ?, %s)',
+					$this->datetimeToDB($editorDecision['dateDecided'])
+				),
+				array(
+					(int) $monographId,
+					is_a($reviewRound, 'ReviewRound') ? (int) $reviewRound->getId() : 0,
+					is_a($reviewRound, 'ReviewRound') ? $reviewRound->getStageId() : (int) $stageId,
+					is_a($reviewRound, 'ReviewRound') ? (int) $reviewRound->getRound() : REVIEW_ROUND_NONE,
+					(int) $editorDecision['editorId'],
+					$editorDecision['decision']
+				)
+			);
 		}
 	}
 
