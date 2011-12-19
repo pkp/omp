@@ -44,19 +44,6 @@ class InformationCenterHandler extends Handler {
 		);
 	}
 
-	/**
-	 * Determine whether the current user has admin priveleges for this
-	 * controller.
-	 * @return boolean
-	 */
-	function _canAdminister() {
-		// If the current role set includes Manager or Editor, grant.
-		return (boolean) array_intersect(
-			 array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR),
-			$this->getAuthorizedContextObject(ASSOC_TYPE_USER_ROLES)
-		);
-	}
-
 
 	//
 	// Implement template methods from PKPHandler.
@@ -137,7 +124,6 @@ class InformationCenterHandler extends Handler {
 
 		$user =& $request->getUser();
 		$templateMgr->assign('currentUserId', $user->getId());
-		$templateMgr->assign('canAdministerNotes', $this->_canAdminister());
 
 		return $templateMgr->fetchJson('controllers/informationCenter/notesList.tpl');
 	}

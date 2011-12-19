@@ -30,7 +30,7 @@
 				{$noteUser->getFullName()|escape}
 			</td>
 			<td align="right">
-				{if $canAdministerNotes}
+				{if array_intersect(array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR), $userRoles)}
 					<form class="pkp_form" id="{$formId}" action="{url op="deleteNote" noteId=$noteId params=$linkParams}">
 						{assign var=deleteNoteButtonId value="deleteNote-$noteId"}
 						{include file="linkAction/buttonConfirmationLinkAction.tpl" buttonSelector="#$deleteNoteButtonId" dialogText="informationCenter.deleteConfirm"}
