@@ -32,9 +32,7 @@ class SettingsHandler extends Handler {
 				'press',
 				'website',
 				'publication',
-				'distribution',
-				'tools',
-				'importExport'
+				'distribution'
 			)
 		);
 	}

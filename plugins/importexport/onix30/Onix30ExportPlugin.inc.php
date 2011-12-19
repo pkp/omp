@@ -13,7 +13,6 @@
  */
 
 import('classes.plugins.ImportExportPlugin');
-
 import('lib.pkp.classes.xml.XMLCustomWriter');
 
 class Onix30ExportPlugin extends ImportExportPlugin {
@@ -49,6 +48,39 @@ class Onix30ExportPlugin extends ImportExportPlugin {
 	function display(&$args) {
 		$templateMgr =& TemplateManager::getManager();
 		parent::display($args);
+
+		$press =& Request::getPress();
+
+		switch (array_shift($args)) {
+		case 'exportMonograph':
+
+			$monographId = array_shift($args);
+			$monographDao =& DAORegistry::getDAO('MonographDAO');
+
+			/* check to make sure the requested Monograph is in this press */
+			$monographs =& $monographDao->getMonographsByPressId($press->getId());
+			while ($monograph =& $monographs->next()) {
+				if ($monograph->getId() == $monographId) {
+					$this->exportMonograph($press, $monograph);
+					break;
+				}
+				unset($monograph);
+			}
+			break;
+
+		default:
+			// Display a list of monographs for export
+			$this->setBreadcrumbs();
+			AppLocale::requireComponents(LOCALE_COMPONENT_PKP_SUBMISSION);
+			$monographDao =& DAORegistry::getDAO('MonographDAO');
+			$rangeInfo = Handler::getRangeInfo('monographs');
+			$monographs = $monographDao->getMonographsByPressId($press->getId())->toArray();
+			import('lib.pkp.classes.core.VirtualArrayIterator');
+			$iterator = new VirtualArrayIterator($monographs, count($monographs), $rangeInfo->getPage(), $rangeInfo->getCount());
+			$templateMgr->assign_by_ref('monographs', $iterator);
+			$templateMgr->display($this->getTemplatePath() . 'index.tpl');
+			break;
+		}
 	}
 
 	function exportMonograph(&$press, &$monograph, $outputFile = null) {

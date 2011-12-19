@@ -24,9 +24,12 @@ switch ($op) {
 	case 'importExport':
 	case 'series':
 	case 'settings':
-	case 'tools':
 		import('pages.management.SettingsHandler');
 		define('HANDLER_CLASS', 'SettingsHandler');
+		break;
+	case 'tools':
+		import('pages.management.ToolsHandler');
+		define('HANDLER_CLASS', 'ToolsHandler');
 		break;
 }
 ?>
