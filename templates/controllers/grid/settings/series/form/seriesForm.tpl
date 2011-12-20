@@ -27,7 +27,7 @@
 		{/fbvFormSection}
 
 		{fbvFormSection title="common.description" for="context" required="true"}
-		 	{fbvElement type="textarea" multilingual="true" id="description" value=$description maxlength="80"}
+		 	{fbvElement type="textarea" multilingual="true" id="description" value=$description}
 		{/fbvFormSection}
 
 		<input type="hidden" name="seriesId" value="{$seriesId|escape}"/>

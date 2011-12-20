@@ -17,7 +17,7 @@
 </script>
 
 <!-- Features carousel -->
-<div class="pkp_catalog_carousel" id="featuresCarousel" style="width: 512px; height: 200px; background: #000; overflow: scroll;">
+<div class="pkp_catalog_carousel" id="featuresCarousel">
 	{foreach from=$publishedMonographs item=publishedMonograph}
 		{* Only include features in the carousel *}
 		{assign var="monographId" value=$publishedMonograph->getId()}
