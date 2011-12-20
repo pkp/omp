@@ -27,6 +27,15 @@
 			<li>{null_link_action key="common.grid" id="grid-$monographContainerId" image="grid_view"}</li>
 		</ul>
 	</div>
+	{if $category}
+		<div id="categoryDescription">
+			{$category->getLocalizedDescription()}
+		</div>
+	{elseif $series}
+		<div id="seriesDescription">
+			{$series->getLocalizedDescription()}
+		</div>
+	{/if}
 	<ul class="pkp_catalog_monographList" class="pkp_helpers_clear">
 		{iterate from=publishedMonographs item=monograph}
 			{include file="manageCatalog/monograph.tpl"}

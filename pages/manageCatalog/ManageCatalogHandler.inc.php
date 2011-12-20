@@ -183,6 +183,7 @@ class ManageCatalogHandler extends Handler {
 		$categoryDao =& DAORegistry::getDAO('CategoryDAO');
 		$categoryPath = array_shift($args);
 		$category =& $categoryDao->getByPath($categoryPath, $press->getId());
+		$templateMgr->assign('category', $category);
 
 		// Set up the monograph list template
 		$this->_setupMonographsTemplate(
@@ -219,6 +220,7 @@ class ManageCatalogHandler extends Handler {
 		$seriesDao =& DAORegistry::getDAO('SeriesDAO');
 		$seriesPath = array_shift($args);
 		$series =& $seriesDao->getByPath($seriesPath, $press->getId());
+		$templateMgr->assign('series', $series);
 
 		// Set up the monograph list template
 		$this->_setupMonographsTemplate(true, 'series',
