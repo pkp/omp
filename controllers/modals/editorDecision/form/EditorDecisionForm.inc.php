@@ -114,15 +114,24 @@ class EditorDecisionForm extends Form {
 	 * to it. Also saves the new round to the submission.
 	 * @param $monograph Monograph
 	 * @param $stageId integer One of the WORKFLOW_STAGE_ID_* constants.
-	 * @param $newRound integer
 	 * @param $request Request
 	 * @param $status integer One of the REVIEW_ROUND_STATUS_* constants.
+	 * @return $newRound integer The round number of the new review round.
 	 */
-	function _initiateReviewRound(&$monograph, $stageId, $newRound, &$request, $status = null) {
-		assert(is_int($newRound));
+	function _initiateReviewRound(&$monograph, $stageId, &$request, $status = null) {
+
+		// If we already have review round for this stage,
+		// we create a new stage after the last one.
+		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO'); /* @var $reviewRoundDao ReviewRoundDAO */
+		$lastReviewRound =& $reviewRoundDao->getLastReviewRoundByMonographId($monograph->getId(), WORKFLOW_STAGE_ID_INTERNAL_REVIEW);
+		if ($lastReviewRound) {
+			$newRound = $lastReviewRound->getRound() + 1;
+		} else {
+			// If we don't have any review round, we create the first one.
+			$newRound = 1;
+		}
 
 		// Create a new review round.
-		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO'); /* @var $reviewRoundDao ReviewRoundDAO */
 		$reviewRound =& $reviewRoundDao->build($monograph->getId(), $stageId, $newRound, $status);
 
 		// Check for a notification already in place for the current review round.
@@ -173,6 +182,8 @@ class EditorDecisionForm extends Form {
 		$monograph->setCurrentRound($newRound);
 		$monographDao =& DAORegistry::getDAO('MonographDAO'); /* @var $monographDao MonographDAO */
 		$monographDao->updateMonograph($monograph);
+
+		return $newRound;
 	}
 }
 

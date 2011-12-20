@@ -111,7 +111,7 @@ class PromoteForm extends EditorDecisionWithEmailForm {
 				$seriesEditorAction->incrementWorkflowStage($seriesEditorSubmission, WORKFLOW_STAGE_ID_EXTERNAL_REVIEW, $request);
 
 				// Create an initial external review round.
-				$this->_initiateReviewRound($seriesEditorSubmission, WORKFLOW_STAGE_ID_EXTERNAL_REVIEW, 1, $request, REVIEW_ROUND_STATUS_PENDING_REVIEWERS);
+				$this->_initiateReviewRound($seriesEditorSubmission, WORKFLOW_STAGE_ID_EXTERNAL_REVIEW, $request, REVIEW_ROUND_STATUS_PENDING_REVIEWERS);
 
 				// Send email to the author.
 				$this->_sendReviewMailToAuthor($seriesEditorSubmission, $emailKey, $request);
