@@ -84,7 +84,7 @@
 			function() {
 
 		var $htmlElement = $(this.getHtmlElement());
-		$htmlElement.find('.pkp_catalog_monographList')
+		$htmlElement.find('.pkp_manageCatalog_monographList')
 			.removeClass('grid_view')
 			.addClass('list_view');
 
@@ -108,7 +108,7 @@
 			function() {
 
 		var $htmlElement = $(this.getHtmlElement());
-		$htmlElement.find('.pkp_catalog_monographList')
+		$htmlElement.find('.pkp_manageCatalog_monographList')
 			.removeClass('list_view')
 			.addClass('grid_view');
 
@@ -149,10 +149,12 @@
 		var $organizeButton = $actionsContainer.find('.organize');
 
 		// Find the monograph list
-		var $monographList = $htmlElement.find('ul.pkp_catalog_monographList');
+		var $monographList = $htmlElement
+				.find('ul.pkp_manageCatalog_monographList');
 
 		// Find the organize links
-		var $organizeLinks = $monographList.find('.pkp_catalog_organizeTools');
+		var $organizeLinks = $monographList
+				.find('.pkp_manageCatalog_organizeTools');
 
 		if (this.inOrganizeMode_) {
 			// We've just entered "Organize" mode.
@@ -192,7 +194,7 @@
 			function(callingHandler, event) {
 
 		var $listContainer = this.getHtmlElement()
-				.find('ul.pkp_catalog_monographList');
+				.find('ul.pkp_manageCatalog_monographList');
 
 		// In case the list has changed sort order, re-sort it.
 		$listContainer.find('li').sortElements(function(aNode, bNode) {
@@ -220,7 +222,7 @@
 		this.getHtmlElement().sortable('destroy');
 		this.getHtmlElement().sortable({
 			disabled: !this.inOrganizeMode_,
-			items: 'li.pkp_catalog_monograph:not(.not_sortable)',
+			items: 'li.pkp_manageCatalog_monograph:not(.not_sortable)',
 			update: this.callbackWrapper(this.sortUpdateHandler_)});
 
 		// No further processing
@@ -244,7 +246,7 @@
 			function(callingHandler, event, newSequences) {
 
 		var $listContainer = this.getHtmlElement()
-				.find('ul.pkp_catalog_monographList');
+				.find('ul.pkp_manageCatalog_monographList');
 
 		// Store the provided sequences in each entry
 		$listContainer.find('li').each(function(index, node) {
