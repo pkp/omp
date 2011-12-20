@@ -37,8 +37,9 @@
 		$monographsContainer.find('.star, .star_highlighted').click(
 				this.callbackWrapper(this.featureButtonHandler_));
 
-		// Expose the monographListChanged event to the container
+		// Expose list events to the container
 		this.publishEvent('monographListChanged');
+		this.publishEvent('monographSequencesChanged');
 
 		// Bind for enter/exit of Organize mode
 		this.bind('changeDragMode', this.changeDragModeHandler_);
@@ -128,6 +129,17 @@
 			function() {
 
 		return this.seq_;
+	};
+
+
+	/**
+	 * Get the ID for this monograph.
+	 * @return {integer?} Monograph ID.
+	 */
+	$.pkp.pages.manageCatalog.MonographHandler.prototype.getId =
+			function() {
+
+		return this.monographId_;
 	};
 
 
@@ -252,18 +264,26 @@
 	 *  that triggered the event.
 	 * @param {Event} event The event.
 	 * @param {integer} seq New sequence number.
+	 * @param {boolean} informServer True if the server should be informed. Default true.
 	 * @return {boolean} The event handling chain status.
 	 */
 	$.pkp.pages.manageCatalog.MonographHandler.
 			prototype.setSequenceHandler_ =
-			function(callingHandler, event, seq) {
+			function(callingHandler, event, seq, informServer) {
+
+		// Default param value for informServer: true.
+		if (typeof(informServer) === 'undefined') {
+			informServer = true;
+		}
 
 		// Set the new sequence
 		this.seq_ = seq;
 
-		// Inform the server
-		$.get(this.getSetFeaturedUrl_(),
-				this.callbackWrapper(this.handleSetSequenceResponse_), 'json');
+		// Inform the server if it's required of us
+		if (informServer) {
+			$.get(this.getSetFeaturedUrl_(),
+					this.callbackWrapper(this.handleSetSequenceResponse_), 'json');
+		}
 
 		// Stop processing
 		return false;
@@ -284,8 +304,8 @@
 
 		jsonData = this.handleJson(jsonData);
 
-		// Record the new state of the sequence
-		this.seq_ = jsonData.content;
+		// We've received a bunch of sequences back; report changes
+		this.trigger('monographSequencesChanged', jsonData.content);
 
 		return false;
 	};

@@ -40,6 +40,8 @@
 		// React to "monograph list changed" events.
 		this.bind('monographListChanged',
 				this.monographListChangedHandler_);
+		this.bind('monographSequencesChanged',
+				this.monographSequencesChangedHandler_);
 
 		// Start in grid view
 		this.useGridView();
@@ -227,6 +229,40 @@
 
 
 	/**
+	 * Handle the "monograph sequences changed" event to record sequences
+	 *
+	 * @private
+	 *
+	 * @param {$.pkp.controllers.handler.Handler} callingHandler The handler
+	 *  that triggered the event.
+	 * @param {Event} event The event.
+	 * @param {Array} newSequences The new sequences to store.
+	 * @return {boolean} The event handling chain status.
+	 */
+	$.pkp.pages.manageCatalog.MonographListHandler.
+			prototype.monographSequencesChangedHandler_ =
+			function(callingHandler, event, newSequences) {
+
+		var $listContainer = this.getHtmlElement()
+				.find('ul.pkp_catalog_monographList');
+
+		// Store the provided sequences in each entry
+		$listContainer.find('li').each(function(index, node) {
+			var handler = $.pkp.classes.Handler.getHandler($(node));
+			var newSequence = newSequences[handler.getId()];
+			if (newSequence) {
+				handler.trigger('setSequence', [newSequence, false]);
+			}
+		});
+
+		// Now trigger a re-ordering of displayed elements.
+		this.trigger('monographListChanged');
+
+		return false;
+	};
+
+
+	/**
 	 * Handle DOM change events when sortables are rearranged.
 	 *
 	 * @private
@@ -257,7 +293,7 @@
 		}
 
 		// Tell the monograph what the new sequence number is.
-		$monographElement.trigger('setSequence', newSequence);
+		$monographElement.trigger('setSequence', [newSequence]);
 
 		// End processing here.
 		return false;

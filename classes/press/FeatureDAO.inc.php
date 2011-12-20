@@ -127,10 +127,10 @@ class FeatureDAO extends DAO {
 	 * @param $assocType int ASSOC_TYPE_...
 	 * @param $assocId int per $assocType
 	 * @param $seqMonographId if specified, sequence of monograph to return
-	 * @return int? seq iff $seqMonographId specified; otherwise true
+	 * @return array Associative array of id => seq for resequenced set
 	 */
-	function resequenceByAssoc($assocType, $assocId, $seqMonographId = null) {
-		$returner = true;
+	function resequenceByAssoc($assocType, $assocId) {
+		$returner = array();
 		$result =& $this->retrieve(
 			'SELECT monograph_id FROM features WHERE assoc_type = ? AND assoc_id = ? ORDER BY seq',
 			array((int) $assocType, (int) $assocId)
@@ -147,7 +147,7 @@ class FeatureDAO extends DAO {
 					(int) $assocId
 				)
 			);
-			if ($monographId == $seqMonographId) $returner = $i;
+			$returner[$monographId] = $i;
 
 			$result->MoveNext();
 		}
