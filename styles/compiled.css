@@ -1277,6 +1277,12 @@ a.pkp_common_disabled, a.pkp_common_disabled:hover { color:#666666; }
   height:100px;
   overflow:hidden;
 }
+.pkp_catalog_carousel {
+  width:512px;
+  height:200px;
+  overflow:scroll;
+}
+.pkp_catalog_seriesDescription, .pkp_catalog_categoryDescription { float:left; }
 .pkp_page_header { position:relative; }
 .pkp_page_header ul.submission_actions {
   position:relative;

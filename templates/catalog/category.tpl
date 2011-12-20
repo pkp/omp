@@ -11,6 +11,12 @@
 {include file="common/header.tpl"}
 {/strip}
 
+{include file="catalog/carousel.tpl"}
+
+<div class="pkp_catalog_categoryDescription">
+	{$category->getLocalizedDescription()}
+</div>
+
 <!-- Implement category view -->
 
 {include file="common/footer.tpl"}
