@@ -108,7 +108,7 @@ class SettingsHandler extends Handler {
 	 * @param $args array
 	 */
 	function settings($args) {
-		$path = $args[0];
+		$path = array_shift($args);
 		switch($path) {
 			case 'index':
 				$this->index();
@@ -131,45 +131,6 @@ class SettingsHandler extends Handler {
 			default:
 				assert(false);
 		}
-	}
-
-	/**
-	 * Route to other Tools operations
-	 * @param $args array
-	 */
-	function tools($args) {
-		$path = $args[0];
-		switch ($path) {
-			case 'index':
-				$this->toolsIndex();
-				break;
-			case 'importExport':
-				$this->importExport();
-				break;
-			default:
-				assert(false);
-		}
-	}
-	/**
-	 * Display tools index page.
-	 * @param $request PKPRequest
-	 * @param $args array
-	 */
-	function toolsIndex() {
-		$templateMgr =& TemplateManager::getManager();
-		$this->setupTemplate();
-		$templateMgr->display('management/tools/index.tpl');
-	}
-
-	/**
-	 * Display Import/Export page.
-	 * @param $request PKPRequest
-	 * @param $args array
-	 */
-	function importExport() {
-		$templateMgr =& TemplateManager::getManager();
-		$this->setupTemplate();
-		$templateMgr->display('management/tools/importExport.tpl');
 	}
 
 	/**

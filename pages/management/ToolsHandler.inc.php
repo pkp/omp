@@ -60,7 +60,7 @@ class ToolsHandler extends Handler {
 	 * @param $args array
 	 */
 	function tools($args) {
-		$path = $args[0];
+		$path = array_shift($args);
 		switch ($path) {
 			case 'index':
 				$this->index();

@@ -6,7 +6,6 @@
  *
  * List of monographs to potentially export
  *
- * $Id$
  *}
 {strip}
 {assign var="pageTitle" value="plugins.importexport.onix30.selectMonograph"}
