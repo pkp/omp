@@ -87,7 +87,7 @@ class AuthorDashboardHandler extends Handler {
 		$templateMgr->assign_by_ref('externalReviewRounds', $externalReviewRounds);
 
 		// Get the last review round.
-		$lastReviewRound =& $reviewRoundDao->getLastReviewRoundByMonographId($monograph->getId());
+		$lastReviewRound =& $reviewRoundDao->getLastReviewRoundByMonographId($monograph->getId(), $currentStage);
 
 		// Create and assign add file link action.
 		if ($fileStage && is_a($lastReviewRound, 'ReviewRound')) {
