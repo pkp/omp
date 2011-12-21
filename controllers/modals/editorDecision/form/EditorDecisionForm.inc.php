@@ -123,7 +123,7 @@ class EditorDecisionForm extends Form {
 		// If we already have review round for this stage,
 		// we create a new stage after the last one.
 		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO'); /* @var $reviewRoundDao ReviewRoundDAO */
-		$lastReviewRound =& $reviewRoundDao->getLastReviewRoundByMonographId($monograph->getId(), WORKFLOW_STAGE_ID_INTERNAL_REVIEW);
+		$lastReviewRound =& $reviewRoundDao->getLastReviewRoundByMonographId($monograph->getId(), $stageId);
 		if ($lastReviewRound) {
 			$newRound = $lastReviewRound->getRound() + 1;
 		} else {
