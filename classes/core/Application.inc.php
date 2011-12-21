@@ -137,6 +137,7 @@ class Application extends PKPApplication {
 			'MonographLanguageEntryDAO' => 'classes.monograph.MonographLanguageEntryDAO',
 			'MonographKeywordDAO' => 'classes.monograph.MonographKeywordDAO',
 			'MonographKeywordEntryDAO' => 'classes.monograph.MonographKeywordEntryDAO',
+			'MonographPublicationFormatAssignmentDAO' => 'classes.monograph.MonographPublicationFormatAssignmentDAO',
 			'MonographSubjectDAO' => 'classes.monograph.MonographSubjectDAO',
 			'MonographSubjectEntryDAO' => 'classes.monograph.MonographSubjectEntryDAO',
 			'MonographSearchDAO' => 'classes.search.MonographSearchDAO',
