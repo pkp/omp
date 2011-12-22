@@ -18,13 +18,10 @@
 
 import('controllers.grid.files.SubmissionFilesGridHandler');
 
-// Define file grid capabilities.
-define('FILE_GRID_MANAGE',		0x00000010);
+// Import class that implements some of the behaviours and data of this handler.
+import('classes.controllers.grid.files.fileList.FileListGridHandlerImplementation');
 
 class FileListGridHandler extends SubmissionFilesGridHandler {
-	/** @var boolean */
-	var $_canManage;
-
 
 	/**
 	 * Constructor
@@ -33,10 +30,12 @@ class FileListGridHandler extends SubmissionFilesGridHandler {
 	 * @param $capabilities integer A bit map with zero or more
 	 *  FILE_GRID_* capabilities set.
 	 */
-	function FileListGridHandler($dataProvider, $stageId, $capabilities) {
-		$this->_canManage = (boolean)($capabilities & FILE_GRID_MANAGE);
+	function FileListGridHandler($dataProvider, $stageId, $capabilities, $gridHandlerImplementationClass = null) {
+		if (is_null($gridHandlerImplementationClass)) {
+			$gridHandlerImplementationClass = 'FileListGridHandlerImplementation';
+		}
 
-		parent::SubmissionFilesGridHandler($dataProvider, $stageId, $capabilities);
+		parent::SubmissionFilesGridHandler($dataProvider, $stageId, $capabilities, $gridHandlerImplementationClass);
 	}
 
 
@@ -48,28 +47,8 @@ class FileListGridHandler extends SubmissionFilesGridHandler {
 	 * @return boolean
 	 */
 	function canManage() {
-		return $this->_canManage;
-	}
-
-
-	//
-	// Implement template methods from PKPHandler
-	//
-	/**
-	 * @see PKPHandler::initialize()
-	 */
-	function initialize(&$request) {
-		parent::initialize($request);
-
-		// Add the "manage files" action if required.
-		if($this->canManage()) {
-			$dataProvider =& $this->getDataProvider();
-			$this->addAction($dataProvider->getSelectAction($request));
-		}
-
-		// The file list grid layout has an additional file genre column.
-		import('controllers.grid.files.fileList.FileGenreGridColumn');
-		$this->addColumn(new FileGenreGridColumn());
+		$handlerImplementation =& $this->getHandlerImplementation();
+		return $handlerImplementation->_canManage;
 	}
 }
 

@@ -110,6 +110,7 @@ class FilesGridDataProvider extends GridDataProvider {
 			$submissionFileData[$revision->getFileId()] = array(
 				'submissionFile' => $revision
 			);
+			unset($revision);
 		}
 		return $submissionFileData;
 	}

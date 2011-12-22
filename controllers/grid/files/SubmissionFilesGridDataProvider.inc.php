@@ -57,8 +57,16 @@ class SubmissionFilesGridDataProvider extends FilesGridDataProvider {
 		return array(
 			'monographId' => $monograph->getId(),
 			'stageId' => $this->_getStageId(),
-			'fileStage' => $this->_getFileStage()
+			'fileStage' => $this->getFileStage()
 		);
+	}
+
+	/**
+	* Get the file stage.
+	* @return integer
+	*/
+	function getFileStage() {
+		return $this->_fileStage;
 	}
 
 	/**
@@ -68,7 +76,7 @@ class SubmissionFilesGridDataProvider extends FilesGridDataProvider {
 		// Retrieve all monograph files for the given file stage.
 		$monograph =& $this->getMonograph();
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-		$monographFiles =& $submissionFileDao->getLatestRevisions($monograph->getId(), $this->_getFileStage());
+		$monographFiles =& $submissionFileDao->getLatestRevisions($monograph->getId(), $this->getFileStage());
 		return $this->prepareSubmissionFileData($monographFiles, $viewableOnly);
 	}
 
@@ -84,7 +92,7 @@ class SubmissionFilesGridDataProvider extends FilesGridDataProvider {
 		$monograph =& $this->getMonograph();
 		$addFileAction = new AddFileLinkAction(
 			$request, $monograph->getId(), $this->_getStageId(),
-			$this->getUploaderRoles(), $this->_getFileStage()
+			$this->getUploaderRoles(), $this->getFileStage()
 		);
 		return $addFileAction;
 	}
@@ -109,14 +117,6 @@ class SubmissionFilesGridDataProvider extends FilesGridDataProvider {
 	 */
 	function _getStageId() {
 		return $this->_stageId;
-	}
-
-	/**
-	 * Get the file stage.
-	 * @return integer
-	 */
-	function _getFileStage() {
-		return $this->_fileStage;
 	}
 }
 

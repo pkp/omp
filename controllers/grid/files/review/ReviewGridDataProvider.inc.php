@@ -31,6 +31,13 @@ class ReviewGridDataProvider extends SubmissionFilesGridDataProvider {
 
 
 	//
+	// Getters and setters
+	//
+	function setViewableOnly($viewableOnly) {
+		$this->_viewableOnly = $viewableOnly;
+	}
+
+	//
 	// Implement template methods from GridDataProvider
 	//
 	/**
@@ -65,7 +72,7 @@ class ReviewGridDataProvider extends SubmissionFilesGridDataProvider {
 		// Get all review files assigned to this submission.
 		$reviewRound =& $this->getReviewRound();
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-		$monographFiles =& $submissionFileDao->getRevisionsByReviewRound($reviewRound, $this->_getFileStage());
+		$monographFiles =& $submissionFileDao->getRevisionsByReviewRound($reviewRound, $this->getFileStage());
 		$data = $this->prepareSubmissionFileData($monographFiles, $this->_viewableOnly);
 
 		return $data;
@@ -97,7 +104,7 @@ class ReviewGridDataProvider extends SubmissionFilesGridDataProvider {
 
 		$addFileAction = new AddFileLinkAction(
 			$request, $monograph->getId(), $this->_getStageId(),
-			$this->getUploaderRoles(), $this->_getFileStage(),
+			$this->getUploaderRoles(), $this->getFileStage(),
 			null, null, $reviewRound->getId()
 		);
 		return $addFileAction;

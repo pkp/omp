@@ -62,7 +62,7 @@ class ProofFilesGridDataProvider extends SubmissionFilesGridDataProvider {
 			ASSOC_TYPE_PUBLICATION_FORMAT,
 			$this->_getPublicationFormatId(),
 			$monograph->getId(),
-			$this->_getFileStage()
+			$this->getFileStage()
 		);
 
 		return $this->prepareSubmissionFileData($monographFiles);

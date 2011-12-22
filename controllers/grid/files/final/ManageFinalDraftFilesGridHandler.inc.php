@@ -12,16 +12,16 @@
  * @brief Handle the editor review file selection grid (selects which files to send to review or to next review round)
  */
 
-import('controllers.grid.files.fileList.SelectableFileListGridHandler');
+import('controllers.grid.files.SelectableSubmissionFileListCategoryGridHandler');
 
-class ManageFinalDraftFilesGridHandler extends SelectableFileListGridHandler {
+class ManageFinalDraftFilesGridHandler extends SelectableSubmissionFileListCategoryGridHandler {
 	/**
 	 * Constructor
 	 */
 	function ManageFinalDraftFilesGridHandler() {
-		import('controllers.grid.files.SubmissionFilesGridDataProvider');
-		parent::SelectableFileListGridHandler(
-			new SubmissionFilesGridDataProvider(MONOGRAPH_FILE_FINAL),
+		import('controllers.grid.files.SubmissionFilesCategoryGridDataProvider');
+		parent::SelectableSubmissionFileListCategoryGridHandler(
+			new SubmissionFilesCategoryGridDataProvider(MONOGRAPH_FILE_FINAL),
 			WORKFLOW_STAGE_ID_EDITING,
 			FILE_GRID_ADD|FILE_GRID_DELETE|FILE_GRID_VIEW_NOTES
 		);
@@ -63,7 +63,8 @@ class ManageFinalDraftFilesGridHandler extends SelectableFileListGridHandler {
 		$manageFinalDraftFilesForm->readInputData();
 
 		if ($manageFinalDraftFilesForm->validate()) {
-			$manageFinalDraftFilesForm->execute($args, $request);
+			$dataProvider =& $this->getDataProvider();
+			$manageFinalDraftFilesForm->execute($args, $request, $dataProvider->getCategoryData($this->getStageId()));
 
 			// Let the calling grid reload itself
 			return DAO::getDataChangedEvent();
@@ -71,26 +72,6 @@ class ManageFinalDraftFilesGridHandler extends SelectableFileListGridHandler {
 			$json = new JSONMessage(false);
 			return $json->getString();
 		}
-	}
-
-
-	//
-	// Overridden protected methods from SelectableFileListGridHandler
-	//
-	/**
-	 * @see SelectableFileListGridHandler::getSelectedFileIds
-	 */
-	function getSelectedFileIds($submissionFiles) {
-		// By default, select all files.
-		$submissionFileIds = array();
-		foreach($submissionFiles as $fileData) {
-			$file =& $fileData['submissionFile'];
-			if ($file->getViewable()) {
-				$submissionFileIds[] = $file->getFileIdAndRevision();
-			}
-			unset($file);
-		}
-		return $submissionFileIds;
 	}
 }
 

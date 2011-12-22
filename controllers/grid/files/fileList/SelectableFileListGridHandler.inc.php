@@ -14,6 +14,8 @@
 
 import('controllers.grid.files.fileList.FileListGridHandler');
 
+import('classes.controllers.grid.files.fileList.SelectableFileListGridHandlerImplementation');
+
 class SelectableFileListGridHandler extends FileListGridHandler {
 
 	/**
@@ -24,33 +26,7 @@ class SelectableFileListGridHandler extends FileListGridHandler {
 	 *  FILE_GRID_* capabilities set.
 	 */
 	function SelectableFileListGridHandler($dataProvider, $stageId, $capabilities) {
-		parent::FileListGridHandler($dataProvider, $stageId, $capabilities);
-	}
-
-
-	//
-	// Implement template methods from PKPHandler
-	//
-	/**
-	 * @see PKPHandler::authorize()
-	 */
-	function authorize(&$request, &$args, $roleAssignments) {
-		$selectionPolicy =& $this->getSelectionPolicy($request, $args, $roleAssignments);
-		if (!is_null($selectionPolicy)) {
-			$this->addPolicy($selectionPolicy);
-		}
-		return parent::authorize($request, $args, $roleAssignments);
-	}
-
-	/**
-	 * @see PKPHandler::initialize()
-	 */
-	function initialize(&$request) {
-		// Add checkbox column to the grid.
-		import('controllers.grid.files.fileList.FileSelectionGridColumn');
-		$this->addColumn(new FileSelectionGridColumn($this->getSelectName()));
-
-		parent::initialize($request);
+		parent::FileListGridHandler($dataProvider, $stageId, $capabilities, 'SelectableFileListGridHandlerImplementation');
 	}
 
 
@@ -61,29 +37,20 @@ class SelectableFileListGridHandler extends FileListGridHandler {
 	 * @see GridHandler::getRequestArgs()
 	 */
 	function getRequestArgs() {
-		$requestArgs = array_merge(parent::getRequestArgs(), $this->getSelectionArgs());
-		return $requestArgs;
+		$requestArgs = parent::getRequestArgs();
+		$handlerImplementation =& $this->getHandlerImplementation();
+
+		return $handlerImplementation->getRequestArgs($requestArgs);
 	}
 
 	/**
 	 * @see GridHandler::loadData()
 	 */
 	function &loadData($request, $filter) {
-		// Go through the submission files and set their
-		// "selected" flag.
 		$submissionFiles =& parent::loadData($request, $filter);
-		$selectedFiles =& $this->getSelectedFileIds($submissionFiles);
-		foreach($submissionFiles as $fileId => $submissionFileData) {
-			assert(isset($submissionFileData['submissionFile']));
-			$monographFile =& $submissionFileData['submissionFile']; /* @var $monographFile MonographFile */
-			$submissionFiles[$fileId]['selected'] = in_array(
-				$monographFile->getFileIdAndRevision(),
-				$selectedFiles
-			);
-			unset($monographFile);
-		}
 
-		return $submissionFiles;
+		$handlerImplementation =& $this->getHandlerImplementation();
+		return $handlerImplementation->loadData($submissionFiles);
 	}
 
 

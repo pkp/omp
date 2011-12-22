@@ -12,11 +12,9 @@
  * @brief Form for add or removing files from a review
  */
 
-import('lib.pkp.classes.form.Form');
+import('controllers.grid.files.form.ManageSubmissionFilesForm');
 
-class ManageReviewFilesForm extends Form {
-	/** @var int **/
-	var $_monographId;
+class ManageReviewFilesForm extends ManageSubmissionFilesForm {
 
 	/** @var int **/
 	var $_stageId;
@@ -29,26 +27,16 @@ class ManageReviewFilesForm extends Form {
 	 * Constructor.
 	 */
 	function ManageReviewFilesForm($monographId, $stageId, $reviewRoundId) {
-		parent::Form('controllers/grid/files/review/manageReviewFiles.tpl');
-		$this->_monographId = (int)$monographId;
+		parent::ManageSubmissionFilesForm($monographId, 'controllers/grid/files/review/manageReviewFiles.tpl');
 		$this->_stageId = (int)$stageId;
 		$this->_reviewRoundId = (int)$reviewRoundId;
 
-		$this->addCheck(new FormValidatorPost($this));
 	}
 
 
 	//
 	// Getters / Setters
 	//
-	/**
-	 * Get the monograph id
-	 * @return int
-	 */
-	function getMonographId() {
-		return $this->_monographId;
-	}
-
 	/**
 	 * Get the review stage id
 	 * @return int
@@ -65,6 +53,15 @@ class ManageReviewFilesForm extends Form {
 		return $this->_reviewRoundId;
 	}
 
+	/**
+	 * @return ReviewRound
+	 */
+	function &getReviewRound() {
+		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
+		$reviewRound =& $reviewRoundDao->getReviewRoundById($this->getReviewRoundId());
+		return $reviewRound;
+	}
+
 
 	//
 	// Overridden template methods
@@ -75,37 +72,21 @@ class ManageReviewFilesForm extends Form {
 	 * @param $request PKPRequest
 	 */
 	function initData($args, &$request) {
-		$this->setData('monographId', $this->_monographId);
 		$this->setData('stageId', $this->getStageId());
 		$this->setData('reviewRoundId', $this->getReviewRoundId());
-	}
 
-	/**
-	 * Assign form data to user-submitted data.
-	 * @see Form::readInputData()
-	 */
-	function readInputData() {
-		$this->readUserVars(array('selectedFiles'));
+		parent::initData($args, &$request);
 	}
 
 	/**
 	 * Save review round files
 	 * @param $args array
 	 * @param $request PKPRequest
+	 * @stageMonographFiles array The files that belongs to a file stage
+	 * that is currently being used by a grid inside this form.
 	 */
-	function execute($args, &$request) {
-		$selectedFiles = (array)$this->getData('selectedFiles');
-
-		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-		$monographFiles =& $submissionFileDao->getLatestRevisions($this->_monographId, MONOGRAPH_FILE_REVIEW_FILE);
-		foreach ($monographFiles as $monographFile) {
-			// Update the "viewable" flag accordingly.
-			$monographFile->setViewable(in_array(
-				$monographFile->getFileIdAndRevision(),
-				$selectedFiles
-			));
-			$submissionFileDao->updateObject($monographFile);
-		}
+	function execute($args, &$request, &$stageMonographFiles) {
+		parent::execute($args, $request, $stageMonographFiles, MONOGRAPH_FILE_REVIEW_FILE);
 	}
 }
 

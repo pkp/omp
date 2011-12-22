@@ -81,7 +81,7 @@ class ReviewerReviewAttachmentGridDataProvider extends SubmissionFilesGridDataPr
 		// Get all review files assigned to this submission.
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		$monographFiles =& $submissionFileDao->getAllRevisionsByAssocId(
-			ASSOC_TYPE_REVIEW_ASSIGNMENT, $this->_getReviewId(), $this->_getFileStage()
+			ASSOC_TYPE_REVIEW_ASSIGNMENT, $this->_getReviewId(), $this->getFileStage()
 		);
 		return $this->prepareSubmissionFileData($monographFiles);
 	}
@@ -101,7 +101,7 @@ class ReviewerReviewAttachmentGridDataProvider extends SubmissionFilesGridDataPr
 
 		$addFileAction = new AddFileLinkAction(
 			$request, $monograph->getId(), $this->_getStageId(),
-			$this->getUploaderRoles(), $this->_getFileStage(),
+			$this->getUploaderRoles(), $this->getFileStage(),
 			ASSOC_TYPE_REVIEW_ASSIGNMENT, $this->_getReviewId(),
 			$reviewAssignment->getReviewRoundId()
 		);

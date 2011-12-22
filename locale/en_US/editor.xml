@@ -67,6 +67,7 @@
 	<message key="editor.monograph.revisions">Revisions</message>
 	<message key="editor.submissions.lastAssigned">Latest</message>
 	<message key="editor.monograph.review.manageReviewFiles">Manage Review Files</message>
+	<message key="editor.monograph.fileList.includeAllStages">Include all files from all accessible workflow stages.</message>
 	<message key="editor.monograph.review.currentFiles">Current Review Files For Round {$round}</message>
 	<message key="editor.monograph.final.manageFinalDraftFiles">Manage Final Draft Files</message>
 	<message key="editor.monograph.final.currentFiles">Current Final Draft Files</message>

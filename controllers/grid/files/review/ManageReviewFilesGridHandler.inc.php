@@ -12,9 +12,10 @@
  * @brief Handle the editor review file selection grid (selects which files to send to review or to next review round)
  */
 
-import('controllers.grid.files.fileList.SelectableFileListGridHandler');
+// import grid base classes
+import('controllers.grid.files.SelectableSubmissionFileListCategoryGridHandler');
 
-class ManageReviewFilesGridHandler extends SelectableFileListGridHandler {
+class ManageReviewFilesGridHandler extends SelectableSubmissionFileListCategoryGridHandler {
 
 	/** @var array */
 	var $_selectionArgs;
@@ -24,10 +25,10 @@ class ManageReviewFilesGridHandler extends SelectableFileListGridHandler {
 	 * Constructor
 	 */
 	function ManageReviewFilesGridHandler() {
-		import('controllers.grid.files.review.ReviewGridDataProvider');
+		import('controllers.grid.files.review.ReviewCategoryGridDataProvider');
 		// Pass in null stageId to be set in initialize from request var.
-		parent::SelectableFileListGridHandler(
-			new ReviewGridDataProvider(MONOGRAPH_FILE_REVIEW_FILE),
+		parent::SelectableSubmissionFileListCategoryGridHandler(
+			new ReviewCategoryGridDataProvider(MONOGRAPH_FILE_REVIEW_FILE),
 			null,
 			FILE_GRID_ADD|FILE_GRID_DOWNLOAD_ALL|FILE_GRID_VIEW_NOTES
 		);
@@ -59,7 +60,8 @@ class ManageReviewFilesGridHandler extends SelectableFileListGridHandler {
 		$manageReviewFilesForm->readInputData();
 
 		if ($manageReviewFilesForm->validate()) {
-			$manageReviewFilesForm->execute($args, $request);
+			$dataProvider =& $this->getDataProvider();
+			$manageReviewFilesForm->execute($args, $request, $dataProvider->getCategoryData($this->getStageId()));
 
 			$this->setupTemplate();
 			$user =& $request->getUser();
@@ -100,26 +102,6 @@ class ManageReviewFilesGridHandler extends SelectableFileListGridHandler {
 	 */
 	function getSelectionArgs() {
 		return $this->_selectionArgs;
-	}
-
-	/**
-	 * @see SelectableFileListGridHandler::getSelectedFileIds()
-	 */
-	function getSelectedFileIds($submissionFiles) {
-		// Set the already selected elements of the grid (the current review files).
-		$monograph =& $this->getMonograph();
-
-		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-		$reviewRound =& $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ROUND);
-		$selectedRevisions =& $submissionFileDao->getRevisionsByReviewRound($reviewRound);
-
-		// Include only the files marked viewable
-		foreach ($selectedRevisions as $id => $revision) {
-			if (!$revision->getViewable()) unset($selectedRevisions[$id]);
-		}
-
-		// Return the IDs
-		return array_keys($selectedRevisions);
 	}
 }
 
