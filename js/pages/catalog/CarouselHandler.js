@@ -24,22 +24,20 @@ $.pkp.pages.catalog = $.pkp.pages.catalog || {};
 	 *
 	 * @extends $.pkp.classes.Handler
 	 *
-	 * @param {jQuery} $carouselElement The HTML element encapsulating
-	 *  the carousel.
+	 * @param {jQuery} $containerElement The HTML element encapsulating
+	 *  the carousel container.
 	 * @param {Object} options Handler options.
 	 */
 	$.pkp.pages.catalog.CarouselHandler =
-			function($carouselElement, options) {
+			function($containerElement, options) {
 
-		this.parent($carouselElement, options);
+		this.parent($containerElement, options);
 
-		$('#featuresCarousel').CloudCarousel({
-			xPos: 256,
-			yPos: 0,
-			buttonLeft: $('#left-but'),
-			buttonRight: $('#right-but'),
-			altBox: $('#alt-text'),
-			titleBox: $('#title-text')
+		var $carouselElement = $containerElement.find('#featuresCarousel');
+		//$carouselElement.find('img').hide(0);
+		$carouselElement.orbit({
+			timer: false,
+			afterSlideChange: this.callbackWrapper(this.afterSlideChangeHandler_)
 		});
 	};
 	$.pkp.classes.Helper.inherits(
@@ -47,5 +45,25 @@ $.pkp.pages.catalog = $.pkp.pages.catalog || {};
 			$.pkp.classes.Handler);
 
 
+	//
+	// Private Functions
+	//
+	/**
+	 * Callback that will be activated when a new monograph is displayed
+	 * in the carousel.
+	 *
+	 * @private
+	 *
+	 * @param {Object} selectedElement The currently selected DOM element.
+	 * @return {boolean} Always returns false.
+	 */
+	$.pkp.pages.catalog.CarouselHandler.prototype.afterSlideChangeHandler_ =
+			function(selectedElement) {
+
+		// FIXME: Fetch and display the status information for
+		// selectedElement.
+
+		return false;
+	};
 /** @param {jQuery} $ jQuery closure. */
 })(jQuery);

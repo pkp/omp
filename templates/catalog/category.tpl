@@ -11,6 +11,8 @@
 {include file="common/header.tpl"}
 {/strip}
 
+<div class="catalogContainer">
+
 {include file="catalog/carousel.tpl"}
 
 <div class="pkp_catalog_categoryDescription">
@@ -18,5 +20,7 @@
 </div>
 
 <!-- Implement category view -->
+
+</div><!-- catalogContainer -->
 
 {include file="common/footer.tpl"}

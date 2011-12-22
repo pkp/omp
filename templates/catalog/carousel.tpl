@@ -10,11 +10,15 @@
 <script type="text/javascript">
 	// Initialize JS handler for catalog header.
 	$(function() {ldelim}
-		$('#featuresCarousel').pkpHandler(
+		$('#carouselContainer').pkpHandler(
 			'$.pkp.pages.catalog.CarouselHandler'
 		);
 	{rdelim});
 </script>
+
+<link rel="stylesheet" type="text/css" media="all" href="{$baseUrl}/lib/pkp/js/lib/jquery/plugins/orbit-1.2.3.css" />
+
+<div id="carouselContainer">
 
 <!-- Features carousel -->
 <div class="pkp_catalog_carousel" id="featuresCarousel">
@@ -22,12 +26,9 @@
 		{* Only include features in the carousel *}
 		{assign var="monographId" value=$publishedMonograph->getId()}
 		{if isset($featuredMonographIds[$monographId])}
-			<img class="cloudcarousel" src="{$baseUrl}/templates/images/book-default.png" alt="{$publishedMonograph->getLocalizedTitle()|escape}" title="{$publishedMonograph->getLocalizedTitle()|escape}" />
+			<img src="{$baseUrl}/templates/images/book-default.png" alt="{$publishedMonograph->getLocalizedTitle()|escape}" />
 		{/if}
 	{/foreach}
-	<div id="left-but" value="&lt;" style="position: absolute; top: 20px; right: 64px;" />
-	<div id="right-but" value="&gt;" style="position: absolute; top: 20px; right: 20px;" />
+</div>
 
-	<p id="title-text"></p>
-	<p id="alt-text"></p>
 </div>
