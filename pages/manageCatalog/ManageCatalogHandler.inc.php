@@ -198,7 +198,7 @@ class ManageCatalogHandler extends Handler {
 
 		// Fetch the current features
 		$featureDao =& DAORegistry::getDAO('FeatureDAO');
-		$features = $featureDao->getSequencesByAssoc(ASSOC_TYPE_CATEGORY, $category->getId);
+		$features = $featureDao->getSequencesByAssoc(ASSOC_TYPE_CATEGORY, $category->getId());
 		$templateMgr->assign('features', $features);
 
 		// Return the monograph list as a JSON message
