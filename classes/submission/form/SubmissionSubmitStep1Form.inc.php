@@ -144,6 +144,15 @@ class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
 		// Unpack the categories listbuilder data.
 		// (See insertEntry & co, implemented here.)
 
+		// Unpack the set of associated category IDs
+		if ($this->monograph) {
+			$monographDao =& DAORegistry::getDAO('MonographDAO');
+			$categories =& $monographDao->getCategories($this->monograph->getId());
+			while ($category =& $categories->next()) {
+				$this->_data['categoryIds'][] = $category->getId();
+				unset($category);
+			}
+		}
 		ListbuilderHandler::unpack($request, $this->getData('categories'));
 	}
 
@@ -157,9 +166,11 @@ class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
 	}
 
 	/**
-	 * Delete a category association. Noop.
+	 * Delete a category association.
 	 */
 	function deleteEntry(&$request, $rowId) {
+		$i = array_search($this->_data['categoryIds'], $rowId);
+		if ($i !== false) unset($this->_data['categoryIds'][$i]);
 		return true;
 	}
 
