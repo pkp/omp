@@ -29,7 +29,7 @@ class CatalogEntryHandler extends Handler {
 		parent::Handler();
 		$this->addRoleAssignment(
 			array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
-			array('fetch', 'saveForm'));
+			array('fetch'));
 	}
 
 
@@ -101,16 +101,23 @@ class CatalogEntryHandler extends Handler {
 		$templateMgr->assign('monographId', $monograph->getId());
 		$templateMgr->assign('stageId', $this->getStageId());
 
-		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
-		$publicationFormats =& $publicationFormatDao->getEnabledByPressId($monograph->getPressId());
-		$formats = array();
+		// check to see if this monograph has been published yet
+		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
+		$publishedMonograph =& $publishedMonographDao->getById($monograph->getId());
+		if ($publishedMonograph !== null) {
+			$templateMgr->assign('pubId', $publishedMonograph->getPubId());
+			$templateMgr->assign('selectedTab', 1); // bring up the catalog tab since the submission tab is disabled now.
 
-		while ($publicationFormat =& $publicationFormats->next()) {
-			$formats[] =& $publicationFormat;
-			unset($publicationFormat);
+			// load in any publication formats assigned to this published monograph
+			$monographPublicationFormatAssignmentDAO =& DAORegistry::getDAO('MonographPublicationFormatAssignmentDAO');
+			$formats =& $monographPublicationFormatAssignmentDAO->getFormatsByPublishedMonographId($publishedMonograph->getPubId());
+			$publicationFormats = array();
+			while ($publicationFormat =& $formats->next()) {
+				$publicationFormats[] =& $publicationFormat;
+			}
+
+			$templateMgr->assign_by_ref('publicationFormats', $publicationFormats);
 		}
-
-		$templateMgr->assign_by_ref('publicationFormats', $formats);
 
 		$this->setupTemplate();
 		return $templateMgr->fetchJson('controllers/modals/submissionMetadata/catalogEntryTabs.tpl');

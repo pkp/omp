@@ -480,7 +480,7 @@
 			<AUTOINCREMENT/>
 			<!-- Deprecated -->
 		</field>
-		<field name="monograph_id" type="I8">
+		<field name="pub_id" type="I8">
 			<NOTNULL/>
 		</field>
 		<field name="publication_format_id" type="I8"/>
@@ -490,8 +490,41 @@
 		</field>
 		<descr>Publication formats assigned to published monographs</descr>
 		<index name="published_monographs_monograph_id">
-			<col>monograph_id</col>
+			<col>pub_id</col>
 			<col>publication_format_id</col>
+			<UNIQUE/>
+		</index>
+	</table>
+
+	<!--
+	  *
+	  * TABLE published_monograph_settings
+	  *
+	  -->
+	<table name="published_monograph_settings">
+		<field name="pub_id" type="I8">
+			<NOTNULL />
+		</field>
+		<field name="locale" type="C2" size="5">
+			<NOTNULL />
+			<DEFAULT VALUE=""/>
+		</field>
+		<field name="setting_name" type="C2" size="255">
+			<NOTNULL />
+		</field>
+		<field name="setting_value" type="X"/>
+		<field name="setting_type" type="C2" size="6">
+			<NOTNULL/>
+			<descr>(bool|int|float|string|object)</descr>
+		</field>
+		<descr>Published Monograph metadata.</descr>
+		<index name="monograph_settings_pub_id">
+			<col>pub_id</col>
+		</index>
+		<index name="monograph_settings_pkey">
+			<col>pub_id</col>
+			<col>locale</col>
+			<col>setting_name</col>
 			<UNIQUE/>
 		</index>
 	</table>

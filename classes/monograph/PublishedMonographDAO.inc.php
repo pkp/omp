@@ -340,6 +340,8 @@ class PublishedMonographDAO extends MonographDAO {
 		$publishedMonograph->setDatePublished($this->datetimeFromDB($row['date_published']));
 		$publishedMonograph->setSeq($row['seq']);
 
+		$this->getDataObjectSettings('published_monograph_settings', 'pub_id', $row['pub_id'], $publishedMonograph);
+
 		if ($callHooks) HookRegistry::call('PublishedMonographDAO::_fromRow', array(&$publishedMonograph, &$row));
 		return $publishedMonograph;
 	}
@@ -390,6 +392,35 @@ class PublishedMonographDAO extends MonographDAO {
 				(int) $publishedMonograph->getId()
 			)
 		);
+	}
+
+	/**
+	 * Get a list of fields for which we store localized data
+	 * @return array
+	 */
+	function getLocaleFieldNames() {
+		// return empty, since the localized submission information is in the monograph's metadata.
+		// this is for published_monograph information.
+		return array();
+	}
+
+	/**
+	 * Get a list of fields for which we store (non-localized) data
+	 * @return array
+	 */
+	function getAdditionalFieldNames() {
+		return array(
+				'audience', 'audienceRangeQualifier', 'audienceRangeFrom', 'audienceRangeTo', 'audienceRangeExact');
+	}
+
+	/**
+	 * Update the localized fields for this object.
+	 * @param $publishedMonograph
+	 */
+	function updateLocaleFields(&$publishedMonograph) {
+		$this->updateDataObjectSettings('published_monograph_settings', $publishedMonograph, array(
+				'pub_id' => $publishedMonograph->getPubId()
+		));
 	}
 }
 

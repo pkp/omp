@@ -13,9 +13,6 @@
  *
  */
 
-import('classes.monograph.Monograph');
-import('classes.publicationFormat.PublicationFormat');
-
 class MonographPublicationFormatAssignmentDAO extends DAO {
 	/**
 	 * Constructor
@@ -25,38 +22,32 @@ class MonographPublicationFormatAssignmentDAO extends DAO {
 	}
 
 	/**
-	 * Retrieve publication format ids assigned to a particular
+	 * Retrieve publication formats assigned to a particular
 	 * published monograph.
 	 * @param int $monogaphId
-	 * @return array the ids of the assigned formats
+	 * @return array DAOResultFactory (publication formats)
 	 */
-	function &getFormatIdsByMonographId($monographId) {
+	function &getFormatsByPublishedMonographId($pubId) {
 		$result =& $this->retrieve(
-			'SELECT pf.publication_format_id FROM
+			'SELECT pf.* FROM
 			publication_formats pf
 			JOIN published_monograph_publication_formats pmpf ON pf.publication_format_id = pmpf.publication_format_id
-			WHERE pf.enabled = ? AND pmpf.monograph_id = ?', array(1, $monographId)
+			WHERE pf.enabled = ? AND pmpf.pub_id = ?', array(1, $pubId)
 		);
 
-		$formatIds = array();
-		while (!$result->EOF) {
-			$formatIds[] = $result->fields[0];
-			$result->MoveNext();
-		}
-
-		$result->Close();
-		unset($result);
-
-		return $formatIds;
+		// Delegate creation to the PublicationFormat DAO.
+		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
+		$returner = new DAOResultFactory($result, $publicationFormatDao, '_fromRow');
+		return $returner;
 	}
 
 	/**
-	 * Retrieve monograph ids that have been assigned a specific publication format
-	 * @param int $monogaphId
+	 * Retrieve publishedMonograph ids that have been assigned a specific publication format
+	 * @param int $formatId
 	 * @param optional int $pressId
-	 * @return array the ids of the monographs
+	 * @return array the ids of the published monographs
 	 */
-	function &getMonographIdsbyFormatId($formatId, $pressId = null) {
+	function &getPublishedMonographIdsbyFormatId($formatId, $pressId = null) {
 		$params = array(1, (int) $formatId);
 
 		if ($pressId !== null) {
@@ -64,60 +55,105 @@ class MonographPublicationFormatAssignmentDAO extends DAO {
 		}
 
 		$result =& $this->retrieve(
-			'SELECT pmpf.monograph_id FROM
+			'SELECT pmpf.pub_id FROM
 			published_monograph_publication_formats pmpf
 			JOIN publication_formats pf ON pf.publication_format_id = pmpf.publication_format_id
-			JOIN monographs m ON pmpf.monograph_id = m.monograph_id
+			JOIN published_monographs pm ON pmpf.pub_id = pm.pub_id
 			WHERE pf.enabled = ? AND pmpf.publication_format_id = ?'
-			. ($pressId?' AND m.press_id = ?':'' ), $params
+			. ($pressId?' AND pf.press_id = ?':'' ), $params
 		);
 
-		$monographIds = array();
+		$pubIds = array();
 		while (!$result->EOF) {
-			$monographIds[] = $result->fields[0];
+			$pubIds[] = $result->fields[0];
 			$result->MoveNext();
 		}
 
 		$result->Close();
 		unset($result);
 
-		return $monographIds;
+		return $pubIds;
 	}
 
 	/**
 	 * Assigns a set of Publication Formats to a specific monograph
-	 * @param array int $publicationFormats
-	 * @param int $monographId
+	 * @param mixed $publicationFormats
+	 * @param int $pubId
 	 * @param boolean $deleteFirst
 	 */
-	function assignPublicationFormats($formatIds, $monographId, $deleteFirst = true) {
+	function assignPublicationFormats($formatIds, $pubId, $deleteFirst = false) {
 
-		$seq = 0;
+		$seq = 1;
+		$ids = array();
+
+		if (!is_array($formatIds)) { // just given an int? Make sure we have an array
+			$ids[] = $formatIds;
+		} else {
+			$ids = $formatIds;
+		}
 
 		if ($deleteFirst) {
 			$this->update(
-				'DELETE FROM published_monograph_publication_formats WHERE monograph_id = ?', array($monographId)
+				'DELETE FROM published_monograph_publication_formats WHERE pub_id = ?', array((int) $pubId)
 			);
-		} else { // retrieve the highest sequence currently assigned
-			$result =& $this->retrieve(
-				'SELECT max(pmpf.seq) FROM published_monograph_publication_formats pmpf
-				WHERE pmpf.monograph_id = ?', array((int) $monographId));
-
-			while (!$result->EOF) {
-				$seq = $result->fields[0];
-				$result->MoveNext();
-			}
 		}
 
-		foreach ($formatIds as $formatId) {
+		foreach ($ids as $formatId) {
+			$this->replace('published_monograph_publication_formats',
+					array('pub_id' => (int) $pubId, 'publication_format_id' => (int) $formatId, 'seq' => $seq),
+					array('pub_id', 'publication_format_id'));
 			$seq++;
-			$this->update(
-				'INSERT INTO published_monograph_publication_formats
-				(monograph_id, publication_format_id, seq)
-				VALUES
-				(?, ?, ?)',
-				array((int) $monographId, (int) $formatId, $seq)
-			);
 		}
+	}
+
+	/**
+	 * Removes a Publication Format from a published monograph
+	 * @param int $formatId
+	 * @param int $pubId
+	 */
+	function deletePublicationFormatById($formatId, $pubId) {
+		$this->update(
+				'DELETE FROM published_monograph_publication_formats WHERE publication_format_id = ? AND pub_id = ?',
+				array((int) $formatId, (int) $pubId)
+		);
+	}
+
+	/**
+	 * Removes all formats from a published monograph
+	 * @param int $pubId
+	 */
+	function deletePublicationFormatsById($pubId) {
+		$this->update(
+				'DELETE FROM published_monograph_publication_formats WHERE pub_id = ?',
+				array((int) $pubId)
+		);
+	}
+
+	/**
+	 * Get the formats not associated with a given monograph.
+	 * @param $pubId int
+	 * @return DAOResultFactory
+	 */
+	function getUnassignedPublicationFormats($pubId, $pressId = null) {
+		$params = array((int) $pubId);
+		if ($pressId) $params[] = (int) $pressId;
+
+		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
+
+		$result =& $this->retrieve(
+				'SELECT	pf.*
+				FROM published_monographs pm
+				JOIN monographs m ON (pm.monograph_id = m.monograph_id)
+				JOIN publication_formats pf ON (pf.press_id = m.press_id)
+				LEFT JOIN published_monograph_publication_formats pmpf ON (pm.pub_id = pmpf.pub_id AND pmpf.publication_format_id = pf.publication_format_id)
+				WHERE	pm.pub_id = ? AND
+				' . ($pressId?' m.press_id = ? AND':'') . '
+				pmpf.pub_id IS NULL',
+		$params
+		);
+
+		// Delegate category creation to the category DAO.
+		$returner = new DAOResultFactory($result, $publicationFormatDao, '_fromRow');
+		return $returner;
 	}
 }

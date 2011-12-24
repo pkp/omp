@@ -31,7 +31,7 @@ class CatalogEntryTabHandler extends Handler {
 	 * Constructor
 	 */
 	function CatalogEntryTabHandler() {
-
+		parent::Handler();
 		$this->addRoleAssignment(ROLE_ID_PRESS_MANAGER,
 				array(
 						'submissionMetadata',
@@ -40,7 +40,7 @@ class CatalogEntryTabHandler extends Handler {
 						'saveForm'
 				)
 		);
-		parent::Handler();
+
 	}
 
 
@@ -74,6 +74,8 @@ class CatalogEntryTabHandler extends Handler {
 		$this->setCurrentTab($request->getUserVar('tab'));
 		$this->_monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		$this->_stageId =& $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
+		AppLocale::requireComponents(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_OMP_SUBMISSION);
+		$this->setupTemplate();
 	}
 
 	/**
@@ -131,7 +133,15 @@ class CatalogEntryTabHandler extends Handler {
 	 * @return string JSON message
 	 */
 	function catalogMetadata($args, &$request) {
-		$json = new JSONMessage(true, 'Catalog Metadata');
+		import('controllers.modals.submissionMetadata.form.CatalogEntryCatalogMetadataForm');
+
+		$monograph =& $this->getMonograph();
+		$stageId =& $this->getStageId();
+
+		$catalogEntryCatalogMetadataForm = new CatalogEntryCatalogMetadataForm($monograph->getId(), $stageId, array('displayedInTab' => true));
+
+		$catalogEntryCatalogMetadataForm->initData($args, $request);
+		$json = new JSONMessage(true, $catalogEntryCatalogMetadataForm->fetch($request));
 		return $json->getString();
 	}
 
@@ -151,16 +161,16 @@ class CatalogEntryTabHandler extends Handler {
 		$enabledPressFormats =& $publicationFormatDao->getEnabledByPressId($monograph->getPressId());
 		$publicationFormat =& $publicationFormatDao->getById($publicationFormatId);
 
-		$json = new JSONMessage();
-
 		while ($format =& $enabledPressFormats->next()) {
 			if ($format->getId() == $publicationFormat->getId()) { // belongs to current press
+				$json = new JSONMessage();
 				$json->setContent($publicationFormat->getLocalizedName());
 				return $json->getString();
 			}
 		}
 
-		return $json->getString(false);
+		$json = new JSONMessage(false);
+		return $json->getString();
 	}
 
 	/**
@@ -174,25 +184,23 @@ class CatalogEntryTabHandler extends Handler {
 		$json = new JSONMessage();
 		$form = null;
 
-		$methodName = null;
+		$monograph =& $this->getMonograph();
+		$stageId =& $this->getStageId();
+		$notificationKey = null;
 
 		switch ($this->getCurrentTab()) {
 
 			case 'submission':
-
-				$monograph =& $this->getMonograph();
-				$stageId =& $this->getStageId();
-
 				import('controllers.modals.submissionMetadata.form.CatalogEntrySubmissionReviewForm');
 				$form = new CatalogEntrySubmissionReviewForm($monograph->getId(), $stageId, array('displayedInTab' => true));
-				$methodName = 'submissionMetadata';
+				$notificationKey = 'notification.savedSubmissionMetadata';
 				break;
 			case 'catalog':
-				$methodName = 'catalogMetadata';
-				assert(false); // placeholder
+				import('controllers.modals.submissionMetadata.form.CatalogEntryCatalogMetadataForm');
+				$form = new CatalogEntryCatalogMetadataForm($monograph->getId(), $stageId, array('displayedInTab' => true));
+				$notificationKey = 'notification.savedCatalogMetadata';
 				break;
 			case 'publication':
-				$methodName = 'publicationMetadata';
 				assert(false); // placeholder
 				break;
 			default:
@@ -206,13 +214,18 @@ class CatalogEntryTabHandler extends Handler {
 				// Create trivial notification in place on the form
 				$notificationManager = new NotificationManager();
 				$user =& $request->getUser();
-				$notificationManager->createTrivialNotification($user->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.savedSubmissionMetadata')));
+				$notificationManager->createTrivialNotification($user->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __($notificationKey)));
 			} else {
 				$json->setStatus(false);
 			}
 
 			if ($request->getUserVar('displayedInTab')) {
-				return $this->{$methodName}($args, $request); // displays the notification, keeps the modal open
+				$router =& $request->getRouter();
+				$dispatcher =& $router->getDispatcher();
+				$url = $dispatcher->url($request, ROUTE_COMPONENT, null, 'modals.submissionMetadata.CatalogEntryHandler', 'fetch', null, array('monographId' => $monograph->getId(), 'stageId' => $stageId));
+				$json->setAdditionalAttributes(array('reloadTabs' => true, 'tabsUrl' => $url));
+				$json->setContent(true); // prevents modal closure
+				return $json->getString();
 			} else {
 				return $json->getString(); // closes the modal
 			}

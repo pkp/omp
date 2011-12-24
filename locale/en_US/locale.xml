@@ -12,16 +12,23 @@
 
 <locale name="en_US" full_name="U.S. English">
 	<!-- General monograph keys -->
+	<message key="monograph.audience">Audience</message>
+	<message key="monograph.audience.rangeQualifier">Audience Range Qualifier</message>
+	<message key="monograph.audience.rangeFrom">Audience Range (from)</message>
+	<message key="monograph.audience.rangeTo">Audience Range (to)</message>
+	<message key="monograph.audience.rangeExact">Audience Range (exact)</message>
 	<message key="monograph.description">Description</message>
 	<message key="monograph.authors">Authors</message>
-	<message key="monograph.coverage.chron">Chronological Coverage</message>
-	<message key="monograph.coverage.geo">Geographical Coverage</message>
-	<message key="monograph.coverage.sample">Sample Coverage</message>
-	<message key="monograph.languages">Language(s)</message>
+	<message key="monograph.coverage">Monograph Coverage Information</message>
+	<message key="monograph.coverage.chron">Chronological</message>
+	<message key="monograph.coverage.geo">Geographical</message>
+	<message key="monograph.coverage.sample">Sample</message>
+	<message key="monograph.languages">Languages (English, French, Spanish)</message>
+	<message key="monograph.publicationFormats">Publication Formats</message>
 	<message key="monograph.subjectClass">Subject Class</message>
 	<message key="monograph.subjects">Subjects</message>
 	<message key="monograph.title">Book Title</message>
-	<message key="monograph.type">Type</message>
+	<message key="monograph.type">Type of Monograph</message>
 
 	<!-- Editorial policies -->
 	<message key="manager.series.open">Open Submissions</message>
@@ -384,6 +391,7 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="notification.removedFile">File deleted.</message>
 	<message key="notification.signedFile">File signed.</message>
 	<message key="notification.updatedReviewFiles">Review files updated.</message>
+	<message key="notification.savedCatalogMetadata">Catalog metadata saved.</message>
 	<message key="notification.savedSubmissionMetadata">Submission metadata saved.</message>
 	<message key="notification.uploadedResponse">Response uploaded.</message>
 	<message key="notification.mailListDescription">Enter your email address to receive immediate notifications of important new content added to the press.</message>
