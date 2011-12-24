@@ -169,7 +169,7 @@ class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
 	 * Delete a category association.
 	 */
 	function deleteEntry(&$request, $rowId) {
-		$i = array_search($this->_data['categoryIds'], $rowId);
+		$i = array_search($rowId, $this->_data['categoryIds']);
 		if ($i !== false) unset($this->_data['categoryIds'][$i]);
 		return true;
 	}
