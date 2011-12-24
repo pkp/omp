@@ -9,7 +9,8 @@
  * @class CatalogHandler
  * @ingroup pages_catalog
  *
- * @brief Handle requests for the public-facing catalog.
+ * @brief Handle requests for the press-specific part of the public-facing
+ *   catalog.
  */
 
 import('classes.handler.Handler');

@@ -11,7 +11,10 @@
 	// Initialize JS handler for catalog header.
 	$(function() {ldelim}
 		$('#carouselContainer').pkpHandler(
-			'$.pkp.pages.catalog.CarouselHandler'
+			'$.pkp.pages.catalog.CarouselHandler',
+			{ldelim}
+				previewFetchUrlTemplate: '{url|escape:"javascript" op="preview" path=MONOGRAPH_ID escape=false}'
+			{rdelim}
 		);
 	{rdelim});
 </script>
@@ -26,9 +29,13 @@
 		{* Only include features in the carousel *}
 		{assign var="monographId" value=$publishedMonograph->getId()}
 		{if isset($featuredMonographIds[$monographId])}
-			<img src="{$baseUrl}/templates/images/book-default.png" alt="{$publishedMonograph->getLocalizedTitle()|escape}" />
+			<img id="carousel-monograph-{$monographId|escape}" src="{$baseUrl}/templates/images/book-default.png" alt="{$publishedMonograph->getLocalizedTitle()|escape}" />
 		{/if}
 	{/foreach}
+</div>
+
+<div id="previewContainer">
+	{* Will be filled in via JavaScript *}
 </div>
 
 </div>
