@@ -13,7 +13,7 @@
 		$('#carouselContainer').pkpHandler(
 			'$.pkp.pages.catalog.CarouselHandler',
 			{ldelim}
-				previewFetchUrlTemplate: '{url|escape:"javascript" op="preview" path=MONOGRAPH_ID escape=false}'
+				previewFetchUrlTemplate: '{url|escape:"javascript" op="preview" monographId=MONOGRAPH_ID escape=false}'
 			{rdelim}
 		);
 	{rdelim});

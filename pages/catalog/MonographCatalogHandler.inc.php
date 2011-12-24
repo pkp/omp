@@ -25,6 +25,26 @@ class MonographCatalogHandler extends Handler {
 	 */
 	function MonographCatalogHandler() {
 		parent::Handler();
+		$this->addRoleAssignment(
+			array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER, ROLE_ID_PRESS_ASSISTANT),
+			array('preview')
+		);
+	}
+
+
+	//
+	// Implement template methods from PKPHandler.
+	//
+	/**
+	 * @see PKPHandler::authorize()
+	 * @param $request PKPRequest
+	 * @param $args array
+	 * @param $roleAssignments array
+	 */
+	function authorize(&$request, $args, $roleAssignments) {
+		import('classes.security.authorization.OmpPublishedMonographAccessPolicy');
+		$this->addPolicy(new OmpPublishedMonographAccessPolicy($request, $args, $roleAssignments));
+		return parent::authorize($request, $args, $roleAssignments);
 	}
 
 
@@ -38,6 +58,9 @@ class MonographCatalogHandler extends Handler {
 	 */
 	function preview($args, &$request) {
 		$templateMgr =& TemplateManager::getManager();
+		$publishedMonograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_PUBLISHED_MONOGRAPH);
+		$templateMgr->assign('publishedMonograph', $publishedMonograph);
+
 		$json = new JSONMessage(true, $templateMgr->fetch('catalog/preview.tpl'));
 		return $json->getString();
 	}

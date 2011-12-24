@@ -53,9 +53,9 @@ $.pkp.pages.catalog = $.pkp.pages.catalog || {};
 	/**
 	 * The URL template to use to fetch a monograph preview.
 	 * @private
-	 * @type {String}
+	 * @type {String?}
 	 */
-	$.pkp.pages.catalog.CarouselHandler.prototype.previewFetchUrlTemplate_;
+	$.pkp.pages.catalog.CarouselHandler.prototype.previewFetchUrlTemplate_ = null;
 
 
 	//

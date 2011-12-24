@@ -7,4 +7,6 @@
  * Display a monograph preview.
  *}
 
-<!-- FIXME: Put the preview of a monograph here -->
+<div class="pkp_pages_catalog_previewAbstract">
+	{$publishedMonograph->getLocalizedAbstract()|strip_unsafe_html}
+</div>
