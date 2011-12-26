@@ -51,7 +51,6 @@
 	<message key="submission.submit.newSubmissionMultiple">Start a New Submission in</message>
 	<message key="submission.submit.newSubmissionSingle">Start a New Submission in {$pressName}</message>
 	<message key="submission.submit.selectAPress">Select a Press...</message>
-	<message key="submission.submit.metadata">Enter Metadata</message>
 	<message key="submission.submit.upload">Upload Submission</message>
 	<message key="submission.submit.cancelSubmission">You can complete this submission at a later date by selecting Active Submissions from the Author home.</message>
 	<message key="submission.submit.howToSubmit"><![CDATA[Encountering difficulties? Contact <a href="mailto:{$supportEmail}">{$supportName}</a> for assistance ({$supportPhone}).]]></message>
@@ -83,6 +82,8 @@
 	<message key="submission.submit.catalogue">Catalogue</message>
 	<message key="submission.submit.finishingUp">Finishing Up</message>
 	<message key="submission.submit.metadata">Metadata</message>
+	<message key="submission.submit.metadataForm">Additional Refinements</message>
+	<message key="submission.submit.metadataForm.tip">Add additional information for your submission.  Press 'enter' after each term.</message>
 	<message key="submission.submit.upload">Upload</message>
 	<message key="submission.submit.nextSteps">Next Steps</message>
 	<message key="submission.submit.coverNote">Cover Note to Editor</message>

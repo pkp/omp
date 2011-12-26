@@ -19,16 +19,19 @@
 	<message key="monograph.audience.rangeExact">Audience Range (exact)</message>
 	<message key="monograph.description">Description</message>
 	<message key="monograph.authors">Authors</message>
-	<message key="monograph.coverage">Monograph Coverage Information</message>
+	<message key="monograph.coverage">Coverage Information</message>
+	<message key="monograph.coverage.tip">The following fields provide information about your submission's coverage.  Coverage may include chronologcal periods (1920-1940, 17th century), and geographical locations ('Boston, MA', or 'Northern England').  If you wish, you may use the sample coverage field to include a relevant example from your own work.</message>
 	<message key="monograph.coverage.chron">Chronological</message>
 	<message key="monograph.coverage.geo">Geographical</message>
 	<message key="monograph.coverage.sample">Sample</message>
 	<message key="monograph.languages">Languages (English, French, Spanish)</message>
 	<message key="monograph.publicationFormats">Publication Formats</message>
-	<message key="monograph.subjectClass">Subject Class</message>
+	<message key="monograph.subjectClass">Submission Subject</message>
+	<message key="monograph.subjectClass.tip">Please describe your submission using a few key phrases.  You may refine the subject with specific keywords in a latter part of the form.</message>
 	<message key="monograph.subjects">Subjects</message>
 	<message key="monograph.title">Book Title</message>
-	<message key="monograph.type">Type of Monograph</message>
+	<message key="monograph.title.tip">The submission type is usually one of 'image', 'text', or other multimedia types including 'software' or 'interactive'.  Please choose the one most relevant for your submission.  Examples may be found at http://dublincore.org/documents/2001/04/12/usageguide/generic.shtml#type</message>
+	<message key="monograph.type">Type of Submission</message>
 
 	<!-- Editorial policies -->
 	<message key="manager.series.open">Open Submissions</message>

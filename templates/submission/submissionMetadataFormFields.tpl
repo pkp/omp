@@ -16,7 +16,10 @@
 	{fbvFormSection title="submission.submit.briefSummary" for="abstract"}
 		{fbvElement type="textarea" multilingual=true name="abstract" id="abstract" value=$abstract rich=true disabled=$readOnly}
 	{/fbvFormSection}
-	{fbvFormSection title="monograph.coverage.chron" for="coverageChron"}
+{/fbvFormArea}
+
+{fbvFormArea id="coverageInformation" title="monograph.coverage" border="true"}
+	{fbvFormSection title="monograph.coverage.chron" for="coverageChron" description="monograph.coverage.tip"}
 		{fbvElement type="text" multilingual=true name="coverageChron" id="coverageChron" value=$coverageChron maxlength="255" disabled=$readOnly}
 	{/fbvFormSection}
 	{fbvFormSection title="monograph.coverage.geo" for="coverageGeo"}
@@ -25,13 +28,19 @@
 	{fbvFormSection title="monograph.coverage.sample" for="coverageSample"}
 		{fbvElement type="text" multilingual=true name="coverageSample" id="coverageSample" value=$coverageSample maxlength="255" disabled=$readOnly}
 	{/fbvFormSection}
-	{fbvFormSection title="monograph.type" for="type"}
+{/fbvFormArea}
+
+{fbvFormArea id="typeAndSubject"}
+	{fbvFormSection title="monograph.type" for="type" description="monograph.title.tip"}
 		{fbvElement type="text" multilingual=true name="type" id="type" value=$type maxlength="255" disabled=$readOnly}
 	{/fbvFormSection}
-	{fbvFormSection title="monograph.subjectClass" for="subjectClass"}
+	{fbvFormSection title="monograph.subjectClass" for="subjectClass" description="monograph.subjectClass.tip"}
 		{fbvElement type="text" multilingual=true name="subjectClass" id="subjectClass" value=$subjectClass maxlength="255" disabled=$readOnly}
 	{/fbvFormSection}
-	{fbvFormSection title="submission.submit.metadata"}
+{/fbvFormArea}
+
+{fbvFormArea id="tagitFields" title="submission.submit.metadataForm" border="true"}
+	{fbvFormSection description="submission.submit.metadataForm.tip"}
 		{fbvElement type="keyword" id="languages" label="monograph.languages" current=$languages multilingual=true available=$availableLanguages disabled=$readOnly}
 		{fbvElement type="keyword" id="subjects" label="monograph.subjects" multilingual=true current=$subjects disabled=$readOnly}
 		{fbvElement type="keyword" id="disciplines" label="search.discipline" multilingual=true current=$disciplines disabled=$readOnly}

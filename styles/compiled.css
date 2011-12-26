@@ -700,6 +700,10 @@ table.pkp_listing td.separator {
 }
 .pkp_form .debug div, .pkp_form .debug label { border:1px solid orange; }
 .pkp_form fieldset { margin:10px 5px; }
+.pkp_form fieldset.border {
+  border:1px solid #CCCCCC;
+  padding:5px;
+}
 .pkp_form legend {
   font-size:110%;
   padding:10px 0 10px 0;
