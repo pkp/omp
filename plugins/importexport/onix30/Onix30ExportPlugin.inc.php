@@ -98,7 +98,7 @@ class Onix30ExportPlugin extends ImportExportPlugin {
 		} else {
 			header('Content-Type: application/xml');
 			header('Cache-Control: private');
-			header('Content-Disposition: attachment; filename="onix30.xml"');
+			header('Content-Disposition: attachment; filename="onix30-' . $monograph->getId() . '.xml"');
 			XMLCustomWriter::printXML($doc);
 		}
 		return true;
