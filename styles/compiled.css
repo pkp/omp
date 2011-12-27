@@ -701,7 +701,7 @@ table.pkp_listing td.separator {
 .pkp_form .debug div, .pkp_form .debug label { border:1px solid orange; }
 .pkp_form fieldset { margin:10px 5px; }
 .pkp_form fieldset.border {
-  border:1px solid #CCCCCC;
+  border:1px solid #cccccc;
   padding:5px;
 }
 .pkp_form legend {
@@ -1287,10 +1287,13 @@ a.pkp_common_disabled, a.pkp_common_disabled:hover { color:#666666; }
   float:right;
   margin-left:330px;
 }
-.pkp_catalog_monograph {
+.pkp_catalog_monographs { clear:both; }
+.pkp_catalog_monographs .pkp_catalog_monograph {
   width:150px;
   float:left;
 }
+.pkp_catalog_feature .pkp_catalog_featureSpecs { float:left; }
+.pkp_catalog_feature .pkp_catalog_featureDetails { margin-top:50px; }
 .pkp_page_header { position:relative; }
 .pkp_page_header ul.submission_actions {
   position:relative;

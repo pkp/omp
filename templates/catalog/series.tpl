@@ -22,6 +22,9 @@
 	{include file="catalog/carousel.tpl" publishedMonographs=$publishedMonographs featuredMonographIds=$featuredMonographIds}
 {/if}
 
+{* Include the highlighted feature *}
+{include file="catalog/feature.tpl" publishedMonographs=$publishedMonographs featuredMonographIds=$featuredMonographIds}
+
 {* Include the full monograph list *}
 {include file="catalog/monographs.tpl" publishedMonographs=$publishedMonographs}
 

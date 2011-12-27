@@ -118,6 +118,7 @@
 
 	<!-- Catalog -->
 	<message key="catalog.browseTitles">Browse {$numTitles} Titles</message>
+	<message key="catalog.feature">Feature</message>
 
 	<!--
 	 *
