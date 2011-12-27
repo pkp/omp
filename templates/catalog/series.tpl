@@ -13,13 +13,17 @@
 
 <div class="catalogContainer">
 
-{include file="catalog/carousel.tpl"}
-
 <div class="pkp_catalog_seriesDescription">
 	{$series->getLocalizedDescription()}
 </div>
 
-<!-- Implement series view -->
+{* Include the carousel view of featured content *}
+{if $featuredMonographIds|@count}
+	{include file="catalog/carousel.tpl" publishedMonographs=$publishedMonographs featuredMonographIds=$featuredMonographIds}
+{/if}
+
+{* Include the full monograph list *}
+{include file="catalog/monographs.tpl" publishedMonographs=$publishedMonographs}
 
 </div><!-- catalogContainer -->
 

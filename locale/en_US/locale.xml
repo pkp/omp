@@ -116,6 +116,9 @@
 	<message key="catalog.selectSeries">Select Series</message>
 	<message key="catalog.selectCategory">Select Category</message>
 
+	<!-- Catalog -->
+	<message key="catalog.browseTitles">Browse {$numTitles} Titles</message>
+
 	<!--
 	 *
 	 * COMMON - This section contains the most frequently-used words

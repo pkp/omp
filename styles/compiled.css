@@ -1281,8 +1281,16 @@ a.pkp_common_disabled, a.pkp_common_disabled:hover { color:#666666; }
   height:100px;
   overflow:hidden;
 }
+.pkp_catalog_carousel { width:33%; }
 .pkp_catalog_carousel img { background:#ffffff; }
-.pkp_catalog_seriesDescription, .pkp_catalog_categoryDescription { float:right; }
+.pkp_catalog_seriesDescription, .pkp_catalog_categoryDescription {
+  float:right;
+  margin-left:330px;
+}
+.pkp_catalog_monograph {
+  width:150px;
+  float:left;
+}
 .pkp_page_header { position:relative; }
 .pkp_page_header ul.submission_actions {
   position:relative;

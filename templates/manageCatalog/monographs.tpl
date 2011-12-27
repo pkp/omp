@@ -36,7 +36,7 @@
 			{$series->getLocalizedDescription()}
 		</div>
 	{/if}
-	<ul class="pkp_manageCatalog_monographList" class="pkp_helpers_clear">
+	<ul class="pkp_manageCatalog_monographList pkp_helpers_clear">
 		{iterate from=publishedMonographs item=monograph}
 			{include file="manageCatalog/monograph.tpl"}
 		{/iterate}
