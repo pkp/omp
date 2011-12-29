@@ -105,12 +105,13 @@ class CatalogEntryHandler extends Handler {
 		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
 		$publishedMonograph =& $publishedMonographDao->getById($monograph->getId());
 		if ($publishedMonograph !== null) {
-			$templateMgr->assign('pubId', $publishedMonograph->getPubId());
+			$templateMgr->assign('published', true);
+			$templateMgr->assign('monographId', $monograph->getId());
 			$templateMgr->assign('selectedTab', 1); // bring up the catalog tab since the submission tab is disabled now.
 
 			// load in any publication formats assigned to this published monograph
-			$monographPublicationFormatAssignmentDAO =& DAORegistry::getDAO('MonographPublicationFormatAssignmentDAO');
-			$formats =& $monographPublicationFormatAssignmentDAO->getFormatsByPublishedMonographId($publishedMonograph->getPubId());
+			$assignedPublicationFormatDao =& DAORegistry::getDAO('AssignedPublicationFormatDAO');
+			$formats =& $assignedPublicationFormatDao->getFormatsByMonographId($monograph->getId());
 			$publicationFormats = array();
 			while ($publicationFormat =& $formats->next()) {
 				$publicationFormats[] =& $publicationFormat;

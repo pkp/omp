@@ -340,7 +340,7 @@ class PublishedMonographDAO extends MonographDAO {
 		$publishedMonograph->setDatePublished($this->datetimeFromDB($row['date_published']));
 		$publishedMonograph->setSeq($row['seq']);
 
-		$this->getDataObjectSettings('published_monograph_settings', 'pub_id', $row['pub_id'], $publishedMonograph);
+		$this->getDataObjectSettings('published_monograph_settings', 'monograph_id', $row['monograph_id'], $publishedMonograph);
 
 		if ($callHooks) HookRegistry::call('PublishedMonographDAO::_fromRow', array(&$publishedMonograph, &$row));
 		return $publishedMonograph;
@@ -409,8 +409,7 @@ class PublishedMonographDAO extends MonographDAO {
 	 * @return array
 	 */
 	function getAdditionalFieldNames() {
-		return array(
-				'audience', 'audienceRangeQualifier', 'audienceRangeFrom', 'audienceRangeTo', 'audienceRangeExact');
+		return array('audience', 'audienceRangeQualifier', 'audienceRangeFrom', 'audienceRangeTo', 'audienceRangeExact');
 	}
 
 	/**
@@ -419,7 +418,7 @@ class PublishedMonographDAO extends MonographDAO {
 	 */
 	function updateLocaleFields(&$publishedMonograph) {
 		$this->updateDataObjectSettings('published_monograph_settings', $publishedMonograph, array(
-				'pub_id' => $publishedMonograph->getPubId()
+				'monograph_id' => $publishedMonograph->getId()
 		));
 	}
 }

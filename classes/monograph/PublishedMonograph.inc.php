@@ -93,6 +93,22 @@ class PublishedMonograph extends Monograph {
 	function setViews($views) {
 		return $this->setData('views', $views);
 	}
+
+	/**
+	 * Get the audience of the published monograph.
+	 * @return int
+	 */
+	function getAudience() {
+		return $this->getData('audience');
+	}
+
+	/**
+	 * Set the audience for the published monograph.
+	 * @param $audience int (onix code)
+	 */
+	function setAudience($audience) {
+		return $this->setData('audience', $audience);
+	}
 }
 
 ?>

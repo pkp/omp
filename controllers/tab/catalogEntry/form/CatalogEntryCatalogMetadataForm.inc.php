@@ -1,13 +1,13 @@
 <?php
 
 /**
- * @file controllers/modals/submissionMetadata/form/CatalogEntryCatalogMetadataForm.inc.php
+ * @file controllers/tab/catalogEntry/form/CatalogEntryCatalogMetadataForm.inc.php
  *
  * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class CatalogEntryCatalogMetadataForm
- * @ingroup controllers_modals_submissionMetadata_form_CatalogEntryCatalogMetadataForm
+ * @ingroup controllers_tab_catalogEntry_form_CatalogEntryCatalogMetadataForm
  *
  * @brief Displays a submission's catalog metadata entry form.
  */
@@ -45,7 +45,6 @@ class CatalogEntryCatalogMetadataForm extends Form {
 		}
 
 		$this->_stageId = $stageId;
-
 		$this->_formParams = $formParams;
 	}
 
@@ -120,7 +119,7 @@ class CatalogEntryCatalogMetadataForm extends Form {
 
 	/**
 	 * Get the Monograph
-	 * @return Monograph
+	 * @return int
 	 */
 	function getStageId() {
 		return $this->_stageId;
@@ -138,14 +137,10 @@ class CatalogEntryCatalogMetadataForm extends Form {
 	 */
 	function readInputData() {
 		$vars = array(
-			'audience', 'audienceRangeQualifier', 'audienceRangeFrom', 'audienceRangeTo', 'audienceRangeExact', 'publicationFormats'
+			'audience', 'audienceRangeQualifier', 'audienceRangeFrom', 'audienceRangeTo', 'audienceRangeExact'
 		);
 
 		$this->readUserVars($vars);
-		// Unpack the publication formats listbuilder data.
-
-		$monographPublicationFormatAssignmentDao =& DAORegistry::getDAO('MonographPublicationFormatAssignmentDAO');
-		ListbuilderHandler::unpack($request, $this->getData('publicationFormats'));
 	}
 
 	/**
@@ -170,50 +165,6 @@ class CatalogEntryCatalogMetadataForm extends Form {
 		} else {
 			fatalError('Updating catalog metadata with no published monograph!');
 		}
-	}
-
-
-
-	// Define external persistance/deletion methods for Published Format listbuilder
-
-	/**
-	 * Persist a publication format
-	 * @param $request Request
-	 * @param $newRowId mixed New entry with data to persist
-	 * @return boolean
-	 */
-	function insertEntry(&$request, $newRowId) {
-		$monograph =& $this->getMonograph();
-		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
-		$publishedMonograph =& $publishedMonographDao->getById($monograph->getId());
-
-		$formatId = (int) $newRowId['name'];
-
-		// Create a new publication format assignment for this published monograph
-		$monographPublicationFormatAssignmentDAO =& DAORegistry::getDAO('MonographPublicationFormatAssignmentDAO');
-		$monographPublicationFormatAssignmentDAO->assignPublicationFormats($formatId, $publishedMonograph->getPubId());
-		return true;
-	}
-
-	/**
-	 * Delete an assigned publication format
-	 * @param $request Request
-	 * @param $rowId mixed ID of row to modify
-	 * @return boolean
-	 */
-	function deleteEntry(&$request, $rowId) {
-		$monograph =& $this->getMonograph();
-		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
-		$publishedMonograph =& $publishedMonographDao->getById($monograph->getId());
-
-		$formatId = (int) $rowId; // this is the formatId to remove and is already an integer
-
-		if ($formatId) {
-			$monographPublicationFormatAssignmentDAO =& DAORegistry::getDAO('MonographPublicationFormatAssignmentDAO');
-			$monographPublicationFormatAssignmentDAO->deletePublicationFormatById($formatId, $publishedMonograph->getPubId());
-			return true;
-		}
-		return false;
 	}
 }
 

@@ -133,7 +133,7 @@ class CatalogEntryTabHandler extends Handler {
 	 * @return string JSON message
 	 */
 	function catalogMetadata($args, &$request) {
-		import('controllers.modals.submissionMetadata.form.CatalogEntryCatalogMetadataForm');
+		import('controllers.tab.catalogEntry.form.CatalogEntryCatalogMetadataForm');
 
 		$monograph =& $this->getMonograph();
 		$stageId =& $this->getStageId();
@@ -153,18 +153,22 @@ class CatalogEntryTabHandler extends Handler {
 	 */
 	function publicationMetadata($args, &$request) {
 
-		$publicationFormatId =& $request->getUserVar('publicationFormatId');
+		$assignedPublicationFormatId =& $request->getUserVar('assignedPublicationFormatId');
 		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
+		$assignedPublicationFormatDao =& DAORegistry::getDAO('AssignedPublicationFormatDAO');
 
 		$monograph =& $this->getMonograph();
+		$stageId =& $this->getStageId();
 
 		$enabledPressFormats =& $publicationFormatDao->getEnabledByPressId($monograph->getPressId());
-		$publicationFormat =& $publicationFormatDao->getById($publicationFormatId);
+		$publicationFormat =& $assignedPublicationFormatDao->getById($assignedPublicationFormatId);
 
 		while ($format =& $enabledPressFormats->next()) {
-			if ($format->getId() == $publicationFormat->getId()) { // belongs to current press
-				$json = new JSONMessage();
-				$json->setContent($publicationFormat->getLocalizedName());
+			if ($format->getId() == $publicationFormat->getId()) { // belongs to current press (and is enabled)
+				import('controllers.tab.catalogEntry.form.CatalogEntryPublicationMetadataForm');
+				$catalogEntryPublicationMetadataForm = new CatalogEntryPublicationMetadataForm($monograph->getId(), $assignedPublicationFormatId, $format->getId(), $stageId, array('displayedInTab' => true));
+				$catalogEntryPublicationMetadataForm->initData($args, $request);
+				$json = new JSONMessage(true, $catalogEntryPublicationMetadataForm->fetch($request));
 				return $json->getString();
 			}
 		}
@@ -196,18 +200,31 @@ class CatalogEntryTabHandler extends Handler {
 				$notificationKey = 'notification.savedSubmissionMetadata';
 				break;
 			case 'catalog':
-				import('controllers.modals.submissionMetadata.form.CatalogEntryCatalogMetadataForm');
+				import('controllers.tab.catalogEntry.form.CatalogEntryCatalogMetadataForm');
 				$form = new CatalogEntryCatalogMetadataForm($monograph->getId(), $stageId, array('displayedInTab' => true));
 				$notificationKey = 'notification.savedCatalogMetadata';
 				break;
-			case 'publication':
-				assert(false); // placeholder
+			default: // publication format tabs
+				import('controllers.tab.catalogEntry.form.CatalogEntryPublicationMetadataForm');
+				$assignedPublicationFormatId =& $request->getUserVar('assignedPublicationFormatId');
+
+				// perform some validation to make sure this format is enabled and assigned to this monograph
+				$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
+				$assignedPublicationFormatDao =& DAORegistry::getDAO('AssignedPublicationFormatDAO');
+				$publishedMonograph =& $publishedMonographDao->getById($monograph->getId());
+				$formats =& $assignedPublicationFormatDao->getFormatsByMonographId($monograph->getId());
+				$form = null;
+				while ($format =& $formats->next()) {
+					if ($format->getAssignedPublicationFormatId() == $assignedPublicationFormatId) {
+						$form = new CatalogEntryPublicationMetadataForm($monograph->getId(), $assignedPublicationFormatId, $format->getId(), $stageId, array('displayedInTab' => true));
+						$notificationKey = 'notification.savedPublicationFormatMetadata';
+						break;
+					}
+				}
 				break;
-			default:
-				fatalError('Invalid Tab');
 		}
 
-		if ($form) {
+		if ($form) { // null if we didn't have a valid tab
 			$form->readInputData($request);
 			if($form->validate()) {
 				$form->execute($request);
@@ -229,6 +246,8 @@ class CatalogEntryTabHandler extends Handler {
 			} else {
 				return $json->getString(); // closes the modal
 			}
+		} else {
+			fatalError('Unknown or unassigned format id!');
 		}
 	}
 

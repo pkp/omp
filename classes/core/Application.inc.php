@@ -111,6 +111,7 @@ class Application extends PKPApplication {
 		return array_merge(parent::getDAOMap(), array(
 			'AnnouncementDAO' => 'classes.announcement.AnnouncementDAO',
 			'AnnouncementTypeDAO' => 'classes.announcement.AnnouncementTypeDAO',
+			'AssignedPublicationFormatDAO' => 'classes.publicationFormat.AssignedPublicationFormatDAO',
 			'AuthorDAO' => 'classes.monograph.AuthorDAO',
 			'CataloguingMetadataFieldDAO' => 'classes.cataloguingMetadata.CataloguingMetadataFieldDAO',
 			'ChapterAuthorDAO' => 'classes.monograph.ChapterAuthorDAO',
@@ -137,7 +138,6 @@ class Application extends PKPApplication {
 			'MonographLanguageEntryDAO' => 'classes.monograph.MonographLanguageEntryDAO',
 			'MonographKeywordDAO' => 'classes.monograph.MonographKeywordDAO',
 			'MonographKeywordEntryDAO' => 'classes.monograph.MonographKeywordEntryDAO',
-			'MonographPublicationFormatAssignmentDAO' => 'classes.monograph.MonographPublicationFormatAssignmentDAO',
 			'MonographSubjectDAO' => 'classes.monograph.MonographSubjectDAO',
 			'MonographSubjectEntryDAO' => 'classes.monograph.MonographSubjectEntryDAO',
 			'MonographSearchDAO' => 'classes.search.MonographSearchDAO',
