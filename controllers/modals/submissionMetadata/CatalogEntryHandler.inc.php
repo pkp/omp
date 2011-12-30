@@ -16,15 +16,19 @@
 import('classes.handler.Handler');
 
 class CatalogEntryHandler extends Handler {
-	/**
-	 * Constructor.
-	 */
+
 	/** The monograph **/
 	var $_monograph;
 
 	/** The current stage id **/
 	var $_stageId;
 
+	/** the current tab position **/
+	var $_tabPosition;
+
+	/**
+	 * Constructor.
+	 */
 	function CatalogEntryHandler() {
 		parent::Handler();
 		$this->addRoleAssignment(
@@ -45,6 +49,7 @@ class CatalogEntryHandler extends Handler {
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
 		$this->_monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		$this->_stageId =& $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
+		$this->_tabPosition = (int) $request->getUserVar('tabPos');
 
 		// Load grid-specific translations
 		AppLocale::requireComponents(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_OMP_SUBMISSION);
@@ -77,11 +82,19 @@ class CatalogEntryHandler extends Handler {
 	}
 
 	/**
-	 * Get the Monograph
-	 * @return Monograph
+	 * Get the stage id
+	 * @return int
 	 */
 	function getStageId() {
 		return $this->_stageId;
+	}
+
+	/**
+	 * Get the current tab position
+	 * @return int
+	 */
+	function getTabPosition() {
+		return $this->_tabPosition;
 	}
 
 
@@ -107,7 +120,11 @@ class CatalogEntryHandler extends Handler {
 		if ($publishedMonograph !== null) {
 			$templateMgr->assign('published', true);
 			$templateMgr->assign('monographId', $monograph->getId());
-			$templateMgr->assign('selectedTab', 1); // bring up the catalog tab since the submission tab is disabled now.
+			$tabPosition = (int) $this->getTabPosition();
+			if ($tabPosition == 0) {
+				$tabPosition = 1; // prevents a reload of the (disabled) submission tab now.  Show catalog instead.
+			}
+			$templateMgr->assign('selectedTab', $tabPosition);
 
 			// load in any publication formats assigned to this published monograph
 			$assignedPublicationFormatDao =& DAORegistry::getDAO('AssignedPublicationFormatDAO');

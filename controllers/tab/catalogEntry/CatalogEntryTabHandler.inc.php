@@ -27,6 +27,9 @@ class CatalogEntryTabHandler extends Handler {
 	/** @var int stageId */
 	var $_stageId;
 
+	/** @var int */
+	var $_tabPosition;
+
 	/**
 	 * Constructor
 	 */
@@ -74,6 +77,8 @@ class CatalogEntryTabHandler extends Handler {
 		$this->setCurrentTab($request->getUserVar('tab'));
 		$this->_monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		$this->_stageId =& $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
+		$this->_tabPosition = (int) $request->getUserVar('tabPos');
+
 		AppLocale::requireComponents(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_OMP_SUBMISSION);
 		$this->setupTemplate();
 	}
@@ -127,6 +132,13 @@ class CatalogEntryTabHandler extends Handler {
 	}
 
 	/**
+	 * @return the current tab position
+	 */
+	function getTabPosition() {
+		return $this->_tabPosition;
+	}
+
+	/**
 	 * Show the catalog metadata form.
 	 * @param $request Request
 	 * @param $args array
@@ -166,7 +178,7 @@ class CatalogEntryTabHandler extends Handler {
 		while ($format =& $enabledPressFormats->next()) {
 			if ($format->getId() == $publicationFormat->getId()) { // belongs to current press (and is enabled)
 				import('controllers.tab.catalogEntry.form.CatalogEntryPublicationMetadataForm');
-				$catalogEntryPublicationMetadataForm = new CatalogEntryPublicationMetadataForm($monograph->getId(), $assignedPublicationFormatId, $format->getId(), $stageId, array('displayedInTab' => true));
+				$catalogEntryPublicationMetadataForm = new CatalogEntryPublicationMetadataForm($monograph->getId(), $assignedPublicationFormatId, $format->getId(), $stageId, array('displayedInTab' => true, 'tabPos' => $this->getTabPosition()));
 				$catalogEntryPublicationMetadataForm->initData($args, $request);
 				$json = new JSONMessage(true, $catalogEntryPublicationMetadataForm->fetch($request));
 				return $json->getString();
@@ -201,7 +213,7 @@ class CatalogEntryTabHandler extends Handler {
 				break;
 			case 'catalog':
 				import('controllers.tab.catalogEntry.form.CatalogEntryCatalogMetadataForm');
-				$form = new CatalogEntryCatalogMetadataForm($monograph->getId(), $stageId, array('displayedInTab' => true));
+				$form = new CatalogEntryCatalogMetadataForm($monograph->getId(), $stageId, array('displayedInTab' => true, 'tabPos' => $this->getTabPosition()));
 				$notificationKey = 'notification.savedCatalogMetadata';
 				break;
 			default: // publication format tabs
@@ -216,7 +228,7 @@ class CatalogEntryTabHandler extends Handler {
 				$form = null;
 				while ($format =& $formats->next()) {
 					if ($format->getAssignedPublicationFormatId() == $assignedPublicationFormatId) {
-						$form = new CatalogEntryPublicationMetadataForm($monograph->getId(), $assignedPublicationFormatId, $format->getId(), $stageId, array('displayedInTab' => true));
+						$form = new CatalogEntryPublicationMetadataForm($monograph->getId(), $assignedPublicationFormatId, $format->getId(), $stageId, array('displayedInTab' => true, 'tabPos' => $this->getTabPosition()));
 						$notificationKey = 'notification.savedPublicationFormatMetadata';
 						break;
 					}
@@ -239,7 +251,7 @@ class CatalogEntryTabHandler extends Handler {
 			if ($request->getUserVar('displayedInTab')) {
 				$router =& $request->getRouter();
 				$dispatcher =& $router->getDispatcher();
-				$url = $dispatcher->url($request, ROUTE_COMPONENT, null, 'modals.submissionMetadata.CatalogEntryHandler', 'fetch', null, array('monographId' => $monograph->getId(), 'stageId' => $stageId));
+				$url = $dispatcher->url($request, ROUTE_COMPONENT, null, 'modals.submissionMetadata.CatalogEntryHandler', 'fetch', null, array('monographId' => $monograph->getId(), 'stageId' => $stageId, 'tabPos' => $this->getTabPosition()));
 				$json->setAdditionalAttributes(array('reloadTabs' => true, 'tabsUrl' => $url));
 				$json->setContent(true); // prevents modal closure
 				return $json->getString();
