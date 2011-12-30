@@ -109,6 +109,16 @@ class PublishedMonograph extends Monograph {
 	function setAudience($audience) {
 		return $this->setData('audience', $audience);
 	}
+
+	/**
+	 * Retrieves the assigned publication formats for this mongraph
+	 * @return array AssignedPublicationFormat
+	 */
+	function getAssignedPublicationFormats() {
+		$assignedPublicationFormatDao =& DAORegistry::getDAO('AssignedPublicationFormatDAO');
+		$formats =& $assignedPublicationFormatDao->getFormatsByMonographId($this->getId());
+		return $formats->toArray();
+	}
 }
 
 ?>

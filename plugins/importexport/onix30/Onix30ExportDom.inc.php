@@ -20,7 +20,7 @@ class Onix30ExportDom {
 		return true;
 	}
 
-	function &generateMonographDom(&$doc, &$press, &$monograph) {
+	function &generateMonographDom(&$doc, &$press, &$monograph, &$assignedPublicationFormat) {
 		$unavailableString = __('plugins.importexport.onix30.unavailable');
 
 		$root =& XMLCustomWriter::createElement($doc, 'ONIXMessage');

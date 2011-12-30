@@ -16,40 +16,49 @@
 <br/>
 
 <div id="monographs">
-<table width="100%" class="listing">
+<table width="100%" class="listing" border="0">
 	<tr>
-		<td colspan="2" class="headseparator">&nbsp;</td>
+		<td colspan="3" class="headseparator">&nbsp;</td>
 	</tr>
 	<tr class="heading" valign="bottom">
-		<td width="60%">{translate key="monograph.title"}</td>
-		<td width="40%">{translate key="monograph.authors"}</td>
+		<td width="50%">{translate key="monograph.title"}</td>
+		<td width="20%">{translate key="monograph.authors"}</td>
+		<td width="30%">{translate key="monograph.publicationFormats"}</td>
 	</tr>
 	<tr>
-		<td colspan="2" class="headseparator">&nbsp;</td>
+		<td colspan="3" class="headseparator">&nbsp;</td>
 	</tr>
 	
 	{iterate from=monographs item=monograph}
 
 	<tr valign="top">
 		<td>
-			<a href="{plugin_url path="exportMonograph"|to_array:$monograph->getId()}" class="action">{$monograph->getLocalizedTitle()|escape}</a>
+			{$monograph->getLocalizedTitle()|escape}
 		</td>
 		<td>{$monograph->getAuthorString()|escape}</td>
+		<td>{assign var="formats" value=$monograph->getAssignedPublicationFormats()}
+			{foreach from=$formats item=format name="formats"}
+					<a href="{plugin_url path="exportMonograph"|to_array:$format->getAssignedPublicationFormatId()}" class="action">{$format->getLocalizedTitle()|escape}{if !$smarty.foreach.formats.last}</a>, {/if}
+			{foreachelse}
+				{translate key="plugins.importexport.onix30.noFormats"}
+			{/foreach}
+		</td>
 	</tr>
 	<tr>
-		<td colspan="2" class="{if $monographs->eof()}end{/if}separator">&nbsp;</td>
+		<td colspan="3" class="{if $monographs->eof()}end{/if}separator">&nbsp;</td>
 	</tr>
 {/iterate}
 {if $monographs->wasEmpty()}
 	<tr>
-		<td colspan="2" class="nodata">{translate key="common.none"}</td>
+		<td colspan="3" class="nodata">{translate key="common.none"}</td>
 	</tr>
 	<tr>
-		<td colspan="2" class="endseparator">&nbsp;</td>
+		<td colspan="3" class="endseparator">&nbsp;</td>
 	</tr>
 {else}
 	<tr>
 		<td align="left">{page_info iterator=$monographs}</td>
+		<td></td>
 		<td align="right">{page_links anchor="monographs" name="monographs" iterator=$monographs}</td>
 	</tr>
 {/if}

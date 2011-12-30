@@ -54,17 +54,22 @@ class Onix30ExportPlugin extends ImportExportPlugin {
 		switch (array_shift($args)) {
 		case 'exportMonograph':
 
-			$monographId = array_shift($args);
-			$monographDao =& DAORegistry::getDAO('MonographDAO');
+			$assignedPublicationFormatId = (int) array_shift($args);
+			$assignedPublicationFormatDao =& DAORegistry::getDAO('AssignedPublicationFormatDAO');
+			$assignedPublicationFormat =& $assignedPublicationFormatDao->getById($assignedPublicationFormatId);
+			if ($assignedPublicationFormat != null) {
+				$monographId = $assignedPublicationFormat->getMonographId();
+				$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
 
-			/* check to make sure the requested Monograph is in this press */
-			$monographs =& $monographDao->getMonographsByPressId($press->getId());
-			while ($monograph =& $monographs->next()) {
-				if ($monograph->getId() == $monographId) {
-					$this->exportMonograph($press, $monograph);
-					break;
+				/* check to make sure the requested Monograph is in this press */
+				$monographs =& $publishedMonographDao->getByPressId($press->getId());
+				while ($monograph =& $monographs->next()) {
+					if ($monograph->getId() == $monographId) {
+						$this->exportMonograph($press, $monograph, $assignedPublicationFormat);
+						break;
+					}
+					unset($monograph);
 				}
-				unset($monograph);
 			}
 			break;
 
@@ -72,9 +77,9 @@ class Onix30ExportPlugin extends ImportExportPlugin {
 			// Display a list of monographs for export
 			$this->setBreadcrumbs();
 			AppLocale::requireComponents(LOCALE_COMPONENT_PKP_SUBMISSION);
-			$monographDao =& DAORegistry::getDAO('MonographDAO');
+			$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
 			$rangeInfo = Handler::getRangeInfo('monographs');
-			$monographs = $monographDao->getMonographsByPressId($press->getId())->toArray();
+			$monographs = $publishedMonographDao->getByPressId($press->getId())->toArray();
 			import('lib.pkp.classes.core.VirtualArrayIterator');
 			$iterator = new VirtualArrayIterator($monographs, count($monographs), $rangeInfo->getPage(), $rangeInfo->getCount());
 			$templateMgr->assign_by_ref('monographs', $iterator);
@@ -83,12 +88,12 @@ class Onix30ExportPlugin extends ImportExportPlugin {
 		}
 	}
 
-	function exportMonograph(&$press, &$monograph, $outputFile = null) {
+	function exportMonograph(&$press, &$monograph, $assignedPublicationFormat, $outputFile = null) {
 		$this->import('Onix30ExportDom');
 		$doc =& XMLCustomWriter::createDocument();
 		$onix30ExportDom = new Onix30ExportDom();
 
-		$monographNode =& $onix30ExportDom->generateMonographDom($doc, $press, $monograph);
+		$monographNode =& $onix30ExportDom->generateMonographDom($doc, $press, $monograph, $assignedPublicationFormat);
 		XMLCustomWriter::appendChild($doc, $monographNode);
 
 		if (!empty($outputFile)) {
@@ -98,7 +103,7 @@ class Onix30ExportPlugin extends ImportExportPlugin {
 		} else {
 			header('Content-Type: application/xml');
 			header('Cache-Control: private');
-			header('Content-Disposition: attachment; filename="onix30-' . $monograph->getId() . '.xml"');
+			header('Content-Disposition: attachment; filename="onix30-' . $monograph->getId() . '-' . $assignedPublicationFormat->getAssignedPublicationFormatId() . '.xml"');
 			XMLCustomWriter::printXML($doc);
 		}
 		return true;
@@ -114,7 +119,7 @@ class Onix30ExportPlugin extends ImportExportPlugin {
 		$monographId = array_shift($args);
 
 		$pressDao =& DAORegistry::getDAO('PressDAO');
-		$monographDao =& DAORegistry::getDAO('MonographDAO');
+		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
 		$userDao =& DAORegistry::getDAO('UserDAO');
 
 		$press =& $pressDao->getPressByPath($pressPath);
@@ -128,7 +133,7 @@ class Onix30ExportPlugin extends ImportExportPlugin {
 			return;
 		}
 
-		$monograph =& $monographDao->getById($monographId);
+		$monograph =& $publishedMonographDao->getById($monographId);
 
 		if ($monograph == null) {
 			echo __('plugins.importexport.onix30.cliError') . "\n";
