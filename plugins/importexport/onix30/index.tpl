@@ -16,7 +16,7 @@
 <br/>
 
 <div id="monographs">
-<table width="100%" class="listing" border="0">
+<table width="100%" class="listing">
 	<tr>
 		<td colspan="3" class="headseparator">&nbsp;</td>
 	</tr>

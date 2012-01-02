@@ -140,7 +140,7 @@ class PublicationFormatGridHandler extends GridHandler {
 	//
 	/**
 	 * @see GridHandler::getRowInstance()
-	 * @return PublicationFormatGridRow 
+	 * @return PublicationFormatGridRow
 	 */
 	function &getRowInstance() {
 		$monograph =& $this->getMonograph();
@@ -187,7 +187,7 @@ class PublicationFormatGridHandler extends GridHandler {
 	 */
 	function editFormat($args, &$request) {
 		// Identify the format to be updated
-		$assignedPublicationFormatId = $request->getUserVar('assignedPublicationFormatId');
+		$assignedPublicationFormatId = (int) $request->getUserVar('assignedPublicationFormatId');
 		$monograph =& $this->getMonograph();
 
 		$assignedPublicationFormatDao =& DAORegistry::getDAO('AssignedPublicationFormatDAO');

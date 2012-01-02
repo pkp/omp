@@ -118,7 +118,7 @@ class CatalogEntryCatalogMetadataForm extends Form {
 	}
 
 	/**
-	 * Get the Monograph
+	 * Get the stage id
 	 * @return int
 	 */
 	function getStageId() {

@@ -19,9 +19,6 @@ class CatalogEntryPublicationMetadataForm extends Form {
 	/** The monograph used to show metadata information **/
 	var $_monograph;
 
-	/** The published monograph associated with this monograph **/
-	var $_publishedMonograph;
-
 	/** The current stage id **/
 	var $_stageId;
 
@@ -38,20 +35,16 @@ class CatalogEntryPublicationMetadataForm extends Form {
 
 	/**
 	 * Constructor.
-	 * @param $monographId integer
+	 * @param $monograph Monograph
 	 * @param $assignedPublicationFormat integer
 	 * @param $formatId integer
 	 * @param $stageId integer
 	 * @param $formParams array
 	 */
-	function CatalogEntryPublicationMetadataForm($monographId, $assignedPublicationFormatId, $formatId, $stageId = null, $formParams = null) {
+	function CatalogEntryPublicationMetadataForm($monograph, $assignedPublicationFormatId, $formatId, $stageId = null, $formParams = null) {
 		parent::Form('catalog/form/publicationMetadataFormFields.tpl');
 
-		$monographDao =& DAORegistry::getDAO('MonographDAO');
-		$monograph = $monographDao->getById((int) $monographId);
-		if ($monograph) {
-			$this->_monograph = $monograph;
-		}
+		$this->_monograph = $monograph;
 
 		$this->_stageId = $stageId;
 		$this->_assignedPublicationFormatId = $assignedPublicationFormatId;
@@ -81,6 +74,7 @@ class CatalogEntryPublicationMetadataForm extends Form {
 		$codes = array(
 				'productCompositionCodes' => 'List2', // single item, multiple item, trade-only, etc
 				'measurementUnitCodes' => 'List50', // grams, inches, millimeters
+				'weightUnitCodes' => 'List95', // pounds, grams, ounces
 				'measurementTypeCodes' => 'List48', // height, width, depth
 				'productIdentifierTypeCodes' => 'List5', // GTIN-13, UPC, ISBN-10, etc
 				'currencyCodes' => 'List96', // GBP, USD, CAD, etc
@@ -95,10 +89,16 @@ class CatalogEntryPublicationMetadataForm extends Form {
 			$templateMgr->assign($templateVarName, $onixCodelistItemDao->getCodes($list));
 		}
 
-		// assign sensible defaults to some of these.  They will be overridden below by specific settings in the format
+		// assign sensible defaults to some of these.  They will be overridden below by
+		// specific settings in the format if the format's value is not empty
+
 		$templateMgr->assign('currencyCode', 'CAD');
 		$templateMgr->assign('taxTypeCode', '02'); // GST
 		$templateMgr->assign('countriesIncludedCode', array('CA'));
+		$templateMgr->assign('heightUnitCode', 'mm');
+		$templateMgr->assign('widthUnitCode', 'mm');
+		$templateMgr->assign('thicknessUnitCode', 'mm');
+		$templateMgr->assign('weightUnitCode', 'gr');
 
 		$assignedPublicationFormatId =& $this->getAssignedPublicationFormatId();
 		$assignedPublicationFormatDao =& DAORegistry::getDAO('AssignedPublicationFormatDAO');
@@ -106,13 +106,19 @@ class CatalogEntryPublicationMetadataForm extends Form {
 		if ($assignedPublicationFormat) {
 			// pre-select the existing values on the form.
 			foreach ($assignedPublicationFormatDao->getAdditionalFieldNames() as $fieldName) {
-				$templateMgr->assign($fieldName, $assignedPublicationFormat->getData($fieldName));
+				$data =& $assignedPublicationFormat->getData($fieldName);
+				if ($data != null && $data != '') {
+					$templateMgr->assign($fieldName, $assignedPublicationFormat->getData($fieldName));
+				}
 			}
 		}
 
 		return parent::fetch($request);
 	}
 
+	/**
+	 * Initialize form data for an instance of this form.
+	 */
 	function initData() {
 		AppLocale::requireComponents(
 				LOCALE_COMPONENT_APPLICATION_COMMON,
@@ -125,7 +131,25 @@ class CatalogEntryPublicationMetadataForm extends Form {
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
-		$vars = array('productIdentifier', 'productIdentifierTypeCode', 'productCompositionCode', 'price', 'priceTypeCode', 'taxRateCode', 'taxTypeCode', 'countriesIncludedCode');
+		$vars = array(
+					'fileSize',
+					'height',
+					'heightUnitCode',
+					'width',
+					'widthUnitCode',
+					'thickness',
+					'thicknessUnitCode',
+					'weight',
+					'weightUnitCode',
+					'productIdentifier',
+					'productIdentifierTypeCode',
+					'productCompositionCode',
+					'price',
+					'priceTypeCode',
+					'taxRateCode',
+					'taxTypeCode',
+					'countriesIncludedCode'
+				);
 		$this->readUserVars($vars);
 	}
 
@@ -161,14 +185,6 @@ class CatalogEntryPublicationMetadataForm extends Form {
 	 */
 	function getMonograph() {
 		return $this->_monograph;
-	}
-
-	/**
-	 * Get the PublishedMonograph
-	 * @return PublishedMonograph
-	 */
-	function getPublishedMonograph() {
-		return $this->_publishedMonograph;
 	}
 
 	/**

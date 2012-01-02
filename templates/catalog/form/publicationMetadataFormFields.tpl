@@ -28,35 +28,42 @@
 	{fbvFormArea id="productIdentifier"}
 		{fbvFormSection title="monograph.publicationFormat.productIdentifierType" for="productIdentifierTypeCode"}
 			{fbvElement type="text"  name="productIdentifier" id="productIdentifier" value=$productIdentifier maxlength="255" size=$fbvStyles.size.SMALL disabled=$readOnly inline="true"}
-			{fbvElement type="select" from=$productIdentifierTypeCodes selected=$productIdentifierTypeCode translate=0 id="productIdentifierTypeCode" inline="true"}
+			{fbvElement type="select" from=$productIdentifierTypeCodes selected=$productIdentifierTypeCode translate=false id="productIdentifierTypeCode" inline="true"}
 		{/fbvFormSection}
 	{/fbvFormArea}
 	
 	{fbvFormArea id="productComposition"}
 		{fbvFormSection title="monograph.publicationFormat.productComposition" for="productCompositionCode"}
-			{fbvElement type="select" from=$productCompositionCodes selected=$productCompositionCode translate=0 id="productCompositionCode" defaultValue="" defaultLabel="" inline=true}
+			{fbvElement type="select" from=$productCompositionCodes selected=$productCompositionCode translate=false id="productCompositionCode" defaultValue="" defaultLabel="" inline=true}
 		{/fbvFormSection}
 	{/fbvFormArea}
 
 	{fbvFormArea  title="monograph.publicationFormat.price" border="true"}
 		{fbvFormSection for="price" desc="monograph.publicationFormat.pricingInformation"}
 			{fbvElement type="text" name="price" id="price" value=$price maxlength="255" size=$fbvStyles.size.SMALL disabled=$readOnly inline="true"}
-			{fbvElement type="select" from=$currencyCodes selected=$currencyCode translate=0 id="currencyCode" inline="true"}
-			{fbvElement type="select" label="monograph.publicationFormat.priceType" from=$priceTypeCodes selected=$priceTypeCode translate=0 id="priceTypeCode" defaultValue="" defaultLabel=""}
-			{fbvElement type="select" label="monograph.publicationFormat.taxRate" from=$taxRateCodes selected=$taxRateCode translate=0 id="taxRateCode" defaultValue="" defaultLabel="" inline="true" size=$fbvStyles.size.MEDIUM}
-			{fbvElement type="select" label="monograph.publicationFormat.taxType" from=$taxTypeCodes selected=$taxTypeCode translate=0 id="taxTypeCode" defaultValue="" defaultLabel="" inline="true" size=$fbvStyles.size.SMALL}
+			{fbvElement type="select" from=$currencyCodes selected=$currencyCode translate=false id="currencyCode" inline="true"}
+			{fbvElement type="select" label="monograph.publicationFormat.priceType" from=$priceTypeCodes selected=$priceTypeCode translate=false id="priceTypeCode" defaultValue="" defaultLabel=""}
+			{fbvElement type="select" label="monograph.publicationFormat.taxRate" from=$taxRateCodes selected=$taxRateCode translate=false id="taxRateCode" defaultValue="" defaultLabel="" inline="true" size=$fbvStyles.size.MEDIUM}
+			{fbvElement type="select" label="monograph.publicationFormat.taxType" from=$taxTypeCodes selected=$taxTypeCode translate=false id="taxTypeCode" defaultValue="" defaultLabel="" inline="true" size=$fbvStyles.size.SMALL}
 		{/fbvFormSection}
 	{/fbvFormArea}
 
 	{fbvFormArea id="countriesIncluded"}
 		{fbvFormSection title="monograph.publicationFormat.productRegion" for="countriesIncludedCode"}
-			{fbvElement type="select" from=$countriesIncludedCodes selected=$countriesIncludedCode translate=0 id="countriesIncludedCode" name="countriesIncludedCode[]" multiple="multiple" inline=true}
+			{fbvElement type="select" from=$countriesIncludedCodes selected=$countriesIncludedCode translate=false id="countriesIncludedCode" name="countriesIncludedCode[]" multiple="multiple" inline=true}
 		{/fbvFormSection}
 	{/fbvFormArea}
 
-	{* publicationFormatId is sanitized in CatalogEntryPublicationMetadataForm *}
-	{include file="catalog/form/publicationFormat"|concat:$formatId:".tpl"}
-
+	{if $formatId eq "1"}
+		{include file="catalog/form/publicationFormat1.tpl"}
+	{elseif $formatId eq "2"}
+		{include file="catalog/form/publicationFormat2.tpl"}
+	{elseif $format eq "3"}
+		{include file="catalog/form/publicationFormat3.tpl"}
+	{else}
+		{* noop - space for more formats *}
+	{/if}
+		
 	{fbvFormButtons id="publicationMetadataFormSubmit" submitText="common.save"}
 </form>
 

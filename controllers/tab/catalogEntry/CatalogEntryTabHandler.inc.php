@@ -165,7 +165,7 @@ class CatalogEntryTabHandler extends Handler {
 	 */
 	function publicationMetadata($args, &$request) {
 
-		$assignedPublicationFormatId =& $request->getUserVar('assignedPublicationFormatId');
+		$assignedPublicationFormatId = (int) $request->getUserVar('assignedPublicationFormatId');
 		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
 		$assignedPublicationFormatDao =& DAORegistry::getDAO('AssignedPublicationFormatDAO');
 
@@ -178,7 +178,7 @@ class CatalogEntryTabHandler extends Handler {
 		while ($format =& $enabledPressFormats->next()) {
 			if ($format->getId() == $publicationFormat->getId()) { // belongs to current press (and is enabled)
 				import('controllers.tab.catalogEntry.form.CatalogEntryPublicationMetadataForm');
-				$catalogEntryPublicationMetadataForm = new CatalogEntryPublicationMetadataForm($monograph->getId(), $assignedPublicationFormatId, $format->getId(), $stageId, array('displayedInTab' => true, 'tabPos' => $this->getTabPosition()));
+				$catalogEntryPublicationMetadataForm = new CatalogEntryPublicationMetadataForm($monograph, $assignedPublicationFormatId, $format->getId(), $stageId, array('displayedInTab' => true, 'tabPos' => $this->getTabPosition()));
 				$catalogEntryPublicationMetadataForm->initData($args, $request);
 				$json = new JSONMessage(true, $catalogEntryPublicationMetadataForm->fetch($request));
 				return $json->getString();
