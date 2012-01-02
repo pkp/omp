@@ -352,6 +352,12 @@ class PublishedMonographDAO extends MonographDAO {
 	 * @param PublishedMonograph object
 	 */
 	function insertObject(&$publishedMonograph) {
+
+		$result =& $this->retrieve('SELECT MAX(seq) AS max_seq FROM published_monographs');
+		$row =& $result->GetRowAssoc(false);
+
+		$publishedMonograph->setSeq((int) $row['max_seq'] + 1);
+
 		$this->update(
 			sprintf('INSERT INTO published_monographs
 				(monograph_id, date_published, seq)
