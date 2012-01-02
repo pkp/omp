@@ -99,7 +99,7 @@
 		{/fbvFormSection}
 
 		{fbvFormSection title="common.country" for="country" size=$fbvStyles.size.SMALL}
-			{fbvElement type="select" from=$countries selected=$country translate=0 id="country" defaultValue="" defaultLabel=""}
+			{fbvElement type="select" from=$countries selected=$country translate=false id="country" defaultValue="" defaultLabel=""}
 		{/fbvFormSection}
 
 		{if count($availableLocales) > 1}

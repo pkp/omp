@@ -23,11 +23,11 @@
 
 	{fbvFormArea id="audienceInformation" title="monograph.audience" border="true"}
 		{fbvFormSection for="audience"}
-			{fbvElement label="monograph.audience" type="select" from=$audienceCodes selected=$audience translate=0 id="audience" defaultValue="" defaultLabel=""}
-			{fbvElement label="monograph.audience.rangeQualifier" type="select" from=$audienceRangeQualifiers selected=$audienceRangeQualifier translate=0 id="audienceRangeQualifier" defaultValue="" defaultLabel=""}
-			{fbvElement label="monograph.audience.rangeFrom" type="select" from=$audienceRanges selected=$audienceRangeFrom translate=0 id="audienceRangeFrom" defaultValue="" defaultLabel=""}
-			{fbvElement label="monograph.audience.rangeTo" type="select" from=$audienceRanges selected=$audienceRangeTo translate=0 id="audienceRangeTo" defaultValue="" defaultLabel=""}
-			{fbvElement label="monograph.audience.rangeExact" type="select" from=$audienceRanges selected=$audienceRangeExact translate=0 id="audienceRangeExact" defaultValue="" defaultLabel=""}
+			{fbvElement label="monograph.audience" type="select" from=$audienceCodes selected=$audience translate=false id="audience" defaultValue="" defaultLabel=""}
+			{fbvElement label="monograph.audience.rangeQualifier" type="select" from=$audienceRangeQualifiers selected=$audienceRangeQualifier translate=false id="audienceRangeQualifier" defaultValue="" defaultLabel=""}
+			{fbvElement label="monograph.audience.rangeFrom" type="select" from=$audienceRanges selected=$audienceRangeFrom translate=false id="audienceRangeFrom" defaultValue="" defaultLabel=""}
+			{fbvElement label="monograph.audience.rangeTo" type="select" from=$audienceRanges selected=$audienceRangeTo translate=false id="audienceRangeTo" defaultValue="" defaultLabel=""}
+			{fbvElement label="monograph.audience.rangeExact" type="select" from=$audienceRanges selected=$audienceRangeExact translate=false id="audienceRangeExact" defaultValue="" defaultLabel=""}
 		{/fbvFormSection}
 	{/fbvFormArea}
 
