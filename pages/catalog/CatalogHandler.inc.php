@@ -38,6 +38,19 @@ class CatalogHandler extends Handler {
 	 */
 	function index($args, &$request) {
 		$templateMgr =& TemplateManager::getManager();
+		$this->setupTemplate();
+		$press =& $request->getPress();
+
+		// Fetch the monographs to display
+		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
+		$publishedMonographs =& $publishedMonographDao->getByPressId($press->getId());
+		$templateMgr->assign('publishedMonographs', $publishedMonographs->toAssociativeArray());
+
+		// Expose the featured monograph IDs and associated params
+		$featureDao =& DAORegistry::getDAO('FeatureDAO');
+		$featuredMonographIds = $featureDao->getSequencesByAssoc(ASSOC_TYPE_PRESS, $press->getId());
+		$templateMgr->assign('featuredMonographIds', $featuredMonographIds);
+
 		$templateMgr->display('catalog/index.tpl');
 	}
 

@@ -11,6 +11,11 @@
 {include file="common/header.tpl"}
 {/strip}
 
+{* Include the carousel view of featured content *}
+{if $featuredMonographIds|@count}
+	{include file="catalog/carousel.tpl" publishedMonographs=$publishedMonographs featuredMonographIds=$featuredMonographIds}
+{/if}
+
 <!-- Implement catalog index view -->
 
 {include file="common/footer.tpl"}

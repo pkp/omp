@@ -27,7 +27,7 @@ class MonographCatalogHandler extends Handler {
 		parent::Handler();
 		$this->addRoleAssignment(
 			array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER, ROLE_ID_PRESS_ASSISTANT),
-			array('preview')
+			array('book')
 		);
 	}
 
@@ -56,13 +56,12 @@ class MonographCatalogHandler extends Handler {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function preview($args, &$request) {
+	function book($args, &$request) {
 		$templateMgr =& TemplateManager::getManager();
 		$publishedMonograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_PUBLISHED_MONOGRAPH);
 		$templateMgr->assign('publishedMonograph', $publishedMonograph);
 
-		$json = new JSONMessage(true, $templateMgr->fetch('catalog/preview.tpl'));
-		return $json->getString();
+		$templateMgr->fetch('catalog/book.tpl');
 	}
 }
 
