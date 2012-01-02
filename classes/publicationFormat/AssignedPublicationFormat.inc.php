@@ -98,13 +98,113 @@ class AssignedPublicationFormat extends PublicationFormat {
 		return $this->getData('monographId');
 	}
 
+	/**
+	 * Get the country codes for this publication format's distribution range.
+	 * @return array of strings
+	 */
+	function getDistributionCountries() {
+		return $this->getData('countriesIncludedCode');
+	}
+
+	/**
+	 * Get the countries for this publication format, space separated.
+	 * @return string
+	 */
 	function getDistributionCountriesAsString() {
-		$countries =& $this->getData('countriesIncludedCode');
+		$countries =& $this->getDistributionCountries();
 		if (is_array($countries)) {
-			return join(' ', $this->getData('countriesIncludedCode'));
+			return join(' ', $countries);
 		} else {
 			return $countries;
 		}
+	}
+
+	/**
+	 * Get the height of the monograph format
+	 * @return string
+	 */
+	function getHeight() {
+		return $this->getData('height');
+	}
+
+	/**
+	 * Get the height unit (ONIX value) of the monograph format
+	 * @return string
+	 */
+	function getHeightUnit() {
+		return $this->getData('heightUnitCode');
+	}
+
+	/**
+	 * Get the width of the monograph format
+	 * @return string
+	 */
+	function getWidth() {
+		return $this->getData('width');
+	}
+
+	/**
+	 * Get the width unit (ONIX value) of the monograph format
+	 * @return string
+	 */
+	function getWidthUnit() {
+		return $this->getData('widthUnitCode');
+	}
+
+	/**
+	 * Get the thickness of the monograph format
+	 * @return string
+	 */
+	function getThickness() {
+		return $this->getData('thickness');
+	}
+
+	/**
+	 * Get the thickness unit (ONIX value) of the monograph format
+	 * @return string
+	 */
+	function getThicknessUnit() {
+		return $this->getData('thicknessUnitCode');
+	}
+
+	/**
+	 * Get the weight of the monograph format
+	 * @return string
+	 */
+	function getWeight() {
+		return $this->getData('weight');
+	}
+
+	/**
+	 * Get the weight unit (ONIX value) of the monograph format
+	 * @return string
+	 */
+	function getWeightUnit() {
+		return $this->getData('weightUnitCode');
+	}
+
+	/**
+	 * Get the file size, if applicable, of the monograph format
+	 * @return string
+	 */
+	function getFileSize() {
+		return $this->getData('fileSize');
+	}
+
+	/**
+	 * Get the Identifier (ISBN value, etc) for this format
+	 * @return string
+	 */
+	function getProductIdentifier() {
+		return $this->getData('productIdentifier');
+	}
+
+	/**
+	 * Get the ONIX code for the identifier used for this format
+	 * @return string
+	 */
+	function getProductIdentifierTypeCode() {
+		return $this->getData('productIdentifierTypeCode');
 	}
 }
 ?>

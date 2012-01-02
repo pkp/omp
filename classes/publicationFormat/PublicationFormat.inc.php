@@ -108,6 +108,22 @@ class PublicationFormat extends DataObject {
 	function getLocalizedDesignation() {
 		return $this->getLocalizedData('designation');
 	}
+
+	/**
+	 * Sets the entry key for the publication format
+	 * @param string $entryKey
+	 */
+	function setEntryKey($entryKey) {
+		$this->setData('entryKey', $entryKey);
+	}
+
+	/**
+	 * Get the entry key for this publication format
+	 * @return string
+	 */
+	function getEntryKey() {
+		return $this->getData('entryKey');
+	}
 }
 
 ?>

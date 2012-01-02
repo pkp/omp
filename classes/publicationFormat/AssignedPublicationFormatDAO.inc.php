@@ -160,12 +160,11 @@ class AssignedPublicationFormatDAO extends PublicationFormatDAO {
 	 * @param $assignedPublicationFormatId int
 	 */
 	function deleteById($assignedPublicationFormatId) {
-		$params = array((int) $assignedPublicationFormatId);
 
 		return $this->update(
 			'DELETE FROM published_monograph_publication_formats
 			WHERE assigned_publication_format_id = ?',
-			$params
+			array((int) $assignedPublicationFormatId)
 		);
 	}
 
@@ -182,7 +181,25 @@ class AssignedPublicationFormatDAO extends PublicationFormatDAO {
 	 * @return array
 	 */
 	function getAdditionalFieldNames() {
-		return array('productIdentifier', 'productIdentifierTypeCode', 'productCompositionCode', 'price', 'priceTypeCode', 'taxRateCode', 'taxTypeCode', 'countriesIncludedCode');
+		return array(
+					'fileSize', // no companion unit code, template asks for Mb.
+					'height',
+					'heightUnitCode',
+					'width',
+					'widthUnitCode',
+					'thickness',
+					'thicknessUnitCode',
+					'weight',
+					'weightUnitCode',
+					'productIdentifier',
+					'productIdentifierTypeCode',
+					'productCompositionCode',
+					'price',
+					'priceTypeCode',
+					'taxRateCode',
+					'taxTypeCode',
+					'countriesIncludedCode'
+				);
 	}
 }
 ?>

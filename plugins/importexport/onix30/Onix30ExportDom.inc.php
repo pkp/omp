@@ -62,8 +62,8 @@ class Onix30ExportDom {
 
 		$productIdentifierNode =& XMLCustomWriter::createElement($doc, 'ProductIdentifier');
 		XMLCustomWriter::appendChild($productNode, $productIdentifierNode);
-		XMLCustomWriter::createChildWithText($doc, $productIdentifierNode, 'ProductIDType', '03'); // GTIN-13 (ISBN-13 as GTIN)
-		XMLCustomWriter::createChildWithText($doc, $productIdentifierNode, 'IDValue', '9780007232833'); // value
+		XMLCustomWriter::createChildWithText($doc, $productIdentifierNode, 'ProductIDType', $assignedPublicationFormat->getProductIdentifierTypeCode()); // GTIN-13 (ISBN-13 as GTIN)
+		XMLCustomWriter::createChildWithText($doc, $productIdentifierNode, 'IDValue', $assignedPublicationFormat->getProductIdentifier());
 
 		/* --- Descriptive Detail --- */
 
@@ -72,19 +72,44 @@ class Onix30ExportDom {
 		XMLCustomWriter::createChildWithText($doc, $descDetailNode, 'ProductComposition', '00'); // 00 is single item retail product
 		XMLCustomWriter::createChildWithText($doc, $descDetailNode, 'ProductForm', 'BC'); // BC is paperback/softback book
 
-		/* --- Physical Book Measures --- */
-
-		$dimensionComponents = array('01', '02', '03'); // 01 -> height, 02 -> width, 03 -> thickness
-
-		foreach ($dimensionComponents as $component) {
+		/* --- Physical Book Measurements --- */
+		if ($assignedPublicationFormat->getEntryKey() != 'EBOOK') {
+			// '01' => 'Height', '02' => 'Width', '03' => 'Thickness', '08' => 'Weight'
 			$measureNode =& XMLCustomWriter::createElement($doc, 'Measure');
 			XMLCustomWriter::appendChild($descDetailNode, $measureNode);
-			XMLCustomWriter::createChildWithText($doc, $measureNode, 'MeasureType', $component);
-			XMLCustomWriter::createChildWithText($doc, $measureNode, 'Measurement', '100'); // getMeasurement() ?
-			XMLCustomWriter::createChildWithText($doc, $measureNode, 'MeasureType', 'mm'); // getMeasurementUnit() ?
+			XMLCustomWriter::createChildWithText($doc, $measureNode, 'MeasureType', '01');
+			XMLCustomWriter::createChildWithText($doc, $measureNode, 'Measurement', $assignedPublicationFormat->getHeight());
+			XMLCustomWriter::createChildWithText($doc, $measureNode, 'MeasureType', $assignedPublicationFormat->getHeightUnit());
 			unset($measureNode);
-		}
 
+			$measureNode =& XMLCustomWriter::createElement($doc, 'Measure');
+			XMLCustomWriter::appendChild($descDetailNode, $measureNode);
+			XMLCustomWriter::createChildWithText($doc, $measureNode, 'MeasureType', '02');
+			XMLCustomWriter::createChildWithText($doc, $measureNode, 'Measurement', $assignedPublicationFormat->getWidth());
+			XMLCustomWriter::createChildWithText($doc, $measureNode, 'MeasureType', $assignedPublicationFormat->getWidthUnit());
+			unset($measureNode);
+
+			$measureNode =& XMLCustomWriter::createElement($doc, 'Measure');
+			XMLCustomWriter::appendChild($descDetailNode, $measureNode);
+			XMLCustomWriter::createChildWithText($doc, $measureNode, 'MeasureType', '03');
+			XMLCustomWriter::createChildWithText($doc, $measureNode, 'Measurement', $assignedPublicationFormat->getThickness());
+			XMLCustomWriter::createChildWithText($doc, $measureNode, 'MeasureType', $assignedPublicationFormat->getThicknessUnit());
+			unset($measureNode);
+
+			$measureNode =& XMLCustomWriter::createElement($doc, 'Measure');
+			XMLCustomWriter::appendChild($descDetailNode, $measureNode);
+			XMLCustomWriter::createChildWithText($doc, $measureNode, 'MeasureType', '08');
+			XMLCustomWriter::createChildWithText($doc, $measureNode, 'Measurement', $assignedPublicationFormat->getWeight());
+			XMLCustomWriter::createChildWithText($doc, $measureNode, 'MeasureType', $assignedPublicationFormat->getWeightUnit());
+			unset($measureNode);
+		} else { // include file size Extent
+			$extentNode =& XMLCustomWriter::createElement($doc, 'Extent');
+			XMLCustomWriter::appendChild($descDetailNode, $extentNode);
+			XMLCustomWriter::createChildWithText($doc, $extentNode, 'ExtentType', '08');
+			XMLCustomWriter::createChildWithText($doc, $extentNode, 'ExtentValue', $assignedPublicationFormat->getFileSize());
+			XMLCustomWriter::createChildWithText($doc, $extentNode, 'ExtentUnit', '05');
+			unset($extentNode);
+		}
 		/* --- Collection information, first for series and then for product --- */
 
 		$seriesCollectionNode =& XMLCustomWriter::createElement($doc, 'Collection');
@@ -202,7 +227,6 @@ class Onix30ExportDom {
 		XMLCustomWriter::appendChild($productSupplyNode, $marketNode);
 		$marketTerritoryNode =& XMLCustomWriter::createElement($doc, 'Territory');
 		XMLCustomWriter::appendChild($marketNode, $marketTerritoryNode);
-		error_log(var_export($assignedPublicationFormat, TRUE));
 		XMLCustomWriter::createChildWithText($doc, $marketTerritoryNode, 'CountriesIncluded', $assignedPublicationFormat->getDistributionCountriesAsString());
 
 		$marketPubDetailNode =& XMLCustomWriter::createElement($doc, 'MarketPublishingDetail');

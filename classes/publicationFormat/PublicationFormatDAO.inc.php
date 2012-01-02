@@ -104,6 +104,7 @@ class PublicationFormatDAO extends DefaultSettingDAO {
 		$publicationFormat->setPressId($row['press_id']);
 		$publicationFormat->setId($row['publication_format_id']);
 		$publicationFormat->setEnabled($row['enabled']);
+		$publicationFormat->setEntryKey($row['entry_key']);
 
 		$this->getDataObjectSettings('publication_format_settings', 'publication_format_id', $row['publication_format_id'], $publicationFormat);
 

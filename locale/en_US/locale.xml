@@ -38,6 +38,14 @@
 	<message key="monograph.publicationFormat.productIdentifierType">Product Identification</message>
 	<message key="monograph.publicationFormat.price">Price</message>
 	<message key="monograph.publicationFormat.priceType">Price Type</message>
+	<!--  Dimension keys  -->
+	<message key="monograph.publicationFormat.productDimensions">Physical Dimensions</message>
+	<message key="monograph.publicationFormat.productFileSize">File Size in Mbytes</message>
+	<message key="monograph.publicationFormat.productHeight">Height</message>
+	<message key="monograph.publicationFormat.productThickness">Thickness</message>
+	<message key="monograph.publicationFormat.productWeight">Weight</message>
+	<message key="monograph.publicationFormat.productWidth">Width</message>
+
 	<message key="monograph.publicationFormat.productRegion">Product Distribution Region</message>
 	<message key="monograph.publicationFormat.taxRate">Taxation Rate</message>
 	<message key="monograph.publicationFormat.taxType">Taxation Type</message>
