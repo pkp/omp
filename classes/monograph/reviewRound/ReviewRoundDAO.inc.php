@@ -234,7 +234,7 @@ class ReviewRoundDAO extends DAO {
 	 * @param $stageId int
 	 * @return ReviewRound
 	 */
-	function getLastReviewRoundByMonographId($monographId, $stageId = null) {
+	function &getLastReviewRoundByMonographId($monographId, $stageId = null) {
 		$params = array((int)$monographId);
 		if ($stageId) $params[] = (int) $stageId;
 		$result =& $this->retrieve('SELECT * FROM review_rounds
@@ -245,10 +245,9 @@ class ReviewRoundDAO extends DAO {
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
-			$returner = $this->_fromRow($result->GetRowAssoc(false));
+			$returner =& $this->_fromRow($result->GetRowAssoc(false));
 		}
 		$result->Close();
-
 		return $returner;
 	}
 
