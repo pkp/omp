@@ -97,5 +97,14 @@ class AssignedPublicationFormat extends PublicationFormat {
 	function getMonographId() {
 		return $this->getData('monographId');
 	}
+
+	function getDistributionCountriesAsString() {
+		$countries =& $this->getData('countriesIncludedCode');
+		if (is_array($countries)) {
+			return join(' ', $this->getData('countriesIncludedCode'));
+		} else {
+			return $countries;
+		}
+	}
 }
 ?>

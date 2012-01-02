@@ -33,8 +33,8 @@
 	{/fbvFormArea}
 	
 	{fbvFormArea id="productComposition"}
-		{fbvFormSection title="monograph.productComposition" for="productCompositionCode"}
-			{fbvElement type="select" from=$productCompositionCodes selected=$productCompositionCode translate=0 id="productCompositionCode" defaultValue="" defaultLabel=""}
+		{fbvFormSection title="monograph.publicationFormat.productComposition" for="productCompositionCode"}
+			{fbvElement type="select" from=$productCompositionCodes selected=$productCompositionCode translate=0 id="productCompositionCode" defaultValue="" defaultLabel="" inline=true}
 		{/fbvFormSection}
 	{/fbvFormArea}
 
@@ -45,6 +45,12 @@
 			{fbvElement type="select" label="monograph.publicationFormat.priceType" from=$priceTypeCodes selected=$priceTypeCode translate=0 id="priceTypeCode" defaultValue="" defaultLabel=""}
 			{fbvElement type="select" label="monograph.publicationFormat.taxRate" from=$taxRateCodes selected=$taxRateCode translate=0 id="taxRateCode" defaultValue="" defaultLabel="" inline="true" size=$fbvStyles.size.MEDIUM}
 			{fbvElement type="select" label="monograph.publicationFormat.taxType" from=$taxTypeCodes selected=$taxTypeCode translate=0 id="taxTypeCode" defaultValue="" defaultLabel="" inline="true" size=$fbvStyles.size.SMALL}
+		{/fbvFormSection}
+	{/fbvFormArea}
+
+	{fbvFormArea id="countriesIncluded"}
+		{fbvFormSection title="monograph.publicationFormat.productRegion" for="countriesIncludedCode"}
+			{fbvElement type="select" from=$countriesIncludedCodes selected=$countriesIncludedCode translate=0 id="countriesIncludedCode" name="countriesIncludedCode[]" multiple="multiple" inline=true}
 		{/fbvFormSection}
 	{/fbvFormArea}
 

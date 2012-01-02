@@ -88,6 +88,7 @@ class CatalogEntryPublicationMetadataForm extends Form {
 				'extentTypeCodes' => 'List23', // word count, FM page count, BM page count, main page count, etc
 				'taxRateCodes' => 'List62', // higher rate, standard rate, zero rate
 				'taxTypeCodes' => 'List171', // VAT, GST
+				'countriesIncludedCodes' => 'List91', // country region codes
 				);
 
 		foreach ($codes as $templateVarName => $list) {
@@ -97,6 +98,7 @@ class CatalogEntryPublicationMetadataForm extends Form {
 		// assign sensible defaults to some of these.  They will be overridden below by specific settings in the format
 		$templateMgr->assign('currencyCode', 'CAD');
 		$templateMgr->assign('taxTypeCode', '02'); // GST
+		$templateMgr->assign('countriesIncludedCode', array('CA'));
 
 		$assignedPublicationFormatId =& $this->getAssignedPublicationFormatId();
 		$assignedPublicationFormatDao =& DAORegistry::getDAO('AssignedPublicationFormatDAO');
@@ -123,7 +125,7 @@ class CatalogEntryPublicationMetadataForm extends Form {
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
-		$vars = array('productIdentifier', 'productIdentifierTypeCode', 'productCompositionCode', 'price', 'priceTypeCode', 'taxRateCode', 'taxTypeCode');
+		$vars = array('productIdentifier', 'productIdentifierTypeCode', 'productCompositionCode', 'price', 'priceTypeCode', 'taxRateCode', 'taxTypeCode', 'countriesIncludedCode');
 		$this->readUserVars($vars);
 	}
 

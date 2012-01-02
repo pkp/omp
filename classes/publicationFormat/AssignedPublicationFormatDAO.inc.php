@@ -182,7 +182,7 @@ class AssignedPublicationFormatDAO extends PublicationFormatDAO {
 	 * @return array
 	 */
 	function getAdditionalFieldNames() {
-		return array('productIdentifier', 'productIdentifierTypeCode', 'productCompositionCode', 'price', 'priceTypeCode', 'taxRateCode', 'taxTypeCode');
+		return array('productIdentifier', 'productIdentifierTypeCode', 'productCompositionCode', 'price', 'priceTypeCode', 'taxRateCode', 'taxTypeCode', 'countriesIncludedCode');
 	}
 }
 ?>

@@ -202,7 +202,8 @@ class Onix30ExportDom {
 		XMLCustomWriter::appendChild($productSupplyNode, $marketNode);
 		$marketTerritoryNode =& XMLCustomWriter::createElement($doc, 'Territory');
 		XMLCustomWriter::appendChild($marketNode, $marketTerritoryNode);
-		XMLCustomWriter::createChildWithText($doc, $marketTerritoryNode, 'CountriesIncluded', 'CA US IE GB'); // from our Countries list?
+		error_log(var_export($assignedPublicationFormat, TRUE));
+		XMLCustomWriter::createChildWithText($doc, $marketTerritoryNode, 'CountriesIncluded', $assignedPublicationFormat->getDistributionCountriesAsString());
 
 		$marketPubDetailNode =& XMLCustomWriter::createElement($doc, 'MarketPublishingDetail');
 		XMLCustomWriter::appendChild($productSupplyNode, $marketPubDetailNode);

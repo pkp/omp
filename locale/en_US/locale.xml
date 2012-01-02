@@ -34,10 +34,11 @@
 	<message key="monograph.type">Type of Submission</message>
 
 	<!--  Metadata field description keys -->
+	<message key="monograph.publicationFormat.productComposition">Product Composition</message>
 	<message key="monograph.publicationFormat.productIdentifierType">Product Identification</message>
-	<message key="monograph.productComposition">Product Composition</message>
 	<message key="monograph.publicationFormat.price">Price</message>
 	<message key="monograph.publicationFormat.priceType">Price Type</message>
+	<message key="monograph.publicationFormat.productRegion">Product Distribution Region</message>
 	<message key="monograph.publicationFormat.taxRate">Taxation Rate</message>
 	<message key="monograph.publicationFormat.taxType">Taxation Type</message>
 
