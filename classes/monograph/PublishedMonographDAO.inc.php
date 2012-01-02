@@ -338,7 +338,6 @@ class PublishedMonographDAO extends MonographDAO {
 		// Add the additional PublishedMonograph data
 		$publishedMonograph->setPubId($row['pub_id']); // Deprecated
 		$publishedMonograph->setDatePublished($this->datetimeFromDB($row['date_published']));
-		$publishedMonograph->setSeq($row['seq']);
 
 		$this->getDataObjectSettings('published_monograph_settings', 'monograph_id', $row['monograph_id'], $publishedMonograph);
 
@@ -353,20 +352,14 @@ class PublishedMonographDAO extends MonographDAO {
 	 */
 	function insertObject(&$publishedMonograph) {
 
-		$result =& $this->retrieve('SELECT MAX(seq) AS max_seq FROM published_monographs');
-		$row =& $result->GetRowAssoc(false);
-
-		$publishedMonograph->setSeq((int) $row['max_seq'] + 1);
-
 		$this->update(
 			sprintf('INSERT INTO published_monographs
-				(monograph_id, date_published, seq)
+				(monograph_id, date_published)
 				VALUES
-				(?, %s, ?)',
+				(?, %s)',
 				$this->datetimeToDB($publishedMonograph->getDatePublished())),
 			array(
-				(int) $publishedMonograph->getId(),
-				(int) $publishedMonograph->getSeq()
+				(int) $publishedMonograph->getId()
 			)
 		);
 	}
@@ -389,12 +382,10 @@ class PublishedMonographDAO extends MonographDAO {
 	function updateObject($publishedMonograph) {
 		$this->update(
 			sprintf('UPDATE	published_monographs
-				SET	date_published = %s,
-					seq = ?
+				SET	date_published = %s
 				WHERE	monograph_id = ?',
 				$this->datetimeToDB($publishedMonograph->getDatePublished())),
 			array(
-				(int) $publishedMonograph->getSeq(),
 				(int) $publishedMonograph->getId()
 			)
 		);

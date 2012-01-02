@@ -63,22 +63,6 @@ class PublishedMonograph extends Monograph {
 	}
 
 	/**
-	 * Get sequence of monograph in table of contents.
-	 * @return float
-	 */
-	function getSeq() {
-		return $this->getData('seq');
-	}
-
-	/**
-	 * Set sequence of monograph in table of contents.
-	 * @param $sequence float
-	 */
-	function setSeq($seq) {
-		return $this->setData('seq', $seq);
-	}
-
-	/**
 	 * Get views of the published monograph.
 	 * @return int
 	 */
