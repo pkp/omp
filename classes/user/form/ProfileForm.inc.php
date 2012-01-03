@@ -35,6 +35,7 @@ class ProfileForm extends Form {
 		$this->addCheck(new FormValidatorUrl($this, 'userUrl', 'optional', 'user.profile.form.urlInvalid'));
 		$this->addCheck(new FormValidatorEmail($this, 'email', 'required', 'user.profile.form.emailRequired'));
 		$this->addCheck(new FormValidatorCustom($this, 'email', 'required', 'user.register.form.emailExists', array(DAORegistry::getDAO('UserDAO'), 'userExistsByEmail'), array($user->getId(), true), true));
+		$this->addCheck(new FormValidator($this, 'country', 'required', 'user.profile.form.countryRequired'));
 		$this->addCheck(new FormValidatorPost($this));
 	}
 
@@ -183,6 +184,7 @@ class ProfileForm extends Form {
 			'middleName' => $user->getMiddleName(),
 			'initials' => $user->getInitials(),
 			'lastName' => $user->getLastName(),
+			'suffix' => $user->getSuffix(),
 			'gender' => $user->getGender(),
 			'affiliation' => $user->getAffiliation(null), // Localized
 			'signature' => $user->getSignature(null), // Localized
@@ -208,6 +210,7 @@ class ProfileForm extends Form {
 			'firstName',
 			'middleName',
 			'lastName',
+			'suffix',
 			'gender',
 			'initials',
 			'affiliation',
@@ -247,6 +250,7 @@ class ProfileForm extends Form {
 		$user->setFirstName($this->getData('firstName'));
 		$user->setMiddleName($this->getData('middleName'));
 		$user->setLastName($this->getData('lastName'));
+		$user->setSuffix($this->getData('suffix'));
 		$user->setGender($this->getData('gender'));
 		$user->setInitials($this->getData('initials'));
 		$user->setAffiliation($this->getData('affiliation'), null); // Localized

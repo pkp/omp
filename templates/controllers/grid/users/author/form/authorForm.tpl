@@ -22,18 +22,19 @@
 
 	{fbvFormArea id="profile"}
 		{fbvFormSection title="user.name"}
-			{fbvElement type="text" label="user.firstName" id="firstName" value=$firstName|escape maxlength="40" inline=true size=$fbvStyles.size.SMALL}
+			{fbvElement type="text" label="user.firstName" id="firstName" value=$firstName|escape maxlength="40" required=true inline=true size=$fbvStyles.size.SMALL}
 			{fbvElement type="text" label="user.middleName" id="middleName" value=$middleName|escape maxlength="40" inline=true size=$fbvStyles.size.SMALL}
-			{fbvElement type="text" label="user.lastName" id="lastName" value=$lastName|escape maxlength="40" inline=true size=$fbvStyles.size.SMALL}
+			{fbvElement type="text" label="user.lastName" id="lastName" value=$lastName|escape maxlength="40" required=true inline=true size=$fbvStyles.size.SMALL}
+			{fbvElement type="text" label="user.suffix" id="suffix" value=$suffix|escape maxlength="40" inline=true size=$fbvStyles.size.SMALL}
 		{/fbvFormSection}
 		<div class="pkp_helpers_clear"></div>
 		{fbvFormSection title="about.contact"}
-			{fbvElement type="text" label="user.email" id="email" value=$email|escape maxlength="90" inline=true size=$fbvStyles.size.MEDIUM}
+			{fbvElement type="text" label="user.email" id="email" value=$email|escape maxlength="90" required=true inline=true size=$fbvStyles.size.MEDIUM}
 			{fbvElement type="text" label="user.url" id="url" value=$url|escape maxlength="90" inline=true size=$fbvStyles.size.MEDIUM}
 		{/fbvFormSection}
 		{fbvFormSection title="common.other"}
 			{fbvElement type="text" label="user.affiliation" id="affiliation" inline=true value=$affiliation|escape maxlength="40" size=$fbvStyles.size.MEDIUM}
-			{fbvElement type="select" label="common.country" id="country" inline=true from=$countries selected=$country translate=false size=$fbvStyles.size.MEDIUM defaultValue="" defaultLabel=""}
+			{fbvElement type="select" label="common.country" id="country" inline=true from=$countries selected=$country required=true translate=false size=$fbvStyles.size.MEDIUM defaultValue="" defaultLabel=""}
 		{/fbvFormSection}
 		{fbvFormSection}
 			{fbvElement type="textArea" label="user.biography" id="biography" value=$biography|escape size=$fbvStyles.size.Large}

@@ -121,14 +121,15 @@ class AuthorDAO extends PKPAuthorDAO {
 
 		$this->update(
 			'INSERT INTO authors
-				(submission_id, first_name, middle_name, last_name, country, email, url, user_group_id, primary_contact, seq)
+				(submission_id, first_name, middle_name, last_name, suffix, country, email, url, user_group_id, primary_contact, seq)
 				VALUES
-				(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+				(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
 			array(
 				$author->getSubmissionId(),
 				$author->getFirstName(),
 				$author->getMiddleName() . '', // make non-null
 				$author->getLastName(),
+				$author->getSuffix() . '',
 				$author->getCountry(),
 				$author->getEmail(),
 				$author->getUrl(),
@@ -158,6 +159,7 @@ class AuthorDAO extends PKPAuthorDAO {
 			SET	first_name = ?,
 				middle_name = ?,
 				last_name = ?,
+				suffix = ?,
 				country = ?,
 				email = ?,
 				url = ?,
@@ -169,6 +171,7 @@ class AuthorDAO extends PKPAuthorDAO {
 				$author->getFirstName(),
 				$author->getMiddleName() . '', // make non-null
 				$author->getLastName(),
+				$author->getSuffix() . '',
 				$author->getCountry(),
 				$author->getEmail(),
 				$author->getUrl(),

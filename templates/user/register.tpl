@@ -54,9 +54,10 @@
 
 	{if !$existingUser}
 		{fbvFormSection title="common.name"}
-			{fbvElement type="text" label="user.firstName" id="firstName" required=true value=$firstName required=true size=$fbvStyles.size.SMALL inline=true}
+			{fbvElement type="text" label="user.firstName" id="firstName" required=true value=$firstName size=$fbvStyles.size.SMALL inline=true}
 			{fbvElement type="text" label="user.middleName" id="middleName" value=$middleName size=$fbvStyles.size.SMALL inline=true}
-			{fbvElement type="text" label="user.lastName" id="lastName" required=true value=$lastName required=true size=$fbvStyles.size.SMALL inline=true}
+			{fbvElement type="text" label="user.lastName" id="lastName" required=true value=$lastName size=$fbvStyles.size.SMALL inline=true}
+			{fbvElement type="text" label="user.suffix" id="suffix" value=$suffix  size=$fbvStyles.size.SMALL inline="true"}
 			{fbvElement type="text" label="user.initials" id="initials" value=$initials size=$fbvStyles.size.SMALL inline=true}
 		{/fbvFormSection}
 
@@ -98,7 +99,7 @@
 			{fbvElement type="textarea" id="signature" name="signature" multilingual=true value=$signature|escape size=$fbvStyles.size.MEDIUM}
 		{/fbvFormSection}
 
-		{fbvFormSection title="common.country" for="country" size=$fbvStyles.size.SMALL}
+		{fbvFormSection title="common.country" for="country" size=$fbvStyles.size.SMALL required="true"}
 			{fbvElement type="select" from=$countries selected=$country translate=false id="country" defaultValue="" defaultLabel=""}
 		{/fbvFormSection}
 

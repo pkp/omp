@@ -70,6 +70,7 @@ class RegistrationForm extends Form {
 				$this->addCheck(new FormValidatorEmail($this, 'email', 'required', 'user.profile.form.emailRequired'));
 				$this->addCheck(new FormValidatorCustom($this, 'email', 'required', 'user.register.form.emailsDoNotMatch', create_function('$email,$form', 'return $email == $form->getData(\'confirmEmail\');'), array(&$this)));
 				$this->addCheck(new FormValidatorCustom($this, 'email', 'required', 'user.register.form.emailExists', array(DAORegistry::getDAO('UserDAO'), 'userExistsByEmail'), array(), true));
+				$this->addCheck(new FormValidator($this, 'country', 'required', 'user.profile.form.countryRequired'));
 				if ($this->captchaEnabled) {
 					$this->addCheck(new FormValidatorCaptcha($this, 'captcha', 'captchaId', 'common.captchaField.badCaptcha'));
 				}
@@ -159,13 +160,34 @@ class RegistrationForm extends Form {
 	 */
 	function readInputData() {
 		$userVars = array(
-			'username', 'password', 'password2',
-			'salutation', 'firstName', 'middleName', 'lastName',
-			'gender', 'initials', 'country',
-			'affiliation', 'email', 'confirmEmail', 'userUrl', 'phone', 'fax', 'signature',
-			'reviewerGroup', 'authorGroup',
-			'mailingAddress', 'biography', 'interests', 'interestsKeywords', 'userLocales',
-			'registerAsReviewer', 'existingUser', 'sendPassword'
+			'username',
+			'password',
+			'password2',
+			'salutation',
+			'firstName',
+			'middleName',
+			'lastName',
+			'suffix',
+			'gender',
+			'initials',
+			'country',
+			'affiliation',
+			'email',
+			'confirmEmail',
+			'userUrl',
+			'phone',
+			'fax',
+			'signature',
+			'reviewerGroup',
+			'authorGroup',
+			'mailingAddress',
+			'biography',
+			'interests',
+			'interestsKeywords',
+			'userLocales',
+			'registerAsReviewer',
+			'existingUser',
+			'sendPassword'
 		);
 		if ($this->captchaEnabled) {
 			$userVars[] = 'captchaId';
@@ -225,6 +247,7 @@ class RegistrationForm extends Form {
 			$user->setMiddleName($this->getData('middleName'));
 			$user->setInitials($this->getData('initials'));
 			$user->setLastName($this->getData('lastName'));
+			$user->setSuffix($this->getData('suffix'));
 			$user->setGender($this->getData('gender'));
 			$user->setAffiliation($this->getData('affiliation'), null); // Localized
 			$user->setSignature($this->getData('signature'), null); // Localized
