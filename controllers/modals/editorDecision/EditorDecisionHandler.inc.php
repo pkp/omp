@@ -397,6 +397,14 @@ class EditorDecisionHandler extends Handler {
 			$redirectOp = WORKFLOW_STAGE_PATH_PRODUCTION;
 		}
 
+		// Make sure user has access to the workflow stage.
+		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+		$redirectWorkflowStage = $userGroupDao->getIdFromPath($redirectOp);
+		$userAccessibleWorkflowStages = $this->getAuthorizedContextObject(ASSOC_TYPE_ACCESSIBLE_WORKFLOW_STAGES);
+		if (!array_key_exists($redirectWorkflowStage, $userAccessibleWorkflowStages)) {
+			$redirectOp = null;
+		}
+
 		return $this->_saveEditorDecision($args, $request, 'PromoteForm', $redirectOp);
 	}
 }
