@@ -222,8 +222,7 @@ class ReviewerSelectGridHandler extends GridHandler {
 	function _getFilterData() {
 		$filterData = array();
 
-		$interestDao =& DAORegistry::getDAO('InterestDAO');
-		$filterData['interestSearchKeywords'] = $interestDao->getAllUniqueInterests();
+		$filterData['interestSearchKeywords'] = null;
 
 		$seriesEditorSubmissionDAO =& DAORegistry::getDAO('SeriesEditorSubmissionDAO');
 		$reviewerValues = $seriesEditorSubmissionDAO->getAnonymousReviewerStatistics();

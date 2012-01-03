@@ -559,14 +559,18 @@ class SeriesEditorSubmissionDAO extends MonographDAO {
 		// Get the IDs of the interests searched for
 		$allInterestIds = array();
 		if(isset($interests)) {
-			foreach ($interests as $key => $interest) {
-				$interestIds = $interestDao->getUserIdsByInterest($interest);
+			$key = 0;
+			while($interest =& $interests->next()) {
+				$keyword = $interest->getInterest();
+				$interestIds = $interestDao->getUserIdsByInterest($keyword);
 				if (!$interestIds) {
 					// The interest searched for does not exist -- go to next interest
 					continue;
 				}
 				if ($key == 0) $allInterestIds = $interestIds; // First interest, nothing to intersect with
 				else $allInterestIds = array_intersect($allInterestIds, $interestIds);
+				unset($interest);
+				$key++;
 			}
 		}
 

@@ -48,6 +48,10 @@ switch ($op) {
 		define('HANDLER_CLASS', 'UserHandler');
 		import('pages.user.UserHandler');
 		break;
+	case 'getInterests':
+		define('HANDLER_CLASS', 'PKPUserHandler');
+		import('lib.pkp.pages.user.PKPUserHandler');
+		break;
 }
 
 ?>

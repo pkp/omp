@@ -144,7 +144,7 @@
 		{/fbvFormSection}
 		{if $allowRegReviewer}
 			{fbvFormSection id="reviewerInterestsContainer" label="user.register.reviewerInterests"}
-				{fbvElement type="keyword" id="interests" label="user.interests.description"}
+				{fbvElement type="interests" id="interests" interestKeywords=$interestsKeywords interestsTextOnly=$interestsTextOnly}
 			{/fbvFormSection}
 		{/if}
 	{/if}

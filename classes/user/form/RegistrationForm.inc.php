@@ -146,13 +146,6 @@ class RegistrationForm extends Form {
 		$this->setData('existingUser', $this->existingUser);
 		$this->setData('userLocales', array());
 		$this->setData('sendPassword', 1);
-
-		$interestDao =& DAORegistry::getDAO('InterestDAO');
-		// Get all available interests to populate the autocomplete with
-		if ($interestDao->getAllUniqueInterests()) {
-			$existingInterests = $interestDao->getAllUniqueInterests();
-		} else $existingInterests = null;
-		$this->setData('existingInterests', $existingInterests);
 	}
 
 	/**
@@ -182,8 +175,8 @@ class RegistrationForm extends Form {
 			'authorGroup',
 			'mailingAddress',
 			'biography',
-			'interests',
-			'interestsKeywords',
+			'interestsTextOnly',
+			'keywords',
 			'userLocales',
 			'registerAsReviewer',
 			'existingUser',
@@ -205,10 +198,10 @@ class RegistrationForm extends Form {
 			$this->setData('username', strtolower($this->getData('username')));
 		}
 
-		$interests = $this->getData('interestsKeywords');
-		if ($interests != null && is_array($interests)) {
+		$keywords = $this->getData('keywords');
+		if ($keywords != null && is_array($keywords['interests'])) {
 			// The interests are coming in encoded -- Decode them for DB storage
-			$this->setData('interestsKeywords', array_map('urldecode', $interests));
+			$this->setData('interestsKeywords', array_map('urldecode', $keywords['interests']));
 		}
 	}
 
@@ -294,11 +287,11 @@ class RegistrationForm extends Form {
 				return false;
 			}
 
-			// Add reviewing interests to interests table
+			// Insert the user interests
+			$interests = $this->getData('interestsKeywords') ? $this->getData('interestsKeywords') : $this->getData('interestsTextOnly');
 			import('lib.pkp.classes.user.InterestManager');
 			$interestManager = new InterestManager();
-			$interestsKeywords = $this->getData('interestsKeywords');
-			$interestManager->insertInterests($userId, $interestsKeywords);
+			$interestManager->setInterestsForUser($user, $interests);
 
 			$sessionManager =& SessionManager::getManager();
 			$session =& $sessionManager->getUserSession();

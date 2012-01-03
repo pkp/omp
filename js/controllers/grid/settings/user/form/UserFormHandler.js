@@ -43,11 +43,6 @@ jQuery.pkp.controllers.grid.settings =
 		$('#suggestUsernameButton', $form).click(
 				this.callbackWrapper(this.generateUsername));
 
-		// Execute code for interests text tagit.
-		var existingInterests = options.existingInterests;
-		var currentInterests = options.currentInterests;
-		this.handleInterestsKeywords_(existingInterests, currentInterests);
-
 		// Check the generate password check box.
 		if ($('#generatePassword', $form).attr('checked')) {
 			this.setGenerateRandom('#generatePassword');
@@ -166,28 +161,6 @@ jQuery.pkp.controllers.grid.settings =
 
 		var $form = this.getHtmlElement();
 		$('#username', $form).val(jsonData.content);
-	};
-
-
-	//
-	// Private methods.
-	//
-	/**
-	 * Handle interests keywords.
-	 *
-	 * @param {Array} existingInterests The existing interest array.
-	 * @param {Array} currentInterests The current interests array.
-	 * @private
-	 */
-	$.pkp.controllers.grid.settings.user.form.UserFormHandler.prototype.
-			handleInterestsKeywords_ = function(existingInterests, currentInterests) {
-
-		var $form = this.getHtmlElement();
-		$('#interestsTextOnly', $form).hide();
-		$('#interests', $form).tagit({
-			availableTags: existingInterests,
-			currentTags: currentInterests
-		});
 	};
 
 

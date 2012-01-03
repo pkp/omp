@@ -55,7 +55,7 @@ class ReviewerSelectGridCellProvider extends DataObjectGridCellProvider {
 			case 'active': // How many reviews are currently being considered or underway
 				return array('label' => isset($reviewerStats['incomplete']) ? $reviewerStats['incomplete'] : '--');
 			case 'interests': // Reviewing interests
-				return array('label' => $element->getInterests());
+				return array('label' => $element->getInterestString());
 		}
 	}
 }

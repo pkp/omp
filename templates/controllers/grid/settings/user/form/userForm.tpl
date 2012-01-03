@@ -6,19 +6,6 @@
  *
  * Form for creating/editing a user.
  *}
-<script type="text/javascript">
-	$(function() {ldelim}
-		$('#userForm').pkpHandler(
-			'$.pkp.controllers.grid.settings.user.form.UserFormHandler',
-			{ldelim}
-				fetchUsernameSuggestionUrl: '{url|escape:"javascript" router=$smarty.const.ROUTE_COMPONENT op="suggestUsername" params=$suggestUsernameParams escape=false}',
-				usernameSuggestionTextAlert: '{translate key="grid.user.mustProvideName"}',
-				existingInterests: {literal}[{/literal}{foreach name=existingInterests from=$existingInterests item=interest}"{$interest|escape|escape:"javascript"}"{if !$smarty.foreach.existingInterests.last}, {/if}{/foreach}{literal}]{/literal},
-				currentInterests: {literal}[{/literal}{foreach name=interestsKeywords from=$interestsKeywords item=interest}"{$interest|escape|escape:"javascript"}"{if !$smarty.foreach.interestsKeywords.last}, {/if}{/foreach}{literal}]{/literal}
-			{rdelim}
-		);
-	{rdelim});
-</script>
 
 {if !$userId}
 	{assign var="passwordRequired" value="true"}
@@ -63,7 +50,7 @@
 							{fbvElement type="select" name="authId" id="authId" defaultLabel="" defaultValue="" from=$authSourceOptions translate="true" selected=$authId}
 						{/fbvFormSection}
 					{/if}
-					
+
 					{if !$implicitAuth}
 						{fbvFormSection title="user.password" for="password"}
 							{fbvElement type="text" label="user.password" required=$passwordRequired name="password" id="password" password="true" value=$password maxlength="32" inline=true size=$fbvStyles.size.SMALL}
@@ -96,7 +83,7 @@
 							{fbvElement type="checkbox" name="mustChangePassword" id="mustChangePassword" checked=$checked label="grid.user.mustChangePasswordDescription" translate="true"}
 						{/fbvFormSection}
 					{/if}{* !$implicitAuth *}
-					
+
 					{if !$implicitAuth && !$userId}
 						{fbvFormSection title="grid.user.notifyUser" for="sendNotify" list=true}
 							{if $sendNotify}
@@ -137,13 +124,7 @@
 						{/fbvFormSection}
 					{/if}
 					{fbvFormSection title="user.interests" for="interests"}
-						<ul id="interests"><li></li></ul><span class="interestDescription">{fieldLabel for="interests" key="user.interests.description"}</span><br />
-						<textarea name="interests" id="interestsTextOnly" class="textArea small">
-							{foreach name=currentInterests from=$interestsKeywords item=interest}
-								{$interest|escape}
-								{if !$smarty.foreach.currentInterests.last}, {/if}
-							{/foreach}
-						</textarea>
+						{fbvElement type="interests" id="interests" interestKeywords=$interestsKeywords interestsTextOnly=$interestsTextOnly}
 					{/fbvFormSection}
 					{fbvFormSection}
 						{fbvElement type="textarea" label="user.affiliation" multilingual="true" name="affiliation" id="affiliation" value=$affiliation inline=true size=$fbvStyles.size.MEDIUM}

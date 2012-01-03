@@ -10,12 +10,6 @@
  <script type="text/javascript">
 $("#responseDueDate").datepicker({ldelim} dateFormat: 'yy-mm-dd' {rdelim});
 $("#reviewDueDate").datepicker({ldelim} dateFormat: 'yy-mm-dd' {rdelim});
-
-$("#interests").tagit({ldelim}
-	// This is the list of interests in the system used to populate the autocomplete
-	availableTags: [{foreach name=existingInterests from=$existingInterests item=interest}"{$interest|escape|escape:'javascript'}"{if !$smarty.foreach.existingInterests.last}, {/if}{/foreach}],
-	currentTags: []
-{rdelim});
 </script>
 
 <!--  Message to reviewer textarea -->

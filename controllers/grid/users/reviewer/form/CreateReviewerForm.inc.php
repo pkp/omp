@@ -45,8 +45,8 @@ class CreateReviewerForm extends ReviewerForm {
 							'middlename',
 							'lastname',
 							'affiliation',
-							'interests',
-							'interestsKeywords',
+							'keywords',
+							'interestsTextOnly',
 							'username',
 							'email',
 							'sendNotify',
@@ -90,10 +90,11 @@ class CreateReviewerForm extends ReviewerForm {
 		// Set the reviewerId in the Form for the parent class to use
 		$this->setData('reviewerId', $reviewerId);
 
-		// Add reviewing interests to interests table
+		// Insert the user interests
+		$interests = $this->getData('interestsKeywords') ? $this->getData('interestsKeywords') : $this->getData('interestsTextOnly');
 		import('lib.pkp.classes.user.InterestManager');
 		$interestManager = new InterestManager();
-		$interestManager->insertInterests($reviewerId, $this->getData('interestsKeywords'), $this->getData('interests'));
+		$interestManager->setInterestsForUser($user, $interests);
 
 		// Assign the selected user group ID to the user
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */

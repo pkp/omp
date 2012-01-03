@@ -145,7 +145,6 @@ class ReviewerForm extends Form {
 			$numWeeks = max((int) $press->getSetting('numWeeksPerResponse'), 2);
 			$responseDueDate = strftime(Config::getVar('general', 'date_format_short'), strtotime('+' . $numWeeks . ' week'));
 		}
-		$interestDao =& DAORegistry::getDAO('InterestDAO');
 
 		// Get the currently selected reviewer selection type to show the correct tab if we're re-displaying the form
 		$selectionType = (int) $request->getUserVar('selectionType');
@@ -159,7 +158,6 @@ class ReviewerForm extends Form {
 		$this->setData('personalMessage', __('reviewer.step1.requestBoilerplate'));
 		$this->setData('responseDueDate', $responseDueDate);
 		$this->setData('reviewDueDate', $reviewDueDate);
-		$this->setData('existingInterests', $interestDao->getAllUniqueInterests());
 		$this->setData('selectionType', $selectionType);
 	}
 
@@ -204,13 +202,15 @@ class ReviewerForm extends Form {
 			'responseDueDate',
 			'reviewDueDate',
 			'reviewMethod',
-			'skipEmail'
+			'skipEmail',
+			'keywords',
+			'interestsTextOnly',
 		));
 
-		$interests = $this->getData('interestsKeywords');
-		if ($interests != null && is_array($interests)) {
+		$keywords = $this->getData('keywords');
+		if ($keywords != null && is_array($keywords['interests'])) {
 			// The interests are coming in encoded -- Decode them for DB storage
-			$this->setData('interestsKeywords', array_map('urldecode', $interests));
+			$this->setData('interestsKeywords', array_map('urldecode', $keywords['interests']));
 		}
 	}
 
