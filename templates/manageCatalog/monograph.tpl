@@ -25,11 +25,19 @@
 		$('#{$monographContainerId|escape:"javascript"}').pkpHandler(
 			'$.pkp.pages.manageCatalog.MonographHandler',
 			{ldelim}
+				{* Parameters for MonographHandler *}
 				monographId: {$monographId},
 				setFeaturedUrlTemplate: '{url|escape:"javascript" op="setFeatured" path=$monographId|to_array:$featureAssocType:$featureAssocId:"FEATURED_DUMMY":"SEQ_DUMMY" escape=false}',
 				isFeatured: {$isFeatured},
 				seq: {$featureSequence},
-				datePublished: new Date('{$monograph->getDatePublished()|date_format:$datetimeFormatShort|escape:"javascript"}')
+				datePublished: new Date('{$monograph->getDatePublished()|date_format:$datetimeFormatShort|escape:"javascript"}'),
+				{* Parameters for parent LinkActionHandler *}
+				actionRequest: '$.pkp.classes.linkAction.ModalRequest',
+				actionRequestOptions: {ldelim}
+					title: '{translate|escape:"javascript" key="submission.catalogEntry"}',
+					modalHandler: '$.pkp.controllers.modal.AjaxModalHandler',
+					url: '{url|escape:"javascript" router=$smarty.const.ROUTE_COMPONENT component="modals.submissionMetadata.CatalogEntryHandler" op="fetch" monographId=$monographId stageId=$smarty.const.WORKFLOW_STAGE_ID_PRODUCTION escape=false}'
+				{rdelim}
 			{rdelim}
 		);
 	{rdelim});

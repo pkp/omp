@@ -49,7 +49,7 @@
 	};
 	$.pkp.classes.Helper.inherits(
 			$.pkp.pages.manageCatalog.MonographHandler,
-			$.pkp.classes.Handler);
+			$.pkp.controllers.linkAction.LinkActionHandler);
 
 
 	//
