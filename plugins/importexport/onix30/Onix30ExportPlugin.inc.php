@@ -56,7 +56,7 @@ class Onix30ExportPlugin extends ImportExportPlugin {
 
 			$assignedPublicationFormatId = (int) array_shift($args);
 			$assignedPublicationFormatDao =& DAORegistry::getDAO('AssignedPublicationFormatDAO');
-			$assignedPublicationFormat =& $assignedPublicationFormatDao->getById($assignedPublicationFormatId, $press->getId());
+			$assignedPublicationFormat =& $assignedPublicationFormatDao->getById($assignedPublicationFormatId);
 			if ($assignedPublicationFormat != null) {
 				$monographId = $assignedPublicationFormat->getMonographId();
 				$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');

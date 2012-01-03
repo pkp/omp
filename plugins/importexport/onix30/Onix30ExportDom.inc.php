@@ -69,8 +69,8 @@ class Onix30ExportDom {
 
 		$descDetailNode =& XMLCustomWriter::createElement($doc, 'DescriptiveDetail');
 		XMLCustomWriter::appendChild($productNode, $descDetailNode);
-		XMLCustomWriter::createChildWithText($doc, $descDetailNode, 'ProductComposition', '00'); // 00 is single item retail product
-		XMLCustomWriter::createChildWithText($doc, $descDetailNode, 'ProductForm', 'BC'); // BC is paperback/softback book
+		XMLCustomWriter::createChildWithText($doc, $descDetailNode, 'ProductComposition', $assignedPublicationFormat->getProductCompositionCode()); // single item, trade only, etc
+		XMLCustomWriter::createChildWithText($doc, $descDetailNode, 'ProductForm', $assignedPublicationFormat->getProductFormCode()); // paperback, hardcover, etc
 
 		/* --- Physical Book Measurements --- */
 		if ($assignedPublicationFormat->getEntryKey() != 'EBOOK') {
@@ -145,12 +145,22 @@ class Onix30ExportDom {
 			$contributorNode =& XMLCustomWriter::createElement($doc, 'Contributor');
 			XMLCustomWriter::appendChild($descDetailNode, $contributorNode);
 			XMLCustomWriter::createChildWithText($doc, $contributorNode, 'SequenceNumber', $sequence);
-			XMLCustomWriter::createChildWithText($doc, $contributorNode, 'ContributorRole', 'A01'); // Author.  getUserGroupId() ?
+			$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+			$userGroup =& $userGroupDao->getById($author->getUserGroupId(), $monograph->getPressId());
+
+			XMLCustomWriter::createChildWithText($doc, $contributorNode, 'ContributorRole', $userGroup->getLocalizedName());
+			XMLCustomWriter::createChildWithText($doc, $contributorNode, 'PersonName', $author->getFullName());
+			XMLCustomWriter::createChildWithText($doc, $contributorNode, 'PersonNameInverted', $author->getFullName(true));
 			XMLCustomWriter::createChildWithText($doc, $contributorNode, 'NamesBeforeKey', join(' ', array($author->getFirstName(), $author->getMiddleName())));
 			XMLCustomWriter::createChildWithText($doc, $contributorNode, 'KeyNames', $author->getLastName());
+			if ($author->getSuffix() != '') {
+				XMLCustomWriter::createChildWithText($doc, $contributorNode, 'SuffixToKey', $author->getSuffix());
+			}
+			XMLCustomWriter::createChildWithText($doc, $contributorNode, 'CountryCode', $author->getCountry());
 
 			$sequence++;
 			unset($contributorNode);
+			unset($userGroup);
 		}
 
 		/* --- add Extents for 00 (main content) and 04 (back matter) ---*/
@@ -249,15 +259,15 @@ class Onix30ExportDom {
 
 		$priceNode =& XMLCustomWriter::createElement($doc, 'Price');
 		XMLCustomWriter::appendChild($supplyDetailNode, $priceNode);
-		XMLCustomWriter::createChildWithText($doc, $priceNode, 'PriceType', '02'); // RRP including tax, if any
-		XMLCustomWriter::createChildWithText($doc, $priceNode, 'PriceAmount', '7.99'); // Localized for currencies, based on CountriesIncluded value (decimal points)
+		XMLCustomWriter::createChildWithText($doc, $priceNode, 'PriceType', $assignedPublicationFormat->getPriceTypeCode());
+		XMLCustomWriter::createChildWithText($doc, $priceNode, 'PriceAmount', $assignedPublicationFormat->getPrice());
 
 		$taxNode =& XMLCustomWriter::createElement($doc, 'Tax');
 		XMLCustomWriter::appendChild($supplyDetailNode, $taxNode);
 		XMLCustomWriter::appendChild($priceNode, $taxNode);
-		XMLCustomWriter::createChildWithText($doc, $taxNode, 'TaxType', '01'); // VAT
-		XMLCustomWriter::createChildWithText($doc, $taxNode, 'TaxRateCode', 'Z'); // Zero-rated
-		XMLCustomWriter::createChildWithText($doc, $priceNode, 'CurrencyCode', 'GBP'); // Pounds Sterling
+		XMLCustomWriter::createChildWithText($doc, $taxNode, 'TaxType', $assignedPublicationFormat->getTaxTypeCode()); // VAT, GST, etc
+		XMLCustomWriter::createChildWithText($doc, $taxNode, 'TaxRateCode', $assignedPublicationFormat->getTaxRateCode()); // Zero-rated, tax included, tax excluded, etc
+		XMLCustomWriter::createChildWithText($doc, $priceNode, 'CurrencyCode', $assignedPublicationFormat->getCurrencyCode()); // CAD, GBP, USD, etc
 
 		return $root;
 	}

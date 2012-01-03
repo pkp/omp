@@ -194,8 +194,10 @@ class AssignedPublicationFormatDAO extends PublicationFormatDAO {
 					'productIdentifier',
 					'productIdentifierTypeCode',
 					'productCompositionCode',
+					'productFormCode',
 					'price',
 					'priceTypeCode',
+					'currencyCode',
 					'taxRateCode',
 					'taxTypeCode',
 					'countriesIncludedCode'

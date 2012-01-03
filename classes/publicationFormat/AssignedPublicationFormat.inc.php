@@ -99,7 +99,7 @@ class AssignedPublicationFormat extends PublicationFormat {
 	}
 
 	/**
-	 * Get the country codes for this publication format's distribution range.
+	 * Get the country codes for this publication format's distribution range. (List91)
 	 * @return array of strings
 	 */
 	function getDistributionCountries() {
@@ -128,7 +128,7 @@ class AssignedPublicationFormat extends PublicationFormat {
 	}
 
 	/**
-	 * Get the height unit (ONIX value) of the monograph format
+	 * Get the height unit (ONIX value) of the monograph format (List50)
 	 * @return string
 	 */
 	function getHeightUnit() {
@@ -144,7 +144,7 @@ class AssignedPublicationFormat extends PublicationFormat {
 	}
 
 	/**
-	 * Get the width unit (ONIX value) of the monograph format
+	 * Get the width unit (ONIX value) of the monograph format (List50)
 	 * @return string
 	 */
 	function getWidthUnit() {
@@ -160,7 +160,7 @@ class AssignedPublicationFormat extends PublicationFormat {
 	}
 
 	/**
-	 * Get the thickness unit (ONIX value) of the monograph format
+	 * Get the thickness unit (ONIX value) of the monograph format (List50)
 	 * @return string
 	 */
 	function getThicknessUnit() {
@@ -176,7 +176,7 @@ class AssignedPublicationFormat extends PublicationFormat {
 	}
 
 	/**
-	 * Get the weight unit (ONIX value) of the monograph format
+	 * Get the weight unit (ONIX value) of the monograph format (List95)
 	 * @return string
 	 */
 	function getWeightUnit() {
@@ -200,11 +200,67 @@ class AssignedPublicationFormat extends PublicationFormat {
 	}
 
 	/**
-	 * Get the ONIX code for the identifier used for this format
+	 * Get the ONIX code for the identifier used for this format (List5)
 	 * @return string
 	 */
 	function getProductIdentifierTypeCode() {
 		return $this->getData('productIdentifierTypeCode');
+	}
+
+	/**
+	 * Get the ONIX code for the format used for this format (List7)
+	 * @return string
+	 */
+	function getProductFormCode() {
+		return $this->getData('productFormCode');
+	}
+
+	/**
+	 * Get the ONIX code for the composition used for this format (List2)
+	 * @return string
+	 */
+	function getProductCompositionCode() {
+		return $this->getData('productCompositionCode');
+	}
+
+	/**
+	 * Get the ONIX code for the currency code used for this format (List96)
+	 * @return string
+	 */
+	function getCurrencyCode() {
+		return $this->getData('currencyCode');
+	}
+
+	/**
+	 * Get the price
+	 * @return string
+	 */
+	function getPrice() {
+		return $this->getData('price');
+	}
+
+	/**
+	 * Get the ONIX code for the price type code used for this format (List58)
+	 * @return string
+	 */
+	function getPriceTypeCode() {
+		return $this->getData('priceTypeCode');
+	}
+
+	/**
+	 * Get the ONIX code for the tax rate code used for this format (List62)
+	 * @return string
+	 */
+	function getTaxRateCode() {
+		return $this->getData('taxRateCode');
+	}
+
+	/**
+	 * Get the ONIX code for the tax type code used for this format (List171)
+	 * @return string
+	 */
+	function getTaxTypeCode() {
+		return $this->getData('taxTypeCode');
 	}
 }
 ?>

@@ -83,6 +83,7 @@ class CatalogEntryPublicationMetadataForm extends Form {
 				'taxRateCodes' => 'List62', // higher rate, standard rate, zero rate
 				'taxTypeCodes' => 'List171', // VAT, GST
 				'countriesIncludedCodes' => 'List91', // country region codes
+				'productFormCodes' => 'List7', // ebook, softback, hardback, audio files, etc
 				);
 
 		foreach ($codes as $templateVarName => $list) {
@@ -103,6 +104,11 @@ class CatalogEntryPublicationMetadataForm extends Form {
 		$assignedPublicationFormatId =& $this->getAssignedPublicationFormatId();
 		$assignedPublicationFormatDao =& DAORegistry::getDAO('AssignedPublicationFormatDAO');
 		$assignedPublicationFormat =& $assignedPublicationFormatDao->getById($assignedPublicationFormatId);
+
+		// provide a default for the product format
+		$defaultProductFormCodes = array('HARDCOVER' => 'BB','SOFTCOVER' => 'BC', 'EBOOK' => 'DG');
+		$templateMgr->assign('productFormCode', $defaultProductFormCodes[$assignedPublicationFormat->getEntryKey()]);
+
 		if ($assignedPublicationFormat) {
 			// pre-select the existing values on the form.
 			foreach ($assignedPublicationFormatDao->getAdditionalFieldNames() as $fieldName) {
@@ -144,8 +150,10 @@ class CatalogEntryPublicationMetadataForm extends Form {
 					'productIdentifier',
 					'productIdentifierTypeCode',
 					'productCompositionCode',
+					'productFormCode',
 					'price',
 					'priceTypeCode',
+					'currencyCode',
 					'taxRateCode',
 					'taxTypeCode',
 					'countriesIncludedCode'

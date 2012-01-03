@@ -25,16 +25,17 @@
 	<input type="hidden" name="displayedInTab" value="{$formParams.displayedInTab|escape}" />
 	<input type="hidden" name="tab" value="publication" />
 
-	{fbvFormArea id="productIdentifier"}
-		{fbvFormSection title="monograph.publicationFormat.productIdentifierType" for="productIdentifierTypeCode"}
+	{fbvFormArea id="productIdentifier" title="monograph.publicationFormat.productIdentifierType" border="true"}
+		{fbvFormSection for="productIdentifierTypeCode"}
 			{fbvElement type="text"  name="productIdentifier" id="productIdentifier" value=$productIdentifier maxlength="255" size=$fbvStyles.size.SMALL disabled=$readOnly inline="true"}
 			{fbvElement type="select" from=$productIdentifierTypeCodes selected=$productIdentifierTypeCode translate=false id="productIdentifierTypeCode" inline="true"}
 		{/fbvFormSection}
 	{/fbvFormArea}
 	
-	{fbvFormArea id="productComposition"}
-		{fbvFormSection title="monograph.publicationFormat.productComposition" for="productCompositionCode"}
+	{fbvFormArea id="productComposition" title="monograph.publicationFormat.productComposition" border="true"}
+		{fbvFormSection for="productCompositionCode"}
 			{fbvElement type="select" from=$productCompositionCodes selected=$productCompositionCode translate=false id="productCompositionCode" defaultValue="" defaultLabel="" inline=true}
+			{fbvElement type="select" from=$productFormCodes selected=$productFormCode translate=false id="productFormCode" inline=true}
 		{/fbvFormSection}
 	{/fbvFormArea}
 
