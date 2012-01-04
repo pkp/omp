@@ -125,6 +125,7 @@ class CatalogHandler extends Handler {
 		$templateMgr =& TemplateManager::getManager();
 		$press =& $request->getPress();
 		$this->setupTemplate();
+		AppLocale::requireComponents(LOCALE_COMPONENT_OMP_SUBMISSION); // submission.synopsis
 
 		// Get the book
 		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
@@ -141,7 +142,7 @@ class CatalogHandler extends Handler {
 		$templateMgr->assign('categories', $categories);
 
 		// Display
-		$templateMgr->display('catalog/book.tpl');
+		$templateMgr->display('catalog/book/book.tpl');
 	}
 }
 

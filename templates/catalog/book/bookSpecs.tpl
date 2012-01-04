@@ -1,5 +1,5 @@
 {**
- * templates/catalog/bookSpecs.tpl
+ * templates/catalog/book/bookSpecs.tpl
  *
  * Copyright (c) 2003-2012 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -16,7 +16,7 @@
 
 <div class="bookSpecs">
 	<img src="{$baseUrl}/templates/images/book-default.png" />
-	<ul id="bookAccordion">
+	<div id="bookAccordion">
 		<h3><a href="#">{translate key="catalog.publicationInfo"}</a></h3>
 		<div class="publicationInfo">
 			<div class="dateAdded">{translate key="catalog.dateAdded" dateAdded=$publishedMonograph->getDatePublished()|date_format:$dateFormatShort}</div>
@@ -28,7 +28,7 @@
 				{iterate from=categories item=category}
 					<li><a href="{url op="category" path=$category->getPath()}">{$category->getLocalizedTitle()|strip_unsafe_html}</a></li>
 				{/iterate}
-			</div>
+			</ul>
 		{/if}
-	</ul>
+	</div>
 </div>

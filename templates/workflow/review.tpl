@@ -16,7 +16,7 @@
 		$('#reviewTabs').pkpHandler(
 			'$.pkp.controllers.TabHandler',
 			{ldelim}
-						{assign var=roundIndex value=$lastReviewRoundNumber-1}
+				{assign var=roundIndex value=$lastReviewRoundNumber-1}
 				selected: {$roundIndex}
 			{rdelim}
 		);

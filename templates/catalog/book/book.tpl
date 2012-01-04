@@ -1,10 +1,10 @@
 {**
- * templates/catalog/series.tpl
+ * templates/catalog/book/book.tpl
  *
  * Copyright (c) 2003-2012 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * Display a public-facing series view in the catalog.
+ * Display a public-facing book view in the catalog.
  *}
 {strip}
 {assign var="suppressPageTitle" value=true}
@@ -14,13 +14,10 @@
 
 <div class="pkp_catalog_book">
 
-{include file="catalog/bookSpecs.tpl"}
+{include file="catalog/book/bookSpecs.tpl"}
 
-<div class="bookInfo">
-	<h3>{$publishedMonograph->getLocalizedTitle()|strip_unsafe_html}</h3>
-	<div class="authorName">{$publishedMonograph->getAuthorString()}</div>
-</div>
+{include file="catalog/book/bookInfo.tpl"}
 
-</div><!-- bookContainer -->
+</div><!-- pkp_catalog_book -->
 
 {include file="common/footer.tpl"}

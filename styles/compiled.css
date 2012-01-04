@@ -1291,7 +1291,15 @@ a.pkp_common_disabled, a.pkp_common_disabled:hover { color:#666666; }
 }
 .pkp_catalog_feature .pkp_catalog_featureSpecs { float:left; }
 .pkp_catalog_feature .pkp_catalog_featureDetails { margin-top:50px; }
-.pkp_catalog_book .bookSpecs { float:left; }
+.pkp_catalog_book .bookSpecs {
+  float:left;
+  width:33%;
+  overflow:hidden;
+}
+.pkp_catalog_book .bookInfo {
+  float:right;
+  width:67%;
+}
 .pkp_page_header { position:relative; }
 .pkp_page_header ul.submission_actions {
   position:relative;
