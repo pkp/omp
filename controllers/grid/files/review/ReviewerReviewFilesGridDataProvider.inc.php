@@ -36,7 +36,7 @@ class ReviewerReviewFilesGridDataProvider extends ReviewGridDataProvider {
 		import('classes.security.authorization.OmpSubmissionAccessPolicy');
 		$policy = new OmpSubmissionAccessPolicy($request, $args, $roleAssignments);
 
-		$stageId = $request->getUserVar('stageId'); // This will be validated in OmpWorkflowStageAccessPolicy
+		$stageId = $request->getUserVar('stageId');
 		import('classes.security.authorization.internal.WorkflowStageRequiredPolicy');
 		$policy->addPolicy(new WorkflowStageRequiredPolicy($stageId));
 
