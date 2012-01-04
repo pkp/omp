@@ -192,19 +192,13 @@ class AssignedPublicationFormat extends PublicationFormat {
 	}
 
 	/**
-	 * Get the Identifier (ISBN value, etc) for this format
-	 * @return string
+	 * Get the identification codes for this format
+	 * @return Array IdentificationCode
 	 */
-	function getProductIdentifier() {
-		return $this->getData('productIdentifier');
-	}
-
-	/**
-	 * Get the ONIX code for the identifier used for this format (List5)
-	 * @return string
-	 */
-	function getProductIdentifierTypeCode() {
-		return $this->getData('productIdentifierTypeCode');
+	function getIdentificationCodes() {
+		$identificationCodeDao =& DAORegistry::getDAO('IdentificationCodeDAO');
+		$codes =& $identificationCodeDao->getByAssignedPublicationFormatId($this->getAssignedPublicationFormatId());
+		return $codes;
 	}
 
 	/**

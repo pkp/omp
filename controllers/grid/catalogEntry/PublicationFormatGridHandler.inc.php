@@ -51,7 +51,7 @@ class PublicationFormatGridHandler extends GridHandler {
 	}
 
 	/**
-	 * Set the MonographId
+	 * Set the Monograph
 	 * @param Monograph
 	 */
 	function setMonograph($monograph) {
@@ -166,7 +166,7 @@ class PublicationFormatGridHandler extends GridHandler {
 	function &loadData($request, $filter = null) {
 		$monograph =& $this->getMonograph();
 		$assignedPublicationFormatDao =& DAORegistry::getDAO('AssignedPublicationFormatDAO');
-		$data =& $assignedPublicationFormatDao->getFormatsByMonographId($monograph->getId(), true);
+		$data =& $assignedPublicationFormatDao->getFormatsByMonographId($monograph->getId());
 		return $data;
 	}
 
@@ -210,7 +210,7 @@ class PublicationFormatGridHandler extends GridHandler {
 	 */
 	function updateFormat($args, &$request) {
 		// Identify the format to be updated
-		$assignedPublicationFormatId = $request->getUserVar('assignedPublicationFormatId');
+		$assignedPublicationFormatId = (int) $request->getUserVar('assignedPublicationFormatId');
 		$monograph =& $this->getMonograph();
 
 		$assignedPublicationFormatDao =& DAORegistry::getDAO('AssignedPublicationFormatDAO');
@@ -263,7 +263,7 @@ class PublicationFormatGridHandler extends GridHandler {
 	function deleteFormat($args, &$request) {
 
 		// Identify the publiation format to be deleted
-		$assignedPublicationFormatId = $request->getUserVar('assignedPublicationFormatId');
+		$assignedPublicationFormatId = (int) $request->getUserVar('assignedPublicationFormatId');
 
 		$assignedPublicationFormatDao =& DAORegistry::getDAO('AssignedPublicationFormatDAO');
 		$result = $assignedPublicationFormatDao->deleteAssignedPublicationFormatById($assignedPublicationFormatId);

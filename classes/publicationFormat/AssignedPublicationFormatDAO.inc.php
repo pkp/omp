@@ -26,16 +26,23 @@ class AssignedPublicationFormatDAO extends PublicationFormatDAO {
 	/**
 	 * Retrieve a publication format by type id.
 	 * @param $assignedPublicationFormatId int
+	 * @param $monographId optional int
 	 * @return AssignedPublicationFormat
 	 */
-	function &getById($assignedPublicationFormatId) {
+	function &getById($assignedPublicationFormatId, $monographId = null) {
+
+		$params = array((int) $assignedPublicationFormatId);
+		if ($monographId != null) {
+			$params[] = (int) $monographId;
+		}
 
 		$result =& $this->retrieve(
 			'SELECT	pf.*,
 				pmpf.*
 			FROM	publication_formats pf
 			JOIN	published_monograph_publication_formats pmpf ON (pmpf.publication_format_id = pf.publication_format_id)
-			WHERE	pmpf.assigned_publication_format_id = ?', array((int) $assignedPublicationFormatId)
+			WHERE	pmpf.assigned_publication_format_id = ?'
+			. ($monographId != null ? ' AND pmpf.monograph_id = ?' : ''), $params
 		);
 
 		$returner = null;
@@ -100,7 +107,7 @@ class AssignedPublicationFormatDAO extends PublicationFormatDAO {
 	 * @param $callHooks boolean
 	 * @return AssignedPublicationFormat
 	 */
-	function &_fromRow(&$row , $callHooks = true) {
+	function &_fromRow(&$row, $callHooks = true) {
 		// Get the Publication Format object, populated with its data
 		$publicationFormat =& parent::_fromRow($row, $callHooks);
 
@@ -191,8 +198,6 @@ class AssignedPublicationFormatDAO extends PublicationFormatDAO {
 					'thicknessUnitCode',
 					'weight',
 					'weightUnitCode',
-					'productIdentifier',
-					'productIdentifierTypeCode',
 					'productCompositionCode',
 					'productFormCode',
 					'price',

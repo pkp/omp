@@ -25,13 +25,15 @@
 	<input type="hidden" name="displayedInTab" value="{$formParams.displayedInTab|escape}" />
 	<input type="hidden" name="tab" value="publication" />
 
-	{fbvFormArea id="productIdentifier" title="monograph.publicationFormat.productIdentifierType" border="true"}
-		{fbvFormSection for="productIdentifierTypeCode"}
-			{fbvElement type="text"  name="productIdentifier" id="productIdentifier" value=$productIdentifier maxlength="255" size=$fbvStyles.size.SMALL disabled=$readOnly inline="true"}
-			{fbvElement type="select" from=$productIdentifierTypeCodes selected=$productIdentifierTypeCode translate=false id="productIdentifierTypeCode" inline="true"}
+	{fbvFormArea id="productIdentifier"}
+		{fbvFormSection}
+			<!--  Product Identification Codes -->
+			{assign var="divId" value="identificationCodeGridContainer"|concat:$assignedPublicationFormatId|escape}
+			{url|assign:identGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.catalogEntry.IdentificationCodeGridHandler" op="fetchGrid" monographId=$monographId assignedPublicationFormatId=$assignedPublicationFormatId escape=false}
+			{load_url_in_div id="$divId" url="$identGridUrl"}
 		{/fbvFormSection}
 	{/fbvFormArea}
-	
+
 	{fbvFormArea id="productComposition" title="monograph.publicationFormat.productComposition" border="true"}
 		{fbvFormSection for="productCompositionCode"}
 			{fbvElement type="select" from=$productCompositionCodes selected=$productCompositionCode translate=false id="productCompositionCode" defaultValue="" defaultLabel="" inline=true}
@@ -64,7 +66,7 @@
 	{else}
 		{* noop - space for more formats *}
 	{/if}
-		
+
 	{fbvFormButtons id="publicationMetadataFormSubmit" submitText="common.save"}
 </form>
 

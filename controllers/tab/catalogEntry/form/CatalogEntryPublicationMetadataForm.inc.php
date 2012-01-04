@@ -76,7 +76,6 @@ class CatalogEntryPublicationMetadataForm extends Form {
 				'measurementUnitCodes' => 'List50', // grams, inches, millimeters
 				'weightUnitCodes' => 'List95', // pounds, grams, ounces
 				'measurementTypeCodes' => 'List48', // height, width, depth
-				'productIdentifierTypeCodes' => 'List5', // GTIN-13, UPC, ISBN-10, etc
 				'currencyCodes' => 'List96', // GBP, USD, CAD, etc
 				'priceTypeCodes' => 'List58', // without tax, with tax, etc
 				'extentTypeCodes' => 'List23', // word count, FM page count, BM page count, main page count, etc
@@ -147,8 +146,6 @@ class CatalogEntryPublicationMetadataForm extends Form {
 					'thicknessUnitCode',
 					'weight',
 					'weightUnitCode',
-					'productIdentifier',
-					'productIdentifierTypeCode',
 					'productCompositionCode',
 					'productFormCode',
 					'price',

@@ -57,6 +57,13 @@
 	<message key="grid.catalogEntry.publicationFormatType">Publication Format</message>
 	<message key="grid.catalogEntry.monographRequired">A monograph id is required.</message>
 	<message key="grid.catalogEntry.publicationFormatRequired">A publication format must be chosen.</message>
+
+	<!-- assigned identification code grid and form keys -->
+	<message key="grid.catalogEntry.identificationCodeValue">Code Value</message>
+	<message key="grid.catalogEntry.identificationCodeType">ONIX Code Type</message>
+	<message key="grid.catalogEntry.codeRequired">A code is required.</message>
+	<message key="grid.catalogEntry.valueRequired">A value is required.</message>
+
 	<!-- Editorial policies -->
 	<message key="manager.series.open">Open Submissions</message>
 	<message key="manager.series.indexed">Indexed</message>
@@ -414,6 +421,9 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="notification.addedAuditor">Auditor added.</message>
 	<message key="notification.removedAuditor">Auditor removed.</message>
 	<message key="notification.addedAuthor">Author added.</message>
+	<message key="notification.addedIdentificationCode">Identification Code added.</message>
+	<message key="notification.editedIdentificationCode">Identification Code edited.</message>
+	<message key="notification.removedIdentificationCode">Identification Code removed.</message>
 	<message key="notification.addedPublicationFormat">Publication Format added.</message>
 	<message key="notification.editedPublicationFormat">Publication Format edited.</message>
 	<message key="notification.removedPublicationFormat">Publication Format removed.</message>

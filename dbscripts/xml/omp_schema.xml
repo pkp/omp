@@ -75,6 +75,32 @@
 
 	<!--
 	  *
+	  * TABLE identification_codes
+	  *
+	  -->
+	<table name="identification_codes">
+		<field name="identification_code_id" type="I8">
+			<KEY />
+			<AUTOINCREMENT />
+		</field>
+		<field name="assigned_publication_format_id" type="I8">
+			<NOTNULL />
+		</field>
+		<field name="code" type="C2" size="40">
+			<NOTNULL />
+		</field>
+		<field name="value" type="C2" size="255">
+			<NOTNULL />
+		</field>
+		<index name="identification_codes_key">
+			<col>identification_code_id</col>
+			<col>assigned_publication_format_id</col>
+			<col>code</col>
+		</index>
+	</table>
+
+	<!--
+	  *
 	  * TABLE features
 	  *
 	  -->

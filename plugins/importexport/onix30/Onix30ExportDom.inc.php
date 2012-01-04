@@ -60,11 +60,15 @@ class Onix30ExportDom {
 		XMLCustomWriter::createChildWithText($doc, $productNode, 'NotificationType', '03'); // Confirmed record post-publication
 		XMLCustomWriter::createChildWithText($doc, $productNode, 'RecordSourceType', '04'); // Bibliographic agency
 
-		$productIdentifierNode =& XMLCustomWriter::createElement($doc, 'ProductIdentifier');
-		XMLCustomWriter::appendChild($productNode, $productIdentifierNode);
-		XMLCustomWriter::createChildWithText($doc, $productIdentifierNode, 'ProductIDType', $assignedPublicationFormat->getProductIdentifierTypeCode()); // GTIN-13 (ISBN-13 as GTIN)
-		XMLCustomWriter::createChildWithText($doc, $productIdentifierNode, 'IDValue', $assignedPublicationFormat->getProductIdentifier());
-
+		$identificationCodes =& $assignedPublicationFormat->getIdentificationCodes();
+		foreach ($identificationCodes as $code) {
+			$productIdentifierNode =& XMLCustomWriter::createElement($doc, 'ProductIdentifier');
+			XMLCustomWriter::appendChild($productNode, $productIdentifierNode);
+			XMLCustomWriter::createChildWithText($doc, $productIdentifierNode, 'ProductIDType', $code->getCode()); // GTIN-13 (ISBN-13 as GTIN)
+			XMLCustomWriter::createChildWithText($doc, $productIdentifierNode, 'IDValue', $code->getValue());
+			unset($productIdentifierNode);
+			unset($code);
+		}
 		/* --- Descriptive Detail --- */
 
 		$descDetailNode =& XMLCustomWriter::createElement($doc, 'DescriptiveDetail');

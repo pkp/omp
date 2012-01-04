@@ -14,7 +14,8 @@
 		$('#newCatalogEntryTabs').pkpHandler(
 				'$.pkp.controllers.TabHandler', 
 				{ldelim}
-					{if $selectedTab}selected:{$selectedTab}{/if}
+					{if $selectedTab}selected:{$selectedTab},{/if}
+					emptyLastTab: true
 				{rdelim});
 	{rdelim});
 </script>
