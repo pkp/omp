@@ -1,7 +1,7 @@
 {**
  * templates/controllers/grid/files/signoff/form/addAuditor.tpl
  *
- * Copyright (c) 2003-2011 John Willinsky
+ * Copyright (c) 2003-2012 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Allows editor to add a user who should give feedback about copyedited files.
