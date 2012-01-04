@@ -19,12 +19,9 @@ switch ($op) {
 	case 'index':
 	case 'category':
 	case 'series':
+	case 'book':
 		define('HANDLER_CLASS', 'CatalogHandler');
 		import('pages.catalog.CatalogHandler');
-		break;
-	case 'preview':
-		define('HANDLER_CLASS', 'MonographCatalogHandler');
-		import('pages.catalog.MonographCatalogHandler');
 		break;
 }
 

@@ -51,6 +51,7 @@ class CatalogHandler extends Handler {
 		$featuredMonographIds = $featureDao->getSequencesByAssoc(ASSOC_TYPE_PRESS, $press->getId());
 		$templateMgr->assign('featuredMonographIds', $featuredMonographIds);
 
+		// Display
 		$templateMgr->display('catalog/index.tpl');
 	}
 
@@ -80,6 +81,7 @@ class CatalogHandler extends Handler {
 		$featureDao =& DAORegistry::getDAO('FeatureDAO');
 		$featuredMonographIds = $featureDao->getSequencesByAssoc(ASSOC_TYPE_CATEGORY, $category->getId());
 		$templateMgr->assign('featuredMonographIds', $featuredMonographIds);
+		// Display
 		$templateMgr->display('catalog/category.tpl');
 	}
 
@@ -110,7 +112,36 @@ class CatalogHandler extends Handler {
 		$featuredMonographIds = $featureDao->getSequencesByAssoc(ASSOC_TYPE_SERIES, $series->getId());
 		$templateMgr->assign('featuredMonographIds', $featuredMonographIds);
 
+		// Display
 		$templateMgr->display('catalog/series.tpl');
+	}
+
+	/**
+	 * Display a published monograph in the public catalog.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 */
+	function book($args, &$request) {
+		$templateMgr =& TemplateManager::getManager();
+		$press =& $request->getPress();
+		$this->setupTemplate();
+
+		// Get the book
+		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
+		$monographId = (int) array_shift($args);
+		$publishedMonograph =& $publishedMonographDao->getById($monographId, $press->getId());
+		$templateMgr->assign('publishedMonograph', $publishedMonograph);
+		if (!$publishedMonograph) {
+			$dispatcher =& $this->getDispatcher();
+			$dispatcher->handle404();
+		}
+
+		// Get book categories
+		$categories =& $publishedMonographDao->getCategories($monographId, $press->getId());
+		$templateMgr->assign('categories', $categories);
+
+		// Display
+		$templateMgr->display('catalog/book.tpl');
 	}
 }
 

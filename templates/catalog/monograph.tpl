@@ -8,7 +8,7 @@
  *}
 
 <li class="pkp_catalog_monograph">
-	<img src="{$baseUrl}/templates/images/book-default-small.png" />
+	<a href="{url op="book" path=$publishedMonograph->getId()}"><img src="{$baseUrl}/templates/images/book-default-small.png" /></a>
 	<div class="pkp_catalog_monographTitle">{$publishedMonograph->getLocalizedTitle()|strip_unsafe_html}</div>
 	<div class="pkp_catalog_monoraphAbstract">{$publishedMonograph->getLocalizedAbstract()|strip_unsafe_html}</div>
 </li>
