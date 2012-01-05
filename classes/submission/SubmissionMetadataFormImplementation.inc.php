@@ -101,16 +101,8 @@ class SubmissionMetadataFormImplementation {
 	 */
 	function readInputData() {
 
-		$userVars = array('title', 'abstract', 'coverageGeo', 'coverageChron', 'coverageSample', 'type', 'subjectClass');
-		$keywordInputFields = array('disciplines', 'keyword', 'agencies', 'languages', 'subjects');
-
-		// The controlled vocabularies are multilingual and have their field names prefixed with the locale code.
-		foreach (array_keys($this->_parentForm->supportedLocales) as $localeKey) {
-			foreach ($keywordInputFields as $field) {
-				$userVars[] = $localeKey . '-' . $field . 'Keywords';
-			}
-		}
-
+		// 'keywords' is a tagit catchall that contains an array of values for each keyword/locale combination on the form.
+		$userVars = array('title', 'abstract', 'coverageGeo', 'coverageChron', 'coverageSample', 'type', 'subjectClass', 'keywords');
 		$this->_parentForm->readUserVars($userVars);
 	}
 
@@ -158,12 +150,14 @@ class SubmissionMetadataFormImplementation {
 		$languages = array();
 		$subjects = array();
 
+		$tagitKeywords = $this->_parentForm->getData('keywords');
+
 		foreach ($locales as $locale) {
-			$keywords[$locale] = $this->_parentForm->getData($locale . '-keywordKeywords');
-			$agencies[$locale] = $this->_parentForm->getData($locale . '-agenciesKeywords');
-			$disciplines[$locale] = $this->_parentForm->getData($locale . '-disciplinesKeywords');
-			$languages[$locale] = $this->_parentForm->getData($locale . '-languagesKeywords');
-			$subjects[$locale] = $this->_parentForm->getData($locale . '-subjectsKeywords');
+			$keywords[$locale] = array_key_exists($locale . '-keyword', $tagitKeywords) ? $tagitKeywords[$locale . '-keyword'] : array();
+			$agencies[$locale] = array_key_exists($locale . '-agencies', $tagitKeywords) ? $tagitKeywords[$locale . '-agencies'] : array();
+			$disciplines[$locale] = array_key_exists($locale . '-disciplines', $tagitKeywords) ? $tagitKeywords[$locale . '-disciplines'] : array();
+			$languages[$locale] = array_key_exists($locale . '-languages', $tagitKeywords) ? $tagitKeywords[$locale . '-languages'] : array();
+			$subjects[$locale] = array_key_exists($locale . '-subjects', $tagitKeywords) ?$tagitKeywords[$locale . '-subjects'] : array();
 		}
 
 		// persist the controlled vocabs

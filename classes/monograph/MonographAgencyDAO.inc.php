@@ -144,7 +144,7 @@ class MonographAgencyDAO extends ControlledVocabDAO {
 					foreach ($list as $agency) {
 						$agencyEntry = $monographAgencyEntryDao->newDataObject();
 						$agencyEntry->setControlledVocabId($currentAgencies->getID());
-						$agencyEntry->setAgency($agency, $locale);
+						$agencyEntry->setAgency(urldecode($agency), $locale);
 						$agencyEntry->setSequence($i);
 						$i ++;
 						$agencyEntryId = $monographAgencyEntryDao->insertObject($agencyEntry);

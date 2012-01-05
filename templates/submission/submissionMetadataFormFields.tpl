@@ -41,10 +41,10 @@
 
 {fbvFormArea id="tagitFields" title="submission.submit.metadataForm" border="true"}
 	{fbvFormSection description="submission.submit.metadataForm.tip"}
-		{fbvElement type="keyword" id="languages" label="monograph.languages" subLabelTranslate=true current=$languages[$currentLocale] available=$availableLanguages[$currentLocale] disabled=$readOnly}
-		{fbvElement type="keyword" id="subjects" label="monograph.subjects" subLabelTranslate=true current=$subjects[$currentLocale] disabled=$readOnly}
-		{fbvElement type="keyword" id="disciplines" label="search.discipline" subLabelTranslate=true current=$disciplines[$currentLocale] disabled=$readOnly}
-		{fbvElement type="keyword" id="keyword" label="common.keywords" subLabelTranslate=true current=$keywords[$currentLocale] disabled=$readOnly}
-		{fbvElement type="keyword" id="agencies" label="submission.supportingAgencies" subLabelTranslate=true current=$agencies[$currentLocale] disabled=$readOnly}
+		{fbvElement type="keyword" id="languages" label="monograph.languages" subLabelTranslate=true multilingual=true current=$languages available=$availableLanguages disabled=$readOnly}
+		{fbvElement type="keyword" id="subjects" label="monograph.subjects" subLabelTranslate=true multilingual=true current=$subjects disabled=$readOnly}
+		{fbvElement type="keyword" id="disciplines" label="search.discipline" subLabelTranslate=true multilingual=true current=$disciplines disabled=$readOnly}
+		{fbvElement type="keyword" id="keyword" label="common.keywords" subLabelTranslate=true multilingual=true current=$keywords disabled=$readOnly}
+		{fbvElement type="keyword" id="agencies" label="submission.supportingAgencies" multilingual=true subLabelTranslate=true current=$agencies disabled=$readOnly}
 	{/fbvFormSection}
 {/fbvFormArea}

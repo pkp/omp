@@ -145,7 +145,7 @@ class MonographSubjectDAO extends ControlledVocabDAO {
 					foreach ($list as $subject) {
 						$subjectEntry = $monographSubjectEntryDao->newDataObject();
 						$subjectEntry->setControlledVocabId($currentSubjects->getID());
-						$subjectEntry->setSubject($subject, $locale);
+						$subjectEntry->setSubject(urldecode($subject), $locale);
 						$subjectEntry->setSequence($i);
 						$i ++;
 						$subjectEntryId = $monographSubjectEntryDao->insertObject($subjectEntry);

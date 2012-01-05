@@ -147,7 +147,7 @@ class MonographDisciplineDAO extends ControlledVocabDAO {
 					foreach ($list as $discipline) {
 						$disciplineEntry = $monographDisciplineEntryDao->newDataObject();
 						$disciplineEntry->setControlledVocabId($currentDisciplines->getID());
-						$disciplineEntry->setDiscipline($discipline, $locale);
+						$disciplineEntry->setDiscipline(urldecode($discipline), $locale);
 						$disciplineEntry->setSequence($i);
 						$i ++;
 						$disciplineEntryId = $monographDisciplineEntryDao->insertObject($disciplineEntry);

@@ -145,7 +145,7 @@ class MonographLanguageDAO extends ControlledVocabDAO {
 					foreach ($list as $language) {
 						$languageEntry = $monographLanguageEntryDao->newDataObject();
 						$languageEntry->setControlledVocabId($currentLanguages->getID());
-						$languageEntry->setLanguage($language, $locale);
+						$languageEntry->setLanguage(urldecode($language), $locale);
 						$languageEntry->setSequence($i);
 						$i ++;
 						$languageEntryId = $monographLanguageEntryDao->insertObject($languageEntry);

@@ -145,7 +145,7 @@ class MonographKeywordDAO extends ControlledVocabDAO {
 					foreach ($list as $keyword) {
 						$keywordEntry = $monographKeywordEntryDao->newDataObject();
 						$keywordEntry->setControlledVocabId($currentKeywords->getID());
-						$keywordEntry->setKeyword($keyword, $locale);
+						$keywordEntry->setKeyword(urldecode($keyword), $locale);
 						$keywordEntry->setSequence($i);
 						$i ++;
 						$keywordEntryId = $monographKeywordEntryDao->insertObject($keywordEntry);
