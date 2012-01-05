@@ -26,9 +26,13 @@
 	<message key="monograph.coverage.sample">Sample</message>
 	<message key="monograph.languages">Languages (English, French, Spanish)</message>
 	<message key="monograph.publicationFormats">Publication Formats</message>
+	<message key="monograph.source">Source</message>
+	<message key="monograph.source.tip">Is this submission derived from another resource? If so, you may enter a URL or description of that resource.</message>
 	<message key="monograph.subjectClass">Submission Subject</message>
 	<message key="monograph.subjectClass.tip">Please describe your submission using a few key phrases.  You may refine the subject with specific keywords in a latter part of the form.</message>
 	<message key="monograph.subjects">Subjects</message>
+	<message key="monograph.rights">Rights</message>
+	<message key="monograph.rights.tip">If you wish, you may enter a brief statement about the access rights held in or over this submission.</message>
 	<message key="monograph.title">Book Title</message>
 	<message key="monograph.title.tip">The submission type is usually one of 'image', 'text', or other multimedia types including 'software' or 'interactive'.  Please choose the one most relevant for your submission.  Examples may be found at http://dublincore.org/documents/2001/04/12/usageguide/generic.shtml#type</message>
 	<message key="monograph.type">Type of Submission</message>

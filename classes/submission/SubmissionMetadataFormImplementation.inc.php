@@ -69,6 +69,8 @@ class SubmissionMetadataFormImplementation {
 				'coverageChron' => $monograph->getCoverageChron(null), // Localized
 				'coverageSample' => $monograph->getCoverageSample(null), // Localized
 				'type' => $monograph->getType(null), // Localized
+				'source' =>$monograph->getSource(null), // Localized
+				'rights' => $monograph->getRights(null), // Localized
 				'sponsor' => $monograph->getSponsor(null), // Localized
 				'series' => $seriesDao->getById($monograph->getSeriesId()),
 				'citations' => $monograph->getCitations()
@@ -102,7 +104,7 @@ class SubmissionMetadataFormImplementation {
 	function readInputData() {
 
 		// 'keywords' is a tagit catchall that contains an array of values for each keyword/locale combination on the form.
-		$userVars = array('title', 'abstract', 'coverageGeo', 'coverageChron', 'coverageSample', 'type', 'subjectClass', 'keywords');
+		$userVars = array('title', 'abstract', 'coverageGeo', 'coverageChron', 'coverageSample', 'type', 'subjectClass', 'source', 'rights', 'keywords');
 		$this->_parentForm->readUserVars($userVars);
 	}
 
@@ -111,7 +113,7 @@ class SubmissionMetadataFormImplementation {
 	 * @return array
 	 */
 	function getLocaleFieldNames() {
-		return array('title', 'abstract', 'coverageGeo', 'coverageChron', 'coverageSample', 'type', 'subjectClass');
+		return array('title', 'abstract', 'coverageGeo', 'coverageChron', 'coverageSample', 'type', 'subjectClass', 'source', 'rights');
 	}
 
 	/**
@@ -130,6 +132,8 @@ class SubmissionMetadataFormImplementation {
 		$monograph->setCoverageSample($this->_parentForm->getData('coverageSample'), null); // Localized
 		$monograph->setType($this->_parentForm->getData('type'), null); // Localized
 		$monograph->setSubjectClass($this->_parentForm->getData('subjectClass'), null); // Localized
+		$monograph->setRights($this->_parentForm->getData('rights'), null); // Localized
+		$monograph->setSource($this->_parentForm->getData('source'), null); // Localized
 
 		// Save the monograph
 		$monographDao->updateMonograph($monograph);

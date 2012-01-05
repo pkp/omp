@@ -30,12 +30,18 @@
 	{/fbvFormSection}
 {/fbvFormArea}
 
-{fbvFormArea id="typeAndSubject"}
+{fbvFormArea id="additionalDublinCore"}
 	{fbvFormSection title="monograph.type" for="type" description="monograph.title.tip"}
 		{fbvElement type="text" multilingual=true name="type" id="type" value=$type maxlength="255" disabled=$readOnly}
 	{/fbvFormSection}
 	{fbvFormSection title="monograph.subjectClass" for="subjectClass" description="monograph.subjectClass.tip"}
 		{fbvElement type="text" multilingual=true name="subjectClass" id="subjectClass" value=$subjectClass maxlength="255" disabled=$readOnly}
+	{/fbvFormSection}
+	{fbvFormSection title="monograph.source" for="source" description="monograph.source.tip"}
+		{fbvElement type="text" multilingual=true name="source" id="source" value=$source maxlength="255" disabled=$readOnly}
+	{/fbvFormSection}
+	{fbvFormSection title="monograph.rights" for="rights" description="monograph.rights.tip"}
+		{fbvElement type="text" multilingual=true name="rights" id="rights" value=$rights maxlength="255" disabled=$readOnly}
 	{/fbvFormSection}
 {/fbvFormArea}
 
