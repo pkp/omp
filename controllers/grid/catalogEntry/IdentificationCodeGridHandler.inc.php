@@ -109,8 +109,10 @@ class IdentificationCodeGridHandler extends GridHandler {
 
 		if ($identificationCodeId != '') {
 			$identificationCodeDao =& DAORegistry::getDAO('IdentificationCodeDAO');
-			$identificationCode =& $identificationCodeDao->getById($identificationCodeId);
-			$assignedPublicationFormatId =& $identificationCode->getAssignedPublicationFormatId();
+			$identificationCode =& $identificationCodeDao->getById($identificationCodeId, $this->getMonograph()->getId());
+			if ($identificationCode) {
+				$assignedPublicationFormatId =& $identificationCode->getAssignedPublicationFormatId();
+			}
 		} else { // empty form for new Code
 			$assignedPublicationFormatId = (int) $request->getUserVar('assignedPublicationFormatId');
 		}
@@ -208,7 +210,7 @@ class IdentificationCodeGridHandler extends GridHandler {
 		$assignedPublicationFormat =& $this->getAssignedPublicationFormat();
 		$identificationCodeDao =& DAORegistry::getDAO('IdentificationCodeDAO');
 		$data =& $identificationCodeDao->getByAssignedPublicationFormatId($assignedPublicationFormat->getAssignedPublicationFormatId());
-		return $data;
+		return $data->toArray();
 	}
 
 
@@ -232,7 +234,7 @@ class IdentificationCodeGridHandler extends GridHandler {
 		$monograph =& $this->getMonograph();
 
 		$identificationCodeDao =& DAORegistry::getDAO('IdentificationCodeDAO');
-		$identificationCode = $identificationCodeDao->getById($identificationCodeId);
+		$identificationCode = $identificationCodeDao->getById($identificationCodeId, $monograph->getId());
 
 		// Form handling
 		import('controllers.grid.catalogEntry.form.IdentificationCodeForm');
@@ -255,7 +257,7 @@ class IdentificationCodeGridHandler extends GridHandler {
 		$monograph =& $this->getMonograph();
 
 		$identificationCodeDao =& DAORegistry::getDAO('IdentificationCodeDAO');
-		$identificationCode = $identificationCodeDao->getById($identificationCodeId);
+		$identificationCode = $identificationCodeDao->getById($identificationCodeId, $monograph->getId());
 
 		// Form handling
 		import('controllers.grid.catalogEntry.form.IdentificationCodeForm');
@@ -266,7 +268,7 @@ class IdentificationCodeGridHandler extends GridHandler {
 
 			if(!isset($identificationCode)) {
 				// This is a new code
-				$identificationCode =& $identificationCodeDao->getById($identificationCodeId);
+				$identificationCode =& $identificationCodeDao->getById($identificationCodeId, $monograph->getId());
 				// New added code action notification content.
 				$notificationContent = __('notification.addedIdentificationCode');
 			} else {

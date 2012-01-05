@@ -41,10 +41,8 @@ class PublicationFormatGridRow extends GridRow {
 		$monograph =& $this->getMonograph();
 
 		// Is this a new row or an existing row?
-		$rowId = $this->getId();
-		if (!empty($rowId) && is_numeric($rowId)) {
-			// Only add row actions if this is an existing row
-			$assignedPublicationFormat =& $this->_data;
+		$assignedPublicationFormat = $this->_data;
+		if ($assignedPublicationFormat && is_numeric($assignedPublicationFormat->getAssignedPublicationFormatId())) {
 
 			$router =& $request->getRouter();
 			$actionArgs = array(

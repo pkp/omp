@@ -98,22 +98,36 @@ class IdentificationCodeForm extends Form {
 		$code =& $this->getIdentificationCode();
 
 		$templateMgr =& TemplateManager::getManager();
-		$onixCodelistItemDao =& DAORegistry::getDAO('ONIXCodelistItemDAO');
-		$codes =& $onixCodelistItemDao->getCodes('List5'); // ONIX list for these
-
-		$templateMgr->assign_by_ref('identificationCodes', $codes);
+		$assignedPublicationFormatId = null;
 
 		$monograph =& $this->getMonograph();
 		$templateMgr->assign('monographId', $monograph->getId());
 		$identificationCode =& $this->getIdentificationCode();
-		if ($identificationCode != null) {
+
+		if ($identificationCode) {
+			$assignedPublicationFormatId = $identificationCode->getAssignedPublicationFormatId();
 			$templateMgr->assign('identificationCodeId', $identificationCode->getId());
-			$templateMgr->assign('assignedPublicationFormatId', $identificationCode->getAssignedPublicationFormatId());
 			$templateMgr->assign('code', $identificationCode->getCode());
 			$templateMgr->assign('value', $identificationCode->getValue());
+			$assignedPublicationFormatId = $identificationCode->getAssignedPublicationFormatId();
 		} else { // loading a blank form
-			$templateMgr->assign('assignedPublicationFormatId', (int) $request->getUserVar('assignedPublicationFormatId')); // validated in execute()
+			$assignedPublicationFormatId = (int) $request->getUserVar('assignedPublicationFormatId');
 		}
+
+		$assignedPublicationFormatDao =& DAORegistry::getDAO('AssignedPublicationFormatDAO');
+		$assignedPublicationFormat =& $assignedPublicationFormatDao->getById($assignedPublicationFormatId, $monograph->getId());
+
+		if ($assignedPublicationFormat) { // the format exists for this monograph
+			$templateMgr->assign('assignedPublicationFormatId', $assignedPublicationFormatId);
+			$assignedCodes = array_keys($assignedPublicationFormat->getIdentificationCodes()->toAssociativeArray('code')); // currently assigned codes
+			if ($identificationCode) $assignedCodes = array_diff($assignedCodes, array($identificationCode->getCode())); // allow existing codes to keep their value
+			$onixCodelistItemDao =& DAORegistry::getDAO('ONIXCodelistItemDAO');
+			$codes =& $onixCodelistItemDao->getCodes('List5', $assignedCodes); // ONIX list for these
+			$templateMgr->assign_by_ref('identificationCodes', $codes);
+		} else {
+			fatalError('Format not in authorized monograph');
+		}
+
 		return parent::fetch($request);
 	}
 
@@ -132,7 +146,6 @@ class IdentificationCodeForm extends Form {
 
 	/**
 	 * Save the code
-	 * @see Form::execute()
 	 * @see Form::execute()
 	 */
 	function execute() {

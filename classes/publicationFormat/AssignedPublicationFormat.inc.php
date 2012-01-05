@@ -192,7 +192,7 @@ class AssignedPublicationFormat extends PublicationFormat {
 	}
 
 	/**
-	 * Get the identification codes for this format
+	 * Get the IdentificationCode objects for this format
 	 * @return Array IdentificationCode
 	 */
 	function getIdentificationCodes() {

@@ -26,15 +26,23 @@ class IdentificationCodeDAO extends DAO {
 	/**
 	 * Retrieve an identification code by type id.
 	 * @param $identificationCodeId int
+	 * @param $monographId optional int
 	 * @return IdentificationCode
 	 */
-	function &getById($identificationCodeId, $assignedPublicationFormatId = null){
-		$sqlParams = array((int)$identificationCodeId);
-		if ($assignedPublicationFormatId) {
-			$sqlParams[] = (int) $assignedPublicationFormatId;
+	function &getById($identificationCodeId, $monographId = null){
+		$sqlParams = array((int) $identificationCodeId);
+		if ($monographId) {
+			$sqlParams[] = (int) $monographId;
 		}
 
-		$result =& $this->retrieve('SELECT * FROM identification_codes WHERE identification_code_id = ?'. ($assignedPublicationFormatId ? ' AND assigned_publication_format_id = ?' : ''), $sqlParams);
+		$result =& $this->retrieve(
+			'SELECT i.*
+				FROM identification_codes i
+			JOIN published_monograph_publication_formats pmpf ON (i.assigned_publication_format_id = pmpf.assigned_publication_format_id)
+			WHERE i.identification_code_id = ?
+				' . ($monographId?' AND pmpf.monograph_id = ?':''),
+			$sqlParams);
+
 		$returner = null;
 		if ($result->RecordCount() != 0) {
 			$returner =& $this->_fromRow($result->GetRowAssoc(false));
@@ -53,7 +61,7 @@ class IdentificationCodeDAO extends DAO {
 			'SELECT * FROM identification_codes WHERE assigned_publication_format_id = ?', array((int) $assignedPublicationFormatId));
 
 		$returner = new DAOResultFactory($result, $this, '_fromRow');
-		return $returner->toArray();
+		return $returner;
 	}
 
 	/**

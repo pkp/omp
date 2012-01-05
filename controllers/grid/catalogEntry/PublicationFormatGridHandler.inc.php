@@ -167,7 +167,7 @@ class PublicationFormatGridHandler extends GridHandler {
 		$monograph =& $this->getMonograph();
 		$assignedPublicationFormatDao =& DAORegistry::getDAO('AssignedPublicationFormatDAO');
 		$data =& $assignedPublicationFormatDao->getFormatsByMonographId($monograph->getId());
-		return $data;
+		return $data->toArray();
 	}
 
 
