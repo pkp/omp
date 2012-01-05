@@ -68,8 +68,8 @@
 	{/literal}</script>
 
 	<!-- Plupload -->
-	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/plupload/plupload.full.min.js"></script>
-	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/plupload/jquery.ui.plupload.min.js"></script>
+	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/plupload/plupload.full.js"></script>
+	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/plupload/jquery.ui.plupload/jquery.ui.plupload.js"></script>
 
 	{* FIXME: Replace with a smarty template that includes {translate} keys, see #6443. *}
 	{if $currentLocale !== 'en_US'}<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/plupload/i18n/{$currentLocale|escape}.js"></script>{/if}
