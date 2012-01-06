@@ -30,9 +30,9 @@
 		{counter start=2 assign="counter"}
 		{foreach from=$publicationFormats item=format}
 			<li>{* no need to bother with the published test, since unpublished monographs will not have formats assigned to them *}
-				<a title="publication{$format->getAssignedPublicationFormatId()}" 
+				<a title="publication{$format->getAssignedPublicationFormatId()|escape}" 
 					href="{url router=$smarty.const.ROUTE_COMPONENT component="tab.catalogEntry.CatalogEntryTabHandler" 
-					tab="publication"|concat:$format->getAssignedPublicationFormatId()|escape
+					tab="publication"|concat:$format->getAssignedPublicationFormatId()
 					op="publicationMetadata" 
 					assignedPublicationFormatId=$format->getAssignedPublicationFormatId() 
 					monographId="$monographId" 
