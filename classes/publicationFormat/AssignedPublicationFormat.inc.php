@@ -256,5 +256,21 @@ class AssignedPublicationFormat extends PublicationFormat {
 	function getTaxTypeCode() {
 		return $this->getData('taxTypeCode');
 	}
+
+	/**
+	 * Get the publisher for the format
+	 * @return string
+	 */
+	function getPublisher() {
+		return $this->getData('publisher');
+	}
+
+	/**
+	 * Set the publisher for the format
+	 * @param $publisher string
+	 */
+	function setPublisher($publisher) {
+		return $this->setData('publisher', $publisher);
+	}
 }
 ?>

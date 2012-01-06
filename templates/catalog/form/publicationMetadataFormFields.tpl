@@ -34,6 +34,12 @@
 		{/fbvFormSection}
 	{/fbvFormArea}
 
+	{fbvFormArea id="publisherInformation" title="monograph.publisher" border="true"}
+		{fbvFormSection for="publisher" description="monograph.publisher.tip"}
+			{fbvElement type="text" name="publisher" id="publisher" value=$publisher size=$fbvStyles.size.MEDIUM inline="true"}
+		{/fbvFormSection}
+	{/fbvFormArea}
+
 	{fbvFormArea id="productComposition" title="monograph.publicationFormat.productComposition" border="true"}
 		{fbvFormSection for="productCompositionCode"}
 			{fbvElement type="select" from=$productCompositionCodes selected=$productCompositionCode translate=false id="productCompositionCode" defaultValue="" defaultLabel="" inline=true}

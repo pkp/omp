@@ -153,7 +153,8 @@ class CatalogEntryPublicationMetadataForm extends Form {
 					'currencyCode',
 					'taxRateCode',
 					'taxTypeCode',
-					'countriesIncludedCode'
+					'countriesIncludedCode',
+					'publisher'
 				);
 		$this->readUserVars($vars);
 	}

@@ -131,7 +131,6 @@ class PublicationFormatForm extends Form {
 	/**
 	 * Save the assigned format
 	 * @see Form::execute()
-	 * @see Form::execute()
 	 */
 	function execute() {
 		$assignedPublicationFormatDao =& DAORegistry::getDAO('AssignedPublicationFormatDAO');

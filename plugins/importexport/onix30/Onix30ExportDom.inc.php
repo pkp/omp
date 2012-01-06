@@ -60,7 +60,8 @@ class Onix30ExportDom {
 		XMLCustomWriter::createChildWithText($doc, $productNode, 'NotificationType', '03'); // Confirmed record post-publication
 		XMLCustomWriter::createChildWithText($doc, $productNode, 'RecordSourceType', '04'); // Bibliographic agency
 
-		$identificationCodes =& $assignedPublicationFormat->getIdentificationCodes();
+		$identificationCodes =& $assignedPublicationFormat->getIdentificationCodes()->toArray();
+
 		foreach ($identificationCodes as $code) {
 			$productIdentifierNode =& XMLCustomWriter::createElement($doc, 'ProductIdentifier');
 			XMLCustomWriter::appendChild($productNode, $productIdentifierNode);
@@ -229,7 +230,11 @@ class Onix30ExportDom {
 		$publisherNode =& XMLCustomWriter::createElement($doc, 'Publisher');
 		XMLCustomWriter::appendChild($publishingDetailNode, $publisherNode);
 		XMLCustomWriter::createChildWithText($doc, $publisherNode, 'PublisherRole', '01'); // 01 -> Publisher
-		XMLCustomWriter::createChildWithText($doc, $publisherNode, 'PublisherName', 'Publisher Name');
+		$publisher =& $assignedPublicationFormat->getPublisher();
+		if ($publisher == '') {
+			$publisher =& $monograph->getDefaultPublisher();
+		}
+		XMLCustomWriter::createChildWithText($doc, $publisherNode, 'PublisherName', $publisher);
 
 		/* --- Product Supply --- */
 
