@@ -47,7 +47,8 @@
 
 {fbvFormArea id="tagitFields" title="submission.submit.metadataForm" border="true"}
 	{fbvFormSection description="submission.submit.metadataForm.tip"}
-		{fbvElement type="keyword" id="languages" label="monograph.languages" subLabelTranslate=true multilingual=true current=$languages available=$availableLanguages disabled=$readOnly}
+		{url|assign:languagesSourceUrl router=$smarty.const.ROUTE_PAGE component="submission.SubmissionHandler" op="fetchChoices" codeList="74"}
+		{fbvElement type="keyword" id="languages" label="monograph.languages" subLabelTranslate=true multilingual=true current=$languages source=$languagesSourceUrl disabled=$readOnly}
 		{fbvElement type="keyword" id="subjects" label="monograph.subjects" subLabelTranslate=true multilingual=true current=$subjects disabled=$readOnly}
 		{fbvElement type="keyword" id="disciplines" label="search.discipline" subLabelTranslate=true multilingual=true current=$disciplines disabled=$readOnly}
 		{fbvElement type="keyword" id="keyword" label="common.keywords" subLabelTranslate=true multilingual=true current=$keywords disabled=$readOnly}
