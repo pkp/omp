@@ -63,6 +63,7 @@ class SubmissionMetadataFormImplementation {
 		if (isset($monograph)) {
 			$formData = array(
 				'title' => $monograph->getTitle(null), // Localized
+				'prefix' => $monograph->getPrefix(null), // Localized
 				'abstract' => $monograph->getAbstract(null), // Localized
 				'subjectClass' => $monograph->getSubjectClass(null), // Localized
 				'coverageGeo' => $monograph->getCoverageGeo(null), // Localized
@@ -104,7 +105,7 @@ class SubmissionMetadataFormImplementation {
 	function readInputData() {
 
 		// 'keywords' is a tagit catchall that contains an array of values for each keyword/locale combination on the form.
-		$userVars = array('title', 'abstract', 'coverageGeo', 'coverageChron', 'coverageSample', 'type', 'subjectClass', 'source', 'rights', 'keywords');
+		$userVars = array('title', 'prefix', 'abstract', 'coverageGeo', 'coverageChron', 'coverageSample', 'type', 'subjectClass', 'source', 'rights', 'keywords');
 		$this->_parentForm->readUserVars($userVars);
 	}
 
@@ -113,7 +114,7 @@ class SubmissionMetadataFormImplementation {
 	 * @return array
 	 */
 	function getLocaleFieldNames() {
-		return array('title', 'abstract', 'coverageGeo', 'coverageChron', 'coverageSample', 'type', 'subjectClass', 'source', 'rights');
+		return array('title', 'prefix', 'abstract', 'coverageGeo', 'coverageChron', 'coverageSample', 'type', 'subjectClass', 'source', 'rights');
 	}
 
 	/**
@@ -126,6 +127,7 @@ class SubmissionMetadataFormImplementation {
 
 		// Update monograph
 		$monograph->setTitle($this->_parentForm->getData('title'), null); // Localized
+		$monograph->setPrefix($this->_parentForm->getData('prefix'), null); // Localized
 		$monograph->setAbstract($this->_parentForm->getData('abstract'), null); // Localized
 		$monograph->setCoverageGeo($this->_parentForm->getData('coverageGeo'), null); // Localized
 		$monograph->setCoverageChron($this->_parentForm->getData('coverageChron'), null); // Localized

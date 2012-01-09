@@ -108,7 +108,7 @@ class SeriesDAO extends DAO {
 	 * @return array
 	 */
 	function getLocaleFieldNames() {
-		return array('title', 'description');
+		return array('title', 'description', 'prefix');
 	}
 
 	/**
@@ -272,10 +272,10 @@ class SeriesDAO extends DAO {
 		while (($series =& $seriesIterator->next())) {
 			if ($submittableOnly) {
 				if (!$series->getEditorRestricted()) {
-					$seriesTitles[$series->getId()] = $series->getLocalizedTitle();
+					$seriesTitles[$series->getId()] = join(' ', array($series->getLocalizedPrefix(), $series->getLocalizedTitle()));
 				}
 			} else {
-				$seriesTitles[$series->getId()] = $series->getLocalizedTitle();
+				$seriesTitles[$series->getId()] = join(' ', array($series->getLocalizedPrefix(), $series->getLocalizedTitle()));
 			}
 			unset($series);
 		}

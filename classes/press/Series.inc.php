@@ -80,6 +80,32 @@ class Series extends DataObject {
 	}
 
 	/**
+	 * Get localized prefix for the series.
+	 * @return string
+	 */
+	function getLocalizedPrefix() {
+		return $this->getLocalizedData('prefix');
+	}
+
+	/**
+	 * Get prefix of series.
+	 * @param $locale string
+	 * @return string
+	 */
+	function getPrefix($locale) {
+		return $this->getData('prefix', $locale);
+	}
+
+	/**
+	 * Set prefix of series.
+	 * @param $prefix string
+	 * @param $locale string
+	 */
+	function setPrefix($prefix, $locale) {
+		return $this->setData('prefix', $prefix, $locale);
+	}
+
+	/**
 	 * Get series description.
 	 * @return string
 	 */

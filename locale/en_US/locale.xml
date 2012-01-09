@@ -163,6 +163,7 @@
 	 * COMMON - This section contains the most frequently-used words
 	 *
 	-->
+	<message key="common.prefix">Prefix</message>
 	<message key="common.preview">Preview</message>
 	<message key="common.quality">Quality</message>
 	<message key="common.sendEmail">Send Email</message>
@@ -180,6 +181,8 @@
 	<message key="common.listbuilder.completeForm">Please fill out the form completely.</message>
 	<message key="common.listbuilder.selectValidOption">Please select a valid option from the list.</message>
 	<message key="common.listbuilder.itemExists">You cannot add the same item twice.</message>
+
+	<message key="common.prefixAndTitle.tip">If your title begins with a word like 'A', or 'The', place those words in the prefix field by themselves.</message>
 
 	<!-- Common Messages -->
 	<message key="common.openMonographPress">Open Monograph Press</message>
