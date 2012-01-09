@@ -137,7 +137,7 @@ class CatalogEntryCatalogMetadataForm extends Form {
 	 */
 	function readInputData() {
 		$vars = array(
-			'audience', 'audienceRangeQualifier', 'audienceRangeFrom', 'audienceRangeTo', 'audienceRangeExact', 'defaultPublisher'
+			'audience', 'audienceRangeQualifier', 'audienceRangeFrom', 'audienceRangeTo', 'audienceRangeExact'
 		);
 
 		$this->readUserVars($vars);

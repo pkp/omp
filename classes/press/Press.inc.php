@@ -53,8 +53,8 @@ class Press extends DataObject {
 	 * Set the name of the press
 	 * @param $pressName string
 	 */
-	function setPressName($pressName) {
-		$this->setData('name', $pressName);
+	function setName($name) {
+		$this->setData('name', $name);
 	}
 
 	/**
@@ -62,6 +62,38 @@ class Press extends DataObject {
 	 */
 	function getName($locale) {
 		return $this->getSetting('name', $locale);
+	}
+
+	/**
+	 * Get the contact name for this press
+	 * @return string
+	 */
+	function getContactName() {
+		return $this->getSetting('contactName');
+	}
+
+	/**
+	 * Set the contact name for this press
+	 * @param $contactName string
+	 */
+	function setContactName($contactName) {
+		$this->setData('contactName', $contactName);
+	}
+
+	/**
+	 * Get the contact email for this press
+	 * @return string
+	 */
+	function getContactEmail() {
+		return $this->getSetting('contactEmail');
+	}
+
+	/**
+	 * Set the contact email for this press
+	 * @param $contactEmail string
+	 */
+	function setContactEmail($contactEmail) {
+		$this->setData('contactEmail', $contactEmail);
 	}
 
 	/**

@@ -22,10 +22,20 @@ class ProductionStageForm extends PressSettingsForm {
 	 * Constructor.
 	 */
 	function ProductionStageForm($wizardMode = false) {
-		// This form has no settings. Only necessary for saving listbuider data.
-		$settings = array();
+		$settings = array('publisher' => 'string');
 
 		parent::PressSettingsForm($settings, 'controllers/tab/settings/productionStage/form/productionStageForm.tpl', $wizardMode);
+	}
+
+
+	//
+	// Implement template methods from Form.
+	//
+	/**
+	 * @see Form::getLocaleFieldNames()
+	 */
+	function getLocaleFieldNames() {
+		return array('publisher');
 	}
 }
 

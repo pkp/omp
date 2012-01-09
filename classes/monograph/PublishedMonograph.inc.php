@@ -95,22 +95,6 @@ class PublishedMonograph extends Monograph {
 	}
 
 	/**
-	 * Get the default publisher for the published monograph.
-	 * @return string
-	 */
-	function getDefaultPublisher() {
-		return $this->getData('defaultPublisher');
-	}
-
-	/**
-	 * Set the default publisher for the published monograph.
-	 * @param $defaultPublisher string
-	 */
-	function setDefaultPublisher($defaultPublisher) {
-		return $this->setData('defaultPublisher', $defaultPublisher);
-	}
-
-	/**
 	 * Retrieves the assigned publication formats for this mongraph
 	 * @return array AssignedPublicationFormat
 	 */

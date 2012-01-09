@@ -127,6 +127,7 @@
 	<message key="manager.settings.accessDescription">All settings related to access and security management for this press (users,roles, site access options).</message>
 	<message key="manager.settings.websiteDescription">All settings specific to the public website pages (homepage, appearance, language)</message>
 	<message key="manager.settings.publicationDescription">All settings specific to the publication process (general settings, submission stage, review stage, editorial stage, production stage, email templates).</message>
+	<message key="manager.settings.publisher">Press Publisher Name</message>
 	<message key="manager.settings.distributionDescription">All settings specific to the distribution process (notification, indexing, archiving, payment, reading tools).</message>
 
 	<!--  Tools management -->

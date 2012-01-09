@@ -18,6 +18,12 @@
 <form class="pkp_form" id="productionStageForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.PublicationSettingsTabHandler" op="saveFormData" tab="productionStage"}">
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="productionStageFormNotification"}
 
+	{fbvFormArea id="publisherInformation" title="manager.settings.publisher"}
+		{fbvFormSection id="publisher"}
+			{fbvElement type="text" multilingual=true name="publisher" required="true" id="publisher" value=$publisher maxlength="255"}
+		{/fbvFormSection}
+	{/fbvFormArea}
+
 	{url|assign:productionLibraryGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.library.LibraryFileGridHandler" op="fetchGrid" fileType=$smarty.const.LIBRARY_FILE_TYPE_PRODUCTION}
 	{load_url_in_div id="productionLibraryGridDiv" url=$productionLibraryGridUrl}
 

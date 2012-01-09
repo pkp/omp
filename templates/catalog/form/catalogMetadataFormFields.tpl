@@ -31,12 +31,6 @@
 		{/fbvFormSection}
 	{/fbvFormArea}
 
-	{fbvFormArea id="publisherInformation" title="monograph.defaultPublisher" border="true"}
-		{fbvFormSection for="defaultPublisher"}
-			{fbvElement type="text" name="defaultPublisher" id="defaultPublisher" value=$defaultPublisher size=$fbvStyles.size.MEDIUM inline="true"}
-		{/fbvFormSection}
-	{/fbvFormArea}
-
 	{fbvFormArea id="publicationFormats"}
 		{fbvFormSection}
 			<!--  Formats -->
