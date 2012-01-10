@@ -22,7 +22,7 @@ class ProductionStageForm extends PressSettingsForm {
 	 * Constructor.
 	 */
 	function ProductionStageForm($wizardMode = false) {
-		$settings = array('publisher' => 'string');
+		$settings = array('publisher' => 'string', 'location' => 'string', 'codeType' => 'string', 'codeValue' => 'string');
 
 		parent::PressSettingsForm($settings, 'controllers/tab/settings/productionStage/form/productionStageForm.tpl', $wizardMode);
 	}
@@ -35,7 +35,19 @@ class ProductionStageForm extends PressSettingsForm {
 	 * @see Form::getLocaleFieldNames()
 	 */
 	function getLocaleFieldNames() {
-		return array('publisher');
+		return array();
+	}
+
+	/**
+	 * @see Form::fetch()
+	 */
+	function fetch(&$request, $params = null) {
+		$templateMgr =& TemplateManager::getManager();
+		$onixCodelistItemDao =& DAORegistry::getDAO('ONIXCodelistItemDAO');
+		$codeTypes =& $onixCodelistItemDao->getCodes('List44'); // Name code types for publisher
+		$templateMgr->assign('codeTypes', $codeTypes);
+
+		return parent::fetch(&$request);
 	}
 }
 

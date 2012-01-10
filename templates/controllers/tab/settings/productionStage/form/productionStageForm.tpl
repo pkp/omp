@@ -18,12 +18,24 @@
 <form class="pkp_form" id="productionStageForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.PublicationSettingsTabHandler" op="saveFormData" tab="productionStage"}">
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="productionStageFormNotification"}
 
-	{fbvFormArea id="publisherInformation" title="manager.settings.publisher"}
-		{fbvFormSection id="publisher"}
-			{fbvElement type="text" multilingual=true name="publisher" required="true" id="publisher" value=$publisher maxlength="255"}
+	{fbvFormArea id="publisherInformation"}
+		{fbvFormSection id="publisher" label="manager.settings.publisher"}
+			{fbvElement type="text" name="publisher" required="true" id="publisher" value=$publisher maxlength="255"}
+		{/fbvFormSection}
+		{fbvFormSection id="location" label="manager.settings.location"}
+			{fbvElement type="text" name="location" required="true" id="location" value=$location maxlength="255"}
 		{/fbvFormSection}
 	{/fbvFormArea}
 
+	{fbvFormArea id="audienceInformation" title="manager.settings.publisherCode" border="true"}
+		{fbvFormSection for="codeType" description="manager.settings.publisherCodeType.tip"}
+			{fbvElement type="select" from=$codeTypes selected=$codeType translate=false id="codeType" defaultValue="" defaultLabel=""}
+		{/fbvFormSection}
+		{fbvFormSection for="codeValue"}
+			{fbvElement label="manager.settings.publisherCode" type="text" id="codeValue" value="$codeValue"}
+		{/fbvFormSection}
+	{/fbvFormArea}
+	
 	{url|assign:productionLibraryGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.library.LibraryFileGridHandler" op="fetchGrid" fileType=$smarty.const.LIBRARY_FILE_TYPE_PRODUCTION}
 	{load_url_in_div id="productionLibraryGridDiv" url=$productionLibraryGridUrl}
 
