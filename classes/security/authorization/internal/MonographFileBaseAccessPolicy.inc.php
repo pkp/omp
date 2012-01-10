@@ -63,7 +63,7 @@ class MonographFileBaseAccessPolicy extends AuthorizationPolicy {
 		if (!is_null($fileIdAndRevision)) {
 			$fileData = explode('-', $fileIdAndRevision);
 			$fileId = (int) $fileData[0];
-			$revision = (int) $fileData[1];
+			$revision = isset($fileData[1]) ? (int) $fileData[1] : 0; // -0 for most recent revision
 			$cacheId = $fileIdAndRevision;
 		} else {
 			// Get the identifying info from the request

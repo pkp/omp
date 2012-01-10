@@ -100,7 +100,7 @@ class FileUploadWizardHandler extends FileManagementHandler {
 
 		// The revised file will be non-null if we revise a single existing file.
 		if ($this->getRevisionOnly() && $request->getUserVar('revisedFileId')) {
-			// FIXME: bug #6978
+			// Validated in authorize.
 			$this->_revisedFileId = (int)$request->getUserVar('revisedFileId');
 		}
 
@@ -121,6 +121,12 @@ class FileUploadWizardHandler extends FileManagementHandler {
 		if ($stageId == WORKFLOW_STAGE_ID_INTERNAL_REVIEW || $stageId == WORKFLOW_STAGE_ID_EXTERNAL_REVIEW) {
 			import('classes.security.authorization.internal.ReviewRoundRequiredPolicy');
 			$this->addPolicy(new ReviewRoundRequiredPolicy($request, $args));
+		}
+
+		$revisedFileId = $request->getUserVar('revisedFileId');
+		if ($revisedFileId) {
+			import('classes.security.authorization.OmpMonographFileAccessPolicy');
+			$this->addPolicy(new OmpMonographFileAccessPolicy($request, $args, $roleAssignments, MONOGRAPH_FILE_ACCESS_READ, $revisedFileId));
 		}
 
 		return parent::authorize($request, $args, $roleAssignments);
