@@ -128,6 +128,9 @@
 	<message key="manager.settings.websiteDescription">All settings specific to the public website pages (homepage, appearance, language)</message>
 	<message key="manager.settings.publicationDescription">All settings specific to the publication process (general settings, submission stage, review stage, editorial stage, production stage, email templates).</message>
 	<message key="manager.settings.publisher">Press Publisher Name</message>
+	<message key="manager.settings.location">Geographical Location</message>
+	<message key="manager.settings.publisherCode">Publisher Code</message>
+	<message key="manager.settings.publisherCodeType.tip">If you have a publisher name code, please fill it in below.  It will be included in generated metadata.  The field is not required.</message>
 	<message key="manager.settings.distributionDescription">All settings specific to the distribution process (notification, indexing, archiving, payment, reading tools).</message>
 
 	<!--  Tools management -->
