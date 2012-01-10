@@ -30,7 +30,7 @@ class SelectableReviewRevisionsGridHandler extends SelectableFileListGridHandler
 
 		$this->addRoleAssignment(
 			array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_ASSISTANT),
-			array('fetchGrid', 'fetchRow', 'downloadAllFiles')
+			array('fetchGrid', 'fetchRow')
 		);
 
 		// Set the grid title.

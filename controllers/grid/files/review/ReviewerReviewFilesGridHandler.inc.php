@@ -29,7 +29,7 @@ class ReviewerReviewFilesGridHandler extends FileListGridHandler {
 
 		$this->addRoleAssignment(
 			array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_ASSISTANT, ROLE_ID_REVIEWER),
-			array('fetchGrid', 'fetchRow', 'downloadAllFiles')
+			array('fetchGrid', 'fetchRow')
 		);
 
 		// Set the grid title.

@@ -18,13 +18,19 @@ class MonographFileBaseAccessPolicy extends AuthorizationPolicy {
 	/** @var PKPRequest */
 	var $_request;
 
+	/** @var string */
+	var $_fileIdAndRevision;
+
 	/**
 	 * Constructor
 	 * @param $request PKPRequest
+	 * @param $fileIdAndRevision string If passed, this policy will try to
+	 * get the monograph file from this data.
 	 */
-	function MonographFileBaseAccessPolicy(&$request) {
+	function MonographFileBaseAccessPolicy(&$request, $fileIdAndRevision = null) {
 		parent::AuthorizationPolicy('user.authorization.monographFile');
 		$this->_request =& $request;
+		$this->_fileIdAndRevision = $fileIdAndRevision;
 	}
 
 
@@ -52,11 +58,20 @@ class MonographFileBaseAccessPolicy extends AuthorizationPolicy {
 	 * @return MonographFile
 	 */
 	function &getMonographFile(&$request) {
-		// Get the identifying info from the request
-		$fileId = (int) $request->getUserVar('fileId');
-		$revision = (int) $request->getUserVar('revision');
-		assert($fileId);
-		$cacheId = "$fileId-$revision"; // -0 for most recent revision
+		// Try to get the monograph file info.
+		$fileIdAndRevision = $this->_fileIdAndRevision;
+		if (!is_null($fileIdAndRevision)) {
+			$fileData = explode('-', $fileIdAndRevision);
+			$fileId = (int) $fileData[0];
+			$revision = (int) $fileData[1];
+			$cacheId = $fileIdAndRevision;
+		} else {
+			// Get the identifying info from the request
+			$fileId = (int) $request->getUserVar('fileId');
+			$revision = (int) $request->getUserVar('revision');
+			assert($fileId);
+			$cacheId = "$fileId-$revision"; // -0 for most recent revision
+		}
 
 		// Fetch the object, caching if possible
 		$cache =& $this->_getCache();

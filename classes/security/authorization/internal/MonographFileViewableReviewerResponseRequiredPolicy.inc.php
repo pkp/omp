@@ -20,8 +20,8 @@ class MonographFileViewableReviewerResponseRequiredPolicy extends MonographFileB
 	 * Constructor
 	 * @param $request PKPRequest
 	 */
-	function MonographFileViewableReviewerResponseRequiredPolicy(&$request) {
-		parent::MonographFileBaseAccessPolicy($request);
+	function MonographFileViewableReviewerResponseRequiredPolicy(&$request, $fileIdAndRevision = null) {
+		parent::MonographFileBaseAccessPolicy($request, $fileIdAndRevision);
 	}
 
 

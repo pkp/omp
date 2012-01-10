@@ -193,21 +193,14 @@ class SubmissionFilesGridHandlerImplementation {
 		if ($this->canDownloadAll() && !empty($tarBinary) && file_exists($tarBinary) && $gridHandler->hasGridDataElements($request)) {
 			import('controllers.grid.files.fileList.linkAction.DownloadAllLinkAction');
 
-			$linkParams = $gridHandler->getRequestArgs();
+			$monograph =& $this->getMonograph();
+			$stageId = $this->getStageId();
+			$linkParams = array('monographId' => $monograph->getId(), 'stageId' => $stageId);
 
-			// If we have a review round, pass as link action parameter.
-			$reviewRound =& $gridHandler->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ROUND);
-			if (is_a($reviewRound, 'ReviewRound')) {
-				$linkParams = array_merge($linkParams, array('reviewRoundId' => $reviewRound->getId()));
-			}
+			// Get the files to be downloaded.
+			$files =& $gridHandler->getFilesToDownload($request);
 
-			// If we have an active filter, let the link action know it.
-			$filterSelectionData =& $gridHandler->getFilterSelectionData($request);
-			if ($filterSelectionData) {
-				$linkParams = array_merge($linkParams, $filterSelectionData);
-			}
-
-			$gridHandler->addAction(new DownloadAllLinkAction($request, $linkParams), GRID_ACTION_POSITION_BELOW);
+			$gridHandler->addAction(new DownloadAllLinkAction($request, $linkParams, $files), GRID_ACTION_POSITION_BELOW);
 		}
 
 		// The file name column is common to all file grid types.
@@ -223,53 +216,6 @@ class SubmissionFilesGridHandlerImplementation {
 	function &getRowInstance() {
 		$row = new SubmissionFilesGridRow($this->canDelete(), $this->canViewNotes(), $this->getStageId());
 		return $row;
-	}
-
-	/**
-	 * Implementation of the functionality to download all files of
-	 * the grid that is using this class.
-	 * @param $args array
-	 * @param $request Request
-	 * @param $monographFiles array The monograph files that will be
-	 * downloaded.
-	 */
-	function downloadAllFiles($args, &$request, &$monographFiles) {
-		// Retrieve the monograph.
-		$monograph =& $this->getMonograph();
-		$monographId = $monograph->getId();
-
-		$gridHandler =& $this->getGridHandler();
-
-		// Find out the paths of all files in this grid.
-		import('classes.file.MonographFileManager');
-		$filesDir = MonographFileManager::_getFilesDir($monographId);
-		$filePaths = array();
-		foreach ($monographFiles as $submissionFileData) {
-			$monographFile =& $submissionFileData['submissionFile']; /* @var $monographFile MonographFile */
-
-			// Remove absolute path so the archive doesn't include it (otherwise all files are organized by absolute path)
-			$filePaths[] = str_replace($filesDir, '', $monographFile->getFilePath());
-
-			unset($monographFile);
-		}
-
-		// Create a temporary file.
-		$archivePath = tempnam('/tmp', 'sf-');
-
-		// Create the archive and download the file.
-		exec(
-			Config::getVar('cli', 'tar') . ' -c -z ' .
-			'-f ' . escapeshellarg($archivePath) . ' ' .
-			'-C ' . escapeshellarg($filesDir) . ' ' .
-			implode(' ', array_map('escapeshellarg', $filePaths))
-		);
-
-		if (file_exists($archivePath)) {
-			FileManager::downloadFile($archivePath, 'application/x-gtar', false, 'files.tar.gz');
-			FileManager::deleteFile($archivePath);
-		} else {
-			fatalError('Creating archive with submission files failed!');
-		}
 	}
 }
 

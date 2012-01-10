@@ -19,8 +19,8 @@ class MonographFileSubmissionStageRequiredPolicy extends MonographFileBaseAccess
 	 * Constructor
 	 * @param $request PKPRequest
 	 */
-	function MonographFileSubmissionStageRequiredPolicy(&$request) {
-		parent::MonographFileBaseAccessPolicy($request);
+	function MonographFileSubmissionStageRequiredPolicy(&$request, $fileIdAndRevision = null) {
+		parent::MonographFileBaseAccessPolicy($request, $fileIdAndRevision);
 	}
 
 

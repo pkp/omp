@@ -164,16 +164,10 @@ class SubmissionFilesGridHandler extends GridHandler {
 
 
 	//
-	// Public handler methods
+	// Protected methods.
 	//
-	/**
-	 * Download all of the monograph files as one compressed file.
-	 * @param $args array
-	 * @param $request Request
-	 */
-	function downloadAllFiles($args, &$request) {
-		$submissionFiles =& $this->getGridDataElements($request);
-		$this->_handlerImplementation->downloadAllFiles($args, $request, $submissionFiles);
+	function getFilesToDownload(&$request) {
+		return $this->getGridDataElements($request);
 	}
 }
 

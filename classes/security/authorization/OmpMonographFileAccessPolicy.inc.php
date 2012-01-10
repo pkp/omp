@@ -26,10 +26,11 @@ class OmpMonographFileAccessPolicy extends PressPolicy {
 	 * @param $args array request parameters
 	 * @param $roleAssignments array
 	 * @param $mode int bitfield MONOGRAPH_FILE_ACCESS_...
+	 * @param $fileIdAndRevision string
 	 * @param $submissionParameterName string the request parameter we expect
 	 *  the submission id in.
 	 */
-	function OmpMonographFileAccessPolicy(&$request, $args, $roleAssignments, $mode, $submissionParameterName = 'monographId') {
+	function OmpMonographFileAccessPolicy(&$request, $args, $roleAssignments, $mode, $fileIdAndRevision = null, $submissionParameterName = 'monographId') {
 		// TODO: Refine file access policies. Differentiate between
 		// read and modify access using bitfield:
 		// $mode & MONOGRAPH_FILE_ACCESS_...
@@ -40,7 +41,7 @@ class OmpMonographFileAccessPolicy extends PressPolicy {
 		import('classes.security.authorization.internal.MonographRequiredPolicy');
 		$this->addPolicy(new MonographRequiredPolicy($request, $args, $submissionParameterName));
 		import('classes.security.authorization.internal.MonographFileMatchesMonographPolicy');
-		$this->addPolicy(new MonographFileMatchesMonographPolicy($request));
+		$this->addPolicy(new MonographFileMatchesMonographPolicy($request, $fileIdAndRevision));
 
 		// Authors, press managers and series editors potentially have
 		// access to submission files. We'll have to define
@@ -89,26 +90,26 @@ class OmpMonographFileAccessPolicy extends PressPolicy {
 
 			// 3a) If the file was uploaded by the current user, allow...
 			import('classes.security.authorization.internal.MonographFileUploaderAccessPolicy');
-			$authorFileAccessOptionsPolicy->addPolicy(new MonographFileUploaderAccessPolicy($request));
+			$authorFileAccessOptionsPolicy->addPolicy(new MonographFileUploaderAccessPolicy($request, $fileIdAndRevision));
 
 			// ...or if we don't want to modify the file...
 			if (!($mode & MONOGRAPH_FILE_ACCESS_MODIFY)) {
 
 				// 3b) ...and the file is at submission stage...
 				import('classes.security.authorization.internal.MonographFileSubmissionStageRequiredPolicy');
-				$authorFileAccessOptionsPolicy->addPolicy(new MonographFileSubmissionStageRequiredPolicy($request));
+				$authorFileAccessOptionsPolicy->addPolicy(new MonographFileSubmissionStageRequiredPolicy($request, $fileIdAndRevision));
 
 				// 3c) ...or the file is a viewable reviewer response...
 				import('classes.security.authorization.internal.MonographFileViewableReviewerResponseRequiredPolicy');
-				$authorFileAccessOptionsPolicy->addPolicy(new MonographFileViewableReviewerResponseRequiredPolicy($request));
+				$authorFileAccessOptionsPolicy->addPolicy(new MonographFileViewableReviewerResponseRequiredPolicy($request, $fileIdAndRevision));
 
 				// 3d) ...or if the file is part of a signoff assigned to the user...
 				import('classes.security.authorization.internal.MonographFileAssignedAuditorAccessPolicy');
-				$authorFileAccessOptionsPolicy->addPolicy(new MonographFileAssignedAuditorAccessPolicy($request));
+				$authorFileAccessOptionsPolicy->addPolicy(new MonographFileAssignedAuditorAccessPolicy($request, $fileIdAndRevision));
 
 				// 3e) ...or if the file is a viewable revision to authors, allow.
 				import('classes.security.authorization.internal.MonographFileViewableRevisionRequiredPolicy');
-				$authorFileAccessOptionsPolicy->addPolicy(new MonographFileViewableRevisionRequiredPolicy($request));
+				$authorFileAccessOptionsPolicy->addPolicy(new MonographFileViewableRevisionRequiredPolicy($request, $fileIdAndRevision));
 			}
 
 			// Add the rules from 3)
@@ -131,13 +132,13 @@ class OmpMonographFileAccessPolicy extends PressPolicy {
 
 			// 2a) If the file was uploaded by the current user, allow.
 			import('classes.security.authorization.internal.MonographFileUploaderAccessPolicy');
-			$reviewerFileAccessOptionsPolicy->addPolicy(new MonographFileUploaderAccessPolicy($request));
+			$reviewerFileAccessOptionsPolicy->addPolicy(new MonographFileUploaderAccessPolicy($request, $fileIdAndRevision));
 
 			// 2b) If the file is part of an assigned review, and we're not
 			// trying to modify it, allow.
 			import('classes.security.authorization.internal.MonographFileAssignedReviewerAccessPolicy');
 			if (!($mode & MONOGRAPH_FILE_ACCESS_MODIFY)) {
-				$reviewerFileAccessOptionsPolicy->addPolicy(new MonographFileAssignedReviewerAccessPolicy($request));
+				$reviewerFileAccessOptionsPolicy->addPolicy(new MonographFileAssignedReviewerAccessPolicy($request, $fileIdAndRevision));
 			}
 
 			// Add the rules from 2)

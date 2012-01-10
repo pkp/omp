@@ -19,8 +19,8 @@ class MonographFileUploaderAccessPolicy extends MonographFileBaseAccessPolicy {
 	 * Constructor
 	 * @param $request PKPRequest
 	 */
-	function MonographFileUploaderAccessPolicy(&$request) {
-		parent::MonographFileBaseAccessPolicy($request);
+	function MonographFileUploaderAccessPolicy(&$request, $fileIdAndRevision = null) {
+		parent::MonographFileBaseAccessPolicy($request, $fileIdAndRevision);
 	}
 
 

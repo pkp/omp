@@ -20,8 +20,8 @@ class MonographFileAssignedAuditorAccessPolicy extends MonographFileBaseAccessPo
 	 * Constructor
 	 * @param $request PKPRequest
 	 */
-	function MonographFileAssignedAuditorAccessPolicy(&$request) {
-		parent::MonographFileBaseAccessPolicy($request);
+	function MonographFileAssignedAuditorAccessPolicy(&$request, $fileIdAndRevision = null) {
+		parent::MonographFileBaseAccessPolicy($request, $fileIdAndRevision);
 	}
 
 

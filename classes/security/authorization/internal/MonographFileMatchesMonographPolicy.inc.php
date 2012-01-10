@@ -21,8 +21,8 @@ class MonographFileMatchesMonographPolicy extends MonographFileBaseAccessPolicy 
 	 * Constructor
 	 * @param $request PKPRequest
 	 */
-	function MonographFileMatchesMonographPolicy(&$request) {
-		parent::MonographFileBaseAccessPolicy($request);
+	function MonographFileMatchesMonographPolicy(&$request, $fileIdAndRevision = null) {
+		parent::MonographFileBaseAccessPolicy($request, $fileIdAndRevision);
 	}
 
 
@@ -44,6 +44,14 @@ class MonographFileMatchesMonographPolicy extends MonographFileBaseAccessPolicy 
 
 		// Check if the monograph file belongs to the monograph.
 		if ($monographFile->getMonographId() == $monograph->getId()) {
+			// We add this monograph file to the context monograph files array.
+			$monographFilesArray = $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH_FILES);
+			if (is_null($monographFilesArray)) {
+				$monographFilesArray = array();
+			}
+			array_push($monographFilesArray, $monographFile);
+			$this->addAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH_FILES, $monographFilesArray);
+
 			// Save the monograph to the authorization context.
 			$this->addAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH_FILE, $monographFile);
 			return AUTHORIZATION_PERMIT;

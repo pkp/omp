@@ -36,7 +36,7 @@ class FairCopyFilesGridHandler extends FileSignoffGridHandler {
 			array(
 				'fetchGrid', 'fetchRow',
 				'addFile',
-				'downloadFile', 'downloadAllFiles',
+				'downloadFile',
 				'deleteFile',
 				'signOffFile'
 			)

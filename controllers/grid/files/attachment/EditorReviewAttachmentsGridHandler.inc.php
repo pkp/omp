@@ -30,7 +30,7 @@ class EditorReviewAttachmentsGridHandler extends FileListGridHandler {
 		$this->addRoleAssignment(
 			array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_ASSISTANT),
 			array(
-				'fetchGrid', 'fetchRow', 'downloadAllFiles'
+				'fetchGrid', 'fetchRow'
 			)
 		);
 	}

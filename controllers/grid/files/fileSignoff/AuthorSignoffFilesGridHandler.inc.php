@@ -38,7 +38,7 @@ class AuthorSignoffFilesGridHandler extends GridHandler {
 
 		$this->addRoleAssignment(
 			array(ROLE_ID_AUTHOR),
-			array('fetchGrid', 'fetchRow', 'downloadAllFiles', 'signOffFiles')
+			array('fetchGrid', 'fetchRow', 'signOffFiles')
 		);
 	}
 	//

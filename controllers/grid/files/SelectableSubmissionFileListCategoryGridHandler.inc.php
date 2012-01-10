@@ -248,37 +248,25 @@ class SelectableSubmissionFileListCategoryGridHandler extends CategoryGridHandle
 
 
 	//
-	// Public handler methods
+	// Protected methods
 	//
 	/**
-	 * Download all of the monograph files as one compressed file.
-	 * @param $args array
+	 * Get all files of this grid to download.
 	 * @param $request Request
+	 * @return array
 	 */
-	function downloadAllFiles($args, &$request) {
+	function getFilesToDownload(&$request) {
 		$dataProvider =& $this->getDataProvider();
-
-		// Check for an workflow stage filter data.
-		$filter = $request->getUserVar('allStages');
-		if ($filter) {
-			$workflowStages = $this->loadData($request, $filter);
-		} else {
-			$workflowStages = $this->getGridDataElements($request);
-		}
+		$workflowStages = $this->getGridDataElements($request);
 
 		// Get the monograph files to be downloaded.
 		$monographFiles = array();
 		foreach ($workflowStages as $stageId) {
 			$monographFiles = array_merge($monographFiles, $dataProvider->getCategoryData($stageId));
 		}
-
-		$this->_handlerImplementation->downloadAllFiles($args, $request, $monographFiles);
+		return $monographFiles;
 	}
 
-
-	//
-	// Protected methods
-	//
 	/**
 	 * Return an (optional) additional authorization policy
 	 * to authorize the file selection.

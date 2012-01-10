@@ -19,8 +19,8 @@ class MonographFileViewableRevisionRequiredPolicy extends MonographFileBaseAcces
 	 * Constructor
 	 * @param $request PKPRequest
 	 */
-	function MonographFileViewableRevisionRequiredPolicy(&$request) {
-		parent::MonographFileBaseAccessPolicy($request);
+	function MonographFileViewableRevisionRequiredPolicy(&$request, $fileIdAndRevision = null) {
+		parent::MonographFileBaseAccessPolicy($request, $fileIdAndRevision);
 	}
 
 
