@@ -103,6 +103,19 @@ class PublishedMonograph extends Monograph {
 		$formats =& $assignedPublicationFormatDao->getFormatsByMonographId($this->getId());
 		return $formats->toArray();
 	}
+
+	/**
+	 * Returns whether or not this published monograph has formats assigned to it
+	 * @return boolean
+	 */
+	function hasAssignedPublicationFormats() {
+		$formats =& $this->getAssignedPublicationFormats();
+		if (sizeof($formats) > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }
 
 ?>
