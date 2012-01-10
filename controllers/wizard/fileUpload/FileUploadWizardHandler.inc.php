@@ -132,10 +132,26 @@ class FileUploadWizardHandler extends FileManagementHandler {
 			}
 		}
 
+		// Validate file ids. We have two cases where we might have a file id.
+		// CASE 1: user is uploading a revision to a file, the revised file id
+		// will need validation.
 		$revisedFileId = $request->getUserVar('revisedFileId');
-		if ($revisedFileId) {
+		// CASE 2: user already have uploaded a file (and it's editing the metadata),
+		// we will need to validate the uploaded file id.
+		$fileId = $request->getUserVar('fileId');
+		// Get the right one to validate.
+		$fileIdToValidate = null;
+		if ($revisedFileId && !$fileId) {
+			$fileIdToValidate = $revisedFileId;
+		} else if ($fileId && !$revisedFileId) {
+			$fileIdToValidate = $fileId;
+		} else if ($revisedFileId && $fileId) {
+			// Those two cases will not happen at the same time.
+			return false;
+		}
+		if ($fileIdToValidate) {
 			import('classes.security.authorization.OmpMonographFileAccessPolicy');
-			$this->addPolicy(new OmpMonographFileAccessPolicy($request, $args, $roleAssignments, MONOGRAPH_FILE_ACCESS_READ, $revisedFileId));
+			$this->addPolicy(new OmpMonographFileAccessPolicy($request, $args, $roleAssignments, MONOGRAPH_FILE_ACCESS_READ, $fileIdToValidate));
 		}
 
 		return parent::authorize($request, $args, $roleAssignments);
@@ -419,12 +435,8 @@ class FileUploadWizardHandler extends FileManagementHandler {
 		// Retrieve the authorized monograph.
 		$monograph =& $this->getMonograph();
 
-		// Retrieve the latest revision of the requested monograph file.
-		// FIXME Bug #6976: Validate file ID
-		$fileId = (int)$request->getUserVar('fileId');
-		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-		$submissionFile =& $submissionFileDao->getLatestRevision($fileId, $this->getFileStage(), $monograph->getId());
-		if (!is_a($submissionFile, 'MonographFile')) fatalError('Invalid file id!');
+		// Retrieve the monograph file.
+		$submissionFile =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH_FILE);
 
 		// Import the meta-data form based on the file implementation.
 		if (is_a($submissionFile, 'ArtworkFile')) {
