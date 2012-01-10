@@ -14,13 +14,19 @@
 
 <locale name="en_US" full_name="U.S. English">
 	<message key="plugins.importexport.onix30.displayName">ONIX 3.0 Monograph  Export Plugin</message>
-	<message key="plugins.importexport.onix30.description">Export monograph metadata using the ONIX 3.0 DTD</message>
+	<message key="plugins.importexport.onix30.description">Export monograph metadata in the ONIX 3.0 format</message>
 	<message key="plugins.importexport.onix30.cliUsage"><![CDATA[Usage: {$scriptName} {$pluginName} [xmlFileName] [pressPath] [monographId] ]]></message>
 	<message key="plugins.importexport.onix30.cliError">ERROR:</message>
 	<message key="plugins.importexport.onix30.error.unknownPress">The specified press path, "{$pressPath}", does not exist.</message>
 	<message key="plugins.importexport.onix30.export.error.couldNotWrite">Could not write to the file "{$fileName}".</message>
 	<message key="plugins.importexport.onix30.export.error.monographNotFound">No monograph matched the specified monograph ID "{$monographId}".</message>
-	<message key="plugins.importexport.onix30.noFormats">No assigned formats.</message>
+	<message key="plugins.importexport.onix30.noFormats">Monographs with no publication formats are not shown.</message>
 	<message key="plugins.importexport.onix30.selectMonograph">Select a monograph to export:</message>
+	<message key="plugins.importexport.onix30.exportButton">Export</message>
+	<message key="plugins.importexport.onix30.exportFormats">Available Formats</message>
 	<message key="plugins.importexport.onix30.unavailable">Unavailable</message>
+	
+	<!-- Information form keys -->
+	<message key="plugins.importexport.onix30.form.addresseeField">Addressee (recipient) for this export</message>
+	<message key="plugins.importexport.onix30.form.addresseeField.tip"><![CDATA[You may leave this field blank and create a general export.  This will result in the ONIX export having no &lt;Addressee&gt; composite. ]]></message>
 </locale>

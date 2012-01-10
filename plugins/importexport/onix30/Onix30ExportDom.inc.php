@@ -25,8 +25,7 @@ class Onix30ExportDom {
 
 		$root =& XMLCustomWriter::createElement($doc, 'ONIXMessage');
 		XMLCustomWriter::setAttribute($root, 'release', '3.0');
-
-		$lang = $monograph->getLanguage();
+		XMLCustomWriter::setAttribute($root, 'xmlns', 'http://ns.editeur.org/onix/3.0/reference');
 
 		/* --- Header --- */
 
@@ -38,17 +37,26 @@ class Onix30ExportDom {
 		$senderNode =& XMLCustomWriter::createElement($doc, 'Sender');
 		XMLCustomWriter::appendChild($headerNode, $senderNode);
 
-		// The Sender node contains SenderName, ContactName, and EmailAddress
-		$senderNameNode =& XMLCustomWriter::createChildWithText($doc, $senderNode, 'SenderName', 'Sender Name Here');
-		$contactNameNode =& XMLCustomWriter::createChildWithText($doc, $senderNode, 'ContactName', 'Contact Name Here');
-		$emailAddressNode =& XMLCustomWriter::createChildWithText($doc, $senderNode, 'EmailAddress', 'Email Address Here');
+		// The Sender node contains a complex type of SenderIentifier, and then SenderName, ContactName, and EmailAddress
+		// Use the Press object for these settings
+
+		$senderIdentifierNode =& XMLCustomWriter::createElement($doc, 'SenderIdentifier');
+		XMLCustomWriter::appendChild($senderNode, $senderIdentifierNode);
+		$senderIdTypeNode =& XMLCustomWriter::createChildWithText($doc, $senderIdentifierNode, 'SenderIDType', $press->getSetting('codeType'));
+		$senderNameNode =& XMLCustomWriter::createChildWithText($doc, $senderIdentifierNode, 'IDValue', $press->getSetting('codeValue'));
+
+		$senderNameNode =& XMLCustomWriter::createChildWithText($doc, $senderNode, 'SenderName', $press->getLocalizedName());
+		$contactNameNode =& XMLCustomWriter::createChildWithText($doc, $senderNode, 'ContactName', $press->getContactName());
+		$emailAddressNode =& XMLCustomWriter::createChildWithText($doc, $senderNode, 'EmailAddress', $press->getContactEmail());
 
 		/* --- Addressee ---*/
-
-		$addresseeNode =& XMLCustomWriter::createElement($doc, 'Addressee');
-		XMLCustomWriter::appendChild($headerNode, $addresseeNode);
-		$addresseeNameNode =& XMLCustomWriter::createChildWithText($doc, $addresseeNode, 'AddresseeName', 'Addressee Name Here');
-
+		// this composite is optional, and depends on their being an addressee value sent along with the request
+		$addressee = strip_tags(Request::getUserVar('addressee'));
+		if ($addressee != '') {
+			$addresseeNode =& XMLCustomWriter::createElement($doc, 'Addressee');
+			XMLCustomWriter::appendChild($headerNode, $addresseeNode);
+			$addresseeNameNode =& XMLCustomWriter::createChildWithText($doc, $addresseeNode, 'AddresseeName', $addressee);
+		}
 		/* --- SentDateTime --- */
 		$sentDateTimeNode =& XMLCustomWriter::createChildWithText($doc, $headerNode, 'SentDateTime', date('Ymd'));
 
@@ -84,28 +92,28 @@ class Onix30ExportDom {
 			XMLCustomWriter::appendChild($descDetailNode, $measureNode);
 			XMLCustomWriter::createChildWithText($doc, $measureNode, 'MeasureType', '01');
 			XMLCustomWriter::createChildWithText($doc, $measureNode, 'Measurement', $assignedPublicationFormat->getHeight());
-			XMLCustomWriter::createChildWithText($doc, $measureNode, 'MeasureType', $assignedPublicationFormat->getHeightUnit());
+			XMLCustomWriter::createChildWithText($doc, $measureNode, 'MeasureUnitCode', $assignedPublicationFormat->getHeightUnit());
 			unset($measureNode);
 
 			$measureNode =& XMLCustomWriter::createElement($doc, 'Measure');
 			XMLCustomWriter::appendChild($descDetailNode, $measureNode);
 			XMLCustomWriter::createChildWithText($doc, $measureNode, 'MeasureType', '02');
 			XMLCustomWriter::createChildWithText($doc, $measureNode, 'Measurement', $assignedPublicationFormat->getWidth());
-			XMLCustomWriter::createChildWithText($doc, $measureNode, 'MeasureType', $assignedPublicationFormat->getWidthUnit());
+			XMLCustomWriter::createChildWithText($doc, $measureNode, 'MeasureUnitCode', $assignedPublicationFormat->getWidthUnit());
 			unset($measureNode);
 
 			$measureNode =& XMLCustomWriter::createElement($doc, 'Measure');
 			XMLCustomWriter::appendChild($descDetailNode, $measureNode);
 			XMLCustomWriter::createChildWithText($doc, $measureNode, 'MeasureType', '03');
 			XMLCustomWriter::createChildWithText($doc, $measureNode, 'Measurement', $assignedPublicationFormat->getThickness());
-			XMLCustomWriter::createChildWithText($doc, $measureNode, 'MeasureType', $assignedPublicationFormat->getThicknessUnit());
+			XMLCustomWriter::createChildWithText($doc, $measureNode, 'MeasureUnitCode', $assignedPublicationFormat->getThicknessUnit());
 			unset($measureNode);
 
 			$measureNode =& XMLCustomWriter::createElement($doc, 'Measure');
 			XMLCustomWriter::appendChild($descDetailNode, $measureNode);
 			XMLCustomWriter::createChildWithText($doc, $measureNode, 'MeasureType', '08');
 			XMLCustomWriter::createChildWithText($doc, $measureNode, 'Measurement', $assignedPublicationFormat->getWeight());
-			XMLCustomWriter::createChildWithText($doc, $measureNode, 'MeasureType', $assignedPublicationFormat->getWeightUnit());
+			XMLCustomWriter::createChildWithText($doc, $measureNode, 'MeasureUnitCode', $assignedPublicationFormat->getWeightUnit());
 			unset($measureNode);
 		} else { // include file size Extent
 			$extentNode =& XMLCustomWriter::createElement($doc, 'Extent');
@@ -128,9 +136,14 @@ class Onix30ExportDom {
 		$titleElementNode =& XMLCustomWriter::createElement($doc, 'TitleElement');
 		XMLCustomWriter::appendChild($seriesTitleDetailNode, $titleElementNode);
 		XMLCustomWriter::createChildWithText($doc, $titleElementNode, 'TitleElementLevel', '02'); // Collection Level Title
-		XMLCustomWriter::createChildWithText($doc, $titleElementNode, 'TitlePrefix', 'The'); // ?
-		XMLCustomWriter::createChildWithText($doc, $titleElementNode, 'TitleWithoutPrefix', $monograph->getSeriesTitle()); // should strip out title prefix
 
+		$seriesDao =& DAORegistry::getDAO('SeriesDAO');
+		$series =& $seriesDao->getById($monograph->getSeriesId());
+		if ($series != null) {
+			XMLCustomWriter::createChildWithText($doc, $titleElementNode, 'TitlePrefix', $series->getLocalizedPrefix());
+			XMLCustomWriter::createChildWithText($doc, $titleElementNode, 'TitleWithoutPrefix', $series->getLocalizedTitle());
+			XMLCustomWriter::createChildWithText($doc, $titleElementNode, 'TitleText', join(' ', array($series->getLocalizedPrefix(), $series->getLocalizedTitle())));
+		}
 		/* --- and now product level info --- */
 
 		$productTitleDetailNode =& XMLCustomWriter::createElement($doc, 'TitleDetail');
@@ -140,8 +153,9 @@ class Onix30ExportDom {
 		$titleElementNode =& XMLCustomWriter::createElement($doc, 'TitleElement');
 		XMLCustomWriter::appendChild($productTitleDetailNode, $titleElementNode);
 		XMLCustomWriter::createChildWithText($doc, $titleElementNode, 'TitleElementLevel', '01'); // Product Level Title
-		XMLCustomWriter::createChildWithText($doc, $titleElementNode, 'TitleText', $monograph->getLocalizedTitle()); // should strip out title prefix
-
+		XMLCustomWriter::createChildWithText($doc, $titleElementNode, 'TitlePrefix', $monograph->getLocalizedPrefix());
+		XMLCustomWriter::createChildWithText($doc, $titleElementNode, 'TitleWithoutPrefix', $monograph->getLocalizedTitle());
+		XMLCustomWriter::createChildWithText($doc, $titleElementNode, 'TitleText', join(' ', array($monograph->getLocalizedPrefix(), $monograph->getLocalizedTitle())));
 		/* --- Contributor information --- */
 
 		$authors =& $monograph->getAuthors(); // sorts by sequence.
@@ -161,6 +175,7 @@ class Onix30ExportDom {
 			if ($author->getSuffix() != '') {
 				XMLCustomWriter::createChildWithText($doc, $contributorNode, 'SuffixToKey', $author->getSuffix());
 			}
+			XMLCustomWriter::createChildWithText($doc, $contributorNode, 'BiographicalNote', strip_tags($author->getLocalizedBiography()));
 			XMLCustomWriter::createChildWithText($doc, $contributorNode, 'CountryCode', $author->getCountry());
 
 			$sequence++;
@@ -168,6 +183,21 @@ class Onix30ExportDom {
 			unset($userGroup);
 		}
 
+		/* --- Add Language elements --- */
+
+		$monographLanguageDao =& DAORegistry::getDAO('MonographLanguageDAO');
+		$allLanguages =& $monographLanguageDao->getLanguages($monograph->getId(), array_keys(AppLocale::getSupportedFormLocales()));
+		$uniqueLanguages = array();
+		foreach ($allLanguages as $locale => $languages) {
+			$uniqueLanguages = array_merge($uniqueLanguages, $languages);
+		}
+
+		foreach ($uniqueLanguages as $language) {
+ 			$languageNode =& XMLCustomWriter::createElement($doc, 'Language');
+ 			XMLCustomWriter::appendChild($descDetailNode, $languageNode);
+ 			XMLCustomWriter::createChildWithText($doc, $languageNode, 'LanguageRole', '01');
+ 			XMLCustomWriter::createChildWithText($doc, $languageNode, 'LanguageCode', $language);
+		}
 		/* --- add Extents for 00 (main content) and 04 (back matter) ---*/
 
 		$extentNode =& XMLCustomWriter::createElement($doc, 'Extent');
@@ -196,8 +226,8 @@ class Onix30ExportDom {
 			$uniqueSubjects = array_merge($uniqueSubjects, $subjects);
 		}
 
-		XMLCustomWriter::createChildWithText($doc, $subjectNode, 'SubjectCode', join(' ', $uniqueSubjects)); // implement code lookup?
-		XMLCustomWriter::createChildWithText($doc, $descDetailNode, 'AudienceCode', '01'); // 01 -> General/trade
+		XMLCustomWriter::createChildWithText($doc, $subjectNode, 'SubjectCode', join(' ', $uniqueSubjects));
+		XMLCustomWriter::createChildWithText($doc, $descDetailNode, 'AudienceCode', $monograph->getAudience());
 
 		/* --- Collateral Detail --- */
 
@@ -230,11 +260,7 @@ class Onix30ExportDom {
 		$publisherNode =& XMLCustomWriter::createElement($doc, 'Publisher');
 		XMLCustomWriter::appendChild($publishingDetailNode, $publisherNode);
 		XMLCustomWriter::createChildWithText($doc, $publisherNode, 'PublisherRole', '01'); // 01 -> Publisher
-		$publisher =& $assignedPublicationFormat->getPublisher();
-		if ($publisher == '') {
-			$publisher =& $monograph->getDefaultPublisher();
-		}
-		XMLCustomWriter::createChildWithText($doc, $publisherNode, 'PublisherName', $publisher);
+		XMLCustomWriter::createChildWithText($doc, $publisherNode, 'PublisherName', $press->getSetting('publisher'));
 
 		/* --- Product Supply --- */
 

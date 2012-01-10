@@ -52,35 +52,37 @@ class Onix30ExportPlugin extends ImportExportPlugin {
 		$press =& Request::getPress();
 
 		switch (array_shift($args)) {
-		case 'exportMonograph':
+			case 'exportMonograph':
 
-			$assignedPublicationFormatId = (int) array_shift($args);
-			$assignedPublicationFormatDao =& DAORegistry::getDAO('AssignedPublicationFormatDAO');
-			$assignedPublicationFormat =& $assignedPublicationFormatDao->getById($assignedPublicationFormatId);
-			if ($assignedPublicationFormat != null) {
-				$monographId = $assignedPublicationFormat->getMonographId();
-				$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
+				$assignedPublicationFormatId = (int) Request::getUserVar('assignedPublicationFormatId');
+				$assignedPublicationFormatDao =& DAORegistry::getDAO('AssignedPublicationFormatDAO');
+				$assignedPublicationFormat =& $assignedPublicationFormatDao->getById($assignedPublicationFormatId);
+				if ($assignedPublicationFormat != null) {
+					$monographId = $assignedPublicationFormat->getMonographId();
+					$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
 
-				/* check to make sure the requested Monograph is in this press */
-				$monograph =& $publishedMonographDao->getById($monographId, $press->getId());
-				if ($monograph != null) {
-					$this->exportMonograph($press, $monograph, $assignedPublicationFormat);
+					/* check to make sure the requested Monograph is in this press */
+					$monograph =& $publishedMonographDao->getById($monographId, $press->getId());
+					if ($monograph != null) {
+						$this->exportMonograph($press, $monograph, $assignedPublicationFormat);
+					}
 				}
-			}
-			break;
+				break;
 
-		default:
-			// Display a list of monographs for export
-			$this->setBreadcrumbs();
-			AppLocale::requireComponents(LOCALE_COMPONENT_PKP_SUBMISSION);
-			$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
-			$rangeInfo = Handler::getRangeInfo('monographs');
-			$monographs = $publishedMonographDao->getByPressId($press->getId())->toArray();
-			import('lib.pkp.classes.core.VirtualArrayIterator');
-			$iterator = new VirtualArrayIterator($monographs, count($monographs), $rangeInfo->getPage(), $rangeInfo->getCount());
-			$templateMgr->assign_by_ref('monographs', $iterator);
-			$templateMgr->display($this->getTemplatePath() . 'index.tpl');
-			break;
+			default:
+				// Display a list of monographs for export
+				$this->setBreadcrumbs();
+				AppLocale::requireComponents(LOCALE_COMPONENT_PKP_SUBMISSION);
+				$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
+				$rangeInfo = Handler::getRangeInfo('monographs');
+				$monographs = $publishedMonographDao->getByPressId($press->getId())->toArray();
+
+				import('lib.pkp.classes.core.VirtualArrayIterator');
+				$iterator = new VirtualArrayIterator($monographs, count($monographs), $rangeInfo->getPage(), $rangeInfo->getCount());
+				$templateMgr->assign_by_ref('monographs', $iterator);
+				$templateMgr->assign('urlPath', array('plugin', 'Onix30ExportPlugin', 'exportMonograph'));
+				$templateMgr->display($this->getTemplatePath() . 'index.tpl');
+				break;
 		}
 	}
 
