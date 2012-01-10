@@ -72,10 +72,25 @@ class FileSignoffHandler extends FileManagementHandler {
 	 * @see PKPHandler::authorize()
 	 */
 	function authorize(&$request, $args, $roleAssignments) {
+		import('classes.security.authorization.OmpSignoffAccessPolicy');
+
+		// Check the operation to define the access mode.
+		$router =& $request->getRouter();
+		$operation = $router->getRequestedOp($request);
+
+		$mode = SIGNOFF_ACCESS_MODIFY;
+		switch ($operation) {
+			case 'readSignoff':
+			case 'signoffRead':
+				$mode = SIGNOFF_ACCESS_READ;
+				break;
+			default:
+				break;
+		}
+
 		// If a signoff ID was specified, authorize it.
 		if ($request->getUserVar('signoffId')) {
-			import('classes.security.authorization.OmpSignoffAccessPolicy');
-			$this->addPolicy(new OmpSignoffAccessPolicy($request, $args, $roleAssignments));
+			$this->addPolicy(new OmpSignoffAccessPolicy($request, $args, $roleAssignments, $mode));
 		}
 		$symbolic = $request->getUserVar('symbolic');
 		if ($symbolic) {

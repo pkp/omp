@@ -82,7 +82,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 		// If a signoff ID was specified, authorize it.
 		if ($request->getUserVar('signoffId')) {
 			import('classes.security.authorization.OmpSignoffAccessPolicy');
-			$this->addPolicy(new OmpSignoffAccessPolicy($request, $args, $roleAssignments));
+			$this->addPolicy(new OmpSignoffAccessPolicy($request, $args, $roleAssignments, SIGNOFF_ACCESS_MODIFY));
 		}
 
 		// If a publication ID was specified, authorize it.
