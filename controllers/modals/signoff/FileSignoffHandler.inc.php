@@ -24,11 +24,6 @@ import('lib.pkp.classes.core.JSONMessage');
 
 
 class FileSignoffHandler extends FileManagementHandler {
-	/** @var integer */
-	var $_assocType;
-
-	/** @var integer */
-	var $_assocId;
 
 	/** @var string */
 	var $_symbolic;
@@ -59,11 +54,8 @@ class FileSignoffHandler extends FileManagementHandler {
 	function initialize(&$request, $args) {
 		parent::initialize($request, $args);
 
+		// Already validated in authorize, if present.
 		$this->_signoffId = $request->getUserVar('signoffId') ? (int) $request->getUserVar('signoffId') : null;
-
-		// FIXME: bug #6199
-		$this->_assocType = $request->getUserVar('assocType') ? (int)$request->getUserVar('assocType') : null;
-		$this->_assocId = $request->getUserVar('assocId') ? (int)$request->getUserVar('assocId') : null;
 		$this->_symbolic = $request->getUserVar('symbolic')?$request->getUserVar('symbolic') : null;
 
 		// Load translations.
@@ -85,6 +77,14 @@ class FileSignoffHandler extends FileManagementHandler {
 			import('classes.security.authorization.OmpSignoffAccessPolicy');
 			$this->addPolicy(new OmpSignoffAccessPolicy($request, $args, $roleAssignments));
 		}
+		$symbolic = $request->getUserVar('symbolic');
+		if ($symbolic) {
+			$signoffDao =& DAORegistry::getDAO('SignoffDAO');
+			$symbolics = $signoffDao->getAllSymbolics();
+			if (!in_array($symbolic, $symbolics)) {
+				return false;
+			}
+		}
 
 		return parent::authorize($request, $args, $roleAssignments);
 	}
@@ -93,24 +93,6 @@ class FileSignoffHandler extends FileManagementHandler {
 	//
 	// Getters and Setters
 	//
-	/**
-	 * Get the assoc type (if any)
-	 * @return integer
-	 */
-	function getAssocType() {
-		return $this->_assocType;
-	}
-
-
-	/**
-	 * Get the assoc id (if any)
-	 * @return integer
-	 */
-	function getAssocId() {
-		return $this->_assocId;
-	}
-
-
 	/**
 	 * Get the Symbolic of the signoff (if any)
 	 * @return string
