@@ -132,6 +132,32 @@ class SubmissionFileDAO extends PKPSubmissionFileDAO {
 		);
 	}
 
+	/**
+	 * Return all file stages.
+	 * @return array
+	 */
+	function getAllFileStages() {
+		// Bring in the file stages definition.
+		import('classes.monograph.MonographFile');
+		return array(
+			MONOGRAPH_FILE_PUBLIC,
+			MONOGRAPH_FILE_SUBMISSION,
+			MONOGRAPH_FILE_NOTE,
+			MONOGRAPH_FILE_REVIEW_FILE,
+			MONOGRAPH_FILE_REVIEW_ATTACHMENT,
+			MONOGRAPH_FILE_FINAL,
+			MONOGRAPH_FILE_FAIR_COPY,
+			MONOGRAPH_FILE_EDITOR,
+			MONOGRAPH_FILE_COPYEDIT,
+			MONOGRAPH_FILE_PROOF,
+			MONOGRAPH_FILE_PRODUCTION_READY,
+			MONOGRAPH_FILE_LAYOUT,
+			MONOGRAPH_FILE_ATTACHMENT,
+			MONOGRAPH_FILE_SIGNOFF,
+			MONOGRAPH_FILE_REVIEW_REVISION
+		);
+	}
+
 
 	//
 	// Protected helper methods

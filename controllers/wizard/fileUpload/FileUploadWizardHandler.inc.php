@@ -76,10 +76,8 @@ class FileUploadWizardHandler extends FileManagementHandler {
 	function initialize(&$request, $args) {
 		parent::initialize($request, $args);
 		// Configure the wizard with the authorized monograph and file stage.
-		// FIXME: #6977 File stage authorization/validation?
-		$fileStage = (int)$request->getUserVar('fileStage');
-		assert(is_numeric($fileStage) && $fileStage > 0);
-		$this->_fileStage = $fileStage;
+		// Validated in authorize.
+		$this->_fileStage = (int)$request->getUserVar('fileStage');
 
 		// Set the uploader roles (if given).
 		$uploaderRoles = $request->getUserVar('uploaderRoles');
@@ -121,6 +119,17 @@ class FileUploadWizardHandler extends FileManagementHandler {
 		if ($stageId == WORKFLOW_STAGE_ID_INTERNAL_REVIEW || $stageId == WORKFLOW_STAGE_ID_EXTERNAL_REVIEW) {
 			import('classes.security.authorization.internal.ReviewRoundRequiredPolicy');
 			$this->addPolicy(new ReviewRoundRequiredPolicy($request, $args));
+		}
+
+		// We validate file stage outside a policy because
+		// we don't need to validate in another places.
+		$fileStage = $request->getUserVar('fileStage');
+		if ($fileStage) {
+			$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO');
+			$fileStages = $submissionFileDao->getAllFileStages();
+			if (!in_array($fileStage, $fileStages)) {
+				return false;
+			}
 		}
 
 		$revisedFileId = $request->getUserVar('revisedFileId');
