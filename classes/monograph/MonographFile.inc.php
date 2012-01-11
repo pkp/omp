@@ -160,7 +160,8 @@ class MonographFile extends SubmissionFile {
 	 */
 	function getExtension() {
 		import('lib.pkp.classes.file.FileManager');
-		return strtoupper(FileManager::parseFileExtension($this->getOriginalFileName()));
+		$fileManager = new FileManager();
+		return strtoupper($fileManager->parseFileExtension($this->getOriginalFileName()));
 	}
 
 	/**
@@ -169,7 +170,8 @@ class MonographFile extends SubmissionFile {
 	 */
 	function getDocumentType() {
 		import('lib.pkp.classes.file.FileManager');
-		return FileManager::getDocumentType($this->getFileType());
+		$fileManager = new FileManager();
+		return $fileManager->getDocumentType($this->getFileType());
 	}
 
 	/**

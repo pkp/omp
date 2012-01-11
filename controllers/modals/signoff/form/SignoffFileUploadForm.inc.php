@@ -184,7 +184,8 @@ class SignoffFileUploadForm extends Form {
 			import('classes.monograph.MonographFile');
 
 			import('classes.file.MonographFileManager');
-			$signoffFileId = MonographFileManager::temporaryFileToMonographFile(
+			$monographFileManager = new MonographFileManager();
+			$signoffFileId = $monographFileManager->temporaryFileToMonographFile(
 				$this->getMonographId(), $temporaryFile,
 				MONOGRAPH_FILE_SIGNOFF, $signoff->getUserId(),
 				$signoff->getUserGroupId(), $signoff->getAssocId(), null,

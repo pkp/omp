@@ -52,7 +52,7 @@ class MonographFileManager extends FileManager {
 	 */
 	function &uploadMonographFile($monographId, $fileName, $fileStage, $uploaderUserId,
 			$uploaderUserGroupId, $revisedFileId = null, $genreId = null, $assocType = null, $assocId = null) {
-		return MonographFileManager::_handleUpload(
+		return $this->_handleUpload(
 			$monographId, $fileName, $fileStage, $uploaderUserId,
 			$uploaderUserGroupId, $revisedFileId, $genreId, $assocType, $assocId
 		);
@@ -66,7 +66,7 @@ class MonographFileManager extends FileManager {
 	 * @return boolean
 	 */
 	function readFile($fileId, $revision = null, $output = false) {
-		$monographFile =& MonographFileManager::_getFile($fileId, $revision);
+		$monographFile =& $this->_getFile($fileId, $revision);
 		if (isset($monographFile)) {
 			return parent::readFile($monographFile->getFilePath(), $output);
 		} else {
@@ -81,7 +81,7 @@ class MonographFileManager extends FileManager {
 	 * @return boolean returns true if successful
 	 */
 	function deleteFile($fileId, $revision = null) {
-		$monographFile =& MonographFileManager::_getFile($fileId, $revision);
+		$monographFile =& $this->_getFile($fileId, $revision);
 		if (isset($monographFile)) {
 			return parent::deleteFile($monographFile->getfilePath());
 		} else {
@@ -98,7 +98,7 @@ class MonographFileManager extends FileManager {
 	 */
 	function downloadFile($monographId, $fileId, $revision = null, $inline = false) {
 		$returner = false;
-		$monographFile =& MonographFileManager::_getFile($fileId, $revision);
+		$monographFile =& $this->_getFile($fileId, $revision);
 		if (isset($monographFile)) {
 			// Make sure that the file belongs to the monograph.
 			if ($monographFile->getMonographId() != $monographId) fatalError('Invalid file id!');
@@ -132,7 +132,7 @@ class MonographFileManager extends FileManager {
 	 * @see MonographFileManager::downloadFile
 	 */
 	function viewFile($monographId, $fileId, $revision = null) {
-		MonographFileManager::downloadFile($monographId, $fileId, $revision, true);
+		$this->downloadFile($monographId, $fileId, $revision, true);
 	}
 
 	/**
@@ -147,7 +147,7 @@ class MonographFileManager extends FileManager {
 	function temporaryFileToMonographFile($monographId, &$temporaryFile, $fileStage, $uploaderUserId, $uploaderUserGroupId, $revisedFileId, $genreId, $assocType, $assocId) {
 		// Instantiate and pre-populate the new target monograph file.
 		$sourceFile = $temporaryFile->getFilePath();
-		$monographFile =& MonographFileManager::_instantiateMonographFile($sourceFile, $monographId, $fileStage, $revisedFileId, $genreId, $assocType, $assocId);
+		$monographFile =& $this->_instantiateMonographFile($sourceFile, $monographId, $fileStage, $revisedFileId, $genreId, $assocType, $assocId);
 
 		// Transfer data from the temporary file to the monograph file.
 		$monographFile->setFileType($temporaryFile->getFileType());
@@ -210,7 +210,7 @@ class MonographFileManager extends FileManager {
 		$destPath = $destFile->getFilePath();
 
 		// Copy the file to the new location.
-		MonographFileManager::copyFile($sourcePath, $destPath);
+		$this->copyFile($sourcePath, $destPath);
 
 		// Now insert the row into the DB and get the inserted file id.
 		$insertedFile =& $submissionFileDao->insertObject($destFile, $destPath);
@@ -241,24 +241,24 @@ class MonographFileManager extends FileManager {
 		$nullVar = null;
 
 		// Ensure that the file has been correctly uploaded to the server.
-		if (!MonographFileManager::uploadedFileExists($fileName)) return $nullVar;
+		if (!$this->uploadedFileExists($fileName)) return $nullVar;
 
 		// Retrieve the location of the uploaded file.
-		$sourceFile = MonographFileManager::getUploadedFilePath($fileName);
+		$sourceFile = $this->getUploadedFilePath($fileName);
 
 		// Instantiate and pre-populate a new monograph file object.
-		$monographFile = MonographFileManager::_instantiateMonographFile($sourceFile, $monographId, $fileStage, $revisedFileId, $genreId, $assocType, $assocId);
+		$monographFile = $this->_instantiateMonographFile($sourceFile, $monographId, $fileStage, $revisedFileId, $genreId, $assocType, $assocId);
 		if (is_null($monographFile)) return $nullVar;
 
 		// Retrieve and copy the file type of the uploaded file.
-		$fileType = MonographFileManager::getUploadedFileType($fileName);
+		$fileType = $this->getUploadedFileType($fileName);
 		assert($fileType !== false);
 		$monographFile->setFileType($fileType);
 
 		// Retrieve and copy the file name of the uploaded file.
-		$originalFileName = MonographFileManager::getUploadedFileName($fileName);
+		$originalFileName = $this->getUploadedFileName($fileName);
 		assert($originalFileName !== false);
-		$monographFile->setOriginalFileName(MonographFileManager::truncateFileName($originalFileName));
+		$monographFile->setOriginalFileName($this->truncateFileName($originalFileName));
 
 		// Set the uploader's user and user group id.
 		$monographFile->setUploaderUserId($uploaderUserId);

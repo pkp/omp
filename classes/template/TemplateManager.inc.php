@@ -54,11 +54,12 @@ class TemplateManager extends PKPTemplateManager {
 			$press =& $router->getContext($request);
 			$site =& $request->getSite();
 
-			$siteFilesDir = $request->getBaseUrl() . '/' . PublicFileManager::getSiteFilesPath();
+			$publicFileManager = new PublicFileManager();
+			$siteFilesDir = $request->getBaseUrl() . '/' . $publicFileManager->getSiteFilesPath();
 			$this->assign('sitePublicFilesDir', $siteFilesDir);
 			$this->assign('publicFilesDir', $siteFilesDir); // May be overridden by press
 
-			$siteStyleFilename = PublicFileManager::getSiteFilesPath() . '/' . $site->getSiteStyleFilename();
+			$siteStyleFilename = $publicFileManager->getSiteFilesPath() . '/' . $site->getSiteStyleFilename();
 			if (file_exists($siteStyleFilename)) $this->addStyleSheet($request->getBaseUrl() . '/' . $siteStyleFilename);
 
 			$this->assign('homeContext', array());
@@ -66,7 +67,7 @@ class TemplateManager extends PKPTemplateManager {
 				$this->assign_by_ref('currentPress', $press);
 				$pressTitle = $press->getLocalizedName();
 				$this->assign('siteTitle', $pressTitle);
-				$this->assign('publicFilesDir', $request->getBaseUrl() . '/' . PublicFileManager::getPressFilesPath($press->getId()));
+				$this->assign('publicFilesDir', $request->getBaseUrl() . '/' . $publicFileManager->getPressFilesPath($press->getId()));
 
 				$this->assign('primaryLocale', $press->getPrimaryLocale());
 				$this->assign('alternateLocales', $press->getSetting('alternateLocales'));
@@ -89,7 +90,7 @@ class TemplateManager extends PKPTemplateManager {
 				// Assign stylesheets and footer
 				$pressStyleSheet = $press->getSetting('pressStyleSheet');
 				if ($pressStyleSheet) {
-					$this->addStyleSheet($request->getBaseUrl() . '/' . PublicFileManager::getPressFilesPath($press->getId()) . '/' . $pressStyleSheet['uploadName']);
+					$this->addStyleSheet($request->getBaseUrl() . '/' . $publicFileManager->getPressFilesPath($press->getId()) . '/' . $pressStyleSheet['uploadName']);
 				}
 
 				$this->assign('pageFooter', $press->getLocalizedSetting('pressPageFooter'));

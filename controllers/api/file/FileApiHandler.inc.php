@@ -69,7 +69,8 @@ class FileApiHandler extends Handler {
 		$monographFile =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH_FILE);
 		assert($monographFile); // Should have been validated already
 		import('classes.file.MonographFileManager');
-		MonographFileManager::downloadFile($monographFile->getMonographId(), $monographFile->getFileId(), $monographFile->getRevision());
+		$monographFileManager = new MonographFileManager();
+		$monographFileManager->downloadFile($monographFile->getMonographId(), $monographFile->getFileId(), $monographFile->getRevision());
 	}
 
 	/**
@@ -81,7 +82,8 @@ class FileApiHandler extends Handler {
 		$monographFile =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH_FILE);
 		assert($monographFile); // Should have been validated already
 		import('classes.file.MonographFileManager');
-		MonographFileManager::viewFile($monographFile->getMonographId(), $monographFile->getFileId(), $monographFile->getRevision());
+		$monographFileManager = new MonographFileManager();
+		$monographFileManager->viewFile($monographFile->getMonographId(), $monographFile->getFileId(), $monographFile->getRevision());
 	}
 
 	/**
@@ -119,8 +121,9 @@ class FileApiHandler extends Handler {
 		);
 
 		if (file_exists($archivePath)) {
-			FileManager::downloadFile($archivePath, 'application/x-gtar', false, 'files.tar.gz');
-			FileManager::deleteFile($archivePath);
+			$fileManager = new FileManager();
+			$fileManager->downloadFile($archivePath, 'application/x-gtar', false, 'files.tar.gz');
+			$fileManager->deleteFile($archivePath);
 		} else {
 			fatalError('Creating archive with submission files failed!');
 		}

@@ -59,7 +59,8 @@ class ManageFileApiHandler extends Handler {
 
 		if ($success) {
 			import('classes.file.MonographFileManager');
-			MonographFileManager::deleteFile($monographFile->getFileId(), $monographFile->getRevision());
+			$monographFileManager = new MonographFileManager();
+			$monographFileManager->deleteFile($monographFile->getFileId(), $monographFile->getRevision());
 
 			$this->setupTemplate();
 			$user =& $request->getUser();

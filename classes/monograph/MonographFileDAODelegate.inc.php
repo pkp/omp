@@ -102,11 +102,12 @@ class MonographFileDAODelegate extends SubmissionFileDAODelegate {
 		if ($isUpload || $sourceFile != $targetFilePath) {
 			// Copy the file from its current location to the target destination.
 			import('lib.pkp.classes.file.FileManager');
+			$fileManager = new FileManager();
 			if ($isUpload) {
-				$success = FileManager::uploadFile($sourceFile, $targetFilePath);
+				$success = $fileManager->uploadFile($sourceFile, $targetFilePath);
 			} else {
 				assert(is_readable($sourceFile));
-				$success = FileManager::copyFile($sourceFile, $targetFilePath);
+				$success = $fileManager->copyFile($sourceFile, $targetFilePath);
 			}
 			if (!$success) {
 				// If the copy/upload operation fails then remove
@@ -185,8 +186,9 @@ class MonographFileDAODelegate extends SubmissionFileDAODelegate {
 			// the file system, too.
 			assert(is_readable($previousFilePath));
 			import('lib.pkp.classes.file.FileManager');
-			if (!FileManager::copyFile($previousFilePath, $targetFilePath)) return false;
-			if (!FileManager::deleteFile($previousFilePath)) return false;
+			$fileManager = new FileManager();
+			if (!$fileManager->copyFile($previousFilePath, $targetFilePath)) return false;
+			if (!$fileManager->deleteFile($previousFilePath)) return false;
 		}
 
 		return file_exists($targetFilePath);
@@ -213,7 +215,8 @@ class MonographFileDAODelegate extends SubmissionFileDAODelegate {
 		assert(is_writable(dirname($filePath)));
 
 		import('lib.pkp.classes.file.FileManager');
-		FileManager::deleteFile($filePath);
+		$fileManager = new FileManager();
+		$fileManager->deleteFile($filePath);
 
 		return !file_exists($filePath);
 	}

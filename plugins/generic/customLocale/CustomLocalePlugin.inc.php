@@ -21,6 +21,8 @@ class CustomLocalePlugin extends GenericPlugin {
 		if (parent::register($category, $path)) {
 			if ($this->getEnabled()) {
 				import('lib.pkp.classes.file.FileManager');
+				$fileManager = new FileManager();
+
 				$press = Request::getPress();
 				$pressId = $press->getId();
 				$locale = AppLocale::getLocale();
@@ -31,7 +33,7 @@ class CustomLocalePlugin extends GenericPlugin {
 				foreach ($localeFiles as $localeFile) {
 					$localeFilename = $localeFile->getFilename();
 					$customLocalePath = $customLocaleDir . DIRECTORY_SEPARATOR . $locale . DIRECTORY_SEPARATOR . $localeFilename;
-					if (FileManager::fileExists($customLocalePath)) {
+					if ($fileManager->fileExists($customLocalePath)) {
 						AppLocale::registerLocaleFile($locale, $customLocalePath, true);
 					}
 				}

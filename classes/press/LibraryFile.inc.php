@@ -184,7 +184,8 @@ class LibraryFile extends DataObject {
 	 * @return string
 	 */
 	function getNiceFileSize() {
-		return FileManager::getNiceFileSize($this->getData('fileSize'));
+		$fileManager = new FileManager();
+		return $fileManager->getNiceFileSize($this->getData('fileSize'));
 	}
 }
 

@@ -145,8 +145,9 @@ class MonographMailTemplate extends MailTemplate {
 
 		// Add attachments
 		import('classes.file.MonographFileManager');
+		$monographFileManager = new MonographFileManager();
 		foreach ($this->getAttachmentFiles() as $attachment) {
-			MonographFileManager::temporaryFileToMonographFile(
+			$monographFileManager->temporaryFileToMonographFile(
 				$monograph->getId(),
 				$attachment,
 				MONOGRAPH_FILE_ATTACHMENT,

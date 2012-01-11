@@ -408,7 +408,8 @@ class TranslatorHandler extends Handler {
 		}
 
 		import('lib.pkp.classes.file.FileManager');
-		FileManager::copyFile(TranslatorAction::determineReferenceFilename($locale, $filename), $filename);
+		$fileManager = new FileManager();
+		$fileManager->copyFile(TranslatorAction::determineReferenceFilename($locale, $filename), $filename);
 		Request::redirectUrl(Request::getUserVar('redirectUrl'));
 	}
 

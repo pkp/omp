@@ -141,9 +141,10 @@ class PressSiteSettingsForm extends Form {
 
 			// Make the file directories for the press
 			import('lib.pkp.classes.file.FileManager');
-			FileManager::mkdir(Config::getVar('files', 'files_dir') . '/presses/' . $pressId);
-			FileManager::mkdir(Config::getVar('files', 'files_dir'). '/presses/' . $pressId . '/monographs');
-			FileManager::mkdir(Config::getVar('files', 'public_files_dir') . '/presses/' . $pressId);
+			$fileManager = new FileManager();
+			$fileManager->mkdir(Config::getVar('files', 'files_dir') . '/presses/' . $pressId);
+			$fileManager->mkdir(Config::getVar('files', 'files_dir'). '/presses/' . $pressId . '/monographs');
+			$fileManager->mkdir(Config::getVar('files', 'public_files_dir') . '/presses/' . $pressId);
 
 			$installedLocales =& $site->getInstalledLocales();
 

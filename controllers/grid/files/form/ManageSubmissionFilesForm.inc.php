@@ -88,10 +88,11 @@ class ManageSubmissionFilesForm extends Form {
 				if ($isViewable) {
 					// Make a copy of the file to the current file stage.
 					import('classes.file.MonographFileManager');
+					$monographFileManager = new MonographFileManager();
 					// Split the file into file id and file revision.
 					$fileId = $monographFile->getFileId();
 					$revision = $monographFile->getRevision();
-					list($newFileId, $newRevision) = MonographFileManager::copyFileToFileStage($fileId, $revision, $fileStage, null, true);
+					list($newFileId, $newRevision) = $monographFileManager->copyFileToFileStage($fileId, $revision, $fileStage, null, true);
 					if ($fileStage == MONOGRAPH_FILE_REVIEW_FILE) {
 						$submissionFileDao->assignRevisionToReviewRound($newFileId, $newRevision, $this->getReviewRound());
 					}

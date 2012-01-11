@@ -228,8 +228,9 @@ class SubmissionFilesUploadForm extends SubmissionFilesUploadBaseForm {
 
 		// Upload the file.
 		import('classes.file.MonographFileManager');
+		$monographFileManager = new MonographFileManager();
 		$fileStage = $this->getData('fileStage');
-		$monographFile = MonographFileManager::uploadMonographFile(
+		$monographFile = $monographFileManager->uploadMonographFile(
 			$this->getData('monographId'), 'uploadedFile', $fileStage,
 			$user->getId(), $uploaderUserGroupId, $revisedFileId, $fileGenre, $assocType, $assocId
 		);

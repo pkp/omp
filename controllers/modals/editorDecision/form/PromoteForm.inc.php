@@ -73,6 +73,7 @@ class PromoteForm extends EditorDecisionWithEmailForm {
 		$seriesEditorAction->recordDecision($request, $seriesEditorSubmission, $decision, $actionLabels, $reviewRound);
 
 		// Identify email key and status of round.
+		$monographFileManager = new MonographFileManager();
 		switch ($decision) {
 			case SUBMISSION_EDITOR_DECISION_ACCEPT:
 				$emailKey = 'EDITOR_DECISION_ACCEPT';
@@ -93,7 +94,7 @@ class PromoteForm extends EditorDecisionWithEmailForm {
 					foreach ($selectedFiles as $selectedFile) {
 						// Split the file into file id and file revision.
 						list($fileId, $revision) = explode('-', $selectedFile);
-						MonographFileManager::copyFileToFileStage($fileId, $revision, MONOGRAPH_FILE_FINAL, null, true);
+						$monographFileManager->copyFileToFileStage($fileId, $revision, MONOGRAPH_FILE_FINAL, null, true);
 					}
 				}
 
@@ -133,7 +134,7 @@ class PromoteForm extends EditorDecisionWithEmailForm {
 					foreach ($selectedFiles as $selectedFile) {
 						// Split the file into file id and file revision.
 						list($fileId, $revision) = explode('-', $selectedFile);
-						MonographFileManager::copyFileToFileStage($fileId, $revision, MONOGRAPH_FILE_PRODUCTION_READY);
+						$monographFileManager->copyFileToFileStage($fileId, $revision, MONOGRAPH_FILE_PRODUCTION_READY);
 					}
 				}
 				break;

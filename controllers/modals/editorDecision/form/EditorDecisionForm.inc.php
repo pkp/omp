@@ -166,13 +166,14 @@ class EditorDecisionForm extends Form {
 		import('classes.monograph.MonographFile');
 		// Bring in the Manager (we need it).
 		import('classes.file.MonographFileManager');
+		$monographFileManager = new MonographFileManager();
 		foreach (array('selectedFiles', 'selectedAttachments') as $userVar) {
 			$selectedFiles = $this->getData($userVar);
 			if(is_array($selectedFiles)) {
 				foreach ($selectedFiles as $selectedFile) {
 					// Split the file into file id and file revision.
 					list($fileId, $revision) = explode('-', $selectedFile);
-					list($newFileId, $newRevision) = MonographFileManager::copyFileToFileStage($fileId, $revision, MONOGRAPH_FILE_REVIEW_FILE, null, true);
+					list($newFileId, $newRevision) = $monographFileManager->copyFileToFileStage($fileId, $revision, MONOGRAPH_FILE_REVIEW_FILE, null, true);
 					$submissionFileDao->assignRevisionToReviewRound($newFileId, $newRevision, $reviewRound);
 				}
 			}
