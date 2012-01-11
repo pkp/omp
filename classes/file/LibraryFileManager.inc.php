@@ -14,14 +14,11 @@
 
 
 import('classes.press.LibraryFile');
-import('lib.pkp.classes.file.FileManager');
+import('lib.pkp.classes.file.PrivateFileManager');
 
-class LibraryFileManager extends FileManager {
+class LibraryFileManager extends PrivateFileManager {
 	/* @var $pressId Press id for the current press */
 	var $pressId;
-
-	/* @var $fileDir Directory where library files live */
-	var $filesDir;
 
 	/**
 	 * Constructor
@@ -29,8 +26,15 @@ class LibraryFileManager extends FileManager {
 	 */
 	function LibraryFileManager($pressId) {
 		parent::FileManager();
-		$this->filesDir = Config::getVar('files', 'files_dir') . '/presses/' . $pressId . '/library/';
 		$this->pressId = $pressId;
+	}
+
+	/**
+	 * Get the base path for file storage.
+	 * @return string
+	 */
+	function getBasePath() {
+		return parent::getBasePath() . '/presses/' . $this->pressId . '/library/';
 	}
 
 	/**
@@ -42,7 +46,7 @@ class LibraryFileManager extends FileManager {
 		$libraryFileDao =& DAORegistry::getDAO('LibraryFileDAO');
 		$libraryFile =& $libraryFileDao->getById($fileId);
 
-		parent::deleteFile($this->filesDir . $libraryFile->getFileName());
+		parent::deleteFile($this->getBasePath() . $libraryFile->getFileName());
 
 		$libraryFileDao->deleteById($fileId);
 	}
@@ -93,7 +97,7 @@ class LibraryFileManager extends FileManager {
 		$libraryFile->setFileSize($temporaryFile->getFileSize());
 		$libraryFile->setFileName($this->generateFilename($libraryFileType, $temporaryFile->getOriginalFileName()));
 		$libraryFile->setOriginalFileName($temporaryFile->getOriginalFileName());
-		if (!$this->copyFile($temporaryFile->getFilePath(), $this->filesDir . $temporaryFile->getOriginalFileName())) {
+		if (!$this->copyFile($temporaryFile->getFilePath(), $this->getBasePath() . $temporaryFile->getOriginalFileName())) {
 			return false;
 		}
 

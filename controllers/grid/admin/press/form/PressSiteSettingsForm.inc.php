@@ -140,11 +140,10 @@ class PressSiteSettingsForm extends Form {
 			$pressDao->resequencePresses();
 
 			// Make the file directories for the press
-			import('lib.pkp.classes.file.FileManager');
-			$fileManager = new FileManager();
-			$fileManager->mkdir(Config::getVar('files', 'files_dir') . '/presses/' . $pressId);
-			$fileManager->mkdir(Config::getVar('files', 'files_dir'). '/presses/' . $pressId . '/monographs');
-			$fileManager->mkdir(Config::getVar('files', 'public_files_dir') . '/presses/' . $pressId);
+			import('classes.file.PressFileManager');
+			$pressFileManager = new PressFileManager($pressId);
+			$pressFileManager->mkdir($pressFileManager->getBasePath());
+			$pressFileManager->mkdir($pressFileManager->getBasePath() . '/monographs');
 
 			$installedLocales =& $site->getInstalledLocales();
 

@@ -249,11 +249,9 @@ class PressGridHandler extends GridHandler {
 			if ($pressDao->deletePressById($pressId)) {
 				// Delete press file tree
 				// FIXME move this somewhere better.
-				import('lib.pkp.classes.file.FileManager');
-				$fileManager = new FileManager();
-
-				$pressPath = Config::getVar('files', 'files_dir') . '/presses/' . $pressId;
-				$fileManager->rmtree($pressPath);
+				import('classes.file.PressFileManager');
+				$PressFileManager = new PressFileManager($pressId);
+				$PressFileManager->rmtree($privateFileManager->getBasePath());
 
 				import('classes.file.PublicFileManager');
 				$publicFileManager = new PublicFileManager();

@@ -88,7 +88,8 @@ class ManageSubmissionFilesForm extends Form {
 				if ($isViewable) {
 					// Make a copy of the file to the current file stage.
 					import('classes.file.MonographFileManager');
-					$monographFileManager = new MonographFileManager();
+					$press =& $request->getPress();
+					$monographFileManager = new MonographFileManager($press->getId());
 					// Split the file into file id and file revision.
 					$fileId = $monographFile->getFileId();
 					$revision = $monographFile->getRevision();

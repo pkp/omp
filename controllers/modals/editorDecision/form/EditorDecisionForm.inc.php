@@ -166,7 +166,7 @@ class EditorDecisionForm extends Form {
 		import('classes.monograph.MonographFile');
 		// Bring in the Manager (we need it).
 		import('classes.file.MonographFileManager');
-		$monographFileManager = new MonographFileManager();
+		$monographFileManager = new MonographFileManager($press->getId());
 		foreach (array('selectedFiles', 'selectedAttachments') as $userVar) {
 			$selectedFiles = $this->getData($userVar);
 			if(is_array($selectedFiles)) {

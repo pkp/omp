@@ -246,9 +246,17 @@ class MonographFile extends SubmissionFile {
 	 * @see SubmissionFile::getFilePath()
 	 */
 	function getFilePath() {
-		$monographDao =& DAORegistry::getDAO('MonographDAO'); /* @var $monographDao MonographDAO */
+		// Get the press ID
+		$monographDao =& DAORegistry::getDAO('MonographDAO');
 		$monograph =& $monographDao->getById($this->getMonographId());
-		return $monograph->getFilePath() . $this->_fileStageToPath($this->getFileStage()) . '/' . $this->getFileName();
+		if (!$monograph) return null;
+		$pressId = $monograph->getPressId();
+		unset($monograph);
+
+		// Construct the file path
+		import('classes.file.MonographFileManager');
+		$monographFileManager = new MonographFileManager($pressId);
+		return $monographFileManager->getBasePath($this->getMonographId()) . $this->_fileStageToPath($this->getFileStage()) . '/' . $this->getFileName();
 	}
 
 

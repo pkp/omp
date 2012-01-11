@@ -69,7 +69,8 @@ class FileApiHandler extends Handler {
 		$monographFile =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH_FILE);
 		assert($monographFile); // Should have been validated already
 		import('classes.file.MonographFileManager');
-		$monographFileManager = new MonographFileManager();
+		$press =& $request->getPress();
+		$monographFileManager = new MonographFileManager($press->getId());
 		$monographFileManager->downloadFile($monographFile->getMonographId(), $monographFile->getFileId(), $monographFile->getRevision());
 	}
 
@@ -82,7 +83,8 @@ class FileApiHandler extends Handler {
 		$monographFile =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH_FILE);
 		assert($monographFile); // Should have been validated already
 		import('classes.file.MonographFileManager');
-		$monographFileManager = new MonographFileManager();
+		$press =& $request->getPress();
+		$monographFileManager = new MonographFileManager($press->getId());
 		$monographFileManager->viewFile($monographFile->getMonographId(), $monographFile->getFileId(), $monographFile->getRevision());
 	}
 

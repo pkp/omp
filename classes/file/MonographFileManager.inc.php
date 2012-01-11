@@ -24,20 +24,27 @@
  * [monograph id]/attachment
  */
 
-import('lib.pkp.classes.file.FileManager');
+import('file.PressFileManager');
 
-class MonographFileManager extends FileManager {
+class MonographFileManager extends PressFileManager {
 	/**
 	 * Constructor.
 	 */
-	function MonographFileManager() {
-		parent::FileManager();
+	function MonographFileManager($pressId) {
+		parent::PressFileManager($pressId);
 	}
 
 
 	//
 	// Public methods
 	//
+	/**
+	 * Get the base path for file storage.
+	 */
+	function getBasePath($monographId) {
+		return parent::getBasePath() . '/monographs/' . ((int) $monographId) . '/';
+	}
+
 	/**
 	 * Upload a monograph file.
 	 * @param $monographId integer
@@ -56,22 +63,6 @@ class MonographFileManager extends FileManager {
 			$monographId, $fileName, $fileStage, $uploaderUserId,
 			$uploaderUserGroupId, $revisedFileId, $genreId, $assocType, $assocId
 		);
-	}
-
-	/**
-	 * Read a file's contents.
-	 * @param $fileId integer
-	 * @param $revision integer
-	 * @param $output boolean output the file's contents instead of returning a string
-	 * @return boolean
-	 */
-	function readFile($fileId, $revision = null, $output = false) {
-		$monographFile =& $this->_getFile($fileId, $revision);
-		if (isset($monographFile)) {
-			return parent::readFile($monographFile->getFilePath(), $output);
-		} else {
-			return false;
-		}
 	}
 
 	/**
@@ -122,17 +113,6 @@ class MonographFileManager extends FileManager {
 		}
 
 		return $returner;
-	}
-
-	/**
-	 * View a file inline (variant of downloadFile).
-	 * @param $monographId integer
-	 * @param $fileId integer
-	 * @param $revision integer
-	 * @see MonographFileManager::downloadFile
-	 */
-	function viewFile($monographId, $fileId, $revision = null) {
-		$this->downloadFile($monographId, $fileId, $revision, true);
 	}
 
 	/**

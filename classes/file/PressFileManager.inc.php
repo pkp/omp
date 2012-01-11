@@ -13,42 +13,28 @@
  */
 
 
-import('lib.pkp.classes.file.FileManager');
+import('lib.pkp.classes.file.PrivateFileManager');
 
-class PressFileManager extends FileManager {
-
-	/** @var string the path to location of the files */
-	var $filesDir;
-
+class PressFileManager extends PrivateFileManager {
 	/** @var int the ID of the associated press */
 	var $pressId;
-
-	/** @var Press the associated press */
-	var $press;
 
 	/**
 	 * Constructor.
 	 * Create a manager for handling press file uploads.
 	 * @param $press Press
 	 */
-	function PressFileManager(&$press) {
-		$this->pressId = $press->getId();
-		$this->press =& $press;
-		$this->filesDir = Config::getVar('files', 'files_dir') . '/presses/' . $this->pressId . '/';
-
-		parent::FileManager();
+	function PressFileManager($pressId) {
+		parent::PrivateFileManager();
+		$this->pressId = $pressId;
 	}
 
-	function uploadFile($fileName, $destFileName) {
-		return parent::uploadFile($fileName, $this->filesDir . $destFileName);
-	}
-
-	function downloadFile($filePath, $fileType, $inline = false) {
-		return parent::downloadFile($this->filesDir . $filePath, $fileType, $inline);
-	}
-
-	function deleteFile($fileName) {
-		return parent::deleteFile($this->filesDir . $fileName);
+	/**
+	 * Get the base path for file storage
+	 * @return string
+	 */
+	function getBasePath() {
+		return parent::getBasePath() . '/presses/' . $this->pressId . '/';
 	}
 }
 

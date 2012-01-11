@@ -262,8 +262,9 @@ class Monograph extends Submission {
 	 * @return string
 	 */
 	function getFilePath() {
-		return Config::getVar('files', 'files_dir') . '/presses/' . $this->getPressId() .
-				'/monographs/' . $this->getId() . '/';
+		import('classes.file.MonographFileManager');
+		$monographFileManager = new MonographFileManager($this->getPressId());
+		return $monographFileManager->getBasePath($this->getId());
 	}
 }
 
