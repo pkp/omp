@@ -35,6 +35,8 @@ class PressFileManager extends FileManager {
 		$this->pressId = $press->getId();
 		$this->press =& $press;
 		$this->filesDir = Config::getVar('files', 'files_dir') . '/presses/' . $this->pressId . '/';
+
+		parent::FileManager();
 	}
 
 	function uploadFile($fileName, $destFileName) {

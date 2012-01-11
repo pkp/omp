@@ -43,11 +43,10 @@ class FilesHandler extends ManagerHandler {
 		$currentPath = $this->_getRealFilesDir($request, $currentDir);
 
 		if (@is_file($currentPath)) {
-			$fileMgr = new FileManager();
 			if ($request->getUserVar('download')) {
-				$fileMgr->downloadFile($currentPath);
+				$fileManager->downloadFile($currentPath);
 			} else {
-				$fileMgr->viewFile($currentPath, $this->fileMimeType($currentPath));
+				$fileManager->viewFile($currentPath, $this->fileMimeType($currentPath));
 			}
 
 		} else {
@@ -88,10 +87,10 @@ class FilesHandler extends ManagerHandler {
 		$currentPath = $this->_getRealFilesDir($request, $currentDir);
 
 		import('lib.pkp.classes.file.FileManager');
-		$fileMgr = new FileManager();
-		if ($fileMgr->uploadedFileExists('file')) {
-			$destPath = $currentPath . '/' . $this->cleanFileName($fileMgr->getUploadedFileName('file'));
-			@$fileMgr->uploadFile('file', $destPath);
+		$fileManager = new FileManager();
+		if ($fileManager->uploadedFileExists('file')) {
+			$destPath = $currentPath . '/' . $this->cleanFileName($fileManager->getUploadedFileName('file'));
+			@$fileManager->uploadFile('file', $destPath);
 		}
 
 		$request->redirect(null, null, 'files', explode('/', $currentDir));
@@ -111,8 +110,8 @@ class FilesHandler extends ManagerHandler {
 			$newDir = $currentPath . '/' . $this->cleanFileName($dirName);
 
 			import('lib.pkp.classes.file.FileManager');
-			$fileMgr = new FileManager();
-			@$fileMgr->mkdir($newDir);
+			$fileManager = new FileManager();
+			@$fileManager->mkdir($newDir);
 		}
 
 		$request->redirect(null, null, 'files', explode('/', $currentDir));
@@ -128,13 +127,13 @@ class FilesHandler extends ManagerHandler {
 		$currentPath = $this->_getRealFilesDir($request, $currentDir);
 
 		import('lib.pkp.classes.file.FileManager');
-		$fileMgr = new FileManager();
+		$fileManager = new FileManager();
 
 		if (@is_file($currentPath)) {
-			$fileMgr->deleteFile($currentPath);
+			$fileManager->deleteFile($currentPath);
 		} else {
 			// TODO Use recursive delete (rmtree) instead?
-			@$fileMgr->rmdir($currentPath);
+			@$fileManager->rmdir($currentPath);
 		}
 
 		$request->redirect(null, null, 'files', explode('/', $parentDir));
