@@ -9,7 +9,7 @@
  * @class MonographFileManager
  * @ingroup file
  *
- * @brief Static helper class for monograph file management tasks.
+ * @brief Helper class for monograph file management tasks.
  *
  * Monograph directory structure:
  * [monograph id]/note
@@ -221,22 +221,6 @@ class MonographFileManager extends FileManager {
 	//
 	// Private helper methods
 	//
-	/**
-	 * Get the files directory.
-	 * @param $monographId integer
-	 * @return string
-	 */
-	function _getFilesDir($monographId) {
-		static $filesDir;
-		if (empty($filesDir)) {
-			$monographDao =& DAORegistry::getDAO('MonographDAO'); /* @var $monographDao MonographDAO */
-			$monograph =& $monographDao->getById($monographId);
-			assert(is_a($monograph, 'Monograph'));
-			$filesDir = $monograph->getFilePath();
-		}
-		return $filesDir;
-	}
-
 	/**
 	 * Upload the file and add it to the database.
 	 * @param $monographId integer

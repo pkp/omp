@@ -98,7 +98,7 @@ class FileApiHandler extends Handler {
 
 		// Find out the paths of all files in this grid.
 		import('classes.file.MonographFileManager');
-		$filesDir = MonographFileManager::_getFilesDir($monographId);
+		$filesDir = $monograph->getFilePath();
 		$filePaths = array();
 		foreach ($monographFiles as $monographFile) {
 			// Remove absolute path so the archive doesn't include it (otherwise all files are organized by absolute path)

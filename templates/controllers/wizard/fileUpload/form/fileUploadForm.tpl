@@ -126,7 +126,7 @@
 						{$monographFileId}: {$fileGenre}{if !$smarty.foreach.currentMonographFileGenres.last},{/if}
 					{/foreach}
 				{rdelim},
-				$uploader: $('#uploadForm #plupload'),
+				$uploader: $('#plupload'),
 				uploaderOptions: {ldelim}
 					uploadUrl: '{url|escape:javascript op="uploadFile" monographId=$monographId stageId=$stageId fileStage=$fileStage reviewRoundId=$reviewRoundId assocType=$assocType assocId=$assocId escape=false}',
 					baseUrl: '{$baseUrl|escape:javascript}'
