@@ -108,7 +108,7 @@ class SeriesDAO extends DAO {
 	 * @return array
 	 */
 	function getLocaleFieldNames() {
-		return array('title', 'description', 'prefix');
+		return array('title', 'description', 'prefix', 'subtitle');
 	}
 
 	/**

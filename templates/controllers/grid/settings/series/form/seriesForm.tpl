@@ -23,6 +23,10 @@
 			{fbvElement type="text" multilingual="true" id="prefix" label="common.prefix" value="$prefix" maxlength="32" inline="true"}
 		{/fbvFormSection}
 
+		{fbvFormSection title="monograph.subtitle" for="subtitle"}
+			{fbvElement type="text" multilingual=true name="subtitle" id="subtitle" value=$subtitle maxlength="255" size=$fbvStyles.size.MEDIUM inline="true"}
+		{/fbvFormSection}
+	
 		{fbvFormSection title="series.featured" for="featured" inline="true" list="true"}
 			{fbvElement type="checkbox" id="featured" checked=$featured label="series.featured.description" value=1}
 		{/fbvFormSection}

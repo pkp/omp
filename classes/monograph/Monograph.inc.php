@@ -205,6 +205,32 @@ class Monograph extends Submission {
 	}
 
 	/**
+	 * Get the localized version of the subtitle
+	 * @return string
+	 */
+	function getLocalizedSubtitle() {
+		return $this->getLocalizedData('subtitle');
+	}
+
+	/**
+	 * Get the subtitle for a given locale
+	 * @param string $locale
+	 * @return string
+	 */
+	function getSubtitle($locale) {
+		return $this->getData('subtitle', $locale);
+	}
+
+	/**
+	 * Set the subtitle for a locale
+	 * @param string $subtitle
+	 * @param string $locale
+	 */
+	function setSubtitle($subtitle, $locale) {
+		return $this->setData('subtitle', $subtitle, $locale);
+	}
+
+	/**
 	 * Get localized supporting agencies array.
 	 * @return array
 	 */

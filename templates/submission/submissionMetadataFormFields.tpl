@@ -14,6 +14,9 @@
 		{fbvElement type="text" multilingual=true name="title" id="title" value=$title maxlength="255" disabled=$readOnly size=$fbvStyles.size.MEDIUM inline="true"}
 		{fbvElement type="text" multilingual=true id="prefix" label="common.prefix" value="$prefix" disabled=$readOnly maxlength="32" inline="true"}
 	{/fbvFormSection}
+	{fbvFormSection title="monograph.subtitle" for="subtitle"}
+		{fbvElement type="text" multilingual=true name="subtitle" id="subtitle" value=$subtitle maxlength="255" disabled=$readOnly size=$fbvStyles.size.MEDIUM inline="true"}
+	{/fbvFormSection}
 	{fbvFormSection title="submission.submit.briefSummary" for="abstract"}
 		{fbvElement type="textarea" multilingual=true name="abstract" id="abstract" value=$abstract rich=true disabled=$readOnly}
 	{/fbvFormSection}
