@@ -13,7 +13,7 @@
 		$('#uploadForm').pkpHandler(
 			'$.pkp.controllers.form.FileUploadFormHandler',
 			{ldelim}
-				$uploader: $('#uploadForm #plupload'),
+				$uploader: $('#plupload'),
 				uploaderOptions: {ldelim}
 					uploadUrl: '{url|escape:javascript op="uploadFile" monographId=$monographId stageId=$stageId escape=false}',
 					baseUrl: '{$baseUrl|escape:javascript}'
