@@ -84,6 +84,9 @@ class Onix30ExportDom {
 		XMLCustomWriter::appendChild($productNode, $descDetailNode);
 		XMLCustomWriter::createChildWithText($doc, $descDetailNode, 'ProductComposition', $assignedPublicationFormat->getProductCompositionCode()); // single item, trade only, etc
 		XMLCustomWriter::createChildWithText($doc, $descDetailNode, 'ProductForm', $assignedPublicationFormat->getProductFormCode()); // paperback, hardcover, etc
+		if ($assignedPublicationFormat->getProductFormDetailCode() != '') {
+			XMLCustomWriter::createChildWithText($doc, $descDetailNode, 'ProductFormDetail', $assignedPublicationFormat->getProductFormDetailCode()); // refinement of ProductForm
+		}
 
 		/* --- Physical Book Measurements --- */
 		if ($assignedPublicationFormat->getEntryKey() != 'EBOOK') {
@@ -115,13 +118,6 @@ class Onix30ExportDom {
 			XMLCustomWriter::createChildWithText($doc, $measureNode, 'Measurement', $assignedPublicationFormat->getWeight());
 			XMLCustomWriter::createChildWithText($doc, $measureNode, 'MeasureUnitCode', $assignedPublicationFormat->getWeightUnit());
 			unset($measureNode);
-		} else { // include file size Extent
-			$extentNode =& XMLCustomWriter::createElement($doc, 'Extent');
-			XMLCustomWriter::appendChild($descDetailNode, $extentNode);
-			XMLCustomWriter::createChildWithText($doc, $extentNode, 'ExtentType', '08');
-			XMLCustomWriter::createChildWithText($doc, $extentNode, 'ExtentValue', $assignedPublicationFormat->getFileSize());
-			XMLCustomWriter::createChildWithText($doc, $extentNode, 'ExtentUnit', '05');
-			unset($extentNode);
 		}
 		/* --- Collection information, first for series and then for product --- */
 
@@ -140,9 +136,14 @@ class Onix30ExportDom {
 		$seriesDao =& DAORegistry::getDAO('SeriesDAO');
 		$series =& $seriesDao->getById($monograph->getSeriesId());
 		if ($series != null) {
-			XMLCustomWriter::createChildWithText($doc, $titleElementNode, 'TitlePrefix', $series->getLocalizedPrefix());
-			XMLCustomWriter::createChildWithText($doc, $titleElementNode, 'TitleWithoutPrefix', $series->getLocalizedTitle());
 			XMLCustomWriter::createChildWithText($doc, $titleElementNode, 'TitleText', join(' ', array($series->getLocalizedPrefix(), $series->getLocalizedTitle())));
+			if ($series->getLocalizedPrefix() != '') {
+				XMLCustomWriter::createChildWithText($doc, $titleElementNode, 'TitlePrefix', $series->getLocalizedPrefix());
+			}
+			XMLCustomWriter::createChildWithText($doc, $titleElementNode, 'TitleWithoutPrefix', $series->getLocalizedTitle());
+			if ($series->getLocalizedSubtitle() != '') {
+				XMLCustomWriter::createChildWithText($doc, $titleElementNode, 'Subtitle', $series->getLocalizedSubtitle());
+			}
 		}
 		/* --- and now product level info --- */
 
@@ -153,9 +154,14 @@ class Onix30ExportDom {
 		$titleElementNode =& XMLCustomWriter::createElement($doc, 'TitleElement');
 		XMLCustomWriter::appendChild($productTitleDetailNode, $titleElementNode);
 		XMLCustomWriter::createChildWithText($doc, $titleElementNode, 'TitleElementLevel', '01'); // Product Level Title
-		XMLCustomWriter::createChildWithText($doc, $titleElementNode, 'TitlePrefix', $monograph->getLocalizedPrefix());
-		XMLCustomWriter::createChildWithText($doc, $titleElementNode, 'TitleWithoutPrefix', $monograph->getLocalizedTitle());
 		XMLCustomWriter::createChildWithText($doc, $titleElementNode, 'TitleText', join(' ', array($monograph->getLocalizedPrefix(), $monograph->getLocalizedTitle())));
+		if ($monograph->getLocalizedPrefix() != '') {
+			XMLCustomWriter::createChildWithText($doc, $titleElementNode, 'TitlePrefix', $monograph->getLocalizedPrefix());
+		}
+		XMLCustomWriter::createChildWithText($doc, $titleElementNode, 'TitleWithoutPrefix', $monograph->getLocalizedTitle());
+		if ($monograph->getLocalizedSubtitle() != '') {
+			XMLCustomWriter::createChildWithText($doc, $titleElementNode, 'Subtitle', $monograph->getLocalizedSubtitle());
+		}
 		/* --- Contributor information --- */
 
 		$authors =& $monograph->getAuthors(); // sorts by sequence.
@@ -167,7 +173,9 @@ class Onix30ExportDom {
 			$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 			$userGroup =& $userGroupDao->getById($author->getUserGroupId(), $monograph->getPressId());
 
-			XMLCustomWriter::createChildWithText($doc, $contributorNode, 'ContributorRole', $userGroup->getLocalizedName());
+			$userGroupOnixMap = array('AU' => 'A01', 'VE' => 'B01', 'CA' => 'A01', 'Trans' => 'B06'); // From List17
+
+			XMLCustomWriter::createChildWithText($doc, $contributorNode, 'ContributorRole', $userGroupOnixMap[$userGroup->getLocalizedAbbrev()]);
 			XMLCustomWriter::createChildWithText($doc, $contributorNode, 'PersonName', $author->getFullName());
 			XMLCustomWriter::createChildWithText($doc, $contributorNode, 'PersonNameInverted', $author->getFullName(true));
 			XMLCustomWriter::createChildWithText($doc, $contributorNode, 'NamesBeforeKey', join(' ', array($author->getFirstName(), $author->getMiddleName())));
@@ -176,9 +184,14 @@ class Onix30ExportDom {
 				XMLCustomWriter::createChildWithText($doc, $contributorNode, 'SuffixToKey', $author->getSuffix());
 			}
 			XMLCustomWriter::createChildWithText($doc, $contributorNode, 'BiographicalNote', strip_tags($author->getLocalizedBiography()));
-			XMLCustomWriter::createChildWithText($doc, $contributorNode, 'CountryCode', $author->getCountry());
+
+			$contributorPlaceNode =& XMLCustomWriter::createElement($doc, 'ContributorPlace');
+			XMLCustomWriter::appendChild($contributorNode, $contributorPlaceNode);
+			XMLCustomWriter::createChildWithText($doc, $contributorPlaceNode, 'ContributorPlaceRelator', '04'); // currently resides in
+			XMLCustomWriter::createChildWithText($doc, $contributorPlaceNode, 'CountryCode', $author->getCountry());
 
 			$sequence++;
+			unset($contributorPlaceNode);
 			unset($contributorNode);
 			unset($userGroup);
 		}
@@ -200,18 +213,28 @@ class Onix30ExportDom {
 		}
 		/* --- add Extents for 00 (main content) and 04 (back matter) ---*/
 
-		$extentNode =& XMLCustomWriter::createElement($doc, 'Extent');
-		XMLCustomWriter::appendChild($descDetailNode, $extentNode);
-		XMLCustomWriter::createChildWithText($doc, $extentNode, 'ExtentType', '00');
-		XMLCustomWriter::createChildWithText($doc, $extentNode, 'ExtentValue', '200'); // $monograph->getMainContentPageCount()
-		XMLCustomWriter::createChildWithText($doc, $extentNode, 'ExtentUnit', '03'); // 03 -> Pages
+		if ($assignedPublicationFormat->getFrontMatterPageCount() > 0) {
+			$extentNode =& XMLCustomWriter::createElement($doc, 'Extent');
+			XMLCustomWriter::appendChild($descDetailNode, $extentNode);
+			XMLCustomWriter::createChildWithText($doc, $extentNode, 'ExtentType', '00');
+			XMLCustomWriter::createChildWithText($doc, $extentNode, 'ExtentValue', $assignedPublicationFormat->getFrontMatterPageCount());
+			XMLCustomWriter::createChildWithText($doc, $extentNode, 'ExtentUnit', '03'); // 03 -> Pages
+		}
 
-		$extentNode =& XMLCustomWriter::createElement($doc, 'Extent');
-		XMLCustomWriter::appendChild($descDetailNode, $extentNode);
-		XMLCustomWriter::createChildWithText($doc, $extentNode, 'ExtentType', '04');
-		XMLCustomWriter::createChildWithText($doc, $extentNode, 'ExtentValue', '20'); // $monograph->getBackMatterPageCount()
-		XMLCustomWriter::createChildWithText($doc, $extentNode, 'ExtentUnit', '03'); // 03 -> Pages
-
+		if ($assignedPublicationFormat->getBackMatterPageCount() > 0) {
+			$extentNode =& XMLCustomWriter::createElement($doc, 'Extent');
+			XMLCustomWriter::appendChild($descDetailNode, $extentNode);
+			XMLCustomWriter::createChildWithText($doc, $extentNode, 'ExtentType', '04');
+			XMLCustomWriter::createChildWithText($doc, $extentNode, 'ExtentValue', $assignedPublicationFormat->getBackMatterPageCount());
+			XMLCustomWriter::createChildWithText($doc, $extentNode, 'ExtentUnit', '03'); // 03 -> Pages
+		}
+		if ($assignedPublicationFormat->getEntryKey() == 'EBOOK') { // EBooks have extent information about file sizes
+			$extentNode =& XMLCustomWriter::createElement($doc, 'Extent');
+			XMLCustomWriter::appendChild($descDetailNode, $extentNode);
+			XMLCustomWriter::createChildWithText($doc, $extentNode, 'ExtentType', '08');
+			XMLCustomWriter::createChildWithText($doc, $extentNode, 'ExtentValue', $assignedPublicationFormat->getFileSize());
+			XMLCustomWriter::createChildWithText($doc, $extentNode, 'ExtentUnit', '05');
+		}
 		/* --- Subjects --- */
 		$subjectNode =& XMLCustomWriter::createElement($doc, 'Subject');
 		XMLCustomWriter::appendChild($descDetailNode, $subjectNode);
@@ -226,9 +249,34 @@ class Onix30ExportDom {
 			$uniqueSubjects = array_merge($uniqueSubjects, $subjects);
 		}
 
-		XMLCustomWriter::createChildWithText($doc, $subjectNode, 'SubjectCode', join(' ', $uniqueSubjects));
-		XMLCustomWriter::createChildWithText($doc, $descDetailNode, 'AudienceCode', $monograph->getAudience());
+		if (sizeof($uniqueSubjects) > 0) {
+			XMLCustomWriter::createChildWithText($doc, $subjectNode, 'SubjectCode', join(' ', $uniqueSubjects));
+		}
 
+		$audienceNode =& XMLCustomWriter::createElement($doc, 'Audience');
+		XMLCustomWriter::appendChild($descDetailNode, $audienceNode);
+		XMLCustomWriter::createChildWithText($doc, $audienceNode, 'AudienceCodeType', $monograph->getAudience());
+		XMLCustomWriter::createChildWithText($doc, $audienceNode, 'AudienceCodeValue', '01'); // 01 -> ONIX List 29 - ONIX Audience Codes using List 28 in previous field
+
+		/* --- Check to see if there are qualifiers for Audience, include them if so --- */
+		if ($monograph->getAudienceRangeQualifier() != '') {
+			$audienceRangeNode =& XMLCustomWriter::createElement($doc, 'AudienceRange');
+			XMLCustomWriter::appendChild($descDetailNode, $audienceRangeNode);
+			XMLCustomWriter::createChildWithText($doc, $audienceRangeNode, 'AudienceRangeQualifier', $monograph->getAudienceRangeQualifier());
+			if ($monograph->getAudienceRangeExact() != '') {
+				XMLCustomWriter::createChildWithText($doc, $audienceRangeNode, 'AudienceRangePrecision', '01'); // exact (List31)
+				XMLCustomWriter::createChildWithText($doc, $audienceRangeNode, 'AudienceRangeValue', $monograph->getAudienceRangeExact());
+			} else { // if not exact, then include the From -> To possibilities
+				if ($monograph->getAudienceRangeFrom() != '') {
+					XMLCustomWriter::createChildWithText($doc, $audienceRangeNode, 'AudienceRangePrecision', '03'); // there is no 02.  from (List31)
+					XMLCustomWriter::createChildWithText($doc, $audienceRangeNode, 'AudienceRangeValue', $monograph->getAudienceRangeFrom());
+				}
+				if ($monograph->getAudienceRangeTo() != '') {
+					XMLCustomWriter::createChildWithText($doc, $audienceRangeNode, 'AudienceRangePrecision', '04'); // to (List31)
+					XMLCustomWriter::createChildWithText($doc, $audienceRangeNode, 'AudienceRangeValue', $monograph->getAudienceRangeTo());
+				}
+			}
+		}
 		/* --- Collateral Detail --- */
 
 		$collateralDetailNode =& XMLCustomWriter::createElement($doc, 'CollateralDetail');
@@ -255,12 +303,17 @@ class Onix30ExportDom {
 
 		$imprintNode =& XMLCustomWriter::createElement($doc, 'Imprint');
 		XMLCustomWriter::appendChild($publishingDetailNode, $imprintNode);
-		XMLCustomWriter::createChildWithText($doc, $imprintNode, 'ImprintName', 'Imprint Name');
+		XMLCustomWriter::createChildWithText($doc, $imprintNode, 'ImprintName', $press->getLocalizedName());
 
 		$publisherNode =& XMLCustomWriter::createElement($doc, 'Publisher');
 		XMLCustomWriter::appendChild($publishingDetailNode, $publisherNode);
-		XMLCustomWriter::createChildWithText($doc, $publisherNode, 'PublisherRole', '01'); // 01 -> Publisher
+		XMLCustomWriter::createChildWithText($doc, $publisherNode, 'PublishingRole', '01'); // 01 -> Publisher
 		XMLCustomWriter::createChildWithText($doc, $publisherNode, 'PublisherName', $press->getSetting('publisher'));
+
+		$websiteNode =& XMLCustomWriter::createElement($doc, 'Website');
+		XMLCustomWriter::appendChild($publisherNode, $websiteNode);
+		XMLCustomWriter::createChildWithText($doc, $websiteNode, 'WebsiteRole', '18'); // 18 -> Publisher's B2C website
+		XMLCustomWriter::createChildWithText($doc, $websiteNode, 'WebsiteLink', Request::url($press->getPath()));
 
 		/* --- Product Supply --- */
 

@@ -95,6 +95,70 @@ class PublishedMonograph extends Monograph {
 	}
 
 	/**
+	 * Get the audienceRangeQualifier of the published monograph.
+	 * @return int
+	 */
+	function getAudienceRangeQualifier() {
+		return $this->getData('audienceRangeQualifier');
+	}
+
+	/**
+	 * Set the audienceRangeQualifier for the published monograph.
+	 * @param $audienceRangeQualifier int (onix code)
+	 */
+	function setAudienceRangeQualifier($audienceRangeQualifier) {
+		return $this->setData('audienceRangeQualifier', $audienceRangeQualifier);
+	}
+
+	/**
+	 * Get the audienceRangeFrom field for the published monograph.
+	 * @return int
+	 */
+	function getAudienceRangeFrom() {
+		return $this->getData('audienceRangeFrom');
+	}
+
+	/**
+	 * Set the audienceRangeFrom field for the published monograph.
+	 * @param $audienceRangeFrom int (onix code)
+	 */
+	function setAudienceRangeFrom($audienceRangeFrom) {
+		return $this->setData('audienceRangeFrom', $audienceRangeFrom);
+	}
+
+	/**
+	 * Get the audienceRangeTo field for the published monograph.
+	 * @return int
+	 */
+	function getAudienceRangeTo() {
+		return $this->getData('audienceRangeTo');
+	}
+
+	/**
+	 * Set the audienceRangeTo field for the published monograph.
+	 * @param $audienceRangeTo int (onix code)
+	 */
+	function setAudienceRangeTo($audienceRangeTo) {
+		return $this->setData('audienceRangeTo', $audienceRangeTo);
+	}
+
+	/**
+	 * Get the audienceRangeExact field of the published monograph.
+	 * @return int
+	 */
+	function getAudienceRangeExact() {
+		return $this->getData('audienceRangeExact');
+	}
+
+	/**
+	 * Set the audienceRangeExact field for the published monograph.
+	 * @param $audienceRangeExact int (onix code)
+	 */
+	function setAudienceRangeExact($audienceRangeExact) {
+		return $this->setData('audienceRangeExact', $audienceRangeExact);
+	}
+
+	/**
 	 * Retrieves the assigned publication formats for this mongraph
 	 * @return array AssignedPublicationFormat
 	 */

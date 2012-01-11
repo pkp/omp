@@ -36,8 +36,9 @@
 
 	{fbvFormArea id="productComposition" title="monograph.publicationFormat.productComposition" border="true"}
 		{fbvFormSection for="productCompositionCode"}
-			{fbvElement type="select" from=$productCompositionCodes selected=$productCompositionCode translate=false id="productCompositionCode" defaultValue="" defaultLabel="" inline=true}
-			{fbvElement type="select" from=$productFormCodes selected=$productFormCode translate=false id="productFormCode" inline=true}
+			{fbvElement type="select" from=$productCompositionCodes required=true selected=$productCompositionCode translate=false id="productCompositionCode" defaultValue="" defaultLabel="" size=$fbvStyles.size.SMALL inline=true}
+			{fbvElement type="select" from=$productFormCodes required=true selected=$productFormCode translate=false id="productFormCode"  size=$fbvStyles.size.SMALL inline=true}
+			{fbvElement type="select" label="monograph.publicationFormat.productFormDetailCode" from=$productFormDetailCodes selected=$productFormDetailCode translate=false id="productFormDetailCode" defaultValue="" defaultLabel="" size=$fbvStyles.size.SMALL inline=true}
 		{/fbvFormSection}
 	{/fbvFormArea}
 

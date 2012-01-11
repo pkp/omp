@@ -210,6 +210,14 @@ class AssignedPublicationFormat extends PublicationFormat {
 	}
 
 	/**
+	 * Get the ONIX code for the format used for this format (List151)
+	 * @return string
+	 */
+	function getProductFormDetailCode() {
+		return $this->getData('productFormDetailCode');
+	}
+
+	/**
 	 * Get the ONIX code for the composition used for this format (List2)
 	 * @return string
 	 */
@@ -257,5 +265,20 @@ class AssignedPublicationFormat extends PublicationFormat {
 		return $this->getData('taxTypeCode');
 	}
 
+	/**
+	 * Get the page count for the front matter section of a publication format
+	 * @return string
+	 */
+	function getFrontMatterPageCount() {
+		return $this->getData('frontMatter');
+	}
+
+	/**
+	 * Get the page count for the back matter section of a publication format
+	 * @return string
+	 */
+	function getBackMatterPageCount() {
+		return $this->getData('backMatter');
+	}
 }
 ?>

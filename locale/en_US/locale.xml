@@ -39,7 +39,11 @@
 	<message key="monograph.type">Type of Submission</message>
 
 	<!--  Metadata field description keys -->
+	<message key="monograph.publicationFormat.pageCounts">Page Counts</message>
+	<message key="monograph.publicationFormat.frontMatterCount">Front Matter</message>
+	<message key="monograph.publicationFormat.backMatterCount">Back Matter</message>
 	<message key="monograph.publicationFormat.productComposition">Product Composition</message>
+	<message key="monograph.publicationFormat.productFormDetailCode">Product Detail (not required)</message>
 	<message key="monograph.publicationFormat.productIdentifierType">Product Identification</message>
 	<message key="monograph.publicationFormat.price">Price</message>
 	<message key="monograph.publicationFormat.priceType">Price Type</message>

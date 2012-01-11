@@ -190,6 +190,8 @@ class AssignedPublicationFormatDAO extends PublicationFormatDAO {
 	function getAdditionalFieldNames() {
 		return array(
 					'fileSize', // no companion unit code, template asks for Mb.
+					'frontMatter',
+					'backMatter',
 					'height',
 					'heightUnitCode',
 					'width',
@@ -200,6 +202,7 @@ class AssignedPublicationFormatDAO extends PublicationFormatDAO {
 					'weightUnitCode',
 					'productCompositionCode',
 					'productFormCode',
+					'productFormDetailCode',
 					'price',
 					'priceTypeCode',
 					'currencyCode',

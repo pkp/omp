@@ -82,7 +82,8 @@ class CatalogEntryPublicationMetadataForm extends Form {
 				'taxRateCodes' => 'List62', // higher rate, standard rate, zero rate
 				'taxTypeCodes' => 'List171', // VAT, GST
 				'countriesIncludedCodes' => 'List91', // country region codes
-				'productFormCodes' => 'List7', // ebook, softback, hardback, audio files, etc
+				'productFormCodes' => 'List150', // ebook, softback, hardback, audio files, etc
+				'productFormDetailCodes' => 'List175', // refinement of product form (SACD, Mass market (rack) paperback, etc)
 				);
 
 		foreach ($codes as $templateVarName => $list) {
@@ -138,6 +139,8 @@ class CatalogEntryPublicationMetadataForm extends Form {
 	function readInputData() {
 		$vars = array(
 					'fileSize',
+					'frontMatter',
+					'backMatter',
 					'height',
 					'heightUnitCode',
 					'width',
@@ -148,6 +151,7 @@ class CatalogEntryPublicationMetadataForm extends Form {
 					'weightUnitCode',
 					'productCompositionCode',
 					'productFormCode',
+					'productFormDetailCode',
 					'price',
 					'priceTypeCode',
 					'currencyCode',
