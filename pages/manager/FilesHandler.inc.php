@@ -47,7 +47,7 @@ class FilesHandler extends ManagerHandler {
 			if ($request->getUserVar('download')) {
 				$fileMgr->downloadFile($currentPath);
 			} else {
-				$fileMgr->viewFile($currentPath, FilesHandler::fileMimeType($currentPath));
+				$fileMgr->viewFile($currentPath, $this->fileMimeType($currentPath));
 			}
 
 		} else {
@@ -60,7 +60,7 @@ class FilesHandler extends ManagerHandler {
 						$info = array(
 							'name' => $file,
 							'isDir' => $isDir,
-							'mimetype' => $isDir ? '' : FilesHandler::fileMimeType($filePath),
+							'mimetype' => $isDir ? '' : $this->fileMimeType($filePath),
 							'mtime' => filemtime($filePath),
 							'size' => $isDir ? '' : $fileManager->getNiceFileSize(filesize($filePath)),
 						);
@@ -90,7 +90,7 @@ class FilesHandler extends ManagerHandler {
 		import('lib.pkp.classes.file.FileManager');
 		$fileMgr = new FileManager();
 		if ($fileMgr->uploadedFileExists('file')) {
-			$destPath = $currentPath . '/' . FilesHandler::cleanFileName($fileMgr->getUploadedFileName('file'));
+			$destPath = $currentPath . '/' . $this->cleanFileName($fileMgr->getUploadedFileName('file'));
 			@$fileMgr->uploadFile('file', $destPath);
 		}
 
@@ -108,7 +108,7 @@ class FilesHandler extends ManagerHandler {
 
 		if ($dirName = $request->getUserVar('dirName')) {
 			$currentPath = $this->_getRealFilesDir($request, $currentDir);
-			$newDir = $currentPath . '/' . FilesHandler::cleanFileName($dirName);
+			$newDir = $currentPath . '/' . $this->cleanFileName($dirName);
 
 			import('lib.pkp.classes.file.FileManager');
 			$fileMgr = new FileManager();
@@ -170,7 +170,7 @@ class FilesHandler extends ManagerHandler {
 
 	function cleanFileName($var) {
 		$var = String::regexp_replace('/[^\w\-\.]/', '', $var);
-		if (!FilesHandler::fileNameFilter($var)) {
+		if (!$this->fileNameFilter($var)) {
 			$var = time() . '';
 		}
 		return $var;
