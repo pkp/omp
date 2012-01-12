@@ -229,10 +229,10 @@ class SubmissionFilesUploadForm extends SubmissionFilesUploadBaseForm {
 		// Upload the file.
 		$press =& $request->getPress();
 		import('classes.file.MonographFileManager');
-		$monographFileManager = new MonographFileManager($press->getId());
+		$monographFileManager = new MonographFileManager($press->getId(), $this->getData('monographId'));
 		$fileStage = $this->getData('fileStage');
 		$monographFile = $monographFileManager->uploadMonographFile(
-			$this->getData('monographId'), 'uploadedFile', $fileStage,
+			'uploadedFile', $fileStage,
 			$user->getId(), $uploaderUserGroupId, $revisedFileId, $fileGenre, $assocType, $assocId
 		);
 

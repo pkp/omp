@@ -263,8 +263,8 @@ class Monograph extends Submission {
 	 */
 	function getFilePath() {
 		import('classes.file.MonographFileManager');
-		$monographFileManager = new MonographFileManager($this->getPressId());
-		return $monographFileManager->getBasePath($this->getId());
+		$monographFileManager = new MonographFileManager($this->getPressId(), $this->getId());
+		return $monographFileManager->getBasePath();
 	}
 }
 

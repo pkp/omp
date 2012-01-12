@@ -73,7 +73,7 @@ class PromoteForm extends EditorDecisionWithEmailForm {
 		$seriesEditorAction->recordDecision($request, $seriesEditorSubmission, $decision, $actionLabels, $reviewRound);
 
 		// Identify email key and status of round.
-		$monographFileManager = new MonographFileManager($seriesEditorSubmission->getPressId());
+		$monographFileManager = new MonographFileManager($seriesEditorSubmission->getPressId(), $seriesEditorSubmission->getId());
 		switch ($decision) {
 			case SUBMISSION_EDITOR_DECISION_ACCEPT:
 				$emailKey = 'EDITOR_DECISION_ACCEPT';

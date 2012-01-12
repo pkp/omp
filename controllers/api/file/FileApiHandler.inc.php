@@ -70,8 +70,8 @@ class FileApiHandler extends Handler {
 		assert($monographFile); // Should have been validated already
 		import('classes.file.MonographFileManager');
 		$press =& $request->getPress();
-		$monographFileManager = new MonographFileManager($press->getId());
-		$monographFileManager->downloadFile($monographFile->getMonographId(), $monographFile->getFileId(), $monographFile->getRevision());
+		$monographFileManager = new MonographFileManager($press->getId(), $monographFile->getMonographId());
+		$monographFileManager->downloadFile($monographFile->getFileId(), $monographFile->getRevision());
 	}
 
 	/**
@@ -84,7 +84,7 @@ class FileApiHandler extends Handler {
 		assert($monographFile); // Should have been validated already
 		import('classes.file.MonographFileManager');
 		$press =& $request->getPress();
-		$monographFileManager = new MonographFileManager($press->getId());
+		$monographFileManager = new MonographFileManager($press->getId(), $monographFile->getMonographId());
 		$monographFileManager->viewFile($monographFile->getMonographId(), $monographFile->getFileId(), $monographFile->getRevision());
 	}
 

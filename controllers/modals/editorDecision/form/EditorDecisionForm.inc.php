@@ -135,14 +135,13 @@ class EditorDecisionForm extends Form {
 		$reviewRound =& $reviewRoundDao->build($monograph->getId(), $stageId, $newRound, $status);
 
 		// Check for a notification already in place for the current review round.
-		$press =& $request->getPress();
 		$notificationDao =& DAORegistry::getDAO('NotificationDAO');
 		$notificationFactory =& $notificationDao->getNotificationsByAssoc(
 			ASSOC_TYPE_REVIEW_ROUND,
 			$reviewRound->getId(),
 			null,
 			NOTIFICATION_TYPE_REVIEW_ROUND_STATUS,
-			$press->getId()
+			$monograph->getPressId()
 		);
 
 		// Create round status notification if there is no notification already.
@@ -152,7 +151,7 @@ class EditorDecisionForm extends Form {
 				$request,
 				null,
 				NOTIFICATION_TYPE_REVIEW_ROUND_STATUS,
-				$press->getId(),
+				$monograph->getPressId(),
 				ASSOC_TYPE_REVIEW_ROUND,
 				$reviewRound->getId(),
 				NOTIFICATION_LEVEL_NORMAL
@@ -166,7 +165,7 @@ class EditorDecisionForm extends Form {
 		import('classes.monograph.MonographFile');
 		// Bring in the Manager (we need it).
 		import('classes.file.MonographFileManager');
-		$monographFileManager = new MonographFileManager($press->getId());
+		$monographFileManager = new MonographFileManager($monograph->getPressId(), $monograph->getId());
 		foreach (array('selectedFiles', 'selectedAttachments') as $userVar) {
 			$selectedFiles = $this->getData($userVar);
 			if(is_array($selectedFiles)) {

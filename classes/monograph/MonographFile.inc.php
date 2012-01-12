@@ -255,8 +255,8 @@ class MonographFile extends SubmissionFile {
 
 		// Construct the file path
 		import('classes.file.MonographFileManager');
-		$monographFileManager = new MonographFileManager($pressId);
-		return $monographFileManager->getBasePath($this->getMonographId()) . $this->_fileStageToPath($this->getFileStage()) . '/' . $this->getFileName();
+		$monographFileManager = new MonographFileManager($pressId, $this->getMonographId());
+		return $monographFileManager->getBasePath() . $this->_fileStageToPath($this->getFileStage()) . '/' . $this->getFileName();
 	}
 
 

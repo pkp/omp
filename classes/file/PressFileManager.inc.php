@@ -26,7 +26,7 @@ class PressFileManager extends PrivateFileManager {
 	 */
 	function PressFileManager($pressId) {
 		parent::PrivateFileManager();
-		$this->pressId = $pressId;
+		$this->pressId = (int) $pressId;
 	}
 
 	/**
