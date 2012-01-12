@@ -8,7 +8,16 @@
 <script type="text/javascript">
 	$(function() {ldelim}
 		// Attach the form handler.
-		$('#catalogMetadataEntryForm').pkpHandler('$.pkp.controllers.form.AjaxFormHandler');
+		$('#catalogMetadataEntryForm').pkpHandler(
+			'$.pkp.controllers.form.FileUploadFormHandler',
+			{ldelim}
+				$uploader: $('#plupload'),
+				uploaderOptions: {ldelim}
+					uploadUrl: '{url|escape:javascript op="uploadCoverImage" escape=false stageId=$stageId monographId=$monographId}',
+					baseUrl: '{$baseUrl|escape:javascript}'
+				{rdelim}
+			{rdelim}
+		);
 	{rdelim});
 </script>
 
@@ -20,6 +29,14 @@
 	<input type="hidden" name="tabPos" value="1" />
 	<input type="hidden" name="displayedInTab" value="{$formParams.displayedInTab|escape}" />
 	<input type="hidden" name="tab" value="catalog" />
+
+	{fbvFormArea id="file"}
+		{fbvFormSection title="monograph.coverImage"}
+			<div id="plupload"></div>
+		{/fbvFormSection}
+	{/fbvFormArea}
+	{* Container for uploaded file *}
+	<input type="hidden" name="temporaryFileId" id="temporaryFileId" value="" />
 
 	{fbvFormArea id="audienceInformation" title="monograph.audience" border="true"}
 		{fbvFormSection for="audience"}

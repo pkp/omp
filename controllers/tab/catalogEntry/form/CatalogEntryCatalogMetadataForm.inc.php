@@ -16,14 +16,23 @@ import('lib.pkp.classes.form.Form');
 
 class CatalogEntryCatalogMetadataForm extends Form {
 
-	/** The monograph used to show metadata information **/
+	/** @var $_monograph Monograph The monograph used to show metadata information */
 	var $_monograph;
 
-	/** The published monograph associated with this monograph **/
+	/** @var $_publishedMonograph PublishedMonograph The published monograph associated with this monograph */
 	var $_publishedMonograph;
 
-	/** The current stage id **/
+	/** @var $_stageId int The current stage id */
 	var $_stageId;
+
+	/** @var $_userId int The current user ID */
+	var $_userId;
+
+	/** @var $_imageExtension string Cover image extension */
+	var $_imageExtension;
+
+	/** @var $_sizeArray array Cover image information from getimagesize */
+	var $_sizeArray;
 
 	/**
 	 * Parameters to configure the form template.
@@ -33,10 +42,11 @@ class CatalogEntryCatalogMetadataForm extends Form {
 	/**
 	 * Constructor.
 	 * @param $monographId integer
+	 * @param $userId integer
 	 * @param $stageId integer
 	 * @param $formParams array
 	 */
-	function CatalogEntryCatalogMetadataForm($monographId, $stageId = null, $formParams = null) {
+	function CatalogEntryCatalogMetadataForm($monographId, $userId, $stageId = null, $formParams = null) {
 		parent::Form('catalog/form/catalogMetadataFormFields.tpl');
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
 		$monograph = $monographDao->getById((int) $monographId);
@@ -46,6 +56,7 @@ class CatalogEntryCatalogMetadataForm extends Form {
 
 		$this->_stageId = $stageId;
 		$this->_formParams = $formParams;
+		$this->_userId = $userId;
 	}
 
 	/**
@@ -137,34 +148,91 @@ class CatalogEntryCatalogMetadataForm extends Form {
 	 */
 	function readInputData() {
 		$vars = array(
-			'audience', 'audienceRangeQualifier', 'audienceRangeFrom', 'audienceRangeTo', 'audienceRangeExact'
+			'audience', 'audienceRangeQualifier', 'audienceRangeFrom', 'audienceRangeTo', 'audienceRangeExact',
+			'temporaryFileId', // Cover image
 		);
 
 		$this->readUserVars($vars);
 	}
 
 	/**
-	 * Save the metadata and store the catalog data for this published monograph.
+	 * Validate the form.
+	 * @return boolean
+	 */
+	function validate() {
+		// If a cover image was uploaded, make sure it's valid
+		if ($temporaryFileId = $this->getData('temporaryFileId')) {
+			import('classes.file.TemporaryFileManager');
+			$temporaryFileManager = new TemporaryFileManager();
+			$temporaryFileDao =& DAORegistry::getDAO('TemporaryFileDAO');
+			$temporaryFile =& $temporaryFileDao->getTemporaryFile($temporaryFileId, $this->_userId);
+			if (	!$temporaryFile ||
+				!($this->_imageExtension = $temporaryFileManager->getImageExtension($temporaryFile->getFileType())) ||
+				!($this->_sizeArray = getimagesize($temporaryFile->getFilePath()))
+			) {
+				$this->addError('temporaryFileId', __('form.invalidImage'));
+				return false;
+			}
+		}
+		return parent::validate();
+	}
+
+	/**
+	 * Save the metadata and store the catalog data for this published
+	 * monograph.
 	 */
 	function execute() {
-
 		parent::execute();
 
 		$monograph =& $this->getMonograph();
 		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
 		$publishedMonograph =& $publishedMonographDao->getById($monograph->getId());
-		$isExistingEntry = $publishedMonograph?true:false;
-
-		// populate the published monograph with the cataloging metadata
-		if ($isExistingEntry) {
-			foreach ($publishedMonographDao->getAdditionalFieldNames() as $fieldName) {
-				$publishedMonograph->setData($fieldName, $this->getData($fieldName));
-			}
-
-			$publishedMonographDao->updateLocaleFields($publishedMonograph);
-		} else {
+		if (!$publishedMonograph) {
 			fatalError('Updating catalog metadata with no published monograph!');
 		}
+
+		// Populate the published monograph with the cataloging metadata
+		foreach ($publishedMonographDao->getAdditionalFieldNames() as $fieldName) {
+			$publishedMonograph->setData($fieldName, $this->getData($fieldName));
+		}
+
+		// If a cover image was uploaded, deal with it.
+		if ($temporaryFileId = $this->getData('temporaryFileId')) {
+			// Fetch the temporary file storing the uploaded library file
+			$temporaryFileDao =& DAORegistry::getDAO('TemporaryFileDAO');
+			$temporaryFile =& $temporaryFileDao->getTemporaryFile($temporaryFileId, $this->_userId);
+			import('classes.file.SimpleMonographFileManager');
+			$simpleMonographFileManager = new SimpleMonographFileManager($monograph->getPressId(), $publishedMonograph->getId());
+
+			// Delete the old file if it exists
+			$oldSetting = $publishedMonograph->getCoverImage();
+			if ($oldSetting) {
+				$simpleMonographFileManager->deleteFile($simpleMonographFileManager->getBasePath() . $oldSetting['name']);
+			}
+
+			// The following variables were fetched in validation
+			assert($this->_sizeArray && $this->_imageExtension);
+
+			// Copy the new file over
+			$filename = 'cover' . $this->_imageExtension;
+			$simpleMonographFileManager->copyFile($temporaryFile->getFilePath(), $simpleMonographFileManager->getBasePath() . $filename);
+
+			$monograph->setCoverImage(array(
+				'name' => $filename,
+				'uploadName' => $temporaryFile->getOriginalFileName(),
+				'width' => $this->_sizeArray[0],
+				'height' => $this->_sizeArray[1],
+				'dateUploaded' => Core::getCurrentDate(),
+			));
+
+			// Clean up the temporary file
+			import('classes.file.TemporaryFileManager');
+			$temporaryFileManager = new TemporaryFileManager();
+			$temporaryFileManager->deleteFile($temporaryFileId, $this->_userId);
+		}
+
+		// Update the modified fields
+		$publishedMonographDao->updateLocaleFields($publishedMonograph);
 	}
 }
 

@@ -35,15 +35,16 @@ class CatalogEntryTabHandler extends Handler {
 	 */
 	function CatalogEntryTabHandler() {
 		parent::Handler();
-		$this->addRoleAssignment(ROLE_ID_PRESS_MANAGER,
-				array(
-						'submissionMetadata',
-						'catalogMetadata',
-						'publicationMetadata',
-						'saveForm'
-				)
+		$this->addRoleAssignment(
+			array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
+			array(
+				'submissionMetadata',
+				'catalogMetadata',
+				'publicationMetadata',
+				'saveForm',
+				'uploadCoverImage',
+			)
 		);
-
 	}
 
 
@@ -149,8 +150,9 @@ class CatalogEntryTabHandler extends Handler {
 
 		$monograph =& $this->getMonograph();
 		$stageId =& $this->getStageId();
+		$user =& $request->getUser();
 
-		$catalogEntryCatalogMetadataForm = new CatalogEntryCatalogMetadataForm($monograph->getId(), $stageId, array('displayedInTab' => true));
+		$catalogEntryCatalogMetadataForm = new CatalogEntryCatalogMetadataForm($monograph->getId(), $user->getId(), $stageId, array('displayedInTab' => true));
 
 		$catalogEntryCatalogMetadataForm->initData($args, $request);
 		$json = new JSONMessage(true, $catalogEntryCatalogMetadataForm->fetch($request));
@@ -196,7 +198,6 @@ class CatalogEntryTabHandler extends Handler {
 	 * @return string JSON message
 	 */
 	function saveForm($args, &$request) {
-
 		$json = new JSONMessage();
 		$form = null;
 
@@ -213,7 +214,8 @@ class CatalogEntryTabHandler extends Handler {
 				break;
 			case 'catalog':
 				import('controllers.tab.catalogEntry.form.CatalogEntryCatalogMetadataForm');
-				$form = new CatalogEntryCatalogMetadataForm($monograph->getId(), $stageId, array('displayedInTab' => true, 'tabPos' => $this->getTabPosition()));
+				$user =& $request->getUser();
+				$form = new CatalogEntryCatalogMetadataForm($monograph->getId(), $user->getId(), $stageId, array('displayedInTab' => true, 'tabPos' => $this->getTabPosition()));
 				$notificationKey = 'notification.savedCatalogMetadata';
 				break;
 			default: // publication format tabs
@@ -245,7 +247,9 @@ class CatalogEntryTabHandler extends Handler {
 				$user =& $request->getUser();
 				$notificationManager->createTrivialNotification($user->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __($notificationKey)));
 			} else {
-				$json->setStatus(false);
+				// Could not validate; redisplay the form.
+				$json->setStatus(true);
+				$json->setContent($form->fetch($request));
 			}
 
 			if ($request->getUserVar('displayedInTab')) {
@@ -263,5 +267,33 @@ class CatalogEntryTabHandler extends Handler {
 		}
 	}
 
+	/**
+	 * Upload a new cover image file.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return string
+	 */
+	function uploadCoverImage($args, &$request) {
+		$router =& $request->getRouter();
+		$context = $request->getContext();
+		$user =& $request->getUser();
+
+		$monograph =& $this->getMonograph();
+
+		import('classes.file.TemporaryFileManager');
+		$temporaryFileManager = new TemporaryFileManager();
+		$temporaryFile = $temporaryFileManager->handleUpload('uploadedFile', $user->getId());
+		if ($temporaryFile) {
+			$json = new JSONMessage(true);
+			$json->setAdditionalAttributes(array(
+				'temporaryFileId' => $temporaryFile->getId()
+			));
+		} else {
+			$json = new JSONMessage(false, __('common.uploadFailed'));
+		}
+
+		return $json->getString();
+	}
 }
+
 ?>

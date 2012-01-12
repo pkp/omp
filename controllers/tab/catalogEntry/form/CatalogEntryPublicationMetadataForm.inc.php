@@ -167,7 +167,6 @@ class CatalogEntryPublicationMetadataForm extends Form {
 	 * Save the metadata and store the catalog data for this specific publication format.
 	 */
 	function execute() {
-
 		parent::execute();
 
 		$assignedPublicationFormatDao =& DAORegistry::getDAO('AssignedPublicationFormatDAO');
