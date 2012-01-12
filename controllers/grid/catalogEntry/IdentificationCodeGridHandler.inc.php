@@ -309,7 +309,7 @@ class IdentificationCodeGridHandler extends GridHandler {
 		$identificationCodeId = $request->getUserVar('identificationCodeId');
 
 		$identificationCodeDao =& DAORegistry::getDAO('IdentificationCodeDAO');
-		$identificationCode = $identificationCodeDao->getById($identificationCodeId, $monograph->getId());
+		$identificationCode =& $identificationCodeDao->getById($identificationCodeId, $this->getMonograph()->getId());
 		if ($identificationCode != null) { // authorized
 
 			$result = $identificationCodeDao->deleteObject($identificationCode);
