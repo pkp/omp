@@ -95,7 +95,6 @@ class IdentificationCodeForm extends Form {
 	 * @see Form::fetch()
 	 */
 	function fetch(&$request) {
-		$code =& $this->getIdentificationCode();
 
 		$templateMgr =& TemplateManager::getManager();
 		$assignedPublicationFormatId = null;
