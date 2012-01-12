@@ -120,6 +120,22 @@ class Monograph extends Submission {
 	}
 
 	/**
+	 * Get the position of this monograph within a series.
+	 * @return string
+	 */
+	function getSeriesPosition() {
+		return $this->getData('seriesPosition');
+	}
+
+	/**
+	 * Set the series position for this monograph.
+	 * @param $seriesPosition string
+	 */
+	function setSeriesPosition($seriesPosition) {
+		$this->setData('seriesPosition', $seriesPosition);
+	}
+
+	/**
 	 * Get comments to editor.
 	 * @return string
 	 */

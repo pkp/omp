@@ -63,6 +63,14 @@ class MonographDAO extends DAO {
 	}
 
 	/**
+	 * Get a list of fields for which we store non-localized data
+	 * @return array
+	 */
+	function getAdditionalFieldNames() {
+		return array('seriesPosition');
+	}
+
+	/**
 	 * Update the localized fields for this object.
 	 * @param $monograph
 	 */

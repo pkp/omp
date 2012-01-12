@@ -104,6 +104,7 @@ class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
 		if (isset($this->monograph)) {
 			$this->_data = array(
 				'seriesId' => $this->monograph->getSeriesId(),
+				'seriesPosition' => $this->monograph->getSeriesPosition(),
 				'locale' => $this->monograph->getLocale(),
 				'isEditedVolume' => $this->monograph->getWorkType() == WORK_TYPE_EDITED_VOLUME,
 				'commentsToEditor' => $this->monograph->getCommentsToEditor()
@@ -134,7 +135,7 @@ class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
 	 */
 	function readInputData() {
 		$vars = array(
-			'authorUserGroupId', 'locale', 'isEditedVolume', 'copyrightNoticeAgree', 'seriesId', 'commentsToEditor', 'categories'
+			'authorUserGroupId', 'locale', 'isEditedVolume', 'copyrightNoticeAgree', 'seriesId', 'seriesPosition', 'commentsToEditor', 'categories'
 		);
 		foreach ($this->press->getLocalizedSetting('submissionChecklist') as $key => $checklistItem) {
 			$vars[] = "checklist-$key";
@@ -186,6 +187,7 @@ class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
 		if (isset($this->monograph)) {
 			// Update existing monograph
 			$this->monograph->setSeriesId($this->getData('seriesId'));
+			$this->monograph->setSeriesPosition($this->getData('seriesPosition'));
 			$this->monograph->setLocale($this->getData('locale'));
 			$this->monograph->setCommentsToEditor($this->getData('commentsToEditor'));
 			if ($this->monograph->getSubmissionProgress() <= $this->step) {
@@ -202,6 +204,7 @@ class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
 			$this->monograph->setUserId($user->getId());
 			$this->monograph->setPressId($this->press->getId());
 			$this->monograph->setSeriesId($this->getData('seriesId'));
+			$this->monograph->setSeriesPosition($this->getData('seriesPosition'));
 			$this->monograph->stampStatusModified();
 			$this->monograph->setSubmissionProgress($this->step + 1);
 			$this->monograph->setLanguage(String::substr($this->monograph->getLocale(), 0, 2));

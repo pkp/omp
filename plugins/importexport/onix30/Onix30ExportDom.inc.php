@@ -136,6 +136,9 @@ class Onix30ExportDom {
 		$seriesDao =& DAORegistry::getDAO('SeriesDAO');
 		$series =& $seriesDao->getById($monograph->getSeriesId());
 		if ($series != null) {
+			if ($monograph->getSeriesPosition() != '') {
+				XMLCustomWriter::createChildWithText($doc, $titleElementNode, 'PartNumber', $monograph->getSeriesPosition());
+			}
 			XMLCustomWriter::createChildWithText($doc, $titleElementNode, 'TitleText', join(' ', array($series->getLocalizedPrefix(), $series->getLocalizedTitle())));
 			if ($series->getLocalizedPrefix() != '') {
 				XMLCustomWriter::createChildWithText($doc, $titleElementNode, 'TitlePrefix', $series->getLocalizedPrefix());
