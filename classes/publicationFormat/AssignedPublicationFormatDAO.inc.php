@@ -208,7 +208,8 @@ class AssignedPublicationFormatDAO extends PublicationFormatDAO {
 					'currencyCode',
 					'taxRateCode',
 					'taxTypeCode',
-					'countriesIncludedCode'
+					'countriesIncludedCode',
+					'imprint'
 				);
 	}
 }

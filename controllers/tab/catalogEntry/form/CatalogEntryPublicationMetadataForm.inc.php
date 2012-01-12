@@ -106,7 +106,7 @@ class CatalogEntryPublicationMetadataForm extends Form {
 		$assignedPublicationFormat =& $assignedPublicationFormatDao->getById($assignedPublicationFormatId);
 
 		// provide a default for the product format
-		$defaultProductFormCodes = array('HARDCOVER' => 'BB','SOFTCOVER' => 'BC', 'EBOOK' => 'DG');
+		$defaultProductFormCodes = array('HARDCOVER' => 'BB', 'SOFTCOVER' => 'BC', 'EBOOK' => 'E121');
 		$templateMgr->assign('productFormCode', $defaultProductFormCodes[$assignedPublicationFormat->getEntryKey()]);
 
 		if ($assignedPublicationFormat) {
@@ -157,7 +157,8 @@ class CatalogEntryPublicationMetadataForm extends Form {
 					'currencyCode',
 					'taxRateCode',
 					'taxTypeCode',
-					'countriesIncludedCode'
+					'countriesIncludedCode',
+					'imprint'
 				);
 		$this->readUserVars($vars);
 	}

@@ -39,6 +39,7 @@
 	<message key="monograph.type">Type of Submission</message>
 
 	<!--  Metadata field description keys -->
+	<message key="monograph.publicationFormat.imprint">Imprint (Brand Name)</message>
 	<message key="monograph.publicationFormat.pageCounts">Page Counts</message>
 	<message key="monograph.publicationFormat.frontMatterCount">Front Matter</message>
 	<message key="monograph.publicationFormat.backMatterCount">Back Matter</message>

@@ -42,12 +42,18 @@
 		{/fbvFormSection}
 	{/fbvFormArea}
 
+	{fbvFormArea id="imprint" title="monograph.publicationFormat.imprint"}
+		{fbvFormSection for="imprint"}
+			{fbvElement type="text" name="imprint" id="imprint" value=$imprint maxlength="255" disabled=$readOnly}
+		{/fbvFormSection}
+	{/fbvFormArea}
+
 	{fbvFormArea  title="monograph.publicationFormat.price" border="true"}
 		{fbvFormSection for="price" desc="monograph.publicationFormat.pricingInformation"}
 			{fbvElement type="text" name="price" id="price" value=$price maxlength="255" size=$fbvStyles.size.SMALL disabled=$readOnly inline="true"}
 			{fbvElement type="select" from=$currencyCodes selected=$currencyCode translate=false id="currencyCode" inline="true"}
-			{fbvElement type="select" label="monograph.publicationFormat.priceType" from=$priceTypeCodes selected=$priceTypeCode translate=false id="priceTypeCode" defaultValue="" defaultLabel=""}
-			{fbvElement type="select" label="monograph.publicationFormat.taxRate" from=$taxRateCodes selected=$taxRateCode translate=false id="taxRateCode" defaultValue="" defaultLabel="" inline="true" size=$fbvStyles.size.MEDIUM}
+			{fbvElement type="select" label="monograph.publicationFormat.priceType" from=$priceTypeCodes selected=$priceTypeCode translate=false id="priceTypeCode" defaultValue="" defaultLabel="" inline="true" size=$fbvStyles.size.SMALL}
+			{fbvElement type="select" label="monograph.publicationFormat.taxRate" from=$taxRateCodes selected=$taxRateCode translate=false id="taxRateCode" defaultValue="" defaultLabel="" inline="true" size=$fbvStyles.size.SMALL}
 			{fbvElement type="select" label="monograph.publicationFormat.taxType" from=$taxTypeCodes selected=$taxTypeCode translate=false id="taxTypeCode" defaultValue="" defaultLabel="" inline="true" size=$fbvStyles.size.SMALL}
 		{/fbvFormSection}
 	{/fbvFormArea}

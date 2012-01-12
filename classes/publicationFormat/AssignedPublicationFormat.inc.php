@@ -280,5 +280,13 @@ class AssignedPublicationFormat extends PublicationFormat {
 	function getBackMatterPageCount() {
 		return $this->getData('backMatter');
 	}
+
+	/**
+	 * Get the imprint brand name for a publication format
+	 * @return string
+	 */
+	function getImprint() {
+		return $this->getData('imprint');
+	}
 }
 ?>

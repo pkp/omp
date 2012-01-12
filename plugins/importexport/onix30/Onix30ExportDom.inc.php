@@ -306,7 +306,7 @@ class Onix30ExportDom {
 
 		$imprintNode =& XMLCustomWriter::createElement($doc, 'Imprint');
 		XMLCustomWriter::appendChild($publishingDetailNode, $imprintNode);
-		XMLCustomWriter::createChildWithText($doc, $imprintNode, 'ImprintName', $press->getLocalizedName());
+		XMLCustomWriter::createChildWithText($doc, $imprintNode, 'ImprintName', $assignedPublicationFormat->getImprint());
 
 		$publisherNode =& XMLCustomWriter::createElement($doc, 'Publisher');
 		XMLCustomWriter::appendChild($publishingDetailNode, $publisherNode);
