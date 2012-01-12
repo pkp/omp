@@ -83,11 +83,11 @@ class NewPressImageFileForm extends SettingsFileUploadForm {
 		$temporaryFile = $this->fetchTemporaryFile($request);
 
 		import('classes.file.PublicFileManager');
-		$fileManager = new PublicFileManager();
+		$publicFileManager = new PublicFileManager();
 
 		if (is_a($temporaryFile, 'TemporaryFile')) {
 			$type = $temporaryFile->getFileType();
-			$extension = $fileManager->getImageExtension($type);
+			$extension = $publicFileManager->getImageExtension($type);
 			if (!$extension) {
 				return false;
 			}
@@ -95,10 +95,10 @@ class NewPressImageFileForm extends SettingsFileUploadForm {
 			$press = $request->getPress();
 
 			$uploadName = $this->getFileSettingName() . '_' . $locale . $extension;
-			if($fileManager->copyPressFile($press->getId(), $temporaryFile->getFilePath(), $uploadName)) {
+			if($publicFileManager->copyPressFile($press->getId(), $temporaryFile->getFilePath(), $uploadName)) {
 
 				// Get image dimensions
-				$filePath = $fileManager->getPressFilesPath($press->getId());
+				$filePath = $publicFileManager->getPressFilesPath($press->getId());
 				list($width, $height) = getimagesize($filePath . '/' . $uploadName);
 
 				$value = $press->getSetting($this->getFileSettingName());

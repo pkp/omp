@@ -55,8 +55,8 @@ class ProfileForm extends Form {
 		if (!$profileImage) return false;
 
 		import('classes.file.PublicFileManager');
-		$fileManager = new PublicFileManager();
-		if ($fileManager->removeSiteFile($profileImage['uploadName'])) {
+		$publicFileManager = new PublicFileManager();
+		if ($publicFileManager->removeSiteFile($profileImage['uploadName'])) {
 			return $user->updateSetting('profileImage', null);
 		} else {
 			return false;
@@ -65,29 +65,29 @@ class ProfileForm extends Form {
 
 	function uploadProfileImage() {
 		import('classes.file.PublicFileManager');
-		$fileManager = new PublicFileManager();
+		$publicFileManager = new PublicFileManager();
 
 		$user =& $this->getUser();
 
-		$type = $fileManager->getUploadedFileType('profileImage');
-		$extension = $fileManager->getImageExtension($type);
+		$type = $publicFileManager->getUploadedFileType('profileImage');
+		$extension = $publicFileManager->getImageExtension($type);
 		if (!$extension) return false;
 
 		$uploadName = 'profileImage-' . (int) $user->getId() . $extension;
-		if (!$fileManager->uploadSiteFile('profileImage', $uploadName)) return false;
+		if (!$publicFileManager->uploadSiteFile('profileImage', $uploadName)) return false;
 
-		$filePath = $fileManager->getSiteFilesPath();
+		$filePath = $publicFileManager->getSiteFilesPath();
 		list($width, $height) = getimagesize($filePath . '/' . $uploadName);
 
 		if ($width > 150 || $height > 150 || $width <= 0 || $height <= 0) {
 			$userSetting = null;
 			$user->updateSetting('profileImage', $userSetting);
-			$fileManager->removeSiteFile($filePath);
+			$publicFileManager->removeSiteFile($filePath);
 			return false;
 		}
 
 		$userSetting = array(
-			'name' => $fileManager->getUploadedFileName('profileImage'),
+			'name' => $publicFileManager->getUploadedFileName('profileImage'),
 			'uploadName' => $uploadName,
 			'width' => $width,
 			'height' => $height,

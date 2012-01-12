@@ -94,15 +94,14 @@ class FileApiHandler extends Handler {
 	* @param $request Request
 	*/
 	function downloadAllFiles($args, &$request) {
-		// Retrieve the monograph.
+		// Retrieve the authorized objects.
 		$monographFiles = $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH_FILES);
-
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-		$monographId = $monograph->getId();
 
 		// Find out the paths of all files in this grid.
 		import('classes.file.MonographFileManager');
-		$filesDir = $monograph->getFilePath();
+		$monographFileManager = new MonographFileManager($monograph->getPressId(), $monograph->getId());
+		$filesDir = $monographFileManager->getBasePath();
 		$filePaths = array();
 		foreach ($monographFiles as $monographFile) {
 			// Remove absolute path so the archive doesn't include it (otherwise all files are organized by absolute path)
@@ -115,11 +114,10 @@ class FileApiHandler extends Handler {
 		$archivePath = tempnam('/tmp', 'sf-');
 
 		// Create the archive and download the file.
-		exec(
-		Config::getVar('cli', 'tar') . ' -c -z ' .
-				'-f ' . escapeshellarg($archivePath) . ' ' .
-				'-C ' . escapeshellarg($filesDir) . ' ' .
-		implode(' ', array_map('escapeshellarg', $filePaths))
+		exec(Config::getVar('cli', 'tar') . ' -c -z ' .
+			'-f ' . escapeshellarg($archivePath) . ' ' .
+			'-C ' . escapeshellarg($filesDir) . ' ' .
+			implode(' ', array_map('escapeshellarg', $filePaths))
 		);
 
 		if (file_exists($archivePath)) {

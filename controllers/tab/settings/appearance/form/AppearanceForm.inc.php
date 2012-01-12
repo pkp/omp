@@ -197,8 +197,8 @@ class AppearanceForm extends PressSettingsForm {
 
 		// Deletes the file and its settings.
 		import('classes.file.PublicFileManager');
-		$fileManager = new PublicFileManager();
-		if ($fileManager->removePressFile($press->getId(), $file['uploadName'])) {
+		$publicFileManager = new PublicFileManager();
+		if ($publicFileManager->removePressFile($press->getId(), $file['uploadName'])) {
 			$settingsDao =& DAORegistry::getDAO('PressSettingsDAO');
 			$settingsDao->deleteSetting($press->getId(), $fileSettingName, $locale);
 			return true;

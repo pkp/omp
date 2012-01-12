@@ -49,7 +49,7 @@ class NewPressCssFileForm extends SettingsFileUploadForm {
 		$temporaryFile = $this->fetchTemporaryFile($request);
 
 		import('classes.file.PublicFileManager');
-		$fileManager = new PublicFileManager();
+		$publicFileManager = new PublicFileManager();
 
 		if (is_a($temporaryFile, 'TemporaryFile')) {
 			$type = $temporaryFile->getFileType();
@@ -60,7 +60,7 @@ class NewPressCssFileForm extends SettingsFileUploadForm {
 			$settingName = $this->getFileSettingName();
 			$uploadName = $settingName . '.css';
 			$press = $request->getPress();
-			if($fileManager->copyPressFile($press->getId(), $temporaryFile->getFilePath(), $uploadName)) {
+			if($publicFileManager->copyPressFile($press->getId(), $temporaryFile->getFilePath(), $uploadName)) {
 				$value = array(
 					'name' => $temporaryFile->getOriginalFileName(),
 					'uploadName' => $uploadName,

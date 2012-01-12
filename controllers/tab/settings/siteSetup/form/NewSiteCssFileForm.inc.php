@@ -49,7 +49,7 @@ class NewSiteCssFileForm extends SettingsFileUploadForm {
 		$temporaryFile = $this->fetchTemporaryFile($request);
 
 		import('classes.file.PublicFileManager');
-		$fileManager = new PublicFileManager();
+		$publicFileManager = new PublicFileManager();
 
 		if (is_a($temporaryFile, 'TemporaryFile')) {
 			$type = $temporaryFile->getFileType();
@@ -60,7 +60,7 @@ class NewSiteCssFileForm extends SettingsFileUploadForm {
 			$settingName = $this->getFileSettingName();
 			$site = $request->getSite();
 			$uploadName = $site->getSiteStyleFilename();
-			if($fileManager->copyFile($temporaryFile->getFilePath(), $fileManager->getSiteFilesPath() . '/' . $uploadName)) {
+			if($publicFileManager->copyFile($temporaryFile->getFilePath(), $publicFileManager->getSiteFilesPath() . '/' . $uploadName)) {
 				$siteDao =& DAORegistry::getDAO('SiteDAO');
 				$site->setOriginalStyleFilename($temporaryFile->getOriginalFileName());
 				$siteDao->updateObject($site);

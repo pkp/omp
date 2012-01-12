@@ -337,8 +337,10 @@ class MonographDAO extends DAO {
 		// Delete monograph file directory.
 		$monograph =& $this->getMonograph($monographId);
 		assert(is_a($monograph, 'Monograph'));
-		$fileManager = new FileManager();
-		if (is_a($monograph, 'Monograph')) $fileManager->rmtree($monograph->getFilePath());
+
+		import('classes.file.MonographFileManager');
+		$monographFileManager = new FileManager($monograph->getPressId(), $monograph->getId());
+		$monographFileManager->rmtree($monographFileManager->getBasePath());
 
 		// Delete any comments.
 		$monographCommentDao =& DAORegistry::getDAO('MonographCommentDAO');

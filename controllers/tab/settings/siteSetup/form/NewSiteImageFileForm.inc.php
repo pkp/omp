@@ -79,11 +79,11 @@ class NewSiteImageFileForm extends SettingsFileUploadForm {
 		$temporaryFile = $this->fetchTemporaryFile($request);
 
 		import('classes.file.PublicFileManager');
-		$fileManager = new PublicFileManager();
+		$publicFileManager = new PublicFileManager();
 
 		if (is_a($temporaryFile, 'TemporaryFile')) {
 			$type = $temporaryFile->getFileType();
-			$extension = $fileManager->getImageExtension($type);
+			$extension = $publicFileManager->getImageExtension($type);
 			if (!$extension) {
 				return false;
 			}
@@ -91,10 +91,10 @@ class NewSiteImageFileForm extends SettingsFileUploadForm {
 			$press = $request->getPress();
 
 			$uploadName = $this->getFileSettingName() . '_' . $locale . $extension;
-			if ($fileManager->copyFile($temporaryFile->getFilePath(), $fileManager->getSiteFilesPath() . '/' . $uploadName)) {
+			if ($publicFileManager->copyFile($temporaryFile->getFilePath(), $publicFileManager->getSiteFilesPath() . '/' . $uploadName)) {
 
 				// Get image dimensions
-				$filePath = $fileManager->getSiteFilesPath();
+				$filePath = $publicFileManager->getSiteFilesPath();
 				list($width, $height) = getimagesize($filePath . '/' . $uploadName);
 
 				$site =& $request->getSite();

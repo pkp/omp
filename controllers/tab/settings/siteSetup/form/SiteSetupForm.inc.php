@@ -206,8 +206,8 @@ class SiteSetupForm extends PKPSiteSettingsForm {
 
 		// Deletes the file and its settings.
 		import('classes.file.PublicFileManager');
-		$fileManager = new PublicFileManager();
-		if ($fileManager->removeSiteFile($file['uploadName'])) {
+		$publicFileManager = new PublicFileManager();
+		if ($publicFileManager->removeSiteFile($file['uploadName'])) {
 			$settingsDao =& DAORegistry::getDAO('SiteSettingsDAO');
 			$settingsDao->deleteSetting($fileSettingName, $locale);
 			return true;

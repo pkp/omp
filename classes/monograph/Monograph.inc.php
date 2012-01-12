@@ -255,17 +255,6 @@ class Monograph extends Submission {
 	function setSupportingAgencies($title, $locale) {
 		return $this->setData('supportingAgencies', $title, $locale);
 	}
-
-	/**
-	 * Return absolute path to the files of this
-	 * monograph on the host filesystem.
-	 * @return string
-	 */
-	function getFilePath() {
-		import('classes.file.MonographFileManager');
-		$monographFileManager = new MonographFileManager($this->getPressId(), $this->getId());
-		return $monographFileManager->getBasePath();
-	}
 }
 
 ?>
