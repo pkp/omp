@@ -9,7 +9,7 @@
  * @class MonographFileManager
  * @ingroup file
  *
- * @brief Helper class for monograph file management tasks.
+ * @brief Helper class for database-backed monograph file management tasks.
  *
  * Monograph directory structure:
  * [monograph id]/note
@@ -24,33 +24,22 @@
  * [monograph id]/attachment
  */
 
-import('file.PressFileManager');
+import('file.BaseMonographFileManager');
 
-class MonographFileManager extends PressFileManager {
-	/** @var $_monographId int */
-	var $_monographId;
-
+class MonographFileManager extends BaseMonographFileManager {
 	/**
 	 * Constructor.
 	 * @param $pressId int
 	 * @param $monographId int
 	 */
 	function MonographFileManager($pressId, $monographId) {
-		parent::PressFileManager($pressId);
-		$this->_monographId = (int) $monographId;
+		parent::BaseMonographFileManager($pressId, $monographId);
 	}
 
 
 	//
 	// Public methods
 	//
-	/**
-	 * Get the base path for file storage.
-	 */
-	function getBasePath() {
-		return parent::getBasePath() . '/monographs/' . $this->_monographId . '/';
-	}
-
 	/**
 	 * Upload a monograph file.
 	 * @param $fileName string the name of the file used in the POST form
@@ -97,7 +86,7 @@ class MonographFileManager extends PressFileManager {
 		$monographFile =& $this->_getFile($fileId, $revision);
 		if (isset($monographFile)) {
 			// Make sure that the file belongs to the monograph.
-			if ($monographFile->getMonographId() != $this->_monographId) fatalError('Invalid file id!');
+			if ($monographFile->getMonographId() != $this->getMonographId()) fatalError('Invalid file id!');
 
 			// Mark the file as viewed by this user.
 			$sessionManager =& SessionManager::getManager();
@@ -273,7 +262,7 @@ class MonographFileManager extends PressFileManager {
 		assert($genreId || $revisedFileId);
 		if (!$genreId || $revisedFileId) {
 			// Retrieve the revised file. (null $fileStage in case the revision is from a previous stage).
-			$revisedFile =& $submissionFileDao->getLatestRevision($revisedFileId, null, $this->_monographId);
+			$revisedFile =& $submissionFileDao->getLatestRevision($revisedFileId, null, $this->getMonographId());
 			if (!is_a($revisedFile, 'MonographFile')) return $nullVar;
 		}
 
@@ -285,13 +274,13 @@ class MonographFileManager extends PressFileManager {
 
 		// Instantiate a new monograph file implementation.
 		$monographFile =& $submissionFileDao->newDataObjectByGenreId($genreId); /* @var $monographFile MonographFile */
-		$monographFile->setMonographId($this->_monographId);
+		$monographFile->setMonographId($this->getMonographId());
 
 		// Do we create a new file or a new revision of an existing file?
 		if ($revisedFileId) {
 			// Make sure that the monograph of the revised file is
 			// the same as that of the uploaded file.
-			if ($revisedFile->getMonographId() != $this->_monographId) return $nullVar;
+			if ($revisedFile->getMonographId() != $this->getMonographId()) return $nullVar;
 
 			// If file stages are different we reference with the sourceFileId
 			// Otherwise, we keep the file id, update the revision, and copy other fields.
