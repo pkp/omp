@@ -35,7 +35,7 @@ class BaseMonographFileManager extends PressFileManager {
 	 * @param $pressId int
 	 * @param $monographId int
 	 */
-	function MonographFileManager($pressId, $monographId) {
+	function BaseMonographFileManager($pressId, $monographId) {
 		parent::PressFileManager($pressId);
 		$this->_monographId = (int) $monographId;
 	}
