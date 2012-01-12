@@ -27,9 +27,9 @@
 
 	{fbvFormArea id="productIdentifier"}
 		{fbvFormSection}
-			<!--  Product Identification Codes -->
+			<!-- Product Identification Codes -->
 			{assign var="divId" value="identificationCodeGridContainer"|concat:$assignedPublicationFormatId|escape}
-			{url|assign:identGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.catalogEntry.IdentificationCodeGridHandler" op="fetchGrid" monographId=$monographId assignedPublicationFormatId=$assignedPublicationFormatId escape=false}
+			{url|assign:identGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.catalogEntry.IdentificationCodeGridHandler" op="fetchGrid" monographId=$monographId assignedPublicationFormatId=$assignedPublicationFormatId escape=false}
 			{load_url_in_div id="$divId" url="$identGridUrl"}
 		{/fbvFormSection}
 	{/fbvFormArea}
@@ -48,13 +48,22 @@
 		{/fbvFormSection}
 	{/fbvFormArea}
 
-	{fbvFormArea  title="monograph.publicationFormat.price" border="true"}
+	{fbvFormArea title="monograph.publicationFormat.price" border="true"}
 		{fbvFormSection for="price" desc="monograph.publicationFormat.pricingInformation"}
 			{fbvElement type="text" name="price" id="price" value=$price maxlength="255" size=$fbvStyles.size.SMALL disabled=$readOnly inline="true"}
 			{fbvElement type="select" from=$currencyCodes selected=$currencyCode translate=false id="currencyCode" inline="true"}
 			{fbvElement type="select" label="monograph.publicationFormat.priceType" from=$priceTypeCodes selected=$priceTypeCode translate=false id="priceTypeCode" defaultValue="" defaultLabel="" inline="true" size=$fbvStyles.size.SMALL}
 			{fbvElement type="select" label="monograph.publicationFormat.taxRate" from=$taxRateCodes selected=$taxRateCode translate=false id="taxRateCode" defaultValue="" defaultLabel="" inline="true" size=$fbvStyles.size.SMALL}
 			{fbvElement type="select" label="monograph.publicationFormat.taxType" from=$taxTypeCodes selected=$taxTypeCode translate=false id="taxTypeCode" defaultValue="" defaultLabel="" inline="true" size=$fbvStyles.size.SMALL}
+		{/fbvFormSection}
+	{/fbvFormArea}
+
+	{fbvFormArea id="publicationDates"}
+		{fbvFormSection}
+			<!-- Product Publication/Embargo dates -->
+			{assign var="divId" value="publicationDateGridContainer"|concat:$assignedPublicationFormatId|escape}
+			{url|assign:dateGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.catalogEntry.PublicationDateGridHandler" op="fetchGrid" monographId=$monographId assignedPublicationFormatId=$assignedPublicationFormatId escape=false}
+			{load_url_in_div id="$divId" url="$dateGridUrl"}
 		{/fbvFormSection}
 	{/fbvFormArea}
 

@@ -74,6 +74,15 @@
 	<message key="grid.catalogEntry.codeRequired">A code is required.</message>
 	<message key="grid.catalogEntry.valueRequired">A value is required.</message>
 
+	<!-- assigned publication date grid and form keys -->
+	<message key="grid.catalogEntry.publicationDates">Publication Dates</message>
+	<message key="grid.catalogEntry.publicationDateValue">Publication Date</message>
+	<message key="grid.catalogEntry.publicationDateRole">Role</message>
+	<message key="grid.catalogEntry.publicationDateFormat">Publication Date Format</message>
+	<message key="grid.catalogEntry.roleRequired">A date role is required.</message>
+	<message key="grid.catalogEntry.dateRequired">A date is required.</message>
+	<message key="grid.catalogEntry.dateFormatRequired">A date format is required.</message>
+
 	<!-- Editorial policies -->
 	<message key="manager.series.open">Open Submissions</message>
 	<message key="manager.series.indexed">Indexed</message>
@@ -437,6 +446,9 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="notification.addedIdentificationCode">Identification Code added.</message>
 	<message key="notification.editedIdentificationCode">Identification Code edited.</message>
 	<message key="notification.removedIdentificationCode">Identification Code removed.</message>
+	<message key="notification.addedPublicationDate">Publication Date added.</message>
+	<message key="notification.editedPublicationDate">Publication Date edited.</message>
+	<message key="notification.removedPublicationDate">Publication Date removed.</message>
 	<message key="notification.addedPublicationFormat">Publication Format added.</message>
 	<message key="notification.editedPublicationFormat">Publication Format edited.</message>
 	<message key="notification.removedPublicationFormat">Publication Format removed.</message>

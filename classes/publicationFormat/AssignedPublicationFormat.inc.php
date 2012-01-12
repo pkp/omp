@@ -202,6 +202,16 @@ class AssignedPublicationFormat extends PublicationFormat {
 	}
 
 	/**
+	 * Get the PublicationDate objects for this format
+	 * @return Array PublicationDate
+	 */
+	function getPublicationDates() {
+		$publicationDateDao =& DAORegistry::getDAO('PublicationDateDAO');
+		$dates =& $publicationDateDao->getByAssignedPublicationFormatId($this->getAssignedPublicationFormatId());
+		return $dates;
+	}
+
+	/**
 	 * Get the ONIX code for the format used for this format (List7)
 	 * @return string
 	 */

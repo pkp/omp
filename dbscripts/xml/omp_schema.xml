@@ -101,6 +101,35 @@
 
 	<!--
 	  *
+	  * TABLE publication_dates
+	  *
+	  -->
+	<table name="publication_dates">
+		<field name="publication_date_id" type="I8">
+			<KEY />
+			<AUTOINCREMENT />
+		</field>
+		<field name="assigned_publication_format_id" type="I8">
+			<NOTNULL />
+		</field>
+		<field name="role" type="C2" size="40">
+			<NOTNULL />
+		</field>
+		<field name="date_format" type="C2" size="40">
+			<NOTNULL />
+		</field>
+		<field name="date" type="C2" size="255">
+			<NOTNULL />
+		</field>
+		<index name="publication_dates_pkey">
+			<col>publication_date_id</col>
+			<col>assigned_publication_format_id</col>
+			<col>role</col>
+		</index>
+	</table>
+
+	<!--
+	  *
 	  * TABLE features
 	  *
 	  -->

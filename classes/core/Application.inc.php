@@ -150,6 +150,7 @@ class Application extends PKPApplication {
 			'PressDAO' => 'classes.press.PressDAO',
 			'PressSettingsDAO' => 'classes.press.PressSettingsDAO',
 			'ProductionAssignmentDAO' => 'classes.submission.productionAssignment.ProductionAssignmentDAO',
+			'PublicationDateDAO' => 'classes.publicationFormat.PublicationDateDAO',
 			'PublicationFormatDAO' => 'classes.publicationFormat.PublicationFormatDAO',
 			'PublishedMonographDAO' => 'classes.monograph.PublishedMonographDAO',
 			'ReviewAssignmentDAO' => 'classes.submission.reviewAssignment.ReviewAssignmentDAO',

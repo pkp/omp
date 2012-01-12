@@ -318,6 +318,18 @@ class Onix30ExportDom {
 		XMLCustomWriter::createChildWithText($doc, $websiteNode, 'WebsiteRole', '18'); // 18 -> Publisher's B2C website
 		XMLCustomWriter::createChildWithText($doc, $websiteNode, 'WebsiteLink', Request::url($press->getPath()));
 
+		/* -- Publishing Dates */
+
+		$publicationDates =& $assignedPublicationFormat->getPublicationDates();
+		while ($date =& $publicationDates->next()) {
+
+			$pubDateNode =& XMLCustomWriter::createElement($doc, 'PublishingDate');
+			XMLCustomWriter::appendChild($publishingDetailNode, $pubDateNode);
+			XMLCustomWriter::createChildWithText($doc, $pubDateNode, 'PublishingDateRole', $date->getRole());
+			XMLCustomWriter::createChildWithText($doc, $pubDateNode, 'DateFormat', $date->getDateFormat());
+			XMLCustomWriter::createChildWithText($doc, $pubDateNode, 'Date', $date->getDate());
+			unset($date);
+		}
 		/* --- Product Supply --- */
 
 		$productSupplyNode =& XMLCustomWriter::createElement($doc, 'ProductSupply');
