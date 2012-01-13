@@ -330,8 +330,12 @@ class Onix30ExportDom {
 			$pubDateNode =& XMLCustomWriter::createElement($doc, 'PublishingDate');
 			XMLCustomWriter::appendChild($publishingDetailNode, $pubDateNode);
 			XMLCustomWriter::createChildWithText($doc, $pubDateNode, 'PublishingDateRole', $date->getRole());
-			XMLCustomWriter::createChildWithText($doc, $pubDateNode, 'DateFormat', $date->getDateFormat());
-			XMLCustomWriter::createChildWithText($doc, $pubDateNode, 'Date', $date->getDate());
+			$dateNode =& XMLCustomWriter::createElement($doc, 'Date');
+			XMLCustomWriter::setAttribute($dateNode, 'dateformat', $date->getDateFormat());
+			XMLCustomWriter::appendChild($pubDateNode, $dateNode);
+			$dateTextNode =& XMLCustomWriter::createTextNode($doc, $date->getDate());
+			XMLCustomWriter::appendChild($dateNode, $dateTextNode);
+
 			unset($date);
 		}
 		/* --- Product Supply --- */
