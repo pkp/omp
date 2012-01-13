@@ -118,6 +118,10 @@ class Onix30ExportDom {
 			XMLCustomWriter::createChildWithText($doc, $measureNode, 'Measurement', $assignedPublicationFormat->getWeight());
 			XMLCustomWriter::createChildWithText($doc, $measureNode, 'MeasureUnitCode', $assignedPublicationFormat->getWeightUnit());
 			unset($measureNode);
+
+			if ($assignedPublicationFormat->getManufactureCountry() != '') {
+				XMLCustomWriter::createChildWithText($doc, $descDetailNode, 'CountryOfManufacture', $assignedPublicationFormat->getManufactureCountry());
+			}
 		}
 		/* --- Collection information, first for series and then for product --- */
 

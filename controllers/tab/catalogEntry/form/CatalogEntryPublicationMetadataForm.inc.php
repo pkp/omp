@@ -96,6 +96,7 @@ class CatalogEntryPublicationMetadataForm extends Form {
 		$templateMgr->assign('currencyCode', 'CAD');
 		$templateMgr->assign('taxTypeCode', '02'); // GST
 		$templateMgr->assign('countriesIncludedCode', array('CA'));
+		$templateMgr->assign('countryManufactureCode', 'CA');
 		$templateMgr->assign('heightUnitCode', 'mm');
 		$templateMgr->assign('widthUnitCode', 'mm');
 		$templateMgr->assign('thicknessUnitCode', 'mm');
@@ -158,6 +159,7 @@ class CatalogEntryPublicationMetadataForm extends Form {
 					'taxRateCode',
 					'taxTypeCode',
 					'countriesIncludedCode',
+					'countryManufactureCode',
 					'imprint'
 				);
 		$this->readUserVars($vars);

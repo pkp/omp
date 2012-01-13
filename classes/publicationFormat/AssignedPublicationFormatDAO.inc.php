@@ -209,6 +209,7 @@ class AssignedPublicationFormatDAO extends PublicationFormatDAO {
 					'taxRateCode',
 					'taxTypeCode',
 					'countriesIncludedCode',
+					'countryManufactureCode',
 					'imprint'
 				);
 	}

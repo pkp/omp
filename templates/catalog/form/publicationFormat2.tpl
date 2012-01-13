@@ -1,5 +1,5 @@
 {* Hardcover fields *}
-	<div class="pkp_helpers_align_right half">
+<div class="pkp_helpers_align_right half">
 	{fbvFormArea id="pageCounts" title="monograph.publicationFormat.pageCounts" border="true"}
 		{fbvFormSection for="frontMatter" title="monograph.publicationFormat.frontMatterCount"}
 			{fbvElement type="text" name="frontMatter" id="frontMatter" value=$frontMatter maxlength="255" size=$fbvStyles.size.MEDIUM disabled=$readOnly}
@@ -27,5 +27,8 @@
 			{fbvElement type="text"  name="weight" id="weight" value=$weight maxlength="255" size=$fbvStyles.size.SMALL disabled=$readOnly inline="true"}
 			{fbvElement type="select" from=$weightUnitCodes selected=$weightUnitCode translate=false id="weightUnitCode" inline="true"}
 		{/fbvFormSection}
+		{fbvFormSection title="monograph.publicationFormat.countryOfManufacture" for="country"}
+			{fbvElement type="select" from=$countriesIncludedCodes selected=$countryManufactureCode translate=false id="countryManufactureCode" inline="true"}
+		{/fbvFormSection}
 	{/fbvFormArea}
-	</div>
+</div>

@@ -77,7 +77,7 @@
 		{include file="catalog/form/publicationFormat1.tpl"}
 	{elseif $formatId eq "2"}
 		{include file="catalog/form/publicationFormat2.tpl"}
-	{elseif $format eq "3"}
+	{elseif $formatId eq "3"}
 		{include file="catalog/form/publicationFormat3.tpl"}
 	{else}
 		{* noop - space for more formats *}

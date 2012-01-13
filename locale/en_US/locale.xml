@@ -56,6 +56,7 @@
 	<message key="monograph.publicationFormat.productThickness">Thickness</message>
 	<message key="monograph.publicationFormat.productWeight">Weight</message>
 	<message key="monograph.publicationFormat.productWidth">Width</message>
+	<message key="monograph.publicationFormat.countryOfManufacture">Country of Manufacture</message>
 
 	<message key="monograph.publicationFormat.productRegion">Product Distribution Region</message>
 	<message key="monograph.publicationFormat.taxRate">Taxation Rate</message>

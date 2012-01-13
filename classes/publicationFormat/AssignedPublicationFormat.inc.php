@@ -120,6 +120,14 @@ class AssignedPublicationFormat extends PublicationFormat {
 	}
 
 	/**
+	 * Get the country this format was manufactured in.
+	 * @return string
+	 */
+	function getManufactureCountry() {
+		return $this->getData('countryManufactureCode');
+	}
+
+	/**
 	 * Get the height of the monograph format
 	 * @return string
 	 */
