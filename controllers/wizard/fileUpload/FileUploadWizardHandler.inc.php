@@ -141,7 +141,7 @@ class FileUploadWizardHandler extends FileManagementHandler {
 		$fileId = $request->getUserVar('fileId');
 		// Get the right one to validate.
 		$fileIdToValidate = null;
-		if ($revisedFileId && !$fileId) {
+		if ($revisedFileId && $revisedFileId != 'undefined' && !$fileId) {
 			$fileIdToValidate = $revisedFileId;
 		} else if ($fileId && !$revisedFileId) {
 			$fileIdToValidate = $fileId;
