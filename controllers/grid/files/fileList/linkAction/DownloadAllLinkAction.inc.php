@@ -30,7 +30,8 @@ class DownloadAllLinkAction extends LinkAction {
 		$router =& $request->getRouter();
 		$filesIdsAndRevisions = $this->_getFilesIdsAndRevisions($files);
 		import('lib.pkp.classes.linkAction.request.PostAndRedirectAction');
-		$redirectRequest = new PostAndRedirectAction($router->url($request, null, 'api.file.FileApiHandler', 'downloadAllFiles', null, $actionArgs),
+		$redirectRequest = new PostAndRedirectAction($router->url($request, null, 'api.file.FileApiHandler', 'recordDownload', null, $actionArgs),
+			$router->url($request, null, 'api.file.FileApiHandler', 'downloadAllFiles', null, $actionArgs),
 			$filesIdsAndRevisions);
 
 		// Configure the link action.

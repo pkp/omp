@@ -88,17 +88,7 @@ class MonographFileManager extends BaseMonographFileManager {
 			// Make sure that the file belongs to the monograph.
 			if ($monographFile->getMonographId() != $this->getMonographId()) fatalError('Invalid file id!');
 
-			// Mark the file as viewed by this user.
-			$sessionManager =& SessionManager::getManager();
-			$session =& $sessionManager->getUserSession();
-			$user =& $session->getUser();
-			if (is_a($user, 'User')) {
-				$viewsDao =& DAORegistry::getDAO('ViewsDAO');
-				$viewsDao->recordView(
-					ASSOC_TYPE_MONOGRAPH_FILE, $monographFile->getFileIdAndRevision(),
-					$user->getId()
-				);
-			}
+			MonographFileManager::recordView($monographFile);
 
 			// Send the file to the user.
 			$filePath = $monographFile->getFilePath();
@@ -107,6 +97,24 @@ class MonographFileManager extends BaseMonographFileManager {
 		}
 
 		return $returner;
+	}
+
+	/**
+	 * Record a file view in database.
+	 * @param $monographFile MonographFile
+	 */
+	function recordView(&$monographFile) {
+		// Mark the file as viewed by this user.
+		$sessionManager =& SessionManager::getManager();
+		$session =& $sessionManager->getUserSession();
+		$user =& $session->getUser();
+		if (is_a($user, 'User')) {
+			$viewsDao =& DAORegistry::getDAO('ViewsDAO');
+			$viewsDao->recordView(
+			ASSOC_TYPE_MONOGRAPH_FILE, $monographFile->getFileIdAndRevision(),
+			$user->getId()
+			);
+		}
 	}
 
 	/**

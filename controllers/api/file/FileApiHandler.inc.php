@@ -28,7 +28,7 @@ class FileApiHandler extends Handler {
 		parent::Handler();
 		$this->addRoleAssignment(
 			array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_ASSISTANT, ROLE_ID_REVIEWER, ROLE_ID_AUTHOR),
-			array('downloadFile', 'viewFile', 'downloadAllFiles')
+			array('downloadFile', 'viewFile', 'downloadAllFiles', 'recordDownload')
 		);
 	}
 
@@ -127,6 +127,29 @@ class FileApiHandler extends Handler {
 		} else {
 			fatalError('Creating archive with submission files failed!');
 		}
+	}
+
+	/**
+	 * Record file download and return js event to update grid rows.
+	 * @param $args array
+	 * @param $request Request
+	 * @return string
+	 */
+	function recordDownload($args, &$request) {
+		$monographFiles = $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH_FILES);
+		$fileId = null;
+		foreach ($monographFiles as $monographFile) {
+			import('classes.file.MonographFileManager');
+			MonographFileManager::recordView($monographFile);
+			$fileId = $monographFile->getFileId();
+			unset($monographFile);
+		}
+
+		if (count($monographFiles) > 1) {
+			$fileId = null;
+		}
+
+		return DAO::getDataChangedEvent($fileId);
 	}
 }
 
