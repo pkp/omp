@@ -21,8 +21,8 @@ class OmpSubmissionAccessPolicy extends PressPolicy {
 	 * @param $request PKPRequest
 	 * @param $args array request parameters
 	 * @param $roleAssignments array
-	 * @param $submissionParameterName string the request parameter we expect
-	 *  the submission id in.
+	 * @param $submissionParameterName string the request parameter we
+	 *  expect the submission id in.
 	 */
 	function OmpSubmissionAccessPolicy(&$request, $args, $roleAssignments, $submissionParameterName = 'monographId') {
 		parent::PressPolicy($request);
@@ -31,9 +31,9 @@ class OmpSubmissionAccessPolicy extends PressPolicy {
 		import('classes.security.authorization.internal.MonographRequiredPolicy');
 		$this->addPolicy(new MonographRequiredPolicy($request, $args, $submissionParameterName));
 
-		// Authors, press managers and series editors potentially have access
-		// to submissions. We'll have to define differentiated policies for those
-		// roles in a policy set.
+		// Authors, press managers and series editors potentially have
+		// access to submissions. We'll have to define differentiated
+		// policies for those roles in a policy set.
 		$submissionAccessPolicy = new PolicySet(COMBINING_PERMIT_OVERRIDES);
 
 
@@ -113,6 +113,11 @@ class OmpSubmissionAccessPolicy extends PressPolicy {
 			$submissionAccessPolicy->addPolicy($pressSubmissionAccessPolicy);
 		}
 
+		// Anyone can access published monographs
+		import('classes.security.authorization.internal.MonographPublishedPolicy');
+		$submissionAccessPolicy->addPolicy(new MonographPublishedPolicy($request));
+
+		// Add the submission access policy
 		$this->addPolicy($submissionAccessPolicy);
 	}
 }

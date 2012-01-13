@@ -7,7 +7,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class CategoriesListbuilderHandler
- * @ingroup listbuilder
+ * @ingroup controllers_submission
  *
  * @brief Class for assigning categories to submissions.
  */

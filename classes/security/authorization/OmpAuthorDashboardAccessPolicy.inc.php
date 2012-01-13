@@ -13,7 +13,6 @@
 
 import('classes.security.authorization.internal.PressPolicy');
 import('lib.pkp.classes.security.authorization.PolicySet');
-import('lib.pkp.classes.security.authorization.RoleBasedHandlerOperationPolicy');
 
 class OmpAuthorDashboardAccessPolicy extends PressPolicy {
 	/**

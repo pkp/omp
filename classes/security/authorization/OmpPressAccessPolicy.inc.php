@@ -12,6 +12,7 @@
  */
 
 import('classes.security.authorization.internal.PressPolicy');
+import('lib.pkp.classes.security.authorization.RoleBasedHandlerOperationPolicy');
 
 class OmpPressAccessPolicy extends PressPolicy {
 	/**
@@ -26,7 +27,6 @@ class OmpPressAccessPolicy extends PressPolicy {
 		// so we can simply add all role assignments. It's ok if
 		// any of these role conditions permits access.
 		$pressRolePolicy = new PolicySet(COMBINING_PERMIT_OVERRIDES);
-		import('lib.pkp.classes.security.authorization.RoleBasedHandlerOperationPolicy');
 		foreach($roleAssignments as $role => $operations) {
 			$pressRolePolicy->addPolicy(new RoleBasedHandlerOperationPolicy($request, $role, $operations));
 		}

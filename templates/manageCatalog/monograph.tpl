@@ -45,7 +45,7 @@
 
 <li id="{$monographContainerId|escape}" class="pkp_manageCatalog_monograph monograph_id_{$monographId|escape}{if !$isFeatured} not_sortable{/if}">
 	<div class="pkp_manageCatalog_monograph_image">
-		<img src="{$baseUrl}/templates/images/book-default-small.png" width="106" height="100" alt="{$monograph->getLocalizedTitle()|escape}" />
+		<img src="{url router=$smarty.const.ROUTE_COMPONENT component="submission.CoverHandler" op="thumbnail" monographId=$monograph->getId()}" alt="{$monograph->getLocalizedTitle()|escape}" />
 	</div>
 	<div class="pkp_manageCatalog_monograph_title">
 		{$monograph->getLocalizedTitle()|escape}

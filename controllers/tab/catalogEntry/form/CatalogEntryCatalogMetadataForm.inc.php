@@ -12,6 +12,11 @@
  * @brief Displays a submission's catalog metadata entry form.
  */
 
+// Thumbnails will be scaled down to fall within these dimensions, preserving
+// aspect ratio, and not scaling up beyond the present resolution.
+define('THUMBNAIL_MAX_WIDTH', 110);
+define('THUMBNAIL_MAX_HEIGHT', 110);
+
 import('lib.pkp.classes.form.Form');
 
 class CatalogEntryCatalogMetadataForm extends Form {
@@ -168,7 +173,8 @@ class CatalogEntryCatalogMetadataForm extends Form {
 			$temporaryFile =& $temporaryFileDao->getTemporaryFile($temporaryFileId, $this->_userId);
 			if (	!$temporaryFile ||
 				!($this->_imageExtension = $temporaryFileManager->getImageExtension($temporaryFile->getFileType())) ||
-				!($this->_sizeArray = getimagesize($temporaryFile->getFilePath()))
+				!($this->_sizeArray = getimagesize($temporaryFile->getFilePath())) ||
+				$this->_sizeArray[0] <= 0 || $this->_sizeArray[1] <= 0
 			) {
 				$this->addError('temporaryFileId', __('form.invalidImage'));
 				return false;
@@ -201,27 +207,58 @@ class CatalogEntryCatalogMetadataForm extends Form {
 			// Fetch the temporary file storing the uploaded library file
 			$temporaryFileDao =& DAORegistry::getDAO('TemporaryFileDAO');
 			$temporaryFile =& $temporaryFileDao->getTemporaryFile($temporaryFileId, $this->_userId);
+			$temporaryFilePath = $temporaryFile->getFilePath();
 			import('classes.file.SimpleMonographFileManager');
 			$simpleMonographFileManager = new SimpleMonographFileManager($monograph->getPressId(), $publishedMonograph->getId());
+			$basePath = $simpleMonographFileManager->getBasePath();
 
 			// Delete the old file if it exists
 			$oldSetting = $publishedMonograph->getCoverImage();
 			if ($oldSetting) {
-				$simpleMonographFileManager->deleteFile($simpleMonographFileManager->getBasePath() . $oldSetting['name']);
+				$simpleMonographFileManager->deleteFile($basePath . $oldSetting['thumbnailName']);
+				$simpleMonographFileManager->deleteFile($basePath . $oldSetting['name']);
 			}
 
 			// The following variables were fetched in validation
 			assert($this->_sizeArray && $this->_imageExtension);
 
+			// Generate the thumbnail
+			switch ($this->_imageExtension) {
+				case '.jpg': $cover = imagecreatefromjpeg($temporaryFilePath); break;
+				case '.png': $cover = imagecreatefrompng($temporaryFilePath); break;
+				case '.gif': $cover = imagecreatefromgif($temporaryFilePath); break;
+			}
+			assert($cover);
+			// Calculate the scaling ratio for each dimension.
+			$xRatio = min(1, THUMBNAIL_MAX_WIDTH / $this->_sizeArray[0]);
+			$yRatio = min(1, THUMBNAIL_MAX_HEIGHT / $this->_sizeArray[1]);
+			// Choose the smallest ratio and create the target.
+			$ratio = min($xRatio, $yRatio);
+			$thumbnailWidth = $ratio * $this->_sizeArray[0];
+			$thumbnailHeight = $ratio * $this->_sizeArray[1];
+			$thumbnail = imagecreatetruecolor($thumbnailWidth, $thumbnailHeight);
+			imagecopyresized($thumbnail, $cover, 0, 0, 0, 0, $thumbnailWidth, $thumbnailHeight, $this->_sizeArray[0], $this->_sizeArray[1]);
+			imagedestroy($cover);
+			$thumbnailFilename = 'thumbnail' . $this->_imageExtension;
+			switch ($this->_imageExtension) {
+				case '.jpg': imagejpeg($thumbnail, $basePath . $thumbnailFilename); break;
+				case '.jpg': imagepng($thumbnail, $basePath . $thumbnailFilename); break;
+				case '.jpg': imagegif($thumbnail, $basePath . $thumbnailFilename); break;
+			}
+			imagedestroy($thumbnail);
+
 			// Copy the new file over
 			$filename = 'cover' . $this->_imageExtension;
-			$simpleMonographFileManager->copyFile($temporaryFile->getFilePath(), $simpleMonographFileManager->getBasePath() . $filename);
+			$simpleMonographFileManager->copyFile($temporaryFile->getFilePath(), $basePath . $filename);
 
 			$publishedMonograph->setCoverImage(array(
 				'name' => $filename,
-				'uploadName' => $temporaryFile->getOriginalFileName(),
 				'width' => $this->_sizeArray[0],
 				'height' => $this->_sizeArray[1],
+				'thumbnailName' => $thumbnailFilename,
+				'thumbnailWidth' => $thumbnailWidth,
+				'thumbnailHeight' => $thumbnailHeight,
+				'uploadName' => $temporaryFile->getOriginalFileName(),
 				'dateUploaded' => Core::getCurrentDate(),
 			));
 

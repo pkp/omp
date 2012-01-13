@@ -115,61 +115,6 @@ class CatalogHandler extends Handler {
 		// Display
 		$templateMgr->display('catalog/series.tpl');
 	}
-
-	/**
-	 * Display a book cover.
-	 * @param $args array
-	 * @param $request PKPRequest
-	 */
-	function cover($args, &$request) {
-		$press =& $request->getPress();
-
-		// Get the book
-		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
-		$monographId = (int) array_shift($args);
-		$publishedMonograph =& $publishedMonographDao->getById($monographId, $press->getId());
-		if (!$publishedMonograph) {
-			$dispatcher =& $this->getDispatcher();
-			$dispatcher->handle404();
-		}
-
- 		if (!$coverImage = $publishedMonograph->getCoverImage()) {
-			$request->redirectUrl($request->getBaseUrl() . '/templates/images/book-default.png'); // Redirect to default image
-		}
-
-		import('file.SimpleMonographFileManager');
-		$simpleMonographFileManager = new SimpleMonographFileManager($publishedMonograph->getPressId(), $publishedMonograph->getId());
-		$simpleMonographFileManager->downloadFile($simpleMonographFileManager->getBasePath() . $coverImage['name'], null, true);
-	}
-
-	/**
-	 * Display a published monograph in the public catalog.
-	 * @param $args array
-	 * @param $request PKPRequest
-	 */
-	function book($args, &$request) {
-		$templateMgr =& TemplateManager::getManager();
-		$press =& $request->getPress();
-		$this->setupTemplate();
-		AppLocale::requireComponents(LOCALE_COMPONENT_OMP_SUBMISSION); // submission.synopsis
-
-		// Get the book
-		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
-		$monographId = (int) array_shift($args);
-		$publishedMonograph =& $publishedMonographDao->getById($monographId, $press->getId());
-		$templateMgr->assign('publishedMonograph', $publishedMonograph);
-		if (!$publishedMonograph) {
-			$dispatcher =& $this->getDispatcher();
-			$dispatcher->handle404();
-		}
-
-		// Get book categories
-		$categories =& $publishedMonographDao->getCategories($monographId, $press->getId());
-		$templateMgr->assign('categories', $categories);
-
-		// Display
-		$templateMgr->display('catalog/book/book.tpl');
-	}
 }
 
 ?>

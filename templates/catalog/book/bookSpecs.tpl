@@ -15,7 +15,7 @@
 </script>
 
 <div class="bookSpecs">
-	<img src="{url op="cover" path=$publishedMonograph->getId()}" />
+	<img src="{url router=$smarty.const.ROUTE_COMPONENT component="submission.CoverHandler" op="cover" monographId=$publishedMonograph->getId()}" alt="{translate|escape key="monograph.coverImage"}"/>
 	<div id="bookAccordion">
 		<h3><a href="#">{translate key="catalog.publicationInfo"}</a></h3>
 		<div class="publicationInfo">
