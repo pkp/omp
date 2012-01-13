@@ -406,7 +406,7 @@ class PublishedMonographDAO extends MonographDAO {
 	 * @return array
 	 */
 	function getAdditionalFieldNames() {
-		return array('audience', 'audienceRangeQualifier', 'audienceRangeFrom', 'audienceRangeTo', 'audienceRangeExact');
+		return array('audience', 'audienceRangeQualifier', 'audienceRangeFrom', 'audienceRangeTo', 'audienceRangeExact', 'coverImage');
 	}
 
 	/**

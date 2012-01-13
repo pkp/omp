@@ -8,7 +8,8 @@
  *}
 
 <li class="pkp_catalog_monograph">
-	<a href="{url op="book" path=$publishedMonograph->getId()}"><img src="{$baseUrl}/templates/images/book-default-small.png" /></a>
+	{assign var=coverImage var=$publishedMonograph->getCoverImage()}
+	<a href="{url op="book" path=$publishedMonograph->getId()}"><img src="{if $coverImage}{url op="cover" path=$publishedMonograph->getId()}{else}{$baseUrl}/templates/images/book-default-small.png{/if}" /></a>
 	<div class="pkp_catalog_monographTitle">{$publishedMonograph->getLocalizedTitle()|strip_unsafe_html}</div>
 	<div class="pkp_catalog_monoraphAbstract">{$publishedMonograph->getLocalizedAbstract()|strip_unsafe_html}</div>
 </li>

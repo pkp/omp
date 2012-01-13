@@ -180,6 +180,22 @@ class PublishedMonograph extends Monograph {
 			return false;
 		}
 	}
+
+	/**
+	 * Get the cover image.
+	 * @return array
+	 */
+	function getCoverImage() {
+		return $this->getData('coverImage');
+	}
+
+	/**
+	 * Set the cover image.
+	 * @param $coverImage array
+	 */
+	function setCoverImage($coverImage) {
+		return $this->setData('coverImage', $coverImage);
+	}
 }
 
 ?>

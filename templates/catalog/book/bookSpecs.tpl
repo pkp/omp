@@ -15,7 +15,7 @@
 </script>
 
 <div class="bookSpecs">
-	<img src="{$baseUrl}/templates/images/book-default.png" />
+	<img src="{url op="cover" path=$publishedMonograph->getId()}" />
 	<div id="bookAccordion">
 		<h3><a href="#">{translate key="catalog.publicationInfo"}</a></h3>
 		<div class="publicationInfo">

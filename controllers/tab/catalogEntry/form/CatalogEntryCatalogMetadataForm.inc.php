@@ -217,7 +217,7 @@ class CatalogEntryCatalogMetadataForm extends Form {
 			$filename = 'cover' . $this->_imageExtension;
 			$simpleMonographFileManager->copyFile($temporaryFile->getFilePath(), $simpleMonographFileManager->getBasePath() . $filename);
 
-			$monograph->setCoverImage(array(
+			$publishedMonograph->setCoverImage(array(
 				'name' => $filename,
 				'uploadName' => $temporaryFile->getOriginalFileName(),
 				'width' => $this->_sizeArray[0],

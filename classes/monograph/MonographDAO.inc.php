@@ -59,7 +59,7 @@ class MonographDAO extends DAO {
 	function getLocaleFieldNames() {
 		return array(
 			'title', 'subtitle', 'cleanTitle', 'prefix',
-			'abstract', 'coverImage',
+			'abstract',
 			'discipline', 'subjectClass', 'subject',
 			'coverageGeo', 'coverageChron', 'coverageSample',
 			'type', 'sponsor', 'rights', 'source'

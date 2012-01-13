@@ -24,7 +24,7 @@
 	<h3>{translate key="catalog.feature"}</h3>
 
 	<div class="pkp_catalog_featureSpecs">
-		<img src="{$baseUrl}/templates/images/book-default.png" />
+		<img src="{url op="cover" path={$featuredMonograph->getId()}" />
 		<!-- FIXME: Put specs for the feature here. -->
 	</div>
 

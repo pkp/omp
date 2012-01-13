@@ -24,7 +24,7 @@
 		{* Only include features in the carousel *}
 		{assign var="monographId" value=$publishedMonograph->getId()}
 		{if isset($featuredMonographIds[$monographId])}
-			<img src="{$baseUrl}/templates/images/book-default.png" alt="{$publishedMonograph->getLocalizedTitle()|escape}" />
+			<img src="{url op="cover" path=$publishedMonograph->getId()}" alt="{$publishedMonograph->getLocalizedTitle()|escape}" />
 		{/if}
 	{/foreach}
 </div>
