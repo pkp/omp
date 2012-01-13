@@ -122,7 +122,7 @@ class LoginHandler extends PKPLoginHandler {
 			return $request->redirect($press->getPath(), 'dashboard');
 		}
 		// Fall back on the parent otherwise.
-		return parent::_redirectAfterLogin();
+		return parent::_redirectAfterLogin($request);
 	}
 
 	/**
