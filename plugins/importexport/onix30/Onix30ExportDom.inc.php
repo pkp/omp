@@ -362,7 +362,7 @@ class Onix30ExportDom {
 		XMLCustomWriter::appendChild($supplyDetailNode, $supplierNode);
 		XMLCustomWriter::createChildWithText($doc, $supplierNode, 'SupplierRole', '01'); // Publisher supplying to retailers
 		XMLCustomWriter::createChildWithText($doc, $supplierNode, 'SupplierName', 'Supplier Name'); // same as PublisherName node in some cases?
-		XMLCustomWriter::createChildWithText($doc, $supplyDetailNode, 'ProductAvailability', '21'); // In Stock
+		XMLCustomWriter::createChildWithText($doc, $supplyDetailNode, 'ProductAvailability', $assignedPublicationFormat->getProductAvailability());
 
 		$priceNode =& XMLCustomWriter::createElement($doc, 'Price');
 		XMLCustomWriter::appendChild($supplyDetailNode, $priceNode);

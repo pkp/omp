@@ -49,6 +49,7 @@
 	<message key="monograph.publicationFormat.productIdentifierType">Product Identification</message>
 	<message key="monograph.publicationFormat.price">Price</message>
 	<message key="monograph.publicationFormat.priceType">Price Type</message>
+	<message key="monograph.publicationFormat.productAvailability">Product Availability</message>
 	<!--  Dimension keys  -->
 	<message key="monograph.publicationFormat.productDimensions">Physical Dimensions</message>
 	<message key="monograph.publicationFormat.productFileSize">File Size in Mbytes</message>

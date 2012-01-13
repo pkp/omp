@@ -42,6 +42,12 @@
 		{/fbvFormSection}
 	{/fbvFormArea}
 
+	{fbvFormArea id="productAvailability" title="monograph.publicationFormat.productAvailability" border="true"}
+		{fbvFormSection for="productAvailability"}
+			{fbvElement type="select" from=$productAvailabilityCodes required=true selected=$productAvailabilityCode translate=false id="productAvailabilityCode" inline=true}
+		{/fbvFormSection}
+	{/fbvFormArea}
+
 	{fbvFormArea id="imprint" title="monograph.publicationFormat.imprint"}
 		{fbvFormSection for="imprint"}
 			{fbvElement type="text" name="imprint" id="imprint" value=$imprint maxlength="255" disabled=$readOnly}

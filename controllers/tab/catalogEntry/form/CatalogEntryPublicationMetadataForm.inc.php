@@ -84,6 +84,7 @@ class CatalogEntryPublicationMetadataForm extends Form {
 				'countriesIncludedCodes' => 'List91', // country region codes
 				'productFormCodes' => 'List150', // ebook, softback, hardback, audio files, etc
 				'productFormDetailCodes' => 'List175', // refinement of product form (SACD, Mass market (rack) paperback, etc)
+				'productAvailabilityCodes' => 'List65', // Available, In Stock, Print On Demand, Not Yet Available, etc
 				);
 
 		foreach ($codes as $templateVarName => $list) {
@@ -101,6 +102,7 @@ class CatalogEntryPublicationMetadataForm extends Form {
 		$templateMgr->assign('widthUnitCode', 'mm');
 		$templateMgr->assign('thicknessUnitCode', 'mm');
 		$templateMgr->assign('weightUnitCode', 'gr');
+		$templateMgr->assign('productAvailabilityCode', '20'); // Available
 
 		$assignedPublicationFormatId =& $this->getAssignedPublicationFormatId();
 		$assignedPublicationFormatDao =& DAORegistry::getDAO('AssignedPublicationFormatDAO');
@@ -160,7 +162,8 @@ class CatalogEntryPublicationMetadataForm extends Form {
 					'taxTypeCode',
 					'countriesIncludedCode',
 					'countryManufactureCode',
-					'imprint'
+					'imprint',
+					'productAvailabilityCode'
 				);
 		$this->readUserVars($vars);
 	}

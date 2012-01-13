@@ -210,7 +210,8 @@ class AssignedPublicationFormatDAO extends PublicationFormatDAO {
 					'taxTypeCode',
 					'countriesIncludedCode',
 					'countryManufactureCode',
-					'imprint'
+					'imprint',
+					'productAvailabilityCode'
 				);
 	}
 }

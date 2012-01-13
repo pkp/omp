@@ -128,6 +128,14 @@ class AssignedPublicationFormat extends PublicationFormat {
 	}
 
 	/**
+	 * Get the product availability.
+	 * @return string
+	 */
+	function getProductAvailability() {
+		return $this->getData('productAvailabilityCode');
+	}
+
+	/**
 	 * Get the height of the monograph format
 	 * @return string
 	 */
