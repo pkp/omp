@@ -8,4 +8,6 @@
  *
  *}
 
-<img style="width:700px" src="{$baseUrl}/templates/images/wires/omp_dashboard_overview.png" alt="Dashboard overview placeholder" />
+<!-- Announcements grid -->
+{url|assign:announcementGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.announcements.AnnouncementGridHandler" op="fetchGrid"}
+{load_url_in_div id="announcementGridContainer" url="$announcementGridUrl"}
