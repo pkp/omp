@@ -70,31 +70,11 @@ class SubmissionsListGridCellProvider extends DataObjectGridCellProvider {
 				// Reviewer: Add a review link action.
 				return array($this->_getCellLinkAction($request, 'reviewer', 'submission', $monograph));
 			} else {
-				// If user has only author role user groups stage assignments,
-				// then add an author dashboard link action.
-				$stageAssignmentDao =& DAORegistry::getDAO('StageAssignmentDAO');
-				$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+				// Get the right page and operation (authordashboard or workflow).
+				$pageAndOperation = SubmissionsListGridCellProvider::getPageAndOperationByUserRoles($request, $monograph->getId());
 
-				$authorUserGroupIds = $userGroupDao->getUserGroupIdsByRoleId(ROLE_ID_AUTHOR);
-				$user =& $request->getUser();
-				$stageAssignmentsFactory =& $stageAssignmentDao->getBySubmissionAndStageId($monograph->getId(), null, null, $user->getId());
-
-				$authorDashboard = false;
-				while ($stageAssignment =& $stageAssignmentsFactory->next()) {
-					if (!in_array($stageAssignment->getUserGroupId(), $authorUserGroupIds)) {
-						$authorDashboard = false;
-						break;
-					}
-					$authorDashboard = true;
-					unset($stageAssignment);
-				}
-				if ($authorDashboard) {
-					return array($this->_getCellLinkAction($request, 'authorDashboard', 'submission', $monograph));
-				}
-
-				// Press assistant, Series Editor, or Press Manager:
-				// Let the workflow handler decide.
-				return array($this->_getCellLinkAction($request, 'workflow', 'access', $monograph));
+				// Return redirect link action.
+				return array($this->_getCellLinkAction($request, $pageAndOperation[0], $pageAndOperation[1], $monograph));
 			}
 
 			// This should be unreachable code.
@@ -172,6 +152,42 @@ class SubmissionsListGridCellProvider extends DataObjectGridCellProvider {
 		}
 	}
 
+
+	//
+	// Public static methods
+	//
+	/**
+	 * Static method that returns the correct page and operation between
+	 * 'authordashboard' and 'workflow', based on users roles.
+	 * @param $request Request
+	 * @param $monographId int
+	 * @return array
+	 */
+	function getPageAndOperationByUserRoles(&$request, $monographId) {
+		// If user has only author role user groups stage assignments,
+		// then add an author dashboard link action.
+		$stageAssignmentDao =& DAORegistry::getDAO('StageAssignmentDAO');
+		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+
+		$authorUserGroupIds = $userGroupDao->getUserGroupIdsByRoleId(ROLE_ID_AUTHOR);
+		$user =& $request->getUser();
+		$stageAssignmentsFactory =& $stageAssignmentDao->getBySubmissionAndStageId($monographId, null, null, $user->getId());
+
+		$authorDashboard = false;
+		while ($stageAssignment =& $stageAssignmentsFactory->next()) {
+			if (!in_array($stageAssignment->getUserGroupId(), $authorUserGroupIds)) {
+				$authorDashboard = false;
+				break;
+			}
+			$authorDashboard = true;
+			unset($stageAssignment);
+		}
+		if ($authorDashboard) {
+			return array('authorDashboard', 'submission');
+		} else {
+			return array('workflow', 'access');
+		}
+	}
 
 	//
 	// Private helper methods.
