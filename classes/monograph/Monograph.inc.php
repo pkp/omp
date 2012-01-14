@@ -187,23 +187,6 @@ class Monograph extends Submission {
 	//
 	// Peer Review
 	//
-
-	/**
-	 * Set the current review round
-	 * @param $rount int
-	 */
-	function setCurrentRound($round) {
-		$this->setData('currentRound', $round);
-	}
-
-	/**
-	 * Get the current review round
-	 * @return int
-	 */
-	function getCurrentRound() {
-		return $this->getData('currentRound');
-	}
-
 	/**
 	 * Get the work type (constant in WORK_TYPE_...)
 	 * @return int

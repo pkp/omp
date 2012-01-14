@@ -202,7 +202,7 @@ class ReviewAssignmentDAO extends PKPReviewAssignmentDAO {
 	/**
 	 * @see PKPReviewAssignmentDAO::getBySubmissionId()
 	 */
-	function &getBySubmissionId($submissionId, $round = null, $stageId = null) {
+	function &getBySubmissionId($submissionId, $reviewRoundId = null, $stageId = null) {
 		$reviewAssignments = array();
 
 		$query = 'SELECT r.*, r2.review_revision, u.first_name, u.last_name
@@ -215,11 +215,11 @@ class ReviewAssignmentDAO extends PKPReviewAssignmentDAO {
 
 		$queryParams[] = (int) $submissionId;
 
-		if ($round != null) {
-			$query .= ' AND r2.round = ?';
-			$queryParams[] = (int) $round;
+		if ($reviewRoundId != null) {
+			$query .= ' AND r2.review_round_id = ?';
+			$queryParams[] = (int) $reviewRoundId;
 		} else {
-			$orderBy .= ', r2.round';
+			$orderBy .= ', r2.review_round_id';
 		}
 
 		if ($stageId != null) {

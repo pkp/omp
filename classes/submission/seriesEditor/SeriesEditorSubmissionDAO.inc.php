@@ -126,7 +126,7 @@ class SeriesEditorSubmissionDAO extends MonographDAO {
 			$stageId = $reviewRound->getStageId();
 			$round = $reviewRound->getRound();
 			$seriesEditorSubmission->setReviewAssignments(
-				$this->reviewAssignmentDao->getBySubmissionId($row['monograph_id'], $round, $stageId),
+				$this->reviewAssignmentDao->getBySubmissionId($row['monograph_id'], $reviewRound->getId()),
 				$stageId,
 				$round
 			);

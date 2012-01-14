@@ -485,7 +485,6 @@
 			<NOTNULL/>
 			<DEFAULT VALUE="1"/>
 		</field>
-		<field name="current_round" type="I8"/>
 		<descr>Monographs.</descr>
 		<index name="monographs_user_id">
 			<col>user_id</col>

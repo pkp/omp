@@ -178,11 +178,6 @@ class EditorDecisionForm extends Form {
 			}
 		}
 
-		// Change the monograph's review round state.
-		$monograph->setCurrentRound($newRound);
-		$monographDao =& DAORegistry::getDAO('MonographDAO'); /* @var $monographDao MonographDAO */
-		$monographDao->updateMonograph($monograph);
-
 		return $newRound;
 	}
 }
