@@ -6,7 +6,22 @@
  *
  * Build a review round tab markup (for any review stage).
  *}
-
-{iterate from=reviewRounds item=reviewRound}
-	<li><a href="{url router=$smarty.const.ROUTE_COMPONENT component="tab.authorDashboard.AuthorDashboardReviewRoundTabHandler" op="fetchReviewRoundInfo" monographId=$monograph->getId() stageId=$reviewRound->getStageId() reviewRoundId=$reviewRound->getId() escape=false}">{translate key="submission.round" round=$reviewRound->getRound()}</a></li>
-{/iterate}
+<script type="text/javascript">
+	// Attach the JS file tab handler.
+	$(function() {ldelim}
+		$('#{$reviewRoundTabsId}').pkpHandler(
+			'$.pkp.controllers.TabHandler',
+			{ldelim}
+				{assign var=roundIndex value=$lastReviewRoundNumber-1}
+				selected: {$roundIndex}
+			{rdelim}
+		);
+	{rdelim});
+</script>
+<div id="{$reviewRoundTabsId}">
+	<ul>
+		{iterate from=reviewRounds item=reviewRound}
+			<li><a href="{url router=$smarty.const.ROUTE_COMPONENT component="tab.authorDashboard.AuthorDashboardReviewRoundTabHandler" op="fetchReviewRoundInfo" monographId=$monograph->getId() stageId=$reviewRound->getStageId() reviewRoundId=$reviewRound->getId() escape=false}">{translate key="submission.round" round=$reviewRound->getRound()}</a></li>
+		{/iterate}
+	</ul>
+</div>

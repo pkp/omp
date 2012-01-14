@@ -83,8 +83,21 @@ class AuthorDashboardHandler extends Handler {
 		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
 		$internalReviewRounds =& $reviewRoundDao->getByMonographId($monograph->getId(), WORKFLOW_STAGE_ID_INTERNAL_REVIEW);
 		$externalReviewRounds =& $reviewRoundDao->getByMonographId($monograph->getId(), WORKFLOW_STAGE_ID_EXTERNAL_REVIEW);
+		$lastInternalReviewRound =& $reviewRoundDao->getLastReviewRoundByMonographId($monograph->getId(), WORKFLOW_STAGE_ID_INTERNAL_REVIEW);
+		$lastExternalReviewRound =& $reviewRoundDao->getLastReviewRoundByMonographId($monograph->getId(), WORKFLOW_STAGE_ID_EXTERNAL_REVIEW);
+		$lastInternalReviewRoundNumber = 0;
+		$lastExternalReviewRoundNumber = 0;
+		if ($lastInternalReviewRound) {
+			$lastInternalReviewRoundNumber = $lastInternalReviewRound->getRound();
+		}
+		if ($lastExternalReviewRound) {
+			$lastExternalReviewRoundNumber = $lastExternalReviewRound->getRound();
+		}
+		$lastReviewRoundNumber = array('internalReview' => $lastInternalReviewRoundNumber,
+			'externalReview' => $lastExternalReviewRoundNumber);
 		$templateMgr->assign_by_ref('internalReviewRounds', $internalReviewRounds);
 		$templateMgr->assign_by_ref('externalReviewRounds', $externalReviewRounds);
+		$templateMgr->assign('lastReviewRoundNumber', $lastReviewRoundNumber);
 
 		// Get the last review round.
 		$lastReviewRound =& $reviewRoundDao->getLastReviewRoundByMonographId($monograph->getId(), $currentStage);

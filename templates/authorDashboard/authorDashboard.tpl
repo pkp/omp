@@ -56,11 +56,7 @@
 			<h3><a href="#">{translate key='workflow.review.internalReview'}</a></h3>
 			<div id="internalReviewContent">
 				{if !$internalReviewRounds->wasEmpty()}
-					<div id="internalReviewRoundTabs">
-						<ul>
-							{include file="authorDashboard/reviewRoundTab.tpl" reviewRounds=$internalReviewRounds} 
-						</ul>
-					</div>
+					{include file="authorDashboard/reviewRoundTab.tpl" reviewRounds=$internalReviewRounds reviewRoundTabsId="internalReviewRoundTabs" lastReviewRoundNumber=$lastReviewRoundNumber.internalReview} 
 				{/if}
 			</div>
 		</div>
@@ -71,11 +67,7 @@
 			<h3><a href="#">{translate key='workflow.review.externalReview'}</a></h3>
 			<div id="externalReviewContent">
 				{if !$externalReviewRounds->wasEmpty()}
-					<div id="externalReviewRoundTabs">
-						<ul>
-							{include file="authorDashboard/reviewRoundTab.tpl" reviewRounds=$externalReviewRounds}
-						</ul>
-					</div>
+					{include file="authorDashboard/reviewRoundTab.tpl" reviewRounds=$externalReviewRounds reviewRoundTabsId="externalReviewRoundTabs" lastReviewRoundNumber=$lastReviewRoundNumber.externalReview}
 				{/if}
 			</div>
 		</div>
