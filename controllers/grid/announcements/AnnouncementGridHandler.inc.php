@@ -41,6 +41,9 @@ class AnnouncementGridHandler extends SetupGridHandler {
 		// Basic grid configuration
 		$this->setTitle('manager.announcements');
 
+		// Set the no items row text
+		$this->setEmptyRowText('grid.noItems');
+
 		$press =& $request->getPress();
 
 		// Columns
