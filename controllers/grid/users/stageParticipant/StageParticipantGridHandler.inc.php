@@ -166,7 +166,7 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 	 */
 	function &getRowInstance() {
 		$monograph =& $this->getMonograph();
-		$row = new StageParticipantGridRow($monograph, $this->getStageId());
+		$row = new StageParticipantGridRow($monograph, $this->getStageId(), $this->_canAdminister());
 		return $row;
 	}
 

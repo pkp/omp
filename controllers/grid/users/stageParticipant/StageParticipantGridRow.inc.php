@@ -27,7 +27,7 @@ class StageParticipantGridRow extends GridRow {
 	/**
 	 * Constructor
 	 */
-	function StageParticipantGridRow(&$monograph, $stageId, $canAdminister) {
+	function StageParticipantGridRow(&$monograph, $stageId, $canAdminister = false) {
 		$this->_monograph =& $monograph;
 		$this->_stageId =& $stageId;
 		$this->_canAdminister = $canAdminister;
