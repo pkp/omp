@@ -94,7 +94,7 @@ class NotificationsGridHandler extends GridHandler {
 	function loadData(&$request) {
 		$user =& $request->getUser();
 
-		// Get all presses.
+		// Get all level task notifications.
 		$notificationDao =& DAORegistry::getDAO('NotificationDAO'); /* @var $notificationDao NotificationDAO */
 		$notifications =& $notificationDao->getNotificationsByUserId($user->getId(), NOTIFICATION_LEVEL_TASK);
 		$rowData = $notifications->toAssociativeArray();
