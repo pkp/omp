@@ -23,7 +23,7 @@ class AuthorSignoffFilesGridRow extends SubmissionFilesGridRow {
 	 * Constructor
 	 * @param $stageId int
 	 */
-	function SignoffFilesGridRow($stageId) {
+	function AuthorSignoffFilesGridRow($stageId) {
 		$this->_stageId = $stageId;
 		// Author cannot delete, but may view notes.
 		parent::SubmissionFilesGridRow(false, true);
