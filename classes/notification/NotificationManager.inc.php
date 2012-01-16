@@ -53,9 +53,9 @@ class NotificationManager extends PKPNotificationManager {
 				assert(is_a($monographFile, 'MonographFile'));
 
 				import('controllers.grid.submissions.SubmissionsListGridCellProvider');
-				$pageAndOperation = SubmissionsListGridCellProvider::getPageAndOperationByUserRoles($request, $monographFile->getMonographId());
+				list($page, $operation) = SubmissionsListGridCellProvider::getPageAndOperationByUserRoles($request, $monographFile->getMonographId());
 
-				$url = $dispatcher->url($request, ROUTE_PAGE, null, $pageAndOperation[0], $pageAndOperation[1], $monographFile->getMonographId());
+				$url = $dispatcher->url($request, ROUTE_PAGE, null, $page, $operation, $monographFile->getMonographId());
 				break;
 			case NOTIFICATION_TYPE_REVIEW_ASSIGNMENT:
 				$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO'); /* @var $reviewAssignmentDao ReviewAssignmentDAO */
@@ -65,9 +65,9 @@ class NotificationManager extends PKPNotificationManager {
 			case NOTIFICATION_TYPE_SIGNOFF_COPYEDIT:
 			case NOTIFICATION_TYPE_SIGNOFF_PROOF:
 				import('controllers.grid.submissions.SubmissionsListGridCellProvider');
-				$pageAndOperation = SubmissionsListGridCellProvider::getPageAndOperationByUserRoles($request, $notification->getAssocId());
+				list($page, $operation) = SubmissionsListGridCellProvider::getPageAndOperationByUserRoles($request, $notification->getAssocId());
 
-				$url = $dispatcher->url($request, ROUTE_PAGE, null, $pageAndOperation[0], $pageAndOperation[1], $notification->getAssocId());
+				$url = $dispatcher->url($request, ROUTE_PAGE, null, $page, $operation, $notification->getAssocId());
 				break;
 			default:
 				$url = parent::getNotificationUrl($request, $notification);

@@ -71,10 +71,10 @@ class SubmissionsListGridCellProvider extends DataObjectGridCellProvider {
 				return array($this->_getCellLinkAction($request, 'reviewer', 'submission', $monograph));
 			} else {
 				// Get the right page and operation (authordashboard or workflow).
-				$pageAndOperation = SubmissionsListGridCellProvider::getPageAndOperationByUserRoles($request, $monograph->getId());
+				list($page, $operation) = SubmissionsListGridCellProvider::getPageAndOperationByUserRoles($request, $monograph->getId());
 
 				// Return redirect link action.
-				return array($this->_getCellLinkAction($request, $pageAndOperation[0], $pageAndOperation[1], $monograph));
+				return array($this->_getCellLinkAction($request, $page, $operation, $monograph));
 			}
 
 			// This should be unreachable code.

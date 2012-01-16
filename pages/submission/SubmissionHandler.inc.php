@@ -124,9 +124,9 @@ class SubmissionHandler extends Handler {
 
 			// Retrieve the correct url for author review his monograph.
 			import('controllers.grid.submissions.SubmissionsListGridCellProvider');
-			$pageAndOperation = SubmissionsListGridCellProvider::getPageAndOperationByUserRoles($request, $monograph->getId());
+			list($page, $operation) = SubmissionsListGridCellProvider::getPageAndOperationByUserRoles($request, $monograph->getId());
 			$dispatcher =& $router->getDispatcher();
-			$reviewSubmissionUrl = $dispatcher->url($request, ROUTE_PAGE, $press->getPath(), $pageAndOperation[0], $pageAndOperation[1], $monograph->getId());
+			$reviewSubmissionUrl = $dispatcher->url($request, ROUTE_PAGE, $press->getPath(), $page, $operation, $monograph->getId());
 
 			$templateMgr->assign('reviewSubmissionUrl', $reviewSubmissionUrl);
 			$templateMgr->assign('monographId', $monograph->getId());

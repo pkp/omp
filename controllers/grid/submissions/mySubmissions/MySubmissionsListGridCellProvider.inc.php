@@ -50,8 +50,8 @@ class MySubmissionsListGridCellProvider extends SubmissionsListGridCellProvider 
 										array('monographId' => $monograph->getId())
 										);
 			} else {
-				$pageAndOperation = SubmissionsListGridCellProvider::getPageAndOperationByUserRoles($request, $monograph->getId());
-				$url = $dispatcher->url($request, ROUTE_PAGE, $press->getPath(), $pageAndOperation[0], $pageAndOperation[1], $monograph->getId());
+				list($page, $operation) = SubmissionsListGridCellProvider::getPageAndOperationByUserRoles($request, $monograph->getId());
+				$url = $dispatcher->url($request, ROUTE_PAGE, $press->getPath(), $page, $operation, $monograph->getId());
 			}
 			import('lib.pkp.classes.linkAction.request.RedirectAction');
 			$action = new LinkAction(
