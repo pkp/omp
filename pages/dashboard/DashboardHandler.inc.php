@@ -86,13 +86,29 @@ class DashboardHandler extends Handler {
 		$pressDao =& DAORegistry::getDAO('PressDAO'); /* @var $pressDao PressDAO */
 		$presses = $pressDao->getPresses();
 
-		$pressCount = $presses->getCount();
+		// Check each press to see if user has access to it.
+		$user =& $request->getUser();
+		$roleDao =& DAORegistry::getDAO('RoleDAO');
+		$allContextsUserRoles = $roleDao->getByUserIdGroupedByContext($user->getId());
+		$userRolesThatCanSubmit = array(ROLE_ID_AUTHOR, ROLE_ID_PRESS_ASSISTANT, ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR);
+		$accessiblePresses = array();
+		while ($press =& $presses->next()) {
+			if (array_key_exists($press->getId(), $allContextsUserRoles)) {
+				$pressContextUserRoles = array_keys($allContextsUserRoles[$press->getId()]);
+				if (array_intersect($userRolesThatCanSubmit, $pressContextUserRoles)) {
+					$accessiblePresses[] =& $press;
+				}
+			}
+			unset($press);
+		}
+
+		// Assign presses to template.
+		$pressCount = count($accessiblePresses);
 		$templateMgr->assign('pressCount', $pressCount);
 		if ($pressCount == 1) {
-			$press =& $presses->next();
-			$templateMgr->assign_by_ref('press', $press);
+			$templateMgr->assign_by_ref('press', $accessiblePresses[0]);
 		} else {
-			$templateMgr->assign_by_ref('presses', $presses);
+			$templateMgr->assign_by_ref('presses', $accessiblePresses);
 		}
 
 		$templateMgr->assign('selectedTab', 3);
