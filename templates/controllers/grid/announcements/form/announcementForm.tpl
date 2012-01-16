@@ -39,13 +39,13 @@
 			{/if}
 			{fbvElement type="select" id="typeId" from=$announcementTypes selected=$selectedTypeId label="manager.announcements.form.typeId"}
 			{fbvFormSection title="manager.announcements.form.title" for="title" required="true"}
-				{fbvElement type="text" multilingual="true" id="title" value="$title" maxlength="255"}
+				{fbvElement type="text" multilingual="true" id="title" value=$title maxlength="255"}
 			{/fbvFormSection}
 			{fbvFormSection title="manager.announcements.form.descriptionShort" for="descriptionShort" required="true"}
-				{fbvElement type="textarea" multilingual="true" id="descriptionShort" value="$descriptionShort" label="manager.announcements.form.descriptionShortInstructions" rich=true height=$fbvStyles.height.SHORT}
+				{fbvElement type="textarea" multilingual="true" id="descriptionShort" value=$descriptionShort label="manager.announcements.form.descriptionShortInstructions" rich=true height=$fbvStyles.height.SHORT}
 			{/fbvFormSection}
 			{fbvFormSection title="manager.announcements.form.description" for="description" required="true"}
-				{fbvElement type="textarea" multilingual="true" id="description" value="$description" label="manager.announcements.form.descriptionInstructions" rich=true}
+				{fbvElement type="textarea" multilingual="true" id="description" value=$description label="manager.announcements.form.descriptionInstructions" rich=true}
 			{/fbvFormSection}
 			<script type="text/javascript">
 				$("#dateExpire").datepicker({ldelim} dateFormat: 'yy-mm-dd' {rdelim});
