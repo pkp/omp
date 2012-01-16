@@ -79,7 +79,7 @@ class NotificationsGridHandler extends GridHandler {
 		);
 
 		// Set the no items row text
-		$this->setEmptyRowText('grid.noNotifications');
+		$this->setEmptyRowText('grid.noItems');
 	}
 
 
