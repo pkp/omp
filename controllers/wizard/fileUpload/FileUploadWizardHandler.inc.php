@@ -135,13 +135,13 @@ class FileUploadWizardHandler extends FileManagementHandler {
 		// Validate file ids. We have two cases where we might have a file id.
 		// CASE 1: user is uploading a revision to a file, the revised file id
 		// will need validation.
-		$revisedFileId = $request->getUserVar('revisedFileId');
+		$revisedFileId = (int)$request->getUserVar('revisedFileId');
 		// CASE 2: user already have uploaded a file (and it's editing the metadata),
 		// we will need to validate the uploaded file id.
-		$fileId = $request->getUserVar('fileId');
+		$fileId = (int)$request->getUserVar('fileId');
 		// Get the right one to validate.
 		$fileIdToValidate = null;
-		if ($revisedFileId && $revisedFileId != 'undefined' && !$fileId) {
+		if ($revisedFileId && !$fileId) {
 			$fileIdToValidate = $revisedFileId;
 		} else if ($fileId && !$revisedFileId) {
 			$fileIdToValidate = $fileId;
