@@ -91,11 +91,13 @@ class CatalogEntryCatalogMetadataForm extends Form {
 
 		$publishedMonograph =& $this->getPublishedMonograph();
 		if ($publishedMonograph) {
+
 			// pre-select the existing values on the form.
-			$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
-			foreach ($publishedMonographDao->getAdditionalFieldNames() as $fieldName) {
-				$templateMgr->assign($fieldName, $publishedMonograph->getData($fieldName));
-			}
+			$templateMgr->assign('audience', $publishedMonograph->getAudience());
+			$templateMgr->assign('audienceRangeQualifier', $publishedMonograph->getAudienceRangeQualifier());
+			$templateMgr->assign('audienceRangeFrom', $publishedMonograph->getAudienceRangeFrom());
+			$templateMgr->assign('audienceRangeTo', $publishedMonograph->getAudienceRangeTo());
+			$templateMgr->assign('audienceRangeExact', $publishedMonograph->getAudienceRangeExact());
 		}
 
 		return parent::fetch($request);
@@ -198,9 +200,11 @@ class CatalogEntryCatalogMetadataForm extends Form {
 		}
 
 		// Populate the published monograph with the cataloging metadata
-		foreach ($publishedMonographDao->getAdditionalFieldNames() as $fieldName) {
-			$publishedMonograph->setData($fieldName, $this->getData($fieldName));
-		}
+		$publishedMonograph->setAudience($this->getData('audience'));
+		$publishedMonograph->setAudienceRangeQualifier($this->getData('audienceRangeQualifier'));
+		$publishedMonograph->setAudienceRangeFrom($this->getData('audienceRangeFrom'));
+		$publishedMonograph->setAudienceRangeTo($this->getData('audienceRangeTo'));
+		$publishedMonograph->setAudienceRangeExact($this->getData('audienceRangeExact'));
 
 		// If a cover image was uploaded, deal with it.
 		if ($temporaryFileId = $this->getData('temporaryFileId')) {
@@ -269,7 +273,7 @@ class CatalogEntryCatalogMetadataForm extends Form {
 		}
 
 		// Update the modified fields
-		$publishedMonographDao->updateLocaleFields($publishedMonograph);
+		$publishedMonographDao->updateObject($publishedMonograph);
 	}
 }
 

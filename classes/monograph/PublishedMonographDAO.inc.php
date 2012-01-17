@@ -338,8 +338,13 @@ class PublishedMonographDAO extends MonographDAO {
 		// Add the additional PublishedMonograph data
 		$publishedMonograph->setPubId($row['pub_id']); // Deprecated
 		$publishedMonograph->setDatePublished($this->datetimeFromDB($row['date_published']));
+		$publishedMonograph->setAudience($row['audience']);
+		$publishedMonograph->setAudienceRangeQualifier($row['audience_range_qualifier']);
+		$publishedMonograph->setAudienceRangeFrom($row['audience_range_from']);
+		$publishedMonograph->setAudienceRangeTo($row['audience_range_to']);
+		$publishedMonograph->setAudienceRangeExact($row['audience_range_exact']);
+		$publishedMonograph->setCoverImage(unserialize($row['cover_image']));
 
-		$this->getDataObjectSettings('published_monograph_settings', 'monograph_id', $row['monograph_id'], $publishedMonograph);
 
 		if ($callHooks) HookRegistry::call('PublishedMonographDAO::_fromRow', array(&$publishedMonograph, &$row));
 		return $publishedMonograph;
@@ -354,12 +359,18 @@ class PublishedMonographDAO extends MonographDAO {
 
 		$this->update(
 			sprintf('INSERT INTO published_monographs
-				(monograph_id, date_published)
+				(monograph_id, date_published, audience, audience_range_qualifier, audience_range_from, audience_range_to, audience_range_exact, cover_image)
 				VALUES
-				(?, %s)',
+				(?, %s, ?, ?, ?, ?, ?, ?)',
 				$this->datetimeToDB($publishedMonograph->getDatePublished())),
 			array(
-				(int) $publishedMonograph->getId()
+				(int) $publishedMonograph->getId(),
+				$publishedMonograph->getAudience(),
+				$publishedMonograph->getAudienceRangeQualifier(),
+				$publishedMonograph->getAudienceRangeFrom(),
+				$publishedMonograph->getAudienceRangeTo(),
+				$publishedMonograph->getAudienceRangeExact(),
+				serialize($publishedMonograph->getCoverImage() ? $publishedMonograph->getCoverImage() : array())
 			)
 		);
 	}
@@ -382,41 +393,25 @@ class PublishedMonographDAO extends MonographDAO {
 	function updateObject($publishedMonograph) {
 		$this->update(
 			sprintf('UPDATE	published_monographs
-				SET	date_published = %s
+				SET	date_published = %s,
+					audience = ?,
+					audience_range_qualifier = ?,
+					audience_range_from = ?,
+					audience_range_to = ?,
+					audience_range_exact = ?,
+					cover_image = ?
 				WHERE	monograph_id = ?',
 				$this->datetimeToDB($publishedMonograph->getDatePublished())),
 			array(
+				$publishedMonograph->getAudience(),
+				$publishedMonograph->getAudienceRangeQualifier(),
+				$publishedMonograph->getAudienceRangeFrom(),
+				$publishedMonograph->getAudienceRangeTo(),
+				$publishedMonograph->getAudienceRangeExact(),
+				serialize($publishedMonograph->getCoverImage() ? $publishedMonograph->getCoverImage() : array()),
 				(int) $publishedMonograph->getId()
 			)
 		);
-	}
-
-	/**
-	 * Get a list of fields for which we store localized data
-	 * @return array
-	 */
-	function getLocaleFieldNames() {
-		// return empty, since the localized submission information is in the monograph's metadata.
-		// this is for published_monograph information.
-		return array();
-	}
-
-	/**
-	 * Get a list of fields for which we store (non-localized) data
-	 * @return array
-	 */
-	function getAdditionalFieldNames() {
-		return array('audience', 'audienceRangeQualifier', 'audienceRangeFrom', 'audienceRangeTo', 'audienceRangeExact', 'coverImage');
-	}
-
-	/**
-	 * Update the localized fields for this object.
-	 * @param $publishedMonograph
-	 */
-	function updateLocaleFields(&$publishedMonograph) {
-		$this->updateDataObjectSettings('published_monograph_settings', $publishedMonograph, array(
-				'monograph_id' => $publishedMonograph->getId()
-		));
 	}
 }
 

@@ -544,6 +544,12 @@
 			<NOTNULL/>
 		</field>
 		<field name="date_published" type="T"/>
+		<field name="audience" type="C2" size="255"/>
+		<field name="audience_range_qualifier" type="C2" size="255"/>
+		<field name="audience_range_from" type="C2" size="255"/>
+		<field name="audience_range_to" type="C2" size="255"/>
+		<field name="audience_range_exact" type="C2" size="255"/>
+		<field name="cover_image" type="X"/>
 		<descr>Published monographs</descr>
 		<index name="published_monographs_monograph_id">
 			<col>monograph_id</col>
@@ -603,39 +609,6 @@
 		</index>
 		<index name="published_monograph_format_settings_pkey">
 			<col>assigned_publication_format_id</col>
-			<col>locale</col>
-			<col>setting_name</col>
-			<UNIQUE/>
-		</index>
-	</table>
-
-	<!--
-	  *
-	  * TABLE published_monograph_settings
-	  *
-	  -->
-	<table name="published_monograph_settings">
-		<field name="monograph_id" type="I8">
-			<NOTNULL />
-		</field>
-		<field name="locale" type="C2" size="5">
-			<NOTNULL />
-			<DEFAULT VALUE=""/>
-		</field>
-		<field name="setting_name" type="C2" size="255">
-			<NOTNULL />
-		</field>
-		<field name="setting_value" type="X"/>
-		<field name="setting_type" type="C2" size="6">
-			<NOTNULL/>
-			<descr>(bool|int|float|string|object)</descr>
-		</field>
-		<descr>Published Monograph metadata.</descr>
-		<index name="monograph_settings_monograph_id">
-			<col>monograph_id</col>
-		</index>
-		<index name="monograph_settings_pkey">
-			<col>monograph_id</col>
 			<col>locale</col>
 			<col>setting_name</col>
 			<UNIQUE/>
