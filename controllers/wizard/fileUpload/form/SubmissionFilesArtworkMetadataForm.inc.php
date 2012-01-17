@@ -36,8 +36,10 @@ class SubmissionFilesArtworkMetadataForm extends SubmissionFilesMetadataForm {
 	 * @see Form::readInputData()
 	 */
 	function readInputData() {
-		$this->readUserVars(array('artworkCaption', 'artworkCredit', 'artworkCopyrightOwner',
-				'artworkCopyrightOwnerContact', 'artworkPermissionTerms'));
+		$this->readUserVars(array(
+			'artworkCaption', 'artworkCredit', 'artworkCopyrightOwner',
+			'artworkCopyrightOwnerContact', 'artworkPermissionTerms'
+		));
 		parent::readInputData();
 	}
 
@@ -64,7 +66,6 @@ class SubmissionFilesArtworkMetadataForm extends SubmissionFilesMetadataForm {
 		// Persist the submission file.
 		parent::execute($args, $request);
 	}
-
 }
 
 ?>

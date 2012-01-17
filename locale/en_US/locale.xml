@@ -211,6 +211,8 @@
 	<message key="common.pressHomepageImage.altText">Press Homepage Image</message>
 	<message key="common.designation">Designation</message>
 	<message key="common.name">Name</message>
+	<message key="common.dimensionsInches"><![CDATA[{$width}"&nbsp;x&nbsp;{$height}" @ {$dpi} DPI/PPI]]></message>
+	<message key="common.dimensionsPixels">{$width} x {$height} pixels</message>
 
 	<!-- Navigation -->
 	<message key="navigation.management">Management</message>

@@ -61,11 +61,13 @@
 		{/fbvFormSection}
 
 		{if is_a($submissionFile, 'ArtworkFile') && $submissionFile->getWidth() > 0 && $submissionFile->getHeight() > 0}
-			{math assign="imageWidthOnDevice" equation="w/300" w=$submissionFile->getWidth() format="%.2f"}
-			{math assign="imageHeightOnDevice" equation="h/300" h=$submissionFile->getHeight() format="%.2f"}
+			{assign var=dpi value=300}
+			{math assign="imageWidthOnDevice" equation="w/dpi" w=$submissionFile->getWidth() dpi=$dpi format="%.2f"}
+			{math assign="imageHeightOnDevice" equation="h/dpi" h=$submissionFile->getHeight() dpi=$dpi format="%.2f"}
 			{fbvFormSection title="common.quality" inline=true size=$fbvStyles.size.MEDIUM}
-				{$imageWidthOnDevice}''&nbsp;x&nbsp;{$imageHeightOnDevice}'' @ 300 DPI/PPI<br />
-				({$submissionFile->getWidth()} x {$submissionFile->getHeight()} pixels)
+				{translate key="common.dimensionsInches" width=$imageWidthOnDevice height=$imageHeightOnDevice dpi=$dpi}
+				<br/>
+				({translate key="common.dimensionsPixels" width=$submissionFile->getWidth() height=$submissionFile->getHeight()})
 			{/fbvFormSection}
 			{fbvFormSection title="common.preview" inline=true size=$fbvStyles.size.MEDIUM}
 				{* Get scaled thumbnail dimensions to 100px *}
