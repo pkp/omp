@@ -77,6 +77,20 @@
 	<message key="grid.catalogEntry.codeRequired">A code is required.</message>
 	<message key="grid.catalogEntry.valueRequired">A value is required.</message>
 
+	<!-- assigned sales rights grid and form keys -->
+	<message key="grid.catalogEntry.salesRights">Sales Rights</message>
+	<message key="grid.catalogEntry.salesRightsValue">Code Value</message>
+	<message key="grid.catalogEntry.salesRightsType">Sales Rights Type</message>
+	<message key="grid.catalogEntry.salesRightsROW">Rest of World?</message>
+	<message key="grid.catalogEntry.salesRightsROW.tip">Check this box to use this Sales Rights entry as a catch-all for your format.  Countries and regions need not be chosen in this case.</message>
+	<message key="grid.catalogEntry.codeRequired">A code is required.</message>
+	<message key="grid.catalogEntry.oneROWPerFormat">There is already a ROW sales type defined for this publication format.</message>
+	<message key="grid.catalogEntry.countries">Countries</message>
+	<message key="grid.catalogEntry.regions">Regions</message>
+	<message key="grid.catalogEntry.salesRightsIncluded">Included</message>
+	<message key="grid.catalogEntry.salesRightsExcluded">Excluded</message>
+
+
 	<!-- assigned publication date grid and form keys -->
 	<message key="grid.catalogEntry.publicationDates">Publication Dates</message>
 	<message key="grid.catalogEntry.publicationDateValue">Publication Date</message>
@@ -457,6 +471,9 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="notification.addedPublicationFormat">Publication Format added.</message>
 	<message key="notification.editedPublicationFormat">Publication Format edited.</message>
 	<message key="notification.removedPublicationFormat">Publication Format removed.</message>
+	<message key="notification.addedSalesRights">Sales Rights added.</message>
+	<message key="notification.editedSalesRights">Sales Rights edited.</message>
+	<message key="notification.removedSalesRights">Sales Rights removed.</message>
 	<message key="notification.addedReviewer">Reviewer added.</message>
 	<message key="notification.addedStageParticipant">User added as a stage participant.</message>
 	<message key="notification.editedAuthor">Author edited.</message>

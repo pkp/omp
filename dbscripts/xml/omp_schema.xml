@@ -130,6 +130,38 @@
 
 	<!--
 	  *
+	  * TABLE sales_rights
+	  *
+	  -->
+	<table name="sales_rights">
+		<field name="sales_rights_id" type="I8">
+			<KEY />
+			<AUTOINCREMENT />
+		</field>
+		<field name="assigned_publication_format_id" type="I8">
+			<NOTNULL />
+		</field>
+		<field name="type" type="C2" size="40">
+			<NOTNULL />
+		</field>
+		<!--  ROW is 'rest of world'. ROW sales types have no territories assigned to them -->
+		<field name="row_setting" type="I1">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
+		<field name="countries_included" type="X"/>
+		<field name="countries_excluded" type="X"/>
+		<field name="regions_included" type="X"/>
+		<field name="regions_excluded" type="X"/>
+		<index name="publication_dates_pkey">
+			<col>publication_date_id</col>
+			<col>assigned_publication_format_id</col>
+			<col>role</col>
+		</index>
+	</table>
+
+	<!--
+	  *
 	  * TABLE features
 	  *
 	  -->

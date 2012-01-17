@@ -208,6 +208,17 @@ class AssignedPublicationFormat extends PublicationFormat {
 	}
 
 	/**
+	 * Get the SalesRights objects for this format
+	 * @return Array SalesRights
+	 */
+	function getSalesRights() {
+		$salesRightsDao =& DAORegistry::getDAO('SalesRightsDAO');
+		$salesRights =& $salesRightsDao->getByAssignedPublicationFormatId($this->getAssignedPublicationFormatId());
+		return $salesRights;
+	}
+
+
+	/**
 	 * Get the IdentificationCode objects for this format
 	 * @return Array IdentificationCode
 	 */

@@ -34,6 +34,15 @@
 		{/fbvFormSection}
 	{/fbvFormArea}
 
+	{fbvFormArea id="salesRights"}
+		{fbvFormSection}
+			<!-- Sales rights and regions -->
+			{assign var="divId" value="salesRightsGridContainer"|concat:$assignedPublicationFormatId|escape}
+			{url|assign:salesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.catalogEntry.SalesRightsGridHandler" op="fetchGrid" monographId=$monographId assignedPublicationFormatId=$assignedPublicationFormatId escape=false}
+			{load_url_in_div id="$divId" url="$salesGridUrl"}
+		{/fbvFormSection}
+	{/fbvFormArea}
+
 	{fbvFormArea id="productComposition" title="monograph.publicationFormat.productComposition" border="true"}
 		{fbvFormSection for="productCompositionCode"}
 			{fbvElement type="select" from=$productCompositionCodes required=true selected=$productCompositionCode translate=false id="productCompositionCode" defaultValue="" defaultLabel="" size=$fbvStyles.size.SMALL inline=true}
