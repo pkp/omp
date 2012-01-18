@@ -223,7 +223,8 @@ class ManageCatalogHandler extends Handler {
 		$templateMgr->assign('series', $series);
 
 		// Set up the monograph list template
-		$this->_setupMonographsTemplate(true, 'series',
+		$this->_setupMonographsTemplate(
+			true, 'series',
 			ASSOC_TYPE_SERIES, $series->getId()
 		);
 
@@ -334,10 +335,10 @@ class ManageCatalogHandler extends Handler {
 	 * @param $listName string Unique identifier of monograph list (for
 	 *  disambiguation of HTML element IDs)
 	 * @param $assocType Association type of features to fetch
-	 *  (ASSOC_TYPE_...)
-	 * @param $assocId Association ID of features to fetch
+	 *  (ASSOC_TYPE_...) (optional)
+	 * @param $assocId Association ID of features to fetch (optional)
 	 */
-	function _setupMonographsTemplate($includeOrganizeAction, $listName, $assocType, $assocId) {
+	function _setupMonographsTemplate($includeOrganizeAction, $listName, $assocType = null, $assocId = null) {
 		// Loadubmission locale content for monograph listing
 		AppLocale::requireComponents(LOCALE_COMPONENT_OMP_SUBMISSION);
 
@@ -351,9 +352,12 @@ class ManageCatalogHandler extends Handler {
 		$templateMgr->assign('listName', $listName);
 
 		// Expose the featured monograph IDs and associated params
-		$featureDao =& DAORegistry::getDAO('FeatureDAO');
-		$featuredMonographIds = $featureDao->getSequencesByAssoc($assocType, $assocId);
-		$templateMgr->assign('featuredMonographIds', $featuredMonographIds);
+		if ($assocType) {
+			$featureDao =& DAORegistry::getDAO('FeatureDAO');
+			$featuredMonographIds = $featureDao->getSequencesByAssoc($assocType, $assocId);
+			$templateMgr->assign('featuredMonographIds', $featuredMonographIds);
+		}
+
 		$templateMgr->assign('featureAssocType', $assocType);
 		$templateMgr->assign('featureAssocId', $assocId);
 	}
