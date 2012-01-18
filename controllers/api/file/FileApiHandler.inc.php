@@ -85,7 +85,7 @@ class FileApiHandler extends Handler {
 		import('classes.file.MonographFileManager');
 		$press =& $request->getPress();
 		$monographFileManager = new MonographFileManager($press->getId(), $monographFile->getMonographId());
-		$monographFileManager->viewFile($monographFile->getMonographId(), $monographFile->getFileId(), $monographFile->getRevision());
+		$monographFileManager->downloadFile($monographFile->getFileId(), $monographFile->getRevision(), true);
 	}
 
 	/**
