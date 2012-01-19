@@ -28,7 +28,6 @@ class OmpPublishedMonographAccessPolicy extends PressPolicy {
 		// Access may be made either as a member of the public, or
 		// via pre-publication access to editorial users.
 		$monographAccessPolicy = new PolicySet(COMBINING_PERMIT_OVERRIDES);
-
 		// Published monograph access for the public
 		$publishedMonographAccessPolicy = new PolicySet(COMBINING_DENY_OVERRIDES);
 		import('classes.security.authorization.internal.MonographRequiredPolicy');
@@ -39,10 +38,21 @@ class OmpPublishedMonographAccessPolicy extends PressPolicy {
 
 		// Pre-publication access for editorial roles
 		import('classes.security.authorization.OmpSubmissionAccessPolicy');
-		$monographAccessPolicy->addPolicy(new OmpSubmissionAccessPolicy($request, $args, $roleAssignments, $submissionParameterName));
+		$monographAccessPolicy->addPolicy(
+			new OmpSubmissionAccessPolicy(
+				$request, $args,
+				array_intersect_key(
+					$roleAssignments,
+					array( // Only permit these roles
+						ROLE_ID_PRESS_MANAGER,
+						ROLE_ID_PRESS_EDITOR,
+					)
+				),
+				$submissionParameterName
+			)
+		);
 
 		$this->addPolicy($monographAccessPolicy);
-
 	}
 }
 
