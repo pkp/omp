@@ -40,7 +40,7 @@ class SalesRightsGridCellProvider extends DataObjectGridCellProvider {
 			case 'type':
 				return array('label' => $element->getNameForONIXCode());
 			case 'ROW':
-				return array('isROWSetting' => $element->getROWSetting());
+				return array('isChecked' => $element->getROWSetting());
 		}
 	}
 }

@@ -168,7 +168,7 @@ class SalesRightsGridHandler extends GridHandler {
 						'ROW',
 						'grid.catalogEntry.salesRightsROW',
 						null,
-						'controllers/grid/catalogEntry/salesRights/ROWSetting.tpl',
+						'controllers/grid/common/cell/checkMarkCell.tpl',
 						$cellProvider
 				)
 		);
