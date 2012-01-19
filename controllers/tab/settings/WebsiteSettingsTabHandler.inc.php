@@ -36,7 +36,8 @@ class WebsiteSettingsTabHandler extends ManagerSettingsTabHandler {
 		$pageTabs = array(
 			'homepage' => 'controllers.tab.settings.homepage.form.HomepageForm',
 			'appearance' => 'controllers.tab.settings.appearance.form.AppearanceForm',
-			'languages' => 'controllers.tab.settings.languages.form.LanguagesForm'
+			'languages' => 'controllers.tab.settings.languages.form.LanguagesForm',
+			'plugins' => 'controllers/tab/settings/plugins/plugins.tpl'
 		);
 		$this->setPageTabs($pageTabs);
 	}

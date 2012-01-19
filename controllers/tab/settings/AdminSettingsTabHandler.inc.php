@@ -36,7 +36,8 @@ class AdminSettingsTabHandler extends SettingsTabHandler {
 		parent::SettingsTabHandler($role);
 		$pageTabs = array(
 			'siteSetup' => 'controllers.tab.settings.siteSetup.form.SiteSetupForm',
-			'languages' => 'controllers.tab.settings.languages.form.LanguagesForm'
+			'languages' => 'controllers.tab.settings.languages.form.LanguagesForm',
+			'plugins' => 'controllers/tab/admin/plugins/sitePlugins.tpl'
 		);
 		$this->setPageTabs($pageTabs);
 	}
