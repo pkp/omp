@@ -148,22 +148,6 @@ class SalesRights extends DataObject {
 	}
 
 	/**
-	 * Sets the id for this sales rights entry
-	 * @param $id int
-	 */
-	function setId($id) {
-		$this->setData('salesRightsId', $id);
-	}
-
-	/**
-	 * Get the id for this sales rights entry
-	 * @return int
-	 */
-	function getId() {
-		return $this->getData('salesRightsId');
-	}
-
-	/**
 	 * Internal function for an array_filter to remove empty countries.
 	 * array_filter() can be called without a callback to remove empty array elements but it depends
 	 * on type juggling and may not be reliable.

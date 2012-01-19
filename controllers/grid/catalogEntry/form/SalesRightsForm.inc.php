@@ -179,7 +179,7 @@ class SalesRightsForm extends Form {
 
 		$monograph = $this->getMonograph();
 		$salesRights =& $this->getSalesRights();
-		$assignedPublicationFormat =& $assignedPublicationFormatDao->getById($this->getData('assignedPublicationFormatId', $monograph->getId()));
+		$assignedPublicationFormat =& $assignedPublicationFormatDao->getById($this->getData('assignedPublicationFormatId'), $monograph->getId());
 
 		if (!$salesRights) {
 			// this is a new assigned format to this published monograph

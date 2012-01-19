@@ -98,22 +98,6 @@ class PublicationDate extends DataObject {
 	function getDate() {
 		return $this->getData('date');
 	}
-
-	/**
-	 * Sets the id for this publication date
-	 * @param $id int
-	 */
-	function setId($id) {
-		$this->setData('publicationDateId', $id);
-	}
-
-	/**
-	 * Get the id for this publication date
-	 * @return int
-	 */
-	function getId() {
-		return $this->getData('publicationDateId');
-	}
 }
 
 ?>

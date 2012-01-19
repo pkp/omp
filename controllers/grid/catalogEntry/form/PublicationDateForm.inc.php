@@ -162,7 +162,7 @@ class PublicationDateForm extends Form {
 
 		$monograph = $this->getMonograph();
 		$publicationDate =& $this->getPublicationDate();
-		$assignedPublicationFormat =& $assignedPublicationFormatDao->getById($this->getData('assignedPublicationFormatId', $monograph->getId()));
+		$assignedPublicationFormat =& $assignedPublicationFormatDao->getById($this->getData('assignedPublicationFormatId'), $monograph->getId());
 
 		if (!$publicationDate) {
 			// this is a new publication date for this published monograph

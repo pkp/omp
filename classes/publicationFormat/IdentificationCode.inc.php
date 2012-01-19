@@ -82,22 +82,6 @@ class IdentificationCode extends DataObject {
 	function getValue() {
 		return $this->getData('value');
 	}
-
-	/**
-	 * Sets the id for this identification code
-	 * @param $id int
-	 */
-	function setId($id) {
-		$this->setData('identificationCodeId', $id);
-	}
-
-	/**
-	 * Get the id for this identification code
-	 * @return int
-	 */
-	function getId() {
-		return $this->getData('identificationCodeId');
-	}
 }
 
 ?>
