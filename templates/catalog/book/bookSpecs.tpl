@@ -22,6 +22,28 @@
 			<div class="dateAdded">{translate key="catalog.dateAdded" dateAdded=$publishedMonograph->getDatePublished()|date_format:$dateFormatShort}</div>
 		</div>
 
+		{assign var=assignedPublicationFormats value=$publishedMonograph->getAssignedPublicationFormats()}
+		{foreach from=$assignedPublicationFormats item=assignedPublicationFormat}
+			<h3><a href="#">{$assignedPublicationFormat->getLocalizedTitle()|escape}</a></h3>
+			<div class="assignedPublicationFormat">
+				{assign var=notFirst value=0}
+				{if $assignedPublicationFormat->getWidth()}
+					{$assignedPublicationFormat->getWidth()|escape} {$assignedPublicationFormat->getWidthUnit()|escape}
+					{assign var=notFirst value=1}
+				{/if}
+				{if $assignedPublicationFormat->getHeight()}
+					{if $notFirst} x {/if}
+					{$assignedPublicationFormat->getHeight()|escape} {$assignedPublicationFormat->getHeightUnit()|escape}
+					{assign var=notFirst value=1}
+				{/if}
+				{if $assignedPublicationFormat->getThickness()}
+					{if $notFirst} x {/if}
+					{$assignedPublicationFormat->getThickness()|escape} {$assignedPublicationFormat->getThicknessUnit()|escape}
+					{assign var=notFirst value=1}
+				{/if}
+			</div>
+		{/foreach}{* $assignedPublicationFormats *}
+
 		{if !$categories->wasEmpty()}
 			<h3><a href="#">{translate key="catalog.relatedCategories}</a></h3>
 			<ul class="relatedCategories">
