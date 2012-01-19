@@ -13,7 +13,6 @@
  */
 
 import('classes.security.authorization.internal.PressPolicy');
-import('lib.pkp.classes.security.authorization.RoleBasedHandlerOperationPolicy');
 
 class OmpSubmissionAccessPolicy extends PressPolicy {
 	/**
@@ -112,13 +111,6 @@ class OmpSubmissionAccessPolicy extends PressPolicy {
 			$pressSubmissionAccessPolicy->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', null));
 			$submissionAccessPolicy->addPolicy($pressSubmissionAccessPolicy);
 		}
-
-		// Anyone can access published monographs
-		import('classes.security.authorization.internal.MonographPublishedPolicy');
-		$submissionAccessPolicy->addPolicy(new MonographPublishedPolicy($request));
-
-		// Add the submission access policy
-		$this->addPolicy($submissionAccessPolicy);
 	}
 }
 
