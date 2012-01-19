@@ -64,17 +64,22 @@ class AssignedPublicationFormatDAO extends PublicationFormatDAO {
 	function getFormatsByMonographId($monographId) {
 
 		$result =& $this->retrieve(
-				'SELECT	pf.*,
-				pmpf.*
-				FROM	publication_formats pf
-				JOIN	published_monograph_publication_formats pmpf ON (pmpf.publication_format_id = pf.publication_format_id)
-				WHERE	pmpf.monograph_id = ?', array((int) $monographId)
+			'SELECT	pf.*,
+			pmpf.*
+			FROM	publication_formats pf
+			JOIN	published_monograph_publication_formats pmpf ON (pmpf.publication_format_id = pf.publication_format_id)
+			WHERE	pmpf.monograph_id = ?',
+			array((int) $monographId)
 		);
 
 		$returner = new DAOResultFactory($result, $this, '_fromRow');
 		return $returner;
 	}
 
+	/**
+	 * Delete an assigned publication format by ID.
+	 * @param $assignedPublicationFormatId int
+	 */
 	function deleteAssignedPublicationFormatById($assignedPublicationFormatId) {
 
 		// remove settings, then the association itself.
@@ -88,9 +93,11 @@ class AssignedPublicationFormatDAO extends PublicationFormatDAO {
 	 * @param $assignedPublicationFormat object
 	 */
 	function updateLocaleFields(&$publicationFormat) {
-		$this->updateDataObjectSettings('published_monograph_publication_format_settings', $publicationFormat, array(
-			'assigned_publication_format_id' => $publicationFormat->getAssignedPublicationFormatId()
-		));
+		$this->updateDataObjectSettings(
+			'published_monograph_publication_format_settings',
+			$publicationFormat,
+			array('assigned_publication_format_id' => $publicationFormat->getAssignedPublicationFormatId())
+		);
 	}
 
 	/**
@@ -149,14 +156,14 @@ class AssignedPublicationFormatDAO extends PublicationFormatDAO {
 	 */
 	function updateObject(&$assignedPublicationFormat) {
 		$this->update(
-				'UPDATE published_monograph_publication_formats
-				SET publication_format_id = ?, seq = ?
-				WHERE assigned_publication_format_id = ?',
-				array(
-						(int) $assignedPublicationFormat->getId(),
-						(int) $assignedPublicationFormat->getSeq(),
-						(int) $assignedPublicationFormat->getAssignedPublicationFormatId()
-				)
+			'UPDATE published_monograph_publication_formats
+			SET publication_format_id = ?, seq = ?
+			WHERE assigned_publication_format_id = ?',
+			array(
+				(int) $assignedPublicationFormat->getId(),
+				(int) $assignedPublicationFormat->getSeq(),
+				(int) $assignedPublicationFormat->getAssignedPublicationFormatId()
+			)
 		);
 
 		$this->updateLocaleFields($assignedPublicationFormat);
@@ -189,30 +196,30 @@ class AssignedPublicationFormatDAO extends PublicationFormatDAO {
 	 */
 	function getAdditionalFieldNames() {
 		return array(
-					'fileSize', // no companion unit code, template asks for Mb.
-					'frontMatter',
-					'backMatter',
-					'height',
-					'heightUnitCode',
-					'width',
-					'widthUnitCode',
-					'thickness',
-					'thicknessUnitCode',
-					'weight',
-					'weightUnitCode',
-					'productCompositionCode',
-					'productFormCode',
-					'productFormDetailCode',
-					'price',
-					'priceTypeCode',
-					'currencyCode',
-					'taxRateCode',
-					'taxTypeCode',
-					'countriesIncludedCode',
-					'countryManufactureCode',
-					'imprint',
-					'productAvailabilityCode'
-				);
+			'fileSize', // no companion unit code, template asks for Mb.
+			'frontMatter',
+			'backMatter',
+			'height',
+			'heightUnitCode',
+			'width',
+			'widthUnitCode',
+			'thickness',
+			'thicknessUnitCode',
+			'weight',
+			'weightUnitCode',
+			'productCompositionCode',
+			'productFormCode',
+			'productFormDetailCode',
+			'price',
+			'priceTypeCode',
+			'currencyCode',
+			'taxRateCode',
+			'taxTypeCode',
+			'countriesIncludedCode',
+			'countryManufactureCode',
+			'imprint',
+			'productAvailabilityCode'
+		);
 	}
 }
 ?>
