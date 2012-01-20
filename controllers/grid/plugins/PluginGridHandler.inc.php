@@ -35,7 +35,28 @@ class PluginGridHandler extends CategoryGridHandler {
 	// Overridden template methods
 	//
 	/**
-	 * @see GridHandler::initialize()
+	 * @see GridHandler::authorize()
+	 */
+	function authorize($request, $args, $roleAssignments) {
+		$category = $request->getUserVar('category');
+		$pluginName = $request->getUserVar('plugin');
+		$verb = $request->getUserVar('verb');
+
+		if ($category && $pluginName) {
+			import('classes.security.authorization.OmpPluginAccessPolicy');
+			if ($verb) {
+				$accessMode = ACCESS_MODE_MANAGE;
+			} else {
+				$accessMode = ACCESS_MODE_ADMIN;
+			}
+
+			$this->addPolicy(new OmpPluginAccessPolicy($request, $args, $roleAssignments, $accessMode));
+		}
+
+		return parent::authorize($request, $args, $roleAssignments);
+	}
+
+	/**
 	 */
 	function initialize(&$request) {
 		parent::initialize($request);

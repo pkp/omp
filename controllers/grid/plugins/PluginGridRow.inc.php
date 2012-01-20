@@ -65,6 +65,7 @@ class PluginGridRow extends GridRow {
 
 			if ($this->_canManage($plugin)) {
 				// Add the management verbs link actions to the row.
+
 			}
 		}
 	}
