@@ -28,17 +28,17 @@
 			<div class="assignedPublicationFormat">
 				{assign var=notFirst value=0}
 				{if $assignedPublicationFormat->getWidth()}
-					{$assignedPublicationFormat->getWidth()|escape} {$assignedPublicationFormat->getWidthUnit()|escape}
+					{$assignedPublicationFormat->getWidth()|escape} {$assignedPublicationFormat->getWidthUnitCode()|escape}
 					{assign var=notFirst value=1}
 				{/if}
 				{if $assignedPublicationFormat->getHeight()}
 					{if $notFirst} x {/if}
-					{$assignedPublicationFormat->getHeight()|escape} {$assignedPublicationFormat->getHeightUnit()|escape}
+					{$assignedPublicationFormat->getHeight()|escape} {$assignedPublicationFormat->getHeightUnitCode()|escape}
 					{assign var=notFirst value=1}
 				{/if}
 				{if $assignedPublicationFormat->getThickness()}
 					{if $notFirst} x {/if}
-					{$assignedPublicationFormat->getThickness()|escape} {$assignedPublicationFormat->getThicknessUnit()|escape}
+					{$assignedPublicationFormat->getThickness()|escape} {$assignedPublicationFormat->getThicknessUnitCode()|escape}
 					{assign var=notFirst value=1}
 				{/if}
 			</div>

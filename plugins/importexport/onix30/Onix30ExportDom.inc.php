@@ -93,31 +93,31 @@ class Onix30ExportDom {
 			XMLCustomWriter::appendChild($descDetailNode, $measureNode);
 			XMLCustomWriter::createChildWithText($doc, $measureNode, 'MeasureType', '01');
 			XMLCustomWriter::createChildWithText($doc, $measureNode, 'Measurement', $assignedPublicationFormat->getHeight());
-			XMLCustomWriter::createChildWithText($doc, $measureNode, 'MeasureUnitCode', $assignedPublicationFormat->getHeightUnit());
+			XMLCustomWriter::createChildWithText($doc, $measureNode, 'MeasureUnitCode', $assignedPublicationFormat->getHeightUnitCode());
 			unset($measureNode);
 
 			$measureNode =& XMLCustomWriter::createElement($doc, 'Measure');
 			XMLCustomWriter::appendChild($descDetailNode, $measureNode);
 			XMLCustomWriter::createChildWithText($doc, $measureNode, 'MeasureType', '02');
 			XMLCustomWriter::createChildWithText($doc, $measureNode, 'Measurement', $assignedPublicationFormat->getWidth());
-			XMLCustomWriter::createChildWithText($doc, $measureNode, 'MeasureUnitCode', $assignedPublicationFormat->getWidthUnit());
+			XMLCustomWriter::createChildWithText($doc, $measureNode, 'MeasureUnitCode', $assignedPublicationFormat->getWidthUnitCode());
 			unset($measureNode);
 
 			$measureNode =& XMLCustomWriter::createElement($doc, 'Measure');
 			XMLCustomWriter::appendChild($descDetailNode, $measureNode);
 			XMLCustomWriter::createChildWithText($doc, $measureNode, 'MeasureType', '03');
 			XMLCustomWriter::createChildWithText($doc, $measureNode, 'Measurement', $assignedPublicationFormat->getThickness());
-			XMLCustomWriter::createChildWithText($doc, $measureNode, 'MeasureUnitCode', $assignedPublicationFormat->getThicknessUnit());
+			XMLCustomWriter::createChildWithText($doc, $measureNode, 'MeasureUnitCode', $assignedPublicationFormat->getThicknessUnitCode());
 			unset($measureNode);
 
 			$measureNode =& XMLCustomWriter::createElement($doc, 'Measure');
 			XMLCustomWriter::appendChild($descDetailNode, $measureNode);
 			XMLCustomWriter::createChildWithText($doc, $measureNode, 'MeasureType', '08');
 			XMLCustomWriter::createChildWithText($doc, $measureNode, 'Measurement', $assignedPublicationFormat->getWeight());
-			XMLCustomWriter::createChildWithText($doc, $measureNode, 'MeasureUnitCode', $assignedPublicationFormat->getWeightUnit());
+			XMLCustomWriter::createChildWithText($doc, $measureNode, 'MeasureUnitCode', $assignedPublicationFormat->getWeightUnitCode());
 			unset($measureNode);
 
-			XMLCustomWriter::createChildWithText($doc, $descDetailNode, 'CountryOfManufacture', $assignedPublicationFormat->getManufactureCountry(), false);
+			XMLCustomWriter::createChildWithText($doc, $descDetailNode, 'CountryOfManufacture', $assignedPublicationFormat->getCountryManufactureCode(), false);
 		}
 		/* --- Collection information, first for series and then for product --- */
 
@@ -205,19 +205,19 @@ class Onix30ExportDom {
 		}
 		/* --- add Extents for 00 (main content) and 04 (back matter) ---*/
 
-		if ($assignedPublicationFormat->getFrontMatterPageCount() > 0) {
+		if ($assignedPublicationFormat->getFrontMatter() > 0) {
 			$extentNode =& XMLCustomWriter::createElement($doc, 'Extent');
 			XMLCustomWriter::appendChild($descDetailNode, $extentNode);
 			XMLCustomWriter::createChildWithText($doc, $extentNode, 'ExtentType', '00');
-			XMLCustomWriter::createChildWithText($doc, $extentNode, 'ExtentValue', $assignedPublicationFormat->getFrontMatterPageCount());
+			XMLCustomWriter::createChildWithText($doc, $extentNode, 'ExtentValue', $assignedPublicationFormat->getFrontMatter());
 			XMLCustomWriter::createChildWithText($doc, $extentNode, 'ExtentUnit', '03'); // 03 -> Pages
 		}
 
-		if ($assignedPublicationFormat->getBackMatterPageCount() > 0) {
+		if ($assignedPublicationFormat->getBackMatter() > 0) {
 			$extentNode =& XMLCustomWriter::createElement($doc, 'Extent');
 			XMLCustomWriter::appendChild($descDetailNode, $extentNode);
 			XMLCustomWriter::createChildWithText($doc, $extentNode, 'ExtentType', '04');
-			XMLCustomWriter::createChildWithText($doc, $extentNode, 'ExtentValue', $assignedPublicationFormat->getBackMatterPageCount());
+			XMLCustomWriter::createChildWithText($doc, $extentNode, 'ExtentValue', $assignedPublicationFormat->getBackMatter());
 			XMLCustomWriter::createChildWithText($doc, $extentNode, 'ExtentUnit', '03'); // 03 -> Pages
 		}
 		if (!$assignedPublicationFormat->getPhysicalFormat()) { // EBooks and digital content have extent information about file sizes
@@ -386,7 +386,7 @@ class Onix30ExportDom {
 		XMLCustomWriter::appendChild($supplyDetailNode, $supplierNode);
 		XMLCustomWriter::createChildWithText($doc, $supplierNode, 'SupplierRole', '01'); // Publisher supplying to retailers
 		XMLCustomWriter::createChildWithText($doc, $supplierNode, 'SupplierName', 'Supplier Name'); // same as PublisherName node in some cases?
-		XMLCustomWriter::createChildWithText($doc, $supplyDetailNode, 'ProductAvailability', $assignedPublicationFormat->getProductAvailability());
+		XMLCustomWriter::createChildWithText($doc, $supplyDetailNode, 'ProductAvailability', $assignedPublicationFormat->getProductAvailabilityCode());
 
 		$priceNode =& XMLCustomWriter::createElement($doc, 'Price');
 		XMLCustomWriter::appendChild($supplyDetailNode, $priceNode);

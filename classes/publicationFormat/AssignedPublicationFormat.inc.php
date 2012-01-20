@@ -35,7 +35,7 @@ class AssignedPublicationFormat extends PublicationFormat {
 	}
 
 	/**
-	 * Set ID of assigned format
+	 * Set ID of assigned format.
 	 * @param $id int
 	 */
 	function setAssignedPublicationFormatId($assignedPublicationFormatId) {
@@ -73,6 +73,7 @@ class AssignedPublicationFormat extends PublicationFormat {
 	function getTitle() {
 		return $this->getData('title');
 	}
+
 	/**
 	 * Set title.
 	 * @param $title string
@@ -83,7 +84,7 @@ class AssignedPublicationFormat extends PublicationFormat {
 	}
 
 	/**
-	 * set monograph id
+	 * set monograph id.
 	 * @param $monographId int
 	 */
 	function setMonographId($monographId) {
@@ -99,11 +100,19 @@ class AssignedPublicationFormat extends PublicationFormat {
 	}
 
 	/**
-	 * Get the country codes for this publication format's distribution range. (List91)
+	 * Get the country codes for this publication format's distribution range (List91).
 	 * @return array of strings
 	 */
-	function getDistributionCountries() {
+	function getCountriesIncludedCode() {
 		return $this->getData('countriesIncludedCode');
+	}
+
+	/**
+	 * Set the countries included for a publication format.
+	 * @param string $countriesIncludedCode
+	 */
+	function setCountriesIncludedCode($countriesIncludedCode) {
+		return $this->setData('countriesIncludedCode', $countriesIncludedCode);
 	}
 
 	/**
@@ -111,7 +120,7 @@ class AssignedPublicationFormat extends PublicationFormat {
 	 * @return string
 	 */
 	function getDistributionCountriesAsString() {
-		$countries =& $this->getDistributionCountries();
+		$countries =& $this->getCountriesIncludedCode();
 		if (is_array($countries)) {
 			return join(' ', $countries);
 		} else {
@@ -120,23 +129,39 @@ class AssignedPublicationFormat extends PublicationFormat {
 	}
 
 	/**
-	 * Get the country this format was manufactured in.
+	 * Get the country of manufacture code that this format was manufactured in.
 	 * @return string
 	 */
-	function getManufactureCountry() {
+	function getCountryManufactureCode() {
 		return $this->getData('countryManufactureCode');
 	}
 
 	/**
-	 * Get the product availability.
+	 * Set the country of manufacture code for a publication format.
+	 * @param string $countryManufactureCode
+	 */
+	function setCountryManufactureCode($countryManufactureCode) {
+		return $this->setData('countryManufactureCode', $countryManufactureCode);
+	}
+
+	/**
+	 * Get the product availability code (ONIX value) for this format (List65).
 	 * @return string
 	 */
-	function getProductAvailability() {
+	function getProductAvailabilityCode() {
 		return $this->getData('productAvailabilityCode');
 	}
 
 	/**
-	 * Get the height of the monograph format
+	 * Set the product availability code (ONIX value) for a publication format.
+	 * @param string $productAvailabilityCode
+	 */
+	function setProductAvailabilityCode($productAvailabilityCode) {
+		return $this->setData('productAvailabilityCode', $productAvailabilityCode);
+	}
+
+	/**
+	 * Get the height of the monograph format.
 	 * @return string
 	 */
 	function getHeight() {
@@ -144,15 +169,31 @@ class AssignedPublicationFormat extends PublicationFormat {
 	}
 
 	/**
-	 * Get the height unit (ONIX value) of the monograph format (List50)
+	 * Set the height of a publication format.
+	 * @param string $height
+	 */
+	function setHeight($height) {
+		return $this->setData('height', $height);
+	}
+
+	/**
+	 * Get the height unit (ONIX value) of the monograph format (List50).
 	 * @return string
 	 */
-	function getHeightUnit() {
+	function getHeightUnitCode() {
 		return $this->getData('heightUnitCode');
 	}
 
 	/**
-	 * Get the width of the monograph format
+	 * Set the height unit (ONIX value) for a publication format.
+	 * @param string $heightUnitCode
+	 */
+	function setHeightUnitCode($heightUnitCode) {
+		return $this->setData('heightUnitCode', $heightUnitCode);
+	}
+
+	/**
+	 * Get the width of the monograph format.
 	 * @return string
 	 */
 	function getWidth() {
@@ -160,15 +201,31 @@ class AssignedPublicationFormat extends PublicationFormat {
 	}
 
 	/**
-	 * Get the width unit (ONIX value) of the monograph format (List50)
+	 * Set the width of a publication format.
+	 * @param string $width
+	 */
+	function setWidth($width) {
+		return $this->setData('width', $width);
+	}
+
+	/**
+	 * Get the width unit code (ONIX value) of the monograph format (List50).
 	 * @return string
 	 */
-	function getWidthUnit() {
+	function getWidthUnitCode() {
 		return $this->getData('widthUnitCode');
 	}
 
 	/**
-	 * Get the thickness of the monograph format
+	 * Set the width unit code (ONIX value) for a publication format.
+	 * @param string $widthUnitCode
+	 */
+	function setWidthUnitCode($widthUnitCode) {
+		return $this->setData('widthUnitCode', $widthUnitCode);
+	}
+
+	/**
+	 * Get the thickness of the monograph format.
 	 * @return string
 	 */
 	function getThickness() {
@@ -176,15 +233,31 @@ class AssignedPublicationFormat extends PublicationFormat {
 	}
 
 	/**
-	 * Get the thickness unit (ONIX value) of the monograph format (List50)
+	 * Set the thickness of a publication format.
+	 * @param string $thinkness
+	 */
+	function setThickness($thickness) {
+		return $this->setData('thickness', $thickness);
+	}
+
+	/**
+	 * Get the thickness unit code (ONIX value) of the monograph format (List50).
 	 * @return string
 	 */
-	function getThicknessUnit() {
+	function getThicknessUnitCode() {
 		return $this->getData('thicknessUnitCode');
 	}
 
 	/**
-	 * Get the weight of the monograph format
+	 * Set the thickness unit code (ONIX value) for a publication format.
+	 * @param string $thicknessUnitCode
+	 */
+	function setThicknessUnitCode($thicknessUnitCode) {
+		return $this->setData('thicknessUnitCode', $thicknessUnitCode);
+	}
+
+	/**
+	 * Get the weight of the monograph format.
 	 * @return string
 	 */
 	function getWeight() {
@@ -192,15 +265,31 @@ class AssignedPublicationFormat extends PublicationFormat {
 	}
 
 	/**
-	 * Get the weight unit (ONIX value) of the monograph format (List95)
+	 * Set the weight for a publication format.
+	 * @param string $weight
+	 */
+	function setWeight($weight) {
+		return $this->setData('weight', $weight);
+	}
+
+	/**
+	 * Get the weight unit code (ONIX value) of the monograph format (List95).
 	 * @return string
 	 */
-	function getWeightUnit() {
+	function getWeightUnitCode() {
 		return $this->getData('weightUnitCode');
 	}
 
 	/**
-	 * Get the file size, if applicable, of the monograph format
+	 * Set the weight unit code (ONIX value) for a publication format.
+	 * @param string $weightUnitCode
+	 */
+	function setWeightUnitCode($weightUnitCode) {
+		return $this->setData('weightUnitCode', $weightUnitCode);
+	}
+
+	/**
+	 * Get the file size of the monograph format.
 	 * @return string
 	 */
 	function getFileSize() {
@@ -208,7 +297,15 @@ class AssignedPublicationFormat extends PublicationFormat {
 	}
 
 	/**
-	 * Get the SalesRights objects for this format
+	 * Set the file size of the publication format.
+	 * @param string $fileSize
+	 */
+	function setFileSize($fileSize) {
+		return $this->setData('fileSize', $fileSize);
+	}
+
+	/**
+	 * Get the SalesRights objects for this format.
 	 * @return Array SalesRights
 	 */
 	function getSalesRights() {
@@ -217,9 +314,8 @@ class AssignedPublicationFormat extends PublicationFormat {
 		return $salesRights;
 	}
 
-
 	/**
-	 * Get the IdentificationCode objects for this format
+	 * Get the IdentificationCode objects for this format.
 	 * @return Array IdentificationCode
 	 */
 	function getIdentificationCodes() {
@@ -229,7 +325,7 @@ class AssignedPublicationFormat extends PublicationFormat {
 	}
 
 	/**
-	 * Get the PublicationDate objects for this format
+	 * Get the PublicationDate objects for this format.
 	 * @return Array PublicationDate
 	 */
 	function getPublicationDates() {
@@ -239,7 +335,7 @@ class AssignedPublicationFormat extends PublicationFormat {
 	}
 
 	/**
-	 * Get the ONIX code for the format used for this format (List151)
+	 * Get the product form detail code (ONIX value) for the format used for this format (List151).
 	 * @return string
 	 */
 	function getProductFormDetailCode() {
@@ -247,7 +343,15 @@ class AssignedPublicationFormat extends PublicationFormat {
 	}
 
 	/**
-	 * Get the ONIX code for the composition used for this format (List2)
+	 * Set the product form detail code (ONIX value) for a publication format.
+	 * @param string $productFormDetailCode
+	 */
+	function setProductFormDetailCode($productFormDetailCode) {
+		return $this->setData('productFormDetailCode', $productFormDetailCode);
+	}
+
+	/**
+	 * Get the product composition code (ONIX value) used for this format (List2).
 	 * @return string
 	 */
 	function getProductCompositionCode() {
@@ -255,7 +359,15 @@ class AssignedPublicationFormat extends PublicationFormat {
 	}
 
 	/**
-	 * Get the ONIX code for the currency code used for this format (List96)
+	 * Set the product composition code (ONIX value) for a publication format.
+	 * @param string $productCompositionCode
+	 */
+	function setProductCompositionCode($productCompositionCode) {
+		return $this->setData('productCompositionCode', $productCompositionCode);
+	}
+
+	/**
+	 * Get thecurrency code (ONIX value) used for this format (List96).
 	 * @return string
 	 */
 	function getCurrencyCode() {
@@ -263,7 +375,15 @@ class AssignedPublicationFormat extends PublicationFormat {
 	}
 
 	/**
-	 * Get the price
+	 * Set the currency code (ONIX value) for a publication format.
+	 * @param string $currencyCode
+	 */
+	function setCurrencyCode($currencyCode) {
+		return $this->setData('currencyCode', $currencyCode);
+	}
+
+	/**
+	 * Get the price.
 	 * @return string
 	 */
 	function getPrice() {
@@ -271,7 +391,15 @@ class AssignedPublicationFormat extends PublicationFormat {
 	}
 
 	/**
-	 * Get the ONIX code for the price type code used for this format (List58)
+	 * Set the price.
+	 * @param string $price
+	 */
+	function setPrice($price) {
+		return $this->setData('price', $price);
+	}
+
+	/**
+	 * Get the price type code (ONIX code) used for this format (List58).
 	 * @return string
 	 */
 	function getPriceTypeCode() {
@@ -279,7 +407,15 @@ class AssignedPublicationFormat extends PublicationFormat {
 	}
 
 	/**
-	 * Get the ONIX code for the tax rate code used for this format (List62)
+	 * Set the price type code (ONIX code) for a publication format.
+	 * @param string $priceTypeCode
+	 */
+	function setPriceTypeCode($priceTypeCode) {
+		return $this->setData('priceTypeCode', $priceTypeCode);
+	}
+
+	/**
+	 * Get the tax rate code (ONIX value) used for this format (List62).
 	 * @return string
 	 */
 	function getTaxRateCode() {
@@ -287,7 +423,15 @@ class AssignedPublicationFormat extends PublicationFormat {
 	}
 
 	/**
-	 * Get the ONIX code for the tax type code used for this format (List171)
+	 * Set the tax rate code (ONIX value) for a publication format.
+	 * @param string $taxRateCode
+	 */
+	function setTaxRateCode($taxRateCode) {
+		return $this->setData('taxRateCode', $taxRateCode);
+	}
+
+	/**
+	 * Get the tax type code used (ONIX value) for this format (List171).
 	 * @return string
 	 */
 	function getTaxTypeCode() {
@@ -295,27 +439,59 @@ class AssignedPublicationFormat extends PublicationFormat {
 	}
 
 	/**
-	 * Get the page count for the front matter section of a publication format
+	 * Set the tax type code (ONIX value) for a publication format.
+	 * @param string $taxTypeCode
+	 */
+	function setTaxTypeCode($taxTypeCode) {
+		return $this->setData('taxTypeCode', $taxTypeCode);
+	}
+
+	/**
+	 * Get the page count for the front matter section of a publication format.
 	 * @return string
 	 */
-	function getFrontMatterPageCount() {
+	function getFrontMatter() {
 		return $this->getData('frontMatter');
 	}
 
 	/**
-	 * Get the page count for the back matter section of a publication format
+	 * Set the front matter page count for a publication format.
+	 * @param string $frontMatter
+	 */
+	function setFrontMatter($frontMatter) {
+		return $this->setData('frontMatter', $frontMatter);
+	}
+
+	/**
+	 * Get the page count for the back matter section of a publication format.
 	 * @return string
 	 */
-	function getBackMatterPageCount() {
+	function getBackMatter() {
 		return $this->getData('backMatter');
 	}
 
 	/**
-	 * Get the imprint brand name for a publication format
+	 * Set the back matter page count for a publication format.
+	 * @param string $backMatter
+	 */
+	function setBackMatter($backMatter) {
+		return $this->setData('backMatter', $backMatter);
+	}
+
+	/**
+	 * Get the imprint brand name for a publication format.
 	 * @return string
 	 */
 	function getImprint() {
 		return $this->getData('imprint');
+	}
+
+	/**
+	 * Set the imprint brand name for a publication format.
+	 * @param string $imprint
+	 */
+	function setImprint($imprint) {
+		return $this->setData('imprint', $imprint);
 	}
 }
 ?>

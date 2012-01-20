@@ -576,6 +576,28 @@
 			<NOTNULL/>
 			<DEFAULT VALUE="0"/>
 		</field>
+		<field name="file_size" type="C2" size="255"/>
+		<field name="front_matter" type="C2" size="255"/>
+		<field name="back_matter" type="C2" size="255"/>
+		<field name="height" type="C2" size="255"/>
+		<field name="height_unit_code" type="C2" size="255"/>
+		<field name="width" type="C2" size="255"/>
+		<field name="width_unit_code" type="C2" size="255"/>
+		<field name="thickness" type="C2" size="255"/>
+		<field name="thickness_unit_code" type="C2" size="255"/>
+		<field name="weight" type="C2" size="255"/>
+		<field name="weight_unit_code" type="C2" size="255"/>
+		<field name="product_composition_code" type="C2" size="255"/>
+		<field name="product_form_detail_code" type="C2" size="255"/>
+		<field name="price" type="C2" size="255"/>
+		<field name="price_type_code" type="C2" size="255"/>
+		<field name="currency_code" type="C2" size="255"/>
+		<field name="tax_rate_code" type="C2" size="255"/>
+		<field name="tax_type_code" type="C2" size="255"/>
+		<field name="countries_included_code" type="X" />
+		<field name="country_manufacture_code" type="C2" size="255" />
+		<field name="imprint" type="C2" size="255"/>
+		<field name="product_availability_code" type="C2" size="255"/>
 		<descr>Publication formats assigned to published monographs</descr>
 		<index name="published_monographs_monograph_id">
 			<col>monograph_id</col>

@@ -90,31 +90,34 @@ class CatalogEntryPublicationMetadataForm extends Form {
 			$templateMgr->assign($templateVarName, $onixCodelistItemDao->getCodes($list));
 		}
 
-		// assign sensible defaults to some of these.  They will be overridden below by
-		// specific settings in the format if the format's value is not empty
-
-		$templateMgr->assign('currencyCode', 'CAD');
-		$templateMgr->assign('taxTypeCode', '02'); // GST
-		$templateMgr->assign('countriesIncludedCode', array('CA'));
-		$templateMgr->assign('countryManufactureCode', 'CA');
-		$templateMgr->assign('heightUnitCode', 'mm');
-		$templateMgr->assign('widthUnitCode', 'mm');
-		$templateMgr->assign('thicknessUnitCode', 'mm');
-		$templateMgr->assign('weightUnitCode', 'gr');
-		$templateMgr->assign('productAvailabilityCode', '20'); // Available
-
 		$assignedPublicationFormatId =& $this->getAssignedPublicationFormatId();
 		$assignedPublicationFormatDao =& DAORegistry::getDAO('AssignedPublicationFormatDAO');
 		$assignedPublicationFormat =& $assignedPublicationFormatDao->getById($assignedPublicationFormatId);
 
 		if ($assignedPublicationFormat) {
-			// pre-select the existing values on the form.
-			foreach ($assignedPublicationFormatDao->getAdditionalFieldNames() as $fieldName) {
-				$data =& $assignedPublicationFormat->getData($fieldName);
-				if ($data != null && $data != '') {
-					$templateMgr->assign($fieldName, $assignedPublicationFormat->getData($fieldName));
-				}
-			}
+			// assign template variables, provide defaults for new formats
+			$templateMgr->assign('fileSize', $assignedPublicationFormat->getFileSize());
+			$templateMgr->assign('frontMatter', $assignedPublicationFormat->getFrontMatter());
+			$templateMgr->assign('backMatter', $assignedPublicationFormat->getBackMatter());
+			$templateMgr->assign('height', $assignedPublicationFormat->getHeight());
+			$templateMgr->assign('heightUnitCode', $assignedPublicationFormat->getHeightUnitCode() != '' ? $assignedPublicationFormat->getHeightUnitCode() : 'mm');
+			$templateMgr->assign('width', $assignedPublicationFormat->getWidth());
+			$templateMgr->assign('widthUnitCode', $assignedPublicationFormat->getWidthUnitCode() != '' ? $assignedPublicationFormat->getWidthUnitCode() : 'mm');
+			$templateMgr->assign('thickness', $assignedPublicationFormat->getThickness());
+			$templateMgr->assign('thicknesUnitCode', $assignedPublicationFormat->getThicknessUnitCode() != '' ? $assignedPublicationFormat->getThicknessUnitCode() : 'mm');
+			$templateMgr->assign('weight', $assignedPublicationFormat->getWeight());
+			$templateMgr->assign('weightUnitCode', $assignedPublicationFormat->getWeightUnitCode() != '' ? $assignedPublicationFormat->getWeightUnitCode() : 'gr');
+			$templateMgr->assign('productCompositionCode', $assignedPublicationFormat->getProductCompositionCode());
+			$templateMgr->assign('productFormDetailCode', $assignedPublicationFormat->getProductFormDetailCode());
+			$templateMgr->assign('price', $assignedPublicationFormat->getPrice());
+			$templateMgr->assign('priceTypeCode', $assignedPublicationFormat->getPriceTypeCode());
+			$templateMgr->assign('currencyCode', $assignedPublicationFormat->getCurrencyCode() != '' ? $assignedPublicationFormat->getCurrencyCode() : 'CAD');
+			$templateMgr->assign('taxRateCode', $assignedPublicationFormat->getTaxRateCode());
+			$templateMgr->assign('taxTypeCode', $assignedPublicationFormat->getTaxTypeCode() != '' ? $assignedPublicationFormat->getTaxTypeCode() : '02');
+			$templateMgr->assign('countriesIncludedCode', sizeof($assignedPublicationFormat->getCountriesIncludedCode()) > 0 ? $assignedPublicationFormat->getCountriesIncludedCode() : array('CA'));
+			$templateMgr->assign('countryManufactureCode', $assignedPublicationFormat->getCountryManufactureCode() != '' ? $assignedPublicationFormat->getCountryManufactureCode() : 'CA');
+			$templateMgr->assign('imprint', $assignedPublicationFormat->getImprint());
+			$templateMgr->assign('productAvailabilityCode', $assignedPublicationFormat->getProductAvailabilityCode() != '' ? $assignedPublicationFormat->getProductAvailabilityCode() : '20');
 		}
 
 		return parent::fetch($request);
@@ -170,15 +173,33 @@ class CatalogEntryPublicationMetadataForm extends Form {
 
 		$assignedPublicationFormatDao =& DAORegistry::getDAO('AssignedPublicationFormatDAO');
 		$assignedPublicationFormat =& $assignedPublicationFormatDao->getById($this->getAssignedPublicationFormatId());
-		$isExistingEntry = $assignedPublicationFormat?true:false;
 
 		// populate the published monograph with the cataloging metadata
-		if ($isExistingEntry) {
-			foreach ($assignedPublicationFormatDao->getAdditionalFieldNames() as $fieldName) {
-				$assignedPublicationFormat->setData($fieldName, $this->getData($fieldName));
-			}
+		if (isset($assignedPublicationFormat)) {
+			$assignedPublicationFormat->setFileSize($this->getData('fileSize'));
+			$assignedPublicationFormat->setFrontMatter($this->getData('frontMatter'));
+			$assignedPublicationFormat->setBackMatter($this->getData('backMatter'));
+			$assignedPublicationFormat->setHeight($this->getData('height'));
+			$assignedPublicationFormat->setHeightUnitCode($this->getData('heightUnitCode'));
+			$assignedPublicationFormat->setWidth($this->getData('width'));
+			$assignedPublicationFormat->setWidthUnitCode($this->getData('widthUnitCode'));
+			$assignedPublicationFormat->setThickness($this->getData('thickness'));
+			$assignedPublicationFormat->setThicknessUnitCode($this->getData('thicknessUnitCode'));
+			$assignedPublicationFormat->setWeight($this->getData('weight'));
+			$assignedPublicationFormat->setWeightUnitCode($this->getData('weightUnitCode'));
+			$assignedPublicationFormat->setProductCompositionCode($this->getData('productCompositionCode'));
+			$assignedPublicationFormat->setProductFormDetailCode($this->getData('productFormDetailCode'));
+			$assignedPublicationFormat->setPrice($this->getData('price'));
+			$assignedPublicationFormat->setPriceTypeCode($this->getData('priceTypeCode'));
+			$assignedPublicationFormat->setCurrencyCode($this->getData('currencyCode'));
+			$assignedPublicationFormat->setTaxRateCode($this->getData('taxRateCode'));
+			$assignedPublicationFormat->setTaxTypeCode($this->getData('taxTypeCode'));
+			$assignedPublicationFormat->setCountriesIncludedCode($this->getData('countriesIncludedCode'));
+			$assignedPublicationFormat->setCountryManufactureCode($this->getData('countryManufactureCode'));
+			$assignedPublicationFormat->setImprint($this->getData('imprint'));
+			$assignedPublicationFormat->setProductAvailabilityCode($this->getData('productAvailabilityCode'));
 
-			$assignedPublicationFormatDao->updateLocaleFields($assignedPublicationFormat);
+			$assignedPublicationFormatDao->updateObject($assignedPublicationFormat);
 		} else {
 			fatalError('No valid assigned publication format!');
 		}

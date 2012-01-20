@@ -103,11 +103,11 @@ class AssignedPublicationFormatDAO extends PublicationFormatDAO {
 	 * Update the settings for this object
 	 * @param $assignedPublicationFormat object
 	 */
-	function updateLocaleFields(&$publicationFormat) {
+	function updateLocaleFields(&$assignedPublicationFormat) {
 		$this->updateDataObjectSettings(
 			'published_monograph_publication_format_settings',
-			$publicationFormat,
-			array('assigned_publication_format_id' => $publicationFormat->getAssignedPublicationFormatId())
+			$assignedPublicationFormat,
+			array('assigned_publication_format_id' => $assignedPublicationFormat->getAssignedPublicationFormatId())
 		);
 	}
 
@@ -127,17 +127,39 @@ class AssignedPublicationFormatDAO extends PublicationFormatDAO {
 	 */
 	function &_fromRow(&$row, $callHooks = true) {
 		// Get the Publication Format object, populated with its data
-		$publicationFormat =& parent::_fromRow($row, $callHooks);
+		$assignedPublicationFormat =& parent::_fromRow($row, $callHooks);
 
 		// Add the additional Assigned Publication Format data
-		$publicationFormat->setSeq($row['seq']);
-		$publicationFormat->setAssignedPublicationFormatId($row['assigned_publication_format_id']);
-		$publicationFormat->setMonographId($row['monograph_id']);
+		$assignedPublicationFormat->setSeq($row['seq']);
+		$assignedPublicationFormat->setAssignedPublicationFormatId($row['assigned_publication_format_id']);
+		$assignedPublicationFormat->setMonographId($row['monograph_id']);
+		$assignedPublicationFormat->setFileSize($row['file_size']);
+		$assignedPublicationFormat->setFrontMatter($row['front_matter']);
+		$assignedPublicationFormat->setBackMatter($row['back_matter']);
+		$assignedPublicationFormat->setHeight($row['height']);
+		$assignedPublicationFormat->setHeightUnitCode($row['height_unit_code']);
+		$assignedPublicationFormat->setWidth($row['width']);
+		$assignedPublicationFormat->setWidthUnitCode($row['width_unit_code']);
+		$assignedPublicationFormat->setThickness($row['thickness']);
+		$assignedPublicationFormat->setThicknessUnitCode($row['thickness_unit_code']);
+		$assignedPublicationFormat->setWeight($row['weight']);
+		$assignedPublicationFormat->setWeightUnitCode($row['weight_unit_code']);
+		$assignedPublicationFormat->setProductCompositionCode($row['product_composition_code']);
+		$assignedPublicationFormat->setProductFormDetailCode($row['product_form_detail_code']);
+		$assignedPublicationFormat->setPrice($row['price']);
+		$assignedPublicationFormat->setPriceTypeCode($row['price_type_code']);
+		$assignedPublicationFormat->setCurrencyCode($row['currency_code']);
+		$assignedPublicationFormat->setTaxRateCode($row['tax_rate_code']);
+		$assignedPublicationFormat->setTaxTypeCode($row['tax_type_code']);
+		$assignedPublicationFormat->setCountriesIncludedCode(unserialize($row['countries_included_code']));
+		$assignedPublicationFormat->setCountryManufactureCode($row['country_manufacture_code']);
+		$assignedPublicationFormat->setImprint($row['imprint']);
+		$assignedPublicationFormat->setProductAvailabilityCode($row['product_availability_code']);
 
-		$this->getDataObjectSettings('published_monograph_publication_format_settings', 'assigned_publication_format_id', $row['assigned_publication_format_id'], $publicationFormat);
+		$this->getDataObjectSettings('published_monograph_publication_format_settings', 'assigned_publication_format_id', $row['assigned_publication_format_id'], $assignedPublicationFormat);
 
-		if ($callHooks) HookRegistry::call('AssignedPublicationFormatDAO::_fromRow', array(&$publicationFormat, &$row));
-		return $publicationFormat;
+		if ($callHooks) HookRegistry::call('AssignedPublicationFormatDAO::_fromRow', array(&$assignedPublicationFormat, &$row));
+		return $assignedPublicationFormat;
 	}
 
 	/**
@@ -147,13 +169,35 @@ class AssignedPublicationFormatDAO extends PublicationFormatDAO {
 	function insertObject(&$assignedPublicationFormat) {
 		$this->update(
 			'INSERT INTO published_monograph_publication_formats
-				(monograph_id, publication_format_id, seq)
+				(monograph_id, publication_format_id, seq, file_size, front_matter, back_matter, height, height_unit_code, width, width_unit_code, thickness, thickness_unit_code, weight, weight_unit_code, product_composition_code, product_form_detail_code, price, price_type_code, currency_code, tax_rate_code, tax_type_code, countries_included_code, country_manufacture_code, imprint, product_availability_code)
 			VALUES
-				(?, ?, ?)',
+				(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
 			array(
 				(int) $assignedPublicationFormat->getMonographId(),
 				(int) $assignedPublicationFormat->getId(),
-				(int) $assignedPublicationFormat->getSeq()
+				(int) $assignedPublicationFormat->getSeq(),
+				$assignedPublicationFormat->getFileSize(),
+				$assignedPublicationFormat->getFrontMatter(),
+				$assignedPublicationFormat->getBackMatter(),
+				$assignedPublicationFormat->getHeight(),
+				$assignedPublicationFormat->getHeightUnitCode(),
+				$assignedPublicationFormat->getWidth(),
+				$assignedPublicationFormat->getWidthUnitCode(),
+				$assignedPublicationFormat->getThickness(),
+				$assignedPublicationFormat->getThicknessUnitCode(),
+				$assignedPublicationFormat->getWeight(),
+				$assignedPublicationFormat->getWeightUnitCode(),
+				$assignedPublicationFormat->getProductCompositionCode(),
+				$assignedPublicationFormat->getProductFormDetailCode(),
+				$assignedPublicationFormat->getPrice(),
+				$assignedPublicationFormat->getPriceTypeCode(),
+				$assignedPublicationFormat->getCurrencyCode(),
+				$assignedPublicationFormat->getTaxRateCode(),
+				$assignedPublicationFormat->getTaxTypeCode(),
+				serialize($assignedPublicationFormat->getCountriesIncludedCode() ? $assignedPublicationFormat->getCountriesIncludedCode() : array()),
+				$assignedPublicationFormat->getCountryManufactureCode(),
+				$assignedPublicationFormat->getImprint(),
+				$assignedPublicationFormat->getProductAvailabilityCode()
 			)
 		);
 
@@ -168,11 +212,56 @@ class AssignedPublicationFormatDAO extends PublicationFormatDAO {
 	function updateObject(&$assignedPublicationFormat) {
 		$this->update(
 			'UPDATE published_monograph_publication_formats
-			SET publication_format_id = ?, seq = ?
+			SET	publication_format_id = ?,
+				seq = ?,
+				file_size = ?,
+				front_matter = ?,
+				back_matter = ?,
+				height = ?,
+				height_unit_code = ?,
+				width = ?,
+				width_unit_code = ?,
+				thickness = ?,
+				thickness_unit_code = ?,
+				weight = ?,
+				weight_unit_code = ?,
+				product_composition_code = ?,
+				product_form_detail_code = ?,
+				price = ?,
+				price_type_code = ?,
+				currency_code = ?,
+				tax_rate_code = ?,
+				tax_type_code = ?,
+				countries_included_code = ?,
+				country_manufacture_code = ?,
+				imprint = ?,
+				product_availability_code = ?
 			WHERE assigned_publication_format_id = ?',
 			array(
 				(int) $assignedPublicationFormat->getId(),
 				(int) $assignedPublicationFormat->getSeq(),
+				$assignedPublicationFormat->getFileSize(),
+				$assignedPublicationFormat->getFrontMatter(),
+				$assignedPublicationFormat->getBackMatter(),
+				$assignedPublicationFormat->getHeight(),
+				$assignedPublicationFormat->getHeightUnitCode(),
+				$assignedPublicationFormat->getWidth(),
+				$assignedPublicationFormat->getWidthUnitCode(),
+				$assignedPublicationFormat->getThickness(),
+				$assignedPublicationFormat->getThicknessUnitCode(),
+				$assignedPublicationFormat->getWeight(),
+				$assignedPublicationFormat->getWeightUnitCode(),
+				$assignedPublicationFormat->getProductCompositionCode(),
+				$assignedPublicationFormat->getProductFormDetailCode(),
+				$assignedPublicationFormat->getPrice(),
+				$assignedPublicationFormat->getPriceTypeCode(),
+				$assignedPublicationFormat->getCurrencyCode(),
+				$assignedPublicationFormat->getTaxRateCode(),
+				$assignedPublicationFormat->getTaxTypeCode(),
+				serialize($assignedPublicationFormat->getCountriesIncludedCode() ? $assignedPublicationFormat->getCountriesIncludedCode() : array()),
+				$assignedPublicationFormat->getCountryManufactureCode(),
+				$assignedPublicationFormat->getImprint(),
+				$assignedPublicationFormat->getProductAvailabilityCode(),
 				(int) $assignedPublicationFormat->getAssignedPublicationFormatId()
 			)
 		);
@@ -199,37 +288,6 @@ class AssignedPublicationFormatDAO extends PublicationFormatDAO {
 	 */
 	function getLocaleFieldNames() {
 		return array('title');
-	}
-
-	/**
-	 * Get a list of fields for which we store (non-localized) data
-	 * @return array
-	 */
-	function getAdditionalFieldNames() {
-		return array(
-			'fileSize', // no companion unit code, template asks for Mb.
-			'frontMatter',
-			'backMatter',
-			'height',
-			'heightUnitCode',
-			'width',
-			'widthUnitCode',
-			'thickness',
-			'thicknessUnitCode',
-			'weight',
-			'weightUnitCode',
-			'productCompositionCode',
-			'productFormDetailCode',
-			'price',
-			'priceTypeCode',
-			'currencyCode',
-			'taxRateCode',
-			'taxTypeCode',
-			'countriesIncludedCode',
-			'countryManufactureCode',
-			'imprint',
-			'productAvailabilityCode'
-		);
 	}
 }
 ?>
