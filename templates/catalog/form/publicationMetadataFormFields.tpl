@@ -45,9 +45,8 @@
 
 	{fbvFormArea id="productComposition" title="monograph.publicationFormat.productComposition" border="true"}
 		{fbvFormSection for="productCompositionCode"}
-			{fbvElement type="select" from=$productCompositionCodes required=true selected=$productCompositionCode translate=false id="productCompositionCode" defaultValue="" defaultLabel="" size=$fbvStyles.size.SMALL inline=true}
-			{fbvElement type="select" from=$productFormCodes required=true selected=$productFormCode translate=false id="productFormCode"  size=$fbvStyles.size.SMALL inline=true}
-			{fbvElement type="select" label="monograph.publicationFormat.productFormDetailCode" from=$productFormDetailCodes selected=$productFormDetailCode translate=false id="productFormDetailCode" defaultValue="" defaultLabel="" size=$fbvStyles.size.SMALL inline=true}
+			{fbvElement type="select" from=$productCompositionCodes required=true selected=$productCompositionCode translate=false id="productCompositionCode" defaultValue="" defaultLabel="" size=$fbvStyles.size.MEDIUM inline=true}
+			{fbvElement type="select" label="monograph.publicationFormat.productFormDetailCode" from=$productFormDetailCodes selected=$productFormDetailCode translate=false id="productFormDetailCode" defaultValue="" defaultLabel="" size=$fbvStyles.size.MEDIUM inline=true}
 		{/fbvFormSection}
 	{/fbvFormArea}
 
@@ -88,14 +87,10 @@
 		{/fbvFormSection}
 	{/fbvFormArea}
 
-	{if $formatId eq "1"}
-		{include file="catalog/form/publicationFormat1.tpl"}
-	{elseif $formatId eq "2"}
-		{include file="catalog/form/publicationFormat2.tpl"}
-	{elseif $formatId eq "3"}
-		{include file="catalog/form/publicationFormat3.tpl"}
+	{if $isPhysicalFormat}
+		{include file="catalog/form/physicalPublicationFormat.tpl"}
 	{else}
-		{* noop - space for more formats *}
+		{include file="catalog/form/digitalPublicationFormat.tpl"}
 	{/if}
 
 	{fbvFormButtons id="publicationMetadataFormSubmit" submitText="common.save"}

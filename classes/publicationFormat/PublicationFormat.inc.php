@@ -58,6 +58,22 @@ class PublicationFormat extends DataObject {
 	}
 
 	/**
+	 * get physical format flag
+	 * @return int
+	 */
+	function getPhysicalFormat() {
+		return $this->getData('physicalFormat');
+	}
+
+	/**
+	 * set physical format flag
+	 * @param $physicalFormat int
+	 */
+	function setPhysicalFormat($physicalFormat) {
+		return $this->setData('physicalFormat', $physicalFormat);
+	}
+
+	/**
 	 * Set the name of the publication format
 	 * @param $name string
 	 * @param $locale string
@@ -84,45 +100,29 @@ class PublicationFormat extends DataObject {
 	}
 
 	/**
-	 * Set the designation of the publication format
-	 * @param $abbrev string
-	 * @param $locale string
-	 */
-	function setDesignation($abbrev, $locale) {
-		$this->setData('designation', $abbrev, $locale);
-	}
-
-	/**
-	 * Get the designation of the publication format
-	 * @param $locale string
+	 * Get the ONIX code for this publication format
 	 * @return string
 	 */
-	function getDesignation($locale) {
-		return $this->getData('designation', $locale);
+	function getEntryKey() {
+		return $this->getData('entryKey');
 	}
 
 	/**
-	 * Get the localized designation of the publication format
-	 * @return string
-	 */
-	function getLocalizedDesignation() {
-		return $this->getLocalizedData('designation');
-	}
-
-	/**
-	 * Sets the entry key for the publication format
-	 * @param string $entryKey
+	 * Sets the ONIX code for the publication format
+	 * @param string $code
 	 */
 	function setEntryKey($entryKey) {
 		$this->setData('entryKey', $entryKey);
 	}
 
 	/**
-	 * Get the entry key for this publication format
+	 * Get the human readable name for this ONIX code
 	 * @return string
 	 */
-	function getEntryKey() {
-		return $this->getData('entryKey');
+	function getNameForONIXCode() {
+		$onixCodelistItemDao =& DAORegistry::getDAO('ONIXCodelistItemDAO');
+		$codes =& $onixCodelistItemDao->getCodes('List150'); // List150 is for object formats
+		return $codes[$this->getEntryKey()];
 	}
 }
 

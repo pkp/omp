@@ -239,14 +239,6 @@ class AssignedPublicationFormat extends PublicationFormat {
 	}
 
 	/**
-	 * Get the ONIX code for the format used for this format (List7)
-	 * @return string
-	 */
-	function getProductFormCode() {
-		return $this->getData('productFormCode');
-	}
-
-	/**
 	 * Get the ONIX code for the format used for this format (List151)
 	 * @return string
 	 */

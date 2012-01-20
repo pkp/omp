@@ -69,11 +69,24 @@ class PublicationFormatDAO extends DefaultSettingDAO {
 	}
 
 	/**
+	 * Retrieve all publication formats
+	 * @return array PublicationFormat
+	 */
+	function &getByPressId($pressId) {
+		$result =& $this->retrieve(
+			'SELECT * FROM publication_formats WHERE press_id = ?', array($pressId)
+		);
+
+		$returner = new DAOResultFactory($result, $this, '_fromRow');
+		return $returner;
+	}
+
+	/**
 	 * Get a list of field names for which data is localized.
 	 * @return array
 	 */
 	function getLocaleFieldNames() {
-		return array('name', 'designation');
+		return array('name');
 	}
 
 	/**
@@ -104,6 +117,7 @@ class PublicationFormatDAO extends DefaultSettingDAO {
 		$publicationFormat->setPressId($row['press_id']);
 		$publicationFormat->setId($row['publication_format_id']);
 		$publicationFormat->setEnabled($row['enabled']);
+		$publicationFormat->setPhysicalFormat($row['physical_format']);
 		$publicationFormat->setEntryKey($row['entry_key']);
 
 		$this->getDataObjectSettings('publication_format_settings', 'publication_format_id', $row['publication_format_id'], $publicationFormat);
@@ -118,12 +132,14 @@ class PublicationFormatDAO extends DefaultSettingDAO {
 	function insertObject(&$publicationFormat) {
 		$this->update(
 			'INSERT INTO publication_formats
-				(press_id, enabled)
+				(press_id, enabled, physical_format, entry_key)
 			VALUES
-				(?, ?)',
+				(?, ?, ?)',
 			array(
 				(int) $publicationFormat->getPressId(),
-				$publicationFormat->getEnabled()?1:0
+				$publicationFormat->getEnabled()?1:0,
+				$publicationFormat->getPhysicalFormat()?1:0,
+				$publicationFormat->getEntryKey()
 			)
 		);
 
@@ -139,22 +155,38 @@ class PublicationFormatDAO extends DefaultSettingDAO {
 	 * @param $publicationFormat PublicationFormat
 	 */
 	function updateObject(&$publicationFormat) {
-
+		$this->update(
+			'UPDATE publication_formats
+			SET entry_key = ?, enabled = ?, physical_format = ?
+			WHERE publication_format_id = ?',
+			array(
+				$publicationFormat->getEntryKey(),
+				$publicationFormat->getEnabled(),
+				$publicationFormat->getPhysicalFormat()?1:0,
+				(int) $publicationFormat->getId()
+			)
+		);
 		$this->updateLocaleFields($publicationFormat);
 	}
 
 	/**
-	 * Soft delete a publication format by id.
+	 * Delete an existing publication format.
+	 * @param $publicationFormat PublicationFormat
+	 */
+	function deleteObject(&$publicationFormat) {
+		return $this->deleteById($publicationFormat->getId());
+	}
+
+	/**
+	 * delete a publication format by id.
 	 * @param $publicationFormatId int
 	 */
 	function deleteById($publicationFormatId, $pressId = null) {
-		$params = array(0, (int) $publicationFormatId);
+		$params = array((int) $publicationFormatId);
 		if ($pressId) $params[] = (int) $pressId;
 
 		return $this->update(
-			'UPDATE	publication_formats
-			SET	enabled = ?
-			WHERE	publication_format_id = ?
+			'DELETE FROM publication_formats WHERE publication_format_id = ?
 			' . ($pressId?' AND press_id = ?':''),
 			$params
 		);
@@ -215,10 +247,10 @@ class PublicationFormatDAO extends DefaultSettingDAO {
 			$attrs = $entry['attributes'];
 			$this->update(
 				'INSERT INTO publication_formats
-				(entry_key, press_id, enabled)
+				(entry_key, physical_format, press_id, enabled)
 				VALUES
 				(?, ?, ?)',
-				array($attrs['key'], (int) $pressId, 1)
+				array($attrs['key'], $attrs['physical_format'], (int) $pressId, 1)
 			);
 		}
 		return true;
@@ -232,13 +264,12 @@ class PublicationFormatDAO extends DefaultSettingDAO {
 	 */
 	function &getSettingAttributes($node = null, $locale = null) {
 		if ($node == null) {
-			$settings = array('name', 'designation');
+			$settings = array('name');
 		} else {
 			$localeKey = $node->getAttribute('localeKey');
 
 			$settings = array(
 				'name' => __($localeKey, array(), $locale),
-				'designation' => __($localeKey.'.designation', array(), $locale)
 			);
 		}
 		return $settings;

@@ -43,8 +43,8 @@
 
 	<p>{translate key="manager.setup.publicationFormatsDescription"}</p>
 
-	{url|assign:publicationFormatsUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.PublicationFormatsListbuilderHandler" op="fetch"}
-	{load_url_in_div id="publicationFormatsContainer" url=$publicationFormatsUrl}
+	{url|assign:publicationFormatsGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.formats.PublicationFormatsGridHandler" op="fetchGrid"}
+	{load_url_in_div id="publicationFormatsDiv" url=$publicationFormatsGridUrl}
 
 	<div class="separator"></div>
 

@@ -180,7 +180,7 @@ class CatalogEntryTabHandler extends Handler {
 		while ($format =& $enabledPressFormats->next()) {
 			if ($format->getId() == $publicationFormat->getId()) { // belongs to current press (and is enabled)
 				import('controllers.tab.catalogEntry.form.CatalogEntryPublicationMetadataForm');
-				$catalogEntryPublicationMetadataForm = new CatalogEntryPublicationMetadataForm($monograph, $assignedPublicationFormatId, $format->getId(), $stageId, array('displayedInTab' => true, 'tabPos' => $this->getTabPosition()));
+				$catalogEntryPublicationMetadataForm = new CatalogEntryPublicationMetadataForm($monograph, $assignedPublicationFormatId, $format->getPhysicalFormat(), $stageId, array('displayedInTab' => true, 'tabPos' => $this->getTabPosition()));
 				$catalogEntryPublicationMetadataForm->initData($args, $request);
 				$json = new JSONMessage(true, $catalogEntryPublicationMetadataForm->fetch($request));
 				return $json->getString();

@@ -56,6 +56,17 @@ class AssignedPublicationFormatDAO extends PublicationFormatDAO {
 		return $returner;
 	}
 
+	function getCountByPublicationFormatId($publicationFormatId) {
+		$result =& $this->retrieve(
+			'SELECT	pmpf.*
+			FROM	published_monograph_publication_formats pmpf
+			WHERE	pmpf.publication_format_id = ?', array((int) $publicationFormatId)
+		);
+
+		$returner = $result->RecordCount();
+		return $returner;
+	}
+
 	/**
 	 * Retrieves a list of assigned publication formats for a published monograph
 	 * @param int $monographId
@@ -208,7 +219,6 @@ class AssignedPublicationFormatDAO extends PublicationFormatDAO {
 			'weight',
 			'weightUnitCode',
 			'productCompositionCode',
-			'productFormCode',
 			'productFormDetailCode',
 			'price',
 			'priceTypeCode',

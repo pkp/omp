@@ -483,6 +483,13 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.registerPressForIndexing">Register Press for Indexing (Metadata Harvesting)</message>
 	<message key="manager.setup.publicationFormatsDescription"></message>
 	<message key="manager.setup.publicationFormats">Publication Formats</message>
+	<message key="manager.setup.publicationFormat.name">Your Format Name</message>
+	<message key="manager.setup.publicationFormat.code">Format</message>
+	<message key="manager.setup.publicationFormat.enabled">Enabled?</message>
+	<message key="manager.setup.publicationFormat.codeRequired">A format must be chosen.</message>
+	<message key="manager.setup.publicationFormat.nameRequired">You must assign a name to this format.</message>
+	<message key="manager.setup.publicationFormat.physicalFormat">Is this a physical (non-digital) format?</message>
+	<message key="manager.setup.publicationFormat.inUse">Because this publication format is currently in use by a monograph in your press, it cannot be deleted.</message>
 	<message key="manager.setup.newPublicationFormat">New Publication Format</message>
 	<message key="manager.setup.newPublicationFormatDescription">To create a new publication format, fill out the form below and click the 'Create' button.</message>
 	<message key="manager.setup.genresDescription">These genres are used for file-naming purposes and are presented in a pull-down menu on uploading files. The genres designated ## allow the user to associate the file with either the whole book 99Z or a particular chapter by number (e.g., 02).</message>

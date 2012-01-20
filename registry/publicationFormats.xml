@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  * publicationFormats.xml
+  * registry/publicationFormats.xml
   *
   * Copyright (c) 2003-2012 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
-  * Email templates XML file.
+  * Publication Formats XML file.
   -->
 <publicationFormats>
-	<publicationFormat key="EBOOK" localeKey="default.publicationFormats.ebook"/>
-	<publicationFormat key="HARDCOVER" localeKey="default.publicationFormats.hardcover"/>
-	<publicationFormat key="SOFTCOVER" localeKey="default.publicationFormats.softcover"/>
+	<publicationFormat key="EA" physical_format="0" localeKey="default.publicationFormats.ebook"/>
+	<publicationFormat key="BB" physical_format="1" localeKey="default.publicationFormats.hardcover"/>
+	<publicationFormat key="BC" physical_format="1" localeKey="default.publicationFormats.softcover"/>
 </publicationFormats>

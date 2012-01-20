@@ -25,8 +25,8 @@ class CatalogEntryPublicationMetadataForm extends Form {
 	/** The assigned publication format id **/
 	var $_assignedPublicationFormatId;
 
-	/** the parent class id for the assigned format this form is showing **/
-	var $_formatId;
+	/** is this a physical, non-digital format? **/
+	var $_isPhysicalFormat;
 
 	/**
 	 * Parameters to configure the form template.
@@ -37,18 +37,18 @@ class CatalogEntryPublicationMetadataForm extends Form {
 	 * Constructor.
 	 * @param $monograph Monograph
 	 * @param $assignedPublicationFormat integer
-	 * @param $formatId integer
+	 * @param $isPhysicalFormat integer
 	 * @param $stageId integer
 	 * @param $formParams array
 	 */
-	function CatalogEntryPublicationMetadataForm($monograph, $assignedPublicationFormatId, $formatId, $stageId = null, $formParams = null) {
+	function CatalogEntryPublicationMetadataForm($monograph, $assignedPublicationFormatId, $isPhysicalFormat = true, $stageId = null, $formParams = null) {
 		parent::Form('catalog/form/publicationMetadataFormFields.tpl');
 
 		$this->_monograph = $monograph;
 
 		$this->_stageId = $stageId;
 		$this->_assignedPublicationFormatId = $assignedPublicationFormatId;
-		$this->_formatId = $formatId;
+		$this->_isPhysicalFormat = $isPhysicalFormat;
 		$this->_formParams = $formParams;
 	}
 
@@ -63,7 +63,7 @@ class CatalogEntryPublicationMetadataForm extends Form {
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('monographId', $this->getMonograph()->getId());
 		$templateMgr->assign('assignedPublicationFormatId', (int) $this->getAssignedPublicationFormatId());
-		$templateMgr->assign('formatId', (int) $this->getFormatId()); // included to load format-specific template
+		$templateMgr->assign('isPhysicalFormat', (int) $this->getPhysicalFormat()); // included to load format-specific template
 		$templateMgr->assign('stageId', $this->getStageId());
 		$templateMgr->assign('formParams', $this->getFormParams());
 
@@ -82,7 +82,6 @@ class CatalogEntryPublicationMetadataForm extends Form {
 				'taxRateCodes' => 'List62', // higher rate, standard rate, zero rate
 				'taxTypeCodes' => 'List171', // VAT, GST
 				'countriesIncludedCodes' => 'List91', // country region codes
-				'productFormCodes' => 'List150', // ebook, softback, hardback, audio files, etc
 				'productFormDetailCodes' => 'List175', // refinement of product form (SACD, Mass market (rack) paperback, etc)
 				'productAvailabilityCodes' => 'List65', // Available, In Stock, Print On Demand, Not Yet Available, etc
 				);
@@ -107,10 +106,6 @@ class CatalogEntryPublicationMetadataForm extends Form {
 		$assignedPublicationFormatId =& $this->getAssignedPublicationFormatId();
 		$assignedPublicationFormatDao =& DAORegistry::getDAO('AssignedPublicationFormatDAO');
 		$assignedPublicationFormat =& $assignedPublicationFormatDao->getById($assignedPublicationFormatId);
-
-		// provide a default for the product format
-		$defaultProductFormCodes = array('HARDCOVER' => 'BB', 'SOFTCOVER' => 'BC', 'EBOOK' => 'E121');
-		$templateMgr->assign('productFormCode', $defaultProductFormCodes[$assignedPublicationFormat->getEntryKey()]);
 
 		if ($assignedPublicationFormat) {
 			// pre-select the existing values on the form.
@@ -153,7 +148,6 @@ class CatalogEntryPublicationMetadataForm extends Form {
 					'weight',
 					'weightUnitCode',
 					'productCompositionCode',
-					'productFormCode',
 					'productFormDetailCode',
 					'price',
 					'priceTypeCode',
@@ -210,11 +204,11 @@ class CatalogEntryPublicationMetadataForm extends Form {
 	}
 
 	/**
-	 * Get the format id
+	 * Get physical format setting
 	 * @return int
 	 */
-	function getFormatId() {
-		return $this->_formatId;
+	function getPhysicalFormat() {
+		return $this->_isPhysicalFormat;
 	}
 	/**
 	 * Get the assigned publication format id

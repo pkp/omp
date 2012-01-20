@@ -83,11 +83,11 @@ class Onix30ExportDom {
 		$descDetailNode =& XMLCustomWriter::createElement($doc, 'DescriptiveDetail');
 		XMLCustomWriter::appendChild($productNode, $descDetailNode);
 		XMLCustomWriter::createChildWithText($doc, $descDetailNode, 'ProductComposition', $assignedPublicationFormat->getProductCompositionCode()); // single item, trade only, etc
-		XMLCustomWriter::createChildWithText($doc, $descDetailNode, 'ProductForm', $assignedPublicationFormat->getProductFormCode()); // paperback, hardcover, etc
+		XMLCustomWriter::createChildWithText($doc, $descDetailNode, 'ProductForm', $assignedPublicationFormat->getEntryKey()); // paperback, hardcover, etc
 		XMLCustomWriter::createChildWithText($doc, $descDetailNode, 'ProductFormDetail', $assignedPublicationFormat->getProductFormDetailCode(), false); // refinement of ProductForm
 
 		/* --- Physical Book Measurements --- */
-		if ($assignedPublicationFormat->getEntryKey() != 'EBOOK') {
+		if ($assignedPublicationFormat->getPhysicalFormat()) {
 			// '01' => 'Height', '02' => 'Width', '03' => 'Thickness', '08' => 'Weight'
 			$measureNode =& XMLCustomWriter::createElement($doc, 'Measure');
 			XMLCustomWriter::appendChild($descDetailNode, $measureNode);
@@ -220,7 +220,7 @@ class Onix30ExportDom {
 			XMLCustomWriter::createChildWithText($doc, $extentNode, 'ExtentValue', $assignedPublicationFormat->getBackMatterPageCount());
 			XMLCustomWriter::createChildWithText($doc, $extentNode, 'ExtentUnit', '03'); // 03 -> Pages
 		}
-		if ($assignedPublicationFormat->getEntryKey() == 'EBOOK') { // EBooks have extent information about file sizes
+		if (!$assignedPublicationFormat->getPhysicalFormat()) { // EBooks and digital content have extent information about file sizes
 			$extentNode =& XMLCustomWriter::createElement($doc, 'Extent');
 			XMLCustomWriter::appendChild($descDetailNode, $extentNode);
 			XMLCustomWriter::createChildWithText($doc, $extentNode, 'ExtentType', '08');
