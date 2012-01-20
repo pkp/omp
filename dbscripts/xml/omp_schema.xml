@@ -481,6 +481,7 @@
 			<NOTNULL />
 		</field>
 		<field name="series_id" type="I8" />
+		<field name="series_position" type="C2" size="255" />
 		<field name="edited_volume" type="I1">
 			<NOTNULL/>
 			<DEFAULT VALUE="0"/>
