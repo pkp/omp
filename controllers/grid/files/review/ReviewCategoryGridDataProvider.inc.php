@@ -46,9 +46,9 @@ class ReviewCategoryGridDataProvider extends SubmissionFilesCategoryGridDataProv
 	/**
 	 * @see SubmissionFilesCategoryGridDataProvider::getCategoryData()
 	 */
-	function &getCategoryData($categoryDataElement) {
+	function &getCategoryData($categoryDataElement, $filter) {
 		$reviewRound =& $this->getReviewRound();
-		return parent::getCategoryData($categoryDataElement, $reviewRound);
+		return parent::getCategoryData($categoryDataElement, $filter, $reviewRound);
 	}
 
 	/**
