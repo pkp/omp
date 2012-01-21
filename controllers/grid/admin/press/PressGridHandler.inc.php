@@ -250,8 +250,8 @@ class PressGridHandler extends GridHandler {
 				// Delete press file tree
 				// FIXME move this somewhere better.
 				import('classes.file.PressFileManager');
-				$PressFileManager = new PressFileManager($pressId);
-				$PressFileManager->rmtree($privateFileManager->getBasePath());
+				$pressFileManager = new PressFileManager($pressId);
+				$pressFileManager->rmtree($pressFileManager->getBasePath());
 
 				import('classes.file.PublicFileManager');
 				$publicFileManager = new PublicFileManager();
