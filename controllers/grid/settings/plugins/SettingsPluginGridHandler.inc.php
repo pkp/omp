@@ -33,8 +33,8 @@ class SettingsPluginGridHandler extends PluginGridHandler {
 	/**
 	* @see PluginGridHandler::loadData()
 	*/
-	function getCategoryData($categoryDataElement) {
-		$plugins = parent::getCategoryData($categoryDataElement);
+	function getCategoryData($categoryDataElement, $filter) {
+		$plugins = parent::getCategoryData($categoryDataElement, $filter);
 
 		$pressDao =& DAORegistry::getDAO('PressDAO');
 		$presses =& $pressDao->getPresses();
@@ -59,7 +59,7 @@ class SettingsPluginGridHandler extends PluginGridHandler {
 			$pressLevelPlugins = array();
 			foreach ($plugins as $plugin) {
 				if (!$plugin->isSitePlugin()) {
-					$pressLevelPlugins[] = $plugin;
+					$pressLevelPlugins[$plugin->getPluginPath()] = $plugin;
 				}
 				unset($plugin);
 			}

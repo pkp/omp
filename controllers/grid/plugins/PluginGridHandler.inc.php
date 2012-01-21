@@ -57,6 +57,7 @@ class PluginGridHandler extends CategoryGridHandler {
 	}
 
 	/**
+	 * @see GridHandler::initialize()
 	 */
 	function initialize(&$request) {
 		parent::initialize($request);
@@ -96,6 +97,38 @@ class PluginGridHandler extends CategoryGridHandler {
 	}
 
 	/**
+	 * @see GridHandler::getFilterForm()
+	 */
+	function getFilterForm() {
+		return 'controllers/grid/plugins/pluginGridFilter.tpl';
+	}
+
+	/**
+	 * @see GridHandler::getFilterSelectionData()
+	 */
+	function getFilterSelectionData(&$request) {
+		$category = $request->getUserVar('category');
+		$pluginName = $request->getUserVar('pluginName');
+
+		if (is_null($category)) {
+			$category = 'all';
+		}
+
+		return array('category' => $category, 'pluginName' => $pluginName);
+	}
+
+	/**
+	 * @see GridHandler::renderFilter()
+	 */
+	function renderFilter($request) {
+		$filterData = array();
+		$filterData['categories'] = $this->loadData($request, null);
+		$filterData['categories']['all'] = __('grid.plugin.allCategories');
+
+		return parent::renderFilter($request, $filterData);
+	}
+
+	/**
 	 * @see CategoryGridHandler::getCategoryRowInstance()
 	 */
 	function getCategoryRowInstance() {
@@ -106,8 +139,22 @@ class PluginGridHandler extends CategoryGridHandler {
 	/**
 	 * @see CategoryGridHandler::getCategoryData()
 	 */
-	function getCategoryData($categoryDataElement) {
+	function getCategoryData($categoryDataElement, $filter) {
 		$plugins =& PluginRegistry::loadCategory($categoryDataElement);
+
+		if (!is_null($filter) && isset($filter['pluginName']) && $filter['pluginName'] != "") {
+			// Find all plugins that have the filter name string in theirs display names.
+			$filteredPlugins = array();
+			foreach ($plugins as $plugin) {
+				$pluginName = $plugin->getDisplayName();
+				if (stristr($pluginName, $filter['pluginName']) !== false) {
+					$filteredPlugins[$plugin->getPluginPath()] = $plugin;
+				}
+				unset($plugin);
+			}
+			return $filteredPlugins;
+		}
+
 		return $plugins;
 	}
 
@@ -128,10 +175,8 @@ class PluginGridHandler extends CategoryGridHandler {
 	function loadData($request, $filter) {
 		$categories = PluginRegistry::getCategories();
 
-		if ($filter['category']) {
-			if (isset($categories[$filter['category']])) {
-				return $categories[$filter['category']];
-			}
+		if (is_array($filter) && isset($filter['category']) && isset($categories[$filter['category']])) {
+			return array($filter['category'] => $categories[$filter['category']]);
 		} else {
 			return $categories;
 		}
