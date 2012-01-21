@@ -249,7 +249,7 @@ class PublicationFormatDAO extends DefaultSettingDAO {
 				'INSERT INTO publication_formats
 				(entry_key, physical_format, press_id, enabled)
 				VALUES
-				(?, ?, ?)',
+				(?, ?, ?, ?)',
 				array($attrs['key'], $attrs['physical_format'], (int) $pressId, 1)
 			);
 		}
