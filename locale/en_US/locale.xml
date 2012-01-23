@@ -35,7 +35,7 @@
 	<message key="monograph.rights">Rights</message>
 	<message key="monograph.rights.tip">If you wish, you may enter a brief statement about the access rights held in or over this submission.</message>
 	<message key="monograph.title">Book Title</message>
-	<message key="monograph.title.tip">The submission type is usually one of 'image', 'text', or other multimedia types including 'software' or 'interactive'.  Please choose the one most relevant for your submission.  Examples may be found at http://dublincore.org/documents/2001/04/12/usageguide/generic.shtml#type</message>
+	<message key="monograph.title.tip"><![CDATA[The submission type is usually one of 'image', 'text', or other multimedia types including 'software' or 'interactive'.  Please choose the one most relevant for your submission.  Examples may be found at <a href="http://dublincore.org/documents/2001/04/12/usageguide/generic.shtml#type">http://dublincore.org/documents/2001/04/12/usageguide/generic.shtml#type</a>]]></message>
 	<message key="monograph.subtitle">Subtitle</message>
 	<message key="monograph.type">Type of Submission</message>
 
