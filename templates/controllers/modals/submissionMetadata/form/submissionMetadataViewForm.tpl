@@ -7,16 +7,19 @@
  * Display a submission's metadata form.
  *
  *}
+{* generate a unique ID for the form *}
+{assign var="submissionMetadataViewFormId" value="submissionMetadataViewForm-"|uniqid|escape}
 
 <script type="text/javascript">
 	$(function() {ldelim}
 		// Attach the form handler.
-		$('#submissionMetadataViewForm').pkpHandler('$.pkp.controllers.form.AjaxFormHandler');
+		$('#{$submissionMetadataViewFormId}').pkpHandler('$.pkp.controllers.form.AjaxFormHandler');
 	{rdelim});
 </script>
 
-<form class="pkp_form" id="submissionMetadataViewForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT op="saveForm"}">
-	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="submissionMetadataViewFormNotification"}
+<form class="pkp_form" id="{$submissionMetadataViewFormId}" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT op="saveForm"}">
+	{assign var="notificationId" value="submissionMetadataViewFormNotification-"|uniqid|escape}
+	{include file="controllers/notification/inPlaceNotification.tpl" notificationId=$notificationId}
 
 	<input type="hidden" name="monographId" value="{$monographId|escape}" />
 	<input type="hidden" name="stageId" value="{$stageId|escape}" />
@@ -25,8 +28,10 @@
 
 	{if !$formParams.anonymous}
 		<!--  Contributors -->
-		{url|assign:authorGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.users.author.AuthorGridHandler" op="fetchGrid" monographId=$monographId stageId=$stageId escape=false}
-		{load_url_in_div id="authorsGridContainer" url="$authorGridUrl"}
+		{* generate a unique ID for the form *}
+		{assign var="authorsGridContainer" value="authorsGridContainer-"|uniqid|escape}
+		{url|assign:authorGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.users.author.AuthorGridHandler" op="fetchGrid" monographId=$monographId stageId=$stageId escape=false}
+		{load_url_in_div id=$authorsGridContainer url="$authorGridUrl"}
 	{/if}
 
 	{if !$formParams.readOnly}
