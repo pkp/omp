@@ -7,6 +7,13 @@
  * Form for creating/editing a user.
  *}
 
+<script type="text/javascript">
+	$(function() {ldelim}
+		// Attach the form handler.
+		$('#userForm').pkpHandler('$.pkp.controllers.form.AjaxFormHandler');
+	{rdelim});
+</script>
+
 {if !$userId}
 	{assign var="passwordRequired" value="true"}
 {/if}{* !$userId *}
