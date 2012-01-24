@@ -36,7 +36,11 @@
 	<script type="text/javascript">
 		$(function() {ldelim}
 			// Attach the form handler.
-			$('#signinForm').pkpHandler('$.pkp.controllers.form.FormHandler');
+			$('#signinForm').pkpHandler(
+				'$.pkp.controllers.form.FormHandler',
+				{ldelim}
+					trackFormChanges: false
+				{rdelim});
 		{rdelim});
 	</script>
 
