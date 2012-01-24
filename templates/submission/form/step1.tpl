@@ -55,13 +55,15 @@
 	{/if}{* count($supportedSubmissionLocaleNames) == 1 *}
 
 	<!-- Submission Placement -->
-	{fbvFormSection title="submission.submit.placement" size=$fbvStyles.size.MEDIUM}
-		{fbvElement type="select" id="seriesId" from=$seriesOptions selected=$seriesId translate=false}
-	{/fbvFormSection}
-
-	{fbvFormSection title="submission.submit.seriesPosition" size=$fbvStyles.size.MEDIUM}
-		{fbvElement type="text" id="seriesPosition" name="seriesPosition" value=$seriesPosition|escape maxlength="255"}
-	{/fbvFormSection}
+	{if count($seriesOptions) > 1} {* only display the series picker if there are series configured for this press *}
+		{fbvFormSection title="submission.submit.placement" size=$fbvStyles.size.MEDIUM}
+			{fbvElement type="select" id="seriesId" from=$seriesOptions selected=$seriesId translate=false}
+		{/fbvFormSection}
+	
+		{fbvFormSection title="submission.submit.seriesPosition" size=$fbvStyles.size.MEDIUM}
+			{fbvElement type="text" id="seriesPosition" name="seriesPosition" value=$seriesPosition|escape maxlength="255"}
+		{/fbvFormSection}
+	{/if}
 
 	{fbvFormSection size=$fbvStyles.size.MEDIUM}
 		<div id="monographCategoriesContainer">
