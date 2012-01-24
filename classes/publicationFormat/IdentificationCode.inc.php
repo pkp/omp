@@ -1,10 +1,6 @@
 <?php
 
 /**
- * @defgroup publicationFormat
- */
-
-/**
  * @file classes/publicationFormat/IdentificationCode.inc.php
  *
  * Copyright (c) 2003-2012 John Willinsky
