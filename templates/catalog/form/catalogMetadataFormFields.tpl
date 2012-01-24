@@ -48,6 +48,15 @@
 		{/fbvFormSection}
 	{/fbvFormArea}
 
+	{fbvFormArea id="suppliers"}
+		{fbvFormSection description="grid.catalogEntry.suppliersDescription"}
+			<!-- Suppliers -->
+			{assign var="divId" value="suppliersGridContainer"|concat:$assignedPublicationFormatId|escape}
+			{url|assign:suppliersGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.catalogEntry.SuppliersGridHandler" op="fetchGrid" monographId=$monographId}
+			{load_url_in_div id="$divId" url="$suppliersGridUrl"}
+		{/fbvFormSection}
+	{/fbvFormArea}
+
 	{fbvFormArea id="publicationFormats"}
 		{fbvFormSection}
 			<!--  Formats -->

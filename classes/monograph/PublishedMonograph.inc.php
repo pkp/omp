@@ -196,6 +196,16 @@ class PublishedMonograph extends Monograph {
 	function setCoverImage($coverImage) {
 		return $this->setData('coverImage', $coverImage);
 	}
+
+	/**
+	 * Get the Supplier objects for this published monograph.
+	 * @return Array Supplier
+	 */
+	function getSuppliers() {
+		$supplierDao =& DAORegistry::getDAO('SupplierDAO');
+		$suppliers =& $supplierDao->getSuppliersByMonographId($this->getId());
+		return $suppliers;
+	}
 }
 
 ?>

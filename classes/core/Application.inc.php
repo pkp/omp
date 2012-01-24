@@ -166,6 +166,7 @@ class Application extends PKPApplication {
 			'SeriesEditorSubmissionDAO' => 'classes.submission.seriesEditor.SeriesEditorSubmissionDAO',
 			'StageAssignmentDAO' => 'classes.stageAssignment.StageAssignmentDAO',
 			'SubmissionFileDAO' => 'classes.monograph.SubmissionFileDAO',
+			'SupplierDAO' => 'classes.monograph.SupplierDAO',
 			'UserGroupAssignmentDAO' => 'lib.pkp.classes.security.UserGroupAssignmentDAO',
 			'UserGroupDAO' => 'classes.security.UserGroupDAO',
 			'UserDAO' => 'classes.user.UserDAO',

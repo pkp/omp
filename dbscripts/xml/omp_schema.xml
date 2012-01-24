@@ -154,9 +154,38 @@
 		<field name="regions_included" type="X"/>
 		<field name="regions_excluded" type="X"/>
 		<index name="publication_dates_pkey">
-			<col>publication_date_id</col>
+			<col>sales_rights_id</col>
 			<col>assigned_publication_format_id</col>
 			<col>role</col>
+		</index>
+	</table>
+
+	<!--
+	  *
+	  * TABLE suppliers
+	  *
+	  -->
+	<table name="suppliers">
+		<field name="supplier_id" type="I8">
+			<KEY />
+			<AUTOINCREMENT />
+		</field>
+		<field name="monograph_id" type="I8">
+			<NOTNULL />
+		</field>
+		<field name="role" type="C2" size="40">
+			<NOTNULL />
+		</field>
+		<field name="supplier_id_type" type="C2" size="255"/>
+		<field name="supplier_id_value" type="C2" size="255"/>
+		<field name="name" type="C2" size="255"/>
+		<field name="phone" type="C2" size="255"/>
+		<field name="fax" type="C2" size="255"/>
+		<field name="email" type="C2" size="255"/>
+		<field name="website" type="C2" size="255"/>
+		<index name="suppliers_pkey">
+			<col>supplier_id</col>
+			<col>monograph_id</col>
 		</index>
 	</table>
 
