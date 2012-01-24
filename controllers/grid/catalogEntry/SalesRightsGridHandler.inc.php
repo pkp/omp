@@ -164,13 +164,13 @@ class SalesRightsGridHandler extends GridHandler {
 			)
 		);
 		$this->addColumn(
-				new GridColumn(
-						'ROW',
-						'grid.catalogEntry.salesRightsROW',
-						null,
-						'controllers/grid/common/cell/checkMarkCell.tpl',
-						$cellProvider
-				)
+			new GridColumn(
+				'ROW',
+				'grid.catalogEntry.salesRightsROW',
+				null,
+				'controllers/grid/common/cell/checkMarkCell.tpl',
+				$cellProvider
+			)
 		);
 	}
 
