@@ -34,7 +34,7 @@
 		{/fbvFormSection}
 		{fbvFormSection}
 			{fbvElement type="text" id="email" label="grid.catalogEntry.supplierEmail" value=$email|escape size=$fbvStyles.size.MEDIUM inline="true"}
-			{fbvElement type="text" id="website" label="grid.catalogEntry.supplierWebsite" value=$website|escape size=$fbvStyles.size.MEDIUM inline="true"}
+			{fbvElement type="text" id="url" label="grid.catalogEntry.supplierWebsite" value=$url|escape size=$fbvStyles.size.MEDIUM inline="true"}
 		{/fbvFormSection}
 		{fbvFormButtons}
 	{/fbvFormArea}

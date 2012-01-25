@@ -159,19 +159,19 @@ class Supplier extends DataObject {
 	}
 
 	/**
-	 * Get the supplier's website.
+	 * Get the supplier's url.
 	 * @return string
 	 */
-	function getWebsite() {
-		return $this->getData('website');
+	function getUrl() {
+		return $this->getData('url');
 	}
 
 	/**
-	 * Set the supplier website.
-	 * @param string $website
+	 * Set the supplier url.
+	 * @param string $url
 	 */
-	function setWebsite($website) {
-		$this->setData('website', $website);
+	function setUrl($url) {
+		$this->setData('url', $url);
 	}
 }
 ?>

@@ -88,7 +88,7 @@ class SupplierDAO extends DAO {
 		$supplier->setPhone($row['phone']);
 		$supplier->setFax($row['fax']);
 		$supplier->setEmail($row['email']);
-		$supplier->setWebsite($row['website']);
+		$supplier->setUrl($row['url']);
 
 		$supplier->setMonographId($row['monograph_id']);
 
@@ -104,7 +104,7 @@ class SupplierDAO extends DAO {
 	function insertObject(&$supplier) {
 		$this->update(
 			'INSERT INTO suppliers
-				(monograph_id, role, supplier_id_type, supplier_id_value, name, phone, fax, email, website)
+				(monograph_id, role, supplier_id_type, supplier_id_value, name, phone, fax, email, url)
 			VALUES
 				(?, ?, ?, ?, ?, ?, ?, ?, ?)',
 			array(
@@ -116,7 +116,7 @@ class SupplierDAO extends DAO {
 				$supplier->getPhone(),
 				$supplier->getFax(),
 				$supplier->getEmail(),
-				$supplier->getWebsite()
+				$supplier->getUrl()
 			)
 		);
 
@@ -138,7 +138,7 @@ class SupplierDAO extends DAO {
 				phone = ?,
 				fax = ?,
 				email = ?,
-				website = ?
+				url = ?
 			WHERE supplier_id = ?',
 			array(
 				$supplier->getRole(),
@@ -148,7 +148,7 @@ class SupplierDAO extends DAO {
 				$supplier->getPhone(),
 				$supplier->getFax(),
 				$supplier->getEmail(),
-				$supplier->getWebsite(),
+				$supplier->getUrl(),
 				(int) $supplier->getId()
 			)
 		);

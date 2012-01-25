@@ -89,7 +89,7 @@ class SupplierForm extends Form {
 				'phone' => $supplier->getPhone(),
 				'fax' => $supplier->getFax(),
 				'email' => $supplier->getEmail(),
-				'website' =>$supplier->getWebsite()
+				'url' =>$supplier->getUrl()
 			);
 		}
 	}
@@ -118,7 +118,7 @@ class SupplierForm extends Form {
 			$templateMgr->assign('phone', $supplier->getPhone());
 			$templateMgr->assign('fax', $supplier->getFax());
 			$templateMgr->assign('email', $supplier->getEmail());
-			$templateMgr->assign('website', $supplier->getWebsite());
+			$templateMgr->assign('url', $supplier->getUrl());
 
 		} else { // loading a blank form
 			$templateMgr->assign('supplierIdType', '06'); // pre-populate new forms with GLN as it is recommended
@@ -141,7 +141,7 @@ class SupplierForm extends Form {
 			'phone',
 			'fax',
 			'email',
-			'website'
+			'url'
 		));
 	}
 
@@ -173,7 +173,7 @@ class SupplierForm extends Form {
 		$supplier->setPhone($this->getData('phone'));
 		$supplier->setFax($this->getData('fax'));
 		$supplier->setEmail($this->getData('email'));
-		$supplier->setWebsite($this->getData('website'));
+		$supplier->setUrl($this->getData('url'));
 
 		if ($existingSupplier) {
 			$supplierDao->updateObject($supplier);
