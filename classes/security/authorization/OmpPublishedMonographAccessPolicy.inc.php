@@ -45,7 +45,7 @@ class OmpPublishedMonographAccessPolicy extends PressPolicy {
 					$roleAssignments,
 					array( // Only permit these roles
 						ROLE_ID_PRESS_MANAGER,
-						ROLE_ID_PRESS_EDITOR,
+						ROLE_ID_SERIES_EDITOR,
 					)
 				),
 				$submissionParameterName
