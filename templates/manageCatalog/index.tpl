@@ -76,7 +76,7 @@
 		</ul>
 		<div id="categoryTab">
 			<form id="selectCategoryForm" class="pkp_form">
-				{fbvFormArea}
+				{fbvFormArea id="forCategorySelect"}
 					{fbvFormSection}
 						{fbvElement type="select" id="categorySelect" from="catalog.selectCategory"|translate|to_array translate=false}
 					{/fbvFormSection}
@@ -89,7 +89,7 @@
 		</div>
 		<div id="seriesTab">
 			<form id="selectSeriesForm" class="pkp_form">
-				{fbvFormArea}
+				{fbvFormArea id="forSeriesSelect"}
 					{fbvFormSection}
 						{fbvElement type="select" id="seriesSelect" from="catalog.selectSeries"|translate|to_array translate=false}
 					{/fbvFormSection}
