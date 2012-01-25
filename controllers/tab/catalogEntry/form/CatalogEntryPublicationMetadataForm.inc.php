@@ -84,6 +84,8 @@ class CatalogEntryPublicationMetadataForm extends Form {
 				'countriesIncludedCodes' => 'List91', // country region codes
 				'productFormDetailCodes' => 'List175', // refinement of product form (SACD, Mass market (rack) paperback, etc)
 				'productAvailabilityCodes' => 'List65', // Available, In Stock, Print On Demand, Not Yet Available, etc
+				'technicalProtectionCodes' => 'List144', // None, DRM, Apple DRM, etc
+				'returnableIndicatorCodes' => 'List66', // No, not returnable, Yes, full copies only, (required for physical items only)
 				);
 
 		foreach ($codes as $templateVarName => $list) {
@@ -118,6 +120,8 @@ class CatalogEntryPublicationMetadataForm extends Form {
 			$templateMgr->assign('countryManufactureCode', $assignedPublicationFormat->getCountryManufactureCode() != '' ? $assignedPublicationFormat->getCountryManufactureCode() : 'CA');
 			$templateMgr->assign('imprint', $assignedPublicationFormat->getImprint());
 			$templateMgr->assign('productAvailabilityCode', $assignedPublicationFormat->getProductAvailabilityCode() != '' ? $assignedPublicationFormat->getProductAvailabilityCode() : '20');
+			$templateMgr->assign('technicalProtectionCode', $assignedPublicationFormat->getTechnicalProtectionCode() != '' ? $assignedPublicationFormat->getTechnicalProtectionCode() : '00');
+			$templateMgr->assign('returnableIndicatorCode', $assignedPublicationFormat->getReturnableIndicatorCode() != '' ? $assignedPublicationFormat->getReturnableIndicatorCode() : 'Y');
 		}
 
 		return parent::fetch($request);
@@ -160,7 +164,9 @@ class CatalogEntryPublicationMetadataForm extends Form {
 					'countriesIncludedCode',
 					'countryManufactureCode',
 					'imprint',
-					'productAvailabilityCode'
+					'productAvailabilityCode',
+					'technicalProtectionCode',
+					'returnableIndicatorCode'
 				);
 		$this->readUserVars($vars);
 	}
@@ -198,6 +204,8 @@ class CatalogEntryPublicationMetadataForm extends Form {
 			$assignedPublicationFormat->setCountryManufactureCode($this->getData('countryManufactureCode'));
 			$assignedPublicationFormat->setImprint($this->getData('imprint'));
 			$assignedPublicationFormat->setProductAvailabilityCode($this->getData('productAvailabilityCode'));
+			$assignedPublicationFormat->setTechnicalProtectionCode($this->getData('technicalProtectionCode'));
+			$assignedPublicationFormat->setReturnableIndicatorCode($this->getData('returnableIndicatorCode'));
 
 			$assignedPublicationFormatDao->updateObject($assignedPublicationFormat);
 		} else {

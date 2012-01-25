@@ -50,7 +50,9 @@
 	<message key="monograph.publicationFormat.price">Price</message>
 	<message key="monograph.publicationFormat.priceType">Price Type</message>
 	<message key="monograph.publicationFormat.productAvailability">Product Availability</message>
+	<message key="monograph.publicationFormat.returnInformation">Returnable Indicator</message>
 	<!--  Dimension keys  -->
+	<message key="monograph.publicationFormat.digitalInformation">Digital Information</message>
 	<message key="monograph.publicationFormat.productDimensions">Physical Dimensions</message>
 	<message key="monograph.publicationFormat.productFileSize">File Size in Mbytes</message>
 	<message key="monograph.publicationFormat.productHeight">Height</message>
@@ -59,6 +61,7 @@
 	<message key="monograph.publicationFormat.productWidth">Width</message>
 	<message key="monograph.publicationFormat.countryOfManufacture">Country of Manufacture</message>
 
+	<message key="monograph.publicationFormat.technicalProtection">Digital Technical Protection</message>
 	<message key="monograph.publicationFormat.productRegion">Product Distribution Region</message>
 	<message key="monograph.publicationFormat.taxRate">Taxation Rate</message>
 	<message key="monograph.publicationFormat.taxType">Taxation Type</message>

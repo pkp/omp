@@ -627,6 +627,8 @@
 		<field name="country_manufacture_code" type="C2" size="255" />
 		<field name="imprint" type="C2" size="255"/>
 		<field name="product_availability_code" type="C2" size="255"/>
+		<field name="technical_protection_code" type="C2" size="255"/>
+		<field name="returnable_indicator_code" type="C2" size="255"/>
 		<descr>Publication formats assigned to published monographs</descr>
 		<index name="published_monographs_monograph_id">
 			<col>monograph_id</col>

@@ -493,5 +493,37 @@ class AssignedPublicationFormat extends PublicationFormat {
 	function setImprint($imprint) {
 		return $this->setData('imprint', $imprint);
 	}
+
+	/**
+	 * Get the technical protection code for a digital publication format (List144).
+	 * @return string
+	 */
+	function getTechnicalProtectionCode() {
+		return $this->getData('technicalProtectionCode');
+	}
+
+	/**
+	 * Set the technical protection code for a publication format.
+	 * @param string $technicalProtectionCode
+	 */
+	function setTechnicalProtectionCode($technicalProtectionCode) {
+		return $this->setData('technicalProtectionCode', $technicalProtectionCode);
+	}
+
+	/**
+	 * Get the return code for a physical publication format (List66).
+	 * @return string
+	 */
+	function getReturnableIndicatorCode() {
+		return $this->getData('returnableIndicatorCode');
+	}
+
+	/**
+	 * Set the return code for a publication format.
+	 * @param string $returnableIndicatorCode
+	 */
+	function setReturnableIndicatorCode($returnableIndicatorCode) {
+		return $this->setData('returnableIndicatorCode', $returnableIndicatorCode);
+	}
 }
 ?>

@@ -155,6 +155,8 @@ class AssignedPublicationFormatDAO extends PublicationFormatDAO {
 		$assignedPublicationFormat->setCountryManufactureCode($row['country_manufacture_code']);
 		$assignedPublicationFormat->setImprint($row['imprint']);
 		$assignedPublicationFormat->setProductAvailabilityCode($row['product_availability_code']);
+		$assignedPublicationFormat->setTechnicalProtectionCode($row['technical_protection_code']);
+		$assignedPublicationFormat->setReturnableIndicatorCode($row['returnable_indicator_code']);
 
 		$this->getDataObjectSettings('published_monograph_publication_format_settings', 'assigned_publication_format_id', $row['assigned_publication_format_id'], $assignedPublicationFormat);
 
@@ -169,9 +171,9 @@ class AssignedPublicationFormatDAO extends PublicationFormatDAO {
 	function insertObject(&$assignedPublicationFormat) {
 		$this->update(
 			'INSERT INTO published_monograph_publication_formats
-				(monograph_id, publication_format_id, seq, file_size, front_matter, back_matter, height, height_unit_code, width, width_unit_code, thickness, thickness_unit_code, weight, weight_unit_code, product_composition_code, product_form_detail_code, price, price_type_code, currency_code, tax_rate_code, tax_type_code, countries_included_code, country_manufacture_code, imprint, product_availability_code)
+				(monograph_id, publication_format_id, seq, file_size, front_matter, back_matter, height, height_unit_code, width, width_unit_code, thickness, thickness_unit_code, weight, weight_unit_code, product_composition_code, product_form_detail_code, price, price_type_code, currency_code, tax_rate_code, tax_type_code, countries_included_code, country_manufacture_code, imprint, product_availability_code, technical_protection_code, returnable_indicator_code)
 			VALUES
-				(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+				(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
 			array(
 				(int) $assignedPublicationFormat->getMonographId(),
 				(int) $assignedPublicationFormat->getId(),
@@ -197,7 +199,9 @@ class AssignedPublicationFormatDAO extends PublicationFormatDAO {
 				serialize($assignedPublicationFormat->getCountriesIncludedCode() ? $assignedPublicationFormat->getCountriesIncludedCode() : array()),
 				$assignedPublicationFormat->getCountryManufactureCode(),
 				$assignedPublicationFormat->getImprint(),
-				$assignedPublicationFormat->getProductAvailabilityCode()
+				$assignedPublicationFormat->getProductAvailabilityCode(),
+				$assignedPublicationFormat->getTechnicalProtectionCode(),
+				$assignedPublicationFormat->getReturnableIndicatorCode()
 			)
 		);
 
@@ -235,7 +239,9 @@ class AssignedPublicationFormatDAO extends PublicationFormatDAO {
 				countries_included_code = ?,
 				country_manufacture_code = ?,
 				imprint = ?,
-				product_availability_code = ?
+				product_availability_code = ?,
+				technical_protection_code = ?,
+				returnable_indicator_code = ?
 			WHERE assigned_publication_format_id = ?',
 			array(
 				(int) $assignedPublicationFormat->getId(),
@@ -262,6 +268,8 @@ class AssignedPublicationFormatDAO extends PublicationFormatDAO {
 				$assignedPublicationFormat->getCountryManufactureCode(),
 				$assignedPublicationFormat->getImprint(),
 				$assignedPublicationFormat->getProductAvailabilityCode(),
+				$assignedPublicationFormat->getTechnicalProtectionCode(),
+				$assignedPublicationFormat->getReturnableIndicatorCode(),
 				(int) $assignedPublicationFormat->getAssignedPublicationFormatId()
 			)
 		);

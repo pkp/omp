@@ -1,6 +1,7 @@
 {* digital format fields *}
-{fbvFormArea id="productDimensions" title="monograph.publicationFormat.productDimensions" border="true"}
-	{fbvFormSection title="monograph.publicationFormat.productFileSize" for="fileSize"}
-		{fbvElement type="text"  name="fileSize" id="fileSize" value=$fileSize maxlength="255" size=$fbvStyles.size.SMALL disabled=$readOnly inline="true"}
+{fbvFormArea id="productDimensions" title="monograph.publicationFormat.digitalInformation" border="true"}
+	{fbvFormSection for="digitalInformation"}
+		{fbvElement type="text" label="monograph.publicationFormat.productFileSize" name="fileSize" id="fileSize" value=$fileSize|escape maxlength="255" size=$fbvStyles.size.MEDIUM inline="true"}
+		{fbvElement type="select" label="monograph.publicationFormat.technicalProtection" from=$technicalProtectionCodes selected=$technicalProtectionCode translate=false  size=$fbvStyles.size.MEDIUM id="technicalProtectionCode" inline=true}
 	{/fbvFormSection}
 {/fbvFormArea}
