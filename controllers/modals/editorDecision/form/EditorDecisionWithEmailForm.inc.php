@@ -73,6 +73,7 @@ class EditorDecisionWithEmailForm extends EditorDecisionForm {
 		$press =& $request->getPress();
 		$seriesEditorSubmission =& $this->getSeriesEditorSubmission();
 		$submitter = $seriesEditorSubmission->getUser();
+		$user =& $request->getUser();
 
 		import('classes.mail.MonographMailTemplate');
 		$email = new MonographMailTemplate($seriesEditorSubmission, 'EDITOR_DECISION_ACCEPT');
@@ -80,7 +81,7 @@ class EditorDecisionWithEmailForm extends EditorDecisionForm {
 			'authorName' => $submitter->getFullName(),
 			'pressName' => $press->getLocalizedName(),
 			'monographTitle' => $seriesEditorSubmission->getLocalizedTitle(),
-			'editorialContactSignature' => $submitter->getContactSignature(),
+			'editorialContactSignature' => $user->getContactSignature(),
 		);
 		$email->assignParams($paramArray);
 
