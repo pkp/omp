@@ -295,6 +295,25 @@ class CategoryDAO extends DAO {
 	}
 
 	/**
+	 * Retrieve the number of categories for a press.
+	 * @return DAOResultFactory containing Category ordered by sequence
+	 */
+	function &getCountByPressId($pressId) {
+		$result =& $this->retrieve(
+			'SELECT	COUNT(*)
+			FROM	categories
+			WHERE	press_id = ?',
+			(int) $pressId
+		);
+
+		$returner = $result->fields[0];
+
+		$result->Close();
+		unset($result);
+		return $returner;
+	}
+
+	/**
 	 * Retrieve all categories for a parent category.
 	 * @return DAOResultFactory containing Category ordered by sequence
 	 */

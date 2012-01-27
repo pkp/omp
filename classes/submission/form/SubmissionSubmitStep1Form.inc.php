@@ -67,6 +67,10 @@ class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
 			))
 		);
 
+		// If categories are configured for the press, present the LB.
+		$categoryDao =& DAORegistry::getDAO('CategoryDAO');
+		$templateMgr->assign('categoriesExist', $categoryDao->getCountByPressId($this->press->getId()) > 0);
+
 		// Get list of user's author user groups.  If its more than one, we'll need to display an author user group selector
 		$userGroupAssignmentDao =& DAORegistry::getDAO('UserGroupAssignmentDAO');
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');

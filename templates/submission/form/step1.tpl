@@ -65,12 +65,14 @@
 		{/fbvFormSection}
 	{/if}
 
-	{fbvFormSection size=$fbvStyles.size.MEDIUM}
-		<div id="monographCategoriesContainer">
-			{url|assign:monographCategoriesUrl router=$smarty.const.ROUTE_COMPONENT component="submission.CategoriesListbuilderHandler" op="fetch" monographId=$monographId}
-			{load_url_in_div id="monographCategoriesContainer" url=$monographCategoriesUrl}
-		</div>
-	{/fbvFormSection}
+	{if $categoriesExist}
+		{fbvFormSection size=$fbvStyles.size.MEDIUM}
+			<div id="monographCategoriesContainer">
+				{url|assign:monographCategoriesUrl router=$smarty.const.ROUTE_COMPONENT component="submission.CategoriesListbuilderHandler" op="fetch" monographId=$monographId}
+				{load_url_in_div id="monographCategoriesContainer" url=$monographCategoriesUrl}
+			</div>
+		{/fbvFormSection}
+	{/if}
 
 	<!-- Submission checklist -->
 	{if $currentPress->getLocalizedSetting('submissionChecklist')}
