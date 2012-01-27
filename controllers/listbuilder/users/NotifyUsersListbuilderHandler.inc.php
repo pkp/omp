@@ -67,6 +67,16 @@ class NotifyUsersListbuilderHandler extends ListbuilderHandler {
 		// Load submission-specific translations
 		AppLocale::requireComponents(LOCALE_COMPONENT_PKP_USER);
 
+		import('lib.pkp.classes.linkAction.request.NullAction');
+		$this->addAction(
+			new LinkAction(
+				'addItem',
+				new NullAction(),
+				__('grid.action.addUser'),
+				'add_user'
+			)
+		);
+
 		// Basic configuration.
 		$this->setSourceType(LISTBUILDER_SOURCE_TYPE_SELECT);
 		$this->setSaveType(LISTBUILDER_SAVE_TYPE_EXTERNAL);
