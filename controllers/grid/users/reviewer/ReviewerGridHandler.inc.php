@@ -354,7 +354,7 @@ class ReviewerGridHandler extends GridHandler {
 		$term = $request->getUserVar('term');
 
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */
-		$users =& $userGroupDao->getUsersNotInRole($press->getId(), ROLE_ID_REVIEWER, $term);
+		$users =& $userGroupDao->getUsersNotInRole(ROLE_ID_REVIEWER, null, $term);
 
 		$userList = array();
 		while ($user =& $users->next()) {
