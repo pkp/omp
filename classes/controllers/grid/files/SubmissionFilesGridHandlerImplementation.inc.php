@@ -159,7 +159,8 @@ class SubmissionFilesGridHandlerImplementation {
 		// Set the stage id from the request parameter if not set previously.
 		if (!$this->getStageId()) {
 			$stageId = (int) $request->getUserVar('stageId');
-			assert($stageId && $stageId > WORKFLOW_STAGE_ID_SUBMISSION);
+			// This will be validated with the authorization policy added by
+			// the grid data provider.
 			$this->_stageId = $stageId;
 		}
 		$gridHandler =& $this->getGridHandler();
