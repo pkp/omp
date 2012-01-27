@@ -36,7 +36,8 @@ class IndexHandler extends Handler {
 	 * @param $request Request
 	 */
 	function index($args, &$request) {
-		$press = $this->getTargetPress($request);
+		$targetPress = $this->getTargetPress($request);
+		$press =& $request->getPress();
 		$user =& $request->getUser();
 
 		if ($user && !$press && Validation::isSiteAdmin()) {
@@ -51,7 +52,12 @@ class IndexHandler extends Handler {
 		$templateMgr->assign('helpTopicId', 'user.home');
 
 		if ($press) {
+			// Display the current press home.
 			$this->_displayPressIndexPage($press, $templateMgr);
+		} elseif ($targetPress) {
+			// We're not on a press homepage, but there's one
+			// available; redirect there.
+			$request->redirect($targetPress->getPath());
 		} else {
 			$site =& $request->getSite();
 			$this->_displaySiteIndexPage($request, $site, $templateMgr);
@@ -78,7 +84,6 @@ class IndexHandler extends Handler {
 		$templateMgr->assign_by_ref('presses', $presses);
 		$templateMgr->setCacheability(CACHEABILITY_PUBLIC);
 		$templateMgr->display('index/site.tpl');
-
 	}
 
 	/**
