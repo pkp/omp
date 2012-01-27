@@ -60,17 +60,38 @@ class UnassignedSubmissionsListGridHandler extends SubmissionsListGridHandler {
 		// Press Managers can access all submissions, Series Editors
 		// only assigned submissions.
 		$user =& $request->getUser();
-		$press =& $request->getPress();
-		$roleDao =& DAORegistry::getDAO('RoleDAO'); /* @var $roleDao RoleDAO */
-		$isPressManager = $roleDao->userHasRole($press->getId(), $userId, ROLE_ID_PRESS_MANAGER);
 
-		// Get all monographs for all presses.
-		$monographs =& $monographDao->getUnassignedMonographs(
-			null,
-			$isPressManager?null:$userId
-		);
+		// Get all monographs for all presses that user is
+		// enrolled in as manager or series editor.
+		$roleDao =& DAORegistry::getDAO('RoleDAO');
+		$pressDao =& DAORegistry::getDAO('PressDAO');
+		$presses =& $pressDao->getPresses();
 
-		return $monographs;
+		$accessibleMonographs = array();
+		while ($press =& $presses->next()) {
+			$isPressManager = $roleDao->userHasRole($press->getId(), $userId, ROLE_ID_PRESS_MANAGER);
+			$isSeriesEditor = $roleDao->userHasRole($press->getId(), $userId, ROLE_ID_SERIES_EDITOR);
+
+			if (!$isPressManager && !$isSeriesEditor) {
+				continue;
+			}
+
+			$monographFactory =& $monographDao->getUnassignedMonographs(
+				$press->getId(),
+				$isPressManager?null:$userId
+			);
+
+			if (!$monographFactory->wasEmpty()) {
+				$monographs = $monographFactory->toAssociativeArray();
+				$accessibleMonographs = $monographs + $accessibleMonographs;
+			}
+
+			unset($press);
+			unset($monographs);
+			unset($monographFactory);
+		}
+
+		return $accessibleMonographs;
 	}
 
 
