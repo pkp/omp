@@ -166,8 +166,14 @@ class EditorDecisionWithEmailForm extends EditorDecisionForm {
 		if (!$reviewRound) {
 			$reviewRound =& $reviewRoundDao->getLastReviewRoundByMonographId($seriesEditorSubmission->getId());
 		}
-		$reviewRound->setStatus($status);
-		$reviewRoundDao->updateObject($reviewRound);
+
+		// If we don't have a review round, it's because the monograph is being
+		// accepted without starting any of the review stages. In that case we
+		// do nothing.
+		if (is_a($reviewRound, 'ReviewRound')) {
+			$reviewRound->setStatus($status);
+			$reviewRoundDao->updateObject($reviewRound);
+		}
 	}
 
 	/**
