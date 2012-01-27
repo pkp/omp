@@ -18,32 +18,27 @@
 
 <div class="ui-tabs ui-widget ui-widget-content ui-corner-all">
 	<ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
-		{if $monographId}
-			<li{if $submitStep == 1} class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active" {elseif $submissionProgress != 0} class="ui-state-default ui-corner-top ui-state-active"{else} class="ui-state-default ui-corner-top ui-state-disabled"{/if}>
-				<a href="{url op="wizard" path="1" monographId=$monographId}">1. {translate key="submission.submit.prepare"}</a>
+		{foreach from=$steps key=step item=stepLocaleKey}
+			{assign var=stepUrl value="#"}
+			{assign var=cssClass value=""}
+			{if $step <= $submissionProgress} 
+				{url|assign:stepUrl op="wizard" path=$step monographId=$monographId}					
+			{/if}
+			
+			{if $step <= $submissionProgress && $submissionProgress != 0}
+				{assign var=cssClass value="ui-state-default ui-corner-top ui-state-active"}
+			{/if}
+			
+			{if $step > $submissionProgress}
+				{assign var=cssClass value="ui-state-default ui-corner-top ui-state-disabled"}
+			{/if}
+			
+			{if $step == $submitStep}
+				{assign var=cssClass value="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"}
+			{/if}			
+			
+			<li class="{$cssClass}">
+				<a href="{$stepUrl}">{$step}. {translate key=$stepLocaleKey}</a>
 			</li>
-			<li{if $submitStep == 2} class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active" {elseif $submissionProgress > 1 && $submissionProgress != 0} class="ui-state-default ui-corner-top ui-state-active"{else} class="ui-state-default ui-corner-top ui-state-disabled"{/if}>
-				<a href="{url op="wizard" path="2" monographId=$monographId}">2. {translate key="submission.submit.upload"}</a>
-			</li>
-			<li{if $submitStep == 3} class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active" {elseif $submissionProgress > 2 && $submissionProgress != 0} class="ui-state-default ui-corner-top ui-state-active"{else} class="ui-state-default ui-corner-top ui-state-disabled"{/if}>
-				<a href="{url op="wizard" path="3" monographId=$monographId}">3. {translate key="submission.submit.catalogue"}</a>
-			</li>
-			<li{if $submitStep == 4} class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active" {elseif $submissionProgress > 3 && $submissionProgress != 0} class="ui-state-default ui-corner-top ui-state-active"{else} class="ui-state-default ui-corner-top ui-state-disabled"{/if}>
-				<a href="{url op="wizard" path="4" monographId=$monographId}">4. {translate key="submission.submit.nextSteps"}</a>
-			</li>
-		{else}
-			{** The submission is just starting -- disable all but the first tab **}
-			<li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active">
-				<a href="{url op="wizard" path="1"}">1. {translate key="submission.submit.prepare"}</a>
-			</li>
-			<li class="ui-state-default ui-corner-top ui-state-disabled">
-				<a href="{url op="wizard" path="1"}">2. {translate key="submission.submit.upload"}</a>
-			</li>
-			<li class="ui-state-default ui-corner-top ui-state-disabled">
-				<a href="{url op="wizard" path="1"}">3. {translate key="submission.submit.catalogue"}</a>
-			</li>
-			<li class="ui-state-default ui-corner-top ui-state-disabled">
-				<a href="{url op="wizard" path="1"}">4. {translate key="submission.submit.nextSteps"}</a>
-			</li>
-		{/if}
+		{/foreach}
 	</ul>

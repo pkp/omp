@@ -56,8 +56,11 @@ class SubmissionSubmitForm extends Form {
 		$templateMgr->assign('submitStep', $this->step);
 
 		if (isset($this->monograph)) {
-			$templateMgr->assign('submissionProgress', $this->monograph->getSubmissionProgress());
+			$submissionProgress = $this->monograph->getSubmissionProgress();
+		} else {
+			$submissionProgress = 1;
 		}
+		$templateMgr->assign('submissionProgress', $submissionProgress);
 
 		switch($this->step) {
 			case 3:

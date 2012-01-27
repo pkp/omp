@@ -203,8 +203,25 @@ class SubmissionHandler extends Handler {
 			array($router->url($request, null, 'submission'), 'manuscript.submissions')
 		);
 
+		// Get steps information.
+		$steps = $this->_getStepsNumberAndLocaleKeys();
+
 		$templateMgr =& TemplateManager::getManager();
+		$templateMgr->assign('steps', $steps);
 		$templateMgr->assign('pageHierarchy', $pageHierarchy);
+	}
+
+
+	//
+	// Private helper methods.
+	//
+	function _getStepsNumberAndLocaleKeys() {
+		return array(
+			1 => 'submission.submit.prepare',
+			2 => 'submission.submit.upload',
+			3 => 'submission.submit.catalogue',
+			4 => 'submission.submit.nextSteps'
+		);
 	}
 }
 ?>
