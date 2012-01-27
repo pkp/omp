@@ -111,6 +111,8 @@ class OmpSubmissionAccessPolicy extends PressPolicy {
 			$pressSubmissionAccessPolicy->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', null));
 			$submissionAccessPolicy->addPolicy($pressSubmissionAccessPolicy);
 		}
+
+		$this->addPolicy($submissionAccessPolicy);
 	}
 }
 
