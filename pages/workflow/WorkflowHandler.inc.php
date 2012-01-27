@@ -107,24 +107,16 @@ class WorkflowHandler extends Handler {
 		$templateMgr->assign('workflowNotificationRequestOptions', $notificationRequestOptions);
 
 		import('controllers.modals.submissionMetadata.linkAction.CatalogEntryLinkAction');
-		$catalogEntryAction = new CatalogEntryLinkAction($request, $monograph->getId(), $stageId);
-		$templateMgr->assign_by_ref('catalogEntryAction', $catalogEntryAction);
-
-		$dispatcher =& $request->getDispatcher();
-		$submissionInformationCentreAction = new LinkAction(
-			'informationCentre',
-			new AjaxModal(
-			$dispatcher->url(
-				$request, ROUTE_COMPONENT, null,
-				'informationCenter.SubmissionInformationCenterHandler', 'viewInformationCenter',
-				null, array('monographId' => $monograph->getId())
-			),
-				__('informationCenter.informationCenter')
-			),
-			__('informationCenter.informationCenter'),
-			'information'
+		$templateMgr->assign(
+			'catalogEntryAction',
+			new CatalogEntryLinkAction($request, $monograph->getId(), $stageId)
 		);
-		$templateMgr->assign_by_ref('submissionInformationCentreAction', $submissionInformationCentreAction);
+
+		import('controllers.informationCenter.linkAction.SubmissionInfoCenterLinkAction');
+		$templateMgr->assign(
+			'submissionInformationCentreAction',
+			new SubmissionInfoCenterLinkAction($request, $monograph->getId())
+		);
 	}
 
 

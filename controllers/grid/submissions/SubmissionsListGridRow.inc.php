@@ -39,23 +39,8 @@ class SubmissionsListGridRow extends GridRow {
 
 		if (!empty($rowId) && is_numeric($rowId)) {
 			// Actions
-			$router =& $request->getRouter();
-			$this->addAction(
-				new LinkAction(
-					'moreInfo',
-					new AjaxModal(
-						$router->url(
-							$request, null,
-							'informationCenter.SubmissionInformationCenterHandler',
-							'viewInformationCenter', null, array('monographId' => $rowId)
-						),
-						__('informationCenter.informationCenter'),
-						'informationCenter'
-					),
-					__('grid.action.moreInformation'),
-					'more_info'
-				)
-			);
+			import('controllers.informationCenter.linkAction.SubmissionInfoCenterLinkAction');
+			$this->addAction(new SubmissionInfoCenterLinkAction($request, $rowId, 'grid.action.moreInformation'));
 		}
 	}
 }
