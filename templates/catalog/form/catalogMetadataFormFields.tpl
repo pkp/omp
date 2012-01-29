@@ -48,12 +48,12 @@
 		{/fbvFormSection}
 	{/fbvFormArea}
 
-	{fbvFormArea id="suppliers"}
-		{fbvFormSection description="grid.catalogEntry.suppliersDescription"}
-			<!-- Suppliers -->
-			{assign var="divId" value="suppliersGridContainer"|concat:$assignedPublicationFormatId|escape}
-			{url|assign:suppliersGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.catalogEntry.SuppliersGridHandler" op="fetchGrid" monographId=$monographId}
-			{load_url_in_div id="$divId" url="$suppliersGridUrl"}
+	{fbvFormArea id="representatives"}
+		{fbvFormSection description="grid.catalogEntry.representativesDescription"}
+			<!-- Representatives -->
+			{assign var="divId" value="representativesGridContainer"|concat:$assignedPublicationFormatId|escape}
+			{url|assign:representativesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.catalogEntry.RepresentativesGridHandler" op="fetchGrid" monographId=$monographId}
+			{load_url_in_div id="$divId" url="$representativesGridUrl"}
 		{/fbvFormSection}
 	{/fbvFormArea}
 

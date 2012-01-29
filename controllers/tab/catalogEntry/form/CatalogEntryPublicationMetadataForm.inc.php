@@ -50,6 +50,10 @@ class CatalogEntryPublicationMetadataForm extends Form {
 		$this->_assignedPublicationFormatId = $assignedPublicationFormatId;
 		$this->_isPhysicalFormat = $isPhysicalFormat;
 		$this->_formParams = $formParams;
+
+		$this->addCheck(new FormValidator($this, 'productAvailabilityCode', 'required', 'grid.catalogEntry.productAvailabilityRequired'));
+		$this->addCheck(new FormValidator($this, 'productCompositionCode', 'required', 'grid.catalogEntry.productCompositionRequired'));
+		$this->addCheck(new FormValidatorPost($this));
 	}
 
 	/**
@@ -76,20 +80,15 @@ class CatalogEntryPublicationMetadataForm extends Form {
 				'measurementUnitCodes' => 'List50', // grams, inches, millimeters
 				'weightUnitCodes' => 'List95', // pounds, grams, ounces
 				'measurementTypeCodes' => 'List48', // height, width, depth
-				'currencyCodes' => 'List96', // GBP, USD, CAD, etc
-				'priceTypeCodes' => 'List58', // without tax, with tax, etc
-				'extentTypeCodes' => 'List23', // word count, FM page count, BM page count, main page count, etc
-				'taxRateCodes' => 'List62', // higher rate, standard rate, zero rate
-				'taxTypeCodes' => 'List171', // VAT, GST
-				'countriesIncludedCodes' => 'List91', // country region codes
 				'productFormDetailCodes' => 'List175', // refinement of product form (SACD, Mass market (rack) paperback, etc)
 				'productAvailabilityCodes' => 'List65', // Available, In Stock, Print On Demand, Not Yet Available, etc
 				'technicalProtectionCodes' => 'List144', // None, DRM, Apple DRM, etc
 				'returnableIndicatorCodes' => 'List66', // No, not returnable, Yes, full copies only, (required for physical items only)
+				'countriesIncludedCodes' => 'List91', // country region codes
 				);
 
 		foreach ($codes as $templateVarName => $list) {
-			$templateMgr->assign($templateVarName, $onixCodelistItemDao->getCodes($list));
+			$templateMgr->assign_by_ref($templateVarName, $onixCodelistItemDao->getCodes($list));
 		}
 
 		$assignedPublicationFormatId =& $this->getAssignedPublicationFormatId();
@@ -111,12 +110,6 @@ class CatalogEntryPublicationMetadataForm extends Form {
 			$templateMgr->assign('weightUnitCode', $assignedPublicationFormat->getWeightUnitCode() != '' ? $assignedPublicationFormat->getWeightUnitCode() : 'gr');
 			$templateMgr->assign('productCompositionCode', $assignedPublicationFormat->getProductCompositionCode());
 			$templateMgr->assign('productFormDetailCode', $assignedPublicationFormat->getProductFormDetailCode());
-			$templateMgr->assign('price', $assignedPublicationFormat->getPrice());
-			$templateMgr->assign('priceTypeCode', $assignedPublicationFormat->getPriceTypeCode());
-			$templateMgr->assign('currencyCode', $assignedPublicationFormat->getCurrencyCode() != '' ? $assignedPublicationFormat->getCurrencyCode() : 'CAD');
-			$templateMgr->assign('taxRateCode', $assignedPublicationFormat->getTaxRateCode());
-			$templateMgr->assign('taxTypeCode', $assignedPublicationFormat->getTaxTypeCode() != '' ? $assignedPublicationFormat->getTaxTypeCode() : '02');
-			$templateMgr->assign('countriesIncludedCode', sizeof($assignedPublicationFormat->getCountriesIncludedCode()) > 0 ? $assignedPublicationFormat->getCountriesIncludedCode() : array('CA'));
 			$templateMgr->assign('countryManufactureCode', $assignedPublicationFormat->getCountryManufactureCode() != '' ? $assignedPublicationFormat->getCountryManufactureCode() : 'CA');
 			$templateMgr->assign('imprint', $assignedPublicationFormat->getImprint());
 			$templateMgr->assign('productAvailabilityCode', $assignedPublicationFormat->getProductAvailabilityCode() != '' ? $assignedPublicationFormat->getProductAvailabilityCode() : '20');
@@ -156,12 +149,6 @@ class CatalogEntryPublicationMetadataForm extends Form {
 					'weightUnitCode',
 					'productCompositionCode',
 					'productFormDetailCode',
-					'price',
-					'priceTypeCode',
-					'currencyCode',
-					'taxRateCode',
-					'taxTypeCode',
-					'countriesIncludedCode',
 					'countryManufactureCode',
 					'imprint',
 					'productAvailabilityCode',
@@ -195,12 +182,6 @@ class CatalogEntryPublicationMetadataForm extends Form {
 			$assignedPublicationFormat->setWeightUnitCode($this->getData('weightUnitCode'));
 			$assignedPublicationFormat->setProductCompositionCode($this->getData('productCompositionCode'));
 			$assignedPublicationFormat->setProductFormDetailCode($this->getData('productFormDetailCode'));
-			$assignedPublicationFormat->setPrice($this->getData('price'));
-			$assignedPublicationFormat->setPriceTypeCode($this->getData('priceTypeCode'));
-			$assignedPublicationFormat->setCurrencyCode($this->getData('currencyCode'));
-			$assignedPublicationFormat->setTaxRateCode($this->getData('taxRateCode'));
-			$assignedPublicationFormat->setTaxTypeCode($this->getData('taxTypeCode'));
-			$assignedPublicationFormat->setCountriesIncludedCode($this->getData('countriesIncludedCode'));
 			$assignedPublicationFormat->setCountryManufactureCode($this->getData('countryManufactureCode'));
 			$assignedPublicationFormat->setImprint($this->getData('imprint'));
 			$assignedPublicationFormat->setProductAvailabilityCode($this->getData('productAvailabilityCode'));

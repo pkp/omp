@@ -50,6 +50,7 @@ class Onix30ExportDom {
 		$emailAddressNode =& XMLCustomWriter::createChildWithText($doc, $senderNode, 'EmailAddress', $press->getContactEmail());
 
 		/* --- Addressee ---*/
+
 		// this composite is optional, and depends on their being an addressee value sent along with the request
 		$addressee = strip_tags(Request::getUserVar('addressee'));
 		if ($addressee != '') {
@@ -57,6 +58,7 @@ class Onix30ExportDom {
 			XMLCustomWriter::appendChild($headerNode, $addresseeNode);
 			$addresseeNameNode =& XMLCustomWriter::createChildWithText($doc, $addresseeNode, 'AddresseeName', $addressee);
 		}
+
 		/* --- SentDateTime --- */
 		$sentDateTimeNode =& XMLCustomWriter::createChildWithText($doc, $headerNode, 'SentDateTime', date('Ymd'));
 
@@ -68,9 +70,9 @@ class Onix30ExportDom {
 		XMLCustomWriter::createChildWithText($doc, $productNode, 'NotificationType', '03'); // Confirmed record post-publication
 		XMLCustomWriter::createChildWithText($doc, $productNode, 'RecordSourceType', '04'); // Bibliographic agency
 
-		$identificationCodes =& $assignedPublicationFormat->getIdentificationCodes()->toArray();
+		$identificationCodes =& $assignedPublicationFormat->getIdentificationCodes();
 
-		foreach ($identificationCodes as $code) {
+		while ($code =& $identificationCodes->next()) {
 			$productIdentifierNode =& XMLCustomWriter::createElement($doc, 'ProductIdentifier');
 			XMLCustomWriter::appendChild($productNode, $productIdentifierNode);
 			XMLCustomWriter::createChildWithText($doc, $productIdentifierNode, 'ProductIDType', $code->getCode()); // GTIN-13 (ISBN-13 as GTIN)
@@ -82,40 +84,49 @@ class Onix30ExportDom {
 
 		$descDetailNode =& XMLCustomWriter::createElement($doc, 'DescriptiveDetail');
 		XMLCustomWriter::appendChild($productNode, $descDetailNode);
-		XMLCustomWriter::createChildWithText($doc, $descDetailNode, 'ProductComposition', $assignedPublicationFormat->getProductCompositionCode()); // single item, trade only, etc
+		XMLCustomWriter::createChildWithText($doc, $descDetailNode, 'ProductComposition',
+			$assignedPublicationFormat->getProductCompositionCode() ? $assignedPublicationFormat->getProductCompositionCode() : '00'); // single item, trade only, etc.  Default to single item if not specified.
 		XMLCustomWriter::createChildWithText($doc, $descDetailNode, 'ProductForm', $assignedPublicationFormat->getEntryKey()); // paperback, hardcover, etc
 		XMLCustomWriter::createChildWithText($doc, $descDetailNode, 'ProductFormDetail', $assignedPublicationFormat->getProductFormDetailCode(), false); // refinement of ProductForm
 
 		/* --- Physical Book Measurements --- */
 		if ($assignedPublicationFormat->getPhysicalFormat()) {
 			// '01' => 'Height', '02' => 'Width', '03' => 'Thickness', '08' => 'Weight'
-			$measureNode =& XMLCustomWriter::createElement($doc, 'Measure');
-			XMLCustomWriter::appendChild($descDetailNode, $measureNode);
-			XMLCustomWriter::createChildWithText($doc, $measureNode, 'MeasureType', '01');
-			XMLCustomWriter::createChildWithText($doc, $measureNode, 'Measurement', $assignedPublicationFormat->getHeight());
-			XMLCustomWriter::createChildWithText($doc, $measureNode, 'MeasureUnitCode', $assignedPublicationFormat->getHeightUnitCode());
-			unset($measureNode);
+			if ($assignedPublicationFormat->getHeight() != '') {
+				$measureNode =& XMLCustomWriter::createElement($doc, 'Measure');
+				XMLCustomWriter::appendChild($descDetailNode, $measureNode);
+				XMLCustomWriter::createChildWithText($doc, $measureNode, 'MeasureType', '01');
+				XMLCustomWriter::createChildWithText($doc, $measureNode, 'Measurement', $assignedPublicationFormat->getHeight());
+				XMLCustomWriter::createChildWithText($doc, $measureNode, 'MeasureUnitCode', $assignedPublicationFormat->getHeightUnitCode());
+				unset($measureNode);
+			}
 
-			$measureNode =& XMLCustomWriter::createElement($doc, 'Measure');
-			XMLCustomWriter::appendChild($descDetailNode, $measureNode);
-			XMLCustomWriter::createChildWithText($doc, $measureNode, 'MeasureType', '02');
-			XMLCustomWriter::createChildWithText($doc, $measureNode, 'Measurement', $assignedPublicationFormat->getWidth());
-			XMLCustomWriter::createChildWithText($doc, $measureNode, 'MeasureUnitCode', $assignedPublicationFormat->getWidthUnitCode());
-			unset($measureNode);
+			if ($assignedPublicationFormat->getWidth() != '') {
+				$measureNode =& XMLCustomWriter::createElement($doc, 'Measure');
+				XMLCustomWriter::appendChild($descDetailNode, $measureNode);
+				XMLCustomWriter::createChildWithText($doc, $measureNode, 'MeasureType', '02');
+				XMLCustomWriter::createChildWithText($doc, $measureNode, 'Measurement', $assignedPublicationFormat->getWidth());
+				XMLCustomWriter::createChildWithText($doc, $measureNode, 'MeasureUnitCode', $assignedPublicationFormat->getWidthUnitCode());
+				unset($measureNode);
+			}
 
-			$measureNode =& XMLCustomWriter::createElement($doc, 'Measure');
-			XMLCustomWriter::appendChild($descDetailNode, $measureNode);
-			XMLCustomWriter::createChildWithText($doc, $measureNode, 'MeasureType', '03');
-			XMLCustomWriter::createChildWithText($doc, $measureNode, 'Measurement', $assignedPublicationFormat->getThickness());
-			XMLCustomWriter::createChildWithText($doc, $measureNode, 'MeasureUnitCode', $assignedPublicationFormat->getThicknessUnitCode());
-			unset($measureNode);
+			if ($assignedPublicationFormat->getThickness() != '') {
+				$measureNode =& XMLCustomWriter::createElement($doc, 'Measure');
+				XMLCustomWriter::appendChild($descDetailNode, $measureNode);
+				XMLCustomWriter::createChildWithText($doc, $measureNode, 'MeasureType', '03');
+				XMLCustomWriter::createChildWithText($doc, $measureNode, 'Measurement', $assignedPublicationFormat->getThickness());
+				XMLCustomWriter::createChildWithText($doc, $measureNode, 'MeasureUnitCode', $assignedPublicationFormat->getThicknessUnitCode());
+				unset($measureNode);
+			}
 
-			$measureNode =& XMLCustomWriter::createElement($doc, 'Measure');
-			XMLCustomWriter::appendChild($descDetailNode, $measureNode);
-			XMLCustomWriter::createChildWithText($doc, $measureNode, 'MeasureType', '08');
-			XMLCustomWriter::createChildWithText($doc, $measureNode, 'Measurement', $assignedPublicationFormat->getWeight());
-			XMLCustomWriter::createChildWithText($doc, $measureNode, 'MeasureUnitCode', $assignedPublicationFormat->getWeightUnitCode());
-			unset($measureNode);
+			if ($assignedPublicationFormat->getWeight() != '') {
+				$measureNode =& XMLCustomWriter::createElement($doc, 'Measure');
+				XMLCustomWriter::appendChild($descDetailNode, $measureNode);
+				XMLCustomWriter::createChildWithText($doc, $measureNode, 'MeasureType', '08');
+				XMLCustomWriter::createChildWithText($doc, $measureNode, 'Measurement', $assignedPublicationFormat->getWeight());
+				XMLCustomWriter::createChildWithText($doc, $measureNode, 'MeasureUnitCode', $assignedPublicationFormat->getWeightUnitCode());
+				unset($measureNode);
+			}
 
 			XMLCustomWriter::createChildWithText($doc, $descDetailNode, 'CountryOfManufacture', $assignedPublicationFormat->getCountryManufactureCode(), false);
 		}
@@ -138,6 +149,8 @@ class Onix30ExportDom {
 		XMLCustomWriter::appendChild($seriesTitleDetailNode, $titleElementNode);
 		XMLCustomWriter::createChildWithText($doc, $titleElementNode, 'TitleElementLevel', '02'); // Collection Level Title
 
+		/* --- Series information, if this monograph is part of one. --- */
+
 		$seriesDao =& DAORegistry::getDAO('SeriesDAO');
 		$series =& $seriesDao->getById($monograph->getSeriesId());
 		if ($series != null) {
@@ -147,6 +160,7 @@ class Onix30ExportDom {
 			XMLCustomWriter::createChildWithText($doc, $titleElementNode, 'TitleWithoutPrefix', $series->getLocalizedTitle());
 			XMLCustomWriter::createChildWithText($doc, $titleElementNode, 'Subtitle', $series->getLocalizedSubtitle(), false);
 		}
+
 		/* --- and now product level info --- */
 
 		$productTitleDetailNode =& XMLCustomWriter::createElement($doc, 'TitleDetail');
@@ -160,6 +174,7 @@ class Onix30ExportDom {
 		XMLCustomWriter::createChildWithText($doc, $titleElementNode, 'TitlePrefix', $monograph->getLocalizedPrefix(), false);
 		XMLCustomWriter::createChildWithText($doc, $titleElementNode, 'TitleWithoutPrefix', $monograph->getLocalizedTitle());
 		XMLCustomWriter::createChildWithText($doc, $titleElementNode, 'Subtitle', $monograph->getLocalizedSubtitle(), false);
+
 		/* --- Contributor information --- */
 
 		$authors =& $monograph->getAuthors(); // sorts by sequence.
@@ -171,7 +186,7 @@ class Onix30ExportDom {
 			$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 			$userGroup =& $userGroupDao->getById($author->getUserGroupId(), $monograph->getPressId());
 
-			$userGroupOnixMap = array('AU' => 'A01', 'VE' => 'B01', 'CA' => 'A01', 'Trans' => 'B06'); // From List17
+			$userGroupOnixMap = array('AU' => 'A01', 'VE' => 'B01', 'CA' => 'A01', 'Trans' => 'B06'); // From List17, ContributorRole types.
 
 			XMLCustomWriter::createChildWithText($doc, $contributorNode, 'ContributorRole', $userGroupOnixMap[$userGroup->getLocalizedAbbrev()]);
 			XMLCustomWriter::createChildWithText($doc, $contributorNode, 'PersonName', $author->getFullName());
@@ -191,6 +206,7 @@ class Onix30ExportDom {
 			unset($contributorPlaceNode);
 			unset($contributorNode);
 			unset($userGroup);
+			unset($author);
 		}
 
 		if (sizeof($authors) == 0) { // this will probably never happen, but include the possibility.
@@ -211,7 +227,9 @@ class Onix30ExportDom {
  			XMLCustomWriter::appendChild($descDetailNode, $languageNode);
  			XMLCustomWriter::createChildWithText($doc, $languageNode, 'LanguageRole', '01');
  			XMLCustomWriter::createChildWithText($doc, $languageNode, 'LanguageCode', $language);
+ 			unset($languageNode);
 		}
+
 		/* --- add Extents for 00 (main content) and 04 (back matter) ---*/
 
 		if ($assignedPublicationFormat->getFrontMatter() > 0) {
@@ -220,6 +238,7 @@ class Onix30ExportDom {
 			XMLCustomWriter::createChildWithText($doc, $extentNode, 'ExtentType', '00');
 			XMLCustomWriter::createChildWithText($doc, $extentNode, 'ExtentValue', $assignedPublicationFormat->getFrontMatter());
 			XMLCustomWriter::createChildWithText($doc, $extentNode, 'ExtentUnit', '03'); // 03 -> Pages
+			unset($extentNode);
 		}
 
 		if ($assignedPublicationFormat->getBackMatter() > 0) {
@@ -228,20 +247,23 @@ class Onix30ExportDom {
 			XMLCustomWriter::createChildWithText($doc, $extentNode, 'ExtentType', '04');
 			XMLCustomWriter::createChildWithText($doc, $extentNode, 'ExtentValue', $assignedPublicationFormat->getBackMatter());
 			XMLCustomWriter::createChildWithText($doc, $extentNode, 'ExtentUnit', '03'); // 03 -> Pages
+			unset($extentNode);
 		}
+
 		if (!$assignedPublicationFormat->getPhysicalFormat()) { // EBooks and digital content have extent information about file sizes
 			$extentNode =& XMLCustomWriter::createElement($doc, 'Extent');
 			XMLCustomWriter::appendChild($descDetailNode, $extentNode);
 			XMLCustomWriter::createChildWithText($doc, $extentNode, 'ExtentType', '08');
 			XMLCustomWriter::createChildWithText($doc, $extentNode, 'ExtentValue', $assignedPublicationFormat->getFileSize());
 			XMLCustomWriter::createChildWithText($doc, $extentNode, 'ExtentUnit', '05');
+			unset($extentNode);
 		}
 
 		/* --- Add Subject elements --- */
 
 		$subjectNode =& XMLCustomWriter::createElement($doc, 'Subject');
 		XMLCustomWriter::appendChild($descDetailNode, $subjectNode);
-		XMLCustomWriter::createChildWithText($doc, $subjectNode, 'MainSubject', ''); // this is empty in the specification
+		XMLCustomWriter::createChildWithText($doc, $subjectNode, 'MainSubject', ''); // this is empty, as per the ONIX 3.0 schema.
 		XMLCustomWriter::createChildWithText($doc, $subjectNode, 'SubjectSchemeIdentifier', '12'); // 12 is BIC subject category code list
 		XMLCustomWriter::createChildWithText($doc, $subjectNode, 'SubjectSchemeVersion', '2'); // Version 2 of ^^
 
@@ -310,7 +332,8 @@ class Onix30ExportDom {
 
 		$imprintNode =& XMLCustomWriter::createElement($doc, 'Imprint');
 		XMLCustomWriter::appendChild($publishingDetailNode, $imprintNode);
-		XMLCustomWriter::createChildWithText($doc, $imprintNode, 'ImprintName', $assignedPublicationFormat->getImprint());
+		XMLCustomWriter::createChildWithText($doc, $imprintNode, 'ImprintName', $assignedPublicationFormat->getImprint(), false);
+		unset($imprintNode);
 
 		$publisherNode =& XMLCustomWriter::createElement($doc, 'Publisher');
 		XMLCustomWriter::appendChild($publishingDetailNode, $publisherNode);
@@ -327,7 +350,6 @@ class Onix30ExportDom {
 
 		$publicationDates =& $assignedPublicationFormat->getPublicationDates();
 		while ($date =& $publicationDates->next()) {
-
 			$pubDateNode =& XMLCustomWriter::createElement($doc, 'PublishingDate');
 			XMLCustomWriter::appendChild($publishingDetailNode, $pubDateNode);
 			XMLCustomWriter::createChildWithText($doc, $pubDateNode, 'PublishingDateRole', $date->getRole());
@@ -337,6 +359,8 @@ class Onix30ExportDom {
 			$dateTextNode =& XMLCustomWriter::createTextNode($doc, $date->getDate());
 			XMLCustomWriter::appendChild($dateNode, $dateTextNode);
 
+			unset($pubDateNode);
+			unset($dateNode);
 			unset($date);
 		}
 
@@ -366,45 +390,88 @@ class Onix30ExportDom {
 				if (sizeof($salesRights->getRegionsExcluded()) > 0) {
 					XMLCustomWriter::createChildWithText($doc, $territoryNode, 'RegionsExcluded', join(' ', $salesRights->getRegionsExcluded()));
 				}
-			} else {
-				$salesRightsROW =& $salesRights; // stash this for later
+
+				unset($territoryNode);
+				unset($salesRightsNode);
+
+			} else { // found the SalesRights object that is assigned 'rest of world'.
+				$salesRightsROW =& $salesRights; // stash this for later since it always goes last.
 			}
 			unset($salesRights);
 		}
 		if ($salesRightsROW != null) {
 			XMLCustomWriter::createChildWithText($doc, $publishingDetailNode, 'ROWSalesRightsType', $salesRightsROW->getType());
 		}
-		/* --- Product Supply --- */
 
-		$productSupplyNode =& XMLCustomWriter::createElement($doc, 'ProductSupply');
-		XMLCustomWriter::appendChild($productNode, $productSupplyNode);
+		/* --- Product Supply.  We create one of these per defined Market. --- */
 
-		 /* --- Market Information --- */
+		$representativeDao =& DAORegistry::getDAO('RepresentativeDAO');
+		$markets =& $assignedPublicationFormat->getMarkets();
 
-		$marketNode =& XMLCustomWriter::createElement($doc, 'Market');
-		XMLCustomWriter::appendChild($productSupplyNode, $marketNode);
-		$marketTerritoryNode =& XMLCustomWriter::createElement($doc, 'Territory');
-		XMLCustomWriter::appendChild($marketNode, $marketTerritoryNode);
-		XMLCustomWriter::createChildWithText($doc, $marketTerritoryNode, 'CountriesIncluded', $assignedPublicationFormat->getDistributionCountriesAsString());
+		while ($market =& $markets->next()) {
+			$productSupplyNode =& XMLCustomWriter::createElement($doc, 'ProductSupply');
+			XMLCustomWriter::appendChild($productNode, $productSupplyNode);
 
-		$marketPubDetailNode =& XMLCustomWriter::createElement($doc, 'MarketPublishingDetail');
-		XMLCustomWriter::appendChild($productSupplyNode, $marketPubDetailNode);
-		XMLCustomWriter::createChildWithText($doc, $marketPubDetailNode, 'MarketPublishingStatus', '04'); // 04 -> Active
-		$marketDateNode =& XMLCustomWriter::createElement($doc, 'MarketDate');
-		XMLCustomWriter::appendChild($marketPubDetailNode, $marketDateNode);
-		XMLCustomWriter::createChildWithText($doc, $marketDateNode, 'MarketDateRole', '01'); // 01 -> Publication Date in this Market
-		XMLCustomWriter::createChildWithText($doc, $marketDateNode, 'DateFormat', '00'); // 00 -> YYYYMMDD
-		XMLCustomWriter::createChildWithText($doc, $marketDateNode, 'Date', '20111212'); // $monograph->getPublicationDate() ?
+			$marketNode =& XMLCustomWriter::createElement($doc, 'Market');
+			XMLCustomWriter::appendChild($productSupplyNode, $marketNode);
+			$territoryNode =& XMLCustomWriter::createElement($doc, 'Territory');
+			XMLCustomWriter::appendChild($marketNode, $territoryNode);
 
-		/* --- Supplier Detail Information --- */
+			if (sizeof($market->getCountriesIncluded()) > 0) {
+				XMLCustomWriter::createChildWithText($doc, $territoryNode, 'CountriesIncluded', join(' ', $market->getCountriesIncluded()));
+			}
+			if (sizeof($market->getRegionsIncluded()) > 0) {
+				XMLCustomWriter::createChildWithText($doc, $territoryNode, 'RegionsIncluded', join(' ', $market->getRegionsIncluded()));
+			}
+			if (sizeof($market->getCountriesExcluded()) > 0) {
+				XMLCustomWriter::createChildWithText($doc, $territoryNode, 'CountriesExcluded', join(' ', $market->getCountriesExcluded()));
+			}
+			if (sizeof($market->getRegionsExcluded()) > 0) {
+				XMLCustomWriter::createChildWithText($doc, $territoryNode, 'RegionsExcluded', join(' ', $market->getRegionsExcluded()));
+			}
+			unset($marketNode);
+			unset($territoryNode);
 
-		$suppliers =& $monograph->getSuppliers();
+			/* --- Include a MarketPublishingDetail node --- */
 
-		$supplyDetailNode =& XMLCustomWriter::createElement($doc, 'SupplyDetail');
-		XMLCustomWriter::appendChild($productSupplyNode, $supplyDetailNode);
+			$marketPubDetailNode =& XMLCustomWriter::createElement($doc, 'MarketPublishingDetail');
+			XMLCustomWriter::appendChild($productSupplyNode, $marketPubDetailNode);
+			$agent =& $representativeDao->getById($market->getAgentId());
 
-		if (!$suppliers->wasEmpty()) {
-			while ($supplier =& $suppliers->next()) {
+			if (isset($agent)) {
+				$representativeNode =& XMLCustomWriter::createElement($doc, 'PublisherRepresentative');
+				XMLCustomWriter::appendChild($marketPubDetailNode, $representativeNode);
+				XMLCustomWriter::createChildWithText($doc, $representativeNode, 'AgentRole', $agent->getRole());
+				XMLCustomWriter::createChildWithText($doc, $representativeNode, 'AgentName', $agent->getName());
+				if ($agent->getUrl() != '') {
+					$agentWebsiteNode =& XMLCustomWriter::createElement($doc, 'Website');
+					XMLCustomWriter::appendChild($representativeNode, $agentWebsiteNode);
+					XMLCustomWriter::createChildWithText($doc, $agentWebsiteNode, 'WebsiteRole', '18'); // 18 -> Public website
+					XMLCustomWriter::createChildWithText($doc, $agentWebsiteNode, 'WebsiteLink', $agent->getUrl());
+					unset($supplierWebsiteNode);
+				}
+				unset($representativeNode);
+			}
+
+			XMLCustomWriter::createChildWithText($doc, $marketPubDetailNode, 'MarketPublishingStatus', '04'); // 04 -> Active
+
+			// MarketDate is a required field on the form. If that changes, this should be wrapped in a conditional.
+			$marketDateNode =& XMLCustomWriter::createElement($doc, 'MarketDate');
+			XMLCustomWriter::appendChild($marketPubDetailNode, $marketDateNode);
+			XMLCustomWriter::createChildWithText($doc, $marketDateNode, 'MarketDateRole', $market->getDateRole());
+			XMLCustomWriter::createChildWithText($doc, $marketDateNode, 'DateFormat', $market->getDateFormat());
+			XMLCustomWriter::createChildWithText($doc, $marketDateNode, 'Date', $market->getDate());
+
+			unset($marketDateNode);
+			unset($marketPubDetailNode);
+
+			/* --- Supplier Detail Information --- */
+
+			$supplier =& $representativeDao->getById($market->getSupplierId());
+			$supplyDetailNode =& XMLCustomWriter::createElement($doc, 'SupplyDetail');
+			XMLCustomWriter::appendChild($productSupplyNode, $supplyDetailNode);
+
+			if (isset($supplier)) {
 				$supplierNode =& XMLCustomWriter::createElement($doc, 'Supplier');
 				XMLCustomWriter::appendChild($supplyDetailNode, $supplierNode);
 				XMLCustomWriter::createChildWithText($doc, $supplierNode, 'SupplierRole', $supplier->getRole());
@@ -415,46 +482,65 @@ class Onix30ExportDom {
 				if ($supplier->getUrl() != '') {
 					$supplierWebsiteNode =& XMLCustomWriter::createElement($doc, 'Website');
 					XMLCustomWriter::appendChild($supplierNode, $supplierWebsiteNode);
-					XMLCustomWriter::createChildWithText($doc, $supplierWebsiteNode, 'WebsiteRole', '18'); // 18 -> Publisher's B2C website
+					XMLCustomWriter::createChildWithText($doc, $supplierWebsiteNode, 'WebsiteRole', '18'); // 18 -> Public website
 					XMLCustomWriter::createChildWithText($doc, $supplierWebsiteNode, 'WebsiteLink', $supplier->getUrl());
 					unset($supplierWebsiteNode);
 				}
 				unset($supplierNode);
+				unset($supplierWebsiteNode);
+
+			} else { // No suppliers specified, use the Press settings instead.
+				$supplierNode =& XMLCustomWriter::createElement($doc, 'Supplier');
+				XMLCustomWriter::appendChild($supplyDetailNode, $supplierNode);
+				XMLCustomWriter::createChildWithText($doc, $supplierNode, 'SupplierRole', '09'); // Publisher supplying to end customers
+				XMLCustomWriter::createChildWithText($doc, $supplierNode, 'SupplierName', $press->getSetting('publisher'));
+				XMLCustomWriter::createChildWithText($doc, $supplierNode, 'EmailAddress', $press->getSetting('contactEmail'), false);
+				$supplierWebsiteNode =& XMLCustomWriter::createElement($doc, 'Website');
+				XMLCustomWriter::appendChild($supplierNode, $supplierWebsiteNode);
+				XMLCustomWriter::createChildWithText($doc, $supplierWebsiteNode, 'WebsiteRole', '18'); // 18 -> Publisher's B2C website
+				XMLCustomWriter::createChildWithText($doc, $supplierWebsiteNode, 'WebsiteLink', Request::url($press->getPath()));
+				unset($supplierNode);
+				unset($supplierWebsiteNode);
 			}
-		} else { // No suppliers specified, use the Press settings instead.
-			$supplierNode =& XMLCustomWriter::createElement($doc, 'Supplier');
-			XMLCustomWriter::appendChild($supplyDetailNode, $supplierNode);
-			XMLCustomWriter::createChildWithText($doc, $supplierNode, 'SupplierRole', '09'); // Publisher supplying to end customers
-			XMLCustomWriter::createChildWithText($doc, $supplierNode, 'SupplierName', $press->getSetting('publisher'));
-			XMLCustomWriter::createChildWithText($doc, $supplierNode, 'EmailAddress', $press->getSetting('contactEmail'), false);
-			$supplierWebsiteNode =& XMLCustomWriter::createElement($doc, 'Website');
-			XMLCustomWriter::appendChild($supplierNode, $supplierWebsiteNode);
-			XMLCustomWriter::createChildWithText($doc, $supplierWebsiteNode, 'WebsiteRole', '18'); // 18 -> Publisher's B2C website
-			XMLCustomWriter::createChildWithText($doc, $supplierWebsiteNode, 'WebsiteLink', Request::url($press->getPath()));
-			unset($supplierNode);
-		}
-		if ($assignedPublicationFormat->getReturnableIndicatorCode() != '') {
-			$returnsNode =& XMLCustomWriter::createElement($doc, 'ReturnsConditions');
-			XMLCustomWriter::appendChild($supplyDetailNode, $returnsNode);
-			XMLCustomWriter::createChildWithText($doc, $returnsNode, 'ReturnsCodeType', '02'); // we support the BISAC codes for these
-			XMLCustomWriter::createChildWithText($doc, $returnsNode, 'ReturnsCode', $assignedPublicationFormat->getReturnableIndicatorCode());
-		}
-		XMLCustomWriter::createChildWithText($doc, $supplyDetailNode, 'ProductAvailability', $assignedPublicationFormat->getProductAvailabilityCode());
+			if ($assignedPublicationFormat->getReturnableIndicatorCode() != '') {
+				$returnsNode =& XMLCustomWriter::createElement($doc, 'ReturnsConditions');
+				XMLCustomWriter::appendChild($supplyDetailNode, $returnsNode);
+				XMLCustomWriter::createChildWithText($doc, $returnsNode, 'ReturnsCodeType', '02'); // we support the BISAC codes for these
+				XMLCustomWriter::createChildWithText($doc, $returnsNode, 'ReturnsCode', $assignedPublicationFormat->getReturnableIndicatorCode());
+				unset($returnsNode);
+			}
 
-		$priceNode =& XMLCustomWriter::createElement($doc, 'Price');
-		XMLCustomWriter::appendChild($supplyDetailNode, $priceNode);
-		XMLCustomWriter::createChildWithText($doc, $priceNode, 'PriceType', $assignedPublicationFormat->getPriceTypeCode());
-		XMLCustomWriter::createChildWithText($doc, $priceNode, 'PriceAmount', $assignedPublicationFormat->getPrice());
+			XMLCustomWriter::createChildWithText($doc, $supplyDetailNode, 'ProductAvailability',
+				$assignedPublicationFormat->getProductAvailabilityCode() ? $assignedPublicationFormat->getProductAvailabilityCode() : '20'); // assume 'available' if not specified.
 
-		$taxNode =& XMLCustomWriter::createElement($doc, 'Tax');
-		XMLCustomWriter::appendChild($supplyDetailNode, $taxNode);
-		XMLCustomWriter::appendChild($priceNode, $taxNode);
-		XMLCustomWriter::createChildWithText($doc, $taxNode, 'TaxType', $assignedPublicationFormat->getTaxTypeCode()); // VAT, GST, etc
-		XMLCustomWriter::createChildWithText($doc, $taxNode, 'TaxRateCode', $assignedPublicationFormat->getTaxRateCode()); // Zero-rated, tax included, tax excluded, etc
-		XMLCustomWriter::createChildWithText($doc, $priceNode, 'CurrencyCode', $assignedPublicationFormat->getCurrencyCode()); // CAD, GBP, USD, etc
+			$priceNode =& XMLCustomWriter::createElement($doc, 'Price');
+			XMLCustomWriter::appendChild($supplyDetailNode, $priceNode);
+			XMLCustomWriter::createChildWithText($doc, $priceNode, 'PriceType', $market->getPriceTypeCode(), false);
+
+			if ($market->getDiscount() != '') {
+				$discountNode =& XMLCustomWriter::createElement($doc, 'Discount');
+				XMLCustomWriter::appendChild($priceNode, $discountNode);
+				XMLCustomWriter::createChildWithText($doc, $discountNode, 'DiscountPercent', $market->getDiscount());
+				unset($discountNode);
+			}
+
+			XMLCustomWriter::createChildWithText($doc, $priceNode, 'PriceAmount', $market->getPrice());
+
+			if ($market->getTaxTypeCode() != '' || $market->getTaxRateCode() != '') {
+				$taxNode =& XMLCustomWriter::createElement($doc, 'Tax');
+				XMLCustomWriter::appendChild($priceNode, $taxNode);
+				XMLCustomWriter::createChildWithText($doc, $taxNode, 'TaxType', $market->getTaxTypeCode(), false); // VAT, GST, etc
+				XMLCustomWriter::createChildWithText($doc, $taxNode, 'TaxRateCode', $market->getTaxRateCode(), false); // Zero-rated, tax included, tax excluded, etc
+				unset($taxNode);
+			}
+			XMLCustomWriter::createChildWithText($doc, $priceNode, 'CurrencyCode', $market->getCurrencyCode(), false); // CAD, GBP, USD, etc
+
+			unset($priceNode);
+			unset($supplyDetailNode);
+			unset($market);
+		} // end of Market, closes ProductSupply.
 
 		return $root;
 	}
 }
-
 ?>

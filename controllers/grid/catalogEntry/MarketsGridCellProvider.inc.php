@@ -1,24 +1,24 @@
 <?php
 
 /**
- * @file controllers/grid/catalogEntry/SuppliersGridCellProvider.inc.php
+ * @file controllers/grid/catalogEntry/MarketsGridCellProvider.inc.php
  *
  * Copyright (c) 2000-2012 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class SuppliersGridCellProvider
+ * @class MarketsGridCellProvider
  * @ingroup controllers_grid_catalogEntry
  *
- * @brief Base class for a cell provider that can retrieve labels for suppliers
+ * @brief Base class for a cell provider that can retrieve labels for market regions
  */
 
 import('lib.pkp.classes.controllers.grid.DataObjectGridCellProvider');
 
-class SuppliersGridCellProvider extends DataObjectGridCellProvider {
+class MarketsGridCellProvider extends DataObjectGridCellProvider {
 	/**
 	 * Constructor
 	 */
-	function SuppliersGridCellProvider() {
+	function MarketsGridCellProvider() {
 		parent::DataObjectGridCellProvider();
 	}
 
@@ -37,10 +37,12 @@ class SuppliersGridCellProvider extends DataObjectGridCellProvider {
 		$columnId = $column->getId();
 		assert(is_a($element, 'DataObject') && !empty($columnId));
 		switch ($columnId) {
-			case 'role':
-				return array('label' => $element->getNameForONIXCode());
-			case 'name':
-				return array('label' => $element->getName());
+			case 'territory':
+				return array('label' => $element->getTerritoriesAsString());
+			case 'rep':
+				return array('label' => $element->getAssignedRepresentativeNames());
+			case 'price':
+				return array('label' => $element->getPrice() . $element->getCurrencyCode());
 		}
 	}
 }

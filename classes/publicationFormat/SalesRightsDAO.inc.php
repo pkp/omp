@@ -138,7 +138,7 @@ class SalesRightsDAO extends DAO {
 	}
 
 	/**
-	 * Update an existing sales rights entr.
+	 * Update an existing sales rights entry.
 	 * @param $salesRights SalesRights
 	 */
 	function updateObject(&$salesRights) {

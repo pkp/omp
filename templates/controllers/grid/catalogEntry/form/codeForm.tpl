@@ -22,7 +22,7 @@
 		{fbvFormSection title="grid.catalogEntry.identificationCodeValue" for="value" required="true"}
 			{fbvElement type="text" id="value" value=$value|escape size=$fbvStyles.size.MEDIUM}
 		{/fbvFormSection}
-		{fbvFormSection title="grid.catalogEntry.identificationCodeType" for="code"  required="true" size=$fbvStyles.size.MEDIUM}
+		{fbvFormSection title="grid.catalogEntry.identificationCodeType" for="code" required="true" size=$fbvStyles.size.MEDIUM}
 			{fbvElement type="select" from=$identificationCodes selected=$code id="code" translate=false}
 		{/fbvFormSection}
 		{fbvFormButtons}

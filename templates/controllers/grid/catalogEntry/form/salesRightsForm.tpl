@@ -33,15 +33,7 @@
 			{fbvElement type="checkbox" id="ROWSetting" checked=$checked list="true" label="grid.catalogEntry.salesRightsROW"}
 		{/fbvFormSection}
 		
-		{fbvFormSection title="grid.catalogEntry.countries" for="countriesIncludedCode"}
-			{fbvElement type="select" label="grid.catalogEntry.salesRightsIncluded" from=$countryCodes selected=$countriesIncluded translate=false id="countriesIncluded" name="countriesIncluded[]" multiple="multiple" size=$fbvStyles.size.MEDIUM defaultValue="" defaultLabel="" inline=true}
-			{fbvElement type="select" label="grid.catalogEntry.salesRightsExcluded" from=$countryCodes selected=$countriesExcluded translate=false id="countriesExcluded" name="countriesExcluded[]" multiple="multiple" size=$fbvStyles.size.MEDIUM defaultValue="" defaultLabel="" inline=true}
-		{/fbvFormSection}
-
-		{fbvFormSection title="grid.catalogEntry.regions" for="countriesIncludedCode"}
-			{fbvElement type="select" label="grid.catalogEntry.salesRightsIncluded" from=$regionCodes selected=$regionsIncluded translate=false id="regionsIncluded" name="regionsIncluded[]" multiple="multiple" size=$fbvStyles.size.MEDIUM defaultValue="" defaultLabel="" inline=true}
-			{fbvElement type="select" label="grid.catalogEntry.salesRightsExcluded" from=$regionCodes selected=$regionsExcluded translate=false id="regionsExcluded" name="regionsExcluded[]" multiple="multiple" size=$fbvStyles.size.MEDIUM defaultValue="" defaultLabel="" inline=true}
-		{/fbvFormSection}
+		{include file="controllers/grid/catalogEntry/form/countriesAndRegions.tpl"}
 
 		{fbvFormButtons}
 	{/fbvFormArea}

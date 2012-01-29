@@ -1,15 +1,15 @@
 <?php
 
 /**
- * @file controllers/grid/catalogEntry/PublicationDateGridHandler.inc.php
+ * @file controllers/grid/catalogEntry/MarketsGridHandler.inc.php
  *
  * Copyright (c) 2000-2012 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class PublicationDateGridHandler
+ * @class MarketsGridHandler
  * @ingroup controllers_grid_catalogEntry
  *
- * @brief Handle publication format grid requests for publication dates.
+ * @brief Handle publication format grid requests for markets.
  */
 
 // import grid base classes
@@ -17,13 +17,13 @@ import('lib.pkp.classes.controllers.grid.GridHandler');
 
 
 // import format grid specific classes
-import('controllers.grid.catalogEntry.PublicationDateGridCellProvider');
-import('controllers.grid.catalogEntry.PublicationDateGridRow');
+import('controllers.grid.catalogEntry.MarketsGridCellProvider');
+import('controllers.grid.catalogEntry.MarketsGridRow');
 
 // Link action & modal classes
 import('lib.pkp.classes.linkAction.request.AjaxModal');
 
-class PublicationDateGridHandler extends GridHandler {
+class MarketsGridHandler extends GridHandler {
 	/** @var Monograph */
 	var $_monograph;
 
@@ -33,12 +33,12 @@ class PublicationDateGridHandler extends GridHandler {
 	/**
 	 * Constructor
 	 */
-	function PublicationDateGridHandler() {
+	function MarketsGridHandler() {
 		parent::GridHandler();
 		$this->addRoleAssignment(
 				array(ROLE_ID_PRESS_MANAGER),
-				array('fetchGrid', 'fetchRow', 'addDate', 'editDate',
-				'updateDate', 'deleteDate'));
+				array('fetchGrid', 'fetchRow', 'addMarket', 'editMarket',
+				'updateMarket', 'deleteMarket'));
 	}
 
 
@@ -62,7 +62,7 @@ class PublicationDateGridHandler extends GridHandler {
 	}
 
 	/**
-	 * Get the assigned publication format assocated with these dates
+	 * Get the assigned publication format assocated with these markets
 	 * @return AssignedPublicationformat
 	 */
 	function &getAssignedPublicationFormat() {
@@ -105,15 +105,15 @@ class PublicationDateGridHandler extends GridHandler {
 		$assignedPublicationFormatId = null;
 
 		// Retrieve the associated publication format for this grid.
-		$publicationDateId = (int) $request->getUserVar('publicationDateId'); // set if editing or deleting a date
+		$marketId = (int) $request->getUserVar('marketId'); // set if editing or deleting a market entry
 
-		if ($publicationDateId != '') {
-			$publicationDateDao =& DAORegistry::getDAO('PublicationDateDAO');
-			$publicationDate =& $publicationDateDao->getById($publicationDateId, $this->getMonograph()->getId());
-			if ($publicationDate) {
-				$assignedPublicationFormatId =& $publicationDate->getAssignedPublicationFormatId();
+		if ($marketId != '') {
+			$marketDao =& DAORegistry::getDAO('MarketDAO');
+			$market =& $marketDao->getById($marketId, $this->getMonograph()->getId());
+			if ($market) {
+				$assignedPublicationFormatId =& $market->getAssignedPublicationFormatId();
 			}
-		} else { // empty form for new Date
+		} else { // empty form for new Market
 			$assignedPublicationFormatId = (int) $request->getUserVar('assignedPublicationFormatId');
 		}
 
@@ -134,18 +134,18 @@ class PublicationDateGridHandler extends GridHandler {
 		);
 
 		// Basic grid configuration
-		$this->setTitle('grid.catalogEntry.publicationDates');
+		$this->setTitle('grid.catalogEntry.markets');
 
 		// Grid actions
 		$router =& $request->getRouter();
 		$actionArgs = $this->getRequestArgs();
 		$this->addAction(
 			new LinkAction(
-				'addDate',
+				'addMarket',
 				new AjaxModal(
-					$router->url($request, null, null, 'addDate', null, $actionArgs),
+					$router->url($request, null, null, 'addMarket', null, $actionArgs),
 					__('grid.action.addItem'),
-					'addDate'
+					'addMarket'
 				),
 				__('grid.action.addItem'),
 				'add_item'
@@ -153,21 +153,29 @@ class PublicationDateGridHandler extends GridHandler {
 		);
 
 		// Columns
-		$cellProvider = new PublicationDateGridCellProvider();
+		$cellProvider = new MarketsGridCellProvider();
 		$this->addColumn(
 			new GridColumn(
-				'value',
-				'grid.catalogEntry.dateValue',
+				'territory',
+				'grid.catalogEntry.marketTerritory',
 				null,
 				'controllers/grid/gridCell.tpl',
-				$cellProvider,
-				array('width' => 50, 'alignment' => COLUMN_ALIGNMENT_LEFT)
+				$cellProvider
 			)
 		);
 		$this->addColumn(
 			new GridColumn(
-				'code',
-				'grid.catalogEntry.dateRole',
+				'rep',
+				'grid.catalogEntry.representatives',
+				null,
+				'controllers/grid/gridCell.tpl',
+				$cellProvider
+			)
+		);
+		$this->addColumn(
+			new GridColumn(
+				'price',
+				'monograph.publicationFormat.price',
 				null,
 				'controllers/grid/gridCell.tpl',
 				$cellProvider
@@ -181,10 +189,10 @@ class PublicationDateGridHandler extends GridHandler {
 	//
 	/**
 	 * @see GridHandler::getRowInstance()
-	 * @return PublicationDateGridRow
+	 * @return MarketsGridRow
 	 */
 	function &getRowInstance() {
-		$row = new PublicationDateGridRow($this->getMonograph());
+		$row = new MarketsGridRow($this->getMonograph());
 		return $row;
 	}
 
@@ -208,72 +216,72 @@ class PublicationDateGridHandler extends GridHandler {
 	 */
 	function &loadData($request, $filter = null) {
 		$assignedPublicationFormat =& $this->getAssignedPublicationFormat();
-		$publicationDateDao =& DAORegistry::getDAO('PublicationDateDAO');
-		$data =& $publicationDateDao->getByAssignedPublicationFormatId($assignedPublicationFormat->getAssignedPublicationFormatId());
+		$marketDao =& DAORegistry::getDAO('MarketDAO');
+		$data =& $marketDao->getByAssignedPublicationFormatId($assignedPublicationFormat->getAssignedPublicationFormatId());
 		return $data->toArray();
 	}
 
 
 	//
-	// Public Date Grid Actions
+	// Public  Market Grid Actions
 	//
 
-	function addDate($args, $request) {
-		return $this->editDate($args, $request);
+	function addMarket($args, $request) {
+		return $this->editMarket($args, $request);
 	}
 
 	/**
-	 * Edit a date
+	 * Edit a markets entry
 	 * @param $args array
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function editDate($args, &$request) {
-		// Identify the date to be updated
-		$publicationDateId = (int) $request->getUserVar('publicationDateId');
+	function editMarket($args, &$request) {
+		// Identify the market entry to be updated
+		$marketId = (int) $request->getUserVar('marketId');
 		$monograph =& $this->getMonograph();
 
-		$publicationDateDao =& DAORegistry::getDAO('PublicationDateDAO');
-		$publicationDate = $publicationDateDao->getById($publicationDateId, $monograph->getId());
+		$marketDao =& DAORegistry::getDAO('MarketDAO');
+		$market = $marketDao->getById($marketId, $monograph->getId());
 
 		// Form handling
-		import('controllers.grid.catalogEntry.form.PublicationDateForm');
-		$publicationDateForm = new PublicationDateForm($monograph, $publicationDate);
-		$publicationDateForm->initData();
+		import('controllers.grid.catalogEntry.form.MarketForm');
+		$marketForm = new MarketForm($monograph, $market);
+		$marketForm->initData();
 
-		$json = new JSONMessage(true, $publicationDateForm->fetch($request));
+		$json = new JSONMessage(true, $marketForm->fetch($request));
 		return $json->getString();
 	}
 
 	/**
-	 * Update a date
+	 * Update a markets entry
 	 * @param $args array
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function updateDate($args, &$request) {
-		// Identify the code to be updated
-		$publicationDateId = $request->getUserVar('publicationDateId');
+	function updateMarket($args, &$request) {
+		// Identify the market entry to be updated
+		$marketId = $request->getUserVar('marketId');
 		$monograph =& $this->getMonograph();
 
-		$publicationDateDao =& DAORegistry::getDAO('PublicationDateDAO');
-		$publicationDate = $publicationDateDao->getById($publicationDateId, $monograph->getId());
+		$marketDao =& DAORegistry::getDAO('MarketDAO');
+		$market = $marketDao->getById($marketId, $monograph->getId());
 
 		// Form handling
-		import('controllers.grid.catalogEntry.form.PublicationDateForm');
-		$publicationDateForm = new PublicationDateForm($monograph, $publicationDate);
-		$publicationDateForm->readInputData();
-		if ($publicationDateForm->validate()) {
-			$publicationDateId = $publicationDateForm->execute();
+		import('controllers.grid.catalogEntry.form.MarketForm');
+		$marketForm = new MarketForm($monograph, $market);
+		$marketForm->readInputData();
+		if ($marketForm->validate()) {
+			$marketId = $marketForm->execute();
 
-			if(!isset($publicationDate)) {
-				// This is a new code
-				$publicationDate =& $publicationDateDao->getById($publicationDateId, $monograph->getId());
-				// New added code action notification content.
-				$notificationContent = __('notification.addedPublicationDate');
+			if(!isset($market)) {
+				// This is a new entry
+				$market =& $marketDao->getById($marketId, $monograph->getId());
+				// New added entry action notification content.
+				$notificationContent = __('notification.addedMarket');
 			} else {
-				// code edit action notification content.
-				$notificationContent = __('notification.editedPublicationDate');
+				// entry edit action notification content.
+				$notificationContent = __('notification.editedMarket');
 			}
 
 			// Create trivial notification.
@@ -284,40 +292,40 @@ class PublicationDateGridHandler extends GridHandler {
 			// Prepare the grid row data
 			$row =& $this->getRowInstance();
 			$row->setGridId($this->getId());
-			$row->setId($publicationDateId);
-			$row->setData($publicationDate);
+			$row->setId($marketId);
+			$row->setData($market);
 			$row->initialize($request);
 
 			// Render the row into a JSON response
 			return DAO::getDataChangedEvent();
 
 		} else {
-			$json = new JSONMessage(true, $publicationDateForm->fetch($request));
+			$json = new JSONMessage(true, $marketForm->fetch($request));
 			return $json->getString();
 		}
 	}
 
 	/**
-	 * Delete a date
+	 * Delete a market entry
 	 * @param $args array
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function deleteDate($args, &$request) {
+	function deleteMarket($args, &$request) {
 
-		// Identify the code to be deleted
-		$publicationDateId = $request->getUserVar('publicationDateId');
+		// Identify the markets entry to be deleted
+		$marketId = $request->getUserVar('marketId');
 
-		$publicationDateDao =& DAORegistry::getDAO('PublicationDateDAO');
-		$publicationDate =& $publicationDateDao->getById($publicationDateId, $this->getMonograph()->getId());
-		if ($publicationDate != null) { // authorized
+		$marketDao =& DAORegistry::getDAO('MarketDAO');
+		$market =& $marketDao->getById($marketId, $this->getMonograph()->getId());
+		if ($market != null) { // authorized
 
-			$result = $publicationDateDao->deleteObject($publicationDate);
+			$result = $marketDao->deleteObject($market);
 
 			if ($result) {
 				$currentUser =& $request->getUser();
 				$notificationMgr = new NotificationManager();
-				$notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.removedPublicationDate')));
+				$notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.removedMarket')));
 				return DAO::getDataChangedEvent();
 			} else {
 				$json = new JSONMessage(false, __('manager.setup.errorDeletingItem'));

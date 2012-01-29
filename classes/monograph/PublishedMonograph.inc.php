@@ -198,13 +198,23 @@ class PublishedMonograph extends Monograph {
 	}
 
 	/**
-	 * Get the Supplier objects for this published monograph.
-	 * @return Array Supplier
+	 * Get the Representative objects assigned as suppliers for this published monograph.
+	 * @return Array Representative
 	 */
 	function getSuppliers() {
-		$supplierDao =& DAORegistry::getDAO('SupplierDAO');
-		$suppliers =& $supplierDao->getSuppliersByMonographId($this->getId());
+		$representativeDao =& DAORegistry::getDAO('RepresentativeDAO');
+		$suppliers =& $representativeDao->getSuppliersByMonographId($this->getId());
 		return $suppliers;
+	}
+
+	/**
+	 * Get the Representative objects assigned as agents for this published monograph.
+	 * @return Array Representative
+	 */
+	function getAgents() {
+		$representativeDao =& DAORegistry::getDAO('RepresentativeDAO');
+		$agents =& $representativeDao->getAgentsByMonographId($this->getId());
+		return $agents;
 	}
 }
 

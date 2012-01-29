@@ -100,35 +100,6 @@ class AssignedPublicationFormat extends PublicationFormat {
 	}
 
 	/**
-	 * Get the country codes for this publication format's distribution range (List91).
-	 * @return array of strings
-	 */
-	function getCountriesIncludedCode() {
-		return $this->getData('countriesIncludedCode');
-	}
-
-	/**
-	 * Set the countries included for a publication format.
-	 * @param string $countriesIncludedCode
-	 */
-	function setCountriesIncludedCode($countriesIncludedCode) {
-		return $this->setData('countriesIncludedCode', $countriesIncludedCode);
-	}
-
-	/**
-	 * Get the countries for this publication format, space separated.
-	 * @return string
-	 */
-	function getDistributionCountriesAsString() {
-		$countries =& $this->getCountriesIncludedCode();
-		if (is_array($countries)) {
-			return join(' ', $countries);
-		} else {
-			return $countries;
-		}
-	}
-
-	/**
 	 * Get the country of manufacture code that this format was manufactured in.
 	 * @return string
 	 */
@@ -335,6 +306,15 @@ class AssignedPublicationFormat extends PublicationFormat {
 	}
 
 	/**
+	 * Get the Market objects for this format.
+	 * @return Array Market
+	 */
+	function getMarkets() {
+		$marketDao =& DAORegistry::getDAO('MarketDAO');
+		$markets =& $marketDao->getByAssignedPublicationFormatId($this->getAssignedPublicationFormatId());
+		return $markets;
+	}
+	/**
 	 * Get the product form detail code (ONIX value) for the format used for this format (List151).
 	 * @return string
 	 */
@@ -364,86 +344,6 @@ class AssignedPublicationFormat extends PublicationFormat {
 	 */
 	function setProductCompositionCode($productCompositionCode) {
 		return $this->setData('productCompositionCode', $productCompositionCode);
-	}
-
-	/**
-	 * Get thecurrency code (ONIX value) used for this format (List96).
-	 * @return string
-	 */
-	function getCurrencyCode() {
-		return $this->getData('currencyCode');
-	}
-
-	/**
-	 * Set the currency code (ONIX value) for a publication format.
-	 * @param string $currencyCode
-	 */
-	function setCurrencyCode($currencyCode) {
-		return $this->setData('currencyCode', $currencyCode);
-	}
-
-	/**
-	 * Get the price.
-	 * @return string
-	 */
-	function getPrice() {
-		return $this->getData('price');
-	}
-
-	/**
-	 * Set the price.
-	 * @param string $price
-	 */
-	function setPrice($price) {
-		return $this->setData('price', $price);
-	}
-
-	/**
-	 * Get the price type code (ONIX code) used for this format (List58).
-	 * @return string
-	 */
-	function getPriceTypeCode() {
-		return $this->getData('priceTypeCode');
-	}
-
-	/**
-	 * Set the price type code (ONIX code) for a publication format.
-	 * @param string $priceTypeCode
-	 */
-	function setPriceTypeCode($priceTypeCode) {
-		return $this->setData('priceTypeCode', $priceTypeCode);
-	}
-
-	/**
-	 * Get the tax rate code (ONIX value) used for this format (List62).
-	 * @return string
-	 */
-	function getTaxRateCode() {
-		return $this->getData('taxRateCode');
-	}
-
-	/**
-	 * Set the tax rate code (ONIX value) for a publication format.
-	 * @param string $taxRateCode
-	 */
-	function setTaxRateCode($taxRateCode) {
-		return $this->setData('taxRateCode', $taxRateCode);
-	}
-
-	/**
-	 * Get the tax type code used (ONIX value) for this format (List171).
-	 * @return string
-	 */
-	function getTaxTypeCode() {
-		return $this->getData('taxTypeCode');
-	}
-
-	/**
-	 * Set the tax type code (ONIX value) for a publication format.
-	 * @param string $taxTypeCode
-	 */
-	function setTaxTypeCode($taxTypeCode) {
-		return $this->setData('taxTypeCode', $taxTypeCode);
 	}
 
 	/**

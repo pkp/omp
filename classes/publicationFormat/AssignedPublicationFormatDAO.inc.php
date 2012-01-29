@@ -146,12 +146,6 @@ class AssignedPublicationFormatDAO extends PublicationFormatDAO {
 		$assignedPublicationFormat->setWeightUnitCode($row['weight_unit_code']);
 		$assignedPublicationFormat->setProductCompositionCode($row['product_composition_code']);
 		$assignedPublicationFormat->setProductFormDetailCode($row['product_form_detail_code']);
-		$assignedPublicationFormat->setPrice($row['price']);
-		$assignedPublicationFormat->setPriceTypeCode($row['price_type_code']);
-		$assignedPublicationFormat->setCurrencyCode($row['currency_code']);
-		$assignedPublicationFormat->setTaxRateCode($row['tax_rate_code']);
-		$assignedPublicationFormat->setTaxTypeCode($row['tax_type_code']);
-		$assignedPublicationFormat->setCountriesIncludedCode(unserialize($row['countries_included_code']));
 		$assignedPublicationFormat->setCountryManufactureCode($row['country_manufacture_code']);
 		$assignedPublicationFormat->setImprint($row['imprint']);
 		$assignedPublicationFormat->setProductAvailabilityCode($row['product_availability_code']);
@@ -171,9 +165,9 @@ class AssignedPublicationFormatDAO extends PublicationFormatDAO {
 	function insertObject(&$assignedPublicationFormat) {
 		$this->update(
 			'INSERT INTO published_monograph_publication_formats
-				(monograph_id, publication_format_id, seq, file_size, front_matter, back_matter, height, height_unit_code, width, width_unit_code, thickness, thickness_unit_code, weight, weight_unit_code, product_composition_code, product_form_detail_code, price, price_type_code, currency_code, tax_rate_code, tax_type_code, countries_included_code, country_manufacture_code, imprint, product_availability_code, technical_protection_code, returnable_indicator_code)
+				(monograph_id, publication_format_id, seq, file_size, front_matter, back_matter, height, height_unit_code, width, width_unit_code, thickness, thickness_unit_code, weight, weight_unit_code, product_composition_code, product_form_detail_code, country_manufacture_code, imprint, product_availability_code, technical_protection_code, returnable_indicator_code)
 			VALUES
-				(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+				(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
 			array(
 				(int) $assignedPublicationFormat->getMonographId(),
 				(int) $assignedPublicationFormat->getId(),
@@ -191,12 +185,6 @@ class AssignedPublicationFormatDAO extends PublicationFormatDAO {
 				$assignedPublicationFormat->getWeightUnitCode(),
 				$assignedPublicationFormat->getProductCompositionCode(),
 				$assignedPublicationFormat->getProductFormDetailCode(),
-				$assignedPublicationFormat->getPrice(),
-				$assignedPublicationFormat->getPriceTypeCode(),
-				$assignedPublicationFormat->getCurrencyCode(),
-				$assignedPublicationFormat->getTaxRateCode(),
-				$assignedPublicationFormat->getTaxTypeCode(),
-				serialize($assignedPublicationFormat->getCountriesIncludedCode() ? $assignedPublicationFormat->getCountriesIncludedCode() : array()),
 				$assignedPublicationFormat->getCountryManufactureCode(),
 				$assignedPublicationFormat->getImprint(),
 				$assignedPublicationFormat->getProductAvailabilityCode(),
@@ -231,12 +219,6 @@ class AssignedPublicationFormatDAO extends PublicationFormatDAO {
 				weight_unit_code = ?,
 				product_composition_code = ?,
 				product_form_detail_code = ?,
-				price = ?,
-				price_type_code = ?,
-				currency_code = ?,
-				tax_rate_code = ?,
-				tax_type_code = ?,
-				countries_included_code = ?,
 				country_manufacture_code = ?,
 				imprint = ?,
 				product_availability_code = ?,
@@ -259,12 +241,6 @@ class AssignedPublicationFormatDAO extends PublicationFormatDAO {
 				$assignedPublicationFormat->getWeightUnitCode(),
 				$assignedPublicationFormat->getProductCompositionCode(),
 				$assignedPublicationFormat->getProductFormDetailCode(),
-				$assignedPublicationFormat->getPrice(),
-				$assignedPublicationFormat->getPriceTypeCode(),
-				$assignedPublicationFormat->getCurrencyCode(),
-				$assignedPublicationFormat->getTaxRateCode(),
-				$assignedPublicationFormat->getTaxTypeCode(),
-				serialize($assignedPublicationFormat->getCountriesIncludedCode() ? $assignedPublicationFormat->getCountriesIncludedCode() : array()),
 				$assignedPublicationFormat->getCountryManufactureCode(),
 				$assignedPublicationFormat->getImprint(),
 				$assignedPublicationFormat->getProductAvailabilityCode(),

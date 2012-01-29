@@ -48,7 +48,9 @@
 	<message key="monograph.publicationFormat.productFormDetailCode">Product Detail (not required)</message>
 	<message key="monograph.publicationFormat.productIdentifierType">Product Identification</message>
 	<message key="monograph.publicationFormat.price">Price</message>
+	<message key="monograph.publicationFormat.priceRequired">A price is required.</message>
 	<message key="monograph.publicationFormat.priceType">Price Type</message>
+	<message key="monograph.publicationFormat.discountAmount">Discount percentage, if applicable</message>
 	<message key="monograph.publicationFormat.productAvailability">Product Availability</message>
 	<message key="monograph.publicationFormat.returnInformation">Returnable Indicator</message>
 	<!--  Dimension keys  -->
@@ -74,6 +76,10 @@
 	<message key="grid.catalogEntry.monographRequired">A monograph id is required.</message>
 	<message key="grid.catalogEntry.publicationFormatRequired">A publication format must be chosen.</message>
 
+	<!--  publication metadata required form field keys -->
+	<message key="grid.catalogEntry.productAvailabilityRequired">A product availability code must be chosen.</message>
+	<message key="grid.catalogEntry.productCompositionRequired">A product composition code must be chosen.</message>
+
 	<!-- assigned identification code grid and form keys -->
 	<message key="grid.catalogEntry.identificationCodeValue">Code Value</message>
 	<message key="grid.catalogEntry.identificationCodeType">ONIX Code Type</message>
@@ -90,30 +96,42 @@
 	<message key="grid.catalogEntry.oneROWPerFormat">There is already a ROW sales type defined for this publication format.</message>
 	<message key="grid.catalogEntry.countries">Countries</message>
 	<message key="grid.catalogEntry.regions">Regions</message>
-	<message key="grid.catalogEntry.salesRightsIncluded">Included</message>
-	<message key="grid.catalogEntry.salesRightsExcluded">Excluded</message>
+	<message key="grid.catalogEntry.included">Included</message>
+	<message key="grid.catalogEntry.excluded">Excluded</message>
+	
+	<!--  market regions grid and form keys  -->
+	<message key="grid.catalogEntry.markets">Market Territories</message>
+	<message key="grid.catalogEntry.marketTerritory">Territory</message>
 
 	<!-- assigned publication date grid and form keys -->
 	<message key="grid.catalogEntry.publicationDates">Publication Dates</message>
-	<message key="grid.catalogEntry.publicationDateValue">Publication Date</message>
-	<message key="grid.catalogEntry.publicationDateRole">Role</message>
-	<message key="grid.catalogEntry.publicationDateFormat">Publication Date Format</message>
 	<message key="grid.catalogEntry.roleRequired">A date role is required.</message>
-	<message key="grid.catalogEntry.dateRequired">A date is required.</message>
 	<message key="grid.catalogEntry.dateFormatRequired">A date format is required.</message>
 
-	<!--  assigned supplier information grid and form keys -->
-	<message key="grid.catalogEntry.suppliers">Suppliers</message>
-	<message key="grid.catalogEntry.supplierRole">Supplier Role</message>
-	<message key="grid.catalogEntry.supplierName">Supplier Name</message>
-	<message key="grid.catalogEntry.roleRequired">A supplier role is required.</message>
-	<message key="grid.catalogEntry.supplierPhone">Phone</message>
-	<message key="grid.catalogEntry.supplierFax">Fax</message>
-	<message key="grid.catalogEntry.supplierEmail">Email Address</message>
-	<message key="grid.catalogEntry.supplierWebsite">Website</message>
-	<message key="grid.catalogEntry.supplierIdValue">Supplier ID</message>
-	<message key="grid.catalogEntry.supplierIdType">Supplier ID Type (GLN is recommended)</message>
-	<message key="grid.catalogEntry.suppliersDescription">You may leave the following supplier section empty if you provide your own supplier services to your customers.</message>
+	<!-- general catalog date keys -->
+	<message key="grid.catalogEntry.dateValue">Date</message>
+	<message key="grid.catalogEntry.dateRole">Role</message>
+	<message key="grid.catalogEntry.dateFormat">Date Format</message>
+	<message key="grid.catalogEntry.dateRequired">A date is required.</message>
+
+	<!--  assigned representative information grid and form keys -->
+	<message key="grid.catalogEntry.representatives">Representatives</message>
+	<message key="grid.catalogEntry.representativeType">Representative Type</message>
+	<message key="grid.catalogEntry.suppliersCategory">Suppliers</message>
+	<message key="grid.catalogEntry.agent">Agent</message>
+	<message key="grid.catalogEntry.agentTip">You may assign an agent to represent you in this defined territory.  It is not required.</message>
+	<message key="grid.catalogEntry.supplier">Supplier</message>
+	<message key="grid.catalogEntry.representativeRoleChoice">Choose a role:</message>
+	<message key="grid.catalogEntry.representativeRole">Role</message>
+	<message key="grid.catalogEntry.representativeName">Name</message>
+	<message key="grid.catalogEntry.roleRequired">A representative role is required.</message>
+	<message key="grid.catalogEntry.representativePhone">Phone</message>
+	<message key="grid.catalogEntry.representativeFax">Fax</message>
+	<message key="grid.catalogEntry.representativeEmail">Email Address</message>
+	<message key="grid.catalogEntry.representativeWebsite">Website</message>
+	<message key="grid.catalogEntry.representativeIdValue">Representative ID</message>
+	<message key="grid.catalogEntry.representativeIdType">Representative ID Type (GLN is recommended)</message>
+	<message key="grid.catalogEntry.representativesDescription">You may leave the following section empty if you provide your own services to your customers.</message>
 
 	<!-- Editorial policies -->
 	<message key="manager.series.open">Open Submissions</message>
@@ -489,9 +507,12 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="notification.addedSalesRights">Sales Rights added.</message>
 	<message key="notification.editedSalesRights">Sales Rights edited.</message>
 	<message key="notification.removedSalesRights">Sales Rights removed.</message>
-	<message key="notification.addedSupplier">Supplier added.</message>
-	<message key="notification.editedSupplier">Supplier edited.</message>
-	<message key="notification.removedSupplier">Supplier removed.</message>
+	<message key="notification.addedRepresentative">Representative added.</message>
+	<message key="notification.editedRepresentative">Representative edited.</message>
+	<message key="notification.removedRepresentative">Representative removed.</message>
+	<message key="notification.addedMarket">Market added.</message>
+	<message key="notification.editedMarket">Market edited.</message>
+	<message key="notification.removedMarket">Market removed.</message>
 	<message key="notification.addedReviewer">Reviewer added.</message>
 	<message key="notification.addedStageParticipant">User added as a stage participant.</message>
 	<message key="notification.editedAuthor">Author edited.</message>
