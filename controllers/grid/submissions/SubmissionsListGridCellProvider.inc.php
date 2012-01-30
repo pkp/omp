@@ -71,7 +71,7 @@ class SubmissionsListGridCellProvider extends DataObjectGridCellProvider {
 				return array($this->_getCellLinkAction($request, 'reviewer', 'submission', $monograph));
 			} else {
 				// Get the right page and operation (authordashboard or workflow).
-				list($page, $operation) = SubmissionsListGridCellProvider::getPageAndOperationByUserRoles($request, $monograph->getId());
+				list($page, $operation) = SubmissionsListGridCellProvider::getPageAndOperationByUserRoles($request, $monograph);
 
 				// Return redirect link action.
 				return array($this->_getCellLinkAction($request, $page, $operation, $monograph));
@@ -160,17 +160,34 @@ class SubmissionsListGridCellProvider extends DataObjectGridCellProvider {
 	 * Static method that returns the correct page and operation between
 	 * 'authordashboard' and 'workflow', based on users roles.
 	 * @param $request Request
-	 * @param $monographId int
+	 * @param $monograph Monographs
 	 * @return array
 	 */
-	function getPageAndOperationByUserRoles(&$request, $monographId) {
+	function getPageAndOperationByUserRoles(&$request, &$monograph) {
+		$user =& $request->getUser();
+
+		// This method is used to build links in componentes that lists
+		// monographs from various presses, sometimes. So we need to make sure
+		// that we are getting the right monograph press (not necessarily the
+		// current press in request).
+		$pressId = $monograph->getPressId();
+
+		// If user is enrolled with a press manager user group, let
+		// him access the workflow pages.
+		$roleDao =& DAORegistry::getDAO('RoleDAO');
+		$isPressManager = $roleDao->userHasRole($pressId, $user->getId(), ROLE_ID_PRESS_MANAGER);
+		if($isPressManager) {
+			return array('workflow', 'access');
+		}
+
+		$monographId = $monograph->getId();
+
 		// If user has only author role user groups stage assignments,
 		// then add an author dashboard link action.
 		$stageAssignmentDao =& DAORegistry::getDAO('StageAssignmentDAO');
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 
 		$authorUserGroupIds = $userGroupDao->getUserGroupIdsByRoleId(ROLE_ID_AUTHOR);
-		$user =& $request->getUser();
 		$stageAssignmentsFactory =& $stageAssignmentDao->getBySubmissionAndStageId($monographId, null, null, $user->getId());
 
 		$authorDashboard = false;

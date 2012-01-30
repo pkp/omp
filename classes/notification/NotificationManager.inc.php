@@ -52,8 +52,11 @@ class NotificationManager extends PKPNotificationManager {
 				$monographFile =& $submissionFileDao->getLatestRevision($signoff->getAssocId());
 				assert(is_a($monographFile, 'MonographFile'));
 
+				$monographDao =& DAORegistry::getDAO('MonographDAO');
+				$monograph =& $monographDao->getById($monographFile->getMonographId());
+
 				import('controllers.grid.submissions.SubmissionsListGridCellProvider');
-				list($page, $operation) = SubmissionsListGridCellProvider::getPageAndOperationByUserRoles($request, $monographFile->getMonographId());
+				list($page, $operation) = SubmissionsListGridCellProvider::getPageAndOperationByUserRoles($request, $monograph);
 
 				$url = $dispatcher->url($request, ROUTE_PAGE, null, $page, $operation, $monographFile->getMonographId());
 				break;
@@ -64,8 +67,11 @@ class NotificationManager extends PKPNotificationManager {
 				break;
 			case NOTIFICATION_TYPE_SIGNOFF_COPYEDIT:
 			case NOTIFICATION_TYPE_SIGNOFF_PROOF:
+				$monographDao =& DAORegistry::getDAO('MonographDAO');
+				$monograph =& $monographDao->getById($notification->getAssocId());
+
 				import('controllers.grid.submissions.SubmissionsListGridCellProvider');
-				list($page, $operation) = SubmissionsListGridCellProvider::getPageAndOperationByUserRoles($request, $notification->getAssocId());
+				list($page, $operation) = SubmissionsListGridCellProvider::getPageAndOperationByUserRoles($request, $monograph);
 
 				$url = $dispatcher->url($request, ROUTE_PAGE, null, $page, $operation, $notification->getAssocId());
 				break;
