@@ -71,13 +71,14 @@ jQuery.pkp.controllers.informationCenter.form =
 	$.pkp.controllers.informationCenter.form.InformationCenterNotifyHandler.prototype.selectTemplateHandler_ =
 			function(sourceElement, event) {
 
-		$form = this.getHtmlElement();
+		var $form = this.getHtmlElement();
 		$.post(this.templateUrl_, $form.find('#template').serialize(),
 				this.callbackWrapper(this.updateTemplate), 'json');
 	};
-	
+
+
 	/**
-	 * Internal callback to replace the textarea with the contents of the 
+	 * Internal callback to replace the textarea with the contents of the
 	 * template body.
 	 *
 	 * @param {HTMLElement} formElement The wrapped HTML form.
