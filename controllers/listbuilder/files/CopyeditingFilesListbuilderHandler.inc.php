@@ -40,6 +40,15 @@ class CopyeditingFilesListbuilderHandler extends FilesListbuilderHandler {
 	// Implement methods from FilesListbuilderHandler
 	//
 	/**
+	 * @see FilesListbuilderHandler::initialize
+	 */
+	function initialize(&$request) {
+		parent::initialize($request);
+		AppLocale::requireComponents(LOCALE_COMPONENT_OMP_EDITOR);
+		$this->setTitle('editor.monograph.selectCopyedingFiles');
+	}
+
+	/**
 	 * @see controllers/listbuilder/files/FilesListbuilderHandler::getOptions()
 	 */
 	function getOptions() {
