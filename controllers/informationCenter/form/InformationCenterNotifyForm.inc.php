@@ -113,7 +113,7 @@ class InformationCenterNotifyForm extends Form {
 		$userDao =& DAORegistry::getDAO('UserDAO');
 		$application =& Application::getApplication();
 		$request =& $application->getRequest(); // need to do this because the method version is null.
-		$user =& $request->getUser();
+		$fromUser =& $request->getUser();
 
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
 		import('classes.mail.MonographMailTemplate');
@@ -129,7 +129,7 @@ class InformationCenterNotifyForm extends Form {
 		$template = $this->getData('template');
 
 		$email = new MonographMailTemplate($monographDao->getById($monographId), $template);
-		$email->setFrom($user->getEmail(), $user->getFullName());
+		$email->setFrom($fromUser->getEmail(), $fromUser->getFullName());
 
 		foreach ($newRowId as $id) {
 			$user = $userDao->getUser($id);

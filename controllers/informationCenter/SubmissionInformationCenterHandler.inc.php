@@ -178,9 +178,8 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 		import('classes.mail.MonographMailTemplate');
 		$template = new MonographMailTemplate($this->_monograph, $templateId);
 		if ($template) {
-			header('Content-Type: text/json');
 			$json = new JSONMessage(true, $template->getBody());
-			echo $json->getString();
+			return $json->getString();
 		}
 	}
 
