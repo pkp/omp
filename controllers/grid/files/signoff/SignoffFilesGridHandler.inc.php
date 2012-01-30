@@ -129,7 +129,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 			$this->getAssocType(), $this->getAssocId()
 		));
 
-		// Action to signoff on a file -- Lets user interact with their own rows.;
+		// Action to signoff on a file -- Lets user interact with their own rows.
 		import('controllers.api.signoff.linkAction.AddSignoffFileLinkAction');
 		$this->addAction(new AddSignoffFileLinkAction(
 			$request, $monograph->getId(),
@@ -139,16 +139,23 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 		$router =& $request->getRouter();
 
 		// Action to add a user -- Adds the user as a subcategory to the files selected in its modal
-		$this->addAction(new LinkAction(
-			'addAuditor',
-			new AjaxModal(
-				$router->url($request, null, null, 'addAuditor', null, $this->getRequestArgs()),
+		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+		$monographFiles =& $submissionFileDao->getLatestRevisions($monograph->getId(), $this->getFileStage());
+
+		// The "Add Auditor" link should only be available if at least
+		// one file already exists.
+		if (!empty($monographFiles)) {
+			$this->addAction(new LinkAction(
+				'addAuditor',
+				new AjaxModal(
+					$router->url($request, null, null, 'addAuditor', null, $this->getRequestArgs()),
+					__('editor.monograph.addAuditor'),
+					'modal_add_user'
+				),
 				__('editor.monograph.addAuditor'),
-				'modal_add_user'
-			),
-			__('editor.monograph.addAuditor'),
-			'add_user'
-		));
+				'add_user'
+			));
+		}
 
 		//
 		// Grid Columns
