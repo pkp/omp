@@ -49,6 +49,7 @@ class InformationCenterNotifyForm extends Form {
 			$monographFile =& $submissionFileDao->getLatestRevision($this->itemId);
 			$monographId = $monographFile->getMonographId();
 		}
+
 		$templateMgr->assign_by_ref('monographId', $monographId);
 		$templateMgr->assign_by_ref('itemId', $this->itemId);
 
@@ -74,7 +75,7 @@ class InformationCenterNotifyForm extends Form {
 
 		foreach ($templateKeys as $templateKey) {
 			$template = new MonographMailTemplate($monograph, $templateKey);
-			$templates[$template->getBody()] = $template->getSubject();
+			$templates[$templateKey] = $template->getSubject();
 			unset($templateKey);
 		}
 
@@ -89,18 +90,18 @@ class InformationCenterNotifyForm extends Form {
 	 * @see Form::readInputData()
 	 */
 	function readInputData() {
-		$this->readUserVars(array('message', 'users'));
+		$this->readUserVars(array('message', 'users', 'template'));
 		import('lib.pkp.classes.controllers.listbuilder.ListbuilderHandler');
 		$userData = $this->getData('users');
 		ListbuilderHandler::unpack($request, $userData);
 	}
 
 	/**
-	 * Register a new user.
-	 * @return userId int
+	 * Sends a a notification.
+	 * @see Form::execute()
 	 */
 	function execute(&$request) {
-		parent::execute($request);
+		return parent::execute($request);
 	}
 
 	/**
@@ -110,7 +111,10 @@ class InformationCenterNotifyForm extends Form {
 	function insertEntry(&$request, $newRowId) {
 
 		$userDao =& DAORegistry::getDAO('UserDAO');
-		$user = $userDao->getUser($newRowId['name']);
+		$application =& Application::getApplication();
+		$request =& $application->getRequest(); // need to do this because the method version is null.
+		$user =& $request->getUser();
+
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
 		import('classes.mail.MonographMailTemplate');
 
@@ -122,14 +126,16 @@ class InformationCenterNotifyForm extends Form {
 			$monographId = $monographFile->getMonographId();
 		}
 
-		$email = new MonographMailTemplate($monographDao->getById($monographId));
+		$template = $this->getData('template');
+
+		$email = new MonographMailTemplate($monographDao->getById($monographId), $template);
 		$email->setFrom($user->getEmail(), $user->getFullName());
 
 		foreach ($newRowId as $id) {
 			$user = $userDao->getUser($id);
 			$email->addRecipient($user->getEmail(), $user->getFullName());
 			$email->setBody($this->getData('message'));
-			$email->send($request);
+			$email->sendWithParams(array());
 		}
 	}
 

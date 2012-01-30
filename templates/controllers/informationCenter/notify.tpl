@@ -10,7 +10,10 @@
 	// Attach the file upload form handler.
 	$(function() {ldelim}
 		$('#notifyForm').pkpHandler(
-			'$.pkp.controllers.form.AjaxFormHandler'
+			'$.pkp.controllers.informationCenter.form.InformationCenterNotifyHandler',
+			{ldelim}
+				templateUrl: "{url|escape:'javascript' router=$smarty.const.ROUTE_COMPONENT component="informationCenter.SubmissionInformationCenterHandler" op='fetchTemplateBody' monographId=$monographId}"
+			{rdelim}
 		);
 	{rdelim});
 </script>
@@ -24,7 +27,7 @@
 			{/fbvFormSection}
 
 			{fbvFormSection title="informationCenter.notify.chooseMessage" for="template" size=$fbvStyles.size.medium}
-				{fbvElement type="select" from=$templates translate=false id="template" defaultValue="" defaultLabel="" onChange="$('#message').val($('#template').val())"}
+				{fbvElement type="select" from=$templates translate=false id="template" defaultValue="" defaultLabel=""}
 			{/fbvFormSection}
 			
 			{fbvFormSection title="informationCenter.notify.message" for="message" required="true"}

@@ -30,6 +30,7 @@ class InformationCenterHandler extends Handler {
 			array(ROLE_ID_AUTHOR),
 			$authorOps = array(
 				'viewInformationCenter', // Information Center
+				'fetchTemplateBody', // Notify tab
 				'metadata', 'saveForm', // Metadata
 				'viewNotes', 'listNotes', 'saveNote', // Notes
 				'viewNotify', 'sendNotification', // Notify tab

@@ -169,6 +169,22 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 	}
 
 	/**
+	 * Fetches an email template's message body and returns it via AJAX.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 */
+	function fetchTemplateBody($args, &$request) {
+		$templateId = $request->getUserVar('template');
+		import('classes.mail.MonographMailTemplate');
+		$template = new MonographMailTemplate($this->_monograph, $templateId);
+		if ($template) {
+			header('Content-Type: text/json');
+			$json = new JSONMessage(true, $template->getBody());
+			echo $json->getString();
+		}
+	}
+
+	/**
 	 * Send a notification from the notify tab.
 	 * @param $args array
 	 * @param $request PKPRequest
@@ -182,10 +198,14 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 
 		if ($notifyForm->validate()) {
 			$noteId = $notifyForm->execute($request);
-
 			// Return a JSON string indicating success
 			// (will clear the form on return)
 			$json = new JSONMessage(true);
+
+			// Create trivial notification.
+			$currentUser =& $request->getUser();
+			$notificationMgr = new NotificationManager();
+			$notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('informationCenter.history.messageSent')));
 		} else {
 			// Return a JSON string indicating failure
 			$json = new JSONMessage(false);

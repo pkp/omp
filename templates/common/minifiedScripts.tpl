@@ -76,6 +76,7 @@
 <script type="text/javascript" src="{$baseUrl}/js/controllers/grid/users/stageParticipant/form/AddParticipantFormHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/js/controllers/grid/files/signoff/form/AddAuditorFormHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/js/controllers/informationCenter/InformationCenterHandler.js"></script>
+<script type="text/javascript" src="{$baseUrl}/js/controllers/informationCenter/form/InformationCenterNotifyHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/js/controllers/informationCenter/NotesHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/js/controllers/modals/editorDecision/form/EditorDecisionFormHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/js/controllers/modals/catalogEntry/form/RepresentativeFormHandler.js"></script>
