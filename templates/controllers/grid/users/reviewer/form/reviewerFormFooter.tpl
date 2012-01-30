@@ -8,8 +8,8 @@
  *
  *}
  <script type="text/javascript">
-$("#responseDueDate").datepicker({ldelim} dateFormat: 'yy-mm-dd' {rdelim});
-$("#reviewDueDate").datepicker({ldelim} dateFormat: 'yy-mm-dd' {rdelim});
+$("input['name='responseDueDate']").datepicker({ldelim} dateFormat: 'yy-mm-dd' {rdelim});
+$("input['name='reviewDueDate']").datepicker({ldelim} dateFormat: 'yy-mm-dd' {rdelim});
 </script>
 
 <!--  Message to reviewer textarea -->

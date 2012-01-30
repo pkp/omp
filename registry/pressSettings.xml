@@ -36,7 +36,7 @@
 	</setting>
 	<setting type="int" locale="0">
 		<name>numWeeksPerResponse</name>
-		<value>4</value>
+		<value>3</value>
 	</setting>
 	<setting type="string" locale="1">
 		<name>privacyStatement</name>
