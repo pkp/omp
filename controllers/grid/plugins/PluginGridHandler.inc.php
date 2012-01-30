@@ -121,9 +121,12 @@ class PluginGridHandler extends CategoryGridHandler {
 	 * @see GridHandler::renderFilter()
 	 */
 	function renderFilter($request) {
-		$filterData = array();
-		$filterData['categories'] = $this->loadData($request, null);
-		$filterData['categories']['all'] = __('grid.plugin.allCategories');
+		$categoriesSymbolic = $this->loadData($request, null);
+		$categories = array('all' => __('grid.plugin.allCategories'));
+		foreach ($categoriesSymbolic as $category) {
+			$categories[$category] = __("plugins.categories.$category");
+		}
+		$filterData = array('categories' => $categories);
 
 		return parent::renderFilter($request, $filterData);
 	}
@@ -143,7 +146,7 @@ class PluginGridHandler extends CategoryGridHandler {
 		$plugins =& PluginRegistry::loadCategory($categoryDataElement);
 
 		if (!is_null($filter) && isset($filter['pluginName']) && $filter['pluginName'] != "") {
-			// Find all plugins that have the filter name string in theirs display names.
+			// Find all plugins that have the filter name string in their display names.
 			$filteredPlugins = array();
 			foreach ($plugins as $plugin) {
 				$pluginName = $plugin->getDisplayName();
@@ -174,9 +177,8 @@ class PluginGridHandler extends CategoryGridHandler {
 	*/
 	function loadData($request, $filter) {
 		$categories = PluginRegistry::getCategories();
-
-		if (is_array($filter) && isset($filter['category']) && isset($categories[$filter['category']])) {
-			return array($filter['category'] => $categories[$filter['category']]);
+		if (is_array($filter) && isset($filter['category']) && ($i = array_search($filter['category'], $categories)) !== false) {
+			return array($filter['category']);
 		} else {
 			return $categories;
 		}

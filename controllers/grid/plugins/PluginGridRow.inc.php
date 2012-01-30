@@ -9,7 +9,7 @@
  * @class PluginGridRow
  * @ingroup controllers_grid_plugins
  *
- * @brief Plugin category grid row definition
+ * @brief Plugin grid row definition
  */
 
 import('lib.pkp.classes.controllers.grid.GridRow');
@@ -24,6 +24,8 @@ class PluginGridRow extends GridRow {
 
 	/**
 	 * Constructor
+	 * @param $userRoles array
+	 * @param $contextLevel int CONTEXT_...
 	 */
 	function PluginGridRow($userRoles, $contextLevel) {
 		$this->_userRoles = $userRoles;

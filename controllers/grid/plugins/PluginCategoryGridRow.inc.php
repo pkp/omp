@@ -31,7 +31,7 @@ class PluginCategoryGridRow extends GridCategoryRow {
 	 */
 	function getCategoryLabel() {
 		$pluginCategory = $this->getData();
-		return $pluginCategory;
+		return __("plugins.categories.$pluginCategory");
 	}
 }
 
