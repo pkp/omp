@@ -87,7 +87,7 @@ class ArtworkFileDAODelegate extends MonographFileDAODelegate {
 					copyright_owner_contact = ?,
 					credit = ?,
 					permission_file_id = ?,
-					permission_terms = ?,
+					permission_terms = ?
 				WHERE file_id = ? and revision = ?',
 			array(
 				(int)$artworkFile->getFileId(),
