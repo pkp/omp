@@ -10,7 +10,7 @@
 <script type="text/javascript">
 	$(function() {ldelim}
 		// Attach the form handler.
-		$('#userForm').pkpHandler('$.pkp.controllers.form.AjaxFormHandler');
+		$('#userForm').pkpHandler('$.pkp.controllers.grid.settings.user.form.UserFormHandler');
 	{rdelim});
 </script>
 

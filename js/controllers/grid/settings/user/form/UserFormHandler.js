@@ -88,8 +88,7 @@ jQuery.pkp.controllers.grid.settings =
 			submitForm = function(validator, formElement) {
 
 		var $form = this.getHtmlElement();
-		$('#password', $form).attr('disabled', 0);
-		$('#password2', $form).attr('disabled', 0);
+		$(':password', $form).attr('disabled', 0);
 		this.parent('submitForm', validator, formElement);
 	};
 
@@ -111,7 +110,7 @@ jQuery.pkp.controllers.grid.settings =
 			passwordValue = '********';
 			activeAndCheck = 1;
 		}
-		$('#password, #password2', $form).
+		$(':password', $form).
 				attr('disabled', activeAndCheck).val(passwordValue);
 		$('#sendNotify', $form).attr('disabled', activeAndCheck).
 				attr('checked', activeAndCheck);
