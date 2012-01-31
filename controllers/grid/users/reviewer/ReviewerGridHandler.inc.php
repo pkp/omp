@@ -284,7 +284,7 @@ class ReviewerGridHandler extends GridHandler {
 			return DAO::getDataChangedEvent($reviewAssignment->getId());
 		} else {
 			// There was an error, redisplay the form
-			$json = new JSONMessage(false, $reviewerForm->fetch($request));
+			$json = new JSONMessage(true, $reviewerForm->fetch($request));
 		}
 		return $json->getString();
 	}
