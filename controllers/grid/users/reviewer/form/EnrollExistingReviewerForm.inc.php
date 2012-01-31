@@ -25,6 +25,29 @@ class EnrollExistingReviewerForm extends ReviewerForm {
 		$this->addCheck(new FormValidator($this, 'userGroupId', 'required', 'user.profile.form.usergroupRequired'));
 	}
 
+	/**
+	 * Fetch the form.
+	 * @see Form::fetch()
+	 */
+	function fetch(&$request) {
+
+		$reviewRound =& $this->getReviewRound();
+
+		$actionArgs['monographId'] = $this->getMonographId();
+		$actionArgs['stageId'] = $reviewRound->getStageId();
+		$actionArgs['reviewRoundId'] = $reviewRound->getId();
+		$actionArgs['selectionType'] = REVIEWER_SELECT_SEARCH_BY_NAME;
+
+		$advancedSearchAction = new LinkAction(
+				'addReviewer',
+				new AjaxAction($request->url(null, null, 'reloadReviewerForm', null, $actionArgs)),
+				__('editor.monograph.addReviewer'),
+				'add_user'
+		);
+
+		$this->setReviewerFormAction($advancedSearchAction);
+		return parent::fetch($request);
+	}
 
 	/**
 	 * Assign form data to user-submitted data.

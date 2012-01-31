@@ -17,6 +17,13 @@
 
 <form class="pkp_form" id="createReviewerForm" method="post" action="{url op="updateReviewer"}" >
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="createReviewerFormNotification"}
+
+	<div class="action_links">
+		{foreach from=$reviewerActions item=action}
+			{include file="linkAction/linkAction.tpl" action=$action contextId="createReviewerForm"}
+		{/foreach}
+	</div>
+
 	<h3>{translate key="editor.review.createReviewer"}</h3>
 	{fbvFormSection title="user.group"}
 		{fbvElement type="select" name="userGroupId" id="userGroupId" from=$userGroups translate=false label="editor.review.userGroupSelect" required="true"}
