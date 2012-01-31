@@ -21,11 +21,11 @@
 			<a href="{url op="tasks"}">2. {translate key="common.tasks"}</a>
 		</li>
 		<li{if $selectedTab == 3} class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"{else} class="ui-state-default ui-corner-top"{/if}>
-			<a href="{url op="status"}">3. {translate key="common.status"}</a>
+			<a href="{url op="submissions"}">3. {translate key="navigation.submissions"}</a>
 		</li>
 	</ul>
 
-	{include file=$pageToDisplay}
+	{include file=$templateToDisplay}
 </div>
 
 {include file="common/footer.tpl"}

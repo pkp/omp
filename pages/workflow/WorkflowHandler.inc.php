@@ -69,7 +69,7 @@ class WorkflowHandler extends Handler {
 		$router =& $request->getRouter();
 
 		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->assign('pageHierarchy', array(array($router->url($request, null, 'dashboard', 'status'), 'navigation.submissions')));
+		$templateMgr->assign('pageHierarchy', array(array($router->url($request, null, 'dashboard', 'submissions'), 'navigation.submissions')));
 
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		$stageId = $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);

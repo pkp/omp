@@ -1,10 +1,10 @@
 {**
- * templates/dashboard/status.tpl
+ * templates/dashboard/submissions.tpl
  *
  * Copyright (c) 2003-2012 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * Dashboard status tab.
+ * Dashboard submissions tab.
  *}
 
 <!-- New Submission entry point -->

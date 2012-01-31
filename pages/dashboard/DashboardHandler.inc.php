@@ -21,7 +21,7 @@ class DashboardHandler extends Handler {
 		parent::Handler();
 
 		$this->addRoleAssignment(array(ROLE_ID_SITE_ADMIN, ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_AUTHOR, ROLE_ID_REVIEWER, ROLE_ID_PRESS_ASSISTANT),
-				array('index', 'overview', 'tasks', 'status'));
+				array('index', 'overview', 'tasks', 'submissions'));
 	}
 
 	/**
@@ -55,7 +55,7 @@ class DashboardHandler extends Handler {
 		$this->setupTemplate($request);
 
 		$templateMgr->assign('selectedTab', 1);
-		$templateMgr->assign('pageToDisplay', 'dashboard/overview.tpl');
+		$templateMgr->assign('templateToDisplay', 'dashboard/overview.tpl');
 		$templateMgr->display('dashboard/index.tpl');
 	}
 
@@ -69,16 +69,16 @@ class DashboardHandler extends Handler {
 		$this->setupTemplate($request);
 
 		$templateMgr->assign('selectedTab', 2);
-		$templateMgr->assign('pageToDisplay', 'dashboard/tasks.tpl');
+		$templateMgr->assign('templateToDisplay', 'dashboard/tasks.tpl');
 		$templateMgr->display('dashboard/index.tpl');
 	}
 
 	/**
-	 * View status tab
+	 * View submissions tab
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function status($args, &$request) {
+	function submissions($args, &$request) {
 		$templateMgr =& TemplateManager::getManager();
 		$this->setupTemplate($request);
 
@@ -112,7 +112,7 @@ class DashboardHandler extends Handler {
 		}
 
 		$templateMgr->assign('selectedTab', 3);
-		$templateMgr->assign('pageToDisplay', 'dashboard/status.tpl');
+		$templateMgr->assign('templateToDisplay', 'dashboard/submissions.tpl');
 		$templateMgr->display('dashboard/index.tpl');
 	}
 

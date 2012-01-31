@@ -18,7 +18,7 @@ switch($op) {
 	case 'index':
 	case 'overview':
 	case 'tasks':
-	case 'status':
+	case 'submissions':
 		define('HANDLER_CLASS', 'DashboardHandler');
 		import('pages.dashboard.DashboardHandler');
 		break;

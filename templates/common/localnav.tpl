@@ -40,7 +40,6 @@
 		<ul class="sf-menu">
 			{if array_intersect(array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_ASSISTANT, ROLE_ID_REVIEWER, ROLE_ID_AUTHOR), $userRoles)}
 			<li><a href="{url page="dashboard"}">{translate key="navigation.dashboard"}</a></li>
-			<li><a href="{url page="dashboard" op="status"}">{translate key="navigation.submissions"}</a></li>
 			{/if}
 			{if $currentPress}
 				{if array_intersect(array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR), $userRoles)}
