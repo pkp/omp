@@ -41,9 +41,6 @@
 	{fbvFormSection title="user.email"}
 		{fbvElement type="text" id="email" class="email" value=$email required="true"}
 	{/fbvFormSection}
-	{fbvFormSection list=true}
-		{fbvElement type="checkbox" id="sendNotify" value="1" label="manager.people.createUserSendNotify" checked=$sendNotify}
-	{/fbvFormSection}
 
 	{include file="controllers/grid/users/reviewer/form/reviewerFormFooter.tpl"}
 
