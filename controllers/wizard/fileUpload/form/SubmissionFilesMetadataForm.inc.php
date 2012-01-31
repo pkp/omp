@@ -112,11 +112,6 @@ class SubmissionFilesMetadataForm extends Form {
 			$templateMgr->assign('reviewRoundId', $reviewRound->getId());
 		}
 
-		// Note attached to the file.
-		$noteDao =& DAORegistry::getDAO('NoteDAO'); /* @var $noteDao NoteDAO */
-		$notes =& $noteDao->getByAssoc(ASSOC_TYPE_MONOGRAPH_FILE, $submissionFile->getFileId());
-		$templateMgr->assign('note', $notes->next());
-
 		return parent::fetch($request);
 	}
 

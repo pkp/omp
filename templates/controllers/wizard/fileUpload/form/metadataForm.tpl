@@ -1,5 +1,5 @@
 {**
- * metadataForm.tpl
+ * templates/controllers/wizard/fileUpload/form/metadataForm.tpl
  *
  * Copyright (c) 2003-2012 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -10,7 +10,6 @@
  *  $submissionFile: The monograph or artwork file.
  *  $stageId: The workflow stage id from which the upload
  *   wizard was called.
- *  $note: Note attached to the file.
  *}
 <script type="text/javascript">
 	$(function() {ldelim}
@@ -39,11 +38,7 @@
 			{/fbvFormSection}
 		{/if}
 		{fbvFormSection title="submission.upload.noteToAccompanyFile"}
-			{if $note}
-				{fbvElement type="textarea" id="note" value=$note->getContents() height=$fbvStyles.height.SHORT}
-			{else}
-				{fbvElement type="textarea" id="note" height=$fbvStyles.height.SHORT}
-			{/if}
+			{fbvElement type="textarea" id="note" height=$fbvStyles.height.SHORT}
 		{/fbvFormSection}
 	{/fbvFormArea}
 
