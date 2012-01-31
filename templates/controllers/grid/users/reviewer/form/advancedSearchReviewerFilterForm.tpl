@@ -33,7 +33,7 @@
 		{/fbvFormSection}
 		<br /><br /><br /><br /><br /><br />
 		{fbvFormSection}
-			{fbvElement type="interests" id="interests" interestKeywords=$interestsKeywords interestsTextOnly=$interestsTextOnly}
+			{fbvElement type="interests" id="interests" interestsKeywords=$interestsKeywords interestsTextOnly=$interestsTextOnly}
 		{/fbvFormSection}
 		{fbvFormSection class="center"}
 			{fbvElement type="submit" id="submitFilter" label="common.search"}

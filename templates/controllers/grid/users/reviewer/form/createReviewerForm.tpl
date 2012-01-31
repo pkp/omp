@@ -39,7 +39,7 @@
 	{/fbvFormSection}
 
 	{fbvFormSection title="manager.reviewerSearch.interests"}
-		{fbvElement type="interests" id="interests" interestKeywords=$interestsKeywords interestsTextOnly=$interestsTextOnly}
+		{fbvElement type="interests" id="interests" interestsKeywords=$interestsKeywords interestsTextOnly=$interestsTextOnly}
 	{/fbvFormSection}
 
 	{fbvFormSection title="user.accountInformation"}

@@ -131,7 +131,7 @@
 						{/fbvFormSection}
 					{/if}
 					{fbvFormSection title="user.interests" for="interests"}
-						{fbvElement type="interests" id="interests" interestKeywords=$interestsKeywords interestsTextOnly=$interestsTextOnly}
+						{fbvElement type="interests" id="interests" interestsKeywords=$interestsKeywords interestsTextOnly=$interestsTextOnly}
 					{/fbvFormSection}
 					{fbvFormSection}
 						{fbvElement type="textarea" label="user.affiliation" multilingual="true" name="affiliation" id="affiliation" value=$affiliation inline=true size=$fbvStyles.size.MEDIUM}
