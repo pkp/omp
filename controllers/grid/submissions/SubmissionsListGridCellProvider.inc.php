@@ -115,6 +115,7 @@ class SubmissionsListGridCellProvider extends DataObjectGridCellProvider {
 				return array('label' => $monograph->getAuthorString(true));
 				break;
 			case 'dateAssigned':
+				assert(is_a($monograph, 'ReviewerSubmission'));
 				$dateAssigned = strftime(Config::getVar('general', 'date_format_short'), strtotime($monograph->getDateAssigned()));
 				if ( empty($dateAssigned) ) $dateAssigned = '--';
 				return array('label' => $dateAssigned);
@@ -128,11 +129,14 @@ class SubmissionsListGridCellProvider extends DataObjectGridCellProvider {
 				$stageId = $monograph->getStageId();
 				switch ($stageId) {
 					case WORKFLOW_STAGE_ID_SUBMISSION: default:
+						$stageAssignmentDao =& DAORegistry::getDAO('StageAssignmentDAO');
 						// FIXME: better way to determine if submission still incomplete?
 						if ($monograph->getSubmissionProgress() > 0 && $monograph->getSubmissionProgress() <= 3) {
 							$returner = array('label' => __('submissions.incomplete'));
-						} else {
+						} elseif (($assignments = $stageAssignmentDao->getBySubmissionAndRoleId($monograph->getId(), ROLE_ID_PRESS_EDITOR)) && count($assignments->toArray())>0) {
 							$returner = array('label' => __('submission.status.submission'));
+						} else {
+							$returner = array('label' => __('submission.status.unassigned'));
 						}
 						break;
 					case WORKFLOW_STAGE_ID_INTERNAL_REVIEW:
