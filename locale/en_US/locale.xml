@@ -299,7 +299,6 @@
 	<message key="press.press">Press</message>
 
 	<!-- User -->
-	<message key="user.showAllPresses">Show My Presses</message>
 	<message key="user.noRoles.submitMonograph">Submit a Proposal</message>
 	<message key="user.noRoles.submitMonographRegClosed">Submit an Monograph: Author registration is currently disabled.</message>
 	<message key="user.noRoles.regReviewer">Register as a Reviewer</message>

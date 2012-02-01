@@ -1,5 +1,5 @@
 {**
- * index.tpl
+ * templates/user/index.tpl
  *
  * Copyright (c) 2003-2012 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -13,11 +13,6 @@
 
 <h3>{translate key="user.myAccount"}</h3>
 <ul class="plain">
-	{if $hasOtherPresses}
-		{if !$showAllPresses}
-			<li>&#187; <a href="{url press="index" page="user"}">{translate key="user.showAllPresses"}</a></li>
-		{/if}
-	{/if}
 	<li>&#187; <a href="{url page="user" op="profile"}">{translate key="user.editMyProfile"}</a></li>
 
 	{if !$implicitAuth}
