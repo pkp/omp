@@ -133,7 +133,7 @@ class SubmissionsListGridCellProvider extends DataObjectGridCellProvider {
 						// FIXME: better way to determine if submission still incomplete?
 						if ($monograph->getSubmissionProgress() > 0 && $monograph->getSubmissionProgress() <= 3) {
 							$returner = array('label' => __('submissions.incomplete'));
-						} elseif (($assignments = $stageAssignmentDao->getBySubmissionAndRoleId($monograph->getId(), ROLE_ID_PRESS_EDITOR)) && count($assignments->toArray())>0) {
+						} elseif (($assignments = $stageAssignmentDao->getBySubmissionAndRoleId($monograph->getId(), ROLE_ID_SERIES_EDITOR)) && count($assignments->toArray())>0) {
 							$returner = array('label' => __('submission.status.submission'));
 						} else {
 							$returner = array('label' => __('submission.status.unassigned'));
