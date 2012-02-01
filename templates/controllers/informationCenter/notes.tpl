@@ -13,7 +13,8 @@
 		$('#informationCenterNotes').pkpHandler(
 			'$.pkp.controllers.informationCenter.NotesHandler',
 			{ldelim}
-				fetchUrl: '{url|escape:"javascript" router=$smarty.const.ROUTE_COMPONENT op="listNotes" params=$linkParams escape=false}'
+				fetchNotesUrl: '{url|escape:"javascript" router=$smarty.const.ROUTE_COMPONENT op="listNotes" params=$linkParams escape=false}',
+				fetchPastNotesUrl: '{url|escape:"javascript" router=$smarty.const.ROUTE_COMPONENT op="listPastNotes" params=$linkParams escape=false}'
 			{rdelim}
 		);
 	{rdelim});
@@ -24,7 +25,24 @@
 	<br />
 	<hr />
 
+	{if $showPastNotesLinks}
+	{**
+	 * The file information center should provide access to notes
+	 * from previous stages. Does not apply to submissions.
+	 *}
+		<div id="notesAccordion">
+			<h3><a href="#">{translate key="informationCenter.currentNotes"}</a></h3>
+	{/if}
+
 	{* Leave an empty div to be filled with notes *}
 	<div id="notesList">
 	</div>
+
+	{if $showPastNotesLinks}
+			<h3><a href="#" id="showPastNotesLink">{translate key="informationCenter.pastNotes"}</a></h3>
+			{* Leave an empty div to be filled in with past notes *}
+			<div id="pastNotesList">
+			</div>
+		</div>
+	{/if}
 </div>

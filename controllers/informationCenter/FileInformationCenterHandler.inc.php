@@ -28,6 +28,16 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 	 */
 	function FileInformationCenterHandler() {
 		parent::InformationCenterHandler();
+
+		$this->addRoleAssignment(
+			array(
+				ROLE_ID_AUTHOR,
+				ROLE_ID_SERIES_EDITOR,
+				ROLE_ID_PRESS_MANAGER,
+				ROLE_ID_PRESS_ASSISTANT
+			),
+			array('listPastNotes')
+		);
 	}
 
 	/**
@@ -83,12 +93,48 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 	function viewNotes($args, &$request) {
 		$this->setupTemplate($request);
 
+		// Provide access to notes from past revisions/file IDs
+		$templateMgr =& TemplateManager::getManager();
+		$templateMgr->assign('showPastNotesLinks', true);
+
 		import('controllers.informationCenter.form.NewFileNoteForm');
 		$notesForm = new NewFileNoteForm($this->monographFile->getFileId());
 		$notesForm->initData();
 
 		$json = new JSONMessage(true, $notesForm->fetch($request));
 		return $json->getString();
+	}
+
+	/**
+	 * Display the list of existing notes from prior files.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 */
+	function listPastNotes($args, &$request) {
+		$this->setupTemplate($request);
+
+		$templateMgr =& TemplateManager::getManager();
+		$noteDao =& DAORegistry::getDAO('NoteDAO');
+
+		$monographFile = $this->monographFile;
+		$notes = array();
+		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO');
+		while (true) {
+			$monographFile = $submissionFileDao->getRevision($monographFile->getSourceFileId(), $monographFile->getSourceRevision());
+			if (!$monographFile) break;
+
+			$iterator =& $noteDao->getByAssoc($this->_getAssocType(), $monographFile->getFileId());
+			$notes += $iterator->toArray();
+
+			unset($iterator);
+		}
+		import('lib.pkp.classes.core.ArrayItemIterator');
+		$templateMgr->assign('notes', new ArrayItemIterator($notes));
+
+		$user =& $request->getUser();
+		$templateMgr->assign('currentUserId', $user->getId());
+
+		return $templateMgr->fetchJson('controllers/informationCenter/notesList.tpl');
 	}
 
 	/**

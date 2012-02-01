@@ -25,14 +25,20 @@
 			function($notesDiv, options) {
 		this.parent($notesDiv, options);
 
-		// Store the list fetch URL for later
-		this.fetchUrl_ = options.fetchUrl;
+		// Store the list fetch URLs for later
+		this.fetchNotesUrl_ = options.fetchNotesUrl;
+		this.fetchPastNotesUrl_ = options.fetchPastNotesUrl;
 
 		// Bind for changes in the note list (e.g.  new note or delete)
 		this.bind('formSubmitted', this.handleRefreshNoteList);
 
+		// Initialize an accordion for the "past notes" list, if it's
+		// available (e.g. for a file information center).
+		$('#notesAccordion').accordion();
+
 		// Load a list of the current notes.
 		this.loadNoteList_();
+		this.loadPastNoteList_();
 	};
 	$.pkp.classes.Helper.inherits(
 			$.pkp.controllers.informationCenter.NotesHandler,
@@ -49,7 +55,16 @@
 	 * @type {string}
 	 */
 	$.pkp.controllers.informationCenter.NotesHandler.
-			prototype.fetchUrl_ = '';
+			prototype.fetchNotesUrl_ = '';
+
+
+	/**
+	 * The URL to be called to fetch a list of prior notes.
+	 * @private
+	 * @type {string}
+	 */
+	$.pkp.controllers.informationCenter.NotesHandler.
+			prototype.fetchPastNotesUrl_ = '';
 
 
 	//
@@ -75,7 +90,7 @@
 	$.pkp.controllers.informationCenter.NotesHandler.prototype.
 			loadNoteList_ = function() {
 
-		$.get(this.fetchUrl_, this.callbackWrapper(this.setNoteList_), 'json');
+		$.get(this.fetchNotesUrl_, this.callbackWrapper(this.setNoteList_), 'json');
 	};
 
 	$.pkp.controllers.informationCenter.NotesHandler.prototype.
@@ -83,6 +98,21 @@
 
 		jsonData = this.handleJson(jsonData);
 		$('#notesList').replaceWith(jsonData.content);
+	};
+
+
+	$.pkp.controllers.informationCenter.NotesHandler.prototype.
+			loadPastNoteList_ = function() {
+
+		$.get(this.fetchPastNotesUrl_, this.callbackWrapper(this.setPastNoteList_), 'json');
+	};
+
+
+	$.pkp.controllers.informationCenter.NotesHandler.prototype.
+			setPastNoteList_ = function(formElement, jsonData) {
+
+		jsonData = this.handleJson(jsonData);
+		$('#pastNotesList').replaceWith(jsonData.content);
 	};
 
 

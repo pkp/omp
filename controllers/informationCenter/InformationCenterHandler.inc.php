@@ -125,6 +125,7 @@ class InformationCenterHandler extends Handler {
 
 		$user =& $request->getUser();
 		$templateMgr->assign('currentUserId', $user->getId());
+		$templateMgr->assign('notesDeletable', true);
 
 		return $templateMgr->fetchJson('controllers/informationCenter/notesList.tpl');
 	}

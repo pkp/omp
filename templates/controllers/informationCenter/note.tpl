@@ -30,7 +30,8 @@
 				{$noteUser->getFullName()|escape}
 			</td>
 			<td align="right">
-				{if array_intersect(array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR), $userRoles)}
+				{* Check that notes are deletable (i.e. not attached to files from previous stages) and the current user has permission to delete. *}
+				{if $notesDeletable && array_intersect(array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR), $userRoles)}
 					<form class="pkp_form" id="{$formId}" action="{url op="deleteNote" noteId=$noteId params=$linkParams}">
 						{assign var=deleteNoteButtonId value="deleteNote-$noteId"}
 						{include file="linkAction/buttonConfirmationLinkAction.tpl" buttonSelector="#$deleteNoteButtonId" dialogText="informationCenter.deleteConfirm"}
