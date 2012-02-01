@@ -390,14 +390,14 @@ class SeriesEditorSubmissionDAO extends MonographDAO {
 	 * FIXME: Move to UserDAO, see #6455.
 	 * @param $pressId int
 	 * @param $monographId int
-	 * @param $round int
+	 * @param $reviewRound ReviewRound
 	 * @param $name string
 	 * @return array matching Users
 	 */
-	function &getReviewersNotAssignedToMonograph($pressId, $monographId, $stageId = null, $round = null, $name = '') {
-		$params = array((int) $pressId, ROLE_ID_REVIEWER, (int) $monographId);
-		if ($stageId) $params[] = (int) $stageId;
-		if ($round) $params[] = (int) $round;
+	function &getReviewersNotAssignedToMonograph($pressId, $monographId, &$reviewRound, $name = '') {
+		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+
+		$params = array((int) $pressId, ROLE_ID_REVIEWER, (int) $reviewRound->getStageId(), (int) $monographId, (int) $reviewRound->getId());
 		if (!empty($name)) $params[] = $params[] = $params[] = $params[] = "%$name%";
 
 		$result =& $this->retrieve(
@@ -405,11 +405,11 @@ class SeriesEditorSubmissionDAO extends MonographDAO {
 			FROM	users u
 				JOIN user_user_groups uug ON (uug.user_id = u.user_id)
 				JOIN user_groups ug ON (ug.user_group_id = uug.user_group_id AND ug.context_id = ? AND ug.role_id = ?)
-				LEFT JOIN review_assignments r ON (r.reviewer_id = u.user_id AND r.submission_id = ?' .
-					($stageId ? ' AND r.stage_id = ?' : '') .
-					($round ? ' AND r.round = ?' : '') .
-				')' .
-				' WHERE r.submission_id IS NULL' .
+				JOIN user_group_stage ugs ON (ugs.user_group_id = ug.user_group_id AND ugs.stage_id = ?)
+				WHERE 0=(SELECT COUNT(r.reviewer_id)
+						FROM review_assignments r
+							WHERE r.submission_id = ? AND r.reviewer_id = u.user_id AND (r.review_round_id = ? OR' .
+							$reviewAssignmentDao->getIncompleteReviewAssignmentsWhereString() . '))' .
 				(!empty($name)?' AND (first_name LIKE ? OR last_name LIKE ? OR username LIKE ? OR email LIKE ?)':'') .
 			' ORDER BY last_name, first_name',
 			$params

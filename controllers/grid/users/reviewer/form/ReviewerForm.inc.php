@@ -112,15 +112,18 @@ class ReviewerForm extends Form {
 	function initData($args, &$request) {
 		$reviewerId = (int) $request->getUserVar('reviewerId');
 		$press =& $request->getContext();
+		$reviewRound =& $this->getReviewRound();
+		$seriesEditorSubmissionDao =& DAORegistry::getDAO('SeriesEditorSubmissionDAO');
+		$monograph =& $seriesEditorSubmissionDao->getById($this->getMonographId());
+
 		// The reviewer id has been set
 		if (!empty($reviewerId)) {
-			if ($this->_isReviewer($press, $reviewerId)) {
+			if ($this->_isValidReviewer($press, $monograph, $reviewRound, $reviewerId)) {
 				$this->setData('userNameString', sprintf('%s (%s)', $user->getFullname(), $user->getUsername()));
 			}
 		}
 
 		// Get review assignment related data;
-		$reviewRound =& $this->getReviewRound();
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		$reviewAssignment =& $reviewAssignmentDao->getReviewAssignment($reviewRound->getId(), $reviewerId);
 
@@ -231,10 +234,11 @@ class ReviewerForm extends Form {
 
 		// Get reviewer id and validate it.
 		$reviewerId = (int) $this->getData('reviewerId');
-		if (!$this->_isReviewer($press, $reviewerId)) {
-			$reviewerId = null;
-			assert(false);
+
+		if (!$this->_isValidReviewer($press, $submission, $currentReviewRound, $reviewerId)) {
+			fatalError('Invalid reviewer id.');
 		}
+
 		$reviewMethod = (int) $this->getData('reviewMethod');
 
 		import('classes.submission.seriesEditor.SeriesEditorAction');
@@ -291,12 +295,11 @@ class ReviewerForm extends Form {
 	 * @param $reviewerId int
 	 * @return boolean
 	 */
-	function _isReviewer(&$press, $reviewerId) {
-		$userDao =& DAORegistry::getDAO('UserDAO');
-		$roleDao =& DAORegistry::getDAO('RoleDAO');
-
-		$user =& $userDao->getUser($reviewerId);
-		if ($user && $roleDao->userHasRole($press->getId(), $user->getId(), ROLE_ID_REVIEWER) ) {
+	function _isValidReviewer(&$press, &$monograph, &$reviewRound, $reviewerId) {
+		$seriesEditorSubmissionDao =& DAORegistry::getDAO('SeriesEditorSubmissionDAO'); /* @var $seriesEditorSubmissionDao SeriesEditorSubmissionDAO */
+		$reviewerFactory =& $seriesEditorSubmissionDao->getReviewersNotAssignedToMonograph($press->getId(), $monograph->getId(), $reviewRound);
+		$reviewersArray = $reviewerFactory->toAssociativeArray();
+		if (array_key_exists($reviewerId, $reviewersArray)) {
 			return true;
 		} else {
 			return false;

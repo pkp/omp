@@ -331,7 +331,7 @@ class ReviewerGridHandler extends GridHandler {
 		$term = $request->getUserVar('term');
 
 		$seriesEditorSubmissionDao =& DAORegistry::getDAO('SeriesEditorSubmissionDAO'); /* @var $seriesEditorSubmissionDao SeriesEditorSubmissionDAO */
-		$reviewers =& $seriesEditorSubmissionDao->getReviewersNotAssignedToMonograph($press->getId(), $monograph->getId(), $stageId, $round, $term);
+		$reviewers =& $seriesEditorSubmissionDao->getReviewersNotAssignedToMonograph($press->getId(), $monograph->getId(), $reviewRound, $term);
 
 		$reviewerList = array();
 		while($reviewer =& $reviewers->next()) {
