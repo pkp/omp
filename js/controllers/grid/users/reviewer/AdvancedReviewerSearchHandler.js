@@ -74,7 +74,7 @@ jQuery.pkp.controllers.modals = jQuery.pkp.controllers.modals ||
 			$('#reviewerId').val(reviewerId);
 
 			// Update the selected reviewer name container
-			$('#selectedReviewerName').val(reviewerName);
+			$('input[id^="selectedReviewerName"]', this.getHtmlElement()).val(reviewerName);
 
 			// Hide the grid now
 			$('#searchGridAndButton').hide();
