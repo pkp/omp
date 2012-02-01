@@ -21,6 +21,7 @@
 	{fbvFormArea id="reviewerSearchForm"}
 		<input type="hidden" id="monographId" name="monographId" value="{$monographId|escape}" />
 		<input type="hidden" id="stageId" name="stageId" value="{$stageId|escape}" />
+		<input type="hidden" id="reviewRoundId" name="reviewRoundId" value="{$reviewRoundId|escape}" />
 		<input type="hidden" name="done_min" value="0" />
 		<input type="hidden" name="avg_min" value="0" />
 		<input type="hidden" name="last_min" value="0" />

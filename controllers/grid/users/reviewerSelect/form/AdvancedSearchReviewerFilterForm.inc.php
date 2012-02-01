@@ -21,13 +21,20 @@ class AdvancedSearchReviewerFilterForm extends Form {
 	/** @var int */
 	var $_stageId;
 
+	/** @var int */
+	var $_reviewRoundId;
+
 	/**
 	 * Constructor.
+	 * @param $monograph Monograph
+	 * @param $stageId int
+	 * @param $reviewRoundId int
 	 */
-	function AdvancedSearchReviewerFilterForm($monograph, $stageId) {
+	function AdvancedSearchReviewerFilterForm($monograph, $stageId, $reviewRoundId) {
 		parent::Form();
 		$this->_monograph = $monograph;
 		$this->_stageId = $stageId;
+		$this->_reviewRoundId = $reviewRoundId;
 		$this->setTemplate('controllers/grid/users/reviewer/form/advancedSearchReviewerFilterForm.tpl');
 	}
 
@@ -40,10 +47,19 @@ class AdvancedSearchReviewerFilterForm extends Form {
 	}
 
 	/**
-	 * Get the stage id
+	 * Get the stage id.
+	 * @return int
 	 */
 	function getStageId() {
 		return $this->_stageId;
+	}
+
+	/**
+	 * Get the review round id.
+	 * @return int
+	 */
+	function getReviewRoundId() {
+		return $this->_reviewRoundId;
 	}
 
 	/*
@@ -57,6 +73,7 @@ class AdvancedSearchReviewerFilterForm extends Form {
 		$monograph = $this->getMonograph();
 		$this->setData('monographId', $monograph->getId());
 		$this->setData('stageId', $this->getStageId());
+		$this->setData('reviewRoundId', $this->getReviewRoundId());
 
 		return parent::initData($filterData, $request);
 	}

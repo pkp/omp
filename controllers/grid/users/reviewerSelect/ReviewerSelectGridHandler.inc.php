@@ -210,8 +210,9 @@ class ReviewerSelectGridHandler extends GridHandler {
 	function getFilterForm() {
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		$stageId = $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
+		$reviewRound = $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ROUND);
 		import('controllers.grid.users.reviewerSelect.form.AdvancedSearchReviewerFilterForm');
-		$filterForm = new AdvancedSearchReviewerFilterForm($monograph, $stageId);
+		$filterForm = new AdvancedSearchReviewerFilterForm($monograph, $stageId, $reviewRound->getId());
 		return $filterForm;
 	}
 
