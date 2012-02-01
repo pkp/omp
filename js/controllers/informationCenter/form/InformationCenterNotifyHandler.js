@@ -88,7 +88,7 @@ jQuery.pkp.controllers.informationCenter.form =
 	$.pkp.controllers.informationCenter.form.InformationCenterNotifyHandler.prototype.updateTemplate =
 			function(formElement, jsonData) {
 
-		$form = this.getHtmlElement();
+		var $form = this.getHtmlElement();
 		jsonData = this.handleJson(jsonData);
 		if (jsonData !== false) {
 			if (jsonData.content !== '') {
