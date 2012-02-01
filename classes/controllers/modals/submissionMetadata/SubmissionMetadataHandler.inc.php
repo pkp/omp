@@ -54,6 +54,13 @@ class SubmissionMetadataHandler extends Handler {
 		// Identify the stage, if we have one.
 		$stageId = $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
 
+		// prevent anyone but managers and editors from submitting the catalog entry form
+		$userRoles = $this->getAuthorizedContextObject(ASSOC_TYPE_USER_ROLES);
+		if (!array_intersect(array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR), $userRoles)) {
+			$params['hideSubmit'] = true;
+			$params['readOnly'] = true;
+		}
+
 		// Form handling
 		$submissionMetadataViewForm = $this->getFormInstance($monograph->getId(), $stageId, $params);
 

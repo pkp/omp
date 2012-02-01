@@ -46,7 +46,13 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 		$this->setupTemplate($request);
 
 		import('controllers.modals.submissionMetadata.form.SubmissionMetadataViewForm');
-		$submissionMetadataViewForm = new SubmissionMetadataViewForm($this->_monograph->getId());
+		// prevent anyone but managers and editors from submitting the catalog entry form
+		$userRoles = $this->getAuthorizedContextObject(ASSOC_TYPE_USER_ROLES);
+		if (!array_intersect(array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR), $userRoles)) {
+			$params['hideSubmit'] = true;
+			$params['readOnly'] = true;
+		}
+		$submissionMetadataViewForm = new SubmissionMetadataViewForm($this->_monograph->getId(), null, $params);
 		$submissionMetadataViewForm->initData($args, $request);
 
 		$json = new JSONMessage(true, $submissionMetadataViewForm->fetch($request));

@@ -55,7 +55,7 @@ class ReviewerSubmissionMetadataHandler extends SubmissionMetadataHandler {
 			$isBlindReview = false;
 		}
 
-		$params = array('readOnly' => true, 'anonymous' => $isBlindReview);
+		$params = array('readOnly' => true, 'anonymous' => $isBlindReview, 'hideSubmit' => true);
 
 		return parent::fetch($args, $request, $params);
 	}

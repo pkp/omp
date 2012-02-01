@@ -34,9 +34,13 @@
 	{url|assign:authorGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.users.author.AuthorGridHandler" op="fetchGrid" monographId=$monographId stageId=$stageId escape=false}
 	{load_url_in_div id=$authorsGridContainer url="$authorGridUrl"}
 
-	{fbvFormSection list="true"}
-		{fbvElement type="checkbox" id="confirm" checked=$confirm label="submission.catalogEntry.confirm" value="confirm"}
-	{/fbvFormSection}
+	{if !$formParams.hideSubmit}
+		{fbvFormSection list="true"}
+			{fbvElement type="checkbox" id="confirm" checked=$confirm label="submission.catalogEntry.confirm" value="confirm"}
+			{fbvFormButtons id="submissionMetadataFormSubmit" submitText="common.save"}
+		{/fbvFormSection}
+	{else}
+		{fbvElement type="button" class="cancelFormButton" id="cancelFormButton" label="common.close"}
+	{/if}
 
-	{fbvFormButtons id="submissionMetadataFormSubmit" submitText="common.save"}
 </form>
