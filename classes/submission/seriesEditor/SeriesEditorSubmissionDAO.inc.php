@@ -574,10 +574,13 @@ class SeriesEditorSubmissionDAO extends MonographDAO {
 			}
 		}
 
-		// If monographId is set, get the list of of reviewers assigned to the monograph
+		// If monographId is set, get the list of available reviewers to the monograph
 		if($monographId) {
 			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO'); /* @var $reviewAssignmentDao ReviewAssignmentDAO */
-			$assignedReviewers = $reviewAssignmentDao->getReviewerIdsBySubmissionId($monographId, null, $reviewRoundId);
+			$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
+			$reviewRound =& $reviewRoundDao->getReviewRoundById($reviewRoundId);
+			$availableReviewerFactory =& $this->getReviewersNotAssignedToMonograph($pressId, $monographId, $reviewRound);
+			$availableReviewers = $availableReviewerFactory->toAssociativeArray();
 		}
 
 		$filteredReviewers = array();
@@ -598,7 +601,7 @@ class SeriesEditorSubmissionDAO extends MonographDAO {
 				$reviewerStat['average_span'] <= $avgMax && $reviewerStat['average_span'] >= $avgMin && $lastNotifiedInDays <= $lastMax  &&
 				$lastNotifiedInDays >= $lastMin && $reviewerStat['incomplete'] <= $activeMax && $reviewerStat['incomplete'] >= $activeMin
 			) {
-				if($monographId && in_array($userId, $assignedReviewers)) {
+				if($monographId && !array_key_exists($userId, $availableReviewers)) {
 					continue;
 				} else {
 					$filteredReviewers[] = $userDao->getUser($userId);
