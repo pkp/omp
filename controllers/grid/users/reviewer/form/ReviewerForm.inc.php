@@ -287,6 +287,33 @@ class ReviewerForm extends Form {
 		return $reviewAssignment;
 	}
 
+
+	//
+	// Protected methods.
+	//
+	/**
+	 * Get the link action that fetchs the search
+	 * by name form content.
+	 * @param $request Request
+	 * @return LinkAction
+	 */
+	function getSearchByNameAction(&$request) {
+		$reviewRound =& $this->getReviewRound();
+
+		$actionArgs['monographId'] = $this->getMonographId();
+		$actionArgs['stageId'] = $reviewRound->getStageId();
+		$actionArgs['reviewRoundId'] = $reviewRound->getId();
+		$actionArgs['selectionType'] = REVIEWER_SELECT_SEARCH_BY_NAME;
+
+		return new LinkAction(
+			'addReviewer',
+			new AjaxAction($request->url(null, null, 'reloadReviewerForm', null, $actionArgs)),
+			__('editor.monograph.addReviewer'),
+			'add_user'
+		);
+	}
+
+
 	//
 	// Private helper methods
 	//

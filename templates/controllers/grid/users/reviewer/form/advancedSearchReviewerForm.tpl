@@ -16,6 +16,12 @@
 </script>
 
 <div id="advancedReviewerSearch" class="pkp_form_advancedReviewerSearch">
+	<div class="action_links">
+		{foreach from=$reviewerActions item=action}
+			{include file="linkAction/linkAction.tpl" action=$action contextId="createReviewerForm"}
+		{/foreach}
+	</div>
+
 	<div id="searchGridAndButton">
 		{** The grid that will display reviewers.  We have a JS handler for handling selections of this grid which will update a hidden element in the form below **}
 		{url|assign:reviewerSelectGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.users.reviewerSelect.ReviewerSelectGridHandler" op="fetchGrid" monographId=$monographId stageId=$stageId reviewRoundId=$reviewRoundId escape=false}

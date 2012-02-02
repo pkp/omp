@@ -36,6 +36,18 @@ class AdvancedSearchReviewerForm extends ReviewerForm {
 
 		$this->readUserVars(array('reviewerId'));
 	}
+
+	/**
+	* Fetch the form.
+	* @see Form::fetch()
+	*/
+	function fetch(&$request) {
+
+		$searchByNameAction = $this->getSearchByNameAction($request);
+
+		$this->setReviewerFormAction($searchByNameAction);
+		return parent::fetch($request);
+	}
 }
 
 ?>

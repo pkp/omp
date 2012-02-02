@@ -44,6 +44,8 @@ jQuery.pkp.controllers.modals = jQuery.pkp.controllers.modals ||
 				this.callbackWrapper(this.reviewerSelected));
 
 		$('#regularReviewerForm').hide();
+		
+		this.bind('refreshForm', this.handleRefresh_);
 	};
 	$.pkp.classes.Helper.inherits(
 			$.pkp.controllers.grid.users.reviewer.AdvancedReviewerSearchHandler,
@@ -81,6 +83,30 @@ jQuery.pkp.controllers.modals = jQuery.pkp.controllers.modals ||
 			$('#regularReviewerForm').show();
 		}
 	};
+	
+	
+	//
+	// Private helper methods.
+	//
+	/**
+	 * Handle the form refresh event.
+	 *
+	 * @param {HTMLElement} sourceElement The element that
+	 *  issued the event.
+	 * @param {Event} event The triggering event.
+	 * @param {string} content
+	 */
+	$.pkp.controllers.grid.users.reviewer.AdvancedReviewerSearchHandler.prototype.
+			handleRefresh_ = function(sourceElement, event, content) {
+		
+		if (content) {
+			// Get the element that we're updating
+			var $element = this.getHtmlElement();
+
+			// Replace the grid content
+			$element.replaceWith(content);
+		}
+	}
 
 
 /** @param {jQuery} $ jQuery closure. */

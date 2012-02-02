@@ -40,21 +40,9 @@ class CreateReviewerForm extends ReviewerForm {
 	 */
 	function fetch(&$request) {
 
-		$reviewRound =& $this->getReviewRound();
+		$searchByNameAction = $this->getSearchByNameAction($request);
 
-		$actionArgs['monographId'] = $this->getMonographId();
-		$actionArgs['stageId'] = $reviewRound->getStageId();
-		$actionArgs['reviewRoundId'] = $reviewRound->getId();
-		$actionArgs['selectionType'] = REVIEWER_SELECT_SEARCH_BY_NAME;
-
-		$advancedSearchAction = new LinkAction(
-				'addReviewer',
-				new AjaxAction($request->url(null, null, 'reloadReviewerForm', null, $actionArgs)),
-				__('editor.monograph.addReviewer'),
-				'add_user'
-		);
-
-		$this->setReviewerFormAction($advancedSearchAction);
+		$this->setReviewerFormAction($searchByNameAction);
 		return parent::fetch($request);
 	}
 
