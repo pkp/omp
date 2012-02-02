@@ -72,7 +72,7 @@ class GenreGridHandler extends SetupGridHandler {
 					null,
 					true),
 				__('grid.action.addItem'),
-				'add')
+				'add_item')
 		);
 
 		import('lib.pkp.classes.linkAction.request.RemoteActionConfirmationModal');
@@ -213,27 +213,7 @@ class GenreGridHandler extends SetupGridHandler {
 		// Restore all the genres in this press form the registry XML file
 		$genreDao =& DAORegistry::getDAO('GenreDAO');
 		$genreDao->restoreByPressId($press->getId());
-
-		$genres =& $genreDao->getEnabledByPressId($press->getId());
-		$this->setGridDataElements($genres);
-		$this->initialize($request);
-
-		// Pass to modal.js to reload the grid with the new content
-		// FIXME: Calls to private methods of superclasses are not allowed!
-		$gridBodyParts = $this->_renderGridBodyPartsInternally($request);
-		if (count($gridBodyParts) == 0) {
-			// The following should usually be returned from a
-			// template also so we remain view agnostic. But as this
-			// is easy to migrate and we want to avoid the additional
-			// processing overhead, let's just return plain HTML.
-			$renderedGridRows = '<tbody> </tbody>';
-		} else {
-			assert(count($gridBodyParts) == 1);
-			$renderedGridRows = $gridBodyParts[0];
-		}
-		$json = new JSONMessage(true, $renderedGridRows);
-
-		return $json->getString();
+		return DAO::getDataChangedEvent();
 	}
 
 	//
