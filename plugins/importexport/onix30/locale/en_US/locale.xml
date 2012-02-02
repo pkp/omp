@@ -25,6 +25,9 @@
 	<message key="plugins.importexport.onix30.exportButton">Export</message>
 	<message key="plugins.importexport.onix30.exportFormats">Available Formats</message>
 	<message key="plugins.importexport.onix30.unavailable">Unavailable</message>
+	<message key="plugins.importexport.onix30.validityStatus">ONIX Status</message>
+	<message key="plugins.importexport.onix30.formatValid">Valid</message>
+	<message key="plugins.importexport.onix30.formatInvalid">Invalid</message>
 	
 	<!-- Information form keys -->
 	<message key="plugins.importexport.onix30.form.addresseeField">Addressee (recipient) for this export</message>

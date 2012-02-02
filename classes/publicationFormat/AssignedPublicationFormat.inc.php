@@ -425,5 +425,47 @@ class AssignedPublicationFormat extends PublicationFormat {
 	function setReturnableIndicatorCode($returnableIndicatorCode) {
 		return $this->setData('returnableIndicatorCode', $returnableIndicatorCode);
 	}
+
+	/**
+	 * Check to see if this publication format has everything it needs for valid ONIX export
+	 * Ideally, do this with a DOMDocument schema validation. We do it this way for now because
+	 * of a potential issue with libxml2:  http://stackoverflow.com/questions/6284827
+	 *
+	 * @return String
+	 */
+	function hasNeededONIXFields() {
+		// ONIX requires one identification code and a market region with a defined price.
+		$assignedIdentificationCodes =& $this->getIdentificationCodes();
+		$assignedMarkets =& $this->getMarkets();
+
+		$errors = array();
+		if ($assignedMarkets->wasEmpty()) {
+			$errors[] = 'monograph.publicationFormat.noMarketsAssigned';
+		}
+
+		if ($assignedIdentificationCodes->wasEmpty()) {
+			$errors[] = 'monograph.publicationFormat.noCodesAssigned';
+		}
+
+		$errors = array_merge($errors, $this->_checkRequiredFieldsAssigned());
+		return $errors;
+	}
+
+	/**
+	 * Internal function to provide some validation for the ONIX export by
+	 * checking the required ONIX fields associated with this format.
+	 * @return array
+	 */
+	function _checkRequiredFieldsAssigned() {
+		$requiredFields = array('productCompositionCode' => 'grid.catalogEntry.codeRequired', 'productAvailabilityCode' => 'grid.catalogEntry.productAvailabilityRequired');
+		$errors = array();
+
+		foreach ($requiredFields as $field => $errorCode) {
+			if ($this->getData($field) == '') {
+				$errors[] = $errorCode;
+			}
+		}
+		return $errors;
+	}
 }
 ?>

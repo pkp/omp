@@ -46,8 +46,8 @@
 		{include file="controllers/grid/catalogEntry/form/countriesAndRegions.tpl"}
 	{/fbvFormArea}
 	
-	{fbvFormArea id="pricing" title="monograph.publicationFormat.price" border="true"}
-		{fbvFormSection for="price" desc="monograph.publicationFormat.pricingInformation"}
+	{fbvFormArea id="pricing" border="true"}
+		{fbvFormSection for="price" desc="monograph.publicationFormat.pricingInformation" title="monograph.publicationFormat.price" required="true"}
 			{fbvElement type="text" name="price" id="price" value=$price maxlength="255" size=$fbvStyles.size.SMALL inline="true" required="true"}
 			{fbvElement type="select" from=$currencyCodes selected=$currencyCode translate=false id="currencyCode" size=$fbvStyles.size.SMALL inline="true"}
 			{fbvElement type="select" label="monograph.publicationFormat.priceType" from=$priceTypeCodes selected=$priceTypeCode translate=false id="priceTypeCode" defaultValue="" defaultLabel="" inline="true" size=$fbvStyles.size.SMALL}

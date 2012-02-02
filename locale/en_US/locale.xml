@@ -67,7 +67,12 @@
 	<message key="monograph.publicationFormat.productRegion">Product Distribution Region</message>
 	<message key="monograph.publicationFormat.taxRate">Taxation Rate</message>
 	<message key="monograph.publicationFormat.taxType">Taxation Type</message>
+	
+	<message key="monograph.publicationFormat.noMarketsAssigned">Missing markets and prices.</message>
+	<message key="monograph.publicationFormat.noCodesAssigned">Missing an identification code.</message>
+	<message key="monograph.publicationFormat.missingONIXFields">Missing some metadata fields.</message>
 
+	<message key="monograph.publicationFormat.formatDoesNotExist"><![CDATA[<p>The publication format you have chosen no longer exists for this monograph.</p>]]></message>
 	<!-- assigned publication format grid and form keys  -->
 	<message key="grid.catalogEntry.publicationFormatTitle">Title</message>
 	<message key="grid.catalogEntry.publicationFormatType">Publication Format</message>
@@ -77,13 +82,13 @@
 	<message key="grid.catalogEntry.publicationFormatRequired">A publication format must be chosen.</message>
 
 	<!--  publication metadata required form field keys -->
-	<message key="grid.catalogEntry.productAvailabilityRequired">A product availability code must be chosen.</message>
+	<message key="grid.catalogEntry.productAvailabilityRequired">A product availability code is required.</message>
 	<message key="grid.catalogEntry.productCompositionRequired">A product composition code must be chosen.</message>
 
 	<!-- assigned identification code grid and form keys -->
 	<message key="grid.catalogEntry.identificationCodeValue">Code Value</message>
 	<message key="grid.catalogEntry.identificationCodeType">ONIX Code Type</message>
-	<message key="grid.catalogEntry.codeRequired">A code is required.</message>
+	<message key="grid.catalogEntry.codeRequired">An identification code is required.</message>
 	<message key="grid.catalogEntry.valueRequired">A value is required.</message>
 
 	<!-- assigned sales rights grid and form keys -->
@@ -117,6 +122,7 @@
 	<!--  assigned representative information grid and form keys -->
 	<message key="grid.catalogEntry.representatives">Representatives</message>
 	<message key="grid.catalogEntry.representativeType">Representative Type</message>
+	<message key="grid.catalogEntry.agentsCategory">Agents</message>
 	<message key="grid.catalogEntry.suppliersCategory">Suppliers</message>
 	<message key="grid.catalogEntry.agent">Agent</message>
 	<message key="grid.catalogEntry.agentTip">You may assign an agent to represent you in this defined territory.  It is not required.</message>

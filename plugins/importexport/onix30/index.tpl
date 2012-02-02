@@ -26,42 +26,54 @@
 
 	<table width="100%" class="listing">
 		<tr>
-			<td colspan="2" class="headseparator">&nbsp;</td>
+			<td colspan="3" class="headseparator">&nbsp;</td>
 		</tr>
 		<tr class="heading" valign="bottom">
-			<td width="60%">{translate key="monograph.title"}</td>
-			<td width="40%">{translate key="plugins.importexport.onix30.exportFormats"}</td>
+			<th width="50%">{translate key="monograph.title"}</th>
+			<th width="25%">{translate key="plugins.importexport.onix30.exportFormats"}</th>
+			<th width="25%">{translate key="plugins.importexport.onix30.validityStatus"}</th>
 		</tr>
 		<tr>
-			<td colspan="2" class="headseparator">&nbsp;</td>
+			<td colspan="3" class="headseparator">&nbsp;</td>
 		</tr>
 		
 		{iterate from=monographs item=monograph}
 			{if $monograph->hasAssignedPublicationFormats()}
+				{assign var="formats" value=$monograph->getAssignedPublicationFormats()}
 				<tr valign="top">
-					<td>
+					<td rowspan={$formats|@count}>
 						{$monograph->getLocalizedPrefix()|concat:" ":$monograph->getLocalizedTitle()|escape}<br /><em>{$monograph->getAuthorString(true)|escape}</em>
 					</td>
-					<td>{assign var="formats" value=$monograph->getAssignedPublicationFormats()}
-						{foreach from=$formats item=format name="formats"}
+					{foreach from=$formats item=format name=formats}
+						{if !$smarty.foreach.formats.first}<tr>{/if}
+						<td>
 							{assign var="formatId" value=$format->getAssignedPublicationFormatId()|escape}
 							{fbvFormSection list="true"}
 								{fbvElement type="radio" required=true name="assignedPublicationFormatId" id='format'|concat:$formatId value=$formatId label=$format->getLocalizedTitle() translate=false}
 							{/fbvFormSection}
-						{/foreach}
-					</td>
-				</tr>
+						</td>
+						<td>
+							{assign var="errorKeys" value=$format->hasNeededONIXFields()}
+							{if $errorKeys|@count == 0}
+								<span class="pkp_form_success">{translate key="plugins.importexport.onix30.formatValid"}</span>
+							{else}
+								<label class="error" title="{foreach from=$errorKeys item=key name=errors}{translate key=$key} {/foreach}">
+								{translate key="plugins.importexport.onix30.formatInvalid"}</label>
+							{/if}
+						</td>
+					</tr>
+					{/foreach}
 				<tr>
-					<td colspan="2" class="{if $monographs->eof()}end{/if}separator">&nbsp;</td>
+					<td colspan="3" class="{if $monographs->eof()}end{/if}separator">&nbsp;</td>
 				</tr>
 			{/if}
 		{/iterate}
 		{if $monographs->wasEmpty()}
 			<tr>
-				<td colspan="2" class="nodata">{translate key="common.none"}</td>
+				<td colspan="3" class="nodata">{translate key="common.none"}</td>
 			</tr>
 			<tr>
-				<td colspan="2" class="endseparator">&nbsp;</td>
+				<td colspan="3" class="endseparator">&nbsp;</td>
 			</tr>
 		{else}
 			<tr>
