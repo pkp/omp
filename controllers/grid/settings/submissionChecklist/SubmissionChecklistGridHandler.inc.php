@@ -56,7 +56,7 @@ class SubmissionChecklistGridHandler extends SetupGridHandler {
 					null,
 					true),
 				__('grid.action.addItem'),
-				'addItem')
+				'add_item')
 		);
 
 		// Columns
