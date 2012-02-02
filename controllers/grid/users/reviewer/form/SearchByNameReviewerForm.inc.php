@@ -55,24 +55,28 @@ class SearchByNameReviewerForm extends ReviewerForm {
 									'user_search'
 								);
 		$this->setReviewerFormAction($advancedSearchAction);
-		$actionArgs['selectionType'] = REVIEWER_SELECT_CREATE;
-		// but change the selectionType for each action
-		$advancedSearchAction = new LinkAction(
-									'selectCreate',
-									new AjaxAction($request->url(null, null, 'reloadReviewerForm', null, $actionArgs)),
-									__('editor.review.createReviewer'),
-									'add_user'
-								);
-		$this->setReviewerFormAction($advancedSearchAction);
-		$actionArgs['selectionType'] = REVIEWER_SELECT_ENROLL_EXISTING;
-		// but change the selectionType for each action
-		$advancedSearchAction = new LinkAction(
-									'enrolExisting',
-									new AjaxAction($request->url(null, null, 'reloadReviewerForm', null, $actionArgs)),
-									__('editor.review.enrollReviewer.short'),
-									'enroll_user'
-								);
-		$this->setReviewerFormAction($advancedSearchAction);
+
+		// Only add actions to forms where user can operate.
+		if (array_intersect($this->getUserRoles(), array(ROLE_ID_PRESS_MANAGER))) {
+			$actionArgs['selectionType'] = REVIEWER_SELECT_CREATE;
+			// but change the selectionType for each action
+			$advancedSearchAction = new LinkAction(
+										'selectCreate',
+										new AjaxAction($request->url(null, null, 'reloadReviewerForm', null, $actionArgs)),
+										__('editor.review.createReviewer'),
+										'add_user'
+									);
+			$this->setReviewerFormAction($advancedSearchAction);
+			$actionArgs['selectionType'] = REVIEWER_SELECT_ENROLL_EXISTING;
+			// but change the selectionType for each action
+			$advancedSearchAction = new LinkAction(
+										'enrolExisting',
+										new AjaxAction($request->url(null, null, 'reloadReviewerForm', null, $actionArgs)),
+										__('editor.review.enrollReviewer.short'),
+										'enroll_user'
+									);
+			$this->setReviewerFormAction($advancedSearchAction);
+		}
 
 		return parent::fetch($request);
 	}

@@ -25,6 +25,9 @@ class ReviewerForm extends Form {
 	/** An array of actions for the other reviewer forms */
 	var $_reviewerFormActions;
 
+	/** An array with all current user roles */
+	var $_userRoles;
+
 	/**
 	 * Constructor.
 	 * @param $monograph Monograph
@@ -92,6 +95,22 @@ class ReviewerForm extends Form {
 	 */
 	function setReviewerFormAction($action) {
 		$this->_reviewerFormActions[$action->getId()] =& $action;
+	}
+
+	/**
+	* Set current user roles.
+	* @param $userRoles Array
+	*/
+	function setUserRoles($userRoles) {
+		$this->_userRoles = $userRoles;
+	}
+
+	/**
+	* Get current user roles.
+	* @return $userRoles Array
+	*/
+	function getUserRoles() {
+		return $this->_userRoles;
 	}
 
 	/**

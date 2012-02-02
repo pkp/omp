@@ -40,9 +40,22 @@ class ReviewerGridHandler extends GridHandler {
 	function ReviewerGridHandler() {
 		parent::GridHandler();
 
+		$allOperations = array_merge($this->_getReviewAssignmentOps(), $this->_getReviewRoundOps());
+
 		$this->addRoleAssignment(
-			array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_ASSISTANT),
-			array_merge($this->_getReviewAssignmentOps(), $this->_getReviewRoundOps())
+			array(ROLE_ID_PRESS_MANAGER),
+			$allOperations
+		);
+
+		// Remove operations related to creation and enrollment of users.
+		$nonPressManagerOperations = array_flip($allOperations);
+		unset($nonPressManagerOperations['createReviewer']);
+		unset($nonPressManagerOperations['enrollReviewer']);
+		$nonPressManagerOperations = array_flip($nonPressManagerOperations);
+
+		$this->addRoleAssignment(
+			array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_ASSISTANT),
+			$nonPressManagerOperations
 		);
 	}
 
@@ -249,19 +262,23 @@ class ReviewerGridHandler extends GridHandler {
 	}
 
 	/**
-	 * Edit a reviewer
-	 * @param $args array
-	 * @param $request PKPRequest
+	 * Create a new user as reviewer.
+	 * @param $args Array
+	 * @param $request Request
 	 * @return string Serialized JSON object
 	 */
-	function editReviewer($args, &$request) {
-		// Form handling.
-		import('controllers.grid.users.reviewer.form.ReviewerForm');
-		$reviewerForm = new ReviewerForm($this->getMonograph());
-		$reviewerForm->initData($args, $request);
+	function createReviewer($args, &$request) {
+		return $this->updateReviewer($args, $request);
+	}
 
-		$json = new JSONMessage(true, $reviewerForm->fetch($request));
-		return $json->getString();
+	/**
+	* Enroll an existing user as reviewer.
+	* @param $args Array
+	* @param $request Request
+	* @return string Serialized JSON object
+	*/
+	function enrollReviewer($args, &$request) {
+		return $this->updateReviewer($args, $request);
 	}
 
 	/**
@@ -513,11 +530,13 @@ class ReviewerGridHandler extends GridHandler {
 		$selectionType = $request->getUserVar('selectionType');
 		assert(!empty($selectionType));
 		$formClassName = $this->_getReviewerFormClassName($selectionType);
+		$userRoles = $this->getAuthorizedContextObject(ASSOC_TYPE_USER_ROLES);
 
 		// Form handling.
 		import('controllers.grid.users.reviewer.form.' . $formClassName );
 		$reviewerForm = new $formClassName($this->getMonograph(), $this->getReviewRound());
 		$reviewerForm->initData($args, $request);
+		$reviewerForm->setUserRoles($userRoles);
 
 		return $reviewerForm->fetch($request);
 	}
@@ -556,8 +575,8 @@ class ReviewerGridHandler extends GridHandler {
 	 */
 	function _getReviewRoundOps() {
 		// Define operations that need a review round policy.
-		return array('fetchGrid', 'fetchRow', 'showReviewerForm', 'reloadReviewerForm', 'editReviewer', 'updateReviewer',
-								'getReviewersNotAssignedToMonograph', 'getUsersNotAssignedAsReviewers', 'createReviewer');
+		return array('fetchGrid', 'fetchRow', 'showReviewerForm', 'reloadReviewerForm', 'createReviewer', 'enrollReviewer', 'updateReviewer',
+								'getReviewersNotAssignedToMonograph', 'getUsersNotAssignedAsReviewers');
 	}
 }
 

@@ -15,7 +15,7 @@
 	{rdelim});
 </script>
 
-<form class="pkp_form" id="createReviewerForm" method="post" action="{url op="updateReviewer"}" >
+<form class="pkp_form" id="createReviewerForm" method="post" action="{url op="createReviewer"}" >
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="createReviewerFormNotification"}
 
 	<div class="action_links">
