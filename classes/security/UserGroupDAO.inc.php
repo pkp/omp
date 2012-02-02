@@ -33,10 +33,11 @@ class UserGroupDAO extends PKPUserGroupDAO {
 	 * @param  $stageId
 	 * @return DAOResultFactory
 	 */
-	function &getUserGroupsByStage($pressId, $stageId, $omitAuthors = false, $omitReviewers = false) {
+	function &getUserGroupsByStage($pressId, $stageId, $omitAuthors = false, $omitReviewers = false, $roleId = null) {
 		$params = array((int) $pressId, (int) $stageId);
 		if ($omitAuthors) $params[] = ROLE_ID_AUTHOR;
 		if ($omitReviewers) $params[] = ROLE_ID_REVIEWER;
+		if ($roleId) $params[] = $roleId;
 		$result =& $this->retrieve(
 			'SELECT	ug.*
 			FROM	user_groups ug
@@ -45,6 +46,7 @@ class UserGroupDAO extends PKPUserGroupDAO {
 				ugs.stage_id = ?' .
 				($omitAuthors?' AND ug.role_id <> ?':'') .
 				($omitReviewers?' AND ug.role_id <> ?':'') .
+				($roleId?' AND ug.role_id = ?':'') .
 			' ORDER BY role_id ASC',
 			$params
 		);

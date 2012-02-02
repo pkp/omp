@@ -182,7 +182,8 @@ class ReviewerForm extends Form {
 		// Get the reviewer user groups for the create new reviewer/enroll existing user tabs
 		$press =& $request->getPress();
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */
-		$reviewerUserGroups =& $userGroupDao->getByRoleId($press->getId(), ROLE_ID_REVIEWER);
+		$reviewRound =& $this->getReviewRound();
+		$reviewerUserGroups =& $userGroupDao->getUserGroupsByStage($press->getId(), $reviewRound->getStageId(), false, false, ROLE_ID_REVIEWER);
 		$userGroups = array();
 		while($userGroup =& $reviewerUserGroups->next()) {
 			$userGroups[$userGroup->getId()] = $userGroup->getLocalizedName();
