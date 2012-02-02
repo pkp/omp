@@ -523,13 +523,13 @@ class MonographDAO extends DAO {
 			'title', $locale, // Series title
 			'abbrev', $primaryLocale, // Series abbreviation
 			'abbrev', $locale, // Series abbreviation
-			(int) ROLE_ID_SERIES_EDITOR
+			(int) ROLE_ID_PRESS_MANAGER
 		);
 		if ($seriesEditorId) $params[] = (int) $seriesEditorId;
 		if ($pressId) $params[] = (int) $pressId;
 
 		$result =& $this->retrieve(
-			'SELECT	m.*,
+			'SELECT	m.*, g.user_group_id,
 				COALESCE(stl.setting_value, stpl.setting_value) AS series_title,
 				COALESCE(sal.setting_value, sapl.setting_value) AS series_abbrev
 			FROM	monographs m
@@ -541,9 +541,9 @@ class MonographDAO extends DAO {
 				LEFT JOIN stage_assignments sa ON (m.monograph_id = sa.submission_id)
 				LEFT JOIN user_groups g ON (sa.user_group_id = g.user_group_id AND g.role_id = ?)
 				' . ($seriesEditorId?' JOIN series_editors se ON (se.press_id = m.press_id AND se.user_id = ? AND se.series_id = m.series_id)':'') . '
-			WHERE	m.date_submitted IS NOT NULL AND
-				g.user_group_id IS NULL
-				' . ($pressId?' AND m.press_id = ?':''),
+			WHERE	m.date_submitted IS NOT NULL
+				' . ($pressId?' AND m.press_id = ?':'') . '
+			GROUP BY m.monograph_id HAVING g.user_group_id IS NULL',
 			$params
 		);
 
