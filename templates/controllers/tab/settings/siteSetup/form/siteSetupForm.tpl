@@ -49,7 +49,7 @@
 	{/fbvFormArea}
 	{fbvFormArea id="siteRedirection"}
 		{fbvFormSection title="admin.settings.pressRedirect"}
-			{fbvElement type="select" id="redirect" from=$redirectOptions selected=$redirect translate=false}
+			{fbvElement type="select" id="redirect" from=$redirectOptions selected=$redirect translate=false defaultValue="" defaultLabel=""}
 			<span class="instruct">{translate key="admin.settings.pressRedirectInstructions"}</span>
 		{/fbvFormSection}
 	{/fbvFormArea}
