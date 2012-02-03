@@ -77,16 +77,18 @@ class StageAssignmentDAO extends DAO {
 	 * @param $stageId (int) The id of the stage being tested.
 	 * @return bool
 	 */
-	function editorAssignedToStage($submissionId, $stageId) {
+	function editorAssignedToStage($submissionId, $stageId = null) {
+		$params = array((int) $submissionId, ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR);
+		if ($stageId) $params[] = (int) $stageId;
 		$result =& $this->retrieve(
 			'SELECT	COUNT(*)
 			FROM	stage_assignments sa
 				JOIN user_groups ug ON (sa.user_group_id = ug.user_group_id)
 				JOIN user_group_stage ugs ON (ug.user_group_id = ugs.user_group_id)
 			WHERE	sa.submission_id = ? AND
-				ugs.stage_id = ? AND
-				ug.role_id IN (?, ?)',
-			array((int) $submissionId, (int) $stageId, ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR)
+				ug.role_id IN (?, ?)' .
+				($stageId?' AND ugs.stage_id = ?':''),
+			$params
 		);
 		$returner = isset($result->fields[0]) && $result->fields[0] > 0 ? true : false;
 

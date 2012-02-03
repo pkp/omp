@@ -129,15 +129,7 @@ class SubmissionsListGridCellProvider extends DataObjectGridCellProvider {
 				$stageId = $monograph->getStageId();
 				switch ($stageId) {
 					case WORKFLOW_STAGE_ID_SUBMISSION: default:
-						$stageAssignmentDao =& DAORegistry::getDAO('StageAssignmentDAO');
-						// FIXME: better way to determine if submission still incomplete?
-						if ($monograph->getSubmissionProgress() > 0 && $monograph->getSubmissionProgress() <= 3) {
-							$returner = array('label' => __('submissions.incomplete'));
-						} elseif (($assignments = $stageAssignmentDao->getBySubmissionAndRoleId($monograph->getId(), ROLE_ID_SERIES_EDITOR)) && count($assignments->toArray())>0) {
-							$returner = array('label' => __('submission.status.submission'));
-						} else {
-							$returner = array('label' => __('submission.status.unassigned'));
-						}
+						$returner = array('label' => __('submission.status.submission'));
 						break;
 					case WORKFLOW_STAGE_ID_INTERNAL_REVIEW:
 						$returner = array('label' => __('submission.status.review'));
@@ -152,6 +144,17 @@ class SubmissionsListGridCellProvider extends DataObjectGridCellProvider {
 						$returner = array('label' => __('submission.status.production'));
 						break;
 				}
+
+				// Handle special cases.
+				$stageAssignmentDao =& DAORegistry::getDAO('StageAssignmentDAO');
+				if ($monograph->getSubmissionProgress() > 0 && $monograph->getSubmissionProgress() <= 3) {
+					// Submission process not completed.
+					$returner = array('label' => __('submissions.incomplete'));
+				} elseif (!$stageAssignmentDao->editorAssignedToStage($monograph->getId())) {
+					// No editor assigned to any submission stages.
+					$returner = array('label' => __('submission.status.unassigned'));
+				}
+
 				return $returner;
 		}
 	}
