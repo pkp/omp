@@ -24,8 +24,9 @@ class OmpSignoffAccessPolicy extends PressPolicy {
 	 * @param $args array request parameters
 	 * @param $roleAssignments array
 	 * @param $mode int bitfield SIGNOFF_ACCESS_...
+	 * @param $stageId int
 	 */
-	function OmpSignoffAccessPolicy(&$request, $args, $roleAssignments, $mode) {
+	function OmpSignoffAccessPolicy(&$request, $args, $roleAssignments, $mode, $stageId) {
 		parent::PressPolicy($request);
 
 		// We need a submission matching the file in the request.
@@ -65,16 +66,14 @@ class OmpSignoffAccessPolicy extends PressPolicy {
 		// Press assistants
 		//
 		if (isset($roleAssignments[ROLE_ID_PRESS_ASSISTANT])) {
-			if ($mode & SIGNOFF_ACCESS_READ) {
-				// 1) Press assistants can access read operations on signoffs...
-				$pressAssistantSignoffAccessPolicy = new PolicySet(COMBINING_DENY_OVERRIDES);
-				$pressAssistantSignoffAccessPolicy->addPolicy(new RoleBasedHandlerOperationPolicy($request, ROLE_ID_PRESS_ASSISTANT, $roleAssignments[ROLE_ID_PRESS_ASSISTANT]));
+			// 1) Press assistants can access read operations on signoffs...
+			$pressAssistantSignoffAccessPolicy = new PolicySet(COMBINING_DENY_OVERRIDES);
+			$pressAssistantSignoffAccessPolicy->addPolicy(new RoleBasedHandlerOperationPolicy($request, ROLE_ID_PRESS_ASSISTANT, $roleAssignments[ROLE_ID_PRESS_ASSISTANT]));
 
-				// 2) ... but only if they have access to the workflow stage.
-				import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
-				$pressAssistantSignoffAccessPolicy->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments));
-				$signoffAccessPolicy->addPolicy($pressAssistantSignoffAccessPolicy);
-			}
+			// 2) ... but only if they have access to the workflow stage.
+			import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
+			$pressAssistantSignoffAccessPolicy->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', $stageId));
+			$signoffAccessPolicy->addPolicy($pressAssistantSignoffAccessPolicy);
 		}
 
 
@@ -89,7 +88,7 @@ class OmpSignoffAccessPolicy extends PressPolicy {
 
 				// 2) ... but only if they are assigned to the workflow stage as an stage participant.
 				import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
-				$authorSignoffAccessPolicy->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments));
+				$authorSignoffAccessPolicy->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', $stageId));
 				$signoffAccessPolicy->addPolicy($authorSignoffAccessPolicy);
 			}
 		}

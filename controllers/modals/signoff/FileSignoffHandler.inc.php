@@ -90,7 +90,9 @@ class FileSignoffHandler extends FileManagementHandler {
 
 		// If a signoff ID was specified, authorize it.
 		if ($request->getUserVar('signoffId')) {
-			$this->addPolicy(new OmpSignoffAccessPolicy($request, $args, $roleAssignments, $mode));
+			// This will be authorized in OmpWorkflowStageAccessPolicy
+			$stageId = (int) $request->getUserVar('stageId');
+			$this->addPolicy(new OmpSignoffAccessPolicy($request, $args, $roleAssignments, $mode, $stageId));
 		}
 		$symbolic = $request->getUserVar('symbolic');
 		if ($symbolic) {
