@@ -474,6 +474,7 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.useImageLogo">Logo image</message>
 	<message key="manager.setup.useImageTitle">Title image</message>
 	<message key="manager.setup.usePressStyleSheet">Press style sheet</message>
+	<message key="manager.setup.pressStyleSheetDescription">You may upload an additional Cascading Style Sheet (CSS) file to change the appearance of your press.</message>
 	<message key="manager.setup.useLayoutEditors">A Layout Editor will be assigned to prepare the HTML, PDF, etc., files for electronic publication.</message>
 	<message key="manager.setup.useProofreaders">A Proofreader will be assigned to check (along with the authors) the galleys prior to publication.</message>
 	<message key="manager.setup.userRegistration">User Registration</message>
