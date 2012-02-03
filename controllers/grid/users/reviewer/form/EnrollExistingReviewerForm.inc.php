@@ -25,7 +25,7 @@ class EnrollExistingReviewerForm extends ReviewerForm {
 		$this->addCheck(new FormValidator($this, 'userGroupId', 'required', 'user.profile.form.usergroupRequired'));
 	}
 
-		/**
+	/**
 	* Fetch the form.
 	* @see Form::fetch()
 	*/
