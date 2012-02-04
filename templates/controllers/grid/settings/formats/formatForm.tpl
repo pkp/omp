@@ -31,7 +31,7 @@
 				{assign var="checked" value=false}
 			{/if}
 
-			{fbvElement type="checkbox" label="manager.setup.publicationFormat.enabled" checked=$checked id="enabled" list=true}
+			{fbvElement type="checkbox" label="common.enabled" checked=$checked id="enabled" list=true}
 		{/fbvFormSection}
 		{fbvFormSection for="physicalFormat" size=$fbvStyles.size.MEDIUM list=true}
 

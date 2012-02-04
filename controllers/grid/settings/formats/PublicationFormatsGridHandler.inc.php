@@ -100,13 +100,13 @@ class PublicationFormatsGridHandler extends SetupGridHandler {
 			)
 		);
 		$this->addColumn(
-				new GridColumn(
+			new GridColumn(
 				'enabled',
-				'manager.setup.publicationFormat.enabled',
+				'common.enabled',
 				null,
 				'controllers/grid/common/cell/checkMarkCell.tpl',
 				$cellProvider
-				)
+			)
 		);
 	}
 
