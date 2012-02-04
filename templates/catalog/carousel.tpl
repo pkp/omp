@@ -24,7 +24,7 @@
 		{* Only include features in the carousel *}
 		{assign var="monographId" value=$publishedMonograph->getId()}
 		{if isset($featuredMonographIds[$monographId])}
-			<img src="{url router=$smarty.const.ROUTE_COMPONENT component="submission.CoverHandler" op="cover" monographId=$publishedMonograph->getId()}" alt="{$publishedMonograph->getLocalizedTitle()|escape}" />
+			<a href="{url op="book" path=$publishedMonograph->getId()}"><img src="{url router=$smarty.const.ROUTE_COMPONENT component="submission.CoverHandler" op="cover" monographId=$publishedMonograph->getId()}" alt="{$publishedMonograph->getLocalizedTitle()|escape}" /></a>
 		{/if}
 	{/foreach}
 </div>
