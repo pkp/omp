@@ -100,7 +100,7 @@ class SubmissionsListGridCellProvider extends DataObjectGridCellProvider {
 
 		$pressId = $monograph->getPressId();
 		$pressDao = DAORegistry::getDAO('PressDAO');
-		$press = $pressDao->getPress($pressId);
+		$press = $pressDao->getById($pressId);
 
 		switch ($columnId) {
 			case 'title':
@@ -233,7 +233,7 @@ class SubmissionsListGridCellProvider extends DataObjectGridCellProvider {
 
 		$pressId = $monograph->getPressId();
 		$pressDao = DAORegistry::getDAO('PressDAO');
-		$press = $pressDao->getPress($pressId);
+		$press = $pressDao->getById($pressId);
 
 		import('lib.pkp.classes.linkAction.request.RedirectAction');
 

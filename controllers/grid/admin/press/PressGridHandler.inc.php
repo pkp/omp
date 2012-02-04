@@ -246,7 +246,7 @@ class PressGridHandler extends GridHandler {
 		$json = new JSONMessage();
 
 		if ($pressId) {
-			if ($pressDao->deletePressById($pressId)) {
+			if ($pressDao->deleteById($pressId)) {
 				// Delete press file tree
 				// FIXME move this somewhere better.
 				import('classes.file.PressFileManager');

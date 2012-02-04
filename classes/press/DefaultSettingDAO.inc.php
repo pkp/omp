@@ -263,7 +263,7 @@ class DefaultSettingDAO extends DAO {
 	 */
 	function installLocale($locale) {
 		$pressDao =& DAORegistry::getDAO('PressDAO');
-		$presses =& $pressDao->getPressNames();
+		$presses =& $pressDao->getNames();
 
 		foreach ($presses as $id => $name) {
 			$this->installDefaultBaseData($locale, $id, false, true);

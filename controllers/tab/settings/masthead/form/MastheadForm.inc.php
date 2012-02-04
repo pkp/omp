@@ -71,7 +71,7 @@ class MastheadForm extends PressSettingsForm {
 		if ($press->getEnabled() !== $this->getData('pressEnabled')) {
 			$pressDao =& DAORegistry::getDAO('PressDAO');
 			$press->setEnabled($this->getData('pressEnabled'));
-			$pressDao->updatePress($press);
+			$pressDao->updateObject($press);
 		}
 
 		parent::execute($request);

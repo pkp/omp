@@ -56,7 +56,7 @@ class UserXMLParser {
 		$tree = $this->parser->parse($file);
 
 		$pressDao =& DAORegistry::getDAO('PressDAO');
-		$press =& $pressDao->getPress($this->pressId);
+		$press =& $pressDao->getById($this->pressId);
 		$pressPrimaryLocale = AppLocale::getPrimaryLocale();
 
 		$site =& Request::getSite();
@@ -195,7 +195,7 @@ class UserXMLParser {
 			$mail = new MailTemplate('USER_REGISTER');
 
 			$pressDao =& DAORegistry::getDAO('PressDAO');
-			$press =& $pressDao->getPress($this->pressId);
+			$press =& $pressDao->getById($this->pressId);
 			$mail->setFrom($press->getSetting('contactEmail'), $press->getSetting('contactName'));
 		}
 

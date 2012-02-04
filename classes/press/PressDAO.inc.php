@@ -27,8 +27,8 @@ class PressDAO extends DAO {
 	 * @param $pressId int
 	 * @return Press
 	 */
-	function getPress($pressId){
-		$result =& $this->retrieve('SELECT * FROM presses WHERE press_id = ?', $pressId);
+	function getById($pressId) {
+		$result =& $this->retrieve('SELECT * FROM presses WHERE press_id = ?', (int) $pressId);
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
@@ -42,7 +42,7 @@ class PressDAO extends DAO {
 	 * Retrieve the IDs and names of all presses in an associative array.
 	 * @return array
 	 */
-	function &getPressNames() {
+	function getNames() {
 		$presses = array();
 
 		$pressIterator =& $this->getPresses();
@@ -146,7 +146,7 @@ class PressDAO extends DAO {
 	 * Insert a new press.
 	 * @param $press Press
 	 */
-	function insertPress(&$press) {
+	function insertObject(&$press) {
 		$this->update(
 			'INSERT INTO presses
 				(path, seq, enabled, primary_locale)
@@ -154,7 +154,7 @@ class PressDAO extends DAO {
 				(?, ?, ?, ?)',
 			array(
 				$press->getPath(),
-				$press->getSequence() == null ? 0 : $press->getSequence(),
+				(int) $press->getSequence() == null ? 0 : $press->getSequence(),
 				$press->getEnabled() ? 1 : 0,
 				$press->getPrimaryLocale()
 			)
@@ -168,7 +168,7 @@ class PressDAO extends DAO {
 	 * Update an existing press.
 	 * @param $press Press
 	 */
-	function updatePress(&$press) {
+	function updateObject(&$press) {
 		return $this->update(
 			'UPDATE presses
 				SET
@@ -179,10 +179,10 @@ class PressDAO extends DAO {
 				WHERE press_id = ?',
 			array(
 				$press->getPath(),
-				$press->getSequence(),
+				(int) $press->getSequence(),
 				$press->getEnabled() ? 1 : 0,
 				$press->getPrimaryLocale(),
-				$press->getId()
+				(int) $press->getId()
 			)
 		);
 	}
@@ -212,7 +212,7 @@ class PressDAO extends DAO {
 	 * Delete a press by ID, INCLUDING ALL DEPENDENT ITEMS.
 	 * @param $pressId int
 	 */
-	function deletePressById($pressId) {
+	function deleteById($pressId) {
 		$pressSettingsDao =& DAORegistry::getDAO('PressSettingsDAO');
 		$pressSettingsDao->deleteSettingsByPress($pressId);
 
@@ -236,7 +236,7 @@ class PressDAO extends DAO {
 		$reviewFormDao->deleteByAssocId(ASSOC_TYPE_PRESS, $pressId);
 
 		return $this->update(
-			'DELETE FROM presses WHERE press_id = ?', $pressId
+			'DELETE FROM presses WHERE press_id = ?', (int) $pressId
 		);
 	}
 

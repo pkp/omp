@@ -45,7 +45,7 @@ class SiteSetupForm extends PKPSiteSettingsForm {
 		$site =& $request->getSite();
 		$publicFileManager = new PublicFileManager();
 		$pressDao =& DAORegistry::getDAO('PressDAO');
-		$presses =& $pressDao->getPressNames();
+		$presses =& $pressDao->getNames();
 		$siteStyleFilename = $publicFileManager->getSiteFilesPath() . '/' . $site->getSiteStyleFilename();
 
 		$cssSettingName = 'siteStyleSheet';

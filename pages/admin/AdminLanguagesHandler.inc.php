@@ -193,7 +193,7 @@ class AdminLanguagesHandler extends AdminHandler {
 
 			if (isset($primaryLocale) && !in_array($primaryLocale, $siteSupportedLocales)) {
 				$press->setPrimaryLocale($site->getPrimaryLocale());
-				$pressDao->updatePress($press);
+				$pressDao->updateObject($press);
 			}
 
 			if (is_array($supportedLocales)) {

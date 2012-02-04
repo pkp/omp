@@ -154,7 +154,7 @@ class LanguagesForm extends PressSettingsForm {
 
 		$pressDao =& DAORegistry::getDAO('PressDAO');
 		$press->setPrimaryLocale($this->getData('primaryLocale'));
-		$pressDao->updatePress($press);
+		$pressDao->updateObject($press);
 	}
 
 

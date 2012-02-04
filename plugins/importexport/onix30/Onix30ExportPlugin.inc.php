@@ -120,7 +120,7 @@ class Onix30ExportPlugin extends ImportExportPlugin {
 		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
 		$userDao =& DAORegistry::getDAO('UserDAO');
 
-		$press =& $pressDao->getPressByPath($pressPath);
+		$press =& $pressDao->getByPath($pressPath);
 
 		if (!$press) {
 			if ($pressPath != '') {

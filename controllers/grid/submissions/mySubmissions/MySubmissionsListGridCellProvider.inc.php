@@ -42,7 +42,7 @@ class MySubmissionsListGridCellProvider extends SubmissionsListGridCellProvider 
 
 			$pressId = $monograph->getPressId();
 			$pressDao = DAORegistry::getDAO('PressDAO');
-			$press = $pressDao->getPress($pressId);
+			$press = $pressDao->getById($pressId);
 
 			if ($monograph->getSubmissionProgress() > 0 && $monograph->getSubmissionProgress() <= 3) {
 				$url = $dispatcher->url($request, ROUTE_PAGE, $press->getPath(),

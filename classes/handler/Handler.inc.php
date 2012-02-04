@@ -94,7 +94,7 @@ class Handler extends PKPHandler {
 		$press = null;
 		if ($site) {
 			if($site->getRedirect()) {
-				$press = $pressDao->getPress($site->getRedirect());
+				$press = $pressDao->getById($site->getRedirect());
 			}
 		}
 		return $press;

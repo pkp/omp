@@ -57,7 +57,7 @@ class PressSiteSettingsForm extends Form {
 	function initData() {
 		if (isset($this->pressId)) {
 			$pressDao =& DAORegistry::getDAO('PressDAO');
-			$press =& $pressDao->getPress($this->pressId);
+			$press =& $pressDao->getById($this->pressId);
 
 			if ($press != null) {
 				$this->_data = array(
@@ -87,7 +87,7 @@ class PressSiteSettingsForm extends Form {
 
 		if (isset($this->pressId)) {
 			$pressDao =& DAORegistry::getDAO('PressDAO');
-			$press =& $pressDao->getPress($this->pressId);
+			$press =& $pressDao->getById($this->pressId);
 			$this->setData('oldPath', $press->getPath());
 		}
 	}
@@ -108,7 +108,7 @@ class PressSiteSettingsForm extends Form {
 		$pressDao =& DAORegistry::getDAO('PressDAO');
 
 		if (isset($this->pressId)) {
-			$press =& $pressDao->getPress($this->pressId);
+			$press =& $pressDao->getById($this->pressId);
 		}
 
 		if (!isset($press)) {
@@ -127,7 +127,7 @@ class PressSiteSettingsForm extends Form {
 		$isNewPress = false;
 
 		if ($press->getId() != null) {
-			$pressDao->updatePress($press);
+			$pressDao->updateObject($press);
 			$series = null;
 		} else {
 			$isNewPress = true;
@@ -136,7 +136,7 @@ class PressSiteSettingsForm extends Form {
 			// Give it a default primary locale
 			$press->setPrimaryLocale($site->getPrimaryLocale());
 
-			$pressId = $pressDao->insertPress($press);
+			$pressId = $pressDao->insertObject($press);
 			$pressDao->resequencePresses();
 
 			// Make the file directories for the press

@@ -253,7 +253,7 @@ class MonographSearch {
 				// Get the press, storing in cache if necessary.
 				$pressId = $monograph->getPressId();
 				if (!isset($pressCache[$pressId])) {
-					$pressCache[$pressId] = $pressDao->getPress($pressId);
+					$pressCache[$pressId] = $pressDao->getById($pressId);
 				}
 
 				// Store the retrieved objects in the result array.
