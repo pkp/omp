@@ -107,7 +107,7 @@ class DashboardHandler extends Handler {
 		$templateMgr->assign('pressCount', $pressCount);
 		if ($pressCount == 1) {
 			$templateMgr->assign_by_ref('press', $accessiblePresses[0]);
-		} else {
+		} elseif ($pressCount > 1) {
 			$templateMgr->assign_by_ref('presses', $accessiblePresses);
 		}
 

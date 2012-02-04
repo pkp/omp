@@ -25,7 +25,7 @@
 		{/foreach}
 	</select>
 	<div class="pkp_helpers_clear"></div>
-{else}
+{elseif $pressCount == 1}
 	<h3><a href="{url press=$press->getPath() page="submission" op="wizard"}" class="add_item">{translate key="submission.submit.newSubmissionSingle" pressName=$press->getLocalizedName()}</a></h3>
 {/if}
 
