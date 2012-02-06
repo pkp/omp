@@ -255,7 +255,7 @@ class ReviewerForm extends Form {
 		// Get reviewer id and validate it.
 		$reviewerId = (int) $this->getData('reviewerId');
 
-		if (!$this->_isValidReviewer($press, $submission, $currentReviewRound, $reviewerId)) {
+		if ($reviewerId && !$this->_isValidReviewer($press, $submission, $currentReviewRound, $reviewerId)) {
 			fatalError('Invalid reviewer id.');
 		}
 

@@ -177,7 +177,7 @@ class ReviewerGridCellProvider extends DataObjectGridCellProvider {
 					__('editor.review') . ': ' . $monograph->getLocalizedTitle(),
 					'edit' //FIXME: insert icon
 				),
-				null,
+				$state,
 				$state
 			);
 		} elseif ($state == 'overdue' ||
@@ -189,14 +189,14 @@ class ReviewerGridCellProvider extends DataObjectGridCellProvider {
 					__('editor.review.reminder'),
 					'edit' // FIXME: insert icon.
 				),
-				null,
+				$state,
 				$state
 			);
 		} elseif ($state == 'read') {
 			$action = new LinkAction(
 				'thankReviewer',
 				new AjaxAction($router->url($request, null, null, 'thankReviewer', null, $actionArgs)),
-				null,
+				'accepted',
 				'accepted'
 			);
 		} elseif (in_array($state, array('', 'declined', 'completed'))) {
