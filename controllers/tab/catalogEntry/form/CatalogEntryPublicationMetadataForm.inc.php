@@ -41,10 +41,13 @@ class CatalogEntryPublicationMetadataForm extends Form {
 	 * @param $stageId integer
 	 * @param $formParams array
 	 */
-	function CatalogEntryPublicationMetadataForm($monograph, $assignedPublicationFormatId, $isPhysicalFormat = true, $stageId = null, $formParams = null) {
+	function CatalogEntryPublicationMetadataForm($monographId, $assignedPublicationFormatId, $isPhysicalFormat = true, $stageId = null, $formParams = null) {
 		parent::Form('catalog/form/publicationMetadataFormFields.tpl');
-
-		$this->_monograph = $monograph;
+		$monographDao =& DAORegistry::getDAO('MonographDAO');
+		$monograph = $monographDao->getById((int) $monographId);
+		if ($monograph) {
+			$this->_monograph = $monograph;
+		}
 
 		$this->_stageId = $stageId;
 		$this->_assignedPublicationFormatId = $assignedPublicationFormatId;
@@ -65,7 +68,7 @@ class CatalogEntryPublicationMetadataForm extends Form {
 		$monograph =& $this->getMonograph();
 
 		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->assign('monographId', $this->getMonograph()->getId());
+		$templateMgr->assign('monographId', $monograph->getId());
 		$templateMgr->assign('assignedPublicationFormatId', (int) $this->getAssignedPublicationFormatId());
 		$templateMgr->assign('isPhysicalFormat', (int) $this->getPhysicalFormat()); // included to load format-specific template
 		$templateMgr->assign('stageId', $this->getStageId());
