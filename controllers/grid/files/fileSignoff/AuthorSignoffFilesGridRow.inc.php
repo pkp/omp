@@ -16,28 +16,22 @@
 import('controllers.grid.files.SubmissionFilesGridRow');
 
 class AuthorSignoffFilesGridRow extends SubmissionFilesGridRow {
-	/** @var int */
-	var $_stageId;
 
 	/**
 	 * Constructor
 	 * @param $stageId int
 	 */
 	function AuthorSignoffFilesGridRow($stageId) {
-		$this->_stageId = $stageId;
 		// Author cannot delete, but may view notes.
-		parent::SubmissionFilesGridRow(false, true);
+		parent::SubmissionFilesGridRow(false, true, $stageId);
 	}
 
-	//
-	// Getter
-	//
-	function getStageId() {
-		return $this->_stageId;
-	}
 
+	//
+	// Overridden template methods from GridRow
+	//
 	/**
-	 * @see GridHandler::initialize
+	 * @see GridRow::initialize
 	 */
 	function initialize(&$request) {
 		parent::initialize($request);
