@@ -198,6 +198,22 @@ class PublishedMonograph extends Monograph {
 	}
 
 	/**
+	 * Get whether or not this monograph is available in the catalog.
+	 * @return int
+	 */
+	function getIsAvailable() {
+		return $this->getData('isAvailable');
+	}
+
+	/**
+	 * Set whether or not this monograph is available in the catalog.
+	 * @param $isAvailable int
+	 */
+	function setIsAvailable($isAvailable) {
+		return $this->setData('isAvailable', $isAvailable);
+	}
+
+	/**
 	 * Get the Representative objects assigned as suppliers for this published monograph.
 	 * @return Array Representative
 	 */

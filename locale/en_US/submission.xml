@@ -159,6 +159,7 @@
 	<message key="submission.catalogEntry.new">New Catalog Entry</message>
 	<message key="submission.catalogEntry.confirm">I acknowledge that the current metadata is accurate and approve it for display on the public site.</message>
 	<message key="submission.catalogEntry.confirm.required">Please confirm that the submission is ready to be placed in the catalog.</message>
+	<message key="submission.catalogEntry.isAvailable">This monograph is ready to be included in the public catalog.</message>
 
 	<!--  Catalog Entry Tabs -->
 	<message key="submission.catalogEntry.submissionMetadata">Submission</message>

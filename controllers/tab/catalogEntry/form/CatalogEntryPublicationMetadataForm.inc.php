@@ -44,10 +44,7 @@ class CatalogEntryPublicationMetadataForm extends Form {
 	function CatalogEntryPublicationMetadataForm($monographId, $assignedPublicationFormatId, $isPhysicalFormat = true, $stageId = null, $formParams = null) {
 		parent::Form('catalog/form/publicationMetadataFormFields.tpl');
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
-		$monograph = $monographDao->getById((int) $monographId);
-		if ($monograph) {
-			$this->_monograph = $monograph;
-		}
+		$this->_monograph = $monographDao->getById($monographId);
 
 		$this->_stageId = $stageId;
 		$this->_assignedPublicationFormatId = $assignedPublicationFormatId;
@@ -118,6 +115,7 @@ class CatalogEntryPublicationMetadataForm extends Form {
 			$templateMgr->assign('productAvailabilityCode', $assignedPublicationFormat->getProductAvailabilityCode() != '' ? $assignedPublicationFormat->getProductAvailabilityCode() : '20');
 			$templateMgr->assign('technicalProtectionCode', $assignedPublicationFormat->getTechnicalProtectionCode() != '' ? $assignedPublicationFormat->getTechnicalProtectionCode() : '00');
 			$templateMgr->assign('returnableIndicatorCode', $assignedPublicationFormat->getReturnableIndicatorCode() != '' ? $assignedPublicationFormat->getReturnableIndicatorCode() : 'Y');
+			$templateMgr->assign('isAvailable', $assignedPublicationFormat->getIsAvailable()?true:false);
 		}
 
 		return parent::fetch($request);
@@ -156,7 +154,8 @@ class CatalogEntryPublicationMetadataForm extends Form {
 					'imprint',
 					'productAvailabilityCode',
 					'technicalProtectionCode',
-					'returnableIndicatorCode'
+					'returnableIndicatorCode',
+					'isAvailable'
 				);
 		$this->readUserVars($vars);
 	}
@@ -190,6 +189,7 @@ class CatalogEntryPublicationMetadataForm extends Form {
 			$assignedPublicationFormat->setProductAvailabilityCode($this->getData('productAvailabilityCode'));
 			$assignedPublicationFormat->setTechnicalProtectionCode($this->getData('technicalProtectionCode'));
 			$assignedPublicationFormat->setReturnableIndicatorCode($this->getData('returnableIndicatorCode'));
+			$assignedPublicationFormat->setIsAvailable($this->getData('isAvailable')?true:false);
 
 			$assignedPublicationFormatDao->updateObject($assignedPublicationFormat);
 		} else {

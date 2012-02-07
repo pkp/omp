@@ -344,7 +344,7 @@ class PublishedMonographDAO extends MonographDAO {
 		$publishedMonograph->setAudienceRangeTo($row['audience_range_to']);
 		$publishedMonograph->setAudienceRangeExact($row['audience_range_exact']);
 		$publishedMonograph->setCoverImage(unserialize($row['cover_image']));
-
+		$publishedMonograph->setIsAvailable($row['is_available']);
 
 		if ($callHooks) HookRegistry::call('PublishedMonographDAO::_fromRow', array(&$publishedMonograph, &$row));
 		return $publishedMonograph;
@@ -359,9 +359,9 @@ class PublishedMonographDAO extends MonographDAO {
 
 		$this->update(
 			sprintf('INSERT INTO published_monographs
-				(monograph_id, date_published, audience, audience_range_qualifier, audience_range_from, audience_range_to, audience_range_exact, cover_image)
+				(monograph_id, date_published, audience, audience_range_qualifier, audience_range_from, audience_range_to, audience_range_exact, cover_image, is_available)
 				VALUES
-				(?, %s, ?, ?, ?, ?, ?, ?)',
+				(?, %s, ?, ?, ?, ?, ?, ?, ?)',
 				$this->datetimeToDB($publishedMonograph->getDatePublished())),
 			array(
 				(int) $publishedMonograph->getId(),
@@ -370,7 +370,8 @@ class PublishedMonographDAO extends MonographDAO {
 				$publishedMonograph->getAudienceRangeFrom(),
 				$publishedMonograph->getAudienceRangeTo(),
 				$publishedMonograph->getAudienceRangeExact(),
-				serialize($publishedMonograph->getCoverImage() ? $publishedMonograph->getCoverImage() : array())
+				serialize($publishedMonograph->getCoverImage() ? $publishedMonograph->getCoverImage() : array()),
+				(int) $publishedMonograph->getIsAvailable()
 			)
 		);
 	}
@@ -399,7 +400,8 @@ class PublishedMonographDAO extends MonographDAO {
 					audience_range_from = ?,
 					audience_range_to = ?,
 					audience_range_exact = ?,
-					cover_image = ?
+					cover_image = ?,
+					is_available = ?
 				WHERE	monograph_id = ?',
 				$this->datetimeToDB($publishedMonograph->getDatePublished())),
 			array(
@@ -409,6 +411,7 @@ class PublishedMonographDAO extends MonographDAO {
 				$publishedMonograph->getAudienceRangeTo(),
 				$publishedMonograph->getAudienceRangeExact(),
 				serialize($publishedMonograph->getCoverImage() ? $publishedMonograph->getCoverImage() : array()),
+				(int) $publishedMonograph->getIsAvailable(),
 				(int) $publishedMonograph->getId()
 			)
 		);

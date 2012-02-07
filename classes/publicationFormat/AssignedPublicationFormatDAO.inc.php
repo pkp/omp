@@ -151,6 +151,7 @@ class AssignedPublicationFormatDAO extends PublicationFormatDAO {
 		$assignedPublicationFormat->setProductAvailabilityCode($row['product_availability_code']);
 		$assignedPublicationFormat->setTechnicalProtectionCode($row['technical_protection_code']);
 		$assignedPublicationFormat->setReturnableIndicatorCode($row['returnable_indicator_code']);
+		$assignedPublicationFormat->setIsAvailable($row['is_available']);
 
 		$this->getDataObjectSettings('published_monograph_publication_format_settings', 'assigned_publication_format_id', $row['assigned_publication_format_id'], $assignedPublicationFormat);
 
@@ -165,9 +166,9 @@ class AssignedPublicationFormatDAO extends PublicationFormatDAO {
 	function insertObject(&$assignedPublicationFormat) {
 		$this->update(
 			'INSERT INTO published_monograph_publication_formats
-				(monograph_id, publication_format_id, seq, file_size, front_matter, back_matter, height, height_unit_code, width, width_unit_code, thickness, thickness_unit_code, weight, weight_unit_code, product_composition_code, product_form_detail_code, country_manufacture_code, imprint, product_availability_code, technical_protection_code, returnable_indicator_code)
+				(monograph_id, publication_format_id, seq, file_size, front_matter, back_matter, height, height_unit_code, width, width_unit_code, thickness, thickness_unit_code, weight, weight_unit_code, product_composition_code, product_form_detail_code, country_manufacture_code, imprint, product_availability_code, technical_protection_code, returnable_indicator_code, is_available)
 			VALUES
-				(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+				(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
 			array(
 				(int) $assignedPublicationFormat->getMonographId(),
 				(int) $assignedPublicationFormat->getId(),
@@ -189,7 +190,8 @@ class AssignedPublicationFormatDAO extends PublicationFormatDAO {
 				$assignedPublicationFormat->getImprint(),
 				$assignedPublicationFormat->getProductAvailabilityCode(),
 				$assignedPublicationFormat->getTechnicalProtectionCode(),
-				$assignedPublicationFormat->getReturnableIndicatorCode()
+				$assignedPublicationFormat->getReturnableIndicatorCode(),
+				(int) $assignedPublicationFormat->getIsAvailable()
 			)
 		);
 
@@ -223,7 +225,8 @@ class AssignedPublicationFormatDAO extends PublicationFormatDAO {
 				imprint = ?,
 				product_availability_code = ?,
 				technical_protection_code = ?,
-				returnable_indicator_code = ?
+				returnable_indicator_code = ?,
+				is_available = ?
 			WHERE assigned_publication_format_id = ?',
 			array(
 				(int) $assignedPublicationFormat->getId(),
@@ -246,6 +249,7 @@ class AssignedPublicationFormatDAO extends PublicationFormatDAO {
 				$assignedPublicationFormat->getProductAvailabilityCode(),
 				$assignedPublicationFormat->getTechnicalProtectionCode(),
 				$assignedPublicationFormat->getReturnableIndicatorCode(),
+				(int) $assignedPublicationFormat->getIsAvailable(),
 				(int) $assignedPublicationFormat->getAssignedPublicationFormatId()
 			)
 		);

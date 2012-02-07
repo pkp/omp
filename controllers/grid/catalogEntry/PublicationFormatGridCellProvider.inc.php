@@ -41,6 +41,8 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 				return array('label' => $element->getLocalizedName());
 			case 'title':
 				return array('label' => $element->getLocalizedTitle());
+			case 'isAvailable':
+				return array('isChecked' => $element->getIsAvailable()?true:false);
 		}
 	}
 }

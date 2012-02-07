@@ -68,6 +68,7 @@
 	<message key="monograph.publicationFormat.taxRate">Taxation Rate</message>
 	<message key="monograph.publicationFormat.taxType">Taxation Type</message>
 	
+	<message key="monograph.publicationFormat.isAvailable">This publication format is ready to be include in the public catalog.</message>
 	<message key="monograph.publicationFormat.noMarketsAssigned">Missing markets and prices.</message>
 	<message key="monograph.publicationFormat.noCodesAssigned">Missing an identification code.</message>
 	<message key="monograph.publicationFormat.missingONIXFields">Missing some metadata fields.</message>
@@ -80,6 +81,7 @@
 	<message key="grid.catalogEntry.publicationFormatType">Publication Format</message>
 	<message key="grid.catalogEntry.monographRequired">A monograph id is required.</message>
 	<message key="grid.catalogEntry.publicationFormatRequired">A publication format must be chosen.</message>
+	<message key="grid.catalogEntry.isAvailable">In Catalog</message>
 
 	<!--  publication metadata required form field keys -->
 	<message key="grid.catalogEntry.productAvailabilityRequired">A product availability code is required.</message>

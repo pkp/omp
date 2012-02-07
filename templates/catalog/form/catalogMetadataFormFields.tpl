@@ -65,5 +65,11 @@
 		{/fbvFormSection}
 	{/fbvFormArea}
 
+	{fbvFormArea id="catalogInclusion"}
+		{fbvFormSection list="true"}
+			{fbvElement type="checkbox" id="isAvailable" checked=$isAvailable label="submission.catalogEntry.isAvailable"}
+		{/fbvFormSection}
+	{/fbvFormArea}
+
 	{fbvFormButtons id="catalogMetadataFormSubmit" submitText="common.save"}
 </form>

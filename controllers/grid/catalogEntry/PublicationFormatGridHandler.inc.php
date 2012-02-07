@@ -132,6 +132,15 @@ class PublicationFormatGridHandler extends GridHandler {
 				$cellProvider
 			)
 		);
+		$this->addColumn(
+			new GridColumn(
+				'isAvailable',
+				'grid.catalogEntry.isAvailable',
+				null,
+				'controllers/grid/common/cell/checkMarkCell.tpl',
+				$cellProvider
+			)
+		);
 	}
 
 

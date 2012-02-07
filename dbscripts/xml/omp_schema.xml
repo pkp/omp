@@ -623,6 +623,10 @@
 		<field name="audience_range_to" type="C2" size="255"/>
 		<field name="audience_range_exact" type="C2" size="255"/>
 		<field name="cover_image" type="X"/>
+		<field name="is_available" type="I1">
+			<NOTNULL />
+			<DEFAULT VALUE="0" />
+		</field>
 		<descr>Published monographs</descr>
 		<index name="published_monographs_monograph_id">
 			<col>monograph_id</col>
@@ -666,6 +670,10 @@
 		<field name="product_availability_code" type="C2" size="255"/>
 		<field name="technical_protection_code" type="C2" size="255"/>
 		<field name="returnable_indicator_code" type="C2" size="255"/>
+		<field name="is_available" type="I1">
+			<NOTNULL />
+			<DEFAULT VALUE="0" />
+		</field>
 		<descr>Publication formats assigned to published monographs</descr>
 		<index name="published_monographs_monograph_id">
 			<col>monograph_id</col>

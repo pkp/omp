@@ -427,6 +427,22 @@ class AssignedPublicationFormat extends PublicationFormat {
 	}
 
 	/**
+	 * Get whether or not this format is available in the catalog.
+	 * @return int
+	 */
+	function getIsAvailable() {
+		return $this->getData('isAvailable');
+	}
+
+	/**
+	 * Set whether or not this format is available in the catalog.
+	 * @param $isAvailable int
+	 */
+	function setIsAvailable($isAvailable) {
+		return $this->setData('isAvailable', $isAvailable);
+	}
+
+	/**
 	 * Check to see if this publication format has everything it needs for valid ONIX export
 	 * Ideally, do this with a DOMDocument schema validation. We do it this way for now because
 	 * of a potential issue with libxml2:  http://stackoverflow.com/questions/6284827

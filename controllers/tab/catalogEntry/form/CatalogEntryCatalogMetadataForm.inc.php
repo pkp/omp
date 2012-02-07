@@ -54,10 +54,7 @@ class CatalogEntryCatalogMetadataForm extends Form {
 	function CatalogEntryCatalogMetadataForm($monographId, $userId, $stageId = null, $formParams = null) {
 		parent::Form('catalog/form/catalogMetadataFormFields.tpl');
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
-		$monograph = $monographDao->getById((int) $monographId);
-		if ($monograph) {
-			$this->_monograph = $monograph;
-		}
+		$this->_monograph = $monographDao->getById($monographId);
 
 		$this->_stageId = $stageId;
 		$this->_formParams = $formParams;
@@ -98,6 +95,7 @@ class CatalogEntryCatalogMetadataForm extends Form {
 			$templateMgr->assign('audienceRangeFrom', $publishedMonograph->getAudienceRangeFrom());
 			$templateMgr->assign('audienceRangeTo', $publishedMonograph->getAudienceRangeTo());
 			$templateMgr->assign('audienceRangeExact', $publishedMonograph->getAudienceRangeExact());
+			$templateMgr->assign('isAvailable', $publishedMonograph->getIsAvailable()?true:false);
 		}
 
 		return parent::fetch($request);
@@ -156,7 +154,7 @@ class CatalogEntryCatalogMetadataForm extends Form {
 	function readInputData() {
 		$vars = array(
 			'audience', 'audienceRangeQualifier', 'audienceRangeFrom', 'audienceRangeTo', 'audienceRangeExact',
-			'temporaryFileId', // Cover image
+			'isAvailable', 'temporaryFileId', // Cover image
 		);
 
 		$this->readUserVars($vars);
@@ -205,6 +203,7 @@ class CatalogEntryCatalogMetadataForm extends Form {
 		$publishedMonograph->setAudienceRangeFrom($this->getData('audienceRangeFrom'));
 		$publishedMonograph->setAudienceRangeTo($this->getData('audienceRangeTo'));
 		$publishedMonograph->setAudienceRangeExact($this->getData('audienceRangeExact'));
+		$publishedMonograph->setIsAvailable($this->getData('isAvailable')?true:false);
 
 		// If a cover image was uploaded, deal with it.
 		if ($temporaryFileId = $this->getData('temporaryFileId')) {

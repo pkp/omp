@@ -25,6 +25,12 @@
 	<input type="hidden" name="displayedInTab" value="{$formParams.displayedInTab|escape}" />
 	<input type="hidden" name="tab" value="publication" />
 
+	{fbvFormArea id="catalogInclusion"}
+		{fbvFormSection list="true"}
+			{fbvElement type="checkbox" id="isAvailable" checked=$isAvailable label="monograph.publicationFormat.isAvailable"}
+		{/fbvFormSection}
+	{/fbvFormArea}
+
 	{fbvFormArea id="productIdentifier"}
 		{fbvFormSection}
 			<!-- Product Identification Codes -->
