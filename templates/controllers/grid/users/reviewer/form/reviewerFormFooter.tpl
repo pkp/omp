@@ -7,9 +7,9 @@
  * The non-searching part of the add reviewer form
  *
  *}
- <script type="text/javascript">
-$("input[name='responseDueDate']").datepicker({ldelim} dateFormat: 'yy-mm-dd' {rdelim});
-$("input[name='reviewDueDate']").datepicker({ldelim} dateFormat: 'yy-mm-dd' {rdelim});
+<script type="text/javascript">
+	$("input[name^='responseDueDate']").datepicker({ldelim} dateFormat: 'yy-mm-dd' {rdelim});
+	$("input[name^='reviewDueDate']").datepicker({ldelim} dateFormat: 'yy-mm-dd' {rdelim});
 </script>
 
 <!--  Message to reviewer textarea -->

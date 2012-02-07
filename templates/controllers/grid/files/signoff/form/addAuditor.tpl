@@ -45,7 +45,7 @@
 		{load_url_in_div id=$filesListbuilderId url=$filesListbuilderUrl}
 
 		{fbvFormSection}
-			{fbvElement type="text" id="responseDueDate" name="responseDueDate" label="editor.responseDueDate" value=$responseDueDate }
+			{fbvElement type="text" id="responseDueDate" name="responseDueDate" label="editor.responseDueDate" value=$responseDueDate}
 		{/fbvFormSection}
 
 		<!-- Message to user -->

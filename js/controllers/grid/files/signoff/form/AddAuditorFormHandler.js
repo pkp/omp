@@ -33,7 +33,7 @@ jQuery.pkp.controllers.grid.files = jQuery.pkp.controllers.grid.files ||
 
 		this.parent($form, options);
 
-		$('#responseDueDate').datepicker({ dateFormat: 'mm-dd-yy', minDate: '0' });
+		$('input[id^="responseDueDate"]').datepicker({ dateFormat: 'mm-dd-yy', minDate: '0' });
 		// Set response due date to one week in the future
 		// FIXME: May want to make a press setting
 		var currentTime = new Date();
