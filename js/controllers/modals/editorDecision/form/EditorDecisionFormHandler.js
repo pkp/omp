@@ -87,8 +87,9 @@ jQuery.pkp.controllers.modals = jQuery.pkp.controllers.modals ||
 		if (jsonData !== false) {
 			// Add the peer review text to the personal message to the author.
 			var $form = this.getHtmlElement();
-			var currentContent = $('textarea#personalMessage', $form).val();
-			$('textarea#personalMessage', $form).val(currentContent + jsonData.content);
+			var $textArea = $('textarea[id^="personalMessage"]', $form);
+			var currentContent = $textArea.val();
+			$textArea.val(currentContent + jsonData.content);
 		}
 	};
 
