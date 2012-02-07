@@ -55,8 +55,24 @@ class NotificationManager extends PKPNotificationManager {
 				$monographDao =& DAORegistry::getDAO('MonographDAO');
 				$monograph =& $monographDao->getById($monographFile->getMonographId());
 
+				// Get correct page (author dashboard or workflow), based
+				// on user roles (if only author, go to author dashboard).
 				import('controllers.grid.submissions.SubmissionsListGridCellProvider');
 				list($page, $operation) = SubmissionsListGridCellProvider::getPageAndOperationByUserRoles($request, $monograph);
+
+				// If workflow, get the correct operation (stage).
+				if ($page == 'workflow') {
+					switch ($signoff->getSymbolic()) {
+						case 'SIGNOFF_COPYEDITING':
+							$operation = WORKFLOW_STAGE_PATH_EDITING;
+							break;
+						case 'SIGNOFF_PROOFING':
+							$operation = WORKFLOW_STAGE_PATH_PRODUCTION;
+							break;
+						default:
+							assert(false);
+					}
+				}
 
 				$url = $dispatcher->url($request, ROUTE_PAGE, null, $page, $operation, $monographFile->getMonographId());
 				break;
