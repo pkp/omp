@@ -62,16 +62,9 @@ class NotificationManager extends PKPNotificationManager {
 
 				// If workflow, get the correct operation (stage).
 				if ($page == 'workflow') {
-					switch ($signoff->getSymbolic()) {
-						case 'SIGNOFF_COPYEDITING':
-							$operation = WORKFLOW_STAGE_PATH_EDITING;
-							break;
-						case 'SIGNOFF_PROOFING':
-							$operation = WORKFLOW_STAGE_PATH_PRODUCTION;
-							break;
-						default:
-							assert(false);
-					}
+					$stageId = $signoffDao->getStageIdBySymbolic($signoff->getSymbolic());
+					$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+					$operation = $userGroupDao->getPathFromId($stageId);
 				}
 
 				$url = $dispatcher->url($request, ROUTE_PAGE, null, $page, $operation, $monographFile->getMonographId());
@@ -590,10 +583,14 @@ class NotificationManager extends PKPNotificationManager {
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
 		$monograph =& $monographDao->getById($monographId);
 
+		// Get the stage id, based on symbolic.
+		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
+		$stageId = $signoffDao->getStageIdBySymbolic($symbolic);
+
 		import('controllers.api.signoff.linkAction.AddSignoffFileLinkAction');
 		$signoffFileLinkAction = new AddSignoffFileLinkAction(
 			$request, $monographId,
-			$monograph->getStageId(), $symbolic, null,
+			$stageId, $symbolic, null,
 			$message, $message);
 
 		return $this->_fetchLinkActionNotificationContent($signoffFileLinkAction);
