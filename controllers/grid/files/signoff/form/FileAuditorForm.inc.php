@@ -128,6 +128,17 @@ class FileAuditorForm extends Form {
 		}
 		import('classes.mail.MonographMailTemplate');
 		$email = new MonographMailTemplate($monograph, 'AUDITOR_REQUEST');
+		$user =& $request->getUser();
+		// Intentionally omit {$auditorName} for now -- see bug #7090
+		$email->assignParams(array(
+			'editorialContactSignature' => $user->getContactSignature(),
+			'monographTitle' => $monograph->getSeriesTitle(),
+			'weekLaterDate' => strftime(
+				Config::getVar('general', 'date_format_short'),
+				time() + 604800 // 60 * 60 * 24 * 7 seconds
+			),
+		));
+
 		$this->setData('personalMessage', $email->getBody());
 	}
 
@@ -150,8 +161,7 @@ class FileAuditorForm extends Form {
 	function execute(&$request) {
 		// Decode the "files" list
 		import('lib.pkp.classes.controllers.listbuilder.ListbuilderHandler');
-		$changedFileData = $this->getData('files');
-		ListbuilderHandler::unpack($request, $changedFileData);
+		ListbuilderHandler::unpack($request, $this->getData('files'));
 
 		// Send the message to the user
 		$monograph =& $this->getMonograph();
@@ -159,23 +169,14 @@ class FileAuditorForm extends Form {
 		$email = new MonographMailTemplate($monograph, 'AUDITOR_REQUEST');
 		$email->setBody($this->getData('personalMessage'));
 
-		$dateFormatShort = Config::getVar('general', 'date_format_short');
-		$weekLaterDate = time() + 604800;
-		$weekLaterDate = strftime($dateFormatShort, $weekLaterDate);
-
 		$userDao =& DAORegistry::getDAO('UserDAO'); /* @var $userDao UserDAO */
-		$user =& $request->getUser();
-		$contactSignature = $user->getContactSignature();
 		// FIXME: How to validate user IDs?
 		$user =& $userDao->getUser($this->getData('userId'));
-		$paramArray = array(
-			'auditorName' => $user->getFullName(),
-			'editorialContactSignature' => $contactSignature,
-			'monographTitle' => $monograph->getSeriesTitle(),
-			'weekLaterDate' => $weekLaterDate
-		);
 
-		$email->assignParams($paramArray);
+		// Other parameters assigned above; see bug #7090.
+		$email->assignParams(array(
+			'auditorName' => $user->getFullName(),
+		));
 
 		$email->addRecipient($user->getEmail(), $user->getFullName());
 		$email->setEventType($this->getEventType());
