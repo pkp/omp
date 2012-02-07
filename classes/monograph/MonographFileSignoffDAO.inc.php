@@ -121,9 +121,10 @@ class MonographFileSignoffDAO extends SignoffDAO {
 	 * @param $symbolic string (optional)
 	 * @param $userId int
 	 * @param $userGroupId int
+	 * @param $onlyCompleted boolean
 	 * @return DAOResultFactory
 	 */
-	function getAllByMonograph($monographId, $symbolic = null, $userId = null, $userGroupId = null) {
+	function getAllByMonograph($monographId, $symbolic = null, $userId = null, $userGroupId = null, $notCompletedOnly = false) {
 		$sql = 'SELECT s.* FROM signoffs s, monograph_files mf WHERE s.assoc_type = ? AND s.assoc_id = mf.file_id AND mf.monograph_id = ?';
 		$params = array(ASSOC_TYPE_MONOGRAPH_FILE, (int) $monographId);
 
@@ -139,6 +140,10 @@ class MonographFileSignoffDAO extends SignoffDAO {
 		if ($userGroupId) {
 			$sql .= ' AND user_group_id = ?';
 			$params[] = (int) $userGroupId;
+		}
+
+		if ($notCompletedOnly) {
+			$sql .= ' AND date_completed IS NULL';
 		}
 
 		$result =& $this->retrieve($sql, $params);

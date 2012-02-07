@@ -130,11 +130,16 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 		));
 
 		// Action to signoff on a file -- Lets user interact with their own rows.
-		import('controllers.api.signoff.linkAction.AddSignoffFileLinkAction');
-		$this->addAction(new AddSignoffFileLinkAction(
-			$request, $monograph->getId(),
-			$this->getStageId(), $this->getSymbolic(), null,
-			__('submission.upload.signoff'), __('submission.upload.signoff')));
+		$user =& $request->getUser();
+		$signoffDao =& DAORegistry::getDAO('MonographFileSignoffDAO'); /* @var $signoffDao MonographFileSignoffDAO */
+		$signoffFactory =& $signoffDao->getAllByMonograph($monograph->getId(), $this->getSymbolic(), $user->getId(), null, true);
+		if (!$signoffFactory->wasEmpty()) {
+			import('controllers.api.signoff.linkAction.AddSignoffFileLinkAction');
+			$this->addAction(new AddSignoffFileLinkAction(
+				$request, $monograph->getId(),
+				$this->getStageId(), $this->getSymbolic(), null,
+				__('submission.upload.signoff'), __('submission.upload.signoff')));
+		}
 
 		$router =& $request->getRouter();
 

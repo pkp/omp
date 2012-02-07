@@ -109,16 +109,13 @@ class SignoffFileUploadForm extends Form {
 		} else {
 			// No signoff specified, look at all available signoffs
 			$user =& $request->getUser();
-			$signoffs =& $signoffDao->getAllByMonograph($this->getMonographId(), $this->getSymbolic(), $user->getId());
+			$signoffs =& $signoffDao->getAllByMonograph($this->getMonographId(), $this->getSymbolic(), $user->getId(), null, true);
 			$availableSignoffs = array();
 			while ($signoff =& $signoffs->next()) {
-				// Only include signoffs that are not yet completed.
-				if (!$signoff->getDateCompleted()) {
-					$submissionFile =& $submissionFileDao->getLatestRevision($signoff->getAssocId());
-					assert(is_a($submissionFile, 'MonographFile'));
+				$submissionFile =& $submissionFileDao->getLatestRevision($signoff->getAssocId());
+				assert(is_a($submissionFile, 'MonographFile'));
 
-					$availableSignoffs[$signoff->getId()] = $submissionFile->getLocalizedName();
-				}
+				$availableSignoffs[$signoff->getId()] = $submissionFile->getLocalizedName();
 				unset($signoff);
 			}
 
