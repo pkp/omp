@@ -101,12 +101,29 @@ class NotificationsGridHandler extends GridHandler {
 		$notifications =& $notificationDao->getNotificationsByUserId($user->getId(), NOTIFICATION_LEVEL_TASK);
 		$rowData = $notifications->toAssociativeArray();
 
+		// Remove not listable task types.
+		$notListableTaskTypes = $this->_getNotListableTaskTypes();
+		foreach ($rowData as $key => $notification) {
+			if (in_array($notification->getType(), $notListableTaskTypes)) {
+				unset($rowData[$key]);
+			}
+		}
+
 		return $rowData;
 	}
 
+
 	//
-	// Public handler methods
+	// Private helper methods.
 	//
+	/**
+	 * Get the notification types that we don't want
+	 * to list in this grid.
+	 * @return array
+	 */
+	function _getNotListableTaskTypes() {
+		return array(NOTIFICATION_TYPE_SIGNOFF_COPYEDIT, NOTIFICATION_TYPE_SIGNOFF_PROOF);
+	}
 }
 
 ?>
