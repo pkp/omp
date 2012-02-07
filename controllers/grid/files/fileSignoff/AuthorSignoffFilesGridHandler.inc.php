@@ -94,13 +94,18 @@ class AuthorSignoffFilesGridHandler extends GridHandler {
 
 		$this->_user =& $request->getUser();
 
-		import('controllers.api.signoff.linkAction.AddSignoffFileLinkAction');
+		$user =& $this->getUser();
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-		$this->addAction(new AddSignoffFileLinkAction(
-								$request, $monograph->getId(),
-								$this->getStageId(), $this->getSymbolic(), null,
-								__('submission.upload.signoff'), __('submission.upload.signoff')
-								));
+		$signoffDao =& DAORegistry::getDAO('MonographFileSignoffDAO'); /* @var $signoffDao MonographFileSignoffDAO */
+		$signoffFactory =& $signoffDao->getAllByMonograph($monograph->getId(), $this->getSymbolic(), $user->getId(), null, true);
+		if (!$signoffFactory->wasEmpty()) {
+			import('controllers.api.signoff.linkAction.AddSignoffFileLinkAction');
+			$this->addAction(new AddSignoffFileLinkAction(
+									$request, $monograph->getId(),
+									$this->getStageId(), $this->getSymbolic(), null,
+									__('submission.upload.signoff'), __('submission.upload.signoff')
+									));
+		}
 
 		// The file name column is common to all file grid types.
 		import('controllers.grid.files.FileNameGridColumn');
