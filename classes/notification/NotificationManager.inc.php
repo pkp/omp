@@ -81,16 +81,6 @@ class NotificationManager extends PKPNotificationManager {
 				$reviewAssignment =& $reviewAssignmentDao->getById($notification->getAssocId());
 				$url = $dispatcher->url($request, ROUTE_PAGE, null, 'reviewer', 'submission', $reviewAssignment->getSubmissionId());
 				break;
-			case NOTIFICATION_TYPE_SIGNOFF_COPYEDIT:
-			case NOTIFICATION_TYPE_SIGNOFF_PROOF:
-				$monographDao =& DAORegistry::getDAO('MonographDAO');
-				$monograph =& $monographDao->getById($notification->getAssocId());
-
-				import('controllers.grid.submissions.SubmissionsListGridCellProvider');
-				list($page, $operation) = SubmissionsListGridCellProvider::getPageAndOperationByUserRoles($request, $monograph);
-
-				$url = $dispatcher->url($request, ROUTE_PAGE, null, $page, $operation, $notification->getAssocId());
-				break;
 			default:
 				$url = parent::getNotificationUrl($request, $notification);
 		}
