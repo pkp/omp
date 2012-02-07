@@ -36,6 +36,9 @@ jQuery.pkp.controllers.grid.users.stageParticipant =
 		$('#userGroupId', $form).change(
 				this.callbackWrapper(this.addUserIdToAutocompleteUrl));
 
+		$('[id^="userId_input"]', $form).keyup(
+				this.callbackWrapper(this.addNameToAutocompleteUrl));
+
 	};
 	$.pkp.classes.Helper.inherits(
 			$.pkp.controllers.grid.users.stageParticipant.form.AddParticipantFormHandler,
@@ -69,6 +72,25 @@ jQuery.pkp.controllers.grid.users.stageParticipant =
 		// Match with &amp;userGroupId or without and append userGroupId
 		var newUrl = oldUrl.replace(
 				/(&userGroupId=\d+)?$/, '&userGroupId=' + eventObject.value);
+		autocompleteHandler.setAutocompleteUrl(newUrl);
+	};
+
+
+	/**
+	 * Method to add the contents of the Name field to the end of the autocomplete URL
+	 * @param {Object} eventObject The html element that changed.
+	 */
+	$.pkp.controllers.grid.users.stageParticipant.form.AddParticipantFormHandler.prototype.addNameToAutocompleteUrl =
+			function(eventObject) {
+
+		var $autocompleteContainer = $('#userId_container');
+		var autocompleteHandler =
+				$.pkp.classes.Handler.getHandler($autocompleteContainer);
+
+		var oldUrl = autocompleteHandler.getAutocompleteUrl();
+		// Remove the old Name from the URL
+		var newUrl = oldUrl.replace(/(&userName=[^&]*)/, '');
+		newUrl += '&userName=' + encodeURIComponent(eventObject.value);
 		autocompleteHandler.setAutocompleteUrl(newUrl);
 	};
 

@@ -332,14 +332,17 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 		$stageId = $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
 
 		$userGroupId = (int) $request->getUserVar('userGroupId');
+		$userName = $request->getUserVar('userName');
 
 		$userStageAssignmentDao =& DAORegistry::getDAO('UserStageAssignmentDAO'); /* @var $userStageAssignmentDao UserStageAssignmentDAO */
 		$users =& $userStageAssignmentDao->getUsersNotAssignedToStageInUserGroup($monograph->getId(), $stageId, $userGroupId);
 
 		$userList = array();
 		while($user =& $users->next()) {
-			$userList[] = array('label' => $user->getFullName(), 'value' => $user->getId());
-			unset($reviewer);
+			if ($userName == '' || preg_match('/'. quotemeta($userName) . '/i', $user->getFullName())) {
+				$userList[] = array('label' => $user->getFullName(), 'value' => $user->getId());
+			}
+			unset($user);
 		}
 
 		$json = new JSONMessage(true, $userList);

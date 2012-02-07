@@ -25,7 +25,7 @@
 		{/fbvFormSection}
 		{fbvFormSection title="user.name"}
 			{url|assign:addParticipantUserUrl op="userAutocomplete" monographId=$monographId stageId=$stageId userGroupId=$selectedUserGroupId escape=false}
-			{fbvElement type="autocomplete"  id="userId" autocompleteUrl=$addParticipantUserUrl size=$fbvStyles.size.MEDIUM}
+			{fbvElement type="autocomplete" id="userId" autocompleteUrl=$addParticipantUserUrl size=$fbvStyles.size.MEDIUM}
 		{/fbvFormSection}
 		{fbvFormButtons}
 	{/fbvFormArea}
