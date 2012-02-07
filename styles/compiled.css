@@ -817,6 +817,12 @@ table.pkp_listing td.separator {
   background:url(../lib/pkp/templates/images/structure/icon_globe.png) no-repeat;
   background-position:100% 50%;
 }
+.pkp_form input.spinner {
+	background-color: #ffffff !important;
+	background-repeat:repeat;
+	background:url(../lib/pkp/templates/images/throbber.gif) no-repeat;
+	background-position:100% 50%;
+}
 .pkp_form textarea.localizable { background-position:100% 0; }
 .pkp_form .flag {
   background-color:#ffffff !important;
