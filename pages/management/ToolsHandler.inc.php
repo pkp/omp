@@ -12,10 +12,10 @@
  * @brief Handle requests for Tool pages.
  */
 
-// Import the base Handler.
-import('classes.handler.Handler');
+// Import the base ManagementHandler.
+import('pages.management.ManagementHandler');
 
-class ToolsHandler extends Handler {
+class ToolsHandler extends ManagementHandler {
 	/**
 	 * Constructor.
 	 */
@@ -23,38 +23,14 @@ class ToolsHandler extends Handler {
 		parent::Handler();
 		$this->addRoleAssignment(
 			ROLE_ID_PRESS_MANAGER,
-			array(
-				'tools',
-			)
+			array('tools')
 		);
 	}
 
 
 	//
-	// Overridden methods from Handler
+	// Public handler methods.
 	//
-	/**
-	 * @see PKPHandler::initialize()
-	 */
-	function initialize(&$request, $args = null) {
-		parent::initialize($request, $args);
-
-		// Load grid-specific translations
-		AppLocale::requireComponents(LOCALE_COMPONENT_PKP_MANAGER, LOCALE_COMPONENT_OMP_MANAGER);
-	}
-
-	/**
-	 * @see PKPHandler::authorize()
-	 * @param $request PKPRequest
-	 * @param $args array
-	 * @param $roleAssignments array
-	 */
-	function authorize(&$request, $args, $roleAssignments) {
-		import('classes.security.authorization.OmpPressAccessPolicy');
-		$this->addPolicy(new OmpPressAccessPolicy($request, $roleAssignments));
-		return parent::authorize($request, $args, $roleAssignments);
-	}
-
 	/**
 	 * Route to other Tools operations
 	 * @param $args array

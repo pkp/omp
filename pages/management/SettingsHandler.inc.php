@@ -12,10 +12,10 @@
  * @brief Handle requests for settings pages.
  */
 
-// Import the base Handler.
-import('classes.handler.Handler');
+// Import the base ManagementHandler.
+import('pages.management.ManagementHandler');
 
-class SettingsHandler extends Handler {
+class SettingsHandler extends ManagementHandler {
 	/**
 	 * Constructor.
 	 */
@@ -35,32 +35,6 @@ class SettingsHandler extends Handler {
 				'distribution'
 			)
 		);
-	}
-
-
-	//
-	// Overridden methods from Handler
-	//
-	/**
-	 * @see PKPHandler::initialize()
-	 */
-	function initialize(&$request, $args = null) {
-		parent::initialize($request, $args);
-
-		// Load grid-specific translations
-		AppLocale::requireComponents(LOCALE_COMPONENT_PKP_MANAGER, LOCALE_COMPONENT_OMP_MANAGER);
-	}
-
-	/**
-	 * @see PKPHandler::authorize()
-	 * @param $request PKPRequest
-	 * @param $args array
-	 * @param $roleAssignments array
-	 */
-	function authorize(&$request, $args, $roleAssignments) {
-		import('classes.security.authorization.OmpPressAccessPolicy');
-		$this->addPolicy(new OmpPressAccessPolicy($request, $roleAssignments));
-		return parent::authorize($request, $args, $roleAssignments);
 	}
 
 
