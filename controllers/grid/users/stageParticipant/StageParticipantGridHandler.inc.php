@@ -345,6 +345,10 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 			unset($user);
 		}
 
+		if (count($userList) == 0) {
+			$userList[] = array('label' => __('common.noMatches'), 'value' => '');
+		}
+
 		$json = new JSONMessage(true, $userList);
 		return $json->getString();
 	}

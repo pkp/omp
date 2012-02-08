@@ -356,6 +356,10 @@ class ReviewerGridHandler extends GridHandler {
 			unset($reviewer);
 		}
 
+		if (count($reviewerList) == 0) {
+			$reviewerList[] = array('label' => __('common.noMatches'), 'value' => '');
+		}
+
 		$json = new JSONMessage(true, $reviewerList);
 		return $json->getString();
 	}
@@ -377,6 +381,10 @@ class ReviewerGridHandler extends GridHandler {
 		while ($user =& $users->next()) {
 			$userList[] = array('label' => $user->getFullName(), 'value' => $user->getId());
 			unset($user);
+		}
+
+		if (count($userList) == 0) {
+			$userList[] = array('label' => __('common.noMatches'), 'value' => '');
 		}
 
 		$json = new JSONMessage(true, $userList);
