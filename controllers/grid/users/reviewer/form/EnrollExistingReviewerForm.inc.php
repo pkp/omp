@@ -23,6 +23,7 @@ class EnrollExistingReviewerForm extends ReviewerForm {
 		$this->setTemplate('controllers/grid/users/reviewer/form/enrollExistingReviewerForm.tpl');
 
 		$this->addCheck(new FormValidator($this, 'userGroupId', 'required', 'user.profile.form.usergroupRequired'));
+		$this->addCheck(new FormValidator($this, 'userId', 'required', 'manager.people.existingUserRequired'));
 	}
 
 	/**
