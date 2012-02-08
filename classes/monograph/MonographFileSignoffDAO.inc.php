@@ -14,7 +14,7 @@
  * files.
  */
 
-import('lib.pkp.classes.signoff.SignoffDAO');
+import('classes.signoff.SignoffDAO');
 
 class MonographFileSignoffDAO extends SignoffDAO {
 	/**
