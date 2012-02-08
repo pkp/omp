@@ -37,7 +37,7 @@ class FileApiHandler extends Handler {
 	// Implement methods from PKPHandler
 	//
 	function authorize(&$request, $args, $roleAssignments) {
-		$monographFilesIds = $request->getUserVar('linkActionPostData');
+		$monographFilesIds = $request->getUserVar('filesIdsAndRevisions');
 		import('classes.security.authorization.OmpMonographFileAccessPolicy');
 
 		if (is_string($monographFilesIds)) {
