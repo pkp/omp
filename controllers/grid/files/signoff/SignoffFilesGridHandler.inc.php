@@ -400,6 +400,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 
 		import('controllers.grid.files.signoff.form.FileAuditorForm');
 		$publicationFormat =& $this->getPublicationFormat();
+		$publicationFormatId = null;
 		if (is_a($publicationFormat, 'PublicationFormat')) {
 			$publicationFormatId = $publicationFormat->getId();
 		}
@@ -461,14 +462,21 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 		$itemList = array();
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */
 		$userDao =& DAORegistry::getDAO('UserDAO');
+		$term =& $request->getUserVar('term');
 		while($stageUser =& $stageUsers->next()) {
 			$userGroup =& $userGroupDao->getById($stageUser->getUserGroupId());
 			$user =& $userDao->getUser($stageUser->getUserId());
-			$itemList[] = array(
-				'label' =>  sprintf('%s (%s)', $user->getFullName(), $userGroup->getLocalizedName()),
-				'value' => $user->getId() . '-' . $stageUser->getUserGroupId()
-			);
+			if ($term == '' || preg_match('/' . quotemeta($term) .'/i', $user->getFullName())) {
+				$itemList[] = array(
+					'label' =>  sprintf('%s (%s)', $user->getFullName(), $userGroup->getLocalizedName()),
+					'value' => $user->getId() . '-' . $stageUser->getUserGroupId()
+				);
+			}
 			unset($stageUser, $userGroup);
+		}
+
+		if (count($itemList) == 0) {
+			$itemList[] = array('label' => __('common.noMatches'), 'value' => '');
 		}
 
 		import('lib.pkp.classes.core.JSONMessage');
