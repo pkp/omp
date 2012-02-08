@@ -31,5 +31,9 @@ switch ($op) {
 		import('pages.management.ToolsHandler');
 		define('HANDLER_CLASS', 'ToolsHandler');
 		break;
+	case 'announcements':
+		import('pages.management.AnnouncementHandler');
+		define('HANDLER_CLASS', 'AnnouncementHandler');
+		break;
 }
 ?>
