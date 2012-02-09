@@ -138,7 +138,9 @@ class ReviewerForm extends Form {
 		// The reviewer id has been set
 		if (!empty($reviewerId)) {
 			if ($this->_isValidReviewer($press, $monograph, $reviewRound, $reviewerId)) {
-				$this->setData('userNameString', sprintf('%s (%s)', $user->getFullname(), $user->getUsername()));
+				$userDao = & DAORegistry::getDAO('UserDAO'); /* @var $userDao UserDAO */
+				$reviewer =& $userDao->getUser($reviewerId);
+				$this->setData('userNameString', sprintf('%s (%s)', $reviewer->getFullname(), $reviewer->getUsername()));
 			}
 		}
 
@@ -287,7 +289,7 @@ class ReviewerForm extends Form {
 		if ($mail->isEnabled() && !$this->getData('skipEmail')) {
 			$userDao = & DAORegistry::getDAO('UserDAO'); /* @var $userDao UserDAO */
 			$reviewer =& $userDao->getUser($reviewerId);
-			$user = $submission->getUser();
+			$user = $request->getUser();
 			$mail->addRecipient($reviewer->getEmail(), $reviewer->getFullName());
 
 			$dispatcher =& $request->getDispatcher();
