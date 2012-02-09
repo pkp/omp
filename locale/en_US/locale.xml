@@ -381,6 +381,7 @@ current password.<br /><br />Enter your email address below to reset your passwo
 	<message key="user.register.reviewerDescriptionNoInterests">Willing to conduct peer review of submissions to the press.</message>
 	<message key="user.register.reviewerDescription">Willing to conduct peer review of submissions to the press.</message>
 	<message key="user.register.reviewerInterests">Identify reviewing interests (substantive areas and research methods):</message>
+	<message key="user.register.form.userGroupRequired">You must select at least one role</message>
 
 	<!-- Site index -->
 	<message key="site.pressView">View Press Website</message>

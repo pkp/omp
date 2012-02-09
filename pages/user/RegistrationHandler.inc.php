@@ -45,11 +45,8 @@ class RegistrationHandler extends UserHandler {
 			} else {
 				$regForm =& new RegistrationForm($site, $existingUser);
 			}
-			if ($regForm->isLocaleResubmit()) {
-				$regForm->readInputData();
-			} else {
-				$regForm->initData();
-			}
+
+			$regForm->initData();
 			$regForm->display($request);
 		} else {
 			$pressDao =& DAORegistry::getDAO('PressDAO');

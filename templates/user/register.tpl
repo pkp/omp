@@ -127,7 +127,7 @@
 {/if}{* !$implicitAuth *}
 
 	{if $currentPress && ($allowRegAuthor || $allowRegReviewer)}
-		{fbvFormSection label="user.register.registerAs" list=true}
+		{fbvFormSection title="user.register.registerAs" list=true required=true}
 			{if $allowRegAuthor}
 				{iterate from=authorUserGroups item=userGroup}
 					{assign var="userGroupId" value=$userGroup->getId()}
