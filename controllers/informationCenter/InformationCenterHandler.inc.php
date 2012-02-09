@@ -209,12 +209,15 @@ class InformationCenterHandler extends Handler {
 		// Preselect tab from keywords 'notes', 'notify', 'history'
 		switch ($request->getUserVar('tab')) {
 			case 'history':
-				$templateMgr->assign('selectedTabIndex', 2);
+				$templateMgr->assign('selectedTabIndex', 3);
 				break;
 			case 'notify':
+				$templateMgr->assign('selectedTabIndex', 2);
+				break;
+			case 'notes':
 				$templateMgr->assign('selectedTabIndex', 1);
 				break;
-			// case notes is default
+			// metadata is default
 			default:
 				$templateMgr->assign('selectedTabIndex', 0);
 				break;
