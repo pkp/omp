@@ -77,7 +77,6 @@ class InformationCenterNotifyForm extends Form {
 			$template = new MonographMailTemplate($monograph, $templateKey);
 			$template->assignParams(array());
 			$templates[$templateKey] = $template->getSubject();
-			unset($templateKey);
 		}
 
 		unset($templateKeys);
