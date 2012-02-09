@@ -172,10 +172,16 @@ class FileAuditorForm extends Form {
 		$userDao =& DAORegistry::getDAO('UserDAO'); /* @var $userDao UserDAO */
 		// FIXME: How to validate user IDs?
 		$user =& $userDao->getUser($this->getData('userId'));
+		import('controllers.grid.submissions.SubmissionsListGridCellProvider');
+		list($page, $operation) = SubmissionsListGridCellProvider::getPageAndOperationByUserRoles($request, $monograph, $user->getId());
+
+		$dispatcher =& $request->getDispatcher();
+		$auditUrl = $dispatcher->url($request, ROUTE_PAGE, null, $page, $operation, array($monograph->getId()));
 
 		// Other parameters assigned above; see bug #7090.
 		$email->assignParams(array(
 			'auditorName' => $user->getFullName(),
+			'auditUrl' => $auditUrl,
 		));
 
 		$email->addRecipient($user->getEmail(), $user->getFullName());

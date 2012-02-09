@@ -13,14 +13,17 @@
 		<subject>Manuscript Audit Request</subject>
 		<body>{$auditorName}:
 
-I believe that you would serve as an excellent auditor for the manuscript, "{$monographTitle}," and I am asking that you consider undertaking this important task for us.
+New files have been uploaded for the manuscript "{$monographTitle}", and I am asking that you audit them. It is important to the press that participants review the manuscript at each stage.
 
-Please indicate in a return email by {$weekLaterDate} whether you are able and willing to do the audit.
+You can find the files to review at: 
+
+{$auditUrl}
+
+Please indicate in a return email if you are not able to complete the audit by {$weekLaterDate}.
 
 Thank you for considering this request.
 
 {$editorialContactSignature}
-
 </body>
 		<description>This email is sent by the Series Editor to an Auditor to request that they accept or decline the task of auditing a submission.</description>
 	</email_text>

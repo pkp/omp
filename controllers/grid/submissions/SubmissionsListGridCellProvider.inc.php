@@ -168,10 +168,19 @@ class SubmissionsListGridCellProvider extends DataObjectGridCellProvider {
 	 * 'authordashboard' and 'workflow', based on users roles.
 	 * @param $request Request
 	 * @param $monograph Monographs
+	 * @param $userId an optional user id
 	 * @return array
 	 */
-	function getPageAndOperationByUserRoles(&$request, &$monograph) {
-		$user =& $request->getUser();
+	function getPageAndOperationByUserRoles(&$request, &$monograph, $userId = null) {
+		if ($userId == null) {
+			$user =& $request->getUser();
+		} else {
+			$userDao =& DAORegistry::getDAO('UserDAO');
+			$user =& $userDao->getUser($userId);
+			if ($user == null) { // user does not exist
+				return array();
+			}
+		}
 
 		// This method is used to build links in componentes that lists
 		// monographs from various presses, sometimes. So we need to make sure
