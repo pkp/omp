@@ -18,7 +18,7 @@ import('classes.submission.reviewer.ReviewerAction');
 class ReviewerHandler extends Handler {
 	/**
 	 * Constructor
-	 **/
+	 */
 	function ReviewerHandler() {
 		parent::Handler();
 		$this->addRoleAssignment(ROLE_ID_REVIEWER,
