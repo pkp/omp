@@ -247,7 +247,6 @@
 	<message key="common.list">List</message>
 	<message key="common.grid">Grid</message>
 	<message key="common.organize">Organize</message>
-	<message key="common.noMatches">No Matches</message>
 
 	<message key="common.queue.long.submissionsUnassigned">Unassigned Submissions</message>
 	<message key="common.queue.long.myAssigned">My Assigned Submissions</message>

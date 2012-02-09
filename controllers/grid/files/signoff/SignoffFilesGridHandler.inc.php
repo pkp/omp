@@ -476,10 +476,9 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 		}
 
 		if (count($itemList) == 0) {
-			$itemList[] = array('label' => __('common.noMatches'), 'value' => '');
+			return $this->noAutocompleteResults();
 		}
 
-		import('lib.pkp.classes.core.JSONMessage');
 		$json = new JSONMessage(true, $itemList);
 		return $json->getString();
 	}

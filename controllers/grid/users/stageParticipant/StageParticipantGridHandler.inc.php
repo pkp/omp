@@ -346,7 +346,7 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 		}
 
 		if (count($userList) == 0) {
-			$userList[] = array('label' => __('common.noMatches'), 'value' => '');
+			return $this->noAutocompleteResults();
 		}
 
 		$json = new JSONMessage(true, $userList);
