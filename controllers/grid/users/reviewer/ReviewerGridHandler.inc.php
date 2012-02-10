@@ -518,6 +518,10 @@ class ReviewerGridHandler extends GridHandler {
 		if ($reviewReminderForm->validate()) {
 			$reviewReminderForm->execute($args, $request);
 			$json = new JSONMessage(true);
+			// Insert a trivial notification to indicate the reviewer was reminded successfully.
+			$currentUser =& $request->getUser();
+			$notificationMgr = new NotificationManager();
+			$notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.sentNotification')));
 		} else {
 			$json = new JSONMessage(false, __('editor.review.reminderError'));
 		}
