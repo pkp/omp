@@ -121,9 +121,6 @@ class CatalogEntryHandler extends Handler {
 			$templateMgr->assign('published', true);
 			$templateMgr->assign('monographId', $monograph->getId());
 			$tabPosition = (int) $this->getTabPosition();
-			if ($tabPosition == 0) {
-				$tabPosition = 1; // prevents a reload of the (disabled) submission tab now.  Show catalog instead.
-			}
 			$templateMgr->assign('selectedTab', $tabPosition);
 
 			// load in any publication formats assigned to this published monograph

@@ -21,7 +21,7 @@
 </script>
 <div id="newCatalogEntryTabs">
 	<ul>
-		<li {if $published}class="ui-state-default ui-corner-top ui-state-disabled"{/if}>
+		<li>
 			<a title="submission" href="{url router=$smarty.const.ROUTE_COMPONENT component="tab.catalogEntry.CatalogEntryTabHandler" tab="submission" op="submissionMetadata" monographId="$monographId" stageId=$stageId tabPos="0"}">{translate key="submission.catalogEntry.submissionMetadata"}</a>
 		</li>
 		<li {if !$published}class="ui-state-default ui-corner-top ui-state-disabled"{/if}>
