@@ -52,6 +52,7 @@
 	<message key="submission.submit.newSubmissionSingle">Start a New Submission in {$pressName}</message>
 	<message key="submission.submit.selectAPress">Select a Press...</message>
 	<message key="submission.submit.upload">Upload Submission</message>
+        <message key="submission.submit.upload.description">Upload your submission files using the form below. You may upload your manuscript as a single submission file, or by uploading separate submission files for each individual manuscript section (eg. your introduction; individual chapters; figures; and so on).</message>
 	<message key="submission.submit.cancelSubmission">You can complete this submission at a later date by selecting Active Submissions from the Author home.</message>
 	<message key="submission.submit.howToSubmit"><![CDATA[Encountering difficulties? Contact <a href="mailto:{$supportEmail}">{$supportName}</a> for assistance ({$supportPhone}).]]></message>
 	<message key="submission.submit.howToSubmitNoPhone"><![CDATA[Encountering difficulties? Contact <a href="mailto:{$supportEmail}">{$supportName}</a> for assistance.]]></message>
@@ -97,6 +98,7 @@
 	<message key="submission.submit.whatNext.return">Return to your dashboard</message>
 	<message key="submission.submit.checklistErrors">Please read and check off the items in the submission checklist.  There are {$itemsRemaining} items left unchecked.</message>
 	<message key="submission.submit.placement">Submission Placement</message>
+        <message key="submission.submit.placement.description">A series is a general book collection that may span different categories in the press according to an overall theme. Categories are groupings of books according to subject matter, for example Economics; Literature; Poetry; and so on. Your manuscript may fall within more than one category; please select all that apply.</message>
 	<message key="submission.submit.submissionFiles">Submission Files</message>
 	<message key="submission.submit.fileInformation">File Information</message>
 	<message key="submission.submit.fileNameRequired">You must enter a file name for this file</message>
@@ -108,7 +110,7 @@
 	<message key="submission.upload.noGenre">Missing or invalid genre!</message>
 	<message key="submission.upload.invalidUserGroup">Missing or invalid user group!</message>
 	<message key="submission.upload.possibleRevision">Possible Revision Detected</message>
-	<message key="submission.upload.possibleRevisionDescription"><![CDATA[<p>It looks like you may be trying to upload a revision to the previously uploaded file '{$revisedFileName}' whose file name is very similar to the name of the uploaded file. Is this the case?</p><p>If you are uploading a revision for another file, please select it below otherwise select the 'do not replace' option. Then click the 'continue' button to edit the meta-data of the file.</p>]]></message>
+	<message key="submission.upload.possibleRevisionDescription"><![CDATA[<p>It looks like you may be trying to upload a revision to the previously uploaded file '{$revisedFileName}' whose file name is very similar to the name of the uploaded file. Is this the case?</p><p>If you are uploading a revision for another file, please select it below. Otherwise select the 'do not replace' option. Then click the 'continue' button to edit the meta-data of the file.</p>]]></message>
 	<message key="submission.upload.revisingExistingFile">Revising an Existing File?</message>
 	<message key="submission.upload.selectMandatoryFileToRevise">Please select the file you would like to revise.</message>
 	<message key="submission.upload.selectOptionalFileToRevise">If you are uploading a revision of an existing file, please indicate which file.</message>

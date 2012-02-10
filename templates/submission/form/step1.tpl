@@ -56,7 +56,7 @@
 
 	<!-- Submission Placement -->
 	{if count($seriesOptions) > 1} {* only display the series picker if there are series configured for this press *}
-		{fbvFormSection title="submission.submit.placement" size=$fbvStyles.size.MEDIUM}
+		{fbvFormSection label="submission.submit.placement" description="submission.submit.placement.description" size=$fbvStyles.size.MEDIUM}
 			{fbvElement type="select" id="seriesId" from=$seriesOptions selected=$seriesId translate=false}
 		{/fbvFormSection}
 	
