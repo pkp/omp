@@ -129,29 +129,33 @@ class WorkflowHandler extends Handler {
 	 */
 	function access($args, &$request) {
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-		$accessibleWorkflowStages = $this->getAuthorizedContextObject(ASSOC_TYPE_ACCESSIBLE_WORKFLOW_STAGES);
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
 
 		$stageId = $monograph->getStageId();
-		$userRoles = $this->getAuthorizedContextObject(ASSOC_TYPE_USER_ROLES);
+		$accessibleWorkflowStages = $this->getAuthorizedContextObject(ASSOC_TYPE_ACCESSIBLE_WORKFLOW_STAGES);
 
 		// Get the closest workflow stage that user has an assignment.
+		$stagePath = null;
 		for ($workingStageId = $stageId; $workingStageId >= WORKFLOW_STAGE_ID_SUBMISSION; $workingStageId--) {
 			if (array_key_exists($workingStageId, $accessibleWorkflowStages)) {
-				// Make sure that, if in review stage, we have at least one
-				// initiated review round.
-				if ($workingStageId == WORKFLOW_STAGE_ID_INTERNAL_REVIEW ||
-				$workingStageId == WORKFLOW_STAGE_ID_EXTERNAL_REVIEW) {
-					$reviewRoundsFactory =& $reviewRoundDao->getByMonographId($monograph->getId(), $workingStageId);
-					if ($reviewRoundsFactory->wasEmpty()) {
-						continue;
-					}
-				}
 				$stagePath = $userGroupDao->getPathFromId($workingStageId);
 				break;
 			}
 		}
+
+		// If no stage was found, user still have access to future stages of the
+		// monograph. Try to get the closest future workflow stage.
+		if (!$stagePath) {
+			for ($workingStageId = $stageId; $workingStageId <= WORKFLOW_STAGE_ID_PRODUCTION; $workingStageId++) {
+				if (array_key_exists($workingStageId, $accessibleWorkflowStages)) {
+					$stagePath = $userGroupDao->getPathFromId($workingStageId);
+					break;
+				}
+			}
+		}
+
+		assert(!is_null($stagePath));
 
 		$router =& $request->getRouter();
 		$request->redirectUrl($router->url($request, null, 'workflow', $stagePath, $monograph->getId()));
