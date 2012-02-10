@@ -117,7 +117,8 @@ class SeriesForm extends Form {
 			$request,
 			$this->getData('seriesEditors'),
 			array(&$this, 'deleteSeriesEditorEntry'),
-			array(&$this, 'insertSeriesEditorEntry')
+			array(&$this, 'insertSeriesEditorEntry'),
+			array(&$this, 'updateSeriesEditorEntry')
 		);
 
 		// Save the category associations.
@@ -125,7 +126,8 @@ class SeriesForm extends Form {
 			$request,
 			$this->getData('categories'),
 			array(&$this, 'deleteCategoryEntry'),
-			array(&$this, 'insertCategoryEntry')
+			array(&$this, 'insertCategoryEntry'),
+			array(&$this, 'updateCategoryEntry')
 		);
 
 		return true;
@@ -183,6 +185,19 @@ class SeriesForm extends Form {
 	}
 
 	/**
+	 * Update a series editor association with this series.
+	 * @see ListbuilderHandler::deleteEntry
+	 * @param $request PKPRequest
+	 * @param $rowId int the old series editor
+	 * @param $newRowId array the new series editor
+	 */
+	function updateSeriesEditorEntry(&$request, $rowId, $newRowId) {
+		$this->deleteSeriesEditorEntry($request, $rowId);
+		$this->insertSeriesEditorEntry($request, $newRowId);
+		return true;
+	}
+
+	/**
 	 * Persist a category association
 	 * @see ListbuilderHandler::insertEntry
 	 */
@@ -214,6 +229,19 @@ class SeriesForm extends Form {
 		$press =& $request->getPress();
 
 		$seriesDao->removeCategory($this->getSeriesId(), $rowId);
+		return true;
+	}
+
+	/**
+	 * Update a category association with this series.
+	 * @see ListbuilderHandler::updateEntry
+	 * @param $request PKPRequest
+	 * @param $rowId int old category
+	 * @param $newRowId array new category
+	 */
+	function updateCategoryEntry(&$request, $rowId, $newRowId) {
+		$this->deleteCategoryEntry($request, $rowId);
+		$this->insertCategoryEntry($request, $newRowId);
 		return true;
 	}
 }
