@@ -90,7 +90,7 @@ class AuthorDashboardReviewRoundTabHandler extends AuthorDashboardHandler {
 			$templateMgr->assign('showReviewAttachments', true);
 		}
 
-		return $templateMgr->fetch('authorDashboard/reviewRoundInfo.tpl');
+		return $templateMgr->fetchJson('authorDashboard/reviewRoundInfo.tpl');
 	}
 
 }
