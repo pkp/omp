@@ -116,6 +116,12 @@ class ReviewReminderForm extends Form {
 		$email->addRecipient($reviewer->getEmail(), $reviewer->getFullName());
 		$email->setBody($this->getData('message'));
 		$email->send($request);
+
+		// update the ReviewAssignment with the reminded and modified dates
+		$reviewAssignment->setDateReminded(Core::getCurrentDate());
+		$reviewAssignment->stampModified();
+		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+		$reviewAssignmentDao->updateObject($reviewAssignment);
 	}
 }
 
