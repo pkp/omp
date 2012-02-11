@@ -325,6 +325,10 @@ class EditorDecisionHandler extends Handler {
 			$notificationMgr = new NotificationManager();
 			$notificationMgr->updateEditorDecisionNotification($monograph, $decision, $request);
 
+			// Update pending revisions task notifications.
+			$stageId = $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
+			$notificationMgr->updatePendingRevisionsNotification($request, $monograph, $stageId, $decision);
+
 			if ($redirectOp) {
 				$dispatcher =& $this->getDispatcher();
 				$redirectUrl = $dispatcher->url($request, ROUTE_PAGE, null, 'workflow', $redirectOp, array($monograph->getId()));

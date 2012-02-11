@@ -241,6 +241,7 @@ class UserGroupDAO extends PKPUserGroupDAO {
 		$stageMapping = array();
 		foreach ($workflowStages as $stageId => $translationKey) {
 			$stageMapping[$stageId] = array(
+				'id' => $stageId,
 				'translationKey' => $translationKey,
 				'path' => $this->getPathFromId($stageId)
 			);

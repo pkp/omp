@@ -74,6 +74,11 @@ class NotificationManager extends PKPNotificationManager {
 				$reviewAssignment =& $reviewAssignmentDao->getById($notification->getAssocId());
 				$url = $dispatcher->url($request, ROUTE_PAGE, null, 'reviewer', 'submission', $reviewAssignment->getSubmissionId());
 				break;
+			case NOTIFICATION_TYPE_PENDING_INTERNAL_REVISIONS:
+			case NOTIFICATION_TYPE_PENDING_EXTERNAL_REVISIONS:
+				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
+				$url = $this->_getPendingRevisionUrl($request, $notification);
+				break;
 			default:
 				$url = parent::getNotificationUrl($request, $notification);
 		}
@@ -173,6 +178,12 @@ class NotificationManager extends PKPNotificationManager {
 
 				AppLocale::requireComponents(LOCALE_COMPONENT_OMP_EDITOR); // load review round status keys.
 				return __($reviewRound->getStatusKey());
+				break;
+			case NOTIFICATION_TYPE_PENDING_INTERNAL_REVISIONS:
+			case NOTIFICATION_TYPE_PENDING_EXTERNAL_REVISIONS:
+				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
+				return $this->_getPendingRevisionMessage($notification);
+				break;
 			default:
 				return parent::getNotificationMessage($request, $notification);
 		}
@@ -204,6 +215,11 @@ class NotificationManager extends PKPNotificationManager {
 				$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
 				$reviewRound =& $reviewRoundDao->getReviewRoundById($notification->getAssocId());
 				return __('notification.type.roundStatusTitle', array('round' => $reviewRound->getRound()));
+			case NOTIFICATION_TYPE_PENDING_INTERNAL_REVISIONS:
+			case NOTIFICATION_TYPE_PENDING_EXTERNAL_REVISIONS:
+				$stageData = $this->_getStageDataByPendingRevisionsType($notification->getType());
+				$stageKey = $stageData['translationKey'];
+				return __('notification.type.pendingRevisions.title', array('stage' => __($stageKey)));
 			default:
 				return parent::getNotificationTitle($notification);
 		}
@@ -226,6 +242,11 @@ class NotificationManager extends PKPNotificationManager {
 			case NOTIFICATION_TYPE_SIGNOFF_PROOF:
 				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
 				return $this->_getSignoffNotificationContents($request, $notification, 'SIGNOFF_PROOFING', $notificationMessage);
+				break;
+			case NOTIFICATION_TYPE_PENDING_INTERNAL_REVISIONS:
+			case NOTIFICATION_TYPE_PENDING_EXTERNAL_REVISIONS:
+				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
+				return $this->_getPendingRevisionContents($request, $notification, $notificationMessage);
 				break;
 			default:
 				return $notificationMessage;
@@ -262,6 +283,8 @@ class NotificationManager extends PKPNotificationManager {
 			case NOTIFICATION_TYPE_AUDITOR_REQUEST:
 			case NOTIFICATION_TYPE_SIGNOFF_COPYEDIT:
 			case NOTIFICATION_TYPE_SIGNOFF_PROOF:
+			case NOTIFICATION_TYPE_PENDING_EXTERNAL_REVISIONS:
+			case NOTIFICATION_TYPE_PENDING_INTERNAL_REVISIONS:
 				return 'notifyWarning';
 				break;
 			case NOTIFICATION_TYPE_EDITOR_DECISION_INITIATE_REVIEW:
@@ -554,6 +577,83 @@ class NotificationManager extends PKPNotificationManager {
 		);
 	}
 
+	/**
+	 * Update the NOTIFICATION_TYPE_PENDIND_..._REVISIONS notification.
+	 * @param $monographId int
+	 * @param $stageId int
+	 * @param $decision int
+	 */
+	function updatePendingRevisionsNotification(&$request, &$monograph, $stageId, $decision) {
+		switch($stageId) {
+			case WORKFLOW_STAGE_ID_INTERNAL_REVIEW:
+				$notificationType = NOTIFICATION_TYPE_PENDING_INTERNAL_REVISIONS;
+				break;
+			case WORKFLOW_STAGE_ID_EXTERNAL_REVIEW:
+				$notificationType = NOTIFICATION_TYPE_PENDING_EXTERNAL_REVISIONS;
+				break;
+			default:
+				assert(false);
+		}
+
+		switch ($decision) {
+			case SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS:
+				// Create or update a pending revision task notification.
+				$notificationDao =& DAORegistry::getDAO('NotificationDAO'); /* @var $notificationDao NotificationDAO */
+
+				$notification =& $notificationDao->newDataObject(); /* @var $notification Notification */
+				$notification->setAssocType(ASSOC_TYPE_MONOGRAPH);
+				$notification->setAssocId($monograph->getId());
+				$notification->setUserId($monograph->getUserId());
+				$notification->setType($notificationType);
+				$notification->setLevel(NOTIFICATION_LEVEL_TASK);
+				$notification->setContextId($monograph->getPressId());
+
+				$notificationDao->updateNotification($notification);
+				break;
+			case SUBMISSION_EDITOR_DECISION_SEND_TO_PRODUCTION:
+				// Do nothing.
+				break;
+			default:
+				// Remove any existing pending revision task notification.
+				$this->deletePendingRevisionsNotification($request, $monograph, $stageId);
+				break;
+		}
+	}
+
+	/**
+	 * Remove pending revisions task notification.
+	 * @param $request Request
+	 * @param $monograph Monograph
+	 * @param $stageId int
+	 * @param $userId int When you want a different user than the
+	 * monograph submitter. This will be used to search for a notification.
+	 */
+	function deletePendingRevisionsNotification(&$request, &$monograph, $stageId, $userId = null) {
+		$notificationType = null;
+		switch ($stageId) {
+			case WORKFLOW_STAGE_ID_INTERNAL_REVIEW:
+				$notificationType = NOTIFICATION_TYPE_PENDING_INTERNAL_REVISIONS;
+				break;
+			case WORKFLOW_STAGE_ID_EXTERNAL_REVIEW:
+				$notificationType = NOTIFICATION_TYPE_PENDING_EXTERNAL_REVISIONS;
+				break;
+			default:
+				assert(false);
+		}
+
+		$notificationDao = DAORegistry::getDAO('NotificationDAO'); /* @var $notificationDao NotificationDAO */
+
+		if (is_null($userId)) {
+			$userId = $monograph->getUserId();
+		}
+
+		$notificationFactory =& $notificationDao->getNotificationsByAssoc(ASSOC_TYPE_MONOGRAPH, $monograph->getId(), $userId, $notificationType, $monograph->getPressId());
+		if (!$notificationFactory->wasEmpty()) {
+			$notification =& $notificationFactory->next();
+			$notificationDao->deleteNotificationById($notification->getId());
+		}
+	}
+
 
 	//
 	// Private helper methods
@@ -675,6 +775,89 @@ class NotificationManager extends PKPNotificationManager {
 			default:
 				assert(false);
 				break;
+		}
+	}
+
+	/**
+	 * Get the NOTIFICATION_TYPE_PENDIND_..._REVISIONS url.
+	 * @param $notification Notification
+	 * @return string
+	 */
+	function _getPendingRevisionUrl(&$request, &$notification) {
+		$monographDao =& DAORegistry::getDAO('MonographDAO');
+		$monograph =& $monographDao->getById($notification->getAssocId());
+
+		import('controllers.grid.submissions.SubmissionsListGridCellProvider');
+		list($page, $operation) = SubmissionsListGridCellProvider::getPageAndOperationByUserRoles($request, $monograph);
+
+		if ($page == 'workflow') {
+			$stageData = $this->_getStageDataByPendingRevisionsType($notification->getType());
+			$operation = $stageData['path'];
+		}
+
+		$router =& $request->getRouter();
+		$dispatcher =& $router->getDispatcher();
+		return $dispatcher->url($request, ROUTE_PAGE, null, $page, $operation, $monograph->getId());
+	}
+
+	/**
+	 * Get the NOTIFICATION_TYPE_PENDIND_..._REVISIONS message.
+	 * @param $notification Notification
+	 * @return string
+	 */
+	function _getPendingRevisionMessage(&$notification) {
+		$stageData = $this->_getStageDataByPendingRevisionsType($notification->getType());
+		$stageKey = $stageData['translationKey'];
+
+		return __('notification.type.pendingRevisions', array('stage' => __($stageKey)));
+	}
+
+	/**
+	 * Get the NOTIFICATION_TYPE_PENDIND_..._REVISIONS contents.
+	 * @param $request Request
+	 * @param $notification Notification
+	 * @param $message String The notification message.
+	 * @return string
+	 */
+	function _getPendingRevisionContents(&$request, $notification, $message) {
+		$stageData = $this->_getStageDataByPendingRevisionsType($notification->getType());
+		$stageId = $stageData['id'];
+		$monographId = $notification->getAssocId();
+
+		$monographDao =& DAORegistry::getDAO('MonographDAO');
+		$monograph =& $monographDao->getById($monographId);
+		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
+		$lastReviewRound =& $reviewRoundDao->getLastReviewRoundByMonographId($monograph->getId(), $stageId);
+
+		import('controllers.api.file.linkAction.AddRevisionLinkAction');
+		AppLocale::requireComponents(LOCALE_COMPONENT_OMP_EDITOR); // editor.review.uploadRevision
+
+		$uploadFileAction = new AddRevisionLinkAction(
+			$request, $lastReviewRound, array(ROLE_ID_AUTHOR)
+		);
+
+		return $this->_fetchLinkActionNotificationContent($uploadFileAction);
+	}
+
+	/**
+	 * Get the data for an workflow stage by
+	 * pending revisions notification type.
+	 * @param $type int
+	 * @return string
+	 */
+	function _getStageDataByPendingRevisionsType($type) {
+		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */
+		$stagesData = $userGroupDao->getWorkflowStageKeysAndPaths();
+
+		switch ($type) {
+			case NOTIFICATION_TYPE_PENDING_INTERNAL_REVISIONS:
+				return $stagesData[WORKFLOW_STAGE_ID_INTERNAL_REVIEW];
+				break;
+			case NOTIFICATION_TYPE_PENDING_EXTERNAL_REVISIONS:
+				return $stagesData[WORKFLOW_STAGE_ID_EXTERNAL_REVIEW];
+				break;
+			default:
+				assert(false);
 		}
 	}
 }

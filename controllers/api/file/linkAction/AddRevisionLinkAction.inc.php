@@ -27,6 +27,9 @@ class AddRevisionLinkAction extends BaseAddFileLinkAction {
 	 *  in the context of this action.
 	 */
 	function AddRevisionLinkAction(&$request, &$reviewRound, $uploaderRoles) {
+		// Bring in the monograph file constants.
+		import('classes.monograph.MonographFile');
+
 		// Create the action arguments array.
 		$actionArgs = array(
 			'fileStage' => MONOGRAPH_FILE_REVIEW_REVISION,

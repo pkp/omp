@@ -301,7 +301,7 @@ class FileUploadWizardHandler extends FileManagementHandler {
 
 		// Validate the form and upload the file.
 		if ($uploadForm->validate($request)) {
-			if (is_a($uploadedFile =& $uploadForm->execute($request), 'MonographFile')) {
+			if (is_a($uploadedFile =& $uploadForm->execute($request), 'MonographFile')) { /* @var $uploadedFile MonographFile */
 				// Retrieve file info to be used in a JSON response.
 				$uploadedFileInfo = $this->_getUploadedFileInfo($uploadedFile);
 
@@ -320,6 +320,14 @@ class FileUploadWizardHandler extends FileManagementHandler {
 						$json = new JSONMessage(true, $confirmationForm->fetch($request), '0', $uploadedFileInfo);
 						return $json->getString();
 					}
+				}
+
+				// Remove pending revisions task notification, if any.
+				if ($uploadedFile->getFileStage() == MONOGRAPH_FILE_REVIEW_REVISION) {
+					$stageId = $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
+					$notificationMgr =& new NotificationManager(); /* @var $notificationMgr NotificationManager */
+					$user =& $request->getUser();
+					$notificationMgr->deletePendingRevisionsNotification($request, $monograph, $stageId, $user->getId());
 				}
 
 				// Advance to the next step (i.e. meta-data editing).

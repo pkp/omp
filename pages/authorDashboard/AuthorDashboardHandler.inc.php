@@ -126,7 +126,9 @@ class AuthorDashboardHandler extends Handler {
 		$notificationRequestOptions = array(
 			NOTIFICATION_LEVEL_TASK => array(
 				NOTIFICATION_TYPE_SIGNOFF_COPYEDIT => $monographAssocTypeAndIdArray,
-				NOTIFICATION_TYPE_SIGNOFF_PROOF => $monographAssocTypeAndIdArray),
+				NOTIFICATION_TYPE_SIGNOFF_PROOF => $monographAssocTypeAndIdArray,
+				NOTIFICATION_TYPE_PENDING_EXTERNAL_REVISIONS => $monographAssocTypeAndIdArray,
+				NOTIFICATION_TYPE_PENDING_INTERNAL_REVISIONS => $monographAssocTypeAndIdArray),
 			NOTIFICATION_LEVEL_NORMAL => array(
 				NOTIFICATION_TYPE_EDITOR_DECISION_INITIATE_REVIEW => $monographAssocTypeAndIdArray,
 				NOTIFICATION_TYPE_EDITOR_DECISION_ACCEPT => $monographAssocTypeAndIdArray,
