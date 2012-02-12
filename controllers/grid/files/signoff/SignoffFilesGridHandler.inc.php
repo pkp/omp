@@ -383,7 +383,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 	// Public methods
 	//
 	/**
-	 * Adds am auditor (signoff) to a file
+	 * Adds an auditor (signoff) to a file
 	 * @param $args array
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
