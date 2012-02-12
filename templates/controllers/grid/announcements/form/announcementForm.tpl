@@ -14,7 +14,7 @@
 	{rdelim});
 </script>
 
-<form class="pkp_form" id="announcementForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.announcements.AnnouncementGridHandler" op="updateAnnouncement"}">
+<form class="pkp_form" id="announcementForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.announcements.ManageAnnouncementGridHandler" op="updateAnnouncement"}">
 	{if $readOnly}
 		{* Read only announcement *}
 	
@@ -48,11 +48,12 @@
 				{fbvElement type="textarea" multilingual="true" id="description" value=$description label="manager.announcements.form.descriptionInstructions" rich=true}
 			{/fbvFormSection}
 			<script type="text/javascript">
-				$("#dateExpire").datepicker({ldelim} dateFormat: 'yy-mm-dd' {rdelim});
+				$('input[id^="dateExpire"]').datepicker({ldelim} dateFormat: 'yy-mm-dd' {rdelim});
 			</script>
 			{fbvFormSection title="manager.announcements.form.dateExpire" for="dataExpire" required="true"}
 				{fbvElement type="text" id="dateExpire" value=$dateExpire label="manager.announcements.form.dateExpireInstructions" size=$fbvStyles.size.MEDIUM}
-			{/fbvFormSection}			
+			{/fbvFormSection}		
 		{/fbvFormArea}
+		{fbvFormButtons id="announcementFormSubmit" submitText="common.save"}
 	{/if}
 </form>

@@ -535,6 +535,8 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="notification.addedNote">Note posted.</message>
 	<message key="notification.removedNote">Note deleted.</message>
 	<message key="notification.removedFile">File deleted.</message>
+	<message key="notification.addedAnnouncement">Announcement added.</message>
+	<message key="notification.editedAnnouncement">Announcement edited.</message>
 	<message key="notification.signedFile">File signed.</message>
 	<message key="notification.updatedReviewFiles">Review files updated.</message>
 	<message key="notification.savedCatalogMetadata">Catalog metadata saved.</message>

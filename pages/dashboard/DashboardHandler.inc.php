@@ -54,6 +54,9 @@ class DashboardHandler extends Handler {
 		$templateMgr =& TemplateManager::getManager();
 		$this->setupTemplate($request);
 
+		$press =& $request->getPress();
+		$templateMgr->assign('announcementsEnabled', $press->getSetting('enableAnnouncements'));
+
 		$templateMgr->assign('selectedTab', 1);
 		$templateMgr->assign('templateToDisplay', 'dashboard/overview.tpl');
 		$templateMgr->display('dashboard/index.tpl');

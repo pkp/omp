@@ -69,9 +69,13 @@ class AnnouncementGridCellProvider extends GridCellProvider {
 				break;
 			case 'type':
 				$typeId = $announcement->getTypeId();
-				$announcementTypeDao =& DAORegistry::getDAO('AnnouncementTypeDAO');
-				$announcementType =& $announcementTypeDao->getAnnouncementType($typeId);
-				return array('label' => $announcementType->getLocalizedTypeName());
+				if ($typeId) {
+					$announcementTypeDao =& DAORegistry::getDAO('AnnouncementTypeDAO');
+					$announcementType =& $announcementTypeDao->getAnnouncementType($typeId);
+					return array('label' => $announcementType->getLocalizedTypeName());
+				} else {
+					return array('label' => __('common.none'));
+				}
 				break;
 			default:
 				break;

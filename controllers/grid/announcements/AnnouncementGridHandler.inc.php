@@ -12,17 +12,15 @@
  * @brief Handle announcements grid requests.
  */
 
-import('controllers.grid.settings.SetupGridHandler');
+import('lib.pkp.classes.controllers.grid.GridHandler');
 import('lib.pkp.classes.controllers.grid.DataObjectGridCellProvider');
 
-class AnnouncementGridHandler extends SetupGridHandler {
+class AnnouncementGridHandler extends GridHandler {
 	/**
 	 * Constructor
 	 */
 	function AnnouncementGridHandler() {
 		parent::GridHandler();
-		$this->addRoleAssignment(array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_ASSISTANT, ROLE_ID_REVIEWER, ROLE_ID_AUTHOR),
-				array('fetchGrid', 'fetchRow', 'moreInformation'));
 	}
 
 
@@ -30,7 +28,32 @@ class AnnouncementGridHandler extends SetupGridHandler {
 	// Overridden template methods
 	//
 	/**
-	 * @see SetupGridHandler::initialize()
+	 * @see GridHandler::authorize()
+	 */
+	function authorize($request, $args, $roleAssignments) {
+		$returner = parent::authorize($request, $args, $roleAssignments);
+
+		// Ensure announcements are enabled.
+		$press =& $request::getPress();
+		if (!$press->getSetting('enableAnnouncements')) {
+			return false;
+		}
+
+		$announcementId = $request->getUserVar('announcementId');
+		if ($announcementId) {
+			// Ensure announcement is valid and for this context
+			$press =& $request->getPress();
+			$announcementDao =& DAORegistry::getDAO('AnnouncementDAO');
+			if ($announcementDao->getAnnouncementAssocId($announcementId) != $press->getId()) {
+				return false;
+			}
+		}
+
+		return $returner;
+	}
+
+	/**
+	 * @see GridHandler::initialize()
 	 */
 	function initialize(&$request) {
 		parent::initialize($request);
@@ -79,9 +102,6 @@ class AnnouncementGridHandler extends SetupGridHandler {
 		);
 	}
 
-	//
-	// Extended methods from GridHandler
-	//
 	/**
 	 * @see GridHandler::loadData()
 	 */
