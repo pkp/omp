@@ -79,6 +79,14 @@ class NotificationManager extends PKPNotificationManager {
 				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
 				$url = $this->_getPendingRevisionUrl($request, $notification);
 				break;
+			case NOTIFICATION_TYPE_NEW_ANNOUNCEMENT:
+				assert($notification->getAssocType() == ASSOC_TYPE_ANNOUNCEMENT);
+				$announcementDao =& DAORegistry::getDAO('AnnouncementDAO'); /* @var $announcementDao AnnouncementDAO */
+				$announcement = $announcementDao->getAnnouncement($notification->getAssocId()); /* @var $announcement Announcement */
+				$pressId = $announcement->getAssocId();
+				$pressDao =& DAORegistry::getDAO('PressDAO'); /* @var $pressDao PressDAO */
+				$press =& $pressDao->getById($pressId);
+				return $dispatcher->url($request, ROUTE_PAGE, null, $press->getPath(), 'index', array($notification->getAssocId()));
 			default:
 				$url = parent::getNotificationUrl($request, $notification);
 		}
