@@ -72,7 +72,7 @@ class AssignedSubmissionsListGridHandler extends SubmissionsListGridHandler {
 			$monograph =& $monographDao->getById($stageAssignment->getSubmissionId());
 			if ($monograph->getDateSubmitted() == null) { continue; }; // Still incomplete, don't add to assigned submissions grid.
 
-			if ($monograph->getDatePublished() == null) { continue; } // This is published, don't add to the submissions grid (it's in the catalog)
+			if ($monograph->getDatePublished() != null) { continue; } // This is published, don't add to the submissions grid (it's in the catalog)
 
 			// Check if user is a submitter of this monograph.
 			if ($userId == $monograph->getUserId()) { continue; }; // It will be in the 'my submissions' grid.
