@@ -103,7 +103,7 @@ class MonographDAO extends DAO {
 		if ($pressId) $params[] = (int) $pressId;
 
 		$result =& $this->retrieve(
-			'SELECT	m.*,
+			'SELECT	m.*, pm.date_published,
 				COALESCE(stl.setting_value, stpl.setting_value) AS series_title,
 				COALESCE(sal.setting_value, sapl.setting_value) AS series_abbrev
 			FROM	monographs m
@@ -112,6 +112,7 @@ class MonographDAO extends DAO {
 				LEFT JOIN series_settings stl ON (s.series_id = stl.series_id AND stl.setting_name = ? AND stl.locale = ?)
 				LEFT JOIN series_settings sapl ON (s.series_id = sapl.series_id AND sapl.setting_name = ? AND sapl.locale = ?)
 				LEFT JOIN series_settings sal ON (s.series_id = sal.series_id AND sal.setting_name = ? AND sal.locale = ?)
+				LEFT JOIN published_monographs pm ON (m.monograph_id = pm.monograph_id)
 			WHERE	m.monograph_id = ?
 				' . ($pressId?' AND m.press_id = ?':''),
 			$params
@@ -170,6 +171,7 @@ class MonographDAO extends DAO {
 		$monograph->setStatus($row['status']);
 		$monograph->setSubmissionProgress($row['submission_progress']);
 		$monograph->setWorkType($row['edited_volume']);
+		$monograph->setDatePublished($row['date_published']);
 
 		$this->getDataObjectSettings('monograph_settings', 'monograph_id', $row['monograph_id'], $monograph);
 
@@ -455,7 +457,7 @@ class MonographDAO extends DAO {
 		if ($pressId) $params[] = $pressId;
 
 		$result =& $this->retrieve(
-			'SELECT	m.*,
+			'SELECT	m.*, pm.date_published,
 				COALESCE(atl.setting_value, atpl.setting_value) AS series_title,
 				COALESCE(aal.setting_value, aapl.setting_value) AS series_abbrev
 			FROM	monographs m
@@ -464,6 +466,7 @@ class MonographDAO extends DAO {
 				LEFT JOIN series_settings atl ON (aa.series_id = atl.series_id AND atl.setting_name = ? AND atl.locale = ?)
 				LEFT JOIN series_settings aapl ON (aa.series_id = aapl.series_id AND aapl.setting_name = ? AND aapl.locale = ?)
 				LEFT JOIN series_settings aal ON (aa.series_id = aal.series_id AND aal.setting_name = ? AND aal.locale = ?)
+				LEFT JOIN published_monographs pm ON (m.monograph_id = pm.monograph_id)
 			WHERE	m.user_id = ?' .
 				(isset($pressId)?' AND m.press_id = ?':''),
 			$params
@@ -529,10 +532,11 @@ class MonographDAO extends DAO {
 		if ($pressId) $params[] = (int) $pressId;
 
 		$result =& $this->retrieve(
-			'SELECT	m.*, g.user_group_id,
+			'SELECT	m.*, g.user_group_id, pm.date_published,
 				COALESCE(stl.setting_value, stpl.setting_value) AS series_title,
 				COALESCE(sal.setting_value, sapl.setting_value) AS series_abbrev
 			FROM	monographs m
+				LEFT JOIN published_monographs pm ON m.monograph_id = pm.monograph_id
 				LEFT JOIN series s ON s.series_id = m.series_id
 				LEFT JOIN series_settings stpl ON (s.series_id = stpl.series_id AND stpl.setting_name = ? AND stpl.locale = ?)
 				LEFT JOIN series_settings stl ON (s.series_id = stl.series_id AND stl.setting_name = ? AND stl.locale = ?)

@@ -91,8 +91,10 @@ class MySubmissionsListGridHandler extends SubmissionsListGridHandler {
 		$submissions = $monographDao->getByUserId($userId);
 		$data = array();
 		while ($submission =& $submissions->next()) {
-			$submissionId = $submission->getId();
-			$data[$submissionId] =& $submission;
+			if ($submission->getDatePublished() == null) {
+				$submissionId = $submission->getId();
+				$data[$submissionId] =& $submission;
+			}
 			unset($submision);
 		}
 

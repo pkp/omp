@@ -254,6 +254,23 @@ class Monograph extends Submission {
 	function setSupportingAgencies($title, $locale) {
 		return $this->setData('supportingAgencies', $title, $locale);
 	}
+
+	/**
+	 * Get date published.
+	 * @return date
+	 */
+	function getDatePublished() {
+		return $this->getData('datePublished');
+	}
+
+	/**
+	 * Set date published.
+	 * @param $datePublished date
+	 */
+
+	function setDatePublished($datePublished) {
+		return $this->SetData('datePublished', $datePublished);
+	}
 }
 
 ?>

@@ -82,8 +82,12 @@ class UnassignedSubmissionsListGridHandler extends SubmissionsListGridHandler {
 			);
 
 			if (!$monographFactory->wasEmpty()) {
-				$monographs = $monographFactory->toAssociativeArray();
-				$accessibleMonographs = $monographs + $accessibleMonographs;
+				while ($monograph =& $monographFactory->next()) {
+					if ($monograph->getDatePublished() == null) {
+						$accessibleMonographs[$monograph->getId()] = $monograph;
+					}
+					unset($monograph);
+				}
 			}
 
 			unset($press);

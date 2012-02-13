@@ -43,12 +43,12 @@
 	{rdelim});
 </script>
 
-<li id="{$monographContainerId|escape}" class="pkp_manageCatalog_monograph monograph_id_{$monographId|escape}{if !$isFeatured} not_sortable{/if}">
-	<div class="pkp_manageCatalog_monograph_image">
+<li class="pkp_manageCatalog_monograph monograph_id_{$monographId|escape}{if !$isFeatured} not_sortable{/if}">
+	<div class="pkp_manageCatalog_monograph_image" id="{$monographContainerId|escape}">
 		<img src="{url router=$smarty.const.ROUTE_COMPONENT component="submission.CoverHandler" op="thumbnail" monographId=$monograph->getId()}" alt="{$monograph->getLocalizedTitle()|escape}" />
 	</div>
 	<div class="pkp_manageCatalog_monograph_title">
-		{$monograph->getLocalizedTitle()|escape}
+		<a href="{url page="workflow" op="access" path=$monograph->getId() escape=false}">{$monograph->getLocalizedTitle()|escape}</a>
 	</div>
 	<div class="pkp_manageCatalog_monograph_authorship">
 		{$monograph->getAuthorString()|escape}
