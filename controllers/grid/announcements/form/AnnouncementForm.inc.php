@@ -25,6 +25,10 @@ class AnnouncementForm extends PKPAnnouncementForm {
 	 */
 	function AnnouncementForm($announcementId = null, $readOnly = false) {
 		parent::PKPAnnouncementForm($announcementId);
+
+		// Validate date expire.
+		$this->addCheck(new FormValidatorCustom($this, 'dateExpire', 'optional', 'manager.announcements.form.dateExpireValid', create_function('$dateExpire', '$today = getDate(); $todayTimestamp = mktime(0, 0, 0, $today[\'mon\'], $today[\'mday\'], $today[\'year\']); return (strtotime($dateExpire) >= $todayTimestamp);')));
+
 		$press =& Request::getPress();
 
 		$this->_readOnly = $readOnly;
@@ -67,12 +71,11 @@ class AnnouncementForm extends PKPAnnouncementForm {
 	// Extended methods from PKPAnnouncementForm
 	//
 	/**
-	 * @see PKPAnnouncementForm::display()
+	 * @see PKPAnnouncementForm::readInputData()
 	 */
-	function display() {
-		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->assign('helpTopicId', 'press.managementPages.announcements');
-		parent::display();
+	function readInputData() {
+		parent::readInputData();
+		$this->readUserVars(array('dateExpire'));
 	}
 
 	/**
@@ -92,17 +95,16 @@ class AnnouncementForm extends PKPAnnouncementForm {
 			$notificationUsers[] = array('id' => $user->getId());
 			unset($user);
 		}
-		$url = $request->url(null, 'announcement', 'view', array($announcement->getId()));
 		$notificationManager = new NotificationManager();
 		foreach ($notificationUsers as $userRole) {
 			$notificationManager->createNotification(
-				$userRole['id'], NOTIFICATION_TYPE_NEW_ANNOUNCEMENT,
+				$request, $userRole['id'], NOTIFICATION_TYPE_NEW_ANNOUNCEMENT,
 				$pressId, ASSOC_TYPE_ANNOUNCEMENT, $announcement->getId()
 			);
 		}
 		$notificationManager->sendToMailingList($request,
 			$notificationManager->createNotification(
-				$request, 0, NOTIFICATION_TYPE_NEW_ANNOUNCEMENT,
+				$request, UNSUBSCRIBED_USER_NOTIFICATION, NOTIFICATION_TYPE_NEW_ANNOUNCEMENT,
 				$pressId, ASSOC_TYPE_ANNOUNCEMENT, $announcement->getId()
 			)
 		);
@@ -114,6 +116,26 @@ class AnnouncementForm extends PKPAnnouncementForm {
 	function _getAnnouncementTypesAssocId() {
 		$press =& Request::getPress();
 		return array(ASSOC_TYPE_PRESS, $press->getId());
+	}
+
+
+	//
+	// Implement protected methods from PKPAnnouncementForm.
+	//
+	/**
+	 * @see PKPAnnouncementForm::setDateExpire()
+	*/
+	function setDateExpire(&$announcement) {
+		/* @var $announcement Announcement */
+		$dateExpire = $this->getData('dateExpire');
+		if ($dateExpire) {
+			$announcement->setDateExpire(formatDateToDB($dateExpire, null, false));
+		} else {
+			// No date passed but null is acceptable for
+			// announcements.
+			$announcement->setDateExpire(null);
+		}
+		return true;
 	}
 
 

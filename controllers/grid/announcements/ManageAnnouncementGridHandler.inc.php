@@ -23,7 +23,7 @@ class ManageAnnouncementGridHandler extends AnnouncementGridHandler {
 	function ManageAnnouncementGridHandler() {
 		parent::AnnouncementGridHandler();
 		$this->addRoleAssignment(ROLE_ID_PRESS_MANAGER,
-				array('fetchGrid', 'fetchRow', 'moreInformation', 'addAnnouncement', 'updateAnnouncement'));
+				array('fetchGrid', 'fetchRow', 'moreInformation', 'addAnnouncement', 'editAnnouncement', 'updateAnnouncement'));
 	}
 
 
@@ -61,6 +61,14 @@ class ManageAnnouncementGridHandler extends AnnouncementGridHandler {
 				__('grid.action.addItem'),
 				'add')
 		);
+	}
+
+	/**
+	 * @see GridHandler::getRowInstance()
+	 */
+	function getRowInstance() {
+		import('controllers.grid.announcements.AnnouncementGridRow');
+		return new AnnouncementGridRow();
 	}
 
 
@@ -137,7 +145,7 @@ class ManageAnnouncementGridHandler extends AnnouncementGridHandler {
 			$notificationManager->createTrivialNotification($user->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __($notificationLocaleKey)));
 
 			// Prepare the grid row data.
-			return DAO::getDataChangedEvent($userId);
+			return DAO::getDataChangedEvent($announcementId);
 		} else {
 			$json = new JSONMessage(false);
 		}

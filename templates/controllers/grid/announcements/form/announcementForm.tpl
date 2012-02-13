@@ -34,8 +34,8 @@
 	
 		{include file="controllers/notification/inPlaceNotification.tpl" notificationId="announcementFormNotification"}
 		{fbvFormArea id="announcementInfo"}
-			{if $announcementId}
-				<input type="hidden" name="announcementId" value="{$announcementId|escape}" />
+			{if $announcement}
+				<input type="hidden" name="announcementId" value="{$announcement->getId()|escape}" />
 			{/if}
 			{fbvElement type="select" id="typeId" from=$announcementTypes selected=$selectedTypeId label="manager.announcements.form.typeId"}
 			{fbvFormSection title="manager.announcements.form.title" for="title" required="true"}
@@ -44,13 +44,13 @@
 			{fbvFormSection title="manager.announcements.form.descriptionShort" for="descriptionShort" required="true"}
 				{fbvElement type="textarea" multilingual="true" id="descriptionShort" value=$descriptionShort label="manager.announcements.form.descriptionShortInstructions" rich=true height=$fbvStyles.height.SHORT}
 			{/fbvFormSection}
-			{fbvFormSection title="manager.announcements.form.description" for="description" required="true"}
+			{fbvFormSection title="manager.announcements.form.description" for="description"}
 				{fbvElement type="textarea" multilingual="true" id="description" value=$description label="manager.announcements.form.descriptionInstructions" rich=true}
 			{/fbvFormSection}
 			<script type="text/javascript">
 				$('input[id^="dateExpire"]').datepicker({ldelim} dateFormat: 'yy-mm-dd' {rdelim});
 			</script>
-			{fbvFormSection title="manager.announcements.form.dateExpire" for="dataExpire" required="true"}
+			{fbvFormSection title="manager.announcements.form.dateExpire" for="dataExpire"}
 				{fbvElement type="text" id="dateExpire" value=$dateExpire label="manager.announcements.form.dateExpireInstructions" size=$fbvStyles.size.MEDIUM}
 			{/fbvFormSection}		
 		{/fbvFormArea}
