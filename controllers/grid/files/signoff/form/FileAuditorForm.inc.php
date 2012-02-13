@@ -176,7 +176,7 @@ class FileAuditorForm extends Form {
 		list($page, $operation) = SubmissionsListGridCellProvider::getPageAndOperationByUserRoles($request, $monograph, $user->getId());
 
 		$dispatcher =& $request->getDispatcher();
-		$auditUrl = $dispatcher->url($request, ROUTE_PAGE, null, $page, $operation, array($monograph->getId()));
+		$auditUrl = $dispatcher->url($request, ROUTE_PAGE, null, $page, $operation, array('monographId' => $monograph->getId()));
 
 		// Other parameters assigned above; see bug #7090.
 		$email->assignParams(array(
