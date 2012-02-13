@@ -64,6 +64,17 @@ class AnnouncementForm extends PKPAnnouncementForm {
 		$announcement =& $announcementDao->getAnnouncement($this->announcementId);
 		$templateMgr->assign_by_ref('announcement', $announcement);
 
+		$announcementTypeDao =& DAORegistry::getDAO('AnnouncementTypeDAO');
+		list($assocType, $assocId) = $this->_getAnnouncementTypesAssocId();
+		$announcementTypeFactory =& $announcementTypeDao->getAnnouncementTypesByAssocId($assocType, $assocId);
+		$announcementTypeOptions = array();
+		while ($announcementType =& $announcementTypeFactory->next()) {
+			$announcementTypeOptions[$announcementType->getId()] = $announcementType->getLocalizedTypeName();
+			unset($announcementType);
+		}
+		$templateMgr->assign('announcementTypes', $announcementTypeOptions);
+
+
 		return parent::fetch($request, 'controllers/grid/announcements/form/announcementForm.tpl');
 	}
 

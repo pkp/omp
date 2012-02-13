@@ -23,7 +23,8 @@ class ManageAnnouncementGridHandler extends AnnouncementGridHandler {
 	function ManageAnnouncementGridHandler() {
 		parent::AnnouncementGridHandler();
 		$this->addRoleAssignment(ROLE_ID_PRESS_MANAGER,
-				array('fetchGrid', 'fetchRow', 'moreInformation', 'addAnnouncement', 'editAnnouncement', 'updateAnnouncement'));
+				array('fetchGrid', 'fetchRow', 'moreInformation', 'addAnnouncement',
+				'editAnnouncement', 'updateAnnouncement', 'deleteAnnouncement'));
 	}
 
 
@@ -150,6 +151,25 @@ class ManageAnnouncementGridHandler extends AnnouncementGridHandler {
 			$json = new JSONMessage(false);
 		}
 		return $json->getString();
+	}
+
+	/**
+	* Delete an announcement.
+	* @param $args array
+	* @param $request
+	*/
+	function deleteAnnouncement($args, $request) {
+		$announcementId = (int) $request->getUserVar('announcementId');
+
+		$announcementDao =& DAORegistry::getDAO('AnnouncementDAO');
+		$announcementDao->deleteAnnouncementById($announcementId);
+
+		// Create notification.
+		$notificationManager = new NotificationManager();
+		$user =& $request->getUser();
+		$notificationManager->createTrivialNotification($user->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.removedAnnouncement')));
+
+		return DAO::getDataChangedEvent($announcementId);
 	}
 }
 

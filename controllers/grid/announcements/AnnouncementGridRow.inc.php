@@ -61,9 +61,9 @@ class AnnouncementGridRow extends GridRow {
 				new LinkAction(
 					'remove',
 					new RemoteActionConfirmationModal(
-						__('manager.people.confirmRemove'),
+						__('common.confirmDelete'),
 						null,
-						$router->url($request, null, null, 'removeAnnouncement', null, $actionArgs)
+						$router->url($request, null, null, 'deleteAnnouncement', null, $actionArgs)
 						),
 					__('grid.action.remove'),
 					'delete')

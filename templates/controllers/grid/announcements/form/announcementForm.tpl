@@ -37,7 +37,7 @@
 			{if $announcement}
 				<input type="hidden" name="announcementId" value="{$announcement->getId()|escape}" />
 			{/if}
-			{fbvElement type="select" id="typeId" from=$announcementTypes selected=$selectedTypeId label="manager.announcements.form.typeId"}
+			{fbvElement type="select" id="typeId" from=$announcementTypes selected=$selectedTypeId label="manager.announcements.form.typeId" translate=false}
 			{fbvFormSection title="manager.announcements.form.title" for="title" required="true"}
 				{fbvElement type="text" multilingual="true" id="title" value=$title maxlength="255"}
 			{/fbvFormSection}

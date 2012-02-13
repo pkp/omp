@@ -13,8 +13,18 @@
 {include file="common/header.tpl"}
 {/strip}
 
-<!-- Announcements grid -->
-{url|assign:announcementGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.announcements.ManageAnnouncementGridHandler" op="fetchGrid"}
-{load_url_in_div id="announcementGridContainer" url="$announcementGridUrl"}
+<script type="text/javascript">
+	// Attach the JS file tab handler.
+	$(function() {ldelim}
+		$('#announcementsTabs').pkpHandler(
+				'$.pkp.controllers.TabHandler');
+	{rdelim});
+</script>
+<div id=announcementsTabs>
+	<ul>
+		<li><a href="{url router=$smarty.const.ROUTE_COMPONENT component="tab.announcements.AnnouncementTabHandler" op="showTab" tab="announcements"}">{translate key="manager.announcements"}</a></li>
+		<li><a href="{url router=$smarty.const.ROUTE_COMPONENT component="tab.announcements.AnnouncementTabHandler" op="showTab" tab="announcementTypes"}">{translate key="manager.announcementTypes"}</a></li>
+	</ul>
+</div>
 
 {include file="common/footer.tpl"}
