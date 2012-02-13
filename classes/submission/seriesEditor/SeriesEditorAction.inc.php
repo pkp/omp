@@ -293,11 +293,11 @@ class SeriesEditorAction extends Action {
 
 			// Set the review due date
 			$defaultNumWeeks = $press->getSetting('numWeeksPerReview');
-			$reviewAssignment->setDateDue($this->_calculateDueDate($reviewDueDate, $defaultNumWeeks));
+			$reviewAssignment->setDateDue(formatDateToDB($reviewDueDate, $defaultNumWeeks, false));
 
 			// Set the response due date
 			$defaultNumWeeks = $press->getSetting('numWeeksPerReponse');
-			$reviewAssignment->setDateResponseDue($this->_calculateDueDate($responseDueDate, $defaultNumWeeks));
+			$reviewAssignment->setDateResponseDue(formatDateToDB($reviewDueDate, $defaultNumWeeks, false));
 
 			// update the assignment (with both the new dates)
 			$reviewAssignment->stampModified();
@@ -412,33 +412,6 @@ class SeriesEditorAction extends Action {
 		}
 
 		return $body;
-	}
-
-	//
-	// Private helper function
-	//
-	function _calculateDueDate($date, $defaultNumWeeks = null) {
-		$today = getDate();
-		$todayTimestamp = mktime(0, 0, 0, $today['mon'], $today['mday'], $today['year']);
-		if ($date != null) {
-			$dueDateParts = explode('-', $date);
-
-			// Ensure that the specified due date is today or after today's date.
-			if ($todayTimestamp <= strtotime($date)) {
-				return date('Y-m-d H:i:s', mktime(0, 0, 0, $dueDateParts[1], $dueDateParts[2], $dueDateParts[0]));
-			} else {
-				return date('Y-m-d H:i:s', $todayTimestamp);
-			}
-		} elseif (isset($defaultNumWeeks)) {
-			// Add the equivilant of $numWeeks weeks, measured in seconds, to $todaysTimestamp.
-			$numWeeks = max((int) $defaultNumWeeks, 2);
-			$newDueDateTimestamp = $todayTimestamp + ($numWeeks * 7 * 24 * 60 * 60);
-			return date('Y-m-d H:i:s', $newDueDateTimestamp);
-		} else {
-			// Either the date or the defaultNumWeeks must be set
-			assert(false);
-			return false;
-		}
 	}
 }
 
