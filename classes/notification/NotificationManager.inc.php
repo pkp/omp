@@ -34,15 +34,13 @@ class NotificationManager extends PKPNotificationManager {
 	function getNotificationUrl(&$request, &$notification) {
 		$router =& $request->getRouter();
 		$dispatcher =& $router->getDispatcher();
-		$url = null;
 
 		$type = $notification->getType();
 		switch ($type) {
 			case NOTIFICATION_TYPE_MONOGRAPH_SUBMITTED:
 			case NOTIFICATION_TYPE_METADATA_MODIFIED:
 				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
-				$url = $dispatcher->url($request, ROUTE_PAGE, null, 'workflow', 'submission', $notification->getAssocId());
-				break;
+				return $dispatcher->url($request, ROUTE_PAGE, null, 'workflow', 'submission', $notification->getAssocId());
 			case NOTIFICATION_TYPE_AUDITOR_REQUEST:
 				$signoffDao =& DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
 				$signoff =& $signoffDao->getById($notification->getAssocId());
@@ -67,18 +65,15 @@ class NotificationManager extends PKPNotificationManager {
 					$operation = $userGroupDao->getPathFromId($stageId);
 				}
 
-				$url = $dispatcher->url($request, ROUTE_PAGE, null, $page, $operation, $monographFile->getMonographId());
-				break;
+				return $dispatcher->url($request, ROUTE_PAGE, null, $page, $operation, $monographFile->getMonographId());
 			case NOTIFICATION_TYPE_REVIEW_ASSIGNMENT:
 				$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO'); /* @var $reviewAssignmentDao ReviewAssignmentDAO */
 				$reviewAssignment =& $reviewAssignmentDao->getById($notification->getAssocId());
-				$url = $dispatcher->url($request, ROUTE_PAGE, null, 'reviewer', 'submission', $reviewAssignment->getSubmissionId());
-				break;
+				return $dispatcher->url($request, ROUTE_PAGE, null, 'reviewer', 'submission', $reviewAssignment->getSubmissionId());
 			case NOTIFICATION_TYPE_PENDING_INTERNAL_REVISIONS:
 			case NOTIFICATION_TYPE_PENDING_EXTERNAL_REVISIONS:
 				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
-				$url = $this->_getPendingRevisionUrl($request, $notification);
-				break;
+				return $this->_getPendingRevisionUrl($request, $notification);
 			case NOTIFICATION_TYPE_NEW_ANNOUNCEMENT:
 				assert($notification->getAssocType() == ASSOC_TYPE_ANNOUNCEMENT);
 				$announcementDao =& DAORegistry::getDAO('AnnouncementDAO'); /* @var $announcementDao AnnouncementDAO */
@@ -87,11 +82,9 @@ class NotificationManager extends PKPNotificationManager {
 				$pressDao =& DAORegistry::getDAO('PressDAO'); /* @var $pressDao PressDAO */
 				$press =& $pressDao->getById($pressId);
 				return $dispatcher->url($request, ROUTE_PAGE, null, $press->getPath(), 'index', array($notification->getAssocId()));
-			default:
-				$url = parent::getNotificationUrl($request, $notification);
 		}
 
-		return $url;
+		return parent::getNotificationUrl($request, $notification);
 	}
 
 	/**
