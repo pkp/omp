@@ -133,10 +133,12 @@ class SettingsTabHandler extends Handler {
 			// Try to save the form data.
 			$tabForm->readInputData($request);
 			if($tabForm->validate()) {
-				$tabForm->execute($request);
-				$notificationManager = new NotificationManager();
-				$user =& $request->getUser();
-				$notificationManager->createTrivialNotification($user->getId());
+				$result = $tabForm->execute($request);
+				if ($result !== false) {
+					$notificationManager = new NotificationManager();
+					$user =& $request->getUser();
+					$notificationManager->createTrivialNotification($user->getId());
+				}
 			} else {
 				$json->setStatus(false);
 			}

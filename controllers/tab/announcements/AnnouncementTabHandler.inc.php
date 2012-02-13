@@ -24,7 +24,7 @@ class AnnouncementTabHandler extends ManagerSettingsTabHandler {
 		parent::ManagerSettingsTabHandler();
 		$pageTabs = array(
 			'announcements' => 'controllers/tab/announcements/announcements.tpl',
-			'announcementTypes' => 'controllers/tab/announcements/announcementTypes.tpl'
+			'announcementTypes' => 'controllers.tab.announcements.form.AnnouncementTypeForm'
 		);
 		$this->setPageTabs($pageTabs);
 	}

@@ -16,9 +16,6 @@ import('controllers.listbuilder.settings.SetupListbuilderHandler');
 
 class AnnouncementTypeListbuilderHandler extends SetupListbuilderHandler {
 
-	/** @var AnnouncementTypeDAO */
-	var $_announcementTypeDao;
-
 	/**
 	 * Constructor
 	 */
@@ -28,8 +25,6 @@ class AnnouncementTypeListbuilderHandler extends SetupListbuilderHandler {
 			ROLE_ID_PRESS_MANAGER,
 			array('fetchOptions')
 		);
-
-		$this->_announcementTypeDao =& DAORegistry::getDAO('AnnouncementTypeDAO');
 	}
 
 
@@ -46,12 +41,11 @@ class AnnouncementTypeListbuilderHandler extends SetupListbuilderHandler {
 		// Basic configuration
 		$this->setTitle('manager.announcementTypes');
 		$this->setSourceType(LISTBUILDER_SOURCE_TYPE_TEXT);
-		$this->setSaveType(LISTBUILDER_SAVE_TYPE_INTERNAL);
+		$this->setSaveType(LISTBUILDER_SAVE_TYPE_EXTERNAL);
+		$this->setSaveFieldName('announcementTypes');
 
 		// Name column
-		$availableLocales = AppLocale::getSupportedFormLocales();
-		$nameColumn = new ListbuilderGridColumn($this, 'name', 'common.name', null, null, null,
-			array('multilingual' => true, 'availableLocales' => $availableLocales));
+		$nameColumn = new MultilingualListbuilderGridColumn($this, 'name', 'common.name');
 
 		import('controllers.listbuilder.announcements.AnnouncementTypeListbuilderGridCellProvider');
 		$nameColumn->setCellProvider(new AnnouncementTypeListbuilderGridCellProvider());
@@ -63,7 +57,8 @@ class AnnouncementTypeListbuilderHandler extends SetupListbuilderHandler {
 	*/
 	function loadData(&$request) {
 		$press =& $this->getPress();
-		$announcementTypes =& $this->_announcementTypeDao->getAnnouncementTypesByAssocId(ASSOC_TYPE_PRESS, $press->getId());
+		$announcementTypeDao =& DAORegistry::getDAO('AnnouncementTypeDAO');
+		$announcementTypes =& $announcementTypeDao->getAnnouncementTypesByAssocId(ASSOC_TYPE_PRESS, $press->getId());
 
 		return $announcementTypes;
 	}
@@ -80,75 +75,11 @@ class AnnouncementTypeListbuilderHandler extends SetupListbuilderHandler {
 		}
 
 		// Otherwise return from the $newRowId
+		import('controllers.tab.announcements.form.AnnouncementTypeForm');
+		$announcementTypeForm = new AnnouncementTypeForm();
+
 		$rowData = $this->getNewRowId($request);
-		$announcementType =& $this->_getAnnouncementTypeFromRowData($request, $rowData);
-
-		return $announcementType;
-	}
-
-	/**
-	 * @see ListbuilderHandler::insertEntry()
-	 */
-	function insertEntry($request, $newRowId) {
-		$rowData = $newRowId;
-
-		$announcementType =& $this->_getAnnouncementTypeFromRowData($request, $rowData);
-
-		$this->_announcementTypeDao->insertAnnouncementType($announcementType);
-	}
-
-	/**
-	 * @see ListbuilderHandler::updateEntry()
-	 */
-	function updateEntry($request, $rowId, $newRowId) {
-		$rowData = $newRowId;
-
-		$announcementType =& $this->getRowDataElement($request, $rowId);
-		$announcementType =& $this->_setLocaleData($announcementType, $rowData);
-
-		$this->_announcementTypeDao->updateAnnouncementType($announcementType);
-	}
-
-	/**
-	 * @see ListbuilderHandler::save()
-	 */
-	function deleteEntry($request, $rowId) {
-		$this->_announcementTypeDao->deleteAnnouncementTypeById($rowId);
-	}
-
-
-	//
-	// Private helper methods.
-	//
-	/**
-	 * Get an announcement type object, with the
-	 * rowData setted.
-	 * @param $rowData array
-	 * @return AnnouncementType
-	 */
-	function &_getAnnouncementTypeFromRowData(&$request, $rowData) {
-		$announcementType = new AnnouncementType();
-		$announcementType =& $this->_setLocaleData($announcementType, $rowData);
-
-		$press =& $request->getPress();
-
-		$announcementType->setAssocType(ASSOC_TYPE_PRESS);
-		$announcementType->setAssocId($press->getId());
-
-		return $announcementType;
-	}
-
-	/**
-	 * Set the localized data on announcement
-	 * type object.
-	 * @param $announcementType AnnouncementType
-	 * @param $rowData array
-	 * @return AnnouncementType
-	 */
-	function &_setLocaleData(&$announcementType, $rowData) {
-		foreach($rowData['name'] as $locale => $data) {
-			$announcementType->setName($data, $locale);
-		}
+		$announcementType =& $announcementTypeForm->getAnnouncementTypeFromRowData($request, $rowData);
 
 		return $announcementType;
 	}
