@@ -102,7 +102,6 @@ class NotificationManager extends PKPNotificationManager {
 				$monograph =& $monographDao->getById($notification->getAssocId()); /* @var $monograph Monograph */
 				$title = $monograph->getLocalizedTitle();
 				return __('notification.type.monographSubmitted', array('title' => $title));
-				break;
 			case NOTIFICATION_TYPE_REVIEWER_COMMENT:
 				assert($$notification->getAssocType() == ASSOC_TYPE_REVIEW_ASSIGNMENT && is_numeric($$notification->getAssocId()));
 				$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO'); /* @var $reviewAssignmentDao ReviewAssignmentDAO */
@@ -110,21 +109,17 @@ class NotificationManager extends PKPNotificationManager {
 				$monograph =& $monographDao->getById($reviewAssignment->getSubmissionId()); /* @var $monograph Monograph */
 				$title = $monograph->getLocalizedTitle();
 				return __('notification.type.reviewerComment', array('title' => $title));
-				break;
 			case NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_SUBMISSION:
 			case NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_INTERNAL_REVIEW:
 			case NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_EXTERNAL_REVIEW:
 				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
 				return __('notification.type.editorAssignment');
-				break;
 			case NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_EDITING:
 				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
 				return __('notification.type.editorAssignmentEditing');
-				break;
 			case NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_PRODUCTION:
 				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
 				return __('notification.type.editorAssignmentProduction');
-				break;
 			case NOTIFICATION_TYPE_AUDITOR_REQUEST:
 				assert($notification->getAssocType() == ASSOC_TYPE_SIGNOFF && is_numeric($notification->getAssocId()));
 				$signoffDao =& DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
@@ -134,44 +129,34 @@ class NotificationManager extends PKPNotificationManager {
 				$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO');
 				$monographFile =& $submissionFileDao->getLatestRevision($signoff->getAssocId());
 				return __('notification.type.auditorRequest', array('file' => $monographFile->getLocalizedName()));
-				break;
 			case NOTIFICATION_TYPE_REVIEW_ASSIGNMENT:
 				return __('notification.type.reviewAssignment');
-				break;
 			case NOTIFICATION_TYPE_SIGNOFF_COPYEDIT:
 			case NOTIFICATION_TYPE_SIGNOFF_PROOF:
 				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
 				AppLocale::requireComponents(LOCALE_COMPONENT_OMP_SUBMISSION);
 				return __('submission.upload.signoff');
-				break;
 			case NOTIFICATION_TYPE_EDITOR_DECISION_INITIATE_REVIEW:
 				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
 				return __('notification.type.editorDecisionInitiateReview');
-				break;
 			case NOTIFICATION_TYPE_EDITOR_DECISION_ACCEPT:
 				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
 				return __('notification.type.editorDecisionAccept');
-				break;
 			case NOTIFICATION_TYPE_EDITOR_DECISION_EXTERNAL_REVIEW:
 				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
 				return __('notification.type.editorDecisionExternalReview');
-				break;
 			case NOTIFICATION_TYPE_EDITOR_DECISION_PENDING_REVISIONS:
 				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
 				return __('notification.type.editorDecisionPendingRevisions');
-				break;
 			case NOTIFICATION_TYPE_EDITOR_DECISION_RESUBMIT:
 				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
 				return __('notification.type.editorDecisionResubmit');
-				break;
 			case NOTIFICATION_TYPE_EDITOR_DECISION_DECLINE:
 				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
 				return __('notification.type.editorDecisionDecline');
-				break;
 			case NOTIFICATION_TYPE_EDITOR_DECISION_SEND_TO_PRODUCTION:
 				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
 				return __('notification.type.editorDecisionSendToProduction');
-				break;
 			case NOTIFICATION_TYPE_REVIEW_ROUND_STATUS:
 				assert($notification->getAssocType() == ASSOC_TYPE_REVIEW_ROUND && is_numeric($notification->getAssocId()));
 				$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
@@ -179,15 +164,12 @@ class NotificationManager extends PKPNotificationManager {
 
 				AppLocale::requireComponents(LOCALE_COMPONENT_OMP_EDITOR); // load review round status keys.
 				return __($reviewRound->getStatusKey());
-				break;
 			case NOTIFICATION_TYPE_PENDING_INTERNAL_REVISIONS:
 			case NOTIFICATION_TYPE_PENDING_EXTERNAL_REVISIONS:
 				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
 				return $this->_getPendingRevisionMessage($notification);
-				break;
-			default:
-				return parent::getNotificationMessage($request, $notification);
 		}
+		return parent::getNotificationMessage($request, $notification);
 	}
 
 	/**
@@ -221,9 +203,8 @@ class NotificationManager extends PKPNotificationManager {
 				$stageData = $this->_getStageDataByPendingRevisionsType($notification->getType());
 				$stageKey = $stageData['translationKey'];
 				return __('notification.type.pendingRevisions.title', array('stage' => __($stageKey)));
-			default:
-				return parent::getNotificationTitle($notification);
 		}
+		return parent::getNotificationTitle($notification);
 	}
 
 	/**
@@ -239,20 +220,16 @@ class NotificationManager extends PKPNotificationManager {
 			case NOTIFICATION_TYPE_SIGNOFF_COPYEDIT:
 				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
 				return $this->_getSignoffNotificationContents($request, $notification, 'SIGNOFF_COPYEDITING', $notificationMessage);
-				break;
 			case NOTIFICATION_TYPE_SIGNOFF_PROOF:
 				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
 				return $this->_getSignoffNotificationContents($request, $notification, 'SIGNOFF_PROOFING', $notificationMessage);
-				break;
 			case NOTIFICATION_TYPE_PENDING_INTERNAL_REVISIONS:
 			case NOTIFICATION_TYPE_PENDING_EXTERNAL_REVISIONS:
 				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
 				return $this->_getPendingRevisionContents($request, $notification, $notificationMessage);
-				break;
-			default:
-				return $notificationMessage;
 		}
 
+		return $notificationMessage;
 	}
 
 	/**
@@ -262,11 +239,14 @@ class NotificationManager extends PKPNotificationManager {
 	 */
 	function getIconClass(&$notification) {
 		switch ($notification->getType()) {
-			case NOTIFICATION_TYPE_MONOGRAPH_SUBMITTED: return 'notifyIconNewPage';
-			case NOTIFICATION_TYPE_METADATA_MODIFIED: return 'notifyIconEdit';
-			case NOTIFICATION_TYPE_REVIEWER_COMMENT: return 'notifyIconNewComment';
-			default: return parent::getIconClass($notification);
+			case NOTIFICATION_TYPE_MONOGRAPH_SUBMITTED:
+				return 'notifyIconNewPage';
+			case NOTIFICATION_TYPE_METADATA_MODIFIED:
+				return 'notifyIconEdit';
+			case NOTIFICATION_TYPE_REVIEWER_COMMENT:
+				return 'notifyIconNewComment';
 		}
+		return parent::getIconClass($notification);
 	}
 
 	/**
@@ -287,7 +267,6 @@ class NotificationManager extends PKPNotificationManager {
 			case NOTIFICATION_TYPE_PENDING_EXTERNAL_REVISIONS:
 			case NOTIFICATION_TYPE_PENDING_INTERNAL_REVISIONS:
 				return 'notifyWarning';
-				break;
 			case NOTIFICATION_TYPE_EDITOR_DECISION_INITIATE_REVIEW:
 			case NOTIFICATION_TYPE_EDITOR_DECISION_ACCEPT:
 			case NOTIFICATION_TYPE_EDITOR_DECISION_EXTERNAL_REVIEW:
@@ -297,9 +276,8 @@ class NotificationManager extends PKPNotificationManager {
 			case NOTIFICATION_TYPE_EDITOR_DECISION_SEND_TO_PRODUCTION:
 			case NOTIFICATION_TYPE_REVIEW_ROUND_STATUS:
 				return 'notifyInformation';
-				break;
-			default: return parent::getStyleClass($notification);
 		}
+		return parent::getStyleClass($notification);
 	}
 
 	/**
@@ -326,14 +304,10 @@ class NotificationManager extends PKPNotificationManager {
 		switch ($stageId) {
 			case WORKFLOW_STAGE_ID_EDITING:
 				return NOTIFICATION_TYPE_SIGNOFF_COPYEDIT;
-				break;
 			case WORKFLOW_STAGE_ID_PRODUCTION:
 				return NOTIFICATION_TYPE_SIGNOFF_PROOF;
-				break;
-			default:
-				return null;
-				break;
 		}
+		return null;
 	}
 
 	/**
@@ -345,23 +319,16 @@ class NotificationManager extends PKPNotificationManager {
 		switch ($stageId) {
 			case WORKFLOW_STAGE_ID_SUBMISSION:
 				return NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_SUBMISSION;
-				break;
 			case WORKFLOW_STAGE_ID_INTERNAL_REVIEW:
 				return NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_INTERNAL_REVIEW;
-				break;
 			case WORKFLOW_STAGE_ID_EXTERNAL_REVIEW:
 				return NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_EXTERNAL_REVIEW;
-				break;
 			case WORKFLOW_STAGE_ID_EDITING:
 				return NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_EDITING;
-				break;
 			case WORKFLOW_STAGE_ID_PRODUCTION:
 				return NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_PRODUCTION;
-				break;
-			default:
-				return null;
-				break;
 		}
+		return null;
 	}
 
 	/**
@@ -427,7 +394,7 @@ class NotificationManager extends PKPNotificationManager {
 			$notificationDao->deleteNotificationById($notification->getId());
 		} else if ($activeSignoffs && $notificationFactory->wasEmpty()) {
 			// At least one signoff not completed and no notification, create one.
-			PKPNotificationManager::createNotification(
+			$this->createNotification(
 				$request,
 				$userId,
 				$notificationType,
@@ -479,7 +446,7 @@ class NotificationManager extends PKPNotificationManager {
 			$notificationDao->deleteNotificationById($notification->getId());
 		} else if (!$editorAssigned && $notificationFactory->wasEmpty()) {
 			// Create a notification.
-			PKPNotificationManager::createNotification(
+			$this->createNotification(
 				$request, null, $notificationType, $press->getId(), ASSOC_TYPE_MONOGRAPH,
 				$monograph->getId(), NOTIFICATION_LEVEL_TASK);
 		}
@@ -517,7 +484,7 @@ class NotificationManager extends PKPNotificationManager {
 			$notificationDao->deleteNotificationById($notification->getId());
 		}  else if (!$signoffCompleted && $notificationFactory->wasEmpty()) {
 			$press =& $request->getPress();
-			PKPNotificationManager::createNotification(
+			$this->createNotification(
 				$request,
 				$signoff->getUserId(),
 				NOTIFICATION_TYPE_AUDITOR_REQUEST,
@@ -567,7 +534,7 @@ class NotificationManager extends PKPNotificationManager {
 		}
 
 		// Create the notification.
-		PKPNotificationManager::createNotification(
+		$this->createNotification(
 			$request,
 			$userId,
 			$notificationParams['type'],
@@ -692,7 +659,8 @@ class NotificationManager extends PKPNotificationManager {
 		$signoffFileLinkAction = new AddSignoffFileLinkAction(
 			$request, $monographId,
 			$stageId, $symbolic, null,
-			$message, $message);
+			$message, $message
+		);
 
 		return $this->_fetchLinkActionNotificationContent($signoffFileLinkAction);
 	}
@@ -706,16 +674,17 @@ class NotificationManager extends PKPNotificationManager {
 		switch ($symbolic) {
 			case 'SIGNOFF_COPYEDITING':
 				return NOTIFICATION_TYPE_SIGNOFF_COPYEDIT;
-				break;
 			case 'SIGNOFF_PROOFING':
 				return NOTIFICATION_TYPE_SIGNOFF_PROOF;
-				break;
 			default:
-				return null;
-				break;
 		}
+		return null;
 	}
 
+	/**
+	 * Get all notification types corresponding to editor decisions.
+	 * @return array array(NOTIFICATION_TYPE_..., ...);
+	 */
 	function _getAllEditorDecisionNotificationTypes() {
 		return array(
 			NOTIFICATION_TYPE_EDITOR_DECISION_INITIATE_REVIEW,
@@ -741,38 +710,38 @@ class NotificationManager extends PKPNotificationManager {
 			case SUBMISSION_EDITOR_DECISION_INITIATE_REVIEW:
 				return array(
 					'level' => NOTIFICATION_LEVEL_NORMAL,
-					'type' => NOTIFICATION_TYPE_EDITOR_DECISION_INITIATE_REVIEW);
-				break;
+					'type' => NOTIFICATION_TYPE_EDITOR_DECISION_INITIATE_REVIEW
+				);
 			case SUBMISSION_EDITOR_DECISION_ACCEPT:
 				return array(
 					'level' => NOTIFICATION_LEVEL_NORMAL,
-					'type' => NOTIFICATION_TYPE_EDITOR_DECISION_ACCEPT);
-				break;
+					'type' => NOTIFICATION_TYPE_EDITOR_DECISION_ACCEPT
+				);
 			case SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW:
 				return array(
 					'level' => NOTIFICATION_LEVEL_NORMAL,
-					'type' => NOTIFICATION_TYPE_EDITOR_DECISION_EXTERNAL_REVIEW);
-				break;
+					'type' => NOTIFICATION_TYPE_EDITOR_DECISION_EXTERNAL_REVIEW
+				);
 			case SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS:
 				return array(
 					'level' => NOTIFICATION_LEVEL_NORMAL,
-					'type' => NOTIFICATION_TYPE_EDITOR_DECISION_PENDING_REVISIONS);
-				break;
+					'type' => NOTIFICATION_TYPE_EDITOR_DECISION_PENDING_REVISIONS
+				);
 			case SUBMISSION_EDITOR_DECISION_RESUBMIT:
 				return array(
 					'level' => NOTIFICATION_LEVEL_NORMAL,
-					'type' => NOTIFICATION_TYPE_EDITOR_DECISION_RESUBMIT);
-				break;
+					'type' => NOTIFICATION_TYPE_EDITOR_DECISION_RESUBMIT
+				);
 			case SUBMISSION_EDITOR_DECISION_DECLINE:
 				return array(
 					'level' => NOTIFICATION_LEVEL_NORMAL,
-					'type' => NOTIFICATION_TYPE_EDITOR_DECISION_DECLINE);
-				break;
+					'type' => NOTIFICATION_TYPE_EDITOR_DECISION_DECLINE
+				);
 			case SUBMISSION_EDITOR_DECISION_SEND_TO_PRODUCTION:
 				return array(
 					'level' => NOTIFICATION_LEVEL_NORMAL,
-					'type' => NOTIFICATION_TYPE_EDITOR_DECISION_SEND_TO_PRODUCTION);
-				break;
+					'type' => NOTIFICATION_TYPE_EDITOR_DECISION_SEND_TO_PRODUCTION
+				);
 			default:
 				assert(false);
 				break;
@@ -853,10 +822,8 @@ class NotificationManager extends PKPNotificationManager {
 		switch ($type) {
 			case NOTIFICATION_TYPE_PENDING_INTERNAL_REVISIONS:
 				return $stagesData[WORKFLOW_STAGE_ID_INTERNAL_REVIEW];
-				break;
 			case NOTIFICATION_TYPE_PENDING_EXTERNAL_REVISIONS:
 				return $stagesData[WORKFLOW_STAGE_ID_EXTERNAL_REVIEW];
-				break;
 			default:
 				assert(false);
 		}
