@@ -171,7 +171,7 @@ class MonographDAO extends DAO {
 		$monograph->setStatus($row['status']);
 		$monograph->setSubmissionProgress($row['submission_progress']);
 		$monograph->setWorkType($row['edited_volume']);
-		$monograph->setDatePublished($row['date_published']);
+		$monograph->setDatePublished($this->datetimeFromDB(isset($row['date_published'])?$row['date_published']:null));
 
 		$this->getDataObjectSettings('monograph_settings', 'monograph_id', $row['monograph_id'], $monograph);
 
@@ -366,7 +366,7 @@ class MonographDAO extends DAO {
 		$locale = AppLocale::getLocale();
 
 		$result =& $this->retrieve(
-			'SELECT	m.*,
+			'SELECT	m.*, pm.date_published,
 				COALESCE(stl.setting_value, stpl.setting_value) AS series_title,
 				COALESCE(sal.setting_value, sapl.setting_value) AS series_abbrev
 			FROM	monographs m
@@ -375,6 +375,7 @@ class MonographDAO extends DAO {
 				LEFT JOIN series_settings stl ON (s.series_id = stl.series_id AND stl.setting_name = ? AND stl.locale = ?)
 				LEFT JOIN series_settings sapl ON (s.series_id = sapl.series_id AND sapl.setting_name = ? AND sapl.locale = ?)
 				LEFT JOIN series_settings sal ON (s.series_id = sal.series_id AND sal.setting_name = ? AND sal.locale = ?)
+				LEFT JOIN published_monographs pm ON (m.monograph_id = pm.monograph_id)
 			WHERE	m.press_id = ?',
 			array(
 				'title', $primaryLocale, // Series title
@@ -399,7 +400,7 @@ class MonographDAO extends DAO {
 		$locale = AppLocale::getLocale();
 
 		$result =& $this->retrieve(
-			'SELECT	m.*,
+			'SELECT	m.*, pm.date_published,
 				COALESCE(stl.setting_value, stpl.setting_value) AS series_title,
 				COALESCE(sal.setting_value, sapl.setting_value) AS series_abbrev
 			FROM	monographs m
