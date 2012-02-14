@@ -42,6 +42,7 @@ class NotificationManager extends PKPNotificationManager {
 				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
 				return $dispatcher->url($request, ROUTE_PAGE, null, 'workflow', 'submission', $notification->getAssocId());
 			case NOTIFICATION_TYPE_AUDITOR_REQUEST:
+			case NOTIFICATION_TYPE_COPYEDIT_ASSIGNMENT:
 				$signoffDao =& DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
 				$signoff =& $signoffDao->getById($notification->getAssocId());
 				assert(is_a($signoff, 'Signoff') && $signoff->getAssocType() == ASSOC_TYPE_MONOGRAPH_FILE);
@@ -129,6 +130,15 @@ class NotificationManager extends PKPNotificationManager {
 				$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO');
 				$monographFile =& $submissionFileDao->getLatestRevision($signoff->getAssocId());
 				return __('notification.type.auditorRequest', array('file' => $monographFile->getLocalizedName()));
+			case NOTIFICATION_TYPE_COPYEDIT_ASSIGNMENT:
+				assert($notification->getAssocType() == ASSOC_TYPE_SIGNOFF && is_numeric($notification->getAssocId()));
+				$signoffDao =& DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
+				$signoff =& $signoffDao->getById($notification->getAssocId());
+				assert($signoff->getAssocType() == ASSOC_TYPE_MONOGRAPH_FILE);
+
+				$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO');
+				$monographFile =& $submissionFileDao->getLatestRevision($signoff->getAssocId());
+				return __('notification.type.copyeditorRequest', array('file' => $monographFile->getLocalizedName()));
 			case NOTIFICATION_TYPE_REVIEW_ASSIGNMENT:
 				return __('notification.type.reviewAssignment');
 			case NOTIFICATION_TYPE_SIGNOFF_COPYEDIT:
@@ -493,6 +503,53 @@ class NotificationManager extends PKPNotificationManager {
 				$signoff->getId(),
 				NOTIFICATION_LEVEL_TASK
 			);
+		}
+	}
+
+	/**
+	 * Update NOTIFICATION_TYPE_COPYEDIT_ASSIGNMENT
+	 * @param $signoff Signoff
+	 * @param $user User
+	 * @param $request Request
+	 */
+	function updateCopyeditRequestNotification($signoff, $user, &$request) {
+		// Check for an existing notification for this file
+
+		$notificationDao =& DAORegistry::getDAO('NotificationDAO');
+		$notificationFactory =& $notificationDao->getNotificationsByAssoc(
+				ASSOC_TYPE_SIGNOFF,
+				$signoff->getId(),
+				$user->getId(),
+				NOTIFICATION_TYPE_COPYEDIT_ASSIGNMENT
+		);
+
+		if ($notificationFactory->wasEmpty()) {
+			$press =& $request->getPress();
+			PKPNotificationManager::createNotification(
+				$request,
+				$user->getId(),
+				NOTIFICATION_TYPE_COPYEDIT_ASSIGNMENT,
+				$press->getId(),
+				ASSOC_TYPE_SIGNOFF,
+				$signoff->getId(),
+				NOTIFICATION_LEVEL_TASK
+			);
+		}
+	}
+
+	/**
+	 * Removes a NOTIFICATION_TYPE_COPYEDIT_ASSIGNMENT
+	 * Called when a copyeditor reviews a copyedit.
+	 * @param $signoff Signoff
+	 * @param $user User
+	 * @param $request Request
+	 */
+	function deleteCopyeditRequestNotification($signoff, $user, &$request) {
+		$notificationDao = DAORegistry::getDAO('NotificationDAO');
+		$notificationFactory =& $notificationDao->getNotificationsByAssoc(ASSOC_TYPE_SIGNOFF, $signoff->getAssocId(), $user->getId(), NOTIFICATION_TYPE_COPYEDIT_ASSIGNMENT);
+		if (!$notificationFactory->wasEmpty()) {
+			$notification =& $notificationFactory->next();
+			$notificationDao->deleteNotificationById($notification->getId());
 		}
 	}
 

@@ -551,6 +551,10 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 		$signoff->setDateCompleted(Core::getCurrentDate());
 		$signoffDao->updateObject($signoff);
 
+		// Remove the notification for the Copyeditor review, if they exist.
+		$notificationMgr = new NotificationManager();
+		$notificationMgr->deleteCopyeditRequestNotification($signoff, $user, &$request);
+
 		// Redraw the category (id by the signoff's assoc id).
 		return DAO::getDataChangedEvent($rowSignoff->getAssocId());
 	}

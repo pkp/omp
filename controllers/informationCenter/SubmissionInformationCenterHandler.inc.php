@@ -185,6 +185,13 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 		import('classes.mail.MonographMailTemplate');
 		$template = new MonographMailTemplate($this->_monograph, $templateId);
 		if ($template) {
+			$user =& $request->getUser();
+			$dispatcher =& $request->getDispatcher();
+			$template->assignParams(array(
+				'pressUrl' => $dispatcher->url($request, ROUTE_PAGE, $request->getPress()->getPath()),
+				'editorialContactSignature' => $user->getContactSignature(),
+			));
+
 			$json = new JSONMessage(true, $template->getBody());
 			return $json->getString();
 		}

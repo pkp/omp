@@ -61,7 +61,7 @@ class InformationCenterNotifyForm extends Form {
 			WORKFLOW_STAGE_ID_SUBMISSION => array(),
 			WORKFLOW_STAGE_ID_INTERNAL_REVIEW => array(),
 			WORKFLOW_STAGE_ID_EXTERNAL_REVIEW => array(),
-			WORKFLOW_STAGE_ID_EDITING => array(),
+			WORKFLOW_STAGE_ID_EDITING => array('COPYEDIT_REQUEST'),
 			WORKFLOW_STAGE_ID_PRODUCTION => array()
 		);
 
@@ -126,16 +126,31 @@ class InformationCenterNotifyForm extends Form {
 			$monographId = $monographFile->getMonographId();
 		}
 
+		$monograph =& $monographDao->getById($monographId);
 		$template = $this->getData('template');
 
-		$email = new MonographMailTemplate($monographDao->getById($monographId), $template);
+		$email = new MonographMailTemplate($monograph, $template);
 		$email->setFrom($fromUser->getEmail(), $fromUser->getFullName());
+
+		import('controllers.grid.submissions.SubmissionsListGridCellProvider');
+		$dispatcher =& $request->getDispatcher();
 
 		foreach ($newRowId as $id) {
 			$user = $userDao->getUser($id);
 			$email->addRecipient($user->getEmail(), $user->getFullName());
 			$email->setBody($this->getData('message'));
-			$email->sendWithParams(array());
+			list($page, $operation) = SubmissionsListGridCellProvider::getPageAndOperationByUserRoles($request, $monograph, $user->getId());
+			$submissionUrl = $dispatcher->url($request, ROUTE_PAGE, null, $page, $operation, array('monographId' => $monograph->getId()));
+
+			// these are for 'COPYEDIT_REQUEST'
+			$email->assignParams(array(
+				'copyeditorName' => $user->getFullName(),
+				'copyeditorUsername' => $user->getUsername(),
+				'submissionCopyeditingUrl' => $submissionUrl,
+			));
+
+			$this->_createNotifications($request, $monograph, $user, $template);
+			$email->send($request);
 		}
 	}
 
@@ -146,6 +161,45 @@ class InformationCenterNotifyForm extends Form {
 	 */
 	function deleteEntry(&$request, $rowId) {
 		return true;
+	}
+
+	/**
+	 * Internal method to create the necessary notifications, with user validation.
+	 * @param PKPRquest $request
+	 * @param Monograph $monograph
+	 * @param PKPUser $user
+	 * @param string $template
+	 */
+	function _createNotifications(&$request, $monograph, $user, $template) {
+
+		switch ($template) {
+			case 'COPYEDIT_REQUEST':
+				$currentStageId = $monograph->getStageId();
+				$stageAssignmentDao =& DAORegistry::getDAO('StageAssignmentDAO');
+				$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+
+				$stageAssignments =& $stageAssignmentDao->getBySubmissionAndStageId($monograph->getId(), $monograph->getStageId(), null, $user->getId());
+				while ($stageAssignment =& $stageAssignments->next()) {
+					$userGroup =& $userGroupDao->getById($stageAssignment->getUserGroupId());
+					if (in_array($userGroup->getRoleId(), array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_ASSISTANT))) {
+						$notificationMgr = new NotificationManager();
+						import('classes.monograph.MonographFile');
+						$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO');
+						$monographFileSignoffDao =& DAORegistry::getDAO('MonographFileSignoffDAO');
+						$monographFiles =& $submissionFileDao->getLatestRevisions($monograph->getId(), MONOGRAPH_FILE_COPYEDIT);
+						foreach ($monographFiles as $monographFile) {
+							$signoffFactory =& $monographFileSignoffDao->getAllBySymbolic('SIGNOFF_COPYEDITING', $monographFile->getFileId());
+							while ($signoff =& $signoffFactory->next()) {
+								$notificationMgr->updateCopyeditRequestNotification($signoff, $user, $request);
+								unset($signoff);
+							}
+						}
+						return;
+					}
+				}
+				// User not in valid role for this task/notification.
+				break;
+		}
 	}
 }
 
