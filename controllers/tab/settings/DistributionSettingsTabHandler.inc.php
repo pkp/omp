@@ -24,7 +24,8 @@ class DistributionSettingsTabHandler extends ManagerSettingsTabHandler {
 	function DistributionSettingsTabHandler() {
 		parent::ManagerSettingsTabHandler();
 		$pageTabs = array(
-			'indexing' => 'controllers.tab.settings.indexing.form.IndexingForm'
+			'indexing' => 'controllers.tab.settings.indexing.form.IndexingForm',
+			'paymentMethod' => 'controllers.tab.settings.paymentMethod.form.PaymentMethodForm',
 		);
 		$this->setPageTabs($pageTabs);
 

@@ -206,6 +206,12 @@ You may optionally provide the user with a reason for disabling their account.</
 	<!-- Distribution Process settings -->
 	<message key="manager.distribution.indexing">Indexing</message>
 
+	<!-- Payment Method settings -->
+	<message key="manager.paymentMethod">Payments</message>
+	<message key="manager.paymentMethod.title">Payment Methods</message>
+	<message key="manager.paymentMethod.description">Choose from the list of available payment methods below.</message>
+	<message key="manager.paymentMethod.method">Payment Method</message>
+
 	<!-- System setup -->
 	<message key="manager.system">System Settings</message>
 	<message key="manager.system.archiving">Archiving</message>
