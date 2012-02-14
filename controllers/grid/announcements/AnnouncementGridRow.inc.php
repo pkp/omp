@@ -47,7 +47,7 @@ class AnnouncementGridRow extends GridRow {
 			);
 			$this->addAction(
 				new LinkAction(
-					'email',
+					'edit',
 					new AjaxModal(
 						$router->url($request, null, null, 'editAnnouncement', null, $actionArgs),
 						__('grid.action.edit'),
