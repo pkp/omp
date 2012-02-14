@@ -43,8 +43,9 @@ class AnnouncementGridHandler extends GridHandler {
 		if ($announcementId) {
 			// Ensure announcement is valid and for this context
 			$press =& $request->getPress();
-			$announcementDao =& DAORegistry::getDAO('AnnouncementDAO');
-			if ($announcementDao->getAnnouncementAssocId($announcementId) != $press->getId()) {
+			$announcementDao =& DAORegistry::getDAO('AnnouncementDAO'); /* @var $announcementDao AnnouncementDAO */
+			if ($announcementDao->getAnnouncementAssocType($announcementId) != ASSOC_TYPE_PRESS &&
+				$announcementDao->getAnnouncementAssocId($announcementId) != $press->getId()) {
 				return false;
 			}
 		}
