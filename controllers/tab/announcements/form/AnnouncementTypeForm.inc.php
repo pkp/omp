@@ -129,7 +129,9 @@ class AnnouncementTypeForm extends Form {
 	 */
 	function &getAnnouncementTypeFromRowData(&$request, $rowData) {
 		$announcementType = new AnnouncementType();
-		$announcementType =& $this->_setLocaleData($announcementType, $rowData);
+		if ($rowData) {
+			$announcementType =& $this->_setLocaleData($announcementType, $rowData);
+		}
 
 		$press =& $request->getPress();
 
