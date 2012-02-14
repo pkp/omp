@@ -576,7 +576,7 @@ class NotificationManager extends PKPNotificationManager {
 				$notification->setLevel(NOTIFICATION_LEVEL_TASK);
 				$notification->setContextId($monograph->getPressId());
 
-				$notificationDao->updateNotification($notification);
+				$notificationDao->buildNotification($notification);
 				break;
 			case SUBMISSION_EDITOR_DECISION_SEND_TO_PRODUCTION:
 				// Do nothing.
