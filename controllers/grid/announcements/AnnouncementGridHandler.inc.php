@@ -77,7 +77,8 @@ class AnnouncementGridHandler extends GridHandler {
 				'manager.announcements.form.title',
 				null,
 				'controllers/grid/gridCell.tpl',
-				$announcementCellProvider
+				$announcementCellProvider,
+				array('width' => 60)
 			)
 		);
 
@@ -125,9 +126,16 @@ class AnnouncementGridHandler extends GridHandler {
 	 */
 	function moreInformation($args, &$request) {
 		$announcementId = (int)$request->getUserVar('announcementId');
+		$press =& $request->getPress();
+		$pressId = $press->getId();
 
 		import('controllers.grid.announcements.form.AnnouncementForm');
-		$announcementForm = new AnnouncementForm($announcementId, true);
+		if (checkPhpVersion('5.0.0')) {
+			// WARNING: This form needs $this in constructor
+			$announcementForm = new AnnouncementForm($pressId, $announcementId, true);
+		} else {
+			$announcementForm =& new AnnouncementForm($pressId, $announcementId, true);
+		}
 
 		$announcementForm->initData($args, $request);
 

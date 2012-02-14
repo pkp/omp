@@ -21,20 +21,20 @@ class AnnouncementForm extends PKPAnnouncementForm {
 
 	/**
 	 * Constructor
-	 * @param announcementId int leave as default for new announcement
+	 * @param $pressId int
+	 * @param $announcementId int leave as default for new announcement
+	 * @param $readOnly boolean
 	 */
-	function AnnouncementForm($announcementId = null, $readOnly = false) {
-		parent::PKPAnnouncementForm($announcementId);
+	function AnnouncementForm($pressId, $announcementId = null, $readOnly = false) {
+		parent::PKPAnnouncementForm($pressId, $announcementId);
+
+		$this->_readOnly = $readOnly;
 
 		// Validate date expire.
 		$this->addCheck(new FormValidatorCustom($this, 'dateExpire', 'optional', 'manager.announcements.form.dateExpireValid', create_function('$dateExpire', '$today = getDate(); $todayTimestamp = mktime(0, 0, 0, $today[\'mon\'], $today[\'mday\'], $today[\'year\']); return (strtotime($dateExpire) >= $todayTimestamp);')));
 
-		$press =& Request::getPress();
-
-		$this->_readOnly = $readOnly;
-
 		// If provided, announcement type is valid
-		$this->addCheck(new FormValidatorCustom($this, 'typeId', 'optional', 'manager.announcements.form.typeIdValid', create_function('$typeId, $pressId', '$announcementTypeDao =& DAORegistry::getDAO(\'AnnouncementTypeDAO\'); return $announcementTypeDao->announcementTypeExistsByTypeId($typeId, ASSOC_TYPE_PRESS, $pressId);'), array($press->getId())));
+		$this->addCheck(new FormValidatorCustom($this, 'typeId', 'optional', 'manager.announcements.form.typeIdValid', create_function('$typeId, $pressId', '$announcementTypeDao =& DAORegistry::getDAO(\'AnnouncementTypeDAO\'); return $announcementTypeDao->announcementTypeExistsByTypeId($typeId, ASSOC_TYPE_PRESS, $pressId);'), array($pressId)));
 	}
 
 
@@ -94,8 +94,7 @@ class AnnouncementForm extends PKPAnnouncementForm {
 	 */
 	function execute(&$request) {
 		$announcement = parent::execute();
-		$press =& $request->getPress();
-		$pressId = $press->getId();
+		$pressId = $this->getContextId();
 
 		// Send a notification to associated users
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
@@ -119,14 +118,6 @@ class AnnouncementForm extends PKPAnnouncementForm {
 				$pressId, ASSOC_TYPE_ANNOUNCEMENT, $announcement->getId()
 			)
 		);
-	}
-
-	/**
-	* @see PKPAnnouncementForm::_getAnnouncementTypesAssocId()
-	*/
-	function _getAnnouncementTypesAssocId() {
-		$press =& Request::getPress();
-		return array(ASSOC_TYPE_PRESS, $press->getId());
 	}
 
 
@@ -154,13 +145,21 @@ class AnnouncementForm extends PKPAnnouncementForm {
 	// Private helper methdos.
 	//
 	/**
+	* @see PKPAnnouncementForm::_getAnnouncementTypesAssocId()
+	*/
+	function _getAnnouncementTypesAssocId() {
+		$pressId = $this->getContextId();
+		return array(ASSOC_TYPE_PRESS, $pressId);
+	}
+
+	/**
 	 * Helper function to assign the AssocType and the AssocId
 	 * @param Announcement the announcement to be modified
 	 */
 	function _setAnnouncementAssocId(&$announcement) {
-		$press =& Request::getPress();
+		$pressId = $this->getContextId();
 		$announcement->setAssocType(ASSOC_TYPE_PRESS);
-		$announcement->setAssocId($press->getId());
+		$announcement->setAssocId($pressId);
 	}
 }
 

@@ -94,12 +94,14 @@ class ManageAnnouncementGridHandler extends AnnouncementGridHandler {
 	*/
 	function editAnnouncement($args, &$request) {
 		$announcementId = (int)$request->getUserVar('announcementId');
+		$press =& $request->getPress();
+		$pressId = $press->getId();
 
 		if (checkPhpVersion('5.0.0')) {
 			// WARNING: This form needs $this in constructor
-			$announcementForm = new AnnouncementForm($announcementId);
+			$announcementForm = new AnnouncementForm($pressId, $announcementId);
 		} else {
-			$announcementForm =& new AnnouncementForm($announcementId);
+			$announcementForm =& new AnnouncementForm($pressId, $announcementId);
 		}
 
 		$announcementForm->initData($args, $request);
@@ -118,13 +120,15 @@ class ManageAnnouncementGridHandler extends AnnouncementGridHandler {
 
 		// Identify the announcement Id.
 		$announcementId = $request->getUserVar('announcementId');
+		$press =& $request->getPress();
+		$pressId = $press->getId();
 
 		// Form handling.
 		if (checkPhpVersion('5.0.0')) {
 			// WARNING: This form needs $this in constructor
-			$announcementForm = new AnnouncementForm($announcementId);
+			$announcementForm = new AnnouncementForm($pressId, $announcementId);
 		} else {
-			$announcementForm =& new AnnouncementForm($announcementId);
+			$announcementForm =& new AnnouncementForm($pressId, $announcementId);
 		}
 
 		$announcementForm->readInputData();
