@@ -293,11 +293,11 @@ class SeriesEditorAction extends Action {
 
 			// Set the review due date
 			$defaultNumWeeks = $press->getSetting('numWeeksPerReview');
-			$reviewAssignment->setDateDue(formatDateToDB($reviewDueDate, $defaultNumWeeks, false));
+			$reviewAssignment->setDateDue(DAO::formatDateToDB($reviewDueDate, $defaultNumWeeks, false));
 
 			// Set the response due date
 			$defaultNumWeeks = $press->getSetting('numWeeksPerReponse');
-			$reviewAssignment->setDateResponseDue(formatDateToDB($reviewDueDate, $defaultNumWeeks, false));
+			$reviewAssignment->setDateResponseDue(DAO::formatDateToDB($reviewDueDate, $defaultNumWeeks, false));
 
 			// update the assignment (with both the new dates)
 			$reviewAssignment->stampModified();

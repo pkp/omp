@@ -131,7 +131,7 @@ class AnnouncementForm extends PKPAnnouncementForm {
 		/* @var $announcement Announcement */
 		$dateExpire = $this->getData('dateExpire');
 		if ($dateExpire) {
-			$announcement->setDateExpire(formatDateToDB($dateExpire, null, false));
+			$announcement->setDateExpire(DAO::formatDateToDB($dateExpire, null, false));
 		} else {
 			// No date passed but null is acceptable for
 			// announcements.
