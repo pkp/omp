@@ -19,11 +19,11 @@ class WorkflowReviewRevisionsGridHandler extends ReviewRevisionsGridHandler {
 	 * Constructor
 	 */
 	function WorkflowReviewRevisionsGridHandler() {
-		$rolesAssignment = array(
+		$roleAssignments = array(
 			array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_ASSISTANT),
 			array('fetchGrid', 'fetchRow', 'signOffFile')
 		);
-		parent::ReviewRevisionsGridHandler($rolesAssignment);
+		parent::ReviewRevisionsGridHandler($roleAssignments);
 	}
 }
 

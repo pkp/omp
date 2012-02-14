@@ -17,10 +17,10 @@ import('controllers.grid.files.fileSignoff.FileSignoffGridHandler');
 class ReviewRevisionsGridHandler extends FileSignoffGridHandler {
 	/**
 	 * Constructor
-	 * @param $rolesAssignment array
+	 * @param $roleAssignments array
 	 */
-	function ReviewRevisionsGridHandler($rolesAssignment) {
-		assert(is_array($rolesAssignment));
+	function ReviewRevisionsGridHandler($roleAssignments) {
+		assert(is_array($roleAssignments));
 
 		import('controllers.grid.files.review.ReviewRevisionsGridDataProvider');
 		// Pass in null stageId to be set in initialize from request var.
@@ -31,7 +31,7 @@ class ReviewRevisionsGridHandler extends FileSignoffGridHandler {
 			FILE_GRID_ADD|FILE_GRID_DOWNLOAD_ALL|FILE_GRID_DELETE|FILE_GRID_VIEW_NOTES
 		);
 
-		list($roles, $operations) = $rolesAssignment;
+		list($roles, $operations) = $roleAssignments;
 		$this->addRoleAssignment($roles, $operations);
 
 		// Set the grid title.

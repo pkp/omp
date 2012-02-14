@@ -19,11 +19,11 @@ class AuthorReviewRevisionsGridHandler extends ReviewRevisionsGridHandler {
 	 * Constructor
 	 */
 	function AuthorReviewRevisionsGridHandler() {
-		$rolesAssignment = array(
+		$roleAssignments = array(
 			array(ROLE_ID_AUTHOR),
 			array('fetchGrid', 'fetchRow')
 		);
-		parent::ReviewRevisionsGridHandler($rolesAssignment);
+		parent::ReviewRevisionsGridHandler($roleAssignments);
 	}
 }
 
