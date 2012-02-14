@@ -13,52 +13,47 @@
  */
 
 
-import('lib.pkp.pages.announcement.PKPAnnouncementHandler');
+import('classes.handler.Handler');
 
-class AnnouncementHandler extends PKPAnnouncementHandler {
+class AnnouncementHandler extends Handler {
 	/**
 	 * Constructor
 	 **/
 	function AnnouncementHandler() {
-		parent::PKPAnnouncementHandler();
-		$this->addCheck(new HandlerValidatorPress($this));
+		parent::Handler();
 	}
 
-	/**
-	 * @see PKPAnnouncementHandler::_getAnnouncementsEnabled()
-	 */
-	function _getAnnouncementsEnabled($request) {
-		$press =& $request::getPress();
-		return $press->getSetting('enableAnnouncements');
+
+	//
+	// Implement methods from Handler.
+	//
+	function authorize($request, $args, $roleAssignments) {
+		import('lib.pkp.classes.security.authorization.ContextRequiredPolicy');
+		$this->addPolicy(new ContextRequiredPolicy($request));
+
+		return parent::authorize($request, $args, $roleAssignments);
 	}
 
+
+	//
+	// Public handler methods.
+	//
 	/**
-	 * @see PKPAnnouncementHandler::_getAnnouncements()
+	 * Show public announcements page.
+	 * @var $args array
+	 * @var $request PKPRequest
+	 * @return string
 	 */
-	function &_getAnnouncements($request, $rangeInfo = null) {
+	function index($args, &$request) {
+		$this->setupTemplate();
+
 		$press =& $request->getPress();
+		$announcementsIntro = $press->getLocalizedSetting('announcementsIntroduction');
 
-		$announcementDao =& DAORegistry::getDAO('AnnouncementDAO');
-		$announcements =& $announcementDao->getAnnouncementsNotExpiredByAssocId(ASSOC_TYPE_PRESS, $press->getId(), $rangeInfo);
+		$templateMgr =& TemplateManager::getManager();
+		$templateMgr->assign('announcementsIntroduction', $announcementsIntro);
 
-		return $announcements;
-	}
-
-	/**
-	 * @see PKPAnnouncementHandler::_getAnnouncementsIntroduction()
-	 */
-	function _getAnnouncementsIntroduction($request) {
-		$press =& $request->getPress();
-		return $press->getLocalizedSetting('announcementsIntroduction');
-	}
-
-	/**
-	 * @see PKPAnnouncementHandler::_announcementIsValid()
-	 */
-	function _announcementIsValid($request, $announcementId) {
-		$press =& $request->getPress();
-		$announcementDao =& DAORegistry::getDAO('AnnouncementDAO');
-		return ($announcementId != null && $announcementDao->getAnnouncementAssocId($announcementId) == $press->getId());
+		$templateMgr->display('announcements/index.tpl');
 	}
 }
 

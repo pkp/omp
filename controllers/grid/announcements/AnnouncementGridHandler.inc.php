@@ -31,6 +31,10 @@ class AnnouncementGridHandler extends GridHandler {
 	 * @see GridHandler::authorize()
 	 */
 	function authorize($request, $args, $roleAssignments) {
+
+		import('lib.pkp.classes.security.authorization.ContextRequiredPolicy');
+		$this->addPolicy(new ContextRequiredPolicy($request));
+
 		$returner = parent::authorize($request, $args, $roleAssignments);
 
 		// Ensure announcements are enabled.
@@ -59,14 +63,11 @@ class AnnouncementGridHandler extends GridHandler {
 	function initialize(&$request) {
 		parent::initialize($request);
 
-		// Load language components
-		AppLocale::requireComponents(LOCALE_COMPONENT_PKP_MANAGER);
-
 		// Basic grid configuration
-		$this->setTitle('manager.announcements');
+		$this->setTitle('announcement.announcements');
 
 		// Set the no items row text
-		$this->setEmptyRowText('grid.noItems');
+		$this->setEmptyRowText('announcement.noneExist');
 
 		$press =& $request->getPress();
 
@@ -75,7 +76,7 @@ class AnnouncementGridHandler extends GridHandler {
 		$announcementCellProvider = new AnnouncementGridCellProvider();
 		$this->addColumn(
 			new GridColumn('title',
-				'manager.announcements.form.title',
+				'common.title',
 				null,
 				'controllers/grid/gridCell.tpl',
 				$announcementCellProvider,
@@ -85,7 +86,7 @@ class AnnouncementGridHandler extends GridHandler {
 
 		$this->addColumn(
 			new GridColumn('type',
-				'manager.announcements.form.typeId',
+				'common.type',
 				null,
 				'controllers/grid/gridCell.tpl',
 				$announcementCellProvider
@@ -96,7 +97,7 @@ class AnnouncementGridHandler extends GridHandler {
 		$this->addColumn(
 			new GridColumn(
 				'datePosted',
-				'manager.announcements.datePublish',
+				'announcement.posted',
 				null,
 				'controllers/grid/gridCell.tpl',
 				$cellProvider

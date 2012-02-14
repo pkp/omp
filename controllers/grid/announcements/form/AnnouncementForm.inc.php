@@ -34,7 +34,7 @@ class AnnouncementForm extends PKPAnnouncementForm {
 		$this->addCheck(new FormValidatorCustom($this, 'dateExpire', 'optional', 'manager.announcements.form.dateExpireValid', create_function('$dateExpire', '$today = getDate(); $todayTimestamp = mktime(0, 0, 0, $today[\'mon\'], $today[\'mday\'], $today[\'year\']); return (strtotime($dateExpire) >= $todayTimestamp);')));
 
 		// If provided, announcement type is valid
-		$this->addCheck(new FormValidatorCustom($this, 'typeId', 'optional', 'manager.announcements.form.typeIdValid', create_function('$typeId, $pressId', '$announcementTypeDao =& DAORegistry::getDAO(\'AnnouncementTypeDAO\'); return $announcementTypeDao->announcementTypeExistsByTypeId($typeId, ASSOC_TYPE_PRESS, $pressId);'), array($pressId)));
+		$this->addCheck(new FormValidatorCustom($this, 'typeId', 'optional', 'manager.announcements.form.typeIdValid', create_function('$typeId, $pressId', '$announcementTypeDao =& DAORegistry::getDAO(\'AnnouncementTypeDAO\'); if((int)$typeId === 0) { return true; } else { return $announcementTypeDao->announcementTypeExistsByTypeId($typeId, ASSOC_TYPE_PRESS, $pressId);}'), array($pressId)));
 	}
 
 
@@ -67,7 +67,9 @@ class AnnouncementForm extends PKPAnnouncementForm {
 		$announcementTypeDao =& DAORegistry::getDAO('AnnouncementTypeDAO');
 		list($assocType, $assocId) = $this->_getAnnouncementTypesAssocId();
 		$announcementTypeFactory =& $announcementTypeDao->getAnnouncementTypesByAssocId($assocType, $assocId);
-		$announcementTypeOptions = array();
+		if (!$announcementTypeFactory->wasEmpty()) {
+			$announcementTypeOptions = array(0 => __('common.none'));
+		}
 		while ($announcementType =& $announcementTypeFactory->next()) {
 			$announcementTypeOptions[$announcementType->getId()] = $announcementType->getLocalizedTypeName();
 			unset($announcementType);

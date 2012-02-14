@@ -19,13 +19,14 @@
 		{* Read only announcement *}
 	
 		{fbvFormArea id="announcementInfo"}
-			{fbvFormSection title="manager.announcements.form.title"}
+			{fbvFormSection title="common.title"}
 				{$announcement->getLocalizedTitleFull()|escape}
 			{/fbvFormSection}
-			{fbvFormSection title="manager.announcements.datePublish"}
+			{fbvFormSection title="announcement.posted"}
 				{$announcement->getDatePosted()|escape}
 			{/fbvFormSection}
-			{fbvFormSection title="manager.announcements.form.description"}
+			{fbvFormSection title="common.description"}
+				{$announcement->getLocalizedDescriptionShort()|strip_unsafe_html}<br />
 				{$announcement->getLocalizedDescription()|strip_unsafe_html}
 			{/fbvFormSection}
 		{/fbvFormArea}
@@ -37,7 +38,9 @@
 			{if $announcement}
 				<input type="hidden" name="announcementId" value="{$announcement->getId()|escape}" />
 			{/if}
-			{fbvElement type="select" id="typeId" from=$announcementTypes selected=$selectedTypeId label="manager.announcements.form.typeId" translate=false}
+			{if $announcementTypes}
+				{fbvElement type="select" id="typeId" from=$announcementTypes selected=$selectedTypeId label="manager.announcements.form.typeId" translate=false}
+			{/if}
 			{fbvFormSection title="manager.announcements.form.title" for="title" required="true"}
 				{fbvElement type="text" multilingual="true" id="title" value=$title maxlength="255"}
 			{/fbvFormSection}

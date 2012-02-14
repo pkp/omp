@@ -28,25 +28,6 @@ switch ($op) {
 		define('HANDLER_CLASS', 'FilesHandler');
 		break;
 	//
-	// Announcement Types
-	//
-	case 'announcementTypes':
-	case 'deleteAnnouncementType':
-	case 'createAnnouncementType':
-	case 'editAnnouncementType':
-	case 'updateAnnouncementType':
-	//
-	// Announcements
-	//
-	case 'announcements':
-	case 'deleteAnnouncement':
-	case 'createAnnouncement':
-	case 'editAnnouncement':
-	case 'updateAnnouncement':
-		import('pages.manager.AnnouncementHandler');
-		define('HANDLER_CLASS', 'AnnouncementHandler');
-		break;
-	//
 	// Import/Export
 	//
 	case 'importexport':
