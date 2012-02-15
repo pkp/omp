@@ -100,7 +100,7 @@
 		{/fbvFormSection}
 
 		{fbvFormSection title="common.country" for="country" size=$fbvStyles.size.SMALL required="true"}
-			{fbvElement type="select" from=$countries selected=$country translate=false id="country" defaultValue="" defaultLabel=""}
+			{fbvElement type="select" from=$countries selected=$country translate=false id="country" defaultValue="" defaultLabel="" required=true}
 		{/fbvFormSection}
 
 		{if count($availableLocales) > 1}
@@ -131,7 +131,7 @@
 			{if $allowRegAuthor}
 				{iterate from=authorUserGroups item=userGroup}
 					{assign var="userGroupId" value=$userGroup->getId()}
-					{fbvElement type="radio" id="authorGroup-$userGroupId" name="authorGroup" value=$userGroupId label=$userGroup->getLocalizedName() translate=false}
+					{fbvElement type="radio" id="authorGroup-$userGroupId" name="authorGroup" value=$userGroupId label=$userGroup->getLocalizedName() translate=false required=true}
 				{/iterate}
 			{/if}
 			<div class="pkp_helpers_clear"></div>
