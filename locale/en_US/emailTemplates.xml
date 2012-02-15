@@ -88,7 +88,7 @@ Your new password: {$password}
 		<subject>Press Registration</subject>
 		<body>{$userFullName}
 
-You have now been registered as a user with {$pressName}. We have included your username and password in this email, which are needed for all work with this press through its website. At any point, you can ask to be removed from the press's list of users by contacting me.
+You have now been registered as a user with {$pressName}. We have included your username and password in this email, which are needed for all work with this press through its website. At any point, you can ask to be removed from the press' list of users by contacting me.
 
 Username: {$username}
 Password: {$password}
@@ -252,7 +252,7 @@ Review Guidelines
 		<subject>Request for Review Cancelled</subject>
 		<body>{$reviewerName}:
 
-We have decided at this point to cancel our request for you to review the submission, "{$monographTitle}," for {$pressName}. We apologize for any inconvenience this may cause you and hope that we will be able to call on you to assist with this press's review process in the future.
+We have decided at this point to cancel our request for you to review the submission, "{$monographTitle}," for {$pressName}. We apologize for any inconvenience this may cause you and hope that we will be able to call on you to assist with this press' review process in the future.
 
 If you have any questions, please contact me.
 
@@ -301,7 +301,7 @@ Thank you for completing the review of the submission, "{$monographTitle}," for 
 
 Just a gentle reminder of our request for your review of the submission, "{$monographTitle}," for {$pressName}. We were hoping to have this review by {$reviewDueDate}, and would be pleased to receive it as soon as you are able to prepare it.
 
-If you do not have your username and password for the press's web site, you can use this link to reset your password (which will then be emailed to you along with your username). {$passwordResetUrl}
+If you do not have your username and password for the press' web site, you can use this link to reset your password (which will then be emailed to you along with your username). {$passwordResetUrl}
 
 Submission URL: {$submissionReviewUrl}
 
@@ -329,7 +329,7 @@ Please confirm your ability to complete this vital contribution to the work of t
 
 Just a gentle reminder of our request for your review of the submission, "{$monographTitle}," for {$pressName}. We were hoping to have this review by {$reviewDueDate}, and this email has been automatically generated and sent with the passing of that date. We would still be pleased to receive it as soon as you are able to prepare it.
 
-If you do not have your username and password for the press's web site, you can use this link to reset your password (which will then be emailed to you along with your username). {$passwordResetUrl}
+If you do not have your username and password for the press' web site, you can use this link to reset your password (which will then be emailed to you along with your username). {$passwordResetUrl}
 
 Submission URL: {$submissionReviewUrl}
 
@@ -566,7 +566,7 @@ Thank you for completing the copyediting of the manuscript, "{$monographTitle},"
 
 The submission "{$monographTitle}" to {$pressName} now needs galleys laid out by following these steps.
 1. Click on the Submission URL below.
-2. Log into the press and use the Layout Version file to create the galleys according to the press's standards.
+2. Log into the press and use the Layout Version file to create the galleys according to the press' standards.
 3. Send the COMPLETE email to the editor.
 
 {$pressName} URL: {$pressUrl}

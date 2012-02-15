@@ -426,7 +426,7 @@
 			<DEFAULT VALUE="1"/>
 		</field>
 		<field name="entry_key" type="C2" size="30"/>
-		<descr>A press's monograph file genres.</descr>
+		<descr>A press' monograph file genres.</descr>
 	</table>
 
 	<!--
@@ -1366,7 +1366,7 @@
 		<field name="entry_key" type="C2" size="64">
 			<NOTNULL/>
 		</field>
-		<descr>A press's publication formats.</descr>
+		<descr>A press' publication formats.</descr>
 	</table>
 
 	<!--
@@ -1419,7 +1419,7 @@
 			<NOTNULL/>
 			<DEFAULT VALUE="1"/>
 		</field>
-		<descr>A press's cataloguing metadata fields.</descr>
+		<descr>A press' cataloguing metadata fields.</descr>
 	</table>
 
 	<!--
