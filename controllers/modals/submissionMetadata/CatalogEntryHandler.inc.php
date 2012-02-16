@@ -33,7 +33,7 @@ class CatalogEntryHandler extends Handler {
 		parent::Handler();
 		$this->addRoleAssignment(
 			array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
-			array('fetch'));
+			array('fetch', 'fetchFormatInfo'));
 	}
 
 
@@ -117,7 +117,7 @@ class CatalogEntryHandler extends Handler {
 		// check to see if this monograph has been published yet
 		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
 		$publishedMonograph =& $publishedMonographDao->getById($monograph->getId());
-		if ($publishedMonograph !== null) {
+		if (isset($publishedMonograph)) {
 			$templateMgr->assign('published', true);
 			$templateMgr->assign('monographId', $monograph->getId());
 			$tabPosition = (int) $this->getTabPosition();
@@ -134,8 +134,47 @@ class CatalogEntryHandler extends Handler {
 			$templateMgr->assign_by_ref('publicationFormats', $publicationFormats);
 		}
 
+		$application =& Application::getApplication();
+		$request =& $application->getRequest();
+		$router =& $request->getRouter();
+		$dispatcher =& $router->getDispatcher();
+
+		$tabsUrl = $dispatcher->url($request, ROUTE_COMPONENT, null, 'modals.submissionMetadata.CatalogEntryHandler', 'fetchFormatInfo', null, array('monographId' => $publishedMonograph->getId(), 'stageId' => $this->getStageId()));
+		$templateMgr->assign('tabsUrl', $tabsUrl);
+
+		$tabContentUrl = $dispatcher->url($request, ROUTE_COMPONENT, null, 'tab.catalogEntry.CatalogEntryTabHandler', 'publicationMetadata', null, array('monographId' => $publishedMonograph->getId(), 'stageId' => $this->getStageId()));
+		$templateMgr->assign('tabContentUrl', $tabContentUrl);
+
 		$this->setupTemplate();
 		return $templateMgr->fetchJson('controllers/modals/submissionMetadata/catalogEntryTabs.tpl');
+	}
+
+	/**
+	 * Returns a JSON response containing information regarding the formats enabled
+	 * for this monograph.
+	 * @param $request Request
+	 * @param $args array
+	 */
+	function fetchFormatInfo($request, $args) {
+		$monograph =& $this->getMonograph();
+		// check to see if this monograph has been published yet
+		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
+		$publishedMonograph =& $publishedMonographDao->getById($monograph->getId());
+		$json = new JSONMessage();
+
+		if (isset($publishedMonograph)) {
+			// load in any publication formats assigned to this published monograph
+			$assignedPublicationFormatDao =& DAORegistry::getDAO('AssignedPublicationFormatDAO');
+			$formats =& $assignedPublicationFormatDao->getFormatsByMonographId($monograph->getId());
+			$publicationFormats = array();
+			while ($format =& $formats->next()) {
+				$publicationFormats[$format->getAssignedPublicationFormatId()] = $format->getLocalizedTitle();
+			}
+			$json->setStatus(true);
+			$json->setContent(true);
+			$json->setAdditionalAttributes(array('formats' => $publicationFormats));
+		}
+		return $json->getString();
 	}
 }
 

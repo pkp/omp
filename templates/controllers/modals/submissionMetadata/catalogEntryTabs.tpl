@@ -12,10 +12,12 @@
 	// Attach the JS file tab handler.
 	$(function() {ldelim}
 		$('#newCatalogEntryTabs').pkpHandler(
-				'$.pkp.controllers.TabHandler', 
+				'$.pkp.controllers.tab.catalogEntry.CatalogEntryTabHandler', 
 				{ldelim}
 					{if $selectedTab}selected:{$selectedTab},{/if}
-					emptyLastTab: true
+					{if $tabsUrl}tabsUrl:'{$tabsUrl}',{/if}
+					{if $tabContentUrl}tabContentUrl:'{$tabContentUrl}',{/if}
+					emptyLastTab: true,
 				{rdelim});
 	{rdelim});
 </script>
