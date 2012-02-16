@@ -21,15 +21,11 @@ define('PAYMENT_TYPE_PURCHASE_PUBLICATION_FORMAT',	0x000000001);
 
 class OMPPaymentManager extends PaymentManager {
 	/**
-	 * Get an instance of the payment manager.
-	 * @return OMPPaymentManager
+	 * Constructor
+	 * @param $request PKPRequest
 	 */
-	function &getManager() {
-		static $manager;
-		if (!isset($manager)) {
-			$manager = new OMPPaymentManager();
-		}
-		return $manager;
+	function OMPPaymentManager(&$request) {
+		parent::PaymentManager($request);
 	}
 
 	/**
