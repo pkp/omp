@@ -125,7 +125,8 @@
 	<message key="submission.upload.signoff">Upload a Response</message>
 	<message key="submission.upload.productionReady">Upload a Production Ready File</message>
 	<message key="submission.upload.proof">Upload a Proof</message>
-
+	<message key="submission.upload.noAvailableReviewFiles">There are no files for you to revise at this time.</message>
+	
 	<!-- Read/Upload/Perform Signoff -->
 	<message key="submission.signoff.selectFile">Select the file you wish to signoff on</message>
 	<message key="submission.signoff.signoffOnFile">Signoff on this file</message>

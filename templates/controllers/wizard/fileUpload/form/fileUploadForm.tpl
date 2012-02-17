@@ -78,7 +78,7 @@
  *   RO  RF  FO
  *   y   y   o  -> 1)
  *   |   n   y  -> 2)
- *   |   |   n  -> not allowed
+ *   |   |   n  -> not allowed (skip loading form and show a message to user)
  *
  *       FO  RF
  *   n   y   o  -> 3)
@@ -96,7 +96,7 @@
 		{assign var="showFileNameOnly" value=true}
 	{else}
 		{* Use case 2: Revision of a file which still must be chosen *}
-		{if empty($monographFileOptions)}{"File list may not be empty when choosing a revision is mandatory!"|fatalError}{/if}
+		{if empty($monographFileOptions)}{assign var="revisionOnlyWithoutFileOptions" value=true}{/if}
 		{assign var="showFileSelector" value=true}
 	{/if}
 {else}
@@ -110,6 +110,12 @@
 		{assign var="showFileSelector" value=true}
 	{/if}
 {/if}
+
+{if $revisionOnlyWithoutFileOptions}
+	<br /><br />
+	{translate key="submission.upload.noAvailableReviewFiles"}
+	<br /><br />
+{else}
 
 <script type="text/javascript">
 	$(function() {ldelim}
@@ -180,3 +186,4 @@
 		{/if}
 	{/fbvFormArea}
 </form>
+{/if}
