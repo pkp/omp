@@ -54,7 +54,7 @@ jQuery.pkp.controllers.modals.catalogEntry =
 	$.pkp.controllers.modals.catalogEntry.form.RepresentativeFormHandler.prototype.radioToggleHandler_ =
 			function(sourceElement, event) {
 
-		$form = this.getHtmlElement();
+		var $form = this.getHtmlElement();
 		if (sourceElement.id == 'agent') {
 			// this 'hidden' class on parent may be set from within the template
 			$form.find('#agentRole').parent().removeClass('hidden');
