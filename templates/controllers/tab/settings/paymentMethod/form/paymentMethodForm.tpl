@@ -16,7 +16,7 @@
 </script>
 
 <form class="pkp_form" id="paymentMethodForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.DistributionSettingsTabHandler" op="saveFormData" tab="paymentMethod"}">
-	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="indexingFormNotification"}
+	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="paymentFormNotification"}
 	{include file="controllers/tab/settings/wizardMode.tpl" wizardMode=$wizardMode}
 
 	<h3>{translate key="manager.paymentMethod.title"}</h3>
@@ -25,13 +25,15 @@
 
 	{fbvFormArea id="paymentMethod"}
 		{fbvFormSection title="manager.paymentMethod.method"}
-			{* FIXME: Include payment method configuration here *}
+			{fbvElement type="select" id="pluginSelect" from=$pluginNames translate=false}
+		{/fbvFormSection}
+		{fbvFormSection}
 		{/fbvFormSection}
 	{/fbvFormArea}
 
 	<div class="separator"></div>
 
 	{if !$wizardMode}
-		{fbvFormButtons id="indexingFormSubmit" submitText="common.save" hideCancel=true}
+		{fbvFormButtons id="paymentFormSubmit" submitText="common.save" hideCancel=true}
 	{/if}
 </form>

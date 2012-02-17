@@ -33,8 +33,16 @@ class PaymentMethodForm extends PressSettingsForm {
 	 */
 	function fetch(&$request, $params = null) {
 		$templateMgr =& TemplateManager::getManager();
-		$plugins =& PluginRegistry::loadCategory('paymentMethods');
-		$templateMgr->assign_by_ref('paymentMethodPlugins', $plugins);
+
+		// Expose names of payment plugins to template.
+		$templateMgr->assign(
+			'pluginNames',
+			array(__('test')) +
+			array_map(
+				create_function('$a', 'return $a->getDisplayName();'),
+				PluginRegistry::loadCategory('paymethod')
+			)
+		);
 
 		return parent::fetch($request, $params);
 	}
