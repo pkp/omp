@@ -11,29 +11,48 @@
 <script type="text/javascript">
 	$(function() {ldelim}
 		// Attach the form handler.
-		$('#paymentMethodForm').pkpHandler('$.pkp.controllers.form.AjaxFormHandler');
+		$('#paymentMethodContainerDiv').pkpHandler(
+			'$.pkp.controllers.tab.settings.paymentMethod.PaymentMethodHandler',
+			{ldelim}
+				paymentMethodFormUrlTemplate: '{url|escape:"javascript" router=$smarty.const.ROUTE_COMPONENT op="getPaymentFormContents" paymentPluginName=PAYMENT_PLUGIN_NAME escape=false}'
+			{rdelim}
+		);
+		// Attach the form handler. (Triggers selectMonograph event.)
+		$('#selectPaymentMethodForm').pkpHandler(
+			'$.pkp.controllers.form.DropdownFormHandler',
+			{ldelim}
+				getOptionsUrl: '{url|escape:"javascript" router=$smarty.const.ROUTE_COMPONENT op="getPaymentMethods" escape=false}',
+				eventName: 'selectPaymentMethod'
+			{rdelim}
+		);
 	{rdelim});
 </script>
 
-<form class="pkp_form" id="paymentMethodForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.DistributionSettingsTabHandler" op="saveFormData" tab="paymentMethod"}">
+<div id="paymentMethodContainerDiv">
+	<form class="pkp_form" id="selectPaymentMethodForm">
+		<h3>{translate key="manager.paymentMethod.title"}</h3>
+
+		<p>{translate key="manager.paymentMethod.description"}</p>
+
+		{fbvFormArea id="paymentMethod"}
+			{fbvFormSection title="manager.paymentMethod.method"}
+				{fbvElement type="select" id="pluginSelect" from=$pluginNames translate=false}
+			{/fbvFormSection}
+		{/fbvFormArea}
+	</form>
+
+	<form class="pkp_form" id="paymentMethodForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.DistributionSettingsTabHandler" op="saveFormData" tab="paymentMethod"}">
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="paymentFormNotification"}
 	{include file="controllers/tab/settings/wizardMode.tpl" wizardMode=$wizardMode}
 
-	<h3>{translate key="manager.paymentMethod.title"}</h3>
-
-	<p>{translate key="manager.paymentMethod.description"}</p>
-
-	{fbvFormArea id="paymentMethod"}
-		{fbvFormSection title="manager.paymentMethod.method"}
-			{fbvElement type="select" id="pluginSelect" from=$pluginNames translate=false}
-		{/fbvFormSection}
-		{fbvFormSection}
-		{/fbvFormSection}
-	{/fbvFormArea}
+	<div id="paymentMethodFormContainer">
+		{* The form will be loaded into this container *}
+	</div>
 
 	<div class="separator"></div>
 
 	{if !$wizardMode}
 		{fbvFormButtons id="paymentFormSubmit" submitText="common.save" hideCancel=true}
 	{/if}
-</form>
+	</form>
+</div>

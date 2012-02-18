@@ -31,11 +31,9 @@ class SettingsTabHandler extends Handler {
 	 */
 	function SettingsTabHandler($role) {
 		parent::Handler();
-		$this->addRoleAssignment($role,
-				array(
-					'saveFormData',
-					'showTab'
-				)
+		$this->addRoleAssignment(
+			$role,
+			array('saveFormData', 'showTab')
 		);
 	}
 

@@ -27,25 +27,6 @@ class PaymentMethodForm extends PressSettingsForm {
 
 		parent::PressSettingsForm($settings, 'controllers/tab/settings/paymentMethod/form/paymentMethodForm.tpl', $wizardMode);
 	}
-
-	/**
-	 * @see Form::fetch()
-	 */
-	function fetch(&$request, $params = null) {
-		$templateMgr =& TemplateManager::getManager();
-
-		// Expose names of payment plugins to template.
-		$templateMgr->assign(
-			'pluginNames',
-			array(__('test')) +
-			array_map(
-				create_function('$a', 'return $a->getDisplayName();'),
-				PluginRegistry::loadCategory('paymethod')
-			)
-		);
-
-		return parent::fetch($request, $params);
-	}
 }
 
 ?>

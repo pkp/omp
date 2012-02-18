@@ -23,12 +23,55 @@ class DistributionSettingsTabHandler extends ManagerSettingsTabHandler {
 	 */
 	function DistributionSettingsTabHandler() {
 		parent::ManagerSettingsTabHandler();
-		$pageTabs = array(
+		// In addition to the operations permitted by the parent
+		// class, allow Payment AJAX extras.
+		$this->addRoleAssignment(
+			ROLE_ID_PRESS_MANAGER,
+			array('getPaymentMethods', 'getPaymentFormContents')
+		);
+		$this->setPageTabs(array(
 			'indexing' => 'controllers.tab.settings.indexing.form.IndexingForm',
 			'paymentMethod' => 'controllers.tab.settings.paymentMethod.form.PaymentMethodForm',
-		);
-		$this->setPageTabs($pageTabs);
+		));
 
+	}
+
+	/**
+	 * Expose payment methods via AHAX for selection on the payment tab.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 */
+	function getPaymentMethods($args, &$request) {
+		// Expose names of payment plugins to template.
+		$pluginNames = array(__('manager.paymentMethod.none'));
+		$pluginNames += array_map(
+			create_function('$a', 'return $a->getDisplayName();'),
+			PluginRegistry::loadCategory('paymethod')
+		);
+		$jsonMessage = new JSONMessage(true, $pluginNames);
+		return $jsonMessage->getString();
+		
+	}
+
+	/**
+	 * Get the form contents for the given payment method.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 */
+	function getPaymentFormContents($args, &$request) {
+		$paymentPluginName = $request->getUserVar('paymentPluginName');
+		$plugins =& PluginRegistry::loadCategory('paymethod');
+		if (!isset($plugins[$paymentPluginName])) {
+			// Invalid plugin name
+			$jsonMessage = new JSONMessage(false);
+		} else {
+			// Fetch and return the JSON-encoded form contents
+			$plugin =& $plugins[$paymentPluginName];
+			$params = array();
+			$templateMgr =& TemplateManager::getManager();
+			$jsonMessage = new JSONMessage(true, $plugin->displayPaymentSettingsForm($params, $templateMgr));
+		}
+		return $jsonMessage->getString();
 	}
 }
 

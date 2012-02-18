@@ -99,7 +99,7 @@ class PayPalPlugin extends PaymethodPlugin {
 
 	/**
 	 * Display the settings form
-	 * @param $params
+	 * @param $params array
 	 * @param $smarty Smarty
 	 */
 	function displayPaymentSettingsForm(&$params, &$smarty) {

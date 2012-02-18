@@ -85,6 +85,7 @@
 <script type="text/javascript" src="{$baseUrl}/js/controllers/tab/settings/form/FileViewFormHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/js/controllers/tab/settings/siteAccessOptions/form/SiteAccessOptionsFormHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/js/controllers/tab/settings/homepage/form/HomepageFormHandler.js"></script>
+<script type="text/javascript" src="{$baseUrl}/js/controllers/tab/settings/paymentMethod/PaymentMethodHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/js/controllers/tab/catalogEntry/CatalogEntryTabHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/js/pages/authorDashboard/AuthorDashboardHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/js/pages/catalog/CarouselHandler.js"></script>
