@@ -92,24 +92,24 @@ class OmpMonographFileAccessPolicy extends PressPolicy {
 			import('classes.security.authorization.internal.MonographFileUploaderAccessPolicy');
 			$authorFileAccessOptionsPolicy->addPolicy(new MonographFileUploaderAccessPolicy($request, $fileIdAndRevision));
 
+			// 3b) ...or if the file is a viewable file in a review round with requested revision decision, allow...
+			import('classes.security.authorization.internal.MonographFileRequestedRevisionRequiredPolicy');
+			$authorFileAccessOptionsPolicy->addPolicy(new MonographFileRequestedRevisionRequiredPolicy($request, $fileIdAndRevision));
+
 			// ...or if we don't want to modify the file...
 			if (!($mode & MONOGRAPH_FILE_ACCESS_MODIFY)) {
 
-				// 3b) ...and the file is at submission stage...
+				// 3c) ...and the file is at submission stage...
 				import('classes.security.authorization.internal.MonographFileSubmissionStageRequiredPolicy');
 				$authorFileAccessOptionsPolicy->addPolicy(new MonographFileSubmissionStageRequiredPolicy($request, $fileIdAndRevision));
 
-				// 3c) ...or the file is a viewable reviewer response...
+				// 3d) ...or the file is a viewable reviewer response...
 				import('classes.security.authorization.internal.MonographFileViewableReviewerResponseRequiredPolicy');
 				$authorFileAccessOptionsPolicy->addPolicy(new MonographFileViewableReviewerResponseRequiredPolicy($request, $fileIdAndRevision));
 
-				// 3d) ...or if the file is part of a signoff assigned to the user...
+				// 3e) ...or if the file is part of a signoff assigned to the user, allow.
 				import('classes.security.authorization.internal.MonographFileAssignedAuditorAccessPolicy');
 				$authorFileAccessOptionsPolicy->addPolicy(new MonographFileAssignedAuditorAccessPolicy($request, $fileIdAndRevision));
-
-				// 3e) ...or if the file is a viewable revision to authors, allow.
-				import('classes.security.authorization.internal.MonographFileViewableRevisionRequiredPolicy');
-				$authorFileAccessOptionsPolicy->addPolicy(new MonographFileViewableRevisionRequiredPolicy($request, $fileIdAndRevision));
 			}
 
 			// Add the rules from 3)
