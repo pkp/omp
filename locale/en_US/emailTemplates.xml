@@ -19,6 +19,8 @@ You can find the files to review at:
 
 {$auditUrl}
 
+Username: {$auditorUserName}
+
 Please indicate in a return email if you are not able to complete the audit by {$weekLaterDate}.
 
 Thank you for considering this request.
@@ -197,6 +199,8 @@ The review itself is due {$reviewDueDate}.
 
 Submission URL: {$submissionReviewUrl}
 
+Username: {$reviewerUserName}
+
 Thank you for considering this request.
 
 
@@ -304,6 +308,8 @@ Just a gentle reminder of our request for your review of the submission, "{$mono
 If you do not have your username and password for the press' web site, you can use this link to reset your password (which will then be emailed to you along with your username). {$passwordResetUrl}
 
 Submission URL: {$submissionReviewUrl}
+
+Username: {$reviewerUserName}
 
 Please confirm your ability to complete this vital contribution to the work of the press. I look forward to hearing from you.
 

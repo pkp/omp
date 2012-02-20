@@ -181,6 +181,7 @@ class FileAuditorForm extends Form {
 		// Other parameters assigned above; see bug #7090.
 		$email->assignParams(array(
 			'auditorName' => $user->getFullName(),
+			'auditorUserName' => $user->getUsername(),
 			'auditUrl' => $auditUrl,
 		));
 
