@@ -37,7 +37,7 @@
 			{/if}
 		{/fbvFormSection}
 
-		{fbvFormButtons id="step2Buttons" submitText="submission.submit.finishSubmission" confirmSubmit="submission.confirmSubmit"}
+		{fbvFormButtons id="step3Buttons" submitText="submission.submit.finishSubmission" confirmSubmit="submission.confirmSubmit"}
 	{/fbvFormArea}
 </form>
 {include file="common/footer.tpl"}
