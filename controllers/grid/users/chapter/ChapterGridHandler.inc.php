@@ -24,6 +24,9 @@ import('controllers.grid.users.chapter.ChapterGridCategoryRow');
 import('lib.pkp.classes.linkAction.request.AjaxModal');
 
 class ChapterGridHandler extends CategoryGridHandler {
+	/** @var boolean */
+	var $_readOnly;
+
 	/**
 	 * Constructor
 	 */
@@ -50,6 +53,23 @@ class ChapterGridHandler extends CategoryGridHandler {
 	function &getMonograph() {
 		return $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 	}
+
+	/**
+	 * Get whether or not this grid should be 'read only'
+	 * @return boolean
+	 */
+	function getReadOnly() {
+		return $this->_readOnly;
+	}
+
+	/**
+	 * Set the boolean for 'read only' status
+	 * @param boolean
+	 */
+	function setReadOnly($readOnly) {
+		$this->_readOnly =& $readOnly;
+	}
+
 
 	//
 	// Implement template methods from PKPHandler
@@ -80,22 +100,30 @@ class ChapterGridHandler extends CategoryGridHandler {
 		// Basic grid configuration
 		$this->setTitle('grid.chapters.title');
 
-		// Grid actions
-		$router =& $request->getRouter();
-		$actionArgs = $this->getRequestArgs();
+		$monograph =& $this->getMonograph();
+		$userRoles = $this->getAuthorizedContextObject(ASSOC_TYPE_USER_ROLES);
 
-		$this->addAction(
-			new LinkAction(
-				'addChapter',
-				new AjaxModal(
-					$router->url($request, null, null, 'addChapter', null, $actionArgs),
+		if ($monograph->getDateSubmitted() == null || array_intersect(array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR), $userRoles)) {
+			$this->setReadOnly(false);
+			// Grid actions
+			$router =& $request->getRouter();
+			$actionArgs = $this->getRequestArgs();
+
+			$this->addAction(
+				new LinkAction(
+					'addChapter',
+					new AjaxModal(
+						$router->url($request, null, null, 'addChapter', null, $actionArgs),
+						__('submission.chapter.addChapter'),
+						'fileManagement'
+					),
 					__('submission.chapter.addChapter'),
-					'fileManagement'
-				),
-				__('submission.chapter.addChapter'),
-				'add_item'
-			)
-		);
+					'add_item'
+				)
+			);
+		} else {
+			$this->setReadOnly(true);
+		}
 
 		// Columns
 		// reuse the cell providers for the AuthorGrid
@@ -168,7 +196,7 @@ class ChapterGridHandler extends CategoryGridHandler {
 	 */
 	function &getCategoryRowInstance() {
 		$monograph =& $this->getMonograph();
-		$row = new ChapterGridCategoryRow($monograph);
+		$row = new ChapterGridCategoryRow($monograph, $this->getReadOnly());
 		return $row;
 	}
 

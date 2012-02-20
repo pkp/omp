@@ -27,6 +27,9 @@ class AuthorGridHandler extends GridHandler {
 	/** @var Monograph */
 	var $_monograph;
 
+	/** @var boolean */
+	var $_readOnly;
+
 	/**
 	 * Constructor
 	 */
@@ -57,6 +60,22 @@ class AuthorGridHandler extends GridHandler {
 	 */
 	function setMonograph($monograph) {
 		$this->_monograph =& $monograph;
+	}
+
+	/**
+	 * Get whether or not this grid should be 'read only'
+	 * @return boolean
+	 */
+	function getReadOnly() {
+		return $this->_readOnly;
+	}
+
+	/**
+	 * Set the boolean for 'read only' status
+	 * @param boolean
+	 */
+	function setReadOnly($readOnly) {
+		$this->_readOnly =& $readOnly;
 	}
 
 
@@ -96,21 +115,29 @@ class AuthorGridHandler extends GridHandler {
 		// Basic grid configuration
 		$this->setTitle('submission.contributors');
 
-		// Grid actions
-		$router =& $request->getRouter();
-		$actionArgs = $this->getRequestArgs();
-		$this->addAction(
-			new LinkAction(
-				'addAuthor',
-				new AjaxModal(
-					$router->url($request, null, null, 'addAuthor', null, $actionArgs),
+		$monograph =& $this->getMonograph();
+		$userRoles = $this->getAuthorizedContextObject(ASSOC_TYPE_USER_ROLES);
+
+		if ($monograph->getDateSubmitted() == null || array_intersect(array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR), $userRoles)) {
+			$this->setReadOnly(false);
+			// Grid actions
+			$router =& $request->getRouter();
+			$actionArgs = $this->getRequestArgs();
+			$this->addAction(
+				new LinkAction(
+					'addAuthor',
+					new AjaxModal(
+						$router->url($request, null, null, 'addAuthor', null, $actionArgs),
+						__('listbuilder.contributors.addContributor'),
+						'addUser'
+					),
 					__('listbuilder.contributors.addContributor'),
-					'addUser'
-				),
-				__('listbuilder.contributors.addContributor'),
-				'add_user'
-			)
-		);
+					'add_user'
+				)
+			);
+		} else {
+			$this->setReadOnly(true);
+		}
 
 		// Columns
 		$cellProvider = new AuthorGridCellProvider();
@@ -163,7 +190,7 @@ class AuthorGridHandler extends GridHandler {
 	 */
 	function &getRowInstance() {
 		$monograph =& $this->getMonograph();
-		$row = new AuthorGridRow($monograph);
+		$row = new AuthorGridRow($monograph, $this->getReadOnly());
 		return $row;
 	}
 

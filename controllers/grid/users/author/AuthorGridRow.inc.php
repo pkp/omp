@@ -18,11 +18,15 @@ class AuthorGridRow extends GridRow {
 	/** @var Monograph **/
 	var $_monograph;
 
+	/** @var boolean */
+	var $_reaadOnly;
+
 	/**
 	 * Constructor
 	 */
-	function AuthorGridRow(&$monograph) {
+	function AuthorGridRow(&$monograph, $readOnly = false) {
 		$this->_monograph =& $monograph;
+		$this->_readOnly = $readOnly;
 		parent::GridRow();
 	}
 
@@ -79,8 +83,12 @@ class AuthorGridRow extends GridRow {
 				)
 			);
 
-			// Set a non-default template that supports row actions
-			$this->setTemplate('controllers/grid/gridRowWithActions.tpl');
+			// Set a non-default template that supports row actions if not read only
+			if (!$this->isReadOnly()) {
+				$this->setTemplate('controllers/grid/gridRowWithActions.tpl');
+			} else {
+				$this->setTemplate('controllers/grid/gridRow.tpl');
+			}
 		}
 	}
 
@@ -90,6 +98,14 @@ class AuthorGridRow extends GridRow {
 	 */
 	function &getMonograph() {
 		return $this->_monograph;
+	}
+
+	/**
+	 * Determine if this grid row should be read only.
+	 * @return boolean
+	 */
+	function isReadOnly() {
+		return $this->_readOnly;
 	}
 }
 

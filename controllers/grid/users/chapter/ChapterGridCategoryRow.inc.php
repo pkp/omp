@@ -22,11 +22,18 @@ class ChapterGridCategoryRow extends GridCategoryRow {
 	/** @var Monograph **/
 	var $_monograph;
 
+	/** @var Chapter **/
+	var $_chapter;
+
+	/** @var $_readOnly **/
+	var $_readOnly;
+
 	/**
 	 * Constructor
 	 */
-	function ChapterGridCategoryRow(&$monograph) {
+	function ChapterGridCategoryRow(&$monograph, $readOnly = false) {
 		$this->_monograph =& $monograph;
+		$this->_readOnly = $readOnly;
 		parent::GridCategoryRow();
 	}
 
@@ -48,36 +55,38 @@ class ChapterGridCategoryRow extends GridCategoryRow {
 		$chapterId = $this->getId();
 		if (!empty($chapterId) && is_numeric($chapterId)) {
 			$chapter =& $this->getData();
+			$this->_chapter =& $chapter;
 
-			// Only add row actions if this is an existing row
-			$router =& $request->getRouter();
-			$actionArgs = array(
-				'monographId' => $monograph->getId(),
-				'chapterId' => $chapterId
-			);
+			// Only add row actions if this is an existing row and the grid is not 'read only'
+			if (!$this->isReadOnly()) {
+				$router =& $request->getRouter();
+				$actionArgs = array(
+					'monographId' => $monograph->getId(),
+					'chapterId' => $chapterId
+				);
 
-			$this->addAction(
-				new LinkAction(
-					'deleteChapter',
-					new RemoteActionConfirmationModal(
-						__('common.confirmDelete'),
+				$this->addAction(
+					new LinkAction(
+						'deleteChapter',
+						new RemoteActionConfirmationModal(
+							__('common.confirmDelete'),
+							null,
+							$router->url($request, null, null, 'deleteChapter', null, $actionArgs)
+						),
 						null,
-						$router->url($request, null, null, 'deleteChapter', null, $actionArgs)
+						'delete'
+					)
+				);
+
+				$this->addAction(new LinkAction(
+					'editChapter',
+					new AjaxModal(
+						$router->url($request, null, null, 'editChapter', null, $actionArgs),
+						__('submission.chapter.editChapter')
 					),
-					null,
-					'delete'
-				)
-			);
-
-			$this->addAction(new LinkAction(
-				'editChapter',
-				new AjaxModal(
-					$router->url($request, null, null, 'editChapter', null, $actionArgs),
-					__('submission.chapter.editChapter')
-				),
-				$chapter->getLocalizedTitle()
-			));
-
+					$chapter->getLocalizedTitle()
+				));
+			}
 
 		}
 	}
@@ -88,6 +97,33 @@ class ChapterGridCategoryRow extends GridCategoryRow {
 	 */
 	function &getMonograph() {
 		return $this->_monograph;
+	}
+
+	/**
+	 * Get the chapter for this row
+	 * @return Chapter
+	 */
+	function &getChapter() {
+		return $this->_chapter;
+	}
+
+	/**
+	 * Determine if this grid row should be read only.
+	 * @return boolean
+	 */
+	function isReadOnly() {
+		return $this->_readOnly;
+	}
+
+	/**
+	 * Use a label if the actions in the grid are disabled.
+	 * return string
+	 */
+	function getCategoryLabel() {
+		if ($this->isReadOnly())
+			return $this->getChapter()->getLocalizedTitle();
+		else
+			return '';
 	}
 }
 ?>
