@@ -35,7 +35,7 @@
 
 		{fbvFormSection title="grid.category.path" required=true for="path"}
 			{fbvElement type="text" id="path" value=$path size=$smarty.const.SMALL maxlength="32"}
-			{url|assign:"sampleUrl" router=$smarty.const.ROUTE_PAGE page="catalog"|to_array:"path"}
+			{url|assign:"sampleUrl" router=$smarty.const.ROUTE_PAGE page="catalog" op="category" path="path"}
 			{** FIXME: is this class instruct still the right one? **}
 			<span class="instruct">{translate key="grid.category.urlWillBe" sampleUrl=$sampleUrl}</span>
 		{/fbvFormSection}
