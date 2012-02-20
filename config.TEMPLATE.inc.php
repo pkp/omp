@@ -391,8 +391,16 @@ tar = /bin/tar
 ; you may enter the complete path to the XSLT renderer tool, with any
 ; required arguments. Use %xsl to substitute the location of the XSL
 ; stylesheet file, and %xml for the location of the XML source file; eg:
-; /usr/bin/java -jar ~/java/xalan.jar -HTML -IN %xml -XSL %xsl
+; /usr/bin/java -jar ~/java/xalan.jar -HTML -IN %xml -XSL %xsl %params
+; See xslt_parameter_option below for information on the %params token.
 xslt_command = ""
+
+; For providing XSL parameters to the XSL transformer configured in
+; xslt_command, the following snippet will be repeated once for each parameter
+; to be supplied. %n will be replaced with the parameter name and %v will be
+; replaced by the parameter value. The set of options thus constructed will be
+; inserted into the xslt_command above in place of the %params token.
+xslt_parameter_option = "-PARAM %n %v "
 
 
 ;;;;;;;;;;;;;;;;;;
