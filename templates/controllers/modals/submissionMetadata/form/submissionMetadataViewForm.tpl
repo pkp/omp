@@ -32,6 +32,13 @@
 		{assign var="authorsGridContainer" value="authorsGridContainer-"|uniqid|escape}
 		{url|assign:authorGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.users.author.AuthorGridHandler" op="fetchGrid" monographId=$monographId stageId=$stageId escape=false}
 		{load_url_in_div id=$authorsGridContainer url="$authorGridUrl"}
+		
+		<!--  Chapters -->
+		{if $isEditedVolume}
+			{assign var="chaptersGridContainer" value="chaptersGridContainer-"|uniqid|escape}
+			{url|assign:chaptersGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.users.chapter.ChapterGridHandler" op="fetchGrid" monographId=$monographId}
+			{load_url_in_div id=$chaptersGridContainer url="$chaptersGridUrl"}
+		{/if}
 	{/if}
 
 	{if !$formParams.readOnly}
