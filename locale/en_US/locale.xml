@@ -209,7 +209,8 @@
 	<message key="grid.category.edit">Edit Category</message>
 	<message key="grid.category.name">Name</message>
 	<message key="grid.category.path">Path</message>
-	<message key="grid.category.urlWillBe">The category's URL will be {$sampleUrl}</message>
+	<message key="grid.category.urlWillBe"><![CDATA[The category's URL will be {$sampleUrl}/catalog/category/<em>path</em>]]></message>
+	<message key="grid.series.urlWillBe"><![CDATA[The series URL will be {$sampleUrl}/catalog/series/<em>path</em>]]></message>
 	<message key="grid.category.pathAlphaNumeric">The category path must consist of only letters and numbers.</message>
 	<message key="grid.category.pathExists">The category path already exists. Please enter a unique path.</message>
 	<message key="grid.category.description">Description</message>

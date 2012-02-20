@@ -52,6 +52,9 @@
 
 		{fbvFormSection title="series.path" required=true for="path"}
 			{fbvElement type="text" id="path" value=$path size=$smarty.const.SMALL maxlength="32"}
+			{url|assign:"sampleUrl" router=$smarty.const.ROUTE_PAGE page="catalog"|to_array:"path"}
+			{** FIXME: is this class instruct still the right one? **}
+			<span class="instruct">{translate key="grid.series.urlWillBe" sampleUrl=$sampleUrl}</span>
 		{/fbvFormSection}
 	{/fbvFormArea}
 
