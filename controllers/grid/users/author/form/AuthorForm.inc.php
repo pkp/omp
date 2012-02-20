@@ -32,7 +32,7 @@ class AuthorForm extends Form {
 		// Validation checks for this form
 		$this->addCheck(new FormValidator($this, 'firstName', 'required', 'submission.submit.form.authorRequiredFields'));
 		$this->addCheck(new FormValidator($this, 'lastName', 'required', 'submission.submit.form.authorRequiredFields'));
-		$this->addCheck(new FormValidatorEmail($this, 'email', 'required', 'installer.form.emailRequired'));
+		$this->addCheck(new FormValidatorEmail($this, 'email', 'required', 'form.emailRequired'));
 		$this->addCheck(new FormValidatorUrl($this, 'url', 'optional', 'user.profile.form.urlInvalid'));
 		$this->addCheck(new FormValidator($this, 'userGroupId', 'required', 'submission.submit.form.contributorRoleRequired'));
 		$this->addCheck(new FormValidatorPost($this));
