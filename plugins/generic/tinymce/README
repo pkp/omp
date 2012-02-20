@@ -18,7 +18,7 @@ The plugin requires the TinyMCE editor; the latest version of which (2.2 as of t
 Installation
 ------------
 To install the plugin:
- - as Journal Manager, go into the "System Plugins" page and enable the TinyMCE plugin.
+ - as Press Manager, go into the "System Plugins" page and enable the TinyMCE plugin.
 
 Textareas/forms should now be enabled with the TinyMCE editor.
 

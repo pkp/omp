@@ -528,7 +528,7 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.currentRoles">Current Roles</message>
 	<message key="manager.setup.internalReviewRoles">Internal Review Roles</message>
 	<message key="manager.setup.masthead">Masthead</message>
-	<message key="manager.setup.masthead.description">The Masthead should contain a list of editors, managing directors, and other individuals associated with the press. Information entered here will appear in About the Journal.</message>
+	<message key="manager.setup.masthead.description">The Masthead should contain a list of editors, managing directors, and other individuals associated with the press. Information entered here will appear in About the Press.</message>
 	<message key="manager.setup.files">Files</message>
 	<message key="manager.setup.submissionLibrary">Submission Library</message>
 	<message key="manager.setup.reviewLibrary">Review Library</message>

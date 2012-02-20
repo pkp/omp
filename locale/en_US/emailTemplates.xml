@@ -193,7 +193,7 @@ Thank you,
 
 {$messageToReviewer}
 
-Please log into the journal web site by {$responseDueDate} to indicate whether you will undertake the review or not, as well as to access the submission and to record your review and recommendation.
+Please log into the press web site by {$responseDueDate} to indicate whether you will undertake the review or not, as well as to access the submission and to record your review and recommendation.
 
 The review itself is due {$reviewDueDate}.
 

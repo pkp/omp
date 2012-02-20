@@ -16,7 +16,7 @@ import('lib.pkp.classes.plugins.BlockPlugin');
 
 class BrowseBlockPlugin extends BlockPlugin {
 	/**
-	 * Install default settings on journal creation.
+	 * Install default settings on press creation.
 	 * @return string
 	 */
 	function getContextSpecificPluginSettingsFile() {
