@@ -70,6 +70,9 @@ jQuery.pkp.controllers.tab.settings.paymentMethod =
 	$.pkp.controllers.tab.settings.paymentMethod.PaymentMethodHandler.
 			prototype.getPaymentMethodFormUrl_ = function(paymentPluginName) {
 
+		// Set the hidden input to the new plugin name (used when saving the form)
+		$('#paymentPluginName').val(paymentPluginName);
+
 		// Look for PAYMENT_PLUGIN_NAME token in the URL and replace
 		return this.paymentMethodFormUrlTemplate_.
 				replace('PAYMENT_PLUGIN_NAME', paymentPluginName);

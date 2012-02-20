@@ -16,6 +16,8 @@ import('lib.pkp.classes.form.Form');
 import('controllers.tab.settings.form.PressSettingsForm');
 
 class PaymentMethodForm extends PressSettingsForm {
+	/** @var $paymentPlugins array */
+	var $paymentPlugins;
 
 	/**
 	 * Constructor.
@@ -26,6 +28,37 @@ class PaymentMethodForm extends PressSettingsForm {
 		);
 
 		parent::PressSettingsForm($settings, 'controllers/tab/settings/paymentMethod/form/paymentMethodForm.tpl', $wizardMode);
+		$this->paymentPlugins =& PluginRegistry::loadCategory('paymethod');
+	}
+
+	/**
+	 * @see PressSettingsForm::readInputData
+	 */
+	function readInputData(&$request) {
+		parent::readInputData($request);
+
+		$paymentPluginName = $this->getData('paymentPluginName');
+		if (!isset($this->paymentPlugins[$paymentPluginName])) return false;
+		$plugin =& $this->paymentPlugins[$paymentPluginName];
+
+		$this->readUserVars($plugin->getSettingsFormFieldNames());
+	}
+
+	/**
+	 * @see PressSettingsForm::execute
+	 */
+	function execute(&$request) {
+		$paymentPluginName = $this->getData('paymentPluginName');
+		if (!isset($this->paymentPlugins[$paymentPluginName])) return false;
+		$plugin =& $this->paymentPlugins[$paymentPluginName];
+
+		$press =& $request->getPress();
+
+		foreach ($plugin->getSettingsFormFieldNames() as $settingName) {
+			$plugin->updateSetting($press->getId(), $settingName, $this->getData($settingName));
+		}
+
+		return parent::execute($request);
 	}
 }
 

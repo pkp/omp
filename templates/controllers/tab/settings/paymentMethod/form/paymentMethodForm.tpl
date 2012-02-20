@@ -22,9 +22,12 @@
 			'$.pkp.controllers.form.DropdownFormHandler',
 			{ldelim}
 				getOptionsUrl: '{url|escape:"javascript" router=$smarty.const.ROUTE_COMPONENT op="getPaymentMethods" escape=false}',
+				defaultKey: '{$paymentPluginName|escape:"javascript"}',
 				eventName: 'selectPaymentMethod'
 			{rdelim}
 		);
+		// Attach the AJAX form handler to the actual payment method config form.
+		$('#paymentMethodForm').pkpHandler('$.pkp.controllers.form.AjaxFormHandler');
 	{rdelim});
 </script>
 
@@ -42,6 +45,7 @@
 	</form>
 
 	<form class="pkp_form" id="paymentMethodForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.DistributionSettingsTabHandler" op="saveFormData" tab="paymentMethod"}">
+	<input type="hidden" name="paymentPluginName" id="paymentPluginName" />
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="paymentFormNotification"}
 	{include file="controllers/tab/settings/wizardMode.tpl" wizardMode=$wizardMode}
 

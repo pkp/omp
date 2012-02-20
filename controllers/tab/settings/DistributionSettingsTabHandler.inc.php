@@ -50,7 +50,6 @@ class DistributionSettingsTabHandler extends ManagerSettingsTabHandler {
 		);
 		$jsonMessage = new JSONMessage(true, $pluginNames);
 		return $jsonMessage->getString();
-		
 	}
 
 	/**
@@ -67,8 +66,15 @@ class DistributionSettingsTabHandler extends ManagerSettingsTabHandler {
 		} else {
 			// Fetch and return the JSON-encoded form contents
 			$plugin =& $plugins[$paymentPluginName];
-			$params = array();
+			$params = array(); // Blank -- OJS compatibility. Need to supply by reference.
 			$templateMgr =& TemplateManager::getManager();
+
+			// Expose current settings to the template
+			$press =& $request->getPress();
+			foreach ($plugin->getSettingsFormFieldNames() as $fieldName) {
+				$templateMgr->assign($fieldName, $plugin->getSetting($press->getId(), $fieldName));
+			}
+
 			$jsonMessage = new JSONMessage(true, $plugin->displayPaymentSettingsForm($params, $templateMgr));
 		}
 		return $jsonMessage->getString();
