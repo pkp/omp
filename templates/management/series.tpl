@@ -11,6 +11,8 @@
 {include file="common/header.tpl"}
 {/strip}
 
+<p>{translate key="manager.setup.series.description"}</p>
+
 {url|assign:seriesUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.series.SeriesGridHandler" op="fetchGrid"}
 {load_url_in_div id="seriesContainer" url=$seriesUrl}
 

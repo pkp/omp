@@ -11,6 +11,8 @@
 {include file="common/header.tpl"}
 {/strip}
 
+<p>{translate key="manager.setup.categories.description"}</p>
+
 {url|assign:categoriesUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.category.CategoryCategoryGridHandler" op="fetchGrid"}
 {load_url_in_div id="categoriesContainer" url=$categoriesUrl}
 

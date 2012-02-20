@@ -98,7 +98,9 @@
 	<message key="submission.submit.whatNext.return">Return to your dashboard</message>
 	<message key="submission.submit.checklistErrors">Please read and check off the items in the submission checklist.  There are {$itemsRemaining} items left unchecked.</message>
 	<message key="submission.submit.placement">Submission Placement</message>
-	<message key="submission.submit.placement.description">A series is a general book collection that may span different categories in the press according to an overall theme. Categories are groupings of books according to subject matter, for example Economics; Literature; Poetry; and so on. Your manuscript may fall within more than one category; please select all that apply.</message>
+	<message key="submission.submit.placement.seriesDescription">A series represents a special set of books devoted to a theme or topics that someone has proposed, usually a faculty member or two, and then oversees.</message>
+	<message key="submission.submit.placement.seriesPositionDescription">Books in series are usually kept in the reverse order in which they are published, to give a sense of the series developing as well as keeping the current at the front.</message>
+	<message key="submission.submit.placement.categoriesDescription">Categories are groupings of books according to subject matter, for example Economics; Literature; Poetry; and so on. Your manuscript may fall within more than one category; please select all that apply.</message>
 	<message key="submission.submit.submissionFiles">Submission Files</message>
 	<message key="submission.submit.fileInformation">File Information</message>
 	<message key="submission.submit.fileNameRequired">You must enter a file name for this file</message>
