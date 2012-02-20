@@ -139,10 +139,10 @@ class CatalogEntryHandler extends Handler {
 		$router =& $request->getRouter();
 		$dispatcher =& $router->getDispatcher();
 
-		$tabsUrl = $dispatcher->url($request, ROUTE_COMPONENT, null, 'modals.submissionMetadata.CatalogEntryHandler', 'fetchFormatInfo', null, array('monographId' => $publishedMonograph->getId(), 'stageId' => $this->getStageId()));
+		$tabsUrl = $dispatcher->url($request, ROUTE_COMPONENT, null, 'modals.submissionMetadata.CatalogEntryHandler', 'fetchFormatInfo', null, array('monographId' => $monograph->getId(), 'stageId' => $this->getStageId()));
 		$templateMgr->assign('tabsUrl', $tabsUrl);
 
-		$tabContentUrl = $dispatcher->url($request, ROUTE_COMPONENT, null, 'tab.catalogEntry.CatalogEntryTabHandler', 'publicationMetadata', null, array('monographId' => $publishedMonograph->getId(), 'stageId' => $this->getStageId()));
+		$tabContentUrl = $dispatcher->url($request, ROUTE_COMPONENT, null, 'tab.catalogEntry.CatalogEntryTabHandler', 'publicationMetadata', null, array('monographId' => $monograph->getId(), 'stageId' => $this->getStageId()));
 		$templateMgr->assign('tabContentUrl', $tabContentUrl);
 
 		$this->setupTemplate();
