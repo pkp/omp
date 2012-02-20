@@ -24,6 +24,8 @@ define('REVIEW_ROUND_STATUS_ACCEPTED', 4);
 define('REVIEW_ROUND_STATUS_DECLINED', 5);
 define('REVIEW_ROUND_STATUS_PENDING_REVIEWERS', 6);
 define('REVIEW_ROUND_STATUS_PENDING_REVIEWS', 7);
+define('REVIEW_ROUND_STATUS_REVIEWS_READY', 8);
+define('REVIEW_ROUND_STATUS_REVIEWS_COMPLETED', 9);
 
 class ReviewRound extends DataObject {
 	/**
@@ -109,28 +111,24 @@ class ReviewRound extends DataObject {
 		switch ($this->getStatus()) {
 			case REVIEW_ROUND_STATUS_REVISIONS_REQUESTED:
 				return 'editor.monograph.roundStatus.revisionsRequested';
-				break;
 			case REVIEW_ROUND_STATUS_RESUBMITTED:
 				return 'editor.monograph.roundStatus.resubmitted';
-				break;
 			case REVIEW_ROUND_STATUS_SENT_TO_EXTERNAL:
 				return 'editor.monograph.roundStatus.sentToExternal';
-				break;
 			case REVIEW_ROUND_STATUS_ACCEPTED:
 				return 'editor.monograph.roundStatus.accepted';
-				break;
 			case REVIEW_ROUND_STATUS_DECLINED:
 				return 'editor.monograph.roundStatus.declined';
-				break;
 			case REVIEW_ROUND_STATUS_PENDING_REVIEWERS:
 				return 'editor.monograph.roundStatus.pendingReviewers';
-				break;
 			case REVIEW_ROUND_STATUS_PENDING_REVIEWS:
 				return 'editor.monograph.roundStatus.pendingReviews';
-				break;
+			case REVIEW_ROUND_STATUS_REVIEWS_READY:
+				return 'editor.monograph.roundStatus.reviewsReady';
+			case REVIEW_ROUND_STATUS_REVIEWS_COMPLETED:
+				return 'editor.monograph.roundStatus.reviewsCompleted';
 			default: return null;
 		}
-
 	}
 }
 

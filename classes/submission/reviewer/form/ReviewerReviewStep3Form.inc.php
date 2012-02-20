@@ -183,8 +183,12 @@ class ReviewerReviewStep3Form extends ReviewerReviewForm {
 		$reviewAssignment->stampModified();
 
 		// Persist the updated review assignment.
-		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO'); /* @var $reviewAssignmentDao ReviewAssignmentDAO */
 		$reviewAssignmentDao->updateObject($reviewAssignment);
+
+		// Update the review round status.
+		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO'); /* @var $reviewRoundDao ReviewRoundDAO */
+		$reviewRoundDao->updateStatus($reviewAssignment->getReviewRoundId());
 
 		// Remove the task
 		$notificationDao =& DAORegistry::getDAO('NotificationDAO');

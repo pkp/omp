@@ -49,14 +49,16 @@ class ViewsDAO extends DAO {
 	 * @param $userId integer
 	 * @return string|boolean Datetime of last view. False if no view found.
 	 */
-	function getLastViewDate($assocType, $assocId, $userId) {
+	function getLastViewDate($assocType, $assocId, $userId = null) {
+		$params = array((int)$assocType, $assocId);
+		if ($userId) $params[] = (int)$userId;
 		$result = $this->retrieve(
 			'SELECT	date_last_viewed
 			FROM	views
 			WHERE	assoc_type = ?
-				AND	assoc_id = ?
-				AND	user_id = ?',
-			array((int)$assocType, $assocId, (int)$userId)
+				AND	assoc_id = ?' .
+				($userId ? ' AND	user_id = ?' : ''),
+			$params
 		);
 		return (isset($result->fields[0])) ? $result->fields[0] : false;
 	}

@@ -171,8 +171,7 @@ class EditorDecisionWithEmailForm extends EditorDecisionForm {
 		// accepted without starting any of the review stages. In that case we
 		// do nothing.
 		if (is_a($reviewRound, 'ReviewRound')) {
-			$reviewRound->setStatus($status);
-			$reviewRoundDao->updateObject($reviewRound);
+			$reviewRoundDao->updateStatus($reviewRound->getId(), $status);
 		}
 	}
 

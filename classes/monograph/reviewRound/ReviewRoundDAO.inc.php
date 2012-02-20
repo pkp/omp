@@ -259,6 +259,51 @@ class ReviewRoundDAO extends DAO {
 		return $this->getInsertId('review_rounds', 'user_id');
 	}
 
+	/**
+	 * Update the review round status. If none status is passed, then
+	 * it will try to find the best status regarding the current state
+	 * of the review assignments.
+	 * @param $reviewRoundId int
+	 * @param $status int
+	 * @param $monographId int
+	 */
+	function updateStatus($reviewRoundId, $status = null) {
+		assert($reviewRoundId);
+
+		if (is_null($status)) {
+			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+			$reviewAssignments = $reviewAssignmentDao->getByReviewRoundId($reviewRoundId, true);
+			$viewsDao =& DAORegistry::getDAO('ViewsDAO'); /* @var $viewsDao ViewsDAO */
+			$anyUnreadReview = false;
+			$anyIncompletedReview = false;
+			foreach ($reviewAssignments as $reviewAssignment) { /* @var $reviewAssignment ReviewAssignment */
+				// Check for an incomplete review.
+				if (!$reviewAssignment->getDateCompleted()) {
+					$anyIncompletedReview = true;
+					break;
+				}
+
+				// Check for an unread review.
+				if (!$viewsDao->getLastViewDate(ASSOC_TYPE_REVIEW_RESPONSE, $reviewAssignment->getId())) {
+					$anyUnreadReview = true;
+					break;
+				}
+			}
+
+			// Find the best review round status.
+			if ($anyIncompletedReview) {
+				$status = REVIEW_ROUND_STATUS_PENDING_REVIEWS;
+			} else if ($anyUnreadReview) {
+				$status = REVIEW_ROUND_STATUS_REVIEWS_READY;
+			} else {
+				$status = REVIEW_ROUND_STATUS_REVIEWS_COMPLETED;
+			}
+		}
+
+		$params = array((int)$status, (int)$reviewRoundId);
+		$this->update('UPDATE review_rounds SET status = ? WHERE review_round_id = ?', $params);
+	}
+
 
 	//
 	// Private methods

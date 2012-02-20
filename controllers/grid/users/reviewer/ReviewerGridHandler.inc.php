@@ -425,12 +425,17 @@ class ReviewerGridHandler extends GridHandler {
 	 */
 	function reviewRead($args, &$request) {
 		// Retrieve review assignment.
-		$reviewAssignment =& $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ASSIGNMENT);
+		$reviewAssignment =& $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ASSIGNMENT); /* @var $reviewAssignment ReviewAssignment */
 
 		// Mark the latest read date of the review by the editor.
 		$user =& $request->getUser();
 		$viewsDao =& DAORegistry::getDAO('ViewsDAO');
 		$viewsDao->recordView(ASSOC_TYPE_REVIEW_RESPONSE, $reviewAssignment->getId(), $user->getId());
+
+		// Update the review round status.
+		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
+		$reviewRoundDao->updateStatus($reviewAssignment->getReviewRoundId());
+
 		return DAO::getDataChangedEvent($reviewAssignment->getId());
 	}
 

@@ -267,7 +267,7 @@ class ReviewerForm extends Form {
 		$seriesEditorAction = new SeriesEditorAction();
 		$seriesEditorAction->addReviewer($request, $submission, $reviewerId, $currentReviewRound, $reviewDueDate, $responseDueDate, $reviewMethod);
 
-		// Get the reviewAssignment object now that it has been added
+		// Get the reviewAssignment object now that it has been added.
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO'); /* @var $reviewAssignmentDao ReviewAssignmentDAO */
 		$reviewAssignment =& $reviewAssignmentDao->getReviewAssignment($currentReviewRound->getId(), $reviewerId);
 		$reviewAssignment->setDateNotified(Core::getCurrentDate());
@@ -275,14 +275,7 @@ class ReviewerForm extends Form {
 		$reviewAssignment->stampModified();
 		$reviewAssignmentDao->updateObject($reviewAssignment);
 
-		// Update the review round status if this is the first reviewer added
-		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
-		if ($currentReviewRound->getStatus() == REVIEW_ROUND_STATUS_PENDING_REVIEWERS) {
-			$currentReviewRound->setStatus(REVIEW_ROUND_STATUS_PENDING_REVIEWS);
-			$reviewRoundDao->updateObject($currentReviewRound);
-		}
-
-		// Notify the reviewer via email
+		// Notify the reviewer via email.
 		import('classes.mail.MonographMailTemplate');
 		$mail = new MonographMailTemplate($submission, 'REVIEW_REQUEST', null, null, null, false);
 

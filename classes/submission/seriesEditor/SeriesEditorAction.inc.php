@@ -218,6 +218,10 @@ class SeriesEditorAction extends Action {
 			$notificationMgr = new NotificationManager();
 			$notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.addedReviewer')));
 
+			// Update the review round status.
+			$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
+			$reviewRoundDao->updateStatus($reviewRound->getId());
+
 			// Add log
 			import('classes.log.MonographLog');
 			import('classes.log.MonographEventLogEntry');
@@ -263,6 +267,16 @@ class SeriesEditorAction extends Action {
 			$currentUser =& $request->getUser();
 			$notificationMgr = new NotificationManager();
 			$notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.removedReviewer')));
+
+			// Update the review round status, if needed.
+			$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
+			$reviewRound =& $reviewRoundDao->getReviewRoundById($reviewAssignment->getReviewRoundId());
+			if ($reviewRound->getStatus() == REVIEW_ROUND_STATUS_PENDING_REVIEWS ||
+				$reviewRound->getStatus() == REVIEW_ROUND_STATUS_REVIEWS_READY) {
+				// We want to change the current review status, after deleting a reviewer,
+				// only if there was pending reviews or unread reviews.
+				$reviewRoundDao->updateStatus($reviewAssignment->getReviewRoundId());
+			}
 
 			// Add log
 			import('classes.log.MonographLog');

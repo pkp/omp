@@ -58,8 +58,10 @@
 	<message key="editor.monograph.roundStatus.sentToExternal">Sent to external review.</message>
 	<message key="editor.monograph.roundStatus.accepted">Submission accepted.</message>
 	<message key="editor.monograph.roundStatus.declined">Submission declined.</message>
-	<message key="editor.monograph.roundStatus.pendingReviewers">Awaiting reviewers. You can add reviewers to this submission below.</message>
+	<message key="editor.monograph.roundStatus.pendingReviewers">Awaiting reviewers.</message>
 	<message key="editor.monograph.roundStatus.pendingReviews">Awaiting responses from reviewers.</message>
+	<message key="editor.monograph.roundStatus.reviewsReady">New reviews ready.</message>
+	<message key="editor.monograph.roundStatus.reviewsCompleted">Reviews completed.</message>
 	<message key="editor.monograph.createNewRound">Create New Review Round</message>
 	<message key="editor.monograph.initiateReview">Initiate Review</message>
 	<message key="editor.monograph.initiateReviewDescription">You are about to initiate a review for this submission.  Files that are part of the submission are listed below and can be selected for review.</message>
