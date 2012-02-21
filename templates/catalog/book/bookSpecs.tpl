@@ -24,8 +24,10 @@
 
 		{assign var=assignedPublicationFormats value=$publishedMonograph->getAssignedPublicationFormats()}
 		{foreach from=$assignedPublicationFormats item=assignedPublicationFormat}
+			{if $assignedPublicationFormat->getIsAvailable()}
 			<h3><a href="#">{$assignedPublicationFormat->getLocalizedTitle()|escape}</a></h3>
 			<div class="assignedPublicationFormat">
+				<div id="bookDimensionSpecs">
 				{assign var=notFirst value=0}
 				{if $assignedPublicationFormat->getWidth()}
 					{$assignedPublicationFormat->getWidth()|escape} {$assignedPublicationFormat->getWidthUnitCode()|escape}
@@ -41,7 +43,20 @@
 					{$assignedPublicationFormat->getThickness()|escape} {$assignedPublicationFormat->getThicknessUnitCode()|escape}
 					{assign var=notFirst value=1}
 				{/if}
+				</div>
+				{assign var=identificationCodes value=$assignedPublicationFormat->getIdentificationCodes()}
+				{assign var=identificationCodes value=$identificationCodes->toArray()}
+				{if $identificationCodes}
+					<div id="bookIdentificationSpecs">
+					{foreach from=$identificationCodes item=identificationCode}
+						<div id="bookIdentificationSpecs-{$identificationCode->getCode()|escape}">
+							{$identificationCode->getNameForONIXCode()|escape}: {$identificationCode->getValue()|escape}
+						</div>
+					{/foreach}{* identification codes *}
+					</div>
+				{/if}{* $identificationCodes *}
 			</div>
+			{/if}{* $assignedPublicationFormat->getIsAvailable() *}
 		{/foreach}{* $assignedPublicationFormats *}
 
 		{if !$categories->wasEmpty()}
@@ -49,8 +64,8 @@
 			<ul class="relatedCategories">
 				{iterate from=categories item=category}
 					<li><a href="{url op="category" path=$category->getPath()}">{$category->getLocalizedTitle()|strip_unsafe_html}</a></li>
-				{/iterate}
+				{/iterate}{* categories *}
 			</ul>
-		{/if}
+		{/if}{* !$categories->wasEmpty() *}
 	</div>
 </div>

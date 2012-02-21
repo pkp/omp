@@ -26,15 +26,15 @@ class IdentificationCode extends DataObject {
 	 * @return int
 	 */
 	function getAssignedPublicationFormatId() {
-		return $this->getData('assignedPublicationformatId');
+		return $this->getData('assignedPublicationFormatId');
 	}
 
 	/**
 	 * set assigned publication format id
 	 * @param $pressId int
 	 */
-	function setAssignedPublicationformatId($assignedPublicationformatId) {
-		return $this->setData('assignedPublicationformatId', $assignedPublicationformatId);
+	function setAssignedPublicationFormatId($assignedPublicationFormatId) {
+		return $this->setData('assignedPublicationFormatId', $assignedPublicationFormatId);
 	}
 
 	/**
