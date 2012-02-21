@@ -117,7 +117,7 @@ class PublicationFormat extends DataObject {
 	 */
 	function getNameForONIXCode() {
 		$onixCodelistItemDao =& DAORegistry::getDAO('ONIXCodelistItemDAO');
-		$codes =& $onixCodelistItemDao->getCodes('List150'); // List150 is for object formats
+		$codes =& $onixCodelistItemDao->getCodes('List7'); // List7 is for object formats
 		return $codes[$this->getEntryKey()];
 	}
 }
