@@ -617,7 +617,8 @@ class NotificationManager extends PKPNotificationManager {
 				$notificationType = NOTIFICATION_TYPE_PENDING_EXTERNAL_REVISIONS;
 				break;
 			default:
-				assert(false);
+				// Do nothing.
+				return;
 		}
 
 		switch ($decision) {
@@ -663,7 +664,8 @@ class NotificationManager extends PKPNotificationManager {
 				$notificationType = NOTIFICATION_TYPE_PENDING_EXTERNAL_REVISIONS;
 				break;
 			default:
-				assert(false);
+				// Do nothing.
+				return;
 		}
 
 		$notificationDao = DAORegistry::getDAO('NotificationDAO'); /* @var $notificationDao NotificationDAO */
