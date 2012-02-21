@@ -31,6 +31,7 @@
 				isFeatured: {$isFeatured},
 				seq: {$featureSequence},
 				datePublished: new Date('{$monograph->getDatePublished()|date_format:$datetimeFormatShort|escape:"javascript"}'),
+				workflowUrl: '{url|escape:"javascript" router=$smarty.const.ROUTE_PAGE page="workflow" op="access" path=$monographId}',
 				{* Parameters for parent LinkActionHandler *}
 				actionRequest: '$.pkp.classes.linkAction.ModalRequest',
 				actionRequestOptions: {ldelim}
@@ -43,12 +44,18 @@
 	{rdelim});
 </script>
 
-<li class="pkp_manageCatalog_monograph monograph_id_{$monographId|escape}{if !$isFeatured} not_sortable{/if}">
-	<div class="pkp_manageCatalog_monograph_image" id="{$monographContainerId|escape}">
+<li class="pkp_manageCatalog_monograph monograph_id_{$monographId|escape}{if !$isFeatured} not_sortable{/if}" id="{$monographContainerId|escape}">
+	<div class="pkp_manageCatalog_monograph_image">
 		<img src="{url router=$smarty.const.ROUTE_COMPONENT component="submission.CoverHandler" op="thumbnail" monographId=$monograph->getId()}" alt="{$monograph->getLocalizedTitle()|escape}" />
 	</div>
+	<div class="pkp_manageCatalog_monograph_actions pkp_linkActions">
+		{fbvFormSection list="true"}
+			<li>{null_link_action key="submission.catalogEntry" id="catalogEntry-"|concat:$monographId image="information"}</li>
+			<li>{null_link_action key="submission.submission" id="workflow-"|concat:$monographId image="information"}</li>
+		{/fbvFormSection}
+	</div>
 	<div class="pkp_manageCatalog_monograph_title">
-		<a href="{url page="workflow" op="access" path=$monograph->getId() escape=false}">{$monograph->getLocalizedTitle()|escape}</a>
+		{$monograph->getLocalizedTitle()|escape}
 	</div>
 	<div class="pkp_manageCatalog_monograph_authorship">
 		{$monograph->getAuthorString()|escape}

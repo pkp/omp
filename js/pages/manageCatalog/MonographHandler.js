@@ -32,10 +32,14 @@
 		this.setFeaturedUrlTemplate_ = options.setFeaturedUrlTemplate;
 		this.isFeatured_ = options.isFeatured;
 		this.datePublished_ = options.datePublished;
+		this.workflowUrl_ = options.workflowUrl;
 
 		// Attach the view type handlers, if links exist.
 		$monographsContainer.find('.star, .star_highlighted').click(
 				this.callbackWrapper(this.featureButtonHandler_));
+
+		$monographsContainer.find('[id^="-workflow-"]').click(
+				this.callbackWrapper(this.workflowButtonHandler_));
 
 		// Expose list events to the container
 		this.publishEvent('monographListChanged');
@@ -85,6 +89,14 @@
 	 * @type {boolean?}
 	 */
 	$.pkp.pages.manageCatalog.MonographHandler.prototype.isFeatured_ = null;
+
+
+	/**
+	 * The URL to the workflow of this monograph.
+	 * @private
+	 * @type {string?}
+	 */
+	$.pkp.pages.manageCatalog.MonographHandler.prototype.workflowUrl_ = null;
 
 
 	/**
@@ -178,6 +190,24 @@
 		$.get(this.getSetFeaturedUrl_(),
 				this.callbackWrapper(this.handleSetFeaturedResponse_), 'json');
 
+		// Stop further event processing
+		return false;
+	};
+
+
+	/**
+	 * Callback that will be activated when the submission workflow action is clicked
+	 *
+	 * @private
+	 *
+	 * @return {boolean} Always returns false.
+	 */
+	$.pkp.pages.manageCatalog.MonographHandler.prototype.workflowButtonHandler_ =
+			function() {
+
+		if (this.workflowUrl_) {
+			document.location = this.workflowUrl_;
+		}
 		// Stop further event processing
 		return false;
 	};
