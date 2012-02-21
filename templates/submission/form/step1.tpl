@@ -54,25 +54,7 @@
 		{/fbvFormSection}
 	{/if}{* count($supportedSubmissionLocaleNames) == 1 *}
 
-	<!-- Submission Placement -->
-	{if count($seriesOptions) > 1} {* only display the series picker if there are series configured for this press *}
-		{fbvFormSection label="submission.submit.placement" description="submission.submit.placement.seriesDescription" size=$fbvStyles.size.MEDIUM}
-			{fbvElement type="select" id="seriesId" from=$seriesOptions selected=$seriesId translate=false}
-		{/fbvFormSection}
-	
-		{fbvFormSection label="submission.submit.seriesPosition" description="submission.submit.placement.seriesPositionDescription" size=$fbvStyles.size.MEDIUM}
-			{fbvElement type="text" id="seriesPosition" name="seriesPosition" value=$seriesPosition|escape maxlength="255"}
-		{/fbvFormSection}
-	{/if}
-
-	{if $categoriesExist}
-		{fbvFormSection size=$fbvStyles.size.MEDIUM description="submission.submit.placement.categoriesDescription"}
-			<div id="monographCategoriesContainer">
-				{url|assign:monographCategoriesUrl router=$smarty.const.ROUTE_COMPONENT component="submission.CategoriesListbuilderHandler" op="fetch" monographId=$monographId}
-				{load_url_in_div id="monographCategoriesContainer" url=$monographCategoriesUrl}
-			</div>
-		{/fbvFormSection}
-	{/if}
+	{include file="submission/form/seriesAndCategories.tpl"}
 
 	<!-- Submission checklist -->
 	{if $currentPress->getLocalizedSetting('submissionChecklist')}

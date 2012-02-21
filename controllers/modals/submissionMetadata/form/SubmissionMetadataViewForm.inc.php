@@ -127,6 +127,22 @@ class SubmissionMetadataViewForm extends Form {
 		$templateMgr->assign('isEditedVolume', $monograph->getWorkType() == WORK_TYPE_EDITED_VOLUME);
 		$templateMgr->assign('isPublished', $monograph->getDatePublished() != null ? true : false);
 
+		// Get series for this press
+		$seriesDao =& DAORegistry::getDAO('SeriesDAO');
+		$seriesOptions = array('0' => __('submission.submit.selectSeries')) + $seriesDao->getTitlesByPressId($monograph->getPressId());
+		$templateMgr->assign('seriesOptions', $seriesOptions);
+		$templateMgr->assign('seriesId', $monograph->getSeriesId());
+		$templateMgr->assign('seriesPosition', $monograph->getSeriesPosition());
+
+		// If categories are configured for the press, present the LB.
+		$categoryDao =& DAORegistry::getDAO('CategoryDAO');
+		$templateMgr->assign('categoriesExist', $categoryDao->getCountByPressId($monograph->getPressId()) > 0);
+
+		// also include the categories (for read only form views)
+		$monographDao =& DAORegistry::getDAO('MonographDAO');
+		$assignedCategories =& $monographDao->getCategories($monograph->getId(), $monograph->getPressId());
+		$templateMgr->assign('assignedCategories', $assignedCategories->toArray());
+
 		return parent::fetch($request);
 	}
 
@@ -135,6 +151,8 @@ class SubmissionMetadataViewForm extends Form {
 	 */
 	function readInputData() {
 		$this->_metadataFormImplem->readInputData();
+		$this->readUserVars(array('categories', 'seriesId', 'seriesPosition'));
+		ListbuilderHandler::unpack($request, $this->getData('categories'));
 	}
 
 	/**
@@ -142,8 +160,54 @@ class SubmissionMetadataViewForm extends Form {
 	 */
 	function execute() {
 
+		$monograph =& $this->getMonograph();
+		$monographDao =& DAORegistry::getDAO('MonographDAO');
+
 		// Execute monograph metadata related operations.
-		$this->_metadataFormImplem->execute($this->getMonograph());
+		$this->_metadataFormImplem->execute($monograph);
+		$monograph->setSeriesId($this->getData('seriesId'));
+		$monograph->setSeriesPosition($this->getData('seriesPosition'));
+		$monographDao->updateMonograph($monograph);
+
+		// Save the category IDs.
+		$categoryIds = $this->getData('categoryIds');
+		$categoryDao =& DAORegistry::getDAO('CategoryDAO');
+
+		$monographDao->removeCategories($monograph->getId());
+		foreach ((array) $categoryIds as $categoryId) {
+			// Fetch and validate category
+			$category =& $categoryDao->getById(
+					$categoryId, $monograph->getPressId()
+			);
+			if (!$category) continue;
+
+			// Associate the category with the monograph
+			$monographDao->addCategory(
+					$monograph->getId(),
+					$categoryId
+			);
+			unset($category);
+		}
+	}
+
+	/**
+	 * Associate a category with a monograph.
+	 * @see ListbuilderHandler::insertEntry
+	 */
+	function insertEntry(&$request, $newRowId) {
+		$this->_data['categoryIds'][] = $newRowId['name'];
+		return true;
+	}
+
+	/**
+	 * Delete a category association.
+	 */
+	function deleteEntry(&$request, $rowId) {
+		if (is_array($this->_data) && array_key_exists('categoryIds', $this->_data)) {
+			$i = array_search($rowId, $this->_data['categoryIds']);
+			if ($i !== false) unset($this->_data['categoryIds'][$i]);
+		}
+		return true;
 	}
 }
 
