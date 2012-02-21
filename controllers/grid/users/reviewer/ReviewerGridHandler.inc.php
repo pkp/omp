@@ -434,7 +434,10 @@ class ReviewerGridHandler extends GridHandler {
 
 		// Update the review round status.
 		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
-		$reviewRoundDao->updateStatus($reviewAssignment->getReviewRoundId());
+		$reviewRound =& $reviewRoundDao->getReviewRoundById($reviewAssignment->getReviewRoundId());
+		$seriesEditorSubmission =& $this->getMonograph();
+		$reviewAssignments = $seriesEditorSubmission->getReviewAssignments($reviewRound->getStageId(), $reviewRound->getRound());
+		$reviewRoundDao->updateStatus($reviewRound, $reviewAssignments);
 
 		return DAO::getDataChangedEvent($reviewAssignment->getId());
 	}

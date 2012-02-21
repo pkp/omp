@@ -575,7 +575,8 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="notification.type.roundStatusTitle">Round {$round} Status</message>
 	<message key="notification.type.pendingRevisions">You have pending revisions at {$stage}</message>
 	<message key="notification.type.pendingRevisions.title">Pending revisions at {$stage}</message>
-
+	<message key="notification.type.allReviewsIn">All reviews in. A decision is needed in {$stage}.</message>
+	
 	<!--
 	 *
 	 * MISC - Entries that do not belong in the other sections.

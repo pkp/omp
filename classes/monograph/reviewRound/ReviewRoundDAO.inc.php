@@ -260,23 +260,31 @@ class ReviewRoundDAO extends DAO {
 	}
 
 	/**
-	 * Update the review round status. If none status is passed, then
-	 * it will try to find the best status regarding the current state
-	 * of the review assignments.
-	 * @param $reviewRoundId int
+	 * Update the review round status. If review assignments is passed and
+	 * no status, then this method will find the correct review round status
+	 * based on the review round assignments state.
+	 * @param $reviewRound ReviewRound
+	 * @param $reviewAssignments array Review round review assignments.
 	 * @param $status int
-	 * @param $monographId int
 	 */
-	function updateStatus($reviewRoundId, $status = null) {
-		assert($reviewRoundId);
+	function updateStatus(&$reviewRound, $reviewAssignments = array(), $status = null) {
+		assert(is_a($reviewRound, 'ReviewRound'));
+		$currentStatus = $reviewRound->getStatus();
 
 		if (is_null($status)) {
-			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
-			$reviewAssignments = $reviewAssignmentDao->getByReviewRoundId($reviewRoundId, true);
+			assert(is_array($reviewAssignments));
+
 			$viewsDao =& DAORegistry::getDAO('ViewsDAO'); /* @var $viewsDao ViewsDAO */
 			$anyUnreadReview = false;
 			$anyIncompletedReview = false;
+
 			foreach ($reviewAssignments as $reviewAssignment) { /* @var $reviewAssignment ReviewAssignment */
+				// Skip cancelled and declined reviews.
+				if ($reviewAssignment->getCancelled() ||
+				$reviewAssignment->getDeclined()) {
+					continue;
+				}
+
 				// Check for an incomplete review.
 				if (!$reviewAssignment->getDateCompleted()) {
 					$anyIncompletedReview = true;
@@ -290,18 +298,52 @@ class ReviewRoundDAO extends DAO {
 				}
 			}
 
-			// Find the best review round status.
-			if ($anyIncompletedReview) {
+			// Find the correct review round status based on the state of
+			// the current review assignments.
+			if (empty($reviewAssignments)) {
+				$status = REVIEW_ROUND_STATUS_PENDING_REVIEWERS;
+			} else if ($anyIncompletedReview) {
 				$status = REVIEW_ROUND_STATUS_PENDING_REVIEWS;
 			} else if ($anyUnreadReview) {
 				$status = REVIEW_ROUND_STATUS_REVIEWS_READY;
 			} else {
 				$status = REVIEW_ROUND_STATUS_REVIEWS_COMPLETED;
 			}
+
+			// Check for special cases where we don't want to update the status.
+			if (in_array($status, array(REVIEW_ROUND_STATUS_REVIEWS_COMPLETED,
+			REVIEW_ROUND_STATUS_REVIEWS_READY))) {
+				if (in_array($reviewRound->getStatus(), $this->getEditorDecisionRoundStatus())) {
+					// We will skip changing the current review round status to
+					// "reviews completed" or "reviews ready" if the current round
+					// status is related with an editor decision.
+					return;
+				}
+			}
 		}
 
-		$params = array((int)$status, (int)$reviewRoundId);
-		$this->update('UPDATE review_rounds SET status = ? WHERE review_round_id = ?', $params);
+		// Avoid unnecessary database access.
+		if ($status != $currentStatus) {
+			$params = array((int)$status, (int)$reviewRound->getId());
+			$this->update('UPDATE review_rounds SET status = ? WHERE review_round_id = ?', $params);
+			// Update the data in object too.
+			$reviewRound->setStatus($status);
+		}
+	}
+
+	/**
+	 * Return review round status that are related
+	 * with editor decisions.
+	 * @return array
+	 */
+	function getEditorDecisionRoundStatus() {
+		return array(
+			REVIEW_ROUND_STATUS_REVISIONS_REQUESTED,
+			REVIEW_ROUND_STATUS_RESUBMITTED,
+			REVIEW_ROUND_STATUS_SENT_TO_EXTERNAL,
+			REVIEW_ROUND_STATUS_ACCEPTED,
+			REVIEW_ROUND_STATUS_DECLINED
+		);
 	}
 
 

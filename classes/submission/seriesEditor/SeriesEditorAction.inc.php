@@ -219,8 +219,12 @@ class SeriesEditorAction extends Action {
 			$notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.addedReviewer')));
 
 			// Update the review round status.
-			$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
-			$reviewRoundDao->updateStatus($reviewRound->getId());
+			$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO'); /* @var $reviewRoundDao ReviewRoundDAO */
+			$reviewAssignments = $seriesEditorSubmission->getReviewAssignments($stageId, $round);
+			$reviewRoundDao->updateStatus($reviewRound, $reviewAssignments);
+
+			// Update "all reviews in" notification.
+			$notificationMgr->updateAllReviewsInNotification($request, $reviewRound);
 
 			// Add log
 			import('classes.log.MonographLog');
@@ -248,9 +252,6 @@ class SeriesEditorAction extends Action {
 			$seriesEditorSubmission->removeReviewAssignment($reviewId);
 			$seriesEditorSubmissionDao->updateSeriesEditorSubmission($seriesEditorSubmission);
 
-			// FIXME: Need to change the state of the current review round back to "pending reviewer" when
-			// the last assignment was removed, see #6401.
-
 			$notificationDao =& DAORegistry::getDAO('NotificationDAO');
 			$notifications =& $notificationDao->getNotificationsByAssoc(
 				ASSOC_TYPE_REVIEW_ASSIGNMENT,
@@ -271,12 +272,11 @@ class SeriesEditorAction extends Action {
 			// Update the review round status, if needed.
 			$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
 			$reviewRound =& $reviewRoundDao->getReviewRoundById($reviewAssignment->getReviewRoundId());
-			if ($reviewRound->getStatus() == REVIEW_ROUND_STATUS_PENDING_REVIEWS ||
-				$reviewRound->getStatus() == REVIEW_ROUND_STATUS_REVIEWS_READY) {
-				// We want to change the current review status, after deleting a reviewer,
-				// only if there was pending reviews or unread reviews.
-				$reviewRoundDao->updateStatus($reviewAssignment->getReviewRoundId());
-			}
+			$reviewAssignments = $seriesEditorSubmission->getReviewAssignments($reviewRound->getStageId(), $reviewRound->getRound());
+			$reviewRoundDao->updateStatus($reviewRound, $reviewAssignments);
+
+			// Update "all reviews in" notification.
+			$notificationMgr->updateAllReviewsInNotification($request, $reviewRound);
 
 			// Add log
 			import('classes.log.MonographLog');

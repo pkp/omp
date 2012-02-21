@@ -83,6 +83,24 @@ class NotificationManager extends PKPNotificationManager {
 				$pressDao =& DAORegistry::getDAO('PressDAO'); /* @var $pressDao PressDAO */
 				$press =& $pressDao->getById($pressId);
 				return $dispatcher->url($request, ROUTE_PAGE, null, $press->getPath(), 'index', array($notification->getAssocId()));
+			case NOTIFICATION_TYPE_ALL_REVIEWS_IN:
+				assert($notification->getAssocType() == ASSOC_TYPE_REVIEW_ROUND && is_numeric($notification->getAssocId()));
+				$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
+				$reviewRound =& $reviewRoundDao->getReviewRoundById($notification->getAssocId());
+				assert(is_a($reviewRound, 'ReviewRound'));
+
+				$monographDao =& DAORegistry::getDAO('MonographDAO');
+				$monograph =& $monographDao->getById($reviewRound->getSubmissionId());
+				import('controllers.grid.submissions.SubmissionsListGridCellProvider');
+				list($page, $operation) = SubmissionsListGridCellProvider::getPageAndOperationByUserRoles($request, $monograph);
+
+				if ($page == 'workflow') {
+					$stageId = $reviewRound->getStageId();
+					$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+					$operation = $userGroupDao->getPathFromId($stageId);
+				}
+
+				return $dispatcher->url($request, ROUTE_PAGE, null, $page, $operation, $monograph->getId());
 		}
 
 		return parent::getNotificationUrl($request, $notification);
@@ -178,6 +196,14 @@ class NotificationManager extends PKPNotificationManager {
 			case NOTIFICATION_TYPE_PENDING_EXTERNAL_REVISIONS:
 				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
 				return $this->_getPendingRevisionMessage($notification);
+			case NOTIFICATION_TYPE_ALL_REVIEWS_IN:
+				assert($notification->getAssocType() == ASSOC_TYPE_REVIEW_ROUND && is_numeric($notification->getAssocId()));
+				$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
+				$reviewRound =& $reviewRoundDao->getReviewRoundById($notification->getAssocId());
+				assert(is_a($reviewRound, 'ReviewRound'));
+				$userGroupDao =& DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */
+				$stagesData = $userGroupDao->getWorkflowStageKeysAndPaths();
+				return __('notification.type.allReviewsIn', array('stage' => __($stagesData[$reviewRound->getStageId()]['translationKey'])));
 		}
 		return parent::getNotificationMessage($request, $notification);
 	}
@@ -276,6 +302,7 @@ class NotificationManager extends PKPNotificationManager {
 			case NOTIFICATION_TYPE_SIGNOFF_PROOF:
 			case NOTIFICATION_TYPE_PENDING_EXTERNAL_REVISIONS:
 			case NOTIFICATION_TYPE_PENDING_INTERNAL_REVISIONS:
+			case NOTIFICATION_TYPE_ALL_REVIEWS_IN:
 				return 'notifyWarning';
 			case NOTIFICATION_TYPE_EDITOR_DECISION_INITIATE_REVIEW:
 			case NOTIFICATION_TYPE_EDITOR_DECISION_ACCEPT:
@@ -678,6 +705,56 @@ class NotificationManager extends PKPNotificationManager {
 		if (!$notificationFactory->wasEmpty()) {
 			$notification =& $notificationFactory->next();
 			$notificationDao->deleteNotificationById($notification->getId());
+		}
+	}
+
+	/**
+	 * Update "all reviews in" notification.
+	 * @param $request Request
+	 * @param $reviewRound ReviewRound
+	 */
+	function updateAllReviewsInNotification(&$request, &$reviewRound) {
+
+		// Get user ids with permission to make decision in review stages.
+		$stageAssignmentDao =& DAORegistry::getDAO('StageAssignmentDAO');
+		$pressManagerAssignmentFactory = $stageAssignmentDao->getBySubmissionAndRoleId($reviewRound->getSubmissionId(), ROLE_ID_PRESS_MANAGER, $reviewRound->getStageId());
+		$seriesEditorAssignmentFactory = $stageAssignmentDao->getBySubmissionAndRoleId($reviewRound->getSubmissionId(), ROLE_ID_SERIES_EDITOR, $reviewRound->getStageId());
+		$stageAssignments = array_merge($pressManagerAssignmentFactory->toArray(), $seriesEditorAssignmentFactory->toArray());
+
+		// Update their notification.
+		$notificationDao =& DAORegistry::getDAO('NotificationDAO'); /* @var $notificationDao NotificationDAO */
+		$press =& $request->getPress();
+		$pressId = $press->getId();
+
+		foreach ($stageAssignments as $stageAssignment) {
+			$userId = $stageAssignment->getUserId();
+
+			// Get any existing notification.
+			$notificationFactory =& $notificationDao->getNotificationsByAssoc(ASSOC_TYPE_REVIEW_ROUND,
+					$reviewRound->getId(), $userId, NOTIFICATION_TYPE_ALL_REVIEWS_IN, $pressId);
+
+			$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
+			$currentStatus = $reviewRound->getStatus();
+			if (in_array($currentStatus, $reviewRoundDao->getEditorDecisionRoundStatus()) ||
+			in_array($currentStatus, array(REVIEW_ROUND_STATUS_PENDING_REVIEWERS, REVIEW_ROUND_STATUS_PENDING_REVIEWS))) {
+				// Editor has taken a decision in round or there are pending
+				// reviews or no reviews. Delete any existing notification.
+				if (!$notificationFactory->wasEmpty()) {
+					$notification =& $notificationFactory->next();
+					$notificationDao->deleteNotificationById($notification->getId());
+					unset($notification);
+				}
+			} else {
+				// There is no currently decision in round. Also there is reviews,
+				// but no pending reviews. Insert notification, if not already present.
+				$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
+				if ($notificationFactory->wasEmpty()) {
+					$this->createNotification($request, $userId, NOTIFICATION_TYPE_ALL_REVIEWS_IN, $pressId,
+						ASSOC_TYPE_REVIEW_ROUND, $reviewRound->getId(), NOTIFICATION_LEVEL_TASK);
+				}
+			}
+
+			unset($notificationFactory);
 		}
 	}
 
