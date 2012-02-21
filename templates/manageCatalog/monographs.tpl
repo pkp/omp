@@ -22,7 +22,7 @@
 <div id="{$monographContainerId|escape}">
 	<div class="pkp_helpers_align_right">
 		<ul class="submission_actions pkp_helpers_flatlist pkp_linkActions">
-			{if $includeOrganizeAction}<li>{null_link_action id="organize-$monographContinerId" key="common.organize" image="organize"}</li>{/if}
+			{if $includeOrganizeAction}<li>{null_link_action id="organize-$monographContainerId" key="common.organize" image="organize"}</li>{/if}
 			<li>{null_link_action key="common.list" id="list-$monographContainerId" image="list_view"}</li>
 			<li>{null_link_action key="common.grid" id="grid-$monographContainerId" image="grid_view"}</li>
 		</ul>
