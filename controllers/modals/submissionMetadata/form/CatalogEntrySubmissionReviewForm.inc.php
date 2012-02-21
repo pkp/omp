@@ -28,7 +28,13 @@ class CatalogEntrySubmissionReviewForm extends SubmissionMetadataViewForm {
 	function CatalogEntrySubmissionReviewForm($monographId, $stageId = null, $formParams = null) {
 		parent::SubmissionMetadataViewForm($monographId, $stageId, $formParams, 'controllers/modals/submissionMetadata/form/catalogEntrySubmissionReviewForm.tpl');
 
-		$this->addCheck(new FormValidator($this, 'confirm', 'required', 'submission.catalogEntry.confirm.required'));
+		$this->addCheck(new FormValidatorCustom(
+				$this, 'confirm', 'required', 'submission.catalogEntry.confirm.required',
+				create_function(
+						'$confirm, $form, $monographDao, $monographId',
+						'return $confirm != \'\' || $monographDao->getById($monographId)->getDatePublished() != null;'
+				), array(&$this, DAORegistry::getDAO('MonographDAO'), $monographId)
+		));
 
 		// submission.catalogEntry.confirm.required on validation
 		AppLocale::requireComponents(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_OMP_SUBMISSION);
