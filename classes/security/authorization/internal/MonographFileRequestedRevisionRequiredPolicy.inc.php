@@ -44,13 +44,13 @@ class MonographFileRequestedRevisionRequiredPolicy extends MonographFileBaseAcce
 		if (!is_a($monograph, 'Monograph')) return AUTHORIZATION_DENY;
 		if ($monograph->getId() != $monographFile->getSubmissionId()) return AUTHORIZATION_DENY;
 
-		// Make sure the file is visible.
+		// Make sure the file is part of a review round
+		// with a requested revision decision.
 		$reviewRound =& $reviewRoundDao->getByMonographFileId($monographFile->getFileId());
 		import('classes.workflow.EditorDecisionActionsManager');
-		if (!EditorDecisionActionsManager::getEditorTakenActionInReviewRound($reviewRound)) {
+		if (!EditorDecisionActionsManager::getEditorTakenActionInReviewRound($reviewRound, array(SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS))) {
 			return AUTHORIZATION_DENY;
 		}
-		if(!$monographFile->getViewable()) return AUTHORIZATION_DENY;
 
 		// Make sure that it's in the review stage.
 		$reviewRound =& $reviewRoundDao->getByMonographFileId($monographFile->getFileId());

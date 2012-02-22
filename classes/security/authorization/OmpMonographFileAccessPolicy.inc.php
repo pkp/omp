@@ -92,7 +92,7 @@ class OmpMonographFileAccessPolicy extends PressPolicy {
 			import('classes.security.authorization.internal.MonographFileUploaderAccessPolicy');
 			$authorFileAccessOptionsPolicy->addPolicy(new MonographFileUploaderAccessPolicy($request, $fileIdAndRevision));
 
-			// 3b) ...or if the file is a viewable file in a review round with requested revision decision, allow...
+			// 3b) ...or if the file is a file in a review round with requested revision decision, allow...
 			import('classes.security.authorization.internal.MonographFileRequestedRevisionRequiredPolicy');
 			$authorFileAccessOptionsPolicy->addPolicy(new MonographFileRequestedRevisionRequiredPolicy($request, $fileIdAndRevision));
 

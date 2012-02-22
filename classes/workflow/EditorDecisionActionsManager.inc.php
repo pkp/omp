@@ -91,12 +91,28 @@ class EditorDecisionActionsManager {
 		return $actionLabels;
 	}
 
-	function getEditorTakenActionInReviewRound($reviewRound) {
-		if($reviewRound->getStatus() == REVIEW_ROUND_STATUS_PENDING_REVIEWERS || $reviewRound->getStatus() == REVIEW_ROUND_STATUS_PENDING_REVIEWS) {
-			return false;
-		} else {
-			return true;
+	/**
+	 * Check for editor decisions in the review round.
+	 * @param $reviewRound ReviewRound
+	 * @param $decisions array
+	 * @return boolean
+	 */
+	function getEditorTakenActionInReviewRound($reviewRound, $decisions = array()) {
+		$seriesEditorSubmissionDao =& DAORegistry::getDAO('SeriesEditorSubmissionDAO');
+		$editorDecisions = $seriesEditorSubmissionDao->getEditorDecisions($reviewRound->getSubmissionId(), $reviewRound->getStageId(), $reviewRound->getRound());
+
+		if (empty($decisions)) {
+			$decisions = array_keys(EditorDecisionActionsManager::_internalReviewStageDecisions());
 		}
+		$takenDecision = false;
+		foreach ($editorDecisions as $decision) {
+			if (in_array($decision['decision'], $decisions)) {
+				$takenDecision = true;
+				break;
+			}
+		}
+
+		return $takenDecision;
 	}
 
 	//
@@ -136,37 +152,13 @@ class EditorDecisionActionsManager {
 	 * @return array
 	 */
 	function _internalReviewStageDecisions() {
-		static $decisions = array(
-		SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS => array(
-					'operation' => 'sendReviewsInReview',
-					'name' => 'requestRevisions',
-					'title' => 'editor.monograph.decision.requestRevisions',
-					'image' => 'revisions'
-		),
-		SUBMISSION_EDITOR_DECISION_RESUBMIT => array(
-					'operation' => 'sendReviewsInReview',
-					'name' => 'resubmit',
-					'title' => 'editor.monograph.decision.resubmit',
-					'image' => 'resubmit'
-		),
-		SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW => array(
+		$decisions = EditorDecisionActionsManager::_externalReviewStageDecisions();
+
+		$decisions[SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW] = array(
 					'operation' => 'promoteInReview',
 					'name' => 'externalReview',
 					'title' => 'editor.monograph.decision.externalReview',
 					'image' => 'advance'
-		),
-		SUBMISSION_EDITOR_DECISION_ACCEPT => array(
-					'operation' => 'promoteInReview',
-					'name' => 'accept',
-					'title' => 'editor.monograph.decision.accept',
-					'image' => 'promote'
-		),
-		SUBMISSION_EDITOR_DECISION_DECLINE => array(
-					'operation' => 'sendReviewsInReview',
-					'name' => 'decline',
-					'title' => 'editor.monograph.decision.decline',
-					'image' => 'decline'
-		)
 		);
 
 		return $decisions;
@@ -181,24 +173,26 @@ class EditorDecisionActionsManager {
 		SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS => array(
 					'operation' => 'sendReviewsInReview',
 					'name' => 'requestRevisions',
-					'title' => 'editor.monograph.decision.requestRevisions'
+					'title' => 'editor.monograph.decision.requestRevisions',
+					'image' => 'revisions'
 		),
 		SUBMISSION_EDITOR_DECISION_RESUBMIT => array(
 					'operation' => 'sendReviewsInReview',
 					'name' => 'resubmit',
-					'title' => 'editor.monograph.decision.resubmit'
+					'title' => 'editor.monograph.decision.resubmit',
+					'image' => 'resubmit'
 		),
 		SUBMISSION_EDITOR_DECISION_ACCEPT => array(
 					'operation' => 'promoteInReview',
 					'name' => 'accept',
 					'title' => 'editor.monograph.decision.accept',
-					'image' => 'approve'
+					'image' => 'promote'
 		),
 		SUBMISSION_EDITOR_DECISION_DECLINE => array(
 					'operation' => 'sendReviewsInReview',
 					'name' => 'decline',
 					'title' => 'editor.monograph.decision.decline',
-					'image' => 'delete'
+					'image' => 'decline'
 		)
 		);
 
