@@ -54,7 +54,7 @@
 			<li>{null_link_action key="submission.submission" id="workflow-"|concat:$monographId image="information"}</li>
 		{/fbvFormSection}
 	</div>
-	<div class="pkp_manageCatalog_monograph_title">
+	<div class="pkp_manageCatalog_monograph_title pkp_helpers_clear">
 		{$monograph->getLocalizedTitle()|escape}
 	</div>
 	<div class="pkp_manageCatalog_monograph_authorship">
