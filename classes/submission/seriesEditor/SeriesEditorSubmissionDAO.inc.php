@@ -706,6 +706,18 @@ class SeriesEditorSubmissionDAO extends MonographDAO {
 
 		return $statistics;
 	}
+
+	/**
+	 * Transfer the decisions for an editor.
+	 * @param $oldUserId int
+	 * @param $newUserId int
+	 */
+	function transferEditorDecisions($oldUserId, $newUserId) {
+		$this->update(
+			'UPDATE edit_decisions SET editor_id = ? WHERE editor_id = ?',
+			array($newUserId, $oldUserId)
+		);
+	}
 }
 
 ?>

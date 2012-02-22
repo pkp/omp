@@ -27,19 +27,18 @@ class MonographCommentDAO extends DAO {
 	 * Retrieve MonographComments by monograph id
 	 * @param $monographId int
 	 * @param $commentType int
-	 * @return MonographComment objects array
+	 * @return DAOResultFactory
 	 */
 	function &getMonographComments($monographId, $commentType = null, $assocId = null) {
-		$monographComments = array();
-
 		if ($commentType == null) {
 			$result =& $this->retrieve(
-				'SELECT a.* FROM monograph_comments a WHERE monograph_id = ? ORDER BY date_posted',	$monographId
+				'SELECT a.* FROM monograph_comments a WHERE monograph_id = ? ORDER BY date_posted', $monographId
 			);
 		} else {
 			if ($assocId == null) {
 				$result =& $this->retrieve(
-					'SELECT a.* FROM monograph_comments a WHERE monograph_id = ? AND comment_type = ? ORDER BY date_posted',	array($monographId, $commentType)
+					'SELECT a.* FROM monograph_comments a WHERE monograph_id = ? AND comment_type = ? ORDER BY date_posted',
+					array($monographId, $commentType)
 				);
 			} else {
 				$result =& $this->retrieve(
@@ -49,38 +48,22 @@ class MonographCommentDAO extends DAO {
 			}
 		}
 
-		while (!$result->EOF) {
-			$monographComments[] =& $this->_returnMonographCommentFromRow($result->GetRowAssoc(false));
-			$result->MoveNext();
-		}
-
-		$result->Close();
-		unset($result);
-
-		return $monographComments;
+		$returner = new DAOResultFactory($result, $this, '_returnMonographCommentFromRow');
+		return $returner;
 	}
 
 	/**
 	 * Retrieve MonographComments by user id
 	 * @param $userId int
-	 * @return MonographComment objects array
+	 * @return DAOResultFactory
 	 */
-	function &getMonographCommentsByUserId($userId) {
-		$monographComments = array();
-
+	function &getByUserId($userId) {
 		$result =& $this->retrieve(
-			'SELECT a.* FROM monograph_comments a WHERE author_id = ? ORDER BY date_posted',	$userId
+			'SELECT a.* FROM monograph_comments a WHERE author_id = ? ORDER BY date_posted', $userId
 		);
 
-		while (!$result->EOF) {
-			$monographComments[] =& $this->_returnMonographCommentFromRow($result->GetRowAssoc(false));
-			$result->MoveNext();
-		}
-
-		$result->Close();
-		unset($result);
-
-		return $monographComments;
+		$returner = new DAOResultFactory($result, $this, '_returnMonographCommentFromRow');
+		return $returner;
 	}
 
 	/**
@@ -88,10 +71,9 @@ class MonographCommentDAO extends DAO {
 	 * @param $reviewerId int The user id of the reviewer.
 	 * @param $monographId int The monograph Id that was reviewered/commented on.
 	 * @param $reviewId int (optional) The review assignment Id the comment pertains to.
-	 * @return MonographComment objects array
+	 * @return DAOResultFactory
 	 */
 	function &getReviewerCommentsByReviewerId($reviewerId, $monographId, $reviewId = null) {
-		$monographComments = array();
 		$params = array($reviewerId, $monographId);
 		if (isset($reviewId)) {
 			$params[] = $reviewId;
@@ -101,15 +83,8 @@ class MonographCommentDAO extends DAO {
 			$params
 		);
 
-		while (!$result->EOF) {
-			$monographComments[] =& $this->_returnMonographCommentFromRow($result->GetRowAssoc(false));
-			$result->MoveNext();
-		}
-
-		$result->Close();
-		unset($result);
-
-		return $monographComments;
+		$returner = new DAOResultFactory($result, $this, '_returnMonographCommentFromRow');
+		return $returner;
 	}
 
 	/**
@@ -157,7 +132,7 @@ class MonographCommentDAO extends DAO {
 	 * @param $commentId int
 	 * @return MonographComment object
 	 */
-	function &getMonographCommentById($commentId) {
+	function &getById($commentId) {
 		$result =& $this->retrieve(
 			'SELECT a.* FROM monograph_comments a WHERE comment_id = ?', $commentId
 		);

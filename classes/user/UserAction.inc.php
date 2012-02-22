@@ -32,27 +32,30 @@ class UserAction {
 	 */
 	function mergeUsers($oldUserId, $newUserId) {
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
-		foreach ($monographDao->getMonographsByUserId($oldUserId) as $monograph) {
+		$monographs =& $monographDao->getByUserId($oldUserId);
+		while ($monograph =& $monographs->next()) {
 			$monograph->setUserId($newUserId);
 			$monographDao->updateMonograph($monograph);
 			unset($monograph);
 		}
 
-		$commentDao =& DAORegistry::getDAO('CommentDAO');
-		foreach ($commentDao->getCommentsByUserId($oldUserId) as $comment) {
+		$monographCommentDao =& DAORegistry::getDAO('MonographCommentDAO');
+		$comments =& $monographCommentDao->getByUserId($oldUserId);
+		while ($comment =& $comments->next()) {
 			$comment->setUserId($newUserId);
-			$commentDao->updateComment($comment);
+			$monographCommentDao->updateComment($comment);
 			unset($comment);
 		}
 
-		$monographNoteDao =& DAORegistry::getDAO('MonographNoteDAO');
-		$monographNotes =& $monographNoteDao->getMonographNotesByUserId($oldUserId);
+		$noteDao =& DAORegistry::getDAO('NoteDAO');
+		$monographNotes =& $noteDao->getByUserId($oldUserId);
 		while ($monographNote =& $monographNotes->next()) {
 			$monographNote->setUserId($newUserId);
 			$monographNoteDao->updateMonographNote($monographNote);
 			unset($monographNote);
 		}
 
+		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
 		$stageSignoffs =& $signoffDao->getByUserId($oldUserId);
 		while ($stageSignoff =& $stageSignoffs->next()) {
 			$stageSignoff->setUserId($newUserId);
@@ -60,11 +63,13 @@ class UserAction {
 			unset($stageSignoff);
 		}
 
-		$editorSubmissionDao =& DAORegistry::getDAO('EditorSubmissionDAO');
-		$editorSubmissionDao->transferEditorDecisions($oldUserId, $newUserId);
+		$seriesEditorSubmissionDao =& DAORegistry::getDAO('SeriesEditorSubmissionDAO');
+		$seriesEditorSubmissionDao->transferEditorDecisions($oldUserId, $newUserId);
 
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
-		foreach ($reviewAssignmentDao->getByUserId($oldUserId) as $reviewAssignment) {
+		$reviewAssignments =& $reviewAssignmentDao->getByUserId($oldUserId);
+
+		foreach ($reviewAssignments as $reviewAssignment) {
 			$reviewAssignment->setReviewerId($newUserId);
 			$reviewAssignmentDao->updateObject($reviewAssignment);
 			unset($reviewAssignment);
@@ -76,10 +81,11 @@ class UserAction {
 		$monographEventLogDao->changeUser($oldUserId, $newUserId);
 
 		$monographCommentDao =& DAORegistry::getDAO('MonographCommentDAO');
-		foreach ($monographCommentDao->getMonographCommentsByUserId($oldUserId) as $monographComment) {
-			$monographComment->setAuthorId($newUserId);
-			$monographCommentDao->updateMonographComment($monographComment);
-			unset($monographComment);
+		$comments =& $monographCommentDao->getByUserId($oldUserId);
+		while ($comment =& $comments->next()) {
+			$comment->setAuthorId($newUserId);
+			$monographCommentDao->updateMonographComment($comment);
+			unset($comment);
 		}
 
 		$accessKeyDao =& DAORegistry::getDAO('AccessKeyDAO');
@@ -98,6 +104,7 @@ class UserAction {
 		$seriesEditorsDao->deleteEditorsByUserId($oldUserId);
 
 		// Transfer old user's roles
+		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 		$userGroups =& $userGroupDao->getByUserId($oldUserId);
 		while( !$userGroups->eof() ) {
 			$userGroup =& $userGroups->next();
@@ -108,6 +115,7 @@ class UserAction {
 		}
 		$userGroupDao->deleteAssignmentsByUserId($oldUserId);
 
+		$userDao =& DAORegistry::getDAO('UserDAO');
 		$userDao->deleteUserById($oldUserId);
 	}
 }

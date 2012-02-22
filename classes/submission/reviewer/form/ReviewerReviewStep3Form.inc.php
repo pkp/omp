@@ -40,7 +40,7 @@ class ReviewerReviewStep3Form extends ReviewerReviewForm {
 		// Retrieve reviewer comment.
 		$monographCommentDao =& DAORegistry::getDAO('MonographCommentDAO');
 		$monographComments =& $monographCommentDao->getReviewerCommentsByReviewerId($reviewAssignment->getReviewerId(), $reviewAssignment->getSubmissionId(), $reviewAssignment->getId());
-		$templateMgr->assign_by_ref('reviewerComment', $monographComments[0]);
+		$templateMgr->assign_by_ref('reviewerComment', $monographComments->next());
 	}
 
 	//

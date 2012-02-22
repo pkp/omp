@@ -39,6 +39,7 @@ class AdminPeopleHandler extends AdminHandler {
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 		$userDao =& DAORegistry::getDAO('UserDAO');
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
+		$roleDao =& DAORegistry::getDAO('RoleDAO');
 
 		$templateMgr =& TemplateManager::getManager();
 
@@ -118,7 +119,6 @@ class AdminPeopleHandler extends AdminHandler {
 		));
 		$templateMgr->assign('alphaList', explode(' ', __('common.alphaList')));
 		$templateMgr->assign('oldUserId', $oldUserId);
-		$templateMgr->assign('rolePath', $roleDao->getRolePath($roleId));
 		$templateMgr->assign('roleSymbolic', $roleSymbolic);
 		$templateMgr->display('admin/selectMergeUser.tpl');
 	}
