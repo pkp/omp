@@ -84,6 +84,7 @@
 	<message key="grid.catalogEntry.isAvailable">In Catalog</message>
 
 	<!--  publication metadata required form field keys -->
+	<message key="grid.catalogEntry.fileSizeRequired">A file size for digital formats required.</message>
 	<message key="grid.catalogEntry.productAvailabilityRequired">A product availability code is required.</message>
 	<message key="grid.catalogEntry.productCompositionRequired">A product composition code must be chosen.</message>
 

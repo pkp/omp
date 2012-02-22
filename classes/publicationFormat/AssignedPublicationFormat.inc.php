@@ -474,6 +474,9 @@ class AssignedPublicationFormat extends PublicationFormat {
 	 */
 	function _checkRequiredFieldsAssigned() {
 		$requiredFields = array('productCompositionCode' => 'grid.catalogEntry.codeRequired', 'productAvailabilityCode' => 'grid.catalogEntry.productAvailabilityRequired');
+		if (!$this->getPhysicalFormat()) {
+			$requiredFields['fileSize'] = 'grid.catalogEntry.fileSizeRequired';
+		}
 		$errors = array();
 
 		foreach ($requiredFields as $field => $errorCode) {
