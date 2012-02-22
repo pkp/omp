@@ -587,7 +587,7 @@ class NotificationManager extends PKPNotificationManager {
 	 * @param $request Request
 	 */
 	function updateEditorDecisionNotification($monograph, $decision, &$request) {
-
+		assert($decision);
 		$press =& $request->getPress();
 
 		// Get the monograph submitter id.

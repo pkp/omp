@@ -102,7 +102,7 @@ class EditorDecisionHandler extends Handler {
 			assert(false);
 		}
 
-		return $this->_saveEditorDecision($args, $request, 'NewReviewRoundForm', $redirectOp);
+		return $this->_saveEditorDecision($args, $request, 'NewReviewRoundForm', $redirectOp, SUBMISSION_EDITOR_DECISION_RESUBMIT);
 	}
 
 	/**
