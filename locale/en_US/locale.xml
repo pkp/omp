@@ -68,7 +68,7 @@
 	<message key="monograph.publicationFormat.taxRate">Taxation Rate</message>
 	<message key="monograph.publicationFormat.taxType">Taxation Type</message>
 	
-	<message key="monograph.publicationFormat.isAvailable">This publication format is ready to be include in the public catalog.</message>
+	<message key="monograph.publicationFormat.isAvailable">This publication format is ready to be included in the public catalog.</message>
 	<message key="monograph.publicationFormat.noMarketsAssigned">Missing markets and prices.</message>
 	<message key="monograph.publicationFormat.noCodesAssigned">Missing an identification code.</message>
 	<message key="monograph.publicationFormat.missingONIXFields">Missing some metadata fields.</message>
