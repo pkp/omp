@@ -54,6 +54,13 @@ class ManageFileApiHandler extends Handler {
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		assert($monographFile && $monograph); // Should have been validated already
 
+		$noteDao =& DAORegistry::getDAO('NoteDAO');
+		$notes =& $noteDao->getByAssoc(ASSOC_TYPE_MONOGRAPH_FILE, $monographFile->getFileId());
+		while ($note =& $notes->next()) {
+			$noteDao->deleteById($note->getId());
+			unset($note);
+		}
+
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		$success = (boolean)$submissionFileDao->deleteRevisionById($monographFile->getFileId(), $monographFile->getRevision(), $monographFile->getFileStage(), $monograph->getId());
 
