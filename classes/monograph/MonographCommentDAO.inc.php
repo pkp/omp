@@ -237,7 +237,7 @@ class MonographCommentDAO extends DAO {
 	 * updates a monograph comment
 	 * @param MonographComment object
 	 */
-	function updateMonographComment($monographComment) {
+	function updateObject($monographComment) {
 		$this->update(
 			sprintf('UPDATE monograph_comments
 				SET

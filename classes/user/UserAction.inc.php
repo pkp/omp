@@ -39,11 +39,14 @@ class UserAction {
 			unset($monograph);
 		}
 
+		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO');
+		$submissionFileDao->transferOwnership($oldUserId, $newUserId);
+
 		$monographCommentDao =& DAORegistry::getDAO('MonographCommentDAO');
 		$comments =& $monographCommentDao->getByUserId($oldUserId);
 		while ($comment =& $comments->next()) {
-			$comment->setUserId($newUserId);
-			$monographCommentDao->updateComment($comment);
+			$comment->setAuthorId($newUserId);
+			$monographCommentDao->updateObject($comment);
 			unset($comment);
 		}
 
@@ -51,7 +54,7 @@ class UserAction {
 		$monographNotes =& $noteDao->getByUserId($oldUserId);
 		while ($monographNote =& $monographNotes->next()) {
 			$monographNote->setUserId($newUserId);
-			$monographNoteDao->updateMonographNote($monographNote);
+			$noteDao->updateObject($monographNote);
 			unset($monographNote);
 		}
 
@@ -90,6 +93,9 @@ class UserAction {
 
 		$accessKeyDao =& DAORegistry::getDAO('AccessKeyDAO');
 		$accessKeyDao->transferAccessKeys($oldUserId, $newUserId);
+
+		$notificationDao =& DAORegistry::getDAO('NotificationDAO');
+		$notificationDao->transferNotifications($oldUserId, $newUserId);
 
 		// Delete the old user and associated info.
 		$sessionDao =& DAORegistry::getDAO('SessionDAO');
