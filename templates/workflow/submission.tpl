@@ -6,7 +6,6 @@
  *
  * Display monograph details (metadata, file grid)
  *}
-
 {strip}
 {include file="workflow/header.tpl"}
 {/strip}

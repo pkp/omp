@@ -6,7 +6,6 @@
  *
  * Header that contains details about the submission
  *}
-
 {strip}
 {assign var="pageTitleTranslated" value=$monograph->getLocalizedTitle()|concat:" - "|concat:$monograph->getAuthorString(true)}
 {include file="common/header.tpl" suppressPageTitle=true}
