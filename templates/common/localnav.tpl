@@ -24,7 +24,7 @@
 			</ul>
 		</li>
 		<li>
-			<a href="#">{translate key="navigation.catalog"}</a>
+			<a href="{url page="catalog"}">{translate key="navigation.catalog"}</a>
 			<ul>
 				<li><a href="#">{translate key="navigation.featuredBooks"}</a></li>
 				<li><a href="#">{translate key="navigation.newReleases"}</a></li>

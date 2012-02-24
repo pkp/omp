@@ -100,7 +100,7 @@ class ManageCatalogHandler extends Handler {
 
 		// Fetch the monographs to display
 		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
-		$publishedMonographs =& $publishedMonographDao->getPressFeatures($press->getId());
+		$publishedMonographs =& $publishedMonographDao->getByPressId($press->getId());
 		$templateMgr->assign('publishedMonographs', $publishedMonographs);
 
 		// Display the monograph list

@@ -13,7 +13,7 @@
 
 <ul class="plain">
 	{if $currentPress->getLocalizedSetting('focusScopeDesc') != ''}<li>&#187; <a href="{url op="editorialPolicies" anchor="focusAndScope"}">{translate key="about.focusAndScope"}</a></li>{/if}
-	{if count($series) > 0}<li>&#187; <a href="{url op="editorialPolicies" anchor="seriesPolicies"}">{translate key="about.seriesPolicies"}</a></li>{/if}
+	{if count($seriesList) > 0}<li>&#187; <a href="{url op="editorialPolicies" anchor="seriesPolicies"}">{translate key="about.seriesPolicies"}</a></li>{/if}
 	{if $currentPress->getLocalizedSetting('reviewPolicy') != ''}<li>&#187; <a href="{url op="editorialPolicies" anchor="peerReviewProcess"}">{translate key="about.peerReviewProcess"}</a></li>{/if}
 	{if $currentPress->getLocalizedSetting('openAccessPolicy') != ''}<li>&#187; <a href="{url op="editorialPolicies" anchor="openAccessPolicy"}">{translate key="about.openAccessPolicy"}</a></li>{/if}
 	{foreach key=key from=$currentPress->getLocalizedSetting('customAboutItems') item=customAboutItem}
@@ -31,14 +31,10 @@
 </div>
 {/if}
 
-{if count($series) > 0}
+{if count($seriesList) > 0}
 <div id="seriesPolicies"><h3>{translate key="about.seriesPolicies"}</h3>
-{foreach from=$series item=series}{if !$series->getHideAbout()}
+{foreach from=$seriesList item=series}
 	<h4>{$series->getLocalizedTitle()}</h4>
-	{if strlen($series->getLocalizedPolicy()) > 0}
-		<p>{$series->getLocalizedPolicy()|nl2br}</p>
-	{/if}
-
 	{assign var="hasEditors" value=0}
 	{foreach from=$seriesEditorEntriesBySeries item=seriesEditorEntries key=key}
 		{if $key == $series->getId()}
@@ -53,14 +49,7 @@
 		{/if}
 	{/foreach}
 	{if $hasEditors}</ul>{/if}
-
-	<table class="plain" width="60%">
-		<tr>
-			<td width="50%">{if !$series->getEditorRestricted()}{icon name="checked"}{else}{icon name="unchecked"}{/if} {translate key="manager.series.open"}</td>
-			<td width="50%">{if $series->getMetaIndexed()}{icon name="checked"}{else}{icon name="unchecked"}{/if} {translate key="manager.series.indexed"}</td>
-		</tr>
-	</table>
-{/if}{/foreach}
+{/foreach}
 </div>
 
 <div class="separator">&nbsp;</div>

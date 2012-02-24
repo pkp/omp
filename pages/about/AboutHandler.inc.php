@@ -272,12 +272,12 @@ class AboutHandler extends Handler {
 		$press =& $request->getPress();
 
 		$templateMgr =& TemplateManager::getManager();
-		$series =& $seriesDao->getByPressId($press->getId());
-		$series =& $series->toArray();
-		$templateMgr->assign_by_ref('series', $series);
+		$seriesList =& $seriesDao->getByPressId($press->getId());
+		$seriesList =& $seriesList->toArray();
+		$templateMgr->assign_by_ref('seriesList', $seriesList);
 
 		$seriesEditorEntriesBySeries = array();
-		foreach ($series as $series) {
+		foreach ($seriesList as $series) {
 			$seriesEditorEntriesBySeries[$series->getId()] =& $seriesEditorsDao->getEditorsBySeriesId($series->getId(), $press->getId());
 		}
 		$templateMgr->assign_by_ref('seriesEditorEntriesBySeries', $seriesEditorEntriesBySeries);
