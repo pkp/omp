@@ -89,13 +89,13 @@ jQuery.pkp.controllers.tab.settings.paymentMethod =
 	 * @param {$.pkp.controllers.form.AjaxFormHandler} callingForm The form
 	 *  that triggered the event.
 	 * @param {Event} event The upload event.
-	 * @param {String} monographId The selected monograph ID.
+	 * @param {String} paymentPluginName The name of the payment plugin.
 	 */
 	$.pkp.controllers.tab.settings.paymentMethod.PaymentMethodHandler.
 			prototype.selectPaymentMethodHandler =
 			function(callingForm, event, paymentPluginName) {
 
-		if (paymentPluginName != 0) {
+		if (paymentPluginName !== 0) {
 			// Fetch the form
 			$.get(this.getPaymentMethodFormUrl_(paymentPluginName),
 					this.callbackWrapper(this.showFetchedPaymentMethodForm_), 'json');

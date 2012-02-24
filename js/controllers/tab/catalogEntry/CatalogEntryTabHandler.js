@@ -1,5 +1,10 @@
+/**
+ * @defgroup js_controllers_tab_catalogEntry
+ */
 // Define the namespace.
 jQuery.pkp.controllers.tab.catalogEntry = jQuery.pkp.controllers.tab.catalogEntry || {};
+
+
 /**
  * @file js/controllers/tab/catalogEntry/CatalogEntryTabHandler.js
  *
@@ -33,7 +38,7 @@ jQuery.pkp.controllers.tab.catalogEntry = jQuery.pkp.controllers.tab.catalogEntr
 		if (options.tabsUrl) {
 			this.tabsUrl_ = options.tabsUrl;
 		}
-		
+
 		if (options.tabContentUrl) {
 			this.tabContentUrl_ = options.tabContentUrl;
 		}
@@ -57,11 +62,11 @@ jQuery.pkp.controllers.tab.catalogEntry = jQuery.pkp.controllers.tab.catalogEntr
 	// Public methods
 	//
 	/**
-	 * This listens for grid refreshes from the publication formats grid. It 
+	 * This listens for grid refreshes from the publication formats grid. It
 	 * requests a list of the current publication formats from the CatalogEntryHandler
 	 * and calls a callback which updates the tab state accordingly as they are changed.
 	 *
-	 * @param {HTMLElement} divElement The parent DIV element
+	 * @param {HTMLElement} sourceElement The parent DIV element
 	 *  which contains the tabs.
 	 * @param {Event} event The triggered event (gridRefreshRequested).
 	 */
@@ -101,14 +106,14 @@ jQuery.pkp.controllers.tab.catalogEntry = jQuery.pkp.controllers.tab.catalogEntr
 		// only interested in publication format tabs, so filter out the others
 		var regexp = /publication(\d+)/;
 
-		for (var j = 0 ; j < currentTabs.length ; j ++) {
+		for (var j=0; j<currentTabs.length; j++) {
 			var title = currentTabs[j].getAttribute('title');
 			var match = regexp.exec(title);
-			if (match != null) {
+			if (match !== null) {
 				// match[1] is the id of a current format.
 				// j also happens to be the zero-based index of the tab position
 				// which will be useful if we have to remove it.
-				currentIndexes[match[1]] = j;  
+				currentIndexes[match[1]] = j;
 			}
 		}
 
@@ -125,13 +130,15 @@ jQuery.pkp.controllers.tab.catalogEntry = jQuery.pkp.controllers.tab.catalogEntr
 		}
 
 		// now check our existing tabs to see if any should be removed
-		for (var i in currentIndexes) {
+		for (i in currentIndexes) {
 			if (!(i in jsonData.formats)) { // this is a tab that has been removed
 				$element.tabs('remove', currentIndexes[i]);
 			} else { // tab still exists, update localized name if necessary
-				$element.find('li a').filter('[title="publication'+i+'"]').html(jsonData.formats[i]);
+				$element.find('li a').filter('[title="publication' + i + '"]').html(jsonData.formats[i]);
 			}
 		}
-	}
+	};
+
+
 /** @param {jQuery} $ jQuery closure. */
 })(jQuery);
