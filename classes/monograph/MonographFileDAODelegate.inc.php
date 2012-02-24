@@ -206,6 +206,18 @@ class MonographFileDAODelegate extends SubmissionFileDAODelegate {
 				(int)$submissionFile->getRevision()
 			))) return false;
 
+		// if we've removed the last revision of this file, clean up
+		// the settings for this file as well.
+		$result =& $this->retrieve(
+			'SELECT * FROM monograph_files WHERE file_id = ?',
+			array((int)$submissionFile->getFileId())
+		);
+
+		if ($result->RecordCount() == 0) {
+			$this->update('DELETE FROM monograph_file_settings WHERE file_id = ?',
+			array((int) $submissionFile->getFileId()));
+		}
+
 		// Delete all dependent objects.
 		$this->_deleteDependentObjects($submissionFile);
 
