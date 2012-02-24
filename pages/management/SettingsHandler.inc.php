@@ -25,6 +25,7 @@ class SettingsHandler extends ManagementHandler {
 			ROLE_ID_PRESS_MANAGER,
 			array(
 				'index',
+				'catalogAdmin',
 				'categories',
 				'series',
 				'settings',
@@ -53,6 +54,18 @@ class SettingsHandler extends ManagementHandler {
 	}
 
 	/**
+	 * Display catalog admin page.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 */
+	function catalogAdmin($args, &$request) {
+		$this->setupTemplate($request);
+
+		$templateMgr =& TemplateManager::getManager();
+		$templateMgr->display('management/catalogAdmin.tpl');
+	}
+
+	/**
 	 * Display categories admin page.
 	 * @param $args array
 	 * @param $request PKPRequest
@@ -61,7 +74,8 @@ class SettingsHandler extends ManagementHandler {
 		$this->setupTemplate($request);
 
 		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->display('management/categories.tpl');
+		$jsonMessage = new JSONMessage(true, $templateMgr->fetch('management/categories.tpl'));
+		return $jsonMessage->getString();
 	}
 
 	/**
@@ -73,7 +87,8 @@ class SettingsHandler extends ManagementHandler {
 		$this->setupTemplate($request);
 
 		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->display('management/series.tpl');
+		$jsonMessage = new JSONMessage(true, $templateMgr->fetch('management/series.tpl'));
+		return $jsonMessage->getString();
 	}
 
 	/**

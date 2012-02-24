@@ -49,11 +49,7 @@
 							<li><a href="{url page="manageCatalog"}">{translate key="navigation.catalog.manage"}</a></li>
 							{if array_intersect(array(ROLE_ID_PRESS_MANAGER), $userRoles)}
 								<li>
-									<a href="#">{translate key="navigation.catalog.administration"}</a>
-									<ul>
-										<li><a href="{url page="management" op="categories"}">{translate key="navigation.catalog.administration.categories"}</a></li>
-										<li><a href="{url page="management" op="series"}">{translate key="navigation.catalog.administration.series"}</a></li>
-									</ul>
+									<a href="{url page="management" op="catalogAdmin"}">{translate key="navigation.catalog.administration.short"}</a>
 								</li>
 							{/if}
 						</ul>

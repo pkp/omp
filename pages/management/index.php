@@ -20,6 +20,7 @@ switch ($op) {
 	//
 	// Settings
 	//
+	case 'catalogAdmin':
 	case 'categories':
 	case 'importExport':
 	case 'series':
