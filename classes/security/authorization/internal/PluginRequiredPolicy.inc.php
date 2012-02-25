@@ -39,12 +39,19 @@ class PluginRequiredPolicy extends AuthorizationPolicy {
 		$category = $this->_request->getUserVar('category');
 		$pluginName = $this->_request->getUserVar('plugin');
 
-		// Instantiate the plugin.
-		$plugin =& PluginRegistry::getPlugin($category, $pluginName);
-		if (!is_a($plugin, 'Plugin')) return AUTHORIZATION_DENY;
+		// Load the plugin.
+		$plugins =& PluginRegistry::loadCategory($category);
+		$foundPlugin = null;
+		foreach ($plugins as $plugin) { /* @var $plugin Plugin */
+			if ($plugin->getName() == $pluginName) {
+				$foundPlugin = $plugin;
+				break;
+			}
+		}
+		if (!is_a($foundPlugin, 'Plugin')) return AUTHORIZATION_DENY;
 
 		// Add the plugin to the authorized context.
-		$this->addAuthorizedContextObject(ASSOC_TYPE_PLUGIN, $plugin);
+		$this->addAuthorizedContextObject(ASSOC_TYPE_PLUGIN, $foundPlugin);
 		return AUTHORIZATION_PERMIT;
 	}
 }

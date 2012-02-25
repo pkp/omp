@@ -48,7 +48,7 @@ class OmpPluginAccessPolicy extends PolicySet {
 				$pressManagerPluginAccessPolicy->addPolicy(new RoleBasedHandlerOperationPolicy($request, ROLE_ID_PRESS_MANAGER, $roleAssignments[ROLE_ID_PRESS_MANAGER]));
 
 				// ...only to press level plugins.
-				$pressManagerPluginAccessPolicy->addPolicy(new PluginLevelRequiredPolicy(CONTEXT_PRESS));
+				$pressManagerPluginAccessPolicy->addPolicy(new PluginLevelRequiredPolicy($request, CONTEXT_PRESS));
 
 				$pluginAccessPolicy->addPolicy($pressManagerPluginAccessPolicy);
 			}
@@ -64,7 +64,7 @@ class OmpPluginAccessPolicy extends PolicySet {
 
 			if ($accessMode & ACCESS_MODE_MANAGE) {
 				// ...of site level only.
-				$siteAdminPluginAccessPolicy->addPolicy(new PluginLevelRequiredPolicy(CONTEXT_SITE));
+				$siteAdminPluginAccessPolicy->addPolicy(new PluginLevelRequiredPolicy($request, CONTEXT_SITE));
 			}
 
 			$pluginAccessPolicy->addPolicy($siteAdminPluginAccessPolicy);

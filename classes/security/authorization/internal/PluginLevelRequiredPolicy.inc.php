@@ -40,7 +40,7 @@ class PluginLevelRequiredPolicy extends AuthorizationPolicy {
 		if (!is_a($plugin, 'Plugin')) return AUTHORIZATION_DENY;
 
 		// Test the plugin level.
-		if ($this->_contextLevel & CONTEXT_SITE) {
+		if ($this->_contextLevel === CONTEXT_SITE) {
 			if ($plugin->isSitePlugin()) {
 				return AUTHORIZATION_PERMIT;
 			} else {
