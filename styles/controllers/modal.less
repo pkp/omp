@@ -18,3 +18,22 @@
 .pkp_controllers_modal_titleBar {
 
 }
+
+/**
+ * Styles to better adapt the content of plugins that don't
+ * have their UI adapted to OMP. 
+ * FIXME: this must be removed after all plugins are adapted. 
+ */
+.legacy_plugin_content .pkp_structure_breadcrumb {
+	margin-bottom:10px;
+	display:inline-block;
+}
+.legacy_plugin_content .pkp_form input {
+	width:none;
+}
+.legacy_plugin_content .pkp_form .pkp_listing input {
+	width:99%;
+}
+.legacy_plugin_content .pkp_form .pkp_listing .highlight {
+	background: yellow;
+}
