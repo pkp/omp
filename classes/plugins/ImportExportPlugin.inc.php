@@ -116,11 +116,39 @@ class ImportExportPlugin extends Plugin {
 	}
 
 	/**
+	 * @see Plugin::getManagementVerbLinkAction()
+	 */
+	function getManagementVerbLinkAction(&$request, $verb, $defaultUrl) {
+		$router =& $request->getRouter();
+		$dispatcher =& $router->getDispatcher();
+
+		list($verbName, $verbLocaleKey) = $verb;
+
+		switch($verbName) {
+			case 'importexport':
+				import('lib.pkp.classes.linkAction.request.RedirectAction');
+				$actionRequest = new RedirectAction($dispatcher->url($request, ROUTE_PAGE, null, 'manager',
+					'importexport', array('plugin', $this->getName())));
+
+				$linkAction = new LinkAction(
+					$verbName,
+					$actionRequest,
+					$verbLocaleKey,
+					null
+				);
+
+				return $linkAction;
+			default:
+				return array();
+		}
+	}
+
+	/**
 	 * Perform management functions
 	 */
 	function manage($verb, $args) {
 		if ($verb === 'importexport') {
-			Request::redirect(null, 'manager', 'importexport', array('plugin', $this->getName()));
+			$request->redirectUrl($this->getManagementVerbUrl($verb));
 		}
 		return false;
 	}
