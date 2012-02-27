@@ -11,8 +11,8 @@
   -->
 
 <locale name="en_US" full_name="U.S. English">
-	<message key="plugins.generic.customLocale.description">This plugin enables customization of the default user interface text used by OMP. nicest working
-Leave it!</message>
+	<message key="plugins.generic.customLocale.name">Custom Locale Plugin</message>
+	<message key="plugins.generic.customLocale.description">This plugin enables customization of the default user interface text used by OMP.</message>
 
 	<message key="plugins.generic.customLocale.longDescription">This page lists all locales currently installed for the press.</message>
 	<message key="plugins.generic.customLocale.localeDescription">This page lists all files that are available for the selected locale.</message>
@@ -28,4 +28,6 @@ Leave it!</message>
 	<message key="plugins.generic.customLocale.localeFiles">Locale Files</message>
 	<message key="plugins.generic.customLocale.file.filename">Filename</message>
 	<message key="plugins.generic.customLocale.file.edit">Editing {$filename}</message>
+	<message key="plugins.generic.customLocale.file.reference">Default Text</message>
+	<message key="plugins.generic.customLocale.file.custom">Custom Text</message>
 </locale>
