@@ -52,6 +52,7 @@
 	<message key="submission.submit.newSubmissionSingle">Start a New Submission in {$pressName}</message>
 	<message key="submission.submit.selectAPress">Select a Press...</message>
 	<message key="submission.submit.upload">Upload Submission</message>
+	<message key="submission.submit.uploadStep">1. Upload Submission</message>
 	<message key="submission.submit.upload.description">Upload your submission files using the form below. You may upload your manuscript as a single submission file, or by uploading separate submission files for each individual manuscript section (eg. your introduction; individual chapters; figures; and so on).</message>
 	<message key="submission.submit.cancelSubmission">You can complete this submission at a later date by selecting Active Submissions from the Author home.</message>
 	<message key="submission.submit.howToSubmit"><![CDATA[Encountering difficulties? Contact <a href="mailto:{$supportEmail}">{$supportName}</a> for assistance ({$supportPhone}).]]></message>
@@ -82,8 +83,10 @@
 	<message key="submission.submit.submissionCompleteThanks">Thank you for your interest in publishing with {$pressName}.</message>
 	<message key="submission.submit.prepare">Prepare</message>
 	<message key="submission.submit.catalogue">Catalogue</message>
-	<message key="submission.submit.finishingUp">Finishing Up</message>
+	<message key="submission.submit.metadataStep">2. Metadata</message>
 	<message key="submission.submit.metadata">Metadata</message>
+	<message key="submission.submit.finishingUp">Finishing Up</message>
+	<message key="submission.submit.finishingUpStep">3. Finishing Up</message>
 	<message key="submission.submit.metadataForm">Additional Refinements</message>
 	<message key="submission.submit.metadataForm.tip">Add additional information for your submission.  Press 'enter' after each term.</message>
 	<message key="submission.submit.upload">Upload</message>

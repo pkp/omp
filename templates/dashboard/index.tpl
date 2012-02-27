@@ -15,13 +15,13 @@
 <div class="ui-tabs ui-widget ui-widget-content ui-corner-all">
 	<ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
 		<li{if $selectedTab == 1} class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"{else} class="ui-state-default ui-corner-top"{/if}>
-			<a href="{url op="overview"}">1. {translate key="common.overview"}</a>
+			<a href="{url op="overview"}">{translate key="dashboard.overview"}</a>
 		</li>
 		<li{if $selectedTab == 2} class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"{else} class="ui-state-default ui-corner-top"{/if}>
-			<a href="{url op="tasks"}">2. {translate key="common.tasks"}</a>
+			<a href="{url op="tasks"}">{translate key="dashboard.tasks"}</a>
 		</li>
 		<li{if $selectedTab == 3} class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"{else} class="ui-state-default ui-corner-top"{/if}>
-			<a href="{url op="submissions"}">3. {translate key="navigation.submissions"}</a>
+			<a href="{url op="submissions"}">{translate key="dashboard.submissions"}</a>
 		</li>
 	</ul>
 

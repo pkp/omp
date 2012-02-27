@@ -150,9 +150,10 @@
 	<message key="grid.libraryFiles.column.files">Files</message>
 
 	<!-- Used in submission review -->
-	<message key="reviewer.reviewSteps.guidelines">Guidelines</message>
-	<message key="reviewer.reviewSteps.download">Download &amp; Review</message>
-	<message key="reviewer.reviewSteps.nextSteps">Next Steps</message>
+	<message key="reviewer.reviewSteps.request">1. Request</message>
+	<message key="reviewer.reviewSteps.guidelines">2. Guidelines</message>
+	<message key="reviewer.reviewSteps.download">3. Download &amp; Review</message>
+	<message key="reviewer.reviewSteps.nextSteps">4. Next Steps</message>
 	<message key="reviewer.step1.request">Request for Review</message>
 	<message key="reviewer.step1.requestBoilerplate">You have been selected as a potential reviewer of the following submission.  Below is an overview of the submission, as well as the timeline for this review.  We hope that you are able to participate.</message>
 	<message key="reviewer.step1.viewAllDetails">View All Submission Details</message>
@@ -248,10 +249,13 @@
 	<message key="common.takeMeThere">Take Me There</message>
 	<message key="common.confirmDelete">Are you sure you wish to delete this item? This action cannot be undone.</message>
 	<message key="common.tasks">Tasks</message>
-	<message key="common.overview">Overview</message>
 	<message key="common.list">List</message>
 	<message key="common.grid">Grid</message>
 	<message key="common.organize">Organize</message>
+
+	<message key="dashboard.overview">1. Overview</message>
+	<message key="dashboard.tasks">2. Tasks</message>
+	<message key="dashboard.submissions">3. Submissions</message>
 
 	<message key="common.queue.long.submissionsUnassigned">Unassigned Submissions</message>
 	<message key="common.queue.long.myAssigned">My Assigned Submissions</message>
@@ -299,14 +303,6 @@
 	<message key="navigation.tools.importExport">Import/Export</message>
 	<message key="navigation.wizard">Wizard</message>
 
-	<!--
-	 *
-	 * ENTITIES
-	 * This section contains terms pertaining to the system's
-	 * major entities, e.g. Monograph, Press
-	 *
-	-->
-
 	<!-- Common Press Terms -->
 	<message key="press.presses">Presses</message>
 	<message key="press.path">Path</message>
@@ -341,15 +337,6 @@
 	<message key="user.role.proofreaders">Proofreaders</message>
 	<message key="user.role.authors">Authors</message>
 	<message key="user.role.productionEditors">Production Editors</message>
-
-
-	<!--
-	 *
-	 * INTERFACE
-	 * Contains phrases organized by the section of the user
-	 * interface they appear in.
-	 *
-	-->
 
 	<!-- Login -->
 	<message key="user.login.registerNewAccount">Not a user? Register with this site</message>
@@ -398,6 +385,7 @@ current password.<br /><br />Enter your email address below to reset your passwo
 	<message key="about.editorialPolicies">Editorial Policies</message>
 	<message key="about.focusAndScope">Focus and Scope</message>
 	<message key="about.seriesPolicies">Series and Category Policies</message>
+	<message key="about.guidelines">Guidelines</message>
 	<message key="about.submissions">Submissions</message>
 	<message key="about.sponsors">Sponsors</message>
 	<message key="about.contributors">Sources of Support</message>
@@ -578,11 +566,6 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="notification.type.pendingRevisions.title">Pending revisions at {$stage}</message>
 	<message key="notification.type.allReviewsIn">All reviews in. A decision is needed in {$stage}.</message>
 	
-	<!--
-	 *
-	 * MISC - Entries that do not belong in the other sections.
-	 *
-	-->
 	<!-- Authorization -->
 	<message key="user.authorization.invalidReviewAssignment">You have been denied access because you do not seem to be a valid reviewer for this monograph.</message>
 	<message key="user.authorization.monographAuthor">You have been denied access because you do not seem to be the author of this monograph.</message>
@@ -595,8 +578,6 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="user.authorization.workflowStageAssignmentMissing">Access denied! You have not been assigned to this workflow stage.</message>
 	<message key="user.authorization.workflowStageSettingMissing">Access denied! The user group you are currently acting under has not been assigned to this workflow stage. Please check your press settings.</message>
 	<message key="user.authorization.authorRoleMissing">You do not currently have sufficient priveleges to view the submission. Please edit your profile to ensure that you have been granted the appropriate roles under "Register As".</message>
-
-	<!-- Icons: Default "alt" text -->
 
 	<!-- Debug messages -->
 	<message key="debug.notes.currencyListLoad">Loaded currency list "{$filename}" from XML</message>
