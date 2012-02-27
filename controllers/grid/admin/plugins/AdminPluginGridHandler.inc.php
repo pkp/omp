@@ -21,7 +21,7 @@ class AdminPluginGridHandler extends PluginGridHandler {
 	function AdminPluginGridHandler() {
 		$roles = array(ROLE_ID_SITE_ADMIN);
 
-		$this->addRoleAssignment($roles, array('editSitePluginSettings'));
+		$this->addRoleAssignment($roles, array('plugin'));
 
 		parent::PluginGridHandler($roles);
 	}
@@ -34,21 +34,6 @@ class AdminPluginGridHandler extends PluginGridHandler {
 	*/
 	function getRowInstance() {
 		return parent::getRowInstance(CONTEXT_SITE);
-	}
-
-
-	//
-	// Public handler methods
-	//
-	/**
-	 * Show a modal with the plugin edit settings content.
-	 * (only for site level plugins).
-	 * @param $args array
-	 * @param $request Request
-	 * @return string
-	 */
-	function editSitePluginSettings ($args, &$request) {
-		return $this->editPluginSettings($args, $request);
 	}
 }
 

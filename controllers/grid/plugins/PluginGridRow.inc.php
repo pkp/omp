@@ -45,29 +45,76 @@ class PluginGridRow extends GridRow {
 		parent::initialize($request);
 
 		// Is this a new row or an existing row?
-		$plugin =& $this->getData();
+		$plugin =& $this->getData(); /* @var $plugin Plugin */
 		assert(is_a($plugin, 'Plugin'));
 
 		$rowId = $this->getId();
 
 		if (!is_null($rowId)) {
-			$router =& $request->getRouter();
+			$router =& $request->getRouter(); /* @var $router PKPRouter */
 
-			// Only add row actions if this is an existing row
-			$managementVerbs = $plugin->getManagementVerbs();
+			if ($this->_canEdit($plugin)) {
 
-			// If plugin has not management verbs, we receive
-			// null. Check for it before foreach.
-			if (!is_null($managementVerbs)) {
-				foreach ($managementVerbs as $verb) {
-					// Get link actions for each management verb.
-					// This can be defined on each plugin class.
+				// Only add row actions if this is an existing row
+				$managementVerbs = $plugin->getManagementVerbs();
+
+				// If plugin has not management verbs, we receive
+				// null. Check for it before foreach.
+				if (!is_null($managementVerbs)) {
+					foreach ($managementVerbs as $verb) {
+						list($verbName, $verbLocaleKey) = $verb;
+
+						$actionArgs = array(
+							'category' => $plugin->getCategory(),
+							'plugin' => $plugin->getName(),
+							'verb' => $verbName
+						);
+
+						$defaultUrl = $router->url($request, null, null, 'plugin', null, $actionArgs);
+						$linkAction = null;
+						$actionRequest = null;
+						$image = null;
+
+						switch ($verbName) {
+							case 'enable':
+							case 'disable':
+								// Do nothing. User interact with those verbs via enabled grid column.
+								break;
+							default:
+								// Check if verb has a link action defined.
+								$verbLinkAction = $plugin->getManagementVerbLinkAction($request, $verb, $defaultUrl);
+								if (is_a($verbLinkAction, 'LinkAction')) {
+									$linkAction = $verbLinkAction;
+								} else {
+									// Define a default ajax modal request.
+									import('lib.pkp.classes.linkAction.request.AjaxModal');
+									$actionRequest = new AjaxModal($defaultUrl, $verbLocaleKey);
+								}
+								break;
+						}
+
+						// Build link action for those verbs who don't define one.
+						if (!$linkAction && $actionRequest) {
+							$linkAction = new LinkAction(
+								$verbName,
+								$actionRequest,
+								$verbLocaleKey,
+								$image
+							);
+						}
+
+						if ($linkAction) {
+							// Set a non-default template that supports row actions
+							$this->setTemplate('controllers/grid/gridRowWithActions.tpl');
+
+							// Insert row link action.
+							$this->addAction($linkAction);
+
+							unset($linkAction);
+							unset($actionRequest);
+						}
+					}
 				}
-			}
-
-			if ($this->_canManage($plugin)) {
-				// Add the management verbs link actions to the row.
-
 			}
 		}
 	}
@@ -77,11 +124,11 @@ class PluginGridRow extends GridRow {
 	// Private helper methods
 	//
 	/**
-	 * Return if a user can manage a plugin or not.
+	 * Return if user can edit a plugin settings or not.
 	 * @param $plugin Plugin
 	 * @return boolean
 	 */
-	function _canManage(&$plugin) {
+	function _canEdit(&$plugin) {
 		if ($plugin->isSitePlugin()) {
 			if (in_array(ROLE_ID_SITE_ADMIN, $this->_userRoles)) {
 				return true;

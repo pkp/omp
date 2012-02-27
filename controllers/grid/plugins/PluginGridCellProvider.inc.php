@@ -46,18 +46,103 @@ class PluginGridCellProvider extends GridCellProvider {
 				return array('label' => $plugin->getDescription());
 				break;
 			case 'enabled':
-				$enabledLabel = __('common.no');
+				// Assume that every plugin is enabled...
+				$enabled = true;
+				// ... and that it doesn't have enable or disable management verbs.
+				$hasVerbs = false;
+
+				// Check if plugin can be disabled.
 				if (is_callable(array($plugin, 'getEnabled'))) {
-					if ($plugin->getEnabled()) {
-						$enabledLabel = __('common.yes');
+
+					// Plugin can be disabled, so check its current state.
+					if (!$plugin->getEnabled()) {
+						$enabled = false;
 					}
+
+					// Check if plugin has management verbs to
+					// disable or enable.
+					$managementVerbs = $plugin->getManagementVerbs();
+					if (!is_null($managementVerbs)) {
+						foreach($managementVerbs as $verb) {
+							list($verbName) = $verb;
+							if ($verbName === 'enable' || $verbName === 'disable') {
+								$hasVerbs = true;
+								break;
+							}
+						}
+					}
+				} else {
+					// Plugin cannot be disabled so it also doesn't
+					// have management verbs to those actions.
+					$hasVerbs = false;
 				}
-				return array('label' => $enabledLabel);
+
+				// Set the state of the select element that will
+				// be used to enable or disable the plugin.
+				$selectDisabled = true;
+				if ($hasVerbs) {
+					// Plugin have management verbs.
+					// Show an enabled select element.
+					$selectDisabled = false;
+				}
+
+				return array('selected' => $enabled,
+					'disabled' => $selectDisabled);
 			default:
 				break;
 		}
 
 		return parent::getTemplateVarsFromRowColumn($row, $column);
+	}
+
+	/**
+	 * @see GridCellProvider::getCellActions()
+	 */
+	function getCellActions(&$request, &$row, &$column, $position = GRID_ACTION_POSITION_DEFAULT) {
+		if ($column->getId() == 'enabled') {
+			$plugin =& $row->getData(); /* @var $plugin Plugin */
+
+			$router =& $request->getRouter();
+			$managementVerbs = $plugin->getManagementVerbs();
+
+			if (!is_null($managementVerbs)) {
+				foreach ($managementVerbs as $verb) {
+					list($verbName, $verbLocalizedName) = $verb;
+
+					$actionArgs = array(
+						'category' => $plugin->getCategory(),
+						'plugin' => $plugin->getName(),
+						'verb' => $verbName);
+
+					$actionRequest = null;
+					$defaultUrl = $router->url($request, null, null, 'plugin', null, $actionArgs);
+
+					if ($verbName === 'enable') {
+						import('lib.pkp.classes.linkAction.request.AjaxAction');
+						$actionRequest = new AjaxAction($defaultUrl);
+					} else if ($verbName === 'disable') {
+						import('lib.pkp.classes.linkAction.request.RemoteActionConfirmationModal');
+						$actionRequest = new RemoteActionConfirmationModal(__('grid.plugin.disable'),
+							__('common.disable'), $defaultUrl);
+					}
+
+					if ($actionRequest) {
+						$linkAction = new LinkAction(
+							$verbName,
+							$actionRequest,
+							$verbLocalizedName,
+							null
+						);
+
+						return array($linkAction);
+					}
+				}
+			}
+			// Plugin can't be disabled or don't have
+			// management verbs for that.
+			return array();
+		}
+		return parent::getCellActions($request, $row, $column, $position);
 	}
 }
 

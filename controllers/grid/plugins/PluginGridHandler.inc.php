@@ -85,12 +85,19 @@ class PluginGridHandler extends CategoryGridHandler {
 				$pluginCellProvider
 			)
 		);
-
 		$this->addColumn(
 			new GridColumn('description',
 				'common.description',
 				null,
 				'controllers/grid/gridCell.tpl',
+				$pluginCellProvider
+			)
+		);
+		$this->addColumn(
+			new GridColumn('enabled',
+				'common.enabled',
+				null,
+				'controllers/grid/common/cell/selectStatusCell.tpl',
 				$pluginCellProvider
 			)
 		);
@@ -148,10 +155,10 @@ class PluginGridHandler extends CategoryGridHandler {
 		if (!is_null($filter) && isset($filter['pluginName']) && $filter['pluginName'] != "") {
 			// Find all plugins that have the filter name string in their display names.
 			$filteredPlugins = array();
-			foreach ($plugins as $plugin) {
+			foreach ($plugins as $plugin) { /* @var $plugin Plugin */
 				$pluginName = $plugin->getDisplayName();
 				if (stristr($pluginName, $filter['pluginName']) !== false) {
-					$filteredPlugins[$plugin->getPluginPath()] = $plugin;
+					$filteredPlugins[$plugin->getName()] = $plugin;
 				}
 				unset($plugin);
 			}
@@ -186,41 +193,33 @@ class PluginGridHandler extends CategoryGridHandler {
 
 
 	//
-	// Protected methods.
+	// Public handler methods.
 	//
 	/**
-	 * Show a modal with the plugin edit settings content.
-	 * (both site and press level plugins).
+	 * Perform plugin-specific management functions.
 	 * @param $args array
-	 * @param $request Request
-	 * @return string
+	 * @param $request object
 	 */
-	function editPluginSettings($args, &$request) {
-		$category = $args['category'];
-		$pluginName = $args['plugin'];
-		$returner = $this->_delegateManagementVerb($category, $pluginName, 'settings');
+	function plugin($args, &$request) {
+		$verb = (string) $request->getUserVar('verb');
 
-		$json = new JSONMessage(true, $returner);
-		return $json->getString();
-	}
+		$this->setupTemplate(true);
 
-
-	//
-	// Private helper methods
-	//
-	/**
-	 * Delegate to plugins their management functions
-	 * and return the result.
-	 * @param $category string
-	 * @param $pluginName string
-	 * @param $verb string
-	 * @return string
-	 */
-	function _delegateManagementVerb($category, $pluginName, $verb) {
-		$plugins =& PluginRegistry::loadCategory($category);
+		$plugin =& $this->getAuthorizedContextObject(ASSOC_TYPE_PLUGIN); /* @var $plugin Plugin */
 		$message = null;
-		if (isset($plugins[$pluginName])) {
-			return $plugins[$pluginName]->manage($verb, $args, $message);
+		$pluginModalContent = null;
+		if (!is_a($plugin, 'Plugin') || !$plugin->manage($verb, $args, $message, &$messageParams, &$pluginModalContent)) {
+			if ($message) {
+				$notificationManager = new NotificationManager();
+				$user =& $request->getUser();
+				$notificationManager->createTrivialNotification($user->getId(), $message, $messageParams);
+
+				return DAO::getDataChangedEvent($plugin->getName());
+			}
+		}
+		if ($pluginModalContent) {
+			$json = new JSONMessage(true, $pluginModalContent);
+			return $json->getString();
 		}
 	}
 }

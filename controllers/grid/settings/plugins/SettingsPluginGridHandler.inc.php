@@ -21,7 +21,7 @@ class SettingsPluginGridHandler extends PluginGridHandler {
 	function SettingsPluginGridHandler() {
 		$roles = array(ROLE_ID_SITE_ADMIN, ROLE_ID_PRESS_MANAGER);
 
-		$this->addRoleAssignment(ROLE_ID_PRESS_MANAGER, array('editPressPluginSettings'));
+		$this->addRoleAssignment($roles, array('plugin'));
 
 		parent::PluginGridHandler($roles);
 	}
@@ -45,12 +45,9 @@ class SettingsPluginGridHandler extends PluginGridHandler {
 
 		$userRoles = $this->getAuthorizedContextObject(ASSOC_TYPE_USER_ROLES);
 
-		if ($singlePress) {
-			if (in_array(ROLE_ID_SITE_ADMIN, $userRoles)) {
-				$showSitePlugins = true;
-			}
-		} else {
-			$showSitePlugins = false;
+		$showSitePlugins = false;
+		if ($singlePress && in_array(ROLE_ID_SITE_ADMIN, $userRoles)) {
+			$showSitePlugins = true;
 		}
 
 		if ($showSitePlugins) {
@@ -59,7 +56,7 @@ class SettingsPluginGridHandler extends PluginGridHandler {
 			$pressLevelPlugins = array();
 			foreach ($plugins as $plugin) {
 				if (!$plugin->isSitePlugin()) {
-					$pressLevelPlugins[$plugin->getPluginPath()] = $plugin;
+					$pressLevelPlugins[$plugin->getName()] = $plugin;
 				}
 				unset($plugin);
 			}
@@ -75,21 +72,6 @@ class SettingsPluginGridHandler extends PluginGridHandler {
 	*/
 	function getRowInstance() {
 		return parent::getRowInstance(CONTEXT_PRESS);
-	}
-
-
-	//
-	// Public handler methods
-	//
-	/**
-	* Show a modal with the plugin edit settings content.
-	* (only for press level plugins).
-	* @param $args array
-	* @param $request Request
-	* @return string
-	*/
-	function editPressPluginSettings ($args, &$request) {
-		return $this->editPluginSettings($args, $request);
 	}
 }
 
