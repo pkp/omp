@@ -58,7 +58,7 @@ class AnnouncementTypeListbuilderHandler extends SetupListbuilderHandler {
 	function loadData(&$request) {
 		$press =& $this->getPress();
 		$announcementTypeDao =& DAORegistry::getDAO('AnnouncementTypeDAO');
-		$announcementTypes =& $announcementTypeDao->getAnnouncementTypesByAssocId(ASSOC_TYPE_PRESS, $press->getId());
+		$announcementTypes =& $announcementTypeDao->getByAssoc(ASSOC_TYPE_PRESS, $press->getId());
 
 		return $announcementTypes;
 	}

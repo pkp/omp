@@ -65,7 +65,7 @@ class AnnouncementTypeForm extends Form {
 		$announcementType =& $this->getAnnouncementTypeFromRowData($request, $rowData);
 		$press =& $request->getPress();
 
-		if ($this->_announcementTypeDao->getAnnouncementTypeByTypeName($announcementType->getLocalizedTypeName(), ASSOC_TYPE_PRESS, $press->getId())) {
+		if ($this->_announcementTypeDao->getByTypeName($announcementType->getLocalizedTypeName(), ASSOC_TYPE_PRESS, $press->getId())) {
 			// Create form error notification.
 			$user =& $request->getUser();
 			$notificationMgr = new NotificationManager();
@@ -89,7 +89,7 @@ class AnnouncementTypeForm extends Form {
 	function updateEntry($request, $rowId, $newRowId) {
 		$rowData = $newRowId;
 
-		$announcementType =& $this->_announcementTypeDao->getAnnouncementType($rowId);
+		$announcementType =& $this->_announcementTypeDao->getById($rowId);
 		if (!is_a($announcementType, 'AnnouncementType')) {
 			assert(false);
 			return false;
@@ -98,7 +98,7 @@ class AnnouncementTypeForm extends Form {
 		$announcementType =& $this->_setLocaleData($announcementType, $rowData);
 
 		$press =& $request->getPress();
-		if ($this->_announcementTypeDao->getAnnouncementTypeByTypeName($announcementType->getLocalizedTypeName(), ASSOC_TYPE_PRESS, $press->getId())) {
+		if ($this->_announcementTypeDao->getByTypeName($announcementType->getLocalizedTypeName(), ASSOC_TYPE_PRESS, $press->getId())) {
 			$this->_executeResult = false;
 			return false;
 		} else {
@@ -112,12 +112,12 @@ class AnnouncementTypeForm extends Form {
 	 */
 	function deleteEntry($request, $rowId) {
 		if ($rowId) {
-			$announcementType =& $this->_announcementTypeDao->getAnnouncementType($rowId);
+			$announcementType =& $this->_announcementTypeDao->getById($rowId);
 			if (!is_a($announcementType, 'AnnouncementType')) {
 				assert(false);
 				return false;
 			}
-			$this->_announcementTypeDao->deleteAnnouncementTypeById($announcementType->getId());
+			$this->_announcementTypeDao->deleteById($announcementType->getId());
 		}
 	}
 
@@ -128,7 +128,8 @@ class AnnouncementTypeForm extends Form {
 	 * @return AnnouncementType
 	 */
 	function &getAnnouncementTypeFromRowData(&$request, $rowData) {
-		$announcementType = new AnnouncementType();
+		$announcementTypeDao =& DAORegistry::getDAO('AnnouncementTypeDAO');
+		$announcementType = $announcementTypeDao->newDataObject();
 		if ($rowData) {
 			$announcementType =& $this->_setLocaleData($announcementType, $rowData);
 		}

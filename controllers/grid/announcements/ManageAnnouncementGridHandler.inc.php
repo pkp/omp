@@ -169,7 +169,7 @@ class ManageAnnouncementGridHandler extends AnnouncementGridHandler {
 		$announcementId = (int) $request->getUserVar('announcementId');
 
 		$announcementDao =& DAORegistry::getDAO('AnnouncementDAO');
-		$announcementDao->deleteAnnouncementById($announcementId);
+		$announcementDao->deleteById($announcementId);
 
 		// Create notification.
 		$notificationManager = new NotificationManager();

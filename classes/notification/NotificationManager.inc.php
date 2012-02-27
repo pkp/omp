@@ -78,7 +78,7 @@ class NotificationManager extends PKPNotificationManager {
 			case NOTIFICATION_TYPE_NEW_ANNOUNCEMENT:
 				assert($notification->getAssocType() == ASSOC_TYPE_ANNOUNCEMENT);
 				$announcementDao =& DAORegistry::getDAO('AnnouncementDAO'); /* @var $announcementDao AnnouncementDAO */
-				$announcement = $announcementDao->getAnnouncement($notification->getAssocId()); /* @var $announcement Announcement */
+				$announcement = $announcementDao->getById($notification->getAssocId()); /* @var $announcement Announcement */
 				$pressId = $announcement->getAssocId();
 				$pressDao =& DAORegistry::getDAO('PressDAO'); /* @var $pressDao PressDAO */
 				$press =& $pressDao->getById($pressId);

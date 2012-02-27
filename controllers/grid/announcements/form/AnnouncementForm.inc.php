@@ -61,12 +61,12 @@ class AnnouncementForm extends PKPAnnouncementForm {
 		$templateMgr->assign('selectedTypeId', $this->getData('typeId'));
 
 		$announcementDao =& DAORegistry::getDAO('AnnouncementDAO');
-		$announcement =& $announcementDao->getAnnouncement($this->announcementId);
+		$announcement =& $announcementDao->getById($this->announcementId);
 		$templateMgr->assign_by_ref('announcement', $announcement);
 
 		$announcementTypeDao =& DAORegistry::getDAO('AnnouncementTypeDAO');
 		list($assocType, $assocId) = $this->_getAnnouncementTypesAssocId();
-		$announcementTypeFactory =& $announcementTypeDao->getAnnouncementTypesByAssocId($assocType, $assocId);
+		$announcementTypeFactory =& $announcementTypeDao->getByAssoc($assocType, $assocId);
 		if (!$announcementTypeFactory->wasEmpty()) {
 			$announcementTypeOptions = array(0 => __('common.none'));
 		}
