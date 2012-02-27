@@ -8,7 +8,7 @@
  *}
 {strip}
 {assign var="pageTitle" value="plugins.generic.translator.name"}
-{include file="common/header.tpl"}
+{include file="controllers/modals/legacyPlugin/header.tpl" pageTitle=$pageTitle}
 {/strip}
 
 <p>{translate key="plugins.generic.translator.longdescription"}</p>
@@ -55,5 +55,3 @@
 {/if}
 
 </table>
-
-{include file="common/footer.tpl"}

@@ -20,7 +20,8 @@ class TranslatorPlugin extends GenericPlugin {
 	function register($category, $path) {
 		if (parent::register($category, $path)) {
 			if ($this->getEnabled()) {
-				$this->addHelpData();
+				// FIXME Need to introduce the OMP Help class.
+				// $this->addHelpData();
 				HookRegistry::register ('LoadHandler', array(&$this, 'handleRequest'));
 			}
 			return true;
@@ -63,17 +64,20 @@ class TranslatorPlugin extends GenericPlugin {
 		return parent::getManagementVerbs($verbs);
 	}
 
-	function manage($verb, $args, &$message) {
-		if (!parent::manage($verb, $args, $message)) return false;
-		switch ($verb) {
-			case 'translate':
-				Request::redirect('index', 'translate');
-				return false;
-			default:
-				// Unknown management verb
-				assert(false);
-				return false;
+	function getManagementVerbLinkAction(&$request, $verb, $defaultUrl) {
+		$router =& $request->getRouter();
+		$dispatcher =& $router->getDispatcher(); /* @var $dispatcher Dispatcher */
+
+		list($verbName, $verbLocalized) = $verb;
+
+		if ($verbName === 'translate') {
+			import('lib.pkp.classes.linkAction.request.AjaxLegacyPluginModal');
+			$actionRequest = new AjaxLegacyPluginModal($dispatcher->url($request, ROUTE_PAGE, null, 'translate'),
+				$this->getDisplayName());
+			return new LinkAction($verbName, $actionRequest, $verbLocalized, null);
 		}
+
+		return null;
 	}
 }
 

@@ -8,9 +8,9 @@
  *}
 {strip}
 {translate|escape|assign:"pageTitleTranslated" key="plugins.generic.translator.email.edit" emailKey=$emailKey}
-{include file="common/header.tpl"}
+{include file="controllers/modals/legacyPlugin/header.tpl" pageTitleTranslated=$pageTitleTranslated}
 {/strip}
-
+ 
 <p>{translate key="plugins.generic.translator.email.description"}</p>
 
 <form class="pkp_form" method="post" action="{url op="saveEmail" path=$locale|to_array:$emailKey}" id="editor">
@@ -34,7 +34,5 @@
 {$email.description|escape}
 </textarea><br/>
 
-<input type="submit" class="button defaultButton" value="{translate key="common.save"}" /> <input type="button" class="button" value="{translate key="common.cancel"}" onclick="document.location.href='{url op="edit" path=$locale escape=false}'" /> <input type="reset" class="button" value="{translate key="plugins.generic.translator.email.reset"}" onclick="return confirm('{translate|escape:"jsparam" key="plugins.generic.translator.email.resetConfirm"}')" /> <input type="button" class="button" value="{translate key="plugins.generic.translator.email.resetToReference"}" onclick="if (confirm('{translate|escape:"jsparam" key="plugins.generic.translator.email.resetConfirm"}')) {literal}{document.getElementById('editor').body.value = document.getElementById('editor').referenceBody.value; document.getElementById('editor').subject.value = document.getElementById('editor').referenceSubject.value; document.getElementById('editor').description.value = document.getElementById('editor').referenceDescription.value;}{/literal}" />
+<a href="{url op="edit" path=$locale escape=false}">{translate key="common.cancel"}<a/> <input type="submit" class="button defaultButton" value="{translate key="common.save"}" /> <input type="reset" class="button" value="{translate key="plugins.generic.translator.email.reset"}" onclick="return confirm('{translate|escape:"jsparam" key="plugins.generic.translator.email.resetConfirm"}')" /> <input type="button" class="button" value="{translate key="plugins.generic.translator.email.resetToReference"}" onclick="if (confirm('{translate|escape:"jsparam" key="plugins.generic.translator.email.resetConfirm"}')) {literal}{document.getElementById('editor').body.value = document.getElementById('editor').referenceBody.value; document.getElementById('editor').subject.value = document.getElementById('editor').referenceSubject.value; document.getElementById('editor').description.value = document.getElementById('editor').referenceDescription.value;}{/literal}" />
 </form>
-
-{include file="common/footer.tpl"}

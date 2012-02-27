@@ -8,7 +8,7 @@
  *}
 {strip}
 {translate|assign:"pageTitleTranslated" key="plugins.generic.translator.locale" locale=$locale}
-{include file="common/header.tpl"}
+{include file="controllers/modals/legacyPlugin/header.tpl" pageTitleTranslated=$pageTitleTranslated}
 {/strip}
 
 {assign var=filenameEscaped value=$filename|escape:"url"|escape:"url"}
@@ -20,7 +20,7 @@
 <form class="pkp_form" id="localeSearch" action="{url op="editLocaleFile" path=$locale|to_array:$filenameEscaped anchor="localeContents"}" method="post">
 	{translate key="plugins.generic.translator.localeKey"}&nbsp;&nbsp;
 	<input type="text" name="searchKey" class="textField" />&nbsp;&nbsp;
-	<input type="submit" class="button defaultButton" onclick="document.getElementById('locale').redirectUrl.value=document.getElementById('localeSearch').action);document.getElementById('locale').submit();return false;" value="{translate key="common.search"}" /> {translate key="plugins.generic.translator.localeKey.description"}
+	<input type="submit" class="button defaultButton" onclick="document.getElementById('locale').redirectUrl.value=document.getElementById('localeSearch').action;$('#locale').submit();return false;" value="{translate key="common.search"}" /> {translate key="plugins.generic.translator.localeKey.description"}
 </form>
 
 <form class="pkp_form" id="locale" action="{url op="saveLocaleFile" path=$locale|to_array:$filenameEscaped}" method="post">
@@ -94,8 +94,6 @@
 
 <input type="submit" onclick="document.getElementById('locale').redirectUrl.value='{url op="edit" path=$locale escape="false"}';return true;" class="button" value="{translate key="common.done"}" />
 
-<input type="button" onclick="document.location.href='{url op="edit" path=$locale escape="false"}';" class="button" value="{translate key="common.cancel"}" />
+<a href="{url op="edit" path=$locale escape="false"}">{translate key="common.cancel"}</a>
 
 </form>
-
-{include file="common/footer.tpl"}

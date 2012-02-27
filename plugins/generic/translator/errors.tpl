@@ -8,9 +8,9 @@
  *}
 {strip}
 {assign var="pageTitle" value="plugins.generic.translator.errors"}
-{include file="common/header.tpl"}
+{include file="controllers/modals/legacyPlugin/header.tpl" pageTitle=$pageTitle}
 {/strip}
-
+ 
 <ul class="menu">
 	<li><a href="{url op="edit" path=$locale}">{translate key="common.edit"}</a></li>
 	<li class="current"><a href="{url op="check" path=$locale}">{translate key="plugins.generic.translator.check"}</a></li>
@@ -113,5 +113,3 @@
 {/if}
 
 </form>
-
-{include file="common/footer.tpl"}

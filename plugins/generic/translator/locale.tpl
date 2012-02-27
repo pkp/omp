@@ -8,7 +8,7 @@
  *}
 {strip}
 {translate|assign:"pageTitleTranslated" key="plugins.generic.translator.locale" locale=$locale}
-{include file="common/header.tpl"}
+{include file="controllers/modals/legacyPlugin/header.tpl" pageTitleTranslated=$pageTitleTranslated}
 {/strip}
 
 <ul class="menu">
@@ -182,5 +182,3 @@
 {/if}
 
 </table>
-
-{include file="common/footer.tpl"}
