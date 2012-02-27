@@ -37,10 +37,24 @@ class CustomLocalePlugin extends GenericPlugin {
 						AppLocale::registerLocaleFile($locale, $customLocalePath, true);
 					}
 				}
+				HookRegistry::register ('LoadHandler', array(&$this, 'handleRequest'));
 			}
 
 			return true;
 		}
+		return false;
+	}
+
+	function handleRequest($hookName, $args) {
+		$page =& $args[0];
+
+		if ($page === 'index') {
+			$this->import('CustomLocaleHandler');
+			Registry::set('plugin', $this);
+			define('HANDLER_CLASS', 'CustomLocaleHandler');
+			return true;
+		}
+
 		return false;
 	}
 
@@ -52,29 +66,6 @@ class CustomLocalePlugin extends GenericPlugin {
 		return __('plugins.generic.customLocale.description');
 	}
 
-	function smartyPluginUrl($params, &$smarty) {
-		$path = array($this->getCategory(), $this->getName());
-		if (is_array($params['path'])) {
-			$params['path'] = array_merge($path, $params['path']);
-		} elseif (!empty($params['path'])) {
-			$params['path'] = array_merge($path, array($params['path']));
-		} else {
-			$params['path'] = $path;
-		}
-
-		if (!empty($params['key'])) {
-			$params['path'] = array_merge($params['path'], array($params['key']));
-			unset($params['key']);
-		}
-
-		if (!empty($params['file'])) {
-			$params['path'] = array_merge($params['path'], array($params['file']));
-			unset($params['file']);
-		}
-
-		return $smarty->smartyUrl($params, $smarty);
-	}
-
 	function getManagementVerbs() {
 		$verbs = array();
 		if ($this->getEnabled()) {
@@ -83,28 +74,20 @@ class CustomLocalePlugin extends GenericPlugin {
 		return parent::getManagementVerbs($verbs);
 	}
 
-	function manage($verb, $args) {
-		if (!parent::manage($verb, $args, $message)) return false;
+	function getManagementVerbLinkAction(&$request, $verb) {
+		$router =& $request->getRouter();
+		$dispatcher =& $router->getDispatcher(); /* @var $dispatcher Dispatcher */
 
-		$this->import('CustomLocaleHandler');
-		$customLocaleHandler = new CustomLocaleHandler();
-		switch ($verb) {
-			case 'edit':
-				$customLocaleHandler->edit($args);
-				return true;
-			case 'saveLocaleChanges':
-				$customLocaleHandler->saveLocaleChanges($args);
-				return true;
-			case 'editLocaleFile':
-				$customLocaleHandler->editLocaleFile($args);
-				return true;
-			case 'saveLocaleFile':
-				$customLocaleHandler->saveLocaleFile($args);
-				return true;
-			default:
-				$customLocaleHandler->index();
-				return true;
+		list($verbName, $verbLocalized) = $verb;
+
+		if ($verbName === 'index') {
+			import('lib.pkp.classes.linkAction.request.AjaxLegacyPluginModal');
+			$actionRequest = new AjaxLegacyPluginModal($dispatcher->url($request, ROUTE_PAGE, null, 'index'),
+				$this->getDisplayName());
+			return new LinkAction($verbName, $actionRequest, $verbLocalized, null);
 		}
+
+		return null;
 	}
 }
 

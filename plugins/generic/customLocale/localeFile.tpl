@@ -8,7 +8,7 @@
  *}
 {strip}
 {translate|assign:"pageTitleTranslated" key="plugins.generic.customLocale.locale" locale=$locale}
-{include file="common/header.tpl"}
+{include file="controllers/modals/legacyPlugin/header.tpl" pageTitleTranslated=$pageTitleTranslated}
 {/strip}
 
 {assign var=filenameEscaped value=$filename|escape:"url"|escape:"url"}
@@ -17,16 +17,16 @@
 {foreach from=referenceLocaleContents key=key item=value}<input type="hidden" name="{$key|escape}" value="{$key|escape}"/>{/foreach}
 </form>
 
-<form class="pkp_form" id="localeSearch" action="{plugin_url path="editLocaleFile" key=$locale file=$filenameEscaped  anchor="localeContents"}" method="post">
+<form class="pkp_form" id="localeSearch" action="{url op="editLocaleFile" path=$locale|to_array:$filenameEscaped anchor="localeContents"}" method="post">
 	{translate key="plugins.generic.customLocale.localeKey"}&nbsp;&nbsp;
 	<input type="text" name="searchKey" class="textField" />&nbsp;&nbsp;
-	<input type="submit" class="button defaultButton" onclick="document.getElementById('locale').redirectUrl.value=document.getElementById('localeSearch').action);document.getElementById('locale').submit();return false;" value="{translate key="common.search"}" /> {translate key="plugins.generic.customLocale.localeKey.description"}
+	<input type="submit" class="button defaultButton" onclick="document.getElementById('locale').redirectUrl.value=document.getElementById('localeSearch').action);$('#locale').submit();return false;" value="{translate key="common.search"}" /> {translate key="plugins.generic.customLocale.localeKey.description"}
 </form>
 
 <br />
 <p>{translate key="plugins.generic.customLocale.fileDescription"}</p>
 
-<form class="pkp_form" id="locale" action="{plugin_url path="saveLocaleFile" key=$locale file=$filenameEscaped }" method="post">
+<form class="pkp_form" id="locale" action="{url op="saveLocaleFile" path=$locale|to_array:$filenameEscaped }" method="post">
 <input type="hidden" name="redirectUrl" value="" />
 
 <a name="localeContents"></a>
@@ -86,15 +86,13 @@
 </table>
 
 {if $referenceLocaleContents->getPage() < $referenceLocaleContents->getPageCount()}
-	<input type="submit" onclick="document.getElementById('locale').redirectUrl.value='{plugin_url path="editLocaleFile" key=$locale file=$filenameEscaped referenceLocaleContentsPage=$referenceLocaleContents->getPage()+1 escape="false"}';return true;" class="button defaultButton" value="{translate key="common.saveAndContinue"}" />
+	<input type="submit" onclick="document.getElementById('locale').redirectUrl.value='{url op="editLocaleFile" path=$locale|to_array:$filenameEscaped referenceLocaleContentsPage=$referenceLocaleContents->getPage()+1 escape="false"}';return true;" class="button defaultButton" value="{translate key="common.saveAndContinue"}" />
 {else}
-	<input type="submit" onclick="document.getElementById('locale').redirectUrl.value='{plugin_url path="editLocaleFile" key=$locale file=$filenameEscaped referenceLocaleContentsPage=$referenceLocaleContents->getPage() escape="false"}';return true;" class="button defaultButton" value="{translate key="common.save"}" />
+	<input type="submit" onclick="document.getElementById('locale').redirectUrl.value='{url op="editLocaleFile" path=$locale|to_array:$filenameEscaped referenceLocaleContentsPage=$referenceLocaleContents->getPage() escape="false"}';return true;" class="button defaultButton" value="{translate key="common.save"}" />
 {/if}
 
-<input type="submit" onclick="document.getElementById('locale').redirectUrl.value='{plugin_url path="edit" key=$locale escape="false"}';return true;" class="button" value="{translate key="common.done"}" />
+<input type="submit" onclick="document.getElementById('locale').redirectUrl.value='{url op="edit" path=$locale escape="false"}';return true;" class="button" value="{translate key="common.done"}" />
 
-<input type="button" onclick="document.location.href='{plugin_url path="edit" key=$locale escape="false"}';" class="button" value="{translate key="common.cancel"}" />
+<a href="{url op="edit" path=$locale escape="false"}">{translate key="common.cancel"}</a>
 
 </form>
-
-{include file="common/footer.tpl"}

@@ -18,7 +18,7 @@ class CustomLocaleAction {
 	function getLocaleFiles($locale) {
 		if (!AppLocale::isLocaleValid($locale)) return null;
 
-		$localeFiles = array(AppLocale::getMainLocaleFilename($locale));
+		$localeFiles =& AppLocale::makeComponentMap($locale);
 		$plugins =& PluginRegistry::loadAllPlugins();
 		foreach (array_keys($plugins) as $key) {
 			$plugin =& $plugins[$key];

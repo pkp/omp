@@ -8,7 +8,7 @@
  *}
 {strip}
 {assign var="pageTitle" value="plugins.generic.customLocale.name"}
-{include file="common/header.tpl"}
+{include file="controllers/modals/legacyPlugin/header.tpl" pageTitle=$pageTitle}
 {/strip}
 
 <p>{translate key="plugins.generic.customLocale.longDescription"}</p>
@@ -29,7 +29,7 @@
 		<td>{$localeKey|escape}</td>
 		<td>{$localeName|escape}</td>
 		<td>
-			<a href="{plugin_url path="edit" key=$localeKey}" class="action">{translate key="common.edit"}</a>
+			<a href="{url op="edit" path=$localeKey}" class="action">{translate key="common.edit"}</a>
 		</td>
 	</tr>
 	<tr>
@@ -52,5 +52,3 @@
 {/if}
 
 </table>
-
-{include file="common/footer.tpl"}

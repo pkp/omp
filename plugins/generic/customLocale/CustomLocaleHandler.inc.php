@@ -14,7 +14,6 @@
 
 
 
-require_once('CustomLocalePlugin.inc.php');
 require_once('CustomLocaleAction.inc.php');
 import('classes.handler.Handler');
 
@@ -28,16 +27,16 @@ class CustomLocaleHandler extends Handler {
 	function CustomLocaleHandler() {
 		parent::Handler();
 
-		$this->addCheck(new HandlerValidatorJournal($this));
-		$this->addCheck(new HandlerValidatorRoles($this, true, null, null, array(ROLE_ID_SITE_ADMIN, ROLE_ID_JOURNAL_MANAGER)));
+		$this->addCheck(new HandlerValidatorPress($this));
+		$this->addCheck(new HandlerValidatorRoles($this, true, null, null, array(ROLE_ID_PRESS_MANAGER)));
 
-		$plugin =& PluginRegistry::getPlugin('generic', 'CustomLocalePlugin');
+		$plugin =& Registry::get('plugin');
 		$this->plugin =& $plugin;
 	}
 
 	function index() {
 		$this->validate();
-		$plugin =& PluginRegistry::getPlugin('generic', 'CustomLocalePlugin');
+		$plugin =& $this->plugin;
 		$this->setupTemplate($plugin, false);
 
 		$press = Request::getPress();
@@ -45,15 +44,15 @@ class CustomLocaleHandler extends Handler {
 
 		$templateMgr =& TemplateManager::getManager();
 		import('lib.pkp.classes.core.ArrayItemIterator');
-		$templateMgr->assign('locales', new ArrayItemIterator($journal->getSupportedLocaleNames(), $rangeInfo->getPage(), $rangeInfo->getCount()));
+		$templateMgr->assign('locales', new ArrayItemIterator($press->getSupportedLocaleNames(), $rangeInfo->getPage(), $rangeInfo->getCount()));
 		$templateMgr->assign('masterLocale', MASTER_LOCALE);
 
-		$templateMgr->display($plugin->getTemplatePath() . 'index.tpl');
+		return $templateMgr->fetchJson($plugin->getTemplatePath() . 'index.tpl');
 	}
 
 	function edit($args) {
 		$this->validate();
-		$plugin =& PluginRegistry::getPlugin('generic', 'CustomLocalePlugin');
+		$plugin =& $this->plugin;
 		$this->setupTemplate($plugin, true);
 
 		$locale = array_shift($args);
@@ -61,7 +60,7 @@ class CustomLocaleHandler extends Handler {
 
 		if (!AppLocale::isLocaleValid($locale)) {
 			$path = array($plugin->getCategory(), $plugin->getName(), 'index');
-			Request::redirect(null, null, null, $path);
+			return $this->index(array($path));
 		}
 		$localeFiles = CustomLocaleAction::getLocaleFiles($locale);
 
@@ -75,24 +74,24 @@ class CustomLocaleHandler extends Handler {
 		$templateMgr->assign('locale', $locale);
 		$templateMgr->assign('masterLocale', MASTER_LOCALE);
 
-		$templateMgr->display($plugin->getTemplatePath() . 'locale.tpl');
+		return $templateMgr->fetchJson($plugin->getTemplatePath() . 'locale.tpl');
 	}
 
 	function editLocaleFile($args) {
 		$this->validate();
-		$plugin =& PluginRegistry::getPlugin('generic', 'CustomLocalePlugin');
+		$plugin =& $this->plugin;
 		$this->setupTemplate($plugin, true);
 
 		$locale = array_shift($args);
 		if (!AppLocale::isLocaleValid($locale)) {
 			$path = array($plugin->getCategory(), $plugin->getName(), 'index');
-			Request::redirect(null, null, null, $path);
+			return $this->index(array($path));
 		}
 
 		$filename = urldecode(urldecode(array_shift($args)));
 		if (!CustomLocaleAction::isLocaleFile($locale, $filename)) {
 			$path = array($plugin->getCategory(), $plugin->getName(), 'edit', $locale);
-			Request::redirect(null, null, null, $path);
+			return $this->index(array($path));
 		}
 
 		$templateMgr =& TemplateManager::getManager();
@@ -140,24 +139,24 @@ class CustomLocaleHandler extends Handler {
 		$templateMgr->assign_by_ref('referenceLocaleContents', new ArrayItemIterator($referenceLocaleContents, $referenceLocaleContentsRangeInfo->getPage(), $referenceLocaleContentsRangeInfo->getCount()));
 		$templateMgr->assign('localeContents', $localeContents);
 
-		$templateMgr->display($plugin->getTemplatePath() . 'localeFile.tpl');
+		return $templateMgr->fetchJson($plugin->getTemplatePath() . 'localeFile.tpl');
 	}
 
 	function saveLocaleFile($args) {
 		$this->validate();
-		$plugin =& PluginRegistry::getPlugin('generic', 'CustomLocalePlugin');
+		$plugin =& $this->plugin;
 		$this->setupTemplate($plugin, true);
 
 		$locale = array_shift($args);
 		if (!AppLocale::isLocaleValid($locale)) {
 			$path = array($plugin->getCategory(), $plugin->getName(), 'index');
-			Request::redirect(null, null, null, $path);
+			return $this->index(array($path));
 		}
 
 		$filename = urldecode(urldecode(array_shift($args)));
 		if (!CustomLocaleAction::isLocaleFile($locale, $filename)) {
 			$path = array($plugin->getCategory(), $plugin->getName(), 'edit', $locale);
-			Request::redirect(null, null, null, $path);
+			return $this->index(array($path));
 		}
 
 		$press =& Request::getPress();
@@ -200,7 +199,9 @@ class CustomLocaleHandler extends Handler {
 		}
 		$file->write();
 
-		Request::redirectUrl(Request::getUserVar('redirectUrl'));
+		// Import helper to be used while this plugin is not modernized with OMP UI.
+		import('classes.plugins.LegacyPluginHelper');
+		return LegacyPluginHelper::redirect(Request::getUserVar('redirectUrl'));
 	}
 
 	function correctCr($value) {
@@ -211,7 +212,7 @@ class CustomLocaleHandler extends Handler {
 		parent::setupTemplate();
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->register_function('plugin_url', array($plugin, 'smartyPluginUrl'));
-		$pageHierarchy = array(array(Request::url(null, 'user'), 'navigation.user'), array(Request::url(null, 'manager'), 'user.role.manager'));
+		$pageHierarchy = array();
 		if ($subclass) {
 			$path = array($plugin->getCategory(), $plugin->getName(), 'index');
 			$pageHierarchy[] = array(Request::url(null, null, null, $path), 'plugins.generic.customLocale.name');

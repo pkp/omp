@@ -8,7 +8,7 @@
  *}
 {strip}
 {translate|assign:"pageTitleTranslated" key="plugins.generic.customLocale.locale" locale=$locale}
-{include file="common/header.tpl"}
+{include file="controllers/modals/legacyPlugin/header.tpl" pageTitleTranslated=$pageTitleTranslated}
 {/strip}
 
 <p>{translate key="plugins.generic.customLocale.localeDescription"}</p>
@@ -39,7 +39,7 @@
 		</td>
 		<td>
 			{if $fileExists}
-				<a href="{plugin_url path="editLocaleFile" key=$locale file=$filenameEscaped}" class="action">{translate key="common.edit"}</a>
+				<a href="{url op="editLocaleFile" path=$locale|to_array:$filenameEscaped}" class="action">{translate key="common.edit"}</a>
 			{/if}
 		</td>
 	</tr>
@@ -63,5 +63,3 @@
 {/if}
 
 </table>
-
-{include file="common/footer.tpl"}
