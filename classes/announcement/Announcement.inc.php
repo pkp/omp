@@ -22,7 +22,12 @@
 import('lib.pkp.classes.announcement.PKPAnnouncement');
 
 class Announcement extends PKPAnnouncement {
-
+	/**
+	 * Constructor
+	 */
+	function Announcement() {
+		parent::PKPAnnouncement();
+	}
 }
 
 ?>

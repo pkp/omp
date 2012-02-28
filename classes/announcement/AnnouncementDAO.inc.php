@@ -23,6 +23,13 @@ class AnnouncementDAO extends PKPAnnouncementDAO {
 	function AnnouncementDAO() {
 		parent::PKPAnnouncementDAO();
 	}
+
+	/**
+	 * @see PKPAnnouncementDAO::newDataObject
+	 */
+	function newDataObject() {
+		return new Announcement();
+	}
 }
 
 ?>

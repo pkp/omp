@@ -17,7 +17,12 @@
 import('lib.pkp.classes.announcement.PKPAnnouncementType');
 
 class AnnouncementType extends PKPAnnouncementType {
-
+	/**
+	 * Constructor
+	 */
+	function AnnouncementType() {
+		parent::PKPAnnouncementType();
+	}
 }
 
 ?>
