@@ -990,7 +990,7 @@ div.pkp_controllers_grid .row_container {
   overflow:hidden;
   height:40px;
   min-height:40px;
-  line-height:1.4em;
+  line-height:40px;
   vertical-align:middle;
 }
 div.pkp_controllers_grid .row_actions {
