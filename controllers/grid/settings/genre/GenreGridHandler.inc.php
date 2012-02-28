@@ -83,7 +83,8 @@ class GenreGridHandler extends SetupGridHandler {
 					__('grid.action.restoreDefaults'),
 					null,
 					$router->url($request, null, null, 'restoreGenres', null, $actionArgs)),
-				__('grid.action.restoreDefaults'))
+				__('grid.action.restoreDefaults'),
+				'delete')
 		);
 
 		// Columns
