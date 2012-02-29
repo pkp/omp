@@ -79,7 +79,7 @@
 {else}
 	<tr>
 		<td align="left">{page_info iterator=$referenceLocaleContents}</td>
-		<td align="right">{page_links all_extra="onclick=\"document.getElementById('locale').redirectUrl.value=this.href;this.href='javascript:document.getElementById('locale').submit()';return true;\"" anchor="localeContents" name="referenceLocaleContents" iterator=$referenceLocaleContents}</td>
+		<td align="right">{page_links all_extra="onclick=\"document.getElementById('locale').redirectUrl.value=this.href;$('#locale').submit();return false;\"" anchor="localeContents" name="referenceLocaleContents" iterator=$referenceLocaleContents}</td>
 	</tr>
 {/if}
 

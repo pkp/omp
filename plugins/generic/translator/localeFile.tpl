@@ -62,7 +62,7 @@
 			{/if}
 		</td>
 		<td>
-			<a href="{url op="deleteLocaleKey" path=$locale|to_array:$filenameEscaped:$key}" onclick='if (confirm("{translate|escape:"javascript" key="plugins.generic.translator.confirmDelete" filename=$filename}")) {literal}{document.getElementById('locale').redirectUrl.value=this.href;this.href="javascript:document.getElementById('locale').submit()";return true;} else {return false;}{/literal}' class="action">{translate key="common.delete"}</a>
+			<a href="{url op="deleteLocaleKey" path=$locale|to_array:$filenameEscaped:$key}" onclick="if (confirm('{translate|escape:"javascript" key="plugins.generic.translator.confirmDelete" filename=$filename}')) {literal}{document.getElementById('locale').redirectUrl.value=this.href;$('#locale').submit();} return false;{/literal}" class="action">{translate key="common.delete"}</a>
 		</td>
 	</tr>
 	<tr>
@@ -80,7 +80,7 @@
 {else}
 	<tr>
 		<td align="left">{page_info iterator=$localeContents}</td>
-		<td colspan="2" align="right">{page_links all_extra="onclick=\"document.getElementById('locale').redirectUrl.value=this.href;this.href='javascript:document.getElementById('locale').submit()';return true;\"" anchor="localeContents" name="localeContents" iterator=$localeContents}</td>
+		<td colspan="2" align="right">{page_links all_extra="onclick=\"document.getElementById('locale').redirectUrl.value=this.href;$('#locale').submit();return false;\"" anchor="localeContents" name="localeContents" iterator=$localeContents}</td>
 	</tr>
 {/if}
 
