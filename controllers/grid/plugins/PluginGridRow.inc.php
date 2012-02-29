@@ -50,12 +50,16 @@ class PluginGridRow extends GridRow {
 
 		$rowId = $this->getId();
 
+		// Only add row actions if this is an existing row
 		if (!is_null($rowId)) {
 			$router =& $request->getRouter(); /* @var $router PKPRouter */
 
+			$actionArgs = array(
+				'category' => $plugin->getCategory(),
+				'plugin' => $plugin->getName());
+
 			if ($this->_canEdit($plugin)) {
 
-				// Only add row actions if this is an existing row
 				$managementVerbs = $plugin->getManagementVerbs();
 
 				// If plugin has not management verbs, we receive
@@ -64,11 +68,8 @@ class PluginGridRow extends GridRow {
 					foreach ($managementVerbs as $verb) {
 						list($verbName, $verbLocaleKey) = $verb;
 
-						$actionArgs = array(
-							'category' => $plugin->getCategory(),
-							'plugin' => $plugin->getName(),
-							'verb' => $verbName
-						);
+						// Add the verb to action args array.
+						$actionArgs['verb'] = $verbName;
 
 						$defaultUrl = $router->url($request, null, null, 'plugin', null, $actionArgs);
 						$linkAction = null;
@@ -104,9 +105,6 @@ class PluginGridRow extends GridRow {
 						}
 
 						if ($linkAction) {
-							// Set a non-default template that supports row actions
-							$this->setTemplate('controllers/grid/gridRowWithActions.tpl');
-
 							// Insert row link action.
 							$this->addAction($linkAction);
 
@@ -114,7 +112,28 @@ class PluginGridRow extends GridRow {
 							unset($actionRequest);
 						}
 					}
+
+					// Remove verb from action args array.
+					unset($actionArgs['verb']);
 				}
+			}
+
+			// Administrative functions.
+			if (in_array(ROLE_ID_SITE_ADMIN, $this->_userRoles)) {
+				import('lib.pkp.classes.linkAction.request.RemoteActionConfirmationModal');
+				$this->addAction(new LinkAction(
+						'delete',
+						new RemoteActionConfirmationModal(
+							__('manager.plugins.deleteConfirm'),
+							__('common.delete'),
+							$router->url($request, null, null, 'deletePlugin', null, $actionArgs)),
+						__('common.delete'),
+						'remove'));
+			}
+
+			if($this->getActions()) {
+				// Set a non-default template that supports row actions
+				$this->setTemplate('controllers/grid/gridRowWithActions.tpl');
 			}
 		}
 	}

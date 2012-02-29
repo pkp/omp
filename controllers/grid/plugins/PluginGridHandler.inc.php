@@ -27,6 +27,9 @@ class PluginGridHandler extends CategoryGridHandler {
 		$this->addRoleAssignment($roles,
 			array('fetchGrid, fetchRow'));
 
+		$this->addRoleAssignment(ROLE_ID_SITE_ADMIN,
+			array('deletePlugin'));
+
 		parent::GridHandler();
 	}
 
@@ -222,6 +225,42 @@ class PluginGridHandler extends CategoryGridHandler {
 			return $json->getString();
 		}
 	}
-}
 
+	function deletePlugin($args, &$request) {
+		$this->setupTemplate();
+		$plugin =& $this->getAuthorizedContextObject(ASSOC_TYPE_PLUGIN);
+		$category = $plugin->getCategory();
+		$productName = basename($plugin->getPluginPath());
+
+		$versionDao =& DAORegistry::getDAO('VersionDAO'); /* @var $versionDao VersionDAO */
+		$installedPlugin = $versionDao->getCurrentVersion('plugins.'.$category, $productName, true);
+
+		$notificationMgr = new NotificationManager();
+		$user =& $request->getUser();
+
+		if ($installedPlugin) {
+			$pluginDest = Core::getBaseDir() . DIRECTORY_SEPARATOR . 'plugins' . DIRECTORY_SEPARATOR . $category . DIRECTORY_SEPARATOR . $productName;
+			$pluginLibDest = Core::getBaseDir() . DIRECTORY_SEPARATOR . 'lib' . DIRECTORY_SEPARATOR . 'pkp' . DIRECTORY_SEPARATOR . 'plugins' . DIRECTORY_SEPARATOR . $category . DIRECTORY_SEPARATOR . $productName;
+
+			// make sure plugin type is valid and then delete the files
+			if (in_array($category, PluginRegistry::getCategories())) {
+				// Delete the plugin from the file system.
+				$fileManager = new FileManager();
+				$fileManager->rmtree($pluginDest);
+				$fileManager->rmtree($pluginLibDest);
+			}
+
+			if(is_dir($pluginDest) || is_dir($pluginLibDest)) {
+				$notificationMgr->createTrivialNotification($user->getId(), NOTIFICATION_TYPE_ERROR, array('contents' => __('manager.plugins.deleteError', array('pluginName' => $plugin->getDisplayName()))));
+			} else {
+				$versionDao->disableVersion('plugins.'.$category, $productName);
+				$notificationMgr->createTrivialNotification($user->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('manager.plugins.deleteSuccess', array('pluginName' => $plugin->getDisplayName()))));
+			}
+		} else {
+			$notificationMgr->createTrivialNotification($user->getId(), NOTIFICATION_TYPE_ERROR, array('contents' => __('manager.plugins.doesNotExist', array('pluginName' => $plugin->getDisplayName()))));
+		}
+
+		return DAO::getDataChangedEvent($plugin->getName());
+	}
+}
 ?>

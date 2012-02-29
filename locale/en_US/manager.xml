@@ -27,10 +27,10 @@
 	<message key="manager.plugins.delete">Delete Plugin</message>
 	<message key="manager.plugins.deleteConfirm">Are you sure you wish to delete this plugin from the system?</message>
 	<message key="manager.plugins.deleteDescription">By clicking delete, you will delete the plugin from the server's file system.</message>
-	<message key="manager.plugins.deleteError">Plugin could not be deleted from the file system. This may be a permissions problem. Please make sure that the web server is able to write to the plugins directory (including subdirectories) but don't forget to secure it again later.</message>
-	<message key="manager.plugins.deleteSuccess">Plugin successfuly deleted</message>
+	<message key="manager.plugins.deleteError">Plugin "{$pluginName}" could not be deleted from the file system. This may be a permissions problem. Please make sure that the web server is able to write to the plugins directory (including subdirectories) but don't forget to secure it again later.</message>
+	<message key="manager.plugins.deleteSuccess">Plugin "{$pluginName}" successfuly deleted</message>
 	<message key="manager.plugins.description">This page allows the Press Manager to review and potentially configure the plugins that are currently installed. Plugins are divided into categories, according to their function. The categories are listed below, and within each category, its current set of plugins.</message>
-	<message key="manager.plugins.doesNotExist">Plugin does not exist</message>
+	<message key="manager.plugins.doesNotExist">Plugin "{$pluginName}" does not exist</message>
 	<message key="manager.plugins.fileSelectError">Please select a file first</message>
 	<message key="manager.plugins.install">Install A New Plugin</message>
 	<message key="manager.plugins.installDescription">This form allows you to upload and install a new plugin.  Please ensure the plugin is compressed as a .tar.gz file.</message>
