@@ -128,7 +128,7 @@ class PluginGridRow extends GridRow {
 							__('common.delete'),
 							$router->url($request, null, null, 'deletePlugin', null, $actionArgs)),
 						__('common.delete'),
-						'remove'));
+						'delete'));
 			}
 
 			if($this->getActions()) {
