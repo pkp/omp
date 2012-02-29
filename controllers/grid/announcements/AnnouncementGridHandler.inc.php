@@ -38,7 +38,7 @@ class AnnouncementGridHandler extends GridHandler {
 		$returner = parent::authorize($request, $args, $roleAssignments);
 
 		// Ensure announcements are enabled.
-		$press =& $request::getPress();
+		$press =& $request->getPress();
 		if (!$press->getSetting('enableAnnouncements')) {
 			return false;
 		}
@@ -46,7 +46,6 @@ class AnnouncementGridHandler extends GridHandler {
 		$announcementId = $request->getUserVar('announcementId');
 		if ($announcementId) {
 			// Ensure announcement is valid and for this context
-			$press =& $request->getPress();
 			$announcementDao =& DAORegistry::getDAO('AnnouncementDAO'); /* @var $announcementDao AnnouncementDAO */
 			if ($announcementDao->getAnnouncementAssocType($announcementId) != ASSOC_TYPE_PRESS &&
 				$announcementDao->getAnnouncementAssocId($announcementId) != $press->getId()) {
