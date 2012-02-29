@@ -30,7 +30,6 @@ class AnnouncementTypeDAO extends PKPAnnouncementTypeDAO {
 	function newDataObject() {
 		return new AnnouncementType();
 	}
-	}
 }
 
 ?>
