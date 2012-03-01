@@ -175,7 +175,6 @@ class ManageSpotlightsGridHandler extends CategoryGridHandler {
 	function getCategoryData($category) {
 
 		$spotlightDao =& DAORegistry::getDAO('SpotlightDAO');
-		$spotlights = null;
 		$spotlights =& $spotlightDao->getByLocationAndPressId($category['location'], $this->getPress()->getId());
 		return $spotlights->toArray();
 	}

@@ -76,6 +76,7 @@ class SpotlightForm extends Form {
 			$templateMgr->assign('location', $spotlight->getLocation());
 			$templateMgr->assign('type', $spotlight->getAssocType());
 			$templateMgr->assign('assocTitle', $this->getAssocTitle($spotlight->getAssocId(), $spotlight->getAssocType()));
+			$templateMgr->assign('assocId', $spotlight->getAssocId());
 		} else {
 			$templateMgr->assign('type', SPOTLIGHT_TYPE_BOOK); // default
 		}
@@ -86,17 +87,17 @@ class SpotlightForm extends Form {
 	}
 
 	//
-	// Extended methods from PKPSpotlightForm
+	// Extended methods from Form
 	//
 	/**
-	 * @see PKPSpotlightForm::readInputData()
+	 * @see Form::readInputData()
 	 */
 	function readInputData() {
 		$this->readUserVars(array('title', 'type', 'description', 'location', 'assocId'));
 	}
 
 	/**
-	 * @see PKPSpotlightForm::execute()
+	 * @see Form::execute()
 	 */
 	function execute(&$request) {
 

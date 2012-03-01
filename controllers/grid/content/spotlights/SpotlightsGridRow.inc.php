@@ -7,7 +7,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class SpotlightsGridRow
- * @ingroup controllers_grid_catalogEntry
+ * @ingroup controllers_grid_content_spotlights
  *
  * @brief Spotlights grid row definition
  */
@@ -91,7 +91,7 @@ class SpotlightsGridRow extends GridRow {
 	}
 
 	/**
-	 * Get the press for this row (already authorized)
+	 * Set the press for this row (already authorized)
 	 * @return Press
 	 */
 	function setPress($press) {
