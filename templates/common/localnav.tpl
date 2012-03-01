@@ -59,9 +59,7 @@
 					<li>
 						<a href="#">{translate key="navigation.management"}</a>
 						<ul>
-							{if $enableAnnouncements}
-								<li><a href="{url page="management" op="announcements"}">{translate key="announcement.announcements"}</a></li>
-							{/if}
+							<li><a href="{url page="management" op="content"}">{translate key="common.content"}</a></li>
 							<li>
 								<a href="{url page="management" op="settings" path="index"}">{translate key="navigation.settings"}</a>
 								<ul>

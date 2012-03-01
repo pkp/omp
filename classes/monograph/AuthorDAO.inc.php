@@ -70,8 +70,8 @@ class AuthorDAO extends PKPAuthorDAO {
 				aspl.locale AS primary_locale,
 				ma.country
 			FROM	authors ma
-				LEFT JOIN author_settings aspl ON (aa.author_id = aspl.author_id AND aspl.setting_name = ? AND aspl.locale = ?)
-				LEFT JOIN author_settings asl ON (aa.author_id = asl.author_id AND asl.setting_name = ? AND asl.locale = ?)
+				LEFT JOIN author_settings aspl ON (ma.author_id = aspl.author_id AND aspl.setting_name = ? AND aspl.locale = ?)
+				LEFT JOIN author_settings asl ON (ma.author_id = asl.author_id AND asl.setting_name = ? AND asl.locale = ?)
 				LEFT JOIN monographs a ON (ma.submission_id = a.monograph_id)
 			WHERE	a.status = ' . STATUS_PUBLISHED . ' ' .
 				(isset($pressId)?'AND a.press_id = ? ':'') . '

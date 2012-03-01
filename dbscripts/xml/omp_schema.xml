@@ -1752,4 +1752,66 @@
 			<UNIQUE/>
 		</index>
 	</table>
+
+	<!--
+	  *
+	  * TABLE spotlights
+	  *
+	  -->
+	<table name="spotlights">
+		<field name="spotlight_id" type="I8">
+			<KEY />
+			<AUTOINCREMENT/>
+		</field>
+		<field name="assoc_type" type="I2">
+			<NOTNULL/>
+		</field>
+		<field name="assoc_id" type="I2">
+			<NOTNULL/>
+		</field>
+		<field name="press_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="location" type="I2">
+			<NOTNULL/>
+		</field>
+		<descr>Spotlights</descr>
+		<index name="spotlights_assoc">
+			<col>assoc_type</col>
+			<col>assoc_id</col>
+		</index>
+	</table>
+	
+	<!--
+	  *
+	  * TABLE spotlight_settings
+	  *
+	  -->
+	<table name="spotlight_settings">
+		<field name="spotlight_id" type="I8">
+			<NOTNULL />
+		</field>
+		<field name="locale" type="C2" size="5">
+			<NOTNULL />
+			<DEFAULT VALUE=""/>
+		</field>
+		<field name="setting_name" type="C2" size="255">
+			<NOTNULL />
+		</field>
+		<field name="setting_value" type="X"/>
+		<field name="setting_type" type="C2" size="6">
+			<NOTNULL/>
+			<descr>(bool|int|float|string|object|date)</descr>
+		</field>
+		<descr>Spotlight metadata.</descr>
+		<index name="spotlight_settings_id">
+			<col>spotlight_id</col>
+		</index>
+		<index name="spotlight_settings_pkey">
+			<col>spotlight_id</col>
+			<col>locale</col>
+			<col>setting_name</col>
+			<UNIQUE/>
+		</index>
+	</table>
 </schema>

@@ -36,6 +36,7 @@ define('ASSOC_TYPE_CATEGORY',			0x000020D);
 define('ASSOC_TYPE_SERIES',			0x000020E);
 define('ASSOC_TYPE_MONOGRAPH_FILES',		0x000020F);
 define('ASSOC_TYPE_PUBLISHED_MONOGRAPH',	0x0000210);
+define('ASSOC_TYPE_AUTHOR',			0x0000211);
 
 define('CONTEXT_PRESS', 1);
 
@@ -166,6 +167,7 @@ class Application extends PKPApplication {
 			'SeriesEditorsDAO' => 'classes.press.SeriesEditorsDAO',
 			'SeriesEditorSubmissionDAO' => 'classes.submission.seriesEditor.SeriesEditorSubmissionDAO',
 			'SignoffDAO' => 'classes.signoff.SignoffDAO',
+			'SpotlightDAO' => 'classes.spotlight.SpotlightDAO',
 			'StageAssignmentDAO' => 'classes.stageAssignment.StageAssignmentDAO',
 			'SubmissionFileDAO' => 'classes.monograph.SubmissionFileDAO',
 			'UserGroupAssignmentDAO' => 'lib.pkp.classes.security.UserGroupAssignmentDAO',

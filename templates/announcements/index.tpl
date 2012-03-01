@@ -19,7 +19,7 @@
 	</div>
 {/if}
 
-{url|assign:announcementGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.announcements.AnnouncementGridHandler" op="fetchGrid"}
+{url|assign:announcementGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.content.announcements.AnnouncementGridHandler" op="fetchGrid"}
 {load_url_in_div id="announcementGridContainer" url="$announcementGridUrl"}
 
 {include file="common/footer.tpl"}

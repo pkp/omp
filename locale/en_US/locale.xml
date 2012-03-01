@@ -142,6 +142,16 @@
 	<message key="grid.catalogEntry.representativeIdType">Representative ID Type (GLN is recommended)</message>
 	<message key="grid.catalogEntry.representativesDescription">You may leave the following section empty if you provide your own services to your customers.</message>
 
+	<!-- Spotlight grid keys -->
+	<!--  Spotlights management -->
+	<message key="spotlight.spotlights">Spotlights</message>
+	<message key="spotlight.noneExist">There are no current spotlights.</message>
+	<message key="grid.content.spotlights.category.homepage">Homepage</message>
+	<message key="grid.content.spotlights.category.sidebar">Sidebar</message>
+	<message key="grid.content.spotlights.form.type">Spotlight Type</message>
+	<message key="grid.content.spotlights.form.location">Spotlight Location</message>
+	<message key="grid.content.spotlights.form.item">Featured Item</message>
+
 	<!-- Editorial policies -->
 	<message key="manager.series.open">Open Submissions</message>
 	<message key="manager.series.indexed">Indexed</message>
