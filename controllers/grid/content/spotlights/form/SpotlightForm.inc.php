@@ -75,7 +75,7 @@ class SpotlightForm extends Form {
 			$templateMgr->assign('description', $spotlight->getDescription(null));
 			$templateMgr->assign('location', $spotlight->getLocation());
 			$templateMgr->assign('type', $spotlight->getAssocType());
-			$templateMgr->assign('assocId', $spotlight->getAssocId());
+			$templateMgr->assign('assocTitle', $this->getAssocTitle($spotlight->getAssocId(), $spotlight->getAssocType()));
 		} else {
 			$templateMgr->assign('type', SPOTLIGHT_TYPE_BOOK); // default
 		}
@@ -148,6 +148,36 @@ class SpotlightForm extends Form {
 	 */
 	function getPressId() {
 		return $this->_pressId;
+	}
+
+	/**
+	 * Fetch the title of the Spotlight item, based on the assocType and pressId
+	 * @param int $assocId
+	 * @param int $assocType
+	 */
+	function getAssocTitle($assocId, $assocType) {
+
+		$returner = null;
+		switch ($assocType) {
+			case SPOTLIGHT_TYPE_BOOK:
+				$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
+				$publishedMonograph =& $publishedMonographDao->getById($assocId, $this->getPressId());
+				$returner = isset($publishedMonograph) ? $publishedMonograph->getLocalizedTitle() : '';
+				break;
+			case SPOTLIGHT_TYPE_SERIES:
+				$seriesDao =& DAORegistry::getDAO('SeriesDAO');
+				$series =& $seriesDao->getById($assocId, $this->getPressId());
+				$returner = isset($series) ? $series->getLocalizedTitle() : '';
+				break;
+			case SPOTLIGHT_TYPE_AUTHOR:
+				$authorDao =& DAORegistry::getDAO('AuthorDAO');
+				$author =& $authorDao->getById($assocId, $this->getPressId());
+				$returner = isset($author) ? $author->getFullName() : '';
+				break;
+			default:
+				fatalError('invalid type specified');
+		}
+		return $returner;
 	}
 }
 

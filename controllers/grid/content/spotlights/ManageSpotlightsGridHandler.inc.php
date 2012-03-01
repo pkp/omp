@@ -340,12 +340,18 @@ class ManageSpotlightsGridHandler extends CategoryGridHandler {
 				}
 				break;
 			case SPOTLIGHT_TYPE_SERIES:
+				$seriesDao =& DAORegistry::getDAO('SeriesDAO');
+				$allSeries =& $seriesDao->getByPressId($press->getId());
+				while ($series =& $allSeries->next()) {
+					if ($name == '' || preg_match('/'. quotemeta($name) . '/i', $series->getLocalizedTitle())) {
+						$itemList[] = array('label' => $series->getLocalizedTitle(), 'value' => $series->getId());
+					}
+				}
 				break;
 			case SPOTLIGHT_TYPE_AUTHOR:
 				$authorDao =& DAORegistry::getDAO('AuthorDAO');
 				$authors =& $authorDao->getAuthorsAlphabetizedByPress($press->getId());
 				while ($author =& $authors->next()) {
-					error_log($author->getFullName());
 					if ($name == '' || preg_match('/'. quotemeta($name) . '/i', $author->getFullName())) {
 						$itemList[] = array('label' => $author->getFullName(), 'value' => $author->getId());
 					}
