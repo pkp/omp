@@ -151,6 +151,7 @@
 	<message key="grid.content.spotlights.form.type">Spotlight Type</message>
 	<message key="grid.content.spotlights.form.location">Spotlight Location</message>
 	<message key="grid.content.spotlights.form.item">Featured Item</message>
+	<message key="grid.content.spotlights.form.type.book">Book</message>
 
 	<!-- Editorial policies -->
 	<message key="manager.series.open">Open Submissions</message>
@@ -539,6 +540,9 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="notification.addedAnnouncement">Announcement added.</message>
 	<message key="notification.editedAnnouncement">Announcement edited.</message>
 	<message key="notification.removedAnnouncement">Announcement removed.</message>
+	<message key="notification.addedSpotlight">Spotlight added.</message>
+	<message key="notification.editedSpotlight">Spotlight edited.</message>
+	<message key="notification.removedSpotlight">Spotlight removed.</message>
 	<message key="notification.signedFile">File signed.</message>
 	<message key="notification.updatedReviewFiles">Review files updated.</message>
 	<message key="notification.savedCatalogMetadata">Catalog metadata saved.</message>
