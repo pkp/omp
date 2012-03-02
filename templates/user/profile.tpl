@@ -8,9 +8,15 @@
  *}
 {strip}
 {assign var="pageTitle" value="user.profile.editProfile"}
-{url|assign:"url" op="profile"}
 {include file="common/header.tpl"}
 {/strip}
+
+<script type="text/javascript">
+	$(function() {ldelim}
+		// Attach the form handler.
+		$('#profile').pkpHandler('$.pkp.controllers.form.ClientFormHandler');
+	{rdelim});
+</script>
 
 <form class="pkp_form" id="profile" method="post" action="{url op="saveProfile"}" enctype="multipart/form-data">
 
