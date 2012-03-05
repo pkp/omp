@@ -28,7 +28,7 @@ class PluginGridHandler extends CategoryGridHandler {
 			array('fetchGrid, fetchRow'));
 
 		$this->addRoleAssignment(ROLE_ID_SITE_ADMIN,
-			array('deletePlugin'));
+			array('installPlugin', 'upgradePlugin', 'deletePlugin'));
 
 		parent::GridHandler();
 	}
@@ -104,6 +104,24 @@ class PluginGridHandler extends CategoryGridHandler {
 				$pluginCellProvider
 			)
 		);
+
+		$router =& $request->getRouter();
+
+		// Grid level actions.
+		$userRoles = $this->getAuthorizedContextObject(ASSOC_TYPE_USER_ROLES);
+		if (in_array(ROLE_ID_SITE_ADMIN, $userRoles)) {
+			import('lib.pkp.classes.linkAction.request.AjaxModal');
+
+			// Install plugin.
+			$this->addAction(
+				new LinkAction(
+					'install',
+					new AjaxModal(
+						$router->url($request, null, null, 'installPlugin'),
+						__('manager.plugins.install')),
+					__('manager.plugins.install'),
+					'add'));
+		}
 	}
 
 	/**
@@ -226,6 +244,79 @@ class PluginGridHandler extends CategoryGridHandler {
 		}
 	}
 
+	/**
+	 * Show upload plugin form to install a new plugin.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return string
+	 */
+	function installPlugin($args, &$request) {
+		return $this->_showUploadPluginForm('install');
+	}
+
+	/**
+	 * Show upload plugin form to update an existing plugin.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return string
+	 */
+	function upgradePlugin($args, &$request) {
+		return $this->_showUploadPluginForm('upgrade');
+	}
+
+	/**
+	 * Upload a plugin file.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 */
+	function uploadPlugin($args, &$request) {
+		$errorMsg = '';
+
+		import('classes.file.TemporaryFileManager');
+		$temporaryFileManager = new TemporaryFileManager();
+		$user =& $request->getUser();
+
+		// Return the temporary file id.
+		if ($temporaryFile = $temporaryFileManager->handleUpload('uploadedFile', $user->getId())) {
+			$json = new JSONMessage(true);
+			$json->setAdditionalAttributes(array(
+				'temporaryFileId' => $temporaryFile->getId()
+			));
+		} else {
+			$json = new JSONMessage(false, __('manager.plugins.uploadError'));
+		}
+
+		return $json->getString();
+	}
+
+	/**
+	 * Save upload plugin file form.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return string
+	 */
+	function saveUploadPlugin($args, &$request) {
+		$function = $request->getUserVar('function');
+
+		import('controllers.grid.plugins.form.UploadPluginForm');
+		$uploadPluginForm = new UploadPluginForm($function);
+		$uploadPluginForm->readInputData();
+
+		if($uploadPluginForm->validate()) {
+			if($uploadPluginForm->execute($request)) {
+				return DAO::getDataChangedEvent();
+			}
+		}
+
+		$json = new JSONMessage(false);
+		return $json->getString();
+	}
+
+	/**
+	 * Delete plugin.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 */
 	function deletePlugin($args, &$request) {
 		$this->setupTemplate();
 		$plugin =& $this->getAuthorizedContextObject(ASSOC_TYPE_PLUGIN);
@@ -261,6 +352,22 @@ class PluginGridHandler extends CategoryGridHandler {
 		}
 
 		return DAO::getDataChangedEvent($plugin->getName());
+	}
+
+	/**
+	 * Fetch upload plugin form.
+	 * @param $function string
+	 * @return string
+	 */
+	function _showUploadPluginForm($function) {
+		$this->setupTemplate(true);
+
+		import('controllers.grid.plugins.form.UploadPluginForm');
+		$uploadPluginForm = new UploadPluginForm($function);
+		$uploadPluginForm->initData();
+
+		$json = new JSONMessage(true, $uploadPluginForm->fetch($request));
+		return $json->getString();
 	}
 }
 ?>

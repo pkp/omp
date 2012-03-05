@@ -129,6 +129,14 @@ class PluginGridRow extends GridRow {
 							$router->url($request, null, null, 'deletePlugin', null, $actionArgs)),
 						__('common.delete'),
 						'delete'));
+
+				$this->addAction(new LinkAction(
+						'upgrade',
+						new AjaxModal(
+							$router->url($request, null, null, 'upgradePlugin', null, $actionArgs),
+							__('manager.plugins.upgrade')),
+						__('grid.action.upgrade'),
+						null));
 			}
 
 			if($this->getActions()) {
