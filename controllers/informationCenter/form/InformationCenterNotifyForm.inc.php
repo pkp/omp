@@ -62,7 +62,7 @@ class InformationCenterNotifyForm extends Form {
 			WORKFLOW_STAGE_ID_INTERNAL_REVIEW => array(),
 			WORKFLOW_STAGE_ID_EXTERNAL_REVIEW => array(),
 			WORKFLOW_STAGE_ID_EDITING => array('COPYEDIT_REQUEST'),
-			WORKFLOW_STAGE_ID_PRODUCTION => array()
+			WORKFLOW_STAGE_ID_PRODUCTION => array('LAYOUT_REQUEST')
 		);
 
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
@@ -142,11 +142,16 @@ class InformationCenterNotifyForm extends Form {
 			list($page, $operation) = SubmissionsListGridCellProvider::getPageAndOperationByUserRoles($request, $monograph, $user->getId());
 			$submissionUrl = $dispatcher->url($request, ROUTE_PAGE, null, $page, $operation, array('monographId' => $monograph->getId()));
 
-			// these are for 'COPYEDIT_REQUEST'
+			// these are for *_REQUEST emails
 			$email->assignParams(array(
+				// COPYEDIT_REQUEST
 				'copyeditorName' => $user->getFullName(),
 				'copyeditorUsername' => $user->getUsername(),
 				'submissionCopyeditingUrl' => $submissionUrl,
+				// LAYOUT_REQUEST
+				'layoutEditorName' => $user->getFullName(),
+				'submissionLayoutUrl' => $submissionUrl,
+				'layoutEditorUsername' => $user->getUsername()
 			));
 
 			$this->_createNotifications($request, $monograph, $user, $template);
@@ -172,17 +177,17 @@ class InformationCenterNotifyForm extends Form {
 	 */
 	function _createNotifications(&$request, $monograph, $user, $template) {
 
+		$currentStageId = $monograph->getStageId();
+		$stageAssignmentDao =& DAORegistry::getDAO('StageAssignmentDAO');
+		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+		$stageAssignments =& $stageAssignmentDao->getBySubmissionAndStageId($monograph->getId(), $monograph->getStageId(), null, $user->getId());
+		$notificationMgr = new NotificationManager();
+
 		switch ($template) {
 			case 'COPYEDIT_REQUEST':
-				$currentStageId = $monograph->getStageId();
-				$stageAssignmentDao =& DAORegistry::getDAO('StageAssignmentDAO');
-				$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
-
-				$stageAssignments =& $stageAssignmentDao->getBySubmissionAndStageId($monograph->getId(), $monograph->getStageId(), null, $user->getId());
 				while ($stageAssignment =& $stageAssignments->next()) {
 					$userGroup =& $userGroupDao->getById($stageAssignment->getUserGroupId());
 					if (in_array($userGroup->getRoleId(), array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_ASSISTANT))) {
-						$notificationMgr = new NotificationManager();
 						import('classes.monograph.MonographFile');
 						$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO');
 						$monographFileSignoffDao =& DAORegistry::getDAO('MonographFileSignoffDAO');
@@ -194,6 +199,16 @@ class InformationCenterNotifyForm extends Form {
 								unset($signoff);
 							}
 						}
+						return;
+					}
+				}
+				// User not in valid role for this task/notification.
+				break;
+			case 'LAYOUT_REQUEST':
+				while ($stageAssignment =& $stageAssignments->next()) {
+					$userGroup =& $userGroupDao->getById($stageAssignment->getUserGroupId());
+					if (in_array($userGroup->getRoleId(), array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_ASSISTANT))) {
+						$notificationMgr->updateLayoutRequestNotification($monograph, $user, $request);
 						return;
 					}
 				}

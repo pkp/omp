@@ -41,6 +41,9 @@ class NotificationManager extends PKPNotificationManager {
 			case NOTIFICATION_TYPE_METADATA_MODIFIED:
 				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
 				return $dispatcher->url($request, ROUTE_PAGE, null, 'workflow', 'submission', $notification->getAssocId());
+			case NOTIFICATION_TYPE_LAYOUT_ASSIGNMENT:
+				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
+				return $dispatcher->url($request, ROUTE_PAGE, null, 'workflow', 'access', $notification->getAssocId());
 			case NOTIFICATION_TYPE_AUDITOR_REQUEST:
 			case NOTIFICATION_TYPE_COPYEDIT_ASSIGNMENT:
 				$signoffDao =& DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
@@ -139,6 +142,10 @@ class NotificationManager extends PKPNotificationManager {
 			case NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_PRODUCTION:
 				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
 				return __('notification.type.editorAssignmentProduction');
+			case NOTIFICATION_TYPE_LAYOUT_ASSIGNMENT:
+				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
+				$monograph =& $monographDao->getById($notification->getAssocId());
+				return __('notification.type.layouteditorRequest', array('title' => $monograph->getLocalizedTitle()));
 			case NOTIFICATION_TYPE_AUDITOR_REQUEST:
 				assert($notification->getAssocType() == ASSOC_TYPE_SIGNOFF && is_numeric($notification->getAssocId()));
 				$signoffDao =& DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
@@ -298,6 +305,7 @@ class NotificationManager extends PKPNotificationManager {
 			case NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_PRODUCTION:
 			case NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_SUBMISSION:
 			case NOTIFICATION_TYPE_AUDITOR_REQUEST:
+			case NOTIFICATION_TYPE_LAYOUT_ASSIGNMENT:
 			case NOTIFICATION_TYPE_SIGNOFF_COPYEDIT:
 			case NOTIFICATION_TYPE_SIGNOFF_PROOF:
 			case NOTIFICATION_TYPE_PENDING_EXTERNAL_REVISIONS:
@@ -565,6 +573,53 @@ class NotificationManager extends PKPNotificationManager {
 	}
 
 	/**
+	 * Update NOTIFICATION_TYPE_LAYOUT_ASSIGNMENT
+	 * @param $monograph Monograph
+	 * @param $user User
+	 * @param $request Request
+	 */
+	function updateLayoutRequestNotification($monograph, $user, &$request) {
+		// Check for an existing notification for this monograph
+
+		$notificationDao =& DAORegistry::getDAO('NotificationDAO');
+		$notificationFactory =& $notificationDao->getNotificationsByAssoc(
+				ASSOC_TYPE_MONOGRAPH,
+				$monograph->getId(),
+				$user->getId(),
+				NOTIFICATION_TYPE_LAYOUT_ASSIGNMENT
+		);
+
+		if ($notificationFactory->wasEmpty()) {
+			$press =& $request->getPress();
+			PKPNotificationManager::createNotification(
+					$request,
+					$user->getId(),
+					NOTIFICATION_TYPE_LAYOUT_ASSIGNMENT,
+					$press->getId(),
+					ASSOC_TYPE_MONOGRAPH,
+					$monograph->getId(),
+					NOTIFICATION_LEVEL_TASK
+			);
+		}
+	}
+
+	/**
+	 * Removes a NOTIFICATION_TYPE_LAYOUT_ASSIGNMENT
+	 * Called when a layout editor reviews a layout.
+	 * @param $monograph Mongraph
+	 * @param $user User
+	 * @param $request Request
+	 */
+	function deleteLayoutRequestNotification($monograph, $user, &$request) {
+		$notificationDao = DAORegistry::getDAO('NotificationDAO');
+		$notificationFactory =& $notificationDao->getNotificationsByAssoc(ASSOC_TYPE_MONOGRAPH, $monograph->getId(), $user->getId(), NOTIFICATION_TYPE_LAYOUT_ASSIGNMENT);
+		if (!$notificationFactory->wasEmpty()) {
+			$notification =& $notificationFactory->next();
+			$notificationDao->deleteNotificationById($notification->getId());
+		}
+	}
+
+	/**
 	 * Removes a NOTIFICATION_TYPE_COPYEDIT_ASSIGNMENT
 	 * Called when a copyeditor reviews a copyedit.
 	 * @param $signoff Signoff
@@ -630,7 +685,7 @@ class NotificationManager extends PKPNotificationManager {
 	}
 
 	/**
-	 * Update the NOTIFICATION_TYPE_PENDIND_..._REVISIONS notification.
+	 * Update the NOTIFICATION_TYPE_PENDING_..._REVISIONS notification.
 	 * @param $monographId int
 	 * @param $stageId int
 	 * @param $decision int
@@ -885,7 +940,7 @@ class NotificationManager extends PKPNotificationManager {
 	}
 
 	/**
-	 * Get the NOTIFICATION_TYPE_PENDIND_..._REVISIONS url.
+	 * Get the NOTIFICATION_TYPE_PENDING_..._REVISIONS url.
 	 * @param $notification Notification
 	 * @return string
 	 */
@@ -907,7 +962,7 @@ class NotificationManager extends PKPNotificationManager {
 	}
 
 	/**
-	 * Get the NOTIFICATION_TYPE_PENDIND_..._REVISIONS message.
+	 * Get the NOTIFICATION_TYPE_PENDING_..._REVISIONS message.
 	 * @param $notification Notification
 	 * @return string
 	 */
@@ -919,7 +974,7 @@ class NotificationManager extends PKPNotificationManager {
 	}
 
 	/**
-	 * Get the NOTIFICATION_TYPE_PENDIND_..._REVISIONS contents.
+	 * Get the NOTIFICATION_TYPE_PENDING_..._REVISIONS contents.
 	 * @param $request Request
 	 * @param $notification Notification
 	 * @param $message String The notification message.
