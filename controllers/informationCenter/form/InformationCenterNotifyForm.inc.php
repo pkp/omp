@@ -62,7 +62,7 @@ class InformationCenterNotifyForm extends Form {
 			WORKFLOW_STAGE_ID_INTERNAL_REVIEW => array(),
 			WORKFLOW_STAGE_ID_EXTERNAL_REVIEW => array(),
 			WORKFLOW_STAGE_ID_EDITING => array('COPYEDIT_REQUEST'),
-			WORKFLOW_STAGE_ID_PRODUCTION => array('LAYOUT_REQUEST')
+			WORKFLOW_STAGE_ID_PRODUCTION => array('LAYOUT_REQUEST', 'LAYOUT_COMPLETE')
 		);
 
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
@@ -151,7 +151,9 @@ class InformationCenterNotifyForm extends Form {
 				// LAYOUT_REQUEST
 				'layoutEditorName' => $user->getFullName(),
 				'submissionLayoutUrl' => $submissionUrl,
-				'layoutEditorUsername' => $user->getUsername()
+				'layoutEditorUsername' => $user->getUsername(),
+				// LAYOUT_COMPLETE
+				'editorialContactName' => $user->getFullname()
 			));
 
 			$this->_createNotifications($request, $monograph, $user, $template);
