@@ -24,16 +24,25 @@
 		{/fbvFormSection}
 		{fbvFormSection list=true}
 			{fbvElement type="checkbox" id="enableAnnouncementsHomepage" label="manager.setup.enableAnnouncementsHomepage1" value="1" checked=$enableAnnouncementsHomepage inline=true}
-			{fbvElement type="select" id="numAnnouncementsHomepage" from=$numAnnouncementsHomepageOptions selected=$numAnnouncementsHomepage defaultValue="1" translate=false disabled=$disableAnnouncementsHomepage size=$fbvStyles.size.MEDIUM inline=true}
+			{fbvElement type="select" id="numAnnouncementsHomepage" from=$numAnnouncementsHomepageOptions selected=$numAnnouncementsHomepage defaultValue="1" translate=false disabled=$disableAnnouncementsHomepage size=$fbvStyles.size.SMALL inline=true}
 			<p>{translate key="manager.setup.enableAnnouncementsHomepage2"}</p>
 		{/fbvFormSection}
 		{fbvFormSection description="manager.setup.announcementsIntroductionDescription"}
-			{fbvElement type="textarea" multilingual="true" id="announcementsIntroduction" label="manager.setup.announcementsIntroduction" value=$announcementsIntroduction rich=true}
+			{fbvElement type="textarea" multilingual="true" id="announcementsIntroduction" value=$announcementsIntroduction rich=true}
 		{/fbvFormSection}
-		{fbvFormSection label="manager.setup.information" description="manager.setup.information.description"}
-			{fbvElement type="textarea" multilingual=true id="readerInformation" label="manager.setup.information.forReaders" value=$readerInformation rich=true}
-			{fbvElement type="textarea" multilingual=true id="authorInformation" label="manager.setup.information.forAuthors" value=$authorInformation rich=true}
-			{fbvElement type="textarea" multilingual=true id="librarianInformation" label="manager.setup.information.forLibrarians" value=$librarianInformation rich=true}
+	{/fbvFormArea}
+
+	{fbvFormArea id="information" title="manager.setup.information" border="true"}
+		{fbvFormSection description="manager.setup.information.description"}
+		{/fbvFormSection}
+		{fbvFormSection label="manager.setup.information.forReaders"}
+			{fbvElement type="textarea" multilingual=true id="readerInformation" value=$readerInformation rich=true}
+		{/fbvFormSection}
+		{fbvFormSection label="manager.setup.information.forAuthors"}
+			{fbvElement type="textarea" multilingual=true id="authorInformation" value=$authorInformation rich=true}
+		{/fbvFormSection}
+		{fbvFormSection label="manager.setup.information.forLibrarians"}
+			{fbvElement type="textarea" multilingual=true id="librarianInformation" value=$librarianInformation rich=true}
 		{/fbvFormSection}
 	{/fbvFormArea}
 

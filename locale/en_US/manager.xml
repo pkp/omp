@@ -377,7 +377,7 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.pressDescription">Press Description</message>
 	<message key="manager.setup.pressDescriptionDescription">Add a brief 20-25 word description in text/HTML which will appear just below the navigation links.</message>
 	<message key="manager.setup.pressHomepageContent">Press Homepage Content</message>
-	<message key="manager.setup.pressHomepageContentDescription">By default, the homepage consists of navigation links. Additional homepage content can be appended by using one or all of the following options, which will appear in the order shown. Note that the newest monograph is always accessible through the Current link in the navigation bar.</message>
+	<message key="manager.setup.pressHomepageContentDescription">The press homepage consists of navigation links by default. Additional homepage content can be appended by using one or all of the following options, which will appear in the order shown.</message>
 	<message key="manager.setup.pressHomepageHeader">Press Homepage Header</message>
 	<message key="manager.setup.pressHomepageHeader.altText">Press Homepage Header</message>
 	<message key="manager.setup.pressHomepageHeaderDescription">A graphic version of the press' title and logo (as a .gif, .jpg, or .png file) can be uploaded for the homepage, which will replace the text version that otherwise appears.</message>
@@ -479,8 +479,9 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.uniqueIdentifierDescription">Monographs can be tagged with an identification number or string, employing a registration system such as the Digital Object Identifier System (DOI).</message>
 	<message key="manager.setup.useCopyeditors">A Copyeditor will be assigned to work with each submission.</message>
 	<message key="manager.setup.useEditorialReviewBoard">An editorial/review board will be used by the press.</message>
-	<message key="manager.setup.useImageLogo">Logo image</message>
-	<message key="manager.setup.useImageTitle">Title image</message>
+	<message key="manager.setup.useImageLogo">Press Logo</message>
+	<message key="manager.setup.useImageLogoDescription">An optional press logo may be uploaded and used in conjunction with the image or text title configured above.</message>
+	<message key="manager.setup.useImageTitle">Title Image</message>
 	<message key="manager.setup.usePressStyleSheet">Press style sheet</message>
 	<message key="manager.setup.pressStyleSheetDescription">You may upload an additional Cascading Style Sheet (CSS) file to change the appearance of your press.</message>
 	<message key="manager.setup.useLayoutEditors">A Layout Editor will be assigned to prepare the HTML, PDF, etc., files for electronic publication.</message>
