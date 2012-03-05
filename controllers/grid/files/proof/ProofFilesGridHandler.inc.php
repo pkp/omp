@@ -54,17 +54,16 @@ class ProofFilesGridHandler extends SignoffFilesGridHandler {
 	 * @see PKPHandler::authorize()
 	 */
 	function authorize(&$request, &$args, $roleAssignments) {
-		$publicationFormatId = (int) $request->getUserVar('publicationFormatId');
-		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
-		$publicationFormat =& $publicationFormatDao->getById($publicationFormatId);
-		$press =& $request->getPress();
+		if (parent::authorize($request, $args, $roleAssignments)) {
+			$publicationFormatId = (int) $request->getUserVar('publicationFormatId');
+			$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
+			$monograph =& $this->getMonograph();
+			$publicationFormat =& $publicationFormatDao->getById($publicationFormatId, $monograph->getId());
 
-		if (!$publicationFormat || $publicationFormat->getPressId() != $press->getId()) {
-			fatalError('Invalid publication format!');
+			$this->setAssocId($publicationFormat->getId());
+			return true;
 		}
-
-		$this->setAssocId($publicationFormat->getId());
-		return parent::authorize($request, $args, $roleAssignments);
+		return false;
 	}
 
 	/**

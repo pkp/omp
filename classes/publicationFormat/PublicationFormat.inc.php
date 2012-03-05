@@ -24,22 +24,6 @@ class PublicationFormat extends DataObject {
 	}
 
 	/**
-	 * get press id
-	 * @return int
-	 */
-	function getPressId() {
-		return $this->getData('pressId');
-	}
-
-	/**
-	 * set press id
-	 * @param $pressId int
-	 */
-	function setPressId($pressId) {
-		return $this->setData('pressId', $pressId);
-	}
-
-	/**
 	 * get enabled flag
 	 * @return int
 	 */
@@ -69,32 +53,6 @@ class PublicationFormat extends DataObject {
 	 */
 	function setPhysicalFormat($physicalFormat) {
 		return $this->setData('physicalFormat', $physicalFormat);
-	}
-
-	/**
-	 * Set the name of the publication format
-	 * @param $name string
-	 * @param $locale string
-	 */
-	function setName($name, $locale) {
-		$this->setData('name', $name, $locale);
-	}
-
-	/**
-	 * Get the name of the publication format
-	 * @param $locale string
-	 * @return string
-	 */
-	function getName($locale) {
-		return $this->getData('name', $locale);
-	}
-
-	/**
-	 * Get the localized name of the publication format
-	 * @return string
-	 */
-	function getLocalizedName() {
-		return $this->getLocalizedData('name');
 	}
 
 	/**
