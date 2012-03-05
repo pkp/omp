@@ -14,7 +14,7 @@
 <script type="text/javascript">
 	$(function() {ldelim}
 		// Attach the form handler.
-		$('#profile').pkpHandler('$.pkp.controllers.form.ClientFormHandler');
+		$('#profile').pkpHandler('$.pkp.controllers.form.FormHandler');
 	{rdelim});
 </script>
 
