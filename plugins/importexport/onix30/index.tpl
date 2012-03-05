@@ -38,8 +38,8 @@
 		</tr>
 		
 		{iterate from=monographs item=monograph}
-			{if $monograph->hasAssignedPublicationFormats()}
-				{assign var="formats" value=$monograph->getAssignedPublicationFormats()}
+			{if $monograph->hasPublicationFormats()}
+				{assign var="formats" value=$monograph->getPublicationFormats()}
 				<tr valign="top">
 					<td rowspan={$formats|@count}>
 						{$monograph->getLocalizedPrefix()|concat:" ":$monograph->getLocalizedTitle()|escape}<br /><em>{$monograph->getAuthorString(true)|escape}</em>
@@ -47,9 +47,9 @@
 					{foreach from=$formats item=format name=formats}
 						{if !$smarty.foreach.formats.first}<tr>{/if}
 						<td>
-							{assign var="formatId" value=$format->getAssignedPublicationFormatId()|escape}
+							{assign var="formatId" value=$format->getId()|escape}
 							{fbvFormSection list="true"}
-								{fbvElement type="radio" required=true name="assignedPublicationFormatId" id='format'|concat:$formatId value=$formatId label=$format->getLocalizedTitle() translate=false}
+								{fbvElement type="radio" required=true name="publicationFormatId" id='format'|concat:$formatId value=$formatId label=$format->getLocalizedTitle() translate=false}
 							{/fbvFormSection}
 						</td>
 						<td>

@@ -54,17 +54,17 @@ class Onix30ExportPlugin extends ImportExportPlugin {
 		switch (array_shift($args)) {
 			case 'exportMonograph':
 
-				$assignedPublicationFormatId = (int) Request::getUserVar('assignedPublicationFormatId');
-				$assignedPublicationFormatDao =& DAORegistry::getDAO('AssignedPublicationFormatDAO');
-				$assignedPublicationFormat =& $assignedPublicationFormatDao->getById($assignedPublicationFormatId);
-				if ($assignedPublicationFormat != null) {
-					$monographId = $assignedPublicationFormat->getMonographId();
+				$publicationFormatId = (int) Request::getUserVar('publicationFormatId');
+				$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
+				$publicationFormat =& $publicationFormatDao->getById($publicationFormatId);
+				if ($publicationFormat != null) {
+					$monographId = $publicationFormat->getMonographId();
 					$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
 
 					/* check to make sure the requested Monograph is in this press */
 					$monograph =& $publishedMonographDao->getById($monographId, $press->getId());
 					if ($monograph != null) {
-						$this->exportMonograph($press, $monograph, $assignedPublicationFormat);
+						$this->exportMonograph($press, $monograph, $publicationFormat);
 					}
 				}
 				break;
@@ -86,12 +86,12 @@ class Onix30ExportPlugin extends ImportExportPlugin {
 		}
 	}
 
-	function exportMonograph(&$press, &$monograph, $assignedPublicationFormat, $outputFile = null) {
+	function exportMonograph(&$press, &$monograph, $publicationFormat, $outputFile = null) {
 		$this->import('Onix30ExportDom');
 		$doc =& XMLCustomWriter::createDocument();
 		$onix30ExportDom = new Onix30ExportDom();
 
-		$monographNode =& $onix30ExportDom->generateMonographDom($doc, $press, $monograph, $assignedPublicationFormat);
+		$monographNode =& $onix30ExportDom->generateMonographDom($doc, $press, $monograph, $publicationFormat);
 		XMLCustomWriter::appendChild($doc, $monographNode);
 
 		if (!empty($outputFile)) {
@@ -101,7 +101,7 @@ class Onix30ExportPlugin extends ImportExportPlugin {
 		} else {
 			header('Content-Type: application/xml');
 			header('Cache-Control: private');
-			header('Content-Disposition: attachment; filename="onix30-' . $monograph->getId() . '-' . $assignedPublicationFormat->getAssignedPublicationFormatId() . '.xml"');
+			header('Content-Disposition: attachment; filename="onix30-' . $monograph->getId() . '-' . $publicationFormat->getId() . '.xml"');
 			XMLCustomWriter::printXML($doc);
 		}
 		return true;

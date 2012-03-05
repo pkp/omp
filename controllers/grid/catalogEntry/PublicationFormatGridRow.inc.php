@@ -41,13 +41,13 @@ class PublicationFormatGridRow extends GridRow {
 		$monograph =& $this->getMonograph();
 
 		// Is this a new row or an existing row?
-		$assignedPublicationFormat = $this->_data;
-		if ($assignedPublicationFormat && is_numeric($assignedPublicationFormat->getAssignedPublicationFormatId())) {
+		$publicationFormat = $this->_data;
+		if ($publicationFormat && is_numeric($publicationFormat->getId())) {
 
 			$router =& $request->getRouter();
 			$actionArgs = array(
 				'monographId' => $monograph->getId(),
-				'assignedPublicationFormatId' => $assignedPublicationFormat->getAssignedPublicationFormatId()
+				'publicationFormatId' => $publicationFormat->getId()
 			);
 
 			// Add row-level actions

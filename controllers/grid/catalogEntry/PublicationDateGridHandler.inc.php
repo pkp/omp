@@ -27,8 +27,8 @@ class PublicationDateGridHandler extends GridHandler {
 	/** @var Monograph */
 	var $_monograph;
 
-	/** @var AssignedPublicationFormat */
-	var $_assignedPublicationFormat;
+	/** @var PublicationFormat */
+	var $_publicationFormat;
 
 	/**
 	 * Constructor
@@ -62,19 +62,19 @@ class PublicationDateGridHandler extends GridHandler {
 	}
 
 	/**
-	 * Get the assigned publication format assocated with these dates
-	 * @return AssignedPublicationformat
+	 * Get the publication format assocated with these dates
+	 * @return PublicationFormat
 	 */
-	function &getAssignedPublicationFormat() {
-		return $this->_assignedPublicationFormat;
+	function &getPublicationFormat() {
+		return $this->_publicationFormat;
 	}
 
 	/**
-	 * Set the assigned publication format
-	 * @param AssignedPublicationFormat
+	 * Set the publication format
+	 * @param PublicationFormat
 	 */
-	function setAssignedPublicationFormat($assignedPublicationFormat) {
-		$this->_assignedPublicationFormat =& $assignedPublicationFormat;
+	function setPublicationFormat($publicationFormat) {
+		$this->_publicationFormat =& $publicationFormat;
 	}
 
 	//
@@ -101,8 +101,8 @@ class PublicationDateGridHandler extends GridHandler {
 
 		// Retrieve the authorized monograph.
 		$this->setMonograph($this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH));
-		$assignedPublicationFormatDao =& DAORegistry::getDAO('AssignedPublicationFormatDAO');
-		$assignedPublicationFormatId = null;
+		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
+		$publicationFormatId = null;
 
 		// Retrieve the associated publication format for this grid.
 		$publicationDateId = (int) $request->getUserVar('publicationDateId'); // set if editing or deleting a date
@@ -111,16 +111,17 @@ class PublicationDateGridHandler extends GridHandler {
 			$publicationDateDao =& DAORegistry::getDAO('PublicationDateDAO');
 			$publicationDate =& $publicationDateDao->getById($publicationDateId, $this->getMonograph()->getId());
 			if ($publicationDate) {
-				$assignedPublicationFormatId =& $publicationDate->getAssignedPublicationFormatId();
+				$publicationFormatId =& $publicationDate->getPublicationFormatId();
 			}
 		} else { // empty form for new Date
-			$assignedPublicationFormatId = (int) $request->getUserVar('assignedPublicationFormatId');
+			$publicationFormatId = (int) $request->getUserVar('publicationFormatId');
 		}
 
-		$assignedPublicationFormat =& $assignedPublicationFormatDao->getById($assignedPublicationFormatId, $this->getMonograph()->getId());
+		$monograph =& $this->getMonograph();
+		$publicationFormat =& $publicationFormatDao->getById($publicationFormatId, $monograph->getId());
 
-		if ($assignedPublicationFormat) {
-			$this->setAssignedPublicationFormat($assignedPublicationFormat);
+		if ($publicationFormat) {
+			$this->setPublicationFormat($publicationFormat);
 		} else {
 			fatalError('The publication format is not assigned to authorized monograph!');
 		}
@@ -195,11 +196,11 @@ class PublicationDateGridHandler extends GridHandler {
 	 */
 	function getRequestArgs() {
 		$monograph =& $this->getMonograph();
-		$assignedPublicationFormat =& $this->getAssignedPublicationFormat();
+		$publicationFormat =& $this->getPublicationFormat();
 
 		return array(
 			'monographId' => $monograph->getId(),
-			'assignedPublicationFormatId' => $assignedPublicationFormat->getAssignedPublicationFormatId()
+			'publicationFormatId' => $publicationFormat->getId()
 		);
 	}
 
@@ -207,9 +208,9 @@ class PublicationDateGridHandler extends GridHandler {
 	 * @see GridHandler::loadData
 	 */
 	function &loadData($request, $filter = null) {
-		$assignedPublicationFormat =& $this->getAssignedPublicationFormat();
+		$publicationFormat =& $this->getPublicationFormat();
 		$publicationDateDao =& DAORegistry::getDAO('PublicationDateDAO');
-		$data =& $publicationDateDao->getByAssignedPublicationFormatId($assignedPublicationFormat->getAssignedPublicationFormatId());
+		$data =& $publicationDateDao->getByPublicationFormatId($publicationFormat->getId());
 		return $data->toArray();
 	}
 

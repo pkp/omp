@@ -36,12 +36,13 @@ class MarketDAO extends DAO {
 		}
 
 		$result =& $this->retrieve(
-			'SELECT m.*
-				FROM markets m
-			JOIN published_monograph_publication_formats pmpf ON (m.assigned_publication_format_id = pmpf.assigned_publication_format_id)
-			WHERE m.market_id = ?
-				' . ($monographId?' AND pmpf.monograph_id = ?':''),
-			$sqlParams);
+			'SELECT	m.*
+			FROM	markets m
+				JOIN publication_formats pf ON (m.publication_format_id = pf.publication_format_id)
+			WHERE	m.market_id = ?
+				' . ($monographId?' AND pf.monograph_id = ?':''),
+			$sqlParams
+		);
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
@@ -52,13 +53,13 @@ class MarketDAO extends DAO {
 	}
 
 	/**
-	 * Retrieve all market for an assigned publication format
-	 * @param $assignedPublicationFormatId int
+	 * Retrieve all market for a publication format
+	 * @param $publicationFormatId int
 	 * @return DAOResultFactory containing matching market.
 	 */
-	function &getByAssignedPublicationFormatId($assignedPublicationFormatId) {
+	function &getByPublicationFormatId($publicationFormatId) {
 		$result =& $this->retrieveRange(
-			'SELECT * FROM markets WHERE assigned_publication_format_id = ?', array((int) $assignedPublicationFormatId));
+			'SELECT * FROM markets WHERE publication_format_id = ?', (int) $publicationFormatId);
 
 		$returner = new DAOResultFactory($result, $this, '_fromRow');
 		return $returner;
@@ -96,7 +97,7 @@ class MarketDAO extends DAO {
 		$market->setTaxTypeCode($row['tax_type_code']);
 		$market->setAgentId($row['agent_id']);
 		$market->setSupplierId($row['supplier_id']);
-		$market->setAssignedPublicationFormatId($row['assigned_publication_format_id']);
+		$market->setPublicationFormatId($row['publication_format_id']);
 
 		if ($callHooks) HookRegistry::call('MarketDAO::_fromRow', array(&$market, &$row));
 
@@ -110,11 +111,11 @@ class MarketDAO extends DAO {
 	function insertObject(&$market) {
 		$this->update(
 			'INSERT INTO markets
-				(assigned_publication_format_id, countries_included, countries_excluded, regions_included, regions_excluded, market_date_role, market_date_format, market_date, price, discount, price_type_code, currency_code, tax_rate_code, tax_type_code, agent_id, supplier_id)
+				(publication_format_id, countries_included, countries_excluded, regions_included, regions_excluded, market_date_role, market_date_format, market_date, price, discount, price_type_code, currency_code, tax_rate_code, tax_type_code, agent_id, supplier_id)
 			VALUES
 				(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
 			array(
-				(int) $market->getAssignedPublicationFormatId(),
+				(int) $market->getPublicationFormatId(),
 				serialize($market->getCountriesIncluded() ? $market->getCountriesIncluded() : array()),
 				serialize($market->getCountriesExcluded() ? $market->getCountriesExcluded() : array()),
 				serialize($market->getRegionsIncluded() ? $market->getRegionsIncluded() : array()),

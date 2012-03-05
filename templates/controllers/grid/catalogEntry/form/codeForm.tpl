@@ -16,7 +16,7 @@
 
 <form class="pkp_form" id="addIdentificationCodeForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.catalogEntry.IdentificationCodeGridHandler" op="updateCode"}">
 	<input type="hidden" name="monographId" value="{$monographId|escape}" />
-	<input type="hidden" name="assignedPublicationFormatId" value="{$assignedPublicationFormatId|escape}" />
+	<input type="hidden" name="publicationFormatId" value="{$publicationFormatId|escape}" />
 	<input type="hidden" name="identificationCodeId" value="{$identificationCodeId|escape}" />
 	{fbvFormArea id="addCode"}
 		{fbvFormSection title="grid.catalogEntry.identificationCodeValue" for="value" required="true"}

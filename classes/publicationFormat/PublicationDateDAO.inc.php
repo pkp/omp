@@ -37,11 +37,12 @@ class PublicationDateDAO extends DAO {
 
 		$result =& $this->retrieve(
 			'SELECT p.*
-				FROM publication_dates p
-			JOIN published_monograph_publication_formats pmpf ON (p.assigned_publication_format_id = pmpf.assigned_publication_format_id)
+			FROM	publication_dates p
+				JOIN publication_formats pf ON (p.publication_format_id = pf.publication_format_id)
 			WHERE p.publication_date_id = ?
-				' . ($monographId?' AND pmpf.monograph_id = ?':''),
-			$sqlParams);
+				' . ($monographId?' AND pf.monograph_id = ?':''),
+			$sqlParams
+		);
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
@@ -53,12 +54,14 @@ class PublicationDateDAO extends DAO {
 
 	/**
 	 * Retrieve all publication dates for an assigned publication format
-	 * @param $assignedPublicationFormatId int
+	 * @param $publicationFormatId int
 	 * @return DAOResultFactory containing matching publication dates
 	 */
-	function &getByAssignedPublicationFormatId($assignedPublicationFormatId) {
+	function &getByPublicationFormatId($publicationFormatId) {
 		$result =& $this->retrieveRange(
-			'SELECT * FROM publication_dates WHERE assigned_publication_format_id = ?', array((int) $assignedPublicationFormatId));
+			'SELECT * FROM publication_dates WHERE publication_format_id = ?',
+			(int) $publicationFormatId
+		);
 
 		$returner = new DAOResultFactory($result, $this, '_fromRow');
 		return $returner;
@@ -84,7 +87,7 @@ class PublicationDateDAO extends DAO {
 		$publicationDate->setRole($row['role']);
 		$publicationDate->setDateFormat($row['date_format']);
 		$publicationDate->setDate($row['date']);
-		$publicationDate->setAssignedPublicationFormatId($row['assigned_publication_format_id']);
+		$publicationDate->setPublicationFormatId($row['publication_format_id']);
 
 		if ($callHooks) HookRegistry::call('PublicationDateDAO::_fromRow', array(&$publicationDate, &$row));
 
@@ -98,11 +101,11 @@ class PublicationDateDAO extends DAO {
 	function insertObject(&$publicationDate) {
 		$this->update(
 			'INSERT INTO publication_dates
-				(assigned_publication_format_id, role, date_format, date)
+				(publication_format_id, role, date_format, date)
 			VALUES
 				(?, ?, ?, ?)',
 			array(
-				(int) $publicationDate->getAssignedPublicationFormatId(),
+				(int) $publicationDate->getPublicationFormatId(),
 				$publicationDate->getRole(),
 				$publicationDate->getDateFormat(),
 				$publicationDate->getDate()

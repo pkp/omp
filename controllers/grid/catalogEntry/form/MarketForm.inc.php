@@ -30,7 +30,7 @@ class MarketForm extends Form {
 		$this->setMarket($market);
 
 		// Validation checks for this form
-		$this->addCheck(new FormValidator($this, 'assignedPublicationFormatId', 'required', 'grid.catalogEntry.publicationFormatRequired'));
+		$this->addCheck(new FormValidator($this, 'publicationFormatId', 'required', 'grid.catalogEntry.publicationFormatRequired'));
 		$this->addCheck(new FormValidator($this, 'date', 'required', 'grid.catalogEntry.dateRequired'));
 		$this->addCheck(new FormValidator($this, 'price', 'required', 'grid.catalogEntry.priceRequired'));
 		$this->addCheck(new FormValidatorPost($this));
@@ -105,7 +105,7 @@ class MarketForm extends Form {
 	function fetch(&$request) {
 
 		$templateMgr =& TemplateManager::getManager();
-		$assignedPublicationFormatId = null;
+		$publicationFormatId = null;
 
 		$monograph =& $this->getMonograph();
 		$templateMgr->assign('monographId', $monograph->getId());
@@ -138,7 +138,7 @@ class MarketForm extends Form {
 		$templateMgr->assign_by_ref('availableSuppliers', $supplierOptions);
 
 		if ($market) {
-			$assignedPublicationFormatId = $market->getAssignedPublicationFormatId();
+			$publicationFormatId = $market->getPublicationFormatId();
 			$templateMgr->assign('marketId', $market->getId());
 			$templateMgr->assign('countriesIncluded', $market->getCountriesIncluded());
 			$templateMgr->assign('countriesExcluded', $market->getCountriesExcluded());
@@ -156,19 +156,19 @@ class MarketForm extends Form {
 			$templateMgr->assign('agentId', $market->getAgentId());
 			$templateMgr->assign('supplierId', $market->getSupplierId());
 
-			$assignedPublicationFormatId = $market->getAssignedPublicationFormatId();
+			$publicationFormatId = $market->getPublicationFormatId();
 		} else { // loading a blank form
-			$assignedPublicationFormatId = (int) $request->getUserVar('assignedPublicationFormatId');
+			$publicationFormatId = (int) $request->getUserVar('publicationFormatId');
 			$templateMgr->assign('dateFormat', '20'); // YYYYMMDD Onix code as a default
 			$templateMgr->assign('dateRole', '01'); // 'Date of Publication' as default
 			$templateMgr->assign('currencyCode', 'CAD');
 		}
 
-		$assignedPublicationFormatDao =& DAORegistry::getDAO('AssignedPublicationFormatDAO');
-		$assignedPublicationFormat =& $assignedPublicationFormatDao->getById($assignedPublicationFormatId, $monograph->getId());
+		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
+		$publicationFormat =& $publicationFormatDao->getById($publicationFormatId, $monograph->getId());
 
-		if ($assignedPublicationFormat) { // the format exists for this monograph
-			$templateMgr->assign('assignedPublicationFormatId', $assignedPublicationFormatId);
+		if ($publicationFormat) { // the format exists for this monograph
+			$templateMgr->assign('publicationFormatId', $publicationFormatId);
 		} else {
 			fatalError('Format not in authorized monograph');
 		}
@@ -183,7 +183,7 @@ class MarketForm extends Form {
 	function readInputData() {
 		$this->readUserVars(array(
 			'marketId',
-			'assignedPublicationFormatId',
+			'publicationFormatId',
 			'countriesIncluded',
 			'countriesExcluded',
 			'regionsIncluded',
@@ -208,24 +208,24 @@ class MarketForm extends Form {
 	 */
 	function execute() {
 		$marketDao =& DAORegistry::getDAO('MarketDAO');
-		$assignedPublicationFormatDao =& DAORegistry::getDAO('AssignedPublicationFormatDAO');
+		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
 
 		$monograph = $this->getMonograph();
 		$market =& $this->getMarket();
-		$assignedPublicationFormat =& $assignedPublicationFormatDao->getById($this->getData('assignedPublicationFormatId'), $monograph->getId());
+		$publicationFormat =& $publicationFormatDao->getById($this->getData('publicationFormatId'), $monograph->getId());
 
 		if (!$market) {
 			// this is a new assigned format to this published monograph
 			$market = $marketDao->newDataObject();
-			if ($assignedPublicationFormat != null) { // ensure this assigned format is in this monograph
-				$market->setAssignedPublicationFormatId($assignedPublicationFormat->getAssignedPublicationFormatId());
+			if ($publicationFormat != null) { // ensure this assigned format is in this monograph
+				$market->setPublicationFormatId($publicationFormat->getId());
 				$existingFormat = false;
 			} else {
 				fatalError('This assigned format not in authorized monograph context!');
 			}
 		} else {
 			$existingFormat = true;
-			if ($assignedPublicationFormat->getAssignedPublicationFormatId() !== $market->getAssignedPublicationFormatId()) fatalError('Invalid format!');
+			if ($publicationFormat->getPublicationFormatId() !== $market->getPublicationFormatId()) fatalError('Invalid format!');
 		}
 
 		$market->setCountriesIncluded($this->getData('countriesIncluded') ? $this->getData('countriesIncluded') : array());

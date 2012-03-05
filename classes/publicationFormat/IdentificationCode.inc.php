@@ -22,19 +22,19 @@ class IdentificationCode extends DataObject {
 	}
 
 	/**
-	 * get assigned publication format id
+	 * get publication format id
 	 * @return int
 	 */
-	function getAssignedPublicationFormatId() {
-		return $this->getData('assignedPublicationFormatId');
+	function getPublicationFormatId() {
+		return $this->getData('publicationFormatId');
 	}
 
 	/**
-	 * set assigned publication format id
+	 * set publication format id
 	 * @param $pressId int
 	 */
-	function setAssignedPublicationFormatId($assignedPublicationFormatId) {
-		return $this->setData('assignedPublicationFormatId', $assignedPublicationFormatId);
+	function setPublicationFormatId($publicationFormatId) {
+		return $this->setData('publicationFormatId', $publicationFormatId);
 	}
 
 	/**

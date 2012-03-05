@@ -22,19 +22,19 @@ class PublicationDate extends DataObject {
 	}
 
 	/**
-	 * get assigned publication format id
+	 * get publication format id
 	 * @return int
 	 */
-	function getAssignedPublicationFormatId() {
-		return $this->getData('assignedPublicationformatId');
+	function getPublicationFormatId() {
+		return $this->getData('publicationformatId');
 	}
 
 	/**
-	 * set assigned publication format id
+	 * set publication format id
 	 * @param $pressId int
 	 */
-	function setAssignedPublicationformatId($assignedPublicationformatId) {
-		return $this->setData('assignedPublicationformatId', $assignedPublicationformatId);
+	function setPublicationformatId($publicationFormatId) {
+		return $this->setData('publicationFormatId', $publicationFormatId);
 	}
 
 	/**

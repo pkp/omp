@@ -167,27 +167,24 @@ class CatalogEntryTabHandler extends Handler {
 	 */
 	function publicationMetadata($args, &$request) {
 
-		$assignedPublicationFormatId = (int) $request->getUserVar('assignedPublicationFormatId');
+		$publicationFormatId = (int) $request->getUserVar('publicationFormatId');
 		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
-		$assignedPublicationFormatDao =& DAORegistry::getDAO('AssignedPublicationFormatDAO');
+		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
 
 		$monograph =& $this->getMonograph();
 		$stageId =& $this->getStageId();
 
-		$enabledPressFormats =& $publicationFormatDao->getEnabledByPressId($monograph->getPressId());
-		$publicationFormat =& $assignedPublicationFormatDao->getById($assignedPublicationFormatId);
-		if (isset($publicationFormat)) {
-			while ($format =& $enabledPressFormats->next()) {
-				if ($format->getId() == $publicationFormat->getId()) { // belongs to current press (and is enabled)
-					import('controllers.tab.catalogEntry.form.CatalogEntryPublicationMetadataForm');
-					$catalogEntryPublicationMetadataForm = new CatalogEntryPublicationMetadataForm($monograph->getId(), $assignedPublicationFormatId, $format->getPhysicalFormat(), $stageId, array('displayedInTab' => true, 'tabPos' => $this->getTabPosition()));
-					$catalogEntryPublicationMetadataForm->initData($args, $request);
-					$json = new JSONMessage(true, $catalogEntryPublicationMetadataForm->fetch($request));
-					return $json->getString();
-				}
-			}
+		$publicationFormat =& $publicationFormatDao->getById($publicationFormatId, $monograph->getId());
+
+		if (!$publicationFormat) {
+			$json = new JSONMessage(false, __('monograph.publicationFormat.formatDoesNotExist'));
+			return $json->getString();
 		}
-		$json = new JSONMessage(true, __('monograph.publicationFormat.formatDoesNotExist'));
+
+		import('controllers.tab.catalogEntry.form.CatalogEntryPublicationMetadataForm');
+		$catalogEntryPublicationMetadataForm = new CatalogEntryPublicationMetadataForm($monograph->getId(), $publicationFormatId, $publicationFormat->getPhysicalFormat(), $stageId, array('displayedInTab' => true, 'tabPos' => $this->getTabPosition()));
+		$catalogEntryPublicationMetadataForm->initData($args, $request);
+		$json = new JSONMessage(true, $catalogEntryPublicationMetadataForm->fetch($request));
 		return $json->getString();
 	}
 
@@ -220,17 +217,17 @@ class CatalogEntryTabHandler extends Handler {
 				break;
 			default: // publication format tabs
 				import('controllers.tab.catalogEntry.form.CatalogEntryPublicationMetadataForm');
-				$assignedPublicationFormatId =& $request->getUserVar('assignedPublicationFormatId');
+				$publicationFormatId =& $request->getUserVar('publicationFormatId');
 
 				// perform some validation to make sure this format is enabled and assigned to this monograph
 				$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
-				$assignedPublicationFormatDao =& DAORegistry::getDAO('AssignedPublicationFormatDAO');
+				$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
 				$publishedMonograph =& $publishedMonographDao->getById($monograph->getId());
-				$formats =& $assignedPublicationFormatDao->getFormatsByMonographId($monograph->getId());
+				$formats =& $publicationFormatDao->getByMonographId($monograph->getId());
 				$form = null;
 				while ($format =& $formats->next()) {
-					if ($format->getAssignedPublicationFormatId() == $assignedPublicationFormatId) {
-						$form = new CatalogEntryPublicationMetadataForm($monograph->getId(), $assignedPublicationFormatId, $format->getId(), $stageId, array('displayedInTab' => true, 'tabPos' => $this->getTabPosition()));
+					if ($format->getId() == $publicationFormatId) {
+						$form = new CatalogEntryPublicationMetadataForm($monograph->getId(), $publicationFormatId, $format->getId(), $stageId, array('displayedInTab' => true, 'tabPos' => $this->getTabPosition()));
 						$notificationKey = 'notification.savedPublicationFormatMetadata';
 						break;
 					}

@@ -36,12 +36,13 @@ class SalesRightsDAO extends DAO {
 		}
 
 		$result =& $this->retrieve(
-			'SELECT s.*
-				FROM sales_rights s
-			JOIN published_monograph_publication_formats pmpf ON (s.assigned_publication_format_id = pmpf.assigned_publication_format_id)
+			'SELECT	s.*
+			FROM	sales_rights s
+				JOIN publication_formats pf ON (s.publication_format_id = pf.publication_format_id)
 			WHERE s.sales_rights_id = ?
-				' . ($monographId?' AND pmpf.monograph_id = ?':''),
-			$sqlParams);
+				' . ($monographId?' AND pf.monograph_id = ?':''),
+			$sqlParams
+		);
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
@@ -52,13 +53,13 @@ class SalesRightsDAO extends DAO {
 	}
 
 	/**
-	 * Retrieve all sales rights for an assigned publication format
-	 * @param $assignedPublicationFormatId int
+	 * Retrieve all sales rights for a publication format
+	 * @param $publicationFormatId int
 	 * @return DAOResultFactory containing matching sales rights.
 	 */
-	function &getByAssignedPublicationFormatId($assignedPublicationFormatId) {
+	function &getByPublicationFormatId($publicationFormatId) {
 		$result =& $this->retrieveRange(
-			'SELECT * FROM sales_rights WHERE assigned_publication_format_id = ?', array((int) $assignedPublicationFormatId));
+			'SELECT * FROM sales_rights WHERE publication_format_id = ?', (int) $publicationFormatId);
 
 		$returner = new DAOResultFactory($result, $this, '_fromRow');
 		return $returner;
@@ -66,12 +67,14 @@ class SalesRightsDAO extends DAO {
 
 	/**
 	 * Retrieve the specific Sales Rights instance for which ROW is set to true.  There should only be one per format.
-	 * @param $assignedPublicationFormatId int
+	 * @param $publicationFormatId int
 	 * @return SalesRights
 	 */
-	function &getROWByAssignedPublicationFormatId($assignedPublicationFormatId) {
+	function &getROWByPublicationFormatId($publicationFormatId) {
 		$result =& $this->retrieve(
-				'SELECT * FROM sales_rights WHERE row_setting = ? AND assigned_publication_format_id = ?', array(1, (int) $assignedPublicationFormatId));
+			'SELECT * FROM sales_rights WHERE row_setting = ? AND publication_format_id = ?',
+			array(1, (int) $publicationFormatId)
+		);
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
@@ -105,7 +108,7 @@ class SalesRightsDAO extends DAO {
 		$salesRights->setRegionsIncluded(unserialize($row['regions_included']));
 		$salesRights->setRegionsExcluded(unserialize($row['regions_excluded']));
 
-		$salesRights->setAssignedPublicationFormatId($row['assigned_publication_format_id']);
+		$salesRights->setPublicationFormatId($row['publication_format_id']);
 
 		if ($callHooks) HookRegistry::call('SalesRightsDAO::_fromRow', array(&$salesRights, &$row));
 
@@ -119,11 +122,11 @@ class SalesRightsDAO extends DAO {
 	function insertObject(&$salesRights) {
 		$this->update(
 			'INSERT INTO sales_rights
-				(assigned_publication_format_id, type, row_setting, countries_included, countries_excluded, regions_included, regions_excluded)
+				(publication_format_id, type, row_setting, countries_included, countries_excluded, regions_included, regions_excluded)
 			VALUES
 				(?, ?, ?, ?, ?, ?, ?)',
 			array(
-				(int) $salesRights->getAssignedPublicationFormatId(),
+				(int) $salesRights->getPublicationFormatId(),
 				$salesRights->getType(),
 				$salesRights->getROWSetting(),
 				serialize($salesRights->getCountriesIncluded() ? $salesRights->getCountriesIncluded() : array()),

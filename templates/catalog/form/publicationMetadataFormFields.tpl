@@ -6,7 +6,7 @@
  *
  *}
 {* generate a unique form id since this form is used on several tabs *}
-{capture assign=publicationFormId}publicationMetadataEntryForm-{$assignedPublicationFormatId}{/capture}
+{capture assign=publicationFormId}publicationMetadataEntryForm-{$publicationFormatId}{/capture}
 
 <script type="text/javascript">
 	$(function() {ldelim}
@@ -21,7 +21,7 @@
 	<input type="hidden" name="monographId" value="{$monographId|escape}" />
 	<input type="hidden" name="stageId" value="{$stageId|escape}" />
 	<input type="hidden" name="tabPos" value="{$formParams.tabPos|escape}" />
-	<input type="hidden" name="assignedPublicationFormatId" value="{$assignedPublicationFormatId|escape}" />
+	<input type="hidden" name="publicationFormatId" value="{$publicationFormatId|escape}" />
 	<input type="hidden" name="displayedInTab" value="{$formParams.displayedInTab|escape}" />
 	<input type="hidden" name="tab" value="publication" />
 
@@ -34,8 +34,8 @@
 	{fbvFormArea id="productIdentifier"}
 		{fbvFormSection}
 			<!-- Product Identification Codes -->
-			{assign var="divId" value="identificationCodeGridContainer"|concat:$assignedPublicationFormatId|escape}
-			{url|assign:identGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.catalogEntry.IdentificationCodeGridHandler" op="fetchGrid" monographId=$monographId assignedPublicationFormatId=$assignedPublicationFormatId escape=false}
+			{assign var="divId" value="identificationCodeGridContainer"|concat:$publicationFormatId|escape}
+			{url|assign:identGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.catalogEntry.IdentificationCodeGridHandler" op="fetchGrid" monographId=$monographId publicationFormatId=$publicationFormatId escape=false}
 			{load_url_in_div id="$divId" url="$identGridUrl"}
 		{/fbvFormSection}
 	{/fbvFormArea}
@@ -43,8 +43,8 @@
 	{fbvFormArea id="salesRights"}
 		{fbvFormSection}
 			<!-- Sales rights and regions -->
-			{assign var="divId" value="salesRightsGridContainer"|concat:$assignedPublicationFormatId|escape}
-			{url|assign:salesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.catalogEntry.SalesRightsGridHandler" op="fetchGrid" monographId=$monographId assignedPublicationFormatId=$assignedPublicationFormatId escape=false}
+			{assign var="divId" value="salesRightsGridContainer"|concat:$publicationFormatId|escape}
+			{url|assign:salesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.catalogEntry.SalesRightsGridHandler" op="fetchGrid" monographId=$monographId publicationFormatId=$publicationFormatId escape=false}
 			{load_url_in_div id="$divId" url="$salesGridUrl"}
 		{/fbvFormSection}
 	{/fbvFormArea}
@@ -52,8 +52,8 @@
 	{fbvFormArea id="marketRegions"}
 		{fbvFormSection}
 			<!-- Market regions -->
-			{assign var="divId" value="marketsGridContainer"|concat:$assignedPublicationFormatId|escape}
-			{url|assign:marketsGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.catalogEntry.MarketsGridHandler" op="fetchGrid" monographId=$monographId assignedPublicationFormatId=$assignedPublicationFormatId escape=false}
+			{assign var="divId" value="marketsGridContainer"|concat:$publicationFormatId|escape}
+			{url|assign:marketsGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.catalogEntry.MarketsGridHandler" op="fetchGrid" monographId=$monographId publicationFormatId=$publicationFormatId escape=false}
 			{load_url_in_div id="$divId" url="$marketsGridUrl"}
 		{/fbvFormSection}
 	{/fbvFormArea}
@@ -61,8 +61,8 @@
 	{fbvFormArea id="publicationDates"}
 		{fbvFormSection}
 			<!-- Product Publication/Embargo dates -->
-			{assign var="divId" value="publicationDateGridContainer"|concat:$assignedPublicationFormatId|escape}
-			{url|assign:dateGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.catalogEntry.PublicationDateGridHandler" op="fetchGrid" monographId=$monographId assignedPublicationFormatId=$assignedPublicationFormatId escape=false}
+			{assign var="divId" value="publicationDateGridContainer"|concat:$publicationFormatId|escape}
+			{url|assign:dateGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.catalogEntry.PublicationDateGridHandler" op="fetchGrid" monographId=$monographId publicationFormatId=$publicationFormatId escape=false}
 			{load_url_in_div id="$divId" url="$dateGridUrl"}
 		{/fbvFormSection}
 	{/fbvFormArea}

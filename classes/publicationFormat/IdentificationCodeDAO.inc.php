@@ -36,12 +36,13 @@ class IdentificationCodeDAO extends DAO {
 		}
 
 		$result =& $this->retrieve(
-			'SELECT i.*
-				FROM identification_codes i
-			JOIN published_monograph_publication_formats pmpf ON (i.assigned_publication_format_id = pmpf.assigned_publication_format_id)
+			'SELECT	i.*
+			FROM	identification_codes i
+				JOIN publication_formats pf ON (i.publication_format_id = pf.publication_format_id)
 			WHERE i.identification_code_id = ?
-				' . ($monographId?' AND pmpf.monograph_id = ?':''),
-			$sqlParams);
+				' . ($monographId?' AND pf.monograph_id = ?':''),
+			$sqlParams
+		);
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
@@ -52,13 +53,13 @@ class IdentificationCodeDAO extends DAO {
 	}
 
 	/**
-	 * Retrieve all identification codes for an assigned publication format
-	 * @param $assignedPublicationFormatId int
+	 * Retrieve all identification codes for a publication format
+	 * @param $publicationFormatId int
 	 * @return DAOResultFactory containing matching identification codes
 	 */
-	function &getByAssignedPublicationFormatId($assignedPublicationFormatId) {
+	function &getByPublicationFormatId($publicationFormatId) {
 		$result =& $this->retrieveRange(
-			'SELECT * FROM identification_codes WHERE assigned_publication_format_id = ?', array((int) $assignedPublicationFormatId));
+			'SELECT * FROM identification_codes WHERE publication_format_id = ?', (int) $publicationFormatId);
 
 		$returner = new DAOResultFactory($result, $this, '_fromRow');
 		return $returner;
@@ -83,7 +84,7 @@ class IdentificationCodeDAO extends DAO {
 		$identificationCode->setId($row['identification_code_id']);
 		$identificationCode->setCode($row['code']);
 		$identificationCode->setValue($row['value']);
-		$identificationCode->setAssignedPublicationFormatId($row['assigned_publication_format_id']);
+		$identificationCode->setPublicationFormatId($row['publication_format_id']);
 
 		if ($callHooks) HookRegistry::call('IdentificationCodeDAO::_fromRow', array(&$identificationCode, &$row));
 
@@ -97,11 +98,11 @@ class IdentificationCodeDAO extends DAO {
 	function insertObject(&$identificationCode) {
 		$this->update(
 			'INSERT INTO identification_codes
-				(assigned_publication_format_id, code, value)
+				(publication_format_id, code, value)
 			VALUES
 				(?, ?, ?)',
 			array(
-				(int) $identificationCode->getAssignedPublicationFormatId(),
+				(int) $identificationCode->getPublicationFormatId(),
 				$identificationCode->getCode(),
 				$identificationCode->getValue()
 			)

@@ -41,13 +41,6 @@
 
 	<div class="separator"></div>
 
-	<p>{translate key="manager.setup.publicationFormatsDescription"}</p>
-
-	{url|assign:publicationFormatsGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.formats.PublicationFormatsGridHandler" op="fetchGrid"}
-	{load_url_in_div id="publicationFormatsDiv" url=$publicationFormatsGridUrl}
-
-	<div class="separator"></div>
-
 	{url|assign:productionTemplateLibraryUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.library.LibraryFileGridHandler" op="fetchGrid" fileType=$smarty.const.LIBRARY_FILE_TYPE_PRODUCTION_TEMPLATE}
 	{load_url_in_div id="productionTemplateLibraryDiv" url=$productionTemplateLibraryUrl}
 

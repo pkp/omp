@@ -120,7 +120,7 @@ jQuery.pkp.controllers.tab.catalogEntry = jQuery.pkp.controllers.tab.catalogEntr
 		for (var i in jsonData.formats) {
 			// i is the formatId, formats[i] is the localized name.
 			if (!(i in currentIndexes)) { // this is a tab that has been added
-				var url = this.tabContentUrl_ + '&assignedPublicationFormatId=' + encodeURIComponent(i);
+				var url = this.tabContentUrl_ + '&publicationFormatId=' + encodeURIComponent(i);
 				// replace dollar signs in $$$call$$$ so the .add() call interpolates correctly.
 				// is this a bug in jqueryUI?
 				url = url.replace(/[$]/g, '$$$$');

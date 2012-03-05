@@ -18,20 +18,20 @@ class PublicationFormatForm extends Form {
 	/** The monograph associated with the format being edited **/
 	var $_monograph;
 
-	/** AssignedPublicationFormat the format being edited **/
-	var $_assignedPublicationFormat;
+	/** PublicationFormat the format being edited **/
+	var $_publicationFormat;
 
 	/**
 	 * Constructor.
 	 */
-	function PublicationFormatForm($monograph, $assignedPublicationFormat) {
+	function PublicationFormatForm($monograph, $publicationFormat) {
 		parent::Form('controllers/grid/catalogEntry/form/formatForm.tpl');
 		$this->setMonograph($monograph);
-		$this->setAssignedPublicationFormat($assignedPublicationFormat);
+		$this->setPublicationFormat($publicationFormat);
 
 		// Validation checks for this form
 		$this->addCheck(new FormValidator($this, 'title', 'required', 'grid.catalogEntry.titleRequired'));
-		$this->addCheck(new FormValidator($this, 'publicationFormatId', 'required', 'grid.catalogEntry.publicationFormatRequired'));
+		$this->addCheck(new FormValidator($this, 'entryKey', 'required', 'grid.catalogEntry.publicationFormatRequired'));
 		$this->addCheck(new FormValidatorPost($this));
 	}
 
@@ -42,16 +42,16 @@ class PublicationFormatForm extends Form {
 	* Get the format
 	* @return PublicationFormat
 	*/
-	function getAssignedPublicationFormat() {
-		return $this->_assignedPublicationFormat;
+	function getPublicationFormat() {
+		return $this->_publicationFormat;
 	}
 
 	/**
 	* Set the publication format
 	* @param @format PublicationFormat
 	*/
-	function setAssignedPublicationFormat($assignedPublicationFormat) {
-		$this->_assignedPublicationFormat =& $assignedPublicationFormat;
+	function setPublicationFormat($publicationFormat) {
+		$this->_publicationFormat =& $publicationFormat;
 	}
 
 	/**
@@ -78,11 +78,11 @@ class PublicationFormatForm extends Form {
 	* Initialize form data from the associated publication format.
 	*/
 	function initData() {
-		$format =& $this->getAssignedPublicationFormat();
+		$format =& $this->getPublicationFormat();
 
 		if ($format) {
 			$this->_data = array(
-				'assignedPublicationFormatId' => $format->getAssignedPublicationFormatId(),
+				'entryKey' => $format->getEntryKey(),
 				'title' => $format->getTitle()
 			);
 		}
@@ -93,25 +93,19 @@ class PublicationFormatForm extends Form {
 	 * @see Form::fetch()
 	 */
 	function fetch(&$request) {
-		$format =& $this->getAssignedPublicationFormat();
+		$format =& $this->getPublicationFormat();
 		$press =& $request->getPress();
 
 
 		$templateMgr =& TemplateManager::getManager();
-		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
-		$publicationFormats =& $publicationFormatDao->getEnabledByPressId($press->getId());
-		$formats = array();
-		while ($format =& $publicationFormats->next()) {
-			$formats[ $format->getId() ] = $format->getLocalizedName();
-		}
-		$templateMgr->assign_by_ref('publicationFormats', $formats);
+		$onixCodelistItemDao =& DAORegistry::getDAO('ONIXCodelistItemDAO');
+		$templateMgr->assign('entryKeys', $onixCodelistItemDao->getCodes('List7')); // List7 is for object formats
 
 		$monograph =& $this->getMonograph();
 		$templateMgr->assign('monographId', $monograph->getId());
-		$assignedPublicationFormat =& $this->getAssignedPublicationFormat();
-		if ($assignedPublicationFormat != null) {
-			$templateMgr->assign('publicationFormatId', $assignedPublicationFormat->getId()); // parent PublicationFormat getId
-			$templateMgr->assign('assignedPublicationFormatId', $assignedPublicationFormat->getAssignedPublicationFormatId());
+		$publicationFormat =& $this->getPublicationFormat();
+		if ($publicationFormat != null) {
+			$templateMgr->assign('publicationFormatId', $publicationFormat->getId());
 		}
 		return parent::fetch($request);
 	}
@@ -122,9 +116,8 @@ class PublicationFormatForm extends Form {
 	 */
 	function readInputData() {
 		$this->readUserVars(array(
-			'assignedPublicationFormatId',
 			'title',
-			'publicationFormatId',
+			'entryKey',
 		));
 	}
 
@@ -133,30 +126,30 @@ class PublicationFormatForm extends Form {
 	 * @see Form::execute()
 	 */
 	function execute() {
-		$assignedPublicationFormatDao =& DAORegistry::getDAO('AssignedPublicationFormatDAO');
+		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
 		$monograph = $this->getMonograph();
-		$assignedPublicationFormat =& $this->getAssignedPublicationFormat();
-		if (!$assignedPublicationFormat) {
-			// this is a new assigned format to this published monograph
-			$assignedPublicationFormat = $assignedPublicationFormatDao->newDataObject();
-			$assignedPublicationFormat->setMonographId($monograph->getId());
+		$publicationFormat =& $this->getPublicationFormat();
+		if (!$publicationFormat) {
+			// this is a new format to this published monograph
+			$publicationFormat = $publicationFormatDao->newDataObject();
+			$publicationFormat->setMonographId($monograph->getId());
 			$existingFormat = false;
 		} else {
 			$existingFormat = true;
-			if ($monograph->getId() !== $assignedPublicationFormat->getMonographId()) fatalError('Invalid format!');
+			if ($monograph->getId() !== $publicationFormat->getMonographId()) fatalError('Invalid format!');
 		}
 
-		$assignedPublicationFormat->setTitle($this->getData('title'));
-		$assignedPublicationFormat->setId($this->getData('publicationFormatId'));
+		$publicationFormat->setTitle($this->getData('title'));
+		$publicationFormat->setEntryKey($this->getData('entryKey'));
 
 		if ($existingFormat) {
-			$assignedPublicationFormatDao->updateObject($assignedPublicationFormat);
-			$assignedPublicationFormatId = $assignedPublicationFormat->getAssignedPublicationFormatId();
+			$publicationFormatDao->updateObject($publicationFormat);
+			$publicationFormatId = $publicationFormat->getId();
 		} else {
-			$assignedPublicationFormatId = $assignedPublicationFormatDao->insertObject($assignedPublicationFormat);
+			$publicationFormatId = $publicationFormatDao->insertObject($publicationFormat);
 		}
 
-		return $assignedPublicationFormatId;
+		return $publicationFormatId;
 	}
 }
 

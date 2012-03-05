@@ -31,14 +31,14 @@ class SalesRightsForm extends Form {
 
 		// Validation checks for this form
 		$this->addCheck(new FormValidator($this, 'type', 'required', 'grid.catalogEntry.typeRequired'));
-		$this->addCheck(new FormValidator($this, 'assignedPublicationFormatId', 'required', 'grid.catalogEntry.publicationFormatRequired'));
+		$this->addCheck(new FormValidator($this, 'publicationFormatId', 'required', 'grid.catalogEntry.publicationFormatRequired'));
 		$this->addCheck(new FormValidatorCustom(
 				$this, 'ROWSetting', 'optional', 'grid.catalogEntry.oneROWPerFormat',
 				create_function(
 						'$ROWSetting, $form, $salesRightsDao, $salesRights',
 						'return $ROWSetting == \'\' ||
-						$salesRightsDao->getROWByAssignedPublicationFormatId($salesRights->getAssignedPublicationFormatId()) == null ||
-						$salesRightsDao->getROWByAssignedPublicationFormatId($salesRights->getAssignedPublicationFormatId())->getId() == $salesRights->getId();'
+						$salesRightsDao->getROWByPublicationFormatId($salesRights->getPublicationFormatId()) == null ||
+						$salesRightsDao->getROWByPublicationFormatId($salesRights->getPublicationFormatId())->getId() == $salesRights->getId();'
 				), array(&$this, DAORegistry::getDAO('SalesRightsDAO'), $salesRights)
 		));
 
@@ -110,7 +110,7 @@ class SalesRightsForm extends Form {
 	function fetch(&$request) {
 
 		$templateMgr =& TemplateManager::getManager();
-		$assignedPublicationFormatId = null;
+		$publicationFormatId = null;
 
 		$monograph =& $this->getMonograph();
 		$templateMgr->assign('monographId', $monograph->getId());
@@ -120,7 +120,7 @@ class SalesRightsForm extends Form {
 		$templateMgr->assign('regionCodes', $onixCodelistItemDao->getCodes('List49')); // regions (British Columbia, England, etc)
 
 		if ($salesRights) {
-			$assignedPublicationFormatId = $salesRights->getAssignedPublicationFormatId();
+			$publicationFormatId = $salesRights->getPublicationFormatId();
 			$templateMgr->assign('salesRightsId', $salesRights->getId());
 			$templateMgr->assign('type', $salesRights->getType());
 			$templateMgr->assign('ROWSetting', $salesRights->getROWSetting());
@@ -129,18 +129,19 @@ class SalesRightsForm extends Form {
 			$templateMgr->assign('regionsIncluded', $salesRights->getRegionsIncluded());
 			$templateMgr->assign('regionsExcluded', $salesRights->getRegionsExcluded());
 
-			$assignedPublicationFormatId = $salesRights->getAssignedPublicationFormatId();
+			$publicationFormatId = $salesRights->getPublicationFormatId();
 		} else { // loading a blank form
-			$assignedPublicationFormatId = (int) $request->getUserVar('assignedPublicationFormatId');
+			$publicationFormatId = (int) $request->getUserVar('publicationFormatId');
 		}
 
-		$assignedPublicationFormatDao =& DAORegistry::getDAO('AssignedPublicationFormatDAO');
-		$assignedPublicationFormat =& $assignedPublicationFormatDao->getById($assignedPublicationFormatId, $monograph->getId());
+		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
+		$publicationFormat =& $publicationFormatDao->getById($publicationFormatId, $monograph->getId());
 
-		if ($assignedPublicationFormat) { // the format exists for this monograph
-			$templateMgr->assign('assignedPublicationFormatId', $assignedPublicationFormatId);
+		if ($publicationFormat) { // the format exists for this monograph
+			$templateMgr->assign('publicationFormatId', $publicationFormatId);
 			// SalesRightsType values are not normally used more than once per PublishingDetail block, so filter used ones out.
-			$assignedTypes = array_keys($assignedPublicationFormat->getSalesRights()->toAssociativeArray('type')); // currently assigned types
+			$salesRights = $publicationFormat->getSalesRights();
+			$assignedTypes = array_keys($salesRights->toAssociativeArray('type')); // currently assigned types
 			if ($salesRights) $assignedTypes = array_diff($assignedTypes, array($salesRights->getType())); // allow existing codes to keep their value
 
 			$types =& $onixCodelistItemDao->getCodes('List46', $assignedTypes); // ONIX list for these
@@ -159,7 +160,7 @@ class SalesRightsForm extends Form {
 	function readInputData() {
 		$this->readUserVars(array(
 			'salesRightsId',
-			'assignedPublicationFormatId',
+			'publicationFormatId',
 			'type',
 			'ROWSetting',
 			'countriesIncluded',
@@ -175,24 +176,24 @@ class SalesRightsForm extends Form {
 	 */
 	function execute() {
 		$salesRightsDao =& DAORegistry::getDAO('SalesRightsDAO');
-		$assignedPublicationFormatDao =& DAORegistry::getDAO('AssignedPublicationFormatDAO');
+		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
 
 		$monograph = $this->getMonograph();
 		$salesRights =& $this->getSalesRights();
-		$assignedPublicationFormat =& $assignedPublicationFormatDao->getById($this->getData('assignedPublicationFormatId'), $monograph->getId());
+		$publicationFormat =& $publicationFormatDao->getById($this->getData('publicationFormatId'), $monograph->getId());
 
 		if (!$salesRights) {
 			// this is a new assigned format to this published monograph
 			$salesRights = $salesRightsDao->newDataObject();
-			if ($assignedPublicationFormat != null) { // ensure this assigned format is in this monograph
-				$salesRights->setAssignedPublicationFormatId($assignedPublicationFormat->getAssignedPublicationFormatId());
+			if ($publicationFormat != null) { // ensure this assigned format is in this monograph
+				$salesRights->setPublicationFormatId($publicationFormat->getId());
 				$existingFormat = false;
 			} else {
 				fatalError('This assigned format not in authorized monograph context!');
 			}
 		} else {
 			$existingFormat = true;
-			if ($assignedPublicationFormat->getAssignedPublicationFormatId() !== $salesRights->getAssignedPublicationFormatId()) fatalError('Invalid format!');
+			if ($publicationFormat->getPublicationFormatId() !== $salesRights->getPublicationFormatId()) fatalError('Invalid format!');
 		}
 
 		$salesRights->setType($this->getData('type'));

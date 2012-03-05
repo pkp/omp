@@ -489,9 +489,6 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.useTextTitle">Title text</message>
 	<message key="manager.setup.volumePerYear">Volumes per year</message>
 	<message key="manager.setup.registerPressForIndexing">Register Press for Indexing (Metadata Harvesting)</message>
-	<message key="manager.setup.publicationFormatsDescription"></message>
-	<message key="manager.setup.publicationFormats">Publication Formats</message>
-	<message key="manager.setup.publicationFormat.name">Your Format Name</message>
 	<message key="manager.setup.publicationFormat.code">Format</message>
 	<message key="manager.setup.publicationFormat.codeRequired">A format must be chosen.</message>
 	<message key="manager.setup.publicationFormat.nameRequired">You must assign a name to this format.</message>

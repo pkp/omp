@@ -276,8 +276,8 @@ class WorkflowHandler extends Handler {
 		$templateMgr =& TemplateManager::getManager();
 		$press =& $request->getContext();
 		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
-		$publicationFormats =& $publicationFormatDao->getEnabledByPressId($press->getId());
-
+		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		$publicationFormats =& $publicationFormatDao->getByMonographId($monograph->getId());
 		$templateMgr->assign_by_ref('publicationFormats', $publicationFormats);
 
 		$templateMgr->display('workflow/production.tpl');

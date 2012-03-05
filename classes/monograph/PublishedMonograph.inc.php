@@ -160,11 +160,11 @@ class PublishedMonograph extends Monograph {
 
 	/**
 	 * Retrieves the assigned publication formats for this mongraph
-	 * @return array AssignedPublicationFormat
+	 * @return array PublicationFormat
 	 */
-	function getAssignedPublicationFormats() {
-		$assignedPublicationFormatDao =& DAORegistry::getDAO('AssignedPublicationFormatDAO');
-		$formats =& $assignedPublicationFormatDao->getFormatsByMonographId($this->getId());
+	function getPublicationFormats() {
+		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
+		$formats =& $publicationFormatDao->getByMonographId($this->getId());
 		return $formats->toArray();
 	}
 
@@ -172,8 +172,8 @@ class PublishedMonograph extends Monograph {
 	 * Returns whether or not this published monograph has formats assigned to it
 	 * @return boolean
 	 */
-	function hasAssignedPublicationFormats() {
-		$formats =& $this->getAssignedPublicationFormats();
+	function hasPublicationFormats() {
+		$formats =& $this->getPublicationFormats();
 		if (sizeof($formats) > 0) {
 			return true;
 		} else {

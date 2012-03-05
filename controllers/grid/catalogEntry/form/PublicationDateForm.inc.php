@@ -33,7 +33,7 @@ class PublicationDateForm extends Form {
 		$this->addCheck(new FormValidator($this, 'role', 'required', 'grid.catalogEntry.roleRequired'));
 		$this->addCheck(new FormValidator($this, 'dateFormat', 'required', 'grid.catalogEntry.dateFormatRequired'));
 		$this->addCheck(new FormValidator($this, 'date', 'required', 'grid.catalogEntry.dateRequired'));
-		$this->addCheck(new FormValidator($this, 'assignedPublicationFormatId', 'required', 'grid.catalogEntry.publicationFormatRequired'));
+		$this->addCheck(new FormValidator($this, 'publicationFormatId', 'required', 'grid.catalogEntry.publicationFormatRequired'));
 		$this->addCheck(new FormValidatorPost($this));
 	}
 
@@ -99,30 +99,31 @@ class PublicationDateForm extends Form {
 	function fetch(&$request) {
 
 		$templateMgr =& TemplateManager::getManager();
-		$assignedPublicationFormatId = null;
+		$publicationFormatId = null;
 
 		$monograph =& $this->getMonograph();
 		$templateMgr->assign('monographId', $monograph->getId());
 		$publicationDate =& $this->getPublicationDate();
 
 		if ($publicationDate) {
-			$assignedPublicationFormatId = $publicationDate->getAssignedPublicationFormatId();
+			$publicationFormatId = $publicationDate->getPublicationFormatId();
 			$templateMgr->assign('publicationDateId', $publicationDate->getId());
 			$templateMgr->assign('role', $publicationDate->getRole());
 			$templateMgr->assign('dateFormat', $publicationDate->getDateFormat());
 			$templateMgr->assign('date', $publicationDate->getDate());
-			$assignedPublicationFormatId = $publicationDate->getAssignedPublicationFormatId();
+			$publicationFormatId = $publicationDate->getPublicationFormatId();
 		} else { // loading a blank form
-			$assignedPublicationFormatId = (int) $request->getUserVar('assignedPublicationFormatId');
+			$publicationFormatId = (int) $request->getUserVar('publicationFormatId');
 			$templateMgr->assign('dateFormat', '20'); // YYYYMMDD Onix code as a default
 		}
 
-		$assignedPublicationFormatDao =& DAORegistry::getDAO('AssignedPublicationFormatDAO');
-		$assignedPublicationFormat =& $assignedPublicationFormatDao->getById($assignedPublicationFormatId, $monograph->getId());
+		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
+		$publicationFormat =& $publicationFormatDao->getById($publicationFormatId, $monograph->getId());
 
-		if ($assignedPublicationFormat) { // the format exists for this monograph
-			$templateMgr->assign('assignedPublicationFormatId', $assignedPublicationFormatId);
-			$assignedRoles = array_keys($assignedPublicationFormat->getPublicationDates()->toAssociativeArray('role')); // currently assigned roles
+		if ($publicationFormat) { // the format exists for this monograph
+			$templateMgr->assign('publicationFormatId', $publicationFormatId);
+			$publicationDates = $publicationFormat->getPublicationDates();
+			$assignedRoles = array_keys($publicationDates->toAssociativeArray('role')); // currently assigned roles
 			if ($publicationDate) $assignedRoles = array_diff($assignedRoles, array($publicationDate->getRole())); // allow existing roles to keep their value
 			$onixCodelistItemDao =& DAORegistry::getDAO('ONIXCodelistItemDAO');
 			$roles =& $onixCodelistItemDao->getCodes('List163', $assignedRoles); // ONIX list for these
@@ -145,7 +146,7 @@ class PublicationDateForm extends Form {
 	function readInputData() {
 		$this->readUserVars(array(
 			'publicationDateId',
-			'assignedPublicationFormatId',
+			'publicationFormatId',
 			'role',
 			'dateFormat',
 			'date',
@@ -158,24 +159,24 @@ class PublicationDateForm extends Form {
 	 */
 	function execute() {
 		$publicationDateDao =& DAORegistry::getDAO('PublicationDateDAO');
-		$assignedPublicationFormatDao =& DAORegistry::getDAO('AssignedPublicationFormatDAO');
+		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
 
 		$monograph = $this->getMonograph();
 		$publicationDate =& $this->getPublicationDate();
-		$assignedPublicationFormat =& $assignedPublicationFormatDao->getById($this->getData('assignedPublicationFormatId'), $monograph->getId());
+		$publicationFormat =& $publicationFormatDao->getById($this->getData('publicationFormatId'), $monograph->getId());
 
 		if (!$publicationDate) {
 			// this is a new publication date for this published monograph
 			$publicationDate = $publicationDateDao->newDataObject();
-			if ($assignedPublicationFormat != null) { // ensure this assigned format is in this monograph
-				$publicationDate->setAssignedPublicationFormatId($assignedPublicationFormat->getAssignedPublicationFormatId());
+			if ($publicationFormat != null) { // ensure this assigned format is in this monograph
+				$publicationDate->setPublicationFormatId($publicationFormat->getPublicationFormatId());
 				$existingFormat = false;
 			} else {
 				fatalError('This assigned format not in authorized monograph context!');
 			}
 		} else {
 			$existingFormat = true;
-			if ($assignedPublicationFormat->getAssignedPublicationFormatId() !== $publicationDate->getAssignedPublicationFormatId()) fatalError('Invalid format!');
+			if ($publicationFormat->getPublicationFormatId() !== $publicationDate->getPublicationFormatId()) fatalError('Invalid format!');
 		}
 
 		$publicationDate->setRole($this->getData('role'));

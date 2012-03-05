@@ -83,7 +83,7 @@
 			<KEY />
 			<AUTOINCREMENT />
 		</field>
-		<field name="assigned_publication_format_id" type="I8">
+		<field name="publication_format_id" type="I8">
 			<NOTNULL />
 		</field>
 		<field name="code" type="C2" size="40">
@@ -94,7 +94,7 @@
 		</field>
 		<index name="identification_codes_key">
 			<col>identification_code_id</col>
-			<col>assigned_publication_format_id</col>
+			<col>publication_format_id</col>
 			<col>code</col>
 		</index>
 	</table>
@@ -109,7 +109,7 @@
 			<KEY />
 			<AUTOINCREMENT />
 		</field>
-		<field name="assigned_publication_format_id" type="I8">
+		<field name="publication_format_id" type="I8">
 			<NOTNULL />
 		</field>
 		<field name="role" type="C2" size="40">
@@ -123,7 +123,7 @@
 		</field>
 		<index name="publication_dates_pkey">
 			<col>publication_date_id</col>
-			<col>assigned_publication_format_id</col>
+			<col>publication_format_id</col>
 			<col>role</col>
 		</index>
 	</table>
@@ -138,7 +138,7 @@
 			<KEY />
 			<AUTOINCREMENT />
 		</field>
-		<field name="assigned_publication_format_id" type="I8">
+		<field name="publication_format_id" type="I8">
 			<NOTNULL />
 		</field>
 		<field name="type" type="C2" size="40">
@@ -155,7 +155,7 @@
 		<field name="regions_excluded" type="X"/>
 		<index name="sales_rights_pkey">
 			<col>sales_rights_id</col>
-			<col>assigned_publication_format_id</col>
+			<col>publication_format_id</col>
 		</index>
 	</table>
 
@@ -169,7 +169,7 @@
 			<KEY />
 			<AUTOINCREMENT />
 		</field>
-		<field name="assigned_publication_format_id" type="I8">
+		<field name="publication_format_id" type="I8">
 			<NOTNULL />
 		</field>
 		<field name="countries_included" type="X"/>
@@ -195,7 +195,7 @@
 		<field name="supplier_id" type="I8" />
 		<index name="markets_pkey">
 			<col>market_id</col>
-			<col>assigned_publication_format_id</col>
+			<col>publication_format_id</col>
 		</index>
 	</table>
 	
@@ -636,18 +636,23 @@
 
 	<!--
 	  *
-	  * TABLE published_monograph_publication_formats
+	  * TABLE publication_formats
 	  *
 	  -->
-	<table name="published_monograph_publication_formats">
-		<field name="assigned_publication_format_id" type="I8">
+	<table name="publication_formats">
+		<field name="publication_format_id" type="I8">
 			<KEY />
 			<AUTOINCREMENT/>
 		</field>
 		<field name="monograph_id" type="I8">
 			<NOTNULL/>
 		</field>
-		<field name="publication_format_id" type="I8"/>
+		<field name="physical_format" type="I1">
+			<DEFAULT VALUE="1"/>
+		</field>
+		<field name="entry_key" type="C2" size="64">
+			<NOTNULL/>
+		</field>
 		<field name="seq" type="F">
 			<NOTNULL/>
 			<DEFAULT VALUE="0"/>
@@ -675,9 +680,8 @@
 			<DEFAULT VALUE="0" />
 		</field>
 		<descr>Publication formats assigned to published monographs</descr>
-		<index name="published_monographs_monograph_id">
+		<index name="publication_format_monograph_id">
 			<col>monograph_id</col>
-			<col>publication_format_id</col>
 		</index>
 	</table>
 
@@ -686,8 +690,8 @@
 	  * TABLE published_monograph_publication_format_settings
 	  *
 	  -->
-	<table name="published_monograph_publication_format_settings">
-		<field name="assigned_publication_format_id" type="I8">
+	<table name="publication_format_settings">
+		<field name="publication_format_id" type="I8">
 			<NOTNULL />
 		</field>
 		<field name="locale" type="C2" size="5">
@@ -702,12 +706,12 @@
 			<NOTNULL/>
 			<descr>(bool|int|float|string|object)</descr>
 		</field>
-		<descr>Published Monograph Publication Format metadata.</descr>
-		<index name="assigned_publication_format_id_key">
-			<col>assigned_publication_format_id</col>
+		<descr>Publication Format metadata.</descr>
+		<index name="publication_format_id_key">
+			<col>publication_format_id</col>
 		</index>
-		<index name="published_monograph_format_settings_pkey">
-			<col>assigned_publication_format_id</col>
+		<index name="publication_format_settings_pkey">
+			<col>publication_format_id</col>
 			<col>locale</col>
 			<col>setting_name</col>
 			<UNIQUE/>
@@ -722,7 +726,6 @@
 	<table name="monograph_artwork_files">
 		<field name="file_id" type="I8">
 			<KEY />
-			<NOTNULL />
 		</field>
 		<field name="revision" type="I8">
 			<KEY />
@@ -1340,65 +1343,6 @@
 		<descr>Production, layout, and design assignments.</descr>
 		<index name="production_assignments_assignment_id">
 			<col>assignment_id</col>
-		</index>
-	</table>
-
-	<!--
-	  *
-	  * TABLE publication_formats
-	  *
-	  -->
-	<table name="publication_formats">
-		<field name="publication_format_id" type="I8">
-			<KEY/>
-			<AUTOINCREMENT/>
-		</field>
-		<field name="press_id" type="I8">
-			<NOTNULL />
-		</field>
-		<field name="enabled" type="I1">
-			<NOTNULL/>
-			<DEFAULT VALUE="1"/>
-		</field>
-		<field name="physical_format" type="I1">
-			<DEFAULT VALUE="1"/>
-		</field>
-		<field name="entry_key" type="C2" size="64">
-			<NOTNULL/>
-		</field>
-		<descr>A press' publication formats.</descr>
-	</table>
-
-	<!--
-	  *
-	  * TABLE publication_format_settings
-	  *
-	  -->
-	<table name="publication_format_settings">
-		<field name="publication_format_id" type="I8">
-			<NOTNULL />
-		</field>
-		<field name="locale" type="C2" size="5">
-			<NOTNULL />
-			<DEFAULT VALUE=""/>
-		</field>
-		<field name="setting_name" type="C2" size="255">
-			<NOTNULL />
-		</field>
-		<field name="setting_value" type="X"/>
-		<field name="setting_type" type="C2" size="6">
-			<NOTNULL/>
-			<descr>(bool|int|float|string|object)</descr>
-		</field>
-		<descr>Publication format settings</descr>
-		<index name="publication_format_settings_format_id">
-			<col>publication_format_id</col>
-		</index>
-		<index name="publication_format_settings_pkey">
-			<col>publication_format_id</col>
-			<col>locale</col>
-			<col>setting_name</col>
-			<UNIQUE />
 		</index>
 	</table>
 

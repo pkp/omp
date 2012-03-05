@@ -27,8 +27,8 @@ class MarketsGridHandler extends GridHandler {
 	/** @var Monograph */
 	var $_monograph;
 
-	/** @var AssignedPublicationFormat */
-	var $_assignedPublicationFormat;
+	/** @var PublicationFormat */
+	var $_publicationFormat;
 
 	/**
 	 * Constructor
@@ -62,19 +62,19 @@ class MarketsGridHandler extends GridHandler {
 	}
 
 	/**
-	 * Get the assigned publication format assocated with these markets
-	 * @return AssignedPublicationformat
+	 * Get the publication format assocated with these markets
+	 * @return PublicationFormat
 	 */
-	function &getAssignedPublicationFormat() {
-		return $this->_assignedPublicationFormat;
+	function &getPublicationFormat() {
+		return $this->_publicationFormat;
 	}
 
 	/**
-	 * Set the assigned publication format
-	 * @param AssignedPublicationFormat
+	 * Set the publication format
+	 * @param PublicationFormat
 	 */
-	function setAssignedPublicationFormat($assignedPublicationFormat) {
-		$this->_assignedPublicationFormat =& $assignedPublicationFormat;
+	function setPublicationFormat($publicationFormat) {
+		$this->_publicationFormat =& $publicationFormat;
 	}
 
 	//
@@ -101,8 +101,8 @@ class MarketsGridHandler extends GridHandler {
 
 		// Retrieve the authorized monograph.
 		$this->setMonograph($this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH));
-		$assignedPublicationFormatDao =& DAORegistry::getDAO('AssignedPublicationFormatDAO');
-		$assignedPublicationFormatId = null;
+		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
+		$publicationFormatId = null;
 
 		// Retrieve the associated publication format for this grid.
 		$marketId = (int) $request->getUserVar('marketId'); // set if editing or deleting a market entry
@@ -111,16 +111,16 @@ class MarketsGridHandler extends GridHandler {
 			$marketDao =& DAORegistry::getDAO('MarketDAO');
 			$market =& $marketDao->getById($marketId, $this->getMonograph()->getId());
 			if ($market) {
-				$assignedPublicationFormatId =& $market->getAssignedPublicationFormatId();
+				$publicationFormatId = $market->getPublicationFormatId();
 			}
 		} else { // empty form for new Market
-			$assignedPublicationFormatId = (int) $request->getUserVar('assignedPublicationFormatId');
+			$publicationFormatId = (int) $request->getUserVar('publicationFormatId');
 		}
 
-		$assignedPublicationFormat =& $assignedPublicationFormatDao->getById($assignedPublicationFormatId, $this->getMonograph()->getId());
+		$publicationFormat =& $publicationFormatDao->getById($publicationFormatId, $this->getMonograph()->getId());
 
-		if ($assignedPublicationFormat) {
-			$this->setAssignedPublicationFormat($assignedPublicationFormat);
+		if ($publicationFormat) {
+			$this->setPublicationFormat($publicationFormat);
 		} else {
 			fatalError('The publication format is not assigned to authorized monograph!');
 		}
@@ -203,11 +203,11 @@ class MarketsGridHandler extends GridHandler {
 	 */
 	function getRequestArgs() {
 		$monograph =& $this->getMonograph();
-		$assignedPublicationFormat =& $this->getAssignedPublicationFormat();
+		$publicationFormat =& $this->getPublicationFormat();
 
 		return array(
 			'monographId' => $monograph->getId(),
-			'assignedPublicationFormatId' => $assignedPublicationFormat->getAssignedPublicationFormatId()
+			'publicationFormatId' => $publicationFormat->getId()
 		);
 	}
 
@@ -215,9 +215,9 @@ class MarketsGridHandler extends GridHandler {
 	 * @see GridHandler::loadData
 	 */
 	function &loadData($request, $filter = null) {
-		$assignedPublicationFormat =& $this->getAssignedPublicationFormat();
+		$publicationFormat =& $this->getPublicationFormat();
 		$marketDao =& DAORegistry::getDAO('MarketDAO');
-		$data =& $marketDao->getByAssignedPublicationFormatId($assignedPublicationFormat->getAssignedPublicationFormatId());
+		$data =& $marketDao->getByPublicationFormatId($publicationFormat->getId());
 		return $data->toArray();
 	}
 

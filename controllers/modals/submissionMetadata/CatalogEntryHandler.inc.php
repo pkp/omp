@@ -124,8 +124,8 @@ class CatalogEntryHandler extends Handler {
 			$templateMgr->assign('selectedTab', $tabPosition);
 
 			// load in any publication formats assigned to this published monograph
-			$assignedPublicationFormatDao =& DAORegistry::getDAO('AssignedPublicationFormatDAO');
-			$formats =& $assignedPublicationFormatDao->getFormatsByMonographId($monograph->getId());
+			$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
+			$formats =& $publicationFormatDao->getByMonographId($monograph->getId());
 			$publicationFormats = array();
 			while ($publicationFormat =& $formats->next()) {
 				$publicationFormats[] =& $publicationFormat;
@@ -164,11 +164,11 @@ class CatalogEntryHandler extends Handler {
 
 		if (isset($publishedMonograph)) {
 			// load in any publication formats assigned to this published monograph
-			$assignedPublicationFormatDao =& DAORegistry::getDAO('AssignedPublicationFormatDAO');
-			$formats =& $assignedPublicationFormatDao->getFormatsByMonographId($monograph->getId());
+			$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
+			$formats =& $publicationFormatDao->getByMonographId($monograph->getId());
 			$publicationFormats = array();
 			while ($format =& $formats->next()) {
-				$publicationFormats[$format->getAssignedPublicationFormatId()] = $format->getLocalizedTitle();
+				$publicationFormats[$format->getId()] = $format->getLocalizedTitle();
 			}
 			$json->setStatus(true);
 			$json->setContent(true);

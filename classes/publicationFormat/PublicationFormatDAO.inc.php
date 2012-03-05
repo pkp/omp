@@ -13,37 +13,33 @@
  */
 
 import('classes.publicationFormat.PublicationFormat');
-import('classes.press.DefaultSettingDAO');
 
-class PublicationFormatDAO extends DefaultSettingDAO {
+class PublicationFormatDAO extends DAO {
 	/**
 	 * Constructor
 	 */
 	function PublicationFormatDAO() {
-		parent::DefaultSettingDAO();
-	}
-
-	/**
-	 * @see DefaultSettingsDAO::getPrimaryKeyColumnName()
-	 */
-	function getPrimaryKeyColumnName() {
-		return 'publication_format_id';
+		parent::DAO();
 	}
 
 	/**
 	 * Retrieve a publication format by type id.
 	 * @param $publicationFormatId int
+	 * @param $monographId optional int
 	 * @return PublicationFormat
 	 */
-	function &getById($publicationFormatId, $pressId = null) {
+	function &getById($publicationFormatId, $monographId = null) {
+
 		$params = array((int) $publicationFormatId);
-		if ($pressId) $params[] = (int) $pressId;
+		if ($monographId != null) {
+			$params[] = (int) $monographId;
+		}
 
 		$result =& $this->retrieve(
-			'SELECT	*
+			'SELECT *
 			FROM	publication_formats
-			WHERE	publication_format_id = ?
-			' . ($pressId?' AND press_id = ?':''),
+			WHERE	publication_format_id = ?'
+			. ($monographId != null ? ' AND monograph_id = ?' : ''),
 			$params
 		);
 
@@ -51,17 +47,36 @@ class PublicationFormatDAO extends DefaultSettingDAO {
 		if ($result->RecordCount() != 0) {
 			$returner =& $this->_fromRow($result->GetRowAssoc(false));
 		}
+
 		$result->Close();
+		unset($result);
+
+		return $returner;
+	}
+
+	function getCountByPublicationFormatId($publicationFormatId) {
+		$result =& $this->retrieve(
+			'SELECT	*
+			FROM	publication_formats
+			WHERE	publication_format_id = ?',
+			(int) $publicationFormatId
+		);
+
+		$returner = $result->RecordCount();
 		return $returner;
 	}
 
 	/**
-	 * Retrieve all enabled publication formats
-	 * @return array PublicationFormat
+	 * Retrieves a list of publication formats for a published monograph
+	 * @param int $monographId
+	 * @return DAOResultFactory (PublicationFormat)
 	 */
-	function &getEnabledByPressId($pressId) {
+	function getByMonographId($monographId) {
 		$result =& $this->retrieve(
-			'SELECT * FROM publication_formats WHERE enabled = ? AND press_id = ?', array(1, $pressId)
+			'SELECT *
+			FROM	publication_formats
+			WHERE	monograph_id = ?',
+			(int) $monographId
 		);
 
 		$returner = new DAOResultFactory($result, $this, '_fromRow');
@@ -69,24 +84,14 @@ class PublicationFormatDAO extends DefaultSettingDAO {
 	}
 
 	/**
-	 * Retrieve all publication formats
-	 * @return array PublicationFormat
+	 * Delete an publication format by ID.
+	 * @param $publicationFormatId int
 	 */
-	function &getByPressId($pressId) {
-		$result =& $this->retrieve(
-			'SELECT * FROM publication_formats WHERE press_id = ?', array($pressId)
-		);
-
-		$returner = new DAOResultFactory($result, $this, '_fromRow');
-		return $returner;
-	}
-
-	/**
-	 * Get a list of field names for which data is localized.
-	 * @return array
-	 */
-	function getLocaleFieldNames() {
-		return array('name');
+	function deleteById($publicationFormatId) {
+		// remove settings, then the association itself.
+		$this->update('DELETE FROM publication_format_settings WHERE publication_format_id = ?', (int) $publicationFormatId);
+		$result =& $this->update('DELETE FROM publication_formats WHERE publication_format_id = ?', (int) $publicationFormatId);
+		return $result; // needed for DAO::getDataChangedEvent test
 	}
 
 	/**
@@ -94,9 +99,11 @@ class PublicationFormatDAO extends DefaultSettingDAO {
 	 * @param $publicationFormat object
 	 */
 	function updateLocaleFields(&$publicationFormat) {
-		$this->updateDataObjectSettings('publication_format_settings', $publicationFormat, array(
-			'publication_format_id' => $publicationFormat->getId()
-		));
+		$this->updateDataObjectSettings(
+			'publication_format_settings',
+			$publicationFormat,
+			array('publication_format_id' => $publicationFormat->getId())
+		);
 	}
 
 	/**
@@ -108,46 +115,85 @@ class PublicationFormatDAO extends DefaultSettingDAO {
 	}
 
 	/**
-	 * Internal function to return a PublicationFormat object from a row.
+	 * Internal function to return an PublicationFormat object from a row.
 	 * @param $row array
+	 * @param $callHooks boolean
 	 * @return PublicationFormat
 	 */
-	function &_fromRow(&$row) {
+	function &_fromRow(&$row, $callHooks = true) {
 		$publicationFormat = $this->newDataObject();
-		$publicationFormat->setPressId($row['press_id']);
-		$publicationFormat->setId($row['publication_format_id']);
-		$publicationFormat->setEnabled($row['enabled']);
-		$publicationFormat->setPhysicalFormat($row['physical_format']);
+
+		// Add the additional Publication Format data
 		$publicationFormat->setEntryKey($row['entry_key']);
+		$publicationFormat->setPhysicalFormat($row['physical_format']);
+		$publicationFormat->setSeq($row['seq']);
+		$publicationFormat->setId($row['publication_format_id']);
+		$publicationFormat->setMonographId($row['monograph_id']);
+		$publicationFormat->setFileSize($row['file_size']);
+		$publicationFormat->setFrontMatter($row['front_matter']);
+		$publicationFormat->setBackMatter($row['back_matter']);
+		$publicationFormat->setHeight($row['height']);
+		$publicationFormat->setHeightUnitCode($row['height_unit_code']);
+		$publicationFormat->setWidth($row['width']);
+		$publicationFormat->setWidthUnitCode($row['width_unit_code']);
+		$publicationFormat->setThickness($row['thickness']);
+		$publicationFormat->setThicknessUnitCode($row['thickness_unit_code']);
+		$publicationFormat->setWeight($row['weight']);
+		$publicationFormat->setWeightUnitCode($row['weight_unit_code']);
+		$publicationFormat->setProductCompositionCode($row['product_composition_code']);
+		$publicationFormat->setProductFormDetailCode($row['product_form_detail_code']);
+		$publicationFormat->setCountryManufactureCode($row['country_manufacture_code']);
+		$publicationFormat->setImprint($row['imprint']);
+		$publicationFormat->setProductAvailabilityCode($row['product_availability_code']);
+		$publicationFormat->setTechnicalProtectionCode($row['technical_protection_code']);
+		$publicationFormat->setReturnableIndicatorCode($row['returnable_indicator_code']);
+		$publicationFormat->setIsAvailable($row['is_available']);
 
 		$this->getDataObjectSettings('publication_format_settings', 'publication_format_id', $row['publication_format_id'], $publicationFormat);
 
+		if ($callHooks) HookRegistry::call('PublicationFormatDAO::_fromRow', array(&$publicationFormat, &$row));
 		return $publicationFormat;
 	}
 
 	/**
-	 * Insert a new publication format.
+	 * Insert a publication format.
 	 * @param $publicationFormat PublicationFormat
 	 */
 	function insertObject(&$publicationFormat) {
 		$this->update(
 			'INSERT INTO publication_formats
-				(press_id, enabled, physical_format, entry_key)
+				(entry_key, physical_format, monograph_id, seq, file_size, front_matter, back_matter, height, height_unit_code, width, width_unit_code, thickness, thickness_unit_code, weight, weight_unit_code, product_composition_code, product_form_detail_code, country_manufacture_code, imprint, product_availability_code, technical_protection_code, returnable_indicator_code, is_available)
 			VALUES
-				(?, ?, ?, ?)',
+				(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
 			array(
-				(int) $publicationFormat->getPressId(),
-				$publicationFormat->getEnabled()?1:0,
-				$publicationFormat->getPhysicalFormat()?1:0,
-				$publicationFormat->getEntryKey()
+				$publicationFormat->getEntryKey(),
+				(int) $publicationFormat->getPhysicalFormat(),
+				(int) $publicationFormat->getMonographId(),
+				(int) $publicationFormat->getSeq(),
+				$publicationFormat->getFileSize(),
+				$publicationFormat->getFrontMatter(),
+				$publicationFormat->getBackMatter(),
+				$publicationFormat->getHeight(),
+				$publicationFormat->getHeightUnitCode(),
+				$publicationFormat->getWidth(),
+				$publicationFormat->getWidthUnitCode(),
+				$publicationFormat->getThickness(),
+				$publicationFormat->getThicknessUnitCode(),
+				$publicationFormat->getWeight(),
+				$publicationFormat->getWeightUnitCode(),
+				$publicationFormat->getProductCompositionCode(),
+				$publicationFormat->getProductFormDetailCode(),
+				$publicationFormat->getCountryManufactureCode(),
+				$publicationFormat->getImprint(),
+				$publicationFormat->getProductAvailabilityCode(),
+				$publicationFormat->getTechnicalProtectionCode(),
+				$publicationFormat->getReturnableIndicatorCode(),
+				(int) $publicationFormat->getIsAvailable()
 			)
 		);
 
-		$publicationFormat->setId($this->getInsertPublicationFormatId());
-
+		$publicationFormat->setId($this->getInsertId('publication_formats', 'publication_format_id'));
 		$this->updateLocaleFields($publicationFormat);
-
-		return $publicationFormat->getId();
 	}
 
 	/**
@@ -157,122 +203,65 @@ class PublicationFormatDAO extends DefaultSettingDAO {
 	function updateObject(&$publicationFormat) {
 		$this->update(
 			'UPDATE publication_formats
-			SET entry_key = ?, enabled = ?, physical_format = ?
+			SET	entry_key = ?,
+				physical_format = ?,
+				seq = ?,
+				file_size = ?,
+				front_matter = ?,
+				back_matter = ?,
+				height = ?,
+				height_unit_code = ?,
+				width = ?,
+				width_unit_code = ?,
+				thickness = ?,
+				thickness_unit_code = ?,
+				weight = ?,
+				weight_unit_code = ?,
+				product_composition_code = ?,
+				product_form_detail_code = ?,
+				country_manufacture_code = ?,
+				imprint = ?,
+				product_availability_code = ?,
+				technical_protection_code = ?,
+				returnable_indicator_code = ?,
+				is_available = ?
 			WHERE publication_format_id = ?',
 			array(
 				$publicationFormat->getEntryKey(),
-				$publicationFormat->getEnabled(),
-				$publicationFormat->getPhysicalFormat()?1:0,
-				(int) $publicationFormat->getId()
+				$publicationFormat->getPhysicalFormat(),
+				(int) $publicationFormat->getSeq(),
+				$publicationFormat->getFileSize(),
+				$publicationFormat->getFrontMatter(),
+				$publicationFormat->getBackMatter(),
+				$publicationFormat->getHeight(),
+				$publicationFormat->getHeightUnitCode(),
+				$publicationFormat->getWidth(),
+				$publicationFormat->getWidthUnitCode(),
+				$publicationFormat->getThickness(),
+				$publicationFormat->getThicknessUnitCode(),
+				$publicationFormat->getWeight(),
+				$publicationFormat->getWeightUnitCode(),
+				$publicationFormat->getProductCompositionCode(),
+				$publicationFormat->getProductFormDetailCode(),
+				$publicationFormat->getCountryManufactureCode(),
+				$publicationFormat->getImprint(),
+				$publicationFormat->getProductAvailabilityCode(),
+				$publicationFormat->getTechnicalProtectionCode(),
+				$publicationFormat->getReturnableIndicatorCode(),
+				(int) $publicationFormat->getIsAvailable(),
+				(int) $publicationFormat->getPublicationFormatId()
 			)
 		);
+
 		$this->updateLocaleFields($publicationFormat);
 	}
 
 	/**
-	 * Delete an existing publication format.
-	 * @param $publicationFormat PublicationFormat
-	 */
-	function deleteObject(&$publicationFormat) {
-		return $this->deleteById($publicationFormat->getId());
-	}
-
-	/**
-	 * delete a publication format by id.
-	 * @param $publicationFormatId int
-	 */
-	function deleteById($publicationFormatId, $pressId = null) {
-		$params = array((int) $publicationFormatId);
-		if ($pressId) $params[] = (int) $pressId;
-
-		return $this->update(
-			'DELETE FROM publication_formats WHERE publication_format_id = ?
-			' . ($pressId?' AND press_id = ?':''),
-			$params
-		);
-	}
-
-	/**
-	 * Get the ID of the last inserted publication format.
-	 * @return int
-	 */
-	function getInsertPublicationFormatId() {
-		return $this->getInsertId('publication_formats', 'publication_format_id');
-	}
-
-	/**
-	 * Get the name of the settings table.
-	 * @return string
-	 */
-	function getSettingsTableName() {
-		return 'publication_format_settings';
-	}
-
-	/**
-	 * Get the name of the main table for this setting group.
-	 * @return string
-	 */
-	function getTableName() {
-		return 'publication_formats';
-	}
-
-	/**
-	 * Get the default type constant.
-	 * @return int
-	 */
-	function getDefaultType() {
-		return DEFAULT_SETTING_PUBLICATION_FORMATS;
-	}
-
-	/**
-	 * Get the path of the setting data file.
-	 * @return string
-	 */
-	function getDefaultBaseFilename() {
-		return 'registry/publicationFormats.xml';
-	}
-
-	/**
-	 * Install publication formats from an XML file.
-	 * @param $pressId int
-	 * @return boolean
-	 */
-	function installDefaultBase($pressId) {
-		$xmlDao = new XMLDAO();
-
-		$data = $xmlDao->parseStruct($this->getDefaultBaseFilename(), array('publicationFormat'));
-		if (!isset($data['publicationFormat'])) return false;
-
-		foreach ($data['publicationFormat'] as $entry) {
-			$attrs = $entry['attributes'];
-			$this->update(
-				'INSERT INTO publication_formats
-				(entry_key, physical_format, press_id, enabled)
-				VALUES
-				(?, ?, ?, ?)',
-				array($attrs['key'], $attrs['physical_format'], (int) $pressId, 1)
-			);
-		}
-		return true;
-	}
-
-	/**
-	 * Get setting names and values.
-	 * @param $node XMLNode
-	 * @param $locale string
+	 * Get a list of fields for which we store localized data
 	 * @return array
 	 */
-	function &getSettingAttributes($node = null, $locale = null) {
-		if ($node == null) {
-			$settings = array('name');
-		} else {
-			$localeKey = $node->getAttribute('localeKey');
-
-			$settings = array(
-				'name' => __($localeKey, array(), $locale),
-			);
-		}
-		return $settings;
+	function getLocaleFieldNames() {
+		return array('title');
 	}
 }
 

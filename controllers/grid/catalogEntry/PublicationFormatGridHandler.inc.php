@@ -33,9 +33,12 @@ class PublicationFormatGridHandler extends GridHandler {
 	function PublicationFormatGridHandler() {
 		parent::GridHandler();
 		$this->addRoleAssignment(
-				array(ROLE_ID_PRESS_MANAGER),
-				array('fetchGrid', 'fetchRow', 'addFormat', 'editFormat',
-				'updateFormat', 'deleteFormat'));
+			array(ROLE_ID_PRESS_MANAGER),
+			array(
+				'fetchGrid', 'fetchRow', 'addFormat',
+				'editFormat', 'updateFormat', 'deleteFormat'
+			)
+		);
 	}
 
 
@@ -174,8 +177,8 @@ class PublicationFormatGridHandler extends GridHandler {
 	 */
 	function &loadData($request, $filter = null) {
 		$monograph =& $this->getMonograph();
-		$assignedPublicationFormatDao =& DAORegistry::getDAO('AssignedPublicationFormatDAO');
-		$data =& $assignedPublicationFormatDao->getFormatsByMonographId($monograph->getId());
+		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
+		$data =& $publicationFormatDao->getByMonographId($monograph->getId());
 		return $data->toArray();
 	}
 
@@ -196,15 +199,15 @@ class PublicationFormatGridHandler extends GridHandler {
 	 */
 	function editFormat($args, &$request) {
 		// Identify the format to be updated
-		$assignedPublicationFormatId = (int) $request->getUserVar('assignedPublicationFormatId');
+		$publicationFormatId = (int) $request->getUserVar('publicationFormatId');
 		$monograph =& $this->getMonograph();
 
-		$assignedPublicationFormatDao =& DAORegistry::getDAO('AssignedPublicationFormatDAO');
-		$assignedPublicationFormat = $assignedPublicationFormatDao->getById($assignedPublicationFormatId);
+		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
+		$publicationFormat = $publicationFormatDao->getById($publicationFormatId);
 
 		// Form handling
 		import('controllers.grid.catalogEntry.form.PublicationFormatForm');
-		$publicationFormatForm = new PublicationFormatForm($monograph, $assignedPublicationFormat);
+		$publicationFormatForm = new PublicationFormatForm($monograph, $publicationFormat);
 		$publicationFormatForm->initData();
 
 		$json = new JSONMessage(true, $publicationFormatForm->fetch($request));
@@ -219,22 +222,22 @@ class PublicationFormatGridHandler extends GridHandler {
 	 */
 	function updateFormat($args, &$request) {
 		// Identify the format to be updated
-		$assignedPublicationFormatId = (int) $request->getUserVar('assignedPublicationFormatId');
+		$publicationFormatId = (int) $request->getUserVar('publicationFormatId');
 		$monograph =& $this->getMonograph();
 
-		$assignedPublicationFormatDao =& DAORegistry::getDAO('AssignedPublicationFormatDAO');
-		$assignedPublicationFormat = $assignedPublicationFormatDao->getById($assignedPublicationFormatId);
+		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
+		$publicationFormat = $publicationFormatDao->getById($publicationFormatId);
 
 		// Form handling
 		import('controllers.grid.catalogEntry.form.PublicationFormatForm');
-		$publicationFormatForm = new PublicationFormatForm($monograph, $assignedPublicationFormat);
+		$publicationFormatForm = new PublicationFormatForm($monograph, $publicationFormat);
 		$publicationFormatForm->readInputData();
 		if ($publicationFormatForm->validate()) {
-			$assignedPublicationFormatId = $publicationFormatForm->execute();
+			$publicationFormatId = $publicationFormatForm->execute();
 
-			if(!isset($assignedPublicationFormat)) {
+			if(!isset($publicationFormat)) {
 				// This is a new format
-				$assignedPublicationFormat =& $assignedPublicationFormatDao->getById($assignedPublicationFormatId);
+				$publicationFormat =& $publicationFormatDao->getById($publicationFormatId);
 				// New added format action notification content.
 				$notificationContent = __('notification.addedPublicationFormat');
 			} else {
@@ -250,8 +253,8 @@ class PublicationFormatGridHandler extends GridHandler {
 			// Prepare the grid row data
 			$row =& $this->getRowInstance();
 			$row->setGridId($this->getId());
-			$row->setId($assignedPublicationFormatId);
-			$row->setData($assignedPublicationFormat);
+			$row->setId($publicationFormatId);
+			$row->setData($publicationFormat);
 			$row->initialize($request);
 
 			// Render the row into a JSON response
@@ -272,10 +275,10 @@ class PublicationFormatGridHandler extends GridHandler {
 	function deleteFormat($args, &$request) {
 
 		// Identify the publiation format to be deleted
-		$assignedPublicationFormatId = (int) $request->getUserVar('assignedPublicationFormatId');
+		$publicationFormatId = (int) $request->getUserVar('publicationFormatId');
 
-		$assignedPublicationFormatDao =& DAORegistry::getDAO('AssignedPublicationFormatDAO');
-		$result = $assignedPublicationFormatDao->deleteAssignedPublicationFormatById($assignedPublicationFormatId);
+		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
+		$result = $publicationFormatDao->deleteById($publicationFormatId);
 
 		if ($result) {
 			$currentUser =& $request->getUser();

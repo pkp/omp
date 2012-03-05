@@ -16,13 +16,13 @@
 
 <form class="pkp_form" id="addPublicationFormatForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.catalogEntry.PublicationFormatGridHandler" op="updateFormat"}">
 	<input type="hidden" name="monographId" value="{$monographId|escape}" />
-	<input type="hidden" name="assignedPublicationFormatId" value="{$assignedPublicationFormatId|escape}" />
+	<input type="hidden" name="publicationFormatId" value="{$publicationFormatId|escape}" />
 	{fbvFormArea id="addFormat"}
 		{fbvFormSection title="grid.catalogEntry.publicationFormatTitle" for="title" required="true"}
 			{fbvElement type="text" id="title" value=$title|escape multilingual="true" size=$fbvStyles.size.MEDIUM}
 		{/fbvFormSection}
 		{fbvFormSection title="grid.catalogEntry.publicationFormatType" for="publicationFormat"  required="true" size=$fbvStyles.size.MEDIUM}
-			{fbvElement type="select" from=$publicationFormats selected=$publicationFormatId id="publicationFormatId" translate=false}
+			{fbvElement type="select" from=$entryKeys selected=$entryKey id="entryKey" translate=false}
 		{/fbvFormSection}
 		{fbvFormButtons}
 	{/fbvFormArea}

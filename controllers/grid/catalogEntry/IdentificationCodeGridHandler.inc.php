@@ -27,8 +27,8 @@ class IdentificationCodeGridHandler extends GridHandler {
 	/** @var Monograph */
 	var $_monograph;
 
-	/** @var AssignedPublicationFormat */
-	var $_assignedPublicationFormat;
+	/** @var PublicationFormat */
+	var $_publicationFormat;
 
 	/**
 	 * Constructor
@@ -62,19 +62,19 @@ class IdentificationCodeGridHandler extends GridHandler {
 	}
 
 	/**
-	 * Get the assigned publication format assocated with these identification codes
-	 * @return AssignedPublicationformat
+	 * Get the publication format assocated with these identification codes
+	 * @return PublicationFormat
 	 */
-	function &getAssignedPublicationFormat() {
-		return $this->_assignedPublicationFormat;
+	function &getPublicationFormat() {
+		return $this->_publicationFormat;
 	}
 
 	/**
-	 * Set the assigned publication format
-	 * @param AssignedPublicationFormat
+	 * Set the publication format
+	 * @param PublicationFormat
 	 */
-	function setAssignedPublicationFormat($assignedPublicationFormat) {
-		$this->_assignedPublicationFormat =& $assignedPublicationFormat;
+	function setPublicationFormat($publicationFormat) {
+		$this->_publicationFormat =& $publicationFormat;
 	}
 
 	//
@@ -101,8 +101,8 @@ class IdentificationCodeGridHandler extends GridHandler {
 
 		// Retrieve the authorized monograph.
 		$this->setMonograph($this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH));
-		$assignedPublicationFormatDao =& DAORegistry::getDAO('AssignedPublicationFormatDAO');
-		$assignedPublicationFormatId = null;
+		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
+		$publicationFormatId = null;
 
 		// Retrieve the associated publication format for this grid.
 		$identificationCodeId = (int) $request->getUserVar('identificationCodeId'); // set if editing or deleting a code
@@ -111,16 +111,16 @@ class IdentificationCodeGridHandler extends GridHandler {
 			$identificationCodeDao =& DAORegistry::getDAO('IdentificationCodeDAO');
 			$identificationCode =& $identificationCodeDao->getById($identificationCodeId, $this->getMonograph()->getId());
 			if ($identificationCode) {
-				$assignedPublicationFormatId =& $identificationCode->getAssignedPublicationFormatId();
+				$publicationFormatId =& $identificationCode->getPublicationFormatId();
 			}
 		} else { // empty form for new Code
-			$assignedPublicationFormatId = (int) $request->getUserVar('assignedPublicationFormatId');
+			$publicationFormatId = (int) $request->getUserVar('publicationFormatId');
 		}
 
-		$assignedPublicationFormat =& $assignedPublicationFormatDao->getById($assignedPublicationFormatId, $this->getMonograph()->getId());
+		$publicationFormat =& $publicationFormatDao->getById($publicationFormatId, $this->getMonograph()->getId());
 
-		if ($assignedPublicationFormat) {
-			$this->setAssignedPublicationFormat($assignedPublicationFormat);
+		if ($publicationFormat) {
+			$this->setPublicationFormat($publicationFormat);
 		} else {
 			fatalError('The publication format is not assigned to authorized monograph!');
 		}
@@ -195,11 +195,11 @@ class IdentificationCodeGridHandler extends GridHandler {
 	 */
 	function getRequestArgs() {
 		$monograph =& $this->getMonograph();
-		$assignedPublicationFormat =& $this->getAssignedPublicationFormat();
+		$publicationFormat =& $this->getPublicationFormat();
 
 		return array(
 			'monographId' => $monograph->getId(),
-			'assignedPublicationFormatId' => $assignedPublicationFormat->getAssignedPublicationFormatId()
+			'publicationFormatId' => $publicationFormat->getId()
 		);
 	}
 
@@ -207,9 +207,9 @@ class IdentificationCodeGridHandler extends GridHandler {
 	 * @see GridHandler::loadData
 	 */
 	function &loadData($request, $filter = null) {
-		$assignedPublicationFormat =& $this->getAssignedPublicationFormat();
+		$publicationFormat =& $this->getPublicationFormat();
 		$identificationCodeDao =& DAORegistry::getDAO('IdentificationCodeDAO');
-		$data =& $identificationCodeDao->getByAssignedPublicationFormatId($assignedPublicationFormat->getAssignedPublicationFormatId());
+		$data =& $identificationCodeDao->getByPublicationFormatId($publicationFormat->getId());
 		return $data->toArray();
 	}
 

@@ -22,29 +22,29 @@
 			<div class="dateAdded">{translate key="catalog.dateAdded" dateAdded=$publishedMonograph->getDatePublished()|date_format:$dateFormatShort}</div>
 		</div>
 
-		{assign var=assignedPublicationFormats value=$publishedMonograph->getAssignedPublicationFormats()}
-		{foreach from=$assignedPublicationFormats item=assignedPublicationFormat}
-			{if $assignedPublicationFormat->getIsAvailable()}
-			<h3><a href="#">{$assignedPublicationFormat->getLocalizedTitle()|escape}</a></h3>
-			<div class="assignedPublicationFormat">
+		{assign var=publicationFormats value=$publishedMonograph->getPublicationFormats()}
+		{foreach from=$publicationFormats item=publicationFormat}
+			{if $publicationFormat->getIsAvailable()}
+			<h3><a href="#">{$publicationFormat->getLocalizedTitle()|escape}</a></h3>
+			<div class="publicationFormat">
 				<div id="bookDimensionSpecs">
 				{assign var=notFirst value=0}
-				{if $assignedPublicationFormat->getWidth()}
-					{$assignedPublicationFormat->getWidth()|escape} {$assignedPublicationFormat->getWidthUnitCode()|escape}
+				{if $publicationFormat->getWidth()}
+					{$publicationFormat->getWidth()|escape} {$publicationFormat->getWidthUnitCode()|escape}
 					{assign var=notFirst value=1}
 				{/if}
-				{if $assignedPublicationFormat->getHeight()}
+				{if $publicationFormat->getHeight()}
 					{if $notFirst} x {/if}
-					{$assignedPublicationFormat->getHeight()|escape} {$assignedPublicationFormat->getHeightUnitCode()|escape}
+					{$publicationFormat->getHeight()|escape} {$publicationFormat->getHeightUnitCode()|escape}
 					{assign var=notFirst value=1}
 				{/if}
-				{if $assignedPublicationFormat->getThickness()}
+				{if $publicationFormat->getThickness()}
 					{if $notFirst} x {/if}
-					{$assignedPublicationFormat->getThickness()|escape} {$assignedPublicationFormat->getThicknessUnitCode()|escape}
+					{$publicationFormat->getThickness()|escape} {$publicationFormat->getThicknessUnitCode()|escape}
 					{assign var=notFirst value=1}
 				{/if}
 				</div>
-				{assign var=identificationCodes value=$assignedPublicationFormat->getIdentificationCodes()}
+				{assign var=identificationCodes value=$publicationFormat->getIdentificationCodes()}
 				{assign var=identificationCodes value=$identificationCodes->toArray()}
 				{if $identificationCodes}
 					<div id="bookIdentificationSpecs">
@@ -56,8 +56,8 @@
 					</div>
 				{/if}{* $identificationCodes *}
 			</div>
-			{/if}{* $assignedPublicationFormat->getIsAvailable() *}
-		{/foreach}{* $assignedPublicationFormats *}
+			{/if}{* $publicationFormat->getIsAvailable() *}
+		{/foreach}{* $publicationFormats *}
 
 		{if !$categories->wasEmpty()}
 			<h3><a href="#">{translate key="catalog.relatedCategories}</a></h3>

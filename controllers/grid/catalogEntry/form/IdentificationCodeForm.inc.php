@@ -32,7 +32,7 @@ class IdentificationCodeForm extends Form {
 		// Validation checks for this form
 		$this->addCheck(new FormValidator($this, 'code', 'required', 'grid.catalogEntry.codeRequired'));
 		$this->addCheck(new FormValidator($this, 'value', 'required', 'grid.catalogEntry.valueRequired'));
-		$this->addCheck(new FormValidator($this, 'assignedPublicationFormatId', 'required', 'grid.catalogEntry.publicationFormatRequired'));
+		$this->addCheck(new FormValidator($this, 'publicationFormatId', 'required', 'grid.catalogEntry.publicationFormatRequired'));
 		$this->addCheck(new FormValidatorPost($this));
 	}
 
@@ -97,28 +97,29 @@ class IdentificationCodeForm extends Form {
 	function fetch(&$request) {
 
 		$templateMgr =& TemplateManager::getManager();
-		$assignedPublicationFormatId = null;
+		$publicationFormatId = null;
 
 		$monograph =& $this->getMonograph();
 		$templateMgr->assign('monographId', $monograph->getId());
 		$identificationCode =& $this->getIdentificationCode();
 
 		if ($identificationCode) {
-			$assignedPublicationFormatId = $identificationCode->getAssignedPublicationFormatId();
+			$publicationFormatId = $identificationCode->getPublicationFormatId();
 			$templateMgr->assign('identificationCodeId', $identificationCode->getId());
 			$templateMgr->assign('code', $identificationCode->getCode());
 			$templateMgr->assign('value', $identificationCode->getValue());
-			$assignedPublicationFormatId = $identificationCode->getAssignedPublicationFormatId();
+			$publicationFormatId = $identificationCode->getPublicationFormatId();
 		} else { // loading a blank form
-			$assignedPublicationFormatId = (int) $request->getUserVar('assignedPublicationFormatId');
+			$publicationFormatId = (int) $request->getUserVar('publicationFormatId');
 		}
 
-		$assignedPublicationFormatDao =& DAORegistry::getDAO('AssignedPublicationFormatDAO');
-		$assignedPublicationFormat =& $assignedPublicationFormatDao->getById($assignedPublicationFormatId, $monograph->getId());
+		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
+		$publicationFormat =& $publicationFormatDao->getById($publicationFormatId, $monograph->getId());
 
-		if ($assignedPublicationFormat) { // the format exists for this monograph
-			$templateMgr->assign('assignedPublicationFormatId', $assignedPublicationFormatId);
-			$assignedCodes = array_keys($assignedPublicationFormat->getIdentificationCodes()->toAssociativeArray('code')); // currently assigned codes
+		if ($publicationFormat) { // the format exists for this monograph
+			$templateMgr->assign('publicationFormatId', $publicationFormatId);
+			$identificationCodes = $publicationFormat->getIdentificationCodes();
+			$assignedCodes = array_keys($identificationCodes->toAssociativeArray('code')); // currently assigned codes
 			if ($identificationCode) $assignedCodes = array_diff($assignedCodes, array($identificationCode->getCode())); // allow existing codes to keep their value
 			$onixCodelistItemDao =& DAORegistry::getDAO('ONIXCodelistItemDAO');
 			$codes =& $onixCodelistItemDao->getCodes('List5', $assignedCodes); // ONIX list for these
@@ -137,7 +138,7 @@ class IdentificationCodeForm extends Form {
 	function readInputData() {
 		$this->readUserVars(array(
 			'identificationCodeId',
-			'assignedPublicationFormatId',
+			'publicationFormatId',
 			'code',
 			'value',
 		));
@@ -149,24 +150,24 @@ class IdentificationCodeForm extends Form {
 	 */
 	function execute() {
 		$identificationCodeDao =& DAORegistry::getDAO('IdentificationCodeDAO');
-		$assignedPublicationFormatDao =& DAORegistry::getDAO('AssignedPublicationFormatDAO');
+		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
 
 		$monograph = $this->getMonograph();
 		$identificationCode =& $this->getIdentificationCode();
-		$assignedPublicationFormat =& $assignedPublicationFormatDao->getById($this->getData('assignedPublicationFormatId', $monograph->getId()));
+		$publicationFormat =& $publicationFormatDao->getById($this->getData('publicationFormatId', $monograph->getId()));
 
 		if (!$identificationCode) {
-			// this is a new assigned format to this published monograph
+			// this is a new code to this published monograph
 			$identificationCode = $identificationCodeDao->newDataObject();
-			if ($assignedPublicationFormat != null) { // ensure this assigned format is in this monograph
-				$identificationCode->setAssignedPublicationFormatId($assignedPublicationFormat->getAssignedPublicationFormatId());
+			if ($publicationFormat != null) { // ensure this format is in this monograph
+				$identificationCode->setPublicationFormatId($publicationFormat->getId());
 				$existingFormat = false;
 			} else {
-				fatalError('This assigned format not in authorized monograph context!');
+				fatalError('This format not in authorized monograph context!');
 			}
 		} else {
 			$existingFormat = true;
-			if ($assignedPublicationFormat->getAssignedPublicationFormatId() !== $identificationCode->getAssignedPublicationFormatId()) fatalError('Invalid format!');
+			if ($publicationFormat->getId() !== $identificationCode->getPublicationFormatId()) fatalError('Invalid format!');
 		}
 
 		$identificationCode->setCode($this->getData('code'));
