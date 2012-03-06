@@ -204,8 +204,8 @@ class PluginGridHandler extends CategoryGridHandler {
 	}
 
 	/**
-	* @see GridHandler::loadData()
-	*/
+	 * @see GridHandler::loadData()
+	 */
 	function loadData($request, $filter) {
 		$categories = PluginRegistry::getCategories();
 		if (is_array($filter) && isset($filter['category']) && ($i = array_search($filter['category'], $categories)) !== false) {

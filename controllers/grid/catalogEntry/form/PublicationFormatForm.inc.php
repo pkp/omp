@@ -39,17 +39,17 @@ class PublicationFormatForm extends Form {
 	// Getters and Setters
 	//
 	/**
-	* Get the format
-	* @return PublicationFormat
-	*/
+	 * Get the format
+	 * @return PublicationFormat
+	 */
 	function getPublicationFormat() {
 		return $this->_publicationFormat;
 	}
 
 	/**
-	* Set the publication format
-	* @param @format PublicationFormat
-	*/
+	 * Set the publication format
+	 * @param @format PublicationFormat
+	 */
 	function setPublicationFormat($publicationFormat) {
 		$this->_publicationFormat =& $publicationFormat;
 	}
@@ -75,8 +75,8 @@ class PublicationFormatForm extends Form {
 	// Overridden template methods
 	//
 	/**
-	* Initialize form data from the associated publication format.
-	*/
+	 * Initialize form data from the associated publication format.
+	 */
 	function initData() {
 		$format =& $this->getPublicationFormat();
 

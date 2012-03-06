@@ -252,9 +252,9 @@ class ReviewRoundDAO extends DAO {
 	}
 
 	/**
-	* Get the ID of the last inserted review round.
-	* @return int
-	*/
+	 * Get the ID of the last inserted review round.
+	 * @return int
+	 */
 	function getInsertReviewRoundId() {
 		return $this->getInsertId('review_rounds', 'user_id');
 	}

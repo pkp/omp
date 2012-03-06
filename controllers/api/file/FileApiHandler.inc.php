@@ -89,10 +89,10 @@ class FileApiHandler extends Handler {
 	}
 
 	/**
-	* Download all passed files.
-	* @param $args array
-	* @param $request Request
-	*/
+	 * Download all passed files.
+	 * @param $args array
+	 * @param $request Request
+	 */
 	function downloadAllFiles($args, &$request) {
 		// Retrieve the authorized objects.
 		$monographFiles = $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH_FILES);

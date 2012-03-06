@@ -32,8 +32,8 @@ class ReviewCategoryGridDataProvider extends SubmissionFilesCategoryGridDataProv
 	// Getters and setters.
 	//
 	/**
-	* @return ReviewRound
-	*/
+	 * @return ReviewRound
+	 */
 	function &getReviewRound() {
 		$gridDataProvider =& $this->getGridDataProvider();
 		return $gridDataProvider->getReviewRound();

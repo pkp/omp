@@ -50,10 +50,10 @@ class ReviewRoundTabHandler extends Handler {
 	}
 
 	/**
-	* JSON fetch the internal review round info (tab).
-	* @param $args array
-	* @param $request PKPRequest
-	*/
+	 * JSON fetch the internal review round info (tab).
+	 * @param $args array
+	 * @param $request PKPRequest
+	 */
 	function internalReviewRound($args, &$request) {
 		return $this->_reviewRound($args, $request);
 	}

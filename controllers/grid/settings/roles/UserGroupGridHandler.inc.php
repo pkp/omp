@@ -143,9 +143,9 @@ class UserGroupGridHandler extends CategoryGridHandler {
 	}
 
 	/**
-	* @see GridHandler::getRowInstance()
-	* @return UserGroupGridRow
-	*/
+	 * @see GridHandler::getRowInstance()
+	 * @return UserGroupGridRow
+	 */
 	function &getRowInstance() {
 		import('controllers.grid.settings.roles.UserGroupGridRow');
 		$row = new UserGroupGridRow();
@@ -222,10 +222,10 @@ class UserGroupGridHandler extends CategoryGridHandler {
 	//
 
 	/**
-	* Get a UserGroupForm instance.
-	* @param $request Request
-	* @return UserGroupForm
-	*/
+	 * Get a UserGroupForm instance.
+	 * @param $request Request
+	 * @return UserGroupForm
+	 */
 	function _getUserGroupForm(&$request) {
 		// Get the user group Id.
 		$userGroupId = (int) $request->getUserVar('userGroupId');

@@ -52,11 +52,11 @@ class AuthorDashboardReviewRoundTabHandler extends AuthorDashboardHandler {
 	// Public handler operations
 	//
 	/**
-	* Fetch information for the author on the specified review round
-	* @param $args array
-	* @param $request Request
-	* @return string
-	*/
+	 * Fetch information for the author on the specified review round
+	 * @param $args array
+	 * @param $request Request
+	 * @return string
+	 */
 	function fetchReviewRoundInfo($args, &$request) {
 		$this->setupTemplate($request);
 		$templateMgr =& TemplateManager::getManager();

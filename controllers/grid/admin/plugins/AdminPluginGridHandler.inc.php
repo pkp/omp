@@ -30,8 +30,8 @@ class AdminPluginGridHandler extends PluginGridHandler {
 	// Overriden template methods.
 	//
 	/**
-	* @see GridHandler::getRowInstance()
-	*/
+	 * @see GridHandler::getRowInstance()
+	 */
 	function getRowInstance() {
 		return parent::getRowInstance(CONTEXT_SITE);
 	}

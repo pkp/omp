@@ -111,9 +111,9 @@ class AssignedSubmissionsListGridHandler extends SubmissionsListGridHandler {
 	// Overridden methods from GridHandler
 	//
 	/**
-	* Get the row handler - override the default row handler
-	* @return SubmissionsListGridRow
-	*/
+	 * Get the row handler - override the default row handler
+	 * @return SubmissionsListGridRow
+	 */
 	function &getRowInstance() {
 		$row = new SubmissionsListGridRow();
 		return $row;

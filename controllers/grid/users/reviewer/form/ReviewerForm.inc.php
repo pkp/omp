@@ -66,9 +66,9 @@ class ReviewerForm extends Form {
 	}
 
 	/**
-	* Get the ReviewRound
-	* @return ReviewRound
-	*/
+	 * Get the ReviewRound
+	 * @return ReviewRound
+	 */
 	function &getReviewRound() {
 		return $this->_reviewRound;
 	}
@@ -82,9 +82,9 @@ class ReviewerForm extends Form {
 	}
 
 	/**
-	* Set the ReviewRound
-	* @param $reviewRound ReviewRound
-	*/
+	 * Set the ReviewRound
+	 * @param $reviewRound ReviewRound
+	 */
 	function setReviewRound(&$reviewRound) {
 		$this->_reviewRound =& $reviewRound;
 	}
@@ -98,17 +98,17 @@ class ReviewerForm extends Form {
 	}
 
 	/**
-	* Set current user roles.
-	* @param $userRoles Array
-	*/
+	 * Set current user roles.
+	 * @param $userRoles Array
+	 */
 	function setUserRoles($userRoles) {
 		$this->_userRoles = $userRoles;
 	}
 
 	/**
-	* Get current user roles.
-	* @return $userRoles Array
-	*/
+	 * Get current user roles.
+	 * @return $userRoles Array
+	 */
 	function getUserRoles() {
 		return $this->_userRoles;
 	}

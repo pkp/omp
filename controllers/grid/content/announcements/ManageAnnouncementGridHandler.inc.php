@@ -90,11 +90,11 @@ class ManageAnnouncementGridHandler extends AnnouncementGridHandler {
 	}
 
 	/**
-	* Display form to edit an announcement.
-	* @param $args array
-	* @param $request PKPRequest
-	* @return string
-	*/
+	 * Display form to edit an announcement.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return string
+	 */
 	function editAnnouncement($args, &$request) {
 		$announcementId = (int)$request->getUserVar('announcementId');
 		$press =& $request->getPress();
@@ -161,10 +161,10 @@ class ManageAnnouncementGridHandler extends AnnouncementGridHandler {
 	}
 
 	/**
-	* Delete an announcement.
-	* @param $args array
-	* @param $request
-	*/
+	 * Delete an announcement.
+	 * @param $args array
+	 * @param $request
+	 */
 	function deleteAnnouncement($args, $request) {
 		$announcementId = (int) $request->getUserVar('announcementId');
 

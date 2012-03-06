@@ -49,17 +49,17 @@ class SalesRightsForm extends Form {
 	// Getters and Setters
 	//
 	/**
-	* Get the entry
-	* @return SalesRights
-	*/
+	 * Get the entry
+	 * @return SalesRights
+	 */
 	function getSalesRights() {
 		return $this->_salesRights;
 	}
 
 	/**
-	* Set the entry
-	* @param @salesRights SalesRights
-	*/
+	 * Set the entry
+	 * @param @salesRights SalesRights
+	 */
 	function setSalesRights($salesRights) {
 		$this->_salesRights =& $salesRights;
 	}
@@ -85,8 +85,8 @@ class SalesRightsForm extends Form {
 	// Overridden template methods
 	//
 	/**
-	* Initialize form data from the sales rights entry.
-	*/
+	 * Initialize form data from the sales rights entry.
+	 */
 	function initData() {
 		$salesRights =& $this->getSalesRights();
 

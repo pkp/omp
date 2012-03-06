@@ -119,9 +119,9 @@ class CategoryCategoryGridHandler extends CategoryGridHandler {
 	}
 
 	/**
-	* @see GridHandler::getRowInstance()
-	* @return CategoryGridRow
-	*/
+	 * @see GridHandler::getRowInstance()
+	 * @return CategoryGridRow
+	 */
 	function &getRowInstance() {
 		import('controllers.grid.settings.category.CategoryGridRow');
 		$row = new CategoryGridRow();
@@ -216,10 +216,10 @@ class CategoryCategoryGridHandler extends CategoryGridHandler {
 	// Private helper methods.
 	//
 	/**
-	* Get a CategoryForm instance.
-	* @param $request Request
-	* @return UserGroupForm
-	*/
+	 * Get a CategoryForm instance.
+	 * @param $request Request
+	 * @return UserGroupForm
+	 */
 	function _getCategoryForm(&$request) {
 		// Get the category ID.
 		$categoryId = (int) $request->getUserVar('categoryId');

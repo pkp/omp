@@ -31,8 +31,8 @@ class SettingsPluginGridHandler extends PluginGridHandler {
 	// Extended methods from PluginGridHandler
 	//
 	/**
-	* @see PluginGridHandler::loadData()
-	*/
+	 * @see PluginGridHandler::loadData()
+	 */
 	function getCategoryData($categoryDataElement, $filter) {
 		$plugins = parent::getCategoryData($categoryDataElement, $filter);
 
@@ -68,8 +68,8 @@ class SettingsPluginGridHandler extends PluginGridHandler {
 	// Overriden template methods.
 	//
 	/**
-	* @see GridHandler::getRowInstance()
-	*/
+	 * @see GridHandler::getRowInstance()
+	 */
 	function getRowInstance() {
 		return parent::getRowInstance(CONTEXT_PRESS);
 	}

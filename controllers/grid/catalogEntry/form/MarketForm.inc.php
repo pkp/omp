@@ -40,17 +40,17 @@ class MarketForm extends Form {
 	// Getters and Setters
 	//
 	/**
-	* Get the entry
-	* @return Market
-	*/
+	 * Get the entry
+	 * @return Market
+	 */
 	function getMarket() {
 		return $this->_market;
 	}
 
 	/**
-	* Set the entry
-	* @param @market Market
-	*/
+	 * Set the entry
+	 * @param @market Market
+	 */
 	function setMarket($market) {
 		$this->_market =& $market;
 	}
@@ -76,8 +76,8 @@ class MarketForm extends Form {
 	// Overridden template methods
 	//
 	/**
-	* Initialize form data from the market entry.
-	*/
+	 * Initialize form data from the market entry.
+	 */
 	function initData() {
 		$market =& $this->getMarket();
 

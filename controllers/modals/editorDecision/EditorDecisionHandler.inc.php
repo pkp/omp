@@ -148,14 +148,14 @@ class EditorDecisionHandler extends Handler {
 	}
 
 	/**
-	* Show a save review form (responsible for request revisions,
-	* resubmit for review, and decline submission modals in review stages).
-	* We need this because the authorization in review stages is different
-	* when not in review stages (need to authorize review round id).
-	* @param $args array
-	* @param $request PKPRequest
-	* @return string Serialized JSON object
-	*/
+	 * Show a save review form (responsible for request revisions,
+	 * resubmit for review, and decline submission modals in review stages).
+	 * We need this because the authorization in review stages is different
+	 * when not in review stages (need to authorize review round id).
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return string Serialized JSON object
+	 */
 	function sendReviewsInReview($args, &$request) {
 		return $this->_initiateEditorDecision($args, $request, 'SendReviewsForm');
 	}
@@ -171,11 +171,11 @@ class EditorDecisionHandler extends Handler {
 	}
 
 	/**
-	* Save the send review form when user is in review stages.
-	* @param $args array
-	* @param $request PKPRequest
-	* @return string Serialized JSON object
-	*/
+	 * Save the send review form when user is in review stages.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return string Serialized JSON object
+	 */
 	function saveSendReviewsInReview($args, &$request) {
 		return $this->_saveEditorDecision($args, $request, 'SendReviewsForm');
 	}
@@ -191,13 +191,13 @@ class EditorDecisionHandler extends Handler {
 	}
 
 	/**
-	* Show a promote form (responsible for external review and accept submission modals
-	* in review stages). We need this because the authorization for promoting in review
-	* stages is different when not in review stages (need to authorize review round id).
-	* @param $args array
-	* @param $request PKPRequest
-	* @return string Serialized JSON object
-	*/
+	 * Show a promote form (responsible for external review and accept submission modals
+	 * in review stages). We need this because the authorization for promoting in review
+	 * stages is different when not in review stages (need to authorize review round id).
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return string Serialized JSON object
+	 */
 	function promoteInReview($args, &$request) {
 		return $this->_initiateEditorDecision($args, $request, 'PromoteForm');
 	}
@@ -213,12 +213,12 @@ class EditorDecisionHandler extends Handler {
 	}
 
 	/**
-	* Save the send review form (same case of the
-	* promoteInReview() method, see description there).
-	* @param $args array
-	* @param $request PKPRequest
-	* @return string Serialized JSON object
-	*/
+	 * Save the send review form (same case of the
+	 * promoteInReview() method, see description there).
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return string Serialized JSON object
+	 */
 	function savePromoteInReview($args, &$request) {
 		return $this->_saveGeneralPromote($args, $request);
 	}

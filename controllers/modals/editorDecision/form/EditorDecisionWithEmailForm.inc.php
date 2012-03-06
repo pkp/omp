@@ -47,19 +47,19 @@ class EditorDecisionWithEmailForm extends EditorDecisionForm {
 	}
 
 	/**
-	* Get the operation to save this form.
-	* @return string
-	*/
+	 * Get the operation to save this form.
+	 * @return string
+	 */
 	function getSaveFormOperation() {
-	return $this->_saveFormOperation;
+		return $this->_saveFormOperation;
 	}
 
 	/**
-	* Set the operation to save this form.
-	* @param $saveFormOperation string
-	*/
+	 * Set the operation to save this form.
+	 * @param $saveFormOperation string
+	 */
 	function setSaveFormOperation($saveFormOperation) {
-	$this->_saveFormOperation = $saveFormOperation;
+		$this->_saveFormOperation = $saveFormOperation;
 	}
 
 	//
@@ -157,10 +157,10 @@ class EditorDecisionWithEmailForm extends EditorDecisionForm {
 	// Private helper methods
 	//
 	/**
-	* Retrieve the last review round and update it with the new status.
-	* @param $seriesEditorSubmission SeriesEditorSubmission
-	* @param $status integer One of the REVIEW_ROUND_STATUS_* constants.
-	*/
+	 * Retrieve the last review round and update it with the new status.
+	 * @param $seriesEditorSubmission SeriesEditorSubmission
+	 * @param $status integer One of the REVIEW_ROUND_STATUS_* constants.
+	 */
 	function _updateReviewRoundStatus($seriesEditorSubmission, $status, &$reviewRound = null) {
 		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO'); /* @var $reviewRoundDao ReviewRoundDAO */
 		if (!$reviewRound) {

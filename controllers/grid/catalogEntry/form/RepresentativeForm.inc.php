@@ -44,17 +44,17 @@ class RepresentativeForm extends Form {
 	// Getters and Setters
 	//
 	/**
-	* Get the representative
-	* @return Representative
-	*/
+	 * Get the representative
+	 * @return Representative
+	 */
 	function getRepresentative() {
 		return $this->_representative;
 	}
 
 	/**
-	* Set the representative
-	* @param @representative Representative
-	*/
+	 * Set the representative
+	 * @param @representative Representative
+	 */
 	function setRepresentative($representative) {
 		$this->_representative =& $representative;
 	}
@@ -80,8 +80,8 @@ class RepresentativeForm extends Form {
 	// Overridden template methods
 	//
 	/**
-	* Initialize form data from the representative entry.
-	*/
+	 * Initialize form data from the representative entry.
+	 */
 	function initData() {
 		$representative =& $this->getRepresentative();
 

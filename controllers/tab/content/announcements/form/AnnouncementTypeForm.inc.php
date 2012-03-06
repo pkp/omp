@@ -57,8 +57,8 @@ class AnnouncementTypeForm extends Form {
 	}
 
 	/**
-	* @see ListbuilderHandler::insertEntry()
-	*/
+	 * @see ListbuilderHandler::insertEntry()
+	 */
 	function insertEntry($request, $newRowId) {
 		$rowData = $newRowId;
 

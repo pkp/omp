@@ -113,9 +113,9 @@ class SelectableSubmissionFileListCategoryGridHandler extends CategoryGridHandle
 	}
 
 	/**
-	* Whether the grid allows file management (select existing files to add to grid)
-	* @return boolean
-	*/
+	 * Whether the grid allows file management (select existing files to add to grid)
+	 * @return boolean
+	 */
 	function canManage() {
 		$handlerImplementation =& $this->getHandlerImplementation();
 		return $handlerImplementation->_canManage;
@@ -134,8 +134,8 @@ class SelectableSubmissionFileListCategoryGridHandler extends CategoryGridHandle
 	// Overridden methods from GridHandler
 	//
 	/**
-	* @see GridHandler::getRequestArgs()
-	*/
+	 * @see GridHandler::getRequestArgs()
+	 */
 	function getRequestArgs() {
 		$requestArgs = parent::getRequestArgs();
 		$handlerImplementation =& $this->getHandlerImplementation();

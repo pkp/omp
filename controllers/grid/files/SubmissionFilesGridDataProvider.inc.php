@@ -62,9 +62,9 @@ class SubmissionFilesGridDataProvider extends FilesGridDataProvider {
 	}
 
 	/**
-	* Get the file stage.
-	* @return integer
-	*/
+	 * Get the file stage.
+	 * @return integer
+	 */
 	function getFileStage() {
 		return $this->_fileStage;
 	}

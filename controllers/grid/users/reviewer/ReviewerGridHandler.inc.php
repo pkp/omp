@@ -254,7 +254,7 @@ class ReviewerGridHandler extends GridHandler {
 	 * @param $args array
 	 * @param $request Request
 	 * @return string JSON
-	*/
+	 */
 	function reloadReviewerForm($args, &$request) {
 		$json = new JSONMessage(true);
 		$json->setEvent('refreshForm', $this->_fetchReviewerForm($args, $request));
@@ -272,11 +272,11 @@ class ReviewerGridHandler extends GridHandler {
 	}
 
 	/**
-	* Enroll an existing user as reviewer.
-	* @param $args Array
-	* @param $request Request
-	* @return string Serialized JSON object
-	*/
+	 * Enroll an existing user as reviewer.
+	 * @param $args Array
+	 * @param $request Request
+	 * @return string Serialized JSON object
+	 */
 	function enrollReviewer($args, &$request) {
 		return $this->updateReviewer($args, $request);
 	}
@@ -580,9 +580,9 @@ class ReviewerGridHandler extends GridHandler {
 	}
 
 	/**
-	* Get operations that need a review assignment policy.
-	* @return array
-	*/
+	 * Get operations that need a review assignment policy.
+	 * @return array
+	 */
 	function _getReviewAssignmentOps() {
 		// Define operations that need a review assignment policy.
 		return array('readReview', 'reviewRead', 'thankReviewer', 'editReminder', 'sendReminder', 'deleteReviewer');

@@ -48,8 +48,8 @@ class SpotlightForm extends Form {
 	// Extended methods from Form
 	//
 	/**
-	* @see Form::fetch()
-	*/
+	 * @see Form::fetch()
+	 */
 	function fetch($request) {
 		$templateMgr =& TemplateManager::getManager();
 

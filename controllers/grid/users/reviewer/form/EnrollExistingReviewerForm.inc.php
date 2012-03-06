@@ -27,9 +27,9 @@ class EnrollExistingReviewerForm extends ReviewerForm {
 	}
 
 	/**
-	* Fetch the form.
-	* @see Form::fetch()
-	*/
+	 * Fetch the form.
+	 * @see Form::fetch()
+	 */
 	function fetch(&$request) {
 
 		$searchByNameAction = $this->getSearchByNameAction($request);

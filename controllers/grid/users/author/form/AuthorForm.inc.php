@@ -42,17 +42,17 @@ class AuthorForm extends Form {
 	// Getters and Setters
 	//
 	/**
-	* Get the author
-	* @return Author
-	*/
+	 * Get the author
+	 * @return Author
+	 */
 	function getAuthor() {
 		return $this->_author;
 	}
 
 	/**
-	* Set the author
-	* @param @author Author
-	*/
+	 * Set the author
+	 * @param @author Author
+	 */
 	function setAuthor($author) {
 		$this->_author =& $author;
 	}
@@ -78,9 +78,9 @@ class AuthorForm extends Form {
 	// Overridden template methods
 	//
 	/**
-	* Initialize form data from the associated author.
-	* @param $author Author
-	*/
+	 * Initialize form data from the associated author.
+	 * @param $author Author
+	 */
 	function initData() {
 		$author =& $this->getAuthor();
 

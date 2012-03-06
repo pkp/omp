@@ -98,10 +98,10 @@ class SubmissionMetadataViewForm extends Form {
 	}
 
 	/**
-	* Initialize form data with the author name and the monograph id.
-	* @param $args array
-	* @param $request PKPRequest
-	*/
+	 * Initialize form data with the author name and the monograph id.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 */
 	function initData($args, &$request) {
 		AppLocale::requireComponents(
 			LOCALE_COMPONENT_APPLICATION_COMMON,

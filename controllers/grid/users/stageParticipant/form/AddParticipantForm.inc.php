@@ -52,9 +52,9 @@ class AddParticipantForm extends Form {
 	}
 
 	/**
-	* Get the stage ID
-	* @return int
-	*/
+	 * Get the stage ID
+	 * @return int
+	 */
 	function getStageId() {
 		return $this->_stageId;
 	}

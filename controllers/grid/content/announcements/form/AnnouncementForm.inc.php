@@ -53,8 +53,8 @@ class AnnouncementForm extends PKPAnnouncementForm {
 	// Extended methods from Form
 	//
 	/**
-	* @see Form::fetch()
-	*/
+	 * @see Form::fetch()
+	 */
 	function fetch($request) {
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('readOnly', $this->isReadOnly());
@@ -130,7 +130,7 @@ class AnnouncementForm extends PKPAnnouncementForm {
 	//
 	/**
 	 * @see PKPAnnouncementForm::setDateExpire()
-	*/
+	 */
 	function setDateExpire(&$announcement) {
 		/* @var $announcement Announcement */
 		$dateExpire = $this->getData('dateExpire');
@@ -149,8 +149,8 @@ class AnnouncementForm extends PKPAnnouncementForm {
 	// Private helper methdos.
 	//
 	/**
-	* @see PKPAnnouncementForm::_getAnnouncementTypesAssocId()
-	*/
+	 * @see PKPAnnouncementForm::_getAnnouncementTypesAssocId()
+	 */
 	function _getAnnouncementTypesAssocId() {
 		$pressId = $this->getContextId();
 		return array(ASSOC_TYPE_PRESS, $pressId);

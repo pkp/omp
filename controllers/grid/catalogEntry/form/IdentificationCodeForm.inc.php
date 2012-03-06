@@ -40,17 +40,17 @@ class IdentificationCodeForm extends Form {
 	// Getters and Setters
 	//
 	/**
-	* Get the code
-	* @return IdentificationCode
-	*/
+	 * Get the code
+	 * @return IdentificationCode
+	 */
 	function getIdentificationCode() {
 		return $this->_identificationCode;
 	}
 
 	/**
-	* Set the code
-	* @param @identificationCode IdentificationCode
-	*/
+	 * Set the code
+	 * @param @identificationCode IdentificationCode
+	 */
 	function setIdentificationCode($identificationCode) {
 		$this->_identificationCode =& $identificationCode;
 	}
@@ -76,8 +76,8 @@ class IdentificationCodeForm extends Form {
 	// Overridden template methods
 	//
 	/**
-	* Initialize form data from the identification code.
-	*/
+	 * Initialize form data from the identification code.
+	 */
 	function initData() {
 		$code =& $this->getIdentificationCode();
 

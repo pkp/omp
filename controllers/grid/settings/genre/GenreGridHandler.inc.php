@@ -221,13 +221,13 @@ class GenreGridHandler extends SetupGridHandler {
 	// Private helper function
 	//
 	/**
-	* This will retrieve a Genre object from the
-	* grids data source based on the request arguments.
-	* If no Genre can be found then this will raise
-	* a fatal error.
-	* @param $args array
-	* @return Genre
-	*/
+	 * This will retrieve a Genre object from the
+	 * grids data source based on the request arguments.
+	 * If no Genre can be found then this will raise
+	 * a fatal error.
+	 * @param $args array
+	 * @return Genre
+	 */
 	function &_getGenreFromArgs($request, $args) {
 		// Identify the Genre Id and retrieve the
 		// corresponding element from the grid's data source.

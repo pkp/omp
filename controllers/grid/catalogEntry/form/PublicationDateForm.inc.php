@@ -41,17 +41,17 @@ class PublicationDateForm extends Form {
 	// Getters and Setters
 	//
 	/**
-	* Get the date
-	* @return PublicationDate
-	*/
+	 * Get the date
+	 * @return PublicationDate
+	 */
 	function getPublicationDate() {
 		return $this->_publicationDate;
 	}
 
 	/**
-	* Set the date
-	* @param @publicationDate PublicationDate
-	*/
+	 * Set the date
+	 * @param @publicationDate PublicationDate
+	 */
 	function setPublicationDate($publicationDate) {
 		$this->_publicationDate =& $publicationDate;
 	}
@@ -77,8 +77,8 @@ class PublicationDateForm extends Form {
 	// Overridden template methods
 	//
 	/**
-	* Initialize form data from the publication date.
-	*/
+	 * Initialize form data from the publication date.
+	 */
 	function initData() {
 		$date =& $this->getPublicationDate();
 

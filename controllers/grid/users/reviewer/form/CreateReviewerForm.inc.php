@@ -53,23 +53,25 @@ class CreateReviewerForm extends ReviewerForm {
 	function readInputData() {
 		parent::readInputData();
 
-		$this->readUserVars(array('firstname',
-							'middlename',
-							'lastname',
-							'affiliation',
-							'keywords',
-							'interestsTextOnly',
-							'username',
-							'email',
-							'skipEmail',
-							'userGroupId'));
+		$this->readUserVars(array(
+			'firstname',
+			'middlename',
+			'lastname',
+			'affiliation',
+			'keywords',
+			'interestsTextOnly',
+			'username',
+			'email',
+			'skipEmail',
+			'userGroupId'
+		));
 	}
 
 	/**
-	* Save review assignment
-	* @param $args array
-	* @param $request PKPRequest
-	*/
+	 * Save review assignment
+	 * @param $args array
+	 * @param $request PKPRequest
+	 */
 	function execute($args, &$request) {
 		$userDao =& DAORegistry::getDAO('UserDAO');
 		$user = new User();

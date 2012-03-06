@@ -65,9 +65,9 @@ class EditorDecisionForm extends Form {
 	}
 
 	/**
-	* Get the review round object.
-	* @return ReviewRound
-	*/
+	 * Get the review round object.
+	 * @return ReviewRound
+	 */
 	function &getReviewRound() {
 		return $this->_reviewRound;
 	}

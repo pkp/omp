@@ -143,8 +143,8 @@ class ReviewAssignmentDAO extends PKPReviewAssignmentDAO {
 	}
 
 	/**
-	* @see PKPReviewAssignmentDAO::getReviewRoundJoin()
-	*/
+	 * @see PKPReviewAssignmentDAO::getReviewRoundJoin()
+	 */
 	function getReviewRoundJoin() {
 		return 'r.review_round_id = r2.review_round_id';
 	}
@@ -162,11 +162,11 @@ class ReviewAssignmentDAO extends PKPReviewAssignmentDAO {
 	// FIXME *6902* Move this code to PKPReviewAssignmentDAO after the review round
 	// refactoring is ported to other applications.
 	/**
-	* Retrieve a review assignment by review round and reviewer.
-	* @param $reviewRoundId int
-	* @param $reviewerId int
-	* @return ReviewAssignment
-	*/
+	 * Retrieve a review assignment by review round and reviewer.
+	 * @param $reviewRoundId int
+	 * @param $reviewerId int
+	 * @return ReviewAssignment
+	 */
 	function &getReviewAssignment($reviewRoundId, $reviewerId) {
 		$params = array(
 		(int) $reviewRoundId,

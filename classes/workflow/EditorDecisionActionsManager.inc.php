@@ -30,12 +30,12 @@ define('SUBMISSION_EDITOR_DECISION_SEND_TO_PRODUCTION', 7);
 class EditorDecisionActionsManager {
 
 	/**
-	* Create actions for editor decisions and assign them to the template.
-	* @param $request Request
-	* @param $decisionsFunctionName string the name of the class method
-	*  that will return the decision configuration.
-	* @param $actionArgs array action arguments
-	*/
+	 * Create actions for editor decisions and assign them to the template.
+	 * @param $request Request
+	 * @param $decisionsFunctionName string the name of the class method
+	 *  that will return the decision configuration.
+	 * @param $actionArgs array action arguments
+	 */
 	function assignDecisionsToTemplate(&$request, $decisionsFunctionName, $actionArgs) {
 		AppLocale::requireComponents(LOCALE_COMPONENT_OMP_EDITOR);
 
