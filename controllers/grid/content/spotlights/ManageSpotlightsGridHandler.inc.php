@@ -97,7 +97,7 @@ class ManageSpotlightsGridHandler extends CategoryGridHandler {
 	 * @param $request PKPRequest
 	 */
 	function initialize(&$request) {
-		parent::initialize($request);;
+		parent::initialize($request);
 
 		// Basic grid configuration
 		$this->setTitle('spotlight.spotlights');
