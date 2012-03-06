@@ -54,6 +54,7 @@
 
 	{if !$existingUser}
 		{fbvFormSection title="common.name"}
+		{fbvElement type="text" label="user.salutation" id="salutation" value=$salutation size=$fbvStyles.size.SMALL inline="true"}
 			{fbvElement type="text" label="user.firstName" id="firstName" required=true value=$firstName size=$fbvStyles.size.SMALL inline=true}
 			{fbvElement type="text" label="user.middleName" id="middleName" value=$middleName size=$fbvStyles.size.SMALL inline=true}
 			{fbvElement type="text" label="user.lastName" id="lastName" required=true value=$lastName size=$fbvStyles.size.SMALL inline=true}
@@ -131,14 +132,16 @@
 			{if $allowRegAuthor}
 				{iterate from=authorUserGroups item=userGroup}
 					{assign var="userGroupId" value=$userGroup->getId()}
-					{fbvElement type="radio" id="authorGroup-$userGroupId" name="authorGroup" value=$userGroupId label=$userGroup->getLocalizedName() translate=false required=true}
+					{if $authorGroup == $userGroupId}{assign var="checked" value=true}{else}{assign var="checked" value=false}{/if}
+					{fbvElement type="radio" id="authorGroup-$userGroupId" name="authorGroup" value=$userGroupId label=$userGroup->getLocalizedName() translate=false checked=$checked required=true}
 				{/iterate}
 			{/if}
 			<div class="pkp_helpers_clear"></div>
 			{if $allowRegReviewer}
 				{iterate from=reviewerUserGroups item=userGroup}
 					{assign var="userGroupId" value=$userGroup->getId()}
-					{fbvElement type="checkbox" id="reviewerGroup-$userGroupId" name="reviewerGroup[$userGroupId]" label=$userGroup->getLocalizedName() translate=false}
+					{if $reviewerGroup[$userGroupId] != ''}{assign var="checked" value=true}{else}{assign var="checked" value=false}{/if}
+					{fbvElement type="checkbox" id="reviewerGroup-$userGroupId" name="reviewerGroup[$userGroupId]" label=$userGroup->getLocalizedName() checked=$checked translate=false}
 				{/iterate}
 			{/if}
 		{/fbvFormSection}
