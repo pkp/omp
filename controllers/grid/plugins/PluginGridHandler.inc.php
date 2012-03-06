@@ -88,14 +88,17 @@ class PluginGridHandler extends CategoryGridHandler {
 				$pluginCellProvider
 			)
 		);
-		$this->addColumn(
-			new GridColumn('description',
+
+		$descriptionColumn = new GridColumn(
+				'description',
 				'common.description',
 				null,
 				'controllers/grid/gridCell.tpl',
 				$pluginCellProvider
-			)
 		);
+		$descriptionColumn->addFlag('html', true);
+		$this->addColumn($descriptionColumn);
+
 		$this->addColumn(
 			new GridColumn('enabled',
 				'common.enabled',
