@@ -24,6 +24,10 @@
 		{fbvFormSection title="grid.catalogEntry.publicationFormatType" for="publicationFormat"  required="true" size=$fbvStyles.size.MEDIUM}
 			{fbvElement type="select" from=$entryKeys selected=$entryKey id="entryKey" translate=false}
 		{/fbvFormSection}
+		{fbvFormSection for="publicationFormat" size=$fbvStyles.size.MEDIUM list=true}
+			{if $isPhysicalFormat}{assign var="checked" value=true}{else}{assign var="checked" value=false}{/if}
+			{fbvElement type="checkbox" label="grid.catalogEntry.isPhysicalFormat" id="isPhysicalFormat" checked=$checked}
+		{/fbvFormSection}
 		{fbvFormButtons}
 	{/fbvFormArea}
 </form>

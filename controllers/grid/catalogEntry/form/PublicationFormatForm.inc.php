@@ -83,7 +83,8 @@ class PublicationFormatForm extends Form {
 		if ($format) {
 			$this->_data = array(
 				'entryKey' => $format->getEntryKey(),
-				'title' => $format->getTitle()
+				'title' => $format->getTitle(),
+				'isPhysicalFormat' => $format->getPhysicalFormat()?true:false
 			);
 		}
 	}
@@ -118,6 +119,7 @@ class PublicationFormatForm extends Form {
 		$this->readUserVars(array(
 			'title',
 			'entryKey',
+			'isPhysicalFormat'
 		));
 	}
 
@@ -141,6 +143,7 @@ class PublicationFormatForm extends Form {
 
 		$publicationFormat->setTitle($this->getData('title'));
 		$publicationFormat->setEntryKey($this->getData('entryKey'));
+		$publicationFormat->setPhysicalFormat($this->getData('isPhysicalFormat')?true:false);
 
 		if ($existingFormat) {
 			$publicationFormatDao->updateObject($publicationFormat);

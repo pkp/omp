@@ -79,6 +79,7 @@
 	<message key="grid.catalogEntry.publicationFormatType">Publication Format</message>
 	<message key="grid.catalogEntry.titleRequired">A title is required.</message>
 	<message key="grid.catalogEntry.publicationFormatType">Publication Format</message>
+	<message key="grid.catalogEntry.isPhysicalFormat">Is this a physical format?</message>
 	<message key="grid.catalogEntry.monographRequired">A monograph id is required.</message>
 	<message key="grid.catalogEntry.publicationFormatRequired">A publication format must be chosen.</message>
 	<message key="grid.catalogEntry.isAvailable">In Catalog</message>

@@ -87,9 +87,9 @@
 	{/fbvFormArea}
 
 	{if $isPhysicalFormat}
-		{include file="catalog/form/physicalPublicationFormat.tpl"}
+		{include file="controllers/tab/catalogEntry/form/physicalPublicationFormat.tpl"}
 	{else}
-		{include file="catalog/form/digitalPublicationFormat.tpl"}
+		{include file="controllers/tab/catalogEntry/form/digitalPublicationFormat.tpl"}
 	{/if}
 
 	{fbvFormButtons id="publicationMetadataFormSubmit" submitText="common.save"}

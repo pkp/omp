@@ -52,7 +52,7 @@ class CatalogEntryCatalogMetadataForm extends Form {
 	 * @param $formParams array
 	 */
 	function CatalogEntryCatalogMetadataForm($monographId, $userId, $stageId = null, $formParams = null) {
-		parent::Form('catalog/form/catalogMetadataFormFields.tpl');
+		parent::Form('controllers/tab/catalogEntry/form/catalogMetadataFormFields.tpl');
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
 		$this->_monograph = $monographDao->getById($monographId);
 
