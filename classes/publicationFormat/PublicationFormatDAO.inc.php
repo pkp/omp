@@ -249,7 +249,7 @@ class PublicationFormatDAO extends DAO {
 				$publicationFormat->getTechnicalProtectionCode(),
 				$publicationFormat->getReturnableIndicatorCode(),
 				(int) $publicationFormat->getIsAvailable(),
-				(int) $publicationFormat->getPublicationFormatId()
+				(int) $publicationFormat->getId()
 			)
 		);
 
