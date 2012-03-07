@@ -31,7 +31,13 @@ class WorkflowHandler extends Handler {
 
 		$this->addRoleAssignment(
 			array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER, ROLE_ID_PRESS_ASSISTANT),
-			array('access', 'submission', 'internalReview', 'internalReviewRound', 'externalReview', 'externalReviewRound', 'copyediting', 'production')
+			array(
+				'access', 'submission',
+				'internalReview', 'internalReviewRound', // Internal review
+				'externalReview', 'externalReviewRound', // External review
+				'copyediting',
+				'production', 'productionFormatsAccordion' // Production
+			)
 		);
 	}
 
@@ -274,14 +280,24 @@ class WorkflowHandler extends Handler {
 	 */
 	function production(&$args, &$request) {
 		$templateMgr =& TemplateManager::getManager();
-		$press =& $request->getContext();
+		$templateMgr->display('workflow/production.tpl');
+	}
+
+	/**
+	 * Show the production stage accordion contents
+	 * @param $request PKPRequest
+	 * @param $args array
+	 */
+	function productionFormatsAccordion(&$args, &$request) {
+		$templateMgr =& TemplateManager::getManager();
 		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		$publicationFormats =& $publicationFormatDao->getByMonographId($monograph->getId());
 		$templateMgr->assign_by_ref('publicationFormats', $publicationFormats);
 
-		$templateMgr->display('workflow/production.tpl');
+		return $templateMgr->fetchJson('workflow/productionFormatsAccordion.tpl');
 	}
+
 
 	//
 	// Private helper methods

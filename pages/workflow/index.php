@@ -24,6 +24,7 @@ switch ($op) {
 	case 'externalReviewRound':
 	case 'copyediting':
 	case 'production':
+	case 'productionFormatsAccordion':
 		define('HANDLER_CLASS', 'WorkflowHandler');
 		import('pages.workflow.WorkflowHandler');
 		break;

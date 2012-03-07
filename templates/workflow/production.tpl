@@ -14,7 +14,10 @@
 	// Initialise JS handler.
 	$(function() {ldelim}
 		$('#production').pkpHandler(
-			'$.pkp.pages.workflow.ProductionHandler'
+			'$.pkp.pages.workflow.ProductionHandler',
+			{ldelim}
+				accordionUrl: '{url|escape:"javascript" op="productionFormatsAccordion" monographId=$monograph->getId()}'
+			{rdelim}
 		);
 	{rdelim});
 </script>
@@ -24,20 +27,26 @@
 	{load_url_in_div id="productionReadyFilesGridDiv" url=$productionReadyFilesGridUrl}
 
 	<div id="metadataAccordion">
-		<h3><a href="#">{translate key="submission.cataloguingMetadata"}</a></h3>
+		<h3><a href="#">{translate key="submission.metadata"}</a></h3>
 		<div>
 			{url|assign:submissionMetadataViewFormUrl router=$smarty.const.ROUTE_COMPONENT  component="modals.submissionMetadata.ProductionSubmissionMetadataHandler" op="fetch" monographId=$monograph->getId() stageId=$stageId escape=false}
 			{load_url_in_div id="submissionMetadataFormWrapper" url=$submissionMetadataViewFormUrl}
 		</div>
+
+		<h3><a href="#">{translate key="monograph.publicationFormats"}</a></h3>
+		<div>
+			{fbvFormArea id="publicationFormats"}
+				{fbvFormSection}
+					<!--  Formats -->
+					{url|assign:formatGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.catalogEntry.PublicationFormatGridHandler" op="fetchGrid" monographId=$monograph->getId()}
+					{load_url_in_div id="formatsGridContainer" url="$formatGridUrl"}
+				{/fbvFormSection}
+			{/fbvFormArea}
+		</div>
 	</div>
+
 	<div id="publicationFormatContainer">
-		{iterate from=publicationFormats item=publicationFormat}
-			<h3><a href="#">{$publicationFormat->getLocalizedTitle()|escape}</a></h3>
-			<div>
-				{url|assign:publicationFormatUrl router=$smarty.const.ROUTE_PAGE op="fetchPublicationFormat" monographId=$monograph->getId() publicationFormatId=$publicationFormat->getId() escape=false}
-				{load_url_in_div id="publicationFormatDiv-"|concat:$publicationFormat->getId() class="stageParticipantGridContainer" url=$publicationFormatUrl}
-			</div>
-		{/iterate}
+		{* Will be filled in by Javascript *}
 	</div>
 </div>
 

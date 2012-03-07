@@ -43,7 +43,7 @@
 	<message key="submission.confirmSubmit">Are you sure you wish to submit this manuscript to the press?</message>
 	<message key="submission.files.downloadAll">Download All Files</message>
 	<message key="submission.mySubmissions">My Authored Submissions</message>
-	<message key="submission.cataloguingMetadata">Cataloguing Metadata</message>
+	<message key="submission.metadata">Metadata</message>
 	<message key="submission.supportingAgencies">Supporting Agencies</message>
 
 	<!-- Submission wizard -->
