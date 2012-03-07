@@ -175,7 +175,8 @@ class ManageSpotlightsGridHandler extends CategoryGridHandler {
 	function getCategoryData($category) {
 
 		$spotlightDao =& DAORegistry::getDAO('SpotlightDAO');
-		$spotlights =& $spotlightDao->getByLocationAndPressId($category['location'], $this->getPress()->getId());
+		$press =& $this->getPress();
+		$spotlights =& $spotlightDao->getByLocationAndPressId($category['location'], $press->getId());
 		return $spotlights->toArray();
 	}
 
@@ -185,8 +186,9 @@ class ManageSpotlightsGridHandler extends CategoryGridHandler {
 	 * @return array
 	 */
 	function getRequestArgs() {
+		$press =& $this->getPress();
 		return array(
-			'pressId' => $this->getPress()->getId()
+			'pressId' => $press->getId()
 		);
 	}
 
@@ -295,7 +297,8 @@ class ManageSpotlightsGridHandler extends CategoryGridHandler {
 		$spotlightId = $request->getUserVar('spotlightId');
 
 		$spotlightDao =& DAORegistry::getDAO('SpotlightDAO');
-		$spotlight =& $spotlightDao->getById($spotlightId, $this->getPress()->getId());
+		$press =& $this->getPress();
+		$spotlight =& $spotlightDao->getById($spotlightId, $press->getId());
 		if ($spotlight != null) { // authorized
 
 			$result = $spotlightDao->deleteObject($spotlight);
@@ -333,7 +336,7 @@ class ManageSpotlightsGridHandler extends CategoryGridHandler {
 				$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
 				$publishedMonographs =& $publishedMonographDao->getByPressId($press->getId());
 				while ($monograph =& $publishedMonographs->next()) {
-					if ($name == '' || preg_match('/'. quotemeta($name) . '/i', $monograph->getLocalizedTitle())) {
+					if ($name == '' || preg_match('/'. preg_quote($name, '/') . '/i', $monograph->getLocalizedTitle())) {
 						$itemList[] = array('label' => $monograph->getLocalizedTitle(), 'value' => $monograph->getId());
 					}
 				}
@@ -342,7 +345,7 @@ class ManageSpotlightsGridHandler extends CategoryGridHandler {
 				$seriesDao =& DAORegistry::getDAO('SeriesDAO');
 				$allSeries =& $seriesDao->getByPressId($press->getId());
 				while ($series =& $allSeries->next()) {
-					if ($name == '' || preg_match('/'. quotemeta($name) . '/i', $series->getLocalizedTitle())) {
+					if ($name == '' || preg_match('/'. preg_quote($name, '/') . '/i', $series->getLocalizedTitle())) {
 						$itemList[] = array('label' => $series->getLocalizedTitle(), 'value' => $series->getId());
 					}
 				}
@@ -351,7 +354,7 @@ class ManageSpotlightsGridHandler extends CategoryGridHandler {
 				$authorDao =& DAORegistry::getDAO('AuthorDAO');
 				$authors =& $authorDao->getAuthorsAlphabetizedByPress($press->getId());
 				while ($author =& $authors->next()) {
-					if ($name == '' || preg_match('/'. quotemeta($name) . '/i', $author->getFullName())) {
+					if ($name == '' || preg_match('/'. preg_quote($name, '/') . '/i', $author->getFullName())) {
 						$itemList[] = array('label' => $author->getFullName(), 'value' => $author->getId());
 					}
 				}

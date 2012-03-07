@@ -246,18 +246,38 @@ class SpotlightDAO extends DAO {
 	}
 
 	/**
+	 * Retrieve an array of spotlights matching a particular assoc ID.
+	 * @param $assocType int
+	 * @param $assocId int
+	 * @return object DAOResultFactory containing matching Spotlights
+	 */
+	function &getByAssoc($assocType, $assocId, $rangeInfo = null) {
+		$result =& $this->retrieveRange(
+				'SELECT *
+				FROM spotlights
+				WHERE assoc_type = ? AND assoc_id = ?
+				ORDER BY spotlight_id DESC',
+				array((int) $assocType, (int) $assocId),
+				$rangeInfo
+		);
+
+		$returner = new DAOResultFactory($result, $this, '_fromRow');
+		return $returner;
+	}
+
+	/**
 	 * Retrieve an array of numSpotlights spotlights matching a particular Assoc ID.
 	 * @param $assocType int
 	 * @return object DAOResultFactory containing matching Spotlights
 	 */
-	function &getNumSpotlightsByAssocId($assocType, $assocId, $numSpotlights, $rangeInfo = null) {
+	function &getNumSpotlightsByAssoc($assocType, $assocId, $rangeInfo = null) {
 		$result =& $this->retrieveRange(
 			'SELECT *
 			FROM spotlights
 			WHERE assoc_type = ?
 				AND assoc_id = ?
-			ORDER BY spotlight_id DESC LIMIT ?',
-			array((int) $assocType, (int) $assocId, (int) $numSpotlights),
+			ORDER BY spotlight_id DESC',
+			array((int) $assocType, (int) $assocId),
 			$rangeInfo
 		);
 
@@ -270,7 +290,7 @@ class SpotlightDAO extends DAO {
 	 * @param $assocType int
 	 * @return Spotlight
 	 */
-	function &getMostRecentSpotlightByAssocId($assocType, $assocId) {
+	function &getMostRecentSpotlightByAssoc($assocType, $assocId) {
 		$result =& $this->retrieve(
 			'SELECT *
 			FROM spotlights

@@ -33,6 +33,8 @@ jQuery.pkp.controllers.grid.content =
 
 		this.parent($form, options);
 
+		this.autocompleteUrl_ = options.autocompleteUrl;
+
 		$('#type', $form).change(
 				this.callbackWrapper(this.addTypeToAutocompleteUrl));
 
@@ -42,6 +44,18 @@ jQuery.pkp.controllers.grid.content =
 	$.pkp.classes.Helper.inherits(
 			$.pkp.controllers.grid.content.spotlights.form.SpotlightFormHandler,
 			$.pkp.controllers.form.AjaxFormHandler);
+
+
+	//
+	// Private properties
+	//
+	/**
+	 * The URL to be called to fetch a spotlight item via autocomplete.
+	 * @private
+	 * @type {string}
+	 */
+	$.pkp.controllers.grid.content.spotlights.form.SpotlightFormHandler.
+		prototype.autocompleteUrl_ = null;
 
 
 	//
@@ -65,7 +79,8 @@ jQuery.pkp.controllers.grid.content =
 		var autocompleteHandler =
 				$.pkp.classes.Handler.getHandler($autocompleteContainer);
 
-		var oldUrl = autocompleteHandler.getAutocompleteUrl();
+		var oldUrl = this.autocompleteUrl_;
+
 		// Match with &amp;type or without and append type
 		var newUrl = null;
 		if (oldUrl.match(/&type=\d+/)) {
@@ -90,7 +105,8 @@ jQuery.pkp.controllers.grid.content =
 		var autocompleteHandler =
 				$.pkp.classes.Handler.getHandler($autocompleteContainer);
 
-		var oldUrl = autocompleteHandler.getAutocompleteUrl();
+		var oldUrl = this.autocompleteUrl_;
+
 		// Remove the old Name from the URL
 		var newUrl = oldUrl.replace(/(&name=[^&]*)/, '');
 		newUrl += '&name=' + encodeURIComponent(eventObject.value);

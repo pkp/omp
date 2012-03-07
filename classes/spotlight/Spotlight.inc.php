@@ -14,13 +14,13 @@
  */
 
 // location constants for spotlights
-define('SPOTLIGHT_LOCATION_HOMEPAGE',	'1');
-define('SPOTLIGHT_LOCATION_SIDEBAR',	'2');
+define('SPOTLIGHT_LOCATION_HOMEPAGE',	1);
+define('SPOTLIGHT_LOCATION_SIDEBAR',	2);
 
 // type constants for spotlights
-define('SPOTLIGHT_TYPE_BOOK',	'3');
-define('SPOTLIGHT_TYPE_SERIES',	'4');
-define('SPOTLIGHT_TYPE_AUTHOR',	'5');
+define('SPOTLIGHT_TYPE_BOOK',	3);
+define('SPOTLIGHT_TYPE_SERIES',	4);
+define('SPOTLIGHT_TYPE_AUTHOR',	5);
 
 class Spotlight extends DataObject {
 	/**
