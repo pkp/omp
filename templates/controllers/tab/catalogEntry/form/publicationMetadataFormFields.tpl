@@ -22,7 +22,7 @@
 	<input type="hidden" name="stageId" value="{$stageId|escape}" />
 	<input type="hidden" name="tabPos" value="{$formParams.tabPos|escape}" />
 	<input type="hidden" name="publicationFormatId" value="{$publicationFormatId|escape}" />
-	<input type="hidden" name="displayedInTab" value="{$formParams.displayedInTab|escape}" />
+	<input type="hidden" name="displayedInContainer" value="{$formParams.displayedInContainer|escape}" />
 	<input type="hidden" name="tab" value="publication" />
 
 	{fbvFormArea id="catalogInclusion"}

@@ -111,7 +111,7 @@ class CatalogEntryTabHandler extends Handler {
 		$monograph =& $this->getMonograph();
 		$stageId =& $this->getStageId();
 
-		$catalogEntrySubmissionReviewForm = new CatalogEntrySubmissionReviewForm($monograph->getId(), $stageId, array('displayedInTab' => true));
+		$catalogEntrySubmissionReviewForm = new CatalogEntrySubmissionReviewForm($monograph->getId(), $stageId, array('displayedInContainer' => true));
 
 		$catalogEntrySubmissionReviewForm->initData($args, $request);
 		$json = new JSONMessage(true, $catalogEntrySubmissionReviewForm->fetch($request));
@@ -152,7 +152,7 @@ class CatalogEntryTabHandler extends Handler {
 		$stageId =& $this->getStageId();
 		$user =& $request->getUser();
 
-		$catalogEntryCatalogMetadataForm = new CatalogEntryCatalogMetadataForm($monograph->getId(), $user->getId(), $stageId, array('displayedInTab' => true));
+		$catalogEntryCatalogMetadataForm = new CatalogEntryCatalogMetadataForm($monograph->getId(), $user->getId(), $stageId, array('displayedInContainer' => true));
 
 		$catalogEntryCatalogMetadataForm->initData($args, $request);
 		$json = new JSONMessage(true, $catalogEntryCatalogMetadataForm->fetch($request));
@@ -182,7 +182,7 @@ class CatalogEntryTabHandler extends Handler {
 		}
 
 		import('controllers.tab.catalogEntry.form.CatalogEntryPublicationMetadataForm');
-		$catalogEntryPublicationMetadataForm = new CatalogEntryPublicationMetadataForm($monograph->getId(), $publicationFormatId, $publicationFormat->getPhysicalFormat(), $stageId, array('displayedInTab' => true, 'tabPos' => $this->getTabPosition()));
+		$catalogEntryPublicationMetadataForm = new CatalogEntryPublicationMetadataForm($monograph->getId(), $publicationFormatId, $publicationFormat->getPhysicalFormat(), $stageId, array('displayedInContainer' => true, 'tabPos' => $this->getTabPosition()));
 		$catalogEntryPublicationMetadataForm->initData($args, $request);
 		$json = new JSONMessage(true, $catalogEntryPublicationMetadataForm->fetch($request));
 		return $json->getString();
@@ -206,13 +206,13 @@ class CatalogEntryTabHandler extends Handler {
 
 			case 'submission':
 				import('controllers.modals.submissionMetadata.form.CatalogEntrySubmissionReviewForm');
-				$form = new CatalogEntrySubmissionReviewForm($monograph->getId(), $stageId, array('displayedInTab' => true));
+				$form = new CatalogEntrySubmissionReviewForm($monograph->getId(), $stageId, array('displayedInContainer' => true));
 				$notificationKey = 'notification.savedSubmissionMetadata';
 				break;
 			case 'catalog':
 				import('controllers.tab.catalogEntry.form.CatalogEntryCatalogMetadataForm');
 				$user =& $request->getUser();
-				$form = new CatalogEntryCatalogMetadataForm($monograph->getId(), $user->getId(), $stageId, array('displayedInTab' => true, 'tabPos' => $this->getTabPosition()));
+				$form = new CatalogEntryCatalogMetadataForm($monograph->getId(), $user->getId(), $stageId, array('displayedInContainer' => true, 'tabPos' => $this->getTabPosition()));
 				$notificationKey = 'notification.savedCatalogMetadata';
 				break;
 			default: // publication format tabs
@@ -227,7 +227,7 @@ class CatalogEntryTabHandler extends Handler {
 				$form = null;
 				while ($format =& $formats->next()) {
 					if ($format->getId() == $publicationFormatId) {
-						$form = new CatalogEntryPublicationMetadataForm($monograph->getId(), $publicationFormatId, $format->getId(), $stageId, array('displayedInTab' => true, 'tabPos' => $this->getTabPosition()));
+						$form = new CatalogEntryPublicationMetadataForm($monograph->getId(), $publicationFormatId, $format->getId(), $stageId, array('displayedInContainer' => true, 'tabPos' => $this->getTabPosition()));
 						$notificationKey = 'notification.savedPublicationFormatMetadata';
 						break;
 					}
@@ -249,11 +249,11 @@ class CatalogEntryTabHandler extends Handler {
 				$json->setContent($form->fetch($request));
 			}
 
-			if ($request->getUserVar('displayedInTab')) {
+			if ($request->getUserVar('displayedInContainer')) {
 				$router =& $request->getRouter();
 				$dispatcher =& $router->getDispatcher();
 				$url = $dispatcher->url($request, ROUTE_COMPONENT, null, 'modals.submissionMetadata.CatalogEntryHandler', 'fetch', null, array('monographId' => $monograph->getId(), 'stageId' => $stageId, 'tabPos' => $this->getTabPosition()));
-				$json->setAdditionalAttributes(array('reloadTabs' => true, 'tabsUrl' => $url));
+				$json->setAdditionalAttributes(array('reloadContainer' => true, 'tabsUrl' => $url));
 				$json->setContent(true); // prevents modal closure
 				return $json->getString();
 			} else {

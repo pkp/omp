@@ -39,6 +39,7 @@
 
 		// Bind for changes to the Publication Formats grid.
 		this.bind('gridRefreshRequested', this.fetchAccordionHandler_);
+		this.bind('containerReloadRequested', this.fetchAccordionHandler_);
 
 		// Load the current accordion.
 		this.trigger('gridRefreshRequested');
