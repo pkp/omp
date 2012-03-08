@@ -97,7 +97,7 @@
 		$publicationFormatContainer.empty();
 		$publicationFormatContainer.append(jsonData.content);
 
-		$publicationFormatContainer.accordion({
+		$publicationFormatContainer.accordion('destroy').accordion({
 			autoHeight: false,
 			collapsible: true,
 			active: false
