@@ -3,8 +3,7 @@
  */
 // Create the namespace.
 jQuery.pkp.controllers.grid.content =
-	jQuery.pkp.controllers.grid.content ||
-			{ spotlights: { form: { } } };
+		jQuery.pkp.controllers.grid.content || { spotlights: { form: { } } };
 
 /**
  * @file js/controllers/grid/content/spotlights/form/SpotlightFormHandler.js
@@ -55,7 +54,7 @@ jQuery.pkp.controllers.grid.content =
 	 * @type {string}
 	 */
 	$.pkp.controllers.grid.content.spotlights.form.SpotlightFormHandler.
-		prototype.autocompleteUrl_ = null;
+			prototype.autocompleteUrl_ = null;
 
 
 	//

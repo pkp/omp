@@ -106,7 +106,7 @@ jQuery.pkp.controllers.tab.catalogEntry = jQuery.pkp.controllers.tab.catalogEntr
 		// only interested in publication format tabs, so filter out the others
 		var regexp = /publication(\d+)/;
 
-		for (var j=0; j<currentTabs.length; j++) {
+		for (var j = 0; j < currentTabs.length; j++) {
 			var title = currentTabs[j].getAttribute('title');
 			var match = regexp.exec(title);
 			if (match !== null) {

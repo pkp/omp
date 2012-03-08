@@ -2,7 +2,7 @@
  * @defgroup js_controllers_informationCenter_form
  */
 jQuery.pkp.controllers.informationCenter.form =
-			jQuery.pkp.controllers.informationCenter.form || { };
+		jQuery.pkp.controllers.informationCenter.form || { };
 
 
 /**
