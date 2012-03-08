@@ -42,6 +42,7 @@ class NotificationManager extends PKPNotificationManager {
 				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
 				return $dispatcher->url($request, ROUTE_PAGE, null, 'workflow', 'submission', $notification->getAssocId());
 			case NOTIFICATION_TYPE_LAYOUT_ASSIGNMENT:
+			case NOTIFICATION_TYPE_INDEX_ASSIGNMENT:
 				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
 				return $dispatcher->url($request, ROUTE_PAGE, null, 'workflow', 'access', $notification->getAssocId());
 			case NOTIFICATION_TYPE_AUDITOR_REQUEST:
@@ -146,6 +147,10 @@ class NotificationManager extends PKPNotificationManager {
 				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
 				$monograph =& $monographDao->getById($notification->getAssocId());
 				return __('notification.type.layouteditorRequest', array('title' => $monograph->getLocalizedTitle()));
+			case NOTIFICATION_TYPE_INDEX_ASSIGNMENT:
+				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
+				$monograph =& $monographDao->getById($notification->getAssocId());
+				return __('notification.type.indexRequest', array('title' => $monograph->getLocalizedTitle()));
 			case NOTIFICATION_TYPE_AUDITOR_REQUEST:
 				assert($notification->getAssocType() == ASSOC_TYPE_SIGNOFF && is_numeric($notification->getAssocId()));
 				$signoffDao =& DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
@@ -306,6 +311,7 @@ class NotificationManager extends PKPNotificationManager {
 			case NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_SUBMISSION:
 			case NOTIFICATION_TYPE_AUDITOR_REQUEST:
 			case NOTIFICATION_TYPE_LAYOUT_ASSIGNMENT:
+			case NOTIFICATION_TYPE_INDEX_ASSIGNMENT:
 			case NOTIFICATION_TYPE_SIGNOFF_COPYEDIT:
 			case NOTIFICATION_TYPE_SIGNOFF_PROOF:
 			case NOTIFICATION_TYPE_PENDING_EXTERNAL_REVISIONS:
@@ -573,12 +579,13 @@ class NotificationManager extends PKPNotificationManager {
 	}
 
 	/**
-	 * Update NOTIFICATION_TYPE_LAYOUT_ASSIGNMENT
+	 * Update A request for a production stage task.
 	 * @param $monograph Monograph
 	 * @param $user User
+	 * @param $task int
 	 * @param $request Request
 	 */
-	function updateLayoutRequestNotification($monograph, $user, &$request) {
+	function updateProductionRequestNotification($monograph, $user, $task, &$request) {
 		// Check for an existing notification for this monograph
 
 		$notificationDao =& DAORegistry::getDAO('NotificationDAO');
@@ -586,7 +593,7 @@ class NotificationManager extends PKPNotificationManager {
 				ASSOC_TYPE_MONOGRAPH,
 				$monograph->getId(),
 				$user->getId(),
-				NOTIFICATION_TYPE_LAYOUT_ASSIGNMENT
+				$task
 		);
 
 		if ($notificationFactory->wasEmpty()) {
@@ -594,7 +601,7 @@ class NotificationManager extends PKPNotificationManager {
 			PKPNotificationManager::createNotification(
 					$request,
 					$user->getId(),
-					NOTIFICATION_TYPE_LAYOUT_ASSIGNMENT,
+					$task,
 					$press->getId(),
 					ASSOC_TYPE_MONOGRAPH,
 					$monograph->getId(),
@@ -604,15 +611,17 @@ class NotificationManager extends PKPNotificationManager {
 	}
 
 	/**
-	 * Removes a NOTIFICATION_TYPE_LAYOUT_ASSIGNMENT
-	 * Called when a layout editor reviews a layout.
+	 * Removes a production stage task.
+	 * Called when a production stage participant completes a production stage task.
+	 * Currently used for LAYOUT and INDEX request tasks.
 	 * @param $monograph Mongraph
 	 * @param $user User
+	 * @param $type int
 	 * @param $request Request
 	 */
-	function deleteLayoutRequestNotification($monograph, $user, &$request) {
+	function deleteProductionRequestNotification($monograph, $user, $type, &$request) {
 		$notificationDao = DAORegistry::getDAO('NotificationDAO');
-		$notificationFactory =& $notificationDao->getNotificationsByAssoc(ASSOC_TYPE_MONOGRAPH, $monograph->getId(), $user->getId(), NOTIFICATION_TYPE_LAYOUT_ASSIGNMENT);
+		$notificationFactory =& $notificationDao->getNotificationsByAssoc(ASSOC_TYPE_MONOGRAPH, $monograph->getId(), $user->getId(), $type);
 		if (!$notificationFactory->wasEmpty()) {
 			$notification =& $notificationFactory->next();
 			$notificationDao->deleteNotificationById($notification->getId());

@@ -57,6 +57,8 @@
 	<email key="LAYOUT_REQUEST" can_edit="1" can_disable="1" from_role_id="513" to_role_id="4097"/>
 	<email key="LAYOUT_COMPLETE" can_edit="1" can_disable="1" from_role_id="4097" to_role_id="513"/>
 	<email key="LAYOUT_ACK" can_edit="1" can_disable="1" from_role_id="513" to_role_id="4097"/>
+	<email key="INDEX_REQUEST" can_edit="1" can_disable="1" from_role_id="513" to_role_id="4097"/>
+	<email key="INDEX_COMPLETE" can_edit="1" can_disable="1" from_role_id="4097" to_role_id="513"/>
 	<email key="PROOFREAD_AUTHOR_REQUEST" can_edit="1" can_disable="1" from_role_id="513" to_role_id="65536"/>
 	<email key="PROOFREAD_AUTHOR_COMPLETE" can_edit="1" can_disable="1" from_role_id="65536" to_role_id="513"/>
 	<email key="PROOFREAD_AUTHOR_ACK" can_edit="1" can_disable="1" from_role_id="513" to_role_id="65536"/>

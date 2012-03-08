@@ -427,7 +427,6 @@ class FileUploadWizardHandler extends FileManagementHandler {
 		$templateMgr->assign('monographId', $monograph->getId());
 		$templateMgr->assign('fileId', $fileId);
 
-		$this->_removeUploadTaskNotifications($monograph, $request);
 		return $templateMgr->fetchJson('controllers/wizard/fileUpload/form/fileSubmissionComplete.tpl');
 	}
 
@@ -523,34 +522,6 @@ class FileUploadWizardHandler extends FileManagementHandler {
 			)
 		);
 		return $uploadedFileInfo;
-	}
-
-	/**
-	 * Private method to clear potential tasks that may have been assigned to certain
-	 * users on certain stages.  Right now, just LAYOUT uploads on the production stage.
-	 */
-	function _removeUploadTaskNotifications(&$monograph, &$request) {
-
-		// if this is a submission by a LAYOUT_EDITOR for a monograph in production, check
-		// to see if there is a task notification for that and if so, clear it.
-		$currentStageId = $monograph->getStageId();
-		$notificationMgr = new NotificationManager();
-
-		if ($currentStageId == WORKFLOW_STAGE_ID_PRODUCTION) {
-
-			$user =& $request->getUser();
-			$stageAssignmentDao =& DAORegistry::getDAO('StageAssignmentDAO');
-			$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
-			$stageAssignments =& $stageAssignmentDao->getBySubmissionAndStageId($monograph->getId(), $monograph->getStageId(), null, $user->getId());
-
-			while ($stageAssignment =& $stageAssignments->next()) {
-				$userGroup =& $userGroupDao->getById($stageAssignment->getUserGroupId());
-				if (in_array($userGroup->getRoleId(), array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_ASSISTANT))) {
-					$notificationMgr->deleteLayoutRequestNotification($monograph, $user, $request);
-					return;
-				}
-			}
-		}
 	}
 }
 

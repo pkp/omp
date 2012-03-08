@@ -576,7 +576,7 @@ The submission "{$monographTitle}" to {$pressName} now needs galleys laid out by
 3. Send the COMPLETE email to the editor.
 
 {$pressName} URL: {$pressUrl}
-Submission URL: {$submissionLayoutUrl}
+Submission URL: {$submissionUrl}
 Username: {$layoutEditorUsername}
 
 If you are unable to undertake this work at this time or have any questions, please contact me. Thank you for your contribution to this press.
@@ -585,14 +585,14 @@ If you are unable to undertake this work at this time or have any questions, ple
 		<description>This email from the Series Editor to the Layout Editor notifies them that they have been assigned the task of performing layout editing on a submission. It provides information about the submission and how to access it.</description>
 	</email_text>
 	<email_text key="LAYOUT_COMPLETE">
-		<subject>Galleys Complete</subject>
+		<subject>Layout Galleys Complete</subject>
 		<body>{$editorialContactName}:
 
 Galleys have now been prepared for the manuscript, "{$monographTitle}," for {$pressName} and are ready for proofreading.
 
 If you have any questions, please contact me.
 
-{$layoutEditorName}</body>
+{$signatureFullName}</body>
 		<description>This email from the Layout Editor to the Series Editor notifies them that the layout process has been completed.</description>
 	</email_text>
 	<email_text key="LAYOUT_ACK">
@@ -603,6 +603,35 @@ Thank you for preparing the galleys for the manuscript, "{$monographTitle}," for
 
 {$editorialContactSignature}</body>
 		<description>This email from the Series Editor to the Layout Editor acknowledges completion of the layout editing process and thanks the layout editor for their contribution.</description>
+	</email_text>
+	<email_text key="INDEX_REQUEST">
+		<subject>Request Index</subject>
+		<body>{$indexerName}:
+
+The submission "{$monographTitle}" to {$pressName} now needs indexes created by following these steps.
+1. Click on the Submission URL below.
+2. Log into the press and use the Page Proofs file to create the galleys according to the press' standards.
+3. Send the COMPLETE email to the editor.
+
+{$pressName} URL: {$pressUrl}
+Submission URL: {$submissionUrl}
+Username: {$indexerUsername}
+
+If you are unable to undertake this work at this time or have any questions, please contact me. Thank you for your contribution to this press.
+
+{$editorialContactSignature}</body>
+		<description>This email from the Series Editor to the Indexer notifies them that they have been assigned the task of creating indexes for a submission. It provides information about the submission and how to access it.</description>
+	</email_text>
+	<email_text key="INDEX_COMPLETE">
+		<subject>Index Galleys Complete</subject>
+		<body>{$editorialContactName}:
+
+Indexes have now been prepared for the manuscript, "{$monographTitle}," for {$pressName} and are ready for proofreading.
+
+If you have any questions, please contact me.
+
+{$signatureFullName}</body>
+		<description>This email from the Layout Editor to the Series Editor notifies them that the layout process has been completed.</description>
 	</email_text>
 	<email_text key="PROOFREAD_AUTHOR_REQUEST">
 		<subject>Proofreading Request (Author)</subject>

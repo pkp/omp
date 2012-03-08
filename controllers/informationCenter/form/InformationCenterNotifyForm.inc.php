@@ -62,7 +62,7 @@ class InformationCenterNotifyForm extends Form {
 			WORKFLOW_STAGE_ID_INTERNAL_REVIEW => array(),
 			WORKFLOW_STAGE_ID_EXTERNAL_REVIEW => array(),
 			WORKFLOW_STAGE_ID_EDITING => array('COPYEDIT_REQUEST'),
-			WORKFLOW_STAGE_ID_PRODUCTION => array('LAYOUT_REQUEST', 'LAYOUT_COMPLETE')
+			WORKFLOW_STAGE_ID_PRODUCTION => array('LAYOUT_REQUEST', 'LAYOUT_COMPLETE', 'INDEX_REQUEST', 'INDEX_COMPLETE')
 		);
 
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
@@ -150,14 +150,26 @@ class InformationCenterNotifyForm extends Form {
 				'submissionCopyeditingUrl' => $submissionUrl,
 				// LAYOUT_REQUEST
 				'layoutEditorName' => $user->getFullName(),
-				'submissionLayoutUrl' => $submissionUrl,
+				'submissionUrl' => $submissionUrl,
 				'layoutEditorUsername' => $user->getUsername(),
-				// LAYOUT_COMPLETE
-				'editorialContactName' => $user->getFullname()
+				// LAYOUT_COMPLETE, INDEX_COMPLETE
+				'editorialContactName' => $user->getFullname(),
+				// INDEX_REQUEST
+				'indexerName' => $user->getFullName(),
+				'indexerUsername' => $user->getUsername(),
 			));
 
 			$this->_createNotifications($request, $monograph, $user, $template);
 			$email->send($request);
+			// remove the INDEX_ and LAYOUT_ tasks if a user has sent the appropriate _COMPLETE email
+			switch ($template) {
+				case 'LAYOUT_COMPLETE':
+					$this->_removeUploadTaskNotification($monograph, NOTIFICATION_TYPE_LAYOUT_ASSIGNMENT, $request);
+					break;
+				case 'INDEX_COMPLETE':
+					$this->_removeUploadTaskNotification($monograph, NOTIFICATION_TYPE_INDEX_ASSIGNMENT, $request);
+					break;
+			}
 		}
 	}
 
@@ -210,12 +222,53 @@ class InformationCenterNotifyForm extends Form {
 				while ($stageAssignment =& $stageAssignments->next()) {
 					$userGroup =& $userGroupDao->getById($stageAssignment->getUserGroupId());
 					if (in_array($userGroup->getRoleId(), array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_ASSISTANT))) {
-						$notificationMgr->updateLayoutRequestNotification($monograph, $user, $request);
+						$notificationMgr->updateProductionRequestNotification($monograph, $user, NOTIFICATION_TYPE_LAYOUT_ASSIGNMENT, $request);
 						return;
 					}
 				}
 				// User not in valid role for this task/notification.
 				break;
+			case 'INDEX_REQUEST':
+				while ($stageAssignment =& $stageAssignments->next()) {
+					$userGroup =& $userGroupDao->getById($stageAssignment->getUserGroupId());
+					if (in_array($userGroup->getRoleId(), array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_ASSISTANT))) {
+						$notificationMgr->updateProductionRequestNotification($monograph, $user, NOTIFICATION_TYPE_INDEX_ASSIGNMENT, $request);
+						return;
+					}
+				}
+				// User not in valid role for this task/notification.
+				break;
+		}
+	}
+
+	/**
+	 * Private method to clear potential tasks that may have been assigned to certain
+	 * users on certain stages.  Right now, just LAYOUT uploads on the production stage.
+	 * @param Monograph $monograph
+	 * @param int $task
+	 * @param PKRequest $request
+	 */
+	function _removeUploadTaskNotification(&$monograph, $task, &$request) {
+
+		// if this is a submission by a LAYOUT_EDITOR for a monograph in production, check
+		// to see if there is a task notification for that and if so, clear it.
+		$currentStageId = $monograph->getStageId();
+		$notificationMgr = new NotificationManager();
+
+		if ($currentStageId == WORKFLOW_STAGE_ID_PRODUCTION) {
+
+			$user =& $request->getUser();
+			$stageAssignmentDao =& DAORegistry::getDAO('StageAssignmentDAO');
+			$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+			$stageAssignments =& $stageAssignmentDao->getBySubmissionAndStageId($monograph->getId(), $monograph->getStageId(), null, $user->getId());
+
+			while ($stageAssignment =& $stageAssignments->next()) {
+				$userGroup =& $userGroupDao->getById($stageAssignment->getUserGroupId());
+				if (in_array($userGroup->getRoleId(), array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_ASSISTANT))) {
+					$notificationMgr->deleteProductionRequestNotification($monograph, $user, $task, $request);
+					return;
+				}
+			}
 		}
 	}
 }

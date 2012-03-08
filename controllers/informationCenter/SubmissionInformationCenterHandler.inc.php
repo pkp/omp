@@ -190,7 +190,7 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 			$template->assignParams(array(
 				'pressUrl' => $dispatcher->url($request, ROUTE_PAGE, $request->getPress()->getPath()),
 				'editorialContactSignature' => $user->getContactSignature(),
-				'layoutEditorName' => $user->getFullname()
+				'signatureFullName' => $user->getFullname(),
 			));
 
 			$json = new JSONMessage(true, $template->getBody());
