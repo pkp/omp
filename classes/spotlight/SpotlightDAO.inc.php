@@ -230,6 +230,22 @@ class SpotlightDAO extends DAO {
 	}
 
 	/**
+	 * Retrieve a random spotlight matching a location and press id.
+	 * @param $location int
+	 * @param $pressId int
+	 * @return Spotlight
+	 */
+	function getRandomByLocationAndPressId($location, $pressId) {
+		$spotlights =& $this->getByLocationAndPressId($location, $pressId);
+		$returner = null;
+		if ($spotlights->getCount() > 0) {
+			$spotlights->move(rand(0, $spotlights->getCount() - 1));
+			$returner = $spotlights->next();
+		}
+
+		return $returner;
+	}
+	/**
 	 * Retrieve an array of spotlights matching a particular type ID.
 	 * @param $typeId int
 	 * @return object DAOResultFactory containing matching Spotlights
