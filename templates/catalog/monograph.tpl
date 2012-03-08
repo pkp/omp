@@ -11,5 +11,5 @@
 	{assign var=coverImage var=$publishedMonograph->getCoverImage()}
 	<a href="{url op="book" path=$publishedMonograph->getId()}"><img src="{url router=$smarty.const.ROUTE_COMPONENT component="submission.CoverHandler" op="thumbnail" monographId=$publishedMonograph->getId()}" /></a>
 	<div class="pkp_catalog_monographTitle">{$publishedMonograph->getLocalizedTitle()|strip_unsafe_html}</div>
-	<div class="pkp_catalog_monoraphAbstract">{$publishedMonograph->getLocalizedAbstract()|strip_unsafe_html}</div>
+	<div class="pkp_catalog_monographAbstract">{$publishedMonograph->getLocalizedAbstract()|strip_unsafe_html}</div>
 </li>
