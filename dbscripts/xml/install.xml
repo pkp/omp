@@ -26,8 +26,12 @@
 	<schema file="lib/pkp/xml/schema/reviews.xml" />
 	<schema file="lib/pkp/xml/schema/reviewForms.xml" />
 	<schema file="lib/pkp/xml/schema/submissions.xml" />
+	<schema file="lib/pkp/xml/schema/mutex.xml" />
 	<schema file="dbscripts/xml/omp_schema.xml" />
 
+	<!-- PKP data components -->
+	<data file="lib/pkp/xml/mutexData.xml" />
+	
 	<code function="createData" />
 	<code function="createConfig" />
 	<code function="addPluginVersions"/>
