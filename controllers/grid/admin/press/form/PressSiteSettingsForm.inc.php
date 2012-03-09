@@ -151,10 +151,6 @@ class PressSiteSettingsForm extends Form {
 			$genreDao =& DAORegistry::getDAO('GenreDAO');
 			$genreDao->installDefaults($pressId, $installedLocales); /* @var $genreDao GenreDAO */
 
-			// Install default publication formats
-			$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO'); /* @var $publicationFormatDao PublicationFormatDAO */
-			$publicationFormatDao->installDefaults($pressId, $installedLocales);
-
 			// Install default user groups
 			$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 			$userGroupDao->installSettings($pressId, 'registry/userGroups.xml');
