@@ -8,9 +8,9 @@
  *
  *}
 
-<h3>{translate key="manager.setup.genres"}</h3>
-
-<p>{translate key="manager.setup.genresDescription"}</p>
-
-{url|assign:genresUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.genre.GenreGridHandler" op="fetchGrid"}
-{load_url_in_div id="genresContainer" url=$genresUrl}
+<div class="pkp_form">
+	{fbvFormSection label="manager.setup.genres" description="manager.setup.genresDescription"}
+		{url|assign:genresUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.genre.GenreGridHandler" op="fetchGrid"}
+		{load_url_in_div id="genresContainer" url=$genresUrl}
+	{/fbvFormSection}
+</div>

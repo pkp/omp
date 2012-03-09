@@ -31,19 +31,23 @@
 		{fbvFormSection for="codeType" description="manager.settings.publisherCodeType.tip"}
 			{fbvElement type="select" from=$codeTypes selected=$codeType translate=false id="codeType" defaultValue="" defaultLabel=""}
 		{/fbvFormSection}
-		{fbvFormSection for="codeValue"}
-			{fbvElement label="manager.settings.publisherCode" type="text" id="codeValue" value="$codeValue"}
+		{fbvFormSection  description="manager.settings.publisherCode" for="codeValue"}
+			{fbvElement type="text" id="codeValue" value="$codeValue"}
 		{/fbvFormSection}
 	{/fbvFormArea}
 	
-	{url|assign:productionLibraryGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.library.LibraryFileGridHandler" op="fetchGrid" fileType=$smarty.const.LIBRARY_FILE_TYPE_PRODUCTION}
-	{load_url_in_div id="productionLibraryGridDiv" url=$productionLibraryGridUrl}
+	{fbvFormSection label="manager.setup.productionLibrary" description="manager.setup.productionLibraryDescription"}	
+		{url|assign:productionLibraryGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.library.LibraryFileGridHandler" op="fetchGrid" fileType=$smarty.const.LIBRARY_FILE_TYPE_PRODUCTION}
+		{load_url_in_div id="productionLibraryGridDiv" url=$productionLibraryGridUrl}
+	{/fbvFormSection}
 
 	<div class="separator"></div>
 
-	{url|assign:productionTemplateLibraryUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.library.LibraryFileGridHandler" op="fetchGrid" fileType=$smarty.const.LIBRARY_FILE_TYPE_PRODUCTION_TEMPLATE}
-	{load_url_in_div id="productionTemplateLibraryDiv" url=$productionTemplateLibraryUrl}
-
+	{fbvFormSection label="manager.setup.productionTemplateLibrary" description="manager.setup.productionTemplateLibraryDescription"}
+		{url|assign:productionTemplateLibraryUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.library.LibraryFileGridHandler" op="fetchGrid" fileType=$smarty.const.LIBRARY_FILE_TYPE_PRODUCTION_TEMPLATE}
+		{load_url_in_div id="productionTemplateLibraryDiv" url=$productionTemplateLibraryUrl}
+	{/fbvFormSection}
+	
 	{if !$wizardMode}
 		{fbvFormButtons id="productionStageFormSubmit" submitText="common.save" hideCancel=true}
 	{/if}

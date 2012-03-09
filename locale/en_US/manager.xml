@@ -201,7 +201,9 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.publication.reviewStage">Review Stage</message>
 	<message key="manager.publication.editorialStage">Editorial Stage</message>
 	<message key="manager.publication.productionStage">Production Stage</message>
-	<message key="manager.publication.preparedEmails">Prepared Emails</message>
+	<message key="manager.publication.emails">Emails</message>
+	<message key="manager.publication.preparedEmailTemplates">Prepared Email Templates</message>
+	<message key="manager.publication.preparedEmailTemplatesDescription">The press facilitates work flow communication through the use of prepared email messages. The default wording of these email templates can be easily modified below.</message>
 
 	<!-- Distribution Process settings -->
 	<message key="manager.distribution.indexing">Indexing</message>
@@ -287,7 +289,7 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.emailBounceAddressDisabled"><![CDATA[<strong>Note:</strong> To activate this option, the site administrator must enable the <tt>allow_envelope_sender</tt> option in the OMP configuration file. Additional server configuration may be required to support this functionality (which may not be possible on all servers), as indicated in the OMP documentation.]]></message>
 	<message key="manager.setup.emails">Email Identification</message>
 	<message key="manager.setup.emailSignature">Signature</message>
-	<message key="manager.setup.emailSignatureDescription">The prepared emails that are sent by the system on behalf of the press will have the following signature added to the end. The body of the prepared emails are available for editing under Press Management.</message>
+	<message key="manager.setup.emailSignatureDescription">The prepared emails that are sent by the system on behalf of the press will have the following signature added to the end. The body of the prepared emails are available for editing below.</message>
 	<message key="manager.setup.enableAnnouncements">Enable Press Managers to add press announcements.</message>
 	<message key="manager.setup.enableAnnouncementsHomepage1">Display</message>
 	<message key="manager.setup.enableAnnouncementsHomepage2">of the most recent announcements on the press homepage.</message>
@@ -420,10 +422,10 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.competingInterests">Competing Interests</message>
 	<message key="manager.setup.competingInterestsDescription">Reviewers will be asked to comply with the competing interests disclosure policy you specify below.</message> <!-- FIXME #6843 (JM): should this just reference reviewers? -->
 	<message key="manager.setup.reviewOptions">Review Options</message>
-	<message key="manager.setup.reviewOptions.automatedReminders">Automated email reminders (available in OMP's default Emails) can be sent to reviewers at two points (while the editor can always email the reviewer directly as well)</message>
+	<message key="manager.setup.reviewOptions.automatedReminders">Automated email reminders (available in OMP's default Emails) can be sent to reviewers at two points (while the editor can always email the reviewer directly as well).</message>
 	<message key="manager.setup.reviewOptions.automatedRemindersDisabled"><![CDATA[<strong>Note:</strong> To activate these options, the site administrator must enable the <tt>scheduled_tasks</tt> option in the OMP configuration file. Additional server configuration may be required to support this functionality (which may not be possible on all servers), as indicated in the OMP documentation.]]></message>
 	<message key="manager.setup.reviewOptions.blindReview">Blind Review</message>
-	<message key="manager.setup.reviewOptions.noteOnModification">Can be modified during the editorial process.</message>
+	<message key="manager.setup.reviewOptions.noteOnModification">These default values can be modified for any submission during the editorial process.</message>
 	<message key="manager.setup.reviewOptions.numWeeksPerReview">The typical period of time allowed for reviews</message>
 	<message key="manager.setup.reviewOptions.numWeeksPerResponse">The typical period of time allowed for reviewers to respond to a review request</message>
 	<message key="manager.setup.reviewOptions.onQuality">Editors will rate reviewers on a five-point quality scale after each review.</message>
@@ -532,6 +534,7 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.reviewLibrary">Review Library</message>
 	<message key="manager.setup.editorialLibrary">Editorial Library</message>
 	<message key="manager.setup.productionLibrary">Production Library</message>
+	<message key="manager.setup.productionTemplateLibrary">Production Template Library</message>
 	<message key="manager.setup.productionTemplates">Production Templates</message>
 	<message key="manager.files.note">Note: The Files Browser is an advanced feature that allows the files and directories associated with a press to be viewed and manipulated directly.</message>
 	<message key="manager.setup.authorCopyrightNotice.sample"><![CDATA[<h3>Proposed Creative Commons Copyright Notices</h3>

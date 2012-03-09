@@ -49,8 +49,6 @@ class GenreGridHandler extends SetupGridHandler {
 		);
 
 		// Basic grid configuration
-		$this->setTitle('manager.setup.genres');
-
 		$press =& $request->getPress();
 
 		// Elements to be displayed in the grid

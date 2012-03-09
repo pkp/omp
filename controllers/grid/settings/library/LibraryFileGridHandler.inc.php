@@ -82,7 +82,6 @@ class LibraryFileGridHandler extends SetupGridHandler {
 
 		// Basic grid configuration
 		$this->setId('libraryFile' . ucwords(strtolower($name)));
-		$this->setTitle("grid.libraryFiles.$name.title");
 
 		AppLocale::requireComponents(
 			LOCALE_COMPONENT_PKP_COMMON,

@@ -36,7 +36,6 @@ class SubmissionChecklistGridHandler extends SetupGridHandler {
 		parent::initialize($request);
 		// Basic grid configuration
 		$this->setId('submissionChecklist');
-		$this->setTitle('grid.submissionChecklist.title');
 
 		// Elements to be displayed in the grid
 		$router =& $request->getRouter();

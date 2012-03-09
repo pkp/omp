@@ -51,7 +51,6 @@ class PreparedEmailsGridHandler extends GridHandler {
 		parent::initialize($request);
 		// Basic grid configuration
 		$this->setId('preparedEmailsGrid');
-		$this->setTitle('grid.preparedEmails.currentList');
 
 		AppLocale::requireComponents(LOCALE_COMPONENT_PKP_MANAGER);
 
