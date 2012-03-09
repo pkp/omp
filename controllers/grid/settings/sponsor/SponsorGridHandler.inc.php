@@ -120,7 +120,7 @@ class SponsorGridHandler extends SetupGridHandler {
 		$sponsorId = isset($args['rowId'])?$args['rowId']:null;
 
 		import('controllers.grid.settings.sponsor.form.SponsorForm');
-		$sponsorForm = new SponsorForm($request, $sponsorId);
+		$sponsorForm = new SponsorForm($sponsorId);
 
 		if ($sponsorForm->isLocaleResubmit()) {
 			$sponsorForm->readInputData();
@@ -144,11 +144,11 @@ class SponsorGridHandler extends SetupGridHandler {
 		$sponsorId = isset($args['rowId'])?$args['rowId']:null;
 
 		import('controllers.grid.settings.sponsor.form.SponsorForm');
-		$sponsorForm = new SponsorForm($request, $sponsorId);
+		$sponsorForm = new SponsorForm($sponsorId);
 		$sponsorForm->readInputData();
 
 		if ($sponsorForm->validate()) {
-			$sponsorForm->execute($args, $request);
+			$sponsorForm->execute($request);
 
 			// prepare the grid row data
 			$row =& $this->getRowInstance();
