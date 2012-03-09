@@ -82,7 +82,7 @@ class LanguageToggleBlockPlugin extends BlockPlugin {
 	function getContents(&$templateMgr) {
 		if (!defined('SESSION_DISABLE_INIT')) {
 			$press =& Request::getPress();
-			if (isset($pres)) {
+			if (isset($press)) {
 				$locales =& $press->getSupportedLocaleNames();
 
 			} else {
