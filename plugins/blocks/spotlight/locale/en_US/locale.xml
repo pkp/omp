@@ -23,4 +23,7 @@
 	<message key="plugins.block.spotlight.form.displayModeAll">Display all spotlights.</message>
 	<message key="plugins.block.spotlight.form.displayModeRandom">Randomly display a single spotlight.</message>
 	<message key="plugins.block.spotlight.form.saved">Spotlight plugin settings saved.</message>
+	
+	<!-- spotlight block keys -->
+	<message key="plugins.block.spotlight.noSpotlights">There are no spotlights to display.</message>
 </locale>
