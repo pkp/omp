@@ -187,7 +187,7 @@ class CatalogEntryCatalogMetadataForm extends Form {
 	 * Save the metadata and store the catalog data for this published
 	 * monograph.
 	 */
-	function execute() {
+	function execute(&$request) {
 		parent::execute();
 
 		$monograph =& $this->getMonograph();
@@ -195,6 +195,20 @@ class CatalogEntryCatalogMetadataForm extends Form {
 		$publishedMonograph =& $publishedMonographDao->getById($monograph->getId());
 		if (!$publishedMonograph) {
 			fatalError('Updating catalog metadata with no published monograph!');
+		}
+
+		if ($publishedMonograph->getIsAvailable() && !$this->getData('isAvailable')) {
+			// Monograph not available. Insert monograph tombstone
+			import('classes.monograph.MonographTombstoneManager');
+			$monographTombstoneManager = new MonographTombstoneManager();
+			$press =& $request->getPress();
+			$monographTombstoneManager->insertMonographTombstone($publishedMonograph, $press);
+		}
+
+		if (!$publishedMonograph->getIsAvailable() && $this->getData('isAvailable')) {
+			// Monograph available. Delete tombstone.
+			$monographTombstoneDao =& DAORegistry::getDAO('MonographTombstoneDAO'); /* @var $monographTombstoneDao MonographTombstoneDAO */
+			$monographTombstoneDao->deleteBySubmissionId($monograph->getId());
 		}
 
 		// Populate the published monograph with the cataloging metadata
