@@ -631,7 +631,7 @@ Indexes have now been prepared for the manuscript, "{$monographTitle}," for {$pr
 If you have any questions, please contact me.
 
 {$signatureFullName}</body>
-		<description>This email from the Layout Editor to the Series Editor notifies them that the layout process has been completed.</description>
+		<description>This email from the Indexer to the Series Editor notifies them that the index creation process has been completed.</description>
 	</email_text>
 	<email_text key="PROOFREAD_AUTHOR_REQUEST">
 		<subject>Proofreading Request (Author)</subject>
