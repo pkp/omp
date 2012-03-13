@@ -79,7 +79,7 @@ class TinyMCEPlugin extends GenericPlugin {
 			<!--
 			tinyMCE_GZ.init({
 				relative_urls : "false",
-				plugins : "paste,ibrowser,fullscreen",
+				plugins : "paste,jbimages,fullscreen",
 				themes : "advanced",
 				languages : "' . join(',', $localeList) . '",
 				disk_cache : true
@@ -90,7 +90,7 @@ class TinyMCEPlugin extends GenericPlugin {
 			<!--
 			tinyMCE.init({
 				entity_encoding : "raw",
-				plugins : "paste,ibrowser,fullscreen,pkpmultilingualpopover",
+				plugins : "paste,jbimages,fullscreen,pkpmultilingualpopover",
 				mode : "specific_textareas",
 				editor_selector : "richContent",
 				language : "' . String::substr(AppLocale::getLocale(), 0, 2) . '",
@@ -99,7 +99,7 @@ class TinyMCEPlugin extends GenericPlugin {
 				paste_auto_cleanup_on_paste : true,
 				apply_source_formatting : false,
 				theme : "advanced",
-				theme_advanced_buttons1 : "cut,copy,paste,|,bold,italic,underline,bullist,numlist,|,link,unlink,help,code,fullscreen,ibrowser",
+				theme_advanced_buttons1 : "cut,copy,paste,|,bold,italic,underline,bullist,numlist,|,link,unlink,help,code,fullscreen,jbimages",
 				theme_advanced_buttons2 : "",
 				theme_advanced_buttons3 : ""
 			});
