@@ -179,9 +179,6 @@ class AppLocale extends PKPLocale {
 		$genreDao =& DAORegistry::getDAO('GenreDAO'); /* @var $genreDao GenreDAO */
 		$genreDao->installLocale($locale);
 
-		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO'); /* @var $publicationFormatDao PublicationFormatDAO */
-		$publicationFormatDao->installLocale($locale);
-
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */
 		$userGroupDao->installLocale($locale);
 	}
