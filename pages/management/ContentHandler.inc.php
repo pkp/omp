@@ -40,6 +40,8 @@ class ContentHandler extends ManagementHandler {
 	function content($args, &$request) {
 		$this->setupTemplate();
 		$templateMgr =& TemplateManager::getManager();
+		$press =& $request->getPress();
+		$templateMgr->assign('announcementsEnabled', $press->getSetting('enableAnnouncements')?true:false);
 		$templateMgr->display('management/content/content.tpl');
 	}
 }

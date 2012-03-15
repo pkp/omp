@@ -22,8 +22,10 @@
 </script>
 <div id="contentTabs">
 	<ul>
-		<li><a href="{url router=$smarty.const.ROUTE_COMPONENT component="tab.content.ContentTabHandler" op="showTab" tab="announcements"}">{translate key="manager.announcements"}</a></li>
-		<li><a href="{url router=$smarty.const.ROUTE_COMPONENT component="tab.content.ContentTabHandler" op="showTab" tab="announcementTypes"}">{translate key="manager.announcementTypes"}</a></li>
+		{if $announcementsEnabled}
+			<li><a href="{url router=$smarty.const.ROUTE_COMPONENT component="tab.content.ContentTabHandler" op="showTab" tab="announcements"}">{translate key="manager.announcements"}</a></li>
+			<li><a href="{url router=$smarty.const.ROUTE_COMPONENT component="tab.content.ContentTabHandler" op="showTab" tab="announcementTypes"}">{translate key="manager.announcementTypes"}</a></li>
+		{/if}
 		<li><a href="{url router=$smarty.const.ROUTE_COMPONENT component="tab.content.ContentTabHandler" op="showTab" tab="spotlights"}">{translate key="spotlight.spotlights"}</a></li>
 	</ul>
 </div>
