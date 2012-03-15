@@ -17,7 +17,8 @@
 		{rdelim});
 	{rdelim});
 </script>
-<p>{translate key="submission.submit.upload.description"}</p>
+<h3 class="pkp_grid_title">{translate key="submission.submit.submissionFiles"}</h3>
+<p class="pkp_grid_description">{translate key="submission.submit.upload.description"}</p>
 <form class="pkp_form" id="submitStep2Form" method="post" action="{url op="saveStep" path=$submitStep}" enctype="multipart/form-data">
 	<input type="hidden" name="monographId" value="{$monographId|escape}" />
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="submitStep2FormNotification"}

@@ -16,7 +16,7 @@
 	<message key="submission.submission">Submission</message>
 	<message key="submission.synopsis">Synopsis</message>
 	<message key="submission.workType">Type of Book</message>
-	<message key="submission.workType.description">Select the option that best matches the type of the work that you are submitting.</message>
+	<message key="submission.workType.description">Select the option that best matches the type of the work that you are submitting. Please note that if you are submitting an edited volume, you will be able to list chapters and assign contributors to those chapters at a later stage. Authored works can also have other contributors (additional authors; translators; etc.) assigned to the work as a whole.</message>
 	<message key="submission.workType.editedVolume">Edited Volume</message>
 	<message key="submission.workType.authoredWork">Authored Work</message>
 	<message key="submission.editorial">Editorial</message>
@@ -28,9 +28,12 @@
 	<message key="submission.art">Artwork</message>
 	<message key="submission.artwork.permissions">Permissions</message>
 	<message key="submission.chapter">Chapter</message>
+	<message key="submission.chapters">Chapters</message>
+	<message key="submission.chaptersDescription">You may list the chapters here, and assign contributors from the list of contributors, above. These contributors will be able to access the chapter during various stages of the publication process.</message>
 	<message key="submission.chapter.addChapter">Add Chapter</message>
 	<message key="submission.chapter.editChapter">Edit Chapter</message>
 	<message key="submission.contributors">List of Contributors</message>
+	<message key="submission.contributorsDescription">The list of contributors associated with this submission may include other authors; individual chapter authors of an edited volume; volume editors; and/or translators. One contributor from the list may be assigned as the primary contact for editorial correspondence; this does not necessarily have to be the submitting author.</message>
 	<message key="submission.document">Document</message>
 	<message key="submission.overview">Submission Overview</message>
 	<message key="submission.copyediting">Copyediting</message>
@@ -103,6 +106,7 @@
 	<message key="submission.submit.placement">Submission Placement</message>
 	<message key="submission.submit.placement.seriesDescription">A series represents a special set of books devoted to a theme or topics that someone has proposed, usually a faculty member or two, and then oversees.</message>
 	<message key="submission.submit.placement.seriesPositionDescription">Books in series are usually kept in the reverse order in which they are published, to give a sense of the series developing as well as keeping the current at the front.</message>
+	<message key="submission.submit.placement.categories">Categories</message>
 	<message key="submission.submit.placement.categoriesDescription">Categories are groupings of books according to subject matter, for example Economics; Literature; Poetry; and so on. Your manuscript may fall within more than one category; please select all that apply.</message>
 	<message key="submission.submit.submissionFiles">Submission Files</message>
 	<message key="submission.submit.fileInformation">File Information</message>

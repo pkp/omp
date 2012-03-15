@@ -97,8 +97,6 @@ class ChapterGridHandler extends CategoryGridHandler {
 		$monograph =& $this->getMonograph();
 
 		AppLocale::requireComponents(LOCALE_COMPONENT_OMP_DEFAULT_SETTINGS, LOCALE_COMPONENT_OMP_SUBMISSION);
-		// Basic grid configuration
-		$this->setTitle('grid.chapters.title');
 
 		$monograph =& $this->getMonograph();
 		$userRoles = $this->getAuthorizedContextObject(ASSOC_TYPE_USER_ROLES);

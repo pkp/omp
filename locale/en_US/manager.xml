@@ -250,6 +250,7 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.contributor">Contributor</message>
 	<message key="manager.setup.contributors">Sources of Support</message>
 	<message key="manager.setup.contributors.description">Additional agencies or organizations that provide financial or in-kind support for the press will appear in About the Press and may be accompanied by a note of acknowledgement.</message>
+	<message key="manager.setup.contributors.note">You may add a note describing the relationship and policy between you and your sources of support; this will appear with the Sources of Support list on your About page.</message>
 	<message key="manager.setup.copyediting">Copyeditors</message>
 	<message key="manager.setup.copyeditInstructions">Copyedit Instructions</message>
 	<message key="manager.setup.copyeditInstructionsDescription">The Copyedit Instructions will be made available to Copyeditors, Authors, and Section Editors in the Submission Editing stage. Below is a default set of instructions in HTML, which can be modified or replaced by the Press Manager at any point (in HTML or plain text).</message>
@@ -373,6 +374,7 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.peerReview.description">Outline the press' peer review policy and processes for readers and authors, including the number of reviewers typically used in reviewing a submission, the criteria by which reviewers are asked to judge submissions, typical time taken to conduct the reviews, and the principles for recruiting reviewers. This will appear in About the Press.</message>
 	<message key="manager.setup.policies">Policies</message>
 	<message key="manager.setup.policies.description">Focus, peer review, sections, privacy, security, and additional about items.</message>
+	<message key="manager.setup.pressAppearanceDescription">Various components of the press' appearance can be configured from this page, including header and footer elements, the press style and theme, and how lists of information are presented to users.</message>
 	<message key="manager.setup.pressDescription">Press Description</message>
 	<message key="manager.setup.pressDescription.description">A general description of the press should be included here. This description will be available on the press' homepage.</message>
 	<message key="manager.setup.pressArchiving">Press Archiving</message>
@@ -382,7 +384,7 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.pressHomepageContentDescription">The press homepage consists of navigation links by default. Additional homepage content can be appended by using one or all of the following options, which will appear in the order shown.</message>
 	<message key="manager.setup.pressHomepageHeader">Press Homepage Header</message>
 	<message key="manager.setup.pressHomepageHeader.altText">Press Homepage Header</message>
-	<message key="manager.setup.pressHomepageHeaderDescription">A graphic version of the press' title and logo (as a .gif, .jpg, or .png file) can be uploaded for the homepage, which will replace the text version that otherwise appears.</message>
+	<message key="manager.setup.pressHomepageHeaderDescription">Choose between a text representation of the press name, or a graphic version of the press title (.gif, .jpg, or .png files accepted). This header and the optional accompanying logo will only appear on the press home page.</message>
 	<message key="manager.setup.pressInitials">Press Initials</message>
 	<message key="manager.setup.pressLayout">Press Layout</message>
 	<message key="manager.setup.pressLayoutDescription">Choose a press theme and select layout components here. A press stylesheet may also be uploaded, which can be used to override style data in the system-wide stylesheets and theme stylesheet (if a theme is chosen).</message>
@@ -460,6 +462,7 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.siteAccess">Additional Site and Content Access Restrictions</message>
 	<message key="manager.setup.sponsors">Sponsoring Organizations</message>
 	<message key="manager.setup.sponsors.description">The name of the organizations (e.g., scholarly associations, university departments, cooperatives, etc.) sponsoring the press will appear in About the Press and may be accompanied by a note of acknowledgement.</message>
+	<message key="manager.setup.sponsors.note">You may add a note describing your sponsor relationship and policy; this will appear with the sponsor list on your About page.</message>
 	<message key="manager.setup.stepsToPressSite">Five Steps to a Press Web Site</message>
 	<message key="manager.setup.subjectClassification">Subject Classification</message>
 	<message key="manager.setup.subjectClassificationExamples">(E.g., Mathematics Subject Classification; Library of Congress Classification)</message>

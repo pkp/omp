@@ -19,18 +19,14 @@
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="indexingFormNotification"}
 	{include file="controllers/tab/settings/wizardMode.tpl" wizardMode=$wizardMode}
 
-	<h3>{translate key="manager.setup.searchEngineIndexing"}</h3>
-
-	<p>{translate key="manager.setup.searchEngineIndexingDescription"}</p>
-
 	{fbvFormArea id="searchEngineIndexing"}
-		{fbvFormSection title="common.description"}
+		{fbvFormSection title="common.description" description="manager.setup.searchEngineIndexingDescription" label="manager.setup.searchEngineIndexing"}
 			{fbvElement type="text" multilingual="true" id="searchDescription" name="searchDescription" value=$searchDescription size=$fbvStyles.size.LARGE}
 		{/fbvFormSection}
 		{fbvFormSection title="common.keywords"}
 			{fbvElement type="text" multilingual="true" id="searchKeywords" name="searchKeywords" value=$searchKeywords size=$fbvStyles.size.LARGE}
 		{/fbvFormSection}
-		{fbvFormSection title="manager.setup.customTags"}
+		{fbvFormSection label="manager.setup.customTags" description="manager.setup.customTagsDescription"}
 			{fbvElement type="textarea" multilingual="true" id="customHeaders" name="customHeaders" value=$customHeaders}
 		{/fbvFormSection}
 	{/fbvFormArea}

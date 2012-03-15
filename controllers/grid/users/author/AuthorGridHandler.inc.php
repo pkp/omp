@@ -112,9 +112,6 @@ class AuthorGridHandler extends GridHandler {
 			LOCALE_COMPONENT_OMP_DEFAULT_SETTINGS
 		);
 
-		// Basic grid configuration
-		$this->setTitle('submission.contributors');
-
 		$monograph =& $this->getMonograph();
 		$userRoles = $this->getAuthorizedContextObject(ASSOC_TYPE_USER_ROLES);
 

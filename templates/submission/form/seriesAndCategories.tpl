@@ -24,13 +24,13 @@
 
 {if $categoriesExist}
 	{if !$readOnly}
-		{fbvFormSection description="submission.submit.placement.categoriesDescription"}
+		<h3 class="pkp_grid_title">{translate key="submission.submit.placement.categories"}</h3>
+		<p class="pkp_grid_description">{translate key="submission.submit.placement.categoriesDescription"}</p>
 			{assign var="monographCategoriesContainer" value="monographCategoriesContainer-"|uniqid|escape}
 			<div id={$monographCategoriesContainer}>
 				{url|assign:monographCategoriesUrl router=$smarty.const.ROUTE_COMPONENT component="submission.CategoriesListbuilderHandler" op="fetch" monographId=$monographId readOnly=$readOnly escape=false}
 				{load_url_in_div id=$monographCategoriesContainer url=$monographCategoriesUrl}
 			</div>
-		{/fbvFormSection}
 	{else}
 		{if count($assignedCategories) > 0}
 			{fbvFormSection title="grid.category.categories" list=true}

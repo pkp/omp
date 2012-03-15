@@ -162,7 +162,6 @@ class CategoriesListbuilderHandler extends ListbuilderHandler {
 
 		// Basic configuration
 		$this->setPress($request->getPress());
-		$this->setTitle('grid.category.categories');
 		$this->setSourceType(LISTBUILDER_SOURCE_TYPE_SELECT);
 		$this->setSaveType(LISTBUILDER_SAVE_TYPE_EXTERNAL);
 		$this->setSaveFieldName('categories');

@@ -19,10 +19,10 @@
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="contactFormNotification"}
 	{include file="controllers/tab/settings/wizardMode.tpl" wizardMode=$wizardMode}
 
-	{fbvFormArea id="contactFormArea" title="manager.setup.principalContact"}
-		<p>{translate key="manager.setup.principalContactDescription"}</p>
-
-		{fbvFormSection title="user.name" required=true for="contactName" inline=true size=$fbvStyles.size.MEDIUM}
+	{fbvFormArea id="contactFormArea" title="manager.setup.principalContact" border=true}
+		{fbvFormSection description="manager.setup.principalContactDescription"}
+		{/fbvFormSection}
+		{fbvFormSection label="user.name" required=true for="contactName" inline=true size=$fbvStyles.size.MEDIUM}
 			{fbvElement type="text" id="contactName" value=$contactName maxlength="60"}
 		{/fbvFormSection}
 		{fbvFormSection title="user.title" for="contactTitle" inline=true size=$fbvStyles.size.MEDIUM}
@@ -46,8 +46,9 @@
 	{/fbvFormArea}
 
 	<div {if $wizardMode}class="pkp_form_hidden"{/if}>
-		{fbvFormArea id="contactFormArea" title="manager.setup.technicalSupportContact"}
-			<p>{translate key="manager.setup.technicalSupportContactDescription"}</p>
+		{fbvFormArea id="contactFormArea" title="manager.setup.technicalSupportContact" border=true}
+			{fbvFormSection description="manager.setup.technicalSupportContactDescription"}
+			{/fbvFormSection}
 			{fbvFormSection title="user.name" for="supportName" required=true inline=true size=$fbvStyles.size.MEDIUM}
 				{fbvElement type="text" id="supportName" value=$supportName maxlength="60"}
 			{/fbvFormSection}

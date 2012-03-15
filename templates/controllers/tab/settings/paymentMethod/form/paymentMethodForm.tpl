@@ -33,12 +33,8 @@
 
 <div id="paymentMethodContainerDiv">
 	<form class="pkp_form" id="selectPaymentMethodForm">
-		<h3>{translate key="manager.paymentMethod.title"}</h3>
-
-		<p>{translate key="manager.paymentMethod.description"}</p>
-
 		{fbvFormArea id="paymentMethod"}
-			{fbvFormSection title="manager.paymentMethod.method"}
+			{fbvFormSection title="manager.paymentMethod.method" description="manager.paymentMethod.description" label="manager.paymentMethod.title"}
 				{fbvElement type="select" id="pluginSelect" from=$pluginNames translate=false}
 			{/fbvFormSection}
 		{/fbvFormArea}

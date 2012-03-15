@@ -818,17 +818,10 @@ table.pkp_listing td.separator {
   background-position:100% 50%;
 }
 .pkp_form input.spinner {
-	background-color: #ffffff !important;
-	background-repeat:no-repeat;
-	background:url(../lib/pkp/templates/images/throbber.gif) no-repeat;
-	background-position:100% 50%;
-}
-.pkp_controllers_listbuilder .spinner {
-	background-color: #EAF3F8 !important;
-	background-repeat:no-repeat;
-	background:url(../lib/pkp/templates/images/throbber.gif) no-repeat;
-	background-position:100% 50%;
-	padding: 2px 30px 2px 0px;
+  background-color:#ffffff !important;
+  background-repeat:no-repeat;
+  background:url(../lib/pkp/templates/images/throbber.gif) no-repeat;
+  background-position:100% 50%;
 }
 .pkp_form textarea.localizable { background-position:100% 0; }
 .pkp_form .flag {
@@ -1145,9 +1138,31 @@ div.pkp_controllers_grid .pkp_controllers_grid_settings_stages {
   border-top:1px solid #6aa6d6;
   border-bottom:1px solid #6aa6d6;
 }
+.pkp_grid_title {
+  color:#222222;
+  text-transform:none;
+  font-weight:bold;
+  font-family:Lucida Grande, Lucida Sans, Arial, sans-serif;
+  font-size:100%;
+  padding-left:0px;
+  padding-bottom:5px;
+}
+.pkp_grid_description {
+  color:#999999;
+  font-weight:normal;
+  font-size:80%;
+  padding:0px;
+}
 div.pkp_controllers_listbuilder .gridCellEdit { display:none; }
 div.pkp_controllers_listbuilder .gridRowEdit .gridCellEdit { display:block; }
 div.pkp_controllers_listbuilder .gridRowEdit .gridCellDisplay { display:none; }
+div.pkp_controllers_listbuilder .spinner {
+  background-color:#eaf3f8 !important;
+  background-repeat:no-repeat;
+  background:url(../lib/pkp/templates/images/throbber.gif) no-repeat;
+  background-position:100% 50%;
+  padding:2px 30px 2px 0px;
+}
 .pkp_controllers_extrasOnDemand .ui-icon { float:left; }
 .pkp_controllers_extrasOnDemand .toggleExtras {
   margin-top:15px;
@@ -1220,6 +1235,13 @@ div.pkp_controllers_listbuilder .gridRowEdit .gridCellDisplay { display:none; }
   line-height:30px;
 }
 .ui-dialog .ui-tabs-panel { padding:0px; }
+.legacy_plugin_content .pkp_structure_breadcrumb {
+  margin-bottom:10px;
+  display:inline-block;
+}
+.legacy_plugin_content .pkp_form input { width:none; }
+.legacy_plugin_content .pkp_form .pkp_listing input { width:99%; }
+.legacy_plugin_content .pkp_form .pkp_listing .highlight { background:yellow; }
 span.pkp_controllers_informationCenter_itemLastEvent {
   color:#888888;
   font-size:0.8em;

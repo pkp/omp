@@ -23,9 +23,11 @@
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="appearanceFormNotification"}
 	{include file="controllers/tab/settings/wizardMode.tpl" wizardMode=$wizardMode}
 
+	<p class="pkp_grid_description">{translate key="manager.setup.pressAppearanceDescription"}</p>
+
 	{* Homepage Header *}
 	{fbvFormArea id="homepageHeader" title="manager.setup.pressHomepageHeader" border="true"}
-		{fbvFormSection list=true description="manager.setup.pressHomepageHeaderDescription" title="manager.setup.pressName"}
+		{fbvFormSection list=true description="manager.setup.pressHomepageHeaderDescription" label="manager.setup.pressName"}
 			{fbvElement type="radio" name="homeHeaderTitleType[$locale]" id="homeHeaderTitleType-0" value=0 checked=!$homeHeaderTitleType[$locale] label="manager.setup.useTextTitle"}
 		{/fbvFormSection}
 		{fbvFormSection}

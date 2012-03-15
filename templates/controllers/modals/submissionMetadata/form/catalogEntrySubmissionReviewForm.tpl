@@ -31,6 +31,8 @@
 	{include file="submission/submissionMetadataFormFields.tpl" readOnly=$formParams.readOnly}
 
 	<!--  Contributors -->
+	<h3 class="pkp_grid_title">{translate key="submission.contributors"}</h3>
+	<p class="pkp_grid_description">{translate key="submission.contributorsDescription"}</p>
 	{* generate a unique ID for the form *}
 	{assign var="authorsGridContainer" value="authorsGridContainer-"|uniqid|escape}
 	{url|assign:authorGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.users.author.AuthorGridHandler" op="fetchGrid" monographId=$monographId stageId=$stageId escape=false}
@@ -38,6 +40,8 @@
 
 	<!--  Chapters -->
 	{if $isEditedVolume}
+		<h3 class="pkp_grid_title">{translate key="submission.chapters"}</h3>
+		<p class="pkp_grid_description">{translate key="submission.chaptersDescription"}</p>
 		{assign var="chaptersGridContainer" value="authorsGridContainer-"|uniqid|escape}
 		{url|assign:chaptersGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.users.chapter.ChapterGridHandler" op="fetchGrid" monographId=$monographId}
 		{load_url_in_div id=$chaptersGridContainer url="$chaptersGridUrl"}

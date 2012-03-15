@@ -36,8 +36,6 @@ class SponsorGridHandler extends SetupGridHandler {
 	 */
 	function initialize(&$request) {
 		parent::initialize($request);
-		// Basic grid configuration
-		$this->setTitle('grid.sponsor.title');
 
 		// Elements to be displayed in the grid
 		$router =& $request->getRouter();

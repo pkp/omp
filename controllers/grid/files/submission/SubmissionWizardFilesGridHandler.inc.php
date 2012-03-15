@@ -30,9 +30,6 @@ class SubmissionWizardFilesGridHandler extends FileListGridHandler {
 			array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_ASSISTANT, ROLE_ID_AUTHOR),
 			array('fetchGrid', 'fetchRow')
 		);
-
-		// Set grid title.
-		$this->setTitle('submission.submit.submissionFiles');
 	}
 }
 

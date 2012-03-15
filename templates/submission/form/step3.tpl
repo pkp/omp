@@ -25,17 +25,19 @@
 	{include file="submission/submissionMetadataFormFields.tpl"}
 
 	{fbvFormArea id="contributors"}
-		{fbvFormSection}
-			<!--  Contributors -->
-			{url|assign:authorGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.users.author.AuthorGridHandler" op="fetchGrid" monographId=$monographId}
-			{load_url_in_div id="authorsGridContainer" class="update_source_author" url="$authorGridUrl"}
+		<h3 class="pkp_grid_title">{translate key="submission.contributors"}</h3>
+		<p class="pkp_grid_description">{translate key="submission.contributorsDescription"}</p>
+		<!--  Contributors -->
+		{url|assign:authorGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.users.author.AuthorGridHandler" op="fetchGrid" monographId=$monographId}
+		{load_url_in_div id="authorsGridContainer" class="update_source_author" url="$authorGridUrl"}
 
-			<!--  Chapters -->
-			{if $isEditedVolume}
-				{url|assign:chaptersGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.users.chapter.ChapterGridHandler" op="fetchGrid" monographId=$monographId}
-				{load_url_in_div id="chaptersGridContainer" class="update_target_author" url="$chaptersGridUrl"}
-			{/if}
-		{/fbvFormSection}
+		<!--  Chapters -->
+		{if $isEditedVolume}
+			<h3 class="pkp_grid_title">{translate key="submission.chapters"}</h3>
+			<p class="pkp_grid_description">{translate key="submission.chaptersDescription"}</p>
+			{url|assign:chaptersGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.users.chapter.ChapterGridHandler" op="fetchGrid" monographId=$monographId}
+			{load_url_in_div id="chaptersGridContainer" class="update_target_author" url="$chaptersGridUrl"}
+		{/if}
 
 		{fbvFormButtons id="step3Buttons" submitText="submission.submit.finishSubmission" confirmSubmit="submission.confirmSubmit"}
 	{/fbvFormArea}
