@@ -29,7 +29,6 @@ class SpotlightForm extends Form {
 	 * Constructor
 	 * @param $pressId int
 	 * @param $spotlightId int leave as default for new spotlight
-	 * @param $readOnly boolean
 	 */
 	function SpotlightForm($pressId, $spotlightId = null) {
 		parent::Form('controllers/grid/content/spotlights/form/spotlightForm.tpl');

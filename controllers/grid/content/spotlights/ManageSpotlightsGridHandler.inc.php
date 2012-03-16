@@ -9,7 +9,7 @@
  * @class SpotlightsGridHandler
  * @ingroup controllers_grid_content_spotlights
  *
- * @brief Handle publication format grid requests for spotlights.
+ * @brief Handle grid requests for spotlights.
  */
 
 // import grid base classes
@@ -210,7 +210,7 @@ class ManageSpotlightsGridHandler extends CategoryGridHandler {
 	// Public Spotlights Grid Actions
 	//
 
-	function addSpotlight($args, $request) {
+	function addSpotlight($args, &$request) {
 		return $this->editSpotlight($args, $request);
 	}
 
