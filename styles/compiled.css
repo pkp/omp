@@ -186,6 +186,8 @@ strong {
   position:relative;
 }
 .pkp_helpers_moveicon { cursor:move; }
+.pkp_helpers_half { width:48%; }
+.pkp_helpers_quarter { width:25%; }
 div.plupload div.plupload_header { display:none; }
 .plupload .plupload_filelist_header { display:none; }
 .plupload_header_content {
@@ -744,8 +746,6 @@ table.pkp_listing td.separator {
   padding:2px;
 }
 .pkp_form select:focus { outline:none; }
-.pkp_form .quarter { width:25%; }
-.pkp_form .half { width:48%; }
 .pkp_form .short { height:6em; }
 .pkp_form .medium { height:12em; }
 .pkp_form .tall { height:18em; }
