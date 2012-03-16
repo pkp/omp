@@ -25,7 +25,8 @@ class ContentTabHandler extends ManagerSettingsTabHandler {
 		$pageTabs = array(
 			'announcements' => 'controllers/tab/content/announcements/announcements.tpl',
 			'announcementTypes' => 'controllers.tab.content.announcements.form.AnnouncementTypeForm',
-			'spotlights' => 'controllers/tab/content/spotlights/spotlights.tpl'
+			'spotlights' => 'controllers/tab/content/spotlights/spotlights.tpl',
+			'navigation' => 'controllers/tab/content/navigation/navigation.tpl'
 		);
 		$this->setPageTabs($pageTabs);
 	}

@@ -154,6 +154,24 @@
 	<message key="grid.content.spotlights.form.item">Featured Item</message>
 	<message key="grid.content.spotlights.form.type.book">Book</message>
 
+	<!-- Content Management - Footer grid keys -->
+	<message key="grid.content.navigation.footer">Footer</message>
+	<message key="grid.content.navigation.footer.noneExist">There are no current footers.</message>
+	<message key="grid.content.navigation.footer.addCategory">Add Category</message>
+	<message key="grid.content.navigation.footer.FooterLink">Footer Links</message>
+	<message key="grid.content.navigation.footer.editCategory">Edit Category</message>
+	<message key="grid.content.navigation.footer.deleteCategory">Delete Category</message>
+	<message key="grid.content.navigation.footer.deleteCategoryConfirm">Are you sure you wish to delete this category? The action cannot be undone, and links in this category will also be removed.</message>
+	<message key="grid.content.navigation.footer.titleRequired">A title is required.</message>
+	<message key="grid.content.navigation.footer.descriptionRequired">A description is required.</message>
+	<!-- Content Management - Social Media keys -->
+	<message key="grid.content.navigation.socialMedia">Social Media</message>
+	<message key="grid.content.navigation.socialMedia.platform">Platform</message>
+	<message key="grid.content.navigation.socialMedia.code">Social Sharing Code Block</message>
+	<message key="grid.content.navigation.socialMedia.platformRequired">You must enter a platform title (Facebook, Google+, etc).</message>
+	<message key="grid.content.navigation.socialMedia.codeRequired">You must enter the code you wish to use to display this social network.</message>
+	<message key="grid.content.navigation.socialMedia.addSocialLink">Add Social Link</message>
+	
 	<!-- Editorial policies -->
 	<message key="manager.series.open">Open Submissions</message>
 	<message key="manager.series.indexed">Indexed</message>
@@ -544,6 +562,13 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="notification.addedSpotlight">Spotlight added.</message>
 	<message key="notification.editedSpotlight">Spotlight edited.</message>
 	<message key="notification.removedSpotlight">Spotlight removed.</message>
+	<message key="notification.removedFooterLink">Footer Link removed.</message>
+	<message key="notification.addedFooterCategory">Category added.</message>
+	<message key="notification.editedFooterCategory">Category edited.</message>
+	<message key="notification.removedFooterCategory">Category removed.</message>
+	<message key="notification.addedSocialMedia">Social Media Network added.</message>
+	<message key="notification.editedSocialMedia">Social Media Network edited.</message>
+	<message key="notification.removedSocialMedia">Social Media Network removed.</message>
 	<message key="notification.signedFile">File signed.</message>
 	<message key="notification.updatedReviewFiles">Review files updated.</message>
 	<message key="notification.savedCatalogMetadata">Catalog metadata saved.</message>
