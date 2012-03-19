@@ -26,7 +26,7 @@ class SendReviewsForm extends EditorDecisionWithEmailForm {
 	 * @param $stageId int
 	 * @param $reviewRound ReviewRound
 	 */
-	function SendReviewsForm($seriesEditorSubmission, $decision, $stageId, &$reviewRound = null) {
+	function SendReviewsForm($seriesEditorSubmission, $decision, $stageId, $reviewRound = null) {
 		if (!in_array($decision, $this->_getDecisions())) {
 			fatalError('Invalid decision!');
 		}

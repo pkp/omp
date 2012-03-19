@@ -41,7 +41,7 @@ class SubmissionFilesUploadBaseForm extends Form {
 	 * @param $revisedFileId integer
 	 */
 	function SubmissionFilesUploadBaseForm(&$request, $template, $monographId, $stageId, $fileStage,
-			$revisionOnly = false, &$reviewRound = null, $revisedFileId = null, $assocType = null, $assocId = null) {
+			$revisionOnly = false, $reviewRound = null, $revisedFileId = null, $assocType = null, $assocId = null) {
 
 		// Check the incoming parameters.
 		if ( !is_numeric($monographId) || $monographId <= 0 ||

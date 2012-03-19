@@ -34,7 +34,7 @@ class SubmissionFilesUploadForm extends SubmissionFilesUploadBaseForm {
 	 * @param $revisedFileId integer
 	 */
 	function SubmissionFilesUploadForm(&$request, $monographId, $stageId, $uploaderRoles, $fileStage,
-			$revisionOnly = false, &$reviewRound = null, $revisedFileId = null, $assocType = null, $assocId = null) {
+			$revisionOnly = false, $reviewRound = null, $revisedFileId = null, $assocType = null, $assocId = null) {
 
 		// Initialize class.
 		assert(is_null($uploaderRoles) || (is_array($uploaderRoles) && count($uploaderRoles) >= 1));

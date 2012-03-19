@@ -30,7 +30,7 @@ class EditorDecisionWithEmailForm extends EditorDecisionForm {
 	 * @param $template string The template to display
 	 * @param $reviewRound ReviewRound
 	 */
-	function EditorDecisionWithEmailForm(&$seriesEditorSubmission, $decision, $stageId, $template, &$reviewRound = null) {
+	function EditorDecisionWithEmailForm(&$seriesEditorSubmission, $decision, $stageId, $template, $reviewRound = null) {
 		parent::EditorDecisionForm($seriesEditorSubmission, $stageId, $template, $reviewRound);
 		$this->_decision = $decision;
 	}
@@ -161,7 +161,7 @@ class EditorDecisionWithEmailForm extends EditorDecisionForm {
 	 * @param $seriesEditorSubmission SeriesEditorSubmission
 	 * @param $status integer One of the REVIEW_ROUND_STATUS_* constants.
 	 */
-	function _updateReviewRoundStatus($seriesEditorSubmission, $status, &$reviewRound = null) {
+	function _updateReviewRoundStatus($seriesEditorSubmission, $status, $reviewRound = null) {
 		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO'); /* @var $reviewRoundDao ReviewRoundDAO */
 		if (!$reviewRound) {
 			$reviewRound =& $reviewRoundDao->getLastReviewRoundByMonographId($seriesEditorSubmission->getId());
