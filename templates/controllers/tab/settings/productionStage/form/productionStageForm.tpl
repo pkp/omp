@@ -36,18 +36,18 @@
 		{/fbvFormSection}
 	{/fbvFormArea}
 	
-	{fbvFormSection label="manager.setup.productionLibrary" description="manager.setup.productionLibraryDescription"}	
-		{url|assign:productionLibraryGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.library.LibraryFileGridHandler" op="fetchGrid" fileType=$smarty.const.LIBRARY_FILE_TYPE_PRODUCTION}
-		{load_url_in_div id="productionLibraryGridDiv" url=$productionLibraryGridUrl}
-	{/fbvFormSection}
+	<h3 class="pkp_grid_title">{translate key="manager.setup.productionLibrary"}</h3>
+	<p class="pkp_grid_description">{translate key="manager.setup.productionLibraryDescription"}</p>
+	{url|assign:productionLibraryGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.library.LibraryFileGridHandler" op="fetchGrid" fileType=$smarty.const.LIBRARY_FILE_TYPE_PRODUCTION}
+	{load_url_in_div id="productionLibraryGridDiv" url=$productionLibraryGridUrl}
 
 	<div class="separator"></div>
 
-	{fbvFormSection label="manager.setup.productionTemplateLibrary" description="manager.setup.productionTemplateLibraryDescription"}
-		{url|assign:productionTemplateLibraryUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.library.LibraryFileGridHandler" op="fetchGrid" fileType=$smarty.const.LIBRARY_FILE_TYPE_PRODUCTION_TEMPLATE}
-		{load_url_in_div id="productionTemplateLibraryDiv" url=$productionTemplateLibraryUrl}
-	{/fbvFormSection}
-	
+	<h3 class="pkp_grid_title">{translate key="manager.setup.productionTemplateLibrary"}</h3>
+	<p class="pkp_grid_description">{translate key="manager.setup.productionTemplateLibraryDescription"}</p>
+	{url|assign:productionTemplateLibraryUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.library.LibraryFileGridHandler" op="fetchGrid" fileType=$smarty.const.LIBRARY_FILE_TYPE_PRODUCTION_TEMPLATE}
+	{load_url_in_div id="productionTemplateLibraryDiv" url=$productionTemplateLibraryUrl}
+
 	{if !$wizardMode}
 		{fbvFormButtons id="productionStageFormSubmit" submitText="common.save" hideCancel=true}
 	{/if}

@@ -19,9 +19,8 @@
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="reviewStageFormNotification"}
 	{include file="controllers/tab/settings/wizardMode.tpl" wizardMode=$wizardMode}
 
-	{fbvFormSection label="manager.setup.reviewLibrary" description="manager.setup.reviewLibraryDescription"}
-	{/fbvFormSection}
-
+	<h3 class="pkp_grid_title">{translate key="manager.setup.reviewLibrary"}</h3>
+	<p class="pkp_grid_description">{translate key="manager.setup.reviewLibraryDescription"}</p>
 	{url|assign:reviewLibraryGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.library.LibraryFileGridHandler" op="fetchGrid" fileType=$smarty.const.LIBRARY_FILE_TYPE_REVIEW}
 	{load_url_in_div id="reviewLibraryGridDiv" url=$reviewLibraryGridUrl}
 

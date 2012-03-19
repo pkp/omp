@@ -8,9 +8,8 @@
  *
  *}
 
-<div class="pkp_form">
-	{fbvFormSection label="manager.setup.genres" description="manager.setup.genresDescription"}
-		{url|assign:genresUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.genre.GenreGridHandler" op="fetchGrid"}
-		{load_url_in_div id="genresContainer" url=$genresUrl}
-	{/fbvFormSection}
-</div>
+<h3 class="pkp_grid_title">{translate key="manager.setup.genres"}</h3>
+<p class="pkp_grid_description">{translate key="manager.setup.genresDescription"}</p>
+
+{url|assign:genresUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.genre.GenreGridHandler" op="fetchGrid"}
+{load_url_in_div id="genresContainer" url=$genresUrl}

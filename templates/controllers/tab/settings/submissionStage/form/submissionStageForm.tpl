@@ -19,17 +19,16 @@
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="submissionsStageFormNotification"}
 
 	<div {if $wizardMode}class="pkp_form_hidden"{/if}>
-		{fbvFormSection label="manager.setup.submissionLibrary" description="manager.setup.submissionLibraryDescription"}
-			{url|assign:submissionLibraryUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.library.LibraryFileGridHandler" op="fetchGrid" fileType=$smarty.const.LIBRARY_FILE_TYPE_SUBMISSION}
-			{load_url_in_div id="submissionLibraryGridDiv" url=$submissionLibraryUrl}
-		{/fbvFormSection}
+		<h3 class="pkp_grid_title">{translate key="manager.setup.submissionLibrary"}</h3>
+		<p class="pkp_grid_description">{translate key="manager.setup.submissionLibraryDescription"}</p>
+		{url|assign:submissionLibraryUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.library.LibraryFileGridHandler" op="fetchGrid" fileType=$smarty.const.LIBRARY_FILE_TYPE_SUBMISSION}
+		{load_url_in_div id="submissionLibraryGridDiv" url=$submissionLibraryUrl}
 	</div>
 
 	<div class="separator"></div>
 
-	{fbvFormSection label="manager.setup.submissionPreparationChecklist" description="manager.setup.submissionPreparationChecklistDescription"}
-	{/fbvFormSection}
-
+	<h3 class="pkp_grid_title">{translate key="manager.setup.submissionPreparationChecklist"}</h3>
+	<p class="pkp_grid_description">{translate key="manager.setup.submissionPreparationChecklistDescription"}</p>
 	{url|assign:submissionChecklistGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.submissionChecklist.SubmissionChecklistGridHandler" op="fetchGrid"}
 	{load_url_in_div id="submissionChecklistGridDiv" url=$submissionChecklistGridUrl}
 
