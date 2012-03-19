@@ -14,6 +14,28 @@
 <div class="pkp_structure_foot">
 </div><!-- pkp_structure_foot -->
 
+{if $footerCategories|@count > 0}{* include a subfoot section if there are footer link categories defined *}
+	<div class="pkp_structure_subfoot">
+		<div class="pkp_structure_content">
+			{foreach from=$footerCategories item=category name=loop}
+				{assign var=links value=$category->getLinks()}
+				<div class="unit size1of{$footerCategories|@count} {if $smarty.foreach.loop.last}lastUnit{/if}">
+					<h4>{$category->getLocalizedTitle()}</h4>
+					<ul>
+						{foreach from=$links item=link}
+							<li><a href="{$link->getUrl()}">{$link->getLocalizedTitle()}</a></li>
+						{/foreach}
+						{if $links|@count < $maxLinks}
+							{section name=padding start=$links|@count loop=$maxLinks step=1}
+								<li>&nbsp;</li>
+							{/section}
+						{/if}
+					</ul>
+				</div>
+			{/foreach}
+		</div><!-- pkp_structure_content -->
+	</div><!-- pkp_structure_subfoot -->
+{/if}
 <div class="pkp_structure_subfoot">
 	<div class="pkp_structure_content">
 		<div class="unit size1of3">

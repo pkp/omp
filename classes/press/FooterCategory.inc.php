@@ -104,6 +104,16 @@ class FooterCategory extends DataObject {
 	function setDescription($description, $locale) {
 		return $this->setData('description', $description, $locale);
 	}
+
+	/**
+	 * Retrieve the links in this category.
+	 * @return array
+	 */
+	function getLinks() {
+		$footerLinkDao =& DAORegistry::getDAO('FooterLinkDAO');
+		$footerLinks =& $footerLinkDao->getByCategoryId($this->getId(), $this->getPressId());
+		return $footerLinks->toArray();
+	}
 }
 
 ?>

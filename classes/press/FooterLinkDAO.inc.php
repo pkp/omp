@@ -225,5 +225,30 @@ class FooterLinkDAO extends DAO {
 	function getInsertFooterLinkId() {
 		return $this->getInsertId('footerlinks', 'footerlink_id');
 	}
+
+	/**
+	 * Retrieve the maximum number of links in any category, by press id.
+	 * @param int $pressId
+	 * @return int
+	 */
+	function getLargestCategoryTotalByPressId($pressId) {
+		$result =& $this->retrieve(
+			'SELECT count(*) AS total
+			FROM footerlinks
+			WHERE press_id = ? GROUP BY footer_category_id
+			ORDER BY total DESC LIMIT 1', array((int)$pressId));
+
+		$returner = null;
+		if ($result->RecordCount() != 0) {
+			$row =& $result->GetRowAssoc(false);
+			$returner = $row['total'];
+		}
+
+		$result->Close();
+		unset($result);
+
+		return $returner;
+
+	}
 }
 ?>
