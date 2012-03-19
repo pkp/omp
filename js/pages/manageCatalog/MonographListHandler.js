@@ -197,7 +197,7 @@
 				.find('ul.pkp_manageCatalog_monographList');
 
 		// In case the list has changed sort order, re-sort it.
-		$listContainer.find('li').sortElements(function(aNode, bNode) {
+		$listContainer.children('li').sortElements(function(aNode, bNode) {
 			var a = $.pkp.classes.Handler.getHandler($(aNode));
 			var b = $.pkp.classes.Handler.getHandler($(bNode));
 
