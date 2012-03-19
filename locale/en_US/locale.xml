@@ -624,4 +624,7 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<!-- Debug messages -->
 	<message key="debug.notes.currencyListLoad">Loaded currency list "{$filename}" from XML</message>
 	<message key="debug.notes.helpMappingLoad">Reloaded XML help mapping file {$filename} in search of {$id}.</message>
+	
+	<!-- RT Entities -->
+	<message key="rt.metadata.pkp.peerReviewed">Peer-reviewed Article</message>
 </locale>
