@@ -153,6 +153,10 @@
 	<message key="grid.content.spotlights.form.location">Spotlight Location</message>
 	<message key="grid.content.spotlights.form.item">Featured Item</message>
 	<message key="grid.content.spotlights.form.type.book">Book</message>
+	<message key="grid.content.spotlights.itemRequired">An item is required.</message>
+	<message key="grid.content.spotlights.titleRequired">A spotlight title is required.</message>
+	<message key="grid.content.spotlights.typeRequired">A type of item must be chosen.</message>
+	<message key="grid.content.spotlights.locationRequired">Please choose a location for this spotlight.</message>
 
 	<!-- Content Management - Footer grid keys -->
 	<message key="grid.content.navigation.footer">Footer</message>

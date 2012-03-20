@@ -36,6 +36,7 @@ class SpotlightForm extends Form {
 		$this->_spotlightId = $spotlightId;
 		$this->_pressId = $pressId;
 
+		$this->addCheck(new FormValidatorCustom($this, 'assocId', 'required', 'grid.content.spotlights.itemRequired', create_function('$assocId, $form', 'return is_numeric($assocId) && $assocId > 0;'), array(&$this)));
 		$this->addCheck(new FormValidator($this, 'title', 'required', 'grid.content.spotlights.titleRequired'));
 		$this->addCheck(new FormValidator($this, 'type', 'required', 'grid.content.spotlights.typeRequired'));
 		$this->addCheck(new FormValidator($this, 'location', 'required', 'grid.content.spotlights.locationRequired'));
