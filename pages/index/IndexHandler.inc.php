@@ -105,6 +105,15 @@ class IndexHandler extends Handler {
 
 		// Disable announcements if enabled.
 		$enableAnnouncements = $press->getSetting('enableAnnouncements');
+		if ($enableAnnouncements) {
+			$enableAnnouncementsHomepage = $press->getSetting('enableAnnouncementsHomepage');
+			if ($enableAnnouncementsHomepage) {
+				$templateMgr->assign('enableAnnouncementsHomepage', true);
+				$announcementsDao =& DAORegistry::getDAO('AnnouncementDAO');
+				$announcements =& $announcementsDao->getAnnouncementsNotExpiredByAssocId(ASSOC_TYPE_PRESS, $press->getId());
+				$templateMgr->assign_by_ref('announcements', $announcements);
+			}
+		}
 
 		// Include footer links if they have been defined.
 		$footerCategoryDao =& DAORegistry::getDAO('FooterCategoryDAO');
