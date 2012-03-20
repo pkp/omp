@@ -249,7 +249,7 @@
 				.find('ul.pkp_manageCatalog_monographList');
 
 		// Store the provided sequences in each entry
-		$listContainer.find('li').each(function(index, node) {
+		$listContainer.children('li').each(function(index, node) {
 			var handler = $.pkp.classes.Handler.getHandler($(node));
 			var newSequence = newSequences[handler.getId()];
 			if (newSequence) {
