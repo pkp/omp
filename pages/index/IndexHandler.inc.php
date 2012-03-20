@@ -103,7 +103,7 @@ class IndexHandler extends Handler {
 		// Display creative commons logo/licence if enabled.
 		$templateMgr->assign('displayCreativeCommons', $press->getSetting('includeCreativeCommons'));
 
-		// Disable announcements if enabled.
+		// Display announcements if enabled.
 		$enableAnnouncements = $press->getSetting('enableAnnouncements');
 		if ($enableAnnouncements) {
 			$enableAnnouncementsHomepage = $press->getSetting('enableAnnouncementsHomepage');
@@ -114,6 +114,11 @@ class IndexHandler extends Handler {
 				$templateMgr->assign_by_ref('announcements', $announcements);
 			}
 		}
+
+		// Include any spotlight items for the press home page.
+		$spotlightDao =& DAORegistry::getDAO('SpotlightDAO');
+		$spotlights =& $spotlightDao->getByLocationAndPressId(SPOTLIGHT_LOCATION_HOMEPAGE, $press->getId());
+		$templateMgr->assign_by_ref('spotlights', $spotlights->toArray());
 
 		// Include footer links if they have been defined.
 		$footerCategoryDao =& DAORegistry::getDAO('FooterCategoryDAO');
