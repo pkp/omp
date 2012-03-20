@@ -34,7 +34,7 @@
 <div id="paymentMethodContainerDiv">
 	<form class="pkp_form" id="selectPaymentMethodForm">
 		{fbvFormArea id="paymentMethod"}
-			{fbvFormSection title="manager.paymentMethod.method" description="manager.paymentMethod.description" label="manager.paymentMethod.title"}
+			{fbvFormSection label="manager.paymentMethod.method" description="manager.paymentMethod.description"}
 				{fbvElement type="select" id="pluginSelect" from=$pluginNames translate=false}
 			{/fbvFormSection}
 		{/fbvFormArea}
@@ -44,6 +44,12 @@
 	<input type="hidden" name="paymentPluginName" id="paymentPluginName" />
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="paymentFormNotification"}
 	{include file="controllers/tab/settings/wizardMode.tpl" wizardMode=$wizardMode}
+
+	{fbvFormArea id="selectcurrency"}
+		{fbvFormSection label="manager.paymentMethod.currency" description="manager.paymentMethod.currency.description" inline=true size=$fbvStyles.size.MEDIUM}
+			{fbvElement required="true" type="select" id="pressCurrency" from=$currencies selected=$pressCurrency translate=false}
+		{/fbvFormSection}
+	{/fbvFormArea}
 
 	<div id="paymentMethodFormContainer">
 		{* The form will be loaded into this container *}

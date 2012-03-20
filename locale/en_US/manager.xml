@@ -214,6 +214,8 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.paymentMethod.description">Choose from the list of available payment methods below.</message>
 	<message key="manager.paymentMethod.none">No payment method selected</message>
 	<message key="manager.paymentMethod.method">Payment Method</message>
+	<message key="manager.paymentMethod.currency">Currency</message>
+	<message key="manager.paymentMethod.currency.description">Payments made directly through this website will be denominated in the selected currency.</message>
 
 	<!-- System setup -->
 	<message key="manager.system">System Settings</message>
