@@ -241,8 +241,6 @@ class FooterCategoryDAO extends DAO {
 	 * @return DAOResultFactory containing FooterCategory ordered by sequence
 	 */
 	function &getByPressId($pressId, $rangeInfo = null) {
-		// The strange ORDER BY clause is to return subcategories
-		// immediately after their parent category's entry.
 		$result =& $this->retrieveRange(
 			'SELECT *
 			FROM footer_categories
@@ -256,8 +254,7 @@ class FooterCategoryDAO extends DAO {
 
 	/**
 	 * Retrieve the number of categories for a press.
-	 * @return DAOResultFactory containing FooterCategory ordered by sequence
-	 * Used primarily for making sure that press managers do not add more than four footer categories.
+	 * @return int
 	 */
 	function &getCountByPressId($pressId) {
 		$result =& $this->retrieve(
