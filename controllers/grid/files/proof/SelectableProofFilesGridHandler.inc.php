@@ -35,6 +35,22 @@ class SelectableProofFilesGridHandler extends SelectableFileListGridHandler {
 		// Set the grid title.
 		$this->setTitle('editor.monograph.proofs');
 	}
+
+	/**
+	 * Get the already-available proof file IDs.
+	 * @return array(int $fileId, int $fileId, ...)
+	 */
+	function getSelectedFileIds($submissionFiles) {
+		$selectedFileIds = array();
+		foreach ($submissionFiles as $id => $submissionFileData) {
+			$submissionFile =& $submissionFileData['submissionFile'];
+			if ($submissionFile->getViewable()) {
+				$selectedFileIds[] = $id;
+			}
+			unset($submissionFile);
+		}
+		return $selectedFileIds;
+	}
 }
 
 ?>

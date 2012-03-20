@@ -85,7 +85,7 @@ class NotifyUsersListbuilderHandler extends ListbuilderHandler {
 		// Name column
 		$nameColumn = new ListbuilderGridColumn($this, 'name', 'common.name');
 		import('controllers.listbuilder.users.UserListbuilderGridCellProvider');
-		$cellProvider =& new UserListbuilderGridCellProvider();
+		$cellProvider = new UserListbuilderGridCellProvider();
 		$nameColumn->setCellProvider($cellProvider);
 		$this->addColumn($nameColumn);
 	}

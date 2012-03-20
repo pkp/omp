@@ -58,7 +58,7 @@ class ReviewCategoryGridDataProvider extends SubmissionFilesCategoryGridDataProv
 		// This category grid data provider will use almost all the
 		// same implementation of the ReviewGridDataProvider.
 		import('controllers.grid.files.review.ReviewGridDataProvider');
-		$reviewFilesGridDataProvider =& new ReviewGridDataProvider($fileStage);
+		$reviewFilesGridDataProvider = new ReviewGridDataProvider($fileStage);
 		$reviewFilesGridDataProvider->setViewableOnly($initParams['viewableOnly']);
 
 		return $reviewFilesGridDataProvider;

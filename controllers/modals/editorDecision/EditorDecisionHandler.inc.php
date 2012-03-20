@@ -256,15 +256,12 @@ class EditorDecisionHandler extends Handler {
 	 */
 	function approveProofs($args, &$request) {
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-		$stageId = $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
 
-		// TODO: implement init and display the ApproveProofsForm
-		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->assign('monographId', $monograph->getId());
-		$templateMgr->assign('stageId', $stageId);
-
-		$templateMgr->assign('publicationFormatId', $request->getUserVar('publicationFormatId'));
-		return $templateMgr->fetchJson('controllers/modals/editorDecision/form/approveProofsForm.tpl');
+		import('controllers.modals.editorDecision.form.ApproveProofsForm');
+		$approveProofsForm = new ApproveProofsForm($monograph, $request->getUserVar('publicationFormatId'));
+		$approveProofsForm->initData($args, $request);
+		$json = new JSONMessage(true, $approveProofsForm->fetch($request));
+		return $json->getString();
 	}
 
 	/**
@@ -273,8 +270,16 @@ class EditorDecisionHandler extends Handler {
 	 * @param $request PKPRequest
 	 */
 	function saveApproveProofs($args, &$request) {
-		// TODO: implement and execute the ApproveProofsForm
-		$json = new JSONMessage(true);
+		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		import('controllers.modals.editorDecision.form.ApproveProofsForm');
+		$approveProofsForm = new ApproveProofsForm($monograph, $request->getUserVar('publicationFormatId'));
+		$approveProofsForm->readInputData();
+		if ($approveProofsForm->validate()) {
+			$approveProofsForm->execute();
+			$json = new JSONMessage(true);
+		} else {
+			$json = new JSONMessage(true, $approveProofsForm->fetch($request));
+		}
 		return $json->getString();
 	}
 

@@ -325,7 +325,7 @@ class FileUploadWizardHandler extends FileManagementHandler {
 				// Remove pending revisions task notification, if any.
 				if ($uploadedFile->getFileStage() == MONOGRAPH_FILE_REVIEW_REVISION) {
 					$stageId = $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
-					$notificationMgr =& new NotificationManager(); /* @var $notificationMgr NotificationManager */
+					$notificationMgr = new NotificationManager(); /* @var $notificationMgr NotificationManager */
 					$user =& $request->getUser();
 					$notificationMgr->deletePendingRevisionsNotification($request, $monograph, $stageId, $user->getId());
 				}

@@ -160,7 +160,7 @@ database_charset = Off
 
 ; Enable character normalization to utf-8 (recommended)
 ; If disabled, strings will be passed through in their native encoding
-charset_normalization = On
+charset_normalization = Off
 
 ;;;;;;;;;;;;;;;;;
 ; File Settings ;
@@ -206,7 +206,7 @@ force_login_ssl = Off
 ; This check will invalidate a session if the user's IP address changes.
 ; Enabling this option provides some amount of additional security, but may
 ; cause problems for users behind a proxy farm (e.g., AOL).
-session_check_ip = On
+session_check_ip = Off
 
 ; The encryption (hashing) algorithm to use for encrypting user passwords
 ; Valid values are: md5, sha1

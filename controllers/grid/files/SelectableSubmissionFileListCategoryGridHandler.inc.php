@@ -36,7 +36,7 @@ class SelectableSubmissionFileListCategoryGridHandler extends CategoryGridHandle
 	 *  FILE_GRID_* capabilities set.
 	 */
 	function SelectableSubmissionFileListCategoryGridHandler(&$dataProvider, $stageId, $capabilities) {
-		$handlerImplementation =& new SelectableFileListGridHandlerImplementation($this, $stageId, $capabilities);
+		$handlerImplementation = new SelectableFileListGridHandlerImplementation($this, $stageId, $capabilities);
 		$handlerImplementation->_canManage = (boolean)($capabilities & FILE_GRID_MANAGE);
 
 		$this->_handlerImplementation = $handlerImplementation;
@@ -299,18 +299,19 @@ class SelectableSubmissionFileListCategoryGridHandler extends CategoryGridHandle
 	 */
 	function getSelectedFileIds($submissionFiles) {
 		// Set the already selected elements of the grid (the current review files).
-		$selectedRevisions = array();
+		$selectedFileIds = array();
 
 		// Include only the files marked viewable
 		foreach ($submissionFiles as $id => $submissionFileData) {
 			$submissionFile =& $submissionFileData['submissionFile'];
 			if ($submissionFile->getViewable()) {
-				$selectedRevisions[$id] =& $submissionFile;
+				$selectedFileIds[] = $id;
 			}
+			unset($submissionFile);
 		}
 
 		// Return the IDs
-		return array_keys($selectedRevisions);
+		return $selectedFileIds;
 	}
 
 	/**

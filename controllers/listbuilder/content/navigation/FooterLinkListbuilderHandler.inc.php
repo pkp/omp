@@ -94,7 +94,7 @@ class FooterLinkListbuilderHandler extends SetupListbuilderHandler {
 		$rowData = $this->getNewRowId($request);
 		import('controllers.grid.content.navigation.form.FooterCategoryForm');
 		$press =& $request->getPress();
-		$footerCategoryForm =& new FooterCategoryForm($press->getId());
+		$footerCategoryForm = new FooterCategoryForm($press->getId());
 		$footerLink =& $footerCategoryForm->getFooterLinkFromRowData($request, $rowData);
 
 		return $footerLink;

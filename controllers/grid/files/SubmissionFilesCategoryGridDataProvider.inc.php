@@ -182,7 +182,7 @@ class SubmissionFilesCategoryGridDataProvider extends CategoryGridDataProvider {
 		// By default, this category grid data provider use the
 		// SubmissionFilesGridDataProvider.
 		import('controllers.grid.files.SubmissionFilesGridDataProvider');
-		$gridDataProvider =& new SubmissionFilesGridDataProvider($fileStage);
+		$gridDataProvider = new SubmissionFilesGridDataProvider($fileStage);
 
 		return $gridDataProvider;
 	}

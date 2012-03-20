@@ -36,7 +36,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 		if (is_null($gridHandlerImplementationClass)) {
 			$gridHandlerImplementationClass = 'SubmissionFilesGridHandlerImplementation';
 		}
-		$handlerImplementation =& new $gridHandlerImplementationClass($this, $stageId, $capabilities);
+		$handlerImplementation = new $gridHandlerImplementationClass($this, $stageId, $capabilities);
 
 		if (is_a($handlerImplementation, 'SubmissionFilesGridHandlerImplementation')) {
 			$this->setHandlerImplementation($handlerImplementation);
