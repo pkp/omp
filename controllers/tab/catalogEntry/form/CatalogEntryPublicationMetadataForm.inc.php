@@ -73,6 +73,11 @@ class CatalogEntryPublicationMetadataForm extends Form {
 
 		$onixCodelistItemDao =& DAORegistry::getDAO('ONIXCodelistItemDAO');
 
+		// Check if e-commerce is available
+		import('classes.payment.omp.OMPPaymentManager');
+		$ompPaymentManager = new OMPPaymentManager($request);
+		$templateMgr->assign('paymentConfigured', $ompPaymentManager->isConfigured());
+
 		// get the lists associated with the select elements on these publication format forms.
 		$codes = array(
 			'productCompositionCodes' => 'List2', // single item, multiple item, trade-only, etc

@@ -20,12 +20,16 @@ import('lib.pkp.classes.payment.PaymentManager');
 define('PAYMENT_TYPE_PURCHASE_PUBLICATION_FORMAT',	0x000000001);
 
 class OMPPaymentManager extends PaymentManager {
+	/** @var $press Press */
+	var $press;
+
 	/**
 	 * Constructor
 	 * @param $request PKPRequest
 	 */
 	function OMPPaymentManager(&$request) {
 		parent::PaymentManager($request);
+		$this->press =& $request->getPress();
 	}
 
 	/**
@@ -33,7 +37,7 @@ class OMPPaymentManager extends PaymentManager {
 	 * @return boolean true iff configured
 	 */
 	function isConfigured() {
-		return parent::isConfigured();
+		return parent::isConfigured() && $this->press && $this->press->getSetting('pressCurrency');
 	}
 
 	/**
@@ -70,8 +74,8 @@ class OMPPaymentManager extends PaymentManager {
 	 * @param $press Press
 	 * @return PaymentPlugin
 	 */
-	function &getPaymentPlugin($press) {
-		$paymentMethodPluginName = $press->getSetting('paymentMethodPluginName');
+	function &getPaymentPlugin() {
+		$paymentMethodPluginName = $this->press->getSetting('paymentPluginName');
 		$paymentMethodPlugin = null;
 		if (!empty($paymentMethodPluginName)) {
 			$plugins =& PluginRegistry::loadCategory('paymethod');

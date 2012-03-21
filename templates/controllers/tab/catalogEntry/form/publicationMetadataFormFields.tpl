@@ -31,6 +31,11 @@
 		{/fbvFormSection}
 	{/fbvFormArea}
 
+	{* E-commerce settings *}
+	{if $paymentConfigured}
+		{* Present prices and checkboxes for each approved proof *}
+	{/if}
+
 	{fbvFormArea id="productIdentifier"}
 		{fbvFormSection}
 			<!-- Product Identification Codes -->
