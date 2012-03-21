@@ -74,7 +74,7 @@ jQuery.pkp.controllers.tab.catalogEntry = jQuery.pkp.controllers.tab.catalogEntr
 			function(sourceElement, event) {
 
 		var $updateSourceElement = $(event.target);
-		if ($updateSourceElement.attr('id') == 'formatsGridContainer') {
+		if ($updateSourceElement.attr('id').match('/^formatsGridContainer/')) {
 
 			if (this.tabsUrl_ && this.tabContentUrl_) {
 				var $element = this.getHtmlElement();

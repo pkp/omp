@@ -39,7 +39,7 @@
 				{fbvFormSection}
 					<!--  Formats -->
 					{url|assign:formatGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.catalogEntry.PublicationFormatGridHandler" op="fetchGrid" monographId=$monograph->getId()}
-					{load_url_in_div id="formatsGridContainer" url="$formatGridUrl"}
+					{load_url_in_div id="formatsGridContainer"|uniqid url=$formatGridUrl}
 				{/fbvFormSection}
 			{/fbvFormArea}
 		</div>
