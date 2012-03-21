@@ -74,48 +74,20 @@ class CatalogEntryPublicationMetadataForm extends Form {
 		$onixCodelistItemDao =& DAORegistry::getDAO('ONIXCodelistItemDAO');
 
 		// get the lists associated with the select elements on these publication format forms.
-
 		$codes = array(
-				'productCompositionCodes' => 'List2', // single item, multiple item, trade-only, etc
-				'measurementUnitCodes' => 'List50', // grams, inches, millimeters
-				'weightUnitCodes' => 'List95', // pounds, grams, ounces
-				'measurementTypeCodes' => 'List48', // height, width, depth
-				'productFormDetailCodes' => 'List175', // refinement of product form (SACD, Mass market (rack) paperback, etc)
-				'productAvailabilityCodes' => 'List65', // Available, In Stock, Print On Demand, Not Yet Available, etc
-				'technicalProtectionCodes' => 'List144', // None, DRM, Apple DRM, etc
-				'returnableIndicatorCodes' => 'List66', // No, not returnable, Yes, full copies only, (required for physical items only)
-				'countriesIncludedCodes' => 'List91', // country region codes
-				);
+			'productCompositionCodes' => 'List2', // single item, multiple item, trade-only, etc
+			'measurementUnitCodes' => 'List50', // grams, inches, millimeters
+			'weightUnitCodes' => 'List95', // pounds, grams, ounces
+			'measurementTypeCodes' => 'List48', // height, width, depth
+			'productFormDetailCodes' => 'List175', // refinement of product form (SACD, Mass market (rack) paperback, etc)
+			'productAvailabilityCodes' => 'List65', // Available, In Stock, Print On Demand, Not Yet Available, etc
+			'technicalProtectionCodes' => 'List144', // None, DRM, Apple DRM, etc
+			'returnableIndicatorCodes' => 'List66', // No, not returnable, Yes, full copies only, (required for physical items only)
+			'countriesIncludedCodes' => 'List91', // country region codes
+		);
 
 		foreach ($codes as $templateVarName => $list) {
 			$templateMgr->assign_by_ref($templateVarName, $onixCodelistItemDao->getCodes($list));
-		}
-
-		$publicationFormatId =& $this->getPublicationFormatId();
-		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
-		$publicationFormat =& $publicationFormatDao->getById($publicationFormatId);
-
-		if ($publicationFormat) {
-			// assign template variables, provide defaults for new formats
-			$templateMgr->assign('fileSize', $publicationFormat->getFileSize());
-			$templateMgr->assign('frontMatter', $publicationFormat->getFrontMatter());
-			$templateMgr->assign('backMatter', $publicationFormat->getBackMatter());
-			$templateMgr->assign('height', $publicationFormat->getHeight());
-			$templateMgr->assign('heightUnitCode', $publicationFormat->getHeightUnitCode() != '' ? $publicationFormat->getHeightUnitCode() : 'mm');
-			$templateMgr->assign('width', $publicationFormat->getWidth());
-			$templateMgr->assign('widthUnitCode', $publicationFormat->getWidthUnitCode() != '' ? $publicationFormat->getWidthUnitCode() : 'mm');
-			$templateMgr->assign('thickness', $publicationFormat->getThickness());
-			$templateMgr->assign('thicknesUnitCode', $publicationFormat->getThicknessUnitCode() != '' ? $publicationFormat->getThicknessUnitCode() : 'mm');
-			$templateMgr->assign('weight', $publicationFormat->getWeight());
-			$templateMgr->assign('weightUnitCode', $publicationFormat->getWeightUnitCode() != '' ? $publicationFormat->getWeightUnitCode() : 'gr');
-			$templateMgr->assign('productCompositionCode', $publicationFormat->getProductCompositionCode());
-			$templateMgr->assign('productFormDetailCode', $publicationFormat->getProductFormDetailCode());
-			$templateMgr->assign('countryManufactureCode', $publicationFormat->getCountryManufactureCode() != '' ? $publicationFormat->getCountryManufactureCode() : 'CA');
-			$templateMgr->assign('imprint', $publicationFormat->getImprint());
-			$templateMgr->assign('productAvailabilityCode', $publicationFormat->getProductAvailabilityCode() != '' ? $publicationFormat->getProductAvailabilityCode() : '20');
-			$templateMgr->assign('technicalProtectionCode', $publicationFormat->getTechnicalProtectionCode() != '' ? $publicationFormat->getTechnicalProtectionCode() : '00');
-			$templateMgr->assign('returnableIndicatorCode', $publicationFormat->getReturnableIndicatorCode() != '' ? $publicationFormat->getReturnableIndicatorCode() : 'Y');
-			$templateMgr->assign('isAvailable', $publicationFormat->getIsAvailable()?true:false);
 		}
 
 		return parent::fetch($request);
@@ -126,9 +98,35 @@ class CatalogEntryPublicationMetadataForm extends Form {
 	 */
 	function initData() {
 		AppLocale::requireComponents(
-				LOCALE_COMPONENT_APPLICATION_COMMON,
-				LOCALE_COMPONENT_PKP_SUBMISSION,
-				LOCALE_COMPONENT_OMP_SUBMISSION
+			LOCALE_COMPONENT_APPLICATION_COMMON,
+			LOCALE_COMPONENT_PKP_SUBMISSION,
+			LOCALE_COMPONENT_OMP_SUBMISSION
+		);
+
+		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
+		$monograph =& $this->getMonograph();
+		$publicationFormat =& $publicationFormatDao->getById($this->getPublicationFormatId(), $monograph->getId());
+
+		if ($publicationFormat) $this->_data = array(
+			'fileSize' => $publicationFormat->getFileSize(),
+			'frontMatter' => $publicationFormat->getFrontMatter(),
+			'backMatter' => $publicationFormat->getBackMatter(),
+			'height' => $publicationFormat->getHeight(),
+			'heightUnitCode' => $publicationFormat->getHeightUnitCode() != '' ? $publicationFormat->getHeightUnitCode() : 'mm',
+			'width' => $publicationFormat->getWidth(),
+			'widthUnitCode' => $publicationFormat->getWidthUnitCode() != '' ? $publicationFormat->getWidthUnitCode() : 'mm',
+			'thickness' => $publicationFormat->getThickness(),
+			'thicknesUnitCode' => $publicationFormat->getThicknessUnitCode() != '' ? $publicationFormat->getThicknessUnitCode() : 'mm',
+			'weight' => $publicationFormat->getWeight(),
+			'weightUnitCode' => $publicationFormat->getWeightUnitCode() != '' ? $publicationFormat->getWeightUnitCode() : 'gr',
+			'productCompositionCode' => $publicationFormat->getProductCompositionCode(),
+			'productFormDetailCode' => $publicationFormat->getProductFormDetailCode(),
+			'countryManufactureCode' => $publicationFormat->getCountryManufactureCode() != '' ? $publicationFormat->getCountryManufactureCode() : 'CA',
+			'imprint' => $publicationFormat->getImprint(),
+			'productAvailabilityCode' => $publicationFormat->getProductAvailabilityCode() != '' ? $publicationFormat->getProductAvailabilityCode() : '20',
+			'technicalProtectionCode' => $publicationFormat->getTechnicalProtectionCode() != '' ? $publicationFormat->getTechnicalProtectionCode() : '00',
+			'returnableIndicatorCode' => $publicationFormat->getReturnableIndicatorCode() != '' ? $publicationFormat->getReturnableIndicatorCode() : 'Y',
+			'isAvailable' => (bool) $publicationFormat->getIsAvailable(),
 		);
 	}
 
@@ -137,26 +135,26 @@ class CatalogEntryPublicationMetadataForm extends Form {
 	 */
 	function readInputData() {
 		$vars = array(
-					'fileSize',
-					'frontMatter',
-					'backMatter',
-					'height',
-					'heightUnitCode',
-					'width',
-					'widthUnitCode',
-					'thickness',
-					'thicknessUnitCode',
-					'weight',
-					'weightUnitCode',
-					'productCompositionCode',
-					'productFormDetailCode',
-					'countryManufactureCode',
-					'imprint',
-					'productAvailabilityCode',
-					'technicalProtectionCode',
-					'returnableIndicatorCode',
-					'isAvailable'
-				);
+			'fileSize',
+			'frontMatter',
+			'backMatter',
+			'height',
+			'heightUnitCode',
+			'width',
+			'widthUnitCode',
+			'thickness',
+			'thicknessUnitCode',
+			'weight',
+			'weightUnitCode',
+			'productCompositionCode',
+			'productFormDetailCode',
+			'countryManufactureCode',
+			'imprint',
+			'productAvailabilityCode',
+			'technicalProtectionCode',
+			'returnableIndicatorCode',
+			'isAvailable'
+		);
 		$this->readUserVars($vars);
 	}
 
@@ -204,7 +202,7 @@ class CatalogEntryPublicationMetadataForm extends Form {
 	 * Get the Monograph
 	 * @return Monograph
 	 */
-	function getMonograph() {
+	function &getMonograph() {
 		return $this->_monograph;
 	}
 
