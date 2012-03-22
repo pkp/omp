@@ -63,6 +63,7 @@ class CatalogEntryPublicationMetadataForm extends Form {
 	 */
 	function fetch(&$request) {
 		$monograph =& $this->getMonograph();
+		$press =& $request->getPress();
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('monographId', $monograph->getId());
@@ -76,7 +77,10 @@ class CatalogEntryPublicationMetadataForm extends Form {
 		// Check if e-commerce is available
 		import('classes.payment.omp.OMPPaymentManager');
 		$ompPaymentManager = new OMPPaymentManager($request);
-		$templateMgr->assign('paymentConfigured', $ompPaymentManager->isConfigured());
+		if ($ompPaymentManager->isConfigured()) {
+			$templateMgr->assign('paymentConfigured', true);
+			$templateMgr->assign('pressCurrency', $press->getSetting('pressCurrency'));
+		}
 
 		// get the lists associated with the select elements on these publication format forms.
 		$codes = array(
@@ -111,8 +115,9 @@ class CatalogEntryPublicationMetadataForm extends Form {
 		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
 		$monograph =& $this->getMonograph();
 		$publicationFormat =& $publicationFormatDao->getById($this->getPublicationFormatId(), $monograph->getId());
+		assert($publicationFormat);
 
-		if ($publicationFormat) $this->_data = array(
+		$this->_data = array(
 			'fileSize' => $publicationFormat->getFileSize(),
 			'frontMatter' => $publicationFormat->getFrontMatter(),
 			'backMatter' => $publicationFormat->getBackMatter(),
@@ -121,7 +126,7 @@ class CatalogEntryPublicationMetadataForm extends Form {
 			'width' => $publicationFormat->getWidth(),
 			'widthUnitCode' => $publicationFormat->getWidthUnitCode() != '' ? $publicationFormat->getWidthUnitCode() : 'mm',
 			'thickness' => $publicationFormat->getThickness(),
-			'thicknesUnitCode' => $publicationFormat->getThicknessUnitCode() != '' ? $publicationFormat->getThicknessUnitCode() : 'mm',
+			'thicknessUnitCode' => $publicationFormat->getThicknessUnitCode() != '' ? $publicationFormat->getThicknessUnitCode() : 'mm',
 			'weight' => $publicationFormat->getWeight(),
 			'weightUnitCode' => $publicationFormat->getWeightUnitCode() != '' ? $publicationFormat->getWeightUnitCode() : 'gr',
 			'productCompositionCode' => $publicationFormat->getProductCompositionCode(),
@@ -139,7 +144,7 @@ class CatalogEntryPublicationMetadataForm extends Form {
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
-		$vars = array(
+		$this->readUserVars(array(
 			'fileSize',
 			'frontMatter',
 			'backMatter',
@@ -159,8 +164,7 @@ class CatalogEntryPublicationMetadataForm extends Form {
 			'technicalProtectionCode',
 			'returnableIndicatorCode',
 			'isAvailable'
-		);
-		$this->readUserVars($vars);
+		));
 	}
 
 	/**
@@ -169,35 +173,33 @@ class CatalogEntryPublicationMetadataForm extends Form {
 	function execute() {
 		parent::execute();
 
+		$monograph =& $this->getMonograph();
 		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
-		$publicationFormat =& $publicationFormatDao->getById($this->getPublicationFormatId());
+		$publicationFormat =& $publicationFormatDao->getById($this->getPublicationFormatId(), $monograph->getId());
+		assert($publicationFormat);
 
 		// populate the published monograph with the cataloging metadata
-		if (isset($publicationFormat)) {
-			$publicationFormat->setFileSize($this->getData('fileSize'));
-			$publicationFormat->setFrontMatter($this->getData('frontMatter'));
-			$publicationFormat->setBackMatter($this->getData('backMatter'));
-			$publicationFormat->setHeight($this->getData('height'));
-			$publicationFormat->setHeightUnitCode($this->getData('heightUnitCode'));
-			$publicationFormat->setWidth($this->getData('width'));
-			$publicationFormat->setWidthUnitCode($this->getData('widthUnitCode'));
-			$publicationFormat->setThickness($this->getData('thickness'));
-			$publicationFormat->setThicknessUnitCode($this->getData('thicknessUnitCode'));
-			$publicationFormat->setWeight($this->getData('weight'));
-			$publicationFormat->setWeightUnitCode($this->getData('weightUnitCode'));
-			$publicationFormat->setProductCompositionCode($this->getData('productCompositionCode'));
-			$publicationFormat->setProductFormDetailCode($this->getData('productFormDetailCode'));
-			$publicationFormat->setCountryManufactureCode($this->getData('countryManufactureCode'));
-			$publicationFormat->setImprint($this->getData('imprint'));
-			$publicationFormat->setProductAvailabilityCode($this->getData('productAvailabilityCode'));
-			$publicationFormat->setTechnicalProtectionCode($this->getData('technicalProtectionCode'));
-			$publicationFormat->setReturnableIndicatorCode($this->getData('returnableIndicatorCode'));
-			$publicationFormat->setIsAvailable($this->getData('isAvailable')?true:false);
+		$publicationFormat->setFileSize($this->getData('fileSize'));
+		$publicationFormat->setFrontMatter($this->getData('frontMatter'));
+		$publicationFormat->setBackMatter($this->getData('backMatter'));
+		$publicationFormat->setHeight($this->getData('height'));
+		$publicationFormat->setHeightUnitCode($this->getData('heightUnitCode'));
+		$publicationFormat->setWidth($this->getData('width'));
+		$publicationFormat->setWidthUnitCode($this->getData('widthUnitCode'));
+		$publicationFormat->setThickness($this->getData('thickness'));
+		$publicationFormat->setThicknessUnitCode($this->getData('thicknessUnitCode'));
+		$publicationFormat->setWeight($this->getData('weight'));
+		$publicationFormat->setWeightUnitCode($this->getData('weightUnitCode'));
+		$publicationFormat->setProductCompositionCode($this->getData('productCompositionCode'));
+		$publicationFormat->setProductFormDetailCode($this->getData('productFormDetailCode'));
+		$publicationFormat->setCountryManufactureCode($this->getData('countryManufactureCode'));
+		$publicationFormat->setImprint($this->getData('imprint'));
+		$publicationFormat->setProductAvailabilityCode($this->getData('productAvailabilityCode'));
+		$publicationFormat->setTechnicalProtectionCode($this->getData('technicalProtectionCode'));
+		$publicationFormat->setReturnableIndicatorCode($this->getData('returnableIndicatorCode'));
+		$publicationFormat->setIsAvailable($this->getData('isAvailable')?true:false);
 
-			$publicationFormatDao->updateObject($publicationFormat);
-		} else {
-			fatalError('No valid publication format!');
-		}
+		$publicationFormatDao->updateObject($publicationFormat);
 	}
 
 	//
