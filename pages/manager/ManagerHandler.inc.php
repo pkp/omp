@@ -21,6 +21,7 @@ class ManagerHandler extends Handler {
 	 */
 	function ManagerHandler() {
 		parent::Handler();
+		$this->addRoleAssignment(ROLE_ID_PRESS_MANAGER, 'index');
 	}
 
 	/**
@@ -49,6 +50,18 @@ class ManagerHandler extends Handler {
 			$subclass ? array(array($request->url(null, 'user'), 'navigation.user'), array($request->url(null, 'manager'), 'manager.pressManagement'))
 				: array(array($request->url(null, 'user'), 'navigation.user'))
 		);
+	}
+
+	/**
+	 * Default index page.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 */
+	function index($args, &$request) {
+		$this->setupTemplate($request);
+
+		$templateMgr =& TemplateManager::getManager();
+		$templateMgr->display('manager/index.tpl');
 	}
 }
 
