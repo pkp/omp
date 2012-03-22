@@ -60,7 +60,7 @@ class PublicationFormat extends DataObject {
 	 * @return numeric
 	 */
 	function getDirectSalesPrice() {
-		return $this->getData('direct_sales_price');
+		return $this->getData('directSalesPrice');
 	}
 
 	/**
