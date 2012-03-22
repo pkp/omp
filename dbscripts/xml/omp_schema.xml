@@ -250,6 +250,7 @@
 		<field name="publication_format_id" type="I8">
 			<NOTNULL />
 		</field>
+		<field name="direct_sales_price" type="F" />
 		<field name="code" type="C2" size="40">
 			<NOTNULL />
 		</field>

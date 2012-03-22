@@ -56,6 +56,22 @@ class PublicationFormat extends DataObject {
 	}
 
 	/**
+	 * Get direct sales price. Blank to disallow, 0 for open access.
+	 * @return numeric
+	 */
+	function getDirectSalesPrice() {
+		return $this->getData('direct_sales_price');
+	}
+
+	/**
+	 * Set direct sales price. Blank to disallow, 0 for open access.
+	 * @param $directSalesPrice numeric
+	 */
+	function setDirectSalesPrice($directSalesPrice) {
+		return $this->setData('directSalesPrice', $directSalesPrice);
+	}
+
+	/**
 	 * Get the ONIX code for this publication format
 	 * @return string
 	 */

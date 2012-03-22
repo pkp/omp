@@ -52,6 +52,7 @@ class CatalogEntryPublicationMetadataForm extends Form {
 		$this->_formParams = $formParams;
 
 		$this->addCheck(new FormValidator($this, 'productAvailabilityCode', 'required', 'grid.catalogEntry.productAvailabilityRequired'));
+		$this->addCheck(new FormValidatorRegExp($this, 'directSalesPrice', 'optional', 'grid.catalogEntry.validPriceRequired', '/^[0-9]*(\.[0-9]+)?$/'));
 		$this->addCheck(new FormValidator($this, 'productCompositionCode', 'required', 'grid.catalogEntry.productCompositionRequired'));
 		$this->addCheck(new FormValidatorPost($this));
 	}
@@ -137,6 +138,7 @@ class CatalogEntryPublicationMetadataForm extends Form {
 			'technicalProtectionCode' => $publicationFormat->getTechnicalProtectionCode() != '' ? $publicationFormat->getTechnicalProtectionCode() : '00',
 			'returnableIndicatorCode' => $publicationFormat->getReturnableIndicatorCode() != '' ? $publicationFormat->getReturnableIndicatorCode() : 'Y',
 			'isAvailable' => (bool) $publicationFormat->getIsAvailable(),
+			'directSalesPrice' => $publicationFormat->getDirectSalesPrice(),
 		);
 	}
 
@@ -145,6 +147,7 @@ class CatalogEntryPublicationMetadataForm extends Form {
 	 */
 	function readInputData() {
 		$this->readUserVars(array(
+			'directSalesPrice',
 			'fileSize',
 			'frontMatter',
 			'backMatter',
