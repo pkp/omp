@@ -250,7 +250,6 @@
 		<field name="publication_format_id" type="I8">
 			<NOTNULL />
 		</field>
-		<field name="direct_sales_price" type="F" />
 		<field name="code" type="C2" size="40">
 			<NOTNULL />
 		</field>
@@ -852,6 +851,7 @@
 		<field name="monograph_id" type="I8">
 			<NOTNULL/>
 		</field>
+		<field name="direct_sales_price" type="F" />
 		<field name="physical_format" type="I1">
 			<DEFAULT VALUE="1"/>
 		</field>
