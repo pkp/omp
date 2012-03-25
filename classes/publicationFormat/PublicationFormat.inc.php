@@ -20,6 +20,9 @@ class PublicationFormat extends DataObject {
 	 * Constructor.
 	 */
 	function PublicationFormat() {
+		// Switch on meta-data adapter support.
+		$this->setHasLoadableAdapters(true);
+
 		parent::DataObject();
 	}
 
@@ -331,7 +334,7 @@ class PublicationFormat extends DataObject {
 
 	/**
 	 * Get the SalesRights objects for this format.
-	 * @return Array SalesRights
+	 * @return DAOResultFactory SalesRights
 	 */
 	function getSalesRights() {
 		$salesRightsDao =& DAORegistry::getDAO('SalesRightsDAO');
@@ -341,7 +344,7 @@ class PublicationFormat extends DataObject {
 
 	/**
 	 * Get the IdentificationCode objects for this format.
-	 * @return Array IdentificationCode
+	 * @return DAOResultFactory IdentificationCode
 	 */
 	function getIdentificationCodes() {
 		$identificationCodeDao =& DAORegistry::getDAO('IdentificationCodeDAO');

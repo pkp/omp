@@ -14,7 +14,7 @@
  * @ingroup plugins_metadata_dc11_schema
  * @see PKPDc11Schema
  *
- * @brief OJS-specific implementation of the Dc11Schema.
+ * @brief OMP-specific implementation of the Dc11Schema.
  */
 
 
@@ -26,7 +26,7 @@ class Dc11Schema extends PKPDc11Schema {
 	 */
 	function Dc11Schema() {
 		// Configure the MODS schema.
-		parent::PKPDc11Schema(ASSOC_TYPE_MONOGRAPH);
+		parent::PKPDc11Schema(ASSOC_TYPE_PUBLICATION_FORMAT);
 	}
 }
 ?>

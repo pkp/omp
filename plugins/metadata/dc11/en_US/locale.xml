@@ -11,6 +11,6 @@
   -->
 
 <locale name="en_US" full_name="U.S. English">
-	<message key="plugins.metadata.dc11.monographAdapter.displayName">DC 1.1 Monograph Adapter</message>
-	<message key="plugins.metadata.dc11.monographAdapter.description">Extracts/injects meta-data from/into monographs.</message>
+	<message key="plugins.metadata.dc11.publicationFormatAdapter.displayName">DC 1.1 Publication Format Adapter</message>
+	<message key="plugins.metadata.dc11.publicationFormatAdapter.description">Extracts/injects meta-data from/into publication format.</message>
 </locale>

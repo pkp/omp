@@ -17,6 +17,9 @@ import('lib.pkp.classes.oai.PKPOAIDAO');
 
 class OAIDAO extends PKPOAIDAO {
 
+	/** @var PublicationFormatDAO */
+	var $_publicationFormatDao;
+
 	/** @var PublishedMonographDAO */
 	var $_publishedMonographDao;
 
@@ -38,6 +41,7 @@ class OAIDAO extends PKPOAIDAO {
 	function OAIDAO() {
 		parent::PKPOAIDAO();
 
+		$this->_publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
 		$this->_publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
 		$this->_seriesDao = DAORegistry::getDAO('SeriesDAO');
 		$this->_pressDao = DAORegistry::getDAO('PressDAO');
@@ -47,7 +51,7 @@ class OAIDAO extends PKPOAIDAO {
 	 * @see lib/pkp/classes/oai/PKPOAIDAO::getEarliestDatestamp()
 	 */
 	function getEarliestDatestamp($setIds) {
-		return parent::getEarliestDatestamp('SELECT	MIN(COALESCE(st.date_deleted, ms.last_modified))', $setIds);
+		return parent::getEarliestDatestamp('SELECT	MIN(COALESCE(dot.date_deleted, ms.last_modified))', $setIds);
 	}
 
 	/**
@@ -100,18 +104,18 @@ class OAIDAO extends PKPOAIDAO {
 			$abbrev = $press->getPath();
 			array_push($sets, new OAISet(urlencode($abbrev), $title, ''));
 
-			$monographTombstoneDao =& DAORegistry::getDAO('MonographTombstoneDAO');
-			$monographTombstoneSets = $monographTombstoneDao->getSets($press->getId());
+			$dataObjectTombstoneDao =& DAORegistry::getDAO('DataObjectTombstoneDAO');
+			$publicationFormatSets = $dataObjectTombstoneDao->getSets(ASSOC_TYPE_PRESS, $press->getId());
 
 			$seriesFactory =& $this->_seriesDao->getByPressId($press->getId());
 			foreach ($seriesFactory->toArray() as $series) {
-				if (array_key_exists(urlencode($abbrev) . ':' . urlencode($series->getPath()), $monographTombstoneSets)) {
-					unset($monographTombstoneSets[urlencode($abbrev) . ':' . urlencode($series->getPath())]);
+				if (array_key_exists(urlencode($abbrev) . ':' . urlencode($series->getPath()), $publicationFormatSets)) {
+					unset($publicationFormatSets[urlencode($abbrev) . ':' . urlencode($series->getPath())]);
 				}
 				array_push($sets, new OAISet(urlencode($abbrev) . ':' . urlencode($series->getPath()), $series->getLocalizedTitle(), ''));
 			}
-			foreach ($monographTombstoneSets as $monographTombstoneSetSpec => $monographTombstoneSetName) {
-				array_push($sets, new OAISet($monographTombstoneSetSpec, $monographTombstoneSetName, ''));
+			foreach ($publicationFormatSets as $publicationFormatSetSpec => $publicationFormatSetName) {
+				array_push($sets, new OAISet($publicationFormatSetSpec, $publicationFormatSetName, ''));
 			}
 		}
 
@@ -161,41 +165,44 @@ class OAIDAO extends PKPOAIDAO {
 	 * @see lib/pkp/classes/oai/PKPOAIDAO::getRecordSelectStatement()
 	 */
 	function getRecordSelectStatement() {
-		return 'SELECT	COALESCE(st.date_deleted, ms.last_modified) AS last_modified,
-			COALESCE(ms.monograph_id, st.submission_id) AS submission_id,
-			COALESCE(p.press_id, st.press_id) AS press_id,
-			COALESCE(st.series_id, s.series_id) AS series_id,
-			st.tombstone_id,
-			st.set_spec,
-			st.oai_identifier';
+		return 'SELECT	COALESCE(dot.date_deleted, ms.last_modified) AS last_modified,
+			COALESCE(pf.publication_format_id, dot.data_object_id) AS data_object_id,
+			COALESCE(p.press_id, tsop.assoc_id) AS press_id,
+			COALESCE(tsos.assoc_id, s.series_id) AS series_id,
+			dot.tombstone_id,
+			dot.set_spec,
+			dot.oai_identifier';
 	}
 
 	/**
 	 * @see lib/pkp/classes/oai/PKPOAIDAO::getRecordJoinClause()
 	 */
-	function getRecordJoinClause($monographId = null, $setIds = array(), $set = null) {
+	function getRecordJoinClause($publicationFormatId = null, $setIds = array(), $set = null) {
 		assert(is_array($setIds));
 		list($pressId, $seriesId) = $setIds;
-		return 'LEFT JOIN published_monographs pm ON (m.i=0' . (isset($monographId) ? ' AND pm.monograph_id = ?' : '') . ')
+		return 'LEFT JOIN publication_formats pf ON (m.i=0' . (isset($publicationFormatId) ? ' AND pf.publication_format_id = ?' : '') . ')
+			LEFT JOIN published_monographs pm ON (pm.monograph_id = pf.monograph_id)
 			LEFT JOIN monographs ms ON (ms.monograph_id = pm.monograph_id' . (isset($pressId) ? ' AND ms.press_id = ?' : '') . (isset($seriesId) && $seriesId != 0 ? ' AND ms.series_id = ?' : '') .')
 			LEFT JOIN series s ON (s.series_id = ms.series_id)
 			LEFT JOIN presses p ON (p.press_id = ms.press_id)
-			LEFT JOIN submission_tombstones st ON (m.i = 1' . (isset($monographId) ? ' AND st.submission_id = ?' : '') . (isset($pressId) ? ' AND st.press_id = ?' : '') . (isset($seriesId) && $seriesId != 0 ? ' AND st.series_id = ?' : '') . (isset($set) ? ' AND st.set_spec = ?' : '') .')';
+			LEFT JOIN data_object_tombstones dot ON (m.i = 1' . (isset($publicationFormatId) ? ' AND dot.data_object_id = ?' : '') . (isset($set) ? ' AND dot.set_spec = ?' : '') . ')
+			LEFT JOIN data_object_tombstone_oai_set_objects tsop ON ' . (isset($pressId) ? '(tsop.tombstone_id = dot.tombstone_id AND tsop.assoc_type = ' . ASSOC_TYPE_PRESS . ' AND tsop.assoc_id = ?)' : 'tsop.assoc_id = null') .
+			' LEFT JOIN data_object_tombstone_oai_set_objects tsos ON ' . (isset($seriesId) ? '(tsos.tombstone_id = dot.tombstone_id AND tsos.assoc_type = ' . ASSOC_TYPE_SERIES . ' AND tsos.assoc_id = ?)' : 'tsos.assoc_id = null');
 	}
 
 	/**
 	 * @see lib/pkp/classes/oai/PKPOAIDAO::getAccessibleRecordWhereClause()
 	 */
 	function getAccessibleRecordWhereClause() {
-		return 'WHERE ((s.series_id IS NOT NULL AND p.enabled = 1 AND ms.status <> ' . STATUS_ARCHIVED . ') OR st.submission_id IS NOT NULL)';
+		return 'WHERE ((s.series_id IS NOT NULL AND p.enabled = 1 AND pm.is_available = 1 AND ms.status <> ' . STATUS_ARCHIVED . ' AND pf.is_available = 1) OR dot.data_object_id IS NOT NULL)';
 	}
 
 	/**
 	 * @see lib/pkp/classes/oai/PKPOAIDAO::getDateRangeWhereClause()
 	 */
 	function getDateRangeWhereClause($from, $until) {
-		return (isset($from) ? ' AND ((st.date_deleted IS NOT NULL AND st.date_deleted >= '. $this->datetimeToDB($from) .') OR (st.date_deleted IS NULL AND a.last_modified >= ' . $this->datetimeToDB($from) .'))' : '')
-			. (isset($until) ? ' AND ((st.date_deleted IS NOT NULL AND st.date_deleted <= ' .$this->datetimeToDB($until) .') OR (st.date_deleted IS NULL AND a.last_modified <= ' . $this->datetimeToDB($until) .'))' : '')
+		return (isset($from) ? ' AND ((dot.date_deleted IS NOT NULL AND dot.date_deleted >= '. $this->datetimeToDB($from) .') OR (dot.date_deleted IS NULL AND ms.last_modified >= ' . $this->datetimeToDB($from) .'))' : '')
+			. (isset($until) ? ' AND ((dot.date_deleted IS NOT NULL AND dot.date_deleted <= ' .$this->datetimeToDB($until) .') OR (dot.date_deleted IS NULL AND ms.last_modified <= ' . $this->datetimeToDB($until) .'))' : '')
 			. ' ORDER BY press_id';
 	}
 
@@ -205,14 +212,16 @@ class OAIDAO extends PKPOAIDAO {
 	function &setOAIData(&$record, &$row, $isRecord = true) {
 		$press =& $this->getPress($row['press_id']);
 		$series =& $this->getSeries($row['series_id']);
-		$monographId = $row['submission_id'];
+		$publicationFormatId = $row['data_object_id'];
 
-		$record->identifier = $this->oai->monographIdToIdentifier($monographId);
+		$record->identifier = $this->oai->publicationFormatIdToIdentifier($publicationFormatId);
 		$record->sets = array(urlencode($press->getPath()) . ':' . urlencode($series->getPath()));
 
 		if ($isRecord) {
-			$publishedMonograph =& $this->_publishedMonographDao->getById($monographId);
-			$record->setData('monograph', $publishedMonograph);
+			$publicationFormat =& $this->_publicationFormatDao->getById($publicationFormatId);
+			$monograph =& $this->_publishedMonographDao->getById($publicationFormat->getMonographId());
+			$record->setData('publicationFormat', $publicationFormat);
+			$record->setData('monograph', $monograph);
 			$record->setData('press', $press);
 			$record->setData('series', $series);
 		}

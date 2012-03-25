@@ -1,30 +1,29 @@
 <?php
 
 /**
- * @file plugins/metadata/dc11/filter/Dc11SchemaMonographAdapter.inc.php
+ * @file plugins/metadata/dc11/filter/Dc11SchemaPublicationFormatAdapter.inc.php
  *
  * Copyright (c) 2000-2012 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class Dc11SchemaMonographAdapter
+ * @class Dc11SchemaPublicationFormatAdapter
  * @ingroup plugins_metadata_dc11_filter
- * @see Monograph
+ * @see PublicationFormat
  * @see PKPDc11Schema
  *
- * @brief Abstract base class for meta-data adapters that
- *  injects/extracts Dublin Core schema compliant meta-data into/from
- *  an PublishedMonograph object.
+ * @brief Adapter that injects/extracts Dublin Core schema compliant meta-data
+ * into/from a PublicationFormat object.
  */
 
 
 import('lib.pkp.classes.metadata.MetadataDataObjectAdapter');
 
-class Dc11SchemaMonographAdapter extends MetadataDataObjectAdapter {
+class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter {
 	/**
 	 * Constructor
 	 * @param $filterGroup FilterGroup
 	 */
-	function Dc11SchemaMonographAdapter(&$filterGroup) {
+	function Dc11SchemaPublicationFormatAdapter(&$filterGroup) {
 		parent::MetadataDataObjectAdapter($filterGroup);
 	}
 
@@ -36,7 +35,7 @@ class Dc11SchemaMonographAdapter extends MetadataDataObjectAdapter {
 	 * @see Filter::getClassName()
 	 */
 	function getClassName() {
-		return 'plugins.metadata.dc11.filter.Dc11SchemaMonographAdapter';
+		return 'plugins.metadata.dc11.filter.Dc11SchemaPublicationFormatAdapter';
 	}
 
 
@@ -46,31 +45,33 @@ class Dc11SchemaMonographAdapter extends MetadataDataObjectAdapter {
 	/**
 	 * @see MetadataDataObjectAdapter::injectMetadataIntoDataObject()
 	 * @param $dc11Description MetadataDescription
-	 * @param $monograph Monograph
+	 * @param $publicationFormat PublicationFormat
 	 * @param $authorClassName string the application specific author class name
 	 */
-	function &injectMetadataIntoDataObject(&$dc11Description, &$monograph, $authorClassName) {
+	function &injectMetadataIntoDataObject(&$dc11Description, &$publicationFormat, $authorClassName) {
 		// Not implemented
 		assert(false);
 	}
 
 	/**
 	 * @see MetadataDataObjectAdapter::extractMetadataFromDataObject()
-	 * @param $monograph Monograph
+	 * @param $publicationFormat PublicationFormat
 	 * @return MetadataDescription
 	 */
-	function &extractMetadataFromDataObject(&$monograph) {
-		assert(is_a($monograph, 'Monograph'));
+	function &extractMetadataFromDataObject(&$publicationFormat) {
+		assert(is_a($publicationFormat, 'PublicationFormat'));
 
 		AppLocale::requireComponents(LOCALE_COMPONENT_APPLICATION_COMMON);
 
-		// Retrieve data that belongs to the monograph.
+		// Retrieve data that belongs to the publication format.
 		// FIXME: Retrieve this data from the respective entity DAOs rather than
 		// from the OAIDAO once we've migrated all OAI providers to the
 		// meta-data framework. We're using the OAIDAO here because it
 		// contains cached entities and avoids extra database access if this
 		// adapter is called from an OAI context.
 		$oaiDao =& DAORegistry::getDAO('OAIDAO'); /* @var $oaiDao OAIDAO */
+		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
+		$monograph =& $publishedMonographDao->getById($publicationFormat->getMonographId());
 		$press =& $oaiDao->getPress($monograph->getPressId());
 		$series =& $oaiDao->getSeries($monograph->getSeriesId()); /* @var $series Series */
 		$dc11Description =& $this->instantiateMetadataDescription();
@@ -118,6 +119,8 @@ class Dc11SchemaMonographAdapter extends MetadataDataObjectAdapter {
 
 
 		// Date
+		// FIXME: should we use the publication dates of the publication format? If yes,
+		// in which role preference order?
 		if (is_a($monograph, 'PublishedMonograph')) {
 			if ($monograph->getDatePublished()) $dc11Description->addStatement('dc:date', date('Y-m-d', strtotime($monograph->getDatePublished())));
 		}
@@ -130,19 +133,18 @@ class Dc11SchemaMonographAdapter extends MetadataDataObjectAdapter {
 		$this->_addLocalizedElements($dc11Description, 'dc:type', $types);
 
 		// Format
-		if (is_a($monograph, 'PublishedMonograph')) {
-			$formats = array();
-			foreach ($monograph->getPublicationFormats() as $publicationFormat) {
-				$dc11Description->addStatement('dc:format', $publicationFormat->getPhysicalFormat());
-			}
-		}
+		$dc11Description->addStatement('dc:format', $publicationFormat->getPhysicalFormat());
 
 		// Identifier: URL
 		if (is_a($monograph, 'PublishedMonograph')) {
 			$dc11Description->addStatement('dc:identifier', Request::url($press->getPath(), 'catalog', 'book', array($monograph->getPubId())));
 		}
 
-		// Identifier: DOI
+		// Identifier: others
+		$identificationCodeFactory = $publicationFormat->getIdentificationCodes();
+		while ($identificationCode = $identificationCodeFactory->next()) {
+			$dc11Description->addStatement('dc:identifier', $identificationCode->getNameForONIXCode());
+		}
 
 		// Source (press title and pages)
 		$sources = $press->getName(null);
@@ -166,9 +168,12 @@ class Dc11SchemaMonographAdapter extends MetadataDataObjectAdapter {
 		$this->_addLocalizedElements($dc11Description, 'dc:coverage', $coverage);
 
 		// Rights
-		$this->_addLocalizedElements($dc11Description, 'dc:rights', $press->getSetting('copyrightNotice'));
+		$salesRightsFactory = $publicationFormat->getSalesRights();
+		while ($salesRight = $salesRightsFactory->next()) {
+			$dc11Description->addStatement('dc:rights', $salesRight->getNameForONIXCode());
+		}
 
-		Hookregistry::call('Dc11SchemaMonographAdapter::extractMetadataFromDataObject', array(&$this, $monograph, $press, &$dc11Description));
+		Hookregistry::call('Dc11SchemaPublicationFormatAdapter::extractMetadataFromDataObject', array(&$this, $monograph, $press, &$dc11Description));
 
 		return $dc11Description;
 	}

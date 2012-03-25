@@ -26,6 +26,7 @@
 	<schema file="lib/pkp/xml/schema/reviewForms.xml" />
 	<schema file="lib/pkp/xml/schema/submissions.xml" />
 	<schema file="lib/pkp/xml/schema/mutex.xml" />
+	<schema file="lib/pkp/xml/schema/tombstone.xml" />
 
 	<!-- OMP schema -->
 	<schema file="dbscripts/xml/omp_schema.xml" />

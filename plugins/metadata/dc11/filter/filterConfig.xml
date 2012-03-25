@@ -11,19 +11,19 @@
   -->
 <filterConfig>
 	<filterGroups>
-		<!-- DC 1.1 article adapters -->
+		<!-- DC 1.1 publication format adapters -->
 		<filterGroup
-			symbolic="monograph=>dc11"
-			displayName="plugins.metadata.dc11.monographAdapter.displayName"
-			description="plugins.metadata.dc11.monographAdapter.description"
-			inputType="class::classes.monograph.Monograph"
-			outputType="metadata::plugins.metadata.dc11.schema.Dc11Schema(MONOGRAPH)" />
+			symbolic="publicationFormat=>dc11"
+			displayName="plugins.metadata.dc11.publicationFormatAdapter.displayName"
+			description="plugins.metadata.dc11.publicationFormatAdapter.description"
+			inputType="class::classes.publicationFormat.PublicationFormat"
+			outputType="metadata::plugins.metadata.dc11.schema.Dc11Schema(PUBLICATION_FORMAT)" />
 	</filterGroups>
 	<filters>
-		<!-- DC 1.1 article adapters -->
+		<!-- DC 1.1 publication format adapters -->
 		<filter
-			inGroup="monograph=>dc11"
-			class="plugins.metadata.dc11.filter.Dc11SchemaMonographAdapter"
+			inGroup="publicationFormat=>dc11"
+			class="plugins.metadata.dc11.filter.Dc11SchemaPublicationFormatAdapter"
 			isTemplate="0" />
 	</filters>
 </filterConfig>

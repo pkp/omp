@@ -197,20 +197,6 @@ class CatalogEntryCatalogMetadataForm extends Form {
 			fatalError('Updating catalog metadata with no published monograph!');
 		}
 
-		if ($publishedMonograph->getIsAvailable() && !$this->getData('isAvailable')) {
-			// Monograph not available. Insert monograph tombstone
-			import('classes.monograph.MonographTombstoneManager');
-			$monographTombstoneManager = new MonographTombstoneManager();
-			$press =& $request->getPress();
-			$monographTombstoneManager->insertMonographTombstone($publishedMonograph, $press);
-		}
-
-		if (!$publishedMonograph->getIsAvailable() && $this->getData('isAvailable')) {
-			// Monograph available. Delete tombstone.
-			$monographTombstoneDao =& DAORegistry::getDAO('MonographTombstoneDAO'); /* @var $monographTombstoneDao MonographTombstoneDAO */
-			$monographTombstoneDao->deleteBySubmissionId($monograph->getId());
-		}
-
 		// Populate the published monograph with the cataloging metadata
 		$publishedMonograph->setAudience($this->getData('audience'));
 		$publishedMonograph->setAudienceRangeQualifier($this->getData('audienceRangeQualifier'));

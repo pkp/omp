@@ -62,8 +62,9 @@ class PressOAI extends OAI {
 	 * @param $monographId int
 	 * @return string
 	 */
-	function monographIdToIdentifier($monographId) {
-		return 'oai:' . $this->config->repositoryId . ':' . 'monograph/' . $monographId;
+	function publicationFormatIdToIdentifier($publicationFormatId) {
+		$prefix = $this->_getIdentifierPrefix();
+		return $prefix . $publicationFormatId;
 	}
 
 	/**
@@ -71,8 +72,8 @@ class PressOAI extends OAI {
 	 * @param $identifier string
 	 * @return int
 	 */
-	function identifierToMonographId($identifier) {
-		$prefix = 'oai:' . $this->config->repositoryId . ':' . 'monograph/';
+	function identifierToPublicationFormatId($identifier) {
+		$prefix = $this->_getIdentifierPrefix();
 		if (strstr($identifier, $prefix)) {
 			return (int) str_replace($prefix, '', $identifier);
 		} else {
@@ -122,7 +123,7 @@ class PressOAI extends OAI {
 			$info->adminEmail = $this->site->getLocalizedContactEmail();
 		}
 
-		$info->sampleIdentifier = $this->monographIdToIdentifier(1);
+		$info->sampleIdentifier = $this->publicationFormatIdToIdentifier(1);
 		$info->earliestDatestamp = $this->dao->getEarliestDatestamp(array($this->pressId));
 
 		$info->toolkitTitle = 'Open Monograph Press';
@@ -138,7 +139,7 @@ class PressOAI extends OAI {
 	 * @see OAI#validIdentifier
 	 */
 	function validIdentifier($identifier) {
-		return $this->identifierToMonographId($identifier) !== false;
+		return $this->identifierToPublicationFormatId($identifier) !== false;
 	}
 
 	/**
@@ -146,9 +147,9 @@ class PressOAI extends OAI {
 	 */
 	function identifierExists($identifier) {
 		$recordExists = false;
-		$monographId = $this->identifierToMonographId($identifier);
-		if ($monographId) {
-			$recordExists = $this->dao->recordExists($monographId, array($this->pressId));
+		$publicationFormatId = $this->identifierToPublicationFormatId($identifier);
+		if ($publicationFormatId) {
+			$recordExists = $this->dao->recordExists($publicationFormatId, array($this->pressId));
 		}
 		return $recordExists;
 	}
@@ -157,9 +158,9 @@ class PressOAI extends OAI {
 	 * @see OAI#record
 	 */
 	function &record($identifier) {
-		$monographId = $this->identifierToMonographId($identifier);
-		if ($monographId) {
-			$record =& $this->dao->getRecord($monographId, array($this->pressId));
+		$publicationFormatId = $this->identifierToPublicationFormatId($identifier);
+		if ($publicationFormatId) {
+			$record =& $this->dao->getRecord($publicationFormatId, array($this->pressId));
 		}
 		if (!isset($record)) {
 			$record = false;
@@ -231,6 +232,18 @@ class PressOAI extends OAI {
 		$token = new OAIResumptionToken(null, $offset, $params, time() + $this->config->tokenLifetime);
 		$this->dao->insertToken($token);
 		return $token;
+	}
+
+
+	//
+	// Private helper methods
+	//
+	/**
+	 * Get the OAI identifier prefix.
+	 * @return string
+	 */
+	function _getIdentifierPrefix() {
+		return 'oai:' . $this->config->repositoryId . ':' . 'publicationFormat/';
 	}
 }
 

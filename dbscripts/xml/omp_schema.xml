@@ -661,6 +661,7 @@
 			<col>editor_id</col>
 		</index>
 	</table>
+	
 	<!--
 	  *
 	  * TABLE edit_decisions
@@ -698,47 +699,7 @@
 			<col>editor_id</col>
 		</index>
 	</table>
-
-	<!--
-      *
-      * TABLE submission_tombstones
-      *
-      -->
-    <table name="submission_tombstones">
-        <field name="tombstone_id" type="I8">
-            <KEY />
-            <AUTOINCREMENT />
-        </field>
-        <field name="submission_id" type="I8">
-            <NOTNULL />
-        </field>
-        <field name="date_deleted" type="T">
-            <NOTNULL />
-        </field>
-        <field name="press_id" type="I8">
-            <NOTNULL />
-        </field>
-        <field name="series_id" type="I8">
-            <NOTNULL />
-        </field>
-        <field name="set_spec" type="C2" size="255">
-            <NOTNULL />
-        </field>
-        <field name="set_name" type="C2" size="255">
-            <NOTNULL />
-        </field>
-        <field name="oai_identifier" type="C2" size="255">
-            <NOTNULL />
-        </field>
-        <descr>Archived, removed from TOC, unscheduled or uplublished journal articles.</descr>
-		<index name="submission_tombstones_press_id">
-			<col>press_id</col>
-		</index>
-		<index name="submission_tombstones_submission_id">
-			<col>submission_id</col>
-		</index>
-	</table>
-
+	
 	<!--
 	  *
 	  * TABLE monographs
