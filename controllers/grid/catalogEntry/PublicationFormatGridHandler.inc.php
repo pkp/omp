@@ -278,9 +278,16 @@ class PublicationFormatGridHandler extends GridHandler {
 		$publicationFormatId = (int) $request->getUserVar('publicationFormatId');
 
 		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
+		$publicationFormat =& $publicationFormatDao->getById($publicationFormatId);
 		$result = $publicationFormatDao->deleteById($publicationFormatId);
 
 		if ($result) {
+			// Create a tombstone for this publication format.
+			import('classes.publicationFormat.PublicationFormatTombstoneManager');
+			$publicationFormatTombstoneMgr = new PublicationFormatTombstoneManager();
+			$press =& $request->getPress();
+			$publicationFormatTombstoneMgr->insertTombstoneByPublicationFormat($publicationFormat, $press);
+
 			$currentUser =& $request->getUser();
 			$notificationMgr = new NotificationManager();
 			$notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.removedPublicationFormat')));

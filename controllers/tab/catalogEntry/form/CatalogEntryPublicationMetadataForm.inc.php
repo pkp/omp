@@ -173,13 +173,27 @@ class CatalogEntryPublicationMetadataForm extends Form {
 	/**
 	 * Save the metadata and store the catalog data for this specific publication format.
 	 */
-	function execute() {
+	function execute(&$request) {
 		parent::execute();
 
 		$monograph =& $this->getMonograph();
 		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
 		$publicationFormat =& $publicationFormatDao->getById($this->getPublicationFormatId(), $monograph->getId());
 		assert($publicationFormat);
+
+		// Manage tombstones for the publication format.
+		if ($publicationFormat->getIsAvailable() && !$this->getData('isAvailable')) {
+			// Publication format was available and its being disabled. Create
+			// a tombstone for it.
+			$press =& $request->getPress();
+			import('classes.publicationFormat.PublicationFormatTombstoneManager');
+			$publicationFormatTombstoneMgr = new PublicationFormatTombstoneManager();
+			$publicationFormatTombstoneMgr->insertTombstoneByPublicationFormat($publicationFormat, $press);
+		} elseif (!$publicationFormat->getIsAvailable() && $this->getData('isAvailable')) {
+			// Wasn't available and now it is. Delete tombstone.
+			$tombstoneDao =& DAORegistry::getDAO('DataObjectTombstoneDAO');
+			$tombstoneDao->deleteByDataObjectId($publicationFormat->getId());
+		}
 
 		// populate the published monograph with the cataloging metadata
 		$publicationFormat->setFileSize($this->getData('fileSize'));

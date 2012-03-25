@@ -108,7 +108,18 @@ class PressSiteSettingsForm extends Form {
 		$pressDao =& DAORegistry::getDAO('PressDAO');
 
 		if (isset($this->pressId)) {
-			$press =& $pressDao->getById($this->pressId);
+			$press =& $pressDao->getById($this->pressId); /* @var $press Press */
+
+			import('classes.publicationFormat.PublicationFormatTombstoneManager');
+			$publicationFormatTombstoneMgr = new PublicationFormatTombstoneManager();
+			if ($press->getEnabled() && !$this->getData('enabled')) {
+				// Will disable the press. Create tombstones for all
+				// published monographs publication formats.
+				$publicationFormatTombstoneMgr->insertTombstonesByPress($press);
+			} elseif (!$press->getEnabled() && $this->getData('enabled')) {
+				// Will enable the press. Delete all tombstones.
+				$publicationFormatTombstoneMgr->deleteTombstonesByPressId($press->getId());
+			}
 		}
 
 		if (!isset($press)) {

@@ -192,9 +192,26 @@ class CatalogEntryCatalogMetadataForm extends Form {
 
 		$monograph =& $this->getMonograph();
 		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
-		$publishedMonograph =& $publishedMonographDao->getById($monograph->getId());
+		$publishedMonograph =& $publishedMonographDao->getById($monograph->getId()); /* @var $publishedMonograph PublishedMonograph */
 		if (!$publishedMonograph) {
 			fatalError('Updating catalog metadata with no published monograph!');
+		}
+
+		// Manage tombstones for the monograph publication formats.
+		$publicationFormats = $publishedMonograph->getPublicationFormats();
+		if ($publishedMonograph->getIsAvailable() && !$this->getData('isAvailable')) {
+			// Monograph was available and now its being disabled. Create
+			// a tombstone for all its publication formats.
+			$press =& $request->getPress();
+			import('classes.publicationFormat.PublicationFormatTombstoneManager');
+			$publicationFormatTombstoneMgr = new PublicationFormatTombstoneManager();
+			$publicationFormatTombstoneMgr->insertTombstonesByPublicationFormats($publicationFormats, $press);
+		} elseif (!$publishedMonograph->getIsAvailable() && $this->getData('isAvailable')) {
+			// Wasn't available and now it is. Delete all its publication format tombstones.
+			$tombstoneDao =& DAORegistry::getDAO('DataObjectTombstoneDAO');
+			foreach($publicationFormats as $publicationFormat) {
+				$tombstoneDao->deleteByDataObjectId($publicationFormat->getId());
+			}
 		}
 
 		// Populate the published monograph with the cataloging metadata
