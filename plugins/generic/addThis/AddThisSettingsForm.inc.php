@@ -40,7 +40,7 @@ class AddThisSettingsForm extends Form {
 	 * Get the Press.
 	 * @return Press
 	 */
-	function getPress() {
+	function &getPress() {
 		return $this->_press;
 	}
 
@@ -56,7 +56,7 @@ class AddThisSettingsForm extends Form {
 	 * Get the plugin.
 	 * @return AddThisBlockPlugin
 	 */
-	function getPlugin() {
+	function &getPlugin() {
 		return $this->_plugin;
 	}
 

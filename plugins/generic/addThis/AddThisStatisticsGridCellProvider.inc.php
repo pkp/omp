@@ -38,7 +38,7 @@ class AddThisStatisticsGridCellProvider extends DataObjectGridCellProvider {
 		assert(!empty($columnId));
 		switch ($columnId) {
 			case 'url':
-				return array('label' => '<a href="' . $element['url'] . '" target="_blank">' . $element['url'] . '</a>');
+				return array('label' => '<a href="' . String::stripUnsafeHtml($element['url']) . '" target="_blank">' . String::stripUnsafeHtml($element['url']) . '</a>');
 			case 'shares':
 				return array('label' => $element['shares']);
 		}
