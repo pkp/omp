@@ -12,7 +12,7 @@
 		<ul>
 			{foreach from=$spotlights item=spotlight}
 				{assign var="item" value=$spotlight->getSpotlightItem()}
-				{if $spotlight->getAssocType() == 3} {* SPOTLIGHT_TYPE_BOOK *}
+				{if $spotlight->getAssocType() == $smarty.const.SPOTLIGHT_TYPE_BOOK}
 					{include file="catalog/monograph.tpl" publishedMonograph=$item}
 				{/if}
 			{/foreach}
