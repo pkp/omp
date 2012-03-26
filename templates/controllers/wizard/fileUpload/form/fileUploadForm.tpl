@@ -148,7 +148,7 @@
 			<input type="hidden" name="assocId" value="{$assocId|escape}" />
 		{/if}
 		{if count($uploaderUserGroups) > 1}
-			{fbvFormSection label="submission.uploaderUserGroup" description="submission.uploaderUserGroupDescription" required=true}
+			{fbvFormSection label="submission.upload.userGroup" description="submission.upload.userGroupDescription" required=true}
 				{fbvElement type="select" name="uploaderUserGroupId" id="uploaderUserGroupId" from=$uploaderUserGroups selected=$defaultUserGroupId translate=false}
 			{/fbvFormSection}
 		{else}

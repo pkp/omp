@@ -114,6 +114,8 @@
 	<message key="submission.submit.fileNameRequired">You must enter a file name for this file</message>
 	<message key="submission.submit.fileAdded">Submission File Added</message>
 	<message key="submission.submit.newFile">Upload Another File For This Submission</message>
+	<message key="submission.submit.userGroup">Submit in my role as...</message>
+	<message key="submission.submit.userGroupDescription">If you are submitting an Edited Volume, you should choose the volume editor role.</message>
 
 	<!-- File upload wizard -->
 	<message key="submission.upload.noteToAccompanyFile">Note to accompany file</message>
@@ -126,7 +128,9 @@
 	<message key="submission.upload.selectOptionalFileToRevise">If you are uploading a revision of an existing file, please indicate which file.</message>
 	<message key="submission.upload.uploadNewFile">Do not replace an existing file</message>
 	<message key="submission.upload.fileContents">File Contents</message>
-
+	<message key="submission.upload.userGroup">Upload in my role as...</message>
+	<message key="submission.upload.userGroupDescription">If you are submitting an Edited Volume, you should upload all volume chapters individually, under your role as volume editor.</message>
+	
 	<!-- File uploads -->
 	<message key="submission.addFile">Upload Submission File</message>
 	<message key="submission.upload.finalDraft">Upload A Final Draft</message>
