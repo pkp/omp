@@ -68,7 +68,7 @@
 	<message key="submission.submit.form.localeRequired">Please select a submission language.</message>
 	<message key="submission.submit.submissionChecklist">Submission Checklist</message>
 	<message key="submission.submit.submissionChecklistDescription">The following requirements for submissions to this press need to be completed and checked off before proceeding (comments to the editor can be added below).</message>
-	<message key="submission.submit.privacyStatement">Press' Privacy Statement</message>
+	<message key="submission.submit.privacyStatement">Privacy Statement</message>
 	<message key="submission.submit.selectPrincipalContact">Principal contact for editorial correspondence.</message>
 	<message key="submission.submit.briefSummary">Brief Summary of Book</message>
 	<message key="submission.submit.addAuthor">Add Contributor</message>

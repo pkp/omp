@@ -286,7 +286,7 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.editorialProcess2">Managing Editor handles Submission Queue, and Table of Contents, while Section Editors handle Submission Review and Submission Editing.</message>
 	<message key="manager.setup.editorialProcess3">Managing Editor handles Submission Queue, Submission Editing, and Table of Contents, while the Section Editors handle Submission Review.</message>
 	<message key="manager.setup.editorialReviewBoard">Editorial / Review Board</message>
-	<message key="manager.setup.editorialReviewBoardDescription">Presses have Editorial Boards to oversee the editorial direction of the press, participate in the appointment of editors, and, by virtue of board members' reputations, give the press some standing in the field. Review Boards play a similar role but in addition, they lead the peer review process. Review Board members will not have access to the press' administrative system but will be added to the list of those available to do peer reviews.</message>
+	<message key="manager.setup.editorialReviewBoardDescription">Presses have Editorial Boards to oversee the editorial direction of the press, participate in the appointment of editors, and, by virtue of board members' reputations, give the press some standing in the field. Review Boards play a similar role but in addition, they lead the peer review process. Review Board members will not have access to the web site's administrative system but will be added to the list of those available to participate in the peer review process.</message>
 	<message key="manager.setup.emailBounceAddress">Bounce Address</message>
 	<message key="manager.setup.emailBounceAddressDescription">Any undeliverable emails will result in an error message to this address.</message>
 	<message key="manager.setup.emailBounceAddressDisabled"><![CDATA[<strong>Note:</strong> To activate this option, the site administrator must enable the <tt>allow_envelope_sender</tt> option in the OMP configuration file. Additional server configuration may be required to support this functionality (which may not be possible on all servers), as indicated in the OMP documentation.]]></message>
@@ -345,7 +345,7 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.listsDescription">Enter the maximum number of items (for example, submissions, users, or editing assignments) that appear on each page of a list, and the number of pages links to display on each page.</message>
 	<message key="manager.setup.look"><![CDATA[Look & Feel]]></message>
 	<message key="manager.setup.look.description">Homepage header, content, press header, footer, navigation bar, and style sheet.</message>
-	<message key="manager.setup.mailingAddress.description">The press' physical location and mailing address.</message>
+	<message key="manager.setup.mailingAddress.description">The physical location and mailing address of the press.</message>
 	<message key="manager.setup.settings">Settings</message>
 	<message key="manager.setup.management.description">Access and security, scheduling, announcements, copyediting, layout, and proofreading.</message>
 	<message key="manager.setup.managementOfBasicEditorialSteps">Management of Basic Editorial Steps</message>
@@ -359,7 +359,7 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.noStyleSheetUploaded">No style sheet uploaded.</message>
 	<message key="manager.setup.note">Note</message>
 	<message key="manager.setup.notifications">Notification of Author Submission</message>
-	<message key="manager.setup.notifications.copyPrimaryContact">Send a copy to the press' primary contact, identified in Setup Step 1.</message>
+	<message key="manager.setup.notifications.copyPrimaryContact">Send a copy to the primary contact, identified in Setup Step 1.</message>
 	<message key="manager.setup.notifications.copySpecifiedAddress">Send a copy to this email address:</message>
 	<message key="manager.setup.notifications.description">On completing the submission process, authors are automatically sent an acknowledgement email (which can be viewed and edited in Prepared Emails). In addition, a copy of the acknowledgement email can be sent as follows:</message>
 	<message key="manager.setup.notifyAllAuthorsOnDecision">When using the Notify Author email, include the email addresses of all co-authors for multiple-author submissions, and not just the submitting user.</message>
@@ -373,12 +373,12 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.openAccessPolicy">Open Access Policy</message>
 	<message key="manager.setup.openAccessPolicy.description">If the press will provide readers with immediate free access to all published content, enter an Open Access Policy which will appear in About the Press under Policies.</message>
 	<message key="manager.setup.pageNumberIdentifier">Page Number Option</message>
-	<message key="manager.setup.peerReview.description">Outline the press' peer review policy and processes for readers and authors, including the number of reviewers typically used in reviewing a submission, the criteria by which reviewers are asked to judge submissions, typical time taken to conduct the reviews, and the principles for recruiting reviewers. This will appear in About the Press.</message>
+	<message key="manager.setup.peerReview.description">Outline the peer review policy and processes for readers and authors, including the number of reviewers typically used in reviewing a submission, the criteria by which reviewers are asked to judge submissions, typical time taken to conduct the reviews, and the principles for recruiting reviewers. This will appear in About the Press.</message>
 	<message key="manager.setup.policies">Policies</message>
 	<message key="manager.setup.policies.description">Focus, peer review, sections, privacy, security, and additional about items.</message>
-	<message key="manager.setup.pressAppearanceDescription">Various components of the press' appearance can be configured from this page, including header and footer elements, the press style and theme, and how lists of information are presented to users.</message>
+	<message key="manager.setup.pressAppearanceDescription">Various components of the press appearance can be configured from this page, including header and footer elements, the press style and theme, and how lists of information are presented to users.</message>
 	<message key="manager.setup.pressDescription">Press Description</message>
-	<message key="manager.setup.pressDescription.description">A general description of the press should be included here. This description will be available on the press' homepage.</message>
+	<message key="manager.setup.pressDescription.description">A general description of the press should be included here. This description will be available on the press homepage.</message>
 	<message key="manager.setup.pressArchiving">Press Archiving</message>
 	<message key="manager.setup.pressDescription">Press Description</message>
 	<message key="manager.setup.pressDescriptionDescription">Add a brief 20-25 word description in text/HTML which will appear just below the navigation links.</message>
@@ -395,7 +395,7 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.pressPageFooter">Press Page Footer</message>
 	<message key="manager.setup.pressPageFooterDescription">This is the footer of your press. To change or update the footer, paste the HTML code in the textbox below. Examples could be another navigation bar, a counter, etc. This footer will appear on every page.</message>
 	<message key="manager.setup.pressPageHeader">Press Page Header</message>
-	<message key="manager.setup.pressPageHeaderDescription">A graphic version of the press' title and logo (.gif, .jpg, or .png file), possibly a smaller version of the one used on the homepage, can be uploaded to appear as a header on press pages, which will replace the text version that otherwise appears.</message>
+	<message key="manager.setup.pressPageHeaderDescription">A graphic version of the press title and logo (.gif, .jpg, or .png file), possibly a smaller version of the one used on the homepage, can be uploaded to appear as a header on press pages, which will replace the text version that otherwise appears.</message>
 	<message key="manager.setup.pressPolicies">Step 2. Press Policies</message>
 	<message key="manager.setup.pressSetup">Press Setup</message>
 	<message key="manager.setup.pressSetupUpdated">Your press setup has been updated.</message>
@@ -478,7 +478,7 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.workflow">Workflow</message>
 	<message key="manager.setup.submissions.description">Author guidelines, copyright, and indexing (including registration).</message>
 	<message key="manager.setup.technicalSupportContact">Technical Support Contact</message>
-	<message key="manager.setup.technicalSupportContactDescription">This person will be listed on the press' Contact page for the use of editors, authors, and reviewers, and should have experience working through the system from the perspective of all of its roles. As this press system requires very little technical support, this should be seen as a part-time assignment. There may be occasions, for example, when authors and reviewers have difficulties with the instructions or file formats, or there's a need to ensure that the press is regularly backed up on the server.</message>
+	<message key="manager.setup.technicalSupportContactDescription">This person will be listed on the press Contact page for the use of editors, authors, and reviewers, and should have experience working through the system from the perspective of all of its roles. As this press system requires very little technical support, this should be seen as a part-time assignment. There may be occasions, for example, when authors and reviewers have difficulties with the instructions or file formats, or there's a need to ensure that the press is regularly backed up on the server.</message>
 	<message key="manager.setup.typeExamples">(E.g., Historical Inquiry; Quasi-Experimental; Literary Analysis; Survey/Interview)</message>
 	<message key="manager.setup.typeMethodApproach">Type (Method/Approach)</message>
 	<message key="manager.setup.typeProvideExamples">Provide examples of relevant research types, methods, and approaches for this field</message>
@@ -523,8 +523,8 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.currentFormats">Current Formats</message>
 	<message key="manager.setup.category">Category</message>
 	<message key="manager.setup.categoriesAndSeries">Categories and Series</message>
-	<message key="manager.setup.categories.description">You may create a list of categories to help organize your press' publications. Categories are groupings of books according to subject matter, for example Economics; Literature; Poetry; and so on. Categories may be nested within "parent" categories: for example, an Economics parent category may include individual Microeconomics and Macroeconomics categories. Visitors will be able to search and browse the press by category.</message>
-	<message key="manager.setup.series.description">You may create any number of series to help organize your press' publications. A series represents a special set of books devoted to a theme or topics that someone has proposed, usually a faculty member or two, and then oversees. Visitors will be able to search and browse the press by series.</message>
+	<message key="manager.setup.categories.description">You may create a list of categories to help organize your publications. Categories are groupings of books according to subject matter, for example Economics; Literature; Poetry; and so on. Categories may be nested within "parent" categories: for example, an Economics parent category may include individual Microeconomics and Macroeconomics categories. Visitors will be able to search and browse the press by category.</message>
+	<message key="manager.setup.series.description">You may create any number of series to help organize your publications. A series represents a special set of books devoted to a theme or topics that someone has proposed, usually a faculty member or two, and then oversees. Visitors will be able to search and browse the press by series.</message>
 	<message key="manager.setup.reviewForms">Review Forms</message>
 	<message key="manager.setup.roleType">Role Type</message>
 	<message key="manager.setup.authorRoles">Author Roles</message>
@@ -547,7 +547,7 @@ You may optionally provide the user with a reason for disabling their account.</
 Authors who publish with this press agree to the following terms:
 <ol type="a">
 	<li>Authors retain copyright and grant the press right of first publication with the work simultaneously licensed under a <a target="_new" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution License</a> that allows others to share the work with an acknowledgement of the work's authorship and initial publication in this press.</li>
-	<li>Authors are able to enter into separate, additional contractual series for the non-exclusive distribution of the press' published version of the work (e.g., post it to an institutional repository or publish it in a book), with an acknowledgement of its initial publication in this press.</li>
+	<li>Authors are able to enter into separate, additional contractual series for the non-exclusive distribution of the version of the work published by the press (e.g., post it to an institutional repository or publish it in a book), with an acknowledgement of its initial publication in this press.</li>
 	<li>Authors are permitted and encouraged to post their work online (e.g., in institutional repositories or on their website) prior to and during the submission process, as it can lead to productive exchanges, as well as earlier and greater citation of published work (See <a target="_new" href="http://opcit.eprints.org/oacitation-biblio.html">The Effect of Open Access</a>).</li>
 </ol>
 
@@ -555,12 +555,12 @@ Authors who publish with this press agree to the following terms:
 Authors who publish with this press agree to the following terms:
 <ol type="a">
 	<li>Authors retain copyright and grant the press right of first publication, with the work [SPECIFY PERIOD OF TIME] after publication simultaneously licensed under a <a target="_new" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution License</a> that allows others to share the work with an acknowledgement of the work's authorship and initial publication in this press.</li>
-	 <li>Authors are able to enter into separate, additional contractual series for the non-exclusive distribution of the press' published version of the work (e.g., post it to an institutional repository or publish it in a book), with an acknowledgement of its initial publication in this press.</li>
+	 <li>Authors are able to enter into separate, additional contractual series for the non-exclusive distribution of the version of the work published by the press (e.g., post it to an institutional repository or publish it in a book), with an acknowledgement of its initial publication in this press.</li>
 	 <li>Authors are permitted and encouraged to post their work online (e.g., in institutional repositories or on their website) prior to and during the submission process, as it can lead to productive exchanges, as well as earlier and greater citation of published work (See <a target="_new" href="http://opcit.eprints.org/oacitation-biblio.html"> The Effect of Open Access</a>).</li>
 </ol>]]></message>
 	<message key="manager.setup.subjectClassificationDescription"><![CDATA[[Press will use a subject classification system available on the web.<br />
 Title of classification system]]></message>
-	<message key="manager.setup.registerPressForIndexingDescription"><![CDATA[To have the contents of this press indexed within a globally distributed system of research databases, <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">register</a> your press' URL with the Public Knowledge Project metadata <a href="http://pkp.sfu.ca/harvester/" target="_blank">harvester</a>. This tool collects the metadata from each indexed item in this press, enabling accurate and collective searching among the research sites that adhere to the <a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank">Open Archives Initiative Protocol for Metadata Harvesting</a>.
+	<message key="manager.setup.registerPressForIndexingDescription"><![CDATA[To have the contents of this press indexed within a globally distributed system of research databases, <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">register</a> your press URL with the Public Knowledge Project metadata <a href="http://pkp.sfu.ca/harvester/" target="_blank">harvester</a>. This tool collects the metadata from each indexed item in this press, enabling accurate and collective searching among the research sites that adhere to the <a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank">Open Archives Initiative Protocol for Metadata Harvesting</a>.
 <br /><br />
 Note that if your site administrator has already registered this site with the PKP Harvester, your press will be indexed automatically and you do not need to register your press.
 <br /><br />
@@ -573,7 +573,7 @@ Select a model for handling these aspects of the editorial process. (To designat
 	<li><strong>Add a Reading Tool</strong><p>The Press Manager can add "Find References" to the Reading Tools that accompany published items, which enables readers to paste a reference's title and then search pre-selected scholarly databases for the cited work.</p></li>
 	<li><strong>Embed Links in the References</strong><p>The Layout Editor can add a link to references that can be found online by using the following instructions (which can be edited).</p></li>
 </ol>]]></message>
-	<message key="manager.setup.registerPressForIndexingDescription"><![CDATA[To have the contents of this press indexed within a globally distributed system of research databases, <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">register</a> your press' URL with the Public Knowledge Project metadata <a href="http://pkp.sfu.ca/harvester/" target="_blank">harvester</a>. This tool collects the metadata from each indexed item in this press, enabling accurate and collective searching among the research sites that adhere to the <a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank">Open Archives Initiative Protocol for Metadata Harvesting</a>.
+	<message key="manager.setup.registerPressForIndexingDescription"><![CDATA[To have the contents of this press indexed within a globally distributed system of research databases, <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">register</a> your press URL with the Public Knowledge Project metadata <a href="http://pkp.sfu.ca/harvester/" target="_blank">harvester</a>. This tool collects the metadata from each indexed item in this press, enabling accurate and collective searching among the research sites that adhere to the <a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank">Open Archives Initiative Protocol for Metadata Harvesting</a>.
 <br /><br />
 Note that if your site administrator has already registered this site with the PKP Harvester, your press will be indexed automatically and you do not need to register your press.
 <br /><br />
