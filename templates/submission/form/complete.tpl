@@ -12,7 +12,7 @@
 {/strip}
 
 <h2>{translate key="submission.submit.submissionComplete"}</h2>
-<h4>{translate key="submission.submit.submissionCompleteThanks" pressName=$press->getLocalizedName()}</h4>
+<p>{translate key="submission.submit.submissionCompleteThanks" pressName=$press->getLocalizedName()}</p>
 <br />
 <div class="separator"></div>
 
