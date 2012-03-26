@@ -39,6 +39,7 @@
 	<message key="submission.copyediting">Copyediting</message>
 	<message key="submission.copyedit">Copyedit</message>
 	<message key="submission.proofs">Proofs</message>
+	<message key="submission.sharing">Share This</message>
 	<message key="manuscript.submission">Manuscript Submission</message>
 	<message key="submission.round"><![CDATA[Round&nbsp;{$round}]]></message>
 	<message key="submissions.queuedReview">In Review</message>

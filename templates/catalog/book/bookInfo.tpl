@@ -24,10 +24,14 @@
 	<div id="bookInfoTabs">
 		<ul>
 			<li><a href="#abstractTab">{translate key="submission.synopsis"}</a></li>
+			<li><a href="#sharingTab">{translate key="submission.sharing"}</a></li>
 		</ul>
 
 		<div id="abstractTab">
 			{$publishedMonograph->getLocalizedAbstract()|strip_unsafe_html}
+		</div>
+		<div id="sharingTab">
+			{call_hook name="Templates::Catalog::Book::BookInfo::Sharing"}
 		</div>
 	</div>
 </div>
