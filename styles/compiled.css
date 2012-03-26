@@ -693,6 +693,7 @@ table.pkp_listing td.separator {
   border:1px solid #cccccc;
   padding:5px;
 }
+.pkp_form fieldset.inline { margin:0px 0px; }
 .pkp_form legend {
   font-size:110%;
   padding:10px 0 10px 0;
