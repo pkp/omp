@@ -105,20 +105,22 @@ class TemplateManager extends PKPTemplateManager {
 
 			// Check for multiple presses.
 			$pressDao =& DAORegistry::getDAO('PressDAO');
-			$presses =& $pressDao->getPresses();
+
+			$user =& $request->getUser();
+			if (is_a($user, 'User')) {
+				$presses =& $pressDao->getPresses();
+			} else {
+				$presses =& $pressDao->getEnabledPresses();
+			}
+
 			$hasOtherPresses = false;
 			if ($presses->getCount() > 1) {
 				$this->assign('hasOtherPresses', true);
 				$hasOtherPresses = true;
 			}
 
-			$user =& $request->getUser();
-			if (is_a($user, 'User')) {
-				// Decide to assign or not the press switcher data
-				// to the template manager.
-				if ($hasOtherPresses) {
-					$this->_assignPressSwitcherData($request, $presses, $press);
-				}
+			if ($hasOtherPresses) {
+				$this->_assignPressSwitcherData($request, $presses, $press);
 			}
 		}
 	}

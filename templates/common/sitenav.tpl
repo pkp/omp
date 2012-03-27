@@ -14,9 +14,9 @@
 			{if array_intersect(array(ROLE_ID_SITE_ADMIN), $userRoles)}
 				<li><a href="{url page="admin" op="index"}">{translate key="navigation.admin"}</a></li>
 			{/if}
-			{if $hasOtherPresses}
-				<li>{include file="common/pressSwitcher.tpl"}</li>
-			{/if}
+		{/if}
+		{if $hasOtherPresses}
+			<li>{include file="common/pressSwitcher.tpl"}</li>
 		{/if}
 	</ul>
 	<ul class="pkp_helpers_flatlist pkp_helpers_align_right">
