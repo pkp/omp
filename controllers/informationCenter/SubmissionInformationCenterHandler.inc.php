@@ -187,8 +187,9 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 		if ($template) {
 			$user =& $request->getUser();
 			$dispatcher =& $request->getDispatcher();
+			$press =& $request->getPress();
 			$template->assignParams(array(
-				'pressUrl' => $dispatcher->url($request, ROUTE_PAGE, $request->getPress()->getPath()),
+				'pressUrl' => $dispatcher->url($request, ROUTE_PAGE, $press->getPath()),
 				'editorialContactSignature' => $user->getContactSignature(),
 				'signatureFullName' => $user->getFullname(),
 			));
