@@ -36,9 +36,9 @@
 			{** FIXME: is this class instruct still the right one? **}
 			<span class="instruct">{translate key="admin.presses.urlWillBe" sampleUrl=$sampleUrl}</span>
 		{/fbvFormSection}
-		{fbvFormSection title="admin.presses.enablePressInstructions" for="enabled" list=true}
+		{fbvFormSection for="enabled" list=true}
 			{if $enabled}{assign var="enabled" value="checked"}{/if}
-			{fbvElement type="checkbox" id="enabled" checked=$enabled value="1"}
+			{fbvElement type="checkbox" id="enabled" checked=$enabled value="1" label="admin.presses.enablePressInstructions"}
 		{/fbvFormSection}
 
 		<p><span class="formRequired">{translate key="common.requiredField"}</span></p>
