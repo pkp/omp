@@ -124,6 +124,15 @@ class ManageSocialMediaGridHandler extends GridHandler {
 				array('width' => 50, 'alignment' => COLUMN_ALIGNMENT_LEFT)
 			)
 		);
+		$this->addColumn(
+			new GridColumn(
+				'inCatalog',
+				'grid.content.navigation.socialMedia.inCatalog',
+				null,
+				'controllers/grid/common/cell/checkMarkCell.tpl',
+				$cellProvider
+			)
+		);
 	}
 
 

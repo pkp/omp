@@ -59,6 +59,7 @@ class SocialMediaForm extends Form {
 		if (isset($socialMedia)) {
 			$templateMgr->assign('platform', $socialMedia->getPlatform(null));
 			$templateMgr->assign('code', $socialMedia->getCode());
+			$templateMgr->assign('includeInCatalog', $socialMedia->getIncludeInCatalog());
 		}
 
 		return parent::fetch($request);
@@ -71,7 +72,7 @@ class SocialMediaForm extends Form {
 	 * @see Form::readInputData()
 	 */
 	function readInputData() {
-		$this->readUserVars(array('platform', 'code'));
+		$this->readUserVars(array('platform', 'code', 'includeInCatalog'));
 	}
 
 	/**
@@ -93,6 +94,7 @@ class SocialMediaForm extends Form {
 
 		$socialMedia->setPlatform($this->getData('platform'), null); // localized
 		$socialMedia->setCode($this->getData('code'));
+		$socialMedia->setIncludeInCatalog($this->getData('includeInCatalog')!=''?1:0);
 
 		if ($existingSocialMedia) {
 			$socialMediaDao->updateObject($socialMedia);

@@ -201,6 +201,7 @@
 		<field name="code" type="X">
 			<NOTNULL />
 		</field>
+		<field name="include_in_catalog" type="I2"/>
 		<descr>Social Media code blocks</descr>
 		<index name="social_media_press_id">
 			<col>press_id</col>

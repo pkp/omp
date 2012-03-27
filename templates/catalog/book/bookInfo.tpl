@@ -32,6 +32,12 @@
 		</div>
 		<div id="sharingTab">
 			{call_hook name="Templates::Catalog::Book::BookInfo::Sharing"}
+
+			{foreach from=$blocks item=block name=b}
+				<div id="socialMediaBlock{$smarty.foreach.b.index}" class="pkp_helpers_clear">
+					{$block}
+				</div>
+			{/foreach}
 		</div>
 	</div>
 </div>

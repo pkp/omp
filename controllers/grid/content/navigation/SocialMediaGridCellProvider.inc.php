@@ -39,6 +39,8 @@ class SocialMediaGridCellProvider extends DataObjectGridCellProvider {
 		switch ($columnId) {
 			case 'platform':
 				return array('label' => $element->getLocalizedPlatform());
+			case 'inCatalog':
+				return array('isChecked' => $element->getIncludeInCatalog());
 		}
 	}
 }

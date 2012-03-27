@@ -66,6 +66,17 @@ class CatalogBookHandler extends Handler {
 		$categories =& $publishedMonographDao->getCategories($publishedMonograph->getId(), $press->getId());
 		$templateMgr->assign('categories', $categories);
 
+		// Get Social media blocks enabled for the catalog
+		$socialMediaDao =& DAORegistry::getDAO('SocialMediaDAO');
+		$socialMedia =& $socialMediaDao->getEnabledForCatalogByPressId($press->getId());
+		$blocks = array();
+		while ($media =& $socialMedia->next()) {
+			$media->replaceCodeVars($publishedMonograph);
+			$blocks[] = $media->getCode();
+		}
+
+		$templateMgr->assign_by_ref('blocks', $blocks);
+
 		// Display
 		$templateMgr->display('catalog/book/book.tpl');
 	}

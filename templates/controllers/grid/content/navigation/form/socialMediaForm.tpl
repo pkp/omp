@@ -27,6 +27,12 @@
 		{fbvFormSection label="grid.content.navigation.socialMedia.code" for="description" required="true"}
 			{fbvElement type="textarea" name="code" id="code" value=$code height=$fbvStyles.height.SHORT}
 		{/fbvFormSection}
+
+		{fbvFormSection for="includeInCatalog" list="true"}
+			{if $includeInCatalog}{assign var="checked" value=true}{else}{assign var="checked" value=false}{/if}
+			{fbvElement type="checkbox" id="includeInCatalog" label="grid.content.navigation.socialMedia.includeInCatalog" checked=$checked inline="true"}
+		{/fbvFormSection}
+
 	{/fbvFormArea}
 	{fbvFormButtons id="mediaFormSubmit" submitText="common.save"}
 </form>

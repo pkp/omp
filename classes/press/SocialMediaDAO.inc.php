@@ -72,6 +72,7 @@ class SocialMediaDAO extends DAO {
 		$socialMedia->setId($row['social_media_id']);
 		$socialMedia->setPressId($row['press_id']);
 		$socialMedia->setCode($row['code']);
+		$socialMedia->setIncludeInCatalog($row['include_in_catalog']);
 
 		$this->getDataObjectSettings('social_media_settings', 'social_media_id', $row['social_media_id'], $socialMedia);
 
@@ -96,7 +97,7 @@ class SocialMediaDAO extends DAO {
 		$this->updateDataObjectSettings(
 			'social_media_settings', $socialMedia,
 			array(
-				'social_media_id' => $socialMedia->getId()
+				'social_media_id' => $socialMedia->getId(),
 			)
 		);
 	}
@@ -109,12 +110,13 @@ class SocialMediaDAO extends DAO {
 	function insertObject(&$socialMedia) {
 		$this->update(
 			'INSERT INTO social_media
-				(press_id, code)
+				(press_id, code, include_in_catalog)
 				VALUES
-				(?, ?)',
+				(?, ?, ?)',
 			array(
 				(int) $socialMedia->getPressId(),
-				$socialMedia->getCode()
+				$socialMedia->getCode(),
+				$socialMedia->getIncludeInCatalog(),
 			)
 		);
 
@@ -131,12 +133,14 @@ class SocialMediaDAO extends DAO {
 		$returner = $this->update(
 			'UPDATE	social_media
 			SET	press_id = ?,
-				code = ?
+				code = ?,
+				include_in_catalog = ?
 			WHERE	social_media_id = ?',
 			array(
 				(int) $socialMedia->getPressId(),
 				$socialMedia->getCode(),
-				(int) $socialMedia->getId()
+				(int) $socialMedia->getIncludeInCatalog(),
+				(int) $socialMedia->getId(),
 			)
 		);
 		$this->updateLocaleFields($socialMedia);
@@ -194,6 +198,7 @@ class SocialMediaDAO extends DAO {
 
 	/**
 	 * Retrieve all media objects for a press.
+	 * @param $pressId int
 	 * @return DAOResultFactory containing SocialMedia objects
 	 */
 	function &getByPressId($pressId, $rangeInfo = null) {
@@ -203,7 +208,48 @@ class SocialMediaDAO extends DAO {
 			'SELECT *
 			FROM social_media
 			WHERE press_id = ?',
-			$params
+			$params,
+			$rangeInfo
+		);
+
+		$returner = new DAOResultFactory($result, $this, '_fromRow');
+		return $returner;
+	}
+
+	/**
+	 * Retrieve the media objects for a press that are set to be used in the catalog.
+	 * @param int $pressId
+	 * @return DAOResultFactory containing SocialMedia objects
+	 */
+	function &getEnabledForCatalogByPressId($pressId, $rangeInfo = null) {
+		$params = array((int) $pressId);
+
+		$result =& $this->retrieveRange(
+			'SELECT *
+			FROM social_media
+			WHERE include_in_catalog = 1 AND press_id = ?',
+			$params,
+			$rangeInfo
+		);
+
+		$returner = new DAOResultFactory($result, $this, '_fromRow');
+		return $returner;
+	}
+
+	/**
+	 * Retrieve the media objects for a press that are set to be used on the press home page.
+	 * @param int $pressId
+	 * @return DAOResultFactory containing SocialMedia objects
+	 */
+	function &getEnabledForPressByPressId($pressId, $rangeInfo = null) {
+		$params = array((int) $pressId);
+
+		$result =& $this->retrieveRange(
+			'SELECT *
+			FROM social_media
+			WHERE include_in_catalog = 0 AND press_id = ?',
+			$params,
+			$rangeInfo
 		);
 
 		$returner = new DAOResultFactory($result, $this, '_fromRow');

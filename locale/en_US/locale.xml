@@ -176,6 +176,8 @@
 	<message key="grid.content.navigation.socialMedia.platformRequired">You must enter a platform title (Facebook, Google+, etc).</message>
 	<message key="grid.content.navigation.socialMedia.codeRequired">You must enter the code you wish to use to display this social network.</message>
 	<message key="grid.content.navigation.socialMedia.addSocialLink">Add Social Link</message>
+	<message key="grid.content.navigation.socialMedia.includeInCatalog">Use this for each published monograph in the catalog?</message>
+	<message key="grid.content.navigation.socialMedia.inCatalog">Used In Catalog</message>
 	
 	<!-- Editorial policies -->
 	<message key="manager.series.open">Open Submissions</message>

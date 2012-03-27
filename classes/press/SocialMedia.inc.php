@@ -54,6 +54,22 @@ class SocialMedia extends DataObject {
 	}
 
 	/**
+	 * Get whether or not this should be included on a monograph's catalog page.
+	 * @return boolean
+	 */
+	function getIncludeInCatalog() {
+		return $this->getData('includeInCatalog');
+	}
+
+	/**
+	 * Set whether or not this should be included on a monograph's catalog page.
+	 * @param $path string
+	 */
+	function setIncludeInCatalog($includeInCatalog) {
+		return $this->setData('includeInCatalog', $includeInCatalog);
+	}
+
+	/**
 	 * Get localized platform name.
 	 * @return string
 	 */
@@ -77,6 +93,42 @@ class SocialMedia extends DataObject {
 	 */
 	function setPlatform($platform, $locale) {
 		return $this->setData('platform', $platform, $locale);
+	}
+
+	/**
+	 * Replace various variables in the code template with data
+	 * relevant to the assigned monograph.
+	 * @param PublishedMonograph $publishedMonograph
+	 */
+	function replaceCodeVars($publishedMonograph = null) {
+
+		$application =& Application::getApplication();
+		$request =& $application->getRequest();
+		$router =& $request->getRouter();
+		$press =& $request->getPress();
+
+		$code = $this->getCode();
+
+		$codeVariables = array(
+				'pressUrl' => $router->url($request, null, 'index'),
+				'pressName' => $press->getLocalizedName(),
+			);
+
+		if (isset($publishedMonograph)) {
+			$codeVariables = array_merge($codeVariables, array(
+				'bookCatalogUrl' => $router->url($request, null, 'catalog', 'book', $publishedMonograph->getId()),
+				'bookTitle' => $publishedMonograph->getLocalizedTitle(),
+			));
+		}
+
+		// Replace variables in message with values
+		foreach ($codeVariables as $key => $value) {
+			if (!is_object($value)) {
+				$code = str_replace('{$' . $key . '}', $value, $code);
+			}
+		}
+
+		$this->setCode($code);
 	}
 }
 
