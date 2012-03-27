@@ -129,6 +129,22 @@ class MonographFile extends SubmissionFile {
 	}
 
 	/**
+	 * Get price of monograph file.
+	 * @return numeric
+	 */
+	function getDirectSalesPrice() {
+		return $this->getData('directSalesPrice');
+	}
+
+	/**
+	 * Set direct sales price.
+	 * @param $directSalesPrice numeric
+	 */
+	function setDirectSalesPrice($directSalesPrice) {
+		return $this->setData('directSalesPrice', $directSalesPrice);
+	}
+
+	/**
 	 * Set the name of the file
 	 * @param $name string
 	 * @param $locale string

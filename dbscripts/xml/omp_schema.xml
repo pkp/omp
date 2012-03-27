@@ -813,7 +813,6 @@
 		<field name="monograph_id" type="I8">
 			<NOTNULL/>
 		</field>
-		<field name="direct_sales_price" type="F" />
 		<field name="physical_format" type="I1">
 			<DEFAULT VALUE="1"/>
 		</field>
@@ -1069,6 +1068,7 @@
 		<field name="file_stage" type="I8">
 			<NOTNULL/>
 		</field>
+		<field name="direct_sales_price" type="F" />
 		<field name="viewable" type="I1" />
 		<field name="date_uploaded" type="T">
 			<NOTNULL/>

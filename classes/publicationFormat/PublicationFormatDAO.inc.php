@@ -148,7 +148,6 @@ class PublicationFormatDAO extends DAO {
 		$publicationFormat->setTechnicalProtectionCode($row['technical_protection_code']);
 		$publicationFormat->setReturnableIndicatorCode($row['returnable_indicator_code']);
 		$publicationFormat->setIsAvailable($row['is_available']);
-		$publicationFormat->setDirectSalesPrice($row['direct_sales_price']);
 
 		$this->getDataObjectSettings('publication_format_settings', 'publication_format_id', $row['publication_format_id'], $publicationFormat);
 
@@ -163,9 +162,9 @@ class PublicationFormatDAO extends DAO {
 	function insertObject(&$publicationFormat) {
 		$this->update(
 			'INSERT INTO publication_formats
-				(entry_key, physical_format, monograph_id, seq, file_size, front_matter, back_matter, height, height_unit_code, width, width_unit_code, thickness, thickness_unit_code, weight, weight_unit_code, product_composition_code, product_form_detail_code, country_manufacture_code, imprint, product_availability_code, technical_protection_code, returnable_indicator_code, is_available, direct_sales_price)
+				(entry_key, physical_format, monograph_id, seq, file_size, front_matter, back_matter, height, height_unit_code, width, width_unit_code, thickness, thickness_unit_code, weight, weight_unit_code, product_composition_code, product_form_detail_code, country_manufacture_code, imprint, product_availability_code, technical_protection_code, returnable_indicator_code, is_available)
 			VALUES
-				(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+				(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
 			array(
 				$publicationFormat->getEntryKey(),
 				(int) $publicationFormat->getPhysicalFormat(),
@@ -190,7 +189,6 @@ class PublicationFormatDAO extends DAO {
 				$publicationFormat->getTechnicalProtectionCode(),
 				$publicationFormat->getReturnableIndicatorCode(),
 				(int) $publicationFormat->getIsAvailable(),
-				$publicationFormat->getDirectSalesPrice(),
 			)
 		);
 
@@ -227,8 +225,7 @@ class PublicationFormatDAO extends DAO {
 				technical_protection_code = ?,
 				returnable_indicator_code = ?,
 				is_available = ?,
-				direct_sales_price = ?
-			WHERE publication_format_id = ?',
+			WHERE	publication_format_id = ?',
 			array(
 				$publicationFormat->getEntryKey(),
 				$publicationFormat->getPhysicalFormat(),
@@ -252,7 +249,6 @@ class PublicationFormatDAO extends DAO {
 				$publicationFormat->getTechnicalProtectionCode(),
 				$publicationFormat->getReturnableIndicatorCode(),
 				(int) $publicationFormat->getIsAvailable(),
-				$publicationFormat->getDirectSalesPrice(),
 				(int) $publicationFormat->getId()
 			)
 		);

@@ -72,7 +72,8 @@ class MonographFileDAODelegate extends SubmissionFileDAODelegate {
 			is_null($monographFile->getUserGroupId()) ? null : (int)$monographFile->getUserGroupId(),
 			is_null($monographFile->getAssocType()) ? null : (int)$monographFile->getAssocType(),
 			is_null($monographFile->getAssocId()) ? null : (int)$monographFile->getAssocId(),
-			is_null($monographFile->getGenreId()) ? null : (int)$monographFile->getGenreId()
+			is_null($monographFile->getGenreId()) ? null : (int)$monographFile->getGenreId(),
+			$monographFile->getDirectSalesPrice()
 		);
 
 		if ($fileId) {
@@ -81,9 +82,9 @@ class MonographFileDAODelegate extends SubmissionFileDAODelegate {
 
 		$this->update(
 			sprintf('INSERT INTO monograph_files
-				(' . ($fileId ? 'file_id, ' : '') . 'revision, monograph_id, source_file_id, source_revision, file_type, file_size, original_file_name, file_stage, date_uploaded, date_modified, viewable, uploader_user_id, user_group_id, assoc_type, assoc_id, genre_id)
+				(' . ($fileId ? 'file_id, ' : '') . 'revision, monograph_id, source_file_id, source_revision, file_type, file_size, original_file_name, file_stage, date_uploaded, date_modified, viewable, uploader_user_id, user_group_id, assoc_type, assoc_id, genre_id, direct_sales_price)
 				VALUES
-				(' . ($fileId ? '?, ' : '') . '?, ?, ?, ?, ?, ?, ?, ?, %s, %s, ?, ?, ?, ?, ?, ?)',
+				(' . ($fileId ? '?, ' : '') . '?, ?, ?, ?, ?, ?, ?, ?, %s, %s, ?, ?, ?, ?, ?, ?, ?)',
 				$this->datetimeToDB($monographFile->getDateUploaded()), $this->datetimeToDB($monographFile->getDateModified())),
 			$params
 		);
@@ -148,7 +149,8 @@ class MonographFileDAODelegate extends SubmissionFileDAODelegate {
 					user_group_id = ?,
 					assoc_type = ?,
 					assoc_id = ?,
-					genre_id = ?
+					genre_id = ?,
+					direct_sales_price = ?
 				WHERE file_id = ? AND revision = ?',
 				$this->datetimeToDB($monographFile->getDateUploaded()), $this->datetimeToDB($monographFile->getDateModified())),
 			array(
@@ -167,8 +169,9 @@ class MonographFileDAODelegate extends SubmissionFileDAODelegate {
 				is_null($monographFile->getAssocType()) ? null : (int)$monographFile->getAssocType(),
 				is_null($monographFile->getAssocId()) ? null : (int)$monographFile->getAssocId(),
 				is_null($monographFile->getGenreId()) ? null : (int)$monographFile->getGenreId(),
+				$monographFile->getDirectSalesPrice(),
 				(int)$previousFile->getFileId(),
-				(int)$previousFile->getRevision()
+				(int)$previousFile->getRevision(),
 			)
 		);
 
@@ -257,6 +260,7 @@ class MonographFileDAODelegate extends SubmissionFileDAODelegate {
 
 		$monographFile->setDateUploaded($this->datetimeFromDB($row['date_uploaded']));
 		$monographFile->setDateModified($this->datetimeFromDB($row['date_modified']));
+		$monographFile->setDirectSalesPrice($row['direct_sales_price']);
 
 		$this->getDataObjectSettings('monograph_file_settings', 'file_id', $row['monograph_file_id'], $monographFile);
 

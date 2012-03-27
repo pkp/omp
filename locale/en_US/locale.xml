@@ -629,7 +629,10 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="user.authorization.authorRoleMissing">You do not currently have sufficient priveleges to view the submission. Please edit your profile to ensure that you have been granted the appropriate roles under "Register As".</message>
 
 	<message key="payment.directSales">Direct Sales Availability &amp;amp; Pricing</message>
-	<message key="payment.directSales.price">Price ({$pressCurrency})</message>
+	<message key="payment.directSales.price">Price</message>
+	<message key="payment.directSales.amount">{$amount} ({$currency})</message>
+	<message key="payment.directSales.notAvailable">Not Available</message>
+	<message key="payment.directSales.openAccess">Open Access</message>
 	<message key="payment.directSales.price.description">To make all approved proofs for this Publication Format available for direct sales, enter a price below. Use 0 for open access.</message>
 
 	<!-- Debug messages -->

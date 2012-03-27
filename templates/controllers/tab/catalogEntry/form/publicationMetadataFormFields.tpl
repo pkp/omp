@@ -33,13 +33,8 @@
 
 	{* E-commerce settings *}
 	{if $paymentConfigured}
-		{* Present prices and checkboxes for each approved proof *}
-		{fbvFormArea id="ecommerce" border=true title="payment.directSales"}
-			{fbvFormSection description="payment.directSales.price.description"}
-				{translate|assign:textElementLabel key="payment.directSales.price" pressCurrency=$pressCurrency|escape}
-				{fbvElement type="text" id="directSalesPrice" name="directSalesPrice" value=$directSalesPrice label=$textElementLabel subLabelTranslate=false}
-			{/fbvFormSection}
-		{/fbvFormArea}
+		{url|assign:approvedProofGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.proof.ApprovedProofFilesGridHandler" op="fetchGrid" monographId=$monographId publicationFormatId=$publicationFormatId escape=false}
+		{load_url_in_div id="approvedProofGrid-$publicationFormatId" url=$approvedProofGridUrl}
 	{/if}
 
 	{fbvFormArea id="productIdentifier"}

@@ -138,7 +138,6 @@ class CatalogEntryPublicationMetadataForm extends Form {
 			'technicalProtectionCode' => $publicationFormat->getTechnicalProtectionCode() != '' ? $publicationFormat->getTechnicalProtectionCode() : '00',
 			'returnableIndicatorCode' => $publicationFormat->getReturnableIndicatorCode() != '' ? $publicationFormat->getReturnableIndicatorCode() : 'Y',
 			'isAvailable' => (bool) $publicationFormat->getIsAvailable(),
-			'directSalesPrice' => $publicationFormat->getDirectSalesPrice(),
 		);
 	}
 
@@ -215,7 +214,6 @@ class CatalogEntryPublicationMetadataForm extends Form {
 		$publicationFormat->setTechnicalProtectionCode($this->getData('technicalProtectionCode'));
 		$publicationFormat->setReturnableIndicatorCode($this->getData('returnableIndicatorCode'));
 		$publicationFormat->setIsAvailable($this->getData('isAvailable')?true:false);
-		$publicationFormat->setDirectSalesPrice($this->getData('directSalesPrice'));
 
 		$publicationFormatDao->updateObject($publicationFormat);
 	}
