@@ -17,11 +17,13 @@
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="spotlightFormNotification"}
 	{fbvFormArea id="approvedProofInfo"}
 		<input type="hidden" name="fileId" value="{$fileId|escape}" />
+		<input type="hidden" name="monographId" value="{$monographId|escape}" />
+		<input type="hidden" name="publicationFormatId" value="{$publicationFormatId|escape}" />
 
 		{fbvFormSection for="priceType" list=true size=$fbvStyles.size.MEDIUM description="payment.directSales.price.description"}
-			{fbvElement type="radio" name="salesType" id="notAvailable" label="payment.directSales.notAvailable"}
-			{fbvElement type="radio" name="salesType" id="directSales" label="payment.directSales.directSales"}
-			{fbvElement type="radio" name="salesType" id="openAccess" label="payment.directSales.openAccess"}
+			{fbvElement type="radio" name="salesType" id="notAvailable" value="notAvailable" label="payment.directSales.notAvailable"}
+			{fbvElement type="radio" name="salesType" id="directSales" value="directSales" label="payment.directSales.directSales"}
+			{fbvElement type="radio" name="salesType" id="openAccess" value="openAccess" label="payment.directSales.openAccess"}
 		{/fbvFormSection}
 
 		{fbvFormSection for="price" size=$fbvStyles.size.MEDIUM inline=true}

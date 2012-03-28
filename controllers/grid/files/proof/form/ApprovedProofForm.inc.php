@@ -52,6 +52,8 @@ class ApprovedProofForm extends Form {
 	function fetch($request) {
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('fileId', $this->approvedProof->getFileIdAndRevision());
+		$templateMgr->assign('monographId', $this->monograph->getId());
+		$templateMgr->assign('publicationFormatId', $this->publicationFormat->getId());
 		return parent::fetch($request);
 	}
 
@@ -59,7 +61,7 @@ class ApprovedProofForm extends Form {
 	 * @see Form::readInputData()
 	 */
 	function readInputData() {
-		$this->readUserVars(array('price'));
+		$this->readUserVars(array('price', 'salesType'));
 	}
 
 	/**
@@ -75,8 +77,21 @@ class ApprovedProofForm extends Form {
 	 * @see Form::execute()
 	 */
 	function execute(&$request) {
-		fatalError('unimplemented');
-		return $fileId;
+		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO');
+		$salesType = $this->getData('salesType');
+		if ($salesType === 'notAvailable') {
+			// Not available
+			$this->approvedProof->setDirectSalesPrice(null);
+		} elseif ($salesType === 'openAccess') {
+			// Open access
+			$this->approvedProof->setDirectSalesPrice(0);
+		} else { /* $salesType === 'directSales' */
+			// Direct sale
+			$this->approvedProof->setDirectSalesPrice($this->getData('price'));
+		}
+		$submissionFileDao->updateObject($this->approvedProof);
+			
+		return $this->approvedProof->getFileIdAndRevision();
 	}
 }
 

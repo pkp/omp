@@ -53,7 +53,7 @@ class ApprovedProofFilesGridRow extends GridRow {
 						'monographId' => $request->getUserVar('monographId'),
 						'publicationFormatId' => $request->getUserVar('publicationFormatId'),
 					)),
-					__('grid.action.edit'),
+					__('editor.monograph.approvedProofs.edit'),
 					'edit'
 				),
 				__('grid.action.edit'),

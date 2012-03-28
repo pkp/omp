@@ -136,10 +136,10 @@ class ApprovedProofFilesGridHandler extends GridHandler {
 		$approvedProofForm->readInputData();
 
 		if ($approvedProofForm->validate()) {
-			$fileId = $approvedProofForm->execute();
+			$fileIdAndRevision = $approvedProofForm->execute();
 
 			// Let the calling grid reload itself
-			return DAO::getDataChangedEvent($fileId);
+			return DAO::getDataChangedEvent($fileIdAndRevision);
 		}
 
 		return new JSONMessage(false);
