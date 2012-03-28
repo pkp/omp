@@ -56,7 +56,7 @@ class ApprovedProofFilesGridHandler extends GridHandler {
 		// Basic grid configuration
 		$this->setId('proofFiles-' . $this->publicationFormat->getId());
 		AppLocale::requireComponents(LOCALE_COMPONENT_OMP_EDITOR);
-		$this->setTitle('editor.monograph.approvedProofs');
+		$this->setTitle('payment.directSales');
 
 		parent::initialize($request);
 

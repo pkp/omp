@@ -95,7 +95,6 @@
 	<message key="editor.monograph.proofReading">Proof Reading</message>
 	<message key="editor.monograph.proofs">Proofs</message>
 
-	<message key="editor.monograph.approvedProofs">Approved Proofs</message>
 	<message key="editor.monograph.approvedProofs.edit">Edit Approved Proof</message>
 
 	<!-- Add file or auditor to editor/audit grids -->
