@@ -77,6 +77,22 @@ class CatalogBookHandler extends Handler {
 
 		$templateMgr->assign_by_ref('blocks', $blocks);
 
+		// e-Commerce
+		import('classes.payment.omp.OMPPaymentManager');
+		$ompPaymentManager = new OMPPaymentManager($request);
+		$monographFileDao =& DAORegistry::getDAO('SubmissionFileDAO');
+		if ($ompPaymentManager->isConfigured()) {
+			$availableFiles = array_filter(
+				$monographFileDao->getLatestRevisions($publishedMonograph->getId()),
+				create_function('$a', 'return $a->getViewable() && $a->getDirectSalesPrice() !== null && $a->getAssocType() == ASSOC_TYPE_PUBLICATION_FORMAT;')			
+			);
+			$availableFilesByPublicationFormat = array();
+			foreach ($availableFiles as $availableFile) {
+				$availableFilesByPublicationFormat[$availableFile->getAssocId()][] = $availableFile;
+			}
+			$templateMgr->assign('availableFiles', $availableFilesByPublicationFormat);
+		}
+
 		// Display
 		$templateMgr->display('catalog/book/book.tpl');
 	}

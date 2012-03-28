@@ -1336,6 +1336,10 @@ a.pkp_common_disabled, a.pkp_common_disabled:hover { color:#666666; }
   float:right;
   width:67%;
 }
+.pkp_catalog_book .bookInfo .publicationFormatName {
+  float:left;
+  width:50%;
+}
 .pkp_page_header { position:relative; }
 .pkp_page_header ul.submission_actions {
   position:relative;

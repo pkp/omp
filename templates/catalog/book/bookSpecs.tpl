@@ -23,39 +23,49 @@
 		</div>
 
 		{assign var=publicationFormats value=$publishedMonograph->getPublicationFormats()}
-		{foreach from=$publicationFormats item=publicationFormat}
+		{foreach from=$publicationFormats item="publicationFormat"}
 			{if $publicationFormat->getIsAvailable()}
-			<h3><a href="#">{$publicationFormat->getLocalizedTitle()|escape}</a></h3>
-			<div class="publicationFormat">
-				<div id="bookDimensionSpecs">
-				{assign var=notFirst value=0}
-				{if $publicationFormat->getWidth()}
-					{$publicationFormat->getWidth()|escape} {$publicationFormat->getWidthUnitCode()|escape}
-					{assign var=notFirst value=1}
-				{/if}
-				{if $publicationFormat->getHeight()}
-					{if $notFirst} x {/if}
-					{$publicationFormat->getHeight()|escape} {$publicationFormat->getHeightUnitCode()|escape}
-					{assign var=notFirst value=1}
-				{/if}
-				{if $publicationFormat->getThickness()}
-					{if $notFirst} x {/if}
-					{$publicationFormat->getThickness()|escape} {$publicationFormat->getThicknessUnitCode()|escape}
-					{assign var=notFirst value=1}
-				{/if}
-				</div>
-				{assign var=identificationCodes value=$publicationFormat->getIdentificationCodes()}
-				{assign var=identificationCodes value=$identificationCodes->toArray()}
-				{if $identificationCodes}
-					<div id="bookIdentificationSpecs">
-					{foreach from=$identificationCodes item=identificationCode}
-						<div id="bookIdentificationSpecs-{$identificationCode->getCode()|escape}">
-							{$identificationCode->getNameForONIXCode()|escape}: {$identificationCode->getValue()|escape}
-						</div>
-					{/foreach}{* identification codes *}
+				<h3><a href="#">{$publicationFormat->getLocalizedTitle()|escape}</a></h3>
+				<div class="publicationFormat">
+					<div class="bookDimensionSpecs">
+					{assign var=notFirst value=0}
+					{if $publicationFormat->getWidth()}
+						{$publicationFormat->getWidth()|escape} {$publicationFormat->getWidthUnitCode()|escape}
+						{assign var=notFirst value=1}
+					{/if}
+					{if $publicationFormat->getHeight()}
+						{if $notFirst} x {/if}
+						{$publicationFormat->getHeight()|escape} {$publicationFormat->getHeightUnitCode()|escape}
+						{assign var=notFirst value=1}
+					{/if}
+					{if $publicationFormat->getThickness()}
+						{if $notFirst} x {/if}
+						{$publicationFormat->getThickness()|escape} {$publicationFormat->getThicknessUnitCode()|escape}
+						{assign var=notFirst value=1}
+					{/if}
 					</div>
-				{/if}{* $identificationCodes *}
-			</div>
+					{assign var=identificationCodes value=$publicationFormat->getIdentificationCodes()}
+					{assign var=identificationCodes value=$identificationCodes->toArray()}
+					{if $identificationCodes}
+						<div class="bookIdentificationSpecs">
+						{foreach from=$identificationCodes item=identificationCode}
+							<div id="bookIdentificationSpecs-{$identificationCode->getCode()|escape}">
+								{$identificationCode->getNameForONIXCode()|escape}: {$identificationCode->getValue()|escape}
+							</div>
+						{/foreach}{* identification codes *}
+						</div>
+					{/if}{* $identificationCodes *}
+					{assign var="publicationFormatId" value=$publicationFormat->getId()}
+					{if !empty($availableFiles.$publicationFormatId)}
+						<div class="ecommerce">
+							{if $availableFiles.$publicationFormatId|@count == 1}
+								{* FIXME: unimplemented. One file available; shortcut to purchase *}
+							{else}
+								{* FIXME: unimplemented. Several files available; display options *}
+							{/if}
+						</div>
+					{/if}{* !empty($availableFiles) *}
+				</div>{* publicationFormat *}
 			{/if}{* $publicationFormat->getIsAvailable() *}
 		{/foreach}{* $publicationFormats *}
 

@@ -19,22 +19,45 @@
 <div class="bookInfo">
 	<h3>{$publishedMonograph->getLocalizedTitle()|strip_unsafe_html}</h3>
 	<div class="authorName">{$publishedMonograph->getAuthorString()}</div>
-	Here's some more stuff.
 
 	<div id="bookInfoTabs">
 		<ul>
 			<li><a href="#abstractTab">{translate key="submission.synopsis"}</a></li>
+			{if $availableFiles|@count != 0}<li><a href="#downloadTab">{translate key="submission.download"}</a></li>{/if}
 			<li><a href="#sharingTab">{translate key="submission.sharing"}</a></li>
 		</ul>
 
 		<div id="abstractTab">
 			{$publishedMonograph->getLocalizedAbstract()|strip_unsafe_html}
 		</div>
+		{if $availableFiles|@count != 0}
+		<div id="downloadTab">
+			{assign var=publicationFormats value=$publishedMonograph->getPublicationFormats()}
+			{foreach from=$publicationFormats item=publicationFormat}
+				{assign var=publicationFormatId value=$publicationFormat->getId()}
+				{if $availableFiles[$publicationFormatId]}
+					<div class="publicationFormatDownload" id="publicationFormat-download-{$publicationFormatId|escape}">
+						{$publicationFormat->getLocalizedTitle()|escape}
+						<ul>
+							{foreach from=$availableFiles[$publicationFormatId] item=availableFile}
+								<li>
+									<div class="publicationFormatName">{$availableFile->getLocalizedName()|escape}</div>
+									<div class="publicationFormatLink">
+										<a href="{url op="downloadBook" path=$publishedMonograph->getId()|to_array:$publicationFormatId}">{if $availableFile->getDirectSalesPrice()}{translate key="payment.directSales.purchase amount=$availableFile->getDirectSalesPrice() currency=$currentPress->getSetting('pressCurrency')}{else}{translate key="payment.directSales.download"}{/if}</a>
+									</div>
+								</li>
+							{/foreach}
+						</ul>
+					</div>
+				{/if}
+			{/foreach}
+		</div>
+		{/if}
 		<div id="sharingTab">
 			{call_hook name="Templates::Catalog::Book::BookInfo::Sharing"}
 
-			{foreach from=$blocks item=block name=b}
-				<div id="socialMediaBlock{$smarty.foreach.b.index}" class="pkp_helpers_clear">
+			{foreach from=$blocks item=block key=blockKey}
+				<div id="socialMediaBlock{$blockKey|escape}" class="pkp_helpers_clear">
 					{$block}
 				</div>
 			{/foreach}
