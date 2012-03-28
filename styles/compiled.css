@@ -157,6 +157,7 @@ strong {
   font-weight:bold;
 }
 .pkp_helpers_invisible { visibility:hidden; }
+.pkp_helpers_display_none { display:none; }
 .pkp_helpers_clear { clear:both; }
 .pkp_helpers_align_left { float:left; }
 .pkp_helpers_align_right { float:right; }
@@ -997,10 +998,7 @@ div.pkp_controllers_grid .row_actions a {
   display:block;
   cursor:pointer;
 }
-div.pkp_controllers_grid .row_file {
-  width:100%;
-  background-color:#ffffff;
-}
+div.pkp_controllers_grid .row_file { width:100%; }
 div.pkp_controllers_grid .row_file a {
   float:left;
   margin-right:20px;
@@ -1065,6 +1063,11 @@ div.pkp_controllers_grid .pkp_controllers_grid_throbber {
   margin:5% auto 0 auto;
 }
 div.pkp_controllers_grid .visible { display:block; }
+div.pkp_controllers_grid .grid_controls {
+  padding:5px;
+  height:26px;
+}
+div.pkp_controllers_grid .ordering:hover { background:#eaf3f8 !important; }
 div.pkp_controllers_grid .group1 td:first-child { background:url(../lib/pkp/templates/images/structure/grid_group_1.png) no-repeat; }
 div.pkp_controllers_grid .group2 td:first-child { background:url(../lib/pkp/templates/images/structure/grid_group_2.png) no-repeat; }
 div.pkp_controllers_grid .group3 td:first-child { background:url(../lib/pkp/templates/images/structure/grid_group_3.png) no-repeat; }
@@ -1338,7 +1341,7 @@ a.pkp_common_disabled, a.pkp_common_disabled:hover { color:#666666; }
 }
 .pkp_catalog_book .bookInfo .publicationFormatName {
   float:left;
-  width:50%;
+  width:75%;
 }
 .pkp_page_header { position:relative; }
 .pkp_page_header ul.submission_actions {

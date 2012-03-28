@@ -109,6 +109,16 @@ class ChapterAuthorListbuilderHandler extends ListbuilderHandler {
 		$nameColumn->setCellProvider(new UserListbuilderGridCellProvider());
 		$this->addColumn($nameColumn);
 	}
+	
+	/**
+	 * @see ListbuilderHandler::getRowInstante()
+	 */
+	function &getRowInstance() {
+		$row =& parent::getRowInstance();
+		$row->setIsOrderable(true);
+		
+		return $row;
+	}
 
 	/**
 	 * @see GridDataProvider::getRequestArgs()
@@ -163,6 +173,8 @@ class ChapterAuthorListbuilderHandler extends ListbuilderHandler {
 
 		return $items;
 	}
+	
+	
 	//
 	// Public methods
 	//

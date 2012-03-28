@@ -142,14 +142,26 @@ class ChapterForm extends Form {
 		$monograph =& $this->getMonograph();
 		$chapter =& $this->getChapter();
 		$authorId = (int) $newRowId['name'];
-
+		$sequence = (int) $newRowId['sequence'];
+		
 		// Create a new chapter author.
 		$chapterAuthorDao =& DAORegistry::getDAO('ChapterAuthorDAO');
 		// FIXME: primary authors not set for chapter authors.
-		$chapterAuthorDao->insertChapterAuthor($authorId, $chapter->getId(), $monograph->getId());
+		$chapterAuthorDao->insertChapterAuthor($authorId, $chapter->getId(), $monograph->getId(), false, $sequence);
 		return true;
 	}
-
+	
+	/**
+	 * FIXME: duplicated function from Listbuilder base class.
+	 * The updateEntry callback was not getting called because
+	 * the this on Listbuilder unpack function was set to this
+	 * form.
+	 */
+	function updateEntry(&$request, $rowId, $newRowId) {
+		if (!$this->deleteEntry($request, $rowId)) return false;
+		return $this->insertEntry($request, $newRowId);
+	}
+	
 	/**
 	 * Delete an author entry.
 	 * @param $request Request

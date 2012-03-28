@@ -26,7 +26,7 @@ class PressGridHandler extends GridHandler {
 		$this->addRoleAssignment(array(
 			ROLE_ID_SITE_ADMIN),
 			array('fetchGrid', 'fetchRow', 'createPress', 'editPress', 'updatePress',
-				'deletePress')
+				'deletePress', 'saveRowsSequence')
 		);
 	}
 
@@ -122,6 +122,7 @@ class PressGridHandler extends GridHandler {
 	 */
 	function &getRowInstance() {
 		$row = new PressGridRow();
+		$row->setIsOrderable(true);
 		return $row;
 	}
 
@@ -131,12 +132,27 @@ class PressGridHandler extends GridHandler {
 	 * @return array Grid data.
 	 */
 	function loadData(&$request) {
-
 		// Get all presses.
 		$pressDao =& DAORegistry::getDAO('PressDAO');
 		$presses =& $pressDao->getPresses();
 
 		return $presses->toAssociativeArray('pressId');
+	}
+
+	/**
+	 * @see lib/pkp/classes/controllers/grid/GridHandler::getRowDataElementSequence()
+	 */
+	function getRowDataElementSequence(&$press) {
+		return $press->getSequence();
+	}
+
+	/**
+	 * @see lib/pkp/classes/controllers/grid/GridHandler::saveRowDataElementSequence()
+	 */
+	function saveRowDataElementSequence(&$press, $newSequence) {
+		$pressDao = DAORegistry::getDAO('PressDAO'); /* @var $pressDao PressDAO */
+		$press->setSequence($newSequence);
+		$pressDao->updateObject($press);
 	}
 
 
