@@ -43,7 +43,7 @@ class MarketForm extends Form {
 	 * Get the entry
 	 * @return Market
 	 */
-	function getMarket() {
+	function &getMarket() {
 		return $this->_market;
 	}
 
@@ -59,7 +59,7 @@ class MarketForm extends Form {
 	 * Get the Monograph
 	 * @return Monograph
 	 */
-	function getMonograph() {
+	function &getMonograph() {
 		return $this->_monograph;
 	}
 
@@ -93,7 +93,7 @@ class MarketForm extends Form {
 				'discount' => $market->getDiscount(),
 				'dateRole' => $market->getDateRole(),
 				'agentId' => $market->getAgentId(),
-				'supplierId' => $market->getSupplierId()
+				'supplierId' => $market->getSupplierId(),
 			);
 		}
 	}
@@ -198,7 +198,7 @@ class MarketForm extends Form {
 			'taxRateCode',
 			'taxTypeCode',
 			'agentId',
-			'supplierId'
+			'supplierId',
 		));
 	}
 

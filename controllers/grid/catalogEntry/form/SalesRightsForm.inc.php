@@ -52,7 +52,7 @@ class SalesRightsForm extends Form {
 	 * Get the entry
 	 * @return SalesRights
 	 */
-	function getSalesRights() {
+	function &getSalesRights() {
 		return $this->_salesRights;
 	}
 
@@ -68,7 +68,7 @@ class SalesRightsForm extends Form {
 	 * Get the Monograph
 	 * @return Monograph
 	 */
-	function getMonograph() {
+	function &getMonograph() {
 		return $this->_monograph;
 	}
 
@@ -98,7 +98,7 @@ class SalesRightsForm extends Form {
 				'countriesIncluded' => $salesRights->getCountriesIncluded(),
 				'countriesExcluded' => $salesRights->getCountriesExcluded(),
 				'regionsIncluded' => $salesRights->getRegionsIncluded(),
-				'regionsExcluded' => $salesRights->getRegionsExcluded()
+				'regionsExcluded' => $salesRights->getRegionsExcluded(),
 			);
 		}
 	}
@@ -166,7 +166,7 @@ class SalesRightsForm extends Form {
 			'countriesIncluded',
 			'countriesExcluded',
 			'regionsIncluded',
-			'regionsExcluded'
+			'regionsExcluded',
 		));
 	}
 
@@ -213,5 +213,4 @@ class SalesRightsForm extends Form {
 		return $salesRightsId;
 	}
 }
-
 ?>

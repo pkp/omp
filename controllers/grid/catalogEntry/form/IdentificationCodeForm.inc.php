@@ -43,7 +43,7 @@ class IdentificationCodeForm extends Form {
 	 * Get the code
 	 * @return IdentificationCode
 	 */
-	function getIdentificationCode() {
+	function &getIdentificationCode() {
 		return $this->_identificationCode;
 	}
 
@@ -59,7 +59,7 @@ class IdentificationCodeForm extends Form {
 	 * Get the Monograph
 	 * @return Monograph
 	 */
-	function getMonograph() {
+	function &getMonograph() {
 		return $this->_monograph;
 	}
 
@@ -85,7 +85,7 @@ class IdentificationCodeForm extends Form {
 			$this->_data = array(
 				'identificationCodeId' => $code->getId(),
 				'code' => $code->getCode(),
-				'value' => $code->getValue()
+				'value' => $code->getValue(),
 			);
 		}
 	}

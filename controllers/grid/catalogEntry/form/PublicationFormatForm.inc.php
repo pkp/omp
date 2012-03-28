@@ -42,7 +42,7 @@ class PublicationFormatForm extends Form {
 	 * Get the format
 	 * @return PublicationFormat
 	 */
-	function getPublicationFormat() {
+	function &getPublicationFormat() {
 		return $this->_publicationFormat;
 	}
 
@@ -58,7 +58,7 @@ class PublicationFormatForm extends Form {
 	 * Get the Monograph
 	 * @return Monograph
 	 */
-	function getMonograph() {
+	function &getMonograph() {
 		return $this->_monograph;
 	}
 
@@ -84,7 +84,7 @@ class PublicationFormatForm extends Form {
 			$this->_data = array(
 				'entryKey' => $format->getEntryKey(),
 				'title' => $format->getTitle(),
-				'isPhysicalFormat' => $format->getPhysicalFormat()?true:false
+				'isPhysicalFormat' => $format->getPhysicalFormat()?true:false,
 			);
 		}
 	}
@@ -119,7 +119,7 @@ class PublicationFormatForm extends Form {
 		$this->readUserVars(array(
 			'title',
 			'entryKey',
-			'isPhysicalFormat'
+			'isPhysicalFormat',
 		));
 	}
 

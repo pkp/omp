@@ -47,7 +47,7 @@ class RepresentativeForm extends Form {
 	 * Get the representative
 	 * @return Representative
 	 */
-	function getRepresentative() {
+	function &getRepresentative() {
 		return $this->_representative;
 	}
 
@@ -63,7 +63,7 @@ class RepresentativeForm extends Form {
 	 * Get the Monograph
 	 * @return Monograph
 	 */
-	function getMonograph() {
+	function &getMonograph() {
 		return $this->_monograph;
 	}
 
@@ -96,7 +96,7 @@ class RepresentativeForm extends Form {
 				'fax' => $representative->getFax(),
 				'email' => $representative->getEmail(),
 				'url' =>$representative->getUrl(),
-				'isSupplier' => $representative->getIsSupplier()
+				'isSupplier' => $representative->getIsSupplier(),
 			);
 		}
 	}
@@ -152,7 +152,7 @@ class RepresentativeForm extends Form {
 			'fax',
 			'email',
 			'url',
-			'isSupplier'
+			'isSupplier',
 		));
 	}
 
@@ -202,5 +202,4 @@ class RepresentativeForm extends Form {
 		return $representativeId;
 	}
 }
-
 ?>

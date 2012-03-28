@@ -44,7 +44,7 @@ class PublicationDateForm extends Form {
 	 * Get the date
 	 * @return PublicationDate
 	 */
-	function getPublicationDate() {
+	function &getPublicationDate() {
 		return $this->_publicationDate;
 	}
 
@@ -60,7 +60,7 @@ class PublicationDateForm extends Form {
 	 * Get the Monograph
 	 * @return Monograph
 	 */
-	function getMonograph() {
+	function &getMonograph() {
 		return $this->_monograph;
 	}
 
@@ -87,7 +87,7 @@ class PublicationDateForm extends Form {
 				'publicationDateId' => $date->getId(),
 				'role' => $date->getRole(),
 				'dateFormat' => $date->getDateFormat(),
-				'date' => $date->getDate()
+				'date' => $date->getDate(),
 			);
 		}
 	}
