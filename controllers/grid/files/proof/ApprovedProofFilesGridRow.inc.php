@@ -51,6 +51,7 @@ class ApprovedProofFilesGridRow extends GridRow {
 					$router->url($request, null, null, 'editApprovedProof', null, array(
 						'fileId' => $fileId,
 						'monographId' => $request->getUserVar('monographId'),
+						'publicationFormatId' => $request->getUserVar('publicationFormatId'),
 					)),
 					__('grid.action.edit'),
 					'edit'

@@ -69,6 +69,7 @@
 	 * requests a list of the current publication formats from the CatalogEntryHandler
 	 * and calls a callback which updates the tab state accordingly as they are changed.
 	 *
+	 * @private
 	 * @param {HTMLElement} sourceElement The parent DIV element
 	 *  which contains the tabs.
 	 * @param {Event} event The triggered event (gridRefreshRequested).

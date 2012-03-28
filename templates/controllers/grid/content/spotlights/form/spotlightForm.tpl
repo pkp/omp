@@ -4,9 +4,9 @@
  * Copyright (c) 2003-2012 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * Announcement form to read/create/edit spotlights.
+ * Form to read/create/edit spotlights.
  *}
- {url|assign:addSpotlightItemUrl op="itemAutocomplete" pressId=$pressId type=$type escape=false}
+{url|assign:addSpotlightItemUrl op="itemAutocomplete" pressId=$pressId type=$type escape=false}
 <script type="text/javascript">
 	$(function() {ldelim}
 		// Attach the form handler.

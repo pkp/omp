@@ -630,10 +630,13 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 
 	<message key="payment.directSales">Direct Sales Availability &amp;amp; Pricing</message>
 	<message key="payment.directSales.price">Price</message>
+	<message key="payment.directSales.priceCurrency">Price ({$currency})</message>
+	<message key="payment.directSales.directSales">Direct Sales</message>
 	<message key="payment.directSales.amount">{$amount} ({$currency})</message>
 	<message key="payment.directSales.notAvailable">Not Available</message>
 	<message key="payment.directSales.openAccess">Open Access</message>
-	<message key="payment.directSales.price.description">To make all approved proofs for this Publication Format available for direct sales, enter a price below. Use 0 for open access.</message>
+	<message key="payment.directSales.price.description">Approved Proofs can be made available directly through OMP as Open Access (free of charge) or via direct sales. To sell direct access to this approved proof, choose "Direct Sales" and specify a price.</message>
+	<message key="payment.directSales.validPriceRequired">A valid numeric price is required.</message>
 
 	<!-- Debug messages -->
 	<message key="debug.notes.currencyListLoad">Loaded currency list "{$filename}" from XML</message>

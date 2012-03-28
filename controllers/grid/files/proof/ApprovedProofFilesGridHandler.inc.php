@@ -120,11 +120,29 @@ class ApprovedProofFilesGridHandler extends GridHandler {
 	// Public handler methods
 	//
 	function editApprovedProof($args, &$request) {
-		fatalError('unimplemented');
+		$this->initialize($request);
+
+		import('controllers.grid.files.proof.form.ApprovedProofForm');
+		$approvedProofForm = new ApprovedProofForm($this->monograph, $this->publicationFormat, $request->getUserVar('fileId'));
+		$approvedProofForm->initData();
+
+		$json = new JSONMessage(true, $approvedProofForm->fetch($request));
+		return $json->getString();
 	}
 
 	function saveApprovedProof($args, &$request) {
-		fatalError('unimplemented');
+		import('controllers.grid.files.proof.form.ApprovedProofForm');
+		$approvedProofForm = new ApprovedProofForm($this->monograph, $this->publicationFormat, $request->getUserVar('fileId'));
+		$approvedProofForm->readInputData();
+
+		if ($approvedProofForm->validate()) {
+			$fileId = $approvedProofForm->execute();
+
+			// Let the calling grid reload itself
+			return DAO::getDataChangedEvent($fileId);
+		}
+
+		return new JSONMessage(false);
 	}
 }
 
