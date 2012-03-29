@@ -13,7 +13,12 @@
 <script type="text/javascript">
 	$(function() {ldelim}
 		// Attach the form handler.
-		$('#{$submissionMetadataViewFormId}').pkpHandler('$.pkp.controllers.form.AjaxFormHandler');
+		$('#{$submissionMetadataViewFormId}').pkpHandler(
+			'$.pkp.controllers.form.AjaxFormHandler',
+			{ldelim}
+				trackFormChanges: true
+			{rdelim}
+		);
 	{rdelim});
 </script>
 

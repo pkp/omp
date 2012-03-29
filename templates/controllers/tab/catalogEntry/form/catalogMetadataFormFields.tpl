@@ -11,6 +11,7 @@
 		$('#catalogMetadataEntryForm').pkpHandler(
 			'$.pkp.controllers.form.FileUploadFormHandler',
 			{ldelim}
+				trackFormChanges: true,
 				$uploader: $('#plupload'),
 				uploaderOptions: {ldelim}
 					uploadUrl: '{url|escape:javascript op="uploadCoverImage" escape=false stageId=$stageId monographId=$monographId}',

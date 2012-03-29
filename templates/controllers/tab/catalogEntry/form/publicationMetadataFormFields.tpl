@@ -11,7 +11,12 @@
 <script type="text/javascript">
 	$(function() {ldelim}
 		// Attach the form handler.
-		$('#{$publicationFormId|escape:"javascript"}').pkpHandler('$.pkp.controllers.form.AjaxFormHandler');
+		$('#{$publicationFormId|escape:"javascript"}').pkpHandler(
+			'$.pkp.controllers.form.AjaxFormHandler',
+			{ldelim}
+				trackFormChanges: true
+			{rdelim}
+		);
 	{rdelim});
 </script>
 
