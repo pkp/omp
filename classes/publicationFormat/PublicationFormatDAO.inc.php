@@ -224,7 +224,7 @@ class PublicationFormatDAO extends DAO {
 				product_availability_code = ?,
 				technical_protection_code = ?,
 				returnable_indicator_code = ?,
-				is_available = ?,
+				is_available = ?
 			WHERE	publication_format_id = ?',
 			array(
 				$publicationFormat->getEntryKey(),
