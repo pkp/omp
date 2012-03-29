@@ -31,12 +31,12 @@
 	{if !$formParams.anonymous}
 		<!--  Contributors -->
 		<h3 class="pkp_grid_title">{translate key="submission.contributors"}</h3>
-		<p class="pkp_grid_description">{translate key="submission.contributorsDescription"}</p>		
+		<p class="pkp_grid_description">{translate key="submission.contributorsDescription"}</p>
 		{* generate a unique ID for the form *}
 		{assign var="authorsGridContainer" value="authorsGridContainer-"|uniqid|escape}
 		{url|assign:authorGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.users.author.AuthorGridHandler" op="fetchGrid" monographId=$monographId stageId=$stageId escape=false}
 		{load_url_in_div id=$authorsGridContainer url="$authorGridUrl"}
-		
+
 		<!--  Chapters -->
 		{if $isEditedVolume}
 			<h3 class="pkp_grid_title">{translate key="submission.chapters"}</h3>
