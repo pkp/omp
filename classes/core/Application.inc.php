@@ -148,6 +148,7 @@ class Application extends PKPApplication {
 			'NoteDAO' => 'classes.note.NoteDAO',
 			'NotificationStatusDAO' => 'classes.press.NotificationStatusDAO',
 			'OAIDAO' => 'classes.oai.omp.OAIDAO',
+			'OMPCompletedPaymentDAO' => 'classes.payment.omp.OMPCompletedPaymentDAO',
 			'PluginSettingsDAO' => 'classes.plugins.PluginSettingsDAO',
 			'PressDAO' => 'classes.press.PressDAO',
 			'PressSettingsDAO' => 'classes.press.PressSettingsDAO',
@@ -155,6 +156,7 @@ class Application extends PKPApplication {
 			'PublicationDateDAO' => 'classes.publicationFormat.PublicationDateDAO',
 			'PublicationFormatDAO' => 'classes.publicationFormat.PublicationFormatDAO',
 			'PublishedMonographDAO' => 'classes.monograph.PublishedMonographDAO',
+			'QueuedPaymentDAO' => 'lib.pkp.classes.payment.QueuedPaymentDAO',
 			'RepresentativeDAO' => 'classes.monograph.RepresentativeDAO',
 			'ReviewAssignmentDAO' => 'classes.submission.reviewAssignment.ReviewAssignmentDAO',
 			'ReviewerSubmissionDAO' => 'classes.submission.reviewer.ReviewerSubmissionDAO',
@@ -177,7 +179,7 @@ class Application extends PKPApplication {
 			'UserDAO' => 'classes.user.UserDAO',
 			'UserSettingsDAO' => 'classes.user.UserSettingsDAO',
 			'UserStageAssignmentDAO' => 'classes.user.UserStageAssignmentDAO',
-			'ViewsDAO' => 'classes.views.ViewsDAO'
+			'ViewsDAO' => 'classes.views.ViewsDAO',
 		));
 	}
 

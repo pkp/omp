@@ -96,6 +96,23 @@ class CatalogBookHandler extends Handler {
 		// Display
 		$templateMgr->display('catalog/book/book.tpl');
 	}
+
+	/**
+	 * Download a published monograph publication format.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 */
+	function downloadBook($args, &$request) {
+		$press =& $request->getPress();
+		$this->setupTemplate();
+
+		$publishedMonograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_PUBLISHED_MONOGRAPH);
+		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
+		$publicationFormat =& $publicationFormatDao->getById($args[1], $publishedMonograph->getId());
+		if (!$publicationFormat || !$publicationFormat->getIsAvailable()) fatalError('Invalid publication format specified.');
+
+		fatalError('unimplemented');
+	}
 }
 
 ?>
