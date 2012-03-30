@@ -23,9 +23,6 @@ class FooterGridCategoryRow extends GridCategoryRow {
 	/** @var Press **/
 	var $_press;
 
-	/** @var FooterCategory **/
-	var $_footerCategory;
-
 	/**
 	 * Constructor
 	 */
@@ -41,7 +38,6 @@ class FooterGridCategoryRow extends GridCategoryRow {
 		$footerCategoryId = $this->getId();
 		if (!empty($footerCategoryId) && is_numeric($footerCategoryId)) {
 			$footerCategory =& $this->getData();
-			$this->_footerCategory =& $footerCategory;
 
 			$router =& $request->getRouter();
 			$actionArgs = array(

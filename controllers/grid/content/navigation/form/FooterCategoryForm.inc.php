@@ -208,9 +208,9 @@ class FooterCategoryForm extends Form {
 
 	/**
 	 * Fetch the footerCategory for this form.
-	 * @return int $footerCategoryId
+	 * @return FooterCategory $footerCategory
 	 */
-	function getFooterCategory() {
+	function &getFooterCategory() {
 		return $this->_footerCategory;
 	}
 

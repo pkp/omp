@@ -113,9 +113,9 @@ class SocialMediaForm extends Form {
 
 	/**
 	 * Fetch the SocialMedia object for this form.
-	 * @return int $socialMediaId
+	 * @return SocialMedia $socialMedia
 	 */
-	function getSocialMedia() {
+	function &getSocialMedia() {
 		return $this->_socialMedia;
 	}
 

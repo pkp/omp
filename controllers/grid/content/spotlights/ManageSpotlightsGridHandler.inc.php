@@ -225,7 +225,7 @@ class ManageSpotlightsGridHandler extends CategoryGridHandler {
 		$press =& $request->getPress();
 		$pressId = $press->getId();
 
-		$spotlightForm =$this->_getForm($pressId, $spotlightId);
+		$spotlightForm = new SpotlightForm($pressId, $spotlightId);
 		$spotlightForm->initData($args, $request);
 
 		$json = new JSONMessage(true, $spotlightForm->fetch($request));
@@ -248,7 +248,7 @@ class ManageSpotlightsGridHandler extends CategoryGridHandler {
 		$spotlight = $spotlightDao->getById($spotlightId, $press->getId());
 
 		// Form handling
-		$spotlightForm = $this->_getForm($press->getId(), $spotlightId);
+		$spotlightForm = new SpotlightForm($press->getId(), $spotlightId);
 
 		$spotlightForm->readInputData();
 		if ($spotlightForm->validate()) {
@@ -369,21 +369,6 @@ class ManageSpotlightsGridHandler extends CategoryGridHandler {
 
 		$json = new JSONMessage(true, $itemList);
 		return $json->getString();
-	}
-
-	/**
-	 * Internal method to retrieve the SpotlightForm
-	 * @return SpotlightForm
-	 */
-	function _getForm($pressId, $spotlightId) {
-		if (checkPhpVersion('5.0.0')) {
-			// WARNING: This form needs $this in constructor
-			$spotlightForm = new SpotlightForm($pressId, $spotlightId);
-		} else {
-			$spotlightForm =& new SpotlightForm($pressId, $spotlightId);
-		}
-
-		return $spotlightForm;
 	}
 }
 

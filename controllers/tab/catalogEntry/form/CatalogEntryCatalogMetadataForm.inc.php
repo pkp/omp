@@ -121,7 +121,7 @@ class CatalogEntryCatalogMetadataForm extends Form {
 	 * Get the Monograph
 	 * @return Monograph
 	 */
-	function getMonograph() {
+	function &getMonograph() {
 		return $this->_monograph;
 	}
 
@@ -129,7 +129,7 @@ class CatalogEntryCatalogMetadataForm extends Form {
 	 * Get the PublishedMonograph
 	 * @return PublishedMonograph
 	 */
-	function getPublishedMonograph() {
+	function &getPublishedMonograph() {
 		return $this->_publishedMonograph;
 	}
 

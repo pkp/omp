@@ -19,7 +19,6 @@ import('lib.pkp.classes.controllers.grid.CategoryGridHandler');
 // import format grid specific classes
 import('controllers.grid.content.navigation.FooterGridCellProvider');
 import('controllers.grid.content.navigation.FooterGridCategoryRow');
-import('controllers.grid.content.navigation.FooterGridRow');
 import('controllers.grid.content.navigation.form.FooterCategoryForm');
 
 // Link action & modal classes
@@ -141,14 +140,6 @@ class ManageFooterGridHandler extends CategoryGridHandler {
 	//
 	// Overridden methods from GridHandler
 	//
-	/**
-	 * @see GridHandler::getRowInstance()
-	 * @return FooterGridRow
-	 */
-	function &getRowInstance() {
-		$row = new FooterGridRow($this->getPress());
-		return $row;
-	}
 
 	/**
 	 * @see CategoryGridHandler::getCategoryRowInstance()

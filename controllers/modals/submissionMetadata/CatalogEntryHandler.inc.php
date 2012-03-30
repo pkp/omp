@@ -77,7 +77,7 @@ class CatalogEntryHandler extends Handler {
 	 * Get the Monograph
 	 * @return Monograph
 	 */
-	function getMonograph() {
+	function &getMonograph() {
 		return $this->_monograph;
 	}
 
