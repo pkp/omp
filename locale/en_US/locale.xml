@@ -639,6 +639,8 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="payment.directSales.validPriceRequired">A valid numeric price is required.</message>
 	<message key="payment.directSales.purchase">Purchase ({$amount} {$currency})</message>
 	<message key="payment.directSales.download">Download</message>
+	<message key="payment.directSales.monograph.name">Purchase Monograph or Chapter Download</message>
+	<message key="payment.directSales.monograph.description">This transaction is for the purchase of a direct download of a single monograph or monograph chapter.</message>
 
 	<!-- Debug messages -->
 	<message key="debug.notes.currencyListLoad">Loaded currency list "{$filename}" from XML</message>

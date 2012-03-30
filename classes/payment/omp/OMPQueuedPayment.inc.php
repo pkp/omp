@@ -66,6 +66,7 @@ class OMPQueuedPayment extends QueuedPayment {
 	function getName() {
 		switch ($this->type) {
 			case PAYMENT_TYPE_PURCHASE_PUBLICATION_FORMAT:
+				return __('payment.directSales.monograph.name');
 			default:
 				// Invalid payment type
 				assert(false);
@@ -79,8 +80,7 @@ class OMPQueuedPayment extends QueuedPayment {
 	function getDescription() {
 		switch ($this->type) {
 			case PAYMENT_TYPE_PURCHASE_PUBLICATION_FORMAT:
-				fatalError('Unimplemented');
-				break;
+				return __('payment.directSales.monograph.description');
 			default:
 				// Invalid payment ID
 				assert(false);
