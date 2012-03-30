@@ -22,6 +22,9 @@ class OMPQueuedPayment extends QueuedPayment {
 	/** @var $type int PAYMENT_TYPE_... */
 	var $type;
 
+	/** @var $requestUrl string URL associated with this payment */
+	var $requestUrl;
+
 	/**
 	 * Get the press ID of the payment.
 	 * @return int
@@ -82,6 +85,23 @@ class OMPQueuedPayment extends QueuedPayment {
 				// Invalid payment ID
 				assert(false);
 		}
+	}
+
+	/**
+	 * Set the request URL.
+	 * @param $url string
+	 * @return string New URL
+	 */
+	function setRequestUrl($url) {
+		return $this->requestUrl = $url;
+	}
+
+	/**
+	 * Get the request URL.
+	 * @return string
+	 */
+	function getRequestUrl() {
+		return $this->requestUrl;
 	}
 }
 

@@ -139,9 +139,21 @@ class CatalogBookHandler extends Handler {
 
 		import('classes.payment.omp.OMPPaymentManager');
 		$ompPaymentManager = new OMPPaymentManager($request);
-		$request->redirect(null, null, 'purchase', array(
-			$monographId, $publicationFormatId, $fileIdAndRevision
-		));
+		if (!$ompPaymentManager->isConfigured()) {
+			$request->redirect(null, 'catalog');
+		}
+
+		$queuedPayment = $ompPaymentManager->createQueuedPayment(
+			$press->getId(),
+			PAYMENT_TYPE_PURCHASE_PUBLICATION_FORMAT,
+			$user->getId(),
+			$fileIdAndRevision,
+			$submissionFile->getDirectSalesPrice(),
+			$press->getSetting('pressCurrency')
+		);
+
+		$queuedPaymentId = $ompPaymentManager->queuePayment($queuedPayment);
+		$ompPaymentManager->displayPaymentForm($queuedPaymentId, $queuedPayment);
 	}
 }
 

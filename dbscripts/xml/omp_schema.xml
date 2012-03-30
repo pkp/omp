@@ -1928,6 +1928,27 @@
 
 	<!--
 	  *
+	  * TABLE queued_payments
+	  *
+	  -->
+	<table name="queued_payments">
+		<field name="queued_payment_id" type="I8">
+			<KEY />
+			<AUTOINCREMENT/>
+		</field>
+		<field name="date_created" type="T">
+			<NOTNULL/>
+		</field>
+		<field name="date_modified" type="T">
+			<NOTNULL/>
+		</field>
+		<field name="expiry_date" type="D" />
+		<field name="payment_data" type="X" />
+		<descr>Logs queued (unfulfilled) payments.</descr>
+	</table>
+
+	<!--
+	  *
 	  * TABLE completed_payments
 	  *
 	  -->
@@ -1946,7 +1967,8 @@
 			<NOTNULL/>
 		</field>
 		<field name="user_id" type="I8" />
-		<field name="assoc_id" type="I8" />
+		<!-- NOTE: assoc_id NOT numeric to incorporate file idents -->
+		<field name="assoc_id" type="C2" size="16" />
 		<field name="amount" type="F">
 			<NOTNULL/>
 		</field>

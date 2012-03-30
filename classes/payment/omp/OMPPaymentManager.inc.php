@@ -60,7 +60,16 @@ class OMPPaymentManager extends PaymentManager {
 
 	 	switch ($type) {
 			case PAYMENT_TYPE_PURCHASE_PUBLICATION_FORMAT:
-				fatalError('Unimplemented');
+				$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO');
+				list($fileId, $revision) = array_map(create_function('$a', 'return (int) $a;'), explode('-', $assocId));
+				import('classes.monograph.MonographFile'); // const
+				$submissionFile =& $submissionFileDao->getRevision($fileId, $revision, MONOGRAPH_FILE_PROOF);
+				assert($submissionFile);
+				$payment->setRequestUrl($this->request->url(null, 'catalog', 'download', array(
+					$submissionFile->getSubmissionId(),
+					$submissionFile->getAssocId(),
+					$assocId
+				)));
 				break;
 			default:
 				// Invalid payment type.
