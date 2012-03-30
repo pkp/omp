@@ -118,7 +118,7 @@ class LoginHandler extends PKPLoginHandler {
 	function _redirectAfterLogin($request) {
 		$press = $this->getTargetPress($request);
 		// If there's a press, send them to the dashboard after login.
-		if ($press) {
+		if ($press && $request->getUserVar('source') == '') {
 			return $request->redirect($press->getPath(), 'dashboard');
 		}
 		// Fall back on the parent otherwise.

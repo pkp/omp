@@ -82,7 +82,7 @@ class OMPCompletedPaymentDAO extends DAO {
 	 */
 	function hasPaidPurchasePublicationFormat ($userId, $publicationFormatId) {
 		$result =& $this->retrieve(
-			'SELECT count(*) FROM completed_payments WHERE payment_type = ? AND user_id = ? AND publication_format_id = ?',
+			'SELECT count(*) FROM completed_payments WHERE payment_type = ? AND user_id = ? AND assoc_id = ?',
 			array(
 				PAYMENT_TYPE_PURCHASE_PUBLICATION_FORMAT,
 				(int) $userId,

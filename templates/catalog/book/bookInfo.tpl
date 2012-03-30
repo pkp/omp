@@ -43,7 +43,7 @@
 								<li>
 									<div class="publicationFormatName">{$availableFile->getLocalizedName()|escape}</div>
 									<div class="publicationFormatLink">
-										<a href="{url op="downloadBook" path=$publishedMonograph->getId()|to_array:$publicationFormatId}">{if $availableFile->getDirectSalesPrice()}{translate key="payment.directSales.purchase amount=$availableFile->getDirectSalesPrice() currency=$currentPress->getSetting('pressCurrency')}{else}{translate key="payment.directSales.download"}{/if}</a>
+										<a href="{url op="download" path=$publishedMonograph->getId()|to_array:$publicationFormatId:$availableFile->getFileIdAndRevision()}">{if $availableFile->getDirectSalesPrice()}{translate key="payment.directSales.purchase amount=$availableFile->getDirectSalesPrice() currency=$currentPress->getSetting('pressCurrency')}{else}{translate key="payment.directSales.download"}{/if}</a>
 									</div>
 								</li>
 							{/foreach}

@@ -102,16 +102,46 @@ class CatalogBookHandler extends Handler {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function downloadBook($args, &$request) {
+	function download($args, &$request) {
 		$press =& $request->getPress();
 		$this->setupTemplate();
 
+		$monographId = (int) array_shift($args); // Validated thru auth
+		$publicationFormatId = (int) array_shift($args);
+		$fileIdAndRevision = array_shift($args);
+
 		$publishedMonograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_PUBLISHED_MONOGRAPH);
 		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
-		$publicationFormat =& $publicationFormatDao->getById($args[1], $publishedMonograph->getId());
+		$publicationFormat =& $publicationFormatDao->getById($publicationFormatId, $publishedMonograph->getId());
 		if (!$publicationFormat || !$publicationFormat->getIsAvailable()) fatalError('Invalid publication format specified.');
 
-		fatalError('unimplemented');
+		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO');
+		list($fileId, $revision) = array_map(create_function('$a', 'return (int) $a;'), split('-', $fileIdAndRevision));
+		import('classes.monograph.MonographFile'); // File constants
+		$submissionFile =& $submissionFileDao->getRevision($fileId, $revision, MONOGRAPH_FILE_PROOF, $monographId);
+		if (!$submissionFile || $submissionFile->getAssocType() != ASSOC_TYPE_PUBLICATION_FORMAT || $submissionFile->getAssocId() != $publicationFormatId || $submissionFile->getDirectSalesPrice() === null) {
+			fatalError('Invalid monograph file specified!');
+		}
+
+		$ompCompletedPaymentDao =& DAORegistry::getDAO('OMPCompletedPaymentDAO');
+		$user =& $request->getUser();
+		if ($submissionFile->getDirectSalesPrice() === 0 || ($user && $ompCompletedPaymentDao->hasPaidPurchasePublicationFormat($user->getId(), $publicationFormatId))) {
+			// Paid purchase or open access. Allow download.
+			import('classes.file.MonographFileManager');
+			$monographFileManager = new MonographFileManager($press->getId(), $monographId);
+			return $monographFileManager->downloadFile($fileId, $revision);
+		}
+
+		// Fall-through: user needs to pay for purchase.
+
+		// Check that they are registered and logged in.
+		if (!$user) return $request->redirect(null, 'login', null, null, array('source' => $request->url(null, null, null, array($monographId, $publicationFormatId, $fileIdAndRevision))));
+
+		import('classes.payment.omp.OMPPaymentManager');
+		$ompPaymentManager = new OMPPaymentManager($request);
+		$request->redirect(null, null, 'purchase', array(
+			$monographId, $publicationFormatId, $fileIdAndRevision
+		));
 	}
 }
 
