@@ -88,6 +88,9 @@
 			.removeClass('grid_view')
 			.addClass('list_view');
 
+		// unset the height attribute if coming from grid view.
+		$htmlElement.find('.pkp_manageCatalog_monograph').css('height', '');
+
 		// Control enabled/disabled state of buttons
 		var $actionsContainer = $htmlElement.find('.submission_actions');
 		$actionsContainer.find('.list_view').addClass('ui-state-active');
@@ -112,6 +115,7 @@
 			.removeClass('list_view')
 			.addClass('grid_view');
 
+		$htmlElement.find('.pkp_manageCatalog_monograph').equalizeElementHeights();
 		// Control enabled/disabled state of buttons
 		var $actionsContainer = $htmlElement.find('.submission_actions');
 		$actionsContainer.find('.grid_view').addClass('ui-state-active');
