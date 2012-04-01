@@ -23,6 +23,7 @@
 	{rdelim});
 </script>
 {if $reviewRounds}
+	<p>{translate key="editor.review.introduction"}</p>
 	<div id=reviewTabs>
 		<ul>
 			{foreach from=$reviewRounds item=reviewRound}

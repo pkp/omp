@@ -11,6 +11,7 @@
 {/strip}
 
 <div id="copyediting">
+	<p>{translate key="editor.monograph.editorial.introduction"}</p>
 	{url|assign:finalDraftGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.final.FinalDraftFilesGridHandler" op="fetchGrid" monographId=$monograph->getId() stageId=$stageId escape=false}
 	{load_url_in_div id="finalDraftGrid" url=$finalDraftGridUrl}
 
