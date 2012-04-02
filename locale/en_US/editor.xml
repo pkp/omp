@@ -108,7 +108,7 @@
 	<message key="editor.monograph.proofs">Proofs</message>
 	<message key="editor.monograph.production.approvalAndPublishing">Approval and Publishing</message>
 	<message key="editor.monograph.production.approvalAndPublishingDescription">The submission's metadata and other information can be finalized below. This submission can be published by indicating that you approve that the current metadata can be displayed on the site, below. Different publication formats, such as hardcover, softcover and digital, can be uploaded in the Publication Formats section below as well.</message>
-
+	<message key="editor.monograph.production.publicationFormatDescription">Add one or more publication formats here. Any publication format you add (eg. hardback; softback/paperback; digital; audio) will be listed at the bottom of the page. You will be able to upload final galley proofs for each publication format, and audit and approve them. If you are using the PayPal payment method (or similar) to sell books online, any approved proofs will be available in the Catalog Entry interface for pricing.</message>
 	<message key="editor.monograph.approvedProofs.edit">Edit Approved Proof</message>
 
 	<!-- Add file or auditor to editor/audit grids -->

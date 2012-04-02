@@ -47,6 +47,7 @@
 		<div>
 			{fbvFormArea id="publicationFormats"}
 				{fbvFormSection}
+				<p class="pkp_grid_description">{translate key="editor.monograph.production.publicationFormatDescription"}</p>
 					<!--  Formats -->
 					{url|assign:formatGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.catalogEntry.PublicationFormatGridHandler" op="fetchGrid" monographId=$monograph->getId()}
 					{load_url_in_div id="formatsGridContainer"|uniqid url=$formatGridUrl}

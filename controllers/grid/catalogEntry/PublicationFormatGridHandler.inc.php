@@ -95,9 +95,6 @@ class PublicationFormatGridHandler extends GridHandler {
 			LOCALE_COMPONENT_OMP_DEFAULT_SETTINGS
 		);
 
-		// Basic grid configuration
-		$this->setTitle('monograph.publicationFormats');
-
 		// Grid actions
 		$router =& $request->getRouter();
 		$actionArgs = $this->getRequestArgs();
