@@ -52,6 +52,7 @@
 </script>
 
 <div id="catalogHeader">
+	<p>{translate key="catalog.manage.managementIntroduction"}</p>
 	<div id="catalogSearchContainer">
 		<form id="catalogSearchForm" class="pkp_form" action="{url op="search" path="SEARCH_TEXT_DUMMY"}" method="post">
 			{fbvFormSection title="common.search"}

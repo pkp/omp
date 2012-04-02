@@ -264,8 +264,10 @@
 	<message key="catalog.manage.newReleases">New Releases</message>
 	<message key="catalog.manage.category">Category</message>
 	<message key="catalog.manage.series">Series</message>
+	<message key="catalog.manage.managementIntroduction">Welcome to Catalog Management. From this page you can publish new catalog entries; review and configure your Featured Books listing; review and configure your New Releases listing; and review and configure your books by Category and Series.</message>
 	<message key="catalog.selectSeries">Select Series</message>
 	<message key="catalog.selectCategory">Select Category</message>
+	<message key="catalog.manage.entryDescription">Use the Submission tab to modify the book's metadata (including placement, title, summary, keywords, contributors, and chapters). Use the Catalog tab to modify the book's catalog information (including a book cover image; audience information; information on representatives, such as any agents or suppliers, who are not direct members of the press; and publication formats). Additionally, any configured publication formats will be given their own tab from which they can be configured.</message>
 
 	<!-- Catalog -->
 	<message key="catalog.browseTitles">Browse {$numTitles} Titles</message>

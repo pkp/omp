@@ -21,6 +21,7 @@
 				{rdelim});
 	{rdelim});
 </script>
+<p>{translate key="catalog.manage.entryDescription"}</p>
 <div id="newCatalogEntryTabs">
 	<ul>
 		<li>
