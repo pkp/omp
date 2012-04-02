@@ -41,8 +41,6 @@ class ProductionReadyFilesGridHandler extends SubmissionFilesGridHandler {
 				'signOffFile'
 			)
 		);
-
-		$this->setTitle('submission.productionReady');
 	}
 
 	/**

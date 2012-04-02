@@ -44,7 +44,6 @@ class CopyeditingFilesGridHandler extends SignoffFilesGridHandler {
 
 		// Basic grid configuration
 		$this->setId('copyeditingFiles');
-		$this->setTitle('submission.copyediting');
 
 		// Rename the 'editor' column to copyeditor
 		$pressAssistantColumn =& $this->getColumn('editor');

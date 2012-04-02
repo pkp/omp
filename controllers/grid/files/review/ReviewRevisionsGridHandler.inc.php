@@ -33,9 +33,6 @@ class ReviewRevisionsGridHandler extends FileSignoffGridHandler {
 
 		list($roles, $operations) = $roleAssignments;
 		$this->addRoleAssignment($roles, $operations);
-
-		// Set the grid title.
-		$this->setTitle('editor.monograph.revisions');
 	}
 }
 

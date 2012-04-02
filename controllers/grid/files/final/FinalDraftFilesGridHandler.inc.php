@@ -38,9 +38,6 @@ class FinalDraftFilesGridHandler extends FileListGridHandler {
 				'fetchGrid', 'fetchRow', 'selectFiles'
 			)
 		);
-
-		// Set the grid title
-		$this->setTitle('submission.finalDraft');
 	}
 
 	//

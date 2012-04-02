@@ -24,7 +24,6 @@
 	<message key="submission.published">Published</message>
 	<message key="submission.finalDraft">Final Draft</message>
 	<message key="submission.fairCopy">Fair Copy</message>
-	<message key="submission.productionReady">Production Ready</message>
 	<message key="submission.art">Artwork</message>
 	<message key="submission.artwork.permissions">Permissions</message>
 	<message key="submission.chapter">Chapter</message>
