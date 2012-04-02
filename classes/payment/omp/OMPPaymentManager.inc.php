@@ -17,7 +17,7 @@
 import('classes.payment.omp.OMPQueuedPayment');
 import('lib.pkp.classes.payment.PaymentManager');
 
-define('PAYMENT_TYPE_PURCHASE_PUBLICATION_FORMAT',	0x000000001);
+define('PAYMENT_TYPE_PURCHASE_FILE',	0x000000001);
 
 class OMPPaymentManager extends PaymentManager {
 	/** @var $press Press */
@@ -59,7 +59,7 @@ class OMPPaymentManager extends PaymentManager {
 		$payment->setType($type);
 
 	 	switch ($type) {
-			case PAYMENT_TYPE_PURCHASE_PUBLICATION_FORMAT:
+			case PAYMENT_TYPE_PURCHASE_FILE:
 				$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO');
 				list($fileId, $revision) = array_map(create_function('$a', 'return (int) $a;'), explode('-', $assocId));
 				import('classes.monograph.MonographFile'); // const
@@ -104,16 +104,44 @@ class OMPPaymentManager extends PaymentManager {
 	function fulfillQueuedPayment(&$queuedPayment, $payMethodPluginName = null) {
 		$returner = false;
 		if ($queuedPayment) switch ($queuedPayment->getType()) {
-			case PAYMENT_TYPE_PURCHASE_PUBLICATION_FORMAT:
-				fatalError('Unimplemented');
+			case PAYMENT_TYPE_PURCHASE_FILE:
+				$returner = true;
 				break;
 			default:
 				// Invalid payment type
 				assert(false);
 		}
 
+		$ompCompletedPaymentDao =& DAORegistry::getDAO('OMPCompletedPaymentDAO');
+		$completedPayment =& $this->createCompletedPayment($queuedPayment, $payMethodPluginName);
+		$ompCompletedPaymentDao->insertCompletedPayment($completedPayment);
+
+		$queuedPaymentDao =& DAORegistry::getDAO('QueuedPaymentDAO');
+		$queuedPaymentDao->deleteQueuedPayment($queuedPayment->getId());
+
 		return $returner;
 	}
+
+	/**
+	 * Create a completed payment from a queued payment.
+	 * @param $queuedPayment QueuedPayment Payment to complete.
+	 * @param $payMethod string Name of payment plugin used.
+	 * @return OMPCompletedPayment
+	 */
+	function &createCompletedPayment($queuedPayment, $payMethod) {
+		import('classes.payment.omp.OMPCompletedPayment');
+		$payment = new OMPCompletedPayment();
+		$payment->setPressId($queuedPayment->getPressId());
+		$payment->setType($queuedPayment->getType());
+		$payment->setAmount($queuedPayment->getAmount());
+		$payment->setCurrencyCode($queuedPayment->getCurrencyCode());
+		$payment->setUserId($queuedPayment->getUserId());
+		$payment->setAssocId($queuedPayment->getAssocId());
+		$payment->setPayMethodPluginName($payMethod);
+
+		return $payment;
+	}
+
 }
 
 ?>

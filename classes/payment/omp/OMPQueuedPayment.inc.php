@@ -65,7 +65,7 @@ class OMPQueuedPayment extends QueuedPayment {
 	 */
 	function getName() {
 		switch ($this->type) {
-			case PAYMENT_TYPE_PURCHASE_PUBLICATION_FORMAT:
+			case PAYMENT_TYPE_PURCHASE_FILE:
 				return __('payment.directSales.monograph.name');
 			default:
 				// Invalid payment type
@@ -79,7 +79,7 @@ class OMPQueuedPayment extends QueuedPayment {
 	 */
 	function getDescription() {
 		switch ($this->type) {
-			case PAYMENT_TYPE_PURCHASE_PUBLICATION_FORMAT:
+			case PAYMENT_TYPE_PURCHASE_FILE:
 				return __('payment.directSales.monograph.description');
 			default:
 				// Invalid payment ID

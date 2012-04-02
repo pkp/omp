@@ -79,7 +79,7 @@ class OMPCompletedPayment extends Payment {
 		$press =& $pressDao->getById($this->getPressId());
 
 		switch ($this->type) {
-			case PAYMENT_TYPE_PURCHASE_PUBLICATION_FORMAT:
+			case PAYMENT_TYPE_PURCHASE_FILE:
 				fatalError('unimplemented');
 			default:
 				assert(false);
@@ -97,7 +97,7 @@ class OMPCompletedPayment extends Payment {
 		$press =& $pressDao->getById($this->getPressId());
 
 		switch ($this->type) {
-			case PAYMENT_TYPE_PURCHASE_PUBLICATION_FORMAT:
+			case PAYMENT_TYPE_PURCHASE_FILE:
 				fatalError('unimplemented');
 			default:
 				assert(false);
@@ -147,7 +147,7 @@ class OMPCompletedPayment extends Payment {
 	function getAssocDescription() {
 		if (!$this->assocId) return false;
 		switch ($this->type) {
-			case PAYMENT_TYPE_PURCHASE_PUBLICATION_FORMAT:
+			case PAYMENT_TYPE_PURCHASE_FILE:
 				fatalError('unimplemented');
 			default:
 				assert(false);

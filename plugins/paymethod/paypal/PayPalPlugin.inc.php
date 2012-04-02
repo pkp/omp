@@ -215,14 +215,14 @@ class PayPalPlugin extends PaymethodPlugin {
 							$queuedPaymentId = $request->getUserVar('custom');
 
 							import('classes.payment.omp.OMPPaymentManager');
-							$ompPaymentManager =& OMPPaymentManager::getManager();
+							$ompPaymentManager = new OMPPaymentManager($request);
 
 							// Verify the cost and user details as per PayPal spec.
 							$queuedPayment =& $ompPaymentManager->getQueuedPayment($queuedPaymentId);
 							if (!$queuedPayment) {
 								// The queued payment entry is missing. Complain.
 								$mail->assignParams(array(
-									'pressName' => $press->getLocalizedTitle(),
+									'pressName' => $press->getLocalizedName(),
 									'postInfo' => print_r($_POST, true),
 									'additionalInfo' => "Missing queued payment ID: $queuedPaymentId",
 									'serverVars' => print_r($_SERVER, true)

@@ -14,6 +14,7 @@
  *
  */
 
+import('classes.payment.omp.OMPPaymentManager'); // PAYMENT_TYPE_... consts
 import('classes.payment.omp.OMPCompletedPayment');
 
 class OMPCompletedPaymentDAO extends DAO {
@@ -57,7 +58,7 @@ class OMPCompletedPaymentDAO extends DAO {
 				(int) $completedPayment->getType(),
 				(int) $completedPayment->getPressId(),
 				(int) $completedPayment->getUserId(),
-				(int) $completedPayment->getAssocId(),
+				$completedPayment->getAssocId(), /* NOT int */
 				$completedPayment->getAmount(),
 				$completedPayment->getCurrencyCode(),
 				$completedPayment->getPayMethodPluginName()
@@ -78,15 +79,15 @@ class OMPCompletedPaymentDAO extends DAO {
 	/**
 	 * Look for a completed PURCHASE_PUBLICATION_FORMAT payment matching the article ID
 	 * @param $userId int
-	 * @param int $articleId
+	 * @param string $fileIdAndRevision
 	 */
-	function hasPaidPurchasePublicationFormat ($userId, $publicationFormatId) {
+	function hasPaidPurchaseFile ($userId, $fileIdAndRevision) {
 		$result =& $this->retrieve(
 			'SELECT count(*) FROM completed_payments WHERE payment_type = ? AND user_id = ? AND assoc_id = ?',
 			array(
-				PAYMENT_TYPE_PURCHASE_PUBLICATION_FORMAT,
+				PAYMENT_TYPE_PURCHASE_FILE,
 				(int) $userId,
-				(int) $publicationFormatId
+				$fileIdAndRevision
 			)
 		);
 
