@@ -59,6 +59,13 @@ class MastheadForm extends PressSettingsForm {
 
 		$press =& $request->getPress();
 		$this->setData('enabled', (int)$press->getEnabled());
+		if ($this->getData('initials') == null) {
+			$initials = array();
+			foreach (array_keys($this->supportedLocales) as $locale) {
+				$initials[$locale] = $press->getPath();
+			}
+			$this->setData('initials', $initials);
+		}
 	}
 
 	/**
