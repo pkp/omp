@@ -339,7 +339,7 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 
 		$userList = array();
 		while($user =& $users->next()) {
-			if ($userName == '' || preg_match('/'. quotemeta($userName) . '/i', $user->getFullName())) {
+			if ($userName == '' || preg_match('/'. preg_quote($userName, '/') . '/i', $user->getFullName() . $user->getUsername())) {
 				$userList[] = array('label' => $user->getFullName(), 'value' => $user->getId());
 			}
 			unset($user);
