@@ -126,13 +126,6 @@
 
 	{* Press Layout *}
 	{fbvFormArea id="pressLayout" title="manager.setup.pressLayout" border="true"}
-		{fbvFormSection title="manager.setup.pressTheme" description="manager.setup.pressLayoutDescription"}
-			{if !$pressTheme}
-				{assign var="themeEnabled" value=false}
-			{/if}
-			{fbvElement type="select" id="pressThemes" from=$pressThemes selected=$themeEnabled enabled=false translate=false}
-		{/fbvFormSection}
-
 		{fbvFormSection title="manager.setup.usePressStyleSheet" description="manager.setup.pressStyleSheetDescription"}
 			<div id="{$uploadCssLinkAction->getId()}" class="pkp_linkActions">
 				{include file="linkAction/buttonGenericLinkAction.tpl" buttonSelector="#uploadCssLinkActionButton" action=$uploadCssLinkAction}
