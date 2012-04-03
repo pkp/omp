@@ -146,7 +146,7 @@
 					</div>
 				</div>
 
-			{if $leftSidebarCode}
+				{if $leftSidebarCode}
 					<div class="pkp_structure_sidebar pkp_structure_sidebar_left mod simple">
 						{$leftSidebarCode}
 					</div><!-- pkp_structure_sidebar_left -->
