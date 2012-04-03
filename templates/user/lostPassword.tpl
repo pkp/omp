@@ -6,13 +6,13 @@
  *
  * Password reset form.
  *}
-
+{strip}
 {assign var="registerOp" value="register"}
 {assign var="registerLocaleKey" value="user.login.registerNewAccount"}
-{strip}
 {assign var="pageTitle" value="user.login.resetPassword"}
 {include file="common/header.tpl"}
 {/strip}
+
 {if !$registerLocaleKey}
 	{assign var="registerLocaleKey" value="user.login.registerNewAccount"}
 {/if}
