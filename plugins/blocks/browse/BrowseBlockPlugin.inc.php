@@ -64,11 +64,11 @@ class BrowseBlockPlugin extends BlockPlugin {
 		switch ($router->getRequestedPage($request) . '/' . $router->getRequestedOp($request)) {
 			case 'catalog/category':
 				$path = $router->getRequestedArgs($request);
-				if (isset($path[0])) $templateMgr->assign('browseBlockSelectedCategory', $path);
+				if (isset($path[0])) $templateMgr->assign('browseBlockSelectedCategory', $path[0]);
 				break;
 			case 'catalog/series':
 				$path = $router->getRequestedArgs($request);
-				if (isset($path[0])) $templateMgr->assign('browseBlockSelectedSeries', $path);
+				if (isset($path[0])) $templateMgr->assign('browseBlockSelectedSeries', $path[0]);
 				break;
 		}
 
