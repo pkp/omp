@@ -148,7 +148,7 @@
 
 				{if !$leftSidebarCode && !$rightSidebarCode}
 					{* Temporary fix for #7258 *}
-					<div class="pkp_structure_sidebar">
+					<div class="pkp_structure_nosidebar">
 					</div>
 				{/if}
 
