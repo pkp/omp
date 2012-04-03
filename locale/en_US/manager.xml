@@ -389,7 +389,7 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.pressHomepageHeaderDescription">Choose between a text representation of the press name, or a graphic version of the press title (.gif, .jpg, or .png files accepted). This header and the optional accompanying logo will only appear on the press home page.</message>
 	<message key="manager.setup.pressInitials">Press Initials</message>
 	<message key="manager.setup.pressLayout">Press Layout</message>
-	<message key="manager.setup.pressLayoutDescription">Choose a press theme and select layout components here. A press stylesheet may also be uploaded, which can be used to override style data in the system-wide stylesheets and theme stylesheet (if a theme is chosen).</message>
+	<message key="manager.setup.pressLayoutDescription">Choose a press theme and select layout components here. A press style sheet may also be uploaded, which can be used to override style data in the system-wide style sheets and theme style sheet (if a theme is chosen).</message>
 	<message key="manager.setup.pressLogo">Press Logo</message>
 	<message key="manager.setup.pressLogo.altText">Press Logo</message>
 	<message key="manager.setup.pressPageFooter">Press Page Footer</message>
@@ -399,7 +399,7 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.pressPolicies">Step 2. Press Policies</message>
 	<message key="manager.setup.pressSetup">Press Setup</message>
 	<message key="manager.setup.pressSetupUpdated">Your press setup has been updated.</message>
-	<message key="manager.setup.pressStyleSheetInvalid">Invalid press stylesheet format. Accepted format is .css.</message>
+	<message key="manager.setup.pressStyleSheetInvalid">Invalid press style sheet format. Accepted format is .css.</message>
 	<message key="manager.setup.pressTheme">Press Theme</message>
 	<message key="manager.setup.pressName">Press Name</message>
 	<message key="manager.setup.principalContact">Principal Contact</message>
