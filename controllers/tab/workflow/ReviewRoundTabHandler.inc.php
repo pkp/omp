@@ -23,6 +23,7 @@ class ReviewRoundTabHandler extends Handler {
 	 */
 	function ReviewRoundTabHandler() {
 		parent::Handler();
+		AppLocale::requireComponents(LOCALE_COMPONENT_OMP_EDITOR);
 		$this->addRoleAssignment(
 			array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER, ROLE_ID_PRESS_ASSISTANT),
 			array('internalReviewRound', 'externalReviewRound')
