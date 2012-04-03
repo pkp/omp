@@ -146,6 +146,12 @@
 					</div>
 				</div>
 
+				{if !$leftSidebarCode && !$rightSidebarCode}
+					{* Temporary fix for #7258 *}
+					<div class="pkp_structure_sidebar">
+					</div>
+				{/if}
+
 				{if $leftSidebarCode}
 					<div class="pkp_structure_sidebar pkp_structure_sidebar_left mod simple">
 						{$leftSidebarCode}
