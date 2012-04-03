@@ -27,16 +27,6 @@ class CatalogEntrySubmissionReviewForm extends SubmissionMetadataViewForm {
 	 */
 	function CatalogEntrySubmissionReviewForm($monographId, $stageId = null, $formParams = null) {
 		parent::SubmissionMetadataViewForm($monographId, $stageId, $formParams, 'controllers/modals/submissionMetadata/form/catalogEntrySubmissionReviewForm.tpl');
-
-		$this->addCheck(new FormValidatorCustom(
-				$this, 'confirm', 'required', 'submission.catalogEntry.confirm.required',
-				create_function(
-						'$confirm, $form, $monographDao, $monographId',
-						'return $confirm != \'\' || $monographDao->getById($monographId)->getDatePublished() != null;'
-				), array(&$this, DAORegistry::getDAO('MonographDAO'), $monographId)
-		));
-
-		// submission.catalogEntry.confirm.required on validation
 		AppLocale::requireComponents(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_OMP_SUBMISSION);
 	}
 
@@ -57,19 +47,24 @@ class CatalogEntrySubmissionReviewForm extends SubmissionMetadataViewForm {
 		parent::execute();
 
 		$monograph =& $this->getMonograph();
-		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
-		$publishedMonograph =& $publishedMonographDao->getById($monograph->getId());
-		$isExistingEntry = $publishedMonograph?true:false;
-		if (!$isExistingEntry) {
-			unset($publishedMonograph);
-			$publishedMonograph = $publishedMonographDao->newDataObject();
-			$publishedMonograph->setId($monograph->getId());
-		}
-		if ($isExistingEntry) {
-			$publishedMonographDao->updateObject($publishedMonograph);
-		} else {
-			$publishedMonograph->setDatePublished(Core::getCurrentDate());
-			$publishedMonographDao->insertObject($publishedMonograph);
+		if ($this->getData('confirm') != '') {
+			$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
+			$publishedMonograph =& $publishedMonographDao->getById($monograph->getId());
+			$isExistingEntry = $publishedMonograph?true:false;
+			if (!$isExistingEntry) {
+				unset($publishedMonograph);
+				$publishedMonograph = $publishedMonographDao->newDataObject();
+				$publishedMonograph->setId($monograph->getId());
+			}
+			if ($isExistingEntry) {
+				$publishedMonographDao->updateObject($publishedMonograph);
+			} else {
+				$publishedMonograph->setDatePublished(Core::getCurrentDate());
+				$publishedMonographDao->insertObject($publishedMonograph);
+			}
+		} else { // regular submission without publish in catalog
+			$monographDao =& DAORegistry::getDAO('MonographDAO');
+			$monographDao->updateMonograph($monograph);
 		}
 	}
 }
