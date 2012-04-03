@@ -154,15 +154,6 @@ class ChapterGridHandler extends CategoryGridHandler {
 				$cellProvider
 			)
 		);
-		$this->addColumn(
-			new GridColumn(
-				'principalContact',
-				'author.users.contributor.principalContact',
-				null,
-				'controllers/grid/users/author/primaryContact.tpl',
-				$cellProvider
-			)
-		);
 	}
 
 	/**
