@@ -160,13 +160,13 @@ class ReviewerForm extends Form {
 		if (isset($reviewAssignment) && $reviewAssignment->getDueDate() != null) {
 			$reviewDueDate = strftime(Config::getVar('general', 'date_format_short'), strtotime($reviewAssignment->getDueDate()));
 		} else {
-			$numWeeks = max((int) $press->getSetting('numWeeksPerReview'), 2);
+			$numWeeks = max((int) $press->getSetting('numWeeksPerReview'), 4);
 			$reviewDueDate = strftime(Config::getVar('general', 'date_format_short'), strtotime('+' . $numWeeks . ' week'));
 		}
 		if (isset($reviewAssignment) && $reviewAssignment->getResponseDueDate() != null) {
 			$responseDueDate = strftime(Config::getVar('general', 'date_format_short'), strtotime($reviewAssignment->getResponseDueDate()));
 		} else {
-			$numWeeks = max((int) $press->getSetting('numWeeksPerResponse'), 2);
+			$numWeeks = max((int) $press->getSetting('numWeeksPerResponse'), 3);
 			$responseDueDate = strftime(Config::getVar('general', 'date_format_short'), strtotime('+' . $numWeeks . ' week'));
 		}
 
