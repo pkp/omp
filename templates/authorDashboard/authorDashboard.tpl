@@ -79,7 +79,7 @@
 			<div id="copyeditingContent">
 				{if $stageId >= $smarty.const.WORKFLOW_STAGE_ID_EDITING}
 					<!-- Display editor's message to the author -->
-					{if $monographEmails}
+					{if $monographEmails && $monographEmails->getCount()}
 						<h6>{translate key="editor.review.personalMessageFromEditor"}:</h6>
 						{iterate from=monographEmails item=monographEmail}
 							<textarea class="pkp_authorDashboard_editorPersonalMessage textArea" disabled=true>{$monographEmail->getBody()|escape}</textarea>

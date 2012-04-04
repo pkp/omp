@@ -12,7 +12,7 @@
 <form class="pkp_form">
 {fbvFormArea id="reviewRoundInfo"}
 <!-- Display editor's message to the author -->
-{if $monographEmails}
+{if $monographEmails && $monographEmails->getCount()}
 	{fbvFormSection label="editor.review.personalMessageFromEditor"}
 	{iterate from=monographEmails item=monographEmail}
 		{fbvElement type="textarea" id="monographEmail" value=$monographEmail->getBody() height=$fbvStyles.height.TALL disabled=true}
