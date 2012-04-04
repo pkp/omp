@@ -27,8 +27,9 @@ class AssignedSubmissionsListGridHandler extends SubmissionsListGridHandler {
 	function AssignedSubmissionsListGridHandler() {
 		parent::GridHandler();
 		$this->addRoleAssignment(
-				array(ROLE_ID_SITE_ADMIN, ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_AUTHOR, ROLE_ID_REVIEWER, ROLE_ID_PRESS_ASSISTANT),
-				array('fetchGrid'));
+			array(ROLE_ID_SITE_ADMIN, ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_AUTHOR, ROLE_ID_REVIEWER, ROLE_ID_PRESS_ASSISTANT),
+			array('fetchGrid')
+		);
 	}
 
 
@@ -90,8 +91,9 @@ class AssignedSubmissionsListGridHandler extends SubmissionsListGridHandler {
 				$monograph =& $monographDao->getById($signoff->getAssocId());
 				$monographId = $monograph->getId();
 				$data[$monographId] = $monograph;
-				unset($monograph, $signoff);
+				unset($monograph);
 			}
+			unset($signoff);
 		}
 
 		// Get submissions the user is reviewing
@@ -99,7 +101,12 @@ class AssignedSubmissionsListGridHandler extends SubmissionsListGridHandler {
 		$reviewerSubmissions = $reviewerSubmissionDao->getReviewerSubmissionsByReviewerId($userId);
 		while($reviewerSubmission =& $reviewerSubmissions->next()) {
 			$monographId = $reviewerSubmission->getId();
-			$data[$monographId] = $reviewerSubmission;
+			if (!isset($data[$monographId])) {
+				// Only add if not already provided above --
+				// otherwise reviewer workflow link may
+				// clobber editorial workflow link
+				$data[$monographId] = $reviewerSubmission;
+			}
 			unset($reviewerSubmission);
 		}
 
