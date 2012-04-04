@@ -75,7 +75,7 @@ class ReviewerReviewStep1Form extends ReviewerReviewForm {
 		$templateMgr->assign_by_ref('competingInterestsAction', $competingInterestsAction);
 
 		// Instantiate the view review guidelines confirmation modal.
-		$aboutDueDateActions = new LinkAction('viewReviewGuidelines',
+		$aboutDueDateAction = new LinkAction('viewReviewGuidelines',
 			new ConfirmationModal(
 				__('reviewer.aboutDueDates.text'),
 				__('reviewer.aboutDueDates'),
@@ -85,7 +85,7 @@ class ReviewerReviewStep1Form extends ReviewerReviewForm {
 			__('reviewer.aboutDueDates')
 		);
 
-		$templateMgr->assign_by_ref('aboutDueDatesAction', $aboutDueDateActions);
+		$templateMgr->assign_by_ref('aboutDueDatesAction', $aboutDueDateAction);
 
 		import('lib.pkp.classes.linkAction.request.AjaxModal');
 		$declineReviewLinkAction = new LinkAction('declineReview',
