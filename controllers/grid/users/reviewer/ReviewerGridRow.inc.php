@@ -74,17 +74,17 @@ class ReviewerGridRow extends GridRow {
 					new LinkAction(
 						'remove',
 						new RemoteActionConfirmationModal(
-								__('common.confirmDelete'), null,
-								$router->url($request, null, null, 'deleteReviewer', null, $actionArgs)
-							),
-						__('grid.action.remove'),
-						'delete'
-						)
-					);
-
-				// Set a non-default template that supports row actions
-				$this->setTemplate('controllers/grid/gridRowWithActions.tpl');
+							__('common.confirmDelete'), null,
+							$router->url($request, null, null, 'deleteReviewer', null, $actionArgs)
+						),
+					__('grid.action.remove'),
+					'delete'
+					)
+				);
 			}
+
+			// Set a non-default template that supports row actions
+			$this->setTemplate('controllers/grid/gridRowWithActions.tpl');
 		}
 	}
 }
