@@ -535,6 +535,26 @@ class ReviewerGridHandler extends GridHandler {
 		return $json->getString();
 	}
 
+	/**
+	 * Displays a modal to send an email message to the user.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return string Serialized JSON object
+	 */
+	function sendEmail($args, &$request) {
+		$user =& $request->getUser();
+
+		$reviewAssignment =& $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ASSIGNMENT);
+
+		// Form handling.
+		import('controllers.grid.settings.user.form.UserEmailForm');
+		$userEmailForm = new UserEmailForm($reviewAssignment->getReviewerId());
+		$userEmailForm->initData($args, $request);
+
+		$json = new JSONMessage(true, $userEmailForm->display($args, $request));
+		return $json->getString();
+	}
+
 
 	//
 	// Private helper methods
@@ -584,7 +604,7 @@ class ReviewerGridHandler extends GridHandler {
 	 */
 	function _getReviewAssignmentOps() {
 		// Define operations that need a review assignment policy.
-		return array('readReview', 'reviewRead', 'thankReviewer', 'editReminder', 'sendReminder', 'deleteReviewer');
+		return array('readReview', 'reviewRead', 'thankReviewer', 'editReminder', 'sendReminder', 'deleteReviewer', 'sendEmail');
 
 	}
 

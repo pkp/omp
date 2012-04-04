@@ -52,8 +52,22 @@ class ReviewerGridRow extends GridRow {
 				'round' => $round
 			);
 
+			$this->addAction(
+				new LinkAction(
+					'email',
+					new AjaxModal(
+						$router->url($request, null, null, 'sendEmail', null, $actionArgs),
+						__('grid.user.email'),
+						'notify',
+						true
+					),
+				__('grid.user.email'),
+				'notify'
+				)
+			);
+
 			$reviewAssignment =& $this->getData();
-			// Only assign actions if the reviewer has not acknowledged yet.
+			// Only assign this action if the reviewer has not acknowledged yet.
 			if (!$reviewAssignment->getDateAcknowledged()) {
 				import('lib.pkp.classes.linkAction.request.RemoteActionConfirmationModal');
 				$this->addAction(
