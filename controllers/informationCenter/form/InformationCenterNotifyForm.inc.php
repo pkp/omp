@@ -137,38 +137,40 @@ class InformationCenterNotifyForm extends Form {
 
 		foreach ($newRowId as $id) {
 			$user = $userDao->getUser($id);
-			$email->addRecipient($user->getEmail(), $user->getFullName());
-			$email->setBody($this->getData('message'));
-			list($page, $operation) = SubmissionsListGridCellProvider::getPageAndOperationByUserRoles($request, $monograph, $user->getId());
-			$submissionUrl = $dispatcher->url($request, ROUTE_PAGE, null, $page, $operation, array('monographId' => $monograph->getId()));
+			if (isset($user)) {
+				$email->addRecipient($user->getEmail(), $user->getFullName());
+				$email->setBody($this->getData('message'));
+				list($page, $operation) = SubmissionsListGridCellProvider::getPageAndOperationByUserRoles($request, $monograph, $user->getId());
+				$submissionUrl = $dispatcher->url($request, ROUTE_PAGE, null, $page, $operation, array('monographId' => $monograph->getId()));
 
-			// these are for *_REQUEST emails
-			$email->assignParams(array(
-				// COPYEDIT_REQUEST
-				'copyeditorName' => $user->getFullName(),
-				'copyeditorUsername' => $user->getUsername(),
-				'submissionCopyeditingUrl' => $submissionUrl,
-				// LAYOUT_REQUEST
-				'layoutEditorName' => $user->getFullName(),
-				'submissionUrl' => $submissionUrl,
-				'layoutEditorUsername' => $user->getUsername(),
-				// LAYOUT_COMPLETE, INDEX_COMPLETE
-				'editorialContactName' => $user->getFullname(),
-				// INDEX_REQUEST
-				'indexerName' => $user->getFullName(),
-				'indexerUsername' => $user->getUsername(),
-			));
+				// these are for *_REQUEST emails
+				$email->assignParams(array(
+					// COPYEDIT_REQUEST
+					'copyeditorName' => $user->getFullName(),
+					'copyeditorUsername' => $user->getUsername(),
+					'submissionCopyeditingUrl' => $submissionUrl,
+					// LAYOUT_REQUEST
+					'layoutEditorName' => $user->getFullName(),
+					'submissionUrl' => $submissionUrl,
+					'layoutEditorUsername' => $user->getUsername(),
+					// LAYOUT_COMPLETE, INDEX_COMPLETE
+					'editorialContactName' => $user->getFullname(),
+					// INDEX_REQUEST
+					'indexerName' => $user->getFullName(),
+					'indexerUsername' => $user->getUsername(),
+				));
 
-			$this->_createNotifications($request, $monograph, $user, $template);
-			$email->send($request);
-			// remove the INDEX_ and LAYOUT_ tasks if a user has sent the appropriate _COMPLETE email
-			switch ($template) {
-				case 'LAYOUT_COMPLETE':
-					$this->_removeUploadTaskNotification($monograph, NOTIFICATION_TYPE_LAYOUT_ASSIGNMENT, $request);
-					break;
-				case 'INDEX_COMPLETE':
-					$this->_removeUploadTaskNotification($monograph, NOTIFICATION_TYPE_INDEX_ASSIGNMENT, $request);
-					break;
+				$this->_createNotifications($request, $monograph, $user, $template);
+				$email->send($request);
+				// remove the INDEX_ and LAYOUT_ tasks if a user has sent the appropriate _COMPLETE email
+				switch ($template) {
+					case 'LAYOUT_COMPLETE':
+						$this->_removeUploadTaskNotification($monograph, NOTIFICATION_TYPE_LAYOUT_ASSIGNMENT, $request);
+						break;
+					case 'INDEX_COMPLETE':
+						$this->_removeUploadTaskNotification($monograph, NOTIFICATION_TYPE_INDEX_ASSIGNMENT, $request);
+						break;
+				}
 			}
 		}
 	}
