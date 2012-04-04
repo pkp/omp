@@ -33,6 +33,11 @@
 				{fbvElement type="textarea" id="reviewCompleted" label="editor.review.reviewerComments" value=$reviewerComment->getComments() disabled=true}
 			{/fbvFormSection}
 		{/if}
+		{if $reviewAssignment->getCompetingInterests()}
+			{fbvFormSection}
+				{fbvElement type="textarea" id="reviewCompletedCI" label="reviewer.monograph.competingInterests" value=$reviewAssignment->getCompetingInterests() disabled=true}
+			{/fbvFormSection}
+		{/if}
 		{fbvFormSection}
 			{url|assign:reviewAttachmentsGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.attachment.EditorReviewAttachmentsGridHandler" op="fetchGrid" monographId=$monograph->getId() reviewId=$reviewAssignment->getId() stageId=$reviewAssignment->getStageId() escape=false}
 			{load_url_in_div id="readReviewAttachmentsGridContainer" url="$reviewAttachmentsGridUrl"}
