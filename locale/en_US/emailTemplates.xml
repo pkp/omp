@@ -178,7 +178,7 @@ An initial review of "{$monographTitle}" has made it clear that this submission 
 		<subject>Editorial Assignment</subject>
 		<body>{$editorialContactName}:
 
-The submission, "{$monographTitle}," to {$pressName} has been assigned to you to see through the editorial process in your role as Series Editor.
+The submission, "{$monographTitle}," to {$pressName} has been assigned to you to see through the editorial process in your role as an Editor.
 
 Submission URL: {$submissionUrl}
 Username: {$editorUsername}

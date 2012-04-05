@@ -59,10 +59,10 @@ class InformationCenterNotifyForm extends Form {
 		// template keys indexed by stageId
 		$stageTemplates = array(
 			WORKFLOW_STAGE_ID_SUBMISSION => array(),
-			WORKFLOW_STAGE_ID_INTERNAL_REVIEW => array(),
-			WORKFLOW_STAGE_ID_EXTERNAL_REVIEW => array(),
+			WORKFLOW_STAGE_ID_INTERNAL_REVIEW => array('EDITOR_ASSIGN'),
+			WORKFLOW_STAGE_ID_EXTERNAL_REVIEW => array('EDITOR_ASSIGN'),
 			WORKFLOW_STAGE_ID_EDITING => array('COPYEDIT_REQUEST'),
-			WORKFLOW_STAGE_ID_PRODUCTION => array('LAYOUT_REQUEST', 'LAYOUT_COMPLETE', 'INDEX_REQUEST', 'INDEX_COMPLETE')
+			WORKFLOW_STAGE_ID_PRODUCTION => array('LAYOUT_REQUEST', 'LAYOUT_COMPLETE', 'INDEX_REQUEST', 'INDEX_COMPLETE', 'EDITOR_ASSIGN')
 		);
 
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
@@ -153,11 +153,13 @@ class InformationCenterNotifyForm extends Form {
 					'layoutEditorName' => $user->getFullName(),
 					'submissionUrl' => $submissionUrl,
 					'layoutEditorUsername' => $user->getUsername(),
-					// LAYOUT_COMPLETE, INDEX_COMPLETE
+					// LAYOUT_COMPLETE, INDEX_COMPLETE, EDITOR_ASSIGN
 					'editorialContactName' => $user->getFullname(),
 					// INDEX_REQUEST
 					'indexerName' => $user->getFullName(),
 					'indexerUsername' => $user->getUsername(),
+					// EDITOR_ASSIGN
+					'editorUsername' => $user->getUsername(),
 				));
 
 				$this->_createNotifications($request, $monograph, $user, $template);
