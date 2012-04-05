@@ -31,7 +31,6 @@
 				<li><a href="#">{translate key="navigation.seriesAndEditions"}</a></li>
 			</ul>
 		</li>
-		<li><a href="{url page="issue" op="archive"}">{translate key="navigation.backlist"}</a></li>
 	{/if}
 {/capture}
 
