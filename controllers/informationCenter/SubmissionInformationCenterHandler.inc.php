@@ -164,7 +164,7 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function viewNotify ($args, &$request) {
+	function viewNotify($args, &$request) {
 		$this->setupTemplate($request);
 
 		import('controllers.informationCenter.form.InformationCenterNotifyForm');

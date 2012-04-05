@@ -82,6 +82,11 @@ class InformationCenterNotifyForm extends Form {
 		unset($templateKeys);
 		$templateMgr->assign_by_ref('templates', $templates);
 
+		// check to see if we were handed a userId from the stage participants grid.  If so,
+		// pass that in so the list builder can pre-populate. The Listbuilder validates this.
+
+		$templateMgr->assign('userId', (int) $request->getUserVar('userId'));
+
 		return parent::fetch($request);
 	}
 

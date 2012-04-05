@@ -203,8 +203,8 @@ class InformationCenterHandler extends Handler {
 	function setupTemplate(&$request) {
 		AppLocale::requireComponents(LOCALE_COMPONENT_OMP_SUBMISSION);
 
+		$linkParams = $this->_getLinkParams();
 		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->assign('linkParams', $this->_getLinkParams());
 
 		// Preselect tab from keywords 'notes', 'notify', 'history'
 		switch ($request->getUserVar('tab')) {
@@ -212,6 +212,10 @@ class InformationCenterHandler extends Handler {
 				$templateMgr->assign('selectedTabIndex', 3);
 				break;
 			case 'notify':
+				$userId = (int) $request->getUserVar('userId');
+				if ($userId) {
+					$linkParams['userId'] = $userId; // user validated in Listbuilder.
+				}
 				$templateMgr->assign('selectedTabIndex', 2);
 				break;
 			case 'notes':
@@ -223,6 +227,7 @@ class InformationCenterHandler extends Handler {
 				break;
 		}
 
+		$templateMgr->assign('linkParams', $linkParams);
 		parent::setupTemplate($request);
 	}
 

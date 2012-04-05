@@ -51,10 +51,11 @@ class UserStageAssignmentDAO extends UserDAO {
 	 * @param $stageId int (optional)
 	 * @param $userGroupId int (optional)
 	 * @param $roleId int (optional)
+	 * @param $userId int (optional)
 	 * @return DAOResultFactory StageAssignment
 	 */
-	function getUsersBySubmissionAndStageId($submissionId, $stageId = null, $userGroupId = null, $roleId = null) {
-		return $this->_getUsersByIds($submissionId, $stageId, $userGroupId, null, $roleId);
+	function getUsersBySubmissionAndStageId($submissionId, $stageId = null, $userGroupId = null, $roleId = null, $userId = null) {
+		return $this->_getUsersByIds($submissionId, $stageId, $userGroupId, $userId, $roleId);
 	}
 
 	/**

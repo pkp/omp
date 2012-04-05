@@ -22,14 +22,14 @@
 		{include file="controllers/notification/inPlaceNotification.tpl" notificationId="notifyFormNotification"}
 		{fbvFormArea id="notifyFormArea"}
 			{fbvFormSection title="email.to" for="notifyUsersContainer" required="true"}
-				{url|assign:notifyUsersUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.users.NotifyUsersListbuilderHandler" op="fetch" params=$linkParams escape=false}
+				{url|assign:notifyUsersUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.users.NotifyUsersListbuilderHandler" op="fetch" params=$linkParams userId=$userId escape=false}
 				{load_url_in_div id="notifyUsersContainer" url=$notifyUsersUrl}
 			{/fbvFormSection}
 
 			{fbvFormSection title="informationCenter.notify.chooseMessage" for="template" size=$fbvStyles.size.medium}
 				{fbvElement type="select" from=$templates translate=false id="template" defaultValue="" defaultLabel=""}
 			{/fbvFormSection}
-			
+
 			{fbvFormSection title="informationCenter.notify.message" for="message" required="true"}
 				{fbvElement type="textarea" id="message"}
 			{/fbvFormSection}

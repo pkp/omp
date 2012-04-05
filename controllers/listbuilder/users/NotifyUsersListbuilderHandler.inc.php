@@ -149,6 +149,26 @@ class NotifyUsersListbuilderHandler extends ListbuilderHandler {
 
 		return $items;
 	}
+
+	/**
+	 * pre-populate the listbuilder if a userId is passed in, possibly via the stage assignments grid.
+	 * @see GridHandler::loadData($request, $filter)
+	 * @params $request PKPRequest
+	 */
+	function loadData(&$request) {
+		$userId = (int) $request->getUserVar('userId');
+		$userStageAssignmentDao =& DAORegistry::getDAO('UserStageAssignmentDAO');
+		$monograph =& $this->getMonograph();
+
+		$users =& $userStageAssignmentDao->getUsersBySubmissionAndStageId($monograph->getId(), null, null, null, $userId);
+		$user =& $users->next();
+
+		if ($user) {
+			$items[0] = $user;
+			unset($user);
+		}
+		return $items;
+	}
 }
 
 ?>
