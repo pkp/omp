@@ -259,6 +259,11 @@ class CatalogEntryCatalogMetadataForm extends Form {
 			$thumbnail = imagecreatetruecolor($thumbnailWidth, $thumbnailHeight);
 			imagecopyresized($thumbnail, $cover, 0, 0, 0, 0, $thumbnailWidth, $thumbnailHeight, $this->_sizeArray[0], $this->_sizeArray[1]);
 			imagedestroy($cover);
+
+			// Copy the new file over
+			$filename = 'cover' . $this->_imageExtension;
+			$simpleMonographFileManager->copyFile($temporaryFile->getFilePath(), $basePath . $filename);
+
 			$thumbnailFilename = 'thumbnail' . $this->_imageExtension;
 			switch ($this->_imageExtension) {
 				case '.jpg': imagejpeg($thumbnail, $basePath . $thumbnailFilename); break;
@@ -266,10 +271,6 @@ class CatalogEntryCatalogMetadataForm extends Form {
 				case '.jpg': imagegif($thumbnail, $basePath . $thumbnailFilename); break;
 			}
 			imagedestroy($thumbnail);
-
-			// Copy the new file over
-			$filename = 'cover' . $this->_imageExtension;
-			$simpleMonographFileManager->copyFile($temporaryFile->getFilePath(), $basePath . $filename);
 
 			$publishedMonograph->setCoverImage(array(
 				'name' => $filename,
