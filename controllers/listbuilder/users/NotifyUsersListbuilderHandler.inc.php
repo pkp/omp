@@ -166,8 +166,8 @@ class NotifyUsersListbuilderHandler extends ListbuilderHandler {
 		if ($user) {
 			$items[0] = $user;
 			unset($user);
+			return $items;
 		}
-		return $items;
 	}
 }
 
