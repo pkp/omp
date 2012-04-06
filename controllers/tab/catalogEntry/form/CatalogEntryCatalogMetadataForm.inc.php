@@ -257,7 +257,7 @@ class CatalogEntryCatalogMetadataForm extends Form {
 			$thumbnailWidth = $ratio * $this->_sizeArray[0];
 			$thumbnailHeight = $ratio * $this->_sizeArray[1];
 			$thumbnail = imagecreatetruecolor($thumbnailWidth, $thumbnailHeight);
-			imagecopyresized($thumbnail, $cover, 0, 0, 0, 0, $thumbnailWidth, $thumbnailHeight, $this->_sizeArray[0], $this->_sizeArray[1]);
+			imagecopyresampled($thumbnail, $cover, 0, 0, 0, 0, $thumbnailWidth, $thumbnailHeight, $this->_sizeArray[0], $this->_sizeArray[1]);
 			imagedestroy($cover);
 
 			// Copy the new file over
