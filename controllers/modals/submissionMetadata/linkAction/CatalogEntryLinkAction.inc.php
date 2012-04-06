@@ -36,7 +36,7 @@ class CatalogEntryLinkAction extends LinkAction {
 					'stageId' => $stageId
 				)
 			),
-			__('submission.catalogEntry.new')
+			__('submission.catalogEntry')
 		);
 
 		// Configure the link action.
