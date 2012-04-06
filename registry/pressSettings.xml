@@ -28,7 +28,7 @@
 	</setting>
 	<setting type="int" locale="0">
 		<name>itemsPerPage</name>
-		<value>25</value>
+		<value>50</value>
 	</setting>
 	<setting type="int" locale="0">
 		<name>numWeeksPerReview</name>

@@ -348,7 +348,7 @@ repository_id = omp.pkp.sfu.ca
 [interface]
 
 ; Number of items to display per page; overridable on a per-press basis
-items_per_page = 25
+items_per_page = 50
 
 ; Number of page links to display; overridable on a per-press basis
 page_links = 10
