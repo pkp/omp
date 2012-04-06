@@ -26,7 +26,7 @@ class PublicationDate extends DataObject {
 	 * @return int
 	 */
 	function getPublicationFormatId() {
-		return $this->getData('publicationformatId');
+		return $this->getData('publicationFormatId');
 	}
 
 	/**

@@ -169,14 +169,14 @@ class PublicationDateForm extends Form {
 			// this is a new publication date for this published monograph
 			$publicationDate = $publicationDateDao->newDataObject();
 			if ($publicationFormat != null) { // ensure this assigned format is in this monograph
-				$publicationDate->setPublicationFormatId($publicationFormat->getPublicationFormatId());
+				$publicationDate->setPublicationFormatId($publicationFormat->getId());
 				$existingFormat = false;
 			} else {
 				fatalError('This assigned format not in authorized monograph context!');
 			}
 		} else {
 			$existingFormat = true;
-			if ($publicationFormat->getPublicationFormatId() !== $publicationDate->getPublicationFormatId()) fatalError('Invalid format!');
+			if ($publicationFormat->getId() !== $publicationDate->getPublicationFormatId()) fatalError('Invalid format!');
 		}
 
 		$publicationDate->setRole($this->getData('role'));

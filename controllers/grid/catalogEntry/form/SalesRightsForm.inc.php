@@ -140,8 +140,9 @@ class SalesRightsForm extends Form {
 		if ($publicationFormat) { // the format exists for this monograph
 			$templateMgr->assign('publicationFormatId', $publicationFormatId);
 			// SalesRightsType values are not normally used more than once per PublishingDetail block, so filter used ones out.
-			$salesRights = $publicationFormat->getSalesRights();
-			$assignedTypes = array_keys($salesRights->toAssociativeArray('type')); // currently assigned types
+			$assignedSalesRights = $publicationFormat->getSalesRights();
+			$assignedTypes = array_keys($assignedSalesRights->toAssociativeArray('type')); // currently assigned types
+
 			if ($salesRights) $assignedTypes = array_diff($assignedTypes, array($salesRights->getType())); // allow existing codes to keep their value
 
 			$types =& $onixCodelistItemDao->getCodes('List46', $assignedTypes); // ONIX list for these
@@ -193,7 +194,7 @@ class SalesRightsForm extends Form {
 			}
 		} else {
 			$existingFormat = true;
-			if ($publicationFormat->getPublicationFormatId() !== $salesRights->getPublicationFormatId()) fatalError('Invalid format!');
+			if ($publicationFormat->getId() !== $salesRights->getPublicationFormatId()) fatalError('Invalid format!');
 		}
 
 		$salesRights->setType($this->getData('type'));

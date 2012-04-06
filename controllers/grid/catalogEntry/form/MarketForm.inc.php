@@ -225,7 +225,7 @@ class MarketForm extends Form {
 			}
 		} else {
 			$existingFormat = true;
-			if ($publicationFormat->getPublicationFormatId() !== $market->getPublicationFormatId()) fatalError('Invalid format!');
+			if ($publicationFormat->getId() !== $market->getPublicationFormatId()) fatalError('Invalid format!');
 		}
 
 		$market->setCountriesIncluded($this->getData('countriesIncluded') ? $this->getData('countriesIncluded') : array());
