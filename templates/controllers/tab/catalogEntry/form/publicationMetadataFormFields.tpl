@@ -30,6 +30,9 @@
 	<input type="hidden" name="displayedInContainer" value="{$formParams.displayedInContainer|escape}" />
 	<input type="hidden" name="tab" value="publication" />
 
+	{* in catalog status *}
+	<h3>{if $isAvailable}{translate key="monograph.publicationFormat.notInCatalog"}{else}{translate key="monograph.publicationFormat.notInCatalog"}{/if}</h3>
+
 	{* E-commerce settings *}
 	{if $paymentConfigured}
 		{url|assign:approvedProofGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.proof.ApprovedProofFilesGridHandler" op="fetchGrid" monographId=$monographId publicationFormatId=$publicationFormatId escape=false}
