@@ -311,6 +311,9 @@ class MonographFileManager extends BaseMonographFileManager {
 				// Copy the assoc id.
 				if (!is_null($assocId) && $assocId !== $revisedFile->getAssocId()) fatalError('Invalid monograph file assoc ID!');
 				$assocId = (int)$revisedFile->getAssocId();
+
+				// Copy the viewable flag.
+				$monographFile->setViewable($revisedFile->getViewable());
 			}
 		} else {
 			// Create the first revision of a new file.

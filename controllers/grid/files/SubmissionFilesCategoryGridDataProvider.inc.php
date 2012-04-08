@@ -138,7 +138,7 @@ class SubmissionFilesCategoryGridDataProvider extends CategoryGridDataProvider {
 				$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
 				$reviewRound =& $reviewRoundDao->getLastReviewRoundByMonographId($monograph->getId(), $stageId);
 			}
-			$stageMonographFiles =& $submissionFileDao->getRevisionsByReviewRound($reviewRound, $fileStage);
+			$stageMonographFiles =& $submissionFileDao->getLatestNewRevisionsByReviewRound($reviewRound, $fileStage);
 		} else {
 			// Filter the passed workflow stage files.
 			if (!$this->_monographFiles) {
