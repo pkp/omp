@@ -48,27 +48,29 @@
 		</div>
 	{/fbvFormSection}
 	<br /><br />
-	{fbvFormSection label="reviewer.monograph.competingInterests" description="reviewer.monograph.enterCompetingInterests"}
-		<div class="pkp_linkActions">
-			{include file="linkAction/linkAction.tpl" action=$competingInterestsAction contextId="reviewStep1"}
-		</div>
-	{/fbvFormSection}
-	{fbvFormSection list=true}
-		{if $competingInterestsText != null}
-			{assign var="hasCI" value=true}
-			{assign var="noCI" value=false}
-		{else}
-			{assign var="hasCI" value=false}
-			{assign var="noCI" value=true}
-		{/if}
-		{fbvElement type="radio" value="noCompetingInterests" id="noCompetingInterests" name="competingInterestOption" checked=$noCI label="reviewer.monograph.noCompetingInterests" disabled=$reviewIsComplete}
-		<br /><br />
-		{fbvElement type="radio" value="hasCompetingInterests" id="hasCompetingInterests" name="competingInterestOption" checked=$hasCI label="reviewer.monograph.hasCompetingInterests" disabled=$reviewIsComplete}
-	{/fbvFormSection}
-	{fbvFormSection}
-		{fbvElement type="textarea" name="competingInterestsText" id="competingInterestsText" value=$competingInterestsText size=$fbvStyles.size.MEDIUM disabled=$reviewIsComplete}
-	{/fbvFormSection}
+	{if $competingInterestsAction}
+		{fbvFormSection label="reviewer.monograph.competingInterests" description="reviewer.monograph.enterCompetingInterests"}
+			<div class="pkp_linkActions">
+				{include file="linkAction/linkAction.tpl" action=$competingInterestsAction contextId="reviewStep1"}
+			</div>
+		{/fbvFormSection}
 
+		{fbvFormSection list=true}
+			{if $competingInterestsText != null}
+				{assign var="hasCI" value=true}
+				{assign var="noCI" value=false}
+			{else}
+				{assign var="hasCI" value=false}
+				{assign var="noCI" value=true}
+			{/if}
+			{fbvElement type="radio" value="noCompetingInterests" id="noCompetingInterests" name="competingInterestOption" checked=$noCI label="reviewer.monograph.noCompetingInterests" disabled=$reviewIsComplete}
+			<br /><br />
+			{fbvElement type="radio" value="hasCompetingInterests" id="hasCompetingInterests" name="competingInterestOption" checked=$hasCI label="reviewer.monograph.hasCompetingInterests" disabled=$reviewIsComplete}
+		{/fbvFormSection}
+		{fbvFormSection}
+			{fbvElement type="textarea" name="competingInterestsText" id="competingInterestsText" value=$competingInterestsText size=$fbvStyles.size.MEDIUM disabled=$reviewIsComplete}
+		{/fbvFormSection}
+	{/if}
 	{if $reviewAssignment->getDateConfirmed()}
 		{fbvFormButtons hideCancel=true submitText="common.saveAndContinue" submitDisabled=$reviewIsComplete}
 	{else}

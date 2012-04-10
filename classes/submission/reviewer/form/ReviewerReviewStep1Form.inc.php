@@ -64,16 +64,20 @@ class ReviewerReviewStep1Form extends ReviewerReviewForm {
 		// Assign the link actions
 		//
 		import('lib.pkp.classes.linkAction.request.AjaxModal');
+		import('lib.pkp.classes.linkAction.request.ConfirmationModal');
+
 		$dispatcher =& $request->getDispatcher();
 		// "View metadata" action.
 		import('controllers.modals.submissionMetadata.linkAction.ReviewerViewMetadataLinkAction');
 		$viewMetadataLinkAction = new ReviewerViewMetadataLinkAction($request, $reviewAssignment->getSubmissionId(), $reviewAssignment->getId());
 		$templateMgr->assign_by_ref('viewMetadataAction', $viewMetadataLinkAction);
 
-		import('controllers.confirmationModal.linkAction.ViewCompetingInterestGuidelinesLinkAction');
-		$competingInterestsAction = new ViewCompetingInterestGuidelinesLinkAction($request);
-		$templateMgr->assign_by_ref('competingInterestsAction', $competingInterestsAction);
-
+		// include the confirmation modal for competing interests if the press has them.
+		if ($press->getLocalizedSetting('competingInterests') != '') {
+			import('controllers.confirmationModal.linkAction.ViewCompetingInterestGuidelinesLinkAction');
+			$competingInterestsAction = new ViewCompetingInterestGuidelinesLinkAction($request);
+			$templateMgr->assign_by_ref('competingInterestsAction', $competingInterestsAction);
+		}
 		// Instantiate the view review guidelines confirmation modal.
 		$aboutDueDateAction = new LinkAction('viewReviewGuidelines',
 			new ConfirmationModal(
