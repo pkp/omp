@@ -31,7 +31,7 @@
 	<input type="hidden" name="tab" value="publication" />
 
 	{* in catalog status *}
-	<h3>{if $isAvailable}{translate key="monograph.publicationFormat.notInCatalog"}{else}{translate key="monograph.publicationFormat.notInCatalog"}{/if}</h3>
+	<h3>{if $isAvailable}{translate key="monograph.publicationFormat.inCatalog"}{else}{translate key="monograph.publicationFormat.notInCatalog"}{/if}</h3>
 
 	{* E-commerce settings *}
 	{if $paymentConfigured}
