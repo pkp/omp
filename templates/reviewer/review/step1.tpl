@@ -29,8 +29,11 @@
 	{/fbvFormSection}
 	{fbvFormSection label="submission.overview"}
 		{fbvElement type="text" id="title" label="monograph.title" value=$submission->getLocalizedTitle() disabled=true}
-		{fbvElement type="textarea" id="summary" label="monograph.description" value=$submission->getLocalizedAbstract() disabled=true}
 	{/fbvFormSection}
+	{fbvFormSection label="monograph.description"}
+		{$submission->getLocalizedAbstract()}
+	{/fbvFormSection}
+
 	<div class="pkp_linkActions">
 		{include file="linkAction/linkAction.tpl" action=$viewMetadataAction contextId="reviewStep1Form"}
 	</div>
