@@ -266,7 +266,7 @@ class PressGridHandler extends GridHandler {
 				// Add publication formats tombstones for all press published monographs.
 				import('classes.publicationFormat.PublicationFormatTombstoneManager');
 				$publicationFormatTombstoneMgr = new PublicationFormatTombstoneManager();
-				$publicationFormatTombstoneMgr->insertTombstonesByPress($press);
+				$publicationFormatTombstoneMgr->insertTombstonesByPress($context);
 
 				// Delete press file tree
 				// FIXME move this somewhere better.
