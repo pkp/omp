@@ -252,14 +252,14 @@ a.sprite.notes:before {
 a.sprite.notes:hover:before { background-position:-264px -24px; }
 a.sprite.notes_new:before {
   margin-top:7px;
-  background-position:-264px 0;
+  background-position:-1224px 0;
 }
-a.sprite.notes_new:hover:before { background-position:-264px -24px; }
+a.sprite.notes_new:hover:before { background-position:-1224px -24px; }
 a.sprite.notes_none:before {
   margin-top:7px;
-  background-position:-264px 0;
+  background-position:-1200px 0;
 }
-a.sprite.notes_none:hover:before { background-position:-264px -24px; }
+a.sprite.notes_none:hover:before { background-position:-1200px -24px; }
 a.sprite.add:before {
   margin-right:4px;
   background-position:-504px 0;
@@ -412,6 +412,11 @@ a.sprite.grid_view:before {
   background-position:-1176px 0;
 }
 a.sprite.grid_view:hover:before { background-position:-1176px -24px; }
+a.sprite.reset_default:before {
+  margin-right:4px;
+  background-position:-1248px 0;
+}
+a.sprite.reset_default:hover:before { background-position:-1248px -24px; }
 .category.delete:before {
   margin-left:5px;
   background-position:-1008px 0;
@@ -984,12 +989,13 @@ div.pkp_controllers_grid .hidetext {
 }
 div.pkp_controllers_grid .row_container {
   position:relative;
+  padding-top:10px;
   padding-left:40px;
   padding-right:30px;
   overflow:hidden;
   height:40px;
-  min-height:40px;
-  line-height:40px;
+  word-wrap:break-word;
+  line-height:auto;
   vertical-align:middle;
 }
 div.pkp_controllers_grid .row_actions {
