@@ -41,6 +41,7 @@
 <script type="text/javascript" src="{$baseUrl}/lib/pkp/js/classes/linkAction/AjaxRequest.js"></script>
 <script type="text/javascript" src="{$baseUrl}/lib/pkp/js/classes/linkAction/ModalRequest.js"></script>
 <script type="text/javascript" src="{$baseUrl}/lib/pkp/js/classes/notification/NotificationHelper.js"></script>
+<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/classes/features/Feature.js"></script>
 <script type="text/javascript" src="{$baseUrl}/lib/pkp/js/classes/features/OrderItemsFeature.js"></script>
 <script type="text/javascript" src="{$baseUrl}/lib/pkp/js/classes/features/ToggleableOrderItemsFeature.js"></script>
 <script type="text/javascript" src="{$baseUrl}/lib/pkp/js/classes/features/OrderGridItemsFeature.js"></script>
