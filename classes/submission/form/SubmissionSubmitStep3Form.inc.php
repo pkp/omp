@@ -131,6 +131,8 @@ class SubmissionSubmitStep3Form extends SubmissionSubmitForm {
 
 		$router =& $request->getRouter();
 		if ($mail->isEnabled()) {
+			// submission ack emails should be from the press contact.
+			$mail->setFrom($this->press->getSetting('contactEmail'), $this->press->getSetting('contactName'));
 			$user = $monograph->getUser();
 			$primaryAuthor = $monograph->getPrimaryAuthor();
 			$mail->addRecipient($user->getEmail(), $user->getFullName());
@@ -142,7 +144,10 @@ class SubmissionSubmitStep3Form extends SubmissionSubmitForm {
 			$assignedAuthors = $monograph->getAuthors();
 
 			foreach ($assignedAuthors as $author) {
-				if ($author->getEmail() != $primaryAuthor->getEmail()) {
+				$authorEmail = $author->getEmail();
+				// only add the author email as CC if they have not already been added as the primary author
+				// or user creating the submission.
+				if ($authorEmail != $primaryAuthor->getEmail() && $authorEmail != $user->getEmail()) {
 					$mail->addCc($author->getEmail(), $author->getFullName());
 				}
 			}
