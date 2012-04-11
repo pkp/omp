@@ -160,11 +160,16 @@ class PublishedMonograph extends Monograph {
 
 	/**
 	 * Retrieves the assigned publication formats for this mongraph
+	 * @param $onlyAvailable boolean whether to fetch only those that are in the catalog.
 	 * @return array PublicationFormat
 	 */
-	function getPublicationFormats() {
+	function getPublicationFormats($onlyAvailable = false) {
 		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
-		$formats =& $publicationFormatDao->getByMonographId($this->getId());
+		if ($onlyAvailable) {
+			$formats =& $publicationFormatDao->getAvailableByMonographId($this->getId());
+		} else {
+			$formats =& $publicationFormatDao->getByMonographId($this->getId());
+		}
 		return $formats->toArray();
 	}
 
@@ -199,18 +204,17 @@ class PublishedMonograph extends Monograph {
 
 	/**
 	 * Get whether or not this monograph is available in the catalog.
+	 * A monograph is available if it has at least one publication format that
+	 * has been flagged as 'available' in the catalog.
 	 * @return int
 	 */
-	function getIsAvailable() {
-		return $this->getData('isAvailable');
-	}
-
-	/**
-	 * Set whether or not this monograph is available in the catalog.
-	 * @param $isAvailable int
-	 */
-	function setIsAvailable($isAvailable) {
-		return $this->setData('isAvailable', $isAvailable);
+	function isAvailable() {
+		return false;
+		$publicationFormats =& $this->getPublicationFormats(true);
+		if (sizeof($publicationFormats) > 0) {
+			return true;
+		}
+		return false;
 	}
 
 	/**

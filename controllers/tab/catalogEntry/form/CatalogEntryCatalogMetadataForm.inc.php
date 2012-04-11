@@ -95,7 +95,6 @@ class CatalogEntryCatalogMetadataForm extends Form {
 			$templateMgr->assign('audienceRangeFrom', $publishedMonograph->getAudienceRangeFrom());
 			$templateMgr->assign('audienceRangeTo', $publishedMonograph->getAudienceRangeTo());
 			$templateMgr->assign('audienceRangeExact', $publishedMonograph->getAudienceRangeExact());
-			$templateMgr->assign('isAvailable', $publishedMonograph->getIsAvailable()?true:false);
 		}
 
 		return parent::fetch($request);
@@ -154,7 +153,7 @@ class CatalogEntryCatalogMetadataForm extends Form {
 	function readInputData() {
 		$vars = array(
 			'audience', 'audienceRangeQualifier', 'audienceRangeFrom', 'audienceRangeTo', 'audienceRangeExact',
-			'isAvailable', 'temporaryFileId', // Cover image
+			'temporaryFileId', // Cover image
 		);
 
 		$this->readUserVars($vars);
@@ -197,30 +196,12 @@ class CatalogEntryCatalogMetadataForm extends Form {
 			fatalError('Updating catalog metadata with no published monograph!');
 		}
 
-		// Manage tombstones for the monograph publication formats.
-		$publicationFormats = $publishedMonograph->getPublicationFormats();
-		if ($publishedMonograph->getIsAvailable() && !$this->getData('isAvailable')) {
-			// Monograph was available and now its being disabled. Create
-			// a tombstone for all its publication formats.
-			$press =& $request->getPress();
-			import('classes.publicationFormat.PublicationFormatTombstoneManager');
-			$publicationFormatTombstoneMgr = new PublicationFormatTombstoneManager();
-			$publicationFormatTombstoneMgr->insertTombstonesByPublicationFormats($publicationFormats, $press);
-		} elseif (!$publishedMonograph->getIsAvailable() && $this->getData('isAvailable')) {
-			// Wasn't available and now it is. Delete all its publication format tombstones.
-			$tombstoneDao =& DAORegistry::getDAO('DataObjectTombstoneDAO');
-			foreach($publicationFormats as $publicationFormat) {
-				$tombstoneDao->deleteByDataObjectId($publicationFormat->getId());
-			}
-		}
-
 		// Populate the published monograph with the cataloging metadata
 		$publishedMonograph->setAudience($this->getData('audience'));
 		$publishedMonograph->setAudienceRangeQualifier($this->getData('audienceRangeQualifier'));
 		$publishedMonograph->setAudienceRangeFrom($this->getData('audienceRangeFrom'));
 		$publishedMonograph->setAudienceRangeTo($this->getData('audienceRangeTo'));
 		$publishedMonograph->setAudienceRangeExact($this->getData('audienceRangeExact'));
-		$publishedMonograph->setIsAvailable($this->getData('isAvailable')?true:false);
 
 		// If a cover image was uploaded, deal with it.
 		if ($temporaryFileId = $this->getData('temporaryFileId')) {

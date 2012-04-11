@@ -84,6 +84,23 @@ class PublicationFormatDAO extends DAO {
 	}
 
 	/**
+	 * Retrieves a list of available publication formats for a published monograph
+	 * @param int $monographId
+	 * @return DAOResultFactory (PublicationFormat)
+	 */
+	function getAvailableByMonographId($monographId) {
+		$result =& $this->retrieve(
+				'SELECT *
+				FROM	publication_formats
+				WHERE	monograph_id = ? AND is_available = 1',
+				(int) $monographId
+		);
+
+		$returner = new DAOResultFactory($result, $this, '_fromRow');
+		return $returner;
+	}
+
+	/**
 	 * Delete an publication format by ID.
 	 * @param $publicationFormatId int
 	 */
