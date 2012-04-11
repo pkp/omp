@@ -120,7 +120,7 @@ class WorkflowHandler extends Handler {
 
 		import('controllers.informationCenter.linkAction.SubmissionInfoCenterLinkAction');
 		$templateMgr->assign(
-			'submissionInformationCentreAction',
+			'submissionInformationCenterAction',
 			new SubmissionInfoCenterLinkAction($request, $monograph->getId())
 		);
 	}
