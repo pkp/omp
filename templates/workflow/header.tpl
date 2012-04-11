@@ -31,7 +31,7 @@
 				<li>{include file="linkAction/linkAction.tpl" action=$catalogEntryAction}</li>
 			{/if}
 			<li>{include file="linkAction/linkAction.tpl" action=$submissionInformationCenterAction}</li>
-			<li class="participants"><a href="javascript:void()" id="participantToggle" class="sprite participants">{translate key="editor.monograph.stageParticipants"}</a></li>
+			<li class="participants"><a href="javascript:$.noop();" id="participantToggle" class="sprite participants">{translate key="editor.monograph.stageParticipants"}</a></li>
 		</ul>
 	</div>
 	<div class="pkp_helpers_align_left"><span class="h2">{$pageTitleTranslated}</span></div>
