@@ -124,24 +124,24 @@ class EditorDecisionActionsManager {
 	 */
 	function _submissionStageDecisions() {
 		static $decisions = array(
-		SUBMISSION_EDITOR_DECISION_ACCEPT => array(
-					'name' => 'accept',
-					'operation' => 'promote',
-					'title' => 'editor.monograph.decision.accept',
-					'image' => 'promote'
-		),
-		SUBMISSION_EDITOR_DECISION_DECLINE => array(
-					'name' => 'decline',
-					'operation' => 'sendReviews',
-					'title' => 'editor.monograph.decision.decline',
-					'image' => 'decline'
-		),
-		SUBMISSION_EDITOR_DECISION_INITIATE_REVIEW => array(
-					'name' => 'initiateReview',
-					'operation' => 'initiateReview',
-					'title' => 'editor.monograph.initiateReview',
-					'image' => 'advance'
-		)
+			SUBMISSION_EDITOR_DECISION_ACCEPT => array(
+				'name' => 'accept',
+				'operation' => 'promote',
+				'title' => 'editor.monograph.decision.accept',
+				'image' => 'promote'
+			),
+			SUBMISSION_EDITOR_DECISION_DECLINE => array(
+				'name' => 'decline',
+				'operation' => 'sendReviews',
+				'title' => 'editor.monograph.decision.decline',
+				'image' => 'decline'
+			),
+			SUBMISSION_EDITOR_DECISION_INITIATE_REVIEW => array(
+				'name' => 'initiateReview',
+				'operation' => 'initiateReview',
+				'title' => 'editor.monograph.initiateReview',
+				'image' => 'advance'
+			)
 		);
 
 		return $decisions;
