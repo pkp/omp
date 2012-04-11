@@ -104,7 +104,7 @@ class ReviewRoundTabHandler extends Handler {
 		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
 		$lastReviewRound =& $reviewRoundDao->getLastReviewRoundByMonographId($monograph->getId(), $stageId);
 
-		$actionArgs = array('monographId' => $monograph->getId(), 'stageId' => $stageId, 'reviewRoundId' => $reviewRound->getId());
+		$actionArgs = array('reviewRoundId' => $reviewRound->getId());
 
 		if ($reviewRound->getRound() == $lastReviewRound->getRound()) {
 			if ($stageId == WORKFLOW_STAGE_ID_INTERNAL_REVIEW) {
@@ -114,7 +114,7 @@ class ReviewRoundTabHandler extends Handler {
 			}
 
 			import('classes.workflow.EditorDecisionActionsManager');
-			EditorDecisionActionsManager::assignDecisionsToTemplate($request, $decisionCallback, $actionArgs);
+			EditorDecisionActionsManager::assignDecisionsToTemplate($monograph, $stageId, $request, $decisionCallback, $actionArgs);
 		}
 
 		$notificationRequestOptions = array(

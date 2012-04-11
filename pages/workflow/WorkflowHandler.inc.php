@@ -311,12 +311,10 @@ class WorkflowHandler extends Handler {
 		// Prepare the action arguments.
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		$stageId = $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
-		$actionArgs = array('monographId' => $monograph->getId(), 'stageId' => $stageId);
-		$actionArgs = array_merge($actionArgs, $additionalArgs);
 
 		// Use editor decision actions manager to assign the decisions to template.
 		import('classes.workflow.EditorDecisionActionsManager');
-		EditorDecisionActionsManager::assignDecisionsToTemplate($request, $decisionFunctionName, $actionArgs);
+		EditorDecisionActionsManager::assignDecisionsToTemplate($monograph, $stageId, $request, $decisionFunctionName, $additionalArgs);
 	}
 
 	/**

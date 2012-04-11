@@ -31,12 +31,21 @@ class EditorDecisionActionsManager {
 
 	/**
 	 * Create actions for editor decisions and assign them to the template.
+	 * @param $monograph Monograph
+	 * @param $stageId int
 	 * @param $request Request
 	 * @param $decisionsFunctionName string the name of the class method
 	 *  that will return the decision configuration.
-	 * @param $actionArgs array action arguments
+	 * @param $actionArgs array action arguments beyond monograph and stage
 	 */
-	function assignDecisionsToTemplate(&$request, $decisionsFunctionName, $actionArgs) {
+	function assignDecisionsToTemplate(&$monograph, $stageId, &$request, $decisionsFunctionName, $actionArgs = array()) {
+		// If there is no editor assigned, do not allow actions.
+		$stageAssignmentDao =& DAORegistry::getDAO('StageAssignmentDAO');
+		if (!$stageAssignmentDao->editorAssignedToStage($monograph->getId(), $stageId)) return;
+
+		$actionArgs['monographId'] = $monograph->getId();
+		$actionArgs['stageId'] = (int) $stageId;
+
 		AppLocale::requireComponents(LOCALE_COMPONENT_OMP_EDITOR);
 
 		// Retrieve the editor decisions.
