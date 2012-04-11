@@ -10,7 +10,7 @@
  * @ingroup controllers_grid_files_review
  *
  * @brief Display the file revisions authors have uploaded in a selectable grid.
- *   Used for selecting files to send to external review or copyediting.
+ *   Used for selecting files to send to external review or editorial stages.
  */
 
 import('controllers.grid.files.fileList.SelectableFileListGridHandler');

@@ -20,7 +20,7 @@ switch ($op) {
 	case 'submission':
 	case 'internalReview':
 	case 'externalReview':
-	case 'copyediting':
+	case 'editorial':
 	case 'production':
 	case 'productionFormatsAccordion':
 	case 'editorDecisionActions':

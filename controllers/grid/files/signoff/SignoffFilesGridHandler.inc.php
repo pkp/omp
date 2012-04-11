@@ -196,7 +196,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 
 		// We need to manually include the press editor, because he has access
 		// to all submission and its workflow stages but not always with
-		// an stage assignment (copyediting and production stages, for example).
+		// an stage assignment (editorial and production stages, for example).
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 		$pressManagerUserGroupsFactory =& $userGroupDao->getByRoleId($monograph->getPressId(), ROLE_ID_PRESS_MANAGER);
 		while ($userGroup =& $pressManagerUserGroupsFactory->next()) {

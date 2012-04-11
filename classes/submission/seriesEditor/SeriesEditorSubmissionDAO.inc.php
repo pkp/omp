@@ -250,7 +250,7 @@ class SeriesEditorSubmissionDAO extends MonographDAO {
 	// Miscellaneous
 	//
 	/**
-	 * Delete copyediting assignments by monograph.
+	 * Delete editing decisions by monograph.
 	 * FIXME: Create EditorDecisionDAO and move this there, see #6455.
 	 * @param $monographId int
 	 */

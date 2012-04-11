@@ -50,7 +50,7 @@ define_exposed('WORKFLOW_STAGE_ID_PRODUCTION', 5);
 define('WORKFLOW_STAGE_PATH_SUBMISSION', 'submission');
 define('WORKFLOW_STAGE_PATH_INTERNAL_REVIEW', 'internalReview');
 define('WORKFLOW_STAGE_PATH_EXTERNAL_REVIEW', 'externalReview');
-define('WORKFLOW_STAGE_PATH_EDITING', 'copyediting');
+define('WORKFLOW_STAGE_PATH_EDITING', 'editorial');
 define('WORKFLOW_STAGE_PATH_PRODUCTION', 'production');
 
 // To expose LISTBUILDER_SOURCE_TYPE_... constants via JS

@@ -103,7 +103,7 @@ class SubmissionMetadataHandler extends Handler {
 	 * @param $monographId int
 	 * @return Form
 	 */
-	function &getFormInstance($monographId, $stageId = null, $params = null) {
+	function getFormInstance($monographId, $stageId = null, $params = null) {
 		import('controllers.modals.submissionMetadata.form.CatalogEntrySubmissionReviewForm');
 		return new CatalogEntrySubmissionReviewForm($monographId, $stageId, $params);
 	}

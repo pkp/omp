@@ -9,7 +9,7 @@
  * @class WorkflowHandler
  * @ingroup pages_reviewer
  *
- * @brief Handle requests for the copyediting stage of the submssion workflow.
+ * @brief Handle requests for the submssion workflow.
  */
 
 import('classes.handler.Handler');
@@ -36,7 +36,7 @@ class WorkflowHandler extends Handler {
 				'editorDecisionActions', // Submission & review
 				'internalReview', // Internal review
 				'externalReview', // External review
-				'copyediting',
+				'editorial',
 				'production', 'productionFormatsAccordion' // Production
 			)
 		);
@@ -259,14 +259,14 @@ class WorkflowHandler extends Handler {
 	}
 
 	/**
-	 * Show the copyediting stage
+	 * Show the editorial stage
 	 * @param $request PKPRequest
 	 * @param $args array
 	 */
-	function copyediting(&$args, &$request) {
+	function editorial(&$args, &$request) {
 		// Render the view.
 		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->display('workflow/copyediting.tpl');
+		$templateMgr->display('workflow/editorial.tpl');
 	}
 
 	/**

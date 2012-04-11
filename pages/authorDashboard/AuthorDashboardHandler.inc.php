@@ -112,7 +112,7 @@ class AuthorDashboardHandler extends Handler {
 		}
 
 
-		// If the submission is in or past the copyediting stage,
+		// If the submission is in or past the editorial stage,
 		// assign the editor's copyediting emails to the template
 		if ($monograph->getStageId() >= WORKFLOW_STAGE_ID_EDITING) {
 			$monographEmailLogDao =& DAORegistry::getDAO('MonographEmailLogDAO');

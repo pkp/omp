@@ -24,7 +24,7 @@ define('SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW', 3);
 define('SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS', 4);
 define('SUBMISSION_EDITOR_DECISION_RESUBMIT', 5);
 
-// Copyediting stage decision actions.
+// Editorial stage decision actions.
 define('SUBMISSION_EDITOR_DECISION_SEND_TO_PRODUCTION', 7);
 
 class EditorDecisionActionsManager {
@@ -36,10 +36,10 @@ class EditorDecisionActionsManager {
 	 */
 	function getActionLabels($decisions) {
 		$allDecisionsData = array_merge(
-				EditorDecisionActionsManager::_submissionStageDecisions(),
-				EditorDecisionActionsManager::_internalReviewStageDecisions(),
-				EditorDecisionActionsManager::_externalReviewStageDecisions(),
-				EditorDecisionActionsManager::_copyeditingStageDecisions()
+			EditorDecisionActionsManager::_submissionStageDecisions(),
+			EditorDecisionActionsManager::_internalReviewStageDecisions(),
+			EditorDecisionActionsManager::_externalReviewStageDecisions(),
+			EditorDecisionActionsManager::_editorialStageDecisions()
 		);
 
 		$actionLabels = array();
@@ -91,7 +91,7 @@ class EditorDecisionActionsManager {
 			case WORKFLOW_STAGE_ID_EXTERNAL_REVIEW:
 				return EditorDecisionActionsManager::_externalReviewStageDecisions();
 			case WORKFLOW_STAGE_ID_EDITING:
-				return EditorDecisionActionsManager::_copyeditingStageDecisions();
+				return EditorDecisionActionsManager::_editorialStageDecisions();
 			default:
 				assert(false);
 		}
@@ -137,10 +137,10 @@ class EditorDecisionActionsManager {
 		$decisions = EditorDecisionActionsManager::_externalReviewStageDecisions();
 
 		$decisions[SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW] = array(
-					'operation' => 'promoteInReview',
-					'name' => 'externalReview',
-					'title' => 'editor.monograph.decision.externalReview',
-					'image' => 'advance'
+			'operation' => 'promoteInReview',
+			'name' => 'externalReview',
+			'title' => 'editor.monograph.decision.externalReview',
+			'image' => 'advance'
 		);
 
 		return $decisions;
@@ -152,30 +152,30 @@ class EditorDecisionActionsManager {
 	 */
 	function _externalReviewStageDecisions() {
 		static $decisions = array(
-		SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS => array(
-					'operation' => 'sendReviewsInReview',
-					'name' => 'requestRevisions',
-					'title' => 'editor.monograph.decision.requestRevisions',
-					'image' => 'revisions'
-		),
-		SUBMISSION_EDITOR_DECISION_RESUBMIT => array(
-					'operation' => 'sendReviewsInReview',
-					'name' => 'resubmit',
-					'title' => 'editor.monograph.decision.resubmit',
-					'image' => 'resubmit'
-		),
-		SUBMISSION_EDITOR_DECISION_ACCEPT => array(
-					'operation' => 'promoteInReview',
-					'name' => 'accept',
-					'title' => 'editor.monograph.decision.accept',
-					'image' => 'promote'
-		),
-		SUBMISSION_EDITOR_DECISION_DECLINE => array(
-					'operation' => 'sendReviewsInReview',
-					'name' => 'decline',
-					'title' => 'editor.monograph.decision.decline',
-					'image' => 'decline'
-		)
+			SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS => array(
+				'operation' => 'sendReviewsInReview',
+				'name' => 'requestRevisions',
+				'title' => 'editor.monograph.decision.requestRevisions',
+				'image' => 'revisions'
+			),
+			SUBMISSION_EDITOR_DECISION_RESUBMIT => array(
+				'operation' => 'sendReviewsInReview',
+				'name' => 'resubmit',
+				'title' => 'editor.monograph.decision.resubmit',
+				'image' => 'resubmit'
+			),
+			SUBMISSION_EDITOR_DECISION_ACCEPT => array(
+				'operation' => 'promoteInReview',
+				'name' => 'accept',
+				'title' => 'editor.monograph.decision.accept',
+				'image' => 'promote'
+			),
+			SUBMISSION_EDITOR_DECISION_DECLINE => array(
+				'operation' => 'sendReviewsInReview',
+				'name' => 'decline',
+				'title' => 'editor.monograph.decision.decline',
+				'image' => 'decline'
+			)
 		);
 
 		return $decisions;
@@ -183,17 +183,17 @@ class EditorDecisionActionsManager {
 
 
 	/**
-	 * Define and return editor decisions for the copyediting stage.
+	 * Define and return editor decisions for the editorial stage.
 	 * @return array
 	 */
-	function _copyeditingStageDecisions() {
+	function _editorialStageDecisions() {
 		static $decisions = array(
-		SUBMISSION_EDITOR_DECISION_SEND_TO_PRODUCTION => array(
-					'operation' => 'promote',
-					'name' => 'sendToProduction',
-					'title' => 'editor.monograph.decision.sendToProduction',
-					'image' => 'approve'
-		)
+			SUBMISSION_EDITOR_DECISION_SEND_TO_PRODUCTION => array(
+				'operation' => 'promote',
+				'name' => 'sendToProduction',
+				'title' => 'editor.monograph.decision.sendToProduction',
+				'image' => 'approve'
+			)
 		);
 
 		return $decisions;

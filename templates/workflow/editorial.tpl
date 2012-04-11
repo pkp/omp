@@ -1,5 +1,5 @@
 {**
- * templates/workflow/copyediting.tpl
+ * templates/workflow/editorial.tpl
  *
  * Copyright (c) 2003-2012 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -10,7 +10,7 @@
 {include file="workflow/header.tpl"}
 {/strip}
 
-<div id="copyediting">
+<div id="editorial">
 	<p>{translate key="editor.monograph.editorial.introduction"}</p>
 
 	<h3 class="pkp_grid_title">{translate key="submission.finalDraft"}</h3>
@@ -39,4 +39,3 @@
 </div>
 </div>
 {include file="common/footer.tpl"}
-

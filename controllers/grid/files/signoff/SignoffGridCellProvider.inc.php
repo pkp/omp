@@ -9,7 +9,7 @@
  * @class SignoffGridCellProvider
  * @ingroup controllers_grid_files_signoff
  *
- * @brief Cell provider for name column of a signoff (editor/auditor) grid (i.e. copyediting/production).
+ * @brief Cell provider for name column of a signoff (editor/auditor) grid (i.e. editorial/production).
  */
 
 import('lib.pkp.classes.controllers.grid.GridCellProvider');
