@@ -36,7 +36,7 @@ class SalesRightsForm extends Form {
 				$this, 'ROWSetting', 'optional', 'grid.catalogEntry.oneROWPerFormat',
 				create_function(
 						'$ROWSetting, $form, $salesRightsDao, $salesRights',
-						'return $ROWSetting == \'\' ||
+						'return $ROWSetting == \'\' || $salesRights == null ||
 						$salesRightsDao->getROWByPublicationFormatId($salesRights->getPublicationFormatId()) == null ||
 						$salesRightsDao->getROWByPublicationFormatId($salesRights->getPublicationFormatId())->getId() == $salesRights->getId();'
 				), array(&$this, DAORegistry::getDAO('SalesRightsDAO'), $salesRights)
