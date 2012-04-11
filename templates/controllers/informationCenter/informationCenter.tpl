@@ -12,7 +12,7 @@
 	$(function() {ldelim}
 		$('#informationCenter').pkpHandler(
 			'$.pkp.controllers.informationCenter.InformationCenterHandler', {ldelim}
-				selected: {$selectedTabIndex}
+				selected: {$selectedTabIndex|escape:"javascript"}
 			{rdelim}
 		);
 	{rdelim});

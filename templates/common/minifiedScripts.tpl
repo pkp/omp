@@ -56,6 +56,7 @@
 <script type="text/javascript" src="{$baseUrl}/lib/pkp/js/controllers/AutocompleteHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/lib/pkp/js/controllers/RangeSliderHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/lib/pkp/js/controllers/NotificationHandler.js"></script>
+<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/controllers/UrlInDivHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/lib/pkp/js/controllers/form/FormHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/lib/pkp/js/controllers/form/DropdownFormHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/lib/pkp/js/controllers/form/AjaxFormHandler.js"></script>
