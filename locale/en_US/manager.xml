@@ -265,8 +265,6 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.coverageGeoProvideExamples">Provide examples of relevant geo-spatial or geographical terms for this field</message>
 	<message key="manager.setup.coverageResearchSampleExamples">(E.g., Age; Gender; Ethnicity; etc.)</message>
 	<message key="manager.setup.coverageResearchSampleProvideExamples">Provide examples of research sample characteristics for this field</message>
-	<message key="manager.setup.recentTitles">Recent Titles</message>
-	<message key="manager.setup.numRecentTitlesOnHomepage">Number of Recent Items on Homepage</message>
 	<message key="manager.setup.customizingTheLook"><![CDATA[Step 5. Customizing the Look & Feel]]></message>
 	<message key="manager.setup.customTags">Custom tags</message>
 	<message key="manager.setup.customTagsDescription">Custom HTML header tags to be inserted in the header of every page (e.g., META tags).</message>

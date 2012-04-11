@@ -40,7 +40,6 @@ class AppearanceForm extends PressSettingsForm {
 			'homeHeaderTitleType' => 'int',
 			'homeHeaderTitle' => 'string',
 			'description' => 'string',
-			'numRecentTitlesOnHomepage' => 'int',
 			'additionalHomeContent' => 'string',
 			'pressPageHeader' => 'string',
 			'pressPageFooter' => 'string',

@@ -151,9 +151,6 @@
 		{fbvFormSection}
 			{fbvElement type="text" id="numPageLinks" value=$numPageLinks size=$fbvStyles.size.SMALL label="manager.setup.numPageLinks"}
 		{/fbvFormSection}
-		{fbvFormSection title="manager.setup.recentTitles"}
-			{fbvElement type="text" label="manager.setup.numRecentTitlesOnHomepage" id="numRecentTitlesOnHomepage" name="numRecentTitlesOnHomepage" value="$numRecentTitlesOnHomepage" size="3"}
-		{/fbvFormSection}
 	{/fbvFormArea}
 	{* end Lists *}
 
