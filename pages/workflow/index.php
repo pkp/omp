@@ -19,12 +19,11 @@ switch ($op) {
 	case 'access':
 	case 'submission':
 	case 'internalReview':
-	case 'internalReviewRound':
 	case 'externalReview':
-	case 'externalReviewRound':
 	case 'copyediting':
 	case 'production':
 	case 'productionFormatsAccordion':
+	case 'editorDecisionActions':
 		define('HANDLER_CLASS', 'WorkflowHandler');
 		import('pages.workflow.WorkflowHandler');
 		break;

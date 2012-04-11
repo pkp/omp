@@ -1,5 +1,5 @@
 {**
- * templates/workflow/details.tpl
+ * templates/workflow/submission.tpl
  *
  * Copyright (c) 2003-2012 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -13,5 +13,7 @@
 {url|assign:submissionFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.submission.EditorSubmissionDetailsFilesGridHandler" op="fetchGrid" monographId=$monograph->getId() stageId=$stageId escape=false}
 {load_url_in_div id="submissionFilesGridDiv" url=$submissionFilesGridUrl}
 
-{include file="workflow/editorialLinkActions.tpl" contextId="submission"}
+{url|assign:submissionEditorDecisionsUrl op="editorDecisionActions" monographId=$monograph->getId() stageId=$stageId contextId="submission" decisionFunction="_submissionStageDecisions" escape=false}
+{load_url_in_div id="submissionEditorDecisionsDiv" url=$submissionEditorDecisionsUrl}
+
 {include file="common/footer.tpl"}

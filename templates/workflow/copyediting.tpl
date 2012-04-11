@@ -34,11 +34,8 @@
 	{url|assign:fairCopyGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.fairCopy.FairCopyFilesGridHandler" op="fetchGrid" monographId=$monograph->getId() escape=false}
 	{load_url_in_div id="fairCopyGrid" url=$fairCopyGridUrl}
 
-	<div class="grid_actions">
-		{foreach from=$editorActions item=action}
-			{include file="linkAction/linkAction.tpl" action=$action contextId="copyediting"}
-		{/foreach}
-	</div>
+	{url|assign:copyeditingEditorDecisionsUrl op="editorDecisionActions" monographId=$monograph->getId() stageId=$stageId contextId="copyediting" decisionFunction="_copyeditingStageDecisions" escape=false}
+	{load_url_in_div id="copyeditingEditorDecisionsDiv" url=$copyeditingEditorDecisionsUrl}
 </div>
 {include file="common/footer.tpl"}
 

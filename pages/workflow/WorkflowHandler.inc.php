@@ -33,8 +33,9 @@ class WorkflowHandler extends Handler {
 			array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER, ROLE_ID_PRESS_ASSISTANT),
 			array(
 				'access', 'submission',
-				'internalReview', 'internalReviewRound', // Internal review
-				'externalReview', 'externalReviewRound', // External review
+				'editorDecisionActions', // Submission & review
+				'internalReview', // Internal review
+				'externalReview', // External review
 				'copyediting',
 				'production', 'productionFormatsAccordion' // Production
 			)
@@ -172,8 +173,6 @@ class WorkflowHandler extends Handler {
 	 * @param $request PKPRequest
 	 */
 	function submission($args, &$request) {
-		$this->_assignEditorDecisionActions($request, '_submissionStageDecisions');
-
 		// Render the view.
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->display('workflow/submission.tpl');
@@ -265,9 +264,6 @@ class WorkflowHandler extends Handler {
 	 * @param $args array
 	 */
 	function copyediting(&$args, &$request) {
-		// Assign editor decision actions to the template.
-		$this->_assignEditorDecisionActions($request, '_copyeditingStageDecisions');
-
 		// Render the view.
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->display('workflow/copyediting.tpl');
@@ -298,25 +294,67 @@ class WorkflowHandler extends Handler {
 		return $templateMgr->fetchJson('workflow/productionFormatsAccordion.tpl');
 	}
 
-
-	//
-	// Private helper methods
-	//
 	/**
-	 * Call editor decision actions manager passing action args array.
+	 * Fetch JSON-encoded editor decision options.
+	 * @param $args array
 	 * @param $request Request
-	 * @param $decisionFunctionName String
 	 */
-	function _assignEditorDecisionActions($request, $decisionFunctionName, $additionalArgs = array()) {
+	function editorDecisionActions($args, &$request) {
+		$decisionFunction = $request->getUserVar('decisionFunction');
+		$reviewRoundId = (int) $request->getUserVar('reviewRoundId');
+
 		// Prepare the action arguments.
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		$stageId = $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
 
-		// Use editor decision actions manager to assign the decisions to template.
-		import('classes.workflow.EditorDecisionActionsManager');
-		EditorDecisionActionsManager::assignDecisionsToTemplate($monograph, $stageId, $request, $decisionFunctionName, $additionalArgs);
+		$actionArgs = array(
+			'monographId' => $monograph->getId(),
+			'stageId' => (int) $stageId,
+		);
+		if ($reviewRoundId) $actionArgs['reviewRoundId'] = $reviewRoundId;
+
+		AppLocale::requireComponents(LOCALE_COMPONENT_OMP_EDITOR);
+
+		// If there is an editor assigned, retrieve stage decisions.
+		$stageAssignmentDao =& DAORegistry::getDAO('StageAssignmentDAO');
+		if ($stageAssignmentDao->editorAssignedToStage($monograph->getId(), $stageId)) {
+			import('classes.workflow.EditorDecisionActionsManager');
+			$decisions = EditorDecisionActionsManager::getStageDecisions($stageId);
+		} else {
+			$decisions = array(); // None available
+		}
+
+		// Iterate through the editor decisions and create a link action for each decision.
+		$editorActions = array();
+		$dispatcher =& $request->getDispatcher();
+		import('classes.linkAction.request.AjaxModal');
+		foreach($decisions as $decision => $action) {
+			$actionArgs['decision'] = $decision;
+			$editorActions[] = new LinkAction(
+				$action['name'],
+				new AjaxModal(
+					$dispatcher->url(
+						$request, ROUTE_COMPONENT, null,
+						'modals.editorDecision.EditorDecisionHandler',
+						$action['operation'], null, $actionArgs
+					),
+					__($action['title'])
+				),
+				__($action['title']),
+				(isset($action['image']) ? $action['image'] : null)
+			);
+		}
+
+		// Assign the actions to the template.
+		$templateMgr =& TemplateManager::getManager();
+		$templateMgr->assign('editorActions', $editorActions);
+		return $templateMgr->fetchJson('workflow/editorialLinkActions.tpl');
 	}
 
+
+	//
+	// Private helper methods
+	//
 	/**
 	 * Translate the requested operation to a stage id.
 	 * @param $request Request

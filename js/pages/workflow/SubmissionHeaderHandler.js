@@ -37,11 +37,33 @@ $.pkp.pages.workflow = $.pkp.pages.workflow || {};
 		$('#participantToggle').click(function() {
 			$('.participant_popover').toggle();
 		});
+
+		this.bind('gridRefreshRequested', this.refreshWorkflowContent_);
 	};
 	$.pkp.classes.Helper.inherits(
 			$.pkp.pages.workflow.SubmissionHeaderHandler,
 			$.pkp.classes.Handler);
 
 
+	//
+	// Private functions
+	//
+	/**
+	 * Potentially refresh workflow content on contained grid changes.
+	 *
+	 * @param {JQuery} callingElement The calling element.
+	 *  that triggered the event.
+	 * @private
+	 */
+	$.pkp.pages.workflow.SubmissionHeaderHandler.prototype.refreshWorkflowContent_ =
+			function(callingElement, event) {
+
+		var $updateSourceElement = $(event.target);
+		if ($updateSourceElement.attr('id').match(/^stageParticipantGridContainer/)) {
+			// If the participants grid was the event source, we
+			// may need to re-draw workflow contents.
+			
+		}
+	};
 /** @param {jQuery} $ jQuery closure. */
 })(jQuery);

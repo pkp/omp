@@ -30,52 +30,6 @@ define('SUBMISSION_EDITOR_DECISION_SEND_TO_PRODUCTION', 7);
 class EditorDecisionActionsManager {
 
 	/**
-	 * Create actions for editor decisions and assign them to the template.
-	 * @param $monograph Monograph
-	 * @param $stageId int
-	 * @param $request Request
-	 * @param $decisionsFunctionName string the name of the class method
-	 *  that will return the decision configuration.
-	 * @param $actionArgs array action arguments beyond monograph and stage
-	 */
-	function assignDecisionsToTemplate(&$monograph, $stageId, &$request, $decisionsFunctionName, $actionArgs = array()) {
-		// If there is no editor assigned, do not allow actions.
-		$stageAssignmentDao =& DAORegistry::getDAO('StageAssignmentDAO');
-		if (!$stageAssignmentDao->editorAssignedToStage($monograph->getId(), $stageId)) return;
-
-		$actionArgs['monographId'] = $monograph->getId();
-		$actionArgs['stageId'] = (int) $stageId;
-
-		AppLocale::requireComponents(LOCALE_COMPONENT_OMP_EDITOR);
-
-		// Retrieve the editor decisions.
-		$decisions = EditorDecisionActionsManager::$decisionsFunctionName();
-
-		// Iterate through the editor decisions and create a link action for each decision.
-		$dispatcher =& $request->getDispatcher();
-		import('classes.linkAction.request.AjaxModal');
-		foreach($decisions as $decision => $action) {
-			$actionArgs['decision'] = $decision;
-			$editorActions[] = new LinkAction(
-				$action['name'],
-				new AjaxModal(
-					$dispatcher->url(
-						$request, ROUTE_COMPONENT, null,
-						'modals.editorDecision.EditorDecisionHandler',
-						$action['operation'], null, $actionArgs
-					),
-					__($action['title'])
-				),
-				__($action['title']),
-				(isset($action['image']) ? $action['image'] : null)
-			);
-		}
-		// Assign the actions to the template.
-		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->assign('editorActions', $editorActions);
-	}
-
-	/**
 	 * Get decision actions labels.
 	 * @param $decisions
 	 * @return array
@@ -122,6 +76,25 @@ class EditorDecisionActionsManager {
 		}
 
 		return $takenDecision;
+	}
+
+	/**
+	 * Get the available decisions by stage ID.
+	 * @param $stageId int WORKFLOW_STAGE_ID_...
+	 */
+	function getStageDecisions($stageId) {
+		switch ($stageId) {
+			case WORKFLOW_STAGE_ID_SUBMISSION:
+				return EditorDecisionActionsManager::_submissionStageDecisions();
+			case WORKFLOW_STAGE_ID_INTERNAL_REVIEW:
+				return EditorDecisionActionsManager::_internalReviewStageDecisions();
+			case WORKFLOW_STAGE_ID_EXTERNAL_REVIEW:
+				return EditorDecisionActionsManager::_externalReviewStageDecisions();
+			case WORKFLOW_STAGE_ID_EDITING:
+				return EditorDecisionActionsManager::_copyeditingStageDecisions();
+			default:
+				assert(false);
+		}
 	}
 
 	//
