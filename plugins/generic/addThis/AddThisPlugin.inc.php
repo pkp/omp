@@ -25,6 +25,15 @@ class AddThisPlugin extends GenericPlugin {
 		return false;
 	}
 
+	/**
+	 * Get the name of the settings file to be installed on new press
+	 * creation.
+	 * @return string
+	 */
+	function getContextSpecificPluginSettingsFile() {
+		return $this->getPluginPath() . '/settings.xml';
+	}
+
 	function getDisplayName() {
 		return __('plugins.generic.addThis.displayName');
 	}
