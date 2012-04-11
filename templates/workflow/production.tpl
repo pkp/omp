@@ -60,5 +60,6 @@
 		{* Will be filled in by Javascript *}
 	</div>
 </div>
+</div>
 
 {include file="common/footer.tpl"}

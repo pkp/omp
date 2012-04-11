@@ -13,7 +13,9 @@
 {url|assign:submissionFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.submission.EditorSubmissionDetailsFilesGridHandler" op="fetchGrid" monographId=$monograph->getId() stageId=$stageId escape=false}
 {load_url_in_div id="submissionFilesGridDiv" url=$submissionFilesGridUrl}
 
-{url|assign:submissionEditorDecisionsUrl op="editorDecisionActions" monographId=$monograph->getId() stageId=$stageId contextId="submission" decisionFunction="_submissionStageDecisions" escape=false}
-{load_url_in_div id="submissionEditorDecisionsDiv" url=$submissionEditorDecisionsUrl}
+{url|assign:submissionEditorDecisionsUrl op="editorDecisionActions" monographId=$monograph->getId() stageId=$stageId contextId="submission" escape=false}
+{load_url_in_div id="submissionEditorDecisionsDiv" url=$submissionEditorDecisionsUrl class="editorDecisionActions"}
+
+</div>
 
 {include file="common/footer.tpl"}

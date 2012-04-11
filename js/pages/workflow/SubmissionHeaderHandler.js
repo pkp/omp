@@ -1,10 +1,4 @@
 /**
- * @defgroup js_pages_workflow
- */
-// Create the pages_workflow namespace.
-$.pkp.pages.workflow = $.pkp.pages.workflow || {};
-
-/**
  * @file js/pages/workflow/SubmissionHeaderHandler.js
  *
  * Copyright (c) 2000-2012 John Willinsky
@@ -39,6 +33,7 @@ $.pkp.pages.workflow = $.pkp.pages.workflow || {};
 		});
 
 		this.bind('gridRefreshRequested', this.refreshWorkflowContent_);
+		this.publishEvent('stageParticipantsChanged');
 	};
 	$.pkp.classes.Helper.inherits(
 			$.pkp.pages.workflow.SubmissionHeaderHandler,
@@ -63,7 +58,7 @@ $.pkp.pages.workflow = $.pkp.pages.workflow || {};
 		if ($updateSourceElement.attr('id').match(/^stageParticipantGridContainer/)) {
 			// If the participants grid was the event source, we
 			// may need to re-draw workflow contents.
-			
+			this.trigger('stageParticipantsChanged');
 		}
 	};
 /** @param {jQuery} $ jQuery closure. */

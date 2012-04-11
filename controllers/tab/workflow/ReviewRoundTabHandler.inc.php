@@ -102,16 +102,6 @@ class ReviewRoundTabHandler extends Handler {
 		// Assign editor decision actions to the template, only if
 		// user is accessing the last review round for this stage.
 		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
-		$lastReviewRound =& $reviewRoundDao->getLastReviewRoundByMonographId($monograph->getId(), $stageId);
-
-		if ($reviewRound->getRound() == $lastReviewRound->getRound()) {
-			if ($stageId == WORKFLOW_STAGE_ID_INTERNAL_REVIEW) {
-				$decisionCallback = '_internalReviewStageDecisions';
-			} elseif ($stageId == WORKFLOW_STAGE_ID_EXTERNAL_REVIEW) {
-				$decisionCallback = '_externalReviewStageDecisions';
-			}
-			$templateMgr->assign('decisionFunction', $decisionCallback);
-		}
 
 		$notificationRequestOptions = array(
 			NOTIFICATION_LEVEL_NORMAL => array(

@@ -22,6 +22,7 @@
 		);
 	{rdelim});
 </script>
+
 {if $reviewRounds}
 	<p>{translate key="editor.review.introduction"}</p>
 	<div id=reviewTabs>
@@ -42,5 +43,6 @@
 {else}
 	<p>{translate key="editor.review.notInitiated"}</p>
 {/if}
+</div>
 
 {include file="common/footer.tpl"}

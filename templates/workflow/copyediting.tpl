@@ -34,8 +34,9 @@
 	{url|assign:fairCopyGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.fairCopy.FairCopyFilesGridHandler" op="fetchGrid" monographId=$monograph->getId() escape=false}
 	{load_url_in_div id="fairCopyGrid" url=$fairCopyGridUrl}
 
-	{url|assign:copyeditingEditorDecisionsUrl op="editorDecisionActions" monographId=$monograph->getId() stageId=$stageId contextId="copyediting" decisionFunction="_copyeditingStageDecisions" escape=false}
-	{load_url_in_div id="copyeditingEditorDecisionsDiv" url=$copyeditingEditorDecisionsUrl}
+	{url|assign:copyeditingEditorDecisionsUrl op="editorDecisionActions" monographId=$monograph->getId() stageId=$stageId contextId="copyediting" escape=false}
+	{load_url_in_div id="copyeditingEditorDecisionsDiv" url=$copyeditingEditorDecisionsUrl class="editorDecisionActions"}
+</div>
 </div>
 {include file="common/footer.tpl"}
 

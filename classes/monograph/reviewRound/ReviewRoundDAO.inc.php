@@ -237,11 +237,15 @@ class ReviewRoundDAO extends DAO {
 	function &getLastReviewRoundByMonographId($monographId, $stageId = null) {
 		$params = array((int)$monographId);
 		if ($stageId) $params[] = (int) $stageId;
-		$result =& $this->retrieve('SELECT * FROM review_rounds
-									WHERE submission_id = ?' .
-									($stageId ? ' AND stage_id = ?' : '') .
-									' ORDER BY stage_id DESC, round DESC LIMIT 1',
-									$params);
+		$result =& $this->retrieve(
+			'SELECT	*
+			FROM	review_rounds
+			WHERE	submission_id = ?
+			' . ($stageId ? ' AND stage_id = ?' : '') . '
+			ORDER BY stage_id DESC, round DESC
+			LIMIT 1',
+			$params
+		);
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {

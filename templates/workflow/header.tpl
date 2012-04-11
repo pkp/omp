@@ -14,11 +14,22 @@
 <script type="text/javascript">
 	// Initialise JS handler.
 	$(function() {ldelim}
+		$('#submissionWorkflow').pkpHandler(
+			'$.pkp.pages.workflow.WorkflowHandler'
+		);
+	{rdelim});
+</script>
+
+<script type="text/javascript">
+	// Initialise JS handler.
+	$(function() {ldelim}
 		$('#submissionHeader').pkpHandler(
 			'$.pkp.pages.workflow.SubmissionHeaderHandler'
 		);
 	{rdelim});
 </script>
+
+<div id="submissionWorkflow">
 
 <div id="submissionHeader" class="pkp_page_header">
 	<div class="participant_popover" style="display: none;">

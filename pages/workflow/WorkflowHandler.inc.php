@@ -300,7 +300,7 @@ class WorkflowHandler extends Handler {
 	 * @param $request Request
 	 */
 	function editorDecisionActions($args, &$request) {
-		$decisionFunction = $request->getUserVar('decisionFunction');
+		AppLocale::requireComponents(LOCALE_COMPONENT_OMP_EDITOR);
 		$reviewRoundId = (int) $request->getUserVar('reviewRoundId');
 
 		// Prepare the action arguments.
@@ -311,13 +311,20 @@ class WorkflowHandler extends Handler {
 			'monographId' => $monograph->getId(),
 			'stageId' => (int) $stageId,
 		);
-		if ($reviewRoundId) $actionArgs['reviewRoundId'] = $reviewRoundId;
+		// If a review round was specified, include it in the args;
+		// must also check that this is the last round or decisions
+		// cannot be recorded.
+		if ($reviewRoundId) {
+			$actionArgs['reviewRoundId'] = $reviewRoundId;
+			$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
+			$lastReviewRound =& $reviewRoundDao->getLastReviewRoundByMonographId($monograph->getId(), $stageId);
+		}
 
-		AppLocale::requireComponents(LOCALE_COMPONENT_OMP_EDITOR);
+		// If a review round was specified, 
 
 		// If there is an editor assigned, retrieve stage decisions.
 		$stageAssignmentDao =& DAORegistry::getDAO('StageAssignmentDAO');
-		if ($stageAssignmentDao->editorAssignedToStage($monograph->getId(), $stageId)) {
+		if ($stageAssignmentDao->editorAssignedToStage($monograph->getId(), $stageId) && (!$reviewRoundId || $reviewRoundId == $lastReviewRound->getId())) {
 			import('classes.workflow.EditorDecisionActionsManager');
 			$decisions = EditorDecisionActionsManager::getStageDecisions($stageId);
 		} else {
