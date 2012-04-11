@@ -65,7 +65,12 @@ class CategoriesListbuilderHandler extends SetupListbuilderHandler {
 		$press =& $this->getPress();
 		$seriesDao =& DAORegistry::getDAO('SeriesDAO');
 
-		$unassignedCategories =& $seriesDao->getUnassignedCategories($this->getSeriesId(), $press->getId());
+		if ($this->getSeriesId()) {
+			$unassignedCategories =& $seriesDao->getUnassignedCategories($this->getSeriesId(), $press->getId());
+		} else {
+			$categoryDao =& DAORegistry::getDAO('CategoryDAO');
+			$unassignedCategories =& $categoryDao->getByPressId($press->getId());
+		}
 
 		$itemList = array(0 => array());
 		while ($category =& $unassignedCategories->next()) {

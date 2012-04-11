@@ -70,8 +70,13 @@ class SeriesEditorsListbuilderHandler extends SetupListbuilderHandler {
 		$press =& $this->getPress();
 		$seriesEditorsDao =& DAORegistry::getDAO('SeriesEditorsDAO');
 
-		$unassignedSeriesEditors =& $seriesEditorsDao->getEditorsNotInSeries($press->getId(), $this->getSeriesId());
-
+		if ($this->getSeriesId()) {
+			$unassignedSeriesEditors =& $seriesEditorsDao->getEditorsNotInSeries($press->getId(), $this->getSeriesId());
+		} else {
+			$roleDao =& DAORegistry::getDAO('RoleDAO');
+			$editors =& $roleDao->getUsersByRoleId(ROLE_ID_SERIES_EDITOR, $press->getId());
+			$unassignedSeriesEditors =& $editors->toArray();
+		}
 		$itemList = array(0 => array());
 		foreach ($unassignedSeriesEditors as $seriesEditor) {
 			$itemList[0][$seriesEditor->getId()] = $seriesEditor->getFullName();
