@@ -23,14 +23,6 @@
 				<li><a href="{url page="about" op="submissions"}">{translate key="about.submissions"}</a></li>
 			</ul>
 		</li>
-		<li>
-			<a href="{url page="catalog"}">{translate key="navigation.catalog"}</a>
-			<ul>
-				<li><a href="#">{translate key="navigation.featuredBooks"}</a></li>
-				<li><a href="#">{translate key="navigation.newReleases"}</a></li>
-				<li><a href="#">{translate key="navigation.seriesAndEditions"}</a></li>
-			</ul>
-		</li>
 	{/if}
 {/capture}
 
