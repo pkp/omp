@@ -264,6 +264,7 @@ class ReviewRoundDAO extends DAO {
 	}
 
 	/**
+	 * FIXME #7386#
 	 * Update the review round status. If review assignments is passed and
 	 * no status, then this method will find the correct review round status
 	 * based on the review round assignments state.
@@ -292,18 +293,17 @@ class ReviewRoundDAO extends DAO {
 				// Check for an incomplete review.
 				if (!$reviewAssignment->getDateCompleted()) {
 					$anyIncompletedReview = true;
-					break;
 				}
 
 				// Check for an unread review.
 				if (!$viewsDao->getLastViewDate(ASSOC_TYPE_REVIEW_RESPONSE, $reviewAssignment->getId())) {
 					$anyUnreadReview = true;
-					break;
 				}
 			}
 
 			// Find the correct review round status based on the state of
-			// the current review assignments.
+			// the current review assignments. The check order matters: the
+			// first conditions override the others.
 			if (empty($reviewAssignments)) {
 				$status = REVIEW_ROUND_STATUS_PENDING_REVIEWERS;
 			} else if ($anyIncompletedReview) {
@@ -323,6 +323,13 @@ class ReviewRoundDAO extends DAO {
 					// status is related with an editor decision.
 					return;
 				}
+			}
+
+			// Don't update the review round status if it isn't the
+			// stage's current one.
+			$lastReviewRound =& $this->getLastReviewRoundByMonographId($reviewRound->getSubmissionId(), $reviewRound->getStageId());
+			if ($lastReviewRound->getId() != $reviewRound->getId()) {
+				return;
 			}
 		}
 
