@@ -180,6 +180,25 @@ class ArtworkFile extends MonographFile {
 		}
 		return $this->_imageInfo[1];
 	}
+
+	/**
+	 * Copy the user-facing (editable) metadata from another monograph
+	 * file.
+	 * @param $monographFile MonographFile
+	 */
+	function copyEditableMetadataFrom($monographFile) {
+		if (is_a($monographFile, 'ArtworkFile')) {
+			$this->setCaption($monographFile->getCaption());
+			$this->setCredit($monographFile->getCredit());
+			$this->setCopyrightOwner($monographFile->getCopyrightOwner());
+			$this->setCopyrightOwnerContactDetails($monographFile->getCopyrightOwnerContactDetails());
+			$this->setPermissionTerms($monographFile->getPermissionTerms());
+			$this->setWidth($monographFile->getWidth());
+			$this->setHeight($monographFile->getHeight());
+		}
+
+		parent::copyEditableMetadataFrom($monographFile);
+	}
 }
 
 ?>

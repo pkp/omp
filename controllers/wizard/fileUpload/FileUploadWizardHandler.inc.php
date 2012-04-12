@@ -382,11 +382,7 @@ class FileUploadWizardHandler extends FileManagementHandler {
 	 */
 	function editMetadata($args, &$request) {
 		$metadataForm =& $this->_getMetadataForm($request);
-		if ($metadataForm->isLocaleResubmit()) {
-			$metadataForm->readInputData();
-		} else {
-			$metadataForm->initData($args, $request);
-		}
+		$metadataForm->initData($args, $request);
 		$json = new JSONMessage(true, $metadataForm->fetch($request));
 		return $json->getString();
 	}

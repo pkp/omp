@@ -43,7 +43,7 @@ class SubmissionFilesMetadataForm extends Form {
 		}
 
 		// Add validation checks.
-		$this->addCheck(new FormValidator($this, 'name', 'required', 'user.profile.form.lastNameRequired'));
+		$this->addCheck(new FormValidator($this, 'name', 'required', 'submission.submit.fileNameRequired'));
 		$this->addCheck(new FormValidatorPost($this));
 	}
 

@@ -315,6 +315,9 @@ class MonographFileManager extends BaseMonographFileManager {
 				// Copy the viewable flag.
 				$monographFile->setViewable($revisedFile->getViewable());
 			}
+
+			// Copy assorted user-facing metadata.
+			$monographFile->copyEditableMetadataFrom($revisedFile);
 		} else {
 			// Create the first revision of a new file.
 			$monographFile->setRevision(1);

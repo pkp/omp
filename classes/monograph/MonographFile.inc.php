@@ -229,6 +229,15 @@ class MonographFile extends SubmissionFile {
 		return $fileLabel;
 	}
 
+	/**
+	 * Copy the user-facing (editable) metadata from another monograph
+	 * file.
+	 * @param $monographFile MonographFile
+	 */
+	function copyEditableMetadataFrom($monographFile) {
+		assert(is_a($monographFile, 'MonographFile'));
+		$this->setName($monographFile->getName(null), null);
+	}
 
 	//
 	// Overridden public methods from PKPFile
