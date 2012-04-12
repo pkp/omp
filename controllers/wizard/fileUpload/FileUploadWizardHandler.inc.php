@@ -486,11 +486,11 @@ class FileUploadWizardHandler extends FileManagementHandler {
 			$transcoder = new Transcoder('UTF-8', 'ASCII', true);
 
 			similar_text(
-				$transcoder->trans($uploadedFileName),
-				$transcoder->trans($monographFile->getOriginalFileName()),
+				$a = $transcoder->trans($uploadedFileName),
+				$b = $transcoder->trans($monographFile->getOriginalFileName()),
 				$matchedPercentage
 			);
-			if($matchedPercentage > $minPercentage) {
+			if($matchedPercentage > $minPercentage && !$this->_onlyNumbersDiffer($a, $b)) {
 				// We found a file that might be a possible revision.
 				$possibleRevisedFileId = $monographFile->getFileId();
 
@@ -502,6 +502,31 @@ class FileUploadWizardHandler extends FileManagementHandler {
 
 		// Return the id of the file that we found similar.
 		return $possibleRevisedFileId;
+	}
+
+	/**
+	 * Helper function: check if the only difference between $a and $b
+	 * is numeric. Used to exclude well-named but nearly identical file
+	 * names from the revision detection pile (e.g. "Chapter 1" and
+	 * "Chapter 2")
+	 * @param $a string
+	 * @param $b string
+	 */
+	function _onlyNumbersDiffer($a, $b) {
+		$pattern = '/([^0-9]*)([0-9]*)([^0-9]*)/';
+		$aMatchCount = preg_match_all($pattern, $a, $aMatches, PREG_SET_ORDER);
+		$bMatchCount = preg_match_all($pattern, $b, $bMatches, PREG_SET_ORDER);
+		if ($aMatchCount != $bMatchCount || $aMatchCount == 0) return false;
+
+		// Check each match. If the 1st and 3rd (text) parts all match
+		// then only numbers differ in the two supplied strings.
+		for ($i=0; $i<count($aMatches); $i++) {
+			if ($aMatches[$i][1] != $bMatches[$i][1]) return false;
+			if ($aMatches[$i][3] != $bMatches[$i][3]) return false;
+		}
+
+		// No counterexamples were found. Only numbers differ.
+		return true;
 	}
 
 	/**
