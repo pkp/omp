@@ -85,7 +85,7 @@ class ChapterGridCategoryRow extends GridCategoryRow {
 						__('submission.chapter.editChapter')
 					),
 					$chapter->getLocalizedTitle()
-				));
+				), GRID_ACTION_POSITION_ROW_CLICK);
 			}
 
 		}

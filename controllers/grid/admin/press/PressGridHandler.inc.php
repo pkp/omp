@@ -26,7 +26,7 @@ class PressGridHandler extends GridHandler {
 		$this->addRoleAssignment(array(
 			ROLE_ID_SITE_ADMIN),
 			array('fetchGrid', 'fetchRow', 'createPress', 'editPress', 'updatePress',
-				'deletePress', 'saveRowsSequence')
+				'deletePress', 'saveSequence')
 		);
 	}
 

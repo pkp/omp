@@ -31,11 +31,11 @@ class ChapterGridHandler extends CategoryGridHandler {
 	 * Constructor
 	 */
 	function ChapterGridHandler() {
-		parent::GridHandler();
+		parent::CategoryGridHandler();
 		$this->addRoleAssignment(
 			array(ROLE_ID_AUTHOR, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
 			array(
-				'fetchGrid', 'fetchRow',
+				'fetchGrid', 'fetchRow', 'saveSequence',
 				'addChapter', 'editChapter', 'updateChapter', 'deleteChapter',
 				'addAuthor', 'editAuthor', 'updateAuthor', 'deleteAuthor'
 			)
@@ -176,22 +176,59 @@ class ChapterGridHandler extends CategoryGridHandler {
 		return $chapters;
 	}
 
+
 	//
-	// Overridden methods from GridHandler
+	// Extended methods from GridHandler
 	//
 	/**
 	 * @see GridHandler::getRowInstance()
-	 * @return ChapterGridCategoryRow
 	 */
-	function &getCategoryRowInstance() {
-		$monograph =& $this->getMonograph();
-		$row = new ChapterGridCategoryRow($monograph, $this->getReadOnly());
+	function getRowInstance() {
+		$row = parent::getRowInstance();
+		if (!$this->getReadOnly()) {
+			$row->setIsOrderable(true);
+		}
 		return $row;
 	}
+
+	/**
+	 * @see GridHandler::getRowDataElementSequence()
+	 */
+	function getRowDataElementSequence($author) {
+		return $author->getSequence();
+	}
+
+	/**
+	 * @see CategoryGridHandler::saveRowDataElementSequence()
+	 */
+	function saveRowDataElementSequence($author, $chapterId, $newSequence) {
+		$monograph =& $this->getMonograph();
+
+		// Remove the chapter author id.
+		$chapterAuthorDao =& DAORegistry::getDAO('ChapterAuthorDAO');
+		$chapterAuthorDao->deleteChapterAuthorById($author->getId(), $chapterId);
+
+		// Add it again with the correct sequence value.
+		// FIXME: primary authors not set for chapter authors.
+		$chapterAuthorDao->insertChapterAuthor($author->getId(), $chapterId, $monograph->getId(), false, $newSequence);
+	}
+
 
 	//
 	// Implement template methods from CategoryGridHandler
 	//
+	/**
+	 * @see CategoryGridHandler::getCategoryRowInstance()
+	 */
+	function &getCategoryRowInstance() {
+		$monograph =& $this->getMonograph();
+		$row = new ChapterGridCategoryRow($monograph, $this->getReadOnly());
+		if (!$this->getReadOnly()) {
+			$row->setIsOrderable(true);
+		}
+		return $row;
+	}
+
 	/**
 	 * @see CategoryGridHandler::getCategoryData()
 	 */
@@ -199,6 +236,22 @@ class ChapterGridHandler extends CategoryGridHandler {
 		$authorFactory =& $chapter->getAuthors(); /* @var $authorFactory DAOResultFactory */
 		$authors = $authorFactory->toAssociativeArray();
 		return $authors;
+	}
+
+	/**
+	 * @see CategoryGridHandler::getCategoryDataElementSequence()
+	 */
+	function getCategoryDataElementSequence($chapter) {
+		return $chapter->getSequence();
+	}
+
+	/**
+	 * @see CategoryGridHandler::saveCategoryDataElementSequence()
+	 */
+	function saveCategoryDataElementSequence($chapter, $newSequence) {
+		$chapterDao =& DAORegistry::getDAO('ChapterDAO');
+		$chapter->setSequence($newSequence);
+		$chapterDao->updateObject($chapter);
 	}
 
 

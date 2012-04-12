@@ -998,11 +998,13 @@ div.pkp_controllers_grid .row_container {
   line-height:auto;
   vertical-align:middle;
 }
-div.pkp_controllers_grid .row_actions {
+div.pkp_controllers_grid .row_container .row_actions {
   position:absolute;
+  width:24px;
+}
+div.pkp_controllers_grid .row_actions {
   top:0;
   left:0;
-  width:24px;
 }
 div.pkp_controllers_grid .row_actions a {
   display:block;
@@ -1078,6 +1080,8 @@ div.pkp_controllers_grid .grid_controls {
   height:26px;
 }
 div.pkp_controllers_grid .ordering:hover { background:#eaf3f8 !important; }
+div.pkp_controllers_grid tbody.ui-sortable-placeholder { display:block; }
+div.pkp_controllers_grid tbody.ui-sortable-helper { display:table; }
 div.pkp_controllers_grid .group1 td:first-child { background:url(../lib/pkp/templates/images/structure/grid_group_1.png) no-repeat; }
 div.pkp_controllers_grid .group2 td:first-child { background:url(../lib/pkp/templates/images/structure/grid_group_2.png) no-repeat; }
 div.pkp_controllers_grid .group3 td:first-child { background:url(../lib/pkp/templates/images/structure/grid_group_3.png) no-repeat; }
