@@ -155,8 +155,8 @@ class ReviewerHandler extends Handler {
 
 		$reviewerAction = new ReviewerAction();
 		$reviewerAction->confirmReview($request, $reviewerSubmission, true, true);
-		$router =& $request->getRouter(); /* @var $router PageRouter */
-		$request->redirect($router->redirectHome($request));
+		$dispatcher =& $request->getDispatcher();
+		return $request->redirectUrlJson($dispatcher->url($request, ROUTE_PAGE, null, 'index'));
 	}
 
 	/**
