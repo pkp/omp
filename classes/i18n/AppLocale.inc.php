@@ -193,9 +193,6 @@ class AppLocale extends PKPLocale {
 		$genreDao =& DAORegistry::getDAO('GenreDAO');
 		$genreDao->uninstallLocale($locale);
 
-		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
-		$publicationFormatDao->uninstallLocale($locale);
-
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 		$userGroupDao->deleteSettingsByLocale($locale);
 	}
