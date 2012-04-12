@@ -71,6 +71,9 @@ class EditorDecisionWithEmailForm extends EditorDecisionForm {
 	 */
 	function initData($args, &$request, $actionLabels) {
 		$press =& $request->getPress();
+		$router =& $request->getRouter();
+		$dispatcher =& $router->getDispatcher();
+
 		$seriesEditorSubmission =& $this->getSeriesEditorSubmission();
 		$submitter = $seriesEditorSubmission->getUser();
 		$user =& $request->getUser();
@@ -82,6 +85,8 @@ class EditorDecisionWithEmailForm extends EditorDecisionForm {
 			'pressName' => $press->getLocalizedName(),
 			'monographTitle' => $seriesEditorSubmission->getLocalizedTitle(),
 			'editorialContactSignature' => $user->getContactSignature(),
+			'authorUsername' => $submitter->getUsername(),
+			'submissionUrl' => $dispatcher->url($request, ROUTE_PAGE, null, 'authorDashboard', 'submission', $seriesEditorSubmission->getId()),
 		);
 		$email->assignParams($paramArray);
 
@@ -260,6 +265,13 @@ class EditorDecisionWithEmailForm extends EditorDecisionForm {
 
 		// Send the email.
 		if (!$this->getData('skipEmail')) {
+			$router =& $request->getRouter();
+			$dispatcher =& $router->getDispatcher();
+			$paramArray = array(
+				'authorUsername' => $submitter->getUsername(),
+				'submissionUrl' => $dispatcher->url($request, ROUTE_PAGE, null, 'authorDashboard', 'submission', $seriesEditorSubmission->getId()),
+			);
+			$email->assignParams($paramArray);
 			$email->send($request);
 		}
 	}

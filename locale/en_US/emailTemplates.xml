@@ -365,6 +365,9 @@ We have reached a decision regarding your submission to {$pressName}, "{$monogra
 
 Our decision is to:
 
+Manuscript URL: {$submissionUrl}
+Username: {$authorUsername}
+
 {$editorialContactSignature}
 </body>
 		<description>This email from the Editor or Series Editor to an Author notifies them of a final decision regarding their submission.</description>
@@ -376,6 +379,9 @@ Our decision is to:
 We have reached a decision regarding your submission to {$pressName}, "{$monographTitle}".
 
 Our decision is to:
+
+Manuscript URL: {$submissionUrl}
+Username: {$authorUsername}
 
 {$editorialContactSignature}
 </body>
@@ -389,6 +395,9 @@ We have reached a decision regarding your submission to {$pressName}, "{$monogra
 
 Our decision is to:
 
+Manuscript URL: {$submissionUrl}
+Username: {$authorUsername}
+
 {$editorialContactSignature}
 </body>
 		<description>This email from the Editor or Series Editor to an Author notifies them of a final decision regarding their submission.</description>
@@ -401,6 +410,9 @@ We have reached a decision regarding your submission to {$pressName}, "{$monogra
 
 Our decision is to:
 
+Manuscript URL: {$submissionUrl}
+Username: {$authorUsername}
+
 {$editorialContactSignature}
 </body>
 		<description>This email from the Editor or Series Editor to an Author notifies them of a final decision regarding their submission.</description>
@@ -412,6 +424,9 @@ Our decision is to:
 We have reached a decision regarding your submission to {$pressName}, "{$monographTitle}".
 
 Our decision is to:
+
+Manuscript URL: {$submissionUrl}
+Username: {$authorUsername}
 
 {$editorialContactSignature}
 </body>
