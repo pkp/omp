@@ -92,10 +92,11 @@ class ReviewerReviewStep3Form extends ReviewerReviewForm {
 		//
 		// Assign the link actions
 		//
-		import('controllers.confirmationModal.linkAction.ViewReviewGuidelinesLinkAction');
-		$viewReviewGuidelinesAction = new ViewReviewGuidelinesLinkAction($request);
-		$templateMgr->assign('viewGuidelinesAction', $viewReviewGuidelinesAction);
-
+		if ($press->getLocalizedSetting('reviewGuidelines')) {
+			import('controllers.confirmationModal.linkAction.ViewReviewGuidelinesLinkAction');
+			$viewReviewGuidelinesAction = new ViewReviewGuidelinesLinkAction($request);
+			$templateMgr->assign('viewGuidelinesAction', $viewReviewGuidelinesAction);
+		}
 		parent::display($request);
 	}
 
