@@ -135,7 +135,7 @@
 				$uploader: $('#plupload'),
 				uploaderOptions: {ldelim}
 					uploadUrl: '{url|escape:javascript op="uploadFile" monographId=$monographId stageId=$stageId fileStage=$fileStage reviewRoundId=$reviewRoundId assocType=$assocType assocId=$assocId escape=false}',
-					baseUrl: '{$baseUrl|escape:javascript}'
+					baseUrl: '{$baseUrl|escape:javascript}',
 				{rdelim}
 			{rdelim});
 	{rdelim});
@@ -171,7 +171,7 @@
 
 		{if $showGenreSelector}
 			{fbvFormSection title="submission.upload.fileContents" required=true}
-				{fbvElement type="select" name="genreId" id="genreId" from=$monographFileGenres translate=false selected=$genreId}
+				{fbvElement type="select" name="genreId" id="genreId" from=$monographFileGenres translate=false defaultLabel="" defaultValue="" required="true" selected=$genreId}
 			{/fbvFormSection}
 		{/if}
 
