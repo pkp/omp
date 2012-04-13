@@ -50,12 +50,13 @@ class ReviewerSubmissionMetadataHandler extends SubmissionMetadataHandler {
 		$reviewAssignment =& $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ASSIGNMENT);
 		$reviewMethod = $reviewAssignment->getReviewMethod();
 
-		$isBlindReview = true;
-		if ($reviewMethod == SUBMISSION_REVIEW_METHOD_OPEN) {
-			$isBlindReview = false;
+		if ($reviewMethod == SUBMISSION_REVIEW_METHOD_DOUBLEBLIND) {
+			$anonymous = true;
+		} else { /* SUBMISSION_REVIEW_METHOD_BLIND or _OPEN */
+			$anonymous = false;
 		}
 
-		$params = array('readOnly' => true, 'anonymous' => $isBlindReview, 'hideSubmit' => true);
+		$params = array('readOnly' => true, 'anonymous' => $anonymous, 'hideSubmit' => true);
 
 		return parent::fetch($args, $request, $params);
 	}
