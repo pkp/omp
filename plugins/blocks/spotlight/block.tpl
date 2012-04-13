@@ -7,8 +7,8 @@
  * Add spotlights to the sidebar
  *}
 <div class="block" id="sidebarSpotlight">
-	<span class="blockTitle">{translate key="plugins.block.spotlight.title"}</span>
 	{if $spotlights|@count > 0}
+		<span class="blockTitle">{translate key="plugins.block.spotlight.title"}</span>
 		<ul>
 			{foreach from=$spotlights item=spotlight}
 				{assign var="item" value=$spotlight->getSpotlightItem()}
@@ -17,7 +17,5 @@
 				{/if}
 			{/foreach}
 		</ul>
-	{else}
-		<p>{translate key="plugins.block.spotlight.noSpotlights"}</p>
 	{/if}
 </div>
