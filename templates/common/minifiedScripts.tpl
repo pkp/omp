@@ -89,6 +89,7 @@
 <script type="text/javascript" src="{$baseUrl}/js/controllers/informationCenter/InformationCenterHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/js/controllers/informationCenter/form/InformationCenterNotifyHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/js/controllers/informationCenter/NotesHandler.js"></script>
+<script type="text/javascript" src="{$baseUrl}/js/controllers/informationCenter/HistoryHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/js/controllers/modals/editorDecision/form/EditorDecisionFormHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/js/controllers/modals/catalogEntry/form/RepresentativeFormHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/js/controllers/modals/submissionMetadata/MonographlessCatalogEntryHandler.js"></script>

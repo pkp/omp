@@ -8,7 +8,7 @@
  *}
 
 <script type="text/javascript">
-	// Attach the Information Center handler.
+	// Attach the Notes handler.
 	$(function() {ldelim}
 		$('#informationCenterNotes').pkpHandler(
 			'$.pkp.controllers.informationCenter.NotesHandler',
@@ -25,7 +25,7 @@
 	<br />
 	<hr />
 
-	{if $showPastNotesLinks}
+	{if $showEarlierEntries}
 	{**
 	 * The file information center should provide access to notes
 	 * from previous stages. Does not apply to submissions.
@@ -38,7 +38,7 @@
 	<div id="notesList">
 	</div>
 
-	{if $showPastNotesLinks}
+	{if $showEarlierEntries}
 			<h3><a href="#" id="showPastNotesLink">{translate key="informationCenter.pastNotes"}</a></h3>
 			{* Leave an empty div to be filled in with past notes *}
 			<div id="pastNotesList">

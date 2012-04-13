@@ -230,21 +230,20 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 	}
 
 	/**
-	 * Display the history tab.
+	 * Fetch the contents of the event log.
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function viewHistory($args, &$request) {
+	function listHistory($args, &$request) {
 		$this->setupTemplate($request);
+		$templateMgr =& TemplateManager::getManager();
 
 		// Get all monograph events
 		$monographEventLogDao =& DAORegistry::getDAO('MonographEventLogDAO');
-		$fileEvents =& $monographEventLogDao->getByMonographId($this->_monograph->getId());
+		$monographEvents =& $monographEventLogDao->getByMonographId($this->_monograph->getId());
+		$templateMgr->assign_by_ref('eventLogEntries', $monographEvents);
 
-		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->assign_by_ref('eventLogEntries', $fileEvents);
-
-		return $templateMgr->fetchJson('controllers/informationCenter/history.tpl');
+		return $templateMgr->fetchJson('controllers/informationCenter/historyList.tpl');
 	}
 
 	/**

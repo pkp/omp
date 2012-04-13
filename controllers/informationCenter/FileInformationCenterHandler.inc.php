@@ -36,7 +36,7 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 				ROLE_ID_PRESS_MANAGER,
 				ROLE_ID_PRESS_ASSISTANT
 			),
-			array('listPastNotes')
+			array('listPastNotes', 'listPastHistory')
 		);
 	}
 
@@ -92,10 +92,6 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 	 */
 	function viewNotes($args, &$request) {
 		$this->setupTemplate($request);
-
-		// Provide access to notes from past revisions/file IDs
-		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->assign('showPastNotesLinks', true);
 
 		import('controllers.informationCenter.form.NewFileNoteForm');
 		$notesForm = new NewFileNoteForm($this->monographFile->getFileId());
@@ -211,11 +207,11 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 	}
 
 	/**
-	 * Display the history tab.
+	 * Fetch the contents of the event log.
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function viewHistory($args, &$request) {
+	function listHistory($args, &$request) {
 		$this->setupTemplate($request);
 
 		// Get all monograph file events
@@ -227,7 +223,39 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign_by_ref('eventLogEntries', $fileEvents);
 
-		return $templateMgr->fetchJson('controllers/informationCenter/history.tpl');
+		return $templateMgr->fetchJson('controllers/informationCenter/historyList.tpl');
+	}
+
+	/**
+	 * Display the list of history log entries from prior files.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 */
+	function listPastHistory($args, &$request) {
+		$this->setupTemplate($request);
+
+		$templateMgr =& TemplateManager::getManager();
+		$monographFileEventLogDao =& DAORegistry::getDAO('MonographFileEventLogDAO');
+
+		$monographFile = $this->monographFile;
+		$events = array();
+		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO');
+		while (true) {
+			$monographFile = $submissionFileDao->getRevision($monographFile->getSourceFileId(), $monographFile->getSourceRevision());
+			if (!$monographFile) break;
+
+			$iterator =& $monographFileEventLogDao->getByFileId($monographFile->getFileId());
+			$events += $iterator->toArray();
+
+			unset($iterator);
+		}
+		import('lib.pkp.classes.core.ArrayItemIterator');
+		$templateMgr->assign('eventLogEntries', new ArrayItemIterator($events));
+
+		$user =& $request->getUser();
+		$templateMgr->assign('currentUserId', $user->getId());
+
+		return $templateMgr->fetchJson('controllers/informationCenter/historyList.tpl');
 	}
 
 	/**
@@ -279,6 +307,17 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 	 */
 	function _getAssocType() {
 		return ASSOC_TYPE_MONOGRAPH_FILE;
+	}
+
+	/**
+	 * Set up the template
+	 * @param $request PKPRequest
+	 */
+	function setupTemplate($request) {
+		// Provide access to notes from past revisions/file IDs
+		$templateMgr =& TemplateManager::getManager();
+		$templateMgr->assign('showEarlierEntries', true);
+		return parent::setupTemplate($request);
 	}
 }
 

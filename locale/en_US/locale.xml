@@ -389,6 +389,8 @@ current password.<br /><br />Enter your email address below to reset your passwo
 	<message key="informationCenter.pastNotes">Earlier Revisions</message>
 	<message key="informationCenter.lastUpdated">Last Updated</message>
 	<message key="informationCenter.deleteConfirm">Are you sure you wish to delete this note?</message>
+	<message key="informationCenter.currentHistory">Current Revision</message>
+	<message key="informationCenter.pastHistory">Earlier Revisions</message>
 	<message key="informationCenter.history.noItems">There are no events logged.</message>
 	<message key="informationCenter.history.notePosted">Posted new note.</message>
 	<message key="informationCenter.history.messageSent">Notification sent to users.</message>
