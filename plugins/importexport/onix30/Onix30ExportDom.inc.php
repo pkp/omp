@@ -197,13 +197,15 @@ class Onix30ExportDom {
 
 			XMLCustomWriter::createChildWithText($doc, $contributorNode, 'BiographicalNote', strip_tags($author->getLocalizedBiography()));
 
-			$contributorPlaceNode =& XMLCustomWriter::createElement($doc, 'ContributorPlace');
-			XMLCustomWriter::appendChild($contributorNode, $contributorPlaceNode);
-			XMLCustomWriter::createChildWithText($doc, $contributorPlaceNode, 'ContributorPlaceRelator', '04'); // currently resides in
-			XMLCustomWriter::createChildWithText($doc, $contributorPlaceNode, 'CountryCode', $author->getCountry());
+			if ($author->getCountry() != '') {
+				$contributorPlaceNode =& XMLCustomWriter::createElement($doc, 'ContributorPlace');
+				XMLCustomWriter::appendChild($contributorNode, $contributorPlaceNode);
+				XMLCustomWriter::createChildWithText($doc, $contributorPlaceNode, 'ContributorPlaceRelator', '04'); // currently resides in
+				XMLCustomWriter::createChildWithText($doc, $contributorPlaceNode, 'CountryCode', $author->getCountry());
+				unset($contributorPlaceNode);
+			}
 
 			$sequence++;
-			unset($contributorPlaceNode);
 			unset($contributorNode);
 			unset($userGroup);
 			unset($author);
