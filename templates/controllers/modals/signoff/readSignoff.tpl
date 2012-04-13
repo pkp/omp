@@ -22,7 +22,7 @@
 		<input type="hidden" name="signoffId" value="{$signoffId|escape}" />
 
 		{fbvFormSection title="submission.signoff.signedOffOnFile"}
-			{fbvElement type="text" id="signoffOnFile" disabled=true value="signoffFileName"}
+			{fbvElement type="text" id="signoffOnFile" disabled=true value=$signoffFileName}
 		{/fbvFormSection}
 
 		{fbvFormSection title="common.note"}
@@ -30,9 +30,9 @@
 		{/fbvFormSection}
 
 		<br />
-		{if $downloadSignoffFileAction}
+		{if $downloadSignoffResponseFileAction}
 			<div class="pkp_linkActions">
-				{translate key="submission.signoff.fileResponse"} {include file="linkAction/linkAction.tpl" action=$downloadSignoffFileAction contextId="signoffForm"}
+				{translate key="submission.signoff.fileResponse"} {include file="linkAction/linkAction.tpl" action=$downloadSignoffResponseFileAction contextId="signoffForm"}
 			</div>
 		{/if}
 		{fbvFormButtons id="closeButton" hideCancel=true submitText="common.close"}

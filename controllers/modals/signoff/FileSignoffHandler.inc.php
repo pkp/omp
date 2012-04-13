@@ -135,6 +135,7 @@ class FileSignoffHandler extends FileManagementHandler {
 	 */
 	function readSignoff($args, &$request) {
 		$signoffDao =& DAORegistry::getDAO('MonographFileSignoffDAO');
+		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		$signoff =& $this->getAuthorizedContextObject(ASSOC_TYPE_SIGNOFF);
 
 		// Sanity check.
@@ -146,12 +147,15 @@ class FileSignoffHandler extends FileManagementHandler {
 		// Get related objects for the form to authenticate
 		$monograph =& $this->getMonograph();
 		$stageId = $this->getStageId();
+		if ($signoff->getAssocType() != ASSOC_TYPE_MONOGRAPH_FILE) assert(false);
+		$signoffFile =& $submissionFileDao->getLatestRevision($signoff->getAssocId());
 
 		// Set up the template
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('monographId', $monograph->getId());
 		$templateMgr->assign('stageId', $stageId);
 		$templateMgr->assign('signoffId', $signoff->getId());
+		$templateMgr->assign('signoffFileName', $signoffFile->getLocalizedName());
 
 		// Check if there is a note and assign it for dispaly
 		$noteDao =& DAORegistry::getDAO('NoteDAO'); /* @var $noteDao NoteDAO */
@@ -163,17 +167,16 @@ class FileSignoffHandler extends FileManagementHandler {
 			$templateMgr->assign('noteText', '');
 		}
 
-		// Check if there is a file and assign it for download
+		// Check if there is a response file and assign it for download
 		if ($signoff->getFileId() && $signoff->getFileRevision()) {
-			$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-			$submissionFile =& $submissionFileDao->getRevision($signoff->getFileId(), $signoff->getFileRevision());
-			assert(is_a($submissionFile, 'MonographFile'));
+			$responseFile =& $submissionFileDao->getRevision($signoff->getFileId(), $signoff->getFileRevision());
+			assert(is_a($responseFile, 'MonographFile'));
 
 			import('controllers.api.file.linkAction.DownloadFileLinkAction');
-			$downloadFileAction = new DownloadFileLinkAction($request, $submissionFile, $stageId);
-			$templateMgr->assign('downloadSignoffFileAction', $downloadFileAction);
+			$downloadFileAction = new DownloadFileLinkAction($request, $responseFile, $stageId);
+			$templateMgr->assign('downloadSignoffResponseFileAction', $downloadFileAction);
 		} else {
-			$templateMgr->assign('downloadSignoffFileAction', false);
+			$templateMgr->assign('downloadSignoffResponseFileAction', false);
 		}
 
 		return $templateMgr->fetchJson('controllers/modals/signoff/readSignoff.tpl');
