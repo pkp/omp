@@ -193,8 +193,6 @@ class ArtworkFile extends MonographFile {
 			$this->setCopyrightOwner($monographFile->getCopyrightOwner());
 			$this->setCopyrightOwnerContactDetails($monographFile->getCopyrightOwnerContactDetails());
 			$this->setPermissionTerms($monographFile->getPermissionTerms());
-			$this->setWidth($monographFile->getWidth());
-			$this->setHeight($monographFile->getHeight());
 		}
 
 		parent::copyEditableMetadataFrom($monographFile);
