@@ -455,7 +455,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 		// Identify the Monograph we are working with
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 
-		// Retrieve the users for the autocomplete control: Any author or press assistant user assigned to this stage
+		// Retrieve the users for the autocomplete control: Any user assigned to this stage
 		$stageAssignmentDao = & DAORegistry::getDAO('StageAssignmentDAO'); /* @var $stageAssignmentDao StageAssignmentDAO */
 		$stageUsers = $stageAssignmentDao->getBySubmissionAndStageId($monograph->getId(), $this->getStageId());
 
