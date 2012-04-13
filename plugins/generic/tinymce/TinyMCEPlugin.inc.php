@@ -89,6 +89,7 @@ class TinyMCEPlugin extends GenericPlugin {
 		<script type="text/javascript">
 			<!--
 			tinyMCE.init({
+				width: "100%",
 				entity_encoding : "raw",
 				plugins : "paste,jbimages,fullscreen,pkpmultilingualpopover",
 				mode : "specific_textareas",
