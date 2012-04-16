@@ -164,7 +164,7 @@ class ReviewerGridCellProvider extends DataObjectGridCellProvider {
 					'edit' //FIXME: insert icon
 				),
 				$reviewAssignment->getReviewerFullName(),
-				$state
+				null
 			);
 		} elseif ($state == 'new' && $column->getId() == 'editor') {
 			$monographDao =& DAORegistry::getDAO('MonographDAO');
