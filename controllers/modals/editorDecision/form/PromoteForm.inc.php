@@ -120,6 +120,7 @@ class PromoteForm extends EditorDecisionWithEmailForm {
 				$this->_sendReviewMailToAuthor($seriesEditorSubmission, $emailKey, $request);
 				break;
 			case SUBMISSION_EDITOR_DECISION_SEND_TO_PRODUCTION:
+				$emailKey = 'EDITOR_DECISION_SEND_TO_PRODUCTION';
 				// FIXME: this is copy-pasted from above, save the FILE_GALLEY.
 
 				// Move to the editing stage.
@@ -139,6 +140,8 @@ class PromoteForm extends EditorDecisionWithEmailForm {
 						$monographFileManager->copyFileToFileStage($fileId, $revision, MONOGRAPH_FILE_PRODUCTION_READY);
 					}
 				}
+				// Send email to the author.
+				$this->_sendReviewMailToAuthor($seriesEditorSubmission, $emailKey, $request);
 				break;
 			default:
 				fatalError('Unsupported decision!');
