@@ -595,9 +595,9 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="notification.type.site">Site Events</message>
 	<message key="notification.type.submissions">Submission Events</message>
 	<message key="notification.type.userComment">A reader has made a comment on "{$title}"</message>
-	<message key="notification.type.editorAssignment">An editor must be assigned before you can initiate review.</message>
-	<message key="notification.type.editorAssignmentEditing">A production editor must be assigned before you can initiate the editorial process.</message>
-	<message key="notification.type.editorAssignmentProduction">A production editor must be assigned before you can initiate the production process.</message>
+	<message key="notification.type.editorAssignment">An editor must be assigned before you can initiate review. Please add one via the Participants link above.</message>
+	<message key="notification.type.editorAssignmentEditing">A production editor must be assigned before you can initiate the editorial process. Please add one via the Participants link above.</message>
+	<message key="notification.type.editorAssignmentProduction">A production editor must be assigned before you can initiate the production process. Please add one via the Participants link above.</message>
 	<message key="notification.type.auditorRequest">You were requested to be an auditor on "{$file}"</message>
 	<message key="notification.type.copyeditorRequest">You were requested to review copyedits for "{$file}"</message>
 	<message key="notification.type.layouteditorRequest">You were requested to review layouts for "{$title}"</message>
