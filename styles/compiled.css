@@ -1011,7 +1011,7 @@ div.pkp_controllers_grid .row_actions a {
   cursor:pointer;
 }
 div.pkp_controllers_grid .row_file { width:100%; }
-div.pkp_controllers_grid .row_file a {
+div.pkp_controllers_grid .row_file a.pkp_controllers_linkAction {
   float:left;
   margin-right:20px;
 }
