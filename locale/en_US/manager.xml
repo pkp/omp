@@ -329,7 +329,6 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.information.forLibrarians">For Librarians</message>
 	<message key="manager.setup.information.forReaders">For Readers</message>
 	<message key="manager.setup.institution">Institution</message>
-	<message key="manager.setup.itemsDescription">Navigation bar items can be added to the current set (Home, About, User Home, etc.) that appear at the top of the page.</message>
 	<message key="manager.setup.itemsPerPage">Items per page</message>
 	<message key="manager.setup.labelName">Label Name</message>
 	<message key="manager.setup.layoutAndGalleys">Layout Editors</message>
@@ -349,10 +348,6 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.managementOfBasicEditorialSteps">Management of Basic Editorial Steps</message>
 	<message key="manager.setup.managingPublishingSetup">Management and Publishing Setup</message>
 	<message key="manager.setup.managingThePress">Step 4. Managing the Settings</message>
-	<message key="manager.setup.navigationBar">Navigation Bar</message>
-	<message key="manager.setup.navigationBarDescription">Add or remove additional navigation bar items.</message>
-	<message key="manager.setup.navItemIsAbsolute">URL is an absolute URL (e.g., "http://www.example.com") rather than a path relative to the site (e.g., "/manager/setup")</message>
-	<message key="manager.setup.navItemIsLiteral">The label value is a literal string (e.g., "Press Setup") rather than a localization message key (e.g., "manager.setup")</message>
 	<message key="manager.setup.noImageFileUploaded">No image file uploaded.</message>
 	<message key="manager.setup.noStyleSheetUploaded">No style sheet uploaded.</message>
 	<message key="manager.setup.note">Note</message>

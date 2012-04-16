@@ -138,11 +138,6 @@
 	{/fbvFormArea}
 	{* end Press Layout *}
 
-	<!-- ** FIXME: there's a header and description for navigation bar stuff, but no actual code **
-	<h3>{translate key="manager.setup.navigationBar"}</h3>
-	<p>{translate key="manager.setup.itemsDescription"}</p>
-	-->
-
 	{* Lists *}
 	{fbvFormArea id="advancedAppearanceSettings" title="manager.setup.lists" border="true"}
 		{fbvFormSection description="manager.setup.listsDescription"}
