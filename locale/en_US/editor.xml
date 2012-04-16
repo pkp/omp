@@ -91,7 +91,7 @@
 
 
 	<message key="editor.monograph.copyediting.currentFiles">Current Files</message>
-	<message key="editor.monograph.copyediting.personalMessageTouser">Personal message to user</message>
+	<message key="editor.monograph.copyediting.personalMessageToUser">Personal message to user</message>
 
 	<!-- Editorial related -->
 	<message key="editor.monograph.editorial.introduction">Welcome to the submission's editorial stage. All approved submission revisions from previous review stages are available in the Final Draft section. Copyedited files may be uploaded to the Copyediting section, and authors and/or editors may be assigned to audit the copyedited files. Final copyedited files may then be uploaded to the Fair Copy section, at which point the submission can then be sent to the Production stage.</message>

@@ -50,7 +50,7 @@
 
 		<!-- Message to user -->
 		{fbvFormSection}
-			{fbvElement type="textarea" name="personalMessage" id="personalMessage" required=true class="required" label="editor.monograph.copyediting.personalMessageTouser" value=$personalMessage size=$fbvStyles.size.LARGE}
+			{fbvElement type="textarea" name="personalMessage" id="personalMessage" required=true class="required" label="editor.monograph.copyediting.personalMessageToUser" value=$personalMessage height=$fbvStyles.height.TALL size=$fbvStyles.size.MEDIUM}
 		{/fbvFormSection}
 
 		<!-- skip email checkbox -->
