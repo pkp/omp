@@ -37,7 +37,7 @@
 			</ul>
 		</div>
 		<div style="float: left;"><span class="h2">{$pageTitleTranslated}</span></div>
-		
+
 		<div class="pkp_helpers_clear"></div>
 		{include file="controllers/notification/inPlaceNotification.tpl" notificationId="authorDashboardNotification" requestOptions=$authorDashboardNotificationRequestOptions}
 	</div>
@@ -56,7 +56,7 @@
 			<h3><a href="#">{translate key='workflow.review.internalReview'}</a></h3>
 			<div id="internalReviewContent">
 				{if !$internalReviewRounds->wasEmpty()}
-					{include file="authorDashboard/reviewRoundTab.tpl" reviewRounds=$internalReviewRounds reviewRoundTabsId="internalReviewRoundTabs" lastReviewRoundNumber=$lastReviewRoundNumber.internalReview} 
+					{include file="authorDashboard/reviewRoundTab.tpl" reviewRounds=$internalReviewRounds reviewRoundTabsId="internalReviewRoundTabs" lastReviewRoundNumber=$lastReviewRoundNumber.internalReview}
 				{/if}
 			</div>
 		</div>
@@ -80,13 +80,13 @@
 				{if $stageId >= $smarty.const.WORKFLOW_STAGE_ID_EDITING}
 					<!-- Display editor's message to the author -->
 					{if $monographEmails && $monographEmails->getCount()}
-						<h6>{translate key="editor.review.personalMessageFromEditor"}:</h6>
+						{fbvFormSection label="editor.review.personalMessageFromEditor"}
 						{iterate from=monographEmails item=monographEmail}
-							<textarea class="pkp_authorDashboard_editorPersonalMessage textArea" disabled=true>{$monographEmail->getBody()|escape}</textarea>
+							{fbvElement type="textarea" id="copyEditMonographEmail" value=$monographEmail->getBody() height=$fbvStyles.height.TALL disabled=true}
 						{/iterate}
-						<br />
+						{/fbvFormSection}
 					{/if}
-	
+
 					<!-- Display copyediting files grid -->
 					{url|assign:copyeditingFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.copyedit.AuthorCopyeditingSignoffFilesGridHandler" op="fetchGrid" monographId=$monograph->getId() stageId=$smarty.const.WORKFLOW_STAGE_ID_EDITING escape=false}
 					{load_url_in_div id="copyeditingFilesGridDiv" url=$copyeditingFilesGridUrl}
