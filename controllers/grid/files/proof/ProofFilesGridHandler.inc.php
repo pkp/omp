@@ -48,6 +48,10 @@ class ProofFilesGridHandler extends SignoffFilesGridHandler {
 		// Basic grid configuration
 		$this->setId('proofFiles-' . $this->getAssocId());
 		$this->setTitle('editor.monograph.proofReading');
+
+		// Rename the editor column to press signoff
+		$pressAssistantColumn =& $this->getColumn('editor');
+		$pressAssistantColumn->setTitle('editor.pressSignoff');
 	}
 
 	/**

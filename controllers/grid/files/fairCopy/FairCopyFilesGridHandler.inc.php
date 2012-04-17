@@ -55,6 +55,13 @@ class FairCopyFilesGridHandler extends FileSignoffGridHandler {
 			$pressAssistantColumn =& $this->getColumn($columnId);
 			$pressAssistantColumn->setTitle('user.role.copyeditor');
 		}
+
+		// Rename the Press manager column to press signoff
+		$columnId = 'role-' . ROLE_ID_PRESS_MANAGER;
+		if ($this->hasColumn($columnId)) {
+			$pressAssistantColumn =& $this->getColumn($columnId);
+			$pressAssistantColumn->setTitle('editor.pressSignoff');
+		}
 	}
 }
 

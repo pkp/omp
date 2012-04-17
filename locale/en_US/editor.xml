@@ -11,6 +11,7 @@
   -->
 
 <locale name="en_US" full_name = "English">
+	<message key="editor.pressSignoff">Press signoff</message>
 	<message key="editor.review.enrollReviewer">Enroll an Existing User as Reviewer</message>
 	<message key="editor.review.enrollReviewer.short">Enroll Existing User</message>
 	<message key="editor.review.createReviewer">Create New Reviewer</message>
