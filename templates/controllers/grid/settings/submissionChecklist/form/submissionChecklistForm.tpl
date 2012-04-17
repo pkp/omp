@@ -17,7 +17,7 @@
 
 <form class="pkp_form" id="editSubmissionChecklistForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.settings.submissionChecklist.SubmissionChecklistGridHandler" op="updateItem"}">
 
-{include file="controllers/notification/inPlaceNotification.tpl" notificationId="editSubmissionChecklistFormNotification"}
+{include file="controllers/notification/inPlaceNotification.tpl" notificationId="submissionChecklistFormNotification"}
 
 
 {fbvFormArea id="checklist"}

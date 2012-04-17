@@ -14,7 +14,7 @@
 </script>
 
 <form class="pkp_form" id="mediaForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.content.navigation.ManageSocialMediaGridHandler" op="updateMedia"}">
-	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="spotlightFormNotification"}
+	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="socialMediaFormNotification"}
 	{fbvFormArea id="categoryInfo"}
 		{if $socialMedia}
 			<input type="hidden" name="socialMediaId" value="{$socialMedia->getId()|escape}" />

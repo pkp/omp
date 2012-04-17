@@ -21,7 +21,7 @@
 	<input type="hidden" name="monographId" value="{$monographId|escape}" />
 	<input type="hidden" name="chapterId" value="{$chapterId|escape}" />
 
-	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="editChapterFormNotification"}
+	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="chapterFormNotification"}
 
 	{fbvFormSection title="common.title" for="title"}
 		{fbvElement type="text" name="title" id="title" value=$title maxlength="255" multilingual=true}

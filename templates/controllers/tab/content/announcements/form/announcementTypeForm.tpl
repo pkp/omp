@@ -16,7 +16,7 @@
 </script>
 
 <form class="pkp_form" id="announcementTypeForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="tab.content.ContentTabHandler" op="saveFormData" tab="announcementTypes"}">
-	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="seriesFormNotification"}
+	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="announcementTypeFormNotification"}
 
 	{url|assign:announcementTypeListbuilderUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.content.announcements.AnnouncementTypeListbuilderHandler" op="fetch"}
 	{load_url_in_div id="announcementTypeListbuilderContainer" url="$announcementTypeListbuilderUrl"}

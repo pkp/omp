@@ -14,7 +14,7 @@
 </script>
 
 <form class="pkp_form" id="approvedProofForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.files.proof.ApprovedProofFilesGridHandler" op="saveApprovedProof"}">
-	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="spotlightFormNotification"}
+	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="approvedProofFormNotification"}
 	{fbvFormArea id="approvedProofInfo"}
 		<input type="hidden" name="fileId" value="{$fileId|escape}" />
 		<input type="hidden" name="monographId" value="{$monographId|escape}" />

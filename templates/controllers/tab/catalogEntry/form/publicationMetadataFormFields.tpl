@@ -21,7 +21,7 @@
 </script>
 
 <form class="pkp_form" id="{$publicationFormId|escape}" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT op="saveForm"}">
-	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="Notification$publicationFormId"}
+	{include file="controllers/notification/inPlaceNotification.tpl" notificationId=$publicationFormId|concat:"Notifiction"}
 
 	<input type="hidden" name="monographId" value="{$monographId|escape}" />
 	<input type="hidden" name="stageId" value="{$stageId|escape}" />

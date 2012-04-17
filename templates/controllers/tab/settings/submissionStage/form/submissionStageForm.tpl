@@ -16,7 +16,7 @@
 </script>
 
 <form class="pkp_form" id="submissionStageForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.PublicationSettingsTabHandler" op="saveFormData" tab="submissionStage"}">
-	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="submissionsStageFormNotification"}
+	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="submissionStageFormNotification"}
 
 	<div {if $wizardMode}class="pkp_form_hidden"{/if}>
 		<h3 class="pkp_grid_title">{translate key="manager.setup.submissionLibrary"}</h3>

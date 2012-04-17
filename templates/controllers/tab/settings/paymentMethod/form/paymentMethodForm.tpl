@@ -42,7 +42,7 @@
 
 	<form class="pkp_form" id="paymentMethodForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.DistributionSettingsTabHandler" op="saveFormData" tab="paymentMethod"}">
 	<input type="hidden" name="paymentPluginName" id="paymentPluginName" />
-	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="paymentFormNotification"}
+	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="paymentMethodFormNotification"}
 	{include file="controllers/tab/settings/wizardMode.tpl" wizardMode=$wizardMode}
 
 	{fbvFormArea id="selectcurrency"}

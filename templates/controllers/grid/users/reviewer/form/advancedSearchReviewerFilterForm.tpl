@@ -17,7 +17,7 @@
 
 {** This form contains the inputs that will be used to filter the list of reviewers in the grid below **}
 <form class="pkp_form" id="reviewerFilterForm" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.users.reviewerSelect.ReviewerSelectGridHandler" op="fetchGrid"}" method="post" class="pkp_controllers_reviewerSelector">
-	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="reviewerFilterFormNotification"}
+	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="advancedSearchReviewerFilterFormNotification"}
 	{fbvFormArea id="reviewerSearchForm"}
 		<input type="hidden" id="monographId" name="monographId" value="{$monographId|escape}" />
 		<input type="hidden" id="stageId" name="stageId" value="{$stageId|escape}" />
