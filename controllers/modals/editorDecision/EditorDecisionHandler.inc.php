@@ -277,6 +277,11 @@ class EditorDecisionHandler extends Handler {
 		if ($approveProofsForm->validate()) {
 			$approveProofsForm->execute();
 			$json = new JSONMessage(true);
+
+			// Create trivial notification.
+			$user =& $request->getUser();
+			$notificationMgr = new NotificationManager();
+			$notificationMgr->createTrivialNotification($user->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.proofsApproved')));
 		} else {
 			$json = new JSONMessage(true, $approveProofsForm->fetch($request));
 		}
