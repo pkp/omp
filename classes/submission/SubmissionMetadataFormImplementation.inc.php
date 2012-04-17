@@ -73,7 +73,6 @@ class SubmissionMetadataFormImplementation {
 				'type' => $monograph->getType(null), // Localized
 				'source' =>$monograph->getSource(null), // Localized
 				'rights' => $monograph->getRights(null), // Localized
-				'sponsor' => $monograph->getSponsor(null), // Localized
 				'series' => $seriesDao->getById($monograph->getSeriesId()),
 				'citations' => $monograph->getCitations()
 			);
@@ -93,7 +92,7 @@ class SubmissionMetadataFormImplementation {
 			$monographLanguageDao =& DAORegistry::getDAO('MonographLanguageDAO');
 
 			$this->_parentForm->setData('subjects', $monographSubjectDao->getSubjects($monograph->getId(), $locales));
-	 		$this->_parentForm->setData('keywords', $monographKeywordDao->getKeywords($monograph->getId(), $locales));
+			$this->_parentForm->setData('keywords', $monographKeywordDao->getKeywords($monograph->getId(), $locales));
 			$this->_parentForm->setData('disciplines', $monographDisciplineDao->getDisciplines($monograph->getId(), $locales));
 			$this->_parentForm->setData('agencies', $monographAgencyDao->getAgencies($monograph->getId(), $locales));
 			$this->_parentForm->setData('languages', $monographLanguageDao->getLanguages($monograph->getId(), $locales));
