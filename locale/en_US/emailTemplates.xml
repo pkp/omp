@@ -148,6 +148,17 @@ If you have any questions, please contact me. Thank you for considering this pre
 {$editorialContactSignature}</body>
 		<description>This email, when enabled, is automatically sent to an author when he or she completes the process of submitting a manuscript to the press. It provides information about tracking the submission through the process and thanks the author for the submission.</description>
 	</email_text>
+	<email_text key="SUBMISSION_ACK_NOT_USER">
+		<subject>Submission Acknowledgement</subject>
+		<body>Hello,
+
+{$submitterName} has submitted the manuscript, "{$monographTitle}" to {$pressName}. 
+
+If you have any questions, please contact me. Thank you for considering this press as a venue for your work.
+
+{$editorialContactSignature}</body>
+		<description>This email, when enabled, is automatically sent to the other authors who are not users within OMP specified during the submission process.</description>
+	</email_text>
 	<email_text key="SUBMISSION_UNSUITABLE">
 		<subject>Unsuitable Submission</subject>
 		<body>{$authorName}:

@@ -126,29 +126,33 @@ class SubmissionSubmitStep3Form extends SubmissionSubmitForm {
 
 		// Send author notification email
 		import('classes.mail.MonographMailTemplate');
-		$mail = new MonographMailTemplate($monograph, 'SUBMISSION_ACK', null, null, null, false);
+		$mail = new MonographMailTemplate($monograph, 'SUBMISSION_ACK');
+		$authorMail = new MonographMailTemplate($monograph, 'SUBMISSION_ACK_NOT_USER');
+
 		$press =& $request->getPress();
 
 		$router =& $request->getRouter();
 		if ($mail->isEnabled()) {
 			// submission ack emails should be from the press contact.
 			$mail->setFrom($this->press->getSetting('contactEmail'), $this->press->getSetting('contactName'));
+			$authorMail->setFrom($this->press->getSetting('contactEmail'), $this->press->getSetting('contactName'));
+
 			$user = $monograph->getUser();
 			$primaryAuthor = $monograph->getPrimaryAuthor();
 			$mail->addRecipient($user->getEmail(), $user->getFullName());
 
 			if ($user->getEmail() != $primaryAuthor->getEmail()) {
-				$mail->addRecipient($primaryAuthor->getEmail(), $primaryAuthor->getFullName());
+				$authorMail->addRecipient($primaryAuthor->getEmail(), $primaryAuthor->getFullName());
 			}
 
 			$assignedAuthors = $monograph->getAuthors();
 
 			foreach ($assignedAuthors as $author) {
 				$authorEmail = $author->getEmail();
-				// only add the author email as CC if they have not already been added as the primary author
+				// only add the author email if they have not already been added as the primary author
 				// or user creating the submission.
 				if ($authorEmail != $primaryAuthor->getEmail() && $authorEmail != $user->getEmail()) {
-					$mail->addCc($author->getEmail(), $author->getFullName());
+					$authorMail->addRecipient($author->getEmail(), $author->getFullName());
 				}
 			}
 			$mail->bccAssignedSeriesEditors($monograph->getId(), WORKFLOW_STAGE_ID_SUBMISSION);
@@ -157,9 +161,20 @@ class SubmissionSubmitStep3Form extends SubmissionSubmitForm {
 				'authorName' => $user->getFullName(),
 				'authorUsername' => $user->getUsername(),
 				'editorialContactSignature' => $press->getSetting('contactName') . "\n" . $press->getLocalizedName(),
-				'submissionUrl' => $router->url($request, null, 'authorDashboard', 'submission', $monograph->getId())
+				'submissionUrl' => $router->url($request, null, 'authorDashboard', 'submission', $monograph->getId()),
 			));
+
+			$authorMail->assignParams(array(
+				'submitterName' => $user->getFullName(),
+				'editorialContactSignature' => $press->getSetting('contactName') . "\n" . $press->getLocalizedName(),
+			));
+
 			$mail->send($request);
+
+			$recipients = $authorMail->getRecipients();
+			if (!empty($recipients)) {
+				$authorMail->send($request);
+			}
 		}
 
 		return $this->monographId;
