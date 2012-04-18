@@ -229,7 +229,7 @@ a.sprite.notify:before {
 }
 a.sprite.notify:hover:before { background-position:-24px -24px; }
 a.sprite.settings:before {
-  margin-top:8px;
+  margin-top:10px;
   background-position:-408px 0;
 }
 a.sprite.settings:hover:before { background-position:-408px -24px; }
@@ -246,17 +246,17 @@ a.sprite.edit:hover:before { background-position:-240px -24px; }
 a.sprite.participants:before { background-position:-314px 0; }
 a.sprite.participants:hover:before { background-position:-314px -24px; }
 a.sprite.notes:before {
-  margin-top:7px;
+  margin-top:-5px;
   background-position:-264px 0;
 }
 a.sprite.notes:hover:before { background-position:-264px -24px; }
 a.sprite.notes_new:before {
-  margin-top:7px;
+  margin-top:-5px;
   background-position:-1224px 0;
 }
 a.sprite.notes_new:hover:before { background-position:-1224px -24px; }
 a.sprite.notes_none:before {
-  margin-top:7px;
+  margin-top:-5px;
   background-position:-1200px 0;
 }
 a.sprite.notes_none:hover:before { background-position:-1200px -24px; }
@@ -276,7 +276,6 @@ a.sprite.add_category:before {
 }
 a.sprite.add_category:hover:before { background-position:-552px -24px; }
 a.sprite.add_item:before {
-  margin-top:1px;
   margin-right:4px;
   background-position:-576px 0;
 }
@@ -331,43 +330,43 @@ a.sprite.import:before {
 }
 a.sprite.import:hover:before { background-position:-816px -24px; }
 a.sprite.pdf:before {
-  margin-top:8px;
+  margin-top:-58px;
   margin-right:4px;
   background-position:-840px 0;
 }
 a.sprite.pdf:hover:before { background-position:-840px -24px; }
 a.sprite.html:before {
-  margin-top:8px;
+  margin-top:-5px;
   margin-right:4px;
   background-position:-864px 0;
 }
 a.sprite.html:hover:before { background-position:-864px -24px; }
 a.sprite.word:before {
-  margin-top:8px;
+  margin-top:-5px;
   margin-right:4px;
   background-position:-888px 0;
 }
 a.sprite.word:hover:before { background-position:-888px -24px; }
 a.sprite.image:before {
-  margin-top:8px;
+  margin-top:-5px;
   margin-right:4px;
   background-position:-912px 0;
 }
 a.sprite.image:hover:before { background-position:-912px -24px; }
 a.sprite.excel:before {
-  margin-top:8px;
+  margin-top:-5px;
   margin-right:4px;
   background-position:-936px 0;
 }
 a.sprite.excel:hover:before { background-position:-936px -24px; }
 a.sprite.default:before {
-  margin-top:8px;
+  margin-top:-5px;
   margin-right:4px;
   background-position:-960px 0;
 }
 a.sprite.default:hover:before { background-position:-960px -24px; }
 a.sprite.zip:before {
-  margin-top:8px;
+  margin-top:-5px;
   margin-right:4px;
   background-position:-984px 0;
 }
@@ -417,6 +416,11 @@ a.sprite.reset_default:before {
   background-position:-1248px 0;
 }
 a.sprite.reset_default:hover:before { background-position:-1248px -24px; }
+a.sprite.send_production:before {
+  margin-right:4px;
+  background-position:-1272px 0;
+}
+a.sprite.send_production:hover:before { background-position:-1272px -24px; }
 .category.delete:before {
   margin-left:5px;
   background-position:-1008px 0;
@@ -993,14 +997,15 @@ div.pkp_controllers_grid .row_container {
   padding-left:40px;
   padding-right:30px;
   overflow:hidden;
-  height:40px;
-  word-wrap:break-word;
+  min-height:40px;
+  height:auto;
   line-height:auto;
   vertical-align:middle;
 }
 div.pkp_controllers_grid .row_container .row_actions {
   position:absolute;
   width:24px;
+  height:200px;
 }
 div.pkp_controllers_grid .row_actions {
   top:0;
@@ -1014,6 +1019,7 @@ div.pkp_controllers_grid .row_file { width:100%; }
 div.pkp_controllers_grid .row_file a.pkp_controllers_linkAction {
   float:left;
   margin-right:20px;
+  margin-top:10px;
 }
 div.pkp_controllers_grid .multiline {
   line-height:125%;
