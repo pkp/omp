@@ -179,7 +179,22 @@ class ReviewerForm extends Form {
 		$this->setData('reviewMethod', $reviewMethod);
 		$this->setData('reviewRoundId', $reviewRound->getId());
 		$this->setData('reviewerId', $reviewerId);
-		$this->setData('personalMessage', __('reviewer.step1.requestBoilerplate'));
+
+		import('classes.mail.MonographMailTemplate');
+		$template = new MonographMailTemplate($monograph, 'REVIEW_REQUEST');
+		if ($template) {
+			$user =& $request->getUser();
+			$dispatcher =& $request->getDispatcher();
+			$press =& $request->getPress();
+			$template->assignParams(array(
+				'pressUrl' => $dispatcher->url($request, ROUTE_PAGE, $press->getPath()),
+				'editorialContactSignature' => $user->getContactSignature(),
+				'signatureFullName' => $user->getFullname(),
+				'messageToReviewer' => __('reviewer.step1.requestBoilerplate'),
+				'submissionReviewUrl' => $dispatcher->url($request, ROUTE_PAGE, null, 'reviewer', 'submission', null, array('monographId' => $this->getMonographId()))
+			));
+		}
+		$this->setData('personalMessage', $template->getBody() . "\n" . $press->getSetting('emailSignature'));
 		$this->setData('responseDueDate', $responseDueDate);
 		$this->setData('reviewDueDate', $reviewDueDate);
 		$this->setData('selectionType', $selectionType);
@@ -284,16 +299,15 @@ class ReviewerForm extends Form {
 			$reviewer =& $userDao->getUser($reviewerId);
 			$user = $request->getUser();
 			$mail->addRecipient($reviewer->getEmail(), $reviewer->getFullName());
-
+			$mail->setBody($this->getData('personalMessage'));
 			$dispatcher =& $request->getDispatcher();
+
+			// assign the remaining parameters
 			$paramArray = array(
 				'reviewerName' => $reviewer->getFullName(),
-				'messageToReviewer' => $this->getData('personalMessage'),
 				'responseDueDate' => $responseDueDate,
 				'reviewDueDate' => $reviewDueDate,
-				'editorialContactSignature' => $user->getContactSignature(),
 				'reviewerUserName' => $reviewer->getUsername(),
-				'submissionReviewUrl' => $dispatcher->url($request, ROUTE_PAGE, null, 'reviewer', 'submission', null, array('monographId' => $reviewAssignment->getSubmissionId()))
 			);
 			$mail->assignParams($paramArray);
 			$mail->send($request);

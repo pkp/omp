@@ -52,6 +52,7 @@ class ReviewReminderForm extends Form {
 	function initData($args, &$request) {
 		$userDao =& DAORegistry::getDAO('UserDAO');
 		$user =& $request->getUser();
+		$press =& $request->getPress();
 
 		$reviewAssignment =& $this->getReviewAssignment();
 		$reviewerId = $reviewAssignment->getReviewerId();
@@ -85,7 +86,7 @@ class ReviewReminderForm extends Form {
 		$this->setData('reviewAssignmentId', $reviewAssignment->getId());
 		$this->setData('reviewAssignment', $reviewAssignment);
 		$this->setData('reviewerName', $reviewer->getFullName());
-		$this->setData('message', $email->getBody());
+		$this->setData('message', $email->getBody() . "\n" . $press->getSetting('emailSignature'));
 	}
 
 	/**
@@ -112,7 +113,7 @@ class ReviewReminderForm extends Form {
 		$monograph =& $monographDao->getById($reviewAssignment->getSubmissionId());
 
 		import('classes.mail.MonographMailTemplate');
-		$email = new MonographMailTemplate($monograph, 'REVIEW_REMIND');
+		$email = new MonographMailTemplate($monograph, 'REVIEW_REMIND', null, null, null, false);
 
 		$email->addRecipient($reviewer->getEmail(), $reviewer->getFullName());
 		$email->setBody($this->getData('message'));

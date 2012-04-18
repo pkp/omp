@@ -139,7 +139,8 @@ class FileAuditorForm extends Form {
 			),
 		));
 
-		$this->setData('personalMessage', $email->getBody());
+		$press =& $request->getPress();
+		$this->setData('personalMessage', $email->getBody() . "\n" . $press->getSetting('emailSignature'));
 	}
 
 	/**
@@ -166,7 +167,7 @@ class FileAuditorForm extends Form {
 		// Send the message to the user
 		$monograph =& $this->getMonograph();
 		import('classes.mail.MonographMailTemplate');
-		$email = new MonographMailTemplate($monograph, 'AUDITOR_REQUEST');
+		$email = new MonographMailTemplate($monograph, 'AUDITOR_REQUEST', null, null, null, false);
 		$email->setBody($this->getData('personalMessage'));
 
 		$userDao =& DAORegistry::getDAO('UserDAO'); /* @var $userDao UserDAO */

@@ -89,7 +89,13 @@ jQuery.pkp.controllers.modals = jQuery.pkp.controllers.modals ||
 			var $form = this.getHtmlElement();
 			var $textArea = $('textarea[id^="personalMessage"]', $form);
 			var currentContent = $textArea.val();
-			$textArea.val(currentContent + jsonData.content);
+			// make a reasonable effort to look for a signature separator.
+			// if there is one, insert the peer reviews before it.
+			if (!currentContent.match(/__________/)) {
+				$textArea.val(currentContent + jsonData.content);
+			} else {
+				$textArea.val(currentContent.replace(/__________/, jsonData.content + '__________'));
+			}
 		}
 	};
 

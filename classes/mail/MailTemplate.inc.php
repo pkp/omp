@@ -19,18 +19,24 @@ class MailTemplate extends PKPMailTemplate {
 	/** @var $press object The press this message relates to */
 	var $press;
 
+	/** @var $includeSignature boolean whether to include the press' signature */
+	var $includeSignature;
+
 	/**
 	 * Constructor.
 	 * @param $emailKey string unique identifier for the template
 	 * @param $locale string locale of the template
 	 * @param $enableAttachments boolean optional Whether or not to enable monograph attachments in the template
 	 * @param $press object optional The press this message relates to
+	 * @param $includeSignature boolean optional Whether or not to include the Press signature
 	 */
-	function MailTemplate($emailKey = null, $locale = null, $enableAttachments = null, $press = null) {
+	function MailTemplate($emailKey = null, $locale = null, $enableAttachments = null, $press = null, $includeSignature = true) {
 		parent::PKPMailTemplate($emailKey, $locale, $enableAttachments);
 
 		// If a press wasn't specified, use the current request.
 		if ($press === null) $press =& Request::getPress();
+
+		$this->includeSignature = $includeSignature;
 
 		if (isset($this->emailKey)) {
 			$emailTemplateDao =& DAORegistry::getDAO('EmailTemplateDAO');
@@ -147,11 +153,14 @@ class MailTemplate extends PKPMailTemplate {
 			// otherwise just append it. This is here to
 			// accomodate MIME-encoded messages or other cases
 			// where the signature cannot just be appended.
+
+			// Include the signature if wanted, otherwise replace the variable with an empty string.
+			$signature = $this->includeSignature ? $this->press->getSetting('emailSignature') : '';
 			$searchString = '{$templateSignature}';
 			if (strstr($this->getBody(), $searchString) === false) {
-				$this->setBody($this->getBody() . "\n" . $this->press->getSetting('emailSignature'));
+				$this->setBody($this->getBody() . "\n" . $signature);
 			} else {
-				$this->setBody(str_replace($searchString, $this->press->getSetting('emailSignature'), $this->getBody()));
+				$this->setBody(str_replace($searchString, $signature, $this->getBody()));
 			}
 
 			$envelopeSender = $this->press->getSetting('envelopeSender');

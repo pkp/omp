@@ -142,7 +142,7 @@ class NotifyUsersListbuilderHandler extends ListbuilderHandler {
 		$users =& $userStageAssignmentDao->getUsersBySubmissionAndStageId($monograph->getId());
 
 		while ($user =& $users->next()) {
-			$items[0][$user->getId()] = $user->getFullName();
+			$items[0][$user->getId()] = $user->getFullName() . ' <' . $user->getEmail() . '>';
 			unset($user);
 		}
 		unset($users);

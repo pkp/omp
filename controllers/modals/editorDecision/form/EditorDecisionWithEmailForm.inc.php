@@ -110,7 +110,7 @@ class EditorDecisionWithEmailForm extends EditorDecisionForm {
 			'monographId' => $seriesEditorSubmission->getId(),
 			'decision' => $this->getDecision(),
 			'authorName' => $seriesEditorSubmission->getAuthorString(),
-			'personalMessage' => $email->getBody(),
+			'personalMessage' => $email->getBody() . "\n" . $press->getSetting('emailSignature'),
 			'actionLabel' => $actionLabels[$this->getDecision()]
 		);
 		foreach($data as $key => $value) {

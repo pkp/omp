@@ -134,7 +134,7 @@ class InformationCenterNotifyForm extends Form {
 		$monograph =& $monographDao->getById($monographId);
 		$template = $this->getData('template');
 
-		$email = new MonographMailTemplate($monograph, $template);
+		$email = new MonographMailTemplate($monograph, $template, null, null, null, false);
 		$email->setFrom($fromUser->getEmail(), $fromUser->getFullName());
 
 		import('controllers.grid.submissions.SubmissionsListGridCellProvider');

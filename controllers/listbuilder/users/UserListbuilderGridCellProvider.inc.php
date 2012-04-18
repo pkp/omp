@@ -39,7 +39,7 @@ class UserListbuilderGridCellProvider extends GridCellProvider {
 		// Allow for either Users or Authors (both have a getFullName method).
 		assert((is_a($user, 'User') || is_a($user, 'Author')) && !empty($columnId));
 
-		return array('labelKey' => $user->getId(), 'label' => $user->getFullName());
+		return array('labelKey' => $user->getId(), 'label' => $user->getFullName() . ' <' . $user->getEmail() . '>');
 	}
 }
 

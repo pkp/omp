@@ -194,7 +194,7 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 				'signatureFullName' => $user->getFullname(),
 			));
 
-			$json = new JSONMessage(true, $template->getBody());
+			$json = new JSONMessage(true, $template->getBody() . "\n" . $press->getSetting('emailSignature'));
 			return $json->getString();
 		}
 	}
