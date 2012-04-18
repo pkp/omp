@@ -35,12 +35,12 @@ class EditorDecisionActionsManager {
 	 * @return array
 	 */
 	function getActionLabels($decisions) {
-		$allDecisionsData = array_merge(
-			EditorDecisionActionsManager::_submissionStageDecisions(),
-			EditorDecisionActionsManager::_internalReviewStageDecisions(),
-			EditorDecisionActionsManager::_externalReviewStageDecisions(),
-			EditorDecisionActionsManager::_editorialStageDecisions()
-		);
+		$allDecisionsData = array();
+		$allDecisionsData =
+			EditorDecisionActionsManager::_submissionStageDecisions() +
+			EditorDecisionActionsManager::_internalReviewStageDecisions() +
+			EditorDecisionActionsManager::_externalReviewStageDecisions() +
+			EditorDecisionActionsManager::_editorialStageDecisions();
 
 		$actionLabels = array();
 		foreach($decisions as $decision) {
