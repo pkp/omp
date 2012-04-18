@@ -192,7 +192,7 @@ class EditorDecisionActionsManager {
 				'operation' => 'promote',
 				'name' => 'sendToProduction',
 				'title' => 'editor.monograph.decision.sendToProduction',
-				'image' => 'approve'
+				'image' => 'send_production'
 			)
 		);
 
