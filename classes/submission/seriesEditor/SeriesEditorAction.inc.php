@@ -368,8 +368,8 @@ class SeriesEditorAction extends Action {
 				$monographComments =& $monographCommentDao->getMonographComments($seriesEditorSubmission->getId(), COMMENT_TYPE_PEER_REVIEW, $reviewAssignment->getId());
 
 				$body .= "\n\n$textSeparator\n";
-				// If it is not an open review, show reviewer's name.
-				if ($reviewAssignment->getReviewMethod() != SUBMISSION_REVIEW_METHOD_OPEN) {
+				// If it is not a double blind review, show reviewer's name.
+				if ($reviewAssignment->getReviewMethod() != SUBMISSION_REVIEW_METHOD_DOUBLEBLIND) {
 					$body .= $reviewAssignment->getReviewerFullName() . "\n";
 				} else {
 					$body .= __('submission.comments.importPeerReviews.reviewerLetter', array('reviewerLetter' => String::enumerateAlphabetically($reviewIndexes[$reviewAssignment->getId()]))) . "\n";
