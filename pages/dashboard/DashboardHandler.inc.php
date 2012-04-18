@@ -21,7 +21,7 @@ class DashboardHandler extends Handler {
 		parent::Handler();
 
 		$this->addRoleAssignment(array(ROLE_ID_SITE_ADMIN, ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_AUTHOR, ROLE_ID_REVIEWER, ROLE_ID_PRESS_ASSISTANT),
-				array('index', 'overview', 'tasks', 'submissions'));
+				array('index', 'tasks', 'submissions'));
 	}
 
 	/**
@@ -42,24 +42,7 @@ class DashboardHandler extends Handler {
 	 * @param $args array
 	 */
 	function index($args, &$request) {
-		$this->overview($args, $request);
-	}
-
-	/**
-	 * View overview tab
-	 * @param $args array
-	 * @param $request PKPRequest
-	 */
-	function overview($args, &$request) {
-		$templateMgr =& TemplateManager::getManager();
-		$this->setupTemplate($request);
-
-		$press =& $request->getPress();
-		$templateMgr->assign('announcementsEnabled', $press->getSetting('enableAnnouncements'));
-
-		$templateMgr->assign('selectedTab', 1);
-		$templateMgr->assign('templateToDisplay', 'dashboard/overview.tpl');
-		$templateMgr->display('dashboard/index.tpl');
+		$this->tasks($args, $request);
 	}
 
 	/**
@@ -71,7 +54,7 @@ class DashboardHandler extends Handler {
 		$templateMgr =& TemplateManager::getManager();
 		$this->setupTemplate($request);
 
-		$templateMgr->assign('selectedTab', 2);
+		$templateMgr->assign('selectedTab', 1);
 		$templateMgr->assign('templateToDisplay', 'dashboard/tasks.tpl');
 		$templateMgr->display('dashboard/index.tpl');
 	}
@@ -114,7 +97,7 @@ class DashboardHandler extends Handler {
 			$templateMgr->assign_by_ref('presses', $accessiblePresses);
 		}
 
-		$templateMgr->assign('selectedTab', 3);
+		$templateMgr->assign('selectedTab', 2);
 		$templateMgr->assign('templateToDisplay', 'dashboard/submissions.tpl');
 		$templateMgr->display('dashboard/index.tpl');
 	}

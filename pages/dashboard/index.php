@@ -16,7 +16,6 @@
 
 switch($op) {
 	case 'index':
-	case 'overview':
 	case 'tasks':
 	case 'submissions':
 		define('HANDLER_CLASS', 'DashboardHandler');
