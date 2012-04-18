@@ -48,8 +48,6 @@ class ReviewerReviewStep1Form extends ReviewerReviewForm {
 		// Add press parameters.
 		$press =& $this->request->getPress();
 		$templateMgr->assign_by_ref('press', $press);
-		// FIXME: Need to be able to get/set if a review is blind or not, see #6403.
-		$templateMgr->assign('blindReview', true);
 
 		// Add reviewer request text.
 		$reviewerRequestParams = array(
