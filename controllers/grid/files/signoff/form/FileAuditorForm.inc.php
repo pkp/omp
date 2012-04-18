@@ -50,7 +50,7 @@ class FileAuditorForm extends Form {
 		$this->_publicationFormatId = $publicationFormatId;
 
 		$this->addCheck(new FormValidator($this, 'userId', 'required', 'editor.monograph.fileAuditor.form.userRequired'));
-		$this->addCheck(new FormValidator($this, 'files', 'required', 'editor.monograph.fileAuditor.form.fileRequired'));
+		$this->addCheck(new FormValidatorListBuilder($this, 'files', 'editor.monograph.fileAuditor.form.fileRequired'));
 		$this->addCheck(new FormValidator($this, 'personalMessage', 'required', 'editor.monograph.fileAuditor.form.messageRequired'));
 		$this->addCheck(new FormValidatorPost($this));
 	}

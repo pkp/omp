@@ -440,7 +440,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 			return DAO::getDataChangedEvent();
 		}
 
-		$json = new JSONMessage(false, __('editor.monograph.addAuditorError'));
+		$json = new JSONMessage(false);
 		return $json->getString();
 	}
 
