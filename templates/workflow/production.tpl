@@ -10,6 +10,8 @@
 {include file="workflow/header.tpl"}
 {/strip}
 
+{include file="controllers/notification/inPlaceNotification.tpl" notificationId="productionNotification" requestOptions=$productionNotificationRequestOptions}
+
 <script type="text/javascript">
 	// Initialise JS handler.
 	$(function() {ldelim}

@@ -253,16 +253,12 @@ class SeriesEditorAction extends Action {
 			$seriesEditorSubmissionDao->updateSeriesEditorSubmission($seriesEditorSubmission);
 
 			$notificationDao =& DAORegistry::getDAO('NotificationDAO');
-			$notifications =& $notificationDao->getNotificationsByAssoc(
+			$notificationDao->deleteByAssoc(
 				ASSOC_TYPE_REVIEW_ASSIGNMENT,
 				$reviewAssignment->getId(),
 				$reviewAssignment->getReviewerId(),
 				NOTIFICATION_TYPE_REVIEW_ASSIGNMENT
 			);
-			while ($notification =& $notifications->next()) {
-				$notificationDao->deleteNotificationById($notification->getId());
-				unset($notification);
-			}
 
 			// Insert a trivial notification to indicate the reviewer was removed successfully.
 			$currentUser =& $request->getUser();

@@ -98,7 +98,7 @@ class NotificationsGridHandler extends GridHandler {
 
 		// Get all level task notifications.
 		$notificationDao =& DAORegistry::getDAO('NotificationDAO'); /* @var $notificationDao NotificationDAO */
-		$notifications =& $notificationDao->getNotificationsByUserId($user->getId(), NOTIFICATION_LEVEL_TASK);
+		$notifications =& $notificationDao->getByUserId($user->getId(), NOTIFICATION_LEVEL_TASK);
 		$rowData = $notifications->toAssociativeArray();
 
 		// Remove not listable task types.

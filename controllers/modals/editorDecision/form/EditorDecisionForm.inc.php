@@ -136,7 +136,7 @@ class EditorDecisionForm extends Form {
 
 		// Check for a notification already in place for the current review round.
 		$notificationDao =& DAORegistry::getDAO('NotificationDAO');
-		$notificationFactory =& $notificationDao->getNotificationsByAssoc(
+		$notificationFactory =& $notificationDao->getByAssoc(
 			ASSOC_TYPE_REVIEW_ROUND,
 			$reviewRound->getId(),
 			null,

@@ -142,6 +142,30 @@ class PromoteForm extends EditorDecisionWithEmailForm {
 				}
 				// Send email to the author.
 				$this->_sendReviewMailToAuthor($seriesEditorSubmission, $emailKey, $request);
+
+				// Introduce the "approve submission" notification for production, if needed.
+				$notificationDao =& DAORegistry::getDAO('NotificationDAO');
+				$notificationFactory =& $notificationDao->getByAssoc(
+					ASSOC_TYPE_MONOGRAPH,
+					$seriesEditorSubmission->getId(),
+					null,
+					NOTIFICATION_TYPE_APPROVE_SUBMISSION,
+					$seriesEditorSubmission->getPressId()
+				);
+
+				// Create round status notification if there is no notification already.
+				if ($notificationFactory->wasEmpty()) {
+					$notificationMgr = new NotificationManager();
+					$notificationMgr->createNotification(
+						$request,
+						null,
+						NOTIFICATION_TYPE_APPROVE_SUBMISSION,
+						$seriesEditorSubmission->getPressId(),
+						ASSOC_TYPE_MONOGRAPH,
+						$seriesEditorSubmission->getId(),
+						NOTIFICATION_LEVEL_NORMAL
+					);
+				}
 				break;
 			default:
 				fatalError('Unsupported decision!');

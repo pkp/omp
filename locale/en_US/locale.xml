@@ -617,6 +617,8 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="notification.type.pendingRevisions">You have pending revisions at {$stage}</message>
 	<message key="notification.type.pendingRevisions.title">Pending revisions at {$stage}</message>
 	<message key="notification.type.allReviewsIn">All reviews in. A decision is needed in {$stage}.</message>
+	<message key="notification.type.approveSubmission">This submission is currently awaiting approval in the Catalog Entry tool before it will appear in the public catalog.</message>
+	<message key="notification.type.approveSubmissionTitle">Awaiting Approval</message>
 	
 	<!-- Authorization -->
 	<message key="user.authorization.invalidReviewAssignment">You have been denied access because you do not seem to be a valid reviewer for this monograph.</message>

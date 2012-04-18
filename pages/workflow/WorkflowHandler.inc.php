@@ -276,6 +276,13 @@ class WorkflowHandler extends Handler {
 	 */
 	function production(&$args, &$request) {
 		$templateMgr =& TemplateManager::getManager();
+		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		$notificationRequestOptions = array(
+			NOTIFICATION_LEVEL_NORMAL => array(
+				NOTIFICATION_TYPE_APPROVE_SUBMISSION => array(ASSOC_TYPE_MONOGRAPH, $monograph->getId())),
+			NOTIFICATION_LEVEL_TRIVIAL => array()
+		);
+		$templateMgr->assign('productionNotificationRequestOptions', $notificationRequestOptions);
 		$templateMgr->display('workflow/production.tpl');
 	}
 

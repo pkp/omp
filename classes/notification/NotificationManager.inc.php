@@ -43,6 +43,7 @@ class NotificationManager extends PKPNotificationManager {
 				return $dispatcher->url($request, ROUTE_PAGE, null, 'workflow', 'submission', $notification->getAssocId());
 			case NOTIFICATION_TYPE_LAYOUT_ASSIGNMENT:
 			case NOTIFICATION_TYPE_INDEX_ASSIGNMENT:
+			case NOTIFICATION_TYPE_APPROVE_SUBMISSION:
 				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
 				return $dispatcher->url($request, ROUTE_PAGE, null, 'workflow', 'access', $notification->getAssocId());
 			case NOTIFICATION_TYPE_AUDITOR_REQUEST:
@@ -105,6 +106,7 @@ class NotificationManager extends PKPNotificationManager {
 				}
 
 				return $dispatcher->url($request, ROUTE_PAGE, null, $page, $operation, $monograph->getId());
+			case NOTIFICATION_TYPE_APPROVE_SUBMISSION:
 		}
 
 		return parent::getNotificationUrl($request, $notification);
@@ -216,6 +218,9 @@ class NotificationManager extends PKPNotificationManager {
 				$userGroupDao =& DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */
 				$stagesData = $userGroupDao->getWorkflowStageKeysAndPaths();
 				return __('notification.type.allReviewsIn', array('stage' => __($stagesData[$reviewRound->getStageId()]['translationKey'])));
+			case NOTIFICATION_TYPE_APPROVE_SUBMISSION:
+				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
+				return __('notification.type.approveSubmission');
 		}
 		return parent::getNotificationMessage($request, $notification);
 	}
@@ -242,6 +247,8 @@ class NotificationManager extends PKPNotificationManager {
 			case NOTIFICATION_TYPE_EDITOR_DECISION_DECLINE:
 			case NOTIFICATION_TYPE_EDITOR_DECISION_SEND_TO_PRODUCTION:
 				return __('notification.type.editorDecisionTitle');
+			case NOTIFICATION_TYPE_APPROVE_SUBMISSION:
+				return __('notification.type.approveSubmissionTitle');
 			case NOTIFICATION_TYPE_REVIEW_ROUND_STATUS:
 				$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
 				$reviewRound =& $reviewRoundDao->getReviewRoundById($notification->getAssocId());
@@ -326,6 +333,7 @@ class NotificationManager extends PKPNotificationManager {
 			case NOTIFICATION_TYPE_EDITOR_DECISION_DECLINE:
 			case NOTIFICATION_TYPE_EDITOR_DECISION_SEND_TO_PRODUCTION:
 			case NOTIFICATION_TYPE_REVIEW_ROUND_STATUS:
+			case NOTIFICATION_TYPE_APPROVE_SUBMISSION:
 				return 'notifyInformation';
 		}
 		return parent::getStyleClass($notification);
@@ -342,7 +350,8 @@ class NotificationManager extends PKPNotificationManager {
 			NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_EXTERNAL_REVIEW,
 			NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_EDITING,
 			NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_PRODUCTION,
-			NOTIFICATION_TYPE_REVIEW_ROUND_STATUS
+			NOTIFICATION_TYPE_REVIEW_ROUND_STATUS,
+			NOTIFICATION_TYPE_APPROVE_SUBMISSION,
 		));
 	}
 
@@ -414,7 +423,7 @@ class NotificationManager extends PKPNotificationManager {
 
 		// Check for an existing NOTIFICATION_TYPE_SIGNOFF_...
 		$notificationDao =& DAORegistry::getDAO('NotificationDAO');
-		$notificationFactory =& $notificationDao->getNotificationsByAssoc(
+		$notificationFactory =& $notificationDao->getByAssoc(
 			ASSOC_TYPE_MONOGRAPH,
 			$monographId,
 			$userId,
@@ -442,7 +451,7 @@ class NotificationManager extends PKPNotificationManager {
 		if (!$activeSignoffs && !$notificationFactory->wasEmpty()) {
 			// No signoff but found notification, delete it.
 			$notification =& $notificationFactory->next();
-			$notificationDao->deleteNotificationById($notification->getId());
+			$notificationDao->deleteObject($notification);
 		} else if ($activeSignoffs && $notificationFactory->wasEmpty()) {
 			// At least one signoff not completed and no notification, create one.
 			$this->createNotification(
@@ -478,7 +487,7 @@ class NotificationManager extends PKPNotificationManager {
 
 		// Check for an existing NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_...
 		$notificationDao =& DAORegistry::getDAO('NotificationDAO');
-		$notificationFactory =& $notificationDao->getNotificationsByAssoc(
+		$notificationFactory =& $notificationDao->getByAssoc(
 			ASSOC_TYPE_MONOGRAPH,
 			$monograph->getId(),
 			null,
@@ -494,7 +503,7 @@ class NotificationManager extends PKPNotificationManager {
 		if ($editorAssigned && !$notificationFactory->wasEmpty()) {
 			// Delete the notification.
 			$notification =& $notificationFactory->next();
-			$notificationDao->deleteNotificationById($notification->getId());
+			$notificationDao->deleteObject($notification);
 		} else if (!$editorAssigned && $notificationFactory->wasEmpty()) {
 			// Create a notification.
 			$this->createNotification(
@@ -516,7 +525,7 @@ class NotificationManager extends PKPNotificationManager {
 
 		// Check for an existing notification.
 		$notificationDao =& DAORegistry::getDAO('NotificationDAO');
-		$notificationFactory =& $notificationDao->getNotificationsByAssoc(
+		$notificationFactory =& $notificationDao->getByAssoc(
 			ASSOC_TYPE_SIGNOFF,
 			$signoff->getId(),
 			$signoff->getUserId(),
@@ -532,7 +541,7 @@ class NotificationManager extends PKPNotificationManager {
 		// Decide if we have to create or delete a notification.
 		if (($signoffCompleted || $removed) && !$notificationFactory->wasEmpty()) {
 			$notification =& $notificationFactory->next();
-			$notificationDao->deleteNotificationById($notification->getId());
+			$notificationDao->deleteObject($notification);
 		}  else if (!$signoffCompleted && $notificationFactory->wasEmpty()) {
 			$press =& $request->getPress();
 			$this->createNotification(
@@ -557,7 +566,7 @@ class NotificationManager extends PKPNotificationManager {
 		// Check for an existing notification for this file
 
 		$notificationDao =& DAORegistry::getDAO('NotificationDAO');
-		$notificationFactory =& $notificationDao->getNotificationsByAssoc(
+		$notificationFactory =& $notificationDao->getByAssoc(
 				ASSOC_TYPE_SIGNOFF,
 				$signoff->getId(),
 				$user->getId(),
@@ -589,7 +598,7 @@ class NotificationManager extends PKPNotificationManager {
 		// Check for an existing notification for this monograph
 
 		$notificationDao =& DAORegistry::getDAO('NotificationDAO');
-		$notificationFactory =& $notificationDao->getNotificationsByAssoc(
+		$notificationFactory =& $notificationDao->getByAssoc(
 				ASSOC_TYPE_MONOGRAPH,
 				$monograph->getId(),
 				$user->getId(),
@@ -621,11 +630,7 @@ class NotificationManager extends PKPNotificationManager {
 	 */
 	function deleteProductionRequestNotification($monograph, $user, $type, &$request) {
 		$notificationDao = DAORegistry::getDAO('NotificationDAO');
-		$notificationFactory =& $notificationDao->getNotificationsByAssoc(ASSOC_TYPE_MONOGRAPH, $monograph->getId(), $user->getId(), $type);
-		if (!$notificationFactory->wasEmpty()) {
-			$notification =& $notificationFactory->next();
-			$notificationDao->deleteNotificationById($notification->getId());
-		}
+		$notificationDao->deleteByAssoc(ASSOC_TYPE_MONOGRAPH, $monograph->getId(), $user->getId(), $type);
 	}
 
 	/**
@@ -637,11 +642,7 @@ class NotificationManager extends PKPNotificationManager {
 	 */
 	function deleteCopyeditRequestNotification($signoff, $user, &$request) {
 		$notificationDao = DAORegistry::getDAO('NotificationDAO');
-		$notificationFactory =& $notificationDao->getNotificationsByAssoc(ASSOC_TYPE_SIGNOFF, $signoff->getAssocId(), $user->getId(), NOTIFICATION_TYPE_COPYEDIT_ASSIGNMENT);
-		if (!$notificationFactory->wasEmpty()) {
-			$notification =& $notificationFactory->next();
-			$notificationDao->deleteNotificationById($notification->getId());
-		}
+		$notificationDao->deleteByAssoc(ASSOC_TYPE_SIGNOFF, $signoff->getAssocId(), $user->getId(), NOTIFICATION_TYPE_COPYEDIT_ASSIGNMENT);
 	}
 
 	/**
@@ -659,7 +660,7 @@ class NotificationManager extends PKPNotificationManager {
 
 		// Remove any existing editor decision notifications.
 		$notificationDao =& DAORegistry::getDAO('NotificationDAO');
-		$notificationFactory =& $notificationDao->getNotificationsByAssoc(
+		$notificationFactory =& $notificationDao->getByAssoc(
 			ASSOC_TYPE_MONOGRAPH,
 			$monograph->getId(),
 			$userId,
@@ -671,7 +672,7 @@ class NotificationManager extends PKPNotificationManager {
 		while(!$notificationFactory->eof()) {
 			$notification =& $notificationFactory->next();
 			if (in_array($notification->getType(), $editorDecisionNotificationTypes)) {
-				$notificationDao->deleteNotificationById($notification->getId());
+				$notificationDao->deleteObject($notification);
 			}
 		}
 
@@ -725,7 +726,7 @@ class NotificationManager extends PKPNotificationManager {
 				$notification->setLevel(NOTIFICATION_LEVEL_TASK);
 				$notification->setContextId($monograph->getPressId());
 
-				$notificationDao->buildNotification($notification);
+				$notificationDao->build($notification);
 				break;
 			case SUBMISSION_EDITOR_DECISION_SEND_TO_PRODUCTION:
 				// Do nothing.
@@ -765,11 +766,7 @@ class NotificationManager extends PKPNotificationManager {
 			$userId = $monograph->getUserId();
 		}
 
-		$notificationFactory =& $notificationDao->getNotificationsByAssoc(ASSOC_TYPE_MONOGRAPH, $monograph->getId(), $userId, $notificationType, $monograph->getPressId());
-		if (!$notificationFactory->wasEmpty()) {
-			$notification =& $notificationFactory->next();
-			$notificationDao->deleteNotificationById($notification->getId());
-		}
+		$notificationDao->deleteByAssoc(ASSOC_TYPE_MONOGRAPH, $monograph->getId(), $userId, $notificationType, $monograph->getPressId());
 	}
 
 	/**
@@ -794,8 +791,12 @@ class NotificationManager extends PKPNotificationManager {
 			$userId = $stageAssignment->getUserId();
 
 			// Get any existing notification.
-			$notificationFactory =& $notificationDao->getNotificationsByAssoc(ASSOC_TYPE_REVIEW_ROUND,
-					$reviewRound->getId(), $userId, NOTIFICATION_TYPE_ALL_REVIEWS_IN, $pressId);
+			$notificationFactory =& $notificationDao->getByAssoc(
+				ASSOC_TYPE_REVIEW_ROUND,
+				$reviewRound->getId(), $userId,
+				NOTIFICATION_TYPE_ALL_REVIEWS_IN,
+				$pressId
+			);
 
 			$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
 			$currentStatus = $reviewRound->getStatus();
@@ -805,7 +806,7 @@ class NotificationManager extends PKPNotificationManager {
 				// reviews or no reviews. Delete any existing notification.
 				if (!$notificationFactory->wasEmpty()) {
 					$notification =& $notificationFactory->next();
-					$notificationDao->deleteNotificationById($notification->getId());
+					$notificationDao->deleteObject($notification);
 					unset($notification);
 				}
 			} else {
