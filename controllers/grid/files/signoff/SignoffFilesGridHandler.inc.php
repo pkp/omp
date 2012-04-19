@@ -554,7 +554,10 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 
 		// Remove the notification for the Copyeditor review, if they exist.
 		$notificationMgr = new NotificationManager();
-		$notificationMgr->deleteCopyeditRequestNotification($signoff, $user, &$request);
+		// We don't need to pass the user because anyone with access can signoff the signoff,
+		// and we should delete the notification even if that user is not the one that
+		// is seeing the notification.
+		$notificationMgr->deleteCopyeditRequestNotification($rowSignoff, &$request);
 
 		// Redraw the category (id by the signoff's assoc id).
 		return DAO::getDataChangedEvent($rowSignoff->getAssocId());

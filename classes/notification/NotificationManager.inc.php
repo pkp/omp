@@ -563,8 +563,12 @@ class NotificationManager extends PKPNotificationManager {
 	 * @param $request Request
 	 */
 	function updateCopyeditRequestNotification($signoff, $user, &$request) {
-		// Check for an existing notification for this file
+		// Check if any user has not already signed off the passed signoff.
+		$signoffDao = DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
+		$signoffSignoff = $signoffDao->getBySymbolic('SIGNOFF_SIGNOFF', ASSOC_TYPE_SIGNOFF, $signoff->getId());
+		if (is_a($signoffSignoff, 'Signoff') && $signoffSignoff->getDateCompleted()) return;
 
+		// Check for an existing notification for this file
 		$notificationDao =& DAORegistry::getDAO('NotificationDAO');
 		$notificationFactory =& $notificationDao->getByAssoc(
 				ASSOC_TYPE_SIGNOFF,
@@ -637,12 +641,11 @@ class NotificationManager extends PKPNotificationManager {
 	 * Removes a NOTIFICATION_TYPE_COPYEDIT_ASSIGNMENT
 	 * Called when a copyeditor reviews a copyedit.
 	 * @param $signoff Signoff
-	 * @param $user User
 	 * @param $request Request
 	 */
-	function deleteCopyeditRequestNotification($signoff, $user, &$request) {
+	function deleteCopyeditRequestNotification($signoff, &$request) {
 		$notificationDao = DAORegistry::getDAO('NotificationDAO');
-		$notificationDao->deleteByAssoc(ASSOC_TYPE_SIGNOFF, $signoff->getAssocId(), $user->getId(), NOTIFICATION_TYPE_COPYEDIT_ASSIGNMENT);
+		$notificationDao->deleteByAssoc(ASSOC_TYPE_SIGNOFF, $signoff->getId(), null, NOTIFICATION_TYPE_COPYEDIT_ASSIGNMENT);
 	}
 
 	/**
