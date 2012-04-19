@@ -20,7 +20,6 @@
 <script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/jquery/plugins/jquery.imgpreview.js"></script>
 <script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/jquery/plugins/jquery.cookie.js"></script>
 <script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/jquery/plugins/jquery.equalizer.js"></script>
-<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/jquery/plugins/jquery.ba-outside-events.js"></script>
 
 {* JSON library *}
 <script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/json/json2.js"></script>
