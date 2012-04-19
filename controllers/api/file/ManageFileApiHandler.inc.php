@@ -61,6 +61,23 @@ class ManageFileApiHandler extends Handler {
 			unset($note);
 		}
 
+		// Delete all signoffs related with this file.
+		$signoffDao = DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
+		$signoffFactory =& $signoffDao->getAllByAssocType(ASSOC_TYPE_MONOGRAPH_FILE, $monographFile->getFileId());
+		$signoffs = $signoffFactory->toArray();
+
+		foreach ($signoffs as $signoff) {
+			$signoffDao->deleteObject($signoff);
+
+			// Update NOTIFICATION_TYPE_AUDITOR_REQUEST.
+			$notificationMgr = new NotificationManager();
+			$notificationMgr->updateAuditorRequestNotification($signoff, $request, true);
+
+			// Update NOTIFICATION_TYPE_SIGNOFF_...
+			$notificationMgr->updateSignoffNotification($signoff, $request);
+		}
+
+		// Delete the monograph file.
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		$success = (boolean)$submissionFileDao->deleteRevisionById($monographFile->getFileId(), $monographFile->getRevision(), $monographFile->getFileStage(), $monograph->getId());
 
