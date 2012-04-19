@@ -40,6 +40,7 @@ class AuthorGridHandler extends GridHandler {
 				array('fetchGrid', 'fetchRow', 'addAuthor', 'editAuthor',
 				'updateAuthor', 'deleteAuthor'));
 		$this->addRoleAssignment(ROLE_ID_REVIEWER, array('fetchGrid', 'fetchRow'));
+		$this->addRoleAssignment(array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_ASSISTANT), array('addUser'));
 	}
 
 
@@ -328,7 +329,34 @@ class AuthorGridHandler extends GridHandler {
 			$json = new JSONMessage(false, __('submission.submit.errorDeletingAuthor'));
 			return $json->getString();
 		}
+	}
 
+	/**
+	 * Add a user with data initialized from an existing author.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return string Serialized JSON object
+	 */
+	function addUser($args, &$request) {
+		// Identify the author Id.
+		$authorId = $request->getUserVar('authorId');
+
+		$authorDao =& DAORegistry::getDAO('AuthorDAO');
+		$userDao =& DAORegistry::getDAO('UserDAO');
+		$author =& $authorDao->getAuthor($authorId);
+
+		if ($author !== null && $userDao->userExistsByEmail($author->getEmail())) {
+			// We don't have administrative rights over this user.
+			$json = new JSONMessage(false, __('grid.user.cannotAdminister'));
+		} else {
+			// Form handling.
+			import('controllers.grid.settings.user.form.UserForm');
+			$userForm = new UserForm($request, null, $author);
+			$userForm->initData($args, $request);
+
+			$json = new JSONMessage(true, $userForm->display($args, $request));
+		}
+		return $json->getString();
 	}
 }
 

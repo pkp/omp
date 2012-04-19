@@ -19,15 +19,26 @@ class UserForm extends Form {
 	/** @var Id of the user being edited */
 	var $userId;
 
+	/** @var An optional author to base this user on */
+	var $author;
+
 	/**
 	 * Constructor.
 	 * @param $request PKPRequest
 	 * @param $userId int optional
+	 * @param $author Author optional
 	 */
-	function UserForm($request, $userId = null) {
+	function UserForm($request, $userId = null, $author = null) {
 		parent::Form('controllers/grid/settings/user/form/userForm.tpl');
 
 		$this->userId = isset($userId) ? (int) $userId : null;
+
+		if (isset($author)) {
+			$this->author =& $author;
+		} else {
+			$this->author = null;
+		}
+
 		$site =& $request->getSite();
 
 		// Validation checks for this form
@@ -59,6 +70,9 @@ class UserForm extends Form {
 	 * @param $request PKPRequest
 	 */
 	function initData($args, &$request) {
+
+		$data = array();
+
 		if (isset($this->userId)) {
 			$userDao =& DAORegistry::getDAO('UserDAO');
 			$user =& $userDao->getUser($this->userId);
@@ -89,9 +103,22 @@ class UserForm extends Form {
 				'gossip' => $user->getGossip(null), // Localized
 				'userLocales' => $user->getLocales()
 			);
-			foreach($data as $key => $value) {
-				$this->setData($key, $value);
-			}
+		} else if (isset($this->author)) {
+			$author =& $this->author;
+			$data = array(
+				'salutation' => $author->getSalutation(),
+				'firstName' => $author->getFirstName(),
+				'middleName' => $author->getMiddleName(),
+				'lastName' => $author->getLastName(),
+				'affiliation' => $author->getAffiliation(null), // Localized
+				'email' => $author->getEmail(),
+				'userUrl' => $author->getUrl(),
+				'country' => $author->getCountry(),
+				'biography' => $author->getBiography(null), // Localized
+			);
+		}
+		foreach($data as $key => $value) {
+			$this->setData($key, $value);
 		}
 	}
 

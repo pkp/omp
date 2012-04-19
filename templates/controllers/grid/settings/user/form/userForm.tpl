@@ -10,7 +10,12 @@
 <script type="text/javascript">
 	$(function() {ldelim}
 		// Attach the form handler.
-		$('#userForm').pkpHandler('$.pkp.controllers.grid.settings.user.form.UserFormHandler');
+		$('#userForm').pkpHandler('$.pkp.controllers.grid.settings.user.form.UserFormHandler',
+			{ldelim}
+				fetchUsernameSuggestionUrl: '{url|escape:"javascript" router=$smarty.const.ROUTE_COMPONENT component="grid.settings.user.UserGridHandler" op="suggestUsername" params=$suggestUsernameParams escape=false}',
+				usernameSuggestionTextAlert: '{translate key="grid.user.mustProvideName"}'
+			{rdelim}
+		);
 	{rdelim});
 </script>
 

@@ -83,6 +83,42 @@ class AuthorGridRow extends GridRow {
 				)
 			);
 
+			$user =& $request->getUser();
+			$stageAssignmentDao =& DAORegistry::getDAO('StageAssignmentDAO');
+			$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+
+			$allowedToCreateUser = false;
+
+			$stageAssignments =& $stageAssignmentDao->getBySubmissionAndStageId($monograph->getId(), $monograph->getStageId(), null, $user->getId());
+			while ($stageAssignment =& $stageAssignments->next()) {
+				$userGroup =& $userGroupDao->getById($stageAssignment->getUserGroupId());
+				if (in_array($userGroup->getRoleId(), array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_ASSISTANT))) {
+					$allowedToCreateUser = true;
+					break;
+				}
+			}
+
+			if ($allowedToCreateUser) {
+
+				$authorDao =& DAORegistry::getDAO('AuthorDAO');
+				$userDao =& DAORegistry::getDAO('UserDAO');
+				$author =& $authorDao->getAuthor($rowId);
+
+				if ($author && !$userDao->userExistsByEmail($author->getEmail())) {
+					$this->addAction(
+						new LinkAction(
+							'addUser',
+							new AjaxModal(
+								$router->url($request, null, null, 'addUser', null, $actionArgs),
+								__('grid.user.add'),
+								'modal_add_user',
+								true
+								),
+							__('grid.user.add'),
+							'add_user')
+					);
+				}
+			}
 			// Set a non-default template that supports row actions if not read only
 			if (!$this->isReadOnly()) {
 				$this->setTemplate('controllers/grid/gridRowWithActions.tpl');
