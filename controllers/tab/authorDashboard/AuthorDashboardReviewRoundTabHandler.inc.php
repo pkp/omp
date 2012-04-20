@@ -84,7 +84,8 @@ class AuthorDashboardReviewRoundTabHandler extends AuthorDashboardHandler {
 		import('classes.workflow.EditorDecisionActionsManager');
 		if(EditorDecisionActionsManager::getEditorTakenActionInReviewRound($reviewRound)) {
 			$monographEmailLogDao =& DAORegistry::getDAO('MonographEmailLogDAO');
-			$monographEmailFactory =& $monographEmailLogDao->getByEventType($monograph->getId(), MONOGRAPH_EMAIL_EDITOR_NOTIFY_AUTHOR);
+			$user =& $request->getUser();
+			$monographEmailFactory =& $monographEmailLogDao->getByEventType($monograph->getId(), MONOGRAPH_EMAIL_EDITOR_NOTIFY_AUTHOR, $user->getId());
 
 			$templateMgr->assign_by_ref('monographEmails', $monographEmailFactory);
 			$templateMgr->assign('showReviewAttachments', true);

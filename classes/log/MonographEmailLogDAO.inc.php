@@ -38,10 +38,11 @@ class MonographEmailLogDAO extends EmailLogDAO {
 	 * Get monograph email log entries by monograph ID and event type
 	 * @param $monographId int
 	 * @param $eventType MONOGRAPH_EMAIL_...
+	 * @param $userId int optional Return only emails sent to this user.
 	 * @return DAOResultFactory
 	 */
-	function getByEventType($monographId, $eventType) {
-		return parent::getByEventType(ASSOC_TYPE_MONOGRAPH, $monographId, $eventType);
+	function getByEventType($monographId, $eventType, $userId = null) {
+		return parent::getByEventType(ASSOC_TYPE_MONOGRAPH, $monographId, $eventType, $userId);
 	}
 }
 

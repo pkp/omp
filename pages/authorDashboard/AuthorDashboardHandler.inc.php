@@ -116,7 +116,8 @@ class AuthorDashboardHandler extends Handler {
 		// assign the editor's copyediting emails to the template
 		if ($monograph->getStageId() >= WORKFLOW_STAGE_ID_EDITING) {
 			$monographEmailLogDao =& DAORegistry::getDAO('MonographEmailLogDAO');
-			$monographEmails =& $monographEmailLogDao->getByEventType($monograph->getId(), MONOGRAPH_EMAIL_COPYEDIT_NOTIFY_AUTHOR);
+			$user =& $request->getUser();
+			$monographEmails =& $monographEmailLogDao->getByEventType($monograph->getId(), MONOGRAPH_EMAIL_COPYEDIT_NOTIFY_AUTHOR, $user->getId());
 
 			$templateMgr->assign_by_ref('monographEmails', $monographEmails);
 		}
