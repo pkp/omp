@@ -206,6 +206,59 @@ class AppearanceForm extends PressSettingsForm {
 		}
 	}
 
+	/**
+	 * @see PressSettingsForm::execute()
+	 */
+	function execute($request) {
+		parent::execute($request);
+
+		// Save block plugins context positions.
+		import('lib.pkp.classes.controllers.listbuilder.ListbuilderHandler');
+		ListbuilderHandler::unpack($request, $request->getUserVar('blocks'));
+	}
+
+	/**
+	 * Overriden method from ListbuilderHandler.
+	 * @param $request Request
+	 * @param $rowId mixed
+	 * @param $newRowId array
+	 */
+	function updateEntry(&$request, $rowId, $newRowId) {
+		$plugins =& PluginRegistry::loadCategory('blocks');
+		$plugin =& $plugins[$rowId]; // Ref hack
+		switch ($newRowId['listId']) {
+			case 'unselected':
+				$plugin->setEnabled(false);
+				break;
+			case 'leftContext':
+				$plugin->setEnabled(true);
+				$plugin->setBlockContext(BLOCK_CONTEXT_LEFT_SIDEBAR);
+				$plugin->setSeq((int) $newRowId['sequence']);
+				break;
+			case 'rightContext':
+				$plugin->setEnabled(true);
+				$plugin->setBlockContext(BLOCK_CONTEXT_RIGHT_SIDEBAR);
+				$plugin->setSeq((int) $newRowId['sequence']);
+				break;
+			default:
+				assert(false);
+		}
+	}
+
+	/**
+	 * Avoid warnings when Listbuilder::unpack tries to call this method.
+	 */
+	function deleteEntry() {
+		return false;
+	}
+
+	/**
+	 * Avoid warnings when Listbuilder::unpack tries to call this method.
+	 */
+	function insertEntry() {
+		return false;
+	}
+
 
 	//
 	// Private helper methods
