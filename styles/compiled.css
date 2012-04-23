@@ -432,6 +432,11 @@ a.sprite.order_items:hover:before { background-position:-1296px -24px; }
   margin-left:5px;
   background-position:-1008px 0;
 }
+a.sprite.return:hover:before { background-position: -1320px -24px; }
+a.sprite.return:before { 
+  margin-right:4px;
+  background-position: -1320px 0;
+}
 .category.delete:hover:before { background-position:-1008px -24px; }
 .category.pdf:before, .category.html:before, .category.word:before, .category.image:before, .category.excel:before, .category.default:before, .category.zip:before {
   margin-left:10px;
