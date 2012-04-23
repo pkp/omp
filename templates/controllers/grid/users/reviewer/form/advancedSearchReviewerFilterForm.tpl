@@ -22,23 +22,25 @@
 		<input type="hidden" id="monographId" name="monographId" value="{$monographId|escape}" />
 		<input type="hidden" id="stageId" name="stageId" value="{$stageId|escape}" />
 		<input type="hidden" id="reviewRoundId" name="reviewRoundId" value="{$reviewRoundId|escape}" />
-		<input type="hidden" name="done_min" value="0" />
-		<input type="hidden" name="avg_min" value="0" />
-		<input type="hidden" name="last_min" value="0" />
-		<input type="hidden" name="active_min" value="0" />
-		{fbvFormSection}
-			{fbvElement type="text" id="done_max" name="done_max" value=$reviewerValues.done_max|escape label="manager.reviewerSearch.doneAmount" inline=true size=$fbvStyles.size.MEDIUM}
-			{fbvElement type="text" id="avg_max" name="avg_max" value=$reviewerValues.done_max|escape label="manager.reviewerSearch.avgAmount"  inline=true size=$fbvStyles.size.MEDIUM}
-			{fbvElement type="text" id="last_max" name="last_max" value=$reviewerValues.last_max|escape label="manager.reviewerSearch.lastAmount" inline=true size=$fbvStyles.size.MEDIUM}
-			{fbvElement type="text" id="active_max" name="active_max" value=$reviewerValues.done_max|escape label="manager.reviewerSearch.activeAmount" inline=true size=$fbvStyles.size.MEDIUM}
+		<input type="hidden" name="doneMin" value="0" />
+		<input type="hidden" name="avgMin" value="0" />
+		<input type="hidden" name="lastMin" value="0" />
+		<input type="hidden" name="activeMin" value="0" />
+		<input type="hidden" name="clientSubmit" value="1" />
+		{fbvFormSection description="manager.reviewerSearch.form.instructions"}
+			{fbvElement type="text" id="doneMax" value=$reviewerValues.doneMax label="manager.reviewerSearch.doneAmount" inline=true size=$fbvStyles.size.SMALL}
+			{fbvElement type="text" id="avgMax" value=$reviewerValues.avgMax label="manager.reviewerSearch.avgAmount" inline=true size=$fbvStyles.size.SMALL}
 		{/fbvFormSection}
-		<br /><br /><br /><br /><br /><br />
 		{fbvFormSection}
-			{fbvElement type="interests" id="interests" interestsKeywords=$interestsKeywords interestsTextOnly=$interestsTextOnly}
+			{fbvElement type="text" id="lastMax" value=$reviewerValues.lastMax label="manager.reviewerSearch.lastAmount" inline=true size=$fbvStyles.size.SMALL}
+			{fbvElement type="text" id="activeMax" value=$reviewerValues.activeMax label="manager.reviewerSearch.activeAmount" inline=true size=$fbvStyles.size.SMALL}
 		{/fbvFormSection}
-		{fbvFormSection class="center"}
+		<br/>
+		{fbvFormSection description="manager.reviewerSearch.form.interests.instructions"}
+			{fbvElement type="interests" id="interests" interestsKeywords=$interestSearchKeywords}
+		{/fbvFormSection}
+		{fbvFormSection}
 			{fbvElement type="submit" id="submitFilter" label="common.search"}
 		{/fbvFormSection}
 	{/fbvFormArea}
 </form>
-`

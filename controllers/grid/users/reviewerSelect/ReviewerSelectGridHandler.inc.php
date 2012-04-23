@@ -156,7 +156,7 @@ class ReviewerSelectGridHandler extends GridHandler {
 	 * @see GridHandler::renderFilter()
 	 */
 	function renderFilter(&$request) {
-		return parent::renderFilter($request, $this->_getFilterData());
+		return parent::renderFilter($request, $this->getFilterSelectionData($request));
 	}
 
 	/**
@@ -167,20 +167,20 @@ class ReviewerSelectGridHandler extends GridHandler {
 		$reviewerValues = $filter['reviewerValues'];
 
 		// Retrieve the authors associated with this monograph to be displayed in the grid
-		$done_min = $reviewerValues['done_min'];
-		$done_max = $reviewerValues['done_max'];
-		$avg_min = $reviewerValues['avg_min'];
-		$avg_max = $reviewerValues['avg_max'];
-		$last_min = $reviewerValues['last_min'];
-		$last_max = $reviewerValues['last_max'];
-		$active_min = $reviewerValues['active_min'];
-		$active_max = $reviewerValues['active_max'];
+		$doneMin = $reviewerValues['doneMin'];
+		$doneMax = $reviewerValues['doneMax'];
+		$avgMin = $reviewerValues['avgMin'];
+		$avgMax = $reviewerValues['avgMax'];
+		$lastMin = $reviewerValues['lastMin'];
+		$lastMax = $reviewerValues['lastMax'];
+		$activeMin = $reviewerValues['activeMin'];
+		$activeMax = $reviewerValues['activeMax'];
 
 		$seriesEditorSubmissionDao =& DAORegistry::getDAO('SeriesEditorSubmissionDAO');
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		$reviewRound =& $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ROUND);
-		$data =& $seriesEditorSubmissionDao->getFilteredReviewers($monograph->getPressId(), $done_min, $done_max, $avg_min, $avg_max,
-					$last_min, $last_max, $active_min, $active_max, $interests, $monograph->getId(), $reviewRound->getId());
+		$data =& $seriesEditorSubmissionDao->getFilteredReviewers($monograph->getPressId(), $doneMin, $doneMax, $avgMin, $avgMax,
+					$lastMin, $lastMax, $activeMin, $activeMax, $interests, $monograph->getId(), $reviewRound->getId());
 		return $data;
 	}
 

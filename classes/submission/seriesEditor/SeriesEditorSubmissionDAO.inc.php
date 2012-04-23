@@ -451,14 +451,14 @@ class SeriesEditorSubmissionDAO extends MonographDAO {
 	function getAnonymousReviewerStatistics() {
 		// Setup default array -- Minimum values Will always be set to 0 (to accomodate reviewers that have never reviewed, and thus aren't in review_assignment)
 		$reviewerValues =  array(
-			'done_min' => 0, // Will always be set to 0
-			'done_max' => 0,
-			'avg_min' => 0, // Will always be set to 0
-			'avg_max' => 0,
-			'last_min' => 0, // Will always be set to 0
-			'last_max' => 0,
-			'active_min' => 0, // Will always be set to 0
-			'active_max' => 0
+			'doneMin' => 0, // Will always be set to 0
+			'doneMax' => 0,
+			'avgMin' => 0, // Will always be set to 0
+			'avgMax' => 0,
+			'lastMin' => 0, // Will always be set to 0
+			'lastMax' => 0,
+			'activeMin' => 0, // Will always be set to 0
+			'activeMax' => 0
 		);
 
 		// Get number of reviews completed
@@ -470,7 +470,7 @@ class SeriesEditorSubmissionDAO extends MonographDAO {
 		);
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
-			if ($reviewerValues['done_max'] < $row['completed_count']) $reviewerValues['done_max'] = $row['completed_count'];
+			if ($reviewerValues['doneMax'] < $row['completed_count']) $reviewerValues['doneMax'] = $row['completed_count'];
 			$result->MoveNext();
 		}
 		$result->Close();
@@ -492,24 +492,24 @@ class SeriesEditorSubmissionDAO extends MonographDAO {
 			$completed = strtotime($this->datetimeFromDB($row['date_completed']));
 			$notified = strtotime($this->datetimeFromDB($row['date_notified']));
 			$timeSinceNotified = time() - $notified;
-			if (isset($averageTimeStats[$row['reviewer_id']]['total_span'])) {
-				$averageTimeStats[$row['reviewer_id']]['total_span'] += $completed - $notified;
-				$averageTimeStats[$row['reviewer_id']]['completed_review_count'] += 1;
+			if (isset($averageTimeStats[$row['reviewer_id']]['totalSpan'])) {
+				$averageTimeStats[$row['reviewer_id']]['totalSpan'] += $completed - $notified;
+				$averageTimeStats[$row['reviewer_id']]['completedReviewCount'] += 1;
 			} else {
-				$averageTimeStats[$row['reviewer_id']]['total_span'] = $completed - $notified;
-				$averageTimeStats[$row['reviewer_id']]['completed_review_count'] = 1;
+				$averageTimeStats[$row['reviewer_id']]['totalSpan'] = $completed - $notified;
+				$averageTimeStats[$row['reviewer_id']]['completedReviewCount'] = 1;
 			}
 
 			// Calculate the average length of review in days.
-			$averageTimeStats[$row['reviewer_id']]['average_span'] = (($averageTimeStats[$row['reviewer_id']]['total_span'] / $averageTimeStats[$row['reviewer_id']]['completed_review_count']) / 86400);
+			$averageTimeStats[$row['reviewer_id']]['averageSpan'] = (($averageTimeStats[$row['reviewer_id']]['totalSpan'] / $averageTimeStats[$row['reviewer_id']]['completedReviewCount']) / 86400);
 
 			// This reviewer has the highest average; put in global statistics array
-			if ($reviewerValues['avg_max'] < $averageTimeStats[$row['reviewer_id']]['average_span']) $reviewerValues['avg_max'] = round($averageTimeStats[$row['reviewer_id']]['average_span']);
-			if ($timeSinceNotified > $reviewerValues['last_max']) $reviewerValues['last_max'] = $timeSinceNotified;
+			if ($reviewerValues['avgMax'] < $averageTimeStats[$row['reviewer_id']]['averageSpan']) $reviewerValues['avgMax'] = round($averageTimeStats[$row['reviewer_id']]['averageSpan']);
+			if ($timeSinceNotified > $reviewerValues['lastMax']) $reviewerValues['lastMax'] = $timeSinceNotified;
 
 			$result->MoveNext();
 		}
-		$reviewerValues['last_max'] = round($reviewerValues['last_max'] / 86400); // Round to nearest day
+		$reviewerValues['lastMax'] = round($reviewerValues['lastMax'] / 86400); // Round to nearest day
 		$result->Close();
 		unset($result);
 
@@ -525,7 +525,7 @@ class SeriesEditorSubmissionDAO extends MonographDAO {
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
 
-			if ($row['incomplete'] > $reviewerValues['active_max']) $reviewerValues['active_max'] = $row['incomplete'];
+			if ($row['incomplete'] > $reviewerValues['activeMax']) $reviewerValues['activeMax'] = $row['incomplete'];
 			$result->MoveNext();
 		}
 		$result->Close();
@@ -560,9 +560,8 @@ class SeriesEditorSubmissionDAO extends MonographDAO {
 		$allInterestIds = array();
 		if(isset($interests)) {
 			$key = 0;
-			while($interest =& $interests->next()) {
-				$keyword = $interest->getInterest();
-				$interestIds = $interestDao->getUserIdsByInterest($keyword);
+			foreach ($interests as $interest) {
+				$interestIds = $interestDao->getUserIdsByInterest($interest);
 				if (!$interestIds) {
 					// The interest searched for does not exist -- go to next interest
 					continue;

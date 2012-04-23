@@ -84,22 +84,25 @@ class AdvancedSearchReviewerFilterForm extends Form {
 	 */
 	function readInputData() {
 		$this->readUserVars(array(
-			'done_min',
-			'done_max',
-			'avg_min',
-			'avg_max',
-			'last_min',
-			'last_max',
-			'active_min',
-			'active_max')
+			'doneMin',
+			'doneMax',
+			'avgMin',
+			'avgMax',
+			'lastMin',
+			'lastMax',
+			'activeMin',
+			'activeMax',
+			'keywords')
 		);
 
-		$interests = $this->getData('interestSearchKeywords');
-		if ($interests != null && is_array($interests)) {
-			// The interests are coming in encoded -- Decode them for DB storage
-			$this->setData('interestSearchKeywords', array_map('urldecode', $interests));
+		$keywords = $this->getData('keywords');
+		if (is_array($keywords) && array_key_exists('interests', $keywords)) {
+			$interests = $keywords['interests'];
+			if ($interests != null && is_array($interests)) {
+				// The interests are coming in encoded -- Decode them for DB storage
+				$this->setData('interestSearchKeywords', array_map('urldecode', $interests));
+			}
 		}
-
 		parent::readInputData();
 	}
 
@@ -109,14 +112,14 @@ class AdvancedSearchReviewerFilterForm extends Form {
 	 */
 	function getFilterSelectionData() {
 		$reviewerValues = array(
-			'done_min' => (int) $this->getData('done_min'),
-			'done_max' => (int) $this->getData('done_max'),
-			'avg_min' => (int) $this->getData('avg_min'),
-			'avg_max' => (int) $this->getData('avg_max'),
-			'last_min' => (int) $this->getData('last_min'),
-			'last_max' => (int) $this->getData('last_max'),
-			'active_min' => (int) $this->getData('active_min'),
-			'active_max' => (int) $this->getData('active_max')
+			'doneMin' => (int) $this->getData('doneMin'),
+			'doneMax' => (int) $this->getData('doneMax'),
+			'avgMin' => (int) $this->getData('avgMin'),
+			'avgMax' => (int) $this->getData('avgMax'),
+			'lastMin' => (int) $this->getData('lastMin'),
+			'lastMax' => (int) $this->getData('lastMax'),
+			'activeMin' => (int) $this->getData('activeMin'),
+			'activeMax' => (int) $this->getData('activeMax')
 		);
 
 		return $filterSelectionData = array(

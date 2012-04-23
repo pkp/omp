@@ -29,6 +29,7 @@
 	<message key="editor.submissionReview.uploadFile">Upload Review File</message>
 	<message key="editor.submissionReview.uploadAttachment">Upload Review Attachment</message>
 	<message key="editor.monograph.addReviewer">Add Reviewer</message>
+	<message key="editor.monograph.returnToSimpleSearch">Return to Simple Search</message>
 	<message key="editor.monograph.initiateReview">Initiate Review</message>
 	<message key="editor.monograph.cancelReview">Cancel Request</message>
 	<message key="editor.monograph.clearReview">Clear Reviewer</message>
@@ -97,7 +98,7 @@
 	<!-- Editorial related -->
 	<message key="editor.monograph.editorial.introduction">Welcome to the submission's editorial stage. All approved submission revisions from previous review stages are available in the Final Draft section. Copyedited files may be uploaded to the Copyediting section, and authors and/or editors may be assigned to audit the copyedited files. Final copyedited files may then be uploaded to the Fair Copy section, at which point the submission can then be sent to the Production stage.</message>
 	<message key="editor.monograph.editorial.finalDraftDescription">All approved submission revisions from previous review stages are available below. New draft files can be uploaded (and current files replaced) by clicking the Manage Final Draft Files link.</message>
-	<message key="editor.monograph.editorial.copyeditingDescription">Copyedited files may be uploaded below. Once uploaded, Authors and other participants assigned to the submission may be asked to audit the uploaded copyediting file(s). Multiple files may be sent for auditing, and an auditing due date can be set. You will be notified of completed audits, and can access the audits by clicking on the participant's name. Finally, you will be able to sign off as copyeditor on the audited copyedit file.<message>
+	<message key="editor.monograph.editorial.copyeditingDescription">Copyedited files may be uploaded below. Once uploaded, Authors and other participants assigned to the submission may be asked to audit the uploaded copyediting file(s). Multiple files may be sent for auditing, and an auditing due date can be set. You will be notified of completed audits, and can access the audits by clicking on the participant's name. Finally, you will be able to sign off as copyeditor on the audited copyedit file.</message>
 	<message key="editor.monograph.editorial.fairCopy">Fair Copy</message>
 	<message key="editor.monograph.editorial.fairCopyDescription">Final copyedited files may be uploaded to the Fair Copy section, at which point the submission (and any uploaded fair copies) can be sent to the Production stage.</message>
 
@@ -138,7 +139,7 @@
 	<message key="editor.review.reviewDueDate">Review Due Date</message>
 	<message key="editor.review.reviewCompleted">Review Completed</message>
 	<message key="editor.review.reviewerComments">Reviewer Comments</message>
-	<message key="editor.review.days">Days</message>
+	<message key="editor.review.days">Average Days</message>
 	<message key="editor.review.mustSelect">You must select a reviewer</message>
 	<message key="editor.review.errorAddingReviewer">There was an error adding the reviewer.  Please try again.</message>
 	<message key="editor.review.errorDeletingReviewer">There was an error deleting the reviewer.  Please try again.</message>

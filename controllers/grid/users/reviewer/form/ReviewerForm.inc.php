@@ -337,8 +337,7 @@ class ReviewerForm extends Form {
 		return new LinkAction(
 			'addReviewer',
 			new AjaxAction($request->url(null, null, 'reloadReviewerForm', null, $actionArgs)),
-			__('editor.monograph.addReviewer'),
-			'add_user'
+			__('editor.monograph.returnToSimpleSearch')
 		);
 	}
 
