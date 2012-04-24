@@ -50,10 +50,9 @@ class SignoffStatusFromSignoffGridColumn extends BaseSignoffStatusColumn {
 			$signoffAction = new AddSignoffFileLinkAction(
 														$request, $monographFile->getMonographId(),
 														$row->getStageId(), $signoff->getSymbolic(), $signoff->getId(),
-														__('submission.upload.signoff'), null);
+														__('submission.upload.signoff'), __('submission.upload.signoff'));
 			// FIXME: not ideal
 			$signoffAction->_image = 'task ' . $status;
-			$signoffAction->_title = null;
 
 			$actions[] = $signoffAction;
 		}

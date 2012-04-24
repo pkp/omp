@@ -177,7 +177,7 @@ class ReviewerGridCellProvider extends DataObjectGridCellProvider {
 					__('editor.review') . ': ' . $monograph->getLocalizedTitle(),
 					'edit' //FIXME: insert icon
 				),
-				$state,
+				$this->_getHoverTitleText($state),
 				$state
 			);
 		} elseif ($state == 'overdue' ||
@@ -189,14 +189,14 @@ class ReviewerGridCellProvider extends DataObjectGridCellProvider {
 					__('editor.review.reminder'),
 					'edit' // FIXME: insert icon.
 				),
-				$state,
+				$this->_getHoverTitleText('reminder'),
 				$state
 			);
 		} elseif ($state == 'read') {
 			$action = new LinkAction(
 				'thankReviewer',
 				new AjaxAction($router->url($request, null, null, 'thankReviewer', null, $actionArgs)),
-				'accepted',
+				$this->_getHoverTitleText('accepted'),
 				'accepted'
 			);
 		} elseif (in_array($state, array('', 'declined', 'completed'))) {
@@ -207,6 +207,30 @@ class ReviewerGridCellProvider extends DataObjectGridCellProvider {
 		}
 
 		return ($action) ? array($action) : array();
+	}
+
+	/**
+	 * Provide meaningful locale keys for the various grid status states.
+	 * @param string $state
+	 * @return string
+	 */
+	function _getHoverTitleText($state) {
+		switch ($state) {
+			case 'completed':
+				return __('common.complete');
+			case 'overdue':
+				return __('common.overdue');
+			case 'accepted':
+				return __('common.accepted');
+			case 'declined':
+				return __('common.declined');
+			case 'reminder':
+				return __('common.reminder');
+			case 'new':
+				return __('common.unread');
+			default:
+				return '';
+		}
 	}
 }
 

@@ -10,7 +10,8 @@
 <span id="{$cellId}" class="pkp_linkActions">
 	{if count($actions) gt 0}
 		{assign var=defaultCellAction value=$actions[0]}
-		{include file="linkAction/linkAction.tpl" action=$defaultCellAction contextId=$cellId imageClass="task"}
+		{if $column->hasFlag('hoverTitle')}{assign var="hover" value=true}{else}{assign var="hover" value=false}{/if}
+		{include file="linkAction/linkAction.tpl" action=$defaultCellAction contextId=$cellId imageClass="task" hoverTitle=$hover}
 	{else}
 		<a class="task {$status|escape}">status</a>
 	{/if}

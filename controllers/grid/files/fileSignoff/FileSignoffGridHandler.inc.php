@@ -80,7 +80,7 @@ class FileSignoffGridHandler extends SubmissionFilesGridHandler {
 				}
 
 				$userIds = array_unique($userIds);
-				$flags = array();
+				$flags = array('hoverTitle' => true);
 				if (in_array($currentUser->getId(), $userIds)) $flags['myUserGroup'] = true;
 				$this->addColumn(
 					new SignoffStatusFromFileGridColumn(

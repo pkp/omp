@@ -179,7 +179,7 @@ class ReviewerGridHandler extends GridHandler {
 				null,
 				'controllers/grid/common/cell/statusCell.tpl',
 				$cellProvider,
-				array('myUserGroup' => true)
+				array('myUserGroup' => true, 'hoverTitle' => true)
 			)
 		);
 
@@ -190,7 +190,8 @@ class ReviewerGridHandler extends GridHandler {
 				'user.role.reviewer',
 				null,
 				'controllers/grid/common/cell/statusCell.tpl',
-				$cellProvider
+				$cellProvider,
+				array('hoverTitle' => true)
 			)
 		);
 	}

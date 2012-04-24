@@ -215,12 +215,12 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 		$this->addColumn(new SignoffOnSignoffGridColumn(
 			'user.role.editor',
 			$userIds, $this->getRequestArgs(),
-			array('myUserGroup' => true)
+			array('myUserGroup' => true, 'hoverTitle' => true)
 		));
 
 		// Add the auditor column (the person assigned to signoff.
 		import('controllers.grid.files.SignoffStatusFromSignoffGridColumn');
-		$this->addColumn(new SignoffStatusFromSignoffGridColumn('grid.columns.auditor', $this->getRequestArgs()));
+		$this->addColumn(new SignoffStatusFromSignoffGridColumn('grid.columns.auditor', $this->getRequestArgs(), array('hoverTitle' => true)));
 
 		// Set the no-row locale key
 		$this->setEmptyRowText('grid.noFiles');
