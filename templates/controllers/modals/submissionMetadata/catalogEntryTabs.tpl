@@ -12,7 +12,7 @@
 	// Attach the JS file tab handler.
 	$(function() {ldelim}
 		$('#newCatalogEntryTabs').pkpHandler(
-				'$.pkp.controllers.tab.catalogEntry.CatalogEntryTabHandler', 
+				'$.pkp.controllers.tab.catalogEntry.CatalogEntryTabHandler',
 				{ldelim}
 					{if $selectedTab}selected:{$selectedTab},{/if}
 					{if $tabsUrl}tabsUrl:'{$tabsUrl}',{/if}
@@ -21,8 +21,8 @@
 				{rdelim});
 	{rdelim});
 </script>
-<p>{translate key="catalog.manage.entryDescription"}</p>
 <div id="newCatalogEntryTabs">
+	<p>{translate key="catalog.manage.entryDescription"}</p>
 	<ul>
 		<li>
 			<a title="submission" href="{url router=$smarty.const.ROUTE_COMPONENT component="tab.catalogEntry.CatalogEntryTabHandler" tab="submission" op="submissionMetadata" monographId="$monographId" stageId=$stageId tabPos="0"}">{translate key="submission.catalogEntry.submissionMetadata"}</a>
@@ -33,13 +33,13 @@
 		{counter start=2 assign="counter"}
 		{foreach from=$publicationFormats item=format}
 			<li>{* no need to bother with the published test, since unpublished monographs will not have formats assigned to them *}
-				<a title="publication{$format->getId()|escape}" 
-					href="{url router=$smarty.const.ROUTE_COMPONENT component="tab.catalogEntry.CatalogEntryTabHandler" 
+				<a title="publication{$format->getId()|escape}"
+					href="{url router=$smarty.const.ROUTE_COMPONENT component="tab.catalogEntry.CatalogEntryTabHandler"
 					tab="publication"|concat:$format->getId()
-					op="publicationMetadata" 
-					publicationFormatId=$format->getId() 
-					monographId=$monographId 
-					stageId=$stageId 
+					op="publicationMetadata"
+					publicationFormatId=$format->getId()
+					monographId=$monographId
+					stageId=$stageId
 					tabPos=$counter}">{$format->getLocalizedTitle()|escape}</a>
 			</li>
 		{counter} {* increment our counter, assign to $counter variable *}
