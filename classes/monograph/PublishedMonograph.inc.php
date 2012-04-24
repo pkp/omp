@@ -209,7 +209,6 @@ class PublishedMonograph extends Monograph {
 	 * @return int
 	 */
 	function isAvailable() {
-		return false;
 		$publicationFormats =& $this->getPublicationFormats(true);
 		if (sizeof($publicationFormats) > 0) {
 			return true;
