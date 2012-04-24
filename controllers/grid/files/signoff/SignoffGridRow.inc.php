@@ -67,12 +67,12 @@ class SignoffGridRow extends GridRow {
 					__('common.confirmDelete'), null,
 					$router->url(
 						$request, null, null, 'deleteSignoff',
-						null, array(
+						null, array_merge(array(
 							'monographId' => $monographId,
 							'stageId' => $this->getStageId(),
 							'signoffId' => $rowId,
 							'fileId' => $copyeditedFileId
-						)
+						), $this->getRequestArgs())
 					)
 				),
 				__('grid.copyediting.deleteSignoff'),
