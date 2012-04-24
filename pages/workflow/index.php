@@ -24,6 +24,7 @@ switch ($op) {
 	case 'production':
 	case 'productionFormatsAccordion':
 	case 'editorDecisionActions':
+	case 'submissionProgressBar':
 		define('HANDLER_CLASS', 'WorkflowHandler');
 		import('pages.workflow.WorkflowHandler');
 		break;

@@ -37,7 +37,8 @@ class WorkflowHandler extends Handler {
 				'internalReview', // Internal review
 				'externalReview', // External review
 				'editorial',
-				'production', 'productionFormatsAccordion' // Production
+				'production', 'productionFormatsAccordion', // Production
+				'submissionProgressBar'
 			)
 		);
 	}
@@ -327,7 +328,7 @@ class WorkflowHandler extends Handler {
 			$lastReviewRound =& $reviewRoundDao->getLastReviewRoundByMonographId($monograph->getId(), $stageId);
 		}
 
-		// If a review round was specified, 
+		// If a review round was specified,
 
 		// If there is an editor assigned, retrieve stage decisions.
 		$stageAssignmentDao =& DAORegistry::getDAO('StageAssignmentDAO');
@@ -363,6 +364,17 @@ class WorkflowHandler extends Handler {
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('editorActions', $editorActions);
 		return $templateMgr->fetchJson('workflow/editorialLinkActions.tpl');
+	}
+
+	/**
+	 * Fetch the JSON-encoded submission progress bar.
+	 * @param $args array
+	 * @param $request Request
+	 */
+	function submissionProgressBar($args, &$request) {
+		// Assign the actions to the template.
+		$templateMgr =& TemplateManager::getManager();
+		return $templateMgr->fetchJson('workflow/submissionProgressBar.tpl');
 	}
 
 
