@@ -9,7 +9,7 @@
 	$(function() {ldelim}
 		// Attach the form handler.
 		$('#catalogMetadataEntryForm').pkpHandler(
-			'$.pkp.controllers.form.FileUploadFormHandler',
+			'$.pkp.controllers.catalog.form.CatalogMetadataFormHandler',
 			{ldelim}
 				trackFormChanges: true,
 				$uploader: $('#plupload'),
