@@ -275,7 +275,7 @@ class EditorDecisionHandler extends Handler {
 		$approveProofsForm = new ApproveProofsForm($monograph, $request->getUserVar('publicationFormatId'));
 		$approveProofsForm->readInputData();
 		if ($approveProofsForm->validate()) {
-			$approveProofsForm->execute();
+			$approveProofsForm->execute($args, $request);
 			$json = new JSONMessage(true);
 
 			// Create trivial notification.
