@@ -39,6 +39,7 @@
 	<message key="monograph.subtitle">Subtitle</message>
 	<message key="monograph.type">Type of Submission</message>
 	<message key="monograph.proofReading">Proof Reading</message>
+	<message key="monograph.stageNotInitiated">Stage not initiated.</message>
 
 	<!--  Metadata field description keys -->
 	<message key="monograph.publicationFormat.imprint">Imprint (Brand Name)</message>

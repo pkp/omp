@@ -9,16 +9,9 @@
 
 <!--  Display round status -->
 {include file="controllers/notification/inPlaceNotification.tpl" notificationId="reviewRoundNotification_"|concat:$reviewRoundId requestOptions=$reviewRoundNotificationRequestOptions}
-<form class="pkp_form">
-{fbvFormArea id="reviewRoundInfo"}
+
 <!-- Display editor's message to the author -->
-{if $monographEmails && $monographEmails->getCount()}
-	{fbvFormSection label="editor.review.personalMessageFromEditor"}
-	{iterate from=monographEmails item=monographEmail}
-		{fbvElement type="textarea" id="monographEmail" value=$monographEmail->getBody() height=$fbvStyles.height.TALL disabled=true}
-	{/iterate}
-	{/fbvFormSection}
-{/if}
+{include file="authorDashboard/monographEmail.tpl" monographEmails=$monographEmails textAreaIdPrefix="reviewRoundEmail"}
 
 <!-- Display review attachments grid -->
 {if $showReviewAttachments}
@@ -29,5 +22,3 @@
 	{url|assign:revisionsGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.review.AuthorReviewRevisionsGridHandler" op="fetchGrid" monographId=$monograph->getId() stageId=$stageId reviewRoundId=$reviewRoundId escape=false}
 	{load_url_in_div id="revisionsGrid-`$stageId`-`$reviewRoundId`" url=$revisionsGridUrl}
 {/if}
-{/fbvFormArea}
-</form>

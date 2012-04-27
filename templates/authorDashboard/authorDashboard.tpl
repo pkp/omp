@@ -55,8 +55,12 @@
 		<div class="pkp_authorDashboard_stageContainer" id="internalReview">
 			<h3><a href="#">{translate key='workflow.review.internalReview'}</a></h3>
 			<div id="internalReviewContent">
-				{if !$internalReviewRounds->wasEmpty()}
-					{include file="authorDashboard/reviewRoundTab.tpl" reviewRounds=$internalReviewRounds reviewRoundTabsId="internalReviewRoundTabs" lastReviewRoundNumber=$lastReviewRoundNumber.internalReview}
+				{if $stageId >= $smarty.const.WORKFLOW_STAGE_ID_INTERNAL_REVIEW}
+					{if !$internalReviewRounds->wasEmpty()}
+						{include file="authorDashboard/reviewRoundTab.tpl" reviewRounds=$internalReviewRounds reviewRoundTabsId="internalReviewRoundTabs" lastReviewRoundNumber=$lastReviewRoundNumber.internalReview}
+					{/if}
+				{else}
+					{translate key="monograph.stageNotInitiated"}
 				{/if}
 			</div>
 		</div>
@@ -66,8 +70,12 @@
 		<div class="pkp_authorDashboard_stageContainer" id="externalReview">
 			<h3><a href="#">{translate key='workflow.review.externalReview'}</a></h3>
 			<div id="externalReviewContent">
-				{if !$externalReviewRounds->wasEmpty()}
-					{include file="authorDashboard/reviewRoundTab.tpl" reviewRounds=$externalReviewRounds reviewRoundTabsId="externalReviewRoundTabs" lastReviewRoundNumber=$lastReviewRoundNumber.externalReview}
+				{if $stageId >= $smarty.const.WORKFLOW_STAGE_ID_EXTERNAL_REVIEW}
+					{if !$externalReviewRounds->wasEmpty()}
+						{include file="authorDashboard/reviewRoundTab.tpl" reviewRounds=$externalReviewRounds reviewRoundTabsId="externalReviewRoundTabs" lastReviewRoundNumber=$lastReviewRoundNumber.externalReview}
+					{/if}
+				{else}
+					{translate key="monograph.stageNotInitiated"}
 				{/if}
 			</div>
 		</div>
@@ -79,17 +87,13 @@
 			<div id="copyeditingContent">
 				{if $stageId >= $smarty.const.WORKFLOW_STAGE_ID_EDITING}
 					<!-- Display editor's message to the author -->
-					{if $monographEmails && $monographEmails->getCount()}
-						{fbvFormSection label="editor.review.personalMessageFromEditor"}
-						{iterate from=monographEmails item=monographEmail}
-							{fbvElement type="textarea" id="copyEditMonographEmail" value=$monographEmail->getBody() height=$fbvStyles.height.TALL disabled=true}
-						{/iterate}
-						{/fbvFormSection}
-					{/if}
+					{include file="authorDashboard/monographEmail.tpl" monographEmails=$copyeditingEmails textAreaIdPrefix="copyeditingEmail"}
 
 					<!-- Display copyediting files grid -->
 					{url|assign:copyeditingFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.copyedit.AuthorCopyeditingSignoffFilesGridHandler" op="fetchGrid" monographId=$monograph->getId() stageId=$smarty.const.WORKFLOW_STAGE_ID_EDITING escape=false}
 					{load_url_in_div id="copyeditingFilesGridDiv" url=$copyeditingFilesGridUrl}
+				{else}
+					{translate key="monograph.stageNotInitiated"}
 				{/if}
 			</div>
 		</div>
@@ -98,7 +102,17 @@
 	{if array_key_exists($smarty.const.WORKFLOW_STAGE_ID_PRODUCTION, $accessibleWorkflowStages)}
 		<div class="pkp_authorDashboard_stageContainer" id="production">
 			<h3><a href="#">{translate key='submission.production'}</a></h3>
-			<div id="productionContent">&nbsp;</div>
+			<div id="productionContent">
+				{if $stageId >= $smarty.const.WORKFLOW_STAGE_ID_PRODUCTION}
+					{include file="authorDashboard/monographEmail.tpl" monographEmails=$productionEmails textAreaIdPrefix="productionEmail"}
+
+					<!-- Display production files grid -->
+					{url|assign:productionFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.proof.AuthorProofingSignoffFilesGridHandler" op="fetchGrid" monographId=$monograph->getId() stageId=$smarty.const.WORKFLOW_STAGE_ID_EDITING escape=false}
+					{load_url_in_div id="productionFilesGridDiv" url=$productionFilesGridUrl}
+				{else}
+					{translate key="monograph.stageNotInitiated"}
+				{/if}
+			</div>
 		</div>
 	{/if}
 </div>

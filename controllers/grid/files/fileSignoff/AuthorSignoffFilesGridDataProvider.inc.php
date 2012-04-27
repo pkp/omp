@@ -15,6 +15,9 @@
 
 import('controllers.grid.files.SubmissionFilesGridDataProvider');
 
+// Import file stage constants.
+import('classes.monograph.MonographFile');
+
 class AuthorSignoffFilesGridDataProvider extends SubmissionFilesGridDataProvider {
 
 	/** @var int */

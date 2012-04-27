@@ -114,12 +114,18 @@ class AuthorDashboardHandler extends Handler {
 
 		// If the submission is in or past the editorial stage,
 		// assign the editor's copyediting emails to the template
-		if ($monograph->getStageId() >= WORKFLOW_STAGE_ID_EDITING) {
-			$monographEmailLogDao =& DAORegistry::getDAO('MonographEmailLogDAO');
-			$user =& $request->getUser();
-			$monographEmails =& $monographEmailLogDao->getByEventType($monograph->getId(), MONOGRAPH_EMAIL_COPYEDIT_NOTIFY_AUTHOR, $user->getId());
+		$monographEmailLogDao =& DAORegistry::getDAO('MonographEmailLogDAO');
+		$user =& $request->getUser();
 
-			$templateMgr->assign_by_ref('monographEmails', $monographEmails);
+		if ($monograph->getStageId() >= WORKFLOW_STAGE_ID_EDITING) {
+			$copyeditingEmails =& $monographEmailLogDao->getByEventType($monograph->getId(), MONOGRAPH_EMAIL_COPYEDIT_NOTIFY_AUTHOR, $user->getId());
+			$templateMgr->assign_by_ref('copyeditingEmails', $copyeditingEmails);
+		}
+
+		// Same for production stage.
+		if ($monograph->getStageId() == WORKFLOW_STAGE_ID_PRODUCTION) {
+			$productionEmails =& $monographEmailLogDao->getByEventType($monograph->getId(), MONOGRAPH_EMAIL_PROOFREAD_NOTIFY_AUTHOR, $user->getId());
+			$templateMgr->assign_by_ref('productionEmails', $productionEmails);
 		}
 
 		// Define the notification options.
