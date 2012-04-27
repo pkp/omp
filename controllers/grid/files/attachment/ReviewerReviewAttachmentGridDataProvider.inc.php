@@ -100,7 +100,7 @@ class ReviewerReviewAttachmentGridDataProvider extends SubmissionFilesGridDataPr
 		$reviewAssignment =& $reviewAssignmentDao->getById($this->_getReviewId());
 
 		$addFileAction = new AddFileLinkAction(
-			$request, $monograph->getId(), $this->_getStageId(),
+			$request, $monograph->getId(), $this->getStageId(),
 			$this->getUploaderRoles(), $this->getFileStage(),
 			ASSOC_TYPE_REVIEW_ASSIGNMENT, $this->_getReviewId(),
 			$reviewAssignment->getReviewRoundId()

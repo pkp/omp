@@ -41,7 +41,7 @@ class AuthorSignoffFilesGridHandler extends GridHandler {
 	 */
 	function getStageId() {
 		$dataProvider =& $this->getDataProvider();
-		return $dataProvider->_getStageId();
+		return $dataProvider->getStageId();
 	}
 
 	//

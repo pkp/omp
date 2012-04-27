@@ -36,6 +36,25 @@ class SubmissionFilesGridDataProvider extends FilesGridDataProvider {
 
 
 	//
+	// Getters and setters.
+	//
+	/**
+	 * Set the workflow stage.
+	 */
+	function setStageId($stageId) {
+		$this->_stageId = $stageId;
+	}
+
+	/**
+	 * Get the workflow stage.
+	 * @return integer
+	 */
+	function getStageId() {
+		return $this->_stageId;
+	}
+
+
+	//
 	// Implement template methods from GridDataProvider
 	//
 	/**
@@ -45,7 +64,7 @@ class SubmissionFilesGridDataProvider extends FilesGridDataProvider {
 		$this->setUploaderRoles($roleAssignments);
 
 		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
-		$policy = new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', $this->_getStageId());
+		$policy = new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', $this->getStageId());
 		return $policy;
 	}
 
@@ -56,7 +75,7 @@ class SubmissionFilesGridDataProvider extends FilesGridDataProvider {
 		$monograph =& $this->getMonograph();
 		return array(
 			'monographId' => $monograph->getId(),
-			'stageId' => $this->_getStageId(),
+			'stageId' => $this->getStageId(),
 			'fileStage' => $this->getFileStage()
 		);
 	}
@@ -91,32 +110,10 @@ class SubmissionFilesGridDataProvider extends FilesGridDataProvider {
 		import('controllers.api.file.linkAction.AddFileLinkAction');
 		$monograph =& $this->getMonograph();
 		$addFileAction = new AddFileLinkAction(
-			$request, $monograph->getId(), $this->_getStageId(),
+			$request, $monograph->getId(), $this->getStageId(),
 			$this->getUploaderRoles(), $this->getFileStage()
 		);
 		return $addFileAction;
-	}
-
-
-	//
-	// Setter
-	//
-	/**
-	 * Set the workflow stage.
-	 */
-	function setStageId($stageId) {
-		$this->_stageId = $stageId;
-	}
-
-	//
-	// Private helper methods
-	//
-	/**
-	 * Get the workflow stage.
-	 * @return integer
-	 */
-	function _getStageId() {
-		return $this->_stageId;
 	}
 }
 

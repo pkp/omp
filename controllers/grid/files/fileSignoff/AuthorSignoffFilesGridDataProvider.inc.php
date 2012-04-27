@@ -97,7 +97,7 @@ class AuthorSignoffFilesGridDataProvider extends SubmissionFilesGridDataProvider
 			import('controllers.api.signoff.linkAction.AddSignoffFileLinkAction');
 			$action = new AddSignoffFileLinkAction(
 									$request, $monograph->getId(),
-									$this->_getStageId(), $this->getSymbolic(), null,
+									$this->getStageId(), $this->getSymbolic(), null,
 									__('submission.upload.signoff'), __('submission.upload.signoff')
 									);
 		}

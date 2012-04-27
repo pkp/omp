@@ -42,7 +42,7 @@ class FinalDraftFilesGridDataProvider extends SubmissionFilesGridDataProvider {
 		$monograph =& $this->getMonograph();
 		$actionArgs = array(
 			'monographId' => $monograph->getId(),
-			'stageId' => $this->_getStageId()
+			'stageId' => $this->getStageId()
 		);
 		$selectAction = new SelectFilesLinkAction(
 			&$request, $actionArgs,

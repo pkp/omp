@@ -103,7 +103,7 @@ class ReviewGridDataProvider extends SubmissionFilesGridDataProvider {
 		$reviewRound =& $this->getReviewRound();
 
 		$addFileAction = new AddFileLinkAction(
-			$request, $monograph->getId(), $this->_getStageId(),
+			$request, $monograph->getId(), $this->getStageId(),
 			$this->getUploaderRoles(), $this->getFileStage(),
 			null, null, $reviewRound->getId()
 		);
