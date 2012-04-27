@@ -169,7 +169,6 @@ class CatalogEntryTabHandler extends Handler {
 
 		$publicationFormatId = (int) $request->getUserVar('publicationFormatId');
 		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
-		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
 
 		$monograph =& $this->getMonograph();
 		$stageId =& $this->getStageId();
