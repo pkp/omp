@@ -1,15 +1,15 @@
 <?php
 
 /**
- * @file controllers/tab/settings/AuthorDashboardReviewRoundTabHandler.inc.php
+ * @file controllers/tab/authorDashboard/AuthorDashboardReviewRoundTabHandler.inc.php
  *
  * Copyright (c) 2003-2012 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class AuthorDashboardReviewRoundTabHandler
- * @ingroup controllers_tab_workflow
+ * @ingroup controllers_tab_authorDashboard
  *
- * @brief Handle AJAX operations for review round tabs on review stages workflow pages.
+ * @brief Handle AJAX operations for review round tabs on author dashboard page.
  */
 
 // Import the base Handler.

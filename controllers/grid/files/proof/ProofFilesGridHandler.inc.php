@@ -43,31 +43,18 @@ class ProofFilesGridHandler extends SignoffFilesGridHandler {
 	 * @param PKPRequest $request
 	 */
 	function initialize(&$request) {
+		$publicationFormat =& $this->getPublicationFormat();
+		$this->setAssocId($publicationFormat->getId());
+
 		parent::initialize($request);
 
 		// Basic grid configuration
 		$this->setId('proofFiles-' . $this->getAssocId());
-		$this->setTitle('editor.monograph.proofReading');
+		$this->setTitle('monograph.proofReading');
 
 		// Rename the editor column to press signoff
 		$pressAssistantColumn =& $this->getColumn('editor');
 		$pressAssistantColumn->setTitle('editor.pressSignoff');
-	}
-
-	/**
-	 * @see PKPHandler::authorize()
-	 */
-	function authorize(&$request, &$args, $roleAssignments) {
-		if (parent::authorize($request, $args, $roleAssignments)) {
-			$publicationFormatId = (int) $request->getUserVar('publicationFormatId');
-			$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
-			$monograph =& $this->getMonograph();
-			$publicationFormat =& $publicationFormatDao->getById($publicationFormatId, $monograph->getId());
-
-			$this->setAssocId($publicationFormat->getId());
-			return true;
-		}
-		return false;
 	}
 
 	/**

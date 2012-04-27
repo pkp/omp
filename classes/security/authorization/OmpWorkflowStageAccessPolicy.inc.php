@@ -41,7 +41,7 @@ class OmpWorkflowStageAccessPolicy extends PressPolicy {
 
 		// Add the user accessible workflow stages object to the authorized context.
 		import('classes.security.authorization.internal.UserAccessibleWorkflowStageRequiredPolicy');
-		$this->addPolicy(new UserAccessibleWorkflowStageRequiredPolicy($request, $roleAssignments));
+		$this->addPolicy(new UserAccessibleWorkflowStageRequiredPolicy($request));
 
 		// Users can access all whitelisted operations for submissions and workflow stages...
 		$roleBasedPolicy = new PolicySet(COMBINING_PERMIT_OVERRIDES);

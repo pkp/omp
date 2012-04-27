@@ -75,7 +75,7 @@ class AuthorSignoffFilesGridHandler extends GridHandler {
 	 */
 	function authorize(&$request, $args, $roleAssignments) {
 		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
-		$this->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', $this->getStageId()));
+		$this->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', $this->getStageId()), true);
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 

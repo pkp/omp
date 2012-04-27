@@ -50,7 +50,7 @@ class FilesListbuilderHandler extends ListbuilderHandler {
 	 */
 	function authorize(&$request, &$args, $roleAssignments, $stageId) {
 		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
-		$this->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', $stageId));
+		$this->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', $stageId), true);
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 
