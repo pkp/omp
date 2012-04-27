@@ -99,7 +99,7 @@
 		$publicationFormatContainer.append(jsonData.content);
 		
 		// Update any in place notification above this widget in DOM hierarchy.
-		$publicationFormatContainer.trigger('notifyUser');
+		$publicationFormatContainer.trigger('notifyUser', $publicationFormatContainer);
 
 		$publicationFormatContainer.accordion('destroy').accordion({
 			autoHeight: false,
