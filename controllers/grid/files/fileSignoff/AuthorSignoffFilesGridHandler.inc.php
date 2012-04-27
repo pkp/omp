@@ -18,23 +18,14 @@ import('lib.pkp.classes.controllers.grid.GridHandler');
 import('controllers.grid.files.fileSignoff.AuthorSignoffFilesGridRow');
 
 class AuthorSignoffFilesGridHandler extends GridHandler {
-	/* @var int */
-	var $_stageId;
-
-	/* @var string */
-	var $_symbolic;
-
-	/* @var User */
-	var $_user;
 
 	/**
 	 * Constructor
 	 * @param $symbolic string The signoff symbolic string
 	 */
 	function AuthorSignoffFilesGridHandler($stageId, $symbolic) {
-		parent::GridHandler();
-		$this->_stageId = $stageId;
-		$this->_symbolic = $symbolic;
+		import('controllers.grid.files.fileSignoff.AuthorSignoffFilesGridDataProvider');
+		parent::GridHandler(new AuthorSignoffFilesGridDataProvider($symbolic, $stageId));
 
 		$this->addRoleAssignment(
 			array(ROLE_ID_AUTHOR),
@@ -49,36 +40,13 @@ class AuthorSignoffFilesGridHandler extends GridHandler {
 	 * @return int
 	 */
 	function getStageId() {
-		return $this->_stageId;
-	}
-
-	/**
-	 * Get the Signoff Symbolic.
-	 * @return string
-	 */
-	function getSymbolic() {
-		return $this->_symbolic;
-	}
-
-	/**
-	 * Get the User assosiated with the request
-	 */
-	function &getUser() {
-		return $this->_user;
+		$dataProvider =& $this->getDataProvider();
+		return $dataProvider->_getStageId();
 	}
 
 	//
 	// Implement template methods from PKPHandler
 	//
-	/**
-	 * @see PKPHandler::authorize()
-	 */
-	function authorize(&$request, $args, $roleAssignments) {
-		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
-		$this->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', $this->getStageId()), true);
-		return parent::authorize($request, $args, $roleAssignments);
-	}
-
 	/**
 	 * @see PKPHandler::initialize()
 	 */
@@ -92,19 +60,14 @@ class AuthorSignoffFilesGridHandler extends GridHandler {
 			LOCALE_COMPONENT_OMP_SUBMISSION
 		);
 
-		$this->_user =& $request->getUser();
+		$user =& $request->getUser();
 
-		$user =& $this->getUser();
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-		$signoffDao =& DAORegistry::getDAO('MonographFileSignoffDAO'); /* @var $signoffDao MonographFileSignoffDAO */
-		$signoffFactory =& $signoffDao->getAllByMonograph($monograph->getId(), $this->getSymbolic(), $user->getId(), null, true);
-		if (!$signoffFactory->wasEmpty()) {
-			import('controllers.api.signoff.linkAction.AddSignoffFileLinkAction');
-			$this->addAction(new AddSignoffFileLinkAction(
-									$request, $monograph->getId(),
-									$this->getStageId(), $this->getSymbolic(), null,
-									__('submission.upload.signoff'), __('submission.upload.signoff')
-									));
+		$gridDataProvider =& $this->getDataProvider(); /* @var $gridDataProvider AuthorSignoffFilesGridDataProvider */
+		$gridDataProvider->setUserId($user->getId());
+
+		$addSignoffFileLinkAction = $gridDataProvider->getAddSignoffFile($request);
+		if ($addSignoffFileLinkAction) {
+			$this->addAction($addSignoffFileLinkAction);
 		}
 
 		// The file name column is common to all file grid types.
@@ -112,6 +75,7 @@ class AuthorSignoffFilesGridHandler extends GridHandler {
 		$this->addColumn(new FileNameGridColumn(null, $this->getStageId()));
 
 		import('controllers.grid.files.fileSignoff.AuthorSignoffFilesGridCellProvider');
+		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		$cellProvider = new AuthorSignoffFilesGridCellProvider($monograph, $this->getStageId());
 
 		// Add a column to show whether the author uploaded a copyedited version of the file
@@ -130,43 +94,11 @@ class AuthorSignoffFilesGridHandler extends GridHandler {
 	// Overridden methods from GridHandler
 	//
 	/**
-	 * @see GridDataProvider::getRequestArgs()
-	 */
-	function getRequestArgs() {
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-		return array(
-			'monographId' => $monograph->getId(),
-			'stageId' => $this->getStageId()
-		);
-	}
-
-	/**
 	 * @see GridHandler::getRowInstance()
 	 */
 	function &getRowInstance() {
 		$row = new AuthorSignoffFilesGridRow($this->getStageId());
 		return $row;
-	}
-
-	/**
-	 * @see GridHandler::loadData()
-	 * N.B. This method formats data similar to SubmissionFile grids so that it can reuse the FileNameGridColumn
-	 */
-	function &loadData() {
-		$user =& $this->getUser();
-		$monographFileSignoffDao =& DAORegistry::getDAO('MonographFileSignoffDAO');
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-		$signoffs =& $monographFileSignoffDao->getAllByMonograph($monograph->getId(), $this->getSymbolic(), $user->getId());
-
-		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-		while ($signoff =& $signoffs->next()) {
-			$monographFile =& $submissionFileDao->getLatestRevision($signoff->getAssocId(), null, $monograph->getId());
-			$preparedData[$signoff->getId()]['signoff'] =& $signoff;
-			$preparedData[$signoff->getId()]['submissionFile'] =& $monographFile;
-			unset($signoff, $monographFile);
-		}
-
-		return $preparedData;
 	}
 }
 
