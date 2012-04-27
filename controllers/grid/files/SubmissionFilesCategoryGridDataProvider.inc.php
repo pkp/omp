@@ -17,9 +17,6 @@ import('lib.pkp.classes.controllers.grid.CategoryGridDataProvider');
 
 class SubmissionFilesCategoryGridDataProvider extends CategoryGridDataProvider {
 
-	/** @var $_submissionFileGridDataProvider SubmissionFilesGridDataProvider */
-	var $_submissionFilesGridDataProvider;
-
 	/** @var $_monographFiles array */
 	var $_monographFiles;
 
@@ -36,73 +33,35 @@ class SubmissionFilesCategoryGridDataProvider extends CategoryGridDataProvider {
 	 */
 	function SubmissionFilesCategoryGridDataProvider($fileStage, $dataProviderInitParams = null) {
 		$gridDataProvider =& $this->initGridDataProvider($fileStage, $dataProviderInitParams);
-		$this->setGridDataProvider($gridDataProvider);
+		$this->setDataProvider($gridDataProvider);
 	}
 
 
 	//
-	// Getters and setters
+	// Extended method from CategoryGridDataProvider.
 	//
 	/**
-	 * Return the grid data provider being used by this category
-	 * grid data provider to implement common behaviours and data.
+	 * @see CategoryGridDataProvider::setDataProvider()
 	 */
-	function &getGridDataProvider() {
-		return $this->_submissionFilesGridDataProvider;
-	}
-
-	/**
-	 * Set the grid data provider being used by this category grid
-	 * data provider to implement common behaviours and data.
-	 * @param $gridDataProvider SubmissionFilesGridDataProvider
-	 */
-	function setGridDataProvider(&$gridDataProvider) {
+	function setDataProvider(&$gridDataProvider) {
 		if (is_a($gridDataProvider, 'SubmissionFilesGridDataProvider')) {
-			$this->_submissionFilesGridDataProvider =& $gridDataProvider;
+			parent::setDataProvider($gridDataProvider);
 		} else {
 			assert(false);
 		}
 	}
 
-	/**
-	 * @see SubmissionFilesGridDataProvider::getFileStage()
-	 */
-	function setStageId($stageId) {
-		$this->_submissionFilesGridDataProvider->setStageId($stageId);
-	}
-
-	/**
-	 * @see SubmissionFilesGridDataProvider::getFileStage()
-	 */
-	function getFileStage() {
-		return $this->_submissionFilesGridDataProvider->getFileStage();
-	}
-
 
 	//
-	// Overriden methods from GridDataProvider
-	//
-	/**
-	 * @see GridDataProvider::setAuthorizedContext()
-	 */
-	function setAuthorizedContext(&$authorizedContext) {
-		// We need to pass the authorized context object to the grid data provider
-		// object that is being used by this class.
-		$this->_submissionFilesGridDataProvider->setAuthorizedContext($authorizedContext);
-
-		parent::setAuthorizedContext($authorizedContext);
-	}
-
-
-	//
-	// Implement template methods from CategoryGridDataProvider
+	// Implement template methods from GridDataProvider
 	//
 	/**
 	 * @see GridDataProvider::getAuthorizationPolicy()
 	 */
 	function getAuthorizationPolicy(&$request, $args, $roleAssignments) {
 		// Get the submission files grid data provider authorization policy.
-		$policy = $this->_submissionFilesGridDataProvider->getAuthorizationPolicy($request, $args, $roleAssignments);
+		$dataProvider =& $this->getDataProvider();
+		$policy = $dataProvider->getAuthorizationPolicy($request, $args, $roleAssignments);
 
 		return $policy;
 	}
@@ -111,7 +70,8 @@ class SubmissionFilesCategoryGridDataProvider extends CategoryGridDataProvider {
 	 * @see GridDataProvider::getRequestArgs()
 	 */
 	function getRequestArgs() {
-		return $this->_submissionFilesGridDataProvider->getRequestArgs();
+		$dataProvider =& $this->getDataProvider();
+		return $dataProvider->getRequestArgs();
 	}
 
 	/**
@@ -122,12 +82,17 @@ class SubmissionFilesCategoryGridDataProvider extends CategoryGridDataProvider {
 		return array_keys($this->getAuthorizedContextObject(ASSOC_TYPE_ACCESSIBLE_WORKFLOW_STAGES));
 	}
 
+
+	//
+	// Implement template methods from CategoryGridDataProvider
+	//
 	/**
 	 * @see CategoryGridDataProvider::getCategoryData()
 	 */
-	function &getCategoryData($categoryDataElement, $filter, $reviewRound = null) {
+	function &getCategoryData($categoryDataElement, $filter = null, $reviewRound = null) {
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-		$monograph =& $this->_submissionFilesGridDataProvider->getMonograph();
+		$dataProvider =& $this->getDataProvider();
+		$monograph =& $dataProvider->getMonograph();
 		$stageId = $categoryDataElement;
 		$fileStage = $this->_getFileStageByStageId($stageId);
 		$stageMonographFiles = null;
@@ -154,8 +119,9 @@ class SubmissionFilesCategoryGridDataProvider extends CategoryGridDataProvider {
 			}
 		}
 
-		return $this->_submissionFilesGridDataProvider->prepareSubmissionFileData($stageMonographFiles);
+		return $dataProvider->prepareSubmissionFileData($stageMonographFiles);
 	}
+
 
 	//
 	// Public methods
@@ -164,7 +130,24 @@ class SubmissionFilesCategoryGridDataProvider extends CategoryGridDataProvider {
 	 * @see SubmissionFilesGridDataProvider::getAddFileAction()
 	 */
 	function &getAddFileAction($request) {
-		return $this->_submissionFilesGridDataProvider->getAddFileAction($request);
+		$dataProvider =& $this->getDataProvider();
+		return $dataProvider->getAddFileAction($request);
+	}
+
+	/**
+	 * @see SubmissionFilesGridDataProvider::getFileStage()
+	 */
+	function setStageId($stageId) {
+		$dataProvider =& $this->getDataProvider();
+		$dataProvider->setStageId($stageId);
+	}
+
+	/**
+	 * @see SubmissionFilesGridDataProvider::getFileStage()
+	 */
+	function getFileStage() {
+		$dataProvider =& $this->getDataProvider();
+		return $dataProvider->getFileStage();
 	}
 
 
