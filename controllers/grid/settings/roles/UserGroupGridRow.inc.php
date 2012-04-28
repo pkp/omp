@@ -50,20 +50,6 @@ class UserGroupGridRow extends GridCategoryRow {
 				'edit'
 			);
 			$this->addAction($editUserGroupLinkAction);
-
-			import('lib.pkp.classes.linkAction.request.RemoteActionConfirmationModal');
-			$confirmationModal = new RemoteActionConfirmationModal(
-				__('settings.roles.removeText'),
-				null,
-				$router->url($request, null, null, 'removeUserGroup', null, $actionArgs)
-			);
-			$removeUserGroupLinkAction = new LinkAction(
-				'removeUserGroup',
-				$confirmationModal,
-				__('grid.action.remove'),
-				'delete'
-			);
-			$this->addAction($removeUserGroupLinkAction);
 		}
 	}
 }
