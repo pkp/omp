@@ -51,8 +51,24 @@ class WorkflowHandler extends Handler {
 	 * @see PKPHandler::authorize()
 	 */
 	function authorize(&$request, $args, $roleAssignments) {
-		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
-		$this->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', $this->_identifyStageId($request)));
+		$router =& $request->getRouter();
+		$operation = $router->getRequestedOp($request);
+
+		if ($operation == 'access') {
+			// Authorize requested monograph.
+			import('classes.security.authorization.internal.MonographRequiredPolicy');
+			$this->addPolicy(new MonographRequiredPolicy($request, $args, 'monographId'));
+
+			// This policy will deny access if user has no accessible workflow stage.
+			// Otherwise it will build an authorized object with all accessible
+			// workflow stages and authorize user operation access.
+			import('classes.security.authorization.internal.UserAccessibleWorkflowStageRequiredPolicy');
+			$this->addPolicy(new UserAccessibleWorkflowStageRequiredPolicy($request));
+		} else {
+			import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
+			$this->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', $this->_identifyStageId($request)));
+		}
+
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 
@@ -60,7 +76,12 @@ class WorkflowHandler extends Handler {
 	 * @see PKPHandler::initialize()
 	 */
 	function initialize(&$request, $args) {
-		$this->setupTemplate($request);
+		$router =& $request->getRouter();
+		$operation = $router->getRequestedOp($request);
+
+		if ($operation != 'access') {
+			$this->setupTemplate($request);
+		}
 
 		// Call parent method.
 		parent::initialize($request, $args);
@@ -204,62 +225,6 @@ class WorkflowHandler extends Handler {
 	}
 
 	/**
-	 * Internal function to handle both internal and external reviews
-	 * @param $request PKPRequest
-	 * @param $args array
-	 */
-	function _review($args, &$request) {
-		// Retrieve the authorized submission and stage id.
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-		$selectedStageId = $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
-
-		$templateMgr =& TemplateManager::getManager();
-
-		// Get all review rounds for this submission, on the current stage.
-		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
-		$reviewRoundsFactory =& $reviewRoundDao->getByMonographId($monograph->getId(), $selectedStageId);
-		if (!$reviewRoundsFactory->wasEmpty()) {
-			$reviewRoundsArray =& $reviewRoundsFactory->toAssociativeArray();
-
-			// Get the review round number of the last review round to be used
-			// as the current review round tab index.
-			$lastReviewRoundNumber = end($reviewRoundsArray)->getRound();
-			$lastReviewRoundId = end($reviewRoundsArray)->getId();
-			reset($reviewRoundsArray);
-
-			// Add the round information to the template.
-			$templateMgr->assign_by_ref('reviewRounds', $reviewRoundsArray);
-			$templateMgr->assign('lastReviewRoundNumber', $lastReviewRoundNumber);
-
-			if ($monograph->getStageId() == $selectedStageId) {
-				$dispatcher =& $request->getDispatcher();
-				$newRoundAction = new LinkAction(
-					'newRound',
-					new AjaxModal(
-						$dispatcher->url(
-							$request, ROUTE_COMPONENT, null,
-							'modals.editorDecision.EditorDecisionHandler',
-							'newReviewRound', null, array(
-								'monographId' => $monograph->getId(),
-								'decision' => SUBMISSION_EDITOR_DECISION_RESUBMIT,
-								'stageId' => $selectedStageId,
-								'reviewRoundId' => $lastReviewRoundId
-							)
-						),
-						__('editor.monograph.newRound')
-					),
-					__('editor.monograph.newRound'),
-					'add_item_small'
-				); // FIXME: add icon.
-				$templateMgr->assign_by_ref('newRoundAction', $newRoundAction);
-			}
-		}
-
-		// Render the view.
-		$templateMgr->display('workflow/review.tpl');
-	}
-
-	/**
 	 * Show the editorial stage
 	 * @param $request PKPRequest
 	 * @param $args array
@@ -381,6 +346,62 @@ class WorkflowHandler extends Handler {
 	//
 	// Private helper methods
 	//
+	/**
+	 * Internal function to handle both internal and external reviews
+	 * @param $request PKPRequest
+	 * @param $args array
+	 */
+	function _review($args, &$request) {
+		// Retrieve the authorized submission and stage id.
+		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		$selectedStageId = $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
+
+		$templateMgr =& TemplateManager::getManager();
+
+		// Get all review rounds for this submission, on the current stage.
+		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
+		$reviewRoundsFactory =& $reviewRoundDao->getByMonographId($monograph->getId(), $selectedStageId);
+		if (!$reviewRoundsFactory->wasEmpty()) {
+			$reviewRoundsArray =& $reviewRoundsFactory->toAssociativeArray();
+
+			// Get the review round number of the last review round to be used
+			// as the current review round tab index.
+			$lastReviewRoundNumber = end($reviewRoundsArray)->getRound();
+			$lastReviewRoundId = end($reviewRoundsArray)->getId();
+			reset($reviewRoundsArray);
+
+			// Add the round information to the template.
+			$templateMgr->assign_by_ref('reviewRounds', $reviewRoundsArray);
+			$templateMgr->assign('lastReviewRoundNumber', $lastReviewRoundNumber);
+
+			if ($monograph->getStageId() == $selectedStageId) {
+				$dispatcher =& $request->getDispatcher();
+				$newRoundAction = new LinkAction(
+					'newRound',
+					new AjaxModal(
+						$dispatcher->url(
+							$request, ROUTE_COMPONENT, null,
+							'modals.editorDecision.EditorDecisionHandler',
+							'newReviewRound', null, array(
+								'monographId' => $monograph->getId(),
+								'decision' => SUBMISSION_EDITOR_DECISION_RESUBMIT,
+								'stageId' => $selectedStageId,
+								'reviewRoundId' => $lastReviewRoundId
+							)
+						),
+						__('editor.monograph.newRound')
+					),
+					__('editor.monograph.newRound'),
+					'add_item_small'
+				); // FIXME: add icon.
+				$templateMgr->assign_by_ref('newRoundAction', $newRoundAction);
+			}
+		}
+
+		// Render the view.
+		$templateMgr->display('workflow/review.tpl');
+	}
+
 	/**
 	 * Translate the requested operation to a stage id.
 	 * @param $request Request

@@ -31,8 +31,9 @@ class OmpAuthorDashboardAccessPolicy extends PressPolicy {
 		$authorDashboardPolicy->addPolicy(new OmpSubmissionAccessPolicy($request, $args, $roleAssignments), true);
 
 		// Check if the user has an stage assignment with the monograph in request.
-		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
-		$authorDashboardPolicy->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', $request->getUserVar('stageId')));
+		// Any workflow stage assignment is suficient to access the author dashboard.
+		import('classes.security.authorization.internal.UserAccessibleWorkflowStageRequiredPolicy');
+		$authorDashboardPolicy->addPolicy(new UserAccessibleWorkflowStageRequiredPolicy($request));
 
 		$this->addPolicy($authorDashboardPolicy);
 	}

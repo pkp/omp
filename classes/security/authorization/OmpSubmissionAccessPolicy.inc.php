@@ -76,8 +76,8 @@ class OmpSubmissionAccessPolicy extends PressPolicy {
 			$authorSubmissionAccessOptionsPolicy->addPolicy(new MonographAuthorPolicy($request));
 
 			// 2b) ...OR, at least one workflow stage has been assigned to them in the requested submission.
-			import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
-			$authorSubmissionAccessOptionsPolicy->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', null));
+			import('classes.security.authorization.internal.UserAccessibleWorkflowStageRequiredPolicy');
+			$authorSubmissionAccessOptionsPolicy->addPolicy(new UserAccessibleWorkflowStageRequiredPolicy($request));
 
 			$authorSubmissionAccessPolicy->addPolicy($authorSubmissionAccessOptionsPolicy);
 			$submissionAccessPolicy->addPolicy($authorSubmissionAccessPolicy);
@@ -107,8 +107,8 @@ class OmpSubmissionAccessPolicy extends PressPolicy {
 			$pressSubmissionAccessPolicy->addPolicy(new RoleBasedHandlerOperationPolicy($request, ROLE_ID_PRESS_ASSISTANT, $roleAssignments[ROLE_ID_PRESS_ASSISTANT]));
 
 			// 2) ... but only if they have been assigned to the submission workflow.
-			import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
-			$pressSubmissionAccessPolicy->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', null));
+			import('classes.security.authorization.internal.UserAccessibleWorkflowStageRequiredPolicy');
+			$pressSubmissionAccessPolicy->addPolicy(new UserAccessibleWorkflowStageRequiredPolicy($request));
 			$submissionAccessPolicy->addPolicy($pressSubmissionAccessPolicy);
 		}
 

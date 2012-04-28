@@ -24,7 +24,7 @@ class UserAccessibleWorkflowStagePolicy extends AuthorizationPolicy {
 	 * @param $stageId The one that will be checked against accessible
 	 * user workflow stages.
 	 */
-	function UserAccessibleWorkflowStagePolicy($stageId = null) {
+	function UserAccessibleWorkflowStagePolicy($stageId) {
 		parent::AuthorizationPolicy();
 		$this->_stageId = $stageId;
 	}
@@ -42,16 +42,11 @@ class UserAccessibleWorkflowStagePolicy extends AuthorizationPolicy {
 
 		$stageId = $this->_stageId;
 
-		if (!is_null($stageId)) {
-			if (array_key_exists($stageId, $userAccessibleStages)) {
-				return AUTHORIZATION_PERMIT;
-			} else {
-				return AUTHORIZATION_DENY;
-			}
+		if (array_key_exists($stageId, $userAccessibleStages)) {
+			return AUTHORIZATION_PERMIT;
 		}
 
-		// None stage id was passed, we permit access if user has any accessible stage id.
-		return AUTHORIZATION_PERMIT;
+		return AUTHORIZATION_DENY;
 	}
 }
 

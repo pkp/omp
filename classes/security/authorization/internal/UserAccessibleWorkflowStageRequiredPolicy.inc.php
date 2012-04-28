@@ -8,7 +8,7 @@
  * @class UserAccessibleWorkflowStagesRequiredPolicy
  * @ingroup security_authorization_internal
  *
- * @brief Class to control access to a signoff for the current press
+ * @brief Policy to deny access if an user assigned workflow stage is not found.
  *
  */
 
@@ -41,14 +41,14 @@ class UserAccessibleWorkflowStageRequiredPolicy extends AuthorizationPolicy {
 		if (!is_a($user, 'User')) return AUTHORIZATION_DENY;
 
 		$userId = $user->getId();
-		$monograph = $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 		$workflowStages = $userGroupDao->getWorkflowStageTranslationKeys();
 
 		$accessibleWorkflowStages = array();
 		foreach ($workflowStages as $stageId => $translationKey) {
-			$accessibleStageRoles = $this->_getAccessibleStageRoles($userId, $pressId, &$monograph, $stageId);
+			$accessibleStageRoles = $this->_getAccessibleStageRoles($userId, $pressId, $monograph, $stageId);
 			if (!empty($accessibleStageRoles)) {
 				$accessibleWorkflowStages[$stageId] = $accessibleStageRoles;
 			}
