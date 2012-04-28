@@ -18,7 +18,7 @@
 		$('#production').pkpHandler(
 			'$.pkp.pages.workflow.ProductionHandler',
 			{ldelim}
-				accordionUrl: '{url|escape:"javascript" op="productionFormatsAccordion" monographId=$monograph->getId()}'
+				accordionUrl: '{url|escape:"javascript" op="productionFormatsAccordion" monographId=$monograph->getId() stageId=$smarty.const.WORKFLOW_STAGE_ID_PRODUCTION escape=false}'
 			{rdelim}
 		);
 	{rdelim});
