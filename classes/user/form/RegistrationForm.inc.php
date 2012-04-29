@@ -71,7 +71,6 @@ class RegistrationForm extends Form {
 				$this->addCheck(new FormValidatorCustom($this, 'email', 'required', 'user.register.form.emailsDoNotMatch', create_function('$email,$form', 'return $email == $form->getData(\'confirmEmail\');'), array(&$this)));
 				$this->addCheck(new FormValidatorCustom($this, 'email', 'required', 'user.register.form.emailExists', array(DAORegistry::getDAO('UserDAO'), 'userExistsByEmail'), array(), true));
 				$this->addCheck(new FormValidator($this, 'country', 'required', 'user.profile.form.countryRequired'));
-				$this->addCheck(new FormValidatorCustom($this, 'authorGroup', 'required', 'user.register.form.userGroupRequired', create_function('$authorGroup,$form', 'return (boolean)($authorGroup || $form->getData(\'reviewerGroup\'));'), array(&$this)));
 				if ($this->captchaEnabled) {
 					$this->addCheck(new FormValidatorCaptcha($this, 'captcha', 'captchaId', 'common.captchaField.badCaptcha'));
 				}

@@ -128,12 +128,12 @@
 {/if}{* !$implicitAuth *}
 
 	{if $currentPress && ($allowRegAuthor || $allowRegReviewer)}
-		{fbvFormSection title="user.register.registerAs" list=true required=true}
+		{fbvFormSection title="user.register.registerAs" list=true}
 			{if $allowRegAuthor}
 				{iterate from=authorUserGroups item=userGroup}
 					{assign var="userGroupId" value=$userGroup->getId()}
 					{if $authorGroup == $userGroupId}{assign var="checked" value=true}{else}{assign var="checked" value=false}{/if}
-					{fbvElement type="radio" id="authorGroup-$userGroupId" name="authorGroup" value=$userGroupId label=$userGroup->getLocalizedName() translate=false checked=$checked required=true}
+					{fbvElement type="radio" id="authorGroup-$userGroupId" name="authorGroup" value=$userGroupId label=$userGroup->getLocalizedName() translate=false checked=$checked}
 				{/iterate}
 			{/if}
 			<div class="pkp_helpers_clear"></div>
