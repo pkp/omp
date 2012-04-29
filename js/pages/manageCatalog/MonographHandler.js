@@ -38,7 +38,10 @@
 		$monographsContainer.find('.star, .star_highlighted').click(
 				this.callbackWrapper(this.featureButtonHandler_));
 
-		$monographsContainer.find('[id^="-workflow-"]').click(
+		$monographsContainer.find('a[id^="catalogEntry"]').click(
+				this.callbackWrapper(this.activateAction));
+		
+		$monographsContainer.find('a[id^="workflow"]').click(
 				this.callbackWrapper(this.workflowButtonHandler_));
 
 		// Expose list events to the container
@@ -193,7 +196,7 @@
 		// Stop further event processing
 		return false;
 	};
-
+	
 
 	/**
 	 * Callback that will be activated when the submission workflow action is clicked
