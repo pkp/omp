@@ -154,10 +154,10 @@ jQuery.pkp.pages = jQuery.pkp.pages || { authorDashboard: { } };
 
 		// Connect the submission details grid. Use a closure
 		// to save a reference to the dashboard context.
-		$('#authorActions #addFile', $dashboard)
+		$('#addFile', $dashboard)
 				.bind('dataChanged',
 				function(dataChangedEvent) {
-					$('#component-grid-files-submission-authorsubmissiondetailsfilesgrid',
+					$('[id^="component-grid-files-submission-authorsubmissiondetailsfilesgrid"]:visible',
 							$dashboard)
 						.trigger(dataChangedEvent);
 				});
