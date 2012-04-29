@@ -70,7 +70,11 @@
 			{/fbvFormSection}
 		{/if}{* $showRemember *}
 		{if !$hideRegisterLink}
-			{url|assign:cancelUrl page="user" op=$registerOp}
+			{if $source}
+				{url|assign:cancelUrl page="user" op=$registerOp source=$source}
+			{else}
+				{url|assign:cancelUrl page="user" op=$registerOp}
+			{/if}
 			{fbvFormButtons cancelUrl=$cancelUrl cancelText=$registerLocaleKey submitText="user.login"}
 		{else}
 			{fbvFormButtons hideCancel=true submitText="user.login.resetPassword"}
