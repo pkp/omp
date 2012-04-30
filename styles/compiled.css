@@ -282,8 +282,8 @@ a.sprite.add_item:before {
   background-position:-576px 0;
 }
 a.sprite.add_item:hover:before { background-position:-576px -24px; }
-a.sprite.remove_item:before { background-position:-600px 0; }
-a.sprite.remove_item:hover:before { background-position:-600px -24px; }
+a.sprite.remove_item:before { background-position:-600px 0; margin-top: 8px; }
+a.sprite.remove_item:hover:before { background-position:-600px -24px; margin-top: 8px; }
 a.sprite.decline:before {
   margin-right:4px;
   background-position:-624px 0;
