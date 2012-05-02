@@ -1370,6 +1370,7 @@ a.pkp_common_disabled, a.pkp_common_disabled:hover { color:#666666; }
 .pkp_catalog_feature {
   border-top:1px dotted #999999;
   padding-top:10px;
+  margin-left:10px;
 }
 .pkp_catalog_feature .pkp_catalog_featureSpecs { float:left; }
 .pkp_catalog_feature .pkp_catalog_featureDetails { margin-top:50px; }
