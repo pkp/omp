@@ -1427,7 +1427,7 @@ a.pkp_common_disabled, a.pkp_common_disabled:hover { color:#666666; }
 .pkp_page_header .submission_progress li {
   line-height:33px;
   width:124px;
-  background-image:url('../lib/pkp/templates/images/structure/workflow_inaccessible.png');
+  background-image:url('../lib/pkp/templates/images/structure/workflow_inactive.png');
   border-right:1px white solid;
   text-align:center;
   color:#ffffff;
