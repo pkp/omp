@@ -10,10 +10,6 @@
 {include file="workflow/header.tpl"}
 {/strip}
 
-{* Editorial decision actions, if available *}
-{url|assign:reviewDecisionsUrl router=$smarty.const.ROUTE_PAGE page="workflow" op="editorDecisionActions" monographId=$monograph->getId() stageId=$stageId reviewRoundId=$reviewRoundId contextId="reviewRoundTab-"|concat:$reviewRoundId escape=false}
-{load_url_in_div id="reviewDecisionsDiv-"|concat:$reviewRoundId url=$reviewDecisionsUrl class="editorDecisionActions"}
-
 <script type="text/javascript">
 	// Attach the JS file tab handler.
 	$(function() {ldelim}
