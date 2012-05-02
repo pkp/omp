@@ -29,7 +29,7 @@ class ManageCatalogHandler extends Handler {
 			array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
 			array(
 				'index', // Container
-				'features', 'newReleases', 'search',
+				'homePage', 'search',
 				'getCategories', 'category', // By category
 				'getSeries', 'series', // By series
 				'setFeatured'
@@ -84,15 +84,15 @@ class ManageCatalogHandler extends Handler {
 	}
 
 	/**
-	 * View the tab contents for the Features tab.
+	 * View the tab contents for the Home Page tab.
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function features($args, &$request) {
+	function homePage($args, &$request) {
 		// Set up the monograph list template
 		$press =& $request->getPress();
 		$this->_setupMonographsTemplate(
-			true, 'features',
+			true, 'homePage',
 			ASSOC_TYPE_PRESS, $press->getId()
 		);
 
@@ -101,30 +101,6 @@ class ManageCatalogHandler extends Handler {
 		// Fetch the monographs to display
 		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
 		$publishedMonographs =& $publishedMonographDao->getByPressId($press->getId());
-		$templateMgr->assign('publishedMonographs', $publishedMonographs);
-
-		// Display the monograph list
-		$templateMgr->display('manageCatalog/monographs.tpl');
-	}
-
-	/**
-	 * View the tab contents for the New Releases tab.
-	 * @param $args array
-	 * @param $request PKPRequest
-	 */
-	function newReleases($args, &$request) {
-		// Set up the monograph list template
-		$press =& $request->getPress();
-		$this->_setupMonographsTemplate(
-			true, 'newReleases',
-			ASSOC_TYPE_NEW_RELEASE, $press->getId()
-		);
-
-		$templateMgr =& TemplateManager::getManager();
-
-		// Fetch the monographs to display
-		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
-		$publishedMonographs =& $publishedMonographDao->getNewReleases($press->getId());
 		$templateMgr->assign('publishedMonographs', $publishedMonographs);
 
 		// Display the monograph list

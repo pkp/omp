@@ -69,8 +69,7 @@
 
 	<div id="catalogTabs">
 		<ul>
-			<li><a href="{url op="features"}">{translate key="catalog.manage.features"}</a></li>
-			<li><a href="{url op="newReleases"}">{translate key="catalog.manage.newReleases"}</a></li>
+			<li><a href="{url op="homePage"}">{translate key="catalog.manage.homePage"}</a></li>
 			<li><a href="#categoryTab">{translate key="catalog.manage.category"}</a></li>
 			<li><a href="#seriesTab">{translate key="catalog.manage.series"}</a></li>
 			<li><a href="{url}">{translate key="search.searchResults"}</a></li>

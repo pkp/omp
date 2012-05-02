@@ -16,6 +16,7 @@
 	{include file="catalog/carousel.tpl" publishedMonographs=$publishedMonographs featuredMonographIds=$featuredMonographIds}
 {/if}
 
-<!-- Implement catalog index view -->
+{* Include the full monograph list *}
+{include file="catalog/monographs.tpl" publishedMonographs=$publishedMonographs}
 
 {include file="common/footer.tpl"}
