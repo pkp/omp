@@ -21,7 +21,7 @@
 	<message key="submission.workType.authoredWork">Authored Work</message>
 	<message key="submission.editorial">Editorial</message>
 	<message key="submission.production">Production</message>
-	<message key="submission.published">Published</message>
+	<message key="submission.published">Production Ready</message>
 	<message key="submission.finalDraft">Final Draft</message>
 	<message key="submission.fairCopy">Fair Copy</message>
 	<message key="submission.art">Artwork</message>

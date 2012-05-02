@@ -61,55 +61,39 @@
 	.submission_progress {
 		overflow: hidden;
 		font-size: 90%;
-		height: 40px;
 	}
 
 	.submission_progress li {
-		background-color: #efefef;
-		padding-left: 30px;
-		line-height: 40px;
+		line-height:33px;
+		width: 124px;
+		background-image:url('../lib/pkp/templates/images/structure/workflow_inaccessible.png');
+		border-right:1px white solid;
+		text-align: center;
+		color: #ffffff;
 	}
 
-	.submission_progress li.first {
-		padding-left: 10px;
+	.submission_progress li a {
+		text-decoration:none;
+		font: 100% "Courier New",Courier,mono;
+		text-transform: uppercase;
+		color:#ffffff;
+	}
+ 
+	.submission_progress li.actionNeeded {
+		background-image:url('../lib/pkp/templates/images/structure/workflow_actionNeeded.png');
 	}
 
-	.submission_progress li:after {
-		content: " ";
-		display: block;
-		width: 0;
-		height: 0;
-		border-top: 50px solid transparent;
-		border-bottom: 50px solid transparent;
-		border-left: 20px solid #efefef;
-		position: absolute;
-		top: 50%;
-		margin-top: -50px;
-		left: 100%;
-		z-index: 2;
+	.submission_progress li.stageDisabled {
+		background-image:none;
+		background-color:#E5E1DD;
 	}
 
-	.submission_progress li.complete {
-		background-color: #e5f4e5;
-	}
-
-	.submission_progress li.complete a:before {
-		background-position: -362px 0;
-		margin-top: 7px;
-	}
-
-	.submission_progress li.current a:before {
-		background-position: -338px 0;
-		margin-top: 7px;
-	}
-
-	.submission_progress li a:before {
-		background-position: -386px 0;
-		margin-top: 7px;
+	.submission_progress li.stageDisabled a {
+		color:#999999;
 	}
 
 	.submission_progress li.current {
- 		background-color: #EAF3F8;
+ 		background-image:url('../lib/pkp/templates/images/structure/workflow_current.png');
  	}
 
 	.submission_progress li.complete:after {
@@ -121,16 +105,6 @@
  	}
 
 	.submission_progress li:before {
-		content: " ";
-		display: block;
-		width: 0;
-		height: 0;
-		border-top: 50px solid transparent;
-		border-bottom: 50px solid transparent;
-		border-left: 20px solid #fff;
-		position: absolute;
-		top: 50%;
-		margin-top: -50px;
 		margin-left: 2px;
 		left: 100%;
 		z-index: 1;

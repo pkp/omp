@@ -339,9 +339,69 @@ class WorkflowHandler extends Handler {
 	function submissionProgressBar($args, &$request) {
 		// Assign the actions to the template.
 		$templateMgr =& TemplateManager::getManager();
+		$press =& $request->getPress();
+
+		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+		$workflowStages = $userGroupDao->getWorkflowStageKeysAndPaths();
+		$stageNotifications = array();
+		foreach (array_keys($workflowStages) as $stageId) {
+			$stageNotifications[$stageId] = $this->_notificationOptionsByStage($request->getUser(), $stageId, $press->getId());
+		}
+
+		$templateMgr->assign('stageNotifications', $stageNotifications);
 		return $templateMgr->fetchJson('workflow/submissionProgressBar.tpl');
 	}
 
+	/**
+	 * Determine if a particular stage has a notification pending.  If so, return true.
+	 * This is used to set the CSS class of the submission progress bar.
+	 * @param PKPUser $user
+	 * @param int $stageId
+	 */
+	function _notificationOptionsByStage(&$user, $stageId, $contextId) {
+
+		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		$notificationDao =& DAORegistry::getDAO('NotificationDAO');
+		$notificationMgr = new NotificationManager();
+
+		$signOffNotificationType = $notificationMgr->getSignoffNotificationTypeByStageId($stageId);
+		$editorAssignmentNotificationType = $notificationMgr->getEditorAssignmentNotificationTypeByStageId($stageId);
+
+		$editorAssignments =& $notificationDao->getByAssoc(ASSOC_TYPE_MONOGRAPH, $monograph->getId(), $user->getUserId(), $editorAssignmentNotificationType, $contextId);
+		if (isset($signOffNotificationType)) {
+			$signoffAssignments =& $notificationDao->getByAssoc(ASSOC_TYPE_MONOGRAPH, $monograph->getId(), $user->getUserId(), $signOffNotificationType, $contextId);
+		}
+
+		// if the User has assigned TASKs in this stage check, return true
+		if (!$editorAssignments->wasEmpty() || (isset($signoffAssignments) && !$signoffAssignments->wasEmpty())) {
+			return true;
+		}
+
+		// check for more specific notifications on those stages that have them.
+		if ($stageId == WORKFLOW_STAGE_ID_PRODUCTION) {
+			$submissionApprovalNotification =& $notificationDao->getByAssoc(ASSOC_TYPE_MONOGRAPH, $monograph->getId(), null, NOTIFICATION_TYPE_APPROVE_SUBMISSION, $contextId);
+			if (!$submissionApprovalNotification->wasEmpty()) {
+				return true;
+			}
+		}
+
+		if ($stageId == WORKFLOW_STAGE_ID_INTERNAL_REVIEW || $stageId == WORKFLOW_STAGE_ID_EXTERNAL_REVIEW) {
+			$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
+			$reviewRounds =& $reviewRoundDao->getByMonographId($monograph->getId());
+			$notificationTypes = array(NOTIFICATION_TYPE_REVIEW_ROUND_STATUS, NOTIFICATION_TYPE_ALL_REVIEWS_IN);
+			while ($reviewRound =& $reviewRounds->next()) {
+				foreach ($notificationTypes as $type) {
+					$notifications =& $notificationDao->getByAssoc(ASSOC_TYPE_REVIEW_ROUND, $reviewRound->getId(), null, $type, $contextId);
+					if (!$notifications->wasEmpty()) {
+						return true;
+					}
+				}
+				unset($reviewRound);
+			}
+		}
+
+		return false;
+	}
 
 	//
 	// Private helper methods
