@@ -38,6 +38,9 @@ class FinalDraftFilesGridHandler extends FileListGridHandler {
 				'fetchGrid', 'fetchRow', 'selectFiles'
 			)
 		);
+
+		$this->setTitle('submission.finalDraft');
+		$this->setInstructions('editor.monograph.editorial.finalDraftDescription');
 	}
 
 	//

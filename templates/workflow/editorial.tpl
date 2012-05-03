@@ -16,10 +16,6 @@
 
 	<p>{translate key="editor.monograph.editorial.introduction"}</p>
 
-	<h3 class="pkp_grid_title">{translate key="submission.finalDraft"}</h3>
-
-	<p class="pkp_grid_description">{translate key="editor.monograph.editorial.finalDraftDescription"}</p>
-
 	{url|assign:finalDraftGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.final.FinalDraftFilesGridHandler" op="fetchGrid" monographId=$monograph->getId() stageId=$stageId escape=false}
 	{load_url_in_div id="finalDraftGrid" url=$finalDraftGridUrl}
 
