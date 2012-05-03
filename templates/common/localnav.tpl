@@ -23,6 +23,9 @@
 				<li><a href="{url page="about" op="submissions"}">{translate key="about.submissions"}</a></li>
 			</ul>
 		</li>
+		<li>
+			<a href="{url page="catalog"}">{translate key="navigation.catalog"}</a>
+		</li>
 	{/if}
 {/capture}
 
