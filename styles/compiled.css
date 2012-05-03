@@ -1182,6 +1182,7 @@ div.pkp_controllers_grid .pkp_controllers_grid_settings_stages {
   font-size:80%;
   padding:0px;
 }
+div.pkp_controllers_listbuilder thead, div.pkp_controllers_listbuilder tr.gridRow, div.pkp_controllers_listbuilder tr.empty { border-bottom:1px solid #c8c7c7; }
 div.pkp_controllers_listbuilder .gridCellEdit { display:none; }
 div.pkp_controllers_listbuilder .gridRowEdit .gridCellEdit { display:block; }
 div.pkp_controllers_listbuilder .gridRowEdit .gridCellDisplay { display:none; }
