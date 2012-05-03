@@ -17,7 +17,7 @@
 		$('#catalogHeader').pkpHandler(
 			'$.pkp.pages.manageCatalog.ManageCatalogHeaderHandler',
 			{ldelim}
-				searchTabIndex: 4,
+				searchTabIndex: 3,
 				seriesFetchUrlTemplate: '{url|escape:"javascript" op="series" path=SERIES_PATH escape=false}',
 				categoryFetchUrlTemplate: '{url|escape:"javascript" op="category" path=CATEGORY_PATH escape=false}'
 			{rdelim}
