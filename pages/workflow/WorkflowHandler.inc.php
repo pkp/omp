@@ -367,7 +367,7 @@ class WorkflowHandler extends Handler {
 		$signOffNotificationType = $notificationMgr->getSignoffNotificationTypeByStageId($stageId);
 		$editorAssignmentNotificationType = $notificationMgr->getEditorAssignmentNotificationTypeByStageId($stageId);
 
-		$editorAssignments =& $notificationDao->getByAssoc(ASSOC_TYPE_MONOGRAPH, $monograph->getId(), $user->getUserId(), $editorAssignmentNotificationType, $contextId);
+		$editorAssignments =& $notificationDao->getByAssoc(ASSOC_TYPE_MONOGRAPH, $monograph->getId(), null, $editorAssignmentNotificationType, $contextId);
 		if (isset($signOffNotificationType)) {
 			$signoffAssignments =& $notificationDao->getByAssoc(ASSOC_TYPE_MONOGRAPH, $monograph->getId(), $user->getUserId(), $signOffNotificationType, $contextId);
 		}
