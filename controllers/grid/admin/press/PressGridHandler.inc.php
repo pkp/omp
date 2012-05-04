@@ -259,6 +259,8 @@ class PressGridHandler extends GridHandler {
 		// Identify the press Id.
 		$pressId = $request->getUserVar('rowId');
 		$pressDao =& DAORegistry::getDAO('PressDAO');
+		$press =& $pressDao->getById($pressId);
+		
 		$json = new JSONMessage();
 
 		if ($pressId) {
@@ -266,7 +268,7 @@ class PressGridHandler extends GridHandler {
 				// Add publication formats tombstones for all press published monographs.
 				import('classes.publicationFormat.PublicationFormatTombstoneManager');
 				$publicationFormatTombstoneMgr = new PublicationFormatTombstoneManager();
-				$publicationFormatTombstoneMgr->insertTombstonesByPress($context);
+				$publicationFormatTombstoneMgr->insertTombstonesByPress($press);
 
 				// Delete press file tree
 				// FIXME move this somewhere better.
