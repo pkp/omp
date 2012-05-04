@@ -148,10 +148,7 @@ ul.tagit input[type="text"] {
   background-color:inherit;
   outline:none;
 }
-em {
-  font-style:italic;
-  font-style:italic;
-}
+em { font-style:italic; }
 strong {
   font-weight:bold;
   font-weight:bold;
@@ -1324,9 +1321,9 @@ a.pkp_common_disabled, a.pkp_common_disabled:hover { color:#666666; }
   padding:0;
 }
 .pkp_manageCatalog_monographList.grid_view .pkp_manageCatalog_monograph {
-  width:106px;
+  width:125px;
   float:left;
-  margin:3px 3px 3px 0;
+  margin:3px 10px 3px 0;
   padding:1px;
 }
 .pkp_manageCatalog_monographList.list_view .pkp_manageCatalog_monograph_image {
@@ -1338,6 +1335,7 @@ a.pkp_common_disabled, a.pkp_common_disabled:hover { color:#666666; }
   height:100px;
   overflow:hidden;
 }
+.pkp_manageCatalog_monographList .pkp_manageCatalog_monograph_title { font-style:italic; }
 .pkp_catalog_carousel { width:33%; }
 .pkp_catalog_carousel img { background:#ffffff; }
 .pkp_catalog_seriesDescription, .pkp_catalog_categoryDescription {

@@ -51,8 +51,8 @@
 	</div>
 	<div class="pkp_manageCatalog_monograph_actions pkp_linkActions">
 		{fbvFormSection list="true"}
-			<li>{null_link_action key="submission.catalogEntry" id="catalogEntry-"|concat:$monographId image="information"}</li>
-			<li>{null_link_action key="submission.submission" id="workflow-"|concat:$monographId image="revisions"}</li>
+			<li>{null_link_action key="submission.editCatalogEntry" id="catalogEntry-"|concat:$monographId image="information"}</li>
+			<li>{null_link_action key="submission.goToWorkflow" id="workflow-"|concat:$monographId image="revisions"}</li>
 		{/fbvFormSection}
 	</div>
 	<div class="pkp_manageCatalog_monograph_title pkp_helpers_clear">
