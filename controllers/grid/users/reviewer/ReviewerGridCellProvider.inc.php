@@ -186,11 +186,10 @@ class ReviewerGridCellProvider extends DataObjectGridCellProvider {
 				'sendReminder',
 				new AjaxModal(
 					$router->url($request, null, null, 'editReminder', null, $actionArgs),
-					__('editor.review.reminder'),
-					'request_review'
+					__('editor.review.reminder') //FIXME: insert icon
 				),
 				$this->_getHoverTitleText('reminder'),
-				$state
+				'request_review'
 			);
 		} elseif ($state == 'read') {
 			$action = new LinkAction(

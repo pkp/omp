@@ -419,11 +419,6 @@ a.sprite.return:before {
   background-position:-1320px 0;
 }
 a.sprite.return:hover:before { background-position:-1320px -24px; }
-a.sprite.return:request_review {
-  margin-right:4px;
-  background-position:-1344px 0;
-}
-a.sprite.return:hover:request_review { background-position:-1344px -24px; }
 .category.delete:before {
   margin-left:5px;
   background-position:-1008px 0;
@@ -1124,6 +1119,7 @@ div.pkp_controllers_grid .pkp_controllers_grid_settings_stages {
 .pkp_controllers_grid a.completed { background-image:url(../lib/pkp/templates/images/structure/grid_task_complete.png); }
 .pkp_controllers_grid a.overdue { background-image:url(../lib/pkp/templates/images/structure/grid_email_overdue.png); }
 .pkp_controllers_grid a.uploaded { background-image:url(../lib/pkp/templates/images/structure/grid_folder.png); }
+.pkp_controllers_grid a.request_review { background-image:url(../lib/pkp/templates/images/structure/grid_request_review.png); }
 .pkp_controllers_grid div.checked {
   background-image:url(../lib/pkp/templates/images/structure/grid_promote.png);
   height:15px;
