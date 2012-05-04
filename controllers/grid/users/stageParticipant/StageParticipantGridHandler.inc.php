@@ -129,7 +129,7 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 			);
 		}
 
-		$this->setEmptyRowText('editor.monograph.noneAssigned');
+		$this->setEmptyCategoryRowText('editor.monograph.noneAssigned');
 	}
 
 
