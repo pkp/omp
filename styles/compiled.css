@@ -1307,6 +1307,16 @@ span.pkp_controllers_informationCenter_itemLastEvent {
   float:left;
 }
 a.pkp_common_disabled, a.pkp_common_disabled:hover { color:#666666; }
+.button.ui-state-default {
+  background:white url(../templates/images/button_bg_slice.png) repeat-x !important;
+  color:white !important;
+  border:none !important;
+}
+.button.ui-state-hover, .button.ui-state-active {
+  background:white url(../templates/images/button_bg_slice_hover.png) repeat-x !important;
+  color:white !important;
+  border:none !important;
+}
 .pkp_submissionChecklist ul li label.error { margin-bottom:15px; }
 .pkp_manageCatalog_monographList {
   list-style-type:none;
