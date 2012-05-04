@@ -1223,6 +1223,7 @@ div.pkp_controllers_listbuilder .list_wrapper {
   background-position:15px 50% !important;
   background-repeat:no-repeat !important;
   padding:5px 20px 5px 60px;
+  min-height:30px;
 }
 .pkp_notification p { display:inline; }
 .pkp_notification h4 {
