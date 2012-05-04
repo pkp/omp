@@ -1224,38 +1224,18 @@ div.pkp_controllers_listbuilder .list_wrapper {
   background-repeat:no-repeat !important;
   padding:5px 20px 5px 60px;
 }
-.pkp_notification p { display:inline-block; }
+.pkp_notification p { display:inline; }
+.pkp_notification h4 {
+  display:inline;
+  padding-right:0px;
+}
 .pkp_notification .pkp_linkActions { line-height:24px; }
-.pkp_notification .notifySuccess {
-  background:#daf0da url(../lib/pkp/templates/images/structure/response_success.png);
-  border-top:1px solid #5abd5a;
-  border-bottom:1px solid #5abd5a;
-}
-.pkp_notification .notifyWarning {
-  background:#fffae1 url(../lib/pkp/templates/images/structure/response_warning.png);
-  border-top:1px solid #ffd324;
-  border-bottom:1px solid #ffd324;
-}
-.pkp_notification .notifyError, .pkp_notification .notifyFormError {
-  background:#f8dada url(../lib/pkp/templates/images/structure/response_error.png);
-  border-top:1px solid #e68080;
-  border-bottom:1px solid #e68080;
-}
-.pkp_notification .notifyForbidden {
-  background:#f8dada url(../lib/pkp/templates/images/structure/response_forbidden.png);
-  border-top:1px solid #e68080;
-  border-bottom:1px solid #e68080;
-}
-.pkp_notification .notifyInformation {
-  background:#c9e3f8 url(../lib/pkp/templates/images/structure/response_info.png);
-  border-top:1px solid #6aa6d6;
-  border-bottom:1px solid #6aa6d6;
-}
-.pkp_notification .notifyHelp {
-  background:#c9e3f8 url(../lib/pkp/templates/images/structure/response_help.png);
-  border-top:1px solid #6aa6d6;
-  border-bottom:1px solid #6aa6d6;
-}
+.pkp_notification .notifySuccess { background:#daf0da url(../lib/pkp/templates/images/structure/response_success.png); }
+.pkp_notification .notifyWarning { background:#fffae1 url(../lib/pkp/templates/images/structure/response_warning.png); }
+.pkp_notification .notifyError, .pkp_notification .notifyFormError { background:#f8dada url(../lib/pkp/templates/images/structure/response_error.png); }
+.pkp_notification .notifyForbidden { background:#f8dada url(../lib/pkp/templates/images/structure/response_forbidden.png); }
+.pkp_notification .notifyInformation { background:#c9e3f8 url(../lib/pkp/templates/images/structure/response_info.png); }
+.pkp_notification .notifyHelp { background:#c9e3f8 url(../lib/pkp/templates/images/structure/response_help.png); }
 .pkp_controllers_modal_titleBar {
   height:48px;
   width:100%;
