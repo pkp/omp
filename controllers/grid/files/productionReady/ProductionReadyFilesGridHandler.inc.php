@@ -49,6 +49,9 @@ class ProductionReadyFilesGridHandler extends SubmissionFilesGridHandler {
 	function initialize($request) {
 		parent::initialize($request);
 
+		$this->setTitle('editor.monograph.production.productionReadyFiles');
+		$this->setInstructions('editor.monograph.production.productionReadyFilesDescription');
+
 		$currentUser =& $request->getUser();
 
 		// Get all the uploader user group id's

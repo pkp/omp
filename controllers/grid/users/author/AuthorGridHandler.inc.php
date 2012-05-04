@@ -102,6 +102,9 @@ class AuthorGridHandler extends GridHandler {
 	function initialize(&$request) {
 		parent::initialize($request);
 
+		$this->setTitle('submission.contributors');
+		$this->setInstructions('submission.contributorsDescription');
+
 		// Retrieve the authorized monograph.
 		$this->setMonograph($this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH));
 

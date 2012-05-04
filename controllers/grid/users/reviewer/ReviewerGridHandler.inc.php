@@ -142,6 +142,9 @@ class ReviewerGridHandler extends GridHandler {
 			LOCALE_COMPONENT_OMP_EDITOR
 		);
 
+		$this->setTitle('user.role.reviewers');
+		$this->setInstructions('editor.monograph.review.reviewersDescription');
+
 		// Grid actions
 		import('lib.pkp.classes.linkAction.request.AjaxModal');
 		$router =& $request->getRouter();

@@ -42,6 +42,9 @@ class CopyeditingFilesGridHandler extends SignoffFilesGridHandler {
 	function initialize(&$request) {
 		parent::initialize($request);
 
+		$this->setTitle('submission.copyediting');
+		$this->setInstructions('editor.monograph.editorial.copyeditingDescription');
+
 		// Basic grid configuration
 		$this->setId('copyeditingFiles');
 

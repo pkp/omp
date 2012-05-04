@@ -93,6 +93,9 @@ class ChapterGridHandler extends CategoryGridHandler {
 	function initialize(&$request) {
 		parent::initialize($request);
 
+		$this->setTitle('submission.chapters');
+		$this->setInstructions('submission.chaptersDescription');
+
 		// Retrieve the authorized monograph
 		$monograph =& $this->getMonograph();
 

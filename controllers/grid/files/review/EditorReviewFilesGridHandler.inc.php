@@ -31,6 +31,9 @@ class EditorReviewFilesGridHandler extends FileListGridHandler {
 			array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_ASSISTANT),
 			array('fetchGrid', 'fetchRow', 'selectFiles')
 		);
+
+		$this->setInstructions('editor.monograph.review.reviewFilesDescription');
+		$this->setTitle('reviewer.monograph.reviewFiles');
 	}
 
 

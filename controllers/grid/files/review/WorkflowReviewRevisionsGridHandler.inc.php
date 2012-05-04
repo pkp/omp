@@ -24,6 +24,9 @@ class WorkflowReviewRevisionsGridHandler extends ReviewRevisionsGridHandler {
 			array('fetchGrid', 'fetchRow', 'signOffFile')
 		);
 		parent::ReviewRevisionsGridHandler($roleAssignments);
+
+		$this->setTitle('editor.monograph.revisions');
+		$this->setInstructions('editor.monograph.revisionsDescription');
 	}
 }
 

@@ -49,6 +49,9 @@ class FairCopyFilesGridHandler extends FileSignoffGridHandler {
 	function initialize(&$request) {
 		parent::initialize($request);
 
+		$this->setTitle('editor.monograph.editorial.fairCopy');
+		$this->setInstructions('editor.monograph.editorial.fairCopyDescription');
+
 		// Rename the Press Assistant column to copyeditor
 		$columnId = 'role-' . ROLE_ID_PRESS_ASSISTANT;
 		if ($this->hasColumn($columnId)) {

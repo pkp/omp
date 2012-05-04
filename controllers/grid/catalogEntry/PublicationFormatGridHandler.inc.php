@@ -84,6 +84,9 @@ class PublicationFormatGridHandler extends GridHandler {
 	function initialize(&$request) {
 		parent::initialize($request);
 
+		$this->setTitle('monograph.publicationFormats');
+		$this->setInstructions('editor.monograph.production.publicationFormatDescription');
+
 		// Retrieve the authorized monograph.
 		$this->setMonograph($this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH));
 
@@ -92,7 +95,8 @@ class PublicationFormatGridHandler extends GridHandler {
 			LOCALE_COMPONENT_OMP_SUBMISSION,
 			LOCALE_COMPONENT_PKP_SUBMISSION,
 			LOCALE_COMPONENT_PKP_USER,
-			LOCALE_COMPONENT_OMP_DEFAULT_SETTINGS
+			LOCALE_COMPONENT_OMP_DEFAULT_SETTINGS,
+			LOCALE_COMPONENT_OMP_EDITOR
 		);
 
 		// Grid actions
