@@ -38,7 +38,6 @@
 					{assign var="progressClass" value="overlay"}
 				{/if}
 				<li class="{$progressClass}">
-					&nbsp;
 				</li>
 			{/foreach}
 		</ul>
@@ -74,7 +73,6 @@
 					{assign var="progressClass" value="underlay"}
 				{/if}
 				<li class="{$progressClass}">
-					&nbsp;
 				</li>
 			{/foreach}
 		</ul>

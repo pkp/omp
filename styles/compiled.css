@@ -1412,18 +1412,18 @@ a.pkp_common_disabled, a.pkp_common_disabled:hover { color:#666666; }
   padding-top:30px;
 }
 .pkp_page_header .submission_progress_highlight li {
-  line-height:5px;
+  padding-top:2px;
   width:124px;
   color:#ffffff;
   border-right:1px white solid;
 }
 .pkp_page_header .submission_progress_highlight li.overlay {
-  line-height:5px;
   background-color:#5c8eb2;
+  padding-top:2px;
 }
 .pkp_page_header .submission_progress_highlight li.underlay {
-  line-height:5px;
   background-color:#adcbdf;
+  padding-top:2px;
 }
 .pkp_page_header .submission_progress {
   overflow:hidden;
