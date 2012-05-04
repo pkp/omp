@@ -55,7 +55,32 @@
 
 	.submission_progress_wrapper {
 		clear: both;
+	}
+
+	.submission_progress_highlight {
+		clear: both;
+	}
+
+	.submission_progress_overlay {
+		clear: both;
 		padding-top: 30px;
+	}
+	
+	.submission_progress_highlight li {
+		line-height:5px;
+		width: 124px;
+		color: #ffffff;
+		border-right:1px white solid;
+	}
+
+	.submission_progress_highlight li.overlay {
+		line-height:5px;
+		background-color: #5c8eb2;
+	}
+
+	.submission_progress_highlight li.underlay {
+		line-height:5px;
+		background-color: #adcbdf;
 	}
 
 	.submission_progress {
@@ -94,6 +119,7 @@
 
 	.submission_progress li.current {
  		background-image:url('../lib/pkp/templates/images/structure/workflow_current.png');
+ 		font-size: 110%;
  	}
 
 	.submission_progress li.complete:after {
