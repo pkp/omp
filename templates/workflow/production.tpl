@@ -10,8 +10,6 @@
 {include file="workflow/header.tpl"}
 {/strip}
 
-{include file="controllers/notification/inPlaceNotification.tpl" notificationId="productionNotification" requestOptions=$productionNotificationRequestOptions}
-
 <script type="text/javascript">
 	// Initialise JS handler.
 	$(function() {ldelim}
@@ -25,6 +23,8 @@
 </script>
 
 <div id="production">
+	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="productionNotification" requestOptions=$productionNotificationRequestOptions}
+
 	<p>{translate key="editor.monograph.production.introduction"}</p>
 
 	{url|assign:productionReadyFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.productionReady.ProductionReadyFilesGridHandler" op="fetchGrid" monographId=$monograph->getId() stageId=$stageId escape=false}
