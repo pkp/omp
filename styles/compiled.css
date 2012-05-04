@@ -419,6 +419,11 @@ a.sprite.return:before {
   background-position:-1320px 0;
 }
 a.sprite.return:hover:before { background-position:-1320px -24px; }
+a.sprite.return:request_review {
+  margin-right:4px;
+  background-position:-1344px 0;
+}
+a.sprite.return:hover:request_review { background-position:-1344px -24px; }
 .category.delete:before {
   margin-left:5px;
   background-position:-1008px 0;
