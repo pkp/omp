@@ -6,7 +6,7 @@
  *
  * Announcement form to read/create/edit announcements.
  *}
- 
+
 <script type="text/javascript">
 	$(function() {ldelim}
 		// Attach the form handler.
@@ -17,7 +17,7 @@
 <form class="pkp_form" id="announcementForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.content.announcements.ManageAnnouncementGridHandler" op="updateAnnouncement"}">
 	{if $readOnly}
 		{* Read only announcement *}
-	
+
 		{fbvFormArea id="announcementInfo"}
 			{fbvFormSection title="common.title"}
 				{$announcement->getLocalizedTitleFull()|escape}
@@ -32,7 +32,7 @@
 		{/fbvFormArea}
 	{else}
 		{* Editable announcement *}
-	
+
 		{include file="controllers/notification/inPlaceNotification.tpl" notificationId="announcementFormNotification"}
 		{fbvFormArea id="announcementInfo"}
 			{if $announcement}
@@ -55,7 +55,7 @@
 			</script>
 			{fbvFormSection title="manager.announcements.form.dateExpire" for="dataExpire"}
 				{fbvElement type="text" id="dateExpire" value=$dateExpire label="manager.announcements.form.dateExpireInstructions" size=$fbvStyles.size.MEDIUM}
-			{/fbvFormSection}		
+			{/fbvFormSection}
 		{/fbvFormArea}
 		{fbvFormButtons id="announcementFormSubmit" submitText="common.save"}
 	{/if}
