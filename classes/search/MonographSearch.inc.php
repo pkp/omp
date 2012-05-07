@@ -229,11 +229,10 @@ class MonographSearch {
 	function &formatResults(&$results) {
 		$pressDao =& DAORegistry::getDAO('PressDAO');
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
-		$seriesDao =& DAORegistry::getDAO('SeriesArrangmentDAO');
 
-		$seriesCache = array();
 		$monographCache = array();
 		$pressCache = array();
+		$seriesCache = array();
 
 		$returner = array();
 		foreach ($results as $monographId) {

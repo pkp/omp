@@ -140,10 +140,7 @@
 				</div>
 				<div class="unit size4of5 lastUnit">
 					{include file="common/breadcrumbs.tpl"}
-					<div class="pkp_structure_search pkp_helpers_align_right">
-						<input type="text" value="{translate key="common.search"}..." />
-						<button class="go">{translate key="common.go"}</button>
-					</div>
+					{include file="common/search.tpl"}
 				</div>
 
 				{if !$leftSidebarCode && !$rightSidebarCode}
