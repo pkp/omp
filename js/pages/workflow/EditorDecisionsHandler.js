@@ -26,7 +26,7 @@
 			function($editorDecisions, options) {
 
 		this.parent($editorDecisions, options);
-		
+
 		var $editorDecisionLinks = $('a', $editorDecisions);
 		$editorDecisionLinks.button();
 	};
@@ -34,6 +34,6 @@
 			$.pkp.pages.workflow.EditorDecisionsHandler,
 			$.pkp.classes.Handler);
 
-	
+
 /** @param {jQuery} $ jQuery closure. */
 })(jQuery);

@@ -40,7 +40,7 @@
 
 		$monographsContainer.find('a[id^="catalogEntry"]').click(
 				this.callbackWrapper(this.activateAction));
-		
+
 		$monographsContainer.find('a[id^="workflow"]').click(
 				this.callbackWrapper(this.workflowButtonHandler_));
 
@@ -196,7 +196,7 @@
 		// Stop further event processing
 		return false;
 	};
-	
+
 
 	/**
 	 * Callback that will be activated when the submission workflow action is clicked

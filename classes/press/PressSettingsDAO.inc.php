@@ -183,7 +183,7 @@ class PressSettingsDAO extends DAO {
 	 * Used internally by installSettings to perform variable and translation replacements.
 	 * @param $rawInput string contains text including variable and/or translate replacements.
 	 * @param $paramArray array contains variables for replacement
-	 * @returns string
+	 * @return string
 	 */
 	function _performReplacement($rawInput, $paramArray = array()) {
 		$value = preg_replace_callback('{{translate key="([^"]+)"}}', '_installer_regexp_callback', $rawInput);
@@ -268,7 +268,7 @@ class PressSettingsDAO extends DAO {
 	 * @param $rawInput string contains text including variable and/or translate replacements.
 	 * @param $paramArray array contains variables for replacement
 	 * @param $locale string contains the name of the locale that should be used for the translation
-	 * @returns string
+	 * @return string
 	 */
 	function _performLocalizedReplacement($rawInput, $paramArray = array(), $locale = null) {
 		$value = preg_replace_callback(

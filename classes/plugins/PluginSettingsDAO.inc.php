@@ -204,7 +204,7 @@ class PluginSettingsDAO extends DAO {
 	 * Used internally by installSettings to perform variable and translation replacements.
 	 * @param $rawInput string contains text including variable and/or translate replacements.
 	 * @param $paramArray array contains variables for replacement
-	 * @returns string
+	 * @return string
 	 */
 	function _performReplacement($rawInput, $paramArray = array()) {
 		$value = preg_replace_callback('{{translate key="([^"]+)"}}', '_installer_plugin_regexp_callback', $rawInput);

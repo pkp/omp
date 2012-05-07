@@ -24,7 +24,7 @@ jQuery.pkp.controllers.catalog =
 	 *
 	 * @extends $.pkp.controllers.form.FileUploadFormHandler
 	 *
-	 * @param {jQuery} $modal A wrapped HTML element that
+	 * @param {jQuery} $form A wrapped HTML element that
 	 *  represents the tabbed interface element.
 	 * @param {Object} options Tabbed modal options.
 	 */
@@ -70,7 +70,7 @@ jQuery.pkp.controllers.catalog =
 			function(sourceElement, event) {
 
 		var $form = this.getHtmlElement();
-		if ($(sourceElement).val() != '') {
+		if ($(sourceElement).val() !== '') {
 			this.audienceValues_ = [$form.find('#audienceRangeFrom').val(), $form.find('#audienceRangeTo').val()];
 			$form.find('#audienceRangeFrom, #audienceRangeTo').val('').attr('disabled', 'disabled');
 		} else {
