@@ -648,6 +648,11 @@ body {
 .pkp_linkActions a.remove_item { background-image:url(../lib/pkp/templates/images/structure/lb_delete.png); }
 .pkp_linkActions a.promote { background-image:url(../lib/pkp/templates/images/structure/grid_promote.png); }
 .pkp_linkActions a.enable { background-image:url(../lib/pkp/templates/images/structure/grid_promote.png); }
+.editor_decision_actions a {
+  margin-right:10px;
+  margin-bottom:10px;
+}
+.editor_decision_actions .ui-button-text-only .ui-button-text { padding:0.34em 1em !important; }
 table.pkp_listing td { padding:0.25em 1.5em 0.25em 0.5em; }
 table.pkp_listing tr.heading td, table.pkp_listing td.heading {
   font-size:0.85em;
@@ -1304,12 +1309,12 @@ span.pkp_controllers_informationCenter_itemLastEvent {
   float:left;
 }
 a.pkp_common_disabled, a.pkp_common_disabled:hover { color:#666666; }
-.button.ui-state-default {
+.button.ui-state-default, .ui-button {
   background:white url(../templates/images/button_bg_slice.png) repeat-x !important;
   color:white !important;
   border:none !important;
 }
-.button.ui-state-hover, .button.ui-state-active {
+.button.ui-state-hover, .ui-button.ui-state-hover, .button.ui-state-active, .ui-button.ui-state-active {
   background:white url(../templates/images/button_bg_slice_hover.png) repeat-x !important;
   color:white !important;
   border:none !important;

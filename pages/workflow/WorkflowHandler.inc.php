@@ -320,14 +320,14 @@ class WorkflowHandler extends Handler {
 					),
 					__($action['title'])
 				),
-				__($action['title']),
-				(isset($action['image']) ? $action['image'] : null)
+				__($action['title'])
 			);
 		}
 
 		// Assign the actions to the template.
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('editorActions', $editorActions);
+		$templateMgr->assign('stageId', $stageId);
 		return $templateMgr->fetchJson('workflow/editorialLinkActions.tpl');
 	}
 

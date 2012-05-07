@@ -111,6 +111,7 @@
 <script type="text/javascript" src="{$baseUrl}/js/pages/workflow/WorkflowHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/js/pages/workflow/SubmissionHeaderHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/js/pages/workflow/ProductionHandler.js"></script>
+<script type="text/javascript" src="{$baseUrl}/js/pages/workflow/EditorDecisionsHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/js/pages/admin/PressesHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/js/site/form/PressSwitcherFormHandler.js"></script>
 
