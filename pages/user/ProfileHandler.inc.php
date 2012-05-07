@@ -34,8 +34,15 @@ class ProfileHandler extends UserHandler {
 	 */
 	function authorize(&$request, $args, $roleAssignments) {
 		$operations = array('profile', 'saveProfile', 'changePassword', 'savePassword');
+
+		// Site access policy
 		import('lib.pkp.classes.security.authorization.PKPSiteAccessPolicy');
 		$this->addPolicy(new PKPSiteAccessPolicy($request, $operations, SITE_ACCESS_ALL_ROLES));
+
+		// User must be logged in
+		import('lib.pkp.classes.security.authorization.UserRequiredPolicy');
+		$this->addPolicy(new UserRequiredPolicy($request));
+
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 
@@ -131,7 +138,6 @@ class ProfileHandler extends UserHandler {
 			$passwordForm->display($args, $request);
 		}
 	}
-
 }
 
 ?>

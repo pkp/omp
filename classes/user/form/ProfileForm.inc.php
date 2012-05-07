@@ -28,6 +28,7 @@ class ProfileForm extends Form {
 		parent::Form('user/profile.tpl');
 
 		$this->_user =& $user;
+		assert($user);
 
 		// Validation checks for this form
 		$this->addCheck(new FormValidator($this, 'firstName', 'required', 'user.profile.form.firstNameRequired'));
