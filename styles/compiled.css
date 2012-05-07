@@ -953,7 +953,11 @@ div.pkp_controllers_grid table {
   background-color:#ffffff;
   border-collapse:collapse;
 }
-div.pkp_controllers_grid thead, div.pkp_controllers_grid tr.gridRow, div.pkp_controllers_grid tr.row_controls, div.pkp_controllers_grid tr.category, div.pkp_controllers_grid .empty tr { border-bottom:1px solid #c8c7c7; }
+div.pkp_controllers_grid thead, div.pkp_controllers_grid tr.gridRow td, div.pkp_controllers_grid tr.row_controls td, div.pkp_controllers_grid .empty tr { border-bottom:1px solid #c8c7c7; }
+div.pkp_controllers_grid tr.category {
+  border-bottom:1px solid #c8c7c7;
+  border-top:1px solid #c8c7c7;
+}
 div.pkp_controllers_grid tbody.empty td { padding-left:10px; }
 div.pkp_controllers_grid thead tr {
   height:30px;
@@ -973,9 +977,13 @@ div.pkp_controllers_grid td {
   vertical-align:middle;
   padding:0px;
 }
-div.pkp_controllers_grid th:first-child, div.pkp_controllers_grid td:first-child, div.pkp_controllers_grid col.first_column { text-align:left !important; }
-div.pkp_controllers_grid td.first_column { padding:0 !important; }
+div.pkp_controllers_grid th:first-child, div.pkp_controllers_grid td:first-child, div.pkp_controllers_grid .category_grid_body td:first-child + td { text-align:left !important; }
+div.pkp_controllers_grid td.first_column {
+  text-align:left !important;
+  padding:0 !important;
+}
 div.pkp_controllers_grid td.category { display:table-row; }
+div.pkp_controllers_grid td.no_border { border:none !important; }
 div.pkp_controllers_grid tr.category td {
   line-height:32px;
   height:32px;
@@ -1053,6 +1061,7 @@ div.pkp_controllers_grid .row_controls td {
   line-height:25px;
   height:25px;
 }
+div.pkp_controllers_grid .row_controls td.indent_row { padding-left:0px; }
 div.pkp_controllers_grid .row_controls a {
   float:left;
   margin-right:20px;
@@ -1101,6 +1110,7 @@ div.pkp_controllers_grid .grid_controls {
   height:26px;
 }
 div.pkp_controllers_grid .ordering:hover { background:#eaf3f8 !important; }
+div.pkp_controllers_grid .indent_row { width:40px; }
 div.pkp_controllers_grid tbody.ui-sortable-placeholder { display:block; }
 div.pkp_controllers_grid tbody.ui-sortable-helper { display:table; }
 div.pkp_controllers_grid .group1 td:first-child { background:url(../lib/pkp/templates/images/structure/grid_group_1.png) no-repeat; }
