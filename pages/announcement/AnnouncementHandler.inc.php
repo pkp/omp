@@ -55,6 +55,27 @@ class AnnouncementHandler extends Handler {
 
 		$templateMgr->display('announcements/index.tpl');
 	}
+
+	/**
+	 * Show 'more' announcement page.
+	 * @var $args array
+	 * @var $request PKPRequest
+	 * @return string
+	 */
+	function view($args, &$request) {
+		$this->setupTemplate();
+
+		$press =& $request->getPress();
+
+		$announcementDao =& DAORegistry::getDAO('AnnouncementDAO');
+		$announcementId = array_shift($args);
+		$announcement =& $announcementDao->getById($announcementId);
+
+		$templateMgr =& TemplateManager::getManager();
+		$templateMgr->assign('announcement', $announcement);
+
+		$templateMgr->display('announcements/view.tpl');
+	}
 }
 
 ?>
