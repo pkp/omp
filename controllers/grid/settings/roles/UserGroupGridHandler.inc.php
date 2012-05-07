@@ -29,7 +29,7 @@ class UserGroupGridHandler extends CategoryGridHandler {
 	 * Constructor
 	 */
 	function UserGroupGridHandler() {
-		parent::GridHandler();
+		parent::CategoryGridHandler();
 
 		$this->addRoleAssignment(
 			array(ROLE_ID_PRESS_MANAGER),

@@ -30,7 +30,7 @@ class PluginGridHandler extends CategoryGridHandler {
 		$this->addRoleAssignment(ROLE_ID_SITE_ADMIN,
 			array('installPlugin', 'upgradePlugin', 'deletePlugin'));
 
-		parent::GridHandler();
+		parent::CategoryGridHandler();
 	}
 
 

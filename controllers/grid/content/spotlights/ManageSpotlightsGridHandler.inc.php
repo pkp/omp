@@ -39,7 +39,7 @@ class ManageSpotlightsGridHandler extends CategoryGridHandler {
 	 * Constructor
 	 */
 	function ManageSpotlightsGridHandler() {
-		parent::GridHandler();
+		parent::CategoryGridHandler();
 		$this->addRoleAssignment(
 				array(ROLE_ID_PRESS_MANAGER),
 				array('fetchGrid', 'fetchRow', 'addSpotlight', 'editSpotlight',

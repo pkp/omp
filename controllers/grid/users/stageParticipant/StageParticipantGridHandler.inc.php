@@ -24,7 +24,7 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 	 * Constructor
 	 */
 	function StageParticipantGridHandler() {
-		parent::GridHandler();
+		parent::CategoryGridHandler();
 		// Press Assistants get read-only access
 		$this->addRoleAssignment(
 			array(ROLE_ID_PRESS_ASSISTANT),

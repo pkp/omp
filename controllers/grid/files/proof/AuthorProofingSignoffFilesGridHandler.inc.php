@@ -21,7 +21,7 @@ class AuthorProofingSignoffFilesGridHandler extends CategoryGridHandler {
 	 */
 	function AuthorProofingSignoffFilesGridHandler() {
 		import("controllers.grid.files.proof.AuthorProofingSignoffFilesCategoryGridDataProvider");
-		parent::GridHandler(new AuthorProofingSignoffFilesCategoryGridDataProvider());
+		parent::CategoryGridHandler(new AuthorProofingSignoffFilesCategoryGridDataProvider());
 
 		$this->addRoleAssignment(
 			array(ROLE_ID_AUTHOR),

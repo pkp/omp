@@ -41,7 +41,7 @@ class SelectableSubmissionFileListCategoryGridHandler extends CategoryGridHandle
 
 		$this->_handlerImplementation = $handlerImplementation;
 
-		parent::GridHandler($dataProvider);
+		parent::CategoryGridHandler($dataProvider);
 	}
 
 
