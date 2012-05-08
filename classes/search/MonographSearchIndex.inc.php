@@ -194,6 +194,7 @@ class MonographSearchIndex {
 
 		// Index galley files
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+		import('classes.monograph.MonographFile'); // Constants
 		$files =& $submissionFileDao->getLatestRevisions($monograph->getId(), MONOGRAPH_FILE_PROOF);
 		foreach ($files as $file) {
 			if ($file->getFileId()) {
@@ -228,7 +229,7 @@ class MonographSearchIndex {
 
 			if ($log) echo "Indexing \"", $press->getLocalizedName(), "\" ... ";
 
-			$monographs =& $monographDao->getByPressId($press->getPressId());
+			$monographs =& $monographDao->getByPressId($press->getId());
 			while (!$monographs->eof()) {
 				$monograph =& $monographs->next();
 				if ($monograph->getDateSubmitted()) {

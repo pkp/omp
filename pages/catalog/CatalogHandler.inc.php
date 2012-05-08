@@ -115,6 +115,37 @@ class CatalogHandler extends Handler {
 		// Display
 		$templateMgr->display('catalog/series.tpl');
 	}
+
+	/**
+	 * View the results of a search operation.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return string
+	 */
+	function results($args, &$request) {
+		$templateMgr =& TemplateManager::getManager();
+		$press =& $request->getPress();
+		$this->setupTemplate();
+
+		$query = $request->getUserVar('query');
+		$templateMgr->assign('searchQuery', $query);
+
+		// Fetch the monographs to display
+		import('classes.search.MonographSearch');
+		$keywords = array($searchType => MonographSearch::parseQuery($query));
+
+		$resultsIterator =& MonographSearch::retrieveResults($press, $keywords);
+		$publishedMonographs = array();
+		while ($result =& $resultsIterator->next()) {
+			$publishedMonograph =& $result['publishedMonograph'];
+			$publishedMonographs[$publishedMonograph->getId()] =& $publishedMonograph;
+			unset($result, $publishedMonograph);
+		}
+		$templateMgr->assign('publishedMonographs', $publishedMonographs);
+
+		// Display
+		$templateMgr->display('catalog/results.tpl');
+	}
 }
 
 ?>

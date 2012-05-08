@@ -110,7 +110,7 @@ class MonographSearchDAO extends DAO {
 				published_monographs pm,
 				monograph_search_objects o NATURAL JOIN ' . $sqlFrom . '
 			WHERE
-				m.monograph_id = pm.monograph_id AND ' . $sqlWhere . '
+				m.monograph_id = pm.monograph_id AND o.monograph_id = m.monograph_id AND ' . $sqlWhere . '
 			GROUP BY o.monograph_id
 			ORDER BY count DESC
 			LIMIT ' . $limit,
