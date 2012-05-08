@@ -66,7 +66,7 @@ class MySubmissionsListGridHandler extends SubmissionsListGridHandler {
 		// If the submission is incomplete, allow the author to delete it.
 		if ($monograph->getSubmissionProgress() != 0 && $monograph->getUserId() == $user->getId()) {
 			$monographDao =& DAORegistry::getDAO('MonographDAO'); /* @var $monographDao MonographDAO */
-			$monographDao->deleteMonographById($monographId);
+			$monographDao->deleteById($monographId);
 
 			$json = new JSONMessage(true);
 		} else {

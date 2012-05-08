@@ -262,15 +262,15 @@ class MonographDAO extends DAO {
 	 * Delete monograph by id.
 	 * @param $monograph object Monograph
 	 */
-	function deleteMonograph(&$monograph) {
-		return $this->deleteMonographById($monograph->getId());
+	function deleteObject(&$monograph) {
+		return $this->deleteById($monograph->getId());
 	}
 
 	/**
 	 * Delete an monograph by ID.
 	 * @param $monographId int
 	 */
-	function deleteMonographById($monographId) {
+	function deleteById($monographId) {
 		$this->authorDao->deleteAuthorsByMonograph($monographId);
 
 		$seriesEditorSubmissionDao =& DAORegistry::getDAO('SeriesEditorSubmissionDAO');
@@ -350,7 +350,7 @@ class MonographDAO extends DAO {
 
 		// Delete any comments.
 		$monographCommentDao =& DAORegistry::getDAO('MonographCommentDAO');
-		$monographCommentDao->deleteMonographComments($monographId);
+		$monographCommentDao->deleteByMonographId($monographId);
 
 		$this->update('DELETE FROM monograph_settings WHERE monograph_id = ?', (int) $monographId);
 		$this->update('DELETE FROM monographs WHERE monograph_id = ?', (int) $monographId);
@@ -361,7 +361,7 @@ class MonographDAO extends DAO {
 	 * @param $pressId int
 	 * @return DAOResultFactory containing matching Monographs
 	 */
-	function &getMonographsByPressId($pressId) {
+	function &getByPressId($pressId) {
 		$primaryLocale = AppLocale::getPrimaryLocale();
 		$locale = AppLocale::getLocale();
 
@@ -430,11 +430,11 @@ class MonographDAO extends DAO {
 	 * Delete all monographs by press ID.
 	 * @param $pressId int
 	 */
-	function deleteMonographsByPressId($pressId) {
-		$monographs = $this->getMonographsByPressId($pressId);
+	function deleteByPressId($pressId) {
+		$monographs = $this->getByPressId($pressId);
 
 		while ($monograph =& $monographs->next()) {
-			$this->deleteMonographById($monograph->getId());
+			$this->deleteById($monograph->getId());
 			unset($monograph);
 		}
 	}

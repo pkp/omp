@@ -226,9 +226,9 @@ class MonographSearchIndex {
 			$press =& $presses->next();
 			$numIndexed = 0;
 
-			if ($log) echo "Indexing \"", $press->getLocalizedTitle(), "\" ... ";
+			if ($log) echo "Indexing \"", $press->getLocalizedName(), "\" ... ";
 
-			$monographs =& $monographDao->getMonographs($press->getPressId());
+			$monographs =& $monographDao->getByPressId($press->getPressId());
 			while (!$monographs->eof()) {
 				$monograph =& $monographs->next();
 				if ($monograph->getDateSubmitted()) {

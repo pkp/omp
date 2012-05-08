@@ -209,15 +209,15 @@ class MonographCommentDAO extends DAO {
 	 * removes a monograph comment from monograph_comments table
 	 * @param MonographComment object
 	 */
-	function deleteMonographComment($monographComment) {
-		$this->deleteMonographCommentById($monographComment->getCommentId());
+	function deleteObject($monographComment) {
+		$this->deleteById($monographComment->getCommentId());
 	}
 
 	/**
 	 * removes a monograph note by id
 	 * @param noteId int
 	 */
-	function deleteMonographCommentById($commentId) {
+	function deleteById($commentId) {
 		$this->update(
 			'DELETE FROM monograph_comments WHERE comment_id = ?', $commentId
 		);
@@ -227,7 +227,7 @@ class MonographCommentDAO extends DAO {
 	 * Delete all comments for a monograph.
 	 * @param $monographId int
 	 */
-	function deleteMonographComments($monographId) {
+	function deleteByMonographId($monographId) {
 		return $this->update(
 			'DELETE FROM monograph_comments WHERE monograph_id = ?', $monographId
 		);
