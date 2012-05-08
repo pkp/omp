@@ -198,8 +198,8 @@ class Validation {
 		$session =& $sessionManager->getUserSession();
 		$user =& $session->getUser();
 
-		$roleDAO =& DAORegistry::getDAO('RoleDAO');
-		return $roleDAO->userHasRole($pressId, $user->getId(), $roleId);
+		$roleDao =& DAORegistry::getDAO('RoleDAO');
+		return $roleDao->userHasRole($pressId, $user->getId(), $roleId);
 	}
 
 	/**
