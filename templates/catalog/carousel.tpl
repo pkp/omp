@@ -16,15 +16,20 @@
 	{rdelim});
 </script>
 
-<link rel="stylesheet" type="text/css" media="all" href="{$baseUrl}/lib/pkp/js/lib/jquery/plugins/orbit-1.2.3.css" />
-
 <!-- Features carousel -->
 <div class="pkp_catalog_carousel" id="featuresCarousel">
 	{foreach from=$publishedMonographs item=publishedMonograph}
 		{* Only include features in the carousel *}
 		{assign var="monographId" value=$publishedMonograph->getId()}
 		{if isset($featuredMonographIds[$monographId])}
-			<a href="{url op="book" path=$publishedMonograph->getId()}"><img src="{url router=$smarty.const.ROUTE_COMPONENT component="submission.CoverHandler" op="cover" monographId=$publishedMonograph->getId()}" alt="{$publishedMonograph->getLocalizedTitle()|escape}" /></a>
+			<img src="{url router=$smarty.const.ROUTE_COMPONENT component="submission.CoverHandler" op="cover" monographId=$publishedMonograph->getId()}" alt="{$publishedMonograph->getLocalizedTitle()|escape}" data-caption="#publishedMonograph-{$monographId}-caption" />
 		{/if}
 	{/foreach}
 </div>
+{* assemble the captions for each of the featured items in the carousel *}
+{foreach from=$publishedMonographs item=publishedMonograph}
+	{assign var="monographId" value=$publishedMonograph->getId()}
+	{if isset($featuredMonographIds[$monographId])}
+		<span class="orbit-caption" id="publishedMonograph-{$monographId}-caption"><a href="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="book" path=$monographId}">{$publishedMonograph->getLocalizedTitle()|escape}</a></span>
+	{/if}
+{/foreach}
