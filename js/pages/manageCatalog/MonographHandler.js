@@ -33,6 +33,7 @@
 		this.isFeatured_ = options.isFeatured;
 		this.datePublished_ = options.datePublished;
 		this.workflowUrl_ = options.workflowUrl;
+		this.catalogUrl_ = options.catalogUrl;
 
 		// Attach the view type handlers, if links exist.
 		$monographsContainer.find('.star, .star_highlighted').click(
@@ -43,6 +44,9 @@
 
 		$monographsContainer.find('a[id^="workflow"]').click(
 				this.callbackWrapper(this.workflowButtonHandler_));
+
+		$monographsContainer.find('a[id^="publicCatalog"]').click(
+				this.callbackWrapper(this.publicCatalogButtonHandler_));
 
 		// Expose list events to the container
 		this.publishEvent('monographListChanged');
@@ -100,6 +104,14 @@
 	 * @type {string?}
 	 */
 	$.pkp.pages.manageCatalog.MonographHandler.prototype.workflowUrl_ = null;
+
+
+	/**
+	 * The URL to the public catalog page for this monograph.
+	 * @private
+	 * @type {string?}
+	 */
+	$.pkp.pages.manageCatalog.MonographHandler.prototype.catalogUrl_ = null;
 
 
 	/**
@@ -210,6 +222,24 @@
 
 		if (this.workflowUrl_) {
 			document.location = this.workflowUrl_;
+		}
+		// Stop further event processing
+		return false;
+	};
+
+
+	/**
+	 * Callback that will be activated when the title of the submission is clicked
+	 *
+	 * @private
+	 *
+	 * @return {boolean} Always returns false.
+	 */
+	$.pkp.pages.manageCatalog.MonographHandler.prototype.publicCatalogButtonHandler_ =
+			function() {
+
+		if (this.catalogUrl_) {
+			document.location = this.catalogUrl_;
 		}
 		// Stop further event processing
 		return false;
@@ -342,6 +372,5 @@
 
 		return false;
 	};
-
 /** @param {jQuery} $ jQuery closure. */
 })(jQuery);

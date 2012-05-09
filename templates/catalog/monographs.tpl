@@ -6,11 +6,18 @@
  *
  * Display a public-facing monograph list in the catalog.
  *}
-
-<div class="pkp_catalog_monographs">
+<script type="text/javascript">
+	// Initialize JS handler.
+	$(function() {ldelim}
+		$('#monographListContainer').pkpHandler(
+			'$.pkp.pages.catalog.MonographListHandler'
+		);
+	{rdelim});
+</script>
+<div class="pkp_catalog_monographs" id="monographListContainer">
 	<h3>{translate key="catalog.browseTitles" numTitles=$publishedMonographs|@count}</h3>
 
-	<ul>
+	<ul class="pkp_helpers_clear">
 	{foreach from=$publishedMonographs item=publishedMonograph}
 		{include file="catalog/monograph.tpl" publishedMonograph=$publishedMonograph}
 	{/foreach}

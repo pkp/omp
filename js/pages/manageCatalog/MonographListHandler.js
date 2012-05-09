@@ -115,7 +115,12 @@
 			.removeClass('list_view')
 			.addClass('grid_view');
 
-		$htmlElement.find('.pkp_manageCatalog_monograph').equalizeElementHeights();
+		// iterate over our monographs in groups of four, since our CSS spacing
+		// displays four monographs per row.  Normalize the element detail heights.
+		var $monographDetails = $htmlElement.find('.pkp_manageCatalog_monographDetails');
+		for (var $i = 0; $i < $monographDetails.size() ; $i += 4) {
+			$monographDetails.slice($i, $i + 3).equalizeElementHeights();
+		}
 		// Control enabled/disabled state of buttons
 		var $actionsContainer = $htmlElement.find('.submission_actions');
 		$actionsContainer.find('.grid_view').addClass('ui-state-active');

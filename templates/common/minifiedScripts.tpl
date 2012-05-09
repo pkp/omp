@@ -105,6 +105,7 @@
 <script type="text/javascript" src="{$baseUrl}/js/controllers/catalog/form/CatalogMetadataFormHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/js/pages/authorDashboard/AuthorDashboardHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/js/pages/catalog/CarouselHandler.js"></script>
+<script type="text/javascript" src="{$baseUrl}/js/pages/catalog/MonographListHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/js/pages/manageCatalog/ManageCatalogHeaderHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/js/pages/manageCatalog/ManageCatalogSearchFormHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/js/pages/manageCatalog/MonographListHandler.js"></script>

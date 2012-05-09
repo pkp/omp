@@ -12,13 +12,35 @@
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
+	font-size: 0.9em;
 
 	&.grid_view {
 		.pkp_manageCatalog_monograph {
-			width: 125px;
+			width: 135px;
 			float: left;
 			margin: 3px 10px 3px 0;
 			padding: 1px;
+		}
+
+		.pkp_manageCatalog_monograph_image {
+			height: 100px;
+			overflow: hidden;
+		}
+		
+		.pkp_manageCatalog_monograph_authorship {
+			padding-bottom: 5px;
+			color: #999;
+			padding-top: 2px;
+		}
+		
+		.pkp_manageCatalog_monographDetails {
+			border-bottom: 1px solid #CCC;
+		}
+	
+		.pkp_manageCatalog_monograph_date {
+			padding-top: 10px;
+			padding-top: 5px;
+			color: #999;
 		}
 	}
 
@@ -27,15 +49,5 @@
 			float: left;
 			margin: 3px 3px 3px 0;
 		}
-	}
-
-	.pkp_manageCatalog_monograph_image {
-		border: 1px solid #000000;
-		height: 100px;
-		overflow: hidden;
-	}
-
-	.pkp_manageCatalog_monograph_title {
-		font-style:italic;
 	}
 }
