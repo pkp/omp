@@ -72,7 +72,7 @@ class MonographSearchIndex {
 		if (isset($parser)) {
 			if ($parser->open()) {
 				$searchDao =& DAORegistry::getDAO('MonographSearchDAO');
-				$objectId = $searchDao->insertObject($monographId, $type, $fileId, true);
+				$objectId = $searchDao->insertObject($monographId, $type, $fileId);
 
 				$position = 0;
 				while(($text = $parser->read()) !== false) {
@@ -196,7 +196,6 @@ class MonographSearchIndex {
 		import('classes.monograph.MonographFile'); // Constants
 		import('classes.search.MonographSearch'); // Constants
 		$files =& $submissionFileDao->getLatestRevisions($monograph->getId(), MONOGRAPH_FILE_PROOF);
-		MonographSearchIndex::clearMonographFiles($monograph);
 
 		foreach ($files as $file) {
 			if ($file->getFileId() && $file->getViewable()) {

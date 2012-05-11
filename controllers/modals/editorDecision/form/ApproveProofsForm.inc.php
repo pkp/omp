@@ -88,6 +88,7 @@ class ApproveProofsForm extends Form {
 		if ($publishedMonograph) {
 			// update the monograph's file index
 			import('classes.search.MonographSearchIndex');
+			MonographSearchIndex::clearMonographFiles($this->seriesEditorSubmission);
 			MonographSearchIndex::indexMonographFiles($this->seriesEditorSubmission);
 		}
 	}
