@@ -64,13 +64,16 @@ class CatalogEntrySubmissionReviewForm extends SubmissionMetadataViewForm {
 				// Remove "need to approve submission" note
 				$notificationDao =& DAORegistry::getDAO('NotificationDAO');
 				$notificationDao->deleteByAssoc(
-                                        ASSOC_TYPE_MONOGRAPH,
-                                        $monograph->getId(),
-                                        null,
-                                        NOTIFICATION_TYPE_APPROVE_SUBMISSION,
-                                        $monograph->getPressId()
-                                );
+										ASSOC_TYPE_MONOGRAPH,
+										$monograph->getId(),
+										null,
+										NOTIFICATION_TYPE_APPROVE_SUBMISSION,
+										$monograph->getPressId()
+									);
 			}
+			// update the search index for this published monograph.
+			import('classes.search.MonographSearchIndex');
+			MonographSearchIndex::indexMonographMetadata($monograph);
 		} else { // regular submission without publish in catalog
 			$monographDao =& DAORegistry::getDAO('MonographDAO');
 			$monographDao->updateMonograph($monograph);

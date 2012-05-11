@@ -154,13 +154,14 @@ class MonographSearchDAO extends DAO {
 	}
 
 	/**
-	 * Add an monograph object to the index (if already exists, indexed keywords are cleared).
+	 * Add an monograph object to the index (if already exists, indexed keywords are cleared unless specified).
 	 * @param $monographId int
 	 * @param $type int
 	 * @param $assocId int
+	 * @param $keepExisting boolean optional
 	 * @return int the object ID
 	 */
-	function insertObject($monographId, $type, $assocId) {
+	function insertObject($monographId, $type, $assocId, $keepExisting = false) {
 		$result =& $this->retrieve(
 			'SELECT object_id FROM monograph_search_objects WHERE monograph_id = ? AND type = ? AND assoc_id = ?',
 			array($monographId, $type, $assocId)
@@ -172,7 +173,7 @@ class MonographSearchDAO extends DAO {
 			);
 			$objectId = $this->getInsertId('monograph_search_objects', 'object_id');
 
-		} else {
+		} else if (!$keepExisting) {
 			$objectId = $result->fields[0];
 			$this->update(
 				'DELETE FROM monograph_search_object_keywords WHERE object_id = ?',

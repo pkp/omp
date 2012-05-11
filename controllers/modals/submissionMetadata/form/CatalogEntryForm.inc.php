@@ -64,6 +64,10 @@ class CatalogEntryForm extends SubmissionMetadataViewForm {
 		} else {
 			$publishedMonographDao->insertObject($publishedMonograph);
 		}
+
+		// update the search index for this published monograph.
+		import('classes.search.MonographSearchIndex');
+		MonographSearchIndex::indexMonographMetadata($publishedMonograph);
 	}
 }
 

@@ -72,13 +72,15 @@ class MonographSearchIndex {
 		if (isset($parser)) {
 			if ($parser->open()) {
 				$searchDao =& DAORegistry::getDAO('MonographSearchDAO');
-				$objectId = $searchDao->insertObject($monographId, $type, $fileId);
+				$objectId = $searchDao->insertObject($monographId, $type, $fileId, true);
 
 				$position = 0;
 				while(($text = $parser->read()) !== false) {
 					MonographSearchIndex::indexObjectKeywords($objectId, $text, $position);
 				}
 				$parser->close();
+			} else {
+				assert(false); // cannot open parser
 			}
 		}
 	}
@@ -189,18 +191,27 @@ class MonographSearchIndex {
 	 * @param $monograph Monograph
 	 */
 	function indexMonographFiles(&$monograph) {
-		// FIXME: The below is incorrect.
-
-
 		// Index galley files
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		import('classes.monograph.MonographFile'); // Constants
+		import('classes.search.MonographSearch'); // Constants
 		$files =& $submissionFileDao->getLatestRevisions($monograph->getId(), MONOGRAPH_FILE_PROOF);
+		MonographSearchIndex::clearMonographFiles($monograph);
+
 		foreach ($files as $file) {
-			if ($file->getFileId()) {
+			if ($file->getFileId() && $file->getViewable()) {
 				MonographSearchIndex::updateFileIndex($monograph->getId(), MONOGRAPH_SEARCH_GALLEY_FILE, $file->getFileId());
 			}
 		}
+	}
+
+	/**
+	 * Remove indexed file contents for a monograph
+	 * @param $monograph Monograph
+	 */
+	function clearMonographFiles(&$monograph) {
+		$searchDao =& DAORegistry::getDAO('MonographSearchDAO');
+		$searchDao->deleteMonographKeywords($monograph->getId(), MONOGRAPH_SEARCH_GALLEY_FILE);
 	}
 
 	/**
@@ -232,7 +243,7 @@ class MonographSearchIndex {
 			$monographs =& $monographDao->getByPressId($press->getId());
 			while (!$monographs->eof()) {
 				$monograph =& $monographs->next();
-				if ($monograph->getDateSubmitted()) {
+				if ($monograph->getDatePublished()) {
 					MonographSearchIndex::indexMonographMetadata($monograph);
 					MonographSearchIndex::indexMonographFiles($monograph);
 					$numIndexed++;

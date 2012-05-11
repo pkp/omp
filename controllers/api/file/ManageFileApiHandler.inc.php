@@ -85,10 +85,16 @@ class ManageFileApiHandler extends Handler {
 		$success = (boolean)$submissionFileDao->deleteRevisionById($monographFile->getFileId(), $monographFile->getRevision(), $monographFile->getFileStage(), $monograph->getId());
 
 		if ($success) {
+			// update the monograph's search index if this was a proof file
+			if ($monographFile->getFileStage() == MONOGRAPH_FILE_PROOF) {
+				if ($monograph->getDatePublished()) {
+					import('classes.search.MonographSearchIndex');
+					MonographSearchIndex::indexMonographFiles($monograph);
+				}
+			}
 			import('classes.file.MonographFileManager');
 			$monographFileManager = new MonographFileManager($monograph->getPressId(), $monograph->getId());
 			$monographFileManager->deleteFile($monographFile->getFileId(), $monographFile->getRevision());
-
 			$this->setupTemplate();
 			$user =& $request->getUser();
 			NotificationManager::createTrivialNotification($user->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.removedFile')));

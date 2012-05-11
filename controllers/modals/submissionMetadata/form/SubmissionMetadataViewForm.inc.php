@@ -168,7 +168,10 @@ class SubmissionMetadataViewForm extends Form {
 		$monograph->setSeriesId($this->getData('seriesId'));
 		$monograph->setSeriesPosition($this->getData('seriesPosition'));
 		$monographDao->updateMonograph($monograph);
-
+		if ($monograph->getDatePublished()) {
+			import('classes.search.MonographSearchIndex');
+			MonographSearchIndex::indexMonographMetadata($monograph);
+		}
 		// Save the category IDs.
 		$categoryIds = $this->getData('categoryIds');
 		$categoryDao =& DAORegistry::getDAO('CategoryDAO');

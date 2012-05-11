@@ -82,6 +82,14 @@ class ApproveProofsForm extends Form {
 				$submissionFileDao->updateObject($monographFile);
 			}
 		}
+
+		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
+		$publishedMonograph =& $publishedMonographDao->getById($this->seriesEditorSubmission->getId());
+		if ($publishedMonograph) {
+			// update the monograph's file index
+			import('classes.search.MonographSearchIndex');
+			MonographSearchIndex::indexMonographFiles($this->seriesEditorSubmission);
+		}
 	}
 }
 

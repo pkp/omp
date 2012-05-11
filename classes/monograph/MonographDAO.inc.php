@@ -432,8 +432,11 @@ class MonographDAO extends DAO {
 	 */
 	function deleteByPressId($pressId) {
 		$monographs = $this->getByPressId($pressId);
-
+		import('classes.search.MonographSearchIndex');
 		while ($monograph =& $monographs->next()) {
+			if ($monograph->getDatePublished()) {
+				MonographSearchIndex::deleteTextIndex($monograph->getId());
+			}
 			$this->deleteById($monograph->getId());
 			unset($monograph);
 		}
