@@ -106,7 +106,8 @@
 
 		// Only attempt to load the past note list if it's in the UI
 		if ($('#pastNotesList').length) {
-			$.get(this.fetchPastNotesUrl_, this.callbackWrapper(this.setPastNoteList_), 'json');
+			$.get(this.fetchPastNotesUrl_,
+					this.callbackWrapper(this.setPastNoteList_), 'json');
 		}
 	};
 

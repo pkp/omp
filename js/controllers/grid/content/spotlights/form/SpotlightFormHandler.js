@@ -3,7 +3,7 @@
  */
 // Create the namespace.
 jQuery.pkp.controllers.grid.content =
-		jQuery.pkp.controllers.grid.content || { spotlights: { form: { } } };
+	jQuery.pkp.controllers.grid.content || { spotlights: { form: { } } };
 
 /**
  * @file js/controllers/grid/content/spotlights/form/SpotlightFormHandler.js
@@ -92,7 +92,8 @@ jQuery.pkp.controllers.grid.content =
 
 
 	/**
-	 * Method to add the contents of the Name field to the end of the autocomplete URL
+	 * Method to add the contents of the Name field to the end
+	 * of the autocomplete URL
 	 * @param {Object} eventObject The html element that changed.
 	 */
 	$.pkp.controllers.grid.content.spotlights.form.SpotlightFormHandler.prototype.addNameToAutocompleteUrl =

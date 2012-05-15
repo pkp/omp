@@ -94,7 +94,8 @@ jQuery.pkp.controllers.modals = jQuery.pkp.controllers.modals ||
 			if (!currentContent.match(/__________/)) {
 				$textArea.val(currentContent + jsonData.content);
 			} else {
-				$textArea.val(currentContent.replace(/__________/, jsonData.content + '__________'));
+				$textArea.val(currentContent.
+						replace(/__________/, jsonData.content + '__________'));
 			}
 		}
 	};

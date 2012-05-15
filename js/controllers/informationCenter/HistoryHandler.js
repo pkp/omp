@@ -70,7 +70,8 @@
 	$.pkp.controllers.informationCenter.HistoryHandler.prototype.
 			loadHistoryList_ = function() {
 
-		$.get(this.fetchHistoryUrl_, this.callbackWrapper(this.setHistoryList_), 'json');
+		$.get(this.fetchHistoryUrl_,
+				this.callbackWrapper(this.setHistoryList_), 'json');
 	};
 
 	$.pkp.controllers.informationCenter.HistoryHandler.prototype.
@@ -86,7 +87,8 @@
 
 		// Only attempt to load the past history list if it's in the UI
 		if ($('#pastHistoryList').length) {
-			$.get(this.fetchPastHistoryUrl_, this.callbackWrapper(this.setPastHistoryList_), 'json');
+			$.get(this.fetchPastHistoryUrl_,
+					this.callbackWrapper(this.setPastHistoryList_), 'json');
 		}
 	};
 

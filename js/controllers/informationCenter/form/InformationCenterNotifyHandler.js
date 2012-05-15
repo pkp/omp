@@ -1,8 +1,9 @@
 /**
  * @defgroup js_controllers_informationCenter_form
  */
+// Create the namespace.
 jQuery.pkp.controllers.informationCenter.form =
-		jQuery.pkp.controllers.informationCenter.form || { };
+	jQuery.pkp.controllers.informationCenter.form || { };
 
 
 /**
@@ -54,7 +55,8 @@ jQuery.pkp.controllers.informationCenter.form =
 	 * @private
 	 * @type {string?}
 	 */
-	$.pkp.controllers.informationCenter.form.InformationCenterNotifyHandler.prototype.templateUrl_ = null;
+	$.pkp.controllers.informationCenter.form.InformationCenterNotifyHandler.
+			prototype.templateUrl_ = null;
 
 
 	//
@@ -68,8 +70,8 @@ jQuery.pkp.controllers.informationCenter.form =
 	 * @param {Event} event The triggering event.
 	 * @private
 	 */
-	$.pkp.controllers.informationCenter.form.InformationCenterNotifyHandler.prototype.selectTemplateHandler_ =
-			function(sourceElement, event) {
+	$.pkp.controllers.informationCenter.form.InformationCenterNotifyHandler.
+			prototype.selectTemplateHandler_ = function(sourceElement, event) {
 
 		var $form = this.getHtmlElement();
 		$.post(this.templateUrl_, $form.find('#template').serialize(),
@@ -85,8 +87,8 @@ jQuery.pkp.controllers.informationCenter.form =
 	 * @param {Object} jsonData The data returned from the server.
 	 * @return {boolean} The response status.
 	 */
-	$.pkp.controllers.informationCenter.form.InformationCenterNotifyHandler.prototype.updateTemplate =
-			function(formElement, jsonData) {
+	$.pkp.controllers.informationCenter.form.InformationCenterNotifyHandler.
+			prototype.updateTemplate = function(formElement, jsonData) {
 
 		var $form = this.getHtmlElement();
 		jsonData = this.handleJson(jsonData);

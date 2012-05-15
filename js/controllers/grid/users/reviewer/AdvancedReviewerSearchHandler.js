@@ -69,22 +69,23 @@ jQuery.pkp.controllers.modals = jQuery.pkp.controllers.modals ||
 		var reviewerId = $selectedInput.val();
 
 		if (reviewerId) {
-			var reviewerName = $selectedInput.parent().next()
-					.children('span').html().trim();
+			var reviewerName = $selectedInput.parent().next().
+					children('span').html().trim();
 
 			// Update the hidden review id input
 			$('#reviewerId').val(reviewerId);
 
 			// Update the selected reviewer name container
-			$('input[id^="selectedReviewerName"]', this.getHtmlElement()).val(reviewerName);
+			$('input[id^="selectedReviewerName"]', this.getHtmlElement()).
+					val(reviewerName);
 
 			// Hide the grid now
 			$('#searchGridAndButton').hide();
 			$('#regularReviewerForm').show();
 		}
 	};
-	
-	
+
+
 	//
 	// Private helper methods.
 	//
