@@ -122,7 +122,6 @@ class PressGridHandler extends GridHandler {
 	 */
 	function &getRowInstance() {
 		$row = new PressGridRow();
-		$row->setIsOrderable(true);
 		return $row;
 	}
 
@@ -153,6 +152,14 @@ class PressGridHandler extends GridHandler {
 		$pressDao = DAORegistry::getDAO('PressDAO'); /* @var $pressDao PressDAO */
 		$press->setSequence($newSequence);
 		$pressDao->updateObject($press);
+	}
+
+	/**
+	 * @see GridHandler::addFeatures()
+	 */
+	function initFeatures($request, $args) {
+		import('lib.pkp.classes.controllers.grid.feature.OrderGridItemsFeature');
+		return array(new OrderGridItemsFeature());
 	}
 
 
@@ -260,7 +267,7 @@ class PressGridHandler extends GridHandler {
 		$pressId = $request->getUserVar('rowId');
 		$pressDao =& DAORegistry::getDAO('PressDAO');
 		$press =& $pressDao->getById($pressId);
-		
+
 		$json = new JSONMessage();
 
 		if ($pressId) {

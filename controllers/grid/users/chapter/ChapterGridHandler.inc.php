@@ -96,16 +96,9 @@ class ChapterGridHandler extends CategoryGridHandler {
 		$this->setTitle('submission.chapters');
 		$this->setInstructions('submission.chaptersDescription');
 
-		// Retrieve the authorized monograph
-		$monograph =& $this->getMonograph();
-
 		AppLocale::requireComponents(LOCALE_COMPONENT_OMP_DEFAULT_SETTINGS, LOCALE_COMPONENT_OMP_SUBMISSION);
 
-		$monograph =& $this->getMonograph();
-		$userRoles = $this->getAuthorizedContextObject(ASSOC_TYPE_USER_ROLES);
-
-		if ($monograph->getDateSubmitted() == null || array_intersect(array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR), $userRoles)) {
-			$this->setReadOnly(false);
+		if (!$this->getReadOnly()) {
 			// Grid actions
 			$router =& $request->getRouter();
 			$actionArgs = $this->getRequestArgs();
@@ -122,8 +115,6 @@ class ChapterGridHandler extends CategoryGridHandler {
 					'add_item'
 				)
 			);
-		} else {
-			$this->setReadOnly(true);
 		}
 
 		// Columns
@@ -160,6 +151,22 @@ class ChapterGridHandler extends CategoryGridHandler {
 	}
 
 	/**
+	 * @see GridHandler::initFeatures()
+	 */
+	function initFeatures($request, $args) {
+		$monograph =& $this->getMonograph();
+		$userRoles = $this->getAuthorizedContextObject(ASSOC_TYPE_USER_ROLES);
+
+		if ($monograph->getDateSubmitted() == null || array_intersect(array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR), $userRoles)) {
+			$this->setReadOnly(false);
+			import('lib.pkp.classes.controllers.grid.feature.OrderCategoryGridItemsFeature');
+			return array(new OrderCategoryGridItemsFeature(ORDER_CATEGORY_GRID_CATEGORIES_AND_ROWS));
+		} else {
+			$this->setReadOnly(true);
+		}
+	}
+
+	/**
 	 * @see GridDataProvider::getRequestArgs()
 	 */
 	function getRequestArgs() {
@@ -188,9 +195,6 @@ class ChapterGridHandler extends CategoryGridHandler {
 	 */
 	function getRowInstance() {
 		$row = parent::getRowInstance();
-		if (!$this->getReadOnly()) {
-			$row->setIsOrderable(true);
-		}
 		return $row;
 	}
 
@@ -226,9 +230,6 @@ class ChapterGridHandler extends CategoryGridHandler {
 	function &getCategoryRowInstance() {
 		$monograph =& $this->getMonograph();
 		$row = new ChapterGridCategoryRow($monograph, $this->getReadOnly());
-		if (!$this->getReadOnly()) {
-			$row->setIsOrderable(true);
-		}
 		return $row;
 	}
 

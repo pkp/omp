@@ -109,15 +109,13 @@ class ChapterAuthorListbuilderHandler extends ListbuilderHandler {
 		$nameColumn->setCellProvider(new UserListbuilderGridCellProvider());
 		$this->addColumn($nameColumn);
 	}
-	
+
 	/**
-	 * @see ListbuilderHandler::getRowInstante()
+	 * @see GridHandler::initFeatures()
 	 */
-	function &getRowInstance() {
-		$row =& parent::getRowInstance();
-		$row->setIsOrderable(true);
-		
-		return $row;
+	function initFeatures($request, $args) {
+		import('lib.pkp.classes.controllers.grid.feature.OrderListbuilderItemsFeature');
+		return array(new OrderListbuilderItemsFeature());
 	}
 
 	/**
@@ -173,8 +171,8 @@ class ChapterAuthorListbuilderHandler extends ListbuilderHandler {
 
 		return $items;
 	}
-	
-	
+
+
 	//
 	// Public methods
 	//
