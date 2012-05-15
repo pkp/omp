@@ -1008,6 +1008,7 @@ div.pkp_controllers_grid .grid_header_bar h3 {
   padding-top:5px;
   vertical-align:middle;
 }
+div.pkp_controllers_grid .grid_header_bar a { float:left; }
 div.pkp_controllers_grid .options {
   float:right;
   line-height:24px;
