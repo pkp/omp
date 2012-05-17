@@ -46,6 +46,14 @@
 	</p>
 	{/if}
 
+	<!-- OMP requires XSL or an XSL parser engine installed -->
+	<h3>{translate key="installer.xslPresent"}</h3>
+	{if $xslEnabled}
+		<p>{translate key="installer.xslPresentString"}</p>
+	{else}
+		<span class="pkp_form_error">{translate key="installer.configureXSLMessage"}</span>
+	{/if}
+
 	<!-- Locale configuration -->
 	<div id="localeSettings">
 		<h3>{translate key="installer.localeSettings"}</h3>

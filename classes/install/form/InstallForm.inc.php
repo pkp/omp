@@ -156,7 +156,8 @@ class InstallForm extends Form {
 			'databasePassword' => '',
 			'databaseName' => 'omp',
 			'createDatabase' => 1,
-			'oaiRepositoryId' => 'omp.' . Request::getServerHost()
+			'oaiRepositoryId' => 'omp.' . Request::getServerHost(),
+			'xslEnabled' => $this->checkGeneralPHPModule('xsl'),
 		);
 	}
 
@@ -235,6 +236,18 @@ class InstallForm extends Form {
 			$dbDrivers[$driver] = $name;
 		}
 		return $dbDrivers;
+	}
+
+	/**
+	 * Checks to see if a PHP module is enabled.
+	 * @param $moduleName string
+	 * @return boolean
+	 */
+	function checkGeneralPHPModule($moduleName) {
+		if (extension_loaded($moduleName)) {
+			return true;
+		}
+		return false;
 	}
 
 	/**

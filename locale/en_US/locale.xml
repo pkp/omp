@@ -520,7 +520,9 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="installer.upgradeComplete"><![CDATA[<p>Upgrade of OMP to version {$version} has completed successfully.</p>
 <p>Don't forget to set the "installed" setting in your config.inc.php configuration file back to <em>On</em>.</p>
 <p>If you haven't already registered and wish to receive news and updates, <strong>please register at <a href="http://pkp.sfu.ca/omp/register" target="_new">http://pkp.sfu.ca/omp/register</a>.</strong> If you have questions or comments, please visit the <a href="http://pkp.sfu.ca/support/forum" target="_new">support forum</a>.</p>]]></message>
-
+	<message key="installer.xslPresent">XSL Setting</message>
+	<message key="installer.xslPresentString">The PHP XSL module is enabled.</message>
+	<message key="installer.configureXSLMessage"><![CDATA[<p>Your PHP installation does not have the XSL module enabled. Either enable it, or configure the xslt_command parameter in your config.inc.php file.</p>]]></message>
 
 	<!-- Monograph Logs -->
 	<message key="log.review.reviewerAssigned">{$reviewerName} has been assigned to review submission {$monographId} for review round {$round}.</message>
