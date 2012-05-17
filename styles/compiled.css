@@ -419,6 +419,36 @@ a.sprite.return:before {
   background-position:-1320px 0;
 }
 a.sprite.return:hover:before { background-position:-1320px -24px; }
+a.sprite.release:before {
+  margin-right:4px;
+  background-position:-1368px 0;
+}
+a.sprite.release:hover:before { background-position:-1368px -24px; }
+a.sprite.release_highlight:before {
+  margin-right:4px;
+  background-position:-1392px 0;
+}
+a.sprite.release_highlight:hover:before { background-position:-1392px -24px; }
+a.sprite.collapse_all:before {
+  margin-right:4px;
+  background-position:-1416px 0;
+}
+a.sprite.collapse_all:hover:before { background-position:-1416px -24px; }
+a.sprite.expand_all:before {
+  margin-right:4px;
+  background-position:-1440px 0;
+}
+a.sprite.expand_all:hover:before { background-position:-1440px -24px; }
+a.sprite.expanded:before {
+  margin-right:4px;
+  background-position:-1464px 0;
+}
+a.sprite.expanded:hover:before { background-position:-1464px -24px; }
+a.sprite.collapsed:before {
+  margin-right:4px;
+  background-position:-1488px 0;
+}
+a.sprite.collapsed:hover:before { background-position:-1488px -24px; }
 .category.delete:before {
   margin-left:5px;
   background-position:-1008px 0;
