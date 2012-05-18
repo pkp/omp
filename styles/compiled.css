@@ -384,11 +384,11 @@ a.sprite.cross:before {
   background-position:-1104px 0;
 }
 a.sprite.cross:hover:before { background-position:-1104px -24px; }
-a.sprite.organize:before {
+a.sprite.feature:before {
   margin-right:4px;
   background-position:-1128px 0;
 }
-a.sprite.organize:hover:before { background-position:-1128px -24px; }
+a.sprite.feature:hover:before { background-position:-1128px -24px; }
 a.sprite.list_view:before {
   margin-right:4px;
   background-position:-1152px 0;
@@ -424,11 +424,11 @@ a.sprite.release:before {
   background-position:-1368px 0;
 }
 a.sprite.release:hover:before { background-position:-1368px -24px; }
-a.sprite.release_highlight:before {
+a.sprite.release_highlighted:before {
   margin-right:4px;
   background-position:-1392px 0;
 }
-a.sprite.release_highlight:hover:before { background-position:-1392px -24px; }
+a.sprite.release_highlighted:hover:before { background-position:-1392px -24px; }
 a.sprite.collapse_all:before {
   margin-right:4px;
   background-position:-1416px 0;
@@ -653,9 +653,7 @@ body {
   font:120% "Courier New", Courier, mono;
   text-transform:uppercase;
   color:#569bbe;
-  line-height:40px;
 }
-.pkp_structure_sidebar span.blockTitle:before { content:"\2219 "; }
 .pkp_structure_sidebar_left {
   float:left;
   width:190px;
@@ -1363,15 +1361,14 @@ a.pkp_common_disabled, a.pkp_common_disabled:hover { color:#666666; }
 .pkp_submissionChecklist ul li label.error { margin-bottom:15px; }
 .pkp_manageCatalog_monographList {
   list-style-type:none;
-  margin:0;
+  margin-left:10px;
   padding:0;
   font-size:0.9em;
 }
 .pkp_manageCatalog_monographList.grid_view .pkp_manageCatalog_monograph {
-  width:135px;
+  width:150px;
   float:left;
-  margin:3px 10px 3px 0;
-  padding:1px;
+  margin:1px 5px 1px 5px;
 }
 .pkp_manageCatalog_monographList.grid_view .pkp_manageCatalog_monograph_image {
   height:100px;
@@ -1382,15 +1379,19 @@ a.pkp_common_disabled, a.pkp_common_disabled:hover { color:#666666; }
   color:#999999;
   padding-top:2px;
 }
-.pkp_manageCatalog_monographList.grid_view .pkp_manageCatalog_monographDetails { border-bottom:1px solid #cccccc; }
 .pkp_manageCatalog_monographList.grid_view .pkp_manageCatalog_monograph_date {
   padding-top:10px;
   padding-top:5px;
   color:#999999;
 }
-.pkp_manageCatalog_monographList.list_view .pkp_manageCatalog_monograph_image {
-  float:left;
-  margin:3px 3px 3px 0;
+.pkp_manageCatalog_monographList.grid_view .pkp_manageCatalog_featureTools {
+  padding-top:20px;
+  padding-left:10px;
+}
+.pkp_manageCatalog_monographList.grid_view .pkp_manageCatalog_featureTools li { padding-bottom:10px; }
+.pkp_manageCatalog_monographList.grid_view .pkp_manageCatalog_featureTools a {
+  text-decoration:none;
+  background-color:white;
 }
 .pkp_catalog_carousel { width:33%; }
 .pkp_catalog_carousel img { background:#ffffff; }
@@ -1410,22 +1411,16 @@ a.pkp_common_disabled, a.pkp_common_disabled:hover { color:#666666; }
   width:150px;
   float:left;
   margin:3px 10px 3px 0;
+  color:#999999;
 }
 .pkp_catalog_monographs .pkp_catalog_monograph .pkp_catalog_monograph_authorship {
-  padding-bottom:5px;
-  color:#999999;
+  padding-bottom:2px;
   padding-top:2px;
-}
-.pkp_catalog_monographs .pkp_catalog_monograph .pkp_catalog_monographDetails {
-  border-bottom:1px solid #cccccc;
-  padding-bottom:5px;
 }
 .pkp_catalog_monographs .pkp_catalog_monograph .pkp_catalog_monograph_date {
   padding-top:10px;
   padding-top:5px;
-  color:#999999;
 }
-.pkp_catalog_monographs .pkp_catalog_monograph .pkp_catalog_monographAbstract { color:#999999; }
 .pkp_catalog_feature {
   border-top:1px dotted #999999;
   padding-top:10px;
@@ -1455,14 +1450,14 @@ a.pkp_common_disabled, a.pkp_common_disabled:hover { color:#666666; }
 .pkp_page_header ul.submission_actions li {
   line-height:24px;
   margin-left:20px;
-  padding:5px 1px 5px 1px;
+  padding:5px 1px 4px 1px;
 }
 .pkp_page_header li.participants { margin-right:10px; }
 .pkp_page_header li.participants:hover {
   background:#ffffff;
   border:1px solid #999999;
   border-bottom:1px solid #ffffff;
-  padding:4px 10px 4px 10px;
+  padding:4px 10px 3px 10px;
   margin:0px 0px 0px 10px;
 }
 .pkp_page_header .participant_popover {
