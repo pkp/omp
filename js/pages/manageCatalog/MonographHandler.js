@@ -67,11 +67,12 @@
 		this.bind('setSequence', this.setSequenceHandler_);
 		
 		// position the (hidden) feature tools over the book cover image.
-		var position = $monographsContainer.find('.pkp_manageCatalog_monograph_image').position();
+		var imagePosition = $monographsContainer.find('.pkp_manageCatalog_monograph_image').position();
+		var featuresPosition = $monographsContainer.find('.pkp_manageCatalog_featureTools').position();
+		
 		$monographsContainer.find('.pkp_manageCatalog_featureTools').
-			css('position', 'absolute').
-			css('top', position.top).
-			css('left', position.left);
+			css('position', 'relative').
+			css('top', imagePosition.top - featuresPosition.top);
 	};
 	$.pkp.classes.Helper.inherits(
 			$.pkp.pages.manageCatalog.MonographHandler,
