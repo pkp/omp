@@ -186,8 +186,8 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.siteAccessOptions.siteAccessOptions">Site Access Options</message>
 
 	<!-- Press settings -->
-	<message key="manager.press.identification">Press Identification</message>
-	<message key="manager.affiliationAndSupport"><![CDATA[Affiliation &amp; Support]]></message>
+	<message key="manager.press.identification">Identity</message>
+	<message key="manager.affiliationAndSupport">Sponsor</message>
 
 	<!-- Website settings -->
 	<message key="manager.website.homepage">Homepage</message>
@@ -196,11 +196,11 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.website.imageFileRequired">An image file is required. Please ensure that you have chosen and uploaded a file.</message>
 
 	<!-- Publication Process settings -->
-	<message key="manager.publication.general">General Settings</message>
-	<message key="manager.publication.submissionStage">Submission Stage</message>
-	<message key="manager.publication.reviewStage">Review Stage</message>
-	<message key="manager.publication.editorialStage">Editorial Stage</message>
-	<message key="manager.publication.productionStage">Production Stage</message>
+	<message key="manager.publication.general">Settings</message>
+	<message key="manager.publication.submissionStage">Submission</message>
+	<message key="manager.publication.reviewStage">Review</message>
+	<message key="manager.publication.editorialStage">Editorial</message>
+	<message key="manager.publication.productionStage">Production</message>
 	<message key="manager.publication.emails">Emails</message>
 	<message key="manager.publication.preparedEmailTemplates">Prepared Email Templates</message>
 	<message key="manager.publication.preparedEmailTemplatesDescription">The press facilitates work flow communication through the use of prepared email messages. The default wording of these email templates can be easily modified below.</message>

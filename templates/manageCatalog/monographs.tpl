@@ -18,13 +18,11 @@
 		);
 	{rdelim});
 </script>
-
+{if $messageKey}<p>{translate key=$messageKey}</p>{/if}
 <div id="{$monographContainerId|escape}">
 	<div class="pkp_helpers_align_right">
 		<ul class="submission_actions pkp_helpers_flatlist pkp_linkActions">
-			{if $includeOrganizeAction}<li>{null_link_action id="organize-$monographContainerId" key="common.organize" image="organize"}</li>{/if}
-			<li>{null_link_action key="common.list" id="list-$monographContainerId" image="list_view"}</li>
-			<li>{null_link_action key="common.grid" id="grid-$monographContainerId" image="grid_view"}</li>
+			{if $includeFeatureAction}<li>{null_link_action id="feature-$monographContainerId" key="common.feature" image="feature"}</li>{/if}
 		</ul>
 	</div>
 	{if $category}
@@ -36,7 +34,9 @@
 			{$series->getLocalizedDescription()}
 		</div>
 	{/if}
-	<ul class="pkp_manageCatalog_monographList pkp_helpers_clear">
+	<br />
+	<br />
+	<ul class="pkp_manageCatalog_monographList pkp_helpers_container_center">
 		{iterate from=publishedMonographs item=monograph}
 			{include file="manageCatalog/monograph.tpl"}
 		{/iterate}

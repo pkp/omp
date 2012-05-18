@@ -29,10 +29,10 @@ class ManageCatalogHandler extends Handler {
 			array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
 			array(
 				'index', // Container
-				'homePage', 'search',
+				'homepage', 'search',
 				'getCategories', 'category', // By category
 				'getSeries', 'series', // By series
-				'setFeatured'
+				'toggle'
 			)
 		);
 	}
@@ -84,15 +84,15 @@ class ManageCatalogHandler extends Handler {
 	}
 
 	/**
-	 * View the tab contents for the Home Page tab.
+	 * View the tab contents for the Homepage tab.
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function homePage($args, &$request) {
+	function homepage($args, &$request) {
 		// Set up the monograph list template
 		$press =& $request->getPress();
 		$this->_setupMonographsTemplate(
-			true, 'homePage',
+			true, 'homepage', 'catalog.manage.homepageDescription',
 			ASSOC_TYPE_PRESS, $press->getId()
 		);
 
@@ -163,7 +163,7 @@ class ManageCatalogHandler extends Handler {
 
 		// Set up the monograph list template
 		$this->_setupMonographsTemplate(
-			true, 'category',
+			true, 'category', 'catalog.manage.categoryDescription',
 			ASSOC_TYPE_CATEGORY, $category->getId()
 		);
 
@@ -200,7 +200,7 @@ class ManageCatalogHandler extends Handler {
 
 		// Set up the monograph list template
 		$this->_setupMonographsTemplate(
-			true, 'series',
+			true, 'series', 'catalog.manage.seriesDescription',
 			ASSOC_TYPE_SERIES, $series->getId()
 		);
 
@@ -236,18 +236,21 @@ class ManageCatalogHandler extends Handler {
 	}
 
 	/**
-	 * Set featured status for a submission.
+	 * Set featured or new release status for a submission.
 	 * @param $args array
 	 * @param $request PKPRequest
 	 * @return string
 	 */
-	function setFeatured($args, &$request) {
+	function toggle($args, &$request) {
 		$press =& $request->getPress();
 
-		// Identification of item to set featured state on
+		// Identification of item to set new state state on
 		$monographId = (int) array_shift($args);
 		$assocType = (int) array_shift($args);
 		$assocId = (int) array_shift($args);
+
+		// toggle type
+		$toggleType = array_shift($args);
 
 		// Description of new state
 		$newState = (int) array_shift($args);
@@ -286,19 +289,34 @@ class ManageCatalogHandler extends Handler {
 				fatalError('Invalid feature specified.');
 		}
 
-		// Delete the old featured state
-		$featureDao =& DAORegistry::getDAO('FeatureDAO');
-		$featureDao->deleteFeature($monographId, $assocType, $assocId);
+		$returner = null;
 
-		// If necessary, insert the new featured state and resequence.
-		if ($newState) {
-			$featureDao->insertFeature($monographId, $assocType, $assocId, $newSeq);
-			$sequences = $featureDao->resequenceByAssoc($assocType, $assocId);
-		} else {
-			$sequences = null;
+		switch ($toggleType) {
+			case 'setFeatured':
+				$featureDao =& DAORegistry::getDAO('FeatureDAO');
+				$featureDao->deleteFeature($monographId, $assocType, $assocId);
+
+				// If necessary, insert the new featured state and resequence.
+				if ($newState) {
+					$featureDao->insertFeature($monographId, $assocType, $assocId, $newSeq);
+					$returner = $featureDao->resequenceByAssoc($assocType, $assocId);
+				} else {
+					$returner = null;
+				}
+				break;
+			case 'setNewRelease':
+				$newReleaseDao =& DAORegistry::getDAO('NewReleaseDAO');
+				$newReleaseDao->deleteNewRelease($monographId, $assocType, $assocId);
+				if ($newState) {
+					$newReleaseDao->insertNewRelease($monographId, $assocType, $assocId);
+					$returner = true;
+				}
+				break;
+			default:
+				fatalError('Invalid toggle type specified.');
 		}
 
-		$json = new JSONMessage(true, $sequences);
+		$json = new JSONMessage(true, $returner);
 		return $json->getString();
 	}
 
@@ -307,35 +325,43 @@ class ManageCatalogHandler extends Handler {
 	//
 	/**
 	 * Set up template including link actions for the catalog view
-	 * @param $includeOrganizeAction boolean
+	 * @param $includeFeatureAction boolean
 	 * @param $listName string Unique identifier of monograph list (for
 	 *  disambiguation of HTML element IDs)
+	 * @param $messageKey a locale key to display at the top of the tab (for instructions) (optional)
 	 * @param $assocType Association type of features to fetch
 	 *  (ASSOC_TYPE_...) (optional)
 	 * @param $assocId Association ID of features to fetch (optional)
 	 */
-	function _setupMonographsTemplate($includeOrganizeAction, $listName, $assocType = null, $assocId = null) {
+	function _setupMonographsTemplate($includeFeatureAction, $listName, $messageKey = null, $assocType = null, $assocId = null) {
 		// Loadubmission locale content for monograph listing
 		AppLocale::requireComponents(LOCALE_COMPONENT_OMP_SUBMISSION);
 
 		$templateMgr =& TemplateManager::getManager();
 		import('lib.pkp.classes.linkAction.request.NullAction');
 
-		// Organize action (if enabled)
-		$templateMgr->assign('includeOrganizeAction', $includeOrganizeAction);
+		// Feature action (if enabled)
+		$templateMgr->assign('includeFeatureAction', $includeFeatureAction);
 
 		// Add the list name, for ID differentiation
 		$templateMgr->assign('listName', $listName);
+
+		// Include the message locale key displayed at the top of the tab
+		$templateMgr->assign('messageKey', $messageKey);
 
 		// Expose the featured monograph IDs and associated params
 		if ($assocType) {
 			$featureDao =& DAORegistry::getDAO('FeatureDAO');
 			$featuredMonographIds = $featureDao->getSequencesByAssoc($assocType, $assocId);
 			$templateMgr->assign('featuredMonographIds', $featuredMonographIds);
+
+			$newReleaseDao =& DAORegistry::getDAO('NewReleaseDAO');
+			$newReleaseMonographIds =& $newReleaseDao->getMonographIdsByAssoc($assocType, $assocId);
+			$templateMgr->assign('newReleaseMonographIds', $newReleaseMonographIds);
 		}
 
-		$templateMgr->assign('featureAssocType', $assocType);
-		$templateMgr->assign('featureAssocId', $assocId);
+		$templateMgr->assign('assocType', $assocType);
+		$templateMgr->assign('assocId', $assocId);
 	}
 }
 

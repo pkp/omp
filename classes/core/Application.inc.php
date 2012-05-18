@@ -146,6 +146,7 @@ class Application extends PKPApplication {
 			'MonographSubjectDAO' => 'classes.monograph.MonographSubjectDAO',
 			'MonographSubjectEntryDAO' => 'classes.monograph.MonographSubjectEntryDAO',
 			'MonographSearchDAO' => 'classes.search.MonographSearchDAO',
+			'NewReleaseDAO' => 'classes.press.NewReleaseDAO',
 			'NoteDAO' => 'classes.note.NoteDAO',
 			'NotificationStatusDAO' => 'classes.press.NotificationStatusDAO',
 			'OAIDAO' => 'classes.oai.omp.OAIDAO',

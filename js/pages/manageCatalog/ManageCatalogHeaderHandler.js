@@ -35,8 +35,10 @@ $.pkp.pages.manageCatalog = $.pkp.pages.manageCatalog || {};
 
 		// Save options for later
 		this.searchTabIndex_ = options.searchTabIndex;
+		this.spotlightTabName_ = options.spotlightTabName;
 		this.seriesFetchUrlTemplate_ = options.seriesFetchUrlTemplate;
 		this.categoryFetchUrlTemplate_ = options.categoryFetchUrlTemplate;
+		this.spotlightsUrl_ = options.spotlightsUrl;
 
 		// Set up the tabs
 		var $catalogTabs = $('#catalogTabs');
@@ -50,6 +52,11 @@ $.pkp.pages.manageCatalog = $.pkp.pages.manageCatalog || {};
 
 		// React to "select series" events from the series tab.
 		this.bind('selectSeries', this.selectSeriesHandler_);
+		
+		// React to showing a tab.  Used to load the remote spotlights grid.
+		$catalogTabs.tabs().bind('tabsselect', {
+				spotlightTabName: this.spotlightTabName_,
+				spotlightsUrl: this.spotlightsUrl_}, this.showTabHandler_);
 	};
 	$.pkp.classes.Helper.inherits(
 			$.pkp.pages.manageCatalog.ManageCatalogHeaderHandler,
@@ -69,6 +76,15 @@ $.pkp.pages.manageCatalog = $.pkp.pages.manageCatalog || {};
 
 
 	/**
+	 * The panel id (name) of the spotlight tab among other tabs
+	 * @private
+	 * @type {string?}
+	 */
+	$.pkp.pages.manageCatalog.ManageCatalogHeaderHandler.
+			prototype.spotlightTabName_ = null;
+
+
+	/**
 	 * The URL template used to fetch the series submission list.
 	 * @private
 	 * @type {string?}
@@ -84,6 +100,15 @@ $.pkp.pages.manageCatalog = $.pkp.pages.manageCatalog || {};
 	 */
 	$.pkp.pages.manageCatalog.ManageCatalogHeaderHandler.
 			prototype.categoryFetchUrlTemplate_ = null;
+
+
+	/**
+	 * The URL used to fetch the spotlights list.
+	 * @private
+	 * @type {string?}
+	 */
+	$.pkp.pages.manageCatalog.ManageCatalogHeaderHandler.
+			prototype.spotlightsUrl_ = null;
 
 
 	//
@@ -194,6 +219,31 @@ $.pkp.pages.manageCatalog = $.pkp.pages.manageCatalog || {};
 			$.get(this.getCategoryFetchUrl_(categoryPath),
 					this.callbackWrapper(this.showFetchedCategory_), 'json');
 		}
+	};
+
+
+	/**
+	 * Handle the "show tabs" event.  In most cases, we just return true since
+	 * there are other methods for dealing with the tabs.  The exception is the 
+	 * spotlights tab, which is loaded like a regular AJAX tab.
+	 * @private
+	 *
+	 * @param {Event} event The event.
+	 * @param {Object} tabElement the HTML element which generated the event.
+	 */
+	$.pkp.pages.manageCatalog.ManageCatalogHeaderHandler.
+			prototype.showTabHandler_ =
+			function(event, tabElement) {
+
+			if (tabElement.panel.id == event.data.spotlightTabName) {
+				$.get(event.data.spotlightsUrl, function(data) {
+					var jsonData = $.parseJSON(data);
+					$('#spotlightsTab').html(jsonData.content);
+				});
+			} else {
+				// let the other tabs function normally.
+				return true;
+			}
 	};
 
 

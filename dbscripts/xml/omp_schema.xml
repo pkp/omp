@@ -425,6 +425,29 @@
 
 	<!--
 	  *
+	  * TABLE new_releases
+	  *
+	  -->
+	<table name="new_releases">
+		<field name="monograph_id" type="I8">
+			<NOTNULL />
+		</field>
+		<field name="assoc_type" type="I8">
+			<NOTNULL />
+		</field>
+		<field name="assoc_id" type="I8">
+			<NOTNULL />
+		</field>
+		<index name="new_releases_pkey">
+			<col>assoc_type</col>
+			<col>assoc_id</col>
+			<col>monograph_id</col>
+			<UNIQUE />
+		</index>
+	</table>
+
+	<!--
+	  *
 	  * TABLE series
 	  *
 	  -->

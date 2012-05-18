@@ -103,6 +103,25 @@ class AboutHandler extends Handler {
 	}
 
 	/**
+	 * Display description page.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 */
+	function description($args, &$request) {
+		$this->addCheck(new HandlerValidatorPress($this));
+		$this->validate();
+		$this->setupTemplate($request, true);
+
+		$pressSettingsDao =& DAORegistry::getDAO('PressSettingsDAO');
+		$press =& $request->getPress();
+
+		$templateMgr =& TemplateManager::getManager();
+		$pressSettings =& $pressSettingsDao->getPressSettings($press->getId());
+		$templateMgr->assign_by_ref('pressSettings', $pressSettings);
+		$templateMgr->display('about/description.tpl');
+	}
+
+	/**
 	 * Display Press Sponsorship page.
 	 * @param $args array
 	 * @param $request PKPRequest

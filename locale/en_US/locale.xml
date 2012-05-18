@@ -153,11 +153,13 @@
 	<message key="spotlight.spotlights">Spotlights</message>
 	<message key="spotlight.noneExist">There are no current spotlights.</message>
 	<message key="spotlight.title.homePage">In the Spotlight</message>
+	<message key="grid.content.spotlights.spotlightItemTitle">Spotlight Item</message>
 	<message key="grid.content.spotlights.category.homepage">Homepage</message>
 	<message key="grid.content.spotlights.category.sidebar">Sidebar</message>
 	<message key="grid.content.spotlights.form.type">Spotlight Type</message>
 	<message key="grid.content.spotlights.form.location">Spotlight Location</message>
-	<message key="grid.content.spotlights.form.item">Featured Item</message>
+	<message key="grid.content.spotlights.form.item">Enter spotlighted title (autocomplete)</message>
+	<message key="grid.content.spotlights.form.title">Spotlight title</message>
 	<message key="grid.content.spotlights.form.type.book">Book</message>
 	<message key="grid.content.spotlights.itemRequired">An item is required.</message>
 	<message key="grid.content.spotlights.titleRequired">A spotlight title is required.</message>
@@ -265,7 +267,7 @@
 
 	<!-- Catalog Management -->
 	<message key="catalog.manage">Catalog Management</message>
-	<message key="catalog.manage.homePage">Home Page</message>
+	<message key="catalog.manage.homepage">Homepage</message>
 	<message key="catalog.manage.newReleases">New Releases</message>
 	<message key="catalog.manage.category">Category</message>
 	<message key="catalog.manage.series">Series</message>
@@ -273,7 +275,12 @@
 	<message key="catalog.selectSeries">Select Series</message>
 	<message key="catalog.selectCategory">Select Category</message>
 	<message key="catalog.manage.entryDescription">Use the Submission tab to modify the book's metadata (including placement, title, summary, keywords, contributors, and chapters). Use the Catalog tab to modify the book's catalog information (including a book cover image; audience information; information on representatives, such as any agents or suppliers, who are not direct members of the press; and publication formats). Additionally, any configured publication formats will be given their own tab from which they can be configured.</message>
-
+	<message key="catalog.manage.spotlightDescription">Three spotlights (e.g., Featured Book) appear on the press homepage, with spotlight title, image, and text.</message>
+	<message key="catalog.manage.homepageDescription">The cover image of selected books appears toward the top of the homepage as a scrollable set. Click 'Feature', then the star to add a book to the carousel; click the exclamation point to feature as a new release; drag and drop to order.</message>
+	<message key="catalog.manage.categoryDescription">Click 'Feature', then the star to select a featured book for this category; drag and drop to order.</message>
+	<message key="catalog.manage.seriesDescription">Click 'Feature', then the star to select a featured book for this series; drag and drop to order. Series are identified with an editor(s) and a series title, within a category or independently.</message>
+	<message key="catalog.manage.placeIntoCarousel">Carousel</message>
+	<message key="catalog.manage.newRelease">Release</message>
 	<!-- Catalog -->
 	<message key="catalog.browseTitles">Browse {$numTitles} Titles</message>
 	<message key="catalog.feature">Feature</message>
@@ -295,7 +302,9 @@
 	<message key="common.tasks">Tasks</message>
 	<message key="common.list">List</message>
 	<message key="common.grid">Grid</message>
-	<message key="common.organize">Organize</message>
+	<message key="common.feature">Feature</message>
+	<message key="common.searchCatalog">Search Catalog</message>
+	<message key="common.navigation">Navigation</message>
 
 	<message key="dashboard.tasks">1. Tasks</message>
 	<message key="dashboard.submissions">2. Submissions</message>
@@ -323,7 +332,6 @@
 
 	<!-- Navigation -->
 	<message key="navigation.management">Management</message>
-	<message key="navigation.backlist">Backlist</message>
 	<message key="navigation.catalog">Catalog</message>
 	<message key="navigation.competingInterestPolicy">Competing Interest Policy</message>
 	<message key="navigation.catalog.manage">Manage</message>
@@ -331,17 +339,19 @@
 	<message key="navigation.catalog.administration">Catalog Administration</message>
 	<message key="navigation.catalog.administration.categories">Categories</message>
 	<message key="navigation.catalog.administration.series">Series</message>
-	<message key="navigation.distributionProcess">Distribution Process</message>
+	<message key="navigation.distributionProcess">Distribution</message>
 	<message key="navigation.goBack">Go Back</message>
 	<message key="navigation.infoForAuthors">For Authors</message>
 	<message key="navigation.infoForLibrarians">For Librarians</message>
 	<message key="navigation.infoForAuthors.long">Information For Authors</message>
 	<message key="navigation.infoForLibrarians.long">Information For Librarians</message>
+	<message key="navigation.newReleases">New Releases</message>
 	<message key="navigation.published">Published</message>
-	<message key="navigation.publicationProcess">Publication Process</message>
+	<message key="navigation.publicationProcess">Publication</message>
 	<message key="navigation.tools">Tools</message>
 	<message key="navigation.tools.importExport">Import/Export</message>
 	<message key="navigation.wizard">Wizard</message>
+	<message key="navigation.linksAndMedia">Links and Social Media</message>
 
 	<!-- Common Press Terms -->
 	<message key="press.presses">Presses</message>
@@ -424,10 +434,11 @@ current password.<br /><br />Enter your email address below to reset your passwo
 	<message key="about.pressContact">Press Contact</message>
 	<message key="about.aboutThePress">About the Press</message>
 	<message key="about.editorialTeam">Editorial Team</message>
+	<message key="about.description">Description</message>
 	<message key="about.editorialPolicies">Editorial Policies</message>
 	<message key="about.focusAndScope">Focus and Scope</message>
 	<message key="about.seriesPolicies">Series and Category Policies</message>
-	<message key="about.guidelines">Guidelines</message>
+	<message key="about.guidelines">Guides</message>
 	<message key="about.submissions">Submissions</message>
 	<message key="about.sponsors">Sponsors</message>
 	<message key="about.contributors">Sources of Support</message>
@@ -523,7 +534,6 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="installer.xslPresent">XSL Setting</message>
 	<message key="installer.xslPresentString">The PHP XSL module is enabled.</message>
 	<message key="installer.configureXSLMessage"><![CDATA[<p>Your PHP installation does not have the XSL module enabled. Either enable it, or configure the xslt_command parameter in your config.inc.php file.</p>]]></message>
-
 	<!-- Monograph Logs -->
 	<message key="log.review.reviewerAssigned">{$reviewerName} has been assigned to review submission {$monographId} for review round {$round}.</message>
 	<message key="log.review.reviewCleared">The round {$round} review by {$reviewerName} for submission {$monographId} has been cleared.</message>

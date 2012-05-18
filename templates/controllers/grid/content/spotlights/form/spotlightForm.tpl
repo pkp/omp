@@ -26,7 +26,7 @@
 		{/if}
 
 		{fbvFormSection for="title"}
-			{fbvElement type="text" multilingual="true" id="title" required="true" label="common.title" value=$title maxlength="255" size=$fbvStyles.size.MEDIUM inline="true"}
+			{fbvElement type="text" multilingual="true" id="title" required="true" label="grid.content.spotlights.form.title" value=$title maxlength="255" size=$fbvStyles.size.MEDIUM inline="true"}
 			{fbvElement type="select" id="type" from=$spotlightTypes selected=$type translate=false required="true" label="grid.content.spotlights.form.type" size=$fbvStyles.size.MEDIUM inline="true"}
 		{/fbvFormSection}
 

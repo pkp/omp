@@ -30,14 +30,22 @@
 		this.monographId_ = options.monographId;
 		this.seq_ = options.seq;
 		this.setFeaturedUrlTemplate_ = options.setFeaturedUrlTemplate;
+		this.setNewReleaseUrlTemplate_ = options.setNewReleaseUrlTemplate;
 		this.isFeatured_ = options.isFeatured;
+		this.isNewRelease_ = options.isNewRelease;
 		this.datePublished_ = options.datePublished;
 		this.workflowUrl_ = options.workflowUrl;
 		this.catalogUrl_ = options.catalogUrl;
 
 		// Attach the view type handlers, if links exist.
-		$monographsContainer.find('.star, .star_highlighted').click(
+		$monographsContainer.find('a[id^="featureMonograph"]').click(
 				this.callbackWrapper(this.featureButtonHandler_));
+
+		$monographsContainer.find('a[id^="releaseMonograph"]').click(
+				this.callbackWrapper(this.releaseButtonHandler_));
+
+		// prevent the whole li element from capturing the linkAction click event.
+		$monographsContainer.unbind('click');
 
 		$monographsContainer.find('a[id^="catalogEntry"]').click(
 				this.callbackWrapper(this.activateAction));
@@ -52,11 +60,18 @@
 		this.publishEvent('monographListChanged');
 		this.publishEvent('monographSequencesChanged');
 
-		// Bind for enter/exit of Organize mode
+		// Bind for enter/exit of Feature mode
 		this.bind('changeDragMode', this.changeDragModeHandler_);
 
 		// Bind for setting a new sequence
 		this.bind('setSequence', this.setSequenceHandler_);
+		
+		// position the (hidden) feature tools over the book cover image.
+		var position = $monographsContainer.find('.pkp_manageCatalog_monograph_image').position();
+		$monographsContainer.find('.pkp_manageCatalog_featureTools').
+			css('position', 'absolute').
+			css('top', position.top).
+			css('left', position.left);
 	};
 	$.pkp.classes.Helper.inherits(
 			$.pkp.pages.manageCatalog.MonographHandler,
@@ -99,6 +114,14 @@
 
 
 	/**
+	 * The current state of the new releasea flag.
+	 * @private
+	 * @type {boolean?}
+	 */
+	$.pkp.pages.manageCatalog.MonographHandler.prototype.isNewRelease_ = null;
+
+
+	/**
 	 * The URL to the workflow of this monograph.
 	 * @private
 	 * @type {string?}
@@ -121,6 +144,15 @@
 	 */
 	$.pkp.pages.manageCatalog.MonographHandler.
 			prototype.setFeaturedUrlTemplate_ = null;
+
+
+	/**
+	 * The URL template used to set the new release status of a monograph.
+	 * @private
+	 * @type {string?}
+	 */
+	$.pkp.pages.manageCatalog.MonographHandler.
+			prototype.setNewReleaseUrlTemplate_ = null;
 
 
 	//
@@ -189,6 +221,19 @@
 
 
 	/**
+	 * Get the URL to set a monograph's published state.
+	 * @private
+	 * @return {String} The URL to use to set the monograph feature state.
+	 */
+	$.pkp.pages.manageCatalog.MonographHandler.prototype.getSetNewReleaseUrl_ =
+			function() {
+
+		return this.setNewReleaseUrlTemplate_
+				.replace('RELEASE_DUMMY', this.isNewRelease_ ? 1 : 0);
+	};
+
+
+	/**
 	 * Callback that will be activated when "feature" is toggled
 	 *
 	 * @private
@@ -204,6 +249,28 @@
 		// Tell the server
 		$.get(this.getSetFeaturedUrl_(),
 				this.callbackWrapper(this.handleSetFeaturedResponse_), 'json');
+
+		// Stop further event processing
+		return false;
+	};
+
+
+	/**
+	 * Callback that will be activated when "new release" is toggled
+	 *
+	 * @private
+	 *
+	 * @return {boolean} Always returns false.
+	 */
+	$.pkp.pages.manageCatalog.MonographHandler.prototype.releaseButtonHandler_ =
+			function() {
+
+		// Invert "release" state
+		this.isNewRelease_ = this.isNewRelease_ ? 0 : 1;
+
+		// Tell the server
+		$.get(this.getSetNewReleaseUrl_(),
+				this.callbackWrapper(this.handleSetNewReleaseResponse_), 'json');
 
 		// Stop further event processing
 		return false;
@@ -284,6 +351,41 @@
 
 		// Let the container know to reset the sortable list
 		this.trigger('monographListChanged');
+		return false;
+	};
+
+
+	/**
+	 * Handle a callback after a "set new release" request returns with
+	 * a response.
+	 *
+	 * @param {Object} ajaxContext The AJAX request context.
+	 * @param {Object} jsonData A parsed JSON response object.
+	 * @return {boolean} Message handling result.
+	 * @private
+	 */
+	$.pkp.pages.manageCatalog.MonographHandler.prototype.handleSetNewReleaseResponse_ =
+			function(ajaxContext, jsonData) {
+
+		jsonData = this.handleJson(jsonData);
+
+		// Record the new state of the isNewRelease flag and sequence
+		this.isNewRelease_ = jsonData.content !== null ? 1 : 0;
+
+		// Update the UI
+		var $htmlElement = this.getHtmlElement();
+		if (this.isNewRelease_) {
+			// New release; previously not.
+			$htmlElement.find('.release')
+				.removeClass('release')
+				.addClass('release_highlighted');
+		} else {
+			// No longer a new release.
+			$htmlElement.find('.release_highlighted')
+				.addClass('release')
+				.removeClass('release_highlighted');
+		}
+
 		return false;
 	};
 

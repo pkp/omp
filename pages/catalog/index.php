@@ -18,6 +18,7 @@
 switch ($op) {
 	case 'index':
 	case 'category':
+	case 'newReleases':
 	case 'series':
 	case 'results':
 		define('HANDLER_CLASS', 'CatalogHandler');

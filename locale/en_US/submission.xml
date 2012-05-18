@@ -49,7 +49,6 @@
 	<message key="submission.mySubmissions">My Authored Submissions</message>
 	<message key="submission.metadata">Metadata</message>
 	<message key="submission.supportingAgencies">Supporting Agencies</message>
-	<message key="submission.goToWorkflow">See submission</message>
 
 	<!-- Submission wizard -->
 	<message key="submission.submit">Start New Book Submission</message>
@@ -174,7 +173,7 @@
 
 	<!-- Submission-specific catalog info -->
 	<message key="submission.catalogEntry">Catalog Entry</message>
-	<message key="submission.editCatalogEntry">Edit entry</message>
+	<message key="submission.editCatalogEntry">Entry</message>
 	<message key="submission.catalogEntry.new">New Catalog Entry</message>
 	<message key="submission.catalogEntry.confirm">I acknowledge that the current metadata is accurate and approve it for display in the public catalog.</message>
 	<message key="submission.catalogEntry.confirm.required">Please confirm that the submission is ready to be placed in the catalog.</message>

@@ -9,23 +9,13 @@
 
 {capture assign="publicMenu"}
 	{if $currentPress}
-		{if $enableAnnouncements}
-			<li><a href="{url page="announcement"}">{translate key="announcement.announcements"}</a></li>
+		{if not (empty($pressSettings.mailingAddress) && empty($pressSettings.contactName) && empty($pressSettings.contactAffiliation) && empty($pressSettings.contactMailingAddress) && empty($pressSettings.contactPhone) && empty($pressSettings.contactFax) && empty($pressSettings.contactEmail) && empty($pressSettings.supportName) && empty($pressSettings.supportPhone) && empty($pressSettings.supportEmail))}
+			<li><a href="{url page="about" op="contact"}">{translate key="about.contact"}</a></li>
 		{/if}
-		<li>
-			<a href="{url page="about"}">{translate key="about.aboutThePress"}<span class="sf-sub-indicator"> »</span></a>
-			<ul>
-				{if not (empty($pressSettings.mailingAddress) && empty($pressSettings.contactName) && empty($pressSettings.contactAffiliation) && empty($pressSettings.contactMailingAddress) && empty($pressSettings.contactPhone) && empty($pressSettings.contactFax) && empty($pressSettings.contactEmail) && empty($pressSettings.supportName) && empty($pressSettings.supportPhone) && empty($pressSettings.supportEmail))}
-					<li><a href="{url page="about" op="contact"}">{translate key="about.contact"}</a></li>
-				{/if}
-				<li><a href="{url page="about" op="editorialTeam"}">{translate key="about.editorialTeam"}</a></li>
-				<li><a href="{url page="about" op="editorialPolicies"}">{translate key="about.policies"}</a></li>
-				<li><a href="{url page="about" op="submissions"}">{translate key="about.submissions"}</a></li>
-			</ul>
-		</li>
-		<li>
-			<a href="{url page="catalog"}">{translate key="navigation.catalog"}</a>
-		</li>
+		<li><a href="{url page="about" op="description"}">{translate key="about.description"}</a></li>
+		<li><a href="{url page="about" op="editorialTeam"}">{translate key="about.editorialTeam"}</a></li>
+		<li><a href="{url page="about" op="editorialPolicies"}">{translate key="about.policies"}</a></li>
+		<li><a href="{url page="about" op="submissions"}">{translate key="about.submissions"}</a></li>
 	{/if}
 {/capture}
 
@@ -38,22 +28,23 @@
 			{if $currentPress}
 				{if array_intersect(array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR), $userRoles)}
 					<li>
-						<a href="#">{translate key="navigation.catalog"}</a>
-						<ul>
-							<li><a href="{url page="manageCatalog"}">{translate key="navigation.catalog.manage"}</a></li>
-							{if array_intersect(array(ROLE_ID_PRESS_MANAGER), $userRoles)}
-								<li>
-									<a href="{url page="management" op="catalogAdmin"}">{translate key="navigation.catalog.administration.short"}</a>
-								</li>
-							{/if}
-						</ul>
-					</li>
-				{/if}{* ROLE_ID_PRESS_MANAGER || ROLE_ID_SERIES_EDITOR *}
-				{if array_intersect(array(ROLE_ID_PRESS_MANAGER), $userRoles)}
-					<li>
 						<a href="#">{translate key="navigation.management"}</a>
 						<ul>
-							<li><a href="{url page="management" op="content"}">{translate key="common.content"}</a></li>
+							<li><a href="{url page="management" op="navigation"}">{translate key="common.navigation"}</a></li>
+							<li>
+								<a href="#">{translate key="navigation.catalog"}</a>
+								<ul>
+									<li><a href="{url page="manageCatalog"}">{translate key="catalog.manage.homepage"}</a></li>
+									<li><a href="{url page="manageCatalog" anchor="categoryTab"}">{translate key="catalog.manage.category"}</a></li>
+									<li><a href="{url page="manageCatalog" anchor="seriesTab"}">{translate key="catalog.manage.series"}</a></li>
+									{if array_intersect(array(ROLE_ID_PRESS_MANAGER), $userRoles)}
+										<li>
+											<a href="{url page="management" op="catalogAdmin"}">{translate key="navigation.catalog.administration.short"}</a>
+										</li>
+									{/if}
+								</ul>
+							</li>
+							{if array_intersect(array(ROLE_ID_PRESS_MANAGER), $userRoles)}
 							<li>
 								<a href="{url page="management" op="settings" path="index"}">{translate key="navigation.settings"}</a>
 								<ul>
@@ -73,18 +64,28 @@
 									<li><a href="{url page="manager" op="importexport"}">{translate key="navigation.tools.importExport"}</a></li>
 								</ul>
 							</li>
+							{/if}
 						</ul>
 					</li>
+				{/if}{* ROLE_ID_PRESS_MANAGER || ROLE_ID_SERIES_EDITOR *}
+				{if $enableAnnouncements}
+					<li><a href="{url page="announcement"}">{translate key="announcement.announcements"}</a></li>
 				{/if}
 				<li>
-					<a href="#">{translate key="navigation.publicMenu"}</a>
+					<a href="{url page="about"}">{translate key="navigation.about"}</a>
 					<ul>{$publicMenu}</ul>
 				</li>
 			{/if}
 		</ul>
 	{else}{* !$isUserLoggedIn *}
 		<ul class="sf-menu">
-			{$publicMenu}
+			{if $enableAnnouncements}
+				<li><a href="{url page="announcement"}">{translate key="announcement.announcements"}</a></li>
+			{/if}
+			<li>
+				<a href="{url page="about"}">{translate key="navigation.about"}</a>
+				<ul>{$publicMenu}</ul>
+			</li>
 		</ul>
 	{/if}{* $isUserLoggedIn *}
 </div>

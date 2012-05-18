@@ -9,12 +9,14 @@
 <script type="text/javascript">
 	$(function() {ldelim}
 		$('#topSearchFormField').jLabel();
+		// the following is needed because jLabel() inline-styles the label element it creates
+		$('#topSearchForm').children('label').css('z-index', 10);
 	{rdelim});
 </script>
 
 <div class="pkp_structure_search pkp_helpers_align_right">
 	<form id="topSearchForm" action="{url page="catalog" op="results"}" method="post">
-		<input id="topSearchFormField" name="query" value="{$searchQuery|escape}" type="text" title="{translate key="common.search"}..." />
+		<input id="topSearchFormField" name="query" value="{$searchQuery|escape}" type="text" title="{translate key="common.searchCatalog"}..." />
 		<button class="go">{translate key="common.go"}</button>
 	</form>
 </div>

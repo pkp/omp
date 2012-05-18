@@ -38,7 +38,7 @@ class CatalogHandler extends Handler {
 	 */
 	function index($args, &$request) {
 		$templateMgr =& TemplateManager::getManager();
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 		$press =& $request->getPress();
 
 		// Fetch the monographs to display
@@ -56,6 +56,25 @@ class CatalogHandler extends Handler {
 	}
 
 	/**
+	 * Show the catalog new releases.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 */
+	function newReleases($args, &$request) {
+		$templateMgr =& TemplateManager::getManager();
+		$this->setupTemplate($request);
+		$press =& $request->getPress();
+
+		// Provide a list of new releases to browse
+		$newReleaseDao =& DAORegistry::getDAO('NewReleaseDAO');
+		$newReleases =& $newReleaseDao->getMonographsByAssoc(ASSOC_TYPE_PRESS, $press->getId());
+		$templateMgr->assign('publishedMonographs', $newReleases);
+
+		// Display
+		$templateMgr->display('catalog/newReleases.tpl');
+	}
+
+	/**
 	 * View the content of a category.
 	 * @param $args array
 	 * @param $request PKPRequest
@@ -64,7 +83,7 @@ class CatalogHandler extends Handler {
 	function category($args, &$request) {
 		$templateMgr =& TemplateManager::getManager();
 		$press =& $request->getPress();
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 
 		// Get the category
 		$categoryDao =& DAORegistry::getDAO('CategoryDAO');
@@ -94,7 +113,7 @@ class CatalogHandler extends Handler {
 	function series($args, &$request) {
 		$templateMgr =& TemplateManager::getManager();
 		$press =& $request->getPress();
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 
 		// Get the series
 		$seriesDao =& DAORegistry::getDAO('SeriesDAO');
@@ -125,7 +144,7 @@ class CatalogHandler extends Handler {
 	function results($args, &$request) {
 		$templateMgr =& TemplateManager::getManager();
 		$press =& $request->getPress();
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 
 		$query = $request->getUserVar('query');
 		$templateMgr->assign('searchQuery', $query);
@@ -145,6 +164,13 @@ class CatalogHandler extends Handler {
 
 		// Display
 		$templateMgr->display('catalog/results.tpl');
+	}
+
+	function setupTemplate(&$request) {
+		$templateMgr =& TemplateManager::getManager();
+		$press =& $request->getPress();
+		$templateMgr->assign('pressCurrency', $press->getSetting('pressCurrency'));
+		parent::setupTemplate();
 	}
 }
 

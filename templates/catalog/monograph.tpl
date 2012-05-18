@@ -19,4 +19,12 @@
 	<div class="pkp_catalog_monograph_date">
 			{$publishedMonograph->getDatePublished()|date_format:$dateFormatShort}
 	</div>
+	<div class="pkp_catalog_monographFormats">
+		{foreach from=$publishedMonograph->getCatalogFormatInfo() item="details"}
+			<div class="pkp_catalog_monographFormat">{$details.title}: {$details.price} ({$pressCurrency})</div>
+			{foreach from=$details.codes item="code"}
+				<div class="pkp_catalog_monographCode">{$code->getNameForONIXCode()} - {$code->getValue()}</div>
+			{/foreach}
+		{/foreach}
+	</div>
 </li>

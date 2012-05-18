@@ -28,9 +28,9 @@
 		this.parent($monographsContainer, options);
 		// iterate over our monographs in groups of four, since our CSS spacing
 		// displays four monographs per row.  Normalize the element detail heights.
-		var $monographDetails = $monographsContainer.find('.pkp_catalog_monographDetails');
-		for (var $i = 0; $i < $monographDetails.size() ; $i += 4) {
-			$monographDetails.slice($i, $i + 3).equalizeElementHeights();
+		var $monographs = $monographsContainer.find('.pkp_catalog_monograph');
+		for (var $i = 0; $i < $monographs.size() ; $i += 4) {
+			$monographs.slice($i, $i + 4).equalizeElementHeights();
 		}
 	};
 	$.pkp.classes.Helper.inherits(

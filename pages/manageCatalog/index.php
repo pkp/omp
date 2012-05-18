@@ -17,13 +17,13 @@
 
 switch ($op) {
 	case 'index':
-	case 'homePage':
+	case 'homepage':
 	case 'getCategories':
 	case 'category':
 	case 'getSeries':
 	case 'series':
 	case 'search':
-	case 'setFeatured':
+	case 'toggle':
 		define('HANDLER_CLASS', 'ManageCatalogHandler');
 		import('pages.manageCatalog.ManageCatalogHandler');
 		break;

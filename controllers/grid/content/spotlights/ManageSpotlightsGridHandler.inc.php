@@ -113,11 +113,21 @@ class ManageSpotlightsGridHandler extends CategoryGridHandler {
 		$spotlightsGridCellProvider = new SpotlightsGridCellProvider();
 		$this->addColumn(
 			new GridColumn('title',
-				'common.title',
+				'grid.content.spotlights.form.title',
 				null,
 				'controllers/grid/gridCell.tpl',
 				$spotlightsGridCellProvider,
-				array('width' => 60)
+				array('width' => 40)
+			)
+		);
+
+		$this->addColumn(
+			new GridColumn('itemTitle',
+				'grid.content.spotlights.spotlightItemTitle',
+				null,
+				'controllers/grid/gridCell.tpl',
+				$spotlightsGridCellProvider,
+				array('width' => 40)
 			)
 		);
 

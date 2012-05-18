@@ -8,5 +8,6 @@
  *
  *}
 
+<p>{translate key="catalog.manage.spotlightDescription"}</p>
 {url|assign:spotlightsGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.content.spotlights.ManageSpotlightsGridHandler" op="fetchGrid"}
 {load_url_in_div id="spotlightsGridContainer" url="$spotlightsGridUrl"}

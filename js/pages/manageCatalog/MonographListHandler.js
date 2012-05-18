@@ -27,15 +27,9 @@
 
 		this.parent($monographsContainer, options);
 
-		// Attach the view type handlers, if links exist
-		$monographsContainer.find('.grid_view').click(
-				this.callbackWrapper(this.useGridView));
-		$monographsContainer.find('.list_view').click(
-				this.callbackWrapper(this.useListView));
-
-		// Attach the organize button handler, if button exists
-		$monographsContainer.find('.organize').click(
-				this.callbackWrapper(this.organizeButtonHandler_));
+		// Attach the fature button handler, if button exists
+		$monographsContainer.find('.feature').click(
+				this.callbackWrapper(this.featureButtonHandler_));
 
 		// React to "monograph list changed" events.
 		this.bind('monographListChanged',
@@ -58,11 +52,11 @@
 	// Private Properties
 	//
 	/**
-	 * Whether or not we're currently in Organize mode
+	 * Whether or not we're currently in Feature mode
 	 * @private
 	 * @type {boolean}
 	 */
-	$.pkp.pages.manageCatalog.MonographListHandler.prototype.inOrganizeMode_ = false;
+	$.pkp.pages.manageCatalog.MonographListHandler.prototype.inFeatureMode_ = false;
 
 
 	/**
@@ -77,33 +71,6 @@
 	// Public Methods
 	//
 	/**
-	 * Switch to List View mode.
-	 * @return {boolean} Always returns false.
-	 */
-	$.pkp.pages.manageCatalog.MonographListHandler.prototype.useListView =
-			function() {
-
-		var $htmlElement = $(this.getHtmlElement());
-		$htmlElement.find('.pkp_manageCatalog_monographList')
-			.removeClass('grid_view')
-			.addClass('list_view');
-
-		// unset the height attribute if coming from grid view.
-		$htmlElement.find('.pkp_manageCatalog_monograph').css('height', '');
-
-		// Control enabled/disabled state of buttons
-		var $actionsContainer = $htmlElement.find('.submission_actions');
-		$actionsContainer.find('.list_view').addClass('ui-state-active');
-		$actionsContainer.find('.grid_view').removeClass('ui-state-active');
-
-		this.inGridMode_ = false;
-
-		// In case called as event handler, stop further processing
-		return false;
-	};
-
-
-	/**
 	 * Switch to Grid View mode.
 	 * @return {boolean} Always returns false.
 	 */
@@ -117,9 +84,9 @@
 
 		// iterate over our monographs in groups of four, since our CSS spacing
 		// displays four monographs per row.  Normalize the element detail heights.
-		var $monographDetails = $htmlElement.find('.pkp_manageCatalog_monographDetails');
-		for (var $i = 0; $i < $monographDetails.size() ; $i += 4) {
-			$monographDetails.slice($i, $i + 3).equalizeElementHeights();
+		var $monographs = $htmlElement.find('.pkp_manageCatalog_monograph');
+		for (var $i = 0; $i < $monographs.size() ; $i += 4) {
+			$monographs.slice($i, $i + 4).equalizeElementHeights();
 		}
 		// Control enabled/disabled state of buttons
 		var $actionsContainer = $htmlElement.find('.submission_actions');
@@ -137,48 +104,42 @@
 	// Private Methods
 	//
 	/**
-	 * Callback that will be activated when "organize" is clicked
+	 * Callback that will be activated when "feature" is clicked
 	 *
 	 * @private
 	 *
 	 * @return {boolean} Always returns false.
 	 */
-	$.pkp.pages.manageCatalog.MonographListHandler.prototype.organizeButtonHandler_ =
+	$.pkp.pages.manageCatalog.MonographListHandler.prototype.featureButtonHandler_ =
 			function() {
 
-		// Toggle the "organize" flag.
-		this.inOrganizeMode_ = !this.inOrganizeMode_;
+		// Toggle the "feature" flag.
+		this.inFeatureMode_ = !this.inFeatureMode_;
 
 		var $htmlElement = $(this.getHtmlElement());
 
 		// Find the button elements
 		var $actionsContainer = $htmlElement.find('.submission_actions');
-		var $gridViewButton = $actionsContainer.find('.grid_view');
-		var $listViewButton = $actionsContainer.find('.list_view');
-		var $organizeButton = $actionsContainer.find('.organize');
+		var $featureButton = $actionsContainer.find('.feature');
 
 		// Find the monograph list
 		var $monographList = $htmlElement
 				.find('ul.pkp_manageCatalog_monographList');
 
-		// Find the organize links
-		var $organizeLinks = $monographList
-				.find('.pkp_manageCatalog_organizeTools');
+		// Find the feature links
+		var $featureLinks = $monographList
+				.find('.pkp_manageCatalog_featureTools');
 
-		if (this.inOrganizeMode_) {
-			// We've just entered "Organize" mode.
-			$gridViewButton.addClass('ui-state-disabled');
-			$listViewButton.addClass('ui-state-disabled');
-			$organizeButton.addClass('ui-state-active');
-			$organizeLinks.removeClass('pkp_helpers_invisible');
+		if (this.inFeatureMode_) {
+			// We've just entered "Feature" mode.
+			$featureButton.addClass('ui-state-active');
+			$featureLinks.removeClass('pkp_helpers_invisible');
 		} else {
-			// We've just left "Organize" mode.
-			$organizeButton.removeClass('ui-state-active');
-			$listViewButton.removeClass('ui-state-disabled');
-			$gridViewButton.removeClass('ui-state-disabled');
-			$organizeLinks.addClass('pkp_helpers_invisible');
+			// We've just left "Feature" mode.
+			$featureButton.removeClass('ui-state-active');
+			$featureLinks.addClass('pkp_helpers_invisible');
 		}
-		$monographList.children().trigger('changeDragMode', this.inOrganizeMode_);
+		$monographList.children().trigger('changeDragMode', this.inFeatureMode_);
 		// Update the enabled/disabled state of the sortable list
 		this.trigger('monographListChanged');
 
@@ -227,10 +188,10 @@
 			return b.getDatePublished() - a.getDatePublished();
 		});
 
-		// Initialize sortable, but disabled unless "organize" selected.
+		// Initialize sortable, but disabled unless "feature" selected.
 		this.getHtmlElement().sortable('destroy');
 		this.getHtmlElement().sortable({
-			disabled: !this.inOrganizeMode_,
+			disabled: !this.inFeatureMode_,
 			items: 'li.pkp_manageCatalog_monograph:not(.not_sortable)',
 			update: this.callbackWrapper(this.sortUpdateHandler_)});
 

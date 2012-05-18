@@ -18,6 +18,7 @@
 switch ($op) {
 	case 'index':
 	case 'contact':
+	case 'description':
 	case 'pressSponsorship':
 	case 'editorialTeam':
 	case 'editorialTeamBio':

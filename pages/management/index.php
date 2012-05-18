@@ -32,9 +32,9 @@ switch ($op) {
 		import('pages.management.ToolsHandler');
 		define('HANDLER_CLASS', 'ToolsHandler');
 		break;
-	case 'content':
-		import('pages.management.ContentHandler');
-		define('HANDLER_CLASS', 'ContentHandler');
+	case 'navigation':
+		import('pages.management.NavigationHandler');
+		define('HANDLER_CLASS', 'NavigationHandler');
 		break;
 }
 ?>

@@ -15,6 +15,7 @@
 <locale name="en_US" full_name="U.S. English">
 	<message key="plugins.block.browse.displayName">Browse Block</message>
 	<message key="plugins.block.browse.description">This plugin provides sidebar "browse" tools.</message>
-	<message key="plugins.block.browse.selectCategory">Select a category</message>
-	<message key="plugins.block.browse.selectSeries">Select a series</message>
+	<message key="plugins.block.browse.category">Browse a category</message>
+	<message key="plugins.block.browse.series">Browse a series</message>
+	<message key="plugins.block.browse.newReleases">Browse new releases</message>
 </locale>
