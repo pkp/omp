@@ -64,8 +64,8 @@ jQuery.pkp.controllers.grid.files.proof =
 	 * @param {string} radioButton The element the event was triggered on.
 	 * @return {boolean} Always returns true.
 	 */
-	$.pkp.controllers.grid.files.proof.form.ApprovedProofFormHandler.prototype.checkHandler_ =
-			function(radioButton) {
+	$.pkp.controllers.grid.files.proof.form.ApprovedProofFormHandler.prototype.
+			checkHandler_ = function(radioButton) {
 
 		var $priceElement = $('input[id^="price"]');
 		if ($(radioButton).attr('id') === 'directSales') {

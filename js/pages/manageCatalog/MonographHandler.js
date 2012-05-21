@@ -65,14 +65,16 @@
 
 		// Bind for setting a new sequence
 		this.bind('setSequence', this.setSequenceHandler_);
-		
+
 		// position the (hidden) feature tools over the book cover image.
-		var imagePosition = $monographsContainer.find('.pkp_manageCatalog_monograph_image').position();
-		var featuresPosition = $monographsContainer.find('.pkp_manageCatalog_featureTools').position();
-		
+		var imagePosition = $monographsContainer.
+				find('.pkp_manageCatalog_monograph_image').position();
+		var featuresPosition = $monographsContainer.
+				find('.pkp_manageCatalog_featureTools').position();
+
 		$monographsContainer.find('.pkp_manageCatalog_featureTools').
-			css('position', 'relative').
-			css('top', imagePosition.top - featuresPosition.top);
+				css('position', 'relative').
+				css('top', imagePosition.top - featuresPosition.top);
 	};
 	$.pkp.classes.Helper.inherits(
 			$.pkp.pages.manageCatalog.MonographHandler,
@@ -279,14 +281,15 @@
 
 
 	/**
-	 * Callback that will be activated when the submission workflow action is clicked
+	 * Callback that will be activated when the submission
+	 * workflow action is clicked
 	 *
 	 * @private
 	 *
 	 * @return {boolean} Always returns false.
 	 */
-	$.pkp.pages.manageCatalog.MonographHandler.prototype.workflowButtonHandler_ =
-			function() {
+	$.pkp.pages.manageCatalog.MonographHandler.prototype.
+			workflowButtonHandler_ = function() {
 
 		if (this.workflowUrl_) {
 			document.location = this.workflowUrl_;
@@ -297,14 +300,15 @@
 
 
 	/**
-	 * Callback that will be activated when the title of the submission is clicked
+	 * Callback that will be activated when the title of the
+	 * submission is clicked.
 	 *
 	 * @private
 	 *
 	 * @return {boolean} Always returns false.
 	 */
-	$.pkp.pages.manageCatalog.MonographHandler.prototype.publicCatalogButtonHandler_ =
-			function() {
+	$.pkp.pages.manageCatalog.MonographHandler.prototype.
+			publicCatalogButtonHandler_ = function() {
 
 		if (this.catalogUrl_) {
 			document.location = this.catalogUrl_;
@@ -323,8 +327,8 @@
 	 * @return {boolean} Message handling result.
 	 * @private
 	 */
-	$.pkp.pages.manageCatalog.MonographHandler.prototype.handleSetFeaturedResponse_ =
-			function(ajaxContext, jsonData) {
+	$.pkp.pages.manageCatalog.MonographHandler.prototype.
+			handleSetFeaturedResponse_ = function(ajaxContext, jsonData) {
 
 		jsonData = this.handleJson(jsonData);
 
@@ -365,8 +369,8 @@
 	 * @return {boolean} Message handling result.
 	 * @private
 	 */
-	$.pkp.pages.manageCatalog.MonographHandler.prototype.handleSetNewReleaseResponse_ =
-			function(ajaxContext, jsonData) {
+	$.pkp.pages.manageCatalog.MonographHandler.prototype.
+			handleSetNewReleaseResponse_ = function(ajaxContext, jsonData) {
 
 		jsonData = this.handleJson(jsonData);
 
@@ -430,7 +434,8 @@
 	 *  that triggered the event.
 	 * @param {Event} event The event.
 	 * @param {integer} seq New sequence number.
-	 * @param {boolean} informServer True if the server should be informed. Default true.
+	 * @param {boolean} informServer True if the server should be informed.
+	 * Default true.
 	 * @return {boolean} The event handling chain status.
 	 */
 	$.pkp.pages.manageCatalog.MonographHandler.
@@ -446,9 +451,9 @@
 		this.seq_ = seq;
 
 		// Inform the server if it's required of us
+		var callback = this.callbackWrapper(this.handleSetSequenceResponse_);
 		if (informServer) {
-			$.get(this.getSetFeaturedUrl_(),
-					this.callbackWrapper(this.handleSetSequenceResponse_), 'json');
+			$.get(this.getSetFeaturedUrl_(), callback, 'json');
 		}
 
 		// Stop processing
@@ -465,8 +470,8 @@
 	 * @return {boolean} Message handling result.
 	 * @private
 	 */
-	$.pkp.pages.manageCatalog.MonographHandler.prototype.handleSetSequenceResponse_ =
-			function(ajaxContext, jsonData) {
+	$.pkp.pages.manageCatalog.MonographHandler.prototype.
+			handleSetSequenceResponse_ = function(ajaxContext, jsonData) {
 
 		jsonData = this.handleJson(jsonData);
 

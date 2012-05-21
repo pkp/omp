@@ -242,7 +242,8 @@
 	 * @param {Object} ui The UI element that has changed.
 	 * @return {boolean} The event handling chain status.
 	 */
-	$.pkp.pages.manageCatalog.MonographListHandler.prototype.sortUpdateHandler_ = function(callingHandler, event, ui) {
+	$.pkp.pages.manageCatalog.MonographListHandler.prototype.
+			sortUpdateHandler_ = function(callingHandler, event, ui) {
 		// Figure out where we are in the DOM and choose a new seq num
 		var $monographElement = ui.item;
 		var $prevElement = $monographElement.prev();

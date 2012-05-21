@@ -3,7 +3,8 @@
  */
 // Create the namespace.
 jQuery.pkp.controllers.grid.content =
-	jQuery.pkp.controllers.grid.content || { spotlights: { form: { } } };
+			jQuery.pkp.controllers.grid.content ||
+			{ spotlights: { form: { } } };
 
 /**
  * @file js/controllers/grid/content/spotlights/form/SpotlightFormHandler.js
@@ -64,8 +65,8 @@ jQuery.pkp.controllers.grid.content =
 	 * Method to add the type to autocomplete URL for finding spotlight items
 	 * @param {Object} eventObject The html element that changed.
 	 */
-	$.pkp.controllers.grid.content.spotlights.form.SpotlightFormHandler.prototype.addTypeToAutocompleteUrl =
-			function(eventObject) {
+	$.pkp.controllers.grid.content.spotlights.form.SpotlightFormHandler.
+			prototype.addTypeToAutocompleteUrl = function(eventObject) {
 
 		var $form = this.getHtmlElement();
 		var $autocompleteContainer = $form.find('#assocId_container');
@@ -96,8 +97,8 @@ jQuery.pkp.controllers.grid.content =
 	 * of the autocomplete URL
 	 * @param {Object} eventObject The html element that changed.
 	 */
-	$.pkp.controllers.grid.content.spotlights.form.SpotlightFormHandler.prototype.addNameToAutocompleteUrl =
-			function(eventObject) {
+	$.pkp.controllers.grid.content.spotlights.form.SpotlightFormHandler.
+			prototype.addNameToAutocompleteUrl = function(eventObject) {
 
 		var $form = this.getHtmlElement();
 		var $autocompleteContainer = $form.find('#assocId_container');

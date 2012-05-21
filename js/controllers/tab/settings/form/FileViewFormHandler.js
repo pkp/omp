@@ -94,8 +94,8 @@ jQuery.pkp.controllers.tab =
 	 * @param {Object} jsonData A parsed JSON response object.
 	 * @private
 	 */
-	$.pkp.controllers.tab.settings.form.FileViewFormHandler.prototype.refreshResponseHandler_ =
-			function(ajaxContext, jsonData) {
+	$.pkp.controllers.tab.settings.form.FileViewFormHandler.prototype.
+			refreshResponseHandler_ = function(ajaxContext, jsonData) {
 
 		var $fileElement;
 		jsonData = this.handleJson(jsonData);
@@ -124,8 +124,8 @@ jQuery.pkp.controllers.tab =
 	 * @return {jQuery} JQuery element.
 	 * @private
 	 */
-	$.pkp.controllers.tab.settings.form.FileViewFormHandler.prototype.getFileHtmlElement_ =
-			function(settingName) {
+	$.pkp.controllers.tab.settings.form.FileViewFormHandler.prototype.
+			getFileHtmlElement_ = function(settingName) {
 		var $form = this.getHtmlElement();
 		var $fileHtmlElement = $('#' + settingName, $form);
 

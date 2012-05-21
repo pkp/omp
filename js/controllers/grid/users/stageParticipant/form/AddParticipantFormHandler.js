@@ -41,7 +41,8 @@ jQuery.pkp.controllers.grid.users.stageParticipant =
 
 	};
 	$.pkp.classes.Helper.inherits(
-			$.pkp.controllers.grid.users.stageParticipant.form.AddParticipantFormHandler,
+			$.pkp.controllers.grid.users.stageParticipant.form.
+					AddParticipantFormHandler,
 			$.pkp.controllers.form.AjaxFormHandler);
 
 
@@ -52,8 +53,8 @@ jQuery.pkp.controllers.grid.users.stageParticipant =
 	 * Method to add the userGroupId to autocomplete URL for finding users
 	 * @param {Object} eventObject The html element that changed.
 	 */
-	$.pkp.controllers.grid.users.stageParticipant.form.AddParticipantFormHandler.prototype.addUserIdToAutocompleteUrl =
-			function(eventObject) {
+	$.pkp.controllers.grid.users.stageParticipant.form.AddParticipantFormHandler.
+			prototype.addUserIdToAutocompleteUrl = function(eventObject) {
 
 		// FIXME: Should this js handler know the _container part?
 		// It is inside the FBV autocomplete field.
@@ -77,11 +78,12 @@ jQuery.pkp.controllers.grid.users.stageParticipant =
 
 
 	/**
-	 * Method to add the contents of the Name field to the end of the autocomplete URL
+	 * Method to add the contents of the Name field to the end of the
+	 * autocomplete URL.
 	 * @param {Object} eventObject The html element that changed.
 	 */
-	$.pkp.controllers.grid.users.stageParticipant.form.AddParticipantFormHandler.prototype.addNameToAutocompleteUrl =
-			function(eventObject) {
+	$.pkp.controllers.grid.users.stageParticipant.form.AddParticipantFormHandler.
+			prototype.addNameToAutocompleteUrl = function(eventObject) {
 
 		var $autocompleteContainer = $('#userId_container');
 		var autocompleteHandler =

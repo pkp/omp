@@ -15,8 +15,8 @@ jQuery.pkp.controllers.modals.submissionMetadata =
  * @class MonographlessCatalogEntryHandler
  * @ingroup js_controllers_modals_submissionMetadata
  *
- * @brief JS controller for container element for the "add catalog entry" form, used
- * when a monograph needs to be chosen to work with.
+ * @brief JS controller for container element for the "add catalog entry"
+ * form, used when a monograph needs to be chosen to work with.
  */
 (function($) {
 
@@ -41,7 +41,8 @@ jQuery.pkp.controllers.modals.submissionMetadata =
 		this.bind('selectMonograph', this.selectMonographHandler);
 	};
 	$.pkp.classes.Helper.inherits(
-			$.pkp.controllers.modals.submissionMetadata.MonographlessCatalogEntryHandler,
+			$.pkp.controllers.modals.submissionMetadata.
+					MonographlessCatalogEntryHandler,
 			$.pkp.classes.Handler
 	);
 

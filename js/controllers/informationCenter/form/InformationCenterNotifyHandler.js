@@ -3,7 +3,7 @@
  */
 // Create the namespace.
 jQuery.pkp.controllers.informationCenter.form =
-	jQuery.pkp.controllers.informationCenter.form || { };
+			jQuery.pkp.controllers.informationCenter.form || { };
 
 
 /**

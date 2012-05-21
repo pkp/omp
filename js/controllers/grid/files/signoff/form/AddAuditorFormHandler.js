@@ -39,8 +39,10 @@ jQuery.pkp.controllers.grid.files = jQuery.pkp.controllers.grid.files ||
 		var month = currentTime.getMonth() + 1;
 		var day = currentTime.getDate() + 7;
 		var year = currentTime.getFullYear();
-		$('input[id^="responseDueDate"]').datepicker({ dateFormat: 'mm-dd-yy', minDate: '0', autoSize: true});
-		$('input[id^="responseDueDate"]').datepicker('setDate', month + '-' + day + '-' + year);
+		$('input[id^="responseDueDate"]').datepicker(
+				{ dateFormat: 'mm-dd-yy', minDate: '0', autoSize: true});
+		$('input[id^="responseDueDate"]').datepicker(
+				'setDate', month + '-' + day + '-' + year);
 	};
 	$.pkp.classes.Helper.inherits(
 			$.pkp.controllers.grid.files.signoff.form.

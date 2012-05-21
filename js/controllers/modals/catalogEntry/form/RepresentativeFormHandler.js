@@ -1,6 +1,7 @@
 /**
  * @defgroup js_controllers_modal_catalogEntry_form
  */
+// Create the namespace.
 jQuery.pkp.controllers.modals.catalogEntry =
 			jQuery.pkp.controllers.modals.catalogEntry || {form: { } };
 
@@ -51,8 +52,8 @@ jQuery.pkp.controllers.modals.catalogEntry =
 	 * @param {Event} event The triggering event.
 	 * @private
 	 */
-	$.pkp.controllers.modals.catalogEntry.form.RepresentativeFormHandler.prototype.radioToggleHandler_ =
-			function(sourceElement, event) {
+	$.pkp.controllers.modals.catalogEntry.form.RepresentativeFormHandler.
+			prototype.radioToggleHandler_ = function(sourceElement, event) {
 
 		var $form = this.getHtmlElement();
 		if (sourceElement.id == 'agent') {

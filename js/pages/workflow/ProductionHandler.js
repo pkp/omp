@@ -65,9 +65,10 @@
 	// Public Methods
 	//
 	/**
-	 * This listens for grid refreshes from the publication formats grid. It
-	 * requests a list of the current publication formats from the CatalogEntryHandler
-	 * and calls a callback which updates the tab state accordingly as they are changed.
+	 * This listens for grid refreshes from the publication formats grid.
+	 * It requests a list of the current publication formats from the
+	 * CatalogEntryHandler and calls a callback which updates the tab
+	 * state accordingly as they are changed.
 	 *
 	 * @private
 	 * @param {HTMLElement} sourceElement The parent DIV element
@@ -77,7 +78,8 @@
 	$.pkp.pages.workflow.ProductionHandler.prototype.fetchAccordionHandler_ =
 			function(sourceElement, event) {
 
-		$.get(this.accordionUrl_, null, this.callbackWrapper(this.updateAccordionHandler_), 'json');
+		var callback = this.callbackWrapper(this.handleSetSequenceResponse_);
+		$.get(this.accordionUrl_, null, callback, 'json');
 	};
 
 
@@ -99,7 +101,8 @@
 		$publicationFormatContainer.append(jsonData.content);
 
 		// Update any in place notification above this widget in DOM hierarchy.
-		$publicationFormatContainer.trigger('notifyUser', $publicationFormatContainer);
+		$publicationFormatContainer.
+				trigger('notifyUser', $publicationFormatContainer);
 
 		$publicationFormatContainer.accordion('destroy').accordion({
 			autoHeight: false,

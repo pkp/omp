@@ -45,12 +45,13 @@ jQuery.pkp.controllers.catalog =
 	// Private properties
 	//
 	/**
-	 * An array to store the temporary values of the audienceTo and From select items,
-	 * in case the user decides to reuse them again.
+	 * An array to store the temporary values of the audienceTo and From
+	 * select items, in case the user decides to reuse them again.
 	 * @private
 	 * @type {array?}
 	 */
-	$.pkp.controllers.catalog.form.CatalogMetadataFormHandler.prototype.audienceValues_ = null;
+	$.pkp.controllers.catalog.form.CatalogMetadataFormHandler.prototype.
+			audienceValues_ = null;
 
 
 	//
@@ -66,15 +67,18 @@ jQuery.pkp.controllers.catalog =
 	 * @param {Event} event The triggering event.
 	 * @private
 	 */
-	$.pkp.controllers.catalog.form.CatalogMetadataFormHandler.prototype.ensureValidAudienceRanges_ =
-			function(sourceElement, event) {
+	$.pkp.controllers.catalog.form.CatalogMetadataFormHandler.prototype.
+			ensureValidAudienceRanges_ = function(sourceElement, event) {
 
 		var $form = this.getHtmlElement();
 		if ($(sourceElement).val() !== '') {
-			this.audienceValues_ = [$form.find('#audienceRangeFrom').val(), $form.find('#audienceRangeTo').val()];
-			$form.find('#audienceRangeFrom, #audienceRangeTo').val('').attr('disabled', 'disabled');
+			this.audienceValues_ = [$form.find('#audienceRangeFrom').val(),
+			                        $form.find('#audienceRangeTo').val()];
+			$form.find('#audienceRangeFrom, #audienceRangeTo').val('').
+					attr('disabled', 'disabled');
 		} else {
-			$form.find('#audienceRangeFrom, #audienceRangeTo').attr('disabled', '');
+			$form.find('#audienceRangeFrom, #audienceRangeTo').
+					attr('disabled', '');
 			$form.find('#audienceRangeFrom').val(this.audienceValues_[0]);
 			$form.find('#audienceRangeTo').val(this.audienceValues_[1]);
 		}

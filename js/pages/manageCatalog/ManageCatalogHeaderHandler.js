@@ -52,11 +52,11 @@ $.pkp.pages.manageCatalog = $.pkp.pages.manageCatalog || {};
 
 		// React to "select series" events from the series tab.
 		this.bind('selectSeries', this.selectSeriesHandler_);
-		
+
 		// React to showing a tab.  Used to load the remote spotlights grid.
 		$catalogTabs.tabs().bind('tabsselect', {
-				spotlightTabName: this.spotlightTabName_,
-				spotlightsUrl: this.spotlightsUrl_}, this.showTabHandler_);
+			spotlightTabName: this.spotlightTabName_,
+			spotlightsUrl: this.spotlightsUrl_}, this.showTabHandler_);
 	};
 	$.pkp.classes.Helper.inherits(
 			$.pkp.pages.manageCatalog.ManageCatalogHeaderHandler,
@@ -120,23 +120,26 @@ $.pkp.pages.manageCatalog = $.pkp.pages.manageCatalog || {};
 	 * @param {String} seriesPath The series path to return the fetch URL for.
 	 * @return {String} The URL to use to fetch series contents.
 	 */
-	$.pkp.pages.manageCatalog.ManageCatalogHeaderHandler.prototype.getSeriesFetchUrl_ =
-			function(seriesPath) {
+	$.pkp.pages.manageCatalog.ManageCatalogHeaderHandler.prototype.
+			getSeriesFetchUrl_ = function(seriesPath) {
 
-		return (this.seriesFetchUrlTemplate_.replace('SERIES_PATH', seriesPath));
+		return (this.seriesFetchUrlTemplate_.
+				replace('SERIES_PATH', seriesPath));
 	};
 
 
 	/**
 	 * Get the URL to fetch a category's monograph listing from
 	 * @private
-	 * @param {String} categoryPath The category path to return the fetch URL for.
+	 * @param {String} categoryPath The category path to return
+	 * the fetch URL for.
 	 * @return {String} The URL to use to fetch series contents.
 	 */
-	$.pkp.pages.manageCatalog.ManageCatalogHeaderHandler.prototype.getCategoryFetchUrl_ =
-			function(categoryPath) {
+	$.pkp.pages.manageCatalog.ManageCatalogHeaderHandler.prototype.
+			getCategoryFetchUrl_ = function(categoryPath) {
 
-		return (this.categoryFetchUrlTemplate_.replace('CATEGORY_PATH', categoryPath));
+		return (this.categoryFetchUrlTemplate_.
+				replace('CATEGORY_PATH', categoryPath));
 	};
 
 
@@ -224,26 +227,25 @@ $.pkp.pages.manageCatalog = $.pkp.pages.manageCatalog || {};
 
 	/**
 	 * Handle the "show tabs" event.  In most cases, we just return true since
-	 * there are other methods for dealing with the tabs.  The exception is the 
+	 * there are other methods for dealing with the tabs.  The exception is the
 	 * spotlights tab, which is loaded like a regular AJAX tab.
 	 * @private
 	 *
 	 * @param {Event} event The event.
 	 * @param {Object} tabElement the HTML element which generated the event.
+	 * @return {boolean} Let the other tabs function normally.
 	 */
 	$.pkp.pages.manageCatalog.ManageCatalogHeaderHandler.
-			prototype.showTabHandler_ =
-			function(event, tabElement) {
+			prototype.showTabHandler_ = function(event, tabElement) {
 
-			if (tabElement.panel.id == event.data.spotlightTabName) {
-				$.get(event.data.spotlightsUrl, function(data) {
-					var jsonData = $.parseJSON(data);
-					$('#spotlightsTab').html(jsonData.content);
-				});
-			} else {
-				// let the other tabs function normally.
-				return true;
-			}
+		if (tabElement.panel.id == event.data.spotlightTabName) {
+			$.get(event.data.spotlightsUrl, function(data) {
+				var jsonData = $.parseJSON(data);
+				$('#spotlightsTab').html(jsonData.content);
+			});
+		} else {
+			return true;
+		}
 	};
 
 
@@ -254,8 +256,8 @@ $.pkp.pages.manageCatalog = $.pkp.pages.manageCatalog || {};
 	 * @param {Object} jsonData A parsed JSON response object.
 	 * @private
 	 */
-	$.pkp.pages.manageCatalog.ManageCatalogHeaderHandler.prototype.showFetchedSeries_ =
-			function(ajaxContext, jsonData) {
+	$.pkp.pages.manageCatalog.ManageCatalogHeaderHandler.prototype.
+			showFetchedSeries_ = function(ajaxContext, jsonData) {
 
 		jsonData = this.handleJson(jsonData);
 
@@ -271,8 +273,8 @@ $.pkp.pages.manageCatalog = $.pkp.pages.manageCatalog || {};
 	 * @param {Object} jsonData A parsed JSON response object.
 	 * @private
 	 */
-	$.pkp.pages.manageCatalog.ManageCatalogHeaderHandler.prototype.showFetchedCategory_ =
-			function(ajaxContext, jsonData) {
+	$.pkp.pages.manageCatalog.ManageCatalogHeaderHandler.prototype.
+			showFetchedCategory_ = function(ajaxContext, jsonData) {
 
 		jsonData = this.handleJson(jsonData);
 
