@@ -271,25 +271,28 @@
 
 
 	/**
-	 * Reset the element heights of the monographs (either when the grid is first loaded,
-	 * or after they are re-sorted.
+	 * Reset the element heights of the monographs (either when the grid is
+	 * first loaded, or after they are re-sorted.
 	 *
 	 * @private
 	 *
 	 * @param {$.pkp.controllers.handler.Handler} callingHandler The handler
 	 *  that triggered the event.
 	 * @param {Event} event The event.
-	 * @return {boolean} The event handling chain status.
 	 */
-	$.pkp.pages.manageCatalog.MonographListHandler.prototype.resetElementHeights_ = function(callingHandler, event) {
+	$.pkp.pages.manageCatalog.MonographListHandler.prototype.
+			resetElementHeights_ = function(callingHandler, event) {
 		var $htmlElement = $(this.getHtmlElement());
 
-		// iterate over our monographs in groups of four, since our CSS spacing
-		// displays four monographs per row.  Normalize the element detail heights.
+		// iterate over our monographs in groups of four, since our CSS
+		// spacing displays four monographs per row.  Normalize the
+		// element detail heights.
 		var $monographs = $htmlElement.find('.pkp_manageCatalog_monograph');
-		for (var $i = 0; $i < $monographs.size() ; $i += 4) {
+		for (var $i = 0; $i < $monographs.size(); $i += 4) {
 			$monographs.slice($i, $i + 4).equalizeElementHeights();
 		}
-	}
+	};
+
+
 /** @param {jQuery} $ jQuery closure. */
 })(jQuery);
