@@ -78,7 +78,7 @@
 	$.pkp.pages.workflow.ProductionHandler.prototype.fetchAccordionHandler_ =
 			function(sourceElement, event) {
 
-		var callback = this.callbackWrapper(this.handleSetSequenceResponse_);
+		var callback = this.callbackWrapper(this.updateAccordionHandler_);
 		$.get(this.accordionUrl_, null, callback, 'json');
 	};
 
