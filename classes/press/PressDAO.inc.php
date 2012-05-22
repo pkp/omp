@@ -235,6 +235,9 @@ class PressDAO extends DAO {
 		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
 		$reviewFormDao->deleteByAssocId(ASSOC_TYPE_PRESS, $pressId);
 
+		$genreDao =& DAORegistry::getDAO('GenreDAO');
+		$genreDao->deleteByPressId($pressId);
+
 		return $this->update(
 			'DELETE FROM presses WHERE press_id = ?', (int) $pressId
 		);

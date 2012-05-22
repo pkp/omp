@@ -163,6 +163,17 @@ class GenreDAO extends DefaultSettingDAO {
 	}
 
 	/**
+	 * delete the genre entries associated with a press.
+	 * Called when deleting a Press in PressDAO.
+	 * @param $pressId int
+	 */
+	function deleteByPressId($pressId) {
+		return $this->update(
+			'DELETE FROM genres WHERE press_id = ?', array((int) $pressId)
+		);
+	}
+
+	/**
 	 * Get the ID of the last inserted genre.
 	 * @return int
 	 */
