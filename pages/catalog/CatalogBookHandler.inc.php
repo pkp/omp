@@ -125,7 +125,7 @@ class CatalogBookHandler extends Handler {
 
 		$ompCompletedPaymentDao =& DAORegistry::getDAO('OMPCompletedPaymentDAO');
 		$user =& $request->getUser();
-		if ($submissionFile->getDirectSalesPrice() === 0 || ($user && $ompCompletedPaymentDao->hasPaidPurchaseFile($user->getId(), $fileIdAndRevision))) {
+		if ($submissionFile->getDirectSalesPrice() === '0' || ($user && $ompCompletedPaymentDao->hasPaidPurchaseFile($user->getId(), $fileIdAndRevision))) {
 			// Paid purchase or open access. Allow download.
 			import('classes.file.MonographFileManager');
 			$monographFileManager = new MonographFileManager($press->getId(), $monographId);
