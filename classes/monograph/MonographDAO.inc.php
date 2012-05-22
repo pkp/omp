@@ -307,7 +307,7 @@ class MonographDAO extends DAO {
 
 		$monographSubjectDao =& DAORegistry::getDAO('MonographSubjectDAO');
 		$monographSubjectVocab =& $monographSubjectDao->getBySymbolic(CONTROLLED_VOCAB_MONOGRAPH_SUBJECT, ASSOC_TYPE_MONOGRAPH, $monographId);
-		$monographSubjecDao->deleteObject($monographSubjectVocab);
+		$monographSubjectDao->deleteObject($monographSubjectVocab);
 
 		// Signoff DAOs
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
@@ -341,16 +341,23 @@ class MonographDAO extends DAO {
 		$submissionFileDao->deleteAllRevisionsBySubmissionId($monographId);
 
 		// Delete monograph file directory.
-		$monograph =& $this->getMonograph($monographId);
+		$monograph =& $this->getById($monographId);
 		assert(is_a($monograph, 'Monograph'));
 
 		import('classes.file.MonographFileManager');
-		$monographFileManager = new FileManager($monograph->getPressId(), $monograph->getId());
+		$monographFileManager = new MonographFileManager($monograph->getPressId(), $monograph->getId());
 		$monographFileManager->rmtree($monographFileManager->getBasePath());
 
 		// Delete any comments.
 		$monographCommentDao =& DAORegistry::getDAO('MonographCommentDAO');
 		$monographCommentDao->deleteByMonographId($monographId);
+
+		// Delete references to features or new releases.
+		$featureDao =& DAORegistry::getDAO('FeatureDAO');
+		$featureDao->deleteByMonographId($monographId);
+
+		$newReleaseDao =& DAORegistry::getDAO('NewReleaseDAO');
+		$newReleaseDao->deleteByMonographId($monographId);
 
 		$this->update('DELETE FROM monograph_settings WHERE monograph_id = ?', (int) $monographId);
 		$this->update('DELETE FROM monographs WHERE monograph_id = ?', (int) $monographId);

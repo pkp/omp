@@ -238,6 +238,14 @@ class PressDAO extends DAO {
 		$genreDao =& DAORegistry::getDAO('GenreDAO');
 		$genreDao->deleteByPressId($pressId);
 
+		$featureDao =& DAORegistry::getDAO('FeatureDAO');
+		$featureDao->deleteByAssoc(ASSOC_TYPE_PRESS, $pressId);
+
+		$newReleaseDao =& DAORegistry::getDAO('NewReleaseDAO');
+		$newReleaseDao->deleteByAssoc(ASSOC_TYPE_PRESS, $pressId);
+
+		$this->update('DELETE FROM press_defaults WHERE press_id = ?', (int) $pressId);
+
 		return $this->update(
 			'DELETE FROM presses WHERE press_id = ?', (int) $pressId
 		);
