@@ -1,10 +1,10 @@
 {**
- * controllers/notification/signoffNotificationContent.tpl
+ * controllers/notification/linkActionNotificationContent.tpl
  *
  * Copyright (c) 2003-2012 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * Content for NOTIFICATION_TYPE_SIGNOFF...
+ * Content for notifications with link actions.
  *
  *}
  <span id="{$linkAction->getId()}" class="pkp_linkActions">
