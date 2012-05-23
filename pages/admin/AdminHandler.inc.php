@@ -35,7 +35,28 @@ class AdminHandler extends Handler {
 	function authorize($request, $args, $roleAssignments) {
 		import('lib.pkp.classes.security.authorization.PKPSiteAccessPolicy');
 		$this->addPolicy(new PKPSiteAccessPolicy($request, null, $roleAssignments));
-		return parent::authorize($request, $args, $roleAssignments);
+		$returner = parent::authorize($request, $args, $roleAssignments);
+
+		// Make sure user is in press context. Otherwise, redirect.
+		$press =& $request->getPress();
+		$router =& $request->getRouter();
+		$requestedOp = $router->getRequestedOp($request);
+
+		// The only operation logged users may access outside a press
+		// context is to create presses.
+		if (!$press && $requestedOp !== 'presses') {
+
+			// Try to find a press that user has access to.
+			$targetPress =& $this->getTargetPress($request);
+			if ($targetPress) {
+				$url = $router->url($request, $targetPress->getPath(), 'admin', $requestedOp);
+			} else {
+				$url = $router->url($request, 'index');
+			}
+			$request->redirectUrl($url);
+		}
+
+		return $returner;
 	}
 
 	/**
