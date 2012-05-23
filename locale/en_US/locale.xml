@@ -287,7 +287,6 @@
 	<message key="catalog.dateAdded">Added {$dateAdded}</message>
 	<message key="catalog.publicationInfo">Publication Info</message>
 	<message key="catalog.relatedCategories">Related categories</message>
-	<message key="catalog.price.openAccess">Open Access</message>
 
 	<!--
 	 *
