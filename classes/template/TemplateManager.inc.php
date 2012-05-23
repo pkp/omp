@@ -225,6 +225,8 @@ class TemplateManager extends PKPTemplateManager {
 		$currentPressUrl = null;
 		if ($currentPress) {
 			$currentPressUrl = $dispatcher->url($request, ROUTE_PAGE, $currentPress->getPath());
+		} else {
+			$pressesNameAndUrl = array(__('press.select')) + $pressesNameAndUrl;
 		}
 
 		$this->assign('currentPressUrl', $currentPressUrl);

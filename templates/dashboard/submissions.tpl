@@ -19,7 +19,7 @@
 	</script>
 	<h3 class="pkp_helpers_align_left">{translate key="submission.submit.newSubmissionMultiple"}</h3>
 	<select id="pressSelect" class="pkp_helpers_align_left deprecated_selectHeader">
-		<option value="0">{translate key="submission.submit.selectAPress"}</option>
+		<option value="0">{translate key="press.select"}</option>
 		{foreach from=$presses item=press}
 			<option value="{url press=$press->getPath() page="submission" op="wizard"}">{$press->getLocalizedName()|escape}</option>
 		{/foreach}

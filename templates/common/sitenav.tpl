@@ -15,7 +15,7 @@
 				<li><a href="{url page="admin" op="index"}">{translate key="navigation.admin"}</a></li>
 			{/if}
 		{/if}
-		{if $multiplePresses && $isUserLoggedIn}
+		{if $multiplePresses}
 			<li>{include file="common/pressSwitcher.tpl"}</li>
 		{/if}
 	</ul>

@@ -54,7 +54,6 @@
 	<message key="submission.submit">Start New Book Submission</message>
 	<message key="submission.submit.newSubmissionMultiple">Start a New Submission in</message>
 	<message key="submission.submit.newSubmissionSingle">Start a New Submission in {$pressName}</message>
-	<message key="submission.submit.selectAPress">Select a Press...</message>
 	<message key="submission.submit.upload">Upload Submission</message>
 	<message key="submission.submit.uploadStep">1. Upload Submission</message>
 	<message key="submission.submit.upload.description">Upload your submission files using the form below. You may upload your manuscript as a single submission file, or by uploading separate submission files for each individual manuscript section (eg. your introduction; individual chapters; figures; and so on).</message>
