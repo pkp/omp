@@ -226,17 +226,24 @@ class PressGridHandler extends GridHandler {
 			$newPressPath = $settingsForm->execute($request);
 
 			// Create the notification.
-			$notificationManager = new NotificationManager();
+			$notificationMgr = new NotificationManager();
 			$user =& $request->getUser();
-			$notificationManager->createTrivialNotification($user->getId());
+			$notificationMgr->createTrivialNotification($user->getId());
 
 			// Check for the two cases above.
 			if ($newPressPath) {
 				$context = $request->getContext();
 
 				if (is_null($pressId)) {
-					// CASE 1: redirect and set the parameter to open
-					// the press setting wizard modal after redirection.
+					// CASE 1: new press created.
+					// Create notification related to payment method configuration.
+					$pressDao =& DAORegistry::getDAO('PressDAO');
+					$newPress =& $pressDao->getByPath($newPressPath);
+					$notificationMgr->createNotification($request, null, NOTIFICATION_TYPE_CONFIGURE_PAYMENT_METHOD,
+						$newPress->getId(), ASSOC_TYPE_PRESS, $newPress->getId(), NOTIFICATION_LEVEL_NORMAL);
+
+					// redirect and set the parameter to open the press
+					// setting wizard modal after redirection.
 					return $this->_getRedirectEvent(&$request, $newPressPath, true);
 				} else {
 					// CASE 2: check if user is in the context of
