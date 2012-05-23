@@ -36,7 +36,7 @@ class UserGroupForm extends Form {
 		// Validation checks for this form
 		$this->addCheck(new FormValidatorLocale($this, 'name', 'required', 'settings.roles.nameRequired'));
 		$this->addCheck(new FormValidatorLocale($this, 'abbrev', 'required', 'settings.roles.abbrevRequired'));
-		$this->addCheck(new FormValidatorArray($this, 'stages', 'required', 'settings.roles.stageIdRequired'));
+		$this->addCheck(new FormValidatorArray($this, 'assignedStages', 'required', 'settings.roles.stageIdRequired'));
 		if ($this->getUserGroupId() == null) {
 			$this->addCheck(new FormValidator($this, 'roleId', 'required', 'settings.roles.roleIdRequired'));
 		}
@@ -102,7 +102,7 @@ class UserGroupForm extends Form {
 	 * @see Form::readInputData()
 	 */
 	function readInputData() {
-		$this->readUserVars(array('roleId', 'name', 'abbrev', 'stages'));
+		$this->readUserVars(array('roleId', 'name', 'abbrev', 'assignedStages'));
 	}
 
 	/**
@@ -116,7 +116,8 @@ class UserGroupForm extends Form {
 		$templateMgr->assign('roleOptions', $roleOptions);
 
 		// Users can't edit the role once user group is created.
-		$disableRoleSelect = (!is_null($this->getUserGroupId())) ? true : false;
+		// userGroupId is 0 for new User Groups because it is cast to int in UserGroupGridHandler.
+		$disableRoleSelect = ($this->getUserGroupId() > 0) ? true : false;
 		$templateMgr->assign('disableRoleSelect', $disableRoleSelect);
 
 		return parent::fetch($request);
@@ -146,8 +147,8 @@ class UserGroupForm extends Form {
 		}
 
 		// After we have created/edited the user group, we assign/update its stages.
-		if ($this->getData('stages')) {
-			$this->_assignStagesToUserGroup($userGroupId, $this->getData('stages'));
+		if ($this->getData('assignedStages')) {
+			$this->_assignStagesToUserGroup($userGroupId, $this->getData('assignedStages'));
 		}
 	}
 
