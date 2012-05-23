@@ -221,6 +221,9 @@ class NotificationManager extends PKPNotificationManager {
 			case NOTIFICATION_TYPE_APPROVE_SUBMISSION:
 				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
 				return __('notification.type.approveSubmission');
+			case NOTIFICATION_TYPE_CONFIGURE_PAYMENT_METHOD:
+				assert($notification->getAssocType() == ASSOC_TYPE_PRESS && is_numeric($notification->getAssocId()));
+				return __('notification.type.configurePaymentMethod');
 		}
 		return parent::getNotificationMessage($request, $notification);
 	}
@@ -258,6 +261,8 @@ class NotificationManager extends PKPNotificationManager {
 				$stageData = $this->_getStageDataByPendingRevisionsType($notification->getType());
 				$stageKey = $stageData['translationKey'];
 				return __('notification.type.pendingRevisions.title', array('stage' => __($stageKey)));
+			case NOTIFICATION_TYPE_CONFIGURE_PAYMENT_METHOD:
+				return __('notification.type.configurePaymentMethod.title');
 		}
 		return parent::getNotificationTitle($notification);
 	}
@@ -324,6 +329,7 @@ class NotificationManager extends PKPNotificationManager {
 			case NOTIFICATION_TYPE_PENDING_EXTERNAL_REVISIONS:
 			case NOTIFICATION_TYPE_PENDING_INTERNAL_REVISIONS:
 			case NOTIFICATION_TYPE_ALL_REVIEWS_IN:
+			case NOTIFICATION_TYPE_CONFIGURE_PAYMENT_METHOD:
 				return 'notifyWarning';
 			case NOTIFICATION_TYPE_EDITOR_DECISION_INITIATE_REVIEW:
 			case NOTIFICATION_TYPE_EDITOR_DECISION_ACCEPT:
@@ -352,6 +358,7 @@ class NotificationManager extends PKPNotificationManager {
 			NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_PRODUCTION,
 			NOTIFICATION_TYPE_REVIEW_ROUND_STATUS,
 			NOTIFICATION_TYPE_APPROVE_SUBMISSION,
+			NOTIFICATION_TYPE_CONFIGURE_PAYMENT_METHOD,
 		));
 	}
 

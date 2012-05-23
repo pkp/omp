@@ -78,6 +78,15 @@ class PaymentMethodForm extends PressSettingsForm {
 			foreach ($plugin->getSettingsFormFieldNames() as $settingName) {
 				$plugin->updateSetting($press->getId(), $settingName, $this->getData($settingName));
 			}
+
+			// Remove notification.
+			$notificationDao =& DAORegistry::getDAO('NotificationDAO');
+			$notificationDao->deleteByAssoc(ASSOC_TYPE_PRESS, $press->getId(), null, NOTIFICATION_TYPE_CONFIGURE_PAYMENT_METHOD, $press->getId());
+		} else {
+			// Create notification.
+			$notificationMgr = new NotificationManager();
+			$notificationMgr->createNotification($request, null, NOTIFICATION_TYPE_CONFIGURE_PAYMENT_METHOD,
+				$press->getId(), ASSOC_TYPE_PRESS, $press->getId(), NOTIFICATION_LEVEL_NORMAL);
 		}
 
 		return parent::execute($request);

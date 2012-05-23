@@ -100,6 +100,15 @@ class CatalogEntryPublicationMetadataForm extends Form {
 			$templateMgr->assign_by_ref($templateVarName, $onixCodelistItemDao->getCodes($list));
 		}
 
+		// Notification options.
+		$notificationRequestOptions = array(
+			NOTIFICATION_LEVEL_NORMAL => array(
+				NOTIFICATION_TYPE_CONFIGURE_PAYMENT_METHOD => array(ASSOC_TYPE_PRESS, $press->getId())),
+			NOTIFICATION_LEVEL_TRIVIAL => array()
+		);
+
+		$templateMgr->assign('notificationRequestOptions', $notificationRequestOptions);
+
 		return parent::fetch($request);
 	}
 
