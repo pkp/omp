@@ -9,8 +9,6 @@
 <script type="text/javascript">
 	$(function() {ldelim}
 		$('#topSearchFormField').jLabel();
-		// the following is needed because jLabel() inline-styles the label element it creates
-		$('#topSearchForm').children('label').css('z-index', 10);
 	{rdelim});
 </script>
 

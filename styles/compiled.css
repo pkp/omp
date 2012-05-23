@@ -522,6 +522,7 @@ a.sprite.collapsed:hover:before { background-position:-1488px -24px; }
   padding:2px;
   font-size:100%;
 }
+.pkp_structure_search #topSearchForm label { z-index:10 !important; }
 .pkp_structure_breadcrumb { margin-left:20px; }
 .pkp_structure_breadcrumb li {
   padding:10px 2px 0 2px;
