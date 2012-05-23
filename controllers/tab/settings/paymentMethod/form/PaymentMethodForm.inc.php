@@ -71,12 +71,13 @@ class PaymentMethodForm extends PressSettingsForm {
 
 		// Get the selected payment plugin
 		$paymentPluginName = $this->getData('paymentPluginName');
-		if (!isset($this->paymentPlugins[$paymentPluginName])) return;
-		$plugin =& $this->paymentPlugins[$paymentPluginName];
+		if (isset($this->paymentPlugins[$paymentPluginName])) {
+			$plugin =& $this->paymentPlugins[$paymentPluginName];
 
-		// Save the plugin-specific settings
-		foreach ($plugin->getSettingsFormFieldNames() as $settingName) {
-			$plugin->updateSetting($press->getId(), $settingName, $this->getData($settingName));
+			// Save the plugin-specific settings
+			foreach ($plugin->getSettingsFormFieldNames() as $settingName) {
+				$plugin->updateSetting($press->getId(), $settingName, $this->getData($settingName));
+			}
 		}
 
 		return parent::execute($request);
