@@ -291,23 +291,33 @@ class MonographDAO extends DAO {
 		// Delete controlled vocab lists assigned to this Monograph
 		$monographKeywordDao =& DAORegistry::getDAO('MonographKeywordDAO');
 		$monographKeywordVocab =& $monographKeywordDao->getBySymbolic(CONTROLLED_VOCAB_MONOGRAPH_KEYWORD, ASSOC_TYPE_MONOGRAPH, $monographId);
-		$monographKeywordDao->deleteObject($monographKeywordVocab);
+		if (isset($monographKeywordVocab)) {
+			$monographKeywordDao->deleteObject($monographKeywordVocab);
+		}
 
 		$monographDisciplineDao =& DAORegistry::getDAO('MonographDisciplineDAO');
 		$monographDisciplineVocab =& $monographDisciplineDao->getBySymbolic(CONTROLLED_VOCAB_MONOGRAPH_DISCIPLINE, ASSOC_TYPE_MONOGRAPH, $monographId);
-		$monographDisciplineDao->deleteObject($monographDisciplineVocab);
+		if (isset($monographDisciplineVocab)) {
+			$monographDisciplineDao->deleteObject($monographDisciplineVocab);
+		}
 
 		$monographAgencyDao =& DAORegistry::getDAO('MonographAgencyDAO');
 		$monographAgencyVocab =& $monographAgencyDao->getBySymbolic(CONTROLLED_VOCAB_MONOGRAPH_AGENCY, ASSOC_TYPE_MONOGRAPH, $monographId);
-		$monographAgencyDao->deleteObject($monographAgencyVocab);
+		if (isset($monographAgencyVocab)) {
+			$monographAgencyDao->deleteObject($monographAgencyVocab);
+		}
 
 		$monographLanguageDao =& DAORegistry::getDAO('MonographLanguageDAO');
 		$monographLanguageVocab =& $monographLanguageDao->getBySymbolic(CONTROLLED_VOCAB_MONOGRAPH_LANGUAGE, ASSOC_TYPE_MONOGRAPH, $monographId);
-		$monographLanguageDao->deleteObject($monographLanguageVocab);
+		if (isset($monographLanguageVocab)) {
+			$monographLanguageDao->deleteObject($monographLanguageVocab);
+		}
 
 		$monographSubjectDao =& DAORegistry::getDAO('MonographSubjectDAO');
 		$monographSubjectVocab =& $monographSubjectDao->getBySymbolic(CONTROLLED_VOCAB_MONOGRAPH_SUBJECT, ASSOC_TYPE_MONOGRAPH, $monographId);
-		$monographSubjectDao->deleteObject($monographSubjectVocab);
+		if (isset($monographSubjectVocab)) {
+			$monographSubjectDao->deleteObject($monographSubjectVocab);
+		}
 
 		// Signoff DAOs
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
