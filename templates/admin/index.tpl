@@ -18,7 +18,7 @@
 	<li>&#187; <a href="{url op="presses"}">{translate key="admin.hostedPresses"}</a></li>
 	<li>&#187; <a href="{url op="languages"}">{translate key="common.languages"}</a></li>
 	{call_hook name="Templates::Admin::Index::SiteManagement"}
-	{if $hasOtherPresses}
+	{if $multiplePresses}
 	<li>&#187; <a href="{url op="settings"}">{translate key="admin.settings"}</a></li>
 	{/if}
 </ul>

@@ -113,13 +113,13 @@ class TemplateManager extends PKPTemplateManager {
 				$presses =& $pressDao->getEnabledPresses();
 			}
 
-			$hasOtherPresses = false;
+			$multiplePresses = false;
 			if ($presses->getCount() > 1) {
-				$this->assign('hasOtherPresses', true);
-				$hasOtherPresses = true;
+				$this->assign('multiplePresses', true);
+				$multiplePresses = true;
 			}
 
-			if ($hasOtherPresses) {
+			if ($multiplePresses) {
 				$this->_assignPressSwitcherData($request, $presses, $press);
 			}
 		}
