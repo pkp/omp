@@ -157,8 +157,7 @@ class UserGridHandler extends GridHandler {
 			}
 
 			// Get users with no user group assignment.
-			$userDao =& DAORegistry::getDAO('UserDAO');
-			$usersWithNoUserGroup =& $userDao->getUsersWithNoUserGroupAssignments();
+			$usersWithNoUserGroup =& $userGroupDao->getUsersWithNoUserGroupAssignments($filter);
 			if (!$usersWithNoUserGroup->wasEmpty()) {
 				while ($userWithNoUserGroup =& $usersWithNoUserGroup->next()) {
 					$rowData[$userWithNoUserGroup->getId()] = $userWithNoUserGroup;
