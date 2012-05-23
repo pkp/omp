@@ -21,9 +21,9 @@
 	</div>
 	<div class="pkp_catalog_monographFormats">
 		{foreach from=$publishedMonograph->getCatalogFormatInfo() item="details"}
-			<div class="pkp_catalog_monographFormat">{$details.title}: {$details.price} ({$pressCurrency})</div>
+			<div class="pkp_catalog_monographFormat">{$details.title|escape}: {if $details.price != 0}{$details.price} ({$pressCurrency}){else}{translate key="catalog.price.openAccess"}{/if}</div>
 			{foreach from=$details.codes item="code"}
-				<div class="pkp_catalog_monographCode">{$code->getNameForONIXCode()} - {$code->getValue()}</div>
+				<div class="pkp_catalog_monographCode">{$code->getNameForONIXCode()|escape} - {$code->getValue()|escape}</div>
 			{/foreach}
 		{/foreach}
 	</div>
