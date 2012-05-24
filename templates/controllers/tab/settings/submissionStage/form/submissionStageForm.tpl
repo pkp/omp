@@ -27,8 +27,6 @@
 
 	<div class="separator"></div>
 
-	<h3 class="pkp_grid_title">{translate key="manager.setup.submissionPreparationChecklist"}</h3>
-	<p class="pkp_grid_description">{translate key="manager.setup.submissionPreparationChecklistDescription"}</p>
 	{url|assign:submissionChecklistGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.submissionChecklist.SubmissionChecklistGridHandler" op="fetchGrid"}
 	{load_url_in_div id="submissionChecklistGridDiv" url=$submissionChecklistGridUrl}
 

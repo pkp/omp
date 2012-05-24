@@ -91,12 +91,24 @@ class SubmissionChecklistForm extends Form {
 		$router =& $request->getRouter();
 		$press =& $router->getContext($request);
 		$submissionChecklistAll = $press->getSetting('submissionChecklist');
+		$locale = AppLocale::getPrimaryLocale();
 		//FIXME: a bit of kludge to get unique submissionChecklist id's
-		$this->submissionChecklistId = ($this->submissionChecklistId != null ? $this->submissionChecklistId:(max(array_keys($submissionChecklistAll[AppLocale::getPrimaryLocale()])) + 1));
+		$this->submissionChecklistId = ($this->submissionChecklistId != null ? $this->submissionChecklistId:(max(array_keys($submissionChecklistAll[$locale])) + 1));
+
+		$order = 0;
+		foreach ($submissionChecklistAll[$locale] as $checklistItem) {
+			if ($checklistItem['order'] > $order) {
+				$order = $checklistItem['order'];
+			}
+		}
+		$order++;
 
 		$checklistItem = $this->getData('checklistItem');
 		foreach (AppLocale::getSupportedLocales() as $locale => $name) {
-			$submissionChecklistAll[$locale][$this->submissionChecklistId]['content'] = $checklistItem[$locale];
+			if (isset($checklistItem[$locale])) {
+				$submissionChecklistAll[$locale][$this->submissionChecklistId]['content'] = $checklistItem[$locale];
+				$submissionChecklistAll[$locale][$this->submissionChecklistId]['order'] = $order;
+			}
 		}
 
 		$press->updateSetting('submissionChecklist', $submissionChecklistAll, 'object', true);

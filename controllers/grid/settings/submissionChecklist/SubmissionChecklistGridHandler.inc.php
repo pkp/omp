@@ -16,32 +16,31 @@ import('controllers.grid.settings.SetupGridHandler');
 import('controllers.grid.settings.submissionChecklist.SubmissionChecklistGridRow');
 
 class SubmissionChecklistGridHandler extends SetupGridHandler {
+
 	/**
 	 * Constructor
 	 */
 	function SubmissionChecklistGridHandler() {
 		parent::SetupGridHandler();
 		$this->addRoleAssignment(array(ROLE_ID_PRESS_MANAGER),
-				array('fetchGrid', 'fetchRow', 'addItem', 'editItem', 'updateItem', 'deleteItem'));
+				array('fetchGrid', 'fetchRow', 'addItem', 'editItem', 'updateItem', 'deleteItem', 'saveSequence'));
 	}
 
 	//
 	// Overridden template methods
 	//
-	/*
-	 * Configure the grid
-	 * @param $request PKPRequest
+	/**
+	 * @see SetupGridHandler::initialize()
 	 */
 	function initialize(&$request) {
 		parent::initialize($request);
+
 		// Basic grid configuration
 		$this->setId('submissionChecklist');
+		AppLocale::requireComponents(LOCALE_COMPONENT_OMP_MANAGER); // for the two locale keys used below.
+		$this->setTitle('manager.setup.submissionPreparationChecklist');
+		$this->setInstructions('manager.setup.submissionPreparationChecklistDescription');
 
-		// Elements to be displayed in the grid
-		$router =& $request->getRouter();
-		$context =& $router->getContext($request);
-		$submissionChecklist = $context->getSetting('submissionChecklist');
-		$this->setGridDataElements($submissionChecklist[AppLocale::getLocale()]);
 
 		// Add grid-level actions
 		import('lib.pkp.classes.linkAction.request.AjaxModal');
@@ -71,20 +70,41 @@ class SubmissionChecklistGridHandler extends SetupGridHandler {
 		);
 	}
 
+
 	//
 	// Overridden methods from GridHandler
 	//
 	/**
-	 * Get the row handler - override the default row handler
-	 * @return SubmissionChecklistGridRow
+	 * @see GridHandler::initFeatures()
+	 */
+	function initFeatures($request, $args) {
+		import('lib.pkp.classes.controllers.grid.feature.OrderGridItemsFeature');
+		return array(new OrderGridItemsFeature());
+	}
+
+	/**
+	 * @see GridHandler::getRowInstance()
 	 */
 	function &getRowInstance() {
 		$row = new SubmissionChecklistGridRow();
 		return $row;
 	}
 
+	/**
+	 * @see GridHandler::loadData()
+	 */
+	function loadData($request, $filter) {
+		// Elements to be displayed in the grid
+		$router =& $request->getRouter();
+		$context =& $router->getContext($request);
+		$submissionChecklist = $context->getSetting('submissionChecklist');
+
+		return $submissionChecklist[AppLocale::getLocale()];
+	}
+
+
 	//
-	// Public SubmissionChecklist Grid Actions
+	// Public grid actions.
 	//
 	/**
 	 * An action to add a new submissionChecklist
@@ -92,10 +112,6 @@ class SubmissionChecklistGridHandler extends SetupGridHandler {
 	 * @param $request PKPRequest
 	 */
 	function addItem($args, &$request) {
-		// Delegate to the row handler
-		import('controllers.grid.settings.submissionChecklist.SubmissionChecklistGridRow');
-		$submissionChecklistRow = new SubmissionChecklistGridRow();
-
 		// Calling editSubmissionChecklist with an empty row id will add
 		// a new submissionChecklist.
 		return $this->editItem($args, $request);
@@ -173,6 +189,46 @@ class SubmissionChecklistGridHandler extends SetupGridHandler {
 
 		$press->updateSetting('submissionChecklist', $submissionChecklistAll, 'object', true);
 		return DAO::getDataChangedEvent($rowId);
+	}
+
+	/**
+	 * @see GridHandler::getRowDataElementSequence()
+	 */
+	function getRowDataElementSequence($gridDataElement) {
+		return $gridDataElement['order'];
+	}
+
+	/**
+	 * @see GridHandler::saveRowDataElementSequence()
+	 */
+	function saveRowDataElementSequence(&$request, $rowId, $gridDataElement, $newSequence) {
+		$router =& $request->getRouter();
+		$press =& $router->getContext($request);
+
+		// Get all of the submissionChecklists.
+		$submissionChecklistAll = $press->getSetting('submissionChecklist');
+		$locale = AppLocale::getLocale();
+
+		if (isset($submissionChecklistAll[$locale][$rowId])) {
+			$submissionChecklistAll[$locale][$rowId]['order'] = $newSequence;
+		}
+
+		$orderMap = array();
+		foreach ($submissionChecklistAll[$locale] as $id => $checklistItem) {
+			$orderMap[$id] = $checklistItem['order'];
+		}
+
+		asort($orderMap);
+
+		// Build the new order checklist object.
+		$orderedChecklistItems = array();
+		foreach ($orderMap as $id => $order) {
+			if (isset($submissionChecklistAll[$locale][$id])) {
+				$orderedChecklistItems[$locale][$id] = $submissionChecklistAll[$locale][$id];
+			}
+		}
+
+		$press->updateSetting('submissionChecklist', $orderedChecklistItems, 'object', true);
 	}
 }
 
