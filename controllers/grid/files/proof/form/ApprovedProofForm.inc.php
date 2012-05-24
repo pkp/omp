@@ -41,7 +41,8 @@ class ApprovedProofForm extends Form {
 		$this->approvedProof =& $submissionFileDao->getRevision($fileId, $revision, MONOGRAPH_FILE_PROOF, $this->monograph->getId());
 		if (!$this->approvedProof->getViewable()) fatalError('Proof not approved!');
 
-		$this->addCheck(new FormValidatorCustom($this, 'price', 'optional', 'payment.directSales.validPriceRequired', create_function('$price, $form', 'return is_numeric($price) && $price >= 0;'), array(&$this)));
+		// matches currencies like:  1,500.50 1500.50 1,112.15 5,99 .99
+		$this->addCheck(new FormValidatorRegExp($this, 'price', 'optional', 'grid.catalogEntry.validPriceRequired', '/^(([1-9]\d{0,2}(,\d{3})*|[1-9]\d*|0|)(.\d{2})?|([1-9]\d{0,2}(,\d{3})*|[1-9]\d*|0|)(.\d{2})?)$/'));
 		$this->addCheck(new FormValidatorPost($this));
 	}
 
@@ -90,7 +91,7 @@ class ApprovedProofForm extends Form {
 			$this->approvedProof->setDirectSalesPrice($this->getData('price'));
 		}
 		$submissionFileDao->updateObject($this->approvedProof);
-			
+
 		return $this->approvedProof->getFileIdAndRevision();
 	}
 }
