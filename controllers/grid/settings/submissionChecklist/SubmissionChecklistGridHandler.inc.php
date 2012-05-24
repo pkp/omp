@@ -37,7 +37,6 @@ class SubmissionChecklistGridHandler extends SetupGridHandler {
 
 		// Basic grid configuration
 		$this->setId('submissionChecklist');
-		AppLocale::requireComponents(LOCALE_COMPONENT_OMP_MANAGER); // for the two locale keys used below.
 		$this->setTitle('manager.setup.submissionPreparationChecklist');
 		$this->setInstructions('manager.setup.submissionPreparationChecklistDescription');
 

@@ -69,6 +69,9 @@ class LibraryFileGridHandler extends SetupGridHandler {
 	function initialize(&$request) {
 		parent::initialize($request);
 
+		$this->setTitle('manager.setup.submissionLibrary');
+		$this->setInstructions('manager.setup.submissionLibraryDescription');
+
 		$router =& $request->getRouter();
 		$context =& $router->getContext($request);
 

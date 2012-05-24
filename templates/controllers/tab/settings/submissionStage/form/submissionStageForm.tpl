@@ -19,8 +19,6 @@
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="submissionStageFormNotification"}
 
 	<div {if $wizardMode}class="pkp_form_hidden"{/if}>
-		<h3 class="pkp_grid_title">{translate key="manager.setup.submissionLibrary"}</h3>
-		<p class="pkp_grid_description">{translate key="manager.setup.submissionLibraryDescription"}</p>
 		{url|assign:submissionLibraryUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.library.LibraryFileGridHandler" op="fetchGrid" fileType=$smarty.const.LIBRARY_FILE_TYPE_SUBMISSION}
 		{load_url_in_div id="submissionLibraryGridDiv" url=$submissionLibraryUrl}
 	</div>
