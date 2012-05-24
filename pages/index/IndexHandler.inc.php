@@ -108,10 +108,14 @@ class IndexHandler extends Handler {
 		if ($enableAnnouncements) {
 			$enableAnnouncementsHomepage = $press->getSetting('enableAnnouncementsHomepage');
 			if ($enableAnnouncementsHomepage) {
+				$numAnnouncementsHomepage = $press->getSetting('numAnnouncementsHomepage');
 				$templateMgr->assign('enableAnnouncementsHomepage', true);
-				$announcementsDao =& DAORegistry::getDAO('AnnouncementDAO');
-				$announcements =& $announcementsDao->getAnnouncementsNotExpiredByAssocId(ASSOC_TYPE_PRESS, $press->getId());
+				$announcementDao =& DAORegistry::getDAO('AnnouncementDAO');
+				$announcements =& $announcementDao->getAnnouncementsNotExpiredByAssocId(ASSOC_TYPE_PRESS, $press->getId());
 				$templateMgr->assign_by_ref('announcements', $announcements);
+				if (isset($numAnnouncementsHomepage)) {
+					$templateMgr->assign('numAnnouncementsHomepage', $numAnnouncementsHomepage);
+				}
 			}
 		}
 
