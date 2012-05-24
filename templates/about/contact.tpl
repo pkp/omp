@@ -29,20 +29,22 @@
 	{if $s}{$s|escape}<br />{/if}
 
 	{assign var=s value=$currentPress->getLocalizedSetting('contactAffiliation')}
-	{if $s}{$s|strip_unsafe_html}<br />{/if}
+	{if $s}{$s|strip_unsafe_html}{/if}
 
 	{assign var=s value=$currentPress->getLocalizedSetting('contactMailingAddress')}
-	{if $s}{$s|nl2br}<br />{/if}
+	{if $s}{$s|strip_unsafe_html}{/if}
 
-	{if !empty($pressSettings.contactPhone)}
-		{translate key="about.contact.phone"}: {$pressSettings.contactPhone|escape}<br />
-	{/if}
-	{if !empty($pressSettings.contactFax)}
-		{translate key="about.contact.fax"}: {$pressSettings.contactFax|escape}<br />
-	{/if}
-	{if !empty($pressSettings.contactEmail)}
-		{translate key="about.contact.email"}: {mailto address=$pressSettings.contactEmail|escape encode="hex"}<br />
-	{/if}
+	<p>
+		{if !empty($pressSettings.contactPhone)}
+			{translate key="about.contact.phone"}: {$pressSettings.contactPhone|escape}<br />
+		{/if}
+		{if !empty($pressSettings.contactFax)}
+			{translate key="about.contact.fax"}: {$pressSettings.contactFax|escape}<br />
+		{/if}
+		{if !empty($pressSettings.contactEmail)}
+			{translate key="about.contact.email"}: {mailto address=$pressSettings.contactEmail|escape encode="hex"}
+		{/if}
+	</p>
 </p>
 {/if}
 
