@@ -30,7 +30,7 @@
 <div class="separator"></div>
 {/if}
 
-{if !empty($contributorNote) || (!empty($contributors) && !empty($contributors[0].name))}
+{if not (empty($contributorNote) && empty($contributors))}
 <div id="contributors">
 <h3>{translate key="about.contributors"}</h3>
 
@@ -38,11 +38,11 @@
 
 <ul>
 	{foreach from=$contributors item=contributor}
-	{if $contributor.name}
+	{if $contributor.institution}
 		{if $contributor.url}
-			<li><a href="{$contributor.url|escape}">{$contributor.name|escape}</a></li>
+			<li><a href="{$contributor.url|escape}">{$contributor.institution|escape}</a></li>
 		{else}
-			<li>{$contributor.name|escape}</li>
+			<li>{$contributor.institution|escape}</li>
 		{/if}
 	{/if}
 	{/foreach}
