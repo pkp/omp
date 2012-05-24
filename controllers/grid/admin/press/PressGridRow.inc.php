@@ -70,6 +70,19 @@ class PressGridRow extends GridRow {
 					'delete')
 			);
 
+			if (Validation::isPressManager($element->getId())) {
+				import('lib.pkp.classes.linkAction.request.RedirectAction');
+				$dispatcher = $router->getDispatcher();
+				$this->addAction(
+					new LinkAction(
+						'wizard',
+						new RedirectAction(
+							$dispatcher->url($request, ROUTE_PAGE, $element->getPath(), 'admin', 'presses', null, array('openWizard' => 1))),
+						__('grid.action.wizard')
+					)
+				);
+			}
+
 			// Set a non-default template that supports row actions
 			$this->setTemplate('controllers/grid/gridRowWithActions.tpl');
 		}
