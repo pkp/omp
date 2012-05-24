@@ -21,7 +21,6 @@
 
 	{url|assign:"sampleCopyrightWordingUrl" page="information" op="sampleCopyrightWording"}
 	{translate|assign:"authorCopyrightNoticeDescription" key="manager.setup.authorCopyrightNotice.description" sampleCopyrightWordingUrl=$sampleCopyrightWordingUrl}
-	{* FIXME #6843 JM: The above workaround provided by Juan to place a dynamic link into a description text doesn't seem to be working *}
 
 	{fbvFormArea id="policiesFormArea"}
 		{fbvFormSection label="manager.setup.authorCopyrightNotice" description=$authorCopyrightNoticeDescription translate=false}
