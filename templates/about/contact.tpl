@@ -29,7 +29,7 @@
 	{if $s}{$s|escape}<br />{/if}
 
 	{assign var=s value=$currentPress->getLocalizedSetting('contactAffiliation')}
-	{if $s}{$s|escape}<br />{/if}
+	{if $s}{$s|strip_unsafe_html}<br />{/if}
 
 	{assign var=s value=$currentPress->getLocalizedSetting('contactMailingAddress')}
 	{if $s}{$s|nl2br}<br />{/if}
