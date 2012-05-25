@@ -24,6 +24,7 @@
 </script>
 
 <form class="pkp_form" id="uploadForm" action="{url op="saveFile" fileType=$fileType}" method="post">
+	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="libraryFileUploadNotification"}
 	<input type="hidden" name="temporaryFileId" id="temporaryFileId" value="" />
 	{fbvFormArea id="name"}
 		{fbvFormSection title="common.name" required=true}

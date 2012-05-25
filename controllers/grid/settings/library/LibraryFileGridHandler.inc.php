@@ -215,7 +215,8 @@ class LibraryFileGridHandler extends SetupGridHandler {
 			return DAO::getDataChangedEvent($fileId);
 		}
 
-		return new JSONMessage(false);
+		$json = new JSONMessage(false);
+		return $json->getString();
 	}
 
 	/**
