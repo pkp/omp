@@ -19,10 +19,10 @@
 
 {fbvFormArea id="mastheadInfo"}
 {fbvFormSection}
-	{fbvElement type="text" label="manager.setup.institution" id="institution" value=$institution|escape maxlength="90"}
+	{fbvElement type="text" label="manager.setup.institution" id="institution" value=$institution|escape maxlength="90" required=true}
 {/fbvFormSection}
 {fbvFormSection}
-	{fbvElement type="text" label="common.url" id="url" value=$url|escape maxlength="255"}
+	{fbvElement type="text" label="common.url" id="url" value=$url|escape maxlength="255" required=true}
 {/fbvFormSection}
 {/fbvFormArea}
 

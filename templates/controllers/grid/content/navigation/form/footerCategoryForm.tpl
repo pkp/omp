@@ -19,15 +19,15 @@
 			<input type="hidden" name="footerCategoryId" value="{$footerCategory->getId()|escape}" />
 		{/if}
 
-		{fbvFormSection for="title" label="common.title" required="true"}
+		{fbvFormSection for="title" title="common.title" required="true"}
 			{fbvElement type="text" multilingual="true" id="title" value=$title maxlength="255" size=$fbvStyles.size.MEDIUM inline="true"}
 		{/fbvFormSection}
 
-		{fbvFormSection for="path" label="grid.category.path" required="true"}
+		{fbvFormSection for="path" title="grid.category.path" required="true"}
 			{fbvElement type="text" id="path" value=$path|escape maxlength="255" size=$fbvStyles.size.MEDIUM inline="true"}
 		{/fbvFormSection}
 
-		{fbvFormSection label="common.description" for="description" required="true"}
+		{fbvFormSection title="common.description" required="true"}
 			{fbvElement type="textarea" multilingual=true name="description" id="description" value=$description rich=true height=$fbvStyles.height.SHORT}
 		{/fbvFormSection}
 

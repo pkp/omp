@@ -15,15 +15,14 @@
 </script>
 
 <form class="pkp_form" id="contributorForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.settings.contributor.ContributorGridHandler" op="updateContributor"}">
-
 {include file="controllers/notification/inPlaceNotification.tpl" notificationId="contributorFormNotification"}
 
 {fbvFormArea id="mastheadInfo"}
 {fbvFormSection}
-	{fbvElement type="text" label="manager.setup.institution" id="institution" value="$institution" maxlength="90"}
+	{fbvElement type="text" label="manager.setup.institution" id="institution" value=$institution maxlength="90" required=true}
 {/fbvFormSection}
 {fbvFormSection}
-	{fbvElement type="text" label="common.url" id="url" value="$url" maxlength="255"}
+	{fbvElement type="text" label="common.url" id="url" value=$url maxlength="255" required=true}
 {/fbvFormSection}
 {/fbvFormArea}
 
@@ -34,7 +33,7 @@
 	<input type="hidden" name="rowId" value="{$rowId|escape}" />
 {/if}
 {if $sponsorId}
-	<input type="hidden" name="sponsorId" value="{$sponsorId|escape}" />
+	<input type="hidden" name="sponsorId" value="{$contributorId|escape}" />
 {/if}
 {fbvFormButtons}
 </form>

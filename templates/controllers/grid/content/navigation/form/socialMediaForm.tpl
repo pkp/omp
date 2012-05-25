@@ -20,11 +20,11 @@
 			<input type="hidden" name="socialMediaId" value="{$socialMedia->getId()|escape}" />
 		{/if}
 
-		{fbvFormSection for="platform" label="grid.content.navigation.socialMedia.platform" required="true"}
+		{fbvFormSection title="grid.content.navigation.socialMedia.platform" required="true"}
 			{fbvElement type="text" multilingual="true" id="platform" value=$platform maxlength="255" size=$fbvStyles.size.MEDIUM inline="true"}
 		{/fbvFormSection}
 
-		{fbvFormSection label="grid.content.navigation.socialMedia.code" for="description" required="true"}
+		{fbvFormSection title="grid.content.navigation.socialMedia.code" required="true"}
 			{fbvElement type="textarea" name="code" id="code" value=$code height=$fbvStyles.height.SHORT}
 		{/fbvFormSection}
 

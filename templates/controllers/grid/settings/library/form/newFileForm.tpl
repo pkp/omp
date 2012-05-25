@@ -26,13 +26,13 @@
 <form class="pkp_form" id="uploadForm" action="{url op="saveFile" fileType=$fileType}" method="post">
 	<input type="hidden" name="temporaryFileId" id="temporaryFileId" value="" />
 	{fbvFormArea id="name"}
-		{fbvFormSection title="common.name"}
+		{fbvFormSection title="common.name" required=true}
 			{fbvElement type="text" multilingual="true" id="libraryFileName" value=$libraryFileName maxlength="120" size=$fbvStyles.size.LARGE}
 		{/fbvFormSection}
 	{/fbvFormArea}
 
 	{fbvFormArea id="file"}
-		{fbvFormSection title="common.file"}
+		{fbvFormSection title="common.file" required=true}
 			<div id="plupload"></div>
 		{/fbvFormSection}
 	{/fbvFormArea}
