@@ -73,27 +73,27 @@ class InformationHandler extends Handler {
 		$templateMgr->assign('content', $content);
 		$templateMgr->assign('contentOnly', $contentOnly); // Hide the header and footer code
 
-		return $templateMgr->fetchJson('information/information.tpl');
+		$templateMgr->display('information/information.tpl');
 	}
 
-	function readers() {
-		$this->index(array('readers'));
+	function readers($args, &$request) {
+		$this->index(array('readers'), $request);
 	}
 
-	function authors() {
-		$this->index(array('authors'));
+	function authors($args, &$request) {
+		$this->index(array('authors'), $request);
 	}
 
-	function librarians() {
-		$this->index(array('librarians'));
+	function librarians($args, &$request) {
+		$this->index(array('librarians'), $request);
 	}
 
-	function competingInterestPolicy() {
-		return $this->index(array('competingInterestPolicy'));
+	function competingInterestPolicy($args, &$request) {
+		return $this->index(array('competingInterestPolicy'), $request);
 	}
 
-	function sampleCopyrightWording() {
-		$this->index(array('sampleCopyrightWording'));
+	function sampleCopyrightWording($args, &$request) {
+		$this->index(array('sampleCopyrightWording'), $request);
 	}
 
 	/**
@@ -102,7 +102,7 @@ class InformationHandler extends Handler {
 	 */
 	function setupTemplate($request) {
 		$press =& $request->getPress();
-		AppLocale::requireComponents(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_PKP_USER);
+		AppLocale::requireComponents(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_PKP_USER, LOCALE_COMPONENT_OMP_MANAGER);
 		$templateMgr =& TemplateManager::getManager();
 		if (!$press || !$press->getSetting('restrictSiteAccess')) {
 			$templateMgr->setCacheability(CACHEABILITY_PUBLIC);

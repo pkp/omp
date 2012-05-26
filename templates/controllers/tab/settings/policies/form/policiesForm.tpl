@@ -19,7 +19,7 @@
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="policiesFormNotification"}
 	{include file="controllers/tab/settings/wizardMode.tpl" wizardMode=$wizardMode}
 
-	{url|assign:"sampleCopyrightWordingUrl" page="information" op="sampleCopyrightWording"}
+	{url|assign:"sampleCopyrightWordingUrl" router=$smarty.const.ROUTE_PAGE page="information" op="sampleCopyrightWording"}
 	{translate|assign:"authorCopyrightNoticeDescription" key="manager.setup.authorCopyrightNotice.description" sampleCopyrightWordingUrl=$sampleCopyrightWordingUrl}
 
 	{fbvFormArea id="policiesFormArea"}
