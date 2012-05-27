@@ -28,6 +28,9 @@ class UserExportDom {
 	function &exportUsers(&$press, &$users, $allowedRoles = null) {
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 
+		import('lib.pkp.classes.user.InterestManager');
+		$interestManager = new InterestManager();
+
 		$doc =& XMLCustomWriter::createDocument('users', USERS_DTD_ID, USERS_DTD_URL);
 		$root =& XMLCustomWriter::createElement($doc, 'users');
 
@@ -67,7 +70,9 @@ class UserExportDom {
 					unset($signatureNode);
 				}
 			}
-			$interestsNode =& XMLCustomWriter::createChildWithText($doc, $userNode, 'interests', $user->getInterests(), false);
+
+
+			$interestsNode =& XMLCustomWriter::createChildWithText($doc, $userNode, 'interests', $interestManager->getInterestsString($user), false);
 			if ($interestsNode) {
 				XMLCustomWriter::setAttribute($interestsNode, 'locale', $locale);
 			}
