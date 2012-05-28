@@ -25,7 +25,7 @@
 	<p>{translate key="catalog.manage.entryDescription"}</p>
 	<ul>
 		<li>
-			<a title="submission" href="{url router=$smarty.const.ROUTE_COMPONENT component="tab.catalogEntry.CatalogEntryTabHandler" tab="submission" op="submissionMetadata" monographId="$monographId" stageId=$stageId tabPos="0"}">{translate key="submission.catalogEntry.submissionMetadata"}</a>
+			<a title="submission" href="{url router=$smarty.const.ROUTE_COMPONENT component="tab.catalogEntry.CatalogEntryTabHandler" tab="submission" op="submissionMetadata" monographId="$monographId" stageId=$stageId tabPos="0"}">{translate key="submission.catalogEntry.monographMetadata"}</a>
 		</li>
 		<li {if !$published}class="ui-state-default ui-corner-top ui-state-disabled"{/if}>
 			<a title="catalog" href="{url router=$smarty.const.ROUTE_COMPONENT component="tab.catalogEntry.CatalogEntryTabHandler" tab="catalog" op="catalogMetadata" monographId="$monographId" stageId=$stageId tabPos="1"}">{translate key="submission.catalogEntry.catalogMetadata"}</a>
