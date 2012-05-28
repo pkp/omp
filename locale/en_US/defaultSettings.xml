@@ -16,9 +16,9 @@
 	<message key="default.genres.appendix.designation">99A</message>
 	<message key="default.genres.bibliography">Bibliography</message>
 	<message key="default.genres.bibliography.designation">99B</message>
-	<message key="default.genres.manuscript">Manuscript</message>
+	<message key="default.genres.manuscript">Book Manuscript</message>
 	<message key="default.genres.manuscript.designation">99Z</message>
-	<message key="default.genres.chapter">Chapter</message>
+	<message key="default.genres.chapter">Chapter Manuscript</message>
 	<message key="default.genres.glossary">Glossary</message>
 	<message key="default.genres.glossary.designation">99G</message>
 	<message key="default.genres.index">Index</message>

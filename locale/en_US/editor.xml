@@ -96,7 +96,7 @@
 	<message key="editor.monograph.copyediting.personalMessageToUser">Personal message to user</message>
 
 	<!-- Editorial related -->
-	<message key="editor.monograph.editorial.introduction">Welcome to the submission's editorial stage. All approved submission revisions from previous review stages are available in the Final Draft section. Copyedited files may be uploaded to the Copyediting section, and authors and/or editors may be assigned to audit the copyedited files. Final copyedited files may then be uploaded to the Fair Copy section, at which point the submission can then be sent to the Production stage.</message>
+	<message key="editor.monograph.editorial.introduction">The copyeditor downloads the Accepted Submission files for copyediting, and then uploads the copyedited files under Copyediting for review. The copyeditor uses Assign to select and notify users to review copyedits. Those assigned download, review, and upload the copyedited files and/or leave a note with the file. The copyeditor then prepares and uploads a clean Fair Copy of the submission file(s), for which an editor signs off and clicks Send to Production.</message>
 	<message key="editor.monograph.editorial.finalDraftDescription">All approved submission revisions from previous review stages are available below. New draft files can be uploaded (and current files replaced) by clicking the Manage Final Draft Files link.</message>
 	<message key="editor.monograph.editorial.copyeditingDescription">Copyedited files may be uploaded below. Once uploaded, Authors and other participants assigned to the submission may be asked to audit the uploaded copyediting file(s). Multiple files may be sent for auditing, and an auditing due date can be set. You will be notified of completed audits, and can access the audits by clicking on the participant's name. Finally, you will be able to sign off as copyeditor on the audited copyedit file.</message>
 	<message key="editor.monograph.editorial.fairCopy">Fair Copy</message>
@@ -113,8 +113,8 @@
 	<message key="editor.monograph.approvedProofs.edit">Edit Approved Proof</message>
 
 	<!-- Add file or auditor to editor/audit grids -->
-	<message key="editor.monograph.addAuditor">Add Auditor</message>
-	<message key="editor.monograph.addAuditorError">There was an error trying to add the auditor. Please Try again.</message>
+	<message key="editor.monograph.addAuditor">Assign</message>
+	<message key="editor.monograph.addAuditorError">There was an error trying to assign the auditor. Please Try again.</message>
 	<message key="editor.monograph.fileAuditor.form.userRequired">You must select a user to assign.</message>
 	<message key="editor.monograph.fileAuditor.form.fileRequired">You must select at least one file to assign the user to.</message>
 	<message key="editor.monograph.fileAuditor.form.messageRequired">You must include a personal message.</message>

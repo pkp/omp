@@ -6,7 +6,8 @@
  *
  * Include the submission progress bar
  *}
-{assign var="pageTitleTranslated" value=$monograph->getLocalizedTitle()|concat:" - "|concat:$monograph->getAuthorString(true)}
+{assign var=primaryAuthor value=$monograph->getPrimaryAuthor()}
+{assign var="pageTitleTranslated" value=$primaryAuthor->getLastName()|concat:", <em>":$monograph->getLocalizedTitle():"</em>"|truncate:50}
 <script type="text/javascript">
 	// Initialise JS handler.
 	$(function() {ldelim}

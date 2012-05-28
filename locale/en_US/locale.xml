@@ -306,8 +306,8 @@
 	<message key="common.searchCatalog">Search Catalog</message>
 	<message key="common.navigation">Navigation</message>
 
-	<message key="dashboard.tasks">1. Tasks</message>
-	<message key="dashboard.submissions">2. Submissions</message>
+	<message key="dashboard.tasks">Tasks</message>
+	<message key="dashboard.submissions">Submissions</message>
 
 	<message key="common.queue.long.submissionsUnassigned">Unassigned Submissions</message>
 	<message key="common.queue.long.myAssigned">My Assigned Submissions</message>

@@ -97,9 +97,6 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 			LOCALE_COMPONENT_OMP_DEFAULT_SETTINGS
 		);
 
-		// Basic grid configuration
-		$this->setTitle('editor.monograph.stageParticipants');
-
 		// Columns
 		import('controllers.grid.users.stageParticipant.StageParticipantGridCellProvider');
 		$cellProvider = new StageParticipantGridCellProvider();
