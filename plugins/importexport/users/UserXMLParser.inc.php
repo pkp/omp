@@ -185,6 +185,8 @@ class UserXMLParser {
 		$success = true;
 		$this->importedUsers = array();
 		$this->errors = array();
+		$pressDao =& DAORegistry::getDAO('PressDAO');
+		$press =& $pressDao->getById($this->pressId);
 
 		$userDao =& DAORegistry::getDAO('UserDAO');
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
@@ -194,8 +196,6 @@ class UserXMLParser {
 			import('classes.mail.MailTemplate');
 			$mail = new MailTemplate('USER_REGISTER');
 
-			$pressDao =& DAORegistry::getDAO('PressDAO');
-			$press =& $pressDao->getById($this->pressId);
 			$mail->setFrom($press->getSetting('contactEmail'), $press->getSetting('contactName'));
 		}
 
@@ -253,23 +253,27 @@ class UserXMLParser {
 
 			// Enroll user in specified roles
 			// If the user is already enrolled in a role, that role is skipped
-			foreach ($user->getRoles() as $role) {
-				$role->setUserId($user->getId());
-				$role->setPressId($this->pressId);
-				if (!$roleDao->userHasRole($role->getPressId(), $role->getUserId(), $role->getRoleId())) {
-					if (!$roleDao->insertRole($role)) {
-						// Failed to add role!
-						$this->errors[] = sprintf('%s: %s - %s (%s)',
-							__('manager.people.importUsers.failedToImportRole'),
-							$role->getRoleName(),
-							$user->getFullName(), $user->getUsername());
 
-						if ($continueOnError) {
-							// Continue to insert other roles for this user
-							$success = false;
-							continue;
-						} else {
-							return false;
+			$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+
+			foreach ($user->getRoles() as $role) {
+				$userGroupIds =& $userGroupDao->getUserGroupIdsByRoleId($role->getRoleId(), $press->getId());
+				foreach ($userGroupIds as $userGroupId) {
+					if (!$userGroupDao->userInGroup($user->getId(), $userGroupId)) {
+						if (!$userGroupDao->assignUserToGroup($user->getId(), $userGroupId, $press->getId())) {
+							// Failed to add role!
+							$this->errors[] = sprintf('%s: %s - %s (%s)',
+								__('manager.people.importUsers.failedToImportRole'),
+								$role->getRoleName(),
+								$user->getFullName(), $user->getUsername());
+
+							if ($continueOnError) {
+								// Continue to insert other roles for this user
+								$success = false;
+								continue;
+							} else {
+								return false;
+							}
 						}
 					}
 				}

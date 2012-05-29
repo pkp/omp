@@ -49,6 +49,9 @@ class UserImportExportPlugin extends ImportExportPlugin {
 
 	function display($args) {
 		$templateMgr =& TemplateManager::getManager();
+		$request =& Application::getRequest();
+		$press =& $request->getPress();
+
 		parent::display($args);
 
 		$templateMgr->assign('roleOptions', array(
@@ -64,85 +67,115 @@ class UserImportExportPlugin extends ImportExportPlugin {
 			'reader' => 'user.role.reader'
 		));
 
+		$templateMgr->assign_by_ref('plugin', $this);
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 
-		$press =& Request::getPress();
 		switch (array_shift($args)) {
+			case 'uploadImportXML':
+				$user =& $request->getUser();
+				import('classes.file.TemporaryFileManager');
+				$temporaryFileManager = new TemporaryFileManager();
+				$temporaryFile = $temporaryFileManager->handleUpload('uploadedFile', $user->getId());
+				if ($temporaryFile) {
+					$json = new JSONMessage(true);
+					$json->setAdditionalAttributes(array(
+							'temporaryFileId' => $temporaryFile->getId()
+					));
+				} else {
+					$json = new JSONMessage(false, __('common.uploadFailed'));
+				}
+
+				return $json->getString();
+			break;
 			case 'confirm':
 				$this->import('UserXMLParser');
 				$templateMgr->assign('helpTopicId', 'press.users.importUsers');
 
-				$sendNotify = (bool) Request::getUserVar('sendNotify');
-				$continueOnError = (bool) Request::getUserVar('continueOnError');
+				$sendNotify = (bool) $request->getUserVar('sendNotify');
+				$continueOnError = (bool) $request->getUserVar('continueOnError');
+				$temporaryFileId = $request->getUserVar('temporaryFileId');
+				if ($temporaryFileId) {
+					$temporaryFileDao =& DAORegistry::getDAO('TemporaryFileDAO');
+					$user =& $request->getUser();
+					$temporaryFile =& $temporaryFileDao->getTemporaryFile($temporaryFileId, $user->getId());
+					$temporaryFilePath = $temporaryFile->getFilePath();
+					if ($temporaryFilePath  !== false) {
+						// Import the uploaded file
+						$parser = new UserXMLParser($press->getId());
+						$users =& $parser->parseData($temporaryFilePath);
 
-				import('lib.pkp.classes.file.FileManager');
-				$fileManager = new FileManager();
-				if (($userFile = $fileManager->getUploadedFilePath('userFile')) !== false) {
-					// Import the uploaded file
-					$parser = new UserXMLParser($press->getId());
-					$users =& $parser->parseData($userFile);
-
-					$i = 0;
-					$usersRoles = array();
-					foreach ($users as $user) {
-						$usersRoles[$i] = array();
-						foreach ($user->getRoles() as $role) {
-							array_push($usersRoles[$i], $role->getRoleName());
+						$i = 0;
+						$usersRoles = array();
+						foreach ($users as $user) {
+							$usersRoles[$i] = array();
+							foreach ($user->getRoles() as $role) {
+								array_push($usersRoles[$i], $role->getPath());
+							}
+							$i++;
 						}
-						$i++;
+
+						$templateMgr->assign_by_ref('users', $users);
+						$templateMgr->assign_by_ref('usersRoles', $usersRoles);
+						$templateMgr->assign('sendNotify', $sendNotify);
+						$templateMgr->assign('continueOnError', $continueOnError);
+						$templateMgr->assign('errors', $parser->errors);
+
+						import('lib.pkp.classes.user.InterestManager');
+						$interestManager = new InterestManager();
+						$templateMgr->assign_by_ref('interestManager', $interestManager);
+
+						// Show confirmation form
+						return $templateMgr->fetchJSON($this->getTemplatePath() . 'importUsersConfirm.tpl');
 					}
-
-					$templateMgr->assign_by_ref('users', $users);
-					$templateMgr->assign_by_ref('usersRoles', $usersRoles);
-					$templateMgr->assign('sendNotify', $sendNotify);
-					$templateMgr->assign('continueOnError', $continueOnError);
-					$templateMgr->assign('errors', $parser->errors);
-
-					// Show confirmation form
-					$templateMgr->display($this->getTemplatePath() . 'importUsersConfirm.tpl');
 				}
 				break;
 			case 'import':
 				$this->import('UserXMLParser');
-				$userKeys = Request::getUserVar('userKeys');
+				$userKeys = $request->getUserVar('userKeys');
 				if (!is_array($userKeys)) $userKeys = array();
-				$sendNotify = (bool) Request::getUserVar('sendNotify');
-				$continueOnError = (bool) Request::getUserVar('continueOnError');
+				$sendNotify = (bool) $request->getUserVar('sendNotify');
+				$continueOnError = (bool) $request->getUserVar('continueOnError');
 
 				$users = array();
+				import('lib.pkp.classes.user.InterestManager');
+				$interestManager = new InterestManager();
+
 				foreach ($userKeys as $i) {
 					$newUser = new ImportedUser();
-					$newUser->setFirstName(Request::getUserVar($i.'_firstName'));
-					$newUser->setMiddleName(Request::getUserVar($i.'_middleName'));
-					$newUser->setLastName(Request::getUserVar($i.'_lastName'));
-					$newUser->setUsername(Request::getUserVar($i.'_username'));
-					$newUser->setEmail(Request::getUserVar($i.'_email'));
+					$newUser->setFirstName($request->getUserVar($i.'_firstName'));
+					$newUser->setMiddleName($request->getUserVar($i.'_middleName'));
+					$newUser->setLastName($request->getUserVar($i.'_lastName'));
+					$newUser->setUsername($request->getUserVar($i.'_userName'));
+					$newUser->setEmail($request->getUserVar($i.'_email'));
 
 					$locales = array();
-					if (Request::getUserVar($i.'_locales') != null || is_array(Request::getUserVar($i.'_locales'))) {
-						foreach (Request::getUserVar($i.'_locales') as $locale) {
+					if ($request->getUserVar($i.'_locales') != null || is_array($request->getUserVar($i.'_locales'))) {
+						foreach ($request->getUserVar($i.'_locales') as $locale) {
 							array_push($locales, $locale);
 						}
 					}
 					$newUser->setLocales($locales);
-					$newUser->setSignature(Request::getUserVar($i.'_signature'), null);
-					$newUser->setBiography(Request::getUserVar($i.'_biography'), null);
-					$newUser->setInterests(Request::getUserVar($i.'_interests'));
-					$newUser->setGossip(Request::getUserVar($i.'_gossip'), null);
-					$newUser->setCountry(Request::getUserVar($i.'_country'));
-					$newUser->setMailingAddress(Request::getUserVar($i.'_mailingAddress'));
-					$newUser->setFax(Request::getUserVar($i.'_fax'));
-					$newUser->setPhone(Request::getUserVar($i.'_phone'));
-					$newUser->setUrl(Request::getUserVar($i.'_url'));
-					$newUser->setAffiliation(Request::getUserVar($i.'_affiliation'), null);
-					$newUser->setGender(Request::getUserVar($i.'_gender'));
-					$newUser->setInitials(Request::getUserVar($i.'_initials'));
-					$newUser->setSalutation(Request::getUserVar($i.'_salutation'));
-					$newUser->setPassword(Request::getUserVar($i.'_password'));
-					$newUser->setMustChangePassword(Request::getUserVar($i.'_mustChangePassword'));
-					$newUser->setUnencryptedPassword(Request::getUserVar($i.'_unencryptedPassword'));
+					$newUser->setSignature($request->getUserVar($i.'_signature'), null);
+					$newUser->setBiography($request->getUserVar($i.'_biography'), null);
 
-					$newUserRoles = Request::getUserVar($i.'_roles');
+					$interests = $request->getUserVar($i.'_interests');
+					$interestManager->setInterestsForUser($newUser, $interests);
+
+					$newUser->setGossip($request->getUserVar($i.'_gossip'), null);
+					$newUser->setCountry($request->getUserVar($i.'_country'));
+					$newUser->setMailingAddress($request->getUserVar($i.'_mailingAddress'));
+					$newUser->setFax($request->getUserVar($i.'_fax'));
+					$newUser->setPhone($request->getUserVar($i.'_phone'));
+					$newUser->setUrl($request->getUserVar($i.'_url'));
+					$newUser->setAffiliation($request->getUserVar($i.'_affiliation'), null);
+					$newUser->setGender($request->getUserVar($i.'_gender'));
+					$newUser->setInitials($request->getUserVar($i.'_initials'));
+					$newUser->setSalutation($request->getUserVar($i.'_salutation'));
+					$newUser->setPassword($request->getUserVar($i.'_password'));
+					$newUser->setMustChangePassword($request->getUserVar($i.'_mustChangePassword'));
+					$newUser->setUnencryptedPassword($request->getUserVar($i.'_unencryptedPassword'));
+
+					$newUserRoles = $request->getUserVar($i.'_roles');
 					if (is_array($newUserRoles) && count($newUserRoles) > 0) {
 						foreach ($newUserRoles as $newUserRole) {
 							if ($newUserRole != '') {
@@ -181,7 +214,7 @@ class UserImportExportPlugin extends ImportExportPlugin {
 				$this->import('UserExportDom');
 				$users = array();
 				$rolePaths = array();
-				foreach (Request::getUserVar('roles') as $rolePath) {
+				foreach ($request->getUserVar('roles') as $rolePath) {
 					$roleId = $roleDao->getRoleIdFromPath($rolePath);
 					$thisRoleUsers =& $roleDao->getUsersByRoleId($roleId, $press->getId());
 					foreach ($thisRoleUsers->toArray() as $user) {

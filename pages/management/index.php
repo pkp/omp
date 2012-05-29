@@ -36,5 +36,9 @@ switch ($op) {
 		import('pages.management.NavigationHandler');
 		define('HANDLER_CLASS', 'NavigationHandler');
 		break;
+	case 'userProfile':
+		import('pages.management.PeopleHandler');
+		define('HANDLER_CLASS', 'PeopleHandler');
+		break;
 }
 ?>

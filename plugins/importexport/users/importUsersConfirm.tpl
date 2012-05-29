@@ -8,11 +8,17 @@
  *}
 {strip}
 {assign var="pageTitle" value="plugins.importexport.users.displayName"}
-{include file="common/header.tpl"}
 {/strip}
 
+<script type="text/javascript">
+	$(function() {ldelim}
+		// Attach the form handler.
+		$('#importUsersConfirmForm').pkpHandler('$.pkp.controllers.form.FormHandler');
+	{rdelim});
+</script>
+
 {translate key="plugins.importexport.users.import.confirmUsers"}:
-<form class="pkp_form" action="{plugin_url path="import"}" method="post">
+<form class="pkp_form" id="importUsersConfirmForm" action="{plugin_url path="import"}" method="post">
 {if $sendNotify}
 	<input type="hidden" name="sendNotify" value="{$sendNotify|escape}" />
 {/if}
@@ -50,14 +56,14 @@
 {foreach name=users from=$users item=user key=userKey}
 	<tr valign="top">
 		<td>
-			<input type="checkbox" name="userKeys[]" value="{$userKey|escape}" checked="checked" />
+			{fbvElement type="checkbox" name="userKeys[]" id=$userKeys|concat:"userKeys" value=$userKey checked="true"}
 			{foreach from=$user->getBiography(null) key=locale item=value}
 				<input type="hidden" name="{$userKey|escape}_biography[{$locale|escape}]" value="{$value|escape}" />
 			{/foreach}
 			{foreach from=$user->getSignature(null) key=locale item=value}
 				<input type="hidden" name="{$userKey|escape}_signature[{$locale|escape}]" value="{$value|escape}" />
 			{/foreach}
-			<input type="hidden" name="{$userKey|escape}_interests" value="{$user->getInterests()|escape}" />
+			<input type="hidden" name="{$userKey|escape}_interests" value="{$interestManager->getInterestsString($user)|escape}" />
 			{foreach from=$user->getGossip(null) key=locale item=value}
 				<input type="hidden" name="{$userKey|escape}_gossip[{$locale|escape}]" value="{$value|escape}" />
 			{/foreach}
@@ -79,17 +85,13 @@
 			<input type="hidden" name="{$userKey|escape}_unencryptedPassword" value="{$user->getUnencryptedPassword()|escape}" />
 			<input type="hidden" name="{$userKey|escape}_mustChangePassword" value="{$user->getMustChangePassword()|escape}" />
 		</td>
-		<td><input type="text" name="{$userKey|escape}_firstName" value="{$user->getFirstName()|escape}" size="9" class="textField" /></td>
-		<td><input type="text" name="{$userKey|escape}_middleName" value="{$user->getMiddleName()|escape}" size="9" class="textField" /></td>
-		<td><input type="text" name="{$userKey|escape}_lastName" value="{$user->getLastName()|escape}" size="9" class="textField" /></td>
-		<td><input type="text" name="{$userKey|escape}_username" value="{$user->getUsername()|escape}" size="9" class="textField" /></td>
-		<td><input type="text" name="{$userKey|escape}_email" value="{$user->getEmail()|escape}" size="9" class="textField" /></td>
+		<td>{fbvElement type="text" id=$userKey|concat:"_firstName" value=$user->getFirstName() size=$fbvStyles.size.SMALL}</td>
+		<td>{fbvElement type="text" id=$userKey|concat:"_middeName" value=$user->getMiddleName() size=$fbvStyles.size.SMALL}</td>
+		<td>{fbvElement type="text" id=$userKey|concat:"_lastName" value=$user->getLastName() size=$fbvStyles.size.SMALL}</td>
+		<td>{fbvElement type="text" id=$userKey|concat:"_userName" value=$user->getUserName() size=$fbvStyles.size.SMALL}</td>
+		<td>{fbvElement type="text" id=$userKey|concat:"_email" value=$user->getEmail() size=$fbvStyles.size.SMALL}</td>
 		<td>
-			<select name="{$userKey|escape}_roles[]" size="5" multiple="multiple" class="selectMenu">
-				{foreach from=$roleOptions item=roleOption key=roleKey}
-					<option value="{$roleKey|escape}" {if ($roleKey eq '' and count($usersRoles[$userKey]) eq 0)}selected{elseif (in_array($roleOption, $usersRoles[$userKey]))}selected="selected"{/if}>{translate key=$roleOption}</option>
-				{/foreach}
-			</select>
+			{fbvElement type="select" id=$userKey|concat:"_roles" name=$userKey|concat:"_roles[]" from=$roleOptions selected=$usersRoles[$userKey] required="true" multiple="true"}
 		</td>
 	</tr>
 	<tr>
@@ -105,7 +107,8 @@
 {/foreach}
 </table>
 
-<input type="submit" value="{translate key="plugins.importexport.users.import.importUsers"}" class="button defaultButton" />
+{url|assign:cancelUrl router=$smarty.const.ROUTE_PAGE page="manager" op="importexport" path="plugin"|to_array:$plugin->getName()}
+{fbvFormButtons cancelUrl=$cancelUrl submitText="plugins.importexport.users.import.importUsers"}
 
 {if $isError}
 <p>
@@ -118,9 +121,3 @@
 </p>
 {/if}
 </form>
-
-
-
-<p>&#187; <a href="{url page="manager"}">{translate key="manager.pressManagement"}</a></p>
-
-{include file="common/footer.tpl"}
