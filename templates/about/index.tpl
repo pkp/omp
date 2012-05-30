@@ -20,6 +20,10 @@
 	{call_hook name="Templates::About::Index::People"}
 </ul>
 
+{if $currentPress->getLocalizedSetting('masthead') != ''}
+<h3>{translate key="manager.setup.masthead"}</h3>
+{$currentPress->getLocalizedSetting('masthead')}
+{/if}
 <h3>{translate key="about.policies"}</h3>
 <ul class="plain">
 	{if $currentPress->getLocalizedSetting('focusScopeDesc') != ''}<li>&#187; <a href="{url op="editorialPolicies" anchor="focusAndScope"}">{translate key="about.focusAndScope"}</a></li>{/if}
