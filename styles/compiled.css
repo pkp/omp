@@ -488,6 +488,7 @@ a.sprite.collapsed:hover:before { background-position:-1488px -24px; }
 .action_links a {
   font-size:90%;
   margin-right:20px;
+  float:left;
 }
 .pkp_structure_head {
   height:90px;
