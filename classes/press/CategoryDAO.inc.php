@@ -258,6 +258,12 @@ class CategoryDAO extends DAO {
 				'DELETE FROM category_settings WHERE category_id = ?',
 				array((int) $categoryId)
 			);
+
+			// remove any monograph assignments for this category.
+			$this->update(
+				'DELETE FROM monograph_categories WHERE category_id = ?',
+				array((int) $categoryId)
+			);
 		}
 	}
 

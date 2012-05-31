@@ -7,27 +7,29 @@
  * Display a public-facing category view in the catalog.
  *}
 {strip}
-{assign var="pageTitleTranslated" value=$category->getLocalizedTitle()}
+{if $category}{assign var="pageTitleTranslated" value=$category->getLocalizedTitle()}{/if}
 {include file="common/header.tpl"}
 {/strip}
 
 <div class="catalogContainer">
 
-<div class="pkp_catalog_categoryDescription">
-	{$category->getLocalizedDescription()}
-</div>
+{if $category}
+	<div class="pkp_catalog_categoryDescription">
+		{$category->getLocalizedDescription()}
+	</div>
 
-{* Include the carousel view of featured content *}
-{if $featuredMonographIds|@count}
-	{include file="catalog/carousel.tpl" publishedMonographs=$publishedMonographs featuredMonographIds=$featuredMonographIds}
+	{* Include the carousel view of featured content *}
+	{if $featuredMonographIds|@count}
+		{include file="catalog/carousel.tpl" publishedMonographs=$publishedMonographs featuredMonographIds=$featuredMonographIds}
+	{/if}
+
+	{* Include the highlighted feature *}
+	{include file="catalog/feature.tpl" publishedMonographs=$publishedMonographs featuredMonographIds=$featuredMonographIds}
+
+	{* Include the full monograph list *}
+	{include file="catalog/monographs.tpl" publishedMonographs=$publishedMonographs}
+
+	</div><!-- catalogContainer -->
 {/if}
-
-{* Include the highlighted feature *}
-{include file="catalog/feature.tpl" publishedMonographs=$publishedMonographs featuredMonographIds=$featuredMonographIds}
-
-{* Include the full monograph list *}
-{include file="catalog/monographs.tpl" publishedMonographs=$publishedMonographs}
-
-</div><!-- catalogContainer -->
 
 {include file="common/footer.tpl"}
