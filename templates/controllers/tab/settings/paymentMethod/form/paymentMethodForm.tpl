@@ -35,7 +35,7 @@
 	<form class="pkp_form" id="selectPaymentMethodForm">
 		{fbvFormArea id="paymentMethod"}
 			{fbvFormSection label="manager.paymentMethod.method" description="manager.paymentMethod.description"}
-				{fbvElement type="select" id="pluginSelect" from=$pluginNames translate=false}
+				{fbvElement type="select" id="pluginSelect" from=$pluginNames translate=false size=$fbvStyles.size.MEDIUM}
 			{/fbvFormSection}
 		{/fbvFormArea}
 	</form>

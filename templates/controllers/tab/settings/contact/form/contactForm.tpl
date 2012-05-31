@@ -22,11 +22,11 @@
 	{fbvFormArea id="contactFormArea" title="manager.setup.principalContact" border=true}
 		{fbvFormSection description="manager.setup.principalContactDescription"}
 		{/fbvFormSection}
-		{fbvFormSection required=true for="contactName" inline=true size=$fbvStyles.size.MEDIUM}
-			{fbvElement type="text" label="user.name" id="contactName" value=$contactName maxlength="60" inline=true}
+		{fbvFormSection required=true for="contactName" inline=true size=$fbvStyles.size.MEDIUM inline="true"}
+			{fbvElement type="text" label="user.name" id="contactName" value=$contactName maxlength="60"}
 		{/fbvFormSection}
-		{fbvFormSection required=true for="contactName" inline=true size=$fbvStyles.size.MEDIUM}
-			{fbvElement type="text" label="user.title" multilingual=true name="contactTitle" id="contactTitle" value=$contactTitle maxlength="90" inline=true}
+		{fbvFormSection required=true for="contactTitle" inline=true size=$fbvStyles.size.MEDIUM  inline="true"}
+			{fbvElement type="text" label="user.title" multilingual=true name="contactTitle" id="contactTitle" value=$contactTitle maxlength="90"}
 		{/fbvFormSection}
 		{fbvFormSection for="contactEmail" required=true size=$fbvStyles.size.MEDIUM inline="true"}
 			{fbvElement type="text"  label="user.email" id="contactEmail" value=$contactEmail maxlength="90"}
