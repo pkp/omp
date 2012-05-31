@@ -42,7 +42,7 @@ class FileInfoCenterLinkAction extends FileLinkAction {
 
 		// Configure the file link action.
 		parent::FileLinkAction(
-			'moreInfo', $ajaxModal,
+			'moreInformation', $ajaxModal,
 			__('grid.action.moreInformation'), 'more_info'
 		);
 	}

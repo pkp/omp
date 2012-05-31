@@ -38,7 +38,7 @@ class FileNotesLinkAction extends FileLinkAction {
 
 		// Configure the file link action.
 		parent::FileLinkAction(
-			'moreInfo', $ajaxModal,
+			'moreInformation', $ajaxModal,
 			'', $this->getNotesState($monographFile, $user)
 		);
 	}
