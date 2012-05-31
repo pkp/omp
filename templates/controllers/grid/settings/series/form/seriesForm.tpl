@@ -18,43 +18,53 @@
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="seriesFormNotification"}
 
 	{fbvFormArea id="seriesInfo"}
-		{fbvFormSection for="title" required="true" description="common.prefixAndTitle.tip" title="common.name"}
-			{fbvElement type="text" multilingual="true" id="title" value="$title" maxlength="80" size=$fbvStyles.size.MEDIUM inline="true"}
-			{fbvElement type="text" multilingual="true" id="prefix" label="common.prefix" value="$prefix" maxlength="32" inline="true"}
+		{fbvFormSection for="title" required="true" description="common.prefixAndTitle.tip" title="manager.series.seriesTitle"}
+			{fbvElement type="text" multilingual="true" id="prefix" label="common.prefix" value=$prefix maxlength="32" size=$fbvStyles.size.SMALL inline="true"}
+			{fbvElement type="text" multilingual="true" id="title" label="common.title" value=$title maxlength="80" inline="true" size=$fbvStyles.size.MEDIUM inline="true"}
 		{/fbvFormSection}
 
-		{fbvFormSection title="monograph.subtitle" for="subtitle"}
-			{fbvElement type="text" multilingual=true name="subtitle" id="subtitle" value=$subtitle maxlength="255" size=$fbvStyles.size.MEDIUM inline="true"}
+		{fbvFormSection for="subtitle" title="monograph.subtitle"}
+			{fbvElement type="text" multilingual=true name="subtitle" id="subtitle" value=$subtitle maxlength="255"}
 		{/fbvFormSection}
-	
-		{fbvFormSection title="series.featured" for="featured" inline="true" list="true"}
-			{fbvElement type="checkbox" id="featured" checked=$featured label="series.featured.description" value=1}
+
+		{fbvFormSection title="series.featured" for="featured" list="true"}
+			{fbvElement type="checkbox" id="featured" checked=$featured label="series.featured.description" value=1 inline="true"}
 		{/fbvFormSection}
 
 		{fbvFormSection title="common.description" for="context" required="true"}
-		 	{fbvElement type="textarea" multilingual="true" id="description" value=$description}
+		 	{fbvElement type="textarea" multilingual="true" id="description" value=$description rich=true}
 		{/fbvFormSection}
 
 		<input type="hidden" name="seriesId" value="{$seriesId|escape}"/>
 		{fbvFormSection for="context" inline="true" size=$fbvStyles.size.MEDIUM}
-			<div id="seriesCategoriesContainer">
-				{url|assign:seriesCategoriesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.CategoriesListbuilderHandler" op="fetch" seriesId=$seriesId}
-				{load_url_in_div id="seriesCategoriesContainer" url=$seriesCategoriesUrl}
-			</div>
+			{if $categoryCount > 0}
+				<div id="seriesCategoriesContainer">
+					{url|assign:seriesCategoriesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.CategoriesListbuilderHandler" op="fetch" seriesId=$seriesId}
+					{load_url_in_div id="seriesCategoriesContainer" url=$seriesCategoriesUrl}
+				</div>
+			{else}
+				<p>{translate key="manager.series.noCategories"}</p>
+			{/if}
 		{/fbvFormSection}
 
-		{fbvFormSection for="context" inline="true" size=$fbvStyles.size.MEDIUM}
-			<div id="seriesEditorsContainer">
-				{url|assign:seriesEditorsUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.SeriesEditorsListbuilderHandler" op="fetch" seriesId=$seriesId}
-				{load_url_in_div id="seriesEditorsContainer" url=$seriesEditorsUrl}
-			</div>
-		{/fbvFormSection}
+			{fbvFormSection for="context" inline="true" size=$fbvStyles.size.MEDIUM}
+				{if $seriesEditorCount > 0}{* only include the series editor listbuilder if there are series editors available *}
+					<div id="seriesEditorsContainer">
+						{url|assign:seriesEditorsUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.SeriesEditorsListbuilderHandler" op="fetch" seriesId=$seriesId}
+						{load_url_in_div id="seriesEditorsContainer" url=$seriesEditorsUrl}
+					</div>
+				{else}
+					<p>{translate key="manager.series.noSeriesEditors"}</p>
+				{/if}
+			{/fbvFormSection}
 
-		{fbvFormSection title="series.path" required=true for="path"}
+		{capture assign="instruct"}
+			{url|assign:"sampleUrl" router=$smarty.const.ROUTE_PAGE page="catalog" op="series" path="Path"}
+			{translate key="grid.series.urlWillBe" sampleUrl=$sampleUrl}
+		{/capture}
+
+		{fbvFormSection title="series.path" required=true description=$instruct translate=false for="path"}
 			{fbvElement type="text" id="path" value=$path size=$smarty.const.SMALL maxlength="32"}
-			{url|assign:"sampleUrl" router=$smarty.const.ROUTE_PAGE page="catalog" op="series" path="path"}
-			{** FIXME: is this class instruct still the right one? **}
-			<span class="instruct">{translate key="grid.series.urlWillBe" sampleUrl=$sampleUrl}</span>
 		{/fbvFormSection}
 	{/fbvFormArea}
 

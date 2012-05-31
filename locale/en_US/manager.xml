@@ -117,6 +117,9 @@
 	<message key="manager.series.form.titleRequired">A title is required for the series.</message>
 	<message key="manager.series.noneCreated">No series have been created.</message>
 	<message key="manager.series.existingUsers">Existing users</message>
+	<message key="manager.series.seriesTitle">Series Title</message>
+	<message key="manager.series.noSeriesEditors"><![CDATA[There are no series editors yet.  Add this role to at least one user via Management > Settings > Access &amp; Security first.]]></message>
+	<message key="manager.series.noCategories"><![CDATA[There are no categories yet.  Close this modal and click on the 'Categories' tab and create one first.]]></message>
 
 	<!-- Settings management -->
 	<message key="manager.settings">Settings</message>

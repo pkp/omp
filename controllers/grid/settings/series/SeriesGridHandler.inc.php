@@ -65,7 +65,7 @@ class SeriesGridHandler extends SetupGridHandler {
 			}
 			if (empty($categoriesString)) $categoriesString = __('common.none');
 
-			// Get the series editors dta for the row
+			// Get the series editors data for the row
 			$assignedSeriesEditors =& $seriesEditorsDao->getEditorsBySeriesId($series->getId(), $press->getId());
 			if(empty($assignedSeriesEditors)) {
 				$editorsString = __('common.none');

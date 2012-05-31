@@ -67,6 +67,14 @@ class SeriesForm extends Form {
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('seriesId', $this->getSeriesId());
 
+		$press =& $request->getPress();
+		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+		$seriesEditorCount = $userGroupDao->getContextUsersCount($press->getId(), null, ROLE_ID_SERIES_EDITOR);
+		$templateMgr->assign('seriesEditorCount', $seriesEditorCount);
+
+		$categoryDao =& DAORegistry::getDAO('CategoryDAO');
+		$categoryCount = $categoryDao->getCountByPressId($press->getId());
+		$templateMgr->assign('categoryCount', $categoryCount);
 		return parent::fetch($request);
 	}
 
