@@ -32,18 +32,6 @@ switch ($op) {
 		define('HANDLER_CLASS', 'AdminPressHandler');
 		break;
 	//
-	// Languages
-	//
-	case 'languages':
-	case 'saveLanguageSettings':
-	case 'installLocale':
-	case 'uninstallLocale':
-	case 'reloadLocale':
-	case 'downloadLocale':
-		import('pages.admin.AdminLanguagesHandler');
-		define('HANDLER_CLASS', 'AdminLanguagesHandler');
-		break;
-	//
 	// Merge users
 	//
 	case 'mergeUsers':
