@@ -31,18 +31,7 @@
 		</ul>
 	</div>
 	<div class="pkp_helpers_align_left"><span class="h2">{$pageTitleTranslated}</span></div>
-	<div class="submission_progress_highlight submission_progress_overlay">
-		<ul class="pkp_helpers_flatlist">
-			{foreach key=key from=$workflowStages item=stage}
-				{assign var="progressClass" value=""}
-				{if $key == $stageId}
-					{assign var="progressClass" value="overlay"}
-				{/if}
-				<li class="{$progressClass}">
-				</li>
-			{/foreach}
-		</ul>
-	</div>
+
 	<div class="submission_progress_wrapper">
 		<ul class="submission_progress pkp_helpers_flatlist">
 			{foreach key=key from=$workflowStages item=stage}
@@ -66,16 +55,5 @@
 			{/foreach}
 		</ul>
 	</div>
-	<div class="submission_progress_highlight">
-		<ul class="pkp_helpers_flatlist">
-			{foreach key=key from=$workflowStages item=stage}
-				{assign var="progressClass" value=""}
-				{if $key == $stageId}
-					{assign var="progressClass" value="underlay"}
-				{/if}
-				<li class="{$progressClass}">
-				</li>
-			{/foreach}
-		</ul>
-	</div>
+
 </div>
