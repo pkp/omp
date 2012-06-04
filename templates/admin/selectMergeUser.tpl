@@ -14,40 +14,40 @@
 <p>{if $oldUserId != ''}{translate key="admin.mergeUsers.into.description"}{else}{translate key="admin.mergeUsers.from.description"}{/if}</p>
 
 <h3>{translate key=$roleName}</h3>
-<form class="pkp_form" method="post" action="{url path=$roleSymbolic oldUserId=$oldUserId}">
-	<select name="roleSymbolic" class="selectMenu">
-		<option {if $roleSymbolic=='all'}selected="selected" {/if}value="all">{translate key="admin.mergeUsers.allUsers"}</option>
-		<option {if $roleSymbolic=='managers'}selected="selected" {/if}value="managers">{translate key="user.role.managers"}</option>
-		<option {if $roleSymbolic=='editors'}selected="selected" {/if}value="editors">{translate key="user.role.editors"}</option>
-		<option {if $roleSymbolic=='seriesEditors'}selected="selected" {/if}value="seriesEditors">{translate key="user.role.seriesEditors"}</option>
-		<option {if $roleSymbolic=='copyeditors'}selected="selected" {/if}value="copyeditors">{translate key="user.role.copyeditors"}</option>
-		<option {if $roleSymbolic=='proofreaders'}selected="selected" {/if}value="proofreaders">{translate key="user.role.proofreaders"}</option>
-		<option {if $roleSymbolic=='reviewers'}selected="selected" {/if}value="reviewers">{translate key="user.role.reviewers"}</option>
-		<option {if $roleSymbolic=='authors'}selected="selected" {/if}value="authors">{translate key="user.role.authors"}</option>
-		<option {if $roleSymbolic=='readers'}selected="selected" {/if}value="readers">{translate key="user.role.readers"}</option>
-	</select>
-	<select name="searchField" size="1" class="selectMenu">
-		{html_options_translate options=$fieldOptions selected=$searchField}
-	</select>
-	<select name="searchMatch" size="1" class="selectMenu">
-		<option value="contains"{if $searchMatch == 'contains'} selected="selected"{/if}>{translate key="form.contains"}</option>
-		<option value="is"{if $searchMatch == 'is'} selected="selected"{/if}>{translate key="form.is"}</option>
-	</select>
-	<input type="text" size="10" name="search" class="textField" value="{$search|escape}" />&nbsp;<input type="submit" value="{translate key="common.search"}" class="button" />
+<script type="text/javascript">
+	$(function() {ldelim}
+		// Attach the form handler.
+		$('#selectUserForm').pkpHandler('$.pkp.controllers.form.FormHandler');
+	{rdelim});
+</script>
+<form class="pkp_form" method="post" id="selectUserForm" action="{url path=$roleSymbolic oldUserId=$oldUserId}">
+	{fbvFormSection for="roleSymbolic"}
+		{fbvElement type="select" id="roleSymbolic" from=$roleSymbolicOptions selected=$roleSymbolic size=$fbvStyles.size.MEDIUM}
+	{/fbvFormSection}
+
+	{fbvFormSection for="searchField"}
+		{fbvElement type="select" id="searchField" from=$fieldOptions selected=$searchField inline="true" size=$fbvStyles.size.SMALL}
+		{fbvElement type="select" id="searchMatch" from=$searchMatchOptions selected=$searchMatch inline="true" size=$fbvStyles.size.SMALL}
+	{/fbvFormSection}
+	{fbvFormSection for="search"}
+		{fbvElement type="text" id="search" value=$search size=$fbvStyles.size.MEDIUM}
+	{/fbvFormSection}
+
+	{fbvFormSection size=$fbvStyles.size.MEDIUM}
+		{fbvFormButtons hideCancel=true submitText="common.search"}
+	{/fbvFormSection}
+
 </form>
 
 <p>{foreach from=$alphaList item=letter}<a href="{url path=$roleSymbolic oldUserId=$oldUserId searchInitial=$letter}">{if $letter == $searchInitial}<strong>{$letter|escape}</strong>{else}{$letter|escape}{/if}</a> {/foreach}<a href="{url path=$roleSymbolic oldUserId=$oldUserId}">{if $searchInitial==''}<strong>{translate key="common.all"}</strong>{else}{translate key="common.all"}{/if}</a></p>
 
 {if not $roleId}
 <ul>
-	<li><a href="{url path="managers" oldUserId=$oldUserId}">{translate key="user.role.managers"}</a></li>
-	<li><a href="{url path="editors" oldUserId=$oldUserId}">{translate key="user.role.editors"}</a></li>
-	<li><a href="{url path="seriesEditors" oldUserId=$oldUserId}">{translate key="user.role.seriesEditors"}</a></li>
-	<li><a href="{url path="copyeditors" oldUserId=$oldUserId}">{translate key="user.role.copyeditors"}</a></li>
-	<li><a href="{url path="proofreaders" oldUserId=$oldUserId}">{translate key="user.role.proofreaders"}</a></li>
-	<li><a href="{url path="reviewers" oldUserId=$oldUserId}">{translate key="user.role.reviewers"}</a></li>
-	<li><a href="{url path="authors" oldUserId=$oldUserId}">{translate key="user.role.authors"}</a></li>
-	<li><a href="{url path="readers" oldUserId=$oldUserId}">{translate key="user.role.readers"}</a></li>
+	<li><a href="{url path="manager" oldUserId=$oldUserId}">{translate key="user.role.managers"}</a></li>
+	<li><a href="{url path="seriesEditor" oldUserId=$oldUserId}">{translate key="user.role.seriesEditors"}</a></li>
+	<li><a href="{url path="reviewer" oldUserId=$oldUserId}">{translate key="user.role.reviewers"}</a></li>
+	<li><a href="{url path="author" oldUserId=$oldUserId}">{translate key="user.role.authors"}</a></li>
+	<li><a href="{url path="reader" oldUserId=$oldUserId}">{translate key="user.role.readers"}</a></li>
 </ul>
 
 <br />
@@ -75,12 +75,7 @@
 	<tr valign="top">
 		<td>{$user->getUsername()|escape|wordwrap:15:" ":true}</td>
 		<td>{$user->getFullName()|escape}</td>
-		<td class="nowrap">
-			{assign var=emailString value=$user->getFullName()|concat:" <":$user->getEmail():">"}
-			{url|assign:"redirectUrl" path=$roleSymbolic}
-			{url|assign:"url" page="user" op="email" to=$emailString|to_array redirectUrl=$redirectUrl}
-			{$user->getEmail()|truncate:15:"..."|escape}&nbsp;{icon name="mail" url=$url}
-		</td>
+		<td>{$user->getEmail()|escape}</td>
 		<td align="right">
 			{if $oldUserId != ''}
 				{if $oldUserId != $user->getId()}

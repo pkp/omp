@@ -63,13 +63,13 @@ class AdminPeopleHandler extends AdminHandler {
 		// The administrator must select one or both IDs.
 		if ($request->getUserVar('roleSymbolic')!=null) $roleSymbolic = $request->getUserVar('roleSymbolic');
 		else $roleSymbolic = isset($args[0])?$args[0]:'all';
-
-		if ($roleSymbolic != 'all' && String::regexp_match_get('/^(\w+)s$/', $roleSymbolic, $matches)) {
+		if ($roleSymbolic != 'all' && String::regexp_match_get('/^(\w+)$/', $roleSymbolic, $matches)) {
 			$roleId = $roleDao->getRoleIdFromPath($matches[1]);
 			if ($roleId == null) {
 				$request->redirect(null, null, null, 'all');
 			}
-			$roleName = $roleDao->getRoleName($roleId, true);
+			$roleNames = $roleDao->getRoleNames(false, array($roleId));
+			$roleName = array_shift($roleNames);
 		} else {
 			$roleId = 0;
 			$roleName = 'admin.mergeUsers.allUsers';
@@ -85,7 +85,8 @@ class AdminPeopleHandler extends AdminHandler {
 
 		} else if (!empty($searchInitial)) {
 			$searchInitial = String::strtoupper($searchInitial);
-			$searchType = USER_FIELD_INITIAL;
+			$searchType = USER_FIELD_LASTNAME;
+			$searchMatch = 'startsWith';
 			$search = $searchInitial;
 		}
 
@@ -100,23 +101,42 @@ class AdminPeopleHandler extends AdminHandler {
 
 		$templateMgr->assign('currentUrl', $request->url(null, null, 'mergeUsers'));
 		$templateMgr->assign('helpTopicId', 'site.administrativeFunctions');
-		$templateMgr->assign('roleName', $roleName);
 		$templateMgr->assign_by_ref('users', $users);
 		$templateMgr->assign_by_ref('thisUser', $request->getUser());
 		$templateMgr->assign('isReviewer', $roleId == ROLE_ID_REVIEWER);
+		$templateMgr->assign('roleName', $roleName);
 
 		$templateMgr->assign('searchField', $searchType);
 		$templateMgr->assign('searchMatch', $searchMatch);
 		$templateMgr->assign('search', $search);
 		$templateMgr->assign('searchInitial', $request->getUserVar('searchInitial'));
 
-		$templateMgr->assign('fieldOptions', Array(
+		$templateMgr->assign('fieldOptions', array(
 			USER_FIELD_FIRSTNAME => 'user.firstName',
 			USER_FIELD_LASTNAME => 'user.lastName',
 			USER_FIELD_USERNAME => 'user.username',
 			USER_FIELD_EMAIL => 'user.email',
-			USER_FIELD_INTERESTS => 'user.interests'
+			USER_FIELD_INTERESTS => 'user.interests',
 		));
+
+		$templateMgr->assign('roleSymbolicOptions', array(
+			'all' => 'admin.mergeUsers.allUsers',
+			'manager' => 'user.role.managers',
+			'editor' => 'user.role.editors',
+			'seriesEditor' => 'user.role.seriesEditors',
+			'copyeditor' => 'user.role.copyeditors',
+			'proofreader' => 'user.role.proofreaders',
+			'reviewer' => 'user.role.reviewers',
+			'author' => 'user.role.authors',
+			'reader' => 'user.role.readers',
+		));
+
+		$templateMgr->assign('searchMatchOptions', array(
+				'contains' => 'form.contains',
+				'is' => 'form.is',
+		));
+
+		$templateMgr->assign_by_ref('userGroups', $userGroups);
 		$templateMgr->assign('alphaList', explode(' ', __('common.alphaList')));
 		$templateMgr->assign('oldUserId', $oldUserId);
 		$templateMgr->assign('roleSymbolic', $roleSymbolic);
