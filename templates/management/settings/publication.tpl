@@ -19,7 +19,7 @@
 				'$.pkp.controllers.TabHandler');
 	{rdelim});
 </script>
-<div id=publicationTabs>
+<div id="publicationTabs">
 	<ul>
 		<li><a href="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.PublicationSettingsTabHandler" op="showTab" tab="general"}">{translate key="manager.publication.general"}</a></li>
 		<li><a href="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.PublicationSettingsTabHandler" op="showTab" tab="submissionStage"}">{translate key="manager.publication.submissionStage"}</a></li>

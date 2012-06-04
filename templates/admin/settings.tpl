@@ -19,7 +19,7 @@
 				'$.pkp.controllers.TabHandler');
 	{rdelim});
 </script>
-<div id=accessTabs>
+<div id="accessTabs">
 	<ul>
 		<li><a href="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.AdminSettingsTabHandler" op="showTab" tab="siteSetup"}">{translate key="admin.siteSetup"}</a></li>
 		<li><a href="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.AdminSettingsTabHandler" op="showTab" tab="languages"}">{translate key="common.languages"}</a></li>

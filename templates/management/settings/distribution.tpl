@@ -19,7 +19,7 @@
 				'$.pkp.controllers.TabHandler');
 	{rdelim});
 </script>
-<div id=distributionTabs>
+<div id="distributionTabs">
 	<ul>
 		<li><a href="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.DistributionSettingsTabHandler" op="showTab" tab="indexing"}">{translate key="manager.distribution.indexing"}</a></li>
 		<li><a href="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.DistributionSettingsTabHandler" op="showTab" tab="paymentMethod"}">{translate key="manager.paymentMethod"}</a></li>

@@ -15,11 +15,11 @@
 <script type="text/javascript">
 	// Attach the JS file tab handler.
 	$(function() {ldelim}
-		$('#accessTabs').pkpHandler(
+		$('#pressSettingsTabs').pkpHandler(
 				'$.pkp.controllers.TabHandler');
 	{rdelim});
 </script>
-<div id=accessTabs>
+<div id="pressSettingsTabs">
 	<ul>
 		<li><a href="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.PressSettingsTabHandler" op="showTab" tab="masthead"}">{translate key="manager.setup.masthead"}</a></li>
 		<li><a href="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.PressSettingsTabHandler" op="showTab" tab="contact"}">{translate key="about.contact"}</a></li>
