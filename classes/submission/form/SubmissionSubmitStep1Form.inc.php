@@ -79,7 +79,9 @@ class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
 			$authorUserGroupNames = array();
 			while($authorUserGroupAssignment =& $authorUserGroupAssignments->next()) {
 				$authorUserGroup =& $userGroupDao->getById($authorUserGroupAssignment->getUserGroupId());
-				$authorUserGroupNames[$authorUserGroup->getId()] = $authorUserGroup->getLocalizedName();
+				if ($userGroupDao->userGroupAssignedToStage($authorUserGroup->getId(), WORKFLOW_STAGE_ID_SUBMISSION)) {
+					$authorUserGroupNames[$authorUserGroup->getId()] = $authorUserGroup->getLocalizedName();
+				}
 				unset($authorUserGroupAssignment);
 			}
 			$templateMgr->assign('authorUserGroupOptions', $authorUserGroupNames);
