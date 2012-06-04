@@ -34,24 +34,13 @@
 
 	<p class="pkp_grid_description">{translate key="editor.monograph.production.approvalAndPublishingDescription"}</p>
 
-	<div id="metadataAccordion">
-		<h3><a href="#">{translate key="submission.metadata"}</a></h3>
-		<div>
-			{url|assign:submissionMetadataViewFormUrl router=$smarty.const.ROUTE_COMPONENT  component="modals.submissionMetadata.ProductionSubmissionMetadataHandler" op="fetch" monographId=$monograph->getId() stageId=$stageId escape=false}
-			{load_url_in_div id="submissionMetadataFormWrapper" url=$submissionMetadataViewFormUrl}
-		</div>
-
-		<h3><a href="#">{translate key="monograph.publicationFormats"}</a></h3>
-		<div>
-			{fbvFormArea id="publicationFormats"}
-				{fbvFormSection}
-					<!--  Formats -->
-					{url|assign:formatGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.catalogEntry.PublicationFormatGridHandler" op="fetchGrid" monographId=$monograph->getId()}
-					{load_url_in_div id="formatsGridContainer"|uniqid url=$formatGridUrl}
-				{/fbvFormSection}
-			{/fbvFormArea}
-		</div>
-	</div>
+	{fbvFormArea id="publicationFormats"}
+		{fbvFormSection}
+			<!--  Formats -->
+			{url|assign:formatGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.catalogEntry.PublicationFormatGridHandler" op="fetchGrid" monographId=$monograph->getId()}
+			{load_url_in_div id="formatsGridContainer"|uniqid url=$formatGridUrl}
+		{/fbvFormSection}
+	{/fbvFormArea}
 
 	<div id="publicationFormatContainer">
 		{* Will be filled in by Javascript *}

@@ -9,5 +9,7 @@
  *}
 {if $isChecked}
 	<div id="isChecked"><div href="#" class='pkp_helpers_container_center checked'></div></div>
+{else}
+	<div id="notChecked"><div href="#" class='pkp_helpers_container_center notChecked'></div></div>
 {/if}
 

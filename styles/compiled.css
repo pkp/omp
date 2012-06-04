@@ -1171,6 +1171,11 @@ div.pkp_controllers_grid .pkp_controllers_grid_settings_stages {
   height:15px;
   width:15px;
 }
+.pkp_controllers_grid div.notChecked {
+  background-image:url(../lib/pkp/templates/images/structure/grid_delete.png);
+  height:15px;
+  width:15px;
+}
 .pkp_controllers_grid_files .pkp_controllers_grid_files_possibleRevision {
   padding:10px;
   margin:10px;

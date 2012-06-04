@@ -116,7 +116,8 @@ class PublicationFormatGridHandler extends GridHandler {
 		);
 
 		// Columns
-		$cellProvider = new PublicationFormatGridCellProvider();
+		$monograph =& $this->getMonograph();
+		$cellProvider = new PublicationFormatGridCellProvider($monograph->getId());
 		$this->addColumn(
 			new GridColumn(
 				'title',
@@ -133,6 +134,24 @@ class PublicationFormatGridHandler extends GridHandler {
 				'grid.catalogEntry.publicationFormatType',
 				null,
 				'controllers/grid/gridCell.tpl',
+				$cellProvider
+			)
+		);
+		$this->addColumn(
+			new GridColumn(
+				'proofComplete',
+				'grid.catalogEntry.proofComplete',
+				null,
+				'controllers/grid/common/cell/checkMarkCell.tpl',
+				$cellProvider
+			)
+		);
+		$this->addColumn(
+			new GridColumn(
+				'price',
+				'payment.directSales.price',
+				null,
+				'controllers/grid/common/cell/checkMarkCell.tpl',
 				$cellProvider
 			)
 		);

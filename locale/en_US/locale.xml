@@ -88,6 +88,7 @@
 	<message key="grid.catalogEntry.monographRequired">A monograph id is required.</message>
 	<message key="grid.catalogEntry.publicationFormatRequired">A publication format must be chosen.</message>
 	<message key="grid.catalogEntry.isAvailable">In Catalog</message>
+	<message key="grid.catalogEntry.proofComplete">Proof complete</message>
 
 	<!--  publication metadata required form field keys -->
 	<message key="grid.catalogEntry.fileSizeRequired">A file size for digital formats required.</message>

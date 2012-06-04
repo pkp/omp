@@ -14,13 +14,35 @@
 
 import('lib.pkp.classes.controllers.grid.DataObjectGridCellProvider');
 
+// Import monograph file class which contains the MONOGRAPH_FILE_* constants.
+import('classes.monograph.MonographFile');
+
 class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
+
+	/** @var int */
+	var $_monographId;
+
 	/**
 	 * Constructor
+	 * @param $monographId int
 	 */
-	function PublicationFormatGridCellProvider() {
+	function PublicationFormatGridCellProvider($monographId) {
 		parent::DataObjectGridCellProvider();
+		$this->_monographId = $monographId;
 	}
+
+
+	//
+	// Getters and setters.
+	//
+	/**
+	 * Get monograph id.
+	 * @return int
+	 */
+	function getMonographId() {
+		return $this->_monographId;
+	}
+
 
 	//
 	// Template methods from GridCellProvider
@@ -41,9 +63,44 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 				return array('label' => $element->getNameForONIXCode());
 			case 'title':
 				return array('label' => $element->getLocalizedTitle());
+			case 'proofComplete':
+				$monographFiles =& $this->getMonographFiles($element->getId());
+				$proofComplete = false;
+				// If we have at least one viewable file, we consider
+				// proofs as approved.
+				foreach ($monographFiles as $file) {
+					if ($file->getViewable()) {
+						$proofComplete = true;
+						break;
+					}
+				}
+				return array('isChecked' => $proofComplete);
 			case 'isAvailable':
 				return array('isChecked' => $element->getIsAvailable()?true:false);
+			case 'price':
+				$monographFiles =& $this->getMonographFiles($element->getId());
+				$priceConfigured = false;
+				// If we have at least one file with a configured price,
+				// consider price as configured.
+				foreach ($monographFiles as $file) {
+					if (!is_null($file->getDirectSalesPrice())) {
+						$priceConfigured = true;
+						break;
+					}
+				}
+				return array('isChecked' => $priceConfigured);
 		}
+	}
+
+
+	function &getMonographFiles($publicationFormatId) {
+		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+		$monographFiles =& $submissionFileDao->getLatestRevisionsByAssocId(
+			ASSOC_TYPE_PUBLICATION_FORMAT, $publicationFormatId,
+			$this->getMonographId(), MONOGRAPH_FILE_PROOF
+		);
+
+		return $monographFiles;
 	}
 }
 

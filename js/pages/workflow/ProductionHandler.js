@@ -37,12 +37,12 @@
 		// Store the Publication Formats fetch URL.
 		this.accordionUrl_ = options.accordionUrl;
 
-		// Bind for changes to the Publication Formats grid.
-		this.bind('gridRefreshRequested', this.fetchAccordionHandler_);
-		this.bind('containerReloadRequested', this.fetchAccordionHandler_);
+		// Bind for changes to grids (publication formats and proofs).
+		this.bind('gridRefreshRequested', this.loadWidgetsHandler_);
+		this.bind('containerReloadRequested', this.loadWidgetsHandler_);
 
 		// Load the current accordion.
-		this.trigger('gridRefreshRequested');
+		this.loadWidgets_();
 	};
 	$.pkp.classes.Helper.inherits(
 			$.pkp.pages.workflow.ProductionHandler,
@@ -61,25 +61,40 @@
 			prototype.accordionUrl_ = null;
 
 
+	/**
+	 * Flag to avoid infinite loop while refreshing grids on this page.
+	 * @private
+	 * @type {boolean}
+	 */
+	$.pkp.pages.workflow.ProductionHandler.
+			prototype.stopRefreshProcess_ = false;
+
+
 	//
 	// Public Methods
 	//
 	/**
-	 * This listens for grid refreshes from the publication formats grid.
-	 * It requests a list of the current publication formats from the
-	 * CatalogEntryHandler and calls a callback which updates the tab
-	 * state accordingly as they are changed.
+	 * This listens for grid refreshes from all grids inside the
+	 * production page and call a method that will refresh all the
+	 * others grids and accordion widget.
 	 *
 	 * @private
 	 * @param {HTMLElement} sourceElement The parent DIV element
 	 *  which contains the tabs.
 	 * @param {Event} event The triggered event (gridRefreshRequested).
 	 */
-	$.pkp.pages.workflow.ProductionHandler.prototype.fetchAccordionHandler_ =
+	$.pkp.pages.workflow.ProductionHandler.prototype.loadWidgetsHandler_ =
 			function(sourceElement, event) {
 
-		var callback = this.callbackWrapper(this.updateAccordionHandler_);
-		$.get(this.accordionUrl_, null, callback, 'json');
+		if (!this.stopRefreshProcess_) {
+			// Avoid infinite loop.
+			this.stopRefreshProcess_ = true;
+
+			this.loadWidgets_();
+			return;
+		}
+
+		this.stopRefreshProcess_ = false;
 	};
 
 
@@ -109,6 +124,28 @@
 			collapsible: true,
 			active: false
 		});
+	};
+
+
+	/**
+	 * Execute the steps necessary to load/reload the accordions and the
+	 * publication formats grid.
+	 * It requests a list of the current publication formats from the
+	 * CatalogEntryHandler and calls a callback which updates the tab
+	 * state accordingly as they are changed.
+	 * It also updates the publication formats grid.
+	 * @param {Object} ajaxContext The AJAX request context.
+	 * @param {Object} jsonData A parsed JSON response object.
+	 * @private
+	 */
+	$.pkp.pages.workflow.ProductionHandler.prototype.loadWidgets_ =
+			function(ajaxContext, jsonData) {
+		var callback = this.callbackWrapper(this.updateAccordionHandler_);
+		$.get(this.accordionUrl_, null, callback, 'json');
+
+		$formatsGrid = $('[id^="formatsGridContainer"]',
+				this.getHtmlElement()).children();
+		$formatsGrid.trigger('dataChanged');
 	};
 
 /** @param {jQuery} $ jQuery closure. */
