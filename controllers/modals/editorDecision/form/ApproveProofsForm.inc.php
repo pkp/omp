@@ -69,11 +69,14 @@ class ApproveProofsForm extends Form {
 		$selectedFileIds = (array) $this->getData('selectedFiles');
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		import('classes.monograph.MonographFile'); // File constants
-		$stageMonographFiles =& $submissionFileDao->getLatestRevisions($this->seriesEditorSubmission->getId(), MONOGRAPH_FILE_PROOF);
+		$publicationFormat =& $this->publicationFormat;
+		$stageMonographFiles =& $submissionFileDao->getLatestRevisionsByAssocId(
+			ASSOC_TYPE_PUBLICATION_FORMAT, $publicationFormat->getId(),
+			$publicationFormat->getMonographId(), MONOGRAPH_FILE_PROOF
+		);
 		foreach ($stageMonographFiles as $monographFile) {
 			// Make sure we only alter this publication format's files
 			assert($monographFile->getAssocType() == ASSOC_TYPE_PUBLICATION_FORMAT);
-			if ($this->publicationFormat->getId() != $monographFile->getAssocId()) continue;
 			$fileIdentification = $monographFile->getFileId() . '-' . $monographFile->getRevision();
 			if (in_array($fileIdentification, $selectedFileIds) && !$monographFile->getViewable()) {
 				// Expose the file to readers (e.g. via e-commerce)
