@@ -108,6 +108,7 @@
 <script type="text/javascript" src="{$baseUrl}/js/pages/catalog/CarouselHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/js/pages/catalog/MonographListHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/js/pages/manageCatalog/ManageCatalogHeaderHandler.js"></script>
+<script type="text/javascript" src="{$baseUrl}/js/pages/manageCatalog/ManageCatalogModalHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/js/pages/manageCatalog/ManageCatalogSearchFormHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/js/pages/manageCatalog/MonographListHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/js/pages/manageCatalog/MonographHandler.js"></script>

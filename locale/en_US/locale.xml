@@ -282,6 +282,9 @@
 	<message key="catalog.manage.seriesDescription">Click 'Feature', then the star to select a featured book for this series; drag and drop to order. Series are identified with an editor(s) and a series title, within a category or independently.</message>
 	<message key="catalog.manage.placeIntoCarousel">Carousel</message>
 	<message key="catalog.manage.newRelease">Release</message>
+	<message key="catalog.manage.manageSeries">Manage Series</message>
+	<message key="catalog.manage.manageCategories">Manage Categories</message>
+
 	<!-- Catalog -->
 	<message key="catalog.browseTitles">Browse {$numTitles} Titles</message>
 	<message key="catalog.feature">Feature</message>

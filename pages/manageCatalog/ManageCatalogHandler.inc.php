@@ -80,6 +80,37 @@ class ManageCatalogHandler extends Handler {
 		$catalogEntryAction = new MonographlessCatalogEntryLinkAction($request);
 		$templateMgr->assign('catalogEntryAction', $catalogEntryAction);
 
+		import('lib.pkp.classes.linkAction.LinkAction');
+		import('lib.pkp.classes.linkAction.request.AjaxModal');
+
+		$dispatcher =& $request->getDispatcher();
+
+		$manageCategoriesLinkAction =
+			new LinkAction(
+				'manageCategories',
+				new AjaxModal(
+					$dispatcher->url($request, ROUTE_PAGE, null, 'management', 'categories'),
+					__('catalog.manage.manageCategories'),
+					null,
+					true
+				),
+				__('catalog.manage.manageCategories')
+			);
+
+		$manageSeriesLinkAction =
+			new LinkAction(
+				'manageSeries',
+				new AjaxModal(
+					$dispatcher->url($request, ROUTE_PAGE, null, 'management', 'series'),
+					__('catalog.manage.manageSeries'),
+					null,
+					true
+				),
+				__('catalog.manage.manageSeries')
+			);
+
+		$templateMgr->assign('manageCategoriesLinkAction', $manageCategoriesLinkAction);
+		$templateMgr->assign('manageSeriesLinkAction', $manageSeriesLinkAction);
 		$templateMgr->display('manageCatalog/index.tpl');
 	}
 

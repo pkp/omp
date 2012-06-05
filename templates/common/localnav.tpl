@@ -32,17 +32,7 @@
 						<ul>
 							<li><a href="{url page="management" op="navigation"}">{translate key="common.navigation"}</a></li>
 							<li>
-								<a href="#">{translate key="navigation.catalog"}</a>
-								<ul>
-									<li><a href="{url page="manageCatalog"}">{translate key="catalog.manage.homepage"}</a></li>
-									<li><a href="{url page="manageCatalog" anchor="categoryTab"}">{translate key="catalog.manage.category"}</a></li>
-									<li><a href="{url page="manageCatalog" anchor="seriesTab"}">{translate key="catalog.manage.series"}</a></li>
-									{if array_intersect(array(ROLE_ID_PRESS_MANAGER), $userRoles)}
-										<li>
-											<a href="{url page="management" op="catalogAdmin"}">{translate key="navigation.catalog.administration.short"}</a>
-										</li>
-									{/if}
-								</ul>
+								<a href="{url page="manageCatalog"}">{translate key="navigation.catalog"}</a>
 							</li>
 							{if array_intersect(array(ROLE_ID_PRESS_MANAGER), $userRoles)}
 							<li>

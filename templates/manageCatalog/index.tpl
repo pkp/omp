@@ -83,6 +83,13 @@
 		</ul>
 		<div id="categoryTab">
 			<form id="selectCategoryForm" class="pkp_form">
+				{if array_intersect(array(ROLE_ID_PRESS_MANAGER), $userRoles)}
+					<div class="pkp_helpers_align_right">
+						<ul class="submission_actions pkp_helpers_flatlist pkp_linkActions">
+							<li>{include file="linkAction/linkAction.tpl" action=$manageCategoriesLinkAction}</li>
+						</ul>
+					</div><br />
+				{/if}
 				{fbvFormArea id="forCategorySelect"}
 					{fbvFormSection}
 						{fbvElement type="select" id="categorySelect" from="catalog.selectCategory"|translate|to_array translate=false}
@@ -96,6 +103,13 @@
 		</div>
 		<div id="seriesTab">
 			<form id="selectSeriesForm" class="pkp_form">
+			{if array_intersect(array(ROLE_ID_PRESS_MANAGER), $userRoles)}
+				<div class="pkp_helpers_align_right">
+					<ul class="submission_actions pkp_helpers_flatlist pkp_linkActions">
+						<li>{include file="linkAction/linkAction.tpl" action=$manageSeriesLinkAction}</li>
+					</ul>
+				</div><br />
+			{/if}
 				{fbvFormArea id="forSeriesSelect"}
 					{fbvFormSection}
 						{fbvElement type="select" id="seriesSelect" from="catalog.selectSeries"|translate|to_array translate=false}

@@ -25,7 +25,6 @@ class SettingsHandler extends ManagementHandler {
 			ROLE_ID_PRESS_MANAGER,
 			array(
 				'index',
-				'catalogAdmin',
 				'categories',
 				'series',
 				'settings',
@@ -51,18 +50,6 @@ class SettingsHandler extends ManagementHandler {
 		$templateMgr =& TemplateManager::getManager();
 		$this->setupTemplate();
 		$templateMgr->display('management/settings/index.tpl');
-	}
-
-	/**
-	 * Display catalog admin page.
-	 * @param $args array
-	 * @param $request PKPRequest
-	 */
-	function catalogAdmin($args, &$request) {
-		$this->setupTemplate($request);
-
-		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->display('management/catalogAdmin.tpl');
 	}
 
 	/**
