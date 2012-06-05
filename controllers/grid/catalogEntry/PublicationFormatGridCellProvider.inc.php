@@ -55,16 +55,32 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 	 * @return array
 	 */
 	function getTemplateVarsFromRowColumn(&$row, $column) {
-		$element =& $row->getData();
+		$publicationFormat =& $row->getData();
 		$columnId = $column->getId();
-		assert(is_a($element, 'DataObject') && !empty($columnId));
+		assert(is_a($publicationFormat, 'DataObject') && !empty($columnId));
 		switch ($columnId) {
 			case 'format':
-				return array('label' => $element->getNameForONIXCode());
+				return array('label' => $publicationFormat->getNameForONIXCode());
 			case 'title':
-				return array('label' => $element->getLocalizedTitle());
+				return array('label' => $publicationFormat->getLocalizedTitle());
 			case 'proofComplete':
-				$monographFiles =& $this->getMonographFiles($element->getId());
+			case 'isAvailable':
+			case 'price':
+				return array('status' => $this->getCellState($row, $column));
+		}
+	}
+
+	/**
+	 * Gathers the state of a given cell given a $row/$column combination
+	 * @param $row GridRow
+	 * @param $column GridColumn
+	 * @return string
+	 */
+	function getCellState(&$row, &$column) {
+		$publicationFormat =& $row->getData();
+		switch ($column->getId()) {
+			case 'proofComplete':
+				$monographFiles =& $this->getMonographFiles($publicationFormat->getId());
 				$proofComplete = false;
 				// If we have at least one viewable file, we consider
 				// proofs as approved.
@@ -74,11 +90,11 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 						break;
 					}
 				}
-				return array('isChecked' => $proofComplete);
+				return $proofComplete?'completed':'new';
 			case 'isAvailable':
-				return array('isChecked' => $element->getIsAvailable()?true:false);
+				return $publicationFormat->getIsAvailable()?'completed':'new';
 			case 'price':
-				$monographFiles =& $this->getMonographFiles($element->getId());
+				$monographFiles =& $this->getMonographFiles($publicationFormat->getId());
 				$priceConfigured = false;
 				// If we have at least one file with a configured price,
 				// consider price as configured.
@@ -88,11 +104,45 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 						break;
 					}
 				}
-				return array('isChecked' => $priceConfigured);
+				return $priceConfigured?'completed':'new';
 		}
 	}
 
+	/**
+	 * @see GridCellProvider::getCellActions()
+	 */
+	function getCellActions($request, $row, $column) {
+		$publicationFormat =& $row->getData();
+		$actionArgs = array(
+			'monographId' => $publicationFormat->getMonographId(),
+			'publicationFormatId' => $publicationFormat->getId()
+		);
+		$cellState = $this->getCellState($row, $column);
+		$action = null;
+		$monographId = $publicationFormat->getMonographId();
+		$publicationFormatId = $publicationFormat->getId();
+		switch ($column->getId()) {
+			case 'proofComplete':
+				import('controllers.api.proof.linkAction.ApproveProofsLinkAction');
+				$action = new ApproveProofsLinkAction($request, $monographId, $publicationFormatId, $cellState);
+				break;
+			case 'isAvailable':
+			case 'price':
+				import('controllers.modals.submissionMetadata.linkAction.CatalogEntryLinkAction');
+				$action = new CatalogEntryLinkAction($request, $monographId, WORKFLOW_STAGE_ID_PRODUCTION, $publicationFormatId, $cellState);
+				break;
+		}
+		if ($action) {
+			return array($action);
+		}
+	}
 
+	/**
+	 * Get the monograph files associated with the passed
+	 * publication format id.
+	 * @param $publicationFormatId int
+	 * @return array
+	 */
 	function &getMonographFiles($publicationFormatId) {
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		$monographFiles =& $submissionFileDao->getLatestRevisionsByAssocId(

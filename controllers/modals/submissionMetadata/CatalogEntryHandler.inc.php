@@ -26,6 +26,9 @@ class CatalogEntryHandler extends Handler {
 	/** the current tab position **/
 	var $_tabPosition;
 
+	/** the selected format id **/
+	var $_selectedFormatId;
+
 	/**
 	 * Constructor.
 	 */
@@ -50,6 +53,7 @@ class CatalogEntryHandler extends Handler {
 		$this->_monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		$this->_stageId =& $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
 		$this->_tabPosition = (int) $request->getUserVar('tabPos');
+		$this->_selectedFormatId = (int) $request->getUserVar('selectedFormatId');
 
 		// Load grid-specific translations
 		AppLocale::requireComponents(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_OMP_SUBMISSION);
@@ -97,6 +101,14 @@ class CatalogEntryHandler extends Handler {
 		return $this->_tabPosition;
 	}
 
+	/**
+	 * Get the selected format id.
+	 * @return int
+	 */
+	function getSelectedFormatId() {
+		return $this->_selectedFormatId;
+	}
+
 
 	//
 	// Public handler methods
@@ -122,6 +134,7 @@ class CatalogEntryHandler extends Handler {
 			$templateMgr->assign('monographId', $monograph->getId());
 			$tabPosition = (int) $this->getTabPosition();
 			$templateMgr->assign('selectedTab', $tabPosition);
+			$templateMgr->assign('selectedFormatId', $this->getSelectedFormatId());
 
 			// load in any publication formats assigned to this published monograph
 			$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');

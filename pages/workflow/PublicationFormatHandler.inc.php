@@ -96,24 +96,8 @@ class PublicationFormatHandler extends Handler {
 		$stageId = $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
 		$publicationFormat =& $this->getAuthorizedContextObject(ASSOC_TYPE_PUBLICATION_FORMAT);
 
-		$dispatcher =& $this->getDispatcher();
-		$approveProofAction = new LinkAction(
-			'approveProofs-' . $publicationFormat->getId(),
-			new AjaxModal(
-				$dispatcher->url(
-					$request, ROUTE_COMPONENT, null,
-					'modals.editorDecision.EditorDecisionHandler',
-					'approveProofs', null,
-					array(
-						'monographId' => $monograph->getId(),
-						'stageId' => $stageId,
-						'publicationFormatId' => $publicationFormat->getId()
-					)
-				),
-				__('editor.monograph.decision.approveProofs')
-			),
-			__('editor.monograph.decision.approveProofs')
-		);
+		import('controllers.api.proof.linkAction.ApproveProofsLinkAction');
+		$approveProofAction = new ApproveProofsLinkAction($request, $publicationFormat->getMonographId(), $publicationFormat->getId());
 
 		// Fetch the template
 		$templateMgr =& TemplateManager::getManager();

@@ -31,6 +31,13 @@
 	<input type="hidden" name="displayedInContainer" value="{$formParams.displayedInContainer|escape}" />
 	<input type="hidden" name="tab" value="submission" />
 
+	{if !$formParams.hideSubmit}
+		{fbvFormSection list="true"}
+			{if $isPublished}{assign var=confirm value=true}{else}{assign var=confirm value=false}{/if}
+			{fbvElement type="checkbox" id="confirm" checked=$confirm label="submission.catalogEntry.confirm" disabled=$confirm value="confirm"}
+		{/fbvFormSection}
+	{/if}
+
 	{include file="submission/form/seriesAndCategories.tpl" readOnly=$formParams.readOnly}
 
 	{include file="submission/submissionMetadataFormFields.tpl" readOnly=$formParams.readOnly}
@@ -52,11 +59,7 @@
 	{/if}
 
 	{if !$formParams.hideSubmit}
-		{fbvFormSection list="true"}
-			{if $isPublished}{assign var=confirm value=true}{else}{assign var=confirm value=false}{/if}
-			{fbvElement type="checkbox" id="confirm" checked=$confirm label="submission.catalogEntry.confirm" disabled=$confirm value="confirm"}
-			{fbvFormButtons id="submissionMetadataFormSubmit" submitText="common.save"}
-		{/fbvFormSection}
+		{fbvFormButtons id="submissionMetadataFormSubmit" submitText="common.save"}
 	{else}
 		{fbvElement type="button" class="cancelFormButton" id="cancelFormButton" label="common.close"}
 	{/if}

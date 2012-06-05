@@ -142,7 +142,7 @@ class PublicationFormatGridHandler extends GridHandler {
 				'proofComplete',
 				'grid.catalogEntry.proofComplete',
 				null,
-				'controllers/grid/common/cell/checkMarkCell.tpl',
+				'controllers/grid/common/cell/statusCell.tpl',
 				$cellProvider
 			)
 		);
@@ -151,7 +151,7 @@ class PublicationFormatGridHandler extends GridHandler {
 				'price',
 				'payment.directSales.price',
 				null,
-				'controllers/grid/common/cell/checkMarkCell.tpl',
+				'controllers/grid/common/cell/statusCell.tpl',
 				$cellProvider
 			)
 		);
@@ -160,7 +160,7 @@ class PublicationFormatGridHandler extends GridHandler {
 				'isAvailable',
 				'grid.catalogEntry.isAvailable',
 				null,
-				'controllers/grid/common/cell/checkMarkCell.tpl',
+				'controllers/grid/common/cell/statusCell.tpl',
 				$cellProvider
 			)
 		);

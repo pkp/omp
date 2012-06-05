@@ -33,6 +33,12 @@
 	{* in catalog status *}
 	<h3>{if $isAvailable}{translate key="monograph.publicationFormat.inCatalog"}{else}{translate key="monograph.publicationFormat.notInCatalog"}{/if}</h3>
 
+	{fbvFormArea id="catalogInclusion"}
+		{fbvFormSection list="true"}
+			{fbvElement type="checkbox" id="isAvailable" checked=$isAvailable label="monograph.publicationFormat.isAvailable"}
+		{/fbvFormSection}
+	{/fbvFormArea}
+
 	{* E-commerce settings *}
 	{if $paymentConfigured}
 		{url|assign:approvedProofGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.proof.ApprovedProofFilesGridHandler" op="fetchGrid" monographId=$monographId publicationFormatId=$publicationFormatId escape=false}
@@ -99,12 +105,6 @@
 	{else}
 		{include file="controllers/tab/catalogEntry/form/digitalPublicationFormat.tpl"}
 	{/if}
-
-	{fbvFormArea id="catalogInclusion"}
-		{fbvFormSection list="true"}
-			{fbvElement type="checkbox" id="isAvailable" checked=$isAvailable label="monograph.publicationFormat.isAvailable"}
-		{/fbvFormSection}
-	{/fbvFormArea}
 
 	{fbvFormButtons id="publicationMetadataFormSubmit" submitText="common.save"}
 </form>

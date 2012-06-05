@@ -32,6 +32,15 @@ jQuery.pkp.controllers.tab.catalogEntry =
 	 */
 	$.pkp.controllers.tab.catalogEntry.CatalogEntryTabHandler =
 			function($tabs, options) {
+		if (options.selectedFormatId) {
+			// Find the correspondent tab position.
+			$linkId = 'publication' + options.selectedFormatId;
+			$tab = $('#' + $linkId, $tabs).parent('li');
+			if ($tab.length) {
+				options.selected = $tab.index();
+			}
+		}
+
 		this.parent($tabs, options);
 
 		// Attach the tabs grid refresh handler.
