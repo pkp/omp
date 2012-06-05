@@ -122,8 +122,8 @@ jQuery.pkp.controllers.tab.catalogEntry =
 		var regexp = /publication(\d+)/;
 
 		for (var j = 0; j < currentTabs.length; j++) {
-			var title = currentTabs[j].getAttribute('title');
-			var match = regexp.exec(title);
+			var id = currentTabs[j].getAttribute('id');
+			var match = regexp.exec(id);
 			if (match !== null) {
 				// match[1] is the id of a current format.
 				// j also happens to be the zero-based index of the tab
@@ -142,7 +142,7 @@ jQuery.pkp.controllers.tab.catalogEntry =
 				url = url.replace(/[$]/g, '$$$$');
 				$element.tabs('add', url, jsonData.formats[i]);
 				$element.find('li a').filter(':last').
-						attr('title', 'publication' + i);
+						attr('id', 'publication' + i);
 			}
 		}
 
@@ -152,7 +152,7 @@ jQuery.pkp.controllers.tab.catalogEntry =
 			if (!(i in jsonData.formats)) {
 				$element.tabs('remove', currentIndexes[i]);
 			} else { // tab still exists, update localized name if necessary
-				$element.find('li a').filter('[title="publication' + i + '"]').
+				$element.find('li a').filter('[id="publication' + i + '"]').
 						html(jsonData.formats[i]);
 			}
 		}
