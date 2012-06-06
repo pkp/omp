@@ -16,7 +16,7 @@
 		$('#production').pkpHandler(
 			'$.pkp.pages.workflow.ProductionHandler',
 			{ldelim}
-				accordionUrl: '{url|escape:"javascript" op="productionFormatsAccordion" monographId=$monograph->getId() stageId=$smarty.const.WORKFLOW_STAGE_ID_PRODUCTION escape=false}'
+				formatsTabContainerSelector: '#publicationFormatTabsContainer'
 			{rdelim}
 		);
 	{rdelim});
@@ -42,10 +42,9 @@
 		{/fbvFormSection}
 	{/fbvFormArea}
 
-	<div id="publicationFormatContainer">
-		{* Will be filled in by Javascript *}
+	<div id='publicationFormatTabsContainer'>
+		{include file="workflow/productionFormatsTab.tpl" formatTabsId=$formatTabsId publicationFormats=$publicationFormats}
 	</div>
-</div>
 </div>
 
 {include file="common/footer.tpl"}

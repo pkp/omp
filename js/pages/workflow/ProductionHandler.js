@@ -27,22 +27,12 @@
 
 		this.parent($production, options);
 
-		// Transform the stage sections into jQueryUI accordions.
-		$('#metadataAccordion', $production).accordion({
-			autoHeight: false,
-			collapsible: true,
-			active: false
-		});
-
-		// Store the Publication Formats fetch URL.
-		this.accordionUrl_ = options.accordionUrl;
+		this.$formatTabsSelector_ = options.formatsTabContainerSelector;
 
 		// Bind for changes to grids (publication formats and proofs).
-		this.bind('gridRefreshRequested', this.loadWidgetsHandler_);
-		this.bind('containerReloadRequested', this.loadWidgetsHandler_);
+		this.bind('gridRefreshRequested', this.refreshWidgetsHandler_);
+		this.bind('containerReloadRequested', this.refreshWidgetsHandler_);
 
-		// Load the current accordion.
-		this.loadWidgets_();
 	};
 	$.pkp.classes.Helper.inherits(
 			$.pkp.pages.workflow.ProductionHandler,
@@ -53,21 +43,12 @@
 	// Private Properties
 	//
 	/**
-	 * The URL template used to fetch the publication formats accordion.
+	 * Format tabs container selector.
 	 * @private
 	 * @type {string?}
 	 */
 	$.pkp.pages.workflow.ProductionHandler.
-			prototype.accordionUrl_ = null;
-
-
-	/**
-	 * Flag to avoid infinite loop while refreshing grids on this page.
-	 * @private
-	 * @type {boolean}
-	 */
-	$.pkp.pages.workflow.ProductionHandler.
-			prototype.stopRefreshProcess_ = false;
+			prototype.$formatTabsSelector_ = null;
 
 
 	//
@@ -76,77 +57,28 @@
 	/**
 	 * This listens for grid refreshes from all grids inside the
 	 * production page and call a method that will refresh all the
-	 * others grids and accordion widget.
+	 * others grids and tab widget.
 	 *
 	 * @private
 	 * @param {HTMLElement} sourceElement The parent DIV element
 	 *  which contains the tabs.
 	 * @param {Event} event The triggered event (gridRefreshRequested).
 	 */
-	$.pkp.pages.workflow.ProductionHandler.prototype.loadWidgetsHandler_ =
+	$.pkp.pages.workflow.ProductionHandler.prototype.refreshWidgetsHandler_ =
 			function(sourceElement, event) {
-
-		if (!this.stopRefreshProcess_) {
-			// Avoid infinite loop.
-			this.stopRefreshProcess_ = true;
-
-			this.loadWidgets_();
-			return;
+		var $triggerElement = $(event.target);
+		if (!$triggerElement.attr('id').match(/^formatsGridContainer/)) {
+			var $formatsGrid = $('[id^="formatsGridContainer"]',
+					this.getHtmlElement()).children();
+			$formatsGrid.trigger('dataChanged');
 		}
 
-		this.stopRefreshProcess_ = false;
+		var $formatTabs = $(this.$formatTabsSelector_, this.getHtmlElement()).children('div');
+		if ($formatTabs.has($triggerElement).length == 0) {
+			$formatTabs.trigger('refreshTabs');
+		}
 	};
 
-
-	/**
-	 * Display the fetched publication formats accordion.
-	 *
-	 * @param {Object} ajaxContext The AJAX request context.
-	 * @param {Object} jsonData A parsed JSON response object.
-	 * @private
-	 */
-	$.pkp.pages.workflow.ProductionHandler.prototype.updateAccordionHandler_ =
-			function(ajaxContext, jsonData) {
-
-		jsonData = this.handleJson(jsonData);
-
-		// Find the container and add fetched content.
-		var $publicationFormatContainer = $('#publicationFormatContainer');
-		$publicationFormatContainer.empty();
-		$publicationFormatContainer.append(jsonData.content);
-
-		// Update any in place notification above this widget in DOM hierarchy.
-		$publicationFormatContainer.
-				trigger('notifyUser', $publicationFormatContainer);
-
-		$publicationFormatContainer.accordion('destroy').accordion({
-			autoHeight: false,
-			collapsible: true,
-			active: false
-		});
-	};
-
-
-	/**
-	 * Execute the steps necessary to load/reload the accordions and the
-	 * publication formats grid.
-	 * It requests a list of the current publication formats from the
-	 * CatalogEntryHandler and calls a callback which updates the tab
-	 * state accordingly as they are changed.
-	 * It also updates the publication formats grid.
-	 * @param {Object} ajaxContext The AJAX request context.
-	 * @param {Object} jsonData A parsed JSON response object.
-	 * @private
-	 */
-	$.pkp.pages.workflow.ProductionHandler.prototype.loadWidgets_ =
-			function(ajaxContext, jsonData) {
-		var callback = this.callbackWrapper(this.updateAccordionHandler_);
-		$.get(this.accordionUrl_, null, callback, 'json');
-
-		$formatsGrid = $('[id^="formatsGridContainer"]',
-				this.getHtmlElement()).children();
-		$formatsGrid.trigger('dataChanged');
-	};
 
 /** @param {jQuery} $ jQuery closure. */
 })(jQuery);

@@ -22,7 +22,7 @@ switch ($op) {
 	case 'externalReview':
 	case 'editorial':
 	case 'production':
-	case 'productionFormatsAccordion':
+	case 'productionFormatsTab':
 	case 'editorDecisionActions':
 	case 'submissionProgressBar':
 		define('HANDLER_CLASS', 'WorkflowHandler');

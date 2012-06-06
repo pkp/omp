@@ -37,7 +37,7 @@ class WorkflowHandler extends Handler {
 				'internalReview', // Internal review
 				'externalReview', // External review
 				'editorial',
-				'production', 'productionFormatsAccordion', // Production
+				'production', 'productionFormatsTab', // Production
 				'submissionProgressBar'
 			)
 		);
@@ -248,6 +248,12 @@ class WorkflowHandler extends Handler {
 				NOTIFICATION_TYPE_APPROVE_SUBMISSION => array(ASSOC_TYPE_MONOGRAPH, $monograph->getId())),
 			NOTIFICATION_LEVEL_TRIVIAL => array()
 		);
+
+		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
+		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		$publicationFormats =& $publicationFormatDao->getByMonographId($monograph->getId());
+		$templateMgr->assign_by_ref('publicationFormats', $publicationFormats->toAssociativeArray());
+
 		$templateMgr->assign('productionNotificationRequestOptions', $notificationRequestOptions);
 		$templateMgr->display('workflow/production.tpl');
 	}
@@ -257,14 +263,15 @@ class WorkflowHandler extends Handler {
 	 * @param $request PKPRequest
 	 * @param $args array
 	 */
-	function productionFormatsAccordion(&$args, &$request) {
+	function productionFormatsTab(&$args, &$request) {
 		$templateMgr =& TemplateManager::getManager();
 		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		$publicationFormats =& $publicationFormatDao->getByMonographId($monograph->getId());
-		$templateMgr->assign_by_ref('publicationFormats', $publicationFormats);
+		$templateMgr->assign_by_ref('$monograph', $monograph);
+		$templateMgr->assign_by_ref('publicationFormats', $publicationFormats->toAssociativeArray());
 
-		return $templateMgr->fetchJson('workflow/productionFormatsAccordion.tpl');
+		return $templateMgr->fetchJson('workflow/productionFormatsTab.tpl');
 	}
 
 	/**
