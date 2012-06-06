@@ -31,7 +31,7 @@
 
 <div id="selectMonographContainer">
 	<form class="pkp_form" id="selectMonographForm">
-		{fbvFormArea}
+		{fbvFormArea id="monographSelectForm"}
 			{fbvFormSection}
 				{fbvElement type="select" id="monographSelect" from="submission.select"|translate|to_array translate=false}
 			{/fbvFormSection}
