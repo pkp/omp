@@ -33,12 +33,8 @@ jQuery.pkp.controllers.tab.catalogEntry =
 	$.pkp.controllers.tab.catalogEntry.CatalogEntryTabHandler =
 			function($tabs, options) {
 		if (options.selectedFormatId) {
-			// Find the correspondent tab position.
-			$linkId = 'publication' + options.selectedFormatId;
-			$tab = $('#' + $linkId, $tabs).parent('li');
-			if ($tab.length) {
-				options.selected = $tab.index();
-			}
+			options.selected =
+				this.getTabPositionByFormatId_(options.selectedFormatId, $tabs);
 		}
 
 		this.parent($tabs, options);
@@ -53,6 +49,8 @@ jQuery.pkp.controllers.tab.catalogEntry =
 		if (options.tabContentUrl) {
 			this.tabContentUrl_ = options.tabContentUrl;
 		}
+
+		this.bind('gridInitialized', this.addFormatsGridRowActionHandlers_);
 	};
 	$.pkp.classes.Helper.inherits(
 			$.pkp.controllers.tab.catalogEntry.CatalogEntryTabHandler,
@@ -155,6 +153,66 @@ jQuery.pkp.controllers.tab.catalogEntry =
 				$element.find('li a').filter('[id="publication' + i + '"]').
 						html(jsonData.formats[i]);
 			}
+		}
+	};
+
+
+	/**
+	 * Add handlers to grid row links inside
+	 * the publication formats grid.
+	 *
+	 * @private
+	 */
+	$.pkp.controllers.tab.catalogEntry.CatalogEntryTabHandler.prototype.
+			addFormatsGridRowActionHandlers_ = function() {
+
+		var $formatsGrid = $('[id^="formatsGridContainer"]', this.getHtmlElement());
+		if ($formatsGrid.length) {
+			var $links = $('a[id*="publicationFormatTab"]', $formatsGrid);
+			$links.click(this.callbackWrapper(this.formatsGridLinkClickHandler_));
+		}
+	};
+
+
+	/**
+	 * Publication format grid link click handler to open a
+	 * publication format tab.
+	 *
+	 * @private
+	 *
+	 * @param {HTMLElement} sourceElement The clicked link.
+	 * @param {Event} event The triggered event (click).
+	 */
+	$.pkp.controllers.tab.catalogEntry.CatalogEntryTabHandler.prototype.
+			formatsGridLinkClickHandler_ = function(sourceElement, event) {
+
+		var $grid = $('[id^="formatsGridContainer"]',
+				this.getHtmlElement()).children('div');
+		var gridHandler = $.pkp.classes.Handler.getHandler($grid);
+		var $gridRow = gridHandler.getParentRow($(sourceElement));
+		var publicationFormatId = gridHandler.getRowDataId($gridRow);
+		this.getHtmlElement().tabs('select',
+				this.getTabPositionByFormatId_(publicationFormatId,
+						this.getHtmlElement()));
+	};
+
+
+	/**
+	 * Get the tab position using the passed publication format id.
+	 * @param {integer} formatId The publication format id.
+	 * @param {jQuery} $tabs The current tabs container element.
+	 * @return {integer?} The publication format tab position or null.
+	 */
+	$.pkp.controllers.tab.catalogEntry.CatalogEntryTabHandler.prototype.
+			getTabPositionByFormatId_ = function(formatId, $tabs) {
+
+		// Find the correspondent tab position.
+		var $linkId = 'publication' + formatId;
+		var $tab = $('#' + $linkId, $tabs).parent('li');
+		if ($tab.length) {
+			return $tabs.children().children().index($tab);
+		} else {
+			return null;
 		}
 	};
 

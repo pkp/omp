@@ -22,13 +22,19 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 	/** @var int */
 	var $_monographId;
 
+	/** @var boolean */
+	var $_inCatalogEntryModal;
+
 	/**
 	 * Constructor
 	 * @param $monographId int
+	 * @param $inCatalogEntryModal boolean Tells if grid is loaded inside
+	 * catalog entry modal.
 	 */
-	function PublicationFormatGridCellProvider($monographId) {
+	function PublicationFormatGridCellProvider($monographId, $inCatalogEntryModal) {
 		parent::DataObjectGridCellProvider();
 		$this->_monographId = $monographId;
+		$this->_inCatalogEntryModal = $inCatalogEntryModal;
 	}
 
 
@@ -41,6 +47,15 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 	 */
 	function getMonographId() {
 		return $this->_monographId;
+	}
+
+	/**
+	 * Get a flag that tells if grid is loaded
+	 * inside the catalog entry modal.
+	 * @return boolean
+	 */
+	function getInCatalogEntryModal() {
+		return $this->_inCatalogEntryModal;
 	}
 
 
@@ -128,8 +143,13 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 				break;
 			case 'isAvailable':
 			case 'price':
-				import('controllers.modals.submissionMetadata.linkAction.CatalogEntryLinkAction');
-				$action = new CatalogEntryLinkAction($request, $monographId, WORKFLOW_STAGE_ID_PRODUCTION, $publicationFormatId, $cellState);
+				if ($this->getInCatalogEntryModal()) {
+					import('lib.pkp.classes.linkAction.request.NullAction');
+					$action = new LinkAction('publicationFormatTab', new NullAction(), __('monograph.publicationFormat.openTab'), $cellState);
+				} else {
+					import('controllers.modals.submissionMetadata.linkAction.CatalogEntryLinkAction');
+					$action = new CatalogEntryLinkAction($request, $monographId, WORKFLOW_STAGE_ID_PRODUCTION, $publicationFormatId, $cellState);
+				}
 				break;
 		}
 		if ($action) {

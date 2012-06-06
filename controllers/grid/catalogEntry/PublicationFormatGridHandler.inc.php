@@ -117,7 +117,8 @@ class PublicationFormatGridHandler extends GridHandler {
 
 		// Columns
 		$monograph =& $this->getMonograph();
-		$cellProvider = new PublicationFormatGridCellProvider($monograph->getId());
+		$inCatalogEntryModal = (boolean) $request->getUserVar('inCatalogEntryModal');
+		$cellProvider = new PublicationFormatGridCellProvider($monograph->getId(), $inCatalogEntryModal);
 		$this->addColumn(
 			new GridColumn(
 				'title',
@@ -199,7 +200,7 @@ class PublicationFormatGridHandler extends GridHandler {
 		$monograph =& $this->getMonograph();
 		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
 		$data =& $publicationFormatDao->getByMonographId($monograph->getId());
-		return $data->toArray();
+		return $data->toAssociativeArray();
 	}
 
 
@@ -294,7 +295,7 @@ class PublicationFormatGridHandler extends GridHandler {
 	 */
 	function deleteFormat($args, &$request) {
 
-		// Identify the publiation format to be deleted
+		// Identify the publication format to be deleted
 		$publicationFormatId = (int) $request->getUserVar('publicationFormatId');
 
 		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');

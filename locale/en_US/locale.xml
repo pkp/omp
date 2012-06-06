@@ -78,6 +78,7 @@
 	<message key="monograph.publicationFormat.missingONIXFields">Missing some metadata fields.</message>
 
 	<message key="monograph.publicationFormat.formatDoesNotExist"><![CDATA[<p>The publication format you have chosen no longer exists for this monograph.</p>]]></message>
+	<message key="monograph.publicationFormat.openTab">Open publication format tab.</message>
 	<!-- assigned publication format grid and form keys  -->
 	<message key="grid.catalogEntry.publicationFormatTitle">Title</message>
 	<message key="grid.catalogEntry.publicationFormatType">Publication Format</message>
