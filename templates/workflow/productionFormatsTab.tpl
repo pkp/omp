@@ -17,6 +17,7 @@ $(function() {ldelim}
 				op='productionFormatsTab'
 				monographId=$monograph->getId()
 				stageId=$smarty.const.WORKFLOW_STAGE_ID_PRODUCTION escape=false}',
+			{if $currentFormatTabId}currentFormatTabId: '{$currentFormatTabId}',{/if}
 			emptyLastTab: true,
 		{rdelim}
 	);

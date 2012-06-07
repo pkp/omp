@@ -50,6 +50,14 @@
 	$.pkp.pages.workflow.ProductionHandler.
 			prototype.$formatTabsSelector_ = null;
 
+	/**
+	 * Flag to avoid unnecessary widgets refresh.
+	 * @private
+	 * @type {boolean}
+	 */
+	$.pkp.pages.workflow.ProductionHandler.
+			prototype.widgetsRefreshed_ = false;
+
 
 	//
 	// Public Methods
@@ -67,15 +75,20 @@
 	$.pkp.pages.workflow.ProductionHandler.prototype.refreshWidgetsHandler_ =
 			function(sourceElement, event) {
 		var $triggerElement = $(event.target);
-		if (!$triggerElement.attr('id').match(/^formatsGridContainer/)) {
-			var $formatsGrid = $('[id^="formatsGridContainer"]',
-					this.getHtmlElement()).children();
-			$formatsGrid.trigger('dataChanged');
-		}
+		if (!this.widgetsRefreshed_) {
+			this.widgetsRefreshed_ = true;
+			if (!$triggerElement.attr('id').match(/^formatsGridContainer/)) {
+				var $formatsGrid = $('[id^="formatsGridContainer"]',
+						this.getHtmlElement()).children();
+				$formatsGrid.trigger('dataChanged');
+			}
 
-		var $formatTabs = $(this.$formatTabsSelector_, this.getHtmlElement()).children('div');
-		if ($formatTabs.has($triggerElement).length == 0) {
-			$formatTabs.trigger('refreshTabs');
+			var $formatTabs = $(this.$formatTabsSelector_, this.getHtmlElement()).children('div');
+			if ($formatTabs.has($triggerElement).length == 0) {
+				$formatTabs.trigger('refreshTabs');
+			}
+		} else {
+			this.widgetsRefreshed_ = false;
 		}
 	};
 

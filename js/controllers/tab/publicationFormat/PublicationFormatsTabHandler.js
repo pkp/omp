@@ -32,6 +32,14 @@ jQuery.pkp.controllers.tab.publicationFormat =
 	 */
 	$.pkp.controllers.tab.publicationFormat.PublicationFormatsTabHandler =
 			function($tabs, options) {
+		if (options.currentFormatTabId !== undefined) {
+			var $linkId = 'publication' + options.currentFormatTabId;
+			var $tab = $('#' + $linkId, $tabs).parent('li');
+			if ($tab.length) {
+				options.selected = $tabs.children().children().index($tab);
+			}
+		}
+
 		this.parent($tabs, options);
 
 		this.tabsUrl_ = options.tabsUrl;
@@ -71,7 +79,11 @@ jQuery.pkp.controllers.tab.publicationFormat =
 
 		if (this.tabsUrl_) {
 			var $element = this.getHtmlElement();
-			$.get(this.tabsUrl_, null, this.callbackWrapper(
+			var $selectedTabLink = $('li.ui-tabs-selected',
+					this.getHtmlElement()).find('a');
+			var publicationId = $selectedTabLink.attr('id').
+					replace('publication', ' ').trim();
+			$.get(this.tabsUrl_, {currentFormatTabId: publicationId}, this.callbackWrapper(
 					this.updateTabsHandler_), 'json');
 		}
 	};
@@ -87,6 +99,8 @@ jQuery.pkp.controllers.tab.publicationFormat =
 	 */
 	$.pkp.controllers.tab.publicationFormat.PublicationFormatsTabHandler.prototype.
 			updateTabsHandler_ = function(ajaxContext, data) {
+
+		this.trigger('gridRefreshRequested');
 
 		var jsonData = this.handleJson(data);
 		if (jsonData !== false) {

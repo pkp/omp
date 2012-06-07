@@ -270,6 +270,7 @@ class WorkflowHandler extends Handler {
 		$publicationFormats =& $publicationFormatDao->getByMonographId($monograph->getId());
 		$templateMgr->assign_by_ref('$monograph', $monograph);
 		$templateMgr->assign_by_ref('publicationFormats', $publicationFormats->toAssociativeArray());
+		$templateMgr->assign('currentFormatTabId', (int) $request->getUserVar('currentFormatTabId'));
 
 		return $templateMgr->fetchJson('workflow/productionFormatsTab.tpl');
 	}
