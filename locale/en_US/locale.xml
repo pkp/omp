@@ -172,6 +172,7 @@
 	<message key="grid.content.navigation.footer">Footer</message>
 	<message key="grid.content.navigation.footer.noneExist">There are no current footers.</message>
 	<message key="grid.content.navigation.footer.addCategory">Add Category</message>
+	<message key="grid.action.deleteFooterCategory">Delete Footer Category</message>
 	<message key="grid.content.navigation.footer.FooterLink">Footer Links</message>
 	<message key="grid.content.navigation.footer.editCategory">Edit Category</message>
 	<message key="grid.content.navigation.footer.deleteCategory">Delete Category</message>
