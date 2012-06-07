@@ -34,6 +34,7 @@ $.pkp.pages.workflow = $.pkp.pages.workflow || {};
 		this.parent($workflowElement, options);
 
 		this.bind('stageParticipantsChanged', this.handleStageParticipantsChanged_);
+		this.bind('dataChanged', this.dataChangedHandler_);
 	};
 	$.pkp.classes.Helper.inherits(
 			$.pkp.pages.workflow.WorkflowHandler,
@@ -60,5 +61,30 @@ $.pkp.pages.workflow = $.pkp.pages.workflow || {};
 			handler.reload();
 		});
 	};
+
+
+	/**
+	 * Potentially refresh contained grid.
+	 *
+	 * @param {JQuery} callingElement The calling element.
+	 *  that triggered the event.
+	 * @param {Event} event The event.
+	 * @private
+	 */
+	$.pkp.pages.workflow.WorkflowHandler.prototype.dataChangedHandler_ =
+			function(callingElement, event, eventData) {
+		if (eventData !== undefined && eventData.assocType !== undefined &&
+				eventData.assocId !== undefined) {
+			if (eventData.assocType == $.pkp.cons.ASSOC_TYPE_PUBLICATION_FORMAT) {
+				// Refresh the publication format grid on this page, if any.
+				var $formatsGrid = $('[id^="formatsGridContainer"]',
+						this.getHtmlElement()).children('div');
+				$formatsGridHandler = $.pkp.classes.Handler.getHandler($formatsGrid);
+				$formatsGridHandler.trigger('dataChanged', eventData.assocId);
+			}
+		}
+	};
+
+
 /** @param {jQuery} $ jQuery closure. */
 })(jQuery);

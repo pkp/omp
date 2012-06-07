@@ -70,6 +70,25 @@ jQuery.pkp.controllers.tab.catalogEntry =
 
 
 	//
+	// Extended methods from TabHandler.
+	//
+	/**
+	 * @inheritDoc
+	 */
+	$.pkp.controllers.tab.catalogEntry.CatalogEntryTabHandler.prototype.
+			tabsReloadRequested = function(divElement, event, jsonContent) {
+		var $tabContainerId = $(event.target).attr('id');
+		var $tab = this.getHtmlElement().find('a').filter('[href="#' + $tabContainerId + '"]');
+		if ($tab.attr('id').match(/publication/)) {
+			var publicationFormatId = $tab.attr('id').replace('publication', ' ').trim();
+			this.trigger('dataChanged', {'assocType': $.pkp.cons.ASSOC_TYPE_PUBLICATION_FORMAT, 'assocId': publicationFormatId});
+		}
+
+		this.parent('tabsReloadRequested', divElement, event, jsonContent);
+	};
+
+
+	//
 	// Public methods
 	//
 	/**

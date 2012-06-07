@@ -61,5 +61,7 @@
 			this.trigger('stageParticipantsChanged');
 		}
 	};
+
+
 /** @param {jQuery} $ jQuery closure. */
 })(jQuery);
