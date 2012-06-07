@@ -81,8 +81,11 @@ jQuery.pkp.controllers.tab.publicationFormat =
 			var $element = this.getHtmlElement();
 			var $selectedTabLink = $('li.ui-tabs-selected',
 					this.getHtmlElement()).find('a');
-			var publicationId = $selectedTabLink.attr('id').
+			if ($selectedTabLink.length) {
+				var publicationId = $selectedTabLink.attr('id').
 					replace('publication', ' ').trim();
+			}
+
 			$.get(this.tabsUrl_, {currentFormatTabId: publicationId}, this.callbackWrapper(
 					this.updateTabsHandler_), 'json');
 		}
