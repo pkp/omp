@@ -32,9 +32,11 @@
 			{fbvFormSection title="grid.artworkFile.credit" inline=true size=$fbvStyles.size.MEDIUM}
 				{fbvElement type="textarea" id="artworkCredit" height=$fbvStyles.height.SHORT value=$submissionFile->getCredit()}
 			{/fbvFormSection}
-			{fbvFormSection title="submission.artwork.permissions"}
-				{fbvElement type="text" inline=true size=$fbvStyles.size.MEDIUM label="grid.artworkFile.copyrightOwner" id="artworkCopyrightOwner" value=$submissionFile->getCopyrightOwner()}
-				{fbvElement type="text" inline=true size=$fbvStyles.size.MEDIUM label="grid.artworkFile.permissionTerms" id="artworkPermissionTerms" value=$submissionFile->getPermissionTerms()}
+			{fbvFormSection title="grid.artworkFile.copyrightOwner" inline=true size=$fbvStyles.size.MEDIUM}
+				{fbvElement type="textarea" id="artworkCopyrightOwner" height=$fbvStyles.height.SHORT value=$submissionFile->getCopyrightOwner()}
+			{/fbvFormSection}
+			{fbvFormSection title="grid.artworkFile.permissionTerms" inline=true size=$fbvStyles.size.MEDIUM}
+				{fbvElement type="textarea" id="artworkPermissionTerms" height=$fbvStyles.height.SHORT value=$submissionFile->getPermissionTerms()}
 			{/fbvFormSection}
 		{/if}
 		{fbvFormSection title="submission.upload.noteToAccompanyFile"}
