@@ -120,7 +120,7 @@
 							{elseif $alternatePageHeader}
 								{$alternatePageHeader}
 							{else}
-								<img src="{$baseUrl}/templates/images/structure/omp_logo.png" alt="{$applicationName}" title="{$applicationName}" width="180" height="90" />
+								<img src="{$baseUrl}/templates/images/structure/omp_logo.png" alt="{$applicationName|escape}" title="{$applicationName|escape}" width="180" height="90" />
 							{/if}
 						</h1>
 					</div><!-- pkp_structure_masthead -->
