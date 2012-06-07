@@ -33,7 +33,7 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 		// Managers and Editors additionally get administrative access
 		$this->addRoleAssignment(
 			array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR),
-			array_merge($peOps, array('addParticipant', 'deleteParticipant', 'saveParticipant', 'userAutocomplete'))
+			array_merge($peOps, array('addParticipant', 'deleteParticipant', 'saveParticipant', 'fetchUserList'))
 		);
 	}
 
@@ -332,26 +332,23 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 	 * @param $request Request
 	 * @return JSON string
 	 */
-	function userAutocomplete($args, &$request) {
+	function fetchUserList($args, &$request) {
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		$stageId = $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
 
 		$userGroupId = (int) $request->getUserVar('userGroupId');
-		$userName = $request->getUserVar('userName');
 
 		$userStageAssignmentDao =& DAORegistry::getDAO('UserStageAssignmentDAO'); /* @var $userStageAssignmentDao UserStageAssignmentDAO */
 		$users =& $userStageAssignmentDao->getUsersNotAssignedToStageInUserGroup($monograph->getId(), $stageId, $userGroupId);
 
 		$userList = array();
 		while($user =& $users->next()) {
-			if ($userName == '' || preg_match('/'. preg_quote($userName, '/') . '/i', $user->getFullName() . $user->getUsername())) {
-				$userList[] = array('label' => $user->getFullName(), 'value' => $user->getId());
-			}
+			$userList[$user->getId()] = $user->getFullName();
 			unset($user);
 		}
 
 		if (count($userList) == 0) {
-			return $this->noAutocompleteResults();
+			$userList[0] = __('common.noMatches');
 		}
 
 		$json = new JSONMessage(true, $userList);

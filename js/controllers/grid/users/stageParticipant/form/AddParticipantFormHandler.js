@@ -33,17 +33,32 @@ jQuery.pkp.controllers.grid.users.stageParticipant =
 
 		this.parent($form, options);
 
-		$('#userGroupId', $form).change(
-				this.callbackWrapper(this.addUserIdToAutocompleteUrl));
+		// store the URL for fetching users not assigned to a particular user group.
+		this.fetchUserListUrl_ = options.fetchUserListUrl;
 
-		$('[id^="userId_input"]', $form).keyup(
-				this.callbackWrapper(this.addNameToAutocompleteUrl));
+		$('#userGroupId', $form).change(
+				this.callbackWrapper(this.updateUserList));
+
+		// initially populate the selector.
+		this.updateUserList();
 
 	};
 	$.pkp.classes.Helper.inherits(
 			$.pkp.controllers.grid.users.stageParticipant.form.
 					AddParticipantFormHandler,
 			$.pkp.controllers.form.AjaxFormHandler);
+
+
+	//
+	// Private properties
+	//
+	/**
+	 * The URL to be called to fetch a list of users for a given user group.
+	 * @private
+	 * @type {string}
+	 */
+	$.pkp.controllers.grid.users.stageParticipant.form.AddParticipantFormHandler.
+			prototype.fetchUserListUrl_ = null;
 
 
 	//
@@ -54,48 +69,46 @@ jQuery.pkp.controllers.grid.users.stageParticipant =
 	 * @param {Object} eventObject The html element that changed.
 	 */
 	$.pkp.controllers.grid.users.stageParticipant.form.AddParticipantFormHandler.
-			prototype.addUserIdToAutocompleteUrl = function(eventObject) {
+			prototype.updateUserList = function(eventObject) {
 
-		// FIXME: Should this js handler know the _container part?
-		// It is inside the FBV autocomplete field.
-		// We could add a pkp_controller_ class to the container <div>
-		var $autocompleteContainer = $('#userId_container');
-
-		// Clear the selection of the inputs (both hidden and visible)
-		$autocompleteContainer.find(':input').each(
-				function(index) { $(this).val(''); }
-		);
-
-		var autocompleteHandler =
-				$.pkp.classes.Handler.getHandler($autocompleteContainer);
-
-		var oldUrl = autocompleteHandler.getAutocompleteUrl();
+		var oldUrl = this.fetchUserListUrl_;
+		
+		var $form = this.getHtmlElement();
+		var $userGroupSelector = $form.find('#userGroupId');
 		// Match with &amp;userGroupId or without and append userGroupId
 		var newUrl = oldUrl.replace(
-				/(&userGroupId=\d+)?$/, '&userGroupId=' + eventObject.value);
-		autocompleteHandler.setAutocompleteUrl(newUrl);
+				/(&userGroupId=\d+)?$/, '&userGroupId=' + $userGroupSelector.val());
+
+		$.get(newUrl, null, this.callbackWrapper(
+				this.updateUserListHandler_), 'json');
 	};
 
 
 	/**
-	 * Method to add the contents of the Name field to the end of the
-	 * autocomplete URL.
-	 * @param {Object} eventObject The html element that changed.
+	 * A callback to update the user list selector on the interface.
+	 *
+	 * @private
+	 *
+	 * @param {Object} ajaxContext The AJAX request context.
+	 * @param {Object} data A parsed JSON response object.
 	 */
 	$.pkp.controllers.grid.users.stageParticipant.form.AddParticipantFormHandler.
-			prototype.addNameToAutocompleteUrl = function(eventObject) {
+			prototype.updateUserListHandler_ = function(ajaxContext, data) {
 
-		var $autocompleteContainer = $('#userId_container');
-		var autocompleteHandler =
-				$.pkp.classes.Handler.getHandler($autocompleteContainer);
+		var jsonData = this.handleJson(data);
+		var $element = this.getHtmlElement();
 
-		var oldUrl = autocompleteHandler.getAutocompleteUrl();
-		// Remove the old Name from the URL
-		var newUrl = oldUrl.replace(/(&userName=[^&]*)/, '');
-		newUrl += '&userName=' + encodeURIComponent(eventObject.value);
-		autocompleteHandler.setAutocompleteUrl(newUrl);
+		var $select = $element.find('#userId');
+		// clear any previous items.
+		$select.find('option[value!=""]').remove();
+
+		for (var optionId in jsonData.content) {
+			var $option = $('<option/>');
+			$option.attr('value', optionId);
+			$option.text(jsonData.content[optionId]);
+			$select.append($option);
+		}
 	};
-
 
 /** @param {jQuery} $ jQuery closure. */
 })(jQuery);

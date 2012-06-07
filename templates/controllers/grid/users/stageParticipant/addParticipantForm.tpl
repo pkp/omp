@@ -11,7 +11,11 @@
 <script type="text/javascript">
 	$(function() {ldelim}
 		// Attach the form handler.
-		$('#addParticipantForm').pkpHandler('$.pkp.controllers.grid.users.stageParticipant.form.AddParticipantFormHandler');
+		$('#addParticipantForm').pkpHandler('$.pkp.controllers.grid.users.stageParticipant.form.AddParticipantFormHandler',
+			{ldelim}
+				fetchUserListUrl: '{url op="fetchUserList" monographId=$monographId stageId=$stageId userGroupId=$selectedUserGroupId escape=false}'
+			{rdelim}
+		);
 	{rdelim});
 </script>
 
@@ -23,9 +27,9 @@
 		{fbvFormSection title="user.group"}
 			{fbvElement type="select" id="userGroupId" from=$userGroupOptions translate=false size=$fbvStyles.size.MEDIUM}
 		{/fbvFormSection}
-		{fbvFormSection title="user.name"}
-			{url|assign:addParticipantUserUrl op="userAutocomplete" monographId=$monographId stageId=$stageId userGroupId=$selectedUserGroupId escape=false}
-			{fbvElement type="autocomplete" id="userId" autocompleteUrl=$addParticipantUserUrl size=$fbvStyles.size.MEDIUM}
+		{fbvFormSection title="user.name" required="true"}
+			{capture assign="defaultLabel"}{translate key="common.chooseOne"}{/capture}
+			{fbvElement type="select" id="userId" size=$fbvStyles.size.MEDIUM required="true" defaultValue="" defaultLabel=$defaultLabel}
 		{/fbvFormSection}
 		{fbvFormButtons}
 	{/fbvFormArea}
