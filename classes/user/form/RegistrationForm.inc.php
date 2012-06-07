@@ -342,7 +342,7 @@ class RegistrationForm extends Form {
 
 				// Send email validation request to user
 				$mail = new MailTemplate('USER_VALIDATE');
-				$mail->setFrom($press->getSetting('contactEmail'), $press->getSetting('contactName'));
+				$this->_setMailFrom($request, $mail);
 				$mail->assignParams(array(
 					'userFullName' => $user->getFullName(),
 					'activateUrl' => $request->url($press->getPath(), 'user', 'activateUser', array($this->getData('username'), $accessKey))
@@ -354,7 +354,7 @@ class RegistrationForm extends Form {
 			if ($this->getData('sendPassword')) {
 				// Send welcome email to user
 				$mail = new MailTemplate('USER_REGISTER');
-				$mail->setFrom($press->getSetting('contactEmail'), $press->getSetting('contactName'));
+				$this->_setMailFrom($request, $mail);
 				$mail->assignParams(array(
 					'username' => $this->getData('username'),
 					'password' => String::substr($this->getData('password'), 0, 30), // Prevent mailer abuse via long passwords
@@ -374,6 +374,23 @@ class RegistrationForm extends Form {
 			$notificationStatusDao =& DAORegistry::getDAO('NotificationStatusDAO');
 			$notificationStatusDao->setPressNotifications($press->getId(), $userId, false);
 			$notificationStatusDao->setPressNotifications($press->getId(), $userId, true);
+		}
+	}
+
+	/**
+	 * Set mail from address
+	 * @param $request PKPRequest
+	 * @param MailTemplate $mail
+	 */
+	function _setMailFrom($request, &$mail) {
+		$site =& $request->getSite();
+		$press =& $request->getPress();
+
+		// Set the sender based on the current context
+		if ($press && $press->getSetting('supportEmail')) {
+			$mail->setFrom($press->getSetting('supportEmail'), $press->getSetting('supportName'));
+		} else {
+			$mail->setFrom($site->getLocalizedContactEmail(), $site->getLocalizedContactName());
 		}
 	}
 
