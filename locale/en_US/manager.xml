@@ -126,7 +126,7 @@
 	<message key="manager.settings.wizard">Settings Wizard</message>
 	<message key="manager.settings.pressSettings">Press Settings</message>
 	<message key="manager.settings.press">Press</message>
-	<message key="manager.settings.pressDescription"><![CDATA[All settings specific to the press (masthead, contact, policies, guidelines, affiliation & support, categories and series, press identification).]]></message>
+	<message key="manager.settings.pressDescription"><![CDATA[All settings specific to the press (masthead, contact, policies, guidelines, affiliation & support, categories and series).]]></message>
 	<message key="manager.settings.accessDescription">All settings related to access and security management for this press (users,roles, site access options).</message>
 	<message key="manager.settings.websiteDescription">All settings specific to the public website pages (homepage, appearance, language)</message>
 	<message key="manager.settings.publicationDescription">All settings specific to the publication process (general settings, submission stage, review stage, editorial stage, production stage, email templates).</message>
@@ -189,7 +189,6 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.siteAccessOptions.siteAccessOptions">Site Access Options</message>
 
 	<!-- Press settings -->
-	<message key="manager.press.identification">Identity</message>
 	<message key="manager.affiliationAndSupport">Sponsor</message>
 
 	<!-- Website settings -->
@@ -296,7 +295,6 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.enableAnnouncements">Enable Press Managers to add press announcements.</message>
 	<message key="manager.setup.enableAnnouncementsHomepage1">Display</message>
 	<message key="manager.setup.enableAnnouncementsHomepage2">of the most recent announcements on the press homepage.</message>
-	<message key="manager.setup.enablePageNumber">Page numbers for items will be calculated and entered manually in the Table of Contents (e.g., pp. 13-26).</message>
 	<message key="manager.setup.enablePressInstructions">Enable this press to appear publicly on the site</message>
 	<message key="manager.setup.enablePublicMonographId">Custom identifiers will be used to identify published items.</message>
 	<message key="manager.setup.enablePublicGalleyId">Custom identifiers will be used to identify galleys (e.g. HTML or PDF files) for published items.</message>
@@ -367,7 +365,6 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.openAccess">The press will provide open access to its contents.</message>
 	<message key="manager.setup.openAccessPolicy">Open Access Policy</message>
 	<message key="manager.setup.openAccessPolicy.description">If the press will provide readers with immediate free access to all published content, enter an Open Access Policy which will appear in About the Press under Policies.</message>
-	<message key="manager.setup.pageNumberIdentifier">Page Number Option</message>
 	<message key="manager.setup.peerReview.description">Outline the peer review policy and processes for readers and authors, including the number of reviewers typically used in reviewing a submission, the criteria by which reviewers are asked to judge submissions, typical time taken to conduct the reviews, and the principles for recruiting reviewers. This will appear in About the Press.</message>
 	<message key="manager.setup.policies">Policies</message>
 	<message key="manager.setup.policies.description">Focus, peer review, sections, privacy, security, and additional about items.</message>
@@ -408,7 +405,6 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.proofreading">Proofreaders</message>
 	<message key="manager.setup.provideRefLinkInstructions">Provide Layout Editors with instructions.</message>
 	<message key="manager.setup.publicationScheduleDescription"><![CDATA[Press items can be published collectively, as part of a monograph with its own Table of Contents. Alternatively, individual items can be published as soon as they are ready, by adding them to the "current" volume's Table of Contents. Provide readers, in About the Press, with a statement about the system this press will use and its expected frequency of publication.]]></message>
-	<message key="manager.setup.publicIdentifier">Identification of Press Content</message>
 	<message key="manager.setup.publisher">Publisher</message>
 	<message key="manager.setup.publisherDescription">The name of the organization publishing the press will appear in About the Press.</message>
 	<message key="manager.setup.referenceLinking">Reference Linking</message>
@@ -477,8 +473,6 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.typeExamples">(E.g., Historical Inquiry; Quasi-Experimental; Literary Analysis; Survey/Interview)</message>
 	<message key="manager.setup.typeMethodApproach">Type (Method/Approach)</message>
 	<message key="manager.setup.typeProvideExamples">Provide examples of relevant research types, methods, and approaches for this field</message>
-	<message key="manager.setup.uniqueIdentifier">Unique Identifier</message>
-	<message key="manager.setup.uniqueIdentifierDescription">Monographs can be tagged with an identification number or string, employing a registration system such as the Digital Object Identifier System (DOI).</message>
 	<message key="manager.setup.useCopyeditors">A Copyeditor will be assigned to work with each submission.</message>
 	<message key="manager.setup.useEditorialReviewBoard">An editorial/review board will be used by the press.</message>
 	<message key="manager.setup.useImageLogo">Press Logo</message>
