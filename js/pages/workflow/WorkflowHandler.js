@@ -73,15 +73,13 @@ $.pkp.pages.workflow = $.pkp.pages.workflow || {};
 	 */
 	$.pkp.pages.workflow.WorkflowHandler.prototype.dataChangedHandler_ =
 			function(callingElement, event, eventData) {
-		if (eventData !== undefined && eventData.assocType !== undefined &&
-				eventData.assocId !== undefined) {
-			if (eventData.assocType == $.pkp.cons.ASSOC_TYPE_PUBLICATION_FORMAT) {
-				// Refresh the publication format grid on this page, if any.
-				var $formatsGrid = $('[id^="formatsGridContainer"]',
-						this.getHtmlElement()).children('div');
-				$formatsGridHandler = $.pkp.classes.Handler.getHandler($formatsGrid);
-				$formatsGridHandler.trigger('dataChanged', eventData.assocId);
-			}
+
+		if ($(event.target, this.getHtmlElement()).children('a').
+				attr('id').match(/catalogEntry/)) {
+			// Refresh the publication format grid on this page, if any.
+			var $formatsGrid = $('[id^="formatsGridContainer"]',
+					this.getHtmlElement()).children('div');
+			$formatsGrid.trigger('dataChanged', eventData);
 		}
 	};
 
