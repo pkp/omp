@@ -27,6 +27,9 @@ class PublicationFormatGridHandler extends GridHandler {
 	/** @var Monograph */
 	var $_monograph;
 
+	/** @var boolean */
+	var $_inCatalogEntryModal;
+
 	/**
 	 * Constructor
 	 */
@@ -61,6 +64,15 @@ class PublicationFormatGridHandler extends GridHandler {
 		$this->_monograph =& $monograph;
 	}
 
+	/**
+	 * Get flag indicating if this grid is loaded
+	 * inside a catalog entry modal or not.
+	 * @return boolean
+	 */
+	function getInCatalogEntryModal() {
+		return $this->_inCatalogEntryModal;
+	}
+
 
 	//
 	// Overridden methods from PKPHandler
@@ -86,6 +98,7 @@ class PublicationFormatGridHandler extends GridHandler {
 
 		$this->setTitle('monograph.publicationFormats');
 		$this->setInstructions('editor.monograph.production.publicationFormatDescription');
+		$this->_inCatalogEntryModal = (boolean) $request->getUserVar('inCatalogEntryModal');
 
 		// Retrieve the authorized monograph.
 		$this->setMonograph($this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH));
@@ -117,8 +130,7 @@ class PublicationFormatGridHandler extends GridHandler {
 
 		// Columns
 		$monograph =& $this->getMonograph();
-		$inCatalogEntryModal = (boolean) $request->getUserVar('inCatalogEntryModal');
-		$cellProvider = new PublicationFormatGridCellProvider($monograph->getId(), $inCatalogEntryModal);
+		$cellProvider = new PublicationFormatGridCellProvider($monograph->getId(), $this->getInCatalogEntryModal());
 		$this->addColumn(
 			new GridColumn(
 				'title',
@@ -188,8 +200,10 @@ class PublicationFormatGridHandler extends GridHandler {
 	 */
 	function getRequestArgs() {
 		$monograph =& $this->getMonograph();
+
 		return array(
-			'monographId' => $monograph->getId()
+			'monographId' => $monograph->getId(),
+			'inCatalogEntryModal' => $this->getInCatalogEntryModal()
 		);
 	}
 
