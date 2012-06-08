@@ -159,7 +159,9 @@ class CatalogHandler extends Handler {
 		$publishedMonographs = array();
 		while ($result =& $resultsIterator->next()) {
 			$publishedMonograph =& $result['publishedMonograph'];
-			$publishedMonographs[$publishedMonograph->getId()] =& $publishedMonograph;
+			if ($publishedMonograph) {
+				$publishedMonographs[$publishedMonograph->getId()] =& $publishedMonograph;
+			}
 			unset($result, $publishedMonograph);
 		}
 		$templateMgr->assign('publishedMonographs', $publishedMonographs);

@@ -271,6 +271,15 @@ class Monograph extends Submission {
 	function setDatePublished($datePublished) {
 		return $this->SetData('datePublished', $datePublished);
 	}
+
+	/**
+	 * Get whether or not this monograph has metadata approved to
+	 * be available in catalog.
+	 * @return boolean;
+	 */
+	function isMetadataApproved() {
+		return (boolean) $this->getDatePublished();
+	}
 }
 
 ?>

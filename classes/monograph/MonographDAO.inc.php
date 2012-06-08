@@ -428,7 +428,7 @@ class MonographDAO extends DAO {
 				LEFT JOIN series_settings sal ON (s.series_id = sal.series_id AND sal.setting_name = ? AND sal.locale = ?)
 				LEFT JOIN published_monographs pm ON (m.monograph_id = pm.monograph_id)
 			WHERE	m.press_id = ? AND
-				pm.monograph_id IS NULL AND
+				(pm.monograph_id IS NULL OR pm.date_published IS NULL) AND
 				m.submission_progress = 0',
 			array(
 				'title', $primaryLocale, // Series title

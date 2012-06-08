@@ -128,7 +128,7 @@ class SpotlightBlockPlugin extends BlockPlugin {
 			$templateMgr->assign('spotlights', array($spotlight));
 		} else {
 			$spotlights =& $spotlightDao->getByLocationAndPressId(SPOTLIGHT_LOCATION_SIDEBAR, $press->getId());
-			$templateMgr->assign('spotlights', $spotlights->toArray());
+			$templateMgr->assign('spotlights', $spotlights);
 		}
 		return parent::getContents($templateMgr);
 	}

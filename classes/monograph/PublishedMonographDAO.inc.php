@@ -67,7 +67,7 @@ class PublishedMonographDAO extends MonographDAO {
 					LEFT JOIN monograph_settings mt ON (mt.monograph_id = m.monograph_id AND mt.setting_name = \'title\')
 				':'') . '
 				LEFT JOIN features f ON (f.monograph_id = m.monograph_id AND f.assoc_type = ? AND f.assoc_id = m.press_id)
-			WHERE	m.press_id = ?
+			WHERE	pm.date_published IS NOT NULL AND m.press_id = ?
 				' . ($searchText !== null?' AND (mt.setting_value LIKE ? OR a.first_name LIKE ? OR a.last_name LIKE ?)':'') . '
 			ORDER BY COALESCE(f.seq, ?), pm.date_published',
 			$params,
@@ -101,7 +101,7 @@ class PublishedMonographDAO extends MonographDAO {
 				LEFT JOIN series_settings sapl ON (s.series_id = sapl.series_id AND sapl.setting_name = ? AND sapl.locale = ?)
 				LEFT JOIN series_settings sal ON (s.series_id = sal.series_id AND sal.setting_name = ? AND sal.locale = ?)
 				JOIN features f ON (f.monograph_id = m.monograph_id AND f.assoc_type = ? AND f.assoc_id = m.press_id)
-			WHERE	m.press_id = ?
+			WHERE	pm.date_published IS NOT NULL AND m.press_id = ?
 			ORDER BY f.seq, pm.date_published',
 			array(
 				'title', $primaryLocale, // Series title
@@ -155,7 +155,7 @@ class PublishedMonographDAO extends MonographDAO {
 				LEFT JOIN series_settings sapl ON (s.series_id = sapl.series_id AND sapl.setting_name = ? AND sapl.locale = ?)
 				LEFT JOIN series_settings sal ON (s.series_id = sal.series_id AND sal.setting_name = ? AND sal.locale = ?)
 				LEFT JOIN features f ON (f.monograph_id = m.monograph_id AND f.assoc_type = ? AND f.assoc_id = s.series_id)
-			WHERE	s.series_id = ?
+			WHERE	pm.date_published IS NOT NULL AND s.series_id = ?
 				' . ($pressId?' AND m.press_id = ?':'' ) . '
 			ORDER BY COALESCE(f.seq, ?) ASC, pm.date_published',
 			$params,
@@ -206,7 +206,7 @@ class PublishedMonographDAO extends MonographDAO {
 				LEFT JOIN series_categories sca ON (sca.series_id = s.series_id)
 				LEFT JOIN categories sc ON (sc.category_id = sca.category_id AND sc.category_id = ?)
 				LEFT JOIN features f ON (f.monograph_id = m.monograph_id AND f.assoc_type = ? AND f.assoc_id = ?)
-			WHERE	(sc.category_id IS NOT NULL OR mc.category_id IS NOT NULL)
+			WHERE	pm.date_published IS NOT NULL AND (sc.category_id IS NOT NULL OR mc.category_id IS NOT NULL)
 				' . ($pressId?' AND m.press_id = ?':'' ) . '
 			ORDER BY COALESCE(f.seq, ?), pm.date_published',
 			$params,
@@ -223,7 +223,7 @@ class PublishedMonographDAO extends MonographDAO {
 	 * @param $pressId int
 	 * @return PublishedMonograph object
 	 */
-	function &getById($monographId, $pressId = null) {
+	function &getById($monographId, $pressId = null, $metadataApprovedOnly = true) {
 		$primaryLocale = AppLocale::getPrimaryLocale();
 		$locale = AppLocale::getLocale();
 		$params = array(
@@ -248,7 +248,8 @@ class PublishedMonographDAO extends MonographDAO {
 				LEFT JOIN series_settings sapl ON (s.series_id = sapl.series_id AND sapl.setting_name = ? AND sapl.locale = ?)
 				LEFT JOIN series_settings sal ON (s.series_id = sal.series_id AND sal.setting_name = ? AND sal.locale = ?)
 			WHERE	m.monograph_id = ?
-				' . ($pressId?' AND m.press_id = ?':''),
+				' . ($pressId?' AND m.press_id = ?':'')
+				. ($metadataApprovedOnly?' AND pm.date_published IS NOT NULL':''),
 			$params
 		);
 

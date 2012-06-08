@@ -833,6 +833,36 @@ class NotificationManager extends PKPNotificationManager {
 		}
 	}
 
+	/**
+	 * Introduce an approve submission notification, if none is present.
+	 * @param $request Request
+	 * @param $monographId
+	 * @param $pressId
+	 */
+	function updateApproveSubmissionNotification(&$request, $monographId, $pressId) {
+		$notificationDao =& DAORegistry::getDAO('NotificationDAO');
+		$notificationFactory =& $notificationDao->getByAssoc(
+			ASSOC_TYPE_MONOGRAPH,
+			$monographId,
+			null,
+			NOTIFICATION_TYPE_APPROVE_SUBMISSION,
+			$pressId
+		);
+
+		// Create notification if there is none already.
+		if ($notificationFactory->wasEmpty()) {
+			$this->createNotification(
+				$request,
+				null,
+				NOTIFICATION_TYPE_APPROVE_SUBMISSION,
+				$pressId,
+				ASSOC_TYPE_MONOGRAPH,
+				$monographId,
+				NOTIFICATION_LEVEL_NORMAL
+			);
+		}
+	}
+
 
 	//
 	// Private helper methods

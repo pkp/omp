@@ -43,40 +43,64 @@ class CatalogEntrySubmissionReviewForm extends SubmissionMetadataViewForm {
 	/**
 	 * Save the metadata and create a catalog entry.
 	 */
-	function execute() {
+	function execute(&$request) {
 		parent::execute();
 
 		$monograph =& $this->getMonograph();
-		if ($this->getData('confirm') != '') {
-			$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
-			$publishedMonograph =& $publishedMonographDao->getById($monograph->getId());
-			$isExistingEntry = $publishedMonograph?true:false;
+		$monographDao =& DAORegistry::getDAO('MonographDAO');
+		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
+		$publishedMonograph =& $publishedMonographDao->getById($monograph->getId(), null, false);
+		$isExistingEntry = $publishedMonograph?true:false;
+
+		import('classes.publicationFormat.PublicationFormatTombstoneManager');
+		$publicationFormatTombstoneMgr = new PublicationFormatTombstoneManager();
+		$press =& $request->getPress();
+		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
+		$publicationFormatFactory =& $publicationFormatDao->getByMonographId($monograph->getId());
+		$publicationFormats =& $publicationFormatFactory->toAssociativeArray();
+
+		if ((boolean) $this->getData('confirm')) {
 			if (!$isExistingEntry) {
 				unset($publishedMonograph);
 				$publishedMonograph = $publishedMonographDao->newDataObject();
 				$publishedMonograph->setId($monograph->getId());
-			}
-			if ($isExistingEntry) {
-				$publishedMonographDao->updateObject($publishedMonograph);
-			} else {
-				$publishedMonograph->setDatePublished(Core::getCurrentDate());
 				$publishedMonographDao->insertObject($publishedMonograph);
-				// Remove "need to approve submission" note
-				$notificationDao =& DAORegistry::getDAO('NotificationDAO');
-				$notificationDao->deleteByAssoc(
-					ASSOC_TYPE_MONOGRAPH,
-					$monograph->getId(),
-					null,
-					NOTIFICATION_TYPE_APPROVE_SUBMISSION,
-					$monograph->getPressId()
-				);
 			}
-			// update the search index for this published monograph.
+			$publishedMonograph->setDatePublished(Core::getCurrentDate());
+			$publishedMonographDao->updateObject($publishedMonograph);
+
+			// Remove "need to approve submission" notification.
+			$notificationDao =& DAORegistry::getDAO('NotificationDAO');
+			$notificationDao->deleteByAssoc(
+				ASSOC_TYPE_MONOGRAPH,
+				$monograph->getId(),
+				null,
+				NOTIFICATION_TYPE_APPROVE_SUBMISSION,
+				$monograph->getPressId()
+			);
+
+			// Remove publication format tombstones.
+			$publicationFormatTombstoneMgr->deleteTombstonesByPublicationFormats($publicationFormats);
+
+			// Update the search index for this published monograph.
 			import('classes.search.MonographSearchIndex');
 			MonographSearchIndex::indexMonographMetadata($monograph);
-		} else { // regular submission without publish in catalog
-			$monographDao =& DAORegistry::getDAO('MonographDAO');
-			$monographDao->updateMonograph($monograph);
+		} else {
+			if ($isExistingEntry) {
+				// Unpublish monograph.
+				$publishedMonograph->setDatePublished(null);
+				$publishedMonographDao->updateObject($publishedMonograph);
+
+				// Create "need to approve submission" notification.
+				$notificationMgr = new NotificationManager();
+				$notificationMgr->updateApproveSubmissionNotification($request, $monograph->getId(), $press->getId());
+
+				// Create tombstones for each publication format.
+				$publicationFormatTombstoneMgr->insertTombstonesByPublicationFormats($publicationFormats, $press);
+			} else {
+				// regular submission without publish in catalog.
+				$monographDao->updateMonograph($monograph);
+			}
 		}
 	}
 }

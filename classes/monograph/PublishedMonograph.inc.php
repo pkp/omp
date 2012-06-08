@@ -232,12 +232,13 @@ class PublishedMonograph extends Monograph {
 	/**
 	 * Get whether or not this monograph is available in the catalog.
 	 * A monograph is available if it has at least one publication format that
-	 * has been flagged as 'available' in the catalog.
-	 * @return int
+	 * has been flagged as 'available' in the catalog and if it has metadata
+	 * approved.
+	 * @return boolean
 	 */
 	function isAvailable() {
 		$publicationFormats =& $this->getPublicationFormats(true);
-		if (sizeof($publicationFormats) > 0) {
+		if (sizeof($publicationFormats) > 0 && $this->isMetadataApproved()) {
 			return true;
 		}
 		return false;

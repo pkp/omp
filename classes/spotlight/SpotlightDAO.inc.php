@@ -225,7 +225,17 @@ class SpotlightDAO extends DAO {
 			$rangeInfo
 		);
 
-		$returner = new DAOResultFactory($result, $this, '_fromRow');
+		$spotlightFactory = new DAOResultFactory($result, $this, '_fromRow');
+		$returner = array();
+
+		// Avoid spotlights without items.
+		while ($spotlight =& $spotlightFactory->next()) {
+			$spotlightItem =& $spotlight->getSpotlightItem();
+			if ($spotlightItem) {
+				$returner[$spotlight->getId()] =& $spotlight;
+			}
+		}
+
 		return $returner;
 	}
 
@@ -236,11 +246,11 @@ class SpotlightDAO extends DAO {
 	 * @return Spotlight
 	 */
 	function getRandomByLocationAndPressId($location, $pressId) {
-		$spotlights =& $this->getByLocationAndPressId($location, $pressId);
+		$spotlights =& array_values($this->getByLocationAndPressId($location, $pressId));
 		$returner = null;
-		if ($spotlights->getCount() > 0) {
-			$spotlights->move(rand(0, $spotlights->getCount() - 1));
-			$returner = $spotlights->next();
+		if (count($spotlights) > 0) {
+			$randNumber = rand(0, count($spotlights) - 1);
+			$returner = $spotlights[$randNumber];
 		}
 
 		return $returner;

@@ -4,11 +4,11 @@
  * Copyright (c) 2003-2012 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * Include series placement and categories for submissions. This template is 
+ * Include series placement and categories for submissions. This template is
  * included in:
  *
  * templates/submission/form/step1.tpl
- * controllers/modals/submissionMetadata/form/catalogEntryFormForm.tpl
+ * controllers/modals/submissionMetadata/form/catalogEntrySubmissionReviewForm.tpl
  * controllers/modals/submissionMetadata/form/submissionMetadataViewForm.tpl
  *}
 <!-- Submission Placement -->
