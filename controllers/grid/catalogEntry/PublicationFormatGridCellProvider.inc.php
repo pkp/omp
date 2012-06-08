@@ -107,7 +107,9 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 				}
 				return $proofComplete?'completed':'new';
 			case 'isAvailable':
-				return $publicationFormat->getIsAvailable()?'completed':'new';
+				$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
+				$publishedMonograph =& $publishedMonographDao->getById($publicationFormat->getMonographId());
+				return ($publicationFormat->getIsAvailable() && $publishedMonograph)?'completed':'new';
 			case 'price':
 				$monographFiles =& $this->getMonographFiles($publicationFormat->getId());
 				$priceConfigured = false;
