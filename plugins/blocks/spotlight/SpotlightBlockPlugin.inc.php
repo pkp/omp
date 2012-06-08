@@ -125,11 +125,14 @@ class SpotlightBlockPlugin extends BlockPlugin {
 		$displayMode = $this->getSetting($press->getId(), 'displayMode');
 		if ($displayMode == SPOTLIGHT_DISPLAY_MODE_RANDOM) {
 			$spotlight =& $spotlightDao->getRandomByLocationAndPressId(SPOTLIGHT_LOCATION_SIDEBAR, $press->getId());
-			$templateMgr->assign('spotlights', array($spotlight));
+			if ($spotlight) {
+				$templateMgr->assign('spotlights', array($spotlight));
+			}
 		} else {
 			$spotlights =& $spotlightDao->getByLocationAndPressId(SPOTLIGHT_LOCATION_SIDEBAR, $press->getId());
 			$templateMgr->assign('spotlights', $spotlights);
 		}
+
 		return parent::getContents($templateMgr);
 	}
 }

@@ -213,7 +213,7 @@ class SpotlightDAO extends DAO {
 	 * Retrieve an array of spotlights matching a location and press id.
 	 * @param $location int
 	 * @param $pressId int
-	 * @return object DAOResultFactory containing matching Spotlights
+	 * @return array Array containing matching Spotlights
 	 */
 	function &getByLocationAndPressId($location, $pressId, $rangeInfo = null) {
 		$result =& $this->retrieveRange(
@@ -243,7 +243,7 @@ class SpotlightDAO extends DAO {
 	 * Retrieve a random spotlight matching a location and press id.
 	 * @param $location int
 	 * @param $pressId int
-	 * @return Spotlight
+	 * @return Spotlight or null
 	 */
 	function getRandomByLocationAndPressId($location, $pressId) {
 		$spotlights =& array_values($this->getByLocationAndPressId($location, $pressId));
