@@ -57,6 +57,11 @@ $.pkp.pages.manageCatalog = $.pkp.pages.manageCatalog || {};
 		$catalogTabs.tabs().bind('tabsselect', {
 			spotlightTabName: this.spotlightTabName_,
 			spotlightsUrl: this.spotlightsUrl_}, this.showTabHandler_);
+
+		// React to data changed from inner widgets (including modals
+		// that have a event bridge and directs their data changed events
+		// to the element that triggered the modal).
+		this.bind('dataChanged', this.dataChangedHandler_);
 	};
 	$.pkp.classes.Helper.inherits(
 			$.pkp.pages.manageCatalog.ManageCatalogHeaderHandler,
@@ -245,6 +250,31 @@ $.pkp.pages.manageCatalog = $.pkp.pages.manageCatalog || {};
 			});
 		} else {
 			return true;
+		}
+	};
+
+
+	/**
+	 * Data changed event handler. For each tab we need to react in a
+	 * different way.
+	 * @param {Event} event The data changed event.
+	 * @param {Object} element The HTML element which generated the event.
+	 */
+	$.pkp.pages.manageCatalog.ManageCatalogHeaderHandler.
+			prototype.dataChangedHandler_ = function(event, element) {
+
+		var $catalogTabs = $('#catalogTabs').tabs();
+		var currentTabIndex = $catalogTabs.tabs('option', 'selected');
+
+		switch(currentTabIndex) {
+			case 1:
+				// Category.
+				$('#selectCategoryForm').trigger('containerReloadRequested');
+				break;
+			case 2:
+				// Series.
+				$('#selectSeriesForm').trigger('containerReloadRequested');
+				break;
 		}
 	};
 
