@@ -472,13 +472,32 @@ a.sprite.collapsed:hover:before { background-position:-1488px -24px; }
 .large_sprite.modal_add_role:before { background-position:-96px -48px; }
 .large_sprite.modal_add_file:before { background-position:-144px -48px; }
 .grid_actions {
-  margin-top:20px;
-  padding-bottom:20px;
-  line-height:24px;
-  font-size:110%;
+  padding:22px 0 22px 0;
   overflow:hidden;
 }
-.grid_actions a { margin-right:25px; }
+.grid_actions a {
+  padding:0;
+  margin:0 -3px 0 0;
+  border-style:none !important;
+  border-color:white !important;
+  border-width:0 0 0 0 !important;
+  background:#0c3b66 url(../templates/images/button_bg_slice.png) repeat-x;
+  height:24px;
+  -moz-border-radius-topright:0px;
+  -webkit-border-radius:0px;
+  border-radius:0px;
+}
+.grid_actions a:first-child {
+  -moz-border-radius-topright:5px 0px 0px 5px;
+  -webkit-border-radius:5px 0px 0px 5px;
+  border-radius:5px 0px 0px 5px;
+}
+.grid_actions a:last-child {
+  -moz-border-radius-topright:0px 5px 5px 0px;
+  -webkit-border-radius:0px 5px 5px 0px;
+  border-radius:0px 5px 5px 0px;
+  border-right:none;
+}
 .action_links {
   line-height:24px;
   height:24px;
@@ -681,11 +700,6 @@ body {
 .pkp_linkActions a.remove_item { background-image:url(../lib/pkp/templates/images/structure/lb_delete.png); }
 .pkp_linkActions a.promote { background-image:url(../lib/pkp/templates/images/structure/grid_promote.png); }
 .pkp_linkActions a.enable { background-image:url(../lib/pkp/templates/images/structure/grid_promote.png); }
-.editor_decision_actions a {
-  margin-right:10px;
-  margin-bottom:10px;
-}
-.editor_decision_actions .ui-button-text-only .ui-button-text { padding:0.34em 1em !important; }
 table.pkp_listing td { padding:0.25em 1.5em 0.25em 0.5em; }
 table.pkp_listing tr.heading td, table.pkp_listing td.heading {
   font-size:0.85em;
@@ -1362,14 +1376,21 @@ span.pkp_controllers_informationCenter_itemLastEvent {
 }
 a.pkp_common_disabled, a.pkp_common_disabled:hover { color:#666666; }
 .button.ui-state-default, .ui-button {
-  background:white url(../templates/images/button_bg_slice.png) repeat-x !important;
+  background:#0c3b66 url(../templates/images/button_bg_slice.png) repeat-x !important;
   color:white !important;
-  border:none !important;
+  border-style:none !important;
+  border-color:white !important;
+  border-width:0 0 0 0 !important;
+  font-weight:normal !important;
+  font-family:Arial, helvetica, Courier !important;
+  font-size:12px !important;
 }
 .button.ui-state-hover, .ui-button.ui-state-hover, .button.ui-state-active, .ui-button.ui-state-active {
-  background:white url(../templates/images/button_bg_slice_hover.png) repeat-x !important;
+  background:#0c3b66 url(../templates/images/button_bg_slice_hover.png) repeat-x !important;
   color:white !important;
-  border:none !important;
+  border-style:none !important;
+  border-color:white !important;
+  border-width:0 0 0 0 !important;
 }
 .pkp_submissionChecklist ul li label.error { margin-bottom:15px; }
 .pkp_manageCatalog_monographList {
