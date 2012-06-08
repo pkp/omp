@@ -16,7 +16,7 @@
 	<message key="submission.submission">Submission</message>
 	<message key="submission.synopsis">Synopsis</message>
 	<message key="submission.workType">Type of Book</message>
-	<message key="submission.workType.description">Select the option that best matches the type of the work that you are submitting. Please note that if you are submitting an edited volume, you will be able to list chapters and assign contributors to those chapters at a later stage. Authored works can also have other contributors (additional authors; translators; etc.) assigned to the work as a whole.</message>
+	<message key="submission.workType.description">Select the option that best matches the type of the work that you are submitting. Please note that if you are submitting an edited volume, you will be able to list chapters and assign contributors to those chapters at a later stage. Authored works can also have other contributors (additional authors; translators; etc.) assigned to the work in the Catalogue stage of the submission process.</message>
 	<message key="submission.workType.editedVolume">Edited Volume</message>
 	<message key="submission.workType.authoredWork">Authored Work</message>
 	<message key="submission.editorial">Editorial</message>
@@ -56,7 +56,7 @@
 	<message key="submission.submit.newSubmissionSingle">Start a New Submission in {$pressName}</message>
 	<message key="submission.submit.upload">Upload Submission</message>
 	<message key="submission.submit.uploadStep">1. Upload Submission</message>
-	<message key="submission.submit.upload.description">Upload your submission files using the form below. You may upload your manuscript as a single submission file, or by uploading separate submission files for each individual manuscript section (eg. your introduction; individual chapters; figures; and so on).</message>
+	<message key="submission.submit.upload.description">You may upload your manuscript as a single submission file, or by uploading separate submission files for each individual manuscript section (eg. your introduction; individual chapters; figures; and so on).</message>
 	<message key="submission.submit.cancelSubmission">You can complete this submission at a later date by selecting Active Submissions from the Author home.</message>
 	<message key="submission.submit.howToSubmit"><![CDATA[Encountering difficulties? Contact <a href="mailto:{$supportEmail}">{$supportName}</a> for assistance ({$supportPhone}).]]></message>
 	<message key="submission.submit.howToSubmitNoPhone"><![CDATA[Encountering difficulties? Contact <a href="mailto:{$supportEmail}">{$supportName}</a> for assistance.]]></message>
