@@ -30,10 +30,6 @@
 	{url|assign:productionReadyFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.productionReady.ProductionReadyFilesGridHandler" op="fetchGrid" monographId=$monograph->getId() stageId=$stageId escape=false}
 	{load_url_in_div id="productionReadyFilesGridDiv" url=$productionReadyFilesGridUrl}
 
-	<h3 class="pkp_grid_title">{translate key="editor.monograph.production.approvalAndPublishing"}</h3>
-
-	<p class="pkp_grid_description">{translate key="editor.monograph.production.approvalAndPublishingDescription"}</p>
-
 	{fbvFormArea id="publicationFormats"}
 		{fbvFormSection}
 			<!--  Formats -->

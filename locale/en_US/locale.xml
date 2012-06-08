@@ -39,6 +39,7 @@
 	<message key="monograph.subtitle">Subtitle</message>
 	<message key="monograph.type">Type of Submission</message>
 	<message key="monograph.proofReading">Proof Reading</message>
+	<message key="monograph.proofReadingDescription">Files ready for proofreading may be uploaded here. Once uploaded, Authors and other participants assigned to the submission may be asked to audit the uploaded proofreading file(s) by clicking the Assign button. Multiple files may be sent for auditing, and an auditing due date can be set. You will be notified of completed audits, and can access the audits by clicking on the participant's name. Finally, you will be able to sign off  on the audited file.</message>
 	<message key="monograph.stageNotInitiated">Stage not initiated.</message>
 
 	<!--  Metadata field description keys -->
@@ -277,7 +278,7 @@
 	<message key="catalog.manage.managementIntroduction">Welcome to Catalog Management. From this page you can publish new catalog entries; review and configure your Featured Books listing; review and configure your New Releases listing; and review and configure your books by Category and Series.</message>
 	<message key="catalog.selectSeries">Select Series</message>
 	<message key="catalog.selectCategory">Select Category</message>
-	<message key="catalog.manage.entryDescription">Use the Submission tab to modify the book's metadata (including placement, title, summary, keywords, contributors, and chapters). Use the Catalog tab to modify the book's catalog information (including a book cover image; audience information; information on representatives, such as any agents or suppliers, who are not direct members of the press; and publication formats). Additionally, any configured publication formats will be given their own tab from which they can be configured.</message>
+	<message key="catalog.manage.entryDescription">To list the submission in the public catalog, acknowledge that the submission is ready to appear in the Monograph tab. If publicly publishing different book formats (eg. hardback; softback/paperback; digital; audio), acknowledge that each publication format is ready to be included in the public catalog in the individual publication format tab, and ensure that the publication format's direct sales availability &amp; pricing is configured. Additional information (including cover image, audience, representatives, and so on) can be configured in the Catalog tab.</message>
 	<message key="catalog.manage.spotlightDescription">Three spotlights (e.g., Featured Book) appear on the press homepage, with spotlight title, image, and text.</message>
 	<message key="catalog.manage.homepageDescription">The cover image of selected books appears toward the top of the homepage as a scrollable set. Click 'Feature', then the star to add a book to the carousel; click the exclamation point to feature as a new release; drag and drop to order.</message>
 	<message key="catalog.manage.categoryDescription">Click 'Feature', then the star to select a featured book for this category; drag and drop to order.</message>
