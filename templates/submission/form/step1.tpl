@@ -35,6 +35,13 @@
 		{fbvElement type="hidden" id="authorUserGroupId" value=$authorUserGroupId}
 	{/if}
 
+	{if $copyrightNoticeAgree}
+		{$copyrightNotice}
+		{fbvFormSection list="true"}
+			{fbvElement type="checkbox" id="copyrightNoticeAgree" required=true value=1 label="submission.submit.copyrightNoticeAgree" checked=$monographId}
+		{/fbvFormSection}
+	{/if}
+
 	<!-- Submission Type -->
 	{fbvFormSection list="true" label="submission.workType" description="submission.workType.description"}
 		{fbvElement type="radio" name="isEditedVolume" id="isEditedVolume-0" value="1" checked=$isEditedVolume label="submission.workType.editedVolume"}

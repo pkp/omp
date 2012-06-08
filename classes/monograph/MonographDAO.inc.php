@@ -171,6 +171,7 @@ class MonographDAO extends DAO {
 		$monograph->setStatus($row['status']);
 		$monograph->setSubmissionProgress($row['submission_progress']);
 		$monograph->setWorkType($row['edited_volume']);
+		$monograph->setCopyrightAgreement($row['copyright_agreement']);
 		$monograph->setDatePublished($this->datetimeFromDB(isset($row['date_published'])?$row['date_published']:null));
 
 		$this->getDataObjectSettings('monograph_settings', 'monograph_id', $row['monograph_id'], $monograph);
@@ -187,9 +188,9 @@ class MonographDAO extends DAO {
 		$monograph->stampModified();
 		$this->update(
 			sprintf('INSERT INTO monographs
-				(locale, user_id, press_id, series_id, series_position, language, comments_to_ed, date_submitted, date_status_modified, last_modified, status, submission_progress, stage_id, pages, hide_author, comments_status, edited_volume)
+				(locale, user_id, press_id, series_id, series_position, language, comments_to_ed, date_submitted, date_status_modified, last_modified, status, submission_progress, stage_id, pages, hide_author, comments_status, edited_volume, copyright_agreement)
 				VALUES
-				(?, ?, ?, ?, ?, ?, ?, %s, %s, %s, ?, ?, ?, ?, ?, ?, ?)',
+				(?, ?, ?, ?, ?, ?, ?, %s, %s, %s, ?, ?, ?, ?, ?, ?, ?, ?)',
 				$this->datetimeToDB($monograph->getDateSubmitted()), $this->datetimeToDB($monograph->getDateStatusModified()), $this->datetimeToDB($monograph->getLastModified())),
 			array(
 				$monograph->getLocale(),
@@ -205,7 +206,8 @@ class MonographDAO extends DAO {
 				$monograph->getPages(),
 				(int) $monograph->getHideAuthor(),
 				(int) $monograph->getCommentsStatus(),
-				(int) $monograph->getWorkType()
+				(int) $monograph->getWorkType(),
+				(int) $monograph->getCopyrightAgreement()
 			)
 		);
 
@@ -235,7 +237,8 @@ class MonographDAO extends DAO {
 					submission_progress = ?,
 					stage_id = ?,
 					edited_volume = ?,
-					hide_author = ?
+					hide_author = ?,
+					copyright_agreement = ?
 
 				WHERE	monograph_id = ?',
 				$this->datetimeToDB($monograph->getDateSubmitted()), $this->datetimeToDB($monograph->getDateStatusModified()), $this->datetimeToDB($monograph->getLastModified())),
@@ -251,6 +254,7 @@ class MonographDAO extends DAO {
 				(int) $monograph->getStageId(),
 				(int) $monograph->getWorkType(),
 				(int) $monograph->getHideAuthor(),
+				(int) $monograph->getCopyrightAgreement(),
 				(int) $monograph->getId()
 			)
 		);

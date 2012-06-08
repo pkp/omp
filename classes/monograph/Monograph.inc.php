@@ -152,6 +152,22 @@ class Monograph extends Submission {
 	}
 
 	/**
+	 * Get copyright agreement status.
+	 * @return string
+	 */
+	function getCopyrightAgreement() {
+		return $this->getData('copyrightAgreement');
+	}
+
+	/**
+	 * Set copyright agreement status.
+	 * @param $copyrightAgreement string
+	 */
+	function setCopyrightAgreement($copyrightAgreement) {
+		return $this->setData('copyrightAgreement', $copyrightAgreement);
+	}
+
+	/**
 	 * Return boolean indicating if author should be hidden in contributor statement.
 	 * @return boolean
 	 */

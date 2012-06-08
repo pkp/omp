@@ -26,6 +26,9 @@ class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
 		$supportedSubmissionLocales = $press->getSetting('supportedSubmissionLocales');
 		if (!is_array($supportedSubmissionLocales) || count($supportedSubmissionLocales) < 1) $supportedSubmissionLocales = array($press->getPrimaryLocale());
 		$this->addCheck(new FormValidatorInSet($this, 'locale', 'required', 'submission.submit.form.localeRequired', $supportedSubmissionLocales));
+		if ((boolean) $press->getSetting('copyrightNoticeAgree')) {
+			$this->addCheck(new FormValidator($this, 'copyrightNoticeAgree', 'required', 'submission.submit.copyrightNoticeAgreeRequired'));
+		}
 		$this->addCheck(new FormValidator($this, 'authorUserGroupId', 'required', 'user.authorization.userGroupRequired'));
 
 
@@ -66,6 +69,13 @@ class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
 				$supportedSubmissionLocales
 			))
 		);
+
+		// if this press has a copyright notice that the author must agree to, present the form items.
+		$press =& $request->getPress();
+		if ((boolean) $press->getSetting('copyrightNoticeAgree')) {
+			$templateMgr->assign('copyrightNotice', $press->getLocalizedSetting('copyrightNotice'));
+			$templateMgr->assign('copyrightNoticeAgree', true);
+		}
 
 		// If categories are configured for the press, present the LB.
 		$categoryDao =& DAORegistry::getDAO('CategoryDAO');
@@ -141,7 +151,7 @@ class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
 	 */
 	function readInputData() {
 		$vars = array(
-			'authorUserGroupId', 'locale', 'isEditedVolume', 'copyrightNoticeAgree', 'seriesId', 'seriesPosition', 'commentsToEditor', 'categories'
+			'authorUserGroupId', 'locale', 'isEditedVolume', 'copyrightNoticeAgree', 'seriesId', 'seriesPosition', 'commentsToEditor', 'categories', 'copyrightNoticeAgree'
 		);
 		foreach ($this->press->getLocalizedSetting('submissionChecklist') as $key => $checklistItem) {
 			$vars[] = "checklist-$key";
@@ -219,6 +229,7 @@ class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
 			$this->monograph->setCommentsToEditor($this->getData('commentsToEditor'));
 			$this->monograph->setWorkType($this->getData('isEditedVolume') ? WORK_TYPE_EDITED_VOLUME : WORK_TYPE_AUTHORED_WORK);
 			$this->monograph->setStageId(WORKFLOW_STAGE_ID_SUBMISSION);
+			$this->monograph->setCopyrightAgreement($this->getData('copyrightNoticeAgree'));
 			// Insert the monograph
 			$this->monographId = $monographDao->insertMonograph($this->monograph);
 
