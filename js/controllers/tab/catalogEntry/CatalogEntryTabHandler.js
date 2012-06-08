@@ -94,6 +94,10 @@ jQuery.pkp.controllers.tab.catalogEntry =
 						this.updateTabsHandler_), 'json');
 			}
 		}
+
+		if ($updateSourceElement.attr('id').match(/approvedProofGrid/)) {
+			this.trigger('dataChanged');
+		}
 	};
 
 
