@@ -80,6 +80,7 @@ $.pkp.pages.workflow = $.pkp.pages.workflow || {};
 			var $formatsGrid = $('[id^="formatsGridContainer"]',
 					this.getHtmlElement()).children('div');
 			$formatsGrid.trigger('dataChanged', eventData);
+			$formatsGrid.trigger('notifyUser', $formatsGrid);
 		}
 	};
 
