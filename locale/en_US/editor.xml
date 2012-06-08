@@ -70,11 +70,11 @@
 	<message key="editor.monograph.newRound">New Review Round</message>
 	<message key="editor.monograph.newRoundDescription">You are about to create a new review round for this submission.  Files that have not been used in other review rounds are listed below.  By default, the reviewers from the previous review round have been selected to participate in this new review round.</message>
 	<message key="editor.monograph.revisions">Revisions</message>
-	<message key="editor.monograph.revisionsDescription">All author, reviewer and editor revision files are available from the Revisions section; only documents included in this section will be available to be passed on to later steps of the submission workflow process.</message>
+	<message key="editor.monograph.revisionsDescription">Any revisions uploaded here will be available for use in further stages.</message>
 	<message key="editor.submissions.lastAssigned">Latest</message>
 	<message key="editor.monograph.review.manageReviewFiles">Manage Review Files</message>
 	<message key="editor.monograph.review.reviewFilesDescription">Any submission files that were chosen for inclusion in this review round are available below. Additional review files can be uploaded (and current files replaced) by clicking the Manage Review Files link.</message>
-	<message key="editor.monograph.review.reviewersDescription">Reviewers can be assigned to this submission by clicking the Add Reviewer link below. You are able to choose amongst a pool of already-enrolled reviewers; enrol new users as reviewers; add a personal message to the review request; set response and review due dates; and choose the review type (blind; double-blind; open). Once reviewers are assigned, you can contact them and revise their due dates by clicking the box next to their name. You will be notified of completed reviews, and can access the reviews by clicking on the reviewer's name.</message>
+	<message key="editor.monograph.review.reviewersDescription">Reviewers can be assigned to this submission by clicking the Add Reviewer link. Reviewers can be contacted, and their due dates revised, by clicking the comment next to their name. You will be notified of completed reviews. When a review is complete, it can be accessed by clicking the reviewer's name.</message>
 	<message key="editor.monograph.fileList.includeAllStages">Include all files from all accessible workflow stages.</message>
 	<message key="editor.monograph.review.currentFiles">Current Review Files For Round {$round}</message>
 	<message key="editor.monograph.final.manageFinalDraftFiles">Manage Final Draft Files</message>
@@ -96,9 +96,9 @@
 	<message key="editor.monograph.copyediting.personalMessageToUser">Personal message to user</message>
 
 	<!-- Editorial related -->
-	<message key="editor.monograph.editorial.introduction">The copyeditor downloads the Accepted Submission files for copyediting, and then uploads the copyedited files under Copyediting for review. The copyeditor uses Assign to select and notify users to review copyedits. Those assigned download, review, and upload the copyedited files and/or leave a note with the file. The copyeditor then prepares and uploads a clean Fair Copy of the submission file(s), for which an editor signs off and clicks Send to Production.</message>
+	<message key="editor.monograph.editorial.introduction">The copyeditor downloads the Accepted Submission files for copyediting, and then uploads the copyedited files under Copyediting for review. The copyeditor uses Assign to select and notify users to audit copyedits. Those assigned download, review, and upload the copyedited files and/or leave a note with the file. The copyeditor then prepares and uploads a clean Fair Copy of the submission file(s), for which an editor signs off and clicks Send to Production.</message>
 	<message key="editor.monograph.editorial.finalDraftDescription">All approved submission revisions from previous review stages are available below. New draft files can be uploaded (and current files replaced) by clicking the Manage Final Draft Files link.</message>
-	<message key="editor.monograph.editorial.copyeditingDescription">Copyedited files may be uploaded below. Once uploaded, Authors and other participants assigned to the submission may be asked to audit the uploaded copyediting file(s). Multiple files may be sent for auditing, and an auditing due date can be set. You will be notified of completed audits, and can access the audits by clicking on the participant's name. Finally, you will be able to sign off as copyeditor on the audited copyedit file.</message>
+	<message key="editor.monograph.editorial.copyeditingDescription">Copyedited files may be uploaded here. Once uploaded, Authors and other participants assigned to the submission may be asked to audit the uploaded copyediting file(s) by clicking the Assign button. Multiple files may be sent for auditing, and an auditing due date can be set. You will be notified of completed audits, and can access the audits by clicking on the participant's name. Finally, you will be able to sign off as copyeditor on the audited copyedit file.</message>
 	<message key="editor.monograph.editorial.fairCopy">Fair Copy</message>
 	<message key="editor.monograph.editorial.fairCopyDescription">Final copyedited files may be uploaded to the Fair Copy section, at which point the submission (and any uploaded fair copies) can be sent to the Production stage.</message>
 
@@ -122,7 +122,7 @@
 	<message key="editor.monograph.noAuditRequested">No audit requested for this file</message>
 	<!-- Review related -->
 	<message key="editor.review">Review</message>
-	<message key="editor.review.introduction">Welcome to the submission's review stage. Multiple reviewers can be assigned and provided access to review files (managed below); new review rounds can be initiated by clicking the New Review Round tab; and all reviewer, author and editor revisions for this review stage can be managed at the bottom of the page. Additional review stage decisions are also available at the bottom of the page.</message>
+	<message key="editor.review.introduction">The assigned editor manages all available files for review from the Review Files section, and assigns one or more reviewers to the files from the Reviewers section. New review rounds can be initiated by clicking the New Review Round tab. All reviewer, author and editor revisions for this review stage are managed in the Revisions section. The editor must finally choose from among the available decisions (Request Revisions; Resubmit for Review; Accept for Submission; Decline Submission; External Review) to advance the submission.</message>
 	<message key="editor.review.uploadRevision">Upload Revision</message>
 	<message key="editor.review.uploadRevisionToRound">Upload revision to review round {$round}</message>
 	<message key="editor.review.personalMessageToReviewer">Personal Message to Reviewer</message>
