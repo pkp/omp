@@ -152,19 +152,21 @@ class Monograph extends Submission {
 	}
 
 	/**
-	 * Get copyright agreement status.
+	 * Get the copyright notice for a given locale
+	 * @param string $locale
 	 * @return string
 	 */
-	function getCopyrightAgreement() {
-		return $this->getData('copyrightAgreement');
+	function getCopyrightNotice($locale) {
+		return $this->getData('copyrightNotice', $locale);
 	}
 
 	/**
-	 * Set copyright agreement status.
-	 * @param $copyrightAgreement string
+	 * Set the copyright notice for a locale
+	 * @param string $copyrightNotice
+	 * @param string $locale
 	 */
-	function setCopyrightAgreement($copyrightAgreement) {
-		return $this->setData('copyrightAgreement', $copyrightAgreement);
+	function setCopyrightNotice($copyrightNotice, $locale) {
+		return $this->setData('copyrightNotice', $copyrightNotice, $locale);
 	}
 
 	/**

@@ -215,6 +215,7 @@ class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
 			$monographDao->updateMonograph($this->monograph);
 		} else {
 			$user =& $request->getUser();
+			$press =& $request->getPress();
 
 			// Create new monograph
 			$this->monograph = new Monograph();
@@ -229,7 +230,7 @@ class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
 			$this->monograph->setCommentsToEditor($this->getData('commentsToEditor'));
 			$this->monograph->setWorkType($this->getData('isEditedVolume') ? WORK_TYPE_EDITED_VOLUME : WORK_TYPE_AUTHORED_WORK);
 			$this->monograph->setStageId(WORKFLOW_STAGE_ID_SUBMISSION);
-			$this->monograph->setCopyrightAgreement($this->getData('copyrightNoticeAgree'));
+			$this->monograph->setCopyrightNotice($press->getLocalizedSetting('copyrightNotice'), $this->getData('locale'));
 			// Insert the monograph
 			$this->monographId = $monographDao->insertMonograph($this->monograph);
 
