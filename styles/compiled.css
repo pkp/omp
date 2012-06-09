@@ -488,15 +488,16 @@ a.sprite.collapsed:hover:before { background-position:-1488px -24px; }
   border-radius:0px;
 }
 .grid_actions a:first-child {
-  -moz-border-radius-topright:5px 0px 0px 5px;
-  -webkit-border-radius:5px 0px 0px 5px;
-  border-radius:5px 0px 0px 5px;
+  -webkit-top-left-border-radius:5px;
+  -webkit-bottom-left-border-radius:5px;
+  border-top-left-radius:5px;
+  border-bottom-left-radius:5px;
 }
 .grid_actions a:last-child {
-  -moz-border-radius-topright:0px 5px 5px 0px;
-  -webkit-border-radius:0px 5px 5px 0px;
-  border-radius:0px 5px 5px 0px;
-  border-right:none;
+  -webkit-top-right-border-radius:5px;
+  -webkit-bottom-right-border-radius:5px;
+  border-top-right-radius:5px;
+  border-bottom-right-radius:5px;
 }
 .action_links {
   line-height:24px;
