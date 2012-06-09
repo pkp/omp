@@ -150,6 +150,9 @@
 	<message key="grid.catalogEntry.representativeIdValue">Representative ID</message>
 	<message key="grid.catalogEntry.representativeIdType">Representative ID Type (GLN is recommended)</message>
 	<message key="grid.catalogEntry.representativesDescription">You may leave the following section empty if you provide your own services to your customers.</message>
+	<message key="grid.action.addRepresentative">Add a Representative</message>
+	<message key="grid.action.editRepresentative">Edit this Representative</message>
+	<message key="grid.action.deleteRepresentative">Delete this Representative</message>
 
 	<!-- Spotlight grid keys -->
 	<!--  Spotlights management -->
@@ -219,6 +222,19 @@
 	<message key="grid.action.releaseMonograph">Mark this submission as a 'new release'</message>
 	<message key="grid.action.manageCategories">Configure categories for this press</message>
 	<message key="grid.action.manageSeries">Configure series for this press</message>
+	<message key="grid.action.editApprovedProof">Edit this Approved Proof</message>
+	<message key="grid.action.addCode">Add an Identification Code</message>
+	<message key="grid.action.editCode">Edit this Code</message>
+	<message key="grid.action.deleteCode">Delete this Code</message>
+	<message key="grid.action.addRights">Add Sales Rights</message>
+	<message key="grid.action.editRights">Edit these rights</message>
+	<message key="grid.action.deleteRights">Delete these rights</message>
+	<message key="grid.action.addMarket">Add a Market</message>
+	<message key="grid.action.editMarket">Edit this Market</message>
+	<message key="grid.action.deleteMarket">Delete this Market</message>
+	<message key="grid.action.addDate">Add a publication date</message>
+	<message key="grid.action.editDate">Edit this Date</message>
+	<message key="grid.action.deleteDate">Delete this Date</message>
 
 	<!-- Used in submission review -->
 	<message key="reviewer.reviewSteps.request">1. Request</message>
