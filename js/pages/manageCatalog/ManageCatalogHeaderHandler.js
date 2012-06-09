@@ -41,8 +41,8 @@ $.pkp.pages.manageCatalog = $.pkp.pages.manageCatalog || {};
 		this.spotlightsUrl_ = options.spotlightsUrl;
 
 		// Set up the tabs
-		var $catalogTabs = $('#catalogTabs');
-		$catalogTabs.tabs().tabs('disable', this.searchTabIndex_); // Search results
+		var $catalogTabs = $('#catalogTabs').tabs();
+		$catalogTabs.tabs('disable', this.searchTabIndex_); // Search results
 
 		// React to "search" events from the search form.
 		this.bind('searchCatalog', this.searchCatalogHandler_);
@@ -54,12 +54,15 @@ $.pkp.pages.manageCatalog = $.pkp.pages.manageCatalog || {};
 		this.bind('selectSeries', this.selectSeriesHandler_);
 
 		// React to showing a tab.  Used to load the remote spotlights grid.
-		$catalogTabs.tabs().bind('tabsselect', {
-			spotlightTabName: this.spotlightTabName_,
-			spotlightsUrl: this.spotlightsUrl_}, this.showTabHandler_);
+		var eventData = {
+				spotlightTabName: this.spotlightTabName_,
+				spotlightsUrl: this.spotlightsUrl_
+		};
+		$catalogTabs.bind('tabsselect', eventData,
+				this.callbackWrapper(this.showTabHandler_));
 
 		// React to data changed from inner widgets (including modals
-		// that have a event bridge and directs their data changed events
+		// that have an event bridge and directs their data changed events
 		// to the element that triggered the modal).
 		this.bind('dataChanged', this.dataChangedHandler_);
 	};
@@ -236,18 +239,17 @@ $.pkp.pages.manageCatalog = $.pkp.pages.manageCatalog || {};
 	 * spotlights tab, which is loaded like a regular AJAX tab.
 	 * @private
 	 *
+	 * @param {Object} element The parent element of the tab
+	 * that triggered the event.
 	 * @param {Event} event The event.
 	 * @param {Object} tabElement the HTML element which generated the event.
 	 * @return {boolean} Let the other tabs function normally.
 	 */
 	$.pkp.pages.manageCatalog.ManageCatalogHeaderHandler.
-			prototype.showTabHandler_ = function(event, tabElement) {
+			prototype.showTabHandler_ = function(element, event, tabElement) {
 
 		if (tabElement.panel.id == event.data.spotlightTabName) {
-			$.get(event.data.spotlightsUrl, function(data) {
-				var jsonData = $.parseJSON(data);
-				$('#spotlightsTab').html(jsonData.content);
-			});
+			this.loadSpotligthsContent_(event.data.spotlightsUrl);
 		} else {
 			return true;
 		}
@@ -255,8 +257,23 @@ $.pkp.pages.manageCatalog = $.pkp.pages.manageCatalog || {};
 
 
 	/**
+	 * Loads the spotlights tab content.
+	 * @private
+	 * @param {string} url Url to fetch the content.
+	 */
+	$.pkp.pages.manageCatalog.ManageCatalogHeaderHandler.
+			prototype.loadSpotligthsContent_ = function(url) {
+		$.get(url, function(data) {
+			var jsonData = $.parseJSON(data);
+			$('#spotlightsTab').html(jsonData.content);
+		});
+	};
+
+
+	/**
 	 * Data changed event handler. For each tab we need to react in a
 	 * different way.
+	 * @private
 	 * @param {Event} event The data changed event.
 	 * @param {Object} element The HTML element which generated the event.
 	 */
@@ -267,13 +284,30 @@ $.pkp.pages.manageCatalog = $.pkp.pages.manageCatalog || {};
 		var currentTabIndex = $catalogTabs.tabs('option', 'selected');
 
 		switch(currentTabIndex) {
+			case 0:
+				// Homepage.
+				$catalogTabs.tabs('load', 0);
+				break;
 			case 1:
 				// Category.
-				$('#selectCategoryForm').trigger('containerReloadRequested');
+				$('#selectCategoryForm', this.getHtmlElement()).
+						trigger('containerReloadRequested');
 				break;
 			case 2:
 				// Series.
-				$('#selectSeriesForm').trigger('containerReloadRequested');
+				$('#selectSeriesForm', this.getHtmlElement()).
+						trigger('containerReloadRequested');
+				break;
+			case 3:
+			case 4:
+				if (this.searchTabIndex_ == currentTabIndex) {
+					// Search tab.
+					$('#catalogSearchForm', this.getHtmlElement()).
+							trigger('submit');
+				} else {
+					// Spotlights tab.
+					this.loadSpotligthsContent_(this.spotlightsUrl_);
+				}
 				break;
 		}
 	};
