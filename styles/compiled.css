@@ -228,7 +228,7 @@ a.sprite.notify:before {
 }
 a.sprite.notify:hover:before { background-position:-24px -24px; }
 a.sprite.settings:before {
-  margin-top:8px;
+  margin:8px;
   background-position:-408px 0;
 }
 a.sprite.settings:hover:before { background-position:-408px -24px; }
@@ -1008,6 +1008,7 @@ div.pkp_controllers_grid tr.category {
 div.pkp_controllers_grid tbody.empty td {
   padding-left:10px;
   text-align:left;
+  height:40px;
 }
 div.pkp_controllers_grid thead tr {
   height:30px;
@@ -1021,8 +1022,6 @@ div.pkp_controllers_grid thead th {
 div.pkp_controllers_grid thead th:first-child { padding-left:28px; }
 div.pkp_controllers_grid td {
   text-align:center;
-  min-height:40px;
-  height:40px;
   font-size:85%;
   vertical-align:middle;
   padding:0px;
@@ -1047,16 +1046,13 @@ div.pkp_controllers_grid .wrapper { margin-bottom:50px; }
 div.pkp_controllers_grid .grid_header .pkp_grid_description { padding:10px; }
 div.pkp_controllers_grid .grid_header_bar {
   background-color:#f7f5f4;
-  min-height:25px;
-  padding-right:10px;
-  padding-left:10px;
-  padding-top:5px;
-  padding-bottom:5px;
+  padding:5px 10px 5px 0px;
 }
 div.pkp_controllers_grid .grid_header_bar h3 {
   display:inline;
-  padding-top:5px;
+  padding:0px 0px 0px 10px;
   vertical-align:middle;
+  line-height:24px;
 }
 div.pkp_controllers_grid .grid_header_bar a { float:left; }
 div.pkp_controllers_grid .options {
@@ -1073,20 +1069,14 @@ div.pkp_controllers_grid .hidetext {
 }
 div.pkp_controllers_grid .row_container {
   position:relative;
-  padding-top:11px;
-  padding-left:50px;
-  padding-right:20px;
+  padding:0px 20px 0px 50px;
   overflow:hidden;
-  min-height:29px;
-  height:auto;
-  line-height:auto;
-  vertical-align:middle;
+  height:40px;
 }
 div.pkp_controllers_grid .row_container .row_actions {
   position:absolute;
-  width:32px;
-  padding-left:8px;
-  height:200px;
+  width:40px;
+  height:40px;
 }
 div.pkp_controllers_grid .row_actions {
   top:0;
@@ -1096,7 +1086,13 @@ div.pkp_controllers_grid .row_actions a {
   display:block;
   cursor:pointer;
 }
-div.pkp_controllers_grid .row_file { width:100%; }
+div.pkp_controllers_grid .row_file {
+  position:absolute;
+  width:100%;
+  top:50%;
+  line-height:24px;
+  margin-top:-1em;
+}
 div.pkp_controllers_grid .row_file a.pkp_controllers_linkAction {
   float:left;
   margin-right:20px;
