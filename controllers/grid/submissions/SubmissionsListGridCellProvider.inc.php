@@ -247,7 +247,7 @@ class SubmissionsListGridCellProvider extends DataObjectGridCellProvider {
 		import('lib.pkp.classes.linkAction.request.RedirectAction');
 
 		return new LinkAction(
-			'details',
+			'itemWorkflow',
 			new RedirectAction(
 				$dispatcher->url(
 					$request, ROUTE_PAGE,

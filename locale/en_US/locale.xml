@@ -168,6 +168,9 @@
 	<message key="grid.content.spotlights.titleRequired">A spotlight title is required.</message>
 	<message key="grid.content.spotlights.typeRequired">A type of item must be chosen.</message>
 	<message key="grid.content.spotlights.locationRequired">Please choose a location for this spotlight.</message>
+	<message key="grid.action.editSpotlight">Edit this spotlight</message>
+	<message key="grid.action.deleteSpotlight">Delete this spotlight</message>
+	<message key="grid.action.addSpotlight">Add a spotlight</message>
 
 	<!-- Content Management - Footer grid keys -->
 	<message key="grid.content.navigation.footer">Footer</message>
@@ -180,6 +183,9 @@
 	<message key="grid.content.navigation.footer.deleteCategoryConfirm">Are you sure you wish to delete this category? The action cannot be undone, and links in this category will also be removed.</message>
 	<message key="grid.content.navigation.footer.titleRequired">A title is required.</message>
 	<message key="grid.content.navigation.footer.descriptionRequired">A description is required.</message>
+	<message key="grid.action.addFooterCategoryLink">Add a new footer category</message>
+	<message key="grid.action.editFooterCategory">Edit this footer category</message>
+
 	<!-- Content Management - Social Media keys -->
 	<message key="grid.content.navigation.socialMedia">Social Media</message>
 	<message key="grid.content.navigation.socialMedia.platform">Platform</message>
@@ -189,13 +195,30 @@
 	<message key="grid.content.navigation.socialMedia.addSocialLink">Add Social Link</message>
 	<message key="grid.content.navigation.socialMedia.includeInCatalog">Use this for each published monograph in the catalog?</message>
 	<message key="grid.content.navigation.socialMedia.inCatalog">Used In Catalog</message>
-	
+	<message key="grid.action.addMedia">Add a new Social Media type</message>
+
 	<!-- Editorial policies -->
 	<message key="manager.series.open">Open Submissions</message>
 	<message key="manager.series.indexed">Indexed</message>
 
 	<!-- Library Files -->
 	<message key="grid.libraryFiles.column.files">Files</message>
+
+	<!--  OMP specific grid actions -->
+	<message key="grid.action.catalogEntry">View the catalog entry form</message>
+	<message key="grid.action.editFormat">Edit this format</message>
+	<message key="grid.action.deleteFormat">Delete this format</message>
+	<message key="grid.action.addFormat">Add a publication format</message>
+	<message key="grid.action.approveProofs">Approve the proofs for indexing and inclusion in the catalog</message>
+	<message key="grid.action.addAnnouncement">Add an Announcement</message>
+	<message key="grid.action.showReviewPolicy">Read the current review policy</message>
+	<message key="grid.action.newCatalogEntry">New Catalog Entry</message>
+	<message key="grid.action.publicCatalog">View this item in the catalog</message>
+	<message key="grid.action.feature">Toggle the feature display</message>
+	<message key="grid.action.featureMonograph">Feature this in the catalog carousel</message>
+	<message key="grid.action.releaseMonograph">Mark this submission as a 'new release'</message>
+	<message key="grid.action.manageCategories">Configure categories for this press</message>
+	<message key="grid.action.manageSeries">Configure series for this press</message>
 
 	<!-- Used in submission review -->
 	<message key="reviewer.reviewSteps.request">1. Request</message>
@@ -315,6 +338,7 @@
 
 	<message key="dashboard.tasks">Tasks</message>
 	<message key="dashboard.submissions">Submissions</message>
+	<message key="grid.action.itemWorkflow">Go to this submissions' workflow</message>
 
 	<message key="common.queue.long.submissionsUnassigned">Unassigned Submissions</message>
 	<message key="common.queue.long.myAssigned">My Assigned Submissions</message>

@@ -58,7 +58,7 @@ class ReviewStageForm extends PressSettingsForm {
 		// Ensuring blind review link.
 		import('lib.pkp.classes.linkAction.request.ConfirmationModal');
 			$ensuringLink = new LinkAction(
-				'addUser',
+				'showReviewPolicy',
 				new ConfirmationModal(
 					__('review.blindPeerReview'),
 					__('review.ensuringBlindReview')),

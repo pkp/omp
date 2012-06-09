@@ -55,7 +55,7 @@ class MySubmissionsListGridCellProvider extends SubmissionsListGridCellProvider 
 			}
 			import('lib.pkp.classes.linkAction.request.RedirectAction');
 			$action = new LinkAction(
-				'details',
+				'itemWorkflow',
 				new RedirectAction($url),
 				$title
 			);

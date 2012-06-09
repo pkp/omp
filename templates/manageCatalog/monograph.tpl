@@ -72,7 +72,7 @@
 		{$monograph->getSeriesTitle()|escape}
 	</div>
 	<div class="pkp_manageCatalog_monograph_actions pkp_linkActions">
-			{null_link_action key="submission.editCatalogEntry" id="catalogEntry-"|concat:$monographId} | {null_link_action key="submission.submission" id="workflow-"|concat:$monographId}
+			{null_link_action key="submission.editCatalogEntry" id="catalogEntry-"|concat:$monographId} | {null_link_action key="submission.submission" id="itemWorkflow-"|concat:$monographId}
 	</div>
 	<div class="pkp_manageCatalog_featureTools pkp_helpers_invisible pkp_linkActions submission_actions">
 		<ul class="submission_actions">

@@ -50,7 +50,7 @@
 		$monographsContainer.find('a[id^="catalogEntry"]').click(
 				this.callbackWrapper(this.activateAction));
 
-		$monographsContainer.find('a[id^="workflow"]').click(
+		$monographsContainer.find('a[id^="itemWorkflow"]').click(
 				this.callbackWrapper(this.workflowButtonHandler_));
 
 		$monographsContainer.find('a[id^="publicCatalog"]').click(

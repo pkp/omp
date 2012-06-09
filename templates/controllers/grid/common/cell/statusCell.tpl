@@ -10,10 +10,10 @@
 <span id="{$cellId}" class="pkp_linkActions">
 	{if count($actions) gt 0}
 		{assign var=defaultCellAction value=$actions[0]}
-		{if $column->hasFlag('hoverTitle')}{assign var="hover" value=true}{else}{assign var="hover" value=false}{/if}
-		{include file="linkAction/linkAction.tpl" action=$defaultCellAction contextId=$cellId imageClass="task" hoverTitle=$hover}
+		{include file="linkAction/linkAction.tpl" action=$defaultCellAction contextId=$cellId imageClass="task"}
 	{else}
-		<a class="task {$status|escape}">status</a>
+		{capture assign="statusTitle"}{translate key="grid.task.status."|concat:$status}{/capture}
+		<a title="{$statusTitle|escape}" class="task {$status|escape}">status</a>
 	{/if}
 </span>
 
