@@ -1501,6 +1501,7 @@ a.pkp_common_disabled, a.pkp_common_disabled:hover { color:#666666; }
   background-color:#ffffff;
   z-index:10;
 }
+.pkp_page_header #participantToggle.expandedIndicator:after { content:' [X]'; }
 .pkp_page_header ul.submission_actions a { text-decoration:underline; }
 .pkp_page_header .submission_progress_wrapper {
   clear:both;

@@ -28,9 +28,7 @@
 		this.parent($submissionHeader, options);
 
 		// show and hide on click of link
-		$('#participantToggle').click(function() {
-			$('.participant_popover').toggle();
-		});
+		$('#participantToggle').click(this.callbackWrapper(this.appendToggleIndicator_));
 
 		this.bind('gridRefreshRequested', this.refreshWorkflowContent_);
 		this.publishEvent('stageParticipantsChanged');
@@ -62,6 +60,23 @@
 		}
 	};
 
+
+	/**
+	 * Append a + or - to the participants grid string based on current visibility
+	 * after toggling the display of the participants grid.
+	 *
+	 * @param {JQuery} callingElement The calling element.
+	 *  that triggered the event.
+	 * @param {Event} event The event.
+	 * @private
+	 */
+	$.pkp.pages.workflow.SubmissionHeaderHandler.prototype.appendToggleIndicator_ =
+			function(callingElement, event) {
+
+		var $submissionHeader = this.getHtmlElement();
+		$submissionHeader.find('.participant_popover').toggle();
+		$submissionHeader.find('#participantToggle').toggleClass('expandedIndicator');
+	};
 
 /** @param {jQuery} $ jQuery closure. */
 })(jQuery);
