@@ -219,7 +219,7 @@ class SubmissionHandler extends Handler {
 		return array(
 			1 => 'submission.submit.prepare',
 			2 => 'submission.submit.upload',
-			3 => 'submission.submit.catalogue',
+			3 => 'submission.submit.catalog',
 			4 => 'submission.submit.nextSteps'
 		);
 	}
