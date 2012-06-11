@@ -28,12 +28,12 @@
 		<li>
 			<a title="submission" href="{url router=$smarty.const.ROUTE_COMPONENT component="tab.catalogEntry.CatalogEntryTabHandler" tab="submission" op="submissionMetadata" monographId="$monographId" stageId=$stageId tabPos="0"}">{translate key="submission.catalogEntry.monographMetadata"}</a>
 		</li>
-		<li {if !$published}class="ui-state-default ui-corner-top ui-state-disabled"{/if}>
+		<li>
 			<a title="catalog" href="{url router=$smarty.const.ROUTE_COMPONENT component="tab.catalogEntry.CatalogEntryTabHandler" tab="catalog" op="catalogMetadata" monographId="$monographId" stageId=$stageId tabPos="1"}">{translate key="submission.catalogEntry.catalogMetadata"}</a>
 		</li>
 		{counter start=2 assign="counter"}
 		{foreach from=$publicationFormats item=format}
-			<li>{* no need to bother with the published test, since unpublished monographs will not have formats assigned to them *}
+			<li>
 				<a id="publication{$format->getId()|escape}"
 					href="{url router=$smarty.const.ROUTE_COMPONENT component="tab.catalogEntry.CatalogEntryTabHandler"
 					tab="publication"|concat:$format->getId()
@@ -43,6 +43,6 @@
 					stageId=$stageId
 					tabPos=$counter}">{$format->getLocalizedTitle()|escape}</a>
 			</li>
-		{counter} {* increment our counter, assign to $counter variable *}
+			{counter} {* increment our counter, assign to $counter variable *}
 		{/foreach}
 </ul>

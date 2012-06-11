@@ -59,7 +59,7 @@ class CatalogEntrySubmissionReviewForm extends SubmissionMetadataViewForm {
 		$publicationFormatFactory =& $publicationFormatDao->getByMonographId($monograph->getId());
 		$publicationFormats =& $publicationFormatFactory->toAssociativeArray();
 
-		if ((boolean) $this->getData('confirm')) {
+		if ($this->getData('confirm')) {
 			if (!$isExistingEntry) {
 				unset($publishedMonograph);
 				$publishedMonograph = $publishedMonographDao->newDataObject();

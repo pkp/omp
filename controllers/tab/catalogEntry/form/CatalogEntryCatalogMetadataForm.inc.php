@@ -109,7 +109,7 @@ class CatalogEntryCatalogMetadataForm extends Form {
 
 		$monograph =& $this->getMonograph();
 		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
-		$this->_publishedMonograph =& $publishedMonographDao->getById($monograph->getId());
+		$this->_publishedMonograph =& $publishedMonographDao->getById($monograph->getId(), null, false);
 	}
 
 
@@ -191,9 +191,12 @@ class CatalogEntryCatalogMetadataForm extends Form {
 
 		$monograph =& $this->getMonograph();
 		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
-		$publishedMonograph =& $publishedMonographDao->getById($monograph->getId()); /* @var $publishedMonograph PublishedMonograph */
+		$publishedMonograph =& $publishedMonographDao->getById($monograph->getId(), null, false); /* @var $publishedMonograph PublishedMonograph */
+		$isExistingEntry = $publishedMonograph?true:false;
 		if (!$publishedMonograph) {
-			fatalError('Updating catalog metadata with no published monograph!');
+			$publishedMonograph = $publishedMonographDao->newDataObject();
+			$publishedMonograph->setId($monograph->getId());
+			$publishedMonograph->setDatePublished(Core::getCurrentDate());
 		}
 
 		// Populate the published monograph with the cataloging metadata
@@ -270,8 +273,12 @@ class CatalogEntryCatalogMetadataForm extends Form {
 			$temporaryFileManager->deleteFile($temporaryFileId, $this->_userId);
 		}
 
-		// Update the modified fields
-		$publishedMonographDao->updateObject($publishedMonograph);
+		// Update the modified fields or insert new.
+		if ($isExistingEntry) {
+			$publishedMonographDao->updateObject($publishedMonograph);
+		} else {
+			$publishedMonographDao->insertObject($publishedMonograph);
+		}
 	}
 }
 

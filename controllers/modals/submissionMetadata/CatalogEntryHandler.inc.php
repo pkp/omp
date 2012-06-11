@@ -129,23 +129,19 @@ class CatalogEntryHandler extends Handler {
 		// check to see if this monograph has been published yet
 		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
 		$publishedMonograph =& $publishedMonographDao->getById($monograph->getId());
-		if (isset($publishedMonograph)) {
-			$templateMgr->assign('published', true);
-			$templateMgr->assign('monographId', $monograph->getId());
-			$tabPosition = (int) $this->getTabPosition();
-			$templateMgr->assign('selectedTab', $tabPosition);
-			$templateMgr->assign('selectedFormatId', $this->getSelectedFormatId());
+		$tabPosition = (int) $this->getTabPosition();
+		$templateMgr->assign('selectedTab', $tabPosition);
+		$templateMgr->assign('selectedFormatId', $this->getSelectedFormatId());
 
-			// load in any publication formats assigned to this published monograph
-			$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
-			$formats =& $publicationFormatDao->getByMonographId($monograph->getId());
-			$publicationFormats = array();
-			while ($publicationFormat =& $formats->next()) {
-				$publicationFormats[] =& $publicationFormat;
-			}
-
-			$templateMgr->assign_by_ref('publicationFormats', $publicationFormats);
+		// load in any publication formats assigned to this published monograph
+		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
+		$formats =& $publicationFormatDao->getByMonographId($monograph->getId());
+		$publicationFormats = array();
+		while ($publicationFormat =& $formats->next()) {
+			$publicationFormats[] =& $publicationFormat;
 		}
+
+		$templateMgr->assign_by_ref('publicationFormats', $publicationFormats);
 
 		$application =& Application::getApplication();
 		$request =& $application->getRequest();
@@ -172,21 +168,17 @@ class CatalogEntryHandler extends Handler {
 		$monograph =& $this->getMonograph();
 		// check to see if this monograph has been published yet
 		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
-		$publishedMonograph =& $publishedMonographDao->getById($monograph->getId());
 		$json = new JSONMessage();
 
-		if (isset($publishedMonograph)) {
-			// load in any publication formats assigned to this published monograph
-			$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
-			$formats =& $publicationFormatDao->getByMonographId($monograph->getId());
-			$publicationFormats = array();
-			while ($format =& $formats->next()) {
-				$publicationFormats[$format->getId()] = $format->getLocalizedTitle();
-			}
-			$json->setStatus(true);
-			$json->setContent(true);
-			$json->setAdditionalAttributes(array('formats' => $publicationFormats));
+		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
+		$formats =& $publicationFormatDao->getByMonographId($monograph->getId());
+		$publicationFormats = array();
+		while ($format =& $formats->next()) {
+			$publicationFormats[$format->getId()] = $format->getLocalizedTitle();
 		}
+		$json->setStatus(true);
+		$json->setContent(true);
+		$json->setAdditionalAttributes(array('formats' => $publicationFormats));
 		return $json->getString();
 	}
 }
