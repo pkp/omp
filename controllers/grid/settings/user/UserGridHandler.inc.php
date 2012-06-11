@@ -330,7 +330,7 @@ class UserGridHandler extends GridHandler {
 				// If this is a newly created user, show role management form.
 				if (!$userId) {
 					import('controllers.grid.settings.user.form.UserRoleForm');
-					$userRoleForm = new UserRoleForm($user->getId());
+					$userRoleForm = new UserRoleForm($user->getId(), $user->getFullName());
 					$userRoleForm->initData($args, $request);
 					$json = new JSONMessage(true, $userRoleForm->display($args, $request));
 				} else {

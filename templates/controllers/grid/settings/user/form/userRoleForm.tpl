@@ -13,7 +13,7 @@
 	{rdelim});
 </script>
 <form class="pkp_form" id="userRoleForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.settings.user.UserGridHandler" op="updateUserRoles"}">
-<h3>{translate key="grid.user.step2"}</h3>
+<h3>{translate key="grid.user.step2" userFullName=$userFullName}</h3>
 
 	<input type="hidden" id="userId" name="userId" value="{$userId|escape}" />
 

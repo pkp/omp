@@ -19,13 +19,19 @@ class UserRoleForm extends Form {
 	/* @var the user id for which to map user groups */
 	var $userId;
 
+	/* @var string Ûser full name */
+	var $_userFullName;
+
 	/**
 	 * Constructor.
+	 * @param int $userId
+	 * @param string $userFullName
 	 */
-	function UserRoleForm($userId) {
+	function UserRoleForm($userId, $userFullName) {
 		parent::Form('controllers/grid/settings/user/form/userRoleForm.tpl');
 
 		$this->userId = (int) $userId;
+		$this->_userFullName = $userFullName;
 		$this->addCheck(new FormValidatorPost($this));
 	}
 
@@ -39,6 +45,7 @@ class UserRoleForm extends Form {
 		$templateMgr =& TemplateManager::getManager();
 
 		$templateMgr->assign('userId', $this->userId);
+		$templateMgr->assign('userFullName', $this->_userFullName);
 		$templateMgr->assign('helpTopicId', $helpTopicId);
 
 		return $this->fetch($request);
