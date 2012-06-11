@@ -58,6 +58,7 @@ class CatalogEntrySubmissionReviewForm extends SubmissionMetadataViewForm {
 		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
 		$publicationFormatFactory =& $publicationFormatDao->getByMonographId($monograph->getId());
 		$publicationFormats =& $publicationFormatFactory->toAssociativeArray();
+		$notificationMgr = new NotificationManager();
 
 		if ($this->getData('confirm')) {
 			if (!$isExistingEntry) {
@@ -69,15 +70,8 @@ class CatalogEntrySubmissionReviewForm extends SubmissionMetadataViewForm {
 			$publishedMonograph->setDatePublished(Core::getCurrentDate());
 			$publishedMonographDao->updateObject($publishedMonograph);
 
-			// Remove "need to approve submission" notification.
-			$notificationDao =& DAORegistry::getDAO('NotificationDAO');
-			$notificationDao->deleteByAssoc(
-				ASSOC_TYPE_MONOGRAPH,
-				$monograph->getId(),
-				null,
-				NOTIFICATION_TYPE_APPROVE_SUBMISSION,
-				$monograph->getPressId()
-			);
+			// Remove "need to approve submission" notifications.
+			$notificationMgr->updateApproveSubmissionNotificationTypes($request, $publishedMonograph);
 
 			// Remove publication format tombstones.
 			$publicationFormatTombstoneMgr->deleteTombstonesByPublicationFormats($publicationFormats);
@@ -92,8 +86,7 @@ class CatalogEntrySubmissionReviewForm extends SubmissionMetadataViewForm {
 				$publishedMonographDao->updateObject($publishedMonograph);
 
 				// Create "need to approve submission" notification.
-				$notificationMgr = new NotificationManager();
-				$notificationMgr->updateApproveSubmissionNotification($request, $monograph->getId(), $press->getId());
+				$notificationMgr->updateApproveSubmissionNotificationTypes($request, $publishedMonograph);
 
 				// Create tombstones for each publication format.
 				$publicationFormatTombstoneMgr->insertTombstonesByPublicationFormats($publicationFormats, $press);

@@ -31,7 +31,7 @@
 	<input type="hidden" name="tab" value="publication" />
 
 	{* in catalog status *}
-	<h3>{if $isAvailable}{translate key="monograph.publicationFormat.inCatalog"}{else}{translate key="monograph.publicationFormat.notInCatalog"}{/if}</h3>
+	<h3>{if $isAvailable && $submissionApproved}{translate key="monograph.publicationFormat.inCatalog"}{else}{translate key="monograph.publicationFormat.notInCatalog"}{/if}</h3>
 
 	{fbvFormArea id="catalogInclusion"}
 		{fbvFormSection list="true"}

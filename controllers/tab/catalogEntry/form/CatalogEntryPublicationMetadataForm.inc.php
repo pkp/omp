@@ -72,6 +72,7 @@ class CatalogEntryPublicationMetadataForm extends Form {
 		$templateMgr->assign('isPhysicalFormat', (int) $this->getPhysicalFormat()); // included to load format-specific template
 		$templateMgr->assign('stageId', $this->getStageId());
 		$templateMgr->assign('formParams', $this->getFormParams());
+		$templateMgr->assign('submissionApproved', $monograph->getDatePublished());
 
 		$onixCodelistItemDao =& DAORegistry::getDAO('ONIXCodelistItemDAO');
 
@@ -103,7 +104,8 @@ class CatalogEntryPublicationMetadataForm extends Form {
 		// Notification options.
 		$notificationRequestOptions = array(
 			NOTIFICATION_LEVEL_NORMAL => array(
-				NOTIFICATION_TYPE_CONFIGURE_PAYMENT_METHOD => array(ASSOC_TYPE_PRESS, $press->getId())),
+				NOTIFICATION_TYPE_CONFIGURE_PAYMENT_METHOD => array(ASSOC_TYPE_PRESS, $press->getId()),
+				NOTIFICATION_TYPE_FORMAT_NEEDS_APPROVED_SUBMISSION => array(ASSOC_TYPE_MONOGRAPH, $monograph->getId())),
 			NOTIFICATION_LEVEL_TRIVIAL => array()
 		);
 

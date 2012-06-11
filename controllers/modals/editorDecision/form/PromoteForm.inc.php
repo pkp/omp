@@ -142,10 +142,6 @@ class PromoteForm extends EditorDecisionWithEmailForm {
 				}
 				// Send email to the author.
 				$this->_sendReviewMailToAuthor($seriesEditorSubmission, $emailKey, $request);
-
-				// Introduce the "approve submission" notification for production, if needed.
-				$notificationMgr = new NotificationManager();
-				$notificationMgr->updateApproveSubmissionNotification($request, $seriesEditorSubmission->getId(), $seriesEditorSubmission->getPressId());
 				break;
 			default:
 				fatalError('Unsupported decision!');

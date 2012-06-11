@@ -221,6 +221,9 @@ class NotificationManager extends PKPNotificationManager {
 			case NOTIFICATION_TYPE_APPROVE_SUBMISSION:
 				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
 				return __('notification.type.approveSubmission');
+			case NOTIFICATION_TYPE_FORMAT_NEEDS_APPROVED_SUBMISSION:
+				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
+				return __('notification.type.formatNeedsApprovedSubmission');
 			case NOTIFICATION_TYPE_CONFIGURE_PAYMENT_METHOD:
 				assert($notification->getAssocType() == ASSOC_TYPE_PRESS && is_numeric($notification->getAssocId()));
 				return __('notification.type.configurePaymentMethod');
@@ -251,6 +254,7 @@ class NotificationManager extends PKPNotificationManager {
 			case NOTIFICATION_TYPE_EDITOR_DECISION_SEND_TO_PRODUCTION:
 				return __('notification.type.editorDecisionTitle');
 			case NOTIFICATION_TYPE_APPROVE_SUBMISSION:
+			case NOTIFICATION_TYPE_FORMAT_NEEDS_APPROVED_SUBMISSION:
 				return __('notification.type.approveSubmissionTitle');
 			case NOTIFICATION_TYPE_REVIEW_ROUND_STATUS:
 				$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
@@ -340,6 +344,7 @@ class NotificationManager extends PKPNotificationManager {
 			case NOTIFICATION_TYPE_EDITOR_DECISION_SEND_TO_PRODUCTION:
 			case NOTIFICATION_TYPE_REVIEW_ROUND_STATUS:
 			case NOTIFICATION_TYPE_APPROVE_SUBMISSION:
+			case NOTIFICATION_TYPE_FORMAT_NEEDS_APPROVED_SUBMISSION:
 				return 'notifyInformation';
 		}
 		return parent::getStyleClass($notification);
@@ -358,6 +363,7 @@ class NotificationManager extends PKPNotificationManager {
 			NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_PRODUCTION,
 			NOTIFICATION_TYPE_REVIEW_ROUND_STATUS,
 			NOTIFICATION_TYPE_APPROVE_SUBMISSION,
+			NOTIFICATION_TYPE_FORMAT_NEEDS_APPROVED_SUBMISSION,
 			NOTIFICATION_TYPE_CONFIGURE_PAYMENT_METHOD,
 		));
 	}
@@ -834,32 +840,52 @@ class NotificationManager extends PKPNotificationManager {
 	}
 
 	/**
-	 * Introduce an approve submission notification, if none is present.
+	 * Update (delete or insert) any notification type that is
+	 * related with the submission metadata approval.
 	 * @param $request Request
-	 * @param $monographId
-	 * @param $pressId
+	 * @param $monograph Monograph
 	 */
-	function updateApproveSubmissionNotification(&$request, $monographId, $pressId) {
+	function updateApproveSubmissionNotificationTypes(&$request, &$monograph) {
+		$monographId = $monograph->getId();
+		$pressId = $monograph->getPressId();
+
 		$notificationDao =& DAORegistry::getDAO('NotificationDAO');
-		$notificationFactory =& $notificationDao->getByAssoc(
-			ASSOC_TYPE_MONOGRAPH,
-			$monographId,
-			null,
+		$notificationTypes = array(
 			NOTIFICATION_TYPE_APPROVE_SUBMISSION,
-			$pressId
+			NOTIFICATION_TYPE_FORMAT_NEEDS_APPROVED_SUBMISSION
 		);
 
-		// Create notification if there is none already.
-		if ($notificationFactory->wasEmpty()) {
-			$this->createNotification(
-				$request,
-				null,
-				NOTIFICATION_TYPE_APPROVE_SUBMISSION,
-				$pressId,
+		foreach ($notificationTypes as $type) {
+			$notificationFactory =& $notificationDao->getByAssoc(
 				ASSOC_TYPE_MONOGRAPH,
 				$monographId,
-				NOTIFICATION_LEVEL_NORMAL
+				null,
+				$type,
+				$pressId
 			);
+
+			if ($notificationFactory->wasEmpty() && !$monograph->getDatePublished()) {
+				// Create notification.
+				$this->createNotification(
+					$request,
+					null,
+					$type,
+					$pressId,
+					ASSOC_TYPE_MONOGRAPH,
+					$monographId,
+					NOTIFICATION_LEVEL_NORMAL
+				);
+			} else if (!$notificationFactory->wasEmpty() && $monograph->getDatePublished()) {
+				// Delete existing notification.
+				$notificationDao =& DAORegistry::getDAO('NotificationDAO');
+				$notificationDao->deleteByAssoc(
+					ASSOC_TYPE_MONOGRAPH,
+					$monograph->getId(),
+					null,
+					$type,
+					$monograph->getPressId()
+				);
+			}
 		}
 	}
 
