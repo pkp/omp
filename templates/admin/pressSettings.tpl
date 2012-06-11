@@ -27,7 +27,7 @@
 		{fbvFormSection title="manager.setup.pressName" required=true for="name"}
 			{fbvElement type="text" id="name" value=$name multilingual=true}
 		{/fbvFormSection}
-		{fbvFormSection title="admin.presses.pressDescription" required=true for="description"}
+		{fbvFormSection title="admin.presses.pressDescription" for="description"}
 			{fbvElement type="textarea" id="description" value=$description multilingual=true rich=true}
 		{/fbvFormSection}
 		{fbvFormSection title="press.path" required=true for="path"}

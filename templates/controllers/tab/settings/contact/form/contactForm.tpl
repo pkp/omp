@@ -22,20 +22,26 @@
 	{fbvFormArea id="contactFormArea" title="manager.setup.principalContact" border=true}
 		{fbvFormSection description="manager.setup.principalContactDescription"}
 		{/fbvFormSection}
-		{fbvFormSection required=true for="contactName" inline=true size=$fbvStyles.size.MEDIUM inline="true"}
-			{fbvElement type="text" label="user.name" id="contactName" value=$contactName maxlength="60"}
+		{fbvFormSection}
+			{fbvFormSection for="contactName" inline=true size=$fbvStyles.size.MEDIUM}
+				{fbvElement type="text" label="user.name" required=true id="contactName" value=$contactName maxlength="60"}
+			{/fbvFormSection}
+			{fbvFormSection for="contactTitle" inline=true size=$fbvStyles.size.MEDIUM}
+				{fbvElement type="text" label="user.title" multilingual=true name="contactTitle" id="contactTitle" value=$contactTitle maxlength="90"}
+			{/fbvFormSection}
 		{/fbvFormSection}
-		{fbvFormSection required=true for="contactTitle" inline=true size=$fbvStyles.size.MEDIUM  inline="true"}
-			{fbvElement type="text" label="user.title" multilingual=true name="contactTitle" id="contactTitle" value=$contactTitle maxlength="90"}
+		{fbvFormSection}
+			{fbvFormSection for="contactEmail" size=$fbvStyles.size.MEDIUM inline="true"}
+				{fbvElement type="text" label="user.email" required=true id="contactEmail" value=$contactEmail maxlength="90"}
+			{/fbvFormSection}
+			{fbvFormSection for="contactPhone" inline=true size=$fbvStyles.size.MEDIUM}
+				{fbvElement type="text" label="user.phone" id="contactPhone" value=$contactPhone maxlength="24"}
+			{/fbvFormSection}
 		{/fbvFormSection}
-		{fbvFormSection for="contactEmail" required=true size=$fbvStyles.size.MEDIUM inline="true"}
-			{fbvElement type="text"  label="user.email" id="contactEmail" value=$contactEmail maxlength="90"}
-		{/fbvFormSection}
-		{fbvFormSection for="contactPhone" inline=true size=$fbvStyles.size.MEDIUM}
-			{fbvElement type="text" label="user.phone" id="contactPhone" value=$contactPhone maxlength="24"}
-		{/fbvFormSection}
-		{fbvFormSection for="contactFax" inline=true size=$fbvStyles.size.MEDIUM}
-			{fbvElement type="text" label="user.fax" id="contactFax" value=$contactFax maxlength="24"}
+		{fbvFormSection}
+			{fbvFormSection for="contactFax" inline=true size=$fbvStyles.size.MEDIUM}
+				{fbvElement type="text" label="user.fax" id="contactFax" value=$contactFax maxlength="24"}
+			{/fbvFormSection}
 		{/fbvFormSection}
 		{fbvFormSection title="user.affiliation" for="contactAffiliation"}
 			{fbvElement type="textarea" multilingual=true name="contactAffiliation" id="contactAffiliation" value=$contactAffiliation rich=true}
