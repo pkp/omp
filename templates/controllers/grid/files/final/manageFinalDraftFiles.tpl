@@ -15,7 +15,7 @@
 </script>
 
 <!-- Current final draft files -->
-<h4>{translate key="editor.monograph.final.currentFiles"}</h4>
+<p>{translate key="editor.monograph.final.manageFinalDraftFilesDescription"}</p>
 
 <div id="existingFilesContainer">
 	<form class="pkp_form" id="manageFinalDraftFilesForm" action="{url component="grid.files.final.ManageFinalDraftFilesGridHandler" op="updateFinalDraftFiles" monographId=$monographId} method="post">

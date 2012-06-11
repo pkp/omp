@@ -15,6 +15,8 @@
 	{rdelim});
 </script>
 
+{translate key="editor.monograph.decision.approveProofsDescription"}
+
 <form class="pkp_form" id="approveProofsForm" method="post" action="{url op="saveApproveProofs"}" >
 	<input type="hidden" name="monographId" value="{$monographId|escape}" />
 	<input type="hidden" name="stageId" value="{$stageId|escape}" />
