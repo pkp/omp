@@ -196,7 +196,6 @@ class CatalogEntryCatalogMetadataForm extends Form {
 		if (!$publishedMonograph) {
 			$publishedMonograph = $publishedMonographDao->newDataObject();
 			$publishedMonograph->setId($monograph->getId());
-			$publishedMonograph->setDatePublished(Core::getCurrentDate());
 		}
 
 		// Populate the published monograph with the cataloging metadata
