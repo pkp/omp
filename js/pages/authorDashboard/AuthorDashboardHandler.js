@@ -157,7 +157,7 @@ jQuery.pkp.pages = jQuery.pkp.pages || { authorDashboard: { } };
 		$('#addFile', $dashboard)
 				.bind('dataChanged',
 				function(dataChangedEvent) {
-					$('[id^="component-grid-files-submission-authorsubmissiondetailsfilesgrid"]:visible',
+					$('[id^="component-grid-files-review-authorreviewrevisionsgrid"]:visible',
 							$dashboard)
 						.trigger(dataChangedEvent);
 				});
