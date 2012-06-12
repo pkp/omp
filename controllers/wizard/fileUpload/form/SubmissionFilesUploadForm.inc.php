@@ -196,6 +196,12 @@ class SubmissionFilesUploadForm extends SubmissionFilesUploadBaseForm {
 		}
 		$this->setData('defaultUserGroupId', $defaultUserGroupId);
 
+		$settingsDao =& DAORegistry::getDAO('PressSettingsDAO');
+		$this->setData('pressSettings', $settingsDao->getPressSettings($context->getId()));
+
+		// Include a status message for this installation's max file upload size.
+		$this->setData('maxFileUploadSize', get_cfg_var('upload_max_filesize'));
+
 		return parent::fetch($request);
 	}
 

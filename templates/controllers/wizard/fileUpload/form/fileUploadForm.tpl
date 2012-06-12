@@ -179,6 +179,9 @@
 			{* The uploader widget *}
 			<div id="plupload"></div>
 		{/fbvFormSection}
+
+		<p>{translate key="common.fileUpload.maxFileSizeStatus" fileSize=$maxFileUploadSize supportName=$pressSettings.supportName supportEmail=$pressSettings.supportEmail}</p>
+
 		{if $ensuringLink}
 			<div id="{$ensuringLink->getId()}" class="pkp_linkActions">
 				{include file="linkAction/linkAction.tpl" action=$ensuringLink contextId="uploadForm"}
