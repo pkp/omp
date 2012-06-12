@@ -101,16 +101,23 @@ class UserUserGroupListbuilderHandler extends ListbuilderHandler {
 		$press =& $this->getPress();
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 		$userGroups =& $userGroupDao->getByContextId($press->getId());
+		$roleDao =& DAORegistry::getDAO('RoleDAO');
+		$roleNames = $roleDao->getRoleNames(true);
 
 		// Assemble the array to return
 		while (!$userGroups->eof()) {
 			$userGroup =& $userGroups->next();
 			$userGroupId = $userGroup->getId();
+			$roleId = $userGroup->getRoleId();
+			$roleName = __($roleNames[$roleId]);
 
-			$items[0][$userGroupId] = $userGroup->getLocalizedName();
+			$items[0][$roleId][$userGroupId] = $userGroup->getLocalizedName();
 			if ($includeDesignations) {
 				$items[1][$userGroupId] = $userGroup->getLocalizedAbbrev();
 			}
+
+			// Add the optgroup label.
+			$items[0][LISTBUILDER_OPTGROUP_LABEL][$roleId] = $roleName;
 
 			unset($userGroup);
 		}
