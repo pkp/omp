@@ -164,6 +164,8 @@ class UserUserGroupListbuilderHandler extends ListbuilderHandler {
 		// Basic configuration
 		$this->setTitle($request->getUserVar('title'));
 		$this->setSourceType(LISTBUILDER_SOURCE_TYPE_SELECT);
+		$this->setSaveType(LISTBUILDER_SAVE_TYPE_EXTERNAL);
+		$this->setSaveFieldName('roles');
 
 		import('controllers.listbuilder.users.UserGroupListbuilderGridCellProvider');
 		$cellProvider = new UserGroupListbuilderGridCellProvider();
@@ -202,55 +204,6 @@ class UserUserGroupListbuilderHandler extends ListbuilderHandler {
 		$press =& $this->getPress();
 		$userGroup =& $userGroupDao->getById($userGroupId, $press->getId());
 		return $userGroup;
-	}
-
-	/**
-	 * Persist a new entry insert.
-	 * @see Listbuilder::insertentry
-	 */
-	function insertEntry(&$request, $newRowId) {
-		$press =& $this->getPress();
-		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
-
-		$userGroupId = (int) $newRowId['name'];
-		$userId = (int) $this->getUserId();
-
-		// Ensure that:
-		// $userGroupId is not empty
-		// $userGroupId is valid for this press
-		// user group assignment does not already exist
-		if (
-			empty($userGroupId) ||
-			!$userGroupDao->contextHasGroup($press->getId(), $userGroupId) ||
-			$userGroupDao->userInGroup($userId, $userGroupId)
-		) {
-			return false;
-		} else {
-			// Add the assignment
-			$userGroupDao->assignUserToGroup($userId, $userGroupId);
-		}
-
-		return true;
-	}
-
-	/**
-	 * Delete an entry.
-	 * @see Listbuilder::deleteEntry
-	 */
-	function deleteEntry(&$request, $rowId) {
-		$userGroupId = (int) $rowId;
-		$userId = (int) $this->getUserId();
-
-		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
-		$press =& $this->getPress();
-
-		$userGroupDao->removeUserFromGroup(
-			$userId,
-			(int) $userGroupId,
-			$press->getId()
-		);
-
-		return true;
 	}
 }
 

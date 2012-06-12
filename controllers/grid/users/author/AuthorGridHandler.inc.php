@@ -353,8 +353,8 @@ class AuthorGridHandler extends GridHandler {
 			$json = new JSONMessage(false, __('grid.user.cannotAdminister'));
 		} else {
 			// Form handling.
-			import('controllers.grid.settings.user.form.UserForm');
-			$userForm = new UserForm($request, null, $author);
+			import('controllers.grid.settings.user.form.UserDetailsForm');
+			$userForm = new UserDetailsForm($request, null, $author);
 			$userForm->initData($args, $request);
 
 			$json = new JSONMessage(true, $userForm->display($args, $request));

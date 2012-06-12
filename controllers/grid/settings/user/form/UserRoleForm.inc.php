@@ -12,12 +12,9 @@
  * @brief Form for managing roles for a newly created user.
  */
 
-import('lib.pkp.classes.form.Form');
+import('controllers.grid.settings.user.form.UserForm');
 
-class UserRoleForm extends Form {
-
-	/* @var the user id for which to map user groups */
-	var $userId;
+class UserRoleForm extends UserForm {
 
 	/* @var string Ûser full name */
 	var $_userFullName;
@@ -28,9 +25,8 @@ class UserRoleForm extends Form {
 	 * @param string $userFullName
 	 */
 	function UserRoleForm($userId, $userFullName) {
-		parent::Form('controllers/grid/settings/user/form/userRoleForm.tpl');
+		parent::UserForm('controllers/grid/settings/user/form/userRoleForm.tpl', $userId);
 
-		$this->userId = (int) $userId;
 		$this->_userFullName = $userFullName;
 		$this->addCheck(new FormValidatorPost($this));
 	}
@@ -57,7 +53,9 @@ class UserRoleForm extends Form {
 	 * @param $request PKPRequest
 	 */
 	function &execute($args, &$request) {
-		// Role management handled by listbuilder, just return user
+		parent::execute($request);
+
+		// Role management handled by parent form, just return user.
 		$userDao =& DAORegistry::getDAO('UserDAO');
 		$user =& $userDao->getUser($this->userId);
 		return $user;

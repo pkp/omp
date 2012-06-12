@@ -16,7 +16,7 @@ import('lib.pkp.classes.controllers.grid.GridHandler');
 import('lib.pkp.classes.controllers.grid.DataObjectGridCellProvider');
 
 import('controllers.grid.settings.user.UserGridRow');
-import('controllers.grid.settings.user.form.UserForm');
+import('controllers.grid.settings.user.form.UserDetailsForm');
 
 class UserGridHandler extends GridHandler {
 	/**
@@ -296,7 +296,7 @@ class UserGridHandler extends GridHandler {
 			$json = new JSONMessage(false, __('grid.user.cannotAdminister'));
 		} else {
 			// Form handling.
-			$userForm = new UserForm($request, $userId);
+			$userForm = new UserDetailsForm($request, $userId);
 			$userForm->initData($args, $request);
 
 			$json = new JSONMessage(true, $userForm->display($args, $request));
@@ -321,7 +321,7 @@ class UserGridHandler extends GridHandler {
 			$json = new JSONMessage(false, __('grid.user.cannotAdminister'));
 		} else {
 			// Form handling.
-			$userForm = new UserForm($request, $userId);
+			$userForm = new UserDetailsForm($request, $userId);
 			$userForm->readInputData();
 
 			if ($userForm->validate()) {
@@ -368,7 +368,7 @@ class UserGridHandler extends GridHandler {
 		} else {
 			// Form handling.
 			import('controllers.grid.settings.user.form.UserRoleForm');
-			$userRoleForm = new UserRoleForm($userId);
+			$userRoleForm = new UserRoleForm($userId, $user->getFullName());
 			$userRoleForm->readInputData();
 
 			if ($userRoleForm->validate()) {
