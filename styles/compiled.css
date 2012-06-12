@@ -1090,6 +1090,7 @@ div.pkp_controllers_grid .row_actions {
 div.pkp_controllers_grid .row_actions a {
   display:block;
   cursor:pointer;
+  float:left;
 }
 div.pkp_controllers_grid .row_file {
   position:absolute;
