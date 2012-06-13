@@ -110,19 +110,17 @@ class FileApiHandler extends Handler {
 			unset($monographFile);
 		}
 
-		// Create a temporary file.
-		$archivePath = tempnam('/tmp', 'sf-');
-
-		// Create the archive and download the file.
-		exec(Config::getVar('cli', 'tar') . ' -c -z ' .
-			'-f ' . escapeshellarg($archivePath) . ' ' .
-			'-C ' . escapeshellarg($filesDir) . ' ' .
-			implode(' ', array_map('escapeshellarg', $filePaths))
-		);
+		import('lib.pkp.classes.file.FileArchive');
+		$fileArchive = new FileArchive();
+		$archivePath = $fileArchive->create($filePaths, $filesDir);
 
 		if (file_exists($archivePath)) {
 			$fileManager = new FileManager();
-			$fileManager->downloadFile($archivePath, 'application/x-gtar', false, 'files.tar.gz');
+			if ($fileArchive->zipFunctional()) {
+				$fileManager->downloadFile($archivePath, 'application/x-zip', false, 'files.zip');
+			} else {
+				$fileManager->downloadFile($archivePath, 'application/x-gtar', false, 'files.tar.gz');
+			}
 			$fileManager->deleteFile($archivePath);
 		} else {
 			fatalError('Creating archive with submission files failed!');
