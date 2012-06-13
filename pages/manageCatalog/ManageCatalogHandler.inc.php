@@ -300,10 +300,6 @@ class ManageCatalogHandler extends Handler {
 				// Force assocId to press
 				$assocId = $press->getId();
 				break;
-			case ASSOC_TYPE_NEW_RELEASE:
-				// Force assocId to press
-				$assocId = $press->getId();
-				break;
 			case ASSOC_TYPE_CATEGORY:
 				// Validate specified assocId
 				$categoryDao =& DAORegistry::getDAO('CategoryDAO');
