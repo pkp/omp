@@ -16,7 +16,8 @@
 		$('#production').pkpHandler(
 			'$.pkp.pages.workflow.ProductionHandler',
 			{ldelim}
-				formatsTabContainerSelector: '#publicationFormatTabsContainer'
+				formatsTabContainerSelector: '#publicationFormatTabsContainer',
+				submissionProgressBarSelector: '#submissionProgressBarDiv'
 			{rdelim}
 		);
 	{rdelim});

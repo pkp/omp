@@ -28,6 +28,7 @@
 		this.parent($production, options);
 
 		this.$formatTabsSelector_ = options.formatsTabContainerSelector;
+		this.$submissionProgressBarSelector_ = options.submissionProgressBarSelector;
 
 		// Bind for changes to grids (publication formats and proofs).
 		this.bind('gridRefreshRequested', this.refreshWidgetsHandler_);
@@ -49,6 +50,14 @@
 	 */
 	$.pkp.pages.workflow.ProductionHandler.
 			prototype.$formatTabsSelector_ = null;
+
+	/**
+	 * Submission progress bar selector.
+	 * @private
+	 * @type {string?}
+	 */
+	$.pkp.pages.workflow.ProductionHandler.
+			prototype.$submissionProgressBarSelector_ = null;
 
 	/**
 	 * Flag to avoid unnecessary widgets refresh.
@@ -87,6 +96,9 @@
 			if ($formatTabs.has($triggerElement).length == 0) {
 				$formatTabs.trigger('refreshTabs');
 			}
+
+			$.pkp.classes.Handler.getHandler($(this.$submissionProgressBarSelector_)).reload();
+
 		} else {
 			this.widgetsRefreshed_ = false;
 		}

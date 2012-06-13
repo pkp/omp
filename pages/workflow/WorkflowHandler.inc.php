@@ -106,7 +106,6 @@ class WorkflowHandler extends Handler {
 		// Construct array with workflow stages data.
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 		$workflowStages = $userGroupDao->getWorkflowStageKeysAndPaths();
-		$workflowStages[WORKFLOW_STAGE_ID_PUBLISHED] = array('translationKey' => 'submission.published', 'path' => '');
 
 		// Assign the authorized monograph.
 		$templateMgr->assign_by_ref('monograph', $monograph);
@@ -357,6 +356,31 @@ class WorkflowHandler extends Handler {
 		}
 
 		$templateMgr->assign('stageNotifications', $stageNotifications);
+
+		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
+		$publishedMonograph =& $publishedMonographDao->getById($monograph->getId());
+		if ($publishedMonograph) { // first check, there's a published monograph
+			$publicationFormats =& $publishedMonograph->getPublicationFormats(true);
+			$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO');
+			import('classes.monograph.MonographFile'); // constants
+
+			foreach ($publicationFormats as $format) { // there is at least one publication format.
+				if ($format->getIsAvailable()) { // it's ready to be included in the catalog
+
+					$monographFiles =& $submissionFileDao->getLatestRevisionsByAssocId(
+							ASSOC_TYPE_PUBLICATION_FORMAT, $format->getId(),
+							$publishedMonograph->getId()
+					);
+
+					foreach ($monographFiles as $file) {
+						if ($file->getViewable() && !is_null($file->getDirectSalesPrice())) { // at least one file has a price set.
+							$templateMgr->assign('submissionIsReady', true);
+						}
+					}
+				}
+			}
+		}
 		return $templateMgr->fetchJson('workflow/submissionProgressBar.tpl');
 	}
 

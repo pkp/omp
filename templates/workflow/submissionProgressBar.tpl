@@ -45,6 +45,9 @@
 				{if !array_key_exists($key, $accessibleWorkflowStages)}
 					{assign var="progressClass" value="stageDisabled"}
 				{/if}
+				{if $submissionIsReady && $stage.path == $smarty.const.WORKFLOW_STAGE_PATH_PRODUCTION}
+					{assign var="progressClass" value="productionReady"}
+				{/if}
 				<li class="{$progressClass}">
 					{if array_key_exists($key, $accessibleWorkflowStages)}
 						<a href="{url router=$smarty.const.ROUTE_PAGE page="workflow" op=$stage.path path=$monograph->getId()}">{translate key=$stage.translationKey}</a>
