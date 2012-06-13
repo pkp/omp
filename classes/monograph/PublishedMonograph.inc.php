@@ -46,23 +46,6 @@ class PublishedMonograph extends Monograph {
 	}
 
 	/**
-	 * Get date published.
-	 * @return date
-	 */
-	function getDatePublished() {
-		return $this->getData('datePublished');
-	}
-
-	/**
-	 * Set date published.
-	 * @param $datePublished date
-	 */
-
-	function setDatePublished($datePublished) {
-		return $this->SetData('datePublished', $datePublished);
-	}
-
-	/**
 	 * Get views of the published monograph.
 	 * @return int
 	 */
