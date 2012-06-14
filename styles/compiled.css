@@ -301,11 +301,11 @@ a.sprite.resubmit:before {
 }
 a.sprite.resubmit:hover:before { background-position:-720px -24px; }
 a.sprite.add_item_small:before {
-  height:18px;
+  height:15px;
   margin-right:4px;
-  background-position:-744px 0;
+  background-position:-744px -4px;
 }
-a.sprite.add_item_small:hover:before { background-position:-744px -24px; }
+a.sprite.add_item_small:hover:before { background-position:-744px -28px; }
 a.sprite.enroll_user:before {
   margin-right:4px;
   background-position:-768px 0;
