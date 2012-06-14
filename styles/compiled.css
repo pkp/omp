@@ -227,10 +227,7 @@ a.sprite.notify:before {
   background-position:-24px 0;
 }
 a.sprite.notify:hover:before { background-position:-24px -24px; }
-a.sprite.settings:before {
-  margin:8px;
-  background-position:-408px 0;
-}
+a.sprite.settings:before { background-position:-408px 0; }
 a.sprite.settings:hover:before { background-position:-408px -24px; }
 a.sprite.information:before { background-position:-194px 0; }
 a.sprite.information:hover:before { background-position:-194px -24px; }
@@ -1092,6 +1089,8 @@ div.pkp_controllers_grid .row_actions a {
   cursor:pointer;
   float:left;
 }
+div.pkp_controllers_grid .row_actions a:before { margin:8px; }
+div.pkp_controllers_grid .category .row_actions a:before { margin:0px; }
 div.pkp_controllers_grid .row_file {
   position:absolute;
   width:100%;
@@ -1536,10 +1535,8 @@ a.pkp_common_disabled, a.pkp_common_disabled:hover { color:#666666; }
   background-color:#e5e1dd;
 }
 .pkp_page_header .submission_progress li.stageDisabled a { color:#999999; }
-.pkp_page_header .submission_progress li.productionReady {
-  background-image:none;
-  background-color:#337755;
-}
+.pkp_page_header .submission_progress li.productionReady { background-image:url('../lib/pkp/templates/images/structure/workflow_productionReady.png'); }
+.pkp_page_header .submission_progress li.productionReady.current { background-image:url('../lib/pkp/templates/images/structure/workflow_productionReadyCurrent.png') !important; }
 .pkp_page_header .submission_progress li.current {
   background-image:url('../lib/pkp/templates/images/structure/workflow_current.png');
   font-size:110%;
