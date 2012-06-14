@@ -998,7 +998,7 @@ div.pkp_controllers_grid table {
   background-color:#ffffff;
   border-collapse:collapse;
 }
-div.pkp_controllers_grid thead, div.pkp_controllers_grid tr.row_controls td, div.pkp_controllers_grid .empty td { border-bottom:1px solid #c8c7c7; }
+div.pkp_controllers_grid thead, div.pkp_controllers_grid tr.row_controls td { border-bottom:1px solid #c8c7c7; }
 div.pkp_controllers_grid tr.gridRow td {
   border-bottom:1px solid #c8c7c7;
   height:40px;
@@ -1007,7 +1007,8 @@ div.pkp_controllers_grid tr.category {
   border-bottom:1px solid #c8c7c7;
   border-top:1px solid #c8c7c7;
 }
-div.pkp_controllers_grid tbody.empty td {
+div.pkp_controllers_grid .empty td {
+  border-bottom:1px solid #c8c7c7;
   padding-left:10px;
   text-align:left;
   height:40px;
