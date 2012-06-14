@@ -36,11 +36,9 @@
 		<ul class="submission_progress pkp_helpers_flatlist">
 			{foreach key=key from=$workflowStages item=stage}
 				{assign var="progressClass" value=""}
+				{assign var="currentClass" value=""}
 				{if $stageNotifications[$key]}
 					{assign var="progressClass" value="actionNeeded"}
-				{/if}
-				{if $key == $stageId}
-					{assign var="progressClass" value="current"}
 				{/if}
 				{if !array_key_exists($key, $accessibleWorkflowStages)}
 					{assign var="progressClass" value="stageDisabled"}
@@ -48,7 +46,10 @@
 				{if $submissionIsReady && $stage.path == $smarty.const.WORKFLOW_STAGE_PATH_PRODUCTION}
 					{assign var="progressClass" value="productionReady"}
 				{/if}
-				<li class="{$progressClass}">
+				{if $key == $stageId}
+					{assign var="currentClass" value="current"}
+				{/if}
+				<li class="{$progressClass} {$currentClass}">
 					{if array_key_exists($key, $accessibleWorkflowStages)}
 						<a href="{url router=$smarty.const.ROUTE_PAGE page="workflow" op=$stage.path path=$monograph->getId()}">{translate key=$stage.translationKey}</a>
 					{else}
