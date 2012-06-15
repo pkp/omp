@@ -42,7 +42,7 @@ class LoginHandler extends PKPLoginHandler {
 			}
 
 			$userDao =& DAORegistry::getDAO('UserDAO');
-			$newUser =& $userDao->getUser($userId);
+			$newUser =& $userDao->getById($userId);
 			$session =& $request->getSession();
 
 			// FIXME Support "stack" of signed-in-as user IDs?
@@ -72,7 +72,7 @@ class LoginHandler extends PKPLoginHandler {
 			$signedInAs = (int)$signedInAs;
 
 			$userDao =& DAORegistry::getDAO('UserDAO');
-			$oldUser =& $userDao->getUser($signedInAs);
+			$oldUser =& $userDao->getById($signedInAs);
 
 			$session->unsetSessionVar('signedInAs');
 

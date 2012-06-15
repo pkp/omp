@@ -55,7 +55,7 @@ class AdminPeopleHandler extends AdminHandler {
 
 		if (!empty($oldUserId)) {
 			// Get the old username for the confirm prompt.
-			$oldUser =& $userDao->getUser($oldUserId);
+			$oldUser =& $userDao->getById($oldUserId);
 			$templateMgr->assign('oldUsername', $oldUser->getUsername());
 			unset($oldUser);
 		}

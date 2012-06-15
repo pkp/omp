@@ -172,7 +172,7 @@ class FileAuditorForm extends Form {
 
 		$userDao =& DAORegistry::getDAO('UserDAO'); /* @var $userDao UserDAO */
 		// FIXME: How to validate user IDs?
-		$user =& $userDao->getUser($this->getData('userId'));
+		$user =& $userDao->getById($this->getData('userId'));
 		import('controllers.grid.submissions.SubmissionsListGridCellProvider');
 		list($page, $operation) = SubmissionsListGridCellProvider::getPageAndOperationByUserRoles($request, $monograph, $user->getId());
 

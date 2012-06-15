@@ -176,7 +176,7 @@ class SubmissionsListGridCellProvider extends DataObjectGridCellProvider {
 			$user =& $request->getUser();
 		} else {
 			$userDao =& DAORegistry::getDAO('UserDAO');
-			$user =& $userDao->getUser($userId);
+			$user =& $userDao->getById($userId);
 			if ($user == null) { // user does not exist
 				return array();
 			}

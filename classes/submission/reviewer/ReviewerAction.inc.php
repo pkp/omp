@@ -42,7 +42,7 @@ class ReviewerAction extends Action {
 		$reviewId = $reviewerSubmission->getReviewId();
 
 		$reviewAssignment =& $reviewAssignmentDao->getById($reviewId);
-		$reviewer =& $userDao->getUser($reviewAssignment->getReviewerId());
+		$reviewer =& $userDao->getById($reviewAssignment->getReviewerId());
 		if (!isset($reviewer)) return true;
 
 		// Only confirm the review for the reviewer if

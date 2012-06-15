@@ -141,7 +141,7 @@ class InformationCenterNotifyForm extends Form {
 		$dispatcher =& $request->getDispatcher();
 
 		foreach ($newRowId as $id) {
-			$user = $userDao->getUser($id);
+			$user = $userDao->getById($id);
 			if (isset($user)) {
 				$email->addRecipient($user->getEmail(), $user->getFullName());
 				$email->setBody($this->getData('message'));

@@ -56,7 +56,7 @@ class ReviewReminderForm extends Form {
 
 		$reviewAssignment =& $this->getReviewAssignment();
 		$reviewerId = $reviewAssignment->getReviewerId();
-		$reviewer =& $userDao->getUser($reviewerId);
+		$reviewer =& $userDao->getById($reviewerId);
 
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
 		$monograph =& $monographDao->getById($reviewAssignment->getSubmissionId());
@@ -109,7 +109,7 @@ class ReviewReminderForm extends Form {
 
 		$reviewAssignment =& $this->getReviewAssignment();
 		$reviewerId = $reviewAssignment->getReviewerId();
-		$reviewer =& $userDao->getUser($reviewerId);
+		$reviewer =& $userDao->getById($reviewerId);
 		$monograph =& $monographDao->getById($reviewAssignment->getSubmissionId());
 
 		import('classes.mail.MonographMailTemplate');

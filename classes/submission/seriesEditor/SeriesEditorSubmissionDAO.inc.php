@@ -603,7 +603,7 @@ class SeriesEditorSubmissionDAO extends MonographDAO {
 				if($monographId && !array_key_exists($userId, $availableReviewers)) {
 					continue;
 				} else {
-					$filteredReviewers[] = $userDao->getUser($userId);
+					$filteredReviewers[] = $userDao->getById($userId);
 				}
 			}
 		}

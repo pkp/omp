@@ -63,7 +63,7 @@ class UserEmailForm extends Form {
 	 */
 	function display($args, &$request) {
 		$userDao =& DAORegistry::getDAO('UserDAO');
-		$user =& $userDao->getUser($this->userId);
+		$user =& $userDao->getById($this->userId);
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('userId', $this->userId);
@@ -80,7 +80,7 @@ class UserEmailForm extends Form {
 	 */
 	function execute($args, &$request) {
 		$userDao =& DAORegistry::getDAO('UserDAO');
-		$toUser =& $userDao->getUser($this->userId);
+		$toUser =& $userDao->getById($this->userId);
 		$fromUser =& $request->getUser();
 
 		import('lib.pkp.classes.mail.Mail');

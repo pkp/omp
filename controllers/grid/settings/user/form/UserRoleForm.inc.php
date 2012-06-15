@@ -57,7 +57,7 @@ class UserRoleForm extends UserForm {
 
 		// Role management handled by parent form, just return user.
 		$userDao =& DAORegistry::getDAO('UserDAO');
-		$user =& $userDao->getUser($this->userId);
+		$user =& $userDao->getById($this->userId);
 		return $user;
 	}
 }

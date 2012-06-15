@@ -173,7 +173,7 @@ class SeriesEditorAction extends Action {
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		$userDao =& DAORegistry::getDAO('UserDAO');
 
-		$reviewer =& $userDao->getUser($reviewerId);
+		$reviewer =& $userDao->getById($reviewerId);
 
 		// Check to see if the requested reviewer is not already
 		// assigned to review this monograph.
@@ -247,7 +247,7 @@ class SeriesEditorAction extends Action {
 		$reviewAssignment =& $reviewAssignmentDao->getById($reviewId);
 
 		if (isset($reviewAssignment) && $reviewAssignment->getSubmissionId() == $seriesEditorSubmission->getId() && !HookRegistry::call('SeriesEditorAction::clearReview', array(&$seriesEditorSubmission, $reviewAssignment))) {
-			$reviewer =& $userDao->getUser($reviewAssignment->getReviewerId());
+			$reviewer =& $userDao->getById($reviewAssignment->getReviewerId());
 			if (!isset($reviewer)) return false;
 			$seriesEditorSubmission->removeReviewAssignment($reviewId);
 			$seriesEditorSubmissionDao->updateSeriesEditorSubmission($seriesEditorSubmission);
@@ -296,7 +296,7 @@ class SeriesEditorAction extends Action {
 		$userDao =& DAORegistry::getDAO('UserDAO');
 		$press =& $request->getContext();
 
-		$reviewer =& $userDao->getUser($reviewAssignment->getReviewerId());
+		$reviewer =& $userDao->getById($reviewAssignment->getReviewerId());
 		if (!isset($reviewer)) return false;
 
 		if ($reviewAssignment->getSubmissionId() == $monograph->getId() && !HookRegistry::call('SeriesEditorAction::setDueDates', array(&$reviewAssignment, &$reviewer, &$reviewDueDate, &$responseDueDate))) {

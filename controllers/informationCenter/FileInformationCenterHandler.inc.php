@@ -78,7 +78,7 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 
 			// Get the user who posted the last note
 			$userDao =& DAORegistry::getDAO('UserDAO');
-			$user =& $userDao->getUser($lastEvent->getUserId());
+			$user =& $userDao->getById($lastEvent->getUserId());
 			$templateMgr->assign_by_ref('lastEventUser', $user);
 		}
 

@@ -192,4 +192,9 @@
 	<message key="submission.informationCenter.notes">Notes</message>
 	<message key="submission.informationCenter.notify">Notify</message>
 	<message key="submission.informationCenter.history">History</message>
+
+	<!-- Log events -->
+	<message key="submission.event.monographSubmitted">The monograph was submitted.</message>
+	<message key="submission.event.participantAdded">"{$name}" ({$username}) was added as a {$userGroupName}.</message>
+	<message key="submission.event.participantRemoved">"{$name}" ({$username}) was removed as a {$userGroupName}.</message>
 </locale>

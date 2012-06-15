@@ -462,7 +462,7 @@ class ReviewerGridHandler extends GridHandler {
 		// Retrieve the monograph.
 		$monograph =& $monographDao->getById($reviewAssignment->getSubmissionId());
 		// Retrieve the reviewer user.
-		$reviewer =& $userDao->getUser($reviewAssignment->getReviewerId());
+		$reviewer =& $userDao->getById($reviewAssignment->getReviewerId());
 		// Retrieve the current user.
 		$user =& $request->getUser();
 

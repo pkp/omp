@@ -92,7 +92,7 @@ class SignoffGridCellProvider extends GridCellProvider {
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 		$userDao =& DAORegistry::getDAO('UserDAO');
 		$userGroup =& $userGroupDao->getById($signoff->getUserGroupId());
-		$user =& $userDao->getUser($signoff->getUserId());
+		$user =& $userDao->getById($signoff->getUserId());
 
 		return $user->getFullName() . ' (' . $userGroup->getLocalizedName() . ')';
 	}

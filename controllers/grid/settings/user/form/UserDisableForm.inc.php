@@ -40,7 +40,7 @@ class UserDisableForm extends Form {
 	function initData($args, &$request) {
 		if ($this->_userId) {
 			$userDao =& DAORegistry::getDAO('UserDAO');
-			$user =& $userDao->getUser($this->_userId);
+			$user =& $userDao->getById($this->_userId);
 
 			if ($user) {
 				$this->_data = array(
@@ -81,7 +81,7 @@ class UserDisableForm extends Form {
 	 */
 	function &execute($args, &$request) {
 		$userDao =& DAORegistry::getDAO('UserDAO');
-		$user =& $userDao->getUser($this->_userId);
+		$user =& $userDao->getById($this->_userId);
 
 		if ($user) {
 			$user->setDisabled($this->_enable ? false : true);

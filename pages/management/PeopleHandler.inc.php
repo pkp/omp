@@ -38,9 +38,9 @@ class PeopleHandler extends ManagementHandler {
 		$userDao =& DAORegistry::getDAO('UserDAO');
 		$userId = isset($args[0]) ? $args[0] : 0;
 		if (is_numeric($userId)) {
-			$user = $userDao->getUser($userId);
+			$user = $userDao->getById($userId);
 		} else {
-			$user = $userDao->getUserByUsername($userId);
+			$user = $userDao->getByUsername($userId);
 		}
 
 		if ($user != null) {

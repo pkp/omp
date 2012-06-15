@@ -245,7 +245,7 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 		$form = new AddParticipantForm($monograph, $stageId, $userGroups);
 		$form->readInputData();
 		if ($form->validate()) {
-			$userGroupId = $form->execute();
+			list($userGroupId, $userId) = $form->execute();
 
 			$notificationMgr = new NotificationManager();
 
@@ -263,6 +263,12 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 			// Create trivial notification.
 			$user =& $request->getUser();
 			$notificationMgr->createTrivialNotification($user->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.addedStageParticipant')));
+
+			// Log addition.
+			$userDao =& DAORegistry::getDAO('UserDAO');
+			$assignedUser =& $userDao->getById($userId);
+			import('classes.log.MonographLog');
+			MonographLog::logEvent($request, $monograph, MONOGRAPH_LOG_ADD_PARTICIPANT, 'submission.event.participantAdded', array('name' => $assignedUser->getFullName(), 'username' => $assignedUser->getUsername(), 'userGroupName' => $userGroup->getLocalizedName()));
 
 			return DAO::getDataChangedEvent($userGroupId);
 		} else {
@@ -321,6 +327,14 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 			// Update NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_...
 			$notificationMgr->updateEditorAssignmentNotification($monograph, $workingStageId, $request);
 		}
+
+		// Log removal.
+		$userDao =& DAORegistry::getDAO('UserDAO');
+		$assignedUser =& $userDao->getById($userId);
+		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+		$userGroup =& $userGroupDao->getById($stageAssignment->getUserGroupId());
+		import('classes.log.MonographLog');
+		MonographLog::logEvent($request, $monograph, MONOGRAPH_LOG_ADD_PARTICIPANT, 'submission.event.participantAdded', array('name' => $assignedUser->getFullName(), 'username' => $assignedUser->getUsername(), 'userGroupName' => $userGroup->getLocalizedName()));
 
 		// Redraw the category
 		return DAO::getDataChangedEvent($stageAssignment->getUserGroupId());
