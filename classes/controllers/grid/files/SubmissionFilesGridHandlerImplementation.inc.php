@@ -200,8 +200,9 @@ class SubmissionFilesGridHandlerImplementation {
 
 			// Get the files to be downloaded.
 			$files =& $gridHandler->getFilesToDownload($request);
-
-			$gridHandler->addAction(new DownloadAllLinkAction($request, $linkParams, $files), GRID_ACTION_POSITION_BELOW);
+			if (sizeof($files) > 0) {
+				$gridHandler->addAction(new DownloadAllLinkAction($request, $linkParams, $files), GRID_ACTION_POSITION_BELOW);
+			}
 		}
 
 		// The file name column is common to all file grid types.
