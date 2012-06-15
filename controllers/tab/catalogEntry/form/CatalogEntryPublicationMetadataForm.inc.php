@@ -199,10 +199,18 @@ class CatalogEntryPublicationMetadataForm extends Form {
 			import('classes.publicationFormat.PublicationFormatTombstoneManager');
 			$publicationFormatTombstoneMgr = new PublicationFormatTombstoneManager();
 			$publicationFormatTombstoneMgr->insertTombstoneByPublicationFormat($publicationFormat, $press);
+
+			// Log unpublish event.
+			import('classes.log.MonographLog');
+			MonographLog::logEvent($request, $monograph, MONOGRAPH_LOG_PUBLICATION_FORMAT_UNPUBLISH, 'submission.event.publicationFormatUnpublished', array('publicationFormatName' => $publicationFormat->getLocalizedTitle()));
 		} elseif (!$publicationFormat->getIsAvailable() && $this->getData('isAvailable')) {
 			// Wasn't available and now it is. Delete tombstone.
 			$tombstoneDao =& DAORegistry::getDAO('DataObjectTombstoneDAO');
 			$tombstoneDao->deleteByDataObjectId($publicationFormat->getId());
+
+			// Log publish event.
+			import('classes.log.MonographLog');
+			MonographLog::logEvent($request, $monograph, MONOGRAPH_LOG_PUBLICATION_FORMAT_PUBLISH, 'submission.event.publicationFormatPublished', array('publicationFormatName' => $publicationFormat->getLocalizedTitle()));
 		}
 
 		// populate the published monograph with the cataloging metadata

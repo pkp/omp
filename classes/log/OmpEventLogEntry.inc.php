@@ -26,17 +26,6 @@ class OmpEventLogEntry extends EventLogEntry {
 	function OmpEventLogEntry() {
 		parent::EventLogEntry();
 	}
-
-	/**
-	 * Return locale message key describing event type.
-	 * @return string
-	 */
-	function getEventTitle() {
-		switch ($this->getData('eventType')) {
-			default:
-				return 'submission.event.general.defaultEvent';
-		}
-	}
 }
 
 ?>

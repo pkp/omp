@@ -157,14 +157,14 @@ class SubmissionMetadataViewForm extends Form {
 
 	/**
 	 * Save changes to monograph.
+	 * @param $request PKPRequest
 	 */
-	function execute() {
-
+	function execute($request) {
 		$monograph =& $this->getMonograph();
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
 
 		// Execute monograph metadata related operations.
-		$this->_metadataFormImplem->execute($monograph);
+		$this->_metadataFormImplem->execute($monograph, $request);
 		$monograph->setSeriesId($this->getData('seriesId'));
 		$monograph->setSeriesPosition($this->getData('seriesPosition'));
 		$monographDao->updateMonograph($monograph);

@@ -120,9 +120,10 @@ class SubmissionMetadataFormImplementation {
 	/**
 	 * Save changes to monograph.
 	 * @param $monograph Monograph
+	 * @param $request PKPRequest
 	 * @return Monograph
 	 */
-	function execute(&$monograph) {
+	function execute(&$monograph, &$request) {
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
 
 		// Update monograph
@@ -179,6 +180,10 @@ class SubmissionMetadataFormImplementation {
 		// Resequence the authors (this ensures a primary contact).
 		$authorDao =& DAORegistry::getDAO('AuthorDAO');
 		$authorDao->resequenceAuthors($monograph->getId());
+
+		// Log the modification event.
+		import('classes.log.MonographLog');
+		MonographLog::logEvent($request, $monograph, MONOGRAPH_LOG_METADATA_UPDATE, 'submission.event.general.metadataUpdated');
 	}
 }
 

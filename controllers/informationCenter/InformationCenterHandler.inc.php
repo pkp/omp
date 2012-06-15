@@ -213,7 +213,7 @@ class InformationCenterHandler extends Handler {
 	}
 
 	function setupTemplate(&$request) {
-		AppLocale::requireComponents(LOCALE_COMPONENT_OMP_SUBMISSION);
+		AppLocale::requireComponents(LOCALE_COMPONENT_OMP_SUBMISSION, LOCALE_COMPONENT_PKP_SUBMISSION);
 
 		$linkParams = $this->_getLinkParams();
 		$templateMgr =& TemplateManager::getManager();

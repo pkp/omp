@@ -30,17 +30,6 @@ class MonographFileEventLogEntry extends OmpEventLogEntry {
 	function getFileId() {
 		return $this->getAssocId();
 	}
-
-	/**
-	 * Return locale message key describing event type.
-	 * @return string
-	 */
-	function getEventTitle() {
-		switch ($this->getData('eventType')) {
-			default:
-				return parent::getEventTitle();
-		}
-	}
 }
 
 ?>

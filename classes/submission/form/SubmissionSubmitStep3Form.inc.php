@@ -82,7 +82,7 @@ class SubmissionSubmitStep3Form extends SubmissionSubmitForm {
 	function execute($args, &$request) {
 
 		// Execute monograph metadata related operations.
-		$this->_metadataFormImplem->execute($this->monograph);
+		$this->_metadataFormImplem->execute($this->monograph, $request);
 
 		// Get an updated version of the monograph.
 		$monographDao =& DAORegistry::getDAO('MonographDAO');

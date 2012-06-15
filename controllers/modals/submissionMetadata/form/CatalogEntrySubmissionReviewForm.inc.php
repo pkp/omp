@@ -79,6 +79,10 @@ class CatalogEntrySubmissionReviewForm extends SubmissionMetadataViewForm {
 			// Update the search index for this published monograph.
 			import('classes.search.MonographSearchIndex');
 			MonographSearchIndex::indexMonographMetadata($monograph);
+
+			// Log the publication event.
+			import('classes.log.MonographLog');
+			MonographLog::logEvent($request, $monograph, MONOGRAPH_LOG_METADATA_PUBLISH, 'submission.event.metadataPublished');
 		} else {
 			if ($isExistingEntry) {
 				// Unpublish monograph.
@@ -90,6 +94,10 @@ class CatalogEntrySubmissionReviewForm extends SubmissionMetadataViewForm {
 
 				// Create tombstones for each publication format.
 				$publicationFormatTombstoneMgr->insertTombstonesByPublicationFormats($publicationFormats, $press);
+
+				// Log the unpublication event.
+				import('classes.log.MonographLog');
+				MonographLog::logEvent($request, $monograph, MONOGRAPH_LOG_METADATA_UNPUBLISH, 'submission.event.metadataUnpublished');
 			} else {
 				// regular submission without publish in catalog.
 				$monographDao->updateMonograph($monograph);

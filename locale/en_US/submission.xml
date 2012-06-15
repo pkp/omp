@@ -194,7 +194,11 @@
 	<message key="submission.informationCenter.history">History</message>
 
 	<!-- Log events -->
-	<message key="submission.event.monographSubmitted">The monograph was submitted.</message>
-	<message key="submission.event.participantAdded">"{$name}" ({$username}) was added as a {$userGroupName}.</message>
-	<message key="submission.event.participantRemoved">"{$name}" ({$username}) was removed as a {$userGroupName}.</message>
+	<message key="submission.event.monographSubmitted">The monograph is submitted.</message>
+	<message key="submission.event.participantAdded">"{$name}" ({$username}) is added as a {$userGroupName}.</message>
+	<message key="submission.event.participantRemoved">"{$name}" ({$username}) is removed as a {$userGroupName}.</message>
+	<message key="submission.event.metadataPublished">The monograph's metadata is approved for publication.</message>
+	<message key="submission.event.metadataUnpublished">The monograph's metadata is no longer published.</message>
+	<message key="submission.event.publicationFormatPublished">The publication format "{$publicationFormatName}" is approved for publication.</message>
+	<message key="submission.event.publicationFormatUnpublished">The publication format "{$publicationFormatName}" is no longer published.</message>
 </locale>

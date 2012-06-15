@@ -24,8 +24,10 @@ define('MONOGRAPH_LOG_METADATA_UPDATE',			0x10000002);
 define('MONOGRAPH_LOG_ADD_PARTICIPANT',			0x10000003);
 define('MONOGRAPH_LOG_REMOVE_PARTICIPANT',		0x10000004);
 
-define('MONOGRAPH_LOG_MONOGRAPH_PUBLISH',		0x10000006);
-define('MONOGRAPH_LOG_MONOGRAPH_UNPUBLISH',		0x10000007);
+define('MONOGRAPH_LOG_METADATA_PUBLISH',		0x10000006);
+define('MONOGRAPH_LOG_METADATA_UNPUBLISH',		0x10000007);
+define('MONOGRAPH_LOG_PUBLICATION_FORMAT_PUBLISH',	0x10000008);
+define('MONOGRAPH_LOG_PUBLICATION_FORMAT_UNPUBLISH',	0x10000009);
 
 // Editor events
 
@@ -78,39 +80,6 @@ class MonographEventLogEntry extends OmpEventLogEntry {
 	 */
 	function getAssocType() {
 		return ASSOC_TYPE_MONOGRAPH;
-	}
-
-	/**
-	 * Return locale message key describing event type.
-	 * @return string
-	 */
-	function getEventTitle() {
-		switch ($this->getData('eventType')) {
-			// General events
-			case MONOGRAPH_LOG_MONOGRAPH_SUBMIT:
-				return 'submission.event.general.monographSubmitted';
-			case MONOGRAPH_LOG_METADATA_UPDATE:
-				return 'submission.event.general.metadataUpdated';
-			case MONOGRAPH_LOG_MONOGRAPH_PUBLISH:
-				return 'submission.event.general.monographPublished';
-
-			// Editor events
-			case MONOGRAPH_LOG_EDITOR_DECISION:
-				return 'submission.event.editor.editorDecision';
-
-			// Reviewer events
-			case MONOGRAPH_LOG_REVIEW_ASSIGN:
-				return 'submission.event.reviewer.reviewerAssigned';
-			case MONOGRAPH_LOG_REVIEW_ACCEPT:
-				return 'submission.event.reviewer.reviewAccepted';
-			case MONOGRAPH_LOG_REVIEW_DECLINE:
-				return 'submission.event.reviewer.reviewDeclined';
-			case MONOGRAPH_LOG_REVIEW_SET_DUE_DATE:
-				return 'submission.event.reviewer.reviewDueDate';
-
-			default:
-				return parent::getEventTitle();
-		}
 	}
 }
 
