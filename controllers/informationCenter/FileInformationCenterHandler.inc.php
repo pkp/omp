@@ -193,6 +193,7 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 		if ($notifyForm->validate()) {
 			$noteId = $notifyForm->execute($request);
 
+			$this->_logEvent($request, MONOGRAPH_LOG_MESSAGE_SENT);
 			$user =& $request->getUser();
 			NotificationManager::createTrivialNotification($user->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.sentNotification')));
 

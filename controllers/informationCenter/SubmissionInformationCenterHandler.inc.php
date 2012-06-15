@@ -217,6 +217,7 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 			// (will clear the form on return)
 			$json = new JSONMessage(true);
 
+			$this->_logEvent($request, MONOGRAPH_LOG_MESSAGE_SENT);
 			// Create trivial notification.
 			$currentUser =& $request->getUser();
 			$notificationMgr = new NotificationManager();
