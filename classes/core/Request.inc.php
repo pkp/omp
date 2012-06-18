@@ -99,6 +99,20 @@ class Request extends PKPRequest {
 		$_this =& PKPRequest::_checkThis();
 		return $_this->_delegateToRouter('redirectHome');
 	}
+
+	/**
+	 * @see PKPRequest::getUserAgent()
+	 */
+	function getUserAgent() {
+		static $userAgent;
+		$userAgent = parent::getUserAgent();
+
+		if (strpos($userAgent, 'Shockwave Flash')) {
+			$userAgent = $_SERVER['HTTP_BROWSER_USER_AGENT'];
+		}
+
+		return $userAgent;
+	}
 }
 
 ?>
