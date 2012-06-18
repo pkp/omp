@@ -100,7 +100,7 @@
 			$('body').pkpHandler(
 				'$.pkp.controllers.SiteHandler',
 				{ldelim}
-					{include file="core:controllers/notification/notificationOptions.tpl"},
+					{include file="core:controllers/notification/notificationOptions.tpl"}
 				{rdelim});
 		{rdelim});
 	</script>

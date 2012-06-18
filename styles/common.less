@@ -58,3 +58,10 @@ a.pkp_common_disabled:hover {
 	border-color: white !important;
 	border-width: 0 0 0 0 !important;
 }
+/**
+ * Hack to make sure IE7 will show the menu correctly
+ */
+ul.sf-menu {
+  position:relative;
+  z-index:10000;
+}
