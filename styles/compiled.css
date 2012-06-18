@@ -1393,11 +1393,16 @@ a.pkp_common_disabled, a.pkp_common_disabled:hover { color:#666666; }
   border-color:white !important;
   border-width:0 0 0 0 !important;
 }
+#pressSwitcher .section { width:200px; }
 ul.sf-menu {
   position:relative;
   z-index:10000;
 }
 .ui-tabs .ui-tabs-nav li { margin-bottom:0px !important; }
+#pressSwitcherSelect {
+  vertical-align:middle;
+  margin-bottom:0px;
+}
 .pkp_submissionChecklist ul li label.error { margin-bottom:15px; }
 .pkp_manageCatalog_monographList {
   list-style-type:none;
