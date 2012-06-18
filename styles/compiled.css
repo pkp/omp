@@ -1397,6 +1397,7 @@ ul.sf-menu {
   position:relative;
   z-index:10000;
 }
+.ui-tabs .ui-tabs-nav li { margin-bottom:0px !important; }
 .pkp_submissionChecklist ul li label.error { margin-bottom:15px; }
 .pkp_manageCatalog_monographList {
   list-style-type:none;
