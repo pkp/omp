@@ -361,7 +361,7 @@ class FileUploadWizardHandler extends FileManagementHandler {
 
 		// Validate the form and revise the file.
 		if ($confirmationForm->validate($request)) {
-			if (is_a($uploadedFile =& $confirmationForm->execute(), 'MonographFile')) {
+			if (is_a($uploadedFile =& $confirmationForm->execute($request), 'MonographFile')) {
 				// Go to the meta-data editing step.
 				$json = new JSONMessage(true, '', '0', $this->_getUploadedFileInfo($uploadedFile));
 			} else {

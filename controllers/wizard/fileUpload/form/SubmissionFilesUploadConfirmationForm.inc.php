@@ -53,9 +53,10 @@ class SubmissionFilesUploadConfirmationForm extends SubmissionFilesUploadBaseFor
 
 	/**
 	 * @see Form::execute()
+	 * @param $request Request
 	 * @return MonographFile if successful, otherwise null
 	 */
-	function &execute() {
+	function &execute(&$request) {
 		// Retrieve the file ids of the revised and the uploaded files.
 		$revisedFileId = $this->getRevisedFileId();
 		$uploadedFileId = (int)$this->getData('uploadedFileId');

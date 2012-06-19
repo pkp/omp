@@ -43,6 +43,11 @@ define('MONOGRAPH_LOG_REVIEW_SET_DUE_DATE',		0x40000011);
 
 define('MONOGRAPH_LOG_REVIEW_CLEAR',			0x40000014);
 
+// Deletion of the last revision of a file
+define('MONOGRAPH_LOG_LAST_REVISION_DELETED', 	0x50000003);
+
+// Production events
+define('MONOGRAPH_LOG_PROOFS_APPROVED',		0x50000008);
 
 class MonographEventLogEntry extends OmpEventLogEntry {
 	/**

@@ -99,6 +99,16 @@ class ManageFileApiHandler extends Handler {
 			$user =& $request->getUser();
 			NotificationManager::createTrivialNotification($user->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.removedFile')));
 
+			// log the deletion event.
+			import('classes.log.MonographFileLog');
+			import('classes.log.MonographFileEventLogEntry'); // constants
+			MonographFileLog::logEvent($request, $monographFile, MONOGRAPH_LOG_FILE_DELETE, 'submission.event.fileDeleted', array('title' => $monographFile->getOriginalFileName(), 'submissionId' => $monograph->getId(), 'username' => $user->getUsername()));
+
+			if ($monographFile->getRevision() == 1 && $monographFile->getSourceFileId() == null) {
+				import('classes.log.MonographLog');
+				import('classes.log.MonographEventLogEntry'); // constants
+				MonographLog::logEvent($request, $monograph, MONOGRAPH_LOG_LAST_REVISION_DELETED, 'submission.event.lastRevisionDeleted', array('title' => $monographFile->getOriginalFileName(), 'submissionId' => $monograph->getId(), 'username' => $user->getUsername()));
+			}
 			return DAO::getDataChangedEvent($monographFile->getFileId());
 		} else {
 			$json = new JSONMessage(false);

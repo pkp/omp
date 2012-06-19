@@ -234,6 +234,14 @@ class FileAuditorForm extends Form {
 		$notificationMgr = new NotificationManager();
 		$notificationMgr->updateAuditorRequestNotification($signoff, $request);
 
+		// log the add auditor event.
+		import('classes.log.MonographFileLog');
+		import('classes.log.MonographFileEventLogEntry'); // constants
+		$userDao =& DAORegistry::getDAO('UserDAO');
+		$user =& $userDao->getById($userId);
+		if (isset($user)) {
+			MonographFileLog::logEvent($request, $monographFile, MONOGRAPH_LOG_FILE_AUDITOR_ASSIGN, 'submission.event.fileAuditorAdded', array('file' => $monographFile->getOriginalFileName(), 'name' => $user->getFullName(), 'username' => $user->getUsername()));
+		}
 		// Update NOTIFICATION_TYPE_SIGNOFF_...
 		$notificationMgr->updateSignoffNotification($signoff, $request);
 	}

@@ -249,6 +249,13 @@ class SubmissionFilesUploadForm extends SubmissionFilesUploadBaseForm {
 			$submissionFileDao->assignRevisionToReviewRound($monographFile->getFileId(), $monographFile->getRevision(), $reviewRound);
 		}
 
+		if ($monographFile) {
+			// log the upload event.
+			import('classes.log.MonographFileLog');
+			import('classes.log.MonographFileEventLogEntry'); // constants
+			MonographFileLog::logEvent($request, $monographFile, MONOGRAPH_LOG_FILE_UPLOAD, 'submission.event.fileUploaded', array('title' => $monographFile->getOriginalFileName(), 'submissionId' => $this->getData('monographId'), 'username' => $user->getUsername()));
+		}
+
 		return $monographFile;
 	}
 

@@ -15,6 +15,17 @@
 
 import('classes.log.OmpEventLogEntry');
 
+
+// File upload/delete event types.
+define('MONOGRAPH_LOG_FILE_UPLOAD',	0x50000001);
+define('MONOGRAPH_LOG_FILE_DELETE',	0x50000002);
+
+// Audit events
+define('MONOGRAPH_LOG_FILE_AUDITOR_ASSIGN',		0x50000004);
+define('MONOGRAPH_LOG_FILE_AUDITOR_CLEAR',		0x50000005);
+define('MONOGRAPH_LOG_FILE_AUDIT_UPLOAD', 		0x50000006);
+define('MONOGRAPH_LOG_FILE_SIGNOFF_SIGNOFF', 	0x50000007);
+
 class MonographFileEventLogEntry extends OmpEventLogEntry {
 	/**
 	 * Constructor.

@@ -226,6 +226,17 @@ class SignoffFileUploadForm extends Form {
 		// Update NOTIFICATION_TYPE_SIGNOFF_...
 		$notificationMgr->updateSignoffNotification($signoff, $request);
 
+		// log the event.
+		import('classes.log.MonographFileLog');
+		import('classes.log.MonographFileEventLogEntry'); // constants
+		$monographDao =& DAORegistry::getDAO('MonographDAO');
+		$monograph =& $monographDao->getById($this->getMonographId());
+		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO');
+		$monographFile =& $submissionFileDao->getLatestRevision($signoffFileId);
+
+		if (isset($monographFile)) {
+			MonographFileLog::logEvent($request, $monographFile, MONOGRAPH_LOG_FILE_AUDIT_UPLOAD, 'submission.event.fileAuditUploaded', array('file' => $monographFile->getOriginalFileName(), 'name' => $user->getFullName(), 'username' => $user->getUsername()));
+		}
 		return $signoff->getId();
 	}
 }
