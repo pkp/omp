@@ -250,7 +250,7 @@ class PublicationFormatGridHandler extends GridHandler {
 	}
 
 	/**
-	 * Edit a format
+	 * Update a format
 	 * @param $args array
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
@@ -268,7 +268,7 @@ class PublicationFormatGridHandler extends GridHandler {
 		$publicationFormatForm = new PublicationFormatForm($monograph, $publicationFormat);
 		$publicationFormatForm->readInputData();
 		if ($publicationFormatForm->validate()) {
-			$publicationFormatId = $publicationFormatForm->execute();
+			$publicationFormatId = $publicationFormatForm->execute($request);
 
 			if(!isset($publicationFormat)) {
 				// This is a new format
@@ -326,6 +326,12 @@ class PublicationFormatGridHandler extends GridHandler {
 			$currentUser =& $request->getUser();
 			$notificationMgr = new NotificationManager();
 			$notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.removedPublicationFormat')));
+
+			// log the deletion of the format.
+			import('classes.log.MonographLog');
+			import('classes.log.MonographEventLogEntry');
+			MonographLog::logEvent($request, $this->getMonograph(), MONOGRAPH_LOG_PUBLICATION_FORMAT_REMOVE, 'submission.event.publicationFormatRemoved', array('formatTitle' => $publicationFormat->getLocalizedTitle()));
+
 			return DAO::getDataChangedEvent();
 		} else {
 			$json = new JSONMessage(false, __('manager.setup.errorDeletingItem'));

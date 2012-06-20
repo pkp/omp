@@ -125,9 +125,10 @@ class PublicationFormatForm extends Form {
 
 	/**
 	 * Save the assigned format
+	 * @param PKPRequest request
 	 * @see Form::execute()
 	 */
-	function execute() {
+	function execute($request) {
 		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
 		$monograph = $this->getMonograph();
 		$publicationFormat =& $this->getPublicationFormat();
@@ -150,6 +151,10 @@ class PublicationFormatForm extends Form {
 			$publicationFormatId = $publicationFormat->getId();
 		} else {
 			$publicationFormatId = $publicationFormatDao->insertObject($publicationFormat);
+			// log the creation of the format.
+			import('classes.log.MonographLog');
+			import('classes.log.MonographEventLogEntry');
+			MonographLog::logEvent($request, $monograph, MONOGRAPH_LOG_PUBLICATION_FORMAT_CREATE, 'submission.event.publicationFormatCreated', array('formatTitle' => $publicationFormat->getLocalizedTitle()));
 		}
 
 		return $publicationFormatId;
