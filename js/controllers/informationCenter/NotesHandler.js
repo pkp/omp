@@ -80,6 +80,7 @@
 	 */
 	$.pkp.controllers.informationCenter.NotesHandler.
 			prototype.handleRefreshNoteList = function(callingForm, event) {
+		$(callingForm).find('[id^="newNote"]').val('');
 		this.loadNoteList_();
 	};
 
