@@ -209,5 +209,6 @@
 	<message key="submission.event.fileAuditUploaded">"{$name}" ({$username}) has completed an audit and uploaded "{$file}".</message>
 	<message key="submission.event.signoffSignoff">"{$name}" ({$username}) has signed off on the signoff for "{$file}".</message>
 	<message key="submission.event.proofsApproved">"{$name}" ({$username}) has approved the proofs for "{$title}".</message>
-
+	<message key="submission.event.catalogMetadataUpdated">The catalog metadata was updated.</message>
+	<message key="submission.event.publicationMetadataUpdated">The publication format metadata for "{$formatTitle}" was updated.</message>
 </locale>
