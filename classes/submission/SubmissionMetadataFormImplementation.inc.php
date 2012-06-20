@@ -183,6 +183,7 @@ class SubmissionMetadataFormImplementation {
 
 		// Log the modification event.
 		import('classes.log.MonographLog');
+		import('classes.log.MonographEventLogEntry');
 		MonographLog::logEvent($request, $monograph, MONOGRAPH_LOG_METADATA_UPDATE, 'submission.event.general.metadataUpdated');
 	}
 }
