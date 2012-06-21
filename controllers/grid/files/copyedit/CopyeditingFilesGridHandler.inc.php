@@ -51,6 +51,7 @@ class CopyeditingFilesGridHandler extends SignoffFilesGridHandler {
 		// Rename the 'editor' column to copyeditor
 		$pressAssistantColumn =& $this->getColumn('editor');
 		$pressAssistantColumn->setTitle('user.role.copyeditor');
+		$this->setEmptyCategoryRowText('editor.monograph.noAuditRequested');
 	}
 }
 
