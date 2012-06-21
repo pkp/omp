@@ -20,7 +20,7 @@
 		<input type="hidden" name="monographId" value="{$monographId|escape}" />
 		<input type="hidden" name="publicationFormatId" value="{$publicationFormatId|escape}" />
 
-		{fbvFormSection for="priceType" list=true size=$fbvStyles.size.MEDIUM description="payment.directSales.price.description"}
+		{fbvFormSection for="priceType" list=true description="payment.directSales.price.description"}
 			{fbvElement type="radio" name="salesType" id="notAvailable" value="notAvailable" label="payment.directSales.notAvailable"}
 			{fbvElement type="radio" name="salesType" id="directSales" value="directSales" label="payment.directSales.directSales"}
 			{fbvElement type="radio" name="salesType" id="openAccess" value="openAccess" label="payment.directSales.openAccess"}
@@ -29,10 +29,6 @@
 		{fbvFormSection for="price" size=$fbvStyles.size.MEDIUM inline=true}
 			{translate|assign:"priceLabel" key="payment.directSales.priceCurrency" currency=$currentPress->getSetting('pressCurrency')}
 			{fbvElement type="text" id="price" label=$priceLabel subLabelTranslate=false value=$price maxlength="255"}
-		{/fbvFormSection}
-
-		{fbvFormSection}
-			{* Fixme: This is to make the price element smaller *}
 		{/fbvFormSection}
 	{/fbvFormArea}
 	{fbvFormButtons id="saveApprovedProofForm" submitText="common.save"}
