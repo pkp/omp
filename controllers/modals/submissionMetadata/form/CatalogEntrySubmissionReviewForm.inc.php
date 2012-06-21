@@ -44,7 +44,7 @@ class CatalogEntrySubmissionReviewForm extends SubmissionMetadataViewForm {
 	 * Save the metadata and create a catalog entry.
 	 */
 	function execute(&$request) {
-		parent::execute();
+		parent::execute($request);
 
 		$monograph =& $this->getMonograph();
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
