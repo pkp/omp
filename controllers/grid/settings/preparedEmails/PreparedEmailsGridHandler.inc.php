@@ -65,6 +65,10 @@ class PreparedEmailsGridHandler extends GridHandler {
 		$this->setGridDataElements($rowData);
 
 		// Grid actions
+		import('controllers.grid.settings.preparedEmails.linkAction.EditEmailLinkAction');
+		$addEmailLinkAction = & new EditEmailLinkAction($request);
+		$this->addAction($addEmailLinkAction);
+
 		import('lib.pkp.classes.linkAction.LinkAction');
 		import('lib.pkp.classes.linkAction.request.RemoteActionConfirmationModal');
 		$router =& $request->getRouter();
@@ -77,22 +81,19 @@ class PreparedEmailsGridHandler extends GridHandler {
 						'grid.settings.preparedEmails.PreparedEmailsGridHandler', 'resetAllEmails')
 				),
 				__('manager.emails.resetAll'),
-				'delete'
+				'reset_default'
 			)
 		);
 
-		import('controllers.grid.settings.preparedEmails.linkAction.EditEmailLinkAction');
-		$addEmailLinkAction = & new EditEmailLinkAction($request);
-		$this->addAction($addEmailLinkAction);
 
 		// Columns
 		import('controllers.grid.settings.preparedEmails.PreparedEmailsGridCellProvider');
 		$cellProvider = new PreparedEmailsGridCellProvider();
-		$this->addColumn(new GridColumn('name', 'common.name', null, 'controllers/grid/gridCell.tpl', $cellProvider));
-		$this->addColumn(new GridColumn('sender', 'email.sender', null, 'controllers/grid/gridCell.tpl', $cellProvider));
+		$this->addColumn(new GridColumn('name', 'common.name', null, 'controllers/grid/gridCell.tpl', $cellProvider, array('width' => 40)));
+		$this->addColumn(new GridColumn('sender', 'email.sender', null, 'controllers/grid/gridCell.tpl', $cellProvider, array('width' => 10)));
 		$this->addColumn(new GridColumn('recipient', 'email.recipient', null, 'controllers/grid/gridCell.tpl', $cellProvider));
 		$this->addColumn(new GridColumn('subject', 'common.subject', null, 'controllers/grid/gridCell.tpl', $cellProvider));
-		$this->addColumn(new GridColumn('enabled', 'common.enabled', null, 'controllers/grid/common/cell/checkMarkCell.tpl', $cellProvider));
+		$this->addColumn(new GridColumn('enabled', 'common.enabled', null, 'controllers/grid/common/cell/checkMarkCell.tpl', $cellProvider, array('width' => 5)));
 	}
 
 

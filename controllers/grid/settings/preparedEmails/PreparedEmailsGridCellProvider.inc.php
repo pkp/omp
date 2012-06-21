@@ -12,14 +12,14 @@
  * @brief Class for a prepared email grid column's cell provider
  */
 
-import('lib.pkp.classes.controllers.grid.GridCellProvider');
+import('lib.pkp.classes.controllers.grid.DataObjectGridCellProvider');
 
-class PreparedEmailsGridCellProvider extends GridCellProvider {
+class PreparedEmailsGridCellProvider extends DataObjectGridCellProvider {
 	/**
 	 * Constructor
 	 */
 	function PreparedEmailsGridCellProvider() {
-		parent::GridCellProvider();
+		parent::DataObjectGridCellProvider();
 	}
 
 	/**
@@ -37,7 +37,7 @@ class PreparedEmailsGridCellProvider extends GridCellProvider {
 		switch ($columnId) {
 			case 'name':
 				$label = $element->getEmailKey();
-				return array('label' => str_replace('_', ' ', $label));
+				return array('label' => ucwords(strtolower(str_replace('_', ' ', $label))));
 			case 'sender':
 				$roleId = $element->getFromRoleId();
 				$label = $roleDao->getRoleNames(false, array($roleId));
