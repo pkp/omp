@@ -232,7 +232,7 @@ class SignoffFileUploadForm extends Form {
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
 		$monograph =& $monographDao->getById($this->getMonographId());
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO');
-		$monographFile =& $submissionFileDao->getLatestRevision($signoffFileId);
+		$monographFile =& $submissionFileDao->getLatestRevision($signoff->getFileId());
 
 		if (isset($monographFile)) {
 			MonographFileLog::logEvent($request, $monographFile, MONOGRAPH_LOG_FILE_AUDIT_UPLOAD, 'submission.event.fileAuditUploaded', array('file' => $monographFile->getOriginalFileName(), 'name' => $user->getFullName(), 'username' => $user->getUsername()));
