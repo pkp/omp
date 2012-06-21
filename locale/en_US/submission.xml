@@ -115,7 +115,7 @@
 	<message key="submission.submit.submissionFiles">Submission Files</message>
 	<message key="submission.submit.fileInformation">File Information</message>
 	<message key="submission.submit.fileNameRequired">You must enter a file name for this file</message>
-	<message key="submission.submit.fileAdded">Submission File Added</message>
+	<message key="submission.submit.fileAdded">File Added</message>
 	<message key="submission.submit.newFile">Upload Another File For This Submission</message>
 	<message key="submission.submit.userGroup">Submit in my role as...</message>
 	<message key="submission.submit.userGroupDescription">If you are submitting an Edited Volume, you should choose the volume editor role.</message>
