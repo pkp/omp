@@ -673,7 +673,7 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="notification.type.layouteditorRequest">You were requested to review layouts for "{$title}"</message>
 	<message key="notification.type.indexRequest">You were requested to create an index for "{$title}"</message>
 	<message key="notification.type.reviewAssignment">You have a review pending.</message>
-	<message key="notification.type.signoffCopyedit">You have pending editorial auditor tasks</message>
+	<message key="notification.type.signoffCopyedit">You have pending auditor tasks</message>
 	<message key="notification.type.signoffProof">You have pending production auditor tasks</message>
 	<message key="notification.type.editorDecisionTitle">Latest editor decision</message>
 	<message key="notification.type.editorDecisionInitiateReview">Review process started.</message>
