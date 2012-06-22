@@ -78,12 +78,18 @@ class FooterCategoryDAO extends DAO {
 
 	/**
 	 * Check if a category exists with a specified path.
-	 * @param $path the path for the category
+	 * @param string $path the path for the category
+	 * @param int $pressId the press context (optional)
 	 * @return boolean
 	 */
-	function categoryExistsByPath($path) {
+	function categoryExistsByPath($path, $pressId = null) {
+		$params = array($path);
+		if ($pressId) $params[] = (int) $pressId;
+
 		$result =& $this->retrieve(
-			'SELECT COUNT(*) FROM categories WHERE path = ?', $path
+			'SELECT COUNT(*) FROM footer_categories WHERE path = ?
+			' . ($pressId?' AND press_id = ?':''),
+			$params
 		);
 		$returner = isset($result->fields[0]) && $result->fields[0] == 1 ? true : false;
 

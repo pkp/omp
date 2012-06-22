@@ -39,6 +39,14 @@ class FooterCategoryForm extends Form {
 		$this->addCheck(new FormValidator($this, 'title', 'required', 'grid.content.navigation.footer.titleRequired'));
 		$this->addCheck(new FormValidator($this, 'description', 'required', 'grid.content.navigation.footer.descriptionRequired'));
 		$this->addCheck(new FormValidator($this, 'path', 'required', 'grid.content.navigation.footer.pathRequired'));
+		$this->addCheck(new FormValidatorCustom(
+			$this, 'path', 'required', 'grid.content.navigation.footer.pathRequired',
+			create_function(
+				'$path,$form,$footerCategoryDao,$pressId',
+				'return !$footerCategoryDao->categoryExistsByPath($path,$pressId);'
+			),
+			array(&$this, DAORegistry::getDAO('FooterCategoryDAO'), $pressId)
+		));
 		$this->addCheck(new FormValidatorPost($this));
 	}
 
