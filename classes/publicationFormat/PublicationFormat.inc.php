@@ -309,6 +309,29 @@ class PublicationFormat extends DataObject {
 	}
 
 	/**
+	 * Get the file size of the monograph format based on calculated sizes
+	 * for approved proof files.
+	 * @return string
+	 */
+	function getCalculatedFileSize() {
+		$fileSize = 0;
+		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO');
+		import('classes.monograph.MonographFile'); // File constants
+		$stageMonographFiles =& $submissionFileDao->getLatestRevisionsByAssocId(
+				ASSOC_TYPE_PUBLICATION_FORMAT, $this->getId(),
+				$this->getMonographId(), MONOGRAPH_FILE_PROOF
+		);
+
+		foreach ($stageMonographFiles as $monographFile) {
+			if ($monographFile->getViewable()) {
+				$fileSize += (int) $monographFile->getFileSize();
+			}
+		}
+
+		return sprintf('%d.3', $fileSize/1024); // bytes to Mb
+	}
+
+	/**
 	 * Set the file size of the publication format.
 	 * @param string $fileSize
 	 */
@@ -515,9 +538,7 @@ class PublicationFormat extends DataObject {
 	 */
 	function _checkRequiredFieldsAssigned() {
 		$requiredFields = array('productCompositionCode' => 'grid.catalogEntry.codeRequired', 'productAvailabilityCode' => 'grid.catalogEntry.productAvailabilityRequired');
-		if (!$this->getPhysicalFormat()) {
-			$requiredFields['fileSize'] = 'grid.catalogEntry.fileSizeRequired';
-		}
+
 		$errors = array();
 
 		foreach ($requiredFields as $field => $errorCode) {
@@ -525,6 +546,13 @@ class PublicationFormat extends DataObject {
 				$errors[] = $errorCode;
 			}
 		}
+
+		if (!$this->getPhysicalFormat()) {
+			if (!$this->getFileSize() && !$this->getCalculatedFileSize()) {
+				$errors['fileSize'] = 'grid.catalogEntry.fileSizeRequired';
+			}
+		}
+
 		return $errors;
 	}
 }

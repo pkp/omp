@@ -130,7 +130,8 @@ class CatalogEntryPublicationMetadataForm extends Form {
 		assert($publicationFormat);
 
 		$this->_data = array(
-			'fileSize' => $publicationFormat->getFileSize(),
+			'fileSize' => (boolean) $publicationFormat->getFileSize() ? $publicationFormat->getFileSize() : $publicationFormat->getCalculatedFileSize(),
+			'override' => (boolean) $publicationFormat->getData('fileSize') ? true : false,
 			'frontMatter' => $publicationFormat->getFrontMatter(),
 			'backMatter' => $publicationFormat->getBackMatter(),
 			'height' => $publicationFormat->getHeight(),
@@ -159,6 +160,7 @@ class CatalogEntryPublicationMetadataForm extends Form {
 		$this->readUserVars(array(
 			'directSalesPrice',
 			'fileSize',
+			'override',
 			'frontMatter',
 			'backMatter',
 			'height',
@@ -214,7 +216,7 @@ class CatalogEntryPublicationMetadataForm extends Form {
 		}
 
 		// populate the published monograph with the cataloging metadata
-		$publicationFormat->setFileSize($this->getData('fileSize'));
+		$publicationFormat->setFileSize($this->getData('override') ? $this->getData('fileSize'):null);
 		$publicationFormat->setFrontMatter($this->getData('frontMatter'));
 		$publicationFormat->setBackMatter($this->getData('backMatter'));
 		$publicationFormat->setHeight($this->getData('height'));

@@ -12,7 +12,7 @@
 	$(function() {ldelim}
 		// Attach the form handler.
 		$('#{$publicationFormId|escape:"javascript"}').pkpHandler(
-			'$.pkp.controllers.form.AjaxFormHandler',
+			'$.pkp.controllers.modals.catalogEntry.form.PublicationFormatMetadataFormHandler',
 			{ldelim}
 				trackFormChanges: true
 			{rdelim}

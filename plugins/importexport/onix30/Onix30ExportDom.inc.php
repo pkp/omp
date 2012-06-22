@@ -262,7 +262,8 @@ class Onix30ExportDom {
 			$extentNode =& XMLCustomWriter::createElement($doc, 'Extent');
 			XMLCustomWriter::appendChild($descDetailNode, $extentNode);
 			XMLCustomWriter::createChildWithText($doc, $extentNode, 'ExtentType', '08');
-			XMLCustomWriter::createChildWithText($doc, $extentNode, 'ExtentValue', $publicationFormat->getFileSize());
+			$fileSize = $publicationFormat->getFileSize() ? $publicationFormat->getFileSize() : $publicationFormat->getCalculatedFileSize();
+			XMLCustomWriter::createChildWithText($doc, $extentNode, 'ExtentValue', $fileSize);
 			XMLCustomWriter::createChildWithText($doc, $extentNode, 'ExtentUnit', '05');
 			unset($extentNode);
 		}
