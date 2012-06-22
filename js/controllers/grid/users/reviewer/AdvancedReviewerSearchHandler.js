@@ -69,8 +69,8 @@ jQuery.pkp.controllers.modals = jQuery.pkp.controllers.modals ||
 		var reviewerId = $selectedInput.val();
 
 		if (reviewerId) {
-			var reviewerName = $selectedInput.parent().next().
-					children('span').html().trim();
+			var reviewerName = $.trim($selectedInput.parent().next().
+					children('span').html());
 
 			// Update the hidden review id input
 			$('#reviewerId').val(reviewerId);
