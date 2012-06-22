@@ -58,12 +58,12 @@ class FooterLinkListbuilderHandler extends SetupListbuilderHandler {
 		$this->setSaveFieldName('footerLinks');
 
 		// Title column
-		$titleColumn = new MultilingualListbuilderGridColumn($this, 'title', 'common.title');
+		$titleColumn = new MultilingualListbuilderGridColumn($this, 'title', 'common.title', null, null, null, null, array('tabIndex' => 1));
 		import('controllers.listbuilder.content.navigation.FooterLinkListbuilderGridCellProvider');
 		$titleColumn->setCellProvider(new FooterLinkListbuilderGridCellProvider());
 		$this->addColumn($titleColumn);
 
-		$urlColumn = new ListbuilderGridColumn($this, 'url', 'common.url');
+		$urlColumn = new ListbuilderGridColumn($this, 'url', 'common.url', null, null, null, array('tabIndex' => 2));
 		$urlColumn->setCellProvider(new FooterLinkListbuilderGridCellProvider());
 		$this->addColumn($urlColumn);
 	}
