@@ -1411,7 +1411,10 @@ ul.sf-menu {
   vertical-align:middle;
   margin-bottom:0px;
 }
-.pkp_submissionChecklist ul li label.error { margin-bottom:15px; }
+#pkp_submissionChecklist ul li label.error {
+  margin-bottom:15px;
+  font-weight:bold;
+}
 .pkp_manageCatalog_monographList {
   list-style-type:none;
   margin-left:10px;

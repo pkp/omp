@@ -65,7 +65,7 @@
 
 	<!-- Submission checklist -->
 	{if $currentPress->getLocalizedSetting('submissionChecklist')}
-		{fbvFormSection list="true" label="submission.submit.submissionChecklist" description="submission.submit.submissionChecklistDescription"}
+		{fbvFormSection list="true" label="submission.submit.submissionChecklist" description="submission.submit.submissionChecklistDescription" id="pkp_submissionChecklist"}
 			{foreach name=checklist from=$currentPress->getLocalizedSetting('submissionChecklist') key=checklistId item=checklistItem}
 				{if $checklistItem.content}
 					{fbvElement type="checkbox" id="checklist-$checklistId" required=true value=1 label=$checklistItem.content translate=false checked=$monographId}
