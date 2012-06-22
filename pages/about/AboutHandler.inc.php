@@ -225,7 +225,7 @@ class AboutHandler extends Handler {
 
 		$user = null;
 		if ($press->getSetting('boardEnabled') != true) {
-			$roles =& $roleDao->getRolesByUserId($userId, $press->getId());
+			$roles =& $roleDao->getByUserId($userId, $press->getId());
 			$acceptableRoles = array(
 				ROLE_ID_SERIES_EDITOR
 			);
