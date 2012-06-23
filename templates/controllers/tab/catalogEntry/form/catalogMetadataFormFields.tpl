@@ -39,6 +39,12 @@
 	{* Container for uploaded file *}
 	<input type="hidden" name="temporaryFileId" id="temporaryFileId" value="" />
 
+	{if $coverImage}
+		{capture assign="altTitle"}{translate key="monograph.currentCoverImage"}{/capture}
+		{$altTitle}
+		<img class="pkp_helpers_container_center" height="{$coverImage.thumbnailHeight}" width="{$coverImage.thumbnailWidth}" src="{url router=$smarty.const.ROUTE_COMPONENT component="submission.CoverHandler" op="thumbnail" monographId=$monographId}" alt="{$altTitle|escape}" />
+	{/if}
+
 	{fbvFormArea id="audienceInformation" title="monograph.audience" border="true"}
 		{fbvFormSection for="audience"}
 			{fbvElement label="monograph.audience" type="select" from=$audienceCodes selected=$audience translate=false id="audience" defaultValue="" defaultLabel=""}

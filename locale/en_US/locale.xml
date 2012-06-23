@@ -14,6 +14,7 @@
 	<!-- General monograph keys -->
 	<message key="monograph.audience">Audience</message>
 	<message key="monograph.coverImage">Cover Image</message>
+	<message key="monograph.currentCoverImage">Current Image</message>
 	<message key="monograph.audience.rangeQualifier">Audience Range Qualifier</message>
 	<message key="monograph.audience.rangeFrom">Audience Range (from)</message>
 	<message key="monograph.audience.rangeTo">Audience Range (to)</message>
@@ -60,6 +61,7 @@
 	<message key="monograph.publicationFormat.digitalInformation">Digital Information</message>
 	<message key="monograph.publicationFormat.productDimensions">Physical Dimensions</message>
 	<message key="monograph.publicationFormat.productFileSize">File Size in Mbytes</message>
+	<message key="monograph.publicationFormat.productFileSize.override">Enter your own file size value?</message>
 	<message key="monograph.publicationFormat.productHeight">Height</message>
 	<message key="monograph.publicationFormat.productThickness">Thickness</message>
 	<message key="monograph.publicationFormat.productWeight">Weight</message>
@@ -236,6 +238,7 @@
 	<message key="grid.action.addDate">Add a publication date</message>
 	<message key="grid.action.editDate">Edit this Date</message>
 	<message key="grid.action.deleteDate">Delete this Date</message>
+	<message key="grid.action.toggleHelp">Toggle the display of inline help</message>
 
 	<!-- Used in submission review -->
 	<message key="reviewer.reviewSteps.request">1. Request</message>

@@ -95,6 +95,7 @@ class CatalogEntryCatalogMetadataForm extends Form {
 			$templateMgr->assign('audienceRangeFrom', $publishedMonograph->getAudienceRangeFrom());
 			$templateMgr->assign('audienceRangeTo', $publishedMonograph->getAudienceRangeTo());
 			$templateMgr->assign('audienceRangeExact', $publishedMonograph->getAudienceRangeExact());
+			$templateMgr->assign('coverImage', $publishedMonograph->getCoverImage());
 		}
 
 		return parent::fetch($request);
