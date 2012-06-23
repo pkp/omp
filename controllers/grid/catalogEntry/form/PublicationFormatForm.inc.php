@@ -86,6 +86,8 @@ class PublicationFormatForm extends Form {
 				'title' => $format->getTitle(),
 				'isPhysicalFormat' => $format->getPhysicalFormat()?true:false,
 			);
+		} else {
+			$this->setData('entryKey', 'DA');
 		}
 	}
 
