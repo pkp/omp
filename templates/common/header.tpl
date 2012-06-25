@@ -100,6 +100,8 @@
 			$('body').pkpHandler(
 				'$.pkp.controllers.SiteHandler',
 				{ldelim}
+					inlineHelpState: {$initialHelpState},
+					toggleHelpUrl: '{url|escape:javascript router=$smarty.const.ROUTE_PAGE page="user" op="toggleHelp"}',
 					{include file="core:controllers/notification/notificationOptions.tpl"}
 				{rdelim});
 		{rdelim});

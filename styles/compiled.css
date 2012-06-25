@@ -1184,14 +1184,14 @@ div.pkp_controllers_grid .pkp_controllers_grid_settings_stages {
   float:left;
   width:20%;
 }
-.pkp_controllers_grid .options a.sort { background:url(../lib/pkp/templates/images/structure/grid_sort.png) no-repeat left; }
-.pkp_controllers_grid a.new { background-image:url(../lib/pkp/templates/images/structure/grid_task.png); }
-.pkp_controllers_grid a.accepted { background-image:url(../lib/pkp/templates/images/structure/grid_task_accepted.png); }
-.pkp_controllers_grid a.declined { background-image:url(../lib/pkp/templates/images/structure/lb_delete.png); }
-.pkp_controllers_grid a.completed { background-image:url(../lib/pkp/templates/images/structure/grid_task_complete.png); }
-.pkp_controllers_grid a.overdue { background-image:url(../lib/pkp/templates/images/structure/grid_email_overdue.png); }
-.pkp_controllers_grid a.uploaded { background-image:url(../lib/pkp/templates/images/structure/grid_folder.png); }
-.pkp_controllers_grid a.request_review { background-image:url(../lib/pkp/templates/images/structure/grid_request_review.png); }
+.options a.sort { background:url(../lib/pkp/templates/images/structure/grid_sort.png) no-repeat left; }
+a.new { background-image:url(../lib/pkp/templates/images/structure/grid_task.png); }
+a.accepted { background-image:url(../lib/pkp/templates/images/structure/grid_task_accepted.png); }
+a.declined { background-image:url(../lib/pkp/templates/images/structure/lb_delete.png); }
+a.completed { background-image:url(../lib/pkp/templates/images/structure/grid_task_complete.png); }
+a.overdue { background-image:url(../lib/pkp/templates/images/structure/grid_email_overdue.png); }
+a.uploaded { background-image:url(../lib/pkp/templates/images/structure/grid_folder.png); }
+a.request_review { background-image:url(../lib/pkp/templates/images/structure/grid_request_review.png); }
 .pkp_controllers_grid div.checked {
   background-image:url(../lib/pkp/templates/images/structure/grid_promote.png);
   height:15px;
@@ -1569,4 +1569,22 @@ ul.sf-menu {
   margin-left:2px;
   left:100%;
   z-index:1;
+}
+#legend { visibility:hidden; }
+#legend td a {
+  min-height:20px;
+  background-position:50% 50%;
+  background-repeat:no-repeat;
+}
+#legend .pkp_legend_header {
+  padding-bottom:5px;
+  padding-top:5px;
+  background-color:#f9f6f3;
+}
+#legend td a.task {
+  width:100%;
+  text-indent:-1500px;
+  overflow:hidden;
+  display:block;
+  margin:0;
 }

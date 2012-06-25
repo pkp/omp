@@ -26,4 +26,6 @@
 	{load_url_in_div id="fairCopyGrid" url=$fairCopyGridUrl}
 </div>
 </div>
+{include file="workflow/legend.tpl"}
+
 {include file="common/footer.tpl"}

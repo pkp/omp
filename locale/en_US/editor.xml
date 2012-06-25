@@ -97,6 +97,29 @@
 
 	<message key="editor.monograph.copyediting.currentFiles">Current Files</message>
 	<message key="editor.monograph.copyediting.personalMessageToUser">Personal message to user</message>
+	
+	<!-- Editorial Legend -->
+	<message key="editor.monograph.legend.submissionActions">Submission Actions</message>
+	<message key="editor.monograph.legend.submissionActionsDescription">Overall submission actions and options.</message>
+	<message key="editor.monograph.legend.sectionActions">Section Actions</message>
+	<message key="editor.monograph.legend.sectionActionsDescription">Options particular to a given section, for example uploading files or adding users.</message>
+	<message key="editor.monograph.legend.itemActions">Item Actions</message>
+	<message key="editor.monograph.legend.itemActionsDescription">Actions and options particular to an individual file.</message>
+	<message key="editor.monograph.legend.catalogEntry">View and manage the submission catalog entry, including metadata and publishing formats</message>
+	<message key="editor.monograph.legend.informationCenter">View and manage submission metadata, notes, notifications, and history</message>
+	<message key="editor.monograph.legend.participants">View and manage this submission's participants: authors, editors, designers, and more</message>
+	<message key="editor.monograph.legend.add">Upload a file to the section</message>
+	<message key="editor.monograph.legend.add_user">Add a user to the section</message>
+	<message key="editor.monograph.legend.settings">View and access item settings, such as information and delete options</message>
+	<message key="editor.monograph.legend.more_info">More Information: file notes, notification options, and history</message>
+	<message key="editor.monograph.legend.notes_none">File information: notes, notification options, and history (No notes added yet)</message>
+	<message key="editor.monograph.legend.notes">File information: notes, notification options, and history (Notes are available)</message>
+	<message key="editor.monograph.legend.notes_new">File information: notes, notification options, and history (New notes added since last visit)</message>
+	<message key="editor.monograph.legend.edit">Edit item</message>
+	<message key="editor.monograph.legend.delete">Delete item</message>
+	<message key="editor.monograph.legend.in_progress">Action in progress or not yet complete</message>
+	<message key="editor.monograph.legend.complete">Action complete</message>
+	<message key="editor.monograph.legend.uploaded">File uploaded by the role in the grid column title</message>
 
 	<!-- Editorial related -->
 	<message key="editor.monograph.editorial.introduction">The copyeditor downloads the Accepted Submission files for copyediting, and then uploads the copyedited files under Copyediting for review. The copyeditor uses Assign to select and notify users to audit copyedits. Those assigned download, review, and upload the copyedited files and/or leave a note with the file. The copyeditor then prepares and uploads a clean Fair Copy of the submission file(s), for which an editor signs off and clicks Send to Production.</message>

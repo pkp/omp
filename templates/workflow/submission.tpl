@@ -18,4 +18,6 @@
 
 </div>
 
+{include file="workflow/legend.tpl"}
+
 {include file="common/footer.tpl"}

@@ -49,6 +49,7 @@ switch ($op) {
 		import('pages.user.UserHandler');
 		break;
 	case 'getInterests':
+	case 'toggleHelp':
 		define('HANDLER_CLASS', 'PKPUserHandler');
 		import('lib.pkp.pages.user.PKPUserHandler');
 		break;
