@@ -33,7 +33,6 @@ class DistributionSettingsTabHandler extends ManagerSettingsTabHandler {
 			'indexing' => 'controllers.tab.settings.indexing.form.IndexingForm',
 			'paymentMethod' => 'controllers.tab.settings.paymentMethod.form.PaymentMethodForm',
 		));
-
 	}
 
 	/**

@@ -30,7 +30,6 @@
 					<li>
 						<a href="#">{translate key="navigation.management"}</a>
 						<ul>
-							<li><a href="{url page="management" op="navigation"}">{translate key="common.navigation"}</a></li>
 							<li>
 								<a href="{url page="manageCatalog"}">{translate key="navigation.catalog"}</a>
 							</li>

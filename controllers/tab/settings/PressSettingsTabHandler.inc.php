@@ -23,14 +23,13 @@ class PressSettingsTabHandler extends ManagerSettingsTabHandler {
 	 */
 	function PressSettingsTabHandler() {
 		parent::ManagerSettingsTabHandler();
-		$pageTabs = array(
+		$this->setPageTabs(array(
 			'masthead' => 'controllers.tab.settings.masthead.form.MastheadForm',
 			'contact' => 'controllers.tab.settings.contact.form.ContactForm',
 			'policies' => 'controllers.tab.settings.policies.form.PoliciesForm',
 			'guidelines' => 'controllers.tab.settings.guidelines.form.GuidelinesForm',
 			'affiliationAndSupport' => 'controllers.tab.settings.affiliation.form.AffiliationForm',
-		);
-		$this->setPageTabs($pageTabs);
+		));
 	}
 
 	//

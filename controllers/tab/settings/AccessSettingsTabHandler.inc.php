@@ -22,12 +22,11 @@ class AccessSettingsTabHandler extends ManagerSettingsTabHandler {
 	 */
 	function AccessSettingsTabHandler() {
 		parent::ManagerSettingsTabHandler();
-		$pageTabs = array(
+		$this->setPageTabs(array(
 			'users' => 'controllers/tab/settings/users.tpl',
 			'roles' => 'controllers/tab/settings/roles.tpl',
-			'siteAccessOptions' => 'controllers.tab.settings.siteAccessOptions.form.SiteAccessOptionsForm'
-		);
-		$this->setPageTabs($pageTabs);
+			'siteAccessOptions' => 'controllers.tab.settings.siteAccessOptions.form.SiteAccessOptionsForm',
+		));
 	}
 }
 

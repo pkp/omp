@@ -32,7 +32,7 @@ class SettingsHandler extends ManagementHandler {
 				'press',
 				'website',
 				'publication',
-				'distribution'
+				'distribution',
 			)
 		);
 	}
@@ -46,7 +46,7 @@ class SettingsHandler extends ManagementHandler {
 	 * @param $request PKPRequest
 	 * @param $args array
 	 */
-	function index() {
+	function index($args, &$request) {
 		$templateMgr =& TemplateManager::getManager();
 		$this->setupTemplate();
 		$templateMgr->display('management/settings/index.tpl');
@@ -80,29 +80,29 @@ class SettingsHandler extends ManagementHandler {
 
 	/**
 	 * Route to other settings operations.
-	 * @param $request PKPRequest
 	 * @param $args array
+	 * @param $request PKPRequest
 	 */
-	function settings($args) {
+	function settings($args, &$request) {
 		$path = array_shift($args);
 		switch($path) {
 			case 'index':
-				$this->index();
+				$this->index($args, $request);
 				break;
 			case 'access':
-				$this->access();
+				$this->access($args, $request);
 				break;
 			case 'press':
-				$this->press();
+				$this->press($args, $request);
 				break;
 			case 'website':
-				$this->website();
+				$this->website($args, $request);
 				break;
 			case 'publication':
-				$this->publication();
+				$this->publication($args, $request);
 				break;
 			case 'distribution':
-				$this->distribution();
+				$this->distribution($args, $request);
 				break;
 			default:
 				assert(false);
@@ -111,10 +111,10 @@ class SettingsHandler extends ManagementHandler {
 
 	/**
 	 * Display Access and Security page.
-	 * @param $request PKPRequest
 	 * @param $args array
+	 * @param $request PKPRequest
 	 */
-	function access() {
+	function access($args, &$request) {
 		$templateMgr =& TemplateManager::getManager();
 		$this->setupTemplate();
 		$templateMgr->display('management/settings/access.tpl');
@@ -122,10 +122,10 @@ class SettingsHandler extends ManagementHandler {
 
 	/**
 	 * Display The Press page.
-	 * @param $request PKPRequest
 	 * @param $args array
+	 * @param $request PKPRequest
 	 */
-	function press() {
+	function press($args, &$request) {
 		$templateMgr =& TemplateManager::getManager();
 		$this->setupTemplate();
 		$templateMgr->display('management/settings/press.tpl');
@@ -133,21 +133,23 @@ class SettingsHandler extends ManagementHandler {
 
 	/**
 	 * Display website page.
-	 * @param $request PKPRequest
 	 * @param $args array
+	 * @param $request PKPRequest
 	 */
-	function website() {
+	function website($args, &$request) {
 		$templateMgr =& TemplateManager::getManager();
 		$this->setupTemplate();
+		$press =& $request->getPress();
+		$templateMgr->assign('enableAnnouncements', $press->getSetting('enableAnnouncements'));
 		$templateMgr->display('management/settings/website.tpl');
 	}
 
 	/**
 	 * Display publication process page.
-	 * @param $request PKPRequest
 	 * @param $args array
+	 * @param $request PKPRequest
 	 */
-	function publication() {
+	function publication($args, &$request) {
 		$templateMgr =& TemplateManager::getManager();
 		$this->setupTemplate();
 		$templateMgr->display('management/settings/publication.tpl');
@@ -155,10 +157,10 @@ class SettingsHandler extends ManagementHandler {
 
 	/**
 	 * Display distribution process page.
-	 * @param $request PKPRequest
 	 * @param $args array
+	 * @param $request PKPRequest
 	 */
-	function distribution() {
+	function distribution($args, &$request) {
 		$templateMgr =& TemplateManager::getManager();
 		$this->setupTemplate();
 		$templateMgr->display('management/settings/distribution.tpl');

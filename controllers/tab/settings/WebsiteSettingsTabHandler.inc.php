@@ -23,23 +23,24 @@ class WebsiteSettingsTabHandler extends ManagerSettingsTabHandler {
 	 */
 	function WebsiteSettingsTabHandler() {
 		$this->addRoleAssignment(ROLE_ID_PRESS_MANAGER,
-				array(
-					'showFileUploadForm',
-					'uploadFile',
-					'saveFile',
-					'deleteFile',
-					'fetchFile',
-					'reloadLocalizedDefaultSettings'
-				)
+			array(
+				'showFileUploadForm',
+				'uploadFile',
+				'saveFile',
+				'deleteFile',
+				'fetchFile',
+				'reloadLocalizedDefaultSettings'
+			)
 		);
 		parent::ManagerSettingsTabHandler();
-		$pageTabs = array(
+		$this->setPageTabs(array(
 			'homepage' => 'controllers.tab.settings.homepage.form.HomepageForm',
 			'appearance' => 'controllers.tab.settings.appearance.form.AppearanceForm',
 			'languages' => 'controllers/tab/settings/languages/languages.tpl',
-			'plugins' => 'controllers/tab/settings/plugins/plugins.tpl'
-		);
-		$this->setPageTabs($pageTabs);
+			'plugins' => 'controllers/tab/settings/plugins/plugins.tpl',
+			'announcements' => 'controllers.tab.settings.announcements.form.AnnouncementSettingsForm',
+			'navigation' => 'controllers/tab/settings/navigation/navigation.tpl',
+		));
 	}
 
 
@@ -213,8 +214,6 @@ class WebsiteSettingsTabHandler extends ManagerSettingsTabHandler {
 
 		return $fileUploadForm;
 	}
-
 }
-
 
 ?>

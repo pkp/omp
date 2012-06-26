@@ -22,9 +22,14 @@ class ManageAnnouncementGridHandler extends AnnouncementGridHandler {
 	 */
 	function ManageAnnouncementGridHandler() {
 		parent::AnnouncementGridHandler();
-		$this->addRoleAssignment(ROLE_ID_PRESS_MANAGER,
-				array('fetchGrid', 'fetchRow', 'moreInformation', 'addAnnouncement',
-				'editAnnouncement', 'updateAnnouncement', 'deleteAnnouncement'));
+		$this->addRoleAssignment(
+			ROLE_ID_PRESS_MANAGER,
+			array(
+				'fetchGrid', 'fetchRow', 'moreInformation',
+				'addAnnouncement', 'editAnnouncement',
+				'updateAnnouncement', 'deleteAnnouncement'
+			)
+		);
 	}
 
 
@@ -100,13 +105,7 @@ class ManageAnnouncementGridHandler extends AnnouncementGridHandler {
 		$press =& $request->getPress();
 		$pressId = $press->getId();
 
-		if (checkPhpVersion('5.0.0')) {
-			// WARNING: This form needs $this in constructor
-			$announcementForm = new AnnouncementForm($pressId, $announcementId);
-		} else {
-			$announcementForm =& new AnnouncementForm($pressId, $announcementId);
-		}
-
+		$announcementForm = new AnnouncementForm($pressId, $announcementId);
 		$announcementForm->initData($args, $request);
 
 		$json = new JSONMessage(true, $announcementForm->fetch($request));
@@ -127,13 +126,7 @@ class ManageAnnouncementGridHandler extends AnnouncementGridHandler {
 		$pressId = $press->getId();
 
 		// Form handling.
-		if (checkPhpVersion('5.0.0')) {
-			// WARNING: This form needs $this in constructor
-			$announcementForm = new AnnouncementForm($pressId, $announcementId);
-		} else {
-			$announcementForm =& new AnnouncementForm($pressId, $announcementId);
-		}
-
+		$announcementForm = new AnnouncementForm($pressId, $announcementId);
 		$announcementForm->readInputData();
 
 		if ($announcementForm->validate()) {
