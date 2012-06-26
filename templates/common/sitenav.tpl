@@ -22,8 +22,8 @@
 	<ul class="pkp_helpers_flatlist pkp_helpers_align_right">
 		{if $isUserLoggedIn}
 			<li class="profile">{translate key="user.hello"}&nbsp;<a href="{url page="user" op="profile"}">{$loggedInUsername|escape}</a></li>
+			<li>{null_link_action id="toggleHelp" key="help.toggleInlineHelpOn"}</li>
 			<li><a href="{url page="login" op="signOut"}">{translate key="user.logOut"}</a></li>
-			<li>{null_link_action id="toggleHelp" key="help.toggleInlineHelp"}</li>
 		{else}
 			<li><a href="{url page="login"}">{translate key="navigation.login"}</a></li>
 			<li><a href="{url page="user" op="register"}">{translate key="navigation.register"}</a></li>

@@ -100,8 +100,12 @@
 			$('body').pkpHandler(
 				'$.pkp.controllers.SiteHandler',
 				{ldelim}
-					inlineHelpState: {$initialHelpState},
+					{if $isUserLoggedIn}
+						inlineHelpState: {$initialHelpState},
+					{/if}
 					toggleHelpUrl: '{url|escape:javascript router=$smarty.const.ROUTE_PAGE page="user" op="toggleHelp"}',
+					toggleHelpOnText: '{$toggleHelpOnText}',
+					toggleHelpOffText: '{$toggleHelpOffText}',
 					{include file="core:controllers/notification/notificationOptions.tpl"}
 				{rdelim});
 		{rdelim});
