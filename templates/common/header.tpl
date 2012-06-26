@@ -147,7 +147,9 @@
 				</div>
 				<div class="unit size4of5 lastUnit">
 					{include file="common/breadcrumbs.tpl"}
-					{include file="common/search.tpl"}
+					{if !$noPressesConfigured}
+						{include file="common/search.tpl"}
+					{/if}
 				</div>
 
 				{if !$leftSidebarCode && !$rightSidebarCode}

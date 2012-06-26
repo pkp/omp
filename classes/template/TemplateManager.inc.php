@@ -117,6 +117,10 @@ class TemplateManager extends PKPTemplateManager {
 			if ($presses->getCount() > 1) {
 				$this->assign('multiplePresses', true);
 				$multiplePresses = true;
+			} else {
+				if ($presses->getCount() == 0) { // no presses configured
+					$this->assign('noPressesConfigured', true);
+				}
 			}
 
 			if ($multiplePresses) {
