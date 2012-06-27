@@ -42,7 +42,7 @@ class ManageAnnouncementGridHandler extends AnnouncementGridHandler {
 	function authorize(&$request, $args, $roleAssignments) {
 		import('classes.security.authorization.OmpPressAccessPolicy');
 		$this->addPolicy(new OmpPressAccessPolicy($request, $roleAssignments));
-		return parent::authorize($request, $args, $roleAssignments);
+		return parent::authorize($request, $args, $roleAssignments, false);
 	}
 
 	/**
