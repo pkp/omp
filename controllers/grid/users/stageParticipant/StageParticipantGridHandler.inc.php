@@ -18,6 +18,7 @@ import('lib.pkp.classes.controllers.grid.CategoryGridHandler');
 // import stageParticipant grid specific classes
 import('controllers.grid.users.stageParticipant.StageParticipantGridRow');
 import('controllers.grid.users.stageParticipant.StageParticipantGridCategoryRow');
+import('classes.log.MonographEventLogEntry');
 
 class StageParticipantGridHandler extends CategoryGridHandler {
 	/**
