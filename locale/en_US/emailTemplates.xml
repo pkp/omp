@@ -402,7 +402,7 @@ Username: {$authorUsername}
 		<subject>Editor Decision</subject>
 		<body>{$authorName}:
 
-We have reached a decision regarding your submission to {$pressName}, "{$monographTitle}".  We are now sending it to production.
+The editing of your manuscript, "{$monographTitle}", is complete.  We are now sending it to production.
 
 Manuscript URL: {$submissionUrl}
 Username: {$authorUsername}
