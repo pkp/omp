@@ -69,9 +69,6 @@ class LibraryFileGridHandler extends SetupGridHandler {
 	function initialize(&$request) {
 		parent::initialize($request);
 
-		$this->setTitle('manager.setup.submissionLibrary');
-		$this->setInstructions('manager.setup.submissionLibraryDescription');
-
 		$router =& $request->getRouter();
 		$context =& $router->getContext($request);
 
@@ -82,6 +79,10 @@ class LibraryFileGridHandler extends SetupGridHandler {
 		$fileType = (int) $request->getUserVar('fileType');
 		$this->setFileType($fileType);
 		$name = $libraryFileManager->getNameFromType($this->getFileType());
+
+		// Set name and description
+		$this->setTitle($libraryFileManager->getTitleKeyFromType($this->getFileType()));
+		$this->setInstructions($libraryFileManager->getDescriptionKeyFromType($this->getFileType()));
 
 		// Basic grid configuration
 		$this->setId('libraryFile' . ucwords(strtolower($name)));

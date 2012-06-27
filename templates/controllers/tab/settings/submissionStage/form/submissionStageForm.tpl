@@ -23,8 +23,6 @@
 		{load_url_in_div id="submissionLibraryGridDiv" url=$submissionLibraryUrl}
 	</div>
 
-	<div class="separator"></div>
-
 	{url|assign:submissionChecklistGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.submissionChecklist.SubmissionChecklistGridHandler" op="fetchGrid"}
 	{load_url_in_div id="submissionChecklistGridDiv" url=$submissionChecklistGridUrl}
 

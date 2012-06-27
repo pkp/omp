@@ -18,6 +18,9 @@
 <form class="pkp_form" id="productionStageForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.PublicationSettingsTabHandler" op="saveFormData" tab="productionStage"}">
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="productionStageFormNotification"}
 
+	{url|assign:productionLibraryGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.library.LibraryFileGridHandler" op="fetchGrid" fileType=$smarty.const.LIBRARY_FILE_TYPE_PRODUCTION}
+	{load_url_in_div id="productionLibraryGridDiv" url=$productionLibraryGridUrl}
+
 	{fbvFormArea id="publisherInformation"}
 		{fbvFormSection id="publisher" label="manager.settings.publisher"}
 			{fbvElement type="text" name="publisher" required="true" id="publisher" value=$publisher maxlength="255"}
@@ -26,6 +29,8 @@
 			{fbvElement type="text" name="location" required="true" id="location" value=$location maxlength="255"}
 		{/fbvFormSection}
 	{/fbvFormArea}
+
+	<div class="separator"></div>
 
 	{fbvFormArea id="audienceInformation" title="manager.settings.publisherCode" border="true"}
 		{fbvFormSection for="codeType" description="manager.settings.publisherCodeType.tip"}
@@ -36,11 +41,6 @@
 		{/fbvFormSection}
 	{/fbvFormArea}
 	
-	<h3 class="pkp_grid_title">{translate key="manager.setup.productionLibrary"}</h3>
-	<p class="pkp_grid_description">{translate key="manager.setup.productionLibraryDescription"}</p>
-	{url|assign:productionLibraryGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.library.LibraryFileGridHandler" op="fetchGrid" fileType=$smarty.const.LIBRARY_FILE_TYPE_PRODUCTION}
-	{load_url_in_div id="productionLibraryGridDiv" url=$productionLibraryGridUrl}
-
 	<div class="separator"></div>
 
 	<h3 class="pkp_grid_title">{translate key="manager.setup.productionTemplateLibrary"}</h3>

@@ -140,6 +140,54 @@ class LibraryFileManager extends PrivateFileManager {
 	}
 
 	/**
+	 * Get the type => locale key mapping array
+	 * @return array
+	 */
+	function &getTypeTitleKeyMap() {
+		static $map = array(
+			LIBRARY_FILE_TYPE_SUBMISSION => 'manager.setup.submissionLibrary',
+			LIBRARY_FILE_TYPE_REVIEW => 'manager.setup.reviewLibrary',
+			LIBRARY_FILE_TYPE_PRODUCTION => 'manager.setup.productionLibrary',
+			LIBRARY_FILE_TYPE_EDITORIAL => 'manager.setup.editorialLibrary'
+		);
+		return $map;
+	}
+
+	/**
+	 * Get the display name locale key from the type title
+	 * @param $type int LIBRARY_FILE_TYPE_...
+	 */
+	function getTitleKeyFromType($type) {
+		$typeTitleKeyMap =& $this->getTypeTitleKeyMap();
+		if (!isset($typeTitleKeyMap[$type])) fatalError('Invalid library file type!');
+		return $typeTitleKeyMap[$type];
+	}
+
+	/**
+	 * Get the type => locale key mapping array
+	 * @return array
+	 */
+	function &getTypeDescriptionKeyMap() {
+		static $map = array(
+			LIBRARY_FILE_TYPE_SUBMISSION => 'manager.setup.submissionLibraryDescription',
+			LIBRARY_FILE_TYPE_REVIEW => 'manager.setup.reviewLibraryDescription',
+			LIBRARY_FILE_TYPE_PRODUCTION => 'manager.setup.productionLibraryDescription',
+			LIBRARY_FILE_TYPE_EDITORIAL => 'manager.setup.editorialLibraryDescription'
+		);
+		return $map;
+	}
+
+	/**
+	 * Get the display name locale key from the type description
+	 * @param $type int LIBRARY_FILE_TYPE_...
+	 */
+	function getDescriptionKeyFromType($type) {
+		$typeDescriptionKeyMap =& $this->getTypeDescriptionKeyMap();
+		if (!isset($typeDescriptionKeyMap[$type])) fatalError('Invalid library file type!');
+		return $typeDescriptionKeyMap[$type];
+	}
+
+	/**
 	 * Get the type => name mapping array
 	 * @return array
 	 */
