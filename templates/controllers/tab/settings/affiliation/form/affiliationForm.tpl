@@ -16,7 +16,7 @@
 </script>
 
 <form class="pkp_form" id="affiliationForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.PressSettingsTabHandler" op="saveFormData" tab="affiliationAndSupport"}">
-
+	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="affiliationFormNotification"}
 	{fbvFormArea id="sponsorsFormArea"}
 		{fbvFormSection label="manager.setup.sponsors" description="manager.setup.sponsors.description"}
 			{url|assign:sponsorGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.sponsor.sponsorGridHandler" op="fetchGrid"}
