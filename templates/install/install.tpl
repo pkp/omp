@@ -66,7 +66,12 @@
 				{if !$localesComplete[$localeKey]}
 					{assign var=localeName value=$localeName|concat:"*"}
 				{/if}
-				{fbvElement type="checkbox" name="additionalLocales[]" id="additionalLocales-$localeKeyEscaped" value=$localeKeyEscaped translate=false label="manager.people.createUserSendNotify" checked=$sendNotify label=$localeName|escape}
+				{if in_array($localeKey,$additionalLocales)}
+					{assign var=localeSelected value=true}
+				{else}
+					{assign var=localeSelected value=false}
+				{/if}
+				{fbvElement type="checkbox" name="additionalLocales[]" id="additionalLocales-$localeKeyEscaped" value=$localeKeyEscaped translate=false label="manager.people.createUserSendNotify" checked=$localeSelected label=$localeName|escape}
 			{/foreach}
 		{/fbvFormSection}
 

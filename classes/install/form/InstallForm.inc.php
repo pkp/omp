@@ -124,6 +124,7 @@ class InstallForm extends Form {
 		$templateMgr->assign('databaseDriverOptions', $this->checkDBDrivers());
 		$templateMgr->assign('supportsMBString', String::hasMBString() ? __('common.yes') : __('common.no'));
 		$templateMgr->assign('phpIsSupportedVersion', version_compare(PHP_REQUIRED_VERSION, PHP_VERSION) != 1);
+		$templateMgr->assign('xslEnabled', $this->checkGeneralPHPModule('xsl'));
 		$templateMgr->assign('phpRequiredVersion', PHP_REQUIRED_VERSION);
 		$templateMgr->assign('phpVersion', PHP_VERSION);
 		$templateMgr->assign('version', VersionCheck::getCurrentCodeVersion());
@@ -157,7 +158,6 @@ class InstallForm extends Form {
 			'databaseName' => 'omp',
 			'createDatabase' => 1,
 			'oaiRepositoryId' => 'omp.' . Request::getServerHost(),
-			'xslEnabled' => $this->checkGeneralPHPModule('xsl'),
 		);
 	}
 
