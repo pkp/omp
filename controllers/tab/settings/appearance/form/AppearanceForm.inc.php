@@ -300,7 +300,7 @@ class AppearanceForm extends PressSettingsForm {
 			'uploadFile-' . $settingName,
 			$ajaxModal,
 			__('common.upload'),
-			null
+			'add'
 		);
 
 		return $linkAction;

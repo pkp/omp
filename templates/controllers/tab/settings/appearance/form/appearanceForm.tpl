@@ -36,8 +36,7 @@
 		{fbvFormSection list=true}
 			{fbvElement type="radio" name="homeHeaderTitleType[$locale]" id="homeHeaderTitleType-1" value=1 checked=$homeHeaderTitleType[$locale] label="manager.setup.useImageTitle" inline=true}
 			<div id="{$uploadImageLinkActions.homeHeaderTitleImage->getId()}" class="pkp_linkActions inline">
-				{include file="linkAction/buttonGenericLinkAction.tpl" buttonSelector="#homeHeaderTitleImageButton" action=$uploadImageLinkActions.homeHeaderTitleImage}
-				{fbvElement type="button" class="submitFormButton" id="homeHeaderTitleImageButton" label="common.upload"}
+				{include file="linkAction/linkAction.tpl" action=$uploadImageLinkActions.homeHeaderTitleImage contextId="appearanceForm"}
 			</div>
 			<div id="homeHeaderTitleImage">
 				{$imagesViews.homeHeaderTitleImage}
@@ -46,8 +45,7 @@
 		<div {if $wizardMode}class="pkp_form_hidden"{/if}>
 			{fbvFormSection label="manager.setup.useImageLogo" description="manager.setup.useImageLogoDescription"}
 			<div id="{$uploadImageLinkActions.homeHeaderLogoImage->getId()}" class="pkp_linkActions">
-				{include file="linkAction/buttonGenericLinkAction.tpl" buttonSelector="#homeHeaderLogoImageButton" action=$uploadImageLinkActions.homeHeaderLogoImage}
-				{fbvElement type="button" class="submitFormButton" id="homeHeaderLogoImageButton" label="common.upload"}
+				{include file="linkAction/linkAction.tpl" action=$uploadImageLinkActions.homeHeaderLogoImage contextId="appearanceForm"}
 			</div>
 			<div id="homeHeaderLogoImage">
 				{$imagesViews.homeHeaderLogoImage}
@@ -67,8 +65,7 @@
 		<div {if $wizardMode}class="pkp_form_hidden"{/if}>
 			{fbvFormSection label="manager.setup.homepageImage" description="manager.setup.homepageImageDescription"}
 				<div id="{$uploadImageLinkActions.homepageImage->getId()}" class="pkp_linkActions">
-					{include file="linkAction/buttonGenericLinkAction.tpl" buttonSelector="#homepageImageButton" action=$uploadImageLinkActions.homepageImage}
-					{fbvElement type="button" class="submitFormButton" id="homepageImageButton" label="common.upload"}
+					{include file="linkAction/linkAction.tpl" action=$uploadImageLinkActions.homepageImage contextId="appearanceForm"}
 				</div>
 				<div id="homepageImage">
 					{$imagesViews.homepageImage}
@@ -92,8 +89,7 @@
 		{fbvFormSection list=true}
 			{fbvElement type="radio" name="pageHeaderTitleType[$locale]" id="pageHeaderTitleType-1" value=1 checked=$pageHeaderTitleType[$locale] label="manager.setup.useImageTitle" inline=true}
 			<div id="{$uploadImageLinkActions.pageHeaderTitleImage->getId()}" class="pkp_linkActions inline">
-				{include file="linkAction/buttonGenericLinkAction.tpl" buttonSelector="#pageHeaderTitleImageButton" action=$uploadImageLinkActions.pageHeaderTitleImage}
-				{fbvElement type="button" class="submitFormButton" id="pageHeaderTitleImageButton" label="common.upload"}
+				{include file="linkAction/linkAction.tpl" action=$uploadImageLinkActions.pageHeaderTitleImage contextId="appearanceForm"}
 			</div>
 			<div id="pageHeaderTitleImage">
 				{$imagesViews.pageHeaderTitleImage}
@@ -102,8 +98,7 @@
 		<div {if $wizardMode}class="pkp_form_hidden"{/if}>
 			{fbvFormSection label="manager.setup.pressLogo" description="manager.setup.useImageLogoDescription"}
 			<div id="{$uploadImageLinkActions.pageHeaderLogoImage->getId()}" class="pkp_linkActions">
-				{include file="linkAction/buttonGenericLinkAction.tpl" buttonSelector="#pageHeaderLogoImageButton" action=$uploadImageLinkActions.pageHeaderLogoImage}
-				{fbvElement type="button" class="submitFormButton" id="pageHeaderLogoImageButton" label="common.upload"}
+				{include file="linkAction/linkAction.tpl" action=$uploadImageLinkActions.pageHeaderLogoImage contextId="appearanceForm"}
 			</div>
 			<div id="pageHeaderLogoImage">
 				{$imagesViews.pageHeaderLogoImage}
@@ -128,8 +123,7 @@
 	{fbvFormArea id="pressLayout" title="manager.setup.pressLayout" border="true"}
 		{fbvFormSection title="manager.setup.usePressStyleSheet" description="manager.setup.pressStyleSheetDescription"}
 			<div id="{$uploadCssLinkAction->getId()}" class="pkp_linkActions">
-				{include file="linkAction/buttonGenericLinkAction.tpl" buttonSelector="#uploadCssLinkActionButton" action=$uploadCssLinkAction}
-				{fbvElement type="button" class="submitFormButton" id="uploadCssLinkActionButton" label="common.upload"}
+				{include file="linkAction/linkAction.tpl" action=$uploadCssLinkAction contextId="appearanceForm"}
 			</div>
 			<div id="pressStyleSheet">
 				{$pressStyleSheetView}
