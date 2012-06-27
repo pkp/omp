@@ -41,20 +41,19 @@ define('NOTIFICATION_TYPE_ALL_REVIEWS_IN',			0x1000018);
 define('NOTIFICATION_TYPE_LAYOUT_ASSIGNMENT',			0x1000019);
 define('NOTIFICATION_TYPE_INDEX_ASSIGNMENT',			0x100001A);
 define('NOTIFICATION_TYPE_APPROVE_SUBMISSION',			0x100001B);
-define('NOTIFICATION_TYPE_CONFIGURE_PAYMENT_METHOD',	0x100001C);
+define('NOTIFICATION_TYPE_CONFIGURE_PAYMENT_METHOD',		0x100001C);
 define('NOTIFICATION_TYPE_FORMAT_NEEDS_APPROVED_SUBMISSION',	0x100001D);
+define('NOTIFICATION_TYPE_VISIT_CATALOG',			0x100001E);
 
 import('lib.pkp.classes.notification.PKPNotification');
 
 class Notification extends PKPNotification {
-
 	/**
 	 * Constructor.
 	 */
 	function Notification() {
 		parent::PKPNotification();
 	}
-
 }
 
 ?>

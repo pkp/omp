@@ -244,7 +244,9 @@ class WorkflowHandler extends Handler {
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		$notificationRequestOptions = array(
 			NOTIFICATION_LEVEL_NORMAL => array(
-				NOTIFICATION_TYPE_APPROVE_SUBMISSION => array(ASSOC_TYPE_MONOGRAPH, $monograph->getId())),
+				NOTIFICATION_TYPE_VISIT_CATALOG => array(ASSOC_TYPE_MONOGRAPH, $monograph->getId()),
+				NOTIFICATION_TYPE_APPROVE_SUBMISSION => array(ASSOC_TYPE_MONOGRAPH, $monograph->getId()),
+			),
 			NOTIFICATION_LEVEL_TRIVIAL => array()
 		);
 

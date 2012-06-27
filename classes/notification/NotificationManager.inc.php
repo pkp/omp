@@ -107,6 +107,9 @@ class NotificationManager extends PKPNotificationManager {
 
 				return $dispatcher->url($request, ROUTE_PAGE, null, $page, $operation, $monograph->getId());
 			case NOTIFICATION_TYPE_APPROVE_SUBMISSION:
+				break;
+			case NOTIFICATION_TYPE_VISIT_CATALOG:
+				return $dispatcher->url($request, ROUTE_PAGE, 'manageCatalog');
 		}
 
 		return parent::getNotificationUrl($request, $notification);
@@ -224,6 +227,9 @@ class NotificationManager extends PKPNotificationManager {
 			case NOTIFICATION_TYPE_FORMAT_NEEDS_APPROVED_SUBMISSION:
 				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
 				return __('notification.type.formatNeedsApprovedSubmission');
+			case NOTIFICATION_TYPE_VISIT_CATALOG:
+				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
+				return __('notification.type.visitCatalog');
 			case NOTIFICATION_TYPE_CONFIGURE_PAYMENT_METHOD:
 				assert($notification->getAssocType() == ASSOC_TYPE_PRESS && is_numeric($notification->getAssocId()));
 				return __('notification.type.configurePaymentMethod');
@@ -256,6 +262,8 @@ class NotificationManager extends PKPNotificationManager {
 			case NOTIFICATION_TYPE_APPROVE_SUBMISSION:
 			case NOTIFICATION_TYPE_FORMAT_NEEDS_APPROVED_SUBMISSION:
 				return __('notification.type.approveSubmissionTitle');
+			case NOTIFICATION_TYPE_VISIT_CATALOG:
+				return __('notification.type.visitCatalogTitle');
 			case NOTIFICATION_TYPE_REVIEW_ROUND_STATUS:
 				$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
 				$reviewRound =& $reviewRoundDao->getReviewRoundById($notification->getAssocId());
@@ -344,6 +352,7 @@ class NotificationManager extends PKPNotificationManager {
 			case NOTIFICATION_TYPE_EDITOR_DECISION_SEND_TO_PRODUCTION:
 			case NOTIFICATION_TYPE_REVIEW_ROUND_STATUS:
 			case NOTIFICATION_TYPE_APPROVE_SUBMISSION:
+			case NOTIFICATION_TYPE_VISIT_CATALOG:
 			case NOTIFICATION_TYPE_FORMAT_NEEDS_APPROVED_SUBMISSION:
 				return 'notifyInformation';
 		}
@@ -363,6 +372,7 @@ class NotificationManager extends PKPNotificationManager {
 			NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_PRODUCTION,
 			NOTIFICATION_TYPE_REVIEW_ROUND_STATUS,
 			NOTIFICATION_TYPE_APPROVE_SUBMISSION,
+			NOTIFICATION_TYPE_VISIT_CATALOG,
 			NOTIFICATION_TYPE_FORMAT_NEEDS_APPROVED_SUBMISSION,
 			NOTIFICATION_TYPE_CONFIGURE_PAYMENT_METHOD,
 		));
@@ -848,14 +858,17 @@ class NotificationManager extends PKPNotificationManager {
 	function updateApproveSubmissionNotificationTypes(&$request, &$monograph) {
 		$monographId = $monograph->getId();
 		$pressId = $monograph->getPressId();
-
 		$notificationDao =& DAORegistry::getDAO('NotificationDAO');
+
 		$notificationTypes = array(
-			NOTIFICATION_TYPE_APPROVE_SUBMISSION,
-			NOTIFICATION_TYPE_FORMAT_NEEDS_APPROVED_SUBMISSION
+			NOTIFICATION_TYPE_APPROVE_SUBMISSION => false,
+			NOTIFICATION_TYPE_FORMAT_NEEDS_APPROVED_SUBMISSION => false,
+			NOTIFICATION_TYPE_VISIT_CATALOG => true,
 		);
 
-		foreach ($notificationTypes as $type) {
+		$isPublished = (boolean) $monograph->getDatePublished();
+
+		foreach ($notificationTypes as $type => $forPublicationState) {
 			$notificationFactory =& $notificationDao->getByAssoc(
 				ASSOC_TYPE_MONOGRAPH,
 				$monographId,
@@ -863,8 +876,9 @@ class NotificationManager extends PKPNotificationManager {
 				$type,
 				$pressId
 			);
+			$notification =& $notificationFactory->next();
 
-			if ($notificationFactory->wasEmpty() && !$monograph->getDatePublished()) {
+			if (!$notification && $isPublished == $forPublicationState) {
 				// Create notification.
 				$this->createNotification(
 					$request,
@@ -875,17 +889,11 @@ class NotificationManager extends PKPNotificationManager {
 					$monographId,
 					NOTIFICATION_LEVEL_NORMAL
 				);
-			} else if (!$notificationFactory->wasEmpty() && $monograph->getDatePublished()) {
+			} elseif ($notification && $isPublished != $forPublicationState) {
 				// Delete existing notification.
-				$notificationDao =& DAORegistry::getDAO('NotificationDAO');
-				$notificationDao->deleteByAssoc(
-					ASSOC_TYPE_MONOGRAPH,
-					$monograph->getId(),
-					null,
-					$type,
-					$monograph->getPressId()
-				);
+				$notificationDao->deleteObject($notification);
 			}
+			unset($notificationFactory, $notification);
 		}
 	}
 
