@@ -243,7 +243,7 @@ $.pkp.pages.manageCatalog = $.pkp.pages.manageCatalog || {};
 
 		if (tabElement.panel.id == 'categoryTab') {
 			var $selector = $(element).find('#categorySelect');
-			var categoryPath = $selector.find('option').eq(1).val();
+			var categoryPath = $selector.find('option').first().val();
 			if (categoryPath !== undefined) {
 				$selector.find('option').eq(1).attr('selected', 'selected');
 				this.selectCategoryHandler_(element, event, categoryPath);
@@ -251,7 +251,7 @@ $.pkp.pages.manageCatalog = $.pkp.pages.manageCatalog || {};
 		}
 		if (tabElement.panel.id == 'seriesTab') {
 			var $selector = $(element).find('#seriesSelect');
-			var seriesPath = $selector.find('option').eq(1).val();
+			var seriesPath = $selector.find('option').first().val();
 			if (seriesPath !== undefined) {
 				$selector.find('option').eq(1).attr('selected', 'selected');
 				this.selectSeriesHandler_(element, event, seriesPath);
