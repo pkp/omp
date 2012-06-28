@@ -53,13 +53,7 @@ $.pkp.pages.manageCatalog = $.pkp.pages.manageCatalog || {};
 		// React to "select series" events from the series tab.
 		this.bind('selectSeries', this.selectSeriesHandler_);
 
-		// React to showing a tab.  Used to load the remote spotlights grid.
-		var eventData = {
-				spotlightTabName: this.spotlightTabName_,
-				spotlightsUrl: this.spotlightsUrl_
-		};
-		$catalogTabs.bind('tabsselect', eventData,
-				this.callbackWrapper(this.showTabHandler_));
+		$catalogTabs.bind('tabsselect', this.callbackWrapper(this.showTabHandler_));
 
 		// React to data changed from inner widgets (including modals
 		// that have an event bridge and directs their data changed events
@@ -234,9 +228,8 @@ $.pkp.pages.manageCatalog = $.pkp.pages.manageCatalog || {};
 
 
 	/**
-	 * Handle the "show tabs" event.  In most cases, we just return true since
-	 * there are other methods for dealing with the tabs.  The exception is the
-	 * spotlights tab, which is loaded like a regular AJAX tab.
+	 * Handle the "show tabs" event.  Pre-select and load the first category
+	 * or series in the list when those tabs are displayed.
 	 * @private
 	 *
 	 * @param {Object} element The parent element of the tab
@@ -248,11 +241,23 @@ $.pkp.pages.manageCatalog = $.pkp.pages.manageCatalog || {};
 	$.pkp.pages.manageCatalog.ManageCatalogHeaderHandler.
 			prototype.showTabHandler_ = function(element, event, tabElement) {
 
-		if (tabElement.panel.id == event.data.spotlightTabName) {
-			this.loadSpotlightsContent_(event.data.spotlightsUrl);
-		} else {
-			return true;
+		if (tabElement.panel.id == 'categoryTab') {
+			var $selector = $(element).find('#categorySelect');
+			var categoryPath = $selector.find('option').eq(1).val();
+			if (categoryPath !== undefined) {
+				$selector.find('option').eq(1).attr('selected', 'selected');
+				this.selectCategoryHandler_(element, event, categoryPath);
+			}
 		}
+		if (tabElement.panel.id == 'seriesTab') {
+			var $selector = $(element).find('#seriesSelect');
+			var seriesPath = $selector.find('option').eq(1).val();
+			if (seriesPath !== undefined) {
+				$selector.find('option').eq(1).attr('selected', 'selected');
+				this.selectSeriesHandler_(element, event, seriesPath);
+			}
+		}
+		return true;
 	};
 
 
@@ -306,7 +311,7 @@ $.pkp.pages.manageCatalog = $.pkp.pages.manageCatalog || {};
 							trigger('submit');
 				} else {
 					// Spotlights tab.
-					this.loadSpotligthsContent_(this.spotlightsUrl_);
+					this.loadSpotlightsContent_(this.spotlightsUrl_);
 				}
 				break;
 		}
