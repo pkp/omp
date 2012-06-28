@@ -54,20 +54,6 @@ class DashboardHandler extends Handler {
 		$templateMgr =& TemplateManager::getManager();
 		$this->setupTemplate($request);
 
-		$templateMgr->assign('selectedTab', 1);
-		$templateMgr->assign('templateToDisplay', 'dashboard/tasks.tpl');
-		$templateMgr->display('dashboard/index.tpl');
-	}
-
-	/**
-	 * View submissions tab
-	 * @param $args array
-	 * @param $request PKPRequest
-	 */
-	function submissions($args, &$request) {
-		$templateMgr =& TemplateManager::getManager();
-		$this->setupTemplate($request);
-
 		// Get all the presses in the system, to determine which 'new submission' entry point we display
 		$pressDao =& DAORegistry::getDAO('PressDAO'); /* @var $pressDao PressDAO */
 		$presses = $pressDao->getPresses();
@@ -94,8 +80,27 @@ class DashboardHandler extends Handler {
 		if ($pressCount == 1) {
 			$templateMgr->assign_by_ref('press', $accessiblePresses[0]);
 		} elseif ($pressCount > 1) {
-			$templateMgr->assign_by_ref('presses', $accessiblePresses);
+			$presses = array();
+			foreach ($accessiblePresses as $press) {
+				$url = $request->url($press->getPath(), 'submission', 'wizard');
+				$presses[$url] = $press->getLocalizedName();
+			}
+			$templateMgr->assign_by_ref('presses', $presses);
 		}
+
+		$templateMgr->assign('selectedTab', 1);
+		$templateMgr->assign('templateToDisplay', 'dashboard/tasks.tpl');
+		$templateMgr->display('dashboard/index.tpl');
+	}
+
+	/**
+	 * View submissions tab
+	 * @param $args array
+	 * @param $request PKPRequest
+	 */
+	function submissions($args, &$request) {
+		$templateMgr =& TemplateManager::getManager();
+		$this->setupTemplate($request);
 
 		$templateMgr->assign('selectedTab', 2);
 		$templateMgr->assign('templateToDisplay', 'dashboard/submissions.tpl');
