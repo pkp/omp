@@ -249,7 +249,7 @@ $.pkp.pages.manageCatalog = $.pkp.pages.manageCatalog || {};
 			prototype.showTabHandler_ = function(element, event, tabElement) {
 
 		if (tabElement.panel.id == event.data.spotlightTabName) {
-			this.loadSpotligthsContent_(event.data.spotlightsUrl);
+			this.loadSpotlightsContent_(event.data.spotlightsUrl);
 		} else {
 			return true;
 		}
@@ -262,7 +262,7 @@ $.pkp.pages.manageCatalog = $.pkp.pages.manageCatalog || {};
 	 * @param {string} url Url to fetch the content.
 	 */
 	$.pkp.pages.manageCatalog.ManageCatalogHeaderHandler.
-			prototype.loadSpotligthsContent_ = function(url) {
+			prototype.loadSpotlightsContent_ = function(url) {
 		$.get(url, function(data) {
 			var jsonData = $.parseJSON(data);
 			$('#spotlightsTab').html(jsonData.content);
