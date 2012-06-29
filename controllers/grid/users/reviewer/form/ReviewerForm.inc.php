@@ -245,6 +245,8 @@ class ReviewerForm extends Form {
 			'skipEmail',
 			'keywords',
 			'interestsTextOnly',
+			'reviewRoundId',
+			'stageId',
 		));
 
 		$keywords = $this->getData('keywords');

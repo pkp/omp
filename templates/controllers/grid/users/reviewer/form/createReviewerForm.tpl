@@ -29,9 +29,9 @@
 		{fbvElement type="select" name="userGroupId" id="userGroupId" from=$userGroups translate=false label="editor.review.userGroupSelect" required="true"}
 	{/fbvFormSection}
 	{fbvFormSection title="common.name"}
-		{fbvElement type="text" label="user.firstName" id="firstname" value=$firstName required="true"}
-		{fbvElement type="text" label="user.middleName" id="middlename" value=$middleName}
-		{fbvElement type="text" label="user.lastName" id="lastname" value=$lastName required="true"}
+		{fbvElement type="text" label="user.firstName" id="firstname" value=$firstname required="true"}
+		{fbvElement type="text" label="user.middleName" id="middlename" value=$middlename}
+		{fbvElement type="text" label="user.lastName" id="lastname" value=$lastname required="true"}
 	{/fbvFormSection}
 
 	{fbvFormSection title="user.affiliation" for="affiliation"}
