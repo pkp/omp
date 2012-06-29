@@ -51,8 +51,49 @@ class PreparedEmailsGridCellProvider extends DataObjectGridCellProvider {
 				$label = $element->getSubject();
 				return array('label' => $label);
 			case 'enabled':
-				return array('isChecked' => $element->getEnabled());
+				$selectDisabled = $element->getCanDisable() ? false : true;
+				return array('selected' => $element->getEnabled(), 'disabled' => $selectDisabled);
 		}
+	}
+
+	/**
+	 * @see GridCellProvider::getCellActions()
+	 */
+	function getCellActions(&$request, &$row, &$column, $position = GRID_ACTION_POSITION_DEFAULT) {
+		if ($column->getId() == 'enabled') {
+			$element =& $row->getData(); /* @var $element DataObject */
+
+			$router =& $request->getRouter();
+			import('lib.pkp.classes.linkAction.LinkAction');
+
+			if($element->getCanDisable()) {
+				if ($element->getEnabled()) {
+					$linkAction = new LinkAction(
+						'disableEmail',
+						new RemoteActionConfirmationModal(
+							__('manager.emails.disable.message'), null,
+							$router->url($request, null, 'grid.settings.preparedEmails.PreparedEmailsGridHandler',
+								'disableEmail', null, array('emailKey' => $element->getEmailKey()))
+						),
+						__('manager.emails.disable'),
+						'disable'
+					);
+				} else {
+					$linkAction =  new LinkAction(
+						'enableEmail',
+						new RemoteActionConfirmationModal(
+							__('manager.emails.enable.message'), null,
+							$router->url($request, null, 'grid.settings.preparedEmails.PreparedEmailsGridHandler',
+								'enableEmail', null, array('emailKey' => $element->getEmailKey()))
+						),
+						__('manager.emails.enable'),
+						'enable'
+					);
+				}
+				return array($linkAction);
+			}
+		}
+		return parent::getCellActions($request, $row, $column, $position);
 	}
 }
 

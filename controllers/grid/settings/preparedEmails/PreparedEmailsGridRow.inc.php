@@ -60,37 +60,6 @@ class PreparedEmailsGridRow extends GridRow {
 						'disable'
 					)
 				);
-			} else {
-				// Row actions to enable/disable the email depending on its current state
-				if($emailTemplate->getCanDisable()) {
-					if($emailTemplate->getEnabled()) {
-						$this->addAction(
-							new LinkAction(
-								'disableEmail',
-								new RemoteActionConfirmationModal(
-									__('manager.emails.disable.message'), null,
-									$router->url($request, null, 'grid.settings.preparedEmails.PreparedEmailsGridHandler',
-										'disableEmail', null, array('emailKey' => $rowId))
-								),
-								__('manager.emails.disable'),
-								'disable'
-							)
-						);
-					} else {
-						$this->addAction(
-							new LinkAction(
-								'enableEmail',
-								new RemoteActionConfirmationModal(
-									__('manager.emails.enable.message'), null,
-									$router->url($request, null, 'grid.settings.preparedEmails.PreparedEmailsGridHandler',
-										'enableEmail', null, array('emailKey' => $rowId))
-								),
-								__('manager.emails.enable'),
-								'enable'
-							)
-						);
-					}
-				}
 			}
 
 			// Row action to reset the email template to stock
