@@ -77,7 +77,7 @@ class ManageFileApiHandler extends Handler {
 			$notificationMgr->updateSignoffNotification($signoff, $request);
 
 			// Remove the notification for the Copyeditor review, if they exist.
-			$notificationMgr->deleteCopyeditRequestNotification($signoff, &$request);
+			$notificationMgr->deleteCopyeditRequestNotification($signoff, $request);
 		}
 
 		// Delete the monograph file.
