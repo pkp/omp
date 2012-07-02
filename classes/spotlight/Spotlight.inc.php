@@ -13,10 +13,6 @@
  * @brief Basic class describing a spotlight.
  */
 
-// location constants for spotlights
-define('SPOTLIGHT_LOCATION_HOMEPAGE',	1);
-define('SPOTLIGHT_LOCATION_SIDEBAR',	2);
-
 // type constants for spotlights
 define('SPOTLIGHT_TYPE_BOOK',	3);
 define('SPOTLIGHT_TYPE_SERIES',	4);
@@ -106,22 +102,6 @@ class Spotlight extends DataObject {
 	 */
 	function setTitle($title, $locale) {
 		return $this->setData('title', $title, $locale);
-	}
-
-	/**
-	 * Get spotlight location (sidebar or homepage).
-	 * @return string
-	 */
-	function getLocation() {
-		return $this->getData('location');
-	}
-
-	/**
-	 * Set spotlight location.
-	 * @param $location string
-	 */
-	function setLocation($location) {
-		return $this->setData('location', $location);
 	}
 
 	/**

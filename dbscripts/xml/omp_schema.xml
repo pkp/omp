@@ -1867,9 +1867,6 @@
 		<field name="press_id" type="I8">
 			<NOTNULL/>
 		</field>
-		<field name="location" type="I2">
-			<NOTNULL/>
-		</field>
 		<descr>Spotlights</descr>
 		<index name="spotlights_assoc">
 			<col>assoc_type</col>

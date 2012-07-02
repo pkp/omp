@@ -17,7 +17,9 @@
 						<div class="pkp_catalog_feature">
 						{assign var=coverImage value=$item->getCoverImage()}
 						<a class="pkp_helpers_image_right" href="{url page="catalog" op="book" path=$item->getId()}"><img height="{$coverImage.thumbnailHeight}" width="{$coverImage.thumbnailWidth}" alt="{$item->getLocalizedTitle()|escape}" src="{url router=$smarty.const.ROUTE_COMPONENT component="submission.CoverHandler" op="thumbnail" monographId=$item->getId()}" /></a>
-						<div class="pkp_catalog_monographTitle">{$item->getLocalizedTitle()|strip_unsafe_html}</div>
+						{assign var="monographTitle" value=$item->getLocalizedPrefix()|concat:' ':$item->getLocalizedTitle()|strip_unsafe_html}
+						<div class="pkp_catalog_monographTitle"><a href="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="book" path=$item->getId()}">{$monographTitle}</a></div>
+						{if $item->getLocalizedSubtitle() != ''}<div class="pkp_catalog_monographSubtitle">{$item->getLocalizedSubtitle()}</div>{/if}
 						<div class="pkp_catalog_monographAbstract">{$item->getLocalizedAbstract()|strip_unsafe_html}</div>
 						</div>
 					</li>

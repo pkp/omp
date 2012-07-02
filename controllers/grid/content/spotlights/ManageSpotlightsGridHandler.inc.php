@@ -13,12 +13,11 @@
  */
 
 // import grid base classes
-import('lib.pkp.classes.controllers.grid.CategoryGridHandler');
+import('lib.pkp.classes.controllers.grid.GridHandler');
 
 
 // import format grid specific classes
 import('controllers.grid.content.spotlights.SpotlightsGridCellProvider');
-import('controllers.grid.content.spotlights.SpotlightsGridCategoryRow');
 import('controllers.grid.content.spotlights.SpotlightsGridRow');
 import('controllers.grid.content.spotlights.form.SpotlightForm');
 
@@ -28,7 +27,7 @@ import('classes.spotlight.Spotlight');
 // Link action & modal classes
 import('lib.pkp.classes.linkAction.request.AjaxModal');
 
-class ManageSpotlightsGridHandler extends CategoryGridHandler {
+class ManageSpotlightsGridHandler extends GridHandler {
 
 	/**
 	 * @var Press
@@ -39,7 +38,7 @@ class ManageSpotlightsGridHandler extends CategoryGridHandler {
 	 * Constructor
 	 */
 	function ManageSpotlightsGridHandler() {
-		parent::CategoryGridHandler();
+		parent::GridHandler();
 		$this->addRoleAssignment(
 				array(ROLE_ID_PRESS_MANAGER),
 				array('fetchGrid', 'fetchRow', 'addSpotlight', 'editSpotlight',
@@ -171,22 +170,13 @@ class ManageSpotlightsGridHandler extends CategoryGridHandler {
 	}
 
 	/**
-	 * @see CategoryGridHandler::getCategoryRowInstance()
-	 * @return SpotlightsGridCategoryRow
+	 * @see GridHandler::loadData()
 	 */
-	function &getCategoryRowInstance() {
-		$row = new SpotlightsGridCategoryRow();
-		return $row;
-	}
-
-	/**
-	 * @see CategoryGridHandler::getCategoryData()
-	 */
-	function getCategoryData($category) {
+	function loadData($request, $filter = null) {
 
 		$spotlightDao =& DAORegistry::getDAO('SpotlightDAO');
 		$press =& $this->getPress();
-		return $spotlightDao->getByLocationAndPressId($category['location'], $press->getId());
+		return $spotlightDao->getByPressId($press->getId());
 	}
 
 	/**
@@ -200,20 +190,6 @@ class ManageSpotlightsGridHandler extends CategoryGridHandler {
 			'pressId' => $press->getId()
 		);
 	}
-
-	/**
-	 * @see GridHandler::loadData
-	 */
-	function loadData($request, $filter = null) {
-		// set our labels for the two Spotlight categories
-		$categories = array(
-				array('name' => 'grid.content.spotlights.category.homepage', 'location' => SPOTLIGHT_LOCATION_HOMEPAGE),
-				array('name' => 'grid.content.spotlights.category.sidebar', 'location' => SPOTLIGHT_LOCATION_SIDEBAR)
-			);
-
-		return $categories;
-	}
-
 
 	//
 	// Public Spotlights Grid Actions

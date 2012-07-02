@@ -121,7 +121,7 @@ class IndexHandler extends Handler {
 
 		// Include any spotlight items for the press home page.
 		$spotlightDao =& DAORegistry::getDAO('SpotlightDAO');
-		$spotlights =& $spotlightDao->getByLocationAndPressId(SPOTLIGHT_LOCATION_HOMEPAGE, $press->getId());
+		$spotlights =& $spotlightDao->getByPressId($press->getId());
 		$templateMgr->assign_by_ref('spotlights', $spotlights);
 
 		// Include any social media items that are configured for the press itself.

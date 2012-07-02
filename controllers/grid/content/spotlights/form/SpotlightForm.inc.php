@@ -39,7 +39,6 @@ class SpotlightForm extends Form {
 		$this->addCheck(new FormValidatorCustom($this, 'assocId', 'required', 'grid.content.spotlights.itemRequired', create_function('$assocId, $form', 'return is_numeric($assocId) && $assocId > 0;'), array(&$this)));
 		$this->addCheck(new FormValidator($this, 'title', 'required', 'grid.content.spotlights.titleRequired'));
 		$this->addCheck(new FormValidator($this, 'type', 'required', 'grid.content.spotlights.typeRequired'));
-		$this->addCheck(new FormValidator($this, 'location', 'required', 'grid.content.spotlights.locationRequired'));
 		$this->addCheck(new FormValidatorPost($this));
 	}
 
@@ -65,23 +64,15 @@ class SpotlightForm extends Form {
 
 		$templateMgr->assign('spotlightTypes', $spotlightTypes);
 
-		$spotlightLocations = array(
-				SPOTLIGHT_LOCATION_HOMEPAGE => __('grid.content.spotlights.category.homepage'),
-				SPOTLIGHT_LOCATION_SIDEBAR => __('grid.content.spotlights.category.sidebar')
-		);
-
 		if (isset($spotlight)) {
 			$templateMgr->assign('title', $spotlight->getTitle(null));
 			$templateMgr->assign('description', $spotlight->getDescription(null));
-			$templateMgr->assign('location', $spotlight->getLocation());
 			$templateMgr->assign('type', $spotlight->getAssocType());
 			$templateMgr->assign('assocTitle', $this->getAssocTitle($spotlight->getAssocId(), $spotlight->getAssocType()));
 			$templateMgr->assign('assocId', $spotlight->getAssocId());
 		} else {
 			$templateMgr->assign('type', SPOTLIGHT_TYPE_BOOK); // default
 		}
-
-		$templateMgr->assign('spotlightLocations', $spotlightLocations);
 
 		return parent::fetch($request);
 	}
@@ -93,7 +84,7 @@ class SpotlightForm extends Form {
 	 * @see Form::readInputData()
 	 */
 	function readInputData() {
-		$this->readUserVars(array('title', 'type', 'description', 'location', 'assocId'));
+		$this->readUserVars(array('title', 'type', 'description', 'assocId'));
 	}
 
 	/**
@@ -117,7 +108,6 @@ class SpotlightForm extends Form {
 		$spotlight->setAssocType($this->getData('type'));
 		$spotlight->setTitle($this->getData('title'), null); // localized
 		$spotlight->setDescription($this->getData('description'), null); // localized
-		$spotlight->setLocation($this->getData('location'));
 		$spotlight->setAssocId($this->getData('assocId'));
 
 		if ($existingSpotlight) {

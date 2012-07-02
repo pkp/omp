@@ -36,7 +36,6 @@
 
 		{fbvFormSection}
 			{fbvElement type="autocomplete" id="assocId" required="true" value=$assocTitle autocompleteValue=$assocId label="grid.content.spotlights.form.item" autocompleteUrl=$addSpotlightItemUrl size=$fbvStyles.size.MEDIUM inline="true"}
-			{fbvElement type="select" id="location" from=$spotlightLocations selected=$location translate=false required="true" label="grid.content.spotlights.form.location" size=$fbvStyles.size.MEDIUM inline="true"}
 		{/fbvFormSection}
 
 	{/fbvFormArea}

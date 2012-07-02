@@ -97,7 +97,6 @@ class SpotlightDAO extends DAO {
 		$spotlight->setAssocType($row['assoc_type']);
 		$spotlight->setAssocId($row['assoc_id']);
 		$spotlight->setPressId($row['press_id']);
-		$spotlight->setLocation($row['location']);
 
 		$this->getDataObjectSettings('spotlight_settings', 'spotlight_id', $row['spotlight_id'], $spotlight);
 
@@ -122,14 +121,13 @@ class SpotlightDAO extends DAO {
 	function insertObject(&$spotlight) {
 		$this->update(
 			'INSERT INTO spotlights
-				(assoc_type, assoc_id, press_id, location)
+				(assoc_type, assoc_id, press_id)
 				VALUES
-				(?, ?, ?, ?)',
+				(?, ?, ?)',
 			array(
 				(int) $spotlight->getAssocType(),
 				(int) $spotlight->getAssocId(),
 				(int) $spotlight->getPressId(),
-				(int) $spotlight->getLocation()
 			)
 		);
 		$spotlight->setId($this->getInsertSpotlightId());
@@ -148,14 +146,12 @@ class SpotlightDAO extends DAO {
 				SET
 					assoc_type = ?,
 					assoc_id = ?,
-					press_id = ?,
-					location = ?
+					press_id = ?
 				WHERE spotlight_id = ?',
 			array(
 				(int) $spotlight->getAssocType(),
 				(int) $spotlight->getAssocId(),
 				(int) $spotlight->getPressId(),
-				(int) $spotlight->getLocation(),
 				(int) $spotlight->getId()
 			)
 		);
@@ -210,18 +206,17 @@ class SpotlightDAO extends DAO {
 	}
 
 	/**
-	 * Retrieve an array of spotlights matching a location and press id.
-	 * @param $location int
+	 * Retrieve an array of spotlights matching a press id.
 	 * @param $pressId int
 	 * @return array Array containing matching Spotlights
 	 */
-	function &getByLocationAndPressId($location, $pressId, $rangeInfo = null) {
+	function &getByPressId($pressId, $rangeInfo = null) {
 		$result =& $this->retrieveRange(
 			'SELECT *
 			FROM spotlights
-			WHERE location = ? AND press_id = ?
+			WHERE press_id = ?
 			ORDER BY spotlight_id DESC',
-			array((int) $location, (int) $pressId),
+			array((int) $pressId),
 			$rangeInfo
 		);
 
@@ -240,13 +235,12 @@ class SpotlightDAO extends DAO {
 	}
 
 	/**
-	 * Retrieve a random spotlight matching a location and press id.
-	 * @param $location int
+	 * Retrieve a random spotlight matching a press id.
 	 * @param $pressId int
 	 * @return Spotlight or null
 	 */
-	function getRandomByLocationAndPressId($location, $pressId) {
-		$spotlights =& array_values($this->getByLocationAndPressId($location, $pressId));
+	function getRandomByPressId($pressId) {
+		$spotlights =& array_values($this->getByPressId($pressId));
 		$returner = null;
 		if (count($spotlights) > 0) {
 			$randNumber = rand(0, count($spotlights) - 1);
