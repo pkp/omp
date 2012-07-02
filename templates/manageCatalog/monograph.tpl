@@ -79,11 +79,11 @@
 		<ul>
 			<li>
 				{if $isFeatured}{assign var="featureImage" value="star_highlighted"}{else}{assign var="featureImage" value="star"}{/if}
-				{null_link_action id="featureMonograph-"|concat:$monographId image=$featureImage key="catalog.manage.placeIntoCarousel"}
+				{null_link_action id="featureMonograph-"|concat:$monographId image=$featureImage}
 			</li>
 			<li>
 				{if $isNewRelease}{assign var="newReleaseImage" value="release_highlighted"}{else}{assign var="newReleaseImage" value="release"}{/if}
-				{null_link_action id="releaseMonograph-"|concat:$monographId image=$newReleaseImage key="catalog.manage.newRelease"}
+				{null_link_action id="releaseMonograph-"|concat:$monographId image=$newReleaseImage}
 			</li>
 		</ul>
 	</div>

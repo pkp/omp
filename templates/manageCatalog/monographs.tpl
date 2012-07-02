@@ -21,9 +21,9 @@
 {if $messageKey}<p>{translate key=$messageKey}</p>{/if}
 <div id="{$monographContainerId|escape}">
 	<div class="pkp_helpers_align_right">
-		<ul class="submission_actions pkp_helpers_flatlist pkp_linkActions">
-			{if $includeFeatureAction}<li>{null_link_action id="feature-$monographContainerId" key="common.feature" image="feature"}</li>{/if}
-		</ul>
+		<div class="submission_actions pkp_linkActions">
+			{if $includeFeatureAction}{null_link_action id="feature-$monographContainerId" key="common.feature" image="feature"}{/if}
+		</div>
 	</div>
 	{if $category}
 		<div id="categoryDescription">

@@ -699,6 +699,7 @@ body {
 .pkp_linkActions a.remove_item { background-image:url(../lib/pkp/templates/images/structure/lb_delete.png); }
 .pkp_linkActions a.promote { background-image:url(../lib/pkp/templates/images/structure/grid_promote.png); }
 .pkp_linkActions a.enable { background-image:url(../lib/pkp/templates/images/structure/grid_promote.png); }
+.pkp_linkActions a { display:inline-block; }
 table.pkp_listing td { padding:0.25em 1.5em 0.25em 0.5em; }
 table.pkp_listing tr.heading td, table.pkp_listing td.heading {
   font-size:0.85em;
@@ -1446,11 +1447,6 @@ ul.sf-menu {
   padding-left:10px;
 }
 .pkp_manageCatalog_monographList.grid_view .pkp_manageCatalog_featureTools li { padding-bottom:10px; }
-.pkp_manageCatalog_monographList.grid_view .pkp_manageCatalog_featureTools a {
-  text-decoration:none;
-  background-color:white;
-  margin-left:5px;
-}
 .pkp_catalog_carousel { width:33%; }
 .pkp_catalog_carousel img { background:#ffffff; }
 .pkp_catalog_seriesDescription, .pkp_catalog_categoryDescription {
