@@ -1478,6 +1478,7 @@ ul.sf-menu {
   padding-top:10px;
   padding-top:5px;
 }
+.pkp_catalog_monographs .pkp_catalog_monograph .pkp_catalog_monographSubtitle { font-style:italic; }
 .pkp_catalog_feature {
   border-top:1px dotted #999999;
   padding-top:10px;
