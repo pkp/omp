@@ -60,8 +60,6 @@ class SubmissionsListGridHandler extends GridHandler {
 		);
 
 		// Load submissions.
-		$router =& $request->getRouter();
-		$press =& $router->getContext($request);
 		$user =& $request->getUser();
 		$this->setGridDataElements($this->getSubmissions($request, $user->getId()));
 

@@ -27,9 +27,8 @@ class MySubmissionsListGridHandler extends SubmissionsListGridHandler {
 		parent::SubmissionsListGridHandler();
 
 		$this->addRoleAssignment(array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_ASSISTANT, ROLE_ID_AUTHOR),
-				array('fetchGrid'));
+				array('fetchGrid', 'fetchRow', 'deleteSubmission'));
 	}
-
 
 	//
 	// Implement template methods from PKPHandler
@@ -50,7 +49,6 @@ class MySubmissionsListGridHandler extends SubmissionsListGridHandler {
 	//
 	/**
 	 * Delete a submission
-	 * FIXME: Either delete this operation or add it as a row action, see #6396.
 	 * @param $args array
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
@@ -61,19 +59,18 @@ class MySubmissionsListGridHandler extends SubmissionsListGridHandler {
 			(int) $request->getUserVar('monographId')
 		);
 
-		$user =& $request->getUser();
-
-		// If the submission is incomplete, allow the author to delete it.
-		if ($monograph->getSubmissionProgress() != 0 && $monograph->getUserId() == $user->getId()) {
+		// If the submission is incomplete, allow it to be deleted
+		if ($monograph && $monograph->getSubmissionProgress() != 0) {
 			$monographDao =& DAORegistry::getDAO('MonographDAO'); /* @var $monographDao MonographDAO */
-			$monographDao->deleteById($monographId);
+			$monographDao->deleteById($monograph->getId());
 
-			$json = new JSONMessage(true);
+			$user =& $request->getUser();
+			NotificationManager::createTrivialNotification($user->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.removedSubmission')));
+			return DAO::getDataChangedEvent($monograph->getId());
 		} else {
-			$json = new JSONMessage(false, __('settings.setup.errorDeletingItem'));
+			$json = new JSONMessage(false);
+			return $json->getString();
 		}
-
-		return $json->getString();
 	}
 
 
@@ -85,7 +82,6 @@ class MySubmissionsListGridHandler extends SubmissionsListGridHandler {
 	 */
 	function getSubmissions(&$request, $userId) {
 		$this->setTitle('submission.mySubmissions');
-		$active = true;
 
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
 		$submissions = $monographDao->getByUserId($userId);
@@ -95,7 +91,7 @@ class MySubmissionsListGridHandler extends SubmissionsListGridHandler {
 				$submissionId = $submission->getId();
 				$data[$submissionId] =& $submission;
 			}
-			unset($submision);
+			unset($submission);
 		}
 
 		return $data;
@@ -110,7 +106,7 @@ class MySubmissionsListGridHandler extends SubmissionsListGridHandler {
 	 * @return SubmissionsListGridRow
 	 */
 	function &getRowInstance() {
-		$row = new SubmissionsListGridRow();
+		$row = new SubmissionsListGridRow(true);
 		return $row;
 	}
 }
