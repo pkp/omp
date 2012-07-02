@@ -11,6 +11,9 @@
 {include file="common/header.tpl"}
 {/strip}
 
+{url|assign:editUrl page="management" op="settings" path="press" anchor="affiliationAndSupport"}
+{include file="common/linkToEditPage.tpl" editUrl=$editUrl}
+
 {if not (empty($sponsorNote) && empty($sponsors))}
 <div id="sponsors">
 <h3>{translate key="about.sponsors"}</h3>

@@ -11,6 +11,9 @@
 {include file="common/header.tpl"}
 {/strip}
 
+{url|assign:editUrl page="management" op="settings" path="press" anchor="policies"}
+{include file="common/linkToEditPage.tpl" editUrl=$editUrl}
+
 <ul class="plain">
 	{if $currentPress->getLocalizedSetting('focusScopeDesc') != ''}<li>&#187; <a href="{url op="editorialPolicies" anchor="focusAndScope"}">{translate key="about.focusAndScope"}</a></li>{/if}
 	{if count($seriesList) > 0}<li>&#187; <a href="{url op="editorialPolicies" anchor="seriesPolicies"}">{translate key="about.seriesPolicies"}</a></li>{/if}
@@ -55,19 +58,20 @@
 <div class="separator">&nbsp;</div>
 {/if}
 
-{if $currentPress->getLocalizedSetting('reviewPolicy') != ''}<div id="peerReviewProcess"><h3>{translate key="about.peerReviewProcess"}</h3>
-<p>{$currentPress->getLocalizedSetting('reviewPolicy')|nl2br}</p>
-
-<div class="separator">&nbsp;</div>
-</div>
+{if $currentPress->getLocalizedSetting('reviewPolicy') != ''}
+	<div id="peerReviewProcess">
+		<h3>{translate key="about.peerReviewProcess"}</h3>
+		<p>{$currentPress->getLocalizedSetting('reviewPolicy')|nl2br}</p>
+		<div class="separator">&nbsp;</div>
+	</div>
 {/if}
 
 {if $currentPress->getLocalizedSetting('openAccessPolicy') != ''}
-<div id="openAccessPolicy"><h3>{translate key="about.openAccessPolicy"}</h3>
-<p>{$currentPress->getLocalizedSetting('openAccessPolicy')|nl2br}</p>
-
-<div class="separator">&nbsp;</div>
-</div>
+	<div id="openAccessPolicy">
+		<h3>{translate key="about.openAccessPolicy"}</h3>
+		<p>{$currentPress->getLocalizedSetting('openAccessPolicy')|nl2br}</p>
+		<div class="separator">&nbsp;</div>
+	</div>
 {/if}
 
 {foreach key=key from=$currentPress->getLocalizedSetting('customAboutItems') item=customAboutItem name=customAboutItems}

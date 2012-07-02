@@ -11,6 +11,9 @@
 {include file="common/header.tpl"}
 {/strip}
 
+{url|assign:editUrl page="management" op="settings" path="press" anchor="masthead"}
+{include file="common/linkToEditPage.tpl" editUrl=$editUrl}
+
 <div id="description">
 	{$currentPress->getLocalizedSetting('description')|nl2br}
 </div>

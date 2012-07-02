@@ -516,6 +516,7 @@ current password.<br /><br />Enter your email address below to reset your passwo
 
 	<!-- Help -->
 	<message key="help.searchReturnResults">Return to Search Results</message>
+	<message key="help.goToEditPage">Open a new page to edit this information</message>
 
 	<!-- Installer -->
 	<message key="installer.ompInstallation">OMP Installation</message>
