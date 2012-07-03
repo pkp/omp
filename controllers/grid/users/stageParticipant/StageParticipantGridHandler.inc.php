@@ -252,12 +252,18 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 
 			// Check user group role id.
 			$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+			$stageAssignmentDao =& DAORegistry::getDAO('StageAssignmentDAO');
+
 			$userGroup = $userGroupDao->getById($userGroupId);
 			if ($userGroup->getRoleId() == ROLE_ID_PRESS_MANAGER) {
 				// Update NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_... for each stage.
 				$stages = $this->_getStages();
 				foreach ($stages as $workingStageId) {
 					$notificationMgr->updateEditorAssignmentNotification($monograph, $workingStageId, $request);
+					// remove the 'editor required' task if we now have an editor assigned
+					if ($stageAssignmentDao->editorAssignedToStage($monograph->getId(), $stageId)) {
+						$notificationMgr->deleteEditorRequiredTaskNotification($monograph, $request);
+					}
 				}
 			}
 

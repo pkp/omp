@@ -39,6 +39,7 @@ class NotificationManager extends PKPNotificationManager {
 		switch ($type) {
 			case NOTIFICATION_TYPE_MONOGRAPH_SUBMITTED:
 			case NOTIFICATION_TYPE_METADATA_MODIFIED:
+			case NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_REQUIRED:
 				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
 				return $dispatcher->url($request, ROUTE_PAGE, null, 'workflow', 'submission', $notification->getAssocId());
 			case NOTIFICATION_TYPE_LAYOUT_ASSIGNMENT:
@@ -142,6 +143,9 @@ class NotificationManager extends PKPNotificationManager {
 			case NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_EXTERNAL_REVIEW:
 				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
 				return __('notification.type.editorAssignment');
+			case NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_REQUIRED:
+				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
+				return __('notification.type.editorAssignmentTask');
 			case NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_EDITING:
 				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
 				return __('notification.type.editorAssignmentEditing');
@@ -354,6 +358,7 @@ class NotificationManager extends PKPNotificationManager {
 			case NOTIFICATION_TYPE_APPROVE_SUBMISSION:
 			case NOTIFICATION_TYPE_VISIT_CATALOG:
 			case NOTIFICATION_TYPE_FORMAT_NEEDS_APPROVED_SUBMISSION:
+			case NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_REQUIRED:
 				return 'notifyInformation';
 		}
 		return parent::getStyleClass($notification);
@@ -658,6 +663,17 @@ class NotificationManager extends PKPNotificationManager {
 	function deleteProductionRequestNotification($monograph, $user, $type, &$request) {
 		$notificationDao = DAORegistry::getDAO('NotificationDAO');
 		$notificationDao->deleteByAssoc(ASSOC_TYPE_MONOGRAPH, $monograph->getId(), $user->getId(), $type);
+	}
+
+	/**
+	 * Removes an 'editor assignment required' task for new submissions.
+	 * Called when a press editor is assigned to a monograph
+	 * @param $monograph Mongraph
+	 * @param $request Request
+	 */
+	function deleteEditorRequiredTaskNotification($monograph, &$request) {
+		$notificationDao = DAORegistry::getDAO('NotificationDAO');
+		$notificationDao->deleteByAssoc(ASSOC_TYPE_MONOGRAPH, $monograph->getId(), null, NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_REQUIRED);
 	}
 
 	/**

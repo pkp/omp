@@ -122,6 +122,17 @@ class SubmissionSubmitStep3Form extends SubmissionSubmitForm {
 				$request, $userId, NOTIFICATION_TYPE_MONOGRAPH_SUBMITTED,
 				$monograph->getPressId(), ASSOC_TYPE_MONOGRAPH, $monograph->getId()
 			);
+
+			// Add TASK notification indicating that a submission is unassigned
+			$notificationManager->createNotification(
+				$request,
+				$userId,
+				NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_REQUIRED,
+				$monograph->getPressId(),
+				ASSOC_TYPE_MONOGRAPH,
+				$monograph->getId(),
+				NOTIFICATION_LEVEL_TASK
+			);
 		}
 
 		// Send author notification email
