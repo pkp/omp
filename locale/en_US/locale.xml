@@ -239,6 +239,7 @@
 	<message key="grid.action.editDate">Edit this Date</message>
 	<message key="grid.action.deleteDate">Delete this Date</message>
 	<message key="grid.action.toggleHelp">Toggle the display of inline help</message>
+	<message key="grid.action.createPress">Create a new Press</message>
 
 	<!-- Used in submission review -->
 	<message key="reviewer.reviewSteps.request">1. Request</message>
