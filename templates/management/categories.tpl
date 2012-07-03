@@ -18,5 +18,7 @@
 <form class="pkp_form" id="categoriesGridFormContainer">
 	{url|assign:categoriesUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.category.CategoryCategoryGridHandler" op="fetchGrid"}
 	{load_url_in_div id="categoriesContainer" url=$categoriesUrl}
-	{fbvElement type="link" class="cancelFormButton" id="cancelFormButton" label="common.cancel"}
+	<div class="pkp_helpers_align_right">
+		{fbvElement type="button" label="common.close" id="cancelFormButton"}
+	</div>
 </form>

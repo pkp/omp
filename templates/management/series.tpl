@@ -18,6 +18,7 @@
 <form class="pkp_form" id="seriesGridFormContainer">
 	{url|assign:seriesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.series.SeriesGridHandler" op="fetchGrid"}
 	{load_url_in_div id="seriesGridContainer" url=$seriesGridUrl}
-	{fbvElement type="link" class="cancelFormButton" id="cancelFormButton" label="common.cancel"}
+	<div class="pkp_helpers_align_right">
+		{fbvElement type="button" label="common.close" id="cancelFormButton"}
+	</div>
 </form>
-
