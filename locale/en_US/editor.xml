@@ -128,7 +128,7 @@
 	<message key="editor.monograph.editorial.fairCopy">Fair Copy</message>
 	<message key="editor.monograph.editorial.fairCopyDescription">Final copyedited files may be uploaded to the Fair Copy section, at which point the submission (and any uploaded fair copies) can be sent to the Production stage.</message>
 
-	<!-- Production/Proof reading related -->
+	<!-- Production/Proof related -->
 	<message key="editor.monograph.production.introduction">All approved and copyedited submission files from the Editorial stage are available in the Production Ready section. Different formats (digital, hardback, paperback/softback) can be configured for this submission in the Publication Formats section. The submission is considered complete when the Catalog Entry metadata has been approved, and all Publication Formats checklist items are marked complete.</message>
 	<message key="editor.monograph.production.productionReadyFiles">Production Ready Files</message>
 	<message key="editor.monograph.production.productionReadyFilesDescription">All approved and copyedited submission files from the Editorial stage are available here. New production ready files can be uploaded (and current files replaced) by clicking Upload a Production Ready File.</message>

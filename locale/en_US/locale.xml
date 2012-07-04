@@ -39,8 +39,8 @@
 	<message key="monograph.title.tip"><![CDATA[The submission type is usually one of 'image', 'text', or other multimedia types including 'software' or 'interactive'.  Please choose the one most relevant for your submission.  Examples may be found at <a target="_blank" href="http://dublincore.org/documents/2001/04/12/usageguide/generic.shtml#type">http://dublincore.org/documents/2001/04/12/usageguide/generic.shtml#type</a>]]></message>
 	<message key="monograph.subtitle">Subtitle</message>
 	<message key="monograph.type">Type of Submission</message>
-	<message key="monograph.proofReading">Proof Reading</message>
-	<message key="monograph.proofReadingDescription">Files ready for proofreading may be uploaded here. Once uploaded, Authors and other participants assigned to the submission may be asked to audit the uploaded proofreading file(s) by clicking the Assign button. Multiple files may be sent for auditing, and an auditing due date can be set. You will be notified of completed audits, and can access the audits by clicking on the participant's name. Finally, you will be able to sign off  on the audited file.</message>
+	<message key="monograph.pageProofs">Page Proofs</message>
+	<message key="monograph.proofReadingDescription">Files ready as page proofs may be uploaded here. Once uploaded, Authors and other participants assigned to the submission may be asked to audit the uploaded proof file(s) by clicking the Assign button. Multiple files may be sent for auditing, and an auditing due date can be set. You will be notified of completed audits, and can access the audits by clicking on the participant's name. Finally, you will be able to sign off  on the audited file.</message>
 	<message key="monograph.stageNotInitiated">Stage not initiated.</message>
 
 	<!--  Metadata field description keys -->

@@ -72,7 +72,7 @@ class AuthorProofingSignoffFilesGridHandler extends CategoryGridHandler {
 		);
 
 		// Set the grid title.
-		$this->setTitle('monograph.proofReading');
+		$this->setTitle('monograph.pageProofs');
 	}
 
 	/**
