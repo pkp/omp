@@ -11,6 +11,9 @@
 {include file="common/header.tpl"}
 {/strip}
 
+{url|assign:editUrl page="management" op="settings" path="press" anchor="contact"}
+{include file="common/linkToEditPage.tpl" editUrl=$editUrl}
+
 {if !empty($pressSettings.mailingAddress)}
 <h3>{translate key="common.mailingAddress"}</h3>
 <p>
