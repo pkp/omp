@@ -65,6 +65,11 @@ class TemplateManager extends PKPTemplateManager {
 			$this->assign('homeContext', array());
 			if (isset($press)) {
 				$this->assign_by_ref('currentPress', $press);
+
+				// Assign press settings.
+				$pressSettingsDao =& DAORegistry::getDAO('PressSettingsDAO');
+				$this->assign_by_ref('pressSettings', $pressSettingsDao->getPressSettings($press->getId()));
+
 				$pressTitle = $press->getLocalizedName();
 				$this->assign('siteTitle', $pressTitle);
 				$this->assign('publicFilesDir', $request->getBaseUrl() . '/' . $publicFileManager->getPressFilesPath($press->getId()));
