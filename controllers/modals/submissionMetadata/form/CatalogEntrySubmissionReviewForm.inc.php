@@ -61,6 +61,10 @@ class CatalogEntrySubmissionReviewForm extends SubmissionMetadataViewForm {
 		$notificationMgr = new NotificationManager();
 
 		if ($this->getData('confirm')) {
+			// Update the monograph status.
+			$monograph->setStatus(STATUS_PUBLISHED);
+			$monographDao->updateMonograph($monograph);
+
 			if (!$isExistingEntry) {
 				unset($publishedMonograph);
 				$publishedMonograph = $publishedMonographDao->newDataObject();
@@ -85,6 +89,9 @@ class CatalogEntrySubmissionReviewForm extends SubmissionMetadataViewForm {
 			MonographLog::logEvent($request, $monograph, MONOGRAPH_LOG_METADATA_PUBLISH, 'submission.event.metadataPublished');
 		} else {
 			if ($isExistingEntry) {
+				// Update the monograph status.
+				$monograph->setStatus(STATUS_QUEUED);
+
 				// Unpublish monograph.
 				$publishedMonograph->setDatePublished(null);
 				$publishedMonographDao->updateObject($publishedMonograph);
@@ -98,10 +105,10 @@ class CatalogEntrySubmissionReviewForm extends SubmissionMetadataViewForm {
 				// Log the unpublication event.
 				import('classes.log.MonographLog');
 				MonographLog::logEvent($request, $monograph, MONOGRAPH_LOG_METADATA_UNPUBLISH, 'submission.event.metadataUnpublished');
-			} else {
-				// regular submission without publish in catalog.
-				$monographDao->updateMonograph($monograph);
 			}
+
+			// regular submission without publish in catalog.
+			$monographDao->updateMonograph($monograph);
 		}
 	}
 }
