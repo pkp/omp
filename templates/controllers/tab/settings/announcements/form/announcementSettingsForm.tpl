@@ -24,7 +24,7 @@
 		{/fbvFormSection}
 		{fbvFormSection list=true}
 			{fbvElement type="checkbox" id="enableAnnouncementsHomepage" label="manager.setup.enableAnnouncementsHomepage1" value="1" checked=$enableAnnouncementsHomepage inline=true}
-			{fbvElement type="select" id="numAnnouncementsHomepage" from=$numAnnouncementsHomepageOptions selected=$numAnnouncementsHomepage defaultValue="1" translate=false disabled=$disableAnnouncementsHomepage size=$fbvStyles.size.SMALL inline=true}
+			{fbvElement type="select" id="numAnnouncementsHomepage" from=$numAnnouncementsHomepageOptions selected=$numAnnouncementsHomepage defaultValue="1" translate=false disabled=$disableAnnouncementsHomepage inline=true}
 			<p>{translate key="manager.setup.enableAnnouncementsHomepage2"}</p>
 		{/fbvFormSection}
 		{fbvFormSection description="manager.setup.announcementsIntroductionDescription"}
