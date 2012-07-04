@@ -66,7 +66,7 @@
 		{/fbvFormSection}
 		{if $showRemember}
 			{fbvFormSection list=true}
-				{fbvElement type="checkbox" label="user.login.rememberUsernameAndPassword" id="loginRemember" value=$remember}
+				{fbvElement type="checkbox" label="user.login.rememberUsernameAndPassword" id="remember" value="1" checked=$remember}
 			{/fbvFormSection}
 		{/if}{* $showRemember *}
 		{if !$hideRegisterLink}
