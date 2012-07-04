@@ -189,6 +189,15 @@ strong {
 .pkp_helpers_half { width:48%; }
 .pkp_helpers_third { width:31%; }
 .pkp_helpers_quarter { width:25%; }
+div.pkp_helpers_progressIndicator {
+  width:24px;
+  height:24px;
+  float:right;
+  margin-right:5px;
+  background-repeat:no-repeat;
+  background:url(../lib/pkp/templates/images/throbber.gif) no-repeat;
+  display:none;
+}
 div.plupload div.plupload_header { display:none; }
 .plupload .plupload_filelist_header { display:none; }
 .plupload_header_content {
@@ -896,15 +905,6 @@ table.pkp_listing td.separator {
   background-repeat:no-repeat;
   background:url(../lib/pkp/templates/images/throbber.gif) no-repeat;
   background-position:100% 50%;
-}
-.pkp_form div.progressIndicator {
-  width:24px;
-  height:24px;
-  float:right;
-  margin-right:5px;
-  background-repeat:no-repeat;
-  background:url(../lib/pkp/templates/images/throbber.gif) no-repeat;
-  display:none;
 }
 .pkp_form textarea.localizable { background-position:100% 0; }
 .pkp_form .flag {
