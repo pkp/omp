@@ -152,7 +152,7 @@
 	<message key="grid.catalogEntry.representativeIdValue">Representative ID</message>
 	<message key="grid.catalogEntry.representativeIdType">Representative ID Type (GLN is recommended)</message>
 	<message key="grid.catalogEntry.representativesDescription">You may leave the following section empty if you provide your own services to your customers.</message>
-	<message key="grid.action.addRepresentative">Add a Representative</message>
+	<message key="grid.action.addRepresentative">Add Representative</message>
 	<message key="grid.action.editRepresentative">Edit this Representative</message>
 	<message key="grid.action.deleteRepresentative">Delete this Representative</message>
 
@@ -214,7 +214,7 @@
 	<message key="grid.action.catalogEntry">View the catalog entry form</message>
 	<message key="grid.action.editFormat">Edit this format</message>
 	<message key="grid.action.deleteFormat">Delete this format</message>
-	<message key="grid.action.addFormat">Add a publication format</message>
+	<message key="grid.action.addFormat">Add publication format</message>
 	<message key="grid.action.approveProofs">Approve the proofs for indexing and inclusion in the catalog</message>
 	<message key="grid.action.addAnnouncement">Add an Announcement</message>
 	<message key="grid.action.showReviewPolicy">Read the current review policy</message>
@@ -226,20 +226,23 @@
 	<message key="grid.action.manageCategories">Configure categories for this press</message>
 	<message key="grid.action.manageSeries">Configure series for this press</message>
 	<message key="grid.action.editApprovedProof">Edit this Approved Proof</message>
-	<message key="grid.action.addCode">Add an Identification Code</message>
+	<message key="grid.action.addCode">Add Identification Code</message>
 	<message key="grid.action.editCode">Edit this Code</message>
 	<message key="grid.action.deleteCode">Delete this Code</message>
 	<message key="grid.action.addRights">Add Sales Rights</message>
 	<message key="grid.action.editRights">Edit these rights</message>
 	<message key="grid.action.deleteRights">Delete these rights</message>
-	<message key="grid.action.addMarket">Add a Market</message>
+	<message key="grid.action.addMarket">Add Market</message>
 	<message key="grid.action.editMarket">Edit this Market</message>
 	<message key="grid.action.deleteMarket">Delete this Market</message>
-	<message key="grid.action.addDate">Add a publication date</message>
+	<message key="grid.action.addDate">Add publication date</message>
 	<message key="grid.action.editDate">Edit this Date</message>
 	<message key="grid.action.deleteDate">Delete this Date</message>
 	<message key="grid.action.toggleHelp">Toggle the display of inline help</message>
 	<message key="grid.action.createPress">Create a new Press</message>
+	<message key="grid.action.addCode">Add Code</message>
+	<message key="grid.action.addSpotlight">Add Spotlight</message>
+	<message key="grid.action.addGenre">Add Genre</message>
 
 	<!-- Used in submission review -->
 	<message key="reviewer.reviewSteps.request">1. Request</message>

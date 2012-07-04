@@ -144,10 +144,10 @@ class MarketsGridHandler extends GridHandler {
 				'addMarket',
 				new AjaxModal(
 					$router->url($request, null, null, 'addMarket', null, $actionArgs),
-					__('grid.action.addItem'),
+					__('grid.action.addMarket'),
 					'addMarket'
 				),
-				__('grid.action.addItem'),
+				__('grid.action.addMarket'),
 				'add_item'
 			)
 		);

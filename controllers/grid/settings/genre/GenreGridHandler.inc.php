@@ -67,10 +67,10 @@ class GenreGridHandler extends SetupGridHandler {
 				'addGenre',
 				new AjaxModal(
 					$router->url($request, null, null, 'addGenre', null, $actionArgs),
-					__('grid.action.addItem'),
+					__('grid.action.addGenre'),
 					null,
 					true),
-				__('grid.action.addItem'),
+				__('grid.action.addGenre'),
 				'add_item')
 		);
 
