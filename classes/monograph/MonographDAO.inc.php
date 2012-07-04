@@ -369,6 +369,10 @@ class MonographDAO extends DAO {
 		$newReleaseDao =& DAORegistry::getDAO('NewReleaseDAO');
 		$newReleaseDao->deleteByMonographId($monographId);
 
+		// Delete any outstanding notifications for this monograph
+		$notificationDao =& DAORegistry::getDAO('NotificationDAO');
+		$notificationDao->deleteByAssoc(ASSOC_TYPE_MONOGRAPH, $monographId);
+
 		$this->update('DELETE FROM monograph_settings WHERE monograph_id = ?', (int) $monographId);
 		$this->update('DELETE FROM monographs WHERE monograph_id = ?', (int) $monographId);
 	}
