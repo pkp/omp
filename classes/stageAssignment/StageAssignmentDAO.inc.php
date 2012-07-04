@@ -70,6 +70,18 @@ class StageAssignmentDAO extends DAO {
 	}
 
 	/**
+	 * Get editor stage assignments.
+	 * @param $submissionId int
+	 * @param $stageId int
+	 * @return array
+	 */
+	function getEditorsAssignedToStage($submissionId, $stageId) {
+		$pressManagerAssignmentFactory = $this->getBySubmissionAndRoleId($submissionId, ROLE_ID_PRESS_MANAGER, $stageId);
+		$seriesEditorAssignmentFactory = $this->getBySubmissionAndRoleId($submissionId, ROLE_ID_SERIES_EDITOR, $stageId);
+		return array_merge($pressManagerAssignmentFactory->toArray(), $seriesEditorAssignmentFactory->toArray());
+	}
+
+	/**
 	 * Test if an editor or a series editor is assigned to the submission
 	 * This test is used to determine what grid to place a submission into,
 	 * and to know if the review stage can be started.

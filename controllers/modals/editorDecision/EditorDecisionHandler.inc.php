@@ -343,6 +343,7 @@ class EditorDecisionHandler extends Handler {
 			$reviewRound =& $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ROUND);
 			if ($reviewRound) {
 				$notificationMgr->updateAllReviewsInNotification($request, $reviewRound);
+				$notificationMgr->deleteAllRevisionsInNotification($request, $reviewRound);
 			}
 
 			if ($redirectOp) {

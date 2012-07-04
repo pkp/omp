@@ -304,6 +304,7 @@ class FileUploadWizardHandler extends FileManagementHandler {
 			if (is_a($uploadedFile =& $uploadForm->execute($request), 'MonographFile')) { /* @var $uploadedFile MonographFile */
 				// Retrieve file info to be used in a JSON response.
 				$uploadedFileInfo = $this->_getUploadedFileInfo($uploadedFile);
+				$reviewRound =& $this->getReviewRound();
 
 				// If no revised file id was given then try out whether
 				// the user maybe accidentally didn't identify this file as a revision.
@@ -311,7 +312,6 @@ class FileUploadWizardHandler extends FileManagementHandler {
 					$revisedFileId = $this->_checkForRevision($uploadedFile, $uploadForm->getMonographFiles());
 					if ($revisedFileId) {
 						// Instantiate the revision confirmation form.
-						$reviewRound =& $this->getReviewRound();
 						import('controllers.wizard.fileUpload.form.SubmissionFilesUploadConfirmationForm');
 						$confirmationForm = new SubmissionFilesUploadConfirmationForm($request, $monograph->getId(), $this->getStageId(), $this->getFileStage(), $reviewRound, $revisedFileId, $this->getAssocType(), $this->getAssocId(), $uploadedFile);
 						$confirmationForm->initData($args, $request);
@@ -328,6 +328,7 @@ class FileUploadWizardHandler extends FileManagementHandler {
 					$notificationMgr = new NotificationManager(); /* @var $notificationMgr NotificationManager */
 					$user =& $request->getUser();
 					$notificationMgr->deletePendingRevisionsNotification($request, $monograph, $stageId, $user->getId());
+					$notificationMgr->insertAllRevisionsInNotification($request, $reviewRound);
 				}
 
 				// Advance to the next step (i.e. meta-data editing).
