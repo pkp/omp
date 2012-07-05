@@ -38,6 +38,7 @@ class AboutHandler extends Handler {
 		if ($pressPath != 'index' && $pressDao->pressExistsByPath($pressPath)) {
 			$press =& $request->getPress();
 
+			$pressSettingsDao = DAORegistry::getDAO('PressSettingsDAO');
 			$customAboutItems =& $pressSettingsDao->getSetting($press->getId(), 'customAboutItems');
 			if (isset($customAboutItems[AppLocale::getLocale()])) $templateMgr->assign('customAboutItems', $customAboutItems[AppLocale::getLocale()]);
 			elseif (isset($customAboutItems[AppLocale::getPrimaryLocale()])) $templateMgr->assign('customAboutItems', $customAboutItems[AppLocale::getPrimaryLocale()]);
