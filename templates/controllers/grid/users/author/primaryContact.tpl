@@ -8,6 +8,6 @@
  *
  *}
 {if $isPrincipalContact}
-	<div id="isPrimaryContact" style="padding-left: 40%;">{icon name="accept"}</div>
+	<div id="isChecked"><div href="#" class='pkp_helpers_container_center checked'></div></div>
 {/if}
 

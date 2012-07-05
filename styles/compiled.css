@@ -1204,9 +1204,11 @@ a.overdue { background-image:url(../lib/pkp/templates/images/structure/grid_emai
 a.uploaded { background-image:url(../lib/pkp/templates/images/structure/grid_folder.png); }
 a.request_review { background-image:url(../lib/pkp/templates/images/structure/grid_request_review.png); }
 .pkp_controllers_grid div.checked {
-  background-image:url(../lib/pkp/templates/images/structure/grid_promote.png);
-  height:15px;
-  width:15px;
+  background:url(../lib/pkp/templates/images/structure/sprites.png);
+  background-repeat:no-repeat;
+  height:24px;
+  width:24px;
+  background-position:-672px 0;
 }
 .pkp_controllers_grid div.notChecked {
   background-image:url(../lib/pkp/templates/images/structure/grid_delete.png);
