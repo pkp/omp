@@ -243,6 +243,7 @@
 	<message key="grid.action.addCode">Add Code</message>
 	<message key="grid.action.addSpotlight">Add Spotlight</message>
 	<message key="grid.action.addGenre">Add Genre</message>
+	<message key="grid.action.publicationFormatTab">Show the publication format tab</message>
 
 	<!-- Used in submission review -->
 	<message key="reviewer.reviewSteps.request">1. Request</message>
