@@ -51,6 +51,7 @@ jQuery.pkp.controllers.tab.catalogEntry =
 		}
 
 		this.bind('gridInitialized', this.addFormatsGridRowActionHandlers_);
+		this.publishEvent('gridInitialized');
 	};
 	$.pkp.classes.Helper.inherits(
 			$.pkp.controllers.tab.catalogEntry.CatalogEntryTabHandler,
