@@ -104,7 +104,8 @@ class UserGroupGridHandler extends CategoryGridHandler {
 			'settings.roles.roleName',
 			null,
 			'controllers/grid/gridCell.tpl',
-			$cellProvider
+			$cellProvider,
+			array('alignment' => COLUMN_ALIGNMENT_LEFT)
 		));
 		$this->addColumn(new GridColumn(
 			'abbrev',

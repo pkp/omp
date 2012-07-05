@@ -173,7 +173,7 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="settings.libraryFiles.nameRequired">A name is required for this library file.</message>
 
 	<!-- Access and Security settings  page -->
-	<message key="settings.roles.roleName">Name</message>
+	<message key="settings.roles.roleName">Role Name</message>
 	<message key="settings.roles.roleAbbrev">Abbreviation</message>
 	<message key="settings.roles.assignedStages">Assigned Stages</message>
 	<message key="settings.roles.stages">Stages</message>
@@ -385,7 +385,7 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.pressHomepageContentDescription">The press homepage consists of navigation links by default. Additional homepage content can be appended by using one or all of the following options, which will appear in the order shown.</message>
 	<message key="manager.setup.pressHomepageHeader">Press Homepage Header</message>
 	<message key="manager.setup.pressHomepageHeader.altText">Press Homepage Header</message>
-	<message key="manager.setup.pressHomepageHeaderDescription">Choose between a text representation of the press name, or a graphic version of the press title (.gif, .jpg, or .png files accepted). This header and the optional accompanying logo will only appear on the press home page.</message>
+	<message key="manager.setup.pressHomepageHeaderDescription">Choose between a text representation of the press name, or a graphic version of the press title (.gif, .jpg, or .png files accepted). This header and the optional accompanying logo will only appear on the press home page.  The default header expects a size of 180px x 90px.</message>
 	<message key="manager.setup.pressInitials">Press Initials</message>
 	<message key="manager.setup.pressLayout">Press Layout</message>
 	<message key="manager.setup.pressLayoutDescription">Choose a press theme and select layout components here. A press style sheet may also be uploaded, which can be used to override style data in the system-wide style sheets and theme style sheet (if a theme is chosen).</message>

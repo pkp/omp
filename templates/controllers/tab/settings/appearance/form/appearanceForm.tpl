@@ -56,13 +56,10 @@
 	{* end Homepage Header *}
 
 	{* Homepage Content *}
-	{fbvFormArea id="pressHomePageContent" title="manager.setup.pressHomepageContent" border="true"}
-		{fbvFormSection description="manager.setup.pressHomepageContentDescription"}
-		{/fbvFormSection}
-		{fbvFormSection label="manager.setup.pressDescription" description="manager.setup.pressDescriptionDescription"}
-			{fbvElement type="textarea" multilingual=true name="description" id="description" value=$description rich=true}
-		{/fbvFormSection}
-		<div {if $wizardMode}class="pkp_form_hidden"{/if}>
+	<div {if $wizardMode}class="pkp_form_hidden"{/if}>
+		{fbvFormArea id="pressHomePageContent" title="manager.setup.pressHomepageContent" border="true"}
+			{fbvFormSection description="manager.setup.pressHomepageContentDescription"}
+			{/fbvFormSection}
 			{fbvFormSection label="manager.setup.homepageImage" description="manager.setup.homepageImageDescription"}
 				<div id="{$uploadImageLinkActions.homepageImage->getId()}" class="pkp_linkActions">
 					{include file="linkAction/linkAction.tpl" action=$uploadImageLinkActions.homepageImage contextId="appearanceForm"}
@@ -74,8 +71,8 @@
 			{fbvFormSection label="manager.setup.additionalContent" description="manager.setup.additionalContentDescription"}
 				{fbvElement type="textarea" multilingual=true name="additionalHomeContent" id="additionalHomeContent" value=$additionalHomeContent rich=true}
 			{/fbvFormSection}
-		</div>
-	{/fbvFormArea}
+		{/fbvFormArea}
+	</div>
 	{* end Homepage Content *}
 
 	{* Press Page Header *}

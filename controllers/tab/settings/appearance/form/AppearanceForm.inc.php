@@ -39,7 +39,6 @@ class AppearanceForm extends PressSettingsForm {
 		$settings = array(
 			'homeHeaderTitleType' => 'int',
 			'homeHeaderTitle' => 'string',
-			'description' => 'string',
 			'additionalHomeContent' => 'string',
 			'pressPageHeader' => 'string',
 			'pressPageFooter' => 'string',
@@ -84,7 +83,6 @@ class AppearanceForm extends PressSettingsForm {
 		return array(
 			'homeHeaderTitleType',
 			'homeHeaderTitle',
-			'description',
 			'additionalHomeContent',
 			'pressPageHeader',
 			'pressPageFooter'

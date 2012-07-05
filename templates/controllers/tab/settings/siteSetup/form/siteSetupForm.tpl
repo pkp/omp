@@ -12,7 +12,7 @@
 		// Attach the form handler.
 		$('#siteSetupForm').pkpHandler('$.pkp.controllers.tab.settings.form.FileViewFormHandler',
 			{ldelim}
-				fetchFileUrl: '{url|escape:javascript op='fetchFile' tab='siteSetup' escape=false}',
+				fetchFileUrl: '{url|escape:javascript op="fetchFile" tab="siteSetup" escape=false}',
 			{rdelim}
 		);
 	{rdelim});
