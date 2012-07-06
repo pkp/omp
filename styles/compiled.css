@@ -544,8 +544,9 @@ a.sprite.collapsed:hover:before { background-position:-1488px -24px; }
 }
 .pkp_structure_head_localNav {
   text-transform:uppercase;
-  font:130% "Courier New", Courier, mono;
+  font:115% "Courier New", Courier, mono;
 }
+.pkp_structure_head_localNav .sf-menu a { padding-right:1.1em; }
 .pkp_structure_search { padding:5px 10px 0 0; }
 .pkp_structure_search input {
   border:1px solid #cccccc;

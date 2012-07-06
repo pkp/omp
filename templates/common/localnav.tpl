@@ -9,13 +9,22 @@
 
 {capture assign="publicMenu"}
 	{if $currentPress}
-		{if not (empty($pressSettings.mailingAddress) && empty($pressSettings.contactName) && empty($pressSettings.contactAffiliation) && empty($pressSettings.contactMailingAddress) && empty($pressSettings.contactPhone) && empty($pressSettings.contactFax) && empty($pressSettings.contactEmail) && empty($pressSettings.supportName) && empty($pressSettings.supportPhone) && empty($pressSettings.supportEmail))}
-			<li><a href="{url page="about" op="contact"}">{translate key="about.contact"}</a></li>
+		{if $enableAnnouncements}
+			<li><a href="{url page="announcement"}">{translate key="announcement.announcements"}</a></li>
 		{/if}
-		<li><a href="{url page="about" op="description"}">{translate key="about.description"}</a></li>
-		<li><a href="{url page="about" op="editorialTeam"}">{translate key="about.editorialTeam"}</a></li>
-		<li><a href="{url page="about" op="editorialPolicies"}">{translate key="about.policies"}</a></li>
-		<li><a href="{url page="about" op="submissions"}">{translate key="about.submissions"}</a></li>
+		<li><a href="{url page="catalog"}">{translate key="navigation.catalog"}</a>
+		<li><a href="{url page="catalog" op="newReleases"}">{translate key="navigation.newReleases"}</a>
+		<li><a href="{url page="about"}">{translate key="navigation.about"}</a>
+			<ul>
+				{if not (empty($pressSettings.mailingAddress) && empty($pressSettings.contactName) && empty($pressSettings.contactAffiliation) && empty($pressSettings.contactMailingAddress) && empty($pressSettings.contactPhone) && empty($pressSettings.contactFax) && empty($pressSettings.contactEmail) && empty($pressSettings.supportName) && empty($pressSettings.supportPhone) && empty($pressSettings.supportEmail))}
+					<li><a href="{url page="about" op="contact"}">{translate key="about.contact"}</a></li>
+				{/if}
+				<li><a href="{url page="about" op="description"}">{translate key="about.description"}</a></li>
+				<li><a href="{url page="about" op="editorialTeam"}">{translate key="about.editorialTeam"}</a></li>
+				<li><a href="{url page="about" op="editorialPolicies"}">{translate key="about.policies"}</a></li>
+				<li><a href="{url page="about" op="submissions"}">{translate key="about.submissions"}</a></li>
+			</ul>
+		</li>
 	{/if}
 {/capture}
 
@@ -57,24 +66,12 @@
 						</ul>
 					</li>
 				{/if}{* ROLE_ID_PRESS_MANAGER || ROLE_ID_SERIES_EDITOR *}
-				{if $enableAnnouncements}
-					<li><a href="{url page="announcement"}">{translate key="announcement.announcements"}</a></li>
-				{/if}
-				<li>
-					<a href="{url page="about"}">{translate key="navigation.about"}</a>
-					<ul>{$publicMenu}</ul>
-				</li>
+				{$publicMenu}
 			{/if}
 		</ul>
 	{else}{* !$isUserLoggedIn *}
 		<ul class="sf-menu">
-			{if $enableAnnouncements}
-				<li><a href="{url page="announcement"}">{translate key="announcement.announcements"}</a></li>
-			{/if}
-			<li>
-				<a href="{url page="about"}">{translate key="navigation.about"}</a>
-				<ul>{$publicMenu}</ul>
-			</li>
+			{$publicMenu}
 		</ul>
 	{/if}{* $isUserLoggedIn *}
 </div>
