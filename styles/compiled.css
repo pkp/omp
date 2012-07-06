@@ -153,6 +153,7 @@ strong {
   font-weight:bold;
   font-weight:bold;
 }
+* :focus { outline:0; }
 .pkp_helpers_invisible { visibility:hidden; }
 .pkp_helpers_display_none { display:none !important; }
 .pkp_helpers_clear { clear:both; }

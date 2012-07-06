@@ -117,16 +117,17 @@
 				<div class="unit size1of5">
 					<div class="pkp_structure_masthead">
 						<h1 style="margin: 0; padding: 0;">
+							{url|assign:homeUrl context=$homeContext page="index"}
 							{if $displayPageHeaderLogo && is_array($displayPageHeaderLogo)}
-								<img src="{$publicFilesDir}/{$displayPageHeaderLogo.uploadName|escape:"url"}" width="{$displayPageHeaderLogo.width|escape}" height="{$displayPageHeaderLogo.height|escape}" {if $displayPageHeaderLogoAltText != ''}alt="{$displayPageHeaderLogoAltText|escape}"{else}alt="{translate key="common.pageHeaderLogo.altText"}"{/if} />
+								<a href="{$homeUrl}"><img src="{$publicFilesDir}/{$displayPageHeaderLogo.uploadName|escape:"url"}" width="{$displayPageHeaderLogo.width|escape}" height="{$displayPageHeaderLogo.height|escape}" {if $displayPageHeaderLogoAltText != ''}alt="{$displayPageHeaderLogoAltText|escape}"{else}alt="{translate key="common.pageHeaderLogo.altText"}"{/if} /></a>
 							{elseif $displayPageHeaderTitle && is_array($displayPageHeaderTitle)}
-								<img src="{$publicFilesDir}/{$displayPageHeaderTitle.uploadName|escape:"url"}" width="{$displayPageHeaderTitle.width|escape}" height="{$displayPageHeaderTitle.height|escape}" {if $displayPageHeaderTitleAltText != ''}alt="{$displayPageHeaderTitleAltText|escape}"{else}alt="{translate key="common.pageHeader.altText"}"{/if} />
+								<a href="{$homeUrl}"><img src="{$publicFilesDir}/{$displayPageHeaderTitle.uploadName|escape:"url"}" width="{$displayPageHeaderTitle.width|escape}" height="{$displayPageHeaderTitle.height|escape}" {if $displayPageHeaderTitleAltText != ''}alt="{$displayPageHeaderTitleAltText|escape}"{else}alt="{translate key="common.pageHeader.altText"}"{/if} /></a>
 							{elseif $displayPageHeaderTitle}
-								{$displayPageHeaderTitle}
+								<a href="{$homeUrl}">{$displayPageHeaderTitle}</a>
 							{elseif $alternatePageHeader}
-								{$alternatePageHeader}
+								<a href="{$homeUrl}">{$alternatePageHeader}</a>
 							{else}
-								<img src="{$baseUrl}/templates/images/structure/omp_logo.png" alt="{$applicationName|escape}" title="{$applicationName|escape}" width="180" height="90" />
+								<a href="{$homeUrl}"><img src="{$baseUrl}/templates/images/structure/omp_logo.png" alt="{$applicationName|escape}" title="{$applicationName|escape}" width="180" height="90" /></a>
 							{/if}
 						</h1>
 					</div><!-- pkp_structure_masthead -->
