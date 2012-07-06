@@ -36,12 +36,12 @@ class SubmissionInfoCenterLinkAction extends LinkAction {
 				array('monographId' => $monographId)
 			),
 			__('informationCenter.bookInfo'),
-			'informationCenter'
+			'bookInfo'
 		);
 
 		// Configure the link action.
 		parent::LinkAction(
-			'moreInformation', $ajaxModal,
+			'bookInfo', $ajaxModal,
 			__($linkKey), 'more_info'
 		);
 	}
