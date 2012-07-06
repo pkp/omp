@@ -52,6 +52,14 @@ class ManageFileApiHandler extends Handler {
 	function deleteFile($args, &$request) {
 		$monographFile =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH_FILE);
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		$stageId =& $request->getUserVar('stageId');
+		if ($stageId) {
+			// validate the stage id.
+			$stageAssignmentDao =& DAORegistry::getDAO('StageAssignmentDAO');
+			$user =& $request->getUser();
+			$stageAssignments =& $stageAssignmentDao->getBySubmissionAndStageId($monograph->getId(), $stageId, null, $user->getUserId());
+		}
+
 		assert($monographFile && $monograph); // Should have been validated already
 
 		$noteDao =& DAORegistry::getDAO('NoteDAO');
@@ -82,6 +90,12 @@ class ManageFileApiHandler extends Handler {
 
 		// Delete the monograph file.
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+
+
+		// check to see if we need to remove review_round_file associations
+		if (!$stageAssignments->wasEmpty()) {
+			$submissionFileDao->deleteReviewRoundAssignment($monograph->getId(), $stageId, $monographFile->getFileId(), $monographFile->getRevision());
+		}
 		$success = (boolean)$submissionFileDao->deleteRevisionById($monographFile->getFileId(), $monographFile->getRevision(), $monographFile->getFileStage(), $monograph->getId());
 
 		if ($success) {
