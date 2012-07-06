@@ -106,6 +106,7 @@
 					toggleHelpUrl: '{url|escape:javascript router=$smarty.const.ROUTE_PAGE page="user" op="toggleHelp"}',
 					toggleHelpOnText: '{$toggleHelpOnText}',
 					toggleHelpOffText: '{$toggleHelpOffText}',
+					requestedPage: '{$requestedPage}',
 					{include file="core:controllers/notification/notificationOptions.tpl"}
 				{rdelim});
 		{rdelim});
