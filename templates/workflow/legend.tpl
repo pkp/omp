@@ -17,7 +17,7 @@
 			<td colspan="2"><a href="javascript:$.noop();" class="sprite information">{translate key="submission.catalogEntry"}</a> {translate key="editor.monograph.legend.catalogEntry"}</td>
 		</tr>
 		<tr>
-			<td colspan="2"><a href="javascript:$.noop();" class="sprite more_info">{translate key="informationCenter.informationCenter"}</a> {translate key="editor.monograph.legend.informationCenter"}</td>
+			<td colspan="2"><a href="javascript:$.noop();" class="sprite more_info">{translate key="informationCenter.bookInfo"}</a> {translate key="editor.monograph.legend.bookInfo"}</td>
 		</tr>
 		<tr>
 			<td colspan="2"><a href="javascript:$.noop();" class="sprite participants">{translate key="editor.monograph.stageParticipants"}</a> {translate key="editor.monograph.legend.participants"}</td>

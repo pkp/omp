@@ -23,7 +23,7 @@ class SubmissionInfoCenterLinkAction extends LinkAction {
 	 * to show information about.
 	 * @param $linkKey string optional locale key to display for link
 	 */
-	function SubmissionInfoCenterLinkAction(&$request, $monographId, $linkKey = 'informationCenter.informationCenter') {
+	function SubmissionInfoCenterLinkAction(&$request, $monographId, $linkKey = 'informationCenter.bookInfo') {
 		// Instantiate the information center modal.
 		$dispatcher =& $request->getDispatcher();
 		import('lib.pkp.classes.linkAction.request.AjaxModal');
@@ -35,7 +35,7 @@ class SubmissionInfoCenterLinkAction extends LinkAction {
 				null,
 				array('monographId' => $monographId)
 			),
-			__('informationCenter.informationCenter'),
+			__('informationCenter.bookInfo'),
 			'informationCenter'
 		);
 

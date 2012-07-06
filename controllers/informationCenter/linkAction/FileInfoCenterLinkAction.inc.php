@@ -36,7 +36,7 @@ class FileInfoCenterLinkAction extends FileLinkAction {
 				'informationCenter.FileInformationCenterHandler', 'viewInformationCenter',
 				null, $this->getActionArgs($monographFile, $stageId)
 			),
-			__('informationCenter.informationCenter'),
+			__('informationCenter.bookInfo'),
 			'informationCenter'
 		);
 

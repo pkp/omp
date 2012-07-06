@@ -106,7 +106,7 @@
 	<message key="editor.monograph.legend.itemActions">Item Actions</message>
 	<message key="editor.monograph.legend.itemActionsDescription">Actions and options particular to an individual file.</message>
 	<message key="editor.monograph.legend.catalogEntry">View and manage the submission catalog entry, including metadata and publishing formats</message>
-	<message key="editor.monograph.legend.informationCenter">View and manage submission metadata, notes, notifications, and history</message>
+	<message key="editor.monograph.legend.bookInfo">View and manage submission metadata, notes, notifications, and history</message>
 	<message key="editor.monograph.legend.participants">View and manage this submission's participants: authors, editors, designers, and more</message>
 	<message key="editor.monograph.legend.add">Upload a file to the section</message>
 	<message key="editor.monograph.legend.add_user">Add a user to the section</message>
