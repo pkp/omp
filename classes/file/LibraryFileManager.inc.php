@@ -148,6 +148,7 @@ class LibraryFileManager extends PrivateFileManager {
 			LIBRARY_FILE_TYPE_SUBMISSION => 'manager.setup.submissionLibrary',
 			LIBRARY_FILE_TYPE_REVIEW => 'manager.setup.reviewLibrary',
 			LIBRARY_FILE_TYPE_PRODUCTION => 'manager.setup.productionLibrary',
+			LIBRARY_FILE_TYPE_PRODUCTION_TEMPLATE => 'manager.setup.productionTemplateLibrary',
 			LIBRARY_FILE_TYPE_EDITORIAL => 'manager.setup.editorialLibrary'
 		);
 		return $map;
@@ -172,6 +173,7 @@ class LibraryFileManager extends PrivateFileManager {
 			LIBRARY_FILE_TYPE_SUBMISSION => 'manager.setup.submissionLibraryDescription',
 			LIBRARY_FILE_TYPE_REVIEW => 'manager.setup.reviewLibraryDescription',
 			LIBRARY_FILE_TYPE_PRODUCTION => 'manager.setup.productionLibraryDescription',
+			LIBRARY_FILE_TYPE_PRODUCTION_TEMPLATE => 'manager.setup.productionTemplateLibraryDescription',
 			LIBRARY_FILE_TYPE_EDITORIAL => 'manager.setup.editorialLibraryDescription'
 		);
 		return $map;
