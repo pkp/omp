@@ -13,7 +13,6 @@
 			<li><a href="{url page="announcement"}">{translate key="announcement.announcements"}</a></li>
 		{/if}
 		<li><a href="{url page="catalog"}">{translate key="navigation.catalog"}</a>
-		<li><a href="{url page="catalog" op="newReleases"}">{translate key="navigation.newReleases"}</a>
 		<li><a href="{url page="about"}">{translate key="navigation.about"}</a>
 			<ul>
 				{if not (empty($pressSettings.mailingAddress) && empty($pressSettings.contactName) && empty($pressSettings.contactAffiliation) && empty($pressSettings.contactMailingAddress) && empty($pressSettings.contactPhone) && empty($pressSettings.contactFax) && empty($pressSettings.contactEmail) && empty($pressSettings.supportName) && empty($pressSettings.supportPhone) && empty($pressSettings.supportEmail))}
