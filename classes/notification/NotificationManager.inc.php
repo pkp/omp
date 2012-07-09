@@ -260,9 +260,8 @@ class NotificationManager extends PKPNotificationManager {
 
 		switch ($type) {
 			case NOTIFICATION_TYPE_SIGNOFF_COPYEDIT:
-				return __('notification.type.signoffCopyedit');
 			case NOTIFICATION_TYPE_SIGNOFF_PROOF:
-				return __('notification.type.signoffProof');
+				return __('notification.type.signoff');
 			case NOTIFICATION_TYPE_EDITOR_DECISION_INITIATE_REVIEW:
 			case NOTIFICATION_TYPE_EDITOR_DECISION_ACCEPT:
 			case NOTIFICATION_TYPE_EDITOR_DECISION_EXTERNAL_REVIEW:

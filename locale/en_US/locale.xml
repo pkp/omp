@@ -72,7 +72,7 @@
 	<message key="monograph.publicationFormat.productRegion">Product Distribution Region</message>
 	<message key="monograph.publicationFormat.taxRate">Taxation Rate</message>
 	<message key="monograph.publicationFormat.taxType">Taxation Type</message>
-	
+
 	<message key="monograph.publicationFormat.isAvailable">This publication format is ready to be included in the public catalog.</message>
 	<message key="monograph.publicationFormat.inCatalog"><![CDATA[This format is <strong>available</strong> in the public catalog.]]></message>
 	<message key="monograph.publicationFormat.notInCatalog"><![CDATA[This format is <strong>not yet available</strong> in the public catalog.]]></message>
@@ -117,7 +117,7 @@
 	<message key="grid.catalogEntry.regions">Regions</message>
 	<message key="grid.catalogEntry.included">Included</message>
 	<message key="grid.catalogEntry.excluded">Excluded</message>
-	
+
 	<!--  market regions grid and form keys  -->
 	<message key="grid.catalogEntry.markets">Market Territories</message>
 	<message key="grid.catalogEntry.marketTerritory">Territory</message>
@@ -696,8 +696,7 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="notification.type.layouteditorRequest">You were requested to review layouts for "{$title}"</message>
 	<message key="notification.type.indexRequest">You were requested to create an index for "{$title}"</message>
 	<message key="notification.type.reviewAssignment">You have a review pending.</message>
-	<message key="notification.type.signoffCopyedit">You have pending auditor tasks</message>
-	<message key="notification.type.signoffProof">You have pending production auditor tasks</message>
+	<message key="notification.type.signoff">You have an audit pending.</message>
 	<message key="notification.type.editorDecisionTitle">Latest editor decision</message>
 	<message key="notification.type.editorDecisionInitiateReview">Review process started.</message>
 	<message key="notification.type.editorDecisionAccept">Submission accepted.</message>
@@ -718,7 +717,7 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="notification.type.configurePaymentMethod">A configured payment method is required before you can define e-commerce settings.</message>
 	<message key="notification.type.visitCatalog">The monograph has been approved. Please visit Management &gt; Catalog to manage its catalog details.</message>
 	<message key="notification.type.visitCatalogTitle">Catalog Management</message>
-	
+
 	<!-- Authorization -->
 	<message key="user.authorization.invalidReviewAssignment">You have been denied access because you do not seem to be a valid reviewer for this monograph.</message>
 	<message key="user.authorization.monographAuthor">You have been denied access because you do not seem to be the author of this monograph.</message>
@@ -749,7 +748,7 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<!-- Debug messages -->
 	<message key="debug.notes.currencyListLoad">Loaded currency list "{$filename}" from XML</message>
 	<message key="debug.notes.helpMappingLoad">Reloaded XML help mapping file {$filename} in search of {$id}.</message>
-	
+
 	<!-- RT Entities -->
 	<message key="rt.metadata.pkp.peerReviewed">Peer-reviewed Article</message>
 </locale>
