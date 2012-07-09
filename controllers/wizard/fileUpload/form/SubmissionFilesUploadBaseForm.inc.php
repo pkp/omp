@@ -214,6 +214,12 @@ class SubmissionFilesUploadBaseForm extends Form {
 			// a revision.
 			$fileName = $monographFile->getLocalizedName() != '' ? $monographFile->getLocalizedName() : __('common.untitled');
 			if ($monographFile->getRevision() > 1) $fileName .= ' (' . $monographFile->getRevision() . ')';
+
+			// If we are about to add a revision of a revision, remove the original one from the list of possible file choices.
+			if (array_key_exists($monographFile->getSourceFileId(), $monographFileOptions)) {
+				unset($monographFileOptions[$monographFile->getSourceFileId()]);
+			}
+
 			$monographFileOptions[$monographFile->getFileId()] = $fileName;
 			$currentMonographFileGenres[$monographFile->getFileId()] = $monographFile->getGenreId();
 
