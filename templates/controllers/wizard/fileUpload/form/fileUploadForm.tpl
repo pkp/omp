@@ -171,7 +171,8 @@
 
 		{if $showGenreSelector}
 			{fbvFormSection title="submission.upload.fileContents" required=true}
-				{fbvElement type="select" name="genreId" id="genreId" from=$monographFileGenres translate=false defaultLabel="" defaultValue="" required="true" selected=$genreId}
+				{capture assign="defaultLabel"}{translate key="submission.upload.selectBookElement"}{/capture}
+				{fbvElement type="select" name="genreId" id="genreId" from=$monographFileGenres translate=false defaultLabel=$defaultLabel defaultValue="" required="true" selected=$genreId}
 			{/fbvFormSection}
 		{/if}
 
