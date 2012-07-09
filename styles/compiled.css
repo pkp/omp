@@ -525,11 +525,22 @@ a.sprite.collapsed:hover:before { background-position:-1488px -24px; }
 }
 .pkp_structure_head .pkp_structure_masthead {
   background-color:#ffffff;
-  height:90px;
+  height:100px;
+  padding:0 5px 5px;
+  border-style:none solid solid;
+  border-width:medium 1px 1px;
+  border-color:#c8c8c8;
+}
+.pkp_structure_head .pkp_structure_masthead h1 {
+  height:99px;
+  border-style:none dotted dotted;
+  border-width:medium 1px 1px;
+  border-color:#818181;
+  overflow:hidden;
 }
 .pkp_structure_navigation { margin-left:20px; }
 .pkp_structure_head_siteNav {
-  height:35px;
+  height:39px;
   padding:2px 0 0 0;
   border-bottom:1px solid;
   font-size:90%;
@@ -544,9 +555,11 @@ a.sprite.collapsed:hover:before { background-position:-1488px -24px; }
 }
 .pkp_structure_head_localNav {
   text-transform:uppercase;
-  font:115% "Courier New", Courier, mono;
+  font:150% "Courier New", Courier, mono;
 }
-.pkp_structure_head_localNav .sf-menu a { padding-right:1.1em; }
+.pkp_structure_head_localNav .sf-menu a { padding-right:0.45em; }
+.pkp_structure_head_localNav .sf-menu a.sf-with-ul { padding-right:1.55em; }
+.pkp_structure_head_localNav .sf-menu ul { margin-top:-1px; }
 .pkp_structure_search { padding:5px 10px 0 0; }
 .pkp_structure_search input {
   border:1px solid #cccccc;
@@ -649,7 +662,7 @@ body {
   width:auto;
 }
 .pkp_structure_page {
-  margin:10px auto;
+  margin:0 auto;
   _text-align:left;
 }
 .pkp_structure_body:after, .pkp_structure_main:after {
