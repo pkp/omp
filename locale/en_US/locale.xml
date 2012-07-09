@@ -434,6 +434,7 @@
 	<message key="user.role.seriesEditors">Series Editors</message>
 	<message key="user.role.proofreader">Proofreader</message>
 	<message key="user.role.author">Author</message>
+	<message key="user.role.author_s">Author(s)</message>
 	<message key="user.role.reviewer">Reviewer</message>
 	<message key="user.role.productionEditor">Production Editor</message>
 
@@ -453,7 +454,8 @@ current password.<br /><br />Enter your email address below to reset your passwo
 
 	<!-- Information Center -->
 	<message key="informationCenter.bookInfo">Book Info</message>
-	<message key="informationCenter.postNote">Post Note</message>
+	<message key="informationCenter.composeNote">Compose Note</message>
+	<message key="informationCenter.addNote">Add to File</message>
 	<message key="informationCenter.noNotes">There are no notes to display.</message>
 	<message key="informationCenter.currentNotes">Current Revision</message>
 	<message key="informationCenter.pastNotes">Earlier Revisions</message>

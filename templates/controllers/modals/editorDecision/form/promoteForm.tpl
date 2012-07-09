@@ -23,7 +23,9 @@
 	<input type="hidden" name="decision" value="{$decision|escape}" />
 	<input type="hidden" name="reviewRoundId" value="{$reviewRoundId|escape}" />
 
-	{fbvFormSection title="user.role.author" for="authorName" size=$fbvStyles.size.MEDIUM}
+	{translate key="editor.review.NotifyAuthorAccept"}<br /><br />
+
+	{fbvFormSection title="user.role.author_s" for="authorName" size=$fbvStyles.size.MEDIUM}
 		{fbvElement type="text" id="authorName" name="authorName" value=$authorName disabled=true}
 	{/fbvFormSection}
 

@@ -22,7 +22,7 @@
 	<message key="editor.submissionArchive">Submission Archive</message>
 	<message key="editor.submissionReview.recordDecision">Record Editorial Decision</message>
 	<message key="editor.submissionReview.reviewType">Review Type</message>
-	<message key="editor.submissionReview.skipEmail">Do not send email to the Author</message>
+	<message key="editor.submissionReview.skipEmail">Do not send Author email</message>
 	<message key="editor.submissionReview.open">Open</message>
 	<message key="editor.submissionReview.blind">Blind</message>
 	<message key="editor.submissionReview.doubleBlind">Double-blind</message>
@@ -122,6 +122,7 @@
 	<message key="editor.monograph.legend.uploaded">File uploaded by the role in the grid column title</message>
 
 	<!-- Editorial related -->
+	<message key="editor.submission.introduction">After reviewing the submission, the editor selects the appropriate action, which is accompanied by an author notification: Internal Review (leads to selecting files for review within the press); or External Review (leads to selecting files to be sent out for review); Accept Submission (leads to selecting files, without further review, for Editorial stage); or Decline Submission (archives submission).</message>
 	<message key="editor.monograph.editorial.introduction">The copyeditor downloads the Accepted Submission files for copyediting, and then uploads the copyedited files under Copyediting for review. The copyeditor uses Assign to select and notify users to audit copyedits. Those assigned download, review, and upload the copyedited files and/or leave a note with the file. The copyeditor then prepares and uploads a clean Fair Copy of the submission file(s), for which an editor signs off and clicks Send to Production.</message>
 	<message key="editor.monograph.editorial.finalDraftDescription">All approved submission revisions from previous review stages are available below. New draft files can be uploaded (and current files replaced) by clicking the Manage Final Draft Files link.</message>
 	<message key="editor.monograph.editorial.copyeditingDescription">Copyedited files may be uploaded here. Once uploaded, Authors and other participants assigned to the submission may be asked to audit the uploaded copyediting file(s) by clicking the Assign button. Multiple files may be sent for auditing, and an auditing due date can be set. You will be notified of completed audits, and can access the audits by clicking on the participant's name. Finally, you will be able to sign off as copyeditor on the audited copyedit file.</message>
@@ -146,6 +147,7 @@
 	<message key="editor.monograph.fileAuditor.form.messageRequired">You must include a personal message.</message>
 	<message key="editor.monograph.fileAuditor.skipEmail">Do not send email to the Auditor</message>
 	<message key="editor.monograph.noAuditRequested">No audit requested for this file</message>
+
 	<!-- Review related -->
 	<message key="editor.review">Review</message>
 	<message key="editor.review.introduction">The assigned editor manages all available files for review from the Review Files section, and assigns one or more reviewers to the files from the Reviewers section. New review rounds can be initiated by clicking the New Review Round tab. All reviewer, author and editor revisions for this review stage are managed in the Revisions section. The editor must finally choose from among the available decisions (Request Revisions; Resubmit for Review; Accept for Submission; Decline Submission; External Review) to advance the submission.</message>
@@ -153,13 +155,15 @@
 	<message key="editor.review.uploadRevisionToRound">Upload revision to review round {$round}</message>
 	<message key="editor.review.personalMessageToReviewer">Personal Message to Reviewer</message>
 	<message key="editor.review.personalMessageFromEditor">Personal Message from the Editor</message>
-	<message key="editor.review.personalMessageToAuthor">Personal Message to Author</message>
+	<message key="editor.review.NotifyAuthorAccept">Notify the author of acceptance:</message>
+	<message key="editor.review.NotifyAuthorDecline">Notify the author of decision to decline submission:</message>
+	<message key="editor.review.personalMessageToAuthor">Email to be sent to Author</message>
 	<message key="editor.review.importantDates">Important Dates</message>
 	<message key="editor.review.dateAccepted">Review Acceptance Date</message>
 	<message key="editor.review.noReviews">No peer reviews to import</message>
 	<message key="editor.review.reminder">Review Reminder</message>
 	<message key="editor.review.reminderError">Error sending review reminder</message>
-	<message key="editor.review.skipEmail">Do not send email to the Reviewer</message>
+	<message key="editor.review.skipEmail">Do not send Reviewer email</message>
 	<message key="editor.review.sendReminder">Send Reminder</message>
 	<message key="editor.review.reviewDueDate">Review Due Date</message>
 	<message key="editor.review.reviewCompleted">Review Completed</message>
