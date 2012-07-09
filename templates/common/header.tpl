@@ -143,9 +143,6 @@
 		<div class="pkp_structure_body">
 			<div class="pkp_structure_content">
 				<!-- TODO: replace with breadcrumbs and wire up search -->
-				<div class="unit size1of5">
-					<div class="pkp_structure_search">&nbsp;</div>
-				</div>
 				<div class="unit size4of5 lastUnit">
 					{include file="common/breadcrumbs.tpl"}
 					{if !$noPressesConfigured}
