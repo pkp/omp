@@ -25,8 +25,8 @@
 			<li>{null_link_action id="toggleHelp" key="help.toggleInlineHelpOn"}</li>
 			<li><a href="{url page="login" op="signOut"}">{translate key="user.logOut"}</a></li>
 		{else}
-			<li><a href="{url page="login"}">{translate key="navigation.login"}</a></li>
 			<li><a href="{url page="user" op="register"}">{translate key="navigation.register"}</a></li>
+			<li><a href="{url page="login"}">{translate key="navigation.login"}</a></li>
 		{/if}
 	</ul>
 </div>
