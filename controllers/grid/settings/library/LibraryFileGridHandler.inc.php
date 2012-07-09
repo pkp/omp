@@ -85,7 +85,7 @@ class LibraryFileGridHandler extends SetupGridHandler {
 		$this->setInstructions($libraryFileManager->getDescriptionKeyFromType($this->getFileType()));
 
 		// Basic grid configuration
-		$this->setId('libraryFile' . ucwords(strtolower($name)));
+		$this->setId('libraryFile' . ucwords(strtolower_codesafe($name)));
 
 		AppLocale::requireComponents(
 			LOCALE_COMPONENT_PKP_COMMON,

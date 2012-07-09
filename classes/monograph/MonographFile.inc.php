@@ -334,7 +334,7 @@ class MonographFile extends SubmissionFile {
 			'fileId' => $this->getFileId(),
 			'revision' => $this->getRevision(),
 			'fileStage' => $this->getFileStage(),
-			'extension' => strtolower($this->getExtension())
+			'extension' => strtolower_codesafe($this->getExtension())
 		);
 
 		// Check whether we need a refresh.
