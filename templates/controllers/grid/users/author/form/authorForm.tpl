@@ -22,10 +22,10 @@
 
 	{fbvFormArea id="profile"}
 		{fbvFormSection title="user.name"}
+			{fbvElement type="text" label="user.suffix" id="suffix" value=$suffix|escape maxlength="40" inline=true size=$fbvStyles.size.SMALL}
 			{fbvElement type="text" label="user.firstName" id="firstName" value=$firstName|escape maxlength="40" required=true inline=true size=$fbvStyles.size.SMALL}
 			{fbvElement type="text" label="user.middleName" id="middleName" value=$middleName|escape maxlength="40" inline=true size=$fbvStyles.size.SMALL}
 			{fbvElement type="text" label="user.lastName" id="lastName" value=$lastName|escape maxlength="40" required=true inline=true size=$fbvStyles.size.SMALL}
-			{fbvElement type="text" label="user.suffix" id="suffix" value=$suffix|escape maxlength="40" inline=true size=$fbvStyles.size.SMALL}
 		{/fbvFormSection}
 		<div class="pkp_helpers_clear"></div>
 		{fbvFormSection title="about.contact"}

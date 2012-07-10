@@ -9,14 +9,14 @@
  * to handle this fields data.
  *}
 
-{fbvFormArea id="generalInformation"}
-	<p>{translate key="common.prefixAndTitle.tip"}</p>
-	{fbvFormSection for="title" title="common.prefix" inline="true" size=$fbvStyles.size.MEDIUM}
-		{fbvElement type="text" multilingual=true id="prefix" value="$prefix" disabled=$readOnly maxlength="32"}
+{fbvFormArea id="generalInformation" border="true"}
+	{fbvFormSection for="title" title="common.prefix" inline="true" size=$fbvStyles.size.SMALL}
+		{fbvElement type="text" multilingual=true id="prefix" value=$prefix disabled=$readOnly maxlength="32"}
 	{/fbvFormSection}
-	{fbvFormSection for="title" title="monograph.title" inline="true" size=$fbvStyles.size.MEDIUM}
+	{fbvFormSection for="title" title="monograph.title" inline="true" size=$fbvStyles.size.LARGE}
 		{fbvElement type="text" multilingual=true name="title" id="title" value=$title disabled=$readOnly maxlength="255"}
 	{/fbvFormSection}
+	{fbvFormSection description="common.prefixAndTitle.tip"}{/fbvFormSection}
 	{fbvFormSection title="monograph.subtitle" for="subtitle"}
 		{fbvElement type="text" multilingual=true name="subtitle" id="subtitle" value=$subtitle disabled=$readOnly}
 	{/fbvFormSection}
@@ -37,7 +37,7 @@
 	{/fbvFormSection}
 {/fbvFormArea}
 
-{fbvFormArea id="additionalDublinCore"}
+{fbvFormArea id="additionalDublinCore" border="true"}
 	{fbvFormSection label="monograph.type" for="type" description="monograph.title.tip"}
 		{fbvElement type="text" multilingual=true name="type" id="type" value=$type maxlength="255" disabled=$readOnly}
 	{/fbvFormSection}
