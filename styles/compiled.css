@@ -190,7 +190,11 @@ strong {
 .pkp_helpers_half { width:48%; }
 .pkp_helpers_third { width:31%; }
 .pkp_helpers_quarter { width:25%; }
-.pkp_helpers_underline { text-decoration:underline !important; }
+.pkp_helpers_underline:after {
+  border:1px solid white;
+  content:" ";
+  display:block;
+}
 div.pkp_helpers_progressIndicator {
   width:24px;
   height:24px;
