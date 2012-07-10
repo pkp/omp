@@ -134,23 +134,6 @@ class EditorDecisionActionsManager {
 	 * @return array
 	 */
 	function _internalReviewStageDecisions() {
-		$decisions = EditorDecisionActionsManager::_externalReviewStageDecisions();
-
-		$decisions[SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW] = array(
-			'operation' => 'promoteInReview',
-			'name' => 'externalReview',
-			'title' => 'editor.monograph.decision.externalReview',
-			'image' => 'advance'
-		);
-
-		return $decisions;
-	}
-
-	/**
-	 * Define and return editor decisions for the review stage.
-	 * @return array
-	 */
-	function _externalReviewStageDecisions() {
 		static $decisions = array(
 			SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS => array(
 				'operation' => 'sendReviewsInReview',
@@ -163,6 +146,12 @@ class EditorDecisionActionsManager {
 				'name' => 'resubmit',
 				'title' => 'editor.monograph.decision.resubmit',
 				'image' => 'resubmit'
+			),
+			SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW => array(
+				'operation' => 'promoteInReview',
+				'name' => 'externalReview',
+				'title' => 'editor.monograph.decision.externalReview',
+				'image' => 'advance'
 			),
 			SUBMISSION_EDITOR_DECISION_ACCEPT => array(
 				'operation' => 'promoteInReview',
@@ -178,6 +167,16 @@ class EditorDecisionActionsManager {
 			)
 		);
 
+		return $decisions;
+	}
+
+	/**
+	 * Define and return editor decisions for the review stage.
+	 * @return array
+	 */
+	function _externalReviewStageDecisions() {
+		$decisions = EditorDecisionActionsManager::_internalReviewStageDecisions();
+		unset($decisions[SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW]);
 		return $decisions;
 	}
 
