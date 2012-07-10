@@ -329,7 +329,7 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.preparingWorkflow">Step 3. Preparing the workflow</message>
 	<message key="manager.setup.homepageImage">Homepage image</message>
 	<message key="manager.setup.homepageImageDescription">Add an image or graphic file to the middle of the page. If you are using the default template and css, maximum image width will be 750px for one side bar and 540px for two side bar setup. If you use a customized template or css, those values may change.</message>
-	<message key="manager.setup.includeCreativeCommons">For presses that offer immediate or delayed open access, include a Creative Commons license with all published work at the appropriate time.</message>
+	<message key="manager.setup.includeCopyrightNotice">Display the Copyright Notice on all press pages.</message>
 	<message key="manager.setup.information">Information</message>
 	<message key="manager.setup.information.description">Brief descriptions of the press for librarians and prospective authors and readers are available in the "Information" section of the sidebar.</message>
 	<message key="manager.setup.information.forAuthors">For Authors</message>
@@ -542,7 +542,7 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.productionTemplates">Production Templates</message>
 	<message key="manager.files.note">Note: The Files Browser is an advanced feature that allows the files and directories associated with a press to be viewed and manipulated directly.</message>
 	<message key="manager.setup.authorCopyrightNotice.sample"><![CDATA[<h3>Proposed Creative Commons Copyright Notices</h3>
-<h4>1. Proposed Policy for Presses That Offer Open Access</h4>
+<h4>Proposed Policy for Presses That Offer Open Access</h4>
 Authors who publish with this press agree to the following terms:
 <ol type="a">
 	<li>Authors retain copyright and grant the press right of first publication with the work simultaneously licensed under a <a target="_blank" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution License</a> that allows others to share the work with an acknowledgement of the work's authorship and initial publication in this press.</li>

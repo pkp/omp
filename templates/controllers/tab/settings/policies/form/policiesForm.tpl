@@ -24,10 +24,10 @@
 
 	{fbvFormArea id="policiesFormArea"}
 		{fbvFormSection label="manager.setup.authorCopyrightNotice" description=$authorCopyrightNoticeDescription translate=false}
-			{fbvElement type="textarea" multilingual="true" name="copyrightNotice" id="copyrightNotice" value=$copyrightNotice}
+			{fbvElement type="textarea" multilingual=true name="copyrightNotice" id="copyrightNotice" value=$copyrightNotice rich=true}
 		{/fbvFormSection}
 		{fbvFormSection list=true}
-			{fbvElement type="checkbox" id="includeCreativeCommons" value="1" checked=$includeCreativeCommons label="manager.setup.includeCreativeCommons"}
+			{fbvElement type="checkbox" id="includeCopyrightNotice" value="1" checked=$includeCopyrightNotice label="manager.setup.includeCopyrightNotice"}
 			{fbvElement type="checkbox" id="copyrightNoticeAgree" value="1" checked=$copyrightNoticeAgree label="manager.setup.authorCopyrightNoticeAgree"}
 		{/fbvFormSection}
 		{fbvFormSection label="manager.setup.privacyStatement" description="manager.setup.privacyStatement.description"}
