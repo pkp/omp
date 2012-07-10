@@ -51,6 +51,7 @@
 	$.pkp.pages.workflow.ProductionHandler.
 			prototype.$formatTabsSelector_ = null;
 
+
 	/**
 	 * Submission progress bar selector.
 	 * @private
@@ -58,6 +59,7 @@
 	 */
 	$.pkp.pages.workflow.ProductionHandler.
 			prototype.$submissionProgressBarSelector_ = null;
+
 
 	/**
 	 * Flag to avoid unnecessary widgets refresh.
@@ -93,7 +95,7 @@
 			}
 
 			var $formatTabs = $(this.$formatTabsSelector_, this.getHtmlElement()).children('div');
-			if ($formatTabs.has($triggerElement).length == 0) {
+			if ($formatTabs.has($triggerElement).length === 0) {
 				$formatTabs.trigger('refreshTabs');
 			}
 

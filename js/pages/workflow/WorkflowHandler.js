@@ -69,6 +69,7 @@ $.pkp.pages.workflow = $.pkp.pages.workflow || {};
 	 * @param {JQuery} callingElement The calling element.
 	 *  that triggered the event.
 	 * @param {Event} event The event.
+	 * @param {Object} eventData Event data.
 	 * @private
 	 */
 	$.pkp.pages.workflow.WorkflowHandler.prototype.dataChangedHandler_ =

@@ -15,8 +15,8 @@ jQuery.pkp.controllers.dashboard =
  * @class DashboardTaskFormHandler
  * @ingroup js_controllers_dashboard_form
  *
- * @brief Handle the styling and actions on the 'start new submission' form on the Task
- *  tab in the dashboard.
+ * @brief Handle the styling and actions on the 'start new submission' form
+ *  on the Task tab in the dashboard.
  */
 (function($) {
 
@@ -63,7 +63,7 @@ jQuery.pkp.controllers.dashboard =
 	//
 	/**
 	 * Redirect to the wizard for single press submissions
-	 * @param {Object} eventObject The html element that changed.
+	 * @private
 	 */
 	$.pkp.controllers.dashboard.form.DashboardTaskFormHandler.
 			prototype.startSinglePressSubmission_ = function() {
@@ -74,14 +74,14 @@ jQuery.pkp.controllers.dashboard =
 
 	/**
 	 * Redirect to the wizard for multiple press submissions
-	 * @param {Object} eventObject The html element that changed.
+	 * @private
 	 */
 	$.pkp.controllers.dashboard.form.DashboardTaskFormHandler.
 			prototype.startMultiplePressSubmission_ = function() {
 
 		var $form = this.getHtmlElement();
 		var url = $form.find('#multiplePress').val();
-		if (url != 0) { // not the default
+		if (url !== 0) { // not the default
 			window.location.href = url;
 		}
 	};

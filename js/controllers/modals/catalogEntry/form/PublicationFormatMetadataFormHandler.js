@@ -35,7 +35,7 @@ jQuery.pkp.controllers.modals.catalogEntry =
 		// Attach form elements events.
 		$form.find('#override').click(
 				this.callbackWrapper(this.overrideToggleHandler_));
-		
+
 		// initial setup.
 		$form.find('#override').triggerHandler('click');
 	};

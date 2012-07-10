@@ -72,7 +72,7 @@ jQuery.pkp.controllers.grid.users.stageParticipant =
 			prototype.updateUserList = function(eventObject) {
 
 		var oldUrl = this.fetchUserListUrl_;
-		
+
 		var $form = this.getHtmlElement();
 		var $userGroupSelector = $form.find('#userGroupId');
 		// Match with &amp;userGroupId or without and append userGroupId

@@ -240,9 +240,9 @@ $.pkp.pages.manageCatalog = $.pkp.pages.manageCatalog || {};
 	 */
 	$.pkp.pages.manageCatalog.ManageCatalogHeaderHandler.
 			prototype.showTabHandler_ = function(element, event, tabElement) {
-
+		var $selector;
 		if (tabElement.panel.id == 'categoryTab') {
-			var $selector = $(element).find('#categorySelect');
+			$selector = $(element).find('#categorySelect');
 			var categoryPath = $selector.find('option').first().val();
 			if (categoryPath !== undefined) {
 				$selector.find('option').eq(1).attr('selected', 'selected');
@@ -250,7 +250,7 @@ $.pkp.pages.manageCatalog = $.pkp.pages.manageCatalog || {};
 			}
 		}
 		if (tabElement.panel.id == 'seriesTab') {
-			var $selector = $(element).find('#seriesSelect');
+			$selector = $(element).find('#seriesSelect');
 			var seriesPath = $selector.find('option').first().val();
 			if (seriesPath !== undefined) {
 				$selector.find('option').eq(1).attr('selected', 'selected');
@@ -288,7 +288,7 @@ $.pkp.pages.manageCatalog = $.pkp.pages.manageCatalog || {};
 		var $catalogTabs = $('#catalogTabs').tabs();
 		var currentTabIndex = $catalogTabs.tabs('option', 'selected');
 
-		switch(currentTabIndex) {
+		switch (currentTabIndex) {
 			case 0:
 				// Homepage.
 				$catalogTabs.tabs('load', 0);

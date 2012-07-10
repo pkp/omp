@@ -13,7 +13,7 @@ $.pkp.pages.manageCatalog = $.pkp.pages.manageCatalog || {};
  * @class ManageCatalogModalHandler
  * @ingroup js_pages_manageCatalog
  *
- * @brief Handler for dealing with the modal catagory and series 
+ * @brief Handler for dealing with the modal catagory and series
  * management modals.
  *
  */
@@ -35,7 +35,7 @@ $.pkp.pages.manageCatalog = $.pkp.pages.manageCatalog || {};
 		this.parent($handledElement, options);
 
 		// Activate the cancel button (if present).
-		$('#cancelFormButton', $form).click(this.callbackWrapper(this.cancelForm));
+		$('#cancelFormButton', $handledElement).click(this.callbackWrapper(this.cancelForm));
 	};
 	$.pkp.classes.Helper.inherits(
 			$.pkp.pages.manageCatalog.ManageCatalogModalHandler,
@@ -56,7 +56,7 @@ $.pkp.pages.manageCatalog = $.pkp.pages.manageCatalog || {};
 	$.pkp.pages.manageCatalog.ManageCatalogModalHandler.prototype.cancelForm =
 			function(cancelButton, event) {
 
-		// Trigger the event which will cause the DropdownFormHandler to 
+		// Trigger the event which will cause the DropdownFormHandler to
 		// fetch its items again.
 		this.trigger('containerReloadRequested');
 		this.trigger('formCanceled');

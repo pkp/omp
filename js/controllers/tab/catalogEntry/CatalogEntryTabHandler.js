@@ -34,7 +34,7 @@ jQuery.pkp.controllers.tab.catalogEntry =
 			function($tabs, options) {
 		if (options.selectedFormatId) {
 			options.selected =
-				this.getTabPositionByFormatId_(options.selectedFormatId, $tabs);
+					this.getTabPositionByFormatId_(options.selectedFormatId, $tabs);
 		}
 
 		this.parent($tabs, options);
@@ -207,6 +207,7 @@ jQuery.pkp.controllers.tab.catalogEntry =
 	 * @param {integer} formatId The publication format id.
 	 * @param {jQuery} $tabs The current tabs container element.
 	 * @return {integer?} The publication format tab position or null.
+	 * @private
 	 */
 	$.pkp.controllers.tab.catalogEntry.CatalogEntryTabHandler.prototype.
 			getTabPositionByFormatId_ = function(formatId, $tabs) {
