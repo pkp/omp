@@ -66,7 +66,7 @@ class PluginGridHandler extends CategoryGridHandler {
 		parent::initialize($request);
 
 		// Load language components
-		AppLocale::requireComponents(LOCALE_COMPONENT_PKP_MANAGER);
+		AppLocale::requireComponents(LOCALE_COMPONENT_PKP_MANAGER, LOCALE_COMPONENT_PKP_COMMON);
 		AppLocale::requireComponents(LOCALE_COMPONENT_OMP_MANAGER);
 
 		// Basic grid configuration

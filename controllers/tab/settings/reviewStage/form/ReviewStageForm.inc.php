@@ -65,8 +65,12 @@ class ReviewStageForm extends PressSettingsForm {
 				__('review.ensuringBlindReview'));
 		$params['ensuringLink'] = $ensuringLink;
 
-		if (Config::getVar('general', 'scheduled_tasks'))
-			$params['scheduledTasksEnabled'] = true;
+		$params['scheduledTasksDisabled'] = (Config::getVar('general', 'scheduled_tasks')) ? false : true;
+
+		$templateMgr =& TemplateManager::getManager();
+
+		$templateMgr->assign('numDaysBeforeInviteReminderValues', range(3, 10));
+		$templateMgr->assign('numDaysBeforeSubmitReminderValues', range(0, 10));
 
 		return parent::fetch(&$request, $params);
 	}

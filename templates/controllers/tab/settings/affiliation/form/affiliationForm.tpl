@@ -17,13 +17,15 @@
 
 <form class="pkp_form" id="affiliationForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.PressSettingsTabHandler" op="saveFormData" tab="affiliationAndSupport"}">
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="affiliationFormNotification"}
-	{fbvFormArea id="sponsorsFormArea"}
-		{fbvFormSection label="manager.setup.sponsors" description="manager.setup.sponsors.description"}
+	{fbvFormArea id="sponsorsFormArea" border="true" title="manager.setup.sponsors"}
+		{fbvFormSection description="manager.setup.sponsors.description"}
 			{url|assign:sponsorGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.sponsor.sponsorGridHandler" op="fetchGrid"}
 			{load_url_in_div id="sponsorGridDiv" url=$sponsorGridUrl}
 			{fbvElement type="textarea" multilingual=true id="sponsorNote" value=$sponsorNote rich=true label="manager.setup.sponsors.note"}
 		{/fbvFormSection}
-		{fbvFormSection label="manager.setup.contributors" description="manager.setup.contributors.description"}
+	{/fbvFormArea}
+	{fbvFormArea id="contributorsFormArea" border="true" title="manager.setup.contributors"}
+		{fbvFormSection description="manager.setup.contributors.description"}
 			{url|assign:contributorGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.contributor.ContributorGridHandler" op="fetchGrid"}
 			{load_url_in_div id="contributorGridDiv" url=$contributorGridUrl}
 			{fbvElement type="textarea" multilingual=true id="contributorNote" value=$contributorNote rich=true label="manager.setup.contributors.note"}

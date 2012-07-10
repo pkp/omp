@@ -95,7 +95,6 @@ class UserDetailsForm extends UserForm {
 				'biography' => $user->getBiography(null), // Localized
 				'interestsKeywords' => $interestManager->getInterestsForUser($user),
 				'interestsTextOnly' => $interestManager->getInterestsString($user),
-				'gossip' => $user->getGossip(null), // Localized
 				'userLocales' => $user->getLocales()
 			);
 		} else if (isset($this->author)) {
@@ -194,7 +193,6 @@ class UserDetailsForm extends UserForm {
 			'biography',
 			'keywords',
 			'interestsTextOnly',
-			'gossip',
 			'userLocales',
 			'generatePassword',
 			'sendNotify',
@@ -263,7 +261,6 @@ class UserDetailsForm extends UserForm {
 		$user->setMailingAddress($this->getData('mailingAddress'));
 		$user->setCountry($this->getData('country'));
 		$user->setBiography($this->getData('biography'), null); // Localized
-		$user->setGossip($this->getData('gossip'), null); // Localized
 		$user->setMustChangePassword($this->getData('mustChangePassword') ? 1 : 0);
 		$user->setAuthId((int) $this->getData('authId'));
 

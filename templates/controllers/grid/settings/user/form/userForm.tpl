@@ -38,45 +38,42 @@
 		</div>
 		<div id="userFormCompactLeftContainer" class="pkp_helpers_clear">
 			{fbvFormArea id="userFormCompactLeft"}
+				{if !$userId}{capture assign="usernameInstruction"}{translate key="user.register.usernameRestriction"}{/capture}{/if}
+				{fbvFormSection for="username" description=$usernameInstruction translate=false}
+					{if !$userId}
+						{fbvElement type="text" label="user.username" id="username" required="true" value=$username|escape maxlength="32" inline=true size=$fbvStyles.size.MEDIUM}
+						{fbvElement type="button" label="common.suggest" id="suggestUsernameButton" inline=true class="default"}
+					{else}
+						{fbvFormSection title="user.username" suppressId="true"}
+							{$username|escape}
+						{/fbvFormSection}
+					{/if}
+				{/fbvFormSection}
+
 				{fbvFormSection title="user.name"}
 					{fbvElement type="text" label="user.firstName" required="true" id="firstName" value=$firstName|escape maxlength="40" inline=true size=$fbvStyles.size.SMALL}
 					{fbvElement type="text" label="user.middleName" id="middleName" value=$middleName|escape maxlength="40" inline=true size=$fbvStyles.size.SMALL}
 					{fbvElement type="text" label="user.lastName" required="true" id="lastName" value=$lastName|escape maxlength="40" inline=true size=$fbvStyles.size.SMALL}
 				{/fbvFormSection}
+
 				{fbvFormSection title="about.contact"}
-					{fbvElement type="text" label="user.email" id="email" required="true" value=$email|escape maxlength="90" inline=true size=$fbvStyles.size.MEDIUM}
-						{if !$userId}
-							{fbvElement type="text" label="user.username" id="username" required="true" value=$username|escape maxlength="32" inline=true size=$fbvStyles.size.MEDIUM}
-							&nbsp;&nbsp;{fbvElement type="button" id="suggestUsernameButton" label="common.suggest" class="default"}
-							<br />
-							<span class="instruct">{translate key="user.register.usernameRestriction"}</span>
-						{else}
-							{fbvFormSection title="user.username" suppressId="true"}
-								{$username|escape}
-							{/fbvFormSection}
-						{/if}
+					{fbvElement type="text" label="user.email" id="email" required="true" value=$email|escape maxlength="90" size=$fbvStyles.size.MEDIUM}
+				{/fbvFormSection}
+
+				{if $authSourceOptions}
+					{fbvFormSection title="grid.user.authSource" for="authId"}
+						{fbvElement type="select" name="authId" id="authId" defaultLabel="" defaultValue="" from=$authSourceOptions translate="true" selected=$authId}
 					{/fbvFormSection}
+				{/if}
 
-					{if $authSourceOptions}
-						{fbvFormSection title="grid.user.authSource" for="authId"}
-							{fbvElement type="select" name="authId" id="authId" defaultLabel="" defaultValue="" from=$authSourceOptions translate="true" selected=$authId}
+				{if !$implicitAuth}
+					{if $userId}{capture assign="passwordInstruction"}{translate key="user.profile.leavePasswordBlank"} {translate key="user.register.passwordLengthRestriction" length=$minPasswordLength}{/capture}{/if}
+					{fbvFormArea id="passwordSection" border="true" title="user.password"}
+						{fbvFormSection for="password" border="true" description=$passwordInstruction translate=false}
+							{fbvElement type="text" label="user.password" required=$passwordRequired name="password" id="password" password="true" value=$password maxlength="32" inline=true size=$fbvStyles.size.MEDIUM}
+							{fbvElement type="text" label="user.repeatPassword" required=$passwordRequired name="password2" id="password2" password="true" value=$password2 maxlength="32" inline=true size=$fbvStyles.size.MEDIUM}
 						{/fbvFormSection}
-					{/if}
-
-					{if !$implicitAuth}
-						{fbvFormSection title="user.password" for="password"}
-							{fbvElement type="text" label="user.password" required=$passwordRequired name="password" id="password" password="true" value=$password maxlength="32" inline=true size=$fbvStyles.size.SMALL}
-							{fbvElement type="text" label="user.repeatPassword" required=$passwordRequired name="password2" id="password2" password="true" value=$password2 maxlength="32" inline=true size=$fbvStyles.size.SMALL}
-						{/fbvFormSection}
-						{fbvFormSection}
-							<span class="instruct">{translate key="user.register.passwordLengthRestriction" length=$minPasswordLength}</span>
-						{/fbvFormSection}
-						{if $userId}
-							{fbvFormSection suppressId="true"}
-								<br />
-								{translate key="user.profile.leavePasswordBlank"}
-							{/fbvFormSection}
-						{else}
+						{if !$userId}
 							{fbvFormSection title="grid.user.generatePassword" for="generatePassword" list=true}
 								{if $generatePassword}
 									{assign var="checked" value=true}
@@ -85,7 +82,7 @@
 								{/if}
 								{fbvElement type="checkbox" name="generatePassword" id="generatePassword" checked=$checked label="grid.user.generatePasswordDescription" translate="true"}
 							{/fbvFormSection}
-						{/if}{* $userId *}
+						{/if}{* !$userId *}
 						{fbvFormSection title="grid.user.mustChangePassword" for="mustChangePassword" list=true}
 							{if $mustChangePassword}
 								{assign var="checked" value=true}
@@ -94,20 +91,22 @@
 							{/if}
 							{fbvElement type="checkbox" name="mustChangePassword" id="mustChangePassword" checked=$checked label="grid.user.mustChangePasswordDescription" translate="true"}
 						{/fbvFormSection}
-					{/if}{* !$implicitAuth *}
+					{/fbvFormArea}
 
-					{if !$implicitAuth && !$userId}
-						{fbvFormSection title="grid.user.notifyUser" for="sendNotify" list=true}
-							{if $sendNotify}
-								{assign var="checked" value=true}
-							{else}
-								{assign var="checked" value=false}
-							{/if}
-							{fbvElement type="checkbox" name="sendNotify" id="sendNotify" checked=$checked label="grid.user.notifyUserDescription" translate="true"}
-						{/fbvFormSection}
-					{/if} {* !$implicitAuth && !$userId *}
-				{/fbvFormArea}
-			</div>
+				{/if}{* !$implicitAuth *}
+
+				{if !$implicitAuth && !$userId}
+					{fbvFormSection title="grid.user.notifyUser" for="sendNotify" list=true}
+						{if $sendNotify}
+							{assign var="checked" value=true}
+						{else}
+							{assign var="checked" value=false}
+						{/if}
+						{fbvElement type="checkbox" name="sendNotify" id="sendNotify" checked=$checked label="grid.user.notifyUserDescription" translate="true"}
+					{/fbvFormSection}
+				{/if} {* !$implicitAuth && !$userId *}
+			{/fbvFormArea}
+		</div>
 		{capture assign="extraContent"}
 			<div id="userFormExtendedContainer" class="full left">
 				{fbvFormArea id="userFormExtendedLeft"}
@@ -138,21 +137,22 @@
 					{fbvFormSection title="user.interests" for="interests"}
 						{fbvElement type="interests" id="interests" interestsKeywords=$interestsKeywords interestsTextOnly=$interestsTextOnly}
 					{/fbvFormSection}
-					{fbvFormSection}
-						{fbvElement type="textarea" label="user.affiliation" multilingual="true" name="affiliation" id="affiliation" value=$affiliation inline=true size=$fbvStyles.size.MEDIUM}
-						{fbvElement type="textarea" label="common.mailingAddress" name="mailingAddress" id="mailingAddress" value=$mailingAddress inline=true size=$fbvStyles.size.MEDIUM}
-						<br />
-						<span class="instruct">{translate key="user.affiliation.description"}</span>
+
+					{fbvFormSection for="affiliation"}
+						{fbvElement type="text" label="user.affiliation" multilingual="true" name="affiliation" id="affiliation" value=$affiliation inline=true size=$fbvStyles.size.LARGE}
 					{/fbvFormSection}
+
 					{fbvFormSection}
 						{fbvElement type="textarea" label="user.biography" multilingual="true" name="biography" id="biography" value=$biography inline=true size=$fbvStyles.size.MEDIUM}
-						{fbvElement type="textarea" label="user.signature" multilingual="true" name="signature" id="signature" value=$signature inline=true size=$fbvStyles.size.MEDIUM}
-						<br />
-						<span class="instruct">{translate key="user.biography.description"}</span>
+						{fbvElement type="textarea" label="common.mailingAddress" name="mailingAddress" id="mailingAddress" value=$mailingAddress inline=true size=$fbvStyles.size.MEDIUM}
 					{/fbvFormSection}
-					{fbvFormSection for="gossip"}
-							{fbvElement type="textarea" label="user.gossip" multilingual="true" name="gossip" id="gossip" value=$gossip size=$fbvStyles.size.MEDIUM}
+					<br />
+					<span class="instruct">{translate key="user.biography.description"}</span>
+
+					{fbvFormSection}
+						{fbvElement type="textarea" label="user.signature" multilingual="true" name="signature" id="signature" value=$signature size=$fbvStyles.size.MEDIUM}
 					{/fbvFormSection}
+
 					{fbvFormSection for="country"}
 						{fbvElement type="select" label="common.country" name="country" id="country" defaultLabel="" defaultValue="" from=$countries selected=$country translate="0" size=$fbvStyles.size.MEDIUM}
 					{/fbvFormSection}
