@@ -1,6 +1,6 @@
 {* Hardcover fields *}
 <div class="pkp_helpers_align_right pkp_helpers_half">
-	{fbvFormArea id="pageCounts" title="monograph.publicationFormat.pageCounts" border="true"}
+	{fbvFormArea id="pageCounts" title="monograph.publicationFormat.pageCounts" class="border"}
 		{fbvFormSection for="frontMatter" title="monograph.publicationFormat.frontMatterCount"}
 			{fbvElement type="text" name="frontMatter" id="frontMatter" value=$frontMatter maxlength="255" size=$fbvStyles.size.MEDIUM}
 		{/fbvFormSection}
@@ -9,14 +9,14 @@
 		{/fbvFormSection}
 	{/fbvFormArea}
 	
-	{fbvFormArea id="returnInformation" title="monograph.publicationFormat.returnInformation" border="true"}
+	{fbvFormArea id="returnInformation" title="monograph.publicationFormat.returnInformation" class="border"}
 		{fbvFormSection for="returnableIndicator"}
 			{fbvElement type="select" from=$returnableIndicatorCodes selected=$returnableIndicatorCode translate=false id="returnableIndicatorCode" inline="true"}
 		{/fbvFormSection}
 	{/fbvFormArea}
 </div>
 <div id="dimensionsContainer" class="pkp_helpers_half left">
-	{fbvFormArea id="productDimensions" title="monograph.publicationFormat.productDimensions" border="true"}
+	{fbvFormArea id="productDimensions" title="monograph.publicationFormat.productDimensions" class="border"}
 		{fbvFormSection title="monograph.publicationFormat.productHeight" for="productHeight"}
 			{fbvElement type="text"  name="height" id="height" value=$height maxlength="255" size=$fbvStyles.size.SMALL inline="true"}
 			{fbvElement type="select" from=$measurementUnitCodes selected=$heightUnitCode translate=false id="heightUnitCode" inline="true"}

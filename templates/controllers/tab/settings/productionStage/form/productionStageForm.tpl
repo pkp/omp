@@ -32,7 +32,7 @@
 
 	<div class="separator"></div>
 
-	{fbvFormArea id="audienceInformation" title="manager.settings.publisherCode" border="true"}
+	{fbvFormArea id="audienceInformation" title="manager.settings.publisherCode" class="border"}
 		{fbvFormSection for="codeType" description="manager.settings.publisherCodeType.tip"}
 			{fbvElement type="select" from=$codeTypes selected=$codeType translate=false id="codeType" defaultValue="" defaultLabel=""}
 		{/fbvFormSection}

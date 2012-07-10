@@ -20,7 +20,7 @@
 	<input type="hidden" name="marketId" value="{$marketId|escape}" />
 	
 	<!-- Collect a Date for this Market (availability, stock, re-issue, etc) -->
-	{fbvFormArea id="dateArea" border="true"}
+	{fbvFormArea id="dateArea" class="border"}
 		{fbvFormSection title="grid.catalogEntry.dateValue" for="date" required="true"}
 			{fbvElement type="text" id="date" value=$date|escape size=$fbvStyles.size.SMALL inline="true"}
 			{fbvElement type="select" label="grid.catalogEntry.dateFormat" from=$publicationDateFormats selected=$dateFormat id="dateFormat" translate=false size=$fbvStyles.size.SMALL inline="true"}
@@ -29,14 +29,14 @@
 	{/fbvFormArea}
 	
 	<!-- Agent assignment for this Territory -->
-	{fbvFormArea id="agentArea" border="true"}
+	{fbvFormArea id="agentArea" class="border"}
 		{fbvFormSection for="assignedAgent" description="grid.catalogEntry.agentTip"}
 			{fbvElement type="select" label="grid.catalogEntry.agent" from=$availableAgents selected=$agentId size=$fbvStyles.size.MEDIUM id="agentId" translate=false inline="true" defaultValue="" defaultLabel=""}
 		{/fbvFormSection}
 	{/fbvFormArea}
 
 	<!-- Supplier assignment for this Territory -->
-	{fbvFormArea id="supplierArea" border="true"}
+	{fbvFormArea id="supplierArea" class="border"}
 		{fbvFormSection for="assignedSupplier"}
 			{fbvElement type="select" label="grid.catalogEntry.supplier" from=$availableSuppliers selected=$supplierId size=$fbvStyles.size.MEDIUM id="supplierId" translate=false inline="true" defaultValue="" defaultLabel=""}
 		{/fbvFormSection}
@@ -46,7 +46,7 @@
 		{include file="controllers/grid/catalogEntry/form/countriesAndRegions.tpl"}
 	{/fbvFormArea}
 	
-	{fbvFormArea id="pricing" border="true"}
+	{fbvFormArea id="pricing" class="border"}
 		{fbvFormSection for="price" desc="monograph.publicationFormat.pricingInformation" title="monograph.publicationFormat.price" required="true"}
 			{fbvElement type="text" name="price" id="price" value=$price maxlength="255" size=$fbvStyles.size.SMALL inline="true" required="true"}
 			{fbvElement type="select" from=$currencyCodes selected=$currencyCode translate=false id="currencyCode" size=$fbvStyles.size.SMALL inline="true"}

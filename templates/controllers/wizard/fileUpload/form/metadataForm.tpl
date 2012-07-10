@@ -46,7 +46,7 @@
 
 	{* Read-only meta-data *}
 
-	{fbvFormArea id="fileInfo" title="submission.submit.fileInformation" border="true"}
+	{fbvFormArea id="fileInfo" title="submission.submit.fileInformation" class="border"}
 
 		{fbvFormSection title="common.fileName" inline=true size=$fbvStyles.size.MEDIUM}
 			{$submissionFile->getFileName()|escape}

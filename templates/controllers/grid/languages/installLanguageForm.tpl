@@ -17,7 +17,7 @@
 <form class="pkp_form" id="installLanguageForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.admin.languages.AdminLanguageGridHandler" op="saveInstallLocale"}">
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="installLanguageFormNotification"}
 
-	{fbvFormArea id="availableLocalesFormArea" title="admin.languages.availableLocales" border=true}
+	{fbvFormArea id="availableLocalesFormArea" title="admin.languages.availableLocales" class="border"}
 		{fbvFormSection list="true" description="admin.languages.installNewLocalesInstructions"}
 			{foreach name=locales from=$notInstalledLocales item=locale}
 				{fbvElement type="checkbox" id="locale-$locale" name="localesToInstall[$locale]" value=$locale label=$allLocales.$locale translate=false}
@@ -27,7 +27,7 @@
 		{/fbvFormSection}
 	{/fbvFormArea}
 
-	{fbvFormArea id="downloadLocaleFormArea" title="admin.languages.downloadLocales" border=true}
+	{fbvFormArea id="downloadLocaleFormArea" title="admin.languages.downloadLocales" class="border"}
 		{fbvFormSection list="true"}
 			{if $downloadAvailable}
 				<ul>

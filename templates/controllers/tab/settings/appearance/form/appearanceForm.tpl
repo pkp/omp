@@ -26,7 +26,7 @@
 	<p class="pkp_grid_description">{translate key="manager.setup.pressAppearanceDescription"}</p>
 
 	{* Homepage Header *}
-	{fbvFormArea id="homepageHeader" title="manager.setup.pressHomepageHeader" border=true}
+	{fbvFormArea id="homepageHeader" title="manager.setup.pressHomepageHeader" class="border"}
 		{fbvFormSection list=true description="manager.setup.pressHomepageHeaderDescription" label="manager.setup.pressName"}
 			{fbvElement type="radio" name="homeHeaderTitleType[$locale]" id="homeHeaderTitleType-0" value=0 checked=!$homeHeaderTitleType[$locale] label="manager.setup.useTextTitle"}
 		{/fbvFormSection}
@@ -57,7 +57,7 @@
 
 	{* Homepage Content *}
 	<div {if $wizardMode}class="pkp_form_hidden"{/if}>
-		{fbvFormArea id="pressHomePageContent" title="manager.setup.pressHomepageContent" border="true"}
+		{fbvFormArea id="pressHomePageContent" title="manager.setup.pressHomepageContent" class="border"}
 			{fbvFormSection description="manager.setup.pressHomepageContentDescription"}
 			{/fbvFormSection}
 			{fbvFormSection label="manager.setup.homepageImage" description="manager.setup.homepageImageDescription"}
@@ -76,7 +76,7 @@
 	{* end Homepage Content *}
 
 	{* Press Page Header *}
-	{fbvFormArea id="pageHeader" title="manager.setup.pressPageHeader" border="true"}
+	{fbvFormArea id="pageHeader" title="manager.setup.pressPageHeader" class="border"}
 		{fbvFormSection list=true description="manager.setup.pressPageHeaderDescription" title="manager.setup.pressName"}
 			{fbvElement type="radio" name="pageHeaderTitleType[$locale]" id="pageHeaderTitleType-0" value=0 checked=!$pageHeaderTitleType[$locale] label="manager.setup.useTextTitle"}
 		{/fbvFormSection}
@@ -109,7 +109,7 @@
 	{* end Press Page Header *}
 
 	{* Press Page Footer *}
-	{fbvFormArea id="pressPageFooterContainer" title="manager.setup.pressPageFooter" border="true"}
+	{fbvFormArea id="pressPageFooterContainer" title="manager.setup.pressPageFooter" class="border"}
 		{fbvFormSection description="manager.setup.pressPageFooterDescription"}
 			{fbvElement type="textarea" multilingual=true name="pressPageFooter" id="pressPageFooter" value=$pressPageFooter rich=true}
 		{/fbvFormSection}
@@ -117,7 +117,7 @@
 	{* end Press Page Footer *}
 
 	{* Press Layout *}
-	{fbvFormArea id="pressLayout" title="manager.setup.pressLayout" border="true"}
+	{fbvFormArea id="pressLayout" title="manager.setup.pressLayout" class="border"}
 		{fbvFormSection title="manager.setup.usePressStyleSheet" description="manager.setup.pressStyleSheetDescription"}
 			<div id="{$uploadCssLinkAction->getId()}" class="pkp_linkActions">
 				{include file="linkAction/linkAction.tpl" action=$uploadCssLinkAction contextId="appearanceForm"}
@@ -133,7 +133,7 @@
 
 	{* Lists *}
 	{* HIDDEN pending implementation of bug #6434.
-	{fbvFormArea id="advancedAppearanceSettings" title="manager.setup.lists" border="true"}
+	{fbvFormArea id="advancedAppearanceSettings" title="manager.setup.lists" class="border"}
 		{fbvFormSection description="manager.setup.listsDescription"}
 			{fbvElement type="text" id="itemsPerPage" value=$itemsPerPage size=$fbvStyles.size.SMALL label="manager.setup.itemsPerPage"}
 		{/fbvFormSection}

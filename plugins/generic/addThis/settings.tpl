@@ -14,7 +14,7 @@
 </script>
 <form class="pkp_form" id="addThisPluginSettingsForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT op="plugin" category="generic" plugin=$pluginName verb="showTab" tab="basic" save="true"}">
 	<input type="hidden" name="tab" value="settings" />
-	{fbvFormArea id="addThisDisplayStyle" title="plugins.generic.addThis.settings.displayStyle" border=true}
+	{fbvFormArea id="addThisDisplayStyle" title="plugins.generic.addThis.settings.displayStyle" class="border"}
 			{foreach from=$displayStyles key=style item=image}
 				{fbvFormSection list="true"}
 					{if $style == $addThisDisplayStyle}{assign var="checked" value=true}{else}{assign var="checked" value=false}{/if}
@@ -24,7 +24,7 @@
 			{/foreach}
 	{/fbvFormArea}
 		<p>{translate key="plugins.generic.addThis.form.registerLink"}</p>
-	{fbvFormArea id="addThisStatistics" title="plugins.generic.addThis.settings.statistics" border=true}
+	{fbvFormArea id="addThisStatistics" title="plugins.generic.addThis.settings.statistics" class="border"}
 		{fbvFormSection for="addThisStatistics"}
 			{fbvElement type="text" label="plugins.generic.addThis.form.profileId" id="addThisProfileId" value=$addThisProfileId|escape size=$fbvStyles.size.MEDIUM}
 			{fbvElement type="text" label="plugins.generic.addThis.form.username" id="addThisUsername" value=$addThisUsername|escape size=$fbvStyles.size.MEDIUM}

@@ -18,7 +18,7 @@
 <form id="announcementSettingsForm" class="pkp_form" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.WebsiteSettingsTabHandler" op="saveFormData" tab="homepage"}">
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="announcementSettingsFormNotification"}
 
-	{fbvFormArea id="announcements" border="true" title="manager.setup.announcements"}
+	{fbvFormArea id="announcements" class="border" title="manager.setup.announcements"}
 		{fbvFormSection list=true description="manager.setup.announcementsDescription"}
 			{fbvElement type="checkbox" id="enableAnnouncements" label="manager.setup.enableAnnouncements" value="1" checked=$enableAnnouncements}
 		{/fbvFormSection}

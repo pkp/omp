@@ -68,8 +68,8 @@
 
 				{if !$implicitAuth}
 					{if $userId}{capture assign="passwordInstruction"}{translate key="user.profile.leavePasswordBlank"} {translate key="user.register.passwordLengthRestriction" length=$minPasswordLength}{/capture}{/if}
-					{fbvFormArea id="passwordSection" border="true" title="user.password"}
-						{fbvFormSection for="password" border="true" description=$passwordInstruction translate=false}
+					{fbvFormArea id="passwordSection" class="border" title="user.password"}
+						{fbvFormSection for="password" class="border" description=$passwordInstruction translate=false}
 							{fbvElement type="text" label="user.password" required=$passwordRequired name="password" id="password" password="true" value=$password maxlength="32" inline=true size=$fbvStyles.size.MEDIUM}
 							{fbvElement type="text" label="user.repeatPassword" required=$passwordRequired name="password2" id="password2" password="true" value=$password2 maxlength="32" inline=true size=$fbvStyles.size.MEDIUM}
 						{/fbvFormSection}

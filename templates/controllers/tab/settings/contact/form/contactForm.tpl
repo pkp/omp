@@ -19,7 +19,7 @@
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="contactFormNotification"}
 	{include file="controllers/tab/settings/wizardMode.tpl" wizardMode=$wizardMode}
 
-	{fbvFormArea id="contactFormArea" title="manager.setup.principalContact" border=true}
+	{fbvFormArea id="contactFormArea" title="manager.setup.principalContact" class="border"}
 		{fbvFormSection description="manager.setup.principalContactDescription"}
 		{/fbvFormSection}
 		{fbvFormSection}
@@ -52,7 +52,7 @@
 	{/fbvFormArea}
 
 	<div {if $wizardMode}class="pkp_form_hidden"{/if}>
-		{fbvFormArea id="contactFormArea" title="manager.setup.technicalSupportContact" border=true}
+		{fbvFormArea id="contactFormArea" title="manager.setup.technicalSupportContact" class="border"}
 			{fbvFormSection description="manager.setup.technicalSupportContactDescription"}
 			{/fbvFormSection}
 			{fbvFormSection title="user.name" for="supportName" required=true inline=true size=$fbvStyles.size.MEDIUM}

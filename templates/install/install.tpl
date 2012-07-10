@@ -55,7 +55,7 @@
 	{/if}
 
 	<!-- Locale configuration -->
-	{fbvFormArea id="localeSettingsFormArea" border=true title="installer.localeSettings" title="installer.localeSettings"}
+	{fbvFormArea id="localeSettingsFormArea" class="border" title="installer.localeSettings" title="installer.localeSettings"}
 		<p>{translate key="installer.localeSettingsInstructions" supportsMBString=$supportsMBString}</p>
 		{fbvFormSection title="locale.primary" description="installer.localeInstructions"}
 			{fbvElement type="select" name="locale" id="localeOptions" from=$localeOptions selected=$locale translate=false size=$fbvStyles.size.SMALL}
@@ -90,7 +90,7 @@
 
 	<!-- Files directory configuration -->
 	{if !$skipFilesDirSection}
-		{fbvFormArea id="fileSettingsFormArea" border=true title="installer.fileSettings"}
+		{fbvFormArea id="fileSettingsFormArea" class="border" title="installer.fileSettings"}
 			{fbvFormSection title="installer.filesDir" description="installer.filesDirInstructions"}
 				{fbvElement type="text" id="filesDir" value=$filesDir|escape maxlength="255" size=$fbvStyles.size.LARGE}
 			{/fbvFormSection}
@@ -103,14 +103,14 @@
 	{/if}{* !$skipFilesDirSection *}
 
 	<!-- Security configuration -->
-	{fbvFormArea id="securityFormArea" title="installer.securitySettings" border=true}
+	{fbvFormArea id="securityFormArea" title="installer.securitySettings" class="border"}
 		{fbvFormSection title="installer.encryption" description="installer.encryptionInstructions"}
 			{fbvElement type="select" id="encryption" from=$encryptionOptions selected=$encryption translate=false size=$fbvStyles.size.SMALL}
 		{/fbvFormSection}
 	{/fbvFormArea}
 
 	<!-- Administrator username, password, and email -->
-	{fbvFormArea id="administratorAccountFormArea" title="installer.administratorAccount" border=true}
+	{fbvFormArea id="administratorAccountFormArea" title="installer.administratorAccount" class="border"}
 		<p>{translate key="installer.administratorAccountInstructions"}</p>
 		{fbvFormSection title="user.username"}
 			{fbvElement type="text" id="adminUsername" value=$adminUsername|escape maxlength="32" size=$fbvStyles.size.MEDIUM}

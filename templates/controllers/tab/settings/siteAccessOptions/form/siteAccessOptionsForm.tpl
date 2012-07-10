@@ -18,7 +18,7 @@
 <form class="pkp_form" id="siteAccessOptionsForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.AccessSettingsTabHandler" op="saveFormData" tab="siteAccessOptions"}">
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="siteAccessOptionsFormNotification"}
 
-	{fbvFormArea id="siteAccess" border="true" title="manager.setup.siteAccess"}
+	{fbvFormArea id="siteAccess" class="border" title="manager.setup.siteAccess"}
 		{fbvFormSection list=true}
 			{fbvElement type="checkbox" id="restrictSiteAccess" value="1" checked=$restrictSiteAccess label="manager.setup.restrictSiteAccess"}
 			{fbvElement type="checkbox" id="restrictMonographAccess" value="1" checked=$restrictMonographAccess label="manager.setup.restrictMonographAccess"}
@@ -26,7 +26,7 @@
 		{/fbvFormSection}
 	{/fbvFormArea}
 
-	{fbvFormArea id="userRegistration" border="true" title="manager.setup.userRegistration"}
+	{fbvFormArea id="userRegistration" class="border" title="manager.setup.userRegistration"}
 		{fbvFormSection list=true}
 			{fbvElement type="radio" id="disableUserReg-0" name="disableUserReg" value="0" checked=!$disableUserReg label="manager.setup.enableUserRegistration"}
 			<div style="padding-left: 20px;">

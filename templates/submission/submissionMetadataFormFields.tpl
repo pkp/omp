@@ -9,14 +9,15 @@
  * to handle this fields data.
  *}
 
-{fbvFormArea id="generalInformation"}
+{fbvFormArea id="generalInformation" class="border"}
 	<p>{translate key="common.catalogInformation"}</p>
-	{fbvFormSection for="title" title="common.prefix" inline="true" size=$fbvStyles.size.MEDIUM}
-		{fbvElement type="text" multilingual=true id="prefix" value="$prefix" disabled=$readOnly maxlength="32" label="common.prefixAndTitle.tip"}
+	{fbvFormSection for="title" title="common.prefix" inline="true" size=$fbvStyles.size.SMALL}
+		{fbvElement type="text" multilingual=true id="prefix" value="$prefix" disabled=$readOnly maxlength="32"}
 	{/fbvFormSection}
-	{fbvFormSection for="title" title="monograph.title" inline="true" size=$fbvStyles.size.MEDIUM}
+	{fbvFormSection for="title" title="monograph.title" inline="true" size=$fbvStyles.size.LARGE}
 		{fbvElement type="text" multilingual=true name="title" id="title" value=$title disabled=$readOnly maxlength="255"}
 	{/fbvFormSection}
+	{fbvFormSection description="common.prefixAndTitle.tip"}{/fbvFormSection}
 	{fbvFormSection title="monograph.subtitle" for="subtitle"}
 		{fbvElement type="text" multilingual=true name="subtitle" id="subtitle" value=$subtitle disabled=$readOnly}
 	{/fbvFormSection}
@@ -25,7 +26,7 @@
 	{/fbvFormSection}
 {/fbvFormArea}
 
-{fbvFormArea id="coverageInformation" title="monograph.coverage" border="true"}
+{fbvFormArea id="coverageInformation" title="monograph.coverage" class="border"}
 	{fbvFormSection title="monograph.coverage.chron" for="coverageChron" description="monograph.coverage.tip"}
 		{fbvElement type="text" multilingual=true name="coverageChron" id="coverageChron" value=$coverageChron maxlength="255" disabled=$readOnly}
 	{/fbvFormSection}
@@ -52,7 +53,7 @@
 	{/fbvFormSection}
 {/fbvFormArea}
 
-{fbvFormArea id="tagitFields" title="submission.submit.metadataForm" border="true"}
+{fbvFormArea id="tagitFields" title="submission.submit.metadataForm" class="border"}
 	{fbvFormSection description="submission.submit.metadataForm.tip" title="monograph.languages"}
 		{url|assign:languagesSourceUrl router=$smarty.const.ROUTE_PAGE page="submission" op="fetchChoices" codeList="74"}
 		{fbvElement type="keyword" id="languages" subLabelTranslate=true multilingual=true current=$languages source=$languagesSourceUrl disabled=$readOnly}

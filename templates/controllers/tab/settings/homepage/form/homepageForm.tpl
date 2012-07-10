@@ -20,7 +20,7 @@
 <form id="homepageForm" class="pkp_form" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.WebsiteSettingsTabHandler" op="saveFormData" tab="homepage"}">
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="homepageFormNotification"}
 
-	{fbvFormArea id="information" title="manager.setup.information" border="true"}
+	{fbvFormArea id="information" title="manager.setup.information" class="border"}
 		{fbvFormSection description="manager.setup.information.description"}
 		{/fbvFormSection}
 		{fbvFormSection label="manager.setup.information.forReaders"}
