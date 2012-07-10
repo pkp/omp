@@ -132,7 +132,7 @@
 						</h1>
 					</div><!-- pkp_structure_masthead -->
 				</div>
-				<div class="unit size4of5 lastUnit">
+				<div class="unit size4of5">
 					<div class="pkp_structure_navigation">
 						{include file="common/sitenav.tpl"}
 						{include file="common/localnav.tpl"}
