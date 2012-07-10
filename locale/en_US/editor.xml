@@ -134,7 +134,7 @@
 	<!-- Production/Proof related -->
 	<message key="editor.monograph.production.introduction">All approved and copyedited submission files from the Editorial stage are available in the Production Ready section. Different formats (digital, hardback, paperback/softback) can be configured for this submission in the Publication Formats section. The submission is considered complete when the Catalog Entry metadata has been approved, and all Publication Formats checklist items are marked complete.</message>
 	<message key="editor.monograph.production.productionReadyFiles">Production Ready Files</message>
-	<message key="editor.monograph.production.productionReadyFilesDescription">All approved and copyedited submission files from the Editorial stage are available here. New production ready files can be uploaded (and current files replaced) by clicking Upload a Production Ready File.</message>
+	<message key="editor.monograph.production.productionReadyFilesDescription">The layout editor prepares these files for each of the selected Publication Formats, before uploading them in Proofreading for each format.</message>
 	<message key="editor.monograph.proofs">Proofs</message>
 	<message key="editor.monograph.production.approvalAndPublishing">Approval and Publishing</message>
 	<message key="editor.monograph.production.approvalAndPublishingDescription">Different publication formats, such as hardcover, softcover and digital, can be uploaded in the Publication Formats section below. You can use the publication formats grid below as a checklist for what still needs to be done to publish a publication format.</message>
