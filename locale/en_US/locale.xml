@@ -374,7 +374,8 @@
 	<message key="common.listbuilder.selectValidOption">Please select a valid option from the list.</message>
 	<message key="common.listbuilder.itemExists">You cannot add the same item twice.</message>
 
-	<message key="common.prefixAndTitle.tip">If your title begins with a word like 'A', or 'The', place those words in the prefix field by themselves.</message>
+	<message key="common.catalogInformation">The catalog information need not be completed on initial submission of the work, apart from Title and Summary.</message>
+	<message key="common.prefixAndTitle.tip">If book title begins “A'” or “The” (or something similar re alphabetical order) place word in Prefix.</message>
 
 	<!-- Common Messages -->
 	<message key="common.openMonographPress">Open Monograph Press</message>

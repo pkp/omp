@@ -16,9 +16,9 @@
 	<message key="submission.submission">Submission</message>
 	<message key="submission.synopsis">Synopsis</message>
 	<message key="submission.workType">Type of Book</message>
-	<message key="submission.workType.description">Select the option that best matches the type of the work that you are submitting. Please note that if you are submitting an edited volume, you will be able to list chapters and assign contributors to those chapters at a later stage. Authored works can also have other contributors (additional authors; translators; etc.) assigned to the work in the Catalogue stage of the submission process.</message>
+	<message key="submission.workType.description">A monograph is a work authored wholly by one or more authors. An edited volume has different authors for each chapter (with the chapter details entered later in this process.)</message>
 	<message key="submission.workType.editedVolume">Edited Volume</message>
-	<message key="submission.workType.authoredWork">Authored Work</message>
+	<message key="submission.workType.authoredWork">Monograph</message>
 	<message key="submission.editorial">Editorial</message>
 	<message key="submission.production">Production</message>
 	<message key="submission.published">Production Ready</message>
@@ -59,7 +59,7 @@
 	<message key="submission.submit.newSubmissionSingle">Start a New Submission in {$pressName}</message>
 	<message key="submission.submit.upload">Upload Submission</message>
 	<message key="submission.submit.uploadStep">1. Upload Submission</message>
-	<message key="submission.submit.upload.description"><![CDATA[You may upload your manuscript as a single submission file, or by uploading separate submission files for each individual manuscript section (eg. your introduction; individual chapters; figures; and so on).<br /><br />If you wish to upload multiple files, please note that the file upload interface only allows you to upload one file at a time.]]></message>
+	<message key="submission.submit.upload.description">Upload files associated with this submission, including manuscript, prospectus, cover letter, artwork, etc. For edited volumes, as well as monographs, upload the manuscript as a single file, if feasible.</message>
 	<message key="submission.submit.cancelSubmission">You can complete this submission at a later date by selecting Active Submissions from the Author home.</message>
 	<message key="submission.submit.copyrightNoticeAgree">I agree to abide by the terms of the copyright statement.</message>
 	<message key="submission.submit.howToSubmit"><![CDATA[Encountering difficulties? Contact <a href="mailto:{$supportEmail}">{$supportName}</a> for assistance ({$supportPhone}).]]></message>
@@ -82,7 +82,7 @@
 	<message key="submission.submit.form.contributorRoleRequired">Please select the contributor's role.</message>
 	<message key="submission.submit.errorDeletingAuthor">There was an error removing the author.</message>
 	<message key="submission.submit.currentFile">Current file</message>
-	<message key="submission.submit.selectFile">Select File</message>
+	<message key="submission.submit.selectFile">Select File to Upload</message>
 	<message key="submission.submit.submissionFile">Submission File</message>
 	<message key="submission.submit.uploadSubmissionFile">Upload Submission File</message>
 	<message key="submission.submit.finishSubmission">Finish Submission</message>
@@ -108,10 +108,10 @@
 	<message key="submission.submit.whatNext.return">Return to your dashboard</message>
 	<message key="submission.submit.checklistErrors">Please read and check off the items in the submission checklist.  There are {$itemsRemaining} items left unchecked.</message>
 	<message key="submission.submit.placement">Submission Placement</message>
-	<message key="submission.submit.placement.seriesDescription">A series represents a special set of books devoted to a theme or topics that someone has proposed, usually a faculty member or two, and then oversees.</message>
+	<message key="submission.submit.placement.seriesDescription">If the book should also be considered for a series...</message>
 	<message key="submission.submit.placement.seriesPositionDescription">Books in series are usually kept in the reverse order in which they are published, to give a sense of the series developing as well as keeping the current at the front.</message>
 	<message key="submission.submit.placement.categories">Categories</message>
-	<message key="submission.submit.placement.categoriesDescription">Categories are groupings of books according to subject matter, for example Economics; Literature; Poetry; and so on. Your manuscript may fall within more than one category; please select all that apply.</message>
+	<message key="submission.submit.placement.categoriesDescription">Select one of the press’s categories for books for which this work should be considered.</message>
 	<message key="submission.submit.submissionFiles">Submission Files</message>
 	<message key="submission.submit.fileInformation">File Information</message>
 	<message key="submission.submit.fileNameRequired">You must enter a file name for this file</message>
