@@ -14,7 +14,7 @@
 	{url|assign:copyeditingEditorDecisionsUrl op="editorDecisionActions" monographId=$monograph->getId() stageId=$stageId contextId="copyediting" escape=false}
 	{load_url_in_div id="copyeditingEditorDecisionsDiv" url=$copyeditingEditorDecisionsUrl class="editorDecisionActions"}
 
-	<p>{translate key="editor.monograph.editorial.introduction"}</p>
+	<p class="pkp_help">{translate key="editor.monograph.editorial.introduction"}</p>
 
 	{url|assign:finalDraftGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.final.FinalDraftFilesGridHandler" op="fetchGrid" monographId=$monograph->getId() stageId=$stageId escape=false}
 	{load_url_in_div id="finalDraftGrid" url=$finalDraftGridUrl}

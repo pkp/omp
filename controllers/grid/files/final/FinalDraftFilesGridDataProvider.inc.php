@@ -46,7 +46,7 @@ class FinalDraftFilesGridDataProvider extends SubmissionFilesGridDataProvider {
 		);
 		$selectAction = new SelectFilesLinkAction(
 			&$request, $actionArgs,
-			__('editor.monograph.final.manageFinalDraftFiles')
+			__('editor.monograph.uploadSelectFiles')
 		);
 		return $selectAction;
 	}

@@ -93,11 +93,11 @@ class AddFileLinkAction extends BaseAddFileLinkAction {
 			),
 			MONOGRAPH_FILE_COPYEDIT => array(
 				'wizardTitle' => 'submission.upload.copyeditedVersion',
-				'buttonLabel' => 'submission.upload.copyeditedVersion'
+				'buttonLabel' => 'submission.upload.uploadFiles'
 			),
 			MONOGRAPH_FILE_FAIR_COPY => array(
 				'wizardTitle' => 'submission.upload.fairCopy',
-				'buttonLabel' => 'submission.upload.fairCopy'
+				'buttonLabel' => 'submission.upload.uploadFiles'
 			),
 			MONOGRAPH_FILE_PRODUCTION_READY => array(
 				'wizardTitle' => 'submission.upload.productionReady',
