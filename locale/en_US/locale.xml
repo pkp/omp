@@ -454,6 +454,7 @@
 current password.<br /><br />Enter your email address below to reset your password. A confirmation will be sent to this email address.]]></message>
 
 	<!-- Information Center -->
+	<message key="informationCenter.informationCenter">Information Center</message>
 	<message key="informationCenter.bookInfo">Book Info</message>
 	<message key="informationCenter.composeNote">Compose Note</message>
 	<message key="informationCenter.addNote">Add to File</message>
