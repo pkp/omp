@@ -6,7 +6,7 @@
  *
  * Breadcrumbs
  *}
-<ul class="pkp_helpers_flatlist pkp_structure_breadcrumb align_left">
+<ul class="pkp_helpers_flatlist pkp_structure_breadcrumb pkp_helpers_align_left">
 	{url|assign:homeUrl context=$homeContext page="index"}
 	{translate|assign:"defaultSiteTitle" key="common.omp"}
 	<li class="no_bullet">
