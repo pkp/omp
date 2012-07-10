@@ -189,13 +189,13 @@ strong {
 .pkp_helpers_full { width:100%; }
 .pkp_helpers_half { width:48%; }
 .pkp_helpers_third { width:31%; }
-.pkp_helpers_quarter { width:25%; }
+.pkp_helpers_quarter { width:23%; }
 .pkp_helpers_underline:after {
   border:1px solid white;
   content:" ";
   display:block;
 }
-.pkp_helpers_threeQuarter { width:70%; }
+.pkp_helpers_threeQuarter { width:73%; }
 .pkp_helpers_underline { text-decoration:underline !important; }
 div.pkp_helpers_progressIndicator {
   width:24px;
