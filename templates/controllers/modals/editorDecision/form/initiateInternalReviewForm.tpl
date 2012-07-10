@@ -1,10 +1,10 @@
 {**
- * templates/controllers/modals/editorDecision/form/initiateReviewForm.tpl
+ * templates/controllers/modals/editorDecision/form/initiateInternalReviewForm.tpl
  *
  * Copyright (c) 2003-2012 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * Form used to initiate the first review round.
+ * Form used to initiate the first review round of an internal review.
  *
  *}
 
@@ -15,8 +15,8 @@
 	{rdelim});
 </script>
 
-<p>{translate key="editor.monograph.initiateReviewDescription"}</p>
-<form class="pkp_form" id="initiateReview" method="post" action="{url op="saveInitiateReview"}" >
+<p>{translate key="editor.monograph.internalReviewDescription"}</p>
+<form class="pkp_form" id="initiateReview" method="post" action="{url op="saveInternalReview"}" >
 	<input type="hidden" name="monographId" value="{$monographId|escape}" />
 	<input type="hidden" name="stageId" value="{$stageId|escape}" />
 
@@ -25,5 +25,3 @@
 	{load_url_in_div id="filesForReviewGrid" url=$filesForReviewUrl}
 	{fbvFormButtons submitText="editor.monograph.createNewRound"}
 </form>
-
-

@@ -13,7 +13,7 @@
  */
 
 // Submission stage decision actions.
-define('SUBMISSION_EDITOR_DECISION_INITIATE_REVIEW', 1);
+define('SUBMISSION_EDITOR_DECISION_INTERNAL_REVIEW', 1);
 
 // Submission and review stages decision actions.
 define('SUBMISSION_EDITOR_DECISION_ACCEPT', 2);
@@ -106,6 +106,18 @@ class EditorDecisionActionsManager {
 	 */
 	function _submissionStageDecisions() {
 		static $decisions = array(
+			SUBMISSION_EDITOR_DECISION_INTERNAL_REVIEW => array(
+				'name' => 'internalReview',
+				'operation' => 'internalReview',
+				'title' => 'editor.monograph.decision.internalReview',
+				'image' => 'advance'
+			),
+			SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW => array(
+				'operation' => 'externalReview',
+				'name' => 'externalReview',
+				'title' => 'editor.monograph.decision.externalReview',
+				'image' => 'advance'
+			),
 			SUBMISSION_EDITOR_DECISION_ACCEPT => array(
 				'name' => 'accept',
 				'operation' => 'promote',
@@ -118,12 +130,6 @@ class EditorDecisionActionsManager {
 				'title' => 'editor.monograph.decision.decline',
 				'image' => 'decline'
 			),
-			SUBMISSION_EDITOR_DECISION_INITIATE_REVIEW => array(
-				'name' => 'initiateReview',
-				'operation' => 'initiateReview',
-				'title' => 'editor.monograph.initiateReview',
-				'image' => 'advance'
-			)
 		);
 
 		return $decisions;
@@ -164,7 +170,7 @@ class EditorDecisionActionsManager {
 				'name' => 'decline',
 				'title' => 'editor.monograph.decision.decline',
 				'image' => 'decline'
-			)
+			),
 		);
 
 		return $decisions;
@@ -192,7 +198,7 @@ class EditorDecisionActionsManager {
 				'name' => 'sendToProduction',
 				'title' => 'editor.monograph.decision.sendToProduction',
 				'image' => 'send_production'
-			)
+			),
 		);
 
 		return $decisions;

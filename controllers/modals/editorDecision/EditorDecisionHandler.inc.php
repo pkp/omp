@@ -30,7 +30,8 @@ class EditorDecisionHandler extends Handler {
 		$this->addRoleAssignment(
 			array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
 			array_merge(array(
-				'initiateReview', 'saveInitiateReview',
+				'internalReview', 'saveInternalReview',
+				'externalReview', 'saveExternalReview',
 				'sendReviews', 'saveSendReviews',
 				'promote', 'savePromote',
 				'approveProofs', 'saveApproveProofs'
@@ -111,8 +112,8 @@ class EditorDecisionHandler extends Handler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function initiateReview($args, &$request) {
-		return $this->_initiateEditorDecision($args, $request, 'InitiateReviewForm');
+	function internalReview($args, &$request) {
+		return $this->_initiateEditorDecision($args, $request, 'InitiateInternalReviewForm');
 	}
 
 	/**
@@ -121,20 +122,38 @@ class EditorDecisionHandler extends Handler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function saveInitiateReview($args, &$request) {
-		// FIXME: this can probably all be managed somewhere.
-		$stageId = $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
-		$decision = null;
-		if ($stageId == WORKFLOW_STAGE_ID_SUBMISSION) {
-			$redirectOp = WORKFLOW_STAGE_PATH_INTERNAL_REVIEW;
-			$decision = SUBMISSION_EDITOR_DECISION_INITIATE_REVIEW;
-		} elseif ($stageId == WORKFLOW_STAGE_ID_INTERNAL_REVIEW) {
-			$redirectOp = WORKFLOW_STAGE_PATH_EXTERNAL_REVIEW;
-		} else {
-			assert(false);
-		}
+	function saveInternalReview($args, &$request) {
+		assert($this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE) == WORKFLOW_STAGE_ID_SUBMISSION);
+		return $this->_saveEditorDecision(
+			$args, $request, 'InitiateInternalReviewForm',
+			WORKFLOW_STAGE_PATH_INTERNAL_REVIEW,
+			SUBMISSION_EDITOR_DECISION_INTERNAL_REVIEW
+		);
+	}
 
-		return $this->_saveEditorDecision($args, $request, 'InitiateReviewForm', $redirectOp, $decision);
+	/**
+	 * Jump from submission to external review
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return string Serialized JSON object
+	 */
+	function externalReview($args, &$request) {
+		return $this->_initiateEditorDecision($args, $request, 'InitiateExternalReviewForm');
+	}
+
+	/**
+	 * Start a new review round in external review, bypassing internal
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return string Serialized JSON object
+	 */
+	function saveExternalReview($args, &$request) {
+		assert($this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE) == WORKFLOW_STAGE_ID_SUBMISSION);
+		return $this->_saveEditorDecision(
+			$args, $request, 'InitiateExternalReviewForm',
+			WORKFLOW_STAGE_PATH_EXTERNAL_REVIEW,
+			SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW
+		);
 	}
 
 	/**

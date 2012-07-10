@@ -186,9 +186,9 @@ class NotificationManager extends PKPNotificationManager {
 				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
 				AppLocale::requireComponents(LOCALE_COMPONENT_OMP_SUBMISSION);
 				return __('submission.upload.signoff');
-			case NOTIFICATION_TYPE_EDITOR_DECISION_INITIATE_REVIEW:
+			case NOTIFICATION_TYPE_EDITOR_DECISION_INTERNAL_REVIEW:
 				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
-				return __('notification.type.editorDecisionInitiateReview');
+				return __('notification.type.editorDecisionInternalReview');
 			case NOTIFICATION_TYPE_EDITOR_DECISION_ACCEPT:
 				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
 				return __('notification.type.editorDecisionAccept');
@@ -262,7 +262,7 @@ class NotificationManager extends PKPNotificationManager {
 			case NOTIFICATION_TYPE_SIGNOFF_COPYEDIT:
 			case NOTIFICATION_TYPE_SIGNOFF_PROOF:
 				return __('notification.type.signoff');
-			case NOTIFICATION_TYPE_EDITOR_DECISION_INITIATE_REVIEW:
+			case NOTIFICATION_TYPE_EDITOR_DECISION_INTERNAL_REVIEW:
 			case NOTIFICATION_TYPE_EDITOR_DECISION_ACCEPT:
 			case NOTIFICATION_TYPE_EDITOR_DECISION_EXTERNAL_REVIEW:
 			case NOTIFICATION_TYPE_EDITOR_DECISION_PENDING_REVISIONS:
@@ -355,7 +355,7 @@ class NotificationManager extends PKPNotificationManager {
 			case NOTIFICATION_TYPE_ALL_REVISIONS_IN:
 			case NOTIFICATION_TYPE_CONFIGURE_PAYMENT_METHOD:
 				return 'notifyWarning';
-			case NOTIFICATION_TYPE_EDITOR_DECISION_INITIATE_REVIEW:
+			case NOTIFICATION_TYPE_EDITOR_DECISION_INTERNAL_REVIEW:
 			case NOTIFICATION_TYPE_EDITOR_DECISION_ACCEPT:
 			case NOTIFICATION_TYPE_EDITOR_DECISION_EXTERNAL_REVIEW:
 			case NOTIFICATION_TYPE_EDITOR_DECISION_PENDING_REVISIONS:
@@ -1033,7 +1033,7 @@ class NotificationManager extends PKPNotificationManager {
 	 */
 	function _getAllEditorDecisionNotificationTypes() {
 		return array(
-			NOTIFICATION_TYPE_EDITOR_DECISION_INITIATE_REVIEW,
+			NOTIFICATION_TYPE_EDITOR_DECISION_INTERNAL_REVIEW,
 			NOTIFICATION_TYPE_EDITOR_DECISION_ACCEPT,
 			NOTIFICATION_TYPE_EDITOR_DECISION_EXTERNAL_REVIEW,
 			NOTIFICATION_TYPE_EDITOR_DECISION_PENDING_REVISIONS,
@@ -1053,10 +1053,10 @@ class NotificationManager extends PKPNotificationManager {
 		import('classes.workflow.EditorDecisionActionsManager');
 
 		switch ($decision) {
-			case SUBMISSION_EDITOR_DECISION_INITIATE_REVIEW:
+			case SUBMISSION_EDITOR_DECISION_INTERNAL_REVIEW:
 				return array(
 					'level' => NOTIFICATION_LEVEL_NORMAL,
-					'type' => NOTIFICATION_TYPE_EDITOR_DECISION_INITIATE_REVIEW
+					'type' => NOTIFICATION_TYPE_EDITOR_DECISION_INTERNAL_REVIEW
 				);
 			case SUBMISSION_EDITOR_DECISION_ACCEPT:
 				return array(

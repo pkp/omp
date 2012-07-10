@@ -15,15 +15,25 @@
 import('controllers.modals.editorDecision.form.EditorDecisionForm');
 
 class InitiateReviewForm extends EditorDecisionForm {
+	/** @var $decision SUBMISSION_EDITOR_DECISION_... */
+	var $_decision;
 
 	/**
 	 * Constructor.
 	 * @param $seriesEditorSubmission SeriesEditorSubmission
 	 */
-	function InitiateReviewForm($seriesEditorSubmission, $decision, $stageId) {
-		parent::EditorDecisionForm($seriesEditorSubmission, $stageId, 'controllers/modals/editorDecision/form/initiateReviewForm.tpl');
+	function InitiateReviewForm($seriesEditorSubmission, $decision, $stageId, $template) {
+		parent::EditorDecisionForm($seriesEditorSubmission, $stageId, $template);
+		$this->_decision = $decision;
 	}
 
+	/**
+	 * Get the stage ID constant for the submission to be moved to.
+	 * @return int WORKFLOW_STAGE_ID_...
+	 */
+	function _getStageId() {
+		assert(false); // Subclasses should override.
+	}
 
 	//
 	// Implement protected template methods from Form
@@ -37,18 +47,18 @@ class InitiateReviewForm extends EditorDecisionForm {
 
 		// Record the decision.
 		import('classes.workflow.EditorDecisionActionsManager');
-		$actionLabels = EditorDecisionActionsManager::getActionLabels(array(SUBMISSION_EDITOR_DECISION_INITIATE_REVIEW));
+		$actionLabels = EditorDecisionActionsManager::getActionLabels(array($this->_decision));
 		import('classes.submission.seriesEditor.SeriesEditorAction');
 		$seriesEditorAction = new SeriesEditorAction();
-		$seriesEditorAction->recordDecision($request, $seriesEditorSubmission, SUBMISSION_EDITOR_DECISION_INITIATE_REVIEW, $actionLabels);
+		$seriesEditorAction->recordDecision($request, $seriesEditorSubmission, $this->_decision, $actionLabels);
 
 		// Move to the internal review stage.
 		import('classes.submission.seriesEditor.SeriesEditorAction');
 		$seriesEditorAction = new SeriesEditorAction();
-		$seriesEditorAction->incrementWorkflowStage($seriesEditorSubmission, WORKFLOW_STAGE_ID_INTERNAL_REVIEW, $request);
+		$seriesEditorAction->incrementWorkflowStage($seriesEditorSubmission, $this->_getStageId(), $request);
 
 		// Create an initial internal review round.
-		$this->_initiateReviewRound($seriesEditorSubmission, WORKFLOW_STAGE_ID_INTERNAL_REVIEW, $request, REVIEW_ROUND_STATUS_PENDING_REVIEWERS);
+		$this->_initiateReviewRound($seriesEditorSubmission, $this->_getStageId(), $request, REVIEW_ROUND_STATUS_PENDING_REVIEWERS);
 	}
 }
 
