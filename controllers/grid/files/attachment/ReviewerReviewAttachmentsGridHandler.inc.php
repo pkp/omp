@@ -33,6 +33,10 @@ class ReviewerReviewAttachmentsGridHandler extends FileListGridHandler {
 				'fetchGrid', 'fetchRow'
 			)
 		);
+		
+		// Set the grid title.
+		$this->setTitle('reviewer.monograph.reviewerFiles');
+		
 	}
 
 	/**

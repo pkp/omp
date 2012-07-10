@@ -250,11 +250,12 @@
 	<message key="reviewer.reviewSteps.request">1. Request</message>
 	<message key="reviewer.reviewSteps.guidelines">2. Guidelines</message>
 	<message key="reviewer.reviewSteps.download">3. Download &amp; Review</message>
-	<message key="reviewer.reviewSteps.nextSteps">4. Next Steps</message>
+	<message key="reviewer.reviewSteps.completion">4. Completion</message>
 	<message key="reviewer.step1.request">Request for Review</message>
 	<message key="reviewer.step1.requestBoilerplate">You have been selected as a potential reviewer of the following submission.  Below is an overview of the submission, as well as the timeline for this review.  We hope that you are able to participate.</message>
 	<message key="reviewer.step1.viewAllDetails">View All Submission Details</message>
 	<message key="reviewer.monograph.reviewFiles">Review Files</message>
+	<message key="reviewer.monograph.reviewerFiles">Reviewer Files</message>
 	<message key="reviewer.monograph.declineReview">Decline Review Request</message>
 	<message key="reviewer.monograph.declineReviewMessage">You may provide the editor with any reasons why you are declining this review in the field below.</message>
 	<message key="reviewer.monograph.acceptReview">Accept Review, Continue to Step #2</message>

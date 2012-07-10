@@ -43,6 +43,6 @@
 			<a href="{url op="submission" path=$submission->getId() step=3}">{translate key="reviewer.reviewSteps.download"}</a>
 		</li>
 		<li{if $step == 4} class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"{else} class="ui-state-default ui-corner-top"{/if}>
-			<a href="{url op="submission" path=$submission->getId() step=4}">{translate key="reviewer.reviewSteps.nextSteps"}</a>
+			<a href="{url op="submission" path=$submission->getId() step=4}">{translate key="reviewer.reviewSteps.completion"}</a>
 		</li>
 	</ul>
