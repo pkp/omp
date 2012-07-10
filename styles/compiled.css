@@ -490,7 +490,7 @@ a.sprite.collapsed:hover:before { background-position:-1488px -24px; }
 }
 .grid_actions a {
   padding:0;
-  margin:0 -3px 0 0;
+  margin:0 -3px 0 0 !important;
   border-style:none !important;
   border-color:white !important;
   border-width:0 0 0 0 !important;
@@ -524,7 +524,7 @@ a.sprite.collapsed:hover:before { background-position:-1488px -24px; }
   float:left;
 }
 .pkp_structure_head {
-  height:90px;
+  height:7.15em;
   background-color:#a2c6dc;
 }
 .pkp_structure_head .pkp_structure_masthead {
@@ -544,13 +544,14 @@ a.sprite.collapsed:hover:before { background-position:-1488px -24px; }
 }
 .pkp_structure_navigation { margin-left:20px; }
 .pkp_structure_head_siteNav {
-  height:39px;
-  padding:2px 0 0 0;
   border-bottom:1px solid;
   font-size:90%;
-  line-height:30px;
   color:#ffffff;
+  height:3.7em;
+  width:100%;
 }
+.pkp_structure_head_siteNav .pkp_form div.section { margin-bottom:0px; }
+.pkp_structure_head_siteNav .pkp_helpers_flatlist { margin-top:10px; }
 .pkp_structure_head_siteNav li { padding-left:20px; }
 .pkp_structure_head_siteNav li.home { padding-left:0; }
 .pkp_structure_head_siteNav li.home a {
@@ -563,17 +564,17 @@ a.sprite.collapsed:hover:before { background-position:-1488px -24px; }
 }
 .pkp_structure_head_localNav .sf-menu a { padding-right:0.45em; }
 .pkp_structure_head_localNav .sf-menu a.sf-with-ul { padding-right:1.55em; }
-.pkp_structure_head_localNav .sf-menu ul { margin-top:-1px; }
-.pkp_structure_search { padding:5px 10px 0 0; }
+.pkp_structure_search { margin:7px 10px 7px 0; }
 .pkp_structure_search input {
+  min-height:19px;
   border:1px solid #cccccc;
   padding:2px;
   font-size:100%;
 }
 .pkp_structure_search #topSearchForm label { z-index:10 !important; }
-.pkp_structure_breadcrumb { margin-left:20px; }
+.pkp_structure_breadcrumb { margin:12px 0 12px 20px; }
 .pkp_structure_breadcrumb li {
-  padding:10px 6px 0 2px;
+  padding:0 6px 0 2px;
   font-size:85%;
   list-style-type:square;
   list-style-position:inside;
@@ -686,7 +687,7 @@ body {
 }
 .pkp_structure_body .pkp_structure_main {
   *zoom:1;
-  padding-top:10px;
+  padding-top:32px;
   border-top:1px dotted #999999;
   display:table-cell;
   *display:block;
@@ -1560,7 +1561,7 @@ ul.sf-menu {
 .pkp_page_header ul.submission_actions a { text-decoration:underline; }
 .pkp_page_header .submission_progress_wrapper {
   clear:both;
-  padding-top:30px;
+  padding-top:28px;
 }
 .pkp_page_header .submission_progress {
   overflow:hidden;
