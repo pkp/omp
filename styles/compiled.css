@@ -190,13 +190,14 @@ strong {
 .pkp_helpers_half { width:48%; }
 .pkp_helpers_third { width:31%; }
 .pkp_helpers_quarter { width:23%; }
+.pkp_helpers_threeQuarter { width:73%; }
+.pkp_helpers_underline { text-decoration:underline !important; }
 .pkp_helpers_underline:after {
-  border:1px solid white;
+  border-bottom:2px solid white;
   content:" ";
   display:block;
 }
-.pkp_helpers_threeQuarter { width:73%; }
-.pkp_helpers_underline { text-decoration:underline !important; }
+.pkp_helpers_dotted_underline { border-bottom:1px dotted #999999; }
 div.pkp_helpers_progressIndicator {
   width:24px;
   height:24px;
@@ -699,25 +700,36 @@ body {
   padding-top:10px;
   margin-right:20px;
 }
-.pkp_structure_sidebar {
+.pkp_structure_sidebar { border-top:1px dotted #999999; }
+.pkp_structure_sidebar div.block {
   padding-top:10px;
-  border-top:1px dotted #999999;
-  margin-right:20px;
+  padding-bottom:10px;
+  border-bottom:1px dotted #999999;
 }
-.pkp_structure_sidebar span.blockTitle {
+.pkp_structure_sidebar div.block span.blockTitle {
+  display:list-item;
+  list-style:disc inside;
+  color:#569bbe;
+  color:#569bbe;
   font:120% "Courier New", Courier, mono;
   text-transform:uppercase;
-  color:#569bbe;
+}
+.pkp_structure_sidebar div.block span.blockTitle:first-child { padding-top:0px; }
+.pkp_structure_sidebar div.block a { text-decoration:none; }
+.pkp_structure_sidebar div.block a:hover { text-decoration:none; }
+.pkp_structure_sidebar div.block span.blockTitle {
+  padding-top:10px;
+  padding-bottom:10px;
 }
 .pkp_structure_sidebar_left {
   float:left;
   width:190px;
-  _margin-right:-3px;
+  margin-right:20px;
 }
 .pkp_structure_sidebar_right {
   float:right;
   width:190px;
-  _margin-left:-3px;
+  margin-left:20px;
 }
 .pkp_structure_foot {
   height:315px;
