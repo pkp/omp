@@ -829,6 +829,8 @@ class NotificationManager extends PKPNotificationManager {
 		$press =& $request->getPress();
 		$pressId = $press->getId();
 
+		$this->deleteAllRevisionsInNotification($request, $reviewRound);
+
 		$stageAssignmentDao =& DAORegistry::getDAO('StageAssignmentDAO');
 		$stageAssignments = $stageAssignmentDao->getEditorsAssignedToStage($reviewRound->getSubmissionId(), $reviewRound->getStageId());
 		foreach ($stageAssignments as $stageAssignment) {
