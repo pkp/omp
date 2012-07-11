@@ -9,8 +9,9 @@
  *}
 <div class="block" id="sidebarBrowse">
 
-	<p><span class="blockTitle"><a href="{url page="catalog"}">{translate key="navigation.catalog"}</a></span></p>
-	<p><span class="blockTitle"><a href="{url page="catalog" op="newReleases"}">{translate key="navigation.newReleases"}</a></span></p>
+	<span class="blockTitle pkp_helpers_dotted_underline"><a href="{url page="catalog"}">{translate key="navigation.catalog"}</a></span>
+	<span class="blockTitle pkp_helpers_dotted_underline"><a href="{url page="catalog" op="newReleases"}">{translate key="navigation.newReleases"}</a></span>
+	<span class="blockTitle">{translate key="plugins.block.browse"}</span>
 
 	<form class="pkp_form" action="#">
 		<div id="browseCategoryContainer">

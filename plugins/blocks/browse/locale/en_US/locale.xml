@@ -13,6 +13,7 @@
   -->
  
 <locale name="en_US" full_name="U.S. English">
+	<message key="plugins.block.browse">Browse</message>
 	<message key="plugins.block.browse.displayName">Browse Block</message>
 	<message key="plugins.block.browse.description">This plugin provides sidebar "browse" tools.</message>
 	<message key="plugins.block.browse.category">Browse a category</message>
