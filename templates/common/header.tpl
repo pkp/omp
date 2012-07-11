@@ -103,10 +103,9 @@
 					{if $isUserLoggedIn}
 						inlineHelpState: {$initialHelpState},
 					{/if}
-					toggleHelpUrl: '{url|escape:javascript router=$smarty.const.ROUTE_PAGE page="user" op="toggleHelp"}',
-					toggleHelpOnText: '{$toggleHelpOnText}',
-					toggleHelpOffText: '{$toggleHelpOffText}',
-					requestedPage: '{$requestedPage}',
+					toggleHelpUrl: '{url|escape:javascript page="user" op="toggleHelp"}',
+					toggleHelpOnText: '{$toggleHelpOnText|escape:"javascript"}',
+					toggleHelpOffText: '{$toggleHelpOffText|escape:"javascript"}',
 					{include file="core:controllers/notification/notificationOptions.tpl"}
 				{rdelim});
 		{rdelim});

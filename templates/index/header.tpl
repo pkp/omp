@@ -6,7 +6,17 @@
  *
  * Common site header div contents.
  *}
-<div class="pkp_structure_content">
+<script type="text/javascript">
+	// Initialise JS handler.
+	$(function() {ldelim}
+		$('#headerTemplateContainer').pkpHandler(
+			'$.pkp.pages.index.HeaderHandler',
+			{ldelim}
+				requestedPage: '{$requestedPage|escape:"javascript"}',
+			{rdelim});
+	{rdelim});
+</script>
+<div class="pkp_structure_content" id="headerTemplateContainer">
 	<div class="unit size1of5">
 		<div class="pkp_structure_masthead">
 			<h1 style="margin: 0; padding: 0;">
