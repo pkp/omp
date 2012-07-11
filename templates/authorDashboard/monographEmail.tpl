@@ -11,11 +11,14 @@
 <form class="pkp_form">
 	{fbvFormSection label="editor.review.personalMessageFromEditor"}
 	{iterate from=monographEmails item=monographEmail}
-		<span class="pkp_authorDashboard_email_date">{$monographEmail->getDateSent()|date_format:$dateFormatShort}</span>
-		<span class="pkp_authorDashboard_email_subjectLabel">{translate key="email.subject}:</span>
-		<span class="pkp_authorDashboard_email_subject">{$monographEmail->getSubject()|escape}</span>
+		<p>
+			<strong>{translate key="common.date"}:</strong>
+			<span class="pkp_authorDashboard_email_date">{$monographEmail->getDateSent()|date_format:$dateFormatShort}</span><br/>
+			<strong>{translate key="email.subject}:</strong>
+			<span class="pkp_authorDashboard_email_subject">{$monographEmail->getSubject()|escape}</span>
+		</p>
 		{fbvElement type="textarea" id=$textAreaIdPrefix|concat:"-":$monographEmail->getId() value=$monographEmail->getBody() height=$fbvStyles.height.TALL disabled=true}
-		<br/>
+		<br />
 	{/iterate}
 	{/fbvFormSection}
 </form>

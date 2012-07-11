@@ -24,6 +24,9 @@ class AuthorReviewRevisionsGridHandler extends ReviewRevisionsGridHandler {
 			array('fetchGrid', 'fetchRow')
 		);
 		parent::ReviewRevisionsGridHandler($roleAssignments);
+
+		$this->setTitle('editor.monograph.revisions');
+		$this->setInstructions('editor.monograph.revisionsDescription');
 	}
 }
 

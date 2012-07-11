@@ -23,8 +23,8 @@
 </script>
 
 <div id="authorDashboard">
-	<div id="submissionHeader" class="pkp_submission_header">
-		<div style="float:right;">
+	<div id="submissionHeader" class="pkp_page_header">
+		<div class="pkp_helpers_align_right">
 			<ul class="submission_actions pkp_helpers_flatlist">
 				{if $uploadFileAction}
 					<li id="{$uploadFileAction->getId()}">
@@ -35,8 +35,8 @@
 					{include file="linkAction/linkAction.tpl" action=$viewMetadataAction contextId="authorDashboard"}
 				</li>
 			</ul>
-		</div>
-		<div style="float: left;"><span class="h2">{$pageTitleTranslated}</span></div>
+		</div><br /><br />
+		<div class="pkp_helpers_align_left"><span class="h2">{$pageTitleTranslated}</span></div>
 
 		<div class="pkp_helpers_clear"></div>
 		{include file="controllers/notification/inPlaceNotification.tpl" notificationId="authorDashboardNotification" requestOptions=$authorDashboardNotificationRequestOptions}
