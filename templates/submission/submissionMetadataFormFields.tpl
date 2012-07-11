@@ -38,7 +38,7 @@
 	{/fbvFormSection}
 {/fbvFormArea}
 
-{fbvFormArea id="additionalDublinCore"}
+{fbvFormArea id="additionalDublinCore" class="border"}
 	{fbvFormSection label="monograph.type" for="type" description="monograph.title.tip"}
 		{fbvElement type="text" multilingual=true name="type" id="type" value=$type maxlength="255" disabled=$readOnly}
 	{/fbvFormSection}

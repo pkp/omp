@@ -21,22 +21,22 @@
 		{foreach from=$steps key=step item=stepLocaleKey}
 			{assign var=stepUrl value="#"}
 			{assign var=cssClass value=""}
-			{if $step <= $submissionProgress} 
-				{url|assign:stepUrl op="wizard" path=$step monographId=$monographId}					
+			{if $step <= $submissionProgress}
+				{url|assign:stepUrl op="wizard" path=$step monographId=$monographId}
 			{/if}
-			
+
 			{if $step <= $submissionProgress && $submissionProgress != 0}
 				{assign var=cssClass value="ui-state-default ui-corner-top ui-state-active"}
 			{/if}
-			
+
 			{if $step > $submissionProgress}
 				{assign var=cssClass value="ui-state-default ui-corner-top ui-state-disabled"}
 			{/if}
-			
+
 			{if $step == $submitStep}
 				{assign var=cssClass value="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"}
-			{/if}			
-			
+			{/if}
+
 			<li class="{$cssClass}">
 				<a href="{$stepUrl}">{$step}. {translate key=$stepLocaleKey}</a>
 			</li>

@@ -26,7 +26,7 @@
 
 	{fbvFormArea id="contributors"}
 		<!--  Contributors -->
-		{url|assign:authorGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.users.author.AuthorGridHandler" op="fetchGrid" monographId=$monographId}
+		{url|assign:authorGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.users.author.AuthorGridHandler" op="fetchGrid" monographId=$monographId}
 		{load_url_in_div id="authorsGridContainer" class="update_source_author" url="$authorGridUrl"}
 
 		<!--  Chapters -->
@@ -39,4 +39,3 @@
 	{/fbvFormArea}
 </form>
 {include file="common/footer.tpl"}
-
