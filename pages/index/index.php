@@ -18,6 +18,7 @@
 
 switch ($op) {
 	case 'index':
+	case 'header':
 		define('HANDLER_CLASS', 'IndexHandler');
 		import('pages.index.IndexHandler');
 		break;

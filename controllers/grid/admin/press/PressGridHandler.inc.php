@@ -163,6 +163,15 @@ class PressGridHandler extends GridHandler {
 		return array(new OrderGridItemsFeature());
 	}
 
+	/**
+	 * Get the list of "publish data changed" events.
+	 * Used to update the site press switcher upon create/delete.
+	 * @return array
+	 */
+	function getPublishChangeEvents() {
+		return array('updateHeader');
+	}
+
 
 	//
 	// Public grid actions.

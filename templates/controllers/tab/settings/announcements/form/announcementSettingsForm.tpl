@@ -11,7 +11,11 @@
 <script type="text/javascript">
 	$(function() {ldelim}
 		// Attach the form handler.
-		$('#announcementSettingsForm').pkpHandler('$.pkp.controllers.tab.settings.announcements.form.AnnouncementSettingsFormHandler');
+		$('#announcementSettingsForm').pkpHandler('$.pkp.controllers.tab.settings.announcements.form.AnnouncementSettingsFormHandler',
+			{ldelim}
+				publishChangeEvents: ['updateHeader']
+			{rdelim}
+		);
 	{rdelim});
 </script>
 

@@ -64,6 +64,17 @@ class IndexHandler extends Handler {
 		}
 	}
 
+	/**
+	 * Display the header.
+	 * @param $request PKPRequest
+	 * @param $args array
+	 */
+	function header(&$request, $args) {
+		$this->setupTemplate($request);
+		$templateMgr =& TemplateManager::getManager();
+		return $templateMgr->fetchJson('index/header.tpl');
+	}
+
 
 	//
 	// Private helper methods.
