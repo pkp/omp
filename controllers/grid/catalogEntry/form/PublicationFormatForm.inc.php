@@ -30,7 +30,7 @@ class PublicationFormatForm extends Form {
 		$this->setPublicationFormat($publicationFormat);
 
 		// Validation checks for this form
-		$this->addCheck(new FormValidator($this, 'title', 'required', 'grid.catalogEntry.titleRequired'));
+		$this->addCheck(new FormValidator($this, 'name', 'required', 'grid.catalogEntry.nameRequired'));
 		$this->addCheck(new FormValidator($this, 'entryKey', 'required', 'grid.catalogEntry.publicationFormatRequired'));
 		$this->addCheck(new FormValidatorPost($this));
 	}
@@ -83,7 +83,7 @@ class PublicationFormatForm extends Form {
 		if ($format) {
 			$this->_data = array(
 				'entryKey' => $format->getEntryKey(),
-				'title' => $format->getTitle(),
+				'name' => $format->getName(),
 				'isPhysicalFormat' => $format->getPhysicalFormat()?true:false,
 			);
 		} else {
@@ -119,7 +119,7 @@ class PublicationFormatForm extends Form {
 	 */
 	function readInputData() {
 		$this->readUserVars(array(
-			'title',
+			'name',
 			'entryKey',
 			'isPhysicalFormat',
 		));
@@ -144,7 +144,7 @@ class PublicationFormatForm extends Form {
 			if ($monograph->getId() !== $publicationFormat->getMonographId()) fatalError('Invalid format!');
 		}
 
-		$publicationFormat->setTitle($this->getData('title'));
+		$publicationFormat->setName($this->getData('name'));
 		$publicationFormat->setEntryKey($this->getData('entryKey'));
 		$publicationFormat->setPhysicalFormat($this->getData('isPhysicalFormat')?true:false);
 
@@ -156,7 +156,7 @@ class PublicationFormatForm extends Form {
 			// log the creation of the format.
 			import('classes.log.MonographLog');
 			import('classes.log.MonographEventLogEntry');
-			MonographLog::logEvent($request, $monograph, MONOGRAPH_LOG_PUBLICATION_FORMAT_CREATE, 'submission.event.publicationFormatCreated', array('formatTitle' => $publicationFormat->getLocalizedTitle()));
+			MonographLog::logEvent($request, $monograph, MONOGRAPH_LOG_PUBLICATION_FORMAT_CREATE, 'submission.event.publicationFormatCreated', array('formatName' => $publicationFormat->getLocalizedName()));
 		}
 
 		return $publicationFormatId;

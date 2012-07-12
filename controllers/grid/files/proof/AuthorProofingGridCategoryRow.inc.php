@@ -28,7 +28,7 @@ class AuthorProofingGridCategoryRow extends GridCategoryRow {
 	 */
 	function getCategoryLabel() {
 		$publicationFormat =& $this->getData();
-		return $publicationFormat->getLocalizedTitle();
+		return $publicationFormat->getLocalizedName();
 	}
 }
 

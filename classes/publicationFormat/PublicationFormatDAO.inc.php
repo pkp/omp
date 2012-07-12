@@ -278,7 +278,7 @@ class PublicationFormatDAO extends DAO {
 	 * @return array
 	 */
 	function getLocaleFieldNames() {
-		return array('title');
+		return array('name');
 	}
 }
 

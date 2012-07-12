@@ -36,7 +36,7 @@
 		<tr>
 			<td colspan="3" class="headseparator">&nbsp;</td>
 		</tr>
-		
+
 		{iterate from=monographs item=monograph}
 			{if $monograph->hasPublicationFormats()}
 				{assign var="formats" value=$monograph->getPublicationFormats()}
@@ -49,7 +49,7 @@
 						<td>
 							{assign var="formatId" value=$format->getId()|escape}
 							{fbvFormSection list="true"}
-								{fbvElement type="radio" required=true name="publicationFormatId" id='format'|concat:$formatId value=$formatId label=$format->getLocalizedTitle() translate=false}
+								{fbvElement type="radio" required=true name="publicationFormatId" id='format'|concat:$formatId value=$formatId label=$format->getLocalizedName() translate=false}
 							{/fbvFormSection}
 						</td>
 						<td>

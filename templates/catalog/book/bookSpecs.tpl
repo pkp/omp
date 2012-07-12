@@ -25,7 +25,7 @@
 		{assign var=publicationFormats value=$publishedMonograph->getPublicationFormats()}
 		{foreach from=$publicationFormats item="publicationFormat"}
 			{if $publicationFormat->getIsAvailable()}
-				<h3><a href="#">{$publicationFormat->getLocalizedTitle()|escape}</a></h3>
+				<h3><a href="#">{$publicationFormat->getLocalizedName()|escape}</a></h3>
 				<div class="publicationFormat">
 					<div class="bookDimensionSpecs">
 					{assign var=notFirst value=0}

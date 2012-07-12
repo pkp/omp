@@ -100,28 +100,28 @@ class PublicationFormat extends DataObject {
 	}
 
 	/**
-	 * Get "localized" format title (if applicable).
+	 * Get "localized" format name (if applicable).
 	 * @return string
 	 */
-	function getLocalizedTitle() {
-		return $this->getLocalizedData('title');
+	function getLocalizedName() {
+		return $this->getLocalizedData('name');
 	}
 
 	/**
-	 * Get the format title (if applicable).
+	 * Get the format name (if applicable).
 	 * @return string
 	 */
-	function getTitle() {
-		return $this->getData('title');
+	function getName() {
+		return $this->getData('name');
 	}
 
 	/**
-	 * Set title.
-	 * @param $title string
+	 * Set name.
+	 * @param $name string
 	 * @param $locale
 	 */
-	function setTitle($title) {
-		return $this->setData('title', $title);
+	function setName($name) {
+		return $this->setData('name', $name);
 	}
 
 	/**

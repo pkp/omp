@@ -174,7 +174,7 @@ class CatalogEntryHandler extends Handler {
 		$formats =& $publicationFormatDao->getByMonographId($monograph->getId());
 		$publicationFormats = array();
 		while ($format =& $formats->next()) {
-			$publicationFormats[$format->getId()] = $format->getLocalizedTitle();
+			$publicationFormats[$format->getId()] = $format->getLocalizedName();
 		}
 		$json->setStatus(true);
 		$json->setContent(true);

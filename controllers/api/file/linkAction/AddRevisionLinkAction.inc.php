@@ -42,7 +42,7 @@ class AddRevisionLinkAction extends BaseAddFileLinkAction {
 		parent::BaseAddFileLinkAction(
 			$request, $reviewRound->getSubmissionId(), $reviewRound->getStageId(), $uploaderRoles, $actionArgs,
 			__('editor.review.uploadRevisionToRound', array('round' => $reviewRound->getRound())),
-			__('editor.review.uploadRevision')
+			__('submission.addFile')
 		);
 	}
 }

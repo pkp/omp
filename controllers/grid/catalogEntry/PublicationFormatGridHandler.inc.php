@@ -133,8 +133,8 @@ class PublicationFormatGridHandler extends GridHandler {
 		$cellProvider = new PublicationFormatGridCellProvider($monograph->getId(), $this->getInCatalogEntryModal());
 		$this->addColumn(
 			new GridColumn(
-				'title',
-				'grid.catalogEntry.publicationFormatTitle',
+				'name',
+				'common.name',
 				null,
 				'controllers/grid/gridCell.tpl',
 				$cellProvider,
@@ -330,7 +330,7 @@ class PublicationFormatGridHandler extends GridHandler {
 			// log the deletion of the format.
 			import('classes.log.MonographLog');
 			import('classes.log.MonographEventLogEntry');
-			MonographLog::logEvent($request, $this->getMonograph(), MONOGRAPH_LOG_PUBLICATION_FORMAT_REMOVE, 'submission.event.publicationFormatRemoved', array('formatTitle' => $publicationFormat->getLocalizedTitle()));
+			MonographLog::logEvent($request, $this->getMonograph(), MONOGRAPH_LOG_PUBLICATION_FORMAT_REMOVE, 'submission.event.publicationFormatRemoved', array('formatName' => $publicationFormat->getLocalizedName()));
 
 			return DAO::getDataChangedEvent();
 		} else {

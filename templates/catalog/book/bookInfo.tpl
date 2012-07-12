@@ -41,7 +41,7 @@
 				{assign var=publicationFormatId value=$publicationFormat->getId()}
 				{if $availableFiles[$publicationFormatId]}
 					<div class="publicationFormatDownload" id="publicationFormat-download-{$publicationFormatId|escape}">
-						{$publicationFormat->getLocalizedTitle()|escape}
+						{$publicationFormat->getLocalizedName()|escape}
 						<ul>
 							{foreach from=$availableFiles[$publicationFormatId] item=availableFile}
 								<li>

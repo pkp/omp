@@ -95,7 +95,7 @@ class ApproveProofsForm extends Form {
 		$user =& $request->getUser();
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
 		$monograph =& $monographDao->getById($publicationFormat->getMonographId());
-		MonographLog::logEvent($request, $monograph, MONOGRAPH_LOG_PROOFS_APPROVED, 'submission.event.proofsApproved', array('title' => $publicationFormat->getLocalizedTitle(),'name' => $user->getFullName(), 'username' => $user->getUsername()));
+		MonographLog::logEvent($request, $monograph, MONOGRAPH_LOG_PROOFS_APPROVED, 'submission.event.proofsApproved', array('formatName' => $publicationFormat->getLocalizedName(),'name' => $user->getFullName(), 'username' => $user->getUsername()));
 		// update the monograph's file index
 		import('classes.search.MonographSearchIndex');
 		MonographSearchIndex::clearMonographFiles($this->seriesEditorSubmission);

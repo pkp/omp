@@ -233,7 +233,7 @@ class CatalogEntryTabHandler extends Handler {
 					if ($format->getId() == $publicationFormatId) {
 						$form = new CatalogEntryPublicationMetadataForm($monograph->getId(), $publicationFormatId, $format->getId(), $stageId, array('displayedInContainer' => true, 'tabPos' => $this->getTabPosition()));
 						$notificationKey = 'notification.savedPublicationFormatMetadata';
-						MonographLog::logEvent($request, $monograph, MONOGRAPH_LOG_PUBLICATION_FORMAT_METADATA_UPDATE, 'submission.event.publicationMetadataUpdated', array('formatTitle' => $format->getLocalizedTitle()));
+						MonographLog::logEvent($request, $monograph, MONOGRAPH_LOG_PUBLICATION_FORMAT_METADATA_UPDATE, 'submission.event.publicationMetadataUpdated', array('formatName' => $format->getLocalizedName()));
 						break;
 					}
 				}

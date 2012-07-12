@@ -76,8 +76,8 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 		switch ($columnId) {
 			case 'format':
 				return array('label' => $publicationFormat->getNameForONIXCode());
-			case 'title':
-				return array('label' => $publicationFormat->getLocalizedTitle());
+			case 'name':
+				return array('label' => $publicationFormat->getLocalizedName());
 			case 'proofComplete':
 			case 'isAvailable':
 			case 'price':

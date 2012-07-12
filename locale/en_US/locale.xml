@@ -83,12 +83,12 @@
 	<message key="monograph.publicationFormat.formatDoesNotExist"><![CDATA[<p>The publication format you have chosen no longer exists for this monograph.</p>]]></message>
 	<message key="monograph.publicationFormat.openTab">Open publication format tab.</message>
 	<!-- assigned publication format grid and form keys  -->
-	<message key="grid.catalogEntry.publicationFormatTitle">Title</message>
 	<message key="grid.catalogEntry.publicationFormatType">Publication Format</message>
-	<message key="grid.catalogEntry.titleRequired">A title is required.</message>
+	<message key="grid.catalogEntry.nameRequired">A name is required.</message>
 	<message key="grid.catalogEntry.validPriceRequired">A valid price is required.</message>
 	<message key="grid.catalogEntry.publicationFormatType">Publication Format</message>
-	<message key="grid.catalogEntry.isPhysicalFormat">Is this a physical format?</message>
+	<message key="grid.catalogEntry.publicationFormatDetails">Format Details</message>
+	<message key="grid.catalogEntry.physicalFormat">Physical format</message>
 	<message key="grid.catalogEntry.monographRequired">A monograph id is required.</message>
 	<message key="grid.catalogEntry.publicationFormatRequired">A publication format must be chosen.</message>
 	<message key="grid.catalogEntry.isAvailable">In Catalog</message>

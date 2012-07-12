@@ -41,7 +41,7 @@
 					publicationFormatId=$format->getId()
 					monographId=$monographId
 					stageId=$stageId
-					tabPos=$counter}">{$format->getLocalizedTitle()|escape}</a>
+					tabPos=$counter}">{$format->getLocalizedName()|escape}</a>
 			</li>
 			{counter} {* increment our counter, assign to $counter variable *}
 		{/foreach}

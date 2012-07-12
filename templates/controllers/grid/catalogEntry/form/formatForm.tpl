@@ -17,17 +17,14 @@
 <form class="pkp_form" id="addPublicationFormatForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.catalogEntry.PublicationFormatGridHandler" op="updateFormat"}">
 	<input type="hidden" name="monographId" value="{$monographId|escape}" />
 	<input type="hidden" name="publicationFormatId" value="{$publicationFormatId|escape}" />
-	{fbvFormArea id="addFormat"}
-		{fbvFormSection title="grid.catalogEntry.publicationFormatTitle" for="title" required="true"}
-			{fbvElement type="text" id="title" value=$title|escape multilingual="true" size=$fbvStyles.size.MEDIUM}
-		{/fbvFormSection}
-		{fbvFormSection title="grid.catalogEntry.publicationFormatType" for="publicationFormat"  required="true" size=$fbvStyles.size.MEDIUM}
-			{fbvElement type="select" from=$entryKeys selected=$entryKey id="entryKey" translate=false}
+	{fbvFormArea id="addFormat" class="border" title="grid.catalogEntry.publicationFormatDetails"}
+		{fbvFormSection for="title" required="true"}
+			{fbvElement type="text" id="name" label="common.name" value=$name|escape multilingual="true" size=$fbvStyles.size.MEDIUM inline=true}
+			{fbvElement type="select" label="grid.catalogEntry.publicationFormatType" from=$entryKeys selected=$entryKey id="entryKey" translate=false size=$fbvStyles.size.MEDIUM inline=true}
 		{/fbvFormSection}
 		{fbvFormSection for="publicationFormat" size=$fbvStyles.size.MEDIUM list=true}
-			{if $isPhysicalFormat}{assign var="checked" value=true}{else}{assign var="checked" value=false}{/if}
-			{fbvElement type="checkbox" label="grid.catalogEntry.isPhysicalFormat" id="isPhysicalFormat" checked=$checked}
+			{fbvElement type="checkbox" label="grid.catalogEntry.physicalFormat" id="isPhysicalFormat" checked=$isPhysicalFormat}
 		{/fbvFormSection}
-		{fbvFormButtons}
 	{/fbvFormArea}
+	{fbvFormButtons}
 </form>
