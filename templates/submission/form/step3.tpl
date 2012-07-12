@@ -22,7 +22,7 @@
 	<input type="hidden" name="monographId" value="{$monographId|escape}" />
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="submitStep3FormNotification"}
 
-	{include file="submission/submissionMetadataFormFields.tpl"}
+	{include file="submission/submissionMetadataFormTitleFields.tpl"}
 
 	{fbvFormArea id="contributors"}
 		<!--  Contributors -->
@@ -34,8 +34,10 @@
 			{url|assign:chaptersGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.users.chapter.ChapterGridHandler" op="fetchGrid" monographId=$monographId}
 			{load_url_in_div id="chaptersGridContainer" class="update_target_author" url="$chaptersGridUrl"}
 		{/if}
-
-		{fbvFormButtons id="step3Buttons" submitText="submission.submit.finishSubmission" confirmSubmit="submission.confirmSubmit"}
 	{/fbvFormArea}
+
+	{include file="submission/submissionMetadataFormFields.tpl"}
+
+	{fbvFormButtons id="step3Buttons" submitText="submission.submit.finishSubmission" confirmSubmit="submission.confirmSubmit"}
 </form>
 {include file="common/footer.tpl"}

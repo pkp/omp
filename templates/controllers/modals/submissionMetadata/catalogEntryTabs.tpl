@@ -23,7 +23,7 @@
 	{rdelim});
 </script>
 <div id="newCatalogEntryTabs">
-	<p>{translate key="catalog.manage.entryDescription"}</p>
+	<p class="pkp_help">{translate key="catalog.manage.entryDescription"}</p>
 	<ul>
 		<li>
 			<a title="submission" href="{url router=$smarty.const.ROUTE_COMPONENT component="tab.catalogEntry.CatalogEntryTabHandler" tab="submission" op="submissionMetadata" monographId="$monographId" stageId=$stageId tabPos="0"}">{translate key="submission.catalogEntry.monographMetadata"}</a>

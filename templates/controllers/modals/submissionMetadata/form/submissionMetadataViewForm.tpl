@@ -26,7 +26,7 @@
 
 	{include file="submission/form/seriesAndCategories.tpl" readOnly=$formParams.readOnly}
 
-	{include file="submission/submissionMetadataFormFields.tpl" readOnly=$formParams.readOnly}
+	{include file="submission/submissionMetadataFormTitleFields.tpl" readOnly=$formParams.readOnly}
 
 	{if !$formParams.anonymous}
 		<!--  Contributors -->
@@ -42,6 +42,8 @@
 			{load_url_in_div id=$chaptersGridContainer url="$chaptersGridUrl"}
 		{/if}
 	{/if}
+
+	{include file="submission/submissionMetadataFormFields.tpl" readOnly=$formParams.readOnly}
 
 	{if !$formParams.readOnly}
 		{fbvFormButtons id="submissionMetadataFormSubmit" submitText="common.save"}
