@@ -198,6 +198,12 @@ strong {
   display:block;
 }
 .pkp_helpers_dotted_underline { border-bottom:1px dotted #999999; }
+.pkp_help {
+  color:#999999;
+  font-weight:normal;
+  font-size:80%;
+  padding:10px;
+}
 div.pkp_helpers_progressIndicator {
   width:24px;
   height:24px;
