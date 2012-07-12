@@ -127,7 +127,7 @@
 	{/fbvFormArea}
 
 	<!-- Database configuration -->
-	{fbvFormArea id="databaseSettingsFormArea" title="installer.databaseSettings"}
+	{fbvFormArea id="databaseSettingsFormArea" class="border" title="installer.databaseSettings"}
 		<p>{translate key="installer.databaseSettingsInstructions"}</p>
 		{fbvFormSection title="installer.databaseDriver" description="installer.databaseDriverInstructions"}
 			{fbvElement type="select" id="databaseDriver" from=$databaseDriverOptions selected=$databaseDriver translate=false size=$fbvStyles.size.SMALL}
@@ -150,7 +150,7 @@
 	{/fbvFormArea}
 
 	{if !$skipMiscSettings}
-		 {fbvFormArea id="miscSettingsFormArea" title="installer.miscSettings"}
+		 {fbvFormArea id="miscSettingsFormArea" class="border" title="installer.miscSettings"}
 			{fbvFormSection title="installer.oaiRepositoryId" description="installer.oaiRepositoryIdInstructions"}
 				{fbvElement type="text" id="oaiRepositoryId" value=$oaiRepositoryId|escape maxlength="60" size=$fbvStyles.size.LARGE}
 			{/fbvFormSection}
