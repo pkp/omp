@@ -6,23 +6,23 @@
  *
  * Dashboard index.
  *}
-
 {strip}
 {assign var="pageTitle" value="navigation.dashboard"}
 {include file="common/header.tpl"}
 {/strip}
 
-<div class="ui-tabs ui-widget ui-widget-content ui-corner-all">
-	<ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
-		<li{if $selectedTab == 1} class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"{else} class="ui-state-default ui-corner-top"{/if}>
-			<a href="{url op="tasks"}">{translate key="dashboard.tasks"}</a>
-		</li>
-		<li{if $selectedTab == 2} class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"{else} class="ui-state-default ui-corner-top"{/if}>
-			<a href="{url op="submissions"}">{translate key="dashboard.submissions"}</a>
-		</li>
+<script type="text/javascript">
+	// Attach the JS file tab handler.
+	$(function() {ldelim}
+		$('#dashboardTabs').pkpHandler(
+				'$.pkp.controllers.TabHandler');
+	{rdelim});
+</script>
+<div id="dashboardTabs">
+	<ul>
+		<li><a href="{url op="tasks"}">{translate key="dashboard.tasks"}</a></li>
+		<li><a href="{url op="submissions"}">{translate key="dashboard.submissions"}</a></li>
 	</ul>
-
-	{include file=$templateToDisplay}
 </div>
 
 {include file="common/footer.tpl"}

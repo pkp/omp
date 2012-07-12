@@ -6,7 +6,6 @@
  *
  * Administration settings page, with tabs.
  *}
-
 {strip}
 {assign var="pageTitle" value="admin.settings"}
 {include file="common/header.tpl"}

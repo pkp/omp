@@ -42,7 +42,9 @@ class DashboardHandler extends Handler {
 	 * @param $args array
 	 */
 	function index($args, &$request) {
-		$this->tasks($args, $request);
+		$templateMgr =& TemplateManager::getManager();
+		$this->setupTemplate($request);
+		$templateMgr->display('dashboard/index.tpl');
 	}
 
 	/**
@@ -88,9 +90,7 @@ class DashboardHandler extends Handler {
 			$templateMgr->assign_by_ref('presses', $presses);
 		}
 
-		$templateMgr->assign('selectedTab', 1);
-		$templateMgr->assign('templateToDisplay', 'dashboard/tasks.tpl');
-		$templateMgr->display('dashboard/index.tpl');
+		return $templateMgr->fetchJson('dashboard/tasks.tpl');
 	}
 
 	/**
@@ -102,9 +102,7 @@ class DashboardHandler extends Handler {
 		$templateMgr =& TemplateManager::getManager();
 		$this->setupTemplate($request);
 
-		$templateMgr->assign('selectedTab', 2);
-		$templateMgr->assign('templateToDisplay', 'dashboard/submissions.tpl');
-		$templateMgr->display('dashboard/index.tpl');
+		return $templateMgr->fetchJson('dashboard/submissions.tpl');
 	}
 
 	/**
