@@ -53,7 +53,8 @@ $.pkp.pages.manageCatalog = $.pkp.pages.manageCatalog || {};
 		// React to "select series" events from the series tab.
 		this.bind('selectSeries', this.selectSeriesHandler_);
 
-		$catalogTabs.bind('tabsselect', this.callbackWrapper(this.showTabHandler_));
+		$catalogTabs.bind('tabsselect', this.callbackWrapper(this.selectTabHandler_));
+		$catalogTabs.bind('tabsshow', this.callbackWrapper(this.showTabHandler_));
 
 		// React to data changed from inner widgets (including modals
 		// that have an event bridge and directs their data changed events
@@ -228,7 +229,7 @@ $.pkp.pages.manageCatalog = $.pkp.pages.manageCatalog || {};
 
 
 	/**
-	 * Handle the "show tabs" event.  Pre-select and load the first category
+	 * Handle the "select tabs" event.  Pre-select and load the first category
 	 * or series in the list when those tabs are displayed.
 	 * @private
 	 *
@@ -239,7 +240,7 @@ $.pkp.pages.manageCatalog = $.pkp.pages.manageCatalog || {};
 	 * @return {boolean} Let the other tabs function normally.
 	 */
 	$.pkp.pages.manageCatalog.ManageCatalogHeaderHandler.
-			prototype.showTabHandler_ = function(element, event, tabElement) {
+			prototype.selectTabHandler_ = function(element, event, tabElement) {
 		var $selector;
 		if (tabElement.panel.id == 'categoryTab') {
 			$selector = $(element).find('#categorySelect');
@@ -256,6 +257,32 @@ $.pkp.pages.manageCatalog = $.pkp.pages.manageCatalog || {};
 				$selector.find('option').eq(1).attr('selected', 'selected');
 				this.selectSeriesHandler_(element, event, seriesPath);
 			}
+		}
+
+		return true;
+	};
+
+
+	/**
+	 * Handle the "show tabs" event.  Clear the search form if the search results
+	 * tab is not the one that has been selected.
+	 * @private
+	 *
+	 * @param {Object} element The parent element of the tab
+	 * that triggered the event.
+	 * @param {Event} event The event.
+	 * @param {Object} tabElement the HTML element which generated the event.
+	 * @return {boolean} Let the other tabs function normally.
+	 */
+	$.pkp.pages.manageCatalog.ManageCatalogHeaderHandler.
+			prototype.showTabHandler_ = function(element, event, tabElement) {
+		// clear the search if the selected tab is not our search result tab.
+		var $catalogTabs = $('#catalogTabs').tabs();
+		var currentTabIndex = $catalogTabs.tabs('option', 'selected');
+
+		if (currentTabIndex !== this.searchTabIndex_) {
+			var $catalogHeader = this.getHtmlElement();
+			$catalogHeader.find('[id^="catalogSearch"]').val('');
 		}
 		return true;
 	};

@@ -59,7 +59,7 @@
 			<img class="pkp_helpers_container_center" height="{$coverImage.thumbnailHeight}" width="{$coverImage.thumbnailWidth}" src="{url router=$smarty.const.ROUTE_COMPONENT component="submission.CoverHandler" op="thumbnail" monographId=$monograph->getId()}" alt="{$monograph->getLocalizedTitle()|escape}" />
 		</div>
 		<div class="pkp_manageCatalog_monograph_title">
-			{assign var="monographTitle" value=$monograph->getLocalizedPrefix()|concat:' ':$monograph->getLocalizedTitle()|escape}
+			{assign var="monographTitle" value=$monograph->getLocalizedPrefix()|concat:' ':$monograph->getLocalizedTitle()|strip_unsafe_html}
 			{null_link_action key=$monographTitle id="publicCatalog-"|concat:$monographId translate=false}
 		</div>
 		<div class="pkp_manageCatalog_monograph_authorship">

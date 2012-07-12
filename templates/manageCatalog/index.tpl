@@ -62,7 +62,8 @@
 	<div id="catalogSearchContainer">
 		<form id="catalogSearchForm" class="pkp_form" action="{url op="search" path="SEARCH_TEXT_DUMMY"}" method="post">
 			{fbvFormSection title="common.search"}
-				{fbvElement type="text" id="catalogSearch" name="catalogSearch"}
+				{fbvElement type="text" id="catalogSearch" name="catalogSearch" inline=true size=$fbvStyles.size.LARGE}
+				{fbvElement type="submit" id="submitFormButton" label="common.search" inline=true}
 			{/fbvFormSection}
 		</form>
 	</div>
@@ -73,6 +74,7 @@
 		</ul>
 	</div>
 
+	<div class="pkp_helpers_clear"></div>
 	<div id="catalogTabs">
 		<ul>
 			<li><a href="{url op="homepage"}">{translate key="catalog.manage.homepage"}</a></li>
@@ -92,7 +94,7 @@
 				{/if}
 				{fbvFormArea id="forCategorySelect"}
 					{fbvFormSection}
-						{fbvElement type="select" id="categorySelect" translate=false label="catalog.selectCategory"}
+						{fbvElement type="select" id="categorySelect" translate=false label="catalog.selectCategory" size=$fbvStyles.size.MEDIUM}
 					{/fbvFormSection}
 				{/fbvFormArea}
 			</form>
@@ -112,7 +114,7 @@
 			{/if}
 				{fbvFormArea id="forSeriesSelect"}
 					{fbvFormSection}
-						{fbvElement type="select" id="seriesSelect" translate=false label="catalog.selectSeries"}
+						{fbvElement type="select" id="seriesSelect" translate=false label="catalog.selectSeries" size=$fbvStyles.size.MEDIUM}
 					{/fbvFormSection}
 				{/fbvFormArea}
 			</form>
