@@ -89,7 +89,7 @@ class ReviewGridDataProvider extends SubmissionFilesGridDataProvider {
 		$monograph =& $this->getMonograph();
 		$selectAction = new SelectReviewFilesLinkAction(
 			&$request, $this->getReviewRound(),
-			__('editor.monograph.review.manageReviewFiles')
+			__('editor.monograph.uploadSelectFiles')
 		);
 		return $selectAction;
 	}

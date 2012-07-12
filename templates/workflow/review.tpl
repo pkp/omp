@@ -24,7 +24,6 @@
 </script>
 
 {if $reviewRounds}
-	<p class="pkp_help">{translate key="editor.review.introduction"}</p>
 	<div id="reviewTabs">
 		<ul>
 			{foreach from=$reviewRounds item=reviewRound}

@@ -10,6 +10,12 @@
 {url|assign:reviewDecisionsUrl router=$smarty.const.ROUTE_PAGE page="workflow" op="editorDecisionActions" monographId=$monograph->getId() stageId=$stageId reviewRoundId=$reviewRoundId contextId="reviewRoundTab-"|concat:$reviewRoundId escape=false}
 {load_url_in_div id="reviewDecisionsDiv-"|concat:$reviewRoundId url=$reviewDecisionsUrl class="editorDecisionActions"}
 
+{if array_key_exists($smarty.const.WORKFLOW_STAGE_ID_INTERNAL_REVIEW, $accessibleWorkflowStages)}
+	<p class="pkp_help">{translate key="editor.internalReview.introduction"}</p>
+{elseif array_key_exists($smarty.const.WORKFLOW_STAGE_ID_EXTERNAL_REVIEW, $accessibleWorkflowStages)}
+	<p class="pkp_help">{translate key="editor.externalReview.introduction"}</p>
+{/if}
+
 {include file="controllers/notification/inPlaceNotification.tpl" notificationId="reviewRoundNotification_"|concat:$reviewRoundId requestOptions=$reviewRoundNotificationRequestOptions}
 
 {url|assign:reviewFileSelectionGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.review.EditorReviewFilesGridHandler" op="fetchGrid" monographId=$monograph->getId() stageId=$stageId reviewRoundId=$reviewRoundId escape=false}

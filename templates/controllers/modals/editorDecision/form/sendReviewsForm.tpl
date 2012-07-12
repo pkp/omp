@@ -23,6 +23,7 @@
 	<input type="hidden" name="decision" value="{$decision|escape}" />
 	<input type="hidden" name="reviewRoundId" value="{$reviewRoundId|escape}" />
 
+	
 	{translate key="editor.review.NotifyAuthorDecline"}<br /><br />
 
 	{fbvFormSection title="user.role.author_s" for="authorName" size=$fbvStyles.size.MEDIUM}
@@ -31,7 +32,7 @@
 
 
 	{if $stageId == $smarty.const.WORKFLOW_STAGE_ID_INTERNAL_REVIEW || $stageId == $smarty.const.WORKFLOW_STAGE_ID_EXTERNAL_REVIEW}
-		<span style="float:right;line-height: 24px;"><a id="importPeerReviews" href="#" class="sprite import">{translate key="submission.comments.importPeerReviews"}</a></span>
+		<span style="float:right;line-height: 24px;"><a id="importPeerReviews" href="#" class="sprite import">{translate key="submission.comments.addReviews"}</a></span>
 	{/if}
 
 	<!-- Message to reviewer textarea -->
