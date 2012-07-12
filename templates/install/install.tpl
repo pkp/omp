@@ -38,12 +38,15 @@
 	<input type="hidden" name="installing" value="0" />
 
 	{if $isInstallError}
-	<p>
-		<span class="pkp_form_error">{translate key="installer.installErrorsOccurred"}:</span>
-		<ul class="pkp_form_error_list">
-			<li class="error">{if $dbErrorMsg}{translate key="common.error.databaseError" error=$dbErrorMsg}{else}{translate key=$errorMsg}{/if}</li>
-		</ul>
-	</p>
+		{* The notification framework requires user sessions, which are not available on install. Use the template directly. *}
+		<div class="pkp_notification">
+			{if $dbErrorMsg}
+				{translate|assign:"errorMsg" key="common.error.databaseError" error=$dbErrorMsg}
+			{else}
+				{translate|assign:"errorMsg" key=$errorMsg}
+			{/if}
+			{include file="controllers/notification/inPlaceNotificationContent.tpl" notificationId=installer notificationStyleClass=notifyError notificationTitle="installer.installErrorsOccurred"|translate notificationContents=$errorMsg}
+		</div>
 	{/if}
 
 	<!-- OMP requires XSL or an XSL parser engine installed -->
