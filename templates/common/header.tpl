@@ -111,7 +111,7 @@
 		{rdelim});
 	</script>
 	<div class="pkp_structure_page">
-		{url|assign:fetchHeaderUrl page="index" op="header" escape=false}
+		{url|assign:fetchHeaderUrl page="header" escape=false}
 		{load_url_in_div class="pkp_structure_head" id="headerContainer" url=$fetchHeaderUrl}
 		<div class="pkp_structure_body">
 			<div class="pkp_structure_content">

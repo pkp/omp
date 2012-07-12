@@ -1,5 +1,5 @@
 {**
- * templates/index/header.tpl
+ * templates/header/index.tpl
  *
  * Copyright (c) 2003-2012 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -37,8 +37,8 @@
 	</div>
 	<div class="unit size4of5">
 		<div class="pkp_structure_navigation">
-			{include file="index/sitenav.tpl"}
-			{include file="index/localnav.tpl"}
+			{include file="header/sitenav.tpl"}
+			{include file="header/localnav.tpl"}
 		</div>
 	</div>
 </div><!-- pkp_structure_content -->
