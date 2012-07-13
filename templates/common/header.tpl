@@ -89,7 +89,6 @@
 
 	{* FIXME: This should eventually be moved into a theme plugin. *}
 	<link rel="stylesheet" type="text/css" media="all" href="{$baseUrl}/lib/pkp/styles/themes/default/theme.css" />
-	<link rel="stylesheet" type="text/css" media="all" href="{$baseUrl}/lib/pkp/js/lib/jquery/plugins/orbit-1.3.0.css" />
 
 	{$additionalHeadData}
 </head>

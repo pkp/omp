@@ -7,13 +7,53 @@
  * @brief Styles for the public catalog
  *
  */
-
+ 
 .pkp_catalog_carousel {
-	width: 33%;
+	width: 80%;
+	height: 320px;
+	margin:auto;
+	margin-top: 22px;
+	margin-bottom: 22px;
 
-	img {
-		/* Other images will show through during scroll unless opaque */
-		background: #fff;
+	.pkp_helpers_progressIndicator {
+		margin-left: auto;
+		margin-right: auto;
+		background-color: white;
+		float: none;
+		margin-top: 140px;
+		display: block;
+	}
+
+	li.mover { 
+		width: 240px;
+		height: 303px;
+		box-shadow: 0 20px 15px -12px gray;
+		
+		img {
+			padding: 0px;
+			width: 100%;
+			height: 100%;
+			opacity: 0.4;
+		}
+	}
+	
+	li.mover:hover {
+		cursor: pointer;
+	}
+	
+	li.roundabout-in-focus:hover {
+		cursor: default;
+	}
+	
+	.details_box {
+		background-color: white;
+		border: 2px solid gray;
+		left: 150px;
+		min-height: 100px;
+		padding: 15px;
+		position: absolute;
+		top: 50px;
+		width: 100%;
 	}
 }
 

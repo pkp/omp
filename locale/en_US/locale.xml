@@ -341,6 +341,7 @@
 	<!-- Catalog -->
 	<message key="catalog.browseTitles">Browse {$numTitles} Titles</message>
 	<message key="catalog.feature">Feature</message>
+	<message key="catalog.featuredBooks">Featured Books</message>
 	<message key="catalog.dateAdded">Added {$dateAdded}</message>
 	<message key="catalog.publicationInfo">Publication Info</message>
 	<message key="catalog.relatedCategories">Related categories</message>
@@ -362,6 +363,7 @@
 	<message key="common.feature">Feature</message>
 	<message key="common.searchCatalog">Search Catalog</message>
 	<message key="common.navigation">Navigation</message>
+	<message key="common.moreInfo">More Information</message>
 
 	<message key="dashboard.tasks">Tasks</message>
 	<message key="dashboard.submissions">Submissions</message>
