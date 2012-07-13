@@ -39,7 +39,7 @@ $.pkp.pages.catalog = $.pkp.pages.catalog || {};
 			minZ: 0,
 			maxZ: 360,
 			minOpacity: 1,
-			minScale: 0.05,
+			minScale: 0.3,
 			duration:this.TRANSITION_DURATION_,
 			triggerFocusEvents: true,
 			triggerBlurEvents: true
