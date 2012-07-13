@@ -12,10 +12,19 @@
  * @brief Displays a submission's catalog metadata entry form.
  */
 
+// Our two types of images.
+define('SUBMISSION_IMAGE_TYPE_THUMBNAIL', 1);
+define('SUBMISSION_IMAGE_TYPE_CATALOG', 2);
+
 // Thumbnails will be scaled down to fall within these dimensions, preserving
 // aspect ratio, and not scaling up beyond the present resolution.
 define('THUMBNAIL_MAX_WIDTH', 106);
 define('THUMBNAIL_MAX_HEIGHT', 100);
+
+// Define a second pair for the Catalog display, to ensure correct rendering
+// of the page.
+define('CATALOG_MAX_WIDTH', 240);
+define('CATALOG_MAX_HEIGHT', 303);
 
 import('lib.pkp.classes.form.Form');
 
@@ -220,52 +229,40 @@ class CatalogEntryCatalogMetadataForm extends Form {
 			$oldSetting = $publishedMonograph->getCoverImage();
 			if ($oldSetting) {
 				$simpleMonographFileManager->deleteFile($basePath . $oldSetting['thumbnailName']);
+				$simpleMonographFileManager->deleteFile($basePath . $oldSetting['catalogName']);
 				$simpleMonographFileManager->deleteFile($basePath . $oldSetting['name']);
 			}
 
 			// The following variables were fetched in validation
 			assert($this->_sizeArray && $this->_imageExtension);
 
-			// Generate the thumbnail
+			// Generate the surrogate images.
 			switch ($this->_imageExtension) {
 				case '.jpg': $cover = imagecreatefromjpeg($temporaryFilePath); break;
 				case '.png': $cover = imagecreatefrompng($temporaryFilePath); break;
 				case '.gif': $cover = imagecreatefromgif($temporaryFilePath); break;
 			}
 			assert($cover);
-			// Calculate the scaling ratio for each dimension.
-			$xRatio = min(1, THUMBNAIL_MAX_WIDTH / $this->_sizeArray[0]);
-			$yRatio = min(1, THUMBNAIL_MAX_HEIGHT / $this->_sizeArray[1]);
-			// Choose the smallest ratio and create the target.
-			$ratio = min($xRatio, $yRatio);
-			$thumbnailWidth = round($ratio * $this->_sizeArray[0]);
-			$thumbnailHeight = round($ratio * $this->_sizeArray[1]);
-			$thumbnail = imagecreatetruecolor(THUMBNAIL_MAX_WIDTH, THUMBNAIL_MAX_HEIGHT);
-			$whiteColor = imagecolorallocate($thumbnail, 255, 255, 255);
-			imagefill($thumbnail, 0, 0, $whiteColor);
-			imagecopyresampled($thumbnail, $cover, (THUMBNAIL_MAX_WIDTH - $thumbnailWidth)/2, (THUMBNAIL_MAX_HEIGHT - $thumbnailHeight)/2, 0, 0, $thumbnailWidth, $thumbnailHeight, $this->_sizeArray[0], $this->_sizeArray[1]);
+
+			$thumbnailImageInfo = $this->_buildSurrogateImage($cover, $basePath, SUBMISSION_IMAGE_TYPE_THUMBNAIL);
+			$catalogImageInfo = $this->_buildSurrogateImage($cover, $basePath, SUBMISSION_IMAGE_TYPE_CATALOG);
+
 			imagedestroy($cover);
 
 			// Copy the new file over
 			$filename = 'cover' . $this->_imageExtension;
 			$simpleMonographFileManager->copyFile($temporaryFile->getFilePath(), $basePath . $filename);
 
-			$thumbnailFilename = 'thumbnail' . $this->_imageExtension;
-
-			switch ($this->_imageExtension) {
-				case '.jpg': imagejpeg($thumbnail, $basePath . $thumbnailFilename); break;
-				case '.png': imagepng($thumbnail, $basePath . $thumbnailFilename); break;
-				case '.gif': imagegif($thumbnail, $basePath . $thumbnailFilename); break;
-			}
-			imagedestroy($thumbnail);
-
 			$publishedMonograph->setCoverImage(array(
 				'name' => $filename,
 				'width' => $this->_sizeArray[0],
 				'height' => $this->_sizeArray[1],
-				'thumbnailName' => $thumbnailFilename,
-				'thumbnailWidth' => $thumbnailWidth,
-				'thumbnailHeight' => $thumbnailHeight,
+				'thumbnailName' => $thumbnailImageInfo['filename'],
+				'thumbnailWidth' => $thumbnailImageInfo['width'],
+				'thumbnailHeight' => $thumbnailImageInfo['height'],
+				'catalogName' => $catalogImageInfo['filename'],
+				'catalogWidth' => $catalogImageInfo['width'],
+				'catalogHeight' => $catalogImageInfo['height'],
 				'uploadName' => $temporaryFile->getOriginalFileName(),
 				'dateUploaded' => Core::getCurrentDate(),
 			));
@@ -282,6 +279,54 @@ class CatalogEntryCatalogMetadataForm extends Form {
 		} else {
 			$publishedMonographDao->insertObject($publishedMonograph);
 		}
+	}
+
+	/**
+	 * Generates a surrogate image used either as a thumbnail or in the catalog.
+	 * @param resource $cover the cover image uploaded.
+	 * @param string $basePath base file path.
+	 * @param int $type the type of image to create.
+	 * @return array the details for the image (dimensions, file name, etc).
+	 */
+	function _buildSurrogateImage(&$cover, $basePath, $type) {
+		// Calculate the scaling ratio for each dimension.
+
+		$maxWidth = 0;
+		$maxHeight = 0;
+
+		switch ($type) {
+			case SUBMISSION_IMAGE_TYPE_THUMBNAIL:
+				$maxWidth = THUMBNAIL_MAX_WIDTH;
+				$maxHeight = THUMBNAIL_MAX_HEIGHT;
+				$surrogateFilename = 'thumbnail' . $this->_imageExtension;
+				break;
+			case SUBMISSION_IMAGE_TYPE_CATALOG:
+				$maxWidth = CATALOG_MAX_WIDTH;
+				$maxHeight = CATALOG_MAX_HEIGHT;
+				$surrogateFilename = 'catalog' . $this->_imageExtension;
+				break;
+		}
+
+		$xRatio = min(1, $maxWidth / $this->_sizeArray[0]);
+		$yRatio = min(1, $maxHeight / $this->_sizeArray[1]);
+
+		// Choose the smallest ratio and create the target.
+		$ratio = min($xRatio, $yRatio);
+
+		$surrogateWidth = round($ratio * $this->_sizeArray[0]);
+		$surrogateHeight = round($ratio * $this->_sizeArray[1]);
+		$surrogate = imagecreatetruecolor($maxWidth, $maxHeight);
+		$whiteColor = imagecolorallocate($surrogate, 255, 255, 255);
+		imagefill($surrogate, 0, 0, $whiteColor);
+		imagecopyresampled($surrogate, $cover, ($maxWidth - $surrogateWidth)/2, ($maxHeight - $surrogateHeight)/2, 0, 0, $surrogateWidth, $surrogateHeight, $this->_sizeArray[0], $this->_sizeArray[1]);
+
+		switch ($this->_imageExtension) {
+			case '.jpg': imagejpeg($surrogate, $basePath . $surrogateFilename); break;
+			case '.png': imagepng($surrogate, $basePath . $surrogateFilename); break;
+			case '.gif': imagegif($surrogate, $basePath . $surrogateFilename); break;
+		}
+		imagedestroy($surrogate);
+		return array('filename' => $surrogateFilename, 'width' => $maxWidth, 'height' => $maxHeight);
 	}
 }
 
