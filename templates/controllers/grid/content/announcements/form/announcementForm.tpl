@@ -19,14 +19,13 @@
 		{* Read only announcement *}
 
 		{fbvFormArea id="announcementInfo"}
-			{fbvFormSection title="common.title"}
-				{$announcement->getLocalizedTitleFull()|escape}
+			{fbvFormSection}
+				{$announcement->getLocalizedDescriptionShort()|strip_unsafe_html}
 			{/fbvFormSection}
 			{fbvFormSection title="announcement.posted"}
 				{$announcement->getDatePosted()|escape}
 			{/fbvFormSection}
-			{fbvFormSection title="common.description"}
-				{$announcement->getLocalizedDescriptionShort()|strip_unsafe_html}<br />
+			{fbvFormSection}
 				{$announcement->getLocalizedDescription()|strip_unsafe_html}
 			{/fbvFormSection}
 		{/fbvFormArea}

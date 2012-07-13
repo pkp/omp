@@ -36,14 +36,16 @@ class AnnouncementGridCellProvider extends GridCellProvider {
 
 			import('lib.pkp.classes.linkAction.request.AjaxModal');
 			$moreInformationAction = new LinkAction(
-					'moreInformation',
-					new AjaxModal(
-						$router->url($request, null, null, 'moreInformation', null, $actionArgs),
-						__('grid.action.moreInformation'),
-						null,
-						true),
+				'moreInformation',
+				new AjaxModal(
+					$router->url($request, null, null, 'moreInformation', null, $actionArgs),
 					$label,
-					'moreInformation');
+					null,
+					true
+				),
+				$label,
+				'moreInformation'
+			);
 
 			return array($moreInformationAction);
 		}
