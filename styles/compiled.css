@@ -472,6 +472,11 @@ a.sprite.collapsed:before {
   background-position:-1488px 0;
 }
 a.sprite.collapsed:hover:before { background-position:-1488px -24px; }
+a.sprite.manage:before {
+  margin-right:4px;
+  background-position:-1512px 0;
+}
+a.sprite.manage:hover:before { background-position:-1512px -24px; }
 .category.delete:before {
   margin-left:5px;
   background-position:-1008px 0;
