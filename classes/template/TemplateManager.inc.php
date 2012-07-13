@@ -14,9 +14,6 @@
  *
  */
 
-
-
-
 import('classes.file.PublicFileManager');
 import('lib.pkp.classes.template.PKPTemplateManager');
 
@@ -27,18 +24,10 @@ class TemplateManager extends PKPTemplateManager {
 	 * @param $request PKPRequest FIXME: is optional for backwards compatibility only - make mandatory
 	 */
 	function TemplateManager($request = null) {
-		// FIXME: for backwards compatibility only - remove
-		if (!isset($request)) {
-			// FIXME: Trigger a deprecation warning when enough instances of this
-			// call have been fixed to not clutter the error log.
-			$request =& Registry::get('request');
-		}
-		assert(is_a($request, 'PKPRequest'));
-
 		parent::PKPTemplateManager($request);
 
 		// Retrieve the router
-		$router =& $request->getRouter();
+		$router =& $this->request->getRouter();
 		assert(is_a($router, 'PKPRouter'));
 
 		// Are we using implicit authentication?
@@ -51,16 +40,16 @@ class TemplateManager extends PKPTemplateManager {
 			 * installer pages).
 			 */
 
-			$press =& $router->getContext($request);
-			$site =& $request->getSite();
+			$press =& $router->getContext($this->request);
+			$site =& $this->request->getSite();
 
 			$publicFileManager = new PublicFileManager();
-			$siteFilesDir = $request->getBaseUrl() . '/' . $publicFileManager->getSiteFilesPath();
+			$siteFilesDir = $this->request->getBaseUrl() . '/' . $publicFileManager->getSiteFilesPath();
 			$this->assign('sitePublicFilesDir', $siteFilesDir);
 			$this->assign('publicFilesDir', $siteFilesDir); // May be overridden by press
 
 			$siteStyleFilename = $publicFileManager->getSiteFilesPath() . '/' . $site->getSiteStyleFilename();
-			if (file_exists($siteStyleFilename)) $this->addStyleSheet($request->getBaseUrl() . '/' . $siteStyleFilename);
+			if (file_exists($siteStyleFilename)) $this->addStyleSheet($this->request->getBaseUrl() . '/' . $siteStyleFilename);
 
 			$this->assign('homeContext', array());
 			if (isset($press)) {
@@ -72,7 +61,7 @@ class TemplateManager extends PKPTemplateManager {
 
 				$pressTitle = $press->getLocalizedName();
 				$this->assign('siteTitle', $pressTitle);
-				$this->assign('publicFilesDir', $request->getBaseUrl() . '/' . $publicFileManager->getPressFilesPath($press->getId()));
+				$this->assign('publicFilesDir', $this->request->getBaseUrl() . '/' . $publicFileManager->getPressFilesPath($press->getId()));
 
 				$this->assign('primaryLocale', $press->getPrimaryLocale());
 				$this->assign('alternateLocales', $press->getSetting('alternateLocales'));
@@ -95,7 +84,7 @@ class TemplateManager extends PKPTemplateManager {
 				// Assign stylesheets and footer
 				$pressStyleSheet = $press->getSetting('pressStyleSheet');
 				if ($pressStyleSheet) {
-					$this->addStyleSheet($request->getBaseUrl() . '/' . $publicFileManager->getPressFilesPath($press->getId()) . '/' . $pressStyleSheet['uploadName']);
+					$this->addStyleSheet($this->request->getBaseUrl() . '/' . $publicFileManager->getPressFilesPath($press->getId()) . '/' . $pressStyleSheet['uploadName']);
 				}
 
 				$this->assign('pageFooter', $press->getLocalizedSetting('pressPageFooter'));
@@ -111,7 +100,7 @@ class TemplateManager extends PKPTemplateManager {
 			// Check for multiple presses.
 			$pressDao =& DAORegistry::getDAO('PressDAO');
 
-			$user =& $request->getUser();
+			$user =& $this->request->getUser();
 			if (is_a($user, 'User')) {
 				$presses =& $pressDao->getPresses();
 			} else {
@@ -129,7 +118,7 @@ class TemplateManager extends PKPTemplateManager {
 			}
 
 			if ($multiplePresses) {
-				$this->_assignPressSwitcherData($request, $presses, $press);
+				$this->_assignPressSwitcherData($presses, $press);
 			}
 		}
 	}
@@ -184,9 +173,9 @@ class TemplateManager extends PKPTemplateManager {
 
 		if ($page>1) {
 			$params[$paramName] = 1;
-			$value .= '<a href="' . Request::url(null, null, null, Request::getRequestedArgs(), $params, $anchor, true) . '"' . $allExtra . '>&lt;&lt;</a>&nbsp;';
+			$value .= '<a href="' . $this->request->url(null, null, null, $this->request->getRequestedArgs(), $params, $anchor, true) . '"' . $allExtra . '>&lt;&lt;</a>&nbsp;';
 			$params[$paramName] = $page - 1;
-			$value .= '<a href="' . Request::url(null, null, null, Request::getRequestedArgs(), $params, $anchor, true) . '"' . $allExtra . '>&lt;</a>&nbsp;';
+			$value .= '<a href="' . $this->request->url(null, null, null, $this->request->getRequestedArgs(), $params, $anchor, true) . '"' . $allExtra . '>&lt;</a>&nbsp;';
 		}
 
 		for ($i=$pageBase; $i<min($pageBase+$numPageLinks, $pageCount+1); $i++) {
@@ -194,14 +183,14 @@ class TemplateManager extends PKPTemplateManager {
 				$value .= "<strong>$i</strong>&nbsp;";
 			} else {
 				$params[$paramName] = $i;
-				$value .= '<a href="' . Request::url(null, null, null, Request::getRequestedArgs(), $params, $anchor, true) . '"' . $allExtra . '>' . $i . '</a>&nbsp;';
+				$value .= '<a href="' . $this->request->url(null, null, null, $this->request->getRequestedArgs(), $params, $anchor, true) . '"' . $allExtra . '>' . $i . '</a>&nbsp;';
 			}
 		}
 		if ($page < $pageCount) {
 			$params[$paramName] = $page + 1;
-			$value .= '<a href="' . Request::url(null, null, null, Request::getRequestedArgs(), $params, $anchor, true) . '"' . $allExtra . '>&gt;</a>&nbsp;';
+			$value .= '<a href="' . $this->request->url(null, null, null, $this->request->getRequestedArgs(), $params, $anchor, true) . '"' . $allExtra . '>&gt;</a>&nbsp;';
 			$params[$paramName] = $pageCount;
-			$value .= '<a href="' . Request::url(null, null, null, Request::getRequestedArgs(), $params, $anchor, true) . '"' . $allExtra . '>&gt;&gt;</a>&nbsp;';
+			$value .= '<a href="' . $this->request->url(null, null, null, $this->request->getRequestedArgs(), $params, $anchor, true) . '"' . $allExtra . '>&gt;&gt;</a>&nbsp;';
 		}
 
 		return $value;
@@ -214,17 +203,16 @@ class TemplateManager extends PKPTemplateManager {
 	/**
 	 * Get the press switcher data and assign it to
 	 * the template manager.
-	 * @param $request Request
 	 * @param $presses Array
 	 * @param $currentPress Press
 	 */
-	function _assignPressSwitcherData($request, &$presses, $currentPress = null) {
+	function _assignPressSwitcherData(&$presses, $currentPress = null) {
 		$workingPresses =& $presses->toArray();
 
-		$dispatcher = $request->getDispatcher();
+		$dispatcher = $this->request->getDispatcher();
 		$pressesNameAndUrl = array();
 		foreach ($workingPresses as $workingPress) {
-			$pressUrl = $dispatcher->url($request, ROUTE_PAGE, $workingPress->getPath());
+			$pressUrl = $dispatcher->url($this->request, ROUTE_PAGE, $workingPress->getPath());
 			$pressesNameAndUrl[$pressUrl] = $workingPress->getLocalizedName();
 		};
 
@@ -233,7 +221,7 @@ class TemplateManager extends PKPTemplateManager {
 		// be visible.
 		$currentPressUrl = null;
 		if ($currentPress) {
-			$currentPressUrl = $dispatcher->url($request, ROUTE_PAGE, $currentPress->getPath());
+			$currentPressUrl = $dispatcher->url($this->request, ROUTE_PAGE, $currentPress->getPath());
 		} else {
 			$pressesNameAndUrl = array(__('press.select')) + $pressesNameAndUrl;
 		}
