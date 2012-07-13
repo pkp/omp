@@ -154,13 +154,11 @@
 		{/fbvFormSection}
 	{/fbvFormArea}
 
-	{if !$skipMiscSettings}
-		 {fbvFormArea id="miscSettingsFormArea" class="border" title="installer.miscSettings"}
-			{fbvFormSection label="installer.oaiRepositoryId" description="installer.oaiRepositoryIdInstructions"}
-				{fbvElement type="text" id="oaiRepositoryId" value=$oaiRepositoryId|escape maxlength="60" size=$fbvStyles.size.LARGE}
-			{/fbvFormSection}
-		{/fbvFormArea}
-	{/if}{* !$skipMiscSettings *}
+	{fbvFormArea id="oaiSettingsFormArea" class="border" title="installer.oaiSettings"}
+		{fbvFormSection label="installer.oaiRepositoryId" description="installer.oaiRepositoryIdInstructions"}
+			{fbvElement type="text" id="oaiRepositoryId" value=$oaiRepositoryId|escape maxlength="60" size=$fbvStyles.size.LARGE}
+		{/fbvFormSection}
+	{/fbvFormArea}
 
 	{fbvFormButtons id="appearanceFormSubmit" submitText="common.save" hideCancel=true submitText="installer.installApplication"}
 </form>
