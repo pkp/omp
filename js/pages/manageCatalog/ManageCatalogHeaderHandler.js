@@ -246,7 +246,7 @@ $.pkp.pages.manageCatalog = $.pkp.pages.manageCatalog || {};
 			$selector = $(element).find('#categorySelect');
 			var categoryPath = $selector.find('option').first().val();
 			if (categoryPath !== undefined) {
-				$selector.find('option').eq(1).attr('selected', 'selected');
+				$selector.find('option').eq(0).attr('selected', 'selected');
 				this.selectCategoryHandler_(element, event, categoryPath);
 			}
 		}
@@ -254,7 +254,7 @@ $.pkp.pages.manageCatalog = $.pkp.pages.manageCatalog || {};
 			$selector = $(element).find('#seriesSelect');
 			var seriesPath = $selector.find('option').first().val();
 			if (seriesPath !== undefined) {
-				$selector.find('option').eq(1).attr('selected', 'selected');
+				$selector.find('option').eq(0).attr('selected', 'selected');
 				this.selectSeriesHandler_(element, event, seriesPath);
 			}
 		}
