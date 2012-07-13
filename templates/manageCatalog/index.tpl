@@ -90,7 +90,7 @@
 						<ul class="submission_actions pkp_helpers_flatlist pkp_linkActions">
 							<li>{include file="linkAction/linkAction.tpl" action=$manageCategoriesLinkAction}</li>
 						</ul>
-					</div><br />
+					</div>
 				{/if}
 				{fbvFormArea id="forCategorySelect"}
 					{fbvFormSection}
@@ -105,13 +105,13 @@
 		</div>
 		<div id="seriesTab">
 			<form id="selectSeriesForm" class="pkp_form">
-			{if array_intersect(array(ROLE_ID_PRESS_MANAGER), $userRoles)}
-				<div class="pkp_helpers_align_right">
-					<ul class="submission_actions pkp_helpers_flatlist pkp_linkActions">
-						<li>{include file="linkAction/linkAction.tpl" action=$manageSeriesLinkAction}</li>
-					</ul>
-				</div><br />
-			{/if}
+				{if array_intersect(array(ROLE_ID_PRESS_MANAGER), $userRoles)}
+					<div class="pkp_helpers_align_right">
+						<ul class="submission_actions pkp_helpers_flatlist pkp_linkActions">
+							<li>{include file="linkAction/linkAction.tpl" action=$manageSeriesLinkAction}</li>
+						</ul>
+					</div>
+				{/if}
 				{fbvFormArea id="forSeriesSelect"}
 					{fbvFormSection}
 						{fbvElement type="select" id="seriesSelect" translate=false label="catalog.selectSeries" size=$fbvStyles.size.MEDIUM}
