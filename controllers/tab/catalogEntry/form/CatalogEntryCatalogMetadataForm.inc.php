@@ -14,8 +14,8 @@
 
 // Thumbnails will be scaled down to fall within these dimensions, preserving
 // aspect ratio, and not scaling up beyond the present resolution.
-define('THUMBNAIL_MAX_WIDTH', 110);
-define('THUMBNAIL_MAX_HEIGHT', 110);
+define('THUMBNAIL_MAX_WIDTH', 106);
+define('THUMBNAIL_MAX_HEIGHT', 100);
 
 import('lib.pkp.classes.form.Form');
 
@@ -238,10 +238,12 @@ class CatalogEntryCatalogMetadataForm extends Form {
 			$yRatio = min(1, THUMBNAIL_MAX_HEIGHT / $this->_sizeArray[1]);
 			// Choose the smallest ratio and create the target.
 			$ratio = min($xRatio, $yRatio);
-			$thumbnailWidth = $ratio * $this->_sizeArray[0];
-			$thumbnailHeight = $ratio * $this->_sizeArray[1];
-			$thumbnail = imagecreatetruecolor($thumbnailWidth, $thumbnailHeight);
-			imagecopyresampled($thumbnail, $cover, 0, 0, 0, 0, $thumbnailWidth, $thumbnailHeight, $this->_sizeArray[0], $this->_sizeArray[1]);
+			$thumbnailWidth = round($ratio * $this->_sizeArray[0]);
+			$thumbnailHeight = round($ratio * $this->_sizeArray[1]);
+			$thumbnail = imagecreatetruecolor(THUMBNAIL_MAX_WIDTH, THUMBNAIL_MAX_HEIGHT);
+			$whiteColor = imagecolorallocate($thumbnail, 255, 255, 255);
+			imagefill($thumbnail, 0, 0, $whiteColor);
+			imagecopyresampled($thumbnail, $cover, (THUMBNAIL_MAX_WIDTH - $thumbnailWidth)/2, (THUMBNAIL_MAX_HEIGHT - $thumbnailHeight)/2, 0, 0, $thumbnailWidth, $thumbnailHeight, $this->_sizeArray[0], $this->_sizeArray[1]);
 			imagedestroy($cover);
 
 			// Copy the new file over
@@ -249,10 +251,11 @@ class CatalogEntryCatalogMetadataForm extends Form {
 			$simpleMonographFileManager->copyFile($temporaryFile->getFilePath(), $basePath . $filename);
 
 			$thumbnailFilename = 'thumbnail' . $this->_imageExtension;
+
 			switch ($this->_imageExtension) {
 				case '.jpg': imagejpeg($thumbnail, $basePath . $thumbnailFilename); break;
-				case '.jpg': imagepng($thumbnail, $basePath . $thumbnailFilename); break;
-				case '.jpg': imagegif($thumbnail, $basePath . $thumbnailFilename); break;
+				case '.png': imagepng($thumbnail, $basePath . $thumbnailFilename); break;
+				case '.gif': imagegif($thumbnail, $basePath . $thumbnailFilename); break;
 			}
 			imagedestroy($thumbnail);
 
