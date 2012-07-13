@@ -809,6 +809,10 @@ table.pkp_listing td.separator {
   -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
   filter:alpha(opacity=30);
 }
+.pkp_form .pkp_formArea p {
+  margin:0px;
+  padding:0px;
+}
 .pkp_form .debug div, .pkp_form .debug label { border:1px solid orange; }
 .pkp_form fieldset { margin:10px 5px; }
 .pkp_form fieldset.border {
