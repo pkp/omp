@@ -22,8 +22,6 @@
 	{url|assign:copyeditingGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.copyedit.CopyeditingFilesGridHandler" op="fetchGrid" monographId=$monograph->getId() escape=false}
 	{load_url_in_div id="copyeditingGrid" class="update_target_signoff" url=$copyeditingGridUrl}
 
-	{url|assign:fairCopyGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.fairCopy.FairCopyFilesGridHandler" op="fetchGrid" monographId=$monograph->getId() escape=false}
-	{load_url_in_div id="fairCopyGrid" url=$fairCopyGridUrl}
 </div>
 </div>
 {include file="workflow/legend.tpl"}

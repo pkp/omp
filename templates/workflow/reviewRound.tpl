@@ -10,9 +10,9 @@
 {url|assign:reviewDecisionsUrl router=$smarty.const.ROUTE_PAGE page="workflow" op="editorDecisionActions" monographId=$monograph->getId() stageId=$stageId reviewRoundId=$reviewRoundId contextId="reviewRoundTab-"|concat:$reviewRoundId escape=false}
 {load_url_in_div id="reviewDecisionsDiv-"|concat:$reviewRoundId url=$reviewDecisionsUrl class="editorDecisionActions"}
 
-{if array_key_exists($smarty.const.WORKFLOW_STAGE_ID_INTERNAL_REVIEW, $accessibleWorkflowStages)}
+{if $stageId == $smarty.const.WORKFLOW_STAGE_ID_INTERNAL_REVIEW}
 	<p class="pkp_help">{translate key="editor.internalReview.introduction"}</p>
-{elseif array_key_exists($smarty.const.WORKFLOW_STAGE_ID_EXTERNAL_REVIEW, $accessibleWorkflowStages)}
+{elseif $stageId == $smarty.const.WORKFLOW_STAGE_ID_EXTERNAL_REVIEW}
 	<p class="pkp_help">{translate key="editor.externalReview.introduction"}</p>
 {/if}
 
