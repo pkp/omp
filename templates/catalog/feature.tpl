@@ -24,7 +24,8 @@
 	<h3>{translate key="catalog.feature"}</h3>
 
 	<div class="pkp_catalog_featureSpecs">
-		<img src="{url router=$smarty.const.ROUTE_COMPONENT component="submission.CoverHandler" op="cover" monographId=$featuredMonograph->getId()}" />
+		{assign var="coverImage" value=$featuredMonograph->getCoverImage()}
+		<a href="{url router=$smarty.const.ROUTE_COMPONENT component="submission.CoverHandler" op="cover" monographId=$featuredMonograph->getId()}"><img height="{$coverImage.catalogHeight}" width="{$coverImage.catalogWidth}" alt="{$featuredMonograph->getLocalizedTitle()|escape}" src="{url router=$smarty.const.ROUTE_COMPONENT component="submission.CoverHandler" op="catalog" monographId=$featuredMonograph->getId()}" /></a>
 		<!-- FIXME: Put specs for the feature here. -->
 	</div>
 
