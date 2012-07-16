@@ -94,7 +94,8 @@ class ManageCatalogHandler extends Handler {
 					null,
 					true
 				),
-				__('catalog.manage.manageCategories')
+				__('catalog.manage.manageCategories'),
+				'manage'
 			);
 
 		$manageSeriesLinkAction =
@@ -106,7 +107,8 @@ class ManageCatalogHandler extends Handler {
 					null,
 					true
 				),
-				__('catalog.manage.manageSeries')
+				__('catalog.manage.manageSeries'),
+				'manage'
 			);
 
 		$templateMgr->assign('manageCategoriesLinkAction', $manageCategoriesLinkAction);
