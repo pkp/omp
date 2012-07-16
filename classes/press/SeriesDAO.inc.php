@@ -95,6 +95,7 @@ class SeriesDAO extends DAO {
 		$series->setPressId($row['press_id']);
 		$series->setFeatured($row['featured']);
 		$series->setPath($row['path']);
+		$series->setImage(unserialize($row['image']));
 
 		$this->getDataObjectSettings('series_settings', 'series_id', $row['series_id'], $series);
 
@@ -130,13 +131,14 @@ class SeriesDAO extends DAO {
 	function insertObject(&$series) {
 		$this->update(
 			'INSERT INTO series
-				(press_id, featured, path)
+				(press_id, featured, path, image)
 			VALUES
-				(?, ?, ?)',
+				(?, ?, ?, ?)',
 			array(
 				(int) $series->getPressId(),
 				(int) $series->getFeatured(),
-				(string) $series->getPath()
+				(string) $series->getPath(),
+				serialize($series->getImage() ? $series->getImage() : array()),
 			)
 		);
 
@@ -154,13 +156,15 @@ class SeriesDAO extends DAO {
 			'UPDATE series
 			SET	press_id = ?,
 				featured = ?,
-				path = ?
+				path = ?,
+				image = ?
 			WHERE	series_id = ?',
 			array(
 				(int) $series->getPressId(),
 				(int) $series->getFeatured(),
 				(string) $series->getPath(),
-				(int) $series->getId()
+				serialize($series->getImage() ? $series->getImage() : array()),
+				(int) $series->getId(),
 			)
 		);
 		$this->updateLocaleFields($series);

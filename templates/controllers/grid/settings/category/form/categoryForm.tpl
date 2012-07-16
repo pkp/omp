@@ -10,12 +10,34 @@
 <script type="text/javascript">
 	$(function() {ldelim}
 		// Attach the form handler.
-		$('#categoryForm').pkpHandler('$.pkp.controllers.form.AjaxFormHandler');
+		$('#categoryForm').pkpHandler(
+			'$.pkp.controllers.form.FileUploadFormHandler',
+			{ldelim}
+				$uploader: $('#plupload'),
+				uploaderOptions: {ldelim}
+					uploadUrl: '{url|escape:javascript op="uploadImage"}',
+					baseUrl: '{$baseUrl|escape:javascript}'
+				{rdelim}
+			{rdelim}
+		);
 	{rdelim});
 </script>
 
 <form class="pkp_form" id="categoryForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.settings.category.CategoryCategoryGridHandler" op="updateCategory" categoryId=$categoryId}">
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="categoryFormNotification"}
+
+	{fbvFormArea id="file"}
+		{fbvFormSection title="monograph.coverImage"}
+			<div id="plupload"></div>
+		{/fbvFormSection}
+	{/fbvFormArea}
+	{* Container for uploaded file *}
+	<input type="hidden" name="temporaryFileId" id="temporaryFileId" value="" />
+
+	{if $image}
+		{translate|assign:"altTitle" key="monograph.currentCoverImage"}
+		<img class="pkp_helpers_container_center" height="{$image.thumbnailHeight}" width="{$image.thumbnailWidth}" src="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="thumbnail" type="category" id=$categoryId}" alt="{$altTitle|escape}" />
+	{/if}
 
 	{fbvFormArea id="categoryDetails"}
 

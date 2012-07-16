@@ -31,6 +31,7 @@
 		<field name="path" type="C2" size="255">
 			<NOTNULL />
 		</field>
+		<field name="image" type="X"/>
 		<descr>Press categories.</descr>
 		<index name="category_press_id">
 			<col>press_id</col>
@@ -466,6 +467,7 @@
 		<field name="path" type="C2" size="255">
 			<NOTNULL />
 		</field>
+		<field name="image" type="X"/>
 		<descr>Press series.</descr>
 		<index name="series_press_id">
 			<col>press_id</col>

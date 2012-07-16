@@ -170,6 +170,83 @@ class CatalogHandler extends Handler {
 		$templateMgr->display('catalog/results.tpl');
 	}
 
+	/**
+	 * Serve the image for a category or series.
+	 */
+	function fullSize($args, &$request) {
+
+		$press =& $request->getPress();
+		$type = $request->getUserVar('type');
+		$id = $request->getUserVar('id');
+		$imageInfo = array();
+
+		switch ($type) {
+			case 'category':
+				$path = '/categories/';
+				$categoryDao =& DAORegistry::getDAO('CategoryDAO');
+				$category = $categoryDao->getById($id, $press->getId());
+				if ($category) {
+					$imageInfo = $category->getImage();
+				}
+				break;
+			case 'series':
+				$path = '/series/';
+				$seriesDao =& DAORegistry::getDAO('SeriesDAO');
+				$series = $seriesDao->getById($id, $press->getId());
+				if ($series) {
+					$imageInfo = $series->getImage();
+				}
+				break;
+			default:
+				fatalError('invalid type specified');
+				break;
+		}
+
+		if ($imageInfo) {
+			import('file.PressFileManager');
+			$pressFileManager = new PressFileManager($press->getId());
+			$pressFileManager->downloadFile($pressFileManager->getBasePath() . $path . $imageInfo['name'], null, true);
+		}
+	}
+
+	/**
+	 * Serve the thumbnail for a category or series.
+	 */
+	function thumbnail($args, &$request) {
+		$press =& $request->getPress();
+		$type = $request->getUserVar('type');
+		$id = $request->getUserVar('id');
+		$imageInfo = array();
+
+		switch ($type) {
+			case 'category':
+				$path = '/categories/';
+				$categoryDao =& DAORegistry::getDAO('CategoryDAO');
+				$category = $categoryDao->getById($id, $press->getId());
+				if ($category) {
+					$imageInfo = $category->getImage();
+				}
+				break;
+			case 'series':
+				$path = '/series/';
+				$seriesDao =& DAORegistry::getDAO('SeriesDAO');
+				$series = $seriesDao->getById($id, $press->getId());
+				if ($series) {
+					$imageInfo = $series->getImage();
+				}
+				break;
+			default:
+				fatalError('invalid type specified');
+				break;
+		}
+
+		if ($imageInfo) {
+			import('file.PressFileManager');
+			$pressFileManager = new PressFileManager($press->getId());
+			$pressFileManager->downloadFile($pressFileManager->getBasePath() . $path . $imageInfo['thumbnailName'], null, true);
+		}
+	}
+
 	function setupTemplate(&$request) {
 		$templateMgr =& TemplateManager::getManager();
 		$press =& $request->getPress();

@@ -150,6 +150,7 @@ class CategoryDAO extends DAO {
 		$category->setPressId($row['press_id']);
 		$category->setParentId($row['parent_id']);
 		$category->setPath($row['path']);
+		$category->setImage(unserialize($row['image']));
 
 		$this->getDataObjectSettings('category_settings', 'category_id', $row['category_id'], $category);
 
@@ -187,13 +188,14 @@ class CategoryDAO extends DAO {
 	function insertObject(&$category) {
 		$this->update(
 			'INSERT INTO categories
-				(press_id, parent_id, path)
+				(press_id, parent_id, path, image)
 				VALUES
-				(?, ?, ?)',
+				(?, ?, ?, ?)',
 			array(
 				(int) $category->getPressId(),
 				(int) $category->getParentId(),
-				$category->getPath()
+				$category->getPath(),
+				serialize($category->getImage() ? $category->getImage() : array()),
 			)
 		);
 
@@ -211,12 +213,14 @@ class CategoryDAO extends DAO {
 			'UPDATE	categories
 			SET	press_id = ?,
 				parent_id = ?,
-				path = ?
+				path = ?,
+				image = ?
 			WHERE	category_id = ?',
 			array(
 				(int) $category->getPressId(),
 				(int) $category->getParentId(),
 				$category->getPath(),
+				serialize($category->getImage() ? $category->getImage() : array()),
 				(int) $category->getId()
 			)
 		);

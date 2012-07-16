@@ -38,7 +38,8 @@ class CategoryCategoryGridHandler extends CategoryGridHandler {
 				'addCategory',
 				'editCategory',
 				'updateCategory',
-				'deleteCategory'
+				'deleteCategory',
+				'uploadImage'
 			)
 		);
 	}
@@ -210,6 +211,31 @@ class CategoryCategoryGridHandler extends CategoryGridHandler {
 		// Delete the category
 		$categoryDao->deleteObject($category);
 		return DAO::getDataChangedEvent();
+	}
+
+	/**
+	 * Handle file uploads for cover/image art for things like Series and Categories.
+	 * @param $request PKPRequest
+	 * @param $args array
+	 */
+	function uploadImage($args, &$request) {
+		$router =& $request->getRouter();
+		$context = $request->getContext();
+		$user =& $request->getUser();
+
+		import('classes.file.TemporaryFileManager');
+		$temporaryFileManager = new TemporaryFileManager();
+		$temporaryFile = $temporaryFileManager->handleUpload('uploadedFile', $user->getId());
+		if ($temporaryFile) {
+			$json = new JSONMessage(true);
+			$json->setAdditionalAttributes(array(
+					'temporaryFileId' => $temporaryFile->getId()
+			));
+		} else {
+			$json = new JSONMessage(false, __('common.uploadFailed'));
+		}
+
+		return $json->getString();
 	}
 
 	//

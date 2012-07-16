@@ -170,6 +170,22 @@ class Series extends DataObject {
 	function setFeatured($featured) {
 		$this->setData('featured', $featured);
 	}
+
+	/**
+	 * Get the image.
+	 * @return array
+	 */
+	function getImage() {
+		return $this->getData('image');
+	}
+
+	/**
+	 * Set the image.
+	 * @param $image array
+	 */
+	function setImage($image) {
+		return $this->setData('image', $image);
+	}
 }
 
 ?>

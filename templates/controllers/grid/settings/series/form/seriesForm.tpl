@@ -10,12 +10,34 @@
 <script type="text/javascript">
 	$(function() {ldelim}
 		// Attach the form handler.
-		$('#seriesForm').pkpHandler('$.pkp.controllers.form.AjaxFormHandler');
+		$('#seriesForm').pkpHandler(
+			'$.pkp.controllers.form.FileUploadFormHandler',
+			{ldelim}
+				$uploader: $('#plupload'),
+				uploaderOptions: {ldelim}
+					uploadUrl: '{url|escape:javascript op="uploadImage"}',
+					baseUrl: '{$baseUrl|escape:javascript}'
+				{rdelim}
+			{rdelim}
+		);
 	{rdelim});
 </script>
 
 <form class="pkp_form" id="seriesForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.settings.series.SeriesGridHandler" op="updateSeries" seriesId=$seriesId}">
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="seriesFormNotification"}
+
+	{fbvFormArea id="file"}
+		{fbvFormSection title="monograph.coverImage"}
+			<div id="plupload"></div>
+		{/fbvFormSection}
+	{/fbvFormArea}
+	{* Container for uploaded file *}
+	<input type="hidden" name="temporaryFileId" id="temporaryFileId" value="" />
+
+	{if $image}
+		{translate|assign:"altTitle" key="monograph.currentCoverImage"}
+		<img class="pkp_helpers_container_center" height="{$image.thumbnailHeight}" width="{$image.thumbnailWidth}" src="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="thumbnail" type="series" id=$seriesId}" alt="{$altTitle|escape}" />
+	{/if}
 
 	{fbvFormArea id="seriesInfo"}
 		{fbvFormSection for="title" required="true" description="common.prefixAndTitle.tip" title="manager.series.seriesTitle"}

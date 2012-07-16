@@ -18,8 +18,10 @@
 switch ($op) {
 	case 'index':
 	case 'category':
+	case 'fullSize':
 	case 'newReleases':
 	case 'series':
+	case 'thumbnail':
 	case 'results':
 		define('HANDLER_CLASS', 'CatalogHandler');
 		import('pages.catalog.CatalogHandler');

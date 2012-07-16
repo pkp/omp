@@ -120,6 +120,22 @@ class Category extends DataObject {
 	function setDescription($description, $locale) {
 		return $this->setData('description', $description, $locale);
 	}
+
+	/**
+	 * Get the image.
+	 * @return array
+	 */
+	function getImage() {
+		return $this->getData('image');
+	}
+
+	/**
+	 * Set the image.
+	 * @param $image array
+	 */
+	function setImage($image) {
+		return $this->setData('image', $image);
+	}
 }
 
 ?>

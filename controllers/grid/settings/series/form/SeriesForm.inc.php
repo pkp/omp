@@ -15,15 +15,32 @@
 
 import('lib.pkp.classes.form.Form');
 
+define('THUMBNAIL_MAX_WIDTH', 106);
+define('THUMBNAIL_MAX_HEIGHT', 100);
+
 class SeriesForm extends Form {
 	/** the id for the series being edited **/
 	var $_seriesId;
+
+	/** @var $_userId int The current user ID */
+	var $_userId;
+
+	/** @var $_imageExtension string Cover image extension */
+	var $_imageExtension;
+
+	/** @var $_sizeArray array Cover image information from getimagesize */
+	var $_sizeArray;
 
 	/**
 	 * Constructor.
 	 */
 	function SeriesForm($seriesId = null) {
 		$this->setSeriesId($seriesId);
+
+		$request =& Application::getRequest();
+		$user =& $request->getUser();
+		$this->_userId = $user->getUserId();
+
 		parent::Form('controllers/grid/settings/series/form/seriesForm.tpl');
 
 		// Validation checks for this form
@@ -53,9 +70,31 @@ class SeriesForm extends Form {
 				'path' => $series->getPath(),
 				'description' => $series->getDescription(null),
 				'prefix' => $series->getPrefix(null),
-				'subtitle' => $series->getSubtitle(null)
+				'subtitle' => $series->getSubtitle(null),
+				'image' => $series->getImage(),
 			);
 		}
+	}
+
+	/**
+	 * @see Form::validate()
+	 */
+	function validate() {
+		if ($temporaryFileId = $this->getData('temporaryFileId')) {
+			import('classes.file.TemporaryFileManager');
+			$temporaryFileManager = new TemporaryFileManager();
+			$temporaryFileDao =& DAORegistry::getDAO('TemporaryFileDAO');
+			$temporaryFile =& $temporaryFileDao->getTemporaryFile($temporaryFileId, $this->_userId);
+			if (	!$temporaryFile ||
+					!($this->_imageExtension = $temporaryFileManager->getImageExtension($temporaryFile->getFileType())) ||
+					!($this->_sizeArray = getimagesize($temporaryFile->getFilePath())) ||
+					$this->_sizeArray[0] <= 0 || $this->_sizeArray[1] <= 0
+			) {
+				$this->addError('temporaryFileId', __('form.invalidImage'));
+				return false;
+			}
+		}
+		return parent::validate();
 	}
 
 	/**
@@ -83,7 +122,7 @@ class SeriesForm extends Form {
 	 * @see Form::readInputData()
 	 */
 	function readInputData() {
-		$this->readUserVars(array('seriesId', 'path', 'featured', 'title', 'description', 'seriesEditors', 'categories', 'prefix', 'subtitle'));
+		$this->readUserVars(array('seriesId', 'path', 'featured', 'title', 'description', 'seriesEditors', 'categories', 'prefix', 'subtitle', 'temporaryFileId'));
 	}
 
 	/**
@@ -111,6 +150,77 @@ class SeriesForm extends Form {
 		$series->setDescription($this->getData('description'), null); // Localized
 		$series->setPrefix($this->getData('prefix'), null); // Localized
 		$series->setSubtitle($this->getData('subtitle'), null); // Localized
+
+		// Handle the image upload if there was one.
+		if ($temporaryFileId = $this->getData('temporaryFileId')) {
+			// Fetch the temporary file storing the uploaded library file
+			$temporaryFileDao =& DAORegistry::getDAO('TemporaryFileDAO');
+
+			$temporaryFile =& $temporaryFileDao->getTemporaryFile($temporaryFileId, $this->_userId);
+			$temporaryFilePath = $temporaryFile->getFilePath();
+			import('classes.file.PressFileManager');
+			$pressFileManager = new PressFileManager($press->getId());
+			$basePath = $pressFileManager->getBasePath() . '/series/';
+
+			// Delete the old file if it exists
+			$oldSetting = $series->getImage();
+			if ($oldSetting) {
+				$pressFileManager->deleteFile($basePath . $oldSetting['thumbnailName']);
+				$pressFileManager->deleteFile($basePath . $oldSetting['name']);
+			}
+
+			// The following variables were fetched in validation
+			assert($this->_sizeArray && $this->_imageExtension);
+
+			// Generate the surrogate image.
+			switch ($this->_imageExtension) {
+				case '.jpg': $image = imagecreatefromjpeg($temporaryFilePath); break;
+				case '.png': $image = imagecreatefrompng($temporaryFilePath); break;
+				case '.gif': $image = imagecreatefromgif($temporaryFilePath); break;
+			}
+			assert($image);
+
+			$thumbnailFilename = $series->getId() . '-series-thumbnail' . $this->_imageExtension;
+			$xRatio = min(1, THUMBNAIL_MAX_WIDTH / $this->_sizeArray[0]);
+			$yRatio = min(1, THUMBNAIL_MAX_HEIGHT / $this->_sizeArray[1]);
+
+			$ratio = min($xRatio, $yRatio);
+
+			$thumbnailWidth = round($ratio * $this->_sizeArray[0]);
+			$thumbnailHeight = round($ratio * $this->_sizeArray[1]);
+			$thumbnail = imagecreatetruecolor(THUMBNAIL_MAX_WIDTH, THUMBNAIL_MAX_HEIGHT);
+			$whiteColor = imagecolorallocate($thumbnail, 255, 255, 255);
+			imagefill($thumbnail, 0, 0, $whiteColor);
+			imagecopyresampled($thumbnail, $image, (THUMBNAIL_MAX_WIDTH - $thumbnailWidth)/2, (THUMBNAIL_MAX_HEIGHT - $thumbnailHeight)/2, 0, 0, $thumbnailWidth, $thumbnailHeight, $this->_sizeArray[0], $this->_sizeArray[1]);
+
+			// Copy the new file over
+			$filename = $series->getId() . '-series' . $this->_imageExtension;
+			$pressFileManager->copyFile($temporaryFile->getFilePath(), $basePath . $filename);
+
+			switch ($this->_imageExtension) {
+				case '.jpg': imagejpeg($thumbnail, $basePath . $thumbnailFilename); break;
+				case '.png': imagepng($thumbnail, $basePath . $thumbnailFilename); break;
+				case '.gif': imagegif($thumbnail, $basePath . $thumbnailFilename); break;
+			}
+			imagedestroy($thumbnail);
+			imagedestroy($image);
+
+			$series->setImage(array(
+					'name' => $filename,
+					'width' => $this->_sizeArray[0],
+					'height' => $this->_sizeArray[1],
+					'thumbnailName' => $thumbnailFilename,
+					'thumbnailWidth' => THUMBNAIL_MAX_WIDTH,
+					'thumbnailHeight' => THUMBNAIL_MAX_HEIGHT,
+					'uploadName' => $temporaryFile->getOriginalFileName(),
+					'dateUploaded' => Core::getCurrentDate(),
+			));
+
+			// Clean up the temporary file
+			import('classes.file.TemporaryFileManager');
+			$temporaryFileManager = new TemporaryFileManager();
+			$temporaryFileManager->deleteFile($temporaryFileId, $this->_userId);
+		}
 
 		// Insert or update the series in the DB
 		if ($this->getSeriesId()) {
