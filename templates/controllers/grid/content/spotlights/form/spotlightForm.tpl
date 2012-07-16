@@ -6,7 +6,7 @@
  *
  * Form to read/create/edit spotlights.
  *}
-{url|assign:addSpotlightItemUrl op="itemAutocomplete" pressId=$pressId type=$type escape=false}
+{url|assign:addSpotlightItemUrl op="itemAutocomplete" pressId=$pressId escape=false}
 <script type="text/javascript">
 	$(function() {ldelim}
 		// Attach the form handler.
@@ -26,18 +26,13 @@
 		{/if}
 
 		{fbvFormSection for="title"}
+			{fbvElement type="autocomplete" id="assocId" required="true" value=$assocTitle autocompleteValue=$assocId label="grid.content.spotlights.form.item" autocompleteUrl=$addSpotlightItemUrl size=$fbvStyles.size.MEDIUM inline="true"}
 			{fbvElement type="text" multilingual="true" id="title" required="true" label="grid.content.spotlights.form.title" value=$title maxlength="255" size=$fbvStyles.size.MEDIUM inline="true"}
-			{fbvElement type="select" id="type" from=$spotlightTypes selected=$type translate=false required="true" label="grid.content.spotlights.form.type" size=$fbvStyles.size.MEDIUM inline="true"}
 		{/fbvFormSection}
 
 		{fbvFormSection label="common.description" for="description"}
 			{fbvElement type="textarea" multilingual=true name="description" id="description" value=$description rich=true height=$fbvStyles.height.SHORT}
 		{/fbvFormSection}
-
-		{fbvFormSection}
-			{fbvElement type="autocomplete" id="assocId" required="true" value=$assocTitle autocompleteValue=$assocId label="grid.content.spotlights.form.item" autocompleteUrl=$addSpotlightItemUrl size=$fbvStyles.size.MEDIUM inline="true"}
-		{/fbvFormSection}
-
 	{/fbvFormArea}
 	{fbvFormButtons id="spotlightFormSubmit" submitText="common.save"}
 </form>

@@ -36,9 +36,8 @@ class SpotlightForm extends Form {
 		$this->_spotlightId = $spotlightId;
 		$this->_pressId = $pressId;
 
-		$this->addCheck(new FormValidatorCustom($this, 'assocId', 'required', 'grid.content.spotlights.itemRequired', create_function('$assocId, $form', 'return is_numeric($assocId) && $assocId > 0;'), array(&$this)));
+		$this->addCheck(new FormValidatorCustom($this, 'assocId', 'required', 'grid.content.spotlights.itemRequired', create_function('$assocId, $form', 'list($id, $type) = preg_split("/:/", $assocId) ; return is_numeric($id) && $id > 0 && $form->_isValidSpotlightType($type);'), array(&$this)));
 		$this->addCheck(new FormValidator($this, 'title', 'required', 'grid.content.spotlights.titleRequired'));
-		$this->addCheck(new FormValidator($this, 'type', 'required', 'grid.content.spotlights.typeRequired'));
 		$this->addCheck(new FormValidatorPost($this));
 	}
 
@@ -56,22 +55,12 @@ class SpotlightForm extends Form {
 		$spotlight =& $spotlightDao->getById($this->getSpotlightId());
 		$templateMgr->assign_by_ref('spotlight', $spotlight);
 		$templateMgr->assign('pressId', $this->getPressId());
-		$spotlightTypes = array(
-				SPOTLIGHT_TYPE_BOOK => __('grid.content.spotlights.form.type.book'),
-				SPOTLIGHT_TYPE_SERIES => __('series.series'),
-				SPOTLIGHT_TYPE_AUTHOR => __('user.role.author')
-			);
-
-		$templateMgr->assign('spotlightTypes', $spotlightTypes);
 
 		if (isset($spotlight)) {
 			$templateMgr->assign('title', $spotlight->getTitle(null));
 			$templateMgr->assign('description', $spotlight->getDescription(null));
-			$templateMgr->assign('type', $spotlight->getAssocType());
 			$templateMgr->assign('assocTitle', $this->getAssocTitle($spotlight->getAssocId(), $spotlight->getAssocType()));
-			$templateMgr->assign('assocId', $spotlight->getAssocId());
-		} else {
-			$templateMgr->assign('type', SPOTLIGHT_TYPE_BOOK); // default
+			$templateMgr->assign('assocId', $spotlight->getAssocId() . ':' . $spotlight->getAssocType());
 		}
 
 		return parent::fetch($request);
@@ -84,7 +73,7 @@ class SpotlightForm extends Form {
 	 * @see Form::readInputData()
 	 */
 	function readInputData() {
-		$this->readUserVars(array('title', 'type', 'description', 'assocId'));
+		$this->readUserVars(array('title', 'description', 'assocId'));
 	}
 
 	/**
@@ -105,10 +94,11 @@ class SpotlightForm extends Form {
 			$existingSpotlight = true;
 		}
 
-		$spotlight->setAssocType($this->getData('type'));
+		list($assocId, $assocType) = preg_split('/:/', $this->getData('assocId'));
+		$spotlight->setAssocType($assocType);
 		$spotlight->setTitle($this->getData('title'), null); // localized
 		$spotlight->setDescription($this->getData('description'), null); // localized
-		$spotlight->setAssocId($this->getData('assocId'));
+		$spotlight->setAssocId($assocId);
 
 		if ($existingSpotlight) {
 			$spotlightDao->updateObject($spotlight);
@@ -162,13 +152,23 @@ class SpotlightForm extends Form {
 				break;
 			case SPOTLIGHT_TYPE_AUTHOR:
 				$authorDao =& DAORegistry::getDAO('AuthorDAO');
-				$author =& $authorDao->getById($assocId, $this->getPressId());
+				$author =& $authorDao->getAuthor($assocId, $this->getPressId());
 				$returner = isset($author) ? $author->getFullName() : '';
 				break;
 			default:
 				fatalError('invalid type specified');
 		}
 		return $returner;
+	}
+
+	/**
+	 * Internal function for spotlight type verification.
+	 * @param int $type
+	 * @return boolean
+	 */
+	function _isValidSpotlightType($type) {
+		$validTypes = array(SPOTLIGHT_TYPE_AUTHOR, SPOTLIGHT_TYPE_BOOK, SPOTLIGHT_TYPE_SERIES);
+		return in_array((int) $type, $validTypes);
 	}
 }
 

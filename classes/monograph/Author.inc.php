@@ -55,6 +55,16 @@ class Author extends PKPAuthor {
 		$userGroup =& $userGroupDao->getById($this->getUserGroupId());
 		return $userGroup->getLocalizedName();
 	}
+
+	/**
+	 * Return the published monograph associated with this author.
+	 * @return PublishedMonograph
+	 */
+	function &getPublishedMonograph() {
+		$monographId = $this->getSubmissionId();
+		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
+		return $publishedMonographDao->getById($monographId);
+	}
 }
 
 ?>

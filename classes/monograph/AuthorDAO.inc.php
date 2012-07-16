@@ -56,8 +56,8 @@ class AuthorDAO extends PKPAuthorDAO {
 		$result =& $this->retrieveRange(
 			'SELECT DISTINCT
 				CAST(\'\' AS CHAR) AS url,
-				0 AS author_id,
-				0 AS submission_id,
+				ma.author_id AS author_id,
+				ma.submission_id AS submission_id,
 				CAST(\'\' AS CHAR) AS email,
 				0 AS primary_contact,
 				0 AS seq,
@@ -68,6 +68,8 @@ class AuthorDAO extends PKPAuthorDAO {
 				asl.locale,
 				aspl.setting_value AS affiliation_pl,
 				aspl.locale AS primary_locale,
+				ma.suffix AS suffix,
+				ma.user_group_id AS user_group_id,
 				ma.country
 			FROM	authors ma
 				LEFT JOIN author_settings aspl ON (ma.author_id = aspl.author_id AND aspl.setting_name = ? AND aspl.locale = ?)

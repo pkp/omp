@@ -98,6 +98,9 @@ class ManageSpotlightsGridHandler extends GridHandler {
 	function initialize(&$request) {
 		parent::initialize($request);
 
+		// Load locale components.
+		AppLocale::requireComponents(LOCALE_COMPONENT_OMP_SUBMISSION, LOCALE_COMPONENT_OMP_MANAGER);
+
 		// Basic grid configuration
 		$this->setTitle('spotlight.spotlights');
 
@@ -309,43 +312,60 @@ class ManageSpotlightsGridHandler extends GridHandler {
 	 */
 	function itemAutocomplete($args, &$request) {
 
-		$spotlightType = (int)$request->getUserVar('type');
 		$name = $request->getUserVar('name');
 
 		$press =& $this->getPress();
 
 		$itemList = array();
 
-		switch ($spotlightType) {
-			case SPOTLIGHT_TYPE_BOOK:
-				$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
-				$publishedMonographs =& $publishedMonographDao->getByPressId($press->getId());
-				while ($monograph =& $publishedMonographs->next()) {
-					if ($name == '' || preg_match('/'. preg_quote($name, '/') . '/i', $monograph->getLocalizedTitle())) {
-						$itemList[] = array('label' => $monograph->getLocalizedTitle(), 'value' => $monograph->getId());
-					}
+		// get the items that match.
+
+		$matches = array();
+
+		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
+		$publishedMonographs =& $publishedMonographDao->getByPressId($press->getId());
+		while ($monograph =& $publishedMonographs->next()) {
+			if ($name == '' || preg_match('/'. preg_quote($name, '/') . '/i', $monograph->getLocalizedTitle())) {
+				$matches[] = array('label' => $monograph->getLocalizedTitle(), 'value' => $monograph->getId() . ':' . SPOTLIGHT_TYPE_BOOK);
+			}
+		}
+
+		if (!empty($matches)) {
+			$itemList[] = array('label' => String::strtoupper(__('submission.workType.authoredWork')), 'value' => '');
+			$itemList = array_merge($itemList, $matches);
+		}
+
+		$matches = array();
+
+		$seriesDao =& DAORegistry::getDAO('SeriesDAO');
+		$allSeries =& $seriesDao->getByPressId($press->getId());
+		while ($series =& $allSeries->next()) {
+			if ($name == '' || preg_match('/'. preg_quote($name, '/') . '/i', $series->getLocalizedTitle())) {
+				$matches[] = array('label' => $series->getLocalizedTitle(), 'value' => $series->getId() . ':' . SPOTLIGHT_TYPE_SERIES);
+			}
+		}
+
+		if (!empty($matches)) {
+			$itemList[] = array('label' => String::strtoupper(__('manager.series.book')), 'value' => '');
+			$itemList = array_merge($itemList, $matches);
+		}
+
+		$matches = array();
+
+		$authorDao =& DAORegistry::getDAO('AuthorDAO');
+		$authors =& $authorDao->getAuthorsAlphabetizedByPress($press->getId());
+		while ($author =& $authors->next()) {
+			if ($name == '' || preg_match('/'. preg_quote($name, '/') . '/i', $author->getFullName())) {
+				$publishedMonograph =& $publishedMonographDao->getById($author->getMonographId());
+				if ($publishedMonograph) { // only include Authors if they are authors on published monographs.
+					$matches[] = array('label' => $author->getFullName() . ' (' . $publishedMonograph->getLocalizedTitle() . ')', 'value' => $author->getId() . ':' . SPOTLIGHT_TYPE_AUTHOR);
 				}
-				break;
-			case SPOTLIGHT_TYPE_SERIES:
-				$seriesDao =& DAORegistry::getDAO('SeriesDAO');
-				$allSeries =& $seriesDao->getByPressId($press->getId());
-				while ($series =& $allSeries->next()) {
-					if ($name == '' || preg_match('/'. preg_quote($name, '/') . '/i', $series->getLocalizedTitle())) {
-						$itemList[] = array('label' => $series->getLocalizedTitle(), 'value' => $series->getId());
-					}
-				}
-				break;
-			case SPOTLIGHT_TYPE_AUTHOR:
-				$authorDao =& DAORegistry::getDAO('AuthorDAO');
-				$authors =& $authorDao->getAuthorsAlphabetizedByPress($press->getId());
-				while ($author =& $authors->next()) {
-					if ($name == '' || preg_match('/'. preg_quote($name, '/') . '/i', $author->getFullName())) {
-						$itemList[] = array('label' => $author->getFullName(), 'value' => $author->getId());
-					}
-				}
-				break;
-			default:
-				fatalError('invalid type specified');
+			}
+		}
+
+		if (!empty($matches)) {
+			$itemList[] = array('label' => String::strtoupper(__('user.role.author')), 'value' => '');
+			$itemList = array_merge($itemList, $matches);
 		}
 
 		if (count($itemList) == 0) {

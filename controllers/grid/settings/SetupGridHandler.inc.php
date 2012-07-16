@@ -20,6 +20,10 @@ class SetupGridHandler extends GridHandler {
 	 */
 	function SetupGridHandler() {
 		parent::GridHandler();
+		$this->addRoleAssignment(
+			array(ROLE_ID_PRESS_MANAGER),
+			array('uploadImage')
+		);
 	}
 
 	/**
@@ -41,6 +45,31 @@ class SetupGridHandler extends GridHandler {
 		import('classes.security.authorization.OmpPressAccessPolicy');
 		$this->addPolicy(new OmpPressAccessPolicy($request, $roleAssignments));
 		return parent::authorize($request, $args, $roleAssignments);
+	}
+
+	/**
+	 * Handle file uploads for cover/image art for things like Series and Categories.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 */
+	function uploadImage($args, &$request) {
+		$router =& $request->getRouter();
+		$context = $request->getContext();
+		$user =& $request->getUser();
+
+		import('classes.file.TemporaryFileManager');
+		$temporaryFileManager = new TemporaryFileManager();
+		$temporaryFile = $temporaryFileManager->handleUpload('uploadedFile', $user->getId());
+		if ($temporaryFile) {
+			$json = new JSONMessage(true);
+			$json->setAdditionalAttributes(array(
+					'temporaryFileId' => $temporaryFile->getId()
+			));
+		} else {
+			$json = new JSONMessage(false, __('common.uploadFailed'));
+		}
+
+		return $json->getString();
 	}
 }
 
