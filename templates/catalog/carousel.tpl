@@ -17,20 +17,24 @@
 </script>
 
 <!-- Features carousel -->
-<h3 class="pkp_helpers_text_center">{translate key="catalog.featuredBooks"}</h3>
-<ul class="pkp_catalog_carousel" id="featuresCarousel">
-	{foreach from=$publishedMonographs item=publishedMonograph}
-		{* Only include features in the carousel *}
-		{assign var="monographId" value=$publishedMonograph->getId()}
-		{if isset($featuredMonographIds[$monographId])}
-		<li id="publishedMonograph-{$monographId}" class="mover">
-			<img src="{url router=$smarty.const.ROUTE_COMPONENT component="submission.CoverHandler" op="cover" monographId=$publishedMonograph->getId()}" alt="{$publishedMonograph->getLocalizedTitle()|escape}" data-caption="#publishedMonograph-{$monographId}-caption" width="150" height="250"/>
-			<div class="details_box" id="publishedMonograph-{$monographId}-details">
-				<h4>{$publishedMonograph->getLocalizedTitle()|escape}</h4>
-				<a href="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="book" path=$monographId}">{translate key="common.moreInfo"}</a>
-			</div>
-			<div class="pkp_helpers_progressIndicator"></div>
-		</li>
-		{/if}
-	{/foreach}
-</ul>
+<div class="pkp_catalog_carousel_wrapper" id="featuresCarousel">
+	<div class="carousel_control" id="nextCarouselItem"></div>
+	<div class="carousel_control" id="previousCarouselItem"></div>
+	<h3 class="pkp_helpers_text_center">{translate key="catalog.featuredBooks"}</h3>
+	<ul class="pkp_catalog_carousel">
+		{foreach from=$publishedMonographs item=publishedMonograph}
+			{* Only include features in the carousel *}
+			{assign var="monographId" value=$publishedMonograph->getId()}
+			{if isset($featuredMonographIds[$monographId])}
+			<li id="publishedMonograph-{$monographId}" class="mover">
+				<img src="{url router=$smarty.const.ROUTE_COMPONENT component="submission.CoverHandler" op="cover" monographId=$publishedMonograph->getId()}" alt="{$publishedMonograph->getLocalizedTitle()|escape}" data-caption="#publishedMonograph-{$monographId}-caption" width="150" height="250"/>
+				<div class="details_box" id="publishedMonograph-{$monographId}-details">
+					<h4>{$publishedMonograph->getLocalizedTitle()|escape}</h4>
+					<a href="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="book" path=$monographId}">{translate key="common.moreInfo"}</a>
+				</div>
+				<div class="pkp_helpers_progressIndicator"></div>
+			</li>
+			{/if}
+		{/foreach}
+	</ul>
+</div>

@@ -7,53 +7,97 @@
  * @brief Styles for the public catalog
  *
  */
- 
-.pkp_catalog_carousel {
-	width: 80%;
-	height: 320px;
-	margin:auto;
-	margin-top: 22px;
-	margin-bottom: 22px;
 
-	.pkp_helpers_progressIndicator {
-		margin-left: auto;
-		margin-right: auto;
-		background-color: white;
-		float: none;
-		margin-top: 140px;
-		display: block;
-	}
-
-	li.mover { 
-		width: 240px;
-		height: 303px;
-		box-shadow: 0 20px 15px -12px gray;
+.pkp_catalog_carousel_wrapper {
+	width: 100%;
+	overflow: hidden;
+	position: relative;
 		
-		img {
-			padding: 0px;
-			width: 100%;
-			height: 100%;
-			opacity: 0.4;
-		}
+	.carousel_control {
+		width: 50px;
+		height: 50px;
+		position: absolute;
+		top: 65%;
+		z-index: 1000;
+		background-position: center;
+		background-repeat: no-repeat;
 	}
 	
-	li.mover:hover {
+	.carousel_control:hover {
+		opacity: 0.6;
 		cursor: pointer;
 	}
 	
-	li.roundabout-in-focus:hover {
-		cursor: default;
+	#nextCarouselItem {
+		left:92%;
+		background-image: url(../lib/pkp/templates/images/structure/carousel_next.png);
 	}
 	
-	.details_box {
+	#previousCarouselItem {
+		background-image: url(../lib/pkp/templates/images/structure/carousel_previous.png);
+	}
+		
+	.pkp_catalog_carousel {
+		width: 72%;
+		height: 320px;
+		margin:auto;
+		margin-top: 22px;
+		margin-bottom: 22px;
 		background-color: white;
-		border: 2px solid gray;
-		left: 150px;
-		min-height: 100px;
-		padding: 15px;
-		position: absolute;
-		top: 50px;
-		width: 100%;
+	
+		.pkp_helpers_progressIndicator {
+			background-position: 50% 50%;
+			background-color: white;
+			float: none;
+			position: absolute;
+			top: 0;
+			display: block;
+			height: 100%;
+			width: 100%;
+		}
+	
+		li.mover { 
+			width: 240px;
+			height: 303px;
+			box-shadow: 0 20px 15px -12px gray;
+			
+			img {
+				padding: 0px;
+				width: 100%;
+				height: 100%;
+			}
+		}
+		
+		li.placeholder {
+			box-shadow: none !important;
+			background-color: inherit !important;
+			margin-left: -10%;
+			padding-left: 5%;
+			padding-right: 15%;
+		}
+	
+		li.placeholder:hover {
+			cursor: default !important;
+		}
+	
+		li.mover:hover {
+			cursor: pointer;
+		}
+		
+		li.roundabout-in-focus:hover {
+			cursor: default;
+		}
+		
+		.details_box {
+			background-color: white;
+			border: 2px solid gray;
+			left: 150px;
+			min-height: 100px;
+			padding: 15px;
+			position: absolute;
+			top: 50px;
+			width: 85%;
+		}
 	}
 }
 
