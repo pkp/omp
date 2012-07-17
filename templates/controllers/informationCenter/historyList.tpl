@@ -9,7 +9,7 @@
 
 <div id="historyList">
 <table width="100%" class="pkp_listing">
-	<tr><td class="headseparator" colspan="5">&nbsp;</td></tr>
+	<tr><td colspan="5">&nbsp;</td></tr>
 	<tr valign="top" class="heading">
 		<td>{translate key="common.date"}</td>
 		<td>{translate key="common.user"}</td>
@@ -24,4 +24,5 @@
 			<td colspan="5" class="nodata pkp_helpers_text_center">{translate key="informationCenter.history.noItems"}</td>
 		</tr>
 	{/if}
+</table>
 </div>

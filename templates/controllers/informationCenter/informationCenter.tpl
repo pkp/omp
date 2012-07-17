@@ -20,7 +20,7 @@
 
 {if $lastEvent}
 	<span class='pkp_controllers_informationCenter_itemLastEvent'>{translate key="informationCenter.lastUpdated"}: {$lastEvent->getDateLogged()|date_format:$dateFormatShort}, {$lastEventUser->getFullName()|escape}</span>
-	<br />
+	<br /><br />
 {/if}
 
 <div id="informationCenter" class="pkp_controllers_informationCenter">

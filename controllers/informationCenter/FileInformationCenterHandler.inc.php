@@ -62,10 +62,7 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 	 * @param $request PKPRequest
 	 */
 	function viewInformationCenter($args, &$request) {
-		// Get the latest history item to display in the header
-		$monographEventLogDao =& DAORegistry::getDAO('MonographFileEventLogDAO');
-		$fileEvents =& $monographEventLogDao->getByFileId($this->monographFile->getFileId());
-		$lastEvent =& $fileEvents->next();
+		$this->setupTemplate($request);
 
 		// Assign variables to the template manager and display
 		$templateMgr =& TemplateManager::getManager();
@@ -73,14 +70,6 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 		if (($i = $this->monographFile->getRevision()) > 1) $fileName .= " ($i)"; // Add revision number to label
 		if (empty($fileName) ) $fileName = __('common.untitled');
 		$templateMgr->assign_by_ref('title', $fileName);
-		if(isset($lastEvent)) {
-			$templateMgr->assign_by_ref('lastEvent', $lastEvent);
-
-			// Get the user who posted the last note
-			$userDao =& DAORegistry::getDAO('UserDAO');
-			$user =& $userDao->getById($lastEvent->getUserId());
-			$templateMgr->assign_by_ref('lastEventUser', $user);
-		}
 
 		return parent::viewInformationCenter($request);
 	}
@@ -318,6 +307,20 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 		// Provide access to notes from past revisions/file IDs
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('showEarlierEntries', true);
+
+		// Get the latest history item to display in the header
+		$monographEventLogDao =& DAORegistry::getDAO('MonographFileEventLogDAO');
+		$fileEvents =& $monographEventLogDao->getByFileId($this->monographFile->getFileId());
+		$lastEvent =& $fileEvents->next();
+		if(isset($lastEvent)) {
+			$templateMgr->assign_by_ref('lastEvent', $lastEvent);
+
+			// Get the user who created the last event.
+			$userDao =& DAORegistry::getDAO('UserDAO');
+			$user =& $userDao->getById($lastEvent->getUserId());
+			$templateMgr->assign_by_ref('lastEventUser', $user);
+		}
+
 		return parent::setupTemplate($request);
 	}
 }

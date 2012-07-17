@@ -22,14 +22,14 @@
 </script>
 
 <div id="note-{$noteId}">
-	<table width=100%>
+	<table width="100%">
 		<tr valign="top">
-			<td style="padding-right: 5px;">{$note->getDateCreated()|date_format:"%d %b %Y %T"}</td>
-			<td style="padding-right: 5px;">
+			<td>{$note->getDateCreated()|date_format:$dateFormatShort}</td>
+			<td>
 				{assign var="noteUser" value=$note->getUser()}
 				{$noteUser->getFullName()|escape}
 			</td>
-			<td align="right">
+			<td class="pkp_helpers_align_right">
 				{* Check that notes are deletable (i.e. not attached to files from previous stages) and the current user has permission to delete. *}
 				{if $notesDeletable && array_intersect(array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR), $userRoles)}
 					<form class="pkp_form" id="{$formId}" action="{url op="deleteNote" noteId=$noteId params=$linkParams}">
@@ -41,7 +41,18 @@
 			</td>
 		</tr>
 		<tr valign="top">
-			<td colspan="3">{$note->getContents()|escape}</td>
+			{assign var="contents" value=$note->getContents()}
+			<td colspan="3">
+				<span>
+					{$contents|truncate:250|nl2br|strip_unsafe_html}
+					{if $contents|strlen > 250}<a href="javascript:$.noop();" class="showMore">{translate key="common.more"}</a>{/if}
+				</span>
+				{if $contents|strlen > 250}
+					<span class="hidden">
+						{$contents|nl2br|strip_unsafe_html} <a href="javascript:$.noop();" class="showLess">{translate key="common.less"}</a>
+					</span>
+				{/if}
+			</td>
 		</tr>
 	</table>
 	<hr />

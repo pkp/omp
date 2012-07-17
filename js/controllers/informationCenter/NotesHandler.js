@@ -85,6 +85,20 @@
 	};
 
 
+	/**
+	 * Handle the "show more" and "show less" clicks triggered by the
+	 * links in longer notes.
+	 *
+	 * @param {Event} event The event.
+	 */
+	$.pkp.controllers.informationCenter.NotesHandler.
+			prototype.switchViz = function(event) {
+
+		var eventElement = event.currentTarget;
+		$(eventElement).parent().parent().find('span').toggle();
+	};
+
+
 	//
 	// Private methods
 	//
@@ -99,6 +113,7 @@
 
 		jsonData = this.handleJson(jsonData);
 		$('#notesList').replaceWith(jsonData.content);
+		$('#notesList').find('.showMore, .showLess').bind('click', this.switchViz);
 	};
 
 
@@ -118,6 +133,9 @@
 
 		jsonData = this.handleJson(jsonData);
 		$('#pastNotesList').replaceWith(jsonData.content);
+
+		// bind our more/less links now that content is loaded.
+		$('#notesList').find('.showMore, .showLess').bind('click', this.switchViz);
 	};
 
 

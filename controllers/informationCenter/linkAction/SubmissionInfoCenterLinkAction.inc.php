@@ -25,6 +25,12 @@ class SubmissionInfoCenterLinkAction extends LinkAction {
 	 */
 	function SubmissionInfoCenterLinkAction(&$request, $monographId, $linkKey = 'informationCenter.bookInfo') {
 		// Instantiate the information center modal.
+
+		$monographDao =& DAORegistry::getDAO('MonographDAO');
+		$monograph =& $monographDao->getById($monographId);
+
+		$primaryAuthor = $monograph->getPrimaryAuthor();
+
 		$dispatcher =& $request->getDispatcher();
 		import('lib.pkp.classes.linkAction.request.AjaxModal');
 		$ajaxModal = new AjaxModal(
@@ -35,7 +41,7 @@ class SubmissionInfoCenterLinkAction extends LinkAction {
 				null,
 				array('monographId' => $monographId)
 			),
-			__('informationCenter.bookInfo'),
+			$primaryAuthor->getLastName() . ", " . $monograph->getLocalizedTitle(),
 			'bookInfo'
 		);
 

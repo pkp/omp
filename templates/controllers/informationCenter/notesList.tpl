@@ -13,6 +13,6 @@
 		{$note->markViewed($currentUserId)}
 	{/iterate}
 	{if $notes->wasEmpty()}
-		<span>{translate key="informationCenter.noNotes"}</span>
+		<p>{translate key="informationCenter.noNotes"}</p>
 	{/if}
 </div>
