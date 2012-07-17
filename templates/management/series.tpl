@@ -7,8 +7,6 @@
  * Press management series list.
  *}
 
-<p>{translate key="manager.setup.series.description"}</p>
-
 <script type="text/javascript">
 	$(function() {ldelim}
 		// Attach the form handler.

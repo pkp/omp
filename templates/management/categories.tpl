@@ -7,8 +7,6 @@
  * Press management categories list.
  *}
 
-<p>{translate key="manager.setup.categories.description"}</p>
-
 <script type="text/javascript">
 	$(function() {ldelim}
 		// Attach the form handler.
