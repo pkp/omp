@@ -499,6 +499,16 @@ a.sprite.manage:hover:before { background-position:-1512px -24px; }
 .large_sprite.modal_add_user:before { background-position:-48px -48px; }
 .large_sprite.modal_add_role:before { background-position:-96px -48px; }
 .large_sprite.modal_add_file:before { background-position:-144px -48px; }
+.loading_container {
+  text-align:center;
+  padding-top:10px;
+}
+.loading_container .pkp_helpers_progressIndicator {
+  margin-right:auto;
+  margin-left:auto;
+  float:none;
+  display:block;
+}
 .grid_actions {
   padding:22px 0 22px 0;
   overflow:hidden;
@@ -703,7 +713,7 @@ body {
 }
 .pkp_structure_body .pkp_structure_main {
   *zoom:1;
-  padding-top:32px;
+  padding-top:10px;
   border-top:1px dotted #999999;
   display:table-cell;
   *display:block;
