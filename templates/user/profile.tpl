@@ -19,65 +19,94 @@
 </script>
 
 <form class="pkp_form" id="profile" method="post" action="{url op="saveProfile"}" enctype="multipart/form-data">
+	<div id="userFormContainer">
+		<div id="userDetails" class="full left">
+			{fbvFormArea id="userNameInfo"}
+				{fbvFormSection title="user.username"}
+					{$username|escape}
+				{/fbvFormSection}
 
-{fbvFormArea id="profileForm"}
+				{fbvFormSection title="user.password"}
+					<a href="{url op='changePassword'}">{translate key="user.changePassword"}</a>
+				{/fbvFormSection}
+			{/fbvFormArea}
+	</div>
+	<div id="userFormCompactLeftContainer" class="pkp_helpers_clear">
+		{fbvFormArea id="userFormCompactLeft"}
+			{fbvFormSection title="common.name"}
+				{fbvElement type="text" label="user.firstName" required="true" id="firstName" value=$firstName maxlength="40" inline=true size=$fbvStyles.size.SMALL}
+				{fbvElement type="text" label="user.middleName" id="middleName" value=$middleName maxlength="40" inline=true size=$fbvStyles.size.SMALL}
+				{fbvElement type="text" label="user.lastName" required="true" id="lastName" value=$lastName maxlength="40" inline=true size=$fbvStyles.size.SMALL}
+			{/fbvFormSection}
 
-	{fbvFormSection title="user.username"}
-		{$username|escape}
-	{/fbvFormSection}
+			{fbvFormSection title="about.contact"}
+				{fbvElement type="text" label="user.email" id="email" required="true" value=$email maxlength="90" size=$fbvStyles.size.MEDIUM}
+			{/fbvFormSection}
+		{/fbvFormArea}
+	</div>
+	{capture assign="extraContent"}
+		<div id="userFormExtendedContainer" class="full left">
+			{fbvFormArea id="userFormExtendedLeft"}
+				{fbvFormSection}
+					{fbvElement type="text" label="user.salutation" name="salutation" id="salutation" value=$salutation maxlength="40" inline=true size=$fbvStyles.size.SMALL}
+					{fbvElement type="select" label="user.gender" name="gender" id="gender" defaultLabel="" defaultValue="" from=$genderOptions translate="true" selected=$gender inline=true size=$fbvStyles.size.SMALL}
+					{fbvElement type="text" label="user.initials" name="initials" id="initials" value=$initials maxlength="5" inline=true size=$fbvStyles.size.SMALL}
+				{/fbvFormSection}
 
-	{fbvFormSection title="user.password"}
-		<a href="{url op='changePassword'}">{translate key="user.changePassword"}</a>
-	{/fbvFormSection}
+				{fbvFormSection}
+					{fbvElement type="text" label="user.url" name="userUrl" id="userUrl" value=$userUrl maxlength="90" inline=true size=$fbvStyles.size.SMALL}
+					{fbvElement type="text" label="user.phone" name="phone" id="phone" value=$phone maxlength="24" inline=true size=$fbvStyles.size.SMALL}
+					{fbvElement type="text" label="user.fax" name="fax" id="fax" value=$fax maxlength="24" inline=true size=$fbvStyles.size.SMALL}
+				{/fbvFormSection}
 
-	{fbvFormSection title="common.name"}
-		{fbvElement type="text" label="user.salutation" id="salutation" value=$salutation size=$fbvStyles.size.SMALL inline="true"}
-		{fbvElement type="text" label="user.firstName" id="firstName" required="true" value=$firstName size=$fbvStyles.size.SMALL inline="true"}
-		{fbvElement type="text" label="user.middleName" id="middleName" value=$middleName size=$fbvStyles.size.SMALL inline="true"}
-		{fbvElement type="text" label="user.lastName" id="lastName" required="true" value=$lastName size=$fbvStyles.size.SMALL inline="true"}
-		{fbvElement type="text" label="user.suffix" id="suffix" value=$suffix  size=$fbvStyles.size.SMALL inline="true"}
-		{fbvElement type="text" label="user.initials" id="initials" value=$initials size=$fbvStyles.size.SMALL inline="true"}
-	{/fbvFormSection}
+				{if count($availableLocales) > 1}
+					{fbvFormSection title="user.workingLanguages" list=true}
+						{foreach from=$availableLocales key=localeKey item=localeName}
+							{if $userLocales && in_array($localeKey, $userLocales)}
+								{assign var="checked" value="true"}
+							{else}
+								{assign var="checked" value="false"}
+							{/if}
+							{fbvElement type="checkbox" name="userLocales[]" id="userLocales-$localeKey" value="$localeKey" checked=$checked label="$localeName" translate=false }
+						{/foreach}
+					{/fbvFormSection}
+				{/if}
 
-	{fbvFormSection title="user.gender" for="gender"  size=$fbvStyles.size.SMALL}
-		{fbvElement type="select" from=$genderOptions selected=$gender|escape id="gender" translate=true}
-	{/fbvFormSection}
+				{if $allowRegReviewer}
+					{fbvFormSection title="user.interests" for="interests"}
+						{fbvElement type="interests" id="interests" interestsKeywords=$interestsKeywords interestsTextOnly=$interestsTextOnly}
+					{/fbvFormSection}
+				{/if}
 
-	{fbvFormSection title="user.affiliation" for="affiliation"}
-		{fbvElement type="textarea" id="affiliation" multilingual=true value=$affiliation|escape label="user.affiliation.description" size=$fbvStyles.size.MEDIUM}<br/>
-	{/fbvFormSection}
+				{fbvFormSection for="affiliation"}
+					{fbvElement type="text" label="user.affiliation" multilingual="true" name="affiliation" id="affiliation" value=$affiliation inline=true size=$fbvStyles.size.LARGE}
+				{/fbvFormSection}
 
-	{fbvFormSection title="user.biography" for="biography"}
-		{fbvElement type="textarea" id="biography" name="biography" multilingual=true value=$biography|escape rich=true size=$fbvStyles.size.MEDIUM}
-	{/fbvFormSection}
+				{fbvFormSection}
+					{fbvElement type="textarea" label="user.biography" multilingual="true" name="biography" id="biography" value=$biography inline=true size=$fbvStyles.size.MEDIUM}
+					{fbvElement type="textarea" label="common.mailingAddress" name="mailingAddress" id="mailingAddress" value=$mailingAddress inline=true size=$fbvStyles.size.MEDIUM}
+				{/fbvFormSection}
+				<br />
+				<span class="instruct">{translate key="user.biography.description"}</span>
 
-	{fbvFormSection title="user.signature" for="signature"}
-		{fbvElement type="textarea" id="signature" name="signature" multilingual=true value=$signature|escape size=$fbvStyles.size.MEDIUM}
-	{/fbvFormSection}
+				{fbvFormSection}
+					{fbvElement type="textarea" label="user.signature" multilingual="true" name="signature" id="signature" value=$signature size=$fbvStyles.size.MEDIUM}
+				{/fbvFormSection}
 
-	{fbvFormSection title="user.email" for="email" required="true"}
-		{fbvElement type="text" id="email" value=$email|escape size=$fbvStyles.size.MEDIUM}
-	{/fbvFormSection}
-
-	{fbvFormSection title="user.url" for="userUrl"}
-		{fbvElement type="text" id="userUrl" value=$userUrl|escape size=$fbvStyles.size.MEDIUM}
-	{/fbvFormSection}
-
-	{fbvFormSection title="user.phone" for="phone"}
-		{fbvElement type="text" id="phone" value=$phone|escape size=$fbvStyles.size.MEDIUM}
-	{/fbvFormSection}
-
-	{fbvFormSection title="user.fax" for="fax"}
-		{fbvElement type="text" id="fax" value=$fax|escape size=$fbvStyles.size.MEDIUM}
-	{/fbvFormSection}
-
-	{fbvFormSection title="user.mailingAddress" for="mailingAddress"}
-		{fbvElement type="textarea" id="mailingAddress" value=$mailingAddress|escape rich=true size=$fbvStyles.size.MEDIUM}
-	{/fbvFormSection}
-
-	{fbvFormSection title="common.country" for="country" size=$fbvStyles.size.SMALL required="true"}
-		{fbvElement type="select" from=$countries selected=$country translate=false id="country" defaultValue="" defaultLabel=""}
-	{/fbvFormSection}
+				{fbvFormSection for="country"}
+					{fbvElement type="select" label="common.country" name="country" id="country" defaultLabel="" defaultValue="" from=$countries selected=$country translate="0" size=$fbvStyles.size.MEDIUM}
+				{/fbvFormSection}
+			{/fbvFormArea}
+		</div>
+	{/capture}
+	<div id="userExtraFormFields" class="left full">
+		{include file="controllers/extrasOnDemand.tpl"
+			widgetWrapper="#userExtraFormFields"
+			moreDetailsText="grid.user.moreDetails"
+			lessDetailsText="grid.user.lessDetails"
+			extraContent=$extraContent
+		}
+	</div>
 
 	{if $currentPress && ($allowRegAuthor || $allowRegReviewer)}
 		{fbvFormSection label="user.register.registerAs" list="true"}
@@ -104,11 +133,6 @@
 				{/iterate}
 			{/if}
 		{/fbvFormSection}
-		{if $allowRegReviewer}
-			{fbvFormSection id="reviewerInterestsContainer" label="user.register.reviewerInterests"}
-				{fbvElement type="interests" id="interests" interestsKeywords=$interestsKeywords interestsTextOnly=$interestsTextOnly}
-			{/fbvFormSection}
-		{/if}
 	{/if}
 
 	{** FIXME 6760: Fix profile image uploads
@@ -124,7 +148,6 @@
 	<br /><br />
 	{url|assign:cancelUrl page="dashboard"}
 	{fbvFormButtons submitText="common.save" cancelUrl=$cancelUrl}
-{/fbvFormArea}
 </form>
 
 <p><span class="formRequired">{translate key="common.requiredField"}</span></p>

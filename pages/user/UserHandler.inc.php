@@ -24,6 +24,14 @@ class UserHandler extends Handler {
 	}
 
 	/**
+	 * @see PKPHandler::initialize()
+	 */
+	function initialize(&$request, $args) {
+		AppLocale::requireComponents(LOCALE_COMPONENT_PKP_GRID);
+		parent::initialize($request, $args);
+	}
+
+	/**
 	 * Display user index page.
 	 * @param $args array
 	 * @param $request PKPRequest
