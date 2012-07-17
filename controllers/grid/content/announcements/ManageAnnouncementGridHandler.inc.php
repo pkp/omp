@@ -51,6 +51,8 @@ class ManageAnnouncementGridHandler extends AnnouncementGridHandler {
 	function initialize($request) {
 		parent::initialize($request);
 
+		$this->setTitle('announcement.announcements');
+
 		// Load language components
 		AppLocale::requireComponents(LOCALE_COMPONENT_PKP_MANAGER);
 

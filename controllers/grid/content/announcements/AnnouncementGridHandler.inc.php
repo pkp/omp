@@ -66,9 +66,6 @@ class AnnouncementGridHandler extends GridHandler {
 	function initialize(&$request) {
 		parent::initialize($request);
 
-		// Basic grid configuration
-		$this->setTitle('announcement.announcements');
-
 		// Set the no items row text
 		$this->setEmptyRowText('announcement.noneExist');
 
