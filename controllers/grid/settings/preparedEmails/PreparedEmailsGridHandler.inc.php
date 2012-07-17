@@ -54,6 +54,11 @@ class PreparedEmailsGridHandler extends GridHandler {
 
 		AppLocale::requireComponents(LOCALE_COMPONENT_PKP_MANAGER);
 
+		// Set the grid title.
+		$this->setTitle('grid.preparedEmails.title');
+
+		$this->setInstructions('grid.preparedEmails.description');
+
 		// Elements to be displayed in the grid
 		$press =& $request->getPress();
 		$emailTemplateDao =& DAORegistry::getDAO('EmailTemplateDAO'); /* @var $emailTemplateDao EmailTemplateDAO */

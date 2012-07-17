@@ -24,7 +24,7 @@
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="appearanceFormNotification"}
 	{include file="controllers/tab/settings/wizardMode.tpl" wizardMode=$wizardMode}
 
-	<p class="pkp_grid_description">{translate key="manager.setup.pressAppearanceDescription"}</p>
+	<p>{translate key="manager.setup.pressAppearanceDescription"}</p>
 
 	{* Homepage Header *}
 	{fbvFormArea id="homepageHeader" title="manager.setup.pressHomepageHeader" class="border"}

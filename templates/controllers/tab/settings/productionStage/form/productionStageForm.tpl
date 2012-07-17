@@ -43,8 +43,6 @@
 	
 	<div class="separator"></div>
 
-	<h3 class="pkp_grid_title">{translate key="manager.setup.productionTemplateLibrary"}</h3>
-	<p class="pkp_grid_description">{translate key="manager.setup.productionTemplateLibraryDescription"}</p>
 	{url|assign:productionTemplateLibraryUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.library.LibraryFileGridHandler" op="fetchGrid" fileType=$smarty.const.LIBRARY_FILE_TYPE_PRODUCTION_TEMPLATE}
 	{load_url_in_div id="productionTemplateLibraryDiv" url=$productionTemplateLibraryUrl}
 

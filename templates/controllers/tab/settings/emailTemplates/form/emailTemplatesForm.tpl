@@ -29,10 +29,7 @@
 			{fbvElement type="text" id="envelopeSender" value=$envelopeSender maxlength="90" disabled=$envelopeSenderDisabled size=$fbvStyles.size.LARGE}
 		{/if}
 	{/fbvFormSection}
-	
-	
-	<h3 class="pkp_grid_title">{translate key="manager.publication.preparedEmailTemplates"}</h3>
-	<p class="pkp_grid_description">{translate key="manager.publication.preparedEmailTemplatesDescription"}</p>
+
 	{url|assign:preparedEmailsGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.preparedEmails.preparedEmailsGridHandler" op="fetchGrid"}
 	{load_url_in_div id="preparedEmailsGridDiv" url=$preparedEmailsGridUrl}
 	

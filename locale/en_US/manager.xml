@@ -204,8 +204,6 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.publication.editorialStage">Editorial</message>
 	<message key="manager.publication.productionStage">Production</message>
 	<message key="manager.publication.emails">Emails</message>
-	<message key="manager.publication.preparedEmailTemplates">Prepared Email Templates</message>
-	<message key="manager.publication.preparedEmailTemplatesDescription">The press facilitates work flow communication through the use of prepared email messages. The default wording of these email templates can be easily modified below.</message>
 
 	<!--  Genre grid settings -->
 	<message key="grid.action.addGenre">Add a Genre</message>

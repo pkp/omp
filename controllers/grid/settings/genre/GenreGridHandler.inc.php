@@ -51,6 +51,11 @@ class GenreGridHandler extends SetupGridHandler {
 
 		// Basic grid configuration
 		$press =& $request->getPress();
+		
+		// Set the grid title.
+		$this->setTitle('grid.genres.title');
+
+		$this->setInstructions('grid.genres.description');
 
 		// Elements to be displayed in the grid
 		$genreDao =& DAORegistry::getDAO('GenreDAO');

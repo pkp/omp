@@ -8,7 +8,5 @@
  *
  *}
 
-<p class="pkp_grid_description">{translate key="manager.setup.genresDescription"}</p>
-
 {url|assign:genresUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.genre.GenreGridHandler" op="fetchGrid"}
 {load_url_in_div id="genresContainer" url=$genresUrl}
