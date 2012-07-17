@@ -753,6 +753,12 @@ body {
   border-top:1px dotted #ffffff;
   background-color:#c1bbaf;
 }
+.pkp_structure_subfoot ul li {
+  list-style:square;
+  margin:0px 0px 8px 15px;
+  text-transform:uppercase;
+  font-family:"Courier New", Courier, mono;
+}
 .pkp_linkActions a.remove_item { background-image:url(../lib/pkp/templates/images/structure/lb_delete.png); }
 .pkp_linkActions a.promote { background-image:url(../lib/pkp/templates/images/structure/grid_promote.png); }
 .pkp_linkActions a.enable { background-image:url(../lib/pkp/templates/images/structure/grid_promote.png); }
