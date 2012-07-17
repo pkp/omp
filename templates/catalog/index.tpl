@@ -7,8 +7,7 @@
  * Entry page for the public-facing catalog
  *}
 {strip}
-{assign var="pageTitle" value="navigation.catalog"}
-{include file="common/header.tpl"}
+{include file="common/header.tpl" suppressPageTitle=true}
 {/strip}
 
 {* Include the carousel view of featured content *}

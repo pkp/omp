@@ -20,7 +20,7 @@
 <div class="pkp_catalog_carousel_wrapper" id="featuresCarousel">
 	<div class="carousel_control" id="nextCarouselItem"></div>
 	<div class="carousel_control" id="previousCarouselItem"></div>
-	<h3 class="pkp_helpers_text_center">{translate key="catalog.featuredBooks"}</h3>
+	<h2 class="pkp_helpers_text_center">{translate key="catalog.featuredBooks"}</h2>
 	<ul class="pkp_catalog_carousel">
 		{foreach from=$publishedMonographs item=publishedMonograph}
 			{* Only include features in the carousel *}
