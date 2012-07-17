@@ -96,7 +96,7 @@ class TinyMCEPlugin extends GenericPlugin {
 				editor_selector : "richContent",
 				language : "' . String::substr(AppLocale::getLocale(), 0, 2) . '",
 				relative_urls : false,
-				forced_root_block : false,
+				forced_root_block : "p",
 				paste_auto_cleanup_on_paste : true,
 				apply_source_formatting : false,
 				theme : "advanced",
