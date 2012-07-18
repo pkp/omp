@@ -103,34 +103,33 @@ class ProfileForm extends Form {
 	 * Display the form.
 	 */
 	function display($args, &$request) {
-		$user =& $this->getUser();
-
 		$templateMgr =& TemplateManager::getManager();
+
+		$user =& $this->getUser();
 		$templateMgr->assign('username', $user->getUsername());
 
 		$site =& $request->getSite();
 		$templateMgr->assign('availableLocales', $site->getSupportedLocaleNames());
 
-		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
-		$userGroupAssignmentDao =& DAORegistry::getDAO('UserGroupAssignmentDAO');
-		$pressDao =& DAORegistry::getDAO('PressDAO');
-		$userSettingsDao =& DAORegistry::getDAO('UserSettingsDAO');
-		$userDao =& DAORegistry::getDAO('UserDAO');
 
+		$userDao =& DAORegistry::getDAO('UserDAO');
+		$templateMgr->assign('genderOptions', $userDao->getGenderOptions());
+
+		$pressDao =& DAORegistry::getDAO('PressDAO');
 		$presses =& $pressDao->getPresses();
 		$presses =& $presses->toArray();
+		$templateMgr->assign_by_ref('presses', $presses);
 
 		$countryDao =& DAORegistry::getDAO('CountryDAO');
 		$countries =& $countryDao->getCountries();
-
-		$templateMgr->assign('genderOptions', $userDao->getGenderOptions());
-
-		$templateMgr->assign_by_ref('presses', $presses);
 		$templateMgr->assign_by_ref('countries', $countries);
+
 		$templateMgr->assign('helpTopicId', 'user.registerAndProfile');
 
 		$press =& $request->getPress();
 		if ($press) {
+			$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+			$userGroupAssignmentDao =& DAORegistry::getDAO('UserGroupAssignmentDAO');
 			$userGroupAssignments =& $userGroupAssignmentDao->getByUserId($user->getId(), $press->getId());
 			$userGroupIds = array();
 			while ($assignment =& $userGroupAssignments->next()) {
@@ -270,62 +269,46 @@ class ProfileForm extends Form {
 		$userDao =& DAORegistry::getDAO('UserDAO');
 		$userDao->updateObject($user);
 
-		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
-		$pressDao =& DAORegistry::getDAO('PressDAO');
-		$notificationStatusDao =& DAORegistry::getDAO('NotificationStatusDAO');
-
 		// User Groups
+		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 		$press =& $request->getPress();
 		if ($press) {
-			if ($press->getSetting('allowRegReviewer')) {
-				$reviewerGroup = $this->getData('reviewerGroup');
-				if (!$reviewerGroup) $reviewerGroup = array();
-				$reviewerUserGroups = $userGroupDao->getByRoleId($press->getId(), ROLE_ID_REVIEWER);
-				while ($reviewerUserGroup =& $reviewerUserGroups->next()) {
-					$groupId = $reviewerUserGroup->getId();
+			foreach (array(
+				array('setting' => 'allowRegReviewer', 'roleId' => ROLE_ID_REVIEWER, 'formElement' => 'reviewerGroup'),
+				array('setting' => 'allowRegAuthor', 'roleId' => ROLE_ID_AUTHOR, 'formElement' => 'authorGroup'),
+			) as $groupData) {
+				$groupFormData = (array) $this->getData($groupData['formElement']);
+				if (!$press->getSetting($groupData['setting'])) continue;
+				$userGroups =& $userGroupDao->getByRoleId($press->getId(), $groupData['roleId']);
+				while ($userGroup =& $userGroups->next()) {
+					$groupId = $userGroup->getId();
 					$inGroup = $userGroupDao->userInGroup($user->getId(), $groupId);
-					if(!$inGroup && array_key_exists($groupId, $reviewerGroup)) {
+					if (!$inGroup && array_key_exists($groupId, $groupFormData)) {
 						$userGroupDao->assignUserToGroup($user->getId(), $groupId, $press->getId());
-					} else if($inGroup && !array_key_exists($groupId, $reviewerGroup)) {
+					} elseif ($inGroup && !array_key_exists($groupId, $groupFormData)) {
 						$userGroupDao->removeUserFromGroup($user->getId(), $groupId, $press->getId());
 					}
-					unset($reviewerUserGroup);
+					unset($userGroup);
 				}
-			}
-
-			if ($press->getSetting('allowRegAuthor')) {
-				$authorGroup = $this->getData('authorGroup');
-				if (!$authorGroup) $authorGroup = array();
-				$authorUserGroups = $userGroupDao->getByRoleId($press->getId(), ROLE_ID_AUTHOR);
-				while ($authorUserGroup =& $authorUserGroups->next()) {
-					$groupId = $authorUserGroup->getId();
-					$inGroup = $userGroupDao->userInGroup($user->getId(), $groupId);
-					if(!$inGroup && array_key_exists($groupId, $authorGroup)) {
-						$userGroupDao->assignUserToGroup($user->getId(), $groupId, $press->getId());
-					} else if($inGroup && !array_key_exists($groupId, $authorGroup)) {
-						$userGroupDao->removeUserFromGroup($user->getId(), $groupId, $press->getId());
-					}
-					unset($authorUserGroup);
-				}
+				unset($userGroups);
 			}
 		}
 
-		$presses =& $pressDao->getPresses();
-		$presses =& $presses->toArray();
+		$notificationStatusDao =& DAORegistry::getDAO('NotificationStatusDAO');
 		$pressNotifications = $notificationStatusDao->getPressNotifications($user->getId());
-
 		$readerNotify = $request->getUserVar('pressNotify');
 
-		foreach ($presses as $thisPress) {
+		$pressDao =& DAORegistry::getDAO('PressDAO');
+		$presses =& $pressDao->getPresses();
+		while ($thisPress =& $presses->next()) {
 			$thisPressId = $thisPress->getId();
 			$currentlyReceives = !empty($pressNotifications[$thisPressId]);
 			$shouldReceive = !empty($readerNotify) && in_array($thisPress->getId(), $readerNotify);
 			if ($currentlyReceives != $shouldReceive) {
 				$notificationStatusDao->setPressNotifications($thisPressId, $user->getId(), $shouldReceive);
 			}
+			unset($thisPress);
 		}
-
-		$userSettingsDao =& DAORegistry::getDAO('UserSettingsDAO');
 
 		if ($user->getAuthId()) {
 			$authDao =& DAORegistry::getDAO('AuthSourceDAO');

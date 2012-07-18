@@ -118,7 +118,7 @@
 					{else}
 						{assign var="checked" value=false}
 					{/if}
-					{fbvElement type="checkbox" id="readerGroup-$userGroupId" name="authorGroup[$userGroupId]" checked=$checked label=$userGroup->getLocalizedName() translate=false}
+					{fbvElement type="checkbox" id="authorGroup-$userGroupId" name="authorGroup[$userGroupId]" checked=$checked label=$userGroup->getLocalizedName() translate=false}
 				{/iterate}
 			{/if}
 			{if $allowRegReviewer}

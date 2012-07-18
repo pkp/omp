@@ -37,13 +37,13 @@ class RegistrationForm extends Form {
 	/**
 	 * Constructor.
 	 */
-	function RegistrationForm($site, $existingUser = 0) {
+	function RegistrationForm($site, $existingUser = false) {
 		parent::Form('user/register.tpl');
 		$this->implicitAuth = Config::getVar('security', 'implicit_auth');
 
 		if ($this->implicitAuth) {
 			// If implicit auth - it is always an existing user
-			$this->existingUser = 1;
+			$this->existingUser = true;
 		} else {
 			$this->existingUser = $existingUser;
 
@@ -115,14 +115,12 @@ class RegistrationForm extends Form {
 		if ($press) {
 			$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 
-			$templateMgr->assign('allowRegReviewer', $press->getSetting('allowRegReviewer'));
 			$templateMgr->assign_by_ref('reviewerUserGroups', $userGroupDao->getByRoleId($press->getId(), ROLE_ID_REVIEWER));
-			$templateMgr->assign('allowRegAuthor', $press->getSetting('allowRegAuthor'));
 			$templateMgr->assign_by_ref('authorUserGroups', $userGroupDao->getByRoleId($press->getId(), ROLE_ID_AUTHOR));
 
 			$templateMgr->assign('privacyStatement', $press->getLocalizedSetting('privacyStatement'));
-			$templateMgr->assign('allowRegAuthor', $press->getSetting('allowRegAuthor')==1?1:0);
-			$templateMgr->assign('allowRegReviewer', $press->getSetting('allowRegReviewer')==1?1:0);
+			$templateMgr->assign('allowRegAuthor', $press->getSetting('allowRegAuthor'));
+			$templateMgr->assign('allowRegReviewer', $press->getSetting('allowRegReviewer'));
 		}
 
 		$templateMgr->assign('source', $request->getUserVar('source'));
@@ -134,6 +132,9 @@ class RegistrationForm extends Form {
 		parent::display();
 	}
 
+	/**
+	 * @see Form::getLocaleFieldNames
+	 */
 	function getLocaleFieldNames() {
 		$userDao =& DAORegistry::getDAO('UserDAO');
 		return $userDao->getLocaleFieldNames();
@@ -145,7 +146,7 @@ class RegistrationForm extends Form {
 	function initData() {
 		$this->setData('existingUser', $this->existingUser);
 		$this->setData('userLocales', array());
-		$this->setData('sendPassword', 0);
+		$this->setData('sendPassword', false);
 	}
 
 	/**
@@ -224,10 +225,7 @@ class RegistrationForm extends Form {
 				$user =& $userDao->getByUsername($this->getData('username'));
 			}
 
-			if ($user == null) {
-				return false;
-			}
-
+			if (!$user) return false;
 			$userId = $user->getId();
 
 		} else {
@@ -303,8 +301,7 @@ class RegistrationForm extends Form {
 		if ($press) {
 			$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 			if ($press->getSetting('allowRegReviewer')) {
-
-				$reviewerGroup =& $this->getData('reviewerGroup');
+				$reviewerGroup = $this->getData('reviewerGroup');
 				$reviewerUserGroupIds = $userGroupDao->getUserGroupIdsByRoleId(ROLE_ID_REVIEWER, $press->getId());
 
 				if (is_array($reviewerGroup)) {
@@ -317,9 +314,9 @@ class RegistrationForm extends Form {
 					}
 				}
 			}
-			if ($press->getSetting('allowRegAuthor')) {
 
-				$authorGroup =& $this->getData('authorGroup');
+			if ($press->getSetting('allowRegAuthor')) {
+				$authorGroup = $this->getData('authorGroup');
 				$authorUserGroupIds = $userGroupDao->getUserGroupIdsByRoleId(ROLE_ID_AUTHOR, $press->getId());
 
 				if (isset($authorGroup)) {
