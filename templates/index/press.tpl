@@ -30,13 +30,8 @@
 {if $enableAnnouncementsHomepage}
 	{* Display announcements *}
 	<div id="announcementsHome">
-		<h3>{translate key="announcement.announcementsHome"}</h3>
-		{include file="announcement/list.tpl"}
-		<table class="announcementsMore">
-			<tr>
-				<td><a href="{url page="announcement"}">{translate key="announcement.moreAnnouncements"}</a></td>
-			</tr>
-		</table>
+		<h3 class="pkp_helpers_text_center">{translate key="announcement.announcementsHome"}</h3>
+		{include file="announcements/announcements.tpl" displayLimit=true}
 	</div>
 {/if}
 
