@@ -1018,7 +1018,6 @@ table.pkp_listing td.separator {
 }
 .pkp_form .pkp_form_hidden { display:none !important; }
 .pkp_form .formButtons {
-  border-top:1px solid #efefef;
   line-height:30px;
   margin:0 0 15px;
   overflow:hidden;
@@ -1481,7 +1480,7 @@ a.pkp_common_disabled, a.pkp_common_disabled:hover { color:#666666; }
 #pressSwitcher .section { width:200px; }
 ul.sf-menu {
   position:relative;
-  z-index:10000;
+  z-index:1000;
 }
 .ui-tabs .ui-tabs-nav li { margin-bottom:0px !important; }
 #pressSwitcherSelect {
