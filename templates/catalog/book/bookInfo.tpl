@@ -17,12 +17,14 @@
 </script>
 
 <div class="bookInfo">
-	{assign var="monographTitle" value=$publishedMonograph->getLocalizedPrefix()|concat:' ':$publishedMonograph->getLocalizedTitle()|strip_unsafe_html}
-	<h3>{$monographTitle}</h3>
-	{if $publishedMonograph->getLocalizedSubtitle() != ''}
-		<div class="subTitle">{$publishedMonograph->getLocalizedSubtitle()}</div>
-	{/if}
-	<div class="authorName">{$publishedMonograph->getAuthorString()}</div>
+	<div class="bookInfoHeader">
+		{assign var="monographTitle" value=$publishedMonograph->getLocalizedPrefix()|concat:' ':$publishedMonograph->getLocalizedTitle()|strip_unsafe_html}
+		<h3>{$monographTitle}</h3>
+		{if $publishedMonograph->getLocalizedSubtitle() != ''}
+			<div class="subTitle">{$publishedMonograph->getLocalizedSubtitle()}</div>
+		{/if}
+		<div class="authorName">{$publishedMonograph->getAuthorString()}</div>
+	</div>
 
 	<div id="bookInfoTabs">
 		<ul>

@@ -19,7 +19,7 @@
 <div class="pkp_structure_content" id="headerTemplateContainer">
 	<div class="unit size1of5">
 		<div class="pkp_structure_masthead">
-			<h1 style="margin: 0; padding: 0;">
+			<h1>
 				{url|assign:homeUrl context=$homeContext page="index"}
 				{if $displayPageHeaderLogo && is_array($displayPageHeaderLogo)}
 					<a href="{$homeUrl}"><img src="{$publicFilesDir}/{$displayPageHeaderLogo.uploadName|escape:"url"}" width="{$displayPageHeaderLogo.width|escape}" height="{$displayPageHeaderLogo.height|escape}" {if $displayPageHeaderLogoAltText != ''}alt="{$displayPageHeaderLogoAltText|escape}"{else}alt="{translate key="common.pageHeaderLogo.altText"}"{/if} /></a>

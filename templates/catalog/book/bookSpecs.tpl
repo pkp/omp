@@ -10,7 +10,7 @@
 <script type="text/javascript">
 	// Initialize JS handler for catalog header.
 	$(function() {ldelim}
-		$('#bookAccordion').accordion();
+		$('#bookAccordion').accordion({ldelim} autoHeight: false {rdelim});
 	{rdelim});
 </script>
 

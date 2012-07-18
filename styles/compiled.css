@@ -611,6 +611,7 @@ a.sprite.manage:hover:before { background-position:-1512px -24px; }
 p {
   font-size:90%;
   padding:10px;
+  padding:0.5em 0;
 }
 a { color:#569bbe; }
 img {
@@ -626,13 +627,16 @@ hr {
 }
 h1 {
   padding:10px;
+  padding:0;
   padding-bottom:0px;
   font-size:196%;
   font-weight:normal;
   font-style:normal;
+  margin:0;
 }
 h2 {
   padding:10px;
+  padding:0.5em 0 !important;
   padding-bottom:0px;
   font-size:167%;
   font-weight:normal;
@@ -640,6 +644,7 @@ h2 {
 }
 h3 {
   padding:10px;
+  padding:0.5em 0 !important;
   padding-bottom:0px;
   font-size:120%;
   font-weight:normal;
@@ -1455,6 +1460,8 @@ span.pkp_controllers_informationCenter_itemLastEvent {
   display:inline;
   margin-right:5px;
 }
+.ui-tabs .ui-tabs-panel { padding:1em 1.2em; }
+.ui-accordion .ui-accordion-content { padding:1em 2.5em; }
 .pkp_common_reviewRoundStatusContainer {
   height:40px;
   margin:11px;
@@ -1643,9 +1650,22 @@ ul.sf-menu {
   float:right;
   width:67%;
 }
+.pkp_catalog_book .bookInfo .bookInfoHeader {
+  padding-left:18px;
+  margin-bottom:25px;
+}
+.pkp_catalog_book .bookInfo .bookInfoHeader .subTitle, .pkp_catalog_book .bookInfo .bookInfoHeader .authorName { color:#999999; }
 .pkp_catalog_book .bookInfo .publicationFormatName {
   float:left;
   width:75%;
+}
+.pkp_catalog_book #bookAccordion {
+  margin-top:30px;
+  border-top:1px dotted #999999;
+}
+.pkp_catalog_book #bookAccordion .ui-accordion-content {
+  color:#999999;
+  font-size:90%;
 }
 .pkp_page_header { position:relative; }
 .pkp_page_header ul.submission_actions {
