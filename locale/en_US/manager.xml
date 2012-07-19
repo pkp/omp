@@ -118,7 +118,7 @@
 	<message key="manager.series.noneCreated">No series have been created.</message>
 	<message key="manager.series.existingUsers">Existing users</message>
 	<message key="manager.series.seriesTitle">Series Title</message>
-	<message key="manager.series.noSeriesEditors"><![CDATA[There are no series editors yet.  Add this role to at least one user via Management > Settings > Access &amp; Security first.]]></message>
+	<message key="manager.series.noSeriesEditors"><![CDATA[There are no series editors yet.  Add this role to at least one user via Management > Settings > Users &amp; Roles first.]]></message>
 	<message key="manager.series.noCategories"><![CDATA[There are no categories yet.  Close this modal and click on the 'Categories' tab and create one first.]]></message>
 
 	<!-- Settings management -->
@@ -172,8 +172,9 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="settings.libraryFiles.fileRequired">A library file is required. Please ensure that you have chosen and uploaded a file.</message>
 	<message key="settings.libraryFiles.nameRequired">A name is required for this library file.</message>
 
-	<!-- Access and Security settings  page -->
+	<!-- Users and Roles settings page -->
 	<message key="settings.roles.roleName">Role Name</message>
+	<message key="settings.roles.gridDescription">Roles are categories of users in the press who have permission levels (e.g. Press Manager or Series Editor) including the ability to work with certain stages of tasks workflow process (e.g. Internal Review or Production). Roles may be customized in this interface.</message>
 	<message key="settings.roles.roleAbbrev">Abbreviation</message>
 	<message key="settings.roles.assignedStages">Assigned Stages</message>
 	<message key="settings.roles.stages">Stages</message>
@@ -198,7 +199,6 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.website.imageFileRequired">An image file is required. Please ensure that you have chosen and uploaded a file.</message>
 
 	<!-- Publication Process settings -->
-	<message key="manager.publication.general">Settings</message>
 	<message key="manager.publication.submissionStage">Submission</message>
 	<message key="manager.publication.reviewStage">Review</message>
 	<message key="manager.publication.editorialStage">Editorial</message>
