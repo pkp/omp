@@ -15,16 +15,13 @@
 import('controllers.modals.editorDecision.form.EditorDecisionForm');
 
 class InitiateReviewForm extends EditorDecisionForm {
-	/** @var $decision SUBMISSION_EDITOR_DECISION_... */
-	var $_decision;
 
 	/**
 	 * Constructor.
 	 * @param $seriesEditorSubmission SeriesEditorSubmission
 	 */
 	function InitiateReviewForm($seriesEditorSubmission, $decision, $stageId, $template) {
-		parent::EditorDecisionForm($seriesEditorSubmission, $stageId, $template);
-		$this->_decision = $decision;
+		parent::EditorDecisionForm($seriesEditorSubmission, $decision, $stageId, $template);
 	}
 
 	/**

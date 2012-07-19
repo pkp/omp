@@ -27,6 +27,9 @@ class EditorDecisionForm extends Form {
 	/** @var ReviewRound Only required when in review stages */
 	var $_reviewRound;
 
+	/** @var integer The decision being taken **/
+	var $_decision;
+
 
 	/**
 	 * Constructor.
@@ -35,11 +38,12 @@ class EditorDecisionForm extends Form {
 	 * @param $template string The template to display
 	 * @param $reviewRound ReviewRound
 	 */
-	function EditorDecisionForm(&$seriesEditorSubmission, $stageId, $template, $reviewRound = null) {
+	function EditorDecisionForm(&$seriesEditorSubmission, $decision, $stageId, $template, $reviewRound = null) {
 		parent::Form($template);
 		$this->_seriesEditorSubmission = $seriesEditorSubmission;
 		$this->_stageId = $stageId;
 		$this->_reviewRound = $reviewRound;
+		$this->_decision = $decision;
 
 		// Validation checks for this form
 		$this->addCheck(new FormValidatorPost($this));
@@ -48,6 +52,14 @@ class EditorDecisionForm extends Form {
 	//
 	// Getters and Setters
 	//
+	/**
+	 * Get the decision
+	 * @return integer
+	 */
+	function getDecision() {
+		return $this->_decision;
+	}
+
 	/**
 	 * Get the submission
 	 * @return SeriesEditorSubmission
@@ -101,6 +113,10 @@ class EditorDecisionForm extends Form {
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('monographId', $seriesEditorSubmission->getId());
 		$templateMgr->assign_by_ref('monograph', $seriesEditorSubmission);
+
+		// Set the decision related data.
+		$stageDecisions = EditorDecisionActionsManager::getStageDecisions($this->getStageId());
+		$templateMgr->assign('decisionData', $stageDecisions[$this->getDecision()]);
 
 		return parent::fetch($request);
 	}

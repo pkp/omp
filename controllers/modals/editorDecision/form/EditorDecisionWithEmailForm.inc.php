@@ -16,9 +16,6 @@ import('controllers.modals.editorDecision.form.EditorDecisionForm');
 
 class EditorDecisionWithEmailForm extends EditorDecisionForm {
 
-	/** @var integer The decision being taken **/
-	var $_decision;
-
 	/** @var String */
 	var $_saveFormOperation;
 
@@ -31,21 +28,12 @@ class EditorDecisionWithEmailForm extends EditorDecisionForm {
 	 * @param $reviewRound ReviewRound
 	 */
 	function EditorDecisionWithEmailForm(&$seriesEditorSubmission, $decision, $stageId, $template, $reviewRound = null) {
-		parent::EditorDecisionForm($seriesEditorSubmission, $stageId, $template, $reviewRound);
-		$this->_decision = $decision;
+		parent::EditorDecisionForm($seriesEditorSubmission, $decision, $stageId, $template, $reviewRound);
 	}
 
 	//
 	// Getters and Setters
 	//
-	/**
-	 * Get the decision
-	 * @return integer
-	 */
-	function getDecision() {
-		return $this->_decision;
-	}
-
 	/**
 	 * Get the operation to save this form.
 	 * @return string

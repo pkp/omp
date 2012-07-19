@@ -122,13 +122,15 @@ class EditorDecisionActionsManager {
 				'name' => 'accept',
 				'operation' => 'promote',
 				'title' => 'editor.monograph.decision.accept',
-				'image' => 'promote'
+				'image' => 'promote',
+				'help' => 'editor.review.NotifyAuthorAccept'
 			),
 			SUBMISSION_EDITOR_DECISION_DECLINE => array(
 				'name' => 'decline',
 				'operation' => 'sendReviews',
 				'title' => 'editor.monograph.decision.decline',
-				'image' => 'decline'
+				'image' => 'decline',
+				'help' => 'editor.review.NotifyAuthorDecline'
 			),
 		);
 
@@ -145,31 +147,36 @@ class EditorDecisionActionsManager {
 				'operation' => 'sendReviewsInReview',
 				'name' => 'requestRevisions',
 				'title' => 'editor.monograph.decision.requestRevisions',
-				'image' => 'revisions'
+				'image' => 'revisions',
+				'help' => 'editor.review.NotifyAuthorRevisions'
 			),
 			SUBMISSION_EDITOR_DECISION_RESUBMIT => array(
 				'operation' => 'sendReviewsInReview',
 				'name' => 'resubmit',
 				'title' => 'editor.monograph.decision.resubmit',
-				'image' => 'resubmit'
+				'image' => 'resubmit',
+				'help' => 'editor.review.NotifyAuthorResubmit'
 			),
 			SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW => array(
 				'operation' => 'promoteInReview',
 				'name' => 'externalReview',
 				'title' => 'editor.monograph.decision.externalReview',
-				'image' => 'advance'
+				'image' => 'advance',
+				'help' => 'editor.review.NotifyAuthorExternal'
 			),
 			SUBMISSION_EDITOR_DECISION_ACCEPT => array(
 				'operation' => 'promoteInReview',
 				'name' => 'accept',
 				'title' => 'editor.monograph.decision.accept',
-				'image' => 'promote'
+				'image' => 'promote',
+				'help' => 'editor.review.NotifyAuthorAccept'
 			),
 			SUBMISSION_EDITOR_DECISION_DECLINE => array(
 				'operation' => 'sendReviewsInReview',
 				'name' => 'decline',
 				'title' => 'editor.monograph.decision.decline',
-				'image' => 'decline'
+				'image' => 'decline',
+				'help' => 'editor.review.NotifyAuthorDecline'
 			),
 		);
 
