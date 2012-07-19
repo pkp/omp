@@ -119,7 +119,7 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 					new AjaxModal(
 						$router->url($request, null, null, 'addParticipant', null, $this->getRequestArgs()),
 						__('editor.monograph.addStageParticipant'),
-						'addUser'
+						'modal_add_user'
 					),
 					__('editor.monograph.addStageParticipant'),
 					'add_user'
