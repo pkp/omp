@@ -267,6 +267,8 @@ a.sprite.edit:before { background-position:-240px 0; }
 a.sprite.edit:hover:before { background-position:-240px -24px; }
 a.sprite.participants:before { background-position:-314px 0; }
 a.sprite.participants:hover:before { background-position:-314px -24px; }
+a.sprite.wrench:before { background-position:-338px 0; }
+a.sprite.wrench:hover:before { background-position:-338px -24px; }
 a.sprite.notes:before { background-position:-264px 0; }
 a.sprite.notes:hover:before { background-position:-264px -24px; }
 a.sprite.notes_new:before { background-position:-1224px 0; }
