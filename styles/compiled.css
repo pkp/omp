@@ -490,15 +490,16 @@ a.sprite.manage:hover:before { background-position:-1512px -24px; }
   content:" ";
   width:48px;
   height:48px;
-  margin-right:20px;
+  margin-right:10px;
+  margin-left:10px;
   float:left;
   background:url(../lib/pkp/templates/images/structure/sprites.png);
   background-repeat:no-repeat;
   background-position:0 -48px;
 }
-.large_sprite.modal_add_user:before { background-position:-48px -48px; }
-.large_sprite.modal_add_role:before { background-position:-96px -48px; }
-.large_sprite.modal_add_file:before { background-position:-144px -48px; }
+.large_sprite.modal_add_user { background-position:-48px -48px; }
+.large_sprite.modal_add_role { background-position:-96px -48px; }
+.large_sprite.modal_add_file { background-position:-144px -48px; }
 .loading_container {
   text-align:center;
   padding-top:10px;
