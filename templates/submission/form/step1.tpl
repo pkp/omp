@@ -56,7 +56,7 @@
 		{/foreach}
 		{else}
 	{* There are several submission locales available; allow choice *}
-		{fbvFormSection title="submission.submit.submissionLocale" inline=true size=$fbvStyles.size.MEDIUM for="locale"}
+		{fbvFormSection title="submission.submit.submissionLocale" size=$fbvStyles.size.MEDIUM for="locale"}
 			{fbvElement label="submission.submit.submissionLocaleDescription" required="true" type="select" id="locale" from=$supportedSubmissionLocaleNames selected=$locale translate=false}
 		{/fbvFormSection}
 	{/if}{* count($supportedSubmissionLocaleNames) == 1 *}
