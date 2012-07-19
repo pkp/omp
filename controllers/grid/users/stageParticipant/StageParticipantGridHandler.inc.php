@@ -341,7 +341,7 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 		$userGroup =& $userGroupDao->getById($stageAssignment->getUserGroupId());
 		import('classes.log.MonographLog');
-		MonographLog::logEvent($request, $monograph, MONOGRAPH_LOG_ADD_PARTICIPANT, 'submission.event.participantAdded', array('name' => $assignedUser->getFullName(), 'username' => $assignedUser->getUsername(), 'userGroupName' => $userGroup->getLocalizedName()));
+		MonographLog::logEvent($request, $monograph, MONOGRAPH_LOG_REMOVE_PARTICIPANT, 'submission.event.participantRemoved', array('name' => $assignedUser->getFullName(), 'username' => $assignedUser->getUsername(), 'userGroupName' => $userGroup->getLocalizedName()));
 
 		// Redraw the category
 		return DAO::getDataChangedEvent($stageAssignment->getUserGroupId());
