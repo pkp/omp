@@ -651,8 +651,8 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="notification.savedSubmissionMetadata">Submission metadata saved.</message>
 	<message key="notification.savedPublicationFormatMetadata">Publication format metadata saved.</message>
 	<message key="notification.uploadedResponse">Response uploaded.</message>
-	<message key="notification.mailListDescription">Enter your email address to receive immediate notifications of important new content added to the press.</message>
-	<message key="notification.notificationsPublicDescription">This page shows important updates associated with this press such as new monographs or announcements.  You may subscribe to these notifications through RSS feeds (by clicking on the images to the right), or <![CDATA[  <a href="{$emailUrl}">through email.</a>]]></message>
+	<message key="notification.mailListDescription">Enter your email address to be notified when new content is added to the press.</message>
+	<message key="notification.notificationsPublicDescription">This page includes updates associated with this press, such as new monographs or series. You may subscribe to these notifications through RSS feeds (by clicking on the images to the right), or <![CDATA[  <a href="{$emailUrl}">through email.</a>]]></message>
 	<message key="notification.proofsApproved">Proofs approved.</message>
 	<message key="notification.localeEnabled">Locale enabled.</message>
 	<message key="notification.localeDisabled">Locale disabled.</message>
@@ -661,7 +661,7 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="notification.localeUninstalled">{$locale} locale uninstalled.</message>
 	<message key="notification.localeReloaded">{$locale} locale reloaded.</message>
 	<message key="notification.localeSettingsSaved">Locale settings saved.</message>
-	<message key="notification.removedSubmission">Submission deleted</message>
+	<message key="notification.removedSubmission">Submission deleted.</message>
 	<!-- Notification Types -->
 	<message key="notification.type.monographSubmitted">A new monograph, "{$title}", has been submitted.</message>
 	<message key="notification.type.editing">Editing Events</message>
@@ -670,18 +670,18 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="notification.type.reviewing">Reviewing Events</message>
 	<message key="notification.type.site">Site Events</message>
 	<message key="notification.type.submissions">Submission Events</message>
-	<message key="notification.type.userComment">A reader has made a comment on "{$title}"</message>
-	<message key="notification.type.editorAssignment">An editor must be assigned before you can initiate review. Please add one via the Participants link above.</message>
-	<message key="notification.type.editorAssignmentTask">A new monograph has been submitted and an editor must be assigned.</message>
-	<message key="notification.type.editorAssignmentEditing">A production editor must be assigned before you can initiate the editorial process. Please add one via the Participants link above.</message>
-	<message key="notification.type.editorAssignmentProduction">A production editor must be assigned before you can initiate the production process. Please add one via the Participants link above.</message>
-	<message key="notification.type.auditorRequest">You were requested to be an auditor on "{$file}"</message>
-	<message key="notification.type.copyeditorRequest">You were requested to review copyedits for "{$file}"</message>
-	<message key="notification.type.layouteditorRequest">You were requested to review layouts for "{$title}"</message>
-	<message key="notification.type.indexRequest">You were requested to create an index for "{$title}"</message>
+	<message key="notification.type.userComment">A reader has made a comment on "{$title}".</message>
+	<message key="notification.type.editorAssignment">An editor must be assigned before review is initiated. Please add editor using Participants link above.</message>
+	<message key="notification.type.editorAssignmentTask">A new monograph has been submitted to which an editor needs to be assigned.</message>
+	<message key="notification.type.editorAssignmentEditing">A production editor must be assigned before editorial process is initiated. Please add production editor using Participants link above.</message>
+	<message key="notification.type.editorAssignmentProduction">A production editor must be assigned before production process can be initiated. Please add production editor via the Participants link above.</message>
+	<message key="notification.type.auditorRequest">You have been asked audit "{$file}"</message>
+	<message key="notification.type.copyeditorRequest">You have been asked to review copyedits for "{$file}".</message>
+	<message key="notification.type.layouteditorRequest">You have been asked to review layouts for "{$title}".</message>
+	<message key="notification.type.indexRequest">You have been asked to create an index for "{$title}".</message>
 	<message key="notification.type.reviewAssignment">You have a review pending.</message>
 	<message key="notification.type.signoff">You have an audit pending.</message>
-	<message key="notification.type.editorDecisionTitle">Latest editor decision</message>
+	<message key="notification.type.editorDecisionTitle">Latest editor decision.</message>
 	<message key="notification.type.editorDecisionInternalReview">Internal review process started.</message>
 	<message key="notification.type.editorDecisionAccept">Submission accepted.</message>
 	<message key="notification.type.editorDecisionExternalReview">External review process started.</message>
@@ -689,15 +689,15 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="notification.type.editorDecisionResubmit">Resubmit for review.</message>
 	<message key="notification.type.editorDecisionDecline">Submission declined.</message>
 	<message key="notification.type.editorDecisionSendToProduction">Production process started.</message>
-	<message key="notification.type.roundStatusTitle">Round {$round} Status</message>
-	<message key="notification.type.pendingRevisions">You have pending revisions at {$stage}</message>
-	<message key="notification.type.pendingRevisions.title">Pending revisions at {$stage}</message>
-	<message key="notification.type.allReviewsIn">All reviews in. A decision is needed in {$stage}.</message>
-	<message key="notification.type.allRevisionsIn">All revisions in. A decision is needed in {$stage}.</message>
+	<message key="notification.type.roundStatusTitle">Round {$round} Status.</message>
+	<message key="notification.type.pendingRevisions">You have revisions to consider at {$stage}.</message>
+	<message key="notification.type.pendingRevisions.title">Revisions submitted to {$stage}.</message>
+	<message key="notification.type.allReviewsIn">All reviews in and a decision is needed in {$stage}.</message>
+	<message key="notification.type.allRevisionsIn">All revisions in and a decision is needed in {$stage}.</message>
 	<message key="notification.type.approveSubmission">This submission is currently awaiting approval in the Catalog Entry tool before it will appear in the public catalog.</message>
-	<message key="notification.type.approveSubmissionTitle">Awaiting Approval</message>
+	<message key="notification.type.approveSubmissionTitle">Awaiting approval.</message>
 	<message key="notification.type.formatNeedsApprovedSubmission">You need to approve the submission metadata before this publication format is available in public catalog. To approve submission metadata, go to the Monograph tab just above.</message>
-	<message key="notification.type.configurePaymentMethod.title">No payment method configured</message>
+	<message key="notification.type.configurePaymentMethod.title">No payment method configured.</message>
 	<message key="notification.type.configurePaymentMethod">A configured payment method is required before you can define e-commerce settings.</message>
 	<message key="notification.type.visitCatalog">The monograph has been approved. Please visit Management &gt; Catalog to manage its catalog details.</message>
 	<message key="notification.type.visitCatalogTitle">Catalog Management</message>
