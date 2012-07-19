@@ -58,7 +58,7 @@ class ReviewerGridRow extends GridRow {
 					new AjaxModal(
 						$router->url($request, null, null, 'sendEmail', null, $actionArgs),
 						__('grid.user.email'),
-						'notify',
+						'modal_email',
 						true
 					),
 				__('grid.user.email'),
