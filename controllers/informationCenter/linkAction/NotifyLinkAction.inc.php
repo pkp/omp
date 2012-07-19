@@ -39,7 +39,8 @@ class NotifyLinkAction extends LinkAction {
 				'informationCenter.SubmissionInformationCenterHandler', 'viewInformationCenter',
 				null, $requestArgs
 			),
-			__('submission.informationCenter.notify')
+			__('submission.informationCenter.notify'),
+			'modal_email'
 		);
 
 		// Configure the file link action.

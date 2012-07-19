@@ -32,7 +32,8 @@ class MonographlessCatalogEntryLinkAction extends LinkAction {
 				'modals.submissionMetadata.SelectMonographHandler',
 				'fetch', null
 			),
-			__('submission.catalogEntry.new')
+			__('submission.catalogEntry.new'),
+			'modal_more_info'
 		);
 
 		// Configure the link action.

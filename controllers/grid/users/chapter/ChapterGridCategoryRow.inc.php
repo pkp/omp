@@ -82,7 +82,8 @@ class ChapterGridCategoryRow extends GridCategoryRow {
 					'editChapter',
 					new AjaxModal(
 						$router->url($request, null, null, 'editChapter', null, $actionArgs),
-						__('submission.chapter.editChapter')
+						__('submission.chapter.editChapter'),
+						'modal_edit'
 					),
 					$chapter->getLocalizedTitle()
 				), GRID_ACTION_POSITION_ROW_CLICK);

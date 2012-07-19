@@ -61,7 +61,8 @@ class CategoryGridCategoryRow extends GridCategoryRow {
 				'editCategory',
 				new AjaxModal(
 					$router->url($request, null, null, 'editCategory', null, array('categoryId' => $categoryId)),
-					__('grid.category.edit')
+					__('grid.category.edit'),
+					'modal_edit'
 				),
 				$category->getLocalizedTitle()
 			));

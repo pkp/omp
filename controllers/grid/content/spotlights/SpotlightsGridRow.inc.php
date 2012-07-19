@@ -56,7 +56,7 @@ class SpotlightsGridRow extends GridRow {
 					new AjaxModal(
 						$router->url($request, null, null, 'editSpotlight', null, $actionArgs),
 						__('grid.action.edit'),
-						'edit'
+						'modal_edit'
 					),
 					__('grid.action.edit'),
 					'edit'

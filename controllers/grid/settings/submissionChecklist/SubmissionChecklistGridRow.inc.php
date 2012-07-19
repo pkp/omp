@@ -50,7 +50,7 @@ class SubmissionChecklistGridRow extends GridRow {
 					new AjaxModal(
 						$router->url($request, null, null, 'editItem', null, $actionArgs),
 						__('grid.action.edit'),
-						null,
+						'modal_edit',
 						true),
 					__('grid.action.edit'),
 					'edit')

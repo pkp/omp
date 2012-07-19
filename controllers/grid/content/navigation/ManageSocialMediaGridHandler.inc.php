@@ -105,7 +105,7 @@ class ManageSocialMediaGridHandler extends GridHandler {
 				new AjaxModal(
 					$router->url($request, null, null, 'addMedia', null, $actionArgs),
 					__('grid.content.navigation.socialMedia.addSocialLink'),
-					'addMedia'
+					'modal_add_item'
 				),
 				__('grid.content.navigation.socialMedia.addSocialLink'),
 				'add_item'

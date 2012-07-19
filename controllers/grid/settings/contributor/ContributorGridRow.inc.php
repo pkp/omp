@@ -49,7 +49,7 @@ class ContributorGridRow extends GridRow {
 					new AjaxModal(
 						$router->url($request, null, null, 'editContributor', null, $actionArgs),
 						__('grid.action.edit'),
-						'edit',
+						'modal_edit',
 						true
 						),
 					__('grid.action.edit'),

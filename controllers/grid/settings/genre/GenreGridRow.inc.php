@@ -50,7 +50,7 @@ class GenreGridRow extends GridRow {
 					new AjaxModal(
 						$router->url($request, null, null, 'editGenre', null, $actionArgs),
 						__('grid.action.edit'),
-						null,
+						'modal_edit',
 						true),
 					__('grid.action.edit'),
 					'edit')

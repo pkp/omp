@@ -56,7 +56,7 @@ class ContributorGridHandler extends SetupGridHandler {
 				new AjaxModal(
 					$router->url($request, null, null, 'addContributor', null, array('gridId' => $this->getId())),
 					__('grid.action.addContributor'),
-					'addContributor',
+					'modal_add_user',
 					true
 					),
 				__('grid.action.addContributor'),

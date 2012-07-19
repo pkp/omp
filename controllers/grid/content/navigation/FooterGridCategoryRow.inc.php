@@ -62,7 +62,8 @@ class FooterGridCategoryRow extends GridCategoryRow {
 					'editFooterCategory',
 					new AjaxModal(
 						$router->url($request, null, null, 'editFooterCategory', null, $actionArgs),
-						__('grid.content.navigation.footer.editCategory')
+						__('grid.content.navigation.footer.editCategory'),
+						'modal_edit'
 					),
 					$footerCategory->getLocalizedTitle()
 				)

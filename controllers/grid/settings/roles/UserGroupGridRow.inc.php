@@ -42,7 +42,7 @@ class UserGroupGridRow extends GridCategoryRow {
 			$actionArgs = array('userGroupId' => $rowData->getId());
 			$router =& $request->getRouter();
 
-			$ajaxModal = new AjaxModal($router->url($request, null, null, 'editUserGroup', null, $actionArgs));
+			$ajaxModal = new AjaxModal($router->url($request, null, null, 'editUserGroup', null, $actionArgs), __('grid.action.edit'), 'modal_edit');
 			$editUserGroupLinkAction = new LinkAction(
 				'editUserGroup',
 				$ajaxModal,

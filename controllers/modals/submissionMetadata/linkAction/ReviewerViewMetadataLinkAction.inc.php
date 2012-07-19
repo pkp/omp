@@ -33,7 +33,7 @@ class ReviewerViewMetadataLinkAction extends LinkAction {
 				$dispatcher->url($request, ROUTE_COMPONENT, null,
 						'modals.submissionMetadata.ReviewerSubmissionMetadataHandler',
 						'fetch', null, array('monographId' => $monographId, 'reviewAssignmentId' => $reviewAssignmentId)),
-				__('reviewer.step1.viewAllDetails'));
+				__('reviewer.step1.viewAllDetails'), 'modal_information');
 
 		// Configure the link action.
 		parent::LinkAction('viewMetadata', $modal, __('reviewer.step1.viewAllDetails'));

@@ -52,7 +52,7 @@ class SponsorGridHandler extends SetupGridHandler {
 				new AjaxModal(
 					$router->url($request, null, null, 'addSponsor', null, array('gridId' => $this->getId())),
 					__('grid.action.addSponsor'),
-					'addSponsor',
+					'modal_add_user',
 					true
 					),
 				__('grid.action.addSponsor'),

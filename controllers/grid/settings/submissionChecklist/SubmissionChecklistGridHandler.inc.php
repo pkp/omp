@@ -50,7 +50,7 @@ class SubmissionChecklistGridHandler extends SetupGridHandler {
 				new AjaxModal(
 					$router->url($request, null, null, 'addItem', null, array('gridId' => $this->getId())),
 					__('grid.action.addItem'),
-					null,
+					'modal_add_item',
 					true),
 				__('grid.action.addItem'),
 				'add_item')

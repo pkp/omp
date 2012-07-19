@@ -91,7 +91,7 @@ class ManageCatalogHandler extends Handler {
 				new AjaxModal(
 					$dispatcher->url($request, ROUTE_PAGE, null, 'management', 'categories'),
 					__('catalog.manage.manageCategories'),
-					null,
+					'modal_manage',
 					true
 				),
 				__('catalog.manage.manageCategories'),
@@ -104,7 +104,7 @@ class ManageCatalogHandler extends Handler {
 				new AjaxModal(
 					$dispatcher->url($request, ROUTE_PAGE, null, 'management', 'series'),
 					__('catalog.manage.manageSeries'),
-					null,
+					'modal_manage',
 					true
 				),
 				__('catalog.manage.manageSeries'),

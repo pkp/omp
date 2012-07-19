@@ -297,7 +297,8 @@ class AppearanceForm extends PressSettingsForm {
 					'fileType' => $fileType
 				)
 			),
-			__('common.upload')
+			__('common.upload'),
+			'modal_add_file'
 		);
 		$linkAction = new LinkAction(
 			'uploadFile-' . $settingName,

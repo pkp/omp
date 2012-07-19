@@ -121,7 +121,7 @@ class PluginGridHandler extends CategoryGridHandler {
 					'install',
 					new AjaxModal(
 						$router->url($request, null, null, 'installPlugin'),
-						__('manager.plugins.install')),
+						__('manager.plugins.install'), 'modal_add_file'),
 					__('manager.plugins.install'),
 					'add'));
 		}

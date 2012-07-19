@@ -52,7 +52,7 @@ class PressGridRow extends GridRow {
 					new AjaxModal(
 						$router->url($request, null, null, 'editPress', null, $actionArgs),
 						__('grid.action.edit'),
-						'notify',
+						'modal_edit',
 						true
 						),
 					__('grid.action.edit'),

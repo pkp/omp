@@ -105,10 +105,10 @@ class LibraryFileGridHandler extends SetupGridHandler {
 				new AjaxModal(
 					$router->url($request, null, null, 'addFile', null, array('fileType' => $this->getFileType())),
 					__('grid.action.addFile'),
-					'fileManagement'
+					'modal_add_file'
 				),
 				__('grid.action.addFile'),
-				'add_item'
+				'add'
 			)
 		);
 

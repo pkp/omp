@@ -30,7 +30,8 @@ class AuthorViewMetadataLinkAction extends LinkAction {
 					'modals.submissionMetadata.AuthorSubmissionMetadataHandler',
 					'fetch', null, array('monographId' => $monographId)
 				),
-				__('submission.viewMetadata')
+				__('submission.viewMetadata'),
+				'modal_information'
 			),
 			__('submission.viewMetadata'),
 			'more_info'

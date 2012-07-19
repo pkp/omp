@@ -51,7 +51,7 @@ class GenreGridHandler extends SetupGridHandler {
 
 		// Basic grid configuration
 		$press =& $request->getPress();
-		
+
 		// Set the grid title.
 		$this->setTitle('grid.genres.title');
 
@@ -73,7 +73,7 @@ class GenreGridHandler extends SetupGridHandler {
 				new AjaxModal(
 					$router->url($request, null, null, 'addGenre', null, $actionArgs),
 					__('grid.action.addGenre'),
-					null,
+					'modal_add_item',
 					true),
 				__('grid.action.addGenre'),
 				'add_item')

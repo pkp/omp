@@ -44,7 +44,8 @@ class CatalogEntryLinkAction extends LinkAction {
 				'fetch', null,
 				$actionArgs
 			),
-			__('submission.catalogEntry')
+			__('submission.catalogEntry'),
+			'modal_more_info'
 		);
 
 		// Configure the link action.

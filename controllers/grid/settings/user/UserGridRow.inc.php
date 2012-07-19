@@ -52,7 +52,7 @@ class UserGridRow extends GridRow {
 					new AjaxModal(
 						$router->url($request, null, null, 'editEmail', null, $actionArgs),
 						__('grid.user.email'),
-						'notify',
+						'modal_email',
 						true
 						),
 					__('grid.user.email'),
@@ -64,7 +64,7 @@ class UserGridRow extends GridRow {
 					new AjaxModal(
 						$router->url($request, null, null, 'editUser', null, $actionArgs),
 						__('grid.user.edit'),
-						'edit',
+						'modal_edit',
 						true
 						),
 					__('grid.user.edit'),

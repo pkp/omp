@@ -77,11 +77,11 @@ class PressGridHandler extends GridHandler {
 				new AjaxModal(
 					$router->url($request, null, null, 'createPress', null, null),
 					__('admin.presses.addPress'),
-					'addPress',
+					'modal_add_item',
 					true
 					),
 				__('admin.presses.addPress'),
-				'add')
+				'add_item')
 		);
 
 		//

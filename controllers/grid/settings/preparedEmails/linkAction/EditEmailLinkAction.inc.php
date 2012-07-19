@@ -32,7 +32,8 @@ class EditEmailLinkAction extends LinkAction {
 
 		$title = $emailKey ? 'manager.emails.editEmail' : 'manager.emails.addEmail';
 		$action = $emailKey ? 'editPreparedEmail' : 'addPreparedEmail';
-		$icon = $emailKey ? 'edit' : 'add_item';
+		$icon = $emailKey ? 'modal_edit' : 'modal_add_item';
+		$linkIcon = $emailKey ? 'edit' : 'add_item';
 
 		$modal = new AjaxModal(
 			$dispatcher->url($request, ROUTE_COMPONENT, null,
@@ -41,7 +42,7 @@ class EditEmailLinkAction extends LinkAction {
 			__($title), $icon);
 
 		// Configure the link action.
-		parent::LinkAction($action, $modal, __($title), $icon);
+		parent::LinkAction($action, $modal, __($title), $linkIcon);
 	}
 
 

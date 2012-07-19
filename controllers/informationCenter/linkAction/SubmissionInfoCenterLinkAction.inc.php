@@ -42,7 +42,7 @@ class SubmissionInfoCenterLinkAction extends LinkAction {
 				array('monographId' => $monographId)
 			),
 			$primaryAuthor->getLastName() . ", " . $monograph->getLocalizedTitle(),
-			'bookInfo'
+			'modal_information'
 		);
 
 		// Configure the link action.

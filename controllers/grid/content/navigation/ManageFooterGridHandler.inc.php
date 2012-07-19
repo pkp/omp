@@ -128,7 +128,7 @@ class ManageFooterGridHandler extends CategoryGridHandler {
 				new AjaxModal(
 					$router->url($request, null, null, 'addFooterCategory', null, null),
 					__('grid.content.navigation.footer.addCategory'),
-					'add',
+					'modal_add_item',
 					true
 				),
 				__('grid.content.navigation.footer.addCategory'),

@@ -48,7 +48,7 @@ class SponsorGridRow extends GridRow {
 					new AjaxModal(
 						$router->url($request, null, null, 'editSponsor', null, $actionArgs),
 						__('grid.action.edit'),
-						'edit',
+						'modal_edit',
 						true
 						),
 					__('grid.action.edit'),

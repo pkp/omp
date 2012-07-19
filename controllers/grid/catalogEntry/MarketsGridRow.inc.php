@@ -57,7 +57,7 @@ class MarketsGridRow extends GridRow {
 					new AjaxModal(
 						$router->url($request, null, null, 'editMarket', null, $actionArgs),
 						__('grid.action.edit'),
-						'edit'
+						'modal_edit'
 					),
 					__('grid.action.edit'),
 					'edit'
