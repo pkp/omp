@@ -146,7 +146,7 @@ class SalesRightsGridHandler extends GridHandler {
 				new AjaxModal(
 					$router->url($request, null, null, 'addRights', null, $actionArgs),
 					__('grid.action.addRights'),
-					'addRights'
+					'modal_add_item'
 				),
 				__('grid.action.addRights'),
 				'add_item'

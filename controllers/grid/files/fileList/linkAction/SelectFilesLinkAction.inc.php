@@ -30,7 +30,7 @@ class SelectFilesLinkAction extends LinkAction {
 		$router =& $request->getRouter();
 		$ajaxModal = new AjaxModal(
 				$router->url($request, null, null, 'selectFiles', null, $actionArgs),
-				$actionLabel);
+				$actionLabel, 'modal_add_file');
 
 		// Configure the link action.
 		parent::LinkAction('selectFiles', $ajaxModal, $actionLabel, 'add');

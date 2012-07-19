@@ -151,11 +151,10 @@ class ManageSpotlightsGridHandler extends GridHandler {
 				new AjaxModal(
 					$router->url($request, null, null, 'addSpotlight', null, null),
 					__('grid.action.addSpotlight'),
-					'add',
-					true
+					'modal_add_item'
 				),
 				__('grid.action.addSpotlight'),
-				'add')
+				'add_item')
 		);
 	}
 

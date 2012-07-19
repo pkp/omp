@@ -121,7 +121,7 @@ class PublicationFormatGridHandler extends GridHandler {
 				new AjaxModal(
 					$router->url($request, null, null, 'addFormat', null, $actionArgs),
 					__('grid.action.addFormat'),
-					'addFormat'
+					'modal_add_item'
 				),
 				__('grid.action.addFormat'),
 				'add_item'
