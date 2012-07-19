@@ -78,8 +78,8 @@ class PressGridRow extends GridRow {
 						'wizard',
 						new RedirectAction(
 							$dispatcher->url($request, ROUTE_PAGE, $element->getPath(), 'admin', 'presses', null, array('openWizard' => 1))),
-						__('grid.action.wizard')
-					)
+						__('grid.action.wizard'),
+						'wrench')
 				);
 			}
 
