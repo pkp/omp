@@ -11,9 +11,7 @@
 {include file="common/header.tpl"}
 {/strip}
 
-<h3>{translate key="admin.systemVersion"}</h3>
-<h4>{translate key="admin.currentVersion"}</h4>
-<p>{$currentVersion->getVersionString()} ({$currentVersion->getDateInstalled()|date_format:$datetimeFormatLong})</p>
+<h3>{translate key="admin.currentVersion"}: {$currentVersion->getVersionString()} ({$currentVersion->getDateInstalled()|date_format:$datetimeFormatLong})</h3>
 
 {if $latestVersionInfo}
 		<p>{translate key="admin.version.latest"}: {$latestVersionInfo.release|escape} ({$latestVersionInfo.date|date_format:$dateFormatLong})</p>
@@ -26,71 +24,15 @@
 <p><a href="{url versionCheck=1}">{translate key="admin.version.checkForUpdates"}</a></p>
 {/if}
 
-<h4>{translate key="admin.versionHistory"}</h4>
-<table class="pkp_listing" width="100%">
-	<tr>
-		<td colspan="6" class="headseparator">&nbsp;</td>
-	</tr>
-	<tr valign="top" class="heading">
-		<td width="30%">{translate key="admin.version"}</td>
-		<td width="10%">{translate key="admin.versionMajor"}</td>
-		<td width="10%">{translate key="admin.versionMinor"}</td>
-		<td width="10%">{translate key="admin.versionRevision"}</td>
-		<td width="20%">{translate key="admin.versionBuild"}</td>
-		<td width="20%" align="right">{translate key="admin.dateInstalled"}</td>
-	</tr>
-	<tr>
-		<td colspan="6" class="headseparator">&nbsp;</td>
-	</tr>
-	{foreach name="versions" from=$versionHistory item=version}
-	<tr valign="top">
-		<td>{$version->getVersionString()|escape}</td>
-		<td>{$version->getMajor()|escape}</td>
-		<td>{$version->getMinor()|escape}</td>
-		<td>{$version->getRevision()|escape}</td>
-		<td>{$version->getBuild()|escape}</td>
-		<td align="right">{$version->getDateInstalled()|date_format:$dateFormatShort}</td>
-	</tr>
-	<tr>
-		<td colspan="6" class="{if $smarty.foreach.versions.last}end{/if}separator">&nbsp;</td>
-	</tr>
-{/foreach}
-</table>
+{url|assign:versionInfoGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.admin.systemInfo.VersionInfoGridHandler" op="fetchGrid"}
+{load_url_in_div id="versionInfoGridContainer" url=$versionInfoGridUrl}
 
-<h3>{translate key="admin.systemConfiguration"}</h3>
-<p>{translate key="admin.systemConfigurationDescription"}</p>
+{url|assign:serverInfoGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.admin.systemInfo.ServerInfoGridHandler" op="fetchGrid"}
+{load_url_in_div id="serverInfoGridContainer" url=$serverInfoGridUrl}
 
-{foreach from=$configData key=sectionName item=sectionData}
-<h4>{$sectionName|escape}</h4>
+{url|assign:systemInfoGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.admin.systemInfo.SystemInfoGridHandler" op="fetchGrid"}
+{load_url_in_div id="systemInfoGridContainer" url=$systemInfoGridUrl}
 
-{if !empty($sectionData)}{* Empty tables cause validation problems *}
-<table class="data" width="100%">
-{foreach from=$sectionData key=settingName item=settingValue}
-<tr valign="top">
-	<td width="30%" class="label">{$settingName|escape}</td>
-	<td width="70%">{if $settingValue === true}{translate key="common.on"}{elseif $settingValue === false}{translate key="common.off"}{else}{$settingValue|escape}{/if}</td>
-</tr>
-{/foreach}
-</table>
-{/if}{* !empty($sectionData) *}
-
-{/foreach}
-
-<div class="separator"></div>
-
-<h3>{translate key="admin.serverInformation"}</h3>
-<p>{translate key="admin.serverInformationDescription"}</p>
-
-<table class="data" width="100%">
-{foreach from=$serverInfo key=settingName item=settingValue}
-<tr valign="top">
-	<td width="30%" class="label">{translate key=$settingName|escape}</td>
-	<td width="70%" class="value">{$settingValue|escape}</td>
-</tr>
-{/foreach}
-</table>
-
-<a href="{url op="phpinfo"}" target="_blank">{translate key="admin.phpInfo"}</a>
-
+<a href="{url op="phpinfo"}" target="_blank">{translate key="admin.phpInfo"}</a><br />
 {include file="common/footer.tpl"}
 

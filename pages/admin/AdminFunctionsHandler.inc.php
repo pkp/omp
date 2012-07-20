@@ -37,28 +37,11 @@ class AdminFunctionsHandler extends AdminHandler {
 	function systemInfo($args, &$request) {
 		$this->setupTemplate($request, true);
 
-		$configData =& Config::getData();
-
-		$dbconn =& DBConnection::getConn();
-		$dbServerInfo = $dbconn->ServerInfo();
-
 		$versionDao =& DAORegistry::getDAO('VersionDAO');
 		$currentVersion =& $versionDao->getCurrentVersion();
-		$versionHistory =& $versionDao->getVersionHistory();
-
-		$serverInfo = array(
-			'admin.server.platform' => Core::serverPHPOS(),
-			'admin.server.phpVersion' => Core::serverPHPVersion(),
-			'admin.server.apacheVersion' => (function_exists('apache_get_version') ? apache_get_version() : __('common.notAvailable')),
-			'admin.server.dbDriver' => Config::getVar('database', 'driver'),
-			'admin.server.dbVersion' => (empty($dbServerInfo['description']) ? $dbServerInfo['version'] : $dbServerInfo['description'])
-		);
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign_by_ref('currentVersion', $currentVersion);
-		$templateMgr->assign_by_ref('versionHistory', $versionHistory);
-		$templateMgr->assign_by_ref('configData', $configData);
-		$templateMgr->assign_by_ref('serverInfo', $serverInfo);
 		if ($request->getUserVar('versionCheck')) {
 			$latestVersionInfo =& VersionCheck::getLatestVersion();
 			$latestVersionInfo['patch'] = VersionCheck::getPatch($latestVersionInfo);
