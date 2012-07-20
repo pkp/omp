@@ -29,7 +29,7 @@
 		{/fbvFormSection}
 		{fbvFormSection title="user.name" required="true"}
 			{capture assign="defaultLabel"}{translate key="common.chooseOne"}{/capture}
-			{fbvElement type="select" id="userId" size=$fbvStyles.size.MEDIUM required="true" defaultValue="" defaultLabel=$defaultLabel}
+			{fbvElement class="noStyling" type="select" id="userId" size=$fbvStyles.size.MEDIUM required="true" defaultValue="" defaultLabel=$defaultLabel}
 		{/fbvFormSection}
 		{fbvFormButtons}
 	{/fbvFormArea}
