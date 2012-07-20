@@ -42,7 +42,8 @@ class ApproveProofsLinkAction extends LinkAction {
 				'modals.editorDecision.EditorDecisionHandler',
 				'approveProofs', null,
 				$actionArgs),
-			__('editor.monograph.decision.approveProofs')
+			__('editor.monograph.decision.approveProofs'),
+			'modal_approve_proofs'
 		);
 
 		// Configure the link action.
