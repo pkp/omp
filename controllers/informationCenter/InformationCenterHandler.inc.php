@@ -194,7 +194,7 @@ class InformationCenterHandler extends Handler {
 	function listHistory($args, &$request) {
 		assert(false);
 	}
-	
+
 	/**
 	 * Log an event for this item.
 	 * NB: sub-classes must implement this method.
@@ -223,19 +223,16 @@ class InformationCenterHandler extends Handler {
 		// Preselect tab from keywords 'notes', 'notify', 'history'
 		switch ($request->getUserVar('tab')) {
 			case 'history':
-				$templateMgr->assign('selectedTabIndex', 3);
+				$templateMgr->assign('selectedTabIndex', 2);
 				break;
 			case 'notify':
 				$userId = (int) $request->getUserVar('userId');
 				if ($userId) {
 					$linkParams['userId'] = $userId; // user validated in Listbuilder.
 				}
-				$templateMgr->assign('selectedTabIndex', 2);
-				break;
-			case 'notes':
 				$templateMgr->assign('selectedTabIndex', 1);
 				break;
-			// metadata is default
+			// notes is default
 			default:
 				$templateMgr->assign('selectedTabIndex', 0);
 				break;

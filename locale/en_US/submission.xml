@@ -177,7 +177,7 @@
 	<message key="grid.copyediting.deleteSignoff">Unassign User</message>
 
 	<!-- Submission-specific catalog info -->
-	<message key="submission.catalogEntry">Catalog Entry</message>
+	<message key="submission.catalogEntry">Catalog</message>
 	<message key="submission.editCatalogEntry">Entry</message>
 	<message key="submission.catalogEntry.new">New Catalog Entry</message>
 	<message key="submission.catalogEntry.confirm">I acknowledge that the current metadata is accurate and approve it for display in the public catalog.</message>
@@ -190,6 +190,7 @@
 	<message key="submission.catalogEntry.publicationMetadata">Publication Format</message>
 
 	<!-- Information Center -->
+	<message key="submission.informationCenter.submissionInfo">Submission Info</message>
 	<message key="submission.informationCenter.metadata">Metadata</message>
 	<message key="submission.informationCenter.notes">Notes</message>
 	<message key="submission.informationCenter.notify">Notify</message>

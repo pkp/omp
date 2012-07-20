@@ -110,8 +110,6 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 			$templateMgr->assign_by_ref('lastEventUser', $user);
 		}
 
-		$templateMgr->assign('showMetadataLink', true);
-
 		return parent::viewInformationCenter($request);
 	}
 
