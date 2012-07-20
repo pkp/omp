@@ -696,7 +696,7 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="notification.type.allRevisionsIn">All revisions in and a decision is needed in {$stage}.</message>
 	<message key="notification.type.approveSubmission">This submission is currently awaiting approval in the Catalog Entry tool before it will appear in the public catalog.</message>
 	<message key="notification.type.approveSubmissionTitle">Awaiting approval.</message>
-	<message key="notification.type.formatNeedsApprovedSubmission">You need to approve the submission metadata before this publication format is available in public catalog. To approve submission metadata, go to the Monograph tab just above.</message>
+	<message key="notification.type.formatNeedsApprovedSubmission">The metadata for the catalog entry must be approved before the publication format is included in the catalog. To approve catalog metadata, click on Monograph tab above.</message>
 	<message key="notification.type.configurePaymentMethod.title">No payment method configured.</message>
 	<message key="notification.type.configurePaymentMethod">A configured payment method is required before you can define e-commerce settings.</message>
 	<message key="notification.type.visitCatalog">The monograph has been approved. Please visit Management &gt; Catalog to manage its catalog details.</message>
