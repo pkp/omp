@@ -40,6 +40,7 @@ class ChapterGridHandler extends CategoryGridHandler {
 				'addAuthor', 'editAuthor', 'updateAuthor', 'deleteAuthor'
 			)
 		);
+		$this->addRoleAssignment(ROLE_ID_REVIEWER, array('fetchGrid', 'fetchRow'));
 	}
 
 
