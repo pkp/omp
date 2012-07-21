@@ -19,6 +19,7 @@
 <p>
 	{$pressSettings.mailingAddress|nl2br}
 </p>
+<div class="separator"></div>
 {/if}
 
 {if not ($currentPress->getLocalizedSetting('contactTitle') == '' && $currentPress->getLocalizedSetting('contactAffiliation') == '' && $currentPress->getLocalizedSetting('contactMailingAddress') == '' && empty($pressSettings.contactPhone) && empty($pressSettings.contactFax) && empty($pressSettings.contactEmail))}
@@ -36,19 +37,19 @@
 
 	{assign var=s value=$currentPress->getLocalizedSetting('contactMailingAddress')}
 	{if $s}{$s|strip_unsafe_html}{/if}
-
-	<p>
-		{if !empty($pressSettings.contactPhone)}
-			{translate key="about.contact.phone"}: {$pressSettings.contactPhone|escape}<br />
-		{/if}
-		{if !empty($pressSettings.contactFax)}
-			{translate key="about.contact.fax"}: {$pressSettings.contactFax|escape}<br />
-		{/if}
-		{if !empty($pressSettings.contactEmail)}
-			{translate key="about.contact.email"}: {mailto address=$pressSettings.contactEmail|escape encode="hex"}
-		{/if}
-	</p>
 </p>
+<p>
+	{if !empty($pressSettings.contactPhone)}
+		{translate key="about.contact.phone"}: {$pressSettings.contactPhone|escape}<br />
+	{/if}
+	{if !empty($pressSettings.contactFax)}
+		{translate key="about.contact.fax"}: {$pressSettings.contactFax|escape}<br />
+	{/if}
+	{if !empty($pressSettings.contactEmail)}
+		{translate key="about.contact.email"}: {mailto address=$pressSettings.contactEmail|escape encode="hex"}
+	{/if}
+</p>
+<div class="separator"></div>
 {/if}
 
 {if not (empty($pressSettings.supportName) && empty($pressSettings.supportPhone) && empty($pressSettings.supportEmail))}

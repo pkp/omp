@@ -21,9 +21,4 @@
 {/if}
 </p>
 
-<p align="center">
-
-	<img src="{$baseUrl}/{$pubProcessFile}" style="border: 0;" alt="{translate key="about.aboutThisPublishingSystem.altText"}" />
-</p>
-
 {include file="common/footer.tpl"}

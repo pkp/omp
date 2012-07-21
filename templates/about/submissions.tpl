@@ -12,10 +12,10 @@
 {/strip}
 
 <ul class="plain">
-	<li>&#187; <a href="{url page="about" op="submissions" anchor="onlineSubmissions"}">{translate key="about.onlineSubmissions"}</a></li>
-	{if $currentPress->getLocalizedSetting('authorGuidelines') != ''}<li>&#187; <a href="{url page="about" op="submissions" anchor="authorGuidelines"}">{translate key="about.authorGuidelines"}</a></li>{/if}
-	{if $currentPress->getLocalizedSetting('copyrightNotice') != ''}<li>&#187; <a href="{url page="about" op="submissions" anchor="copyrightNotice"}">{translate key="about.copyrightNotice"}</a></li>{/if}
-	{if $currentPress->getLocalizedSetting('privacyStatement') != ''}<li>&#187; <a href="{url page="about" op="submissions" anchor="privacyStatement"}">{translate key="about.privacyStatement"}</a></li>{/if}
+	<li><a href="{url page="about" op="submissions" anchor="onlineSubmissions"}">{translate key="about.onlineSubmissions"}</a></li>
+	{if $currentPress->getLocalizedSetting('authorGuidelines') != ''}<li><a href="{url page="about" op="submissions" anchor="authorGuidelines"}">{translate key="about.authorGuidelines"}</a></li>{/if}
+	{if $currentPress->getLocalizedSetting('copyrightNotice') != ''}<li><a href="{url page="about" op="submissions" anchor="copyrightNotice"}">{translate key="about.copyrightNotice"}</a></li>{/if}
+	{if $currentPress->getLocalizedSetting('privacyStatement') != ''}<li><a href="{url page="about" op="submissions" anchor="privacyStatement"}">{translate key="about.privacyStatement"}</a></li>{/if}
 </ul>
 
 <div id="onlineSubmissions">
@@ -29,9 +29,8 @@
 		<a href="{url page="user" op="register"}" class="action">{translate key="about.onlineSubmissions.registration"}</a>
 	</p>
 	<p>{translate key="about.onlineSubmissions.registrationRequired"}</p>
-
-	<div class="separator">&nbsp;</div>
 </div>
+<div class="separator"></div>
 
 {if $currentPress->getLocalizedSetting('authorGuidelines') != ''}
 	<div id="authorGuidelines">
@@ -41,9 +40,8 @@
 		{include file="common/linkToEditPage.tpl" editUrl=$editUrl}
 
 		<p>{$currentPress->getLocalizedSetting('authorGuidelines')|nl2br}</p>
-
-		<div class="separator">&nbsp;</div>
 	</div>
+	<div class="separator"></div>
 {/if}
 
 {if $submissionChecklist}
@@ -59,9 +57,9 @@
 				<li>{$checklistItem.content|nl2br}</li>
 			{/foreach}
 		</ol>
-		<div class="separator">&nbsp;</div>
 	</div>
-{/if}{* $submissionChecklist *}
+	<div class="separator"></div>
+{/if}
 
 {if $currentPress->getLocalizedSetting('copyrightNotice') != ''}
 	<div id="copyrightNotice">
@@ -71,9 +69,8 @@
 		{include file="common/linkToEditPage.tpl" editUrl=$editUrl}
 
 		<p>{$currentPress->getLocalizedSetting('copyrightNotice')|nl2br}</p>
-
-		<div class="separator">&nbsp;</div>
 	</div>
+	<div class="separator"></div>
 {/if}
 
 {if $currentPress->getLocalizedSetting('privacyStatement') != ''}
@@ -84,10 +81,8 @@
 		{include file="common/linkToEditPage.tpl" editUrl=$editUrl}
 
 		<p>{$currentPress->getLocalizedSetting('privacyStatement')|nl2br}</p>
-
-		<div class="separator">&nbsp;</div>
 	</div>
+	<div class="separator"></div>
 {/if}
 
 {include file="common/footer.tpl"}
-
