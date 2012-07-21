@@ -73,17 +73,6 @@ class ServerInfoGridHandler extends GridHandler {
 		import('controllers.grid.admin.systemInfo.InfoGridCellProvider');
 		$infoGridCellProvider = new InfoGridCellProvider(true);
 
-		$this->addColumn(
-			new GridColumn(
-				'blank',
-				null,
-				null,
-				'controllers/grid/gridCell.tpl',
-				$infoGridCellProvider,
-				array('width' => 2)
-			)
-		);
-
 		// Setting name.
 		$this->addColumn(
 			new GridColumn(

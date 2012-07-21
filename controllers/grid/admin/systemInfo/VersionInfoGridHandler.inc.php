@@ -72,17 +72,6 @@ class VersionInfoGridHandler extends GridHandler {
 		import('controllers.grid.admin.systemInfo.InfoGridCellProvider');
 		$infoGridCellProvider = new InfoGridCellProvider();
 
-		$this->addColumn(
-			new GridColumn(
-				'blank',
-				null,
-				null,
-				'controllers/grid/gridCell.tpl',
-				$infoGridCellProvider,
-				array('width' => 2)
-			)
-		);
-
 		// Version number.
 		$this->addColumn(
 			new GridColumn(

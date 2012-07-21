@@ -69,8 +69,6 @@ class InfoGridCellProvider extends GridCellProvider {
 				$dateFormatShort = Config::getVar('general', 'date_format_short');
 				return array('label' => strftime($dateFormatShort, strtotime($element->getDateInstalled())));
 				break;
-			case 'blank':
-				return array('label' => '');
 			default:
 				break;
 		}
