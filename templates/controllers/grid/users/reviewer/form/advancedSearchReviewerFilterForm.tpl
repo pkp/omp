@@ -39,7 +39,7 @@
 		{fbvFormSection description="manager.reviewerSearch.form.interests.instructions"}
 			{fbvElement type="interests" id="interests" interestsKeywords=$interestSearchKeywords}
 		{/fbvFormSection}
-		{fbvFormSection}
+		{fbvFormSection class="pkp_helpers_text_right"}
 			{fbvElement type="submit" id="submitFilter" label="common.search"}
 		{/fbvFormSection}
 	{/fbvFormArea}
