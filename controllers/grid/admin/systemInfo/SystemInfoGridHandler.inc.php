@@ -75,6 +75,17 @@ class SystemInfoGridHandler extends CategoryGridHandler {
 		import('controllers.grid.admin.systemInfo.InfoGridCellProvider');
 		$infoGridCellProvider = new InfoGridCellProvider();
 
+		$this->addColumn(
+			new GridColumn(
+				'blank',
+				null,
+				null,
+				'controllers/grid/gridCell.tpl',
+				$infoGridCellProvider,
+				array('width' => 5)
+			)
+		);
+
 		// setting name.
 		$this->addColumn(
 			new GridColumn(
