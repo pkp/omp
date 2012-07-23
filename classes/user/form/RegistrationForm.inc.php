@@ -250,7 +250,7 @@ class RegistrationForm extends Form {
 			$user->setBiography($this->getData('biography'), null); // Localized
 			$user->setDateRegistered(Core::getCurrentDate());
 			$user->setCountry($this->getData('country'));
-
+			$user->setInlineHelp(1); // default new users to having inline help visible.
 
 			$site =& $request->getSite();
 			$availableLocales = $site->getSupportedLocales();

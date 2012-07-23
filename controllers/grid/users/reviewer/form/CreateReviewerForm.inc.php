@@ -84,6 +84,7 @@ class CreateReviewerForm extends ReviewerForm {
 		$authDao =& DAORegistry::getDAO('AuthSourceDAO');
 		$auth =& $authDao->getDefaultPlugin();
 		$user->setAuthId($auth?$auth->getAuthId():0);
+		$user->setInlineHelp(1); // default new reviewers to having inline help visible
 
 		$user->setUsername($this->getData('username'));
 		$password = Validation::generatePassword();

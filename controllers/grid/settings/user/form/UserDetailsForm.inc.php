@@ -244,6 +244,7 @@ class UserDetailsForm extends UserForm {
 
 		if (!isset($user)) {
 			$user = new User();
+			$user->setInlineHelp(1); // default new users to having inline help visible
 		}
 
 		$user->setSalutation($this->getData('salutation'));
