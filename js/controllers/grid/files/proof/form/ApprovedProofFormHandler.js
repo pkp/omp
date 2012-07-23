@@ -37,6 +37,11 @@ jQuery.pkp.controllers.grid.files.proof =
 				.click(this.callbackWrapper(this.checkHandler_));
 
 		var $priceElement = $('input[id^="price"]');
+
+		// Disable/enable the submit controls based on a price being entered
+		$priceElement.change(this.callbackWrapper(this.changeHandler_));
+
+		// Set up the default enabled/disabled state of the checkbox controls
 		if ($priceElement.attr('value') === '') {
 			$('#notAvailable').attr('checked', true);
 			$priceElement.attr('disabled', true);
@@ -70,8 +75,36 @@ jQuery.pkp.controllers.grid.files.proof =
 		var $priceElement = $('input[id^="price"]');
 		if ($(radioButton).attr('id') === 'directSales') {
 			$priceElement.attr('disabled', false);
+			if ($priceElement.val() === '') {
+				this.disableFormControls_();
+			} else {
+				this.enableFormControls_();
+			}
 		} else {
 			$priceElement.attr('disabled', true);
+			this.enableFormControls_();
+		}
+
+		return true;
+	};
+
+
+	/**
+	 * Callback that will be activated when the price field is changed.
+	 *
+	 * @private
+	 *
+	 * @param {string} textControl The element the event was triggered on.
+	 * @return {boolean} Always returns true.
+	 */
+	$.pkp.controllers.grid.files.proof.form.ApprovedProofFormHandler.prototype.
+			changeHandler_ = function(textControl) {
+
+		var $priceElement = $(textControl);
+		if ($priceElement.val() === '' || isNaN($priceElement.val())) {
+			this.disableFormControls_();
+		} else {
+			this.enableFormControls_();
 		}
 
 		return true;
