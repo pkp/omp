@@ -30,8 +30,7 @@
 	<input type="hidden" name="displayedInContainer" value="{$formParams.displayedInContainer|escape}" />
 	<input type="hidden" name="tab" value="publication" />
 
-	{* in catalog status *}
-	<h3>{if $isAvailable && $submissionApproved}{translate key="monograph.publicationFormat.inCatalog"}{else}{translate key="monograph.publicationFormat.notInCatalog"}{/if}</h3>
+	<h3>{translate key="monograph.publicationFormat.formatMetadata"}</h3>
 
 	{fbvFormArea id="catalogInclusion"}
 		{fbvFormSection list="true"}

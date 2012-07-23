@@ -141,7 +141,8 @@
 	<message key="editor.monograph.production.approvalAndPublishing">Approval and Publishing</message>
 	<message key="editor.monograph.production.approvalAndPublishingDescription">Different publication formats, such as hardcover, softcover and digital, can be uploaded in the Publication Formats section below. You can use the publication formats grid below as a checklist for what still needs to be done to publish a publication format.</message>
 	<message key="editor.monograph.production.publicationFormatDescription">Add one or more publication formats (eg. hardback; softback/paperback; digital; audio) here. Upload final galley proofs for each publication format below, and audit and approve them. For the galley to be listed in the public catalog, approve the Catalog Entry metadata and ensure that each format checklist item has been completed.</message>
-	<message key="editor.monograph.approvedProofs.edit">Edit Approved Proof</message>
+	<message key="editor.monograph.approvedProofs.edit">Set Terms for Downloading</message>
+	<message key="editor.monograph.approvedProofs.edit.linkTitle">Set Terms</message>
 
 	<!-- Add file or auditor to editor/audit grids -->
 	<message key="editor.monograph.addAuditor">Assign</message>

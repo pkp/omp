@@ -56,7 +56,7 @@ class ApprovedProofFilesGridRow extends GridRow {
 					__('editor.monograph.approvedProofs.edit'),
 					'edit'
 				),
-				__('grid.action.edit'),
+				__('editor.monograph.approvedProofs.edit.linkTitle'),
 				'edit'
 			)
 		);

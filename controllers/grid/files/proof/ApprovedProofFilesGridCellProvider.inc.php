@@ -45,7 +45,7 @@ class ApprovedProofFilesGridCellProvider extends DataObjectGridCellProvider {
 				$approvedProofFile =& $row->getData();
 				$price = $approvedProofFile->getDirectSalesPrice();
 				if ($price === null) $label = __('payment.directSales.notAvailable');
-				elseif ($price == "0") $label = __('payment.directSales.openAccess');
+				elseif ($price == '0') $label = __('payment.directSales.openAccess');
 				else $label = __('payment.directSales.amount', array('amount' => $price, 'currency' => $this->currency));
 
 				return array('label' => $label);

@@ -21,9 +21,9 @@
 		<input type="hidden" name="publicationFormatId" value="{$publicationFormatId|escape}" />
 
 		{fbvFormSection for="priceType" list=true description="payment.directSales.price.description"}
-			{fbvElement type="radio" name="salesType" id="notAvailable" value="notAvailable" label="payment.directSales.notAvailable"}
-			{fbvElement type="radio" name="salesType" id="directSales" value="directSales" label="payment.directSales.directSales"}
 			{fbvElement type="radio" name="salesType" id="openAccess" value="openAccess" label="payment.directSales.openAccess"}
+			{fbvElement type="radio" name="salesType" id="directSales" value="directSales" label="payment.directSales.directSales"}
+			{fbvElement type="radio" name="salesType" id="notAvailable" value="notAvailable" label="payment.directSales.notAvailable"}
 		{/fbvFormSection}
 
 		{fbvFormSection for="price" size=$fbvStyles.size.MEDIUM inline=true}

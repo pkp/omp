@@ -73,9 +73,8 @@
 	<message key="monograph.publicationFormat.taxRate">Taxation Rate</message>
 	<message key="monograph.publicationFormat.taxType">Taxation Type</message>
 
-	<message key="monograph.publicationFormat.isAvailable">This publication format is ready to be included in the public catalog.</message>
-	<message key="monograph.publicationFormat.inCatalog"><![CDATA[This format is <strong>available</strong> in the public catalog.]]></message>
-	<message key="monograph.publicationFormat.notInCatalog"><![CDATA[This format is <strong>not yet available</strong> in the public catalog.]]></message>
+	<message key="monograph.publicationFormat.formatMetadata">Format Metadata</message>
+	<message key="monograph.publicationFormat.isAvailable">Include the metadata for this publication format in the catalog entry for this book.</message>
 	<message key="monograph.publicationFormat.noMarketsAssigned">Missing markets and prices.</message>
 	<message key="monograph.publicationFormat.noCodesAssigned">Missing an identification code.</message>
 	<message key="monograph.publicationFormat.missingONIXFields">Missing some metadata fields.</message>
@@ -715,14 +714,14 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="user.authorization.workflowStageSettingMissing">Access denied! The user group you are currently acting under has not been assigned to this workflow stage. Please check your press settings.</message>
 	<message key="user.authorization.authorRoleMissing">You do not currently have sufficient priveleges to view the submission. Please edit your profile to ensure that you have been granted the appropriate roles under "Register As".</message>
 
-	<message key="payment.directSales">Direct Sales Availability &amp;amp; Pricing</message>
+	<message key="payment.directSales">Download From Press Website</message>
 	<message key="payment.directSales.price">Price</message>
 	<message key="payment.directSales.priceCurrency">Price ({$currency})</message>
 	<message key="payment.directSales.directSales">Direct Sales</message>
 	<message key="payment.directSales.amount">{$amount} ({$currency})</message>
-	<message key="payment.directSales.notAvailable">Not Available</message>
+	<message key="payment.directSales.notAvailable">Not Downloadable</message>
 	<message key="payment.directSales.openAccess">Open Access</message>
-	<message key="payment.directSales.price.description">Approved Proofs can be made available directly through OMP as Open Access (free of charge) or via direct sales. To sell direct access to this approved proof, choose "Direct Sales" and specify a price.</message>
+	<message key="payment.directSales.price.description">File formats can be made available for downloading from the press website through open access at no cost to readers or direct sales (using an online payment processor, as configured in Distribution). For this file indicate the basis of access.</message>
 	<message key="payment.directSales.validPriceRequired">A valid numeric price is required.</message>
 	<message key="payment.directSales.purchase">Purchase ({$amount} {$currency})</message>
 	<message key="payment.directSales.download">Download</message>
