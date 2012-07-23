@@ -64,16 +64,18 @@ $.pkp.pages.catalog = $.pkp.pages.catalog || {};
 
 
 	//
-	// Private constansts.
+	// Private constants.
 	//
 	/**
 	 * {integer} The duration of the transition between two items.
+	 * @private
 	 */
 	$.pkp.pages.catalog.CarouselHandler.prototype.TRANSITION_DURATION_ = 550;
 
 
 	/**
 	 * {integer} Items minimum opacity, when not focused.
+	 * @private
 	 */
 	$.pkp.pages.catalog.CarouselHandler.prototype.MIN_OPACITY_ = 0.5;
 
@@ -82,6 +84,7 @@ $.pkp.pages.catalog = $.pkp.pages.catalog || {};
 	 * {integer} The maximum number of placeholders that this carousel can use
 	 * to make sure the presentation of the items will be same for smaller number
 	 * of items.
+	 * @private
 	 */
 	$.pkp.pages.catalog.CarouselHandler.prototype.MAX_PLACEHOLDER_NUMBER_ = 8;
 
@@ -94,6 +97,7 @@ $.pkp.pages.catalog = $.pkp.pages.catalog || {};
 	 * @param {jQuery} $context The context in which ocurred the event.
 	 * @param {HtmlElement} element The element that triggered the event.
 	 * @param {Event} event The blur event.
+	 * @private
 	 */
 	$.pkp.pages.catalog.CarouselHandler.prototype.blurCallback_ =
 			function($context, element, event) {
@@ -106,6 +110,7 @@ $.pkp.pages.catalog = $.pkp.pages.catalog || {};
 	 * @param {jQuery} $context The context in which ocurred the event.
 	 * @param {HtmlElement} element The element that triggered the event.
 	 * @param {Event} event The focus event.
+	 * @private
 	 */
 	$.pkp.pages.catalog.CarouselHandler.prototype.focusCallback_ =
 			function($context, element, event) {
@@ -116,8 +121,8 @@ $.pkp.pages.catalog = $.pkp.pages.catalog || {};
 	/**
 	 * Called everytime an image loading is finished.
 	 * @param {jQuery} $context The context in which ocurred the event.
-	 * @param {HtmlElement} element The element that triggered the event.
 	 * @param {Event} event The load event.
+	 * @private
 	 */
 	$.pkp.pages.catalog.CarouselHandler.prototype.loadCallback_ =
 			function($context, event) {
@@ -139,6 +144,8 @@ $.pkp.pages.catalog = $.pkp.pages.catalog || {};
 	 * Called everytime user clicks on carousel items.
 	 * @param {HtmlElement} element The element that triggered the event.
 	 * @param {Event} event The click event.
+	 * @return {boolean} Returns event handling status.
+	 * @private
 	 */
 	$.pkp.pages.catalog.CarouselHandler.prototype.clickHandler_ =
 			function(element, event) {
@@ -149,7 +156,8 @@ $.pkp.pages.catalog = $.pkp.pages.catalog || {};
 			return false;
 		} else {
 			this.getHtmlElement().find('ul.pkp_catalog_carousel').
-				roundabout("animateToChild", $item.index());
+					roundabout('animateToChild', $item.index());
+			return true;
 		}
 	};
 
@@ -158,6 +166,7 @@ $.pkp.pages.catalog = $.pkp.pages.catalog || {};
 	 * Next item control click handler.
 	 * @param {HtmlElement} element The element that triggered the event.
 	 * @param {Event} event The click event.
+	 * @private
 	 */
 	$.pkp.pages.catalog.CarouselHandler.prototype.nextItemClickHandler_ =
 			function(element, event) {
@@ -169,6 +178,7 @@ $.pkp.pages.catalog = $.pkp.pages.catalog || {};
 	 * Previous item control click handler.
 	 * @param {HtmlElement} element The element that triggered the event.
 	 * @param {Event} event The click event.
+	 * @private
 	 */
 	$.pkp.pages.catalog.CarouselHandler.prototype.previousItemClickHandler_ =
 			function(element, event) {
@@ -180,18 +190,20 @@ $.pkp.pages.catalog = $.pkp.pages.catalog || {};
 	 * Move the carousel the passed number times.
 	 * @param {integer} itemsToMove The number of items to move. If the
 	 * passed value is negative, the carousel will go back.
-	 * @returns {Boolean}
+	 * @return {boolean} Success status.
+	 * @private
 	 */
 	$.pkp.pages.catalog.CarouselHandler.prototype.moveItems_ =
 			function(itemsToMove) {
 		var $currentItem = $('.roundabout-in-focus', this.getHtmlElement());
 		var currentItemIndex = $currentItem.index();
 		var $targetItem = $($('li', this.getHtmlElement()).
-			get(currentItemIndex + itemsToMove));
+				get(currentItemIndex + itemsToMove));
 
 		if ($targetItem.hasClass('mover') && !$targetItem.hasClass('placeholder')) {
 			this.getHtmlElement().find('ul.pkp_catalog_carousel').
-				roundabout("animateToChild", $targetItem.index());
+					roundabout('animateToChild', $targetItem.index());
+			return true;
 		} else {
 			return false;
 		}
@@ -201,6 +213,7 @@ $.pkp.pages.catalog = $.pkp.pages.catalog || {};
 	/**
 	 * Applies the carousel plugin (roundabout).
 	 * See http://fredhq.com/projects/roundabout
+	 * @private
 	 */
 	$.pkp.pages.catalog.CarouselHandler.prototype.applyCarouselPlugin_ =
 			function() {
@@ -213,8 +226,8 @@ $.pkp.pages.catalog = $.pkp.pages.catalog || {};
 		var minScale = this.getMinScale_();
 
 		// Get the start item index.
-		var firstItemIndex = $('li.mover', $containerElement).
-			not('.placeholder').first().index();
+		var firstItemIndex = $('li.mover', $containerElement)
+				.not('.placeholder').first().index();
 		var itemsNumber = $('li.mover', $containerElement).not('.placeholder').length;
 		var relativeIndex = Math.ceil(itemsNumber / 2);
 		var startingChild = firstItemIndex + relativeIndex - 1;
@@ -225,7 +238,7 @@ $.pkp.pages.catalog = $.pkp.pages.catalog || {};
 			maxZ: 360,
 			minOpacity: 1,
 			minScale: minScale,
-			duration:this.TRANSITION_DURATION_,
+			duration: this.TRANSITION_DURATION_,
 			triggerFocusEvents: true,
 			triggerBlurEvents: true,
 			clickToFocus: false,
@@ -238,6 +251,7 @@ $.pkp.pages.catalog = $.pkp.pages.catalog || {};
 	 * Execute code to toggle the feature (focused or not).
 	 * @param {jQuery} $feature The feature that will be toggled.
 	 * @param {boolean} show True if focused and false if not.
+	 * @private
 	 */
 	$.pkp.pages.catalog.CarouselHandler.prototype.toggleFeature_ =
 			function($feature, show) {
@@ -268,6 +282,7 @@ $.pkp.pages.catalog = $.pkp.pages.catalog || {};
 	/**
 	 * Add placeholders items to the carousel to make sure we have
 	 * at least 5 items at the same time in carousel view.
+	 * @private
 	 */
 	$.pkp.pages.catalog.CarouselHandler.prototype.addPlaceholders_ =
 			function() {
@@ -287,6 +302,8 @@ $.pkp.pages.catalog = $.pkp.pages.catalog || {};
 	/**
 	 * Get minimum items scale, based on the current number of carousel items.
 	 * This will make sure that the layout will be the best one for all cases.
+	 * @return {numeric} The minimum item scale.
+	 * @private
 	 */
 	$.pkp.pages.catalog.CarouselHandler.prototype.getMinScale_ =
 			function() {

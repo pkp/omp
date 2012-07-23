@@ -69,7 +69,10 @@ $.pkp.pages.index = $.pkp.pages.index || {};
 	$.pkp.pages.index.HeaderHandler.prototype.toggleInlineHelpHandler_ =
 			function(sourceElement, event) {
 		this.trigger('toggleInlineHelp');
-	}
+		return false;
+	};
+
+
 	/**
 	 * Initialize navigation menu.
 	 * @private
