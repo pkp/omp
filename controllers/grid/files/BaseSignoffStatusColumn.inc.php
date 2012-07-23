@@ -100,7 +100,7 @@ class BaseSignoffStatusColumn extends GridColumn {
 	 * @return string
 	 */
 	function _getSignoffStatus(&$row) {
-		fatalError('Abstract Method');
+		assert(false); // Abstract method
 	}
 }
 
