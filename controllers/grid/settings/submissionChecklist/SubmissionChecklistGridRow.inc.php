@@ -63,7 +63,8 @@ class SubmissionChecklistGridRow extends GridRow {
 					new RemoteActionConfirmationModal(
 						__('common.confirmDelete'),
 						__('grid.action.delete'),
-						$router->url($request, null, null, 'deleteItem', null, $actionArgs)),
+						$router->url($request, null, null, 'deleteItem', null, $actionArgs),
+						'modal_delete'),
 					__('grid.action.delete'),
 					'delete')
 			);

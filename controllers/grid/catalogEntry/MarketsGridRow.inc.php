@@ -70,8 +70,9 @@ class MarketsGridRow extends GridRow {
 					'deleteMarket',
 					new RemoteActionConfirmationModal(
 						__('common.confirmDelete'),
-						null,
-						$router->url($request, null, null, 'deleteMarket', null, $actionArgs)
+						__('common.delete'),
+						$router->url($request, null, null, 'deleteMarket', null, $actionArgs),
+						'modal_delete'
 					),
 					__('grid.action.delete'),
 					'delete'

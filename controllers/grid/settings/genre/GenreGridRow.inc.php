@@ -63,7 +63,7 @@ class GenreGridRow extends GridRow {
 					new RemoteActionConfirmationModal(
 						__('common.confirmDelete'),
 						__('grid.action.delete'),
-						$router->url($request, null, null, 'deleteGenre', null, $actionArgs)),
+						$router->url($request, null, null, 'deleteGenre', null, $actionArgs), 'modal_delete'),
 					__('grid.action.delete'),
 					'delete')
 			);

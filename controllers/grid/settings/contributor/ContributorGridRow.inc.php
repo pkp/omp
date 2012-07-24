@@ -63,8 +63,9 @@ class ContributorGridRow extends GridRow {
 					'deleteContributor',
 					new RemoteActionConfirmationModal(
 						__('grid.action.delete'),
-						null,
-						$router->url($request, null, null, 'deleteContributor', null, $actionArgs)
+						__('common.delete'),
+						$router->url($request, null, null, 'deleteContributor', null, $actionArgs),
+						'modal_delete'
 					),
 					__('grid.action.delete'),
 					'delete')

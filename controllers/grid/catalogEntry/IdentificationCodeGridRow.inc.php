@@ -70,8 +70,9 @@ class IdentificationCodeGridRow extends GridRow {
 					'deleteCode',
 					new RemoteActionConfirmationModal(
 						__('common.confirmDelete'),
-						null,
-						$router->url($request, null, null, 'deleteCode', null, $actionArgs)
+						__('common.delete'),
+						$router->url($request, null, null, 'deleteCode', null, $actionArgs),
+						'modal_delete'
 					),
 					__('grid.action.delete'),
 					'delete'

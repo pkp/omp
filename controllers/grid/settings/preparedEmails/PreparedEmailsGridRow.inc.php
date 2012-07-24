@@ -52,9 +52,9 @@ class PreparedEmailsGridRow extends GridRow {
 					new LinkAction(
 						'deleteEmail',
 						new RemoteActionConfirmationModal(
-							__('manager.emails.confirmDelete'), null,
+							__('manager.emails.confirmDelete'), __('common.delete'),
 							$router->url($request, null, 'grid.settings.preparedEmails.PreparedEmailsGridHandler',
-								'deleteCustomEmail', null, array('emailKey' => $rowId))
+								'deleteCustomEmail', null, array('emailKey' => $rowId)), 'modal_delete'
 						),
 						__('common.delete'),
 						'disable'

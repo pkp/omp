@@ -74,8 +74,9 @@ class ReviewerGridRow extends GridRow {
 					new LinkAction(
 						'remove',
 						new RemoteActionConfirmationModal(
-							__('common.confirmDelete'), null,
-							$router->url($request, null, null, 'deleteReviewer', null, $actionArgs)
+							__('common.confirmDelete'), __('common.remove'),
+							$router->url($request, null, null, 'deleteReviewer', null, $actionArgs),
+							'modal_delete'
 						),
 					__('grid.action.remove'),
 					'delete'

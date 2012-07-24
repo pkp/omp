@@ -64,8 +64,9 @@ class SocialMediaGridRow extends GridRow {
 					'deleteMedia',
 					new RemoteActionConfirmationModal(
 						__('common.confirmDelete'),
-						null,
-						$router->url($request, null, null, 'deleteMedia', null, $actionArgs)
+						__('common.delete'),
+						$router->url($request, null, null, 'deleteMedia', null, $actionArgs),
+						'modal_delete'
 					),
 					__('grid.action.delete'),
 					'delete'

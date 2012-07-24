@@ -62,8 +62,9 @@ class AnnouncementTypeGridRow extends GridRow {
 					'remove',
 					new RemoteActionConfirmationModal(
 						__('common.confirmDelete'),
-						null,
-						$router->url($request, null, null, 'deleteAnnouncementType', null, $actionArgs)
+						__('common.remove'),
+						$router->url($request, null, null, 'deleteAnnouncementType', null, $actionArgs),
+						'modal_delete'
 						),
 					__('grid.action.remove'),
 					'delete')

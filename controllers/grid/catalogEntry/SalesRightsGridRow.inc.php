@@ -70,8 +70,9 @@ class SalesRightsGridRow extends GridRow {
 					'deleteRights',
 					new RemoteActionConfirmationModal(
 						__('common.confirmDelete'),
-						null,
-						$router->url($request, null, null, 'deleteRights', null, $actionArgs)
+						__('common.delete'),
+						$router->url($request, null, null, 'deleteRights', null, $actionArgs),
+						'modal_delete'
 					),
 					__('grid.action.delete'),
 					'delete'

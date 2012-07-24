@@ -71,8 +71,9 @@ class PublicationFormatGridRow extends GridRow {
 					'deleteFormat',
 					new RemoteActionConfirmationModal(
 						__('common.confirmDelete'),
-						null,
-						$router->url($request, null, null, 'deleteFormat', null, $actionArgs)
+						__('common.delete'),
+						$router->url($request, null, null, 'deleteFormat', null, $actionArgs),
+						'modal_delete'
 					),
 					__('grid.action.delete'),
 					'delete'

@@ -70,8 +70,9 @@ class ChapterGridCategoryRow extends GridCategoryRow {
 						'deleteChapter',
 						new RemoteActionConfirmationModal(
 							__('common.confirmDelete'),
-							null,
-							$router->url($request, null, null, 'deleteChapter', null, $actionArgs)
+							__('common.delete'),
+							$router->url($request, null, null, 'deleteChapter', null, $actionArgs),
+							'modal_delete'
 						),
 						null,
 						'delete'

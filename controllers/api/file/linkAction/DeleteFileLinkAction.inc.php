@@ -28,11 +28,12 @@ class DeleteFileLinkAction extends FileLinkAction {
 		$router =& $request->getRouter();
 		import('lib.pkp.classes.linkAction.request.RemoteActionConfirmationModal');
 		$confirmationModal = new RemoteActionConfirmationModal(
-			__('common.confirmDelete'), null,
+			__('common.confirmDelete'), __('common.delete'),
 			$router->url(
 				$request, null, 'api.file.ManageFileApiHandler',
 				'deleteFile', null, $this->getActionArgs($monographFile, $stageId)
-			)
+			),
+			'modal_delete'
 		);
 
 		// Configure the file link action.

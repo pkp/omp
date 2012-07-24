@@ -69,8 +69,9 @@ class SpotlightsGridRow extends GridRow {
 					'deleteSpotlight',
 					new RemoteActionConfirmationModal(
 						__('common.confirmDelete'),
-						null,
-						$router->url($request, null, null, 'deleteSpotlight', null, $actionArgs)
+						__('common.delete'),
+						$router->url($request, null, null, 'deleteSpotlight', null, $actionArgs),
+						'modal_delete'
 					),
 					__('grid.action.delete'),
 					'delete'

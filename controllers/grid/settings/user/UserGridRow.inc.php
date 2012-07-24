@@ -104,8 +104,9 @@ class UserGridRow extends GridRow {
 					'remove',
 					new RemoteActionConfirmationModal(
 						__('manager.people.confirmRemove'),
-						null,
-						$router->url($request, null, null, 'removeUser', null, $actionArgs)
+						__('common.remove'),
+						$router->url($request, null, null, 'removeUser', null, $actionArgs),
+						'modal_delete'
 						),
 					__('grid.action.remove'),
 					'delete')

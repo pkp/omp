@@ -64,7 +64,7 @@ class SignoffGridRow extends GridRow {
 			$this->addAction(new LinkAction(
 				'deleteSignoff',
 				new RemoteActionConfirmationModal(
-					__('common.confirmDelete'), null,
+					__('common.confirmDelete'), __('common.delete'),
 					$router->url(
 						$request, null, null, 'deleteSignoff',
 						null, array_merge(array(
@@ -73,7 +73,8 @@ class SignoffGridRow extends GridRow {
 							'signoffId' => $rowId,
 							'fileId' => $copyeditedFileId
 						), $this->getRequestArgs())
-					)
+					),
+					'modal_delete'
 				),
 				__('grid.copyediting.deleteSignoff'),
 				'delete'

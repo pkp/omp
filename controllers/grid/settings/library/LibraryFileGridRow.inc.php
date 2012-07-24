@@ -84,8 +84,9 @@ class LibraryFileGridRow extends GridRow {
 				new LinkAction(
 					'deleteFile',
 					new RemoteActionConfirmationModal(
-						__('common.confirmDelete'), null,
-						$router->url($request, null, null, 'deleteFile', null, $actionArgs)
+						__('common.confirmDelete'), __('common.delete'),
+						$router->url($request, null, null, 'deleteFile', null, $actionArgs),
+						'modal_delete'
 					),
 					__('grid.action.delete'),
 					'delete'

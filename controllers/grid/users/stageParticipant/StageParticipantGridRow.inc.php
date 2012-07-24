@@ -60,7 +60,8 @@ class StageParticipantGridRow extends GridRow {
 					new RemoteActionConfirmationModal(
 						__('editor.monograph.removeStageParticipant.description'),
 						__('editor.monograph.removeStageParticipant'),
-						$router->url($request, null, null, 'deleteParticipant', null, $this->getRequestArgs())
+						$router->url($request, null, null, 'deleteParticipant', null, $this->getRequestArgs()),
+						'modal_delete'
 						),
 					__('grid.action.remove'),
 					'delete'

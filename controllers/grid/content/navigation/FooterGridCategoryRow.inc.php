@@ -50,7 +50,8 @@ class FooterGridCategoryRow extends GridCategoryRow {
 					new RemoteActionConfirmationModal(
 						__('grid.content.navigation.footer.deleteCategoryConfirm'),
 						__('grid.content.navigation.footer.deleteCategory'),
-						$router->url($request, null, null, 'deleteFooterCategory', null, $actionArgs)
+						$router->url($request, null, null, 'deleteFooterCategory', null, $actionArgs),
+						'modal_delete'
 					),
 					null,
 					'delete'

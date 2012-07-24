@@ -62,8 +62,9 @@ class SponsorGridRow extends GridRow {
 					'deleteSponsor',
 					new RemoteActionConfirmationModal(
 						__('common.confirmDelete'),
-						null,
-						$router->url($request, null, null, 'deleteSponsor', null, $actionArgs)
+						__('common.delete'),
+						$router->url($request, null, null, 'deleteSponsor', null, $actionArgs),
+						'modal_delete'
 					),
 					__('grid.action.delete'),
 					'delete')

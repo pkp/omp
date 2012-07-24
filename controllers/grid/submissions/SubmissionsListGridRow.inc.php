@@ -51,11 +51,12 @@ class SubmissionsListGridRow extends GridRow {
 				$router =& $request->getRouter();
 				import('lib.pkp.classes.linkAction.request.RemoteActionConfirmationModal');
 				$confirmationModal = new RemoteActionConfirmationModal(
-						__('common.confirmDelete'), null,
+						__('common.confirmDelete'), __('common.delete'),
 						$router->url(
 							$request, null, null,
 							'deleteSubmission', null, array('monographId' => $rowId)
-						)
+						),
+						'modal_delete'
 					);
 
 				$this->addAction(new LinkAction('delete', $confirmationModal, __('grid.action.delete'), 'delete'));
