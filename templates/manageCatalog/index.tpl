@@ -32,7 +32,10 @@
 	// Initialize JS handler for search form.
 	$(function() {ldelim}
 		$('#catalogSearchForm').pkpHandler(
-			'$.pkp.pages.manageCatalog.ManageCatalogSearchFormHandler'
+			'$.pkp.pages.manageCatalog.ManageCatalogSearchFormHandler',
+			{ldelim}
+				trackFormChanges: false
+			{rdelim}
 		);
 	{rdelim});
 	// Initialize "Select Series" form handler
