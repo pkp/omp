@@ -44,9 +44,9 @@ class SubmissionsListGridRow extends GridRow {
 
 		if (!empty($rowId) && is_numeric($rowId)) {
 			// 1) Delete submission action.
-            $monographDao =& DAORegistry::getDAO('MonographDAO'); /* @var $monographDao MonographDAO */
-            $monograph =& $monographDao->getById($rowId);
-            assert(is_a($monograph, 'Monograph'));
+			$monographDao =& DAORegistry::getDAO('MonographDAO'); /* @var $monographDao MonographDAO */
+			$monograph =& $monographDao->getById($rowId);
+			assert(is_a($monograph, 'Monograph'));
 			if ($this->_canDelete && $monograph->getSubmissionProgress() != 0) {
 				$router =& $request->getRouter();
 				import('lib.pkp.classes.linkAction.request.RemoteActionConfirmationModal');
