@@ -10,7 +10,7 @@
   * Localization strings for the en_US (English) locale.
   -->
 
-<locale name="en_US" full_name = "English">
+<locale name="en_US" full_name="English">
 
 	<!-- Languages -->
  	<message key="manager.language.ui">UI</message>

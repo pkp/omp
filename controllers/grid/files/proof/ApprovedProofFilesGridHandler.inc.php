@@ -69,6 +69,14 @@ class ApprovedProofFilesGridHandler extends GridHandler {
 			'common.name',
 			null,
 			'controllers/grid/gridCell.tpl',
+			$cellProvider,
+			array('width' => 60, 'alignment' => COLUMN_ALIGNMENT_LEFT)
+		));
+		$this->addColumn(new GridColumn(
+			'approved',
+			'payment.directSales.approved',
+			null,
+			'controllers/grid/common/cell/statusCell.tpl',
 			$cellProvider
 		));
 		$this->addColumn(new GridColumn(

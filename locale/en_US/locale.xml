@@ -716,6 +716,7 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 
 	<message key="payment.directSales">Download From Press Website</message>
 	<message key="payment.directSales.price">Price</message>
+	<message key="payment.directSales.approved">Approved</message>
 	<message key="payment.directSales.priceCurrency">Price ({$currency})</message>
 	<message key="payment.directSales.directSales">Direct Sales</message>
 	<message key="payment.directSales.amount">{$amount} ({$currency})</message>

@@ -41,6 +41,9 @@ class ApprovedProofFilesGridCellProvider extends DataObjectGridCellProvider {
 			case 'name':
 				$approvedProofFile =& $row->getData();
 				return array('label' => $approvedProofFile->getLocalizedName());
+			case 'approved':
+				$approvedProofFile =& $row->getData();
+				return array('status' => $approvedProofFile->getViewable()?'completed':'new');
 			case 'price':
 				$approvedProofFile =& $row->getData();
 				$price = $approvedProofFile->getDirectSalesPrice();
