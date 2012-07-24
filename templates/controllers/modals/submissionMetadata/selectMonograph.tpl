@@ -33,7 +33,7 @@
 	<form class="pkp_form" id="selectMonographForm">
 		{fbvFormArea id="monographSelectForm"}
 			{fbvFormSection}
-				{fbvElement type="select" id="monographSelect" from="submission.select"|translate|to_array translate=false}
+				{fbvElement type="select" class="noStyling" id="monographSelect" from="submission.select"|translate|to_array translate=false}
 			{/fbvFormSection}
 		{/fbvFormArea}
 	</form>
