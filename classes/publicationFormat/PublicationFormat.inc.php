@@ -27,19 +27,19 @@ class PublicationFormat extends DataObject {
 	}
 
 	/**
-	 * get enabled flag
+	 * get approved flag
 	 * @return int
 	 */
-	function getEnabled() {
-		return $this->getData('enabled');
+	function getIsApproved() {
+		return $this->getData('approved');
 	}
 
 	/**
-	 * set enabled flag
-	 * @param $enabled int
+	 * set approved flag
+	 * @param $approved int
 	 */
-	function setEnabled($enabled) {
-		return $this->setData('enabled', $enabled);
+	function setIsApproved($approved) {
+		return $this->setData('approved', $approved);
 	}
 
 	/**

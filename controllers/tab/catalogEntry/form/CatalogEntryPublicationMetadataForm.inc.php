@@ -149,7 +149,7 @@ class CatalogEntryPublicationMetadataForm extends Form {
 			'productAvailabilityCode' => $publicationFormat->getProductAvailabilityCode() != '' ? $publicationFormat->getProductAvailabilityCode() : '20',
 			'technicalProtectionCode' => $publicationFormat->getTechnicalProtectionCode() != '' ? $publicationFormat->getTechnicalProtectionCode() : '00',
 			'returnableIndicatorCode' => $publicationFormat->getReturnableIndicatorCode() != '' ? $publicationFormat->getReturnableIndicatorCode() : 'Y',
-			'isAvailable' => (bool) $publicationFormat->getIsAvailable(),
+			'isApproved' => (bool) $publicationFormat->getIsApproved(),
 		);
 	}
 
@@ -178,7 +178,7 @@ class CatalogEntryPublicationMetadataForm extends Form {
 			'productAvailabilityCode',
 			'technicalProtectionCode',
 			'returnableIndicatorCode',
-			'isAvailable'
+			'isApproved'
 		));
 	}
 
@@ -194,8 +194,8 @@ class CatalogEntryPublicationMetadataForm extends Form {
 		assert($publicationFormat);
 
 		// Manage tombstones for the publication format.
-		if ($publicationFormat->getIsAvailable() && !$this->getData('isAvailable')) {
-			// Publication format was available and its being disabled. Create
+		if ($publicationFormat->getIsApproved() && !$this->getData('isApproved')) {
+			// Publication format was approved and its being disabled. Create
 			// a tombstone for it.
 			$press =& $request->getPress();
 			import('classes.publicationFormat.PublicationFormatTombstoneManager');
@@ -205,8 +205,8 @@ class CatalogEntryPublicationMetadataForm extends Form {
 			// Log unpublish event.
 			import('classes.log.MonographLog');
 			MonographLog::logEvent($request, $monograph, MONOGRAPH_LOG_PUBLICATION_FORMAT_UNPUBLISH, 'submission.event.publicationFormatUnpublished', array('publicationFormatName' => $publicationFormat->getLocalizedName()));
-		} elseif (!$publicationFormat->getIsAvailable() && $this->getData('isAvailable')) {
-			// Wasn't available and now it is. Delete tombstone.
+		} elseif (!$publicationFormat->getIsApproved() && $this->getData('isApproved')) {
+			// Wasn't approved and now it is. Delete tombstone.
 			$tombstoneDao =& DAORegistry::getDAO('DataObjectTombstoneDAO');
 			$tombstoneDao->deleteByDataObjectId($publicationFormat->getId());
 
@@ -234,7 +234,7 @@ class CatalogEntryPublicationMetadataForm extends Form {
 		$publicationFormat->setProductAvailabilityCode($this->getData('productAvailabilityCode'));
 		$publicationFormat->setTechnicalProtectionCode($this->getData('technicalProtectionCode'));
 		$publicationFormat->setReturnableIndicatorCode($this->getData('returnableIndicatorCode'));
-		$publicationFormat->setIsAvailable($this->getData('isAvailable')?true:false);
+		$publicationFormat->setIsApproved($this->getData('isApproved')?true:false);
 
 		$publicationFormatDao->updateObject($publicationFormat);
 	}

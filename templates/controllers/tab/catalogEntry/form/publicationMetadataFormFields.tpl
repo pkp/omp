@@ -34,7 +34,7 @@
 
 	{fbvFormArea id="catalogInclusion"}
 		{fbvFormSection list="true"}
-			{fbvElement type="checkbox" id="isAvailable" checked=$isAvailable label="monograph.publicationFormat.isAvailable"}
+			{fbvElement type="checkbox" id="isApproved" checked=$isApproved label="monograph.publicationFormat.isApproved"}
 		{/fbvFormSection}
 	{/fbvFormArea}
 

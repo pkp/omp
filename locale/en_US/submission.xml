@@ -202,6 +202,8 @@
 	<message key="submission.event.participantRemoved">"{$name}" ({$username}) is removed as a {$userGroupName}.</message>
 	<message key="submission.event.metadataPublished">The monograph's metadata is approved for publication.</message>
 	<message key="submission.event.metadataUnpublished">The monograph's metadata is no longer published.</message>
+	<message key="submission.event.publicationFormatMadeAvailable">The publication format "{$publicationFormatName}" is made available.</message>
+	<message key="submission.event.publicationFormatMadeUnavailable">The publication format "{$publicationFormatName}" is no longer available.</message>
 	<message key="submission.event.publicationFormatPublished">The publication format "{$publicationFormatName}" is approved for publication.</message>
 	<message key="submission.event.publicationFormatUnpublished">The publication format "{$publicationFormatName}" is no longer published.</message>
 	<message key="submission.event.fileUploaded">A file "{$originalFileName}" was uploaded for monograph {$submissionId} by {$username}.</message>

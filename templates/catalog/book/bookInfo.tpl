@@ -41,7 +41,7 @@
 			{assign var=publicationFormats value=$publishedMonograph->getPublicationFormats()}
 			{foreach from=$publicationFormats item=publicationFormat}
 				{assign var=publicationFormatId value=$publicationFormat->getId()}
-				{if $availableFiles[$publicationFormatId]}
+				{if $publicationFormat->getIsAvailable() && $availableFiles[$publicationFormatId]}
 					<div class="publicationFormatDownload" id="publicationFormat-download-{$publicationFormatId|escape}">
 						{$publicationFormat->getLocalizedName()|escape}
 						<ul>

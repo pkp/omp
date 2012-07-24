@@ -368,7 +368,7 @@ class WorkflowHandler extends Handler {
 			import('classes.monograph.MonographFile'); // constants
 
 			foreach ($publicationFormats as $format) { // there is at least one publication format.
-				if ($format->getIsAvailable()) { // it's ready to be included in the catalog
+				if ($format->getIsApproved()) { // it's ready to be included in the catalog
 
 					$monographFiles =& $submissionFileDao->getLatestRevisionsByAssocId(
 							ASSOC_TYPE_PUBLICATION_FORMAT, $format->getId(),

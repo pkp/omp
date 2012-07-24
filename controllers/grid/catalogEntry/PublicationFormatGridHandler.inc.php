@@ -39,7 +39,8 @@ class PublicationFormatGridHandler extends GridHandler {
 			array(ROLE_ID_PRESS_MANAGER),
 			array(
 				'fetchGrid', 'fetchRow', 'addFormat',
-				'editFormat', 'updateFormat', 'deleteFormat'
+				'editFormat', 'updateFormat', 'deleteFormat',
+				'setAvailable'
 			)
 		);
 	}
@@ -161,8 +162,8 @@ class PublicationFormatGridHandler extends GridHandler {
 		);
 		$this->addColumn(
 			new GridColumn(
-				'price',
-				'payment.directSales.price',
+				'isApproved',
+				'payment.directSales.approved',
 				null,
 				'controllers/grid/common/cell/statusCell.tpl',
 				$cellProvider
@@ -308,13 +309,17 @@ class PublicationFormatGridHandler extends GridHandler {
 	 * @return string Serialized JSON object
 	 */
 	function deleteFormat($args, &$request) {
-
-		// Identify the publication format to be deleted
-		$publicationFormatId = (int) $request->getUserVar('publicationFormatId');
-
+		$press =& $request->getPress();
 		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
-		$publicationFormat =& $publicationFormatDao->getById($publicationFormatId);
-		$result = $publicationFormatDao->deleteById($publicationFormatId);
+		$publicationFormat =& $publicationFormatDao->getById(
+			$request->getUserVar('publicationFormatId'),
+			null, // $pressId
+			$press->getId() // Make sure to validate the press context
+		);
+		$result = false;
+		if ($publicationFormat) {
+			$result = $publicationFormatDao->deleteById($publicationFormat->getId());
+		}
 
 		if ($result) {
 			// Create a tombstone for this publication format.
@@ -333,6 +338,44 @@ class PublicationFormatGridHandler extends GridHandler {
 			MonographLog::logEvent($request, $this->getMonograph(), MONOGRAPH_LOG_PUBLICATION_FORMAT_REMOVE, 'submission.event.publicationFormatRemoved', array('formatName' => $publicationFormat->getLocalizedName()));
 
 			return DAO::getDataChangedEvent();
+		} else {
+			$json = new JSONMessage(false, __('manager.setup.errorDeletingItem'));
+			return $json->getString();
+		}
+
+	}
+
+	/**
+	 * Set a format's "available" state
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return string Serialized JSON object
+	 */
+	function setAvailable($args, &$request) {
+		$press =& $request->getPress();
+		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
+		$publicationFormat =& $publicationFormatDao->getById(
+			$request->getUserVar('publicationFormatId'),
+			null, // $monographId
+			$press->getId() // Make sure to validate the context.
+		);
+
+		if ($publicationFormat) {
+			$newAvailableState = (int) $request->getUserVar('newAvailableState');
+			$publicationFormat->setIsAvailable($newAvailableState);
+			$publicationFormatDao->updateObject($publicationFormat);
+
+			// log the deletion of the format.
+			import('classes.log.MonographLog');
+			import('classes.log.MonographEventLogEntry');
+			MonographLog::logEvent(
+				$request, $this->getMonograph(),
+				$newAvailableState?MONOGRAPH_LOG_PUBLICATION_FORMAT_AVAILABLE:MONOGRAPH_LOG_PUBLICATION_FORMAT_UNAVAILABLE,
+				$newAvailableState?'submission.event.publicationFormatMadeAvailable':'submission.event.publicationFormatMadeUnavailable',
+				array('formatName' => $publicationFormat->getLocalizedName())
+			);
+
+			return DAO::getDataChangedEvent($publicationFormat->getId());
 		} else {
 			$json = new JSONMessage(false, __('manager.setup.errorDeletingItem'));
 			return $json->getString();

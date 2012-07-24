@@ -74,7 +74,7 @@
 	<message key="monograph.publicationFormat.taxType">Taxation Type</message>
 
 	<message key="monograph.publicationFormat.formatMetadata">Format Metadata</message>
-	<message key="monograph.publicationFormat.isAvailable">Include the metadata for this publication format in the catalog entry for this book.</message>
+	<message key="monograph.publicationFormat.isApproved">Include the metadata for this publication format in the catalog entry for this book.</message>
 	<message key="monograph.publicationFormat.noMarketsAssigned">Missing markets and prices.</message>
 	<message key="monograph.publicationFormat.noCodesAssigned">Missing an identification code.</message>
 	<message key="monograph.publicationFormat.missingONIXFields">Missing some metadata fields.</message>
@@ -85,13 +85,18 @@
 	<message key="grid.catalogEntry.publicationFormatType">Publication Format</message>
 	<message key="grid.catalogEntry.nameRequired">A name is required.</message>
 	<message key="grid.catalogEntry.validPriceRequired">A valid price is required.</message>
-	<message key="grid.catalogEntry.publicationFormatType">Publication Format</message>
 	<message key="grid.catalogEntry.publicationFormatDetails">Format Details</message>
 	<message key="grid.catalogEntry.physicalFormat">Physical format</message>
 	<message key="grid.catalogEntry.monographRequired">A monograph id is required.</message>
 	<message key="grid.catalogEntry.publicationFormatRequired">A publication format must be chosen.</message>
-	<message key="grid.catalogEntry.isAvailable">In Catalog</message>
+	<message key="grid.catalogEntry.isAvailable">Available</message>
 	<message key="grid.catalogEntry.proofComplete">Proof complete</message>
+	<message key="grid.catalogEntry.availablePublicationFormat.title">Format Approval</message>
+	<message key="grid.catalogEntry.availablePublicationFormat.message"><![CDATA[<p>This format will now be made <em>available</em> to readers, through downloadable files that will now appear with the book’s catalog entry and/or through further actions taken by the press to distribute the book.</p>]]></message>
+	<message key="grid.catalogEntry.availablePublicationFormat.removeMessage"><![CDATA[<p>This format will <em>no longer be made available</em> to readers, through downloadable files that previously appeared with the book’s catalog entry and/or through further actions taken by the press to distribute the book.</p>]]></message>
+	<message key="grid.catalogEntry.availablePublicationFormat.catalogNotApprovedWarning">Catalog entry not approved.</message>
+	<message key="grid.catalogEntry.availablePublicationFormat.notApprovedWarning">Format not in catalog entry.</message>
+	<message key="grid.catalogEntry.availablePublicationFormat.proofNotApproved">Proof not approved.</message>
 
 	<!--  publication metadata required form field keys -->
 	<message key="grid.catalogEntry.fileSizeRequired">A file size for digital formats required.</message>

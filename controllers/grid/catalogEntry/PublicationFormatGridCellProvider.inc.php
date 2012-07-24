@@ -80,9 +80,30 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 				return array('label' => $publicationFormat->getLocalizedName());
 			case 'proofComplete':
 			case 'isAvailable':
-			case 'price':
+			case 'isApproved':
 				return array('status' => $this->getCellState($row, $column));
+			default:
+				assert(false);
 		}
+	}
+
+	/**
+	 * Determine if at least one proof is complete for the publication format.
+	 * @param $publicationFormat PublicationFormat
+	 * @return boolean
+	 */
+	function isProofComplete(&$publicationFormat) {
+		$monographFiles =& $this->getMonographFiles($publicationFormat->getId());
+		$proofComplete = false;
+		// If we have at least one viewable file, we consider
+		// proofs as approved.
+		foreach ($monographFiles as $file) {
+			if ($file->getViewable()) {
+				$proofComplete = true;
+				break;
+			}
+		}
+		return $proofComplete;
 	}
 
 	/**
@@ -95,33 +116,15 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 		$publicationFormat =& $row->getData();
 		switch ($column->getId()) {
 			case 'proofComplete':
-				$monographFiles =& $this->getMonographFiles($publicationFormat->getId());
-				$proofComplete = false;
-				// If we have at least one viewable file, we consider
-				// proofs as approved.
-				foreach ($monographFiles as $file) {
-					if ($file->getViewable()) {
-						$proofComplete = true;
-						break;
-					}
-				}
-				return $proofComplete?'completed':'new';
-			case 'isAvailable':
+				return $this->isProofComplete($publicationFormat)?'completed':'new';
+			case 'isApproved':
 				$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
 				$publishedMonograph =& $publishedMonographDao->getById($publicationFormat->getMonographId());
-				return ($publicationFormat->getIsAvailable() && $publishedMonograph)?'completed':'new';
-			case 'price':
-				$monographFiles =& $this->getMonographFiles($publicationFormat->getId());
-				$priceConfigured = false;
-				// If we have at least one file with a configured price,
-				// consider price as configured.
-				foreach ($monographFiles as $file) {
-					if (!is_null($file->getDirectSalesPrice())) {
-						$priceConfigured = true;
-						break;
-					}
-				}
-				return $priceConfigured?'completed':'new';
+				return ($publicationFormat->getIsApproved() && $publishedMonograph)?'completed':'new';
+			case 'isAvailable':
+				return $publicationFormat->getIsAvailable()?'completed':'new';
+			default:
+				assert(false);
 		}
 	}
 
@@ -134,28 +137,63 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 			'monographId' => $publicationFormat->getMonographId(),
 			'publicationFormatId' => $publicationFormat->getId()
 		);
-		$cellState = $this->getCellState($row, $column);
-		$action = null;
 		$monographId = $publicationFormat->getMonographId();
 		$publicationFormatId = $publicationFormat->getId();
 		switch ($column->getId()) {
 			case 'proofComplete':
 				import('controllers.api.proof.linkAction.ApproveProofsLinkAction');
-				$action = new ApproveProofsLinkAction($request, $monographId, $publicationFormatId, $cellState);
+				return array(new ApproveProofsLinkAction($request, $monographId, $publicationFormatId, $this->getCellState($row, $column)));
 				break;
-			case 'isAvailable':
-			case 'price':
+			case 'isApproved':
 				if ($this->getInCatalogEntryModal()) {
 					import('lib.pkp.classes.linkAction.request.NullAction');
-					$action = new LinkAction('publicationFormatTab', new NullAction(), __('monograph.publicationFormat.openTab'), $cellState);
+					return array(new LinkAction('publicationFormatTab', new NullAction(), __('monograph.publicationFormat.openTab'), $this->getCellState($row, $column)));
 				} else {
 					import('controllers.modals.submissionMetadata.linkAction.CatalogEntryLinkAction');
-					$action = new CatalogEntryLinkAction($request, $monographId, WORKFLOW_STAGE_ID_PRODUCTION, $publicationFormatId, $cellState);
+					return array(new CatalogEntryLinkAction($request, $monographId, WORKFLOW_STAGE_ID_PRODUCTION, $publicationFormatId, $this->getCellState($row, $column)));
 				}
 				break;
-		}
-		if ($action) {
-			return array($action);
+			case 'isAvailable':
+				$router =& $request->getRouter();
+				$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
+				$publishedMonograph =& $publishedMonographDao->getById($publicationFormat->getMonographId());
+
+				// FIXME: Bug #7715
+				$warningMarkup = '';
+				$templateMgr =& TemplateManager::getManager();
+				$templateMgr->assign('notificationStyleClass', 'notifyWarning');
+				$templateMgr->assign('notificationTitle', __('common.warning'));
+				if (!$publishedMonograph) {
+					$templateMgr->assign('notificationId', uniqid('notPublished'));
+					$templateMgr->assign('notificationContents', __('grid.catalogEntry.availablePublicationFormat.catalogNotApprovedWarning'));
+					$warningMarkup .= $templateMgr->fetch('controllers/notification/inPlaceNotificationContent.tpl');
+				}
+				if (!$publicationFormat->getIsApproved()) {
+					$templateMgr->assign('notificationId', uniqid('notAvailable'));
+					$templateMgr->assign('notificationContents', __('grid.catalogEntry.availablePublicationFormat.notApprovedWarning'));
+					$warningMarkup .= $templateMgr->fetch('controllers/notification/inPlaceNotificationContent.tpl');
+				}
+				if (!$this->isProofComplete($publicationFormat)) {
+					$templateMgr->assign('notificationId', uniqid('notProofed'));
+					$templateMgr->assign('notificationContents', __('grid.catalogEntry.availablePublicationFormat.proofNotApproved'));
+					$warningMarkup .= $templateMgr->fetch('controllers/notification/inPlaceNotificationContent.tpl');
+				}
+				// If we have any notifications, wrap them in the appropriately styled div
+				if ($warningMarkup !== '') $warningMarkup = "<div class=\"pkp_notification\">$warningMarkup</div>";
+				return array(new LinkAction(
+					'availablePublicationFormat',
+					new RemoteActionConfirmationModal(
+						$warningMarkup . __($publicationFormat->getIsAvailable()?'grid.catalogEntry.availablePublicationFormat.removeMessage':'grid.catalogEntry.availablePublicationFormat.message'),
+						__('grid.catalogEntry.availablePublicationFormat.title'),
+						$router->url($request, null, 'grid.catalogEntry.PublicationFormatGridHandler',
+							'setAvailable', null, array('publicationFormatId' => $publicationFormat->getId(), 'newAvailableState' => $publicationFormat->getIsAvailable()?0:1, 'monographId' => $monographId))
+						),
+						__('manager.emails.disable'),
+						$this->getCellState($row, $column)
+				));
+				break;
+			default:
+				return array();
 		}
 	}
 

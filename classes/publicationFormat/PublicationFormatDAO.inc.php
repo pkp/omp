@@ -26,20 +26,21 @@ class PublicationFormatDAO extends DAO {
 	 * Retrieve a publication format by type id.
 	 * @param $publicationFormatId int
 	 * @param $monographId optional int
+	 * @param $pressId optional int
 	 * @return PublicationFormat
 	 */
-	function &getById($publicationFormatId, $monographId = null) {
-
+	function &getById($publicationFormatId, $monographId = null, $pressId = null) {
 		$params = array((int) $publicationFormatId);
-		if ($monographId != null) {
-			$params[] = (int) $monographId;
-		}
+		if ($monographId) $params[] = (int) $monographId;
+		if ($pressId) $params[] = (int) $pressId;
 
 		$result =& $this->retrieve(
-			'SELECT *
-			FROM	publication_formats
-			WHERE	publication_format_id = ?'
-			. ($monographId != null ? ' AND monograph_id = ?' : ''),
+			'SELECT pf.*
+			FROM	publication_formats pf
+			' . ($pressId?' JOIN monographs m ON (m.monograph_id = pf.monograph_id)':'') . '
+			WHERE	pf.publication_format_id = ?' .
+			($monographId?' AND pf.monograph_id = ?':'') .
+			($pressId?' AND m.press_id = ?':''),
 			$params
 		);
 
@@ -51,18 +52,6 @@ class PublicationFormatDAO extends DAO {
 		$result->Close();
 		unset($result);
 
-		return $returner;
-	}
-
-	function getCountByPublicationFormatId($publicationFormatId) {
-		$result =& $this->retrieve(
-			'SELECT	*
-			FROM	publication_formats
-			WHERE	publication_format_id = ?',
-			(int) $publicationFormatId
-		);
-
-		$returner = $result->RecordCount();
 		return $returner;
 	}
 
@@ -84,15 +73,15 @@ class PublicationFormatDAO extends DAO {
 	}
 
 	/**
-	 * Retrieves a list of available publication formats for a published monograph
+	 * Retrieves a list of approved publication formats for a published monograph
 	 * @param int $monographId
 	 * @return DAOResultFactory (PublicationFormat)
 	 */
-	function getAvailableByMonographId($monographId) {
+	function getApprovedByMonographId($monographId) {
 		$result =& $this->retrieve(
 				'SELECT *
 				FROM	publication_formats
-				WHERE	monograph_id = ? AND is_available = 1',
+				WHERE	monograph_id = ? AND is_approved = 1',
 				(int) $monographId
 		);
 
@@ -141,6 +130,7 @@ class PublicationFormatDAO extends DAO {
 		$publicationFormat = $this->newDataObject();
 
 		// Add the additional Publication Format data
+		$publicationFormat->setIsApproved($row['is_approved']);
 		$publicationFormat->setEntryKey($row['entry_key']);
 		$publicationFormat->setPhysicalFormat($row['physical_format']);
 		$publicationFormat->setSeq($row['seq']);
@@ -179,10 +169,11 @@ class PublicationFormatDAO extends DAO {
 	function insertObject(&$publicationFormat) {
 		$this->update(
 			'INSERT INTO publication_formats
-				(entry_key, physical_format, monograph_id, seq, file_size, front_matter, back_matter, height, height_unit_code, width, width_unit_code, thickness, thickness_unit_code, weight, weight_unit_code, product_composition_code, product_form_detail_code, country_manufacture_code, imprint, product_availability_code, technical_protection_code, returnable_indicator_code, is_available)
+				(is_approved, entry_key, physical_format, monograph_id, seq, file_size, front_matter, back_matter, height, height_unit_code, width, width_unit_code, thickness, thickness_unit_code, weight, weight_unit_code, product_composition_code, product_form_detail_code, country_manufacture_code, imprint, product_availability_code, technical_protection_code, returnable_indicator_code, is_available)
 			VALUES
-				(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+				(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
 			array(
+				(int) $publicationFormat->getIsApproved(),
 				$publicationFormat->getEntryKey(),
 				(int) $publicationFormat->getPhysicalFormat(),
 				(int) $publicationFormat->getMonographId(),
@@ -220,7 +211,8 @@ class PublicationFormatDAO extends DAO {
 	function updateObject(&$publicationFormat) {
 		$this->update(
 			'UPDATE publication_formats
-			SET	entry_key = ?,
+			SET	is_approved = ?,
+				entry_key = ?,
 				physical_format = ?,
 				seq = ?,
 				file_size = ?,
@@ -244,6 +236,7 @@ class PublicationFormatDAO extends DAO {
 				is_available = ?
 			WHERE	publication_format_id = ?',
 			array(
+				(int) $publicationFormat->getIsApproved(),
 				$publicationFormat->getEntryKey(),
 				$publicationFormat->getPhysicalFormat(),
 				(int) $publicationFormat->getSeq(),
