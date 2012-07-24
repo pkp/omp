@@ -13,13 +13,13 @@
 
 <h3>{translate key="user.myAccount"}</h3>
 <ul class="plain">
-	<li>&#187; <a href="{url page="user" op="profile"}">{translate key="user.editMyProfile"}</a></li>
+	<li><a href="{url page="user" op="profile"}">{translate key="user.editMyProfile"}</a></li>
 
 	{if !$implicitAuth}
-		<li>&#187; <a href="{url page="user" op="changePassword"}">{translate key="user.changeMyPassword"}</a></li>
+		<li><a href="{url page="user" op="changePassword"}">{translate key="user.changeMyPassword"}</a></li>
 	{/if}
 
-	<li>&#187; <a href="{url page="login" op="signOut"}">{translate key="user.logOut"}</a></li>
+	<li><a href="{url page="login" op="signOut"}">{translate key="user.logOut"}</a></li>
 	{call_hook name="Templates::User::Index::MyAccount"}
 </ul>
 
