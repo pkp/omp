@@ -70,7 +70,7 @@ class PreparedEmailsGridRow extends GridRow {
 						new RemoteActionConfirmationModal(
 							__('manager.emails.reset.message'), null,
 							$router->url($request, null, 'grid.settings.preparedEmails.PreparedEmailsGridHandler',
-								'resetEmail', null, array('emailKey' => $rowId))
+								'resetEmail', null, array('emailKey' => $rowId)), 'modal_delete'
 						),
 						__('manager.emails.reset'),
 						'delete'
