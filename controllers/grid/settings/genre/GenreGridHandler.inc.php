@@ -86,7 +86,7 @@ class GenreGridHandler extends SetupGridHandler {
 				new RemoteActionConfirmationModal(
 					__('grid.action.restoreDefaults'),
 					null,
-					$router->url($request, null, null, 'restoreGenres', null, $actionArgs)),
+					$router->url($request, null, null, 'restoreGenres', null, $actionArgs), 'modal_delete'),
 				__('grid.action.restoreDefaults'),
 				'reset_default')
 		);
