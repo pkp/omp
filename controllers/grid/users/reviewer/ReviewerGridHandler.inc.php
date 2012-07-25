@@ -182,7 +182,7 @@ class ReviewerGridHandler extends GridHandler {
 				null,
 				'controllers/grid/common/cell/statusCell.tpl',
 				$cellProvider,
-				array('myUserGroup' => true, 'hoverTitle' => true)
+				array('hoverTitle' => true)
 			)
 		);
 

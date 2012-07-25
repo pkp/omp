@@ -19,15 +19,24 @@ class SignoffStatusFromFileGridColumn extends BaseSignoffStatusColumn {
 	/* @var string */
 	var $_symbolic;
 
+	/* @var $_allowSignoffs boolean */
+	var $_allowSignoffs;
+
 	/**
 	 * Constructor
-	 * @param $userGroup UserGroup The user
-	 *  group to be represented in this column.
-	 * @param $stageId integer One of the WORKFLOW_STAGE_ID_* constants.
-	 * @param $requestArgs array Parameters for cell actions.
+	 * @param $id string Column ID
+	 * @param $title string Column title locale key
+	 * @param $titleTranslated string Column title, translated
+	 * @param $symbolic string Column symbolic name
+	 * @param $userIds array List of user IDs
+	 * @param $requestArgs array List of request parameters to include in URLs
+	 * @param $allowSignoffs boolean Whether or not to allow the user to sign off this column
+	 * @param $flags array Optional list of column flags
 	 */
-	function SignoffStatusFromFileGridColumn($id, $title, $titleTranslated, $symbolic, $userIds, $requestArgs, $flags = array()) {
+	function SignoffStatusFromFileGridColumn($id, $title, $titleTranslated, $symbolic, $userIds, $requestArgs, $allowSignoffs = false, $flags = array()) {
 		$this->_symbolic = $symbolic;
+		$this->_allowSignoffs = $allowSignoffs;
+
 		parent::BaseSignoffStatusColumn(
 			$id,
 			$title,
@@ -54,7 +63,7 @@ class SignoffStatusFromFileGridColumn extends BaseSignoffStatusColumn {
 	function getCellActions($request, $row) {
 		$status = $this->_getSignoffStatus($row);
 		$actions = array();
-		if (in_array($status, array('accepted', 'new')) && $this->hasFlag('myUserGroup')) {
+		if (in_array($status, array('accepted', 'new')) && $this->_allowSignoffs) {
 			// Retrieve the submission file.
 			$monographFile =& $this->getMonographFile($row);
 

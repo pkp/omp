@@ -80,8 +80,6 @@ class FileSignoffGridHandler extends SubmissionFilesGridHandler {
 				}
 
 				$userIds = array_unique($userIds);
-				$flags = array('hoverTitle' => true);
-				if (in_array($currentUser->getId(), $userIds)) $flags['myUserGroup'] = true;
 				$this->addColumn(
 					new SignoffStatusFromFileGridColumn(
 						'role-' . $roleId,
@@ -90,7 +88,8 @@ class FileSignoffGridHandler extends SubmissionFilesGridHandler {
 						$this->getSymbolic(),
 						$userIds,
 						$this->getRequestArgs(),
-						$flags
+						in_array($currentUser->getId(), $userIds),
+						array('hoverTitle', true)
 					)
 				);
 			}
@@ -103,12 +102,7 @@ class FileSignoffGridHandler extends SubmissionFilesGridHandler {
 		foreach ($uploaderUserGroupIds as $userGroupId) {
 			$userGroup =& $userGroupDao->getById($userGroupId);
 			assert(is_a($userGroup, 'UserGroup'));
-			$flags = array();
-			if ($userGroupDao->userInGroup($currentUser->getId(), $userGroupId)) {
-				$flags['myUserGroup'] = true;
-			}
-
-			$this->addColumn(new UploaderUserGroupGridColumn($userGroup, $flags));
+			$this->addColumn(new UploaderUserGroupGridColumn($userGroup));
 			unset($userGroup);
 		}
 	}

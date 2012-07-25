@@ -69,12 +69,7 @@ class ProductionReadyFilesGridHandler extends SubmissionFilesGridHandler {
 		foreach ($uploaderUserGroupIds as $userGroupId) {
 			$userGroup =& $userGroupDao->getById($userGroupId);
 			assert(is_a($userGroup, 'UserGroup'));
-			$flags = array();
-			if ($userGroupDao->userInGroup($currentUser->getId(), $userGroupId)) {
-				$flags['myUserGroup'] = true;
-			}
-
-			$this->addColumn(new UploaderUserGroupGridColumn($userGroup, $flags));
+			$this->addColumn(new UploaderUserGroupGridColumn($userGroup));
 			unset($userGroup);
 		}
 	}

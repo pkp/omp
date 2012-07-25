@@ -215,7 +215,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 		$this->addColumn(new SignoffOnSignoffGridColumn(
 			'user.role.editor',
 			$userIds, $this->getRequestArgs(),
-			array('myUserGroup' => true, 'hoverTitle' => true)
+			array('hoverTitle' => true)
 		));
 
 		// Add the auditor column (the person assigned to signoff.
