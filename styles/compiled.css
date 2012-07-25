@@ -199,7 +199,6 @@ strong {
 .pkp_helpers_third { width:31%; }
 .pkp_helpers_quarter { width:23%; }
 .pkp_helpers_threeQuarter { width:73%; }
-.pkp_helpers_underline { text-decoration:underline !important; }
 .pkp_helpers_underline:after {
   border-bottom:2px solid white;
   content:" ";
