@@ -97,7 +97,7 @@
 				{/if}
 				{fbvFormArea id="forCategorySelect"}
 					{fbvFormSection}
-						{fbvElement type="select" id="categorySelect" translate=false label="catalog.selectCategory" size=$fbvStyles.size.MEDIUM}
+						{fbvElement type="select" id="categorySelect" translate=false label="catalog.selectCategory" size=$fbvStyles.size.MEDIUM class="noStyling"}
 					{/fbvFormSection}
 				{/fbvFormArea}
 			</form>
@@ -117,7 +117,7 @@
 				{/if}
 				{fbvFormArea id="forSeriesSelect"}
 					{fbvFormSection}
-						{fbvElement type="select" id="seriesSelect" translate=false label="catalog.selectSeries" size=$fbvStyles.size.MEDIUM}
+						{fbvElement type="select" id="seriesSelect" translate=false label="catalog.selectSeries" size=$fbvStyles.size.MEDIUM class="noStyling"}
 					{/fbvFormSection}
 				{/fbvFormArea}
 			</form>
