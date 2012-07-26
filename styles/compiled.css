@@ -1408,7 +1408,7 @@ div.ui-pnotify-container {
 .pkp_notification .pkp_linkActions { line-height:24px; }
 .pkp_notification .notifySuccess { background:#c9e3f8 url(../lib/pkp/templates/images/structure/response_success.png); }
 .pkp_notification .notifyWarning { background:#c9e3f8 url(../lib/pkp/templates/images/structure/response_warning.png); }
-.pkp_notification .notifyError, .pkp_notification .notifyFormError { background:#f8dada url(../lib/pkp/templates/images/structure/response_error.png) !important; }
+.pkp_notification .notifyError, .pkp_notification .notifyFormError { background:#f8dada url(../lib/pkp/templates/images/structure/response_error.png); }
 .pkp_notification .notifyForbidden { background:#f8dada url(../lib/pkp/templates/images/structure/response_forbidden.png); }
 .pkp_notification .notifyInformation { background:#c9e3f8 url(../lib/pkp/templates/images/structure/response_info.png); }
 .pkp_notification .notifyHelp { background:#c9e3f8 url(../lib/pkp/templates/images/structure/response_help.png); }
