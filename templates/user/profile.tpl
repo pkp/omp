@@ -37,10 +37,14 @@
 				{fbvElement type="text" label="user.firstName" required="true" id="firstName" value=$firstName maxlength="40" inline=true size=$fbvStyles.size.SMALL}
 				{fbvElement type="text" label="user.middleName" id="middleName" value=$middleName maxlength="40" inline=true size=$fbvStyles.size.SMALL}
 				{fbvElement type="text" label="user.lastName" required="true" id="lastName" value=$lastName maxlength="40" inline=true size=$fbvStyles.size.SMALL}
+				{fbvElement type="text" label="user.suffix" id="suffix" value=$suffix size=$fbvStyles.size.SMALL inline=true}
 			{/fbvFormSection}
 
 			{fbvFormSection title="about.contact"}
-				{fbvElement type="text" label="user.email" id="email" required="true" value=$email maxlength="90" size=$fbvStyles.size.MEDIUM}
+				{fbvElement type="text" label="user.email" id="email" required="true" value=$email maxlength="90" size=$fbvStyles.size.MEDIUM inline=true}
+				{fbvElement type="select" label="common.country" name="country" id="country" defaultLabel="" defaultValue="" from=$countries selected=$country translate="0" size=$fbvStyles.size.MEDIUM inline=true required=true}
+			{/fbvFormSection}
+			{fbvFormSection for="country"}
 			{/fbvFormSection}
 		{/fbvFormArea}
 	</div>
@@ -91,10 +95,6 @@
 
 				{fbvFormSection}
 					{fbvElement type="textarea" label="user.signature" multilingual="true" name="signature" id="signature" value=$signature size=$fbvStyles.size.MEDIUM}
-				{/fbvFormSection}
-
-				{fbvFormSection for="country"}
-					{fbvElement type="select" label="common.country" name="country" id="country" defaultLabel="" defaultValue="" from=$countries selected=$country translate="0" size=$fbvStyles.size.MEDIUM}
 				{/fbvFormSection}
 			{/fbvFormArea}
 		</div>

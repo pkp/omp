@@ -54,15 +54,25 @@
 
 	{if !$existingUser}
 		{fbvFormSection title="common.name"}
-		{fbvElement type="text" label="user.salutation" id="salutation" value=$salutation size=$fbvStyles.size.SMALL inline="true"}
+		{fbvElement type="text" label="user.salutation" id="salutation" value=$salutation size=$fbvStyles.size.SMALL inline=true}
 			{fbvElement type="text" label="user.firstName" id="firstName" required=true value=$firstName size=$fbvStyles.size.SMALL inline=true}
 			{fbvElement type="text" label="user.middleName" id="middleName" value=$middleName size=$fbvStyles.size.SMALL inline=true}
 			{fbvElement type="text" label="user.lastName" id="lastName" required=true value=$lastName size=$fbvStyles.size.SMALL inline=true}
-			{fbvElement type="text" label="user.suffix" id="suffix" value=$suffix  size=$fbvStyles.size.SMALL inline="true"}
+			{fbvElement type="text" label="user.suffix" id="suffix" value=$suffix size=$fbvStyles.size.SMALL inline=true}
 			{fbvElement type="text" label="user.initials" id="initials" value=$initials size=$fbvStyles.size.SMALL inline=true}
 		{/fbvFormSection}
 
-		{fbvFormSection title="user.gender" for="gender"  size=$fbvStyles.size.SMALL}
+		{fbvFormSection title="user.email" for="email" required=true}
+			{fbvElement type="text" id="email" value=$email|escape size=$fbvStyles.size.MEDIUM} <br />
+			{fbvElement type="text" label="user.confirmEmail" id="confirmEmail" value=$confirmEmail|escape size=$fbvStyles.size.MEDIUM}
+			{if $privacyStatement}<a class="action" href="#privacyStatement">{translate key="user.register.privacyStatement"}</a>{/if}
+		{/fbvFormSection}
+
+		{fbvFormSection title="common.country" for="country" size=$fbvStyles.size.MEDIUM required="true"}
+			{fbvElement type="select" from=$countries selected=$country translate=false id="country" defaultValue="" defaultLabel="" required=true}
+		{/fbvFormSection}
+
+		{fbvFormSection title="user.gender" for="gender" size=$fbvStyles.size.SMALL}
 			{fbvElement type="select" from=$genderOptions selected=$gender|escape id="gender" translate=true}
 		{/fbvFormSection}
 
@@ -72,12 +82,6 @@
 
 		{fbvFormSection title="user.fax" for="fax"}
 			{fbvElement type="text" id="fax" value=$fax|escape size=$fbvStyles.size.MEDIUM}
-		{/fbvFormSection}
-
-		{fbvFormSection title="user.email" for="email" required=true}
-			{fbvElement type="text" id="email" value=$email|escape size=$fbvStyles.size.MEDIUM} <br />
-			{fbvElement type="text" label="user.confirmEmail" id="confirmEmail" value=$confirmEmail|escape size=$fbvStyles.size.MEDIUM}
-		 	{if $privacyStatement}<a class="action" href="#privacyStatement">{translate key="user.register.privacyStatement"}</a>{/if}
 		{/fbvFormSection}
 
 		{fbvFormSection title="user.url" for="userUrl"}
@@ -98,10 +102,6 @@
 
 		{fbvFormSection title="user.signature" for="signature"}
 			{fbvElement type="textarea" id="signature" name="signature" multilingual=true value=$signature|escape size=$fbvStyles.size.MEDIUM}
-		{/fbvFormSection}
-
-		{fbvFormSection title="common.country" for="country" size=$fbvStyles.size.SMALL required="true"}
-			{fbvElement type="select" from=$countries selected=$country translate=false id="country" defaultValue="" defaultLabel="" required=true}
 		{/fbvFormSection}
 
 		{if count($availableLocales) > 1}
