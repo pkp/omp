@@ -47,7 +47,7 @@
 		{/fbvFormSection}
 
 		{fbvFormSection title="email.body" required="true" for="body"}
-			{fbvElement type="textarea" multilingual="true" name="body" id="body" value=$body size=$fbvStyles.size.LARGE}
+			{fbvElement type="textarea" multilingual="true" name="body" id="body" value=$body}
 		{/fbvFormSection}
 	{/fbvFormArea}
 
