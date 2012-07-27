@@ -39,7 +39,6 @@ switch ($op) {
 	//
 	// Default handler
 	//
-	case 'index':
 	case 'setLocale':
 	case 'become':
 	case 'authorizationDenied':

@@ -32,18 +32,6 @@ class UserHandler extends Handler {
 	}
 
 	/**
-	 * Display user index page.
-	 * @param $args array
-	 * @param $request PKPRequest
-	 */
-	function index($args, &$request) {
-		$this->validate();
-		$this->setupTemplate($request);
-		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->display('user/index.tpl');
-	}
-
-	/**
 	 * Change the locale for the current user.
 	 * @param $args array first parameter is the new locale
 	 */
