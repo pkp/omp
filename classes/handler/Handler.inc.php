@@ -35,21 +35,24 @@ class Handler extends PKPHandler {
 		$requestedPath = $router->getRequestedContextPath($request);
 		$press = null;
 
-		if ($requestedPath == 'index') {
+		if ($requestedPath === 'index' || $requestedPath === '') {
 			// No press requested. Check how many presses has the site.
 			$pressDao =& DAORegistry::getDAO('PressDAO'); /* @var $pressDao PressDAO */
 			$presses =& $pressDao->getPresses();
 			$pressesCount = $presses->getCount();
+			$press = null;
 			if ($pressesCount === 1) {
 				// Return the unique press.
 				$press =& $presses->next();
-			} elseif ($pressesCount > 1) {
+			}
+			if (!$press && $pressesCount > 1) {
 				// Decide wich press to return.
 				$user =& $request->getUser();
 				if ($user) {
 					// We have a user (private access).
 					$press =& $this->_getFirstUserPress($user, $presses->toArray());
-				} else {
+				}
+				if (!$press) {
 					// Get the site redirect.
 					$press =& $this->_getSiteRedirectPress($request);
 				}

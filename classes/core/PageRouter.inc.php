@@ -34,11 +34,11 @@ class PageRouter extends PKPPageRouter {
 		$userId = $user->getId();
 
 		if ($press =& $this->getContext($request, 1)) {
-			// The user is in the press context, see if they have one role only
+			// The user is in the press context, see if they have zero or one roles only
 			$userGroups =& $userGroupDao->getByUserId($userId, $press->getId());
-			if($userGroups->getCount() == 1) {
+			if($userGroups->getCount() <= 1) {
 				$userGroup =& $userGroups->next();
-				if ($userGroup->getRoleId() == ROLE_ID_READER) $request->redirect(null, 'index');
+				if (!$userGroup || $userGroup->getRoleId() == ROLE_ID_READER) $request->redirect(null, 'index');
 			}
 			$request->redirect(null, 'dashboard');
 		} else {

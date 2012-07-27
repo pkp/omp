@@ -61,8 +61,10 @@ class IndexHandler extends Handler {
 		} else {
 			// A target press couldn't be determined for some reason.
 			if ($user) {
-				$request->redirect(null, 'dashboard');
+				// Redirect to user profile.
+				$request->redirect(null, 'user', 'profile');
 			} else {
+				// Not logged in. Redirect to login page.
 				$request->redirect(null, 'login');
 			}
 		}
