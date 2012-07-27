@@ -25,7 +25,7 @@ class PluginGridHandler extends CategoryGridHandler {
 		}
 
 		$this->addRoleAssignment($roles,
-			array('fetchGrid, fetchRow'));
+			array('fetchGrid, fetchCategory', 'fetchRow'));
 
 		$this->addRoleAssignment(ROLE_ID_SITE_ADMIN,
 			array('installPlugin', 'upgradePlugin', 'deletePlugin'));
@@ -193,6 +193,13 @@ class PluginGridHandler extends CategoryGridHandler {
 	}
 
 	/**
+	 * @see CategoryGridHandler::getCategoryRowIdParameterName()
+	 */
+	function getCategoryRowIdParameterName() {
+		return 'category';
+	}
+
+	/**
 	 * @see CategoryGridHandler::getCategoryRowInstance()
 	 * @param $contextLevel int One of the CONTEXT_ constants.
 	 */
@@ -209,9 +216,9 @@ class PluginGridHandler extends CategoryGridHandler {
 	function loadData($request, $filter) {
 		$categories = PluginRegistry::getCategories();
 		if (is_array($filter) && isset($filter['category']) && ($i = array_search($filter['category'], $categories)) !== false) {
-			return array($filter['category']);
+			return array($filter['category'] => $filter['category']);
 		} else {
-			return $categories;
+			return array_combine($categories, $categories);
 		}
 	}
 
@@ -238,7 +245,7 @@ class PluginGridHandler extends CategoryGridHandler {
 				$user =& $request->getUser();
 				$notificationManager->createTrivialNotification($user->getId(), $message, $messageParams);
 
-				return DAO::getDataChangedEvent($plugin->getName());
+				return DAO::getDataChangedEvent($request->getUserVar('plugin'), $request->getUserVar($this->getCategoryRowIdParameterName()));
 			}
 		}
 		if ($pluginModalContent) {

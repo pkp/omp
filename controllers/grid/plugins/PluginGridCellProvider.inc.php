@@ -109,10 +109,10 @@ class PluginGridCellProvider extends GridCellProvider {
 				foreach ($managementVerbs as $verb) {
 					list($verbName, $verbLocalizedName) = $verb;
 
-					$actionArgs = array(
-						'category' => $plugin->getCategory(),
-						'plugin' => $plugin->getName(),
-						'verb' => $verbName);
+					$actionArgs = array_merge(array(
+							'plugin' => $plugin->getName(),
+							'verb' => $verbName),
+						$row->getRequestArgs());
 
 					$actionRequest = null;
 					$defaultUrl = $router->url($request, null, null, 'plugin', null, $actionArgs);
