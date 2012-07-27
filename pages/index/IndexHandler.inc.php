@@ -59,8 +59,12 @@ class IndexHandler extends Handler {
 			// available; redirect there.
 			$request->redirect($targetPress->getPath());
 		} else {
-			$site =& $request->getSite();
-			$this->_displaySiteIndexPage($request, $site, $templateMgr);
+			// A target press couldn't be determined for some reason.
+			if ($user) {
+				$request->redirect(null, 'dashboard');
+			} else {
+				$request->redirect(null, 'login');
+			}
 		}
 	}
 
@@ -68,24 +72,6 @@ class IndexHandler extends Handler {
 	//
 	// Private helper methods.
 	//
-	/**
-	 * Display the site index page.
-	 * @param $request PKPRequest
-	 * @param $site Site
-	 * @param $templateMgr TemplateManager
-	 */
-	function _displaySiteIndexPage($request, $site, &$templateMgr) {
-
-		// Display the overview page with all presses.
-		$templateMgr->assign('intro', $site->getLocalizedIntro());
-		$templateMgr->assign('pressFilesPath', $request->getBaseUrl() . '/' . Config::getVar('files', 'public_files_dir') . '/presses/');
-		$pressDao =& DAORegistry::getDAO('PressDAO'); /* @var $pressDao PressDAO */
-		$presses =& $pressDao->getEnabledPresses();
-		$templateMgr->assign_by_ref('presses', $presses);
-		$templateMgr->setCacheability(CACHEABILITY_PUBLIC);
-		$templateMgr->display('index/site.tpl');
-	}
-
 	/**
 	 * Display a given press index page.
 	 * @param $press Press
