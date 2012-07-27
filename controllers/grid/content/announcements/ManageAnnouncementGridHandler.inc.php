@@ -66,11 +66,11 @@ class ManageAnnouncementGridHandler extends AnnouncementGridHandler {
 				new AjaxModal(
 					$router->url($request, null, null, 'addAnnouncement', null, null),
 					__('grid.action.addAnnouncement'),
-					'add',
+					'modal_add_item',
 					true
 				),
 				__('grid.action.addAnnouncement'),
-				'add')
+				'add_item')
 		);
 	}
 
