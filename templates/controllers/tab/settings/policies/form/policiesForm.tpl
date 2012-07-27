@@ -27,7 +27,6 @@
 			{fbvElement type="textarea" multilingual=true name="copyrightNotice" id="copyrightNotice" value=$copyrightNotice rich=true}
 		{/fbvFormSection}
 		{fbvFormSection list=true}
-			{fbvElement type="checkbox" id="includeCopyrightNotice" value="1" checked=$includeCopyrightNotice label="manager.setup.includeCopyrightNotice"}
 			{fbvElement type="checkbox" id="copyrightNoticeAgree" value="1" checked=$copyrightNoticeAgree label="manager.setup.authorCopyrightNoticeAgree"}
 		{/fbvFormSection}
 		{fbvFormSection label="manager.setup.privacyStatement" description="manager.setup.privacyStatement.description"}

@@ -27,7 +27,6 @@ class PoliciesForm extends PressSettingsForm {
 			'openAccessPolicy' => 'string',
 			'reviewPolicy' => 'string',
 			'copyrightNotice' => 'string',
-			'includeCopyrightNotice' => 'bool',
 			'copyrightNoticeAgree' => 'bool',
 			'competingInterestsPolicy' => 'string',
 			'privacyStatement' => 'string'

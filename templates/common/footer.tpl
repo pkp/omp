@@ -48,11 +48,6 @@
 		</div>
 	</div><!-- pkp_structure_content -->
 	<div class="pkp_structure_content">
-		{if $currentPress && $currentPress->getSetting('includeCopyrightNotice')}
-			<div id="footerCopyrightNotice">
-				{$currentPress->getLocalizedSetting('copyrightNotice')|nl2br}
-			</div>
-		{/if}
 		{if $pageFooter}{$pageFooter}{/if}
 		{call_hook name="Templates::Common::Footer::PageFooter"}
 	</div><!-- pkp_structure_content -->
