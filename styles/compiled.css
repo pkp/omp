@@ -598,11 +598,6 @@ a.sprite.manage:hover:before { background-position:-1512px -24px; }
 .pkp_structure_head_siteNav .pkp_form div.section { margin-bottom:0px; }
 .pkp_structure_head_siteNav .pkp_helpers_flatlist { margin-top:10px; }
 .pkp_structure_head_siteNav li { padding-left:20px; }
-.pkp_structure_head_siteNav li.home { padding-left:0; }
-.pkp_structure_head_siteNav li.home a {
-  padding-left:20px;
-  background:url(../lib/pkp/templates/images/structure/home.png) no-repeat;
-}
 .pkp_structure_head_localNav {
   text-transform:uppercase;
   font:150% "Courier New", Courier, mono;
@@ -765,15 +760,11 @@ body {
   margin-left:20px;
 }
 .pkp_structure_foot {
-  height:315px;
-  background-color:#c1bbaf;
   clear:both;
-}
-.pkp_structure_subfoot {
-  border-top:1px dotted #ffffff;
   background-color:#c1bbaf;
 }
-.pkp_structure_subfoot ul li {
+.pkp_structure_foot .pkp_structure_foot { border-top:1px dotted #ffffff; }
+.pkp_structure_foot .pkp_structure_foot ul li {
   list-style:square;
   margin:0px 0px 8px 15px;
   text-transform:uppercase;
