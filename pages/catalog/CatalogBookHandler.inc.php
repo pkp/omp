@@ -55,7 +55,7 @@ class CatalogBookHandler extends Handler {
 	function book($args, &$request) {
 		$templateMgr =& TemplateManager::getManager();
 		$press =& $request->getPress();
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 		AppLocale::requireComponents(LOCALE_COMPONENT_OMP_SUBMISSION); // submission.synopsis
 
 		$publishedMonograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_PUBLISHED_MONOGRAPH);
@@ -104,7 +104,7 @@ class CatalogBookHandler extends Handler {
 	 */
 	function download($args, &$request) {
 		$press =& $request->getPress();
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 
 		$monographId = (int) array_shift($args); // Validated thru auth
 		$publicationFormatId = (int) array_shift($args);
@@ -154,6 +154,16 @@ class CatalogBookHandler extends Handler {
 
 		$queuedPaymentId = $ompPaymentManager->queuePayment($queuedPayment);
 		$ompPaymentManager->displayPaymentForm($queuedPaymentId, $queuedPayment);
+	}
+
+	/**
+	 * Set up the template.
+	 * @param $request PKPRequest
+	 */
+	function setupTemplate(&$request) {
+		$templateMgr =& TemplateManager::getManager();
+		$templateMgr->assign('pageHierarchy', array(array($request->url(null, 'catalog'), 'navigation.catalog')));
+		parent::setupTemplate();
 	}
 }
 
