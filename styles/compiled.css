@@ -765,7 +765,7 @@ body {
   background-color:#c1bbaf;
   font-color:#ffffff;
 }
-.pkp_structure_foot h4 { color:#ffffff; }
+.pkp_structure_foot h4 { color:#000000; }
 .pkp_structure_foot .pkp_structure_subfoot { border-top:1px dotted #ffffff; }
 .pkp_structure_foot .pkp_structure_subfoot ul li {
   list-style:square;
