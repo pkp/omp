@@ -11,7 +11,7 @@
 </div><!-- pkp_structure_content -->
 </div><!-- pkp_structure_body -->
 
-<div class="pkp_structure_footer">
+<div class="pkp_structure_foot">
 
 {if $footerCategories|@count > 0}{* include a subfoot section if there are footer link categories defined *}
 	<div class="pkp_structure_subfoot">
@@ -55,7 +55,7 @@
 {get_debug_info}
 {if $enableDebugStats}{include file=$pqpTemplate}{/if}
 
-</div><!-- pkp_structure_footer -->
+</div><!-- pkp_structure_foot -->
 
 </div><!-- pkp_structure_page -->
 
