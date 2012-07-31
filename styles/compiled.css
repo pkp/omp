@@ -1422,14 +1422,15 @@ div.ui-pnotify-container {
   float:right;
   padding-right:10px;
 }
-.pkp_controllers_modal_titleBar .closeIcon {
+.xIcon {
   background-image:url(../lib/pkp/templates/images/structure/modal_close_icon.png);
   height:23px;
-  width:23px;
+  width:23px !important;
   background-repeat:no-repeat;
   display:block;
   overflow:hidden;
   text-indent:-99999px;
+  border:none !important;
 }
 .modal-buttons {
   margin:0px 0px 15px 0px;
