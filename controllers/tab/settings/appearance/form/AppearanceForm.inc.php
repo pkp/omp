@@ -29,16 +29,12 @@ class AppearanceForm extends PressSettingsForm {
 		// Define an array with the image setting name as key and its
 		// common alternate text locale key as value.
 		$this->setImagesSettingsName(array(
-			'homeHeaderTitleImage' => 'common.homePageHeader.altText',
-			'homeHeaderLogoImage'=> 'common.homePageHeaderLogo.altText',
 			'homepageImage' => 'common.pressHomepageImage.altText',
 			'pageHeaderTitleImage' => 'common.pageHeader.altText',
 			'pageHeaderLogoImage' => 'common.pageHeaderLogo.altText'
 		));
 
 		$settings = array(
-			'homeHeaderTitleType' => 'int',
-			'homeHeaderTitle' => 'string',
 			'pageHeaderTitleType' => 'int',
 			'pageHeaderTitle' => 'string',
 			'additionalHomeContent' => 'string',
@@ -83,8 +79,6 @@ class AppearanceForm extends PressSettingsForm {
 	 */
 	function getLocaleFieldNames() {
 		return array(
-			'homeHeaderTitleType',
-			'homeHeaderTitle',
 			'pageHeaderTitleType',
 			'pageHeaderTitle',
 			'additionalHomeContent',

@@ -256,11 +256,10 @@ class Press extends DataObject {
 	 * param $home boolean get homepage title
 	 * @return string
 	 */
-	function getPressPageHeaderTitle($home = false) {
-		$prefix = $home ? 'home' : 'page';
-		$typeArray = $this->getSetting($prefix . 'HeaderTitleType');
-		$imageArray = $this->getSetting($prefix . 'HeaderTitleImage');
-		$titleArray = $this->getSetting($prefix . 'HeaderTitle');
+	function getPressPageHeaderTitle() {
+		$typeArray = $this->getSetting('pageHeaderTitleType');
+		$imageArray = $this->getSetting('pageHeaderTitleImage');
+		$titleArray = $this->getSetting('pageHeaderTitle');
 
 		$title = null;
 
@@ -276,12 +275,10 @@ class Press extends DataObject {
 
 	/**
 	 * Get "localized" press page logo (if applicable).
-	 * param $home boolean get homepage logo
 	 * @return string
 	 */
-	function getPressPageHeaderLogo($home = false) {
-		$prefix = $home ? 'home' : 'page';
-		$logoArray = $this->getSetting($prefix . 'HeaderLogoImage');
+	function getPressPageHeaderLogo() {
+		$logoArray = $this->getSetting('pageHeaderLogoImage');
 		foreach (array(AppLocale::getLocale(), AppLocale::getPrimaryLocale()) as $locale) {
 			if (isset($logoArray[$locale])) return $logoArray[$locale];
 		}

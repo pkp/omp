@@ -26,36 +26,6 @@
 
 	<p>{translate key="manager.setup.pressAppearanceDescription"}</p>
 
-	{* Homepage Header *}
-	{fbvFormArea id="homepageHeader" title="manager.setup.pressHomepageHeader" class="border"}
-		{fbvFormSection list=true description="manager.setup.pressHomepageHeaderDescription" label="manager.setup.pressName"}
-			{fbvElement type="radio" name="homeHeaderTitleType[$locale]" id="homeHeaderTitleType-0" value=0 checked=!$homeHeaderTitleType[$locale] label="manager.setup.useTextTitle"}
-		{/fbvFormSection}
-		{fbvFormSection}
-			{fbvElement type="text" name="homeHeaderTitle" id="homeHeaderTitle" value=$homeHeaderTitle multilingual=true}
-		{/fbvFormSection}
-		{fbvFormSection list=true}
-			{fbvElement type="radio" name="homeHeaderTitleType[$locale]" id="homeHeaderTitleType-1" value=1 checked=$homeHeaderTitleType[$locale] label="manager.setup.useImageTitle" inline=true}
-			<div id="{$uploadImageLinkActions.homeHeaderTitleImage->getId()}" class="pkp_linkActions inline">
-				{include file="linkAction/linkAction.tpl" action=$uploadImageLinkActions.homeHeaderTitleImage contextId="appearanceForm"}
-			</div>
-			<div id="homeHeaderTitleImage">
-				{$imagesViews.homeHeaderTitleImage}
-			</div>
-		{/fbvFormSection}
-		<div {if $wizardMode}class="pkp_form_hidden"{/if}>
-			{fbvFormSection label="manager.setup.useImageLogo" description="manager.setup.useImageLogoDescription"}
-			<div id="{$uploadImageLinkActions.homeHeaderLogoImage->getId()}" class="pkp_linkActions">
-				{include file="linkAction/linkAction.tpl" action=$uploadImageLinkActions.homeHeaderLogoImage contextId="appearanceForm"}
-			</div>
-			<div id="homeHeaderLogoImage">
-				{$imagesViews.homeHeaderLogoImage}
-			</div>
-			{/fbvFormSection}
-		</div>
-	{/fbvFormArea}
-	{* end Homepage Header *}
-
 	{* Homepage Content *}
 	<div {if $wizardMode}class="pkp_form_hidden"{/if}>
 		{fbvFormArea id="pressHomePageContent" title="manager.setup.pressHomepageContent" class="border"}
