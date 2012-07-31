@@ -24,7 +24,7 @@
 <div id="note-{$noteId}">
 	<table width="100%">
 		<tr valign="top">
-			<td>{$note->getDateCreated()|date_format:$dateFormatShort}</td>
+			<td>{$note->getDateCreated()|date_format:$datetimeFormatShort}</td>
 			<td>
 				{assign var="noteUser" value=$note->getUser()}
 				{$noteUser->getFullName()|escape}
@@ -35,7 +35,7 @@
 					<form class="pkp_form" id="{$formId}" action="{url op="deleteNote" noteId=$noteId params=$linkParams}">
 						{assign var=deleteNoteButtonId value="deleteNote-$noteId"}
 						{include file="linkAction/buttonConfirmationLinkAction.tpl" buttonSelector="#$deleteNoteButtonId" dialogText="informationCenter.deleteConfirm"}
-						<input type="submit" id="{$deleteNoteButtonId}" class="button" value="{translate key='common.delete'}" />
+						<input type="submit" id="{$deleteNoteButtonId}" class="xIcon" value="{translate key='common.delete'}" />
 					</form>
 				{/if}
 			</td>
