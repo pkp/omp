@@ -33,6 +33,7 @@ class SubmissionInfoCenterLinkAction extends LinkAction {
 
 		$dispatcher =& $request->getDispatcher();
 		import('lib.pkp.classes.linkAction.request.AjaxModal');
+		$primaryAuthor =& $monograph->getPrimaryAuthor();
 		$ajaxModal = new AjaxModal(
 			$dispatcher->url(
 				$request, ROUTE_COMPONENT, null,
@@ -41,7 +42,7 @@ class SubmissionInfoCenterLinkAction extends LinkAction {
 				null,
 				array('monographId' => $monographId)
 			),
-			__('submission.informationCenter.submissionInfo') . ": " . $monograph->getLocalizedTitle(),
+			$primaryAuthor->getLastName() . ", " . $monograph->getLocalizedTitle(),
 			'modal_information'
 		);
 

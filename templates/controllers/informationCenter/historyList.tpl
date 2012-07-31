@@ -15,7 +15,7 @@
 		<td>{translate key="common.user"}</td>
 		<td>{translate key="common.event"}</td>
 	</tr>
-	<tr><td class="headseparator" colspan="5">&nbsp;</td></tr>
+
 	{iterate from=eventLogEntries item=logEntry}
 		{include file="controllers/informationCenter/logEntry.tpl"}
 	{/iterate}

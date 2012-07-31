@@ -24,10 +24,10 @@
 <div id="note-{$noteId}">
 	<table width="100%">
 		<tr valign="top">
-			<td>{$note->getDateCreated()|date_format:$datetimeFormatShort}</td>
-			<td>
+			<td colspan="2">
 				{assign var="noteUser" value=$note->getUser()}
-				{$noteUser->getFullName()|escape}
+				{$noteUser->getFullName()|escape}<br />
+				<span class="pkp_controllers_informationCenter_itemLastEvent">{$note->getDateCreated()|date_format:$datetimeFormatShort}</span>
 			</td>
 			<td class="pkp_helpers_align_right">
 				{* Check that notes are deletable (i.e. not attached to files from previous stages) and the current user has permission to delete. *}
@@ -43,6 +43,7 @@
 		<tr valign="top">
 			{assign var="contents" value=$note->getContents()}
 			<td colspan="3">
+				<br />
 				<span>
 					{$contents|truncate:250|nl2br|strip_unsafe_html}
 					{if $contents|strlen > 250}<a href="javascript:$.noop();" class="showMore">{translate key="common.more"}</a>{/if}
@@ -52,9 +53,9 @@
 						{$contents|nl2br|strip_unsafe_html} <a href="javascript:$.noop();" class="showLess">{translate key="common.less"}</a>
 					</span>
 				{/if}
+				<br /><br />
 			</td>
 		</tr>
 	</table>
-	<hr />
 </div>
 
