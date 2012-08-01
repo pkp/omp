@@ -30,7 +30,14 @@ class SubmissionInfoCenterLinkAction extends LinkAction {
 		$monograph =& $monographDao->getById($monographId);
 
 		$primaryAuthor = $monograph->getPrimaryAuthor();
+		if (!isset($primaryAuthor)) {
+			$authors =& $monograph->getAuthors();
+			if (sizeof($authors) > 0) {
+				$primaryAuthor = $authors[0];
+			}
+		}
 
+		$title = implode(', ', array($primaryAuthor->getLastName(), $monograph->getLocalizedTitle()));
 		$dispatcher =& $request->getDispatcher();
 		import('lib.pkp.classes.linkAction.request.AjaxModal');
 		$primaryAuthor =& $monograph->getPrimaryAuthor();
@@ -42,7 +49,7 @@ class SubmissionInfoCenterLinkAction extends LinkAction {
 				null,
 				array('monographId' => $monographId)
 			),
-			$primaryAuthor->getLastName() . ", " . $monograph->getLocalizedTitle(),
+			$title,
 			'modal_information'
 		);
 

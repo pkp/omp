@@ -8,6 +8,10 @@
  *}
 {strip}
 {assign var=primaryAuthor value=$monograph->getPrimaryAuthor()}
+{if !$primaryAuthor}
+	{assign var=authors value=$monograph->getAuthors()}
+	{assign var=primaryAuthor value=$authors[0]}
+{/if}
 {assign var="pageTitleTranslated" value=$primaryAuthor->getLastName()|concat:", ":$monograph->getLocalizedTitle()}
 {include file="common/header.tpl" suppressPageTitle=true}
 {/strip}
