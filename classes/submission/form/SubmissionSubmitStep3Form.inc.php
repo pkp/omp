@@ -150,6 +150,10 @@ class SubmissionSubmitStep3Form extends SubmissionSubmitForm {
 
 			$user = $monograph->getUser();
 			$primaryAuthor = $monograph->getPrimaryAuthor();
+			if (!isset($primaryAuthor)) {
+				$authors =& $monograph->getAuthors();
+				$primaryAuthor = $authors[0];
+			}
 			$mail->addRecipient($user->getEmail(), $user->getFullName());
 
 			if ($user->getEmail() != $primaryAuthor->getEmail()) {
