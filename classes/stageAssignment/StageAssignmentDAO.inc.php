@@ -130,6 +130,7 @@ class StageAssignmentDAO extends DAO {
 		$stageAssignment->setUserGroupId($userGroupId);
 		$stageAssignment->setUserId($userId);
 		$this->insertObject($stageAssignment);
+		$stageAssignment->setId($this->getInsertStageAssignmentId());
 		return $stageAssignment;
 	}
 
@@ -209,6 +210,14 @@ class StageAssignmentDAO extends DAO {
 				AND user_id = ?',
 			array((int) $submissionId, (int) $userGroupId, (int) $userId)
 		);
+	}
+
+	/**
+	 * Get the ID of the last inserted stage assignment.
+	 * @return int
+	 */
+	function getInsertStageAssignmentId() {
+		return $this->getInsertId('stage_assignments', 'stage_assignment_id');
 	}
 
 	/**
