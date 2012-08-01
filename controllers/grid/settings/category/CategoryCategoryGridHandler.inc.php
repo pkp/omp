@@ -34,6 +34,7 @@ class CategoryCategoryGridHandler extends CategoryGridHandler {
 			array(ROLE_ID_PRESS_MANAGER),
 			array(
 				'fetchGrid',
+				'fetchCategory',
 				'fetchRow',
 				'addCategory',
 				'editCategory',
@@ -126,6 +127,10 @@ class CategoryCategoryGridHandler extends CategoryGridHandler {
 		return $categories;
 	}
 
+	function getCategoryRowIdParameterName() {
+		return 'parentCategoryId';
+	}
+
 	/**
 	 * @see GridHandler::getRowInstance()
 	 * @return CategoryGridRow
@@ -189,7 +194,7 @@ class CategoryCategoryGridHandler extends CategoryGridHandler {
 
 		$categoryForm->readInputData();
 		if($categoryForm->validate()) {
-			$categoryForm->execute($request);
+			$category = $categoryForm->execute($request);
 			return DAO::getDataChangedEvent();
 		} else {
 			$json = new JSONMessage(true, $categoryForm->fetch($request));
@@ -217,7 +222,7 @@ class CategoryCategoryGridHandler extends CategoryGridHandler {
 
 		// Delete the category
 		$categoryDao->deleteObject($category);
-		return DAO::getDataChangedEvent();
+		return DAO::getDataChangedEvent($category->getId(), $category->getParentId());
 	}
 
 	/**

@@ -33,7 +33,7 @@ class ManageFinalDraftFilesGridHandler extends SelectableSubmissionFileListCateg
 				ROLE_ID_PRESS_ASSISTANT
 			),
 			array(
-				'fetchGrid', 'fetchRow',
+				'fetchGrid', 'fetchCategory', 'fetchRow',
 				'addFile',
 				'downloadFile',
 				'deleteFile',

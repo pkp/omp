@@ -37,7 +37,7 @@ class ManageFooterGridHandler extends CategoryGridHandler {
 		parent::CategoryGridHandler();
 		$this->addRoleAssignment(
 				array(ROLE_ID_PRESS_MANAGER),
-				array('fetchGrid', 'fetchRow', 'addFooterCategory',
+				array('fetchGrid', 'fetchCategory', 'fetchRow', 'addFooterCategory',
 				'editFooterCategory', 'updateFooterCategory', 'deleteFooterCategory'));
 	}
 
@@ -162,14 +162,22 @@ class ManageFooterGridHandler extends CategoryGridHandler {
 	}
 
 	/**
+	 * @see CategoryGridHandler::getCategoryRowIdParameterName()
+	 */
+	function getCategoryRowIdParameterName() {
+		return 'footerCategoryId';
+	}
+
+	/**
 	 * Get the arguments that will identify the data in the grid
 	 * In this case, the press.
 	 * @return array
 	 */
 	function getRequestArgs() {
 		$press =& $this->getPress();
-		return array(
-			'pressId' => $press->getId()
+		return array_merge(
+			parent::getRequestArgs(),
+			array('pressId' => $press->getId())
 		);
 	}
 
@@ -265,7 +273,7 @@ class ManageFooterGridHandler extends CategoryGridHandler {
 			$notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => $notificationContent));
 
 			// Render the row into a JSON response
-			return DAO::getDataChangedEvent();
+			return DAO::getDataChangedEvent($footerCategoryId);
 
 		} else {
 			$json = new JSONMessage(true, $footerCategoryForm->fetch($request));
@@ -302,7 +310,7 @@ class ManageFooterGridHandler extends CategoryGridHandler {
 				$currentUser =& $request->getUser();
 				$notificationMgr = new NotificationManager();
 				$notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.removedFooterCategory')));
-				return DAO::getDataChangedEvent();
+				return DAO::getDataChangedEvent($footerCategoryId);
 			} else {
 				$json = new JSONMessage(false, __('manager.setup.errorDeletingItem'));
 				return $json->getString();

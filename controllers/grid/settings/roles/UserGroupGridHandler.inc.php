@@ -35,6 +35,7 @@ class UserGroupGridHandler extends CategoryGridHandler {
 			array(ROLE_ID_PRESS_MANAGER),
 			array(
 				'fetchGrid',
+				'fetchCategory',
 				'fetchRow',
 				'addUserGroup',
 				'editUserGroup',

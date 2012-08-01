@@ -43,9 +43,10 @@ class RepresentativesGridRow extends GridRow {
 		$representative = $this->_data;
 		if ($representative != null && is_numeric($representative->getId())) {
 			$router =& $request->getRouter();
-			$actionArgs = array(
-				'monographId' => $monograph->getId(),
-				'representativeId' => $representative->getId()
+			$actionArgs = array_merge(
+				parent::getRequestArgs(),
+				array('monographId' => $monograph->getId(),
+				'representativeId' => $representative->getId())
 			);
 
 			// Add row-level actions

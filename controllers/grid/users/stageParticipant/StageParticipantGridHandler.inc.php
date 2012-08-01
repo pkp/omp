@@ -29,7 +29,7 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 		// Press Assistants get read-only access
 		$this->addRoleAssignment(
 			array(ROLE_ID_PRESS_ASSISTANT),
-			$peOps = array('fetchGrid', 'fetchRow')
+			$peOps = array('fetchGrid', 'fetchCategory', 'fetchRow')
 		);
 		// Managers and Editors additionally get administrative access
 		$this->addRoleAssignment(
@@ -185,14 +185,19 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 		return $row;
 	}
 
+	function getCategoryRowIdParameterName() {
+		return 'userGroupId';
+	}
+
 	/**
 	 * @see GridHandler::getRequestArgs()
 	 */
 	function getRequestArgs() {
 		$monograph =& $this->getMonograph();
-		return array(
-			'monographId' => $monograph->getId(),
-			'stageId' => $this->getStageId()
+		return array_merge(
+			parent::getRequestArgs(),
+			array('monographId' => $monograph->getId(),
+			'stageId' => $this->getStageId())
 		);
 	}
 
@@ -246,7 +251,7 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 		$form = new AddParticipantForm($monograph, $stageId, $userGroups);
 		$form->readInputData();
 		if ($form->validate()) {
-			list($userGroupId, $userId) = $form->execute();
+			list($userGroupId, $userId, $stageAssignmentId) = $form->execute();
 
 			$notificationMgr = new NotificationManager();
 
@@ -277,7 +282,7 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 			import('classes.log.MonographLog');
 			MonographLog::logEvent($request, $monograph, MONOGRAPH_LOG_ADD_PARTICIPANT, 'submission.event.participantAdded', array('name' => $assignedUser->getFullName(), 'username' => $assignedUser->getUsername(), 'userGroupName' => $userGroup->getLocalizedName()));
 
-			return DAO::getDataChangedEvent($userGroupId);
+			return DAO::getDataChangedEvent($stageAssignmentId, $userGroupId);
 		} else {
 			$json = new JSONMessage(true, $form->fetch($request));
 			return $json->getString();
@@ -344,7 +349,7 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 		MonographLog::logEvent($request, $monograph, MONOGRAPH_LOG_REMOVE_PARTICIPANT, 'submission.event.participantRemoved', array('name' => $assignedUser->getFullName(), 'username' => $assignedUser->getUsername(), 'userGroupName' => $userGroup->getLocalizedName()));
 
 		// Redraw the category
-		return DAO::getDataChangedEvent($stageAssignment->getUserGroupId());
+		return DAO::getDataChangedEvent($stageAssignment->getId(), $stageAssignment->getUserGroupId());
 	}
 
 	/**

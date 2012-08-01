@@ -36,6 +36,12 @@ class FileAuditorForm extends Form {
 	/** @var int */
 	var $_publicationFormatId;
 
+	/** @var int */
+	var $_signoffId;
+
+	/** @var int */
+	var $_fileId;
+
 	/**
 	 * Constructor.
 	 */
@@ -107,6 +113,23 @@ class FileAuditorForm extends Form {
 	 */
 	function getPublicationFormatId() {
 		return $this->_publicationFormatId;
+	}
+
+	/**
+	 * Get the signoff id that this form creates when executed.
+	 * @return int
+	 */
+	function getSignoffId() {
+		return $this->_signoffId;
+	}
+
+	/**
+	 * Get the file id associated with the signoff
+	 * created when this form is executed.
+	 * @return int
+	 */
+	function getFileId() {
+		return $this->_fileId;
 	}
 
 
@@ -229,6 +252,9 @@ class FileAuditorForm extends Form {
 		$dueDateParts = explode('-', $this->getData('responseDueDate'));
 		$signoff->setDateUnderway(date('Y-m-d H:i:s', mktime(0, 0, 0, $dueDateParts[0], $dueDateParts[1], $dueDateParts[2])));
 		$monographFileSignoffDao->updateObject($signoff);
+
+		$this->_signoffId = $signoff->getId();
+		$this->_fileId = $signoff->getAssocId();
 
 		// Update NOTIFICATION_TYPE_AUDITOR_REQUEST.
 		$notificationMgr = new NotificationManager();

@@ -276,6 +276,8 @@ class CategoryForm extends Form {
 		} else {
 			$categoryDao->updateObject($category);
 		}
+
+		return $category;
 	}
 }
 

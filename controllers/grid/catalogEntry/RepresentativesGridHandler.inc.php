@@ -35,7 +35,7 @@ class RepresentativesGridHandler extends CategoryGridHandler {
 		parent::CategoryGridHandler();
 		$this->addRoleAssignment(
 				array(ROLE_ID_PRESS_MANAGER),
-				array('fetchGrid', 'fetchRow', 'addRepresentative', 'editRepresentative',
+				array('fetchGrid', 'fetchCategory', 'fetchRow', 'addRepresentative', 'editRepresentative',
 				'updateRepresentative', 'deleteRepresentative'));
 	}
 
@@ -177,17 +177,23 @@ class RepresentativesGridHandler extends CategoryGridHandler {
 		} else {
 			$representatives =& $representativeDao->getAgentsByMonographId($this->getMonograph()->getId());
 		}
-		return $representatives->toArray();
+		return $representatives->toAssociativeArray();
 	}
 
 	/**
-	 * Get the arguments that will identify the data in the grid
-	 * In this case, the monograph.
-	 * @return array
+	 * @see CategoryGridHandler::getCategoryRowIdParameterName()
+	 */
+	function getCategoryRowIdParameterName() {
+		return 'representativeCategoryId';
+	}
+
+	/**
+	 * @see CategoryGridHandler::getRequestArgs()
 	 */
 	function getRequestArgs() {
-		return array(
-			'monographId' => $this->getMonograph()->getId()
+		return array_merge(
+			parent::getRequestArgs(),
+			array('monographId' => $this->getMonograph()->getId())
 		);
 	}
 
@@ -280,7 +286,7 @@ class RepresentativesGridHandler extends CategoryGridHandler {
 			$row->initialize($request);
 
 			// Render the row into a JSON response
-			return DAO::getDataChangedEvent();
+			return DAO::getDataChangedEvent($representativeId, (int) $representative->getIsSupplier());
 
 		} else {
 			$json = new JSONMessage(true, $representativeForm->fetch($request));
@@ -309,7 +315,7 @@ class RepresentativesGridHandler extends CategoryGridHandler {
 				$currentUser =& $request->getUser();
 				$notificationMgr = new NotificationManager();
 				$notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.removedRepresentative')));
-				return DAO::getDataChangedEvent();
+				return DAO::getDataChangedEvent($representative->getId(), (int) $representative->getIsSupplier());
 			} else {
 				$json = new JSONMessage(false, __('manager.setup.errorDeletingItem'));
 				return $json->getString();

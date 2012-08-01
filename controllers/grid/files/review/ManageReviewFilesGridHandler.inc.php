@@ -35,7 +35,7 @@ class ManageReviewFilesGridHandler extends SelectableSubmissionFileListCategoryG
 
 		$this->addRoleAssignment(
 			array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_ASSISTANT),
-			array('fetchGrid', 'fetchRow', 'updateReviewFiles')
+			array('fetchGrid', 'fetchCategory', 'fetchRow', 'updateReviewFiles')
 		);
 
 		// Set the grid title.

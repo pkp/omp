@@ -57,7 +57,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 		$this->addRoleAssignment(
 			array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_ASSISTANT),
 			array(
-				'fetchGrid', 'fetchRow', 'returnFileRow', 'returnSignoffRow',
+				'fetchGrid', 'fetchCategory', 'fetchRow', 'returnFileRow', 'returnSignoffRow',
 				'addAuditor', 'saveAddAuditor', 'getAuditorAutocomplete',
 				'signOffsignOff', 'deleteSignoff'
 			)
@@ -310,8 +310,9 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 	 */
 	function getRequestArgs() {
 		$monograph =& $this->getMonograph();
-		return array(
-			'monographId' => $monograph->getId()
+		return array_merge(
+			parent::getRequestArgs(),
+			array('monographId' => $monograph->getId())
 		);
 	}
 
@@ -366,6 +367,13 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 		$signoffFactory =& $monographFileSignoffDao->getAllBySymbolic($this->getSymbolic(), $monographFile->getFileId()); /* @var $signoffs DAOResultFactory */
 		$signoffs = $signoffFactory->toAssociativeArray();
 		return $signoffs;
+	}
+
+	/**
+	 * @see CategoryGridHandler::getCategoryRowIdParameterName()
+	 */
+	function getCategoryRowIdParameterName() {
+		return 'fileId';
 	}
 
 
@@ -437,7 +445,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 			$currentUser =& $request->getUser();
 			NotificationManager::createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.addedAuditor')));
 
-			return DAO::getDataChangedEvent();
+			return DAO::getDataChangedEvent($auditorForm->getSignoffId(), $auditorForm->getFileId());
 		}
 
 		$json = new JSONMessage(false);
@@ -545,7 +553,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 			if (isset($signoffUser) && isset($monographFile)) {
 				MonographFileLog::logEvent($request, $monographFile, MONOGRAPH_LOG_FILE_AUDITOR_CLEAR, 'submission.event.fileAuditorCleared', array('file' => $monographFile->getOriginalFileName(), 'name' => $signoffUser->getFullName(), 'username' => $signoffUser->getUsername()));
 			}
-			return DAO::getDataChangedEvent((int) $request->getUserVar('fileId'));
+			return DAO::getDataChangedEvent($signoff->getId(), $signoff->getAssocId());
 		} else {
 			$json = new JSONMessage(false, 'manager.setup.errorDeletingItem');
 			return $json->getString();
@@ -583,8 +591,8 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 		if (isset($monographFile)) {
 			MonographFileLog::logEvent($request, $monographFile, MONOGRAPH_LOG_FILE_SIGNOFF_SIGNOFF, 'submission.event.signoffSignoff', array('file' => $monographFile->getOriginalFileName(), 'name' => $user->getFullName(), 'username' => $user->getUsername()));
 		}
-		// Redraw the category (id by the signoff's assoc id).
-		return DAO::getDataChangedEvent($rowSignoff->getAssocId());
+		// Redraw the row.
+		return DAO::getDataChangedEvent($rowSignoff->getId(), $rowSignoff->getAssocId());
 	}
 }
 

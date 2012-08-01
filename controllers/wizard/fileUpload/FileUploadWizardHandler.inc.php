@@ -400,7 +400,7 @@ class FileUploadWizardHandler extends FileManagementHandler {
 		$metadataForm->readInputData();
 		if ($metadataForm->validate()) {
 			$metadataForm->execute($args, $request);
-			$submissionFile = $metadataForm->getSubmissionFile();
+			$submissionFile =& $metadataForm->getSubmissionFile();
 			return DAO::getDataChangedEvent();
 		} else {
 			$json = new JSONMessage(false, $metadataForm->fetch($request));

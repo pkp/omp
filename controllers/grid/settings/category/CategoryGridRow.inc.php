@@ -38,7 +38,10 @@ class CategoryGridRow extends GridRow {
 
 		// Only add row actions if this is an existing row.
 		if (!empty($rowId) && is_numeric($rowId)) {
-			$actionArgs = array('categoryId' => $rowData->getId());
+			$actionArgs = array_merge(
+				$this->getRequestArgs(),
+				array('categoryId' => $rowData->getId())
+			);
 			$router =& $request->getRouter();
 
 			$this->addAction(new LinkAction(
@@ -55,7 +58,7 @@ class CategoryGridRow extends GridRow {
 			$confirmationModal = new RemoteActionConfirmationModal(
 				__('grid.category.removeText'),
 				null,
-				$router->url($request, null, null, 'removeCategory', null, $actionArgs)
+				$router->url($request, null, null, 'deleteCategory', null, $actionArgs)
 			);
 			$removeCategoryLinkAction = new LinkAction(
 				'removeCategory',

@@ -131,9 +131,9 @@ class AddParticipantForm extends Form {
 		// sanity check
 		if ($userGroupDao->userGroupAssignedToStage($userGroupId, $this->getStageId())) {
 			// insert the assignment
-			$stageAssignmentDao->build($monograph->getId(), $userGroupId, $userId);
+			$stageAssignment = $stageAssignmentDao->build($monograph->getId(), $userGroupId, $userId);
 		}
-		return array($userGroupId, $userId);
+		return array($userGroupId, $userId, $stageAssignment->getId());
 	}
 }
 

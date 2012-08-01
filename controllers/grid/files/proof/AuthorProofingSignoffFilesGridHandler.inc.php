@@ -25,7 +25,7 @@ class AuthorProofingSignoffFilesGridHandler extends CategoryGridHandler {
 
 		$this->addRoleAssignment(
 			array(ROLE_ID_AUTHOR),
-			array('fetchGrid', 'fetchRow')
+			array('fetchGrid', 'fetchCategory', 'fetchRow')
 		);
 	}
 

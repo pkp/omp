@@ -35,7 +35,7 @@ class ChapterGridHandler extends CategoryGridHandler {
 		$this->addRoleAssignment(
 			array(ROLE_ID_AUTHOR, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER, ROLE_ID_PRESS_ASSISTANT),
 			array(
-				'fetchGrid', 'fetchRow', 'saveSequence',
+				'fetchGrid', 'fetchRow', 'fetchCategory', 'saveSequence',
 				'addChapter', 'editChapter', 'updateChapter', 'deleteChapter',
 				'addAuthor', 'editAuthor', 'updateAuthor', 'deleteAuthor'
 			)
@@ -172,10 +172,19 @@ class ChapterGridHandler extends CategoryGridHandler {
 	 */
 	function getRequestArgs() {
 		$monograph =& $this->getMonograph();
-		return array(
-			'monographId' => $monograph->getId()
+		return array_merge(
+			parent::getRequestArgs(),
+			array('monographId' => $monograph->getId())
 		);
 	}
+
+	/**
+	 * @see CategoryGridHandler::getCategoryRowIdParameterName()
+	 */
+	function getCategoryRowIdParameterName() {
+		return 'chapterId';
+	}
+
 
 	/**
 	 * @see GridHandler::loadData
@@ -184,21 +193,13 @@ class ChapterGridHandler extends CategoryGridHandler {
 		$monograph =& $this->getMonograph();
 		$chapterDao =& DAORegistry::getDAO('ChapterDAO');
 		$chapters =& $chapterDao->getChapters($monograph->getId());
-		return $chapters;
+		return $chapters->toAssociativeArray();
 	}
 
 
 	//
 	// Extended methods from GridHandler
 	//
-	/**
-	 * @see GridHandler::getRowInstance()
-	 */
-	function getRowInstance() {
-		$row = parent::getRowInstance();
-		return $row;
-	}
-
 	/**
 	 * @see GridHandler::getRowDataElementSequence()
 	 */
@@ -346,7 +347,7 @@ class ChapterGridHandler extends CategoryGridHandler {
 		$result = $chapterDao->deleteObject($chapter);
 
 		if ($result) {
-			return DAO::getDataChangedEvent();
+			return DAO::getDataChangedEvent($chapter->getId());
 		} else {
 			$json = new JSONMessage(false, __('submission.chapters.grid.errorDeletingChapter'));
 		}
