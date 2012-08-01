@@ -372,7 +372,7 @@ class PublicationFormatGridHandler extends GridHandler {
 				$request, $this->getMonograph(),
 				$newAvailableState?MONOGRAPH_LOG_PUBLICATION_FORMAT_AVAILABLE:MONOGRAPH_LOG_PUBLICATION_FORMAT_UNAVAILABLE,
 				$newAvailableState?'submission.event.publicationFormatMadeAvailable':'submission.event.publicationFormatMadeUnavailable',
-				array('formatName' => $publicationFormat->getLocalizedName())
+				array('publicationFormatName' => $publicationFormat->getLocalizedName())
 			);
 
 			return DAO::getDataChangedEvent($publicationFormat->getId());
