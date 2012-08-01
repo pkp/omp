@@ -10,7 +10,11 @@
 <script type="text/javascript">
 	$(function() {ldelim}
 		// Attach the form handler.
-		$('#pressSwitcher').pkpHandler('$.pkp.site.form.PressSwitcherFormHandler');
+		$('#pressSwitcher').pkpHandler('$.pkp.site.form.PressSwitcherFormHandler',
+			{ldelim}
+				trackFormChanges: false
+			{rdelim}
+		);
 	{rdelim});
 </script>
 
