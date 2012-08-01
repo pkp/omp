@@ -80,22 +80,16 @@ class AdminHandler extends Handler {
 	 */
 	function settings($args, &$request) {
 		$templateMgr =& TemplateManager::getManager();
-		$this->setupTemplate($request, true);
+		$this->setupTemplate($request);
 		$templateMgr->display('admin/settings.tpl');
 	}
 
 	/**
 	 * Setup common template variables.
-	 * @param $subclass boolean set to true if caller is below this handler in the hierarchy
 	 */
-	function setupTemplate($request, $subclass = false) {
+	function setupTemplate($request) {
 		parent::setupTemplate();
 		AppLocale::requireComponents(LOCALE_COMPONENT_PKP_ADMIN, LOCALE_COMPONENT_OMP_MANAGER, LOCALE_COMPONENT_OMP_ADMIN);
-
-		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->assign('pageHierarchy',
-			$subclass ? array(array($request->url(null, 'user'), 'navigation.user'), array($request->url(null, 'admin'), 'admin.siteAdmin'))
-				: array(array($request->url(null, 'user'), 'navigation.user'))
 		);
 	}
 }

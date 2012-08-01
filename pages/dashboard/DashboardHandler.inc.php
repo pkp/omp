@@ -108,15 +108,10 @@ class DashboardHandler extends Handler {
 	/**
 	 * Setup common template variables.
 	 * @param $request PKPRequest
-	 * @param $subclass boolean set to true if caller is below this handler in the hierarchy
 	 */
-	function setupTemplate($request, $subclass = false) {
-		parent::setupTemplate();
-
-		$templateMgr =& TemplateManager::getManager();
+	function setupTemplate($request) {
 		AppLocale::requireComponents(LOCALE_COMPONENT_OMP_MANAGER, LOCALE_COMPONENT_PKP_MANAGER, LOCALE_COMPONENT_OMP_SUBMISSION);
-
-		if ($subclass) $templateMgr->assign('pageHierarchy', array(array($request->url(null, 'dashboard'), 'dashboard.dashboard')));
+		parent::setupTemplate();
 	}
 }
 

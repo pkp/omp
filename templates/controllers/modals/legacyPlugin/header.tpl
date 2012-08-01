@@ -16,5 +16,5 @@
 	{assign var="pageCrumbTitleTranslated" value=$pageTitleTranslated}
 {/if}
 {/strip}
-{include file="controllers/modals/legacyPlugin/breadcrumbs.tpl" pageCrumbTitleTranslated=$pageCrumbTitleTranslated}
+
 <h2>{$pageTitleTranslated}</h2>

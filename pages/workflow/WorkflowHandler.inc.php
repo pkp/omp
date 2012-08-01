@@ -97,15 +97,14 @@ class WorkflowHandler extends Handler {
 
 		$router =& $request->getRouter();
 
-		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->assign('pageHierarchy', array(array($router->url($request, null, 'dashboard'), 'navigation.dashboard'), array($router->url($request, null, 'dashboard', 'submissions'), 'navigation.submissions')));
-
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		$stageId = $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
 
 		// Construct array with workflow stages data.
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 		$workflowStages = $userGroupDao->getWorkflowStageKeysAndPaths();
+
+		$templateMgr =& TemplateManager::getManager();
 
 		// Assign the authorized monograph.
 		$templateMgr->assign_by_ref('monograph', $monograph);

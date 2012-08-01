@@ -126,7 +126,7 @@ class UserHandler extends Handler {
 			fatalError('Invalid locale key for auth message.');
 		}
 
-		$this->setupTemplate($request, true);
+		$this->setupTemplate($request);
 		AppLocale::requireComponents(LOCALE_COMPONENT_PKP_USER);
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('message', $authorizationMessage);
@@ -142,19 +142,6 @@ class UserHandler extends Handler {
 		parent::validate();
 		if ($loginCheck && !Validation::isLoggedIn()) {
 			Validation::redirectLogin();
-		}
-	}
-
-	/**
-	 * Setup common template variables.
-	 * @param $request PKPRequest
-	 * @param $subclass boolean set to true if caller is below this handler in the hierarchy
-	 */
-	function setupTemplate($request, $subclass = false) {
-		parent::setupTemplate();
-		$templateMgr =& TemplateManager::getManager();
-		if ($subclass) {
-			$templateMgr->assign('pageHierarchy', array(array($request->url(null, 'user'), 'navigation.user')));
 		}
 	}
 

@@ -197,18 +197,9 @@ class SubmissionHandler extends Handler {
 		parent::setupTemplate();
 		AppLocale::requireComponents(LOCALE_COMPONENT_OMP_SUBMISSION, LOCALE_COMPONENT_PKP_SUBMISSION);
 
-		$router =& $request->getRouter();
-		$pageHierarchy = array(
-			array($router->url($request, null, 'user'), 'navigation.user'),
-			array($router->url($request, null, 'submission'), 'manuscript.submissions')
-		);
-
 		// Get steps information.
-		$steps = $this->_getStepsNumberAndLocaleKeys();
-
 		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->assign('steps', $steps);
-		$templateMgr->assign('pageHierarchy', $pageHierarchy);
+		$templateMgr->assign('steps', $this->_getStepsNumberAndLocaleKeys());
 	}
 
 

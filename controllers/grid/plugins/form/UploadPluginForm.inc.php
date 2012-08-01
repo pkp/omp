@@ -254,7 +254,6 @@ class UploadPluginForm extends Form {
 
 		$versionFile = $path . VERSION_FILE;
 		$templateMgr->assign('error', true);
-		$templateMgr->assign('pageHierarchy', $this->_setBreadcrumbs($request, true, $category));
 
 		$pluginVersion =& VersionCheck::getValidPluginVersionInfo($versionFile, $templateMgr);
 		if (is_null($pluginVersion)) return false;

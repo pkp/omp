@@ -38,7 +38,7 @@ class CatalogHandler extends Handler {
 	 */
 	function index($args, &$request) {
 		$templateMgr =& TemplateManager::getManager();
-		$this->setupTemplate($request, true);
+		$this->setupTemplate($request);
 		$press =& $request->getPress();
 
 		// Fetch the monographs to display
@@ -250,10 +250,9 @@ class CatalogHandler extends Handler {
 	/**
 	 * Set up the basic template.
 	 */
-	function setupTemplate(&$request, $isIndex = false) {
+	function setupTemplate(&$request) {
 		$templateMgr =& TemplateManager::getManager();
 		$press =& $request->getPress();
-		if (!$isIndex) $templateMgr->assign('pageHierarchy', array(array($request->url(null, 'catalog'), 'navigation.catalog')));
 		$templateMgr->assign('pressCurrency', $press->getSetting('pressCurrency'));
 		parent::setupTemplate();
 	}

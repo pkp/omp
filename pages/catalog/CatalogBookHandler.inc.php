@@ -155,16 +155,6 @@ class CatalogBookHandler extends Handler {
 		$queuedPaymentId = $ompPaymentManager->queuePayment($queuedPayment);
 		$ompPaymentManager->displayPaymentForm($queuedPaymentId, $queuedPayment);
 	}
-
-	/**
-	 * Set up the template.
-	 * @param $request PKPRequest
-	 */
-	function setupTemplate(&$request) {
-		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->assign('pageHierarchy', array(array($request->url(null, 'catalog'), 'navigation.catalog')));
-		parent::setupTemplate();
-	}
 }
 
 ?>

@@ -71,7 +71,6 @@ class Onix30ExportPlugin extends ImportExportPlugin {
 
 			default:
 				// Display a list of monographs for export
-				$this->setBreadcrumbs();
 				AppLocale::requireComponents(LOCALE_COMPONENT_PKP_SUBMISSION);
 				$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
 				$rangeInfo = Handler::getRangeInfo('monographs');

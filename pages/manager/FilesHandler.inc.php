@@ -36,9 +36,6 @@ class FilesHandler extends ManagerHandler {
 		import('lib.pkp.classes.file.PrivateFileManager');
 		$privateFileManager = new PrivateFileManager();
 
-		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->assign('pageHierarchy', array(array($request->url(null, 'manager'), 'manager.pressManagement')));
-
 		$this->_parseDirArg($args, $currentDir, $parentDir);
 		$currentPath = $this->_getRealFilesDir($request, $currentDir);
 
@@ -64,6 +61,7 @@ class FilesHandler extends ManagerHandler {
 				closedir($dh);
 			}
 			ksort($files);
+			$templateMgr =& TemplateManager::getManager();
 			$templateMgr->assign_by_ref('files', $files);
 			$templateMgr->assign('currentDir', $currentDir);
 			$templateMgr->assign('parentDir', $parentDir);

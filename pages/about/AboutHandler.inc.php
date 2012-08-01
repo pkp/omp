@@ -66,9 +66,8 @@ class AboutHandler extends Handler {
 
 	/**
 	 * Setup common template variables.
-	 * @param $subclass boolean set to true if caller is below this handler in the hierarchy
 	 */
-	function setupTemplate($request, $subclass = false) {
+	function setupTemplate($request) {
 		parent::setupTemplate();
 
 		$templateMgr =& TemplateManager::getManager();
@@ -78,7 +77,6 @@ class AboutHandler extends Handler {
 		if (!$press || !$press->getSetting('restrictSiteAccess')) {
 			$templateMgr->setCacheability(CACHEABILITY_PUBLIC);
 		}
-		if ($subclass) $templateMgr->assign('pageHierarchy', array(array($request->url(null, 'about'), 'about.aboutThePress')));
 	}
 
 	/**
@@ -89,7 +87,7 @@ class AboutHandler extends Handler {
 	function contact($args, &$request) {
 		$this->addCheck(new HandlerValidatorPress($this));
 		$this->validate();
-		$this->setupTemplate($request, true);
+		$this->setupTemplate($request);
 
 		$pressSettingsDao =& DAORegistry::getDAO('PressSettingsDAO');
 		$press =& $request->getPress();
@@ -108,7 +106,7 @@ class AboutHandler extends Handler {
 	function description($args, &$request) {
 		$this->addCheck(new HandlerValidatorPress($this));
 		$this->validate();
-		$this->setupTemplate($request, true);
+		$this->setupTemplate($request);
 
 		$pressSettingsDao =& DAORegistry::getDAO('PressSettingsDAO');
 		$press =& $request->getPress();
@@ -126,7 +124,7 @@ class AboutHandler extends Handler {
 	 */
 	function pressSponsorship($args, &$request) {
 		$this->validate();
-		$this->setupTemplate($request, true);
+		$this->setupTemplate($request);
 
 		$press =& $request->getPress();
 
@@ -146,7 +144,7 @@ class AboutHandler extends Handler {
 	function editorialTeam($args, &$request) {
 		$this->addCheck(new HandlerValidatorPress($this));
 		$this->validate();
-		$this->setupTemplate($request, true);
+		$this->setupTemplate($request);
 
 		$press =& $request->getPress();
 		$templateMgr =& TemplateManager::getManager();
@@ -205,7 +203,7 @@ class AboutHandler extends Handler {
 	function editorialTeamBio($args, &$request) {
 		$this->addCheck(new HandlerValidatorPress($this));
 		$this->validate();
-		$this->setupTemplate($request, true);
+		$this->setupTemplate($request);
 
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		$press =& $request->getPress();
@@ -281,7 +279,7 @@ class AboutHandler extends Handler {
 	function editorialPolicies($args, &$request) {
 		$this->addCheck(new HandlerValidatorPress($this));
 		$this->validate();
-		$this->setupTemplate($request, true);
+		$this->setupTemplate($request);
 
 		$pressSettingsDao =& DAORegistry::getDAO('PressSettingsDAO');
 		$seriesDao =& DAORegistry::getDAO('SeriesDAO');
@@ -310,7 +308,7 @@ class AboutHandler extends Handler {
 	function submissions($args, &$request) {
 		$this->addCheck(new HandlerValidatorPress($this));
 		$this->validate();
-		$this->setupTemplate($request, true);
+		$this->setupTemplate($request);
 
 		$settingsDao =& DAORegistry::getDAO('PressSettingsDAO');
 		$press =& $request->getPress();
@@ -335,7 +333,7 @@ class AboutHandler extends Handler {
 	 */
 	function siteMap($args, &$request) {
 		$this->validate();
-		$this->setupTemplate($request, true);
+		$this->setupTemplate($request);
 
 		$templateMgr =& TemplateManager::getManager();
 
@@ -378,7 +376,7 @@ class AboutHandler extends Handler {
 	 */
 	function aboutThisPublishingSystem($args, &$request) {
 		$this->validate();
-		$this->setupTemplate($request, true);
+		$this->setupTemplate($request);
 
 		$versionDao =& DAORegistry::getDAO('VersionDAO');
 		$version =& $versionDao->getCurrentVersion();

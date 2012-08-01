@@ -115,9 +115,7 @@
 		{load_url_in_div class="pkp_structure_head" id="headerContainer" url=$fetchHeaderUrl}
 		<div class="pkp_structure_body">
 			<div class="pkp_structure_content">
-				<!-- TODO: replace with breadcrumbs and wire up search -->
 				<div class="line">
-					{include file="common/breadcrumbs.tpl"}
 					{if !$noPressesConfigured}
 						{include file="common/search.tpl"}
 					{/if}
