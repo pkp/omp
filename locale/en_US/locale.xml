@@ -192,6 +192,7 @@
 	<message key="grid.content.navigation.footer.titleRequired">A title is required.</message>
 	<message key="grid.content.navigation.footer.descriptionRequired">A description is required.</message>
 	<message key="grid.content.navigation.footer.pathRequired">A path is required and it must be unique.</message>
+	<message key="grid.content.navigation.footer.pathInUse">That path is currently in use by another category.</message>
 	<message key="grid.action.addFooterCategoryLink">Add a new footer category</message>
 	<message key="grid.action.editFooterCategory">Edit this footer category</message>
 

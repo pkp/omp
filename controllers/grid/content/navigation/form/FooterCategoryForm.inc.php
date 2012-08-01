@@ -39,14 +39,25 @@ class FooterCategoryForm extends Form {
 		$this->addCheck(new FormValidator($this, 'title', 'required', 'grid.content.navigation.footer.titleRequired'));
 		$this->addCheck(new FormValidator($this, 'description', 'required', 'grid.content.navigation.footer.descriptionRequired'));
 		$this->addCheck(new FormValidator($this, 'path', 'required', 'grid.content.navigation.footer.pathRequired'));
-		$this->addCheck(new FormValidatorCustom(
-			$this, 'path', 'required', 'grid.content.navigation.footer.pathRequired',
-			create_function(
-				'$path,$form,$footerCategoryDao,$pressId',
-				'return !$footerCategoryDao->categoryExistsByPath($path,$pressId);'
-			),
-			array(&$this, DAORegistry::getDAO('FooterCategoryDAO'), $pressId)
-		));
+		if (!$footerCategory) {
+			$this->addCheck(new FormValidatorCustom(
+				$this, 'path', 'required', 'grid.content.navigation.footer.pathRequired',
+				create_function(
+					'$path,$form,$footerCategoryDao,$pressId',
+					'return !$footerCategoryDao->categoryExistsByPath($path,$pressId);'
+				),
+				array(&$this, DAORegistry::getDAO('FooterCategoryDAO'), $pressId)
+			));
+		} else {
+			$this->addCheck(new FormValidatorCustom(
+				$this, 'path', 'required', 'grid.content.navigation.footer.pathInUse',
+				create_function(
+					'$path,$form,$footerCategoryDao,$pressId',
+					'$category =& $footerCategoryDao->getByPath($path,$pressId); return (!isset($category) || $category->getId() == $form->getData(\'footerCategoryId\'));'
+				),
+				array(&$this, DAORegistry::getDAO('FooterCategoryDAO'), $pressId)
+			));
+		}
 		$this->addCheck(new FormValidatorPost($this));
 	}
 
@@ -80,7 +91,7 @@ class FooterCategoryForm extends Form {
 	 * @see Form::readInputData()
 	 */
 	function readInputData() {
-		$this->readUserVars(array('title', 'description', 'path', 'footerLinks'));
+		$this->readUserVars(array('title', 'description', 'path', 'footerLinks', 'footerCategoryId'));
 	}
 
 	/**
