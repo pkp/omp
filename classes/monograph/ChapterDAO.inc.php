@@ -56,7 +56,7 @@ class ChapterDAO extends DAO {
 	 * Get all chapters for a given monograph.
 	 * @param $monographId int
 	 * @param $rangeInfo object RangeInfo object (optional)
-	 * @return array
+	 * @return DAOResultFactory
 	 */
 	function &getChapters($monographId, $rangeInfo = null) {
 		$result =& $this->retrieveRange(
