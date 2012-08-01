@@ -772,6 +772,7 @@ body {
   margin:0px 0px 8px 15px;
   text-transform:uppercase;
   font-family:"Courier New", Courier, mono;
+  color:#ffffff;
 }
 .pkp_structure_foot .pkp_structure_subfoot ul li a { color:#ffffff; }
 .pkp_linkActions a.remove_item { background-image:url(../lib/pkp/templates/images/structure/lb_delete.png); }
