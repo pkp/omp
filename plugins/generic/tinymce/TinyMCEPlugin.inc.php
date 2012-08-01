@@ -78,11 +78,11 @@ class TinyMCEPlugin extends GenericPlugin {
 		<script type="text/javascript">
 			<!--
 			tinyMCE_GZ.init({
-				relative_urls : "false",
-				plugins : "paste,jbimages,fullscreen",
-				themes : "advanced",
-				languages : "' . join(',', $localeList) . '",
-				disk_cache : true
+				relative_urls: "false",
+				plugins: "paste,jbimages,fullscreen",
+				themes: "advanced",
+				languages: "' . join(',', $localeList) . '",
+				disk_cache: true
 			});
 			// -->
 		</script>
@@ -90,19 +90,19 @@ class TinyMCEPlugin extends GenericPlugin {
 			<!--
 			tinyMCE.init({
 				width: "100%",
-				entity_encoding : "raw",
-				plugins : "paste,jbimages,fullscreen,pkpmultilingualpopover",
-				mode : "specific_textareas",
-				editor_selector : "richContent",
-				language : "' . String::substr(AppLocale::getLocale(), 0, 2) . '",
-				relative_urls : false,
-				forced_root_block : "p",
-				paste_auto_cleanup_on_paste : true,
-				apply_source_formatting : false,
+				entity_encoding: "raw",
+				plugins: "paste,jbimages,fullscreen,pkpmultilingualpopover",
+				mode: "specific_textareas",
+				editor_selector: "richContent",
+				language: "' . String::substr(AppLocale::getLocale(), 0, 2) . '",
+				relative_urls: false,
+				forced_root_block: "p",
+				paste_auto_cleanup_on_paste: true,
+				apply_source_formatting: false,
 				theme : "advanced",
-				theme_advanced_buttons1 : "cut,copy,paste,|,bold,italic,underline,bullist,numlist,|,link,unlink,help,code,fullscreen,jbimages",
-				theme_advanced_buttons2 : "",
-				theme_advanced_buttons3 : ""
+				theme_advanced_buttons1: "cut,copy,paste,|,bold,italic,underline,bullist,numlist,|,link,unlink,help,code,fullscreen,jbimages",
+				theme_advanced_buttons2: "",
+				theme_advanced_buttons3: ""
 			});
 			// -->
 		</script>';
