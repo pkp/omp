@@ -126,7 +126,7 @@ class PluginGridRow extends GridRow {
 						new RemoteActionConfirmationModal(
 							__('manager.plugins.deleteConfirm'),
 							__('common.delete'),
-							$router->url($request, null, null, 'deletePlugin', null, $actionArgs)),
+							$router->url($request, null, null, 'deletePlugin', null, $actionArgs), 'modal_delete'),
 						__('common.delete'),
 						'delete'));
 
