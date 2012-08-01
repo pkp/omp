@@ -259,6 +259,22 @@ class FooterCategoryDAO extends DAO {
 	}
 
 	/**
+	 * Retrieve all categories for a press that have links.
+	 * @return DAOResultFactory containing FooterCategory ordered by sequence
+	 */
+	function &getNotEmptyByPressId($pressId, $rangeInfo = null) {
+		$result =& $this->retrieveRange(
+			'SELECT DISTINCT f.footer_category_id, f.*
+			FROM  footer_categories f, footerlinks fl
+			WHERE f.footer_category_id = fl.footer_category_id AND f.press_id = ?',
+			array((int) $pressId)
+		);
+
+		$returner = new DAOResultFactory($result, $this, '_fromRow');
+		return $returner;
+	}
+
+	/**
 	 * Retrieve the number of categories for a press.
 	 * @return int
 	 */

@@ -125,7 +125,7 @@ class IndexHandler extends Handler {
 
 		// Include footer links if they have been defined.
 		$footerCategoryDao =& DAORegistry::getDAO('FooterCategoryDAO');
-		$footerCategories =& $footerCategoryDao->getByPressId($press->getId());
+		$footerCategories =& $footerCategoryDao->getNotEmptyByPressId($press->getId());
 		$templateMgr->assign_by_ref('footerCategories', $footerCategories->toArray());
 
 		$footerLinkDao =& DAORegistry::getDAO('FooterLinkDAO');

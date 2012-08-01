@@ -26,7 +26,7 @@
 						{/foreach}
 						{if $links|@count < $maxLinks}
 							{section name=padding start=$links|@count loop=$maxLinks step=1}
-								<li>&nbsp;</li>
+								<li class="pkp_helpers_invisible">&nbsp;</li>
 							{/section}
 						{/if}
 					</ul>
