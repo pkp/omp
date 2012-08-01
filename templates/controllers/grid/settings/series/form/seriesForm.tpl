@@ -53,7 +53,7 @@
 			{fbvElement type="checkbox" id="featured" checked=$featured label="series.featured.description" value=1 inline="true"}
 		{/fbvFormSection}
 
-		{fbvFormSection title="common.description" for="context" required="true"}
+		{fbvFormSection title="common.description" for="context"}
 		 	{fbvElement type="textarea" multilingual="true" id="description" value=$description rich=true}
 		{/fbvFormSection}
 

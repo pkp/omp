@@ -13,15 +13,17 @@
 
 <div class="catalogContainer">
 
-<div class="pkp_catalog_seriesDescription">
-	{$series->getLocalizedDescription()}
-	{assign var="image" value=$series->getImage()}
-	{if $image}
-		<a href="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="fullSize" type="series" id=$series->getId()}">
-			<img class="pkp_helpers_container_center" height="{$image.thumbnailHeight}" width="{$image.thumbnailWidth}" src="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="thumbnail" type="series" id=$series->getId()}" alt="$series->getLocalizedTitle()|escape" />
-		</a>
-	{/if}
-</div>
+{if $series->getLocalizedDescription() || $image}
+	<div class="pkp_catalog_seriesDescription">
+		{$series->getLocalizedDescription()|strip_unsafe_html}
+		{assign var="image" value=$series->getImage()}
+		{if $image}
+			<a href="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="fullSize" type="series" id=$series->getId()}">
+				<img class="pkp_helpers_container_center" height="{$image.thumbnailHeight}" width="{$image.thumbnailWidth}" src="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="thumbnail" type="series" id=$series->getId()}" alt="{$series->getLocalizedTitle()|escape}" />
+			</a>
+		{/if}
+	</div>
+{/if}
 
 {* Include the carousel view of featured content *}
 {if $featuredMonographIds|@count}

@@ -51,8 +51,8 @@
 			{fbvElement type="select" id="parentId" from=$rootCategories selected=$parentId translate=false disabled=$cannotSelectChild}
 		{/fbvFormSection}
 
-		{fbvFormSection title="grid.category.description" for="context" required="true"}
-		 	{fbvElement type="textarea" multilingual="true" id="description" value=$description}
+		{fbvFormSection title="grid.category.description" for="context"}
+		 	{fbvElement type="textarea" multilingual="true" id="description" value=$description rich=true}
 		{/fbvFormSection}
 
 		{fbvFormSection title="grid.category.path" required=true for="path"}
