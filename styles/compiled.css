@@ -1450,10 +1450,6 @@ div.ui-pnotify-container {
 .ui-dialog { background-color:#f7f5f4; }
 .ui-dialog-content { background-color:#ffffff !important; }
 .ui-dialog-buttonpane { border-color:#f7f5f4; }
-.legacy_plugin_content .pkp_structure_breadcrumb {
-  margin-bottom:10px;
-  display:inline-block;
-}
 .legacy_plugin_content .pkp_form input { width:none; }
 .legacy_plugin_content .pkp_form .pkp_listing input { width:99%; }
 .legacy_plugin_content .pkp_form .pkp_listing .highlight { background:yellow; }
@@ -1682,7 +1678,7 @@ ul.sf-menu {
 .pkp_catalog_book .bookInfo .bookInfoHeader .subTitle, .pkp_catalog_book .bookInfo .bookInfoHeader .authorName { color:#999999; }
 .pkp_catalog_book .bookInfo .publicationFormatName {
   float:left;
-  width:75%;
+  width:50%;
 }
 .pkp_catalog_book #bookAccordion {
   margin-top:30px;
