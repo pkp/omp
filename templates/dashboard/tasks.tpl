@@ -13,8 +13,9 @@
 		$('#pressSubmissionForm').pkpHandler('$.pkp.controllers.dashboard.form.DashboardTaskFormHandler',
 			{ldelim}
 				{if $pressCount == 1}
-					singlePressSubmissionUrl: '{url press=$press->getPath() page="submission" op="wizard"}'
+					singlePressSubmissionUrl: '{url press=$press->getPath() page="submission" op="wizard"}',
 				{/if}
+				trackFormChanges: false
 			{rdelim}
 		);
 	{rdelim});
