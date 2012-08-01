@@ -749,6 +749,7 @@ body {
   padding-top:10px;
   padding-bottom:10px;
 }
+.pkp_structure_sidebar ul { padding-top:0px; }
 .pkp_structure_sidebar_left {
   float:left;
   width:190px;
