@@ -37,10 +37,10 @@ class SubmissionInfoCenterLinkAction extends LinkAction {
 			}
 		}
 
-		$title = implode(', ', array($primaryAuthor->getLastName(), $monograph->getLocalizedTitle()));
+		$title = (isset($primaryAuthor)) ? implode(', ', array($primaryAuthor->getLastName(), $monograph->getLocalizedTitle())) : $monograph->getLocalizedTitle();
+
 		$dispatcher =& $request->getDispatcher();
 		import('lib.pkp.classes.linkAction.request.AjaxModal');
-		$primaryAuthor =& $monograph->getPrimaryAuthor();
 		$ajaxModal = new AjaxModal(
 			$dispatcher->url(
 				$request, ROUTE_COMPONENT, null,
