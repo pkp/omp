@@ -90,7 +90,6 @@ class AdminHandler extends Handler {
 	function setupTemplate($request) {
 		parent::setupTemplate();
 		AppLocale::requireComponents(LOCALE_COMPONENT_PKP_ADMIN, LOCALE_COMPONENT_OMP_MANAGER, LOCALE_COMPONENT_OMP_ADMIN);
-		);
 	}
 }
 
