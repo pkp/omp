@@ -27,7 +27,6 @@
 		<li><a href="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.WebsiteSettingsTabHandler" op="showTab" tab="appearance" wizardMode=true}">{translate key="manager.website.appearance"}</a></li>
 		<li><a href="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.PublicationSettingsTabHandler" op="showTab" tab="submissionStage" wizardMode=true}">{translate key="manager.publication.submissionStage"}</a></li>
 		<li><a href="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.DistributionSettingsTabHandler" op="showTab" tab="indexing" wizardMode=true}">{translate key="manager.distribution.indexing"}</a></li>
-		<li><a href="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.AccessSettingsTabHandler" op="showTab" tab="roles" wizardMode=true}">{translate key="manager.roles"}</a></li>
 		<li><a href="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.AccessSettingsTabHandler" op="showTab" tab="users" wizardMode=true}">{translate key="manager.users"}</a></li>
 	</ul>
 </div>
