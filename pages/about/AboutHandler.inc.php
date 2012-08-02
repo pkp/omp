@@ -327,49 +327,6 @@ class AboutHandler extends Handler {
 	}
 
 	/**
-	 * Display siteMap page.
-	 * @param $args array
-	 * @param $request PKPRequest
-	 */
-	function siteMap($args, &$request) {
-		$this->validate();
-		$this->setupTemplate($request);
-
-		$templateMgr =& TemplateManager::getManager();
-
-		$pressDao =& DAORegistry::getDAO('PressDAO');
-
-		$user =& $request->getUser();
-		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
-
-		if ($user) {
-			$userGroupsByPress = array();
-			$presses =& $pressDao->getEnabledPresses();
-			// Fetch the user's roles for each press
-			foreach ($presses->toArray() as $press) {
-				$userGroups =& $userGroupDao->getByUserId($user->getId(), $press->getId());
-				if (!empty($userGroups)) {
-					$userGroupsByPress[$press->getId()] =& $userGroups;
-				}
-			}
-		}
-
-		$presses =& $pressDao->getEnabledPresses();
-		$templateMgr->assign_by_ref('presses', $presses->toArray());
-		if (isset($rolesByPress)) {
-			$templateMgr->assign_by_ref('userGroupsByPress', $userGroupsByPress);
-		}
-		if ($user) {
-			if (Validation::isSiteAdmin()) {
-				$adminRole = new Role(ROLE_ID_SITE_ADMIN);
-				$templateMgr->assign('isSiteAdmin', $adminRole);
-			}
-		}
-
-		$templateMgr->display('about/siteMap.tpl');
-	}
-
-	/**
 	 * Display aboutThisPublishingSystem page.
 	 * @param $args array
 	 * @param $request PKPRequest

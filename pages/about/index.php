@@ -24,7 +24,6 @@ switch ($op) {
 	case 'editorialTeamBio':
 	case 'editorialPolicies':
 	case 'submissions':
-	case 'siteMap':
 	case 'aboutThisPublishingSystem':
 		define('HANDLER_CLASS', 'AboutHandler');
 		import('pages.about.AboutHandler');
