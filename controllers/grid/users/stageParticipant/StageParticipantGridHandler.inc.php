@@ -185,6 +185,9 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 		return $row;
 	}
 
+	/**
+	 * @see CategoryGridHandler::getCategoryRowIdParameterName()
+	 */
 	function getCategoryRowIdParameterName() {
 		return 'userGroupId';
 	}

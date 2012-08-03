@@ -127,6 +127,9 @@ class CategoryCategoryGridHandler extends CategoryGridHandler {
 		return $categories;
 	}
 
+	/**
+	 * @see CategoryGridHandler::getCategoryRowIdParameterName()
+	 */
 	function getCategoryRowIdParameterName() {
 		return 'parentCategoryId';
 	}

@@ -191,9 +191,10 @@ class RepresentativesGridHandler extends CategoryGridHandler {
 	 * @see CategoryGridHandler::getRequestArgs()
 	 */
 	function getRequestArgs() {
+		$monograph = $this->getMonograph();
 		return array_merge(
 			parent::getRequestArgs(),
-			array('monographId' => $this->getMonograph()->getId())
+			array('monographId' => $monograph->getId())
 		);
 	}
 
