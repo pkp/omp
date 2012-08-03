@@ -35,6 +35,11 @@
 	</div>
 {/if}
 
+{* Include the carousel view of featured content *}
+{if $featuredMonographIds|@count}
+	{include file="catalog/carousel.tpl" publishedMonographs=$publishedMonographs featuredMonographIds=$featuredMonographIds}
+{/if}
+
 {if $spotlights|@count > 0}
 	{include file="index/spotlights.tpl"}
 {/if}

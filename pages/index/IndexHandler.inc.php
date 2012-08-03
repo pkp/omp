@@ -107,6 +107,16 @@ class IndexHandler extends Handler {
 			}
 		}
 
+		// Fetch the monographs to display
+		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
+		$publishedMonographs =& $publishedMonographDao->getByPressId($press->getId());
+		$templateMgr->assign('publishedMonographs', $publishedMonographs->toAssociativeArray());
+
+		// Expose the featured monograph IDs and associated params
+		$featureDao =& DAORegistry::getDAO('FeatureDAO');
+		$featuredMonographIds = $featureDao->getSequencesByAssoc(ASSOC_TYPE_PRESS, $press->getId());
+		$templateMgr->assign('featuredMonographIds', $featuredMonographIds);
+
 		// Include any spotlight items for the press home page.
 		$spotlightDao =& DAORegistry::getDAO('SpotlightDAO');
 		$spotlights =& $spotlightDao->getByPressId($press->getId());
