@@ -25,6 +25,7 @@
 	<div id="seriesPolicies"><h3>{translate key="about.seriesPolicies"}</h3>
 		{foreach from=$seriesList item=series}
 			<h4>{$series->getLocalizedTitle()}</h4>
+			<p>{$series->getLocalizedDescription()}</p>
 			{assign var="hasEditors" value=0}
 			{foreach from=$seriesEditorEntriesBySeries item=seriesEditorEntries key=key}
 				{if $key == $series->getId()}
