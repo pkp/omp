@@ -33,6 +33,8 @@ class ProofFilesGridHandler extends SignoffFilesGridHandler {
 			MONOGRAPH_EMAIL_PROOFREAD_NOTIFY_AUTHOR,
 			ASSOC_TYPE_PUBLICATION_FORMAT
 		);
+
+		$this->setEmptyCategoryRowText('grid.noAuditors');
 	}
 
 	//
