@@ -1,5 +1,5 @@
 {**
- * index.tpl
+ * templates/about/index.tpl
  *
  * Copyright (c) 2003-2012 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -20,10 +20,6 @@
 	{call_hook name="Templates::About::Index::People"}
 </ul>
 
-{if $currentPress->getLocalizedSetting('masthead') != ''}
-<h3>{translate key="manager.setup.masthead"}</h3>
-{$currentPress->getLocalizedSetting('masthead')}
-{/if}
 <h3>{translate key="about.policies"}</h3>
 <ul class="plain">
 	{if $currentPress->getLocalizedSetting('focusScopeDesc') != ''}<li><a href="{url op="editorialPolicies" anchor="focusAndScope"}">{translate key="about.focusAndScope"}</a></li>{/if}

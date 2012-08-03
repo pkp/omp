@@ -1,5 +1,5 @@
 {**
- * editorialTeam.tpl
+ * templates/about/editorialTeam.tpl
  *
  * Copyright (c) 2003-2012 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -10,6 +10,10 @@
 {assign var="pageTitle" value="about.editorialTeam"}
 {include file="common/header.tpl"}
 {/strip}
+
+{if $currentPress->getLocalizedSetting('masthead') != ''}
+	{$currentPress->getLocalizedSetting('masthead')}
+{/if}
 
 {if count($seriesEditors) > 0}
 	{if count($seriesEditors) == 1}
