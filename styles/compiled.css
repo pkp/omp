@@ -749,7 +749,6 @@ body {
   padding-top:10px;
   padding-bottom:10px;
 }
-.pkp_structure_sidebar ul { padding-top:0px; }
 .pkp_structure_sidebar_left {
   float:left;
   width:190px;
@@ -763,7 +762,7 @@ body {
 .pkp_structure_foot {
   clear:both;
   min-height:150px;
-  background-color:#a2c6dc;
+  background-color:#c1bbaf;
   font-color:#ffffff;
 }
 .pkp_structure_foot h4 { color:#000000; }
@@ -773,7 +772,6 @@ body {
   margin:0px 0px 8px 15px;
   text-transform:uppercase;
   font-family:"Courier New", Courier, mono;
-  color:#ffffff;
 }
 .pkp_structure_foot .pkp_structure_subfoot ul li a { color:#ffffff; }
 .pkp_linkActions a.remove_item { background-image:url(../lib/pkp/templates/images/structure/lb_delete.png); }
@@ -1514,6 +1512,7 @@ a.pkp_common_disabled, a.pkp_common_disabled:hover { color:#666666; }
   border-width:0 0 0 0 !important;
 }
 #pressSwitcher .section { width:200px; }
+div.linkToEditPage { margin-top:-25px; }
 ul.sf-menu {
   position:relative;
   z-index:1000;
