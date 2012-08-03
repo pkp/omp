@@ -21,54 +21,24 @@
 		<h3><a href="#">{translate key="catalog.publicationInfo"}</a></h3>
 		<div class="publicationInfo">
 			<div class="dateAdded">{translate key="catalog.dateAdded" dateAdded=$publishedMonograph->getDatePublished()|date_format:$dateFormatShort}</div>
+			{assign var=publicationFormats value=$publishedMonograph->getPublicationFormats(true)}
+			{if count($publicationFormats) === 1}
+				{foreach from=$publicationFormats item="publicationFormat"}
+					{include file="catalog/book/bookPublicationFormatInfo.tpl" publicationFormat=$publicationFormat availableFiles=$availableFiles}
+				{/foreach}
+			{/if}
 		</div>
 
-		{assign var=publicationFormats value=$publishedMonograph->getPublicationFormats()}
-		{foreach from=$publicationFormats item="publicationFormat"}
-			{if $publicationFormat->getIsApproved()}
-				<h3><a href="#">{$publicationFormat->getLocalizedName()|escape}</a></h3>
-				<div class="publicationFormat">
-					<div class="bookDimensionSpecs">
-					{assign var=notFirst value=0}
-					{if $publicationFormat->getWidth()}
-						{$publicationFormat->getWidth()|escape} {$publicationFormat->getWidthUnitCode()|escape}
-						{assign var=notFirst value=1}
-					{/if}
-					{if $publicationFormat->getHeight()}
-						{if $notFirst} x {/if}
-						{$publicationFormat->getHeight()|escape} {$publicationFormat->getHeightUnitCode()|escape}
-						{assign var=notFirst value=1}
-					{/if}
-					{if $publicationFormat->getThickness()}
-						{if $notFirst} x {/if}
-						{$publicationFormat->getThickness()|escape} {$publicationFormat->getThicknessUnitCode()|escape}
-						{assign var=notFirst value=1}
-					{/if}
-					</div>
-					{assign var=identificationCodes value=$publicationFormat->getIdentificationCodes()}
-					{assign var=identificationCodes value=$identificationCodes->toArray()}
-					{if $identificationCodes}
-						<div class="bookIdentificationSpecs">
-						{foreach from=$identificationCodes item=identificationCode}
-							<div id="bookIdentificationSpecs-{$identificationCode->getCode()|escape}">
-								{$identificationCode->getNameForONIXCode()|escape}: {$identificationCode->getValue()|escape}
-							</div>
-						{/foreach}{* identification codes *}
-						</div>
-					{/if}{* $identificationCodes *}
-					{assign var="publicationFormatId" value=$publicationFormat->getId()}
-					{if !empty($availableFiles.$publicationFormatId)}
-						<div class="ecommerce">
-							{if $availableFiles.$publicationFormatId|@count == 1}
-								{* FIXME: unimplemented. One file available; shortcut to purchase *}
-							{else}
-								{* FIXME: unimplemented. Several files available; display options *}
-							{/if}
-						</div>
-					{/if}{* !empty($availableFiles) *}
-				</div>{* publicationFormat *}
-			{/if}{* $publicationFormat->getIsAvailable() *}
-		{/foreach}{* $publicationFormats *}
+		{if count($publicationFormats) > 1}
+			{foreach from=$publicationFormats item="publicationFormat"}
+				{if $publicationFormat->getIsApproved()}
+					<h3><a href="#">{$publicationFormat->getLocalizedName()|escape}</a></h3>
+					<div class="publicationFormat">
+						{include file="catalog/book/bookPublicationFormatInfo.tpl" publicationFormat=$publicationFormat availableFiles=$availableFiles}
+					</div>{* publicationFormat *}
+				{/if}{* $publicationFormat->getIsAvailable() *}
+			{/foreach}{* $publicationFormats *}
+		{/if}{* publicationFormats > 1 *}
 
 		{if !$categories->wasEmpty()}
 			<h3><a href="#">{translate key="catalog.relatedCategories}</a></h3>
