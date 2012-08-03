@@ -18,11 +18,7 @@
 
 <div class="bookInfo">
 	<div class="bookInfoHeader">
-		{assign var="monographTitle" value=$publishedMonograph->getLocalizedPrefix()|concat:' ':$publishedMonograph->getLocalizedTitle()|strip_unsafe_html}
-		<h3>{$monographTitle}</h3>
-		{if $publishedMonograph->getLocalizedSubtitle() != ''}
-			<div class="subTitle">{$publishedMonograph->getLocalizedSubtitle()}</div>
-		{/if}
+		<h3>{$publishedMonograph->getLocalizedFullTitle()|strip_unsafe_html}</h3>
 		<div class="authorName">{$publishedMonograph->getAuthorString()}</div>
 	</div>
 
@@ -30,7 +26,10 @@
 		<ul>
 			<li><a href="#abstractTab">{translate key="submission.synopsis"}</a></li>
 			{if $availableFiles|@count != 0}<li><a href="#downloadTab">{translate key="submission.download"}</a></li>{/if}
-			<li><a href="#sharingTab">{translate key="submission.sharing"}</a></li>
+			{call_hook|assign:"sharingCode" name="Templates::Catalog::Book::BookInfo::Sharing"}
+			{if !is_null($sharingCode) || !empty($blocks)}
+				<li><a href="#sharingTab">{translate key="submission.sharing"}</a></li>
+			{/if}
 		</ul>
 
 		<div id="abstractTab">
@@ -59,14 +58,15 @@
 			{/foreach}
 		</div>
 		{/if}
-		<div id="sharingTab">
-			{call_hook name="Templates::Catalog::Book::BookInfo::Sharing"}
-
-			{foreach from=$blocks item=block key=blockKey}
-				<div id="socialMediaBlock{$blockKey|escape}" class="pkp_helpers_clear">
-					{$block}
-				</div>
-			{/foreach}
-		</div>
+		{if !is_null($sharingCode) || !empty($blocks)}
+			<div id="sharingTab">
+				{$sharingCode}
+				{foreach from=$blocks item=block key=blockKey}
+					<div id="socialMediaBlock{$blockKey|escape}" class="pkp_helpers_clear">
+						{$block}
+					</div>
+				{/foreach}
+			</div>
+		{/if}
 	</div>
 </div>
