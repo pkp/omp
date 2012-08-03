@@ -14,18 +14,6 @@
 {url|assign:editUrl page="management" op="settings" path="press" anchor="policies"}
 {include file="common/linkToEditPage.tpl" editUrl=$editUrl}
 
-<ul class="plain">
-	{if $currentPress->getLocalizedSetting('focusScopeDesc') != ''}<li><a href="{url op="editorialPolicies" anchor="focusAndScope"}">{translate key="about.focusAndScope"}</a></li>{/if}
-	{if count($seriesList) > 0}<li><a href="{url op="editorialPolicies" anchor="seriesPolicies"}">{translate key="about.seriesPolicies"}</a></li>{/if}
-	{if $currentPress->getLocalizedSetting('reviewPolicy') != ''}<li><a href="{url op="editorialPolicies" anchor="peerReviewProcess"}">{translate key="about.peerReviewProcess"}</a></li>{/if}
-	{if $currentPress->getLocalizedSetting('openAccessPolicy') != ''}<li><a href="{url op="editorialPolicies" anchor="openAccessPolicy"}">{translate key="about.openAccessPolicy"}</a></li>{/if}
-	{foreach key=key from=$currentPress->getLocalizedSetting('customAboutItems') item=customAboutItem}
-		{if !empty($customAboutItem.title)}
-			<li><a href="{url op="editorialPolicies" anchor=custom-$key}">{$customAboutItem.title|escape}</a></li>
-		{/if}
-	{/foreach}
-</ul>
-
 {if $currentPress->getLocalizedSetting('focusScopeDesc') != ''}
 	<div id="focusAndScope"><h3>{translate key="about.focusAndScope"}</h3>
 		<p>{$currentPress->getLocalizedSetting('focusScopeDesc')|nl2br}</p>

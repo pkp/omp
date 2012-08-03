@@ -11,13 +11,6 @@
 {include file="common/header.tpl"}
 {/strip}
 
-<ul class="plain">
-	<li><a href="{url page="about" op="submissions" anchor="onlineSubmissions"}">{translate key="about.onlineSubmissions"}</a></li>
-	{if $currentPress->getLocalizedSetting('authorGuidelines') != ''}<li><a href="{url page="about" op="submissions" anchor="authorGuidelines"}">{translate key="about.authorGuidelines"}</a></li>{/if}
-	{if $currentPress->getLocalizedSetting('copyrightNotice') != ''}<li><a href="{url page="about" op="submissions" anchor="copyrightNotice"}">{translate key="about.copyrightNotice"}</a></li>{/if}
-	{if $currentPress->getLocalizedSetting('privacyStatement') != ''}<li><a href="{url page="about" op="submissions" anchor="privacyStatement"}">{translate key="about.privacyStatement"}</a></li>{/if}
-</ul>
-
 <div id="onlineSubmissions">
 	<h3>{translate key="about.onlineSubmissions"}</h3>
 	<p>
