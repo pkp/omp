@@ -514,6 +514,8 @@ class FileUploadWizardHandler extends FileManagementHandler {
 	 * @param $b string
 	 */
 	function _onlyNumbersDiffer($a, $b) {
+		if ($a == $b) return false;
+
 		$pattern = '/([^0-9]*)([0-9]*)([^0-9]*)/';
 		$aMatchCount = preg_match_all($pattern, $a, $aMatches, PREG_SET_ORDER);
 		$bMatchCount = preg_match_all($pattern, $b, $bMatches, PREG_SET_ORDER);
