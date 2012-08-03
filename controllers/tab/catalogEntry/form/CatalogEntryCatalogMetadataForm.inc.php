@@ -236,7 +236,7 @@ class CatalogEntryCatalogMetadataForm extends Form {
 			// The following variables were fetched in validation
 			assert($this->_sizeArray && $this->_imageExtension);
 
-			// Generate the surrogate images.
+			// Load the cover image for surrogate production
 			switch ($this->_imageExtension) {
 				case '.jpg': $cover = imagecreatefromjpeg($temporaryFilePath); break;
 				case '.png': $cover = imagecreatefrompng($temporaryFilePath); break;
@@ -244,14 +244,16 @@ class CatalogEntryCatalogMetadataForm extends Form {
 			}
 			assert($cover);
 
+			// Copy the new file over (involves creating the appropriate subdirectory too)
+			$filename = 'cover' . $this->_imageExtension;
+			$simpleMonographFileManager->copyFile($temporaryFile->getFilePath(), $basePath . $filename);
+
+			// Generate surrogate images (thumbnail and catalog image)
 			$thumbnailImageInfo = $this->_buildSurrogateImage($cover, $basePath, SUBMISSION_IMAGE_TYPE_THUMBNAIL);
 			$catalogImageInfo = $this->_buildSurrogateImage($cover, $basePath, SUBMISSION_IMAGE_TYPE_CATALOG);
 
+			// Clean up
 			imagedestroy($cover);
-
-			// Copy the new file over
-			$filename = 'cover' . $this->_imageExtension;
-			$simpleMonographFileManager->copyFile($temporaryFile->getFilePath(), $basePath . $filename);
 
 			$publishedMonograph->setCoverImage(array(
 				'name' => $filename,
