@@ -57,9 +57,9 @@ class ReviewerReviewStep3Form extends ReviewerReviewForm {
 	}
 
 	/**
-	 * @see Form::display()
+	 * @see Form::fetch()
 	 */
-	function display(&$request) {
+	function fetch(&$request) {
 		$templateMgr =& TemplateManager::getManager();
 
 		$reviewAssignment =& $this->getReviewAssignment();
@@ -97,7 +97,7 @@ class ReviewerReviewStep3Form extends ReviewerReviewForm {
 			$viewReviewGuidelinesAction = new ViewReviewGuidelinesLinkAction($request);
 			$templateMgr->assign('viewGuidelinesAction', $viewReviewGuidelinesAction);
 		}
-		parent::display($request);
+		return parent::fetch($request);
 	}
 
 	/**

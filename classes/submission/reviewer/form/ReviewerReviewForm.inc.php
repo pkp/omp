@@ -82,16 +82,16 @@ class ReviewerReviewForm extends Form {
 	// Implement protected template methods from Form
 	//
 	/**
-	 * @see Form::display()
+	 * @see Form::fetch()
 	 */
-	function display(&$request) {
+	function fetch(&$request) {
 		$reviewAssignment =& $this->getReviewAssignment();
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign_by_ref('submission', $this->getReviewerSubmission());
 		$templateMgr->assign('reviewIsComplete', (boolean) $reviewAssignment->getDateCompleted());
 		$templateMgr->assign('step', $this->getStep());
-		parent::display();
+		return parent::fetch();
 	}
 
 

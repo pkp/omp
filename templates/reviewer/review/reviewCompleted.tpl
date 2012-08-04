@@ -1,5 +1,5 @@
 {**
- * reviewCompleted.tpl
+ * templates/reviewer/review/reviewCompleted.tpl
  *
  * Copyright (c) 2003-2012 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -7,11 +7,6 @@
  * Show the review completed page.
  *
  *}
-
-{strip}
-{assign var="pageCrumbTitle" value="submission.review"}
-{include file="reviewer/review/reviewStepHeader.tpl"}
-{/strip}
 
 <h2>{translate key="reviewer.complete"}</h2>
 <br />
@@ -22,5 +17,3 @@
 
 </form>
 </div>
-{include file="common/footer.tpl"}
-

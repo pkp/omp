@@ -122,6 +122,7 @@
 <script type="text/javascript" src="{$baseUrl}/js/pages/workflow/ProductionHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/js/pages/workflow/EditorDecisionsHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/js/pages/admin/PressesHandler.js"></script>
+<script type="text/javascript" src="{$baseUrl}/js/pages/reviewer/ReviewerTabHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/js/site/form/PressSwitcherFormHandler.js"></script>
 
 {* Our own plug-in (depends on classes) *}

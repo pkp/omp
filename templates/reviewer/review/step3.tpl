@@ -6,15 +6,12 @@
  *
  * Show the step 3 review page
  *}
-{strip}
-{assign var="pageCrumbTitle" value="submission.review"}
-{include file="reviewer/review/reviewStepHeader.tpl"}
-{/strip}
-
 <script type="text/javascript">
 	$(function() {ldelim}
 		// Attach the form handler.
-		$('#reviewStep3Form').pkpHandler('$.pkp.controllers.form.FormHandler');
+		$('#reviewStep3Form').pkpHandler(
+			'$.pkp.controllers.form.AjaxFormHandler'
+		);
 	{rdelim});
 </script>
 
@@ -44,6 +41,3 @@
 	{fbvFormButtons submitText="reviewer.monograph.submitReview" confirmSubmit="reviewer.confirmSubmit" cancelText="navigation.goBack" cancelUrl=$cancelUrl submitDisabled=$reviewIsComplete}
 {/fbvFormArea}
 </form>
-{include file="common/footer.tpl"}
-
-

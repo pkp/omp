@@ -21,6 +21,7 @@ switch ($op) {
 	// Submission Tracking
 	//
 	case 'submission':
+	case 'step':
 	case 'saveStep':
 	case 'showDeclineReview':
 	case 'saveDeclineReview':

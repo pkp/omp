@@ -7,16 +7,12 @@
  * Show the review step 1 page
  *
  *}
-
-{strip}
-{assign var="pageCrumbTitle" value="submission.request"}
-{include file="reviewer/review/reviewStepHeader.tpl"}
-{/strip}
-
 <script type="text/javascript">
 	$(function() {ldelim}
 		// Attach the form handler.
-		$('#reviewStep1Form').pkpHandler('$.pkp.controllers.form.FormHandler');
+		$('#reviewStep1Form').pkpHandler(
+			'$.pkp.controllers.form.AjaxFormHandler'
+		);
 	{rdelim});
 </script>
 
@@ -78,7 +74,3 @@
 	{/if}
 {/fbvFormArea}
 </form>
-
-{include file="common/footer.tpl"}
-
-

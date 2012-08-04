@@ -30,9 +30,9 @@ class ReviewerReviewStep2Form extends ReviewerReviewForm {
 	// Implement protected template methods from Form
 	//
 	/**
-	 * @see Form::display()
+	 * @see Form::fetch()
 	 */
-	function display(&$request) {
+	function fetch(&$request) {
 		$templateMgr =& TemplateManager::getManager();
 		$press = $this->request->getPress();
 
@@ -42,7 +42,7 @@ class ReviewerReviewStep2Form extends ReviewerReviewForm {
 		}
 		$templateMgr->assign('reviewerGuidelines', $reviewerGuidelines);
 
-		parent::display($request);
+		return parent::fetch($request);
 	}
 
 

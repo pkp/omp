@@ -7,16 +7,12 @@
  * Show the step 2 review page
  *
  *}
-
-{strip}
-{assign var="pageCrumbTitle" value="submission.review"}
-{include file="reviewer/review/reviewStepHeader.tpl"}
-{/strip}
-
 <script type="text/javascript">
 	$(function() {ldelim}
 		// Attach the form handler.
-		$('#reviewStep2Form').pkpHandler('$.pkp.controllers.form.FormHandler');
+		$('#reviewStep2Form').pkpHandler(
+			'$.pkp.controllers.form.AjaxFormHandler'
+		);
 	{rdelim});
 </script>
 
@@ -32,5 +28,3 @@
 	{fbvFormButtons submitText="reviewer.monograph.continueToStepThree" cancelText="navigation.goBack" cancelUrl=$cancelUrl submitDisabled=$reviewIsComplete}
 {/fbvFormArea}
 </form>
-{include file="common/footer.tpl"}
-

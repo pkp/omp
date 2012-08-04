@@ -29,9 +29,9 @@ class ReviewerReviewStep1Form extends ReviewerReviewForm {
 	// Implement protected template methods from Form
 	//
 	/**
-	 * @see Form::display()
+	 * @see Form::fetch()
 	 */
-	function display(&$request) {
+	function fetch(&$request) {
 		$templateMgr =& TemplateManager::getManager();
 
 		// Add submission parameters.
@@ -98,7 +98,7 @@ class ReviewerReviewStep1Form extends ReviewerReviewForm {
 		);
 		$templateMgr->assign_by_ref('declineReviewAction', $declineReviewLinkAction);
 
-		parent::display($request);
+		return parent::fetch($request);
 	}
 
 	/**

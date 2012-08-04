@@ -21,8 +21,12 @@ class ReviewerHandler extends Handler {
 	 */
 	function ReviewerHandler() {
 		parent::Handler();
-		$this->addRoleAssignment(ROLE_ID_REVIEWER,
-				array('submission', 'saveStep', 'showDeclineReview', 'saveDeclineReview', 'downloadFile'));
+		$this->addRoleAssignment(
+			ROLE_ID_REVIEWER, array(
+				'submission', 'step', 'saveStep',
+				'showDeclineReview', 'saveDeclineReview', 'downloadFile'
+			)
+		);
 	}
 
 	/**
@@ -43,6 +47,26 @@ class ReviewerHandler extends Handler {
 	 * @param $request PKPRequest
 	 */
 	function submission($args, &$request) {
+		$reviewAssignment =& $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ASSIGNMENT); /* @var $reviewAssignment ReviewAssignment */
+		$reviewerSubmissionDao =& DAORegistry::getDAO('ReviewerSubmissionDAO'); /* @var $reviewerSubmissionDao ReviewerSubmissionDAO */
+		$reviewerSubmission =& $reviewerSubmissionDao->getReviewerSubmission($reviewAssignment->getId());
+		assert(is_a($reviewerSubmission, 'ReviewerSubmission'));
+
+		AppLocale::requireComponents(LOCALE_COMPONENT_OMP_SUBMISSION);
+		$this->setupTemplate();
+
+		$templateMgr =& TemplateManager::getManager();
+		$templateMgr->assign_by_ref('submission', $reviewerSubmission);
+		$templateMgr->assign('reviewIsCompleted', $reviewAssignment->getDateCompleted()?1:0);
+		$templateMgr->display('reviewer/review/reviewStepHeader.tpl');
+	}
+
+	/**
+	 * Display a step tab contents in the submission review page.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 */
+	function step($args, &$request) {
 		$reviewAssignment =& $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ASSIGNMENT); /* @var $reviewAssignment ReviewAssignment */
 		$reviewId = (int) $reviewAssignment->getId();
 		assert(!empty($reviewId));
@@ -71,12 +95,13 @@ class ReviewerHandler extends Handler {
 			} else {
 				$reviewerForm->initData();
 			}
-			$reviewerForm->display($request);
+			$json = new JSONMessage(true, $reviewerForm->fetch($request));
+			return $json->getString();
 		} else {
 			$templateMgr =& TemplateManager::getManager();
 			$templateMgr->assign_by_ref('submission', $reviewerSubmission);
 			$templateMgr->assign('step', 4);
-			$templateMgr->display('reviewer/review/reviewCompleted.tpl');
+			return $templateMgr->fetchJson('reviewer/review/reviewCompleted.tpl');
 		}
 	}
 
@@ -104,10 +129,12 @@ class ReviewerHandler extends Handler {
 
 		if ($reviewerForm->validate()) {
 			$reviewerForm->execute($request);
-			$request->redirect(null, null, 'submission', $reviewAssignment->getSubmissionId(), array('step' => $step+1));
+			$json = new JSONMessage(true);
+			$json->setEvent('setStep', $step+1);
 		} else {
-			$reviewerForm->display($request);
+			$json = new JSONMessage(true, $reviewerForm->fetch($request));
 		}
+		return $json->getString();
 	}
 
 	/**
