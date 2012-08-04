@@ -253,7 +253,9 @@ class SubmissionFilesUploadForm extends SubmissionFilesUploadBaseForm {
 			// log the upload event.
 			import('classes.log.MonographFileLog');
 			import('classes.log.MonographFileEventLogEntry'); // constants
-			MonographFileLog::logEvent($request, $monographFile, MONOGRAPH_LOG_FILE_UPLOAD, 'submission.event.fileUploaded', array('fileStage' => $fileStage, 'revisedFileId' => $revisedFileId, 'fileId' => $monographFile->getFileId(), 'fileRevision' => $monographFile->getRevision(), 'originalFileName' => $monographFile->getOriginalFileName(), 'submissionId' => $this->getData('monographId'), 'username' => $user->getUsername()));
+			$localeKey = $revisedFileId ? 'submission.event.revisionUploaded' : 'submission.event.fileUploaded';
+			$assocType = $revisedFileId ? MONOGRAPH_LOG_FILE_REVISION_UPLOAD : MONOGRAPH_LOG_FILE_UPLOAD;
+			MonographFileLog::logEvent($request, $monographFile, $assocType, $localeKey, array('fileStage' => $fileStage, 'revisedFileId' => $revisedFileId, 'fileId' => $monographFile->getFileId(), 'fileRevision' => $monographFile->getRevision(), 'originalFileName' => $monographFile->getOriginalFileName(), 'submissionId' => $this->getData('monographId'), 'username' => $user->getUsername()));
 		}
 
 		return $monographFile;

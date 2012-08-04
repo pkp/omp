@@ -116,7 +116,12 @@ class ManageFileApiHandler extends Handler {
 			// log the deletion event.
 			import('classes.log.MonographFileLog');
 			import('classes.log.MonographFileEventLogEntry'); // constants
-			MonographFileLog::logEvent($request, $monographFile, MONOGRAPH_LOG_FILE_DELETE, 'submission.event.fileDeleted', array('fileStage' => $monographFile->getFileStage(), 'sourceFileId' => $monographFile->getSourceFileId(), 'fileId' => $monographFile->getFileId(), 'fileRevision' => $monographFile->getRevision(), 'originalFileName' => $monographFile->getOriginalFileName(), 'submissionId' => $monograph->getId(), 'username' => $user->getUsername()));
+
+			if ($monographFile->getRevision() > 1) {
+				MonographFileLog::logEvent($request, $monographFile, MONOGRAPH_LOG_FILE_REVISION_DELETE, 'submission.event.revisionDeleted', array('fileStage' => $monographFile->getFileStage(), 'sourceFileId' => $monographFile->getSourceFileId(), 'fileId' => $monographFile->getFileId(), 'fileRevision' => $monographFile->getRevision(), 'originalFileName' => $monographFile->getOriginalFileName(), 'submissionId' => $monograph->getId(), 'username' => $user->getUsername()));
+			} else {
+				MonographFileLog::logEvent($request, $monographFile, MONOGRAPH_LOG_FILE_DELETE, 'submission.event.fileDeleted', array('fileStage' => $monographFile->getFileStage(), 'sourceFileId' => $monographFile->getSourceFileId(), 'fileId' => $monographFile->getFileId(), 'fileRevision' => $monographFile->getRevision(), 'originalFileName' => $monographFile->getOriginalFileName(), 'submissionId' => $monograph->getId(), 'username' => $user->getUsername()));
+			}
 
 			if ($monographFile->getRevision() == 1 && $monographFile->getSourceFileId() == null) {
 				import('classes.log.MonographLog');

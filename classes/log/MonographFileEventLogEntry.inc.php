@@ -19,6 +19,8 @@ import('classes.log.OmpEventLogEntry');
 // File upload/delete event types.
 define('MONOGRAPH_LOG_FILE_UPLOAD',	0x50000001);
 define('MONOGRAPH_LOG_FILE_DELETE',	0x50000002);
+define('MONOGRAPH_LOG_FILE_REVISION_UPLOAD',	0x50000008);
+define('MONOGRAPH_LOG_FILE_REVISION_DELETE',	0x50000009);
 
 // Audit events
 define('MONOGRAPH_LOG_FILE_AUDITOR_ASSIGN',		0x50000004);
