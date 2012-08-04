@@ -1,4 +1,4 @@
-	{**
+{**
  * templates/reviewer/review/reviewStepHeader.tpl
  *
  * Copyright (c) 2003-2012 John Willinsky
@@ -12,6 +12,9 @@
 {assign var="pageTitleTranslated" value="$review: $submissionTitle"}
 {include file="common/header.tpl"}
 {/strip}
+
+<br />
+
 <script type="text/javascript">
 	// Attach the JS file tab handler.
 	$(function() {ldelim}
