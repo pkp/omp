@@ -1038,7 +1038,7 @@ table.pkp_listing td.separator {
   vertical-align:middle;
 }
 .pkp_form .formButtons .submitFormButton { float:right; }
-.pkp_form .formButtons .cancelFormButton { float:left; }
+.pkp_form .formButtons .resetFormButton, .pkp_form .formButtons .cancelFormButton { float:left; }
 .pkp_form .formButtons div.clear { clear:both; }
 .pkp_form .localization_popover_container input.locale_en_US {
   margin:0;
@@ -1130,7 +1130,7 @@ div.pkp_controllers_grid tr.category td:first-child {
   top:0;
   padding-left:10px;
 }
-div.pkp_controllers_grid .wrapper { margin-bottom:50px; }
+div.pkp_controllers_grid .wrapper { margin-bottom:30px; }
 div.pkp_controllers_grid .grid_header .pkp_grid_description { padding:10px; }
 div.pkp_controllers_grid .grid_header_bar {
   background-color:#f7f5f4;
