@@ -94,12 +94,14 @@
 				$formatsGrid.trigger('dataChanged');
 			}
 
-			var $formatTabs = $(this.$formatTabsSelector_, this.getHtmlElement()).children('div');
+			var $formatTabs = $(this.$formatTabsSelector_,
+					this.getHtmlElement()).children('div');
 			if ($formatTabs.has($triggerElement).length === 0) {
 				$formatTabs.trigger('refreshTabs');
 			}
 
-			$.pkp.classes.Handler.getHandler($(this.$submissionProgressBarSelector_)).reload();
+			$.pkp.classes.Handler.getHandler($(
+					this.$submissionProgressBarSelector_)).reload();
 
 		} else {
 			this.widgetsRefreshed_ = false;

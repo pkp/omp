@@ -28,7 +28,8 @@
 		this.parent($submissionHeader, options);
 
 		// show and hide on click of link
-		$('#participantToggle').click(this.callbackWrapper(this.appendToggleIndicator_));
+		$('#participantToggle').click(this.callbackWrapper(
+				this.appendToggleIndicator_));
 
 		this.bind('gridRefreshRequested', this.refreshWorkflowContent_);
 		this.publishEvent('stageParticipantsChanged');

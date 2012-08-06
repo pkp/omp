@@ -3,7 +3,7 @@
  */
 // Create the modal namespace.
 jQuery.pkp.controllers.informationCenter =
-		jQuery.pkp.controllers.informationCenter || { };
+			jQuery.pkp.controllers.informationCenter || { };
 
 
 /**

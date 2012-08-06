@@ -28,8 +28,8 @@ jQuery.pkp.controllers.tab.settings.announcements =
 	 * @param {jQuery} $form the wrapped HTML form element.
 	 * @param {Object} options form options.
 	 */
-	$.pkp.controllers.tab.settings.announcements.form.AnnouncementSettingsFormHandler =
-			function($form, options) {
+	$.pkp.controllers.tab.settings.announcements.form.
+			AnnouncementSettingsFormHandler = function($form, options) {
 
 		this.parent($form, options);
 
@@ -38,7 +38,8 @@ jQuery.pkp.controllers.tab.settings.announcements =
 				this.callbackWrapper(this.toggleEnableAnnouncementsHomepage));
 	};
 	$.pkp.classes.Helper.inherits(
-			$.pkp.controllers.tab.settings.announcements.form.AnnouncementSettingsFormHandler,
+			$.pkp.controllers.tab.settings.announcements.form.
+					AnnouncementSettingsFormHandler,
 			$.pkp.controllers.form.AjaxFormHandler);
 
 
@@ -49,8 +50,9 @@ jQuery.pkp.controllers.tab.settings.announcements =
 	 * Event handler that is called when the announcements are toggled.
 	 * @param {HTMLElement} element The checkbox input element.
 	 */
-	$.pkp.controllers.tab.settings.announcements.form.AnnouncementSettingsFormHandler.prototype.
-			toggleEnableAnnouncementsHomepage = function(element) {
+	$.pkp.controllers.tab.settings.announcements.form.
+			AnnouncementSettingsFormHandler.prototype.
+					toggleEnableAnnouncementsHomepage = function(element) {
 		var $numAnnouncementsHomepage =
 				$('#numAnnouncementsHomepage', this.getHtmlElement());
 		$numAnnouncementsHomepage.attr('disabled',

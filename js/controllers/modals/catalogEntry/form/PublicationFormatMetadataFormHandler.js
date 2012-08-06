@@ -28,8 +28,8 @@ jQuery.pkp.controllers.modals.catalogEntry =
 	 * @param {jQuery} $form the wrapped HTML form element.
 	 * @param {Object} options form options.
 	 */
-	$.pkp.controllers.modals.catalogEntry.form.PublicationFormatMetadataFormHandler =
-			function($form, options) {
+	$.pkp.controllers.modals.catalogEntry.form.
+			PublicationFormatMetadataFormHandler = function($form, options) {
 
 		this.parent($form, options);
 		// Attach form elements events.
@@ -40,7 +40,8 @@ jQuery.pkp.controllers.modals.catalogEntry =
 		$form.find('#override').triggerHandler('click');
 	};
 	$.pkp.classes.Helper.inherits(
-			$.pkp.controllers.modals.catalogEntry.form.PublicationFormatMetadataFormHandler,
+			$.pkp.controllers.modals.catalogEntry.form.
+					PublicationFormatMetadataFormHandler,
 			$.pkp.controllers.form.AjaxFormHandler);
 
 
@@ -56,8 +57,9 @@ jQuery.pkp.controllers.modals.catalogEntry =
 	 * @param {Event} event The triggering event.
 	 * @private
 	 */
-	$.pkp.controllers.modals.catalogEntry.form.PublicationFormatMetadataFormHandler.
-			prototype.overrideToggleHandler_ = function(sourceElement, event) {
+	$.pkp.controllers.modals.catalogEntry.form.
+			PublicationFormatMetadataFormHandler.prototype.
+					overrideToggleHandler_ = function(sourceElement, event) {
 
 		var $form = this.getHtmlElement();
 		var $fileSize = $form.find('[id^="fileSize"]');

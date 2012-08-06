@@ -35,7 +35,8 @@ $.pkp.pages.manageCatalog = $.pkp.pages.manageCatalog || {};
 		this.parent($handledElement, options);
 
 		// Activate the cancel button (if present).
-		$('#cancelFormButton', $handledElement).click(this.callbackWrapper(this.cancelForm));
+		$('#cancelFormButton', $handledElement).click(
+				this.callbackWrapper(this.cancelForm));
 	};
 	$.pkp.classes.Helper.inherits(
 			$.pkp.pages.manageCatalog.ManageCatalogModalHandler,

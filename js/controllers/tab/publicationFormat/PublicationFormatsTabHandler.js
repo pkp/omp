@@ -15,8 +15,8 @@ jQuery.pkp.controllers.tab.publicationFormat =
  * @class PublicationFormatsTabHandler
  * @ingroup js_controllers_tab_publicationFormat
  *
- * @brief A subclass of TabHandler for handling the publication formats tabs. It adds
- * a listener for grid refreshes, so the tab interface can be reloaded.
+ * @brief A subclass of TabHandler for handling the publication formats tabs.
+ * It adds a listener for grid refreshes, so the tab interface can be reloaded.
  */
 (function($) {
 
@@ -84,11 +84,12 @@ jQuery.pkp.controllers.tab.publicationFormat =
 					this.getHtmlElement()).find('a');
 			if ($selectedTabLink.length) {
 				var publicationElementId = $selectedTabLink.attr('id');
-				publicationId = $.trim(publicationElementId.replace('publication', ' '));
+				publicationId = $.trim(publicationElementId.
+						replace('publication', ' '));
 			}
 
-			$.get(this.tabsUrl_, {currentFormatTabId: publicationId}, this.callbackWrapper(
-					this.updateTabsHandler_), 'json');
+			$.get(this.tabsUrl_, {currentFormatTabId: publicationId},
+					this.callbackWrapper(this.updateTabsHandler_), 'json');
 		}
 	};
 
