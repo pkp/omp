@@ -11,11 +11,7 @@
 <script type="text/javascript">
 	$(function() {ldelim}
 		// Attach the form handler.
-		$('#reviewStageForm').pkpHandler('$.pkp.controllers.form.AjaxFormHandler',
-			{ldelim}
-				enableDisablePairs: {ldelim}'remindForInvite':'numDaysBeforeInviteReminder','remindForSubmit':'numDaysBeforeSubmitReminder'{rdelim}
-			{rdelim}
-		);
+		$('#reviewStageForm').pkpHandler('$.pkp.controllers.form.AjaxFormHandler');
 	{rdelim});
 </script>
 
@@ -38,17 +34,16 @@
 			{capture assign="reviewReminderNote"}{translate key="manager.setup.reviewOptions.automatedReminders"} {translate key="manager.setup.reviewOptions.automatedRemindersDisabled"}{/capture}
 			{fbvFormSection description=$reviewReminderNote translate=false}{/fbvFormSection}
 
-			{fbvFormSection description="manager.setup.reviewOptions.remindForInvite"}
+			{translate|assign:"reminderDefault" key="manager.setup.reviewOptions.neverSendReminder"}
 
-				{fbvElement type="checkbox" id="remindForInvite" value="1" checked=$remindForInvite disabled=$scheduledTasksDisabled inline=true}
-				{if not $remindForInvite || $scheduledTasksDisabled}{assign var="disabled" value=true}{else}{assign var="disabled" value=false}{/if}
-				{fbvElement type="select" from=$numDaysBeforeInviteReminderValues selected=$numDaysBeforeInviteReminder id="numDaysBeforeInviteReminder" disabled=$disabled translate=false size=$fbvStyles.size.SMALL inline=true}
+			{fbvFormSection description="manager.setup.reviewOptions.remindForInvite"}
+				{if $scheduledTasksDisabled}{assign var="disabled" value=true}{else}{assign var="disabled" value=false}{/if}
+				{fbvElement type="select" from=$numDaysBeforeInviteReminderValues selected=$numDaysBeforeInviteReminder defaultValue="" defaultLabel=$reminderDefault id="numDaysBeforeInviteReminder" disabled=$disabled translate=false size=$fbvStyles.size.SMALL inline=true}
 			{/fbvFormSection}
 
 			{fbvFormSection description="manager.setup.reviewOptions.remindForSubmit"}
-				{fbvElement type="checkbox" id="remindForSubmit" value="1" checked=$remindForSubmit disabled=$scheduledTasksDisabled inline=true}
-				{if not $remindForSubmit || $scheduledTasksDisabled}{assign var="disabled" value=true}{else}{assign var="disabled" value=false}{/if}
-				{fbvElement type="select" from=$numDaysBeforeSubmitReminderValues selected=$numDaysBeforeSubmitReminder id="numDaysBeforeSubmitReminder" disabled=$disabled translate=false size=$fbvStyles.size.SMALL inline=true}
+				{if $scheduledTasksDisabled}{assign var="disabled" value=true}{else}{assign var="disabled" value=false}{/if}
+				{fbvElement type="select" from=$numDaysBeforeSubmitReminderValues selected=$numDaysBeforeSubmitReminder defaultValue="" defaultLabel=$reminderDefault id="numDaysBeforeSubmitReminder" disabled=$disabled translate=false size=$fbvStyles.size.SMALL inline=true}
 			{/fbvFormSection}
 		{/fbvFormArea}
 
@@ -56,10 +51,10 @@
 			{fbvFormSection title="manager.setup.reviewOptions.reviewerRatings" list=true}
 				{fbvElement type="checkbox" id="rateReviewerOnQuality" value="1" checked=$rateReviewerOnQuality label="manager.setup.reviewOptions.onQuality"}
 			{/fbvFormSection}
+			{capture assign="ensureLink"}{include file="linkAction/linkAction.tpl" action=$ensuringLink contextId="uploadForm"}{/capture}
 			{fbvFormSection title="manager.setup.reviewOptions.blindReview" list=true}
-				{fbvElement type="checkbox" id="showEnsuringLink" value="1" checked=$showEnsuringLink label=manager.setup.reviewOptions.showEnsuringLink}
+				{fbvElement type="checkbox" id="showEnsuringLink" value="1" checked=$showEnsuringLink label=$ensureLink translate=false keepLabelHtml=true}
 			{/fbvFormSection}
-			{include file="linkAction/linkAction.tpl" action=$ensuringLink contextId="uploadForm"}
 		{/fbvFormArea}
 
 		{fbvFormArea id="review"}

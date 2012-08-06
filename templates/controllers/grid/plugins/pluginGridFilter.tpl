@@ -15,7 +15,7 @@
 		{fbvFormSection title="common.search" for="search"}
 			{fbvElement type="text" id="pluginName" value=$filterSelectionData.pluginName size=$fbvStyles.size.LARGE inline=true}
 			{fbvElement type="select" id="category" from=$filterData.categories selected=$filterSelectionData.category translate=false size=$fbvStyles.size.SMALL inline=true}
-			{fbvFormButtons submitText="common.search"}
+			{fbvFormButtons hideCancel=true submitText="common.search"}
 		{/fbvFormSection}
 	{/fbvFormArea}
 </form>

@@ -27,8 +27,6 @@ class ReviewStageForm extends PressSettingsForm {
 			'competingInterests' => 'string',
 			'numWeeksPerResponse' => 'int',
 			'numWeeksPerReview' => 'int',
-			'remindForInvite' => 'bool',
-			'remindForSubmit' => 'bool',
 			'numDaysBeforeInviteReminder' => 'int',
 			'numDaysBeforeSubmitReminder' => 'int',
 			'rateReviewerOnQuality' => 'bool',

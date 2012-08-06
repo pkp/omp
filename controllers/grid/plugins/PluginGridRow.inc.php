@@ -136,7 +136,7 @@ class PluginGridRow extends GridRow {
 							$router->url($request, null, null, 'upgradePlugin', null, $actionArgs),
 							__('manager.plugins.upgrade')),
 						__('grid.action.upgrade'),
-						null));
+						'wrench'));
 			}
 
 			if($this->getActions()) {
