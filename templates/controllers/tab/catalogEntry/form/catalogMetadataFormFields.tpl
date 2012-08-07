@@ -31,19 +31,17 @@
 	<input type="hidden" name="displayedInContainer" value="{$formParams.displayedInContainer|escape}" />
 	<input type="hidden" name="tab" value="catalog" />
 
-	{fbvFormArea id="file"}
-		{fbvFormSection title="monograph.coverImage"}
-			<div id="plupload"></div>
-		{/fbvFormSection}
-	{/fbvFormArea}
-	{* Container for uploaded file *}
+	{fbvFormSection title="monograph.coverImage"}
+		<div id="plupload" class="pkp_helpers_threeQuarter pkp_helpers_align_right"></div>
+		<div class="pkp_helpers_align_left">
+			{capture assign="altTitle"}{translate key="monograph.currentCoverImage"}{/capture}
+			<img height="{$coverImage.thumbnailHeight}" width="{$coverImage.thumbnailWidth}" src="{url router=$smarty.const.ROUTE_COMPONENT component="submission.CoverHandler" op="thumbnail" monographId=$monographId}" alt="{$altTitle|escape}" />
+		</div>
+	{/fbvFormSection}
+
 	<input type="hidden" name="temporaryFileId" id="temporaryFileId" value="" />
 
-	{if $coverImage}
-		{capture assign="altTitle"}{translate key="monograph.currentCoverImage"}{/capture}
-		{$altTitle}
-		<img class="pkp_helpers_container_center" height="{$coverImage.thumbnailHeight}" width="{$coverImage.thumbnailWidth}" src="{url router=$smarty.const.ROUTE_COMPONENT component="submission.CoverHandler" op="thumbnail" monographId=$monographId}" alt="{$altTitle|escape}" />
-	{/if}
+	<div class="pkp_helpers_clear"></div>
 
 	{fbvFormArea id="audienceInformation" title="monograph.audience" class="border"}
 		{fbvFormSection for="audience"}
