@@ -13,7 +13,7 @@
 	$(function() {ldelim}
 		// Attach the form handler. (Triggers selectMonograph event.)
 		$('#selectMonographForm').pkpHandler(
-			'$.pkp.controllers.form.DropdownFormHandler',
+			'$.pkp.controllers.form.DropdownHandler',
 			{ldelim}
 				getOptionsUrl: '{url|escape:"javascript" router=$smarty.const.ROUTE_COMPONENT op="getSubmissions" escape=false}',
 				eventName: 'selectMonograph'

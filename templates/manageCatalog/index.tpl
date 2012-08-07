@@ -41,7 +41,7 @@
 	// Initialize "Select Series" form handler
 	$(function() {ldelim}
 		$('#selectSeriesForm').pkpHandler(
-			'$.pkp.controllers.form.DropdownFormHandler',
+			'$.pkp.controllers.form.DropdownHandler',
 			{ldelim}
 				getOptionsUrl: '{url|escape:"javascript" op="getSeries" escape=false}',
 				eventName: 'selectSeries'
@@ -51,7 +51,7 @@
 	// Initialize "Select Category" form handler
 	$(function() {ldelim}
 		$('#selectCategoryForm').pkpHandler(
-			'$.pkp.controllers.form.DropdownFormHandler',
+			'$.pkp.controllers.form.DropdownHandler',
 			{ldelim}
 				getOptionsUrl: '{url|escape:"javascript" op="getCategories" escape=false}',
 				eventName: 'selectCategory'

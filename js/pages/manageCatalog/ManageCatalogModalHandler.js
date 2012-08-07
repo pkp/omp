@@ -57,7 +57,7 @@ $.pkp.pages.manageCatalog = $.pkp.pages.manageCatalog || {};
 	$.pkp.pages.manageCatalog.ManageCatalogModalHandler.prototype.cancelForm =
 			function(cancelButton, event) {
 
-		// Trigger the event which will cause the DropdownFormHandler to
+		// Trigger the event which will cause the DropdownHandler to
 		// fetch its items again.
 		this.trigger('containerReloadRequested');
 		this.trigger('formCanceled');
