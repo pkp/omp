@@ -111,7 +111,7 @@
 	<message key="submission.submit.placement.seriesDescription">If the book should also be considered for a series...</message>
 	<message key="submission.submit.placement.seriesPositionDescription">Books in series are usually kept in the reverse order in which they are published, to give a sense of the series developing as well as keeping the current at the front.</message>
 	<message key="submission.submit.placement.categories">Categories</message>
-	<message key="submission.submit.placement.categoriesDescription">Select one of the press’s categories for books for which this work should be considered.</message>
+	<message key="submission.submit.placement.categoriesDescription">Select one of the press’s categories for which this work should be considered.</message>
 	<message key="submission.submit.submissionFiles">Submission Files</message>
 	<message key="submission.submit.fileInformation">File Information</message>
 	<message key="submission.submit.fileNameRequired">You must enter a file name for this file</message>
@@ -119,6 +119,7 @@
 	<message key="submission.submit.newFile">Upload Another File</message>
 	<message key="submission.submit.userGroup">Submit in my role as...</message>
 	<message key="submission.submit.userGroupDescription">If you are submitting an Edited Volume, you should choose the volume editor role.</message>
+	<message key="submission.submit.titleAndSummary">Title and Summary</message>
 
 	<!-- File upload wizard -->
 	<message key="submission.upload.noteToAccompanyFile">Note to accompany file</message>

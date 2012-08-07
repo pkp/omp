@@ -9,8 +9,9 @@
  * to handle this fields data.
  *}
 
-{fbvFormArea id="generalInformation" class="border"}
-	<p>{translate key="common.catalogInformation"}</p>
+<p class="pkp_help">{translate key="common.catalogInformation"}</p>
+
+{fbvFormArea id="generalInformation" title="submission.submit.titleAndSummary" class="border"}
 	{fbvFormSection for="title" title="common.prefix" inline="true" size=$fbvStyles.size.SMALL}
 		{fbvElement type="text" multilingual=true id="prefix" value="$prefix" disabled=$readOnly maxlength="32"}
 	{/fbvFormSection}
