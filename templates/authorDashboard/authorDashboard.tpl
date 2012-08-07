@@ -7,7 +7,12 @@
  * Display the author dashboard.
  *}
 {strip}
-{assign var="pageTitleTranslated" value=$monograph->getLocalizedTitle()|concat:" - "|concat:$monograph->getAuthorString(true)}
+{assign var=primaryAuthor value=$monograph->getPrimaryAuthor()}
+{if !$primaryAuthor}
+	{assign var=authors value=$monograph->getAuthors()}
+	{assign var=primaryAuthor value=$authors[0]}
+{/if}
+{assign var="pageTitleTranslated" value=$primaryAuthor->getLastName()|concat:", <em>":$monograph->getLocalizedTitle():"</em>"|truncate:50}
 {include file="common/header.tpl" suppressPageTitle=true}
 {/strip}
 
@@ -35,7 +40,7 @@
 					{include file="linkAction/linkAction.tpl" action=$viewMetadataAction contextId="authorDashboard"}
 				</li>
 			</ul>
-		</div><br /><br />
+		</div>
 		<div class="pkp_helpers_align_left"><span class="h2">{$pageTitleTranslated}</span></div>
 
 		<div class="pkp_helpers_clear"></div>
