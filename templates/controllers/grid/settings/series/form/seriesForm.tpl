@@ -26,6 +26,14 @@
 <form class="pkp_form" id="seriesForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.settings.series.SeriesGridHandler" op="updateSeries" seriesId=$seriesId}">
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="seriesFormNotification"}
 
+	{if $categoryCount == 0}
+		<span class="pkp_form_error"><p>{translate key="manager.series.noCategories"}</p></span>
+	{/if}
+
+	{if $seriesEditorCount == 0}
+		<span class="pkp_form_error"><p>{translate key="manager.series.noSeriesEditors"}</p></span>
+	{/if}
+
 	{fbvFormArea id="file"}
 		{fbvFormSection title="monograph.coverImage"}
 			<div id="plupload"></div>
@@ -64,8 +72,6 @@
 					{url|assign:seriesCategoriesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.CategoriesListbuilderHandler" op="fetch" seriesId=$seriesId}
 					{load_url_in_div id="seriesCategoriesContainer" url=$seriesCategoriesUrl}
 				</div>
-			{else}
-				<p>{translate key="manager.series.noCategories"}</p>
 			{/if}
 		{/fbvFormSection}
 
@@ -75,8 +81,6 @@
 						{url|assign:seriesEditorsUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.SeriesEditorsListbuilderHandler" op="fetch" seriesId=$seriesId}
 						{load_url_in_div id="seriesEditorsContainer" url=$seriesEditorsUrl}
 					</div>
-				{else}
-					<p>{translate key="manager.series.noSeriesEditors"}</p>
 				{/if}
 			{/fbvFormSection}
 
