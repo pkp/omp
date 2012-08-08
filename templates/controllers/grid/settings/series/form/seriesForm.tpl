@@ -48,25 +48,25 @@
 	{/if}
 
 	{fbvFormArea id="seriesInfo"}
-		{fbvFormSection for="title" required="true" description="common.prefixAndTitle.tip" title="manager.series.seriesTitle"}
-			{fbvElement type="text" multilingual="true" id="prefix" label="common.prefix" value=$prefix maxlength="32" size=$fbvStyles.size.SMALL inline="true"}
-			{fbvElement type="text" multilingual="true" id="title" label="common.title" value=$title maxlength="80" inline="true" size=$fbvStyles.size.MEDIUM inline="true"}
+		{fbvFormSection for="title" required=true description="common.prefixAndTitle.tip" title="manager.series.seriesTitle"}
+			{fbvElement type="text" multilingual=true id="prefix" label="common.prefix" value=$prefix maxlength="32" size=$fbvStyles.size.SMALL inline=true}
+			{fbvElement type="text" multilingual=true id="title" label="common.title" value=$title maxlength="80" size=$fbvStyles.size.LARGE inline=true}
 		{/fbvFormSection}
 
 		{fbvFormSection for="subtitle" title="monograph.subtitle"}
 			{fbvElement type="text" multilingual=true name="subtitle" id="subtitle" value=$subtitle maxlength="255"}
 		{/fbvFormSection}
 
-		{fbvFormSection title="series.featured" for="featured" list="true"}
-			{fbvElement type="checkbox" id="featured" checked=$featured label="series.featured.description" value=1 inline="true"}
+		{fbvFormSection title="series.featured" for="featured" list=true}
+			{fbvElement type="checkbox" id="featured" checked=$featured label="series.featured.description" value=1 inline=true}
 		{/fbvFormSection}
 
 		{fbvFormSection title="common.description" for="context"}
-		 	{fbvElement type="textarea" multilingual="true" id="description" value=$description rich=true}
+		 	{fbvElement type="textarea" multilingual=true id="description" value=$description rich=true}
 		{/fbvFormSection}
 
 		<input type="hidden" name="seriesId" value="{$seriesId|escape}"/>
-		{fbvFormSection for="context" inline="true" size=$fbvStyles.size.MEDIUM}
+		{fbvFormSection for="context" inline=true size=$fbvStyles.size.MEDIUM}
 			{if $categoryCount > 0}
 				<div id="seriesCategoriesContainer">
 					{url|assign:seriesCategoriesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.CategoriesListbuilderHandler" op="fetch" seriesId=$seriesId}
@@ -75,7 +75,7 @@
 			{/if}
 		{/fbvFormSection}
 
-			{fbvFormSection for="context" inline="true" size=$fbvStyles.size.MEDIUM}
+			{fbvFormSection for="context" inline=true size=$fbvStyles.size.MEDIUM}
 				{if $seriesEditorCount > 0}{* only include the series editor listbuilder if there are series editors available *}
 					<div id="seriesEditorsContainer">
 						{url|assign:seriesEditorsUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.SeriesEditorsListbuilderHandler" op="fetch" seriesId=$seriesId}
