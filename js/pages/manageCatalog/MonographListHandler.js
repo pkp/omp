@@ -127,11 +127,11 @@
 
 		if (this.inFeatureMode_) {
 			// We've just entered "Feature" mode.
-			$featureButton.addClass('ui-state-active');
+			$featureButton.css('font-weight', 'bold');
 			$featureLinks.removeClass('pkp_helpers_invisible');
 		} else {
 			// We've just left "Feature" mode.
-			$featureButton.removeClass('ui-state-active');
+			$featureButton.css('font-weight', 'normal');
 			$featureLinks.addClass('pkp_helpers_invisible');
 		}
 		$monographList.children().trigger('changeDragMode', this.inFeatureMode_);
@@ -188,7 +188,14 @@
 		this.getHtmlElement().sortable({
 			disabled: !this.inFeatureMode_,
 			items: 'li.pkp_manageCatalog_monograph:not(.not_sortable)',
-			update: this.callbackWrapper(this.sortUpdateHandler_)});
+			update: this.callbackWrapper(this.sortUpdateHandler_),
+			start: function(e, ui){
+					$(ui.placeholder).slideUp();
+				},
+			change: function(e, ui){
+					$(ui.placeholder).hide().slideDown();
+			}
+		});
 
 		this.resetElementHeights_();
 

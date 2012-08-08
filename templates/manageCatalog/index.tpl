@@ -61,6 +61,12 @@
 </script>
 
 <div id="catalogHeader">
+	<div class="pkp_page_header pkp_helpers_align_right">
+		<ul class="submission_actions pkp_helpers_flatlist">
+			<li>{include file="linkAction/linkAction.tpl" action=$catalogEntryAction}</li>
+		</ul>
+	</div>
+	<div class="pkp_helpers_clear"></div>
 	<p>{translate key="catalog.manage.managementIntroduction"}</p>
 	<div id="catalogSearchContainer">
 		<form id="catalogSearchForm" class="pkp_form" action="{url op="search" path="SEARCH_TEXT_DUMMY"}" method="post">
@@ -69,12 +75,6 @@
 				{fbvElement type="submit" id="submitFormButton" label="common.search" inline=true}
 			{/fbvFormSection}
 		</form>
-	</div>
-
-	<div class="pkp_page_header pkp_helpers_align_right">
-		<ul class="submission_actions pkp_helpers_flatlist">
-			<li>{include file="linkAction/linkAction.tpl" action=$catalogEntryAction}</li>
-		</ul>
 	</div>
 
 	<div class="pkp_helpers_clear"></div>
@@ -87,17 +87,22 @@
 			<li><a href="{url}">{translate key="search.searchResults"}</a></li>
 		</ul>
 		<div id="categoryTab">
-			<form id="selectCategoryForm" class="pkp_form">
-				{if array_intersect(array(ROLE_ID_PRESS_MANAGER), $userRoles)}
-					<div class="pkp_helpers_align_right">
-						<ul class="submission_actions pkp_helpers_flatlist pkp_linkActions">
-							<li>{include file="linkAction/linkAction.tpl" action=$manageCategoriesLinkAction}</li>
-						</ul>
+				<div class="pkp_controllers_grid">
+					<div class="pkp_helpers_align_right grid_header_bar pkp_helpers_full">
+						<h3 class="pkp_helpers_align_left">{translate key="catalog.selectCategory"}</h3>
+						{if array_intersect(array(ROLE_ID_PRESS_MANAGER), $userRoles)}
+							<ul class="submission_actions pkp_helpers_flatlist pkp_linkActions pkp_helpers_align_right">
+								<li>{include file="linkAction/linkAction.tpl" action=$manageCategoriesLinkAction}</li>
+							</ul>
+						{/if}
 					</div>
-				{/if}
+				</div>
+
+			<div class="pkp_helpers_clear"></div>
+			<form id="selectCategoryForm" class="pkp_form">
 				{fbvFormArea id="forCategorySelect"}
 					{fbvFormSection}
-						{fbvElement type="select" id="categorySelect" translate=false label="catalog.selectCategory" size=$fbvStyles.size.MEDIUM class="noStyling"}
+						{fbvElement type="select" id="categorySelect" translate=false size=$fbvStyles.size.MEDIUM class="noStyling"}
 					{/fbvFormSection}
 				{/fbvFormArea}
 			</form>
@@ -107,17 +112,22 @@
 			</div>
 		</div>
 		<div id="seriesTab">
-			<form id="selectSeriesForm" class="pkp_form">
-				{if array_intersect(array(ROLE_ID_PRESS_MANAGER), $userRoles)}
-					<div class="pkp_helpers_align_right">
-						<ul class="submission_actions pkp_helpers_flatlist pkp_linkActions">
-							<li>{include file="linkAction/linkAction.tpl" action=$manageSeriesLinkAction}</li>
-						</ul>
+				<div class="pkp_controllers_grid">
+					<div class="pkp_helpers_align_right grid_header_bar pkp_helpers_full">
+						<h3 class="pkp_helpers_align_left">{translate key="catalog.selectSeries"}</h3>
+						{if array_intersect(array(ROLE_ID_PRESS_MANAGER), $userRoles)}
+							<ul class="submission_actions pkp_helpers_flatlist pkp_linkActions pkp_helpers_align_right">
+								<li>{include file="linkAction/linkAction.tpl" action=$manageSeriesLinkAction}</li>
+							</ul>
+						{/if}
 					</div>
-				{/if}
+				</div>
+
+			<form id="selectSeriesForm" class="pkp_form">
+				<div class="pkp_helpers_clear"></div>
 				{fbvFormArea id="forSeriesSelect"}
 					{fbvFormSection}
-						{fbvElement type="select" id="seriesSelect" translate=false label="catalog.selectSeries" size=$fbvStyles.size.MEDIUM class="noStyling"}
+						{fbvElement type="select" id="seriesSelect" translate=false size=$fbvStyles.size.MEDIUM class="noStyling"}
 					{/fbvFormSection}
 				{/fbvFormArea}
 			</form>

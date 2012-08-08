@@ -22,7 +22,7 @@
 <div id="{$monographContainerId|escape}">
 	<div class="pkp_helpers_align_right">
 		<div class="submission_actions pkp_linkActions">
-			{if $includeFeatureAction}{null_link_action id="feature-$monographContainerId" key="common.feature" image="feature"}{/if}
+			{if $includeFeatureAction && !$publishedMonographs->wasEmpty()}{null_link_action id="feature-$monographContainerId" key="common.feature" image="feature"}{/if}
 		</div>
 	</div>
 	{if $category}
@@ -37,8 +37,12 @@
 	<br />
 	<br />
 	<ul class="pkp_manageCatalog_monographList pkp_helpers_container_center">
-		{iterate from=publishedMonographs item=monograph}
-			{include file="manageCatalog/monograph.tpl"}
-		{/iterate}
+		{if !$publishedMonographs->wasEmpty()}
+			{iterate from=publishedMonographs item=monograph}
+				{include file="manageCatalog/monograph.tpl"}
+			{/iterate}
+		{else}
+			<p>{translate key="catalog.manage.noMonographs"}</p>
+		{/if}
 	</ul>
 </div>

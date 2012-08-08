@@ -342,6 +342,7 @@
 	<message key="catalog.manage.newRelease">Release</message>
 	<message key="catalog.manage.manageSeries">Manage Series</message>
 	<message key="catalog.manage.manageCategories">Manage Categories</message>
+	<message key="catalog.manage.noMonographs">There are no assigned monographs.</message>
 
 	<!-- Catalog -->
 	<message key="catalog.browseTitles">Browse {$numTitles} Titles</message>
