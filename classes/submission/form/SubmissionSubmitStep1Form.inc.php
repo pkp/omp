@@ -161,15 +161,6 @@ class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
 		// Unpack the categories listbuilder data.
 		// (See insertEntry & co, implemented here.)
 
-		// Unpack the set of associated category IDs
-		if ($this->monograph) {
-			$monographDao =& DAORegistry::getDAO('MonographDAO');
-			$categories =& $monographDao->getCategories($this->monograph->getId());
-			while ($category =& $categories->next()) {
-				$this->_data['categoryIds'][] = $category->getId();
-				unset($category);
-			}
-		}
 		ListbuilderHandler::unpack($request, $this->getData('categories'));
 	}
 
@@ -178,19 +169,54 @@ class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
 	 * @see ListbuilderHandler::insertEntry
 	 */
 	function insertEntry(&$request, $newRowId) {
-		$this->_data['categoryIds'][] = $newRowId['name'];
-		return true;
+
+		$application =& PKPApplication::getApplication();
+		$request =& $application->getRequest();
+
+		$categoryId = $newRowId['name'];
+		$categoryDao =& DAORegistry::getDAO('CategoryDAO');
+		$monographDao =& DAORegistry::getDAO('MonographDAO');
+		$press =& $request->getPress();
+		$monograph =& $this->monograph;
+
+		$category =& $categoryDao->getById($categoryId, $press->getId());
+		if (!$category) return true;
+
+		// Associate the category with the monograph
+		$monographDao->addCategory(
+			$monograph->getId(),
+			$categoryId
+		);
 	}
 
 	/**
 	 * Delete a category association.
+	 * @see ListbuilderHandler::deleteEntry
 	 */
 	function deleteEntry(&$request, $rowId) {
-		if (is_array($this->_data) && array_key_exists('categoryIds', $this->_data)) {
-			$i = array_search($rowId, $this->_data['categoryIds']);
-			if ($i !== false) unset($this->_data['categoryIds'][$i]);
+		if ($rowId) {
+			$categoryDao =& DAORegistry::getDAO('CategoryDAO');
+			$monographDao =& DAORegistry::getDAO('MonographDAO');
+			$category =& $categoryDao->getById($rowId);
+			if (!is_a($category, 'Category')) {
+				assert(false);
+				return false;
+			}
+			$monograph =& $this->monograph;
+			$monographDao->removeCategory($monograph->getId(), $rowId);
 		}
+
 		return true;
+	}
+
+	/**
+	 * Update a category association.
+	 * @see ListbuilderHandler::updateEntry
+	 */
+	function updateEntry($request, $rowId, $newRowId) {
+
+		$this->deleteEntry($request, $rowId);
+		$this->insertEntry($request, $newRowId);
 	}
 
 	/**
@@ -259,24 +285,6 @@ class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
 			$stageAssignmentDao->build($this->monographId, $authorUserGroupId, $user->getId());
 		}
 
-		// Save the category IDs.
-		$categoryIds = $this->getData('categoryIds');
-		$categoryDao =& DAORegistry::getDAO('CategoryDAO');
-		$monographDao->removeCategories($this->monographId);
-		foreach ((array) $categoryIds as $categoryId) {
-			// Fetch and validate category
-			$category =& $categoryDao->getById(
-				$categoryId, $this->press->getId()
-			);
-			if (!$category) continue;
-
-			// Associate the category with the monograph
-			$monographDao->addCategory(
-				$this->monographId,
-				$categoryId
-			);
-			unset($category);
-		}
 		return $this->monographId;
 	}
 }
