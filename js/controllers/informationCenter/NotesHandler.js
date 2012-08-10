@@ -85,20 +85,6 @@
 	};
 
 
-	/**
-	 * Handle the "show more" and "show less" clicks triggered by the
-	 * links in longer notes.
-	 *
-	 * @param {Event} event The event.
-	 */
-	$.pkp.controllers.informationCenter.NotesHandler.
-			prototype.switchViz = function(event) {
-
-		var eventElement = event.currentTarget;
-		$(eventElement).parent().parent().find('span').toggle();
-	};
-
-
 	//
 	// Private methods
 	//
