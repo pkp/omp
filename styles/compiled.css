@@ -260,6 +260,15 @@ a.sprite.notify:before {
   background-position:-24px 0;
 }
 a.sprite.notify:hover:before { background-position:-24px -24px; }
+a.sprite.overdue {
+  text-indent:-1500px;
+  padding-left:5px;
+}
+a.sprite.overdue:before {
+  margin-right:4px;
+  background-position:-48px 0;
+}
+a.sprite.overdue:hover:before { background-position:-48px -24px; }
 a.sprite.settings:before { background-position:-408px 0; }
 a.sprite.settings:hover:before { background-position:-408px -24px; }
 a.sprite.information:before { background-position:-194px 0; }
@@ -1263,11 +1272,10 @@ div.pkp_controllers_grid .pkp_controllers_grid_settings_stages {
   width:20%;
 }
 .options a.sort { background:url(../lib/pkp/templates/images/structure/grid_sort.png) no-repeat left; }
-a.new { background-image:url(../lib/pkp/templates/images/structure/grid_task.png); }
+a.new, a.unfinished, a.reviewReady { background-image:url(../lib/pkp/templates/images/structure/grid_task.png); }
 a.accepted { background-image:url(../lib/pkp/templates/images/structure/grid_task_accepted.png); }
 a.declined { background-image:url(../lib/pkp/templates/images/structure/lb_delete.png); }
 a.completed { background-image:url(../lib/pkp/templates/images/structure/grid_task_complete.png); }
-a.overdue { background-image:url(../lib/pkp/templates/images/structure/grid_email_overdue.png); }
 a.uploaded { background-image:url(../lib/pkp/templates/images/structure/grid_folder.png); }
 a.request_review { background-image:url(../lib/pkp/templates/images/structure/grid_request_review.png); }
 .pkp_controllers_grid div.checked {
