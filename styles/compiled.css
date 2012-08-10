@@ -271,6 +271,8 @@ a.sprite.overdue:before {
 a.sprite.overdue:hover:before { background-position:-48px -24px; }
 a.sprite.settings:before { background-position:-408px 0; }
 a.sprite.settings:hover:before { background-position:-408px -24px; }
+a.sprite.upgrade:before { background-position:-168px 0; }
+a.sprite.upgrade:hover:before { background-position:-168px -24px; }
 a.sprite.information:before { background-position:-194px 0; }
 a.sprite.information:hover:before { background-position:-194px -24px; }
 a.sprite.more_info:before { background-position:-456px 0; }
@@ -527,6 +529,9 @@ a.sprite.manage:hover:before { background-position:-1512px -24px; }
 .large_sprite.modal_confirm { background-position:-528px -48px; }
 .large_sprite.modal_add_item { background-position:-576px -48px; }
 .large_sprite.modal_manage { background-position:-624px -48px; }
+.large_sprite.modal_settings { background-position:-672px -48px; }
+.large_sprite.modal_warning { background-position:-720px -48px; }
+.large_sprite.modal_upgrade { background-position:-768px -48px; }
 .large_sprite.modal_wizard { background-position:-1632px -48px; }
 .loading_container {
   text-align:center;
