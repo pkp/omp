@@ -118,7 +118,7 @@ class NotificationsGridCellProvider extends GridCellProvider {
 				break;
 			case 'task':
 				// The action has the label
-				return array();
+				return array('label' => '');
 				break;
 		}
 	}

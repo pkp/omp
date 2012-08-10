@@ -104,9 +104,7 @@ class SubmissionsListGridCellProvider extends DataObjectGridCellProvider {
 
 		switch ($columnId) {
 			case 'title':
-				$title = $monograph->getLocalizedTitle();
-				if ( empty($title) ) $title = __('common.untitled');
-				return array('label' => $title);
+				return array('label' => '');
 				break;
 			case 'press':
 				return array('label' => $press->getLocalizedName());

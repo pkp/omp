@@ -50,7 +50,7 @@ class FileNameGridColumn extends GridColumn {
 		// We do not need any template variables because
 		// the only content of this column's cell will be
 		// an action. See FileNameGridColumn::getCellActions().
-		return array();
+		return array('label' => '');
 	}
 
 
