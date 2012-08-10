@@ -41,11 +41,16 @@ class ReviewerGridCellProvider extends DataObjectGridCellProvider {
 		assert(is_a($reviewAssignment, 'DataObject') && !empty($columnId));
 		switch ($columnId) {
 			case 'name':
-				return ($reviewAssignment->getDateCompleted())?'linkReview':'';
+				if ($reviewAssignment->getDateCompleted())
+					return 'linkReview';
+				if ($reviewAssignment->getDateDue() < Core::getCurrentDate() || $reviewAssignment->getDateResponseDue() < Core::getCurrentDate())
+					return 'overdue';
 
-			case 'editor':
+				return '';
+
+			case 'considered':
 				// The review has not been completed.
-				if (!$reviewAssignment->getDateCompleted()) return '';
+				if (!$reviewAssignment->getDateCompleted()) return 'unfinished';
 
 				// The reviewer has been sent an acknowledgement.
 				if ($reviewAssignment->getDateAcknowledged()) {
@@ -93,19 +98,7 @@ class ReviewerGridCellProvider extends DataObjectGridCellProvider {
 				}
 
 				// Nobody has read the review.
-				return 'new';
-			case 'reviewer':
-				if ($reviewAssignment->getDateCompleted()) {
-					return 'completed';
-				} elseif ($reviewAssignment->getDateDue() < Core::getCurrentDate()) {
-					return 'overdue';
-				} elseif ($reviewAssignment->getDateConfirmed()) {
-					return ($reviewAssignment->getDeclined())?'declined':'accepted';
-				} elseif ($reviewAssignment->getDateResponseDue() < Core::getCurrentDate()) {
-					return 'overdue';
-				} else {
-					return 'new';
-				}
+				return 'reviewReady';
 		}
 	}
 
@@ -122,13 +115,9 @@ class ReviewerGridCellProvider extends DataObjectGridCellProvider {
 		assert(is_a($element, 'DataObject') && !empty($columnId));
 		switch ($columnId) {
 			case 'name':
-				if ( $this->getCellState($row, $column) != 'linkReview') {
-					return array('label' => $element->getReviewerFullName());
-				}
-				return array('label' => '');
+				return array('label' => $element->getReviewerFullName());
 
-			case 'editor':
-			case 'reviewer':
+			case 'considered':
 				return array('status' => $this->getCellState($row, $column));
 		}
 
@@ -153,43 +142,21 @@ class ReviewerGridCellProvider extends DataObjectGridCellProvider {
 		$action = false;
 		$state = $this->getCellState($row, $column);
 		if ($state == 'linkReview') {
+			$user =& $request->getUser();
 			$monographDao =& DAORegistry::getDAO('MonographDAO');
 			$monograph =& $monographDao->getById($reviewAssignment->getSubmissionId());
+			import('controllers.review.linkAction.ReviewNotesLinkAction');
+			$action = new ReviewNotesLinkAction($request, $reviewAssignment, $monograph, $user);
 
-			$action = new LinkAction(
-				'readReview',
-				new AjaxModal(
-					$router->url($request, null, null, 'readReview', null, $actionArgs),
-					__('editor.review') . ': ' . $monograph->getLocalizedTitle(),
-					'edit' //FIXME: insert icon
-				),
-				$reviewAssignment->getReviewerFullName(),
-				null
-			);
-		} elseif ($state == 'new' && $column->getId() == 'editor') {
-			$monographDao =& DAORegistry::getDAO('MonographDAO');
-			$monograph =& $monographDao->getById($reviewAssignment->getSubmissionId());
-
-			$action = new LinkAction(
-				'readReview',
-				new AjaxModal(
-					$router->url($request, null, null, 'readReview', null, $actionArgs),
-					__('editor.review') . ': ' . $monograph->getLocalizedTitle(),
-					'edit' //FIXME: insert icon
-				),
-				$this->_getHoverTitleText($state),
-				$state
-			);
-		} elseif ($state == 'overdue' ||
-				($column->getId() == 'reviewer') && ($state == 'new' || $state == 'accepted')) {
+		} elseif ($state == 'overdue') {
 			$action = new LinkAction(
 				'sendReminder',
 				new AjaxModal(
 					$router->url($request, null, null, 'editReminder', null, $actionArgs),
 					__('editor.review.reminder') //FIXME: insert icon
 				),
-				$this->_getHoverTitleText('reminder'),
-				'request_review'
+				__('common.reminder'),
+				'overdue'
 			);
 		} elseif ($state == 'read') {
 			$action = new LinkAction(
@@ -198,7 +165,7 @@ class ReviewerGridCellProvider extends DataObjectGridCellProvider {
 				$this->_getHoverTitleText('accepted'),
 				'accepted'
 			);
-		} elseif (in_array($state, array('', 'declined', 'completed'))) {
+		} elseif (in_array($state, array('', 'declined', 'completed', 'unfinished', 'reviewReady'))) {
 			// do nothing for these actions
 		} else {
 			// Inconsistent state

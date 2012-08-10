@@ -16,28 +16,45 @@
 </script>
 
 <form class="pkp_form" id="readReviewForm" method="post" action="{url op="reviewRead"}">
+	<input type="hidden" name="reviewAssignmentId" value="{$reviewAssignment->getId()|escape}" />
+	<input type="hidden" name="monographId" value="{$reviewAssignment->getSubmissionId()|escape}" />
+	<input type="hidden" name="stageId" value="{$reviewAssignment->getStageId()|escape}" />
+	<div id="reviewAssignment-{$reviewAssignment->getId()|escape}">
+		<table width="100%">
+			<tr valign="top">
+				<td>
+					{$reviewAssignment->getReviewerFullName()|escape}<br />
+					<span class="pkp_controllers_informationCenter_itemLastEvent">{$reviewAssignment->getDateCompleted()|date_format:$datetimeFormatShort}</span>
+				</td>
+			</tr>
+			{if $reviewAssignment->getReviewFormId()}
+				{** FIXME: add review forms **}
+			{else}
+				<tr valign="top">
+					<td>
+						{assign var="contents" value=$reviewerComment->getComments()}
+						<br />
+						<span>
+							{$contents|truncate:250|nl2br|strip_unsafe_html}
+							{if $contents|strlen > 250}<a href="javascript:$.noop();" class="showMore">{translate key="common.more"}</a>{/if}
+						</span>
+						{if $contents|strlen > 250}
+							<span class="hidden">
+								{$contents|nl2br|strip_unsafe_html} <a href="javascript:$.noop();" class="showLess">{translate key="common.less"}</a>
+							</span>
+						{/if}
+						<br /><br />
+					</td>
+				</tr>
+			{/if}
+			{if $reviewAssignment->getCompetingInterests()}
+				<tr valign="top"><td><br />
+					{$reviewAssignment->getCompetingInterests()|nl2br|strip_unsafe_html}
+				</td></tr>
+			{/if}
+		</table>
+	</div>
 	{fbvFormArea id="readReview"}
-		<input type="hidden" name="reviewAssignmentId" value="{$reviewAssignment->getId()|escape}" />
-		<input type="hidden" name="monographId" value="{$reviewAssignment->getSubmissionId()|escape}" />
-		<input type="hidden" name="stageId" value="{$reviewAssignment->getStageId()|escape}" />
-
-		{fbvFormSection}
-			{fbvElement type="text" id="reviewer" inline=true size=$fbvStyles.size.MEDIUM label="user.role.reviewer" value=$reviewAssignment->getReviewerFullName() disabled=true}
-			{fbvElement type="text" id="reviewCompleted" inline=true size=$fbvStyles.size.MEDIUM label="editor.review.reviewCompleted" value=$reviewAssignment->getDateCompleted() disabled=true}
-		{/fbvFormSection}
-
-		{if $reviewAssignment->getReviewFormId()}
-			{** FIXME: add review forms **}
-		{else}
-			{fbvFormSection}
-				{fbvElement type="textarea" id="reviewCompleted" label="editor.review.reviewerComments" value=$reviewerComment->getComments() disabled=true}
-			{/fbvFormSection}
-		{/if}
-		{if $reviewAssignment->getCompetingInterests()}
-			{fbvFormSection}
-				{fbvElement type="textarea" id="reviewCompletedCI" label="reviewer.monograph.competingInterests" value=$reviewAssignment->getCompetingInterests() disabled=true}
-			{/fbvFormSection}
-		{/if}
 		{fbvFormSection}
 			{url|assign:reviewAttachmentsGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.attachment.EditorReviewAttachmentsGridHandler" op="fetchGrid" monographId=$monograph->getId() reviewId=$reviewAssignment->getId() stageId=$reviewAssignment->getStageId() escape=false}
 			{load_url_in_div id="readReviewAttachmentsGridContainer" url="$reviewAttachmentsGridUrl"}

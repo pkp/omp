@@ -79,7 +79,7 @@
 	<message key="editor.submissions.lastAssigned">Latest</message>
 	<message key="editor.monograph.review.manageReviewFilesDescription">Any files that have already been uploaded to any submission stage (even Editorial or Production) can be chosen for review by checking the Include checkbox below and clicking Search: all available files will be listed and can be chosen for inclusion. Additional files not already uploaded to a stage can be added to this listing by clicking the Upload Review File link.</message>
 	<message key="editor.monograph.review.reviewFilesDescription">This stage begins with editor using Select Files to identify the submission files for review.</message>
-	<message key="editor.monograph.review.reviewersDescription">The editor uses Add Reviewer to invite readers to review the submission files. When a reviewer downloads a submission file, a check box appears, which is checked (&#10004;) when the review is submitted. The editor checks (&#10004;) the reviews after consulting them. Reminders can be sent to reviewers by clicking on the two-balloon icon or unchecked box.</message>
+	<message key="editor.monograph.review.reviewersDescription">The editor uses Add Reviewer to invite readers to review the submission files. The editor checks (&#10004;) the reviews after consulting them. Reminders can be sent to reviewers by clicking on the red envelope if the review is currently overdue.</message>
 	<message key="editor.monograph.fileList.includeAllStages">Include all files from all accessible workflow stages.</message>
 	<message key="editor.monograph.review.currentFiles">Current Review Files For Round {$round}</message>
 	<message key="editor.monograph.final.selectFinalDraftFiles">Select Final Draft Files</message>

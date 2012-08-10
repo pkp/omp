@@ -175,22 +175,11 @@ class ReviewerGridHandler extends GridHandler {
 			)
 		);
 
+		// Add a column for the status of the review.
 		$this->addColumn(
 			new GridColumn(
-				'editor',
-				'user.role.pressEditor',
-				null,
-				'controllers/grid/common/cell/statusCell.tpl',
-				$cellProvider,
-				array('hoverTitle' => true)
-			)
-		);
-
-		// Add a column for the assigned reviewer.
-		$this->addColumn(
-			new GridColumn(
-				'reviewer',
-				'user.role.reviewer',
+				'considered',
+				'common.considered',
 				null,
 				'controllers/grid/common/cell/statusCell.tpl',
 				$cellProvider,
@@ -560,6 +549,25 @@ class ReviewerGridHandler extends GridHandler {
 	}
 
 
+	/**
+	 * Displays a modal containing history for the review assignment.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return string Serialized JSON object
+	 */
+	function reviewHistory($args, &$request) {
+		$user =& $request->getUser();
+
+		$reviewAssignment =& $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ASSIGNMENT);
+
+		$templateMgr =& TemplateManager::getManager();
+		$templateMgr->assign_by_ref('reviewAssignment', $reviewAssignment);
+
+
+		return $templateMgr->fetchJson('workflow/reviewHistory.tpl');
+	}
+
+
 	//
 	// Private helper methods
 	//
@@ -608,7 +616,7 @@ class ReviewerGridHandler extends GridHandler {
 	 */
 	function _getReviewAssignmentOps() {
 		// Define operations that need a review assignment policy.
-		return array('readReview', 'reviewRead', 'thankReviewer', 'editReminder', 'sendReminder', 'deleteReviewer', 'sendEmail');
+		return array('readReview', 'reviewHistory', 'reviewRead', 'thankReviewer', 'editReminder', 'sendReminder', 'deleteReviewer', 'sendEmail');
 
 	}
 
