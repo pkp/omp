@@ -66,7 +66,13 @@ class OMPQueuedPayment extends QueuedPayment {
 	function getName() {
 		switch ($this->type) {
 			case PAYMENT_TYPE_PURCHASE_FILE:
-				return __('payment.directSales.monograph.name');
+				list($fileId, $revision) = explode('-', $this->getAssocId());
+				assert($fileId && $revision);
+				$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO');
+				$submissionFile =& $submissionFileDao->getRevision($fileId, $revision, MONOGRAPH_FILE_PROOF);
+				if (!$submissionFile || $submissionFile->getAssocType() !== ASSOC_TYPE_PUBLICATION_FORMAT) return false;
+
+				return $submissionFile->getLocalizedName();
 			default:
 				// Invalid payment type
 				assert(false);
