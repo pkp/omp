@@ -134,9 +134,9 @@ class PluginGridRow extends GridRow {
 						'upgrade',
 						new AjaxModal(
 							$router->url($request, null, null, 'upgradePlugin', null, $actionArgs),
-							__('manager.plugins.upgrade')),
+							__('manager.plugins.upgrade'), 'modal_upgrade'),
 						__('grid.action.upgrade'),
-						'wrench'));
+						'upgrade'));
 			}
 
 			if($this->getActions()) {
