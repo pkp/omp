@@ -59,7 +59,7 @@ class ReviewStageForm extends PressSettingsForm {
 				'showReviewPolicy',
 				new ConfirmationModal(
 					__('review.blindPeerReview'),
-					__('review.ensuringBlindReview'), 'modal_confirm', null, null, true, MODAL_WIDTH_DEFAULT),
+					__('review.ensuringBlindReview'), 'modal_information', null, null, true, MODAL_WIDTH_DEFAULT),
 				__('review.ensuringBlindReview'));
 		$params['ensuringLink'] = $ensuringLink;
 

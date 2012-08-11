@@ -321,7 +321,8 @@ class AppearanceForm extends PressSettingsForm {
 					'fileSettingName' => $settingName,
 					'tab' => 'appearance'
 				)
-			)
+			),
+			'modal_delete'
 		);
 		$linkAction = new LinkAction(
 			'deleteFile-' . $settingName,

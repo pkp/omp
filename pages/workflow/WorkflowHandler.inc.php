@@ -482,11 +482,12 @@ class WorkflowHandler extends Handler {
 								'reviewRoundId' => $lastReviewRoundId
 							)
 						),
-						__('editor.monograph.newRound')
+						__('editor.monograph.newRound'),
+						'modal_add_item'
 					),
 					__('editor.monograph.newRound'),
 					'add_item_small'
-				); // FIXME: add icon.
+				);
 				$templateMgr->assign_by_ref('newRoundAction', $newRoundAction);
 			}
 		}
