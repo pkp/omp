@@ -4,22 +4,21 @@
  * Copyright (c) 2003-2012 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * Display monograph emails to authors.
+ * Render a single monograph email.
  *}
-
-{if $monographEmails && $monographEmails->getCount()}
-<form class="pkp_form">
-	{fbvFormSection label="editor.review.personalMessageFromEditor"}
-	{iterate from=monographEmails item=monographEmail}
-		<p>
-			<strong>{translate key="common.date"}:</strong>
-			<span class="pkp_authorDashboard_email_date">{$monographEmail->getDateSent()|date_format:$dateFormatShort}</span><br/>
-			<strong>{translate key="email.subject}:</strong>
-			<span class="pkp_authorDashboard_email_subject">{$monographEmail->getSubject()|escape}</span>
-		</p>
-		{fbvElement type="textarea" id=$textAreaIdPrefix|concat:"-":$monographEmail->getId() value=$monographEmail->getBody() height=$fbvStyles.height.TALL disabled=true}
-		<br />
-	{/iterate}
-	{/fbvFormSection}
-</form>
-{/if}
+<div id="email-{$monographEmail->getId()}">
+	<table width="100%">
+		<tr valign="top">
+			<td colspan="2">
+				{translate key="email.subject}: {$monographEmail->getSubject()|escape}<br />
+				<span class="pkp_controllers_informationCenter_itemLastEvent">{$monographEmail->getDateSent()|date_format:$datetimeFormatShort}</span>
+			</td>
+		</tr>
+		<tr valign="top">
+			{assign var="contents" value=$monographEmail->getBody()}
+			<td colspan="3"><br />
+				{$monographEmail->getBody()|nl2br|strip_unsafe_html}
+			</td>
+		</tr>
+	</table>
+</div>

@@ -11,7 +11,7 @@
 {include file="controllers/notification/inPlaceNotification.tpl" notificationId="reviewRoundNotification_"|concat:$reviewRoundId requestOptions=$reviewRoundNotificationRequestOptions}
 
 <!-- Display editor's message to the author -->
-{include file="authorDashboard/monographEmail.tpl" monographEmails=$monographEmails textAreaIdPrefix="reviewRoundEmail"}
+{include file="authorDashboard/monographEmails.tpl" monographEmails=$monographEmails}
 
 <!-- Display review attachments grid -->
 {if $showReviewAttachments}

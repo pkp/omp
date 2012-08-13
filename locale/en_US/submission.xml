@@ -49,6 +49,7 @@
 	<message key="submission.mySubmissions">My Authored Submissions</message>
 	<message key="submission.metadata">Metadata</message>
 	<message key="submission.supportingAgencies">Supporting Agencies</message>
+	<message key="submission.previousAuthorEmail">Previous Email</message>
 	<message key="grid.action.addChapter">Create a new chapter</message>
 	<message key="grid.action.editChapter">Edit this chapter</message>
 	<message key="grid.action.deleteChapter">Delete this chapter</message>
@@ -137,7 +138,6 @@
 	<message key="submission.upload.selectBookElement">Select book element</message>
 	
 	<!-- File uploads -->
-	<message key="submission.addFile">Upload File</message>
 	<message key="submission.upload.finalDraft">Upload File</message>
 	<message key="submission.upload.copyeditedVersion">Upload Copyedited File</message>
 	<message key="submission.upload.fairCopy">Upload Fair Copy</message>

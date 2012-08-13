@@ -109,6 +109,7 @@
 <script type="text/javascript" src="{$baseUrl}/js/controllers/catalog/form/CatalogMetadataFormHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/js/controllers/dashboard/form/DashboardTaskFormHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/js/pages/authorDashboard/AuthorDashboardHandler.js"></script>
+<script type="text/javascript" src="{$baseUrl}/js/pages/authorDashboard/MonographEmailHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/js/pages/index/HeaderHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/js/pages/catalog/CarouselHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/js/pages/catalog/MonographListHandler.js"></script>

@@ -22,7 +22,7 @@ class AuthorDashboardHandler extends Handler {
 	 */
 	function AuthorDashboardHandler() {
 		parent::Handler();
-		$this->addRoleAssignment($this->_getAssignmentRoles(), array('submission'));
+		$this->addRoleAssignment($this->_getAssignmentRoles(), array('submission', 'readMonographEmail'));
 	}
 
 
@@ -149,6 +149,29 @@ class AuthorDashboardHandler extends Handler {
 		$templateMgr->assign('authorDashboardNotificationRequestOptions', $notificationRequestOptions);
 
 		$templateMgr->display('authorDashboard/authorDashboard.tpl');
+	}
+
+
+	/**
+	 * Fetches information about a specific monograph email and returns it.
+	 * @param $args array
+	 * @param $request Request
+	 * @return string
+	 */
+	function readMonographEmail($args, &$request) {
+		$monographEmailLogDao =& DAORegistry::getDAO('MonographEmailLogDAO');
+		$user =& $request->getUser();
+		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		$monographEmailId = $request->getUserVar('monographEmailId');
+
+		$monographEmailFactory =& $monographEmailLogDao->getByEventType($monograph->getId(), MONOGRAPH_EMAIL_EDITOR_NOTIFY_AUTHOR, $user->getId());
+		while ($email =& $monographEmailFactory->next()) { // validate the email id for this user.
+			if ($email->getId() == $monographEmailId) {
+				$templateMgr =& TemplateManager::getManager();
+				$templateMgr->assign_by_ref('monographEmail', $email);
+				return $templateMgr->fetchJson('authorDashboard/monographEmail.tpl');
+			}
+		}
 	}
 
 
