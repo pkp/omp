@@ -89,8 +89,6 @@ class MergeUsersGridRow extends GridRow {
 					);
 				}
 			}
-
-			$this->setTemplate('controllers/grid/gridRowWithActions.tpl');
 		}
 	}
 

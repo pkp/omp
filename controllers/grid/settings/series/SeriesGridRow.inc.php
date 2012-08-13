@@ -32,8 +32,6 @@ class SeriesGridRow extends GridRow {
 	function initialize(&$request) {
 		parent::initialize($request);
 
-		// add Grid Row Actions
-		$this->setTemplate('controllers/grid/gridRowWithActions.tpl');
 		$this->setupTemplate();
 
 		// Is this a new row or an existing row?

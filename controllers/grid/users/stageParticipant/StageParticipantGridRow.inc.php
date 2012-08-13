@@ -74,9 +74,6 @@ class StageParticipantGridRow extends GridRow {
 			$stageAssignment =& $this->getData();
 			$userId = $stageAssignment->getUserId();
 			$this->addAction(new NotifyLinkAction($request, $monograph, $stageId, $userId));
-
-			// Set a non-default template that supports row actions
-			$this->setTemplate('controllers/grid/gridRowWithActions.tpl');
 		}
 	}
 

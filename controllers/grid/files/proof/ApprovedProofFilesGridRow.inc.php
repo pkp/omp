@@ -35,9 +35,6 @@ class ApprovedProofFilesGridRow extends GridRow {
 	function initialize(&$request) {
 		parent::initialize($request);
 
-		// add Grid Row Actions
-		$this->setTemplate('controllers/grid/gridRowWithActions.tpl');
-
 		// Is this a new row or an existing row?
 		$fileId = $this->getId();
 		assert(!empty($fileId));

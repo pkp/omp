@@ -69,8 +69,6 @@ class SponsorGridRow extends GridRow {
 					__('grid.action.delete'),
 					'delete')
 			);
-
-			$this->setTemplate('controllers/grid/gridRowWithActions.tpl');
 		}
 	}
 }

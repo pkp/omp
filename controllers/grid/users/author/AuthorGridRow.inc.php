@@ -120,12 +120,6 @@ class AuthorGridRow extends GridRow {
 					);
 				}
 			}
-			// Set a non-default template that supports row actions if not read only
-			if (!$this->isReadOnly()) {
-				$this->setTemplate('controllers/grid/gridRowWithActions.tpl');
-			} else {
-				$this->setTemplate('controllers/grid/gridRow.tpl');
-			}
 		}
 	}
 

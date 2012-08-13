@@ -30,7 +30,7 @@ class PreparedEmailsGridRow extends GridRow {
 	 * @param $request PKPRequest
 	 */
 	function initialize(&$request) {
-		parent::initialize($request, 'controllers/grid/gridRowWithActions.tpl');
+		parent::initialize($request);
 
 		$press =& $request->getPress();
 

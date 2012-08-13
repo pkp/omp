@@ -78,9 +78,6 @@ class PublicationDateGridRow extends GridRow {
 					'delete'
 				)
 			);
-
-			// Set a non-default template that supports row actions
-			$this->setTemplate('controllers/grid/gridRowWithActions.tpl');
 		}
 	}
 

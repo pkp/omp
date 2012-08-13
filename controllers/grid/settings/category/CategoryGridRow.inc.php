@@ -29,7 +29,7 @@ class CategoryGridRow extends GridRow {
 	 * @see GridRow::initialize()
 	 */
 	function initialize(&$request) {
-		parent::initialize($request, 'controllers/grid/gridRowWithActions.tpl');
+		parent::initialize($request);
 
 		$rowData =& $this->getData(); // a Category object
 		assert($rowData != null);

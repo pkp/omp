@@ -38,8 +38,6 @@ class SubmissionsListGridRow extends GridRow {
 	function initialize(&$request) {
 		parent::initialize($request);
 
-		// add Grid Row Actions
-		$this->setTemplate('controllers/grid/gridRowWithActions.tpl');
 		$rowId = $this->getId();
 
 		if (!empty($rowId) && is_numeric($rowId)) {

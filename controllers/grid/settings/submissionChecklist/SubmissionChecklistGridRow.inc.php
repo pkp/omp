@@ -31,8 +31,6 @@ class SubmissionChecklistGridRow extends GridRow {
 	 */
 	function initialize(&$request) {
 		parent::initialize($request);
-		// add Grid Row Actions
-		$this->setTemplate('controllers/grid/gridRowWithActions.tpl');
 
 		// Is this a new row or an existing row?
 		$rowId = $this->getId();

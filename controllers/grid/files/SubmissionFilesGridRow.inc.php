@@ -73,7 +73,7 @@ class SubmissionFilesGridRow extends GridRow {
 	/**
 	 * @see PKPHandler::initialize()
 	 */
-	function initialize(&$request, $template = 'controllers/grid/gridRowWithActions.tpl') {
+	function initialize(&$request, $template = 'controllers/grid/gridRow.tpl') {
 		parent::initialize($request, $template);
 
 		// Retrieve the monograph file.

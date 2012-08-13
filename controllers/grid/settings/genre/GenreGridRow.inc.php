@@ -32,8 +32,6 @@ class GenreGridRow extends GridRow {
 	function initialize(&$request) {
 		parent::initialize($request);
 
-		$this->setTemplate('controllers/grid/gridRowWithActions.tpl');
-
 		// Is this a new row or an existing row?
 		$rowId = $this->getId();
 		if (!empty($rowId) && is_numeric($rowId)) {

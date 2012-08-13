@@ -70,9 +70,6 @@ class LanguageGridRow extends GridRow {
 						__('manager.language.reloadLocalizedDefaultSettings')
 						)
 				);
-
-				// Set a non-default template that supports row actions
-				$this->setTemplate('controllers/grid/gridRowWithActions.tpl');
 			}
 		}
 	}

@@ -111,9 +111,6 @@ class UserGridRow extends GridRow {
 					__('grid.action.remove'),
 					'delete')
 			);
-
-			// Set a non-default template that supports row actions
-			$this->setTemplate('controllers/grid/gridRowWithActions.tpl');
 		}
 	}
 }
