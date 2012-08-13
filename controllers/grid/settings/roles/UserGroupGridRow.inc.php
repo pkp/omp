@@ -14,13 +14,13 @@
 
 import('lib.pkp.classes.controllers.grid.GridCategoryRow');
 
-class UserGroupGridRow extends GridCategoryRow {
+class UserGroupGridRow extends GridRow {
 
 	/**
 	 * Constructor
 	 */
 	function UserGroupGridRow() {
-		parent::GridCategoryRow();
+		parent::GridRow();
 	}
 
 	//
@@ -30,7 +30,7 @@ class UserGroupGridRow extends GridCategoryRow {
 	 * @see GridRow::initialize()
 	 */
 	function initialize(&$request) {
-		parent::initialize($request, 'controllers/grid/gridRowWithActions.tpl');
+		parent::initialize($request);
 
 		$rowData =& $this->getData(); // a UserGroup object
 		assert($rowData != null);
