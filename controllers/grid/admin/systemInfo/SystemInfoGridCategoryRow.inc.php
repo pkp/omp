@@ -21,7 +21,7 @@ class SystemInfoGridCategoryRow extends GridCategoryRow {
 	/**
 	 * Constructor
 	 */
-	function ChapterGridCategoryRow() {
+	function SystemInfoGridCategoryRow() {
 		parent::GridCategoryRow();
 	}
 

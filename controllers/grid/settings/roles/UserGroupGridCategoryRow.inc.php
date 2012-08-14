@@ -14,9 +14,6 @@
 
 import('lib.pkp.classes.controllers.grid.GridCategoryRow');
 
-// Link actions
-import('lib.pkp.classes.linkAction.request.AjaxModal');
-
 class UserGroupGridCategoryRow extends GridCategoryRow {
 
 	/**
