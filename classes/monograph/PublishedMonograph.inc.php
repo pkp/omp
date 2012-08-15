@@ -170,34 +170,6 @@ class PublishedMonograph extends Monograph {
 	}
 
 	/**
-	 * Generates an array representing the composition and identification codes. Used in the catalog
-	 * listing for the monograph.
-	 * @return array
-	 */
-	function getCatalogFormatInfo() {
-		$publicationFormats =& $this->getPublicationFormats(true);
-		$returner = array();
-		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO');
-		import('classes.monograph.MonographFile'); // constants
-
-		foreach ($publicationFormats as $format) {
-			$monographFiles =& $submissionFileDao->getLatestRevisionsByAssocId(
-					ASSOC_TYPE_PUBLICATION_FORMAT, $format->getId(),
-					$this->getId()
-			);
-			$codes =& $format->getIdentificationCodes();
-			$fileIndex = 0;
-			foreach ($monographFiles as $file) {
-				if ($file->getViewable()) {
-					$returner[] = array('title' => $format->getLocalizedName(), 'price' => $file->getDirectSalesPrice(), 'codes' => $codes->toArray(), 'index' => $fileIndex++);
-				}
-			}
-		}
-
-		return $returner;
-	}
-
-	/**
 	 * Get the cover image.
 	 * @return array
 	 */
