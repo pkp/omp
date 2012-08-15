@@ -27,9 +27,9 @@
 			{assign var="monographId" value=$publishedMonograph->getId()}
 			{if isset($featuredMonographIds[$monographId])}
 			<li id="publishedMonograph-{$monographId}" class="mover">
-				<img src="{url router=$smarty.const.ROUTE_COMPONENT component="submission.CoverHandler" op="cover" monographId=$publishedMonograph->getId()}" alt="{$publishedMonograph->getLocalizedTitle()|escape}" data-caption="#publishedMonograph-{$monographId}-caption" width="150" height="250"/>
+				<img src="{url router=$smarty.const.ROUTE_COMPONENT component="submission.CoverHandler" op="cover" monographId=$publishedMonograph->getId()}" alt="{$publishedMonograph->getLocalizedFullTitle()|escape}" data-caption="#publishedMonograph-{$monographId}-caption" width="150" height="250"/>
 				<div class="details_box" id="publishedMonograph-{$monographId}-details">
-					<h4>{$publishedMonograph->getLocalizedTitle()|escape}</h4>
+					<h4>{$publishedMonograph->getLocalizedFullTitle()|escape}</h4>
 					<a href="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="book" path=$monographId}">{translate key="common.moreInfo"}</a>
 				</div>
 				<div class="pkp_helpers_progressIndicator"></div>

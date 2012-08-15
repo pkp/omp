@@ -9,7 +9,7 @@
 
 <li class="pkp_catalog_monograph {if $inline}pkp_helpers_align_left{/if} pkp_helpers_text_center">
 	{assign var=coverImage value=$publishedMonograph->getCoverImage()}
-	<a href="{url page="catalog" op="book" path=$publishedMonograph->getId()}"><img class="pkp_helpers_container_center" height="{$coverImage.thumbnailHeight}" width="{$coverImage.thumbnailWidth}" alt="{$publishedMonograph->getLocalizedTitle()|escape}" src="{url router=$smarty.const.ROUTE_COMPONENT component="submission.CoverHandler" op="thumbnail" monographId=$publishedMonograph->getId()}" /></a>
+	<a href="{url page="catalog" op="book" path=$publishedMonograph->getId()}"><img class="pkp_helpers_container_center" height="{$coverImage.thumbnailHeight}" width="{$coverImage.thumbnailWidth}" alt="{$publishedMonograph->getLocalizedFullTitle()|escape}" src="{url router=$smarty.const.ROUTE_COMPONENT component="submission.CoverHandler" op="thumbnail" monographId=$publishedMonograph->getId()}" /></a>
 	<div class="pkp_catalog_monographDetails">
 		<div class="pkp_catalog_monographTitle"><a href="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="book" path=$publishedMonograph->getId()}">{$publishedMonograph->getLocalizedFullTitle()}</a></div>
 		<div class="pkp_catalog_monograph_authorship pkp_helpers_clear">

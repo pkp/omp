@@ -8,7 +8,7 @@
  *}
 {strip}
 {assign var="suppressPageTitle" value=true}
-{assign var="pageTitleTranslated" value=$publishedMonograph->getLocalizedTitle()}
+{assign var="pageTitleTranslated" value=$publishedMonograph->getLocalizedFullTitle()}
 {include file="common/header.tpl"}
 {/strip}
 
