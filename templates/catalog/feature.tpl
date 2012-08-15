@@ -30,7 +30,7 @@
 	</div>
 
 	<div class="pkp_catalog_featureDetails">
-		<div class="pkp_catalog_feature_title">{$featuredMonograph->getLocalizedTitle()|strip_unsafe_html}</div>
+		<div class="pkp_catalog_feature_title">{$featuredMonograph->getLocalizedFullTitle()|strip_unsafe_html}</div>
 		<div class="pkp_catalog_feature_author">{$featuredMonograph->getAuthorString()|escape}</div>
 		<div class="pkp_catalog_feature_abstract">{$featuredMonograph->getLocalizedAbstract()|strip_unsafe_html}</div>
 	</div>
