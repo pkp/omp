@@ -192,6 +192,7 @@ strong {
   float:left;
   position:relative;
 }
+.pkp_helpers_bulletlist li { list-style:disc; }
 .pkp_helpers_icon_link_valign { line-height:24px; }
 .pkp_helpers_moveicon { cursor:move; }
 .pkp_helpers_full { width:100%; }

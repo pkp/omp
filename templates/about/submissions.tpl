@@ -45,11 +45,11 @@
 		{include file="common/linkToEditPage.tpl" editUrl=$editUrl}
 
 		<p>{translate key="about.submissionPreparationChecklist.description"}</p>
-		<ol>
+		<ul class="pkp_helpers_bulletlist">
 			{foreach from=$submissionChecklist item=checklistItem}
 				<li>{$checklistItem.content|nl2br}</li>
 			{/foreach}
-		</ol>
+		</ul>
 	</div>
 	<div class="separator"></div>
 {/if}
