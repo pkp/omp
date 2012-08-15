@@ -186,9 +186,10 @@ class PublishedMonograph extends Monograph {
 					$this->getId()
 			);
 			$codes =& $format->getIdentificationCodes();
+			$fileIndex = 0;
 			foreach ($monographFiles as $file) {
 				if ($file->getViewable()) {
-					$returner[] = array('title' => $format->getLocalizedName(), 'price' => $file->getDirectSalesPrice(), 'codes' => $codes->toArray());
+					$returner[] = array('title' => $format->getLocalizedName(), 'price' => $file->getDirectSalesPrice(), 'codes' => $codes->toArray(), 'index' => $fileIndex++);
 				}
 			}
 		}
