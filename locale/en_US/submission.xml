@@ -127,7 +127,7 @@
 	<message key="submission.upload.noGenre">Missing or invalid genre!</message>
 	<message key="submission.upload.invalidUserGroup">Missing or invalid user group!</message>
 	<message key="submission.upload.possibleRevision">Possible Revision Detected</message>
-	<message key="submission.upload.possibleRevisionDescription"><![CDATA[<p>It looks like you may be trying to upload a revision to the previously uploaded file '{$revisedFileName}' whose file name is very similar to the name of the uploaded file. Is this the case?</p><p>If you are uploading a revision for another file, please select it below. Otherwise select the 'do not replace' option. Then click the 'continue' button to edit the meta-data of the file.</p>]]></message>
+	<message key="submission.upload.possibleRevisionDescription"><![CDATA[<p>It looks like you may be trying to upload a revision to the previously uploaded file '{$revisedFileName}' whose file name is very similar to the name of the uploaded file. Is this the case?</p><p>If you are uploading a revision for another file, please select it below. Otherwise select the 'Select file (to preserve history)' option. Then click the 'continue' button to edit the meta-data of the file.</p>]]></message>
 	<message key="submission.upload.revisingExistingFile">If a revision of a previously uploaded file...</message>
 	<message key="submission.upload.selectMandatoryFileToRevise">Please select the file you would like to revise.</message>
 	<message key="submission.upload.selectOptionalFileToRevise">If you are uploading a revision of an existing file, please indicate which file.</message>
