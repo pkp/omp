@@ -9,7 +9,7 @@
  *}
 {if in_array(ROLE_ID_PRESS_MANAGER, $userRoles)}
 	<div class="pkp_helpers_align_right pkp_helpers_icon_link_valign linkToEditPage">
-		<a href={$editUrl} class="sprite edit" target="_blank" title="{translate key="help.goToEditPage"}">{translate key="common.edit"}</a>
+		<a href="{$editUrl}" class="sprite edit" target="_blank" title="{translate key="help.goToEditPage"}">{translate key="common.edit"}</a>
 	</div>
 	<div class="pkp_helpers_clear"></div>
 {/if}

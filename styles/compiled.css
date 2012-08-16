@@ -1674,6 +1674,7 @@ ul.sf-menu {
 }
 .pkp_catalog_feature .pkp_catalog_featureSpecs { float:left; }
 .pkp_catalog_feature .pkp_catalog_featureDetails { margin-top:50px; }
+.pkp_catalog_feature .pkp_catalog_feature_abstract { text-align:justify; }
 .pkp_catalog_book .bookSpecs {
   float:left;
   width:33%;
@@ -1692,6 +1693,7 @@ ul.sf-menu {
   float:left;
   width:50%;
 }
+.pkp_catalog_book .bookInfo #abstractTab { text-align:justify; }
 .pkp_catalog_book #bookAccordion {
   margin-top:30px;
   border-top:1px dotted #999999;
