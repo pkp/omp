@@ -19,9 +19,4 @@
 	<div class="pkp_catalog_monograph_date">
 			{$publishedMonograph->getDatePublished()|date_format:$dateFormatShort}
 	</div>
-	<div class="pkp_catalog_monographFormats">
-		{foreach from=$publishedMonograph->getPublicationFormats() item="publicationFormat" name="publicationFormats"}
-			{$publicationFormat->getLocalizedName()|escape}{if !$smarty.foreach.publicationFormats.last}; {/if}
-		{/foreach}
-	</div>
 </li>
