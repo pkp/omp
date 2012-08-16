@@ -19,12 +19,12 @@
 <script type="text/javascript">
 	$(function() {ldelim}
 		// Attach the revision confirmation handler.
-		$('#uploadConfirmationForm').pkpHandler(
+		$('#uploadForm').pkpHandler(
 			'$.pkp.controllers.wizard.fileUpload.form.RevisionConfirmationHandler');
 	{rdelim});
 </script>
 
-<form class="pkp_form pkp_controllers_grid_files" id="uploadConfirmationForm"
+<form class="pkp_form pkp_controllers_grid_files" id="uploadForm"
 		action="{url op="confirmRevision" monographId=$monographId stageId=$stageId fileStage=$fileStage uploadedFileId=$uploadedFile->getFileId()}"
 		method="post">
 	{fbvFormArea id="file"}
