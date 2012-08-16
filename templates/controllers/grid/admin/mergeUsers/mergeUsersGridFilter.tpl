@@ -8,7 +8,11 @@
  *}
 <script type="text/javascript">
 	// Attach the form handler to the form.
-	$('#mergeUserSearchForm').pkpHandler('$.pkp.controllers.form.FormHandler');
+	$('#mergeUserSearchForm').pkpHandler('$.pkp.controllers.form.FormHandler',
+		{ldelim}
+			trackFormChanges: false
+		{rdelim}
+	);
 </script>
 <form class="pkp_form" id="mergeUserSearchForm" action="{url router=$smarty.const.ROUTE_PAGE page="admin" op="mergeUsers"}" method="post">
 	<input type="hidden" name="oldUserId" value="{$filterData.oldUserId}" />

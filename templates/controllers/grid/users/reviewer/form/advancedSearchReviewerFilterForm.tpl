@@ -11,7 +11,11 @@
 <script type="text/javascript">
 	$(function() {ldelim}
 		// Handle filter form submission
-		$('#reviewerFilterForm').pkpHandler('$.pkp.controllers.form.ClientFormHandler');
+		$('#reviewerFilterForm').pkpHandler('$.pkp.controllers.form.ClientFormHandler',
+			{ldelim}
+				trackFormChanges: false
+			{rdelim}
+		);
 	{rdelim});
 </script>
 

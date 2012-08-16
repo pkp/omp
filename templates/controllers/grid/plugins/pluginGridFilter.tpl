@@ -8,7 +8,11 @@
  *}
 <script type="text/javascript">
 	// Attach the form handler to the form.
-	$('#pluginSearchForm').pkpHandler('$.pkp.controllers.form.ClientFormHandler');
+	$('#pluginSearchForm').pkpHandler('$.pkp.controllers.form.ClientFormHandler',
+		{ldelim}
+			trackFormChanges: false
+		{rdelim}
+	);
 </script>
 <form class="pkp_form" id="pluginSearchForm" action="{url router=$smarty.const.ROUTE_COMPONENT op="fetchGrid"}" method="post">
 	{fbvFormArea id="userSearchFormArea"}
