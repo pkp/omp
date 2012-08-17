@@ -28,7 +28,7 @@ class FileApiHandler extends Handler {
 		parent::Handler();
 		$this->addRoleAssignment(
 			array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_ASSISTANT, ROLE_ID_REVIEWER, ROLE_ID_AUTHOR),
-			array('downloadFile', 'viewFile', 'downloadAllFiles', 'recordDownload')
+			array('downloadFile', 'downloadLibraryFile', 'viewFile', 'downloadAllFiles', 'recordDownload')
 		);
 	}
 
@@ -38,6 +38,8 @@ class FileApiHandler extends Handler {
 	//
 	function authorize(&$request, $args, $roleAssignments) {
 		$monographFilesIds = $request->getUserVar('filesIdsAndRevisions');
+		$libraryFileId = $request->getUserVar('libraryFileId');
+
 		import('classes.security.authorization.OmpMonographFileAccessPolicy');
 
 		if (is_string($monographFilesIds)) {
@@ -50,7 +52,10 @@ class FileApiHandler extends Handler {
 				$multipleMonographFileAccessPolicy->addPolicy(new OmpMonographFileAccessPolicy($request, $args, $roleAssignments, MONOGRAPH_FILE_ACCESS_READ, $fileIdAndRevision));
 			}
 			$this->addPolicy($multipleMonographFileAccessPolicy);
-		} else {
+		}else if (is_numeric($libraryFileId)) {
+			import('classes.security.authorization.OmpPressAccessPolicy');
+			$this->addPolicy(new OmpPressAccessPolicy($request, $roleAssignments));
+		}else {
 			$this->addPolicy(new OmpMonographFileAccessPolicy($request, $args, $roleAssignments, MONOGRAPH_FILE_ACCESS_READ));
 		}
 
@@ -72,6 +77,23 @@ class FileApiHandler extends Handler {
 		$press =& $request->getPress();
 		$monographFileManager = new MonographFileManager($press->getId(), $monographFile->getMonographId());
 		$monographFileManager->downloadFile($monographFile->getFileId(), $monographFile->getRevision());
+	}
+
+	/**
+	 * Download a library file.
+	 * @param $args array
+	 * @param $request Request
+	 */
+	function downloadLibraryFile($args, &$request) {
+		import('classes.file.LibraryFileManager');
+		$press =& $request->getPress();
+		$libraryFileManager =& new LibraryFileManager($press->getId());
+		$libraryFileDao =& DAORegistry::getDAO('LibraryFileDAO');
+		$libraryFile =& $libraryFileDao->getById($request->getUserVar('libraryFileId'));
+		if ($libraryFile) {
+			$filePath = $libraryFileManager->getBasePath() .  $libraryFile->getOriginalFileName();
+			$libraryFileManager->downloadFile($filePath);
+		}
 	}
 
 	/**
@@ -136,10 +158,13 @@ class FileApiHandler extends Handler {
 	function recordDownload($args, &$request) {
 		$monographFiles = $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH_FILES);
 		$fileId = null;
+		$libraryCategoryId = null;
+
 		foreach ($monographFiles as $monographFile) {
 			import('classes.file.MonographFileManager');
 			MonographFileManager::recordView($monographFile);
 			$fileId = $monographFile->getFileId();
+			$libraryCategoryId = $monographFile->getLibraryCategoryId();
 			unset($monographFile);
 		}
 
@@ -147,7 +172,7 @@ class FileApiHandler extends Handler {
 			$fileId = null;
 		}
 
-		return DAO::getDataChangedEvent($fileId);
+		return DAO::getDataChangedEvent();
 	}
 }
 

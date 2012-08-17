@@ -111,6 +111,11 @@
 	{/if}
 {/if}
 
+{* extra case for uploading book documents to the library files grid *}
+{if $fileStage == $smarty.const.MONOGRAPH_FILE_BOOK_DOCUMENT}
+	{assign var="showLibraryCategorySelector" value=true}
+{/if}
+
 {if $revisionOnlyWithoutFileOptions}
 	<br /><br />
 	{translate key="submission.upload.noAvailableReviewFiles"}
@@ -125,11 +130,18 @@
 			{ldelim}
 				hasFileSelector: {if $showFileSelector}true{else}false{/if},
 				hasGenreSelector: {if $showGenreSelector}true{else}false{/if},
+				hasLibraryCategorySelector: {if $showLibraryCategorySelector}true{else}false{/if},
 				presetRevisedFileId: '{$revisedFileId}',
 				// File genres currently assigned to monograph files.
 				fileGenres: {ldelim}
 					{foreach name=currentMonographFileGenres from=$currentMonographFileGenres key=monographFileId item=fileGenre}
 						{$monographFileId}: {$fileGenre}{if !$smarty.foreach.currentMonographFileGenres.last},{/if}
+					{/foreach}
+				{rdelim},
+				// File library categories currently assigned to monograph files.
+				fileCategories: {ldelim}
+					{foreach name=currentMonographFileCategories from=$currentMonographFileCategories key=monographFileId item=categoryId}
+						{$monographFileId}: {$categoryId}{if !$smarty.foreach.currentMonographFileCategories.last},{/if}
 					{/foreach}
 				{rdelim},
 				$uploader: $('#plupload'),
@@ -173,6 +185,12 @@
 			{fbvFormSection title="submission.upload.fileContents" required=true}
 				{translate|assign:"defaultLabel" key="submission.upload.selectBookElement"}
 				{fbvElement type="select" name="genreId" id="genreId" from=$monographFileGenres translate=false defaultLabel=$defaultLabel defaultValue="" required="true" selected=$genreId}
+			{/fbvFormSection}
+		{/if}
+
+		{if $showLibraryCategorySelector}
+			{fbvFormSection title="submission.upload.libraryCategory" required=true}
+				{fbvElement type="select" name="libraryCategoryId" id="libraryCategoryId" from=$libraryCategories required="true" selected=$libraryCategoryId}
 			{/fbvFormSection}
 		{/if}
 

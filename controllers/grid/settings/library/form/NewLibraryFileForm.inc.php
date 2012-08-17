@@ -19,20 +19,10 @@ class NewLibraryFileForm extends LibraryFileForm {
 	/**
 	 * Constructor.
 	 * @param $pressId int
-	 * @param $fileType int LIBRARY_FILE_TYPE_...
 	 */
-	function NewLibraryFileForm($pressId, $fileType) {
-		parent::LibraryFileForm('controllers/grid/settings/library/form/newFileForm.tpl', $pressId, $fileType);
+	function NewLibraryFileForm($pressId) {
+		parent::LibraryFileForm('controllers/grid/settings/library/form/newFileForm.tpl', $pressId);
 		$this->addCheck(new FormValidator($this, 'temporaryFileId', 'required', 'settings.libraryFiles.fileRequired'));
-	}
-
-	/**
-	 * Initialize form data from current settings.
-	 */
-	function initData() {
-		$this->_data = array(
-			'fileType' => $this->fileType
-		);
 	}
 
 	/**
@@ -60,11 +50,11 @@ class NewLibraryFileForm extends LibraryFileForm {
 		$libraryFileManager = new LibraryFileManager($this->pressId);
 
 		// Convert the temporary file to a library file and store
-		$libraryFile =& $libraryFileManager->copyFromTemporaryFile($temporaryFile, $this->fileType);
+		$libraryFile =& $libraryFileManager->copyFromTemporaryFile($temporaryFile, $this->getData('fileType'));
 		assert($libraryFile);
 		$libraryFile->setPressId($this->pressId);
 		$libraryFile->setName($this->getData('libraryFileName'), null); // Localized
-		$libraryFile->setType($this->fileType);
+		$libraryFile->setType($this->getData('fileType'));
 
 		$fileId = $libraryFileDao->insertObject($libraryFile);
 

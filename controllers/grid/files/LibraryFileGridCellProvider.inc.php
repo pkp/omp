@@ -9,7 +9,7 @@
  * @class LibraryFileGridCellProvider
  * @ingroup controllers_grid_settings_library
  *
- * @brief Subclass class for a LibraryFile grid column's cell provider
+ * @brief Subclass for a LibraryFile grid column's cell provider
  */
 
 import('lib.pkp.classes.controllers.grid.GridCellProvider');
@@ -35,10 +35,35 @@ class LibraryFileGridCellProvider extends GridCellProvider {
 		assert(is_a($element, 'DataObject') && !empty($columnId));
 		switch ($columnId) {
 			case 'files':
-				$label = $element->getLocalizedName() != '' ? $element->getLocalizedName() : __('common.untitled');
-				return array('label' => $label);
+				// handled by our link action.
+				return array('label' => '');
 		}
 	}
+
+	/**
+	 * Get cell actions associated with this row/column combination
+	 * @param $row GridRow
+	 * @param $column GridColumn
+	 * @return array an array of LinkAction instances
+	 */
+	function getCellActions(&$request, &$row, &$column, $position = GRID_ACTION_POSITION_DEFAULT) {
+
+		$columnId = $column->getId();
+		$element =& $row->getData();
+
+		$cellActions = array();
+
+		switch ($columnId) {
+			case 'files':
+				assert(is_a($element, 'LibraryFile'));
+				// Create the cell action to download a file.
+				import('controllers.api.file.linkAction.DownloadLibraryFileLinkAction');
+				$cellActions[] = new DownloadLibraryFileLinkAction($request, $element);
+		}
+
+		return $cellActions;
+	}
 }
+
 
 ?>

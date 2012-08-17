@@ -16,10 +16,17 @@
 	{rdelim});
 </script>
 
-<form class="pkp_form" id="uploadForm" action="{url op="updateFile" fileType=$libraryFile->getType() fileId=$libraryFile->getId()}" method="post">
+<form class="pkp_form" id="uploadForm" action="{url op="updateFile" fileId=$libraryFile->getId()}" method="post">
 	{fbvFormArea id="name"}
-		{fbvFormSection title="common.name"}
-			{fbvElement type="text" id="libraryFileName" value=$libraryFileName maxlength="120" size=$fbvStyles.size.LARGE multilingual=true}
+		{fbvFormSection title="common.name" required=true}
+			{fbvElement type="text" id="libraryFileName" value=$libraryFileName maxlength="120" multilingual=true}
+		{/fbvFormSection}
+	{/fbvFormArea}
+
+	{fbvFormArea id="type"}
+		{fbvFormSection title="common.type" required=true}
+			{translate|assign:"defaultLabel" key="common.chooseOne"}
+			{fbvElement type="select" from=$fileTypes id="fileType" selected=$libraryFile->getType() defaultValue="" defaultLabel=$defaultLabel}
 		{/fbvFormSection}
 	{/fbvFormArea}
 

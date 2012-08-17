@@ -106,7 +106,11 @@ class AddFileLinkAction extends BaseAddFileLinkAction {
 			MONOGRAPH_FILE_PROOF => array(
 				'wizardTitle' => 'submission.upload.proof',
 				'buttonLabel' => 'submission.addFile'
-			)
+			),
+			MONOGRAPH_FILE_BOOK_DOCUMENT => array(
+				'wizardTitle' => 'submission.upload.uploadLibraryFile',
+				'buttonLabel' => 'submission.addFile'
+			),
 		);
 
 		assert(isset($textLabels[$fileStage]));

@@ -50,6 +50,21 @@ class ProofFilesGridHandler extends SignoffFilesGridHandler {
 
 		parent::initialize($request);
 
+		$router =& $request->getRouter();
+
+		$this->addAction(
+			new LinkAction(
+				'viewLibrary',
+				new AjaxModal(
+					$router->url($request, null, null, 'viewLibrary', null, $this->getRequestArgs()),
+					__('grid.action.viewLibrary'),
+					'modal_information'
+				),
+				__('grid.action.viewLibrary'),
+				'more_info'
+			)
+		);
+
 		// Basic grid configuration
 		$this->setId('proofFiles-' . $this->getAssocId());
 		$this->setTitle('monograph.pageProofs');

@@ -48,14 +48,15 @@ class MonographFileManager extends BaseMonographFileManager {
 	 * @param $uploaderUserGroupId int The id of the user group that the uploader acted in
 	 *  when uploading the file.
 	 * @param $revisedFileId int
-	 * @param $genreId int (e.g. Manusciprt, Appendix, etc.)
+	 * @param $genreId int (e.g. Manuscript, Appendix, etc.)
+	 * @param $libraryCategoryId int (e.g. Contract, Report, etc)
 	 * @return MonographFile
 	 */
 	function &uploadMonographFile($fileName, $fileStage, $uploaderUserId,
-			$uploaderUserGroupId, $revisedFileId = null, $genreId = null, $assocType = null, $assocId = null) {
+			$uploaderUserGroupId, $revisedFileId = null, $genreId = null, $assocType = null, $assocId = null, $libraryCategoryId = null) {
 		return $this->_handleUpload(
 			$fileName, $fileStage, $uploaderUserId,
-			$uploaderUserGroupId, $revisedFileId, $genreId, $assocType, $assocId
+			$uploaderUserGroupId, $revisedFileId, $genreId, $assocType, $assocId, $libraryCategoryId
 		);
 	}
 
@@ -213,10 +214,11 @@ class MonographFileManager extends BaseMonographFileManager {
 	 * @param $genreId int foreign key into genres table (e.g. manuscript, etc.)
 	 * @param $assocType int
 	 * @param $assocId int
+	 * @param $libraryCategoryId int a constant based on one of the categories available in LibraryFile
 	 * @return MonographFile the uploaded monograph file or null if an error occured.
 	 */
 	function &_handleUpload($fileName, $fileStage, $uploaderUserId, $uploaderUserGroupId,
-			$revisedFileId = null, $genreId = null, $assocType = null, $assocId = null) {
+			$revisedFileId = null, $genreId = null, $assocType = null, $assocId = null, $libraryCategoryId = null) {
 
 		$nullVar = null;
 
@@ -227,7 +229,7 @@ class MonographFileManager extends BaseMonographFileManager {
 		$sourceFile = $this->getUploadedFilePath($fileName);
 
 		// Instantiate and pre-populate a new monograph file object.
-		$monographFile = $this->_instantiateMonographFile($sourceFile, $fileStage, $revisedFileId, $genreId, $assocType, $assocId);
+		$monographFile = $this->_instantiateMonographFile($sourceFile, $fileStage, $revisedFileId, $genreId, $assocType, $assocId, $libraryCategoryId);
 		if (is_null($monographFile)) return $nullVar;
 
 		// Retrieve and copy the file type of the uploaded file.
@@ -258,9 +260,10 @@ class MonographFileManager extends BaseMonographFileManager {
 	 * @param $genreId integer optional
 	 * @param $assocId integer optional
 	 * @param $assocType integer optional
+	 * @param $libraryCategoryId integer optional
 	 * @return MonographFile returns the instantiated monograph file or null if an error occurs.
 	 */
-	function &_instantiateMonographFile($sourceFilePath, $fileStage, $revisedFileId = null, $genreId = null, $assocType = null, $assocId = null) {
+	function &_instantiateMonographFile($sourceFilePath, $fileStage, $revisedFileId = null, $genreId = null, $assocType = null, $assocId = null, $libraryCategoryId = null) {
 		$nullVar = null;
 
 		// Retrieve the submission file DAO.
@@ -290,6 +293,12 @@ class MonographFileManager extends BaseMonographFileManager {
 			// the same as that of the uploaded file.
 			if ($revisedFile->getMonographId() != $this->getMonographId()) return $nullVar;
 
+			// If we don't have a library category then use the category from the
+			// existing file.
+			if (!$libraryCategoryId) {
+				$libraryCategoryId = $revisedFile->getLibraryCategoryId();
+			}
+
 			// If file stages are different we reference with the sourceFileId
 			// Otherwise, we keep the file id, update the revision, and copy other fields.
 			if(!is_null($fileStage) && $fileStage !== $revisedFile->getFileStage()) {
@@ -314,6 +323,9 @@ class MonographFileManager extends BaseMonographFileManager {
 
 				// Copy the viewable flag.
 				$monographFile->setViewable($revisedFile->getViewable());
+
+				// Include the library category.
+				$monographFile->setLibraryCategoryId($libraryCategoryId);
 			}
 
 			// Copy assorted user-facing metadata.
@@ -331,6 +343,9 @@ class MonographFileManager extends BaseMonographFileManager {
 
 		// Set the file genre.
 		$monographFile->setGenreId($genreId);
+
+		// Set the library category id (if there is one).
+		$monographFile->setLibraryCategoryId($libraryCategoryId);
 
 		// Set dates to the current system date.
 		$monographFile->setDateUploaded(Core::getCurrentDate());

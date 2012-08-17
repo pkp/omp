@@ -13,26 +13,30 @@
  */
 
 import('lib.pkp.classes.form.Form');
+import('classes.file.LibraryFileManager');
 
 class LibraryFileForm extends Form {
-	/** the type of file being uploaded LIBRARY_FILE_TYPE_... */
-	var $fileType;
-
 	/** the id of the press this library file is attached to */
 	var $pressId;
+
+	/** the library file manager instantiated in this form. */
+	var $libraryFileManager;
 
 	/**
 	 * Constructor.
 	 * @param $pressId int
 	 * @param $fileType int LIBRARY_FILE_TYPE_...
 	 */
-	function LibraryFileForm($template, $pressId, $fileType) {
+	function LibraryFileForm($template, $pressId) {
 		$this->pressId = $pressId;
-		$this->fileType = $fileType;
 
 		parent::Form($template);
+		$this->libraryFileManager =& new LibraryFileManager($pressId);
 
 		$this->addCheck(new FormValidatorLocale($this, 'libraryFileName', 'required', 'settings.libraryFiles.nameRequired'));
+		$this->addCheck(new FormValidatorCustom($this, 'fileType', 'required', 'settings.libraryFiles.typeRequired',
+				create_function('$type, $form, $libraryFileManager', 'return is_numeric($type) && $libraryFileManager->getNameFromType($type);'), array(&$this, $this->libraryFileManager)));
+
 		$this->addCheck(new FormValidatorPost($this));
 	}
 
@@ -42,7 +46,14 @@ class LibraryFileForm extends Form {
 	 * @see Form::fetch()
 	 */
 	function fetch(&$request) {
+		$press =& $request->getPress();
 		AppLocale::requireComponents(LOCALE_COMPONENT_OMP_MANAGER);
+
+		// load the file types for the selector on the form.
+		$templateMgr =& TemplateManager::getManager();
+		$libraryFileManager =& $this->libraryFileManager;
+		$fileTypeKeys = $libraryFileManager->getTypeTitleKeyMap();
+		$templateMgr->assign('fileTypes', $fileTypeKeys);
 
 		return parent::fetch($request);
 	}
@@ -52,7 +63,7 @@ class LibraryFileForm extends Form {
 	 * @see Form::readInputData()
 	 */
 	function readInputData() {
-		$this->readUserVars(array('libraryFileName'));
+		$this->readUserVars(array('libraryFileName', 'fileType'));
 	}
 }
 

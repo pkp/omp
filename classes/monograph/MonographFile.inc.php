@@ -34,6 +34,7 @@ define('MONOGRAPH_FILE_LAYOUT', 12);
 define('MONOGRAPH_FILE_ATTACHMENT', 13);
 define('MONOGRAPH_FILE_SIGNOFF', 14);
 define('MONOGRAPH_FILE_REVIEW_REVISION', 15);
+define('MONOGRAPH_FILE_BOOK_DOCUMENT', 16);
 
 class MonographFile extends SubmissionFile {
 
@@ -209,6 +210,24 @@ class MonographFile extends SubmissionFile {
 	}
 
 	/**
+	 * Set the library type category for this file.
+	 * constant defined in LibraryFile
+	 * @param $libraryCategoryId int
+	 */
+	function setLibraryCategoryId($libraryCategoryId) {
+		$this->setData('libraryCategoryId', $libraryCategoryId);
+	}
+
+	/**
+	 * Get the library type category for this file.
+	 * constant defined in LibraryFile
+	 * @return int
+	 */
+	function getLibraryCategoryId() {
+		return $this->getData('libraryCategoryId');
+	}
+
+	/**
 	 * Build a file name label.
 	 * @return string
 	 */
@@ -309,7 +328,9 @@ class MonographFile extends SubmissionFile {
 				MONOGRAPH_FILE_PRODUCTION_READY => 'submission/productionReady',
 				MONOGRAPH_FILE_LAYOUT => 'submission/layout',
 				MONOGRAPH_FILE_ATTACHMENT => 'attachment',
-				MONOGRAPH_FILE_SIGNOFF => 'submission/signoff');
+				MONOGRAPH_FILE_SIGNOFF => 'submission/signoff',
+				MONOGRAPH_FILE_BOOK_DOCUMENT => 'submission/bookDocument'
+		);
 
 		assert(isset($fileStageToPath[$fileStage]));
 		return $fileStageToPath[$fileStage];

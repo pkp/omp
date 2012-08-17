@@ -1,13 +1,13 @@
 <?php
 
 /**
- * @file controllers/grid/settings/library/LibraryFileGridRow.inc.php
+ * @file controllers/grid/files/LibraryFileGridRow.inc.php
  *
  * Copyright (c) 2003-2012 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class LibraryFileGridRow
- * @ingroup controllers_grid_settings_library
+ * @ingroup controllers_grid_files
  *
  * @brief Handle library file grid row requests.
  */
@@ -20,12 +20,16 @@ import('lib.pkp.classes.linkAction.request.RemoteActionConfirmationModal');
 
 class LibraryFileGridRow extends GridRow {
 	/** @var $fileType int LIBRARY_FILE_TYPE_... */
-	var $fileType;
+	var $_fileType;
+
+	/** is the grid row read only **/
+	var $_canEdit;
 
 	/**
 	 * Constructor
 	 */
-	function LibraryFileGridRow() {
+	function LibraryFileGridRow($canEdit = false) {
+		$this->_canEdit = $canEdit;
 		parent::GridRow();
 	}
 
@@ -37,11 +41,11 @@ class LibraryFileGridRow extends GridRow {
 	 * @return fileType
 	 */
 	function getFileType() {
-		return $this->fileType;
+		return $this->_fileType;
 	}
 
 	function setFileType($fileType) {
-		$this->fileType = $fileType;
+		$this->_fileType = $fileType;
 	}
 
 	//
@@ -56,17 +60,14 @@ class LibraryFileGridRow extends GridRow {
 
 		$this->setFileType($request->getUserVar('fileType'));
 
-		// add Grid Row Actions
-		$this->setTemplate('controllers/grid/gridRowWithActions.tpl');
-
 		// Is this a new row or an existing row?
 		$fileId = $this->getId();
-		if (!empty($fileId)) {
+
+		if (!empty($fileId) && $this->_canEdit) {
 			// Actions
 			$router =& $request->getRouter();
 			$actionArgs = array(
 				'fileId' => $fileId,
-				'fileType' => $this->getFileType()
 			);
 			$this->addAction(
 				new LinkAction(
@@ -92,6 +93,9 @@ class LibraryFileGridRow extends GridRow {
 					'delete'
 				)
 			);
+
+			// editable, so use a template with row actions.
+			$this->setTemplate('controllers/grid/gridRowWithActions.tpl');
 		}
 	}
 }

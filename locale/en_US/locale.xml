@@ -251,6 +251,7 @@
 	<message key="grid.action.bookInfo">Submission Info</message>
 	<message key="grid.action.moreAnnouncements">Go to press announcements page</message>
 	<message key="grid.action.monographEmail">Click to read this email</message>
+	<message key="grid.action.viewLibrary">View Document Library</message>
 
 	<!-- Used in submission review -->
 	<message key="reviewer.reviewSteps.request">1. Request</message>

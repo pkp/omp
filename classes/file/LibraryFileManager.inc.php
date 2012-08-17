@@ -110,7 +110,6 @@ class LibraryFileManager extends PrivateFileManager {
 	 */
 	function getFileSuffixFromType($type) {
 		$typeSuffixMap =& $this->getTypeSuffixMap();
-		if (!isset($typeSuffixMap[$type])) fatalError('Invalid library file type!');
 		return $typeSuffixMap[$type];
 	}
 
@@ -120,11 +119,11 @@ class LibraryFileManager extends PrivateFileManager {
 	 */
 	function &getTypeSuffixMap() {
 		static $map = array(
-			LIBRARY_FILE_TYPE_SUBMISSION => 'LSB',
-			LIBRARY_FILE_TYPE_REVIEW => 'LRV',
-			LIBRARY_FILE_TYPE_PRODUCTION => 'LPR',
-			LIBRARY_FILE_TYPE_PRODUCTION_TEMPLATE => 'LPT',
-			LIBRARY_FILE_TYPE_EDITORIAL => 'LED'
+			LIBRARY_FILE_TYPE_CONTRACT => 'CON',
+			LIBRARY_FILE_TYPE_MARKETING => 'MAR',
+			LIBRARY_FILE_TYPE_PERMISSION => 'PER',
+			LIBRARY_FILE_TYPE_REPORT => 'REP',
+			LIBRARY_FILE_TYPE_OTHER => 'OTH'
 		);
 		return $map;
 	}
@@ -135,8 +134,11 @@ class LibraryFileManager extends PrivateFileManager {
 	 */
 	function getNameFromType($type) {
 		$typeNameMap =& $this->getTypeNameMap();
-		if (!isset($typeNameMap[$type])) fatalError('Invalid library file type!');
-		return $typeNameMap[$type];
+		if (isset($typeNameMap[$type])) {
+			return $typeNameMap[$type];
+		} else {
+			return false;
+		}
 	}
 
 	/**
@@ -145,11 +147,11 @@ class LibraryFileManager extends PrivateFileManager {
 	 */
 	function &getTypeTitleKeyMap() {
 		static $map = array(
-			LIBRARY_FILE_TYPE_SUBMISSION => 'manager.setup.submissionLibrary',
-			LIBRARY_FILE_TYPE_REVIEW => 'manager.setup.reviewLibrary',
-			LIBRARY_FILE_TYPE_PRODUCTION => 'manager.setup.productionLibrary',
-			LIBRARY_FILE_TYPE_PRODUCTION_TEMPLATE => 'manager.setup.productionTemplateLibrary',
-			LIBRARY_FILE_TYPE_EDITORIAL => 'manager.setup.editorialLibrary'
+			LIBRARY_FILE_TYPE_CONTRACT => 'settings.libraryFiles.category.contracts',
+			LIBRARY_FILE_TYPE_MARKETING => 'settings.libraryFiles.category.marketing',
+			LIBRARY_FILE_TYPE_PERMISSION => 'settings.libraryFiles.category.permissions',
+			LIBRARY_FILE_TYPE_REPORT => 'settings.libraryFiles.category.reports',
+			LIBRARY_FILE_TYPE_OTHER => 'settings.libraryFiles.category.other'
 		);
 		return $map;
 	}
@@ -160,33 +162,7 @@ class LibraryFileManager extends PrivateFileManager {
 	 */
 	function getTitleKeyFromType($type) {
 		$typeTitleKeyMap =& $this->getTypeTitleKeyMap();
-		if (!isset($typeTitleKeyMap[$type])) fatalError('Invalid library file type!');
 		return $typeTitleKeyMap[$type];
-	}
-
-	/**
-	 * Get the type => locale key mapping array
-	 * @return array
-	 */
-	function &getTypeDescriptionKeyMap() {
-		static $map = array(
-			LIBRARY_FILE_TYPE_SUBMISSION => 'manager.setup.submissionLibraryDescription',
-			LIBRARY_FILE_TYPE_REVIEW => 'manager.setup.reviewLibraryDescription',
-			LIBRARY_FILE_TYPE_PRODUCTION => 'manager.setup.productionLibraryDescription',
-			LIBRARY_FILE_TYPE_PRODUCTION_TEMPLATE => 'manager.setup.productionTemplateLibraryDescription',
-			LIBRARY_FILE_TYPE_EDITORIAL => 'manager.setup.editorialLibraryDescription'
-		);
-		return $map;
-	}
-
-	/**
-	 * Get the display name locale key from the type description
-	 * @param $type int LIBRARY_FILE_TYPE_...
-	 */
-	function getDescriptionKeyFromType($type) {
-		$typeDescriptionKeyMap =& $this->getTypeDescriptionKeyMap();
-		if (!isset($typeDescriptionKeyMap[$type])) fatalError('Invalid library file type!');
-		return $typeDescriptionKeyMap[$type];
 	}
 
 	/**
@@ -195,11 +171,11 @@ class LibraryFileManager extends PrivateFileManager {
 	 */
 	function &getTypeNameMap() {
 		static $typeNameMap = array(
-			LIBRARY_FILE_TYPE_REVIEW => 'review',
-			LIBRARY_FILE_TYPE_PRODUCTION => 'production',
-			LIBRARY_FILE_TYPE_PRODUCTION_TEMPLATE => 'productionTemplate',
-			LIBRARY_FILE_TYPE_EDITORIAL => 'editorial',
-			LIBRARY_FILE_TYPE_SUBMISSION => 'submission'
+			LIBRARY_FILE_TYPE_CONTRACT => 'contacts',
+			LIBRARY_FILE_TYPE_MARKETING => 'marketing',
+			LIBRARY_FILE_TYPE_PERMISSION => 'permissions',
+			LIBRARY_FILE_TYPE_REPORT => 'reports',
+			LIBRARY_FILE_TYPE_OTHER => 'other',
 		);
 		return $typeNameMap;
 	}

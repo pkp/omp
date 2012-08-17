@@ -23,12 +23,19 @@
 	{rdelim});
 </script>
 
-<form class="pkp_form" id="uploadForm" action="{url op="saveFile" fileType=$fileType}" method="post">
+<form class="pkp_form" id="uploadForm" action="{url op="saveFile"}" method="post">
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="libraryFileUploadNotification"}
 	<input type="hidden" name="temporaryFileId" id="temporaryFileId" value="" />
 	{fbvFormArea id="name"}
 		{fbvFormSection title="common.name" required=true}
-			{fbvElement type="text" multilingual="true" id="libraryFileName" value=$libraryFileName maxlength="120" size=$fbvStyles.size.LARGE}
+			{fbvElement type="text" multilingual="true" id="libraryFileName" value=$libraryFileName maxlength="120"}
+		{/fbvFormSection}
+	{/fbvFormArea}
+
+	{fbvFormArea id="type"}
+		{fbvFormSection title="common.type" required=true}
+			{translate|assign:"defaultLabel" key="common.chooseOne"}
+			{fbvElement type="select" from=$fileTypes id="fileType" selected=$fileType defaultValue="" defaultLabel=$defaultLabel}
 		{/fbvFormSection}
 	{/fbvFormArea}
 

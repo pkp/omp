@@ -19,9 +19,6 @@
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="reviewStageFormNotification"}
 	{include file="controllers/tab/settings/wizardMode.tpl" wizardMode=$wizardMode}
 
-	{url|assign:reviewLibraryGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.library.LibraryFileGridHandler" op="fetchGrid" fileType=$smarty.const.LIBRARY_FILE_TYPE_REVIEW}
-	{load_url_in_div id="reviewLibraryGridDiv" url=$reviewLibraryGridUrl}
-
 	<div {if $wizardMode}class="pkp_form_hidden"{/if}>
 		{fbvFormArea id="reviewOptions" title="manager.setup.reviewOptions" class="border"}
 			<!-- FIXME: also, fbvStyles.size.SMALL needs to be switched to TINY once there's a TINY option available -->

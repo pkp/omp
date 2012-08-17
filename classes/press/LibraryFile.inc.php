@@ -13,11 +13,11 @@
  * @brief Library file class.
  */
 
-define('LIBRARY_FILE_TYPE_SUBMISSION',		0x00001);
-define('LIBRARY_FILE_TYPE_REVIEW',		0x00002);
-define('LIBRARY_FILE_TYPE_PRODUCTION',		0x00003);
-define('LIBRARY_FILE_TYPE_PRODUCTION_TEMPLATE',	0x00004);
-define('LIBRARY_FILE_TYPE_EDITORIAL',		0x00005);
+define('LIBRARY_FILE_TYPE_CONTRACT',	0x00001);
+define('LIBRARY_FILE_TYPE_MARKETING',	0x00002);
+define('LIBRARY_FILE_TYPE_PERMISSION',	0x00003);
+define('LIBRARY_FILE_TYPE_REPORT',		0x00004);
+define('LIBRARY_FILE_TYPE_OTHER',		0x00005);
 
 class LibraryFile extends DataObject {
 	/**
@@ -186,6 +186,16 @@ class LibraryFile extends DataObject {
 	function getNiceFileSize() {
 		$fileManager = new FileManager();
 		return $fileManager->getNiceFileSize($this->getData('fileSize'));
+	}
+
+	/**
+	 * Get the file's document type (enumerated types)
+	 * @return string
+	 */
+	function getDocumentType() {
+		import('lib.pkp.classes.file.FileManager');
+		$fileManager = new FileManager();
+		return $fileManager->getDocumentType($this->getFileType());
 	}
 }
 

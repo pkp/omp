@@ -15,9 +15,6 @@
 import('controllers.grid.settings.library.form.LibraryFileForm');
 
 class EditLibraryFileForm extends LibraryFileForm {
-	/** the type of file being uploaded LIBRARY_FILE_TYPE_... */
-	var $fileType;
-
 	/** the file being edited, or null for new */
 	var $libraryFile;
 
@@ -30,11 +27,12 @@ class EditLibraryFileForm extends LibraryFileForm {
 	 * @param $fileType int LIBRARY_FILE_TYPE_...
 	 * @param $fileId int optional
 	 */
-	function EditLibraryFileForm($pressId, $fileType, $fileId) {
-		parent::LibraryFileForm('controllers/grid/settings/library/form/editFileForm.tpl', $pressId, $fileType);
+	function EditLibraryFileForm($pressId, $fileId) {
+		parent::LibraryFileForm('controllers/grid/settings/library/form/editFileForm.tpl', $pressId);
 		$libraryFileDao =& DAORegistry::getDAO('LibraryFileDAO');
 		$this->libraryFile =& $libraryFileDao->getById($fileId);
-		if (!$this->libraryFile || $this->libraryFile->getPressId() !== $this->pressId || (int) $this->libraryFile->getType() !== (int) $this->fileType) {
+
+		if (!$this->libraryFile || $this->libraryFile->getPressId() !== $this->pressId) {
 			fatalError('Invalid library file!');
 		}
 	}
@@ -54,6 +52,7 @@ class EditLibraryFileForm extends LibraryFileForm {
 	 */
 	function execute() {
 		$this->libraryFile->setName($this->getData('libraryFileName'), null); // Localized
+		$this->libraryFile->setType($this->getData('fileType'));
 
 		$libraryFileDao =& DAORegistry::getDAO('LibraryFileDAO');
 		$libraryFileDao->updateObject($this->libraryFile);

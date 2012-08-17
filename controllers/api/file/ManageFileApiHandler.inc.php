@@ -128,11 +128,12 @@ class ManageFileApiHandler extends Handler {
 				import('classes.log.MonographEventLogEntry'); // constants
 				MonographLog::logEvent($request, $monograph, MONOGRAPH_LOG_LAST_REVISION_DELETED, 'submission.event.lastRevisionDeleted', array('title' => $monographFile->getOriginalFileName(), 'submissionId' => $monograph->getId(), 'username' => $user->getUsername()));
 			}
-			return DAO::getDataChangedEvent($monographFile->getFileId());
-		} else {
-			$json = new JSONMessage(false);
-			return $json->getString();
-		}
+
+			return DAO::getDataChangedEvent();
+			} else {
+				$json = new JSONMessage(false);
+				return $json->getString();
+			}
 	}
 }
 

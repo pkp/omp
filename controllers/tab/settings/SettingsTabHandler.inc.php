@@ -108,6 +108,7 @@ class SettingsTabHandler extends Handler {
 					// Pass to template if we are in wizard mode.
 					$templateMgr->assign('wizardMode', $this->getWizardMode());
 				}
+				$templateMgr->assign('canEdit', true);
 				return $templateMgr->fetchJson($this->_getTabTemplate());
 			} else {
 				$tabForm = $this->getTabForm();

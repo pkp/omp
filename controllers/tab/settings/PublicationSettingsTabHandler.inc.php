@@ -27,7 +27,7 @@ class PublicationSettingsTabHandler extends ManagerSettingsTabHandler {
 			'genres' => 'controllers/tab/settings/genres.tpl',
 			'submissionStage' => 'controllers.tab.settings.submissionStage.form.SubmissionStageForm',
 			'reviewStage' => 'controllers.tab.settings.reviewStage.form.ReviewStageForm',
-			'editorialStage' => 'controllers/tab/settings/editorialStage.tpl',
+			'library' => 'controllers/tab/settings/library.tpl',
 			'productionStage' => 'controllers.tab.settings.productionStage.form.ProductionStageForm',
 			'emailTemplates' => 'controllers.tab.settings.emailTemplates.form.EmailTemplatesForm'
 		));

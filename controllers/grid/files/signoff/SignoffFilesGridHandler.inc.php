@@ -59,7 +59,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 			array(
 				'fetchGrid', 'fetchCategory', 'fetchRow', 'returnFileRow', 'returnSignoffRow',
 				'addAuditor', 'saveAddAuditor', 'getAuditorAutocomplete',
-				'signOffsignOff', 'deleteSignoff'
+				'signOffsignOff', 'deleteSignoff', 'viewLibrary'
 			)
 		);
 		parent::CategoryGridHandler();
@@ -593,6 +593,20 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 		}
 		// Redraw the row.
 		return DAO::getDataChangedEvent($rowSignoff->getId(), $rowSignoff->getAssocId());
+	}
+
+
+	/**
+	 * Load the (read only) press file library.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return string Serialized JSON object
+	 */
+	function viewLibrary($args, &$request) {
+
+		$templateMgr =& TemplateManager::getManager();
+		$templateMgr->assign('canEdit', false);
+		return $templateMgr->fetchJson('controllers/tab/settings/library.tpl');
 	}
 }
 

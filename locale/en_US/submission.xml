@@ -50,6 +50,7 @@
 	<message key="submission.metadata">Metadata</message>
 	<message key="submission.supportingAgencies">Supporting Agencies</message>
 	<message key="submission.previousAuthorEmail">Previous Email</message>
+	<message key="submission.bookDocuments">Book Documents</message>
 	<message key="grid.action.addChapter">Create a new chapter</message>
 	<message key="grid.action.editChapter">Edit this chapter</message>
 	<message key="grid.action.deleteChapter">Delete this chapter</message>
@@ -136,6 +137,8 @@
 	<message key="submission.upload.userGroup">Upload this file in my role as...</message>
 	<message key="submission.upload.userGroupDescription">If you are submitting an Edited Volume, you should upload all volume chapters individually, under your role as volume editor.</message>
 	<message key="submission.upload.selectBookElement">Select book element</message>
+	<message key="submission.upload.uploadLibraryFile">Upload a Library File</message>
+	<message key="submission.upload.libraryCategory">Library Category</message>
 	
 	<!-- File uploads -->
 	<message key="submission.upload.finalDraft">Upload File</message>

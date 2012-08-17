@@ -1,37 +1,31 @@
 <?php
 
 /**
- * @file controllers/grid/settings/library/LibraryFileGridHandler.inc.php
+ * @file controllers/grid/settings/library/LibraryFileAdminGridHandler.inc.php
  *
  * Copyright (c) 2003-2012 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class LibraryFileGridHandler
+ * @class LibraryFileAdminGridHandler
  * @ingroup controllers_grid_settings_library
  *
  * @brief Handle library file grid requests.
  */
 
-import('controllers.grid.settings.SetupGridHandler');
-import('controllers.grid.settings.library.LibraryFileGridRow');
-import('classes.press.LibraryFile');
+import('controllers.grid.files.LibraryFileGridHandler');
+import('controllers.grid.settings.library.LibraryFileAdminGridDataProvider');
 
-// Link action & modal classes
-import('lib.pkp.classes.linkAction.request.AjaxModal');
 
-class LibraryFileGridHandler extends SetupGridHandler {
-	/** the FileType for this grid */
-	var $fileType;
-
+class LibraryFileAdminGridHandler extends LibraryFileGridHandler {
 	/**
 	 * Constructor
 	 */
-	function LibraryFileGridHandler() {
-		parent::SetupGridHandler();
+	function LibraryFileAdminGridHandler() {
+
+		parent::LibraryFileGridHandler(new LibraryFileAdminGridDataProvider(true));
 		$this->addRoleAssignment(
 			array(ROLE_ID_PRESS_MANAGER),
 			array(
-				'fetchGrid', 'fetchRow', // Grid-level actions
 				'addFile', 'uploadFile', 'saveFile', // Adding new library files
 				'editFile', 'updateFile', // Editing existing library files
 				'deleteFile'
@@ -43,109 +37,40 @@ class LibraryFileGridHandler extends SetupGridHandler {
 	//
 	// Getters/Setters
 	//
-	/**
-	 * Get the file type
-	 * @return int LIBRARY_FILE_TYPE_...
-	 */
-	function getFileType() {
-		return $this->fileType;
-	}
 
-	/**
-	 * Set the file type
-	 * @param $fileType int LIBRARY_FILE_TYPE_...
-	 */
-	function setFileType($fileType)	{
-		$this->fileType = (int) $fileType;
-	}
 
 	//
 	// Overridden template methods
 	//
+
 	/*
 	 * Configure the grid
 	 * @param $request PKPRequest
 	 */
 	function initialize(&$request) {
+
 		parent::initialize($request);
+		// determine if this grid is read only.
+		$this->setCanEdit((boolean) $request->getUserVar('canEdit'));
 
 		$router =& $request->getRouter();
-		$context =& $router->getContext($request);
-
-		import('classes.file.LibraryFileManager');
-		$libraryFileManager = new LibraryFileManager($context->getId());
-
-		// Fetch and validate fileType (validated in getNameFromType)
-		$fileType = (int) $request->getUserVar('fileType');
-		$this->setFileType($fileType);
-		$name = $libraryFileManager->getNameFromType($this->getFileType());
-
-		// Set name and description
-		$this->setTitle($libraryFileManager->getTitleKeyFromType($this->getFileType()));
-		$this->setInstructions($libraryFileManager->getDescriptionKeyFromType($this->getFileType()));
-
-		// Basic grid configuration
-		$this->setId('libraryFile' . ucwords(strtolower_codesafe($name)));
-
-		AppLocale::requireComponents(
-			LOCALE_COMPONENT_PKP_COMMON,
-			LOCALE_COMPONENT_APPLICATION_COMMON,
-			LOCALE_COMPONENT_PKP_SUBMISSION
-		);
-
-		// Elements to be displayed in the grid
-		$libraryFileDao =& DAORegistry::getDAO('LibraryFileDAO');
-		$libraryFiles =& $libraryFileDao->getByPressId($context->getId(), $this->getFileType());
-		$this->setGridDataElements($libraryFiles);
 
 		// Add grid-level actions
-		$this->addAction(
-			new LinkAction(
-				'addFile',
-				new AjaxModal(
-					$router->url($request, null, null, 'addFile', null, array('fileType' => $this->getFileType())),
+		if ($this->canEdit()) {
+			$this->addAction(
+				new LinkAction(
+					'addFile',
+					new AjaxModal(
+							$router->url($request, null, null, 'addFile'),
+							__('grid.action.addFile'),
+							'modal_add_file'
+					),
 					__('grid.action.addFile'),
-					'modal_add_file'
-				),
-				__('grid.action.addFile'),
-				'add'
-			)
-		);
-
-		// Columns
-		// Basic grid row configuration
-		import('controllers.grid.settings.library.LibraryFileGridCellProvider');
-		$this->addColumn(
-			new GridColumn(
-				'files',
-				'grid.libraryFiles.column.files',
-				null,
-				'controllers/grid/gridCell.tpl',
-				new LibraryFileGridCellProvider()
-			)
-		);
+					'add'
+				)
+			);
+		}
 	}
-
-	//
-	// Overridden methods from GridHandler
-	//
-	/**
-	 * Get the row handler - override the default row handler
-	 * @return LibraryFileGridRow
-	 */
-	function &getRowInstance() {
-		$row = new LibraryFileGridRow();
-		return $row;
-	}
-
-	/**
-	 * @see GridHandler::getRequestArgs()
-	 */
-	function getRequestArgs() {
-		$requestArgs = array_merge(parent::getRequestArgs(), array('fileType' => $this->getFileType()));
-		return $requestArgs;
-	}
-
 
 	//
 	// Public File Grid Actions
@@ -161,7 +86,7 @@ class LibraryFileGridHandler extends SetupGridHandler {
 		$context = $request->getContext();
 
 		import('controllers.grid.settings.library.form.NewLibraryFileForm');
-		$fileForm = new NewLibraryFileForm($context->getId(), $this->getFileType());
+		$fileForm = new NewLibraryFileForm($context->getId());
 		$fileForm->initData();
 
 		$json = new JSONMessage(true, $fileForm->fetch($request));
@@ -206,14 +131,14 @@ class LibraryFileGridHandler extends SetupGridHandler {
 		$user =& $request->getUser();
 
 		import('controllers.grid.settings.library.form.NewLibraryFileForm');
-		$fileForm = new NewLibraryFileForm($context->getId(), $this->getFileType());
+		$fileForm = new NewLibraryFileForm($context->getId());
 		$fileForm->readInputData();
 
 		if ($fileForm->validate()) {
 			$fileId = $fileForm->execute($user->getId());
 
 			// Let the calling grid reload itself
-			return DAO::getDataChangedEvent($fileId);
+			return DAO::getDataChangedEvent();
 		}
 
 		$json = new JSONMessage(false);
@@ -235,7 +160,7 @@ class LibraryFileGridHandler extends SetupGridHandler {
 		$context = $request->getContext();
 
 		import('controllers.grid.settings.library.form.EditLibraryFileForm');
-		$fileForm = new EditLibraryFileForm($context->getId(), $this->getFileType(), $fileId);
+		$fileForm = new EditLibraryFileForm($context->getId(), $fileId);
 		$fileForm->initData();
 
 		$json = new JSONMessage(true, $fileForm->fetch($request));
@@ -256,14 +181,14 @@ class LibraryFileGridHandler extends SetupGridHandler {
 		$context = $request->getContext();
 
 		import('controllers.grid.settings.library.form.EditLibraryFileForm');
-		$fileForm = new EditLibraryFileForm($context->getId(), $this->getFileType(), $fileId);
+		$fileForm = new EditLibraryFileForm($context->getId(), $fileId);
 		$fileForm->readInputData();
 
 		if ($fileForm->validate()) {
 			$fileForm->execute();
 
 			// Let the calling grid reload itself
-			return DAO::getDataChangedEvent($fileId);
+			return DAO::getDataChangedEvent();
 		}
 
 		$json = new JSONMessage(false);
@@ -286,7 +211,7 @@ class LibraryFileGridHandler extends SetupGridHandler {
 			$libraryFileManager = new LibraryFileManager($press->getId());
 			$libraryFileManager->deleteFile($fileId);
 
-			return DAO::getDataChangedEvent($fileId);
+			return DAO::getDataChangedEvent();
 		}
 
 		$json = new JSONMessage(false);

@@ -18,9 +18,6 @@
 <form class="pkp_form" id="productionStageForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.PublicationSettingsTabHandler" op="saveFormData" tab="productionStage"}">
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="productionStageFormNotification"}
 
-	{url|assign:productionLibraryGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.library.LibraryFileGridHandler" op="fetchGrid" fileType=$smarty.const.LIBRARY_FILE_TYPE_PRODUCTION}
-	{load_url_in_div id="productionLibraryGridDiv" url=$productionLibraryGridUrl}
-
 	{fbvFormArea id="publisherInformation"}
 		{fbvFormSection id="publisher" label="manager.settings.publisher"}
 			{fbvElement type="text" name="publisher" required="true" id="publisher" value=$publisher maxlength="255"}
@@ -40,11 +37,8 @@
 			{fbvElement type="text" id="codeValue" value="$codeValue"}
 		{/fbvFormSection}
 	{/fbvFormArea}
-	
-	<div class="separator"></div>
 
-	{url|assign:productionTemplateLibraryUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.library.LibraryFileGridHandler" op="fetchGrid" fileType=$smarty.const.LIBRARY_FILE_TYPE_PRODUCTION_TEMPLATE}
-	{load_url_in_div id="productionTemplateLibraryDiv" url=$productionTemplateLibraryUrl}
+	<div class="separator"></div>
 
 	{if !$wizardMode}
 		{fbvFormButtons id="productionStageFormSubmit" submitText="common.save" hideCancel=true}

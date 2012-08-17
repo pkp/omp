@@ -120,6 +120,16 @@
 			</div>
 		</div>
 	{/if}
+
+	{if array_key_exists($smarty.const.WORKFLOW_STAGE_ID_SUBMISSION, $accessibleWorkflowStages)}
+		<div class="pkp_authorDashboard_stageContainer" id="bookDocuments">
+			<h3><a href="#">{translate key='submission.bookDocuments'}</a></h3>
+			<div id="bookDocumentsContent">
+				{url|assign:bookDocumentsGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.bookDocuments.BookDocumentsFilesGridHandler" op="fetchGrid" monographId=$monograph->getId()}
+				{load_url_in_div id="bookDocumentsGridDiv" url=$bookDocumentsGridUrl}
+			</div>
+		</div>
+	{/if}
 </div>
 
 {include file="common/footer.tpl"}
