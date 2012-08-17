@@ -62,6 +62,25 @@ class Series extends DataObject {
 	}
 
 	/**
+	 * Get the series full title (with title and subtitle).
+	 * @return string
+	 */
+	function getLocalizedFullTitle() {
+		$fullTitle = null;
+		if ($prefix = $this->getLocalizedPrefix()) {
+			$fullTitle = $prefix . ' ';
+		}
+
+		$fullTitle .= $this->getLocalizedTitle();
+
+		if ($subtitle = $this->getLocalizedSubtitle()) {
+			$fullTitle .= ': ' . $subtitle;
+		}
+
+		return $fullTitle;
+	}
+
+	/**
 	 * Get title of series.
 	 * @param $locale string
 	 * @return string

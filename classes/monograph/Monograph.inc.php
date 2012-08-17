@@ -224,17 +224,18 @@ class Monograph extends Submission {
 	/**
 	 * Get the monograph full title (with prefix, title
 	 * and subtitle).
+	 * @return string
 	 */
 	function getLocalizedFullTitle() {
 		$fullTitle = null;
-		if ($this->getLocalizedPrefix()) {
-			$fullTitle = $this->getLocalizedPrefix() . ' ';
+		if ($prefix = $this->getLocalizedPrefix()) {
+			$fullTitle = $prefix . ' ';
 		}
 
 		$fullTitle .= $this->getLocalizedTitle();
 
-		if ($this->getLocalizedSubtitle()) {
-			$fullTitle .= ': ' . $this->getLocalizedSubtitle();
+		if ($subtitle = $this->getLocalizedSubtitle()) {
+			$fullTitle .= ': ' . $subtitle;
 		}
 
 		return $fullTitle;
