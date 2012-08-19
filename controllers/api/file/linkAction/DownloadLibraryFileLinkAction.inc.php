@@ -24,8 +24,11 @@ class DownloadLibraryFileLinkAction extends LinkAction {
 	function DownloadLibraryFileLinkAction(&$request, &$libraryFile) {
 		// Instantiate the redirect action request.
 		$router =& $request->getRouter();
-		import('lib.pkp.classes.linkAction.request.RedirectAction');
-		$redirectRequest = new RedirectAction(
+		import('lib.pkp.classes.linkAction.request.PostAndRedirectAction');
+		$redirectRequest = new PostAndRedirectAction(
+			$router->url(
+				$request, null, 'api.file.FileApiHandler', 'enableLinkAction',
+				null, $this->getActionArgs($libraryFile)),
 			$router->url(
 				$request, null, 'api.file.FileApiHandler', 'downloadLibraryFile',
 				null, $this->getActionArgs($libraryFile))
@@ -43,7 +46,7 @@ class DownloadLibraryFileLinkAction extends LinkAction {
 	 * @param $libraryFile LibraryFile
 	 * @return array
 	 */
-	function getActionArgs(&$libraryFile, $stageId = null) {
+	function getActionArgs(&$libraryFile) {
 		assert(is_a($libraryFile, 'LibraryFile'));
 
 		// Create the action arguments array.

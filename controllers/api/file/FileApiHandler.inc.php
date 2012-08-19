@@ -28,7 +28,7 @@ class FileApiHandler extends Handler {
 		parent::Handler();
 		$this->addRoleAssignment(
 			array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_ASSISTANT, ROLE_ID_REVIEWER, ROLE_ID_AUTHOR),
-			array('downloadFile', 'downloadLibraryFile', 'viewFile', 'downloadAllFiles', 'recordDownload')
+			array('downloadFile', 'downloadLibraryFile', 'viewFile', 'downloadAllFiles', 'recordDownload', 'enableLinkAction')
 		);
 	}
 
@@ -172,6 +172,18 @@ class FileApiHandler extends Handler {
 			$fileId = null;
 		}
 
+		return $this->enableLinkAction($args, $request);
+	}
+
+	/**
+	 * Returns a data changd event to re-enable the link action.  Refactored out of
+	 *  recordDownload since library files do not have downloads recorded and are in a
+	 *  different context.
+	 * @param $args aray
+	 * @param $request Request
+	 * @return string
+	 */
+	function enableLinkAction($args, &$request) {
 		return DAO::getDataChangedEvent();
 	}
 }
