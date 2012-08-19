@@ -21,7 +21,7 @@ class UploaderUserGroupGridColumn extends GridColumn {
 	/**
 	 * Constructor
 	 */
-	function UploaderUserGroupGridColumn(&$userGroup, $flags) {
+	function UploaderUserGroupGridColumn(&$userGroup, $flags = array()) {
 		$this->_userGroup =& $userGroup;
 		import('lib.pkp.classes.controllers.grid.ColumnBasedGridCellProvider');
 		$cellProvider = new ColumnBasedGridCellProvider();
