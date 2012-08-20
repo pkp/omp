@@ -76,18 +76,8 @@ class ChapterGridCategoryRow extends GridCategoryRow {
 						),
 						null,
 						'delete'
-					)
+					), GRID_ACTION_POSITION_ROW_LEFT
 				);
-
-				$this->addAction(new LinkAction(
-					'editChapter',
-					new AjaxModal(
-						$router->url($request, null, null, 'editChapter', null, $actionArgs),
-						__('submission.chapter.editChapter'),
-						'modal_edit'
-					),
-					$chapter->getLocalizedTitle()
-				), GRID_ACTION_POSITION_ROW_CLICK);
 			}
 
 		}
@@ -115,17 +105,6 @@ class ChapterGridCategoryRow extends GridCategoryRow {
 	 */
 	function isReadOnly() {
 		return $this->_readOnly;
-	}
-
-	/**
-	 * Use a label if the actions in the grid are disabled.
-	 * return string
-	 */
-	function getCategoryLabel() {
-		if ($this->isReadOnly())
-			return $this->getChapter()->getLocalizedTitle();
-		else
-			return '';
 	}
 }
 ?>
