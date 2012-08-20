@@ -1152,14 +1152,14 @@ div.pkp_controllers_grid td.first_column {
 }
 div.pkp_controllers_grid td.category { display:table-row; }
 div.pkp_controllers_grid td.no_border { border:none !important; }
-div.pkp_controllers_grid tr.category td {
-  line-height:32px;
-  height:32px;
-  font-size:100%;
+div.pkp_controllers_grid .default_category_style td {
+  font-size:120%;
+  text-transform:uppercase;
+  font-family:"Courier New", Courier, mono;
 }
-div.pkp_controllers_grid tr.category td:first-child {
+div.pkp_controllers_grid tr.category td.no_actions {
   top:0;
-  padding-left:10px;
+  padding-left:10px !important;
 }
 div.pkp_controllers_grid .wrapper { margin-bottom:30px; }
 div.pkp_controllers_grid .grid_header .pkp_grid_description { padding:10px; }
@@ -1207,7 +1207,6 @@ div.pkp_controllers_grid .row_actions a {
   float:left;
 }
 div.pkp_controllers_grid .row_actions a:before { margin:8px; }
-div.pkp_controllers_grid .category .row_actions a:before { margin:0px; }
 div.pkp_controllers_grid .row_file {
   width:100%;
   top:50%;
