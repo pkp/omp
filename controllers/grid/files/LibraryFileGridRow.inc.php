@@ -93,9 +93,6 @@ class LibraryFileGridRow extends GridRow {
 					'delete'
 				)
 			);
-
-			// editable, so use a template with row actions.
-			$this->setTemplate('controllers/grid/gridRowWithActions.tpl');
 		}
 	}
 }
