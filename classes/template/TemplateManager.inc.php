@@ -87,6 +87,13 @@ class TemplateManager extends PKPTemplateManager {
 					$this->addStyleSheet($this->request->getBaseUrl() . '/' . $publicFileManager->getPressFilesPath($press->getId()) . '/' . $pressStyleSheet['uploadName']);
 				}
 
+				// Include footer links if they have been defined.
+				$footerCategoryDao =& DAORegistry::getDAO('FooterCategoryDAO');
+				$footerCategories =& $footerCategoryDao->getNotEmptyByPressId($press->getId());
+				$this->assign_by_ref('footerCategories', $footerCategories->toArray());
+
+				$footerLinkDao =& DAORegistry::getDAO('FooterLinkDAO');
+				$this->assign('maxLinks', $footerLinkDao->getLargestCategoryTotalByPressId($press->getId()));
 				$this->assign('pageFooter', $press->getLocalizedSetting('pressPageFooter'));
 			} else {
 				// Add the site-wide logo, if set for this locale or the primary locale
