@@ -1349,7 +1349,7 @@ a.request_review { background-image:url(../lib/pkp/templates/images/structure/gr
   color:#222222;
   text-transform:none;
   font-weight:bold;
-  font-family:Lucida Grande, Lucida Sans, Arial, sans-serif;
+  font-family:Arial, Helvetica, sans-serif;
   font-size:100%;
   padding-left:0px;
   padding-bottom:5px;
@@ -1518,7 +1518,7 @@ a.pkp_common_disabled, a.pkp_common_disabled:hover { color:#666666; }
   border-color:white !important;
   border-width:0 0 0 0 !important;
   font-weight:normal !important;
-  font-family:Arial, helvetica, Courier !important;
+  font-family:Arial, Helvetica, sans-serif !important;
   font-size:12px !important;
 }
 .button.ui-state-hover, .ui-button.ui-state-hover, .button.ui-state-active, .ui-button.ui-state-active {
