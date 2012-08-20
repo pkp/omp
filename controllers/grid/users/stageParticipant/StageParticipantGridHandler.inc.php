@@ -285,7 +285,7 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 			import('classes.log.MonographLog');
 			MonographLog::logEvent($request, $monograph, MONOGRAPH_LOG_ADD_PARTICIPANT, 'submission.event.participantAdded', array('name' => $assignedUser->getFullName(), 'username' => $assignedUser->getUsername(), 'userGroupName' => $userGroup->getLocalizedName()));
 
-			return DAO::getDataChangedEvent($stageAssignmentId, $userGroupId);
+			return DAO::getDataChangedEvent($userGroupId);
 		} else {
 			$json = new JSONMessage(true, $form->fetch($request));
 			return $json->getString();
@@ -352,7 +352,7 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 		MonographLog::logEvent($request, $monograph, MONOGRAPH_LOG_REMOVE_PARTICIPANT, 'submission.event.participantRemoved', array('name' => $assignedUser->getFullName(), 'username' => $assignedUser->getUsername(), 'userGroupName' => $userGroup->getLocalizedName()));
 
 		// Redraw the category
-		return DAO::getDataChangedEvent($stageAssignment->getId(), $stageAssignment->getUserGroupId());
+		return DAO::getDataChangedEvent($stageAssignment->getUserGroupId());
 	}
 
 	/**
