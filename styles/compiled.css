@@ -498,6 +498,11 @@ a.sprite.manage:before {
   background-position:-1512px 0;
 }
 a.sprite.manage:hover:before { background-position:-1512px -24px; }
+a.sprite.merge_users:before {
+  margin-right:4px;
+  background-position:-312px 0;
+}
+a.sprite.merge_users:hover:before { background-position:-312px -24px; }
 .category.delete:before {
   margin-left:5px;
   background-position:-1008px 0;
@@ -533,6 +538,7 @@ a.sprite.manage:hover:before { background-position:-1512px -24px; }
 .large_sprite.modal_settings { background-position:-672px -48px; }
 .large_sprite.modal_warning { background-position:-720px -48px; }
 .large_sprite.modal_upgrade { background-position:-768px -48px; }
+.large_sprite.modal_merge_users { background-position:-816px -48px; }
 .large_sprite.modal_wizard { background-position:-1632px -48px; }
 .loading_container {
   text-align:center;
@@ -907,6 +913,7 @@ table.pkp_listing td.separator {
   width:99%;
   border:1px solid #cccccc;
   padding:2px;
+  margin-top:4px;
 }
 .pkp_form input:focus { outline:none; }
 .pkp_form textarea {
@@ -914,6 +921,7 @@ table.pkp_listing td.separator {
   width:99%;
   border:1px solid #cccccc;
   padding:2px;
+  margin-top:4px;
   height:10em;
 }
 .pkp_form textarea:focus { outline:none; }
@@ -923,6 +931,7 @@ table.pkp_listing td.separator {
   border:1px solid #cccccc;
   padding:2px;
   padding:3px;
+  margin-top:4px;
   margin-bottom:8px;
 }
 .pkp_form select:focus { outline:none; }
