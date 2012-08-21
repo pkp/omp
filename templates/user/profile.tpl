@@ -77,8 +77,8 @@
 				{/if}
 
 				{if $allowRegReviewer}
-					{fbvFormSection title="user.interests" for="interests"}
-						{fbvElement type="interests" id="interests" interestsKeywords=$interestsKeywords interestsTextOnly=$interestsTextOnly}
+					{fbvFormSection for="interests"}
+						{fbvElement type="interests" id="interests" interestsKeywords=$interestsKeywords interestsTextOnly=$interestsTextOnly label="user.interests"}
 					{/fbvFormSection}
 				{/if}
 
@@ -87,11 +87,10 @@
 				{/fbvFormSection}
 
 				{fbvFormSection}
-					{fbvElement type="textarea" label="user.biography" multilingual="true" name="biography" id="biography" value=$biography inline=true size=$fbvStyles.size.MEDIUM}
+					{capture assign="biographyLabel"}{translate key="user.biography"} {translate key="user.biography.description"}{/capture}
+					{fbvElement type="textarea" label="$biographyLabel" multilingual="true" name="biography" id="biography" value=$biography subLabelTranslate=false inline=true size=$fbvStyles.size.MEDIUM}
 					{fbvElement type="textarea" label="common.mailingAddress" name="mailingAddress" id="mailingAddress" value=$mailingAddress inline=true size=$fbvStyles.size.MEDIUM}
 				{/fbvFormSection}
-				<br />
-				<span class="instruct">{translate key="user.biography.description"}</span>
 
 				{fbvFormSection}
 					{fbvElement type="textarea" label="user.signature" multilingual="true" name="signature" id="signature" value=$signature size=$fbvStyles.size.MEDIUM}
