@@ -9,13 +9,18 @@
 
 {if $monographEmails && $monographEmails->getCount()}
 	<div class="pkp_monographEmails">
-		<h3>{translate key="editor.review.personalMessageFromEditor"}</h3>
+		<div class="pkp_controllers_grid">
+			<div class="grid_header_bar"><h3>{translate key="editor.review.personalMessageFromEditor"}</h3></div>
+		</div>
 		{assign var="monographEmail" value=$monographEmails->next()}
 		{include file="authorDashboard/monographEmail.tpl" monographEmail=$monographEmail}
 		{if $monographEmails->getCount() > 1} {* more than one, display the rest as a list *}
+
+		<div class="pkp_controllers_grid">
+			<div class="grid_header_bar"><h3>{translate key="submission.previousAuthorEmail"}</h3></div>
+		</div>
+
 			<table width="100%" class="pkp_listing">
-				<tr><td colspan="2">&nbsp;</td></tr>
-				<tr><td colspan="3"><h3>{translate key="submission.previousAuthorEmail"}</h3></td></tr>
 				<tr valign="top" class="heading">
 					<td>{translate key="common.date"}</td>
 					<td>{translate key="common.subject"}</td>

@@ -42,8 +42,8 @@
 			</ul>
 		</div>
 		<div class="pkp_helpers_align_left"><span class="h2">{$pageTitleTranslated}</span></div>
-
 		<div class="pkp_helpers_clear"></div>
+		<br />
 		{include file="controllers/notification/inPlaceNotification.tpl" notificationId="authorDashboardNotification" requestOptions=$authorDashboardNotificationRequestOptions}
 	</div>
 	{if array_key_exists($smarty.const.WORKFLOW_STAGE_ID_SUBMISSION, $accessibleWorkflowStages)}
