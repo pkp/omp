@@ -27,13 +27,13 @@
 	 * @param {Object} options Handler options.
 	 */
 	$.pkp.pages.authorDashboard.MonographEmailHandler =
-		function($monographEmailContainer, options) {
+			function($monographEmailContainer, options) {
 
 		this.parent($monographEmailContainer, options);
 
 		$monographEmailContainer.find('a[id^="monographEmail"]').click(
 				this.callbackWrapper(this.activateAction));
-	}
+	};
 	$.pkp.classes.Helper.inherits(
 			$.pkp.pages.authorDashboard.MonographEmailHandler,
 			$.pkp.controllers.linkAction.LinkActionHandler);

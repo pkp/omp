@@ -189,11 +189,11 @@
 			disabled: !this.inFeatureMode_,
 			items: 'li.pkp_manageCatalog_monograph:not(.not_sortable)',
 			update: this.callbackWrapper(this.sortUpdateHandler_),
-			start: function(e, ui){
-					$(ui.placeholder).slideUp();
-				},
-			change: function(e, ui){
-					$(ui.placeholder).hide().slideDown();
+			start: function(e, ui) {
+				$(ui.placeholder).slideUp();
+			},
+			change: function(e, ui) {
+				$(ui.placeholder).hide().slideDown();
 			}
 		});
 
