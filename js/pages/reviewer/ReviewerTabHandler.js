@@ -18,6 +18,8 @@ jQuery.pkp.pages.reviewer =
  * @brief A subclass of TabHandler for handling the reviewer tabs.
  */
 (function($) {
+
+
 	/**
 	 * @constructor
 	 *
@@ -37,7 +39,7 @@ jQuery.pkp.pages.reviewer =
 		// Attach the tabs grid refresh handler.
 		this.bind('setStep', this.setStepHandler);
 
-		this.getHtmlElement().tabs('option', 'disabled', this.getDisabledSteps(this.reviewIsCompleted_=='1'?4:1));
+		this.getHtmlElement().tabs('option', 'disabled', this.getDisabledSteps(this.reviewIsCompleted_ == '1' ? 4 : 1));
 	};
 	$.pkp.classes.Helper.inherits(
 			$.pkp.pages.reviewer.ReviewerTabHandler,
@@ -72,7 +74,7 @@ jQuery.pkp.pages.reviewer =
 			setStepHandler = function(sourceElement, event, stepNumber) {
 
 		this.getHtmlElement().tabs('option', 'disabled', this.getDisabledSteps(stepNumber));
-		this.getHtmlElement().tabs('option', 'selected', stepNumber-1);
+		this.getHtmlElement().tabs('option', 'selected', stepNumber - 1);
 	};
 
 
