@@ -47,7 +47,7 @@ class ReviewNotesLinkAction extends LinkAction {
 			'modal_information'
 		);
 
-		$icon = $reviewAssignment->getDateAcknowledged() ? 'notes_none' : 'notes';
+		$icon = $reviewAssignment->getDateAcknowledged() ? 'notes' : 'notes_new';
 		// Configure the link action.
 		parent::LinkAction(
 			'readReview', $ajaxModal,

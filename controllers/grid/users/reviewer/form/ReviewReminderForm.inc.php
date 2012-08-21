@@ -85,7 +85,7 @@ class ReviewReminderForm extends Form {
 		$this->setData('stageId', $reviewAssignment->getStageId());
 		$this->setData('reviewAssignmentId', $reviewAssignment->getId());
 		$this->setData('reviewAssignment', $reviewAssignment);
-		$this->setData('reviewerName', $reviewer->getFullName());
+		$this->setData('reviewerName', $reviewer->getFullName() . ' <' . $reviewer->getEmail() . '>');
 		$this->setData('message', $email->getBody() . "\n" . $press->getSetting('emailSignature'));
 	}
 
