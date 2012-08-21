@@ -44,9 +44,16 @@
 
 	<!-- Submission Type -->
 	{fbvFormSection list="true" label="submission.workType" description="submission.workType.description"}
-		{fbvElement type="radio" name="isEditedVolume" id="isEditedVolume-0" value="1" checked=$isEditedVolume label="submission.workType.editedVolume"}
-		{if $isEditedVolume}{assign var=notIsEditedVolume value=0}{else}{assign var=notIsEditedVolume value=1}{/if}
-		{fbvElement type="radio" name="isEditedVolume" id="isEditedVolume-1" value="0" checked=$notIsEditedVolume label="submission.workType.authoredWork"}
+		{if $workType eq $smarty.const.WORK_TYPE_EDITED_VOLUME}
+			{assign var=notIsEditedVolume value=0}
+			{assign var=isEditedVolume value=1}
+		{else}
+			{assign var=notIsEditedVolume value=1}
+			{assign var=isEditedVolume value=0}
+		{/if}
+		{$isEditedVolume}-{$notIsEditedVolume}
+		{fbvElement type="radio" name="workType" id="isEditedVolume-0" value=$smarty.const.WORK_TYPE_AUTHORED_WORK checked=$notIsEditedVolume label="submission.workType.authoredWork"}
+		{fbvElement type="radio" name="workType" id="isEditedVolume-1" value=$smarty.const.WORK_TYPE_EDITED_VOLUME  checked=$isEditedVolume label="submission.workType.editedVolume"}
 	{/fbvFormSection}
 
 	{if count($supportedSubmissionLocaleNames) == 1}

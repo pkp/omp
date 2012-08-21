@@ -118,7 +118,7 @@ class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
 				'seriesId' => $this->monograph->getSeriesId(),
 				'seriesPosition' => $this->monograph->getSeriesPosition(),
 				'locale' => $this->monograph->getLocale(),
-				'isEditedVolume' => $this->monograph->getWorkType() == WORK_TYPE_EDITED_VOLUME,
+				'workType' => $this->monograph->getWorkType(),
 				'commentsToEditor' => $this->monograph->getCommentsToEditor()
 			);
 		} else {
@@ -147,7 +147,7 @@ class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
 	 */
 	function readInputData() {
 		$vars = array(
-			'authorUserGroupId', 'locale', 'isEditedVolume', 'copyrightNoticeAgree', 'seriesId', 'seriesPosition', 'commentsToEditor', 'copyrightNoticeAgree'
+			'authorUserGroupId', 'locale', 'workType', 'copyrightNoticeAgree', 'seriesId', 'seriesPosition', 'commentsToEditor', 'copyrightNoticeAgree'
 		);
 		foreach ($this->press->getLocalizedSetting('submissionChecklist') as $key => $checklistItem) {
 			$vars[] = "checklist-$key";
@@ -171,6 +171,7 @@ class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
 			$this->monograph->setSeriesPosition($this->getData('seriesPosition'));
 			$this->monograph->setLocale($this->getData('locale'));
 			$this->monograph->setCommentsToEditor($this->getData('commentsToEditor'));
+            $this->monograph->setWorkType($this->getData('workType'));
 			if ($this->monograph->getSubmissionProgress() <= $this->step) {
 				$this->monograph->stampStatusModified();
 				$this->monograph->setSubmissionProgress($this->step + 1);
@@ -191,7 +192,7 @@ class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
 			$this->monograph->setSubmissionProgress($this->step + 1);
 			$this->monograph->setLanguage(String::substr($this->monograph->getLocale(), 0, 2));
 			$this->monograph->setCommentsToEditor($this->getData('commentsToEditor'));
-			$this->monograph->setWorkType($this->getData('isEditedVolume') ? WORK_TYPE_EDITED_VOLUME : WORK_TYPE_AUTHORED_WORK);
+			$this->monograph->setWorkType($this->getData('workType'));
 			$this->monograph->setStageId(WORKFLOW_STAGE_ID_SUBMISSION);
 			$this->monograph->setCopyrightNotice($press->getLocalizedSetting('copyrightNotice'), $this->getData('locale'));
 			// Insert the monograph
