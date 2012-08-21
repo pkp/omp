@@ -91,7 +91,7 @@ class ReviewerReviewForm extends Form {
 		$templateMgr->assign_by_ref('submission', $this->getReviewerSubmission());
 		$templateMgr->assign('reviewIsComplete', (boolean) $reviewAssignment->getDateCompleted());
 		$templateMgr->assign('step', $this->getStep());
-		return parent::fetch();
+		return parent::fetch($request);
 	}
 
 
