@@ -77,10 +77,6 @@ class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
 			$templateMgr->assign('copyrightNoticeAgree', true);
 		}
 
-		// If categories are configured for the press, present the LB.
-		$categoryDao =& DAORegistry::getDAO('CategoryDAO');
-		$templateMgr->assign('categoriesExist', $categoryDao->getCountByPressId($this->press->getId()) > 0);
-
 		// Get list of user's author user groups.  If its more than one, we'll need to display an author user group selector
 		$userGroupAssignmentDao =& DAORegistry::getDAO('UserGroupAssignmentDAO');
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
@@ -151,72 +147,13 @@ class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
 	 */
 	function readInputData() {
 		$vars = array(
-			'authorUserGroupId', 'locale', 'isEditedVolume', 'copyrightNoticeAgree', 'seriesId', 'seriesPosition', 'commentsToEditor', 'categories', 'copyrightNoticeAgree'
+			'authorUserGroupId', 'locale', 'isEditedVolume', 'copyrightNoticeAgree', 'seriesId', 'seriesPosition', 'commentsToEditor', 'copyrightNoticeAgree'
 		);
 		foreach ($this->press->getLocalizedSetting('submissionChecklist') as $key => $checklistItem) {
 			$vars[] = "checklist-$key";
 		}
 
 		$this->readUserVars($vars);
-		// Unpack the categories listbuilder data.
-		// (See insertEntry & co, implemented here.)
-
-		ListbuilderHandler::unpack($request, $this->getData('categories'));
-	}
-
-	/**
-	 * Associate a category with a monograph.
-	 * @see ListbuilderHandler::insertEntry
-	 */
-	function insertEntry(&$request, $newRowId) {
-
-		$application =& PKPApplication::getApplication();
-		$request =& $application->getRequest();
-
-		$categoryId = $newRowId['name'];
-		$categoryDao =& DAORegistry::getDAO('CategoryDAO');
-		$monographDao =& DAORegistry::getDAO('MonographDAO');
-		$press =& $request->getPress();
-		$monograph =& $this->monograph;
-
-		$category =& $categoryDao->getById($categoryId, $press->getId());
-		if (!$category) return true;
-
-		// Associate the category with the monograph
-		$monographDao->addCategory(
-			$monograph->getId(),
-			$categoryId
-		);
-	}
-
-	/**
-	 * Delete a category association.
-	 * @see ListbuilderHandler::deleteEntry
-	 */
-	function deleteEntry(&$request, $rowId) {
-		if ($rowId) {
-			$categoryDao =& DAORegistry::getDAO('CategoryDAO');
-			$monographDao =& DAORegistry::getDAO('MonographDAO');
-			$category =& $categoryDao->getById($rowId);
-			if (!is_a($category, 'Category')) {
-				assert(false);
-				return false;
-			}
-			$monograph =& $this->monograph;
-			$monographDao->removeCategory($monograph->getId(), $rowId);
-		}
-
-		return true;
-	}
-
-	/**
-	 * Update a category association.
-	 * @see ListbuilderHandler::updateEntry
-	 */
-	function updateEntry($request, $rowId, $newRowId) {
-
-		$this->deleteEntry($request, $rowId);
-		$this->insertEntry($request, $newRowId);
 	}
 
 	/**

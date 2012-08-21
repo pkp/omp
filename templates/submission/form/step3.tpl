@@ -36,6 +36,8 @@
 		{/if}
 	{/fbvFormArea}
 
+	{include file="submission/form/categories.tpl"}
+
 	{include file="submission/submissionMetadataFormFields.tpl"}
 
 	{fbvFormButtons id="step3Buttons" submitText="submission.submit.finishSubmission" confirmSubmit="submission.confirmSubmit"}

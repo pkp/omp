@@ -61,7 +61,7 @@
 		{/fbvFormSection}
 	{/if}{* count($supportedSubmissionLocaleNames) == 1 *}
 
-	{include file="submission/form/seriesAndCategories.tpl"}
+	{include file="submission/form/series.tpl"}
 
 	<!-- Submission checklist -->
 	{if $currentPress->getLocalizedSetting('submissionChecklist')}

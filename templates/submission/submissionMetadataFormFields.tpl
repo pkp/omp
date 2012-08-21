@@ -21,8 +21,8 @@
 	{/fbvFormSection}
 {/fbvFormArea}
 
-{fbvFormArea id="additionalDublinCore" class="border"}
-	{fbvFormSection label="monograph.type" for="type" description="monograph.title.tip"}
+{fbvFormArea id="additionalDublinCore" title="monograph.type" class="border"}
+	{fbvFormSection for="type" title="common.type" description="monograph.title.tip"}
 		{fbvElement type="text" multilingual=true name="type" id="type" value=$type maxlength="255" disabled=$readOnly}
 	{/fbvFormSection}
 	{fbvFormSection label="monograph.subjectClass" for="subjectClass" description="monograph.subjectClass.tip"}

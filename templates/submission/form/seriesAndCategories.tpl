@@ -11,33 +11,5 @@
  * controllers/modals/submissionMetadata/form/catalogEntrySubmissionReviewForm.tpl
  * controllers/modals/submissionMetadata/form/submissionMetadataViewForm.tpl
  *}
-<!-- Submission Placement -->
-{if $categoriesExist}
-	{if !$readOnly}
-		{assign var="monographCategoriesContainer" value="monographCategoriesContainer-"|uniqid|escape}
-		<div id={$monographCategoriesContainer}>
-			{url|assign:monographCategoriesUrl router=$smarty.const.ROUTE_COMPONENT component="submission.CategoriesListbuilderHandler" op="fetch" monographId=$monographId readOnly=$readOnly escape=false}
-			{load_url_in_div id=$monographCategoriesContainer url=$monographCategoriesUrl}
-		</div>
-	{else}
-		{if count($assignedCategories) > 0}
-			{fbvFormSection title="grid.category.categories" list=true}
-				{foreach from=$assignedCategories item=category}
-					<li>{$category->getLocalizedTitle()}</li>
-				{/foreach}
-			{/fbvFormSection}
-
-		{/if}
-	{/if}
-{/if}
-
-{if count($seriesOptions) > 1} {* only display the series picker if there are series configured for this press *}
-	{fbvFormSection label="series.series" description="submission.submit.placement.seriesDescription"}
-		{fbvElement type="select" id="seriesId" from=$seriesOptions selected=$seriesId translate=false disabled=$readOnly}
-	{/fbvFormSection}
-
-	{fbvFormSection label="submission.submit.seriesPosition" description="submission.submit.placement.seriesPositionDescription"}
-		{fbvElement type="text" id="seriesPosition" name="seriesPosition" value=$seriesPosition|escape maxlength="255" disabled=$readOnly}
-	{/fbvFormSection}
-{/if}
-	
+{include file="submission/form/categories.tpl"}
+{include file="submission/form/series.tpl"}
