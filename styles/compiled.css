@@ -900,6 +900,7 @@ table.pkp_listing td.separator {
   width:99%;
   border:1px solid #cccccc;
   padding:2px;
+  margin-top:4px;
 }
 .pkp_form input:focus { outline:none; }
 .pkp_form textarea {
@@ -907,6 +908,7 @@ table.pkp_listing td.separator {
   width:99%;
   border:1px solid #cccccc;
   padding:2px;
+  margin-top:4px;
   height:10em;
 }
 .pkp_form textarea:focus { outline:none; }
@@ -916,6 +918,7 @@ table.pkp_listing td.separator {
   border:1px solid #cccccc;
   padding:2px;
   padding:3px;
+  margin-top:4px;
   margin-bottom:8px;
 }
 .pkp_form select:focus { outline:none; }
