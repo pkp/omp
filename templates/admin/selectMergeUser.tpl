@@ -11,7 +11,7 @@
 {include file="common/header.tpl"}
 {/strip}
 
-<p>{if $gridParams['oldUserId'] != ''}{translate key="admin.mergeUsers.into.description"}{else}{translate key="admin.mergeUsers.from.description"}{/if}</p>
+<p>{if $gridParams.oldUserId}{translate key="admin.mergeUsers.into.description"}{else}{translate key="admin.mergeUsers.from.description"}{/if}</p>
 
 {url|assign:mergeUsersGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.admin.mergeUsers.MergeUsersGridHandler" op="fetchGrid" params=$gridParams escape=false}
 {load_url_in_div id="mergeUsersGridContainer" url=$mergeUsersGridUrl}
