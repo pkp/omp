@@ -38,12 +38,12 @@
 <div class="pkp_structure_subfoot">
 	<div class="pkp_structure_content">
 		<div class="unit size1of3">
-			<h4>{translate key="common.openMonographPress"}</h4>
+			<h4><a href="{url page="about" op="aboutThisPublishingSystem"}">{translate key="common.openMonographPress"}</a></h4>
 		</div>
 		<div class="unit size1of3">
 		</div>
 		<div class="unit size1of3 lastUnit">
-			<h4 class="pkp_helpers_align_right">{translate key="common.publicKnowledgeProject"}</h4>
+			<h4 class="pkp_helpers_align_right"><a href="http://pkp.sfu.ca">{translate key="common.publicKnowledgeProject"}</a></h4>
 		</div>
 	</div><!-- pkp_structure_content -->
 	<div class="pkp_structure_content">

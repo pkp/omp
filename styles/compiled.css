@@ -790,7 +790,14 @@ body {
   font-family:"Courier New", Courier, mono;
   color:#ffffff;
 }
-.pkp_structure_foot .pkp_structure_subfoot ul li a { color:#ffffff; }
+.pkp_structure_foot .pkp_structure_subfoot ul li a {
+  color:#ffffff;
+  text-decoration:none;
+}
+.pkp_structure_foot .pkp_structure_subfoot h4 a {
+  text-decoration:none;
+  color:#ffffff;
+}
 .pkp_linkActions a.remove_item { background-image:url(../lib/pkp/templates/images/structure/lb_delete.png); }
 .pkp_linkActions a.promote { background-image:url(../lib/pkp/templates/images/structure/grid_promote.png); }
 .pkp_linkActions a.enable { background-image:url(../lib/pkp/templates/images/structure/grid_promote.png); }
@@ -900,7 +907,6 @@ table.pkp_listing td.separator {
   width:99%;
   border:1px solid #cccccc;
   padding:2px;
-  margin-top:4px;
 }
 .pkp_form input:focus { outline:none; }
 .pkp_form textarea {
@@ -908,7 +914,6 @@ table.pkp_listing td.separator {
   width:99%;
   border:1px solid #cccccc;
   padding:2px;
-  margin-top:4px;
   height:10em;
 }
 .pkp_form textarea:focus { outline:none; }
@@ -918,7 +923,6 @@ table.pkp_listing td.separator {
   border:1px solid #cccccc;
   padding:2px;
   padding:3px;
-  margin-top:4px;
   margin-bottom:8px;
 }
 .pkp_form select:focus { outline:none; }
