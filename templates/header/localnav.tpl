@@ -67,6 +67,7 @@
 		</ul>
 	{else}{* !$isUserLoggedIn *}
 		<ul class="sf-menu">
+			<li><a href="{url page="index"}">{translate key="navigation.home"}</a></li>
 			{$publicMenu}
 		</ul>
 	{/if}{* $isUserLoggedIn *}
