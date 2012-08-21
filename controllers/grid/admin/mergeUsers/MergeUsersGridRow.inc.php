@@ -64,10 +64,10 @@ class MergeUsersGridRow extends GridRow {
 							__('admin.mergeUsers.confirm', array('oldUsername' => $oldUser->getUsername(), 'newUsername' => $element->getUsername())),
 							null,
 							$dispatcher->url($request, ROUTE_PAGE, null, 'admin', 'mergeUsers', null, $actionArgs),
-							'modal_delete'
+							'modal_merge_users'
 					),
 					__('admin.mergeUsers.mergeIntoUser'),
-					'delete')
+					'merge_users')
 				);
 
 			} else {
@@ -82,10 +82,10 @@ class MergeUsersGridRow extends GridRow {
 								__('admin.mergeUsers.mergeUserSelect.confirm'),
 								null,
 								$dispatcher->url($request, ROUTE_PAGE, null, 'admin', 'mergeUsers', null, $actionArgs),
-								'modal_delete'
+								'modal_merge_users'
 						),
 						__('admin.mergeUsers.mergeUser'),
-						'delete')
+						'merge_users')
 					);
 				}
 			}
