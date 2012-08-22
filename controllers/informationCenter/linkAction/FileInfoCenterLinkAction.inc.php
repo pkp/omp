@@ -30,13 +30,16 @@ class FileInfoCenterLinkAction extends FileLinkAction {
 		// Instantiate the information center modal.
 		$router =& $request->getRouter();
 		import('lib.pkp.classes.linkAction.request.AjaxModal');
+
+		$title = (isset($monographFile)) ? implode(': ', array(__('informationCenter.bookInfo'), $monographFile->getOriginalFileName())) : __('informationCenter.bookInfo');
+
 		$ajaxModal = new AjaxModal(
 			$router->url(
 				$request, null,
 				'informationCenter.FileInformationCenterHandler', 'viewInformationCenter',
 				null, $this->getActionArgs($monographFile, $stageId)
 			),
-			__('informationCenter.informationCenter'),
+			$title,
 			'modal_information'
 		);
 
