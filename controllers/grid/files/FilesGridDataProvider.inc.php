@@ -20,6 +20,8 @@ class FilesGridDataProvider extends GridDataProvider {
 	/* @var integer */
 	var $_uploaderRoles;
 
+	/** @var $_viewableOnly boolean */
+	var $_viewableOnly = false;
 
 	/**
 	 * Constructor
@@ -49,6 +51,14 @@ class FilesGridDataProvider extends GridDataProvider {
 	function getUploaderRoles() {
 		assert(is_array($this->_uploaderRoles) && !empty($this->_uploaderRoles));
 		return $this->_uploaderRoles;
+	}
+
+	/**
+	 * Load only viewable files flag.
+	 * @param $viewableOnly boolean
+	 */
+	function setViewableOnly($viewableOnly) {
+		$this->_viewableOnly = $viewableOnly;
 	}
 
 

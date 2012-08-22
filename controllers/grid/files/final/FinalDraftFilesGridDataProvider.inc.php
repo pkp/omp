@@ -21,19 +21,13 @@ class FinalDraftFilesGridDataProvider extends SubmissionFilesGridDataProvider {
 	 */
 	function FinalDraftFilesGridDataProvider() {
 		parent::SubmissionFilesGridDataProvider(MONOGRAPH_FILE_FINAL);
+
+		$this->setViewableOnly(true);
 	}
 
 	//
 	// Overridden public methods from FilesGridDataProvider
 	//
-	/**
-	 * @see GridDataProvider::loadData()
-	 */
-	function &loadData() {
-		// Exclude non-viewable files
-		return parent::loadData(true);
-	}
-
 	/**
 	 * @see FilesGridDataProvider::getSelectAction()
 	 */

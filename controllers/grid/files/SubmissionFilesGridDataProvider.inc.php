@@ -28,10 +28,12 @@ class SubmissionFilesGridDataProvider extends FilesGridDataProvider {
 	 * Constructor
 	 * @param $fileStage integer One of the MONOGRAPH_FILE_* constants.
 	 */
-	function SubmissionFilesGridDataProvider($fileStage) {
+	function SubmissionFilesGridDataProvider($fileStage, $viewableOnly = false) {
 		assert(is_numeric($fileStage) && $fileStage > 0);
 		$this->_fileStage = (int)$fileStage;
 		parent::FilesGridDataProvider();
+
+		$this->setViewableOnly($viewableOnly);
 	}
 
 
@@ -91,12 +93,12 @@ class SubmissionFilesGridDataProvider extends FilesGridDataProvider {
 	/**
 	 * @see GridDataProvider::loadData()
 	 */
-	function &loadData($viewableOnly = false) {
+	function &loadData() {
 		// Retrieve all monograph files for the given file stage.
 		$monograph =& $this->getMonograph();
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		$monographFiles =& $submissionFileDao->getLatestRevisions($monograph->getId(), $this->getFileStage());
-		return $this->prepareSubmissionFileData($monographFiles, $viewableOnly);
+		return $this->prepareSubmissionFileData($monographFiles, $this->_viewableOnly);
 	}
 
 

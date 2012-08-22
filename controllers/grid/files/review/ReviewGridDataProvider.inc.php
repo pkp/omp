@@ -17,10 +17,6 @@ import('controllers.grid.files.SubmissionFilesGridDataProvider');
 
 class ReviewGridDataProvider extends SubmissionFilesGridDataProvider {
 
-	/** @var $_viewableOnly boolean */
-	var $_viewableOnly;
-
-
 	/**
 	 * Constructor
 	 */
@@ -29,13 +25,6 @@ class ReviewGridDataProvider extends SubmissionFilesGridDataProvider {
 		parent::SubmissionFilesGridDataProvider($fileStageId);
 	}
 
-
-	//
-	// Getters and setters
-	//
-	function setViewableOnly($viewableOnly) {
-		$this->_viewableOnly = $viewableOnly;
-	}
 
 	//
 	// Implement template methods from GridDataProvider
