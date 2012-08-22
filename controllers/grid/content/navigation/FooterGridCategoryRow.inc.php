@@ -55,7 +55,7 @@ class FooterGridCategoryRow extends GridCategoryRow {
 					),
 					null,
 					'delete'
-				)
+				), GRID_ACTION_POSITION_ROW_LEFT
 			);
 
 			$this->addAction(
@@ -67,7 +67,7 @@ class FooterGridCategoryRow extends GridCategoryRow {
 						'modal_edit'
 					),
 					$footerCategory->getLocalizedTitle()
-				)
+				), GRID_ACTION_POSITION_ROW_CLICK
 			);
 		}
 	}

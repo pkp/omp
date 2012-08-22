@@ -54,7 +54,7 @@ class CategoryGridCategoryRow extends GridCategoryRow {
 					),
 					null,
 					'delete'
-				)
+				), GRID_ACTION_POSITION_ROW_LEFT
 			);
 
 			$this->addAction(new LinkAction(
@@ -65,7 +65,7 @@ class CategoryGridCategoryRow extends GridCategoryRow {
 					'modal_edit'
 				),
 				$category->getLocalizedTitle()
-			));
+			), GRID_ACTION_POSITION_ROW_CLICK);
 		}
 	}
 
