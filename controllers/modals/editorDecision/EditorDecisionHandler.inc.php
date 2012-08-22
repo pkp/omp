@@ -34,7 +34,7 @@ class EditorDecisionHandler extends Handler {
 				'externalReview', 'saveExternalReview',
 				'sendReviews', 'saveSendReviews',
 				'promote', 'savePromote',
-				'approveProofs', 'saveApproveProofs'
+				'approveProof', 'saveApproveProofs'
 			), $this->_getReviewRoundOps())
 		);
 	}
@@ -55,6 +55,13 @@ class EditorDecisionHandler extends Handler {
 		$reviewRoundOps = $this->_getReviewRoundOps();
 		import('classes.security.authorization.internal.ReviewRoundRequiredPolicy');
 		$this->addPolicy(new ReviewRoundRequiredPolicy($request, $args, 'reviewRoundId', $reviewRoundOps));
+
+		// Approve proof need monograph access policy.
+		$router =& $request->getRouter();
+		if ($router->getRequestedOp($request) == 'approveProof') {
+			import('classes.security.authorization.OmpMonographFileAccessPolicy');
+			$this->addPolicy(new OmpMonographFileAccessPolicy($request, $args, $roleAssignments, MONOGRAPH_FILE_ACCESS_MODIFY));
+		}
 
 		return parent::authorize($request, $args, $roleAssignments);
 	}
@@ -269,18 +276,47 @@ class EditorDecisionHandler extends Handler {
 	}
 
 	/**
-	 * Show the approve proofs modal
+	 * Approve a proof monograph file.
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function approveProofs($args, &$request) {
+	function approveProof($args, &$request) {
+		$monographFile =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH_FILE);
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 
-		import('controllers.modals.editorDecision.form.ApproveProofsForm');
-		$approveProofsForm = new ApproveProofsForm($monograph, $request->getUserVar('publicationFormatId'));
-		$approveProofsForm->initData($args, $request);
-		$json = new JSONMessage(true, $approveProofsForm->fetch($request));
-		return $json->getString();
+		// Make sure we only alter files associated with a publication format.
+		if ($monographFile->getAssocType() !== ASSOC_TYPE_PUBLICATION_FORMAT) {
+			fatalError('The requested file is not associated with any publication format.');
+		}
+		if ($monographFile->getViewable()) {
+
+			// No longer expose the file to readers.
+			$monographFile->setViewable(false);
+		} else {
+
+			// Expose the file to readers (e.g. via e-commerce).
+			$monographFile->setViewable(true);
+
+			// Log the approve proof event.
+			import('classes.log.MonographLog');
+			import('classes.log.MonographEventLogEntry'); // constants
+			$user =& $request->getUser();
+
+			$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
+			$publicationFormat =& $publicationFormatDao->getById($monographFile->getAssocId(), $monograph->getId());
+
+			MonographLog::logEvent($request, $monograph, MONOGRAPH_LOG_PROOFS_APPROVED, 'submission.event.proofsApproved', array('formatName' => $publicationFormat->getLocalizedName(),'name' => $user->getFullName(), 'username' => $user->getUsername()));
+		}
+
+		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO');
+		$submissionFileDao->updateObject($monographFile);
+
+		// update the monograph's file index
+		import('classes.search.MonographSearchIndex');
+		MonographSearchIndex::clearMonographFiles($monograph);
+		MonographSearchIndex::indexMonographFiles($monograph);
+
+		return DAO::getDataChangedEvent($monographFile->getId());
 	}
 
 	/**

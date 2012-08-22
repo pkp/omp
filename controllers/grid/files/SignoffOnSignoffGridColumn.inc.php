@@ -22,7 +22,7 @@ class SignoffOnSignoffGridColumn extends BaseSignoffStatusColumn {
 	 * @param $requestArgs array Parameters f5or cell actions.
 	 */
 	function SignoffOnSignoffGridColumn($title = null, $userIds = array(), $requestArgs, $flags = array()) {
-		parent::BaseSignoffStatusColumn('editor', $title, null, $userIds, $requestArgs, $flags);
+		parent::BaseSignoffStatusColumn('considered', $title, null, $userIds, $requestArgs, $flags);
 	}
 
 	//
@@ -33,6 +33,9 @@ class SignoffOnSignoffGridColumn extends BaseSignoffStatusColumn {
 	 */
 	function getCellActions($request, $row) {
 		$status = $this->_getSignoffStatus($row);
+		$signoff =& $row->getData();
+		$user =& $request->getUser();
+
 		$actions = array();
 		if ($status == 'accepted' || $status == 'new') {
 			// Retrieve the submission file.
@@ -54,12 +57,13 @@ class SignoffOnSignoffGridColumn extends BaseSignoffStatusColumn {
 					)
 				),
 				__('common.signoff'),
-				'task '.$status
+				$status
 			);
 			$actions[] = $signoffAction;
 		}
 		return $actions;
 	}
+
 
 	//
 	// Private helper methods
@@ -72,9 +76,9 @@ class SignoffOnSignoffGridColumn extends BaseSignoffStatusColumn {
 	function _getSignoffStatus(&$row) {
 		$signoffInQuestion =& $row->getData();
 
-		// No status until the signoff is completed
+		// Disabled status until the signoff is completed.
 		if (!$signoffInQuestion->getDateCompleted()) {
-			return '';
+			return 'unfinished';
 		}
 
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO'); /* @var $signoff SignoffDAO */

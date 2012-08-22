@@ -21,17 +21,24 @@ class FileNameGridColumn extends GridColumn {
 	/** @var $_stageId int */
 	var $_stageId;
 
+	/** @var $_removeHistoryTab boolean */
+	var $_removeHistoryTab;
+
 	/**
 	 * Constructor
 	 * @param $includeNotes boolean
 	 * @param $stageId int (optional)
+	 * @param $removeHistoryTab boolean (optional) Open the information center
+	 * without the history tab.
 	 */
-	function FileNameGridColumn($includeNotes = true, $stageId = null) {
+	function FileNameGridColumn($includeNotes = true, $stageId = null, $removeHistoryTab = false) {
 		$this->_includeNotes = $includeNotes;
 		$this->_stageId = $stageId;
+		$this->_removeHistoryTab = $removeHistoryTab;
 
 		import('lib.pkp.classes.controllers.grid.ColumnBasedGridCellProvider');
 		$cellProvider = new ColumnBasedGridCellProvider();
+
 		parent::GridColumn('name', 'common.name', null, 'controllers/grid/gridCell.tpl', $cellProvider,
 			array('width' => 60, 'alignment' => COLUMN_ALIGNMENT_LEFT));
 	}
@@ -75,7 +82,7 @@ class FileNameGridColumn extends GridColumn {
 		if ($this->_getIncludeNotes()) {
 			import('controllers.informationCenter.linkAction.FileNotesLinkAction');
 			$user =& $request->getUser();
-			$cellActions[] = new FileNotesLinkAction($request, $monographFile, $user, $this->_getStageId());
+			$cellActions[] = new FileNotesLinkAction($request, $monographFile, $user, $this->_getStageId(), $this->_removeHistoryTab);
 		}
 		return $cellActions;
 	}

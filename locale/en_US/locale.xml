@@ -42,6 +42,10 @@
 	<message key="monograph.pageProofs">Page Proofs</message>
 	<message key="monograph.proofReadingDescription">Files ready as page proofs may be uploaded here. Once uploaded, Authors and other participants assigned to the submission may be asked to audit the uploaded proof file(s) by clicking the Assign button. Multiple files may be sent for auditing, and an auditing due date can be set. You will be notified of completed audits, and can access the audits by clicking on the participant's name. Finally, you will be able to sign off  on the audited file.</message>
 	<message key="monograph.stageNotInitiated">Stage not initiated.</message>
+	<message key="monograph.attachedFile">Attached file</message>
+	<message key="monograph.task.addNote">Add to task</message>
+	<message key="monograph.task.responseDueDate">Response Due Date</message>
+
 
 	<!--  Metadata field description keys -->
 	<message key="monograph.publicationFormat.imprint">Imprint (Brand Name)</message>
@@ -219,7 +223,8 @@
 	<message key="grid.action.editFormat">Edit this format</message>
 	<message key="grid.action.deleteFormat">Delete this format</message>
 	<message key="grid.action.addFormat">Add publication format</message>
-	<message key="grid.action.approveProofs">Approve the proofs for indexing and inclusion in the catalog</message>
+	<message key="grid.action.approveProof">Approve the proof for indexing and inclusion in the catalog</message>
+	<message key="grid.action.approveCopyedit">Approve this copyedit file for sending it to the next stage</message>
 	<message key="grid.action.addAnnouncement">Add an Announcement</message>
 	<message key="grid.action.showReviewPolicy">Read the current review policy</message>
 	<message key="grid.action.newCatalogEntry">New Catalog Entry</message>
@@ -252,6 +257,7 @@
 	<message key="grid.action.moreAnnouncements">Go to press announcements page</message>
 	<message key="grid.action.monographEmail">Click to read this email</message>
 	<message key="grid.action.viewLibrary">View Document Library</message>
+	<message key="grid.action.viewSignoffNotes">View signoff notes</message>
 
 	<!-- Used in submission review -->
 	<message key="reviewer.reviewSteps.request">1. Request</message>

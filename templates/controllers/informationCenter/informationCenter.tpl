@@ -30,6 +30,8 @@
 		{/if}
 		<li><a href="{url op="viewNotes" params=$linkParams}">{translate key="submission.informationCenter.notes"}</a></li>
 		<li><a href="{url op="viewNotify" params=$linkParams}">{translate key="submission.informationCenter.notify"}</a></li>
-		<li><a href="{url op="viewHistory" params=$linkParams}">{translate key="submission.informationCenter.history"}</a></li>
+		{if !$removeHistoryTab}
+			<li><a href="{url op="viewHistory" params=$linkParams}">{translate key="submission.informationCenter.history"}</a></li>
+		{/if}
 	</ul>
 </div>

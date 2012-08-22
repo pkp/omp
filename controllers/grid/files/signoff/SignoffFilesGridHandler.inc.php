@@ -19,6 +19,7 @@ import('lib.pkp.classes.controllers.grid.CategoryGridHandler');
 import('controllers.grid.files.signoff.SignoffFilesGridCategoryRow');
 import('controllers.grid.files.signoff.SignoffGridRow');
 import('controllers.grid.files.signoff.SignoffGridCellProvider');
+import('controllers.grid.files.signoff.SignoffFilesGridCellProvider');
 
 // Link actions
 import('lib.pkp.classes.linkAction.request.AjaxModal');
@@ -59,7 +60,8 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 			array(
 				'fetchGrid', 'fetchCategory', 'fetchRow', 'returnFileRow', 'returnSignoffRow',
 				'addAuditor', 'saveAddAuditor', 'getAuditorAutocomplete',
-				'signOffsignOff', 'deleteSignoff', 'viewLibrary'
+				'signOffsignOff', 'deleteSignoff', 'viewLibrary',
+				'editReminder', 'sendReminder'
 			)
 		);
 		parent::CategoryGridHandler();
@@ -165,6 +167,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 		//
 		// Grid Columns
 		//
+		$userIds = $this->_getSignoffCapableUsersId();
 
 		// Add a column for the file's label
 		$this->addColumn(
@@ -178,49 +181,20 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 			)
 		);
 
-		// Get all the users that are assigned to the stage (managers, series editors, and assistants)
-		// FIXME: is there a better way to do this?
-		$userIds = array();
-		$stageAssignmentDao = & DAORegistry::getDAO('StageAssignmentDAO'); /* @var $stageAssignmentDao StageAssignmentDAO */
-		$seriesEditorAssignments =& $stageAssignmentDao->getBySubmissionAndRoleId($monograph->getId(), ROLE_ID_SERIES_EDITOR, $this->getStageId());
-		$assistantAssignments =& $stageAssignmentDao->getBySubmissionAndRoleId($monograph->getId(), ROLE_ID_PRESS_ASSISTANT, $this->getStageId());
-
-		$allAssignments = array_merge(
-			$seriesEditorAssignments->toArray(),
-			$assistantAssignments->toArray()
-		);
-
-		foreach ($allAssignments as $assignment) {
-			$userIds[] = $assignment->getUserId();
-		}
-
-		// We need to manually include the press editor, because he has access
-		// to all submission and its workflow stages but not always with
-		// an stage assignment (editorial and production stages, for example).
-		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
-		$pressManagerUserGroupsFactory =& $userGroupDao->getByRoleId($monograph->getPressId(), ROLE_ID_PRESS_MANAGER);
-		while ($userGroup =& $pressManagerUserGroupsFactory->next()) {
-			$usersFactory =& $userGroupDao->getUsersById($userGroup->getId(), $monograph->getPressId());
-			while ($user =& $usersFactory->next()) {
-				$userIds[] = $user->getId();
-				unset($user);
-			}
-			unset($userGroup);
-		}
-
-		$userIds = array_unique($userIds);
-
-		// Add user group columns.
+		// Add the considered column (signoff).
 		import('controllers.grid.files.SignoffOnSignoffGridColumn');
-		$this->addColumn(new SignoffOnSignoffGridColumn(
-			'user.role.editor',
-			$userIds, $this->getRequestArgs(),
-			array('hoverTitle' => true)
-		));
+		$this->addColumn(new SignoffOnSignoffGridColumn('common.considered', $userIds, $this->getRequestArgs(), array('hoverTitle' => true)));
 
-		// Add the auditor column (the person assigned to signoff.
-		import('controllers.grid.files.SignoffStatusFromSignoffGridColumn');
-		$this->addColumn(new SignoffStatusFromSignoffGridColumn('grid.columns.auditor', $this->getRequestArgs(), array('hoverTitle' => true)));
+		// Add approved column (make the file visible). This column
+		// will only have content in category rows, so we define
+		// a cell provider there. See getCategoryRowInstance().
+		import('lib.pkp.classes.controllers.grid.GridColumn');
+		import('lib.pkp.classes.controllers.grid.NullGridCellProvider');
+		$this->addColumn(new GridColumn(
+			'approved',
+			'editor.signoff.approved', null, 'controllers/grid/gridCell.tpl',
+			new NullGridCellProvider())
+		);
 
 		// Set the no-row locale key
 		$this->setEmptyRowText('grid.noFiles');
@@ -310,10 +284,18 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 	 */
 	function getRequestArgs() {
 		$monograph =& $this->getMonograph();
-		return array_merge(
+		$signoff =& $this->getAuthorizedContextObject(ASSOC_TYPE_SIGNOFF);
+		$args = array_merge(
 			parent::getRequestArgs(),
-			array('monographId' => $monograph->getId())
+			array('monographId' => $monograph->getId(),
+				'stageId' => $this->getStageId())
 		);
+
+		if (is_a($signoff, 'Signoff')) {
+			$args['signoffId'] = $signoff->getId();
+		}
+
+		return $args;
 	}
 
 
@@ -351,7 +333,10 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 	 * @return CopyeditingFilesGridCategoryRow
 	 */
 	function &getCategoryRowInstance() {
-		$row = new SignoffFilesGridCategoryRow($this->getStageId());
+		$row =& new SignoffFilesGridCategoryRow($this->getStageId());
+		$monograph =& $this->getMonograph();
+		$row->setCellProvider(new SignoffFilesGridCellProvider($monograph->getId(), $this->getStageId()));
+		$row->addFlag('gridRowStyle', true);
 		return $row;
 	}
 
@@ -520,7 +505,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 	function deleteSignoff($args, &$request) {
 		$signoff =& $this->getAuthorizedContextObject(ASSOC_TYPE_SIGNOFF);
 
-		if($signoff) {
+		if($signoff && !$signoff->getDateCompleted()) {
 
 			$signoffUserId = $signoff->getUserId();
 			if ($signoff->getAssocType() == ASSOC_TYPE_MONOGRAPH_FILE) {
@@ -607,6 +592,109 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('canEdit', false);
 		return $templateMgr->fetchJson('controllers/tab/settings/library.tpl');
+	}
+
+	/**
+	 * Displays a modal to allow the editor to enter a message to send to the auditor as a reminder.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return string Serialized JSON object
+	 */
+	function editReminder($args, &$request) {
+		// Identify the signoff.
+		$signoff =& $this->getAuthorizedContextObject(ASSOC_TYPE_SIGNOFF);
+		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+
+		// Initialize form.
+		import('controllers.grid.files.fileSignoff.form.AuditorReminderForm');
+		$publicationFormat =& $this->getPublicationFormat();
+		$publicationFormatId = null;
+		if (is_a($publicationFormat, 'PublicationFormat')) {
+			$publicationFormatId = $publicationFormat->getId();
+		}
+		$auditorReminderForm = new AuditorReminderForm($signoff, $monograph->getId(), $this->getStageId(), $publicationFormatId);
+		$auditorReminderForm->initData($args, $request);
+
+		// Render form.
+		$json = new JSONMessage(true, $auditorReminderForm->fetch($request));
+		return $json->getString();
+	}
+
+	/**
+	 * Send the auditor reminder and close the modal.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return string Serialized JSON object
+	 */
+	function sendReminder($args, &$request) {
+		$signoff =& $this->getAuthorizedContextObject(ASSOC_TYPE_SIGNOFF);
+		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+
+		// Form handling
+		import('controllers.grid.files.fileSignoff.form.AuditorReminderForm');
+		$publicationFormat =& $this->getPublicationFormat();
+		$publicationFormatId = null;
+		if (is_a($publicationFormat, 'PublicationFormat')) {
+			$publicationFormatId = $publicationFormat->getId();
+		}
+		$auditorReminderForm = new AuditorReminderForm($signoff, $monograph->getId(), $this->getStageId(), $publicationFormatId);
+		$auditorReminderForm->readInputData();
+		if ($auditorReminderForm->validate()) {
+			$auditorReminderForm->execute($args, $request);
+			$json = new JSONMessage(true);
+
+			// Insert a trivial notification to indicate the auditor was reminded successfully.
+			$currentUser =& $request->getUser();
+			$notificationMgr = new NotificationManager();
+			$notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.sentNotification')));
+		} else {
+			$json = new JSONMessage(false, __('editor.review.reminderError'));
+		}
+		return $json->getString();
+	}
+
+
+	//
+	// Private helper methods.
+	//
+	/**
+	 * Get all ids of users that are capable of signing off a signoff.
+	 * @return array
+	 */
+	function _getSignoffCapableUsersId() {
+		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+
+		// Get all the users that are assigned to the stage (managers, series editors, and assistants)
+		// FIXME: is there a better way to do this?
+		$userIds = array();
+		$stageAssignmentDao = & DAORegistry::getDAO('StageAssignmentDAO'); /* @var $stageAssignmentDao StageAssignmentDAO */
+		$seriesEditorAssignments =& $stageAssignmentDao->getBySubmissionAndRoleId($monograph->getId(), ROLE_ID_SERIES_EDITOR, $this->getStageId());
+		$assistantAssignments =& $stageAssignmentDao->getBySubmissionAndRoleId($monograph->getId(), ROLE_ID_PRESS_ASSISTANT, $this->getStageId());
+
+		$allAssignments = array_merge(
+			$seriesEditorAssignments->toArray(),
+			$assistantAssignments->toArray()
+		);
+
+		foreach ($allAssignments as $assignment) {
+			$userIds[] = $assignment->getUserId();
+		}
+
+		// We need to manually include the press editor, because he has access
+		// to all submission and its workflow stages but not always with
+		// an stage assignment (editorial and production stages, for example).
+		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+		$pressManagerUserGroupsFactory =& $userGroupDao->getByRoleId($monograph->getPressId(), ROLE_ID_PRESS_MANAGER);
+		while ($userGroup =& $pressManagerUserGroupsFactory->next()) {
+			$usersFactory =& $userGroupDao->getUsersById($userGroup->getId(), $monograph->getPressId());
+			while ($user =& $usersFactory->next()) {
+				$userIds[] = $user->getId();
+				unset($user);
+			}
+			unset($userGroup);
+		}
+
+		return array_unique($userIds);
 	}
 }
 

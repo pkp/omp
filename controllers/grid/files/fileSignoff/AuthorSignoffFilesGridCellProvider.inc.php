@@ -12,9 +12,9 @@
  * @brief Cell provider for the response column of a file/signoff grid.
  */
 
-import('lib.pkp.classes.controllers.grid.DataObjectGridCellProvider');
+import('lib.pkp.classes.controllers.grid.GridCellProvider');
 
-class AuthorSignoffFilesGridCellProvider extends DataObjectGridCellProvider {
+class AuthorSignoffFilesGridCellProvider extends GridCellProvider {
 	/* @var Monograph */
 	var $_monograph;
 
@@ -27,7 +27,7 @@ class AuthorSignoffFilesGridCellProvider extends DataObjectGridCellProvider {
 	function AuthorSignoffFilesGridCellProvider(&$monograph, $stageId) {
 		$this->_monograph =& $monograph;
 		$this->_stageId = $stageId;
-		parent::DataObjectGridCellProvider();
+		parent::GridCellProvider();
 	}
 
 	/**
@@ -67,38 +67,6 @@ class AuthorSignoffFilesGridCellProvider extends DataObjectGridCellProvider {
 		assert(is_a($rowData['submissionFile'], 'MonographFile'));
 		return $rowData['submissionFile'];
 	}
-	/**
-	 * Gathers the state of a given cell given a $row/$column combination
-	 * @param $row GridRow
-	 * @param $column GridColumn
-	 */
-	function getCellState(&$row, &$column) {
-		$columnId = $column->getId();
-
-		if ($columnId == 'response') {
-			$signoff =& $this->getSignoff($row);
-
-			// If a file was uploaded, show a ticked checkbox
-			if($signoff->getDateCompleted()) {
-				return 'completed';
-			} else {
-				return 'new';
-			}
-		} else {
-			return null;
-		}
-	}
-
-	/**
-	 * Extracts variables for a given column from a data element
-	 * so that they may be assigned to template before rendering.
-	 * @param $row GridRow
-	 * @param $column GridColumn
-	 * @return array
-	 */
-	function getTemplateVarsFromRowColumn(&$row, &$column) {
-		return array('status' => $this->getCellState($row, $column));
-	}
 
 	/**
 	 * Get cell actions associated with this row/column combination
@@ -119,18 +87,12 @@ class AuthorSignoffFilesGridCellProvider extends DataObjectGridCellProvider {
 								__('submission.upload.signoff'), __('submission.upload.signoff')
 								);
 				// FIXME: This is not ideal.
-				$addFileAction->_image = 'new';
 				$addFileAction->_title = null;
 				return array($addFileAction);
 			}
 
-			import('controllers.api.signoff.linkAction.ReadSignoffLinkAction');
-			$readSignoffAction = new ReadSignoffLinkAction($request, $monograph->getId(),
-															$this->getStageId(), $signoff->getId(),
-															null, null);
-			$readSignoffAction->_image = 'uploaded';
-			$readSignoffAction->_title = null;
-			return array($readSignoffAction);
+			import('controllers.informationCenter.linkAction.SignoffNotesLinkAction');
+			return array(new SignoffNotesLinkAction($request, $signoff, $monograph->getId(), $this->getStageId()));
 		}
 
 		return parent::getCellActions($request, $row, $column, $position);

@@ -46,12 +46,29 @@ class SignoffFilesGridCategoryRow extends GridCategoryRow {
 			$monographFile =& $this->getData();
 
 			// Add the row actions.
-			import('controllers.api.file.linkAction.DeleteFileLinkAction');
-			$this->addAction(new DeleteFileLinkAction($request, $monographFile, $this->_getStageId(), ''));
+			$actionArgs = array(
+				'monographId' => $monographFile->getMonographId(),
+				'fileId' => $monographFile->getFileId()
+			);
 
-			// The title should link to a download action.
-			import('controllers.api.file.linkAction.DownloadFileLinkAction');
-			$this->addAction(new DownloadFileLinkAction($request, $monographFile, $this->_getStageId()));
+			$router =& $request->getRouter();
+
+			$this->addAction(
+				new LinkAction(
+					'history',
+					new AjaxModal(
+						$router->url($request, null, 'informationCenter.FileInformationCenterHandler', 'viewHistory', null, $actionArgs),
+						__('submission.history'),
+						'modal_information',
+						true
+					),
+					__('submission.history'),
+					'more_info'
+				)
+			);
+
+			import('controllers.api.file.linkAction.DeleteFileLinkAction');
+			$this->addAction(new DeleteFileLinkAction($request, $monographFile, $this->_getStageId()));
 		}
 
 		// Set the no-row locale key

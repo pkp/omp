@@ -56,6 +56,14 @@
 				<br /><br /></blockquote>
 			</td>
 		</tr>
+		{if $noteFileDownloadLink}
+			<tr valign="top">
+				<td colspan="3">
+					<span class="pkp_helpers_align_left"><strong>{translate key="monograph.attachedFile"}:</strong></span>
+					{include file="linkAction/linkAction.tpl" action=$noteFileDownloadLink contextId=$note->getId()}
+				</td>
+			</tr>
+		{/if}
 	</table>
 </div>
 

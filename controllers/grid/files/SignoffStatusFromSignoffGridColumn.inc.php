@@ -22,7 +22,7 @@ class SignoffStatusFromSignoffGridColumn extends BaseSignoffStatusColumn {
 	 * @param $requestArgs array Parameters f5or cell actions.
 	 */
 	function SignoffStatusFromSignoffGridColumn($title = null, $requestArgs, $flags = array()) {
-		parent::BaseSignoffStatusColumn('auditor', $title, null, null, $requestArgs, $flags);
+		parent::BaseSignoffStatusColumn('approved', $title, null, null, $requestArgs, $flags);
 	}
 
 	//

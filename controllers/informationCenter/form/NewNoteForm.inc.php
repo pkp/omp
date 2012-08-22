@@ -42,6 +42,15 @@ class NewNoteForm extends Form {
 	}
 
 	/**
+	 * Return the submit note button locale key.
+	 * Can be overriden by subclasses.
+	 * @return string
+	 */
+	function getSubmitNoteLocaleKey() {
+		return 'informationCenter.addNote';
+	}
+
+	/**
 	 * Fetch the form.
 	 * @see Form::fetch()
 	 */
@@ -51,6 +60,7 @@ class NewNoteForm extends Form {
 		$noteDao =& DAORegistry::getDAO('NoteDAO');
 		$notes =& $noteDao->getByAssoc($this->getAssocType(), $this->getAssocId());
 		$templateMgr->assign_by_ref('notes', $notes);
+		$templateMgr->assign('submitNoteText', $this->getSubmitNoteLocaleKey());
 
 		return parent::fetch($request);
 	}

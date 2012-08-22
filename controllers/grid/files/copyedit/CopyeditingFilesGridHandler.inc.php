@@ -32,6 +32,27 @@ class CopyeditingFilesGridHandler extends SignoffFilesGridHandler {
 			'SIGNOFF_COPYEDITING',
 			MONOGRAPH_EMAIL_COPYEDIT_NOTIFY_AUTHOR
 		);
+
+		$this->addRoleAssignment(
+			array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_ASSISTANT),
+			array(
+				'approveCopyedit'
+			)
+		);
+	}
+
+	/**
+	 * @see SignoffFilesGridHandler::authorize()
+	 */
+	function authorize($request, $args, $roleAssignments) {
+		// Approve copyediting file needs monograph access policy.
+		$router =& $request->getRouter();
+		if ($router->getRequestedOp($request) == 'approveCopyedit') {
+			import('classes.security.authorization.OmpMonographFileAccessPolicy');
+			$this->addPolicy(new OmpMonographFileAccessPolicy($request, $args, $roleAssignments, MONOGRAPH_FILE_ACCESS_MODIFY));
+		}
+
+		return parent::authorize($request, $args, $roleAssignments);
 	}
 
 
@@ -47,11 +68,36 @@ class CopyeditingFilesGridHandler extends SignoffFilesGridHandler {
 
 		// Basic grid configuration
 		$this->setId('copyeditingFiles');
+	}
 
-		// Rename the 'editor' column to copyeditor
-		$pressAssistantColumn =& $this->getColumn('editor');
-		$pressAssistantColumn->setTitle('user.role.copyeditor');
-		$this->setEmptyCategoryRowText('editor.monograph.noAuditRequested');
+
+	//
+	// Public methods
+	//
+	/**
+	 * Approve/disapprove the copyediting file, changing its visibility.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return string Serialized JSON object
+	 */
+	function approveCopyedit($args, &$request) {
+		$monographFile =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH_FILE);
+		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+
+		if ($monographFile->getViewable()) {
+
+			// No longer expose the file to be sent to next stage.
+			$monographFile->setViewable(false);
+		} else {
+
+			// Expose the file.
+			$monographFile->setViewable(true);
+		}
+
+		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO');
+		$submissionFileDao->updateObject($monographFile);
+
+		return DAO::getDataChangedEvent($monographFile->getId());
 	}
 }
 

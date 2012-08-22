@@ -36,9 +36,6 @@ class SignoffGridRow extends GridRow {
 	function initialize(&$request) {
 		parent::initialize($request);
 
-		// add Grid Row Actions
-		$this->setTemplate('controllers/grid/gridRowWithActions.tpl');
-
 		// Is this a new row or an existing row?
 		$rowId = $this->getId();
 
@@ -59,31 +56,34 @@ class SignoffGridRow extends GridRow {
 		if (!empty($rowId) && is_numeric($rowId)) {
 			// Actions
 			$router =& $request->getRouter();
+			$actionArgs = array_merge($this->getRequestArgs(),
+				array('signoffId' => $rowId));
 
-			import('lib.pkp.classes.linkAction.request.RemoteActionConfirmationModal');
-			$this->addAction(new LinkAction(
-				'deleteSignoff',
-				new RemoteActionConfirmationModal(
-					__('common.confirmDelete'), __('common.delete'),
-					$router->url(
-						$request, null, null, 'deleteSignoff',
-						null, array_merge(array(
-							'monographId' => $monographId,
-							'stageId' => $this->getStageId(),
-							'signoffId' => $rowId,
-							'fileId' => $copyeditedFileId
-						), $this->getRequestArgs())
+			// Add the history action.
+			import('controllers.informationCenter.linkAction.ReadSignoffHistoryLinkAction');
+			$this->addAction(new ReadSignoffHistoryLinkAction($request, $rowId, $monographId, $this->getStageId()));
+
+			// Add the delete signoff if it isn't completed yet.
+			if (!$signoff->getDateCompleted()) {
+				import('lib.pkp.classes.linkAction.request.RemoteActionConfirmationModal');
+				$this->addAction(new LinkAction(
+					'deleteSignoff',
+					new RemoteActionConfirmationModal(
+						__('common.confirmDelete'), __('common.delete'),
+						$router->url(
+							$request, null, null, 'deleteSignoff',
+							null, array_merge(array(
+								'monographId' => $monographId,
+								'stageId' => $this->getStageId(),
+								'signoffId' => $rowId,
+								'fileId' => $copyeditedFileId
+							), $this->getRequestArgs())
+						),
+						'modal_delete'
 					),
-					'modal_delete'
-				),
-				__('grid.copyediting.deleteSignoff'),
-				'delete'
-			));
-
-			if ($copyeditedFileId) {
-				$copyeditedFile =& $submissionFileDao->getLatestRevision($copyeditedFileId);
-				import('controllers.informationCenter.linkAction.FileInfoCenterLinkAction');
-				$this->addAction(new FileInfoCenterLinkAction($request, $copyeditedFile, $this->getStageId()));
+					__('grid.copyediting.deleteSignoff'),
+					'delete'
+				));
 			}
 
 			// If signoff has not been completed, allow the user to upload if it is their signoff (i.e. their copyediting assignment)

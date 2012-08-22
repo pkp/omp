@@ -9,7 +9,13 @@
 
 <div id="{$notesListId}">
 	{iterate from=notes item=note}
-		{include file="controllers/informationCenter/note.tpl"}
+		{assign var=noteId value=$note->getId()}
+		{if $noteFilesDownloadLink && isset($noteFilesDownloadLink[$noteId])}
+			{assign var=downloadLink value=$noteFilesDownloadLink[$noteId]}
+		{else}
+			{assign var=downloadLink value=0}
+		{/if}
+		{include file="controllers/informationCenter/note.tpl" noteFileDownloadLink=$downloadLink}
 		{$note->markViewed($currentUserId)}
 	{/iterate}
 	{if $notes->wasEmpty()}

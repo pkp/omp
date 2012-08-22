@@ -50,20 +50,35 @@ class SignoffGridCellProvider extends GridCellProvider {
 	 */
 	function getCellActions(&$request, &$row, &$column, $position = GRID_ACTION_POSITION_DEFAULT) {
 		if ($column->getId() == 'name') {
+			$user =& $request->getUser();
+			$actionArgs = array_merge($row->getRequestArgs(),
+				array('signoffId' => $row->getId()));
 			$signoff =& $row->getData();
+			$actions = array();
 			if($signoff->getDateCompleted()) {
-				$label = $this->_getLabel($signoff);
+				import('controllers.informationCenter.linkAction.SignoffNotesLinkAction');
+				$actions[] = new SignoffNotesLinkAction($request, $signoff, $this->getMonographId(), $this->getStageId());
+			} else if (time() > strtotime($signoff->getDateUnderway())) {
+				import('controllers.api.task.SendReminderLinkAction');
+				$actions[] = new SendReminderLinkAction($request, 'editor.monograph.proof.reminder', $actionArgs);
+			}
 
-				import('controllers.api.signoff.linkAction.ReadSignoffLinkAction');
-				$readSignoffAction = new ReadSignoffLinkAction($request, $this->getMonographId(),
-																$this->getStageId(), $signoff->getId(),
-																$label, $label);
+			if (!$signoff->getDateCompleted() && $signoff->getUserId() == $user->getId()) {
+				// User own the unfinished signoff, let it complete the task.
+				import('controllers.api.signoff.linkAction.AddSignoffFileLinkAction');
+				$addFileAction = new AddSignoffFileLinkAction(
+					$request, $this->getMonographId(),
+					$this->getStageId(), $signoff->getSymbolic(), $signoff->getId(),
+					__('submission.upload.signoff'), __('submission.upload.signoff')
+				);
 
-				return array($readSignoffAction);
+				// FIXME: This is not ideal.
+				$addFileAction->_title = null;
+				$actions[] = $addFileAction;
 			}
 		}
 
-		return parent::getCellActions($request, $row, $column, $position);
+		return array_merge(parent::getCellActions($request, $row, $column, $position), $actions);
 	}
 
 	/**
@@ -78,7 +93,7 @@ class SignoffGridCellProvider extends GridCellProvider {
 		$columnId = $column->getId();
 		assert(is_a($signoff, 'Signoff') && !empty($columnId));
 
-		if ($columnId == 'name' && !$signoff->getDateCompleted()) {
+		if ($columnId == 'name') {
 			return array('label' => $this->_getLabel($signoff));
 		}
 

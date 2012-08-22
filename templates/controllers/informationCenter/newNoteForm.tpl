@@ -24,6 +24,6 @@
 		{fbvFormSection title="informationCenter.composeNote" for="newNote"}
 			{fbvElement type="textarea" id="newNote"}
 		{/fbvFormSection}
-		{fbvFormButtons hideCancel=true submitText="informationCenter.addNote"}
+		{fbvFormButtons hideCancel=true submitText=$submitNoteText}
 	</form>
 </div>

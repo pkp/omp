@@ -149,15 +149,8 @@ class ReviewerGridCellProvider extends DataObjectGridCellProvider {
 			$action = new ReviewNotesLinkAction($request, $reviewAssignment, $monograph, $user);
 
 		} elseif ($state == 'overdue') {
-			$action = new LinkAction(
-				'sendReminder',
-				new AjaxModal(
-					$router->url($request, null, null, 'editReminder', null, $actionArgs),
-					__('editor.review.reminder') //FIXME: insert icon
-				),
-				__('common.reminder'),
-				'overdue'
-			);
+			import('controllers.api.task.SendReminderLinkAction');
+			$action = new SendReminderLinkAction($request, 'editor.review.reminder', $actionArgs);
 		} elseif ($state == 'read') {
 			$action = new LinkAction(
 				'thankReviewer',

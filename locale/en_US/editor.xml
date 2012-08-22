@@ -16,8 +16,10 @@
 	<message key="editor.review.enrollReviewer.short">Enroll Existing User</message>
 	<message key="editor.review.createReviewer">Create New Reviewer</message>
 	<message key="editor.review.notInitiated">The review process has not yet been initiated.</message>
-	<message key="editor.responseDueDate">Response Due Date</message>
-
+	<message key="editor.signoff.approved">Approved</message>
+	<message key="editor.monograph.personalMessageToUser">Email to be sent to user</message>
+	<message key="editor.monograph.taskSchedule">Task schedule</message>
+	<message key="editor.monograph.taskDueDate">Task Due Date</message>
 
 	<message key="editor.submissionArchive">Submission Archive</message>
 	<message key="editor.submissionReview.recordDecision">Record Editorial Decision</message>
@@ -51,7 +53,8 @@
 	<message key="editor.monograph.decision.internalReview">Internal Review</message>
 	<message key="editor.monograph.decision.externalReview">External Review</message>
 	<message key="editor.monograph.decision.approveProofs">Approve Proofs</message>
-	<message key="editor.monograph.decision.approveProofsDescription">File proofs must be approved in order for the files to be publicly available for download or purchase. Proofs can be downloaded and viewed externally by clicking the proof document title, and can be approved by checking the box next to the proof title and clicking Approve Proofs.</message>
+	<message key="editor.monograph.decision.approveProofsDescription">File proofs must be approved in order for the files to be publicly available for download or purchase. Do you want to approve this proof?.</message>
+	<message key="editor.monograph.decision.disapproveProofsDescription">This file proof will no longer be publicly available for download or purchase. Do you want to disapprove it?.</message>
 	<message key="editor.monograph.selectAttachments">Select the review attachments for the author to see</message>
 	<message key="editor.monograph.selectPromoteRevisions">Select revisions to use in the next stage</message>
 	<message key="editor.monograph.selectFairCopy">Select fair copy files for production.</message>
@@ -132,6 +135,9 @@
 	<message key="editor.monograph.editorial.copyeditingDescription">The copyeditor uploads the copyedited files, assigning authors (and others as needed) to review copyedits and answer queries. The check boxes under Considered turn green when the copyedit files are first viewed by the author (and others), while their names becomes links when the review is complete. The copyeditor indicates (&#10004;) the copyedit reviews have been considered before preparing and uploading a clean copy, which the editor is then asked to approve before sending to Production.</message>
 	<message key="editor.monograph.editorial.fairCopy">Fair Copy</message>
 	<message key="editor.monograph.editorial.fairCopyDescription">The copyeditor uploads a clean or fair copy of the submission for review by the editor, prior to sending it to Production.</message>
+	<message key="editor.monograph.editorial.approveCopyeditDescription">Approving this copyedited file will make it available to send to production stage. Do you want to approve this file?</message>
+	<message key="editor.monograph.editorial.disapproveCopyeditDescription">Disapproving this copyedited file will make it unavailable to send to production stage. Do you want to disapprove this file?</message>
+	<message key="editor.monograph.editorial.approveCopyeditFile">Approve copyedited file</message>
 
 	<!-- Production/Proof related -->
 	<message key="editor.monograph.production.introduction">All approved and copyedited submission files from the Editorial stage are available in the Production Ready section. Different formats (digital, hardback, paperback/softback) can be configured for this submission in the Publication Formats section. The submission is considered complete when the Catalog Entry metadata has been approved, and all Publication Formats checklist items are marked complete.</message>
@@ -143,6 +149,8 @@
 	<message key="editor.monograph.production.publicationFormatDescription">Add one or more publication formats (eg. hardback; softback/paperback; digital; audio) here. Upload final galley proofs for each publication format below, and audit and approve them. For the galley to be listed in the public catalog, approve the Catalog Entry metadata and ensure that each format checklist item has been completed.</message>
 	<message key="editor.monograph.approvedProofs.edit">Set Terms for Downloading</message>
 	<message key="editor.monograph.approvedProofs.edit.linkTitle">Set Terms</message>
+	<message key="editor.monograph.proof.reminder">Proof reminder</message>
+	<message key="editor.monograph.proof.addNote">Add response</message>
 
 	<!-- Add file or auditor to editor/audit grids -->
 	<message key="editor.monograph.addAuditor">Assign</message>

@@ -21,7 +21,7 @@
 </script>
 
 <div id="informationCenterNotes">
-	{include file="controllers/informationCenter/newNoteForm.tpl"}
+	{include file='controllers/informationCenter/newNoteForm.tpl'}
 	<br />
 	<hr />
 

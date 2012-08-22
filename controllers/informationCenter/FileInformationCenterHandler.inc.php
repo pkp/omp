@@ -70,6 +70,7 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 		if (($i = $this->monographFile->getRevision()) > 1) $fileName .= " ($i)"; // Add revision number to label
 		if (empty($fileName) ) $fileName = __('common.untitled');
 		$templateMgr->assign_by_ref('title', $fileName);
+		$templateMgr->assign('removeHistoryTab', (int) $request->getUserVar('removeHistoryTab'));
 
 		return parent::viewInformationCenter($request);
 	}

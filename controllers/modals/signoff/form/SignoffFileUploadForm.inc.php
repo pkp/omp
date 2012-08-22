@@ -167,41 +167,9 @@ class SignoffFileUploadForm extends Form {
 		$signoff =& $signoffDao->getById($this->getData('signoffId'));
 		assert(is_a($signoff, 'Signoff'));
 
+		// Insert the note, if existing content and/or file.
 		$temporaryFileId = $this->getData('temporaryFileId');
-		if ($temporaryFileId) {
-			// Fetch the temporary file storing the uploaded library file
-			$temporaryFileDao =& DAORegistry::getDAO('TemporaryFileDAO');
-			$temporaryFile =& $temporaryFileDao->getTemporaryFile(
-				$temporaryFileId,
-				$user->getId()
-			);
-
-			// Upload the file.
-			// Bring in the MONOGRAPH_FILE_* constants
-			import('classes.monograph.MonographFile');
-
-			$press =& $request->getPress();
-			import('classes.file.MonographFileManager');
-			$monographFileManager = new MonographFileManager($press->getId(), $this->getMonographId());
-			$signoffFileId = $monographFileManager->temporaryFileToMonographFile(
-				$temporaryFile,
-				MONOGRAPH_FILE_SIGNOFF, $signoff->getUserId(),
-				$signoff->getUserGroupId(), $signoff->getAssocId(), null,
-				ASSOC_TYPE_SIGNOFF,  $signoff->getId()
-			);
-
-
-			// FIXME: Currently the code allows for a signoff to be
-			// added many times (if the option is presented in the
-			// form). Need to delete previous files uploaded to this
-			// signoff. Partially due to #6799.
-
-			// Mark ALL the signoffs for this user as completed with this file upload.
-			$signoff->setFileId($signoffFileId);
-			$signoff->setFileRevision(1);
-		}
-		if ($this->getData('newNote')) {
-			// use the parent form to insert the note
+		if ($temporaryFileId || $this->getData('newNote')) {
 			$user =& $request->getUser();
 
 			$noteDao =& DAORegistry::getDAO('NoteDAO');
@@ -211,33 +179,70 @@ class SignoffFileUploadForm extends Form {
 			$note->setContents($this->getData('newNote'));
 			$note->setAssocType(ASSOC_TYPE_SIGNOFF);
 			$note->setAssocId($signoff->getId());
+			$noteId = $noteDao->insertObject($note);
+			$note->setId($noteId);
 
-			$noteDao->insertObject($note);
+			// Upload the file, if any, and associate it with the note.
+			if ($temporaryFileId) {
+				// Fetch the temporary file storing the uploaded library file
+				$temporaryFileDao =& DAORegistry::getDAO('TemporaryFileDAO');
+				$temporaryFile =& $temporaryFileDao->getTemporaryFile(
+					$temporaryFileId,
+					$user->getId()
+				);
+
+				// Upload the file.
+				// Bring in the MONOGRAPH_FILE_* constants
+				import('classes.monograph.MonographFile');
+
+				$press =& $request->getPress();
+				import('classes.file.MonographFileManager');
+				$monographFileManager = new MonographFileManager($press->getId(), $this->getMonographId());
+				$signoffFileId = $monographFileManager->temporaryFileToMonographFile(
+					$temporaryFile,
+					MONOGRAPH_FILE_NOTE, $signoff->getUserId(),
+					$signoff->getUserGroupId(), $signoff->getAssocId(), null,
+					ASSOC_TYPE_NOTE, $noteId
+				);
+
+
+				// FIXME: Currently the code allows for a signoff to be
+				// added many times (if the option is presented in the
+				// form). Need to delete previous files uploaded to this
+				// signoff. Partially due to #6799.
+
+				// Mark ALL the signoffs for this user as completed with this file upload.
+				if ($signoffFileId) {
+					$signoff->setFileId($signoffFileId);
+					$signoff->setFileRevision(1);
+				}
+			}
+
+			// Now mark the signoff as completed (we have a note with content
+			// or a file or both).
+			$signoff->setDateCompleted(Core::getCurrentDate());
+			$signoffDao->updateObject($signoff);
+
+			// Update NOTIFICATION_TYPE_AUDITOR_REQUEST.
+			$notificationMgr = new NotificationManager();
+			$notificationMgr->updateAuditorRequestNotification($signoff, $request);
+
+			// Update NOTIFICATION_TYPE_SIGNOFF_...
+			$notificationMgr->updateSignoffNotification($signoff, $request);
+
+			// log the event.
+			import('classes.log.MonographFileLog');
+			import('classes.log.MonographFileEventLogEntry'); // constants
+			$monographDao =& DAORegistry::getDAO('MonographDAO');
+			$monograph =& $monographDao->getById($this->getMonographId());
+			$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO');
+			$monographFile =& $submissionFileDao->getLatestRevision($signoff->getFileId());
+
+			if (isset($monographFile)) {
+				MonographFileLog::logEvent($request, $monographFile, MONOGRAPH_LOG_FILE_AUDIT_UPLOAD, 'submission.event.fileAuditUploaded', array('file' => $monographFile->getOriginalFileName(), 'name' => $user->getFullName(), 'username' => $user->getUsername()));
+			}
+			return $signoff->getId();
 		}
-
-		// Now mark the signoff as completed
-		$signoff->setDateCompleted(Core::getCurrentDate());
-		$signoffDao->updateObject($signoff);
-
-		// Update NOTIFICATION_TYPE_AUDITOR_REQUEST.
-		$notificationMgr = new NotificationManager();
-		$notificationMgr->updateAuditorRequestNotification($signoff, $request);
-
-		// Update NOTIFICATION_TYPE_SIGNOFF_...
-		$notificationMgr->updateSignoffNotification($signoff, $request);
-
-		// log the event.
-		import('classes.log.MonographFileLog');
-		import('classes.log.MonographFileEventLogEntry'); // constants
-		$monographDao =& DAORegistry::getDAO('MonographDAO');
-		$monograph =& $monographDao->getById($this->getMonographId());
-		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO');
-		$monographFile =& $submissionFileDao->getLatestRevision($signoff->getFileId());
-
-		if (isset($monographFile)) {
-			MonographFileLog::logEvent($request, $monographFile, MONOGRAPH_LOG_FILE_AUDIT_UPLOAD, 'submission.event.fileAuditUploaded', array('file' => $monographFile->getOriginalFileName(), 'name' => $user->getFullName(), 'username' => $user->getUsername()));
-		}
-		return $signoff->getId();
 	}
 }
 

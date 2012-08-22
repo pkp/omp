@@ -11,7 +11,7 @@
 	{if count($actions) gt 0}
 		{assign var=defaultCellAction value=$actions[0]}
 		{include file="linkAction/linkAction.tpl" action=$defaultCellAction contextId=$cellId imageClass="task"}
-	{else}
+	{elseif $status}
 		{capture assign="statusTitle"}{translate key="grid.task.status."|concat:$status}{/capture}
 		<a title="{$statusTitle|escape}" class="task {$status|escape}">status</a>
 	{/if}

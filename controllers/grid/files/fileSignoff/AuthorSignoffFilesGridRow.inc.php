@@ -23,7 +23,7 @@ class AuthorSignoffFilesGridRow extends SubmissionFilesGridRow {
 	 */
 	function AuthorSignoffFilesGridRow($stageId) {
 		// Author cannot delete, but may view notes.
-		parent::SubmissionFilesGridRow(false, true, $stageId);
+		parent::SubmissionFilesGridRow(false, false, $stageId);
 	}
 
 
@@ -47,6 +47,9 @@ class AuthorSignoffFilesGridRow extends SubmissionFilesGridRow {
 		// Grid only displays current users' signoffs.
 		assert($user->getId() == $signoff->getUserId());
 
+		import('controllers.informationCenter.linkAction.ReadSignoffHistoryLinkAction');
+		$this->addAction(new ReadSignoffHistoryLinkAction($request, $signoff->getId(), $submissionFile->getMonographId(), $this->getStageId()));
+
 		if (!$signoff->getDateCompleted()) {
 			import('controllers.api.signoff.linkAction.AddSignoffFileLinkAction');
 			$this->addAction(new AddSignoffFileLinkAction(
@@ -54,9 +57,6 @@ class AuthorSignoffFilesGridRow extends SubmissionFilesGridRow {
 				$this->getStageId(), $signoff->getSymbolic(), $signoff->getId(),
 				__('submission.upload.signoff'), __('submission.upload.signoff')));
 		}
-
-		import('controllers.informationCenter.linkAction.FileInfoCenterLinkAction');
-		$this->addAction(new FileInfoCenterLinkAction($request, $submissionFile, $this->getStageId()));
 	}
 }
 

@@ -54,21 +54,21 @@ class AuthorProofingSignoffFilesGridHandler extends CategoryGridHandler {
 
 		// The file name column is common to all file grid types.
 		import('controllers.grid.files.FileNameGridColumn');
-		$this->addColumn(new FileNameGridColumn(null, WORKFLOW_STAGE_ID_PRODUCTION));
+		$this->addColumn(new FileNameGridColumn(false, WORKFLOW_STAGE_ID_PRODUCTION));
 
 		import('controllers.grid.files.fileSignoff.AuthorSignoffFilesGridCellProvider');
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		$cellProvider = new AuthorSignoffFilesGridCellProvider($monograph, WORKFLOW_STAGE_ID_PRODUCTION);
 
-		// Add a column to show whether the author uploaded a copyedited version of the file
+		// Add a column to show whether the author uploaded a signoff.
 		$this->addColumn(
 			new GridColumn(
 				'response',
 				'submission.response',
 				null,
-				'controllers/grid/common/cell/statusCell.tpl',
-				$cellProvider
-			)
+				'controllers/grid/gridCell.tpl',
+				$cellProvider,
+				array('alignment' => COLUMN_ALIGNMENT_LEFT))
 		);
 
 		// Set the grid title.
@@ -78,7 +78,7 @@ class AuthorProofingSignoffFilesGridHandler extends CategoryGridHandler {
 	/**
 	 * @see GridHandler::getRowInstance()
 	 */
-	function getRowInstance() {
+	function &getRowInstance() {
 		import('controllers.grid.files.fileSignoff.AuthorSignoffFilesGridRow');
 		$row = new AuthorSignoffFilesGridRow(WORKFLOW_STAGE_ID_PRODUCTION);
 		return $row;
@@ -87,7 +87,7 @@ class AuthorProofingSignoffFilesGridHandler extends CategoryGridHandler {
 	/**
 	 * @see CategoryGridHandler::getCategoryRowInstance()
 	 */
-	function getCategoryRowInstance() {
+	function &getCategoryRowInstance() {
 		import('controllers.grid.files.proof.AuthorProofingGridCategoryRow');
 		$row = new AuthorProofingGridCategoryRow();
 		return $row;

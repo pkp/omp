@@ -22,8 +22,10 @@ class FileNotesLinkAction extends FileLinkAction {
 	 *  to show information about.
 	 * @param $user User
 	 * @param $stageId int (optional) The stage id that user is looking at.
+	 * @param $removeHistoryTab boolean (optional) Open the information center
+	 * without the history tab.
 	 */
-	function FileNotesLinkAction(&$request, &$monographFile, $user, $stageId = null) {
+	function FileNotesLinkAction(&$request, &$monographFile, $user, $stageId = null, $removeHistoryTab = false) {
 		// Instantiate the information center modal.
 		$router =& $request->getRouter();
 		import('lib.pkp.classes.linkAction.request.AjaxModal');
@@ -34,7 +36,7 @@ class FileNotesLinkAction extends FileLinkAction {
 			$router->url(
 				$request, null,
 				'informationCenter.FileInformationCenterHandler', 'viewInformationCenter',
-				null, $this->getActionArgs($monographFile, $stageId)
+				null, array_merge($this->getActionArgs($monographFile, $stageId), array('removeHistoryTab' => $removeHistoryTab))
 			),
 			$title,
 			'modal_information'
