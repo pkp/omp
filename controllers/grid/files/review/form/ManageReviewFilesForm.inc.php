@@ -30,7 +30,6 @@ class ManageReviewFilesForm extends ManageSubmissionFilesForm {
 		parent::ManageSubmissionFilesForm($monographId, 'controllers/grid/files/review/manageReviewFiles.tpl');
 		$this->_stageId = (int)$stageId;
 		$this->_reviewRoundId = (int)$reviewRoundId;
-
 	}
 
 
@@ -74,6 +73,9 @@ class ManageReviewFilesForm extends ManageSubmissionFilesForm {
 	function initData($args, &$request) {
 		$this->setData('stageId', $this->getStageId());
 		$this->setData('reviewRoundId', $this->getReviewRoundId());
+
+		$reviewRound =& $this->getReviewRound();
+		$this->setData('round', $reviewRound->getRound());
 
 		parent::initData($args, &$request);
 	}

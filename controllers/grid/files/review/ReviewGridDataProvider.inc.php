@@ -87,9 +87,12 @@ class ReviewGridDataProvider extends SubmissionFilesGridDataProvider {
 	function &getSelectAction($request) {
 		import('controllers.grid.files.fileList.linkAction.SelectReviewFilesLinkAction');
 		$monograph =& $this->getMonograph();
+		$reviewRound =& $this->getReviewRound();
+		$modalTitle = __('editor.monograph.review.currentFiles', array('round' => $reviewRound->getRound()));
 		$selectAction = new SelectReviewFilesLinkAction(
-			&$request, $this->getReviewRound(),
-			__('editor.monograph.uploadSelectFiles')
+			&$request, $reviewRound,
+			__('editor.monograph.uploadSelectFiles'),
+			$modalTitle
 		);
 		return $selectAction;
 	}

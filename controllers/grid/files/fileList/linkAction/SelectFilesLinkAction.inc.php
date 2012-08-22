@@ -22,15 +22,17 @@ class SelectFilesLinkAction extends LinkAction {
 	 * @param $actionArgs array The parameters required by the
 	 *  link action target to identify a list of files.
 	 * @param $actionLabel string The localized label of the link action.
+	 * @param $modalTitle string the (optional) title to be used for the modal.
 	 */
-	function SelectFilesLinkAction(&$request, $actionArgs, $actionLabel) {
+	function SelectFilesLinkAction(&$request, $actionArgs, $actionLabel, $modalTitle = null) {
 		// Create an ajax action request that'll contain
 		// the file selection grid.
 		import('lib.pkp.classes.linkAction.request.AjaxModal');
+		$modalTitle = isset($modalTitle) ? $modalTitle : $actionLabel;
 		$router =& $request->getRouter();
 		$ajaxModal = new AjaxModal(
 				$router->url($request, null, null, 'selectFiles', null, $actionArgs),
-				$actionLabel, 'modal_add_file');
+				$modalTitle, 'modal_add_file');
 
 		// Configure the link action.
 		parent::LinkAction('selectFiles', $ajaxModal, $actionLabel, 'add');

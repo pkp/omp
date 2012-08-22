@@ -9,8 +9,7 @@
 
 
 <!-- Current review files -->
-<p>{translate key="editor.monograph.review.manageReviewFilesDescription"}
-<h4>{translate key="editor.monograph.review.currentFiles" round=$round}</h4>
+<p class="pkp_help">{translate key="editor.monograph.review.manageReviewFilesDescription"}
 
 <div id="existingFilesContainer">
 	<script type="text/javascript">

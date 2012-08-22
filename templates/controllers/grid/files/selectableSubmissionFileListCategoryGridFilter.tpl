@@ -17,9 +17,9 @@
 <form class="pkp_form" id="fileListFilterForm" action="{url router=$smarty.const.ROUTE_COMPONENT op="fetchGrid"}" method="post">
 	{fbvFormArea id="allStagesFilterArea"}
 		{fbvFormSection list="true"}
-			{fbvElement type="checkbox" id="allStages" checked=$filterSelectionData.allStages label="editor.monograph.fileList.includeAllStages"}
+			{fbvElement type="checkbox" id="allStages" checked=$filterSelectionData.allStages label="editor.monograph.fileList.includeAllStages" size=$fbvStyles.size.LARGE}
+			{fbvElement type="submit" id="submitFormButton" label="common.search" inline=true}
 		{/fbvFormSection}
-		{fbvFormButtons hideCancel=true submitText="common.search"}
 	{/fbvFormArea}
 </form>
-<div class="pkp_helpers_clear">&nbsp;</div>
+
