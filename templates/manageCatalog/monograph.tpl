@@ -45,6 +45,7 @@
 				actionRequestOptions: {ldelim}
 					title: '{translate|escape:"javascript" key="submission.catalogEntry"}',
 					modalHandler: '$.pkp.controllers.modal.AjaxModalHandler',
+					titleIcon: 'modal_more_info',
 					url: '{url|escape:"javascript" router=$smarty.const.ROUTE_COMPONENT component="modals.submissionMetadata.CatalogEntryHandler" op="fetch" monographId=$monographId stageId=$smarty.const.WORKFLOW_STAGE_ID_PRODUCTION escape=false}'
 				{rdelim}
 			{rdelim}
