@@ -43,7 +43,7 @@
 		<tr valign="top">
 			{assign var="contents" value=$note->getContents()}
 			<td colspan="3">
-				<br />
+				<blockquote>
 				<span>
 					{$contents|truncate:250|nl2br|strip_unsafe_html}
 					{if $contents|strlen > 250}<a href="javascript:$.noop();" class="showMore">{translate key="common.more"}</a>{/if}
@@ -53,7 +53,7 @@
 						{$contents|nl2br|strip_unsafe_html} <a href="javascript:$.noop();" class="showLess">{translate key="common.less"}</a>
 					</span>
 				{/if}
-				<br /><br />
+				<br /><br /></blockquote>
 			</td>
 		</tr>
 	</table>

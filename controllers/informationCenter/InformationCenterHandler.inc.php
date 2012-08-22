@@ -127,6 +127,7 @@ class InformationCenterHandler extends Handler {
 		$templateMgr->assign('currentUserId', $user->getId());
 		$templateMgr->assign('notesDeletable', true);
 
+		$templateMgr->assign('notesListId', 'notesList');
 		$json = new JSONMessage(true, $templateMgr->fetch('controllers/informationCenter/notesList.tpl'));
 		$json->setEvent('dataChanged');
 		return $json->getString();

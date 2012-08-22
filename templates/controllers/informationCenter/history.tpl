@@ -33,7 +33,6 @@
 	{* Leave an empty div to be filled with log entries *}
 	<div id="historyList">
 	</div>
-	<br /><br />
 	{if $showEarlierEntries}
 			<h3><a href="#" id="showPastHistoryLink">{translate key="informationCenter.pastHistory"}</a></h3>
 			{* Leave an empty div to be filled in with past log entries *}

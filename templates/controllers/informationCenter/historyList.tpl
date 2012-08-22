@@ -7,7 +7,7 @@
  * Display submission or file history in information center.
  *}
 
-<div id="historyList">
+<div id="{$historyListId}">
 <table width="100%" class="pkp_listing">
 	<tr><td colspan="5">&nbsp;</td></tr>
 	<tr valign="top" class="heading">

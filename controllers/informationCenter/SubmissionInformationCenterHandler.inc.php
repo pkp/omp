@@ -241,7 +241,7 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 		$monographEventLogDao =& DAORegistry::getDAO('MonographEventLogDAO');
 		$monographEvents =& $monographEventLogDao->getByMonographId($this->_monograph->getId());
 		$templateMgr->assign_by_ref('eventLogEntries', $monographEvents);
-
+		$templateMgr->assign('historyListId', 'historyList');
 		return $templateMgr->fetchJson('controllers/informationCenter/historyList.tpl');
 	}
 

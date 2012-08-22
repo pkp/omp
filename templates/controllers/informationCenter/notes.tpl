@@ -33,7 +33,6 @@
 		<div id="notesAccordion">
 			<h3><a href="#">{translate key="informationCenter.currentNotes"}</a></h3>
 	{/if}
-	<br /><br />
 	{* Leave an empty div to be filled with notes *}
 	<div id="notesList">
 	</div>

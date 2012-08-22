@@ -37,13 +37,9 @@ jQuery.pkp.controllers.informationCenter =
 		this.fetchHistoryUrl_ = options.fetchHistoryUrl;
 		this.fetchPastHistoryUrl_ = options.fetchPastHistoryUrl;
 
-		// Initialize an accordion for the "past events" list, if it's
-		// available (e.g. for a file information center).
-		$('#historyAccordion').accordion();
-
 		// Load a list of the current events.
-		this.loadHistoryList_();
 		this.loadPastHistoryList_();
+		this.loadHistoryList_();
 	};
 	$.pkp.classes.Helper.inherits(
 			$.pkp.controllers.informationCenter.HistoryHandler,
@@ -87,6 +83,9 @@ jQuery.pkp.controllers.informationCenter =
 
 		jsonData = this.handleJson(jsonData);
 		$('#historyList').replaceWith(jsonData.content);
+		// Initialize an accordion for the "past events" list, if it's
+		// available (e.g. for a file information center).
+		$('#historyAccordion').accordion({ clearStyle: true });
 	};
 
 

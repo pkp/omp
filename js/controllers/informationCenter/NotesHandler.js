@@ -28,17 +28,12 @@
 		// Store the list fetch URLs for later
 		this.fetchNotesUrl_ = options.fetchNotesUrl;
 		this.fetchPastNotesUrl_ = options.fetchPastNotesUrl;
-
 		// Bind for changes in the note list (e.g.  new note or delete)
 		this.bind('formSubmitted', this.handleRefreshNoteList);
 
-		// Initialize an accordion for the "past notes" list, if it's
-		// available (e.g. for a file information center).
-		$('#notesAccordion').accordion();
-
 		// Load a list of the current notes.
-		this.loadNoteList_();
 		this.loadPastNoteList_();
+		this.loadNoteList_();
 	};
 	$.pkp.classes.Helper.inherits(
 			$.pkp.controllers.informationCenter.NotesHandler,
@@ -100,6 +95,16 @@
 		jsonData = this.handleJson(jsonData);
 		$('#notesList').replaceWith(jsonData.content);
 		$('#notesList').find('.showMore, .showLess').bind('click', this.switchViz);
+
+		// Initialize an accordion for the "past notes" list, if it's
+		// available (e.g. for a file information center).
+		if (!$('#notesAccordion').hasClass('ui-accordion')) {
+			$('#notesAccordion').accordion({ clearStyle: true });
+		} else {
+			// this is a refresh.  Since the accordion exists, we must destroy
+			// and then recreate it or the content looks unstyled.
+			$('#notesAccordion').accordion('destroy').accordion({ clearStyle: true });
+		}
 	};
 
 
@@ -121,7 +126,7 @@
 		$('#pastNotesList').replaceWith(jsonData.content);
 
 		// bind our more/less links now that content is loaded.
-		$('#notesList').find('.showMore, .showLess').bind('click', this.switchViz);
+	//	$('#pastNotesList').find('.showMore, .showLess').bind('click', this.switchViz);
 	};
 
 

@@ -119,6 +119,7 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 		$user =& $request->getUser();
 		$templateMgr->assign('currentUserId', $user->getId());
 
+		$templateMgr->assign('notesListId', 'pastNotesList');
 		return $templateMgr->fetchJson('controllers/informationCenter/notesList.tpl');
 	}
 
@@ -212,7 +213,7 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign_by_ref('eventLogEntries', $fileEvents);
-
+		$templateMgr->assign('historyListId', 'historyList');
 		return $templateMgr->fetchJson('controllers/informationCenter/historyList.tpl');
 	}
 
@@ -244,7 +245,7 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 
 		$user =& $request->getUser();
 		$templateMgr->assign('currentUserId', $user->getId());
-
+		$templateMgr->assign('historyListId', 'pastHistoryList');
 		return $templateMgr->fetchJson('controllers/informationCenter/historyList.tpl');
 	}
 

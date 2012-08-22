@@ -7,7 +7,7 @@
  * Display submission file note list in information center.
  *}
 
-<div id="notesList">
+<div id="{$notesListId}">
 	{iterate from=notes item=note}
 		{include file="controllers/informationCenter/note.tpl"}
 		{$note->markViewed($currentUserId)}
