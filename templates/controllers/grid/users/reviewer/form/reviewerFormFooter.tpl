@@ -24,7 +24,7 @@
 
 <!--  Reviewer due dates (see http://jqueryui.com/demos/datepicker/) -->
 {fbvFormSection title="editor.review.importantDates"}
-	{fbvElement type="text" id="responseDueDate" name="responseDueDate" label="editor.responseDueDate" value=$responseDueDate inline=true size=$fbvStyles.size.MEDIUM}
+	{fbvElement type="text" id="responseDueDate" name="responseDueDate" label="monograph.task.responseDueDate" value=$responseDueDate inline=true size=$fbvStyles.size.MEDIUM}
 	{fbvElement type="text" id="reviewDueDate" name="reviewDueDate" label="editor.review.reviewDueDate" value=$reviewDueDate inline=true size=$fbvStyles.size.MEDIUM}
 {/fbvFormSection}
 
