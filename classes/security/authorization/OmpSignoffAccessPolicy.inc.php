@@ -33,6 +33,10 @@ class OmpSignoffAccessPolicy extends PressPolicy {
 		import('classes.security.authorization.internal.SignoffExistsAccessPolicy');
 		$this->addPolicy(new SignoffExistsAccessPolicy($request, $args));
 
+		// We need a valid workflow stage.
+		import('classes.security.authorization.internal.WorkflowStageRequiredPolicy');
+		$this->addPolicy(new WorkflowStageRequiredPolicy($stageId));
+
 		// Authors, press managers and series editors potentially have
 		// access to signoffs. We'll have to define
 		// differentiated policies for those roles in a policy set.

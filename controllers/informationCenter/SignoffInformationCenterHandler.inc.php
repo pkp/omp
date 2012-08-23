@@ -68,7 +68,7 @@ class SignoffInformationCenterHandler extends Handler {
 		if ($router->getRequestedOp($request) == 'saveNote') {
 			$mode = SIGNOFF_ACCESS_MODIFY;
 		}
-		$this->addPolicy(new OmpSignoffAccessPolicy($request, $args, $roleAssignments, $mode, $this->stageId));
+		$this->addPolicy(new OmpSignoffAccessPolicy($request, $args, $roleAssignments, $mode, $request->getUserVar('stageId')));
 
 		return parent::authorize($request, $args, $roleAssignments);
 	}
