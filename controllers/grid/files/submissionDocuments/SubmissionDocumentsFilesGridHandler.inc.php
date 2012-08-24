@@ -1,29 +1,29 @@
 <?php
 
 /**
- * @file controllers/grid/files/bookDocuments/BookDocumentsFilesGridHandler.inc.php
+ * @file controllers/grid/files/submissionDocuments/SubmissionDocumentsFilesGridHandler.inc.php
  *
  * Copyright (c) 2003-2012 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class LibraryFileGridHandler
- * @ingroup controllers_grid_files_bookDocuments
+ * @ingroup controllers_grid_files_submissionDocuments
  *
- * @brief Handle book documents file grid requests.
+ * @brief Handle submission documents file grid requests.
  */
 
 import('controllers.grid.files.LibraryFileGridHandler');
 import('classes.monograph.MonographFile');
-import('controllers.grid.files.bookDocuments.BookDocumentsFilesGridDataProvider');
+import('controllers.grid.files.submissionDocuments.SubmissionDocumentsFilesGridDataProvider');
 import('controllers.grid.files.SubmissionFilesGridRow');
 
-class BookDocumentsFilesGridHandler extends LibraryFileGridHandler {
+class SubmissionDocumentsFilesGridHandler extends LibraryFileGridHandler {
 	/**
 	 * Constructor
 	 */
-	function BookDocumentsFilesGridHandler() {
+	function SubmissionDocumentsFilesGridHandler() {
 
-		parent::LibraryFileGridHandler(new BookDocumentsFilesGridDataProvider());
+		parent::LibraryFileGridHandler(new SubmissionDocumentsFilesGridDataProvider());
 		$this->addRoleAssignment(
 			array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_ASSISTANT, ROLE_ID_AUTHOR),
 			array('viewLibrary')

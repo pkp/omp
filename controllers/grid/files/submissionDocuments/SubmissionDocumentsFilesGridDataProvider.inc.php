@@ -1,26 +1,26 @@
 <?php
 
 /**
- * @file controllers/grid/files/bookDocuments/BookDocumentsFilesGridDataProvider.inc.php
+ * @file controllers/grid/files/submissionDocuments/SubmissionDocumentsFilesGridDataProvider.inc.php
  *
  * Copyright (c) 2000-2012 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class BookDocumentsFilesGridDataProvider
- * @ingroup controllers_grid_files_bookDocuments
+ * @class SubmissionDocumentsFilesGridDataProvider
+ * @ingroup controllers_grid_files_submissionDocuments
  *
- * @brief The data provider for the book documents library files grid.
+ * @brief The data provider for the submission documents library files grid.
  */
 
 
 import('lib.pkp.classes.controllers.grid.CategoryGridDataProvider');
 
-class BookDocumentsFilesGridDataProvider extends CategoryGridDataProvider {
+class SubmissionDocumentsFilesGridDataProvider extends CategoryGridDataProvider {
 
 	/**
 	 * Constructor
 	 */
-	function BookDocumentsFilesGridDataProvider() {
+	function SubmissionDocumentsFilesGridDataProvider() {
 		parent::CategoryGridDataProvider();
 	}
 
@@ -70,7 +70,7 @@ class BookDocumentsFilesGridDataProvider extends CategoryGridDataProvider {
 	 */
 	function getCategoryData(&$fileType, $filter = null) {
 
-		// Retrieve all monograph files for the given book document category.
+		// Retrieve all monograph files for the given submission document category.
 		$monograph =& $this->getMonograph();
 		import('classes.monograph.MonographFile');
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */

@@ -50,7 +50,7 @@
 	<message key="submission.metadata">Metadata</message>
 	<message key="submission.supportingAgencies">Supporting Agencies</message>
 	<message key="submission.previousAuthorEmail">Previous Email</message>
-	<message key="submission.bookDocuments">Book Documents</message>
+	<message key="submission.documents">Submission Documents</message>
 	<message key="grid.action.addChapter">Create a new chapter</message>
 	<message key="grid.action.editChapter">Edit this chapter</message>
 	<message key="grid.action.deleteChapter">Delete this chapter</message>
