@@ -109,13 +109,13 @@ class EditorDecisionActionsManager {
 			SUBMISSION_EDITOR_DECISION_INTERNAL_REVIEW => array(
 				'name' => 'internalReview',
 				'operation' => 'internalReview',
-				'title' => 'editor.monograph.decision.internalReview',
+				'title' => 'editor.monograph.decision.sendInternalReview',
 				'image' => 'advance'
 			),
 			SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW => array(
 				'operation' => 'externalReview',
 				'name' => 'externalReview',
-				'title' => 'editor.monograph.decision.externalReview',
+				'title' => 'editor.monograph.decision.sendExternalReview',
 				'image' => 'advance'
 			),
 			SUBMISSION_EDITOR_DECISION_ACCEPT => array(
@@ -160,7 +160,7 @@ class EditorDecisionActionsManager {
 			SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW => array(
 				'operation' => 'promoteInReview',
 				'name' => 'externalReview',
-				'title' => 'editor.monograph.decision.externalReview',
+				'title' => 'editor.monograph.decision.sendExternalReview',
 				'image' => 'advance',
 				'help' => 'editor.review.NotifyAuthorExternal'
 			),
