@@ -18,8 +18,8 @@
 {url|assign:submissionFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.submission.EditorSubmissionDetailsFilesGridHandler" op="fetchGrid" monographId=$monograph->getId() stageId=$stageId escape=false}
 {load_url_in_div id="submissionFilesGridDiv" url=$submissionFilesGridUrl}
 
-{url|assign:bookDocumentsGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.bookDocuments.BookDocumentsFilesGridHandler" op="fetchGrid" monographId=$monograph->getId()}
-{load_url_in_div id="bookDocumentsGridDiv" url=$bookDocumentsGridUrl}
+{url|assign:documentsGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.submissionDocuments.SubmissionDocumentsFilesGridHandler" op="fetchGrid" monographId=$monograph->getId()}
+{load_url_in_div id="documentsGridDiv" url=$documentsGridUrl}
 </div>
 
 {include file="common/footer.tpl"}
