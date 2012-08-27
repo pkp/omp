@@ -144,17 +144,8 @@ class PublicationFormatGridHandler extends GridHandler {
 		);
 		$this->addColumn(
 			new GridColumn(
-				'format',
-				'grid.catalogEntry.publicationFormatType',
-				null,
-				'controllers/grid/gridCell.tpl',
-				$cellProvider
-			)
-		);
-		$this->addColumn(
-			new GridColumn(
 				'proofComplete',
-				'grid.catalogEntry.proofComplete',
+				'grid.catalogEntry.proof',
 				null,
 				'controllers/grid/common/cell/statusCell.tpl',
 				$cellProvider
@@ -163,7 +154,7 @@ class PublicationFormatGridHandler extends GridHandler {
 		$this->addColumn(
 			new GridColumn(
 				'isApproved',
-				'payment.directSales.approved',
+				'payment.directSales.catalog',
 				null,
 				'controllers/grid/common/cell/statusCell.tpl',
 				$cellProvider

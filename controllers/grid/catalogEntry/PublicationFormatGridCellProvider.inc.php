@@ -74,10 +74,9 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 		$columnId = $column->getId();
 		assert(is_a($publicationFormat, 'DataObject') && !empty($columnId));
 		switch ($columnId) {
-			case 'format':
-				return array('label' => $publicationFormat->getNameForONIXCode());
 			case 'name':
-				return array('label' => $publicationFormat->getLocalizedName());
+				$label = $publicationFormat->getLocalizedName() . ' (' .$publicationFormat->getNameForONIXCode() . ')';
+				return array('label' => $label);
 			case 'proofComplete':
 			case 'isAvailable':
 			case 'isApproved':

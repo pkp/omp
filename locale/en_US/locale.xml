@@ -94,7 +94,7 @@
 	<message key="grid.catalogEntry.monographRequired">A monograph id is required.</message>
 	<message key="grid.catalogEntry.publicationFormatRequired">A publication format must be chosen.</message>
 	<message key="grid.catalogEntry.isAvailable">Available</message>
-	<message key="grid.catalogEntry.proofComplete">Proof complete</message>
+	<message key="grid.catalogEntry.proof">Proof</message>
 	<message key="grid.catalogEntry.availablePublicationFormat.title">Format Approval</message>
 	<message key="grid.catalogEntry.availablePublicationFormat.message"><![CDATA[<p>This format will now be made <em>available</em> to readers, through downloadable files that will now appear with the book’s catalog entry and/or through further actions taken by the press to distribute the book.</p>]]></message>
 	<message key="grid.catalogEntry.availablePublicationFormat.removeMessage"><![CDATA[<p>This format will <em>no longer be made available</em> to readers, through downloadable files that previously appeared with the book’s catalog entry and/or through further actions taken by the press to distribute the book.</p>]]></message>
@@ -731,6 +731,7 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 
 	<message key="payment.directSales">Download From Press Website</message>
 	<message key="payment.directSales.price">Price</message>
+	<message key="payment.directSales.catalog">Catalog</message>
 	<message key="payment.directSales.approved">Approved</message>
 	<message key="payment.directSales.priceCurrency">Price ({$currency})</message>
 	<message key="payment.directSales.directSales">Direct Sales</message>
