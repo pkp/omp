@@ -121,7 +121,7 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 						__('editor.monograph.addStageParticipant'),
 						'modal_add_user'
 					),
-					__('editor.monograph.addStageParticipant'),
+					__('common.add'),
 					'add_user'
 				)
 			);
