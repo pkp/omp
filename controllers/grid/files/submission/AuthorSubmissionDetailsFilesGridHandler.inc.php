@@ -22,7 +22,7 @@ class AuthorSubmissionDetailsFilesGridHandler extends FileListGridHandler {
 	function AuthorSubmissionDetailsFilesGridHandler() {
 		import('controllers.grid.files.SubmissionFilesGridDataProvider');
 		$dataProvider = new SubmissionFilesGridDataProvider(MONOGRAPH_FILE_SUBMISSION);
-		parent::FileListGridHandler($dataProvider, WORKFLOW_STAGE_ID_SUBMISSION, FILE_GRID_DOWNLOAD_ALL);
+		parent::FileListGridHandler($dataProvider, WORKFLOW_STAGE_ID_SUBMISSION);
 
 		$this->addRoleAssignment(
 			array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_ASSISTANT, ROLE_ID_AUTHOR),

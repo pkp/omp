@@ -24,7 +24,7 @@ class ReviewerReviewAttachmentsGridHandler extends FileListGridHandler {
 		parent::FileListGridHandler(
 			new ReviewerReviewAttachmentGridDataProvider(MONOGRAPH_FILE_REVIEW_ATTACHMENT),
 			null,
-			FILE_GRID_ADD|FILE_GRID_DELETE|FILE_GRID_DOWNLOAD_ALL
+			FILE_GRID_ADD|FILE_GRID_DELETE
 		);
 
 		$this->addRoleAssignment(

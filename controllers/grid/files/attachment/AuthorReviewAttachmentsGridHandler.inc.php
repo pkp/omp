@@ -24,8 +24,7 @@ class AuthorReviewAttachmentsGridHandler extends FileListGridHandler {
 		// Pass in null stageId to be set in initialize from request var.
 		parent::FileListGridHandler(
 			new ReviewGridDataProvider(MONOGRAPH_FILE_REVIEW_ATTACHMENT, true),
-			null,
-			FILE_GRID_DOWNLOAD_ALL
+			null
 		);
 
 		$this->addRoleAssignment(

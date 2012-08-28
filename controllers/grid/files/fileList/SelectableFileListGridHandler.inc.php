@@ -25,7 +25,7 @@ class SelectableFileListGridHandler extends FileListGridHandler {
 	 * @param $capabilities integer A bit map with zero or more
 	 *  FILE_GRID_* capabilities set.
 	 */
-	function SelectableFileListGridHandler($dataProvider, $stageId, $capabilities) {
+	function SelectableFileListGridHandler($dataProvider, $stageId, $capabilities = 0) {
 		parent::FileListGridHandler($dataProvider, $stageId, $capabilities, 'SelectableFileListGridHandlerImplementation');
 	}
 

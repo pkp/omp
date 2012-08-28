@@ -23,8 +23,7 @@ class ReviewerReviewFilesGridHandler extends FileListGridHandler {
 		import('controllers.grid.files.review.ReviewerReviewFilesGridDataProvider');
 		parent::FileListGridHandler(
 			new ReviewerReviewFilesGridDataProvider(),
-			null,
-			FILE_GRID_DOWNLOAD_ALL
+			null
 		);
 
 		$this->addRoleAssignment(

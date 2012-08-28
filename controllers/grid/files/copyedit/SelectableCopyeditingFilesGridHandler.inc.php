@@ -24,7 +24,7 @@ class SelectableCopyeditingFilesGridHandler extends SelectableFileListGridHandle
 		parent::SelectableFileListGridHandler(
 			new SubmissionFilesGridDataProvider(MONOGRAPH_FILE_COPYEDIT, true),
 			null,
-			FILE_GRID_DOWNLOAD_ALL|FILE_GRID_VIEW_NOTES
+			FILE_GRID_VIEW_NOTES
 		);
 
 		$this->addRoleAssignment(

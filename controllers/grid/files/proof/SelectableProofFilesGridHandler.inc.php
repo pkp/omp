@@ -23,8 +23,7 @@ class SelectableProofFilesGridHandler extends SelectableFileListGridHandler {
 		// Pass in null stageId to be set in initialize from request var.
 		parent::SelectableFileListGridHandler(
 			new ProofFilesGridDataProvider(),
-			null,
-			FILE_GRID_DOWNLOAD_ALL
+			null
 		);
 
 		$this->addRoleAssignment(

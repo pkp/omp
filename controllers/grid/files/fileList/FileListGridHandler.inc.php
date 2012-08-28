@@ -30,7 +30,7 @@ class FileListGridHandler extends SubmissionFilesGridHandler {
 	 * @param $capabilities integer A bit map with zero or more
 	 *  FILE_GRID_* capabilities set.
 	 */
-	function FileListGridHandler($dataProvider, $stageId, $capabilities, $gridHandlerImplementationClass = null) {
+	function FileListGridHandler($dataProvider, $stageId, $capabilities = 0, $gridHandlerImplementationClass = null) {
 		if (is_null($gridHandlerImplementationClass)) {
 			$gridHandlerImplementationClass = 'FileListGridHandlerImplementation';
 		}

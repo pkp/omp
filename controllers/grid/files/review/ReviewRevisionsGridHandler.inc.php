@@ -28,7 +28,7 @@ class ReviewRevisionsGridHandler extends FileSignoffGridHandler {
 			new ReviewRevisionsGridDataProvider(),
 			null,
 			'SIGNOFF_REVIEW_REVISION',
-			FILE_GRID_ADD|FILE_GRID_DOWNLOAD_ALL|FILE_GRID_DELETE|FILE_GRID_VIEW_NOTES
+			FILE_GRID_ADD|FILE_GRID_DELETE|FILE_GRID_VIEW_NOTES
 		);
 
 		list($roles, $operations) = $roleAssignments;
