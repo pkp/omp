@@ -92,16 +92,8 @@ class PublicationFormatHandler extends Handler {
 	 * @param $request PKPRequest
 	 */
 	function fetchPublicationFormat($args, $request) {
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-		$stageId = $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
-		$publicationFormat =& $this->getAuthorizedContextObject(ASSOC_TYPE_PUBLICATION_FORMAT);
-
-		import('controllers.api.proof.linkAction.ApproveProofsLinkAction');
-		$approveProofAction = new ApproveProofsLinkAction($request, $publicationFormat->getMonographId(), $publicationFormat->getId());
-
 		// Fetch the template
 		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->assign('approveProofAction', $approveProofAction);
 		return $templateMgr->fetchJson('workflow/publicationFormat.tpl');
 	}
 }

@@ -10,5 +10,3 @@
 
 {url|assign:proofGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.proof.ProofFilesGridHandler" op="fetchGrid" monographId=$monograph->getId() publicationFormatId=$publicationFormatId escape=false}
 {load_url_in_div id="proofGrid-$publicationFormatId" url=$proofGridUrl}
-
-{include file="linkAction/linkAction.tpl" action=$approveProofAction}
