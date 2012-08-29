@@ -11,8 +11,6 @@
 {include file="common/header.tpl"}
 {/strip}
 
-<div>{$pressDescription}</div>
-
 {call_hook name="Templates::Index::press"}
 
 {if $homepageImage}
