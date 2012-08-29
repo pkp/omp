@@ -130,14 +130,6 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 		$this->setEmptyCategoryRowText('editor.monograph.noneAssigned');
 	}
 
-	/**
-	 * @see GridHandler::initFeatures()
-	 */
-	function initFeatures($request, $args) {
-		import('lib.pkp.classes.controllers.grid.feature.GridCategoryAccordionFeature');
-		return array(new GridCategoryAccordionFeature());
-	}
-
 
 	//
 	// Overridden methods from [Category]GridHandler

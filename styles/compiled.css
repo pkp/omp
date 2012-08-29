@@ -1381,6 +1381,12 @@ a.request_review { background-image:url(../lib/pkp/templates/images/structure/gr
   font-size:80%;
   padding:0px;
 }
+div#stageParticipantGridContainer tr.category td {
+  height:26px;
+  font-size:12px;
+  text-transform:none !important;
+  font-family:inherit !important;
+}
 div.pkp_controllers_listbuilder thead, div.pkp_controllers_listbuilder tr.gridRow, div.pkp_controllers_listbuilder tr.empty { border-bottom:1px solid #c8c7c7; }
 div.pkp_controllers_listbuilder .gridCellEdit { display:none; }
 div.pkp_controllers_listbuilder .gridRowEdit .gridCellEdit { display:block; }
@@ -1740,12 +1746,12 @@ ul.sf-menu {
   padding:5px 1px 4px 1px;
 }
 .pkp_page_header li.participants { margin-right:10px; }
-.pkp_page_header li.participants:hover {
+.pkp_page_header li.participants:hover, .pkp_page_header li.expandedIndicator {
   background:#ffffff;
   border:1px solid #999999;
   border-bottom:1px solid #ffffff;
-  padding:4px 10px 3px 10px;
-  margin:0px 0px 0px 10px;
+  padding:4px 10px 3px 10px !important;
+  margin:0px 0px 0px 10px !important;
 }
 .pkp_page_header .participant_popover {
   border:1px solid #999999;
@@ -1757,7 +1763,6 @@ ul.sf-menu {
   background-color:#ffffff;
   z-index:10;
 }
-.pkp_page_header #participantToggle.expandedIndicator:after { content:' [X]'; }
 .pkp_page_header ul.submission_actions a { text-decoration:underline; }
 .pkp_page_header .submission_progress_wrapper {
   clear:both;

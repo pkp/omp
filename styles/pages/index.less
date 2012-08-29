@@ -31,12 +31,12 @@
 		margin-right: 10px;
 	}
 
-	li.participants:hover {
+	li.participants:hover, li.expandedIndicator {
 		background: #fff;
 		border: 1px solid #999;
 		border-bottom: 1px solid #fff;
-		padding: 4px 10px 3px 10px;
-		margin: 0px 0px 0px 10px;
+		padding: 4px 10px 3px 10px !important;
+		margin: 0px 0px 0px 10px !important;
 	}
 
 	.participant_popover {
@@ -48,10 +48,6 @@
 		position:absolute;
 		background-color: #fff;
 		z-index: 10;
-	}
-
-	#participantToggle.expandedIndicator:after {
-		content: ' [X]';
 	}
 
 	ul.submission_actions a {

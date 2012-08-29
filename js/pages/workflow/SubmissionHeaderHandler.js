@@ -75,8 +75,21 @@
 			function(callingElement, event) {
 
 		var $submissionHeader = this.getHtmlElement();
-		$submissionHeader.find('.participant_popover').toggle();
-		$submissionHeader.find('#participantToggle').toggleClass('expandedIndicator');
+		var $participantsPopover = $submissionHeader.find('.participant_popover');
+		var $participantsListElement = $submissionHeader.find('li.participants');
+		var $participantsToggle = $submissionHeader.find('#participantToggle');
+
+		$participantsPopover.toggle();
+		$participantsListElement.toggleClass('expandedIndicator');
+		$participantsToggle.toggleClass('expandedIndicator');
+
+		if ($participantsListElement.hasClass('expandedIndicator')) {
+			this.trigger('callWhenClickOutside', {
+				container: $participantsPopover.add($participantsListElement),
+				callback: this.callbackWrapper(this.appendToggleIndicator_),
+				skipWhenVisibleModals: true
+			});
+		}
 	};
 
 /** @param {jQuery} $ jQuery closure. */
