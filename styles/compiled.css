@@ -740,6 +740,7 @@ body {
 .pkp_structure_body .pkp_structure_main {
   *zoom:1;
   padding-top:10px;
+  padding-bottom:80px;
   border-top:1px dotted #999999;
   display:table-cell;
   *display:block;
@@ -1683,7 +1684,6 @@ ul.sf-menu {
 }
 .pkp_catalog_monographs {
   clear:both;
-  border-top:1px dotted #999999;
   padding-top:10px;
   font-size:0.9em;
 }
@@ -1700,13 +1700,19 @@ ul.sf-menu {
 }
 .pkp_catalog_monographs .pkp_catalog_monograph .pkp_catalog_monographSubtitle { font-style:italic; }
 .pkp_catalog_feature {
-  border-top:1px dotted #999999;
+  border-top:1px solid #c8c7c7;
   padding-top:10px;
   margin-left:10px;
+  font-size:12px;
 }
 .pkp_catalog_feature .pkp_catalog_featureSpecs { float:left; }
 .pkp_catalog_feature .pkp_catalog_featureDetails { margin-top:50px; }
 .pkp_catalog_feature .pkp_catalog_feature_abstract { text-align:justify; }
+.pkp_catalog_feature .pkp_catalog_monographTitle {
+  font-size:12px;
+  color:#444444;
+}
+.pkp_catalog_feature .pkp_catalog_monographAbstract { color:#666666; }
 .pkp_catalog_book .bookSpecs {
   float:left;
   width:33%;
@@ -1734,6 +1740,13 @@ ul.sf-menu {
   color:#999999;
   font-size:90%;
 }
+#spotlightsHome h4 {
+  color:black;
+  font-size:15px;
+}
+#spotlightsHome ul { margin-top:20px; }
+#socialMediaBlocksContainer { margin-top:20px; }
+#socialMediaBlocksContainer .socialMediaBlock { margin:10px 0px; }
 .pkp_page_header { position:relative; }
 .pkp_page_header ul.submission_actions {
   position:relative;

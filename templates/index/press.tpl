@@ -44,10 +44,16 @@
 	{include file="index/spotlights.tpl"}
 {/if}
 
-{foreach from=$socialMediaBlocks item=block name=b}
-	<div id="socialMediaBlock{$smarty.foreach.b.index}" class="pkp_helpers_clear">
-		{$block}
+<div class="pkp_helpers_clear"></div>
+
+{if !empty($socialMediaBlocks)}
+	<div id="socialMediaBlocksContainer">
+	{foreach from=$socialMediaBlocks item=block name=b}
+		<div id="socialMediaBlock{$smarty.foreach.b.index}" class="socialMediaBlock pkp_helpers_clear">
+			{$block}
+		</div>
+	{/foreach}
 	</div>
-{/foreach}
+{/if}
 
 {include file="common/footer.tpl"}
