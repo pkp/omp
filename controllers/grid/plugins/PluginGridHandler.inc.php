@@ -85,7 +85,8 @@ class PluginGridHandler extends CategoryGridHandler {
 				'common.name',
 				null,
 				'controllers/grid/gridCell.tpl',
-				$pluginCellProvider
+				$pluginCellProvider,
+				array('multiline' => true)
 			)
 		);
 
