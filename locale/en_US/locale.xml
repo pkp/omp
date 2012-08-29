@@ -258,6 +258,7 @@
 	<message key="grid.action.monographEmail">Click to read this email</message>
 	<message key="grid.action.viewLibrary">View Document Library</message>
 	<message key="grid.action.viewSignoffNotes">View signoff notes</message>
+	<message key="grid.action.fileUnconsider">Unconsider this task</message>
 
 	<!-- Used in submission review -->
 	<message key="reviewer.reviewSteps.request">1. Request</message>

@@ -21,7 +21,7 @@
 	{rdelim});
 </script>
 
-<div id="note-{$noteId}">
+<div id="note-{$noteId}" class="noteWrapper pkp_helpers_dotted_underline">
 	<table width="100%">
 		<tr valign="top">
 			<td colspan="2">
@@ -53,17 +53,16 @@
 						{$contents|nl2br|strip_unsafe_html} <a href="javascript:$.noop();" class="showLess">{translate key="common.less"}</a>
 					</span>
 				{/if}
-				<br /><br /></blockquote>
+				{if $noteFileDownloadLink}
+					<br />
+					<span class="noteFile">
+						<span class="pkp_helpers_align_left"><strong>{translate key="monograph.attachedFile"}:</strong></span>
+						{include file="linkAction/linkAction.tpl" action=$noteFileDownloadLink contextId=$note->getId()}
+					</span>
+				{/if}
+				</blockquote>
 			</td>
 		</tr>
-		{if $noteFileDownloadLink}
-			<tr valign="top">
-				<td colspan="3">
-					<span class="pkp_helpers_align_left"><strong>{translate key="monograph.attachedFile"}:</strong></span>
-					{include file="linkAction/linkAction.tpl" action=$noteFileDownloadLink contextId=$note->getId()}
-				</td>
-			</tr>
-		{/if}
 	</table>
 </div>
 

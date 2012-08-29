@@ -51,6 +51,15 @@ class NewNoteForm extends Form {
 	}
 
 	/**
+	 * Get the new note form template. Subclasses can
+	 * override this method to define other template.
+	 * @return string
+	 */
+	function getNewNoteFormTemplate() {
+		return 'controllers/informationCenter/newNoteForm.tpl';
+	}
+
+	/**
 	 * Fetch the form.
 	 * @see Form::fetch()
 	 */
@@ -61,6 +70,7 @@ class NewNoteForm extends Form {
 		$notes =& $noteDao->getByAssoc($this->getAssocType(), $this->getAssocId());
 		$templateMgr->assign_by_ref('notes', $notes);
 		$templateMgr->assign('submitNoteText', $this->getSubmitNoteLocaleKey());
+		$templateMgr->assign('newNoteFormTemplate', $this->getNewNoteFormTemplate());
 
 		return parent::fetch($request);
 	}

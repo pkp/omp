@@ -55,7 +55,7 @@ class AddSignoffFileLinkAction extends LinkAction {
 		$modal = new AjaxModal(
 			$dispatcher->url(
 				$request, ROUTE_COMPONENT, null,
-				'modals.signoff.FileSignoffHandler', 'displayFileUploadForm',
+				'informationCenter.SignoffInformationCenterHandler', 'viewNotes',
 				null, $actionArgs
 			),
 			$modalTitle, 'modal_add_file'

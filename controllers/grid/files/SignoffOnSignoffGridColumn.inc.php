@@ -36,31 +36,49 @@ class SignoffOnSignoffGridColumn extends BaseSignoffStatusColumn {
 		$signoff =& $row->getData();
 		$user =& $request->getUser();
 
-		$actions = array();
-		if ($status == 'accepted' || $status == 'new') {
-			// Retrieve the submission file.
-			$signoff =& $row->getData();
+		// Assemble the request arguments for the signoff action.
+		$actionArgs = $this->getRequestArgs();
+		$actionArgs['signoffId'] = $signoff->getId();
 
-			// Assemble the request arguments for the signoff action.
-			$actionArgs = $this->getRequestArgs();
-			$actionArgs['signoffId'] = $signoff->getId();
+		$router =& $request->getRouter();
 
-			// Instantiate the signoff action.
-			$router =& $request->getRouter();
-			import('lib.pkp.classes.linkAction.request.AjaxAction');
-			$signoffAction = new LinkAction(
-				'fileSignoff',
-				new AjaxAction(
-					$router->url(
-						$request, null, null, 'signOffsignOff',
-						null, $actionArgs
-					)
-				),
-				__('common.signoff'),
-				$status
-			);
-			$actions[] = $signoffAction;
+		switch ($status) {
+			case 'accepted':
+			case 'new':
+				// Instantiate the signoff action.
+				import('lib.pkp.classes.linkAction.request.AjaxAction');
+				$signoffAction = new LinkAction(
+					'fileSignoff',
+					new AjaxAction(
+						$router->url(
+							$request, null, null, 'signOffsignOff',
+							null, $actionArgs
+						)
+					),
+					__('common.signoff'),
+					$status
+				);
+				$actions[] = $signoffAction;
+				break;
+			case 'completed':
+				// Instantiate the delete signoff action.
+				import('lib.pkp.classes.linkAction.request.AjaxAction');
+				$signoffAction = new LinkAction(
+					'fileUnconsider',
+					new AjaxAction(
+						$router->url(
+							$request, null, null, 'deleteSignOffSignOff',
+							null, $actionArgs
+						)
+					),
+					__('common.signoff'),
+					$status
+				);
+				$actions[] = $signoffAction;
+				break;
 		}
+
+
 		return $actions;
 	}
 

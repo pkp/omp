@@ -60,7 +60,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 			array(
 				'fetchGrid', 'fetchCategory', 'fetchRow', 'returnFileRow', 'returnSignoffRow',
 				'addAuditor', 'saveAddAuditor', 'getAuditorAutocomplete',
-				'signOffsignOff', 'deleteSignoff', 'viewLibrary',
+				'signOffsignOff', 'deleteSignOffSignOff', 'deleteSignoff', 'viewLibrary',
 				'editReminder', 'sendReminder'
 			)
 		);
@@ -577,6 +577,27 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 			MonographFileLog::logEvent($request, $monographFile, MONOGRAPH_LOG_FILE_SIGNOFF_SIGNOFF, 'submission.event.signoffSignoff', array('file' => $monographFile->getOriginalFileName(), 'name' => $user->getFullName(), 'username' => $user->getUsername()));
 		}
 		// Redraw the row.
+		return DAO::getDataChangedEvent($rowSignoff->getId(), $rowSignoff->getAssocId());
+	}
+
+	/**
+	 * Delete the signoff on the signoff in request.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return string Serialized JSON object
+	 */
+	function deleteSignOffSignOff($args, &$request) {
+		$rowSignoff =& $this->getAuthorizedContextObject(ASSOC_TYPE_SIGNOFF);
+		if (!$rowSignoff) fatalError('Invalid Signoff given');
+
+		$user =& $request->getUser();
+		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
+		$signoffOnSignoffFactory = $signoffDao->getAllByAssocType(ASSOC_TYPE_SIGNOFF, $rowSignoff->getId());
+		$signoffOnSignoff =& $signoffOnSignoffFactory->next();
+		if (!$signoffOnSignoff) fatalError('Invalid Signoff given');
+
+		$signoffDao->deleteObject($signoffOnSignoff);
+
 		return DAO::getDataChangedEvent($rowSignoff->getId(), $rowSignoff->getAssocId());
 	}
 

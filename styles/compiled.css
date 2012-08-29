@@ -1551,6 +1551,11 @@ a.pkp_common_disabled, a.pkp_common_disabled:hover { color:#666666; }
 }
 #pressSwitcher .section { width:200px; }
 div.linkToEditPage { margin-top:-25px; }
+div.noteWrapper {
+  margin-bottom:10px;
+  padding-bottom:10px;
+}
+span.noteFile { margin-top:10px; }
 ul.sf-menu {
   position:relative;
   z-index:1000;

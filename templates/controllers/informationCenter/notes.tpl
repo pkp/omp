@@ -21,8 +21,7 @@
 </script>
 
 <div id="informationCenterNotes">
-	{include file='controllers/informationCenter/newNoteForm.tpl'}
-	<br />
+	{include file=$newNoteFormTemplate}
 	<hr />
 
 	{if $showEarlierEntries}
