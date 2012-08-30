@@ -1747,6 +1747,11 @@ ul.sf-menu {
   color:#999999;
   font-size:90%;
 }
+.pkp_catalog_book .ui-tabs-panel {
+  border-bottom:1px solid #999999;
+  border-radius:0px;
+  padding-bottom:50px;
+}
 #spotlightsHome h4 {
   color:black;
   font-size:15px;
