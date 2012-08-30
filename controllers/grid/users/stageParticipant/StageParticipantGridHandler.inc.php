@@ -103,7 +103,7 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 		$cellProvider = new StageParticipantGridCellProvider();
 		$this->addColumn(new GridColumn(
 			'participants',
-			'editor.monograph.participant',
+			null,
 			null,
 			'controllers/grid/gridCell.tpl',
 			$cellProvider
