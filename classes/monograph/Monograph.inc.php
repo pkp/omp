@@ -235,7 +235,19 @@ class Monograph extends Submission {
 		$fullTitle .= $this->getLocalizedTitle();
 
 		if ($subtitle = $this->getLocalizedSubtitle()) {
-			$fullTitle .= ': ' . $subtitle;
+			// Set the characters that will avoid the use of
+			// a semicolon between title and subtitle.
+			$avoidSemiColonChars = array('?', '!', '/', '&');
+
+			// Check for any of these characters in
+			// the last position of current full title value.
+			if (in_array(substr($fullTitle, -1, 1), $avoidSemiColonChars)) {
+				$fullTitle .= ' ';
+			} else {
+				$fullTitle .= ': ';
+			}
+
+			$fullTitle .= $subtitle;
 		}
 
 		return $fullTitle;
