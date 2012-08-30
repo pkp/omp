@@ -34,7 +34,7 @@ class EditorDecisionHandler extends Handler {
 				'externalReview', 'saveExternalReview',
 				'sendReviews', 'saveSendReviews',
 				'promote', 'savePromote',
-				'approveProof', 'saveApproveProofs'
+				'approveProofs', 'saveApproveProof'
 			), $this->_getReviewRoundOps())
 		);
 	}
@@ -58,7 +58,7 @@ class EditorDecisionHandler extends Handler {
 
 		// Approve proof need monograph access policy.
 		$router =& $request->getRouter();
-		if ($router->getRequestedOp($request) == 'approveProof') {
+		if ($router->getRequestedOp($request) == 'saveApproveProof') {
 			import('classes.security.authorization.OmpMonographFileAccessPolicy');
 			$this->addPolicy(new OmpMonographFileAccessPolicy($request, $args, $roleAssignments, MONOGRAPH_FILE_ACCESS_MODIFY));
 		}
@@ -276,11 +276,36 @@ class EditorDecisionHandler extends Handler {
 	}
 
 	/**
+	 * Fetch the proofs grid handler.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return string Serialized JSON object
+	 */
+	function approveProofs($args, &$request) {
+		$this->setupTemplate();
+		$press =& $request->getPress();
+		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		$publicationFormatId = $request->getUserVar('publicationFormatId');
+		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO'); /* @var $publicationFormatDao PublicationFormatDAO */
+
+		$publicationFormat = $publicationFormatDao->getById($publicationFormatId, $monograph->getId(), $press->getId());
+		if (!is_a($publicationFormat, 'PublicationFormat')) {
+			fatalError('Invalid publication format id!');
+		}
+
+		$templateMgr =& TemplateManager::getManager();
+		$templateMgr->assign_by_ref('publicationFormat', $publicationFormat);
+		$templateMgr->assign_by_ref('monograph', $monograph);
+
+		return $templateMgr->fetchJson('controllers/modals/editorDecision/approveProofs.tpl');
+	}
+
+	/**
 	 * Approve a proof monograph file.
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function approveProof($args, &$request) {
+	function saveApproveProof($args, &$request) {
 		$monographFile =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH_FILE);
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 
@@ -317,30 +342,6 @@ class EditorDecisionHandler extends Handler {
 		MonographSearchIndex::indexMonographFiles($monograph);
 
 		return DAO::getDataChangedEvent($monographFile->getId());
-	}
-
-	/**
-	 * Save the approved proofs
-	 * @param $args array
-	 * @param $request PKPRequest
-	 */
-	function saveApproveProofs($args, &$request) {
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-		import('controllers.modals.editorDecision.form.ApproveProofsForm');
-		$approveProofsForm = new ApproveProofsForm($monograph, $request->getUserVar('publicationFormatId'));
-		$approveProofsForm->readInputData();
-		if ($approveProofsForm->validate()) {
-			$approveProofsForm->execute($args, $request);
-			// Create trivial notification.
-			$user =& $request->getUser();
-			$notificationMgr = new NotificationManager();
-			$notificationMgr->createTrivialNotification($user->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.proofsApproved')));
-		} else {
-			$json = new JSONMessage(true, $approveProofsForm->fetch($request));
-			return $json->getString();
-		}
-
-		return DAO::getDataChangedEvent();
 	}
 
 	//

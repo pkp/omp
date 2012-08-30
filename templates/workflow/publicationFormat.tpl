@@ -9,4 +9,5 @@
 {assign var="publicationFormatId" value=$publicationFormat->getId()}
 
 {url|assign:proofGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.proof.ProofFilesGridHandler" op="fetchGrid" monographId=$monograph->getId() publicationFormatId=$publicationFormatId escape=false}
-{load_url_in_div id="proofGrid-$publicationFormatId" url=$proofGridUrl}
+{assign var=proofContainerId value='proofGrid-'|concat:$publicationFormatId|concat:'-'|uniqid}
+{load_url_in_div id=$proofContainerId url=$proofGridUrl}

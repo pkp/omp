@@ -143,7 +143,7 @@ class SignoffFilesGridCellProvider extends GridCellProvider {
 			case WORKFLOW_STAGE_ID_PRODUCTION:
 				$remoteActionUrl = $router->url(
 					$request, null, 'modals.editorDecision.EditorDecisionHandler',
-					'approveProof', null, $actionArgs
+					'saveApproveProof', null, $actionArgs
 				);
 
 				if ($cellState == 'new') {

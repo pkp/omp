@@ -95,6 +95,7 @@
 <script type="text/javascript" src="{$baseUrl}/js/controllers/informationCenter/NotesHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/js/controllers/informationCenter/SignoffNotesHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/js/controllers/informationCenter/form/InformationCenterNotifyHandler.js"></script>
+<script type="text/javascript" src="{$baseUrl}/js/controllers/modals/editorDecision/ApproveProofsHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/js/controllers/modals/editorDecision/form/EditorDecisionFormHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/js/controllers/modals/catalogEntry/form/RepresentativeFormHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/js/controllers/modals/catalogEntry/form/PublicationFormatMetadataFormHandler.js"></script>
