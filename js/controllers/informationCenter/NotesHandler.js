@@ -95,7 +95,7 @@
 		jsonData = this.handleJson(jsonData);
 		$('#notesList').replaceWith(jsonData.content);
 		this.getHtmlElement().find('.showMore, .showLess').
-			bind('click', this.switchViz);
+				bind('click', this.switchViz);
 
 		// Initialize an accordion for the "past notes" list, if it's
 		// available (e.g. for a file information center).
@@ -127,7 +127,7 @@
 		$('#pastNotesList').replaceWith(jsonData.content);
 
 		// bind our more/less links now that content is loaded.
-	//	$('#pastNotesList').find('.showMore, .showLess').bind('click', this.switchViz);
+		// $('#pastNotesList').find('.showMore, .showLess').bind('click', this.switchViz);
 	};
 
 

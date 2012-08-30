@@ -68,11 +68,13 @@
 	 * @param {$.pkp.controllers.form.AjaxFormHandler} callingForm The widget
 	 *  that triggered the event.
 	 * @param {Event} event The upload event.
+	 * @param {Integer} signoffId The signoff ID.
+	 * @private
 	 */
 	$.pkp.controllers.informationCenter.SignoffNotesHandler.
 			prototype.handleRefreshNotesForm_ =
 			function(callingForm, event, signoffId) {
-		if (signoffId != 0) {
+		if (signoffId !== 0) {
 			// Fetch the form
 			this.loadNoteForm_(signoffId);
 		} else {
@@ -91,18 +93,19 @@
 	$.pkp.controllers.informationCenter.SignoffNotesHandler.prototype.
 			loadNoteForm_ = function(signoffId) {
 
-		if (signoffId == undefined) {
+		if (signoffId === undefined) {
 			// Get it from the current selected drop down
 			// element.
 			var $dropDown = $('#signoffSelect', this.getHtmlElement());
-			var signoffId = $dropDown.val();
+			signoffId = $dropDown.val();
 		}
 
-		if (signoffId != undefined && signoffId != 0) {
+		if (signoffId !== undefined && signoffId !== 0) {
 			$.get(this.signoffNotesFormUrl_, { signoffId: signoffId },
 					this.callbackWrapper(this.showFetchedNoteForm_), 'json');
 		}
 	};
+
 
 	/**
 	 * Show the fetched note form.
