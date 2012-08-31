@@ -1212,10 +1212,7 @@ div.pkp_controllers_grid .row_file {
   line-height:24px;
   margin-top:0.5em;
 }
-div.pkp_controllers_grid .row_file a.pkp_controllers_linkAction {
-  float:left;
-  margin-right:20px;
-}
+div.pkp_controllers_grid .row_file a.pkp_controllers_linkAction { margin-right:20px; }
 div.pkp_controllers_grid .multiline {
   line-height:125%;
   line-height:inherit;
