@@ -1245,6 +1245,7 @@ div.pkp_controllers_grid a.task {
   background-repeat:no-repeat;
   margin:0;
 }
+div.pkp_controllers_grid .grid_link_actions_below a { font-size:11px; }
 div.pkp_controllers_grid tr.alternate_row, div.pkp_controllers_grid tr.alternate_row .row_file { background-color:#f5f5f5; }
 div.pkp_controllers_grid th { color:#20538d; }
 div.pkp_controllers_grid a.task:hover { background-color:#efefef; }
