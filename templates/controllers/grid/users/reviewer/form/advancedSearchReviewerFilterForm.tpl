@@ -34,14 +34,11 @@
 		{fbvFormSection description="manager.reviewerSearch.form.instructions"}
 			{fbvElement type="text" id="doneMax" value=$reviewerValues.doneMax label="manager.reviewerSearch.doneAmount" inline=true size=$fbvStyles.size.SMALL}
 			{fbvElement type="text" id="avgMax" value=$reviewerValues.avgMax label="manager.reviewerSearch.avgAmount" inline=true size=$fbvStyles.size.SMALL}
-		{/fbvFormSection}
-		{fbvFormSection}
 			{fbvElement type="text" id="lastMax" value=$reviewerValues.lastMax label="manager.reviewerSearch.lastAmount" inline=true size=$fbvStyles.size.SMALL}
 			{fbvElement type="text" id="activeMax" value=$reviewerValues.activeMax label="manager.reviewerSearch.activeAmount" inline=true size=$fbvStyles.size.SMALL}
 		{/fbvFormSection}
-		<br/>
 		{fbvFormSection description="manager.reviewerSearch.form.interests.instructions"}
-			{fbvElement type="interests" id="interests" interestsKeywords=$interestSearchKeywords}
+			{fbvElement type="interests" id="interests" interestsKeywords=$interestSearchKeywords label=""} {** FIXME FBV is still using previous assigned data (label from previous text element, for example) and passing it to smarty to render the element **}
 		{/fbvFormSection}
 		{fbvFormSection class="pkp_helpers_text_right"}
 			{fbvElement type="submit" id="submitFilter" label="common.search"}
