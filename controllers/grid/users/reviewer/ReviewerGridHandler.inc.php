@@ -410,6 +410,55 @@ class ReviewerGridHandler extends GridHandler {
 	}
 
 	/**
+	 * An action triggered by a confirmation modal to allow an editor to unconsider a review.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return string serialized JSON object
+	 */
+	function unconsiderReview($args, &$request) {
+
+		// This resets the state of the review to 'unread', but does not delete note history.
+		$monograph =& $this->getMonograph();
+		$user =& $request->getUser();
+		$reviewAssignment =& $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ASSIGNMENT);
+		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+
+		$reviewAssignment->setUnconsidered(REVIEW_ASSIGNMENT_UNCONSIDERED);
+		$result = $reviewAssignmentDao->updateReviewAssignment($reviewAssignment);
+		$this->_updateReviewRoundStatus($reviewAssignment);
+
+		// log the unconsider.
+		import('classes.log.MonographLog');
+		import('classes.log.MonographEventLogEntry');
+
+		$entry = new MonographEventLogEntry();
+		$entry->setMonographId($reviewAssignment->getSubmissionId());
+		$entry->setUserId($user->getId());
+		$entry->setDateLogged(Core::getCurrentDate());
+		$entry->setEventType(MONOGRAPH_LOG_REVIEW_UNCONSIDERED);
+
+		MonographLog::logEvent(
+				$request,
+				$monograph,
+				MONOGRAPH_LOG_REVIEW_UNCONSIDERED,
+				'log.review.reviewUnconsidered',
+				array(
+					'editorName' => $user->getFullName(),
+					'monographId' => $monograph->getId(),
+					'round' => $reviewAssignment->getRound(),
+				)
+		);
+
+		// Render the result.
+		if ($result) {
+			return DAO::getDataChangedEvent($reviewAssignment->getId());
+		} else {
+			$json = new JSONMessage(false, __('editor.review.errorUnconsideringReview'));
+			return $json->getString();
+		}
+	}
+
+	/**
 	 * Mark the review as read and trigger a rewrite of the row.
 	 * @param $args array
 	 * @param $request PKPRequest
@@ -424,12 +473,14 @@ class ReviewerGridHandler extends GridHandler {
 		$viewsDao =& DAORegistry::getDAO('ViewsDAO');
 		$viewsDao->recordView(ASSOC_TYPE_REVIEW_RESPONSE, $reviewAssignment->getId(), $user->getId());
 
-		// Update the review round status.
-		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
-		$reviewRound =& $reviewRoundDao->getReviewRoundById($reviewAssignment->getReviewRoundId());
-		$seriesEditorSubmission =& $this->getMonograph();
-		$reviewAssignments = $seriesEditorSubmission->getReviewAssignments($reviewRound->getStageId(), $reviewRound->getRound());
-		$reviewRoundDao->updateStatus($reviewRound, $reviewAssignments);
+		// if the review assignment had been unconsidered, update the flag.
+		if ($reviewAssignment->getUnconsidered() == REVIEW_ASSIGNMENT_UNCONSIDERED) {
+			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+			$reviewAssignment->setUnconsidered(REVIEW_ASSIGNMENT_UNCONSIDERED_READ);
+			$reviewAssignmentDao->updateReviewAssignment($reviewAssignment);
+		}
+
+		$this->_updateReviewRoundStatus($reviewAssignment);
 
 		return DAO::getDataChangedEvent($reviewAssignment->getId());
 	}
@@ -460,7 +511,9 @@ class ReviewerGridHandler extends GridHandler {
 		import('classes.mail.MonographMailTemplate');
 		$email = new MonographMailTemplate($monograph, 'REVIEW_ACK');
 
-		if (!$email->isEnabled()) {
+		// do not resend a thank you email for future 'reconsidered' reviews.
+		// Those reviews would already have a completed date set.
+		if (!$email->isEnabled() && !$reviewAssignment->getDateCompleted()) {
 			HookRegistry::call('SeriesEditorAction::thankReviewer', array(&$monograph, &$reviewAssignment, &$email));
 
 			// Personalize the email.
@@ -477,7 +530,10 @@ class ReviewerGridHandler extends GridHandler {
 		// Mark the review assignment as acknowledged.
 		$reviewAssignment->setDateAcknowledged(Core::getCurrentDate());
 		$reviewAssignment->stampModified();
+		$reviewAssignment->setUnconsidered(REVIEW_ASSIGNMENT_NOT_UNCONSIDERED);
 		$reviewAssignmentDao->updateReviewAssignment($reviewAssignment);
+
+		$this->_updateReviewRoundStatus($reviewAssignment);
 
 		return DAO::getDataChangedEvent($reviewAssignment->getId());
 	}
@@ -616,7 +672,7 @@ class ReviewerGridHandler extends GridHandler {
 	 */
 	function _getReviewAssignmentOps() {
 		// Define operations that need a review assignment policy.
-		return array('readReview', 'reviewHistory', 'reviewRead', 'thankReviewer', 'editReminder', 'sendReminder', 'deleteReviewer', 'sendEmail');
+		return array('readReview', 'reviewHistory', 'reviewRead', 'thankReviewer', 'editReminder', 'sendReminder', 'deleteReviewer', 'sendEmail', 'unconsiderReview');
 
 	}
 
@@ -628,6 +684,19 @@ class ReviewerGridHandler extends GridHandler {
 		// Define operations that need a review round policy.
 		return array('fetchGrid', 'fetchRow', 'showReviewerForm', 'reloadReviewerForm', 'createReviewer', 'enrollReviewer', 'updateReviewer',
 								'getReviewersNotAssignedToMonograph', 'getUsersNotAssignedAsReviewers');
+	}
+
+	/**
+	 * Update the review round status.
+	 */
+	function _updateReviewRoundStatus($reviewAssignment) {
+		// Update the review round status.
+		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
+		$reviewRound =& $reviewRoundDao->getReviewRoundById($reviewAssignment->getReviewRoundId());
+		$seriesEditorSubmission =& $this->getMonograph();
+		$seriesEditorSubmission->updateReviewAssignment($reviewAssignment);
+		$reviewAssignments = $seriesEditorSubmission->getReviewAssignments($reviewRound->getStageId(), $reviewRound->getRound());
+		$reviewRoundDao->updateStatus($reviewRound, $reviewAssignments);
 	}
 }
 

@@ -4,20 +4,20 @@
  */
 
 /**
- * @file controllers/review/linkAction/ReviewInfoCenterLinkAction.inc.php
+ * @file controllers/review/linkAction/UnconsiderReviewLinkAction.inc.php
  *
  * Copyright (c) 2003-2012 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class ReviewInfoCenterLinkAction
+ * @class UnconsiderReviewLinkAction
  * @ingroup controllers_review_linkAction
  *
- * @brief An action to open up the review notes for a review assignments.
+ * @brief An action to allow editors to unconsider a review.
  */
 
 import('lib.pkp.classes.linkAction.LinkAction');
 
-class ReviewNotesLinkAction extends LinkAction {
+class UnconsiderReviewLinkAction extends LinkAction {
 
 	/**
 	 * Constructor
@@ -25,33 +25,33 @@ class ReviewNotesLinkAction extends LinkAction {
 	 * @param $reviewAssignment ReviewAssignment the review assignment
 	 * to show information about.
 	 * @param $monograph Monograph The reviewed monograph.
-	 * @param $user User The user.
 	 */
-	function ReviewNotesLinkAction(&$request, &$reviewAssignment, &$monograph, $user) {
+	function UnconsiderReviewLinkAction(&$request, &$reviewAssignment, &$monograph) {
 		// Instantiate the information center modal.
 		$router =& $request->getRouter();
-		import('lib.pkp.classes.linkAction.request.AjaxModal');
+
 		$actionArgs = array(
 			'monographId' => $reviewAssignment->getSubmissionId(),
 			'reviewAssignmentId' => $reviewAssignment->getId(),
 			'stageId' => $reviewAssignment->getStageId()
 		);
 
-		$ajaxModal = new AjaxModal(
+		import('lib.pkp.classes.linkAction.request.RemoteActionConfirmationModal');
+		$modal = new RemoteActionConfirmationModal(
+			__('editor.review.unconsiderReviewText'), __('editor.review.unconsiderReview'),
 			$router->url(
 				$request, null,
-				'grid.users.reviewer.ReviewerGridHandler', 'readReview',
+				'grid.users.reviewer.ReviewerGridHandler', 'unconsiderReview',
 				null, $actionArgs
 			),
-			__('editor.review') . ': ' . $monograph->getLocalizedTitle(),
 			'modal_information'
 		);
 
-		$icon = ($reviewAssignment->getDateAcknowledged() && $reviewAssignment->getUnconsidered() != REVIEW_ASSIGNMENT_UNCONSIDERED) ? 'notes' : 'notes_new';
 		// Configure the link action.
 		parent::LinkAction(
-			'readReview', $ajaxModal,
-			'', $icon
+			'unconsiderReview', $modal,
+			__('common.complete'),
+			'completed'
 		);
 	}
 }

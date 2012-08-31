@@ -107,13 +107,14 @@ class SeriesEditorSubmission extends Monograph {
 	function updateReviewAssignment($reviewAssignment) {
 		$reviewAssignments = array();
 		$roundReviewAssignments = $this->reviewAssignments[$reviewAssignment->getStageId()][$reviewAssignment->getRound()];
-		for ($i=0, $count=count($roundReviewAssignments); $i < $count; $i++) {
-			if ($roundReviewAssignments[$i]->getId() == $reviewAssignment->getId()) {
+		foreach ($roundReviewAssignments as $existingAssignment) {
+			if ($existingAssignment->getId() == $reviewAssignment->getId()) {
 				array_push($reviewAssignments, $reviewAssignment);
 			} else {
-				array_push($reviewAssignments, $roundReviewAssignments[$i]);
+				array_push($reviewAssignments, $existingAssignment);
 			}
 		}
+
 		$this->reviewAssignments[$reviewAssignment->getStageId()][$reviewAssignment->getRound()] = $reviewAssignments;
 	}
 

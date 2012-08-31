@@ -188,4 +188,7 @@
 	<message key="editor.review.errorAddingReviewer">There was an error adding the reviewer.  Please try again.</message>
 	<message key="editor.review.errorDeletingReviewer">There was an error deleting the reviewer.  Please try again.</message>
 	<message key="editor.review.userGroupSelect">Enroll the user with this reviewer user group</message>
+	<message key="editor.review.unconsiderReviewText">Do you wish to mark this review as unconsidered?  The review history will be preserved.</message>
+	<message key="editor.review.unconsiderReview">Unconsider this Review</message>
+	<message key="editor.review.errorUnconsideringReview">There was an error marking this review as unconsidered.  Please try again.</message>
 </locale>

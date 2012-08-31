@@ -605,6 +605,7 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="log.review.reviewDueDateSet">The due date for the round {$round} review of submission {$monographId} by {$reviewerName} has been set to {$dueDate}.</message>
 	<message key="log.review.reviewDeclined">{$reviewerName} has declined the round {$round} review for submission {$monographId}.</message>
 	<message key="log.review.reviewAccepted">{$reviewerName} has accepted the round {$round} review for submission {$monographId}.</message>
+	<message key="log.review.reviewUnconsidered">{$editorName} has marked the round {$round} review for submission {$monographId} as unconsidered.</message>
 	<message key="log.editor.decision">An editor decision ({$decision}) for monograph {$monographId} was recorded by {$editorName}.</message>
 	<message key="log.editor.archived">The submission {$monographId} has been archived.</message>
 	<message key="log.editor.restored">The submission {$monographId} has been restored to the queue.</message>

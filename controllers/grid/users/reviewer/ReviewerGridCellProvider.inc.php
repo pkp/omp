@@ -53,8 +53,13 @@ class ReviewerGridCellProvider extends DataObjectGridCellProvider {
 				if (!$reviewAssignment->getDateCompleted()) return 'unfinished';
 
 				// The reviewer has been sent an acknowledgement.
-				if ($reviewAssignment->getDateAcknowledged()) {
+				// Completed states can be 'unconsidered' by an editor.
+				if ($reviewAssignment->getDateAcknowledged() && !$reviewAssignment->getUnconsidered()) {
 					return 'completed';
+				}
+
+				if ($reviewAssignment->getUnconsidered() == REVIEW_ASSIGNMENT_UNCONSIDERED) {
+					return 'reviewReady';
 				}
 
 				// Check if the somebody assigned to this monograph stage has read the review.
@@ -158,7 +163,10 @@ class ReviewerGridCellProvider extends DataObjectGridCellProvider {
 				$this->_getHoverTitleText('accepted'),
 				'accepted'
 			);
-		} elseif (in_array($state, array('', 'declined', 'completed', 'unfinished', 'reviewReady'))) {
+		} elseif ($state == 'completed') {
+			import('controllers.review.linkAction.UnconsiderReviewLinkAction');
+			$action = new UnconsiderReviewLinkAction($request, $reviewAssignment, $monograph);
+		} elseif (in_array($state, array('', 'declined', 'unfinished', 'reviewReady'))) {
 			// do nothing for these actions
 		} else {
 			// Inconsistent state

@@ -295,9 +295,10 @@ class ReviewRoundDAO extends DAO {
 					$anyIncompletedReview = true;
 				}
 
-				// Check for an unread review.
-				if (!$viewsDao->getLastViewDate(ASSOC_TYPE_REVIEW_RESPONSE, $reviewAssignment->getId())) {
+				// Check for an unread or unconsidered review.
+				if (!$viewsDao->getLastViewDate(ASSOC_TYPE_REVIEW_RESPONSE, $reviewAssignment->getId()) || $reviewAssignment->getUnconsidered() == REVIEW_ASSIGNMENT_UNCONSIDERED) {
 					$anyUnreadReview = true;
+
 				}
 			}
 
