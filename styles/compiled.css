@@ -353,11 +353,11 @@ a.sprite.resubmit:before {
 }
 a.sprite.resubmit:hover:before { background-position:-720px -24px; }
 a.sprite.add_item_small:before {
-  height:15px;
+  height:14px;
   margin-right:4px;
-  background-position:-744px -4px;
+  background-position:-744px -5px;
 }
-a.sprite.add_item_small:hover:before { background-position:-744px -28px; }
+a.sprite.add_item_small:hover:before { background-position:-744px -29px; }
 a.sprite.enroll_user:before {
   margin-right:4px;
   background-position:-768px 0;
@@ -1819,6 +1819,7 @@ ul.sf-menu {
   left:100%;
   z-index:1;
 }
+#reviewTabs .ui-tabs-nav a.pkp_controllers_linkAction { line-height:0px; }
 #legend { visibility:hidden; }
 #legend td a {
   min-height:20px;
