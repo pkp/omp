@@ -897,6 +897,7 @@ span.pkp_form_error {
 .pkp_form div.section {
   clear:left;
   margin-bottom:10px;
+  overflow:hidden;
 }
 .pkp_form label {
   display:block;
@@ -930,11 +931,11 @@ span.pkp_form_error {
 .pkp_form textarea:focus { outline:none; }
 .pkp_form select {
   width:99%;
+  width:100%;
   border:1px solid #cccccc;
   padding:2px;
   padding:3px;
   margin-top:4px;
-  margin-bottom:8px;
 }
 .pkp_form select:focus { outline:none; }
 .pkp_form .short { height:6em; }
@@ -948,7 +949,7 @@ span.pkp_form_error {
 .pkp_form .inline {
   float:left;
   clear:none !important;
-  margin-right:2%;
+  padding-right:2%;
   margin-bottom:0;
 }
 .pkp_form ul.checkbox_and_radiobutton {
@@ -1491,6 +1492,11 @@ div.ui-pnotify-container {
 .ui-dialog { background-color:#f7f5f4; }
 .ui-dialog-content { background-color:#ffffff !important; }
 .ui-dialog-buttonpane { border-color:#f7f5f4; }
+.reviewerFormFooterContainer {
+  margin-top:15px;
+  padding-top:15px;
+  border-top:1px solid #c8c7c7;
+}
 .legacy_plugin_content .pkp_form input { width:none; }
 .legacy_plugin_content .pkp_form .pkp_listing input { width:99%; }
 .legacy_plugin_content .pkp_form .pkp_listing .highlight { background:yellow; }
