@@ -125,9 +125,6 @@
 
 		jsonData = this.handleJson(jsonData);
 		$('#pastNotesList').replaceWith(jsonData.content);
-
-		// bind our more/less links now that content is loaded.
-		// $('#pastNotesList').find('.showMore, .showLess').bind('click', this.switchViz);
 	};
 
 
