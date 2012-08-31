@@ -209,7 +209,7 @@ strong {
 .pkp_help {
   color:#999999;
   font-weight:normal;
-  font-size:80%;
+  font-size:85%;
   padding:10px;
 }
 .pkp_helpers_black_bg { background-color:black; }
@@ -556,7 +556,7 @@ a.sprite.merge_users:hover:before { background-position:-312px -24px; }
 }
 .grid_actions a {
   padding:0;
-  margin:0 -3px 0 0 !important;
+  margin:0 -2px 0 0 !important;
   border-style:none !important;
   border-color:white !important;
   border-width:0 0 0 0 !important;
@@ -585,12 +585,11 @@ a.sprite.merge_users:hover:before { background-position:-312px -24px; }
   padding-bottom:10px;
 }
 .action_links a {
-  font-size:90%;
   margin-right:20px;
   float:left;
 }
 .pkp_structure_head {
-  height:7.15em;
+  height:7.75em;
   background-color:#a2c6dc;
 }
 .pkp_structure_head .pkp_structure_masthead {
@@ -611,9 +610,8 @@ a.sprite.merge_users:hover:before { background-position:-312px -24px; }
 .pkp_structure_navigation { margin-left:20px; }
 .pkp_structure_head_siteNav {
   border-bottom:1px solid;
-  font-size:90%;
   color:#ffffff;
-  height:3.7em;
+  height:3.5em;
   width:100%;
 }
 .pkp_structure_head_siteNav .pkp_form div.section { margin-bottom:0px; }
@@ -621,7 +619,8 @@ a.sprite.merge_users:hover:before { background-position:-312px -24px; }
 .pkp_structure_head_siteNav li { padding-left:20px; }
 .pkp_structure_head_localNav {
   text-transform:uppercase;
-  font:150% "Courier New", Courier, mono;
+  font-size:20px;
+  font-family:"Courier New", Courier, mono;
 }
 .pkp_structure_head_localNav .sf-menu a { padding-right:0.45em; }
 .pkp_structure_head_localNav .sf-menu a.sf-with-ul { padding-right:1.55em; }
@@ -660,25 +659,25 @@ ul, ol, dl, blockquote { padding:10px; }
 p { padding:0.5em 0; }
 h1 {
   padding-top:0.5em;
-  font-size:196%;
+  font-size:24px;
   font-weight:normal;
   font-style:normal;
 }
 h2 {
   padding-top:0.5em;
-  font-size:167%;
+  font-size:22px;
   font-weight:normal;
   font-style:normal;
 }
 h3 {
   padding-top:0.5em;
-  font-size:120%;
+  font-size:16px;
   font-weight:normal;
   font-style:normal;
 }
 h4 {
   padding-top:0.5em;
-  font-size:105%;
+  font-size:14px;
   font-weight:normal;
   font-style:normal;
 }
@@ -686,22 +685,22 @@ h5, h6 { padding-top:0.5em; }
 pre { margin:10px; }
 table h1, table h2, table h3, table h4, table h5, table h6, table p, table ul, table ol, table dl, ul h1, ul h2, ul h3, ul h4, ul h5, ul h6, ul p, ul ul, ul ol, ul dl, ol h1, ol h2, ol h3, ol h4, ol h5, ol h6, ol p, ol ul, ol ol, ol dl { padding:0; }
 .h1 {
-  font-size:196%;
+  font-size:24px;
   font-weight:normal;
   font-style:normal;
 }
 .h2 {
-  font-size:167%;
+  font-size:22px;
   font-weight:normal;
   font-style:normal;
 }
 .h3 {
-  font-size:120%;
+  font-size:16px;
   font-weight:normal;
   font-style:normal;
 }
 .h4 {
-  font-size:105%;
+  font-size:14px;
   font-weight:normal;
   font-style:normal;
 }
@@ -761,7 +760,8 @@ body {
   list-style:disc inside;
   color:#569bbe;
   color:#569bbe;
-  font:120% "Courier New", Courier, mono;
+  font-size:16px;
+  font-family:"Courier New", Courier, mono;
   text-transform:uppercase;
 }
 .pkp_structure_sidebar div.block span.blockTitle:first-child { padding-top:0px; }
@@ -811,7 +811,7 @@ body {
 .pkp_linkActions a { display:inline-block; }
 table.pkp_listing td { padding:0.25em 1.5em 0.25em 0.5em; }
 table.pkp_listing tr.heading td, table.pkp_listing td.heading {
-  font-size:0.85em;
+  font-size:0.9em;
   text-transform:uppercase;
   font-weight:normal;
   padding:0.75em 1.5em 1em 0.5em;
@@ -879,7 +879,7 @@ table.pkp_listing td.separator {
 }
 .pkp_form fieldset.inline { margin:0px 0px; }
 .pkp_form legend {
-  font-size:110%;
+  font-size:115%;
   padding:10px 0 10px 0;
 }
 .pkp_form div.section {
@@ -895,22 +895,19 @@ table.pkp_listing td.separator {
 .pkp_form span.pkp_form_error {
   color:#990000;
   font-weight:bold;
-  font-size:1em;
 }
 .pkp_form .pkp_form_error_list a { color:#990000; }
 .pkp_form span.pkp_form_success {
   color:#009900;
   font-weight:bold;
-  font-size:1em;
 }
 .pkp_form span label.sub_label {
-  font-size:80%;
+  font-size:85%;
   color:#999999;
   font-weight:normal;
   padding:2px 0 4px 0;
 }
 .pkp_form input {
-  font-size:90%;
   width:99%;
   border:1px solid #cccccc;
   padding:2px;
@@ -918,7 +915,6 @@ table.pkp_listing td.separator {
 }
 .pkp_form input:focus { outline:none; }
 .pkp_form textarea {
-  font-size:90%;
   width:99%;
   border:1px solid #cccccc;
   padding:2px;
@@ -927,7 +923,6 @@ table.pkp_listing td.separator {
 }
 .pkp_form textarea:focus { outline:none; }
 .pkp_form select {
-  font-size:90%;
   width:99%;
   border:1px solid #cccccc;
   padding:2px;
@@ -1028,7 +1023,6 @@ table.pkp_listing td.separator {
 }
 .pkp_form .pkp_form_file_input_container .pkp_form_fakeFile {
   left:0;
-  line-height:90%;
   margin:0;
   padding:0;
   position:absolute;
@@ -1044,11 +1038,7 @@ table.pkp_listing td.separator {
   padding-top:1px;
   width:241px;
 }
-.pkp_form .pkp_form_file_input_container .pkp_form_fakeButton { line-height:90%; }
-.pkp_form .pkp_form_file_input_container .pkp_form_uploadFile {
-  line-height:90%;
-  height:29px;
-}
+.pkp_form .pkp_form_file_input_container .pkp_form_uploadFile { height:29px; }
 .pkp_form input.pkp_form_upload_field {
   padding:3px;
   margin:0;
@@ -1184,7 +1174,6 @@ div.pkp_controllers_grid .options {
   height:24px;
   vertical-align:middle;
 }
-div.pkp_controllers_grid .options a { font-size:90%; }
 div.pkp_controllers_grid .options a:before { margin-left:20px; }
 div.pkp_controllers_grid .hidetext {
   visibility:hidden;
@@ -1239,7 +1228,6 @@ div.pkp_controllers_grid .row_controls a {
   margin-right:20px;
   text-decoration:none;
   color:#777777;
-  font-size:90%;
 }
 div.pkp_controllers_grid .row_controls a:hover { text-decoration:underline; }
 div.pkp_controllers_grid a.focus { background-position:0 bottom; }
