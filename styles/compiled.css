@@ -1360,7 +1360,7 @@ a.request_review { background-image:url(../lib/pkp/templates/images/structure/gr
   text-transform:none;
   font-weight:bold;
   font-family:Arial, Helvetica, sans-serif;
-  font-size:100%;
+  font-size:110%;
   padding-left:0px;
   padding-bottom:5px;
 }
@@ -1575,7 +1575,6 @@ ul.sf-menu {
   list-style-type:none;
   margin-left:10px;
   padding:0;
-  font-size:0.9em;
 }
 .pkp_manageCatalog_monographList.grid_view .pkp_manageCatalog_monograph {
   width:150px;
@@ -1680,7 +1679,6 @@ ul.sf-menu {
 .pkp_catalog_monographs {
   clear:both;
   padding-top:10px;
-  font-size:0.9em;
 }
 .pkp_catalog_monographs .pkp_catalog_monograph {
   width:150px;
@@ -1731,10 +1729,7 @@ ul.sf-menu {
   margin-top:30px;
   border-top:1px dotted #999999;
 }
-.pkp_catalog_book #bookAccordion .ui-accordion-content {
-  color:#999999;
-  font-size:90%;
-}
+.pkp_catalog_book #bookAccordion .ui-accordion-content { color:#999999; }
 .pkp_catalog_book .ui-tabs-panel {
   border-bottom:1px solid #999999;
   border-radius:0px;
@@ -1751,7 +1746,6 @@ ul.sf-menu {
 .pkp_page_header ul.submission_actions {
   position:relative;
   z-index:20;
-  font-size:90%;
 }
 .pkp_page_header ul.submission_actions li {
   line-height:24px;
@@ -1781,10 +1775,7 @@ ul.sf-menu {
   clear:both;
   padding-top:28px;
 }
-.pkp_page_header .submission_progress {
-  overflow:hidden;
-  font-size:90%;
-}
+.pkp_page_header .submission_progress { overflow:hidden; }
 .pkp_page_header .submission_progress li {
   line-height:33px;
   width:148px;
