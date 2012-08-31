@@ -7,7 +7,7 @@
  * Display spotlights on a press' home page.
  *}
 <div id="spotlightsHome">
-	<h2 class="pkp_helpers_text_center">{translate key="spotlight.title.homePage"}</h2>
+	<h2 class="pkp_helpers_text_center"><em>{translate key="spotlight.title.homePage"}</em></h2>
 	<ul>
 		{foreach from=$spotlights item=spotlight name=loop}
 			{assign var="item" value=$spotlight->getSpotlightItem()}
