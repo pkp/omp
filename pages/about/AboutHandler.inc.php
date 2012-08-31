@@ -23,48 +23,6 @@ class AboutHandler extends Handler {
 	}
 
 	/**
-	 * Display about index page.
-	 * @param $args array
-	 * @param $request PKPRequest
-	 */
-	function index($args, &$request) {
-		$this->validate();
-		$this->setupTemplate($request);
-
-		$templateMgr =& TemplateManager::getManager();
-		$pressDao =& DAORegistry::getDAO('PressDAO');
-		$pressPath = $request->getRequestedPressPath();
-
-		if ($pressPath != 'index' && $pressDao->pressExistsByPath($pressPath)) {
-			$press =& $request->getPress();
-
-			$pressSettingsDao = DAORegistry::getDAO('PressSettingsDAO');
-			$customAboutItems =& $pressSettingsDao->getSetting($press->getId(), 'customAboutItems');
-			if (isset($customAboutItems[AppLocale::getLocale()])) $templateMgr->assign('customAboutItems', $customAboutItems[AppLocale::getLocale()]);
-			elseif (isset($customAboutItems[AppLocale::getPrimaryLocale()])) $templateMgr->assign('customAboutItems', $customAboutItems[AppLocale::getPrimaryLocale()]);
-
-			$groupDao =& DAORegistry::getDAO('GroupDAO');
-			$groups =& $groupDao->getGroups(ASSOC_TYPE_PRESS, GROUP_CONTEXT_PEOPLE);
-
-			$seriesDao =& DAORegistry::getDAO('SeriesDAO');
-			$series =& $seriesDao->getByPressId($press->getId());
-
-			$templateMgr->assign('seriesCount', $series->GetCount());
-			$templateMgr->assign_by_ref('peopleGroups', $groups);
-			$templateMgr->assign('helpTopicId', 'user.about');
-			$templateMgr->display('about/index.tpl');
-		} else {
-			$site =& $request->getSite();
-			$about = $site->getLocalizedAbout();
-			$templateMgr->assign('about', $about);
-
-			$presses =& $pressDao->getEnabledPresses(); //Enabled Added
-			$templateMgr->assign_by_ref('presses', $presses);
-			$templateMgr->display('about/site.tpl');
-		}
-	}
-
-	/**
 	 * Setup common template variables.
 	 */
 	function setupTemplate($request) {
@@ -168,16 +126,6 @@ class AboutHandler extends Handler {
 		$press =& $request->getPress();
 
 		$templateMgr =& TemplateManager::getManager();
-		$seriesList =& $seriesDao->getByPressId($press->getId());
-		$seriesList =& $seriesList->toArray();
-		$templateMgr->assign_by_ref('seriesList', $seriesList);
-
-		$seriesEditorEntriesBySeries = array();
-		foreach ($seriesList as $series) {
-			$seriesEditorEntriesBySeries[$series->getId()] =& $seriesEditorsDao->getEditorsBySeriesId($series->getId(), $press->getId());
-		}
-		$templateMgr->assign_by_ref('seriesEditorEntriesBySeries', $seriesEditorEntriesBySeries);
-
 		$templateMgr->display('about/editorialPolicies.tpl');
 	}
 

@@ -21,30 +21,6 @@
 	<div class="separator"></div>
 {/if}
 
-{if count($seriesList) > 0}
-	<div id="seriesPolicies"><h3>{translate key="about.seriesPolicies"}</h3>
-		{foreach from=$seriesList item=series}
-			<h4>{$series->getLocalizedFullTitle()}</h4>
-			<p>{$series->getLocalizedDescription()}</p>
-			{assign var="hasEditors" value=0}
-			{foreach from=$seriesEditorEntriesBySeries item=seriesEditorEntries key=key}
-				{if $key == $series->getId()}
-					{foreach from=$seriesEditorEntries item=seriesEditorEntry}
-						{assign var=seriesEditor value=$seriesEditorEntry.user}
-						{if 0 == $hasEditors++}
-						{translate key="user.role.editors"}
-						<ul class="plain">
-						{/if}
-						<li>{$seriesEditor->getFirstName()|escape} {$seriesEditor->getLastName()|escape}{if strlen($seriesEditor->getLocalizedAffiliation()) > 0}, {$seriesEditor->getLocalizedAffiliation()|escape}{/if}</li>
-					{/foreach}
-				{/if}
-			{/foreach}
-			{if $hasEditors}</ul>{/if}
-		{/foreach}
-	</div>
-	<div class="separator"></div>
-{/if}
-
 {if $currentPress->getLocalizedSetting('reviewPolicy') != ''}
 	<div id="peerReviewProcess">
 		<h3>{translate key="about.peerReviewProcess"}</h3>

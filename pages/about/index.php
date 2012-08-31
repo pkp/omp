@@ -16,7 +16,6 @@
  */
 
 switch ($op) {
-	case 'index':
 	case 'contact':
 	case 'description':
 	case 'pressSponsorship':
