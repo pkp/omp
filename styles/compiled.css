@@ -246,12 +246,14 @@ div.plupload div.plupload_header { display:none; }
   margin-top:5%;
 }
 .deprecated_selectHeader { margin-top:10px; }
+a.sprite { line-height:24px; }
 a.sprite.pkp_common_disabled:before { cursor:default; }
 a.sprite:before {
   content:" ";
+  display:inline-block;
+  vertical-align:middle;
   width:24px;
   height:24px;
-  float:left;
   background:url(../lib/pkp/templates/images/structure/sprites.png);
   background-repeat:no-repeat;
   cursor:pointer;
@@ -276,7 +278,10 @@ a.sprite.upgrade:before { background-position:-168px 0; }
 a.sprite.upgrade:hover:before { background-position:-168px -24px; }
 a.sprite.information:before { background-position:-194px 0; }
 a.sprite.information:hover:before { background-position:-194px -24px; }
-a.sprite.more_info:before { background-position:-456px 0; }
+a.sprite.more_info:before {
+  margin-right:4px;
+  background-position:-456px 0;
+}
 a.sprite.more_info:hover:before { background-position:-456px -24px; }
 a.sprite.disable:before { background-position:-432px 0; }
 a.sprite.disable:hover:before { background-position:-432px -24px; }
