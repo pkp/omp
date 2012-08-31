@@ -28,27 +28,30 @@
 	{fbvFormSection title="user.group"}
 		{fbvElement type="select" name="userGroupId" id="userGroupId" from=$userGroups translate=false label="editor.review.userGroupSelect" required="true"}
 	{/fbvFormSection}
+
+	{fbvFormSection description="user.register.usernameRestriction"}
+		{fbvElement type="text" label="user.username" id="username" value=$username required="true" size=$fbvStyles.size.MEDIUM}
+	{/fbvFormSection}
+
 	{fbvFormSection title="common.name"}
-		{fbvElement type="text" label="user.firstName" id="firstname" value=$firstname required="true"}
-		{fbvElement type="text" label="user.middleName" id="middlename" value=$middlename}
-		{fbvElement type="text" label="user.lastName" id="lastname" value=$lastname required="true"}
+		{fbvElement type="text" label="user.firstName" id="firstname" value=$firstname required="true" inline=true size=$fbvStyles.size.SMALL}
+		{fbvElement type="text" label="user.middleName" id="middlename" value=$middlename inline=true size=$fbvStyles.size.SMALL}
+		{fbvElement type="text" label="user.lastName" id="lastname" value=$lastname required="true" inline=true size=$fbvStyles.size.SMALL}
 	{/fbvFormSection}
 
-	{fbvFormSection title="user.affiliation" for="affiliation"}
-		{fbvElement type="textarea" id="affiliation" value=$affiliation}
+	{fbvFormSection title="about.contact"}
+		{fbvElement type="text" label="user.email" id="email" required="true" value=$email|escape maxlength="90" size=$fbvStyles.size.MEDIUM}
 	{/fbvFormSection}
 
-	{fbvFormSection title="manager.reviewerSearch.interests"}
+	{fbvFormSection title="manager.reviewerSearch.interests" for="interests"}
 		{fbvElement type="interests" id="interests" interestsKeywords=$interestsKeywords interestsTextOnly=$interestsTextOnly}
 	{/fbvFormSection}
 
-	{fbvFormSection title="user.accountInformation"}
-		{fbvElement type="text" label="user.username" id="username" value=$username required="true"} <br />
+	{fbvFormSection}
+		{fbvElement type="text" multilingual="true" name="affiliation" id="affiliation" value=$affiliation label="user.affiliation" inline=true size=$fbvStyles.size.LARGE}
 	{/fbvFormSection}
 
-	{fbvFormSection title="user.email"}
-		{fbvElement type="text" id="email" class="email" value=$email required="true"}
-	{/fbvFormSection}
+
 
 	{include file="controllers/grid/users/reviewer/form/reviewerFormFooter.tpl"}
 

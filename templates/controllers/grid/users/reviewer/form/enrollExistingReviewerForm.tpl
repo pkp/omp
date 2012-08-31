@@ -23,15 +23,15 @@
 			{include file="linkAction/linkAction.tpl" action=$action contextId="enrollExistingReviewerForm"}
 		{/foreach}
 	</div>
-		
+
 	<h3>{translate key="editor.review.enrollReviewer"}</h3>
 
-	{fbvFormSection title="user.group"}
+	{fbvFormSection}
 		{fbvElement type="select" name="userGroupId" id="userGroupId" from=$userGroups translate=false label="editor.review.userGroupSelect" required="true"}
 	{/fbvFormSection}
 	{fbvFormSection}
 		{url|assign:autocompleteUrl op="getUsersNotAssignedAsReviewers" monographId=$monographId stageId=$stageId reviewRoundId=$reviewRoundId escape=false}
-		{fbvElement type="autocomplete" autocompleteUrl=$autocompleteUrl id="userId" label="user.role.reviewer" value=$userNameString|escape}
+		{fbvElement type="autocomplete" required="true" autocompleteUrl=$autocompleteUrl id="userId" label="user.role.reviewer" value=$userNameString|escape}
 	{/fbvFormSection}
 
 	{include file="controllers/grid/users/reviewer/form/reviewerFormFooter.tpl"}
