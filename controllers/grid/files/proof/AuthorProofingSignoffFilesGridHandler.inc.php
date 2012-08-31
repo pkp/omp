@@ -67,8 +67,7 @@ class AuthorProofingSignoffFilesGridHandler extends CategoryGridHandler {
 				'submission.response',
 				null,
 				'controllers/grid/gridCell.tpl',
-				$cellProvider,
-				array('alignment' => COLUMN_ALIGNMENT_LEFT))
+				$cellProvider)
 		);
 
 		// Set the grid title.
