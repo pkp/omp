@@ -134,8 +134,8 @@
 							{/foreach}
 						{/fbvFormSection}
 					{/if}
-					{fbvFormSection title="user.interests" for="interests"}
-						{fbvElement type="interests" id="interests" interestsKeywords=$interestsKeywords interestsTextOnly=$interestsTextOnly}
+					{fbvFormSection for="interests"}
+						{fbvElement type="interests" id="interests" interestsKeywords=$interestsKeywords interestsTextOnly=$interestsTextOnly label="user.interests"}
 					{/fbvFormSection}
 
 					{fbvFormSection for="affiliation"}
