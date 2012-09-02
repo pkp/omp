@@ -900,7 +900,11 @@ span.pkp_form_error {
 .pkp_form div.section {
   clear:left;
   margin-bottom:10px;
-  overflow:hidden;
+}
+.pkp_form div.section:after {
+  clear:both;
+  content:"";
+  display:block;
 }
 .pkp_form label {
   display:block;
