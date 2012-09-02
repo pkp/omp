@@ -70,7 +70,7 @@ class OmpSignoffAccessPolicy extends PressPolicy {
 		// Press assistants
 		//
 		if (isset($roleAssignments[ROLE_ID_PRESS_ASSISTANT])) {
-			// 1) Press assistants can access read operations on signoffs...
+			// 1) Press assistants can access all operations on signoffs...
 			$pressAssistantSignoffAccessPolicy = new PolicySet(COMBINING_DENY_OVERRIDES);
 			$pressAssistantSignoffAccessPolicy->addPolicy(new RoleBasedHandlerOperationPolicy($request, ROLE_ID_PRESS_ASSISTANT, $roleAssignments[ROLE_ID_PRESS_ASSISTANT]));
 
