@@ -36,7 +36,7 @@ class PublicationFormatGridHandler extends GridHandler {
 	function PublicationFormatGridHandler() {
 		parent::GridHandler();
 		$this->addRoleAssignment(
-			array(ROLE_ID_PRESS_MANAGER),
+			array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR),
 			array(
 				'fetchGrid', 'fetchRow', 'addFormat',
 				'editFormat', 'updateFormat', 'deleteFormat',

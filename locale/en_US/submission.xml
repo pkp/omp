@@ -37,6 +37,7 @@
 	<message key="submission.overview">Submission Overview</message>
 	<message key="submission.copyediting">Copyediting</message>
 	<message key="submission.copyedit">Copyedit</message>
+	<message key="submission.publicationFormats">Publication Formats</message>
 	<message key="submission.proofs">Proofs</message>
 	<message key="submission.download">Download</message>
 	<message key="submission.sharing">Share This</message>

@@ -31,13 +31,17 @@
 	{url|assign:productionReadyFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.productionReady.ProductionReadyFilesGridHandler" op="fetchGrid" monographId=$monograph->getId() stageId=$stageId escape=false}
 	{load_url_in_div id="productionReadyFilesGridDiv" url=$productionReadyFilesGridUrl}
 
-	{fbvFormArea id="publicationFormats"}
-		{fbvFormSection}
-			<!--  Formats -->
-			{url|assign:formatGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.catalogEntry.PublicationFormatGridHandler" op="fetchGrid" monographId=$monograph->getId()}
-			{load_url_in_div id="formatsGridContainer"|uniqid url=$formatGridUrl}
-		{/fbvFormSection}
-	{/fbvFormArea}
+	{if array_intersect(array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR), $userRoles)}
+		{fbvFormArea id="publicationFormats"}
+			{fbvFormSection}
+				<!--  Formats -->
+				{url|assign:formatGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.catalogEntry.PublicationFormatGridHandler" op="fetchGrid" monographId=$monograph->getId()}
+				{load_url_in_div id="formatsGridContainer"|uniqid url=$formatGridUrl}
+			{/fbvFormSection}
+		{/fbvFormArea}
+	{else}
+		<h3>{translate key="submission.publicationFormats"}</h3>
+	{/if}
 
 	<div id='publicationFormatTabsContainer'>
 		{include file="workflow/productionFormatsTab.tpl" formatTabsId=$formatTabsId publicationFormats=$publicationFormats}
