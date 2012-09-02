@@ -216,6 +216,7 @@ strong {
   font-weight:normal;
   font-size:80%;
   padding:10px;
+  line-height:14px;
 }
 .pkp_helpers_black_bg { background-color:black; }
 div.pkp_helpers_progressIndicator {
@@ -1174,6 +1175,19 @@ div.pkp_controllers_grid .wrapper { margin-bottom:30px; }
 div.pkp_controllers_grid .grid_header .pkp_grid_description {
   font-family:Arial, Helvetica, sans-serif;
   padding:10px;
+  color:#999999;
+  font-weight:normal;
+  font-size:80%;
+  line-height:14px;
+}
+div.pkp_controllers_grid .grid_header .pkp_grid_title {
+  color:#222222;
+  text-transform:none;
+  font-weight:bold;
+  font-family:Arial, Helvetica, sans-serif;
+  font-size:110%;
+  padding-left:0px;
+  padding-bottom:5px;
 }
 div.pkp_controllers_grid .grid_header_bar {
   background-color:#f7f5f4;
@@ -1295,10 +1309,6 @@ div.pkp_controllers_grid .group2 td:first-child { background:url(../lib/pkp/temp
 div.pkp_controllers_grid .group3 td:first-child { background:url(../lib/pkp/templates/images/structure/grid_group_3.png) no-repeat; }
 div.pkp_controllers_grid .group4 td:first-child { background:url(../lib/pkp/templates/images/structure/grid_group_4.png) no-repeat; }
 div.pkp_controllers_grid .group5 td:first-child { background:url(../lib/pkp/templates/images/structure/grid_group_5.png) no-repeat; }
-div.pkp_controllers_grid .my_role {
-  border:2px solid #cccccc;
-  border:2px solid #cccccc;
-}
 div.pkp_controllers_grid .pkp_controllers_grid_settings_stages {
   display:block;
   float:left;
@@ -1372,21 +1382,6 @@ a.request_review { background-image:url(../lib/pkp/templates/images/structure/gr
   background:#c9e3f8 url(../lib/pkp/templates/images/structure/response_help.png);
   border-top:1px solid #6aa6d6;
   border-bottom:1px solid #6aa6d6;
-}
-.pkp_grid_title {
-  color:#222222;
-  text-transform:none;
-  font-weight:bold;
-  font-family:Arial, Helvetica, sans-serif;
-  font-size:110%;
-  padding-left:0px;
-  padding-bottom:5px;
-}
-.pkp_grid_description {
-  color:#999999;
-  font-weight:normal;
-  font-size:80%;
-  padding:0px;
 }
 div#stageParticipantGridContainer tr.category td {
   height:26px;
