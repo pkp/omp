@@ -995,14 +995,20 @@ span.pkp_form_error {
   height:0;
   overflow:hidden;
 }
+.pkp_form .localization_popover_container td.mceFirst iframe {
+  position:relative;
+  z-index:1;
+}
 .pkp_form .localization_popover_container_focus {
   margin-top:-2px;
   background-color:#eeeeee;
   display:block;
   padding:2px 5px 0px 5px;
   position:relative;
+  box-shadow:3px 3px 6px #999999;
 }
 .pkp_form .localization_popover {
+  box-shadow:3px 3px 6px #999999;
   background-color:#eeeeee;
   margin-left:-5px;
   padding:10px 5px 5px 5px;
