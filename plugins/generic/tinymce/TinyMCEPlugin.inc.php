@@ -91,7 +91,7 @@ class TinyMCEPlugin extends GenericPlugin {
 			tinyMCE.init({
 				width: "100%",
 				entity_encoding: "raw",
-				plugins: "paste,jbimages,fullscreen,pkpmultilingualpopover",
+				plugins: "paste,jbimages,fullscreen",
 				mode: "specific_textareas",
 				editor_selector: "richContent",
 				language: "' . String::substr(AppLocale::getLocale(), 0, 2) . '",
