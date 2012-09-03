@@ -328,7 +328,7 @@ class PublicationFormat extends DataObject {
 			}
 		}
 
-		return sprintf('%d.3', $fileSize/1024); // bytes to Mb
+		return sprintf('%d.3', $fileSize/(1024*1024)); // bytes to Mb
 	}
 
 	/**
