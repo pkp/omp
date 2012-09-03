@@ -17,7 +17,7 @@
 		{if $monographEmails->getCount() > 1} {* more than one, display the rest as a list *}
 
 		<div class="pkp_controllers_grid">
-			<div class="grid_header_bar"><h3>{translate key="submission.previousAuthorEmail"}</h3></div>
+			<div class="grid_header_bar"><h3>{translate key="submission.previousAuthorMessages"}</h3></div>
 		</div>
 
 			<table width="100%" class="pkp_listing">
