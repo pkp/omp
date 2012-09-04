@@ -69,7 +69,8 @@
 
 	.submission_progress li a {
 		text-decoration:none;
-		font: 100% "Courier New",Courier,mono;
+		font-family: "Courier New",Courier,mono;
+		font-size: 12px;
 		text-transform: uppercase;
 		color:#ffffff;
 	}
@@ -97,8 +98,13 @@
 
 	.submission_progress li.current {
  		background-image:url('../lib/pkp/templates/images/structure/workflow_current.png');
- 		font-size: 110%;
+ 		
+ 		a {
+ 			font-size: 13px;
+ 		}
  	}
+ 	
+ 	
 
 	.submission_progress li.complete:after {
 		border-left-color: #e5f4e5;
