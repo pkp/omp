@@ -34,7 +34,19 @@
 		</div>
 	{/foreach}{* identification codes *}
 	</div>
-{/if}{* $identificationCodes *}
+{/if}{* $publicationDates *}
+{assign var=publicationDates value=$publicationFormat->getPublicationDates()}
+{assign var=publicationDates value=$publicationDates->toArray()}
+{if $publicationDates}
+	<div class="bookPublicationDateSpecs">
+	{foreach from=$publicationDates item=publicationDate}
+		<div id="bookPublicationDateSpecs-{$publicationDate->getId()|escape}">
+			{$publicationDate->getNameForONIXCode()|escape}: {$publicationDate->getReadableDate()|date_format:$dateFormatShort}
+			{if $publicationDate->isHijriCalendar()}({translate key="common.dateHijri"}){/if}
+		</div>
+	{/foreach}{* publicationDates *}
+	</div>
+{/if}{* $publicationDates *}
 {assign var="publicationFormatId" value=$publicationFormat->getId()}
 {if !empty($availableFiles.$publicationFormatId)}
 	<div class="ecommerce">

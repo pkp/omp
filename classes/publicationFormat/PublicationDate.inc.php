@@ -94,6 +94,64 @@ class PublicationDate extends DataObject {
 	function getDate() {
 		return $this->getData('date');
 	}
+
+	/**
+	 * Determines if this date is from the Hijri calendar.
+	 * @return boolean
+	 */
+	function isHijriCalendar() {
+		$onixCodelistItemDao =& DAORegistry::getDAO('ONIXCodelistItemDAO');
+		$dateFormats =& $onixCodelistItemDao->getCodes('List55');
+		$format = $dateFormats[$this->getDateFormat()];
+		if (stristr($format, '(H)')) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	/**
+	 * returns a readable version of the entered date, based on
+	 * the format specified from List55.  Necessary, so it can be
+	 * parsed correctly in the template.
+	 * @return string
+	 */
+	function getReadableDate() {
+		$onixCodelistItemDao =& DAORegistry::getDAO('ONIXCodelistItemDAO');
+		$dateFormats =& $onixCodelistItemDao->getCodes('List55');
+		$format = $dateFormats[$this->getDateFormat()];
+
+		if ($this->isHijriCalendar()) {
+			$format = preg_replace('/\s*\(H\)/i', '', $format);
+		}
+
+		if (!stristr($format, 'string')) { // this is not a free-form code
+			// assume that the characters in the format match up with
+			// the characters in the entered date.  Iterate until the end.
+
+			$numbers = str_split($this->getDate());
+			$formatCharacters = str_split($format);
+
+			// these two should be the same length.
+			assert(count($numbers) == count($formatCharacters));
+
+			$previousFormatCharacter = '';
+			$date = '';
+			for ($i = 0 ; $i < count($numbers) ; $i ++) {
+
+				if ($i > 0 && $previousFormatCharacter != $formatCharacters[$i]) {
+					$date .= '-';
+				}
+
+				$date .= $numbers[$i];
+				$previousFormatCharacter = $formatCharacters[$i];
+			}
+		} else {
+			$date = $this->getDate();
+		}
+
+		return $date;
+	}
 }
 
 ?>
