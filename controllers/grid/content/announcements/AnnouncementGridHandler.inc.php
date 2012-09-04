@@ -132,12 +132,7 @@ class AnnouncementGridHandler extends GridHandler {
 		$pressId = $press->getId();
 
 		import('controllers.grid.content.announcements.form.AnnouncementForm');
-		if (checkPhpVersion('5.0.0')) {
-			// WARNING: This form needs $this in constructor
-			$announcementForm = new AnnouncementForm($pressId, $announcementId, true);
-		} else {
-			$announcementForm =& new AnnouncementForm($pressId, $announcementId, true);
-		}
+		$announcementForm = new AnnouncementForm($pressId, $announcementId, true);
 
 		$announcementForm->initData($args, $request);
 

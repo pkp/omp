@@ -31,7 +31,7 @@ class LibraryFileForm extends Form {
 		$this->pressId = $pressId;
 
 		parent::Form($template);
-		$this->libraryFileManager =& new LibraryFileManager($pressId);
+		$this->libraryFileManager = new LibraryFileManager($pressId);
 
 		$this->addCheck(new FormValidatorLocale($this, 'libraryFileName', 'required', 'settings.libraryFiles.nameRequired'));
 		$this->addCheck(new FormValidatorCustom($this, 'fileType', 'required', 'settings.libraryFiles.typeRequired',

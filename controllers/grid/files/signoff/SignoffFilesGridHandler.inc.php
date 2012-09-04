@@ -333,7 +333,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 	 * @return CopyeditingFilesGridCategoryRow
 	 */
 	function &getCategoryRowInstance() {
-		$row =& new SignoffFilesGridCategoryRow($this->getStageId());
+		$row = new SignoffFilesGridCategoryRow($this->getStageId());
 		$monograph =& $this->getMonograph();
 		$row->setCellProvider(new SignoffFilesGridCellProvider($monograph->getId(), $this->getStageId()));
 		$row->addFlag('gridRowStyle', true);

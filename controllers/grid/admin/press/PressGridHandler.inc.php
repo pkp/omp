@@ -198,11 +198,7 @@ class PressGridHandler extends GridHandler {
 		$pressId = $request->getUserVar('rowId');
 
 		// Form handling.
-		if (checkPhpVersion('5.0.0')) { // WARNING: This form needs $this in constructor
-			$settingsForm = new PressSiteSettingsForm(!isset($pressId) || empty($pressId) ? null : $pressId);
-		} else {
-			$settingsForm =& new PressSiteSettingsForm(!isset($pressId) || empty($pressId) ? null : $pressId);
-		}
+		$settingsForm = new PressSiteSettingsForm(!isset($pressId) || empty($pressId) ? null : $pressId);
 		$settingsForm->initData();
 		$json = new JSONMessage(true, $settingsForm->fetch($args, $request));
 
@@ -220,11 +216,7 @@ class PressGridHandler extends GridHandler {
 		$pressId = $request->getUserVar('pressId');
 
 		// Form handling.
-		if (checkPhpVersion('5.0.0')) { // WARNING: This form needs $this in constructor
-			$settingsForm = new PressSiteSettingsForm($pressId);
-		} else {
-			$settingsForm =& new PressSiteSettingsForm($pressId);
-		}
+		$settingsForm = new PressSiteSettingsForm($pressId);
 		$settingsForm->readInputData();
 
 		if ($settingsForm->validate()) {

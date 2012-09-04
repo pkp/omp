@@ -301,7 +301,7 @@ class SubmissionFilesUploadForm extends SubmissionFilesUploadBaseForm {
 	function &_retrieveLibraryCategories(&$request) {
 		$context =& $request->getContext();
 		import('classes.file.LibraryFileManager');
-		$libraryFileManager =& new LibraryFileManager($context->getId());
+		$libraryFileManager = new LibraryFileManager($context->getId());
 		$categories = $libraryFileManager->getTypeTitleKeyMap();
 		return $categories;
 	}

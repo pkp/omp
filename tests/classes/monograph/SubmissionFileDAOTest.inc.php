@@ -119,7 +119,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 
 		// Persist a second revision of the artwork file but this time with a
 		// document genre so that it needs to be downcast for insert.
-		$downcastFile =& cloneObject($file1Rev1); /* @var $downcastFile ArtworkFile */
+		$downcastFile = clone($file1Rev1); /* @var $downcastFile ArtworkFile */
 		$downcastFile->setRevision(2);
 		$downcastFile->setDateUploaded('2011-12-05 00:00:00');
 		$downcastFile->setDateModified('2011-12-05 00:00:00');
@@ -132,7 +132,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 
 		// Persist a second revision of the monograph file but this time with an
 		// artwork genre so that it needs to be upcast for insert.
-		$upcastFile =& cloneObject($file2Rev1); /* @var $upcastFile MonographFile */
+		$upcastFile = clone($file2Rev1); /* @var $upcastFile MonographFile */
 		$upcastFile->setRevision(2);
 		$file2Rev2 =& $this->_insertFile($upcastFile, 'test upcast', SUBMISSION_FILE_DAO_TEST_ART_GENRE_ID);
 
@@ -284,7 +284,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		// assignRevisionToReviewRound()
 		//
 		// Insert one more revision to test review round file assignments.
-		$file1Rev3 = cloneObject($file1Rev2);
+		$file1Rev3 = clone($file1Rev2);
 		$file1Rev3->setRevision(3);
 		self::assertEquals($file1Rev3, $submissionFileDao->insertObject($file1Rev3, $this->testFile));
 		$uniqueId1_3 = $file1Rev3->getFileIdAndRevision();

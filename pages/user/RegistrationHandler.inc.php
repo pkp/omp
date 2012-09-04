@@ -40,11 +40,7 @@ class RegistrationHandler extends UserHandler {
 
 			$existingUser = $request->getUserVar('existingUser') ? 1 : 0;
 
-			if (checkPhpVersion('5.0.0')) { // WARNING: This form needs $this in constructor
-				$regForm = new RegistrationForm($site, $existingUser);
-			} else {
-				$regForm =& new RegistrationForm($site, $existingUser);
-			}
+			$regForm = new RegistrationForm($site, $existingUser);
 
 			$regForm->initData();
 			$regForm->display($request);
@@ -72,11 +68,7 @@ class RegistrationHandler extends UserHandler {
 		$existingUser = $request->getUserVar('existingUser') ? 1 : 0;
 		$site =& $request->getSite();
 
-		if (checkPhpVersion('5.0.0')) { // WARNING: This form needs $this in constructor
-			$regForm = new RegistrationForm($site, $existingUser);
-		} else {
-			$regForm =& new RegistrationForm($site, $existingUser);
-		}
+		$regForm = new RegistrationForm($site, $existingUser);
 		$regForm->readInputData();
 
 		if ($regForm->validate()) {

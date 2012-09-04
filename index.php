@@ -57,9 +57,9 @@
 
 // Initialize global environment
 define('INDEX_FILE_LOCATION', __FILE__);
-require('./lib/pkp/includes/bootstrap.inc.php');
+$application = require('./lib/pkp/includes/bootstrap.inc.php');
 
 // Serve the request
-$application =& PKPApplication::getApplication();
 $application->execute();
+
 ?>

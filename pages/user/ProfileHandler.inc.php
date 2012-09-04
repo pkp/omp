@@ -103,11 +103,7 @@ class ProfileHandler extends UserHandler {
 		$site =& $request->getSite();
 
 		import('classes.user.form.ChangePasswordForm');
-		if (checkPhpVersion('5.0.0')) { // WARNING: This form needs $this in constructor
-			$passwordForm = new ChangePasswordForm($user, $site);
-		} else {
-			$passwordForm =& new ChangePasswordForm($user, $site);
-		}
+		$passwordForm = new ChangePasswordForm($user, $site);
 		$passwordForm->initData($args, $request);
 		$passwordForm->display($args, $request);
 	}
@@ -122,11 +118,7 @@ class ProfileHandler extends UserHandler {
 		$site =& $request->getSite();
 
 		import('classes.user.form.ChangePasswordForm');
-		if (checkPhpVersion('5.0.0')) { // WARNING: This form needs $this in constructor
-			$passwordForm = new ChangePasswordForm($user, $site);
-		} else {
-			$passwordForm =& new ChangePasswordForm($user, $site);
-		}
+		$passwordForm = new ChangePasswordForm($user, $site);
 		$passwordForm->readInputData();
 
 		$this->setupTemplate(true);
