@@ -326,7 +326,8 @@ class WorkflowHandler extends Handler {
 						'modals.editorDecision.EditorDecisionHandler',
 						$action['operation'], null, $actionArgs
 					),
-					__($action['title'])
+					__($action['title']),
+					$action['titleIcon']
 				),
 				__($action['title'])
 			);

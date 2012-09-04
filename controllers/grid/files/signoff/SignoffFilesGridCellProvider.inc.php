@@ -135,7 +135,7 @@ class SignoffFilesGridCellProvider extends GridCellProvider {
 				}
 
 				$modal = new RemoteActionConfirmationModal($approveText, __('editor.monograph.editorial.approveCopyeditFile'),
-					$remoteActionUrl);
+					$remoteActionUrl, 'modal_approve_file');
 
 				return new LinkAction('approveCopyedit-' . $monographFile->getFileId(),
 					$modal, __('editor.monograph.decision.approveProofs'), 'task ' . $cellState);
@@ -153,7 +153,7 @@ class SignoffFilesGridCellProvider extends GridCellProvider {
 				}
 
 				$modal = new RemoteActionConfirmationModal($approveText, __('editor.monograph.decision.approveProofs'),
-					$remoteActionUrl);
+					$remoteActionUrl, 'modal_approve_file');
 
 				return new LinkAction('approveProof-' . $monographFile->getFileId(),
 					$modal, __('editor.monograph.decision.approveProofs'), 'task ' . $cellState);
