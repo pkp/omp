@@ -37,14 +37,8 @@
 {/if}
 <div class="pkp_structure_subfoot">
 	<div class="pkp_structure_content">
-		<div class="unit size1of3">
-			<h4><a href="{url page="about" op="aboutThisPublishingSystem"}">{translate key="common.openMonographPress"}</a></h4>
-		</div>
-		<div class="unit size1of3">
-		</div>
-		<div class="unit size1of3 lastUnit">
-			<h4 class="pkp_helpers_align_right"><a href="http://pkp.sfu.ca">{translate key="common.publicKnowledgeProject"}</a></h4>
-		</div>
+		<a href="{url page="about" op="aboutThisPublishingSystem"}"><img class="pkp_helpers_align_right" alt="{translate key="common.openMonographPress"}" src="{$baseUrl}/templates/images/omp_brand.png"/></a>
+		<a href="http://pkp.sfu.ca/omp"><img class="pkp_helpers_align_right pkp_helpers_clear" alt="{translate key="common.publicKnowledgeProject"}" src="{$baseUrl}/templates/images/pkp_brand.png"/></a>
 	</div><!-- pkp_structure_content -->
 	<div class="pkp_structure_content">
 		{if $pageFooter}{$pageFooter}{/if}
