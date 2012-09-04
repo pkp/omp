@@ -32,6 +32,10 @@
 		// element inside this widget.
 		this.bind('selectSignoff', this.handleRefreshNotesForm_);
 
+		// Check if we can automatically load the notes form after
+		// the dropdown finished loading its options.
+		this.bind('dropDownOptionSet', this.handleDropDownOptionSet_);
+
 		// Load the notes form.
 		var signoffId = null;
 		if (options.signoffId) {
@@ -73,7 +77,7 @@
 	 */
 	$.pkp.controllers.informationCenter.SignoffNotesHandler.
 			prototype.handleRefreshNotesForm_ =
-			function(callingForm, event, signoffId) {
+				function(callingForm, event, signoffId) {
 		if (signoffId !== 0) {
 			// Fetch the form
 			this.loadNoteForm_(signoffId);
@@ -86,21 +90,33 @@
 
 
 	/**
+	 * Automatically loads the note form if drop down have only
+	 * one signoff id as option.
+	 * @param {HTMLElement} dropdown The element that called the event.
+	 * @param {Event} event The upload event.
+	 */
+	$.pkp.controllers.informationCenter.SignoffNotesHandler.
+			prototype.handleDropDownOptionSet_ =
+				function(dropdown, event) {
+		var $dropDown = $('#signoffSelect', this.getHtmlElement());
+		var $options = $('option', $dropDown);
+		if ($options.length == 2) {
+			signoffId = $('option', $dropDown).next().val();
+			$dropDown.val(signoffId);
+
+			this.loadNoteForm_(signoffId);
+		}
+	};
+
+
+	/**
 	 * Send a request to load the signoff notes form.
 	 * @param {Integer} signoffId The signoff id.
 	 * @private
 	 */
 	$.pkp.controllers.informationCenter.SignoffNotesHandler.prototype.
 			loadNoteForm_ = function(signoffId) {
-
-		if (signoffId === undefined) {
-			// Get it from the current selected drop down
-			// element.
-			var $dropDown = $('#signoffSelect', this.getHtmlElement());
-			signoffId = $dropDown.val();
-		}
-
-		if (signoffId !== undefined && signoffId !== 0) {
+		if (signoffId !== undefined && signoffId) {
 			$.get(this.signoffNotesFormUrl_, { signoffId: signoffId },
 					this.callbackWrapper(this.showFetchedNoteForm_), 'json');
 		}

@@ -125,6 +125,7 @@ class SignoffInformationCenterHandler extends Handler {
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('monographId', $monograph->getId());
 		$templateMgr->assign('stageId', $stageId);
+		$templateMgr->assign('symbolic', (string) $request->getUserVar('symbolic'));
 		if ($signoff) {
 			$templateMgr->assign('signoffId', $signoff->getId());
 		}
@@ -140,15 +141,21 @@ class SignoffInformationCenterHandler extends Handler {
 	function getUserSignoffs($args, &$request) {
 		$user =& $request->getUser();
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
+		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		$symbolic = (string) $request->getUserVar('symbolic');
+
 		$monographFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $monographFileDao SubmissionFileDAO */
-		$signoffsFactory =& $signoffDao->getByUserId($user->getId());
+		$signoffsFactory =& $signoffDao->getAllBySymbolic($symbolic, ASSOC_TYPE_MONOGRAPH_FILE, null, $user->getId());
 
 		$signoffs = array();
 		while ($signoff =& $signoffsFactory->next()) { /* @var $signoff Signoff */
 			if (!$signoff->getDateCompleted() && $signoff->getAssocType() == ASSOC_TYPE_MONOGRAPH_FILE) {
 				$monographFile =& $monographFileDao->getLatestRevision($signoff->getAssocId()); /* @var $monographFile MonographFile */
 				assert(is_a($monographFile, 'MonographFile'));
-				$signoffs[$signoff->getId()] = $monographFile->getLocalizedName();
+
+				if ($monographFile->getMonographId() == $monograph->getId()) {
+					$signoffs[$signoff->getId()] = $monographFile->getLocalizedName();
+				}
 			}
 		}
 
