@@ -7,8 +7,7 @@
  * Press index page.
  *}
 {strip}
-{assign var="pageTitleTranslated" value=$siteTitle}
-{include file="common/header.tpl"}
+{include file="common/header.tpl" suppressPageTitle=true}
 {/strip}
 
 {call_hook name="Templates::Index::press"}

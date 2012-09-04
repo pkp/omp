@@ -157,6 +157,25 @@ class PublishedMonograph extends Monograph {
 	}
 
 	/**
+	 * Return string of approved publication formats, separated by comma.
+	 * @return string
+	 */
+	function getPublicationFormatString() {
+		$separator = ', ';
+		$formats = $this->getPublicationFormats(true);
+		$str = '';
+
+		foreach ($formats as $format) { /* @var $format PublicationFormat */
+			if (!empty($str)) {
+				$str .= $separator;
+			}
+			$str .= $format->getLocalizedName();
+		}
+
+		return $str;
+	}
+
+	/**
 	 * Returns whether or not this published monograph has formats assigned to it
 	 * @return boolean
 	 */
