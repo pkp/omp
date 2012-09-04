@@ -9,7 +9,6 @@
  *}
 <div class="block" id="sidebarBrowse">
 
-	<span class="blockTitle pkp_helpers_dotted_underline"><a href="{url page="catalog"}">{translate key="navigation.catalog"}</a></span>
 	<span class="blockTitle pkp_helpers_dotted_underline"><a href="{url page="catalog" op="newReleases"}">{translate key="navigation.newReleases"}</a></span>
 	<span class="blockTitle">{translate key="plugins.block.browse"}</span>
 

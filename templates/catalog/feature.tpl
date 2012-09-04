@@ -25,7 +25,7 @@
 
 	<div class="pkp_catalog_featureSpecs">
 		{assign var="coverImage" value=$featuredMonograph->getCoverImage()}
-		<a href="{url router=$smarty.const.ROUTE_COMPONENT component="submission.CoverHandler" op="cover" monographId=$featuredMonograph->getId()}"><img height="{$coverImage.catalogHeight}" width="{$coverImage.catalogWidth}" alt="{$featuredMonograph->getLocalizedFullTitle()|escape}" src="{url router=$smarty.const.ROUTE_COMPONENT component="submission.CoverHandler" op="catalog" monographId=$featuredMonograph->getId()}" /></a>
+		<a href="{url op="book" path=$featuredMonograph->getId()}"><img height="{$coverImage.catalogHeight}" width="{$coverImage.catalogWidth}" alt="{$featuredMonograph->getLocalizedFullTitle()|escape}" src="{url router=$smarty.const.ROUTE_COMPONENT component="submission.CoverHandler" op="catalog" monographId=$featuredMonograph->getId()}" /></a>
 		<!-- FIXME: Put specs for the feature here. -->
 	</div>
 
