@@ -20,11 +20,6 @@
 </script>
 {if $messageKey}<p>{translate key=$messageKey}</p>{/if}
 <div id="{$monographContainerId|escape}">
-	<div class="pkp_helpers_align_right">
-		<div class="submission_actions pkp_linkActions">
-			{if $includeFeatureAction && !$publishedMonographs->wasEmpty()}{null_link_action id="feature-$monographContainerId" key="common.feature" image="feature"}{/if}
-		</div>
-	</div>
 	{if $category}
 		<div id="categoryDescription">
 			{$category->getLocalizedDescription()}
@@ -34,6 +29,11 @@
 			{$series->getLocalizedDescription()}
 		</div>
 	{/if}
+	<div class="pkp_helpers_align_right">
+		<div class="submission_actions pkp_linkActions">
+			{if $includeFeatureAction && !$publishedMonographs->wasEmpty()}{null_link_action id="feature-$monographContainerId" key="common.feature" image="feature"}{/if}
+		</div>
+	</div>
 	<br />
 	<br />
 	<ul class="pkp_manageCatalog_monographList pkp_helpers_container_center">
