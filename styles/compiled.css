@@ -1142,6 +1142,7 @@ div.pkp_controllers_grid tr.gridRow td {
 div.pkp_controllers_grid tr.category {
   border-bottom:1px solid #c8c7c7;
   border-top:1px solid #c8c7c7;
+  background-color:#f4f8fb;
 }
 div.pkp_controllers_grid .empty td {
   border-bottom:1px solid #c8c7c7;
@@ -1585,7 +1586,11 @@ div.noteWrapper {
   margin-bottom:10px;
   padding-bottom:10px;
 }
-span.noteFile { margin-top:10px; }
+span.noteFile {
+  float:left;
+  line-height:24px;
+  margin-top:10px;
+}
 ul.sf-menu {
   position:relative;
   z-index:1000;
