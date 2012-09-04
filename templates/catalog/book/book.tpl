@@ -14,7 +14,8 @@
 
 <div class="pkp_catalog_book">
 
-{include file="catalog/book/bookSpecs.tpl"}
+{url|assign:bookImageLinkUrl router=$smarty.const.ROUTE_COMPONENT component="submission.CoverHandler" op="cover" monographId=$publishedMonograph->getId()}
+{include file="catalog/book/bookSpecs.tpl" bookImageLinkUrl=$bookImageLinkUrl}
 
 {include file="catalog/book/bookInfo.tpl"}
 

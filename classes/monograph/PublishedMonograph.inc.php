@@ -189,6 +189,19 @@ class PublishedMonograph extends Monograph {
 	}
 
 	/**
+	 * Get the categories for this published monograph.
+	 * @see PublishedMonographDAO::getCategories
+	 * @return Iterator
+	 */
+	function getCategories() {
+		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
+		return $publishedMonographDao->getCategories(
+			$this->getId(),
+			$this->getPressId()
+		);
+	}
+
+	/**
 	 * Get the cover image.
 	 * @return array
 	 */

@@ -7,9 +7,12 @@
  * Display a public-facing category view in the catalog.
  *}
 {strip}
-{if $category}{assign var="pageTitleTranslated" value=$category->getLocalizedTitle()}{/if}
-{include file="common/header.tpl"}
+{include file="common/header.tpl" suppressPageTitle=true}
 {/strip}
+
+{if $category}
+	<h2 class="pkp_helpers_text_center"><em>{$category->getLocalizedTitle()}</em></h2>
+{/if}
 
 <div class="catalogContainer">
 

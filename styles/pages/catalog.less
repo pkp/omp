@@ -8,6 +8,14 @@
  *
  */
 
+.authorName {
+	color: #999999;
+}
+
+.monographAbstract {
+	text-align: justify;
+}
+
 .pkp_catalog_carousel_wrapper {
 	width: 100%;
 	overflow: hidden;
@@ -139,34 +147,16 @@
 }
 
 .pkp_catalog_feature {
-	border-top: 1px solid #C8C7C7;
 	padding-top: 10px;
 	margin-left: 10px;
-	font-size: 100%;
 	line-height: 18px;
 
-	.pkp_catalog_featureSpecs {
-		float: left;
-	}
-
-	.pkp_catalog_featureDetails {
-		margin-top: 50px;
-	}
-
 	.pkp_catalog_feature_abstract {
-		text-align: justify;
+		.monographAbstract;
 	}
-	
-	.pkp_catalog_monographTitle {
-		font-size: 100%;
-		color: #333333;
-	}
-	.pkp_catalog_monographAbstract {
-		color: #666666;
-		
-		p {
-			display: inline;
-		}
+
+	.pkp_catalog_feature_authorName {
+		.authorName;
 	}
 }
 
@@ -186,8 +176,8 @@
 			padding-left: 18px;
 			margin-bottom: 25px;
 			
-			.subTitle, .authorName {
-				color: #999999;
+			.authorName {
+				.authorName;
 			}
 		}
 		
@@ -197,14 +187,11 @@
 		}
 
 		#abstractTab {
-			text-align: justify;
+			.monographAbstract;
 		}
 	}
 	
 	#bookAccordion {
-		margin-top: 30px;
-		border-top: 1px dotted #999999;
-	
 		.ui-accordion-content {
 			color: #999999;
 		}

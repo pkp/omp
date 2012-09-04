@@ -20,19 +20,17 @@
 {* $featuredMonograph should now specify the random monograph, if any. *}
 
 {if $featuredMonograph}
-<div class="pkp_catalog_feature">
+<div class="pkp_catalog_feature pkp_catalog_book">
 	<h3>{translate key="catalog.feature"}</h3>
 
-	<div class="pkp_catalog_featureSpecs">
-		{assign var="coverImage" value=$featuredMonograph->getCoverImage()}
-		<a href="{url op="book" path=$featuredMonograph->getId()}"><img height="{$coverImage.catalogHeight}" width="{$coverImage.catalogWidth}" alt="{$featuredMonograph->getLocalizedFullTitle()|escape}" src="{url router=$smarty.const.ROUTE_COMPONENT component="submission.CoverHandler" op="catalog" monographId=$featuredMonograph->getId()}" /></a>
-		<!-- FIXME: Put specs for the feature here. -->
-	</div>
+	{url|assign:bookImageLinkUrl op="book" path=$featuredMonograph->getId()}
+	{include file="catalog/book/bookSpecs.tpl" publishedMonograph=$featuredMonograph}
 
 	<div class="pkp_catalog_featureDetails">
-		<div class="pkp_catalog_feature_title">{$featuredMonograph->getLocalizedFullTitle()|strip_unsafe_html}</div>
-		<div class="pkp_catalog_feature_author">{$featuredMonograph->getAuthorString()|escape}</div>
+		<h3>{$featuredMonograph->getLocalizedFullTitle()|strip_unsafe_html}</h3>
+		<div class="pkp_catalog_feature_authorName">{$featuredMonograph->getAuthorString()|escape}</div>
 		<div class="pkp_catalog_feature_abstract">{$featuredMonograph->getLocalizedAbstract()|strip_unsafe_html}</div>
 	</div>
 </div>
+
 {/if}{* $featuredMonograph *}
