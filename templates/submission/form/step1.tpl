@@ -51,7 +51,6 @@
 			{assign var=notIsEditedVolume value=1}
 			{assign var=isEditedVolume value=0}
 		{/if}
-		{$isEditedVolume}-{$notIsEditedVolume}
 		{fbvElement type="radio" name="workType" id="isEditedVolume-0" value=$smarty.const.WORK_TYPE_AUTHORED_WORK checked=$notIsEditedVolume label="submission.workType.authoredWork"}
 		{fbvElement type="radio" name="workType" id="isEditedVolume-1" value=$smarty.const.WORK_TYPE_EDITED_VOLUME  checked=$isEditedVolume label="submission.workType.editedVolume"}
 	{/fbvFormSection}
