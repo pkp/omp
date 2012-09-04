@@ -14,17 +14,18 @@
 <div class="catalogContainer">
 
 {if $category}
+	{assign var="image" value=$category->getImage()}
 	{if $category->getLocalizedDescription() || $image}
-	<div class="pkp_catalog_categoryDescription">
-		{$category->getLocalizedDescription()|strip_unsafe_html}
-		{assign var="image" value=$category->getImage()}
-		{if $image}
-			<a href="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="fullSize" type="category" id=$category->getId()}">
-				<img class="pkp_helpers_container_center" height="{$image.thumbnailHeight}" width="{$image.thumbnailWidth}" src="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="thumbnail" type="category" id=$category->getId()}" alt="{$category->getLocalizedTitle()|escape}" />
-			</a>
-		{/if}
-	</div>
+		<div class="pkp_catalog_categoryDescription">
+			{if $image}
+				<a href="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="fullSize" type="category" id=$category->getId()}">
+					<img class="pkp_helpers_align_left" height="{$image.thumbnailHeight}" width="{$image.thumbnailWidth}" src="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="thumbnail" type="category" id=$category->getId()}" alt="{$category->getLocalizedTitle()|escape}" />
+				</a>
+			{/if}
+			{$category->getLocalizedDescription()|strip_unsafe_html}
+		</div>
 	{/if}
+
 	{* Include the carousel view of featured content *}
 	{if $featuredMonographIds|@count}
 		{include file="catalog/carousel.tpl" publishedMonographs=$publishedMonographs featuredMonographIds=$featuredMonographIds}
@@ -35,8 +36,7 @@
 
 	{* Include the full monograph list *}
 	{include file="catalog/monographs.tpl" publishedMonographs=$publishedMonographs}
-
-	</div><!-- catalogContainer -->
 {/if}
+</div><!-- catalogContainer -->
 
 {include file="common/footer.tpl"}
