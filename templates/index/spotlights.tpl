@@ -20,7 +20,14 @@
 							<a class="pkp_helpers_image_right" href="{url page="catalog" op="book" path=$item->getId()}"><img height="{$coverImage.thumbnailHeight}" width="{$coverImage.thumbnailWidth}" alt="{$item->getLocalizedFullTitle()|escape}" src="{url router=$smarty.const.ROUTE_COMPONENT component="submission.CoverHandler" op="thumbnail" monographId=$item->getId()}" /></a>
 						{/if}
 						<div class="pkp_catalog_monographTitle">{$item->getLocalizedFullTitle()}</div>
-						<div class="pkp_catalog_monographAbstract">{$item->getLocalizedAbstract()|strip_unsafe_html}</div>
+						<div class="pkp_catalog_monograph_authorship">{$item->getAuthorString()}</div>
+						<div class="pkp_catalog_monographAbstract">
+							{if $spotlight->getLocalizedDescription()}
+								{$spotlight->getLocalizedDescription()|strip_unsafe_html}
+							{else}
+								{$item->getLocalizedAbstract()|truncate:150|strip_unsafe_html}
+							{/if}
+						</div>
 						<div class="pkp_catalog_readMore"><a href="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="book" path=$item->getId()}">{translate key="common.plusMore"}</a></div>
 					{/if}
 					{if $spotlight->getAssocType() == $smarty.const.SPOTLIGHT_TYPE_SERIES}
@@ -28,8 +35,19 @@
 						{if $image}
 							<a class="pkp_helpers_image_right" href="{url page="catalog" op="fullSize" type="series" id=$item->getId()}"><img height="{$image.thumbnailHeight}" width="{$image.thumbnailWidth}" alt="{$item->getLocalizedFullTitle()|escape}" src="{url page="catalog" op="thumbnail" type="series" id=$item->getId()}" /></a>
 						{/if}
-						<div class="pkp_catalog_monographTitle">{$item->getLocalizedFullTitle()}</div>
-						<div class="pkp_catalog_monographAbstract">{$item->getLocalizedDescription()|strip_unsafe_html}</div>
+						<div class="pkp_catalog_monographTitle">
+							{translate key="series.series"}: {$item->getLocalizedFullTitle()}
+						</div>
+						<div class="pkp_catalog_monograph_authorship">
+							{translate key="user.role.editors"}: {$item->getEditorsString()}
+						</div>
+						<div class="pkp_catalog_monographAbstract">
+							{if $spotlight->getLocalizedDescription()}
+								{$spotlight->getLocalizedDescription()|strip_unsafe_html}
+							{else}
+								{$item->getLocalizedDescription()|truncate:150|strip_unsafe_html}
+							{/if}
+						</div>
 						<div class="pkp_catalog_readMore"><a href="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="series" path=$item->getPath()}">{translate key="common.plusMore"}</a></div>
 					{/if}
 					{if $spotlight->getAssocType() == $smarty.const.SPOTLIGHT_TYPE_AUTHOR}
@@ -43,8 +61,19 @@
 						{assign var="authorName" value=$item->getFullName()|strip_unsafe_html}
 						<div class="pkp_catalog_monographTitle">{$authorName}</div>
 						{if $monograph}
-							<div class="pkp_catalog_monographSubtitle">{translate key="spotlight.author"} {$monograph->getLocalizedFullTitle()}</div>
+							<div class="pkp_catalog_monograph_authorship">{translate key="spotlight.author"} {$monograph->getLocalizedFullTitle()}</div>
+							<div class="pkp_catalog_monographAbstract">
+								{if $spotlight->getLocalizedDescription()}
+									{$spotlight->getLocalizedDescription()|strip_unsafe_html}
+								{else}
+									{$monograph->getLocalizedAbstract()|truncate:150|strip_unsafe_html}
+								{/if}
+							</div>
 							<div class="pkp_catalog_readMore"><a href="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="book" path=$monograph->getId()}">{translate key="common.plusMore"}</a></div>
+						{else}
+							<div class="pkp_catalog_monographAbstract">
+								{$spotlight->getLocalizedDescription()|strip_unsafe_html}
+							</div>
 						{/if}
 					{/if}
 				</div>

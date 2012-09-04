@@ -30,7 +30,7 @@
 				<img src="{url router=$smarty.const.ROUTE_COMPONENT component="submission.CoverHandler" op="cover" monographId=$publishedMonograph->getId()}" alt="{$publishedMonograph->getLocalizedFullTitle()|escape}" data-caption="#publishedMonograph-{$monographId}-caption" width="150" height="250"/>
 				<div class="details_box" id="publishedMonograph-{$monographId}-details">
 					<h4>{$publishedMonograph->getLocalizedFullTitle()|escape}</h4>
-					<div class="pkp_catalog_authors">{$publishedMonograph->getAuthorString()|escape}</div>
+					<div class="pkp_catalog_monograph_authorship">{$publishedMonograph->getAuthorString()|escape}</div>
 					{if $publishedMonograph->getPublicationFormatString()}
 						<div class="pkp_catalog_formats">
 							<strong>{translate key="monograph.publicationFormats"}:</strong><br />

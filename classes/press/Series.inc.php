@@ -205,6 +205,32 @@ class Series extends DataObject {
 	function setImage($image) {
 		return $this->setData('image', $image);
 	}
+
+	/**
+	 * Returns a string with the full name of all series
+	 * editors, separated by a comma.
+	 * @return string
+	 */
+	function getEditorsString() {
+		$seriesEditorsDao =& DAORegistry::getDAO('SeriesEditorsDAO');
+		$editors = $seriesEditorsDao->getEditorsBySeriesId($this->getId(), $this->getPressId());
+
+		$separator = ', ';
+		$str = '';
+
+		foreach ($editors as $editorData) {
+			$editor =& $editorData['user'];
+
+			if (!empty($str)) {
+				$str .= $separator;
+			}
+
+			$str .= $editor->getFullName();
+			$editor = null;
+		}
+
+		return $str;
+	}
 }
 
 ?>

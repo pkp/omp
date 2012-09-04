@@ -237,14 +237,31 @@ class SpotlightDAO extends DAO {
 	/**
 	 * Retrieve a random spotlight matching a press id.
 	 * @param $pressId int
-	 * @return Spotlight or null
+	 * @param $quantity int (optional) If more than one is needed,
+	 * specify here.
+	 * @return array or null
 	 */
-	function getRandomByPressId($pressId) {
+	function getRandomByPressId($pressId, $quantity = 1) {
 		$spotlights =& array_values($this->getByPressId($pressId));
-		$returner = null;
+		$returner = array();
 		if (count($spotlights) > 0) {
-			$randNumber = rand(0, count($spotlights) - 1);
-			$returner = $spotlights[$randNumber];
+			if (count($spotlights) <= $quantity) {
+				// Return the ones that we have.
+				$returner = $spotlights;
+			} else {
+				// Get the random spotlights.
+				for($quantity; $quantity > 0; $quantity--) {
+					$randNumber = rand(0, count($spotlights) - 1);
+					$returner[] = $spotlights[$randNumber];
+					unset($spotlights[$randNumber]);
+					// Reset spotlights array index.
+					$spotlights = array_values($spotlights);
+				}
+			}
+		}
+
+		if (count($returner) == 0) {
+			$returner = null;
 		}
 
 		return $returner;

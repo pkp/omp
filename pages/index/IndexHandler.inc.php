@@ -116,10 +116,10 @@ class IndexHandler extends Handler {
 		$featuredMonographIds = $featureDao->getSequencesByAssoc(ASSOC_TYPE_PRESS, $press->getId());
 		$templateMgr->assign('featuredMonographIds', $featuredMonographIds);
 
-		// Include any spotlight items for the press home page.
+		// Include random spotlight items for the press home page.
 		$spotlightDao =& DAORegistry::getDAO('SpotlightDAO');
-		$spotlights =& $spotlightDao->getByPressId($press->getId());
-		$templateMgr->assign_by_ref('spotlights', $spotlights);
+		$spotlights = $spotlightDao->getRandomByPressId($press->getId(), MAX_SPOTLIGHTS_VISIBLE);
+		$templateMgr->assign('spotlights', $spotlights);
 
 		// Include any social media items that are configured for the press itself.
 		$socialMediaDao =& DAORegistry::getDAO('SocialMediaDAO');
