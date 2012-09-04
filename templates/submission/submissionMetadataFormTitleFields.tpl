@@ -23,6 +23,6 @@
 		{fbvElement type="text" multilingual=true name="subtitle" id="subtitle" value=$subtitle disabled=$readOnly}
 	{/fbvFormSection}
 	{fbvFormSection title="submission.submit.briefSummary" for="abstract" required=true}
-		{fbvElement type="textarea" multilingual=true name="abstract" id="abstract" value=$abstract rich=true disabled=$readOnly required=true}
+		{fbvElement type="textarea" multilingual=true name="abstract" id="abstract" value=$abstract rich=true disabled=$readOnly}
 	{/fbvFormSection}
 {/fbvFormArea}
