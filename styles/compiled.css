@@ -1694,8 +1694,6 @@ ul.sf-menu {
 .pkp_catalog_carousel_wrapper .pkp_catalog_carousel .details_box .pkp_catalog_formats { margin-top:10px; }
 .pkp_catalog_carousel_wrapper .pkp_catalog_carousel .details_box .pkp_catalog_readMore { margin-top:10px; }
 .pkp_catalog_seriesDescription, .pkp_catalog_categoryDescription {
-  float:right;
-  margin-left:250px;
   border-top:1px dotted #999999;
   padding-top:10px;
 }
