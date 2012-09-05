@@ -747,6 +747,7 @@ body {
   *zoom:1;
   border-bottom:1px dotted #999999;
   margin-bottom:3px;
+  padding-bottom:15px;
 }
 .pkp_structure_body .pkp_structure_main {
   *zoom:1;
@@ -1747,11 +1748,28 @@ ul.sf-menu {
   border-radius:0px;
   padding-bottom:50px;
 }
+#spotlightsHome {
+  padding-bottom:15px;
+  overflow:auto;
+}
+#spotlightsHome .pkp_helpers_third { width:33%; }
 #spotlightsHome h4 {
   color:black;
   font-size:125%;
 }
 #spotlightsHome ul { margin-top:20px; }
+.pkp_catalog_spotlight {
+  border-top:1px solid #c8c7c7;
+  font-size:100%;
+  line-height:18px;
+  margin-left:15px;
+  padding-top:10px;
+}
+.pkp_catalog_spotlight .pkp_catalog_spotlight_itemDescription {
+  color:#333333;
+  color:#999999;
+}
+.pkp_catalog_spotlight .pkp_catalog_spotlight_itemDescription p { display:inline; }
 #socialMediaBlocksContainer { margin-top:20px; }
 #socialMediaBlocksContainer .socialMediaBlock { margin:10px 0px; }
 .pkp_page_header { position:relative; }

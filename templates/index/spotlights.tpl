@@ -6,22 +6,22 @@
  *
  * Display spotlights on a press' home page.
  *}
-<div id="spotlightsHome">
+<div id="spotlightsHome" class="pkp_helpers_dotted_underline">
 	<h2 class="pkp_helpers_text_center"><em>{translate key="spotlight.title.homePage"}</em></h2>
 	<ul>
 		{foreach from=$spotlights item=spotlight name=loop}
 			{assign var="item" value=$spotlight->getSpotlightItem()}
 			<li class="pkp_helpers_align_left pkp_helpers_third">
 				<h4 class="pkp_helpers_text_center">{$spotlight->getLocalizedTitle()|escape}</h4>
-				<div class="pkp_catalog_feature">
+				<div class="pkp_catalog_spotlight">
 					{if $spotlight->getAssocType() == $smarty.const.SPOTLIGHT_TYPE_BOOK}
 						{assign var=coverImage value=$item->getCoverImage()}
 						{if $coverImage}
 							<a class="pkp_helpers_image_right" href="{url page="catalog" op="book" path=$item->getId()}"><img height="{$coverImage.thumbnailHeight}" width="{$coverImage.thumbnailWidth}" alt="{$item->getLocalizedFullTitle()|escape}" src="{url router=$smarty.const.ROUTE_COMPONENT component="submission.CoverHandler" op="thumbnail" monographId=$item->getId()}" /></a>
 						{/if}
-						<div class="pkp_catalog_monographTitle">{$item->getLocalizedFullTitle()}</div>
-						<div class="pkp_catalog_monograph_authorship">{$item->getAuthorString()}</div>
-						<div class="pkp_catalog_monographAbstract">
+						<div class="pkp_catalog_spotlight_itemTitle">{$item->getLocalizedFullTitle()}</div>
+						<div class="pkp_catalog_spotlight_itemAuthorship">{$item->getAuthorString()}</div>
+						<div class="pkp_catalog_spotlight_itemDescription">
 							{if $spotlight->getLocalizedDescription()}
 								{$spotlight->getLocalizedDescription()|strip_unsafe_html}
 							{else}
@@ -35,13 +35,13 @@
 						{if $image}
 							<a class="pkp_helpers_image_right" href="{url page="catalog" op="fullSize" type="series" id=$item->getId()}"><img height="{$image.thumbnailHeight}" width="{$image.thumbnailWidth}" alt="{$item->getLocalizedFullTitle()|escape}" src="{url page="catalog" op="thumbnail" type="series" id=$item->getId()}" /></a>
 						{/if}
-						<div class="pkp_catalog_monographTitle">
+						<div class="pkp_catalog_spotlight_itemTitle">
 							{translate key="series.series"}: {$item->getLocalizedFullTitle()}
 						</div>
-						<div class="pkp_catalog_monograph_authorship">
+						<div class="pkp_catalog_spotlight_itemAuthorship">
 							{translate key="user.role.editors"}: {$item->getEditorsString()}
 						</div>
-						<div class="pkp_catalog_monographAbstract">
+						<div class="pkp_catalog_spotlight_itemDescription">
 							{if $spotlight->getLocalizedDescription()}
 								{$spotlight->getLocalizedDescription()|strip_unsafe_html}
 							{else}
@@ -59,10 +59,10 @@
 							{/if}
 						{/if}
 						{assign var="authorName" value=$item->getFullName()|strip_unsafe_html}
-						<div class="pkp_catalog_monographTitle">{$authorName}</div>
+						<div class="pkp_catalog_spotlight_itemTitle">{$authorName}</div>
 						{if $monograph}
-							<div class="pkp_catalog_monograph_authorship">{translate key="spotlight.author"} {$monograph->getLocalizedFullTitle()}</div>
-							<div class="pkp_catalog_monographAbstract">
+							<div class="pkp_catalog_spotlight_itemAuthorship">{translate key="spotlight.author"} {$monograph->getLocalizedFullTitle()}</div>
+							<div class="pkp_catalog_spotlight_itemDescription">
 								{if $spotlight->getLocalizedDescription()}
 									{$spotlight->getLocalizedDescription()|strip_unsafe_html}
 								{else}
@@ -71,7 +71,7 @@
 							</div>
 							<div class="pkp_catalog_readMore"><a href="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="book" path=$monograph->getId()}">{translate key="common.plusMore"}</a></div>
 						{else}
-							<div class="pkp_catalog_monographAbstract">
+							<div class="pkp_catalog_spotlight_itemDescription">
 								{$spotlight->getLocalizedDescription()|strip_unsafe_html}
 							</div>
 						{/if}
