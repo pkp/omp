@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locales SYSTEM "../lib/pkp/dtd/locales.dtd">
+
 <!--
   * registry/locales.xml
   *
@@ -10,8 +12,6 @@
   * This file lists all locales available to the system.
   * (i.e., existing under the locales/ directory)
   -->
-
-<!DOCTYPE locales SYSTEM "../lib/pkp/dtd/locales.dtd">
 
 <locales>
 	<locale key="en_US" complete="true" name="English" iso639-2b="eng" iso639-3="eng" />

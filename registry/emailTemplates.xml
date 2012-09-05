@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE emails SYSTEM "../../lib/pkp/dtd/emailTemplates.dtd">
+<!DOCTYPE emails SYSTEM "../lib/pkp/dtd/emailTemplates.dtd">
 <!--
   * registry/emailTemplates.xml
   *

@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE groups SYSTEM "../lib/pkp/dtd/userGroups.dtd">
+
 <!--
   * registry/groups.xml
   *
@@ -8,6 +10,7 @@
   * Roles XML file.
   *
   -->
+
 <groups>
 	<!-- Managerial Role -->
 	<group roleId="0x00000011" name="default.groups.name.pressManager" plural="default.groups.plural.pressManager" abbrev="default.groups.abbrev.pressManager" />
