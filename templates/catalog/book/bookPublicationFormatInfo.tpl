@@ -41,7 +41,14 @@
 	<div class="bookPublicationDateSpecs">
 	{foreach from=$publicationDates item=publicationDate}
 		<div id="bookPublicationDateSpecs-{$publicationDate->getId()|escape}">
-			{$publicationDate->getNameForONIXCode()|escape}: {$publicationDate->getReadableDate()|date_format:$dateFormatShort}
+			{$publicationDate->getNameForONIXCode()|escape}:
+			{assign var=dates value=$publicationDate->getReadableDates()}
+			{* note: these dates have dateFormatShort applied to them in getReadableDates() if they need it *}
+			{if $publicationDate->isFreeText() || $dates|@count == 1}
+				{$dates[0]|escape}
+			{else}
+				{$dates[0]|escape} - {$dates[1]|escape}
+			{/if}
 			{if $publicationDate->isHijriCalendar()}({translate key="common.dateHijri"}){/if}
 		</div>
 	{/foreach}{* publicationDates *}

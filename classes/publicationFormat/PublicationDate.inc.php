@@ -14,10 +14,18 @@
  */
 
 class PublicationDate extends DataObject {
+
+	/** @var $dateFormats the formats for this publication date */
+	var $dateFormats;
+
 	/**
 	 * Constructor
 	 */
 	function PublicationDate() {
+
+		$onixCodelistItemDao =& DAORegistry::getDAO('ONIXCodelistItemDAO');
+		$this->dateFormats =& $onixCodelistItemDao->getCodes('List55');
+
 		parent::DataObject();
 	}
 
@@ -100,10 +108,21 @@ class PublicationDate extends DataObject {
 	 * @return boolean
 	 */
 	function isHijriCalendar() {
-		$onixCodelistItemDao =& DAORegistry::getDAO('ONIXCodelistItemDAO');
-		$dateFormats =& $onixCodelistItemDao->getCodes('List55');
-		$format = $dateFormats[$this->getDateFormat()];
+		$format = $this->dateFormats[$this->getDateFormat()];
 		if (stristr($format, '(H)')) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	/**
+	 * determines whether or not the date should be parsed out with a date format.
+	 * @return boolean
+	 */
+	function isFreeText() {
+		$format = $this->dateFormats[$this->getDateFormat()];
+		if (stristr($format, 'string')) {
 			return true;
 		} else {
 			return false;
@@ -116,41 +135,78 @@ class PublicationDate extends DataObject {
 	 * parsed correctly in the template.
 	 * @return string
 	 */
-	function getReadableDate() {
-		$onixCodelistItemDao =& DAORegistry::getDAO('ONIXCodelistItemDAO');
-		$dateFormats =& $onixCodelistItemDao->getCodes('List55');
-		$format = $dateFormats[$this->getDateFormat()];
+	function getReadableDates() {
+		$format = $this->dateFormats[$this->getDateFormat()];
+		$dateFormatShort = Config::getVar('general', 'date_format_short');
 
 		if ($this->isHijriCalendar()) {
 			$format = preg_replace('/\s*\(H\)/i', '', $format);
 		}
 
-		if (!stristr($format, 'string')) { // this is not a free-form code
+		// store the dates we parse.
+		$dates = array();
+
+		if (!$this->isFreeText()) { // this is not a free-form code
 			// assume that the characters in the format match up with
 			// the characters in the entered date.  Iterate until the end.
 
 			$numbers = str_split($this->getDate());
-			$formatCharacters = str_split($format);
 
 			// these two should be the same length.
-			assert(count($numbers) == count($formatCharacters));
+			assert(count($numbers) == count(str_split($format)));
 
-			$previousFormatCharacter = '';
-			$date = '';
-			for ($i = 0 ; $i < count($numbers) ; $i ++) {
+			// Some date codes have two dates (ie, a range).
+			// Split these up into both dates.
+			if (substr_count($format, 'Y') == 8) {
+				preg_match('/^(YYYY.*)(YYYY.*)$/', $format, $matches);
+				$dateFormats = array($matches[1], $matches[2]);
+			} else {
+				$dateFormats = array($format);
+			}
 
-				if ($i > 0 && $previousFormatCharacter != $formatCharacters[$i]) {
-					$date .= '-';
+			foreach ($dateFormats as $format) {
+				$formatCharacters = str_split($format);
+				$previousFormatCharacter = '';
+				$thisDate = '';
+				$separator = '-';
+				$containsMonth = false;
+
+				for ($i = 0 ; $i < count($formatCharacters) ; $i ++) {
+					switch ($formatCharacters[$i]) {
+						// if there is a Time included, change the separator.
+						// Do not include the number, add a space instead.
+						case 'T':
+							$separator = ':';
+							$thisDate .= ' ';
+							break;
+						case 'M': // falls through to default. This is just a marker.
+							$containsMonth = true;
+						default:
+							if ($i > 0 && $previousFormatCharacter != $formatCharacters[$i] && $previousFormatCharacter != 'T') {
+							$thisDate .= $separator;
+						}
+						$thisDate .= $numbers[$i];
+						break;
+					}
+
+					$previousFormatCharacter = $formatCharacters[$i];
 				}
 
-				$date .= $numbers[$i];
-				$previousFormatCharacter = $formatCharacters[$i];
-			}
-		} else {
-			$date = $this->getDate();
-		}
+				// Perform date formatting here instead of in the template since
+				// testing is easier.
+				if ($containsMonth) {
+					$thisDate = strftime($dateFormatShort, strtotime($thisDate));
+				}
 
-		return $date;
+				$dates[] = $thisDate;
+				// remove the first date from the numbers and extract again.
+				$numbers = array_slice($numbers, count($formatCharacters));
+			}
+
+		} else {
+			$dates[] = $this->getDate();
+		}
+		return $dates;
 	}
 }
 

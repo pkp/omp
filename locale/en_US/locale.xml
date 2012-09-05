@@ -139,7 +139,7 @@
 	<message key="grid.catalogEntry.dateValue">Date</message>
 	<message key="grid.catalogEntry.dateRole">Role</message>
 	<message key="grid.catalogEntry.dateFormat">Date Format</message>
-	<message key="grid.catalogEntry.dateRequired">A date is required.</message>
+	<message key="grid.catalogEntry.dateRequired">A date is required and the date value must match the chosen date format.</message>
 
 	<!--  assigned representative information grid and form keys -->
 	<message key="grid.catalogEntry.representatives">Representatives</message>
