@@ -31,7 +31,8 @@ class SendThankYouLinkAction extends LinkAction {
 
 		$ajaxModal = new AjaxModal(
 			$router->url($request, null, null, 'editThankReviewer', null, $actionArgs),
-			__($modalTitle) //FIXME: insert icon
+			__($modalTitle),
+			'modal_email'
 		);
 
 		// Configure the link action.
