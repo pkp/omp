@@ -11,8 +11,6 @@
 {include file="common/header.tpl" suppressPageTitle=true}
 {/strip}
 
-<h2 class="pkp_helpers_text_center"><em>{translate key="catalog.featuredBooks"}</em></h2>
-
 {* Include the carousel view of featured content *}
 {if $featuredMonographIds|@count}
 	{include file="catalog/carousel.tpl" publishedMonographs=$publishedMonographs featuredMonographIds=$featuredMonographIds}

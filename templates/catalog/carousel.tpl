@@ -18,6 +18,7 @@
 
 <!-- Features carousel -->
 <div class="pkp_catalog_carousel_wrapper pkp_helpers_clear pkp_helpers_dotted_underline" id="featuresCarousel">
+	<h2 class="pkp_helpers_text_center"><em>{translate key="catalog.featuredBooks"}</em></h2>
 	<div class="carousel_control" id="nextCarouselItem"></div>
 	<div class="carousel_control" id="previousCarouselItem"></div>
 	<ul class="pkp_catalog_carousel">
