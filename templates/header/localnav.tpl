@@ -12,7 +12,6 @@
 		{if $enableAnnouncements}
 			<li><a href="{url page="announcement"}">{translate key="announcement.announcements"}</a></li>
 		{/if}
-		<li><a href="{url page="catalog"}">{translate key="navigation.catalog"}</a>
 		<li><a href="#">{translate key="navigation.about"}</a>
 			<ul>
 				{if not (empty($pressSettings.mailingAddress) && empty($pressSettings.contactName) && empty($pressSettings.contactAffiliation) && empty($pressSettings.contactMailingAddress) && empty($pressSettings.contactPhone) && empty($pressSettings.contactFax) && empty($pressSettings.contactEmail) && empty($pressSettings.supportName) && empty($pressSettings.supportPhone) && empty($pressSettings.supportEmail))}
@@ -32,9 +31,10 @@
 	{if $isUserLoggedIn}
 		<ul class="sf-menu">
 			{if array_intersect(array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_ASSISTANT, ROLE_ID_REVIEWER, ROLE_ID_AUTHOR), $userRoles)}
-			<li><a href="{url page="dashboard"}">{translate key="navigation.dashboard"}</a></li>
+				<li><a href="{url page="dashboard"}">{translate key="navigation.dashboard"}</a></li>
 			{/if}
 			{if $currentPress}
+				<li><a href="{url page="catalog"}">{translate key="navigation.catalog"}</a>
 				{if array_intersect(array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR), $userRoles)}
 					<li>
 						<a href="#">{translate key="navigation.management"}</a>
@@ -69,6 +69,7 @@
 	{else}{* !$isUserLoggedIn *}
 		<ul class="sf-menu">
 			<li><a href="{url page="index"}">{translate key="navigation.home"}</a></li>
+			<li><a href="{url page="catalog"}">{translate key="navigation.catalog"}</a>
 			{$publicMenu}
 		</ul>
 	{/if}{* $isUserLoggedIn *}
