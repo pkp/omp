@@ -1622,12 +1622,21 @@ ul.sf-menu {
   padding-left:10px;
 }
 .pkp_manageCatalog_monographList.grid_view .pkp_manageCatalog_featureTools li { padding-bottom:10px; }
+.h4ItemTitle {
+  color:black;
+  font-size:125%;
+}
 .authorName { color:#999999; }
 .monographAbstract { text-align:justify; }
 .pkp_catalog_carousel_wrapper {
   width:100%;
   overflow:hidden;
   position:relative;
+}
+.pkp_catalog_carousel_wrapper .pkp_catalog_monograph_authorship { color:#999999; }
+.pkp_catalog_carousel_wrapper h4 {
+  color:black;
+  font-size:125%;
 }
 .pkp_catalog_carousel_wrapper .carousel_control {
   width:50px;
@@ -1765,10 +1774,11 @@ ul.sf-menu {
   margin-left:15px;
   padding-top:10px;
 }
-.pkp_catalog_spotlight .pkp_catalog_spotlight_itemDescription {
-  color:#333333;
+.pkp_catalog_spotlight .pkp_catalog_spotlight_itemAuthorship {
   color:#999999;
+  margin-bottom:10px;
 }
+.pkp_catalog_spotlight .pkp_catalog_spotlight_itemDescription { color:#999999; }
 .pkp_catalog_spotlight .pkp_catalog_spotlight_itemDescription p { display:inline; }
 #socialMediaBlocksContainer { margin-top:20px; }
 #socialMediaBlocksContainer .socialMediaBlock { margin:10px 0px; }

@@ -59,9 +59,9 @@
 							{/if}
 						{/if}
 						{assign var="authorName" value=$item->getFullName()|strip_unsafe_html}
-						<div class="pkp_catalog_spotlight_itemTitle">{$authorName}</div>
+						<div class="pkp_catalog_spotlight_itemTitle">{$authorName}{if $monograph},{/if}</div>
 						{if $monograph}
-							<div class="pkp_catalog_spotlight_itemAuthorship">{translate key="spotlight.author"} {$monograph->getLocalizedFullTitle()}</div>
+							<div class="pkp_catalog_spotlight_itemAuthorship">{$monograph->getLocalizedFullTitle()}</div>
 							<div class="pkp_catalog_spotlight_itemDescription">
 								{if $spotlight->getLocalizedDescription()}
 									{$spotlight->getLocalizedDescription()|strip_unsafe_html}

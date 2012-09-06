@@ -33,7 +33,7 @@
 					<div class="pkp_catalog_monograph_authorship">{$publishedMonograph->getAuthorString()|escape}</div>
 					{if $publishedMonograph->getPublicationFormatString()}
 						<div class="pkp_catalog_formats">
-							<strong>{translate key="monograph.publicationFormats"}:</strong><br />
+							<strong>{translate key="monograph.carousel.publicationFormats"}</strong><br />
 							{$publishedMonograph->getPublicationFormatString()|escape}
 						</div>
 					{/if}

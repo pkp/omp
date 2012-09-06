@@ -8,6 +8,11 @@
  *
  */
 
+.h4ItemTitle {
+	color:black;
+	font-size: 125%;
+}
+
 .authorName {
 	color: #999999;
 }
@@ -20,6 +25,14 @@
 	width: 100%;
 	overflow: hidden;
 	position: relative;
+	
+	.pkp_catalog_monograph_authorship {
+		.authorName;
+	}
+	
+	h4 {
+		.h4ItemTitle;
+	}
 		
 	.carousel_control {
 		width: 50px;
@@ -211,6 +224,10 @@
 	.pkp_helpers_third {
 		width: 33%;
 	}
+	
+	h4 {
+		.h4ItemTitle;
+	}
 }
 
 .pkp_catalog_spotlight {
@@ -220,8 +237,12 @@
 	margin-left: 15px;
 	padding-top: 10px;
 	
+	.pkp_catalog_spotlight_itemAuthorship {
+		.authorName;
+		margin-bottom: 10px;
+	}
+	
 	.pkp_catalog_spotlight_itemDescription {
-		color: #333333;
 		.authorName;
 		
 		p {
