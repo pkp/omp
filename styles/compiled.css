@@ -1677,11 +1677,15 @@ ul.sf-menu {
 .pkp_catalog_carousel_wrapper .pkp_catalog_carousel li.mover {
   width:240px;
   height:303px;
+  display:table;
+}
+.pkp_catalog_carousel_wrapper .pkp_catalog_carousel li.mover span.moverImg {
+  vertical-align:middle;
+  display:table-cell;
 }
 .pkp_catalog_carousel_wrapper .pkp_catalog_carousel li.mover img {
-  padding:0px;
-  width:100%;
-  height:100%;
+  padding:5px;
+  width:95%;
 }
 .pkp_catalog_carousel_wrapper .pkp_catalog_carousel li.placeholder {
   box-shadow:none !important;
