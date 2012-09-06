@@ -60,10 +60,8 @@
 		<div class="pkp_authorDashboard_stageContainer" id="internalReview">
 			<h3><a href="#">{translate key='workflow.review.internalReview'}</a></h3>
 			<div id="internalReviewContent">
-				{if $stageId >= $smarty.const.WORKFLOW_STAGE_ID_INTERNAL_REVIEW}
-					{if !$internalReviewRounds->wasEmpty()}
-						{include file="authorDashboard/reviewRoundTab.tpl" reviewRounds=$internalReviewRounds reviewRoundTabsId="internalReviewRoundTabs" lastReviewRoundNumber=$lastReviewRoundNumber.internalReview}
-					{/if}
+				{if $stageId >= $smarty.const.WORKFLOW_STAGE_ID_INTERNAL_REVIEW && !$internalReviewRounds->wasEmpty()}
+					{include file="authorDashboard/reviewRoundTab.tpl" reviewRounds=$internalReviewRounds reviewRoundTabsId="internalReviewRoundTabs" lastReviewRoundNumber=$lastReviewRoundNumber.internalReview}
 				{else}
 					{translate key="monograph.stageNotInitiated"}
 				{/if}
@@ -75,10 +73,8 @@
 		<div class="pkp_authorDashboard_stageContainer" id="externalReview">
 			<h3><a href="#">{translate key='workflow.review.externalReview'}</a></h3>
 			<div id="externalReviewContent">
-				{if $stageId >= $smarty.const.WORKFLOW_STAGE_ID_EXTERNAL_REVIEW}
-					{if !$externalReviewRounds->wasEmpty()}
-						{include file="authorDashboard/reviewRoundTab.tpl" reviewRounds=$externalReviewRounds reviewRoundTabsId="externalReviewRoundTabs" lastReviewRoundNumber=$lastReviewRoundNumber.externalReview}
-					{/if}
+				{if $stageId >= $smarty.const.WORKFLOW_STAGE_ID_EXTERNAL_REVIEW && !$externalReviewRounds->wasEmpty()}
+					{include file="authorDashboard/reviewRoundTab.tpl" reviewRounds=$externalReviewRounds reviewRoundTabsId="externalReviewRoundTabs" lastReviewRoundNumber=$lastReviewRoundNumber.externalReview}
 				{else}
 					{translate key="monograph.stageNotInitiated"}
 				{/if}
@@ -90,16 +86,12 @@
 		<div class="pkp_authorDashboard_stageContainer" id="copyediting">
 			<h3><a href="#">{translate key='submission.copyediting'}</a></h3>
 			<div id="copyeditingContent">
-				{if $stageId >= $smarty.const.WORKFLOW_STAGE_ID_EDITING}
-					<!-- Display editor's message to the author -->
-					{include file="authorDashboard/monographEmails.tpl" monographEmails=$copyeditingEmails}
+				<!-- Display editor's message to the author -->
+				{include file="authorDashboard/monographEmails.tpl" monographEmails=$copyeditingEmails}
 
-					<!-- Display copyediting files grid -->
-					{url|assign:copyeditingFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.copyedit.AuthorCopyeditingSignoffFilesGridHandler" op="fetchGrid" monographId=$monograph->getId() stageId=$smarty.const.WORKFLOW_STAGE_ID_EDITING escape=false}
-					{load_url_in_div id="copyeditingFilesGridDiv" url=$copyeditingFilesGridUrl}
-				{else}
-					{translate key="monograph.stageNotInitiated"}
-				{/if}
+				<!-- Display copyediting files grid -->
+				{url|assign:copyeditingFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.copyedit.AuthorCopyeditingSignoffFilesGridHandler" op="fetchGrid" monographId=$monograph->getId() stageId=$smarty.const.WORKFLOW_STAGE_ID_EDITING escape=false}
+				{load_url_in_div id="copyeditingFilesGridDiv" url=$copyeditingFilesGridUrl}
 			</div>
 		</div>
 	{/if}
@@ -108,15 +100,11 @@
 		<div class="pkp_authorDashboard_stageContainer" id="production">
 			<h3><a href="#">{translate key='submission.production'}</a></h3>
 			<div id="productionContent">
-				{if $stageId >= $smarty.const.WORKFLOW_STAGE_ID_PRODUCTION}
-					{include file="authorDashboard/monographEmails.tpl" monographEmails=$productionEmails}
+				{include file="authorDashboard/monographEmails.tpl" monographEmails=$productionEmails}
 
-					<!-- Display production files grid -->
-					{url|assign:productionFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.proof.AuthorProofingSignoffFilesGridHandler" op="fetchGrid" monographId=$monograph->getId() stageId=$smarty.const.WORKFLOW_STAGE_ID_EDITING escape=false}
-					{load_url_in_div id="productionFilesGridDiv" url=$productionFilesGridUrl}
-				{else}
-					{translate key="monograph.stageNotInitiated"}
-				{/if}
+				<!-- Display production files grid -->
+				{url|assign:productionFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.proof.AuthorProofingSignoffFilesGridHandler" op="fetchGrid" monographId=$monograph->getId() stageId=$smarty.const.WORKFLOW_STAGE_ID_EDITING escape=false}
+				{load_url_in_div id="productionFilesGridDiv" url=$productionFilesGridUrl}
 			</div>
 		</div>
 	{/if}
