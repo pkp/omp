@@ -12,7 +12,7 @@
 			'$.pkp.controllers.catalog.form.CatalogMetadataFormHandler',
 			{ldelim}
 				trackFormChanges: true,
-				$uploader: $('#plupload'),
+				$uploader: $('#plupload_catalogMetadata'),
 				uploaderOptions: {ldelim}
 					uploadUrl: '{url|escape:javascript op="uploadCoverImage" escape=false stageId=$stageId monographId=$monographId}',
 					baseUrl: '{$baseUrl|escape:javascript}'
@@ -32,7 +32,7 @@
 	<input type="hidden" name="tab" value="catalog" />
 
 	{fbvFormSection title="monograph.coverImage"}
-		<div id="plupload" class="pkp_helpers_threeQuarter pkp_helpers_align_right"></div>
+		<div id="plupload_catalogMetadata" class="pkp_helpers_threeQuarter pkp_helpers_align_right"></div>
 		<div class="pkp_helpers_align_left">
 			{capture assign="altTitle"}{translate key="monograph.currentCoverImage"}{/capture}
 			<img height="{$coverImage.thumbnailHeight}" width="{$coverImage.thumbnailWidth}" src="{url router=$smarty.const.ROUTE_COMPONENT component="submission.CoverHandler" op="thumbnail" monographId=$monographId}" alt="{$altTitle|escape}" />
