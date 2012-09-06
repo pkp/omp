@@ -644,6 +644,7 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="notification.editedUser">User edited.</message>
 	<message key="notification.removedReviewer">Reviewer removed.</message>
 	<message key="notification.sentNotification">Notification sent.</message>
+	<message key="notification.reviewAcknowledged">Review marked as acknowledged. Email not sent.</message>
 	<message key="notification.addedNote">Note posted.</message>
 	<message key="notification.removedNote">Note deleted.</message>
 	<message key="notification.removedFile">File deleted.</message>

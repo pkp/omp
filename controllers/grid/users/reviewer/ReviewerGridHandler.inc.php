@@ -485,56 +485,53 @@ class ReviewerGridHandler extends GridHandler {
 		return DAO::getDataChangedEvent($reviewAssignment->getId());
 	}
 
+	/**
+	 * Displays a modal to allow the editor to enter a message to send to the reviewer as a thank you.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return string Serialized JSON object
+	 */
+	function editThankReviewer($args, &$request) {
+		// Identify the review assignment being updated.
+		$reviewAssignment =& $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ASSIGNMENT);
+
+		// Initialize form.
+		import('controllers.grid.users.reviewer.form.ThankReviewerForm');
+		$thankReviewerForm = new ThankReviewerForm($reviewAssignment);
+		$thankReviewerForm->initData($args, $request);
+
+		// Render form.
+		$json = new JSONMessage(true, $thankReviewerForm->fetch($request));
+		return $json->getString();
+	}
 
 	/**
-	 * Send the acknowledgement email and trigger a row refresh action.
+	 * Send the acknowledgement email, if desired, and trigger a row refresh action.
 	 * @param $args array
 	 * @param $request PKPRequest
 	 * @return string serialized JSON object
 	 */
 	function thankReviewer($args, &$request) {
-		$userDao =& DAORegistry::getDAO('UserDAO');
-		$monographDao =& DAORegistry::getDAO('MonographDAO');
-		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
-
-		// Retrieve review assignment.
+		// Identify the review assignment being updated.
 		$reviewAssignment =& $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ASSIGNMENT);
-		// Retrieve the monograph.
-		$monograph =& $monographDao->getById($reviewAssignment->getSubmissionId());
-		// Retrieve the reviewer user.
-		$reviewer =& $userDao->getById($reviewAssignment->getReviewerId());
-		// Retrieve the current user.
-		$user =& $request->getUser();
 
-		assert(isset($monograph) && isset($reviewer));
-
-		import('classes.mail.MonographMailTemplate');
-		$email = new MonographMailTemplate($monograph, 'REVIEW_ACK');
-
-		// do not resend a thank you email for future 'reconsidered' reviews.
-		// Those reviews would already have a completed date set.
-		if (!$email->isEnabled() && !$reviewAssignment->getDateCompleted()) {
-			HookRegistry::call('SeriesEditorAction::thankReviewer', array(&$monograph, &$reviewAssignment, &$email));
-
-			// Personalize the email.
-			$email->addRecipient($reviewer->getEmail(), $reviewer->getFullName());
-			$paramArray = array(
-				'reviewerName' => $reviewer->getFullName(),
-				'editorialContactSignature' => $user->getContactSignature()
-			);
-			$email->assignParams($paramArray);
-
-			// Send the email.
-			$email->send($request);
+		// Form handling
+		import('controllers.grid.users.reviewer.form.ThankReviewerForm');
+		$thankReviewerForm = new ThankReviewerForm($reviewAssignment);
+		$thankReviewerForm->readInputData();
+		if ($thankReviewerForm->validate()) {
+			$thankReviewerForm->execute($args, $request);
+			$json = new JSONMessage(true);
+			// Insert a trivial notification to indicate the reviewer was reminded successfully.
+			$currentUser =& $request->getUser();
+			$notificationMgr = new NotificationManager();
+			$messageKey = $thankReviewerForm->getData('skipEmail') ? __('notification.reviewAcknowledged') : __('notification.sentNotification');
+			$notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => $messageKey));
+		} else {
+			$json = new JSONMessage(false, __('editor.review.thankReviewerError'));
 		}
-		// Mark the review assignment as acknowledged.
-		$reviewAssignment->setDateAcknowledged(Core::getCurrentDate());
-		$reviewAssignment->stampModified();
-		$reviewAssignment->setUnconsidered(REVIEW_ASSIGNMENT_NOT_UNCONSIDERED);
-		$reviewAssignmentDao->updateReviewAssignment($reviewAssignment);
 
 		$this->_updateReviewRoundStatus($reviewAssignment);
-
 		return DAO::getDataChangedEvent($reviewAssignment->getId());
 	}
 
@@ -672,7 +669,7 @@ class ReviewerGridHandler extends GridHandler {
 	 */
 	function _getReviewAssignmentOps() {
 		// Define operations that need a review assignment policy.
-		return array('readReview', 'reviewHistory', 'reviewRead', 'thankReviewer', 'editReminder', 'sendReminder', 'deleteReviewer', 'sendEmail', 'unconsiderReview');
+		return array('readReview', 'reviewHistory', 'reviewRead', 'editThankReviewer', 'thankReviewer', 'editReminder', 'sendReminder', 'deleteReviewer', 'sendEmail', 'unconsiderReview');
 
 	}
 

@@ -157,12 +157,8 @@ class ReviewerGridCellProvider extends DataObjectGridCellProvider {
 			import('controllers.api.task.SendReminderLinkAction');
 			$action = new SendReminderLinkAction($request, 'editor.review.reminder', $actionArgs);
 		} elseif ($state == 'read') {
-			$action = new LinkAction(
-				'thankReviewer',
-				new AjaxAction($router->url($request, null, null, 'thankReviewer', null, $actionArgs)),
-				$this->_getHoverTitleText('accepted'),
-				'accepted'
-			);
+			import('controllers.api.task.SendThankYouLinkAction');
+			$action = new SendThankYouLinkAction($request, 'editor.review.thankReviewer', $actionArgs);
 		} elseif ($state == 'completed') {
 			import('controllers.review.linkAction.UnconsiderReviewLinkAction');
 			$action = new UnconsiderReviewLinkAction($request, $reviewAssignment, $monograph);
