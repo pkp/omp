@@ -197,6 +197,14 @@ $.pkp.pages.catalog = $.pkp.pages.catalog || {};
 			function(itemsToMove) {
 		var $currentItem = $('.roundabout-in-focus', this.getHtmlElement());
 		var currentItemIndex = $currentItem.index();
+		var carouselItemsNumber = $('.mover', this.getHtmlElement()).length;
+
+		// Allow foward items looping (begins with the first item if user reachs
+		// the last one and click to move foward).
+		if (currentItemIndex == carouselItemsNumber - 1 && itemsToMove > 0) {
+			currentItemIndex = -1;
+		}
+
 		var $targetItem = $($('li', this.getHtmlElement()).
 				get(currentItemIndex + itemsToMove));
 
