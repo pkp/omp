@@ -57,7 +57,7 @@
 	<div class="pkp_manageCatalog_monographDetails pkp_helpers_clear">
 		<div class="pkp_manageCatalog_monograph_image">
 			{assign var=coverImage value=$monograph->getCoverImage()}
-			<img class="pkp_helpers_container_center" height="{$coverImage.thumbnailHeight}" width="{$coverImage.thumbnailWidth}" src="{url router=$smarty.const.ROUTE_COMPONENT component="submission.CoverHandler" op="thumbnail" monographId=$monograph->getId()}" alt="{$monograph->getLocalizedTitle()|escape}" />
+			<img class="pkp_helpers_container_center" height="{$coverImage.thumbnailHeight}" width="{$coverImage.thumbnailWidth}" src="{url router=$smarty.const.ROUTE_COMPONENT component="submission.CoverHandler" op="thumbnail" monographId=$monograph->getId() random=$monograph->getId()|uniqid}" alt="{$monograph->getLocalizedTitle()|escape}" />
 		</div>
 		<div class="pkp_manageCatalog_monograph_title">
 			{assign var="monographTitle" value=$monograph->getLocalizedPrefix()|concat:' ':$monograph->getLocalizedTitle()|strip_unsafe_html}

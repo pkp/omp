@@ -35,7 +35,7 @@
 		<div id="plupload_catalogMetadata" class="pkp_helpers_threeQuarter pkp_helpers_align_right"></div>
 		<div class="pkp_helpers_align_left">
 			{capture assign="altTitle"}{translate key="monograph.currentCoverImage"}{/capture}
-			<img height="{$coverImage.thumbnailHeight}" width="{$coverImage.thumbnailWidth}" src="{url router=$smarty.const.ROUTE_COMPONENT component="submission.CoverHandler" op="thumbnail" monographId=$monographId}" alt="{$altTitle|escape}" />
+			<img height="{$coverImage.thumbnailHeight}" width="{$coverImage.thumbnailWidth}" src="{url router=$smarty.const.ROUTE_COMPONENT component="submission.CoverHandler" op="thumbnail" monographId=$monographId random=$monographId|uniqid}" alt="{$altTitle|escape}" />
 		</div>
 	{/fbvFormSection}
 
