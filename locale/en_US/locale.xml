@@ -27,6 +27,7 @@
 	<message key="monograph.coverage.geo">Geographical</message>
 	<message key="monograph.coverage.sample">Sample</message>
 	<message key="monograph.languages">Languages (English, French, Spanish)</message>
+	<message key="monograph.publicationFormats">Publication Formats</message>
 	<message key="monograph.carousel.publicationFormats">Formats:</message>
 	<message key="monograph.source">Source</message>
 	<message key="monograph.source.tip">Is this submission derived from another resource? If so, you may enter a URL or description of that resource.</message>
