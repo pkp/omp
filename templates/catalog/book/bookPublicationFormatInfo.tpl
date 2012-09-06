@@ -29,7 +29,7 @@
 {if $identificationCodes}
 	<div class="bookIdentificationSpecs">
 	{foreach from=$identificationCodes item=identificationCode}
-		<div id="bookIdentificationSpecs-{$identificationCode->getCode()|escape}">
+		<div id="bookIdentificationSpecs-{$publicationFormat->getId()}-{$identificationCode->getCode()|escape}">
 			{$identificationCode->getNameForONIXCode()|escape}: {$identificationCode->getValue()|escape}
 		</div>
 	{/foreach}{* identification codes *}

@@ -17,9 +17,11 @@
 <div class="pkp_catalog_monographs" id="monographListContainer">
 	<h2><em>{translate key="catalog.browseTitles" numTitles=$publishedMonographs|@count}</em></h2>
 
-	<ul class="pkp_helpers_clear">
-	{foreach from=$publishedMonographs item=publishedMonograph}
-		{include file="catalog/monograph.tpl" publishedMonograph=$publishedMonograph}
-	{/foreach}
-	</ul>
+	{if $publishedMonographs|@count}
+		<ul class="pkp_helpers_clear">
+		{foreach from=$publishedMonographs item=publishedMonograph}
+			{include file="catalog/monograph.tpl" publishedMonograph=$publishedMonograph}
+		{/foreach}
+		</ul>
+	{/if}
 </div>
