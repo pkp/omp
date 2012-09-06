@@ -38,24 +38,28 @@
 		{if $availableFiles|@count != 0}
 		<div id="downloadTab">
 			{assign var=publicationFormats value=$publishedMonograph->getPublicationFormats()}
-			{foreach from=$publicationFormats item=publicationFormat}
-				{assign var=publicationFormatId value=$publicationFormat->getId()}
-				{if $publicationFormat->getIsAvailable() && $availableFiles[$publicationFormatId]}
-					<div class="publicationFormatDownload" id="publicationFormat-download-{$publicationFormatId|escape}">
-						{$publicationFormat->getLocalizedName()|escape}
-						<ul>
-							{foreach from=$availableFiles[$publicationFormatId] item=availableFile}
-								<li>
-									<div class="publicationFormatName">{$availableFile->getLocalizedName()|escape}</div>
-									<div class="publicationFormatLink">
-										<a href="{url op="download" path=$publishedMonograph->getId()|to_array:$publicationFormatId:$availableFile->getFileIdAndRevision()}">{if $availableFile->getDirectSalesPrice()}{translate key="payment.directSales.purchase amount=$availableFile->getDirectSalesPrice() currency=$currentPress->getSetting('pressCurrency')}{else}{translate key="payment.directSales.download"}{/if}</a>
-									</div>
-								</li>
-							{/foreach}
-						</ul>
-					</div>
-				{/if}
-			{/foreach}
+			{assign var=currency value=$currentPress->getSetting('pressCurrency')}
+			{if $useCollapsedView}
+				<ul>
+					{foreach from=$publicationFormats item=publicationFormat}
+						{if $publicationFormat->getIsAvailable()}
+							{include file="catalog/book/bookFiles.tpl" availableFile=$availableFile publicationFormatId=$publicationFormat->getId() publishedMonograph=$publishedMonograph currency=$currency}
+						{/if}
+					{/foreach}
+				</ul>
+			{else}
+				{foreach from=$publicationFormats item=publicationFormat}
+					{assign var=publicationFormatId value=$publicationFormat->getId()}
+					{if $publicationFormat->getIsAvailable() && $availableFiles[$publicationFormatId]}
+						<div class="publicationFormatDownload" id="publicationFormat-download-{$publicationFormatId|escape}">
+							{$publicationFormat->getLocalizedName()|escape}
+							<ul>
+								{include file="catalog/book/bookFiles.tpl" availableFile=$availableFile publicationFormatId=$publicationFormatId publishedMonograph=$publishedMonograph currency=$currency}
+							</ul>
+						</div>
+					{/if}
+				{/foreach}
+			{/if}{* useCollapsedView *}
 		</div>
 		{/if}
 		{if !is_null($sharingCode) || !empty($blocks)}

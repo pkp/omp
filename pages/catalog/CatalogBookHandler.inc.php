@@ -85,7 +85,19 @@ class CatalogBookHandler extends Handler {
 			foreach ($availableFiles as $availableFile) {
 				$availableFilesByPublicationFormat[$availableFile->getAssocId()][] = $availableFile;
 			}
+
+			// Determine whether or not to use the collapsed view.
+			$useCollapsedView = true;
+			foreach ($availableFilesByPublicationFormat as $publicationFormatId => $availableFiles) {
+				if (count($availableFiles)>1) {
+					$useCollapsedView = false;
+					break;
+				}
+			}
+
+			// Expose variables to template
 			$templateMgr->assign('availableFiles', $availableFilesByPublicationFormat);
+			$templateMgr->assign('useCollapsedView', $useCollapsedView);
 		}
 
 		// Display
