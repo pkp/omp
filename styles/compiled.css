@@ -633,7 +633,7 @@ a.sprite.merge_users:hover:before { background-position:-312px -24px; }
 .pkp_structure_head_siteNav .pkp_form div.section { margin-bottom:0px; }
 .pkp_structure_head_siteNav .pkp_helpers_flatlist { margin-top:15px; }
 .pkp_structure_head_siteNav li { padding-left:20px; }
-.pkp_structure_head_siteNav #pressSwitcher { margin-top:-8px; }
+.pkp_structure_head_siteNav #pressSwitcher { margin-top:-4px; }
 .pkp_structure_head_localNav .sf-menu a { padding-right:0.45em; }
 .pkp_structure_head_localNav .sf-menu a.sf-with-ul { padding-right:1.55em; }
 .pkp_structure_search { margin:7px 10px 7px 0; }
