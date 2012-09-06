@@ -21,7 +21,7 @@
 <form class="pkp_form" id="pressSwitcher" method="post" action="#">
 	{fbvFormArea id="switcher" class="inline"}
 		{fbvFormSection}
-			{fbvElement type="select" id="pressSwitcherSelect" from=$pressesNameAndUrl selected=$currentPressUrl translate=false}
+			{fbvElement type="select" id="pressSwitcherSelect" class="applyPlugin" from=$pressesNameAndUrl selected=$currentPressUrl translate=false}
 		{/fbvFormSection}
 	{/fbvFormArea}
 </form>

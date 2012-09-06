@@ -35,6 +35,8 @@ jQuery.pkp.site =
 
 		this.parent($form, options);
 
+		$('select.applyPlugin', $form).selectBox();
+
 		// Attach form elements events.
 		$('#pressSwitcherSelect', $form).change(
 				this.callbackWrapper(this.switchPressHandler_));
