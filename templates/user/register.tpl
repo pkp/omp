@@ -54,7 +54,7 @@
 
 	{if !$existingUser}
 		{fbvFormSection title="common.name"}
-		{fbvElement type="text" label="user.salutation" id="salutation" value=$salutation size=$fbvStyles.size.SMALL inline=true}
+			{fbvElement type="text" label="user.salutation" id="salutation" value=$salutation size=$fbvStyles.size.SMALL inline=true}
 			{fbvElement type="text" label="user.firstName" id="firstName" required=true value=$firstName size=$fbvStyles.size.SMALL inline=true}
 			{fbvElement type="text" label="user.middleName" id="middleName" value=$middleName size=$fbvStyles.size.SMALL inline=true}
 			{fbvElement type="text" label="user.lastName" id="lastName" required=true value=$lastName size=$fbvStyles.size.SMALL inline=true}
@@ -181,4 +181,3 @@
 </form>
 
 {include file="common/footer.tpl"}
-
