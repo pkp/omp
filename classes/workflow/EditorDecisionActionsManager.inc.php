@@ -126,7 +126,7 @@ class EditorDecisionActionsManager {
 				'title' => 'editor.monograph.decision.accept',
 				'image' => 'promote',
 				'help' => 'editor.review.NotifyAuthorAccept',
-				'titleIcon' => '',
+				'titleIcon' => 'accept_submission',
 			),
 			SUBMISSION_EDITOR_DECISION_DECLINE => array(
 				'name' => 'decline',
@@ -134,7 +134,7 @@ class EditorDecisionActionsManager {
 				'title' => 'editor.monograph.decision.decline',
 				'image' => 'decline',
 				'help' => 'editor.review.NotifyAuthorDecline',
-				'titleIcon' => '',
+				'titleIcon' => 'decline_submission',
 			),
 		);
 
@@ -153,7 +153,7 @@ class EditorDecisionActionsManager {
 				'title' => 'editor.monograph.decision.requestRevisions',
 				'image' => 'revisions',
 				'help' => 'editor.review.NotifyAuthorRevisions',
-				'titleIcon' => '',
+				'titleIcon' => 'revisions_required',
 			),
 			SUBMISSION_EDITOR_DECISION_RESUBMIT => array(
 				'operation' => 'sendReviewsInReview',
@@ -161,7 +161,7 @@ class EditorDecisionActionsManager {
 				'title' => 'editor.monograph.decision.resubmit',
 				'image' => 'resubmit',
 				'help' => 'editor.review.NotifyAuthorResubmit',
-				'titleIcon' => '',
+				'titleIcon' => 'please_resubmit',
 			),
 			SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW => array(
 				'operation' => 'promoteInReview',
@@ -177,7 +177,7 @@ class EditorDecisionActionsManager {
 				'title' => 'editor.monograph.decision.accept',
 				'image' => 'promote',
 				'help' => 'editor.review.NotifyAuthorAccept',
-				'titleIcon' => '',
+				'titleIcon' => 'accept_submission',
 			),
 			SUBMISSION_EDITOR_DECISION_DECLINE => array(
 				'operation' => 'sendReviewsInReview',
@@ -185,7 +185,7 @@ class EditorDecisionActionsManager {
 				'title' => 'editor.monograph.decision.decline',
 				'image' => 'decline',
 				'help' => 'editor.review.NotifyAuthorDecline',
-				'titleIcon' => '',
+				'titleIcon' => 'decline_submission',
 			),
 		);
 

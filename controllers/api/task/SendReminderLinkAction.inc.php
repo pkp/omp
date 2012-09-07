@@ -31,7 +31,8 @@ class SendReminderLinkAction extends LinkAction {
 
 		$ajaxModal = new AjaxModal(
 			$router->url($request, null, null, 'editReminder', null, $actionArgs),
-			__($modalTitle) //FIXME: insert icon
+			__($modalTitle),
+			'review_reminder'
 		);
 
 		// Configure the link action.
