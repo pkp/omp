@@ -13,17 +13,15 @@
 
 <h2>{translate key="submission.submit.submissionComplete"}</h2>
 <p>{translate key="submission.submit.submissionCompleteThanks" pressName=$press->getLocalizedName()}</p>
-<br />
 <div class="separator"></div>
-	<h3>{translate key="submission.submit.whatNext"}</h3>
-	<p>{translate key="submission.submit.whatNext.description"}</p>
-	<p>{translate key="submission.submit.whatNext.forNow"}</p>
+<h3>{translate key="submission.submit.whatNext"}</h3>
+<p>{translate key="submission.submit.whatNext.description"}</p>
+<p>{translate key="submission.submit.whatNext.forNow"}</p>
 
-	<ul class="plain">
+<ul class="plain">
 	<li><a href={$reviewSubmissionUrl}>{translate key="submission.submit.whatNext.review"}</a></li>
 	<li><a href={url page="submission" op="wizard"}>{translate key="submission.submit.whatNext.create"}</a></li>
 	<li><a href={url page="dashboard" anchor="submissions"}>{translate key="submission.submit.whatNext.return"}</a></li>
-	</ul>
-</div>
+</ul>
 {include file="common/footer.tpl"}
 
