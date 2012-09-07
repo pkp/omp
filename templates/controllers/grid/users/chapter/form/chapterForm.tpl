@@ -23,10 +23,13 @@
 
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="chapterFormNotification"}
 
-	{fbvFormSection title="common.title" for="title"}
-		{fbvElement type="text" name="title" id="title" value=$title maxlength="255" multilingual=true}
+	{fbvFormSection title="common.title" for="title" required=true}
+		{fbvElement type="text" name="title" id="title" value=$title maxlength="255" multilingual=true required=true}
 	{/fbvFormSection}
 
+	{fbvFormSection title="metadata.property.displayName.subTitle" for="subTitle"}
+		{fbvElement type="text" name="subtitle" id="subtitle" value=$subtitle maxlength="255" multilingual=true}
+	{/fbvFormSection}
 
 	<!--  Chapter Contributors -->
 	{url|assign:chapterAuthorUrl router=$smarty.const.ROUTE_COMPONENT  component="listbuilder.users.ChapterAuthorListbuilderHandler" op="fetch" monographId=$monographId chapterId=$chapterId escape=false}

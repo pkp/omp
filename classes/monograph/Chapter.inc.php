@@ -47,7 +47,6 @@ class Chapter extends DataObject {
 		return $this->getLocalizedData('title');
 	}
 
-
 	/**
 	 * Get title of chapter (primary locale)
 	 * @param $locale string
@@ -64,6 +63,31 @@ class Chapter extends DataObject {
 	 */
 	function setTitle($title, $locale = null) {
 		return $this->setData('title', $title, $locale);
+	}
+
+	/**
+	 * Get localized sub title of a chapter.
+	 */
+	function getLocalizedSubtitle() {
+		return $this->getLocalizedData('subtitle');
+	}
+
+	/**
+	 * Get sub title of chapter (primary locale)
+	 * @param $locale string
+	 * @return string
+	 */
+	function getSubtitle($locale = null) {
+		return $this->getData('subtitle', $locale);
+	}
+
+	/**
+	 * Set sub title of chapter
+	 * @param $subtitle string
+	 * @param $locale string
+	 */
+	function setSubtitle($subtitle, $locale = null) {
+		return $this->setData('subtitle', $subtitle, $locale);
 	}
 
 	/**

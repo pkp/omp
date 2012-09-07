@@ -34,6 +34,7 @@ class ChapterForm extends Form {
 		}
 
 		// Validation checks for this form
+		$this->addCheck(new FormValidator($this, 'title', 'required', 'metadata.property.validationMessage.title'));
 		$this->addCheck(new FormValidatorPost($this));
 	}
 
@@ -81,7 +82,7 @@ class ChapterForm extends Form {
 	 * @param $chapter Chapter
 	 */
 	function initData() {
-		AppLocale::requireComponents(LOCALE_COMPONENT_OMP_DEFAULT_SETTINGS);
+		AppLocale::requireComponents(LOCALE_COMPONENT_OMP_DEFAULT_SETTINGS, LOCALE_COMPONENT_PKP_SUBMISSION);
 
 		$monograph =& $this->getMonograph();
 		$this->setData('monographId', $monograph->getId());
@@ -90,8 +91,10 @@ class ChapterForm extends Form {
 		if ($chapter) {
 			$this->setData('chapterId', $chapter->getId());
 			$this->setData('title', $chapter->getTitle());
+			$this->setData('subtitle', $chapter->getSubtitle());
 		} else {
 			$this->setData('title', null);
+			$this->setData('subtitle', null);
 		}
 	}
 
@@ -100,7 +103,7 @@ class ChapterForm extends Form {
 	 * @see Form::readInputData()
 	 */
 	function readInputData() {
-		$this->readUserVars(array('title', 'authors'));
+		$this->readUserVars(array('title', 'subtitle', 'authors'));
 	}
 
 	/**
@@ -113,6 +116,7 @@ class ChapterForm extends Form {
 
 		if ($chapter) {
 			$chapter->setTitle($this->getData('title'), null); //Localized
+			$chapter->setSubtitle($this->getData('subtitle'), null); //Localized
 			$chapterDao->updateObject($chapter);
 		} else {
 			$monograph =& $this->getMonograph();
@@ -120,6 +124,7 @@ class ChapterForm extends Form {
 			$chapter = $chapterDao->newDataObject();
 			$chapter->setMonographId($monograph->getId());
 			$chapter->setTitle($this->getData('title'), null); //Localized
+			$chapter->setSubtitle($this->getData('subtitle'), null); //Localized
 			$chapterDao->insertChapter($chapter);
 		}
 
@@ -143,14 +148,14 @@ class ChapterForm extends Form {
 		$chapter =& $this->getChapter();
 		$authorId = (int) $newRowId['name'];
 		$sequence = (int) $newRowId['sequence'];
-		
+
 		// Create a new chapter author.
 		$chapterAuthorDao =& DAORegistry::getDAO('ChapterAuthorDAO');
 		// FIXME: primary authors not set for chapter authors.
 		$chapterAuthorDao->insertChapterAuthor($authorId, $chapter->getId(), $monograph->getId(), false, $sequence);
 		return true;
 	}
-	
+
 	/**
 	 * FIXME: duplicated function from Listbuilder base class.
 	 * The updateEntry callback was not getting called because
@@ -161,7 +166,7 @@ class ChapterForm extends Form {
 		if (!$this->deleteEntry($request, $rowId)) return false;
 		return $this->insertEntry($request, $newRowId);
 	}
-	
+
 	/**
 	 * Delete an author entry.
 	 * @param $request Request
