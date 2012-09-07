@@ -542,6 +542,7 @@ div.plupload div.plupload_header { display:none; }
 .large_sprite.modal_email { background-position:-336px -48px; }
 .large_sprite.modal_delete { background-position:-384px -48px; }
 .large_sprite.modal_approve_proofs { background-position:-432px -48px; }
+.large_sprite.modal_approve { background-position:-432px -48px; }
 .large_sprite.modal_edit { background-position:-480px -48px; }
 .large_sprite.modal_confirm { background-position:-528px -48px; }
 .large_sprite.modal_add_item { background-position:-576px -48px; }

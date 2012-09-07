@@ -261,6 +261,8 @@
 	<message key="grid.action.viewLibrary">View Document Library</message>
 	<message key="grid.action.viewSignoffNotes">View signoff notes</message>
 	<message key="grid.action.fileUnconsider">Unconsider this task</message>
+	<message key="grid.action.approveProofs">View the proofs grid</message>
+	<message key="grid.action.availablePublicationFormat">Approve/disapprove this format</message>
 
 	<!-- Used in submission review -->
 	<message key="reviewer.reviewSteps.request">1. Request</message>

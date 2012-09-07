@@ -185,8 +185,8 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 						$warningMarkup . __($publicationFormat->getIsAvailable()?'grid.catalogEntry.availablePublicationFormat.removeMessage':'grid.catalogEntry.availablePublicationFormat.message'),
 						__('grid.catalogEntry.availablePublicationFormat.title'),
 						$router->url($request, null, 'grid.catalogEntry.PublicationFormatGridHandler',
-							'setAvailable', null, array('publicationFormatId' => $publicationFormat->getId(), 'newAvailableState' => $publicationFormat->getIsAvailable()?0:1, 'monographId' => $monographId))
-						),
+							'setAvailable', null, array('publicationFormatId' => $publicationFormat->getId(), 'newAvailableState' => $publicationFormat->getIsAvailable()?0:1, 'monographId' => $monographId)),
+						'modal_approve'),
 						__('manager.emails.disable'),
 						$this->getCellState($row, $column)
 				));
