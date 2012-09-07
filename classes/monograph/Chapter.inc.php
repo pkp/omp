@@ -41,6 +41,21 @@ class Chapter extends DataObject {
 	}
 
 	/**
+	 * Get the chapter full title (with title and subtitle).
+	 * @return string
+	 */
+	function getLocalizedFullTitle() {
+
+		$fullTitle = $this->getLocalizedTitle();
+
+		if ($subtitle = $this->getLocalizedSubtitle()) {
+			$fullTitle = String::concatTitleFields(array($fullTitle, $subtitle));
+		}
+
+		return $fullTitle;
+	}
+
+	/**
 	 * Get localized title of a chapter.
 	 */
 	function getLocalizedTitle() {

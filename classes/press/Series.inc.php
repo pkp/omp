@@ -74,7 +74,7 @@ class Series extends DataObject {
 		$fullTitle .= $this->getLocalizedTitle();
 
 		if ($subtitle = $this->getLocalizedSubtitle()) {
-			$fullTitle .= ': ' . $subtitle;
+			$fullTitle = String::concatTitleFields(array($fullTitle, $subtitle));
 		}
 
 		return $fullTitle;
