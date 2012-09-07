@@ -509,6 +509,11 @@ div.plupload div.plupload_header { display:none; }
   background-position:-1512px 0;
 }
 .sprite.manage:hover:before { background-position:-1512px -24px; }
+.sprite.openaccess:before {
+  margin-right:4px;
+  background-position:-1536px 0;
+}
+.sprite.openaccess:hover:before { background-position:-1536px -24px; }
 .sprite.merge_users:before {
   margin-right:4px;
   background-position:-312px 0;
@@ -554,6 +559,12 @@ div.plupload div.plupload_header { display:none; }
 .large_sprite.modal_send_to_production { background-position:-864px -48px; }
 .large_sprite.modal_approve_file { background-position:-912px -48px; }
 .large_sprite.modal_review { background-position:-960px -48px; }
+.large_sprite.accept_submission { background-position:-912px -48px; }
+.large_sprite.decline_submission { background-position:-1008px -48px; }
+.large_sprite.please_resubmit { background-position:-1056px -48px; }
+.large_sprite.revisions_required { background-position:-1104px -48px; }
+.large_sprite.review_reminder { background-position:-1152px -48px; }
+.large_sprite.openaccess { background-position:-1200px -48px; }
 .large_sprite.modal_wizard { background-position:-1632px -48px; }
 .loading_container {
   text-align:center;
