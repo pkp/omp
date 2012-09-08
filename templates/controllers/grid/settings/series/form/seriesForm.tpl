@@ -57,11 +57,7 @@
 			{fbvElement type="text" multilingual=true name="subtitle" id="subtitle" value=$subtitle maxlength="255"}
 		{/fbvFormSection}
 
-		{fbvFormSection title="series.featured" for="featured" list=true}
-			{fbvElement type="checkbox" id="featured" checked=$featured label="series.featured.description" value=1 inline=true}
-		{/fbvFormSection}
-
-		{fbvFormSection title="common.description" for="context"}
+		{fbvFormSection title="common.description" for="description"}
 		 	{fbvElement type="textarea" multilingual=true id="description" value=$description rich=true}
 		{/fbvFormSection}
 
