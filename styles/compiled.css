@@ -1377,8 +1377,6 @@ a.request_review { background-image:url(../lib/pkp/templates/images/structure/gr
 }
 .pkp_controllers_grid_files .pkp_controllers_grid_files_warning {
   background:#fffae1 url(../lib/pkp/templates/images/structure/response_warning.png);
-  border-top:1px solid #ffd324;
-  border-bottom:1px solid #ffd324;
   background-repeat:no-repeat;
 }
 .pkp_controllers_grid_files .pkp_controllers_grid_files_error {
