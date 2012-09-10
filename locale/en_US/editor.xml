@@ -53,11 +53,11 @@
 	<message key="editor.monograph.decision.sendInternalReview">Send to Internal Review</message>
 	<message key="editor.monograph.decision.sendExternalReview">Send to External Review</message>
 	<message key="editor.monograph.decision.approveProofs">Approve Proofs</message>
-	<message key="editor.monograph.decision.approveProofsDescription">File proofs must be approved in order for the files to be publicly available for download or purchase. Do you want to approve this proof?.</message>
+	<message key="editor.monograph.decision.approveProofsDescription">The page proof file must be checked as approved to be made Available.</message>
 	<message key="editor.monograph.decision.disapproveProofsDescription">This file proof will no longer be publicly available for download or purchase. Do you want to disapprove it?.</message>
 	<message key="editor.monograph.selectAttachments">Select the review attachments for the author to see</message>
 	<message key="editor.monograph.selectPromoteRevisions">Select revisions to use in the next stage</message>
-	<message key="editor.monograph.selectFairCopy">Select fair copy files for production.</message>
+	<message key="editor.monograph.selectFairCopy">Select approved copy editing files to be sent to Production.</message>
 	<message key="editor.monograph.selectCopyedingFiles">Copyediting Files</message>
 	<message key="editor.monograph.roundStatus.revisionsRequested">Revisions have been requested.</message>
 	<message key="editor.monograph.roundStatus.resubmitted">Submission has been resubmitted for review.</message>
@@ -76,11 +76,11 @@
 	<message key="editor.monograph.newRound">New Review Round</message>
 	<message key="editor.monograph.newRoundDescription">You are about to create a new review round for this submission.  Files that have not been used in other review rounds are listed below.  By default, the reviewers from the previous review round have been selected to participate in this new review round.</message>
 	<message key="editor.monograph.revisions">Revisions</message>
-	<message key="editor.monograph.revisionsDescription">Revised files uploaded by author (or editor) are listed here, with the editor checking (&#10004;) them, prior to selecting an action for them.</message>
+	<message key="editor.monograph.revisionsDescription">Revised submission files appear here, with the open folder icon indicating who uploaded the file.</message>
 	<message key="editor.submissions.lastAssigned">Latest</message>
 	<message key="editor.monograph.review.manageReviewFilesDescription">Any files that have already been uploaded to any submission stage (even Editorial or Production) can be chosen for review by checking the Include checkbox below and clicking Search: all available files will be listed and can be chosen for inclusion. Additional files not already uploaded to a stage can be added to this listing by clicking the Upload Review File link.</message>
-	<message key="editor.monograph.review.reviewFilesDescription">This stage begins with editor using Select Files to identify the submission files for review.</message>
-	<message key="editor.monograph.review.reviewersDescription">The editor uses Add Reviewer to invite readers to review the submission files. The editor checks (&#10004;) the reviews after consulting them. Reminders can be sent to reviewers by clicking on the red envelope if the review is currently overdue.</message>
+	<message key="editor.monograph.review.reviewFilesDescription">These are the files that can be selected for review, when adding reviewers in REVIEWERS.</message>
+	<message key="editor.monograph.review.reviewersDescription"><![CDATA[Use <em>+Add Reviewer</em> to invite readers to review the submission files. The notebook icon indicates that a review has been submitted, which is then checked <em>Considered</em> after it has been consulted. When reviews are overdue, a red envelope icon appears for reminding reviewers.]]></message>
 	<message key="editor.monograph.fileList.includeAllStages">Include all files from all accessible workflow stages.</message>
 	<message key="editor.monograph.review.currentFiles">Current Review Files For Round {$round}</message>
 	<message key="editor.monograph.final.selectFinalDraftFiles">Select Final Draft Files</message>
@@ -127,24 +127,24 @@
 	<message key="editor.monograph.legend.uploaded">File uploaded by the role in the grid column title</message>
 
 	<!-- Editorial related -->
-	<message key="editor.submission.introduction">In this stage, after initially considering whether the submission appears suitable for the press, the editor selects the appropriate action, which includes notifying the author: Internal Review (editor selects files for review within the press); External Review (editor selects files sent out for review); Accept Submission (editor selects files for Editorial stage); or Decline Submission (editor archives submission).</message>
-	<message key="editor.monograph.editorial.introduction">In this stage, the submission is copyedited, leading to the production of a fair copy. The editor, after approving the fair copy, sends the files to Production.</message>
-	<message key="editor.monograph.editorial.finalDraftDescription">The assigned copyeditor downloads the files selected for this grid and copyedits them. For edited volumes, this may mean breaking the submission up into discrete chapters for chapter-authors to go over the copyedits, which are uploaded in Copyediting Files.</message>
-	<message key="editor.monograph.editorial.copyeditingDescription">The copyeditor uploads the copyedited files, assigning authors (and others as needed) to review copyedits and answer queries. The check boxes under Considered turn green when the copyedit files are first viewed by the author (and others), while their names becomes links when the review is complete. The copyeditor indicates (&#10004;) the copyedit reviews have been considered before preparing and uploading a clean copy, which the editor is then asked to approve before sending to Production.</message>
+	<message key="editor.submission.introduction">In Submission, the editor, after the consulting the files submitted, selects the appropriate action (which includes notifying the author): Send to Internal Review (entails selecting files for Internal Review); Send to External Review (entails selecting files for External Review); Accept Submission (entails selecting files for Editorial stage); or Decline Submission (archives submission).</message>
+	<message key="editor.monograph.editorial.introduction"><![CDATA[In Editorial, the copyeditor works on final draft files before uploading files to COPYEDITING, where the author and others  review them, leading to the preparation and uploading to COPYEDITING of a copyedited fair copy of the submission, where it is <em>Approved</em> by an editor and sent to the Production stage.]]></message>
+	<message key="editor.monograph.editorial.finalDraftDescription">For edited volumes, with different authors for each chapter, the submission file can be split up into into chapter-sized files for copyediting, which are reviewed by chapter-authors after the copyedited files are uploaded to COPYEDITING.</message>
+	<message key="editor.monograph.editorial.copyeditingDescription"><![CDATA[Assign the copyedited files to authors (and others as needed) to review changes and answer queries, with their responses and uploaded files appearing in the notebook icon. These are marked <em>Considered</em> by the copyeditor, who then prepares a final copyedited fair copy to upload to COPYEDITING, which the editor checks Approved, before sending to the Production stage.]]></message>
 	<message key="editor.monograph.editorial.fairCopy">Fair Copy</message>
 	<message key="editor.monograph.editorial.fairCopyDescription">The copyeditor uploads a clean or fair copy of the submission for review by the editor, prior to sending it to Production.</message>
-	<message key="editor.monograph.editorial.approveCopyeditDescription">Approving this copyedited file will make it available to send to production stage. Do you want to approve this file?</message>
+	<message key="editor.monograph.editorial.approveCopyeditDescription">The copyedited file needs to be approved before it can be sent to the Production stage.</message>
 	<message key="editor.monograph.editorial.disapproveCopyeditDescription">Disapproving this copyedited file will make it unavailable to send to production stage. Do you want to disapprove this file?</message>
 	<message key="editor.monograph.editorial.approveCopyeditFile">Approve copyedited file</message>
 
 	<!-- Production/Proof related -->
-	<message key="editor.monograph.production.introduction">All approved and copyedited submission files from the Editorial stage are available in the Production Ready section. Different formats (digital, hardback, paperback/softback) can be configured for this submission in the Publication Formats section. The submission is considered complete when the Catalog Entry metadata has been approved, and all Publication Formats checklist items are marked complete.</message>
+	<message key="editor.monograph.production.introduction"><![CDATA[In Production, the editor selects book formats (e.g., digital, paperback, etc.) in PUBLICATION FORMATS, for which the layout editor prepares publication-quality files based on the production ready files. The publication-quality files are uploaded for each format in PAGE PROOFS, where they are proof read. The book is made <em>Available</em> (i.e., published) for each format in PUBLICATION FORMATS, after the <em>Proofs</em> is checked as approved, and the Catalog entry is checked as included in the book’s catalog entry.]]></message>
 	<message key="editor.monograph.production.productionReadyFiles">Production Ready Files</message>
-	<message key="editor.monograph.production.productionReadyFilesDescription">The layout editor prepares these files for each of the selected Publication Formats, before uploading them in Proofreading for each format.</message>
+	<message key="editor.monograph.production.productionReadyFilesDescription">The layout editor prepares these files for each publication format and then uploads to the appropriate PAGE PROOFS for proofreading.</message>
 	<message key="editor.monograph.proofs">Proofs</message>
 	<message key="editor.monograph.production.approvalAndPublishing">Approval and Publishing</message>
 	<message key="editor.monograph.production.approvalAndPublishingDescription">Different publication formats, such as hardcover, softcover and digital, can be uploaded in the Publication Formats section below. You can use the publication formats grid below as a checklist for what still needs to be done to publish a publication format.</message>
-	<message key="editor.monograph.production.publicationFormatDescription">Add one or more publication formats (eg. hardback; softback/paperback; digital; audio) here. Upload final galley proofs for each publication format below, and audit and approve them. For the galley to be listed in the public catalog, approve the Catalog Entry metadata and ensure that each format checklist item has been completed.</message>
+	<message key="editor.monograph.production.publicationFormatDescription"><![CDATA[Add publication formats (e.g., digital, paperback) for which the layout editor prepares page proofs for proofreading. The <em>Proofs</em> need to be checked as approved and the <em>Catalog</em> entry for the format needs to be checked as posted in the book’s catalog entry, before a format can be made <em>Available</em> (i.e., published).]]></message>
 	<message key="editor.monograph.approvedProofs.edit">Set Terms for Downloading</message>
 	<message key="editor.monograph.approvedProofs.edit.linkTitle">Set Terms</message>
 	<message key="editor.monograph.proof.reminder">Proof reminder</message>
@@ -161,8 +161,8 @@
 
 	<!-- Review related -->
 	<message key="editor.review">Review</message>
-	<message key="editor.internalReview.introduction">In this stage, reviewers associated with the press go over the submission. The editor assigns reviewers and assesses the reviews, before selecting the appropriate action, which includes notifying the author: Request Revisions (editor evaluates revisions and selects the appropriate action); Resubmit for Review (editor initiates another round of reviews before selecting the appropriate action); External Review (editor selects files to send to External Review); Accept for Submission (editor selects files for Editorial stage); or Decline Submission (editor archives submission).</message>
-	<message key="editor.externalReview.introduction">In this stage, reviewers external to the press go over the submission. The editor assigns reviewers and assesses the reviews, before selecting the appropriate action, which includes notifying the author: Request Revisions (editor evaluates revisions and selects the appropriate action); Resubmit for Review (editor initiates another round of reviews before selecting the appropriate action); Accept Submission (editor selects files for Editorial stage); or Decline Submission (editor archives submission).</message>
+	<message key="editor.internalReview.introduction">In Internal Review, the editor assigns reviewers internal to the submission files and considers the resulting reviews, before selecting the appropriate action (which includes notifying the author): Request Revisions (revisions reviewed by editor alone); Resubmit for Review (revisions initiate another round of reviews); Send External Review (entails selecting files for External Review); Accept for Submission (entails selecting files for Editorial stage); or Decline Submission (archives submission).</message>
+	<message key="editor.externalReview.introduction">In External Review, the editor assign reviewers external to the press to the submission files and consider the resulting reviews, before selecting the appropriate action (which includes notifying the author): Request Revisions (revisions reviewed by editor alone); Resubmit for Review (revisions initiate another round of reviews); Accept for Submission (entails selecting files for Editorial stage); or Decline Submission (editor archives submission).</message>
 	<message key="editor.review.uploadRevision">Upload Revision</message>
 	<message key="editor.review.uploadRevisionToRound">Upload Revised File</message>
 	<message key="editor.review.personalMessageToReviewer">Email to be sent to reviewer</message>
