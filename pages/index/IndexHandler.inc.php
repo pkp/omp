@@ -56,8 +56,8 @@ class IndexHandler extends Handler {
 			$this->_displayPressIndexPage($press, $templateMgr);
 		} elseif ($targetPress) {
 			// We're not on a press homepage, but there's one
-			// available; redirect there.
-			$request->redirect($targetPress->getPath());
+			// available; redirect there. ("index" helps with mod_rewriting)
+			$request->redirect($targetPress->getPath(), 'index');
 		} else {
 			// A target press couldn't be determined for some reason.
 			if ($user) {
