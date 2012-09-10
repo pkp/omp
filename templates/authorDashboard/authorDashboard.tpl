@@ -43,6 +43,8 @@
 		</div>
 		<div class="pkp_helpers_align_left"><span class="h2">{$pageTitleTranslated}</span></div>
 		<div class="pkp_helpers_clear"></div>
+		
+	<p class="pkp_help">{translate key="submission.authorDashboard.description"}</p>
 		<br />
 		{include file="controllers/notification/inPlaceNotification.tpl" notificationId="authorDashboardNotification" requestOptions=$authorDashboardNotificationRequestOptions}
 	</div>
@@ -86,12 +88,16 @@
 		<div class="pkp_authorDashboard_stageContainer" id="copyediting">
 			<h3><a href="#">{translate key='submission.copyediting'}</a></h3>
 			<div id="copyeditingContent">
-				<!-- Display editor's message to the author -->
-				{include file="authorDashboard/monographEmails.tpl" monographEmails=$copyeditingEmails}
+				{if $stageId >= $smarty.const.WORKFLOW_STAGE_ID_EDITING}
+					<!-- Display editor's message to the author -->
+					{include file="authorDashboard/monographEmails.tpl" monographEmails=$copyeditingEmails}
 
-				<!-- Display copyediting files grid -->
-				{url|assign:copyeditingFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.copyedit.AuthorCopyeditingSignoffFilesGridHandler" op="fetchGrid" monographId=$monograph->getId() stageId=$smarty.const.WORKFLOW_STAGE_ID_EDITING escape=false}
-				{load_url_in_div id="copyeditingFilesGridDiv" url=$copyeditingFilesGridUrl}
+					<!-- Display copyediting files grid -->
+					{url|assign:copyeditingFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.copyedit.AuthorCopyeditingSignoffFilesGridHandler" op="fetchGrid" monographId=$monograph->getId() stageId=$smarty.const.WORKFLOW_STAGE_ID_EDITING escape=false}
+					{load_url_in_div id="copyeditingFilesGridDiv" url=$copyeditingFilesGridUrl}
+				{else}
+					{translate key="monograph.stageNotInitiated"}
+				{/if}
 			</div>
 		</div>
 	{/if}
@@ -100,15 +106,19 @@
 		<div class="pkp_authorDashboard_stageContainer" id="production">
 			<h3><a href="#">{translate key='submission.production'}</a></h3>
 			<div id="productionContent">
-				{include file="authorDashboard/monographEmails.tpl" monographEmails=$productionEmails}
+				{if $stageId >= $smarty.const.WORKFLOW_STAGE_ID_PRODUCTION}
+					{include file="authorDashboard/monographEmails.tpl" monographEmails=$productionEmails}
 
-				<!-- Display production files grid -->
-				{url|assign:productionFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.proof.AuthorProofingSignoffFilesGridHandler" op="fetchGrid" monographId=$monograph->getId() stageId=$smarty.const.WORKFLOW_STAGE_ID_EDITING escape=false}
-				{load_url_in_div id="productionFilesGridDiv" url=$productionFilesGridUrl}
+					<!-- Display production files grid -->
+					{url|assign:productionFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.proof.AuthorProofingSignoffFilesGridHandler" op="fetchGrid" monographId=$monograph->getId() stageId=$smarty.const.WORKFLOW_STAGE_ID_EDITING escape=false}
+					{load_url_in_div id="productionFilesGridDiv" url=$productionFilesGridUrl}
+				{else}
+					{translate key="monograph.stageNotInitiated"}
+				{/if}
 			</div>
 		</div>
 	{/if}
-
+	
 	{if array_key_exists($smarty.const.WORKFLOW_STAGE_ID_SUBMISSION, $accessibleWorkflowStages)}
 		<div class="pkp_authorDashboard_stageContainer" id="documents">
 			<h3><a href="#">{translate key='submission.documents'}</a></h3>
