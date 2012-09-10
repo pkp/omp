@@ -194,7 +194,7 @@ class OAIDAO extends PKPOAIDAO {
 	 * @see lib/pkp/classes/oai/PKPOAIDAO::getAccessibleRecordWhereClause()
 	 */
 	function getAccessibleRecordWhereClause() {
-		return 'WHERE ((s.series_id IS NOT NULL AND p.enabled = 1 AND pm.is_available = 1 AND ms.status <> ' . STATUS_ARCHIVED . ' AND pf.is_available = 1) OR dot.data_object_id IS NOT NULL)';
+		return 'WHERE ((p.enabled = 1 AND ms.status <> ' . STATUS_ARCHIVED . ' AND pf.is_available = 1) OR dot.data_object_id IS NOT NULL)';
 	}
 
 	/**
@@ -215,7 +215,7 @@ class OAIDAO extends PKPOAIDAO {
 		$publicationFormatId = $row['data_object_id'];
 
 		$record->identifier = $this->oai->publicationFormatIdToIdentifier($publicationFormatId);
-		$record->sets = array(urlencode($press->getPath()) . ':' . urlencode($series->getPath()));
+		$record->sets = array(urlencode($press->getPath()) . ($series?':' . urlencode($series->getPath()):''));
 
 		if ($isRecord) {
 			$publicationFormat =& $this->_publicationFormatDao->getById($publicationFormatId);

@@ -20,7 +20,7 @@ import('classes.handler.Handler');
 class OAIHandler extends Handler {
 	/**
 	 * Constructor
-	 **/
+	 */
 	function OAIHandler() {
 		parent::Handler();
 	}
@@ -35,10 +35,15 @@ class OAIHandler extends Handler {
 		}
 	}
 
-	function index() {
+	/**
+	 * Handle an OAI request.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 */
+	function index($args, &$request) {
 		PluginRegistry::loadCategory('oaiMetadataFormats', true);
 
-		$oai = new PressOAI(new OAIConfig(Request::getRequestUrl(), Config::getVar('oai', 'repository_id')));
+		$oai = new PressOAI(new OAIConfig($request->getRequestUrl(), Config::getVar('oai', 'repository_id')));
 		$oai->execute();
 	}
 }
