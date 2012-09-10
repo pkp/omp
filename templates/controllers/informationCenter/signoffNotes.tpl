@@ -21,6 +21,8 @@
 	{rdelim});
 </script>
 
+<p>{translate key="submission.upload.response.description"}</p>
+
 <div id="signoffNotesContainer">
 	{if !$signoffId}
 		<script type="text/javascript">
