@@ -118,9 +118,6 @@
 			{/fbvFormSection}
 			<p>{translate key="installer.allowFileUploads" allowFileUploads=$allowFileUploads}</p>
 			<p>{translate key="installer.maxFileUploadSize" maxFileUploadSize=$maxFileUploadSize}</p>
-			{fbvFormSection list="true"}
-				{fbvElement type="checkbox" id="skipFilesDir" value="1" checked=$skipFilesDir label="installer.skipFilesDir"}
-			{/fbvFormSection}
 		{/fbvFormArea}
 	{/if}{* !$skipFilesDirSection *}
 
