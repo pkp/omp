@@ -112,7 +112,7 @@ class Genre extends DataObject {
 
 	/**
 	 * Get monograph file category (e.g. artwork or document)
-	 * @return int
+	 * @return int GENRE_CATEGORY_...
 	 */
 	function getCategory() {
 		return $this->getData('category');
@@ -120,7 +120,7 @@ class Genre extends DataObject {
 
 	/**
 	 * Set monograph file category (e.g. artwork or document)
-	 * @param $category bool
+	 * @param $category int GENRE_CATEGORY_...
 	 */
 	function setCategory($category) {
 		return $this->setData('category', $category);

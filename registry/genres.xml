@@ -8,6 +8,10 @@
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
   * Default genres XML file.
+  * N.B. The "category" attribute's value can be:
+  *  1 => GENRE_CATEGORY_DOCUMENT
+  *  2 => GENRE_CATEGORY_ARTWORK
+  * These are defined in classes/monograph/Genre.inc.php.
   -->
 <genres>
 	<genre key="APPENDIX" sortable="0" category="1" localeKey="default.genres.appendix"/>
@@ -22,4 +26,5 @@
 	<genre key="FIGURE" sortable="1" category="2" localeKey="default.genres.figure"/>
 	<genre key="PHOTO" sortable="1" category="2" localeKey="default.genres.photo"/>
 	<genre key="ILLUSTRATION" sortable="1" category="2" localeKey="default.genres.illustration"/>
+	<genre key="OTHER" sortable="0" category="1" localeKey="default.genres.other"/>
 </genres>

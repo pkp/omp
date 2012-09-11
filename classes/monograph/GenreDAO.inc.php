@@ -125,7 +125,7 @@ class GenreDAO extends DefaultSettingDAO {
 			array(
 				$genre->getSortable() ? 1 : 0,
 				(int) $genre->getPressId(),
-				$genre->getCategory()
+				(int) $genre->getCategory()
 			)
 		);
 

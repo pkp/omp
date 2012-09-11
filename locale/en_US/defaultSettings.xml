@@ -31,6 +31,7 @@
 	<message key="default.genres.figure">Figure</message>
 	<message key="default.genres.photo">Photo</message>
 	<message key="default.genres.illustration">Illustration</message>
+	<message key="default.genres.other">Other</message>
 
 	<!-- Publication format defaults -->
 	<message key="default.publicationFormats.hardcover">Hardcover</message>
