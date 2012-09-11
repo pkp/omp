@@ -50,6 +50,7 @@ class Onix30ExportPlugin extends ImportExportPlugin {
 		parent::display($args);
 
 		$press =& Request::getPress();
+		$templateMgr->assign_by_ref('press', $press);
 
 		switch (array_shift($args)) {
 			case 'exportMonograph':

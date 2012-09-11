@@ -21,6 +21,9 @@ class Onix30ExportDom {
 	}
 
 	function &generateMonographDom(&$doc, &$press, &$monograph, &$publicationFormat) {
+
+		$onixCodelistItemDao =& DAORegistry::getDAO('ONIXCodelistItemDAO');
+
 		$unavailableString = __('plugins.importexport.onix30.unavailable');
 
 		$root =& XMLCustomWriter::createElement($doc, 'ONIXMessage');
@@ -231,11 +234,12 @@ class Onix30ExportDom {
 		}
 
 		foreach ($uniqueLanguages as $language) {
- 			$languageNode =& XMLCustomWriter::createElement($doc, 'Language');
- 			XMLCustomWriter::appendChild($descDetailNode, $languageNode);
- 			XMLCustomWriter::createChildWithText($doc, $languageNode, 'LanguageRole', '01');
- 			XMLCustomWriter::createChildWithText($doc, $languageNode, 'LanguageCode', $language);
- 			unset($languageNode);
+			$languageNode =& XMLCustomWriter::createElement($doc, 'Language');
+			XMLCustomWriter::appendChild($descDetailNode, $languageNode);
+			XMLCustomWriter::createChildWithText($doc, $languageNode, 'LanguageRole', '01');
+			$onixLanguageCode = $onixCodelistItemDao->getCodeFromValue($language, 'List74');
+			XMLCustomWriter::createChildWithText($doc, $languageNode, 'LanguageCode', $onixLanguageCode);
+			unset($languageNode);
 		}
 
 		/* --- add Extents for 00 (main content) and 04 (back matter) ---*/
@@ -339,10 +343,12 @@ class Onix30ExportDom {
 		$publishingDetailNode =& XMLCustomWriter::createElement($doc, 'PublishingDetail');
 		XMLCustomWriter::appendChild($productNode, $publishingDetailNode);
 
-		$imprintNode =& XMLCustomWriter::createElement($doc, 'Imprint');
-		XMLCustomWriter::appendChild($publishingDetailNode, $imprintNode);
-		XMLCustomWriter::createChildWithText($doc, $imprintNode, 'ImprintName', $publicationFormat->getImprint(), false);
-		unset($imprintNode);
+		if ($publicationFormat->getImprint()) {
+			$imprintNode =& XMLCustomWriter::createElement($doc, 'Imprint');
+			XMLCustomWriter::appendChild($publishingDetailNode, $imprintNode);
+			XMLCustomWriter::createChildWithText($doc, $imprintNode, 'ImprintName', $publicationFormat->getImprint());
+			unset($imprintNode);
+		}
 
 		$publisherNode =& XMLCustomWriter::createElement($doc, 'Publisher');
 		XMLCustomWriter::appendChild($publishingDetailNode, $publisherNode);
@@ -387,15 +393,14 @@ class Onix30ExportDom {
 				// now do territories and countries.
 				$territoryNode =& XMLCustomWriter::createElement($doc, 'Territory');
 				XMLCustomWriter::appendChild($salesRightsNode, $territoryNode);
-				if (sizeof($salesRights->getCountriesIncluded()) > 0) {
+
+				if (sizeof($salesRights->getRegionsIncluded()) > 0 && sizeof($salesRights->getCountriesExcluded()) > 0) {
+					XMLCustomWriter::createChildWithText($doc, $territoryNode, 'RegionsIncluded', join(' ', $salesRights->getRegionsIncluded()));
+					XMLCustomWriter::createChildWithText($doc, $territoryNode, 'CountriesExcluded', join(' ', $salesRights->getCountriesExcluded()));
+				} else if (sizeof($salesRights->getCountriesIncluded()) > 0) {
 					XMLCustomWriter::createChildWithText($doc, $territoryNode, 'CountriesIncluded', join(' ', $salesRights->getCountriesIncluded()));
 				}
-				if (sizeof($salesRights->getRegionsIncluded()) > 0) {
-					XMLCustomWriter::createChildWithText($doc, $territoryNode, 'RegionsIncluded', join(' ', $salesRights->getRegionsIncluded()));
-				}
-				if (sizeof($salesRights->getCountriesExcluded()) > 0) {
-					XMLCustomWriter::createChildWithText($doc, $territoryNode, 'CountriesExcluded', join(' ', $salesRights->getCountriesExcluded()));
-				}
+
 				if (sizeof($salesRights->getRegionsExcluded()) > 0) {
 					XMLCustomWriter::createChildWithText($doc, $territoryNode, 'RegionsExcluded', join(' ', $salesRights->getRegionsExcluded()));
 				}
@@ -426,18 +431,17 @@ class Onix30ExportDom {
 			$territoryNode =& XMLCustomWriter::createElement($doc, 'Territory');
 			XMLCustomWriter::appendChild($marketNode, $territoryNode);
 
-			if (sizeof($market->getCountriesIncluded()) > 0) {
+			if (sizeof($market->getRegionsIncluded()) > 0 && sizeof($market->getCountriesExcluded()) > 0) {
+				XMLCustomWriter::createChildWithText($doc, $territoryNode, 'RegionsIncluded', join(' ', $market->getRegionsIncluded()));
+				XMLCustomWriter::createChildWithText($doc, $territoryNode, 'CountriesExcluded', join(' ', $market->getCountriesExcluded()));
+			} else if (sizeof($market->getCountriesIncluded()) > 0) {
 				XMLCustomWriter::createChildWithText($doc, $territoryNode, 'CountriesIncluded', join(' ', $market->getCountriesIncluded()));
 			}
-			if (sizeof($market->getRegionsIncluded()) > 0) {
-				XMLCustomWriter::createChildWithText($doc, $territoryNode, 'RegionsIncluded', join(' ', $market->getRegionsIncluded()));
-			}
-			if (sizeof($market->getCountriesExcluded()) > 0) {
-				XMLCustomWriter::createChildWithText($doc, $territoryNode, 'CountriesExcluded', join(' ', $market->getCountriesExcluded()));
-			}
+
 			if (sizeof($market->getRegionsExcluded()) > 0) {
 				XMLCustomWriter::createChildWithText($doc, $territoryNode, 'RegionsExcluded', join(' ', $market->getRegionsExcluded()));
 			}
+
 			unset($marketNode);
 			unset($territoryNode);
 

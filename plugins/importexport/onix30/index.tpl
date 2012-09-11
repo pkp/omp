@@ -18,6 +18,10 @@
 <div id="monographs">
 <form class="pkp_form" id="informationCollectionForm" method="post" action="{url path=$urlPath}">
 
+	{if !$press->hasRequiredOnixHeaderFields()}
+		<p class="error">{translate key="plugins.importexport.onix30.pressMissingFields"}</p>
+	{/if}
+
 	{fbvFormArea id="addresseeInfo"}
 		{fbvFormSection title="plugins.importexport.onix30.form.addresseeField" for="addressee" description="plugins.importexport.onix30.form.addresseeField.tip"}
 			{fbvElement type="text" id="addressee" size=$fbvStyles.size.MEDIUM}
@@ -57,8 +61,8 @@
 							{if $errorKeys|@count == 0}
 								<span class="pkp_form_success">{translate key="plugins.importexport.onix30.formatValid"}</span>
 							{else}
-								<label class="error" title="{foreach from=$errorKeys item=key name=errors}{translate key=$key} {/foreach}">
-								{translate key="plugins.importexport.onix30.formatInvalid"}</label>
+								<label class="error">
+								{translate key="plugins.importexport.onix30.formatInvalid"} - {foreach from=$errorKeys item=key name=errors}{translate key=$key} {/foreach}</label>
 							{/if}
 						</td>
 					</tr>

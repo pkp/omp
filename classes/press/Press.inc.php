@@ -309,6 +309,19 @@ class Press extends DataObject {
 
 		return $supportedLocales;
 	}
+
+	/**
+	 * Returns true if this press contains the fields required for creating valid
+	 * ONIX export metadata.
+	 * @return boolean
+	 */
+	function hasRequiredOnixHeaderFields() {
+		if ($this->getSetting('codeType') != '' && $this->getSetting('codeValue') != '') {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }
 
 ?>
