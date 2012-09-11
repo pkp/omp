@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE install SYSTEM "../../lib/pkp/dtd/install.dtd">
 <!--
-  * install.xml
+  * dbscripts/xml/install.xml
   *
   * Copyright (c) 2003-2012 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -9,7 +9,7 @@
   * Installation descriptor file.
   -->
 
-<install version="0.2.0.0">
+<install version="0.9.9.0">
 	<code function="createDirectories" />
 	<code function="createDatabase" />
 
