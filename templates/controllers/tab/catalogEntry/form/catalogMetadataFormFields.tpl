@@ -32,6 +32,7 @@
 	<input type="hidden" name="tab" value="catalog" />
 
 	{fbvFormSection title="monograph.coverImage"}
+		<div class="pkp_help">{translate key="monograph.coverImage.uploadInstructions"}</div>
 		<div id="plupload_catalogMetadata" class="pkp_helpers_threeQuarter pkp_helpers_align_right"></div>
 		<div class="pkp_helpers_align_left">
 			{capture assign="altTitle"}{translate key="monograph.currentCoverImage"}{/capture}
