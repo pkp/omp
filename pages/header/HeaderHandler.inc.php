@@ -29,11 +29,11 @@ class HeaderHandler extends Handler {
 	//
 	/**
 	 * Display the header.
-	 * @param $request PKPRequest
 	 * @param $args array
+	 * @param $request PKPRequest
 	 */
-	function index(&$request, $args) {
-		$this->setupTemplate($request);
+	function index($args, &$request) {
+		$this->setupTemplate();
 		$templateMgr =& TemplateManager::getManager();
 		return $templateMgr->fetchJson('header/index.tpl');
 	}

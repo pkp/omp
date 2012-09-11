@@ -44,7 +44,7 @@ class PeopleHandler extends ManagementHandler {
 		}
 
 		if ($user != null) {
-			$templateMgr->assign('currentUrl', Request::url(null, null, 'userProfile', $user->getId()));
+			$templateMgr->assign('currentUrl', $request->url(null, null, 'userProfile', $user->getId()));
 
 			$site =& $request->getSite();
 			$press =& $request->getPress();
