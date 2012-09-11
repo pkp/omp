@@ -177,7 +177,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 				null,
 				'controllers/grid/gridCell.tpl',
 				new SignoffGridCellProvider($monograph->getId(), $this->getStageId()),
-				array('alignmnent' => COLUMN_ALIGNMENT_LEFT, 'width' => 60)
+				array('alignment' => COLUMN_ALIGNMENT_LEFT, 'width' => 60)
 			)
 		);
 
