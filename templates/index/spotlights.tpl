@@ -19,8 +19,8 @@
 						{if $coverImage}
 							<a class="pkp_helpers_image_right" href="{url page="catalog" op="book" path=$item->getId()}"><img height="{$coverImage.thumbnailHeight}" width="{$coverImage.thumbnailWidth}" alt="{$item->getLocalizedFullTitle()|escape}" src="{url router=$smarty.const.ROUTE_COMPONENT component="submission.CoverHandler" op="thumbnail" monographId=$item->getId()}" /></a>
 						{/if}
-						<div class="pkp_catalog_spotlight_itemTitle">{$item->getLocalizedFullTitle()}</div>
-						<div class="pkp_catalog_spotlight_itemAuthorship">{$item->getAuthorString()}</div>
+						<div class="pkp_catalog_spotlight_itemTitle">{$item->getLocalizedFullTitle()|strip_unsafe_html}</div>
+						<div class="pkp_catalog_spotlight_itemAuthorship">{$item->getAuthorString()|strip_unsafe_html}</div>
 						<div class="pkp_catalog_spotlight_itemDescription">
 							{if $spotlight->getLocalizedDescription()}
 								{$spotlight->getLocalizedDescription()|strip_unsafe_html}
@@ -36,11 +36,14 @@
 							<a class="pkp_helpers_image_right" href="{url page="catalog" op="fullSize" type="series" id=$item->getId()}"><img height="{$image.thumbnailHeight}" width="{$image.thumbnailWidth}" alt="{$item->getLocalizedFullTitle()|escape}" src="{url page="catalog" op="thumbnail" type="series" id=$item->getId()}" /></a>
 						{/if}
 						<div class="pkp_catalog_spotlight_itemTitle">
-							{translate key="series.series"}: {$item->getLocalizedFullTitle()}
+							{translate key="series.series"}: {$item->getLocalizedFullTitle()|strip_unsafe_html}
 						</div>
-						<div class="pkp_catalog_spotlight_itemAuthorship">
-							{translate key="user.role.editors"}: {$item->getEditorsString()}
-						</div>
+						{assign var=editorsString value=$item->getEditorsString()}
+						{if $editorsString}
+							<div class="pkp_catalog_spotlight_itemAuthorship">
+							{translate key="user.role.editors"}: {$editorsString|escape}
+							</div>
+						{/if}
 						<div class="pkp_catalog_spotlight_itemDescription">
 							{if $spotlight->getLocalizedDescription()}
 								{$spotlight->getLocalizedDescription()|strip_unsafe_html}
@@ -61,7 +64,7 @@
 						{assign var="authorName" value=$item->getFullName()|strip_unsafe_html}
 						<div class="pkp_catalog_spotlight_itemTitle">{$authorName}{if $monograph},{/if}</div>
 						{if $monograph}
-							<div class="pkp_catalog_spotlight_itemAuthorship">{$monograph->getLocalizedFullTitle()}</div>
+							<div class="pkp_catalog_spotlight_itemAuthorship">{$monograph->getLocalizedFullTitle()|strip_unsafe_html}</div>
 							<div class="pkp_catalog_spotlight_itemDescription">
 								{if $spotlight->getLocalizedDescription()}
 									{$spotlight->getLocalizedDescription()|strip_unsafe_html}
