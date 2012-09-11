@@ -58,6 +58,9 @@ class SubmissionDocumentsFilesGridHandler extends LibraryFileGridHandler {
 
 		AppLocale::requireComponents(LOCALE_COMPONENT_OMP_EDITOR);
 
+		// Set instructions
+		$this->setInstructions('editor.submissionLibrary.description');
+
 		// The file list grid layout has an additional file genre column.
 		import('controllers.grid.files.fileList.FileGenreGridColumn');
 		$this->addColumn(new FileGenreGridColumn());

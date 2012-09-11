@@ -85,9 +85,8 @@ class LibraryFileGridHandler extends CategoryGridHandler {
 		$router =& $request->getRouter();
 		$this->_context =& $router->getContext($request);
 
-		// Set name and description
+		// Set name
 		$this->setTitle('manager.setup.submissionDocuments');
-		$this->setInstructions('manager.setup.libraryDescription');
 
 		AppLocale::requireComponents(
 			LOCALE_COMPONENT_PKP_COMMON,
