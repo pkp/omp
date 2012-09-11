@@ -1689,8 +1689,8 @@ ul.sf-menu {
   display:table-cell;
 }
 .pkp_catalog_carousel_wrapper .pkp_catalog_carousel li.mover img {
-  padding:5px;
-  width:95%;
+  width:100%;
+  padding:0px;
 }
 .pkp_catalog_carousel_wrapper .pkp_catalog_carousel li.placeholder {
   box-shadow:none !important;

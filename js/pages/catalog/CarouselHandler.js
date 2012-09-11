@@ -131,7 +131,6 @@ $.pkp.pages.catalog = $.pkp.pages.catalog || {};
 
 		if ($targetElement.hasClass('mover')) {
 			$targetElement.find('.pkp_helpers_progressIndicator').hide();
-			$targetElement.addClass('pkp_helpers_black_bg');
 
 			if ($targetElement.hasClass('roundabout-in-focus')) {
 				this.toggleFeature_($('.roundabout-in-focus'), true);
