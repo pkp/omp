@@ -37,6 +37,11 @@
 	{* Include the highlighted feature *}
 	{include file="catalog/feature.tpl" publishedMonographs=$publishedMonographs featuredMonographIds=$featuredMonographIds}
 
+	{* Include the new release monograph list *}
+	{if !empty($newReleasesMonographs)}
+		{include file="catalog/monographs.tpl" publishedMonographs=$newReleasesMonographs monographListTitleKey="navigation.newReleases"}
+	{/if}
+
 	{* Include the full monograph list *}
 	{include file="catalog/monographs.tpl" publishedMonographs=$publishedMonographs}
 {/if}

@@ -101,6 +101,11 @@ class CatalogHandler extends Handler {
 			$featureDao =& DAORegistry::getDAO('FeatureDAO');
 			$featuredMonographIds = $featureDao->getSequencesByAssoc(ASSOC_TYPE_CATEGORY, $category->getId());
 			$templateMgr->assign('featuredMonographIds', $featuredMonographIds);
+
+			// Provide a list of new releases to browse
+			$newReleaseDao =& DAORegistry::getDAO('NewReleaseDAO');
+			$newReleases =& $newReleaseDao->getMonographsByAssoc(ASSOC_TYPE_CATEGORY, $category->getId());
+			$templateMgr->assign('newReleasesMonographs', $newReleases);
 			// Display
 		}
 		$templateMgr->display('catalog/category.tpl');
@@ -132,6 +137,11 @@ class CatalogHandler extends Handler {
 		$featureDao =& DAORegistry::getDAO('FeatureDAO');
 		$featuredMonographIds = $featureDao->getSequencesByAssoc(ASSOC_TYPE_SERIES, $series->getId());
 		$templateMgr->assign('featuredMonographIds', $featuredMonographIds);
+
+		// Provide a list of new releases to browse
+		$newReleaseDao =& DAORegistry::getDAO('NewReleaseDAO');
+		$newReleases =& $newReleaseDao->getMonographsByAssoc(ASSOC_TYPE_SERIES, $series->getId());
+		$templateMgr->assign('newReleasesMonographs', $newReleases);
 
 		// Display
 		$templateMgr->display('catalog/series.tpl');

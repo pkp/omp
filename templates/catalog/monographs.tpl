@@ -15,8 +15,12 @@
 	{rdelim});
 </script>
 <div class="pkp_catalog_monographs" id="monographListContainer">
-	<h2><em>{translate key="catalog.browseTitles" numTitles=$publishedMonographs|@count}</em></h2>
-
+	{if $monographListTitleKey}
+		{translate|assign:"monographListTitle" key=$monographListTitleKey}
+	{else}
+		{translate|assign:"monographListTitle" key="catalog.browseTitles" numTitles=$publishedMonographs|@count}
+	{/if}
+	<h2><em>{$monographListTitle}</em></h2>
 	{if $publishedMonographs|@count}
 		<ul class="pkp_helpers_clear">
 		{foreach from=$publishedMonographs item=publishedMonograph}
