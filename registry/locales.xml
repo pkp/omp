@@ -15,5 +15,4 @@
 
 <locales>
 	<locale key="en_US" complete="true" name="English" iso639-2b="eng" iso639-3="eng" />
-	<locale key="te_ST" complete="false" name="Test Locale" iso639-2b="tst" iso639-3="tst" />
 </locales>
