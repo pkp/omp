@@ -611,6 +611,14 @@ class MonographDAO extends DAO {
 				(int) $categoryId
 			)
 		);
+
+		// If any new release or feature object is associated
+		// with this category delete them.
+		$newReleaseDao =& DAORegistry::getDAO('NewReleaseDAO'); /* @var $newReleaseDao NewReleaseDAO */
+		$newReleaseDao->deleteNewRelease($monographId, ASSOC_TYPE_CATEGORY, $categoryId);
+
+		$featureDao =& DAORegistry::getDAO('FeatureDAO'); /* @var $featureDao FeatureDAO */
+		$featureDao->deleteFeature($monographId, ASSOC_TYPE_CATEGORY, $categoryId);
 	}
 
 	/**

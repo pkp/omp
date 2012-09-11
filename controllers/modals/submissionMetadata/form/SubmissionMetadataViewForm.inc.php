@@ -163,11 +163,20 @@ class SubmissionMetadataViewForm extends Form {
 		$monograph =& $this->getMonograph();
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
 
+		// Clean any new release or feature object that may
+		// exist associated with the current monograph series.
+		$newReleaseDao =& DAORegistry::getDAO('NewReleaseDAO'); /* @var $newReleaseDao NewReleaseDAO */
+		$newReleaseDao->deleteNewRelease($monograph->getId(), ASSOC_TYPE_SERIES, $monograph->getSeriesId());
+
+		$featureDao =& DAORegistry::getDAO('FeatureDAO'); /* @var $featureDao FeatureDAO */
+		$featureDao->deleteFeature($monograph->getId(), ASSOC_TYPE_SERIES, $monograph->getSeriesId());
+
 		// Execute monograph metadata related operations.
 		$this->_metadataFormImplem->execute($monograph, $request);
 		$monograph->setSeriesId($this->getData('seriesId'));
 		$monograph->setSeriesPosition($this->getData('seriesPosition'));
 		$monographDao->updateMonograph($monograph);
+
 		if ($monograph->getDatePublished()) {
 			import('classes.search.MonographSearchIndex');
 			MonographSearchIndex::indexMonographMetadata($monograph);
