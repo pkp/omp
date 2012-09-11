@@ -1185,7 +1185,6 @@ div.pkp_controllers_grid td {
 div.pkp_controllers_grid th:first-child, div.pkp_controllers_grid td:first-child, div.pkp_controllers_grid .category_grid_body td:first-child + td { text-align:left !important; }
 div.pkp_controllers_grid td.first_column {
   text-align:left !important;
-  vertical-align:top;
   padding:0 !important;
 }
 div.pkp_controllers_grid td.category { display:table-row; }
