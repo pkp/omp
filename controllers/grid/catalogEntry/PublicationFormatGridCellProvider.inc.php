@@ -146,7 +146,8 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 			case 'isApproved':
 				if ($this->getInCatalogEntryModal()) {
 					import('lib.pkp.classes.linkAction.request.NullAction');
-					return array(new LinkAction('publicationFormatTab', new NullAction(), __('monograph.publicationFormat.openTab'), $this->getCellState($row, $column)));
+					$toolTip = ($this->getCellState($row, $column) == 'completed') ? __('grid.action.formatInCatalogEntry') : null;
+					return array(new LinkAction('publicationFormatTab', new NullAction(), __('monograph.publicationFormat.openTab'), $this->getCellState($row, $column), $toolTip));
 				} else {
 					import('controllers.modals.submissionMetadata.linkAction.CatalogEntryLinkAction');
 					return array(new CatalogEntryLinkAction($request, $monographId, WORKFLOW_STAGE_ID_PRODUCTION, $publicationFormatId, $this->getCellState($row, $column)));
@@ -179,6 +180,7 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 				}
 				// If we have any notifications, wrap them in the appropriately styled div
 				if ($warningMarkup !== '') $warningMarkup = "<div class=\"pkp_notification\">$warningMarkup</div>";
+				$toolTip = ($this->getCellState($row, $column) == 'completed') ? __('grid.action.formatAvailable') : null;
 				return array(new LinkAction(
 					'availablePublicationFormat',
 					new RemoteActionConfirmationModal(
@@ -188,7 +190,8 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 							'setAvailable', null, array('publicationFormatId' => $publicationFormat->getId(), 'newAvailableState' => $publicationFormat->getIsAvailable()?0:1, 'monographId' => $monographId)),
 						'modal_approve'),
 						__('manager.emails.disable'),
-						$this->getCellState($row, $column)
+						$this->getCellState($row, $column),
+						$toolTip
 				));
 				break;
 			default:

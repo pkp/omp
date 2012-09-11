@@ -155,8 +155,9 @@ class SignoffFilesGridCellProvider extends GridCellProvider {
 				$modal = new RemoteActionConfirmationModal($approveText, __('editor.monograph.decision.approveProofs'),
 					$remoteActionUrl, 'modal_approve_file');
 
+				$toolTip = ($cellState == 'completed') ? __('grid.action.pageProofApproved') : null;
 				return new LinkAction('approveProof-' . $monographFile->getFileId(),
-					$modal, __('editor.monograph.decision.approveProofs'), 'task ' . $cellState);
+					$modal, __('editor.monograph.decision.approveProofs'), 'task ' . $cellState, $toolTip);
 		}
 	}
 }

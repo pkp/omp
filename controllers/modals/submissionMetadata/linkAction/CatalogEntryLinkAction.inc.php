@@ -49,7 +49,8 @@ class CatalogEntryLinkAction extends LinkAction {
 		);
 
 		// Configure the link action.
-		parent::LinkAction('catalogEntry', $modal, __('submission.catalogEntry'), $image);
+		$toolTip = ($image == 'completed') ? __('grid.action.formatInCatalogEntry') : null;
+		parent::LinkAction('catalogEntry', $modal, __('submission.catalogEntry'), $image, $toolTip);
 	}
 }
 

@@ -46,8 +46,9 @@ class ApproveProofsLinkAction extends LinkAction {
 			'modal_approve_proofs'
 		);
 
+		$toolTip = ($image == 'completed') ? __('grid.action.proofApproved') : null;
 		// Configure the link action.
-		parent::LinkAction('approveProofs-' . $publicationFormatId, $modal, __('editor.monograph.decision.approveProofs'), $image);
+		parent::LinkAction('approveProofs-' . $publicationFormatId, $modal, __('editor.monograph.decision.approveProofs'), $image, $toolTip);
 	}
 }
 
