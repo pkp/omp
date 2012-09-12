@@ -354,7 +354,7 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 	 * @return JSON string
 	 */
 	function fetchUserList($args, &$request) {
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH); /* @var $monograph Monograph */
 		$stageId = $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
 
 		$userGroupId = (int) $request->getUserVar('userGroupId');
@@ -362,8 +362,26 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 		$userStageAssignmentDao =& DAORegistry::getDAO('UserStageAssignmentDAO'); /* @var $userStageAssignmentDao UserStageAssignmentDAO */
 		$users =& $userStageAssignmentDao->getUsersNotAssignedToStageInUserGroup($monograph->getId(), $stageId, $userGroupId);
 
+		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+		$userGroup =& $userGroupDao->getById($userGroupId);
+		$roleId = $userGroup->getRoleId();
+
+		$seriesId = $monograph->getSeriesId();
+		$pressId = $monograph->getPressId();
+
+		$filterSeriesEditors = false;
+		if ($roleId == ROLE_ID_SERIES_EDITOR && $seriesId) {
+			$seriesEditorsDao =& DAORegistry::getDAO('SeriesEditorsDAO'); /* @var $seriesEditorsDao SeriesEditorsDAO */
+			// Flag to filter series editors only.
+			$filterSeriesEditors = true;
+		}
+
 		$userList = array();
 		while($user =& $users->next()) {
+			if ($filterSeriesEditors && !$seriesEditorsDao->editorExists($pressId, $seriesId, $user->getId())) {
+				unset($user);
+				continue;
+			}
 			$userList[$user->getId()] = $user->getFullName();
 			unset($user);
 		}
