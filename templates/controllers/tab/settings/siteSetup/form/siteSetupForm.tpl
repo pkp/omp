@@ -78,8 +78,8 @@
 		{/fbvFormSection}
 	{/fbvFormArea}
 	<h4>{translate key="admin.settings.oaiRegistration"}</h4>
-	{url|assign:"oaiUrl" page="oai"}
-	{url|assign:"siteUrl" page="index"}
+	{url|assign:"oaiUrl" router=$smarty.const.ROUTE_PAGE page="oai"}
+	{url|assign:"siteUrl" router=$smarty.const.ROUTE_PAGE page="index"}
 	<p>{translate key="admin.settings.oaiRegistrationDescription" siteUrl=$siteUrl oaiUrl=$oaiUrl}</p>
 
 	<p><span class="formRequired">{translate key="common.requiredField"}</span></p>
