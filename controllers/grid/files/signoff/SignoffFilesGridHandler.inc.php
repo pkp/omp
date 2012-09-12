@@ -430,7 +430,8 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 			$currentUser =& $request->getUser();
 			NotificationManager::createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.addedAuditor')));
 
-			return DAO::getDataChangedEvent($auditorForm->getSignoffId(), $auditorForm->getFileId());
+			// We need to refresh the whole grid because multiple files can be assigned at once.
+			return DAO::getDataChangedEvent();
 		}
 
 		$json = new JSONMessage(false);
