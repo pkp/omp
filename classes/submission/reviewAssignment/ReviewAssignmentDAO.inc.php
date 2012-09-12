@@ -62,16 +62,6 @@ class ReviewAssignmentDAO extends PKPReviewAssignmentDAO {
 	}
 
 	/**
-	 * Delete review assignments by monograph.
-	 * @param $monographId int
-	 * @return boolean
-	 */
-	function deleteByMonographId($monographId) {
-		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
-		return $this->deleteBySubmissionId($monographId);
-	}
-
-	/**
 	 * Get the ID of the last inserted review assignment.
 	 * @return int
 	 */

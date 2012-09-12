@@ -30,22 +30,6 @@ class PublishedMonograph extends Monograph {
 	}
 
 	/**
-	 * Get ID of published monograph.
-	 * @return int
-	 */
-	function getPubId() {
-		return $this->getData('pubId');
-	}
-
-	/**
-	 * Set ID of published monograph.
-	 * @param $pubId int
-	 */
-	function setPubId($pubId) {
-		return $this->setData('pubId', $pubId);
-	}
-
-	/**
 	 * Get views of the published monograph.
 	 * @return int
 	 */

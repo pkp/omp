@@ -355,7 +355,7 @@ class ManageSpotlightsGridHandler extends GridHandler {
 		$authors =& $authorDao->getAuthorsAlphabetizedByPress($press->getId());
 		while ($author =& $authors->next()) {
 			if ($name == '' || preg_match('/'. preg_quote($name, '/') . '/i', $author->getFullName())) {
-				$publishedMonograph =& $publishedMonographDao->getById($author->getMonographId());
+				$publishedMonograph =& $publishedMonographDao->getById($author->getSubmissionId());
 				if ($publishedMonograph) { // only include Authors if they are authors on published monographs.
 					$matches[] = array('label' => $author->getFullName() . ' (' . $publishedMonograph->getLocalizedTitle() . ')', 'value' => $author->getId() . ':' . SPOTLIGHT_TYPE_AUTHOR);
 				}

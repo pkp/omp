@@ -18,7 +18,7 @@ define('ROLE_ID_SITE_ADMIN',		0x00000001);
 define('ROLE_PATH_SITE_ADMIN',		'admin');
 
 define('ROLE_ID_PRESS_MANAGER',		0x00000011);
-define('ROLE_PATH_PRESS_MANAGER',	 'manager');
+define('ROLE_PATH_PRESS_MANAGER',	'manager');
 
 define('ROLE_ID_SERIES_EDITOR',		0x00000201);
 define('ROLE_PATH_SERIES_EDITOR',	'seriesEditor');
@@ -49,34 +49,6 @@ class Role extends DataObject {
 	//
 	// Get/set methods
 	//
-	/**
-	 * Get role ID of this role.
-	 * @return int
-	 */
-	function getRoleId() {
-		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
-		return $this->getId();
-	}
-
-	/**
-	 * Set role ID of this role.
-	 * @param $roleId int
-	 */
-	function setRoleId($roleId) {
-		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
-		return $this->setId($roleId);
-	}
-
-	/**
-	 * Get role path of this role.
-	 * @param $roleId int
-	 * @return int
-	 */
-	function getRolePath($roleId) {
-		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
-		return $this->getPath();
-	}
-
 	/**
 	 * Get the i18n key name associated with the specified role.
 	 * @param $plural boolean get the plural form of the name

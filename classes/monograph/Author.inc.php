@@ -28,24 +28,6 @@ class Author extends PKPAuthor {
 	// Get/set methods
 	//
 	/**
-	 * Get ID of monograph.
-	 * @return int
-	 */
-	function getMonographId() {
-		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
-		return $this->getSubmissionId();
-	}
-
-	/**
-	 * Set ID of monograph.
-	 * @param $monographId int
-	 */
-	function setMonographId($monographId) {
-		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
-		return $this->setSubmissionId($monographId);
-	}
-
-	/**
 	 * Get a localized version of the User Group
 	 * @return string
 	 */

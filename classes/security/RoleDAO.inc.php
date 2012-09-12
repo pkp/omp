@@ -103,20 +103,6 @@ class RoleDAO extends DAO {
 
 	/**
 	 * Validation check to see if a user belongs to any group that has a given role
-	 * DEPRECATE: keeping around because HandlerValidatorRoles in pkp-lib uses
-	 * until we port user groups to OxS
-	 * @param $pressId
-	 * @param $userId
-	 * @param $roleId
-	 * @return bool
-	 */
-	function roleExists($pressId, $userId, $roleId) {
-		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
-		return $this->userHasRole($pressId, $userId, $roleId);
-	}
-
-	/**
-	 * Validation check to see if a user belongs to any group that has a given role
 	 * @param $pressId
 	 * @param $userId
 	 * @param $roleId

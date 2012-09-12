@@ -283,7 +283,6 @@ class PublishedMonographDAO extends MonographDAO {
 		$publishedMonograph =& parent::_fromRow($row, $callHooks);
 
 		// Add the additional PublishedMonograph data
-		$publishedMonograph->setPubId($row['pub_id']); // Deprecated
 		$publishedMonograph->setDatePublished($this->datetimeFromDB($row['date_published']));
 		$publishedMonograph->setAudience($row['audience']);
 		$publishedMonograph->setAudienceRangeQualifier($row['audience_range_qualifier']);

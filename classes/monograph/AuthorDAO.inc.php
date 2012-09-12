@@ -89,16 +89,6 @@ class AuthorDAO extends PKPAuthorDAO {
 	}
 
 	/**
-	 * Retrieve the number of authors assigned to a submission
-	 * @param $submissionId int
-	 * @return int
-	 */
-	function getAuthorCountByMonographId($submissionId) {
-		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
-		return $this->getAuthorCountBySubmissionId($submissionId);
-	}
-
-	/**
 	 * Get a new data object
 	 * @return DataObject
 	 */
