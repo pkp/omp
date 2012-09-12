@@ -1662,7 +1662,7 @@ ul.sf-menu {
 .pkp_catalog_carousel_wrapper #previousCarouselItem { background-image:url(../lib/pkp/templates/images/structure/carousel_previous.png); }
 .pkp_catalog_carousel_wrapper .pkp_catalog_carousel {
   width:72%;
-  height:320px;
+  height:380px;
   margin:auto;
   margin-top:22px;
   margin-bottom:22px;
@@ -1748,6 +1748,7 @@ ul.sf-menu {
   width:33%;
   overflow:hidden;
 }
+.pkp_catalog_book .bookSpecs img { width:100%; }
 .pkp_catalog_book .bookInfo {
   float:right;
   width:67%;
