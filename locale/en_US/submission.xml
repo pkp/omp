@@ -154,7 +154,7 @@
 	<message key="submission.upload.fairCopy">Upload Fair Copy</message>
 	<message key="submission.upload.uploadFiles">Upload Files</message>
 	<message key="submission.upload.signoff">Upload a Response</message>
-	<message key="submission.upload.response.description">Enter your response below, and optionally upload any files that are to be included with your response.</message>
+	<message key="submission.upload.response.description">After reviewing the assigned file, record any comments on the file below, and/or upload an annotated copy of the file (or another file).</message>
 	<message key="submission.upload.productionReady">Upload a Production Ready File</message>
 	<message key="submission.upload.proof">Upload a Proof</message>
 	<message key="submission.upload.noAvailableReviewFiles">There are no files for you to revise at this time.</message>
