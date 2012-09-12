@@ -27,7 +27,7 @@
 	</setting>
 	<setting type="string" locale="1">
 		<name>contactName</name>
-		<value>{translate key="common.openJournalSystems"}</value>
+		<value>{translate key="common.openMonographPress"}</value>
 	</setting>
 	<setting type="string" locale="1">
 		<name>contactEmail</name>
