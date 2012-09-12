@@ -95,13 +95,6 @@ class TemplateManager extends PKPTemplateManager {
 				$footerLinkDao =& DAORegistry::getDAO('FooterLinkDAO');
 				$this->assign('maxLinks', $footerLinkDao->getLargestCategoryTotalByPressId($press->getId()));
 				$this->assign('pageFooter', $press->getLocalizedSetting('pressPageFooter'));
-			} else {
-				// Add the site-wide logo, if set for this locale or the primary locale
-				$displayPageHeaderTitle = $site->getLocalizedPageHeaderTitle();
-				$this->assign('displayPageHeaderTitle', $displayPageHeaderTitle);
-				if (isset($displayPageHeaderTitle['altText'])) $this->assign('displayPageHeaderTitleAltText', $displayPageHeaderTitle['altText']);
-
-				$this->assign('siteTitle', $site->getLocalizedTitle());
 			}
 
 			// Check for multiple presses.
