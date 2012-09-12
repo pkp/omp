@@ -535,7 +535,7 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.masthead.description">The Masthead should contain a list of editors, managing directors, and other individuals associated with the press. Information entered here will appear in About the Press.</message>
 	<message key="manager.setup.files">Files</message>
 	<message key="manager.setup.submissionDocuments">Submission Documents</message>
-	<message key="manager.setup.libraryDescription">These files have been prepared by the press as templates and guides for use as part of the Submission Documents.</message>
+	<message key="manager.setup.libraryDescription"><![CDATA[These files have been prepared by the press as templates and guides for use as part of the <span class="pkp_help_title">Submission Documents</span>.]]></message>
 	<message key="manager.setup.productionTemplates">Production Templates</message>
 	<message key="manager.files.note">Note: The Files Browser is an advanced feature that allows the files and directories associated with a press to be viewed and manipulated directly.</message>
 	<message key="manager.setup.authorCopyrightNotice.sample"><![CDATA[<h3>Proposed Creative Commons Copyright Notices</h3>
