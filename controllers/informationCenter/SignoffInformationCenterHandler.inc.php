@@ -151,10 +151,12 @@ class SignoffInformationCenterHandler extends Handler {
 		while ($signoff =& $signoffsFactory->next()) { /* @var $signoff Signoff */
 			if (!$signoff->getDateCompleted() && $signoff->getAssocType() == ASSOC_TYPE_MONOGRAPH_FILE) {
 				$monographFile =& $monographFileDao->getLatestRevision($signoff->getAssocId()); /* @var $monographFile MonographFile */
-				assert(is_a($monographFile, 'MonographFile'));
-
-				if ($monographFile->getMonographId() == $monograph->getId()) {
-					$signoffs[$signoff->getId()] = $monographFile->getLocalizedName();
+				if (is_a($monographFile, 'MonographFile')) {
+					if ($monographFile->getMonographId() == $monograph->getId()) {
+						$signoffs[$signoff->getId()] = $monographFile->getLocalizedName();
+					}
+				} else {
+					assert(false);
 				}
 			}
 		}
