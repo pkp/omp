@@ -16,7 +16,7 @@
 
 <div class="bookSpecs">
 	{assign var=coverImage value=$publishedMonograph->getCoverImage()}
-	<a href="{$bookImageLinkUrl}"><img class="pkp_helpers_container_center" height="{$coverImage.catalogHeight}" width="{$coverImage.catalogWidth}" alt="{$publishedMonograph->getLocalizedFullTitle()|escape}" src="{url router=$smarty.const.ROUTE_COMPONENT component="submission.CoverHandler" op="catalog" monographId=$publishedMonograph->getId()}" /></a>
+	<a href="{$bookImageLinkUrl}"><img class="pkp_helpers_container_center" alt="{$publishedMonograph->getLocalizedFullTitle()|escape}" src="{url router=$smarty.const.ROUTE_COMPONENT component="submission.CoverHandler" op="catalog" monographId=$publishedMonograph->getId()}" /></a>
 	<div id="bookAccordion">
 		<h3><a href="#">{translate key="catalog.publicationInfo"}</a></h3>
 		<div class="publicationInfo">
