@@ -30,7 +30,7 @@ class FileNotesLinkAction extends FileLinkAction {
 		$router =& $request->getRouter();
 		import('lib.pkp.classes.linkAction.request.AjaxModal');
 
-		$title = (isset($monographFile)) ? implode(': ', array(__('informationCenter.bookInfo'), $monographFile->getOriginalFileName())) : __('informationCenter.bookInfo');
+		$title = (isset($monographFile)) ? implode(': ', array(__('informationCenter.bookInfo'), $monographFile->getLocalizedName())) : __('informationCenter.bookInfo');
 
 		$ajaxModal = new AjaxModal(
 			$router->url(
