@@ -93,6 +93,7 @@ class LibraryFileManager extends PrivateFileManager {
 		$libraryFile = $libraryFileDao->newDataObject();
 
 		$libraryFile->setDateUploaded($temporaryFile->getDateUploaded());
+		$libraryFile->setDateModified($temporaryFile->getDateUploaded());
 		$libraryFile->setFileType($temporaryFile->getFileType());
 		$libraryFile->setFileSize($temporaryFile->getFileSize());
 		$libraryFile->setFileName($this->generateFilename($libraryFileType, $temporaryFile->getOriginalFileName()));

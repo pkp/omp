@@ -163,6 +163,22 @@ class LibraryFile extends DataObject {
 	}
 
 	/**
+	 * Get modified date of file.
+	 * @return date
+	 */
+	function getDateModified() {
+		return $this->getData('dateModified');
+	}
+
+	/**
+	 * Set modified date of file.
+	 * @param $dateModified date
+	 */
+	function setDateModified($dateModified) {
+		return $this->SetData('dateModified', $dateModified);
+	}
+
+	/**
 	 * Get file size of file.
 	 * @return int
 	 */

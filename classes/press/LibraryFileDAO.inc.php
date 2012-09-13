@@ -139,10 +139,11 @@ class LibraryFileDAO extends DAO {
 
 		$this->update(
 			sprintf('INSERT INTO library_files
-				(press_id, file_name, original_file_name, file_type, file_size, type, date_uploaded' . ($libraryFile->getId()?', file_id':'') . ')
+				(press_id, file_name, original_file_name, file_type, file_size, type, date_uploaded, date_modified' . ($libraryFile->getId()?', file_id':'') . ')
 				VALUES
-				(?, ?, ?, ?, ?, ?, %s' . ($libraryFile->getId()?', ?':'') . ')',
-				$this->datetimeToDB($libraryFile->getDateUploaded())
+				(?, ?, ?, ?, ?, ?, %s, %s' . ($libraryFile->getId()?', ?':'') . ')',
+				$this->datetimeToDB($libraryFile->getDateUploaded()),
+					$this->datetimeToDB($libraryFile->getDateModified())
 			),
 			$params
 		);

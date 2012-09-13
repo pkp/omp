@@ -67,7 +67,7 @@ class MonographFileDAODelegate extends SubmissionFileDAODelegate {
 			(int)$monographFile->getFileSize(),
 			$monographFile->getOriginalFileName(),
 			(int)$monographFile->getFileStage(),
-			(boolean)$monographFile->getViewable(),
+			(boolean)$monographFile->getViewable() ? 1 : 0,
 			is_null($monographFile->getUploaderUserId()) ? null : (int)$monographFile->getUploaderUserId(),
 			is_null($monographFile->getUserGroupId()) ? null : (int)$monographFile->getUserGroupId(),
 			is_null($monographFile->getAssocType()) ? null : (int)$monographFile->getAssocType(),
@@ -91,7 +91,7 @@ class MonographFileDAODelegate extends SubmissionFileDAODelegate {
 		);
 
 		if (!$fileId) {
-			$monographFile->setFileId($this->getInsertId('monograph_files', 'monograph_id'));
+			$monographFile->setFileId($this->getInsertId('monograph_files', 'file_id'));
 		}
 
 		$this->updateLocaleFields($monographFile);
@@ -165,7 +165,7 @@ class MonographFileDAODelegate extends SubmissionFileDAODelegate {
 				$monographFile->getFileSize(),
 				$monographFile->getOriginalFileName(),
 				$monographFile->getFileStage(),
-				is_null($monographFile->getViewable()) ? null : (boolean)$monographFile->getViewable(),
+				(boolean)$monographFile->getViewable() ? 1 : 0,
 				is_null($monographFile->getUploaderUserId()) ? null : (int)$monographFile->getUploaderUserId(),
 				is_null($monographFile->getUserGroupId()) ? null : (int)$monographFile->getUserGroupId(),
 				is_null($monographFile->getAssocType()) ? null : (int)$monographFile->getAssocType(),

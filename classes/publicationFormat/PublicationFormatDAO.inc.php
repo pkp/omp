@@ -238,7 +238,7 @@ class PublicationFormatDAO extends DAO {
 			array(
 				(int) $publicationFormat->getIsApproved(),
 				$publicationFormat->getEntryKey(),
-				$publicationFormat->getPhysicalFormat(),
+				(int) $publicationFormat->getPhysicalFormat(),
 				(int) $publicationFormat->getSeq(),
 				$publicationFormat->getFileSize(),
 				$publicationFormat->getFrontMatter(),

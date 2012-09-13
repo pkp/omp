@@ -35,6 +35,7 @@ class PublishedMonographDAO extends MonographDAO {
 		$locale = AppLocale::getLocale();
 
 		$params = array(
+			REALLY_BIG_NUMBER,
 			'title', $primaryLocale, // Series title
 			'title', $locale, // Series title
 			'abbrev', $primaryLocale, // Series abbreviation
@@ -47,14 +48,13 @@ class PublishedMonographDAO extends MonographDAO {
 			$params[] = $params[] = $params[] = "%$searchText%";
 		}
 
-		$params[] = REALLY_BIG_NUMBER; // For feature sorting
-
 		$result =& $this->retrieveRange(
 			'SELECT	' . ($searchText !== null?'DISTINCT ':'') . '
 				pm.*,
 				m.*,
 				COALESCE(stl.setting_value, stpl.setting_value) AS series_title,
-				COALESCE(sal.setting_value, sapl.setting_value) AS series_abbrev
+				COALESCE(sal.setting_value, sapl.setting_value) AS series_abbrev,
+				COALESCE(f.seq, ?) AS order_by
 			FROM	published_monographs pm
 				JOIN monographs m ON pm.monograph_id = m.monograph_id
 				LEFT JOIN series s ON s.series_id = m.series_id
@@ -69,7 +69,7 @@ class PublishedMonographDAO extends MonographDAO {
 				LEFT JOIN features f ON (f.monograph_id = m.monograph_id AND f.assoc_type = ? AND f.assoc_id = m.press_id)
 			WHERE	pm.date_published IS NOT NULL AND m.press_id = ?
 				' . ($searchText !== null?' AND (mt.setting_value LIKE ? OR a.first_name LIKE ? OR a.last_name LIKE ?)':'') . '
-			ORDER BY COALESCE(f.seq, ?), pm.date_published',
+			ORDER BY order_by, pm.date_published',
 			$params,
 			$rangeInfo
 		);
@@ -178,6 +178,7 @@ class PublishedMonographDAO extends MonographDAO {
 		$locale = AppLocale::getLocale();
 
 		$params = array(
+			REALLY_BIG_NUMBER,
 			'title', $primaryLocale, // Series title
 			'title', $locale, // Series title
 			'abbrev', $primaryLocale, // Series abbreviation
@@ -188,13 +189,12 @@ class PublishedMonographDAO extends MonographDAO {
 
 		if ($pressId) $params[] = (int) $pressId;
 
-		$params[] = REALLY_BIG_NUMBER; // For feature sorting
-
 		$result =& $this->retrieveRange(
 			'SELECT	DISTINCT pm.*,
 				m.*,
 				COALESCE(stl.setting_value, stpl.setting_value) AS series_title,
-				COALESCE(sal.setting_value, sapl.setting_value) AS series_abbrev
+				COALESCE(sal.setting_value, sapl.setting_value) AS series_abbrev,
+				COALESCE(f.seq, ?) AS order_by
 			FROM	published_monographs pm
 				JOIN monographs m ON pm.monograph_id = m.monograph_id
 				LEFT JOIN series s ON s.series_id = m.series_id
@@ -208,7 +208,7 @@ class PublishedMonographDAO extends MonographDAO {
 				LEFT JOIN features f ON (f.monograph_id = m.monograph_id AND f.assoc_type = ? AND f.assoc_id = ?)
 			WHERE	pm.date_published IS NOT NULL AND (sc.category_id IS NOT NULL OR mc.category_id IS NOT NULL)
 				' . ($pressId?' AND m.press_id = ?':'' ) . '
-			ORDER BY COALESCE(f.seq, ?), pm.date_published',
+			ORDER BY order_by, pm.date_published',
 			$params,
 			$rangeInfo
 		);

@@ -572,7 +572,7 @@ class MonographDAO extends DAO {
 				' . ($seriesEditorId?' JOIN series_editors se ON (se.press_id = m.press_id AND se.user_id = ? AND se.series_id = m.series_id)':'') . '
 			WHERE	m.date_submitted IS NOT NULL
 				' . ($pressId?' AND m.press_id = ?':'') . '
-			GROUP BY m.monograph_id HAVING g.user_group_id IS NULL',
+			GROUP BY g.user_group_id, pm.date_published, stl.setting_value, sal.setting_value,stpl.setting_value, sapl.setting_value, m.monograph_id HAVING g.user_group_id IS NULL',
 			$params
 		);
 

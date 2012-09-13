@@ -31,7 +31,7 @@ class ViewsDAO extends DAO {
 	 */
 	function recordView($assocType, $assocId, $userId) {
 		$this->Replace(
-			'views',
+			'item_views',
 			array(
 				'date_last_viewed' => strftime('%Y-%m-%d %H:%M:%S'),
 				'assoc_type' => (int) $assocType,
@@ -54,7 +54,7 @@ class ViewsDAO extends DAO {
 		if ($userId) $params[] = (int)$userId;
 		$result = $this->retrieve(
 			'SELECT	date_last_viewed
-			FROM	views
+			FROM	item_views
 			WHERE	assoc_type = ?
 				AND	assoc_id = ?' .
 				($userId ? ' AND	user_id = ?' : ''),
@@ -71,7 +71,7 @@ class ViewsDAO extends DAO {
 	 */
 	function moveViews($assocType, $oldAssocId, $newAssocId) {
 		return $this->update(
-			'UPDATE views SET assoc_id = ? WHERE assoc_type = ? AND assoc_id = ?',
+			'UPDATE item_views SET assoc_id = ? WHERE assoc_type = ? AND assoc_id = ?',
 			array($newAssocId, (int)$assocType, $oldAssocId)
 		);
 	}
@@ -83,7 +83,7 @@ class ViewsDAO extends DAO {
 	 */
 	function deleteViews($assocType, $assocId) {
 		return $this->update(
-			'DELETE FROM views WHERE assoc_type = ? AND assoc_id = ?',
+			'DELETE FROM item_views WHERE assoc_type = ? AND assoc_id = ?',
 			array((int)$assocType, $assocId)
 		);
 	}
