@@ -37,6 +37,15 @@ class NewMonographNoteForm extends NewNoteForm {
 	}
 
 	/**
+	 * Return the submit note button locale key.
+	 * Can be overriden by subclasses.
+	 * @return string
+	 */
+	function getSubmitNoteLocaleKey() {
+		return 'informationCenter.addSubmissionNote';
+	}
+
+	/**
 	 * Return the assoc ID for this note.
 	 * @return int
 	 */

@@ -43,11 +43,11 @@ class NewNoteForm extends Form {
 
 	/**
 	 * Return the submit note button locale key.
-	 * Can be overriden by subclasses.
+	 * Should be overriden by subclasses.
 	 * @return string
 	 */
 	function getSubmitNoteLocaleKey() {
-		return 'informationCenter.addNote';
+		assert(false);
 	}
 
 	/**

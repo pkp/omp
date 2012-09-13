@@ -485,7 +485,8 @@ current password.<br /><br />Enter your email address below to reset your passwo
 	<message key="informationCenter.informationCenter">Information Center</message>
 	<message key="informationCenter.bookInfo">Info</message>
 	<message key="informationCenter.composeNote">Compose Note</message>
-	<message key="informationCenter.addNote">Add to File</message>
+	<message key="informationCenter.addFileNote">Add to File</message>
+	<message key="informationCenter.addSubmissionNote">Add to Submission</message>
 	<message key="informationCenter.noNotes">There are no notes to display.</message>
 	<message key="informationCenter.currentNotes">Current Revision</message>
 	<message key="informationCenter.pastNotes">Earlier Revisions</message>
