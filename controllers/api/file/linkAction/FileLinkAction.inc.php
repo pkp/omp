@@ -19,8 +19,8 @@ class FileLinkAction extends LinkAction {
 	 * Constructor
 	 * @see LinkAction::LinkAction()
 	 */
-	function FileLinkAction($id, &$actionRequest, $title = null, $image = null) {
-		parent::LinkAction($id, $actionRequest, $title, $image);
+	function FileLinkAction($id, &$actionRequest, $title = null, $image = null, $tooltip = null) {
+		parent::LinkAction($id, $actionRequest, $title, $image, $tooltip);
 	}
 
 
