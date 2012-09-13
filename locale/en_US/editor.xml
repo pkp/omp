@@ -134,7 +134,7 @@
 	<message key="editor.monograph.editorial.copyeditingDescription"><![CDATA[Assign the copyedited files to authors (and others as needed) to review changes and answer queries, with their responses and uploaded files appearing in the notebook icon. These are marked <em>Considered</em> by the copyeditor, who then prepares a final copyedited fair copy to upload to <span class="pkp_help_title">Copyediting</span>, which the editor checks Approved, before sending to the Production stage.]]></message>
 	<message key="editor.monograph.editorial.fairCopy">Fair Copy</message>
 	<message key="editor.monograph.editorial.fairCopyDescription">The copyeditor uploads a clean or fair copy of the submission for review by the editor, prior to sending it to Production.</message>
-	<message key="editor.monograph.editorial.approveCopyeditDescription">The copyedited file needs to be approved before it can be sent to the Production stage.</message>
+	<message key="editor.monograph.editorial.approveCopyeditDescription">The copyedited file needs to be approved before it can be sent to the Production stage. Do you want to approve this file?</message>
 	<message key="editor.monograph.editorial.disapproveCopyeditDescription">Disapproving this copyedited file will make it unavailable to send to production stage. Do you want to disapprove this file?</message>
 	<message key="editor.monograph.editorial.approveCopyeditFile">Approve copyedited file</message>
 
