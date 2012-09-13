@@ -88,7 +88,6 @@ class PublicationFormatTombstoneManager {
 	/**
 	 * Delete tombstone for every passed publication format.
 	 * @param $publicationFormats array
-	 * @param $press Press
 	 */
 	function deleteTombstonesByPublicationFormats($publicationFormats) {
 		foreach ($publicationFormats as $publicationFormat) {

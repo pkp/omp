@@ -112,11 +112,12 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter {
 
 		// Contributor
 		$contributors = $monograph->getSponsor(null);
-		foreach ($contributors as $locale => $contributor) {
-			$contributors[$locale] = array_map('trim', explode(';', $contributor));
+		if (is_array($contributors)) {
+			foreach ($contributors as $locale => $contributor) {
+				$contributors[$locale] = array_map('trim', explode(';', $contributor));
+			}
+			$this->_addLocalizedElements($dc11Description, 'dc:contributor', $contributors);
 		}
-		$this->_addLocalizedElements($dc11Description, 'dc:contributor', $contributors);
-
 
 		// Date
 		// FIXME: should we use the publication dates of the publication format? If yes,

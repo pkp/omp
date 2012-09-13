@@ -356,7 +356,7 @@ class PublicationFormatGridHandler extends GridHandler {
 			$publicationFormat->setIsAvailable($newAvailableState);
 			$publicationFormatDao->updateObject($publicationFormat);
 
-			// log the deletion of the format.
+			// log the state changing of the format.
 			import('classes.log.MonographLog');
 			import('classes.log.MonographEventLogEntry');
 			MonographLog::logEvent(
@@ -365,6 +365,18 @@ class PublicationFormatGridHandler extends GridHandler {
 				$newAvailableState?'submission.event.publicationFormatMadeAvailable':'submission.event.publicationFormatMadeUnavailable',
 				array('publicationFormatName' => $publicationFormat->getLocalizedName())
 			);
+
+			// Update the formats tombstones.
+			import('classes.publicationFormat.PublicationFormatTombstoneManager');
+			$publicationFormatTombstoneMgr = new PublicationFormatTombstoneManager();
+
+			if ($newAvailableState) {
+				// Delete any existing tombstone.
+				$publicationFormatTombstoneMgr->deleteTombstonesByPublicationFormats(array($publicationFormat));
+			} else {
+				// Create a tombstone for this publication format.
+				$publicationFormatTombstoneMgr->insertTombstoneByPublicationFormat($publicationFormat, $press);
+			}
 
 			return DAO::getDataChangedEvent($publicationFormat->getId());
 		} else {
