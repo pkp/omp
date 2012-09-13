@@ -80,7 +80,7 @@ class MonographSearchIndex {
 				}
 				$parser->close();
 			} else {
-				assert(false); // cannot open parser
+				// cannot open parser; unsupported format?
 			}
 		}
 	}
