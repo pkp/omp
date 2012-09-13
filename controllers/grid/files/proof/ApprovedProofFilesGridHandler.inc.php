@@ -81,7 +81,7 @@ class ApprovedProofFilesGridHandler extends GridHandler {
 		));
 		$this->addColumn(new GridColumn(
 			'price',
-			'payment.directSales.price',
+			'payment.directSales.availability',
 			null,
 			'controllers/grid/gridCell.tpl',
 			$cellProvider
