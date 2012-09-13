@@ -50,24 +50,6 @@ class Role extends DataObject {
 	// Get/set methods
 	//
 	/**
-	 * Get role ID of this role.
-	 * @return int
-	 */
-	function getRoleId() {
-		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
-		return $this->getId();
-	}
-
-	/**
-	 * Set role ID of this role.
-	 * @param $roleId int
-	 */
-	function setRoleId($roleId) {
-		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
-		return $this->setId($roleId);
-	}
-
-	/**
 	 * Get the i18n key name associated with the specified role.
 	 * @param $plural boolean get the plural form of the name
 	 * @return string
