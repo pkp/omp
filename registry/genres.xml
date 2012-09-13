@@ -26,5 +26,5 @@
 	<genre key="FIGURE" sortable="1" category="2" localeKey="default.genres.figure"/>
 	<genre key="PHOTO" sortable="1" category="2" localeKey="default.genres.photo"/>
 	<genre key="ILLUSTRATION" sortable="1" category="2" localeKey="default.genres.illustration"/>
-	<genre key="OTHER" sortable="0" category="1" localeKey="default.genres.other"/>
+	<genre key="OTHER" sortable="1" category="1" localeKey="default.genres.other"/>
 </genres>
