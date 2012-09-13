@@ -46,11 +46,6 @@ class CatalogHandler extends Handler {
 		$publishedMonographs =& $publishedMonographDao->getByPressId($press->getId());
 		$templateMgr->assign('publishedMonographs', $publishedMonographs->toAssociativeArray());
 
-		// Expose the featured monograph IDs and associated params
-		$featureDao =& DAORegistry::getDAO('FeatureDAO');
-		$featuredMonographIds = $featureDao->getSequencesByAssoc(ASSOC_TYPE_PRESS, $press->getId());
-		$templateMgr->assign('featuredMonographIds', $featuredMonographIds);
-
 		// Display
 		$templateMgr->display('catalog/index.tpl');
 	}

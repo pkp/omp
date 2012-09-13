@@ -241,6 +241,10 @@ $.pkp.pages.catalog = $.pkp.pages.catalog || {};
 		var relativeIndex = Math.ceil(itemsNumber / 2);
 		var startingChild = firstItemIndex + relativeIndex - 1;
 
+		// The html must be visible, otherwise the plugin will not
+		// be correctly applied.
+		$containerElement.parent().show();
+
 		// Configure carousel plugin.
 		$('ul.pkp_catalog_carousel', $containerElement).roundabout({
 			minZ: 0,

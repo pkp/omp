@@ -33,9 +33,8 @@
 {/if}
 
 {* Include the carousel view of featured content *}
-{if $featuredMonographIds|@count}
-	{include file="catalog/carousel.tpl" publishedMonographs=$publishedMonographs featuredMonographIds=$featuredMonographIds}
-{/if}
+{url|assign:carouselUrl router=$smarty.const.ROUTE_COMPONENT component="carousel.CarouselHandler" op="fetch" random=uniqid}
+{load_url_in_div id="carousel" url=$carouselUrl}
 
 {if $spotlights|@count > 0}
 	{include file="index/spotlights.tpl"}
