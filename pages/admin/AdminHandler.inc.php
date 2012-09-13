@@ -56,6 +56,16 @@ class AdminHandler extends Handler {
 			$request->redirectUrl($url);
 		}
 
+		$pressDao =& DAORegistry::getDAO('PressDAO'); /* @var $pressDao PressDAO */
+		$pressFactory =& $pressDao->getPresses();
+
+		if ($requestedOp == 'settings' && $pressFactory->getCount() == 1) {
+			// Don't let users access site settings in a single press installation.
+			// In that case, those settings are available under management or are not
+			// relevant (like site appearance).
+			return false;
+		}
+
 		return $returner;
 	}
 
