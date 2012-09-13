@@ -672,7 +672,7 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="notification.addedSocialMedia">Social Media Network added.</message>
 	<message key="notification.editedSocialMedia">Social Media Network edited.</message>
 	<message key="notification.removedSocialMedia">Social Media Network removed.</message>
-	<message key="notification.signedFile">File signed.</message>
+	<message key="notification.signedFile">File considered.</message>
 	<message key="notification.updatedReviewFiles">Review files updated.</message>
 	<message key="notification.savedCatalogMetadata">Catalog metadata saved.</message>
 	<message key="notification.savedSubmissionMetadata">Submission metadata saved.</message>
