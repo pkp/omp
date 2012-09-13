@@ -13,7 +13,7 @@
 		<subject>Manuscript Audit Request</subject>
 		<body>{$auditorName}:
 
-New files have been uploaded for the manuscript "{$monographTitle}", and I am asking that you audit them. It is important to the press that participants review the manuscript at each stage.
+New files have been uploaded for the manuscript "{$monographTitle}," and I am asking that you audit them. It is important to the press that participants review the manuscript at each stage.
 
 You can find the files to review at: 
 
@@ -402,7 +402,7 @@ Username: {$authorUsername}
 		<subject>Editor Decision</subject>
 		<body>{$authorName}:
 
-The editing of your manuscript, "{$monographTitle}", is complete.  We are now sending it to production.
+The editing of your manuscript, "{$monographTitle}," is complete.  We are now sending it to production.
 
 Manuscript URL: {$submissionUrl}
 Username: {$authorUsername}
