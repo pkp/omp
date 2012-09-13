@@ -134,7 +134,12 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter {
 		$this->_addLocalizedElements($dc11Description, 'dc:type', $types);
 
 		// Format
-		$dc11Description->addStatement('dc:format', $publicationFormat->getPhysicalFormat());
+		$onixCodelistItemDao =& DAORegistry::getDAO('ONIXCodelistItemDAO');
+		$entryKeys = $onixCodelistItemDao->getCodes('List7'); // List7 is for object formats
+		if ($publicationFormat->getEntryKey()) {
+			$formatName = $entryKeys[$publicationFormat->getEntryKey()];
+			$dc11Description->addStatement('dc:format', $formatName);
+		}
 
 		// Identifier: URL
 		if (is_a($monograph, 'PublishedMonograph')) {
