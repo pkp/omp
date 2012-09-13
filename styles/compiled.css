@@ -773,6 +773,7 @@ body {
   display:table-cell;
   *display:block;
   width:auto;
+  overflow:hidden;
 }
 .pkp_structure_nosidebar {
   padding-top:10px;
