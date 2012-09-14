@@ -67,6 +67,8 @@ class NotifyUsersListbuilderHandler extends ListbuilderHandler {
 		// Load submission-specific translations
 		AppLocale::requireComponents(LOCALE_COMPONENT_PKP_USER);
 
+		$this->setTitle('email.recipients');
+
 		import('lib.pkp.classes.linkAction.request.NullAction');
 		$this->addAction(
 			new LinkAction(
