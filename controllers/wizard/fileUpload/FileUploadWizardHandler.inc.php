@@ -479,6 +479,11 @@ class FileUploadWizardHandler extends FileManagementHandler {
 			// Do not consider the uploaded file itself.
 			if ($uploadedFile->getFileId() == $monographFile->getFileId()) continue;
 
+			// Do not consider files from different publication formats.
+			if (($uploadedFile->getAssocType() == ASSOC_TYPE_PUBLICATION_FORMAT &&
+				$monographFile->getAssocType() == ASSOC_TYPE_PUBLICATION_FORMAT) &&
+				$uploadedFile->getAssocId() != $monographFile->getAssocId()) continue;
+
 			// Test whether the current monograph file is similar
 			// to the uploaded file. (Transliterate to ASCII -- the
 			// similar_text function can't handle UTF-8.)

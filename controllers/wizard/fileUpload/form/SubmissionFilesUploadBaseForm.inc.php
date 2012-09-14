@@ -149,6 +149,11 @@ class SubmissionFilesUploadBaseForm extends Form {
 					$reviewRound =& $this->getReviewRound();
 					$this->_monographFiles =& $submissionFileDao->getRevisionsByReviewRound($reviewRound);
 				}
+			} else if ($this->getStageId() == WORKFLOW_STAGE_ID_PRODUCTION &&
+				$this->getAssocType() == ASSOC_TYPE_PUBLICATION_FORMAT && is_int($this->getAssocId())) {
+				// Retrieve only the monograph files with the same publication format.
+				$this->_monographFiles =& $submissionFileDao->getLatestRevisionsByAssocId(ASSOC_TYPE_PUBLICATION_FORMAT,
+					$this->getAssocId(), $this->getData('monographId'), $this->getData('fileStage'));
 			} else {
 				// Retrieve the monograph files for the given file stage.
 				$this->_monographFiles =& $submissionFileDao->getLatestRevisions(
