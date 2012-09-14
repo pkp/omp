@@ -195,4 +195,5 @@
 	<message key="editor.review.unconsiderReviewText">Do you wish to mark this review as unconsidered?  The review history will be preserved.</message>
 	<message key="editor.review.unconsiderReview">Unconsider this Review</message>
 	<message key="editor.review.errorUnconsideringReview">There was an error marking this review as unconsidered.  Please try again.</message>
+	<message key="editor.review.readConfirmation">Once this review has been read, press "Confirm" to flag that the review process may proceed.</message>
 </locale>
