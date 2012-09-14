@@ -38,6 +38,16 @@ class ProofFilesListbuilderHandler extends FilesListbuilderHandler {
 	}
 
 
+	/**
+	 * Configure the grid
+	 * @param PKPRequest $request
+	 */
+	function initialize(&$request) {
+		parent::initialize($request);
+		AppLocale::requireComponents(LOCALE_COMPONENT_OMP_EDITOR);
+		$this->setTitle('editor.monograph.selectProofreadingFiles');
+	}
+
 	//
 	// Implement methods from FilesListbuilderHandler
 	//

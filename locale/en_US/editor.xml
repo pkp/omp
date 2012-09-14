@@ -59,6 +59,7 @@
 	<message key="editor.monograph.selectAttachments">Select the review attachments for the author to see</message>
 	<message key="editor.monograph.selectPromoteRevisions">Select revisions to use in the next stage</message>
 	<message key="editor.monograph.selectFairCopy">Select approved copy editing files to be sent to Production.</message>
+	<message key="editor.monograph.selectProofreadingFiles">Proofreading Files</message>
 	<message key="editor.monograph.selectCopyedingFiles">Copyediting Files</message>
 	<message key="editor.monograph.roundStatus.revisionsRequested">Revisions have been requested.</message>
 	<message key="editor.monograph.roundStatus.resubmitted">Submission has been resubmitted for review.</message>
