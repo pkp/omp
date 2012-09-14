@@ -76,14 +76,15 @@ class UnassignedSubmissionsListGridHandler extends SubmissionsListGridHandler {
 				continue;
 			}
 
-			$monographFactory =& $monographDao->getUnassignedMonographs(
+			$monographFactory =& $monographDao->getMonographsBySeriesEditorId(
 				$press->getId(),
 				$isPressManager?null:$userId
 			);
 
 			if (!$monographFactory->wasEmpty()) {
+				$stageAssignmentDao =& DAORegistry::getDAO('StageAssignmentDAO');
 				while ($monograph =& $monographFactory->next()) {
-					if ($monograph->getDatePublished() == null) {
+					if ($monograph->getDatePublished() == null && !$stageAssignmentDao->editorAssignedToStage($monograph->getId())) {
 						$accessibleMonographs[$monograph->getId()] = $monograph;
 					}
 					unset($monograph);

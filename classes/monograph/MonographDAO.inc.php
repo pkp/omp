@@ -542,7 +542,7 @@ class MonographDAO extends DAO {
 	 * 	whose series will be included in the results (excluding others).
 	 * @return DAOResultFactory containing matching Monographs
 	 */
-	function &getUnassignedMonographs($pressId = null, $seriesEditorId = null) {
+	function &getMonographsBySeriesEditorId($pressId = null, $seriesEditorId = null) {
 		$primaryLocale = AppLocale::getPrimaryLocale();
 		$locale = AppLocale::getLocale();
 
@@ -557,9 +557,7 @@ class MonographDAO extends DAO {
 		if ($pressId) $params[] = (int) $pressId;
 
 		$result =& $this->retrieve(
-			'SELECT	m.*, g.user_group_id, pm.date_published,
-				COALESCE(stl.setting_value, stpl.setting_value) AS series_title,
-				COALESCE(sal.setting_value, sapl.setting_value) AS series_abbrev
+			'SELECT	m.*
 			FROM	monographs m
 				LEFT JOIN published_monographs pm ON m.monograph_id = pm.monograph_id
 				LEFT JOIN series s ON s.series_id = m.series_id
@@ -572,7 +570,7 @@ class MonographDAO extends DAO {
 				' . ($seriesEditorId?' JOIN series_editors se ON (se.press_id = m.press_id AND se.user_id = ? AND se.series_id = m.series_id)':'') . '
 			WHERE	m.date_submitted IS NOT NULL
 				' . ($pressId?' AND m.press_id = ?':'') . '
-			GROUP BY g.user_group_id, pm.date_published, stl.setting_value, sal.setting_value,stpl.setting_value, sapl.setting_value, m.monograph_id HAVING g.user_group_id IS NULL',
+			GROUP BY m.monograph_id',
 			$params
 		);
 
