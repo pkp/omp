@@ -54,7 +54,7 @@ class AuthorProofingSignoffFilesGridHandler extends CategoryGridHandler {
 
 		// The file name column is common to all file grid types.
 		import('controllers.grid.files.FileNameGridColumn');
-		$this->addColumn(new FileNameGridColumn(false, WORKFLOW_STAGE_ID_PRODUCTION));
+		$this->addColumn(new FileNameGridColumn(true, WORKFLOW_STAGE_ID_PRODUCTION));
 
 		import('controllers.grid.files.fileSignoff.AuthorSignoffFilesGridCellProvider');
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
