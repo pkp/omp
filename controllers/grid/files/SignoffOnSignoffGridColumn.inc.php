@@ -41,6 +41,7 @@ class SignoffOnSignoffGridColumn extends BaseSignoffStatusColumn {
 		$actionArgs['signoffId'] = $signoff->getId();
 
 		$router =& $request->getRouter();
+		$actions = array();
 
 		switch ($status) {
 			case 'accepted':
@@ -77,7 +78,6 @@ class SignoffOnSignoffGridColumn extends BaseSignoffStatusColumn {
 				$actions[] = $signoffAction;
 				break;
 		}
-
 
 		return $actions;
 	}
