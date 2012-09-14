@@ -1,10 +1,10 @@
 /**
- * @file js/pages/catalog/MonographListHandler.js
+ * @file js/pages/catalog/MonographPublicListHandler.js
  *
  * Copyright (c) 2000-2012 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class MonographListHandler
+ * @class MonographPublicListHandler
  * @ingroup js_pages_catalog
  *
  * @brief Handler for monograph list.
@@ -22,20 +22,29 @@
 	 *  the monograph list div.
 	 * @param {Object} options Handler options.
 	 */
-	$.pkp.pages.catalog.MonographListHandler =
+	$.pkp.pages.catalog.MonographPublicListHandler =
 			function($monographsContainer, options) {
 
 		this.parent($monographsContainer, options);
-		// iterate over our monographs in groups of four, since our CSS spacing
-		// displays four monographs per row.  Normalize the element detail heights.
-		var $monographs = $monographsContainer.find('.pkp_catalog_monograph');
-		for (var $i = 0; $i < $monographs.size(); $i += 4) {
-			$monographs.slice($i, $i + 4).equalizeElementHeights();
-		}
+
+		this.formatList();
 	};
 	$.pkp.classes.Helper.inherits(
-			$.pkp.pages.catalog.MonographListHandler,
-			$.pkp.classes.Handler);
+			$.pkp.pages.catalog.MonographPublicListHandler,
+			$.pkp.controllers.monographList.MonographListHandler);
+
+
+	//
+	// Extendeded protected methods from MonographListHandler
+	//
+	/**
+	 * @inheritDoc
+	 */
+	$.pkp.pages.catalog.MonographPublicListHandler.
+			prototype.getMonographs = function() {
+		return this.getHtmlElement().find('.pkp_catalog_monograph');
+	};
+
 
 /** @param {jQuery} $ jQuery closure. */
 })(jQuery);

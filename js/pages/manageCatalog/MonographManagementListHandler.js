@@ -1,10 +1,10 @@
 /**
- * @file js/pages/manageCatalog/MonographListHandler.js
+ * @file js/pages/manageCatalog/MonographManagementListHandler.js
  *
  * Copyright (c) 2000-2012 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class MonographListHandler
+ * @class MonographManagementListHandler
  * @ingroup js_pages_manageCatalog
  *
  * @brief Handler for monograph list.
@@ -22,7 +22,7 @@
 	 *  the monograph list div.
 	 * @param {Object} options Handler options.
 	 */
-	$.pkp.pages.manageCatalog.MonographListHandler =
+	$.pkp.pages.manageCatalog.MonographManagementListHandler =
 			function($monographsContainer, options) {
 
 		this.parent($monographsContainer, options);
@@ -44,8 +44,8 @@
 		this.trigger('monographListChanged');
 	};
 	$.pkp.classes.Helper.inherits(
-			$.pkp.pages.manageCatalog.MonographListHandler,
-			$.pkp.classes.Handler);
+			$.pkp.pages.manageCatalog.MonographManagementListHandler,
+			$.pkp.controllers.monographList.MonographListHandler);
 
 
 	//
@@ -56,7 +56,8 @@
 	 * @private
 	 * @type {boolean}
 	 */
-	$.pkp.pages.manageCatalog.MonographListHandler.prototype.inFeatureMode_ = false;
+	$.pkp.pages.manageCatalog.MonographManagementListHandler.
+			prototype.inFeatureMode_ = false;
 
 
 	/**
@@ -64,7 +65,8 @@
 	 * @private
 	 * @type {boolean?}
 	 */
-	$.pkp.pages.manageCatalog.MonographListHandler.prototype.inGridMode_ = null;
+	$.pkp.pages.manageCatalog.MonographManagementListHandler.
+			prototype.inGridMode_ = null;
 
 
 	//
@@ -74,8 +76,8 @@
 	 * Switch to Grid View mode.
 	 * @return {boolean} Always returns false.
 	 */
-	$.pkp.pages.manageCatalog.MonographListHandler.prototype.useGridView =
-			function() {
+	$.pkp.pages.manageCatalog.MonographManagementListHandler.
+			prototype.useGridView =	function() {
 
 		var $htmlElement = $(this.getHtmlElement());
 		$htmlElement.find('.pkp_manageCatalog_monographList')
@@ -96,6 +98,18 @@
 
 
 	//
+	// Extendeded protected methods from MonographListHandler
+	//
+	/**
+	 * @inheritDoc
+	 */
+	$.pkp.pages.manageCatalog.MonographManagementListHandler.
+			prototype.getMonographs = function() {
+		return this.getHtmlElement().find('.pkp_manageCatalog_monograph');
+	};
+
+
+	//
 	// Private Methods
 	//
 	/**
@@ -105,8 +119,8 @@
 	 *
 	 * @return {boolean} Always returns false.
 	 */
-	$.pkp.pages.manageCatalog.MonographListHandler.prototype.featureButtonHandler_ =
-			function() {
+	$.pkp.pages.manageCatalog.MonographManagementListHandler.
+			prototype.featureButtonHandler_ = function() {
 
 		// Toggle the "feature" flag.
 		this.inFeatureMode_ = !this.inFeatureMode_;
@@ -154,7 +168,7 @@
 	 * @param {Event} event The event.
 	 * @return {boolean} The event handling chain status.
 	 */
-	$.pkp.pages.manageCatalog.MonographListHandler.
+	$.pkp.pages.manageCatalog.MonographManagementListHandler.
 			prototype.monographListChangedHandler_ =
 			function(callingHandler, event) {
 
@@ -215,7 +229,7 @@
 	 * @param {Array} newSequences The new sequences to store.
 	 * @return {boolean} The event handling chain status.
 	 */
-	$.pkp.pages.manageCatalog.MonographListHandler.
+	$.pkp.pages.manageCatalog.MonographManagementListHandler.
 			prototype.monographSequencesChangedHandler_ =
 			function(callingHandler, event, newSequences) {
 
@@ -249,7 +263,7 @@
 	 * @param {Object} ui The UI element that has changed.
 	 * @return {boolean} The event handling chain status.
 	 */
-	$.pkp.pages.manageCatalog.MonographListHandler.prototype.
+	$.pkp.pages.manageCatalog.MonographManagementListHandler.prototype.
 			sortUpdateHandler_ = function(callingHandler, event, ui) {
 		// Figure out where we are in the DOM and choose a new seq num
 		var $monographElement = ui.item;
@@ -278,7 +292,7 @@
 
 
 	/**
-	 * Reset the element heights of the monographs (either when the grid is
+	 * Apply the format list function (either when the grid is
 	 * first loaded, or after they are re-sorted.
 	 *
 	 * @private
@@ -287,17 +301,9 @@
 	 *  that triggered the event.
 	 * @param {Event} event The event.
 	 */
-	$.pkp.pages.manageCatalog.MonographListHandler.prototype.
+	$.pkp.pages.manageCatalog.MonographManagementListHandler.prototype.
 			resetElementHeights_ = function(callingHandler, event) {
-		var $htmlElement = $(this.getHtmlElement());
-
-		// iterate over our monographs in groups of four, since our CSS
-		// spacing displays four monographs per row.  Normalize the
-		// element detail heights.
-		var $monographs = $htmlElement.find('.pkp_manageCatalog_monograph');
-		for (var $i = 0; $i < $monographs.size(); $i += 4) {
-			$monographs.slice($i, $i + 4).equalizeElementHeights();
-		}
+		this.formatList();
 	};
 
 

@@ -14,7 +14,7 @@
 	// Initialize JS handler.
 	$(function() {ldelim}
 		$('#{$monographContainerId|escape:"javascript"}').pkpHandler(
-			'$.pkp.pages.manageCatalog.MonographListHandler'
+			'$.pkp.pages.manageCatalog.MonographManagementListHandler'
 		);
 	{rdelim});
 </script>

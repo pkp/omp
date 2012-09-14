@@ -10,7 +10,7 @@
 	// Initialize JS handler.
 	$(function() {ldelim}
 		$('#monographListContainer').pkpHandler(
-			'$.pkp.pages.catalog.MonographListHandler'
+			'$.pkp.pages.catalog.MonographPublicListHandler'
 		);
 	{rdelim});
 </script>
