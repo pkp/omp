@@ -1025,7 +1025,6 @@ span.pkp_form_error {
   background-color:#eeeeee;
   display:block;
   padding:2px 5px 0px 5px;
-  position:relative;
   box-shadow:3px 3px 6px #999999;
 }
 .pkp_form .localization_popover {
