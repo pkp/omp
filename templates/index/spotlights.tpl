@@ -62,9 +62,9 @@
 							{/if}
 						{/if}
 						{assign var="authorName" value=$item->getFullName()|strip_unsafe_html}
-						<div class="pkp_catalog_spotlight_itemTitle">{$authorName}{if $monograph},{/if}</div>
 						{if $monograph}
-							<div class="pkp_catalog_spotlight_itemAuthorship">{$monograph->getLocalizedFullTitle()|strip_unsafe_html}</div>
+							<div class="pkp_catalog_spotlight_itemTitle">{$monograph->getLocalizedFullTitle()|strip_unsafe_html}</div>
+							<div class="pkp_catalog_spotlight_itemAuthorship">{$authorName}</div>
 							<div class="pkp_catalog_spotlight_itemDescription">
 								{if $spotlight->getLocalizedDescription()}
 									{$spotlight->getLocalizedDescription()|strip_unsafe_html}
@@ -74,6 +74,7 @@
 							</div>
 							<div class="pkp_catalog_readMore"><a href="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="book" path=$monograph->getId()}">{translate key="common.plusMore"}</a></div>
 						{else}
+							<div class="pkp_catalog_spotlight_itemTitle">{$authorName}</div>
 							<div class="pkp_catalog_spotlight_itemDescription">
 								{$spotlight->getLocalizedDescription()|strip_unsafe_html}
 							</div>
