@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file controllers/grid/settings/library/form/LibraryFileForm.inc.php
+ * @file controllers/grid/files/form/LibraryFileForm.inc.php
  *
  * Copyright (c) 2003-2012 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -24,8 +24,8 @@ class LibraryFileForm extends Form {
 
 	/**
 	 * Constructor.
+	 * @param $template string
 	 * @param $pressId int
-	 * @param $fileType int LIBRARY_FILE_TYPE_...
 	 */
 	function LibraryFileForm($template, $pressId) {
 		$this->pressId = $pressId;

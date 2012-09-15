@@ -1,13 +1,13 @@
 <?php
 
 /**
- * @file controllers/grid/settings/library/form/EditLibraryFileForm.inc.php
+ * @file controllers/grid/files/submissionDocuments/form/EditLibraryFileForm.inc.php
  *
  * Copyright (c) 2003-2012 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class EditLibraryFileForm
- * @ingroup controllers_grid_file_form
+ * @ingroup controllers_grid_files_submissionDocuments_form
  *
  * @brief Form for editing a library file
  */
@@ -18,8 +18,8 @@ class EditLibraryFileForm extends LibraryFileForm {
 	/** the file being edited, or null for new */
 	var $libraryFile;
 
-	/** the id of the press this library file is attached to */
-	var $pressId;
+	/** the id of the monograph for this library file */
+	var $monographId;
 
 	/**
 	 * Constructor.
@@ -27,12 +27,14 @@ class EditLibraryFileForm extends LibraryFileForm {
 	 * @param $fileType int LIBRARY_FILE_TYPE_...
 	 * @param $fileId int optional
 	 */
-	function EditLibraryFileForm($pressId, $fileId) {
-		parent::LibraryFileForm('controllers/grid/settings/library/form/editFileForm.tpl', $pressId);
+	function EditLibraryFileForm($pressId, $fileId, $monographId) {
+		parent::LibraryFileForm('controllers/grid/files/submissionDocuments/form/editFileForm.tpl', $pressId);
+
+		$this->monographId = $monographId;
 		$libraryFileDao =& DAORegistry::getDAO('LibraryFileDAO');
 		$this->libraryFile =& $libraryFileDao->getById($fileId);
 
-		if (!$this->libraryFile || $this->libraryFile->getPressId() !== $this->pressId) {
+		if (!$this->libraryFile || $this->libraryFile->getPressId() !== $this->pressId || $this->libraryFile->getMonographId() !== $this->getMonographId()) {
 			fatalError('Invalid library file!');
 		}
 	}
@@ -42,6 +44,7 @@ class EditLibraryFileForm extends LibraryFileForm {
 	 */
 	function initData() {
 		$this->_data = array(
+			'monographId' => $this->libraryFile->getMonographId(),
 			'libraryFileName' => $this->libraryFile->getName(null), // Localized
 			'libraryFile' => $this->libraryFile // For read-only info
 		);
@@ -56,6 +59,14 @@ class EditLibraryFileForm extends LibraryFileForm {
 
 		$libraryFileDao =& DAORegistry::getDAO('LibraryFileDAO');
 		$libraryFileDao->updateObject($this->libraryFile);
+	}
+
+	/**
+	 * return the monograph ID for this library file.
+	 * @return int
+	 */
+	function getMonographId() {
+		return $this->monographId;
 	}
 }
 

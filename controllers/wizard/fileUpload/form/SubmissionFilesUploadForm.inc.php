@@ -69,7 +69,7 @@ class SubmissionFilesUploadForm extends SubmissionFilesUploadBaseForm {
 	 * @see Form::readInputData()
 	 */
 	function readInputData() {
-		$this->readUserVars(array('genreId', 'uploaderUserGroupId', 'libraryCategoryId'));
+		$this->readUserVars(array('genreId', 'uploaderUserGroupId'));
 		return parent::readInputData();
 	}
 
@@ -129,9 +129,6 @@ class SubmissionFilesUploadForm extends SubmissionFilesUploadBaseForm {
 		// Retrieve available monograph file genres.
 		$genreList =& $this->_retrieveGenreList($request);
 		$this->setData('monographFileGenres', $genreList);
-
-		// Retrieve the categories for LibraryFiles.
-		$this->setData('libraryCategories', $this->_retrieveLibraryCategories($request));
 
 		// Retrieve the current context.
 		$router =& $request->getRouter();
@@ -221,11 +218,9 @@ class SubmissionFilesUploadForm extends SubmissionFilesUploadBaseForm {
 		if ($revisedFileId) {
 			// The file genre and category will be copied over from the revised file.
 			$fileGenre = null;
-			$libraryCategoryId = null;
 		} else {
 			// This is a new file so we need the file genre and category from the form.
 			$fileGenre = $this->getData('genreId') ? (int)$this->getData('genreId') : null;
-			$libraryCategoryId = $this->getData('libraryCategoryId') ? (int)$this->getData('libraryCategoryId') : null;
 		}
 
 		// Retrieve the uploader's user group.
@@ -246,7 +241,7 @@ class SubmissionFilesUploadForm extends SubmissionFilesUploadBaseForm {
 		$fileStage = $this->getData('fileStage');
 		$monographFile = $monographFileManager->uploadMonographFile(
 			'uploadedFile', $fileStage,
-			$user->getId(), $uploaderUserGroupId, $revisedFileId, $fileGenre, $assocType, $assocId, $libraryCategoryId
+			$user->getId(), $uploaderUserGroupId, $revisedFileId, $fileGenre, $assocType, $assocId
 		);
 
 		if ($monographFile && ($fileStage == MONOGRAPH_FILE_REVIEW_FILE || $fileStage == MONOGRAPH_FILE_REVIEW_ATTACHMENT || $fileStage == MONOGRAPH_FILE_REVIEW_REVISION)) {
@@ -262,7 +257,7 @@ class SubmissionFilesUploadForm extends SubmissionFilesUploadBaseForm {
 			import('classes.log.MonographFileEventLogEntry'); // constants
 			$localeKey = $revisedFileId ? 'submission.event.revisionUploaded' : 'submission.event.fileUploaded';
 			$assocType = $revisedFileId ? MONOGRAPH_LOG_FILE_REVISION_UPLOAD : MONOGRAPH_LOG_FILE_UPLOAD;
-			MonographFileLog::logEvent($request, $monographFile, $assocType, $localeKey, array('fileStage' => $fileStage, 'revisedFileId' => $revisedFileId, 'fileId' => $monographFile->getFileId(), 'fileRevision' => $monographFile->getRevision(), 'originalFileName' => $monographFile->getOriginalFileName(), 'submissionId' => $this->getData('monographId'), 'username' => $user->getUsername(), 'libraryCategory' => $monographFile->getLibraryCategoryId()));
+			MonographFileLog::logEvent($request, $monographFile, $assocType, $localeKey, array('fileStage' => $fileStage, 'revisedFileId' => $revisedFileId, 'fileId' => $monographFile->getFileId(), 'fileRevision' => $monographFile->getRevision(), 'originalFileName' => $monographFile->getOriginalFileName(), 'submissionId' => $this->getData('monographId'), 'username' => $user->getUsername()));
 		}
 
 		return $monographFile;
@@ -291,19 +286,6 @@ class SubmissionFilesUploadForm extends SubmissionFilesUploadBaseForm {
 			unset($genre);
 		}
 		return $genreList;
-	}
-
-	/**
-	 * Retrieve the genre list.
-	 * @param $request Request
-	 * @return array
-	 */
-	function &_retrieveLibraryCategories(&$request) {
-		$context =& $request->getContext();
-		import('classes.file.LibraryFileManager');
-		$libraryFileManager = new LibraryFileManager($context->getId());
-		$categories = $libraryFileManager->getTypeTitleKeyMap();
-		return $categories;
 	}
 }
 

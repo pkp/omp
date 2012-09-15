@@ -1105,7 +1105,6 @@
 		<field name="uploader_user_id" type="I8" />
 		<field name="assoc_type" type="I8"/>
 		<field name="assoc_id" type="I8"/>
-		<field name="library_category_id" type="I8"/>
 		<descr>Files associated with monograph. Includes submission files, etc.</descr>
 		<index name="monograph_files_monograph_id">
 			<col>monograph_id</col>
@@ -1816,9 +1815,15 @@
 		<field name="date_modified" type="T">
 			<NOTNULL/>
 		</field>
+		<field name="monograph_id" type="I8">
+			<NOTNULL/>
+		</field>
 		<descr>Library files for a press</descr>
 		<index name="library_files_press_id">
 			<col>press_id</col>
+		</index>
+		<index name="library_files_monograph_id">
+			<col>monograph_id</col>
 		</index>
 	</table>
 

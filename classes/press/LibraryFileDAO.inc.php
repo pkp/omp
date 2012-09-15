@@ -32,7 +32,7 @@ class LibraryFileDAO extends DAO {
 	 */
 	function &getById($fileId) {
 		$result =& $this->retrieve(
-			'SELECT file_id, press_id, file_name, original_file_name, file_type, file_size, type, date_uploaded FROM library_files WHERE file_id = ?',
+			'SELECT file_id, press_id, file_name, original_file_name, file_type, file_size, type, date_uploaded, monograph_id FROM library_files WHERE file_id = ?',
 			array((int) $fileId)
 		);
 
@@ -60,8 +60,30 @@ class LibraryFileDAO extends DAO {
 		$result =& $this->retrieve(
 			'SELECT	*
 			FROM	library_files
-			WHERE	press_id = ?' . (isset($type)?' AND type = ?' : ''),
+			WHERE	press_id = ? AND monograph_id = 0 ' . (isset($type)?' AND type = ?' : ''),
 			$params
+		);
+		$returner = new DAOResultFactory($result, $this, '_fromRow', array('id'));
+		return $returner;
+	}
+
+	/**
+	 * Retrieve all library files for a monograph.
+	 * @param $monographId int
+	 * @param $type (optional)
+	 * @param $pressId (optional) int
+	 * @return array LibraryFiles
+	 */
+	function &getByMonographId($monographId, $type = null, $pressId = null) {
+		$params = array((int) $monographId);
+		if (isset($type)) $params[] = (int) $type;
+		if (isset($pressId)) $params[] = (int) $pressId;
+
+		$result =& $this->retrieve(
+				'SELECT	*
+				FROM	library_files
+				WHERE	monograph_id = ? ' . (isset($pressId)?' AND press_id = ?' : '') . (isset($type)?' AND type = ?' : ''),
+				$params
 		);
 		$returner = new DAOResultFactory($result, $this, '_fromRow', array('id'));
 		return $returner;
@@ -112,6 +134,7 @@ class LibraryFileDAO extends DAO {
 		$libraryFile->setFileSize($row['file_size']);
 		$libraryFile->setType($row['type']);
 		$libraryFile->setDateUploaded($this->datetimeFromDB($row['date_uploaded']));
+		$libraryFile->setMonographId($row['monograph_id']);
 
 		$this->getDataObjectSettings('library_file_settings', 'file_id', $row['file_id'], $libraryFile);
 
@@ -132,16 +155,17 @@ class LibraryFileDAO extends DAO {
 			$libraryFile->getOriginalFileName(),
 			$libraryFile->getFileType(),
 			(int) $libraryFile->getFileSize(),
-			(int) $libraryFile->getType()
+			(int) $libraryFile->getType(),
+			(int) $libraryFile->getMonographId(),
 		);
 
 		if ($libraryFile->getId()) $params[] = (int) $libraryFile->getId();
 
 		$this->update(
 			sprintf('INSERT INTO library_files
-				(press_id, file_name, original_file_name, file_type, file_size, type, date_uploaded, date_modified' . ($libraryFile->getId()?', file_id':'') . ')
+				(press_id, file_name, original_file_name, file_type, file_size, type, monograph_id, date_uploaded, date_modified' . ($libraryFile->getId()?', file_id':'') . ')
 				VALUES
-				(?, ?, ?, ?, ?, ?, %s, %s' . ($libraryFile->getId()?', ?':'') . ')',
+				(?, ?, ?, ?, ?, ?, ?, %s, %s' . ($libraryFile->getId()?', ?':'') . ')',
 				$this->datetimeToDB($libraryFile->getDateUploaded()),
 					$this->datetimeToDB($libraryFile->getDateModified())
 			),
@@ -168,6 +192,7 @@ class LibraryFileDAO extends DAO {
 					file_type = ?,
 					file_size = ?,
 					type = ?,
+					monograph_id = ?,
 					date_uploaded = %s
 				WHERE	file_id = ?',
 				$this->datetimeToDB($libraryFile->getDateUploaded())
@@ -178,6 +203,7 @@ class LibraryFileDAO extends DAO {
 				$libraryFile->getFileType(),
 				(int) $libraryFile->getFileSize(),
 				(int) $libraryFile->getType(),
+				(int) $libraryFile->getMonographId(),
 				(int) $libraryFile->getId()
 			)
 		);

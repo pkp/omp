@@ -25,11 +25,15 @@ class LibraryFileGridRow extends GridRow {
 	/** is the grid row read only **/
 	var $_canEdit;
 
+	/** the monograph associated with submission library files **/
+	var $_monograph;
+
 	/**
 	 * Constructor
 	 */
-	function LibraryFileGridRow($canEdit = false) {
+	function LibraryFileGridRow($canEdit = false, $monograph = null) {
 		$this->_canEdit = $canEdit;
+		$this->_monograph = $monograph;
 		parent::GridRow();
 	}
 
@@ -69,6 +73,11 @@ class LibraryFileGridRow extends GridRow {
 			$actionArgs = array(
 				'fileId' => $fileId,
 			);
+
+			if ($this->_monograph) {
+				$actionArgs['monographId'] = $this->_monograph->getId();
+			}
+
 			$this->addAction(
 				new LinkAction(
 					'editFile',

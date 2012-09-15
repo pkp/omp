@@ -33,12 +33,6 @@ class LibraryFileAdminGridHandler extends LibraryFileGridHandler {
 		);
 	}
 
-
-	//
-	// Getters/Setters
-	//
-
-
 	//
 	// Overridden template methods
 	//
@@ -48,177 +42,35 @@ class LibraryFileAdminGridHandler extends LibraryFileGridHandler {
 	 * @param $request PKPRequest
 	 */
 	function initialize(&$request) {
-
-		parent::initialize($request);
 		// determine if this grid is read only.
 		$this->setCanEdit((boolean) $request->getUserVar('canEdit'));
 
 		// Set instructions
 		$this->setInstructions('manager.setup.libraryDescription');
-
-		$router =& $request->getRouter();
-
-		// Add grid-level actions
-		if ($this->canEdit()) {
-			$this->addAction(
-				new LinkAction(
-					'addFile',
-					new AjaxModal(
-							$router->url($request, null, null, 'addFile'),
-							__('grid.action.addFile'),
-							'modal_add_file'
-					),
-					__('grid.action.addFile'),
-					'add'
-				)
-			);
-		}
+		parent::initialize($request);
 	}
 
-	//
-	// Public File Grid Actions
-	//
 	/**
-	 * An action to add a new file
-	 * @param $args array
-	 * @param $request PKPRequest
+	 * Returns a specific instance of the new form for this grid.
+	 * @param $context Press
+	 * @return NewLibraryFileForm
 	 */
-	function addFile($args, &$request) {
-		$this->initialize($request);
-		$router = $request->getRouter();
-		$context = $request->getContext();
-
+	function &_getNewFileForm($context) {
 		import('controllers.grid.settings.library.form.NewLibraryFileForm');
 		$fileForm = new NewLibraryFileForm($context->getId());
-		$fileForm->initData();
-
-		$json = new JSONMessage(true, $fileForm->fetch($request));
-		return $json->getString();
+		return $fileForm;
 	}
 
 	/**
-	 * Upload a new library file.
-	 * @param $args array
-	 * @param $request PKPRequest
-	 * @return string
+	 * Returns a specific instance of the edit form for this grid.
+	 * @param $context Press
+	 * @param $fileId int
+	 * @return EditLibraryFileForm
 	 */
-	function uploadFile($args, &$request) {
-		$router =& $request->getRouter();
-		$context = $request->getContext();
-		$user =& $request->getUser();
-
-		import('classes.file.TemporaryFileManager');
-		$temporaryFileManager = new TemporaryFileManager();
-		$temporaryFile = $temporaryFileManager->handleUpload('uploadedFile', $user->getId());
-		if ($temporaryFile) {
-			$json = new JSONMessage(true);
-			$json->setAdditionalAttributes(array(
-				'temporaryFileId' => $temporaryFile->getId()
-			));
-		} else {
-			$json = new JSONMessage(false, __('common.uploadFailed'));
-		}
-
-		return $json->getString();
-	}
-
-	/**
-	 * Save a new library file.
-	 * @param $args array
-	 * @param $request PKPRequest
-	 * @return string
-	 */
-	function saveFile($args, &$request) {
-		$router =& $request->getRouter();
-		$context = $request->getContext();
-		$user =& $request->getUser();
-
-		import('controllers.grid.settings.library.form.NewLibraryFileForm');
-		$fileForm = new NewLibraryFileForm($context->getId());
-		$fileForm->readInputData();
-
-		if ($fileForm->validate()) {
-			$fileId = $fileForm->execute($user->getId());
-
-			// Let the calling grid reload itself
-			return DAO::getDataChangedEvent();
-		}
-
-		$json = new JSONMessage(false);
-		return $json->getString();
-	}
-
-	/**
-	 * An action to add a new file
-	 * @param $args array
-	 * @param $request PKPRequest
-	 * @return string Serialized JSON object
-	 */
-	function editFile($args, &$request) {
-		$this->initialize($request);
-		assert(isset($args['fileId']));
-		$fileId = (int) $args['fileId'];
-
-		$router = $request->getRouter();
-		$context = $request->getContext();
-
+	function &_getEditFileForm($context, $fileId) {
 		import('controllers.grid.settings.library.form.EditLibraryFileForm');
 		$fileForm = new EditLibraryFileForm($context->getId(), $fileId);
-		$fileForm->initData();
-
-		$json = new JSONMessage(true, $fileForm->fetch($request));
-		return $json->getString();
-	}
-
-	/**
-	 * Save changes to an existing library file.
-	 * @param $args array
-	 * @param $request PKPRequest
-	 * @return string
-	 */
-	function updateFile($args, &$request) {
-		assert(isset($args['fileId']));
-		$fileId = (int) $args['fileId'];
-
-		$router =& $request->getRouter();
-		$context = $request->getContext();
-
-		import('controllers.grid.settings.library.form.EditLibraryFileForm');
-		$fileForm = new EditLibraryFileForm($context->getId(), $fileId);
-		$fileForm->readInputData();
-
-		if ($fileForm->validate()) {
-			$fileForm->execute();
-
-			// Let the calling grid reload itself
-			return DAO::getDataChangedEvent();
-		}
-
-		$json = new JSONMessage(false);
-		return $json->getString();
-	}
-
-	/**
-	 * Delete a file
-	 * @param $args array
-	 * @param $request PKPRequest
-	 * @return string Serialized JSON object
-	 */
-	function deleteFile($args, &$request) {
-		$fileId = isset($args['fileId']) ? $args['fileId'] : null;
-		$router =& $request->getRouter();
-		$press =& $router->getContext($request);
-
-		if ($fileId) {
-			import('classes.file.LibraryFileManager');
-			$libraryFileManager = new LibraryFileManager($press->getId());
-			$libraryFileManager->deleteFile($fileId);
-
-			return DAO::getDataChangedEvent();
-		}
-
-		$json = new JSONMessage(false);
-		return $json->getString();
+		return $fileForm;
 	}
 }
 

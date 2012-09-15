@@ -52,6 +52,10 @@ class DownloadLibraryFileLinkAction extends LinkAction {
 		// Create the action arguments array.
 		$args =  array('libraryFileId' => $libraryFile->getId());
 
+		if ($libraryFile->getMonographId()) {
+			$args['monographId'] = $libraryFile->getMonographId();
+		}
+
 		return $args;
 	}
 }

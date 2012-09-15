@@ -57,6 +57,22 @@ class LibraryFile extends DataObject {
 	}
 
 	/**
+	 * Get ID of monograph.
+	 * @return int
+	 */
+	function getMonographId() {
+		return $this->getData('monographId');
+	}
+
+	/**
+	 * Set ID of monograph.
+	 * @param $monograph int
+	 */
+	function setMonographId($monographId) {
+		return $this->setData('monographId', $monographId);
+	}
+
+	/**
 	 * Get file name of the file.
 	 * @param return string
 	 */

@@ -197,7 +197,6 @@ class SubmissionFilesUploadBaseForm extends Form {
 		// Initialize the list with files available for review.
 		$monographFileOptions = array();
 		$currentMonographFileGenres = array();
-		$currentMonographFileCategories = array();
 
 		// Go through all files and build a list of files available for review.
 		$revisedFileId = $this->getRevisedFileId();
@@ -212,7 +211,6 @@ class SubmissionFilesUploadBaseForm extends Form {
 				// This is the revised monograph file, so pass it's data on to the form.
 				$this->setData('revisedFileName', $monographFile->getOriginalFileName());
 				$this->setData('genreId', $monographFile->getGenreId());
-				$this->setData('libraryCategoryId', $monographFile->getLibraryCategoryId());
 				$foundRevisedFile = true;
 			}
 
@@ -229,7 +227,6 @@ class SubmissionFilesUploadBaseForm extends Form {
 
 			$monographFileOptions[$monographFile->getFileId()] = $fileName;
 			$currentMonographFileGenres[$monographFile->getFileId()] = $monographFile->getGenreId();
-			$currentMonographFileCategories[$monographFile->getFileId()] = (int) $monographFile->getLibraryCategoryId();
 
 			$lastMonographFile = $monographFile;
 		}
@@ -240,7 +237,6 @@ class SubmissionFilesUploadBaseForm extends Form {
 			$this->setData('revisedFileId', $lastMonographFile->getFileId());
 			$this->setData('revisedFileName', $lastMonographFile->getOriginalFileName());
 			$this->setData('genreId', $lastMonographFile->getGenreId());
-			$this->setData('libraryCategoryId', $lastMonographFile->getLibraryCategoryId());
 		}
 
 		// If this is not a "review only" form then add a default item.
@@ -254,7 +250,6 @@ class SubmissionFilesUploadBaseForm extends Form {
 
 		// Set the review file candidate data in the template.
 		$this->setData('currentMonographFileGenres', $currentMonographFileGenres);
-		$this->setData('currentMonographFileCategories', $currentMonographFileCategories);
 		$this->setData('monographFileOptions', $monographFileOptions);
 
 		// Show ensuring a blind review link.

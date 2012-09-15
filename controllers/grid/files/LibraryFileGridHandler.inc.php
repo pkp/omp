@@ -99,6 +99,24 @@ class LibraryFileGridHandler extends CategoryGridHandler {
 		// Columns
 		// Basic grid row configuration
 		$this->addColumn($this->getFileNameColumn());
+
+		$router =& $request->getRouter();
+
+		// Add grid-level actions
+		if ($this->canEdit()) {
+			$this->addAction(
+				new LinkAction(
+					'addFile',
+					new AjaxModal(
+						$router->url($request, null, null, 'addFile', null, $this->getActionArgs()),
+						__('grid.action.addFile'),
+						'modal_add_file'
+					),
+					__('grid.action.addFile'),
+					'add'
+				)
+			);
+		}
 	}
 
 	//
@@ -153,6 +171,175 @@ class LibraryFileGridHandler extends CategoryGridHandler {
 		);
 
 		return $column;
+	}
+
+	//
+	// Public File Grid Actions
+	//
+	/**
+	 * An action to add a new file
+	 * @param $args array
+	 * @param $request PKPRequest
+	 */
+	function addFile($args, &$request) {
+		$this->initialize($request);
+		$router = $request->getRouter();
+		$context = $request->getContext();
+
+		$fileForm = $this->_getNewFileForm($context);
+		$fileForm->initData();
+
+		$json = new JSONMessage(true, $fileForm->fetch($request));
+		return $json->getString();
+	}
+
+	/**
+	 * Save a new library file.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return string
+	 */
+	function saveFile($args, &$request) {
+		$router =& $request->getRouter();
+		$context = $request->getContext();
+		$user =& $request->getUser();
+
+		$fileForm = $this->_getNewFileForm($context);
+		$fileForm->readInputData();
+
+		if ($fileForm->validate()) {
+			$fileId = $fileForm->execute($user->getId());
+
+			// Let the calling grid reload itself
+			return DAO::getDataChangedEvent();
+		}
+
+		$json = new JSONMessage(false);
+		return $json->getString();
+	}
+
+	/**
+	 * An action to add a new file
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return string Serialized JSON object
+	 */
+	function editFile($args, &$request) {
+		$this->initialize($request);
+		assert(isset($args['fileId']));
+		$fileId = (int) $args['fileId'];
+
+		$router = $request->getRouter();
+		$context = $request->getContext();
+
+		$fileForm = $this->_getEditFileForm($context, $fileId);
+		$fileForm->initData();
+
+		$json = new JSONMessage(true, $fileForm->fetch($request));
+		return $json->getString();
+	}
+
+	/**
+	 * Save changes to an existing library file.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return string
+	 */
+	function updateFile($args, &$request) {
+		assert(isset($args['fileId']));
+		$fileId = (int) $args['fileId'];
+
+		$router =& $request->getRouter();
+		$context = $request->getContext();
+
+		$fileForm = $this->_getEditFileForm($context, $fileId);
+		$fileForm->readInputData();
+
+		if ($fileForm->validate()) {
+			$fileForm->execute();
+
+			// Let the calling grid reload itself
+			return DAO::getDataChangedEvent();
+		}
+
+		$json = new JSONMessage(false);
+		return $json->getString();
+	}
+
+	/**
+	 * Delete a file
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return string Serialized JSON object
+	 */
+	function deleteFile($args, &$request) {
+		$fileId = isset($args['fileId']) ? $args['fileId'] : null;
+		$router =& $request->getRouter();
+		$press =& $router->getContext($request);
+
+		if ($fileId) {
+			import('classes.file.LibraryFileManager');
+			$libraryFileManager = new LibraryFileManager($press->getId());
+			$libraryFileManager->deleteFile($fileId);
+
+			return DAO::getDataChangedEvent();
+		}
+
+		$json = new JSONMessage(false);
+		return $json->getString();
+	}
+
+	/**
+	 * Upload a new library file.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return string
+	 */
+	function uploadFile($args, &$request) {
+		$router =& $request->getRouter();
+		$context = $request->getContext();
+		$user =& $request->getUser();
+
+		import('classes.file.TemporaryFileManager');
+		$temporaryFileManager = new TemporaryFileManager();
+		$temporaryFile = $temporaryFileManager->handleUpload('uploadedFile', $user->getId());
+		if ($temporaryFile) {
+			$json = new JSONMessage(true);
+			$json->setAdditionalAttributes(array(
+					'temporaryFileId' => $temporaryFile->getId()
+			));
+		} else {
+			$json = new JSONMessage(false, __('common.uploadFailed'));
+		}
+
+		return $json->getString();
+	}
+
+	/**
+	 * Returns a specific instance of the new form for this grid.
+	 *  Must be implemented by subclasses.
+	 * @param $context Press
+	 */
+	function &_getNewFileForm($context){
+		assert(false);
+	}
+
+	/**
+	 * Returns a specific instance of the edit form for this grid.
+	 *  Must be implemented by subclasses.
+	 * @param $context Press
+	 * @param $fileId int
+	 */
+	function &_getEditFileForm($context, $fileId){
+		assert(false);
+	}
+
+	/**
+	 * Retrieve the arguments for the 'add file' action.
+	 * @return array
+	 */
+	function getActionArgs() {
+		return array();
 	}
 }
 

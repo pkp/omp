@@ -26,23 +26,14 @@ class SubmissionDocumentsFilesGridHandler extends LibraryFileGridHandler {
 		parent::LibraryFileGridHandler(new SubmissionDocumentsFilesGridDataProvider());
 		$this->addRoleAssignment(
 			array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_ASSISTANT, ROLE_ID_AUTHOR),
-			array('viewLibrary')
+			array(
+				'addFile', 'uploadFile', 'saveFile', // Adding new library files
+				'editFile', 'updateFile', // Editing existing library files
+				'deleteFile', 'viewLibrary'
+			)
 		);
 	}
 
-
-	//
-	// Getters/Setters
-	//
-
-	/**
-	 * Return the file type for this grid.  It will always
-	 *  be MONOGRAPH_FILE_BOOK_DOCUMENT.
-	 * @return int
-	 */
-	function getFileStage() {
-		return MONOGRAPH_FILE_BOOK_DOCUMENT;
-	}
 
 	//
 	// Overridden template methods
@@ -61,32 +52,30 @@ class SubmissionDocumentsFilesGridHandler extends LibraryFileGridHandler {
 		// Set instructions
 		$this->setInstructions('editor.submissionLibrary.description');
 
-		// The file list grid layout has an additional file genre column.
-		import('controllers.grid.files.fileList.FileGenreGridColumn');
-		$this->addColumn(new FileGenreGridColumn());
-
 		$router =& $request->getRouter();
 
 		// Add grid-level actions
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-		$actionArgs = array(
-			'monographId' => $monograph->getId(),
-			'fileStage' => $this->getFileStage(),
-		);
 
-		import('controllers.api.file.linkAction.AddFileLinkAction');
-		$this->addAction(
-			new AddFileLinkAction(
-				$request, $monograph->getId(), WORKFLOW_STAGE_ID_SUBMISSION,
-				array_keys($this->getRoleAssignments()), $this->getFileStage()
-			)
-		);
+		if ($this->canEdit()) {
+			$this->addAction(
+				new LinkAction(
+					'addFile',
+					new AjaxModal(
+						$router->url($request, null, null, 'addFile', null, $this->getActionArgs()),
+						__('grid.action.addFile'),
+						'modal_add_file'
+					),
+					__('grid.action.addFile'),
+					'add'
+				)
+			);
+		}
 
 		$this->addAction(
 			new LinkAction(
 				'viewLibrary',
 				new AjaxModal(
-					$router->url($request, null, null, 'viewLibrary', null, $actionArgs),
+					$router->url($request, null, null, 'viewLibrary', null, $this->getActionArgs()),
 					__('grid.action.viewLibrary'),
 					'modal_information'
 				),
@@ -98,17 +87,31 @@ class SubmissionDocumentsFilesGridHandler extends LibraryFileGridHandler {
 	}
 
 	/**
-	 * Implementation of the GridHandler::getRowInstance() method.
+	 * Retrieve the arguments for the 'add file' action.
+	 * @return array
+	 */
+	function getActionArgs() {
+		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		$actionArgs = array(
+			'monographId' => $monograph->getId(),
+		);
+
+		return $actionArgs;
+	}
+
+	/**
+	 * Get the row handler - override the default row handler
+	 * @return LibraryFileGridRow
 	 */
 	function &getRowInstance() {
-		$row = new SubmissionFilesGridRow(true, true, $this->getFileStage());
+		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		$row = new LibraryFileGridRow($this->canEdit(), $monograph);
 		return $row;
 	}
 
 	//
 	// Public File Grid Actions
 	//
-
 
 	/**
 	 * Load the (read only) press file library.
@@ -124,16 +127,28 @@ class SubmissionDocumentsFilesGridHandler extends LibraryFileGridHandler {
 	}
 
 	/**
-	 * Get an instance of the cell provider for this grid.
-	 * Since these are monograph files, use the grid column that is
-	 *  standard for submission grids.
-	 * @return FileNameGridColumn
+	 * Returns a specific instance of the new form for this grid.
+	 * @param $context Press
+	 * @return NewLibraryFileForm
 	 */
-	function &getFileNameColumn() {
-		// The file name column is common to all file grid types.
-		import('controllers.grid.files.FileNameGridColumn');
-		$column = new FileNameGridColumn(true, WORKFLOW_STAGE_ID_SUBMISSION);
-		return $column;
+	function &_getNewFileForm($context) {
+		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		import('controllers.grid.files.submissionDocuments.form.NewLibraryFileForm');
+		$fileForm = new NewLibraryFileForm($context->getId(), $monograph->getId());
+		return $fileForm;
+	}
+
+	/**
+	 * Returns a specific instance of the edit form for this grid.
+	 * @param $context Press
+	 * @param $fileId int
+	 * @return EditLibraryFileForm
+	 */
+	function &_getEditFileForm($context, $fileId) {
+		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		import('controllers.grid.files.submissionDocuments.form.EditLibraryFileForm');
+		$fileForm = new EditLibraryFileForm($context->getId(), $fileId, $monograph->getId());
+		return $fileForm;
 	}
 }
 

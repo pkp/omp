@@ -57,34 +57,17 @@ class SubmissionDocumentsFilesGridDataProvider extends CategoryGridDataProvider 
 	}
 
 	/**
-	 * get the current press context
-	 * @return $context Press
-	 */
-	function &getContext() {
-		return $this->_context;
-	}
-
-
-	/**
 	 * @see CategoryGridHandler::getCategoryData()
 	 */
 	function getCategoryData(&$fileType, $filter = null) {
 
-		// Retrieve all monograph files for the given submission document category.
+		// Retrieve all library files for the given submission document category.
 		$monograph =& $this->getMonograph();
-		import('classes.monograph.MonographFile');
-		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-		$monographFiles =& $submissionFileDao->getLatestRevisions($monograph->getId(), MONOGRAPH_FILE_BOOK_DOCUMENT);
-		$fileData = array();
-		foreach ($monographFiles as $file) {
-			if ($file->getLibraryCategoryId() != $fileType) continue;
+		import('classes.press.LibraryFile');
+		$libraryFileDao =& DAORegistry::getDAO('LibraryFileDAO'); /* @var $libraryFileDao LibraryFileDAO */
+		$libraryFiles =& $libraryFileDao->getByMonographId($monograph->getId(), $fileType);
 
-			$fileData[$file->getFileId()] = array(
-				'submissionFile' => $file
-			);
-			unset($file);
-		}
-		return $fileData;
+		return $libraryFiles->toAssociativeArray();
 	}
 }
 

@@ -91,8 +91,32 @@ class FileApiHandler extends Handler {
 		$libraryFileDao =& DAORegistry::getDAO('LibraryFileDAO');
 		$libraryFile =& $libraryFileDao->getById($request->getUserVar('libraryFileId'));
 		if ($libraryFile) {
-			$filePath = $libraryFileManager->getBasePath() .  $libraryFile->getOriginalFileName();
-			$libraryFileManager->downloadFile($filePath);
+
+			// If this file has a monograph ID, ensure that the current
+			// user is assigned to that submission.
+			if ($libraryFile->getMonographId()) {
+				$user =& $request->getUser();
+				$allowedAccess = false;
+				$userStageAssignmentDao =& DAORegistry::getDAO('UserStageAssignmentDAO');
+				$assignedUsers = $userStageAssignmentDao->getUsersBySubmissionAndStageId($libraryFile->getMonographId(), WORKFLOW_STAGE_ID_SUBMISSION);
+				if (!$assignedUsers->wasEmpty()) {
+					while ($assignedUser =& $assignedUsers->next()) {
+						if ($assignedUser->getId()  == $user->getId()) {
+							$allowedAccess = true;
+							break;
+						}
+					}
+				}
+			} else {
+				$allowedAccess = true; // this is a Press submission document, default to access policy.
+			}
+
+			if ($allowedAccess) {
+				$filePath = $libraryFileManager->getBasePath() .  $libraryFile->getOriginalFileName();
+				$libraryFileManager->downloadFile($filePath);
+			} else {
+				fatalError('Unauthorized access to library file.');
+			}
 		}
 	}
 
@@ -158,13 +182,11 @@ class FileApiHandler extends Handler {
 	function recordDownload($args, &$request) {
 		$monographFiles = $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH_FILES);
 		$fileId = null;
-		$libraryCategoryId = null;
 
 		foreach ($monographFiles as $monographFile) {
 			import('classes.file.MonographFileManager');
 			MonographFileManager::recordView($monographFile);
 			$fileId = $monographFile->getFileId();
-			$libraryCategoryId = $monographFile->getLibraryCategoryId();
 			unset($monographFile);
 		}
 
