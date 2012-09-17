@@ -33,7 +33,8 @@
 		{fbvElement type="text" password="true" id="password2" value=$oldPassword|escape maxLength="32" label="user.profile.repeatNewPassword" size=$fbvStyles.size.MEDIUM}
 	{/fbvFormSection}
 
-	{fbvFormButtons submitText="common.save"}
+	{url|assign:cancelUrl page="user" op="profile"}
+	{fbvFormButtons submitText="common.save" cancelUrl=$cancelUrl}
 {/fbvFormArea}
 
 </form>
