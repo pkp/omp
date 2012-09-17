@@ -32,7 +32,7 @@
 <form class="pkp_form" method="post" id="installForm" action="{url op="install"}">
 	<input type="hidden" name="installing" value="0" />
 
-	{translate key="installer.installationInstructions" version=$version->getVersionString(false)}
+	{translate key="installer.installationInstructions" version=$version->getVersionString(false) baseUrl=$baseUrl}
 
 	{if $isInstallError}
 		{* The notification framework requires user sessions, which are not available on install. Use the template directly. *}
