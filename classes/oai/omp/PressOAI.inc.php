@@ -129,7 +129,7 @@ class PressOAI extends OAI {
 		$info->toolkitTitle = 'Open Monograph Press';
 		$versionDao =& DAORegistry::getDAO('VersionDAO');
 		$currentVersion =& $versionDao->getCurrentVersion();
-		$info->toolkitVersion = $currentVersion->getVersionString();
+		$info->toolkitVersion = $currentVersion->getVersionString(false);
 		$info->toolkitURL = 'http://pkp.sfu.ca/omp/';
 
 		return $info;

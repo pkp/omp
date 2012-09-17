@@ -11,7 +11,7 @@
 {include file="common/header.tpl"}
 {/strip}
 
-<h3>{translate key="admin.currentVersion"}: {$currentVersion->getVersionString()} ({$currentVersion->getDateInstalled()|date_format:$datetimeFormatLong})</h3>
+<h3>{translate key="admin.currentVersion"}: {$currentVersion->getVersionString(false)} ({$currentVersion->getDateInstalled()|date_format:$datetimeFormatLong})</h3>
 
 {if $latestVersionInfo}
 		<p>{translate key="admin.version.latest"}: {$latestVersionInfo.release|escape} ({$latestVersionInfo.date|date_format:$dateFormatLong})</p>

@@ -193,7 +193,7 @@ class UploadPluginForm extends Form {
 				$user->getId(),
 				NOTIFICATION_TYPE_SUCCESS,
 				array('contents' =>
-					__('manager.plugins.installSuccessful', array('versionNumber' => $pluginVersion->getVersionString()))));
+					__('manager.plugins.installSuccessful', array('versionNumber' => $pluginVersion->getVersionString(false)))));
 
 			$versionDao->insertVersion($pluginVersion, true);
 			return true;
@@ -326,7 +326,7 @@ class UploadPluginForm extends Form {
 
 			$notificationMgr = new NotificationManager();
 			$notificationMgr->createTrivialNotification(
-				$user->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('manager.plugins.upgradeSuccessful', array('versionString' => $pluginVersion->getVersionString()))));
+				$user->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('manager.plugins.upgradeSuccessful', array('versionString' => $pluginVersion->getVersionString(false)))));
 
 			return true;
 		}

@@ -51,7 +51,7 @@ class InfoGridCellProvider extends GridCellProvider {
 				return array('label' => sprintf('%s', $element));
 				break;
 			case 'version':
-				return array('label' => $element->getVersionString());
+				return array('label' => $element->getVersionString(false));
 				break;
 			case 'versionMajor':
 				return array('label' => $element->getMajor());
