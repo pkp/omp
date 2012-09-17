@@ -55,7 +55,7 @@ OMP release:
 6. After committing any pending modifications, tag the release in git (both the
    OMP codebase and the PKP library to be distributed with it):
 
-	cd lib/pkp
+    cd lib/pkp
     git tag omp-<MAJOR>_<MINOR>_<REVISION>-<BUILD>
     git push --tags
     cd ../..
