@@ -56,15 +56,21 @@
 
 	.submission_progress {
 		overflow: hidden;
+		display: table;
+		width: 100%;
+		position: relative;
 	}
 
 	.submission_progress li {
-		line-height:33px;
-		width: 148px;
+		height:33px;
+		line-height:12px;
+		width: 19.5%;
 		background-image:url('../lib/pkp/templates/images/structure/workflow_inactive.png');
-		border-right:1px white solid;
 		text-align: center;
 		color: #ffffff;
+		float: none;
+		vertical-align: middle;
+		display: table-cell;
 	}
 
 	.submission_progress li a {
@@ -73,6 +79,8 @@
 		font-size: 12px;
 		text-transform: uppercase;
 		color:#ffffff;
+		padding-left: 5px;
+		padding-right: 5px;
 	}
  
 	.submission_progress li.actionNeeded {
@@ -106,18 +114,28 @@
  	
  	
 
-	.submission_progress li.complete:after {
-		border-left-color: #e5f4e5;
+	.submission_progress li.complete a:after {
+		background-color: #e5f4e5;
 	}
 
-	.submission_progress li.current:after {
- 		border-left-color: #EAF3F8;
+	.submission_progress li.current a:after {
+ 		background-color: #EAF3F8;
  	}
 
 	.submission_progress li:before {
 		margin-left: 2px;
 		left: 100%;
 		z-index: 1;
+	}
+	
+	.submission_progress li a:after {
+		background-color: white;
+		content: " ";
+		display: block;
+		width: 1px;
+		top: 0;
+		height: 33px;
+		position: absolute;		
 	}
 }
 

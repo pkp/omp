@@ -79,11 +79,16 @@
 		li.mover { 
 			width: 240px;
 			height: 303px;
-			display:table;
+			display: table;
+			filter: none !important;
 
 			span.moverImg {
 				vertical-align:middle;
 				display: table-cell;
+			}
+			
+			div.pkp_helpers_black_bg {
+				filter: alpha(opacity=100%);
 			}
 
 			img {
@@ -121,6 +126,7 @@
 			position: absolute;
 			top: 50px;
 			width: 85%;
+			filter: alpha(opacity=100%) !important;
 			
 			.pkp_catalog_formats {
 				margin-top: 10px;
