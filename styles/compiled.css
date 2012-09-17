@@ -329,14 +329,8 @@ div.plupload div.plupload_header { display:none; }
   background-position:-576px 0;
 }
 .sprite.add_item:hover:before { background-position:-576px -24px; }
-.sprite.remove_item:before {
-  background-position:-600px 0;
-  margin-top:8px;
-}
-.sprite.remove_item:hover:before {
-  background-position:-600px -24px;
-  margin-top:8px;
-}
+.sprite.remove_item:before { background-position:-432px 0; }
+.sprite.remove_item:hover:before { background-position:-432px -24px; }
 .sprite.decline:before {
   margin-right:4px;
   background-position:-624px 0;
@@ -831,7 +825,6 @@ body {
   text-decoration:none;
   color:#ffffff;
 }
-.pkp_linkActions a.remove_item { background-image:url(../lib/pkp/templates/images/structure/lb_delete.png); }
 .pkp_linkActions a.promote { background-image:url(../lib/pkp/templates/images/structure/grid_promote.png); }
 .pkp_linkActions a.enable { background-image:url(../lib/pkp/templates/images/structure/grid_promote.png); }
 .pkp_linkActions a { display:inline-block; }
