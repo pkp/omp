@@ -266,21 +266,6 @@ class SpotlightDAO extends DAO {
 
 		return $returner;
 	}
-	/**
-	 * Retrieve an array of spotlights matching a particular type ID.
-	 * @param $typeId int
-	 * @return object DAOResultFactory containing matching Spotlights
-	 */
-	function &getByTypeId($typeId, $rangeInfo = null) {
-		$result =& $this->retrieveRange(
-			'SELECT * FROM spotlights WHERE type_id = ? ORDER BY spotlight_id DESC',
-			(int) $typeId,
-			$rangeInfo
-		);
-
-		$returner = new DAOResultFactory($result, $this, '_fromRow');
-		return $returner;
-	}
 
 	/**
 	 * Retrieve an array of spotlights matching a particular assoc ID.
