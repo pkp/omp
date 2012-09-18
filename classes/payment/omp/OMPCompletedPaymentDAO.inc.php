@@ -132,7 +132,7 @@ class OMPCompletedPaymentDAO extends DAO {
 	function &_returnPaymentFromRow(&$row) {
 		$payment = $this->newDataObject();
 		$payment->setTimestamp($this->datetimeFromDB($row['timestamp']));
-		$payment->setPaymentId($row['completed_payment_id']);
+		$payment->setId($row['completed_payment_id']);
 		$payment->setType($row['payment_type']);
 		$payment->setPressId($row['press_id']);
 		$payment->setAmount($row['amount']);
