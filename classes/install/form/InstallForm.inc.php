@@ -17,8 +17,6 @@
  * @brief Form for system installation.
  */
 
-
-
 import('classes.install.Install');
 import('lib.pkp.classes.site.VersionCheck');
 import('lib.pkp.classes.form.Form');
@@ -124,7 +122,8 @@ class InstallForm extends Form {
 		$templateMgr->assign('databaseDriverOptions', $this->checkDBDrivers());
 		$templateMgr->assign('supportsMBString', String::hasMBString() ? __('common.yes') : __('common.no'));
 		$templateMgr->assign('phpIsSupportedVersion', version_compare(PHP_REQUIRED_VERSION, PHP_VERSION) != 1);
-		$templateMgr->assign('xslEnabled', $this->checkGeneralPHPModule('xsl'));
+		$templateMgr->assign('xslEnabled', Core::checkGeneralPHPModule('xsl'));
+		$templateMgr->assign('xslRequired', true);
 		$templateMgr->assign('phpRequiredVersion', PHP_REQUIRED_VERSION);
 		$templateMgr->assign('phpVersion', PHP_VERSION);
 		$templateMgr->assign('version', VersionCheck::getCurrentCodeVersion());
@@ -237,18 +236,6 @@ class InstallForm extends Form {
 			$dbDrivers[$driver] = $name;
 		}
 		return $dbDrivers;
-	}
-
-	/**
-	 * Checks to see if a PHP module is enabled.
-	 * @param $moduleName string
-	 * @return boolean
-	 */
-	function checkGeneralPHPModule($moduleName) {
-		if (extension_loaded($moduleName)) {
-			return true;
-		}
-		return false;
 	}
 
 	/**
