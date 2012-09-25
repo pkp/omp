@@ -201,25 +201,19 @@ class ChapterGridHandler extends CategoryGridHandler {
 	// Extended methods from GridHandler
 	//
 	/**
-	 * @see GridHandler::getRowDataElementSequence()
+	 * @see GridHandler::getDataElementSequence()
 	 */
-	function getRowDataElementSequence($author) {
-		return $author->getSequence();
+	function getDataElementSequence($chapter) {
+		return $chapter->getSequence();
 	}
 
 	/**
-	 * @see CategoryGridHandler::saveRowDataElementSequence()
+	 * @see GridHandler::setDataElementSequence()
 	 */
-	function saveRowDataElementSequence($author, $chapterId, $newSequence) {
-		$monograph =& $this->getMonograph();
-
-		// Remove the chapter author id.
-		$chapterAuthorDao =& DAORegistry::getDAO('ChapterAuthorDAO');
-		$chapterAuthorDao->deleteChapterAuthorById($author->getId(), $chapterId);
-
-		// Add it again with the correct sequence value.
-		// FIXME: primary authors not set for chapter authors.
-		$chapterAuthorDao->insertChapterAuthor($author->getId(), $chapterId, $monograph->getId(), false, $newSequence);
+	function setDataElementSequence($request, $chapterId, $chapter, $newSequence) {
+		$chapterDao =& DAORegistry::getDAO('ChapterDAO');
+		$chapter->setSequence($newSequence);
+		$chapterDao->updateObject($chapter);
 	}
 
 
@@ -247,19 +241,25 @@ class ChapterGridHandler extends CategoryGridHandler {
 	}
 
 	/**
-	 * @see CategoryGridHandler::getCategoryDataElementSequence()
+	 * @see CategoryGridHandler::getDataElementInCategorySequence()
 	 */
-	function getCategoryDataElementSequence($chapter) {
-		return $chapter->getSequence();
+	function getDataElementInCategorySequence($categoryId, $author) {
+		return $author->getSequence();
 	}
 
 	/**
-	 * @see CategoryGridHandler::saveCategoryDataElementSequence()
+	 * @see CategoryGridHandler::setDataElementInCategorySequence()
 	 */
-	function saveCategoryDataElementSequence($chapter, $newSequence) {
-		$chapterDao =& DAORegistry::getDAO('ChapterDAO');
-		$chapter->setSequence($newSequence);
-		$chapterDao->updateObject($chapter);
+	function setDataElementInCategorySequence($chapterId, $author, $newSequence) {
+		$monograph =& $this->getMonograph();
+
+		// Remove the chapter author id.
+		$chapterAuthorDao =& DAORegistry::getDAO('ChapterAuthorDAO');
+		$chapterAuthorDao->deleteChapterAuthorById($author->getId(), $chapterId);
+
+		// Add it again with the correct sequence value.
+		// FIXME: primary authors not set for chapter authors.
+		$chapterAuthorDao->insertChapterAuthor($author->getId(), $chapterId, $monograph->getId(), false, $newSequence);
 	}
 
 

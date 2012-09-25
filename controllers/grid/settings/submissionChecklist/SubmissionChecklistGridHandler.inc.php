@@ -191,16 +191,16 @@ class SubmissionChecklistGridHandler extends SetupGridHandler {
 	}
 
 	/**
-	 * @see GridHandler::getRowDataElementSequence()
+	 * @see GridHandler::getDataElementSequence()
 	 */
-	function getRowDataElementSequence($gridDataElement) {
+	function getDataElementSequence($gridDataElement) {
 		return $gridDataElement['order'];
 	}
 
 	/**
-	 * @see GridHandler::saveRowDataElementSequence()
+	 * @see GridHandler::setDataElementSequence()
 	 */
-	function saveRowDataElementSequence(&$request, $rowId, $gridDataElement, $newSequence) {
+	function setDataElementSequence(&$request, $rowId, $gridDataElement, $newSequence) {
 		$router =& $request->getRouter();
 		$press =& $router->getContext($request);
 

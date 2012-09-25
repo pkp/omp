@@ -140,16 +140,16 @@ class PressGridHandler extends GridHandler {
 	}
 
 	/**
-	 * @see lib/pkp/classes/controllers/grid/GridHandler::getRowDataElementSequence()
+	 * @see lib/pkp/classes/controllers/grid/GridHandler::getDataElementSequence()
 	 */
-	function getRowDataElementSequence(&$press) {
+	function getDataElementSequence(&$press) {
 		return $press->getSequence();
 	}
 
 	/**
-	 * @see lib/pkp/classes/controllers/grid/GridHandler::saveRowDataElementSequence()
+	 * @see lib/pkp/classes/controllers/grid/GridHandler::setDataElementSequence()
 	 */
-	function saveRowDataElementSequence(&$request, $rowId, &$press, $newSequence) {
+	function setDataElementSequence(&$request, $rowId, &$press, $newSequence) {
 		$pressDao = DAORegistry::getDAO('PressDAO'); /* @var $pressDao PressDAO */
 		$press->setSequence($newSequence);
 		$pressDao->updateObject($press);
