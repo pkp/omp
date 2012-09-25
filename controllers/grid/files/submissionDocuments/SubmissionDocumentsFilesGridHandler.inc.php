@@ -15,7 +15,6 @@
 import('controllers.grid.files.LibraryFileGridHandler');
 import('classes.monograph.MonographFile');
 import('controllers.grid.files.submissionDocuments.SubmissionDocumentsFilesGridDataProvider');
-import('controllers.grid.files.SubmissionFilesGridRow');
 
 class SubmissionDocumentsFilesGridHandler extends LibraryFileGridHandler {
 	/**
