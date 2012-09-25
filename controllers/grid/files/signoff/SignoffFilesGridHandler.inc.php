@@ -459,7 +459,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 		$term =& $request->getUserVar('term');
 		while($stageUser =& $stageUsers->next()) {
 			$userGroup =& $userGroupDao->getById($stageUser->getUserGroupId());
-			$user =& $userDao->getById($stageUser->getUserId());
+			$user =& $userDao->getById($stageUser->getId());
 			$term = preg_quote($term, '/');
 			if ($term == '' || preg_match('/' . $term .'/i', $user->getFullName()) || preg_match('/' . $term .'/i', $userGroup->getLocalizedName())) {
 				$itemList[] = array(

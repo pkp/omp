@@ -21,7 +21,7 @@
 	<form class="pkp_form" id="notifyForm" action="{url op="sendNotification" params=$linkParams}" method="post">
 		{include file="controllers/notification/inPlaceNotification.tpl" notificationId="notifyFormNotification"}
 		{fbvFormArea id="notifyFormArea"}
-			{if $lastEventUser}{assign var="userId" value=$lastEventUser->getUserId()}{/if}
+			{if $lastEventUser}{assign var="userId" value=$lastEventUser->getId()}{/if}
 			{url|assign:notifyUsersUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.users.NotifyUsersListbuilderHandler" op="fetch" params=$linkParams userId=$userId escape=false}
 			{load_url_in_div id="notifyUsersContainer" url=$notifyUsersUrl}
 
