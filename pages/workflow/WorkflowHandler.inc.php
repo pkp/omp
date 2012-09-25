@@ -403,7 +403,7 @@ class WorkflowHandler extends Handler {
 
 		$editorAssignments =& $notificationDao->getByAssoc(ASSOC_TYPE_MONOGRAPH, $monograph->getId(), null, $editorAssignmentNotificationType, $contextId);
 		if (isset($signOffNotificationType)) {
-			$signoffAssignments =& $notificationDao->getByAssoc(ASSOC_TYPE_MONOGRAPH, $monograph->getId(), $user->getUserId(), $signOffNotificationType, $contextId);
+			$signoffAssignments =& $notificationDao->getByAssoc(ASSOC_TYPE_MONOGRAPH, $monograph->getId(), $user->getId(), $signOffNotificationType, $contextId);
 		}
 
 		// if the User has assigned TASKs in this stage check, return true

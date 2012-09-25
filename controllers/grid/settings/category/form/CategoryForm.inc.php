@@ -46,7 +46,7 @@ class CategoryForm extends Form {
 
 		$request =& Application::getRequest();
 		$user =& $request->getUser();
-		$this->_userId = $user->getUserId();
+		$this->_userId = $user->getId();
 
 		// Validation checks for this form
 		$this->addCheck(new FormValidatorLocale($this, 'name', 'required', 'grid.category.nameRequired'));

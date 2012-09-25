@@ -43,7 +43,7 @@ class SignoffAssignedToUserAccessPolicy extends AuthorizationPolicy {
 		if (!is_a($user, 'User')) return AUTHORIZATION_DENY;
 
 		// Check if the signoff is assigned to the user.
-		if ($signoff->getUserId() == $user->getUserId()) return AUTHORIZATION_PERMIT;
+		if ($signoff->getUserId() == $user->getId()) return AUTHORIZATION_PERMIT;
 
 		// Otherwise, deny.
 		return AUTHORIZATION_DENY;

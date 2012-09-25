@@ -57,7 +57,7 @@ class ManageFileApiHandler extends Handler {
 			// validate the stage id.
 			$stageAssignmentDao =& DAORegistry::getDAO('StageAssignmentDAO');
 			$user =& $request->getUser();
-			$stageAssignments =& $stageAssignmentDao->getBySubmissionAndStageId($monograph->getId(), $stageId, null, $user->getUserId());
+			$stageAssignments =& $stageAssignmentDao->getBySubmissionAndStageId($monograph->getId(), $stageId, null, $user->getId());
 		}
 
 		assert($monographFile && $monograph); // Should have been validated already
