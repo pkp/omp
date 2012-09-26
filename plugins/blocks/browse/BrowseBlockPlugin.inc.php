@@ -44,7 +44,7 @@ class BrowseBlockPlugin extends BlockPlugin {
 	 * @return string
 	 */
 	function getContents(&$templateMgr) {
-		$request =& Registry::get('request');
+		$request =& $this->getRequest();
 		$press =& $request->getPress();
 
 		// Provide a list of series to browse

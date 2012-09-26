@@ -49,7 +49,7 @@ class UserImportExportPlugin extends ImportExportPlugin {
 
 	function display($args) {
 		$templateMgr =& TemplateManager::getManager();
-		$request =& Application::getRequest();
+		$request =& $this->getRequest();
 		$press =& $request->getPress();
 
 		parent::display($args);

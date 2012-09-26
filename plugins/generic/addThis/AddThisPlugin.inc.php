@@ -75,8 +75,7 @@ class AddThisPlugin extends GenericPlugin {
 	 */
 	function manage($verb, $args, &$message, &$messageParams, &$pluginModalContent) {
 
-		$application =& Application::getApplication();
-		$request =& $application->getRequest();
+		$request =& $this->getRequest();
 		$press =& $request->getPress();
 		$templateMgr =& TemplateManager::getManager();
 
@@ -139,8 +138,7 @@ class AddThisPlugin extends GenericPlugin {
 		$templateMgr =& $params[1];
 		$output =& $params[2];
 
-		$application =& Application::getApplication();
-		$request =& $application->getRequest();
+		$request =& $this->getRequest();
 		$press =& $request->getPress();
 
 		$templateMgr->assign('addThisProfileId', $press->getSetting('addThisProfileId'));
