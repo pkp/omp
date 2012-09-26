@@ -77,31 +77,14 @@ class ManageReviewFilesGridHandler extends SelectableSubmissionFileListCategoryG
 
 
 	//
-	// Extended methods from SelectableFileListGridHandler
+	// Extended methods from CategoryGridHandler.
 	//
 	/**
-	 * @see SelectableFileListGridHandler::initialize()
+	 * @see CategoryGridHandler::getRequestArgs()
 	 */
-	function initialize(&$request) {
-		$reviewRound =& $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ROUND);
+	function getRequestArgs() {
 		$stageId = $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
-
-		$this->_selectionArgs = array(
-					'stageId' => $stageId
-		);
-
-		parent::initialize($request);
-	}
-
-
-	//
-	// Overridden protected methods from SelectableFileListGridHandler
-	//
-	/**
-	 * @see SelectableFileListGridHandler::getSelectionArgs()
-	 */
-	function getSelectionArgs() {
-		return $this->_selectionArgs;
+		return array_merge(array('stageId' => $stageId), parent::getRequestArgs());
 	}
 }
 

@@ -9,7 +9,7 @@
  * @ingroup controllers_grid_files_fileList
  *
  * @brief This class implements some of the common behaviours and data that a grid handler
- * can use to handle with a submission files list.
+ * can use to handle a submission files list.
  */
 // Import base class.
 import('classes.controllers.grid.files.SubmissionFilesGridHandlerImplementation');

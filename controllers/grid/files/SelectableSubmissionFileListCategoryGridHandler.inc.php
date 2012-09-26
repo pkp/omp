@@ -20,12 +20,12 @@ import('lib.pkp.classes.controllers.grid.CategoryGridHandler');
 // Import grid row class.
 import('controllers.grid.files.SelectableSubmissionFileListCategoryGridRow');
 
-// Import the class that implements the selectable file list functionality.
-import('classes.controllers.grid.files.fileList.SelectableFileListGridHandlerImplementation');
+// Import the class that implements the file list functionality.
+import('classes.controllers.grid.files.fileList.FileListGridHandlerImplementation');
 
 class SelectableSubmissionFileListCategoryGridHandler extends CategoryGridHandler {
 
-	/** @var SelectableFileListGridHandlerImplementation */
+	/** @var FileListGridHandlerImplementation */
 	var $_handlerImplementation;
 
 	/**
@@ -36,7 +36,7 @@ class SelectableSubmissionFileListCategoryGridHandler extends CategoryGridHandle
 	 *  FILE_GRID_* capabilities set.
 	 */
 	function SelectableSubmissionFileListCategoryGridHandler(&$dataProvider, $stageId, $capabilities) {
-		$handlerImplementation = new SelectableFileListGridHandlerImplementation($this, $stageId, $capabilities);
+		$handlerImplementation = new FileListGridHandlerImplementation($this, $stageId, $capabilities);
 		$handlerImplementation->_canManage = (boolean)($capabilities & FILE_GRID_MANAGE);
 
 		$this->_handlerImplementation = $handlerImplementation;
@@ -134,16 +134,6 @@ class SelectableSubmissionFileListCategoryGridHandler extends CategoryGridHandle
 	// Overridden methods from GridHandler
 	//
 	/**
-	 * @see GridHandler::getRequestArgs()
-	 */
-	function getRequestArgs() {
-		$requestArgs = parent::getRequestArgs();
-		$handlerImplementation =& $this->getHandlerImplementation();
-
-		return $handlerImplementation->getRequestArgs($requestArgs);
-	}
-
-	/**
 	 * @see GridHandler::loadData()
 	 */
 	function loadData($request, $filter) {
@@ -152,9 +142,9 @@ class SelectableSubmissionFileListCategoryGridHandler extends CategoryGridHandle
 
 		// Filter the data.
 		if ($filter['allStages']) {
-			return $workflowStages;
+			return array_combine($workflowStages, $workflowStages);
 		} else {
-			return array($this->getStageId());
+			return array($this->getStageId() => $this->getStageId());
 		}
 	}
 
@@ -176,35 +166,6 @@ class SelectableSubmissionFileListCategoryGridHandler extends CategoryGridHandle
 	//
 	// Overridden methods from CategoryGridHandler
 	//
-	/**
-	 * @see CategoryGridHandler::getCategoryData()
-	 */
-	function &getCategoryData(&$categoryDataElement) {
-		$stageId = $categoryDataElement;
-		$stageSubmissionFiles =& parent::getCategoryData($stageId);
-		$selectedFiles =& $this->getSelectedFileIds($stageSubmissionFiles);
-
-		$handlerImplementation =& $this->getHandlerImplementation();
-		$stageSubmissionFilesWithSelectedFlag =& $handlerImplementation->setSelectedFlag($stageSubmissionFiles, $selectedFiles);
-
-		// Files that don't belongs to this actual workflow stage are always invisible.
-		foreach ($stageSubmissionFilesWithSelectedFlag as $key => $submissionFileData) {
-			$submissionFile =& $submissionFileData['submissionFile'];
-			$dataProvider =& $this->getDataProvider();
-			$setInvisible = false;
-			if ($dataProvider->getFileStage() != $submissionFile->getFileStage()) {
-				$setInvisible = true;
-			} elseif ($stageId == WORKFLOW_STAGE_ID_INTERNAL_REVIEW || $stageId == WORKFLOW_STAGE_ID_EXTERNAL_REVIEW) {
-				$reviewRound =& $dataProvider->getReviewRound();
-				if ($reviewRound->getStageId() != $stageId) {
-					$setInvisible = true;
-				}
-			}
-			if ($setInvisible) $stageSubmissionFilesWithSelectedFlag[$key]['selected'] = false;
-		}
-		return $stageSubmissionFilesWithSelectedFlag;
-	}
-
 	/**
 	 * @see CategoryGridHandler::getCategoryRowInstance()
 	 */
@@ -233,6 +194,14 @@ class SelectableSubmissionFileListCategoryGridHandler extends CategoryGridHandle
 		parent::initialize($request);
 
 		$this->_handlerImplementation->initialize($request);
+	}
+
+	/**
+	 * @see GridHandler::initFeatures()
+	 */
+	function initFeatures($request, $args) {
+		import('lib.pkp.classes.controllers.grid.feature.selectableItems.SelectableItemsFeature');
+		return array(new SelectableItemsFeature());
 	}
 
 
@@ -268,50 +237,24 @@ class SelectableSubmissionFileListCategoryGridHandler extends CategoryGridHandle
 	}
 
 	/**
-	 * Return an (optional) additional authorization policy
-	 * to authorize the file selection.
-	 * @param $request Request
-	 * @param $args array
-	 * @param $roleAssignments array
-	 * @return PolicySet
+	 * @see GridHandler::isDataElementInCategorySelected()
 	 */
-	function getSelectionPolicy(&$request, $args, $roleAssignments) {
-		// By default we do not require an additional policy.
-		return null;
-	}
+	function isDataElementInCategorySelected($categoryDataId, &$gridDataElement) {
+		$currentStageId = $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
+		$submissionFile =& $gridDataElement['submissionFile'];
 
-	/**
-	 * Request parameters that describe the selected
-	 * files.
-	 * @param $request Request
-	 * @return array
-	 */
-	function getSelectionArgs() {
-		// By default we do not add any additional
-		// request parameters for the selection.
-		return array();
-	}
-
-	/**
-	 * Return the selected file ids.
-	 * @param $submissionFiles array
-	 * @return array
-	 */
-	function getSelectedFileIds($submissionFiles) {
-		// Set the already selected elements of the grid (the current review files).
-		$selectedFileIds = array();
-
-		// Include only the files marked viewable
-		foreach ($submissionFiles as $id => $submissionFileData) {
-			$submissionFile =& $submissionFileData['submissionFile'];
-			if ($submissionFile->getViewable()) {
-				$selectedFileIds[] = $id;
+		// Check for special cases when the file needs to be unselected.
+		$dataProvider =& $this->getDataProvider();
+		if ($dataProvider->getFileStage() != $submissionFile->getFileStage()) {
+			return false;
+		} elseif ($currentStageId == WORKFLOW_STAGE_ID_INTERNAL_REVIEW || $currentStageId == WORKFLOW_STAGE_ID_EXTERNAL_REVIEW) {
+			if ($currentStageId != $categoryDataId) {
+				return false;
 			}
-			unset($submissionFile);
 		}
 
-		// Return the IDs
-		return $selectedFileIds;
+		// Passed the checks above. If viewable then select it.
+		return $submissionFile->getViewable();
 	}
 
 	/**

@@ -14,8 +14,6 @@
 
 import('controllers.grid.files.fileList.FileListGridHandler');
 
-import('classes.controllers.grid.files.fileList.SelectableFileListGridHandlerImplementation');
-
 class SelectableFileListGridHandler extends FileListGridHandler {
 
 	/**
@@ -26,75 +24,35 @@ class SelectableFileListGridHandler extends FileListGridHandler {
 	 *  FILE_GRID_* capabilities set.
 	 */
 	function SelectableFileListGridHandler($dataProvider, $stageId, $capabilities = 0) {
-		parent::FileListGridHandler($dataProvider, $stageId, $capabilities, 'SelectableFileListGridHandlerImplementation');
+		parent::FileListGridHandler($dataProvider, $stageId, $capabilities);
 	}
 
 
 	//
-	// Overridden methods from GridHandler
+	// Overriden methods from GridHandler.
 	//
 	/**
-	 * @see GridHandler::getRequestArgs()
+	 * @see GridHandler::initFeatures()
 	 */
-	function getRequestArgs() {
-		$requestArgs = parent::getRequestArgs();
-		$handlerImplementation =& $this->getHandlerImplementation();
-
-		return $handlerImplementation->getRequestArgs($requestArgs);
-	}
-
-	/**
-	 * @see GridHandler::loadData()
-	 */
-	function &loadData($request, $filter) {
-		$submissionFiles =& parent::loadData($request, $filter);
-
-		$handlerImplementation =& $this->getHandlerImplementation();
-		return $handlerImplementation->loadData($submissionFiles);
+	function initFeatures($request, $args) {
+		import('lib.pkp.classes.controllers.grid.feature.selectableItems.SelectableItemsFeature');
+		return array(new SelectableItemsFeature());
 	}
 
 
 	//
-	// Protected methods
+	// Implemented methods from GridHandler.
 	//
 	/**
-	 * Return an (optional) additional authorization policy
-	 * to authorize the file selection.
-	 * @param $request Request
-	 * @param $args array
-	 * @param $roleAssignments array
-	 * @return PolicySet
+	 * @see GridHandler::isDataElementSelected()
 	 */
-	function getSelectionPolicy(&$request, $args, $roleAssignments) {
-		// By default we do not require an additional policy.
-		return null;
+	function isDataElementSelected(&$gridDataElement) {
+		$file =& $gridDataElement['submissionFile'];
+		return $file->getViewable();
 	}
 
 	/**
-	 * Request parameters that describe the selected
-	 * files.
-	 * @param $request Request
-	 * @return array
-	 */
-	function getSelectionArgs() {
-		// By default we do not add any additional
-		// request parameters for the selection.
-		return array();
-	}
-
-	/**
-	 * Get the selected file IDs.
-	 * @param $submissionFiles array Set of submission files to filter
-	 * @return array
-	 */
-	function getSelectedFileIds($submissionFiles) {
-		// By default we select nothing.
-		return array();
-	}
-
-	/**
-	 * Get the selection name.
-	 * @return string
+	 * @see GridHandler::getSelectName()
 	 */
 	function getSelectName() {
 		return 'selectedFiles';

@@ -91,12 +91,13 @@ class PromoteForm extends EditorDecisionWithEmailForm {
 				// Bring in the Manager (we need it).
 				import('classes.file.MonographFileManager');
 
+				$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+
 				$selectedFiles = $this->getData('selectedFiles');
 				if(is_array($selectedFiles)) {
-					foreach ($selectedFiles as $selectedFile) {
-						// Split the file into file id and file revision.
-						list($fileId, $revision) = explode('-', $selectedFile);
-						$monographFileManager->copyFileToFileStage($fileId, $revision, MONOGRAPH_FILE_FINAL, null, true);
+					foreach ($selectedFiles as $fileId) {
+						$revisionNumber = $submissionFileDao->getLatestRevisionNumber($fileId);
+						$monographFileManager->copyFileToFileStage($fileId, $revisionNumber, MONOGRAPH_FILE_FINAL, null, true);
 					}
 				}
 
@@ -132,12 +133,13 @@ class PromoteForm extends EditorDecisionWithEmailForm {
 				import('classes.file.MonographFileManager');
 
 				// Move the revisions to the next stage
+				$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+
 				$selectedFiles = $this->getData('selectedFiles');
 				if(is_array($selectedFiles)) {
-					foreach ($selectedFiles as $selectedFile) {
-						// Split the file into file id and file revision.
-						list($fileId, $revision) = explode('-', $selectedFile);
-						$monographFileManager->copyFileToFileStage($fileId, $revision, MONOGRAPH_FILE_PRODUCTION_READY);
+					foreach ($selectedFiles as $fileId) {
+						$revisionNumber = $submissionFileDao->getLatestRevisionNumber($fileId);
+						$monographFileManager->copyFileToFileStage($fileId, $revisionNumber, MONOGRAPH_FILE_PRODUCTION_READY);
 					}
 				}
 				// Send email to the author.

@@ -38,30 +38,11 @@ class EditorSelectableReviewAttachmentsGridHandler extends SelectableFileListGri
 		$this->setInstructions('editor.monograph.selectAttachments');
 	}
 
-
-	//
-	// Overridden protected methods from SelectableFileListGridHandler
-	//
 	/**
 	 * @see SelectableFileListGridHandler::getSelectName()
 	 */
 	function getSelectName() {
 		return 'selectedAttachments';
-	}
-
-	/**
-	 * @see SelectableFileListGridHandler::getSelectedFileIds()
-	 */
-	function getSelectedFileIds($submissionFiles) {
-		$returner = array();
-		foreach ($submissionFiles as $fileData) {
-			$file =& $fileData['submissionFile'];
-			if ($file->getViewable()) {
-				$returner[] = $file->getFileIdAndRevision();
-			}
-			unset($file);
-		}
-		return $returner;
 	}
 }
 

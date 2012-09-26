@@ -76,7 +76,7 @@ class ManageSubmissionFilesForm extends Form {
 		foreach ($monographFiles as $monographFile) {
 			// Get the viewable flag value.
 			$isViewable = in_array(
-				$monographFile->getFileIdAndRevision(),
+				$monographFile->getFileId(),
 				$selectedFiles);
 
 			// If this is a monograph file that belongs to the current stage id...

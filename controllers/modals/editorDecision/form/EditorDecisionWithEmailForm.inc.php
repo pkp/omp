@@ -223,13 +223,10 @@ class EditorDecisionWithEmailForm extends EditorDecisionForm {
 			$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 			$selectedAttachments = $this->getData('selectedAttachments');
 			if(is_array($selectedAttachments)) {
-				foreach ($selectedAttachments as $attachmentId) {
-					// Split the attachment into file id and file revision.
-					$attachment = explode('-', $attachmentId);
-					assert(count($attachment) == 2);
+				foreach ($selectedAttachments as $fileId) {
 
 					// Retrieve the monograph file.
-					$monographFile =& $submissionFileDao->getRevision($attachment[0], $attachment[1]);
+					$monographFile =& $submissionFileDao->getLatestRevision($fileId);
 					assert(is_a($monographFile, 'MonographFile'));
 
 					// Check the association information.

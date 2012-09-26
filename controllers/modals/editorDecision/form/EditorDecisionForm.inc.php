@@ -137,7 +137,7 @@ class EditorDecisionForm extends Form {
 	function _initiateReviewRound(&$monograph, $stageId, &$request, $status = null) {
 
 		// If we already have review round for this stage,
-		// we create a new stage after the last one.
+		// we create a new round after the last one.
 		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO'); /* @var $reviewRoundDao ReviewRoundDAO */
 		$lastReviewRound =& $reviewRoundDao->getLastReviewRoundByMonographId($monograph->getId(), $stageId);
 		if ($lastReviewRound) {
@@ -185,10 +185,10 @@ class EditorDecisionForm extends Form {
 		foreach (array('selectedFiles', 'selectedAttachments') as $userVar) {
 			$selectedFiles = $this->getData($userVar);
 			if(is_array($selectedFiles)) {
-				foreach ($selectedFiles as $selectedFile) {
-					// Split the file into file id and file revision.
-					list($fileId, $revision) = explode('-', $selectedFile);
-					list($newFileId, $newRevision) = $monographFileManager->copyFileToFileStage($fileId, $revision, MONOGRAPH_FILE_REVIEW_FILE, null, true);
+				foreach ($selectedFiles as $fileId) {
+					// Retrieve the file last revision number.
+					$revisionNumber = $submissionFileDao->getLatestRevisionNumber($fileId);
+					list($newFileId, $newRevision) = $monographFileManager->copyFileToFileStage($fileId, $revisionNumber, MONOGRAPH_FILE_REVIEW_FILE, null, true);
 					$submissionFileDao->assignRevisionToReviewRound($newFileId, $newRevision, $reviewRound);
 				}
 			}
