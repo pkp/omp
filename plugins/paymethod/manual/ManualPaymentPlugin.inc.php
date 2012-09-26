@@ -65,7 +65,8 @@ class ManualPaymentPlugin extends PaymethodPlugin {
 	 * @see PaymentPlugin::isConfigured
 	 */
 	function isConfigured() {
-		$press =& Request::getPress();
+		$request =& $this->getRequest();
+		$press =& $request->getPress();
 		if (!$press) return false;
 
 		// Make sure that all settings form fields have been filled in
