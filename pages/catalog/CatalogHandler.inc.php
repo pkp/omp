@@ -258,7 +258,9 @@ class CatalogHandler extends Handler {
 	function setupTemplate(&$request) {
 		$templateMgr =& TemplateManager::getManager();
 		$press =& $request->getPress();
-		$templateMgr->assign('pressCurrency', $press->getSetting('pressCurrency'));
+		if ($press) {
+			$templateMgr->assign('pressCurrency', $press->getSetting('pressCurrency'));
+		}
 		parent::setupTemplate();
 	}
 }
