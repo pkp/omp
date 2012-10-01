@@ -8,8 +8,9 @@
  * @class SelectableFileListGridHandler
  * @ingroup controllers_grid_files_fileList
  *
- * @brief Base grid for selectable file lists. The grid shows a check box for
- *  each row so that the user can make a selection among grid entries.
+ * @brief Base grid for selectable file lists. The grid use the SelectableItemFeature
+ * to show a check box for each row so that the user can make a selection
+ * among grid entries.
  */
 
 import('controllers.grid.files.fileList.FileListGridHandler');

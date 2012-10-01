@@ -15,13 +15,23 @@
 // Import UI base classes.
 import('lib.pkp.classes.controllers.grid.GridHandler');
 
-// Import the class that implement some of this handler operations.
-import('classes.controllers.grid.files.SubmissionFilesGridHandlerImplementation');
+// Import submission files grid specific classes.
+import('controllers.grid.files.SubmissionFilesGridRow');
+import('controllers.grid.files.FileNameGridColumn');
+
+// Import monograph file class which contains the MONOGRAPH_FILE_* constants.
+import('classes.monograph.MonographFile');
+
+// Import the class that defines file grids capabilities.
+import('classes.controllers.grid.files.FilesGridCapabilities');
 
 class SubmissionFilesGridHandler extends GridHandler {
 
-	/** @var SubmissionFilesGridHandlerImplementation */
-	var $_handlerImplementation;
+	/** @var FilesGridCapabilities */
+	var $_capabilities;
+
+	/** @var integer */
+	var $_stageId;
 
 	/**
 	 * Constructor
@@ -30,19 +40,13 @@ class SubmissionFilesGridHandler extends GridHandler {
 	 * @param $capabilities integer A bit map with zero or more
 	 *  FILE_GRID_* capabilities set.
 	 */
-	function SubmissionFilesGridHandler(&$dataProvider, $stageId, $capabilities, $gridHandlerImplementationClass = null) {
+	function SubmissionFilesGridHandler(&$dataProvider, $stageId, $capabilities) {
 		parent::GridHandler($dataProvider);
 
-		if (is_null($gridHandlerImplementationClass)) {
-			$gridHandlerImplementationClass = 'SubmissionFilesGridHandlerImplementation';
+		if ($stageId) {
+			$this->_stageId = (int)$stageId;
 		}
-		$handlerImplementation = new $gridHandlerImplementationClass($this, $stageId, $capabilities);
-
-		if (is_a($handlerImplementation, 'SubmissionFilesGridHandlerImplementation')) {
-			$this->setHandlerImplementation($handlerImplementation);
-		} else {
-			assert(false);
-		}
+		$this->_capabilities = new FilesGridCapabilities($capabilities);
 	}
 
 
@@ -50,19 +54,11 @@ class SubmissionFilesGridHandler extends GridHandler {
 	// Getters and Setters
 	//
 	/**
-	 * Get handler implementation.
-	 * @return SubmissionFilesGridHandlerImplementation
+	 * Get grid capabilities object.
+	 * @return FilesGridCapabilities
 	 */
-	function &getHandlerImplementation() {
-		return $this->_handlerImplementation;
-	}
-
-	/**
-	 * Set the handler implementation.
-	 * @param $handlerImplementation SubmissionFilesGridHandlerImplementation
-	 */
-	function setHandlerImplementation(&$handlerImplementation) {
-		$this->_handlerImplementation =& $handlerImplementation;
+	function &getCapabilities() {
+		return $this->_capabilities;
 	}
 
 	/**
@@ -70,7 +66,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 	 * @return integer
 	 */
 	function getStageId() {
-		return $this->_handlerImplementation->getStageId();
+		return $this->_stageId;
 	}
 
 	/**
@@ -78,55 +74,10 @@ class SubmissionFilesGridHandler extends GridHandler {
 	 * @return Monograph
 	 */
 	function &getMonograph() {
-		return $this->_handlerImplementation->getMonograph();
-	}
-
-	/**
-	 * Does this grid allow the addition of files or revisions?
-	 * @return boolean
-	 */
-	function canAdd() {
-		return $this->_handlerImplementation->canAdd();
-	}
-
-	/**
-	 * Set whether or not the grid allows the addition of files or revisions.
-	 * @param $canAdd boolean
-	 */
-	function setCanAdd($canAdd) {
-		$this->_handlerImplementation->setCanAdd((boolean) $canAdd);
-	}
-
-	/**
-	 * Does this grid allow viewing of notes?
-	 * @return boolean
-	 */
-	function canViewNotes() {
-		return $this->_handlerImplementation->canViewNotes();
-	}
-
-	/**
-	 * Can the user download all files as an archive?
-	 * @return boolean
-	 */
-	function canDownloadAll() {
-		return $this->_handlerImplementation->canDownloadAll();
-	}
-
-	/**
-	 * Can the user delete files from this grid?
-	 * @return boolean
-	 */
-	function canDelete() {
-		return $this->_handlerImplementation->canDelete();
-	}
-
-	/**
-	 * Set whether or not the user can delete files from this grid.
-	 * @param $canDelete boolean
-	 */
-	function setCanDelete($canDelete) {
-		$this->_handlerImplementation->setCanDelete((boolean) $canDelete);
+		// We assume proper authentication by the data provider.
+		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		assert(is_a($monograph, 'Monograph'));
+		return $monograph;
 	}
 
 
@@ -137,7 +88,16 @@ class SubmissionFilesGridHandler extends GridHandler {
 	 * @see PKPHandler::authorize()
 	 */
 	function authorize(&$request, &$args, $roleAssignments) {
-		$this->_handlerImplementation->authorize($request, $args, $roleAssignments);
+		// Set the stage id from the request parameter if not set previously.
+		if (!$this->getStageId()) {
+			$stageId = (int) $request->getUserVar('stageId');
+			// This will be validated with the authorization policy added by
+			// the grid data provider.
+			$this->_stageId = $stageId;
+		}
+
+		$dataProvider =& $this->getDataProvider();
+		$dataProvider->setStageId($this->getStageId());
 
 		return parent::authorize($request, $args, $roleAssignments);
 	}
@@ -148,7 +108,38 @@ class SubmissionFilesGridHandler extends GridHandler {
 	function initialize(&$request) {
 		parent::initialize($request);
 
-		$this->_handlerImplementation->initialize($request);
+		// Load translations.
+		AppLocale::requireComponents(
+			LOCALE_COMPONENT_OMP_SUBMISSION,
+			LOCALE_COMPONENT_PKP_SUBMISSION,
+			LOCALE_COMPONENT_OMP_EDITOR,
+			LOCALE_COMPONENT_PKP_COMMON,
+			LOCALE_COMPONENT_APPLICATION_COMMON
+		);
+
+		// Add grid actions
+		$capabilities = $this->getCapabilities();
+		$dataProvider =& $this->getDataProvider();
+		if($capabilities->canAdd()) {
+			assert($dataProvider);
+			$this->addAction($dataProvider->getAddFileAction($request));
+		}
+
+		// Test whether the tar binary is available for the export to work, if so, add 'download all' grid action
+		if ($capabilities->canDownloadAll() && $this->hasGridDataElements($request)) {
+			$monograph =& $this->getMonograph();
+			$stageId = $this->getStageId();
+			$linkParams = array('monographId' => $monograph->getId(), 'stageId' => $stageId);
+			$files =& $this->getFilesToDownload($request);
+
+			$this->addAction($capabilities->getDownloadAllAction($request, $files, $linkParams), GRID_ACTION_POSITION_BELOW);
+		}
+
+		// The file name column is common to all file grid types.
+		$this->addColumn(new FileNameGridColumn($capabilities->canViewNotes(), $this->getStageId()));
+
+		// Set the no items row text
+		$this->setEmptyRowText('grid.noFiles');
 	}
 
 
@@ -159,7 +150,9 @@ class SubmissionFilesGridHandler extends GridHandler {
 	 * @see GridHandler::getRowInstance()
 	 */
 	function &getRowInstance() {
-		return $this->_handlerImplementation->getRowInstance();
+		$capabilities = $this->getCapabilities();
+		$row = new SubmissionFilesGridRow($capabilities->canDelete(), $capabilities->canViewNotes(), $this->getStageId());
+		return $row;
 	}
 
 

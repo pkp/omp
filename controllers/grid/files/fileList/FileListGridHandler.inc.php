@@ -18,9 +18,6 @@
 
 import('controllers.grid.files.SubmissionFilesGridHandler');
 
-// Import class that implements some of the behaviours and data of this handler.
-import('classes.controllers.grid.files.fileList.FileListGridHandlerImplementation');
-
 class FileListGridHandler extends SubmissionFilesGridHandler {
 
 	/**
@@ -30,25 +27,30 @@ class FileListGridHandler extends SubmissionFilesGridHandler {
 	 * @param $capabilities integer A bit map with zero or more
 	 *  FILE_GRID_* capabilities set.
 	 */
-	function FileListGridHandler($dataProvider, $stageId, $capabilities = 0, $gridHandlerImplementationClass = null) {
-		if (is_null($gridHandlerImplementationClass)) {
-			$gridHandlerImplementationClass = 'FileListGridHandlerImplementation';
-		}
-
-		parent::SubmissionFilesGridHandler($dataProvider, $stageId, $capabilities, $gridHandlerImplementationClass);
+	function FileListGridHandler($dataProvider, $stageId, $capabilities = 0) {
+		parent::SubmissionFilesGridHandler($dataProvider, $stageId, $capabilities);
 	}
 
 
 	//
-	// Getters/Setters
+	// Extended methods from SubmissionFilesGridHandler.
 	//
 	/**
-	 * Whether the grid allows file management (select existing files to add to grid)
-	 * @return boolean
+	 * @see SubmissionFilesGridHandler::initialize()
 	 */
-	function canManage() {
-		$handlerImplementation =& $this->getHandlerImplementation();
-		return $handlerImplementation->_canManage;
+	function initialize(&$request) {
+		parent::initialize($request);
+
+		// Add the "manage files" action if required.
+		$capabilities = $this->getCapabilities();
+		if($capabilities->canManage()) {
+			$dataProvider =& $this->getDataProvider();
+			$this->addAction($dataProvider->getSelectAction($request));
+		}
+
+		// The file list grid layout has an additional file genre column.
+		import('controllers.grid.files.fileList.FileGenreGridColumn');
+		$this->addColumn(new FileGenreGridColumn());
 	}
 }
 

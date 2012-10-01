@@ -33,10 +33,10 @@ class ReviewerReviewAttachmentsGridHandler extends FileListGridHandler {
 				'fetchGrid', 'fetchRow'
 			)
 		);
-		
+
 		// Set the grid title.
 		$this->setTitle('reviewer.monograph.reviewerFiles');
-		
+
 	}
 
 	/**
@@ -45,9 +45,10 @@ class ReviewerReviewAttachmentsGridHandler extends FileListGridHandler {
 	function initialize($request) {
 		// Watch for flag from including template to warn about the
 		// review already being complete. If so, remove some capabilities.
+		$capabilities =& $this->getCapabilities();
 		if ($request->getUserVar('reviewIsComplete')) {
-			$this->setCanAdd(false);
-			$this->setCanDelete(false);
+			$capabilities->setCanAdd(false);
+			$capabilities->setCanDelete(false);
 		}
 
 		parent::initialize($request);
