@@ -208,7 +208,7 @@ class CatalogHandler extends Handler {
 		}
 
 		if ($imageInfo) {
-			import('file.PressFileManager');
+			import('classes.file.PressFileManager');
 			$pressFileManager = new PressFileManager($press->getId());
 			$pressFileManager->downloadFile($pressFileManager->getBasePath() . $path . $imageInfo['name'], null, true);
 		}
@@ -246,7 +246,7 @@ class CatalogHandler extends Handler {
 		}
 
 		if ($imageInfo) {
-			import('file.PressFileManager');
+			import('classes.file.PressFileManager');
 			$pressFileManager = new PressFileManager($press->getId());
 			$pressFileManager->downloadFile($pressFileManager->getBasePath() . $path . $imageInfo['thumbnailName'], null, true);
 		}

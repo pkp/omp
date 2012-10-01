@@ -24,7 +24,7 @@
  * [monograph id]/attachment
  */
 
-import('file.BaseMonographFileManager');
+import('classes.file.BaseMonographFileManager');
 
 class MonographFileManager extends BaseMonographFileManager {
 	/**

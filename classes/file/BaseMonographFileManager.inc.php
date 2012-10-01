@@ -24,7 +24,7 @@
  * [monograph id]/attachment
  */
 
-import('file.PressFileManager');
+import('classes.file.PressFileManager');
 
 class BaseMonographFileManager extends PressFileManager {
 	/** @var $_monographId int */
