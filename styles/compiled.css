@@ -653,7 +653,11 @@ div.plupload div.plupload_header { display:none; }
   padding:2px;
   font-size:100%;
 }
-.pkp_structure_search #topSearchForm label { z-index:10 !important; }
+.pkp_structure_search #topSearchForm label {
+  z-index:10 !important;
+  margin-right:0px !important;
+  left:100px !important;
+}
 .pkp_structure_breadcrumb { margin:12px 0 12px 20px; }
 .pkp_structure_breadcrumb li {
   padding:0 6px 0 2px;
