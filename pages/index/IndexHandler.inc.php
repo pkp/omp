@@ -86,6 +86,7 @@ class IndexHandler extends Handler {
 		$templateMgr->assign('displayPageHeaderLogo', $press->getPressPageHeaderLogo(true));
 		$templateMgr->assign('additionalHomeContent', $press->getLocalizedSetting('additionalHomeContent'));
 		$templateMgr->assign('homepageImage', $press->getLocalizedSetting('homepageImage'));
+		$templateMgr->assign('pageTitleTranslated', $press->getLocalizedSetting('name'));
 
 		// Display creative commons logo/licence if enabled.
 		$templateMgr->assign('displayCreativeCommons', $press->getSetting('includeCreativeCommons'));
