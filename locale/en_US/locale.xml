@@ -369,6 +369,8 @@
 	<message key="catalog.dateAdded">Added {$dateAdded}</message>
 	<message key="catalog.publicationInfo">Publication Info</message>
 	<message key="catalog.relatedCategories">Related categories</message>
+	<message key="catalog.aboutTheAuthor">About the Author</message>
+	<message key="catalog.noBioInfo">No biography available at this time.</message>
 
 	<!--
 	 *
