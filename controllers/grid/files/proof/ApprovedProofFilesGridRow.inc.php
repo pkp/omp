@@ -39,24 +39,31 @@ class ApprovedProofFilesGridRow extends GridRow {
 		$fileId = $this->getId();
 		assert(!empty($fileId));
 
-		// Actions
-		$router =& $request->getRouter();
-		$this->addAction(
-			new LinkAction(
-				'editApprovedProof',
-				new AjaxModal(
-					$router->url($request, null, null, 'editApprovedProof', null, array(
-						'fileId' => $fileId,
-						'monographId' => $request->getUserVar('monographId'),
-						'publicationFormatId' => $request->getUserVar('publicationFormatId'),
-					)),
-					__('editor.monograph.approvedProofs.edit'),
+		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO');
+		$proofFile =& $submissionFileDao->getLatestRevision($fileId);
+
+		if ($proofFile->getViewable()) {
+			// Actions
+			$router =& $request->getRouter();
+			$this->addAction(
+				new LinkAction(
+					'editApprovedProof',
+					new AjaxModal(
+						$router->url($request, null, null, 'editApprovedProof', null, array(
+							'fileId' => $fileId,
+							'monographId' => $request->getUserVar('monographId'),
+							'publicationFormatId' => $request->getUserVar('publicationFormatId'),
+						)),
+						__('editor.monograph.approvedProofs.edit'),
+						'edit'
+					),
+					__('editor.monograph.approvedProofs.edit.linkTitle'),
 					'edit'
-				),
-				__('editor.monograph.approvedProofs.edit.linkTitle'),
-				'edit'
-			)
-		);
+				)
+			);
+		} else {
+			$this->setNoActionMessage(__('grid.catalogEntry.availablePublicationFormat.proofNotApproved'));
+		}
 	}
 }
 
