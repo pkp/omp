@@ -369,6 +369,7 @@
 	<message key="catalog.dateAdded">Added {$dateAdded}</message>
 	<message key="catalog.publicationInfo">Publication Info</message>
 	<message key="catalog.relatedCategories">Related categories</message>
+	<message key="catalog.loginRequiredForPayment">Please note: In order to purchase items, you will need to log in first. Selecting an item to purchase will direct you to the login page.</message>
 
 	<!--
 	 *

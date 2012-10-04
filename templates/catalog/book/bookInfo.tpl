@@ -39,6 +39,7 @@
 		<div id="downloadTab">
 			{assign var=publicationFormats value=$publishedMonograph->getPublicationFormats()}
 			{assign var=currency value=$currentPress->getSetting('pressCurrency')}
+			{if !$loggedInUsername}<p>{translate key="catalog.loginRequiredForPayment"}</p>{/if}
 			{if $useCollapsedView}
 				<ul>
 					{foreach from=$publicationFormats item=publicationFormat}
