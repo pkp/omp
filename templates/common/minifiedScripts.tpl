@@ -29,7 +29,6 @@
 {* Our own functions (depend on plug-ins) *}
 <script type="text/javascript" src="{$baseUrl}/lib/pkp/js/functions/fontController.js"></script>
 <script type="text/javascript" src="{$baseUrl}/lib/pkp/js/functions/general.js"></script>
-<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/functions/modal.js"></script>
 <script type="text/javascript" src="{$baseUrl}/lib/pkp/js/functions/jqueryValidatorI18n.js"></script>
 
 {* Our own classes (depend on plug-ins) *}
