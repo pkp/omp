@@ -3,8 +3,8 @@
  */
 // Create the namespace.
 jQuery.pkp.controllers.modals.editorDecision =
-	jQuery.pkp.controllers.modals.editorDecision ||
-		{ form: { } };
+			jQuery.pkp.controllers.modals.editorDecision ||
+			{ form: { } };
 
 
 /**

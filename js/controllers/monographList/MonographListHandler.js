@@ -39,7 +39,6 @@ $.pkp.controllers.monographList = $.pkp.controllers.monographList || {};
 	//
 	/**
 	 * Return all monographs inside this list widget.
-	 * @return {jQuery}
 	 */
 	$.pkp.controllers.monographList.MonographListHandler.prototype.getMonographs =
 			function() {

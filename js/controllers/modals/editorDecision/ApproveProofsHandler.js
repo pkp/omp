@@ -19,6 +19,7 @@ jQuery.pkp.controllers.modals = jQuery.pkp.controllers.modals ||
  */
 (function($) {
 
+
 	/**
 	 * @constructor
 	 *

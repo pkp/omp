@@ -77,7 +77,7 @@
 	 * @return {boolean} Always returns false.
 	 */
 	$.pkp.pages.manageCatalog.MonographManagementListHandler.
-			prototype.useGridView =	function() {
+			prototype.useGridView = function() {
 
 		var $htmlElement = $(this.getHtmlElement());
 		$htmlElement.find('.pkp_manageCatalog_monographList')

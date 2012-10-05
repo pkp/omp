@@ -77,7 +77,7 @@
 	 */
 	$.pkp.controllers.informationCenter.SignoffNotesHandler.
 			prototype.handleRefreshNotesForm_ =
-				function(callingForm, event, signoffId) {
+			function(callingForm, event, signoffId) {
 		if (signoffId !== 0) {
 			// Fetch the form
 			this.loadNoteForm_(signoffId);
@@ -94,14 +94,14 @@
 	 * one signoff id as option.
 	 * @param {HTMLElement} dropdown The element that called the event.
 	 * @param {Event} event The upload event.
+	 * @private
 	 */
 	$.pkp.controllers.informationCenter.SignoffNotesHandler.
-			prototype.handleDropDownOptionSet_ =
-				function(dropdown, event) {
+			prototype.handleDropDownOptionSet_ = function(dropdown, event) {
 		var $dropDown = $('#signoffSelect', this.getHtmlElement());
 		var $options = $('option', $dropDown);
 		if ($options.length == 2) {
-			signoffId = $('option', $dropDown).next().val();
+			var signoffId = $('option', $dropDown).next().val();
 			$dropDown.val(signoffId);
 
 			this.loadNoteForm_(signoffId);
