@@ -68,7 +68,7 @@ class InstallLanguageForm extends Form {
 			$templateMgr->assign('downloadableLocaleLinks', $downloadableLocaleLinks);
 		}
 
-		return parent::fetch(&$request);
+		return parent::fetch($request);
 	}
 
 	/**

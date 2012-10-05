@@ -77,7 +77,7 @@ class ManageReviewFilesForm extends ManageSubmissionFilesForm {
 		$reviewRound =& $this->getReviewRound();
 		$this->setData('round', $reviewRound->getRound());
 
-		parent::initData($args, &$request);
+		parent::initData($args, $request);
 	}
 
 	/**

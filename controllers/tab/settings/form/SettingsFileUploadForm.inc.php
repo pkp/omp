@@ -74,7 +74,7 @@ class SettingsFileUploadForm extends Form {
 		}
 		$templateMgr->assign('fileSettingName', $this->getFileSettingName());
 
-		return parent::fetch(&$request);
+		return parent::fetch($request);
 	}
 
 

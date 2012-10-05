@@ -25,7 +25,7 @@ class SubmissionFilesArtworkMetadataForm extends SubmissionFilesMetadataForm {
 	 * @param $reviewRound ReviewRound (optional) Current review round, if any.
 	 */
 	function SubmissionFilesArtworkMetadataForm(&$submissionFile, $stageId, $reviewRound = null) {
-		parent::SubmissionFilesMetadataForm(&$submissionFile, $stageId, $reviewRound);
+		parent::SubmissionFilesMetadataForm($submissionFile, $stageId, $reviewRound);
 	}
 
 

@@ -567,7 +567,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 		// We don't need to pass the user because anyone with access can signoff the signoff,
 		// and we should delete the notification even if that user is not the one that
 		// is seeing the notification.
-		$notificationMgr->deleteCopyeditRequestNotification($rowSignoff, &$request);
+		$notificationMgr->deleteCopyeditRequestNotification($rowSignoff, $request);
 
 		// log the sign off sign off
 		import('classes.log.MonographFileLog');

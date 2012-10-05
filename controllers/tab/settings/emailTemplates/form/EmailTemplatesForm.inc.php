@@ -42,7 +42,7 @@ class EmailTemplatesForm extends PressSettingsForm {
 	function fetch(&$request) {
 		$params = array('envelopeSenderDisabled' => !Config::getVar('email', 'allow_envelope_sender'));
 
-		return parent::fetch(&$request, $params);
+		return parent::fetch($request, $params);
 	}
 }
 

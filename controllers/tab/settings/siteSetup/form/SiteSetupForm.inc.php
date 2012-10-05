@@ -70,7 +70,7 @@ class SiteSetupForm extends PKPSiteSettingsForm {
 		$templateMgr->assign('pageHeaderTitleImage', $site->getSetting($imageSettingName));
 		$templateMgr->assign('helpTopicId', 'site.siteManagement');
 
-		return parent::fetch(&$request);
+		return parent::fetch($request);
 	}
 
 
