@@ -118,7 +118,7 @@ class AppearanceForm extends PressSettingsForm {
 			'locale' => AppLocale::getLocale()
 		);
 
-		return parent::fetch(&$request, $params);
+		return parent::fetch($request, $params);
 	}
 
 

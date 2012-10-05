@@ -60,7 +60,7 @@ class AnnouncementSettingsForm extends PressSettingsForm {
 			'disableAnnouncementsHomepage' => !$this->getData('enableAnnouncementsHomepage')
 		);
 
-		return parent::fetch(&$request, $params);
+		return parent::fetch($request, $params);
 	}
 }
 

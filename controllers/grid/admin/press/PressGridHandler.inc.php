@@ -246,12 +246,12 @@ class PressGridHandler extends GridHandler {
 
 					// redirect and set the parameter to open the press
 					// setting wizard modal after redirection.
-					return $this->_getRedirectEvent(&$request, $newPressPath, true);
+					return $this->_getRedirectEvent($request, $newPressPath, true);
 				} else {
 					// CASE 2: check if user is in the context of
 					// the press being edited.
 					if ($context->getId() == $pressId) {
-						return $this->_getRedirectEvent(&$request, $newPressPath, false);
+						return $this->_getRedirectEvent($request, $newPressPath, false);
 					}
 				}
 			}

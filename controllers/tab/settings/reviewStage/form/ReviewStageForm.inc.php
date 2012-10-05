@@ -70,7 +70,7 @@ class ReviewStageForm extends PressSettingsForm {
 		$templateMgr->assign('numDaysBeforeInviteReminderValues', range(3, 10));
 		$templateMgr->assign('numDaysBeforeSubmitReminderValues', range(0, 10));
 
-		return parent::fetch(&$request, $params);
+		return parent::fetch($request, $params);
 	}
 }
 

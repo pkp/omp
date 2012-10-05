@@ -107,7 +107,7 @@ class PressSettingsForm extends Form {
 			$templateMgr->assign($tplVar, $value);
 		}
 
-		return parent::fetch(&$request);
+		return parent::fetch($request);
 	}
 
 	/**

@@ -71,7 +71,7 @@ class PreparedEmailsGridHandler extends GridHandler {
 
 		// Grid actions
 		import('controllers.grid.settings.preparedEmails.linkAction.EditEmailLinkAction');
-		$addEmailLinkAction = & new EditEmailLinkAction($request);
+		$addEmailLinkAction = new EditEmailLinkAction($request);
 		$this->addAction($addEmailLinkAction);
 
 		import('lib.pkp.classes.linkAction.LinkAction');
