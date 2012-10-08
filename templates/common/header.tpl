@@ -28,9 +28,6 @@
 	<link rel="stylesheet" type="text/css" media="all" href="{$baseUrl}/styles/lib.css" />
 	<link rel="stylesheet" type="text/css" media="all" href="{$baseUrl}/styles/compiled.css" />
 
-	{call_hook|assign:"leftSidebarCode" name="Templates::Common::LeftSidebar"}
-	{call_hook|assign:"rightSidebarCode" name="Templates::Common::RightSidebar"}
-
 	{foreach from=$stylesheets item=cssUrl}
 		<link rel="stylesheet" href="{$cssUrl}" type="text/css" />
 	{/foreach}
@@ -121,22 +118,9 @@
 					{/if}
 				</div>
 
-				{if !$leftSidebarCode && !$rightSidebarCode}
-					{* Temporary fix for #7258 *}
-					<div class="pkp_structure_nosidebar">
-					</div>
-				{/if}
+				{url|assign:fetchSidebarUrl page="sidebar"}
+				{load_url_in_div id="sidebarContainer" url=$fetchSidebarUrl}
 
-				{if $leftSidebarCode}
-					<div class="pkp_structure_sidebar pkp_structure_sidebar_left mod simple">
-						{$leftSidebarCode}
-					</div><!-- pkp_structure_sidebar_left -->
-				{/if}
-				{if $rightSidebarCode}
-					<div class="pkp_structure_sidebar pkp_structure_sidebar_right mod simple">
-						{$rightSidebarCode}
-					</div><!-- pkp_structure_sidebar_right -->
-				{/if}
 				<script type="text/javascript">
 					// Attach the JS page handler to the main content wrapper.
 					$(function() {ldelim}
