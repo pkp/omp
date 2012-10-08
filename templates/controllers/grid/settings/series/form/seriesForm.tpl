@@ -13,6 +13,7 @@
 		$('#seriesForm').pkpHandler(
 			'$.pkp.controllers.form.FileUploadFormHandler',
 			{ldelim}
+				publishChangeEvents: ['updateSidebar'],
 				$uploader: $('#plupload'),
 				uploaderOptions: {ldelim}
 					uploadUrl: '{url|escape:javascript op="uploadImage"}',
