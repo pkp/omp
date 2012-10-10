@@ -1,10 +1,6 @@
 /**
  * @defgroup js_controllers_grid_files_proof_form
  */
-// Create the modal namespace.
-jQuery.pkp.controllers.grid.files.proof =
-			jQuery.pkp.controllers.grid.files.proof || {form: {} };
-
 /**
  * @file js/controllers/grid/files/proof/form/ApprovedProofFormHandler.js
  *
@@ -17,6 +13,11 @@ jQuery.pkp.controllers.grid.files.proof =
  * @brief Approved proof files form handler.
  */
 (function($) {
+
+	/** @type {Object} */
+	$.pkp.controllers.grid.files.proof =
+			$.pkp.controllers.grid.files.proof || {form: {} };
+
 
 
 	/**

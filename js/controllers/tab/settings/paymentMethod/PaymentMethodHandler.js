@@ -1,11 +1,6 @@
 /**
  * @defgroup js_controllers_tab_settings_paymentMethod
  */
-// Create the namespace.
-jQuery.pkp.controllers.tab.settings.paymentMethod =
-			jQuery.pkp.controllers.tab.settings.paymentMethod ||
-			{ };
-
 /**
  * @file js/controllers/tab/settings/paymentMethod/PaymentMethodHandler.js
  *
@@ -18,6 +13,12 @@ jQuery.pkp.controllers.tab.settings.paymentMethod =
  * @brief JS controller for the payment method form.
  */
 (function($) {
+
+	/** @type {Object} */
+	$.pkp.controllers.tab.settings.paymentMethod =
+			$.pkp.controllers.tab.settings.paymentMethod ||
+			{ };
+
 
 
 	/**

@@ -1,10 +1,6 @@
 /**
  * @defgroup js_controllers_catalog_form
  */
-// Create the modal namespace.
-jQuery.pkp.controllers.catalog =
-			jQuery.pkp.controllers.catalog || { form: { } };
-
 /**
  * @file js/controllers/catalog/form/CatalogMetadataFormHandler.js
  *
@@ -17,6 +13,11 @@ jQuery.pkp.controllers.catalog =
  * @brief Catalog Metadata form handler.
  */
 (function($) {
+
+	/** @type {Object} */
+	$.pkp.controllers.catalog =
+			$.pkp.controllers.catalog || { form: { } };
+
 
 
 	/**

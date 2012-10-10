@@ -1,11 +1,6 @@
 /**
  * @defgroup js_controllers_tab_settings_announcements_form
  */
-// Create the namespace.
-jQuery.pkp.controllers.tab.settings.announcements =
-			jQuery.pkp.controllers.tab.settings.announcements || {form: { } };
-
-
 /**
  * @file js/controllers/tab/settings/announcements/form/AnnouncementSettingsFormHandler.js
  *
@@ -18,6 +13,11 @@ jQuery.pkp.controllers.tab.settings.announcements =
  * @brief Handle the press announcement settings form.
  */
 (function($) {
+
+	/** @type {Object} */
+	$.pkp.controllers.tab.settings.announcements =
+			$.pkp.controllers.tab.settings.announcements || {form: { } };
+
 
 
 	/**

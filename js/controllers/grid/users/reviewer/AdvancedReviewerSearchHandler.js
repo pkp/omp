@@ -1,17 +1,6 @@
 /**
  * @defgroup js_controllers_grid_users_stageParticipant_form
  */
-// Create the namespace.
-jQuery.pkp.controllers.grid.users = jQuery.pkp.controllers.grid.users ||
-			{ reviewer: { form: { } } };
-
-/**
- * @defgroup js_controllers_modal_editorDecision_form
- */
-// Create the namespace.
-jQuery.pkp.controllers.modals = jQuery.pkp.controllers.modals ||
-			{ editorDecision: { form: { } } };
-
 /**
  * @file js/controllers/AdvancedReviewerSearchHandler.js
  *
@@ -24,6 +13,11 @@ jQuery.pkp.controllers.modals = jQuery.pkp.controllers.modals ||
  * @brief Handle the advanced reviewer search tab in the add reviewer modal.
  */
 (function($) {
+
+	/** @type {Object} */
+	$.pkp.controllers.grid.users = $.pkp.controllers.grid.users ||
+			{ reviewer: { form: { } } };
+
 
 
 	/**

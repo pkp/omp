@@ -16,8 +16,8 @@
 (function($) {
 
 	/** @type {Object} */
-	jQuery.pkp.controllers.tab.catalogEntry =
-			jQuery.pkp.controllers.tab.catalogEntry || {};
+	$.pkp.controllers.tab.catalogEntry =
+			$.pkp.controllers.tab.catalogEntry || {};
 
 
 

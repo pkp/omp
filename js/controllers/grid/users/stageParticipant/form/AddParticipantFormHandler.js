@@ -15,8 +15,8 @@
 (function($) {
 
 	/** @type {Object} */
-	jQuery.pkp.controllers.grid.users.stageParticipant =
-			jQuery.pkp.controllers.grid.users.stageParticipant ||
+	$.pkp.controllers.grid.users.stageParticipant =
+			$.pkp.controllers.grid.users.stageParticipant ||
 			{ form: { } };
 
 

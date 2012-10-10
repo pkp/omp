@@ -1,11 +1,6 @@
 /**
  * @defgroup js_controllers_tab_catalogEntry
  */
-// Define the namespace.
-jQuery.pkp.pages.reviewer =
-			jQuery.pkp.pages.reviewer || {};
-
-
 /**
  * @file js/pages/reviewer/ReviewerTabHandler.js
  *
@@ -18,6 +13,11 @@ jQuery.pkp.pages.reviewer =
  * @brief A subclass of TabHandler for handling the reviewer tabs.
  */
 (function($) {
+
+	/** @type {Object} */
+	$.pkp.pages.reviewer =
+			$.pkp.pages.reviewer || {};
+
 
 
 	/**

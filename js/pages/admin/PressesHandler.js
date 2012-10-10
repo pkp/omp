@@ -1,9 +1,6 @@
 /**
  * @defgroup js_pages_production
  */
-// Create the pages_authorDashboard namespace.
-jQuery.pkp.pages.admin = jQuery.pkp.pages.admin || { };
-
 /**
  * @file js/pages/admin/PressesHandler.js
  *
@@ -17,6 +14,10 @@ jQuery.pkp.pages.admin = jQuery.pkp.pages.admin || { };
  *
  */
 (function($) {
+
+	/** @type {Object} */
+	$.pkp.pages.admin = $.pkp.pages.admin || { };
+
 
 
 	/**
