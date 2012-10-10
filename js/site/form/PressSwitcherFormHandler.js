@@ -1,12 +1,6 @@
 /**
  * @defgroup js_site_form
  */
-// Create the namespace.
-jQuery.pkp.site =
-			jQuery.pkp.site ||
-			{ form: { } };
-
-
 /**
  * @file js/site/form/PressSwitcherFormHandler.js
  *
@@ -20,6 +14,11 @@ jQuery.pkp.site =
  *
  */
 (function($) {
+
+	/** @type {Object} */
+	$.pkp.site = $.pkp.site ||
+			{ form: { } };
+
 
 
 	/**
@@ -61,8 +60,8 @@ jQuery.pkp.site =
 	$.pkp.site.form.PressSwitcherFormHandler.prototype.switchPressHandler_ =
 			function(sourceElement, event) {
 
-		var $sourceElement = $(sourceElement);
-		var link = $sourceElement.val();
+		var $sourceElement = $(sourceElement),
+				link = $sourceElement.val();
 
 		if (link !== '') {
 			this.trigger('redirectRequested', link);

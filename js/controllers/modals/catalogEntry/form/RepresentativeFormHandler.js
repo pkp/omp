@@ -19,6 +19,7 @@
 			$.pkp.controllers.modals.catalogEntry || {form: { } };
 
 
+
 	/**
 	 * @constructor
 	 *

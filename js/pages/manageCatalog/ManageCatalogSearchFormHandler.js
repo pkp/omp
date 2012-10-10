@@ -49,9 +49,9 @@
 	$.pkp.pages.manageCatalog.ManageCatalogSearchFormHandler.prototype.submitForm =
 			function(validator, formElement) {
 
-		var $form = this.getHtmlElement();
-		var formAction = $form.attr('action');
-		var searchText = $form.find(':input').val();
+		var $form = this.getHtmlElement(),
+				formAction = $form.attr('action'),
+				searchText = $form.find(':input').val();
 
 		// Trigger the searchCatalog event for the container
 		// to deal with. Attach the URL to the search to be
@@ -59,5 +59,6 @@
 		this.trigger('searchCatalog',
 				formAction.replace('SEARCH_TEXT_DUMMY', encodeURIComponent(searchText)));
 	};
+
 
 }(jQuery));

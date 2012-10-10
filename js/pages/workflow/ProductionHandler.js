@@ -85,16 +85,18 @@
 	 */
 	$.pkp.pages.workflow.ProductionHandler.prototype.refreshWidgetsHandler_ =
 			function(sourceElement, event) {
-		var $triggerElement = $(event.target);
+		var $triggerElement = $(event.target),
+				$formatsGrid, $formatTabs;
+
 		if (!this.widgetsRefreshed_) {
 			this.widgetsRefreshed_ = true;
 			if (!$triggerElement.attr('id').match(/^formatsGridContainer/)) {
-				var $formatsGrid = $('[id^="formatsGridContainer"]',
+				$formatsGrid = $('[id^="formatsGridContainer"]',
 						this.getHtmlElement()).children();
 				$formatsGrid.trigger('dataChanged');
 			}
 
-			var $formatTabs = $(this.$formatTabsSelector_,
+			$formatTabs = $(this.$formatTabsSelector_,
 					this.getHtmlElement()).children('div');
 			if ($formatTabs.has($triggerElement).length === 0) {
 				$formatTabs.trigger('refreshTabs');

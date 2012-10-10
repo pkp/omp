@@ -1,11 +1,6 @@
 /**
  * @defgroup js_controllers_tab_catalogEntry
  */
-// Define the namespace.
-jQuery.pkp.controllers.tab.catalogEntry =
-			jQuery.pkp.controllers.tab.catalogEntry || {};
-
-
 /**
  * @file js/controllers/tab/catalogEntry/CatalogEntryTabHandler.js
  *
@@ -20,6 +15,11 @@ jQuery.pkp.controllers.tab.catalogEntry =
  */
 (function($) {
 
+	/** @type {Object} */
+	jQuery.pkp.controllers.tab.catalogEntry =
+			jQuery.pkp.controllers.tab.catalogEntry || {};
+
+
 
 	/**
 	 * @constructor
@@ -32,6 +32,7 @@ jQuery.pkp.controllers.tab.catalogEntry =
 	 */
 	$.pkp.controllers.tab.catalogEntry.CatalogEntryTabHandler =
 			function($tabs, options) {
+
 		if (options.selectedFormatId) {
 			options.selected =
 					this.getTabPositionByFormatId_(options.selectedFormatId, $tabs);
@@ -86,11 +87,13 @@ jQuery.pkp.controllers.tab.catalogEntry =
 	$.pkp.controllers.tab.catalogEntry.CatalogEntryTabHandler.prototype.
 			gridRefreshRequested = function(sourceElement, event) {
 
-		var $updateSourceElement = $(event.target);
+		var $updateSourceElement = $(event.target),
+				$element;
+
 		if ($updateSourceElement.attr('id').match(/^formatsGridContainer/)) {
 
 			if (this.tabsUrl_ && this.tabContentUrl_) {
-				var $element = this.getHtmlElement();
+				$element = this.getHtmlElement();
 				$.get(this.tabsUrl_, null, this.callbackWrapper(
 						this.updateTabsHandler_), 'json');
 			}
@@ -116,17 +119,17 @@ jQuery.pkp.controllers.tab.catalogEntry =
 	$.pkp.controllers.tab.catalogEntry.CatalogEntryTabHandler.prototype.
 			updateTabsHandler_ = function(ajaxContext, data) {
 
-		var jsonData = this.handleJson(data);
-		var $element = this.getHtmlElement();
-		var currentTabs = $element.find('li a');
-		var currentIndexes = {};
+		var jsonData = this.handleJson(data),
+				$element = this.getHtmlElement(),
+				currentTabs = $element.find('li a'),
+				currentIndexes = {},
+				// only interested in publication format tabs, so filter out the others
+				regexp = /publication(\d+)/,
+				i, j, id, match, url;
 
-		// only interested in publication format tabs, so filter out the others
-		var regexp = /publication(\d+)/;
-
-		for (var j = 0; j < currentTabs.length; j++) {
-			var id = currentTabs[j].getAttribute('id');
-			var match = regexp.exec(id);
+		for (j = 0; j < currentTabs.length; j++) {
+			id = currentTabs[j].getAttribute('id');
+			match = regexp.exec(id);
 			if (match !== null) {
 				// match[1] is the id of a current format.
 				// j also happens to be the zero-based index of the tab
@@ -135,10 +138,10 @@ jQuery.pkp.controllers.tab.catalogEntry =
 			}
 		}
 
-		for (var i in jsonData.formats) {
+		for (i in jsonData.formats) {
 			// i is the formatId, formats[i] is the localized name.
 			if (!(i in currentIndexes)) { // this is a tab that has been added
-				var url = this.tabContentUrl_ + '&publicationFormatId=' +
+				url = this.tabContentUrl_ + '&publicationFormatId=' +
 						encodeURIComponent(i);
 				// replace dollar signs in $$$call$$$ so the .add() call
 				// interpolates correctly. Is this a bug in jqueryUI?
@@ -171,9 +174,11 @@ jQuery.pkp.controllers.tab.catalogEntry =
 	$.pkp.controllers.tab.catalogEntry.CatalogEntryTabHandler.prototype.
 			addFormatsGridRowActionHandlers_ = function() {
 
-		var $formatsGrid = $('[id^="formatsGridContainer"]', this.getHtmlElement());
+		var $formatsGrid = $('[id^="formatsGridContainer"]', this.getHtmlElement()),
+				$links;
+
 		if ($formatsGrid.length) {
-			var $links = $('a[id*="publicationFormatTab"]', $formatsGrid);
+			$links = $('a[id*="publicationFormatTab"]', $formatsGrid);
 			$links.click(this.callbackWrapper(this.formatsGridLinkClickHandler_));
 		}
 	};
@@ -192,10 +197,11 @@ jQuery.pkp.controllers.tab.catalogEntry =
 			formatsGridLinkClickHandler_ = function(sourceElement, event) {
 
 		var $grid = $('[id^="formatsGridContainer"]',
-				this.getHtmlElement()).children('div');
-		var gridHandler = $.pkp.classes.Handler.getHandler($grid);
-		var $gridRow = gridHandler.getParentRow($(sourceElement));
-		var publicationFormatId = gridHandler.getRowDataId($gridRow);
+				this.getHtmlElement()).children('div'),
+				gridHandler = $.pkp.classes.Handler.getHandler($grid),
+				$gridRow = gridHandler.getParentRow($(sourceElement)),
+				publicationFormatId = gridHandler.getRowDataId($gridRow);
+
 		this.getHtmlElement().tabs('select',
 				this.getTabPositionByFormatId_(publicationFormatId,
 						this.getHtmlElement()));
@@ -213,8 +219,9 @@ jQuery.pkp.controllers.tab.catalogEntry =
 			getTabPositionByFormatId_ = function(formatId, $tabs) {
 
 		// Find the correspondent tab position.
-		var $linkId = 'publication' + formatId;
-		var $tab = $('#' + $linkId, $tabs).parent('li');
+		var $linkId = 'publication' + formatId,
+				$tab = $('#' + $linkId, $tabs).parent('li');
+
 		if ($tab.length) {
 			return $tabs.children().children().index($tab);
 		} else {

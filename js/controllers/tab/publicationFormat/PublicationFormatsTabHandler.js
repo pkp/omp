@@ -1,11 +1,6 @@
 /**
  * @defgroup js_controllers_tab_publicationFormat
  */
-// Define the namespace.
-jQuery.pkp.controllers.tab.publicationFormat =
-			jQuery.pkp.controllers.tab.publicationFormat || {};
-
-
 /**
  * @file js/controllers/tab/publicationFormat/PublicationFormatsTabHandler.js
  *
@@ -20,6 +15,11 @@ jQuery.pkp.controllers.tab.publicationFormat =
  */
 (function($) {
 
+	/** @type {Object} */
+	$.pkp.controllers.tab.publicationFormat =
+			$.pkp.controllers.tab.publicationFormat || {};
+
+
 
 	/**
 	 * @constructor
@@ -33,8 +33,9 @@ jQuery.pkp.controllers.tab.publicationFormat =
 	$.pkp.controllers.tab.publicationFormat.PublicationFormatsTabHandler =
 			function($tabs, options) {
 		if (options.currentFormatTabId !== undefined) {
-			var $linkId = 'publication' + options.currentFormatTabId;
-			var $tab = $('#' + $linkId, $tabs).parent('li');
+			var $linkId = 'publication' + options.currentFormatTabId,
+					$tab = $('#' + $linkId, $tabs).parent('li');
+
 			if ($tab.length) {
 				options.selected = $tabs.children().children().index($tab);
 			}
@@ -78,12 +79,14 @@ jQuery.pkp.controllers.tab.publicationFormat =
 			refreshTabsHandler_ = function(sourceElement, event) {
 
 		if (this.tabsUrl_) {
-			var publicationId = null;
-			var $element = this.getHtmlElement();
-			var $selectedTabLink = $('li.ui-tabs-selected',
-					this.getHtmlElement()).find('a');
+			var publicationId = null,
+					$element = this.getHtmlElement(),
+					$selectedTabLink = $('li.ui-tabs-selected',
+							this.getHtmlElement()).find('a'),
+					publicationElementId;
+
 			if ($selectedTabLink.length) {
-				var publicationElementId = $selectedTabLink.attr('id');
+				publicationElementId = $selectedTabLink.attr('id');
 				publicationId = $.trim(publicationElementId.
 						replace('publication', ' '));
 			}
@@ -107,11 +110,10 @@ jQuery.pkp.controllers.tab.publicationFormat =
 
 		this.trigger('gridRefreshRequested');
 
-		var jsonData = this.handleJson(data);
-		if (jsonData !== false) {
-			// Get the tabs that we're updating
-			var $tabs = this.getHtmlElement();
+		var jsonData = this.handleJson(data),
+				$tabs = this.getHtmlElement();
 
+		if (jsonData !== false) {
 			// Replace the grid content
 			$tabs.replaceWith(jsonData.content);
 		}

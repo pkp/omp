@@ -19,6 +19,7 @@
 			$.pkp.controllers.grid.settings || { user: { form: { } }};
 
 
+
 	/**
 	 * @constructor
 	 *

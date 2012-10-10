@@ -1,9 +1,6 @@
 /**
  * @defgroup js_pages_catalog
  */
-// Create the pages_catalog namespace.
-$.pkp.pages.catalog = $.pkp.pages.catalog || {};
-
 /**
  * @file js/pages/catalog/CarouselHandler.js
  *
@@ -17,6 +14,10 @@ $.pkp.pages.catalog = $.pkp.pages.catalog || {};
  *
  */
 (function($) {
+
+	/** @type {Object} */
+	$.pkp.pages.catalog = $.pkp.pages.catalog || {};
+
 
 
 	/**
@@ -196,9 +197,10 @@ $.pkp.pages.catalog = $.pkp.pages.catalog || {};
 	 */
 	$.pkp.pages.catalog.CarouselHandler.prototype.moveItems_ =
 			function(itemsToMove) {
-		var $currentItem = $('.roundabout-in-focus', this.getHtmlElement());
-		var currentItemIndex = $currentItem.index();
-		var carouselItemsNumber = $('.mover', this.getHtmlElement()).length;
+		var $currentItem = $('.roundabout-in-focus', this.getHtmlElement()),
+				currentItemIndex = $currentItem.index(),
+				carouselItemsNumber = $('.mover', this.getHtmlElement()).length,
+				$targetItem;
 
 		// Allow foward items looping (begins with the first item if user reachs
 		// the last one and click to move foward).
@@ -206,7 +208,7 @@ $.pkp.pages.catalog = $.pkp.pages.catalog || {};
 			currentItemIndex = -1;
 		}
 
-		var $targetItem = $($('li', this.getHtmlElement()).
+		$targetItem = $($('li', this.getHtmlElement()).
 				get(currentItemIndex + itemsToMove));
 
 		if ($targetItem.hasClass('mover') && !$targetItem.hasClass('placeholder')) {
@@ -227,19 +229,20 @@ $.pkp.pages.catalog = $.pkp.pages.catalog || {};
 	$.pkp.pages.catalog.CarouselHandler.prototype.applyCarouselPlugin_ =
 			function() {
 
-		var $containerElement = this.getHtmlElement();
+		var $containerElement = this.getHtmlElement(),
+				minScale = this.getMinScale_(),
+				firstItemIndex,
+				itemsNumber, relativeIndex, startingChild;
 
 		// Add placeholder carousel items, if needed.
 		this.addPlaceholders_();
 
-		var minScale = this.getMinScale_();
-
 		// Get the start item index.
-		var firstItemIndex = $('li.mover', $containerElement)
+		firstItemIndex = $('li.mover', $containerElement)
 				.not('.placeholder').first().index();
-		var itemsNumber = $('li.mover', $containerElement).not('.placeholder').length;
-		var relativeIndex = Math.ceil(itemsNumber / 2);
-		var startingChild = firstItemIndex + relativeIndex - 1;
+		itemsNumber = $('li.mover', $containerElement).not('.placeholder').length;
+		relativeIndex = Math.ceil(itemsNumber / 2);
+		startingChild = firstItemIndex + relativeIndex - 1;
 
 		// The html must be visible, otherwise the plugin will not
 		// be correctly applied.
@@ -268,11 +271,11 @@ $.pkp.pages.catalog = $.pkp.pages.catalog || {};
 	 */
 	$.pkp.pages.catalog.CarouselHandler.prototype.toggleFeature_ =
 			function($feature, show) {
-		var $img = $('img', $feature);
-		var $detailsElement = $('.details_box', $feature);
-		var toggleDetailsDuration = 250;
-		var opacityValue = 1;
-		var imgAnimationDuration = this.TRANSITION_DURATION_;
+		var $img = $('img', $feature),
+				$detailsElement = $('.details_box', $feature),
+				toggleDetailsDuration = 250,
+				opacityValue = 1,
+				imgAnimationDuration = this.TRANSITION_DURATION_;
 
 		if (!show) {
 			opacityValue = this.MIN_OPACITY_;
@@ -300,12 +303,13 @@ $.pkp.pages.catalog = $.pkp.pages.catalog || {};
 	$.pkp.pages.catalog.CarouselHandler.prototype.addPlaceholders_ =
 			function() {
 
-		var $carousel = this.getHtmlElement().find('ul.pkp_catalog_carousel');
-		var itemsNumber = $carousel.find('li.mover').length;
-		var placeholdersNumber = this.MAX_PLACEHOLDER_NUMBER_ - itemsNumber;
+		var $carousel = this.getHtmlElement().find('ul.pkp_catalog_carousel'),
+				itemsNumber = $carousel.find('li.mover').length,
+				placeholdersNumber = this.MAX_PLACEHOLDER_NUMBER_ - itemsNumber,
+				i;
 
 		if (placeholdersNumber > 0) {
-			for (var i = placeholdersNumber; i > 0; i--) {
+			for (i = placeholdersNumber; i > 0; i--) {
 				$carousel.prepend('<li class="mover placeholder"></li>');
 			}
 		}
@@ -321,8 +325,8 @@ $.pkp.pages.catalog = $.pkp.pages.catalog || {};
 	$.pkp.pages.catalog.CarouselHandler.prototype.getMinScale_ =
 			function() {
 		// Find the items number, including placeholders.
-		var itemsNumber = this.getHtmlElement().find('li').length;
-		var minScale = 0.3 - 0.003 * (itemsNumber * 4);
+		var itemsNumber = this.getHtmlElement().find('li').length,
+				minScale = 0.3 - 0.003 * (itemsNumber * 4);
 
 		if (minScale < 0.05) {
 			return 0.05;

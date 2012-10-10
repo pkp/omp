@@ -1,9 +1,6 @@
 /**
  * @defgroup js_pages_workflow
  */
-// Create the pages_workflow namespace.
-$.pkp.pages.workflow = $.pkp.pages.workflow || {};
-
 /**
  * @file js/pages/workflow/WorkflowHandler.js
  *
@@ -17,6 +14,10 @@ $.pkp.pages.workflow = $.pkp.pages.workflow || {};
  *
  */
 (function($) {
+
+	/** @type {Object} */
+	$.pkp.pages.workflow = $.pkp.pages.workflow || {};
+
 
 
 	/**

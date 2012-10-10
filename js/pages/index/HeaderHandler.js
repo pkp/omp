@@ -1,9 +1,6 @@
 /**
  * @defgroup js_pages_index
  */
-// Create the pages_index namespace.
-$.pkp.pages.index = $.pkp.pages.index || {};
-
 /**
  * @file js/pages/index/HeaderHandler.js
  *
@@ -17,6 +14,10 @@ $.pkp.pages.index = $.pkp.pages.index || {};
  *
  */
 (function($) {
+
+	/** @type {Object} */
+	$.pkp.pages.index = $.pkp.pages.index || {};
+
 
 
 	/**
@@ -79,14 +80,13 @@ $.pkp.pages.index = $.pkp.pages.index || {};
 	 */
 	$.pkp.pages.index.HeaderHandler.prototype.initializeMenu_ =
 			function() {
-		var $header = this.getHtmlElement();
-		var $menu = $('ul.sf-menu', $header);
+		var $header = this.getHtmlElement(),
+				$menu = $('ul.sf-menu', $header),
+				requestedPage = this.options_.requestedPage,
+				currentUrl = window.location.href,
+				$linkInMenu = $('a[href="' + currentUrl + '"]', $menu).
+						parentsUntil('ul.sf-menu').last();
 		$menu.superfish();
-
-		var requestedPage = this.options_.requestedPage;
-		var currentUrl = window.location.href;
-		var $linkInMenu = $('a[href="' + currentUrl + '"]', $menu).
-				parentsUntil('ul.sf-menu').last();
 
 		if ($linkInMenu.length === 0 && requestedPage !== '') {
 			// Search for the current url inside the menu links. If not present,

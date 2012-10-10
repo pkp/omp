@@ -1,11 +1,6 @@
 /**
  * @defgroup js_controllers_dashboard_form
  */
-// Create the namespace.
-jQuery.pkp.controllers.dashboard =
-			jQuery.pkp.controllers.dashboard || {form: { } };
-
-
 /**
  * @file js/controllers/dashboard/form/DashboardTaskFormHandler.js
  *
@@ -19,6 +14,11 @@ jQuery.pkp.controllers.dashboard =
  *  on the Task tab in the dashboard.
  */
 (function($) {
+
+	/** @type {Object} */
+	$.pkp.controllers.dashboard =
+			$.pkp.controllers.dashboard || {form: { } };
+
 
 
 	/**
@@ -79,8 +79,9 @@ jQuery.pkp.controllers.dashboard =
 	$.pkp.controllers.dashboard.form.DashboardTaskFormHandler.
 			prototype.startMultiplePressSubmission_ = function() {
 
-		var $form = this.getHtmlElement();
-		var url = $form.find('#multiplePress').val();
+		var $form = this.getHtmlElement(),
+				url = $form.find('#multiplePress').val();
+
 		if (url !== 0) { // not the default
 			window.location.href = url;
 		}

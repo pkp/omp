@@ -1,9 +1,6 @@
 /**
  * @defgroup js_controllers_monographList
  */
-// Create the controllers_monographList namespace.
-$.pkp.controllers.monographList = $.pkp.controllers.monographList || {};
-
 /**
  * @file js/controllers/monographList/MonographListHandler
  * @class MonographListHandler
@@ -13,6 +10,10 @@ $.pkp.controllers.monographList = $.pkp.controllers.monographList || {};
  *
  */
 (function($) {
+
+	/** @type {Object} */
+	$.pkp.controllers.monographList = $.pkp.controllers.monographList || {};
+
 
 
 	/**
@@ -57,17 +58,17 @@ $.pkp.controllers.monographList = $.pkp.controllers.monographList || {};
 	$.pkp.controllers.monographList.MonographListHandler.prototype.formatList =
 			function() {
 
-		var $monographs = this.getMonographs();
-
-		// Get the max number of monographs that fit in a row.
-		var monographWidth = $monographs.first().width() + 10;
-		var containerWidth = this.getHtmlElement().width();
-		var maxInRow = Math.floor(containerWidth / monographWidth);
+		var $monographs = this.getMonographs(),
+				// Get the max number of monographs that fit in a row.
+				monographWidth = $monographs.first().width() + 10,
+				containerWidth = this.getHtmlElement().width(),
+				maxInRow = Math.floor(containerWidth / monographWidth),
+				i;
 
 		// Iterate over our monographs in groups, normalizing the
 		// element detail heights.
-		for (var $i = 0; $i < $monographs.size(); $i += maxInRow) {
-			$monographs.slice($i, $i + maxInRow).equalizeElementHeights();
+		for (i = 0; i < $monographs.size(); i += maxInRow) {
+			$monographs.slice(i, i + maxInRow).equalizeElementHeights();
 		}
 	};
 

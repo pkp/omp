@@ -79,14 +79,16 @@
 	$.pkp.pages.manageCatalog.MonographManagementListHandler.
 			prototype.useGridView = function() {
 
-		var $htmlElement = $(this.getHtmlElement());
+		var $htmlElement = $(this.getHtmlElement()),
+				$actionsContainer;
+
 		$htmlElement.find('.pkp_manageCatalog_monographList')
 			.removeClass('list_view')
 			.addClass('grid_view');
 
 		this.resetElementHeights_();
 		// Control enabled/disabled state of buttons
-		var $actionsContainer = $htmlElement.find('.submission_actions');
+		$actionsContainer = $htmlElement.find('.submission_actions');
 		$actionsContainer.find('.grid_view').addClass('ui-state-active');
 		$actionsContainer.find('.list_view').removeClass('ui-state-active');
 
@@ -125,19 +127,16 @@
 		// Toggle the "feature" flag.
 		this.inFeatureMode_ = !this.inFeatureMode_;
 
-		var $htmlElement = $(this.getHtmlElement());
-
-		// Find the button elements
-		var $actionsContainer = $htmlElement.find('.submission_actions');
-		var $featureButton = $actionsContainer.find('.feature');
-
-		// Find the monograph list
-		var $monographList = $htmlElement
-				.find('ul.pkp_manageCatalog_monographList');
-
-		// Find the feature links
-		var $featureLinks = $monographList
-				.find('.pkp_manageCatalog_featureTools');
+		var $htmlElement = $(this.getHtmlElement()),
+				// Find the button elements
+				$actionsContainer = $htmlElement.find('.submission_actions'),
+				$featureButton = $actionsContainer.find('.feature'),
+				// Find the monograph list
+				$monographList = $htmlElement
+						.find('ul.pkp_manageCatalog_monographList'),
+				// Find the feature links
+				$featureLinks = $monographList
+						.find('.pkp_manageCatalog_featureTools');
 
 		if (this.inFeatureMode_) {
 			// We've just entered "Feature" mode.
@@ -177,8 +176,8 @@
 
 		// In case the list has changed sort order, re-sort it.
 		$listContainer.children('li').sortElements(function(aNode, bNode) {
-			var a = $.pkp.classes.Handler.getHandler($(aNode));
-			var b = $.pkp.classes.Handler.getHandler($(bNode));
+			var a = $.pkp.classes.Handler.getHandler($(aNode)),
+					b = $.pkp.classes.Handler.getHandler($(bNode));
 
 			// One is featured and the other is not
 			if (a.getFeatured() && !b.getFeatured()) {
@@ -238,8 +237,8 @@
 
 		// Store the provided sequences in each entry
 		$listContainer.children('li').each(function(index, node) {
-			var handler = $.pkp.classes.Handler.getHandler($(node));
-			var newSequence = newSequences[handler.getId()];
+			var handler = $.pkp.classes.Handler.getHandler($(node)),
+					newSequence = newSequences[handler.getId()];
 			if (newSequence) {
 				handler.trigger('setSequence', [newSequence, false]);
 			}
@@ -266,17 +265,19 @@
 	$.pkp.pages.manageCatalog.MonographManagementListHandler.prototype.
 			sortUpdateHandler_ = function(callingHandler, event, ui) {
 		// Figure out where we are in the DOM and choose a new seq num
-		var $monographElement = ui.item;
-		var $prevElement = $monographElement.prev();
-		var $nextElement = $monographElement.next();
-		var newSequence;
+		var $monographElement = ui.item,
+				$prevElement = $monographElement.prev(),
+				$nextElement = $monographElement.next(),
+				newSequence,
+				prevHandler, nextHandler;
+
 		if ($prevElement.length) {
 			// Move to the previous nodes's sequence plus one.
-			var prevHandler = $.pkp.classes.Handler.getHandler($prevElement);
+			prevHandler = $.pkp.classes.Handler.getHandler($prevElement);
 			newSequence = prevHandler.getSeq() + 1;
 		} else if ($nextElement.length) {
 			// Move to the next node's sequence minus one.
-			var nextHandler = $.pkp.classes.Handler.getHandler($nextElement);
+			nextHandler = $.pkp.classes.Handler.getHandler($nextElement);
 			newSequence = nextHandler.getSeq() - 1;
 		} else {
 			// It's a one-element list and sorting is irrelevant.

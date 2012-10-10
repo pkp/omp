@@ -1,9 +1,6 @@
 /**
  * @defgroup js_pages_manageCatalog
  */
-// Create the pages_manageCatalog namespace.
-$.pkp.pages.manageCatalog = $.pkp.pages.manageCatalog || {};
-
 /**
  * @file js/pages/manageCatalog/ManageCatalogModalHandler.js
  *
@@ -18,6 +15,10 @@ $.pkp.pages.manageCatalog = $.pkp.pages.manageCatalog || {};
  *
  */
 (function($) {
+
+	/** @type {Object} */
+	$.pkp.pages.manageCatalog = $.pkp.pages.manageCatalog || {};
+
 
 
 	/**
@@ -63,6 +64,7 @@ $.pkp.pages.manageCatalog = $.pkp.pages.manageCatalog || {};
 		this.trigger('formCanceled');
 		return false;
 	};
+
 
 /** @param {jQuery} $ jQuery closure. */
 }(jQuery));

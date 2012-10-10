@@ -1,10 +1,6 @@
 /**
  * @defgroup js_pages_authorDashboard
  */
-// Create the pages_authorDashboard namespace.
-jQuery.pkp.pages = jQuery.pkp.pages || { authorDashboard: { } };
-
-
 /**
  * @file js/pages/authorDashboard/AuthorDashboardHandler.js
  *
@@ -19,6 +15,10 @@ jQuery.pkp.pages = jQuery.pkp.pages || { authorDashboard: { } };
  * FIXME: Needs to be split up into re-usable widgets, see #6471.
  */
 (function($) {
+
+	/** @type {Object} */
+	$.pkp.pages = $.pkp.pages || { authorDashboard: { } };
+
 
 
 	/**
@@ -107,15 +107,15 @@ jQuery.pkp.pages = jQuery.pkp.pages || { authorDashboard: { } };
 		this.currentStage_ = newStage;
 
 		// Retrieve the dashboard element.
-		var $dashboard = this.getHtmlElement();
+		var $dashboard = this.getHtmlElement(),
+				// Retrieve the CSS selector of the current stage's dashboard section.
+				cssSelectors = this.self('CSS_SELECTORS_'),
+				// Enable the current stage (and all prior stages) and disable
+				// all later stages.
+				disabled,
+				stage,
+				$deactivatedSections, $activatedSection;
 
-		// Retrieve the CSS selector of the current stage's dashboard section.
-		var cssSelectors = this.self('CSS_SELECTORS_');
-
-		// Enable the current stage (and all prior stages) and disable
-		// all later stages.
-		var disabled;
-		var stage;
 		for (stage = $.pkp.cons.WORKFLOW_STAGE_ID_SUBMISSION;
 				stage <= $.pkp.cons.WORKFLOW_STAGE_ID_PRODUCTION; stage++) {
 
@@ -128,12 +128,12 @@ jQuery.pkp.pages = jQuery.pkp.pages || { authorDashboard: { } };
 		}
 
 		// Minimize all sections not representing the current stage.
-		var $deactivatedSections = $('.pkp_authorDashboard_stageContainer',
+		$deactivatedSections = $('.pkp_authorDashboard_stageContainer',
 				$dashboard).not(cssSelectors[newStage]);
 		$deactivatedSections.accordion('activate', false);
 
 		// Open the current stage's section if it's not yet open.
-		var $activatedSection = $(cssSelectors[newStage] +
+		$activatedSection = $(cssSelectors[newStage] +
 				'.pkp_authorDashboard_stageContainer', $dashboard);
 		if ($activatedSection.accordion('option', 'active') !== 0) {
 			$activatedSection.accordion('activate', 0);

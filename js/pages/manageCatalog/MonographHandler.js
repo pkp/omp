@@ -68,9 +68,9 @@
 
 		// position the (hidden) feature tools over the book cover image.
 		var imagePosition = $monographsContainer.
-				find('.pkp_manageCatalog_monograph_image').position();
-		var featuresPosition = $monographsContainer.
-				find('.pkp_manageCatalog_featureTools').position();
+				find('.pkp_manageCatalog_monograph_image').position(),
+				featuresPosition = $monographsContainer.
+						find('.pkp_manageCatalog_featureTools').position();
 
 		$monographsContainer.find('.pkp_manageCatalog_featureTools').
 				css('position', 'relative').

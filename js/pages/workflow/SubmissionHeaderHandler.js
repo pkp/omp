@@ -74,10 +74,10 @@
 	$.pkp.pages.workflow.SubmissionHeaderHandler.prototype.appendToggleIndicator_ =
 			function(callingElement, event) {
 
-		var $submissionHeader = this.getHtmlElement();
-		var $participantsPopover = $submissionHeader.find('.participant_popover');
-		var $participantsListElement = $submissionHeader.find('li.participants');
-		var $participantsToggle = $submissionHeader.find('#participantToggle');
+		var $submissionHeader = this.getHtmlElement(),
+				$participantsPopover = $submissionHeader.find('.participant_popover'),
+				$participantsListElement = $submissionHeader.find('li.participants'),
+				$participantsToggle = $submissionHeader.find('#participantToggle');
 
 		$participantsPopover.toggle();
 		$participantsListElement.toggleClass('expandedIndicator');
@@ -91,6 +91,7 @@
 			});
 		}
 	};
+
 
 /** @param {jQuery} $ jQuery closure. */
 }(jQuery));

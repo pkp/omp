@@ -1,9 +1,6 @@
 /**
  * @defgroup js_pages_manageCatalog
  */
-// Create the pages_manageCatalog namespace.
-$.pkp.pages.manageCatalog = $.pkp.pages.manageCatalog || {};
-
 /**
  * @file js/pages/manageCatalog/ManageCatalogHeaderHandler.js
  *
@@ -17,6 +14,10 @@ $.pkp.pages.manageCatalog = $.pkp.pages.manageCatalog || {};
  *
  */
 (function($) {
+
+	/** @type {Object} */
+	$.pkp.pages.manageCatalog = $.pkp.pages.manageCatalog || {};
+
 
 
 	/**
@@ -160,9 +161,9 @@ $.pkp.pages.manageCatalog = $.pkp.pages.manageCatalog || {};
 			prototype.searchCatalogHandler_ =
 			function(callingForm, event, searchUrl) {
 
-		var tabIndex = this.searchTabIndex_;
-		var $catalogTabs = $('#catalogTabs');
-		var selectedTabIndex = $catalogTabs.tabs('option', 'selected');
+		var tabIndex = this.searchTabIndex_,
+				$catalogTabs = $('#catalogTabs'),
+				selectedTabIndex = $catalogTabs.tabs('option', 'selected');
 
 		// Load and jump to the tab, or reload if already there
 		if (selectedTabIndex === tabIndex) {
@@ -241,10 +242,12 @@ $.pkp.pages.manageCatalog = $.pkp.pages.manageCatalog || {};
 	 */
 	$.pkp.pages.manageCatalog.ManageCatalogHeaderHandler.
 			prototype.selectTabHandler_ = function(element, event, tabElement) {
-		var $selector;
+
+		var $selector, categoryPath, seriesPath;
+
 		if (tabElement.panel.id == 'categoryTab') {
 			$selector = $(element).find('#categorySelect');
-			var categoryPath = $selector.find('option').first().val();
+			categoryPath = $selector.find('option').first().val();
 			if (categoryPath !== undefined) {
 				$selector.find('option').eq(0).attr('selected', 'selected');
 				this.selectCategoryHandler_(element, event, categoryPath);
@@ -252,7 +255,7 @@ $.pkp.pages.manageCatalog = $.pkp.pages.manageCatalog || {};
 		}
 		if (tabElement.panel.id == 'seriesTab') {
 			$selector = $(element).find('#seriesSelect');
-			var seriesPath = $selector.find('option').first().val();
+			seriesPath = $selector.find('option').first().val();
 			if (seriesPath !== undefined) {
 				$selector.find('option').eq(0).attr('selected', 'selected');
 				this.selectSeriesHandler_(element, event, seriesPath);
@@ -277,11 +280,12 @@ $.pkp.pages.manageCatalog = $.pkp.pages.manageCatalog || {};
 	$.pkp.pages.manageCatalog.ManageCatalogHeaderHandler.
 			prototype.showTabHandler_ = function(element, event, tabElement) {
 		// clear the search if the selected tab is not our search result tab.
-		var $catalogTabs = $('#catalogTabs').tabs();
-		var currentTabIndex = $catalogTabs.tabs('option', 'selected');
+		var $catalogTabs = $('#catalogTabs').tabs(),
+				currentTabIndex = $catalogTabs.tabs('option', 'selected'),
+				$catalogHeader;
 
 		if (currentTabIndex !== this.searchTabIndex_) {
-			var $catalogHeader = this.getHtmlElement();
+			$catalogHeader = this.getHtmlElement();
 			$catalogHeader.find('[id^="catalogSearch"]').val('');
 		}
 		return true;
@@ -312,8 +316,8 @@ $.pkp.pages.manageCatalog = $.pkp.pages.manageCatalog || {};
 	$.pkp.pages.manageCatalog.ManageCatalogHeaderHandler.
 			prototype.dataChangedHandler_ = function(event, element) {
 
-		var $catalogTabs = $('#catalogTabs').tabs();
-		var currentTabIndex = $catalogTabs.tabs('option', 'selected');
+		var $catalogTabs = $('#catalogTabs').tabs(),
+				currentTabIndex = $catalogTabs.tabs('option', 'selected');
 
 		switch (currentTabIndex) {
 			case 0:
@@ -377,5 +381,7 @@ $.pkp.pages.manageCatalog = $.pkp.pages.manageCatalog || {};
 		// Find the container and add fetched content.
 		$('#categoryContainer').append(jsonData.content);
 	};
+
+
 /** @param {jQuery} $ jQuery closure. */
 }(jQuery));
