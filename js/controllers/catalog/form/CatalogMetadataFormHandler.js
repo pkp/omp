@@ -25,7 +25,7 @@
 	 *
 	 * @extends $.pkp.controllers.form.FileUploadFormHandler
 	 *
-	 * @param {jQuery} $form A wrapped HTML element that
+	 * @param {jQueryObject} $form A wrapped HTML element that
 	 *  represents the tabbed interface element.
 	 * @param {Object} options Tabbed modal options.
 	 */
@@ -84,5 +84,7 @@
 			$form.find('#audienceRangeTo').val(this.audienceValues_[1]);
 		}
 	};
+
+
 /** @param {jQuery} $ jQuery closure. */
 }(jQuery));

@@ -26,7 +26,7 @@
 	 *
 	 * @extends $.pkp.controllers.TabHandler
 	 *
-	 * @param {jQuery} $tabs A wrapped HTML element that
+	 * @param {jQueryObject} $tabs A wrapped HTML element that
 	 *  represents the tabbed interface.
 	 * @param {Object} options Handler options.
 	 */

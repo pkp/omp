@@ -26,7 +26,7 @@
 	 *
 	 * @extends $.pkp.controllers.form.AjaxFormHandler
 	 *
-	 * @param {jQuery} $form the wrapped HTML form element.
+	 * @param {jQueryObject} $form the wrapped HTML form element.
 	 * @param {Object} options form options.
 	 */
 	$.pkp.controllers.grid.content.spotlights.form.SpotlightFormHandler =
@@ -75,6 +75,7 @@
 		newUrl += '&name=' + encodeURIComponent(eventObject.value);
 		autocompleteHandler.setAutocompleteUrl(newUrl);
 	};
+
 
 /** @param {jQuery} $ jQuery closure. */
 }(jQuery));

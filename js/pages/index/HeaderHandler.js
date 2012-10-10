@@ -25,7 +25,7 @@
 	 *
 	 * @extends $.pkp.classes.Handler
 	 *
-	 * @param {jQuery} $headerElement The HTML element encapsulating
+	 * @param {jQueryObject} $headerElement The HTML element encapsulating
 	 *  the header.
 	 * @param {Object} options Handler options.
 	 */
@@ -109,7 +109,7 @@
 		if ($linkInMenu.length === 1) {
 			// Add the current page style.
 			$('a', $linkInMenu).first().addClass('pkp_helpers_underline');
-		} else {
+			// } else {
 			// There is no element or more than one that can represent
 			// the current page. For now we don't have a use case for this,
 			// can be extended if needed.

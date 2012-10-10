@@ -25,7 +25,7 @@
 	 *
 	 * @extends $.pkp.controllers.form.AjaxFormHandler
 	 *
-	 * @param {jQuery} $formElement A wrapped HTML element that
+	 * @param {jQueryObject} $formElement A wrapped HTML element that
 	 *  represents the approved proof form interface element.
 	 * @param {Object} options Tabbed modal options.
 	 */

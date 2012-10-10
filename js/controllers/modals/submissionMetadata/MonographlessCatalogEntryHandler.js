@@ -27,7 +27,7 @@
 	 *
 	 * @extends $.pkp.classes.Handler
 	 *
-	 * @param {jQuery} $containerDiv A wrapped HTML element that
+	 * @param {jQueryObject} $containerDiv A wrapped HTML element that
 	 *  represents the container div interface element.
 	 * @param {Object} options Optional Options.
 	 */

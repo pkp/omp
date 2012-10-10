@@ -26,7 +26,7 @@
 	 *
 	 * @extends $.pkp.classes.Handler
 	 *
-	 * @param {jQuery} $containerForm A wrapped HTML element that
+	 * @param {jQueryObject} $containerForm A wrapped HTML element that
 	 *  represents the container form element.
 	 * @param {Object} options Optional Options.
 	 */

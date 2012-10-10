@@ -26,7 +26,7 @@
 	 *
 	 * @extends $.pkp.controllers.form.FormHandler
 	 *
-	 * @param {jQuery} $handledElement The clickable element
+	 * @param {jQueryObject} $handledElement The clickable element
 	 *  the modal will be attached to.
 	 * @param {Object} options non-default Dialog options
 	 *  to be passed into the dialog widget.

@@ -25,7 +25,7 @@
 	 *
 	 * @extends $.pkp.classes.Handler
 	 *
-	 * @param {jQuery} $container the wrapped HTML element.
+	 * @param {jQueryObject} $container the wrapped HTML element.
 	 * @param {Object} options form options.
 	 */
 	$.pkp.controllers.modals.editorDecision.ApproveProofsHandler =

@@ -38,7 +38,7 @@
 	 *
 	 * @extends $.pkp.controllers.form.AjaxFormHandler
 	 *
-	 * @param {jQuery} $form the wrapped HTML form element.
+	 * @param {jQueryObject} $form the wrapped HTML form element.
 	 * @param {Object} options form options.
 	 */
 	$.pkp.controllers.tab.settings.form.FileViewFormHandler =
@@ -122,7 +122,7 @@
 	 * to the file setting name.
 	 *
 	 * @param {string} settingName The file setting name.
-	 * @return {jQuery} JQuery element.
+	 * @return {jQueryObject} JQuery element.
 	 * @private
 	 */
 	$.pkp.controllers.tab.settings.form.FileViewFormHandler.prototype.
@@ -133,4 +133,7 @@
 
 		return $fileHtmlElement;
 	};
+
+
+/** @param {jQuery} $ jQuery closure. */
 }(jQuery));

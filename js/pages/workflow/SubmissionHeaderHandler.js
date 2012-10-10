@@ -18,7 +18,7 @@
 	 *
 	 * @extends $.pkp.classes.Handler
 	 *
-	 * @param {jQuery} $submissionHeader The HTML element encapsulating
+	 * @param {jQueryObject} $submissionHeader The HTML element encapsulating
 	 *  the header div.
 	 * @param {Object} options Handler options.
 	 */

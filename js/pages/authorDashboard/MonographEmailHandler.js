@@ -22,7 +22,7 @@
 	 *
 	 * @extends $.pkp.controllers.linkAction.LinkActionHandler
 	 *
-	 * @param {jQuery} $monographEmailContainer The container for
+	 * @param {jQueryObject} $monographEmailContainer The container for
 	 *  the monograph email link.
 	 * @param {Object} options Handler options.
 	 */
@@ -37,6 +37,7 @@
 	$.pkp.classes.Helper.inherits(
 			$.pkp.pages.authorDashboard.MonographEmailHandler,
 			$.pkp.controllers.linkAction.LinkActionHandler);
+
 
 /** @param {jQuery} $ jQuery closure. */
 }(jQuery));

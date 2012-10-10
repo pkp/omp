@@ -25,7 +25,7 @@
 	 *
 	 * @extends $.pkp.classes.Handler
 	 *
-	 * @param {jQuery} $containerElement The HTML element encapsulating
+	 * @param {jQueryObject} $containerElement The HTML element encapsulating
 	 *  the carousel container.
 	 * @param {Object} options Handler options.
 	 */
@@ -95,7 +95,7 @@
 	//
 	/**
 	 * Called everytime a carousel feature is blurred.
-	 * @param {jQuery} $context The context in which ocurred the event.
+	 * @param {jQueryObject} $context The context in which ocurred the event.
 	 * @param {HtmlElement} element The element that triggered the event.
 	 * @param {Event} event The blur event.
 	 * @private
@@ -108,7 +108,7 @@
 
 	/**
 	 * Called everytime a carousel feature is focused.
-	 * @param {jQuery} $context The context in which ocurred the event.
+	 * @param {jQueryObject} $context The context in which ocurred the event.
 	 * @param {HtmlElement} element The element that triggered the event.
 	 * @param {Event} event The focus event.
 	 * @private
@@ -121,7 +121,7 @@
 
 	/**
 	 * Called everytime an image loading is finished.
-	 * @param {jQuery} $context The context in which ocurred the event.
+	 * @param {jQueryObject} $context The context in which ocurred the event.
 	 * @param {Event} event The load event.
 	 * @private
 	 */
@@ -265,7 +265,7 @@
 
 	/**
 	 * Execute code to toggle the feature (focused or not).
-	 * @param {jQuery} $feature The feature that will be toggled.
+	 * @param {jQueryObject} $feature The feature that will be toggled.
 	 * @param {boolean} show True if focused and false if not.
 	 * @private
 	 */

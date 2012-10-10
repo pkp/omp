@@ -25,7 +25,7 @@
 	 *
 	 * @extends $.pkp.classes.Handler
 	 *
-	 * @param {jQuery} $presses The HTML element encapsulating
+	 * @param {jQueryObject} $presses The HTML element encapsulating
 	 *  the presses page.
 	 * @param {Object} options Handler options.
 	 */

@@ -25,7 +25,7 @@
 	 *
 	 * @extends $.pkp.classes.Handler
 	 *
-	 * @param {jQuery} $container the wrapped page element.
+	 * @param {jQueryObject} $container the wrapped page element.
 	 * @param {Object} options handler options.
 	 */
 	$.pkp.controllers.grid.users.reviewer.AdvancedReviewerSearchHandler =

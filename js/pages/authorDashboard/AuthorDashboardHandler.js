@@ -26,7 +26,7 @@
 	 *
 	 * @extends $.pkp.classes.Handler
 	 *
-	 * @param {jQuery} $dashboard The HTML element encapsulating
+	 * @param {jQueryObject} $dashboard The HTML element encapsulating
 	 *  the author dashboard page.
 	 * @param {Object} options Handler options.
 	 *  currentStage: the current workflow stage, one of the

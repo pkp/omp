@@ -26,7 +26,7 @@
 	 *
 	 * @extends $.pkp.controllers.form.FormHandler
 	 *
-	 * @param {jQuery} $form the wrapped HTML form element.
+	 * @param {jQueryObject} $form the wrapped HTML form element.
 	 * @param {Object} options form options.
 	 */
 	$.pkp.controllers.dashboard.form.DashboardTaskFormHandler =
@@ -82,9 +82,11 @@
 		var $form = this.getHtmlElement(),
 				url = $form.find('#multiplePress').val();
 
-		if (url !== 0) { // not the default
+		if (url != 0) { // not the default
 			window.location.href = url;
 		}
 	};
+
+
 /** @param {jQuery} $ jQuery closure. */
 }(jQuery));

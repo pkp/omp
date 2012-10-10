@@ -21,7 +21,7 @@
 	 *
 	 * @extends $.pkp.classes.Handler
 	 *
-	 * @param {jQuery} $monographsContainer The HTML element encapsulating
+	 * @param {jQueryObject} $monographsContainer The HTML element encapsulating
 	 *  the monograph list div.
 	 * @param {Object} options Handler options.
 	 */

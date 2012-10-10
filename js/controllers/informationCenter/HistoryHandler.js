@@ -25,7 +25,7 @@
 	 *
 	 * @extends $.pkp.classes.Handler
 	 *
-	 * @param {jQuery} $historyDiv A wrapped HTML element that
+	 * @param {jQueryObject} $historyDiv A wrapped HTML element that
 	 *  represents the "history" interface element.
 	 * @param {Object} options Tabbed modal options.
 	 */

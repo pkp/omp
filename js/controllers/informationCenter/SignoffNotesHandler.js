@@ -17,7 +17,7 @@
 	 *
 	 * @extends $.pkp.classes.Handler
 	 *
-	 * @param {jQuery} $notesDiv A wrapped HTML element that
+	 * @param {jQueryObject} $notesDiv A wrapped HTML element that
 	 *  represents the "notes" interface element.
 	 * @param {Object} options Notes options.
 	 */

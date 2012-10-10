@@ -25,7 +25,7 @@
 	 *
 	 * @extends $.pkp.classes.Handler
 	 *
-	 * @param {jQuery} $catalogHeader The HTML element encapsulating
+	 * @param {jQueryObject} $catalogHeader The HTML element encapsulating
 	 *  the header div.
 	 * @param {Object} options Handler options.
 	 */

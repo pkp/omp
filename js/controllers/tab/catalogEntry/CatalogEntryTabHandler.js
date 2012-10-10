@@ -26,7 +26,7 @@
 	 *
 	 * @extends $.pkp.controllers.TabHandler
 	 *
-	 * @param {jQuery} $tabs A wrapped HTML element that
+	 * @param {jQueryObject} $tabs A wrapped HTML element that
 	 *  represents the tabbed interface.
 	 * @param {Object} options Handler options.
 	 */
@@ -211,7 +211,7 @@
 	/**
 	 * Get the tab position using the passed publication format id.
 	 * @param {integer} formatId The publication format id.
-	 * @param {jQuery} $tabs The current tabs container element.
+	 * @param {jQueryObject} $tabs The current tabs container element.
 	 * @return {integer?} The publication format tab position or null.
 	 * @private
 	 */

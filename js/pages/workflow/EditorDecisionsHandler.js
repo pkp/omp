@@ -18,7 +18,7 @@
 	 *
 	 * @extends $.pkp.classes.Handler
 	 *
-	 * @param {jQuery} $editorDecisions The HTML element encapsulating
+	 * @param {jQueryObject} $editorDecisions The HTML element encapsulating
 	 *  the editor decisions link actions.
 	 * @param {Object} options Handler options.
 	 */

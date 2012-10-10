@@ -18,7 +18,7 @@
 	 *
 	 * @extends $.pkp.classes.Handler
 	 *
-	 * @param {jQuery} $production The HTML element encapsulating
+	 * @param {jQueryObject} $production The HTML element encapsulating
 	 *  the production page.
 	 * @param {Object} options Handler options.
 	 */
