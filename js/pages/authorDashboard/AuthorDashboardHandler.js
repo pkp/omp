@@ -165,4 +165,4 @@ jQuery.pkp.pages = jQuery.pkp.pages || { authorDashboard: { } };
 
 
 /** @param {jQuery} $ jQuery closure. */
-})(jQuery);
+}(jQuery));

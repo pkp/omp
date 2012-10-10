@@ -65,4 +65,4 @@ $.pkp.pages.manageCatalog = $.pkp.pages.manageCatalog || {};
 	};
 
 /** @param {jQuery} $ jQuery closure. */
-})(jQuery);
+}(jQuery));

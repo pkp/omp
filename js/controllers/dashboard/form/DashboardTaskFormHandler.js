@@ -86,4 +86,4 @@ jQuery.pkp.controllers.dashboard =
 		}
 	};
 /** @param {jQuery} $ jQuery closure. */
-})(jQuery);
+}(jQuery));

@@ -46,4 +46,4 @@ jQuery.pkp.pages.admin = jQuery.pkp.pages.admin || { };
 
 
 /** @param {jQuery} $ jQuery closure. */
-})(jQuery);
+}(jQuery));

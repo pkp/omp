@@ -70,4 +70,4 @@ jQuery.pkp.site =
 	};
 
 
-})(jQuery);
+}(jQuery));

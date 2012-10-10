@@ -119,4 +119,4 @@ jQuery.pkp.controllers.tab.publicationFormat =
 
 
 /** @param {jQuery} $ jQuery closure. */
-})(jQuery);
+}(jQuery));

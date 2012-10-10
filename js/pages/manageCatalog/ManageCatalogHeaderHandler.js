@@ -378,4 +378,4 @@ $.pkp.pages.manageCatalog = $.pkp.pages.manageCatalog || {};
 		$('#categoryContainer').append(jsonData.content);
 	};
 /** @param {jQuery} $ jQuery closure. */
-})(jQuery);
+}(jQuery));

@@ -1,11 +1,6 @@
 /**
  * @defgroup js_controllers_grid_content_spotlights_form
  */
-// Create the namespace.
-jQuery.pkp.controllers.grid.content =
-			jQuery.pkp.controllers.grid.content ||
-			{ spotlights: { form: { } } };
-
 /**
  * @file js/controllers/grid/content/spotlights/form/SpotlightFormHandler.js
  *
@@ -18,6 +13,12 @@ jQuery.pkp.controllers.grid.content =
  * @brief Handle the spotlight form.
  */
 (function($) {
+
+	/** @type {Object} */
+	$.pkp.controllers.grid.content =
+			$.pkp.controllers.grid.content ||
+			{ spotlights: { form: { } } };
+
 
 
 	/**
@@ -63,19 +64,17 @@ jQuery.pkp.controllers.grid.content =
 	$.pkp.controllers.grid.content.spotlights.form.SpotlightFormHandler.
 			prototype.addNameToAutocompleteUrl = function(eventObject) {
 
-		var $form = this.getHtmlElement();
-		var $autocompleteContainer = $form.find('#assocId_container');
+		var $form = this.getHtmlElement(),
+				$autocompleteContainer = $form.find('#assocId_container'),
+				autocompleteHandler =
+						$.pkp.classes.Handler.getHandler($autocompleteContainer),
+				oldUrl = this.autocompleteUrl_,
+				// Remove the old Name from the URL
+				newUrl = oldUrl.replace(/(&name=[^&]*)/, '');
 
-		var autocompleteHandler =
-				$.pkp.classes.Handler.getHandler($autocompleteContainer);
-
-		var oldUrl = this.autocompleteUrl_;
-
-		// Remove the old Name from the URL
-		var newUrl = oldUrl.replace(/(&name=[^&]*)/, '');
 		newUrl += '&name=' + encodeURIComponent(eventObject.value);
 		autocompleteHandler.setAutocompleteUrl(newUrl);
 	};
 
 /** @param {jQuery} $ jQuery closure. */
-})(jQuery);
+}(jQuery));

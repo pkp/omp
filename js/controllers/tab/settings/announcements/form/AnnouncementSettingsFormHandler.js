@@ -61,4 +61,4 @@ jQuery.pkp.controllers.tab.settings.announcements =
 
 
 /** @param {jQuery} $ jQuery closure. */
-})(jQuery);
+}(jQuery));

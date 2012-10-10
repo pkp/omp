@@ -98,4 +98,4 @@ jQuery.pkp.pages.reviewer =
 		throw new Error('Illegal review step number.');
 	};
 /** @param {jQuery} $ jQuery closure. */
-})(jQuery);
+}(jQuery));

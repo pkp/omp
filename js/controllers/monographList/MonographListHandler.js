@@ -42,7 +42,7 @@ $.pkp.controllers.monographList = $.pkp.controllers.monographList || {};
 	 */
 	$.pkp.controllers.monographList.MonographListHandler.prototype.getMonographs =
 			function() {
-		throw Error('Method must be implemented by subclasses.');
+		throw new Error('Method must be implemented by subclasses.');
 	};
 
 
@@ -73,4 +73,4 @@ $.pkp.controllers.monographList = $.pkp.controllers.monographList || {};
 
 
 /** @param {jQuery} $ jQuery closure. */
-})(jQuery);
+}(jQuery));

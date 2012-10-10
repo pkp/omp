@@ -1,11 +1,6 @@
 /**
  * @defgroup js_site_form
  */
-// Create the namespace.
-jQuery.pkp.controllers.modals.submissionMetadata =
-			jQuery.pkp.controllers.modals.submissionMetadata ||
-			{ };
-
 /**
  * @file js/controllers/modals/submissionMetadata/MonographlessCatalogEntryHandler.js
  *
@@ -19,6 +14,12 @@ jQuery.pkp.controllers.modals.submissionMetadata =
  * form, used when a monograph needs to be chosen to work with.
  */
 (function($) {
+
+	/** @type {Object} */
+	$.pkp.controllers.modals.submissionMetadata =
+			$.pkp.controllers.modals.submissionMetadata ||
+			{ };
+
 
 
 	/**
@@ -130,4 +131,4 @@ jQuery.pkp.controllers.modals.submissionMetadata =
 
 
 /** @param {jQuery} $ jQuery closure. */
-})(jQuery);
+}(jQuery));

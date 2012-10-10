@@ -98,10 +98,12 @@
 	 */
 	$.pkp.controllers.informationCenter.SignoffNotesHandler.
 			prototype.handleDropDownOptionSet_ = function(dropdown, event) {
-		var $dropDown = $('#signoffSelect', this.getHtmlElement());
-		var $options = $('option', $dropDown);
+		var $dropDown = $('#signoffSelect', this.getHtmlElement()),
+				$options = $('option', $dropDown),
+				signoffId;
+
 		if ($options.length == 2) {
-			var signoffId = $('option', $dropDown).next().val();
+			signoffId = $('option', $dropDown).next().val();
 			$dropDown.val(signoffId);
 
 			this.loadNoteForm_(signoffId);
@@ -142,5 +144,6 @@
 		$notesFormContainer.append(jsonData.content);
 	};
 
+
 /** @param {jQuery} $ jQuery closure. */
-})(jQuery);
+}(jQuery));

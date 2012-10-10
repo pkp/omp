@@ -2,11 +2,6 @@
  * @defgroup js_controllers_tab_settings_form
  */
 // Create the namespace.
-jQuery.pkp.controllers.tab =
-			jQuery.pkp.controllers.tab ||
-			{ settings: { form: { } } };
-
-
 /**
  * @file js/controllers/tab/settings/form/FileViewFormHandler.js
  *
@@ -30,6 +25,12 @@ jQuery.pkp.controllers.tab =
  *
  */
 (function($) {
+
+	/** @type {Object} */
+	$.pkp.controllers.tab =
+			$.pkp.controllers.tab ||
+			{ settings: { form: { } } };
+
 
 
 	/**
@@ -126,9 +127,10 @@ jQuery.pkp.controllers.tab =
 	 */
 	$.pkp.controllers.tab.settings.form.FileViewFormHandler.prototype.
 			getFileHtmlElement_ = function(settingName) {
-		var $form = this.getHtmlElement();
-		var $fileHtmlElement = $('#' + settingName, $form);
+
+		var $form = this.getHtmlElement(),
+				$fileHtmlElement = $('#' + settingName, $form);
 
 		return $fileHtmlElement;
 	};
-})(jQuery);
+}(jQuery));

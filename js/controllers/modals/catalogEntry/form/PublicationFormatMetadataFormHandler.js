@@ -1,11 +1,6 @@
 /**
  * @defgroup js_controllers_modal_catalogEntry_form
  */
-// Create the namespace.
-jQuery.pkp.controllers.modals.catalogEntry =
-			jQuery.pkp.controllers.modals.catalogEntry || {form: { } };
-
-
 /**
  * @file js/controllers/modals/catalogEntry/form/PublicationFormatMetadataFormHandler.js
  *
@@ -18,6 +13,11 @@ jQuery.pkp.controllers.modals.catalogEntry =
  * @brief Handle monograph publication format forms on the catalog entry modal.
  */
 (function($) {
+
+	/** @type {Object} */
+	$.pkp.controllers.modals.catalogEntry =
+			$.pkp.controllers.modals.catalogEntry || {form: { } };
+
 
 
 	/**
@@ -61,8 +61,8 @@ jQuery.pkp.controllers.modals.catalogEntry =
 			PublicationFormatMetadataFormHandler.prototype.
 					overrideToggleHandler_ = function(sourceElement, event) {
 
-		var $form = this.getHtmlElement();
-		var $fileSize = $form.find('[id^="fileSize"]');
+		var $form = this.getHtmlElement(),
+				$fileSize = $form.find('[id^="fileSize"]');
 
 		if ($(sourceElement).is(':checked')) {
 			$fileSize.attr('disabled', '');
@@ -72,4 +72,4 @@ jQuery.pkp.controllers.modals.catalogEntry =
 	};
 
 /** @param {jQuery} $ jQuery closure. */
-})(jQuery);
+}(jQuery));

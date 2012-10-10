@@ -224,4 +224,4 @@ jQuery.pkp.controllers.tab.catalogEntry =
 
 
 /** @param {jQuery} $ jQuery closure. */
-})(jQuery);
+}(jQuery));

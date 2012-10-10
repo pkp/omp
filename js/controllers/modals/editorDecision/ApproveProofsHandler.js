@@ -1,11 +1,6 @@
 /**
  * @defgroup js_controllers_modal_editorDecision_form
  */
-// Create the namespace.
-jQuery.pkp.controllers.modals = jQuery.pkp.controllers.modals ||
-			{ editorDecision: { } };
-
-
 /**
  * @file js/controllers/modals/editorDecision/ApproveProofsHandler.js
  *
@@ -18,6 +13,12 @@ jQuery.pkp.controllers.modals = jQuery.pkp.controllers.modals ||
  * @brief Handle approve proofs content.
  */
 (function($) {
+
+
+	/** @type {Object} */
+	$.pkp.controllers.modals = $.pkp.controllers.modals ||
+			{ editorDecision: { } };
+
 
 
 	/**
@@ -43,4 +44,4 @@ jQuery.pkp.controllers.modals = jQuery.pkp.controllers.modals ||
 
 
 /** @param {jQuery} $ jQuery closure. */
-})(jQuery);
+}(jQuery));

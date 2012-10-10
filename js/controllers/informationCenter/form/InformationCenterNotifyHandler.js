@@ -1,11 +1,6 @@
 /**
  * @defgroup js_controllers_informationCenter_form
  */
-// Create the namespace.
-jQuery.pkp.controllers.informationCenter.form =
-			jQuery.pkp.controllers.informationCenter.form || { };
-
-
 /**
  * @file js/controllers/informationCenter/form/InformationCenterNotifyHandler.js
  *
@@ -18,6 +13,11 @@ jQuery.pkp.controllers.informationCenter.form =
  * @brief Handle Information Center notification forms.
  */
 (function($) {
+
+	/** @type {Object} */
+	$.pkp.controllers.informationCenter.form =
+			$.pkp.controllers.informationCenter.form || { };
+
 
 
 	/**
@@ -101,4 +101,4 @@ jQuery.pkp.controllers.informationCenter.form =
 	};
 
 /** @param {jQuery} $ jQuery closure. */
-})(jQuery);
+}(jQuery));

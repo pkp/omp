@@ -60,4 +60,4 @@
 				formAction.replace('SEARCH_TEXT_DUMMY', encodeURIComponent(searchText)));
 	};
 
-})(jQuery);
+}(jQuery));

@@ -1,11 +1,6 @@
 /**
  * @defgroup js_controllers_grid_files_signoff_form
  */
-// Create the namespace.
-jQuery.pkp.controllers.grid.files = jQuery.pkp.controllers.grid.files ||
-			{ signoff: { form: { } } };
-
-
 /**
  * @file js/controllers/grid/files/signoff/AddAuditorFormHandler.js
  *
@@ -18,6 +13,11 @@ jQuery.pkp.controllers.grid.files = jQuery.pkp.controllers.grid.files ||
  * @brief Handle the "add auditor" form.
  */
 (function($) {
+
+	/** @type {Object} */
+	$.pkp.controllers.grid.files = $.pkp.controllers.grid.files ||
+			{ signoff: { form: { } } };
+
 
 
 	/**
@@ -35,10 +35,11 @@ jQuery.pkp.controllers.grid.files = jQuery.pkp.controllers.grid.files ||
 
 		// Set response due date to one week in the future
 		// FIXME: May want to make a press setting
-		var currentTime = new Date();
-		var month = currentTime.getMonth() + 1;
-		var day = currentTime.getDate() + 7;
-		var year = currentTime.getFullYear();
+		var currentTime = new Date(),
+				month = currentTime.getMonth() + 1,
+				day = currentTime.getDate() + 7,
+				year = currentTime.getFullYear();
+
 		$('input[id^="responseDueDate"]').datepicker(
 				{ dateFormat: 'mm-dd-yy', minDate: '0', autoSize: true});
 		$('input[id^="responseDueDate"]').datepicker(
@@ -51,4 +52,4 @@ jQuery.pkp.controllers.grid.files = jQuery.pkp.controllers.grid.files ||
 
 
 /** @param {jQuery} $ jQuery closure. */
-})(jQuery);
+}(jQuery));

@@ -65,11 +65,12 @@ jQuery.pkp.controllers.modals = jQuery.pkp.controllers.modals ||
 
 		// Get the selected reviewer's ID
 		var $selectedInput = this.getHtmlElement().
-				find('#reviewerSelectGridContainer').find('input:checked');
-		var reviewerId = $selectedInput.val();
+				find('#reviewerSelectGridContainer').find('input:checked'),
+				reviewerId = $selectedInput.val(),
+				reviewerName;
 
 		if (reviewerId) {
-			var reviewerName = $.trim($selectedInput.parent().next().
+			reviewerName = $.trim($selectedInput.parent().next().
 					children('span').html());
 
 			// Update the hidden review id input
@@ -110,4 +111,4 @@ jQuery.pkp.controllers.modals = jQuery.pkp.controllers.modals ||
 
 
 /** @param {jQuery} $ jQuery closure. */
-})(jQuery);
+}(jQuery));

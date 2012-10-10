@@ -84,4 +84,4 @@ jQuery.pkp.controllers.catalog =
 		}
 	};
 /** @param {jQuery} $ jQuery closure. */
-})(jQuery);
+}(jQuery));

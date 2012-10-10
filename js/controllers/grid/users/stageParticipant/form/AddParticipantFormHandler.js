@@ -1,11 +1,6 @@
 /**
  * @defgroup js_controllers_grid_users_stageParticipant_form
  */
-// Create the namespace.
-jQuery.pkp.controllers.grid.users.stageParticipant =
-			jQuery.pkp.controllers.grid.users.stageParticipant ||
-			{ form: { } };
-
 /**
  * @file js/controllers/grid/users/stageParticipant/AddParticipantFormHandler.js
  *
@@ -18,6 +13,12 @@ jQuery.pkp.controllers.grid.users.stageParticipant =
  * @brief Handle the "add participant" form.
  */
 (function($) {
+
+	/** @type {Object} */
+	jQuery.pkp.controllers.grid.users.stageParticipant =
+			jQuery.pkp.controllers.grid.users.stageParticipant ||
+			{ form: { } };
+
 
 
 	/**
@@ -71,13 +72,12 @@ jQuery.pkp.controllers.grid.users.stageParticipant =
 	$.pkp.controllers.grid.users.stageParticipant.form.AddParticipantFormHandler.
 			prototype.updateUserList = function(eventObject) {
 
-		var oldUrl = this.fetchUserListUrl_;
-
-		var $form = this.getHtmlElement();
-		var $userGroupSelector = $form.find('#userGroupId');
-		// Match with &amp;userGroupId or without and append userGroupId
-		var newUrl = oldUrl.replace(
-				/(&userGroupId=\d+)?$/, '&userGroupId=' + $userGroupSelector.val());
+		var oldUrl = this.fetchUserListUrl_,
+				$form = this.getHtmlElement(),
+				$userGroupSelector = $form.find('#userGroupId'),
+				// Match with &amp;userGroupId or without and append userGroupId
+				newUrl = oldUrl.replace(
+						/(&userGroupId=\d+)?$/, '&userGroupId=' + $userGroupSelector.val());
 
 		$.get(newUrl, null, this.callbackWrapper(
 				this.updateUserListHandler_), 'json');
@@ -95,15 +95,16 @@ jQuery.pkp.controllers.grid.users.stageParticipant =
 	$.pkp.controllers.grid.users.stageParticipant.form.AddParticipantFormHandler.
 			prototype.updateUserListHandler_ = function(ajaxContext, data) {
 
-		var jsonData = this.handleJson(data);
-		var $element = this.getHtmlElement();
+		var jsonData = this.handleJson(data),
+				$element = this.getHtmlElement(),
+				$select = $element.find('#userId'),
+				optionId, $option;
 
-		var $select = $element.find('#userId');
 		// clear any previous items.
 		$select.find('option[value!=""]').remove();
 
-		for (var optionId in jsonData.content) {
-			var $option = $('<option/>');
+		for (optionId in jsonData.content) {
+			$option = $('<option/>');
 			$option.attr('value', optionId);
 			$option.text(jsonData.content[optionId]);
 			$select.append($option);
@@ -111,4 +112,4 @@ jQuery.pkp.controllers.grid.users.stageParticipant =
 	};
 
 /** @param {jQuery} $ jQuery closure. */
-})(jQuery);
+}(jQuery));

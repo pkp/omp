@@ -118,4 +118,4 @@ $.pkp.pages.index = $.pkp.pages.index || {};
 
 
 /** @param {jQuery} $ jQuery closure. */
-})(jQuery);
+}(jQuery));

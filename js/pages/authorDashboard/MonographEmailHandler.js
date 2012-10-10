@@ -39,4 +39,4 @@
 			$.pkp.controllers.linkAction.LinkActionHandler);
 
 /** @param {jQuery} $ jQuery closure. */
-})(jQuery);
+}(jQuery));

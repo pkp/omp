@@ -87,4 +87,4 @@ $.pkp.pages.workflow = $.pkp.pages.workflow || {};
 
 
 /** @param {jQuery} $ jQuery closure. */
-})(jQuery);
+}(jQuery));

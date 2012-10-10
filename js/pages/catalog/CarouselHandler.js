@@ -333,4 +333,4 @@ $.pkp.pages.catalog = $.pkp.pages.catalog || {};
 
 
 /** @param {jQuery} $ jQuery closure. */
-})(jQuery);
+}(jQuery));

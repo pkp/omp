@@ -129,4 +129,4 @@ jQuery.pkp.controllers.tab.settings.paymentMethod =
 
 
 /** @param {jQuery} $ jQuery closure. */
-})(jQuery);
+}(jQuery));

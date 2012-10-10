@@ -95,4 +95,4 @@ jQuery.pkp.controllers.tab.settings.siteAccessOptions =
 
 
 /** @param {jQuery} $ jQuery closure. */
-})(jQuery);
+}(jQuery));

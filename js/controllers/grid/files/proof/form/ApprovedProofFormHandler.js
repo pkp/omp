@@ -112,4 +112,4 @@ jQuery.pkp.controllers.grid.files.proof =
 
 
 /** @param {jQuery} $ jQuery closure. */
-})(jQuery);
+}(jQuery));

@@ -1,11 +1,6 @@
 /**
  * @defgroup js_controllers_modal_catalogEntry_form
  */
-// Create the namespace.
-jQuery.pkp.controllers.modals.catalogEntry =
-			jQuery.pkp.controllers.modals.catalogEntry || {form: { } };
-
-
 /**
  * @file js/controllers/modals/catalogEntry/form/RepresentativeFormHandler.js
  *
@@ -18,6 +13,10 @@ jQuery.pkp.controllers.modals.catalogEntry =
  * @brief Handle monograph representative forms.
  */
 (function($) {
+
+	/** @type {Object} */
+	$.pkp.controllers.modals.catalogEntry =
+			$.pkp.controllers.modals.catalogEntry || {form: { } };
 
 
 	/**
@@ -69,4 +68,4 @@ jQuery.pkp.controllers.modals.catalogEntry =
 	};
 
 /** @param {jQuery} $ jQuery closure. */
-})(jQuery);
+}(jQuery));

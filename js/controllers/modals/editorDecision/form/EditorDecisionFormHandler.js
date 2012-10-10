@@ -1,12 +1,6 @@
 /**
  * @defgroup js_controllers_modal_editorDecision_form
  */
-// Create the namespace.
-jQuery.pkp.controllers.modals.editorDecision =
-			jQuery.pkp.controllers.modals.editorDecision ||
-			{ form: { } };
-
-
 /**
  * @file js/controllers/modals/editorDecision/form/EditorDecisionFormHandler.js
  *
@@ -19,6 +13,12 @@ jQuery.pkp.controllers.modals.editorDecision =
  * @brief Handle editor decision forms.
  */
 (function($) {
+
+	/** @type {Object} */
+	$.pkp.controllers.modals.editorDecision =
+			$.pkp.controllers.modals.editorDecision ||
+			{ form: { } };
+
 
 
 	/**
@@ -87,9 +87,10 @@ jQuery.pkp.controllers.modals.editorDecision =
 		jsonData = this.handleJson(jsonData);
 		if (jsonData !== false) {
 			// Add the peer review text to the personal message to the author.
-			var $form = this.getHtmlElement();
-			var $textArea = $('textarea[id^="personalMessage"]', $form);
-			var currentContent = $textArea.val();
+			var $form = this.getHtmlElement(),
+					$textArea = $('textarea[id^="personalMessage"]', $form),
+					currentContent = $textArea.val();
+
 			// make a reasonable effort to look for a signature separator.
 			// if there is one, insert the peer reviews before it.
 			if (!currentContent.match(/__________/)) {
@@ -103,4 +104,4 @@ jQuery.pkp.controllers.modals.editorDecision =
 
 
 /** @param {jQuery} $ jQuery closure. */
-})(jQuery);
+}(jQuery));

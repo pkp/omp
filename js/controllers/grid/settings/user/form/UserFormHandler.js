@@ -1,11 +1,6 @@
 /**
  * @defgroup js_controllers_grid_users_user_form
  */
-// Create the namespace.
-jQuery.pkp.controllers.grid.settings =
-			jQuery.pkp.controllers.grid.settings || { user: { form: { } }};
-
-
 /**
  * @file js/controllers/grid/settings/user/form/UserFormHandler.js
  *
@@ -18,6 +13,10 @@ jQuery.pkp.controllers.grid.settings =
  * @brief Handle the user settings form.
  */
 (function($) {
+
+	/** @type {Object} */
+	$.pkp.controllers.grid.settings =
+			$.pkp.controllers.grid.settings || { user: { form: { } }};
 
 
 	/**
@@ -102,10 +101,11 @@ jQuery.pkp.controllers.grid.settings =
 			setGenerateRandom = function(checkbox) {
 
 		// JQuerify the element
-		var $checkbox = $(checkbox);
-		var $form = this.getHtmlElement();
-		var passwordValue = '';
-		var activeAndCheck = 0;
+		var $checkbox = $(checkbox),
+				$form = this.getHtmlElement(),
+				passwordValue = '',
+				activeAndCheck = 0;
+
 		if ($checkbox.attr('checked')) {
 			passwordValue = '********';
 			activeAndCheck = 1;
@@ -123,7 +123,8 @@ jQuery.pkp.controllers.grid.settings =
 	$.pkp.controllers.grid.settings.user.form.UserFormHandler.prototype.
 			generateUsername = function() {
 
-		var $form = this.getHtmlElement();
+		var $form = this.getHtmlElement(),
+				firstName, lastName, fetchUrl;
 
 		if ($('[id^="lastName"]', $form).val() === '') {
 			// No last name entered; cannot suggest. Complain.
@@ -132,11 +133,11 @@ jQuery.pkp.controllers.grid.settings =
 		}
 
 		// Fetch entered names
-		var firstName = $('[id^="firstName"]', $form).val();
-		var lastName = $('[id^="lastName"]', $form).val();
+		firstName = $('[id^="firstName"]', $form).val();
+		lastName = $('[id^="lastName"]', $form).val();
 
 		// Replace dummy values in the URL with entered values
-		var fetchUrl = this.fetchUsernameSuggestionUrl_.
+		fetchUrl = this.fetchUsernameSuggestionUrl_.
 				replace('FIRST_NAME_DUMMY', firstName).
 				replace('LAST_NAME_DUMMY', lastName);
 
@@ -155,7 +156,7 @@ jQuery.pkp.controllers.grid.settings =
 		jsonData = this.handleJson(jsonData);
 
 		if (jsonData === false) {
-			throw Error('JSON response must be set to true!');
+			throw new Error('JSON response must be set to true!');
 		}
 
 		var $form = this.getHtmlElement();
@@ -164,4 +165,4 @@ jQuery.pkp.controllers.grid.settings =
 
 
 /** @param {jQuery} $ jQuery closure. */
-})(jQuery);
+}(jQuery));
