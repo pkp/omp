@@ -44,7 +44,6 @@ switch ($op) {
 	case 'become':
 	case 'authorizationDenied':
 	case 'viewCaptcha':
-	case 'viewPublicProfile':
 		define('HANDLER_CLASS', 'UserHandler');
 		import('pages.user.UserHandler');
 		break;
