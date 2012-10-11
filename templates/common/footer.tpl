@@ -56,4 +56,3 @@
 {$additionalFooterData}
 </body>
 </html>
-
