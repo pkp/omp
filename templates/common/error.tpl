@@ -7,16 +7,4 @@
  * Generic error page.
  * Displays a simple error message and (optionally) a return link.
  *}
-{strip}
-{include file="common/header.tpl"}
-{/strip}
-
-<span class="errorText">{translate key=$errorMsg params=$errorParams}</span>
-
-{if $backLink}
-<br /><br />
-&#187; <a href="{$backLink}">{translate key="$backLinkLabel"}</a>
-{/if}
-
-{include file="common/footer.tpl"}
-
+{include file="core:common/error.tpl"}
