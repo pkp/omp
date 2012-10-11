@@ -75,8 +75,6 @@ class PluginGridHandler extends CategoryGridHandler {
 		// Set the no items row text
 		$this->setEmptyRowText('grid.noItems');
 
-		$press =& $request->getPress();
-
 		// Columns
 		import('controllers.grid.plugins.PluginGridCellProvider');
 		$pluginCellProvider = new PluginGridCellProvider();
@@ -381,4 +379,5 @@ class PluginGridHandler extends CategoryGridHandler {
 		return $json->getString();
 	}
 }
+
 ?>
