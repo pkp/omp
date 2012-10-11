@@ -1,5 +1,5 @@
 {**
- * site.tpl
+ * templates/about/site.tpl
  *
  * Copyright (c) 2003-2012 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -25,4 +25,3 @@
 <a href="{url op="aboutThisPublishingSystem"}">{translate key="about.aboutThisPublishingSystem"}</a>
 
 {include file="common/footer.tpl"}
-
