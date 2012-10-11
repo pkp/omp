@@ -5,9 +5,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * 'More' page for a specific announcement.
- *
  *}
-
 {strip}
 {if $announcement}
 	{assign var="pageTitleTranslated" value=$announcement->getLocalizedTitle() translate=false}
