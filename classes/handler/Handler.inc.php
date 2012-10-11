@@ -17,6 +17,9 @@ import('lib.pkp.classes.handler.PKPHandler');
 import('classes.handler.validation.HandlerValidatorPress');
 
 class Handler extends PKPHandler {
+	/**
+	 * Constructor
+	 */
 	function Handler() {
 		parent::PKPHandler();
 	}

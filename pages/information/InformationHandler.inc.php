@@ -29,16 +29,14 @@ class InformationHandler extends Handler {
 	 */
 	function index($args, &$request) {
 		$this->validate();
-		$this->setupTemplate($request);
 		$press = $request->getPress();
+		if ($press == null) $request->redirect('index');
+
+		$this->setupTemplate($press);
+
 		$contentOnly = $request->getUserVar('contentOnly');
 
-		if ($press == null) {
-			$request->redirect('index');
-			return;
-		}
-
-		switch(isset($args[0])?$args[0]:null) {
+		switch(array_shift($args)) {
 			case 'readers':
 				$content = $press->getLocalizedSetting('readerInformation');
 				$pageTitle = 'navigation.infoForReaders.long';
@@ -98,13 +96,13 @@ class InformationHandler extends Handler {
 
 	/**
 	 * Initialize the template.
-	 * @param $request PKPRequest
+	 * @param $press Press
 	 */
-	function setupTemplate($request) {
-		$press =& $request->getPress();
-		AppLocale::requireComponents(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_PKP_USER, LOCALE_COMPONENT_OMP_MANAGER);
-		$templateMgr =& TemplateManager::getManager();
-		if (!$press || !$press->getSetting('restrictSiteAccess')) {
+	function setupTemplate($press) {
+		parent::setupTemplate();
+		AppLocale::requireComponents(LOCALE_COMPONENT_OMP_MANAGER); // FIXME needed?
+		if (!$press->getSetting('restrictSiteAccess')) {
+			$templateMgr =& TemplateManager::getManager();
 			$templateMgr->setCacheability(CACHEABILITY_PUBLIC);
 		}
 	}
