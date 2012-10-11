@@ -9,7 +9,7 @@
 {strip}
 {include file="common/header.tpl"}
 {/strip}
-
+<div id="presses">
 {iterate from=presses item=press}
 	{if !$notFirstPress}
 		{translate key="user.register.selectPress"}:
@@ -23,6 +23,5 @@
 {else}
 	</ul>
 {/if}
-
+</div>
 {include file="common/footer.tpl"}
-
