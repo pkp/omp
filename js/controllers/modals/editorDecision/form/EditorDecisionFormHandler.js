@@ -15,10 +15,8 @@
 (function($) {
 
 	/** @type {Object} */
-	$.pkp.controllers.modals.editorDecision =
-			$.pkp.controllers.modals.editorDecision ||
-			{ form: { } };
-
+	$.pkp.controllers.modals.editorDecision.form =
+			$.pkp.controllers.modals.editorDecision.form || { };
 
 
 	/**

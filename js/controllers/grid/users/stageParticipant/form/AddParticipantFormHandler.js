@@ -56,7 +56,7 @@
 	/**
 	 * The URL to be called to fetch a list of users for a given user group.
 	 * @private
-	 * @type {string}
+	 * @type {string?}
 	 */
 	$.pkp.controllers.grid.users.stageParticipant.form.AddParticipantFormHandler.
 			prototype.fetchUserListUrl_ = null;

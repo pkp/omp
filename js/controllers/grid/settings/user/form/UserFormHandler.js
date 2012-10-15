@@ -154,14 +154,14 @@
 	$.pkp.controllers.grid.settings.user.form.UserFormHandler.prototype.
 			setUsername = function(formElement, jsonData) {
 
-		jsonData = this.handleJson(jsonData);
+		var processedJsonData = this.handleJson(jsonData);
 
-		if (jsonData === false) {
+		if (processedJsonData === false) {
 			throw new Error('JSON response must be set to true!');
 		}
 
 		var $form = this.getHtmlElement();
-		$('[id^="username"]', $form).val(jsonData.content);
+		$('[id^="username"]', $form).val(processedJsonData.content);
 	};
 
 

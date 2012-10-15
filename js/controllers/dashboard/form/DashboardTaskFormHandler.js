@@ -52,7 +52,7 @@
 	/**
 	 * The URL to be called to fetch a spotlight item via autocomplete.
 	 * @private
-	 * @type {string}
+	 * @type {string?}
 	 */
 	$.pkp.controllers.dashboard.form.DashboardTaskFormHandler.
 			prototype.singlePressSubmissionUrl_ = null;
@@ -83,7 +83,7 @@
 				url = $form.find('#multiplePress').val();
 
 		if (url != 0) { // not the default
-			window.location.href = url;
+			window.location.href = /** @type {string} */ url;
 		}
 	};
 

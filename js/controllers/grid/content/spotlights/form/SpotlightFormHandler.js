@@ -50,7 +50,7 @@
 	/**
 	 * The URL to be called to fetch a spotlight item via autocomplete.
 	 * @private
-	 * @type {string}
+	 * @type {string?}
 	 */
 	$.pkp.controllers.grid.content.spotlights.form.SpotlightFormHandler.
 			prototype.autocompleteUrl_ = null;

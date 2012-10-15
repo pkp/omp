@@ -49,7 +49,7 @@
 	 * An array to store the temporary values of the audienceTo and From
 	 * select items, in case the user decides to reuse them again.
 	 * @private
-	 * @type {array?}
+	 * @type {Array?}
 	 */
 	$.pkp.controllers.catalog.form.CatalogMetadataFormHandler.prototype.
 			audienceValues_ = null;

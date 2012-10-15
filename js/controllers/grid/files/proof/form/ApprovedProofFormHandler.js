@@ -44,13 +44,13 @@
 
 		// Set up the default enabled/disabled state of the checkbox controls
 		if ($priceElement.attr('value') === '') {
-			$('#notAvailable').attr('checked', true);
-			$priceElement.attr('disabled', true);
+			$('#notAvailable').attr('checked', 'true');
+			$priceElement.attr('disabled', 'true');
 		} else if ($priceElement.attr('value') === '0') {
-			$('#openAccess').attr('checked', true);
-			$priceElement.attr('disabled', true).attr('value', '');
+			$('#openAccess').attr('checked', 'true');
+			$priceElement.attr('disabled', 'true').attr('value', '');
 		} else {
-			$('#directSales').attr('checked', true);
+			$('#directSales').attr('checked', 'true');
 		}
 	};
 	$.pkp.classes.Helper.inherits(
@@ -75,14 +75,14 @@
 
 		var $priceElement = $('input[id^="price"]');
 		if ($(radioButton).attr('id') === 'directSales') {
-			$priceElement.attr('disabled', false);
+			$priceElement.attr('disabled', 'false');
 			if ($priceElement.val() === '') {
 				this.disableFormControls_();
 			} else {
 				this.enableFormControls_();
 			}
 		} else {
-			$priceElement.attr('disabled', true);
+			$priceElement.attr('disabled', 'true');
 			this.enableFormControls_();
 		}
 
