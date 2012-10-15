@@ -1,7 +1,4 @@
 /**
- * @defgroup js_controllers_modal_catalogEntry_form
- */
-/**
  * @file js/controllers/modals/catalogEntry/form/PublicationFormatMetadataFormHandler.js
  *
  * Copyright (c) 2000-2012 John Willinsky

@@ -70,7 +70,7 @@
 	/**
 	 * The sales type for this form.
 	 * @private
-	 * @type {string}
+	 * @type {string?}
 	 */
 	$.pkp.controllers.grid.files.proof.form.ApprovedProofFormHandler.
 			prototype.salesType_ = null;

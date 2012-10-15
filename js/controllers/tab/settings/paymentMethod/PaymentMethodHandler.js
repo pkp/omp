@@ -90,7 +90,7 @@
 	 * @param {$.pkp.controllers.form.AjaxFormHandler} callingForm The form
 	 *  that triggered the event.
 	 * @param {Event} event The upload event.
-	 * @param {String} paymentPluginName The name of the payment plugin.
+	 * @param {string|number} paymentPluginName The name of the payment plugin.
 	 */
 	$.pkp.controllers.tab.settings.paymentMethod.PaymentMethodHandler.
 			prototype.selectPaymentMethodHandler =

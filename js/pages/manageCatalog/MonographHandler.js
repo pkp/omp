@@ -217,7 +217,7 @@
 			function() {
 
 		return this.setFeaturedUrlTemplate_
-				.replace('FEATURED_DUMMY', this.isFeatured_ ? 1 : 0)
+				.replace('FEATURED_DUMMY', this.isFeatured_ ? true : false)
 				.replace('SEQ_DUMMY', this.isFeatured_ ?
 				this.seq_ : $.pkp.cons.REALLY_BIG_NUMBER);
 	};
@@ -232,7 +232,7 @@
 			function() {
 
 		return this.setNewReleaseUrlTemplate_
-				.replace('RELEASE_DUMMY', this.isNewRelease_ ? 1 : 0);
+				.replace('RELEASE_DUMMY', this.isNewRelease_ ? true : false);
 	};
 
 
@@ -247,7 +247,7 @@
 			function() {
 
 		// Invert "featured" state
-		this.isFeatured_ = this.isFeatured_ ? 0 : 1;
+		this.isFeatured_ = this.isFeatured_ ? false : true;
 
 		// Tell the server
 		$.get(this.getSetFeaturedUrl_(),
@@ -269,7 +269,7 @@
 			function() {
 
 		// Invert "release" state
-		this.isNewRelease_ = this.isNewRelease_ ? 0 : 1;
+		this.isNewRelease_ = this.isNewRelease_ ? false : true;
 
 		// Tell the server
 		$.get(this.getSetNewReleaseUrl_(),
@@ -334,7 +334,7 @@
 				$htmlElement = this.getHtmlElement();
 
 		// Record the new state of the isFeatured flag and sequence
-		this.isFeatured_ = processedJsonData.content !== null ? 1 : 0;
+		this.isFeatured_ = processedJsonData.content !== null ? true : false;
 		this.seq_ = processedJsonData.content;
 
 		// Update the UI
@@ -376,7 +376,7 @@
 				$htmlElement = this.getHtmlElement();
 
 		// Record the new state of the isNewRelease flag and sequence
-		this.isNewRelease_ = processedJsonData.content !== null ? 1 : 0;
+		this.isNewRelease_ = processedJsonData.content !== null ? true : false;
 
 		// Update the UI
 		if (this.isNewRelease_) {

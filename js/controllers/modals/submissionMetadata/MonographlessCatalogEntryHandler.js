@@ -67,8 +67,8 @@
 	 * Get the metadata edit form URL for the given stage and monograph ID.
 	 *
 	 * @private
-	 * @param {string} monographId The monograph ID for the edit form.
-	 * @param {string} stageId The stage ID for the edit form.
+	 * @param {string|number} monographId The monograph ID for the edit form.
+	 * @param {string|number} stageId The stage ID for the edit form.
 	 * @return {string} The URL for the metadata edit form.
 	 */
 	$.pkp.controllers.modals.submissionMetadata.MonographlessCatalogEntryHandler.
