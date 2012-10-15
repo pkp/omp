@@ -55,6 +55,15 @@ class ApprovedProofForm extends Form {
 		$templateMgr->assign('fileId', $this->approvedProof->getFileIdAndRevision());
 		$templateMgr->assign('monographId', $this->monograph->getId());
 		$templateMgr->assign('publicationFormatId', $this->publicationFormat->getId());
+
+		$salesTypes = array(
+					'openAccess' => 'payment.directSales.openAccess',
+					'directSales' => 'payment.directSales.directSales',
+					'notAvailable' => 'payment.directSales.notAvailable',
+				);
+
+		$templateMgr->assign('salesTypes', $salesTypes);
+		$templateMgr->assign('salesType', $this->approvedProof->getSalesType());
 		return parent::fetch($request);
 	}
 
@@ -70,7 +79,8 @@ class ApprovedProofForm extends Form {
 	 */
 	function initData() {
 		$this->_data = array(
-			'price' => $this->approvedProof->getDirectSalesPrice()
+			'price' => $this->approvedProof->getDirectSalesPrice(),
+			'salesType' => $this->approvedProof->getSalesType(),
 		);
 	}
 
@@ -90,6 +100,7 @@ class ApprovedProofForm extends Form {
 			// Direct sale
 			$this->approvedProof->setDirectSalesPrice($this->getData('price'));
 		}
+		$this->approvedProof->setSalesType($salesType);
 		$submissionFileDao->updateObject($this->approvedProof);
 
 		return $this->approvedProof->getFileIdAndRevision();

@@ -33,6 +33,9 @@
 			function($formElement, options) {
 		this.parent($formElement, options);
 
+		// store the URL for fetching users not assigned to a particular user group.
+		this.salesType_ = options.salesType;
+
 		// Disable/enable the price field based on sales mode
 		$formElement.find('#notAvailable, #openAccess, #directSales')
 				.click(this.callbackWrapper(this.checkHandler_));
@@ -43,20 +46,34 @@
 		$priceElement.change(this.callbackWrapper(this.changeHandler_));
 
 		// Set up the default enabled/disabled state of the checkbox controls
-		if ($priceElement.attr('value') === '') {
-			$('#notAvailable').attr('checked', 'true');
-			$priceElement.attr('disabled', 'true');
-		} else if ($priceElement.attr('value') === '0') {
-			$('#openAccess').attr('checked', 'true');
-			$priceElement.attr('disabled', 'true').attr('value', '');
-		} else {
-			$('#directSales').attr('checked', 'true');
+		if (this.salesType_ !== '') {
+			if ($priceElement.attr('value') === '') {
+				$('#notAvailable').attr('checked', 'true');
+				$priceElement.attr('disabled', 'true');
+			} else if ($priceElement.attr('value') === '0') {
+				$('#openAccess').attr('checked', 'true');
+				$priceElement.attr('disabled', 'true').attr('value', '');
+			} else {
+				$('#directSales').attr('checked', 'true');
+			}
 		}
 	};
 	$.pkp.classes.Helper.inherits(
 			$.pkp.controllers.grid.files.proof.form.ApprovedProofFormHandler,
 			$.pkp.controllers.form.AjaxFormHandler
 	);
+
+
+	//
+	// Private properties
+	//
+	/**
+	 * The sales type for this form.
+	 * @private
+	 * @type {string}
+	 */
+	$.pkp.controllers.grid.files.proof.form.ApprovedProofFormHandler.
+			prototype.salesType_ = null;
 
 
 	//
@@ -75,7 +92,7 @@
 
 		var $priceElement = $('input[id^="price"]');
 		if ($(radioButton).attr('id') === 'directSales') {
-			$priceElement.attr('disabled', 'false');
+			$priceElement.removeAttr('disabled');
 			if ($priceElement.val() === '') {
 				this.disableFormControls();
 			} else {
