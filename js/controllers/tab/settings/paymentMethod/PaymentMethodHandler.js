@@ -65,8 +65,8 @@
 	 * Get the metadata edit form URL for the given stage and monograph ID.
 	 *
 	 * @private
-	 * @param {String} paymentPluginName The name of the payment plugin.
-	 * @return {String} The URL for the fetch payment form contents op.
+	 * @param {string} paymentPluginName The name of the payment plugin.
+	 * @return {string} The URL for the fetch payment form contents op.
 	 */
 	$.pkp.controllers.tab.settings.paymentMethod.PaymentMethodHandler.
 			prototype.getPaymentMethodFormUrl_ = function(paymentPluginName) {
@@ -118,14 +118,14 @@
 	$.pkp.controllers.tab.settings.paymentMethod.PaymentMethodHandler.
 			prototype.showFetchedPaymentMethodForm_ = function(ajaxContext, jsonData) {
 
-		jsonData = this.handleJson(jsonData);
+		var processedJsonData = this.handleJson(jsonData),
+				// Find the container and remove all children.
+				$paymentMethodFormContainer = $('#paymentMethodFormContainer');
 
-		// Find the container and remove all children.
-		var $paymentMethodFormContainer = $('#paymentMethodFormContainer');
 		$paymentMethodFormContainer.children().remove();
 
 		// Replace it with the form content.
-		$paymentMethodFormContainer.append(jsonData.content);
+		$paymentMethodFormContainer.append(processedJsonData.content);
 	};
 
 

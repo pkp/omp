@@ -14,11 +14,6 @@
  */
 (function($) {
 
-	/** @type {Object} */
-	$.pkp.controllers.modals.catalogEntry =
-			$.pkp.controllers.modals.catalogEntry || {form: { } };
-
-
 
 	/**
 	 * @constructor

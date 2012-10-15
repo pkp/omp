@@ -19,6 +19,7 @@
 			$.pkp.controllers.modals.editorDecision.form || { };
 
 
+
 	/**
 	 * @constructor
 	 *
@@ -82,20 +83,22 @@
 	$.pkp.controllers.modals.editorDecision.form.EditorDecisionFormHandler.
 			prototype.insertPeerReviews = function(ajaxOptions, jsonData) {
 
-		jsonData = this.handleJson(jsonData);
-		if (jsonData !== false) {
+		var processedJsonData = this.handleJson(jsonData),
+				$form = this.getHtmlElement(),
+				$textArea, currentContent;
+
+		if (processedJsonData !== false) {
 			// Add the peer review text to the personal message to the author.
-			var $form = this.getHtmlElement(),
-					$textArea = $('textarea[id^="personalMessage"]', $form),
-					currentContent = $textArea.val();
+			$textArea = $('textarea[id^="personalMessage"]', $form);
+			currentContent = $textArea.val();
 
 			// make a reasonable effort to look for a signature separator.
 			// if there is one, insert the peer reviews before it.
 			if (!currentContent.match(/__________/)) {
-				$textArea.val(currentContent + jsonData.content);
+				$textArea.val(currentContent + processedJsonData.content);
 			} else {
 				$textArea.val(currentContent.
-						replace(/__________/, jsonData.content + '__________'));
+						replace(/__________/, processedJsonData.content + '__________'));
 			}
 		}
 	};

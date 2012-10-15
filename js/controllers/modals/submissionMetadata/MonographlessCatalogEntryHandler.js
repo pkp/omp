@@ -67,9 +67,9 @@
 	 * Get the metadata edit form URL for the given stage and monograph ID.
 	 *
 	 * @private
-	 * @param {String} monographId The monograph ID for the edit form.
-	 * @param {String} stageId The stage ID for the edit form.
-	 * @return {String} The URL for the metadata edit form.
+	 * @param {string} monographId The monograph ID for the edit form.
+	 * @param {string} stageId The stage ID for the edit form.
+	 * @return {string} The URL for the metadata edit form.
 	 */
 	$.pkp.controllers.modals.submissionMetadata.MonographlessCatalogEntryHandler.
 			prototype.getMetadataEditFormUrl_ = function(monographId, stageId) {
@@ -90,7 +90,7 @@
 	 * @param {$.pkp.controllers.form.AjaxFormHandler} callingForm The form
 	 *  that triggered the event.
 	 * @param {Event} event The upload event.
-	 * @param {String} monographId The selected monograph ID.
+	 * @param {string|number} monographId The selected monograph ID.
 	 */
 	$.pkp.controllers.modals.submissionMetadata.MonographlessCatalogEntryHandler.
 			prototype.selectMonographHandler =
@@ -119,14 +119,14 @@
 	$.pkp.controllers.modals.submissionMetadata.MonographlessCatalogEntryHandler.
 			prototype.showFetchedMetadataForm_ = function(ajaxContext, jsonData) {
 
-		jsonData = this.handleJson(jsonData);
+		var processedJsonData = this.handleJson(jsonData),
+				// Find the container and remove all children.
+				$metadataFormContainer = $('#metadataFormContainer');
 
-		// Find the container and remove all children.
-		var $metadataFormContainer = $('#metadataFormContainer');
 		$metadataFormContainer.children().remove();
 
 		// Replace it with the form content.
-		$metadataFormContainer.append(jsonData.content);
+		$metadataFormContainer.append(processedJsonData.content);
 	};
 
 

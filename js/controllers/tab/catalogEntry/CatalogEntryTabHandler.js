@@ -65,7 +65,7 @@
 	/**
 	 * The URL for retrieving a tab's content.
 	 * @private
-	 * @type {string}
+	 * @type {string?}
 	 */
 	$.pkp.controllers.tab.catalogEntry.CatalogEntryTabHandler.prototype.
 			tabContentUrl_ = null;
@@ -210,9 +210,9 @@
 
 	/**
 	 * Get the tab position using the passed publication format id.
-	 * @param {integer} formatId The publication format id.
+	 * @param {string|number} formatId The publication format id.
 	 * @param {jQueryObject} $tabs The current tabs container element.
-	 * @return {integer?} The publication format tab position or null.
+	 * @return {string|number|null} The publication format tab position or null.
 	 * @private
 	 */
 	$.pkp.controllers.tab.catalogEntry.CatalogEntryTabHandler.prototype.

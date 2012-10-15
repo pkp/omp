@@ -330,14 +330,14 @@
 	$.pkp.pages.manageCatalog.MonographHandler.prototype.
 			handleSetFeaturedResponse_ = function(ajaxContext, jsonData) {
 
-		jsonData = this.handleJson(jsonData);
+		var processedJsonData = this.handleJson(jsonData),
+				$htmlElement = this.getHtmlElement();
 
 		// Record the new state of the isFeatured flag and sequence
-		this.isFeatured_ = jsonData.content !== null ? 1 : 0;
-		this.seq_ = jsonData.content;
+		this.isFeatured_ = processedJsonData.content !== null ? 1 : 0;
+		this.seq_ = processedJsonData.content;
 
 		// Update the UI
-		var $htmlElement = this.getHtmlElement();
 		if (this.isFeatured_) {
 			// Now featured; previously not.
 			$htmlElement.removeClass('not_sortable')
@@ -372,13 +372,13 @@
 	$.pkp.pages.manageCatalog.MonographHandler.prototype.
 			handleSetNewReleaseResponse_ = function(ajaxContext, jsonData) {
 
-		jsonData = this.handleJson(jsonData);
+		var processedJsonData = this.handleJson(jsonData),
+				$htmlElement = this.getHtmlElement();
 
 		// Record the new state of the isNewRelease flag and sequence
-		this.isNewRelease_ = jsonData.content !== null ? 1 : 0;
+		this.isNewRelease_ = processedJsonData.content !== null ? 1 : 0;
 
 		// Update the UI
-		var $htmlElement = this.getHtmlElement();
 		if (this.isNewRelease_) {
 			// New release; previously not.
 			$htmlElement.find('.release')
@@ -473,10 +473,10 @@
 	$.pkp.pages.manageCatalog.MonographHandler.prototype.
 			handleSetSequenceResponse_ = function(ajaxContext, jsonData) {
 
-		jsonData = this.handleJson(jsonData);
+		var processedJsonData = this.handleJson(jsonData);
 
 		// We've received a bunch of sequences back; report changes
-		this.trigger('monographSequencesChanged', jsonData.content);
+		this.trigger('monographSequencesChanged', processedJsonData.content);
 
 		return false;
 	};

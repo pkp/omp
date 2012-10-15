@@ -98,20 +98,21 @@
 	$.pkp.controllers.tab.settings.form.FileViewFormHandler.prototype.
 			refreshResponseHandler_ = function(ajaxContext, jsonData) {
 
-		var $fileElement;
-		jsonData = this.handleJson(jsonData);
-		if (jsonData.noData) {
+		var $fileElement,
+				processedJsonData = this.handleJson(jsonData);
+
+		if (processedJsonData.noData) {
 
 			// The file setting data was deleted, we can remove
 			// its markup from the form.
-			$fileElement = this.getFileHtmlElement_(jsonData.noData);
+			$fileElement = this.getFileHtmlElement_(processedJsonData.noData);
 			$fileElement.empty();
 		} else {
 
 			// The server returned mark-up to replace
 			// or insert the file data in form.
-			$fileElement = this.getFileHtmlElement_(jsonData.elementId);
-			$fileElement.html(jsonData.content);
+			$fileElement = this.getFileHtmlElement_(processedJsonData.elementId);
+			$fileElement.html(processedJsonData.content);
 		}
 	};
 

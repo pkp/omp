@@ -81,8 +81,8 @@
 	$.pkp.controllers.informationCenter.HistoryHandler.prototype.
 			setHistoryList_ = function(formElement, jsonData) {
 
-		jsonData = this.handleJson(jsonData);
-		$('#historyList').replaceWith(jsonData.content);
+		var processedJsonData = this.handleJson(jsonData);
+		$('#historyList').replaceWith(processedJsonData.content);
 		// Initialize an accordion for the "past events" list, if it's
 		// available (e.g. for a file information center).
 		$('#historyAccordion').accordion({ clearStyle: true });
@@ -103,8 +103,8 @@
 	$.pkp.controllers.informationCenter.HistoryHandler.prototype.
 			setPastHistoryList_ = function(formElement, jsonData) {
 
-		jsonData = this.handleJson(jsonData);
-		$('#pastHistoryList').replaceWith(jsonData.content);
+		var processedJsonData = this.handleJson(jsonData);
+		$('#pastHistoryList').replaceWith(processedJsonData.content);
 	};
 
 

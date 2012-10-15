@@ -92,8 +92,9 @@
 	$.pkp.controllers.informationCenter.NotesHandler.prototype.
 			setNoteList_ = function(formElement, jsonData) {
 
-		jsonData = this.handleJson(jsonData);
-		$('#notesList').replaceWith(jsonData.content);
+		var processedJsonData = this.handleJson(jsonData);
+
+		$('#notesList').replaceWith(processedJsonData.content);
 		this.getHtmlElement().find('.showMore, .showLess').
 				bind('click', this.switchViz);
 
@@ -123,7 +124,7 @@
 	$.pkp.controllers.informationCenter.NotesHandler.prototype.
 			setPastNoteList_ = function(formElement, jsonData) {
 
-		jsonData = this.handleJson(jsonData);
+		var processedJsonData = this.handleJson(jsonData);
 		$('#pastNotesList').replaceWith(jsonData.content);
 	};
 

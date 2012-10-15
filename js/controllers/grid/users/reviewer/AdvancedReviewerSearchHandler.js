@@ -60,7 +60,7 @@
 		// Get the selected reviewer's ID
 		var $selectedInput = this.getHtmlElement().
 				find('#reviewerSelectGridContainer').find('input:checked'),
-				reviewerId = $selectedInput.val(),
+				reviewerId = /** @type {string} */ ($selectedInput.val()),
 				reviewerName;
 
 		if (reviewerId) {

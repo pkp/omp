@@ -67,10 +67,9 @@
 	//
 	/**
 	 * Method to add the userGroupId to autocomplete URL for finding users
-	 * @param {Object} eventObject The html element that changed.
 	 */
 	$.pkp.controllers.grid.users.stageParticipant.form.AddParticipantFormHandler.
-			prototype.updateUserList = function(eventObject) {
+			prototype.updateUserList = function() {
 
 		var oldUrl = this.fetchUserListUrl_,
 				$form = this.getHtmlElement(),

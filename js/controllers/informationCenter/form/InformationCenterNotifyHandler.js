@@ -90,14 +90,15 @@
 	$.pkp.controllers.informationCenter.form.InformationCenterNotifyHandler.
 			prototype.updateTemplate = function(formElement, jsonData) {
 
-		var $form = this.getHtmlElement();
-		jsonData = this.handleJson(jsonData);
-		if (jsonData !== false) {
-			if (jsonData.content !== '') {
-				$form.find('textarea[name="message"]').val(jsonData.content);
+		var $form = this.getHtmlElement(),
+				processedJsonData = this.handleJson(jsonData);
+
+		if (processedJsonData !== false) {
+			if (processedJsonData.content !== '') {
+				$form.find('textarea[name="message"]').val(processedJsonData.content);
 			}
 		}
-		return jsonData.status;
+		return processedJsonData.status;
 	};
 
 /** @param {jQuery} $ jQuery closure. */

@@ -319,7 +319,7 @@
 	/**
 	 * Get minimum items scale, based on the current number of carousel items.
 	 * This will make sure that the layout will be the best one for all cases.
-	 * @return {numeric} The minimum item scale.
+	 * @return {number} The minimum item scale.
 	 * @private
 	 */
 	$.pkp.pages.catalog.CarouselHandler.prototype.getMinScale_ =

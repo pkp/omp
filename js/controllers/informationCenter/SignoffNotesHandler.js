@@ -72,7 +72,7 @@
 	 * @param {$.pkp.controllers.form.AjaxFormHandler} callingForm The widget
 	 *  that triggered the event.
 	 * @param {Event} event The upload event.
-	 * @param {Integer} signoffId The signoff ID.
+	 * @param {number} signoffId The signoff ID.
 	 * @private
 	 */
 	$.pkp.controllers.informationCenter.SignoffNotesHandler.
@@ -103,7 +103,7 @@
 				signoffId;
 
 		if ($options.length == 2) {
-			signoffId = $('option', $dropDown).next().val();
+			signoffId = /** @type {string} */ $('option', $dropDown).next().val();
 			$dropDown.val(signoffId);
 
 			this.loadNoteForm_(signoffId);
@@ -113,7 +113,7 @@
 
 	/**
 	 * Send a request to load the signoff notes form.
-	 * @param {Integer} signoffId The signoff id.
+	 * @param {number|string} signoffId The signoff id.
 	 * @private
 	 */
 	$.pkp.controllers.informationCenter.SignoffNotesHandler.prototype.
@@ -134,14 +134,14 @@
 	$.pkp.controllers.informationCenter.SignoffNotesHandler.prototype.
 			showFetchedNoteForm_ = function(ajaxContext, jsonData) {
 
-		jsonData = this.handleJson(jsonData);
+		var processedJsonData = this.handleJson(jsonData),
+				// Find the container and remove all children.
+				$notesFormContainer = $('#signoffNotesFormContainer');
 
-		// Find the container and remove all children.
-		var $notesFormContainer = $('#signoffNotesFormContainer');
 		$notesFormContainer.children().remove();
 
 		// Replace it with the form content.
-		$notesFormContainer.append(jsonData.content);
+		$notesFormContainer.append(processedJsonData.content);
 	};
 
 

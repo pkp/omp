@@ -359,10 +359,10 @@
 	$.pkp.pages.manageCatalog.ManageCatalogHeaderHandler.prototype.
 			showFetchedSeries_ = function(ajaxContext, jsonData) {
 
-		jsonData = this.handleJson(jsonData);
+		var processedJsonData = this.handleJson(jsonData);
 
 		// Find the container and add fetched content.
-		$('#seriesContainer').append(jsonData.content);
+		$('#seriesContainer').append(processedJsonData.content);
 	};
 
 
@@ -376,10 +376,10 @@
 	$.pkp.pages.manageCatalog.ManageCatalogHeaderHandler.prototype.
 			showFetchedCategory_ = function(ajaxContext, jsonData) {
 
-		jsonData = this.handleJson(jsonData);
+		var processedJsonData = this.handleJson(jsonData);
 
 		// Find the container and add fetched content.
-		$('#categoryContainer').append(jsonData.content);
+		$('#categoryContainer').append(processedJsonData.content);
 	};
 
 
