@@ -68,7 +68,7 @@
 	$.pkp.controllers.dashboard.form.DashboardTaskFormHandler.
 			prototype.startSinglePressSubmission_ = function() {
 
-		window.location.href = this.singlePressSubmissionUrl_;
+		window.location.href = /** @type {string} */ this.singlePressSubmissionUrl_;
 	};
 
 

@@ -77,13 +77,13 @@
 		if ($(radioButton).attr('id') === 'directSales') {
 			$priceElement.attr('disabled', 'false');
 			if ($priceElement.val() === '') {
-				this.disableFormControls_();
+				this.disableFormControls();
 			} else {
-				this.enableFormControls_();
+				this.enableFormControls();
 			}
 		} else {
 			$priceElement.attr('disabled', 'true');
-			this.enableFormControls_();
+			this.enableFormControls();
 		}
 
 		return true;
@@ -103,9 +103,9 @@
 
 		var $priceElement = $(textControl);
 		if ($priceElement.val() === '' || isNaN($priceElement.val())) {
-			this.disableFormControls_();
+			this.disableFormControls();
 		} else {
-			this.enableFormControls_();
+			this.enableFormControls();
 		}
 
 		return true;

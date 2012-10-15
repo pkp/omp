@@ -134,8 +134,8 @@
 		}
 
 		// Fetch entered names
-		firstName = $('[id^="firstName"]', $form).val();
-		lastName = $('[id^="lastName"]', $form).val();
+		firstName = /** @type {string} */ $('[id^="firstName"]', $form).val();
+		lastName = /** @type {string} */ $('[id^="lastName"]', $form).val();
 
 		// Replace dummy values in the URL with entered values
 		fetchUrl = this.fetchUsernameSuggestionUrl_.
@@ -154,13 +154,13 @@
 	$.pkp.controllers.grid.settings.user.form.UserFormHandler.prototype.
 			setUsername = function(formElement, jsonData) {
 
-		var processedJsonData = this.handleJson(jsonData);
+		var processedJsonData = this.handleJson(jsonData),
+				$form = this.getHtmlElement();
 
 		if (processedJsonData === false) {
 			throw new Error('JSON response must be set to true!');
 		}
 
-		var $form = this.getHtmlElement();
 		$('[id^="username"]', $form).val(processedJsonData.content);
 	};
 

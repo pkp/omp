@@ -96,7 +96,7 @@
 	/**
 	 * Called everytime a carousel feature is blurred.
 	 * @param {jQueryObject} $context The context in which ocurred the event.
-	 * @param {HtmlElement} element The element that triggered the event.
+	 * @param {HTMLElement} element The element that triggered the event.
 	 * @param {Event} event The blur event.
 	 * @private
 	 */
@@ -109,7 +109,7 @@
 	/**
 	 * Called everytime a carousel feature is focused.
 	 * @param {jQueryObject} $context The context in which ocurred the event.
-	 * @param {HtmlElement} element The element that triggered the event.
+	 * @param {HTMLElement} element The element that triggered the event.
 	 * @param {Event} event The focus event.
 	 * @private
 	 */
@@ -144,7 +144,7 @@
 
 	/**
 	 * Called everytime user clicks on carousel items.
-	 * @param {HtmlElement} element The element that triggered the event.
+	 * @param {HTMLElement} element The element that triggered the event.
 	 * @param {Event} event The click event.
 	 * @return {boolean} Returns event handling status.
 	 * @private
@@ -166,7 +166,7 @@
 
 	/**
 	 * Next item control click handler.
-	 * @param {HtmlElement} element The element that triggered the event.
+	 * @param {HTMLElement} element The element that triggered the event.
 	 * @param {Event} event The click event.
 	 * @private
 	 */
@@ -178,7 +178,7 @@
 
 	/**
 	 * Previous item control click handler.
-	 * @param {HtmlElement} element The element that triggered the event.
+	 * @param {HTMLElement} element The element that triggered the event.
 	 * @param {Event} event The click event.
 	 * @private
 	 */
