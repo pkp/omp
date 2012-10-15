@@ -145,6 +145,22 @@ class MonographFile extends SubmissionFile {
 	}
 
 	/**
+	 * Get sales type of monograph file.
+	 * @return string
+	 */
+	function getSalesType() {
+		return $this->getData('salesType');
+	}
+
+	/**
+	 * Set sales type.
+	 * @param $salesType string
+	 */
+	function setSalesType($salesType) {
+		return $this->setData('salesType', $salesType);
+	}
+
+	/**
 	 * Set the name of the file
 	 * @param $name string
 	 * @param $locale string

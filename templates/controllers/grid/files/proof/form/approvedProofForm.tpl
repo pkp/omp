@@ -9,7 +9,11 @@
 <script type="text/javascript">
 	$(function() {ldelim}
 		// Attach the form handler.
-		$('#approvedProofForm').pkpHandler('$.pkp.controllers.grid.files.proof.form.ApprovedProofFormHandler');
+		$('#approvedProofForm').pkpHandler('$.pkp.controllers.grid.files.proof.form.ApprovedProofFormHandler',
+			{ldelim}
+				salesType: '{$salesType|escape:"javascript"}'
+			{rdelim}
+		);
 	{rdelim});
 </script>
 
@@ -21,9 +25,9 @@
 		<input type="hidden" name="publicationFormatId" value="{$publicationFormatId|escape}" />
 
 		{fbvFormSection for="priceType" list=true description="payment.directSales.price.description"}
-			{fbvElement type="radio" name="salesType" id="openAccess" value="openAccess" label="payment.directSales.openAccess"}
-			{fbvElement type="radio" name="salesType" id="directSales" value="directSales" label="payment.directSales.directSales"}
-			{fbvElement type="radio" name="salesType" id="notAvailable" value="notAvailable" label="payment.directSales.notAvailable"}
+			{foreach from=$salesTypes key=salesTypeKey item=salesType}
+				{fbvElement type="radio" name="salesType" value=$salesTypeKey label=$salesType id=$salesTypeKey}
+			{/foreach}
 		{/fbvFormSection}
 
 		{fbvFormSection for="price" size=$fbvStyles.size.MEDIUM inline=true}

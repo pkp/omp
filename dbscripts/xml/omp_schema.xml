@@ -1094,6 +1094,7 @@
 			<NOTNULL/>
 		</field>
 		<field name="direct_sales_price" type="C2" size="255"/>
+		<field name="sales_type" type="C2" size="255"/>
 		<field name="viewable" type="I1" />
 		<field name="date_uploaded" type="T">
 			<NOTNULL/>

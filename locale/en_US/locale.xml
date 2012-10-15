@@ -752,7 +752,8 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="payment.directSales.priceCurrency">Price ({$currency})</message>
 	<message key="payment.directSales.directSales">Direct Sales</message>
 	<message key="payment.directSales.amount">{$amount} ({$currency})</message>
-	<message key="payment.directSales.notAvailable">Not Downloadable</message>
+	<message key="payment.directSales.notAvailable">Not Available</message>
+	<message key="payment.directSales.notSet">Not Set</message>
 	<message key="payment.directSales.openAccess">Open Access</message>
 	<message key="payment.directSales.price.description">File formats can be made available for downloading from the press website through open access at no cost to readers or direct sales (using an online payment processor, as configured in Distribution). For this file indicate the basis of access.</message>
 	<message key="payment.directSales.validPriceRequired">A valid numeric price is required.</message>
