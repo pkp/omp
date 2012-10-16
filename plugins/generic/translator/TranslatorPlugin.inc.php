@@ -64,7 +64,7 @@ class TranslatorPlugin extends GenericPlugin {
 		return parent::getManagementVerbs($verbs);
 	}
 
-	function getManagementVerbLinkAction(&$request, $verb, $defaultUrl) {
+	function getManagementVerbLinkAction(&$request, $verb) {
 		$router =& $request->getRouter();
 		$dispatcher =& $router->getDispatcher(); /* @var $dispatcher Dispatcher */
 

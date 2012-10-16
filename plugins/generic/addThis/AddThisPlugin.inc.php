@@ -54,16 +54,17 @@ class AddThisPlugin extends GenericPlugin {
 	 * Define management link actions for the settings verb.
 	 * @return LinkAction
 	 */
-	function getManagementVerbLinkAction(&$request, $verb, $defaultUrl) {
+	function getManagementVerbLinkAction(&$request, $verb) {
 		$router =& $request->getRouter();
-		$dispatcher =& $router->getDispatcher();
 
 		list($verbName, $verbLocalized) = $verb;
 
 		if ($verbName === 'settings') {
 			import('lib.pkp.classes.linkAction.request.AjaxLegacyPluginModal');
-			$actionRequest = new AjaxLegacyPluginModal($defaultUrl,
-					$this->getDisplayName());
+			$actionRequest = new AjaxLegacyPluginModal(
+				$router->url($request, null, null, 'plugin', null, $actionArgs),
+				$this->getDisplayName()
+			);
 			return new LinkAction($verbName, $actionRequest, $verbLocalized, null);
 		}
 
