@@ -13,7 +13,7 @@
 
 import('lib.pkp.classes.security.authorization.PolicySet');
 import('classes.security.authorization.internal.PluginLevelRequiredPolicy');
-import('classes.security.authorization.internal.PluginRequiredPolicy');
+import('lib.pkp.classes.security.authorization.internal.PluginRequiredPolicy');
 
 define('ACCESS_MODE_MANAGE', 0x01);
 define('ACCESS_MODE_ADMIN', 0x02);
