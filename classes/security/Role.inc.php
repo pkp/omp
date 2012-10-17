@@ -54,7 +54,6 @@ class Role extends DataObject {
 	 * @return int
 	 */
 	function getRoleId() {
-		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
 		return $this->getId();
 	}
 
@@ -63,7 +62,6 @@ class Role extends DataObject {
 	 * @param $roleId int
 	 */
 	function setRoleId($roleId) {
-		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
 		return $this->setId($roleId);
 	}
 
