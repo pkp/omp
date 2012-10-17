@@ -76,7 +76,8 @@
 
 		// Look for MONOGRAPH_ID and STAGE_ID tokens in the URL and replace them.
 		return this.metadataFormUrlTemplate_.
-				replace('MONOGRAPH_ID', monographId).replace('STAGE_ID', stageId);
+				replace('MONOGRAPH_ID', monographId).replace(
+				'STAGE_ID', /** @type {string} */ (stageId));
 	};
 
 

@@ -57,7 +57,7 @@
 	/**
 	 * The URL for retrieving tabs.
 	 * @private
-	 * @type {string}
+	 * @type {string?}
 	 */
 	$.pkp.controllers.tab.publicationFormat.PublicationFormatsTabHandler.prototype.
 			tabsUrl_ = null;
