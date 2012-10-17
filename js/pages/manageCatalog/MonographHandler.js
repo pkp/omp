@@ -211,7 +211,7 @@
 	/**
 	 * Get the URL to set a monograph's published state.
 	 * @private
-	 * @return {String} The URL to use to set the monograph feature state.
+	 * @return {string} The URL to use to set the monograph feature state.
 	 */
 	$.pkp.pages.manageCatalog.MonographHandler.prototype.getSetFeaturedUrl_ =
 			function() {
@@ -226,7 +226,7 @@
 	/**
 	 * Get the URL to set a monograph's published state.
 	 * @private
-	 * @return {String} The URL to use to set the monograph feature state.
+	 * @return {string} The URL to use to set the monograph feature state.
 	 */
 	$.pkp.pages.manageCatalog.MonographHandler.prototype.getSetNewReleaseUrl_ =
 			function() {

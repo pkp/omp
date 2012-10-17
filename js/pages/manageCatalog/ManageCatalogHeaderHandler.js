@@ -121,8 +121,8 @@
 	/**
 	 * Get the URL to fetch a series' monograph listing from
 	 * @private
-	 * @param {String} seriesPath The series path to return the fetch URL for.
-	 * @return {String} The URL to use to fetch series contents.
+	 * @param {string} seriesPath The series path to return the fetch URL for.
+	 * @return {string} The URL to use to fetch series contents.
 	 */
 	$.pkp.pages.manageCatalog.ManageCatalogHeaderHandler.prototype.
 			getSeriesFetchUrl_ = function(seriesPath) {
@@ -135,9 +135,9 @@
 	/**
 	 * Get the URL to fetch a category's monograph listing from
 	 * @private
-	 * @param {String} categoryPath The category path to return
+	 * @param {string} categoryPath The category path to return
 	 * the fetch URL for.
-	 * @return {String} The URL to use to fetch series contents.
+	 * @return {string} The URL to use to fetch series contents.
 	 */
 	$.pkp.pages.manageCatalog.ManageCatalogHeaderHandler.prototype.
 			getCategoryFetchUrl_ = function(categoryPath) {
@@ -155,7 +155,7 @@
 	 * @param {$.pkp.controllers.form.AjaxFormHandler} callingForm The form
 	 *  that triggered the event.
 	 * @param {Event} event The event.
-	 * @param {String} searchUrl The URL that will return search results.
+	 * @param {string} searchUrl The URL that will return search results.
 	 */
 	$.pkp.pages.manageCatalog.ManageCatalogHeaderHandler.
 			prototype.searchCatalogHandler_ =
