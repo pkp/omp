@@ -119,7 +119,7 @@
 	$.pkp.controllers.tab.catalogEntry.CatalogEntryTabHandler.prototype.
 			updateTabsHandler_ = function(ajaxContext, data) {
 
-		var jsonData = this.handleJson(data),
+		var jsonData = /** @type {{formats: Object}} */ (this.handleJson(data)),
 				$element = this.getHtmlElement(),
 				currentTabs = $element.find('li a'),
 				currentIndexes = {},
@@ -140,7 +140,7 @@
 
 		for (i in jsonData.formats) {
 			// i is the formatId, formats[i] is the localized name.
-			if (!(i in currentIndexes)) { // this is a tab that has been added
+			if (!currentIndexes.hasOwnProperty(i)) { // this is a tab that has been added
 				url = this.tabContentUrl_ + '&publicationFormatId=' +
 						encodeURIComponent(i);
 				// replace dollar signs in $$$call$$$ so the .add() call
@@ -155,7 +155,7 @@
 		// now check our existing tabs to see if any should be removed
 		for (i in currentIndexes) {
 			// this is a tab that has been removed
-			if (!(i in jsonData.formats)) {
+			if (!jsonData.formats.hasOwnProperty(i)) {
 				$element.tabs('remove', currentIndexes[i]);
 			} else { // tab still exists, update localized name if necessary
 				$element.find('li a').filter('[id="publication' + i + '"]').
@@ -203,8 +203,8 @@
 				publicationFormatId = gridHandler.getRowDataId($gridRow);
 
 		this.getHtmlElement().tabs('select',
-				this.getTabPositionByFormatId_(publicationFormatId,
-						this.getHtmlElement()));
+				/** @type {string} */ (this.getTabPositionByFormatId_(publicationFormatId,
+						this.getHtmlElement())));
 	};
 
 
