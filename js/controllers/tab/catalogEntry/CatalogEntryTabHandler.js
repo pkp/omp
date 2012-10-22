@@ -140,7 +140,8 @@
 
 		for (i in jsonData.formats) {
 			// i is the formatId, formats[i] is the localized name.
-			if (!currentIndexes.hasOwnProperty(i)) { // this is a tab that has been added
+			if (!currentIndexes.hasOwnProperty(i)) {
+				// this is a tab that has been added
 				url = this.tabContentUrl_ + '&publicationFormatId=' +
 						encodeURIComponent(i);
 				// replace dollar signs in $$$call$$$ so the .add() call

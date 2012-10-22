@@ -198,7 +198,7 @@
 
 		if (seriesPath !== '0') {
 			// A series was selected. Load and display.
-			$.get(this.getSeriesFetchUrl_(seriesPath),
+			$.get(this.getSeriesFetchUrl_(/** @type {string} */ (seriesPath)),
 					this.callbackWrapper(this.showFetchedSeries_), 'json');
 		}
 	};
@@ -234,7 +234,7 @@
 	 * or series in the list when those tabs are displayed.
 	 * @private
 	 *
-	 * @param {Object} element The parent element of the tab
+	 * @param {$.pkp.classes.Handler} element The parent element of the tab
 	 * that triggered the event.
 	 * @param {Event} event The event.
 	 * @param { { panel: {id: string} } } tabElement the HTML element which
@@ -251,7 +251,9 @@
 			categoryPath = $selector.find('option').first().val();
 			if (categoryPath !== undefined) {
 				$selector.find('option').eq(0).attr('selected', 'selected');
-				this.selectCategoryHandler_(element, event,
+				this.selectCategoryHandler_(
+						/** @type {$.pkp.controllers.form.FormHandler} */ (element),
+						event,
 						/** @type {string} */ (categoryPath));
 			}
 		}
@@ -260,7 +262,9 @@
 			seriesPath = $selector.find('option').first().val();
 			if (seriesPath !== undefined) {
 				$selector.find('option').eq(0).attr('selected', 'selected');
-				this.selectSeriesHandler_(element, event,
+				this.selectSeriesHandler_(
+						/** @type {$.pkp.controllers.form.FormHandler} */ (element),
+						event,
 						/** @type {string} */ (seriesPath));
 			}
 		}
@@ -345,7 +349,8 @@
 							trigger('submit');
 				} else {
 					// Spotlights tab.
-					this.loadSpotlightsContent_(this.spotlightsUrl_);
+					this.loadSpotlightsContent_(
+							/** @type {string} */ (this.spotlightsUrl_));
 				}
 				break;
 		}

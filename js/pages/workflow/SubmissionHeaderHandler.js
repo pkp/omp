@@ -45,7 +45,7 @@
 	/**
 	 * Potentially refresh workflow content on contained grid changes.
 	 *
-	 * @param {JQuery} callingElement The calling element.
+	 * @param {jQueryObject} callingElement The calling element.
 	 *  that triggered the event.
 	 * @param {Event} event The event.
 	 * @private
@@ -66,7 +66,7 @@
 	 * Append a + or - to the participants grid string based on current visibility
 	 * after toggling the display of the participants grid.
 	 *
-	 * @param {JQuery} callingElement The calling element.
+	 * @param {jQueryObject} callingElement The calling element.
 	 *  that triggered the event.
 	 * @param {Event} event The event.
 	 * @private

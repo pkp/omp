@@ -76,8 +76,13 @@
 	$.pkp.controllers.tab.settings.siteAccessOptions.form.
 			SiteAccessOptionsFormHandler.prototype.
 			setRegOptsDisabled_ = function(state) {
-		$('#allowRegAuthor').attr('disabled', state);
-		$('#allowRegReviewer').attr('disabled', state);
+		if (state) {
+			$('#allowRegAuthor').attr('disabled', 'disabled');
+			$('#allowRegReviewer').attr('disabled', 'disabled');
+		} else {
+			$('#allowRegAuthor').removeAttr('disabled');
+			$('#allowRegReviewer').removeAttr('disabled');
+		}
 	};
 
 
@@ -89,8 +94,13 @@
 	$.pkp.controllers.tab.settings.siteAccessOptions.form.
 			SiteAccessOptionsFormHandler.prototype.
 			setRegOptsChecked_ = function(state) {
-		$('#allowRegAuthor').attr('checked', state);
-		$('#allowRegReviewer').attr('checked', state);
+		if (state) {
+			$('#allowRegAuthor').attr('checked', 'checked');
+			$('#allowRegReviewer').attr('checked', 'checked');
+		} else {
+			$('#allowRegAuthor').removeAttr('checked');
+			$('#allowRegReviewer').removeAttr('checked');
+		}
 	};
 
 

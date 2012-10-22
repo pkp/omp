@@ -16,7 +16,7 @@
 	/**
 	 * @constructor
 	 *
-	 * @extends $.pkp.classes.Handler
+	 * @extends $.pkp.controllers.linkAction.LinkActionHandler
 	 *
 	 * @param {jQueryObject} $monographsContainer The HTML element encapsulating
 	 *  the monograph list div.
@@ -87,7 +87,7 @@
 	/**
 	 * The sequence (sort order) of this monograph entry.
 	 * @private
-	 * @type {int?}
+	 * @type {number?}
 	 */
 	$.pkp.pages.manageCatalog.MonographHandler.prototype.seq_ = null;
 
@@ -95,7 +95,7 @@
 	/**
 	 * The publication date of this monograph entry.
 	 * @private
-	 * @type {date?}
+	 * @type {Date?}
 	 */
 	$.pkp.pages.manageCatalog.MonographHandler.prototype.datePublished_ = null;
 
@@ -103,7 +103,7 @@
 	/**
 	 * The ID of this monograph entry.
 	 * @private
-	 * @type {int?}
+	 * @type {number?}
 	 */
 	$.pkp.pages.manageCatalog.MonographHandler.prototype.monographId_ = null;
 
@@ -185,7 +185,7 @@
 
 	/**
 	 * Get the sort sequence for this monograph.
-	 * @return {integer?} Sequence.
+	 * @return {number?} Sequence.
 	 */
 	$.pkp.pages.manageCatalog.MonographHandler.prototype.getSeq =
 			function() {
@@ -196,7 +196,7 @@
 
 	/**
 	 * Get the ID for this monograph.
-	 * @return {integer?} Monograph ID.
+	 * @return {number?} Monograph ID.
 	 */
 	$.pkp.pages.manageCatalog.MonographHandler.prototype.getId =
 			function() {
@@ -217,7 +217,7 @@
 			function() {
 
 		return this.setFeaturedUrlTemplate_
-				.replace('FEATURED_DUMMY', this.isFeatured_ ? true : false)
+				.replace('FEATURED_DUMMY', this.isFeatured_ ? '1' : '0')
 				.replace('SEQ_DUMMY', this.isFeatured_ ?
 				this.seq_ : $.pkp.cons.REALLY_BIG_NUMBER);
 	};
@@ -232,7 +232,7 @@
 			function() {
 
 		return this.setNewReleaseUrlTemplate_
-				.replace('RELEASE_DUMMY', this.isNewRelease_ ? true : false);
+				.replace('RELEASE_DUMMY', this.isNewRelease_ ? '1' : '0');
 	};
 
 
@@ -401,7 +401,7 @@
 	 *
 	 * @private
 	 *
-	 * @param {$.pkp.controllers.handler.Handler} callingHandler The handler
+	 * @param {jQueryObject} callingHandler The handler
 	 *  that triggered the event.
 	 * @param {Event} event The event.
 	 * @param {number} canDrag 1/true iff the user should be able to drag.
@@ -430,7 +430,7 @@
 	 *
 	 * @private
 	 *
-	 * @param {$.pkp.controllers.handler.Handler} callingHandler The handler
+	 * @param {jQueryObject} callingHandler The handler
 	 *  that triggered the event.
 	 * @param {Event} event The event.
 	 * @param {number} seq New sequence number.

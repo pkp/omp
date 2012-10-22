@@ -16,10 +16,6 @@
  */
 (function($) {
 
-	/** @type {Object} */
-	$.pkp.pages.manageCatalog = $.pkp.pages.manageCatalog || {};
-
-
 
 	/**
 	 * @constructor

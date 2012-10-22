@@ -16,7 +16,7 @@
 	/**
 	 * @constructor
 	 *
-	 * @extends $.pkp.classes.Handler
+	 * @extends $.pkp.controllers.monographList.MonographListHandler
 	 *
 	 * @param {jQueryObject} $monographsContainer The HTML element encapsulating
 	 *  the monograph list div.
@@ -222,7 +222,7 @@
 	 *
 	 * @private
 	 *
-	 * @param {$.pkp.controllers.handler.Handler} callingHandler The handler
+	 * @param {jQueryObject} callingHandler The handler
 	 *  that triggered the event.
 	 * @param {Event} event The event.
 	 * @param {Array} newSequences The new sequences to store.
@@ -256,7 +256,7 @@
 	 *
 	 * @private
 	 *
-	 * @param {$.pkp.controllers.handler.Handler} callingHandler The handler
+	 * @param {jQueryObject} callingHandler The handler
 	 *  that triggered the event.
 	 * @param {Event} event The event.
 	 * @param {Object} ui The UI element that has changed.
@@ -298,9 +298,9 @@
 	 *
 	 * @private
 	 *
-	 * @param {$.pkp.controllers.handler.Handler} callingHandler The handler
+	 * @param {$.pkp.classes.Handler=} callingHandler The handler
 	 *  that triggered the event.
-	 * @param {Event} event The event.
+	 * @param {Event=} event The event.
 	 */
 	$.pkp.pages.manageCatalog.MonographManagementListHandler.prototype.
 			resetElementHeights_ = function(callingHandler, event) {

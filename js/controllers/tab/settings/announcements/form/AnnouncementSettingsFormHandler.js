@@ -55,8 +55,11 @@
 					toggleEnableAnnouncementsHomepage = function(element) {
 		var $numAnnouncementsHomepage =
 				$('#numAnnouncementsHomepage', this.getHtmlElement());
-		$numAnnouncementsHomepage.attr('disabled',
-				!$numAnnouncementsHomepage.attr('disabled'));
+		if ($numAnnouncementsHomepage.attr('disabled')) {
+			$numAnnouncementsHomepage.removeAttr('disabled');
+		} else {
+			$numAnnouncementsHomepage.attr('disabled', 'disabled');
+		}
 	};
 
 
