@@ -48,7 +48,7 @@
 	/**
 	 * Potentially refresh workflow content on participant change.
 	 *
-	 * @param {JQuery} callingElement The calling element.
+	 * @param {jQueryObject} callingElement The calling element.
 	 *  that triggered the event.
 	 * @param {Event} event The event.
 	 * @private
@@ -67,7 +67,7 @@
 	/**
 	 * Potentially refresh contained grid.
 	 *
-	 * @param {JQuery} callingElement The calling element.
+	 * @param {jQueryObject} callingElement The calling element.
 	 *  that triggered the event.
 	 * @param {Event} event The event.
 	 * @param {Object} eventData Event data.
@@ -81,8 +81,8 @@
 			// Refresh the publication format grid on this page, if any.
 			var $formatsGrid = $('[id^="formatsGridContainer"]',
 					this.getHtmlElement()).children('div');
-			$formatsGrid.trigger('dataChanged', eventData);
-			$formatsGrid.trigger('notifyUser', $formatsGrid);
+			$formatsGrid.trigger('dataChanged', [eventData]);
+			$formatsGrid.trigger('notifyUser', [$formatsGrid]);
 		}
 	};
 

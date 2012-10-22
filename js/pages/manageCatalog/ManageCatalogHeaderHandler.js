@@ -73,7 +73,7 @@
 	/**
 	 * The numeric index of the search results tab among other tabs
 	 * @private
-	 * @type {int}
+	 * @type {number}
 	 */
 	$.pkp.pages.manageCatalog.ManageCatalogHeaderHandler.
 			prototype.searchTabIndex_ = 0;
@@ -187,7 +187,7 @@
 	 * @param {$.pkp.controllers.form.FormHandler} callingForm The form
 	 *  that triggered the event.
 	 * @param {Event} event The event.
-	 * @param {String?} seriesPath The selected series path.
+	 * @param {string?} seriesPath The selected series path.
 	 */
 	$.pkp.pages.manageCatalog.ManageCatalogHeaderHandler.
 			prototype.selectSeriesHandler_ =
@@ -212,7 +212,7 @@
 	 * @param {$.pkp.controllers.form.FormHandler} callingForm The form
 	 *  that triggered the event.
 	 * @param {Event} event The event.
-	 * @param {String?} categoryPath The selected category path.
+	 * @param {string?} categoryPath The selected category path.
 	 */
 	$.pkp.pages.manageCatalog.ManageCatalogHeaderHandler.
 			prototype.selectCategoryHandler_ =
@@ -223,7 +223,7 @@
 
 		if (categoryPath !== '0') {
 			// A category was selected. Load and display.
-			$.get(this.getCategoryFetchUrl_(categoryPath),
+			$.get(this.getCategoryFetchUrl_(/** @type {string} */ (categoryPath)),
 					this.callbackWrapper(this.showFetchedCategory_), 'json');
 		}
 	};
@@ -237,7 +237,8 @@
 	 * @param {Object} element The parent element of the tab
 	 * that triggered the event.
 	 * @param {Event} event The event.
-	 * @param {Object} tabElement the HTML element which generated the event.
+	 * @param { { panel: {id: string} } } tabElement the HTML element which
+	 *  generated the event.
 	 * @return {boolean} Let the other tabs function normally.
 	 */
 	$.pkp.pages.manageCatalog.ManageCatalogHeaderHandler.
@@ -250,7 +251,8 @@
 			categoryPath = $selector.find('option').first().val();
 			if (categoryPath !== undefined) {
 				$selector.find('option').eq(0).attr('selected', 'selected');
-				this.selectCategoryHandler_(element, event, categoryPath);
+				this.selectCategoryHandler_(element, event,
+						/** @type {string} */ (categoryPath));
 			}
 		}
 		if (tabElement.panel.id == 'seriesTab') {
@@ -258,7 +260,8 @@
 			seriesPath = $selector.find('option').first().val();
 			if (seriesPath !== undefined) {
 				$selector.find('option').eq(0).attr('selected', 'selected');
-				this.selectSeriesHandler_(element, event, seriesPath);
+				this.selectSeriesHandler_(element, event,
+						/** @type {string} */ (seriesPath));
 			}
 		}
 

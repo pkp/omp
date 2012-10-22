@@ -69,7 +69,7 @@
 	 * @param {HTMLElement} sourceElement The parent DIV element
 	 *  which contains the tabs.
 	 * @param {Event} event The triggered event (gridRefreshRequested).
-	 * @param {int} stepNumber The new step number to view.
+	 * @param {number} stepNumber The new step number to view.
 	 */
 	$.pkp.pages.reviewer.ReviewerTabHandler.prototype.
 			setStepHandler = function(sourceElement, event, stepNumber) {
@@ -83,7 +83,7 @@
 	/**
 	 * Get a list of permitted tab indexes for the given review step
 	 * number.
-	 * @param {int} stepNumber The review step number (1-based).
+	 * @param {number} stepNumber The review step number (1-based).
 	 * @return {Object} An array of permissible tab indexes (0-based).
 	 */
 	$.pkp.pages.reviewer.ReviewerTabHandler.prototype.

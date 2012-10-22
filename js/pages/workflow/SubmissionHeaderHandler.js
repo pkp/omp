@@ -84,11 +84,11 @@
 		$participantsToggle.toggleClass('expandedIndicator');
 
 		if ($participantsListElement.hasClass('expandedIndicator')) {
-			this.trigger('callWhenClickOutside', {
+			this.trigger('callWhenClickOutside', [{
 				container: $participantsPopover.add($participantsListElement),
 				callback: this.callbackWrapper(this.appendToggleIndicator_),
 				skipWhenVisibleModals: true
-			});
+			}]);
 		}
 	};
 

@@ -68,21 +68,21 @@
 	// Private constants.
 	//
 	/**
-	 * {integer} The duration of the transition between two items.
+	 * {number} The duration of the transition between two items.
 	 * @private
 	 */
 	$.pkp.pages.catalog.CarouselHandler.prototype.TRANSITION_DURATION_ = 550;
 
 
 	/**
-	 * {integer} Items minimum opacity, when not focused.
+	 * {number} Items minimum opacity, when not focused.
 	 * @private
 	 */
 	$.pkp.pages.catalog.CarouselHandler.prototype.MIN_OPACITY_ = 0.5;
 
 
 	/**
-	 * {integer} The maximum number of placeholders that this carousel can use
+	 * {number} The maximum number of placeholders that this carousel can use
 	 * to make sure the presentation of the items will be same for smaller number
 	 * of items.
 	 * @private
@@ -190,7 +190,7 @@
 
 	/**
 	 * Move the carousel the passed number times.
-	 * @param {integer} itemsToMove The number of items to move. If the
+	 * @param {number} itemsToMove The number of items to move. If the
 	 * passed value is negative, the carousel will go back.
 	 * @return {boolean} Success status.
 	 * @private

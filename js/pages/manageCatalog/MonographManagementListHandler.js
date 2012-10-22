@@ -147,7 +147,7 @@
 			$featureButton.css('font-weight', 'normal');
 			$featureLinks.addClass('pkp_helpers_invisible');
 		}
-		$monographList.children().trigger('changeDragMode', this.inFeatureMode_);
+		$monographList.children().trigger('changeDragMode', [this.inFeatureMode_]);
 		// Update the enabled/disabled state of the sortable list
 		this.trigger('monographListChanged');
 
@@ -162,7 +162,7 @@
 	 *
 	 * @private
 	 *
-	 * @param {$.pkp.controllers.handler.Handler} callingHandler The handler
+	 * @param {Object} callingHandler The handler
 	 *  that triggered the event.
 	 * @param {Event} event The event.
 	 * @return {boolean} The event handling chain status.

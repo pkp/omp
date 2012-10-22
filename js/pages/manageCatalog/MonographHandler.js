@@ -404,7 +404,7 @@
 	 * @param {$.pkp.controllers.handler.Handler} callingHandler The handler
 	 *  that triggered the event.
 	 * @param {Event} event The event.
-	 * @param {integer} canDrag 1/true iff the user should be able to drag.
+	 * @param {number} canDrag 1/true iff the user should be able to drag.
 	 * @return {boolean} The event handling chain status.
 	 */
 	$.pkp.pages.manageCatalog.MonographHandler.
@@ -433,7 +433,7 @@
 	 * @param {$.pkp.controllers.handler.Handler} callingHandler The handler
 	 *  that triggered the event.
 	 * @param {Event} event The event.
-	 * @param {integer} seq New sequence number.
+	 * @param {number} seq New sequence number.
 	 * @param {boolean} informServer True if the server should be informed.
 	 * Default true.
 	 * @return {boolean} The event handling chain status.

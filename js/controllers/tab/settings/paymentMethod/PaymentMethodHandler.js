@@ -98,7 +98,7 @@
 
 		if (paymentPluginName !== 0) {
 			// Fetch the form
-			$.get(this.getPaymentMethodFormUrl_(paymentPluginName),
+			$.get(this.getPaymentMethodFormUrl_(/** @type {string} */ (paymentPluginName)),
 					this.callbackWrapper(this.showFetchedPaymentMethodForm_), 'json');
 		} else {
 			// Else it was the placeholder; blank out the form

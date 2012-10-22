@@ -99,7 +99,7 @@
 			refreshResponseHandler_ = function(ajaxContext, jsonData) {
 
 		var $fileElement, processedJsonData =
-				/** @type {{noData: Object, elementId: string}} */ this.handleJson(
+				/** @type {{noData: string, elementId: string}} */ this.handleJson(
 				jsonData);
 
 		if (processedJsonData.noData) {

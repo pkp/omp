@@ -67,8 +67,8 @@
 	 * Get the metadata edit form URL for the given stage and monograph ID.
 	 *
 	 * @private
-	 * @param {string|number} monographId The monograph ID for the edit form.
-	 * @param {string|number} stageId The stage ID for the edit form.
+	 * @param {string} monographId The monograph ID for the edit form.
+	 * @param {string} stageId The stage ID for the edit form.
 	 * @return {string} The URL for the metadata edit form.
 	 */
 	$.pkp.controllers.modals.submissionMetadata.MonographlessCatalogEntryHandler.
@@ -76,8 +76,7 @@
 
 		// Look for MONOGRAPH_ID and STAGE_ID tokens in the URL and replace them.
 		return this.metadataFormUrlTemplate_.
-				replace('MONOGRAPH_ID', monographId).replace(
-				'STAGE_ID', /** @type {string} */ (stageId));
+				replace('MONOGRAPH_ID', monographId).replace('STAGE_ID', stageId);
 	};
 
 
@@ -91,7 +90,7 @@
 	 * @param {$.pkp.controllers.form.AjaxFormHandler} callingForm The form
 	 *  that triggered the event.
 	 * @param {Event} event The upload event.
-	 * @param {string|number} monographId The selected monograph ID.
+	 * @param {string} monographId The selected monograph ID.
 	 */
 	$.pkp.controllers.modals.submissionMetadata.MonographlessCatalogEntryHandler.
 			prototype.selectMonographHandler =

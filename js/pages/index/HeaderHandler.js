@@ -27,7 +27,7 @@
 	 *
 	 * @param {jQueryObject} $headerElement The HTML element encapsulating
 	 *  the header.
-	 * @param {Object} options Handler options.
+	 * @param {{requestedPage: string}} options Handler options.
 	 */
 	$.pkp.pages.index.HeaderHandler =
 			function($headerElement, options) {
@@ -50,7 +50,7 @@
 	/**
 	 * Site handler options.
 	 * @private
-	 * @type {Object}
+	 * @type {{requestedPage: string}?}
 	 */
 	$.pkp.pages.index.HeaderHandler.prototype.options_ = null;
 

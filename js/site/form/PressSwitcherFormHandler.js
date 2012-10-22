@@ -64,7 +64,7 @@
 				link = $sourceElement.val();
 
 		if (link !== '') {
-			this.trigger('redirectRequested', link);
+			this.trigger('redirectRequested', [link]);
 		}
 	};
 

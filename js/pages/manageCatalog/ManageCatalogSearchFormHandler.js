@@ -51,13 +51,13 @@
 
 		var $form = this.getHtmlElement(),
 				formAction = $form.attr('action'),
-				searchText = $form.find(':input').val();
+				searchText = /** @type {string} */ ($form.find(':input').val());
 
 		// Trigger the searchCatalog event for the container
 		// to deal with. Attach the URL to the search to be
 		// performed.
 		this.trigger('searchCatalog',
-				formAction.replace('SEARCH_TEXT_DUMMY', encodeURIComponent(searchText)));
+				[formAction.replace('SEARCH_TEXT_DUMMY', encodeURIComponent(searchText))]);
 	};
 
 
