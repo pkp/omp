@@ -69,7 +69,10 @@ class SettingsPluginGridHandler extends PluginGridHandler {
 	 * @see GridHandler::getRowInstance()
 	 */
 	function getRowInstance() {
-		return parent::getRowInstance(CONTEXT_PRESS);
+		$userRoles = $this->getAuthorizedContextObject(ASSOC_TYPE_USER_ROLES);
+
+		import('controllers.grid.plugins.PluginGridRow');
+		return new PluginGridRow($userRoles, CONTEXT_PRESS);
 	}
 
 	/**
