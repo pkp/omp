@@ -98,7 +98,7 @@
 
 			$formatTabs = $(this.$formatTabsSelector_,
 					this.getHtmlElement()).children('div');
-			if ($formatTabs.has($triggerElement).length === 0) {
+			if ($formatTabs.has('#' + $triggerElement.attr('id')).length === 0) {
 				$formatTabs.trigger('refreshTabs');
 			}
 
