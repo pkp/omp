@@ -12,9 +12,15 @@
 
 
 <script type="text/javascript">
+	// Attach the JS form handler.
 	$(function() {ldelim}
-		// Attach the form handler.
-		$('#submitStep3Form').pkpHandler('$.pkp.controllers.form.AjaxFormHandler');
+		$('#submitStep3Form').pkpHandler(
+			'$.pkp.pages.submission.SubmissionStep3FormHandler',
+			{ldelim}
+				isEditedVolume: {if $isEditedVolume}true{else}false{/if},
+				chaptersGridContainer: 'chaptersGridContainer',
+				authorsGridContainer: 'authorsGridContainer'
+			{rdelim});
 	{rdelim});
 </script>
 
@@ -27,12 +33,12 @@
 	{fbvFormArea id="contributors"}
 		<!--  Contributors -->
 		{url|assign:authorGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.users.author.AuthorGridHandler" op="fetchGrid" monographId=$monographId}
-		{load_url_in_div id="authorsGridContainer" class="update_source_author" url="$authorGridUrl"}
+		{load_url_in_div id="authorsGridContainer" url="$authorGridUrl"}
 
 		<!--  Chapters -->
 		{if $isEditedVolume}
 			{url|assign:chaptersGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.users.chapter.ChapterGridHandler" op="fetchGrid" monographId=$monographId}
-			{load_url_in_div id="chaptersGridContainer" class="update_target_author" url="$chaptersGridUrl"}
+			{load_url_in_div id="chaptersGridContainer" url="$chaptersGridUrl"}
 		{/if}
 	{/fbvFormArea}
 
