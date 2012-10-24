@@ -25,7 +25,7 @@ jQuery.pkp.pages.submission = jQuery.pkp.pages.submission || { };
 	*
 	* @extends $.pkp.controllers.form.AjaxFormHandler
 	*
-	* @param {jQuery} $form the wrapped HTML form element.
+	* @param {jQueryObject} $form the wrapped HTML form element.
 	* @param {Object} options form options.
 	*/
 	$.pkp.pages.submission.SubmissionStep3FormHandler =
@@ -90,5 +90,6 @@ jQuery.pkp.pages.submission = jQuery.pkp.pages.submission || { };
 		}
 	};
 
+
 /** @param {jQuery} $ jQuery closure. */
-})(jQuery);
+}(jQuery));

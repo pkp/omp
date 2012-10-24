@@ -298,12 +298,12 @@
 	 *
 	 * @private
 	 *
-	 * @param {$.pkp.classes.Handler=} callingHandler The handler
+	 * @param {$.pkp.classes.Handler=} opt_callingHandler The handler
 	 *  that triggered the event.
-	 * @param {Event=} event The event.
+	 * @param {Event=} opt_event The event.
 	 */
 	$.pkp.pages.manageCatalog.MonographManagementListHandler.prototype.
-			resetElementHeights_ = function(callingHandler, event) {
+			resetElementHeights_ = function(opt_callingHandler, opt_event) {
 		this.formatList();
 	};
 

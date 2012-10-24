@@ -70,7 +70,8 @@
 						$.pkp.classes.Handler.getHandler($autocompleteContainer),
 				oldUrl = this.autocompleteUrl_,
 				// Remove the old Name from the URL
-				newUrl = oldUrl.replace(/(&name=[^&]*)/, '');
+				regExp = '/(&name=[^&]*)/',
+				newUrl = oldUrl.replace(regExp, '');
 
 		newUrl += '&name=' + encodeURIComponent(eventObject.value);
 		autocompleteHandler.setAutocompleteUrl(newUrl);
