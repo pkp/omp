@@ -43,7 +43,6 @@ switch ($op) {
 	case 'setLocale':
 	case 'become':
 	case 'authorizationDenied':
-	case 'viewCaptcha':
 		define('HANDLER_CLASS', 'UserHandler');
 		import('pages.user.UserHandler');
 		break;

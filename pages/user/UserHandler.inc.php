@@ -144,30 +144,6 @@ class UserHandler extends Handler {
 			Validation::redirectLogin();
 		}
 	}
-
-	//
-	// Captcha
-	//
-
-	/**
-	 * View a CAPTCHA test.
-	 * @param $args array
-	 * @param $request PKPRequest
-	 */
-	function viewCaptcha($args, &$request) {
-		$captchaId = (int) array_shift($args);
-		import('lib.pkp.classes.captcha.CaptchaManager');
-		$captchaManager = new CaptchaManager();
-		if ($captchaManager->isEnabled()) {
-			$captchaDao =& DAORegistry::getDAO('CaptchaDAO');
-			$captcha =& $captchaDao->getCaptcha($captchaId);
-			if ($captcha) {
-				$captchaManager->generateImage($captcha);
-				exit();
-			}
-		}
-		$request->redirect(null, 'user');
-	}
 }
 
 ?>

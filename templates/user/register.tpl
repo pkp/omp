@@ -156,10 +156,7 @@
 		<li>
 		{fieldLabel name="captcha" required=true key="common.captchaField" class="desc"}
 		<span>
-			<img src="{url page="user" op="viewCaptcha" path=$captchaId}" alt="{translate key="common.captchaField.altText"}" /><br />
-			<p>{translate key="common.captchaField.description"}</p>
-			<input name="captcha" id="captcha" value="" size="20" maxlength="32" class="field text" />
-			<input type="hidden" name="captchaId" value="{$captchaId|escape:"quoted"}" />
+			{$reCaptchaHtml}
 		</span>
 		</li>
 	{/if}
