@@ -360,17 +360,11 @@ page_links = 10
 
 [captcha]
 
-; Whether or not to enable Captcha features
-captcha = off
+; Whether or not to enable ReCaptcha
+recaptcha = off
 
 ; Whether or not to use Captcha on user registration
 captcha_on_register = on
-
-; Whether or not to use Captcha on user comments
-captcha_on_comments = on
-
-; Font location for font to use in Captcha images
-font_location = /usr/share/fonts/truetype/freefont/FreeSerif.ttf
 
 
 ;;;;;;;;;;;;;;;;;;;;;
