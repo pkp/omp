@@ -19,7 +19,7 @@
 		{fbvElement type="text" multilingual=true name="title" id="title" value=$title disabled=$readOnly maxlength="255" required=true}
 	{/fbvFormSection}
 	{fbvFormSection description="common.prefixAndTitle.tip"}{/fbvFormSection}
-	{fbvFormSection title="monograph.subtitle" for="subtitle"}
+	{fbvFormSection title="common.subtitle" for="subtitle"}
 		{fbvElement type="text" multilingual=true name="subtitle" id="subtitle" value=$subtitle disabled=$readOnly}
 	{/fbvFormSection}
 	{fbvFormSection title="submission.submit.briefSummary" for="abstract" required=true}

@@ -39,7 +39,6 @@
 	<message key="monograph.rights.tip">If you wish, you may enter a brief statement about the access rights held in or over this submission.</message>
 	<message key="monograph.title">Book Title</message>
 	<message key="monograph.title.tip"><![CDATA[The submission type is usually one of 'image', 'text', or other multimedia types including 'software' or 'interactive'.  Please choose the one most relevant for your submission.  Examples may be found at <a target="_blank" href="http://dublincore.org/documents/2001/04/12/usageguide/generic.shtml#type">http://dublincore.org/documents/2001/04/12/usageguide/generic.shtml#type</a>]]></message>
-	<message key="monograph.subtitle">Subtitle</message>
 	<message key="monograph.type">Type of Submission</message>
 	<message key="monograph.pageProofs">Page Proofs</message>
 	<message key="monograph.proofReadingDescription"><![CDATA[The layout editor uploads the production-ready files that have been prepared for publication here. Use <em>+Assign</em> to designate authors and others to proofread the page proofs, with corrected files uploaded for approval prior to publication.]]></message>
