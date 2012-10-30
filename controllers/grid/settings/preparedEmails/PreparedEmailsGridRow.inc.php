@@ -12,72 +12,27 @@
  * @brief Handle PreparedEmails grid row requests.
  */
 
-import('lib.pkp.classes.controllers.grid.GridRow');
+import('lib.pkp.classes.controllers.grid.settings.preparedEmails.PKPPreparedEmailsGridRow');
 
-class PreparedEmailsGridRow extends GridRow {
+class PreparedEmailsGridRow extends PKPPreparedEmailsGridRow {
 	/**
 	 * Constructor
 	 */
 	function PreparedEmailsGridRow() {
-		parent::GridRow();
+		parent::PKPPreparedEmailsGridRow();
 	}
 
 	//
-	// Overridden template methods
+	// Overridden parent class methods
 	//
 	/**
-	 * Configure the grid row
+	 * Return the context (press) ID.
 	 * @param $request PKPRequest
+	 * @return int Press ID.
 	 */
-	function initialize(&$request) {
-		parent::initialize($request);
-
+	function getContextId(&$request) {
 		$press =& $request->getPress();
-
-		// add Grid Row Actions
-		$rowId = $this->getId();
-		if (isset($rowId) && is_string($rowId)) {
-			$pressId = $press->getId();
-			$router =& $request->getRouter();
-
-			// Row action to edit the email template
-			import('controllers.grid.settings.preparedEmails.linkAction.EditEmailLinkAction');
-			$this->addAction(new EditEmailLinkAction($request, $rowId));
-
-			// Row action to disable/delete the email template
-			$emailTemplateDao =& DAORegistry::getDAO('EmailTemplateDAO'); /* @var $emailTemplateDao EmailTemplateDAO */
-			$emailTemplate =& $emailTemplateDao->getLocaleEmailTemplate($rowId, $pressId);
-			if (isset($emailTemplate) && $emailTemplate->isCustomTemplate()) {
-				$this->addAction(
-					new LinkAction(
-						'deleteEmail',
-						new RemoteActionConfirmationModal(
-							__('manager.emails.confirmDelete'), __('common.delete'),
-							$router->url($request, null, 'grid.settings.preparedEmails.PreparedEmailsGridHandler',
-								'deleteCustomEmail', null, array('emailKey' => $rowId)), 'modal_delete'
-						),
-						__('common.delete'),
-						'disable'
-					)
-				);
-			}
-
-			// Row action to reset the email template to stock
-			if (isset($emailTemplate) && !$emailTemplate->isCustomTemplate()) {
-				$this->addAction(
-					new LinkAction(
-						'resetEmail',
-						new RemoteActionConfirmationModal(
-							__('manager.emails.reset.message'), null,
-							$router->url($request, null, 'grid.settings.preparedEmails.PreparedEmailsGridHandler',
-								'resetEmail', null, array('emailKey' => $rowId)), 'modal_delete'
-						),
-						__('manager.emails.reset'),
-						'delete'
-					)
-				);
-			}
-		}
+		return $press->getId();
 	}
 }
 

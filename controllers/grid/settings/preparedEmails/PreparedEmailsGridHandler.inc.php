@@ -13,22 +13,14 @@
  */
 
 // Import grid base classes
-import('lib.pkp.classes.controllers.grid.GridHandler');
+import('lib.pkp.classes.controllers.grid.settings.preparedEmails.PKPPreparedEmailsGridHandler');
 
-// Import classes specific to this grid handler
-import('controllers.grid.settings.preparedEmails.PreparedEmailsGridRow');
-
-class PreparedEmailsGridHandler extends GridHandler {
+class PreparedEmailsGridHandler extends PKPPreparedEmailsGridHandler {
 	/**
 	 * Constructor
 	 */
 	function PreparedEmailsGridHandler() {
-		parent::GridHandler();
-		$this->addRoleAssignment(
-			array(ROLE_ID_PRESS_MANAGER),
-			array('fetchRow', 'fetchGrid', 'addPreparedEmail', 'editPreparedEmail', 'updatePreparedEmail',
-				'resetEmail', 'resetAllEmails', 'disableEmail', 'enableEmail', 'deleteCustomEmail')
-		);
+		parent::PKPPreparedEmailsGridHandler();
 	}
 
 	/**
@@ -43,68 +35,16 @@ class PreparedEmailsGridHandler extends GridHandler {
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 
-	/*
-	 * Configure the grid
+	/**
+	 * Get the context (press) ID.
 	 * @param $request PKPRequest
+	 * @return int Press ID.
 	 */
-	function initialize(&$request) {
-		parent::initialize($request);
-		// Basic grid configuration
-		$this->setId('preparedEmailsGrid');
-
-		AppLocale::requireComponents(LOCALE_COMPONENT_PKP_MANAGER);
-
-		// Set the grid title.
-		$this->setTitle('grid.preparedEmails.title');
-
-		$this->setInstructions('grid.preparedEmails.description');
-
-		// Elements to be displayed in the grid
+	function getContextId(&$request) {
 		$press =& $request->getPress();
-		$emailTemplateDao =& DAORegistry::getDAO('EmailTemplateDAO'); /* @var $emailTemplateDao EmailTemplateDAO */
-		$emailTemplates =& $emailTemplateDao->getEmailTemplates(AppLocale::getLocale(), $press->getId());
-		$rowData = array();
-		foreach ($emailTemplates as $emailTemplate) {
-			$rowData[$emailTemplate->getEmailKey()] = $emailTemplate;
-		}
-		$this->setGridDataElements($rowData);
-
-		// Grid actions
-		import('controllers.grid.settings.preparedEmails.linkAction.EditEmailLinkAction');
-		$addEmailLinkAction = new EditEmailLinkAction($request);
-		$this->addAction($addEmailLinkAction);
-
-		import('lib.pkp.classes.linkAction.LinkAction');
-		import('lib.pkp.classes.linkAction.request.RemoteActionConfirmationModal');
-		$router =& $request->getRouter();
-		$this->addAction(
-			new LinkAction(
-				'resetAll',
-				new RemoteActionConfirmationModal(
-					__('manager.emails.resetAll.message'), null,
-					$router->url($request, null,
-						'grid.settings.preparedEmails.PreparedEmailsGridHandler', 'resetAllEmails')
-				),
-				__('manager.emails.resetAll'),
-				'reset_default'
-			)
-		);
-
-
-		// Columns
-		import('controllers.grid.settings.preparedEmails.PreparedEmailsGridCellProvider');
-		$cellProvider = new PreparedEmailsGridCellProvider();
-		$this->addColumn(new GridColumn('name', 'common.name', null, 'controllers/grid/gridCell.tpl', $cellProvider, array('width' => 40)));
-		$this->addColumn(new GridColumn('sender', 'email.sender', null, 'controllers/grid/gridCell.tpl', $cellProvider, array('width' => 10)));
-		$this->addColumn(new GridColumn('recipient', 'email.recipient', null, 'controllers/grid/gridCell.tpl', $cellProvider));
-		$this->addColumn(new GridColumn('subject', 'common.subject', null, 'controllers/grid/gridCell.tpl', $cellProvider));
-		$this->addColumn(new GridColumn('enabled', 'common.enabled', null, 'controllers/grid/common/cell/selectStatusCell.tpl', $cellProvider, array('width' => 5)));
+		return $press->getId();
 	}
 
-
-	//
-	// Overridden methods from GridHandler
-	//
 	/**
 	 * Get the row handler - override the default row handler
 	 * @return PreparedEmailsGridRow
@@ -119,16 +59,6 @@ class PreparedEmailsGridHandler extends GridHandler {
 	// Public handler methods
 	//
 	/**
-	 * Create a new prepared email
-	 * @param $args array
-	 * @param $request PKPRequest
-	 * @return string Serialized JSON object
-	 */
-	function addPreparedEmail($args, &$request) {
-		return $this->editPreparedEmail($args, $request);
-	}
-
-	/**
 	 * Edit a prepared email
 	 * Will create a new prepared email if their is no emailKey in the request
 	 * @param $args array
@@ -139,7 +69,7 @@ class PreparedEmailsGridHandler extends GridHandler {
 		$press =& $request->getPress();
 		$emailKey = $request->getUserVar('emailKey');
 
-		import('controllers.grid.settings.preparedEmails.form.PreparedEmailForm');
+		import('lib.pkp.controllers.grid.settings.preparedEmails.form.PreparedEmailForm');
 		$preparedEmailForm = new PreparedEmailForm($emailKey, $press);
 		$preparedEmailForm->initData($request);
 
@@ -157,7 +87,7 @@ class PreparedEmailsGridHandler extends GridHandler {
 		$press =& $request->getPress();
 		$emailKey = $request->getUserVar('emailKey');
 
-		import('controllers.grid.settings.preparedEmails.form.PreparedEmailForm');
+		import('lib.pkp.controllers.grid.settings.preparedEmails.form.PreparedEmailForm');
 		$preparedEmailForm = new PreparedEmailForm($emailKey, $press);
 		$preparedEmailForm->readInputData();
 
