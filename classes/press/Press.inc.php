@@ -116,6 +116,14 @@ class Press extends Context {
 			return false;
 		}
 	}
+
+	/**
+	 * Get the association type for this context.
+	 * @return int
+	 */
+	function getAssocType() {
+		return ASSOC_TYPE_PRESS;
+	}
 }
 
 ?>
