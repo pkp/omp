@@ -14,8 +14,9 @@
 
 import('classes.handler.Handler');
 import('lib.pkp.classes.core.JSONMessage');
+import('lib.pkp.pages.submission.PKPSubmissionHandler');
 
-class SubmissionHandler extends Handler {
+class SubmissionHandler extends PKPSubmissionHandler {
 	/**
 	 * Constructor
 	 */
@@ -169,22 +170,6 @@ class SubmissionHandler extends Handler {
 		}
 	}
 
-	/**
-	 * Retrieves a JSON list of available choices for a tagit metadata input field.
-	 * @param $args array
-	 * @param $request Request
-	 */
-	function fetchChoices($args, &$request) {
-		$codeList = (int) $request->getUserVar('codeList');
-		$term =& $request->getUserVar('term');
-
-		$onixCodelistItemDao =& DAORegistry::getDAO('ONIXCodelistItemDAO');
-		$codes =& $onixCodelistItemDao->getCodes('List' . $codeList, array(), $term); // $term is escaped in the getCodes method.
-		import('lib.pkp.classes.core.JSONManager');
-		$jsonManager = new JSONManager();
-		header('Content-Type: text/json');
-		echo $jsonManager->encode(array_values($codes));
-	}
 
 	//
 	// Protected helper methods
