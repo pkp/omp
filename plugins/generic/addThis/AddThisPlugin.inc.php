@@ -116,10 +116,7 @@ class AddThisPlugin extends GenericPlugin {
 					$gridHandler = new AddThisStatisticsGridHandler($this);
 					$gridHandler->initialize($request);
 
-					import('lib.pkp.classes.core.JSONManager');
-					$jsonManager = new JSONManager();
-
-					$jsonMessage = $jsonManager->decode($gridHandler->fetchGrid($args, $request));
+					$jsonMessage = json_decode($gridHandler->fetchGrid($args, $request));
 					$pluginModalContent = $jsonMessage->content;
 				return true;
 

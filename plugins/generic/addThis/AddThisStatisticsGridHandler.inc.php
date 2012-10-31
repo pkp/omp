@@ -152,9 +152,7 @@ class AddThisStatisticsGridHandler extends GridHandler {
 			$jsonData = $wrapper->contents();
 
 			if ($jsonData != '') {
-				import('lib.pkp.classes.core.JSONManager');
-				$jsonManager = new JSONManager();
-				$jsonMessage = $jsonManager->decode($jsonData);
+				$jsonMessage = json_decode($jsonData);
 				foreach ($jsonMessage as $statElement) {
 					$data[] = array('url' => $statElement->url, 'shares' => $statElement->shares);
 				}
@@ -163,4 +161,5 @@ class AddThisStatisticsGridHandler extends GridHandler {
 		return $data;
 	}
 }
+
 ?>
