@@ -39,7 +39,7 @@ class NotificationManager extends PKPNotificationManager {
 		$pressDao =& DAORegistry::getDAO('PressDAO');
 		$pressId = $notification->getContextId();
 		assert($pressId);
-		$press =& $pressDao->getById($pressId);
+		$press = $pressDao->getById($pressId);
 
 		switch ($type) {
 			case NOTIFICATION_TYPE_MONOGRAPH_SUBMITTED:
@@ -55,7 +55,7 @@ class NotificationManager extends PKPNotificationManager {
 			case NOTIFICATION_TYPE_AUDITOR_REQUEST:
 			case NOTIFICATION_TYPE_COPYEDIT_ASSIGNMENT:
 				$signoffDao =& DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
-				$signoff =& $signoffDao->getById($notification->getAssocId());
+				$signoff = $signoffDao->getById($notification->getAssocId());
 				assert(is_a($signoff, 'Signoff') && $signoff->getAssocType() == ASSOC_TYPE_MONOGRAPH_FILE);
 
 				$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
@@ -169,7 +169,7 @@ class NotificationManager extends PKPNotificationManager {
 			case NOTIFICATION_TYPE_AUDITOR_REQUEST:
 				assert($notification->getAssocType() == ASSOC_TYPE_SIGNOFF && is_numeric($notification->getAssocId()));
 				$signoffDao =& DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
-				$signoff =& $signoffDao->getById($notification->getAssocId());
+				$signoff = $signoffDao->getById($notification->getAssocId());
 				assert($signoff->getAssocType() == ASSOC_TYPE_MONOGRAPH_FILE);
 
 				$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO');
@@ -178,7 +178,7 @@ class NotificationManager extends PKPNotificationManager {
 			case NOTIFICATION_TYPE_COPYEDIT_ASSIGNMENT:
 				assert($notification->getAssocType() == ASSOC_TYPE_SIGNOFF && is_numeric($notification->getAssocId()));
 				$signoffDao =& DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
-				$signoff =& $signoffDao->getById($notification->getAssocId());
+				$signoff = $signoffDao->getById($notification->getAssocId());
 				assert($signoff->getAssocType() == ASSOC_TYPE_MONOGRAPH_FILE);
 
 				$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO');

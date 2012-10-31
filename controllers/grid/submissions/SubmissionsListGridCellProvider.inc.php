@@ -169,7 +169,7 @@ class SubmissionsListGridCellProvider extends DataObjectGridCellProvider {
 	 * @param $userId an optional user id
 	 * @return array
 	 */
-	function getPageAndOperationByUserRoles(&$request, &$monograph, $userId = null) {
+	static function getPageAndOperationByUserRoles(&$request, &$monograph, $userId = null) {
 		if ($userId == null) {
 			$user =& $request->getUser();
 		} else {

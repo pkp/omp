@@ -73,7 +73,7 @@ class NotificationsGridCellProvider extends GridCellProvider {
 						break;
 					case ASSOC_TYPE_SIGNOFF:
 						$signoffDao =& DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
-						$signoff =& $signoffDao->getById($notification->getAssocId());
+						$signoff = $signoffDao->getById($notification->getAssocId());
 						if ($signoff->getAssocType() == ASSOC_TYPE_MONOGRAPH) {
 							$monographId = $signoff->getAssocId();
 						} elseif ($signoff->getAssocType() == ASSOC_TYPE_MONOGRAPH_FILE) {
