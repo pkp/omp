@@ -289,34 +289,34 @@ class MonographDAO extends DAO {
 		}
 
 		// Delete controlled vocab lists assigned to this Monograph
-		$monographKeywordDao =& DAORegistry::getDAO('MonographKeywordDAO');
-		$monographKeywordVocab =& $monographKeywordDao->getBySymbolic(CONTROLLED_VOCAB_MONOGRAPH_KEYWORD, ASSOC_TYPE_MONOGRAPH, $monographId);
+		$submissionKeywordDao =& DAORegistry::getDAO('SubmissionKeywordDAO');
+		$monographKeywordVocab =& $submissionKeywordDao->getBySymbolic(CONTROLLED_VOCAB_SUBMISSION_KEYWORD, ASSOC_TYPE_MONOGRAPH, $monographId);
 		if (isset($monographKeywordVocab)) {
-			$monographKeywordDao->deleteObject($monographKeywordVocab);
+			$submissionKeywordDao->deleteObject($monographKeywordVocab);
 		}
 
-		$monographDisciplineDao =& DAORegistry::getDAO('MonographDisciplineDAO');
-		$monographDisciplineVocab =& $monographDisciplineDao->getBySymbolic(CONTROLLED_VOCAB_MONOGRAPH_DISCIPLINE, ASSOC_TYPE_MONOGRAPH, $monographId);
+		$submissionDisciplineDao =& DAORegistry::getDAO('SubmissionDisciplineDAO');
+		$monographDisciplineVocab =& $submissionDisciplineDao->getBySymbolic(CONTROLLED_VOCAB_SUBMISSION_DISCIPLINE, ASSOC_TYPE_MONOGRAPH, $monographId);
 		if (isset($monographDisciplineVocab)) {
-			$monographDisciplineDao->deleteObject($monographDisciplineVocab);
+			$submissionDisciplineDao->deleteObject($monographDisciplineVocab);
 		}
 
-		$monographAgencyDao =& DAORegistry::getDAO('MonographAgencyDAO');
-		$monographAgencyVocab =& $monographAgencyDao->getBySymbolic(CONTROLLED_VOCAB_MONOGRAPH_AGENCY, ASSOC_TYPE_MONOGRAPH, $monographId);
+		$submissionAgencyDao =& DAORegistry::getDAO('SubmissionAgencyDAO');
+		$monographAgencyVocab =& $submissionAgencyDao->getBySymbolic(CONTROLLED_VOCAB_SUBMISSION_AGENCY, ASSOC_TYPE_MONOGRAPH, $monographId);
 		if (isset($monographAgencyVocab)) {
-			$monographAgencyDao->deleteObject($monographAgencyVocab);
+			$submissionAgencyDao->deleteObject($monographAgencyVocab);
 		}
 
-		$monographLanguageDao =& DAORegistry::getDAO('MonographLanguageDAO');
-		$monographLanguageVocab =& $monographLanguageDao->getBySymbolic(CONTROLLED_VOCAB_MONOGRAPH_LANGUAGE, ASSOC_TYPE_MONOGRAPH, $monographId);
+		$submissionLanguageDao =& DAORegistry::getDAO('SubmissionLanguageDAO');
+		$monographLanguageVocab =& $submissionLanguageDao->getBySymbolic(CONTROLLED_VOCAB_SUBMISSION_LANGUAGE, ASSOC_TYPE_MONOGRAPH, $monographId);
 		if (isset($monographLanguageVocab)) {
-			$monographLanguageDao->deleteObject($monographLanguageVocab);
+			$submissionLanguageDao->deleteObject($monographLanguageVocab);
 		}
 
-		$monographSubjectDao =& DAORegistry::getDAO('MonographSubjectDAO');
-		$monographSubjectVocab =& $monographSubjectDao->getBySymbolic(CONTROLLED_VOCAB_MONOGRAPH_SUBJECT, ASSOC_TYPE_MONOGRAPH, $monographId);
+		$submissionSubjectDao =& DAORegistry::getDAO('SubmissionSubjectDAO');
+		$monographSubjectVocab =& $submissionSubjectDao->getBySymbolic(CONTROLLED_VOCAB_SUBMISSION_SUBJECT, ASSOC_TYPE_MONOGRAPH, $monographId);
 		if (isset($monographSubjectVocab)) {
-			$monographSubjectDao->deleteObject($monographSubjectVocab);
+			$submissionSubjectDao->deleteObject($monographSubjectVocab);
 		}
 
 		// Signoff DAOs

@@ -20,7 +20,7 @@ import('lib.pkp.classes.core.PKPApplication');
 define('PHP_REQUIRED_VERSION', '4.2.0');
 
 define('ASSOC_TYPE_PRESS',			0x0000200);
-define('ASSOC_TYPE_MONOGRAPH',			0x0000201);
+define('ASSOC_TYPE_MONOGRAPH',			ASSOC_TYPE_SUBMISSION);
 define('ASSOC_TYPE_PRODUCTION_ASSIGNMENT',	0x0000202);
 define('ASSOC_TYPE_MONOGRAPH_FILE',		0x0000203);
 define('ASSOC_TYPE_REVIEW_RESPONSE',		0x0000204);
@@ -129,22 +129,12 @@ class Application extends PKPApplication {
 			'LibraryFileDAO' => 'classes.press.LibraryFileDAO',
 			'MarketDAO' => 'classes.publicationFormat.MarketDAO',
 			'MonographCommentDAO' => 'classes.monograph.MonographCommentDAO',
-			'MonographAgencyDAO' => 'classes.monograph.MonographAgencyDAO',
-			'MonographAgencyEntryDAO' => 'classes.monograph.MonographAgencyEntryDAO',
 			'MonographDAO' => 'classes.monograph.MonographDAO',
-			'MonographDisciplineDAO' => 'classes.monograph.MonographDisciplineDAO',
-			'MonographDisciplineEntryDAO' => 'classes.monograph.MonographDisciplineEntryDAO',
 			'MonographEmailLogDAO' => 'classes.log.MonographEmailLogDAO',
 			'MonographEventLogDAO' => 'classes.log.MonographEventLogDAO',
 			'MonographFileEmailLogDAO' => 'classes.log.MonographFileEmailLogDAO',
 			'MonographFileEventLogDAO' => 'classes.log.MonographFileEventLogDAO',
 			'MonographFileSignoffDAO' => 'classes.monograph.MonographFileSignoffDAO',
-			'MonographLanguageDAO' => 'classes.monograph.MonographLanguageDAO',
-			'MonographLanguageEntryDAO' => 'classes.monograph.MonographLanguageEntryDAO',
-			'MonographKeywordDAO' => 'classes.monograph.MonographKeywordDAO',
-			'MonographKeywordEntryDAO' => 'classes.monograph.MonographKeywordEntryDAO',
-			'MonographSubjectDAO' => 'classes.monograph.MonographSubjectDAO',
-			'MonographSubjectEntryDAO' => 'classes.monograph.MonographSubjectEntryDAO',
 			'MonographSearchDAO' => 'classes.search.MonographSearchDAO',
 			'NewReleaseDAO' => 'classes.press.NewReleaseDAO',
 			'NoteDAO' => 'classes.note.NoteDAO',

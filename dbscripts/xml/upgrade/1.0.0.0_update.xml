@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE data SYSTEM "../../../lib/pkp/dtd/xmlData.dtd">
+
+<!--
+  * 1.0.0.0_update.xml
+  *
+  * Copyright (c) 2003-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * 1.0.0.0 database updates XML file.
+  -->
+<data>
+	<!-- synchronize the ASSOC_TYPE_MONOGRAPH constant to ASSOC_TYPE_SUBMISSION defined in PKPApplication -->
+	<sql>
+		<query>UPDATE controlled_vocabs SET assoc_type = '1048585' WHERE assoc_type = '513'</query>
+		<query>UPDATE notifications SET assoc_type = '1048585' WHERE assoc_type = '513'</query>
+		<query>UPDATE notes SET assoc_type = '1048585' WHERE assoc_type = '513'</query>
+		<query>UPDATE email_log SET assoc_type = '1048585' WHERE assoc_type = '513'</query>
+		<query>UPDATE event_log SET assoc_type = '1048585' WHERE assoc_type = '513'</query>
+
+		<!-- rename the symbolic controlled vocab fields to the generic pkp-lib field name -->
+		<query>UPDATE controlled_vocabs SET symbolic = 'submissionAgency' WHERE symbolic = 'monographAgency'</query>
+		<query>UPDATE controlled_vocabs SET symbolic = 'submissionDiscipline' WHERE symbolic = 'monographDiscipline'</query>
+		<query>UPDATE controlled_vocabs SET symbolic = 'submissionKeyword' WHERE symbolic = 'monographKeyword'</query>
+		<query>UPDATE controlled_vocabs SET symbolic = 'submissionLanguage' WHERE symbolic = 'monographLanguage'</query>
+		<query>UPDATE controlled_vocabs SET symbolic = 'submissionSubject' WHERE symbolic = 'monographSubject'</query>
+
+		<query>UPDATE controlled_vocab_entry_settings SET setting_name = 'submissionAgency' WHERE setting_name = 'monographAgency'</query>
+		<query>UPDATE controlled_vocab_entry_settings SET setting_name = 'submissionDiscipline' WHERE setting_name = 'monographDiscipline'</query>
+		<query>UPDATE controlled_vocab_entry_settings SET setting_name = 'submissionKeyword' WHERE setting_name = 'monographKeyword'</query>
+		<query>UPDATE controlled_vocab_entry_settings SET setting_name = 'submissionLanguage' WHERE setting_name = 'monographLanguage'</query>
+		<query>UPDATE controlled_vocab_entry_settings SET setting_name = 'submissionSubject' WHERE setting_name = 'monographSubject'</query>
+	</sql>
+</data>
