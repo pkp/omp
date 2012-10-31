@@ -133,9 +133,9 @@ class PublishedMonograph extends Monograph {
 	function getPublicationFormats($onlyApproved = false) {
 		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
 		if ($onlyApproved) {
-			$formats =& $publicationFormatDao->getApprovedByMonographId($this->getId());
+			$formats = $publicationFormatDao->getApprovedByMonographId($this->getId());
 		} else {
-			$formats =& $publicationFormatDao->getByMonographId($this->getId());
+			$formats = $publicationFormatDao->getByMonographId($this->getId());
 		}
 		return $formats->toArray();
 	}

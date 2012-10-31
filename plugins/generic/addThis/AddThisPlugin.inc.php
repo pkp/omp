@@ -74,8 +74,7 @@ class AddThisPlugin extends GenericPlugin {
 	/**
 	 * Define the management functionality for this plugin.
 	 */
-	function manage($verb, $args, &$message, &$messageParams, &$pluginModalContent) {
-
+	function manage($verb, $args, &$message, &$messageParams, &$pluginModalContent = null) {
 		$request =& $this->getRequest();
 		$press =& $request->getPress();
 		$templateMgr =& TemplateManager::getManager();
