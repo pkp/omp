@@ -58,6 +58,9 @@ import('lib.pkp.classes.controllers.listbuilder.ListbuilderHandler');
 import('lib.pkp.classes.controllers.grid.feature.OrderCategoryGridItemsFeature');
 
 class Application extends PKPApplication {
+	/**
+	 * Constructor
+	 */
 	function Application() {
 		parent::PKPApplication();
 	}
@@ -69,7 +72,7 @@ class Application extends PKPApplication {
 	 * Scheduled Conference [2], or Press [1]).
 	 * @return int
 	 */
-	function getContextDepth() {
+	static function getContextDepth() {
 		return 1;
 	}
 
@@ -77,7 +80,7 @@ class Application extends PKPApplication {
 	 * Get a list of contexts for this application.
 	 * @return array
 	 */
-	function getContextList() {
+	static function getContextList() {
 		return array('press');
 	}
 

@@ -43,8 +43,8 @@ class InformationBlockPlugin extends BlockPlugin {
 	 * @param $templateMgr object
 	 * @return $string
 	 */
-	function getContents(&$templateMgr) {
-		$press =& Request::getPress();
+	function getContents(&$templateMgr, $request = null) {
+		$press = $request->getPress();
 		if (!$press) return '';
 
 		$templateMgr->assign('forReaders', $press->getLocalizedSetting('readerInformation'));

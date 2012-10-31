@@ -147,4 +147,5 @@ class TinyMCEPlugin extends GenericPlugin {
 		return $verbs;
 	}
 }
+
 ?>
