@@ -225,7 +225,7 @@ class SpotlightDAO extends DAO {
 
 		// Avoid spotlights without items.
 		while ($spotlight =& $spotlightFactory->next()) {
-			$spotlightItem =& $spotlight->getSpotlightItem();
+			$spotlightItem = $spotlight->getSpotlightItem();
 			if ($spotlightItem) {
 				$returner[$spotlight->getId()] =& $spotlight;
 			}
@@ -242,7 +242,7 @@ class SpotlightDAO extends DAO {
 	 * @return array or null
 	 */
 	function getRandomByPressId($pressId, $quantity = 1) {
-		$spotlights =& array_values($this->getByPressId($pressId));
+		$spotlights = array_values($this->getByPressId($pressId));
 		$returner = array();
 		if (count($spotlights) > 0) {
 			if (count($spotlights) <= $quantity) {
