@@ -18,7 +18,7 @@ import('lib.pkp.classes.form.Form');
 
 class ProfileForm extends Form {
 
-	/** @var $user object */
+	/** @var $user User */
 	var $_user;
 
 	/**
@@ -105,7 +105,7 @@ class ProfileForm extends Form {
 	function display($args, &$request) {
 		$templateMgr =& TemplateManager::getManager();
 
-		$user =& $this->getUser();
+		$user = $this->getUser();
 		$templateMgr->assign('username', $user->getUsername());
 
 		$site =& $request->getSite();
@@ -159,7 +159,7 @@ class ProfileForm extends Form {
 	 * @param $request PKPRequest
 	 */
 	function initData(&$args, &$request) {
-		$user =& $this->getUser();
+		$user = $this->getUser();
 
 		import('lib.pkp.classes.user.InterestManager');
 		$interestManager = new InterestManager();
