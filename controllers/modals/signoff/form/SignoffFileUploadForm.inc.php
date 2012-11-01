@@ -95,7 +95,7 @@ class SignoffFileUploadForm extends Form {
 
 		$signoffId = $this->getSignoffId();
 		if ($signoffId) {
-			$signoff =& $signoffDao->getById($signoffId);
+			$signoff = $signoffDao->getById($signoffId);
 		}
 
 		// Signoff specified. Find related file and show file name
@@ -164,7 +164,7 @@ class SignoffFileUploadForm extends Form {
 
 		// Retrieve the signoff we're working with.
 		$signoffDao =& DAORegistry::getDAO('MonographFileSignoffDAO');
-		$signoff =& $signoffDao->getById($this->getData('signoffId'));
+		$signoff = $signoffDao->getById($this->getData('signoffId'));
 		assert(is_a($signoff, 'Signoff'));
 
 		// Insert the note, if existing content and/or file.

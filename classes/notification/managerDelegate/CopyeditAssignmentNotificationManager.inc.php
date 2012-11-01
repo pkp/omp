@@ -30,7 +30,7 @@ class CopyeditAssignmentNotificationManager extends NotificationManagerDelegate 
 	 */
 	function getNotificationMessage(&$request, &$notification) {
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
-		$signoff =& $signoffDao->getById($notification->getAssocId());
+		$signoff = $signoffDao->getById($notification->getAssocId());
 		assert($signoff->getAssocType() == ASSOC_TYPE_MONOGRAPH_FILE);
 
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO');

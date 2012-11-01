@@ -30,7 +30,7 @@ class AuditorRequestNotificationManager extends NotificationManagerDelegate {
 	 */
 	function getNotificationMessage(&$request, &$notification) {
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
-		$signoff =& $signoffDao->getById($notification->getAssocId());
+		$signoff = $signoffDao->getById($notification->getAssocId());
 		assert($signoff->getAssocType() == ASSOC_TYPE_MONOGRAPH_FILE);
 
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO');
@@ -64,7 +64,7 @@ class AuditorRequestNotificationManager extends NotificationManagerDelegate {
 
 		// Check for the complete state of the signoff.
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
-		$signoff =& $signoffDao->getById($assocId);
+		$signoff = $signoffDao->getById($assocId);
 
 		$signoffCompleted = false;
 		$removed = false;

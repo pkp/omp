@@ -115,7 +115,7 @@ class NewSignoffNoteForm extends NewNoteForm {
 
 		// Retrieve the signoff we're working with.
 		$signoffDao =& DAORegistry::getDAO('MonographFileSignoffDAO');
-		$signoff =& $signoffDao->getById($this->getData('signoffId'));
+		$signoff = $signoffDao->getById($this->getData('signoffId'));
 		assert(is_a($signoff, 'Signoff'));
 
 		// Insert the note, if existing content and/or file.

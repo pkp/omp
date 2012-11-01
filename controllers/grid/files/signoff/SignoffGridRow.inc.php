@@ -41,7 +41,7 @@ class SignoffGridRow extends GridRow {
 
 		// Get the signoff (the row)
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
-		$signoff =& $signoffDao->getById($rowId);
+		$signoff = $signoffDao->getById($rowId);
 
 		// Get the id of the original file (the category header)
 		$monographFileId = $signoff->getAssocId();

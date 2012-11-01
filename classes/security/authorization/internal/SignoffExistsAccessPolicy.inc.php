@@ -36,7 +36,7 @@ class SignoffExistsAccessPolicy extends AuthorizationPolicy {
 	function effect() {
 		// Check if the signoff exists
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
-		$signoff =& $signoffDao->getById($this->_request->getUserVar('signoffId'));
+		$signoff = $signoffDao->getById($this->_request->getUserVar('signoffId'));
 		$baseSignoff =& $signoff;
 
 		// Check that the signoff exists
@@ -55,7 +55,7 @@ class SignoffExistsAccessPolicy extends AuthorizationPolicy {
 				// This signoff is attached to another signoff.
 				// We need to determine that the attached
 				// signoff belongs to the current press.
-				$newSignoff =& $signoffDao->getById($signoff->getAssocId());
+				$newSignoff = $signoffDao->getById($signoff->getAssocId());
 				if (!is_a($newSignoff, 'Signoff')) return AUTHORIZATION_DENY;
 
 				// Flip the reference so that the new object
