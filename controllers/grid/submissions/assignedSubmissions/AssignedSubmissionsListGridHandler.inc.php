@@ -68,7 +68,7 @@ class AssignedSubmissionsListGridHandler extends SubmissionsListGridHandler {
 		$data = array();
 
 		// get signoffs and stage assignments
-		$stageAssignments =& $stageAssignmentDao->getByUserId($userId);
+		$stageAssignments = $stageAssignmentDao->getByUserId($userId);
 		while($stageAssignment =& $stageAssignments->next()) {
 			$monograph =& $monographDao->getById($stageAssignment->getSubmissionId());
 			if ($monograph->getDateSubmitted() == null) { continue; }; // Still incomplete, don't add to assigned submissions grid.

@@ -43,14 +43,15 @@ class SpotlightsGridCellProvider extends DataObjectGridCellProvider {
 				return array('label' => $element->getLocalizedType());
 			case 'title':
 				return array('label' => $element->getLocalizedTitle());
-			case 'itemTitle':
-				$item =& $element->getSpotlightItem();
+			case 'itemTitle': {
+				$item = $element->getSpotlightItem();
 				switch  ($element->getAssocType()) {
 					case SPOTLIGHT_TYPE_AUTHOR:
 						return array('label' => $item->getFullName());
 					default:
 						return array('label' => $item->getLocalizedTitle());
 				}
+			}
 		}
 	}
 }

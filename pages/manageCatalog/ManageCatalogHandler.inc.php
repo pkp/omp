@@ -385,7 +385,7 @@ class ManageCatalogHandler extends Handler {
 			$templateMgr->assign('featuredMonographIds', $featuredMonographIds);
 
 			$newReleaseDao =& DAORegistry::getDAO('NewReleaseDAO');
-			$newReleaseMonographIds =& $newReleaseDao->getMonographIdsByAssoc($assocType, $assocId);
+			$newReleaseMonographIds = $newReleaseDao->getMonographIdsByAssoc($assocType, $assocId);
 			$templateMgr->assign('newReleaseMonographIds', $newReleaseMonographIds);
 		}
 
