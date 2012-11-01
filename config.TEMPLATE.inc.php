@@ -429,9 +429,6 @@ xslt_parameter_option = "-PARAM %n %v "
 
 [debug]
 
-; Display execution stats in the footer
-show_stats =  Off
-
 ; Display a stack trace when a fatal error occurs.
 ; Note that this may expose private information and should be disabled
 ; for any production system.

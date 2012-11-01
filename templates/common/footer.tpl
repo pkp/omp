@@ -46,9 +46,6 @@
 	</div><!-- pkp_structure_content -->
 </div><!-- pkp_structure_subfoot -->
 
-{get_debug_info}
-{if $enableDebugStats}{include file=$pqpTemplate}{/if}
-
 </div><!-- pkp_structure_foot -->
 
 </div><!-- pkp_structure_page -->
