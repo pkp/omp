@@ -203,8 +203,13 @@ class SubmissionSubmitStep3Form extends SubmissionSubmitForm {
 			}
 		}
 
-		// Introduce the "approve submission" notification for production, if needed.
-		$notificationManager->updateApproveSubmissionNotificationTypes($request, $monograph);
+		$notificationManager->updateNotification(
+			$request,
+			array(NOTIFICATION_TYPE_APPROVE_SUBMISSION),
+			null,
+			ASSOC_TYPE_MONOGRAPH,
+			$monograph->getId()
+		);
 
 		// Log submission.
 		import('classes.log.MonographLog');

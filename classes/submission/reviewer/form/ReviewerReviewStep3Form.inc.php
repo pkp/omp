@@ -106,6 +106,7 @@ class ReviewerReviewStep3Form extends ReviewerReviewForm {
 	 */
 	function execute(&$request) {
 		$reviewAssignment =& $this->getReviewAssignment();
+		$notificationMgr = new NotificationManager();
 		if($reviewAssignment->getReviewFormId()) {
 			$reviewFormResponseDao =& DAORegistry::getDAO('ReviewFormResponseDAO');
 			/* FIXME #5123: Include when review form infrastructure is in place
@@ -166,7 +167,6 @@ class ReviewerReviewStep3Form extends ReviewerReviewForm {
 			$stageAssignmentDao =& DAORegistry::getDAO('StageAssignmentDAO');
 			$stageAssignments =& $stageAssignmentDao->getBySubmissionAndStageId($monograph->getId(), $monograph->getStageId());
 
-			$notificationMgr = new NotificationManager();
 			while ($stageAssignment =& $stageAssignments->next()) {
 				$notificationMgr->createNotification(
 					$request, $stageAssignment->getUserId(), NOTIFICATION_TYPE_REVIEWER_COMMENT,
@@ -194,7 +194,13 @@ class ReviewerReviewStep3Form extends ReviewerReviewForm {
 		$reviewRoundDao->updateStatus($reviewRound, $reviewAssignments);
 
 		// Update "all reviews in" notification.
-		$notificationMgr->updateAllReviewsInNotification($request, $reviewRound);
+		$notificationMgr->updateNotification(
+			$request,
+			array(NOTIFICATION_TYPE_ALL_REVIEWS_IN),
+			null,
+			ASSOC_TYPE_REVIEW_ROUND,
+			$reviewRound->getId()
+		);
 
 		// Remove the task
 		$notificationDao =& DAORegistry::getDAO('NotificationDAO');

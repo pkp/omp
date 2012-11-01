@@ -170,12 +170,22 @@ class NewSignoffNoteForm extends NewNoteForm {
 				$signoff->setDateCompleted(Core::getCurrentDate());
 				$signoffDao->updateObject($signoff);
 
-				// Update NOTIFICATION_TYPE_AUDITOR_REQUEST.
 				$notificationMgr = new NotificationManager();
-				$notificationMgr->updateAuditorRequestNotification($signoff, $request);
+				$notificationMgr->updateNotification(
+					$request,
+					array(NOTIFICATION_TYPE_AUDITOR_REQUEST),
+					array($signoff->getUserId()),
+					ASSOC_TYPE_SIGNOFF,
+					$signoff->getId()
+				);
 
-				// Update NOTIFICATION_TYPE_SIGNOFF_...
-				$notificationMgr->updateSignoffNotification($signoff, $request);
+				$notificationMgr->updateNotification(
+					$request,
+					array(NOTIFICATION_TYPE_SIGNOFF_COPYEDIT, NOTIFICATION_TYPE_SIGNOFF_PROOF),
+					array($signoff->getUserId()),
+					ASSOC_TYPE_MONOGRAPH,
+					$this->_monographId
+				);
 
 				// Define the success trivial notification locale key.
 				$successLocaleKey = 'notification.uploadedResponse';
@@ -200,12 +210,22 @@ class NewSignoffNoteForm extends NewNoteForm {
 						$signoff->setDateCompleted(null);
 						$signoffDao->updateObject($signoff);
 
-						// Update NOTIFICATION_TYPE_AUDITOR_REQUEST.
 						$notificationMgr = new NotificationManager();
-						$notificationMgr->updateAuditorRequestNotification($signoff, $request);
+						$notificationMgr->updateNotification(
+							$request,
+							array(NOTIFICATION_TYPE_AUDITOR_REQUEST),
+							array($signoff->getUserId()),
+							ASSOC_TYPE_SIGNOFF,
+							$signoff->getId()
+						);
 
-						// Update NOTIFICATION_TYPE_SIGNOFF_...
-						$notificationMgr->updateSignoffNotification($signoff, $request);
+						$notificationMgr->updateNotification(
+							$request,
+							array(NOTIFICATION_TYPE_SIGNOFF_COPYEDIT, NOTIFICATION_TYPE_SIGNOFF_PROOF),
+							array($signoff->getUserId()),
+							ASSOC_TYPE_MONOGRAPH,
+							$this->_monographId
+						);
 					}
 				}
 				$successLocaleKey = 'notification.addedNote';

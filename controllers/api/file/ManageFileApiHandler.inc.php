@@ -73,19 +73,27 @@ class ManageFileApiHandler extends Handler {
 		$signoffDao = DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
 		$signoffFactory =& $signoffDao->getAllByAssocType(ASSOC_TYPE_MONOGRAPH_FILE, $monographFile->getFileId());
 		$signoffs = $signoffFactory->toArray();
+		$notificationMgr = new NotificationManager();
 
 		foreach ($signoffs as $signoff) {
 			$signoffDao->deleteObject($signoff);
 
-			// Update NOTIFICATION_TYPE_AUDITOR_REQUEST.
-			$notificationMgr = new NotificationManager();
-			$notificationMgr->updateAuditorRequestNotification($signoff, $request, true);
+			// Delete for all users.
+			$notificationMgr->updateNotification(
+				$request,
+				array(NOTIFICATION_TYPE_AUDITOR_REQUEST, NOTIFICATION_TYPE_COPYEDIT_ASSIGNMENT),
+				null,
+				ASSOC_TYPE_SIGNOFF,
+				$signoff->getId()
+			);
 
-			// Update NOTIFICATION_TYPE_SIGNOFF_...
-			$notificationMgr->updateSignoffNotification($signoff, $request);
-
-			// Remove the notification for the Copyeditor review, if they exist.
-			$notificationMgr->deleteCopyeditRequestNotification($signoff, $request);
+			$notificationMgr->updateNotification(
+				$request,
+				array(NOTIFICATION_TYPE_SIGNOFF_COPYEDIT, NOTIFICATION_TYPE_SIGNOFF_PROOF),
+				array($signoff->getUserId()),
+				ASSOC_TYPE_MONOGRAPH,
+				$monograph->getId()
+			);
 		}
 
 		// Delete the monograph file.
@@ -99,6 +107,26 @@ class ManageFileApiHandler extends Handler {
 		$success = (boolean)$submissionFileDao->deleteRevisionById($monographFile->getFileId(), $monographFile->getRevision(), $monographFile->getFileStage(), $monograph->getId());
 
 		if ($success) {
+			if ($monographFile->getFileStage() == MONOGRAPH_FILE_REVIEW_REVISION) {
+				$notificationMgr->updateNotification(
+					$request,
+					array(NOTIFICATION_TYPE_PENDING_INTERNAL_REVISIONS, NOTIFICATION_TYPE_PENDING_EXTERNAL_REVISIONS),
+					array($monograph->getUserId()),
+					ASSOC_TYPE_MONOGRAPH,
+					$monograph->getId()
+				);
+
+				$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
+				$lastReviewRound =& $reviewRoundDao->getLastReviewRoundByMonographId($monograph->getId(), $stageId);
+				$notificationMgr->updateNotification(
+					$request,
+					array(NOTIFICATION_TYPE_ALL_REVISIONS_IN),
+					null,
+					ASSOC_TYPE_REVIEW_ROUND,
+					$lastReviewRound->getId()
+				);
+			}
+
 			// update the monograph's search index if this was a proof file
 			if ($monographFile->getFileStage() == MONOGRAPH_FILE_PROOF) {
 				if ($monograph->getDatePublished()) {

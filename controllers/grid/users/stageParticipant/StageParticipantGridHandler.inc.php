@@ -256,13 +256,23 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 
 			$userGroup = $userGroupDao->getById($userGroupId);
 			if ($userGroup->getRoleId() == ROLE_ID_PRESS_MANAGER) {
-				// Update NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_... for each stage.
+				$notificationMgr->updateNotification(
+					$request,
+					array(NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_SUBMISSION,
+						NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_INTERNAL_REVIEW,
+						NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_EXTERNAL_REVIEW,
+						NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_EDITING,
+						NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_PRODUCTION),
+					null,
+					ASSOC_TYPE_MONOGRAPH,
+					$monograph->getId()
+				);
 				$stages = $this->_getStages();
 				foreach ($stages as $workingStageId) {
-					$notificationMgr->updateEditorAssignmentNotification($monograph, $workingStageId, $request);
 					// remove the 'editor required' task if we now have an editor assigned
 					if ($stageAssignmentDao->editorAssignedToStage($monograph->getId(), $stageId)) {
-						$notificationMgr->deleteEditorRequiredTaskNotification($monograph, $request);
+						$notificationDao = DAORegistry::getDAO('NotificationDAO');
+						$notificationDao->deleteByAssoc(ASSOC_TYPE_MONOGRAPH, $monograph->getId(), null, NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_REQUIRED);
 					}
 				}
 			}
@@ -324,16 +334,25 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 
 		// FIXME: perhaps we can just insert the notification on page load
 		// instead of having it there all the time?
-		$notificationMgr = new NotificationManager();
 		$stages = $this->_getStages();
 		foreach ($stages as $workingStageId) {
 			// remove user's assignment from this user group from all the stages
 			// (no need to check if user group is assigned, since nothing will be deleted if there isn't)
 			$stageAssignmentDao->deleteByAll($monograph->getId(), $workingStageId, $stageAssignment->getUserGroupId(), $stageAssignment->getUserId());
-
-			// Update NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_...
-			$notificationMgr->updateEditorAssignmentNotification($monograph, $workingStageId, $request);
 		}
+
+		$notificationMgr = new NotificationManager();
+		$notificationMgr->updateNotification(
+			$request,
+			array(NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_SUBMISSION,
+				NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_INTERNAL_REVIEW,
+				NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_EXTERNAL_REVIEW,
+				NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_EDITING,
+				NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_PRODUCTION),
+			null,
+			ASSOC_TYPE_MONOGRAPH,
+			$monograph->getId()
+		);
 
 		// Log removal.
 		$userDao =& DAORegistry::getDAO('UserDAO');

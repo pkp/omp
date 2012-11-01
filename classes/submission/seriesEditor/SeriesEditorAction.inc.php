@@ -121,9 +121,18 @@ class SeriesEditorAction extends Action {
 			}
 		}
 
-		// Update NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_...
 		$notificationMgr = new NotificationManager();
-		$notificationMgr->updateEditorAssignmentNotification($monograph, $stageId, $request);
+		$notificationMgr->updateNotification(
+			$request,
+			array(NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_SUBMISSION,
+				NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_INTERNAL_REVIEW,
+				NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_EXTERNAL_REVIEW,
+				NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_EDITING,
+				NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_PRODUCTION),
+			null,
+			ASSOC_TYPE_MONOGRAPH,
+			$monograph->getId()
+		);
 
 		// Reviewer roles -- Do nothing. Reviewers are not included in the stage participant list, they
 		// are administered via review assignments.
@@ -223,8 +232,13 @@ class SeriesEditorAction extends Action {
 			$reviewAssignments = $seriesEditorSubmission->getReviewAssignments($stageId, $round);
 			$reviewRoundDao->updateStatus($reviewRound, $reviewAssignments);
 
-			// Update "all reviews in" notification.
-			$notificationMgr->updateAllReviewsInNotification($request, $reviewRound);
+			$notificationMgr->updateNotification(
+				$request,
+				array(NOTIFICATION_TYPE_ALL_REVIEWS_IN),
+				null,
+				ASSOC_TYPE_REVIEW_ROUND,
+				$reviewRound->getId()
+			);
 
 			// Add log
 			import('classes.log.MonographLog');
@@ -271,8 +285,13 @@ class SeriesEditorAction extends Action {
 			$reviewAssignments = $seriesEditorSubmission->getReviewAssignments($reviewRound->getStageId(), $reviewRound->getRound());
 			$reviewRoundDao->updateStatus($reviewRound, $reviewAssignments);
 
-			// Update "all reviews in" notification.
-			$notificationMgr->updateAllReviewsInNotification($request, $reviewRound);
+			$notificationMgr->updateNotification(
+				$request,
+				array(NOTIFICATION_TYPE_ALL_REVIEWS_IN),
+				null,
+				ASSOC_TYPE_REVIEW_ROUND,
+				$reviewRound->getId()
+			);
 
 			// Add log
 			import('classes.log.MonographLog');

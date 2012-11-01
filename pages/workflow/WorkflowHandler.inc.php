@@ -116,7 +116,7 @@ class WorkflowHandler extends Handler {
 
 		// Get the right notifications type based on current stage id.
 		$notificationMgr = new NotificationManager();
-		$editorAssignmentNotificationType = $notificationMgr->getEditorAssignmentNotificationTypeByStageId($stageId);
+		$editorAssignmentNotificationType = $this->_getEditorAssignmentNotificationTypeByStageId($stageId);
 
 		// Define the workflow notification options.
 		$notificationRequestOptions = array(
@@ -126,7 +126,7 @@ class WorkflowHandler extends Handler {
 			NOTIFICATION_LEVEL_TRIVIAL => array()
 		);
 
-		$signoffNotificationType = $notificationMgr->getSignoffNotificationTypeByStageId($stageId);
+		$signoffNotificationType = $this->_getSignoffNotificationTypeByStageId($stageId);
 		if (!is_null($signoffNotificationType)) {
 			$notificationRequestOptions[NOTIFICATION_LEVEL_TASK][$signoffNotificationType] = array(ASSOC_TYPE_MONOGRAPH, $monograph->getId());
 		}
@@ -396,10 +396,9 @@ class WorkflowHandler extends Handler {
 
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		$notificationDao =& DAORegistry::getDAO('NotificationDAO');
-		$notificationMgr = new NotificationManager();
 
-		$signOffNotificationType = $notificationMgr->getSignoffNotificationTypeByStageId($stageId);
-		$editorAssignmentNotificationType = $notificationMgr->getEditorAssignmentNotificationTypeByStageId($stageId);
+		$signOffNotificationType = $this->_getSignoffNotificationTypeByStageId($stageId);
+		$editorAssignmentNotificationType = $this->_getEditorAssignmentNotificationTypeByStageId($stageId);
 
 		$editorAssignments =& $notificationDao->getByAssoc(ASSOC_TYPE_MONOGRAPH, $monograph->getId(), null, $editorAssignmentNotificationType, $contextId);
 		if (isset($signOffNotificationType)) {
@@ -514,6 +513,42 @@ class WorkflowHandler extends Handler {
 		// Translate the operation to a workflow stage identifier.
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 		return $userGroupDao->getIdFromPath($operation);
+	}
+
+	/**
+	 * Return the editor assignment notification type based on stage id.
+	 * @param $stageId int
+	 * @return int
+	 */
+	private function _getEditorAssignmentNotificationTypeByStageId($stageId) {
+		switch ($stageId) {
+			case WORKFLOW_STAGE_ID_SUBMISSION:
+				return NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_SUBMISSION;
+			case WORKFLOW_STAGE_ID_INTERNAL_REVIEW:
+				return NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_INTERNAL_REVIEW;
+			case WORKFLOW_STAGE_ID_EXTERNAL_REVIEW:
+				return NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_EXTERNAL_REVIEW;
+			case WORKFLOW_STAGE_ID_EDITING:
+				return NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_EDITING;
+			case WORKFLOW_STAGE_ID_PRODUCTION:
+				return NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_PRODUCTION;
+		}
+		return null;
+	}
+
+	/**
+	 * Return the signoff notification type based on stage id.
+	 * @param $stageId
+	 * @return int
+	 */
+	private function _getSignoffNotificationTypeByStageId($stageId) {
+		switch ($stageId) {
+			case WORKFLOW_STAGE_ID_EDITING:
+				return NOTIFICATION_TYPE_SIGNOFF_COPYEDIT;
+			case WORKFLOW_STAGE_ID_PRODUCTION:
+				return NOTIFICATION_TYPE_SIGNOFF_PROOF;
+		}
+		return null;
 	}
 }
 

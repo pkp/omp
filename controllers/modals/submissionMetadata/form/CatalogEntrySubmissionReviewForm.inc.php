@@ -74,8 +74,13 @@ class CatalogEntrySubmissionReviewForm extends SubmissionMetadataViewForm {
 			$publishedMonograph->setDatePublished(Core::getCurrentDate());
 			$publishedMonographDao->updateObject($publishedMonograph);
 
-			// Remove "need to approve submission" notifications.
-			$notificationMgr->updateApproveSubmissionNotificationTypes($request, $publishedMonograph);
+			$notificationMgr->updateNotification(
+				$request,
+				array(NOTIFICATION_TYPE_APPROVE_SUBMISSION),
+				null,
+				ASSOC_TYPE_MONOGRAPH,
+				$publishedMonograph->getId()
+			);
 
 			// Remove publication format tombstones.
 			$publicationFormatTombstoneMgr->deleteTombstonesByPublicationFormats($publicationFormats);
@@ -96,8 +101,13 @@ class CatalogEntrySubmissionReviewForm extends SubmissionMetadataViewForm {
 				$publishedMonograph->setDatePublished(null);
 				$publishedMonographDao->updateObject($publishedMonograph);
 
-				// Create "need to approve submission" notification.
-				$notificationMgr->updateApproveSubmissionNotificationTypes($request, $publishedMonograph);
+				$notificationMgr->updateNotification(
+					$request,
+					array(NOTIFICATION_TYPE_APPROVE_SUBMISSION),
+					null,
+					ASSOC_TYPE_MONOGRAPH,
+					$publishedMonograph->getId()
+				);
 
 				// Create tombstones for each publication format.
 				$publicationFormatTombstoneMgr->insertTombstonesByPublicationFormats($publicationFormats, $press);

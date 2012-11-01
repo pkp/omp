@@ -322,15 +322,6 @@ class FileUploadWizardHandler extends FileManagementHandler {
 					}
 				}
 
-				// Remove pending revisions task notification, if any.
-				if ($uploadedFile->getFileStage() == MONOGRAPH_FILE_REVIEW_REVISION) {
-					$stageId = $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
-					$notificationMgr = new NotificationManager(); /* @var $notificationMgr NotificationManager */
-					$user =& $request->getUser();
-					$notificationMgr->deletePendingRevisionsNotification($request, $monograph, $stageId, $user->getId());
-					$notificationMgr->insertAllRevisionsInNotification($request, $reviewRound);
-				}
-
 				// Advance to the next step (i.e. meta-data editing).
 				$json = new JSONMessage(true, '', '0', $uploadedFileInfo);
 			} else {
@@ -401,6 +392,28 @@ class FileUploadWizardHandler extends FileManagementHandler {
 		if ($metadataForm->validate()) {
 			$metadataForm->execute($args, $request);
 			$submissionFile =& $metadataForm->getSubmissionFile();
+
+			$notificationMgr = new NotificationManager(); /* @var $notificationMgr NotificationManager */
+			$monograph =& $this->getMonograph();
+			$notificationMgr->updateNotification(
+				$request,
+				array(NOTIFICATION_TYPE_PENDING_INTERNAL_REVISIONS, NOTIFICATION_TYPE_PENDING_EXTERNAL_REVISIONS),
+				array($monograph->getUserId()),
+				ASSOC_TYPE_MONOGRAPH,
+				$monograph->getId()
+			);
+
+			$reviewRound =& $this->getReviewRound();
+			if ($reviewRound) {
+				$notificationMgr->updateNotification(
+					$request,
+					array(NOTIFICATION_TYPE_ALL_REVISIONS_IN),
+					null,
+					ASSOC_TYPE_REVIEW_ROUND,
+					$reviewRound->getId()
+				);
+			}
+
 			return DAO::getDataChangedEvent();
 		} else {
 			$json = new JSONMessage(false, $metadataForm->fetch($request));

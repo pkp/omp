@@ -354,7 +354,7 @@ class EditorDecisionHandler extends Handler {
 	 * @param $formName string Name of form to call
 	 * @return string Serialized JSON object
 	 */
-	function _initiateEditorDecision($args, &$request, $formName) {
+	private function _initiateEditorDecision($args, &$request, $formName) {
 		// Retrieve the decision
 		$decision = (int)$request->getUserVar('decision');
 
@@ -375,7 +375,7 @@ class EditorDecisionHandler extends Handler {
 	 *  redirect to if successful (if any).
 	 * @return string Serialized JSON object
 	 */
-	function _saveEditorDecision($args, &$request, $formName, $redirectOp = null, $decision = null) {
+	private function _saveEditorDecision($args, &$request, $formName, $redirectOp = null, $decision = null) {
 		// Retrieve the authorized monograph.
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		// Retrieve the decision
@@ -388,18 +388,35 @@ class EditorDecisionHandler extends Handler {
 		if ($editorDecisionForm->validate()) {
 			$editorDecisionForm->execute($args, $request);
 
+			// Update editor decision and pending revisions notifications.
 			$notificationMgr = new NotificationManager();
-			$notificationMgr->updateEditorDecisionNotification($monograph, $decision, $request);
+			$editorDecisionNotificationType = $this->_getNotificationTypeByEditorDecision($decision);
+			$notificationMgr->updateNotification(
+				$request,
+				array($editorDecisionNotificationType,
+					NOTIFICATION_TYPE_PENDING_INTERNAL_REVISIONS, NOTIFICATION_TYPE_PENDING_EXTERNAL_REVISIONS),
+				array($monograph->getUserId()),
+				ASSOC_TYPE_MONOGRAPH,
+				$monograph->getId()
+			);
 
-			// Update pending revisions task notifications.
-			$stageId = $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
-			$notificationMgr->updatePendingRevisionsNotification($request, $monograph, $stageId, $decision);
-
-			// Update "all reviews in" notification.
 			$reviewRound =& $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ROUND);
 			if ($reviewRound) {
-				$notificationMgr->updateAllReviewsInNotification($request, $reviewRound);
-				$notificationMgr->deleteAllRevisionsInNotification($request, $reviewRound);
+				$notificationMgr->updateNotification(
+					$request,
+					array(NOTIFICATION_TYPE_ALL_REVIEWS_IN),
+					null,
+					ASSOC_TYPE_REVIEW_ROUND,
+					$reviewRound->getId()
+				);
+
+				$notificationMgr->updateNotification(
+					$request,
+					array(NOTIFICATION_TYPE_ALL_REVISIONS_IN),
+					null,
+					ASSOC_TYPE_REVIEW_ROUND,
+					$reviewRound->getId()
+				);
 			}
 
 			if ($redirectOp) {
@@ -420,7 +437,7 @@ class EditorDecisionHandler extends Handler {
 	 * Get operations that need a review round id policy.
 	 * @return array
 	 */
-	function _getReviewRoundOps() {
+	private function _getReviewRoundOps() {
 		return array('promoteInReview', 'savePromoteInReview', 'newReviewRound', 'saveNewReviewRound', 'sendReviewsInReview', 'saveSendReviewsInReview', 'importPeerReviews');
 	}
 
@@ -430,7 +447,7 @@ class EditorDecisionHandler extends Handler {
 	 * @param $decision int
 	 * @return EditorDecisionForm
 	 */
-	function _getEditorDecisionForm($formName, $decision) {
+	private function _getEditorDecisionForm($formName, $decision) {
 		// Retrieve the authorized monograph.
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		// Retrieve the stage id
@@ -459,7 +476,7 @@ class EditorDecisionHandler extends Handler {
 		}
 	}
 
-	function _saveGeneralPromote($args, &$request) {
+	private function _saveGeneralPromote($args, &$request) {
 		// Redirect to the next workflow page after
 		// promoting the submission.
 		$decision = (int)$request->getUserVar('decision');
@@ -483,6 +500,33 @@ class EditorDecisionHandler extends Handler {
 		}
 
 		return $this->_saveEditorDecision($args, $request, 'PromoteForm', $redirectOp);
+	}
+
+	/**
+	 * Get editor decision notification type and level by decision.
+	 * @param $decision int
+	 * @return array
+	 */
+	private function _getNotificationTypeByEditorDecision($decision) {
+		switch ($decision) {
+			case SUBMISSION_EDITOR_DECISION_INTERNAL_REVIEW:
+				return NOTIFICATION_TYPE_EDITOR_DECISION_INTERNAL_REVIEW;
+			case SUBMISSION_EDITOR_DECISION_ACCEPT:
+				return NOTIFICATION_TYPE_EDITOR_DECISION_ACCEPT;
+			case SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW:
+				return NOTIFICATION_TYPE_EDITOR_DECISION_EXTERNAL_REVIEW;
+			case SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS:
+				return NOTIFICATION_TYPE_EDITOR_DECISION_PENDING_REVISIONS;
+			case SUBMISSION_EDITOR_DECISION_RESUBMIT:
+				return NOTIFICATION_TYPE_EDITOR_DECISION_RESUBMIT;
+			case SUBMISSION_EDITOR_DECISION_DECLINE:
+				return NOTIFICATION_TYPE_EDITOR_DECISION_DECLINE;
+			case SUBMISSION_EDITOR_DECISION_SEND_TO_PRODUCTION:
+				return NOTIFICATION_TYPE_EDITOR_DECISION_SEND_TO_PRODUCTION;
+			default:
+				assert(false);
+				return null;
+		}
 	}
 }
 

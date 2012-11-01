@@ -256,9 +256,14 @@ class FileAuditorForm extends Form {
 		$this->_signoffId = $signoff->getId();
 		$this->_fileId = $signoff->getAssocId();
 
-		// Update NOTIFICATION_TYPE_AUDITOR_REQUEST.
 		$notificationMgr = new NotificationManager();
-		$notificationMgr->updateAuditorRequestNotification($signoff, $request);
+		$notificationMgr->updateNotification(
+			$request,
+			array(NOTIFICATION_TYPE_AUDITOR_REQUEST),
+			array($signoff->getUserId()),
+			ASSOC_TYPE_SIGNOFF,
+			$signoff->getId()
+		);
 
 		// log the add auditor event.
 		import('classes.log.MonographFileLog');
@@ -268,8 +273,14 @@ class FileAuditorForm extends Form {
 		if (isset($user)) {
 			MonographFileLog::logEvent($request, $monographFile, MONOGRAPH_LOG_FILE_AUDITOR_ASSIGN, 'submission.event.fileAuditorAdded', array('file' => $monographFile->getOriginalFileName(), 'name' => $user->getFullName(), 'username' => $user->getUsername()));
 		}
-		// Update NOTIFICATION_TYPE_SIGNOFF_...
-		$notificationMgr->updateSignoffNotification($signoff, $request);
+
+		$notificationMgr->updateNotification(
+			$request,
+			array(NOTIFICATION_TYPE_SIGNOFF_COPYEDIT, NOTIFICATION_TYPE_SIGNOFF_PROOF),
+			array($signoff->getUserId()),
+			ASSOC_TYPE_MONOGRAPH,
+			$monograph->getId()
+		);
 	}
 
 	/**

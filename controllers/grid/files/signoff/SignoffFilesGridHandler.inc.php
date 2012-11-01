@@ -459,7 +459,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 		$term =& $request->getUserVar('term');
 		while($stageUser =& $stageUsers->next()) {
 			$userGroup =& $userGroupDao->getById($stageUser->getUserGroupId());
-			$user =& $userDao->getById($stageUser->getId());
+			$user =& $userDao->getById($stageUser->getUserId());
 			$term = preg_quote($term, '/');
 			if ($term == '' || preg_match('/' . $term .'/i', $user->getFullName()) || preg_match('/' . $term .'/i', $userGroup->getLocalizedName())) {
 				$itemList[] = array(
@@ -467,7 +467,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 					'value' => $user->getId() . '-' . $stageUser->getUserGroupId()
 				);
 			}
-			unset($stageUser, $userGroup);
+			unset($stageUser, $userGroup, $user);
 		}
 
 		if (count($itemList) == 0) {
@@ -523,12 +523,31 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 			$user =& $request->getUser();
 			NotificationManager::createTrivialNotification($user->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.removedAuditor')));
 
-			// Update NOTIFICATION_TYPE_AUDITOR_REQUEST.
 			$notificationMgr = new NotificationManager();
-			$notificationMgr->updateAuditorRequestNotification($signoff, $request, true);
+			$notificationMgr->updateNotification(
+				$request,
+				array(NOTIFICATION_TYPE_AUDITOR_REQUEST),
+				array($signoff->getUserId()),
+				ASSOC_TYPE_SIGNOFF,
+				$signoff->getId()
+			);
 
-			// Update NOTIFICATION_TYPE_SIGNOFF_...
-			$notificationMgr->updateSignoffNotification($signoff, $request);
+			// Delete for all users.
+			$notificationMgr->updateNotification(
+				$request,
+				array(NOTIFICATION_TYPE_COPYEDIT_ASSIGNMENT),
+				null,
+				ASSOC_TYPE_SIGNOFF,
+				$signoff->getId()
+			);
+
+			$notificationMgr->updateNotification(
+				$request,
+				array(NOTIFICATION_TYPE_SIGNOFF_COPYEDIT, NOTIFICATION_TYPE_SIGNOFF_PROOF),
+				array($signoff->getUserId()),
+				ASSOC_TYPE_MONOGRAPH,
+				$monographFile->getSubmissionId()
+			);
 
 			// log the remove auditor event.
 			import('classes.log.MonographFileLog');
@@ -562,12 +581,15 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 		$signoff->setDateCompleted(Core::getCurrentDate());
 		$signoffDao->updateObject($signoff);
 
-		// Remove the notification for the Copyeditor review, if they exist.
+		// Delete for all users.
 		$notificationMgr = new NotificationManager();
-		// We don't need to pass the user because anyone with access can signoff the signoff,
-		// and we should delete the notification even if that user is not the one that
-		// is seeing the notification.
-		$notificationMgr->deleteCopyeditRequestNotification($rowSignoff, $request);
+		$notificationMgr->updateNotification(
+			$request,
+			array(NOTIFICATION_TYPE_COPYEDIT_ASSIGNMENT),
+			null,
+			ASSOC_TYPE_SIGNOFF,
+			$signoff->getAssocId()
+		);
 
 		// log the sign off sign off
 		import('classes.log.MonographFileLog');

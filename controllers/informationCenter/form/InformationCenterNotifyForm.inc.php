@@ -218,7 +218,13 @@ class InformationCenterNotifyForm extends Form {
 						foreach ($monographFiles as $monographFile) {
 							$signoffFactory =& $monographFileSignoffDao->getAllBySymbolic('SIGNOFF_COPYEDITING', $monographFile->getFileId());
 							while ($signoff =& $signoffFactory->next()) {
-								$notificationMgr->updateCopyeditRequestNotification($signoff, $user, $request);
+								$notificationMgr->updateNotification(
+									$request,
+									array(NOTIFICATION_TYPE_COPYEDIT_ASSIGNMENT),
+									array($user->getId()),
+									ASSOC_TYPE_SIGNOFF,
+									$signoff->getId()
+								);
 								unset($signoff);
 							}
 						}
@@ -231,7 +237,7 @@ class InformationCenterNotifyForm extends Form {
 				while ($stageAssignment =& $stageAssignments->next()) {
 					$userGroup =& $userGroupDao->getById($stageAssignment->getUserGroupId());
 					if (in_array($userGroup->getRoleId(), array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_ASSISTANT))) {
-						$notificationMgr->updateProductionRequestNotification($monograph, $user, NOTIFICATION_TYPE_LAYOUT_ASSIGNMENT, $request);
+						$this->_addUploadTaskNotification($request, NOTIFICATION_TYPE_LAYOUT_ASSIGNMENT, $user->getId(), $monograph->getId());
 						return;
 					}
 				}
@@ -241,7 +247,7 @@ class InformationCenterNotifyForm extends Form {
 				while ($stageAssignment =& $stageAssignments->next()) {
 					$userGroup =& $userGroupDao->getById($stageAssignment->getUserGroupId());
 					if (in_array($userGroup->getRoleId(), array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_ASSISTANT))) {
-						$notificationMgr->updateProductionRequestNotification($monograph, $user, NOTIFICATION_TYPE_INDEX_ASSIGNMENT, $request);
+						$this->_addUploadTaskNotification($request, NOTIFICATION_TYPE_INDEX_ASSIGNMENT, $user->getId(), $monograph->getId());
 						return;
 					}
 				}
@@ -251,13 +257,44 @@ class InformationCenterNotifyForm extends Form {
 	}
 
 	/**
-	 * Private method to clear potential tasks that may have been assigned to certain
+	 * Add upload task notifications.
+	 * @param $request PKPRequest
+	 * @param $type int
+	 * @param $userId int
+	 * @param $monographId int
+	 */
+	private function _addUploadTaskNotification(&$request, $type, $userId, $monographId) {
+		$notificationDao =& DAORegistry::getDAO('NotificationDAO'); /* @var $notificationDao NotificationDAO */
+		$notificationFactory =& $notificationDao->getByAssoc(
+				ASSOC_TYPE_MONOGRAPH,
+				$monographId,
+				$userId,
+				$type
+		);
+
+		if ($notificationFactory->wasEmpty()) {
+			$press =& $request->getPress();
+			$notificationMgr = new NotificationManager();
+			$notificationMgr->createNotification(
+					$request,
+					$userId,
+					$type,
+					$press->getId(),
+					ASSOC_TYPE_MONOGRAPH,
+					$monographId,
+					NOTIFICATION_LEVEL_TASK
+			);
+		}
+	}
+
+	/**
+	 * Clear potential tasks that may have been assigned to certain
 	 * users on certain stages.  Right now, just LAYOUT uploads on the production stage.
 	 * @param Monograph $monograph
 	 * @param int $task
 	 * @param PKRequest $request
 	 */
-	function _removeUploadTaskNotification(&$monograph, $task, &$request) {
+	private function _removeUploadTaskNotification(&$monograph, $task, &$request) {
 
 		// if this is a submission by a LAYOUT_EDITOR for a monograph in production, check
 		// to see if there is a task notification for that and if so, clear it.
@@ -274,7 +311,8 @@ class InformationCenterNotifyForm extends Form {
 			while ($stageAssignment =& $stageAssignments->next()) {
 				$userGroup =& $userGroupDao->getById($stageAssignment->getUserGroupId());
 				if (in_array($userGroup->getRoleId(), array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_ASSISTANT))) {
-					$notificationMgr->deleteProductionRequestNotification($monograph, $user, $task, $request);
+					$notificationDao = DAORegistry::getDAO('NotificationDAO');
+					$notificationDao->deleteByAssoc(ASSOC_TYPE_MONOGRAPH, $monograph->getId(), $user->getId(), $task);
 					return;
 				}
 			}
