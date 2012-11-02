@@ -216,10 +216,9 @@ class UserGroupDAO extends PKPUserGroupDAO {
 
 	/**
 	 * Return a mapping of workflow stages and its translation keys.
-	 * NB: PHP4 work-around for a private static class member
 	 * @return array
 	 */
-	function getWorkflowStageTranslationKeys() {
+	static function getWorkflowStageTranslationKeys() {
 		static $stageMapping = array(
 			WORKFLOW_STAGE_ID_SUBMISSION => 'submission.submission',
 			WORKFLOW_STAGE_ID_INTERNAL_REVIEW => 'workflow.review.internalReview',
