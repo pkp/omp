@@ -45,7 +45,7 @@ class Press extends Context {
 	 */
 	function &getSetting($name, $locale = null) {
 		$pressSettingsDao =& DAORegistry::getDAO('PressSettingsDAO');
-		$setting =& $pressSettingsDao->getSetting($this->getData('pressId'), $name, $locale);
+		$setting =& $pressSettingsDao->getSetting($this->getId(), $name, $locale);
 		return $setting;
 	}
 
