@@ -97,7 +97,7 @@ class TranslatorAction {
 		$returner = array();
 		foreach ($files as $templateFile => $templateDataFile) {
 			$xmlParser = new XMLParser();
-			$data =& $xmlParser->parse($templateDataFile, array('email'));
+			$data =& $xmlParser->parse($templateDataFile);
 			if ($data) foreach ($data->getChildren() as $emailNode) {
 				$returner[$emailNode->getAttribute('key')] = array(
 					'subject' => $emailNode->getChildValue('subject'),
