@@ -97,6 +97,9 @@ class SubmissionMetadataFormImplementation {
 			$this->_parentForm->setData('disciplines', $submissionDisciplineDao->getDisciplines($monograph->getId(), $locales));
 			$this->_parentForm->setData('agencies', $submissionAgencyDao->getAgencies($monograph->getId(), $locales));
 			$this->_parentForm->setData('languages', $submissionLanguageDao->getLanguages($monograph->getId(), $locales));
+
+			// include all submission metadata fields for Monographs
+			$this->_parentForm->setData('submissionSettings', array('all' => true));
 		}
 	}
 

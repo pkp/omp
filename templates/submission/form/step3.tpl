@@ -28,7 +28,7 @@
 	<input type="hidden" name="monographId" value="{$monographId|escape}" />
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="submitStep3FormNotification"}
 
-	{include file="submission/submissionMetadataFormTitleFields.tpl"}
+	{include file="core:submission/submissionMetadataFormTitleFields.tpl"}
 
 	{fbvFormArea id="contributors"}
 		<!--  Contributors -->
@@ -44,7 +44,7 @@
 
 	{include file="submission/form/categories.tpl"}
 
-	{include file="submission/submissionMetadataFormFields.tpl"}
+	{include file="core:submission/submissionMetadataFormFields.tpl"}
 
 	{fbvFormButtons id="step3Buttons" submitText="submission.submit.finishSubmission" confirmSubmit="submission.confirmSubmit"}
 </form>

@@ -40,7 +40,9 @@
 
 	{include file="submission/form/seriesAndCategories.tpl" readOnly=$formParams.readOnly}
 
-	{include file="submission/submissionMetadataFormTitleFields.tpl" readOnly=$formParams.readOnly}
+	<p class="pkp_help">{translate key="common.catalogInformation"}</p>
+
+	{include file="core:submission/submissionMetadataFormTitleFields.tpl" readOnly=$formParams.readOnly}
 
 	<!--  Contributors -->
 
@@ -58,7 +60,7 @@
 		{/if}
 	{/if}
 
-	{include file="submission/submissionMetadataFormFields.tpl" readOnly=$formParams.readOnly}
+	{include file="core:submission/submissionMetadataFormFields.tpl" readOnly=$formParams.readOnly}
 
 	{if !$formParams.hideSubmit}
 		{fbvFormButtons id="submissionMetadataFormSubmit" submitText="common.save"}

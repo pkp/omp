@@ -82,7 +82,6 @@
 	<message key="submission.submit.submissionChecklistDescription">The following requirements for submissions to this press need to be completed and checked off before proceeding (comments to the editor can be added below).</message>
 	<message key="submission.submit.privacyStatement">Privacy Statement</message>
 	<message key="submission.submit.selectPrincipalContact">Principal contact for editorial correspondence.</message>
-	<message key="submission.submit.briefSummary">Brief Summary of Book</message>
 	<message key="submission.submit.addAuthor">Add Contributor</message>
 	<message key="submission.submit.contributorRole">Contributor's role</message>
 	<message key="submission.submit.form.authorRequired">At least one author is required.</message>
@@ -104,8 +103,6 @@
 	<message key="submission.submit.metadata">Metadata</message>
 	<message key="submission.submit.finishingUp">Finishing Up</message>
 	<message key="submission.submit.finishingUpStep">3. Finishing Up</message>
-	<message key="submission.submit.metadataForm">Additional Refinements</message>
-	<message key="submission.submit.metadataForm.tip">Add additional information for your submission.  Press 'enter' after each term.</message>
 	<message key="submission.submit.upload">Upload</message>
 	<message key="submission.submit.nextSteps">Next Steps</message>
 	<message key="submission.submit.coverNote">Cover Note to Editor</message>
@@ -129,7 +126,6 @@
 	<message key="submission.submit.newFile">Upload Another File</message>
 	<message key="submission.submit.userGroup">Submit in my role as...</message>
 	<message key="submission.submit.userGroupDescription">If you are submitting an Edited Volume, you should choose the volume editor role.</message>
-	<message key="submission.submit.titleAndSummary">Title and Summary</message>
 
 	<!-- File upload wizard -->
 	<message key="submission.upload.noteToAccompanyFile">Note to accompany file</message>
