@@ -50,7 +50,7 @@ class ImportExportPlugin extends Plugin {
 	 * Display the import/export plugin UI.
 	 * @param $args Array The array of arguments the user supplied.
 	 */
-	function display(&$args) {
+	function display($args) {
 		$templateManager =& TemplateManager::getManager();
 		$templateManager->register_function('plugin_url', array(&$this, 'smartyPluginUrl'));
 	}
@@ -60,7 +60,7 @@ class ImportExportPlugin extends Plugin {
 	 * @param $scriptName The name of the command-line script (displayed as usage info)
 	 * @param $args Parameters to the plugin
 	 */
-	function executeCLI($scriptName, &$args) {
+	function executeCLI($scriptName, $args) {
 		$this->usage();
 		// Implemented by subclasses
 	}

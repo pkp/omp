@@ -62,7 +62,7 @@ class AddThisPlugin extends GenericPlugin {
 		if ($verbName === 'settings') {
 			import('lib.pkp.classes.linkAction.request.AjaxLegacyPluginModal');
 			$actionRequest = new AjaxLegacyPluginModal(
-				$router->url($request, null, null, 'plugin', null, $actionArgs),
+				$router->url($request, null, null, 'plugin'),
 				$this->getDisplayName()
 			);
 			return new LinkAction($verbName, $actionRequest, $verbLocalized, null);

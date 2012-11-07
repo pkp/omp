@@ -45,7 +45,7 @@ class Onix30ExportPlugin extends ImportExportPlugin {
 		return __('plugins.importexport.onix30.description');
 	}
 
-	function display(&$args) {
+	function display($args) {
 		$templateMgr =& TemplateManager::getManager();
 		parent::display($args);
 
@@ -111,7 +111,7 @@ class Onix30ExportPlugin extends ImportExportPlugin {
 	 * Execute export tasks using the command-line interface.
 	 * @param $args Parameters to the plugin
 	 */
-	function executeCLI($scriptName, &$args) {
+	function executeCLI($scriptName, $args) {
 		$xmlFile = array_shift($args);
 		$pressPath = array_shift($args);
 		$monographId = array_shift($args);
