@@ -136,7 +136,7 @@ class PressGridHandler extends GridHandler {
 		$pressDao =& DAORegistry::getDAO('PressDAO');
 		$presses =& $pressDao->getPresses();
 
-		return $presses->toAssociativeArray('pressId');
+		return $presses->toAssociativeArray();
 	}
 
 	/**
