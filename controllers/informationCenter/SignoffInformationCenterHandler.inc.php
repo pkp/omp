@@ -87,9 +87,9 @@ class SignoffInformationCenterHandler extends Handler {
 	/**
 	 * @see PKPHandler::setupTemplate()
 	 */
-	function setupTemplate() {
+	function setupTemplate($request) {
 		AppLocale::requireComponents(LOCALE_COMPONENT_OMP_SUBMISSION);
-		parent::setupTemplate();
+		parent::setupTemplate($request);
 	}
 
 	/**
@@ -99,7 +99,7 @@ class SignoffInformationCenterHandler extends Handler {
 	 * @return string Serialized JSON object
 	 */
 	function viewSignoffHistory($args, &$request) {
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 		$user =& $request->getUser();
 
 		$signoff =& $this->getAuthorizedContextObject(ASSOC_TYPE_SIGNOFF);

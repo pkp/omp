@@ -68,7 +68,7 @@ class PressDAO extends DAO {
 	 * @param $row array
 	 * @return Press
 	 */
-	function &_fromRow(&$row) {
+	function &_fromRow($row) {
 		$press = $this->newDataObject();
 		$press->setId($row['press_id']);
 		$press->setPath($row['path']);
@@ -121,7 +121,7 @@ class PressDAO extends DAO {
 		);
 
 		if ($result->RecordCount() != 0) {
-			$returner =& $this->_fromRow($result->GetRowAssoc(false));
+			$returner = $this->_fromRow($result->GetRowAssoc(false));
 		}
 		$result->Close();
 		unset($result);

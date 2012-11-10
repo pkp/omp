@@ -33,7 +33,7 @@ class SubmissionMetadataHandler extends Handler {
 	 * @see PKPHandler::initialize()
 	 */
 	function initialize($request) {
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 	}
 
 

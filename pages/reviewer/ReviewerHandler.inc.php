@@ -53,7 +53,7 @@ class ReviewerHandler extends Handler {
 		assert(is_a($reviewerSubmission, 'ReviewerSubmission'));
 
 		AppLocale::requireComponents(LOCALE_COMPONENT_OMP_SUBMISSION);
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign_by_ref('submission', $reviewerSubmission);
@@ -76,7 +76,7 @@ class ReviewerHandler extends Handler {
 		assert(is_a($reviewerSubmission, 'ReviewerSubmission'));
 
 		AppLocale::requireComponents(LOCALE_COMPONENT_OMP_SUBMISSION);
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 
 		$reviewStep = max($reviewerSubmission->getStep(), 1); // Get the current saved step from the DB
 		$userStep = (int) $request->getUserVar('step');
@@ -149,7 +149,7 @@ class ReviewerHandler extends Handler {
 		$reviewerSubmission =& $reviewerSubmissionDao->getReviewerSubmission($reviewAssignment->getId());
 		assert(is_a($reviewerSubmission, 'ReviewerSubmission'));
 
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('monographId', $reviewerSubmission->getId());
@@ -189,8 +189,8 @@ class ReviewerHandler extends Handler {
 	/**
 	 * Setup common template variables.
 	 */
-	function setupTemplate() {
-		parent::setupTemplate();
+	function setupTemplate($request) {
+		parent::setupTemplate($request);
 		AppLocale::requireComponents(LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_PKP_GRID);
 	}
 

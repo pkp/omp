@@ -270,7 +270,7 @@ class PayPalPlugin extends PaymethodPlugin {
 							}
 
 							// Fulfill the queued payment.
-							if ($ompPaymentManager->fulfillQueuedPayment($queuedPayment, $this->getName())) exit();
+							if ($ompPaymentManager->fulfillQueuedPayment($request, $queuedPayment, $this->getName())) exit();
 
 							// If we're still here, it means the payment couldn't be fulfilled.
 							$mail->assignParams(array(
@@ -309,7 +309,7 @@ class PayPalPlugin extends PaymethodPlugin {
 
 				break;
 			case 'cancel':
-				Handler::setupTemplate();
+				Handler::setupTemplate($this->getRequest());
 				$templateMgr->assign(array(
 					'currentUrl' => $request->url(null, 'index'),
 					'pageTitle' => 'plugins.paymethod.paypal.purchase.cancelled.title',

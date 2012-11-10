@@ -48,7 +48,7 @@ class SettingsHandler extends ManagementHandler {
 	 */
 	function index($args, &$request) {
 		$templateMgr =& TemplateManager::getManager();
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 		$templateMgr->display('management/settings/index.tpl');
 	}
 
@@ -116,7 +116,7 @@ class SettingsHandler extends ManagementHandler {
 	 */
 	function access($args, &$request) {
 		$templateMgr =& TemplateManager::getManager();
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 		$templateMgr->display('management/settings/access.tpl');
 	}
 
@@ -127,7 +127,7 @@ class SettingsHandler extends ManagementHandler {
 	 */
 	function press($args, &$request) {
 		$templateMgr =& TemplateManager::getManager();
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 		$templateMgr->display('management/settings/press.tpl');
 	}
 
@@ -138,7 +138,7 @@ class SettingsHandler extends ManagementHandler {
 	 */
 	function website($args, &$request) {
 		$templateMgr =& TemplateManager::getManager();
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 		$press =& $request->getPress();
 		$templateMgr->assign('enableAnnouncements', $press->getSetting('enableAnnouncements'));
 		$templateMgr->display('management/settings/website.tpl');
@@ -151,7 +151,7 @@ class SettingsHandler extends ManagementHandler {
 	 */
 	function publication($args, &$request) {
 		$templateMgr =& TemplateManager::getManager();
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 		$templateMgr->display('management/settings/publication.tpl');
 	}
 
@@ -162,7 +162,7 @@ class SettingsHandler extends ManagementHandler {
 	 */
 	function distribution($args, &$request) {
 		$templateMgr =& TemplateManager::getManager();
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 		$templateMgr->display('management/settings/distribution.tpl');
 	}
 }

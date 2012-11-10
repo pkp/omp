@@ -45,7 +45,7 @@ class AnnouncementHandler extends Handler {
 	 * @return string
 	 */
 	function index($args, &$request) {
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 
 		$press =& $request->getPress();
 		$announcementsIntro = $press->getLocalizedSetting('announcementsIntroduction');
@@ -63,7 +63,7 @@ class AnnouncementHandler extends Handler {
 	 * @return string
 	 */
 	function view($args, &$request) {
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 
 		$press =& $request->getPress();
 

@@ -36,10 +36,10 @@ class TranslatorHandler extends Handler {
 		return 'locale/' . $locale . '/emailTemplates.xml';
 	}
 
-	function index() {
+	function index($args, &$request) {
 		$this->validate();
 		$plugin =& $this->plugin;
-		$this->setupTemplate(false);
+		$this->setupTemplate($request, false);
 
 		$rangeInfo = Handler::getRangeInfo('locales');
 
@@ -55,17 +55,17 @@ class TranslatorHandler extends Handler {
 		return $templateMgr->fetchJson($plugin->getTemplatePath() . 'index.tpl');
 	}
 
-	function setupTemplate($subclass = true) {
-		parent::setupTemplate();
+	function setupTemplate($request, $subclass = true) {
+		parent::setupTemplate($request);
 		$templateMgr =& TemplateManager::getManager();
 		AppLocale::requireComponents(LOCALE_COMPONENT_PKP_ADMIN, LOCALE_COMPONENT_PKP_MANAGER);
 		$templateMgr->assign('helpTopicId', 'plugins.generic.TranslatorPlugin');
 	}
 
-	function edit($args) {
+	function edit($args, &$request) {
 		$this->validate();
 		$plugin =& $this->plugin;
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 
 		$locale = array_shift($args);
 		$file = array_shift($args);
@@ -92,10 +92,10 @@ class TranslatorHandler extends Handler {
 		return $templateMgr->fetchJson($plugin->getTemplatePath() . 'locale.tpl');
 	}
 
-	function check($args) {
+	function check($args, &$request) {
 		$this->validate();
 		$plugin =& $this->plugin;
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 
 		$locale = array_shift($args);
 		if (!AppLocale::isLocaleValid($locale)) return $this->index();
@@ -125,10 +125,10 @@ class TranslatorHandler extends Handler {
 	 * Export the locale files to the browser as a tarball.
 	 * Requires tar (configured in config.inc.php) for operation.
 	 */
-	function export($args) {
+	function export($args, &$request) {
 		$this->validate();
 		$plugin =& $this->plugin;
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 
 		$locale = array_shift($args);
 		if (!AppLocale::isLocaleValid($locale)) return $this->index();
@@ -136,10 +136,10 @@ class TranslatorHandler extends Handler {
 		TranslatorAction::export($locale);
 	}
 
-	function saveLocaleChanges($args) {
+	function saveLocaleChanges($args, &$request) {
 		$this->validate();
 		$plugin =& $this->plugin;
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 
 		$locale = array_shift($args);
 		if (!AppLocale::isLocaleValid($locale)) return $this->index();
@@ -149,7 +149,7 @@ class TranslatorHandler extends Handler {
 		$changesByFile = array();
 
 		// Arrange the list of changes to save into an array by file.
-		$stack = Request::getUserVar('stack');
+		$stack = $request->getUserVar('stack');
 		while (!empty($stack)) {
 			$filename = array_shift($stack);
 			$key = array_shift($stack);
@@ -177,7 +177,7 @@ class TranslatorHandler extends Handler {
 		}
 
 		// Deal with key removals
-		$deleteKeys = Request::getUserVar('deleteKey');
+		$deleteKeys = $request->getUserVar('deleteKey');
 		if (!empty($deleteKeys)) {
 			if (!is_array($deleteKeys)) $deleteKeys = array($deleteKeys);
 			foreach ($deleteKeys as $deleteKey) { // FIXME Optimize!
@@ -193,7 +193,7 @@ class TranslatorHandler extends Handler {
 
 		// Deal with email removals
 		import('lib.pkp.classes.file.EditableEmailFile');
-		$deleteEmails = Request::getUserVar('deleteEmail');
+		$deleteEmails = $request->getUserVar('deleteEmail');
 		if (!empty($deleteEmails)) {
 			$file = new EditableEmailFile($locale, $this->getEmailTemplateFilename($locale));
 			foreach ($deleteEmails as $key) {
@@ -203,13 +203,13 @@ class TranslatorHandler extends Handler {
 			unset($file);
 		}
 
-		return LegacyPluginHelper::redirect(Request::getUserVar('redirectUrl'));
+		return LegacyPluginHelper::redirect($request->getUserVar('redirectUrl'));
 	}
 
-	function downloadLocaleFile($args) {
+	function downloadLocaleFile($args, &$request) {
 		$this->validate();
 		$plugin =& $this->plugin;
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 
 		$locale = array_shift($args);
 		if (!AppLocale::isLocaleValid($locale)) return $this->index();
@@ -225,10 +225,10 @@ class TranslatorHandler extends Handler {
 		readfile($filename);
 	}
 
-	function editLocaleFile($args) {
+	function editLocaleFile($args, &$request) {
 		$this->validate();
 		$plugin =& $this->plugin;
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 
 		$locale = array_shift($args);
 		if (!AppLocale::isLocaleValid($locale)) return $this->index();
@@ -248,7 +248,7 @@ class TranslatorHandler extends Handler {
 		$localeContents = EditableLocaleFile::load($filename);
 
 		// Handle a search, if one was executed.
-		$searchKey = Request::getUserVar('searchKey');
+		$searchKey = $request->getUserVar('searchKey');
 		$found = false;
 		$index = 0;
 		$pageIndex = 0;
@@ -276,10 +276,10 @@ class TranslatorHandler extends Handler {
 		return $templateMgr->fetchJson($plugin->getTemplatePath() . 'localeFile.tpl');
 	}
 
-	function editMiscFile($args) {
+	function editMiscFile($args, &$request) {
 		$this->validate();
 		$plugin =& $this->plugin;
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 
 		$locale = array_shift($args);
 		if (!AppLocale::isLocaleValid($locale)) return $this->index();
@@ -298,10 +298,10 @@ class TranslatorHandler extends Handler {
 		return $templateMgr->fetchJson($plugin->getTemplatePath() . 'editMiscFile.tpl');
 	}
 
-	function saveLocaleFile($args) {
+	function saveLocaleFile($args, &$request) {
 		$this->validate();
 		$plugin =& $this->plugin;
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 
 		$locale = array_shift($args);
 		if (!AppLocale::isLocaleValid($locale)) return $this->index();
@@ -312,7 +312,7 @@ class TranslatorHandler extends Handler {
 		}
 
 		import('lib.pkp.classes.file.EditableLocaleFile');
-		$changes = Request::getUserVar('changes');
+		$changes = $request->getUserVar('changes');
 		$file = new EditableLocaleFile($locale, $filename);
 
 		while (!empty($changes)) {
@@ -323,13 +323,13 @@ class TranslatorHandler extends Handler {
 			}
 		}
 		$file->write();
-		return LegacyPluginHelper::redirect(Request::getUserVar('redirectUrl'));
+		return LegacyPluginHelper::redirect($request->getUserVar('redirectUrl'));
 	}
 
-	function deleteLocaleKey($args) {
+	function deleteLocaleKey($args, &$request) {
 		$this->validate();
 		$plugin =& $this->plugin;
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 
 		$locale = array_shift($args);
 		if (!AppLocale::isLocaleValid($locale)) return $this->index();
@@ -339,7 +339,7 @@ class TranslatorHandler extends Handler {
 			return $this->edit(array($locale));
 		}
 
-		$changes = Request::getUserVar('changes');
+		$changes = $request->getUserVar('changes');
 		import('lib.pkp.classes.file.EditableLocaleFile');
 		$file = new EditableLocaleFile($locale, $filename);
 
@@ -347,10 +347,10 @@ class TranslatorHandler extends Handler {
 		return $this->editLocaleFile(array($locale, urlencode($filename)));
 	}
 
-	function saveMiscFile($args) {
+	function saveMiscFile($args, &$request) {
 		$this->validate();
 		$plugin =& $this->plugin;
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 
 		$locale = array_shift($args);
 		if (!AppLocale::isLocaleValid($locale)) return $this->index();
@@ -362,17 +362,17 @@ class TranslatorHandler extends Handler {
 
 		$fp = fopen($filename, 'w+'); // FIXME error handling
 		if ($fp) {
-			$contents = $this->correctCr(Request::getUserVar('translationContents'));
+			$contents = $this->correctCr($request->getUserVar('translationContents'));
 			fwrite ($fp, $contents);
 			fclose($fp);
 		}
 		return $this->edit(array($locale));
 	}
 
-	function editEmail($args) {
+	function editEmail($args, &$request) {
 		$this->validate();
 		$plugin =& $this->plugin;
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 
 		$locale = array_shift($args);
 		if (!AppLocale::isLocaleValid($locale)) return $this->index();
@@ -387,15 +387,15 @@ class TranslatorHandler extends Handler {
 		$templateMgr->assign('emailKey', $emailKey);
 		$templateMgr->assign('locale', $locale);
 		$templateMgr->assign('email', isset($emails[$emailKey])?$emails[$emailKey]:'');
-		$templateMgr->assign('returnToCheck', Request::getUserVar('returnToCheck'));
+		$templateMgr->assign('returnToCheck', $request->getUserVar('returnToCheck'));
 		$templateMgr->assign('referenceEmail', isset($referenceEmails[$emailKey])?$referenceEmails[$emailKey]:'');
 		return $templateMgr->fetchJson($plugin->getTemplatePath() . 'editEmail.tpl');
 	}
 
-	function createFile($args) {
+	function createFile($args, &$request) {
 		$this->validate();
 		$plugin =& $this->plugin;
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 
 		$locale = array_shift($args);
 		if (!AppLocale::isLocaleValid($locale)) return $this->index();
@@ -408,13 +408,13 @@ class TranslatorHandler extends Handler {
 		import('lib.pkp.classes.file.FileManager');
 		$fileManager = new FileManager();
 		$fileManager->copyFile(TranslatorAction::determineReferenceFilename($locale, $filename), $filename);
-		return LegacyPluginHelper::redirect(Request::getUserVar('redirectUrl'));
+		return LegacyPluginHelper::redirect($request->getUserVar('redirectUrl'));
 	}
 
-	function deleteEmail($args) {
+	function deleteEmail($args, &$request) {
 		$this->validate();
 		$plugin =& $this->plugin;
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 
 		$locale = array_shift($args);
 		if (!AppLocale::isLocaleValid($locale)) return $this->index();
@@ -428,18 +428,18 @@ class TranslatorHandler extends Handler {
 		import('lib.pkp.classes.file.EditableEmailFile');
 		$file = new EditableEmailFile($locale, $this->getEmailTemplateFilename($locale));
 
-		$subject = Request::getUserVar('subject');
-		$body = Request::getUserVar('body');
-		$description = Request::getUserVar('description');
+		$subject = $request->getUserVar('subject');
+		$body = $request->getUserVar('body');
+		$description = $request->getUserVar('description');
 		if ($file->delete($emailKey)) $file->write();
 
-		return LegacyPluginHelper::redirect(Request::url(null, null, 'edit', $locale, null, 'emails'));
+		return LegacyPluginHelper::redirect($request->url(null, null, 'edit', $locale, null, 'emails'));
 	}
 
-	function saveEmail($args) {
+	function saveEmail($args, &$request) {
 		$this->validate();
 		$plugin =& $this->plugin;
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 
 		$locale = array_shift($args);
 		if (!AppLocale::isLocaleValid($locale)) return $this->index();
@@ -476,15 +476,15 @@ class TranslatorHandler extends Handler {
 		import('lib.pkp.classes.file.EditableEmailFile');
 		$file = new EditableEmailFile($locale, $targetFilename);
 
-		$subject = $this->correctCr(Request::getUserVar('subject'));
-		$body = $this->correctCr(Request::getUserVar('body'));
-		$description = $this->correctCr(Request::getUserVar('description'));
+		$subject = $this->correctCr($request->getUserVar('subject'));
+		$body = $this->correctCr($request->getUserVar('body'));
+		$description = $this->correctCr($request->getUserVar('description'));
 
 		if (!$file->update($emailKey, $subject, $body, $description))
 			$file->insert($emailKey, $subject, $body, $description);
 
 		$file->write();
-		if (Request::getUserVar('returnToCheck')==1) return $this->check(array($locale));
+		if ($request->getUserVar('returnToCheck')==1) return $this->check(array($locale));
 		else return $this->edit(array($locale));
 	}
 

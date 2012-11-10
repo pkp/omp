@@ -32,7 +32,7 @@ class SeriesGridRow extends GridRow {
 	function initialize(&$request) {
 		parent::initialize($request);
 
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 
 		// Is this a new row or an existing row?
 		$seriesId = $this->getId();
@@ -72,7 +72,7 @@ class SeriesGridRow extends GridRow {
 	/**
 	 * @see PKPHandler::setupTemplate()
 	 */
-	function setupTemplate() {
+	function setupTemplate($request) {
 		// Load manager translations. FIXME are these needed?
 		AppLocale::requireComponents(
 			LOCALE_COMPONENT_OMP_MANAGER,

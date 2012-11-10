@@ -282,7 +282,7 @@ class EditorDecisionHandler extends Handler {
 	 * @return string Serialized JSON object
 	 */
 	function approveProofs($args, &$request) {
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 		$press =& $request->getPress();
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		$publicationFormatId = $request->getUserVar('publicationFormatId');

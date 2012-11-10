@@ -30,7 +30,7 @@ class LoginHandler extends PKPLoginHandler {
 			$user =& $request->getUser();
 
 			if (!Validation::canAdminister($userId, $user->getId())) {
-				$this->setupTemplate();
+				$this->setupTemplate($request);
 				// We don't have administrative rights
 				// over this user. Display an error.
 				$templateMgr =& TemplateManager::getManager();
@@ -131,9 +131,9 @@ class LoginHandler extends PKPLoginHandler {
 	/**
 	 * Configure the template for display.
 	 */
-	function setupTemplate() {
+	function setupTemplate($request) {
 		AppLocale::requireComponents(LOCALE_COMPONENT_OMP_MANAGER, LOCALE_COMPONENT_PKP_MANAGER);
-		parent::setupTemplate();
+		parent::setupTemplate($request);
 	}
 }
 

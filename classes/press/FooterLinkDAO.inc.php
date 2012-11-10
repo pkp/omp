@@ -240,7 +240,7 @@ class FooterLinkDAO extends DAO {
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
-			$row =& $result->GetRowAssoc(false);
+			$row = $result->GetRowAssoc(false);
 			$returner = $row['total'];
 		}
 

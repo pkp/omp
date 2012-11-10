@@ -158,7 +158,7 @@ class SeriesGridHandler extends SetupGridHandler {
 	 */
 	function editSeries($args, &$request) {
 		$seriesId = isset($args['seriesId']) ? $args['seriesId'] : null;
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 
 		import('controllers.grid.settings.series.form.SeriesForm');
 		$seriesForm = new SeriesForm($seriesId);

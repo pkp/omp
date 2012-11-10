@@ -63,7 +63,7 @@ class ManageReviewFilesGridHandler extends SelectableSubmissionFileListCategoryG
 			$dataProvider =& $this->getDataProvider();
 			$manageReviewFilesForm->execute($args, $request, $dataProvider->getCategoryData($this->getStageId()));
 
-			$this->setupTemplate();
+			$this->setupTemplate($request);
 			$user =& $request->getUser();
 			NotificationManager::createTrivialNotification($user->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.updatedReviewFiles')));
 

@@ -99,10 +99,10 @@ class SettingsTabHandler extends Handler {
 	 * Show a tab.
 	 */
 	function showTab($args, &$request) {
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 		if ($this->_isValidTab()) {
 			if ($this->_isTabTemplate()) {
-				$this->setupTemplate(true);
+				$this->setupTemplate($request, true);
 				$templateMgr =& TemplateManager::getManager();
 				if ($this->_isManagementHandler()) {
 					// Pass to template if we are in wizard mode.

@@ -26,7 +26,7 @@ class AboutHandler extends Handler {
 	 * Setup common template variables.
 	 */
 	function setupTemplate($request) {
-		parent::setupTemplate();
+		parent::setupTemplate($request);
 
 		$templateMgr =& TemplateManager::getManager();
 		$press =& $request->getPress();

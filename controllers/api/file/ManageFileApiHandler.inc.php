@@ -137,7 +137,7 @@ class ManageFileApiHandler extends Handler {
 			import('classes.file.MonographFileManager');
 			$monographFileManager = new MonographFileManager($monograph->getPressId(), $monograph->getId());
 			$monographFileManager->deleteFile($monographFile->getFileId(), $monographFile->getRevision());
-			$this->setupTemplate();
+			$this->setupTemplate($request);
 			$user =& $request->getUser();
 			NotificationManager::createTrivialNotification($user->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.removedFile')));
 

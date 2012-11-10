@@ -72,7 +72,7 @@ class Application extends PKPApplication {
 	 * Scheduled Conference [2], or Press [1]).
 	 * @return int
 	 */
-	static function getContextDepth() {
+	function getContextDepth() {
 		return 1;
 	}
 
@@ -80,7 +80,7 @@ class Application extends PKPApplication {
 	 * Get a list of contexts for this application.
 	 * @return array
 	 */
-	static function getContextList() {
+	function getContextList() {
 		return array('press');
 	}
 

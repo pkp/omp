@@ -108,8 +108,8 @@ class FilesListbuilderHandler extends ListbuilderHandler {
 	/**
 	 * @see PKPHandler::setupTemplate()
 	 */
-	function setupTemplate() {
-		parent::setupTemplate();
+	function setupTemplate($request) {
+		parent::setupTemplate($request);
 
 		AppLocale::requireComponents(LOCALE_COMPONENT_OMP_EDITOR, LOCALE_COMPONENT_PKP_SUBMISSION);
 	}

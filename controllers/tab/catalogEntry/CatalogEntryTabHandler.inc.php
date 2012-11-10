@@ -85,7 +85,7 @@ class CatalogEntryTabHandler extends Handler {
 		$this->_tabPosition = (int) $request->getUserVar('tabPos');
 
 		AppLocale::requireComponents(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_OMP_SUBMISSION);
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 	}
 
 	/**

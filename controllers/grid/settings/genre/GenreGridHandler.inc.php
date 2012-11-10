@@ -148,7 +148,7 @@ class GenreGridHandler extends SetupGridHandler {
 	function editGenre($args, &$request) {
 		$genreId = isset($args['genreId']) ? (int) $args['genreId'] : null;
 
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 
 		import('controllers.grid.settings.genre.form.GenreForm');
 		$genreForm = new GenreForm($genreId);

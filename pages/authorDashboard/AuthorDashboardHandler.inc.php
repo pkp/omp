@@ -182,7 +182,7 @@ class AuthorDashboardHandler extends Handler {
 	 * Setup common template variables.
 	 */
 	function setupTemplate($request) {
-		parent::setupTemplate();
+		parent::setupTemplate($request);
 		AppLocale::requireComponents(LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_OMP_SUBMISSION, LOCALE_COMPONENT_OMP_EDITOR, LOCALE_COMPONENT_PKP_GRID);
 	}
 

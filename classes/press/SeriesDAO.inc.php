@@ -88,7 +88,7 @@ class SeriesDAO extends DAO {
 	 * @param $row array
 	 * @return Series
 	 */
-	function _fromRow(&$row) {
+	function _fromRow($row) {
 		$series = $this->newDataObject();
 
 		$series->setId($row['series_id']);

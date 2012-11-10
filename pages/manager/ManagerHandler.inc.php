@@ -42,7 +42,7 @@ class ManagerHandler extends Handler {
 	 */
 	function setupTemplate($request) {
 		AppLocale::requireComponents(LOCALE_COMPONENT_PKP_MANAGER, LOCALE_COMPONENT_OMP_MANAGER);
-		parent::setupTemplate();
+		parent::setupTemplate($request);
 	}
 
 	/**

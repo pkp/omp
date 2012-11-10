@@ -50,7 +50,7 @@ class ProfileHandler extends UserHandler {
 	 * Display form to edit user's profile.
 	 */
 	function profile($args, &$request) {
-		$this->setupTemplate(true);
+		$this->setupTemplate($request, true);
 
 		$user =& $request->getUser();
 		import('classes.user.form.ProfileForm');
@@ -97,7 +97,7 @@ class ProfileHandler extends UserHandler {
 	 * Display form to change user's password.
 	 */
 	function changePassword($args, &$request) {
-		$this->setupTemplate(true);
+		$this->setupTemplate($request, true);
 
 		$user =& $request->getUser();
 		$site =& $request->getSite();
@@ -112,7 +112,7 @@ class ProfileHandler extends UserHandler {
 	 * Save user's new password.
 	 */
 	function savePassword($args, &$request) {
-		$this->setupTemplate(true);
+		$this->setupTemplate($request, true);
 
 		$user =& $request->getUser();
 		$site =& $request->getSite();
@@ -121,7 +121,7 @@ class ProfileHandler extends UserHandler {
 		$passwordForm = new ChangePasswordForm($user, $site);
 		$passwordForm->readInputData();
 
-		$this->setupTemplate(true);
+		$this->setupTemplate($request, true);
 		if ($passwordForm->validate()) {
 			$passwordForm->execute($request);
 			$request->redirect(null, $request->getRequestedPage());

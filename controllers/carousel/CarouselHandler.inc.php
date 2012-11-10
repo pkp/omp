@@ -46,7 +46,7 @@ class CarouselHandler extends Handler {
 	 * @return string the serialized grid JSON message
 	 */
 	function fetch($args, &$request) {
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 
 		$press =& $request->getPress();
 		$templateMgr =& TemplateManager::getManager();

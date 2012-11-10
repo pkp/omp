@@ -71,9 +71,9 @@ class ReviewRoundTabHandler extends Handler {
 	/**
 	 * @see PKPHandler::setupTemplate
 	 */
-	function setupTemplate() {
+	function setupTemplate($request) {
 		AppLocale::requireComponents(LOCALE_COMPONENT_OMP_EDITOR);
-		parent::setupTemplate();
+		parent::setupTemplate($request);
 	}
 
 
@@ -86,7 +86,7 @@ class ReviewRoundTabHandler extends Handler {
 	 * @param $args array
 	 */
 	function _reviewRound($args, &$request) {
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 
 		// Retrieve the authorized submission, stage id and review round.
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);

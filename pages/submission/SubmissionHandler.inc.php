@@ -179,7 +179,7 @@ class SubmissionHandler extends PKPSubmissionHandler {
 	 * @param $request Request
 	 */
 	function setupTemplate(&$request) {
-		parent::setupTemplate();
+		parent::setupTemplate($request);
 		AppLocale::requireComponents(LOCALE_COMPONENT_OMP_SUBMISSION, LOCALE_COMPONENT_PKP_SUBMISSION);
 
 		// Get steps information.

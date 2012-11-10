@@ -59,18 +59,18 @@ class PublicationFormatHandler extends Handler {
 	 * @see PKPHandler::initialize()
 	 */
 	function initialize(&$request, $args) {
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 	}
 
 	/**
 	 * Setup variables for the template
 	 * @param $request Request
 	 */
-	function setupTemplate() {
-		parent::setupTemplate();
+	function setupTemplate($request) {
+		parent::setupTemplate($request);
 		AppLocale::requireComponents(LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_OMP_SUBMISSION, LOCALE_COMPONENT_OMP_EDITOR);
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		$stageId = $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);

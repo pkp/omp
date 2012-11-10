@@ -150,7 +150,7 @@ class FileSignoffGridHandler extends SubmissionFilesGridHandler {
 		$signoff->setDateCompleted(Core::getCurrentDate());
 		$signoffDao->updateObject($signoff);
 
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 		$user =& $request->getUser();
 		NotificationManager::createTrivialNotification($user->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.signedFile')));
 

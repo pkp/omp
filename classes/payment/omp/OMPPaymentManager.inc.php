@@ -97,11 +97,12 @@ class OMPPaymentManager extends PaymentManager {
 
 	/**
 	 * Fulfill a queued payment.
+	 * @param $request PKPRequest
 	 * @param $queuedPayment QueuedPayment
 	 * @param $payMethodPluginName string Name of payment plugin.
 	 * @return mixed Dependent on payment type.
 	 */
-	function fulfillQueuedPayment(&$queuedPayment, $payMethodPluginName = null) {
+	function fulfillQueuedPayment($request, &$queuedPayment, $payMethodPluginName = null) {
 		$returner = false;
 		if ($queuedPayment) switch ($queuedPayment->getType()) {
 			case PAYMENT_TYPE_PURCHASE_FILE:

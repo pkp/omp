@@ -62,7 +62,7 @@ class PressSettingsWizardHandler extends Handler {
 			LOCALE_COMPONENT_PKP_MANAGER
 		);
 
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 		return $templateMgr->fetchJson('controllers/wizard/settings/settingsWizard.tpl');
 	}
 }

@@ -57,7 +57,7 @@ class CatalogEntryHandler extends Handler {
 
 		// Load grid-specific translations
 		AppLocale::requireComponents(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_OMP_SUBMISSION);
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 	}
 
 	/**
@@ -154,7 +154,7 @@ class CatalogEntryHandler extends Handler {
 		$tabContentUrl = $dispatcher->url($request, ROUTE_COMPONENT, null, 'tab.catalogEntry.CatalogEntryTabHandler', 'publicationMetadata', null, array('monographId' => $monograph->getId(), 'stageId' => $this->getStageId()));
 		$templateMgr->assign('tabContentUrl', $tabContentUrl);
 
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 		return $templateMgr->fetchJson('controllers/modals/submissionMetadata/catalogEntryTabs.tpl');
 	}
 

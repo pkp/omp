@@ -90,7 +90,7 @@ class PressSettingsDAO extends DAO {
 		);
 
 		while (!$result->EOF) {
-			$row =& $result->getRowAssoc(false);
+			$row = $result->getRowAssoc(false);
 			$value = $this->convertFromDB($row['setting_value'], $row['setting_type']);
 			if ($row['locale'] == '') $pressSettings[$row['setting_name']] = $value;
 			else $pressSettings[$row['setting_name']][$row['locale']] = $value;

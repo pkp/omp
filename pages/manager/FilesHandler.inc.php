@@ -31,7 +31,7 @@ class FilesHandler extends ManagerHandler {
 	 * @param $request PKPRequest
 	 */
 	function files($args, &$request) {
-		$this->setupTemplate(true);
+		$this->setupTemplate($request, true);
 
 		import('lib.pkp.classes.file.PrivateFileManager');
 		$privateFileManager = new PrivateFileManager();
