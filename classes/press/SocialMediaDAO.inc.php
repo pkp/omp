@@ -261,7 +261,7 @@ class SocialMediaDAO extends DAO {
 	 * @return int
 	 */
 	function getInsertSocialMediaId() {
-		return $this->getInsertId('social_media', 'social_media_id');
+		return $this->_getInsertId('social_media', 'social_media_id');
 	}
 }
 ?>

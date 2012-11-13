@@ -519,7 +519,7 @@ class MonographDAO extends DAO {
 	 * @return int
 	 */
 	function getInsertMonographId() {
-		return $this->getInsertId('monographs', 'monograph_id');
+		return $this->_getInsertId('monographs', 'monograph_id');
 	}
 
 	/**

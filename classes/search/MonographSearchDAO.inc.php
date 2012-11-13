@@ -46,7 +46,7 @@ class MonographSearchDAO extends DAO {
 				true,
 				false
 			)) {
-				$keywordId = $this->getInsertId('monograph_search_keyword_list', 'keyword_id');
+				$keywordId = $this->_getInsertId('monograph_search_keyword_list', 'keyword_id');
 			} else {
 				$keywordId = null; // Bug #2324
 			}
@@ -170,7 +170,7 @@ class MonographSearchDAO extends DAO {
 				'INSERT INTO monograph_search_objects (monograph_id, type, assoc_id) VALUES (?, ?, ?)',
 				array($monographId, $type, (int) $assocId)
 			);
-			$objectId = $this->getInsertId('monograph_search_objects', 'object_id');
+			$objectId = $this->_getInsertId('monograph_search_objects', 'object_id');
 
 		} else {
 			$objectId = $result->fields[0];

@@ -298,7 +298,7 @@ class FooterCategoryDAO extends DAO {
 	 * @return int
 	 */
 	function getInsertFooterCategoryId() {
-		return $this->getInsertId('footer_categories', 'footer_category_id');
+		return $this->_getInsertId('footer_categories', 'footer_category_id');
 	}
 }
 

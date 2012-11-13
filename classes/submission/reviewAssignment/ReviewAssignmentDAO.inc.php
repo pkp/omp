@@ -66,7 +66,7 @@ class ReviewAssignmentDAO extends PKPReviewAssignmentDAO {
 	 * @return int
 	 */
 	function getInsertReviewId() {
-		return $this->getInsertId('review_assignments', 'review_id');
+		return $this->_getInsertId('review_assignments', 'review_id');
 	}
 
 	/**

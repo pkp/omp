@@ -217,7 +217,7 @@ class StageAssignmentDAO extends DAO {
 	 * @return int
 	 */
 	function getInsertStageAssignmentId() {
-		return $this->getInsertId('stage_assignments', 'stage_assignment_id');
+		return $this->_getInsertId('stage_assignments', 'stage_assignment_id');
 	}
 
 	/**

@@ -205,7 +205,7 @@ class MarketDAO extends DAO {
 	 * @return int
 	 */
 	function getInsertMarketId() {
-		return $this->getInsertId('markets', 'market_id');
+		return $this->_getInsertId('markets', 'market_id');
 	}
 }
 

@@ -335,7 +335,7 @@ class SpotlightDAO extends DAO {
 	 * @return int
 	 */
 	function getInsertSpotlightId() {
-		return $this->getInsertId('spotlights', 'spotlight_id');
+		return $this->_getInsertId('spotlights', 'spotlight_id');
 	}
 }
 

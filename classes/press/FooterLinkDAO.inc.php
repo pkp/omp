@@ -223,7 +223,7 @@ class FooterLinkDAO extends DAO {
 	 * @return int
 	 */
 	function getInsertFooterLinkId() {
-		return $this->getInsertId('footerlinks', 'footerlink_id');
+		return $this->_getInsertId('footerlinks', 'footerlink_id');
 	}
 
 	/**

@@ -200,7 +200,7 @@ class PublicationFormatDAO extends DAO {
 			)
 		);
 
-		$publicationFormat->setId($this->getInsertId('publication_formats', 'publication_format_id'));
+		$publicationFormat->setId($this->_getInsertId('publication_formats', 'publication_format_id'));
 		$this->updateLocaleFields($publicationFormat);
 	}
 

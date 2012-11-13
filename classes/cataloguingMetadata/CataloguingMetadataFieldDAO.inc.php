@@ -178,7 +178,7 @@ class CataloguingMetadataFieldDAO extends DefaultSettingDAO {
 	 * @return int
 	 */
 	function getInsertCataloguingMetadataFieldId() {
-		return $this->getInsertId('cataloguing_metadata_fields', 'field_id');
+		return $this->_getInsertId('cataloguing_metadata_fields', 'field_id');
 	}
 
 	/**

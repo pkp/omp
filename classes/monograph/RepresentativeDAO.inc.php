@@ -193,7 +193,7 @@ class RepresentativeDAO extends DAO {
 	 * @return int
 	 */
 	function getInsertRepresentativeId() {
-		return $this->getInsertId('representatives', 'representative_id');
+		return $this->_getInsertId('representatives', 'representative_id');
 	}
 }
 

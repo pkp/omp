@@ -152,7 +152,7 @@ class IdentificationCodeDAO extends DAO {
 	 * @return int
 	 */
 	function getInsertIdentificationCodeId() {
-		return $this->getInsertId('identification_codes', 'identification_code_id');
+		return $this->_getInsertId('identification_codes', 'identification_code_id');
 	}
 }
 

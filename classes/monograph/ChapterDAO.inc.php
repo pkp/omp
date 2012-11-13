@@ -220,7 +220,7 @@ class ChapterDAO extends DAO {
 	 * @return int
 	 */
 	function getInsertChapterId() {
-		return $this->getInsertId('chapters', 'chapter_id');
+		return $this->_getInsertId('chapters', 'chapter_id');
 	}
 }
 

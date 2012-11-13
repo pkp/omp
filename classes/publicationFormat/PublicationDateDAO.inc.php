@@ -157,7 +157,7 @@ class PublicationDateDAO extends DAO {
 	 * @return int
 	 */
 	function getInsertPublicationDateId() {
-		return $this->getInsertId('publication_dates', 'publication_date_id');
+		return $this->_getInsertId('publication_dates', 'publication_date_id');
 	}
 }
 

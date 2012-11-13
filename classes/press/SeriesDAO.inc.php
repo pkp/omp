@@ -311,7 +311,7 @@ class SeriesDAO extends DAO {
 	 * @return int
 	 */
 	function getInsertSeriesId() {
-		return $this->getInsertId('series', 'series_id');
+		return $this->_getInsertId('series', 'series_id');
 	}
 
 	/**

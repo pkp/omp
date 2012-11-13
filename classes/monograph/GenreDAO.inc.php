@@ -178,7 +178,7 @@ class GenreDAO extends DefaultSettingDAO {
 	 * @return int
 	 */
 	function getInsertGenreId() {
-		return $this->getInsertId('genres', 'genre_id');
+		return $this->_getInsertId('genres', 'genre_id');
 	}
 
 	/**

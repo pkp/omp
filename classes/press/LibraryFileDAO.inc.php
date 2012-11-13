@@ -251,7 +251,7 @@ class LibraryFileDAO extends DAO {
 	 * @return int
 	 */
 	function getInsertLibraryFileId() {
-		return $this->getInsertId('library_files', 'file_id');
+		return $this->_getInsertId('library_files', 'file_id');
 	}
 }
 

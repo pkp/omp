@@ -202,7 +202,7 @@ class MonographCommentDAO extends DAO {
 	 * @return int
 	 */
 	function getInsertMonographCommentId() {
-		return $this->getInsertId('monograph_comments', 'comment_id');
+		return $this->_getInsertId('monograph_comments', 'comment_id');
 	}
 
 	/**

@@ -205,7 +205,7 @@ class PressDAO extends DAO {
 	 * @return int
 	 */
 	function getInsertPressId() {
-		return $this->getInsertId('presses', 'press_id');
+		return $this->_getInsertId('presses', 'press_id');
 	}
 
 	/**

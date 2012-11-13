@@ -348,7 +348,7 @@ class CategoryDAO extends DAO {
 	 * @return int
 	 */
 	function getInsertCategoryId() {
-		return $this->getInsertId('categories', 'category_id');
+		return $this->_getInsertId('categories', 'category_id');
 	}
 }
 

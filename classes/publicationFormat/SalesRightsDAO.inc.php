@@ -189,7 +189,7 @@ class SalesRightsDAO extends DAO {
 	 * @return int
 	 */
 	function getInsertSalesRightsId() {
-		return $this->getInsertId('sales_rights', 'sales_rights_id');
+		return $this->_getInsertId('sales_rights', 'sales_rights_id');
 	}
 }
 

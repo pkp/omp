@@ -91,7 +91,7 @@ class MonographFileDAODelegate extends SubmissionFileDAODelegate {
 		);
 
 		if (!$fileId) {
-			$monographFile->setFileId($this->getInsertId('monograph_files', 'file_id'));
+			$monographFile->setFileId($this->_getInsertId('monograph_files', 'file_id'));
 		}
 
 		$this->updateLocaleFields($monographFile);
