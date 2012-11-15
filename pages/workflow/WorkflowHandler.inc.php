@@ -315,7 +315,7 @@ class WorkflowHandler extends Handler {
 		// Iterate through the editor decisions and create a link action for each decision.
 		$editorActions = array();
 		$dispatcher =& $request->getDispatcher();
-		import('classes.linkAction.request.AjaxModal');
+		import('lib.pkp.classes.linkAction.request.AjaxModal');
 		foreach($decisions as $decision => $action) {
 			$actionArgs['decision'] = $decision;
 			$editorActions[] = new LinkAction(
