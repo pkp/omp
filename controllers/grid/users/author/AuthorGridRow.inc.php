@@ -12,131 +12,51 @@
  * @brief Author grid row definition
  */
 
-import('lib.pkp.classes.controllers.grid.GridRow');
+import('lib.pkp.controllers.grid.users.author.PKPAuthorGridRow');
 
-class AuthorGridRow extends GridRow {
-	/** @var Monograph **/
-	var $_monograph;
 
-	/** @var boolean */
-	var $_reaadOnly;
-
+class AuthorGridRow extends PKPAuthorGridRow {
 	/**
 	 * Constructor
 	 */
 	function AuthorGridRow(&$monograph, $readOnly = false) {
-		$this->_monograph =& $monograph;
-		$this->_readOnly = $readOnly;
-		parent::GridRow();
+		parent::PKPAuthorGridRow($monograph, $readOnly);
 	}
 
-	//
-	// Overridden methods from GridRow
-	//
 	/**
-	 * @see GridRow::initialize()
-	 * @param $request PKPRequest
+	 * Get the base arguments that will identify the data in the grid
+	 * In this case, the monograph.
+	 * @return array
 	 */
-	function initialize(&$request) {
-		// Do the default initialization
-		parent::initialize($request);
-
-		// Retrieve the monograph from the request
-		$monograph =& $this->getMonograph();
-
-		// Is this a new row or an existing row?
-		$rowId = $this->getId();
-		if (!empty($rowId) && is_numeric($rowId)) {
-			// Only add row actions if this is an existing row
-			$router =& $request->getRouter();
-			$actionArgs = array(
-				'monographId' => $monograph->getId(),
-				'authorId' => $rowId
-			);
-
-			// Add row-level actions
-			import('lib.pkp.classes.linkAction.request.AjaxModal');
-			$this->addAction(
-				new LinkAction(
-					'editAuthor',
-					new AjaxModal(
-						$router->url($request, null, null, 'editAuthor', null, $actionArgs),
-						__('grid.action.editContributor'),
-						'modal_edit'
-					),
-					__('grid.action.edit'),
-					'edit'
-				)
-			);
-
-			import('lib.pkp.classes.linkAction.request.RemoteActionConfirmationModal');
-			$this->addAction(
-				new LinkAction(
-					'deleteAuthor',
-					new RemoteActionConfirmationModal(
-						__('common.confirmDelete'),
-						__('common.delete'),
-						$router->url($request, null, null, 'deleteAuthor', null, $actionArgs),
-						'modal_delete'
-					),
-					__('grid.action.delete'),
-					'delete'
-				)
-			);
-
-			$user =& $request->getUser();
-			$stageAssignmentDao =& DAORegistry::getDAO('StageAssignmentDAO');
-			$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
-
-			$allowedToCreateUser = false;
-
-			$stageAssignments =& $stageAssignmentDao->getBySubmissionAndStageId($monograph->getId(), $monograph->getStageId(), null, $user->getId());
-			while ($stageAssignment =& $stageAssignments->next()) {
-				$userGroup =& $userGroupDao->getById($stageAssignment->getUserGroupId());
-				if (in_array($userGroup->getRoleId(), array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_ASSISTANT))) {
-					$allowedToCreateUser = true;
-					break;
-				}
-			}
-
-			if ($allowedToCreateUser) {
-
-				$authorDao =& DAORegistry::getDAO('AuthorDAO');
-				$userDao =& DAORegistry::getDAO('UserDAO');
-				$author =& $authorDao->getAuthor($rowId);
-
-				if ($author && !$userDao->userExistsByEmail($author->getEmail())) {
-					$this->addAction(
-						new LinkAction(
-							'addUser',
-							new AjaxModal(
-								$router->url($request, null, null, 'addUser', null, $actionArgs),
-								__('grid.user.add'),
-								'modal_add_user',
-								true
-								),
-							__('grid.user.add'),
-							'add_user')
-					);
-				}
-			}
-		}
+	function getRequestArgs() {
+		$monograph =& $this->getSubmission();
+		return array(
+			'monographId' => $monograph->getId()
+		);
 	}
 
 	/**
-	 * Get the monograph for this row (already authorized)
-	 * @return Monograph
-	 */
-	function &getMonograph() {
-		return $this->_monograph;
-	}
-
-	/**
-	 * Determine if this grid row should be read only.
+	 * Determines whether the current user can create user accounts from authors present
+	 * in the grid.
+	 * @param PKPRequest $request
 	 * @return boolean
 	 */
-	function isReadOnly() {
-		return $this->_readOnly;
+	function allowedToCreateUser(&$request) {
+		$submission =& $this->getSubmission();
+
+		$user =& $request->getUser();
+		$stageAssignmentDao =& DAORegistry::getDAO('StageAssignmentDAO');
+		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+
+		$stageAssignments =& $stageAssignmentDao->getBySubmissionAndStageId($submission->getId(), $submission->getStageId(), null, $user->getId());
+		while ($stageAssignment =& $stageAssignments->next()) {
+			$userGroup =& $userGroupDao->getById($stageAssignment->getUserGroupId());
+			if (in_array($userGroup->getRoleId(), array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_ASSISTANT))) {
+				return true;
+				break;
+			}
+		}
+		return false;
 	}
 }
 

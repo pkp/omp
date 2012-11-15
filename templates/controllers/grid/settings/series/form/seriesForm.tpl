@@ -54,7 +54,7 @@
 			{fbvElement type="text" multilingual=true id="title" label="common.title" value=$title maxlength="80" size=$fbvStyles.size.LARGE inline=true}
 		{/fbvFormSection}
 
-		{fbvFormSection for="subtitle" title="monograph.subtitle"}
+		{fbvFormSection for="subtitle" title="common.subtitle"}
 			{fbvElement type="text" multilingual=true name="subtitle" id="subtitle" value=$subtitle maxlength="255"}
 		{/fbvFormSection}
 

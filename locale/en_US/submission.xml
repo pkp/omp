@@ -31,8 +31,6 @@
 	<message key="submission.chaptersDescription">You may list the chapters here, and assign contributors from the list of contributors, above. These contributors will be able to access the chapter during various stages of the publication process.</message>
 	<message key="submission.chapter.addChapter">Add Chapter</message>
 	<message key="submission.chapter.editChapter">Edit Chapter</message>
-	<message key="submission.contributors">List of Contributors</message>
-	<message key="submission.contributorsDescription">The list of contributors associated with this submission may include other authors; individual chapter authors of an edited volume; volume editors; and/or translators. One contributor from the list may be assigned as the primary contact for editorial correspondence; this does not necessarily have to be the submitting author.</message>
 	<message key="submission.document">Document</message>
 	<message key="submission.overview">Submission Overview</message>
 	<message key="submission.copyediting">Copyediting</message>
@@ -89,7 +87,6 @@
 	<message key="submission.submit.form.titleRequired">Please enter the title of your monograph.</message>
 	<message key="submission.submit.form.abstractRequired">Please enter a brief summary of your monograph.</message>
 	<message key="submission.submit.form.contributorRoleRequired">Please select the contributor's role.</message>
-	<message key="submission.submit.errorDeletingAuthor">There was an error removing the author.</message>
 	<message key="submission.submit.currentFile">Current file</message>
 	<message key="submission.submit.selectFile">Select File to Upload</message>
 	<message key="submission.submit.submissionFile">Submission File</message>
@@ -179,7 +176,6 @@
 
 	<!-- Chapters Grid -->
 	<message key="grid.chapters.title">Chapters</message>
-	<message key="listbuilder.contributors.addContributor">Add Contributor</message>
 
 	<!-- Copyediting Grid -->
 	<message key="grid.copyediting.deleteCopyeditorResponse">Delete Copyeditor Upload</message>

@@ -441,9 +441,8 @@
 	<message key="user.noRoles.regReviewerClosed">Register as a Reviewer: Reviewer registration is currently disabled.</message>
 	<message key="user.noRoles.selectUsersWithoutRoles">Include users with no roles in this press.</message>
 
-	<!-- Roles -->
+	<!-- OMP-specific Roles -->
 	<message key="user.role.manager">Press Manager</message>
-	<message key="user.role.editor">Editor</message>
 	<message key="user.role.pressEditor">Press Editor</message>
 	<message key="user.role.seriesEditor">Series Editor</message>
 	<message key="user.role.pressAssistant">Press Assistant</message>
@@ -451,18 +450,12 @@
 	<message key="user.role.seriesEditor">Series Editor</message>
 	<message key="user.role.seriesEditors">Series Editors</message>
 	<message key="user.role.proofreader">Proofreader</message>
-	<message key="user.role.author">Author</message>
-	<message key="user.role.author_s">Author(s)</message>
-	<message key="user.role.reviewer">Reviewer</message>
 	<message key="user.role.productionEditor">Production Editor</message>
 
-	<message key="user.role.reviewers">Reviewers</message>
 	<message key="user.role.managers">Press Managers</message>
-	<message key="user.role.editors">Editors</message>
 	<message key="user.role.seriesEditors">Series Editors</message>
 	<message key="user.role.copyeditors">Copyeditors</message>
 	<message key="user.role.proofreaders">Proofreaders</message>
-	<message key="user.role.authors">Authors</message>
 	<message key="user.role.productionEditors">Production Editors</message>
 
 	<!-- Login -->
@@ -615,7 +608,6 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<!-- Notifications -->
 	<message key="notification.addedAuditor">Auditor added.</message>
 	<message key="notification.removedAuditor">Auditor removed.</message>
-	<message key="notification.addedAuthor">Author added.</message>
 	<message key="notification.addedIdentificationCode">Identification Code added.</message>
 	<message key="notification.editedIdentificationCode">Identification Code edited.</message>
 	<message key="notification.removedIdentificationCode">Identification Code removed.</message>
@@ -636,7 +628,6 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="notification.removedMarket">Market removed.</message>
 	<message key="notification.addedReviewer">Reviewer added.</message>
 	<message key="notification.addedStageParticipant">User added as a stage participant.</message>
-	<message key="notification.editedAuthor">Author edited.</message>
 	<message key="notification.editedUser">User edited.</message>
 	<message key="notification.removedReviewer">Reviewer removed.</message>
 	<message key="notification.sentNotification">Notification sent.</message>

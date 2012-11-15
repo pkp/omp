@@ -156,6 +156,10 @@ class UserUserGroupListbuilderHandler extends ListbuilderHandler {
 	 */
 	function initialize(&$request) {
 		// FIXME Validate user ID?
+
+		// Load user-related translations.
+		AppLocale::requireComponents(LOCALE_COMPONENT_PKP_USER);
+
 		$this->setUserId((int) $request->getUserVar('userId'));
 
 		$this->setPress($request->getPress());

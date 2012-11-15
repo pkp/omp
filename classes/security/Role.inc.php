@@ -13,57 +13,29 @@
  * @brief Describes user roles within the system and the associated permissions.
  */
 
-/** ID codes and paths for all default roles */
-define('ROLE_ID_SITE_ADMIN',		0x00000001);
-define('ROLE_PATH_SITE_ADMIN',		'admin');
+import('lib.pkp.classes.security.PKPRole');
 
+/** ID codes and paths for OMP-specific roles */
 define('ROLE_ID_PRESS_MANAGER',		0x00000011);
 define('ROLE_PATH_PRESS_MANAGER',	'manager');
 
 define('ROLE_ID_SERIES_EDITOR',		0x00000201);
 define('ROLE_PATH_SERIES_EDITOR',	'seriesEditor');
 
-define('ROLE_ID_AUTHOR',		0x00010000);
-define('ROLE_PATH_AUTHOR',		'author');
-
-define('ROLE_ID_REVIEWER',		0x00001000);
-define('ROLE_PATH_REVIEWER',		'reviewer');
-
-define('ROLE_ID_PRESS_ASSISTANT',	0x00001001);
-
-define('ROLE_ID_READER',		0x00020000);
-define('ROLE_PATH_READER',		'reader');
-
-class Role extends DataObject {
+class Role extends PKPRole {
 	/**
 	 * Constructor.
 	 * @param $roleId for this role.  Default to null for backwards
 	 * 	compatibility
 	 */
 	function Role($roleId = null) {
-		parent::DataObject();
-		$this->setId($roleId);
+		parent::PKPRole($roleId);
 	}
 
 
 	//
 	// Get/set methods
 	//
-	/**
-	 * Get role ID of this role.
-	 * @return int
-	 */
-	function getRoleId() {
-		return $this->getId();
-	}
-
-	/**
-	 * Set role ID of this role.
-	 * @param $roleId int
-	 */
-	function setRoleId($roleId) {
-		return $this->setId($roleId);
-	}
 
 	/**
 	 * Get the i18n key name associated with the specified role.
@@ -72,20 +44,12 @@ class Role extends DataObject {
 	 */
 	function getRoleName($plural = false) {
 		switch ($this->getId()) {
-			case ROLE_ID_SITE_ADMIN:
-				return 'user.role.siteAdmin' . ($plural ? 's' : '');
 			case ROLE_ID_PRESS_MANAGER:
 				return 'user.role.manager' . ($plural ? 's' : '');
-			case ROLE_ID_AUTHOR:
-				return 'user.role.author' . ($plural ? 's' : '');
-			case ROLE_ID_REVIEWER:
-				return 'user.role.reviewer' . ($plural ? 's' : '');
 			case ROLE_ID_SERIES_EDITOR:
 				return 'user.role.seriesEditor' . ($plural ? 's' : '');
-			case ROLE_ID_READER:
-				return 'user.role.reader' . ($plural ? 's' : '');
 			default:
-				return '';
+				return parent::getRoleName($plural);
 		}
 	}
 
@@ -96,20 +60,12 @@ class Role extends DataObject {
 	 */
 	function getPath() {
 		switch ($this->getId()) {
-			case ROLE_ID_SITE_ADMIN:
-				return 'admin';
 			case ROLE_ID_PRESS_MANAGER:
 				return 'manager';
-			case ROLE_ID_AUTHOR:
-				return 'author';
-			case ROLE_ID_REVIEWER:
-				return 'reviewer';
 			case ROLE_ID_SERIES_EDITOR:
 				return 'seriesEditor';
-			case ROLE_ID_READER:
-				return 'reader';
 			default:
-				return '';
+				return parent::getPath();
 		}
 	}
 }
