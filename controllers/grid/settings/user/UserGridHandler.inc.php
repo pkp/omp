@@ -105,6 +105,18 @@ class UserGridHandler extends GridHandler {
 			)
 		);
 
+		// User name.
+		$cellProvider = new DataObjectGridCellProvider();
+		$this->addColumn(
+				new GridColumn(
+					'username',
+					'user.username',
+					null,
+					'controllers/grid/gridCell.tpl',
+					$cellProvider
+				)
+		);
+
 		// Email.
 		$cellProvider = new DataObjectGridCellProvider();
 		$this->addColumn(
