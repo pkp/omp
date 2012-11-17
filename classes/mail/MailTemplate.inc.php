@@ -34,7 +34,9 @@ class MailTemplate extends PKPMailTemplate {
 		parent::PKPMailTemplate($emailKey, $locale, $enableAttachments);
 
 		// If a press wasn't specified, use the current request.
-		if ($press === null) $press =& Request::getPress();
+		$application = PKPApplication::getApplication();
+		$request = $application->getRequest();
+		if ($press === null) $press = $request->getPress();
 
 		$this->includeSignature = $includeSignature;
 

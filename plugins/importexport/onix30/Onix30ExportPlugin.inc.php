@@ -49,7 +49,9 @@ class Onix30ExportPlugin extends ImportExportPlugin {
 		$templateMgr =& TemplateManager::getManager();
 		parent::display($args);
 
-		$press =& Request::getPress();
+		$application = PKPApplication::getApplication();
+		$request = $application->getRequest();
+		$press = $request->getPress();
 		$templateMgr->assign_by_ref('press', $press);
 
 		switch (array_shift($args)) {
@@ -74,7 +76,7 @@ class Onix30ExportPlugin extends ImportExportPlugin {
 				// Display a list of monographs for export
 				AppLocale::requireComponents(LOCALE_COMPONENT_PKP_SUBMISSION);
 				$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
-				$rangeInfo = Handler::getRangeInfo('monographs');
+				$rangeInfo = Handler::getRangeInfo($request, 'monographs');
 				$monographs = $publishedMonographDao->getByPressId($press->getId())->toArray();
 
 				import('lib.pkp.classes.core.VirtualArrayIterator');

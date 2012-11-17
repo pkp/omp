@@ -26,7 +26,7 @@ class UserHandler extends Handler {
 	/**
 	 * @see PKPHandler::initialize()
 	 */
-	function initialize(&$request, $args) {
+	function initialize(&$request, &$args) {
 		AppLocale::requireComponents(LOCALE_COMPONENT_PKP_GRID);
 		parent::initialize($request, $args);
 	}
@@ -118,7 +118,11 @@ class UserHandler extends Handler {
 	 * @param $request Request
 	 */
 	function authorizationDenied($args, &$request) {
-		$this->validate(true);
+		parent::validate();
+
+		if (!Validation::isLoggedIn()) {
+			Validation::redirectLogin();
+		}
 
 		// Get message with sanity check (for XSS or phishing)
 		$authorizationMessage = $request->getUserVar('message');
@@ -131,18 +135,6 @@ class UserHandler extends Handler {
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('message', $authorizationMessage);
 		return $templateMgr->display('common/message.tpl');
-	}
-
-	/**
-	 * Validate that user is logged in.
-	 * Redirects to login form if not logged in.
-	 * @param $loginCheck boolean check if user is logged in
-	 */
-	function validate($loginCheck = true) {
-		parent::validate();
-		if ($loginCheck && !Validation::isLoggedIn()) {
-			Validation::redirectLogin();
-		}
 	}
 }
 

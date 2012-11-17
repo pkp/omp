@@ -113,9 +113,9 @@ class ImportExportPlugin extends Plugin {
 	}
 
 	/**
-	 * Perform management functions
+	 * @see PKPPlugin::manage($verb, $args, $message, $messageParams, $pluginModalContent)
 	 */
-	function manage($verb, $args) {
+	function manage($verb, $args, &$message, &$messageParams, &$pluginModalContent = null) {
 		if ($verb === 'importexport') {
 			$request->redirectUrl($this->getManagementVerbUrl($verb));
 		}

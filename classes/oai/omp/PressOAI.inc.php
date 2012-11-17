@@ -42,10 +42,13 @@ class PressOAI extends OAI {
 	function PressOAI($config) {
 		parent::OAI($config);
 
-		$this->site =& Request::getSite();
-		$this->press =& Request::getPress();
+		$application = PKPApplication::getApplication();
+		$request = $application->getRequest();
+
+		$this->site = $request->getSite();
+		$this->press = $request->getPress();
 		$this->pressId = isset($this->press) ? $this->press->getId() : null;
-		$this->dao =& DAORegistry::getDAO('OAIDAO');
+		$this->dao = DAORegistry::getDAO('OAIDAO');
 		$this->dao->setOAI($this);
 	}
 

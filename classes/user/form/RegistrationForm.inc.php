@@ -296,7 +296,9 @@ class RegistrationForm extends Form {
 		}
 
 		// User Groups
-		$press =& Request::getPress();
+		$application = PKPApplication::getApplication();
+		$request = $application->getRequest();
+		$press = $request->getPress();
 		if ($press) {
 			$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 			if ($press->getSetting('allowRegReviewer')) {

@@ -30,7 +30,7 @@ class ManagerHandler extends Handler {
 	 * @param $args array
 	 * @param $roleAssignments array
 	 */
-	function authorize(&$request, $args, $roleAssignments) {
+	function authorize(&$request, &$args, $roleAssignments) {
 		import('classes.security.authorization.OmpPressAccessPolicy');
 		$this->addPolicy(new OmpPressAccessPolicy($request, $roleAssignments));
 		return parent::authorize($request, $args, $roleAssignments);
@@ -40,7 +40,7 @@ class ManagerHandler extends Handler {
 	 * Setup common template variables.
 	 * @param $request PKPRequest
 	 */
-	function setupTemplate($request) {
+	function setupTemplate($request = null) {
 		AppLocale::requireComponents(LOCALE_COMPONENT_PKP_MANAGER, LOCALE_COMPONENT_OMP_MANAGER);
 		parent::setupTemplate($request);
 	}

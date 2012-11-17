@@ -47,7 +47,10 @@ class MonographMailTemplate extends MailTemplate {
 
 	function assignParams($paramArray = array()) {
 		$monograph =& $this->monograph;
-		$press = isset($this->press)?$this->press:Request::getPress();
+
+		$application = PKPApplication::getApplication();
+		$request = $application->getRequest();
+		$press = isset($this->press)?$this->press:$request->getPress();
 
 		$paramArray['monographTitle'] = strip_tags($monograph->getLocalizedTitle());
 		$paramArray['monographId'] = $monograph->getId();

@@ -190,15 +190,17 @@ class Validation {
 
 		if ($pressId === -1) {
 			// Get press ID from request
-			$press =& Request::getPress();
+			$application = PKPApplication::getApplication();
+			$request = $application->getRequest();
+			$press = $request->getPress();
 			$pressId = $press == null ? 0 : $press->getId();
 		}
 
-		$sessionManager =& SessionManager::getManager();
-		$session =& $sessionManager->getUserSession();
-		$user =& $session->getUser();
+		$sessionManager = SessionManager::getManager();
+		$session = $sessionManager->getUserSession();
+		$user = $session->getUser();
 
-		$roleDao =& DAORegistry::getDAO('RoleDAO');
+		$roleDao = DAORegistry::getDAO('RoleDAO');
 		return $roleDao->userHasRole($pressId, $user->getId(), $roleId);
 	}
 

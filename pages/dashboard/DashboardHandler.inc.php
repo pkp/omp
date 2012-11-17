@@ -30,7 +30,7 @@ class DashboardHandler extends Handler {
 	 * @param $args array
 	 * @param $roleAssignments array
 	 */
-	function authorize(&$request, $args, $roleAssignments) {
+	function authorize(&$request, &$args, $roleAssignments) {
 		import('lib.pkp.classes.security.authorization.PKPSiteAccessPolicy');
 		$this->addPolicy(new PKPSiteAccessPolicy($request, null, $roleAssignments));
 		return parent::authorize($request, $args, $roleAssignments);
@@ -109,7 +109,7 @@ class DashboardHandler extends Handler {
 	 * Setup common template variables.
 	 * @param $request PKPRequest
 	 */
-	function setupTemplate($request) {
+	function setupTemplate($request = null) {
 		AppLocale::requireComponents(LOCALE_COMPONENT_OMP_MANAGER, LOCALE_COMPONENT_PKP_MANAGER, LOCALE_COMPONENT_OMP_SUBMISSION);
 		parent::setupTemplate($request);
 	}
