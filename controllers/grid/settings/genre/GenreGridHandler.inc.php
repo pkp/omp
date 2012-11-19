@@ -49,18 +49,10 @@ class GenreGridHandler extends SetupGridHandler {
 			LOCALE_COMPONENT_OMP_SUBMISSION
 		);
 
-		// Basic grid configuration
-		$press =& $request->getPress();
-
 		// Set the grid title.
 		$this->setTitle('grid.genres.title');
 
 		$this->setInstructions('grid.genres.description');
-
-		// Elements to be displayed in the grid
-		$genreDao =& DAORegistry::getDAO('GenreDAO');
-		$genres =& $genreDao->getEnabledByPressId($press->getId());
-		$this->setGridDataElements($genres);
 
 		// Add grid-level actions
 		$router =& $request->getRouter();
@@ -112,6 +104,17 @@ class GenreGridHandler extends SetupGridHandler {
 				$cellProvider
 			)
 		);
+	}
+
+	/**
+	 * @see GridHandler::loadData()
+	 */
+	function loadData($request, $filter) {
+		// Elements to be displayed in the grid
+		$press =& $request->getPress();
+		$genreDao =& DAORegistry::getDAO('GenreDAO');
+		$genresFactory =& $genreDao->getEnabledByPressId($press->getId(), self::getRangeInfo($request, $this->getId()));
+		return $genresFactory;
 	}
 
 	//
