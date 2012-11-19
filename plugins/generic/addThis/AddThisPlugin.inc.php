@@ -77,7 +77,7 @@ class AddThisPlugin extends GenericPlugin {
 	function manage($verb, $args, &$message, &$messageParams, &$pluginModalContent = null) {
 		$request =& $this->getRequest();
 		$press =& $request->getPress();
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 
 		switch ($verb) {
 
@@ -88,7 +88,6 @@ class AddThisPlugin extends GenericPlugin {
 
 			case 'showTab':
 				if ($request->getUserVar('tab') == 'settings') {
-					$templateMgr =& TemplateManager::getManager();
 					$this->import('AddThisSettingsForm');
 					$form = new AddThisSettingsForm($this, $press);
 					if ($request->getUserVar('save')) {

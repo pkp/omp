@@ -96,7 +96,7 @@ class AddThisSettingsForm extends Form {
 		$plugin =& $this->getPlugin();
 		$press =& $this->getPress();
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->assign('pluginName', $plugin->getName());
 		$templateMgr->assign('pluginBaseUrl', $request->getBaseUrl() . '/' . $plugin->getPluginPath());
 

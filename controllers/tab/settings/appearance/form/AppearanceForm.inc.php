@@ -108,7 +108,7 @@ class AppearanceForm extends PressSettingsForm {
 		$imagesViews = $this->_renderAllFormImagesViews($request);
 		$cssView = $this->renderFileView('pressStyleSheet', $request);
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->assign_by_ref('uploadImageLinkActions', $uploadImageLinkActions);
 		$templateMgr->assign_by_ref('uploadCssLinkAction', $uploadCssLinkAction);
 
@@ -144,7 +144,7 @@ class AppearanceForm extends PressSettingsForm {
 
 		// Only render the file view if we have a file.
 		if (is_array($file)) {
-			$templateMgr = TemplateManager::getManager();
+			$templateMgr = TemplateManager::getManager($request);
 			$deleteLinkAction =& $this->_getDeleteFileLinkAction($fileSettingName, $request);
 
 			// Get the right template to render the view.

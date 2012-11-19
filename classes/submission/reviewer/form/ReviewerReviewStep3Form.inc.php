@@ -35,12 +35,11 @@ class ReviewerReviewStep3Form extends ReviewerReviewForm {
 
 
 	function initData() {
-		$templateMgr =& TemplateManager::getManager();
 		$reviewAssignment =& $this->getReviewAssignment();
 		// Retrieve reviewer comment.
 		$monographCommentDao =& DAORegistry::getDAO('MonographCommentDAO');
 		$monographComments =& $monographCommentDao->getReviewerCommentsByReviewerId($reviewAssignment->getReviewerId(), $reviewAssignment->getSubmissionId(), $reviewAssignment->getId());
-		$templateMgr->assign_by_ref('reviewerComment', $monographComments->next());
+		$this->setData('reviewerComment', $monographComments->next());
 	}
 
 	//
@@ -60,7 +59,7 @@ class ReviewerReviewStep3Form extends ReviewerReviewForm {
 	 * @see Form::fetch()
 	 */
 	function fetch(&$request) {
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 
 		$reviewAssignment =& $this->getReviewAssignment();
 		$reviewRoundId = $reviewAssignment->getReviewRoundId();

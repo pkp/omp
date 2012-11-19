@@ -74,7 +74,7 @@ class ManageCatalogHandler extends Handler {
 	 */
 	function index($args, &$request) {
 		// Render the view.
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 
 		import('controllers.modals.submissionMetadata.linkAction.MonographlessCatalogEntryLinkAction');
 		$catalogEntryAction = new MonographlessCatalogEntryLinkAction($request);
@@ -129,7 +129,7 @@ class ManageCatalogHandler extends Handler {
 			ASSOC_TYPE_PRESS, $press->getId()
 		);
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 
 		// Fetch the monographs to display
 		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
@@ -185,7 +185,7 @@ class ManageCatalogHandler extends Handler {
 	 * @return string
 	 */
 	function category($args, &$request) {
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$press =& $request->getPress();
 
 		// Get the category
@@ -222,7 +222,7 @@ class ManageCatalogHandler extends Handler {
 	 * @return string
 	 */
 	function series($args, &$request) {
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$press =& $request->getPress();
 
 		// Get the series
@@ -256,7 +256,7 @@ class ManageCatalogHandler extends Handler {
 		$searchText = array_shift($args);
 		$this->_setupMonographsTemplate(false, 'search');
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$press =& $request->getPress();
 
 		// Fetch the monographs to display

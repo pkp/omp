@@ -48,7 +48,7 @@ class RegistrationHandler extends UserHandler {
 			$pressDao =& DAORegistry::getDAO('PressDAO');
 			$presses =& $pressDao->getEnabledPresses(); //Enabled added
 
-			$templateMgr =& TemplateManager::getManager();
+			$templateMgr =& TemplateManager::getManager($request);
 			$templateMgr->assign('source', $request->getUserVar('source'));
 			$templateMgr->assign_by_ref('presses', $presses);
 			$templateMgr->display('user/registerSite.tpl');
@@ -89,7 +89,7 @@ class RegistrationHandler extends UserHandler {
 
 			if ($reason !== null) {
 				$this->setupTemplate($request, true);
-				$templateMgr =& TemplateManager::getManager();
+				$templateMgr =& TemplateManager::getManager($request);
 				$templateMgr->assign('pageTitle', 'user.login');
 				$templateMgr->assign('errorMsg', $reason==''?'user.login.accountDisabled':'user.login.accountDisabledWithReason');
 				$templateMgr->assign('errorParams', array('reason' => $reason));
@@ -114,7 +114,7 @@ class RegistrationHandler extends UserHandler {
 	 */
 	function registrationDisabled($args, &$request) {
 		$this->setupTemplate($request, true);
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->assign('pageTitle', 'user.register');
 		$templateMgr->assign('errorMsg', 'user.register.registrationDisabled');
 		$templateMgr->assign('backLink', $request->url(null, 'login'));
@@ -152,7 +152,7 @@ class RegistrationHandler extends UserHandler {
 			$user->setDateValidated(Core::getCurrentDate());
 			$userDao->updateObject($user);
 
-			$templateMgr =& TemplateManager::getManager();
+			$templateMgr =& TemplateManager::getManager($request);
 			$templateMgr->assign('message', 'user.login.activated');
 			return $templateMgr->display('common/message.tpl');
 		}

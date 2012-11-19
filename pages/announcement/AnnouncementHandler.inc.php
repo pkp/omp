@@ -50,7 +50,7 @@ class AnnouncementHandler extends Handler {
 		$press =& $request->getPress();
 		$announcementsIntro = $press->getLocalizedSetting('announcementsIntroduction');
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->assign('announcementsIntroduction', $announcementsIntro);
 
 		$templateMgr->display('announcements/index.tpl');
@@ -71,7 +71,7 @@ class AnnouncementHandler extends Handler {
 		$announcementId = array_shift($args);
 		$announcement =& $announcementDao->getById($announcementId);
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->assign('announcement', $announcement);
 
 		$templateMgr->display('announcements/view.tpl');

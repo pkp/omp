@@ -43,7 +43,7 @@ class NewLibraryFileForm extends LibraryFileForm {
 	 * @see LibraryFileForm::fetch()
 	 */
 	function fetch(&$request) {
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->assign('monographId', $this->getMonographId());
 		return parent::fetch($request);
 	}

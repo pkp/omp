@@ -141,7 +141,7 @@ class PayPalPlugin extends PaymethodPlugin {
 		);
 
 		AppLocale::requireComponents(LOCALE_COMPONENT_APPLICATION_COMMON);
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->assign('params', $params);
 		$templateMgr->assign('paypalFormUrl', $this->getSetting($press->getId(), 'paypalurl'));
 		$templateMgr->display($this->getTemplatePath() . 'paymentForm.tpl');
@@ -153,7 +153,7 @@ class PayPalPlugin extends PaymethodPlugin {
 	 * @param $request PKPRequest
 	 */
 	function handle($args, &$request) {
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$press =& $request->getPress();
 		if (!$press) return parent::handle($args, $request);
 

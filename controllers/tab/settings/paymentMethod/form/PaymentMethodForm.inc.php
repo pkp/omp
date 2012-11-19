@@ -36,7 +36,7 @@ class PaymentMethodForm extends PressSettingsForm {
 	 * @see PressSettingsForm::fetch
 	 */
 	function fetch(&$request) {
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$currencyDao =& DAORegistry::getDAO('CurrencyDAO');
 		$currencies = array();
 		foreach ($currencyDao->getCurrencies() as $currency) {

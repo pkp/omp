@@ -100,7 +100,7 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 		$lastEvent =& $monographEvents->next();
 
 		// Assign variables to the template manager and display
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		if(isset($lastEvent)) {
 			$templateMgr->assign_by_ref('lastEvent', $lastEvent);
 
@@ -235,7 +235,7 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 	 */
 	function listHistory($args, &$request) {
 		$this->setupTemplate($request);
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 
 		// Get all monograph events
 		$monographEventLogDao =& DAORegistry::getDAO('MonographEventLogDAO');

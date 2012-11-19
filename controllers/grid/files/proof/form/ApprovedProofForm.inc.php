@@ -51,7 +51,7 @@ class ApprovedProofForm extends Form {
 	// Extended methods from Form
 	//
 	function fetch($request) {
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->assign('fileId', $this->approvedProof->getFileIdAndRevision());
 		$templateMgr->assign('monographId', $this->monograph->getId());
 		$templateMgr->assign('publicationFormatId', $this->publicationFormat->getId());

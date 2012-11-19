@@ -66,7 +66,7 @@ class SponsorForm extends Form {
 	 */
 	function fetch(&$request) {
 		AppLocale::requireComponents(LOCALE_COMPONENT_OMP_MANAGER);
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->assign('institution', $this->_data['institution']);
 		$templateMgr->assign('url', $this->_data['url']);
 		return parent::fetch($request);

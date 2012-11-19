@@ -66,7 +66,7 @@ class CatalogEntryPublicationMetadataForm extends Form {
 		$monograph =& $this->getMonograph();
 		$press =& $request->getPress();
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->assign('monographId', $monograph->getId());
 		$templateMgr->assign('publicationFormatId', (int) $this->getPublicationFormatId());
 		$templateMgr->assign('isPhysicalFormat', (int) $this->getPhysicalFormat()); // included to load format-specific template

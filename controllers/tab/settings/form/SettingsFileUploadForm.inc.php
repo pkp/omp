@@ -67,7 +67,7 @@ class SettingsFileUploadForm extends Form {
 	 * @see Form::fetch()
 	 */
 	function fetch(&$request, $params=null) {
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 
 		if (!is_null($params)) {
 			$templateMgr->assign($params);

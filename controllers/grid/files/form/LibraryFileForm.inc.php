@@ -50,7 +50,7 @@ class LibraryFileForm extends Form {
 		AppLocale::requireComponents(LOCALE_COMPONENT_OMP_MANAGER);
 
 		// load the file types for the selector on the form.
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$libraryFileManager =& $this->libraryFileManager;
 		$fileTypeKeys = $libraryFileManager->getTypeTitleKeyMap();
 		$templateMgr->assign('fileTypes', $fileTypeKeys);

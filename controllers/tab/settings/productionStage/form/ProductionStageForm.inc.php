@@ -42,7 +42,7 @@ class ProductionStageForm extends PressSettingsForm {
 	 * @see Form::fetch()
 	 */
 	function fetch(&$request, $params = null) {
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$onixCodelistItemDao =& DAORegistry::getDAO('ONIXCodelistItemDAO');
 		$codeTypes =& $onixCodelistItemDao->getCodes('List44'); // Name code types for publisher
 		$templateMgr->assign('codeTypes', $codeTypes);

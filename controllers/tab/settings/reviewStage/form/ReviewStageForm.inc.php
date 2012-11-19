@@ -65,7 +65,7 @@ class ReviewStageForm extends PressSettingsForm {
 
 		$params['scheduledTasksDisabled'] = (Config::getVar('general', 'scheduled_tasks')) ? false : true;
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 
 		$templateMgr->assign('numDaysBeforeInviteReminderValues', range(3, 10));
 		$templateMgr->assign('numDaysBeforeSubmitReminderValues', range(0, 10));

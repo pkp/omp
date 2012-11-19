@@ -52,7 +52,7 @@ class ToolsHandler extends ManagementHandler {
 	 * @param $args array
 	 */
 	function index($args, &$request) {
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$this->setupTemplate($request);
 		$templateMgr->display('management/tools/index.tpl');
 	}

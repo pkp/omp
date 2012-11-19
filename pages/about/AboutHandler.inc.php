@@ -28,7 +28,7 @@ class AboutHandler extends Handler {
 	function setupTemplate($request) {
 		parent::setupTemplate($request);
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$press =& $request->getPress();
 		AppLocale::requireComponents(LOCALE_COMPONENT_OMP_MANAGER, LOCALE_COMPONENT_PKP_MANAGER);
 
@@ -50,7 +50,7 @@ class AboutHandler extends Handler {
 		$pressSettingsDao =& DAORegistry::getDAO('PressSettingsDAO');
 		$press =& $request->getPress();
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$pressSettings =& $pressSettingsDao->getPressSettings($press->getId());
 		$templateMgr->assign_by_ref('pressSettings', $pressSettings);
 		$templateMgr->display('about/contact.tpl');
@@ -69,7 +69,7 @@ class AboutHandler extends Handler {
 		$pressSettingsDao =& DAORegistry::getDAO('PressSettingsDAO');
 		$press =& $request->getPress();
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$pressSettings =& $pressSettingsDao->getPressSettings($press->getId());
 		$templateMgr->assign_by_ref('pressSettings', $pressSettings);
 		$templateMgr->display('about/description.tpl');
@@ -86,7 +86,7 @@ class AboutHandler extends Handler {
 
 		$press =& $request->getPress();
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->assign_by_ref('contributorNote', $press->getLocalizedSetting('contributorNote'));
 		$templateMgr->assign_by_ref('contributors', $press->getSetting('contributors'));
 		$templateMgr->assign('sponsorNote', $press->getLocalizedSetting('sponsorNote'));
@@ -105,7 +105,7 @@ class AboutHandler extends Handler {
 		$this->setupTemplate($request);
 
 		$press =& $request->getPress();
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 
 		$templateMgr->display('about/editorialTeam.tpl');
 	}
@@ -125,7 +125,7 @@ class AboutHandler extends Handler {
 		$seriesEditorsDao =& DAORegistry::getDAO('SeriesEditorsDAO');
 		$press =& $request->getPress();
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->display('about/editorialPolicies.tpl');
 	}
 
@@ -142,7 +142,7 @@ class AboutHandler extends Handler {
 		$settingsDao =& DAORegistry::getDAO('PressSettingsDAO');
 		$press =& $request->getPress();
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$pressSettings =& $settingsDao->getPressSettings($press->getId());
 		$submissionChecklist = $press->getLocalizedSetting('submissionChecklist');
 		if (!empty($submissionChecklist)) {
@@ -167,7 +167,7 @@ class AboutHandler extends Handler {
 		$versionDao =& DAORegistry::getDAO('VersionDAO');
 		$version =& $versionDao->getCurrentVersion();
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->assign('ompVersion', $version->getVersionString(false));
 
 		foreach (array(AppLocale::getLocale(), $primaryLocale = AppLocale::getPrimaryLocale(), 'en_US') as $locale) {

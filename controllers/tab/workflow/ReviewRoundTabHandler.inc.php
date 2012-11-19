@@ -94,7 +94,7 @@ class ReviewRoundTabHandler extends Handler {
 		$reviewRound =& $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ROUND);
 
 		// Add the round information to the template.
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->assign('stageId', $stageId);
 		$templateMgr->assign('reviewRoundId', $reviewRound->getId());
 		$templateMgr->assign_by_ref('monograph', $monograph);

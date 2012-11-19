@@ -65,7 +65,7 @@ class UserEmailForm extends Form {
 		$userDao =& DAORegistry::getDAO('UserDAO');
 		$user =& $userDao->getById($this->userId);
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->assign('userId', $this->userId);
 		$templateMgr->assign('userFullName', $user->getFullName());
 		$templateMgr->assign('userEmail', $user->getEmail());

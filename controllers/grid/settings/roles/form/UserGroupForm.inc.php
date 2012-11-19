@@ -109,7 +109,7 @@ class UserGroupForm extends Form {
 	 * @see Form::fetch()
 	 */
 	function fetch(&$request) {
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 
 		import('classes.security.RoleDAO');
 		$roleOptions = RoleDAO::getRoleNames(true);

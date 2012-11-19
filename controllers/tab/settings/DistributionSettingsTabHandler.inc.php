@@ -66,7 +66,7 @@ class DistributionSettingsTabHandler extends ManagerSettingsTabHandler {
 			// Fetch and return the JSON-encoded form contents
 			$plugin =& $plugins[$paymentPluginName];
 			$params = array(); // Blank -- OJS compatibility. Need to supply by reference.
-			$templateMgr =& TemplateManager::getManager();
+			$templateMgr =& TemplateManager::getManager($request);
 
 			// Expose current settings to the template
 			$press =& $request->getPress();

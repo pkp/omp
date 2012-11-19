@@ -391,7 +391,7 @@ class ReviewerGridHandler extends GridHandler {
 	 * @return string serialized JSON object
 	 */
 	function readReview($args, &$request) {
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 
 		// Retrieve monograph.
 		$templateMgr->assign_by_ref('monograph', $this->getMonograph());
@@ -613,7 +613,7 @@ class ReviewerGridHandler extends GridHandler {
 
 		$reviewAssignment =& $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ASSIGNMENT);
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->assign_by_ref('reviewAssignment', $reviewAssignment);
 
 

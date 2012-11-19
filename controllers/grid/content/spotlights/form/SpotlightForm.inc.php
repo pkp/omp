@@ -49,7 +49,7 @@ class SpotlightForm extends Form {
 	 * @see Form::fetch()
 	 */
 	function fetch($request) {
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 
 		$spotlightDao =& DAORegistry::getDAO('SpotlightDAO');
 		$spotlight =& $spotlightDao->getById($this->getSpotlightId());

@@ -43,7 +43,7 @@ class TranslatorHandler extends Handler {
 
 		$rangeInfo = Handler::getRangeInfo('locales');
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		import('lib.pkp.classes.core.ArrayItemIterator');
 		$templateMgr->assign('locales', new ArrayItemIterator(AppLocale::getAllLocales(), $rangeInfo->getPage(), $rangeInfo->getCount()));
 		$templateMgr->assign('masterLocale', MASTER_LOCALE);
@@ -57,7 +57,7 @@ class TranslatorHandler extends Handler {
 
 	function setupTemplate($request, $subclass = true) {
 		parent::setupTemplate($request);
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		AppLocale::requireComponents(LOCALE_COMPONENT_PKP_ADMIN, LOCALE_COMPONENT_PKP_MANAGER);
 		$templateMgr->assign('helpTopicId', 'plugins.generic.TranslatorPlugin');
 	}
@@ -75,7 +75,7 @@ class TranslatorHandler extends Handler {
 		$miscFiles = TranslatorAction::getMiscLocaleFiles($locale);
 		$emails = TranslatorAction::getEmailTemplates($locale);
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 
 		$localeFilesRangeInfo = Handler::getRangeInfo('localeFiles');
 		$miscFilesRangeInfo = Handler::getRangeInfo('miscFiles');
@@ -109,7 +109,7 @@ class TranslatorHandler extends Handler {
 			}
 		}
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->assign('locale', $locale);
 		$templateMgr->assign('errors', TranslatorAction::testLocale($locale, MASTER_LOCALE));
 		$templateMgr->assign('emailErrors', TranslatorAction::testEmails($locale, MASTER_LOCALE));
@@ -238,7 +238,7 @@ class TranslatorHandler extends Handler {
 			return $this->edit(array($locale));
 		}
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		if(!is_writeable(Core::getBaseDir() . DIRECTORY_SEPARATOR . $filename)) {
 			$templateMgr->assign('error', true);
 		}
@@ -289,7 +289,7 @@ class TranslatorHandler extends Handler {
 			return $this->edit(array($locale));
 		}
 		$referenceFilename = TranslatorAction::determineReferenceFilename($locale, $filename);
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 
 		$templateMgr->assign('locale', $locale);
 		$templateMgr->assign('filename', $filename);
@@ -383,7 +383,7 @@ class TranslatorHandler extends Handler {
 
 		if (!in_array($emailKey, array_keys($referenceEmails)) && !in_array($emailKey, array_keys($emails))) return $this->index();
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->assign('emailKey', $emailKey);
 		$templateMgr->assign('locale', $locale);
 		$templateMgr->assign('email', isset($emails[$emailKey])?$emails[$emailKey]:'');

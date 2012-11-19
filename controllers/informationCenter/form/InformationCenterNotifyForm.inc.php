@@ -41,7 +41,7 @@ class InformationCenterNotifyForm extends Form {
 	 * @see Form::fetch()
 	 */
 	function fetch(&$request) {
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		if($this->itemType == ASSOC_TYPE_MONOGRAPH) {
 			$monographId = $this->itemId;
 		} else {

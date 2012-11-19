@@ -65,7 +65,7 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 		$this->setupTemplate($request);
 
 		// Assign variables to the template manager and display
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$fileName = (($s = $this->monographFile->getLocalizedName()) != '') ? $s : __('common.untitled');
 		if (($i = $this->monographFile->getRevision()) > 1) $fileName .= " ($i)"; // Add revision number to label
 		if (empty($fileName) ) $fileName = __('common.untitled');
@@ -99,7 +99,7 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 	function listPastNotes($args, &$request) {
 		$this->setupTemplate($request);
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$noteDao =& DAORegistry::getDAO('NoteDAO');
 
 		$monographFile = $this->monographFile;
@@ -212,7 +212,7 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 			$this->monographFile->getFileId()
 		);
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->assign_by_ref('eventLogEntries', $fileEvents);
 		$templateMgr->assign('historyListId', 'historyList');
 		return $templateMgr->fetchJson('controllers/informationCenter/historyList.tpl');
@@ -226,7 +226,7 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 	function listPastHistory($args, &$request) {
 		$this->setupTemplate($request);
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$monographFileEventLogDao =& DAORegistry::getDAO('MonographFileEventLogDAO');
 
 		$monographFile = $this->monographFile;
@@ -307,7 +307,7 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 	 */
 	function setupTemplate($request) {
 		// Provide access to notes from past revisions/file IDs
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->assign('showEarlierEntries', true);
 
 		// Get the latest history item to display in the header

@@ -38,7 +38,7 @@ class UserRoleForm extends UserForm {
 	 */
 	function display($args, &$request) {
 		$helpTopicId = 'press.users.createNewUser';
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 
 		$templateMgr->assign('userId', $this->userId);
 		$templateMgr->assign('userFullName', $this->_userFullName);

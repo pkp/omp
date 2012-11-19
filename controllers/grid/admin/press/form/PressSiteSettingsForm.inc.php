@@ -44,7 +44,7 @@ class PressSiteSettingsForm extends Form {
 	function fetch($args, &$request) {
 		$json = new JSONMessage();
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->assign('pressId', $this->pressId);
 		$templateMgr->assign('helpTopicId', 'site.siteManagement');
 

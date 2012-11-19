@@ -388,7 +388,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 		// Form handling
 		$router =& $request->getRouter();
 		$autocompleteUrl = $router->url($request, null, null, 'getAuditorAutocomplete', null, $this->getRequestArgs());
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->assign('autocompleteUrl', $autocompleteUrl);
 
 		import('controllers.grid.files.signoff.form.FileAuditorForm');
@@ -633,7 +633,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 	 */
 	function viewLibrary($args, &$request) {
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->assign('canEdit', false);
 		return $templateMgr->fetchJson('controllers/tab/settings/library.tpl');
 	}

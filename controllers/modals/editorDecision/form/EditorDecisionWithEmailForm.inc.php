@@ -148,7 +148,7 @@ class EditorDecisionWithEmailForm extends EditorDecisionForm {
 		// save operation to allow the EditorDecisionHandler authorize the review
 		// round object.
 		if ($this->getSaveFormOperation()) {
-			$templateMgr =& TemplateManager::getManager();
+			$templateMgr =& TemplateManager::getManager($request);
 			$templateMgr->assign('saveFormOperation', $this->getSaveFormOperation());
 		}
 

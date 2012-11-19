@@ -293,7 +293,7 @@ class EditorDecisionHandler extends Handler {
 			fatalError('Invalid publication format id!');
 		}
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->assign_by_ref('publicationFormat', $publicationFormat);
 		$templateMgr->assign_by_ref('monograph', $monograph);
 

@@ -49,7 +49,7 @@ class CarouselHandler extends Handler {
 		$this->setupTemplate($request);
 
 		$press =& $request->getPress();
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 
 		// Expose the featured monograph IDs and associated params
 		$featureDao =& DAORegistry::getDAO('FeatureDAO');

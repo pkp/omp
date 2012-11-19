@@ -34,7 +34,7 @@ class SidebarHandler extends Handler {
 	 */
 	function index($args, &$request) {
 		$this->setupTemplate($request);
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		return $templateMgr->fetchJson('sidebar/sidebar.tpl');
 	}
 }

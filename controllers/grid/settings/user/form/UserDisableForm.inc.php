@@ -67,7 +67,7 @@ class UserDisableForm extends Form {
 	 * Display the form.
 	 */
 	function display($args, &$request) {
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->assign('userId', $this->_userId);
 		$templateMgr->assign('enable', $this->_enable);
 

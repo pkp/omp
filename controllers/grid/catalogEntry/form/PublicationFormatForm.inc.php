@@ -100,7 +100,7 @@ class PublicationFormatForm extends Form {
 		$press =& $request->getPress();
 
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$onixCodelistItemDao =& DAORegistry::getDAO('ONIXCodelistItemDAO');
 		$templateMgr->assign('entryKeys', $onixCodelistItemDao->getCodes('List7')); // List7 is for object formats
 

@@ -104,7 +104,7 @@ class MarketForm extends Form {
 	 */
 	function fetch(&$request) {
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$publicationFormatId = null;
 
 		$monograph =& $this->getMonograph();

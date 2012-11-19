@@ -229,7 +229,7 @@ class FileUploadWizardHandler extends FileManagementHandler {
 	 * @return string a serialized JSON object
 	 */
 	function startWizard($args, &$request) {
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 
 		// Assign the monograph.
 		$monograph =& $this->getMonograph();
@@ -433,7 +433,7 @@ class FileUploadWizardHandler extends FileManagementHandler {
 		// Validation not req'd -- just generating a JSON update message.
 		$fileId = (int)$request->getUserVar('fileId');
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->assign('monographId', $monograph->getId());
 		$templateMgr->assign('fileId', $fileId);
 

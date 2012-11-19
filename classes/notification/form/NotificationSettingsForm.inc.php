@@ -75,7 +75,7 @@ class NotificationSettingsForm extends PKPNotificationSettingsForm {
 	 * Display the form
 	 */
 	function display(&$request) {
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->assign('notificationSettingCategories', $this->_getNotificationSettingCategories());
 		$templateMgr->assign('notificationSettings',  $this->_getNotificationSettingsMap());
 		return parent::display($request);

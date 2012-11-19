@@ -53,7 +53,7 @@ class AdminPressHandler extends AdminHandler {
 			);
 		}
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->assign('openWizardLinkAction', $openWizardLinkAction);
 		$templateMgr->assign('helpTopicId', 'site.siteManagement');
 		$templateMgr->display('admin/presses.tpl');

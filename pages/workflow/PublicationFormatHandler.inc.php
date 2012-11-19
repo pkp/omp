@@ -93,7 +93,7 @@ class PublicationFormatHandler extends Handler {
 	 */
 	function fetchPublicationFormat($args, $request) {
 		// Fetch the template
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		return $templateMgr->fetchJson('workflow/publicationFormat.tpl');
 	}
 }

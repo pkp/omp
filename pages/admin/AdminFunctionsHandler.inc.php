@@ -40,7 +40,7 @@ class AdminFunctionsHandler extends AdminHandler {
 		$versionDao =& DAORegistry::getDAO('VersionDAO');
 		$currentVersion =& $versionDao->getCurrentVersion();
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->assign_by_ref('currentVersion', $currentVersion);
 		if ($request->getUserVar('versionCheck')) {
 			$latestVersionInfo =& VersionCheck::getLatestVersion();
@@ -75,7 +75,7 @@ class AdminFunctionsHandler extends AdminHandler {
 	 * @param $request PKPRequest
 	 */
 	function clearTemplateCache($args, &$request) {
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->clearTemplateCache();
 		$request->redirect(null, 'admin');
 	}

@@ -119,7 +119,7 @@ class CatalogEntryHandler extends Handler {
 	 * @param $args array
 	 */
 	function fetch($request, $args) {
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 
 		$monograph =& $this->getMonograph();
 

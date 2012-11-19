@@ -99,7 +99,7 @@ class NewSignoffNoteForm extends NewNoteForm {
 	 * @see NewNoteForm::fetch()
 	 */
 	function fetch($request) {
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->assign('linkParams', $this->_actionArgs);
 		$templateMgr->assign('showEarlierEntries', false);
 		$templateMgr->assign('signoffId', $this->signoffId);

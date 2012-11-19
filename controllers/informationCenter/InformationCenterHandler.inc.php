@@ -71,7 +71,7 @@ class InformationCenterHandler extends Handler {
 	 */
 	function viewInformationCenter(&$request) {
 		$this->setupTemplate($request);
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		return $templateMgr->fetchJson('controllers/informationCenter/informationCenter.tpl');
 	}
 
@@ -119,7 +119,7 @@ class InformationCenterHandler extends Handler {
 	function listNotes($args, &$request) {
 		$this->setupTemplate($request);
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$noteDao =& DAORegistry::getDAO('NoteDAO');
 		$templateMgr->assign('notes', $noteDao->getByAssoc($this->_getAssocType(), $this->_getAssocId()));
 
@@ -182,7 +182,7 @@ class InformationCenterHandler extends Handler {
 	function viewHistory($args, &$request) {
 		$this->setupTemplate($request);
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		return $templateMgr->fetchJson('controllers/informationCenter/history.tpl');
 	}
 
@@ -219,7 +219,7 @@ class InformationCenterHandler extends Handler {
 		AppLocale::requireComponents(LOCALE_COMPONENT_OMP_SUBMISSION, LOCALE_COMPONENT_PKP_SUBMISSION);
 
 		$linkParams = $this->_getLinkParams();
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 
 		// Preselect tab from keywords 'notes', 'notify', 'history'
 		switch ($request->getUserVar('tab')) {

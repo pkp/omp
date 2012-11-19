@@ -42,7 +42,7 @@ class DashboardHandler extends Handler {
 	 * @param $args array
 	 */
 	function index($args, &$request) {
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$this->setupTemplate($request);
 		$templateMgr->display('dashboard/index.tpl');
 	}
@@ -53,7 +53,7 @@ class DashboardHandler extends Handler {
 	 * @param $request PKPRequest
 	 */
 	function tasks($args, &$request) {
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$this->setupTemplate($request);
 
 		// Get all the presses in the system, to determine which 'new submission' entry point we display
@@ -99,7 +99,7 @@ class DashboardHandler extends Handler {
 	 * @param $request PKPRequest
 	 */
 	function submissions($args, &$request) {
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$this->setupTemplate($request);
 
 		return $templateMgr->fetchJson('dashboard/submissions.tpl');

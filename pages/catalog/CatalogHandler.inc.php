@@ -37,7 +37,7 @@ class CatalogHandler extends Handler {
 	 * @param $request PKPRequest
 	 */
 	function index($args, &$request) {
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$this->setupTemplate($request);
 		$press =& $request->getPress();
 
@@ -56,7 +56,7 @@ class CatalogHandler extends Handler {
 	 * @param $request PKPRequest
 	 */
 	function newReleases($args, &$request) {
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$this->setupTemplate($request);
 		$press =& $request->getPress();
 
@@ -76,7 +76,7 @@ class CatalogHandler extends Handler {
 	 * @return string
 	 */
 	function category($args, &$request) {
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$press =& $request->getPress();
 		$this->setupTemplate($request);
 
@@ -113,7 +113,7 @@ class CatalogHandler extends Handler {
 	 * @return string
 	 */
 	function series($args, &$request) {
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$press =& $request->getPress();
 		$this->setupTemplate($request);
 
@@ -149,7 +149,7 @@ class CatalogHandler extends Handler {
 	 * @return string
 	 */
 	function results($args, &$request) {
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$press =& $request->getPress();
 		$this->setupTemplate($request);
 
@@ -256,7 +256,7 @@ class CatalogHandler extends Handler {
 	 * Set up the basic template.
 	 */
 	function setupTemplate(&$request) {
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$press =& $request->getPress();
 		if ($press) {
 			$templateMgr->assign('pressCurrency', $press->getSetting('pressCurrency'));

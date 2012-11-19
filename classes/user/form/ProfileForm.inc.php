@@ -103,7 +103,7 @@ class ProfileForm extends Form {
 	 * Display the form.
 	 */
 	function display($args, &$request) {
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 
 		$user = $this->getUser();
 		$templateMgr->assign('username', $user->getUsername());

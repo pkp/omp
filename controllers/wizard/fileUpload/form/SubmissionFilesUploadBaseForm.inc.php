@@ -263,7 +263,7 @@ class SubmissionFilesUploadBaseForm extends Form {
 					__('review.ensuringBlindReview')),
 				__('review.ensuringBlindReview'));
 
-			$templateMgr =& TemplateManager::getManager();
+			$templateMgr =& TemplateManager::getManager($request);
 			$templateMgr->assign('ensuringLink', $ensuringLink);
 		}
 

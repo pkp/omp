@@ -107,7 +107,7 @@ class RepresentativeForm extends Form {
 	 */
 	function fetch(&$request) {
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 
 		$monograph =& $this->getMonograph();
 		$templateMgr->assign('monographId', $monograph->getId());

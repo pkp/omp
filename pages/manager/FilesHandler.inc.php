@@ -61,7 +61,7 @@ class FilesHandler extends ManagerHandler {
 				closedir($dh);
 			}
 			ksort($files);
-			$templateMgr =& TemplateManager::getManager();
+			$templateMgr =& TemplateManager::getManager($request);
 			$templateMgr->assign_by_ref('files', $files);
 			$templateMgr->assign('currentDir', $currentDir);
 			$templateMgr->assign('parentDir', $parentDir);

@@ -32,7 +32,7 @@ class ReviewerReviewStep1Form extends ReviewerReviewForm {
 	 * @see Form::fetch()
 	 */
 	function fetch(&$request) {
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 
 		// Add submission parameters.
 		$submission =& $this->getReviewerSubmission();

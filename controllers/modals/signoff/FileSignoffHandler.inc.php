@@ -152,7 +152,7 @@ class FileSignoffHandler extends FileManagementHandler {
 		$signoffFile =& $submissionFileDao->getLatestRevision($signoff->getAssocId());
 
 		// Set up the template
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->assign('monographId', $monograph->getId());
 		$templateMgr->assign('stageId', $stageId);
 		$templateMgr->assign('signoffId', $signoff->getId());

@@ -104,7 +104,7 @@ class WorkflowHandler extends Handler {
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 		$workflowStages = $userGroupDao->getWorkflowStageKeysAndPaths();
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 
 		// Assign the authorized monograph.
 		$templateMgr->assign_by_ref('monograph', $monograph);
@@ -194,7 +194,7 @@ class WorkflowHandler extends Handler {
 	 */
 	function submission($args, &$request) {
 		// Render the view.
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->display('workflow/submission.tpl');
 	}
 
@@ -205,7 +205,7 @@ class WorkflowHandler extends Handler {
 	 */
 	function internalReview($args, &$request) {
 		// Use different ops so we can identify stage by op.
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->assign('reviewRoundOp', 'internalReviewRound');
 		return $this->_review($args, $request);
 	}
@@ -217,7 +217,7 @@ class WorkflowHandler extends Handler {
 	 */
 	function externalReview($args, &$request) {
 		// Use different ops so we can identify stage by op.
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->assign('reviewRoundOp', 'externalReviewRound');
 		return $this->_review($args, $request);
 	}
@@ -229,7 +229,7 @@ class WorkflowHandler extends Handler {
 	 */
 	function editorial(&$args, &$request) {
 		// Render the view.
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->display('workflow/editorial.tpl');
 	}
 
@@ -239,7 +239,7 @@ class WorkflowHandler extends Handler {
 	 * @param $args array
 	 */
 	function production(&$args, &$request) {
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		$notificationRequestOptions = array(
 			NOTIFICATION_LEVEL_NORMAL => array(
@@ -264,7 +264,7 @@ class WorkflowHandler extends Handler {
 	 * @param $args array
 	 */
 	function productionFormatsTab(&$args, &$request) {
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		$publicationFormats =& $publicationFormatDao->getByMonographId($monograph->getId());
@@ -334,7 +334,7 @@ class WorkflowHandler extends Handler {
 		}
 
 		// Assign the actions to the template.
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->assign('editorActions', $editorActions);
 		$templateMgr->assign('stageId', $stageId);
 		return $templateMgr->fetchJson('workflow/editorialLinkActions.tpl');
@@ -347,7 +347,7 @@ class WorkflowHandler extends Handler {
 	 */
 	function submissionProgressBar($args, &$request) {
 		// Assign the actions to the template.
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$press =& $request->getPress();
 
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
@@ -449,7 +449,7 @@ class WorkflowHandler extends Handler {
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		$selectedStageId = $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 
 		// Get all review rounds for this submission, on the current stage.
 		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');

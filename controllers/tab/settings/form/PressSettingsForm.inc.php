@@ -1,4 +1,4 @@
-<?php
+$request<?php
 
 /**
  * @file controllers/tab/settings/form/PressSettingsForm.inc.php
@@ -97,7 +97,7 @@ class PressSettingsForm extends Form {
 	 * @see Form::fetch()
 	 */
 	function fetch(&$request, $params = null) {
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 
 		// Insert the wizardMode parameter in params array to pass to template.
 		$params = array_merge((array)$params, array('wizardMode' => $this->getWizardMode()));

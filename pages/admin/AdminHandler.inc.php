@@ -77,7 +77,7 @@ class AdminHandler extends Handler {
 	function index($args, &$request) {
 		$this->setupTemplate($request);
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->assign('helpTopicId', 'site.index');
 
 		$templateMgr->display('admin/index.tpl');
@@ -89,7 +89,7 @@ class AdminHandler extends Handler {
 	 * @param $request PKPRequest
 	 */
 	function settings($args, &$request) {
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$this->setupTemplate($request);
 		$templateMgr->display('admin/settings.tpl');
 	}

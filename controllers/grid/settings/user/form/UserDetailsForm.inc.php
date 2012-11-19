@@ -123,7 +123,7 @@ class UserDetailsForm extends UserForm {
 	 */
 	function display($args, &$request) {
 		$site =& $request->getSite();
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$userDao =& DAORegistry::getDAO('UserDAO');
 
 		$templateMgr->assign('genderOptions', $userDao->getGenderOptions());

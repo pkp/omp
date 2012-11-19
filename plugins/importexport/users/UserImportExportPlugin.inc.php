@@ -47,12 +47,11 @@ class UserImportExportPlugin extends ImportExportPlugin {
 		return __('plugins.importexport.users.description');
 	}
 
-	function display($args) {
-		$templateMgr =& TemplateManager::getManager();
-		$request =& $this->getRequest();
+	function display($args, $request) {
+		$templateMgr =& TemplateManager::getManager($request);
 		$press =& $request->getPress();
 
-		parent::display($args);
+		parent::display($args, $request);
 
 		$templateMgr->assign('roleOptions', array(
 			'' => 'manager.people.doNotEnroll',

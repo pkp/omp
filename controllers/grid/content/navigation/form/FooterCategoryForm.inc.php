@@ -69,7 +69,7 @@ class FooterCategoryForm extends Form {
 	 * @see Form::fetch()
 	 */
 	function fetch($request) {
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 
 		$footerCategory =& $this->getFooterCategory();
 		$templateMgr->assign_by_ref('footerCategory', $footerCategory);

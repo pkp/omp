@@ -49,7 +49,7 @@ class SocialMediaForm extends Form {
 	 * @see Form::fetch()
 	 */
 	function fetch($request) {
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 
 		$socialMediaDao =& DAORegistry::getDAO('SocialMediaDAO');
 		$socialMedia =& $this->getSocialMedia();

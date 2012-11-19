@@ -149,7 +149,7 @@ class CategoryForm extends Form {
 	function fetch($request) {
 		$categoryDao =& DAORegistry::getDAO('CategoryDAO');
 		$press =& $request->getPress();
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->assign('categoryId', $this->getCategoryId());
 
 		// Provide a list of root categories to the template

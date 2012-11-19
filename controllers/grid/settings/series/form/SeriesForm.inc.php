@@ -103,7 +103,7 @@ class SeriesForm extends Form {
 	 * @see Form::fetch()
 	 */
 	function fetch(&$request) {
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->assign('seriesId', $this->getSeriesId());
 
 		$press =& $request->getPress();

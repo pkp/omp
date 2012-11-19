@@ -33,7 +33,7 @@ class LoginHandler extends PKPLoginHandler {
 				$this->setupTemplate($request);
 				// We don't have administrative rights
 				// over this user. Display an error.
-				$templateMgr =& TemplateManager::getManager();
+				$templateMgr =& TemplateManager::getManager($request);
 				$templateMgr->assign('pageTitle', 'manager.people');
 				$templateMgr->assign('errorMsg', 'manager.people.noAdministrativeRights');
 				$templateMgr->assign('backLink', $request->url(null, null, 'people', 'all'));

@@ -56,7 +56,7 @@ class PressSettingsWizardHandler extends Handler {
 	 * @return string a serialized JSON object
 	 */
 	function startWizard($args, &$request) {
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		AppLocale::requireComponents(
 			LOCALE_COMPONENT_OMP_MANAGER,
 			LOCALE_COMPONENT_PKP_MANAGER

@@ -33,7 +33,7 @@ class ReviewerReviewStep2Form extends ReviewerReviewForm {
 	 * @see Form::fetch()
 	 */
 	function fetch(&$request) {
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$press = $this->request->getPress();
 
 		$reviewerGuidelines = $press->getLocalizedSetting('reviewGuidelines');

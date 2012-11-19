@@ -45,9 +45,9 @@ class Onix30ExportPlugin extends ImportExportPlugin {
 		return __('plugins.importexport.onix30.description');
 	}
 
-	function display($args) {
-		$templateMgr =& TemplateManager::getManager();
-		parent::display($args);
+	function display($args, $request) {
+		$templateMgr =& TemplateManager::getManager($request);
+		parent::display($args, $request);
 
 		$application = PKPApplication::getApplication();
 		$request = $application->getRequest();

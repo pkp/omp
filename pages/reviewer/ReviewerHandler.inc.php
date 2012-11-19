@@ -55,7 +55,7 @@ class ReviewerHandler extends Handler {
 		AppLocale::requireComponents(LOCALE_COMPONENT_OMP_SUBMISSION);
 		$this->setupTemplate($request);
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->assign_by_ref('submission', $reviewerSubmission);
 		$templateMgr->assign('reviewIsCompleted', $reviewAssignment->getDateCompleted()?1:0);
 		$templateMgr->display('reviewer/review/reviewStepHeader.tpl');
@@ -98,7 +98,7 @@ class ReviewerHandler extends Handler {
 			$json = new JSONMessage(true, $reviewerForm->fetch($request));
 			return $json->getString();
 		} else {
-			$templateMgr =& TemplateManager::getManager();
+			$templateMgr =& TemplateManager::getManager($request);
 			$templateMgr->assign_by_ref('submission', $reviewerSubmission);
 			$templateMgr->assign('step', 4);
 			return $templateMgr->fetchJson('reviewer/review/reviewCompleted.tpl');
@@ -151,7 +151,7 @@ class ReviewerHandler extends Handler {
 
 		$this->setupTemplate($request);
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->assign('monographId', $reviewerSubmission->getId());
 
 		return $templateMgr->fetchJson('reviewer/review/modal/regretMessage.tpl');

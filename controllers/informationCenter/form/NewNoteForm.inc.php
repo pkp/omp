@@ -64,7 +64,7 @@ class NewNoteForm extends Form {
 	 * @see Form::fetch()
 	 */
 	function fetch(&$request) {
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 
 		$noteDao =& DAORegistry::getDAO('NoteDAO');
 		$notes =& $noteDao->getByAssoc($this->getAssocType(), $this->getAssocId());

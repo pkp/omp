@@ -50,7 +50,7 @@ class SubmissionSubmitForm extends Form {
 	 * Display the form.
 	 */
 	function display($request = null) {
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 
 		$templateMgr->assign('monographId', $this->monographId);
 		$templateMgr->assign('submitStep', $this->step);

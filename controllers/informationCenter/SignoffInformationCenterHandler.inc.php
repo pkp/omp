@@ -104,7 +104,7 @@ class SignoffInformationCenterHandler extends Handler {
 
 		$signoff =& $this->getAuthorizedContextObject(ASSOC_TYPE_SIGNOFF);
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->assign_by_ref('signoff', $signoff);
 
 		return $templateMgr->fetchJson('controllers/informationCenter/signoffHistory.tpl');
@@ -122,7 +122,7 @@ class SignoffInformationCenterHandler extends Handler {
 		$stageId = $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->assign('monographId', $monograph->getId());
 		$templateMgr->assign('stageId', $stageId);
 		$templateMgr->assign('symbolic', (string) $request->getUserVar('symbolic'));
@@ -221,7 +221,7 @@ class SignoffInformationCenterHandler extends Handler {
 		$signoff =& $this->signoff;
 		$monograph =& $this->monograph;
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$noteDao =& DAORegistry::getDAO('NoteDAO');
 		$notesFactory =& $noteDao->getByAssoc(ASSOC_TYPE_SIGNOFF, $signoff->getId());
 		$notes = $notesFactory->toAssociativeArray();

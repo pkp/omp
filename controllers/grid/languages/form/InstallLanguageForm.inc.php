@@ -46,7 +46,7 @@ class InstallLanguageForm extends Form {
 		$installedLocales = $this->getData('installedLocales');
 		$notInstalledLocales = array_diff(array_keys($allLocales), $installedLocales);
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->assign('allLocales', $allLocales);
 		$templateMgr->assign('notInstalledLocales', $notInstalledLocales);
 

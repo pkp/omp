@@ -43,7 +43,7 @@ class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
 	function display($request) {
 		$user =& $request->getUser();
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 
 		// FIXME: If this user is a series editor, they are allowed
 		// to submit to series flagged as "editor-only" for

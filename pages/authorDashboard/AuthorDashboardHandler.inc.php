@@ -51,7 +51,7 @@ class AuthorDashboardHandler extends Handler {
 	function submission($args, &$request) {
 		// Pass the authorized monograph on to the template.
 		$this->setupTemplate($request);
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		$templateMgr->assign_by_ref('monograph', $monograph);
 
@@ -167,7 +167,7 @@ class AuthorDashboardHandler extends Handler {
 		$monographEmailFactory =& $monographEmailLogDao->getByEventType($monograph->getId(), MONOGRAPH_EMAIL_EDITOR_NOTIFY_AUTHOR, $user->getId());
 		while ($email =& $monographEmailFactory->next()) { // validate the email id for this user.
 			if ($email->getId() == $monographEmailId) {
-				$templateMgr =& TemplateManager::getManager();
+				$templateMgr =& TemplateManager::getManager($request);
 				$templateMgr->assign_by_ref('monographEmail', $email);
 				return $templateMgr->fetchJson('authorDashboard/monographEmail.tpl');
 			}

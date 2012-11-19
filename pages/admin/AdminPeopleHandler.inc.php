@@ -41,7 +41,7 @@ class AdminPeopleHandler extends AdminHandler {
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 
 		// retrieve the grid filter request variables so they can be
 		// passed along to the grid via the template.

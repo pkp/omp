@@ -106,7 +106,7 @@ class UserHandler extends Handler {
 			$userGroupDao->assignUserToGroup($user->getId(), $userGroup->getId());
 			$request->redirectUrl($request->getUserVar('source'));
 		} else {
-			$templateMgr =& TemplateManager::getManager();
+			$templateMgr =& TemplateManager::getManager($request);
 			$templateMgr->assign('message', $deniedKey);
 			return $templateMgr->display('common/message.tpl');
 		}
@@ -132,7 +132,7 @@ class UserHandler extends Handler {
 
 		$this->setupTemplate($request);
 		AppLocale::requireComponents(LOCALE_COMPONENT_PKP_USER);
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->assign('message', $authorizationMessage);
 		return $templateMgr->display('common/message.tpl');
 	}

@@ -59,7 +59,7 @@ class SiteSetupForm extends PKPSiteSettingsForm {
 		$cssView = $this->renderFileView($cssSettingName, $request);
 		$imageView = $this->renderFileView($imageSettingName, $request);
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->assign('locale', AppLocale::getLocale());
 		$templateMgr->assign('siteStyleFileExists', file_exists($siteStyleFilename));
 		$templateMgr->assign_by_ref('uploadCssLinkAction', $uploadCssLinkAction);
@@ -157,7 +157,7 @@ class SiteSetupForm extends PKPSiteSettingsForm {
 
 		// Only render the file view if we have a file.
 		if (is_array($file)) {
-			$templateMgr = TemplateManager::getManager();
+			$templateMgr = TemplateManager::getManager($request);
 			$deleteLinkAction =& $this->_getDeleteFileLinkAction($fileSettingName, $request);
 
 			// Get the right template to render the view.

@@ -120,7 +120,7 @@ class SubmissionHandler extends PKPSubmissionHandler {
 			}
 			$submitForm->display($request);
 		} elseif($step == 4) {
-			$templateMgr =& TemplateManager::getManager();
+			$templateMgr =& TemplateManager::getManager($request);
 			$templateMgr->assign_by_ref('press', $press);
 
 			// Retrieve the correct url for author review his monograph.
@@ -183,7 +183,7 @@ class SubmissionHandler extends PKPSubmissionHandler {
 		AppLocale::requireComponents(LOCALE_COMPONENT_OMP_SUBMISSION, LOCALE_COMPONENT_PKP_SUBMISSION);
 
 		// Get steps information.
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->assign('steps', $this->_getStepsNumberAndLocaleKeys());
 	}
 

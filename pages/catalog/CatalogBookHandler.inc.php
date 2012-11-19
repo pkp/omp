@@ -53,7 +53,7 @@ class CatalogBookHandler extends Handler {
 	 * @param $request PKPRequest
 	 */
 	function book($args, &$request) {
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$press =& $request->getPress();
 		$this->setupTemplate($request);
 		AppLocale::requireComponents(LOCALE_COMPONENT_OMP_SUBMISSION); // submission.synopsis

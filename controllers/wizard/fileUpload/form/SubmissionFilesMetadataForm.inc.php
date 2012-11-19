@@ -97,7 +97,7 @@ class SubmissionFilesMetadataForm extends Form {
 	 * @see Form::fetch()
 	 */
 	function fetch(&$request) {
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 
 		// Submission file.
 		$submissionFile =& $this->getSubmissionFile();

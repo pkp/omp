@@ -120,7 +120,7 @@ class SubmissionDocumentsFilesGridHandler extends LibraryFileGridHandler {
 	 */
 	function viewLibrary($args, &$request) {
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->assign('canEdit', false);
 		return $templateMgr->fetchJson('controllers/tab/settings/library.tpl');
 	}
