@@ -41,8 +41,8 @@ class AppearanceForm extends PressSettingsForm {
 			'pressPageHeader' => 'string',
 			'pressPageFooter' => 'string',
 			'navItems' => 'object',
-			// 'itemsPerPage' => 'int', // HIDDEN pending implementation of bug #6434
-			// 'numPageLinks' => 'int'
+			'itemsPerPage' => 'int',
+			'numPageLinks' => 'int'
 		);
 
 		AppLocale::requireComponents(LOCALE_COMPONENT_APPLICATION_COMMON);
