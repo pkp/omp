@@ -1,4 +1,4 @@
-$request<?php
+<?php
 
 /**
  * @file controllers/tab/settings/form/PressSettingsForm.inc.php
