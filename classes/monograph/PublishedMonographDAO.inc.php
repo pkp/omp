@@ -275,12 +275,11 @@ class PublishedMonographDAO extends MonographDAO {
 	/**
 	 * Creates and returns a published monograph object from a row
 	 * @param $row array
-	 * @param $callHooks boolean Whether or not to call hooks
 	 * @return PublishedMonograph object
 	 */
-	function &_fromRow($row, $callHooks = true) {
+	function &_fromRow($row) {
 		// Get the PublishedMonograph object, populated with Monograph data
-		$publishedMonograph =& parent::_fromRow($row, $callHooks);
+		$publishedMonograph =& parent::_fromRow($row);
 
 		// Add the additional PublishedMonograph data
 		$publishedMonograph->setDatePublished($this->datetimeFromDB($row['date_published']));
@@ -291,7 +290,7 @@ class PublishedMonographDAO extends MonographDAO {
 		$publishedMonograph->setAudienceRangeExact($row['audience_range_exact']);
 		$publishedMonograph->setCoverImage(unserialize($row['cover_image']));
 
-		if ($callHooks) HookRegistry::call('PublishedMonographDAO::_fromRow', array(&$publishedMonograph, &$row));
+		HookRegistry::call('PublishedMonographDAO::_fromRow', array(&$publishedMonograph, &$row));
 		return $publishedMonograph;
 	}
 
