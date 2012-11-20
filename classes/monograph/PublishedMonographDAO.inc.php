@@ -255,7 +255,7 @@ class PublishedMonographDAO extends MonographDAO {
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
-			$returner =& $this->_fromRow($result->GetRowAssoc(false));
+			$returner = $this->_fromRow($result->GetRowAssoc(false));
 		}
 
 		$result->Close();
@@ -277,9 +277,9 @@ class PublishedMonographDAO extends MonographDAO {
 	 * @param $row array
 	 * @return PublishedMonograph object
 	 */
-	function &_fromRow($row) {
+	function _fromRow($row) {
 		// Get the PublishedMonograph object, populated with Monograph data
-		$publishedMonograph =& parent::_fromRow($row);
+		$publishedMonograph = parent::_fromRow($row);
 
 		// Add the additional PublishedMonograph data
 		$publishedMonograph->setDatePublished($this->datetimeFromDB($row['date_published']));

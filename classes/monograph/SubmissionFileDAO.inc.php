@@ -107,7 +107,7 @@ class SubmissionFileDAO extends PKPSubmissionFileDAO {
 	 * @see PKPSubmissionFileDAO::getRevisionsByReviewRound()
 	 */
 	function &getRevisionsByReviewRound(&$reviewRound, $fileStage = null,
-	$uploaderUserId = null, $uploaderUserGroupId = null) {
+			$uploaderUserId = null, $uploaderUserGroupId = null) {
 		if (!is_a($reviewRound, 'ReviewRound')) {
 			$nullVar = null;
 			return $nullVar;
@@ -165,7 +165,7 @@ class SubmissionFileDAO extends PKPSubmissionFileDAO {
 	/**
 	 * @see PKPSubmissionFileDAO::fromRow()
 	 */
-	function &fromRow(&$row) {
+	function &fromRow($row) {
 		// Identify the appropriate file implementation for the
 		// given row.
 		if (isset($row['artwork_file_id']) && is_numeric($row['artwork_file_id'])) {

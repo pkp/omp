@@ -120,7 +120,7 @@ class MonographDAO extends DAO {
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
-			$returner =& $this->_fromRow($result->GetRowAssoc(false));
+			$returner = $this->_fromRow($result->GetRowAssoc(false));
 		}
 
 		$result->Close();
@@ -134,26 +134,9 @@ class MonographDAO extends DAO {
 	 * @param $row array
 	 * @return Monograph
 	 */
-	function &_fromRow(&$row) {
+	function _fromRow($row) {
 		$monograph = $this->newDataObject();
-		$this->_monographFromRow($monograph, $row);
-		return $monograph;
-	}
 
-	/**
-	 * Get a new data object representing the monograph.
-	 * @return Monograph
-	 */
-	function newDataObject() {
-		return new Monograph();
-	}
-
-	/**
-	 * Internal function to fill in the passed monograph object from the row.
-	 * @param $monograph Monograph output monograph
-	 * @param $row array input row
-	 */
-	function _monographFromRow(&$monograph, &$row) {
 		$monograph->setId($row['monograph_id']);
 		$monograph->setLocale($row['locale']);
 		$monograph->setUserId($row['user_id']);
@@ -175,7 +158,17 @@ class MonographDAO extends DAO {
 
 		$this->getDataObjectSettings('monograph_settings', 'monograph_id', $row['monograph_id'], $monograph);
 
-		HookRegistry::call('MonographDAO::_monographFromRow', array(&$monograph, &$row));
+		HookRegistry::call('MonographDAO::_fromRow', array(&$monograph, &$row));
+
+		return $monograph;
+	}
+
+	/**
+	 * Get a new data object representing the monograph.
+	 * @return Monograph
+	 */
+	function newDataObject() {
+		return new Monograph();
 	}
 
 	/**
