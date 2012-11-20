@@ -68,7 +68,7 @@ class RoleDAO extends PKPRoleDAO {
 	 * @param array $roleIds Only return role names of these IDs
 	 * @return array
 	 */
-	function getRoleNames($contextOnly = false, $roleIds = null) {
+	static function getRoleNames($contextOnly = false, $roleIds = null) {
 
 		$parentRoleNames = parent::getRoleNames($contextOnly);
 
