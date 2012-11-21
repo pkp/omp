@@ -33,7 +33,7 @@ class AuthorDashboardReviewRoundTabHandler extends AuthorDashboardHandler {
 	/**
 	 * @see PKPHandler::authorize()
 	 */
-	function authorize(&$request, $args, $roleAssignments) {
+	function authorize(&$request, &$args, $roleAssignments) {
 		$stageId = (int)$request->getUserVar('stageId');
 
 		// Authorize stage id.

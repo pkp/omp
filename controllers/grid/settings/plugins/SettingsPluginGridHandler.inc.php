@@ -78,7 +78,7 @@ class SettingsPluginGridHandler extends PluginGridHandler {
 	/**
 	 * @see GridHandler::authorize()
 	 */
-	function authorize($request, $args, $roleAssignments) {
+	function authorize($request, &$args, $roleAssignments) {
 		$category = $request->getUserVar('category');
 		$pluginName = $request->getUserVar('plugin');
 		$verb = $request->getUserVar('verb');

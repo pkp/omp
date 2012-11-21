@@ -111,7 +111,7 @@ class FileUploadWizardHandler extends FileManagementHandler {
 		);
 	}
 
-	function authorize($request, $args, $roleAssignments) {
+	function authorize($request, &$args, $roleAssignments) {
 		// This is validated in parent's authorization policy.
 		$stageId = (int)$request->getUserVar('stageId');
 

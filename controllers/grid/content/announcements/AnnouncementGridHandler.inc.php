@@ -34,7 +34,7 @@ class AnnouncementGridHandler extends GridHandler {
 	 * @param $roleAssignments array
 	 * @param $requireAnnouncementsEnabled Iff true, allow access only if press settings enable announcements
 	 */
-	function authorize($request, $args, $roleAssignments, $requireAnnouncementsEnabled = true) {
+	function authorize($request, &$args, $roleAssignments, $requireAnnouncementsEnabled = true) {
 
 		import('lib.pkp.classes.security.authorization.ContextRequiredPolicy');
 		$this->addPolicy(new ContextRequiredPolicy($request));

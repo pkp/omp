@@ -36,7 +36,7 @@ class SubmissionHandler extends PKPSubmissionHandler {
 	 * @param $args array
 	 * @param $roleAssignments array
 	 */
-	function authorize(&$request, $args, $roleAssignments) {
+	function authorize(&$request, &$args, $roleAssignments) {
 		// The policy for the submission handler depends on the
 		// step currently requested.
 		$step = isset($args[0]) ? (int) $args[0] : 1;
@@ -178,7 +178,7 @@ class SubmissionHandler extends PKPSubmissionHandler {
 	 * Setup common template variables.
 	 * @param $request Request
 	 */
-	function setupTemplate(&$request) {
+	function setupTemplate($request) {
 		parent::setupTemplate($request);
 		AppLocale::requireComponents(LOCALE_COMPONENT_OMP_SUBMISSION, LOCALE_COMPONENT_PKP_SUBMISSION);
 

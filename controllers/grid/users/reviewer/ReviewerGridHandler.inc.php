@@ -105,7 +105,7 @@ class ReviewerGridHandler extends GridHandler {
 	 * @param $args array
 	 * @param $roleAssignments array
 	 */
-	function authorize(&$request, $args, $roleAssignments) {
+	function authorize(&$request, &$args, $roleAssignments) {
 		$stageId = $request->getUserVar('stageId'); // This is being validated in OmpWorkflowStageAccessPolicy
 
 		// Not all actions need a stageId. Some work off the reviewAssignment which has the type and round.

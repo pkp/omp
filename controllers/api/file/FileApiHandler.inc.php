@@ -36,7 +36,7 @@ class FileApiHandler extends Handler {
 	//
 	// Implement methods from PKPHandler
 	//
-	function authorize(&$request, $args, $roleAssignments) {
+	function authorize(&$request, &$args, $roleAssignments) {
 		$monographFilesIds = $request->getUserVar('filesIdsAndRevisions');
 		$libraryFileId = $request->getUserVar('libraryFileId');
 

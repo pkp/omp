@@ -55,7 +55,7 @@ class InformationCenterHandler extends Handler {
 	 * @param $args array
 	 * @param $roleAssignments array
 	 */
-	function authorize(&$request, $args, $roleAssignments) {
+	function authorize(&$request, &$args, $roleAssignments) {
 		import('classes.security.authorization.OmpSubmissionAccessPolicy');
 		$this->addPolicy(new OmpSubmissionAccessPolicy($request, $args, $roleAssignments));
 		return parent::authorize($request, $args, $roleAssignments);
@@ -215,7 +215,7 @@ class InformationCenterHandler extends Handler {
 		assert(false);
 	}
 
-	function setupTemplate(&$request) {
+	function setupTemplate($request) {
 		AppLocale::requireComponents(LOCALE_COMPONENT_OMP_SUBMISSION, LOCALE_COMPONENT_PKP_SUBMISSION);
 
 		$linkParams = $this->_getLinkParams();

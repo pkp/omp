@@ -30,7 +30,7 @@ class FileManagementHandler extends Handler {
 	/**
 	 * @see PKPHandler::authorize()
 	 */
-	function authorize(&$request, $args, $roleAssignments) {
+	function authorize(&$request, &$args, $roleAssignments) {
 		// Allow both reviewers (if in review) and press roles.
 		import('classes.security.authorization.OmpReviewStageAccessPolicy');
 		$this->addPolicy(new OmpReviewStageAccessPolicy($request, $args, $roleAssignments, 'monographId', $request->getUserVar('stageId')), true);

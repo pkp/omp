@@ -33,7 +33,7 @@ class ManageFileApiHandler extends Handler {
 	//
 	// Implement methods from PKPHandler
 	//
-	function authorize(&$request, $args, $roleAssignments) {
+	function authorize(&$request, &$args, $roleAssignments) {
 		import('classes.security.authorization.OmpMonographFileAccessPolicy');
 		$this->addPolicy(new OmpMonographFileAccessPolicy($request, $args, $roleAssignments, MONOGRAPH_FILE_ACCESS_MODIFY));
 

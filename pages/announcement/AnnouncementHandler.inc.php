@@ -27,7 +27,7 @@ class AnnouncementHandler extends Handler {
 	//
 	// Implement methods from Handler.
 	//
-	function authorize($request, $args, $roleAssignments) {
+	function authorize($request, &$args, $roleAssignments) {
 		import('lib.pkp.classes.security.authorization.ContextRequiredPolicy');
 		$this->addPolicy(new ContextRequiredPolicy($request));
 

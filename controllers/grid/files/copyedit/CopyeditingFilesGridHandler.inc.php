@@ -44,7 +44,7 @@ class CopyeditingFilesGridHandler extends SignoffFilesGridHandler {
 	/**
 	 * @see SignoffFilesGridHandler::authorize()
 	 */
-	function authorize($request, $args, $roleAssignments) {
+	function authorize($request, &$args, $roleAssignments) {
 		// Approve copyediting file needs monograph access policy.
 		$router =& $request->getRouter();
 		if ($router->getRequestedOp($request) == 'approveCopyedit') {

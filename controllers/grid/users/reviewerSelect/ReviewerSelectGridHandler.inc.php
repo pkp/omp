@@ -40,7 +40,7 @@ class ReviewerSelectGridHandler extends GridHandler {
 	 * @param $args array
 	 * @param $roleAssignments array
 	 */
-	function authorize(&$request, $args, $roleAssignments) {
+	function authorize(&$request, &$args, $roleAssignments) {
 		$stageId = (int)$request->getUserVar('stageId');
 
 		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');

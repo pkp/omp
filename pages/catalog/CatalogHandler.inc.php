@@ -255,7 +255,7 @@ class CatalogHandler extends Handler {
 	/**
 	 * Set up the basic template.
 	 */
-	function setupTemplate(&$request) {
+	function setupTemplate($request) {
 		$templateMgr =& TemplateManager::getManager($request);
 		$press =& $request->getPress();
 		if ($press) {

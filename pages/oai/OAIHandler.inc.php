@@ -25,7 +25,7 @@ class OAIHandler extends Handler {
 		parent::Handler();
 	}
 
-	function authorize($request, $args, $roleAssignments) {
+	function authorize($request, &$args, $roleAssignments) {
 		$returner = parent::authorize($request, $args, $roleAssignments);
 
 		if (!Config::getVar('oai', 'oai')) {

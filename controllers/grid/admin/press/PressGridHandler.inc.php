@@ -37,7 +37,7 @@ class PressGridHandler extends GridHandler {
 	/**
 	 * @see PKPHandler::authorize()
 	 */
-	function authorize(&$request, $args, $roleAssignments) {
+	function authorize(&$request, &$args, $roleAssignments) {
 		import('lib.pkp.classes.security.authorization.PolicySet');
 		$rolePolicy = new PolicySet(COMBINING_PERMIT_OVERRIDES);
 
