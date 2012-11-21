@@ -155,7 +155,7 @@ class UserGridHandler extends GridHandler {
 
 		// Get all users for this press that match search criteria.
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
-		$rangeInfo = $this->getRangeInfo('users');
+		$rangeInfo = self::getRangeInfo($request, $this->getId());
 		$rowData = array();
 		$pressIds = array();
 
