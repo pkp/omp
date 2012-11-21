@@ -309,7 +309,6 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.information.forLibrarians">For Librarians</message>
 	<message key="manager.setup.information.forReaders">For Readers</message>
 	<message key="manager.setup.institution">Institution</message>
-	<message key="manager.setup.itemsPerPage">Items per page</message>
 	<message key="manager.setup.labelName">Label Name</message>
 	<message key="manager.setup.layoutAndGalleys">Layout Editors</message>
 	<message key="manager.setup.layoutInstructions">Layout Instructions</message>

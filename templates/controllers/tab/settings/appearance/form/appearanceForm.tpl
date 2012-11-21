@@ -105,7 +105,7 @@
 	{* Lists *}
 	{fbvFormArea id="advancedAppearanceSettings" title="manager.setup.lists" class="border"}
 		{fbvFormSection description="manager.setup.listsDescription"}
-			{fbvElement type="text" id="itemsPerPage" value=$itemsPerPage size=$fbvStyles.size.SMALL label="manager.setup.itemsPerPage"}
+			{fbvElement type="text" id="itemsPerPage" value=$itemsPerPage size=$fbvStyles.size.SMALL label="common.itemsPerPage"}
 		{/fbvFormSection}
 		{fbvFormSection}
 			{fbvElement type="text" id="numPageLinks" value=$numPageLinks size=$fbvStyles.size.SMALL label="manager.setup.numPageLinks"}
