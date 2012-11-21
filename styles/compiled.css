@@ -1315,6 +1315,10 @@ div.pkp_controllers_grid tbody .ui-sortable-placeholder {
 }
 div.pkp_controllers_grid tbody.ui-sortable-helper { display:table; }
 div.pkp_controllers_grid .gridCellContainer .gridLabelBeforeActions { margin-right:20px; }
+div.pkp_controllers_grid div.gridPaging select.itemsPerPage {
+  width:auto;
+  margin-left:5px;
+}
 div.pkp_controllers_grid .group1 td:first-child { background:url(../lib/pkp/templates/images/structure/grid_group_1.png) no-repeat; }
 div.pkp_controllers_grid .group2 td:first-child { background:url(../lib/pkp/templates/images/structure/grid_group_2.png) no-repeat; }
 div.pkp_controllers_grid .group3 td:first-child { background:url(../lib/pkp/templates/images/structure/grid_group_3.png) no-repeat; }
@@ -1426,6 +1430,7 @@ div.pkp_controllers_listbuilder .list_wrapper {
   margin-bottom:15px;
   cursor:pointer;
   float:left;
+  display:none;
 }
 .ui-widget.ui-pnotify { width:320px !important; }
 div.ui-pnotify-container {
