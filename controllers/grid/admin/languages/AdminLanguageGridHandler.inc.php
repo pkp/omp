@@ -14,9 +14,8 @@
  */
 
 import('classes.controllers.grid.languages.LanguageGridHandler');
-
 import('lib.pkp.controllers.grid.languages.LanguageGridRow');
-import('controllers.grid.languages.form.InstallLanguageForm');
+import('lib.pkp.controllers.grid.languages.form.InstallLanguageForm');
 
 class AdminLanguageGridHandler extends LanguageGridHandler {
 	/**
