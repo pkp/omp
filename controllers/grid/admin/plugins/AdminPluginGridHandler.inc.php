@@ -12,7 +12,7 @@
  * @brief Handle site level plugins grid requests.
  */
 
-import('controllers.grid.plugins.PluginGridHandler');
+import('lib.pkp.classes.controllers.grid.plugins.PluginGridHandler');
 
 class AdminPluginGridHandler extends PluginGridHandler {
 	/**
