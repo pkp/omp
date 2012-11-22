@@ -57,7 +57,7 @@ class TemplateManager extends PKPTemplateManager {
 
 				// Assign press settings.
 				$pressSettingsDao =& DAORegistry::getDAO('PressSettingsDAO');
-				$this->assign_by_ref('pressSettings', $pressSettingsDao->getPressSettings($press->getId()));
+				$this->assign_by_ref('pressSettings', $pressSettingsDao->getSettings($press->getId()));
 
 				$pressTitle = $press->getLocalizedName();
 				$this->assign('siteTitle', $pressTitle);

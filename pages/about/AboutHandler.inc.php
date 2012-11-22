@@ -51,7 +51,7 @@ class AboutHandler extends Handler {
 		$press =& $request->getPress();
 
 		$templateMgr =& TemplateManager::getManager($request);
-		$pressSettings =& $pressSettingsDao->getPressSettings($press->getId());
+		$pressSettings =& $pressSettingsDao->getSettings($press->getId());
 		$templateMgr->assign_by_ref('pressSettings', $pressSettings);
 		$templateMgr->display('about/contact.tpl');
 	}
@@ -66,12 +66,7 @@ class AboutHandler extends Handler {
 		$this->validate();
 		$this->setupTemplate($request);
 
-		$pressSettingsDao =& DAORegistry::getDAO('PressSettingsDAO');
-		$press =& $request->getPress();
-
 		$templateMgr =& TemplateManager::getManager($request);
-		$pressSettings =& $pressSettingsDao->getPressSettings($press->getId());
-		$templateMgr->assign_by_ref('pressSettings', $pressSettings);
 		$templateMgr->display('about/description.tpl');
 	}
 
@@ -120,11 +115,6 @@ class AboutHandler extends Handler {
 		$this->validate();
 		$this->setupTemplate($request);
 
-		$pressSettingsDao =& DAORegistry::getDAO('PressSettingsDAO');
-		$seriesDao =& DAORegistry::getDAO('SeriesDAO');
-		$seriesEditorsDao =& DAORegistry::getDAO('SeriesEditorsDAO');
-		$press =& $request->getPress();
-
 		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->display('about/editorialPolicies.tpl');
 	}
@@ -143,15 +133,12 @@ class AboutHandler extends Handler {
 		$press =& $request->getPress();
 
 		$templateMgr =& TemplateManager::getManager($request);
-		$pressSettings =& $settingsDao->getPressSettings($press->getId());
 		$submissionChecklist = $press->getLocalizedSetting('submissionChecklist');
 		if (!empty($submissionChecklist)) {
 			ksort($submissionChecklist);
 			reset($submissionChecklist);
 		}
 		$templateMgr->assign('submissionChecklist', $submissionChecklist);
-		$templateMgr->assign_by_ref('pressSettings', $pressSettings);
-		$templateMgr->assign('helpTopicId','submission.authorGuidelines');
 		$templateMgr->display('about/submissions.tpl');
 	}
 

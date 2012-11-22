@@ -229,7 +229,7 @@ class DefaultSettingDAO extends DAO {
 
 		$returner = null;
 		while (!$result->EOF) {
-			$row =& $result->GetRowAssoc(false);
+			$row = $result->GetRowAssoc(false);
 			$this->update(
 				'INSERT INTO '. $this->getSettingsTableName() .'
 				('. $this->getPrimaryKeyColumnName() .', locale, setting_name, setting_value, setting_type)

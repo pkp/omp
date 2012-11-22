@@ -71,9 +71,6 @@ class SubmissionSubmitForm extends Form {
 		}
 		$templateMgr->assign('helpTopicId', $helpTopicId);
 
-		$settingsDao =& DAORegistry::getDAO('PressSettingsDAO');
-		$templateMgr->assign_by_ref('pressSettings', $settingsDao->getPressSettings($this->press->getId()));
-
 		parent::display($request);
 	}
 }

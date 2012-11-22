@@ -69,7 +69,7 @@ class PressSettingsDAO extends DAO {
 	 * @return mixed
 	 */
 	function _cacheMiss(&$cache, $id) {
-		$settings =& $this->getPressSettings($cache->getCacheId());
+		$settings =& $this->getSettings($cache->getCacheId());
 		if (!isset($settings[$id])) {
 			$cache->setCache($id, null);
 			return null;
@@ -82,7 +82,7 @@ class PressSettingsDAO extends DAO {
 	 * @param $pressId int
 	 * @return array
 	 */
-	function &getPressSettings($pressId) {
+	function &getSettings($pressId) {
 		$pressSettings = array();
 
 		$result =& $this->retrieve(

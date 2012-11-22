@@ -181,7 +181,7 @@
 			<div id="plupload"></div>
 		{/fbvFormSection}
 
-		{translate|assign:"maxFileUploadStatus" key="common.fileUpload.maxFileSizeStatus" fileSize=$maxFileUploadSize supportName=$pressSettings.supportName supportEmail=$pressSettings.supportEmail}
+		{translate|assign:"maxFileUploadStatus" key="common.fileUpload.maxFileSizeStatus" fileSize=$maxFileUploadSize supportName=$currentPress->getSetting('supportName') supportEmail=$currentPress->getSetting('supportEmail')}
 		{fbvFormSection description=$maxFileUploadStatus translate=false}{/fbvFormSection}
 
 		{if $ensuringLink}

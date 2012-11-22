@@ -26,13 +26,13 @@
 	{url|assign:submissionFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.submission.SubmissionWizardFilesGridHandler" op="fetchGrid" monographId=$monographId}
 	{load_url_in_div id="submissionFilesGridDiv" url=$submissionFilesGridUrl}
 
-	{if $pressSettings.supportPhone}
+	{if $currentPress->getSetting('supportPhone')}
 		{assign var="howToKeyName" value="submission.submit.howToSubmit"}
 	{else}
 		{assign var="howToKeyName" value="submission.submit.howToSubmitNoPhone"}
 	{/if}
 
-	<p>{translate key=$howToKeyName supportName=$pressSettings.supportName supportEmail=$pressSettings.supportEmail supportPhone=$pressSettings.supportPhone}</p>
+	<p>{translate key=$howToKeyName supportName=$currentPress->getSetting('supportName') supportEmail=$currentPress->getSetting('supportEmail') supportPhone=$currentPress->getSetting('supportPhone')}</p>
 
 	<div class="separator"></div>
 
