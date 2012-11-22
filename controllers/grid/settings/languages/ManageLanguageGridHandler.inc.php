@@ -14,7 +14,7 @@
 
 import('classes.controllers.grid.languages.LanguageGridHandler');
 
-import('controllers.grid.languages.LanguageGridRow');
+import('lib.pkp.controllers.grid.languages.LanguageGridRow');
 
 class ManageLanguageGridHandler extends LanguageGridHandler {
 	/**
@@ -53,14 +53,14 @@ class ManageLanguageGridHandler extends LanguageGridHandler {
 
 		$allLocales = AppLocale::getAllLocales();
 		$supportedLocales = $site->getSupportedLocales();
-		$pressPrimaryLocale = $press->getPrimaryLocale();
+		$contextPrimaryLocale = $press->getPrimaryLocale();
 		$data = array();
 
 		foreach ($supportedLocales as $locale) {
 			$data[$locale] = array();
 			$data[$locale]['name'] = $allLocales[$locale];
 			$data[$locale]['supported'] = true;
-			$data[$locale]['primary'] = ($locale == $pressPrimaryLocale);
+			$data[$locale]['primary'] = ($locale == $contextPrimaryLocale);
 		}
 
 		$data = $this->addManagementData($request, $data);
@@ -79,8 +79,9 @@ class ManageLanguageGridHandler extends LanguageGridHandler {
 		$this->setInstructions('manager.languages.languageInstructions');
 
 		$this->addNameColumn();
-		$this->addPrimaryColumn('pressPrimary');
+		$this->addPrimaryColumn('contextPrimary');
 		$this->addManagementColumns();
 	}
 }
+
 ?>

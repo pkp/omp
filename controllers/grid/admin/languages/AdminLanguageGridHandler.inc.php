@@ -15,7 +15,7 @@
 
 import('classes.controllers.grid.languages.LanguageGridHandler');
 
-import('controllers.grid.languages.LanguageGridRow');
+import('lib.pkp.controllers.grid.languages.LanguageGridRow');
 import('controllers.grid.languages.form.InstallLanguageForm');
 
 class AdminLanguageGridHandler extends LanguageGridHandler {
@@ -82,7 +82,7 @@ class AdminLanguageGridHandler extends LanguageGridHandler {
 
 		// Primary locale.
 		if ($this->_canManage($request)) {
-			$primaryId = 'pressPrimary';
+			$primaryId = 'contextPrimary';
 		} else {
 			$primaryId = 'sitePrimary';
 		}

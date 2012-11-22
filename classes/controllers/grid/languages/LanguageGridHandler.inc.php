@@ -13,9 +13,8 @@
  */
 
 import('lib.pkp.classes.controllers.grid.GridHandler');
-
-import('controllers.grid.languages.LanguageGridRow');
-import('controllers.grid.languages.LanguageGridCellProvider');
+import('lib.pkp.controllers.grid.languages.LanguageGridRow');
+import('lib.pkp.controllers.grid.languages.LanguageGridCellProvider');
 
 class LanguageGridHandler extends GridHandler {
 	/**
