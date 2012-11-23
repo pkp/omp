@@ -46,6 +46,9 @@ class UserGridRow extends GridRow {
 				'gridId' => $this->getGridId(),
 				'rowId' => $rowId
 			);
+
+			$actionArgs = array_merge($actionArgs, $this->getRequestArgs());
+
 			$this->addAction(
 				new LinkAction(
 					'email',

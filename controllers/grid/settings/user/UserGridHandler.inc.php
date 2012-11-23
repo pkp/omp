@@ -144,6 +144,14 @@ class UserGridHandler extends GridHandler {
 	}
 
 	/**
+	 * @see GridHandler::initFeatures()
+	 */
+	function initFeatures($request, $args) {
+		import('lib.pkp.classes.controllers.grid.feature.PagingFeature');
+		return array(new PagingFeature());
+	}
+
+	/**
 	 * @see GridHandler::loadData()
 	 * @param $request PKPRequest
 	 * @return array Grid data.
@@ -155,7 +163,7 @@ class UserGridHandler extends GridHandler {
 
 		// Get all users for this press that match search criteria.
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
-		$rangeInfo = self::getRangeInfo($request, $this->getId());
+		$rangeInfo = $this->getGridRangeInfo($request, $this->getId());
 		$rowData = array();
 		$pressIds = array();
 
@@ -186,13 +194,9 @@ class UserGridHandler extends GridHandler {
 			$filter['searchMatch'],
 			$rangeInfo
 			);
-
-			while ($user =& $users->next()) {
-				$rowData[$user->getId()] = $user;
-			}
 		}
 
-		return $rowData;
+		return $users;
 	}
 
 	/**
