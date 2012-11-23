@@ -25,6 +25,14 @@ class AdminLanguageGridHandler extends PKPAdminLanguageGridHandler {
 	}
 
 	/**
+	 * @see PKPHandler::initialize()
+	 */
+	function initialize(&$request) {
+		parent::initialize($request);
+		AppLocale::requireComponents(LOCALE_COMPONENT_OMP_ADMIN);
+	}
+
+	/**
 	 * Helper function to update locale settings in all
 	 * installed presses, based on site locale settings.
 	 * @param $request object
@@ -34,21 +42,19 @@ class AdminLanguageGridHandler extends PKPAdminLanguageGridHandler {
 		$siteSupportedLocales = $site->getSupportedLocales();
 
 		$pressDao =& DAORegistry::getDAO('PressDAO');
-		$settingsDao =& DAORegistry::getDAO('PressSettingsDAO');
-		$presses =& $pressDao->getPresses();
-		$presses =& $presses->toArray();
-		foreach ($presses as $press) {
-			$primaryLocale = $press->getPrimaryLocale();
-			$supportedLocales = $press->getSetting('supportedLocales');
+		$contexts = $pressDao->getPresses()->toArray();
+		foreach ($contexts as $context) {
+			$primaryLocale = $context->getPrimaryLocale();
+			$supportedLocales = $context->getSetting('supportedLocales');
 
 			if (isset($primaryLocale) && !in_array($primaryLocale, $siteSupportedLocales)) {
-				$press->setPrimaryLocale($site->getPrimaryLocale());
-				$pressDao->updateObject($press);
+				$context->setPrimaryLocale($site->getPrimaryLocale());
+				$this->updateContext($context);
 			}
 
 			if (is_array($supportedLocales)) {
 				$supportedLocales = array_intersect($supportedLocales, $siteSupportedLocales);
-				$settingsDao->updateSetting($press->getId(), 'supportedLocales', $supportedLocales, 'object');
+				$context->updateSetting('supportedLocales', $supportedLocales, 'object');
 			}
 		}
 	}
