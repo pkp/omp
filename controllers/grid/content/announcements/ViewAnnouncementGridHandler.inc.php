@@ -50,6 +50,15 @@ class ViewAnnouncementGridHandler extends AnnouncementGridHandler {
 			}
 		}
 	}
+
+	/**
+	 * @see GridHandler::getGridRangeInfo()
+	 * Override so the display limit announcements setting can work correctly.
+	 */
+	function getGridRangeInfo($request, $rangeName) {
+		import('lib.pkp.classes.db.DBResultRange');
+		return new DBResultRange(-1, -1);
+	}
 }
 
 ?>

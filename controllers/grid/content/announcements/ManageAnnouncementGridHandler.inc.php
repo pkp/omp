@@ -75,6 +75,14 @@ class ManageAnnouncementGridHandler extends AnnouncementGridHandler {
 	}
 
 	/**
+	 * @see GridHandler::initFeatures()
+	 */
+	function initFeatures($request, $args) {
+		import('lib.pkp.classes.controllers.grid.feature.PagingFeature');
+		return array(new PagingFeature());
+	}
+
+	/**
 	 * @see GridHandler::getRowInstance()
 	 */
 	function getRowInstance() {
@@ -123,7 +131,7 @@ class ManageAnnouncementGridHandler extends AnnouncementGridHandler {
 	function updateAnnouncement($args, &$request) {
 
 		// Identify the announcement Id.
-		$announcementId = $request->getUserVar('announcementId');
+		$announcementId = (int) $request->getUserVar('announcementId');
 		$press =& $request->getPress();
 		$pressId = $press->getId();
 
@@ -132,8 +140,6 @@ class ManageAnnouncementGridHandler extends AnnouncementGridHandler {
 		$announcementForm->readInputData();
 
 		if ($announcementForm->validate()) {
-			$announcementForm->execute($request);
-
 			if ($announcementId) {
 				// Successful edit of an existing announcement.
 				$notificationLocaleKey = 'notification.editedAnnouncement';
@@ -141,6 +147,8 @@ class ManageAnnouncementGridHandler extends AnnouncementGridHandler {
 				// Successful added a new announcement.
 				$notificationLocaleKey = 'notification.addedAnnouncement';
 			}
+
+			$announcementId = $announcementForm->execute($request);
 
 			// Record the notification to user.
 			$notificationManager = new NotificationManager();

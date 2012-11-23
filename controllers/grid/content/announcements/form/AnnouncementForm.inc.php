@@ -122,6 +122,8 @@ class AnnouncementForm extends PKPAnnouncementForm {
 				$pressId, ASSOC_TYPE_ANNOUNCEMENT, $announcement->getId()
 			)
 		);
+
+		return $announcement->getId();
 	}
 
 
