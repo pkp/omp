@@ -21,7 +21,6 @@
 	<message key="admin.locale.maybeIncomplete">* Marked locales may be incomplete.</message>
 	<message key="admin.languages.confirmUninstall">Are you sure you want to uninstall this locale? This may affect any hosted presses currently using the locale.</message>
 	<message key="admin.languages.installNewLocalesInstructions">Select any additional locales to install support for in this system. Locales must be installed before they can be used by hosted presses. See the OMP documentation for information on adding support for new languages.</message>
-	<message key="admin.languages.downloadLocales">Download Locales</message>
 	<message key="admin.languages.noLocalesToDownload">No locales are available for download.</message>
 	<message key="admin.languages.downloadFailed">The locale download failed. The error message(s) below describe the failure.</message>
 	<message key="admin.languages.downloadUnavailable"><![CDATA[<p>Downloading language packs from the Public Knowledge Project web server is not currently available because:</p>
