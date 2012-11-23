@@ -36,11 +36,11 @@ class ManageLanguageGridHandler extends LanguageGridHandler {
 	 */
 	function loadData(&$request, $filter) {
 		$site =& $request->getSite();
-		$press =& $request->getPress();
+		$context =& $request->getContext();
 
 		$allLocales = AppLocale::getAllLocales();
 		$supportedLocales = $site->getSupportedLocales();
-		$contextPrimaryLocale = $press->getPrimaryLocale();
+		$contextPrimaryLocale = $context->getPrimaryLocale();
 		$data = array();
 
 		foreach ($supportedLocales as $locale) {
