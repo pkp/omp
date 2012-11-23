@@ -29,19 +29,6 @@ class ManageLanguageGridHandler extends LanguageGridHandler {
 
 
 	//
-	// Implement template methods from PKPHandler.
-	//
-	/**
-	 * @see PKPHandler::authorize()
-	 */
-	function authorize(&$request, &$args, $roleAssignments) {
-		import('classes.security.authorization.OmpPressAccessPolicy');
-		$this->addPolicy(new OmpPressAccessPolicy($request, $roleAssignments));
-		return parent::authorize($request, $args, $roleAssignments);
-	}
-
-
-	//
 	// Implement methods from GridHandler.
 	//
 	/**
