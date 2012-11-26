@@ -71,8 +71,8 @@ class TemplateManager extends PKPTemplateManager {
 				$this->assign_by_ref('navMenuItems', $navMenuItems);
 
 				// Assign press page header
-				$this->assign('displayPageHeaderTitle', $press->getPressPageHeaderTitle());
-				$this->assign('displayPageHeaderLogo', $press->getPressPageHeaderLogo());
+				$this->assign('displayPageHeaderTitle', $press->getPageHeaderTitle());
+				$this->assign('displayPageHeaderLogo', $press->getPageHeaderLogo());
 				$this->assign('alternatePageHeader', $press->getLocalizedSetting('pressPageHeader'));
 				$this->assign('metaSearchDescription', $press->getLocalizedSetting('searchDescription'));
 				$this->assign('metaSearchKeywords', $press->getLocalizedSetting('searchKeywords'));

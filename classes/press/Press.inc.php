@@ -32,7 +32,7 @@ class Press extends Context {
 	 * param $home boolean get homepage title
 	 * @return string
 	 */
-	function getPressPageHeaderTitle() {
+	function getPageHeaderTitle() {
 		$typeArray = $this->getSetting('pageHeaderTitleType');
 		$imageArray = $this->getSetting('pageHeaderTitleImage');
 		$titleArray = $this->getSetting('pageHeaderTitle');
@@ -53,7 +53,7 @@ class Press extends Context {
 	 * Get "localized" press page logo (if applicable).
 	 * @return string
 	 */
-	function getPressPageHeaderLogo() {
+	function getPageHeaderLogo() {
 		$logoArray = $this->getSetting('pageHeaderLogoImage');
 		foreach (array(AppLocale::getLocale(), AppLocale::getPrimaryLocale()) as $locale) {
 			if (isset($logoArray[$locale])) return $logoArray[$locale];

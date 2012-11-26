@@ -82,8 +82,6 @@ class IndexHandler extends Handler {
 	function _displayPressIndexPage($press, &$templateMgr) {
 
 		// Assign header and content for home page.
-		$templateMgr->assign('displayPageHeaderTitle', $press->getPressPageHeaderTitle(true));
-		$templateMgr->assign('displayPageHeaderLogo', $press->getPressPageHeaderLogo(true));
 		$templateMgr->assign('additionalHomeContent', $press->getLocalizedSetting('additionalHomeContent'));
 		$templateMgr->assign('homepageImage', $press->getLocalizedSetting('homepageImage'));
 		$templateMgr->assign('pageTitleTranslated', $press->getLocalizedSetting('name'));
