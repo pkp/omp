@@ -194,7 +194,7 @@ class PluginSettingsDAO extends DAO {
 	 * Delete all settings for a press.
 	 * @param $pressId int
 	 */
-	function deleteSettingsByPressId($pressId) {
+	function deleteByPressId($pressId) {
 		return $this->update(
 			'DELETE FROM plugin_settings WHERE press_id = ?', $pressId
 		);

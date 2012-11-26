@@ -148,7 +148,7 @@ class PressSiteSettingsForm extends Form {
 			$press->setPrimaryLocale($site->getPrimaryLocale());
 
 			$pressId = $pressDao->insertObject($press);
-			$pressDao->resequencePresses();
+			$pressDao->resequence();
 
 			// Make the file directories for the press
 			import('classes.file.PressFileManager');

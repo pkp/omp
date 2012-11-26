@@ -170,7 +170,7 @@ class PressSettingsDAO extends DAO {
 	 * Delete all settings for a press.
 	 * @param $pressId int
 	 */
-	function deleteSettingsByPress($pressId) {
+	function deleteById($pressId) {
 		$cache =& $this->_getCache($pressId);
 		$cache->flush();
 

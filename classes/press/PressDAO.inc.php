@@ -149,7 +149,7 @@ class PressDAO extends DAO {
 			)
 		);
 
-		$press->setId($this->getInsertPressId());
+		$press->setId($this->getInsertId());
 		return $press->getId();
 	}
 
@@ -193,7 +193,7 @@ class PressDAO extends DAO {
 	 * Get the ID of the last inserted press.
 	 * @return int
 	 */
-	function getInsertPressId() {
+	function getInsertId() {
 		return $this->_getInsertId('presses', 'press_id');
 	}
 
@@ -203,7 +203,7 @@ class PressDAO extends DAO {
 	 */
 	function deleteById($pressId) {
 		$pressSettingsDao =& DAORegistry::getDAO('PressSettingsDAO');
-		$pressSettingsDao->deleteSettingsByPress($pressId);
+		$pressSettingsDao->deleteById($pressId);
 
 		$seriesDao =& DAORegistry::getDAO('SeriesDAO');
 		$seriesDao->deleteByPressId($pressId);
@@ -219,7 +219,7 @@ class PressDAO extends DAO {
 		$userGroupDao->deleteByContextId($pressId);
 
 		$pluginSettingsDao =& DAORegistry::getDAO('PluginSettingsDAO');
-		$pluginSettingsDao->deleteSettingsByPressId($pressId);
+		$pluginSettingsDao->deleteByPressId($pressId);
 
 		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
 		$reviewFormDao->deleteByAssocId(ASSOC_TYPE_PRESS, $pressId);
@@ -243,7 +243,7 @@ class PressDAO extends DAO {
 	/**
 	 * Sequentially renumber each press according to their sequence order.
 	 */
-	function resequencePresses() {
+	function resequence() {
 		$result =& $this->retrieve(
 			'SELECT press_id FROM presses ORDER BY seq'
 		);
