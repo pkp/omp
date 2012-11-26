@@ -86,7 +86,7 @@ class PressDAO extends DAO {
 	 * @param $path the path for the press
 	 * @return boolean
 	 */
-	function pressExistsByPath($path) {
+	function existsByPath($path) {
 		$result =& $this->retrieve(
 			'SELECT COUNT(*) FROM presses WHERE path = ?', $path
 		);
@@ -95,17 +95,6 @@ class PressDAO extends DAO {
 		$result->Close();
 		unset($result);
 
-		return $returner;
-	}
-
-	/**
-	 * Retrieve a press by path.
-	 * (Required by PKPPageRouter; should eventually be removed
-	 * in favour of getByPath.)
-	 * @see PressDAO::getByPath
-	 */
-	function &getPressByPath($path) {
-		$returner =& $this->getByPath($path);
 		return $returner;
 	}
 
