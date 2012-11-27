@@ -93,7 +93,7 @@ class OAIDAO extends PKPOAIDAO {
 		if (isset($pressId)) {
 			$presses = array($this->getPress($pressId));
 		} else {
-			$pressFactory =& $this->_pressDao->getPresses();
+			$pressFactory =& $this->_pressDao->getAll();
 			$presses =& $pressFactory->toArray();
 		}
 

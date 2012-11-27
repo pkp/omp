@@ -134,7 +134,7 @@ class PressGridHandler extends GridHandler {
 	function loadData(&$request) {
 		// Get all presses.
 		$pressDao =& DAORegistry::getDAO('PressDAO');
-		$presses =& $pressDao->getPresses();
+		$presses =& $pressDao->getAll();
 
 		return $presses->toAssociativeArray();
 	}

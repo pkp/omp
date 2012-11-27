@@ -13,46 +13,14 @@
  */
 
 import('classes.press.Press');
+import('lib.pkp.classes.core.ContextDAO');
 
-class PressDAO extends DAO {
+class PressDAO extends ContextDAO {
 	/**
 	 * Constructor
 	 */
 	function PressDAO() {
-		parent::DAO();
-	}
-
-	/**
-	 * Retrieve a press by press ID.
-	 * @param $pressId int
-	 * @return Press
-	 */
-	function getById($pressId) {
-		$result =& $this->retrieve('SELECT * FROM presses WHERE press_id = ?', (int) $pressId);
-
-		$returner = null;
-		if ($result->RecordCount() != 0) {
-			$returner =& $this->_fromRow($result->GetRowAssoc(false));
-		}
-		$result->Close();
-		return $returner;
-	}
-
-	/**
-	 * Retrieve the IDs and names of all presses in an associative array.
-	 * @return array
-	 */
-	function getNames() {
-		$presses = array();
-
-		$pressIterator =& $this->getPresses();
-		while ($press =& $pressIterator->next()) {
-			$presses[$press->getId()] = $press->getLocalizedName();
-			unset($press);
-		}
-		unset($pressIterator);
-
-		return $presses;
+		parent::ContextDAO();
 	}
 
 	/**
@@ -68,67 +36,10 @@ class PressDAO extends DAO {
 	 * @param $row array
 	 * @return Press
 	 */
-	function &_fromRow($row) {
-		$press = $this->newDataObject();
-		$press->setId($row['press_id']);
-		$press->setPath($row['path']);
-		$press->setSequence($row['seq']);
-		$press->setEnabled($row['enabled']);
-		$press->setPrimaryLocale($row['primary_locale']);
-
+	function _fromRow($row) {
+		$press = parent::_fromRow($row);
 		HookRegistry::call('PressDAO::_fromRow', array(&$press, &$row));
-
 		return $press;
-	}
-
-	/**
-	 * Check if a press exists with a specified path.
-	 * @param $path the path for the press
-	 * @return boolean
-	 */
-	function existsByPath($path) {
-		$result =& $this->retrieve(
-			'SELECT COUNT(*) FROM presses WHERE path = ?', $path
-		);
-		$returner = isset($result->fields[0]) && $result->fields[0] == 1 ? true : false;
-
-		$result->Close();
-		unset($result);
-
-		return $returner;
-	}
-
-	/**
-	 * Retrieve a press by path.
-	 * @param $path string
-	 * @return Press
-	 */
-	function &getByPath($path) {
-		$returner = null;
-		$result =& $this->retrieve(
-			'SELECT * FROM presses WHERE path = ?', (string) $path
-		);
-
-		if ($result->RecordCount() != 0) {
-			$returner = $this->_fromRow($result->GetRowAssoc(false));
-		}
-		$result->Close();
-		unset($result);
-		return $returner;
-	}
-
-	/**
-	 * Retrieve all presses.
-	 * @return DAOResultFactory containing matching presses
-	 */
-	function &getPresses($rangeInfo = null) {
-		$result =& $this->retrieveRange(
-			'SELECT * FROM presses ORDER BY seq',
-			false, $rangeInfo
-		);
-
-		$returner = new DAOResultFactory($result, $this, '_fromRow');
-		return $returner;
 	}
 
 	/**
@@ -143,8 +54,8 @@ class PressDAO extends DAO {
 				(?, ?, ?, ?)',
 			array(
 				$press->getPath(),
-				(int) $press->getSequence() == null ? 0 : $press->getSequence(),
-				$press->getEnabled() ? 1 : 0,
+				(int) $press->getSequence(),
+				(int) $press->getEnabled(),
 				$press->getPrimaryLocale()
 			)
 		);
@@ -169,7 +80,7 @@ class PressDAO extends DAO {
 			array(
 				$press->getPath(),
 				(int) $press->getSequence(),
-				$press->getEnabled() ? 1 : 0,
+				(int) $press->getEnabled(),
 				$press->getPrimaryLocale(),
 				(int) $press->getId()
 			)
@@ -187,14 +98,6 @@ class PressDAO extends DAO {
 
 		$resultFactory = new DAOResultFactory($result, $this, '_fromRow');
 		return $resultFactory;
-	}
-
-	/**
-	 * Get the ID of the last inserted press.
-	 * @return int
-	 */
-	function getInsertId() {
-		return $this->_getInsertId('presses', 'press_id');
 	}
 
 	/**
@@ -235,34 +138,26 @@ class PressDAO extends DAO {
 
 		$this->update('DELETE FROM press_defaults WHERE press_id = ?', (int) $pressId);
 
-		return $this->update(
-			'DELETE FROM presses WHERE press_id = ?', (int) $pressId
-		);
+		$this->deleteById($pressId);
+	}
+
+	//
+	// Private functions
+	//
+	/**
+	 * Get the table name for this context.
+	 * @return string
+	 */
+	protected function _getTableName() {
+		return 'presses';
 	}
 
 	/**
-	 * Sequentially renumber each press according to their sequence order.
+	 * Get the name of the primary key column for this context.
+	 * @return string
 	 */
-	function resequence() {
-		$result =& $this->retrieve(
-			'SELECT press_id FROM presses ORDER BY seq'
-		);
-
-		for ($i=1; !$result->EOF; $i++) {
-			list($pressId) = $result->fields;
-			$this->update(
-				'UPDATE presses SET seq = ? WHERE press_id = ?',
-				array(
-					$i,
-					$pressId
-				)
-			);
-
-			$result->MoveNext();
-		}
-
-		$result->Close();
-		unset($result);
+	protected function _getPrimaryKeyColumn() {
+		return 'press_id';
 	}
 }
 

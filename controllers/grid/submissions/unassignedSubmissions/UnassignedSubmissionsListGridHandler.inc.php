@@ -65,7 +65,7 @@ class UnassignedSubmissionsListGridHandler extends SubmissionsListGridHandler {
 		// enrolled in as manager or series editor.
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		$pressDao =& DAORegistry::getDAO('PressDAO');
-		$presses =& $pressDao->getPresses();
+		$presses =& $pressDao->getAll();
 
 		$accessibleMonographs = array();
 		while ($press =& $presses->next()) {

@@ -171,7 +171,7 @@ class UserGridHandler extends GridHandler {
 			$pressIds[] = $pressId;
 		} else {
 			$pressDao =& DAORegistry::getDAO('PressDAO');
-			$presses =& $pressDao->getPresses();
+			$presses =& $pressDao->getAll();
 			while ($press =& $presses->next()) {
 				$pressIds[] = $press->getId();
 			}

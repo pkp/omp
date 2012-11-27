@@ -58,7 +58,7 @@ class DashboardHandler extends Handler {
 
 		// Get all the presses in the system, to determine which 'new submission' entry point we display
 		$pressDao =& DAORegistry::getDAO('PressDAO'); /* @var $pressDao PressDAO */
-		$presses = $pressDao->getPresses();
+		$presses = $pressDao->getAll();
 
 		// Check each press to see if user has access to it.
 		$user =& $request->getUser();

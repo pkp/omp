@@ -116,7 +116,7 @@ class ProfileForm extends Form {
 		$templateMgr->assign('genderOptions', $userDao->getGenderOptions());
 
 		$pressDao =& DAORegistry::getDAO('PressDAO');
-		$presses =& $pressDao->getPresses();
+		$presses =& $pressDao->getAll();
 		$presses =& $presses->toArray();
 		$templateMgr->assign_by_ref('presses', $presses);
 
@@ -299,7 +299,7 @@ class ProfileForm extends Form {
 		$readerNotify = $request->getUserVar('pressNotify');
 
 		$pressDao =& DAORegistry::getDAO('PressDAO');
-		$presses =& $pressDao->getPresses();
+		$presses =& $pressDao->getAll();
 		while ($thisPress =& $presses->next()) {
 			$thisPressId = $thisPress->getId();
 			$currentlyReceives = !empty($pressNotifications[$thisPressId]);
