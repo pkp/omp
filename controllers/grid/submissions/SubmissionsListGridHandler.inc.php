@@ -117,6 +117,14 @@ class SubmissionsListGridHandler extends GridHandler {
 	// Protected template methods to be overridden by sub-classes.
 	//
 	/**
+	 * @see GridHandler::initFeatures()
+	 */
+	function initFeatures($request, $args) {
+		import('lib.pkp.classes.controllers.grid.feature.PagingFeature');
+		return array(new PagingFeature());
+	}
+
+	/**
 	 * Return a list of submissions.
 	 * @param $request Request
 	 * @param $userId integer
