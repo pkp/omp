@@ -6,6 +6,11 @@
  *
  * Common site header.
  *}
+{capture assign="deprecatedThemeStyles"}
+	{* FIXME: This should eventually be moved into a theme plugin. *}
+	<link rel="stylesheet" type="text/css" media="all" href="{$baseUrl}/lib/pkp/styles/themes/default/theme.css" />
+	<link rel="stylesheet" type="text/css" media="all" href="{$baseUrl}/lib/pkp/styles/lib/selectBox/jquery.selectBox.css" />
+{/capture}
 {strip}
 {if !$pageTitleTranslated}{translate|assign:"pageTitleTranslated" key=$pageTitle}{/if}
 {if $pageCrumbTitle}
@@ -22,14 +27,11 @@
 	<meta name="keywords" content="{$metaSearchKeywords|escape}" />
 	<meta name="generator" content="{$applicationName} {$currentVersionString|escape}" />
 	{$metaCustomHeaders}
-	{if $displayFavicon}<link rel="icon" href="{$faviconDir}/{$displayFavicon.uploadName|escape:"url"}" />{/if}
+	{if $displayFavicon}<link rel="icon" href="{$faviconDir}/{$displayFavicon.uploadName|escape:"url"}" type="{$displayFavicon.mimeType|escape}" />{/if}
 
 	<link rel="stylesheet" type="text/css" media="all" href="{$baseUrl}/styles/lib.css" />
+	{$deprecatedStyles}
 	<link rel="stylesheet" type="text/css" media="all" href="{$baseUrl}/styles/compiled.css" />
-
-	{foreach from=$stylesheets item=cssUrl}
-		<link rel="stylesheet" href="{$cssUrl}" type="text/css" />
-	{/foreach}
 
 	<!-- Base Jquery -->
 	{if $allowCDN}
@@ -70,6 +72,10 @@
 	{* FIXME: Replace with a smarty template that includes {translate} keys, see #6443. *}
 	{if $currentLocale !== 'en_US'}<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/plupload/i18n/{$currentLocale|escape}.js"></script>{/if}
 
+	{foreach from=$stylesheets item=cssUrl}
+		<link rel="stylesheet" href="{$cssUrl}" type="text/css" />
+	{/foreach}
+
 	<!-- Constants for JavaScript -->
 	{include file="common/jsConstants.tpl"}
 
@@ -83,9 +89,7 @@
 		{include file="common/minifiedScripts.tpl"}
 	{/if}
 
-	{* FIXME: This should eventually be moved into a theme plugin. *}
-	<link rel="stylesheet" type="text/css" media="all" href="{$baseUrl}/lib/pkp/styles/themes/default/theme.css" />
-	<link rel="stylesheet" type="text/css" media="all" href="{$baseUrl}/lib/pkp/styles/lib/selectBox/jquery.selectBox.css" />
+	{$deprecatedThemeStyles}
 
 	{$additionalHeadData}
 </head>
