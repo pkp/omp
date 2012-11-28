@@ -327,7 +327,7 @@ class Validation {
 		// Check for administered user group assignments in other presses
 		// that the administrator user doesn't have a manager role in.
 		$pressDao =& DAORegistry::getDao('PressDAO');
-		$presses =& $pressDao->getAll();
+		$presses = $pressDao->getAll();
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 		while(!$presses->eof()) {
 			$press = $presses->next();

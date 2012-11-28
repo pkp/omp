@@ -38,6 +38,8 @@ class PressDAO extends ContextDAO {
 	 */
 	function _fromRow($row) {
 		$press = parent::_fromRow($row);
+		$press->setPrimaryLocale($row['primary_locale']);
+		$press->setEnabled($row['enabled']);
 		HookRegistry::call('PressDAO::_fromRow', array(&$press, &$row));
 		return $press;
 	}

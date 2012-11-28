@@ -232,7 +232,7 @@ class MonographSearchIndex {
 		$pressDao =& DAORegistry::getDAO('PressDAO');
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
 
-		$presses =& $pressDao->getAll();
+		$presses = $pressDao->getAll();
 		while (!$presses->eof()) {
 			$press =& $presses->next();
 			$numIndexed = 0;

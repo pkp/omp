@@ -57,7 +57,7 @@ class AdminHandler extends Handler {
 		}
 
 		$pressDao =& DAORegistry::getDAO('PressDAO'); /* @var $pressDao PressDAO */
-		$pressFactory =& $pressDao->getAll();
+		$pressFactory = $pressDao->getAll();
 
 		if ($requestedOp == 'settings' && $pressFactory->getCount() == 1) {
 			// Don't let users access site settings in a single press installation.

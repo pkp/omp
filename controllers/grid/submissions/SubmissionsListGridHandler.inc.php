@@ -65,7 +65,7 @@ class SubmissionsListGridHandler extends GridHandler {
 
 		// If there is more than one press in the system, add a press column
 		$pressDao =& DAORegistry::getDAO('PressDAO');
-		$presses =& $pressDao->getAll();
+		$presses = $pressDao->getAll();
 		$authorizedRoles = $this->getAuthorizedContextObject(ASSOC_TYPE_USER_ROLES);
 		$cellProvider = new SubmissionsListGridCellProvider($authorizedRoles);
 		if($presses->getCount() > 1) {

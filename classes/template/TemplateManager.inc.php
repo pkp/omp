@@ -109,9 +109,9 @@ class TemplateManager extends PKPTemplateManager {
 
 			$user =& $this->request->getUser();
 			if (is_a($user, 'User')) {
-				$presses =& $pressDao->getAll();
+				$presses = $pressDao->getAll();
 			} else {
-				$presses =& $pressDao->getEnabledPresses();
+				$presses = $pressDao->getEnabledPresses();
 			}
 
 			$multiplePresses = false;
