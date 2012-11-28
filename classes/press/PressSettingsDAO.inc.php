@@ -86,7 +86,8 @@ class PressSettingsDAO extends DAO {
 		$pressSettings = array();
 
 		$result =& $this->retrieve(
-			'SELECT setting_name, setting_value, setting_type, locale FROM press_settings WHERE press_id = ?', $pressId
+			'SELECT setting_name, setting_value, setting_type, locale FROM press_settings WHERE press_id = ?',
+			(int) $pressId
 		);
 
 		while (!$result->EOF) {
@@ -175,7 +176,7 @@ class PressSettingsDAO extends DAO {
 		$cache->flush();
 
 		return $this->update(
-				'DELETE FROM press_settings WHERE press_id = ?', $pressId
+			'DELETE FROM press_settings WHERE press_id = ?', (int) $pressId
 		);
 	}
 
