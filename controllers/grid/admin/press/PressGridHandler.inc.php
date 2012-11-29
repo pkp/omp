@@ -12,22 +12,17 @@
  * @brief Handle press grid requests.
  */
 
-import('lib.pkp.classes.controllers.grid.GridHandler');
+import('lib.pkp.controllers.grid.admin.context.ContextGridHandler');
 
 import('controllers.grid.admin.press.PressGridRow');
 import('controllers.grid.admin.press.form.PressSiteSettingsForm');
 
-class PressGridHandler extends GridHandler {
+class PressGridHandler extends ContextGridHandler {
 	/**
 	 * Constructor
 	 */
 	function PressGridHandler() {
-		parent::GridHandler();
-		$this->addRoleAssignment(array(
-			ROLE_ID_SITE_ADMIN),
-			array('fetchGrid', 'fetchRow', 'createPress', 'editPress', 'updatePress',
-				'deletePress', 'saveSequence')
-		);
+		parent::ContextGridHandler();
 	}
 
 
@@ -35,82 +30,20 @@ class PressGridHandler extends GridHandler {
 	// Implement template methods from PKPHandler.
 	//
 	/**
-	 * @see PKPHandler::authorize()
-	 */
-	function authorize(&$request, &$args, $roleAssignments) {
-		import('lib.pkp.classes.security.authorization.PolicySet');
-		$rolePolicy = new PolicySet(COMBINING_PERMIT_OVERRIDES);
-
-		import('lib.pkp.classes.security.authorization.RoleBasedHandlerOperationPolicy');
-		foreach($roleAssignments as $role => $operations) {
-			$rolePolicy->addPolicy(new RoleBasedHandlerOperationPolicy($request, $role, $operations));
-		}
-		$this->addPolicy($rolePolicy);
-
-		return parent::authorize($request, $args, $roleAssignments);
-	}
-
-	/**
 	 * @see PKPHandler::initialize()
 	 */
 	function initialize(&$request) {
-		parent::initialize($request);
-
 		// Load user-related translations.
 		AppLocale::requireComponents(
-			LOCALE_COMPONENT_PKP_USER,
 			LOCALE_COMPONENT_OMP_ADMIN,
 			LOCALE_COMPONENT_OMP_MANAGER,
 			LOCALE_COMPONENT_APPLICATION_COMMON
 		);
 
+		parent::initialize($request);
+
 		// Basic grid configuration.
 		$this->setTitle('press.presses');
-
-		// Grid actions.
-		$router =& $request->getRouter();
-
-		import('lib.pkp.classes.linkAction.request.AjaxModal');
-		$this->addAction(
-			new LinkAction(
-				'createPress',
-				new AjaxModal(
-					$router->url($request, null, null, 'createPress', null, null),
-					__('admin.presses.addPress'),
-					'modal_add_item',
-					true
-					),
-				__('admin.presses.addPress'),
-				'add_item')
-		);
-
-		//
-		// Grid columns.
-		//
-		import('controllers.grid.admin.press.PressGridCellProvider');
-		$pressGridCellProvider = new PressGridCellProvider();
-
-		// Press name.
-		$this->addColumn(
-			new GridColumn(
-				'name',
-				'manager.setup.pressName',
-				null,
-				'controllers/grid/gridCell.tpl',
-				$pressGridCellProvider
-			)
-		);
-
-		// Press path.
-		$this->addColumn(
-			new GridColumn(
-				'path',
-				'press.path',
-				null,
-				'controllers/grid/gridCell.tpl',
-				$pressGridCellProvider
-			)
-		);
 	}
 
 
@@ -140,13 +73,6 @@ class PressGridHandler extends GridHandler {
 	}
 
 	/**
-	 * @see lib/pkp/classes/controllers/grid/GridHandler::getDataElementSequence()
-	 */
-	function getDataElementSequence(&$press) {
-		return $press->getSequence();
-	}
-
-	/**
 	 * @see lib/pkp/classes/controllers/grid/GridHandler::setDataElementSequence()
 	 */
 	function setDataElementSequence(&$request, $rowId, &$press, $newSequence) {
@@ -155,44 +81,17 @@ class PressGridHandler extends GridHandler {
 		$pressDao->updateObject($press);
 	}
 
-	/**
-	 * @see GridHandler::addFeatures()
-	 */
-	function initFeatures($request, $args) {
-		import('lib.pkp.classes.controllers.grid.feature.OrderGridItemsFeature');
-		return array(new OrderGridItemsFeature());
-	}
-
-	/**
-	 * Get the list of "publish data changed" events.
-	 * Used to update the site press switcher upon create/delete.
-	 * @return array
-	 */
-	function getPublishChangeEvents() {
-		return array('updateHeader');
-	}
-
 
 	//
 	// Public grid actions.
 	//
-	/**
-	 * Add a new press.
-	 * @param $args array
-	 * @param $request PKPRequest
-	 */
-	function createPress($args, &$request) {
-		// Calling editPress with an empty row id will add a new press.
-		return $this->editPress($args, $request);
-	}
-
 	/**
 	 * Edit an existing press.
 	 * @param $args array
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function editPress($args, &$request) {
+	function editContext($args, &$request) {
 
 		// Identify the press Id.
 		$pressId = $request->getUserVar('rowId');
@@ -211,7 +110,7 @@ class PressGridHandler extends GridHandler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function updatePress($args, &$request) {
+	function updateContext($args, &$request) {
 		// Identify the press Id.
 		$pressId = $request->getUserVar('pressId');
 
@@ -268,7 +167,7 @@ class PressGridHandler extends GridHandler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function deletePress($args, &$request) {
+	function deleteContext($args, &$request) {
 		// Identify the current context.
 		$context =& $request->getContext();
 
@@ -329,5 +228,22 @@ class PressGridHandler extends GridHandler {
 		$url = $dispatcher->url($request, ROUTE_PAGE, $newPressPath, 'admin', 'presses', null, array('openWizard' => $openWizard));
 		return $request->redirectUrlJson($url);
 	}
+
+	/**
+	 * Get the "add context" locale key
+	 * @return string
+	 */
+	protected function _getAddContextKey() {
+		return 'admin.presses.addPress';
+	}
+
+	/**
+	 * Get the context name locale key
+	 * @return string
+	 */
+	protected function _getContextNameKey() {
+		return 'manager.setup.pressName';
+	}
 }
+
 ?>

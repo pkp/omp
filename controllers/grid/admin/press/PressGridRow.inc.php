@@ -12,77 +12,26 @@
  * @brief Press grid row definition
  */
 
-import('lib.pkp.classes.controllers.grid.GridRow');
-import('lib.pkp.classes.linkAction.request.RemoteActionConfirmationModal');
+import('lib.pkp.controllers.grid.admin.context.ContextGridRow');
 
-class PressGridRow extends GridRow {
+class PressGridRow extends ContextGridRow {
 	/**
 	 * Constructor
 	 */
 	function PressGridRow() {
-		parent::GridRow();
+		parent::ContextGridRow();
 	}
 
 
 	//
-	// Overridden methods from GridRow
+	// Overridden methods from ContextGridRow
 	//
 	/**
-	 * @see GridRow::initialize()
+	 * Get the delete context row locale key.
+	 * @return string
 	 */
-	function initialize(&$request) {
-		parent::initialize($request);
-
-		// Is this a new row or an existing row?
-		$element =& $this->getData();
-		assert(is_a($element, 'Press'));
-
-		$rowId = $this->getId();
-
-		if (!empty($rowId) && is_numeric($rowId)) {
-			// Only add row actions if this is an existing row
-			$router =& $request->getRouter();
-			$actionArgs = array(
-				'gridId' => $this->getGridId(),
-				'rowId' => $rowId
-			);
-			$this->addAction(
-				new LinkAction(
-					'edit',
-					new AjaxModal(
-						$router->url($request, null, null, 'editPress', null, $actionArgs),
-						__('grid.action.edit'),
-						'modal_edit',
-						true
-						),
-					__('grid.action.edit'),
-					'edit')
-			);
-			$this->addAction(
-				new LinkAction(
-					'delete',
-					new RemoteActionConfirmationModal(
-						__('admin.presses.confirmDelete'),
-						null,
-						$router->url($request, null, null, 'deletePress', null, $actionArgs)
-						),
-					__('grid.action.remove'),
-					'delete')
-			);
-
-			if (Validation::isPressManager($element->getId())) {
-				import('lib.pkp.classes.linkAction.request.RedirectAction');
-				$dispatcher = $router->getDispatcher();
-				$this->addAction(
-					new LinkAction(
-						'wizard',
-						new RedirectAction(
-							$dispatcher->url($request, ROUTE_PAGE, $element->getPath(), 'admin', 'presses', null, array('openWizard' => 1))),
-						__('grid.action.wizard'),
-						'wrench')
-				);
-			}
-		}
+	function getConfirmDeleteKey() {
+		return 'admin.presses.confirmDelete';
 	}
 }
 
