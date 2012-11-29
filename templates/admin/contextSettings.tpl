@@ -1,5 +1,5 @@
 {**
- * pressSettings.tpl
+ * templates/admin/contextSettings.tpl
  *
  * Copyright (c) 2003-2012 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -14,11 +14,11 @@
 	{rdelim});
 </script>
 
-<form class="pkp_form" id="pressSettingsForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.admin.press.PressGridHandler" op="updatePress"}">
+<form class="pkp_form" id="pressSettingsForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.admin.press.PressGridHandler" op="updateContext"}">
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="pressSettingsNotification"}
 
-	{if $pressId}
-		{fbvElement id="pressId" type="hidden" name="pressId" value=$pressId}
+	{if $contextId}
+		{fbvElement id="contextId" type="hidden" name="contextId" value=$contextId}
 	{else}
 		<p>{translate key="admin.presses.createInstructions"}</p>
 	{/if}

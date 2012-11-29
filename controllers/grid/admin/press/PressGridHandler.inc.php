@@ -110,9 +110,9 @@ class PressGridHandler extends ContextGridHandler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function updateContext($args, &$request) {
+	function updateContext($args, $request) {
 		// Identify the press Id.
-		$pressId = $request->getUserVar('pressId');
+		$pressId = $request->getUserVar('contextId');
 
 		// Form handling.
 		$settingsForm = new PressSiteSettingsForm($pressId);

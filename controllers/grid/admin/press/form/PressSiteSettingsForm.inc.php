@@ -12,69 +12,34 @@
  * @brief Form for site administrator to edit basic press settings.
  */
 
+import('lib.pkp.controllers.grid.admin.context.form.ContextSiteSettingsForm');
 
-import('lib.pkp.classes.db.DBDataXMLParser');
-import('lib.pkp.classes.form.Form');
-
-class PressSiteSettingsForm extends Form {
-
-	/** The ID of the press being edited */
-	var $pressId;
-
+class PressSiteSettingsForm extends ContextSiteSettingsForm {
 	/**
 	 * Constructor.
-	 * @param $pressId omit for a new press
+	 * @param $contextId omit for a new press
 	 */
-	function PressSiteSettingsForm($pressId = null) {
-		parent::Form('admin/pressSettings.tpl');
-
-		$this->pressId = isset($pressId) ? (int) $pressId : null;
+	function PressSiteSettingsForm($contextId = null) {
+		parent::ContextSiteSettingsForm($contextId);
 
 		// Validation checks for this form
 		$this->addCheck(new FormValidatorLocale($this, 'name', 'required', 'admin.presses.form.titleRequired'));
 		$this->addCheck(new FormValidator($this, 'path', 'required', 'admin.presses.form.pathRequired'));
 		$this->addCheck(new FormValidatorAlphaNum($this, 'path', 'required', 'admin.presses.form.pathAlphaNumeric'));
 		$this->addCheck(new FormValidatorCustom($this, 'path', 'required', 'admin.presses.form.pathExists', create_function('$path,$form,$pressDao', 'return !$pressDao->existsByPath($path) || ($form->getData(\'oldPath\') != null && $form->getData(\'oldPath\') == $path);'), array(&$this, DAORegistry::getDAO('PressDAO'))));
-		$this->addCheck(new FormValidatorPost($this));
-	}
-
-	/**
-	 * Display the form.
-	 */
-	function fetch($args, &$request) {
-		$json = new JSONMessage();
-
-		$templateMgr =& TemplateManager::getManager($request);
-		$templateMgr->assign('pressId', $this->pressId);
-		$templateMgr->assign('helpTopicId', 'site.siteManagement');
-
-		return parent::fetch($request);
 	}
 
 	/**
 	 * Initialize form data from current settings.
 	 */
 	function initData() {
-		if (isset($this->pressId)) {
+		if (isset($this->contextId)) {
 			$pressDao =& DAORegistry::getDAO('PressDAO');
-			$press =& $pressDao->getById($this->pressId);
+			$press =& $pressDao->getById($this->contextId);
 
-			if ($press != null) {
-				$this->_data = array(
-					'name' => $press->getSetting('name', null), // Localized
-					'description' => $press->getSetting('description', null), // Localized
-					'path' => $press->getPath(),
-					'enabled' => $press->getEnabled()
-				);
-
-			} else {
-				$this->pressId = null;
-			}
-		}
-		if (!isset($this->pressId)) {
-			$this->_data = array(
-				'enabled' => 1
-			);
+			parent::initData($press);
+		} else {
+			parent::initData();
 		}
 	}
 
@@ -82,22 +47,13 @@ class PressSiteSettingsForm extends Form {
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
-		$this->readUserVars(array('name', 'description', 'path', 'enabled'));
-		$this->setData('enabled', (int)$this->getData('enabled'));
+		parent::readInputData();
 
-		if (isset($this->pressId)) {
+		if ($this->contextId) {
 			$pressDao =& DAORegistry::getDAO('PressDAO');
-			$press =& $pressDao->getById($this->pressId);
+			$press =& $pressDao->getById($this->contextId);
 			$this->setData('oldPath', $press->getPath());
 		}
-	}
-
-	/**
-	 * Get a list of field names for which localized settings are used
-	 * @return array
-	 */
-	function getLocaleFieldNames() {
-		return array('name', 'description');
 	}
 
 	/**
@@ -107,8 +63,8 @@ class PressSiteSettingsForm extends Form {
 	function execute($request) {
 		$pressDao =& DAORegistry::getDAO('PressDAO');
 
-		if (isset($this->pressId)) {
-			$press =& $pressDao->getById($this->pressId); /* @var $press Press */
+		if (isset($this->contextId)) {
+			$press =& $pressDao->getById($this->contextId); /* @var $press Press */
 
 			import('classes.publicationFormat.PublicationFormatTombstoneManager');
 			$publicationFormatTombstoneMgr = new PublicationFormatTombstoneManager();
@@ -147,12 +103,12 @@ class PressSiteSettingsForm extends Form {
 			// Give it a default primary locale
 			$press->setPrimaryLocale($site->getPrimaryLocale());
 
-			$pressId = $pressDao->insertObject($press);
+			$contextId = $pressDao->insertObject($press);
 			$pressDao->resequence();
 
 			// Make the file directories for the press
 			import('classes.file.PressFileManager');
-			$pressFileManager = new PressFileManager($pressId);
+			$pressFileManager = new PressFileManager($contextId);
 			$pressFileManager->mkdir($pressFileManager->getBasePath());
 			$pressFileManager->mkdir($pressFileManager->getBasePath() . '/monographs');
 
@@ -160,18 +116,18 @@ class PressSiteSettingsForm extends Form {
 
 			// Install default genres
 			$genreDao =& DAORegistry::getDAO('GenreDAO');
-			$genreDao->installDefaults($pressId, $installedLocales); /* @var $genreDao GenreDAO */
+			$genreDao->installDefaults($contextId, $installedLocales); /* @var $genreDao GenreDAO */
 
 			// Install default user groups
 			$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
-			$userGroupDao->installSettings($pressId, 'registry/userGroups.xml');
+			$userGroupDao->installSettings($contextId, 'registry/userGroups.xml');
 
 			// Make the site administrator the press manager of newly created presses
 			$sessionManager =& SessionManager::getManager();
 			$userSession =& $sessionManager->getUserSession();
-			if ($userSession->getUserId() != null && $userSession->getUserId() != 0 && !empty($pressId)) {
+			if ($userSession->getUserId() != null && $userSession->getUserId() != 0 && !empty($contextId)) {
 				// get the default site admin user group
-				$managerUserGroup =& $userGroupDao->getDefaultByRoleId($pressId, ROLE_ID_PRESS_MANAGER);
+				$managerUserGroup =& $userGroupDao->getDefaultByRoleId($contextId, ROLE_ID_PRESS_MANAGER);
 				$userGroupDao->assignUserToGroup($userSession->getUserId(), $managerUserGroup->getId());
 			}
 
@@ -179,7 +135,7 @@ class PressSiteSettingsForm extends Form {
 			$pressSettingsDao =& DAORegistry::getDAO('PressSettingsDAO');
 			$titles = $this->getData('title');
 			AppLocale::requireComponents(LOCALE_COMPONENT_OMP_DEFAULT_SETTINGS);
-			$pressSettingsDao->installSettings($pressId, 'registry/pressSettings.xml', array(
+			$pressSettingsDao->installSettings($contextId, 'registry/pressSettings.xml', array(
 				'indexUrl' => $request->getIndexUrl(),
 				'pressPath' => $this->getData('path'),
 				'primaryLocale' => $site->getPrimaryLocale(),
@@ -188,7 +144,6 @@ class PressSiteSettingsForm extends Form {
 		}
 		$press->updateSetting('name', $this->getData('name'), 'string', true);
 		$press->updateSetting('description', $this->getData('description'), 'string', true);
-		$press->updateSetting('enabled', (int)$this->getData('enabled'), 0, true);
 
 		// Make sure all plugins are loaded for settings preload
 		PluginRegistry::loadAllPlugins();
@@ -199,7 +154,6 @@ class PressSiteSettingsForm extends Form {
 			return $press->getPath();
 		}
 	}
-
 }
 
 ?>
