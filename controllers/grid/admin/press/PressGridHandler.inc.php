@@ -179,34 +179,31 @@ class PressGridHandler extends ContextGridHandler {
 		$json = new JSONMessage();
 
 		if ($pressId) {
-			if ($pressDao->deleteById($pressId)) {
-				// Add publication formats tombstones for all press published monographs.
-				import('classes.publicationFormat.PublicationFormatTombstoneManager');
-				$publicationFormatTombstoneMgr = new PublicationFormatTombstoneManager();
-				$publicationFormatTombstoneMgr->insertTombstonesByPress($press);
+			$pressDao->deleteById($pressId);
+			// Add publication formats tombstones for all press published monographs.
+			import('classes.publicationFormat.PublicationFormatTombstoneManager');
+			$publicationFormatTombstoneMgr = new PublicationFormatTombstoneManager();
+			$publicationFormatTombstoneMgr->insertTombstonesByPress($press);
 
-				// Delete press file tree
-				// FIXME move this somewhere better.
-				import('classes.file.PressFileManager');
-				$pressFileManager = new PressFileManager($pressId);
-				$pressFileManager->rmtree($pressFileManager->getBasePath());
+			// Delete press file tree
+			// FIXME move this somewhere better.
+			import('classes.file.PressFileManager');
+			$pressFileManager = new PressFileManager($pressId);
+			$pressFileManager->rmtree($pressFileManager->getBasePath());
 
-				import('classes.file.PublicFileManager');
-				$publicFileManager = new PublicFileManager();
-				$publicFileManager->rmtree($publicFileManager->getPressFilesPath($pressId));
+			import('classes.file.PublicFileManager');
+			$publicFileManager = new PublicFileManager();
+			$publicFileManager->rmtree($publicFileManager->getPressFilesPath($pressId));
 
-				// If user is deleting the same press where he is...
-				if($context->getId() == $pressId) {
-					// return a redirect js event to index handler.
-					$dispatcher =& $request->getDispatcher();
-					$url = $dispatcher->url($request, ROUTE_PAGE, null, 'index');
-					return $request->redirectUrlJson($url);
-				}
-
-				return DAO::getDataChangedEvent($pressId);
-			} else {
-				$json->setStatus(false);
+			// If user is deleting the same press where he is...
+			if($context->getId() == $pressId) {
+				// return a redirect js event to index handler.
+				$dispatcher =& $request->getDispatcher();
+				$url = $dispatcher->url($request, ROUTE_PAGE, null, 'index');
+				return $request->redirectUrlJson($url);
 			}
+
+			return DAO::getDataChangedEvent($pressId);
 		}
 
 		return $json->getString();

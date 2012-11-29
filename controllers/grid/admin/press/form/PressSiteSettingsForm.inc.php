@@ -20,7 +20,7 @@ class PressSiteSettingsForm extends ContextSiteSettingsForm {
 	 * @param $contextId omit for a new press
 	 */
 	function PressSiteSettingsForm($contextId = null) {
-		parent::ContextSiteSettingsForm($contextId);
+		parent::ContextSiteSettingsForm('admin/contextSettings.tpl', $contextId);
 
 		// Validation checks for this form
 		$this->addCheck(new FormValidatorLocale($this, 'name', 'required', 'admin.presses.form.titleRequired'));
@@ -52,7 +52,7 @@ class PressSiteSettingsForm extends ContextSiteSettingsForm {
 		if ($this->contextId) {
 			$pressDao =& DAORegistry::getDAO('PressDAO');
 			$press =& $pressDao->getById($this->contextId);
-			$this->setData('oldPath', $press->getPath());
+			if ($press) $this->setData('oldPath', $press->getPath());
 		}
 	}
 

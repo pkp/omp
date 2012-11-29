@@ -140,7 +140,7 @@ class PressDAO extends ContextDAO {
 
 		$this->update('DELETE FROM press_defaults WHERE press_id = ?', (int) $pressId);
 
-		$this->deleteById($pressId);
+		parent::deleteById($pressId);
 	}
 
 	//
