@@ -20,7 +20,7 @@ class PressSiteSettingsForm extends ContextSiteSettingsForm {
 	 * @param $contextId omit for a new press
 	 */
 	function PressSiteSettingsForm($contextId = null) {
-		parent::ContextSiteSettingsForm('admin/contextSettings.tpl', $contextId);
+		parent::ContextSiteSettingsForm('admin/pressSettings.tpl', $contextId);
 
 		// Validation checks for this form
 		$this->addCheck(new FormValidatorLocale($this, 'name', 'required', 'admin.presses.form.titleRequired'));

@@ -45,5 +45,3 @@
 		{fbvFormButtons id="pressSettingsFormSubmit" submitText="common.save"}
 	{/fbvFormArea}
 </form>
-
-
