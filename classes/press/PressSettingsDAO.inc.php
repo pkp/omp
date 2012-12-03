@@ -23,26 +23,6 @@ class PressSettingsDAO extends SettingsDAO {
 	}
 
 	/**
-	 * Get the settings cache for a given press ID
-	 * @param $pressId
-	 * @return array
-	 */
-	function &_getCache($pressId) {
-		static $settingCache;
-		if (!isset($settingCache)) {
-			$settingCache = array();
-		}
-		if (!isset($settingCache[$pressId])) {
-			$cacheManager = CacheManager::getManager();
-			$settingCache[$pressId] = $cacheManager->getCache(
-				'pressSettings', $pressId,
-				array($this, '_cacheMiss')
-			);
-		}
-		return $settingCache[$pressId];
-	}
-
-	/**
 	 * Get the settings table name.
 	 * @return string
 	 */
@@ -56,6 +36,14 @@ class PressSettingsDAO extends SettingsDAO {
 	protected function _getPrimaryKeyColumn() {
 		return 'press_id';
 	}
+
+	/**
+	 * Get the cache name.
+	 */
+	protected function _getCacheName() {
+		return 'pressSettings';
+	}
+
 }
 
 ?>
