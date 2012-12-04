@@ -12,7 +12,7 @@
  * @brief View announcements grid.
  */
 
-import('controllers.grid.content.announcements.AnnouncementGridHandler');
+import('lib.pkp.controllers.grid.announcements.AnnouncementGridHandler');
 
 class ViewAnnouncementGridHandler extends AnnouncementGridHandler {
 	/**

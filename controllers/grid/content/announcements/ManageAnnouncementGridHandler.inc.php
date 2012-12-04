@@ -12,8 +12,9 @@
  * @brief Handle announcements management grid requests.
  */
 
-import('controllers.grid.content.announcements.AnnouncementGridHandler');
+import('lib.pkp.controllers.grid.announcements.AnnouncementGridHandler');
 import('lib.pkp.classes.controllers.grid.DataObjectGridCellProvider');
+
 import('controllers.grid.content.announcements.form.AnnouncementForm');
 
 class ManageAnnouncementGridHandler extends AnnouncementGridHandler {
