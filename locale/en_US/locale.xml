@@ -370,7 +370,6 @@
 	<message key="common.quality">Quality</message>
 	<message key="common.sendEmail">Send Email</message>
 	<message key="common.takeMeThere">Take Me There</message>
-	<message key="common.confirmDelete">Are you sure you wish to delete this item? This action cannot be undone.</message>
 	<message key="common.tasks">Tasks</message>
 	<message key="common.list">List</message>
 	<message key="common.grid">Grid</message>
@@ -635,12 +634,6 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="notification.addedNote">Note posted.</message>
 	<message key="notification.removedNote">Note deleted.</message>
 	<message key="notification.removedFile">File deleted.</message>
-	<message key="notification.addedAnnouncementType">Announcement type added.</message>
-	<message key="notification.editedAnnouncementType">Announcement type edited.</message>
-	<message key="notification.removedAnnouncementType">Announcement type removed.</message>
-	<message key="notification.addedAnnouncement">Announcement added.</message>
-	<message key="notification.editedAnnouncement">Announcement edited.</message>
-	<message key="notification.removedAnnouncement">Announcement removed.</message>
 	<message key="notification.addedSpotlight">Spotlight added.</message>
 	<message key="notification.editedSpotlight">Spotlight edited.</message>
 	<message key="notification.removedSpotlight">Spotlight removed.</message>
