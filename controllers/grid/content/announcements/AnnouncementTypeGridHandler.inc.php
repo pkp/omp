@@ -76,7 +76,7 @@ class AnnouncementTypeGridHandler extends GridHandler {
 		$press =& $request->getPress();
 
 		// Columns
-		import('controllers.grid.content.announcements.AnnouncementTypeGridCellProvider');
+		import('lib.pkp.controllers.grid.announcements.AnnouncementTypeGridCellProvider');
 		$announcementTypeCellProvider = new AnnouncementTypeGridCellProvider();
 		$this->addColumn(
 			new GridColumn('name',
@@ -125,7 +125,7 @@ class AnnouncementTypeGridHandler extends GridHandler {
 	 * @see GridHandler::getRowInstance()
 	 */
 	function getRowInstance() {
-		import('controllers.grid.content.announcements.AnnouncementTypeGridRow');
+		import('lib.pkp.controllers.grid.announcements.AnnouncementTypeGridRow');
 		return new AnnouncementTypeGridRow();
 	}
 
