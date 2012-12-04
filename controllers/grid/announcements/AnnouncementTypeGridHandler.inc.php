@@ -14,7 +14,7 @@
 
 import('lib.pkp.classes.controllers.grid.announcements.PKPAnnouncementTypeGridHandler');
 
-import('controllers.grid.content.announcements.form.AnnouncementTypeForm');
+import('controllers.grid.announcements.form.AnnouncementTypeForm');
 
 class AnnouncementTypeGridHandler extends PKPAnnouncementTypeGridHandler {
 	/**

@@ -14,7 +14,7 @@
 	{rdelim});
 </script>
 
-<form class="pkp_form" id="announcementTypeForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.content.announcements.AnnouncementTypeGridHandler" op="updateAnnouncementType"}">
+<form class="pkp_form" id="announcementTypeForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.announcements.AnnouncementTypeGridHandler" op="updateAnnouncementType"}">
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="announcementTypeFormNotification"}
 	{fbvFormArea id="announcementTypeInfo"}
 		{if $typeId}
