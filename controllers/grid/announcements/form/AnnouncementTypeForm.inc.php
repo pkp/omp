@@ -1,12 +1,12 @@
 <?php
 /**
- * @file controllers/grid/content/announcements/form/AnnouncementTypeForm.inc.php
+ * @file controllers/grid/announcements/form/AnnouncementTypeForm.inc.php
  *
  * Copyright (c) 2003-2012 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class AnnouncementTypeForm
- * @ingroup controllers_grid_content_announcements_form
+ * @ingroup controllers_grid_announcements_form
  *
  * @brief Form for to read/create/edit announcement types.
  */
@@ -38,7 +38,7 @@ class AnnouncementTypeForm extends PKPAnnouncementTypeForm {
 	function fetch($request) {
 		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->assign('typeId', $this->typeId);
-		return parent::fetch($request, 'controllers/grid/content/announcements/form/announcementTypeForm.tpl');
+		return parent::fetch($request, 'controllers/grid/announcements/form/announcementTypeForm.tpl');
 	}
 
 	//

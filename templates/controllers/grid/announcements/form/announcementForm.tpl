@@ -1,5 +1,5 @@
 {**
- * templates/controllers/grid/content/announcements/form/announcementForm.tpl
+ * templates/controllers/grid/announcements/form/announcementForm.tpl
  *
  * Copyright (c) 2003-2012 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -14,7 +14,7 @@
 	{rdelim});
 </script>
 
-<form class="pkp_form" id="announcementForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.content.announcements.ManageAnnouncementGridHandler" op="updateAnnouncement"}">
+<form class="pkp_form" id="announcementForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.announcements.ManageAnnouncementGridHandler" op="updateAnnouncement"}">
 	{if $readOnly}
 		{* Read only announcement *}
 
