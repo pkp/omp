@@ -12,5 +12,5 @@
 	</div>
 {/if}
 
-{url|assign:announcementGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.content.announcements.ViewAnnouncementGridHandler" op="fetchGrid" displayLimit=$displayLimit}
+{url|assign:announcementGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.announcements.ViewAnnouncementGridHandler" op="fetchGrid" displayLimit=$displayLimit}
 {load_url_in_div id="announcementGridContainer" url="$announcementGridUrl"}
