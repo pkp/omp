@@ -49,10 +49,10 @@ class ProfileHandler extends UserHandler {
 	/**
 	 * Display form to edit user's profile.
 	 */
-	function profile($args, &$request) {
+	function profile($args, $request) {
 		$this->setupTemplate($request, true);
 
-		$user =& $request->getUser();
+		$user = $request->getUser();
 		import('classes.user.form.ProfileForm');
 		$profileForm = new ProfileForm($user);
 		if ($profileForm->isLocaleResubmit()) {
@@ -66,10 +66,10 @@ class ProfileHandler extends UserHandler {
 	/**
 	 * Validate and save changes to user's profile.
 	 */
-	function saveProfile($args, &$request) {
+	function saveProfile($args, $request) {
 		$this->setupTemplate($request);
 		$dataModified = false;
-		$user =& $request->getUser();
+		$user = $request->getUser();
 
 		import('classes.user.form.ProfileForm');
 		$profileForm = new ProfileForm($user);
@@ -96,11 +96,11 @@ class ProfileHandler extends UserHandler {
 	/**
 	 * Display form to change user's password.
 	 */
-	function changePassword($args, &$request) {
+	function changePassword($args, $request) {
 		$this->setupTemplate($request, true);
 
-		$user =& $request->getUser();
-		$site =& $request->getSite();
+		$user = $request->getUser();
+		$site = $request->getSite();
 
 		import('classes.user.form.ChangePasswordForm');
 		$passwordForm = new ChangePasswordForm($user, $site);
@@ -111,11 +111,11 @@ class ProfileHandler extends UserHandler {
 	/**
 	 * Save user's new password.
 	 */
-	function savePassword($args, &$request) {
+	function savePassword($args, $request) {
 		$this->setupTemplate($request, true);
 
-		$user =& $request->getUser();
-		$site =& $request->getSite();
+		$user = $request->getUser();
+		$site = $request->getSite();
 
 		import('classes.user.form.ChangePasswordForm');
 		$passwordForm = new ChangePasswordForm($user, $site);

@@ -43,13 +43,10 @@ switch ($op) {
 	case 'setLocale':
 	case 'become':
 	case 'authorizationDenied':
-		define('HANDLER_CLASS', 'UserHandler');
-		import('pages.user.UserHandler');
-		break;
 	case 'getInterests':
 	case 'toggleHelp':
-		define('HANDLER_CLASS', 'PKPUserHandler');
-		import('lib.pkp.pages.user.PKPUserHandler');
+		define('HANDLER_CLASS', 'UserHandler');
+		import('pages.user.UserHandler');
 		break;
 }
 

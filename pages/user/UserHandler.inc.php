@@ -13,14 +13,14 @@
  */
 
 
-import('classes.handler.Handler');
+import('lib.pkp.pages.user.PKPUserHandler');
 
-class UserHandler extends Handler {
+class UserHandler extends PKPUserHandler {
 	/**
 	 * Constructor
 	 */
 	function UserHandler() {
-		parent::Handler();
+		parent::PKPUserHandler();
 	}
 
 	/**
@@ -32,58 +32,15 @@ class UserHandler extends Handler {
 	}
 
 	/**
-	 * Index page; redirect to profile
-	 */
-	function index($args, &$request) {
-		$request->redirect(null, null, 'profile');
-	}
-
-	/**
-	 * Change the locale for the current user.
-	 * @param $args array first parameter is the new locale
-	 */
-	function setLocale($args, &$request) {
-		$setLocale = isset($args[0]) ? $args[0] : null;
-
-		$site =& $request->getSite();
-		$press =& $request->getPress();
-		if ($press != null) {
-			$pressSupportedLocales = $press->getSetting('supportedLocales');
-			if (!is_array($pressSupportedLocales)) {
-				$pressSupportedLocales = array();
-			}
-		}
-
-		if (AppLocale::isLocaleValid($setLocale) && (!isset($pressSupportedLocales) || in_array($setLocale, $pressSupportedLocales)) && in_array($setLocale, $site->getSupportedLocales())) {
-			$session =& $request->getSession();
-			$session->setSessionVar('currentLocale', $setLocale);
-		}
-
-		if(isset($_SERVER['HTTP_REFERER'])) {
-			$request->redirectUrl($_SERVER['HTTP_REFERER']);
-		}
-
-		$source = $request->getUserVar('source');
-		if (isset($source) && !empty($source)) {
-			$request->redirectUrl(
-				$request->getProtocol() . '://' . $request->getServerHost() . $source,
-				false
-			);
-		}
-
-		$request->redirect(null, 'index');
-	}
-
-	/**
 	 * Become a given role.
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function become($args, &$request) {
+	function become($args, $request) {
 		parent::validate(true);
 
-		$press =& $request->getPress();
-		$user =& $request->getUser();
+		$press = $request->getPress();
+		$user = $request->getUser();
 
 		switch (array_shift($args)) {
 			case 'author':
@@ -101,40 +58,15 @@ class UserHandler extends Handler {
 		}
 
 		if ($press->getSetting($setting)) {
-			$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
-			$userGroup =& $userGroupDao->getDefaultByRoleId($press->getId(), $roleId);
+			$userGroupDao = DAORegistry::getDAO('UserGroupDAO');
+			$userGroup = $userGroupDao->getDefaultByRoleId($press->getId(), $roleId);
 			$userGroupDao->assignUserToGroup($user->getId(), $userGroup->getId());
 			$request->redirectUrl($request->getUserVar('source'));
 		} else {
-			$templateMgr =& TemplateManager::getManager($request);
+			$templateMgr = TemplateManager::getManager($request);
 			$templateMgr->assign('message', $deniedKey);
 			return $templateMgr->display('common/message.tpl');
 		}
-	}
-
-	/**
-	 * Display an authorization denied message.
-	 * @param $args array
-	 * @param $request Request
-	 */
-	function authorizationDenied($args, &$request) {
-		parent::validate();
-
-		if (!Validation::isLoggedIn()) {
-			Validation::redirectLogin();
-		}
-
-		// Get message with sanity check (for XSS or phishing)
-		$authorizationMessage = $request->getUserVar('message');
-		if (!preg_match('/^[a-zA-Z0-9.]+$/', $authorizationMessage)) {
-			fatalError('Invalid locale key for auth message.');
-		}
-
-		$this->setupTemplate($request);
-		AppLocale::requireComponents(LOCALE_COMPONENT_PKP_USER);
-		$templateMgr =& TemplateManager::getManager($request);
-		$templateMgr->assign('message', $authorizationMessage);
-		return $templateMgr->display('common/message.tpl');
 	}
 }
 

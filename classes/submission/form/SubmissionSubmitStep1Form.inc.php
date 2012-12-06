@@ -23,7 +23,7 @@ class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
 		parent::SubmissionSubmitForm($press, $monograph, 1);
 
 		// Validation checks for this form
-		$supportedSubmissionLocales = $press->getSetting('supportedSubmissionLocales');
+		$supportedSubmissionLocales = $press->getSupportedSubmissionLocales();
 		if (!is_array($supportedSubmissionLocales) || count($supportedSubmissionLocales) < 1) $supportedSubmissionLocales = array($press->getPrimaryLocale());
 		$this->addCheck(new FormValidatorInSet($this, 'locale', 'required', 'submission.submit.form.localeRequired', $supportedSubmissionLocales));
 		if ((boolean) $press->getSetting('copyrightNoticeAgree')) {
@@ -57,17 +57,9 @@ class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
 		$seriesOptions = array('0' => __('submission.submit.selectSeries')) + $seriesDao->getTitlesByPressId($this->press->getId());
 		$templateMgr->assign('seriesOptions', $seriesOptions);
 
-		// Provide available submission languages. (Convert the array
-		// of locale symbolic names xx_XX into an associative array
-		// of symbolic names => readable names.)
-		$supportedSubmissionLocales = $this->press->getSetting('supportedSubmissionLocales');
-		if (empty($supportedSubmissionLocales)) $supportedSubmissionLocales = array($this->press->getPrimaryLocale());
 		$templateMgr->assign(
 			'supportedSubmissionLocaleNames',
-			array_flip(array_intersect(
-				array_flip(AppLocale::getAllLocales()),
-				$supportedSubmissionLocales
-			))
+			$this->press->getSupportedSubmissionLocaleNames()
 		);
 
 		// if this press has a copyright notice that the author must agree to, present the form items.
@@ -122,7 +114,7 @@ class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
 				'commentsToEditor' => $this->monograph->getCommentsToEditor()
 			);
 		} else {
-			$supportedSubmissionLocales = $this->press->getSetting('supportedSubmissionLocales');
+			$supportedSubmissionLocales = $this->press->getSupportedSubmissionLocales();
 			// Try these locales in order until we find one that's
 			// supported to use as a default.
 			$tryLocales = array(
