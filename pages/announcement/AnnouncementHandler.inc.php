@@ -12,13 +12,12 @@
  * @brief Handle requests for public announcement functions.
  */
 
-
 import('classes.handler.Handler');
 
 class AnnouncementHandler extends Handler {
 	/**
 	 * Constructor
-	 **/
+	 */
 	function AnnouncementHandler() {
 		parent::Handler();
 	}
@@ -44,37 +43,16 @@ class AnnouncementHandler extends Handler {
 	 * @var $request PKPRequest
 	 * @return string
 	 */
-	function index($args, &$request) {
+	function index($args, $request) {
 		$this->setupTemplate($request);
 
-		$press =& $request->getPress();
+		$press = $request->getPress();
 		$announcementsIntro = $press->getLocalizedSetting('announcementsIntroduction');
 
-		$templateMgr =& TemplateManager::getManager($request);
+		$templateMgr = TemplateManager::getManager($request);
 		$templateMgr->assign('announcementsIntroduction', $announcementsIntro);
 
 		$templateMgr->display('announcements/index.tpl');
-	}
-
-	/**
-	 * Show 'more' announcement page.
-	 * @var $args array
-	 * @var $request PKPRequest
-	 * @return string
-	 */
-	function view($args, &$request) {
-		$this->setupTemplate($request);
-
-		$press =& $request->getPress();
-
-		$announcementDao =& DAORegistry::getDAO('AnnouncementDAO');
-		$announcementId = array_shift($args);
-		$announcement =& $announcementDao->getById($announcementId);
-
-		$templateMgr =& TemplateManager::getManager($request);
-		$templateMgr->assign('announcement', $announcement);
-
-		$templateMgr->display('announcements/view.tpl');
 	}
 }
 
