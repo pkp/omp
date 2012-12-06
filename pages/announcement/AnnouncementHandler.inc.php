@@ -12,47 +12,14 @@
  * @brief Handle requests for public announcement functions.
  */
 
-import('classes.handler.Handler');
+import('lib.pkp.pages.announcement.PKPAnnouncementHandler');
 
-class AnnouncementHandler extends Handler {
+class AnnouncementHandler extends PKPAnnouncementHandler {
 	/**
 	 * Constructor
 	 */
 	function AnnouncementHandler() {
-		parent::Handler();
-	}
-
-
-	//
-	// Implement methods from Handler.
-	//
-	function authorize($request, &$args, $roleAssignments) {
-		import('lib.pkp.classes.security.authorization.ContextRequiredPolicy');
-		$this->addPolicy(new ContextRequiredPolicy($request));
-
-		return parent::authorize($request, $args, $roleAssignments);
-	}
-
-
-	//
-	// Public handler methods.
-	//
-	/**
-	 * Show public announcements page.
-	 * @var $args array
-	 * @var $request PKPRequest
-	 * @return string
-	 */
-	function index($args, $request) {
-		$this->setupTemplate($request);
-
-		$press = $request->getPress();
-		$announcementsIntro = $press->getLocalizedSetting('announcementsIntroduction');
-
-		$templateMgr = TemplateManager::getManager($request);
-		$templateMgr->assign('announcementsIntroduction', $announcementsIntro);
-
-		$templateMgr->display('announcements/index.tpl');
+		parent::PKPAnnouncementHandler();
 	}
 }
 
