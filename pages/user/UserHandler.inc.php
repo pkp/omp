@@ -12,7 +12,6 @@
  * @brief Handle requests for user functions.
  */
 
-
 import('lib.pkp.pages.user.PKPUserHandler');
 
 class UserHandler extends PKPUserHandler {
@@ -29,6 +28,13 @@ class UserHandler extends PKPUserHandler {
 	function initialize(&$request, &$args) {
 		AppLocale::requireComponents(LOCALE_COMPONENT_PKP_GRID);
 		parent::initialize($request, $args);
+	}
+
+	/**
+	 * Index page; redirect to profile
+	 */
+	function index($args, $request) {
+		$request->redirect(null, null, 'profile');
 	}
 
 	/**
