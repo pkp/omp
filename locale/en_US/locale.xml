@@ -457,11 +457,6 @@
 	<message key="user.role.proofreaders">Proofreaders</message>
 	<message key="user.role.productionEditors">Production Editors</message>
 
-	<!-- Login -->
-	<message key="user.login.registerNewAccount">Not a user? Register with this site</message>
-	<message key="user.login.resetPasswordInstructions"><![CDATA[For security reasons, this system emails a reset password to registered users, rather than recalling the
-current password.<br /><br />Enter your email address below to reset your password. A confirmation will be sent to this email address.]]></message>
-
 	<!-- Information Center -->
 	<message key="informationCenter.informationCenter">Information Center</message>
 	<message key="informationCenter.bookInfo">Info</message>
