@@ -98,7 +98,7 @@ class AdminHandler extends Handler {
 	 * Setup common template variables.
 	 */
 	function setupTemplate($request) {
-		parent::setupTemplate();
+		parent::setupTemplate($request);
 		AppLocale::requireComponents(LOCALE_COMPONENT_PKP_ADMIN, LOCALE_COMPONENT_OMP_MANAGER, LOCALE_COMPONENT_OMP_ADMIN);
 	}
 }
