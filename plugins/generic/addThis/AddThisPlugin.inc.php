@@ -34,6 +34,13 @@ class AddThisPlugin extends GenericPlugin {
 		return $this->getPluginPath() . '/settings.xml';
 	}
 
+	/**
+	 * @see PKPPlugin::getName()
+	 */
+	function getName() {
+		return 'AddThisPlugin';
+	}
+
 	function getDisplayName() {
 		return __('plugins.generic.addThis.displayName');
 	}
@@ -62,7 +69,7 @@ class AddThisPlugin extends GenericPlugin {
 		if ($verbName === 'settings') {
 			import('lib.pkp.classes.linkAction.request.AjaxLegacyPluginModal');
 			$actionRequest = new AjaxLegacyPluginModal(
-				$router->url($request, null, null, 'plugin'),
+				$router->url($request, null, null, 'plugin', null, array('verb' => 'settings', 'plugin' => $this->getName(), 'category' => 'generic')),
 				$this->getDisplayName()
 			);
 			return new LinkAction($verbName, $actionRequest, $verbLocalized, null);

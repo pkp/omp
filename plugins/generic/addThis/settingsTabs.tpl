@@ -16,9 +16,9 @@
 </script>
 <div id="addThisSettingsTabs">
 	<ul>
-		<li><a href="{url router=$smarty.const.ROUTE_COMPONENT component="grid.settings.plugins.SettingsPluginGridHandler" op="plugin" category="generic" plugin="addthisplugin" verb="showTab" tab="settings" escape=false}">{translate key="plugins.generic.addThis.settings"}</a></li>
+		<li><a href="{url router=$smarty.const.ROUTE_COMPONENT component="grid.settings.plugins.SettingsPluginGridHandler" op="plugin" category="generic" plugin="AddThisPlugin" verb="showTab" tab="settings" escape=false}">{translate key="plugins.generic.addThis.settings"}</a></li>
 		<li {if !$statsConfigured}class="ui-state-default ui-corner-top ui-state-disabled"{/if}>
-			<a href="{url router=$smarty.const.ROUTE_COMPONENT component="grid.settings.plugins.SettingsPluginGridHandler" op="plugin" category="generic" plugin="addthisplugin" verb="showTab" tab="statistics" escape=false}">{translate key="plugins.generic.addThis.settings.statistics"}</a>
+			<a href="{url router=$smarty.const.ROUTE_COMPONENT component="grid.settings.plugins.SettingsPluginGridHandler" op="plugin" category="generic" plugin="AddThisPlugin" verb="showTab" tab="statistics" escape=false}">{translate key="plugins.generic.addThis.settings.statistics"}</a>
 		</li>
 	</ul>
 </div>
