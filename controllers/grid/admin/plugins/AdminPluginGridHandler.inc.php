@@ -33,7 +33,32 @@ class AdminPluginGridHandler extends PluginGridHandler {
 	 * @see GridHandler::getRowInstance()
 	 */
 	function getRowInstance() {
-		return parent::getRowInstance(CONTEXT_SITE);
+		$userRoles = $this->getAuthorizedContextObject(ASSOC_TYPE_USER_ROLES);
+
+		import('controllers.grid.plugins.PluginGridRow');
+		return new PluginGridRow($userRoles, CONTEXT_PRESS);
+	}
+
+	/**
+	 * @see GridHandler::authorize()
+	 */
+	function authorize($request, &$args, $roleAssignments) {
+		$category = $request->getUserVar('category');
+		$pluginName = $request->getUserVar('plugin');
+		$verb = $request->getUserVar('verb');
+
+		if ($category && $pluginName) {
+			import('classes.security.authorization.OmpPluginAccessPolicy');
+			if ($verb) {
+				$accessMode = ACCESS_MODE_MANAGE;
+			} else {
+				$accessMode = ACCESS_MODE_ADMIN;
+			}
+
+			$this->addPolicy(new OmpPluginAccessPolicy($request, $args, $roleAssignments, $accessMode));
+		}
+
+		return parent::authorize($request, $args, $roleAssignments);
 	}
 }
 
