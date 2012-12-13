@@ -115,10 +115,10 @@ class CatalogEntryHandler extends Handler {
 	//
 	/**
 	 * Display the tabs index page.
-	 * @param $request PKPRequest
 	 * @param $args array
+	 * @param $request PKPRequest
 	 */
-	function fetch($request, $args) {
+	function fetch($args, $request) {
 		$templateMgr =& TemplateManager::getManager($request);
 
 		$monograph =& $this->getMonograph();
@@ -161,10 +161,10 @@ class CatalogEntryHandler extends Handler {
 	/**
 	 * Returns a JSON response containing information regarding the formats enabled
 	 * for this monograph.
-	 * @param $request Request
 	 * @param $args array
+	 * @param $request Request
 	 */
-	function fetchFormatInfo($request, $args) {
+	function fetchFormatInfo($args, $request) {
 		$monograph =& $this->getMonograph();
 		// check to see if this monograph has been published yet
 		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
