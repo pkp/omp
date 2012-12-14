@@ -117,7 +117,7 @@
 					{/fbvFormSection}
 
 					{fbvFormSection}
-						{fbvElement type="text" label="user.url" name="userUrl" id="userUrl" value=$userUrl maxlength="90" inline=true size=$fbvStyles.size.SMALL}
+						{fbvElement type="text" label="user.url" name="userUrl" id="userUrl" value=$userUrl maxlength="255" inline=true size=$fbvStyles.size.SMALL}
 						{fbvElement type="text" label="user.phone" name="phone" id="phone" value=$phone maxlength="24" inline=true size=$fbvStyles.size.SMALL}
 						{fbvElement type="text" label="user.fax" name="fax" id="fax" value=$fax maxlength="24" inline=true size=$fbvStyles.size.SMALL}
 					{/fbvFormSection}
