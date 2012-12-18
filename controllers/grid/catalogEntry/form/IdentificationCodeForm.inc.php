@@ -122,6 +122,14 @@ class IdentificationCodeForm extends Form {
 			$assignedCodes = array_keys($identificationCodes->toAssociativeArray('code')); // currently assigned codes
 			if ($identificationCode) $assignedCodes = array_diff($assignedCodes, array($identificationCode->getCode())); // allow existing codes to keep their value
 			$onixCodelistItemDao =& DAORegistry::getDAO('ONIXCodelistItemDAO');
+
+			// since the pubId DOI plugin may be enabled, we give that precedence and remove DOI from here if that is the case.
+			$pubIdPlugins =& PluginRegistry::loadCategory('pubIds', true);
+			foreach ($pubIdPlugins as $plugin) {
+				if ($plugin->getEnabled() && $plugin->getPubIdType() == 'doi') {
+					$assignedCodes[] = '06'; // 06 is DOI in ONIX-speak.
+				}
+			}
 			$codes =& $onixCodelistItemDao->getCodes('List5', $assignedCodes); // ONIX list for these
 			$templateMgr->assign_by_ref('identificationCodes', $codes);
 		} else {

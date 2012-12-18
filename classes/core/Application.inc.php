@@ -190,6 +190,7 @@ class Application extends PKPApplication {
 			// depend on meta-data. This is a very rudimentary type of
 			// dependency management for plug-ins.
 			'metadata',
+			'pubIds',
 			'blocks',
 			'generic',
 			'importexport',

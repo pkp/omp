@@ -555,6 +555,38 @@ class PublicationFormat extends DataObject {
 
 		return $errors;
 	}
+
+	/**
+	 * Get the press id from the monograph assigned to this publication format.
+	 * @return int
+	 */
+	function getPressId() {
+		$monographDao =& DAORegistry::getDAO('MonographDAO');
+		$monograph =& $monographDao->getById($this->getData('monographId'));
+		return $monograph->getPressId();
+	}
+
+	/**
+	 * Get stored public ID of the submission.
+	 * @param $pubIdType string One of the NLM pub-id-type values or
+	 * 'other::something' if not part of the official NLM list
+	 * (see <http://dtd.nlm.nih.gov/publishing/tag-library/n-4zh0.html>).
+	 * @return int
+	 */
+	function getStoredPubId($pubIdType) {
+		return $this->getData('pub-id::'.$pubIdType);
+	}
+
+	/**
+	 * Set the stored public ID of the submission.
+	 * @param $pubIdType string One of the NLM pub-id-type values or
+	 * 'other::something' if not part of the official NLM list
+	 * (see <http://dtd.nlm.nih.gov/publishing/tag-library/n-4zh0.html>).
+	 * @param $pubId string
+	 */
+	function setStoredPubId($pubIdType, $pubId) {
+		return $this->setData('pub-id::'.$pubIdType, $pubId);
+	}
 }
 
 ?>

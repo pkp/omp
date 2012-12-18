@@ -54,6 +54,18 @@
 	{/foreach}{* publicationDates *}
 	</div>
 {/if}{* $publicationDates *}
+{if $enabledPubIdTypes|@count > 0}
+	<div class="bookPubIds-{$publicationFormat->getId()|escape}">
+		{foreach from=$enabledPubIdTypes item=pubIdType}
+			<div id="bookPubId-{$publicationFormat->getId()|escape}-{$pubIdType|escape}">
+				{assign var=storedPubId value=$publicationFormat->getStoredPubId($pubIdType)}
+				{if $storedPubId != ''}
+					pub-id::{$pubIdType}: {$storedPubId|escape}
+				{/if}
+			</div>
+		{/foreach}
+	</div>
+{/if}
 {assign var="publicationFormatId" value=$publicationFormat->getId()}
 {if !empty($availableFiles.$publicationFormatId)}
 	<div class="ecommerce">

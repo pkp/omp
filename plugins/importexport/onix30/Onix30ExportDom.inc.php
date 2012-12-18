@@ -83,6 +83,20 @@ class Onix30ExportDom {
 			unset($productIdentifierNode);
 			unset($code);
 		}
+
+		// Deal with the possibility of a DOI pubId from the plugin.
+		$pubIdPlugins =& PluginRegistry::loadCategory('pubIds', true);
+		foreach ($pubIdPlugins as $plugin) {
+			if ($plugin->getEnabled() && $plugin->getPubIdType() == 'doi') {
+				$productIdentifierNode =& XMLCustomWriter::createElement($doc, 'ProductIdentifier');
+				XMLCustomWriter::appendChild($productNode, $productIdentifierNode);
+				XMLCustomWriter::createChildWithText($doc, $productIdentifierNode, 'ProductIDType', '06'); // DOI
+				XMLCustomWriter::createChildWithText($doc, $productIdentifierNode, 'IDValue', $publicationFormat->getStoredPubId('doi'));
+				unset($productIdentifierNode);
+			}
+			unset($plugin);
+		}
+		unset($pubIdPlugins);
 		/* --- Descriptive Detail --- */
 
 		$descDetailNode =& XMLCustomWriter::createElement($doc, 'DescriptiveDetail');

@@ -99,6 +99,11 @@
 		{/fbvFormSection}
 	{/fbvFormArea}
 
+	{foreach from=$pubIdPlugins item=pubIdPlugin}
+		{assign var=pubIdMetadataFile value=$pubIdPlugin->getPubIdMetadataFile()}
+		{include file="$pubIdMetadataFile" pubObject=$publicationFormat}
+	{/foreach}
+
 	{if $isPhysicalFormat}
 		{include file="controllers/tab/catalogEntry/form/physicalPublicationFormat.tpl"}
 	{else}

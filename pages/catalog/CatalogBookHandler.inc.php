@@ -72,6 +72,23 @@ class CatalogBookHandler extends Handler {
 
 		$templateMgr->assign_by_ref('blocks', $blocks);
 
+		// determine which pubId plugins are enabled.
+		$pubIdPlugins =& PluginRegistry::loadCategory('pubIds', true);
+		$enabledPubIdTypes = array();
+		foreach ($pubIdPlugins as $plugin) {
+			if ($plugin->getEnabled()) {
+				$enabledPubIdTypes[] = $plugin->getPubIdType();
+				// check to see if the format has a pubId set.  If not, generate one.
+				$publicationFormats =& $publishedMonograph->getPublicationFormats(true);
+				foreach ($publicationFormats as $publicationFormat) {
+					if ($publicationFormat->getStoredPubId($plugin->getPubIdType()) == '') {
+						$plugin->getPubId($publicationFormat);
+					}
+				}
+			}
+		}
+		$templateMgr->assign('enabledPubIdTypes', $enabledPubIdTypes);
+
 		// e-Commerce
 		import('classes.payment.omp.OMPPaymentManager');
 		$ompPaymentManager = new OMPPaymentManager($request);
@@ -79,7 +96,7 @@ class CatalogBookHandler extends Handler {
 		if ($ompPaymentManager->isConfigured()) {
 			$availableFiles = array_filter(
 				$monographFileDao->getLatestRevisions($publishedMonograph->getId()),
-				create_function('$a', 'return $a->getViewable() && $a->getDirectSalesPrice() !== null && $a->getAssocType() == ASSOC_TYPE_PUBLICATION_FORMAT;')			
+				create_function('$a', 'return $a->getViewable() && $a->getDirectSalesPrice() !== null && $a->getAssocType() == ASSOC_TYPE_PUBLICATION_FORMAT;')
 			);
 			$availableFilesByPublicationFormat = array();
 			foreach ($availableFiles as $availableFile) {

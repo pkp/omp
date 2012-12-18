@@ -143,6 +143,23 @@ class PressDAO extends ContextDAO {
 		parent::deleteById($pressId);
 	}
 
+	/**
+	 * Delete the public IDs of all publishing objects in a press.
+	 * @param $pressId int
+	 * @param $pubIdType string One of the NLM pub-id-type values or
+	 * 'other::something' if not part of the official NLM list
+	 * (see <http://dtd.nlm.nih.gov/publishing/tag-library/n-4zh0.html>).
+	 */
+	function deleteAllPubIds($pressId, $pubIdType) {
+		// Keep this as a loop in case we add DOI support to other types later on.
+		$pubObjectDaos = array('PublicationFormatDAO');
+		foreach($pubObjectDaos as $daoName) {
+			$dao =& DAORegistry::getDAO($daoName);
+			$dao->deleteAllPubIds($pressId, $pubIdType);
+			unset($dao);
+		}
+	}
+
 	//
 	// Private functions
 	//

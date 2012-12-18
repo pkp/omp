@@ -13,6 +13,7 @@
  */
 
 import('lib.pkp.classes.form.Form');
+import('classes.plugins.PubIdPluginHelper');
 
 class CatalogEntryPublicationMetadataForm extends Form {
 
@@ -45,6 +46,8 @@ class CatalogEntryPublicationMetadataForm extends Form {
 		parent::Form('controllers/tab/catalogEntry/form/publicationMetadataFormFields.tpl');
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
 		$this->_monograph = $monographDao->getById($monographId);
+
+		$this->_pubIdPluginHelper = new PubIdPluginHelper();
 
 		$this->_stageId = $stageId;
 		$this->_publicationFormatId = $publicationFormatId;
@@ -101,6 +104,10 @@ class CatalogEntryPublicationMetadataForm extends Form {
 			$templateMgr->assign_by_ref($templateVarName, $onixCodelistItemDao->getCodes($list));
 		}
 
+		// consider public identifiers
+		$pubIdPlugins =& PluginRegistry::loadCategory('pubIds', true);
+		$templateMgr->assign('pubIdPlugins', $pubIdPlugins);
+
 		// Notification options.
 		$notificationRequestOptions = array(
 			NOTIFICATION_LEVEL_NORMAL => array(
@@ -150,7 +157,13 @@ class CatalogEntryPublicationMetadataForm extends Form {
 			'technicalProtectionCode' => $publicationFormat->getTechnicalProtectionCode() != '' ? $publicationFormat->getTechnicalProtectionCode() : '00',
 			'returnableIndicatorCode' => $publicationFormat->getReturnableIndicatorCode() != '' ? $publicationFormat->getReturnableIndicatorCode() : 'Y',
 			'isApproved' => (bool) $publicationFormat->getIsApproved(),
+			// the pubId plugin needs the format object.
+			'publicationFormat' => $publicationFormat
 		);
+
+		// initialize the pubId fields.
+		$pubIdPluginHelper =& $this->_getPubIdPluginHelper();
+		$pubIdPluginHelper->init($this, $publicationFormat);
 	}
 
 	/**
@@ -180,6 +193,10 @@ class CatalogEntryPublicationMetadataForm extends Form {
 			'returnableIndicatorCode',
 			'isApproved'
 		));
+
+		// consider the additional field names from the public identifer plugins
+		$pubIdPluginHelper =& $this->_getPubIdPluginHelper();
+		$pubIdPluginHelper->readInputData($this);
 	}
 
 	/**
@@ -236,6 +253,10 @@ class CatalogEntryPublicationMetadataForm extends Form {
 		$publicationFormat->setReturnableIndicatorCode($this->getData('returnableIndicatorCode'));
 		$publicationFormat->setIsApproved($this->getData('isApproved')?true:false);
 
+		// consider the additional field names from the public identifer plugins
+		$pubIdPluginHelper =& $this->_getPubIdPluginHelper();
+		$pubIdPluginHelper->execute($this, $publicationFormat);
+
 		$publicationFormatDao->updateObject($publicationFormat);
 	}
 
@@ -278,6 +299,14 @@ class CatalogEntryPublicationMetadataForm extends Form {
 	 */
 	function getFormParams() {
 		return $this->_formParams;
+	}
+
+	/**
+	 * returns the PubIdPluginHelper associated with this form.
+	 * @return PubIdPluginHelper
+	 */
+	function _getPubIdPluginHelper() {
+		return $this->_pubIdPluginHelper;
 	}
 }
 

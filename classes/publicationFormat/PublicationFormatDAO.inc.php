@@ -73,6 +73,25 @@ class PublicationFormatDAO extends DAO {
 	}
 
 	/**
+	 * Retrieves a list of publication formats for a press
+	 * @param int pressId
+	 * @return DAOResultFactory (PublicationFormat)
+	 */
+	function getByPressId($pressId) {
+		$params = array((int) $pressId);
+		$result =& $this->retrieve(
+			'SELECT pf.*
+			FROM	publication_formats pf
+			JOIN	monographs m ON (m.monograph_id = pf.monograph_id)
+			WHERE m.press_id = ?',
+			$params
+		);
+
+		$returner = new DAOResultFactory($result, $this, '_fromRow');
+		return $returner;
+	}
+
+	/**
 	 * Retrieves a list of approved publication formats for a published monograph
 	 * @param int $monographId
 	 * @return DAOResultFactory (PublicationFormat)
@@ -272,6 +291,85 @@ class PublicationFormatDAO extends DAO {
 	 */
 	function getLocaleFieldNames() {
 		return array('name');
+	}
+
+	/**
+	 * @see DAO::getAdditionalFieldNames()
+	 */
+	function getAdditionalFieldNames() {
+		$additionalFields = parent::getAdditionalFieldNames();
+		$additionalFields[] = 'pub-id::doi';
+		$additionalFields[] = 'doiSuffix';
+		return $additionalFields;
+	}
+
+	/**
+	 * Delete the public IDs of all publication formats in a press.
+	 * @param $pressId int
+	 * @param $pubIdType string One of the NLM pub-id-type values or
+	 * 'other::something' if not part of the official NLM list
+	 * (see <http://dtd.nlm.nih.gov/publishing/tag-library/n-4zh0.html>).
+	 */
+	function deleteAllPubIds($pressId, $pubIdType) {
+		$pressId = (int) $pressId;
+		$settingName = 'pub-id::'.$pubIdType;
+
+		$formats =& $this->getByPressId($pressId);
+		while ($format =& $formats->next()) {
+			$this->update(
+				'DELETE FROM publication_format_settings WHERE setting_name = ? AND publication_format_id = ?',
+				array(
+					$settingName,
+					(int)$format->getId()
+				)
+			);
+			unset($format);
+		}
+		$this->flushCache();
+	}
+
+	/**
+	 * Change the public ID of a format.
+	 * @param $formatId int
+	 * @param $pubIdType string One of the NLM pub-id-type values or
+	 * 'other::something' if not part of the official NLM list
+	 * (see <http://dtd.nlm.nih.gov/publishing/tag-library/n-4zh0.html>).
+	 * @param $pubId string
+	 */
+	function changePubId($formatId, $pubIdType, $pubId) {
+		$publicationFormat =& $this->getById($formatId);
+		$publicationFormat->setData('pub-id::'.$pubIdType, $pubId);
+		$this->updateObject($publicationFormat);
+	}
+
+	/**
+	 * Checks if public identifier exists (other than for the specified
+	 * publication format ID, which is treated as an exception).
+	 * @param $pubIdType string One of the NLM pub-id-type values or
+	 * 'other::something' if not part of the official NLM list
+	 * (see <http://dtd.nlm.nih.gov/publishing/tag-library/n-4zh0.html>).
+	 * @param $pubId string
+	 * @param $formatId int An ID to be excluded from the search.
+	 * @param $pressId int
+	 * @return boolean
+	 */
+	function pubIdExists($pubIdType, $pubId, $formatId, $pressId) {
+		$result =& $this->retrieve(
+			'SELECT COUNT(*)
+			FROM publication_format_settings pft
+			INNER JOIN publication_formats p ON pft.publication_format_id = p.publication_format_id
+			INNER JOIN monographs m ON p.monograph_id = m.monograph_id
+			WHERE pft.setting_name = ? and pft.setting_value = ? and p.monograph_id <> ? AND m.press_id = ?',
+			array(
+				'pub-id::'.$pubIdType,
+				$pubId,
+				(int) $formatId,
+				(int) $pressId
+			)
+		);
+		$returner = $result->fields[0] ? true : false;
+		$result->Close();
+		return $returner;
 	}
 }
 
