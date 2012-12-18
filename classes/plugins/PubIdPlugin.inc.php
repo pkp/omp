@@ -174,7 +174,7 @@ class PubIdPlugin extends Plugin {
 	 * @param $pubId string
 	 * @return string resolving URL
 	 */
-	function getResolvingURL($journalId, $pubId) {
+	function getResolvingURL($pressId, $pubId) {
 		assert(false); // Should always be overridden
 	}
 
