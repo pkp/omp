@@ -39,9 +39,6 @@
 
 		// Start in grid view
 		this.useGridView();
-
-		// Set up the sortables.
-		this.trigger('monographListChanged');
 	};
 	$.pkp.classes.Helper.inherits(
 			$.pkp.pages.manageCatalog.MonographManagementListHandler,
