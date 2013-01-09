@@ -62,7 +62,7 @@
 	}
 
 	.submission_progress li {
-		height:33px;
+		height:37px;
 		line-height:12px;
 		width: 19.5%;
 		background-image:url('../lib/pkp/templates/images/structure/workflow_inactive.png');
@@ -100,19 +100,17 @@
 		background-image:url('../lib/pkp/templates/images/structure/workflow_productionReady.png');
 	}
 	
-	.submission_progress li.productionReady.current {
-		background-image:url('../lib/pkp/templates/images/structure/workflow_productionReadyCurrent.png') !important;
-	}
-
 	.submission_progress li.current {
  		background-image:url('../lib/pkp/templates/images/structure/workflow_current.png');
  		
  		a {
  			font-size: 13px;
  		}
+
+		&.productionReady {
+			background-image:url('../lib/pkp/templates/images/structure/workflow_productionReadyCurrent.png') !important;
+		}
  	}
- 	
- 	
 
 	.submission_progress li.complete a:after {
 		background-color: #e5f4e5;
@@ -134,7 +132,7 @@
 		display: block;
 		width: 1px;
 		top: 0;
-		height: 33px;
+		height: 37px;
 		position: absolute;		
 	}
 }

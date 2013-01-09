@@ -1835,7 +1835,7 @@ ul.sf-menu {
   position:relative;
 }
 .pkp_page_header .submission_progress li {
-  height:33px;
+  height:37px;
   line-height:12px;
   width:19.5%;
   background-image:url('../lib/pkp/templates/images/structure/workflow_inactive.png');
@@ -1861,9 +1861,9 @@ ul.sf-menu {
 }
 .pkp_page_header .submission_progress li.stageDisabled a { color:#999999; }
 .pkp_page_header .submission_progress li.productionReady { background-image:url('../lib/pkp/templates/images/structure/workflow_productionReady.png'); }
-.pkp_page_header .submission_progress li.productionReady.current { background-image:url('../lib/pkp/templates/images/structure/workflow_productionReadyCurrent.png') !important; }
 .pkp_page_header .submission_progress li.current { background-image:url('../lib/pkp/templates/images/structure/workflow_current.png'); }
 .pkp_page_header .submission_progress li.current a { font-size:13px; }
+.pkp_page_header .submission_progress li.current.productionReady { background-image:url('../lib/pkp/templates/images/structure/workflow_productionReadyCurrent.png') !important; }
 .pkp_page_header .submission_progress li.complete a:after { background-color:#e5f4e5; }
 .pkp_page_header .submission_progress li.current a:after { background-color:#eaf3f8; }
 .pkp_page_header .submission_progress li:before {
@@ -1877,7 +1877,7 @@ ul.sf-menu {
   display:block;
   width:1px;
   top:0;
-  height:33px;
+  height:37px;
   position:absolute;
 }
 #reviewTabs .ui-tabs-nav a.pkp_controllers_linkAction { line-height:0px; }
