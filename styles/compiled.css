@@ -1499,6 +1499,7 @@ span.pkp_controllers_informationCenter_itemLastEvent {
   overflow:auto;
   padding-right:5px;
 }
+.pkp_controllers_informationCenter #notesList .newNote { background-color:#f9ae3f; }
 .pkp_controllers_informationCenter #informationCenterHistoryTab .heading td { font-weight:bold; }
 .pkp_controllers_rangeSlider .pkp_controllers_rangeSlider_sliderLabel {
   margin-bottom:10px;

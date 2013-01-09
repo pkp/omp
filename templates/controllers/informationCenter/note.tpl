@@ -24,7 +24,7 @@
 <div id="note-{$noteId}" class="noteWrapper pkp_helpers_dotted_underline">
 	<table width="100%">
 		<tr valign="top">
-			<td colspan="2">
+			<td colspan="2"{if $noteViewStatus==$smarty.const.RECORD_VIEW_RESULT_INSERTED} class="newNote"{/if}>
 				{assign var="noteUser" value=$note->getUser()}
 				{$noteUser->getFullName()|escape}<br />
 				<span class="pkp_controllers_informationCenter_itemLastEvent">{$note->getDateCreated()|date_format:$datetimeFormatShort}</span>

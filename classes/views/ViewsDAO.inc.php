@@ -12,6 +12,10 @@
  * @brief Class for keeping track of item views.
  */
 
+define('RECORD_VIEW_RESULT_FAIL', 0);
+define('RECORD_VIEW_RESULT_EXISTING', 1);
+define('RECORD_VIEW_RESULT_INSERTED', 2);
+
 import('classes.views.ViewsDAO');
 
 class ViewsDAO extends DAO {
@@ -27,10 +31,10 @@ class ViewsDAO extends DAO {
 	 * @param $assocType integer The associated type for the item being marked.
 	 * @param $assocId string The id of the object being marked.
 	 * @param $userId integer The id of the user viewing the item.
-	 * @return boolean
+	 * @return int RECORD_VIEW_RESULT_...
 	 */
 	function recordView($assocType, $assocId, $userId) {
-		$this->Replace(
+		return $this->replace(
 			'item_views',
 			array(
 				'date_last_viewed' => strftime('%Y-%m-%d %H:%M:%S'),

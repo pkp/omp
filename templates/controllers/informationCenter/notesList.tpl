@@ -15,8 +15,8 @@
 		{else}
 			{assign var=downloadLink value=0}
 		{/if}
-		{include file="controllers/informationCenter/note.tpl" noteFileDownloadLink=$downloadLink}
-		{$note->markViewed($currentUserId)}
+		{assign var=noteViewStatus value=$note->markViewed($currentUserId)}
+		{include file="controllers/informationCenter/note.tpl" noteFileDownloadLink=$downloadLink noteViewStatus=$noteViewStatus}
 	{/iterate}
 	{if $notes->wasEmpty()}
 		<p>{translate key="informationCenter.noNotes"}</p>
