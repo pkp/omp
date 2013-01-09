@@ -17,7 +17,7 @@ import('lib.pkp.classes.controllers.grid.CategoryGridHandler');
 import('lib.pkp.classes.controllers.grid.DataObjectGridCellProvider');
 
 // import chapter grid specific classes
-import('controllers.grid.users.author.AuthorGridCellProvider');
+import('lib.pkp.controllers.grid.users.author.PKPAuthorGridCellProvider');
 import('controllers.grid.users.chapter.ChapterGridCategoryRow');
 
 // Link action & modal classes
@@ -120,7 +120,7 @@ class ChapterGridHandler extends CategoryGridHandler {
 
 		// Columns
 		// reuse the cell providers for the AuthorGrid
-		$cellProvider = new AuthorGridCellProvider();
+		$cellProvider = new PKPAuthorGridCellProvider();
 		$this->addColumn(
 			new GridColumn(
 				'name',
