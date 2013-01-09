@@ -25,6 +25,7 @@
 	<div id="bookInfoTabs">
 		<ul>
 			<li><a href="#abstractTab">{translate key="submission.synopsis"}</a></li>
+			{if $publishedMonograph->getWorkType() == WORK_TYPE_EDITED_VOLUME && $chapters|@count != 0}<li><a href="#contentsTab">{translate key="common.contents"}</a></li>{/if}
 			{if $availableFiles|@count != 0}<li><a href="#downloadTab">{translate key="submission.download"}</a></li>{/if}
 			{call_hook|assign:"sharingCode" name="Templates::Catalog::Book::BookInfo::Sharing"}
 			{if !is_null($sharingCode) || !empty($blocks)}
@@ -35,6 +36,18 @@
 		<div id="abstractTab">
 			{$publishedMonograph->getLocalizedAbstract()|strip_unsafe_html}
 		</div>
+		{if $publishedMonograph->getWorkType() == WORK_TYPE_EDITED_VOLUME && $chapters|@count != 0}
+			<div id="contentsTab">
+				{foreach from=$chapters item=chapter}
+					<p>
+						<strong>{$chapter->getLocalizedTitle()}</strong>
+						{if $chapter->getLocalizedSubtitle() != '' }<br />{$chapter->getLocalizedSubtitle()}{/if}
+						{assign var=chapterAuthors value=$chapter->getAuthorNamesAsString()}
+						<div class="authorName">{$chapterAuthors}</div>
+					</p>
+				{/foreach}
+			</div>
+		{/if}
 		{if $availableFiles|@count != 0}
 		<div id="downloadTab">
 			{assign var=publicationFormats value=$publishedMonograph->getPublicationFormats()}

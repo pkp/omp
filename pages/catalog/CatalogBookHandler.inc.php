@@ -72,6 +72,13 @@ class CatalogBookHandler extends Handler {
 
 		$templateMgr->assign_by_ref('blocks', $blocks);
 
+		// add Chapters, if they exist.
+		if ($publishedMonograph->getWorkType() == WORK_TYPE_EDITED_VOLUME) {
+			$chapterDao =& DAORegistry::getDAO('ChapterDAO');
+			$chapters =& $chapterDao->getChapters($publishedMonograph->getId());
+			$templateMgr->assign_by_ref('chapters', $chapters->toAssociativeArray());
+		}
+
 		// e-Commerce
 		import('classes.payment.omp.OMPPaymentManager');
 		$ompPaymentManager = new OMPPaymentManager($request);
