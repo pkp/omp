@@ -130,6 +130,18 @@ class Chapter extends DataObject {
 		$returner =& $chapterAuthorDao->getAuthors($this->getMonographId(), $this->getId());
 		return $returner;
 	}
+
+	/**
+	 * Get the author names for this chapter and return them as a string.
+	 * @return string
+	 */
+	function getAuthorNamesAsString() {
+		$authors =& $this->getAuthors();
+		while ($author =& $authors->next()) {
+			$authorNames[] = $author->getFullName();
+		}
+		return join(', ', $authorNames);
+	}
 }
 
 ?>
