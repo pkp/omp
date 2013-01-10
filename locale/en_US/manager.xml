@@ -166,7 +166,7 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.affiliationAndSupport">Sponsor</message>
 
 	<!-- Website settings -->
-	<message key="manager.website.homepage">Homepage</message>
+	<message key="manager.website.information">Information</message>
 	<message key="manager.website.appearance">Appearance</message>
 	<message key="manager.website.imageFileRequired">An image file is required. Please ensure that you have chosen and uploaded a file.</message>
 
@@ -299,7 +299,6 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.preparingWorkflow">Step 3. Preparing the workflow</message>
 	<message key="manager.setup.homepageImage">Homepage image</message>
 	<message key="manager.setup.homepageImageDescription">Add an image or graphic file to the middle of the page. If you are using the default template and css, maximum image width will be 750px for one side bar and 540px for two side bar setup. If you use a customized template or css, those values may change.</message>
-	<message key="manager.setup.information">Information</message>
 	<message key="manager.setup.information.description">Brief descriptions of the press for librarians and prospective authors and readers are available in the "Information" section of the sidebar.</message>
 	<message key="manager.setup.information.forAuthors">For Authors</message>
 	<message key="manager.setup.information.forLibrarians">For Librarians</message>

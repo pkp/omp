@@ -1,5 +1,5 @@
 {**
- * controllers/tab/settings/homepage/form/announcementSettingsForm.tpl
+ * controllers/tab/settings/announcements/form/announcementSettingsForm.tpl
  *
  * Copyright (c) 2003-2012 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -19,7 +19,7 @@
 	{rdelim});
 </script>
 
-<form id="announcementSettingsForm" class="pkp_form" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.WebsiteSettingsTabHandler" op="saveFormData" tab="homepage"}">
+<form id="announcementSettingsForm" class="pkp_form" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.WebsiteSettingsTabHandler" op="saveFormData" tab="announcements"}">
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="announcementSettingsFormNotification"}
 
 	{fbvFormArea id="announcements" class="border" title="manager.setup.announcements"}
