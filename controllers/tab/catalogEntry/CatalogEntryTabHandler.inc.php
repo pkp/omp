@@ -257,7 +257,7 @@ class CatalogEntryTabHandler extends Handler {
 			if ($request->getUserVar('displayedInContainer')) {
 				$router =& $request->getRouter();
 				$dispatcher =& $router->getDispatcher();
-				$url = $dispatcher->url($request, ROUTE_COMPONENT, null, 'modals.submissionMetadata.CatalogEntryHandler', 'fetch', null, array('monographId' => $monograph->getId(), 'stageId' => $stageId, 'tabPos' => $this->getTabPosition()));
+				$url = $dispatcher->url($request, ROUTE_COMPONENT, null, 'modals.submissionMetadata.CatalogEntryHandler', 'fetch', null, array('monographId' => $monograph->getId(), 'stageId' => $stageId, 'tabPos' => $this->getTabPosition(), 'hideHelp' => true));
 				$json->setAdditionalAttributes(array('reloadContainer' => true, 'tabsUrl' => $url));
 				$json->setContent(true); // prevents modal closure
 				return $json->getString();

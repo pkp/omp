@@ -18,12 +18,12 @@
 					{if $selectedFormatId}selectedFormatId:{$selectedFormatId},{/if}
 					{if $tabsUrl}tabsUrl:'{$tabsUrl}',{/if}
 					{if $tabContentUrl}tabContentUrl:'{$tabContentUrl}',{/if}
-					emptyLastTab: true,
+					emptyLastTab: true
 				{rdelim});
 	{rdelim});
 </script>
+{if not $hideHelp}<p class="pkp_help">{translate key="catalog.manage.entryDescription"}</p>{/if}
 <div id="newCatalogEntryTabs">
-	<p class="pkp_help">{translate key="catalog.manage.entryDescription"}</p>
 	<ul>
 		<li>
 			<a title="submission" href="{url router=$smarty.const.ROUTE_COMPONENT component="tab.catalogEntry.CatalogEntryTabHandler" tab="submission" op="submissionMetadata" monographId="$monographId" stageId=$stageId tabPos="0"}">{translate key="submission.catalogEntry.monographMetadata"}</a>
