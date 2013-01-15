@@ -120,6 +120,13 @@ jQuery.pkp.controllers.tab.catalogEntry =
 		var $element = this.getHtmlElement();
 		var currentTabs = $element.find('li a');
 		var currentIndexes = {};
+		var totalWidth = 0;
+
+		// Undo the scrollable tabs DOM changes so we can handle DOM manipulation
+		// in the normal mannner.
+		$element.unwrap();
+		$element.prev('div').remove();
+		$element.find('li').first().unwrap().unwrap();
 
 		// only interested in publication format tabs, so filter out the others
 		var regexp = /publication(\d+)/;
@@ -159,6 +166,9 @@ jQuery.pkp.controllers.tab.catalogEntry =
 						html(jsonData.formats[i]);
 			}
 		}
+
+		// make the tabs scrollable again, if necessary.
+		$element.tabs().scrollabletab();
 	};
 
 
@@ -223,5 +233,25 @@ jQuery.pkp.controllers.tab.catalogEntry =
 	};
 
 
+	/**
+	 * Callback that overrides TabHandler's tabReloadRequested method
+	 * in order to deal with scrolling tabs.
+	 *
+	 * @param {HTMLElement} divElement The parent DIV element
+	 *  which contains the tabs.
+	 * @param {Event} event The triggered event (tabsReloadRequested).
+	 * @param {{tabsUrl: string}} jsonContent The tabs ui data.
+	 */
+	$.pkp.controllers.tab.catalogEntry.CatalogEntryTabHandler.prototype.
+			tabsReloadRequested = function(divElement, event, jsonContent) {
+
+		var $element = this.getHtmlElement();
+		$.get(jsonContent.tabsUrl, function(data) {
+			var jsonData = $.parseJSON(data);
+			$element.unwrap();
+			$element.prev('div').remove();
+			$element.replaceWith(jsonData.content);
+		});
+	};
 /** @param {jQuery} $ jQuery closure. */
 })(jQuery);

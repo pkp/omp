@@ -153,6 +153,9 @@ class CatalogEntryHandler extends Handler {
 
 		$tabContentUrl = $dispatcher->url($request, ROUTE_COMPONENT, null, 'tab.catalogEntry.CatalogEntryTabHandler', 'publicationMetadata', null, array('monographId' => $monograph->getId(), 'stageId' => $this->getStageId()));
 		$templateMgr->assign('tabContentUrl', $tabContentUrl);
+		if ($request->getUserVar('hideHelp')) {
+			$templateMgr->assign('hideHelp', true);
+		}
 
 		$this->setupTemplate();
 		return $templateMgr->fetchJson('controllers/modals/submissionMetadata/catalogEntryTabs.tpl');
