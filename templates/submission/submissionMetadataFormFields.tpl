@@ -11,28 +11,28 @@
 
 {fbvFormArea id="coverageInformation" title="monograph.coverage" class="border"}
 	{fbvFormSection title="monograph.coverage.chron" for="coverageChron" description="monograph.coverage.tip"}
-		{fbvElement type="text" multilingual=true name="coverageChron" id="coverageChron" value=$coverageChron maxlength="255" disabled=$readOnly}
+		{fbvElement type="text" multilingual=true name="coverageChron" id="coverageChron" value=$coverageChron maxlength="255" readonly=$readOnly}
 	{/fbvFormSection}
 	{fbvFormSection title="monograph.coverage.geo" for="coverageGeo"}
-		{fbvElement type="text" multilingual=true name="coverageGeo" id="coverageGeo" value=$coverageGeo maxlength="255" disabled=$readOnly}
+		{fbvElement type="text" multilingual=true name="coverageGeo" id="coverageGeo" value=$coverageGeo maxlength="255" readonly=$readOnly}
 	{/fbvFormSection}
 	{fbvFormSection title="monograph.coverage.sample" for="coverageSample"}
-		{fbvElement type="text" multilingual=true name="coverageSample" id="coverageSample" value=$coverageSample maxlength="255" disabled=$readOnly}
+		{fbvElement type="text" multilingual=true name="coverageSample" id="coverageSample" value=$coverageSample maxlength="255" readonly=$readOnly}
 	{/fbvFormSection}
 {/fbvFormArea}
 
 {fbvFormArea id="additionalDublinCore" title="monograph.type" class="border"}
 	{fbvFormSection for="type" title="common.type" description="monograph.title.tip"}
-		{fbvElement type="text" multilingual=true name="type" id="type" value=$type maxlength="255" disabled=$readOnly}
+		{fbvElement type="text" multilingual=true name="type" id="type" value=$type maxlength="255" readonly=$readOnly}
 	{/fbvFormSection}
 	{fbvFormSection label="monograph.subjectClass" for="subjectClass" description="monograph.subjectClass.tip"}
-		{fbvElement type="text" multilingual=true name="subjectClass" id="subjectClass" value=$subjectClass maxlength="255" disabled=$readOnly}
+		{fbvElement type="text" multilingual=true name="subjectClass" id="subjectClass" value=$subjectClass maxlength="255" readonly=$readOnly}
 	{/fbvFormSection}
 	{fbvFormSection label="monograph.source" for="source" description="monograph.source.tip"}
-		{fbvElement type="text" multilingual=true name="source" id="source" value=$source maxlength="255" disabled=$readOnly}
+		{fbvElement type="text" multilingual=true name="source" id="source" value=$source maxlength="255" readonly=$readOnly}
 	{/fbvFormSection}
 	{fbvFormSection label="monograph.rights" for="rights" description="monograph.rights.tip"}
-		{fbvElement type="text" multilingual=true name="rights" id="rights" value=$rights maxlength="255" disabled=$readOnly}
+		{fbvElement type="text" multilingual=true name="rights" id="rights" value=$rights maxlength="255" readonly=$readOnly}
 	{/fbvFormSection}
 {/fbvFormArea}
 
