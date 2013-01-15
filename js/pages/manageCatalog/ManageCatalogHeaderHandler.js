@@ -42,7 +42,7 @@
 		this.spotlightsUrl_ = options.spotlightsUrl;
 
 		// Set up the tabs
-		var $catalogTabs = $('#catalogTabs').tabs().scrollabletab();
+		var $catalogTabs = $('#catalogTabs').tabs();
 		$catalogTabs.tabs('disable', this.searchTabIndex_); // Search results
 
 		// React to "search" events from the search form.
