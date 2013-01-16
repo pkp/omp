@@ -20,13 +20,16 @@
 	 *
 	 * @param {jQueryObject} $form the wrapped HTML form element.
 	 */
-	$.pkp.controllers.grid.files.SelectableSubmissionFileListCategoryGridFilterHandler = function($form) {
+	$.pkp.controllers.grid.files.
+			SelectableSubmissionFileListCategoryGridFilterHandler =
+			function($form) {
 		this.parent($form, {trackFormChanges: false});
 		$form.find('#allStages').click(
 				this.callbackWrapper(this.allStagesHandler_));
 	};
 	$.pkp.classes.Helper.inherits(
-			$.pkp.controllers.grid.files.SelectableSubmissionFileListCategoryGridFilterHandler,
+			$.pkp.controllers.grid.files.
+					SelectableSubmissionFileListCategoryGridFilterHandler,
 			$.pkp.controllers.form.ClientFormHandler);
 
 
@@ -38,11 +41,12 @@
 	 * @private
 	 * @return {boolean} Always returns true.
 	 */
-	$.pkp.controllers.grid.files.SelectableSubmissionFileListCategoryGridFilterHandler.
+	$.pkp.controllers.grid.files.
+			SelectableSubmissionFileListCategoryGridFilterHandler.
 			prototype.allStagesHandler_ = function() {
 		this.getHtmlElement().submit();
 		return true;
-	}
+	};
 
 /** @param {jQuery} $ jQuery closure. */
 }(jQuery));
