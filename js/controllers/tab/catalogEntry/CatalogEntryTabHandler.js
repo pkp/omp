@@ -233,7 +233,7 @@
 				$tab = $('#' + $linkId, $tabs).parent('li');
 
 		if ($tab.length) {
-			return $tabs.children().children().children().children().index($tab);
+			return $tabs.find('li').index($tab);
 		} else {
 			return null;
 		}
