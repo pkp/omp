@@ -12,11 +12,9 @@
  * @brief Form to edit press submission stage information.
  */
 
+import('lib.pkp.classes.controllers.tab.settings.form.ContextSettingsForm');
 
-// Import the base Form.
-import('controllers.tab.settings.form.PressSettingsForm');
-
-class SubmissionStageForm extends PressSettingsForm {
+class SubmissionStageForm extends ContextSettingsForm {
 
 	/**
 	 * Constructor.
@@ -24,7 +22,7 @@ class SubmissionStageForm extends PressSettingsForm {
 	function SubmissionStageForm($wizardMode = false) {
 		$settings = array();
 
-		parent::PressSettingsForm($settings, 'controllers/tab/settings/submissionStage/form/submissionStageForm.tpl', $wizardMode);
+		parent::ContextSettingsForm($settings, 'controllers/tab/settings/submissionStage/form/submissionStageForm.tpl', $wizardMode);
 	}
 
 

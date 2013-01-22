@@ -12,11 +12,9 @@
  * @brief Form to edit production stage settings.
  */
 
+import('lib.pkp.classes.controllers.tab.settings.form.ContextSettingsForm');
 
-// Import the base Form.
-import('controllers.tab.settings.form.PressSettingsForm');
-
-class ProductionStageForm extends PressSettingsForm {
+class ProductionStageForm extends ContextSettingsForm {
 
 	/**
 	 * Constructor.
@@ -24,7 +22,7 @@ class ProductionStageForm extends PressSettingsForm {
 	function ProductionStageForm($wizardMode = false) {
 		$settings = array('publisher' => 'string', 'location' => 'string', 'codeType' => 'string', 'codeValue' => 'string');
 
-		parent::PressSettingsForm($settings, 'controllers/tab/settings/productionStage/form/productionStageForm.tpl', $wizardMode);
+		parent::ContextSettingsForm($settings, 'controllers/tab/settings/productionStage/form/productionStageForm.tpl', $wizardMode);
 	}
 
 

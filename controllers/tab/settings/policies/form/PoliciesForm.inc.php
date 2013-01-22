@@ -12,11 +12,9 @@
  * @brief Form to edit press policies information.
  */
 
+import('lib.pkp.classes.controllers.tab.settings.form.ContextSettingsForm');
 
-// Import the base Form.
-import('controllers.tab.settings.form.PressSettingsForm');
-
-class PoliciesForm extends PressSettingsForm {
+class PoliciesForm extends ContextSettingsForm {
 
 	/**
 	 * Constructor.
@@ -34,7 +32,7 @@ class PoliciesForm extends PressSettingsForm {
 
 		AppLocale::requireComponents(LOCALE_COMPONENT_APPLICATION_COMMON);
 
-		parent::PressSettingsForm($settings, 'controllers/tab/settings/policies/form/policiesForm.tpl', $wizardMode);
+		parent::ContextSettingsForm($settings, 'controllers/tab/settings/policies/form/policiesForm.tpl', $wizardMode);
 	}
 
 

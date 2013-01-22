@@ -12,10 +12,9 @@
  * @brief Form to edit press payment method settings.
  */
 
-import('lib.pkp.classes.form.Form');
-import('controllers.tab.settings.form.PressSettingsForm');
+import('lib.pkp.classes.controllers.tab.settings.form.ContextSettingsForm');
 
-class PaymentMethodForm extends PressSettingsForm {
+class PaymentMethodForm extends ContextSettingsForm {
 	/** @var $paymentPlugins array */
 	var $paymentPlugins;
 
@@ -28,12 +27,12 @@ class PaymentMethodForm extends PressSettingsForm {
 			'pressCurrency' => 'string',
 		);
 
-		parent::PressSettingsForm($settings, 'controllers/tab/settings/paymentMethod/form/paymentMethodForm.tpl', $wizardMode);
+		parent::ContextSettingsForm($settings, 'controllers/tab/settings/paymentMethod/form/paymentMethodForm.tpl', $wizardMode);
 		$this->paymentPlugins =& PluginRegistry::loadCategory('paymethod');
 	}
 
 	/**
-	 * @see PressSettingsForm::fetch
+	 * @see ContextSettingsForm::fetch
 	 */
 	function fetch(&$request) {
 		$templateMgr =& TemplateManager::getManager($request);
@@ -47,11 +46,11 @@ class PaymentMethodForm extends PressSettingsForm {
 	}
 
 	/**
-	 * @see PressSettingsForm::initData
+	 * @see ContextSettingsForm::initData
 	 */
 
 	/**
-	 * @see PressSettingsForm::readInputData
+	 * @see ContextSettingsForm::readInputData
 	 */
 	function readInputData(&$request) {
 		parent::readInputData($request);
@@ -64,7 +63,7 @@ class PaymentMethodForm extends PressSettingsForm {
 	}
 
 	/**
-	 * @see PressSettingsForm::execute
+	 * @see ContextSettingsForm::execute
 	 */
 	function execute(&$request) {
 		$press =& $request->getPress();

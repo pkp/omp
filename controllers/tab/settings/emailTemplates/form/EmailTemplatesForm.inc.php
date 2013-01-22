@@ -12,11 +12,9 @@
  * @brief Form to edit email identification settings.
  */
 
+import('lib.pkp.classes.controllers.tab.settings.form.ContextSettingsForm');
 
-// Import the base Form.
-import('controllers.tab.settings.form.PressSettingsForm');
-
-class EmailTemplatesForm extends PressSettingsForm {
+class EmailTemplatesForm extends ContextSettingsForm {
 
 	/**
 	 * Constructor.
@@ -29,7 +27,7 @@ class EmailTemplatesForm extends PressSettingsForm {
 
 		$this->addCheck(new FormValidatorEmail($this, 'envelopeSender', 'optional', 'user.profile.form.emailRequired'));
 
-		parent::PressSettingsForm($settings, 'controllers/tab/settings/emailTemplates/form/emailTemplatesForm.tpl', $wizardMode);
+		parent::ContextSettingsForm($settings, 'controllers/tab/settings/emailTemplates/form/emailTemplatesForm.tpl', $wizardMode);
 	}
 
 
@@ -37,7 +35,7 @@ class EmailTemplatesForm extends PressSettingsForm {
 	// Implement template methods from Form.
 	//
 	/**
-	 * @see PressSettingsForm::fetch()
+	 * @see ContextSettingsForm::fetch()
 	 */
 	function fetch(&$request) {
 		$params = array('envelopeSenderDisabled' => !Config::getVar('email', 'allow_envelope_sender'));

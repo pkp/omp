@@ -12,10 +12,9 @@
  * @brief Form to edit press general information settings.
  */
 
-import('lib.pkp.classes.form.Form');
-import('controllers.tab.settings.form.PressSettingsForm');
+import('lib.pkp.classes.controllers.tab.settings.form.ContextSettingsForm');
 
-class IndexingForm extends PressSettingsForm {
+class IndexingForm extends ContextSettingsForm {
 
 	/**
 	 * Constructor.
@@ -27,7 +26,7 @@ class IndexingForm extends PressSettingsForm {
 			'customHeaders' => 'string'
 		);
 
-		parent::PressSettingsForm($settings, 'controllers/tab/settings/indexing/form/indexingForm.tpl', $wizardMode);
+		parent::ContextSettingsForm($settings, 'controllers/tab/settings/indexing/form/indexingForm.tpl', $wizardMode);
 	}
 
 

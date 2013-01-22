@@ -12,11 +12,9 @@
  * @brief Form to edit press review stage settings.
  */
 
+import('lib.pkp.classes.controllers.tab.settings.form.ContextSettingsForm');
 
-// Import the base Form.
-import('controllers.tab.settings.form.PressSettingsForm');
-
-class ReviewStageForm extends PressSettingsForm {
+class ReviewStageForm extends ContextSettingsForm {
 
 	/**
 	 * Constructor.
@@ -33,7 +31,7 @@ class ReviewStageForm extends PressSettingsForm {
 			'showEnsuringLink' => 'bool'
 		);
 
-		parent::PressSettingsForm($settings, 'controllers/tab/settings/reviewStage/form/reviewStageForm.tpl', $wizardMode);
+		parent::ContextSettingsForm($settings, 'controllers/tab/settings/reviewStage/form/reviewStageForm.tpl', $wizardMode);
 	}
 
 
@@ -48,7 +46,7 @@ class ReviewStageForm extends PressSettingsForm {
 	}
 
 	/**
-	 * @see PressSettingsForm::fetch()
+	 * @see ContextSettingsForm::fetch()
 	 */
 	function fetch(&$request) {
 		$params = array();

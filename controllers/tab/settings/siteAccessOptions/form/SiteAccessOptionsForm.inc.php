@@ -12,11 +12,9 @@
  * @brief Form to edit site access options.
  */
 
+import('lib.pkp.classes.controllers.tab.settings.form.ContextSettingsForm');
 
-// Import the base Form.
-import('controllers.tab.settings.form.PressSettingsForm');
-
-class SiteAccessOptionsForm extends PressSettingsForm {
+class SiteAccessOptionsForm extends ContextSettingsForm {
 
 	/**
 	 * Constructor.
@@ -31,7 +29,7 @@ class SiteAccessOptionsForm extends PressSettingsForm {
 			'showGalleyLinks' => 'bool'
 		);
 
-		parent::PressSettingsForm($settings, 'controllers/tab/settings/siteAccessOptions/form/siteAccessOptionsForm.tpl', $wizardMode);
+		parent::ContextSettingsForm($settings, 'controllers/tab/settings/siteAccessOptions/form/siteAccessOptionsForm.tpl', $wizardMode);
 	}
 
 }

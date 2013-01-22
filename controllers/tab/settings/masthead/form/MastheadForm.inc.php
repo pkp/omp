@@ -12,10 +12,9 @@
  * @brief Form to edit press general information settings.
  */
 
-// Import the base Form.
-import('controllers.tab.settings.form.PressSettingsForm');
+import('lib.pkp.classes.controllers.tab.settings.form.ContextSettingsForm');
 
-class MastheadForm extends PressSettingsForm {
+class MastheadForm extends ContextSettingsForm {
 
 	/**
 	 * Constructor.
@@ -31,7 +30,7 @@ class MastheadForm extends PressSettingsForm {
 			'masthead' => 'string'
 		);
 
-		parent::PressSettingsForm($settings, 'controllers/tab/settings/masthead/form/mastheadForm.tpl', $wizardMode);
+		parent::ContextSettingsForm($settings, 'controllers/tab/settings/masthead/form/mastheadForm.tpl', $wizardMode);
 
 		$this->addCheck(new FormValidatorLocale($this, 'name', 'required', 'manager.setup.form.pressNameRequired'));
 		$this->addCheck(new FormValidatorLocale($this, 'initials', 'required', 'manager.setup.form.pressInitialsRequired'));
@@ -48,10 +47,10 @@ class MastheadForm extends PressSettingsForm {
 	}
 
 	//
-	// Overridden methods from PressSettingsForm.
+	// Overridden methods from ContextSettingsForm.
 	//
 	/**
-	 * @see PressSettingsForm::initData.
+	 * @see ContextSettingsForm::initData.
 	 * @param $request Request
 	 */
 	function initData(&$request) {
@@ -69,7 +68,7 @@ class MastheadForm extends PressSettingsForm {
 	}
 
 	/**
-	 * @see PressSettingsForm::execute()
+	 * @see ContextSettingsForm::execute()
 	 * @param $request Request
 	 */
 	function execute(&$request) {

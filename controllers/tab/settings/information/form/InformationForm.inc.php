@@ -12,11 +12,9 @@
  * @brief Form to edit press information.
  */
 
+import('lib.pkp.classes.controllers.tab.settings.form.ContextSettingsForm');
 
-// Import the base Form.
-import('controllers.tab.settings.form.PressSettingsForm');
-
-class InformationForm extends PressSettingsForm {
+class InformationForm extends ContextSettingsForm {
 
 	/**
 	 * Constructor.
@@ -28,7 +26,7 @@ class InformationForm extends PressSettingsForm {
 			'librarianInformation' => 'string'
 		);
 
-		parent::PressSettingsForm($settings, 'controllers/tab/settings/information/form/informationForm.tpl', $wizardMode);
+		parent::ContextSettingsForm($settings, 'controllers/tab/settings/information/form/informationForm.tpl', $wizardMode);
 	}
 
 

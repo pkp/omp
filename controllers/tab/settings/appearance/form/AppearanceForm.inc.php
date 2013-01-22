@@ -12,11 +12,9 @@
  * @brief Form to edit press appearance settings.
  */
 
+import('lib.pkp.classes.controllers.tab.settings.form.ContextSettingsForm');
 
-// Import the base Form.
-import('controllers.tab.settings.form.PressSettingsForm');
-
-class AppearanceForm extends PressSettingsForm {
+class AppearanceForm extends ContextSettingsForm {
 
 	/** @var array */
 	var $_imagesSettingsName;
@@ -47,7 +45,7 @@ class AppearanceForm extends PressSettingsForm {
 
 		AppLocale::requireComponents(LOCALE_COMPONENT_APPLICATION_COMMON);
 
-		parent::PressSettingsForm($settings, 'controllers/tab/settings/appearance/form/appearanceForm.tpl', $wizardMode);
+		parent::ContextSettingsForm($settings, 'controllers/tab/settings/appearance/form/appearanceForm.tpl', $wizardMode);
 	}
 
 
@@ -89,10 +87,10 @@ class AppearanceForm extends PressSettingsForm {
 
 
 	//
-	// Extend methods from PressSettingsForm.
+	// Extend methods from ContextSettingsForm.
 	//
 	/**
-	 * @see PressSettingsForm::fetch()
+	 * @see ContextSettingsForm::fetch()
 	 */
 	function fetch(&$request) {
 		$press =& $request->getPress();
@@ -203,7 +201,7 @@ class AppearanceForm extends PressSettingsForm {
 	}
 
 	/**
-	 * @see PressSettingsForm::execute()
+	 * @see ContextSettingsForm::execute()
 	 */
 	function execute($request) {
 		parent::execute($request);

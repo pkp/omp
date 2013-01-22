@@ -12,11 +12,9 @@
  * @brief Form to edit press affiliation and support information.
  */
 
+import('lib.pkp.classes.controllers.tab.settings.form.ContextSettingsForm');
 
-// Import the base Form.
-import('controllers.tab.settings.form.PressSettingsForm');
-
-class AffiliationForm extends PressSettingsForm {
+class AffiliationForm extends ContextSettingsForm {
 
 	/**
 	 * Constructor.
@@ -27,7 +25,7 @@ class AffiliationForm extends PressSettingsForm {
 			'contributorNote' => 'string'
 		);
 
-		parent::PressSettingsForm($settings, 'controllers/tab/settings/affiliation/form/affiliationForm.tpl', $wizardMode);
+		parent::ContextSettingsForm($settings, 'controllers/tab/settings/affiliation/form/affiliationForm.tpl', $wizardMode);
 	}
 
 

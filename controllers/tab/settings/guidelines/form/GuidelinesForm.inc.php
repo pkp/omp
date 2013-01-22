@@ -12,11 +12,9 @@
  * @brief Form to edit press guidelines information.
  */
 
+import('lib.pkp.classes.controllers.tab.settings.form.ContextSettingsForm');
 
-// Import the base Form.
-import('controllers.tab.settings.form.PressSettingsForm');
-
-class GuidelinesForm extends PressSettingsForm {
+class GuidelinesForm extends ContextSettingsForm {
 
 	/**
 	 * Constructor.
@@ -26,7 +24,7 @@ class GuidelinesForm extends PressSettingsForm {
 			'authorGuidelines' => 'string'
 		);
 
-		parent::PressSettingsForm($settings, 'controllers/tab/settings/guidelines/form/guidelinesForm.tpl', $wizardMode);
+		parent::ContextSettingsForm($settings, 'controllers/tab/settings/guidelines/form/guidelinesForm.tpl', $wizardMode);
 	}
 
 

@@ -12,11 +12,9 @@
  * @brief Form to edit press contact settings.
  */
 
+import('lib.pkp.classes.controllers.tab.settings.form.ContextSettingsForm');
 
-// Import the base Form.
-import('controllers.tab.settings.form.PressSettingsForm');
-
-class ContactForm extends PressSettingsForm {
+class ContactForm extends ContextSettingsForm {
 
 	/**
 	 * Constructor.
@@ -35,7 +33,7 @@ class ContactForm extends PressSettingsForm {
 			'supportPhone' => 'string'
 		);
 
-		parent::PressSettingsForm($settings, 'controllers/tab/settings/contact/form/contactForm.tpl', $wizardMode);
+		parent::ContextSettingsForm($settings, 'controllers/tab/settings/contact/form/contactForm.tpl', $wizardMode);
 
 		$this->addCheck(new FormValidator($this, 'contactName', 'required', 'manager.setup.form.contactNameRequired'));
 		$this->addCheck(new FormValidatorEmail($this, 'contactEmail', 'required', 'manager.setup.form.contactEmailRequired'));

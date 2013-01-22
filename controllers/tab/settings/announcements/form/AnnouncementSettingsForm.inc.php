@@ -12,11 +12,9 @@
  * @brief Form to edit press announcement settings.
  */
 
+import('lib.pkp.classes.controllers.tab.settings.form.ContextSettingsForm');
 
-// Import the base Form.
-import('controllers.tab.settings.form.PressSettingsForm');
-
-class AnnouncementSettingsForm extends PressSettingsForm {
+class AnnouncementSettingsForm extends ContextSettingsForm {
 
 	/**
 	 * Constructor.
@@ -29,7 +27,7 @@ class AnnouncementSettingsForm extends PressSettingsForm {
 			'announcementsIntroduction' => 'string',
 		);
 
-		parent::PressSettingsForm($settings, 'controllers/tab/settings/announcements/form/announcementSettingsForm.tpl', $wizardMode);
+		parent::ContextSettingsForm($settings, 'controllers/tab/settings/announcements/form/announcementSettingsForm.tpl', $wizardMode);
 	}
 
 
@@ -45,10 +43,10 @@ class AnnouncementSettingsForm extends PressSettingsForm {
 
 
 	//
-	// Implement template methods from PressSettingsForm.
+	// Implement template methods from ContextSettingsForm.
 	//
 	/**
-	 * @see PressSettingsForm::fetch()
+	 * @see ContextSettingsForm::fetch()
 	 */
 	function fetch(&$request) {
 		for($x = 1; $x < 11; $x++) {
