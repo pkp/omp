@@ -18,8 +18,8 @@
 {elseif !$pageCrumbTitleTranslated}
 	{assign var="pageCrumbTitleTranslated" value=$pageTitleTranslated}
 {/if}
-{/strip}<!DOCTYPE html PUBLIC "{$doctypeFpi}" "{$doctypeUri}">
-<html xmlns="http://www.w3.org/1999/xhtml">
+{/strip}<!DOCTYPE html>
+<html>
 {include file="core:common/headerHead.tpl"}
 <body>
 	<script type="text/javascript">

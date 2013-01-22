@@ -163,20 +163,6 @@ class TemplateManager extends PKPTemplateManager {
 		$this->assign('currentPressUrl', $currentPressUrl);
 		$this->assign('pressesNameAndUrl', $pressesNameAndUrl);
 	}
-
-	/**
-	 * Get the doctype FPI.
-	 */
-	function getDoctypeFpi() {
-		return '-//W3C//DTD XHTML 1.0 Strict//EN';
-	}
-
-	/**
-	 * Get the doctype URI.
-	 */
-	function getDoctypeUri() {
-		return 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd';
-	}
 }
 
 ?>
