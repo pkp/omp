@@ -31,7 +31,7 @@ class FairCopyFilesGridHandler extends FileSignoffGridHandler {
 			array(
 				ROLE_ID_SERIES_EDITOR,
 				ROLE_ID_PRESS_MANAGER,
-				ROLE_ID_PRESS_ASSISTANT
+				ROLE_ID_ASSISTANT
 			),
 			array(
 				'fetchGrid', 'fetchRow',
@@ -53,7 +53,7 @@ class FairCopyFilesGridHandler extends FileSignoffGridHandler {
 		$this->setInstructions('editor.monograph.editorial.fairCopyDescription');
 
 		// Rename the Press Assistant column to copyeditor
-		$columnId = 'role-' . ROLE_ID_PRESS_ASSISTANT;
+		$columnId = 'role-' . ROLE_ID_ASSISTANT;
 		if ($this->hasColumn($columnId)) {
 			$pressAssistantColumn =& $this->getColumn($columnId);
 			$pressAssistantColumn->setTitle('user.role.copyeditor');

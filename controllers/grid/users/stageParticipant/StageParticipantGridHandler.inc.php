@@ -28,7 +28,7 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 		parent::CategoryGridHandler();
 		// Press Assistants get read-only access
 		$this->addRoleAssignment(
-			array(ROLE_ID_PRESS_ASSISTANT),
+			array(ROLE_ID_ASSISTANT),
 			$peOps = array('fetchGrid', 'fetchCategory', 'fetchRow')
 		);
 		// Managers and Editors additionally get administrative access

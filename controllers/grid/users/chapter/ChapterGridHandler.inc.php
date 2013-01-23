@@ -33,7 +33,7 @@ class ChapterGridHandler extends CategoryGridHandler {
 	function ChapterGridHandler() {
 		parent::CategoryGridHandler();
 		$this->addRoleAssignment(
-			array(ROLE_ID_AUTHOR, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER, ROLE_ID_PRESS_ASSISTANT),
+			array(ROLE_ID_AUTHOR, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER, ROLE_ID_ASSISTANT),
 			array(
 				'fetchGrid', 'fetchRow', 'fetchCategory', 'saveSequence',
 				'addChapter', 'editChapter', 'updateChapter', 'deleteChapter',

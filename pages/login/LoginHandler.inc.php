@@ -119,7 +119,7 @@ class LoginHandler extends PKPLoginHandler {
 		$press = $this->getTargetPress($request);
 		// If there's a press, send them to the dashboard after login.
 		if ($press && $request->getUserVar('source') == '' && array_intersect(
-			array(ROLE_ID_SITE_ADMIN, ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_AUTHOR, ROLE_ID_REVIEWER, ROLE_ID_PRESS_ASSISTANT),
+			array(ROLE_ID_SITE_ADMIN, ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_AUTHOR, ROLE_ID_REVIEWER, ROLE_ID_ASSISTANT),
 			(array) $this->getAuthorizedContextObject(ASSOC_TYPE_USER_ROLES)
 		)) {
 			return $request->redirect($press->getPath(), 'dashboard');

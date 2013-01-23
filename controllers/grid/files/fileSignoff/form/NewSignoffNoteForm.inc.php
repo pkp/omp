@@ -204,7 +204,7 @@ class NewSignoffNoteForm extends NewNoteForm {
 			} else {
 				// Common note addition.
 				if ($user->getId() !== $signoff->getUserId() &&
-						array_intersect($userRoles, array(ROLE_ID_PRESS_MANAGER, ROLE_ID_PRESS_ASSISTANT, ROLE_ID_SERIES_EDITOR))) {
+						array_intersect($userRoles, array(ROLE_ID_PRESS_MANAGER, ROLE_ID_ASSISTANT, ROLE_ID_SERIES_EDITOR))) {
 					// If the current user is a press/series editor or assistant, open the signoff again.
 					if ($signoff->getDateCompleted()) {
 						$signoff->setDateCompleted(null);

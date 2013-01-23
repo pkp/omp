@@ -20,7 +20,7 @@ class DashboardHandler extends Handler {
 	function DashboardHandler() {
 		parent::Handler();
 
-		$this->addRoleAssignment(array(ROLE_ID_SITE_ADMIN, ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_AUTHOR, ROLE_ID_REVIEWER, ROLE_ID_PRESS_ASSISTANT),
+		$this->addRoleAssignment(array(ROLE_ID_SITE_ADMIN, ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_AUTHOR, ROLE_ID_REVIEWER, ROLE_ID_ASSISTANT),
 				array('index', 'tasks', 'submissions'));
 	}
 
@@ -64,7 +64,7 @@ class DashboardHandler extends Handler {
 		$user =& $request->getUser();
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		$allContextsUserRoles = $roleDao->getByUserIdGroupedByContext($user->getId());
-		$userRolesThatCanSubmit = array(ROLE_ID_AUTHOR, ROLE_ID_PRESS_ASSISTANT, ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR);
+		$userRolesThatCanSubmit = array(ROLE_ID_AUTHOR, ROLE_ID_ASSISTANT, ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR);
 		$accessiblePresses = array();
 		while ($press =& $presses->next()) {
 			if (array_key_exists($press->getId(), $allContextsUserRoles)) {

@@ -20,7 +20,7 @@
 {/if}
 
 <!-- Assigned submissions grid: Show all submissions the user is assigned to (besides their own) -->
-{if array_intersect(array(ROLE_ID_SITE_ADMIN, ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_REVIEWER, ROLE_ID_PRESS_ASSISTANT), $userRoles)}
+{if array_intersect(array(ROLE_ID_SITE_ADMIN, ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_REVIEWER, ROLE_ID_ASSISTANT), $userRoles)}
 	{url|assign:assignedSubmissionsListGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.submissions.assignedSubmissions.AssignedSubmissionsListGridHandler" op="fetchGrid"}
 	{load_url_in_div id="assignedSubmissionsListGridContainer" url="$assignedSubmissionsListGridUrl"}
 {/if}

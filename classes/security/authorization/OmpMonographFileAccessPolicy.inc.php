@@ -152,10 +152,10 @@ class OmpMonographFileAccessPolicy extends PressPolicy {
 		//
 		// Press assistant role.
 		//
-		if (isset($roleAssignments[ROLE_ID_PRESS_ASSISTANT])) {
+		if (isset($roleAssignments[ROLE_ID_ASSISTANT])) {
 			// 1) Press assistants can access whitelisted operations...
 			$pressAssistantFileAccessPolicy = new PolicySet(COMBINING_DENY_OVERRIDES);
-			$pressAssistantFileAccessPolicy->addPolicy(new RoleBasedHandlerOperationPolicy($request, ROLE_ID_PRESS_ASSISTANT, $roleAssignments[ROLE_ID_PRESS_ASSISTANT]));
+			$pressAssistantFileAccessPolicy->addPolicy(new RoleBasedHandlerOperationPolicy($request, ROLE_ID_ASSISTANT, $roleAssignments[ROLE_ID_ASSISTANT]));
 
 			// 2) ... but only if they have been assigned to the submission workflow.
 			import('classes.security.authorization.OmpWorkflowStageAccessPolicy');

@@ -26,7 +26,7 @@ class NotificationsGridHandler extends GridHandler {
 		parent::GridHandler();
 
 		$this->addRoleAssignment(
-			array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_ASSISTANT, ROLE_ID_AUTHOR, ROLE_ID_REVIEWER),
+			array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_ASSISTANT, ROLE_ID_AUTHOR, ROLE_ID_REVIEWER),
 			array('fetchGrid')
 		);
 	}

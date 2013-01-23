@@ -69,10 +69,10 @@ class OmpSignoffAccessPolicy extends PressPolicy {
 		//
 		// Press assistants
 		//
-		if (isset($roleAssignments[ROLE_ID_PRESS_ASSISTANT])) {
+		if (isset($roleAssignments[ROLE_ID_ASSISTANT])) {
 			// 1) Press assistants can access all operations on signoffs...
 			$pressAssistantSignoffAccessPolicy = new PolicySet(COMBINING_DENY_OVERRIDES);
-			$pressAssistantSignoffAccessPolicy->addPolicy(new RoleBasedHandlerOperationPolicy($request, ROLE_ID_PRESS_ASSISTANT, $roleAssignments[ROLE_ID_PRESS_ASSISTANT]));
+			$pressAssistantSignoffAccessPolicy->addPolicy(new RoleBasedHandlerOperationPolicy($request, ROLE_ID_ASSISTANT, $roleAssignments[ROLE_ID_ASSISTANT]));
 
 			// 2) ... but only if they have access to the workflow stage.
 			import('classes.security.authorization.OmpWorkflowStageAccessPolicy');

@@ -101,10 +101,10 @@ class OmpSubmissionAccessPolicy extends PressPolicy {
 		//
 		// Press role
 		//
-		if (isset($roleAssignments[ROLE_ID_PRESS_ASSISTANT])) {
+		if (isset($roleAssignments[ROLE_ID_ASSISTANT])) {
 			// 1) Press assistants can access whitelisted operations ...
 			$pressSubmissionAccessPolicy = new PolicySet(COMBINING_DENY_OVERRIDES);
-			$pressSubmissionAccessPolicy->addPolicy(new RoleBasedHandlerOperationPolicy($request, ROLE_ID_PRESS_ASSISTANT, $roleAssignments[ROLE_ID_PRESS_ASSISTANT]));
+			$pressSubmissionAccessPolicy->addPolicy(new RoleBasedHandlerOperationPolicy($request, ROLE_ID_ASSISTANT, $roleAssignments[ROLE_ID_ASSISTANT]));
 
 			// 2) ... but only if they have been assigned to the submission workflow.
 			import('classes.security.authorization.internal.UserAccessibleWorkflowStageRequiredPolicy');

@@ -99,7 +99,7 @@ class UserAccessibleWorkflowStageRequiredPolicy extends AuthorizationPolicy {
 					}
 					break;
 
-				case ROLE_ID_PRESS_ASSISTANT:
+				case ROLE_ID_ASSISTANT:
 				case ROLE_ID_AUTHOR:
 					// The requested workflow stage has been assigned to them
 					// in the requested submission.
