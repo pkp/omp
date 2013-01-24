@@ -13,7 +13,7 @@
  */
 
 // Import the base Handler.
-import('controllers.tab.settings.SettingsTabHandler');
+import('lib.pkp.classes.controllers.tab.settings.SettingsTabHandler');
 
 class AdminSettingsTabHandler extends SettingsTabHandler {
 
