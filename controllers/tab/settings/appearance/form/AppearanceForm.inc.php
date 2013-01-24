@@ -36,8 +36,8 @@ class AppearanceForm extends ContextSettingsForm {
 			'pageHeaderTitleType' => 'int',
 			'pageHeaderTitle' => 'string',
 			'additionalHomeContent' => 'string',
-			'pressPageHeader' => 'string',
-			'pressPageFooter' => 'string',
+			'pageHeader' => 'string',
+			'pageFooter' => 'string',
 			'navItems' => 'object',
 			'itemsPerPage' => 'int',
 			'numPageLinks' => 'int'
@@ -80,8 +80,8 @@ class AppearanceForm extends ContextSettingsForm {
 			'pageHeaderTitleType',
 			'pageHeaderTitle',
 			'additionalHomeContent',
-			'pressPageHeader',
-			'pressPageFooter'
+			'pageHeader',
+			'pageFooter'
 		);
 	}
 
@@ -93,8 +93,6 @@ class AppearanceForm extends ContextSettingsForm {
 	 * @see ContextSettingsForm::fetch()
 	 */
 	function fetch(&$request) {
-		$press =& $request->getPress();
-
 		// Get all upload form image link actions.
 		$uploadImageLinkActions = array();
 		foreach ($this->getImagesSettingsName() as $settingName => $altText) {
@@ -174,7 +172,7 @@ class AppearanceForm extends ContextSettingsForm {
 	 * @return boolean
 	 */
 	function deleteFile($fileSettingName, &$request) {
-		$press =& $request->getPress();
+		$context =& $request->getContext();
 		$locale = AppLocale::getLocale();
 
 		// Get the file.
@@ -191,9 +189,9 @@ class AppearanceForm extends ContextSettingsForm {
 		// Deletes the file and its settings.
 		import('classes.file.PublicFileManager');
 		$publicFileManager = new PublicFileManager();
-		if ($publicFileManager->removePressFile($press->getId(), $file['uploadName'])) {
+		if ($publicFileManager->removePressFile($context->getId(), $file['uploadName'])) {
 			$settingsDao =& DAORegistry::getDAO('PressSettingsDAO');
-			$settingsDao->deleteSetting($press->getId(), $fileSettingName, $locale);
+			$settingsDao->deleteSetting($context->getId(), $fileSettingName, $locale);
 			return true;
 		} else {
 			return false;

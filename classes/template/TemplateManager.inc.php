@@ -73,7 +73,7 @@ class TemplateManager extends PKPTemplateManager {
 				// Assign press page header
 				$this->assign('displayPageHeaderTitle', $press->getPageHeaderTitle());
 				$this->assign('displayPageHeaderLogo', $press->getPageHeaderLogo());
-				$this->assign('alternatePageHeader', $press->getLocalizedSetting('pressPageHeader'));
+				$this->assign('alternatePageHeader', $press->getLocalizedSetting('pageHeader'));
 				$this->assign('metaSearchDescription', $press->getLocalizedSetting('searchDescription'));
 				$this->assign('metaSearchKeywords', $press->getLocalizedSetting('searchKeywords'));
 				$this->assign('metaCustomHeaders', $press->getLocalizedSetting('customHeaders'));
@@ -94,7 +94,7 @@ class TemplateManager extends PKPTemplateManager {
 
 				$footerLinkDao =& DAORegistry::getDAO('FooterLinkDAO');
 				$this->assign('maxLinks', $footerLinkDao->getLargestCategoryTotalByPressId($press->getId()));
-				$this->assign('pageFooter', $press->getLocalizedSetting('pressPageFooter'));
+				$this->assign('pageFooter', $press->getLocalizedSetting('pageFooter'));
 			} else {
 				// Add the site-wide logo, if set for this locale or the primary locale
 				$displayPageHeaderTitle = $site->getLocalizedPageHeaderTitle();

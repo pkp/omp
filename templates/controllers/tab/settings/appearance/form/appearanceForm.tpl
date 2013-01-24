@@ -47,8 +47,8 @@
 	{* end Homepage Content *}
 
 	{* Press Page Header *}
-	{fbvFormArea id="pageHeader" title="manager.setup.pressPageHeader" class="border"}
-		{fbvFormSection list=true description="manager.setup.pressPageHeaderDescription" title="manager.setup.pressName"}
+	{fbvFormArea id="pageHeader" title="manager.setup.pageHeader" class="border"}
+		{fbvFormSection list=true description="manager.setup.pageHeaderDescription" title="manager.setup.pressName"}
 			{fbvElement type="radio" name="pageHeaderTitleType[$locale]" id="pageHeaderTitleType-0" value=0 checked=!$pageHeaderTitleType[$locale] label="manager.setup.useTextTitle"}
 		{/fbvFormSection}
 		{fbvFormSection}
@@ -73,16 +73,16 @@
 			</div>
 		{/fbvFormSection}
 			{fbvFormSection label="manager.setup.alternateHeader" description="manager.setup.alternateHeaderDescription"}
-				{fbvElement type="textarea" multilingual=true name="pressPageHeader" id="pressPageHeader" value=$pressPageHeader rich=true}
+				{fbvElement type="textarea" multilingual=true name="pageHeader" id="pageHeader" value=$pageHeader rich=true}
 			{/fbvFormSection}
 		</div>
 	{/fbvFormArea}
 	{* end Press Page Header *}
 
 	{* Press Page Footer *}
-	{fbvFormArea id="pressPageFooterContainer" title="manager.setup.pressPageFooter" class="border"}
-		{fbvFormSection description="manager.setup.pressPageFooterDescription"}
-			{fbvElement type="textarea" multilingual=true name="pressPageFooter" id="pressPageFooter" value=$pressPageFooter rich=true}
+	{fbvFormArea id="pageFooterContainer" title="manager.setup.pageFooter" class="border"}
+		{fbvFormSection description="manager.setup.pageFooterDescription"}
+			{fbvElement type="textarea" multilingual=true name="pageFooter" id="pageFooter" value=$pageFooter rich=true}
 		{/fbvFormSection}
 	{/fbvFormArea}
 	{* end Press Page Footer *}
