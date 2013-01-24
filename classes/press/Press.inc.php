@@ -89,6 +89,14 @@ class Press extends Context {
 	static function getSettingsDAO() {
 		return DAORegistry::getDAO('PressSettingsDAO');
 	}
+
+	/**
+	 * Get the DAO for this context object.
+	 * @return DAO
+	 */
+	static function getDAO() {
+		return DAORegistry::getDAO('PressDAO');
+	}
 }
 
 ?>

@@ -19,7 +19,6 @@ class AppearanceForm extends ContextSettingsForm {
 	/** @var array */
 	var $_imagesSettingsName;
 
-
 	/**
 	 * Constructor.
 	 */
