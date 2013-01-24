@@ -21,7 +21,7 @@ class ManagerHandler extends Handler {
 	 */
 	function ManagerHandler() {
 		parent::Handler();
-		$this->addRoleAssignment(ROLE_ID_PRESS_MANAGER, 'index');
+		$this->addRoleAssignment(ROLE_ID_MANAGER, 'index');
 	}
 
 	/**

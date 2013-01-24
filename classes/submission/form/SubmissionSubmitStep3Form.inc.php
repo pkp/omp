@@ -121,7 +121,7 @@ class SubmissionSubmitStep3Form extends SubmissionSubmitForm {
 		$roleDao =& DAORegistry::getDAO('RoleDAO'); /* @var $roleDao RoleDAO */
 
 		// Get the managers.
-		$pressManagers = $roleDao->getUsersByRoleId(ROLE_ID_PRESS_MANAGER, $monograph->getPressId());
+		$pressManagers = $roleDao->getUsersByRoleId(ROLE_ID_MANAGER, $monograph->getPressId());
 
 		$pressManagersArray = $pressManagers->toAssociativeArray();
 

@@ -22,7 +22,7 @@ class WebsiteSettingsTabHandler extends ManagerSettingsTabHandler {
 	 * Constructor
 	 */
 	function WebsiteSettingsTabHandler() {
-		$this->addRoleAssignment(ROLE_ID_PRESS_MANAGER,
+		$this->addRoleAssignment(ROLE_ID_MANAGER,
 			array(
 				'showFileUploadForm',
 				'uploadFile',

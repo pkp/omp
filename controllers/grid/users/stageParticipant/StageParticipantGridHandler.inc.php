@@ -33,7 +33,7 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 		);
 		// Managers and Editors additionally get administrative access
 		$this->addRoleAssignment(
-			array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR),
+			array(ROLE_ID_MANAGER, ROLE_ID_SERIES_EDITOR),
 			array_merge($peOps, array('addParticipant', 'deleteParticipant', 'saveParticipant', 'fetchUserList'))
 		);
 	}
@@ -79,7 +79,7 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 	function _canAdminister() {
 		// If the current role set includes Manager or Editor, grant.
 		return (boolean) array_intersect(
-			array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR),
+			array(ROLE_ID_MANAGER, ROLE_ID_SERIES_EDITOR),
 			$this->getAuthorizedContextObject(ASSOC_TYPE_USER_ROLES)
 		);
 	}
@@ -255,7 +255,7 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 			$stageAssignmentDao =& DAORegistry::getDAO('StageAssignmentDAO');
 
 			$userGroup = $userGroupDao->getById($userGroupId);
-			if ($userGroup->getRoleId() == ROLE_ID_PRESS_MANAGER) {
+			if ($userGroup->getRoleId() == ROLE_ID_MANAGER) {
 				$notificationMgr->updateNotification(
 					$request,
 					array(NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_SUBMISSION,

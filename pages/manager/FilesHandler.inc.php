@@ -21,7 +21,7 @@ class FilesHandler extends ManagerHandler {
 	 */
 	function FilesHandler() {
 		parent::ManagerHandler();
-		$this->addRoleAssignment(ROLE_ID_PRESS_MANAGER,
+		$this->addRoleAssignment(ROLE_ID_MANAGER,
 				array('fileDelete', 'fileMakeDir', 'files', 'fileUpload'));
 	}
 

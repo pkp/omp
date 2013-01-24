@@ -27,7 +27,7 @@ class PressSettingsWizardHandler extends Handler {
 	function PressSettingsWizardHandler() {
 		parent::Handler();
 		$this->addRoleAssignment(
-			array(ROLE_ID_PRESS_MANAGER),
+			array(ROLE_ID_MANAGER),
 			array('startWizard')
 		);
 	}

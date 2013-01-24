@@ -30,7 +30,7 @@ class WorkflowHandler extends Handler {
 		parent::Handler();
 
 		$this->addRoleAssignment(
-			array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER, ROLE_ID_ASSISTANT),
+			array(ROLE_ID_SERIES_EDITOR, ROLE_ID_MANAGER, ROLE_ID_ASSISTANT),
 			array(
 				'access', 'submission',
 				'editorDecisionActions', // Submission & review

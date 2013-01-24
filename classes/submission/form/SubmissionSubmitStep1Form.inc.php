@@ -88,7 +88,7 @@ class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
 			$userGroupNames = array();
 
 			// Add all manager user groups
-			$managerUserGroupAssignments =& $userGroupAssignmentDao->getByUserId($user->getId(), $this->press->getId(), ROLE_ID_PRESS_MANAGER);
+			$managerUserGroupAssignments =& $userGroupAssignmentDao->getByUserId($user->getId(), $this->press->getId(), ROLE_ID_MANAGER);
 			if($managerUserGroupAssignments) while($managerUserGroupAssignment =& $managerUserGroupAssignments->next()) {
 				$managerUserGroup =& $userGroupDao->getById($managerUserGroupAssignment->getUserGroupId());
 				$userGroupNames[$managerUserGroup->getId()] = $managerUserGroup->getLocalizedName();

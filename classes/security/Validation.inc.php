@@ -301,7 +301,7 @@ class Validation {
 	 * @return boolean
 	 */
 	static function isPressManager($pressId = -1) {
-		return Validation::isAuthorized(ROLE_ID_PRESS_MANAGER, $pressId);
+		return Validation::isAuthorized(ROLE_ID_MANAGER, $pressId);
 	}
 
 	/**
@@ -334,7 +334,7 @@ class Validation {
 			$userGroups = $userGroupDao->getByUserId($administeredUserId, $press->getId());
 			while (!$userGroups->eof()) {
 				$userGroup =& $userGroups->next();
-				if (!$roleDao->userHasRole($userGroup->getContextId(), $administratorUserId, ROLE_ID_PRESS_MANAGER)) {
+				if (!$roleDao->userHasRole($userGroup->getContextId(), $administratorUserId, ROLE_ID_MANAGER)) {
 					// Found an assignment: disqualified.
 					return false;
 				}

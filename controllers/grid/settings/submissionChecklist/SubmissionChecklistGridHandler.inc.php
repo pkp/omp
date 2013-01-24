@@ -22,7 +22,7 @@ class SubmissionChecklistGridHandler extends SetupGridHandler {
 	 */
 	function SubmissionChecklistGridHandler() {
 		parent::SetupGridHandler();
-		$this->addRoleAssignment(array(ROLE_ID_PRESS_MANAGER),
+		$this->addRoleAssignment(array(ROLE_ID_MANAGER),
 				array('fetchGrid', 'fetchRow', 'addItem', 'editItem', 'updateItem', 'deleteItem', 'saveSequence'));
 	}
 

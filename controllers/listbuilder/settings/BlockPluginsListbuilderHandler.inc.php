@@ -21,7 +21,7 @@ class BlockPluginsListbuilderHandler extends MultipleListsListbuilderHandler {
 	function BlockPluginsListbuilderHandler() {
 		parent::MultipleListsListbuilderHandler();
 		$this->addRoleAssignment(
-			ROLE_ID_PRESS_MANAGER,
+			ROLE_ID_MANAGER,
 			array('fetch')
 		);
 	}

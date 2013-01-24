@@ -30,5 +30,10 @@
 		<query>UPDATE controlled_vocab_entry_settings SET setting_name = 'submissionKeyword' WHERE setting_name = 'monographKeyword'</query>
 		<query>UPDATE controlled_vocab_entry_settings SET setting_name = 'submissionLanguage' WHERE setting_name = 'monographLanguage'</query>
 		<query>UPDATE controlled_vocab_entry_settings SET setting_name = 'submissionSubject' WHERE setting_name = 'monographSubject'</query>
+		<!--  make ROLE_ID_READER value the same across all PKP applications -->
+		<query>UPDATE user_groups SET role_id = '1048576' WHERE role_id = '131072'</query>
+		<!-- make ROLE_ID_MANAGER value the same as the one used in OJS (and now everywhere) -->
+		<query>UPDATE user_groups SET role_id = '16' WHERE role_id = '17'</query>
+
 	</sql>
 </data>

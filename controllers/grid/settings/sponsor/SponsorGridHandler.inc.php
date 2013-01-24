@@ -23,7 +23,7 @@ class SponsorGridHandler extends SetupGridHandler {
 	 */
 	function SponsorGridHandler() {
 		parent::SetupGridHandler();
-		$this->addRoleAssignment(array(ROLE_ID_PRESS_MANAGER),
+		$this->addRoleAssignment(array(ROLE_ID_MANAGER),
 				array('fetchGrid', 'fetchRow', 'addSponsor', 'editSponsor', 'updateSponsor', 'deleteSponsor'));
 	}
 

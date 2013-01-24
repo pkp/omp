@@ -16,9 +16,6 @@
 import('lib.pkp.classes.security.PKPRole');
 
 /** ID codes and paths for OMP-specific roles */
-define('ROLE_ID_PRESS_MANAGER',		0x00000011);
-define('ROLE_PATH_PRESS_MANAGER',	'manager');
-
 define('ROLE_ID_SERIES_EDITOR',		0x00000201);
 define('ROLE_PATH_SERIES_EDITOR',	'seriesEditor');
 
@@ -44,8 +41,6 @@ class Role extends PKPRole {
 	 */
 	function getRoleName($plural = false) {
 		switch ($this->getId()) {
-			case ROLE_ID_PRESS_MANAGER:
-				return 'user.role.manager' . ($plural ? 's' : '');
 			case ROLE_ID_SERIES_EDITOR:
 				return 'user.role.seriesEditor' . ($plural ? 's' : '');
 			default:
@@ -60,8 +55,6 @@ class Role extends PKPRole {
 	 */
 	function getPath() {
 		switch ($this->getId()) {
-			case ROLE_ID_PRESS_MANAGER:
-				return 'manager';
 			case ROLE_ID_SERIES_EDITOR:
 				return 'seriesEditor';
 			default:

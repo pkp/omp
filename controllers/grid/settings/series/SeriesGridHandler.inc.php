@@ -22,7 +22,7 @@ class SeriesGridHandler extends SetupGridHandler {
 	function SeriesGridHandler() {
 		parent::SetupGridHandler();
 		$this->addRoleAssignment(
-			array(ROLE_ID_PRESS_MANAGER),
+			array(ROLE_ID_MANAGER),
 			array('fetchGrid', 'fetchRow', 'addSeries', 'editSeries', 'updateSeries', 'deleteSeries')
 		);
 	}

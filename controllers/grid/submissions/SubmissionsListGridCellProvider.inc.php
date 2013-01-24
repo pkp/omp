@@ -189,7 +189,7 @@ class SubmissionsListGridCellProvider extends DataObjectGridCellProvider {
 		// If user is enrolled with a press manager user group, let
 		// him access the workflow pages.
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
-		$isPressManager = $roleDao->userHasRole($pressId, $user->getId(), ROLE_ID_PRESS_MANAGER);
+		$isPressManager = $roleDao->userHasRole($pressId, $user->getId(), ROLE_ID_MANAGER);
 		if($isPressManager) {
 			return array('workflow', 'access');
 		}

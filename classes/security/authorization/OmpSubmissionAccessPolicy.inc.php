@@ -39,9 +39,9 @@ class OmpSubmissionAccessPolicy extends PressPolicy {
 		//
 		// Managerial role
 		//
-		if (isset($roleAssignments[ROLE_ID_PRESS_MANAGER])) {
+		if (isset($roleAssignments[ROLE_ID_MANAGER])) {
 			// Press managers have access to all submissions.
-			$submissionAccessPolicy->addPolicy(new RoleBasedHandlerOperationPolicy($request, ROLE_ID_PRESS_MANAGER, $roleAssignments[ROLE_ID_PRESS_MANAGER]));
+			$submissionAccessPolicy->addPolicy(new RoleBasedHandlerOperationPolicy($request, ROLE_ID_MANAGER, $roleAssignments[ROLE_ID_MANAGER]));
 		}
 
 

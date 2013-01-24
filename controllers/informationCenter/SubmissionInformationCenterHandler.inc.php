@@ -49,7 +49,7 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 		// prevent anyone but managers and editors from submitting the catalog entry form
 		$userRoles = $this->getAuthorizedContextObject(ASSOC_TYPE_USER_ROLES);
 		$params = array();
-		if (!array_intersect(array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR), $userRoles)) {
+		if (!array_intersect(array(ROLE_ID_MANAGER, ROLE_ID_SERIES_EDITOR), $userRoles)) {
 			$params['hideSubmit'] = true;
 			$params['readOnly'] = true;
 		}

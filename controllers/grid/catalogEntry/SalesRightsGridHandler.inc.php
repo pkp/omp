@@ -36,7 +36,7 @@ class SalesRightsGridHandler extends GridHandler {
 	function SalesRightsGridHandler() {
 		parent::GridHandler();
 		$this->addRoleAssignment(
-				array(ROLE_ID_PRESS_MANAGER),
+				array(ROLE_ID_MANAGER),
 				array('fetchGrid', 'fetchRow', 'addRights', 'editRights',
 				'updateRights', 'deleteRights'));
 	}

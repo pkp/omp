@@ -23,7 +23,7 @@ class AdminSettingsTabHandler extends SettingsTabHandler {
 	function AdminSettingsTabHandler() {
 		$role = array(ROLE_ID_SITE_ADMIN);
 
-		$this->addRoleAssignment(ROLE_ID_PRESS_MANAGER,
+		$this->addRoleAssignment(ROLE_ID_MANAGER,
 			array(
 				'showFileUploadForm',
 				'uploadFile',

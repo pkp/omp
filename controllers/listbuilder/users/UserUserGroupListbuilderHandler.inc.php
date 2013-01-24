@@ -28,7 +28,7 @@ class UserUserGroupListbuilderHandler extends ListbuilderHandler {
 	function UserUserGroupListbuilderHandler() {
 		parent::ListbuilderHandler();
 		$this->addRoleAssignment(
-			ROLE_ID_PRESS_MANAGER,
+			ROLE_ID_MANAGER,
 			array('fetch', 'fetchRow', 'fetchOptions', 'save')
 		);
 	}

@@ -45,9 +45,9 @@ class OmpSignoffAccessPolicy extends PressPolicy {
 		//
 		// Managerial role
 		//
-		if (isset($roleAssignments[ROLE_ID_PRESS_MANAGER])) {
+		if (isset($roleAssignments[ROLE_ID_MANAGER])) {
 			// Press managers have all access to all signoffs.
-			$signoffAccessPolicy->addPolicy(new RoleBasedHandlerOperationPolicy($request, ROLE_ID_PRESS_MANAGER, $roleAssignments[ROLE_ID_PRESS_MANAGER]));
+			$signoffAccessPolicy->addPolicy(new RoleBasedHandlerOperationPolicy($request, ROLE_ID_MANAGER, $roleAssignments[ROLE_ID_MANAGER]));
 		}
 
 

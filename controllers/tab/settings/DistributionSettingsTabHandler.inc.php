@@ -26,7 +26,7 @@ class DistributionSettingsTabHandler extends ManagerSettingsTabHandler {
 		// In addition to the operations permitted by the parent
 		// class, allow Payment AJAX extras.
 		$this->addRoleAssignment(
-			ROLE_ID_PRESS_MANAGER,
+			ROLE_ID_MANAGER,
 			array('getPaymentMethods', 'getPaymentFormContents')
 		);
 		$this->setPageTabs(array(

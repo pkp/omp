@@ -40,7 +40,7 @@ class ManageSpotlightsGridHandler extends GridHandler {
 	function ManageSpotlightsGridHandler() {
 		parent::GridHandler();
 		$this->addRoleAssignment(
-				array(ROLE_ID_PRESS_MANAGER),
+				array(ROLE_ID_MANAGER),
 				array('fetchGrid', 'fetchRow', 'addSpotlight', 'editSpotlight',
 				'updateSpotlight', 'deleteSpotlight', 'itemAutocomplete'));
 	}

@@ -28,7 +28,7 @@ class SelectableFairCopyFilesGridHandler extends SelectableFileListGridHandler {
 		);
 
 		$this->addRoleAssignment(
-			array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_ASSISTANT),
+			array(ROLE_ID_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_ASSISTANT),
 			array('fetchGrid', 'fetchRow')
 		);
 

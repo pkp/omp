@@ -36,7 +36,7 @@ class MarketsGridHandler extends GridHandler {
 	function MarketsGridHandler() {
 		parent::GridHandler();
 		$this->addRoleAssignment(
-				array(ROLE_ID_PRESS_MANAGER),
+				array(ROLE_ID_MANAGER),
 				array('fetchGrid', 'fetchRow', 'addMarket', 'editMarket',
 				'updateMarket', 'deleteMarket'));
 	}

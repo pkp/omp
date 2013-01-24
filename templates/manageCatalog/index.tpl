@@ -11,7 +11,7 @@
 {include file="common/header.tpl"}
 {/strip}
 
-{if array_intersect(array(ROLE_ID_PRESS_MANAGER), $userRoles)}
+{if array_intersect(array(ROLE_ID_MANAGER), $userRoles)}
 	{assign var="isPressManager" value=true}
 {/if}
 
@@ -90,7 +90,7 @@
 				<div class="pkp_controllers_grid">
 					<div class="pkp_helpers_align_right grid_header_bar pkp_helpers_full">
 						<h3 class="pkp_helpers_align_left">{translate key="catalog.selectCategory"}</h3>
-						{if array_intersect(array(ROLE_ID_PRESS_MANAGER), $userRoles)}
+						{if array_intersect(array(ROLE_ID_MANAGER), $userRoles)}
 							<ul class="submission_actions pkp_helpers_flatlist pkp_linkActions pkp_helpers_align_right">
 								<li>{include file="linkAction/linkAction.tpl" action=$manageCategoriesLinkAction}</li>
 							</ul>
@@ -115,7 +115,7 @@
 				<div class="pkp_controllers_grid">
 					<div class="pkp_helpers_align_right grid_header_bar pkp_helpers_full">
 						<h3 class="pkp_helpers_align_left">{translate key="catalog.selectSeries"}</h3>
-						{if array_intersect(array(ROLE_ID_PRESS_MANAGER), $userRoles)}
+						{if array_intersect(array(ROLE_ID_MANAGER), $userRoles)}
 							<ul class="submission_actions pkp_helpers_flatlist pkp_linkActions pkp_helpers_align_right">
 								<li>{include file="linkAction/linkAction.tpl" action=$manageSeriesLinkAction}</li>
 							</ul>

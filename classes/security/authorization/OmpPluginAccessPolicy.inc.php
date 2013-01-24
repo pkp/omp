@@ -41,11 +41,11 @@ class OmpPluginAccessPolicy extends PolicySet {
 		//
 		// Managerial role
 		//
-		if (isset($roleAssignments[ROLE_ID_PRESS_MANAGER])) {
+		if (isset($roleAssignments[ROLE_ID_MANAGER])) {
 			if ($accessMode & ACCESS_MODE_MANAGE) {
 				// Press managers have edit settings access mode...
 				$pressManagerPluginAccessPolicy = new PolicySet(COMBINING_DENY_OVERRIDES);
-				$pressManagerPluginAccessPolicy->addPolicy(new RoleBasedHandlerOperationPolicy($request, ROLE_ID_PRESS_MANAGER, $roleAssignments[ROLE_ID_PRESS_MANAGER]));
+				$pressManagerPluginAccessPolicy->addPolicy(new RoleBasedHandlerOperationPolicy($request, ROLE_ID_MANAGER, $roleAssignments[ROLE_ID_MANAGER]));
 
 				// ...only to press level plugins.
 				$pressManagerPluginAccessPolicy->addPolicy(new PluginLevelRequiredPolicy($request, CONTEXT_PRESS));

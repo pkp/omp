@@ -83,7 +83,7 @@ class UserAccessibleWorkflowStageRequiredPolicy extends AuthorizationPolicy {
 		$accessibleStageRoles = array();
 		foreach ($userRoles as $roleId) {
 			switch ($roleId) {
-				case ROLE_ID_PRESS_MANAGER:
+				case ROLE_ID_MANAGER:
 					// Press managers have access to all submission stages.
 					$accessibleStageRoles[] = $roleId;
 					break;

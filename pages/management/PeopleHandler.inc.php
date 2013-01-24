@@ -21,7 +21,7 @@ class PeopleHandler extends ManagementHandler {
 	 **/
 	function PeopleHandler() {
 		parent::ManagementHandler();
-		$this->addRoleAssignment(ROLE_ID_PRESS_MANAGER, 'userProfile');
+		$this->addRoleAssignment(ROLE_ID_MANAGER, 'userProfile');
 	}
 
 

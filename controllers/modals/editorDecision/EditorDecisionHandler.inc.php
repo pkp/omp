@@ -28,7 +28,7 @@ class EditorDecisionHandler extends Handler {
 		parent::Handler();
 
 		$this->addRoleAssignment(
-			array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
+			array(ROLE_ID_SERIES_EDITOR, ROLE_ID_MANAGER),
 			array_merge(array(
 				'internalReview', 'saveInternalReview',
 				'externalReview', 'saveExternalReview',

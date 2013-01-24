@@ -25,7 +25,7 @@ class AddThisStatisticsGridHandler extends GridHandler {
 	function AddThisStatisticsGridHandler($plugin) {
 		parent::GridHandler();
 		$this->addRoleAssignment(
-				array(ROLE_ID_PRESS_MANAGER),
+				array(ROLE_ID_MANAGER),
 				array('fetchGrid', 'fetchRow'));
 
 		$this->setPlugin($plugin);

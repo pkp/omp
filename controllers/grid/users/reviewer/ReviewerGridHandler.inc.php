@@ -43,7 +43,7 @@ class ReviewerGridHandler extends GridHandler {
 		$allOperations = array_merge($this->_getReviewAssignmentOps(), $this->_getReviewRoundOps());
 
 		$this->addRoleAssignment(
-			array(ROLE_ID_PRESS_MANAGER),
+			array(ROLE_ID_MANAGER),
 			$allOperations
 		);
 

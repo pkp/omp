@@ -544,7 +544,7 @@ class MonographDAO extends DAO {
 			'title', $locale, // Series title
 			'abbrev', $primaryLocale, // Series abbreviation
 			'abbrev', $locale, // Series abbreviation
-			(int) ROLE_ID_PRESS_MANAGER
+			(int) ROLE_ID_MANAGER
 		);
 		if ($seriesEditorId) $params[] = (int) $seriesEditorId;
 		if ($pressId) $params[] = (int) $pressId;

@@ -22,7 +22,7 @@ class SubmissionHandler extends PKPSubmissionHandler {
 	 */
 	function SubmissionHandler() {
 		parent::Handler();
-		$this->addRoleAssignment(array(ROLE_ID_AUTHOR, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
+		$this->addRoleAssignment(array(ROLE_ID_AUTHOR, ROLE_ID_SERIES_EDITOR, ROLE_ID_MANAGER),
 				array('index', 'wizard', 'saveStep', 'fetchChoices'));
 	}
 

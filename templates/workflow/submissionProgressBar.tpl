@@ -27,7 +27,7 @@
 	</div>
 	<div class="pkp_helpers_align_right">
 		<ul class="submission_actions pkp_helpers_flatlist">
-			{if array_intersect(array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR), $userRoles)}
+			{if array_intersect(array(ROLE_ID_MANAGER, ROLE_ID_SERIES_EDITOR), $userRoles)}
 				<li>{include file="linkAction/linkAction.tpl" action=$catalogEntryAction}</li>
 			{/if}
 			<li>{include file="linkAction/linkAction.tpl" action=$submissionInformationCenterAction}</li>

@@ -30,19 +30,19 @@
 <div class="pkp_structure_head_localNav">
 	{if $isUserLoggedIn}
 		<ul class="sf-menu">
-			{if array_intersect(array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_ASSISTANT, ROLE_ID_REVIEWER, ROLE_ID_AUTHOR), $userRoles)}
+			{if array_intersect(array(ROLE_ID_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_ASSISTANT, ROLE_ID_REVIEWER, ROLE_ID_AUTHOR), $userRoles)}
 				<li><a href="{url page="dashboard"}">{translate key="navigation.dashboard"}</a></li>
 			{/if}
 			{if $currentPress}
 				<li><a href="{url page="catalog"}">{translate key="navigation.catalog"}</a>
-				{if array_intersect(array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR), $userRoles)}
+				{if array_intersect(array(ROLE_ID_MANAGER, ROLE_ID_SERIES_EDITOR), $userRoles)}
 					<li>
 						<a href="#">{translate key="navigation.management"}</a>
 						<ul>
 							<li>
 								<a href="{url page="manageCatalog"}">{translate key="navigation.catalog"}</a>
 							</li>
-							{if array_intersect(array(ROLE_ID_PRESS_MANAGER), $userRoles)}
+							{if array_intersect(array(ROLE_ID_MANAGER), $userRoles)}
 							<li>
 								<a href="{url page="management" op="settings" path="index"}">{translate key="navigation.settings"}</a>
 								<ul>
@@ -62,7 +62,7 @@
 							{/if}
 						</ul>
 					</li>
-				{/if}{* ROLE_ID_PRESS_MANAGER || ROLE_ID_SERIES_EDITOR *}
+				{/if}{* ROLE_ID_MANAGER || ROLE_ID_SERIES_EDITOR *}
 				{$publicMenu}
 			{/if}
 		</ul>

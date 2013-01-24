@@ -26,7 +26,7 @@ class UnassignedSubmissionsListGridHandler extends SubmissionsListGridHandler {
 	 */
 	function UnassignedSubmissionsListGridHandler() {
 		parent::SubmissionsListGridHandler();
-		$this->addRoleAssignment(array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR), array('fetchGrid'));
+		$this->addRoleAssignment(array(ROLE_ID_MANAGER, ROLE_ID_SERIES_EDITOR), array('fetchGrid'));
 	}
 
 
@@ -69,7 +69,7 @@ class UnassignedSubmissionsListGridHandler extends SubmissionsListGridHandler {
 
 		$accessibleMonographs = array();
 		while ($press =& $presses->next()) {
-			$isPressManager = $roleDao->userHasRole($press->getId(), $userId, ROLE_ID_PRESS_MANAGER);
+			$isPressManager = $roleDao->userHasRole($press->getId(), $userId, ROLE_ID_MANAGER);
 			$isSeriesEditor = $roleDao->userHasRole($press->getId(), $userId, ROLE_ID_SERIES_EDITOR);
 
 			if (!$isPressManager && !$isSeriesEditor) {

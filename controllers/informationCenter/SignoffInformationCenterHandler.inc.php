@@ -35,7 +35,7 @@ class SignoffInformationCenterHandler extends Handler {
 			array(
 				ROLE_ID_AUTHOR,
 				ROLE_ID_SERIES_EDITOR,
-				ROLE_ID_PRESS_MANAGER,
+				ROLE_ID_MANAGER,
 				ROLE_ID_ASSISTANT
 			),
 			array('viewSignoffHistory', 'viewNotes', 'getUserSignoffs', 'fetchNotesForm', 'saveNote', 'listNotes', 'uploadFile')

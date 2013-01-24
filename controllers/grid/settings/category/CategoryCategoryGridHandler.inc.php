@@ -31,7 +31,7 @@ class CategoryCategoryGridHandler extends CategoryGridHandler {
 	function CategoryCategoryGridHandler() {
 		parent::CategoryGridHandler();
 		$this->addRoleAssignment(
-			array(ROLE_ID_PRESS_MANAGER),
+			array(ROLE_ID_MANAGER),
 			array(
 				'fetchGrid',
 				'fetchCategory',

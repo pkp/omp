@@ -21,7 +21,7 @@ class LanguageGridHandler extends PKPLanguageGridHandler {
 	function LanguageGridHandler() {
 		parent::PKPLanguageGridHandler();
 		$this->addRoleAssignment(array(
-			ROLE_ID_PRESS_MANAGER),
+			ROLE_ID_MANAGER),
 			array('saveLanguageSetting', 'setContextPrimaryLocale'));
 	}
 

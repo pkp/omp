@@ -26,7 +26,7 @@ class ContributorGridHandler extends SetupGridHandler {
 	 */
 	function ContributorGridHandler() {
 		parent::SetupGridHandler();
-		$this->addRoleAssignment(array(ROLE_ID_PRESS_MANAGER),
+		$this->addRoleAssignment(array(ROLE_ID_MANAGER),
 				array('fetchGrid', 'addContributor', 'editContributor', 'updateContributor', 'deleteContributor'));
 	}
 

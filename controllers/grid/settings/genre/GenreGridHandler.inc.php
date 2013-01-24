@@ -22,7 +22,7 @@ class GenreGridHandler extends SetupGridHandler {
 	 */
 	function GenreGridHandler() {
 		parent::GridHandler();
-		$this->addRoleAssignment(array(ROLE_ID_PRESS_MANAGER),
+		$this->addRoleAssignment(array(ROLE_ID_MANAGER),
 				array('fetchGrid', 'fetchRow', 'addGenre', 'editGenre', 'updateGenre',
 				'deleteGenre', 'restoreGenres'));
 	}

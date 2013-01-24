@@ -22,7 +22,7 @@ class SettingsHandler extends ManagementHandler {
 	function SettingsHandler() {
 		parent::Handler();
 		$this->addRoleAssignment(
-			ROLE_ID_PRESS_MANAGER,
+			ROLE_ID_MANAGER,
 			array(
 				'index',
 				'categories',

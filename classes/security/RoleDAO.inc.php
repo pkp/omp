@@ -53,8 +53,6 @@ class RoleDAO extends PKPRoleDAO {
 	 */
 	function getRoleIdFromPath($rolePath) {
 		switch ($rolePath) {
-			case 'manager':
-				return ROLE_ID_PRESS_MANAGER;
 			case 'seriesEditor':
 				return ROLE_ID_SERIES_EDITOR;
 			default:
@@ -73,7 +71,7 @@ class RoleDAO extends PKPRoleDAO {
 		$parentRoleNames = parent::getRoleNames($contextOnly);
 
 		$pressRoleNames = array(
-			ROLE_ID_PRESS_MANAGER => 'user.role.manager',
+			ROLE_ID_MANAGER => 'user.role.manager',
 			ROLE_ID_SERIES_EDITOR => 'user.role.seriesEditor',
 			ROLE_ID_ASSISTANT => 'user.role.pressAssistant',
 		);

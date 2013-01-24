@@ -23,7 +23,7 @@ class ManageLanguageGridHandler extends LanguageGridHandler {
 	function ManageLanguageGridHandler() {
 		parent::LanguageGridHandler();
 		$this->addRoleAssignment(array(
-			ROLE_ID_PRESS_MANAGER),
+			ROLE_ID_MANAGER),
 			array('fetchGrid', 'fetchRow'));
 	}
 

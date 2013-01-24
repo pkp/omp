@@ -35,7 +35,7 @@ class CatalogEntryHandler extends Handler {
 	function CatalogEntryHandler() {
 		parent::Handler();
 		$this->addRoleAssignment(
-			array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
+			array(ROLE_ID_SERIES_EDITOR, ROLE_ID_MANAGER),
 			array('fetch', 'fetchFormatInfo'));
 	}
 

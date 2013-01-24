@@ -28,7 +28,7 @@ class FilesListbuilderHandler extends ListbuilderHandler {
 		$this->_fileStage = $fileStage;
 
 		$this->addRoleAssignment(
-			array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER, ROLE_ID_ASSISTANT),
+			array(ROLE_ID_SERIES_EDITOR, ROLE_ID_MANAGER, ROLE_ID_ASSISTANT),
 			array('fetch', 'fetchRow', 'fetchOptions')
 		);
 	}

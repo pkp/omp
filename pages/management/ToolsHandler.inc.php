@@ -22,7 +22,7 @@ class ToolsHandler extends ManagementHandler {
 	function ToolsHandler() {
 		parent::Handler();
 		$this->addRoleAssignment(
-			ROLE_ID_PRESS_MANAGER,
+			ROLE_ID_MANAGER,
 			array('tools')
 		);
 	}

@@ -31,11 +31,11 @@ class AuthorGridHandler extends PKPAuthorGridHandler {
 	function AuthorGridHandler() {
 		parent::PKPAuthorGridHandler();
 		$this->addRoleAssignment(
-				array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_ASSISTANT, ROLE_ID_AUTHOR),
+				array(ROLE_ID_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_ASSISTANT, ROLE_ID_AUTHOR),
 				array('fetchGrid', 'fetchRow', 'addAuthor', 'editAuthor',
 				'updateAuthor', 'deleteAuthor'));
 		$this->addRoleAssignment(ROLE_ID_REVIEWER, array('fetchGrid', 'fetchRow'));
-		$this->addRoleAssignment(array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_ASSISTANT), array('addUser'));
+		$this->addRoleAssignment(array(ROLE_ID_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_ASSISTANT), array('addUser'));
 	}
 
 
@@ -96,7 +96,7 @@ class AuthorGridHandler extends PKPAuthorGridHandler {
 	function hasAddAction() {
 		$monograph =& $this->getSubmission();
 		$userRoles = $this->getAuthorizedContextObject(ASSOC_TYPE_USER_ROLES);
-		if ($monograph->getDateSubmitted() == null || array_intersect(array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR), $userRoles))
+		if ($monograph->getDateSubmitted() == null || array_intersect(array(ROLE_ID_MANAGER, ROLE_ID_SERIES_EDITOR), $userRoles))
 			return true;
 		else
 			return false;

@@ -44,7 +44,7 @@ class OmpPublishedMonographAccessPolicy extends PressPolicy {
 				array_intersect_key(
 					$roleAssignments,
 					array( // Only permit these roles
-						ROLE_ID_PRESS_MANAGER,
+						ROLE_ID_MANAGER,
 						ROLE_ID_SERIES_EDITOR,
 					)
 				),

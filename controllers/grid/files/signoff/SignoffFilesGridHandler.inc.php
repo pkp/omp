@@ -56,7 +56,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 		$this->_assocId = $assocId;
 
 		$this->addRoleAssignment(
-			array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_ASSISTANT),
+			array(ROLE_ID_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_ASSISTANT),
 			array(
 				'fetchGrid', 'fetchCategory', 'fetchRow', 'returnFileRow', 'returnSignoffRow',
 				'addAuditor', 'saveAddAuditor', 'getAuditorAutocomplete',
@@ -126,7 +126,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 		$this->addAction(new AddFileLinkAction(
 			$request, $monograph->getId(),
 			$this->getStageId(),
-			array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_ASSISTANT),
+			array(ROLE_ID_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_ASSISTANT),
 			$this->getFileStage(),
 			$this->getAssocType(), $this->getAssocId()
 		));
@@ -728,7 +728,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 		// to all submission and its workflow stages but not always with
 		// an stage assignment (editorial and production stages, for example).
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
-		$pressManagerUserGroupsFactory =& $userGroupDao->getByRoleId($monograph->getPressId(), ROLE_ID_PRESS_MANAGER);
+		$pressManagerUserGroupsFactory =& $userGroupDao->getByRoleId($monograph->getPressId(), ROLE_ID_MANAGER);
 		while ($userGroup =& $pressManagerUserGroupsFactory->next()) {
 			$usersFactory =& $userGroupDao->getUsersById($userGroup->getId(), $monograph->getPressId());
 			while ($user =& $usersFactory->next()) {

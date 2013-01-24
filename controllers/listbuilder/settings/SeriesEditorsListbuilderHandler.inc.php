@@ -24,7 +24,7 @@ class SeriesEditorsListbuilderHandler extends SetupListbuilderHandler {
 	function SeriesEditorsListbuilderHandler() {
 		parent::SetupListbuilderHandler();
 		$this->addRoleAssignment(
-			ROLE_ID_PRESS_MANAGER,
+			ROLE_ID_MANAGER,
 			array('fetch', 'fetchRow', 'fetchOptions')
 		);
 	}

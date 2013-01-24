@@ -57,7 +57,7 @@ class SearchByNameReviewerForm extends ReviewerForm {
 		$this->setReviewerFormAction($advancedSearchAction);
 
 		// Only add actions to forms where user can operate.
-		if (array_intersect($this->getUserRoles(), array(ROLE_ID_PRESS_MANAGER))) {
+		if (array_intersect($this->getUserRoles(), array(ROLE_ID_MANAGER))) {
 			$actionArgs['selectionType'] = REVIEWER_SELECT_CREATE;
 			// but change the selectionType for each action
 			$advancedSearchAction = new LinkAction(

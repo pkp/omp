@@ -25,7 +25,7 @@ class FooterLinkListbuilderHandler extends SetupListbuilderHandler {
 	function FooterLinkListbuilderHandler() {
 		parent::SetupListbuilderHandler();
 		$this->addRoleAssignment(
-			ROLE_ID_PRESS_MANAGER,
+			ROLE_ID_MANAGER,
 			array('fetchOptions')
 		);
 	}

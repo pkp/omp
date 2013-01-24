@@ -36,7 +36,7 @@ class ManageFooterGridHandler extends CategoryGridHandler {
 	function ManageFooterGridHandler() {
 		parent::CategoryGridHandler();
 		$this->addRoleAssignment(
-				array(ROLE_ID_PRESS_MANAGER),
+				array(ROLE_ID_MANAGER),
 				array('fetchGrid', 'fetchCategory', 'fetchRow', 'addFooterCategory',
 				'editFooterCategory', 'updateFooterCategory', 'deleteFooterCategory'));
 	}

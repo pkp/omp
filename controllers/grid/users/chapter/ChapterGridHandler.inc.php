@@ -33,7 +33,7 @@ class ChapterGridHandler extends CategoryGridHandler {
 	function ChapterGridHandler() {
 		parent::CategoryGridHandler();
 		$this->addRoleAssignment(
-			array(ROLE_ID_AUTHOR, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER, ROLE_ID_ASSISTANT),
+			array(ROLE_ID_AUTHOR, ROLE_ID_SERIES_EDITOR, ROLE_ID_MANAGER, ROLE_ID_ASSISTANT),
 			array(
 				'fetchGrid', 'fetchRow', 'fetchCategory', 'saveSequence',
 				'addChapter', 'editChapter', 'updateChapter', 'deleteChapter',
@@ -158,7 +158,7 @@ class ChapterGridHandler extends CategoryGridHandler {
 		$monograph =& $this->getMonograph();
 		$userRoles = $this->getAuthorizedContextObject(ASSOC_TYPE_USER_ROLES);
 
-		if ($monograph->getDateSubmitted() == null || array_intersect(array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR), $userRoles)) {
+		if ($monograph->getDateSubmitted() == null || array_intersect(array(ROLE_ID_MANAGER, ROLE_ID_SERIES_EDITOR), $userRoles)) {
 			$this->setReadOnly(false);
 			import('lib.pkp.classes.controllers.grid.feature.OrderCategoryGridItemsFeature');
 			return array(new OrderCategoryGridItemsFeature(ORDER_CATEGORY_GRID_CATEGORIES_AND_ROWS));

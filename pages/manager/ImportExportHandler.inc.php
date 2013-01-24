@@ -22,7 +22,7 @@ class ImportExportHandler extends ManagerHandler {
 	 */
 	function ImportExportHandler() {
 		parent::ManagerHandler();
-		$this->addRoleAssignment(ROLE_ID_PRESS_MANAGER, 'importexport');
+		$this->addRoleAssignment(ROLE_ID_MANAGER, 'importexport');
 	}
 
 	/**

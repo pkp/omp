@@ -24,7 +24,7 @@ class SubmissionDocumentsFilesGridHandler extends LibraryFileGridHandler {
 
 		parent::LibraryFileGridHandler(new SubmissionDocumentsFilesGridDataProvider());
 		$this->addRoleAssignment(
-			array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_ASSISTANT, ROLE_ID_AUTHOR),
+			array(ROLE_ID_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_ASSISTANT, ROLE_ID_AUTHOR),
 			array(
 				'addFile', 'uploadFile', 'saveFile', // Adding new library files
 				'editFile', 'updateFile', // Editing existing library files

@@ -127,7 +127,7 @@ class PressSiteSettingsForm extends ContextSiteSettingsForm {
 			$userSession =& $sessionManager->getUserSession();
 			if ($userSession->getUserId() != null && $userSession->getUserId() != 0 && !empty($contextId)) {
 				// get the default site admin user group
-				$managerUserGroup =& $userGroupDao->getDefaultByRoleId($contextId, ROLE_ID_PRESS_MANAGER);
+				$managerUserGroup =& $userGroupDao->getDefaultByRoleId($contextId, ROLE_ID_MANAGER);
 				$userGroupDao->assignUserToGroup($userSession->getUserId(), $managerUserGroup->getId());
 			}
 

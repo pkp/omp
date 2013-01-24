@@ -70,7 +70,7 @@ class AdminLanguageGridHandler extends PKPAdminLanguageGridHandler {
 		$presses = $pressDao->getAll();
 		$userRoles = $this->getAuthorizedContextObject(ASSOC_TYPE_USER_ROLES);
 		$press =& $request->getPress();
-		return ($presses->getCount() == 1 && $press && in_array(ROLE_ID_PRESS_MANAGER, $userRoles));
+		return ($presses->getCount() == 1 && $press && in_array(ROLE_ID_MANAGER, $userRoles));
 	}
 }
 

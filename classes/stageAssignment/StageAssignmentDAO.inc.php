@@ -76,7 +76,7 @@ class StageAssignmentDAO extends DAO {
 	 * @return array
 	 */
 	function getEditorsAssignedToStage($submissionId, $stageId) {
-		$pressManagerAssignmentFactory = $this->getBySubmissionAndRoleId($submissionId, ROLE_ID_PRESS_MANAGER, $stageId);
+		$pressManagerAssignmentFactory = $this->getBySubmissionAndRoleId($submissionId, ROLE_ID_MANAGER, $stageId);
 		$seriesEditorAssignmentFactory = $this->getBySubmissionAndRoleId($submissionId, ROLE_ID_SERIES_EDITOR, $stageId);
 		return array_merge($pressManagerAssignmentFactory->toArray(), $seriesEditorAssignmentFactory->toArray());
 	}
@@ -90,7 +90,7 @@ class StageAssignmentDAO extends DAO {
 	 * @return bool
 	 */
 	function editorAssignedToStage($submissionId, $stageId = null) {
-		$params = array((int) $submissionId, ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR);
+		$params = array((int) $submissionId, ROLE_ID_MANAGER, ROLE_ID_SERIES_EDITOR);
 		if ($stageId) $params[] = (int) $stageId;
 		$result =& $this->retrieve(
 			'SELECT	COUNT(*)

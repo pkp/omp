@@ -27,7 +27,7 @@ class CategoriesListbuilderHandler extends ListbuilderHandler {
 	function CategoriesListbuilderHandler() {
 		parent::ListbuilderHandler();
 		$this->addRoleAssignment(
-			array(ROLE_ID_PRESS_MANAGER, ROLE_ID_AUTHOR),
+			array(ROLE_ID_MANAGER, ROLE_ID_AUTHOR),
 			array('fetch', 'fetchRow', 'fetchOptions')
 		);
 	}
