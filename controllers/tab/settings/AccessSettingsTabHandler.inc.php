@@ -13,7 +13,7 @@
  */
 
 // Import the base Handler.
-import('controllers.tab.settings.ManagerSettingsTabHandler');
+import('lib.pkp.controllers.tab.settings.ManagerSettingsTabHandler');
 
 class AccessSettingsTabHandler extends ManagerSettingsTabHandler {
 
