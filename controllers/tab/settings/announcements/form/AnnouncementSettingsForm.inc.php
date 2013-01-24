@@ -9,7 +9,7 @@
  * @class AnnouncementSettingsForm
  * @ingroup controllers_tab_settings_announcements_form
  *
- * @brief Form to edit press announcement settings.
+ * @brief Form to edit announcement settings.
  */
 
 import('lib.pkp.classes.controllers.tab.settings.form.ContextSettingsForm');
