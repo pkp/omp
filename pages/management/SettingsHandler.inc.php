@@ -47,7 +47,7 @@ class SettingsHandler extends ManagementHandler {
 	 * @param $args array
 	 */
 	function index($args, &$request) {
-		$templateMgr =& TemplateManager::getManager($request);
+		$templateMgr = TemplateManager::getManager($request);
 		$this->setupTemplate($request);
 		$templateMgr->display('management/settings/index.tpl');
 	}
@@ -60,7 +60,7 @@ class SettingsHandler extends ManagementHandler {
 	function categories($args, &$request) {
 		$this->setupTemplate($request);
 
-		$templateMgr =& TemplateManager::getManager($request);
+		$templateMgr = TemplateManager::getManager($request);
 		$jsonMessage = new JSONMessage(true, $templateMgr->fetch('management/categories.tpl'));
 		return $jsonMessage->getString();
 	}
@@ -73,7 +73,7 @@ class SettingsHandler extends ManagementHandler {
 	function series($args, &$request) {
 		$this->setupTemplate($request);
 
-		$templateMgr =& TemplateManager::getManager($request);
+		$templateMgr = TemplateManager::getManager($request);
 		$jsonMessage = new JSONMessage(true, $templateMgr->fetch('management/series.tpl'));
 		return $jsonMessage->getString();
 	}
@@ -115,7 +115,7 @@ class SettingsHandler extends ManagementHandler {
 	 * @param $request PKPRequest
 	 */
 	function access($args, &$request) {
-		$templateMgr =& TemplateManager::getManager($request);
+		$templateMgr = TemplateManager::getManager($request);
 		$this->setupTemplate($request);
 		$templateMgr->display('management/settings/access.tpl');
 	}
@@ -126,7 +126,7 @@ class SettingsHandler extends ManagementHandler {
 	 * @param $request PKPRequest
 	 */
 	function press($args, &$request) {
-		$templateMgr =& TemplateManager::getManager($request);
+		$templateMgr = TemplateManager::getManager($request);
 		$this->setupTemplate($request);
 		$templateMgr->display('management/settings/press.tpl');
 	}
@@ -137,9 +137,9 @@ class SettingsHandler extends ManagementHandler {
 	 * @param $request PKPRequest
 	 */
 	function website($args, &$request) {
-		$templateMgr =& TemplateManager::getManager($request);
+		$templateMgr = TemplateManager::getManager($request);
 		$this->setupTemplate($request);
-		$press =& $request->getPress();
+		$press = $request->getPress();
 		$templateMgr->assign('enableAnnouncements', $press->getSetting('enableAnnouncements'));
 		$templateMgr->display('management/settings/website.tpl');
 	}
@@ -150,7 +150,7 @@ class SettingsHandler extends ManagementHandler {
 	 * @param $request PKPRequest
 	 */
 	function publication($args, &$request) {
-		$templateMgr =& TemplateManager::getManager($request);
+		$templateMgr = TemplateManager::getManager($request);
 		$this->setupTemplate($request);
 		$templateMgr->display('management/settings/publication.tpl');
 	}
@@ -161,7 +161,7 @@ class SettingsHandler extends ManagementHandler {
 	 * @param $request PKPRequest
 	 */
 	function distribution($args, &$request) {
-		$templateMgr =& TemplateManager::getManager($request);
+		$templateMgr = TemplateManager::getManager($request);
 		$this->setupTemplate($request);
 		$templateMgr->display('management/settings/distribution.tpl');
 	}
