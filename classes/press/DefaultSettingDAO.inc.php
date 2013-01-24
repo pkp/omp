@@ -105,7 +105,7 @@ class DefaultSettingDAO extends DAO {
 		$data = $xmlDao->parse($this->getDefaultBaseFilename());
 		if (!$data) return false;
 		$defaultIds = $this->getDefaultSettingIds($pressId);
-		AppLocale::requireComponents(LOCALE_COMPONENT_APP_DEFAULT_SETTINGS, $locale);
+		AppLocale::requireComponents(LOCALE_COMPONENT_APP_DEFAULT, $locale);
 
 		foreach ($data->getChildren() as $formatNode) {
 

@@ -13,16 +13,7 @@
  *
  */
 
-
-
 import('lib.pkp.classes.i18n.PKPLocale');
-
-define('LOCALE_COMPONENT_APP_COMMON',	0x00000101);
-define('LOCALE_COMPONENT_APP_MANAGER',		0x00000102);
-define('LOCALE_COMPONENT_APP_SUBMISSION',	0x00000104);
-define('LOCALE_COMPONENT_APP_EDITOR',		0x00000108);
-define('LOCALE_COMPONENT_APP_ADMIN',		0x0000010F);
-define('LOCALE_COMPONENT_APP_DEFAULT_SETTINGS',	0x00000111);
 
 class AppLocale extends PKPLocale {
 	/**
@@ -210,7 +201,7 @@ class AppLocale extends PKPLocale {
 		$componentMap[LOCALE_COMPONENT_APP_SUBMISSION] = $baseDir . 'submission.xml';
 		$componentMap[LOCALE_COMPONENT_APP_EDITOR] = $baseDir . 'editor.xml';
 		$componentMap[LOCALE_COMPONENT_APP_ADMIN] = $baseDir . 'admin.xml';
-		$componentMap[LOCALE_COMPONENT_APP_DEFAULT_SETTINGS] = $baseDir . 'defaultSettings.xml';
+		$componentMap[LOCALE_COMPONENT_APP_DEFAULT] = $baseDir . 'default.xml';
 		return $componentMap;
 	}
 }

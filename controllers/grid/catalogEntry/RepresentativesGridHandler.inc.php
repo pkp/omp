@@ -100,7 +100,7 @@ class RepresentativesGridHandler extends CategoryGridHandler {
 			LOCALE_COMPONENT_APP_SUBMISSION,
 			LOCALE_COMPONENT_PKP_SUBMISSION,
 			LOCALE_COMPONENT_PKP_USER,
-			LOCALE_COMPONENT_APP_DEFAULT_SETTINGS
+			LOCALE_COMPONENT_APP_DEFAULT
 		);
 
 		// Basic grid configuration

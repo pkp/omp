@@ -95,7 +95,7 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 		AppLocale::requireComponents(
 			LOCALE_COMPONENT_APP_EDITOR,
 			LOCALE_COMPONENT_PKP_USER,
-			LOCALE_COMPONENT_APP_DEFAULT_SETTINGS
+			LOCALE_COMPONENT_APP_DEFAULT
 		);
 
 		// Columns
