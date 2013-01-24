@@ -82,9 +82,9 @@ class TemplateManager extends PKPTemplateManager {
 				$this->assign('enableAnnouncements', $press->getSetting('enableAnnouncements'));
 
 				// Assign stylesheets and footer
-				$pressStyleSheet = $press->getSetting('pressStyleSheet');
-				if ($pressStyleSheet) {
-					$this->addStyleSheet($this->request->getBaseUrl() . '/' . $publicFileManager->getPressFilesPath($press->getId()) . '/' . $pressStyleSheet['uploadName']);
+				$styleSheet = $press->getSetting('styleSheet');
+				if ($styleSheet) {
+					$this->addStyleSheet($this->request->getBaseUrl() . '/' . $publicFileManager->getPressFilesPath($press->getId()) . '/' . $styleSheet['uploadName']);
 				}
 
 				// Include footer links if they have been defined.

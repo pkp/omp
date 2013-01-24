@@ -36,4 +36,10 @@
 		<query>UPDATE user_groups SET role_id = '16' WHERE role_id = '17'</query>
 
 	</sql>
+	<!-- Bug #8094: Rename settings for standardization -->
+	<sql>
+		<query>UPDATE press_settings SET setting_name = 'pageHeader' WHERE setting_name = 'pressPageHeader'</query>
+		<query>UPDATE press_settings SET setting_name = 'pageFooter' WHERE setting_name = 'pressPageFooter'</query>
+		<query>UPDATE press_settings SET setting_name = 'styleSheet' WHERE setting_name = 'pressStyleSheet'</query>
+	</sql>
 </data>

@@ -395,10 +395,8 @@
 	<!-- Common Messages -->
 	<message key="common.openMonographPress">Open Monograph Press</message>
 	<message key="common.omp">OMP</message>
-	<message key="common.pageHeader.altText">Page Header</message>
 	<message key="common.publicKnowledgeProject">Public Knowledge Project</message>
 	<message key="common.homePageHeader.altText">Homepage Header</message>
-	<message key="common.pressHomepageImage.altText">Press Homepage Image</message>
 	<message key="common.designation">Designation</message>
 	<message key="common.dimensionsInches"><![CDATA[{$width}"&nbsp;x&nbsp;{$height}" @ {$dpi} DPI/PPI]]></message>
 	<message key="common.dimensionsPixels">{$width} x {$height} pixels</message>

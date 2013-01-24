@@ -9,7 +9,7 @@
  * @class AppearanceForm
  * @ingroup controllers_tab_settings_appearance_form
  *
- * @brief Form to edit press appearance settings.
+ * @brief Form to edit appearance settings.
  */
 
 import('lib.pkp.classes.controllers.tab.settings.form.ContextSettingsForm');
@@ -27,7 +27,7 @@ class AppearanceForm extends ContextSettingsForm {
 		// Define an array with the image setting name as key and its
 		// common alternate text locale key as value.
 		$this->setImagesSettingsName(array(
-			'homepageImage' => 'common.pressHomepageImage.altText',
+			'homepageImage' => 'common.homepageImage.altText',
 			'pageHeaderTitleImage' => 'common.pageHeader.altText',
 			'pageHeaderLogoImage' => 'common.pageHeaderLogo.altText'
 		));
@@ -99,10 +99,10 @@ class AppearanceForm extends ContextSettingsForm {
 			$uploadImageLinkActions[$settingName] =& $this->_getFileUploadLinkAction($settingName, 'image', $request);
 		}
 		// Get the css upload link action.
-		$uploadCssLinkAction =& $this->_getFileUploadLinkAction('pressStyleSheet', 'css', $request);
+		$uploadCssLinkAction =& $this->_getFileUploadLinkAction('styleSheet', 'css', $request);
 
 		$imagesViews = $this->_renderAllFormImagesViews($request);
-		$cssView = $this->renderFileView('pressStyleSheet', $request);
+		$cssView = $this->renderFileView('styleSheet', $request);
 
 		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->assign_by_ref('uploadImageLinkActions', $uploadImageLinkActions);
@@ -110,7 +110,7 @@ class AppearanceForm extends ContextSettingsForm {
 
 		$params = array(
 			'imagesViews' => $imagesViews,
-			'pressStyleSheetView' => $cssView,
+			'styleSheetView' => $cssView,
 			'locale' => AppLocale::getLocale()
 		);
 
@@ -190,7 +190,7 @@ class AppearanceForm extends ContextSettingsForm {
 		import('classes.file.PublicFileManager');
 		$publicFileManager = new PublicFileManager();
 		if ($publicFileManager->removePressFile($context->getId(), $file['uploadName'])) {
-			$settingsDao =& DAORegistry::getDAO('PressSettingsDAO');
+			$settingsDao = $context->getSettingsDao();
 			$settingsDao->deleteSetting($context->getId(), $fileSettingName, $locale);
 			return true;
 		} else {

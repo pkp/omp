@@ -89,12 +89,12 @@
 
 	{* Press Layout *}
 	{fbvFormArea id="pressLayout" title="manager.setup.pressLayout" class="border"}
-		{fbvFormSection title="manager.setup.usePressStyleSheet" description="manager.setup.pressStyleSheetDescription"}
+		{fbvFormSection title="manager.setup.usePressStyleSheet" description="manager.setup.styleSheetDescription"}
 			<div id="{$uploadCssLinkAction->getId()}" class="pkp_linkActions">
 				{include file="linkAction/linkAction.tpl" action=$uploadCssLinkAction contextId="appearanceForm"}
 			</div>
-			<div id="pressStyleSheet">
-				{$pressStyleSheetView}
+			<div id="styleSheet">
+				{$styleSheetView}
 			</div>
 		{/fbvFormSection}
 		{url|assign:blockPluginsUrl router=$smarty.const.ROUTE_COMPONENT  component="listbuilder.settings.BlockPluginsListbuilderHandler" op="fetch" monographId=$monographId escape=false}

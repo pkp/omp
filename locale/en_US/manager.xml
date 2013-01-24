@@ -360,7 +360,7 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.pressPolicies">Step 2. Press Policies</message>
 	<message key="manager.setup.pressSetup">Press Setup</message>
 	<message key="manager.setup.pressSetupUpdated">Your press setup has been updated.</message>
-	<message key="manager.setup.pressStyleSheetInvalid">Invalid press style sheet format. Accepted format is .css.</message>
+	<message key="manager.setup.styleSheetInvalid">Invalid style sheet format. Accepted format is .css.</message>
 	<message key="manager.setup.pressTheme">Press Theme</message>
 	<message key="manager.setup.pressName">Press Name</message>
 	<message key="manager.setup.principalContact">Principal Contact</message>
@@ -447,7 +447,7 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.useImageLogoDescription">An optional press logo may be uploaded and used in conjunction with the image or text title configured above.</message>
 	<message key="manager.setup.useImageTitle">Title Image</message>
 	<message key="manager.setup.usePressStyleSheet">Press style sheet</message>
-	<message key="manager.setup.pressStyleSheetDescription">You may upload an additional Cascading Style Sheet (CSS) file to change the appearance of your press.</message>
+	<message key="manager.setup.styleSheetDescription">You may upload an additional Cascading Style Sheet (CSS) file to change the appearance.</message>
 	<message key="manager.setup.useLayoutEditors">A Layout Editor will be assigned to prepare the HTML, PDF, etc., files for electronic publication.</message>
 	<message key="manager.setup.useProofreaders">A Proofreader will be assigned to check (along with the authors) the galleys prior to publication.</message>
 	<message key="manager.setup.userRegistration">User Registration</message>
