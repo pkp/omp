@@ -11,11 +11,11 @@
  * @brief Class to control access to OMP's submission workflow stage components
  */
 
-import('classes.security.authorization.internal.PressPolicy');
+import('lib.pkp.classes.security.authorization.internal.ContextPolicy');
 import('lib.pkp.classes.security.authorization.PolicySet');
 import('lib.pkp.classes.security.authorization.RoleBasedHandlerOperationPolicy');
 
-class OmpWorkflowStageAccessPolicy extends PressPolicy {
+class OmpWorkflowStageAccessPolicy extends ContextPolicy {
 	/**
 	 * Constructor
 	 * @param $request PKPRequest
@@ -25,7 +25,7 @@ class OmpWorkflowStageAccessPolicy extends PressPolicy {
 	 * @param $stageId integer One of the WORKFLOW_STAGE_ID_* constants.
 	 */
 	function OmpWorkflowStageAccessPolicy(&$request, &$args, $roleAssignments, $submissionParameterName = 'monographId', $stageId) {
-		parent::PressPolicy($request);
+		parent::ContextPolicy($request);
 
 		// A workflow stage component requires a valid workflow stage.
 		import('classes.security.authorization.internal.WorkflowStageRequiredPolicy');

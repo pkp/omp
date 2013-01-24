@@ -12,14 +12,14 @@
  * submission details in OMP.
  */
 
-import('classes.security.authorization.internal.PressPolicy');
+import('lib.pkp.classes.security.authorization.internal.ContextPolicy');
 import('lib.pkp.classes.security.authorization.RoleBasedHandlerOperationPolicy');
 
 // Define the bitfield for monograph file access levels
 define('MONOGRAPH_FILE_ACCESS_READ', 1);
 define('MONOGRAPH_FILE_ACCESS_MODIFY', 2);
 
-class OmpMonographFileAccessPolicy extends PressPolicy {
+class OmpMonographFileAccessPolicy extends ContextPolicy {
 	/**
 	 * Constructor
 	 * @param $request PKPRequest
@@ -35,7 +35,7 @@ class OmpMonographFileAccessPolicy extends PressPolicy {
 		// read and modify access using bitfield:
 		// $mode & MONOGRAPH_FILE_ACCESS_...
 
-		parent::PressPolicy($request);
+		parent::ContextPolicy($request);
 
 		// We need a submission matching the file in the request.
 		import('classes.security.authorization.internal.MonographRequiredPolicy');

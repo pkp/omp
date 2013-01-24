@@ -11,17 +11,17 @@
  * @brief Class to control access to OMP's press-level components
  */
 
-import('classes.security.authorization.internal.PressPolicy');
+import('lib.pkp.classes.security.authorization.internal.ContextPolicy');
 import('lib.pkp.classes.security.authorization.RoleBasedHandlerOperationPolicy');
 
-class OmpPressAccessPolicy extends PressPolicy {
+class OmpPressAccessPolicy extends ContextPolicy {
 	/**
 	 * Constructor
 	 * @param $request PKPRequest
 	 * @param $roleAssignments array
 	 */
 	function OmpPressAccessPolicy(&$request, $roleAssignments) {
-		parent::PressPolicy($request);
+		parent::ContextPolicy($request);
 
 		// On press level we don't have role-specific conditions
 		// so we can simply add all role assignments. It's ok if

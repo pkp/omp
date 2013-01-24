@@ -11,10 +11,10 @@
  * @brief Class to control access to OMP author dashboard.
  */
 
-import('classes.security.authorization.internal.PressPolicy');
+import('lib.pkp.classes.security.authorization.internal.ContextPolicy');
 import('lib.pkp.classes.security.authorization.PolicySet');
 
-class OmpAuthorDashboardAccessPolicy extends PressPolicy {
+class OmpAuthorDashboardAccessPolicy extends ContextPolicy {
 	/**
 	 * Constructor
 	 * @param $request PKPRequest
@@ -22,7 +22,7 @@ class OmpAuthorDashboardAccessPolicy extends PressPolicy {
 	 * @param $roleAssignments array
 	 */
 	function OmpAuthorDashboardAccessPolicy(&$request, &$args, $roleAssignments) {
-		parent::PressPolicy($request);
+		parent::ContextPolicy($request);
 
 		$authorDashboardPolicy = new PolicySet(COMBINING_DENY_OVERRIDES);
 

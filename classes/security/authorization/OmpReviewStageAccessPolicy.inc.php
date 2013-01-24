@@ -11,10 +11,10 @@
  * @brief Class to control access to OMP's review stage components
  */
 
-import('classes.security.authorization.internal.PressPolicy');
+import('lib.pkp.classes.security.authorization.internal.ContextPolicy');
 import('lib.pkp.classes.security.authorization.PolicySet');
 
-class OmpReviewStageAccessPolicy extends PressPolicy {
+class OmpReviewStageAccessPolicy extends ContextPolicy {
 	/**
 	 * Constructor
 	 * @param $request PKPRequest
@@ -24,7 +24,7 @@ class OmpReviewStageAccessPolicy extends PressPolicy {
 	 * @param $stageId integer One of the WORKFLOW_STAGE_ID_* constants.
 	 */
 	function OmpReviewStageAccessPolicy(&$request, &$args, $roleAssignments, $submissionParameterName = 'monographId', $stageId) {
-		parent::PressPolicy($request);
+		parent::ContextPolicy($request);
 
 		// Create a "permit overrides" policy set that specifies
 		// role-specific access to submission stage operations.

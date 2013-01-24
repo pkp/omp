@@ -11,13 +11,13 @@
  * @brief Class to control access to signoffs in OMP.
  */
 
-import('classes.security.authorization.internal.PressPolicy');
+import('lib.pkp.classes.security.authorization.internal.ContextPolicy');
 import('lib.pkp.classes.security.authorization.RoleBasedHandlerOperationPolicy');
 
 define('SIGNOFF_ACCESS_READ', 1);
 define('SIGNOFF_ACCESS_MODIFY', 2);
 
-class OmpSignoffAccessPolicy extends PressPolicy {
+class OmpSignoffAccessPolicy extends ContextPolicy {
 	/**
 	 * Constructor
 	 * @param $request PKPRequest
@@ -27,7 +27,7 @@ class OmpSignoffAccessPolicy extends PressPolicy {
 	 * @param $stageId int
 	 */
 	function OmpSignoffAccessPolicy(&$request, $args, $roleAssignments, $mode, $stageId) {
-		parent::PressPolicy($request);
+		parent::ContextPolicy($request);
 
 		// We need a submission matching the file in the request.
 		import('classes.security.authorization.internal.SignoffExistsAccessPolicy');

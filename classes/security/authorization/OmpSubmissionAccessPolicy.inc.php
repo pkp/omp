@@ -12,9 +12,9 @@
  * submission details in OMP.
  */
 
-import('classes.security.authorization.internal.PressPolicy');
+import('lib.pkp.classes.security.authorization.internal.ContextPolicy');
 
-class OmpSubmissionAccessPolicy extends PressPolicy {
+class OmpSubmissionAccessPolicy extends ContextPolicy {
 	/**
 	 * Constructor
 	 * @param $request PKPRequest
@@ -24,7 +24,7 @@ class OmpSubmissionAccessPolicy extends PressPolicy {
 	 *  expect the submission id in.
 	 */
 	function OmpSubmissionAccessPolicy(&$request, $args, $roleAssignments, $submissionParameterName = 'monographId') {
-		parent::PressPolicy($request);
+		parent::ContextPolicy($request);
 
 		// We need a submission in the request.
 		import('classes.security.authorization.internal.MonographRequiredPolicy');

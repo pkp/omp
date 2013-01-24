@@ -11,9 +11,9 @@
  * @brief Class to control access to published monographs in OMP.
  */
 
-import('classes.security.authorization.internal.PressPolicy');
+import('lib.pkp.classes.security.authorization.internal.ContextPolicy');
 
-class OmpPublishedMonographAccessPolicy extends PressPolicy {
+class OmpPublishedMonographAccessPolicy extends ContextPolicy {
 	/**
 	 * Constructor
 	 * @param $request PKPRequest
@@ -23,7 +23,7 @@ class OmpPublishedMonographAccessPolicy extends PressPolicy {
 	 *  expect the submission id in.
 	 */
 	function OmpPublishedMonographAccessPolicy(&$request, $args, $roleAssignments, $submissionParameterName = 'monographId') {
-		parent::PressPolicy($request);
+		parent::ContextPolicy($request);
 
 		// Access may be made either as a member of the public, or
 		// via pre-publication access to editorial users.
