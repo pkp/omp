@@ -53,8 +53,8 @@ class FileApiHandler extends Handler {
 			}
 			$this->addPolicy($multipleMonographFileAccessPolicy);
 		}else if (is_numeric($libraryFileId)) {
-			import('classes.security.authorization.OmpPressAccessPolicy');
-			$this->addPolicy(new OmpPressAccessPolicy($request, $roleAssignments));
+			import('lib.pkp.classes.security.authorization.PkpContextAccessPolicy');
+			$this->addPolicy(new PkpContextAccessPolicy($request, $roleAssignments));
 		}else {
 			$this->addPolicy(new OmpMonographFileAccessPolicy($request, $args, $roleAssignments, MONOGRAPH_FILE_ACCESS_READ));
 		}

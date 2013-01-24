@@ -52,8 +52,8 @@ class SetupListbuilderHandler extends ListbuilderHandler {
 	 * @param $roleAssignments array
 	 */
 	function authorize(&$request, &$args, $roleAssignments) {
-		import('classes.security.authorization.OmpPressAccessPolicy');
-		$this->addPolicy(new OmpPressAccessPolicy($request, $roleAssignments));
+		import('lib.pkp.classes.security.authorization.PkpContextAccessPolicy');
+		$this->addPolicy(new PkpContextAccessPolicy($request, $roleAssignments));
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 

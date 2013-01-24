@@ -48,8 +48,8 @@ class SubmissionHandler extends PKPSubmissionHandler {
 		// Are we in step one without a monograph present?
 		if ($step === 1 && $monographId === 0) {
 			// Authorize submission creation.
-			import('classes.security.authorization.OmpPressAccessPolicy');
-			$this->addPolicy(new OmpPressAccessPolicy($request, $roleAssignments));
+			import('lib.pkp.classes.security.authorization.PkpContextAccessPolicy');
+			$this->addPolicy(new PkpContextAccessPolicy($request, $roleAssignments));
 		} else {
 			// Authorize editing of incomplete submissions.
 			import('classes.security.authorization.OmpSubmissionAccessPolicy');
