@@ -165,11 +165,6 @@ You may optionally provide the user with a reason for disabling their account.</
 	<!-- Press settings -->
 	<message key="manager.affiliationAndSupport">Sponsor</message>
 
-	<!-- Website settings -->
-	<message key="manager.website.information">Information</message>
-	<message key="manager.website.appearance">Appearance</message>
-	<message key="manager.website.imageFileRequired">An image file is required. Please ensure that you have chosen and uploaded a file.</message>
-
 	<!-- Publication Process settings -->
 	<message key="manager.publication.submissionStage">Submission</message>
 	<message key="manager.publication.reviewStage">Review</message>
