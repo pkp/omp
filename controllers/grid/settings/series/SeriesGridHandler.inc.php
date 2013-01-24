@@ -41,10 +41,10 @@ class SeriesGridHandler extends SetupGridHandler {
 
 		// FIXME are these all required?
 		AppLocale::requireComponents(
-			LOCALE_COMPONENT_OMP_MANAGER,
+			LOCALE_COMPONENT_APP_MANAGER,
 			LOCALE_COMPONENT_PKP_COMMON,
 			LOCALE_COMPONENT_PKP_USER,
-			LOCALE_COMPONENT_APPLICATION_COMMON
+			LOCALE_COMPONENT_APP_COMMON
 		);
 
 		// Set the grid title.

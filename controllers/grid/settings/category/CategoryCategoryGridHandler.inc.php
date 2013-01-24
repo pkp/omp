@@ -73,7 +73,7 @@ class CategoryCategoryGridHandler extends CategoryGridHandler {
 		$press =& $request->getPress();
 		$this->_pressId =& $press->getId();
 
-		AppLocale::requireComponents(LOCALE_COMPONENT_OMP_MANAGER);
+		AppLocale::requireComponents(LOCALE_COMPONENT_APP_MANAGER);
 
 		// Set the grid title.
 		$this->setTitle('grid.category.categories');

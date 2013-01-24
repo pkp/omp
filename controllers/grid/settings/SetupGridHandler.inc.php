@@ -32,7 +32,7 @@ class SetupGridHandler extends GridHandler {
 	function initialize(&$request) {
 		parent::initialize($request);
 
-		AppLocale::requireComponents(LOCALE_COMPONENT_OMP_MANAGER);
+		AppLocale::requireComponents(LOCALE_COMPONENT_APP_MANAGER);
 	}
 
 	/**

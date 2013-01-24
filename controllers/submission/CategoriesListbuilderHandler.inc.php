@@ -160,7 +160,7 @@ class CategoriesListbuilderHandler extends ListbuilderHandler {
 		parent::initialize($request);
 		AppLocale::requireComponents(
 			LOCALE_COMPONENT_PKP_MANAGER, 
-			LOCALE_COMPONENT_OMP_SUBMISSION
+			LOCALE_COMPONENT_APP_SUBMISSION
 		);
 
 		// Basic configuration

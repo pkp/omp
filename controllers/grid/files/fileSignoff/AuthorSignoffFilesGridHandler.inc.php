@@ -55,9 +55,9 @@ class AuthorSignoffFilesGridHandler extends GridHandler {
 
 		AppLocale::requireComponents(
 			LOCALE_COMPONENT_PKP_COMMON,
-			LOCALE_COMPONENT_APPLICATION_COMMON,
+			LOCALE_COMPONENT_APP_COMMON,
 			LOCALE_COMPONENT_PKP_SUBMISSION,
-			LOCALE_COMPONENT_OMP_SUBMISSION
+			LOCALE_COMPONENT_APP_SUBMISSION
 		);
 
 		$user =& $request->getUser();

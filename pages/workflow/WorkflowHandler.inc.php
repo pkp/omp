@@ -93,7 +93,7 @@ class WorkflowHandler extends Handler {
 	 */
 	function setupTemplate($request) {
 		parent::setupTemplate($request);
-		AppLocale::requireComponents(LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_OMP_SUBMISSION, LOCALE_COMPONENT_OMP_EDITOR, LOCALE_COMPONENT_PKP_GRID);
+		AppLocale::requireComponents(LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_APP_SUBMISSION, LOCALE_COMPONENT_APP_EDITOR, LOCALE_COMPONENT_PKP_GRID);
 
 		$router =& $request->getRouter();
 
@@ -281,7 +281,7 @@ class WorkflowHandler extends Handler {
 	 * @param $request Request
 	 */
 	function editorDecisionActions($args, &$request) {
-		AppLocale::requireComponents(LOCALE_COMPONENT_OMP_EDITOR);
+		AppLocale::requireComponents(LOCALE_COMPONENT_APP_EDITOR);
 		$reviewRoundId = (int) $request->getUserVar('reviewRoundId');
 
 		// Prepare the action arguments.

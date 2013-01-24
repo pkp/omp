@@ -69,7 +69,7 @@ class PendingRevisionsNotificationManager extends RevisionsNotificationManager {
 		$lastReviewRound =& $reviewRoundDao->getLastReviewRoundByMonographId($monograph->getId(), $stageId);
 
 		import('controllers.api.file.linkAction.AddRevisionLinkAction');
-		AppLocale::requireComponents(LOCALE_COMPONENT_OMP_EDITOR); // editor.review.uploadRevision
+		AppLocale::requireComponents(LOCALE_COMPONENT_APP_EDITOR); // editor.review.uploadRevision
 
 		$uploadFileAction = new AddRevisionLinkAction(
 			$request, $lastReviewRound, array(ROLE_ID_AUTHOR)

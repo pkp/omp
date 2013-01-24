@@ -93,9 +93,9 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 
 		// Load submission-specific translations
 		AppLocale::requireComponents(
-			LOCALE_COMPONENT_OMP_EDITOR,
+			LOCALE_COMPONENT_APP_EDITOR,
 			LOCALE_COMPONENT_PKP_USER,
-			LOCALE_COMPONENT_OMP_DEFAULT_SETTINGS
+			LOCALE_COMPONENT_APP_DEFAULT_SETTINGS
 		);
 
 		// Columns

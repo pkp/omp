@@ -33,7 +33,7 @@ class SignoffNotificationManager extends NotificationManagerDelegate {
 	 * @see NotificationManagerDelegate::getNotificationMessage($notification)
 	 */
 	public function getNotificationMessage(&$request, &$notification) {
-		AppLocale::requireComponents(LOCALE_COMPONENT_OMP_SUBMISSION);
+		AppLocale::requireComponents(LOCALE_COMPONENT_APP_SUBMISSION);
 		return __('submission.upload.signoff');
 	}
 

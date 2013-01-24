@@ -43,7 +43,7 @@ class UnassignedSubmissionsListGridHandler extends SubmissionsListGridHandler {
 		$this->setTitle('common.queue.long.submissionsUnassigned');
 
 		// Add editor specific locale component.
-		AppLocale::requireComponents(LOCALE_COMPONENT_OMP_EDITOR);
+		AppLocale::requireComponents(LOCALE_COMPONENT_APP_EDITOR);
 	}
 
 

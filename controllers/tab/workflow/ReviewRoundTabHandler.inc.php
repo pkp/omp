@@ -72,7 +72,7 @@ class ReviewRoundTabHandler extends Handler {
 	 * @see PKPHandler::setupTemplate
 	 */
 	function setupTemplate($request) {
-		AppLocale::requireComponents(LOCALE_COMPONENT_OMP_EDITOR);
+		AppLocale::requireComponents(LOCALE_COMPONENT_APP_EDITOR);
 		parent::setupTemplate($request);
 	}
 

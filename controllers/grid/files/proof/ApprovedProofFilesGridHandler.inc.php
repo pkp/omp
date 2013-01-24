@@ -55,7 +55,7 @@ class ApprovedProofFilesGridHandler extends GridHandler {
 	function initialize(&$request) {
 		// Basic grid configuration
 		$this->setId('proofFiles-' . $this->publicationFormat->getId());
-		AppLocale::requireComponents(LOCALE_COMPONENT_OMP_EDITOR);
+		AppLocale::requireComponents(LOCALE_COMPONENT_APP_EDITOR);
 		$this->setTitle('payment.directSales');
 
 		parent::initialize($request);

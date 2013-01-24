@@ -82,7 +82,7 @@ class ChapterForm extends Form {
 	 * @param $chapter Chapter
 	 */
 	function initData() {
-		AppLocale::requireComponents(LOCALE_COMPONENT_OMP_DEFAULT_SETTINGS, LOCALE_COMPONENT_PKP_SUBMISSION);
+		AppLocale::requireComponents(LOCALE_COMPONENT_APP_DEFAULT_SETTINGS, LOCALE_COMPONENT_PKP_SUBMISSION);
 
 		$monograph =& $this->getMonograph();
 		$this->setData('monographId', $monograph->getId());

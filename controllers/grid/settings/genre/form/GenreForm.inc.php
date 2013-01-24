@@ -91,7 +91,7 @@ class GenreForm extends Form {
 		$templateMgr->assign('monographFileCategories', array(GENRE_CATEGORY_DOCUMENT => __('submission.document'),
 					GENRE_CATEGORY_ARTWORK => __('submission.art')));
 
-		AppLocale::requireComponents(LOCALE_COMPONENT_OMP_MANAGER);
+		AppLocale::requireComponents(LOCALE_COMPONENT_APP_MANAGER);
 		return parent::fetch($request);
 	}
 

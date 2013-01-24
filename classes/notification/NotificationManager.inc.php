@@ -156,7 +156,7 @@ class NotificationManager extends PKPNotificationManager {
 				$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
 				$reviewRound =& $reviewRoundDao->getReviewRoundById($notification->getAssocId());
 
-				AppLocale::requireComponents(LOCALE_COMPONENT_OMP_EDITOR); // load review round status keys.
+				AppLocale::requireComponents(LOCALE_COMPONENT_APP_EDITOR); // load review round status keys.
 				return __($reviewRound->getStatusKey());
 			case NOTIFICATION_TYPE_ALL_REVIEWS_IN:
 			case NOTIFICATION_TYPE_ALL_REVISIONS_IN:

@@ -112,9 +112,9 @@ class CatalogEntryCatalogMetadataForm extends Form {
 
 	function initData() {
 		AppLocale::requireComponents(
-			LOCALE_COMPONENT_APPLICATION_COMMON,
+			LOCALE_COMPONENT_APP_COMMON,
 			LOCALE_COMPONENT_PKP_SUBMISSION,
-			LOCALE_COMPONENT_OMP_SUBMISSION
+			LOCALE_COMPONENT_APP_SUBMISSION
 		);
 
 		$monograph =& $this->getMonograph();

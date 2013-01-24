@@ -40,7 +40,7 @@ class SubmissionFilesUploadForm extends SubmissionFilesUploadBaseForm {
 		assert(is_null($uploaderRoles) || (is_array($uploaderRoles) && count($uploaderRoles) >= 1));
 		$this->_uploaderRoles = $uploaderRoles;
 
-		AppLocale::requireComponents(LOCALE_COMPONENT_OMP_MANAGER);
+		AppLocale::requireComponents(LOCALE_COMPONENT_APP_MANAGER);
 
 		parent::SubmissionFilesUploadBaseForm(
 			$request, 'controllers/wizard/fileUpload/form/fileUploadForm.tpl',

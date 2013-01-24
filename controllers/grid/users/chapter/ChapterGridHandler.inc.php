@@ -97,7 +97,7 @@ class ChapterGridHandler extends CategoryGridHandler {
 		$this->setTitle('submission.chapters');
 		$this->setInstructions('submission.chaptersDescription');
 
-		AppLocale::requireComponents(LOCALE_COMPONENT_OMP_DEFAULT_SETTINGS, LOCALE_COMPONENT_OMP_SUBMISSION);
+		AppLocale::requireComponents(LOCALE_COMPONENT_APP_DEFAULT_SETTINGS, LOCALE_COMPONENT_APP_SUBMISSION);
 
 		if (!$this->getReadOnly()) {
 			// Grid actions

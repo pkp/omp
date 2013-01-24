@@ -41,7 +41,7 @@ class ManagerHandler extends Handler {
 	 * @param $request PKPRequest
 	 */
 	function setupTemplate($request = null) {
-		AppLocale::requireComponents(LOCALE_COMPONENT_PKP_MANAGER, LOCALE_COMPONENT_OMP_MANAGER);
+		AppLocale::requireComponents(LOCALE_COMPONENT_PKP_MANAGER, LOCALE_COMPONENT_APP_MANAGER);
 		parent::setupTemplate($request);
 	}
 

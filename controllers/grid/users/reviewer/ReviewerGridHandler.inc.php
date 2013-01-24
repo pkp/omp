@@ -139,7 +139,7 @@ class ReviewerGridHandler extends GridHandler {
 			LOCALE_COMPONENT_PKP_SUBMISSION,
 			LOCALE_COMPONENT_PKP_MANAGER,
 			LOCALE_COMPONENT_PKP_USER,
-			LOCALE_COMPONENT_OMP_EDITOR
+			LOCALE_COMPONENT_APP_EDITOR
 		);
 
 		$this->setTitle('user.role.reviewers');

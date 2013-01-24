@@ -58,7 +58,7 @@ class PressSettingsWizardHandler extends Handler {
 	function startWizard($args, &$request) {
 		$templateMgr =& TemplateManager::getManager($request);
 		AppLocale::requireComponents(
-			LOCALE_COMPONENT_OMP_MANAGER,
+			LOCALE_COMPONENT_APP_MANAGER,
 			LOCALE_COMPONENT_PKP_MANAGER
 		);
 

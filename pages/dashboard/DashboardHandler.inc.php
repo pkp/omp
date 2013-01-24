@@ -110,7 +110,7 @@ class DashboardHandler extends Handler {
 	 * @param $request PKPRequest
 	 */
 	function setupTemplate($request = null) {
-		AppLocale::requireComponents(LOCALE_COMPONENT_OMP_MANAGER, LOCALE_COMPONENT_PKP_MANAGER, LOCALE_COMPONENT_OMP_SUBMISSION);
+		AppLocale::requireComponents(LOCALE_COMPONENT_APP_MANAGER, LOCALE_COMPONENT_PKP_MANAGER, LOCALE_COMPONENT_APP_SUBMISSION);
 		parent::setupTemplate($request);
 	}
 }

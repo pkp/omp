@@ -47,7 +47,7 @@ class LibraryFileForm extends Form {
 	 */
 	function fetch(&$request) {
 		$press =& $request->getPress();
-		AppLocale::requireComponents(LOCALE_COMPONENT_OMP_MANAGER);
+		AppLocale::requireComponents(LOCALE_COMPONENT_APP_MANAGER);
 
 		// load the file types for the selector on the form.
 		$templateMgr =& TemplateManager::getManager($request);

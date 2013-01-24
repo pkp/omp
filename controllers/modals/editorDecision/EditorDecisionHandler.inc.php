@@ -71,8 +71,8 @@ class EditorDecisionHandler extends Handler {
 	 */
 	function initialize(&$request, $args) {
 		AppLocale::requireComponents(
-			LOCALE_COMPONENT_APPLICATION_COMMON,
-			LOCALE_COMPONENT_OMP_EDITOR,
+			LOCALE_COMPONENT_APP_COMMON,
+			LOCALE_COMPONENT_APP_EDITOR,
 			LOCALE_COMPONENT_PKP_SUBMISSION
 		);
 	}

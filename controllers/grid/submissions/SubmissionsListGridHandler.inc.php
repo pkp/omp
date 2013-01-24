@@ -54,8 +54,8 @@ class SubmissionsListGridHandler extends GridHandler {
 
 		// Load submission-specific translations.
 		AppLocale::requireComponents(
-			LOCALE_COMPONENT_APPLICATION_COMMON,
-			LOCALE_COMPONENT_OMP_SUBMISSION,
+			LOCALE_COMPONENT_APP_COMMON,
+			LOCALE_COMPONENT_APP_SUBMISSION,
 			LOCALE_COMPONENT_PKP_SUBMISSION
 		);
 

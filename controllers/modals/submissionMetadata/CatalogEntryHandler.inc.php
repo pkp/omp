@@ -56,7 +56,7 @@ class CatalogEntryHandler extends Handler {
 		$this->_selectedFormatId = (int) $request->getUserVar('selectedFormatId');
 
 		// Load grid-specific translations
-		AppLocale::requireComponents(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_OMP_SUBMISSION);
+		AppLocale::requireComponents(LOCALE_COMPONENT_APP_COMMON, LOCALE_COMPONENT_APP_SUBMISSION);
 		$this->setupTemplate($request);
 	}
 

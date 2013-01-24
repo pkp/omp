@@ -100,7 +100,7 @@ class InformationHandler extends Handler {
 	 */
 	function setupTemplate($request, $press) {
 		parent::setupTemplate($request);
-		AppLocale::requireComponents(LOCALE_COMPONENT_OMP_MANAGER); // FIXME needed?
+		AppLocale::requireComponents(LOCALE_COMPONENT_APP_MANAGER); // FIXME needed?
 		if (!$press->getSetting('restrictSiteAccess')) {
 			$templateMgr =& TemplateManager::getManager($request);
 			$templateMgr->setCacheability(CACHEABILITY_PUBLIC);

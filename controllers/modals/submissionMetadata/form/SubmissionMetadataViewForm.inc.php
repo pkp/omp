@@ -104,9 +104,9 @@ class SubmissionMetadataViewForm extends Form {
 	 */
 	function initData($args, &$request) {
 		AppLocale::requireComponents(
-			LOCALE_COMPONENT_APPLICATION_COMMON,
+			LOCALE_COMPONENT_APP_COMMON,
 			LOCALE_COMPONENT_PKP_SUBMISSION,
-			LOCALE_COMPONENT_OMP_SUBMISSION
+			LOCALE_COMPONENT_APP_SUBMISSION
 		);
 
 		$this->_metadataFormImplem->initData($this->getMonograph());

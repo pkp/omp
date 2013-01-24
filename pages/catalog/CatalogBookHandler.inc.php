@@ -56,7 +56,7 @@ class CatalogBookHandler extends Handler {
 		$templateMgr =& TemplateManager::getManager($request);
 		$press =& $request->getPress();
 		$this->setupTemplate($request);
-		AppLocale::requireComponents(LOCALE_COMPONENT_OMP_SUBMISSION); // submission.synopsis
+		AppLocale::requireComponents(LOCALE_COMPONENT_APP_SUBMISSION); // submission.synopsis
 
 		$publishedMonograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_PUBLISHED_MONOGRAPH);
 		$templateMgr->assign('publishedMonograph', $publishedMonograph);

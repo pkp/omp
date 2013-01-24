@@ -52,7 +52,7 @@ class ReviewerHandler extends Handler {
 		$reviewerSubmission =& $reviewerSubmissionDao->getReviewerSubmission($reviewAssignment->getId());
 		assert(is_a($reviewerSubmission, 'ReviewerSubmission'));
 
-		AppLocale::requireComponents(LOCALE_COMPONENT_OMP_SUBMISSION);
+		AppLocale::requireComponents(LOCALE_COMPONENT_APP_SUBMISSION);
 		$this->setupTemplate($request);
 
 		$templateMgr =& TemplateManager::getManager($request);
@@ -75,7 +75,7 @@ class ReviewerHandler extends Handler {
 		$reviewerSubmission =& $reviewerSubmissionDao->getReviewerSubmission($reviewAssignment->getId());
 		assert(is_a($reviewerSubmission, 'ReviewerSubmission'));
 
-		AppLocale::requireComponents(LOCALE_COMPONENT_OMP_SUBMISSION);
+		AppLocale::requireComponents(LOCALE_COMPONENT_APP_SUBMISSION);
 		$this->setupTemplate($request);
 
 		$reviewStep = max($reviewerSubmission->getStep(), 1); // Get the current saved step from the DB
@@ -191,7 +191,7 @@ class ReviewerHandler extends Handler {
 	 */
 	function setupTemplate($request) {
 		parent::setupTemplate($request);
-		AppLocale::requireComponents(LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_PKP_GRID);
+		AppLocale::requireComponents(LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_APP_COMMON, LOCALE_COMPONENT_PKP_GRID);
 	}
 
 

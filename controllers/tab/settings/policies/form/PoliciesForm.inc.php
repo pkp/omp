@@ -30,7 +30,7 @@ class PoliciesForm extends ContextSettingsForm {
 			'privacyStatement' => 'string'
 		);
 
-		AppLocale::requireComponents(LOCALE_COMPONENT_APPLICATION_COMMON);
+		AppLocale::requireComponents(LOCALE_COMPONENT_APP_COMMON);
 
 		parent::ContextSettingsForm($settings, 'controllers/tab/settings/policies/form/policiesForm.tpl', $wizardMode);
 	}

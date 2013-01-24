@@ -30,7 +30,7 @@ class AboutHandler extends Handler {
 
 		$templateMgr =& TemplateManager::getManager($request);
 		$press =& $request->getPress();
-		AppLocale::requireComponents(LOCALE_COMPONENT_OMP_MANAGER, LOCALE_COMPONENT_PKP_MANAGER);
+		AppLocale::requireComponents(LOCALE_COMPONENT_APP_MANAGER, LOCALE_COMPONENT_PKP_MANAGER);
 
 		if (!$press || !$press->getSetting('restrictSiteAccess')) {
 			$templateMgr->setCacheability(CACHEABILITY_PUBLIC);

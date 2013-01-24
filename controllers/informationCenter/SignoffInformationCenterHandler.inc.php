@@ -88,7 +88,7 @@ class SignoffInformationCenterHandler extends Handler {
 	 * @see PKPHandler::setupTemplate()
 	 */
 	function setupTemplate($request) {
-		AppLocale::requireComponents(LOCALE_COMPONENT_OMP_SUBMISSION);
+		AppLocale::requireComponents(LOCALE_COMPONENT_APP_SUBMISSION);
 		parent::setupTemplate($request);
 	}
 

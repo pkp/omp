@@ -43,7 +43,7 @@ class AppearanceForm extends ContextSettingsForm {
 			'numPageLinks' => 'int'
 		);
 
-		AppLocale::requireComponents(LOCALE_COMPONENT_APPLICATION_COMMON);
+		AppLocale::requireComponents(LOCALE_COMPONENT_APP_COMMON);
 
 		parent::ContextSettingsForm($settings, 'controllers/tab/settings/appearance/form/appearanceForm.tpl', $wizardMode);
 	}

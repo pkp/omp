@@ -52,7 +52,7 @@ class SelectMonographHandler extends Handler {
 	 */
 	function fetch($args, &$request) {
 		$templateMgr =& TemplateManager::getManager($request);
-		AppLocale::requireComponents(LOCALE_COMPONENT_OMP_SUBMISSION); // submission.select
+		AppLocale::requireComponents(LOCALE_COMPONENT_APP_SUBMISSION); // submission.select
 		$json = new JSONMessage(true, $templateMgr->fetch('controllers/modals/submissionMetadata/selectMonograph.tpl'));
 		return $json->getString();
 	}

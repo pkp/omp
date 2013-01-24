@@ -62,7 +62,7 @@ class ManagerSettingsTabHandler extends SettingsTabHandler {
 		parent::initialize($request, $args);
 
 		// Load handler specific translations.
-		AppLocale::requireComponents(LOCALE_COMPONENT_PKP_MANAGER, LOCALE_COMPONENT_OMP_MANAGER, LOCALE_COMPONENT_PKP_GRID);
+		AppLocale::requireComponents(LOCALE_COMPONENT_PKP_MANAGER, LOCALE_COMPONENT_APP_MANAGER, LOCALE_COMPONENT_PKP_GRID);
 	}
 }
 
