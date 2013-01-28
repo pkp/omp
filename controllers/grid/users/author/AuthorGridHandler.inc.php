@@ -66,7 +66,8 @@ class AuthorGridHandler extends PKPAuthorGridHandler {
 		// Load submission-specific translations
 		AppLocale::requireComponents(
 			LOCALE_COMPONENT_APP_SUBMISSION,
-			LOCALE_COMPONENT_APP_DEFAULT
+			LOCALE_COMPONENT_APP_DEFAULT,
+			LOCALE_COMPONENT_PKP_DEFAULT
 		);
 
 		parent::initialize($request);

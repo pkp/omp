@@ -134,7 +134,7 @@ class PressSiteSettingsForm extends ContextSiteSettingsForm {
 			// Install default press settings
 			$pressSettingsDao =& DAORegistry::getDAO('PressSettingsDAO');
 			$titles = $this->getData('title');
-			AppLocale::requireComponents(LOCALE_COMPONENT_APP_DEFAULT);
+			AppLocale::requireComponents(LOCALE_COMPONENT_APP_DEFAULT, LOCALE_COMPONENT_PKP_DEFAULT);
 			$pressSettingsDao->installSettings($contextId, 'registry/pressSettings.xml', array(
 				'indexUrl' => $request->getIndexUrl(),
 				'pressPath' => $this->getData('path'),

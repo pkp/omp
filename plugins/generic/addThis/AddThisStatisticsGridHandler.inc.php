@@ -77,7 +77,8 @@ class AddThisStatisticsGridHandler extends GridHandler {
 		AppLocale::requireComponents(
 			LOCALE_COMPONENT_PKP_SUBMISSION,
 			LOCALE_COMPONENT_PKP_USER,
-			LOCALE_COMPONENT_APP_DEFAULT
+			LOCALE_COMPONENT_APP_DEFAULT,
+			LOCALE_COMPONENT_PKP_DEFAULT
 		);
 
 		$plugin =& $this->getPlugin();

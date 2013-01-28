@@ -56,6 +56,9 @@ class Install extends PKPInstall {
 	 * @return boolean
 	 */
 	function createData() {
+
+		$createData = parent::createData();
+
 		// Add initial site data
 		$locale = $this->getParam('locale');
 		$siteDao =& DAORegistry::getDAO('SiteDAO', $this->dbconn);
@@ -82,46 +85,7 @@ class Install extends PKPInstall {
 			'contactEmail' => $this->getParam('adminEmail')
 		));
 
-		// Add initial site administrator user
-		$userDao =& DAORegistry::getDAO('UserDAO', $this->dbconn);
-		$user = new User();
-		$user->setUsername($this->getParam('adminUsername'));
-		$user->setPassword(Validation::encryptCredentials($this->getParam('adminUsername'), $this->getParam('adminPassword'), $this->getParam('encryption')));
-		$user->setFirstName($user->getUsername());
-		$user->setLastName('');
-		$user->setEmail($this->getParam('adminEmail'));
-		$user->setInlineHelp(1);
-		if (!$userDao->insertUser($user)) {
-			$this->setError(INSTALLER_ERROR_DB, $this->dbconn->errorMsg());
-			return false;
-		}
-
-		// Create an admin user group
-		AppLocale::requireComponents(LOCALE_COMPONENT_APP_DEFAULT);
-		$userGroupDao =& DAORegistry::getDao('UserGroupDAO', $this->dbconn);
-		$adminUserGroup = new UserGroup();
-		$adminUserGroup->setRoleId(ROLE_ID_SITE_ADMIN);
-		$adminUserGroup->setContextId(CONTEXT_ID_NONE);
-		$adminUserGroup->setPath(ROLE_PATH_SITE_ADMIN);
-		$adminUserGroup->setDefault(true);
-		foreach ($this->installedLocales as $locale) {
-			$name = __('default.groups.name.siteAdmin', array(), $locale);
-			$namePlural = __('default.groups.plural.siteAdmin', array(), $locale);
-			$adminUserGroup->setData('name', $name, $locale);
-			$adminUserGroup->setData('namePlural', $namePlural, $locale);
-		}
-		if (!$userGroupDao->insertUserGroup($adminUserGroup)) {
-			$this->setError(INSTALLER_ERROR_DB, $this->dbconn->errorMsg());
-			return false;
-		}
-
-		// Put the installer into this user group
-		if (!$userGroupDao->assignUserToGroup($user->getId(), $adminUserGroup->getId())) {
-			$this->setError(INSTALLER_ERROR_DB, $this->dbconn->errorMsg());
-			return false;
-		}
-
-		return true;
+		return $createData;
 	}
 }
 
