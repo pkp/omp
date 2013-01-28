@@ -240,7 +240,7 @@
 	<message key="grid.action.editDate">Edit this Date</message>
 	<message key="grid.action.deleteDate">Delete this Date</message>
 	<message key="grid.action.toggleHelp">Toggle the display of inline help</message>
-	<message key="grid.action.createPress">Create a new Press</message>
+	<message key="grid.action.createContext">Create a new Press</message>
 	<message key="grid.action.addCode">Add Code</message>
 	<message key="grid.action.addSpotlight">Add Spotlight</message>
 	<message key="grid.action.addGenre">Add Genre</message>
