@@ -22,6 +22,29 @@ class PressGridRow extends ContextGridRow {
 		parent::ContextGridRow();
 	}
 
+	/**
+	 * Get the delete context row locale key.
+	 * @return string
+	 */
+	function initialize(&$request) {
+		parent::initialize($request);
+		$element = $this->getData();
+		if (Validation::isPressManager($element->getId())) {
+
+			import('lib.pkp.classes.linkAction.request.RedirectAction');
+			$dispatcher = $request->getRouter()->getDispatcher();
+			$this->addAction(
+				new LinkAction(
+					'wizard',
+					new RedirectAction(
+						$dispatcher->url($request, ROUTE_PAGE, $element->getPath(), 'admin', 'presses', null, array('openWizard' => 1))),
+					__('grid.action.wizard'),
+					'wrench'
+				)
+			);
+		}
+	}
+
 
 	//
 	// Overridden methods from ContextGridRow
