@@ -26,6 +26,13 @@
 	<schema file="lib/pkp/xml/schema/submissions.xml" />
 	<schema file="lib/pkp/xml/schema/mutex.xml" />
 	<schema file="lib/pkp/xml/schema/tombstone.xml" />
+
+	<!-- there is a column name change in user_group_stage that needs to occur first -->
+	<upgrade minversion="0.9.9.0" maxversion="1.0.0.0">
+		<!-- Upgrade prior versions to 1.1.0.0 -->
+		<data file="dbscripts/xml/upgrade/1.1.0.0_preupdate.xml" />
+	</upgrade>
+
 	<schema file="lib/pkp/xml/schema/rolesAndUserGroups.xml" />
 
 	<!-- OMP schema -->

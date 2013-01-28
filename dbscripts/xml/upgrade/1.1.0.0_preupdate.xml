@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE data SYSTEM "../../../lib/pkp/dtd/xmlData.dtd">
+
+<!--
+  * 2.2.1_preupdate.xml
+  *
+  * Copyright (c) 2003-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * 2.2.1 database updates XML file (run before schema is reconciled).
+  *
+  -->
+<data>
+	<sql>
+		<!-- Bug #8095:  Standardize user groups and roles -->
+		<query driver="mysql">ALTER TABLE user_group_stage CHANGE COLUMN press_id context_id BIGINT NOT NULL</query>
+		<query driver="postgres7">ALTER TABLE user_group_stage RENAME COLUMN press_id TO context_id</query>
+	</sql>
+</data>

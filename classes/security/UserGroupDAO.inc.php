@@ -29,20 +29,20 @@ class UserGroupDAO extends PKPUserGroupDAO {
 	/**
 	 * Get the user groups assigned to each stage. Provide the ability to omit authors and reviewers
 	 * Since these are typically stored differently and displayed in different circumstances
-	 * @param  $pressId
+	 * @param  $contextId
 	 * @param  $stageId
 	 * @return DAOResultFactory
 	 */
-	function &getUserGroupsByStage($pressId, $stageId, $omitAuthors = false, $omitReviewers = false, $roleId = null) {
-		$params = array((int) $pressId, (int) $stageId);
+	function &getUserGroupsByStage($contextId, $stageId, $omitAuthors = false, $omitReviewers = false, $roleId = null) {
+		$params = array((int) $contextId, (int) $stageId);
 		if ($omitAuthors) $params[] = ROLE_ID_AUTHOR;
 		if ($omitReviewers) $params[] = ROLE_ID_REVIEWER;
 		if ($roleId) $params[] = $roleId;
 		$result =& $this->retrieve(
 			'SELECT	ug.*
 			FROM	user_groups ug
-				JOIN user_group_stage ugs ON (ug.user_group_id = ugs.user_group_id AND ug.context_id = ugs.press_id)
-			WHERE	ugs.press_id = ? AND
+				JOIN user_group_stage ugs ON (ug.user_group_id = ugs.user_group_id AND ug.context_id = ugs.context_id)
+			WHERE	ugs.context_id = ? AND
 				ugs.stage_id = ?' .
 				($omitAuthors?' AND ug.role_id <> ?':'') .
 				($omitReviewers?' AND ug.role_id <> ?':'') .
@@ -57,16 +57,16 @@ class UserGroupDAO extends PKPUserGroupDAO {
 
 	/**
 	 * Get all stages assigned to one user group in one context.
-	 * @param Integer $pressId The user group context.
+	 * @param Integer $contextId The user group context.
 	 * @param Integer $userGroupId
 	 */
-	function getAssignedStagesByUserGroupId($pressId, $userGroupId) {
+	function getAssignedStagesByUserGroupId($contextId, $userGroupId) {
 		$result =& $this->retrieve(
 			'SELECT	stage_id
 			FROM	user_group_stage
-			WHERE	press_id = ? AND
+			WHERE	context_id = ? AND
 				user_group_id = ?',
-			array((int) $pressId, (int) $userGroupId)
+			array((int) $contextId, (int) $userGroupId)
 		);
 
 		$returner = array();
@@ -105,49 +105,49 @@ class UserGroupDAO extends PKPUserGroupDAO {
 
 	/**
 	 * Assign a user group to a stage
-	 * @param $pressId int
+	 * @param $contextId int
 	 * @param $userGroupId int
 	 * @param $stageId int
 	 * @return bool
 	 */
-	function assignGroupToStage($pressId, $userGroupId, $stageId) {
+	function assignGroupToStage($contextId, $userGroupId, $stageId) {
 		return $this->update(
-			'INSERT INTO user_group_stage (press_id, user_group_id, stage_id) VALUES (?, ?, ?)',
-			array((int) $pressId, (int) $userGroupId, (int) $stageId)
+			'INSERT INTO user_group_stage (context_id, user_group_id, stage_id) VALUES (?, ?, ?)',
+			array((int) $contextId, (int) $userGroupId, (int) $stageId)
 		);
 	}
 
 	/**
 	 * Remove a user group from a stage
-	 * @param $pressId int
+	 * @param $contextId int
 	 * @param $userGroupId int
 	 * @param $stageId int
 	 * @return bool
 	 */
-	function removeGroupFromStage($pressId, $userGroupId, $stageId) {
+	function removeGroupFromStage($contextId, $userGroupId, $stageId) {
 		return $this->update(
-			'DELETE FROM user_group_stage WHERE press_id = ? AND user_group_id = ? AND stage_id = ?',
-			array((int) $pressId, (int) $userGroupId, (int) $stageId)
+			'DELETE FROM user_group_stage WHERE context_id = ? AND user_group_id = ? AND stage_id = ?',
+			array((int) $contextId, (int) $userGroupId, (int) $stageId)
 		);
 	}
 
 	/**
 	 * Check to see whether a user is assigned to a stage ID via a user group.
-	 * @param $pressId int
+	 * @param $contextId int
 	 * @param $userId int
 	 * @param $staeId int
 	 * @return boolean
 	 */
-	function userAssignmentExists($pressId, $userId, $stageId) {
+	function userAssignmentExists($contextId, $userId, $stageId) {
 		$result =& $this->retrieve(
 			'SELECT	COUNT(*)
 			FROM	user_group_stage ugs,
 				user_user_groups uug
 			WHERE	ugs.user_group_id = uug.user_group_id AND
-				ugs.press_id = ? AND
+				ugs.context_id = ? AND
 				uug.user_id = ? AND
 				ugs.stage_id = ?',
-			array((int) $pressId, (int) $userId, (int) $stageId)
+			array((int) $contextId, (int) $userId, (int) $stageId)
 		);
 
 		$returner = isset($result->fields[0]) && $result->fields[0] > 0 ? true : false;
