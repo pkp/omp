@@ -25,22 +25,34 @@ class PublicFileManager extends PKPPublicFileManager {
 
 	/**
 	 * Get the path to a press' public files directory.
-	 * @param $pressId int
+	 * @param $pressId int Press ID
 	 * @return string
 	 */
 	function getPressFilesPath($pressId) {
-		return Config::getVar('files', 'public_files_dir') . '/presses/' . $pressId;
+		return $this->getContextFilesPath(ASSOC_TYPE_PRESS, $pressId);
+	}
+
+	/**
+	 * Get the path to a press' public files directory.
+	 * @param $assocType int Assoc type for context
+	 * @param $contextId int Press ID
+	 * @return string
+	 */
+	function getContextFilesPath($assocType, $contextId) {
+		assert($assocType == ASSOC_TYPE_PRESS);
+		return Config::getVar('files', 'public_files_dir') . '/presses/' . (int) $contextId;
 	}
 
 	/**
 	 * Upload a file to a press' public directory.
-	 * @param $pressId int
+	 * @param $assocType int The assoc type of the context
+	 * @param $contextId int The context ID
 	 * @param $fileName string the name of the file in the upload form
 	 * @param $destFileName string the destination file name
 	 * @return boolean
 	 */
 	function uploadPressFile($pressId, $fileName, $destFileName) {
-		return $this->uploadFile($fileName, $this->getPressFilesPath($pressId) . '/' . $destFileName);
+		return $this->uploadContextFile(ASSOC_TYPE_PRESS, $pressId, $fileName, $destFileName);
 	}
 
 	/**
@@ -50,8 +62,8 @@ class PublicFileManager extends PKPPublicFileManager {
 	 * @param $contents string the contents to write to the file
 	 * @return boolean
 	 */
-	function writePressFile($pressId, $destFileName, &$contents) {
-		return $this->writeFile($this->getPressFilesPath($pressId) . '/' . $destFileName, $contents);
+	function writePressFile($pressId, $destFileName, $contents) {
+		return $this->writeContextFile(ASSOC_TYPE_PRESS, $pressId, $destFileName, $contents);
 	}
 
 	/**
@@ -62,7 +74,7 @@ class PublicFileManager extends PKPPublicFileManager {
 	 * @return boolean
 	 */
 	function copyPressFile($pressId, $sourceFile, $destFileName) {
-		return $this->copyFile($sourceFile, $this->getPressFilesPath($pressId) . '/' . $destFileName);
+		return $this->copyContextFile(ASSOC_TYPE_PRESS, $pressId, $sourceFile, $destFileName);
 	}
 
 	/**
@@ -72,7 +84,7 @@ class PublicFileManager extends PKPPublicFileManager {
 	 * @return boolean
 	 */
 	function removePressFile($pressId, $fileName) {
-		return $this->deleteFile($this->getPressFilesPath($pressId) . '/' . $fileName);
+		return $this->removeContextFile(ASSOC_TYPE_PRESS, $pressId, $fileName);
 	}
 }
 
