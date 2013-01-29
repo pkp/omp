@@ -118,11 +118,11 @@ class PressSiteSettingsForm extends ContextSiteSettingsForm {
 			$genreDao =& DAORegistry::getDAO('GenreDAO');
 			$genreDao->installDefaults($contextId, $installedLocales); /* @var $genreDao GenreDAO */
 
-			// Install default user groups
-			$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
-			$userGroupDao->installSettings($contextId, 'registry/userGroups.xml');
+			// load the default user groups and stage assignments.
+			$this->_loadDefaultUserGroups($press->getId());
 
 			// Make the site administrator the press manager of newly created presses
+			$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 			$sessionManager =& SessionManager::getManager();
 			$userSession =& $sessionManager->getUserSession();
 			if ($userSession->getUserId() != null && $userSession->getUserId() != 0 && !empty($contextId)) {
