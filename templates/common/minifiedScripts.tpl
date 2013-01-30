@@ -87,6 +87,7 @@
 <script type="text/javascript" src="{$baseUrl}/lib/pkp/js/controllers/wizard/fileUpload/FileUploadWizardHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/lib/pkp/js/controllers/wizard/fileUpload/form/FileUploadFormHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/lib/pkp/js/controllers/wizard/fileUpload/form/RevisionConfirmationHandler.js"></script>
+<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/controllers/tab/settings/form/FileViewFormHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/js/controllers/grid/users/reviewer/AdvancedReviewerSearchHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/js/controllers/grid/users/stageParticipant/form/AddParticipantFormHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/js/controllers/grid/content/spotlights/form/SpotlightFormHandler.js"></script>
@@ -103,7 +104,6 @@
 <script type="text/javascript" src="{$baseUrl}/js/controllers/grid/settings/user/form/UserFormHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/js/controllers/grid/files/proof/form/ApprovedProofFormHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/js/controllers/grid/files/SelectableSubmissionFileListCategoryGridFilterHandler.js"></script>
-<script type="text/javascript" src="{$baseUrl}/js/controllers/tab/settings/form/FileViewFormHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/js/controllers/tab/settings/siteAccessOptions/form/SiteAccessOptionsFormHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/js/controllers/tab/settings/announcements/form/AnnouncementSettingsFormHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/js/controllers/tab/settings/paymentMethod/PaymentMethodHandler.js"></script>
