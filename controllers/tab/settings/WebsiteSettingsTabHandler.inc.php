@@ -200,12 +200,12 @@ class WebsiteSettingsTabHandler extends ManagerSettingsTabHandler {
 
 		switch ($fileType) {
 			case 'image':
-				import('controllers.tab.settings.appearance.form.NewPressImageFileForm');
-				$fileUploadForm = new NewPressImageFileForm($settingName);
+				import('lib.pkp.controllers.tab.settings.appearance.form.NewContextImageFileForm');
+				$fileUploadForm = new NewContextImageFileForm($settingName);
 				break;
 			case 'css':
-				import('controllers.tab.settings.appearance.form.NewPressCssFileForm');
-				$fileUploadForm = new NewPressCssFileForm($settingName);
+				import('lib.pkp.controllers.tab.settings.appearance.form.NewContextCssFileForm');
+				$fileUploadForm = new NewContextCssFileForm($settingName);
 				break;
 			default:
 				assert(false);
