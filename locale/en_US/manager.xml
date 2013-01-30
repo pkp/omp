@@ -447,7 +447,6 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.useImageLogoDescription">An optional press logo may be uploaded and used in conjunction with the image or text title configured above.</message>
 	<message key="manager.setup.useImageTitle">Title Image</message>
 	<message key="manager.setup.useStyleSheet">Press style sheet</message>
-	<message key="manager.setup.styleSheetDescription">You may upload an additional Cascading Style Sheet (CSS) file to change the appearance.</message>
 	<message key="manager.setup.useLayoutEditors">A Layout Editor will be assigned to prepare the HTML, PDF, etc., files for electronic publication.</message>
 	<message key="manager.setup.useProofreaders">A Proofreader will be assigned to check (along with the authors) the galleys prior to publication.</message>
 	<message key="manager.setup.userRegistration">User Registration</message>
