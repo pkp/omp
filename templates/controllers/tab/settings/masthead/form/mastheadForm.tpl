@@ -22,7 +22,7 @@
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="mastheadNotification"}
 
 	{fbvFormArea id="mastheadFormArea"}
-		{fbvFormSection title="manager.setup.pressName" for="name" required=true inline=true size=$fbvStyles.size.MEDIUM}
+		{fbvFormSection title="manager.setup.contextName" for="name" required=true inline=true size=$fbvStyles.size.MEDIUM}
 			{fbvElement type="text" multilingual=true name="name" id="name" value=$name}
 		{/fbvFormSection}
 

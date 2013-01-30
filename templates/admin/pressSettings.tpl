@@ -24,7 +24,7 @@
 	{/if}
 
 	{fbvFormArea id="pressSettings"}
-		{fbvFormSection title="manager.setup.pressName" required=true for="name"}
+		{fbvFormSection title="manager.setup.contextName" required=true for="name"}
 			{fbvElement type="text" id="name" value=$name multilingual=true}
 		{/fbvFormSection}
 		{fbvFormSection title="admin.presses.pressDescription" for="description"}

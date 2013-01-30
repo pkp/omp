@@ -239,7 +239,7 @@ class PressGridHandler extends ContextGridHandler {
 	 * @return string
 	 */
 	protected function _getContextNameKey() {
-		return 'manager.setup.pressName';
+		return 'manager.setup.contextName';
 	}
 }
 
