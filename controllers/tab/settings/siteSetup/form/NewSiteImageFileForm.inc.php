@@ -12,7 +12,7 @@
  * @brief Form for upload an image.
  */
 
-import('controllers.tab.settings.form.SettingsFileUploadForm');
+import('lib.pkp.controllers.tab.settings.form.SettingsFileUploadForm');
 
 class NewSiteImageFileForm extends SettingsFileUploadForm {
 

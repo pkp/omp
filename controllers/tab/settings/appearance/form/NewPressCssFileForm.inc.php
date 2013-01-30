@@ -12,7 +12,7 @@
  * @brief Form to upload an css file.
  */
 
-import('controllers.tab.settings.form.SettingsFileUploadForm');
+import('lib.pkp.controllers.tab.settings.form.SettingsFileUploadForm');
 
 class NewPressCssFileForm extends SettingsFileUploadForm {
 
