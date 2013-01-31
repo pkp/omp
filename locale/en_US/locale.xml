@@ -218,7 +218,6 @@
 	<message key="grid.action.pageProofApproved">Page proofs file is ready for publication</message>
 	<message key="grid.action.approveCopyedit">Approve this copyedit file for sending it to the next stage</message>
 	<message key="grid.action.addAnnouncement">Add an Announcement</message>
-	<message key="grid.action.showReviewPolicy">Read the current review policy</message>
 	<message key="grid.action.newCatalogEntry">New Catalog Entry</message>
 	<message key="grid.action.publicCatalog">View this item in the catalog</message>
 	<message key="grid.action.feature">Toggle the feature display</message>
@@ -301,7 +300,6 @@
 		<li>With PDFs, the authors' names should also be removed from Document Properties found under File on Adobe Acrobat's main menu.</li>
 		</ul>]]>
 	</message>
-	<message key="review.ensuringBlindReview">Ensuring a Blind Review</message>
 
 	<!-- Review Attachments -->
 	<message key="grid.reviewAttachments.title">Reviewer's Attachments</message>

@@ -162,11 +162,6 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="settings.roles.stageIdRequired">You need to define a stage to assign to.</message>
 	<message key="manager.siteAccessOptions.siteAccessOptions">Site Access Options</message>
 
-	<!-- Publication Process settings -->
-	<message key="manager.publication.reviewStage">Review</message>
-	<message key="manager.publication.editorialStage">Editorial</message>
-	<message key="manager.publication.productionStage">Production</message>
-
 	<!--  Genre grid settings -->
 	<message key="grid.action.addGenre">Add a Genre</message>
 	<message key="grid.action.editGenre">Edit this Genre</message>
@@ -377,8 +372,6 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.restrictSiteAccess">Users must be registered and log in to view the press site.</message>
 	<message key="manager.setup.reviewGuidelines">Review Guidelines</message>
 	<message key="manager.setup.reviewGuidelinesDescription"><![CDATA[The Review Guidelines will provide reviewers with criteria for judging a submission's suitability for publication in the press, and can include any special instructions for preparing an effective and helpful review. In conducting the review, reviewers are presented with with two open text boxes, the first "for author and editor," and the second "for editor." Alternatively, the Press Manager can create a peer review form under Review Forms. In all cases, editors will have the option of including the reviews in corresponding with the author.]]></message>
-	<message key="manager.setup.competingInterests">Competing Interests</message>
-	<message key="manager.setup.competingInterestsDescription">Reviewers will be asked to comply with the competing interests disclosure policy you specify below.</message> <!-- FIXME #6843 (JM): should this just reference reviewers? -->
 	<message key="manager.setup.reviewOptions">Review Options</message>
 	<message key="manager.setup.reviewOptions.automatedReminders">Automated email reminders (available in OMP's default Emails) can be sent to reviewers at two points (while the editor can always email the reviewer directly as well).</message>
 	<message key="manager.setup.reviewOptions.automatedRemindersDisabled"><![CDATA[<strong>Note:</strong> To activate these options, the site administrator must enable the <tt>scheduled_tasks</tt> option in the OMP configuration file. Additional server configuration may be required to support this functionality (which may not be possible on all servers), as indicated in the OMP documentation.]]></message>
@@ -387,15 +380,12 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.reviewOptions.numWeeksPerReview">Time allowed for review responses (weeks)</message>
 	<message key="manager.setup.reviewOptions.numWeeksPerResponse">Time allowed for review completion (weeks)</message>
 	<message key="manager.setup.reviewOptions.onQuality">Editors will rate reviewers on a five-point quality scale after each review.</message>
-	<message key="manager.setup.reviewOptions.remindForInvite">Send a reminder if a reviewer has not responded to a review request within the following time (days):</message>
-	<message key="manager.setup.reviewOptions.remindForSubmit">Send a reminder if a reviewer has not submitted a recommendation within the following time (days):</message>
 	<message key="manager.setup.reviewOptions.restrictReviewerFileAccess">Reviewers will have access to the submission file only after agreeing to review it.</message>
 	<message key="manager.setup.reviewOptions.reviewerAccess">Reviewer Access</message>
 	<message key="manager.setup.reviewOptions.reviewerAccessKeysEnabled">Enable one-click reviewer access.</message>
 	<message key="manager.setup.reviewOptions.reviewerAccessKeysEnabled.description"><![CDATA[<strong>Note:</strong> The email invitation to reviewers will contain a special URL that takes invited reviewers directly to the Review page for the submission (with access to any other pages requiring them to log in). For security reasons with this option, editors are not able to modify email addresses or add CCs or BCCs prior to sending invitations to reviewers.]]></message>
 	<message key="manager.setup.reviewOptions.reviewerRatings">Reviewer Ratings</message>
 	<message key="manager.setup.reviewOptions.reviewerReminders">Reviewer Reminders</message>
-	<message key="manager.setup.reviewOptions.neverSendReminder">Never Remind</message>
 	<message key="manager.setup.reviewOptions.reviewTime">Review Time</message>
 	<message key="manager.setup.reviewOptions.showEnsuringLink">Provide links about ensuring a blind review on pages where authors and reviewers upload files.</message>
 	<message key="manager.setup.reviewPolicy">Review Policy</message>
