@@ -12,7 +12,7 @@
  * @brief Handle submissionChecklist grid requests.
  */
 
-import('controllers.grid.settings.SetupGridHandler');
+import('lib.pkp.controllers.grid.settings.SetupGridHandler');
 import('controllers.grid.settings.submissionChecklist.SubmissionChecklistGridRow');
 
 class SubmissionChecklistGridHandler extends SetupGridHandler {

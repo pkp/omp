@@ -12,7 +12,7 @@
  * @brief Handle series grid requests.
  */
 
-import('controllers.grid.settings.SetupGridHandler');
+import('lib.pkp.controllers.grid.settings.SetupGridHandler');
 import('controllers.grid.settings.series.SeriesGridRow');
 
 class SeriesGridHandler extends SetupGridHandler {

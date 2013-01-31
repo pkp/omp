@@ -12,7 +12,7 @@
  * @brief Handle Genre grid requests.
  */
 
-import('controllers.grid.settings.SetupGridHandler');
+import('lib.pkp.controllers.grid.settings.SetupGridHandler');
 import('lib.pkp.classes.controllers.grid.DataObjectGridCellProvider');
 import('controllers.grid.settings.genre.GenreGridRow');
 
