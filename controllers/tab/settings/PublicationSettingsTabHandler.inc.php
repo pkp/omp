@@ -25,11 +25,11 @@ class PublicationSettingsTabHandler extends ManagerSettingsTabHandler {
 		parent::ManagerSettingsTabHandler();
 		$this->setPageTabs(array(
 			'genres' => 'controllers/tab/settings/genres.tpl',
-			'submissionStage' => 'controllers.tab.settings.submissionStage.form.SubmissionStageForm',
+			'submissionStage' => 'lib.pkp.controllers.tab.settings.submissionStage.form.SubmissionStageForm',
 			'reviewStage' => 'controllers.tab.settings.reviewStage.form.ReviewStageForm',
 			'library' => 'controllers/tab/settings/library.tpl',
 			'productionStage' => 'controllers.tab.settings.productionStage.form.ProductionStageForm',
-			'emailTemplates' => 'controllers.tab.settings.emailTemplates.form.EmailTemplatesForm'
+			'emailTemplates' => 'lib.pkp.controllers.tab.settings.emailTemplates.form.EmailTemplatesForm'
 		));
 
 		// import the file type constants
