@@ -27,7 +27,7 @@ class TemplateManager extends PKPTemplateManager {
 		parent::PKPTemplateManager($request);
 
 		// Retrieve the router
-		$router =& $this->request->getRouter();
+		$router = $this->request->getRouter();
 		assert(is_a($router, 'PKPRouter'));
 
 		// Are we using implicit authentication?
@@ -40,8 +40,8 @@ class TemplateManager extends PKPTemplateManager {
 			 * installer pages).
 			 */
 
-			$press =& $router->getContext($this->request);
-			$site =& $this->request->getSite();
+			$press = $router->getContext($this->request);
+			$site = $this->request->getSite();
 
 			$publicFileManager = new PublicFileManager();
 			$siteFilesDir = $this->request->getBaseUrl() . '/' . $publicFileManager->getSiteFilesPath();
@@ -53,11 +53,11 @@ class TemplateManager extends PKPTemplateManager {
 
 			$this->assign('homeContext', array());
 			if (isset($press)) {
-				$this->assign_by_ref('currentPress', $press);
+				$this->assign('currentPress', $press);
 
 				// Assign press settings.
-				$pressSettingsDao =& DAORegistry::getDAO('PressSettingsDAO');
-				$this->assign_by_ref('pressSettings', $pressSettingsDao->getSettings($press->getId()));
+				$pressSettingsDao = DAORegistry::getDAO('PressSettingsDAO');
+				$this->assign('pressSettings', $pressSettingsDao->getSettings($press->getId()));
 
 				$pressTitle = $press->getLocalizedName();
 				$this->assign('siteTitle', $pressTitle);
@@ -65,10 +65,6 @@ class TemplateManager extends PKPTemplateManager {
 
 				$this->assign('primaryLocale', $press->getPrimaryLocale());
 				$this->assign('alternateLocales', $press->getSetting('alternateLocales'));
-
-				// Assign additional navigation bar items
-				$navMenuItems =& $press->getLocalizedSetting('navItems');
-				$this->assign_by_ref('navMenuItems', $navMenuItems);
 
 				// Assign press page header
 				$this->assign('displayPageHeaderTitle', $press->getPageHeaderTitle());
@@ -88,11 +84,11 @@ class TemplateManager extends PKPTemplateManager {
 				}
 
 				// Include footer links if they have been defined.
-				$footerCategoryDao =& DAORegistry::getDAO('FooterCategoryDAO');
-				$footerCategories =& $footerCategoryDao->getNotEmptyByPressId($press->getId());
-				$this->assign_by_ref('footerCategories', $footerCategories->toArray());
+				$footerCategoryDao = DAORegistry::getDAO('FooterCategoryDAO');
+				$footerCategories = $footerCategoryDao->getNotEmptyByPressId($press->getId());
+				$this->assign('footerCategories', $footerCategories->toArray());
 
-				$footerLinkDao =& DAORegistry::getDAO('FooterLinkDAO');
+				$footerLinkDao = DAORegistry::getDAO('FooterLinkDAO');
 				$this->assign('maxLinks', $footerLinkDao->getLargestCategoryTotalByPressId($press->getId()));
 				$this->assign('pageFooter', $press->getLocalizedSetting('pageFooter'));
 			} else {
@@ -105,9 +101,9 @@ class TemplateManager extends PKPTemplateManager {
 			}
 
 			// Check for multiple presses.
-			$pressDao =& DAORegistry::getDAO('PressDAO');
+			$pressDao = DAORegistry::getDAO('PressDAO');
 
-			$user =& $this->request->getUser();
+			$user = $this->request->getUser();
 			if (is_a($user, 'User')) {
 				$presses = $pressDao->getAll();
 			} else {
@@ -120,7 +116,7 @@ class TemplateManager extends PKPTemplateManager {
 				$multiplePresses = true;
 			} else {
 				if ($presses->getCount() == 0) { // no presses configured
-					$this->assign('noPressesConfigured', true);
+					$this->assign('noContextsConfigured', true);
 				}
 			}
 
@@ -141,7 +137,7 @@ class TemplateManager extends PKPTemplateManager {
 	 * @param $currentPress Press
 	 */
 	function _assignPressSwitcherData(&$presses, $currentPress = null) {
-		$workingPresses =& $presses->toArray();
+		$workingPresses = $presses->toArray();
 
 		$dispatcher = $this->request->getDispatcher();
 		$pressesNameAndUrl = array();

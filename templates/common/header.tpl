@@ -44,7 +44,7 @@
 		<div class="pkp_structure_body">
 			<div class="pkp_structure_content">
 				<div class="line">
-					{if !$noPressesConfigured}
+					{if !$noContextsConfigured}
 						{include file="common/search.tpl"}
 					{/if}
 				</div>
