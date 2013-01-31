@@ -41,5 +41,6 @@
 		<query>UPDATE press_settings SET setting_name = 'pageHeader' WHERE setting_name = 'pressPageHeader'</query>
 		<query>UPDATE press_settings SET setting_name = 'pageFooter' WHERE setting_name = 'pressPageFooter'</query>
 		<query>UPDATE press_settings SET setting_name = 'styleSheet' WHERE setting_name = 'pressStyleSheet'</query>
+		<query>UPDATE press_settings SET setting_name = 'currency' WHERE setting_name = 'pressCurrency'</query>
 	</sql>
 </data>

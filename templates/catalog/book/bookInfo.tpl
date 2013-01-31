@@ -58,7 +58,7 @@
 		{if $availableFiles|@count != 0}
 		<div id="downloadTab">
 			{assign var=publicationFormats value=$publishedMonograph->getPublicationFormats()}
-			{assign var=currency value=$currentPress->getSetting('pressCurrency')}
+			{assign var=currency value=$currentPress->getSetting('currency')}
 			{if !$loggedInUsername}<p>{translate key="catalog.loginRequiredForPayment"}</p>{/if}
 			{if $useCollapsedView}
 				<ul>

@@ -179,7 +179,7 @@ class CatalogBookHandler extends Handler {
 			$user->getId(),
 			$fileIdAndRevision,
 			$submissionFile->getDirectSalesPrice(),
-			$press->getSetting('pressCurrency')
+			$press->getSetting('currency')
 		);
 
 		$queuedPaymentId = $ompPaymentManager->queuePayment($queuedPayment);

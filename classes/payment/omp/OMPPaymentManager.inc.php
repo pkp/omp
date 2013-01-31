@@ -37,7 +37,7 @@ class OMPPaymentManager extends PaymentManager {
 	 * @return boolean true iff configured
 	 */
 	function isConfigured() {
-		return parent::isConfigured() && $this->press && $this->press->getSetting('pressCurrency');
+		return parent::isConfigured() && $this->press && $this->press->getSetting('currency');
 	}
 
 	/**
@@ -54,7 +54,7 @@ class OMPPaymentManager extends PaymentManager {
 		$pressDao =& DAORegistry::getDAO('PressDAO');
 		$press =& $pressDao->getById($pressId);
 		assert($press);
-		$payment = new OMPQueuedPayment($amount, $press->getSetting('pressCurrency'), $userId, $assocId);
+		$payment = new OMPQueuedPayment($amount, $press->getSetting('currency'), $userId, $assocId);
 		$payment->setPressId($pressId);
 		$payment->setType($type);
 

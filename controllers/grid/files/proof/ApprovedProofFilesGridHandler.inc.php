@@ -63,7 +63,7 @@ class ApprovedProofFilesGridHandler extends GridHandler {
 		// Columns
 		$press =& $request->getPress();
 		import('controllers.grid.files.proof.ApprovedProofFilesGridCellProvider');
-		$cellProvider = new ApprovedProofFilesGridCellProvider($press->getSetting('pressCurrency'));
+		$cellProvider = new ApprovedProofFilesGridCellProvider($press->getSetting('currency'));
 		$this->addColumn(new GridColumn(
 			'name',
 			'common.name',

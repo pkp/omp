@@ -84,7 +84,7 @@ class CatalogEntryPublicationMetadataForm extends Form {
 		$ompPaymentManager = new OMPPaymentManager($request);
 		if ($ompPaymentManager->isConfigured()) {
 			$templateMgr->assign('paymentConfigured', true);
-			$templateMgr->assign('pressCurrency', $press->getSetting('pressCurrency'));
+			$templateMgr->assign('currency', $press->getSetting('currency'));
 		}
 
 		// get the lists associated with the select elements on these publication format forms.
