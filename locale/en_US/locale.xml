@@ -418,7 +418,6 @@
 	<message key="navigation.infoForLibrarians.long">Information For Librarians</message>
 	<message key="navigation.newReleases">New Releases</message>
 	<message key="navigation.published">Published</message>
-	<message key="navigation.publicationProcess">Publication</message>
 	<message key="navigation.tools">Tools</message>
 	<message key="navigation.tools.importExport">Import/Export</message>
 	<message key="navigation.wizard">Wizard</message>

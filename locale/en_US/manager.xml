@@ -163,11 +163,9 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.siteAccessOptions.siteAccessOptions">Site Access Options</message>
 
 	<!-- Publication Process settings -->
-	<message key="manager.publication.submissionStage">Submission</message>
 	<message key="manager.publication.reviewStage">Review</message>
 	<message key="manager.publication.editorialStage">Editorial</message>
 	<message key="manager.publication.productionStage">Production</message>
-	<message key="manager.publication.emails">Emails</message>
 
 	<!--  Genre grid settings -->
 	<message key="grid.action.addGenre">Add a Genre</message>
