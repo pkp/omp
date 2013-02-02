@@ -91,6 +91,7 @@
 <script src="{$baseUrl}/lib/pkp/js/controllers/tab/settings/announcements/form/AnnouncementSettingsFormHandler.js"></script>
 <script src="{$baseUrl}/lib/pkp/js/controllers/tab/settings/paymentMethod/PaymentMethodHandler.js"></script>
 <script src="{$baseUrl}/lib/pkp/js/site/form/ContextSwitcherFormHandler.js"></script>
+<script src="{$baseUrl}/lib/pkp/js/pages/index/HeaderHandler.js"></script>
 <script src="{$baseUrl}/js/controllers/grid/users/reviewer/AdvancedReviewerSearchHandler.js"></script>
 <script src="{$baseUrl}/js/controllers/grid/users/stageParticipant/form/AddParticipantFormHandler.js"></script>
 <script src="{$baseUrl}/js/controllers/grid/content/spotlights/form/SpotlightFormHandler.js"></script>
@@ -115,7 +116,6 @@
 <script src="{$baseUrl}/js/controllers/monographList/MonographListHandler.js"></script>
 <script src="{$baseUrl}/js/pages/authorDashboard/AuthorDashboardHandler.js"></script>
 <script src="{$baseUrl}/js/pages/authorDashboard/MonographEmailHandler.js"></script>
-<script src="{$baseUrl}/js/pages/index/HeaderHandler.js"></script>
 <script src="{$baseUrl}/js/pages/catalog/CarouselHandler.js"></script>
 <script src="{$baseUrl}/js/pages/catalog/MonographPublicListHandler.js"></script>
 <script src="{$baseUrl}/js/pages/manageCatalog/ManageCatalogHeaderHandler.js"></script>

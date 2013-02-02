@@ -17,7 +17,7 @@
 (function($) {
 
 	/** @type {Object} */
-	$.pkp.pages = $.pkp.pages || { authorDashboard: { } };
+	$.pkp.pages.authorDashboard = $.pkp.pages.authorDashboard || {};
 
 
 
