@@ -40,7 +40,7 @@ class TemplateManager extends PKPTemplateManager {
 			 * installer pages).
 			 */
 
-			$press = $router->getContext($this->request);
+			$context = $router->getContext($this->request);
 			$site = $this->request->getSite();
 
 			$publicFileManager = new PublicFileManager();
@@ -52,45 +52,44 @@ class TemplateManager extends PKPTemplateManager {
 			if (file_exists($siteStyleFilename)) $this->addStyleSheet($this->request->getBaseUrl() . '/' . $siteStyleFilename);
 
 			$this->assign('homeContext', array());
-			if (isset($press)) {
-				$this->assign('currentPress', $press);
+			if (isset($context)) {
+				$this->assign('currentPress', $context);
 
-				// Assign press settings.
-				$pressSettingsDao = DAORegistry::getDAO('PressSettingsDAO');
-				$this->assign('pressSettings', $pressSettingsDao->getSettings($press->getId()));
+				// Assign context settings.
+				$contextSettingsDao = $context->getSettingsDAO();
+				$this->assign('pressSettings', $contextSettingsDao->getSettings($context->getId()));
 
-				$pressTitle = $press->getLocalizedName();
-				$this->assign('siteTitle', $pressTitle);
-				$this->assign('publicFilesDir', $this->request->getBaseUrl() . '/' . $publicFileManager->getPressFilesPath($press->getId()));
+				$this->assign('siteTitle', $context->getLocalizedName());
+				$this->assign('publicFilesDir', $this->request->getBaseUrl() . '/' . $publicFileManager->getContextFilesPath($context->getAssocType(), $context->getId()));
 
-				$this->assign('primaryLocale', $press->getPrimaryLocale());
-				$this->assign('alternateLocales', $press->getSetting('alternateLocales'));
+				$this->assign('primaryLocale', $context->getPrimaryLocale());
+				$this->assign('alternateLocales', $context->getSetting('alternateLocales'));
 
-				// Assign press page header
-				$this->assign('displayPageHeaderTitle', $press->getPageHeaderTitle());
-				$this->assign('displayPageHeaderLogo', $press->getPageHeaderLogo());
-				$this->assign('alternatePageHeader', $press->getLocalizedSetting('pageHeader'));
-				$this->assign('metaSearchDescription', $press->getLocalizedSetting('searchDescription'));
-				$this->assign('metaSearchKeywords', $press->getLocalizedSetting('searchKeywords'));
-				$this->assign('metaCustomHeaders', $press->getLocalizedSetting('customHeaders'));
-				$this->assign('numPageLinks', $press->getSetting('numPageLinks'));
-				$this->assign('itemsPerPage', $press->getSetting('itemsPerPage'));
-				$this->assign('enableAnnouncements', $press->getSetting('enableAnnouncements'));
+				// Assign page header
+				$this->assign('displayPageHeaderTitle', $context->getPageHeaderTitle());
+				$this->assign('displayPageHeaderLogo', $context->getPageHeaderLogo());
+				$this->assign('alternatePageHeader', $context->getLocalizedSetting('pageHeader'));
+				$this->assign('metaSearchDescription', $context->getLocalizedSetting('searchDescription'));
+				$this->assign('metaSearchKeywords', $context->getLocalizedSetting('searchKeywords'));
+				$this->assign('metaCustomHeaders', $context->getLocalizedSetting('customHeaders'));
+				$this->assign('numPageLinks', $context->getSetting('numPageLinks'));
+				$this->assign('itemsPerPage', $context->getSetting('itemsPerPage'));
+				$this->assign('enableAnnouncements', $context->getSetting('enableAnnouncements'));
 
 				// Assign stylesheets and footer
-				$styleSheet = $press->getSetting('styleSheet');
+				$styleSheet = $context->getSetting('styleSheet');
 				if ($styleSheet) {
-					$this->addStyleSheet($this->request->getBaseUrl() . '/' . $publicFileManager->getPressFilesPath($press->getId()) . '/' . $styleSheet['uploadName']);
+					$this->addStyleSheet($this->request->getBaseUrl() . '/' . $publicFileManager->getContextFilesPath($context->getId(), $context->getId()) . '/' . $styleSheet['uploadName']);
 				}
 
 				// Include footer links if they have been defined.
 				$footerCategoryDao = DAORegistry::getDAO('FooterCategoryDAO');
-				$footerCategories = $footerCategoryDao->getNotEmptyByPressId($press->getId());
+				$footerCategories = $footerCategoryDao->getNotEmptyByPressId($context->getId());
 				$this->assign('footerCategories', $footerCategories->toArray());
 
 				$footerLinkDao = DAORegistry::getDAO('FooterLinkDAO');
-				$this->assign('maxLinks', $footerLinkDao->getLargestCategoryTotalByPressId($press->getId()));
-				$this->assign('pageFooter', $press->getLocalizedSetting('pageFooter'));
+				$this->assign('maxLinks', $footerLinkDao->getLargestCategoryTotalByPressId($context->getId()));
+				$this->assign('pageFooter', $context->getLocalizedSetting('pageFooter'));
 			} else {
 				// Add the site-wide logo, if set for this locale or the primary locale
 				$displayPageHeaderTitle = $site->getLocalizedPageHeaderTitle();
@@ -110,18 +109,18 @@ class TemplateManager extends PKPTemplateManager {
 				$presses = $pressDao->getEnabledPresses();
 			}
 
-			$multiplePresses = false;
+			$multipleContexts = false;
 			if ($presses->getCount() > 1) {
-				$this->assign('multiplePresses', true);
-				$multiplePresses = true;
+				$this->assign('multipleContexts', true);
+				$multipleContexts = true;
 			} else {
 				if ($presses->getCount() == 0) { // no presses configured
 					$this->assign('noContextsConfigured', true);
 				}
 			}
 
-			if ($multiplePresses) {
-				$this->_assignPressSwitcherData($presses, $press);
+			if ($multipleContexts) {
+				$this->_assignContextSwitcherData($presses, $context);
 			}
 		}
 	}
@@ -133,31 +132,31 @@ class TemplateManager extends PKPTemplateManager {
 	/**
 	 * Get the press switcher data and assign it to
 	 * the template manager.
-	 * @param $presses Array
-	 * @param $currentPress Press
+	 * @param $contexts ItemIterator
+	 * @param $currentContext Context
 	 */
-	function _assignPressSwitcherData(&$presses, $currentPress = null) {
-		$workingPresses = $presses->toArray();
+	function _assignContextSwitcherData(&$contexts, $currentContext = null) {
+		$workingContexts = $contexts->toArray();
 
 		$dispatcher = $this->request->getDispatcher();
-		$pressesNameAndUrl = array();
-		foreach ($workingPresses as $workingPress) {
-			$pressUrl = $dispatcher->url($this->request, ROUTE_PAGE, $workingPress->getPath());
-			$pressesNameAndUrl[$pressUrl] = $workingPress->getLocalizedName();
+		$contextsNameAndUrl = array();
+		foreach ($workingContexts as $workingContext) {
+			$contextUrl = $dispatcher->url($this->request, ROUTE_PAGE, $workingContext->getPath());
+			$contextsNameAndUrl[$contextUrl] = $workingContext->getLocalizedName();
 		};
 
-		// Get the current press switcher value. We don´t need to worry about the
-		// value when there is no current press, because then the switcher will not
+		// Get the current context switcher value. We don´t need to worry about the
+		// value when there is no current context, because then the switcher will not
 		// be visible.
-		$currentPressUrl = null;
-		if ($currentPress) {
-			$currentPressUrl = $dispatcher->url($this->request, ROUTE_PAGE, $currentPress->getPath());
+		$currentContextUrl = null;
+		if ($currentContext) {
+			$currentContextUrl = $dispatcher->url($this->request, ROUTE_PAGE, $currentContext->getPath());
 		} else {
-			$pressesNameAndUrl = array(__('press.select')) + $pressesNameAndUrl;
+			$contextsNameAndUrl = array(__('press.select')) + $contextsNameAndUrl;
 		}
 
-		$this->assign('currentPressUrl', $currentPressUrl);
-		$this->assign('pressesNameAndUrl', $pressesNameAndUrl);
+		$this->assign('currentContextUrl', $currentContextUrl);
+		$this->assign('contextsNameAndUrl', $contextsNameAndUrl);
 	}
 }
 

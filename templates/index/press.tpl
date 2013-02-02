@@ -15,7 +15,7 @@
 {if $homepageImage}
 	<br />
 	<div id="homepageImage">
-		<img src="{$publicFilesDir}/{$homepageImage.uploadName|escape:"url"}" width="{$homepageImage.width|escape}" height="{$homepageImage.height|escape}" {if $homepageImage.altText != ''}alt="{$homepageImage.altText|escape}"{else}alt="{translate key="common.pressHomepageImage.altText"}"{/if} />
+		<img src="{$publicFilesDir}/{$homepageImage.uploadName|escape:"url"}" width="{$homepageImage.width|escape}" height="{$homepageImage.height|escape}" {if $homepageImage.altText != ''}alt="{$homepageImage.altText|escape}"{else}alt="{translate key="common.homepageImage.altText"}"{/if} />
 	</div>
 {/if}
 

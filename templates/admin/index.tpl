@@ -17,7 +17,7 @@
 <ul class="plain">
 	<li><a href="{url op="presses"}">{translate key="admin.hostedPresses"}</a></li>
 	{call_hook name="Templates::Admin::Index::SiteManagement"}
-	{if $multiplePresses}
+	{if $multipleContexts}
 		<li><a href="{url op="settings"}">{translate key="admin.settings"}</a></li>
 	{/if}
 </ul>

@@ -90,6 +90,7 @@
 <script src="{$baseUrl}/lib/pkp/js/controllers/tab/settings/form/FileViewFormHandler.js"></script>
 <script src="{$baseUrl}/lib/pkp/js/controllers/tab/settings/announcements/form/AnnouncementSettingsFormHandler.js"></script>
 <script src="{$baseUrl}/lib/pkp/js/controllers/tab/settings/paymentMethod/PaymentMethodHandler.js"></script>
+<script src="{$baseUrl}/lib/pkp/js/site/form/ContextSwitcherFormHandler.js"></script>
 <script src="{$baseUrl}/js/controllers/grid/users/reviewer/AdvancedReviewerSearchHandler.js"></script>
 <script src="{$baseUrl}/js/controllers/grid/users/stageParticipant/form/AddParticipantFormHandler.js"></script>
 <script src="{$baseUrl}/js/controllers/grid/content/spotlights/form/SpotlightFormHandler.js"></script>
@@ -129,7 +130,6 @@
 <script src="{$baseUrl}/js/pages/admin/PressesHandler.js"></script>
 <script src="{$baseUrl}/js/pages/reviewer/ReviewerTabHandler.js"></script>
 <script src="{$baseUrl}/js/pages/submission/SubmissionStep3FormHandler.js"></script>
-<script src="{$baseUrl}/js/site/form/PressSwitcherFormHandler.js"></script>
 
 {* Our own plug-in (depends on classes) *}
 <script src="{$baseUrl}/lib/pkp/js/lib/jquery/plugins/jquery.pkp.js"></script>
