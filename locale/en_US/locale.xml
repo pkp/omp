@@ -400,7 +400,6 @@
 	<message key="common.dimensionsPixels">{$width} x {$height} pixels</message>
 
 	<!-- Navigation -->
-	<message key="navigation.management">Management</message>
 	<message key="navigation.catalog">Catalog</message>
 	<message key="navigation.competingInterestPolicy">Competing Interest Policy</message>
 	<message key="navigation.catalog.manage">Manage</message>
@@ -415,8 +414,6 @@
 	<message key="navigation.infoForLibrarians.long">Information For Librarians</message>
 	<message key="navigation.newReleases">New Releases</message>
 	<message key="navigation.published">Published</message>
-	<message key="navigation.tools">Tools</message>
-	<message key="navigation.tools.importExport">Import/Export</message>
 	<message key="navigation.wizard">Wizard</message>
 	<message key="navigation.linksAndMedia">Links and Social Media</message>
 
