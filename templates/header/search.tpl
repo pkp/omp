@@ -1,5 +1,5 @@
 {**
- * templates/common/search.tpl
+ * templates/header/search.tpl
  *
  * Copyright (c) 2003-2012 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
