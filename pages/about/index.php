@@ -22,9 +22,12 @@ switch ($op) {
 	case 'editorialTeam':
 	case 'editorialPolicies':
 	case 'submissions':
+		define('HANDLER_CLASS', 'AboutContextHandler');
+		import('pages.about.AboutContextHandler');
+		break;
 	case 'aboutThisPublishingSystem':
-		define('HANDLER_CLASS', 'AboutHandler');
-		import('pages.about.AboutHandler');
+		define('HANDLER_CLASS', 'AboutSiteHandler');
+		import('pages.about.AboutSiteHandler');
 		break;
 }
 
