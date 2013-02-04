@@ -156,7 +156,6 @@ class Application extends PKPApplication {
 			'StageAssignmentDAO' => 'classes.stageAssignment.StageAssignmentDAO',
 			'SubmissionFileDAO' => 'classes.monograph.SubmissionFileDAO',
 			'UserGroupAssignmentDAO' => 'lib.pkp.classes.security.UserGroupAssignmentDAO',
-			'UserGroupDAO' => 'classes.security.UserGroupDAO',
 			'UserDAO' => 'classes.user.UserDAO',
 			'UserSettingsDAO' => 'classes.user.UserSettingsDAO',
 			'UserStageAssignmentDAO' => 'classes.user.UserStageAssignmentDAO',
