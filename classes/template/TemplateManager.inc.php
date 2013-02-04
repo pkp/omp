@@ -55,10 +55,6 @@ class TemplateManager extends PKPTemplateManager {
 			if (isset($context)) {
 				$this->assign('currentPress', $context);
 
-				// Assign context settings.
-				$contextSettingsDao = $context->getSettingsDAO();
-				$this->assign('pressSettings', $contextSettingsDao->getSettings($context->getId()));
-
 				$this->assign('siteTitle', $context->getLocalizedName());
 				$this->assign('publicFilesDir', $this->request->getBaseUrl() . '/' . $publicFileManager->getContextFilesPath($context->getAssocType(), $context->getId()));
 
