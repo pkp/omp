@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file pages/index/HeaderHandler.inc.php
+ * @file pages/header/HeaderHandler.inc.php
  *
  * Copyright (c) 2003-2012 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -12,30 +12,35 @@
  * @brief Handle site header requests.
  */
 
+import('lib.pkp.pages.header.PKPHeaderHandler');
 
-import('classes.handler.Handler');
-
-class HeaderHandler extends Handler {
+class HeaderHandler extends PKPHeaderHandler {
 	/**
 	 * Constructor
 	 */
 	function HeaderHandler() {
-		parent::Handler();
+		parent::PKPHeaderHandler();
 	}
 
 
 	//
-	// Public handler operations
+	// Private methods
 	//
 	/**
-	 * Display the header.
-	 * @param $args array
+	 * Get the iterator of working contexts.
 	 * @param $request PKPRequest
+	 * @return ItemIterator
 	 */
-	function index($args, &$request) {
-		$this->setupTemplate($request);
-		$templateMgr =& TemplateManager::getManager($request);
-		return $templateMgr->fetchJson('header/index.tpl');
+	function _getWorkingContexts($request) {
+		// Check for multiple presses.
+		$pressDao = DAORegistry::getDAO('PressDAO');
+
+		$user = $request->getUser();
+		if (is_a($user, 'User')) {
+			return $pressDao->getAll();
+		} else {
+			return $pressDao->getEnabledPresses();
+		}
 	}
 }
 

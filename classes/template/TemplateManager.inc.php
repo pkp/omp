@@ -98,65 +98,7 @@ class TemplateManager extends PKPTemplateManager {
 
 				$this->assign('siteTitle', $site->getLocalizedTitle());
 			}
-
-			// Check for multiple presses.
-			$pressDao = DAORegistry::getDAO('PressDAO');
-
-			$user = $this->request->getUser();
-			if (is_a($user, 'User')) {
-				$presses = $pressDao->getAll();
-			} else {
-				$presses = $pressDao->getEnabledPresses();
-			}
-
-			$multipleContexts = false;
-			if ($presses->getCount() > 1) {
-				$this->assign('multipleContexts', true);
-				$multipleContexts = true;
-			} else {
-				if ($presses->getCount() == 0) { // no presses configured
-					$this->assign('noContextsConfigured', true);
-				}
-			}
-
-			if ($multipleContexts) {
-				$this->_assignContextSwitcherData($presses, $context);
-			}
 		}
-	}
-
-
-	//
-	// Private helper methods.
-	//
-	/**
-	 * Get the press switcher data and assign it to
-	 * the template manager.
-	 * @param $contexts ItemIterator
-	 * @param $currentContext Context
-	 */
-	function _assignContextSwitcherData(&$contexts, $currentContext = null) {
-		$workingContexts = $contexts->toArray();
-
-		$dispatcher = $this->request->getDispatcher();
-		$contextsNameAndUrl = array();
-		foreach ($workingContexts as $workingContext) {
-			$contextUrl = $dispatcher->url($this->request, ROUTE_PAGE, $workingContext->getPath());
-			$contextsNameAndUrl[$contextUrl] = $workingContext->getLocalizedName();
-		};
-
-		// Get the current context switcher value. We don´t need to worry about the
-		// value when there is no current context, because then the switcher will not
-		// be visible.
-		$currentContextUrl = null;
-		if ($currentContext) {
-			$currentContextUrl = $dispatcher->url($this->request, ROUTE_PAGE, $currentContext->getPath());
-		} else {
-			$contextsNameAndUrl = array(__('press.select')) + $contextsNameAndUrl;
-		}
-
-		$this->assign('currentContextUrl', $currentContextUrl);
-		$this->assign('contextsNameAndUrl', $contextsNameAndUrl);
 	}
 }
 

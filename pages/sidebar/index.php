@@ -19,7 +19,7 @@
 switch ($op) {
 	case 'index':
 		define('HANDLER_CLASS', 'SidebarHandler');
-		import('pages.sidebar.SidebarHandler');
+		import('lib.pkp.pages.sidebar.SidebarHandler');
 		break;
 }
 
