@@ -15,9 +15,9 @@
 
 <p>
 {if $currentPress}
-	{translate key="about.aboutOMPPress" ompVersion=$ompVersion}
+	{translate key="about.aboutOMPPress" ompVersion=$appVersion}
 {else}
-	{translate key="about.aboutOMPSite" ompVersion=$ompVersion}
+	{translate key="about.aboutOMPSite" ompVersion=$appVersion}
 {/if}
 </p>
 

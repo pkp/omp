@@ -44,11 +44,11 @@ class AboutContextHandler extends Handler {
 	 * @param $request PKPRequest
 	 */
 	function contact($args, $request) {
-		$pressSettingsDao = DAORegistry::getDAO('PressSettingsDAO');
-		$press = $request->getPress();
+		$settingsDao = DAORegistry::getDAO('PressSettingsDAO');
+		$context = $request->getContext();
 		$templateMgr = TemplateManager::getManager($request);
-		$pressSettings = $pressSettingsDao->getSettings($press->getId());
-		$templateMgr->assign('pressSettings', $pressSettings);
+		$templateMgr->assign('pressSettings', $settingsDao->getSettings($context->getId()));
+		$contextSettings = $settingsDao->getSettings($context->getId());
 		$templateMgr->display('about/contact.tpl');
 	}
 
@@ -63,18 +63,18 @@ class AboutContextHandler extends Handler {
 	}
 
 	/**
-	 * Display Press Sponsorship page.
+	 * Display sponsorship page.
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function pressSponsorship($args, $request) {
-		$press = $request->getPress();
+	function sponsorship($args, $request) {
+		$context = $request->getContext();
 		$templateMgr = TemplateManager::getManager($request);
-		$templateMgr->assign('contributorNote', $press->getLocalizedSetting('contributorNote'));
-		$templateMgr->assign('contributors', $press->getSetting('contributors'));
-		$templateMgr->assign('sponsorNote', $press->getLocalizedSetting('sponsorNote'));
-		$templateMgr->assign('sponsors', $press->getSetting('sponsors'));
-		$templateMgr->display('about/pressSponsorship.tpl');
+		$templateMgr->assign('contributorNote', $context->getLocalizedSetting('contributorNote'));
+		$templateMgr->assign('contributors', $context->getSetting('contributors'));
+		$templateMgr->assign('sponsorNote', $context->getLocalizedSetting('sponsorNote'));
+		$templateMgr->assign('sponsors', $context->getSetting('sponsors'));
+		$templateMgr->display('about/sponsorship.tpl');
 	}
 
 	/**
@@ -104,9 +104,9 @@ class AboutContextHandler extends Handler {
 	 */
 	function submissions($args, $request) {
 		$settingsDao = DAORegistry::getDAO('PressSettingsDAO');
-		$press = $request->getPress();
+		$context = $request->getContext();
 		$templateMgr = TemplateManager::getManager($request);
-		$submissionChecklist = $press->getLocalizedSetting('submissionChecklist');
+		$submissionChecklist = $context->getLocalizedSetting('submissionChecklist');
 		if (!empty($submissionChecklist)) {
 			ksort($submissionChecklist);
 			reset($submissionChecklist);

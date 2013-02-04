@@ -21,7 +21,7 @@
 				<li><a href="{url page="about" op="editorialTeam"}">{translate key="about.editorialTeam"}</a></li>
 				<li><a href="{url page="about" op="editorialPolicies"}">{translate key="about.policies"}</a></li>
 				<li><a href="{url page="about" op="submissions"}">{translate key="about.submissions"}</a></li>
-				{if not ($currentPress->getLocalizedSetting('contributorNote') == '' && empty($pressSettings.contributors) && $currentPress->getLocalizedSetting('sponsorNote') == '' && empty($pressSettings.sponsors))}<li><a href="{url page="about" op="pressSponsorship"}">{translate key="about.pressSponsorship"}</a></li>{/if}
+				{if not ($currentPress->getLocalizedSetting('contributorNote') == '' && empty($pressSettings.contributors) && $currentPress->getLocalizedSetting('sponsorNote') == '' && empty($pressSettings.sponsors))}<li><a href="{url page="about" op="sponsorship"}">{translate key="about.pressSponsorship"}</a></li>{/if}
 			</ul>
 		</li>
 	{/if}

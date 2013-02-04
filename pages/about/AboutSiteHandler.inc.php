@@ -33,7 +33,7 @@ class AboutSiteHandler extends Handler {
 		$version = $versionDao->getCurrentVersion();
 
 		$templateMgr = TemplateManager::getManager($request);
-		$templateMgr->assign('ompVersion', $version->getVersionString(false));
+		$templateMgr->assign('appVersion', $version->getVersionString(false));
 
 		foreach (array(AppLocale::getLocale(), $primaryLocale = AppLocale::getPrimaryLocale(), 'en_US') as $locale) {
 			$pubProcessFile = 'locale/'.$locale.'/pubprocesslarge.png';
