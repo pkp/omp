@@ -22,26 +22,6 @@ class HeaderHandler extends PKPHeaderHandler {
 		parent::PKPHeaderHandler();
 	}
 
-
-	//
-	// Private methods
-	//
-	/**
-	 * Get the iterator of working contexts.
-	 * @param $request PKPRequest
-	 * @return ItemIterator
-	 */
-	function _getWorkingContexts($request) {
-		// Check for multiple presses.
-		$pressDao = DAORegistry::getDAO('PressDAO');
-
-		$user = $request->getUser();
-		if (is_a($user, 'User')) {
-			return $pressDao->getAll();
-		} else {
-			return $pressDao->getEnabledPresses();
-		}
-	}
 }
 
 ?>

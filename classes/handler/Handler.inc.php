@@ -25,6 +25,23 @@ class Handler extends PKPHandler {
 	}
 
 	/**
+	 * Get the iterator of working contexts.
+	 * @param $request PKPRequest
+	 * @return ItemIterator
+	 */
+	function getWorkingContexts($request) {
+		// Check for multiple presses.
+		$pressDao = DAORegistry::getDAO('PressDAO');
+
+		$user = $request->getUser();
+		if (is_a($user, 'User')) {
+			return $pressDao->getAll();
+		} else {
+			return $pressDao->getEnabledPresses();
+		}
+	}
+
+	/**
 	 * Returns a "best-guess" press, based in the request data, if
 	 * a request needs to have one in its context but may be in a site-level
 	 * context as specified in the URL.

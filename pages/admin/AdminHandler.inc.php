@@ -77,9 +77,9 @@ class AdminHandler extends Handler {
 	function index($args, &$request) {
 		$this->setupTemplate($request);
 
-		$templateMgr =& TemplateManager::getManager($request);
-		$templateMgr->assign('helpTopicId', 'site.index');
-
+		$templateMgr = TemplateManager::getManager($request);
+		$workingContexts = $this->getWorkingContexts($request);
+		$templateMgr->assign('multipleContexts', $workingContexts->getCount() > 0);
 		$templateMgr->display('admin/index.tpl');
 	}
 
