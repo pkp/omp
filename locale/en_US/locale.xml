@@ -419,7 +419,7 @@
 	<message key="press.presses">Presses</message>
 	<message key="press.path">Path</message>
 	<message key="press.press">Press</message>
-	<message key="press.select">Select a Press...</message>
+	<message key="context.select">Select a Press...</message>
 
 	<!-- User -->
 	<message key="user.noRoles.submitMonograph">Submit a Proposal</message>
