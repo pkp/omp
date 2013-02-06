@@ -92,6 +92,7 @@
 <script src="{$baseUrl}/lib/pkp/js/controllers/tab/settings/paymentMethod/PaymentMethodHandler.js"></script>
 <script src="{$baseUrl}/lib/pkp/js/pages/header/ContextSwitcherFormHandler.js"></script>
 <script src="{$baseUrl}/lib/pkp/js/pages/header/HeaderHandler.js"></script>
+<script src="{$baseUrl}/lib/pkp/js/pages/admin/ContextsHandler.js"></script>
 <script src="{$baseUrl}/js/controllers/grid/users/reviewer/AdvancedReviewerSearchHandler.js"></script>
 <script src="{$baseUrl}/js/controllers/grid/users/stageParticipant/form/AddParticipantFormHandler.js"></script>
 <script src="{$baseUrl}/js/controllers/grid/content/spotlights/form/SpotlightFormHandler.js"></script>
@@ -127,7 +128,6 @@
 <script src="{$baseUrl}/js/pages/workflow/SubmissionHeaderHandler.js"></script>
 <script src="{$baseUrl}/js/pages/workflow/ProductionHandler.js"></script>
 <script src="{$baseUrl}/js/pages/workflow/EditorDecisionsHandler.js"></script>
-<script src="{$baseUrl}/js/pages/admin/PressesHandler.js"></script>
 <script src="{$baseUrl}/js/pages/reviewer/ReviewerTabHandler.js"></script>
 <script src="{$baseUrl}/js/pages/submission/SubmissionStep3FormHandler.js"></script>
 

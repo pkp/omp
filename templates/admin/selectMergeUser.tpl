@@ -1,5 +1,5 @@
 {**
- * selectMergeUser.tpl
+ * templates/admin/selectMergeUser.tpl
  *
  * Copyright (c) 2003-2012 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -17,4 +17,3 @@
 {load_url_in_div id="mergeUsersGridContainer" url=$mergeUsersGridUrl}
 
 {include file="common/footer.tpl"}
-

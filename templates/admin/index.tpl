@@ -1,5 +1,5 @@
 {**
- * index.tpl
+ * templates/admin/index.tpl
  *
  * Copyright (c) 2003-2012 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -15,7 +15,7 @@
 <h3>{translate key="admin.siteManagement"}</h3>
 
 <ul class="plain">
-	<li><a href="{url op="presses"}">{translate key="admin.hostedPresses"}</a></li>
+	<li><a href="{url op="contexts"}">{translate key="admin.hostedPresses"}</a></li>
 	{call_hook name="Templates::Admin::Index::SiteManagement"}
 	{if $multipleContexts}
 		<li><a href="{url op="settings"}">{translate key="admin.settings"}</a></li>

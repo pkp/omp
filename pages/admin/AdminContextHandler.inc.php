@@ -1,36 +1,31 @@
 <?php
 
 /**
- * @file pages/admin/AdminPressHandler.inc.php
+ * @file pages/admin/AdminContextHandler.inc.php
  *
  * Copyright (c) 2003-2012 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class AdminPressHandler
+ * @class AdminContextHandler
  * @ingroup pages_admin
  *
- * @brief Handle requests for press management in site administration.
+ * @brief Handle requests for context management in site administration.
  */
 
-import('pages.admin.AdminHandler');
+import('lib.pkp.pages.admin.PKPAdminContextHandler');
 
-class AdminPressHandler extends AdminHandler {
-	function AdminPressHandler() {
-
-		parent::AdminHandler();
-
-		$this->addRoleAssignment(
-			array(ROLE_ID_SITE_ADMIN),
-			array('presses')
-		);
+class AdminContextHandler extends PKPAdminContextHandler {
+	/**
+	 * Constructor
+	 */
+	function AdminContextHandler() {
+		parent::PKPAdminContextHandler();
 	}
 
 	/**
-	 * Display a list of the presses hosted on the site.
+	 * Display a list of the contexts hosted on the site.
 	 */
-	function presses($args, &$request) {
-		$this->setupTemplate($request, true);
-
+	function contexts($args, $request) {
 		$openWizard = $request->getUserVar('openWizard');
 
 		// Get the open wizard link action.
@@ -38,7 +33,7 @@ class AdminPressHandler extends AdminHandler {
 
 		$openWizardLinkAction = null;
 		if ($openWizard) {
-			$dispatcher =& $request->getDispatcher();
+			$dispatcher = $request->getDispatcher();
 			$ajaxModal = new WizardModal(
 				$dispatcher->url($request, ROUTE_COMPONENT, null,
 						'wizard.settings.PressSettingsWizardHandler', 'startWizard', null),
@@ -53,10 +48,10 @@ class AdminPressHandler extends AdminHandler {
 			);
 		}
 
-		$templateMgr =& TemplateManager::getManager($request);
+		$templateMgr = TemplateManager::getManager($request);
 		$templateMgr->assign('openWizardLinkAction', $openWizardLinkAction);
-		$templateMgr->assign('helpTopicId', 'site.siteManagement');
-		$templateMgr->display('admin/presses.tpl');
+
+		return parent::contexts($args, $request);
 	}
 }
 

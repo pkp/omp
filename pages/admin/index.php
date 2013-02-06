@@ -27,15 +27,15 @@ switch ($op) {
 	//
 	// Press Management
 	//
-	case 'presses':
-		import('pages.admin.AdminPressHandler');
-		define('HANDLER_CLASS', 'AdminPressHandler');
+	case 'contexts':
+		import('pages.admin.AdminContextHandler');
+		define('HANDLER_CLASS', 'AdminContextHandler');
 		break;
 	//
 	// Merge users
 	//
 	case 'mergeUsers':
-		import('pages.admin.AdminPeopleHandler');
+		import('lib.pkp.pages.admin.AdminPeopleHandler');
 		define('HANDLER_CLASS', 'AdminPeopleHandler');
 		break;
 	//
@@ -46,7 +46,7 @@ switch ($op) {
 	case 'expireSessions':
 	case 'clearTemplateCache':
 	case 'clearDataCache':
-		import('pages.admin.AdminFunctionsHandler');
+		import('lib.pkp.pages.admin.AdminFunctionsHandler');
 		define('HANDLER_CLASS', 'AdminFunctionsHandler');
 		break;
 	//
@@ -55,7 +55,7 @@ switch ($op) {
 	case 'index':
 	case 'settings':
 		define('HANDLER_CLASS', 'AdminHandler');
-		import('pages.admin.AdminHandler');
+		import('lib.pkp.pages.admin.AdminHandler');
 		break;
 }
 

@@ -48,7 +48,7 @@ class Handler extends PKPHandler {
 	 * @param $request Request
 	 * @return mixed Either a Press or null if none could be determined.
 	 */
-	function getTargetPress($request) {
+	function getTargetContext($request) {
 
 		// Get the requested path.
 		$router =& $request->getRouter();
