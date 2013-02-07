@@ -182,6 +182,13 @@ class Application extends PKPApplication {
 			'oaiMetadataFormats',
 		);
 	}
+
+	/**
+	 * Get the top-level context DAO.
+	 */
+	static function getContextDAO() {
+		return DAORegistry::getDAO('PressDAO');
+	}
 }
 
 ?>
