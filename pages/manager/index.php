@@ -44,7 +44,7 @@ switch ($op) {
 	//
 	case 'plugin':
 		define('HANDLER_CLASS', 'PluginHandler');
-		import('pages.manager.PluginHandler');
+		import('lib.pkp.pages.manager.PluginHandler');
 		break;
 }
 
