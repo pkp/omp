@@ -42,7 +42,6 @@ switch ($op) {
 	//
 	// Plugin Management
 	//
-	case 'plugins':
 	case 'plugin':
 		define('HANDLER_CLASS', 'PluginHandler');
 		import('pages.manager.PluginHandler');
