@@ -49,37 +49,36 @@ class Handler extends PKPHandler {
 	 * @return mixed Either a Press or null if none could be determined.
 	 */
 	function getTargetContext($request) {
-
 		// Get the requested path.
-		$router =& $request->getRouter();
+		$router = $request->getRouter();
 		$requestedPath = $router->getRequestedContextPath($request);
 		$press = null;
 
 		if ($requestedPath === 'index' || $requestedPath === '') {
 			// No press requested. Check how many presses has the site.
-			$pressDao =& DAORegistry::getDAO('PressDAO'); /* @var $pressDao PressDAO */
+			$pressDao = DAORegistry::getDAO('PressDAO'); /* @var $pressDao PressDAO */
 			$presses = $pressDao->getAll();
 			$pressesCount = $presses->getCount();
 			$press = null;
 			if ($pressesCount === 1) {
 				// Return the unique press.
-				$press =& $presses->next();
+				$press = $presses->next();
 			}
 			if (!$press && $pressesCount > 1) {
 				// Decide wich press to return.
-				$user =& $request->getUser();
+				$user = $request->getUser();
 				if ($user) {
 					// We have a user (private access).
-					$press =& $this->_getFirstUserPress($user, $presses->toArray());
+					$press = $this->getFirstUserPress($user, $presses->toArray());
 				}
 				if (!$press) {
 					// Get the site redirect.
-					$press =& $this->_getSiteRedirectPress($request);
+					$press = $this->getSiteRedirectPress($request);
 				}
 			}
 		} else {
 			// Return the requested press.
-			$press =& $router->getContext($request);
+			$press = $router->getContext($request);
 		}
 		if (is_a($press, 'Press')) {
 			return $press;
@@ -88,32 +87,13 @@ class Handler extends PKPHandler {
 	}
 
 	/**
-	 * Return the first press that user is enrolled with.
-	 * @param $user User
-	 * @param $presses Array
-	 * @return mixed Either Press or null
-	 */
-	function _getFirstUserPress($user, $presses) {
-		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
-		$press = null;
-		foreach($presses as $workingPress) {
-			$userIsEnrolled = $userGroupDao->userInAnyGroup($user->getId(), $workingPress->getId());
-			if ($userIsEnrolled) {
-				$press = $workingPress;
-				break;
-			}
-		}
-		return $press;
-	}
-
-	/**
 	 * Return the press that is configured in site redirect setting.
 	 * @param $request Request
 	 * @return mixed Either Press or null
 	 */
-	function _getSiteRedirectPress($request) {
-		$pressDao =& DAORegistry::getDAO('PressDAO'); /* @var $pressDao PressDAO */
-		$site =& $request->getSite();
+	function getSiteRedirectContext($request) {
+		$pressDao = DAORegistry::getDAO('PressDAO'); /* @var $pressDao PressDAO */
+		$site = $request->getSite();
 		$press = null;
 		if ($site) {
 			if($site->getRedirect()) {
