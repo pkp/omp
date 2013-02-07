@@ -116,7 +116,7 @@ class LoginHandler extends PKPLoginHandler {
 	 * @param $request PKPRequest
 	 */
 	function _redirectAfterLogin($request) {
-		$press = $this->getTargetPress($request);
+		$press = $this->getTargetContext($request);
 		// If there's a press, send them to the dashboard after login.
 		if ($press && $request->getUserVar('source') == '' && array_intersect(
 			array(ROLE_ID_SITE_ADMIN, ROLE_ID_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_AUTHOR, ROLE_ID_REVIEWER, ROLE_ID_ASSISTANT),

@@ -36,9 +36,9 @@ class IndexHandler extends Handler {
 	 * @param $request Request
 	 */
 	function index($args, &$request) {
-		$targetPress = $this->getTargetPress($request);
-		$press =& $request->getPress();
-		$user =& $request->getUser();
+		$targetPress = $this->getTargetContext($request);
+		$press = $request->getPress();
+		$user = $request->getUser();
 
 		if ($user && !$targetPress && Validation::isSiteAdmin()) {
 			// If the user is a site admin and no press exists,

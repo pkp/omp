@@ -69,11 +69,11 @@ class Handler extends PKPHandler {
 				$user = $request->getUser();
 				if ($user) {
 					// We have a user (private access).
-					$press = $this->getFirstUserPress($user, $presses->toArray());
+					$press = $this->getFirstUserContext($user, $presses->toArray());
 				}
 				if (!$press) {
 					// Get the site redirect.
-					$press = $this->getSiteRedirectPress($request);
+					$press = $this->getSiteRedirectContext($request);
 				}
 			}
 		} else {
