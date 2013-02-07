@@ -115,7 +115,6 @@ class PubIdPlugin extends Plugin {
 					$messageParams = array('contents' => __('plugins.pubIds.doi.manager.settings.doiReassign.success'));
 					return false;
 				} else {
-					$this->_setBreadcrumbs();
 					$form->initData();
 					$pluginModalContent = $form->fetch($request);
 				}
@@ -413,29 +412,6 @@ class PubIdPlugin extends Plugin {
 	 */
 	function _getDAOs() {
 		return array('PublicationFormatDAO');
-	}
-
-	/**
-	 * Set the breadcrumbs, given the plugin's tree of items to append.
-	 */
-	function _setBreadcrumbs() {
-		$request =& $this->getRequest();
-		$templateMgr =& TemplateManager::getManager($request);
-		$pageCrumbs = array(
-			array(
-				$request->url(null, 'user'),
-				'navigation.user'
-			),
-			array(
-				$request->url(null, 'manager'),
-				'user.role.manager'
-			),
-			array(
-				$request->url(null, 'manager', 'plugins'),
-				'manager.plugins'
-			)
-		);
-		$templateMgr->assign('pageHierarchy', $pageCrumbs);
 	}
 }
 
