@@ -170,6 +170,15 @@ class SubmissionSubmitStep3Form extends SubmissionSubmitForm {
 			if ($user->getEmail() != $primaryAuthor->getEmail()) {
 				$authorMail->addRecipient($primaryAuthor->getEmail(), $primaryAuthor->getFullName());
 			}
+			if ($press->getSetting('copySubmissionAckPrimaryContact')) {
+				$authorMail->addBcc(
+					$press->getSetting('contactEmail'),
+					$press->getSetting('contactName')
+				);
+			}
+			if ($copyAddress = $press->getSetting('copySubmissionAckAddress')) {
+				$authorMail->addBcc($copyAddress);
+			}
 
 			$assignedAuthors = $monograph->getAuthors();
 
