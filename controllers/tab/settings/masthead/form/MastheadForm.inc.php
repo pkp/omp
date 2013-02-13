@@ -9,7 +9,7 @@
  * @class MastheadForm
  * @ingroup controllers_tab_settings_masthead_form
  *
- * @brief Form to edit press general information settings.
+ * @brief Form to edit masthead settings.
  */
 
 import('lib.pkp.classes.controllers.tab.settings.form.ContextSettingsForm');
@@ -56,7 +56,7 @@ class MastheadForm extends ContextSettingsForm {
 	function initData(&$request) {
 		parent::initData($request);
 
-		$press =& $request->getPress();
+		$press = $request->getPress();
 		$this->setData('enabled', (int)$press->getEnabled());
 		if ($this->getData('initials') == null) {
 			$initials = array();
@@ -72,10 +72,10 @@ class MastheadForm extends ContextSettingsForm {
 	 * @param $request Request
 	 */
 	function execute(&$request) {
-		$press =& $request->getPress();
+		$press = $request->getPress();
 
 		if ($press->getEnabled() !== $this->getData('pressEnabled')) {
-			$pressDao =& DAORegistry::getDAO('PressDAO');
+			$pressDao = DAORegistry::getDAO('PressDAO');
 			$press->setEnabled($this->getData('pressEnabled'));
 			$pressDao->updateObject($press);
 		}

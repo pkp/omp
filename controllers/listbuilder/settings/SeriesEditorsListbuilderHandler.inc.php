@@ -12,7 +12,7 @@
  * @brief Class for adding a series editor
  */
 
-import('controllers.listbuilder.settings.SetupListbuilderHandler');
+import('lib.pkp.controllers.listbuilder.settings.SetupListbuilderHandler');
 
 class SeriesEditorsListbuilderHandler extends SetupListbuilderHandler {
 	/** @var The group ID for this listbuilder */
@@ -50,11 +50,11 @@ class SeriesEditorsListbuilderHandler extends SetupListbuilderHandler {
 	 * @param $request PKPRequest
 	 */
 	function loadData(&$request) {
-		$press =& $this->getPress();
+		$press = $this->getContext();
 		$seriesId = $this->getSeriesId();
 
-		$seriesEditorsDao =& DAORegistry::getDAO('SeriesEditorsDAO');
-		$assignedSeriesEditors =& $seriesEditorsDao->getEditorsBySeriesId($seriesId, $press->getId());
+		$seriesEditorsDao = DAORegistry::getDAO('SeriesEditorsDAO');
+		$assignedSeriesEditors = $seriesEditorsDao->getEditorsBySeriesId($seriesId, $press->getId());
 		$returner = array();
 		foreach ($assignedSeriesEditors as $seriesEditorData) {
 			$seriesEditor = $seriesEditorData['user'];
@@ -67,15 +67,15 @@ class SeriesEditorsListbuilderHandler extends SetupListbuilderHandler {
 	 * Get possible items to populate autosuggest list with
 	 */
 	function getOptions() {
-		$press =& $this->getPress();
-		$seriesEditorsDao =& DAORegistry::getDAO('SeriesEditorsDAO');
+		$press = $this->getContext();
+		$seriesEditorsDao = DAORegistry::getDAO('SeriesEditorsDAO');
 
 		if ($this->getSeriesId()) {
-			$unassignedSeriesEditors =& $seriesEditorsDao->getEditorsNotInSeries($press->getId(), $this->getSeriesId());
+			$unassignedSeriesEditors = $seriesEditorsDao->getEditorsNotInSeries($press->getId(), $this->getSeriesId());
 		} else {
-			$roleDao =& DAORegistry::getDAO('RoleDAO');
-			$editors =& $roleDao->getUsersByRoleId(ROLE_ID_SERIES_EDITOR, $press->getId());
-			$unassignedSeriesEditors =& $editors->toArray();
+			$roleDao = DAORegistry::getDAO('RoleDAO');
+			$editors = $roleDao->getUsersByRoleId(ROLE_ID_SERIES_EDITOR, $press->getId());
+			$unassignedSeriesEditors = $editors->toArray();
 		}
 		$itemList = array(0 => array());
 		foreach ($unassignedSeriesEditors as $seriesEditor) {
@@ -99,9 +99,8 @@ class SeriesEditorsListbuilderHandler extends SetupListbuilderHandler {
 		// Otherwise return from the $newRowId
 		$newRowId = $this->getNewRowId($request);
 		$seriesEditorId = $newRowId['name'];
-		$userDao =& DAORegistry::getDAO('UserDAO');
-		$user =& $userDao->getById($seriesEditorId);
-		return $user;
+		$userDao = DAORegistry::getDAO('UserDAO');
+		return $userDao->getById($seriesEditorId);
 	}
 
 	/**

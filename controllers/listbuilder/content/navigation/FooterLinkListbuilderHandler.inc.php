@@ -12,7 +12,7 @@
  * @brief Class for managing footer links.
  */
 
-import('controllers.listbuilder.settings.SetupListbuilderHandler');
+import('lib.pkp.controllers.listbuilder.settings.SetupListbuilderHandler');
 
 class FooterLinkListbuilderHandler extends SetupListbuilderHandler {
 
@@ -41,10 +41,10 @@ class FooterLinkListbuilderHandler extends SetupListbuilderHandler {
 		parent::initialize($request);
 		AppLocale::requireComponents(LOCALE_COMPONENT_PKP_MANAGER);
 		$footerCategoryId = (int)$request->getUserVar('footerCategoryId');
-		$press =& $request->getPress();
+		$press = $request->getPress();
 
-		$footerCategoryDao =& DAORegistry::getDAO('FooterCategoryDAO');
-		$footerCategory =& $footerCategoryDao->getById($footerCategoryId, $press->getId());
+		$footerCategoryDao = DAORegistry::getDAO('FooterCategoryDAO');
+		$footerCategory = $footerCategoryDao->getById($footerCategoryId, $press->getId());
 		if ($footerCategoryId && !isset($footerCategory)) {
 			fatalError('Footer Category does not exist within this press context.');
 		} else {
@@ -72,11 +72,9 @@ class FooterLinkListbuilderHandler extends SetupListbuilderHandler {
 	 * @see GridHandler::loadData()
 	 */
 	function loadData(&$request) {
-		$press =& $this->getPress();
-		$footerLinkDao =& DAORegistry::getDAO('FooterLinkDAO');
-		$footerLinks =& $footerLinkDao->getByCategoryId($this->_getFooterCategoryId(), $press->getId());
-
-		return $footerLinks;
+		$press = $this->getContext();
+		$footerLinkDao = DAORegistry::getDAO('FooterLinkDAO');
+		return $footerLinkDao->getByCategoryId($this->_getFooterCategoryId(), $press->getId());
 	}
 
 	/**
@@ -93,11 +91,9 @@ class FooterLinkListbuilderHandler extends SetupListbuilderHandler {
 		// Otherwise return from the $newRowId
 		$rowData = $this->getNewRowId($request);
 		import('controllers.grid.content.navigation.form.FooterCategoryForm');
-		$press =& $request->getPress();
+		$press = $request->getPress();
 		$footerCategoryForm = new FooterCategoryForm($press->getId());
-		$footerLink =& $footerCategoryForm->getFooterLinkFromRowData($request, $rowData);
-
-		return $footerLink;
+		return $footerCategoryForm->getFooterLinkFromRowData($request, $rowData);
 	}
 
 	/**

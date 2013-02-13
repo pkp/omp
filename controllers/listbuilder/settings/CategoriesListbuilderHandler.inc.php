@@ -12,7 +12,7 @@
  * @brief Class for assigning categories to series.
  */
 
-import('controllers.listbuilder.settings.SetupListbuilderHandler');
+import('lib.pkp.controllers.listbuilder.settings.SetupListbuilderHandler');
 
 class CategoriesListbuilderHandler extends SetupListbuilderHandler {
 	/** @var The group ID for this listbuilder */
@@ -50,30 +50,29 @@ class CategoriesListbuilderHandler extends SetupListbuilderHandler {
 	 * @param $request PKPRequest
 	 */
 	function loadData(&$request) {
-		$press =& $this->getPress();
+		$press = $this->getContext();
 		$seriesId = $this->getSeriesId();
 
-		$seriesDao =& DAORegistry::getDAO('SeriesDAO');
-		$assignedCategories =& $seriesDao->getCategories($seriesId, $press->getId());
-		return $assignedCategories;
+		$seriesDao = DAORegistry::getDAO('SeriesDAO');
+		return $seriesDao->getCategories($seriesId, $press->getId());
 	}
 
 	/**
 	 * Get possible items to populate autosuggest list with
 	 */
 	function getOptions() {
-		$press =& $this->getPress();
-		$seriesDao =& DAORegistry::getDAO('SeriesDAO');
+		$press = $this->getContext();
+		$seriesDao = DAORegistry::getDAO('SeriesDAO');
 
 		if ($this->getSeriesId()) {
-			$unassignedCategories =& $seriesDao->getUnassignedCategories($this->getSeriesId(), $press->getId());
+			$unassignedCategories = $seriesDao->getUnassignedCategories($this->getSeriesId(), $press->getId());
 		} else {
-			$categoryDao =& DAORegistry::getDAO('CategoryDAO');
-			$unassignedCategories =& $categoryDao->getByPressId($press->getId());
+			$categoryDao = DAORegistry::getDAO('CategoryDAO');
+			$unassignedCategories = $categoryDao->getByPressId($press->getId());
 		}
 
 		$itemList = array(0 => array());
-		while ($category =& $unassignedCategories->next()) {
+		while ($category = $unassignedCategories->next()) {
 			$itemList[0][$category->getId()] = $category->getLocalizedTitle();
 			unset($category);
 		}
@@ -105,10 +104,9 @@ class CategoriesListbuilderHandler extends SetupListbuilderHandler {
 		// Otherwise return from the $newRowId
 		$newRowId = $this->getNewRowId($request);
 		$categoryId = $newRowId['name'];
-		$categoryDao =& DAORegistry::getDAO('CategoryDAO');
-		$press =& $request->getPress();
-		$category =& $categoryDao->getById($categoryId, $press->getId());
-		return $category;
+		$categoryDao = DAORegistry::getDAO('CategoryDAO');
+		$press = $request->getPress();
+		return $categoryDao->getById($categoryId, $press->getId());
 	}
 
 	//
