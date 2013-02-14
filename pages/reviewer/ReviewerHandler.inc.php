@@ -15,6 +15,8 @@
 import('classes.handler.Handler');
 import('classes.submission.reviewer.ReviewerAction');
 
+import('lib.pkp.classes.core.JSONMessage');
+
 class ReviewerHandler extends Handler {
 	/**
 	 * Constructor
