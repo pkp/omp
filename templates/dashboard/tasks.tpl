@@ -25,7 +25,7 @@
 <!-- New Submission entry point -->
 	{if $pressCount > 1}
 		{fbvFormSection title="submission.submit.newSubmissionMultiple"}
-			{capture assign="defaultLabel"}{translate key="press.select"}{/capture}
+			{capture assign="defaultLabel"}{translate key="context.select"}{/capture}
 			{fbvElement type="select" id="multiplePress" from=$presses defaultValue=0 defaultLabel=$defaultLabel translate=false size=$fbvStyles.size.MEDIUM}
 		{/fbvFormSection}
 	{elseif $pressCount == 1}
