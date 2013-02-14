@@ -290,8 +290,6 @@
 	<message key="reviewer.complete.whatNext">Thank you for completing the review of this submission. Your review has been submitted successfully. We appreciate your contribution to the quality of the work that we publish; the editor may contact you again for more information if need be.</message>
 	<message key="reviewer.aboutDueDates">About Due Dates</message>
 	<message key="reviewer.aboutDueDates.text">The editor asks that you either accept or decline the review before the Response Due Date and complete the review by the Review Due Date.</message>
-	<message key="workflow.review.internalReview">Internal Review</message>
-	<message key="workflow.review.externalReview">External Review</message>
 	<message key="review.blindPeerReview">
 		<![CDATA[<p>To ensure the integrity of the blind peer-review for submission to this press, every effort should be made to prevent the identities of the authors and reviewers from being known to each other. This involves the authors, editors, and reviewers (who upload documents as part of their review) checking to see if the following steps have been taken with regard to the text and the file properties:</p>
 		<ul><li>The authors of the document have deleted their names from the text, with "Author" and year used in the references and footnotes, instead of the authors' name, article title, etc.</li>
@@ -365,7 +363,6 @@
 	<message key="common.prefix">Prefix</message>
 	<message key="common.preview">Preview</message>
 	<message key="common.quality">Quality</message>
-	<message key="common.sendEmail">Send Email</message>
 	<message key="common.tasks">Tasks</message>
 	<message key="common.list">List</message>
 	<message key="common.grid">Grid</message>
@@ -393,7 +390,6 @@
 	<message key="common.openMonographPress">Open Monograph Press</message>
 	<message key="common.omp">OMP</message>
 	<message key="common.homePageHeader.altText">Homepage Header</message>
-	<message key="common.designation">Designation</message>
 	<message key="common.dimensionsInches"><![CDATA[{$width}"&nbsp;x&nbsp;{$height}" @ {$dpi} DPI/PPI]]></message>
 	<message key="common.dimensionsPixels">{$width} x {$height} pixels</message>
 
@@ -426,7 +422,6 @@
 	<message key="user.noRoles.submitMonographRegClosed">Submit an Monograph: Author registration is currently disabled.</message>
 	<message key="user.noRoles.regReviewer">Register as a Reviewer</message>
 	<message key="user.noRoles.regReviewerClosed">Register as a Reviewer: Reviewer registration is currently disabled.</message>
-	<message key="user.noRoles.selectUsersWithoutRoles">Include users with no roles in this press.</message>
 
 	<!-- OMP-specific Roles -->
 	<message key="user.role.manager">Press Manager</message>
@@ -608,7 +603,6 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="notification.removedMarket">Market removed.</message>
 	<message key="notification.addedReviewer">Reviewer added.</message>
 	<message key="notification.addedStageParticipant">User added as a stage participant.</message>
-	<message key="notification.editedUser">User edited.</message>
 	<message key="notification.removedReviewer">Reviewer removed.</message>
 	<message key="notification.sentNotification">Notification sent.</message>
 	<message key="notification.reviewAcknowledged">Review marked as acknowledged. Email not sent.</message>
