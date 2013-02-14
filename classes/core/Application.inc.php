@@ -38,8 +38,6 @@ define('ASSOC_TYPE_PUBLISHED_MONOGRAPH',	0x0000210);
 
 define('CONTEXT_PRESS', 1);
 
-// To expose LISTBUILDER_SOURCE_TYPE_... constants via JS
-import('lib.pkp.classes.controllers.listbuilder.ListbuilderHandler');
 // To expose ORDER_CATEGORY_GRID_... constants via JS
 import('lib.pkp.classes.controllers.grid.feature.OrderCategoryGridItemsFeature');
 
