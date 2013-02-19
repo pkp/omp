@@ -30,9 +30,8 @@ class RoleDAO extends PKPRoleDAO {
 	 * Create new data object.
 	 * @return Role
 	 */
-	function &newDataObject() {
-		$dataObject = new Role();
-		return $dataObject;
+	function newDataObject() {
+		return new Role();
 	}
 
 	/**

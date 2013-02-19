@@ -44,7 +44,7 @@ class ReviewRoundDAO extends DAO {
 		$stageId == WORKFLOW_STAGE_ID_EXTERNAL_REVIEW &&
 		$round > 0) {
 			unset($reviewRound);
-			$reviewRound =& $this->newDataObject();
+			$reviewRound = $this->newDataObject();
 			$reviewRound->setSubmissionId($submissionId);
 			$reviewRound->setRound($round);
 			$reviewRound->setStageId($stageId);

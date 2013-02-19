@@ -422,11 +422,11 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 
 		// Test whether the newDataObjectByGenreId method will return a monograph file.
-		$fileObject =& $submissionFileDao->newDataObjectByGenreId(SUBMISSION_FILE_DAO_TEST_DOC_GENRE_ID);
+		$fileObject = $submissionFileDao->newDataObjectByGenreId(SUBMISSION_FILE_DAO_TEST_DOC_GENRE_ID);
 		self::assertType('MonographFile', $fileObject);
 
 		// Now set an artwork genre and try again.
-		$fileObject =& $submissionFileDao->newDataObjectByGenreId(SUBMISSION_FILE_DAO_TEST_ART_GENRE_ID);
+		$fileObject = $submissionFileDao->newDataObjectByGenreId(SUBMISSION_FILE_DAO_TEST_ART_GENRE_ID);
 		self::assertType('ArtworkFile', $fileObject);
 	}
 

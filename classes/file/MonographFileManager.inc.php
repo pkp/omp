@@ -281,7 +281,7 @@ class MonographFileManager extends BaseMonographFileManager {
 		}
 
 		// Instantiate a new monograph file implementation.
-		$monographFile =& $submissionFileDao->newDataObjectByGenreId($genreId); /* @var $monographFile MonographFile */
+		$monographFile = $submissionFileDao->newDataObjectByGenreId($genreId); /* @var $monographFile MonographFile */
 		$monographFile->setMonographId($this->getMonographId());
 
 		// Do we create a new file or a new revision of an existing file?
