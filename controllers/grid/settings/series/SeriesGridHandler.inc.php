@@ -37,7 +37,7 @@ class SeriesGridHandler extends SetupGridHandler {
 	 */
 	function initialize(&$request) {
 		parent::initialize($request);
-		$press =& $request->getPress();
+		$press = $request->getPress();
 
 		// FIXME are these all required?
 		AppLocale::requireComponents(
@@ -53,25 +53,24 @@ class SeriesGridHandler extends SetupGridHandler {
 		$this->setInstructions('manager.setup.series.description');
 
 		// Elements to be displayed in the grid
-		$seriesDao =& DAORegistry::getDAO('SeriesDAO');
-		$categoryDao =& DAORegistry::getDAO('CategoryDAO');
-		$seriesEditorsDao =& DAORegistry::getDAO('SeriesEditorsDAO');
+		$seriesDao = DAORegistry::getDAO('SeriesDAO');
+		$categoryDao = DAORegistry::getDAO('CategoryDAO');
+		$seriesEditorsDao = DAORegistry::getDAO('SeriesEditorsDAO');
 		$seriesIterator = $seriesDao->getByPressId($press->getId());
 
 		$gridData = array();
-		while ($series =& $seriesIterator->next()) {
+		while ($series = $seriesIterator->next()) {
 			// Get the categories data for the row
 			$categories = $seriesDao->getCategories($series->getId(), $press->getId());
 			$categoriesString = null;
-			while ($category =& $categories->next()) {
+			while ($category = $categories->next()) {
 				if (!empty($categoriesString)) $categoriesString .= ', ';
 				$categoriesString .= $category->getLocalizedTitle();
-				unset($category);
 			}
 			if (empty($categoriesString)) $categoriesString = __('common.none');
 
 			// Get the series editors data for the row
-			$assignedSeriesEditors =& $seriesEditorsDao->getEditorsBySeriesId($series->getId(), $press->getId());
+			$assignedSeriesEditors = $seriesEditorsDao->getEditorsBySeriesId($series->getId(), $press->getId());
 			if(empty($assignedSeriesEditors)) {
 				$editorsString = __('common.none');
 			} else {
@@ -89,14 +88,12 @@ class SeriesGridHandler extends SetupGridHandler {
 				'categories' => $categoriesString,
 				'editors' => $editorsString
 			);
-			unset($series);
-			unset($editorsString);
 		}
 
 		$this->setGridDataElements($gridData);
 
 		// Add grid-level actions
-		$router =& $request->getRouter();
+		$router = $request->getRouter();
 		import('lib.pkp.classes.linkAction.request.AjaxModal');
 		$this->addAction(
 			new LinkAction(
@@ -175,7 +172,7 @@ class SeriesGridHandler extends SetupGridHandler {
 	 */
 	function updateSeries($args, &$request) {
 		$seriesId = $request->getUserVar('seriesId');
-		$press =& $request->getPress();
+		$press = $request->getPress();
 
 		import('controllers.grid.settings.series.form.SeriesForm');
 		$seriesForm = new SeriesForm($seriesId);
@@ -197,9 +194,9 @@ class SeriesGridHandler extends SetupGridHandler {
 	 * @return string Serialized JSON object
 	 */
 	function deleteSeries($args, &$request) {
-		$press =& $request->getPress();
+		$press = $request->getPress();
 
-		$seriesDao =& DAORegistry::getDAO('SeriesDAO');
+		$seriesDao = DAORegistry::getDAO('SeriesDAO');
 		$series = $seriesDao->getById(
 			$request->getUserVar('seriesId'),
 			$press->getId()
