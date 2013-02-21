@@ -26,7 +26,6 @@ class UnassignedSubmissionsListGridHandler extends SubmissionsListGridHandler {
 	 */
 	function UnassignedSubmissionsListGridHandler() {
 		parent::SubmissionsListGridHandler();
-		$this->addRoleAssignment(array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR), array('fetchGrid'));
 	}
 
 
@@ -97,19 +96,6 @@ class UnassignedSubmissionsListGridHandler extends SubmissionsListGridHandler {
 		}
 
 		return $accessibleMonographs;
-	}
-
-
-	//
-	// Overridden methods from GridHandler
-	//
-	/**
-	 * Get the row handler - override the default row handler
-	 * @return SubmissionsListGridRow
-	 */
-	function &getRowInstance() {
-		$row = new SubmissionsListGridRow();
-		return $row;
 	}
 }
 
