@@ -16,16 +16,15 @@ import('lib.pkp.classes.controllers.grid.GridRow');
 import('lib.pkp.classes.linkAction.request.AjaxModal');
 
 class SubmissionsListGridRow extends GridRow {
-
-	/** @var boolean */
-	var $_canDelete;
+	/** @var $_isManager boolean true iff the user has a managerial role */
+	var $_isManager;
 
 	/**
 	 * Constructor
 	 */
-	function SubmissionsListGridRow($canDelete = false) {
-		$this->_canDelete = $canDelete;
+	function SubmissionsListGridRow($isManager) {
 		parent::GridRow();
+		$this->_isManager = $isManager;
 	}
 
 	//
@@ -45,7 +44,7 @@ class SubmissionsListGridRow extends GridRow {
 			$monographDao =& DAORegistry::getDAO('MonographDAO'); /* @var $monographDao MonographDAO */
 			$monograph =& $monographDao->getById($rowId);
 			assert(is_a($monograph, 'Monograph'));
-			if ($this->_canDelete && $monograph->getSubmissionProgress() != 0) {
+			if ($monograph->getSubmissionProgress() != 0 || $this->_isManager) {
 				$router =& $request->getRouter();
 				import('lib.pkp.classes.linkAction.request.RemoteActionConfirmationModal');
 				$confirmationModal = new RemoteActionConfirmationModal(

@@ -25,9 +25,10 @@ class MySubmissionsListGridHandler extends SubmissionsListGridHandler {
 	 */
 	function MySubmissionsListGridHandler() {
 		parent::SubmissionsListGridHandler();
-
-		$this->addRoleAssignment(array(ROLE_ID_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_ASSISTANT, ROLE_ID_AUTHOR),
-				array('fetchGrid', 'fetchRow', 'deleteSubmission'));
+		$this->addRoleAssignment(
+			array(ROLE_ID_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_ASSISTANT, ROLE_ID_AUTHOR),
+			array('fetchGrid', 'fetchRow', 'deleteSubmission')
+		);
 	}
 
 	//
@@ -41,36 +42,6 @@ class MySubmissionsListGridHandler extends SubmissionsListGridHandler {
 
 		$titleColumn =& $this->getColumn('title');
 		$titleColumn->setCellProvider(new MySubmissionsListGridCellProvider());
-	}
-
-
-	//
-	// Public Handler Actions
-	//
-	/**
-	 * Delete a submission
-	 * @param $args array
-	 * @param $request PKPRequest
-	 * @return string Serialized JSON object
-	 */
-	function deleteSubmission($args, &$request) {
-		$monographDao =& DAORegistry::getDAO('MonographDAO');
-		$monograph = $monographDao->getById(
-			(int) $request->getUserVar('monographId')
-		);
-
-		// If the submission is incomplete, allow it to be deleted
-		if ($monograph && $monograph->getSubmissionProgress() != 0) {
-			$monographDao =& DAORegistry::getDAO('MonographDAO'); /* @var $monographDao MonographDAO */
-			$monographDao->deleteById($monograph->getId());
-
-			$user =& $request->getUser();
-			NotificationManager::createTrivialNotification($user->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.removedSubmission')));
-			return DAO::getDataChangedEvent($monograph->getId());
-		} else {
-			$json = new JSONMessage(false);
-			return $json->getString();
-		}
 	}
 
 
@@ -95,19 +66,6 @@ class MySubmissionsListGridHandler extends SubmissionsListGridHandler {
 		}
 
 		return $data;
-	}
-
-
-	//
-	// Overridden methods from GridHandler
-	//
-	/**
-	 * @see GridHandler::getRowInstance()
-	 * @return SubmissionsListGridRow
-	 */
-	function &getRowInstance() {
-		$row = new SubmissionsListGridRow(true);
-		return $row;
 	}
 }
 

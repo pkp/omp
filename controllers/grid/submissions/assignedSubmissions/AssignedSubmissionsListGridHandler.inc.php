@@ -25,10 +25,10 @@ class AssignedSubmissionsListGridHandler extends SubmissionsListGridHandler {
 	 * Constructor
 	 */
 	function AssignedSubmissionsListGridHandler() {
-		parent::GridHandler();
+		parent::SubmissionsListGridHandler();
 		$this->addRoleAssignment(
 			array(ROLE_ID_SITE_ADMIN, ROLE_ID_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_REVIEWER, ROLE_ID_ASSISTANT),
-			array('fetchGrid')
+			array('fetchGrid', 'fetchRow', 'deleteSubmission')
 		);
 	}
 
@@ -111,19 +111,6 @@ class AssignedSubmissionsListGridHandler extends SubmissionsListGridHandler {
 		}
 
 		return $data;
-	}
-
-
-	//
-	// Overridden methods from GridHandler
-	//
-	/**
-	 * Get the row handler - override the default row handler
-	 * @return SubmissionsListGridRow
-	 */
-	function &getRowInstance() {
-		$row = new SubmissionsListGridRow();
-		return $row;
 	}
 }
 

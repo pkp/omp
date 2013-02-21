@@ -22,6 +22,8 @@ import('controllers.grid.submissions.SubmissionsListGridCellProvider');
 import('classes.workflow.EditorDecisionActionsManager');
 
 class SubmissionsListGridHandler extends GridHandler {
+	/** @var $_isManager true iff the current user has a managerial role */
+	var $_isManager;
 
 	/**
 	 * Constructor
@@ -63,10 +65,13 @@ class SubmissionsListGridHandler extends GridHandler {
 		$user =& $request->getUser();
 		$this->setGridDataElements($this->getSubmissions($request, $user->getId()));
 
+		// Fetch the authorized roles and determine if the user is a manager.
+		$authorizedRoles = $this->getAuthorizedContextObject(ASSOC_TYPE_USER_ROLES);
+		$this->_isManager = in_array(ROLE_ID_PRESS_MANAGER, $authorizedRoles);
+
 		// If there is more than one press in the system, add a press column
 		$pressDao =& DAORegistry::getDAO('PressDAO');
 		$presses = $pressDao->getAll();
-		$authorizedRoles = $this->getAuthorizedContextObject(ASSOC_TYPE_USER_ROLES);
 		$cellProvider = new SubmissionsListGridCellProvider($authorizedRoles);
 		if($presses->getCount() > 1) {
 			$this->addColumn(
@@ -114,7 +119,37 @@ class SubmissionsListGridHandler extends GridHandler {
 
 
 	//
-	// Protected template methods to be overridden by sub-classes.
+	// Public handler operations
+	//
+	/**
+	 * Delete a submission
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return string Serialized JSON object
+	 */
+	function deleteSubmission($args, &$request) {
+		$monographDao =& DAORegistry::getDAO('MonographDAO');
+		$monograph = $monographDao->getById(
+			(int) $request->getUserVar('monographId')
+		);
+
+		// If the submission is incomplete, or this is a manager, allow it to be deleted
+		if ($monograph && ($this->_isManager || $monograph->getSubmissionProgress() != 0)) {
+			$monographDao =& DAORegistry::getDAO('MonographDAO'); /* @var $monographDao MonographDAO */
+			$monographDao->deleteById($monograph->getId());
+
+			$user =& $request->getUser();
+			NotificationManager::createTrivialNotification($user->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.removedSubmission')));
+			return DAO::getDataChangedEvent($monograph->getId());
+		} else {
+			$json = new JSONMessage(false);
+			return $json->getString();
+		}
+	}
+
+
+	//
+	// Protected methods
 	//
 	/**
 	 * @see GridHandler::initFeatures()
@@ -134,6 +169,15 @@ class SubmissionsListGridHandler extends GridHandler {
 	function getSubmissions(&$request, $userId) {
 		// Must be implemented by sub-classes.
 		assert(false);
+	}
+
+	/**
+	 * @see GridHandler::getRowInstance()
+	 * @return SubmissionsListGridRow
+	 */
+	function &getRowInstance() {
+		$row = new SubmissionsListGridRow($this->_isManager);
+		return $row;
 	}
 }
 
