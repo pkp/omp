@@ -9,7 +9,7 @@ jQuery.pkp.controllers.grid.content =
 /**
  * @file js/controllers/grid/content/spotlights/form/SpotlightFormHandler.js
  *
- * Copyright (c) 2000-2012 John Willinsky
+ * Copyright (c) 2000-2013 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class SpotlightFormHandler.js

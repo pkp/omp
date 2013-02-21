@@ -9,7 +9,7 @@ jQuery.pkp.controllers.tab.settings.announcements =
 /**
  * @file js/controllers/tab/settings/announcements/form/AnnouncementSettingsFormHandler.js
  *
- * Copyright (c) 2000-2012 John Willinsky
+ * Copyright (c) 2000-2013 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class AnnouncementSettingsFormHandler
