@@ -67,7 +67,7 @@ class SubmissionsListGridHandler extends GridHandler {
 
 		// Fetch the authorized roles and determine if the user is a manager.
 		$authorizedRoles = $this->getAuthorizedContextObject(ASSOC_TYPE_USER_ROLES);
-		$this->_isManager = in_array(ROLE_ID_PRESS_MANAGER, $authorizedRoles);
+		$this->_isManager = in_array(ROLE_ID_MANAGER, $authorizedRoles);
 
 		// If there is more than one press in the system, add a press column
 		$pressDao =& DAORegistry::getDAO('PressDAO');
