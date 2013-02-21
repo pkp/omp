@@ -26,6 +26,10 @@ class UnassignedSubmissionsListGridHandler extends SubmissionsListGridHandler {
 	 */
 	function UnassignedSubmissionsListGridHandler() {
 		parent::SubmissionsListGridHandler();
+		$this->addRoleAssignment(
+			array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR),
+			array('fetchGrid', 'fetchRow', 'deleteSubmission')
+		);
 	}
 
 
