@@ -1,7 +1,7 @@
 {**
  * templates/controllers/monographList/coverImage.tpl
  *
- * Copyright (c) 2003-2012 John Willinsky
+ * Copyright (c) 2003-2013 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Loads the passed monograph cover image thumbnail, defining the correct image dimensions.
