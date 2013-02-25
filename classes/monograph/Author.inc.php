@@ -27,16 +27,6 @@ class Author extends PKPAuthor {
 	//
 	// Get/set methods
 	//
-	/**
-	 * Get a localized version of the User Group
-	 * @return string
-	 */
-	function getLocalizedUserGroupName() {
-		//FIXME: should this be queried when fetching Author from DB? - see #5231.
-		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
-		$userGroup =& $userGroupDao->getById($this->getUserGroupId());
-		return $userGroup->getLocalizedName();
-	}
 
 	/**
 	 * Return the published monograph associated with this author.

@@ -111,6 +111,14 @@ class AuthorGridHandler extends PKPAuthorGridHandler {
 	function getRequestedSubmissionId(&$request) {
 		return $request->getUserVar('monographId');
 	}
+
+	/**
+	 * Fetches the application-specific submission id field name, for forms.
+	 * @return string
+	 */
+	function getSubmissionFieldIdName() {
+		return 'monographId';
+	}
 }
 
 ?>
