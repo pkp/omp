@@ -364,7 +364,7 @@ class ManageCatalogHandler extends Handler {
 	 */
 	function _setupMonographsTemplate($includeFeatureAction, $listName, $messageKey = null, $assocType = null, $assocId = null) {
 		// Loadubmission locale content for monograph listing
-		AppLocale::requireComponents(LOCALE_COMPONENT_APP_SUBMISSION);
+		AppLocale::requireComponents(LOCALE_COMPONENT_APP_SUBMISSION, LOCALE_COMPONENT_PKP_SUBMISSION);
 
 		$templateMgr =& TemplateManager::getManager();
 		import('lib.pkp.classes.linkAction.request.NullAction');
