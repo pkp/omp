@@ -33,7 +33,7 @@
 			<td colspan="3" class="headseparator">&nbsp;</td>
 		</tr>
 		<tr class="heading" valign="bottom">
-			<th width="50%">{translate key="monograph.title"}</th>
+			<th width="50%">{translate key="submission.title"}</th>
 			<th width="25%">{translate key="plugins.importexport.onix30.exportFormats"}</th>
 			<th width="25%">{translate key="plugins.importexport.onix30.validityStatus"}</th>
 		</tr>

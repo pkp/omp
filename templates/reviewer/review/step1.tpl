@@ -24,7 +24,7 @@
 		<p>{$reviewerRequest|nl2br}</p>
 	{/fbvFormSection}
 	{fbvFormSection label="submission.overview"}
-		{fbvElement type="text" id="title" label="monograph.title" value=$submission->getLocalizedTitle() disabled=true}
+		{fbvElement type="text" id="title" label="submission.title" value=$submission->getLocalizedTitle() disabled=true}
 	{/fbvFormSection}
 	{fbvFormSection label="monograph.description"}
 		{$submission->getLocalizedAbstract()}
