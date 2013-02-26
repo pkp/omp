@@ -6,15 +6,10 @@
  *
  * Step 2 of author monograph submission.
  *}
-{assign var="pageTitle" value="submission.submit"}
-{include file="submission/form/submitStepHeader.tpl"}
-
 <script type="text/javascript">
 	$(function() {ldelim}
 		// Attach the form handler.
-		$('#submitStep2Form').pkpHandler('$.pkp.controllers.form.AjaxFormHandler', {ldelim}
-			baseUrl: '{$baseUrl|escape:"javascript"}'
-		{rdelim});
+		$('#submitStep2Form').pkpHandler('$.pkp.controllers.form.AjaxFormHandler');
 	{rdelim});
 </script>
 <form class="pkp_form" id="submitStep2Form" method="post" action="{url op="saveStep" path=$submitStep}" enctype="multipart/form-data">
@@ -38,6 +33,3 @@
 
 	{fbvFormButtons id="step2Buttons" submitText="common.saveAndContinue"}
 </form>
-
-{include file="common/footer.tpl"}
-

@@ -6,11 +6,6 @@
  *
  * The submission process has been completed; notify the author.
  *}
-{strip}
-{assign var="pageTitle" value="submission.submit.nextSteps"}
-{include file="submission/form/submitStepHeader.tpl"}
-{/strip}
-
 <h2>{translate key="submission.submit.submissionComplete"}</h2>
 <p>{translate key="submission.submit.submissionCompleteThanks" pressName=$press->getLocalizedName()}</p>
 <div class="separator"></div>
@@ -23,5 +18,3 @@
 	<li><a href={url page="submission" op="wizard"}>{translate key="submission.submit.whatNext.create"}</a></li>
 	<li><a href={url page="dashboard" anchor="submissions"}>{translate key="submission.submit.whatNext.return"}</a></li>
 </ul>
-{include file="common/footer.tpl"}
-

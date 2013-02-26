@@ -10,10 +10,10 @@
 <script type="text/javascript">
 	$(function() {ldelim}
 		// Attach the form handler.
-		$('#pressSubmissionForm').pkpHandler('$.pkp.controllers.dashboard.form.DashboardTaskFormHandler',
+		$('#contextSubmissionForm').pkpHandler('$.pkp.controllers.dashboard.form.DashboardTaskFormHandler',
 			{ldelim}
 				{if $pressCount == 1}
-					singlePressSubmissionUrl: '{url press=$press->getPath() page="submission" op="wizard"}',
+					singleContextSubmissionUrl: '{url press=$press->getPath() page="submission" op="wizard"}',
 				{/if}
 				trackFormChanges: false
 			{rdelim}
@@ -21,17 +21,17 @@
 	{rdelim});
 </script>
 <br />
-<form class="pkp_form" id="pressSubmissionForm">
+<form class="pkp_form" id="contextSubmissionForm">
 <!-- New Submission entry point -->
 	{if $pressCount > 1}
 		{fbvFormSection title="submission.submit.newSubmissionMultiple"}
 			{capture assign="defaultLabel"}{translate key="context.select"}{/capture}
-			{fbvElement type="select" id="multiplePress" from=$presses defaultValue=0 defaultLabel=$defaultLabel translate=false size=$fbvStyles.size.MEDIUM}
+			{fbvElement type="select" id="multipleContext" from=$presses defaultValue=0 defaultLabel=$defaultLabel translate=false size=$fbvStyles.size.MEDIUM}
 		{/fbvFormSection}
 	{elseif $pressCount == 1}
 		{fbvFormSection}
 			{capture assign="singleLabel"}{translate key="submission.submit.newSubmissionSingle" pressName=$press->getLocalizedName()}{/capture}
-			{fbvElement type="button" id="singlePress" label=$singleLabel translate=false}
+			{fbvElement type="button" id="singleContext" label=$singleLabel translate=false}
 		{/fbvFormSection}
 	{/if}
 

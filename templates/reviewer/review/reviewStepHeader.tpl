@@ -21,7 +21,8 @@
 		$('#reviewTabs').pkpHandler(
 			'$.pkp.pages.reviewer.ReviewerTabHandler',
 			{ldelim}
-				reviewIsCompleted: '{$reviewIsCompleted|escape}'
+				reviewIsCompleted: '{$reviewIsCompleted|escape}',
+				notScrollable: true
 			{rdelim}
 		);
 	{rdelim});

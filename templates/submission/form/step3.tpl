@@ -6,14 +6,9 @@
  *
  * Step 3 of author monograph submission.
  *}
-
-{assign var="pageTitle" value="submission.submit"}
-{include file="submission/form/submitStepHeader.tpl"}
-
-
 <script type="text/javascript">
-	// Attach the JS form handler.
 	$(function() {ldelim}
+		// Attach the JS form handler.
 		$('#submitStep3Form').pkpHandler(
 			'$.pkp.pages.submission.SubmissionStep3FormHandler',
 			{ldelim}
@@ -48,4 +43,3 @@
 
 	{fbvFormButtons id="step3Buttons" submitText="submission.submit.finishSubmission" confirmSubmit="submission.confirmSubmit"}
 </form>
-{include file="common/footer.tpl"}

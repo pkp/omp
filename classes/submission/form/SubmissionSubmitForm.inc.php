@@ -47,10 +47,10 @@ class SubmissionSubmitForm extends Form {
 	}
 
 	/**
-	 * Display the form.
+	 * Fetch the form.
 	 */
-	function display($request = null) {
-		$templateMgr =& TemplateManager::getManager($request);
+	function fetch($request) {
+		$templateMgr = TemplateManager::getManager($request);
 
 		$templateMgr->assign('monographId', $this->monographId);
 		$templateMgr->assign('submitStep', $this->step);
@@ -71,7 +71,7 @@ class SubmissionSubmitForm extends Form {
 		}
 		$templateMgr->assign('helpTopicId', $helpTopicId);
 
-		parent::display($request);
+		return parent::fetch($request);
 	}
 }
 

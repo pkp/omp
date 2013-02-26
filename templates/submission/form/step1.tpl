@@ -6,15 +6,10 @@
  *
  * Step 1 of author monograph submission.
  *}
-{assign var="pageTitle" value="submission.submit"}
-{include file="submission/form/submitStepHeader.tpl"}
-
 <script type="text/javascript">
 	$(function() {ldelim}
 		// Attach the form handler.
-		$('#submitStep1Form').pkpHandler('$.pkp.controllers.form.AjaxFormHandler', {ldelim}
-			baseUrl: '{$baseUrl|escape:"javascript"}'
-		{rdelim});
+		$('#submitStep1Form').pkpHandler('$.pkp.controllers.form.AjaxFormHandler');
 	{rdelim});
 </script>
 
@@ -102,5 +97,3 @@
 {/fbvFormArea}
 
 </form>
-</div>
-{include file="common/footer.tpl"}

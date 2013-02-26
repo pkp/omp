@@ -41,8 +41,8 @@ class DashboardHandler extends Handler {
 	 * @param $request PKPRequest
 	 * @param $args array
 	 */
-	function index($args, &$request) {
-		$templateMgr =& TemplateManager::getManager($request);
+	function index($args, $request) {
+		$templateMgr = TemplateManager::getManager($request);
 		$this->setupTemplate($request);
 		$templateMgr->display('dashboard/index.tpl');
 	}
@@ -52,28 +52,27 @@ class DashboardHandler extends Handler {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function tasks($args, &$request) {
-		$templateMgr =& TemplateManager::getManager($request);
+	function tasks($args, $request) {
+		$templateMgr = TemplateManager::getManager($request);
 		$this->setupTemplate($request);
 
 		// Get all the presses in the system, to determine which 'new submission' entry point we display
-		$pressDao =& DAORegistry::getDAO('PressDAO'); /* @var $pressDao PressDAO */
+		$pressDao = DAORegistry::getDAO('PressDAO'); /* @var $pressDao PressDAO */
 		$presses = $pressDao->getAll();
 
 		// Check each press to see if user has access to it.
-		$user =& $request->getUser();
-		$roleDao =& DAORegistry::getDAO('RoleDAO');
+		$user = $request->getUser();
+		$roleDao = DAORegistry::getDAO('RoleDAO');
 		$allContextsUserRoles = $roleDao->getByUserIdGroupedByContext($user->getId());
 		$userRolesThatCanSubmit = array(ROLE_ID_AUTHOR, ROLE_ID_ASSISTANT, ROLE_ID_MANAGER, ROLE_ID_SERIES_EDITOR);
 		$accessiblePresses = array();
-		while ($press =& $presses->next()) {
+		while ($press = $presses->next()) {
 			if (array_key_exists($press->getId(), $allContextsUserRoles)) {
 				$pressContextUserRoles = array_keys($allContextsUserRoles[$press->getId()]);
 				if (array_intersect($userRolesThatCanSubmit, $pressContextUserRoles)) {
-					$accessiblePresses[] =& $press;
+					$accessiblePresses[] = $press;
 				}
 			}
-			unset($press);
 		}
 
 		// Assign presses to template.
@@ -98,8 +97,8 @@ class DashboardHandler extends Handler {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function submissions($args, &$request) {
-		$templateMgr =& TemplateManager::getManager($request);
+	function submissions($args, $request) {
+		$templateMgr = TemplateManager::getManager($request);
 		$this->setupTemplate($request);
 
 		return $templateMgr->fetchJson('dashboard/submissions.tpl');

@@ -20,6 +20,7 @@ switch ($op) {
 	// Monograph Submission
 	//
 	case 'wizard':
+	case 'step':
 	case 'saveStep':
 	case 'index':
 	case 'fetchChoices':

@@ -94,6 +94,8 @@
 <script src="{$baseUrl}/lib/pkp/js/pages/header/HeaderHandler.js"></script>
 <script src="{$baseUrl}/lib/pkp/js/pages/admin/ContextsHandler.js"></script>
 <script src="{$baseUrl}/lib/pkp/js/controllers/grid/settings/user/form/UserFormHandler.js"></script>
+<script src="{$baseUrl}/lib/pkp/js/controllers/tab/settings/siteAccessOptions/form/SiteAccessOptionsFormHandler.js"></script>
+<script src="{$baseUrl}/lib/pkp/js/controllers/dashboard/form/DashboardTaskFormHandler.js"></script>
 <script src="{$baseUrl}/js/controllers/grid/users/reviewer/AdvancedReviewerSearchHandler.js"></script>
 <script src="{$baseUrl}/js/controllers/grid/users/stageParticipant/form/AddParticipantFormHandler.js"></script>
 <script src="{$baseUrl}/js/controllers/grid/content/spotlights/form/SpotlightFormHandler.js"></script>
@@ -109,11 +111,9 @@
 <script src="{$baseUrl}/js/controllers/modals/submissionMetadata/MonographlessCatalogEntryHandler.js"></script>
 <script src="{$baseUrl}/js/controllers/grid/files/proof/form/ApprovedProofFormHandler.js"></script>
 <script src="{$baseUrl}/js/controllers/grid/files/SelectableSubmissionFileListCategoryGridFilterHandler.js"></script>
-<script src="{$baseUrl}/lib/pkp/js/controllers/tab/settings/siteAccessOptions/form/SiteAccessOptionsFormHandler.js"></script>
 <script src="{$baseUrl}/js/controllers/tab/catalogEntry/CatalogEntryTabHandler.js"></script>
 <script src="{$baseUrl}/js/controllers/tab/publicationFormat/PublicationFormatsTabHandler.js"></script>
 <script src="{$baseUrl}/js/controllers/catalog/form/CatalogMetadataFormHandler.js"></script>
-<script src="{$baseUrl}/js/controllers/dashboard/form/DashboardTaskFormHandler.js"></script>
 <script src="{$baseUrl}/js/controllers/monographList/MonographListHandler.js"></script>
 <script src="{$baseUrl}/js/pages/authorDashboard/AuthorDashboardHandler.js"></script>
 <script src="{$baseUrl}/js/pages/authorDashboard/MonographEmailHandler.js"></script>
@@ -129,6 +129,7 @@
 <script src="{$baseUrl}/js/pages/workflow/ProductionHandler.js"></script>
 <script src="{$baseUrl}/js/pages/workflow/EditorDecisionsHandler.js"></script>
 <script src="{$baseUrl}/js/pages/reviewer/ReviewerTabHandler.js"></script>
+<script src="{$baseUrl}/js/pages/submission/SubmissionTabHandler.js"></script>
 <script src="{$baseUrl}/js/pages/submission/SubmissionStep3FormHandler.js"></script>
 
 {* Our own plug-in (depends on classes) *}

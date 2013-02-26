@@ -59,9 +59,9 @@ class SubmissionSubmitStep3Form extends SubmissionSubmitForm {
 	}
 
 	/**
-	 * Display the form
+	 * Fetch the form
 	 */
-	function display($request) {
+	function fetch($request) {
 		$templateMgr =& TemplateManager::getManager($request);
 
 		$templateMgr->assign('isEditedVolume', $this->monograph->getWorkType() == WORK_TYPE_EDITED_VOLUME);
@@ -70,7 +70,7 @@ class SubmissionSubmitStep3Form extends SubmissionSubmitForm {
 		$categoryDao =& DAORegistry::getDAO('CategoryDAO');
 		$templateMgr->assign('categoriesExist', $categoryDao->getCountByPressId($this->press->getId()) > 0);
 
-		return parent::display($request);
+		return parent::fetch($request);
 	}
 
 	/**

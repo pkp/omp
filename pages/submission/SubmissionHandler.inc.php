@@ -23,7 +23,7 @@ class SubmissionHandler extends PKPSubmissionHandler {
 	function SubmissionHandler() {
 		parent::Handler();
 		$this->addRoleAssignment(array(ROLE_ID_AUTHOR, ROLE_ID_SERIES_EDITOR, ROLE_ID_MANAGER),
-				array('index', 'wizard', 'saveStep', 'fetchChoices'));
+				array('index', 'wizard', 'step', 'saveStep', 'fetchChoices'));
 	}
 
 
@@ -61,7 +61,7 @@ class SubmissionHandler extends PKPSubmissionHandler {
 
 		// Execute additional checking of the step.
 		// NB: Move this to its own policy for reuse when required in other places.
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		$monograph = $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 
 		// Permit if there is no monograph set, but request is for initial step.
 		if (!is_a($monograph, 'Monograph') && $step == 1) return true;
@@ -89,22 +89,42 @@ class SubmissionHandler extends PKPSubmissionHandler {
 	 * @param $args array
 	 * @param $request Request
 	 */
-	function index($args, &$request) {
+	function index($args, $request) {
 		$request->redirect(null, null, 'wizard');
 	}
 
 	/**
-	 * Display submission monograph submission.
+	 * Display the tab set for the monograph submission wizard.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 */
+	function wizard($args, $request) {
+		$this->setupTemplate($request);
+		$templateMgr = TemplateManager::getManager($request);
+		$step = isset($args[0]) ? (int) $args[0] : 1;
+		$templateMgr->assign('step', $step);
+
+		$monograph = $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		if ($monograph) {
+			$templateMgr->assign('monographId', $monograph->getId());
+			$templateMgr->assign('submissionProgress', (int) $monograph->getSubmissionProgress());
+		} else {
+			$templateMgr->assign('submissionProgress', 1);
+		}
+		$templateMgr->display('submission/form/submitStepHeader.tpl');
+	}
+
+	/**
+	 * Display a step for the monograph submission wizard.
 	 * Displays submission index page if a valid step is not specified.
 	 * @param $args array
 	 * @param $request Request
 	 */
-	function wizard($args, &$request) {
+	function step($args, $request) {
 		$step = isset($args[0]) ? (int) $args[0] : 1;
 
-		$router =& $request->getRouter();
-		$press =& $router->getContext($request);
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		$press = $request->getPress();
+		$monograph = $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 
 		$this->setupTemplate($request);
 
@@ -118,15 +138,18 @@ class SubmissionHandler extends PKPSubmissionHandler {
 			} else {
 				$submitForm->initData();
 			}
+			$json = new JSONMessage(true, $submitForm->fetch($request));
+                        return $json->getString();
 			$submitForm->display($request);
 		} elseif($step == 4) {
-			$templateMgr =& TemplateManager::getManager($request);
+			$templateMgr = TemplateManager::getManager($request);
 			$templateMgr->assign_by_ref('press', $press);
 
 			// Retrieve the correct url for author review his monograph.
 			import('controllers.grid.submissions.SubmissionsListGridCellProvider');
 			list($page, $operation) = SubmissionsListGridCellProvider::getPageAndOperationByUserRoles($request, $monograph);
-			$dispatcher =& $router->getDispatcher();
+			$router = $request->getRouter();
+			$dispatcher = $router->getDispatcher();
 			$reviewSubmissionUrl = $dispatcher->url($request, ROUTE_PAGE, $press->getPath(), $page, $operation, $monograph->getId());
 
 			$templateMgr->assign('reviewSubmissionUrl', $reviewSubmissionUrl);
@@ -134,8 +157,8 @@ class SubmissionHandler extends PKPSubmissionHandler {
 			$templateMgr->assign('submitStep', $step);
 			$templateMgr->assign('submissionProgress', $monograph->getSubmissionProgress());
 
-			$templateMgr->assign('helpTopicId','submission.index');
-			$templateMgr->display('submission/form/complete.tpl');
+			$json = new JSONMessage(true, $templateMgr->fetch('submission/form/complete.tpl'));
+                        return $json->getString();
 		}
 	}
 
@@ -144,12 +167,12 @@ class SubmissionHandler extends PKPSubmissionHandler {
 	 * @param $args array first parameter is the step being saved
 	 * @param $request Request
 	 */
-	function saveStep($args, &$request) {
+	function saveStep($args, $request) {
 		$step = isset($args[0]) ? (int) $args[0] : 1;
 
-		$router =& $request->getRouter();
-		$press =& $router->getContext($request);
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		$router = $request->getRouter();
+		$press = $router->getContext($request);
+		$monograph = $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 
 		$this->setupTemplate($request);
 
@@ -160,13 +183,17 @@ class SubmissionHandler extends PKPSubmissionHandler {
 		$submitForm->readInputData();
 
 		if (!HookRegistry::call('SubmissionHandler::saveSubmit', array($step, &$monograph, &$submitForm))) {
-			if (!$submitForm->validate()) {
-				$this->setupTemplate($request);
-				$submitForm->display($request);
-			} else {
+			if ($submitForm->validate()) {
 				$monographId = $submitForm->execute($args, $request);
-				return $request->redirectUrlJson($router->url($request, null, null, 'wizard', $step+1, array('monographId' => $monographId)));
+				if (!$monograph) {
+					return $request->redirectUrlJson($router->url($request, null, null, 'wizard', $step+1, array('monographId' => $monographId), '2'));
+				}
+				$json = new JSONMessage(true);
+				$json->setEvent('setStep', max($step+1, $monograph->getSubmissionProgress()));
+			} else {
+				$json = new JSONMessage(true, $submitForm->fetch($request));
 			}
+			return $json->getString();
 		}
 	}
 
@@ -183,7 +210,7 @@ class SubmissionHandler extends PKPSubmissionHandler {
 		AppLocale::requireComponents(LOCALE_COMPONENT_APP_SUBMISSION, LOCALE_COMPONENT_PKP_SUBMISSION);
 
 		// Get steps information.
-		$templateMgr =& TemplateManager::getManager($request);
+		$templateMgr = TemplateManager::getManager($request);
 		$templateMgr->assign('steps', $this->_getStepsNumberAndLocaleKeys());
 	}
 

@@ -38,22 +38,22 @@ class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
 	}
 
 	/**
-	 * Display the form.
+	 * Fetch the form.
 	 */
-	function display($request) {
-		$user =& $request->getUser();
+	function fetch($request) {
+		$user = $request->getUser();
 
-		$templateMgr =& TemplateManager::getManager($request);
+		$templateMgr = TemplateManager::getManager($request);
 
 		// FIXME: If this user is a series editor, they are allowed
 		// to submit to series flagged as "editor-only" for
 		// submissions. Otherwise, display only series they are allowed
 		// to submit to.
-		$roleDao =& DAORegistry::getDAO('RoleDAO');
+		$roleDao = DAORegistry::getDAO('RoleDAO');
 		$isEditor = $roleDao->userHasRole($this->press->getId(), $user->getId(), ROLE_ID_SERIES_EDITOR);
 
 		// Get series for this press
-		$seriesDao =& DAORegistry::getDAO('SeriesDAO');
+		$seriesDao = DAORegistry::getDAO('SeriesDAO');
 		$seriesOptions = array('0' => __('submission.submit.selectSeries')) + $seriesDao->getTitlesByPressId($this->press->getId());
 		$templateMgr->assign('seriesOptions', $seriesOptions);
 
@@ -98,7 +98,7 @@ class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
 			$templateMgr->assign('authorUserGroupOptions', $userGroupNames);
 		}
 
-		parent::display($request);
+		return parent::fetch($request);
 	}
 
 	/**
