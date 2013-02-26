@@ -372,8 +372,6 @@
 	<message key="common.moreInfo">More Information</message>
 	<message key="common.plusMore">+ More</message>
 	
-	<message key="dashboard.tasks">Tasks</message>
-	<message key="dashboard.submissions">Submissions</message>
 	<message key="grid.action.itemWorkflow">Go to this submission's workflow</message>
 
 	<message key="common.queue.long.submissionsUnassigned">Unassigned Submissions</message>
