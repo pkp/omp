@@ -361,9 +361,6 @@
 	<message key="common.prefix">Prefix</message>
 	<message key="common.preview">Preview</message>
 	<message key="common.quality">Quality</message>
-	<message key="common.tasks">Tasks</message>
-	<message key="common.list">List</message>
-	<message key="common.grid">Grid</message>
 	<message key="common.feature">Feature</message>
 	<message key="common.searchCatalog">Search Catalog</message>
 	<message key="common.navigation">Navigation</message>
