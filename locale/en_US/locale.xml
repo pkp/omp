@@ -172,33 +172,6 @@
 	<message key="grid.action.deleteSpotlight">Delete this spotlight</message>
 	<message key="grid.action.addSpotlight">Add a spotlight</message>
 
-	<!-- Content Management - Footer grid keys -->
-	<message key="grid.content.navigation.footer">Footer</message>
-	<message key="grid.content.navigation.footer.noneExist">There are no current footers.</message>
-	<message key="grid.content.navigation.footer.addCategory">Add Category</message>
-	<message key="grid.action.deleteFooterCategory">Delete Footer Category</message>
-	<message key="grid.content.navigation.footer.FooterLink">Footer Links</message>
-	<message key="grid.content.navigation.footer.editCategory">Edit Category</message>
-	<message key="grid.content.navigation.footer.deleteCategory">Delete Category</message>
-	<message key="grid.content.navigation.footer.deleteCategoryConfirm">Are you sure you wish to delete this category? The action cannot be undone, and links in this category will also be removed.</message>
-	<message key="grid.content.navigation.footer.titleRequired">A title is required.</message>
-	<message key="grid.content.navigation.footer.descriptionRequired">A description is required.</message>
-	<message key="grid.content.navigation.footer.pathRequired">A path is required and it must be unique.</message>
-	<message key="grid.content.navigation.footer.pathInUse">That path is currently in use by another category.</message>
-	<message key="grid.action.addFooterCategoryLink">Add a new footer category</message>
-	<message key="grid.action.editFooterCategory">Edit this footer category</message>
-
-	<!-- Content Management - Social Media keys -->
-	<message key="grid.content.navigation.socialMedia">Social Media</message>
-	<message key="grid.content.navigation.socialMedia.platform">Platform</message>
-	<message key="grid.content.navigation.socialMedia.code">Social Sharing Code Block</message>
-	<message key="grid.content.navigation.socialMedia.platformRequired">You must enter a platform title (Facebook, Google+, etc).</message>
-	<message key="grid.content.navigation.socialMedia.codeRequired">You must enter the code you wish to use to display this social network.</message>
-	<message key="grid.content.navigation.socialMedia.addSocialLink">Add Social Link</message>
-	<message key="grid.content.navigation.socialMedia.includeInCatalog">Use this for each published monograph in the catalog?</message>
-	<message key="grid.content.navigation.socialMedia.inCatalog">Used In Catalog</message>
-	<message key="grid.action.addMedia">Add a new Social Media type</message>
-
 	<!-- Editorial policies -->
 	<message key="manager.series.open">Open Submissions</message>
 	<message key="manager.series.indexed">Indexed</message>
@@ -363,7 +336,6 @@
 	<message key="common.quality">Quality</message>
 	<message key="common.feature">Feature</message>
 	<message key="common.searchCatalog">Search Catalog</message>
-	<message key="common.navigation">Navigation</message>
 	<message key="common.moreInfo">More Information</message>
 	<message key="common.plusMore">+ More</message>
 	
