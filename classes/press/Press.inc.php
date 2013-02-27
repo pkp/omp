@@ -17,7 +17,7 @@
  * @brief Basic class describing a press.
  */
 
-import('lib.pkp.classes.core.Context');
+import('lib.pkp.classes.context.Context');
 
 class Press extends Context {
 	/**

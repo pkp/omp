@@ -12,6 +12,7 @@
 		$('#footerCategoryForm').pkpHandler('$.pkp.controllers.form.AjaxFormHandler');
 	{rdelim});
 </script>
+
 <form class="pkp_form" id="footerCategoryForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.content.navigation.ManageFooterGridHandler" op="updateFooterCategory"}">
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="footerFormNotification"}
 	{fbvFormArea id="categoryInfo"}

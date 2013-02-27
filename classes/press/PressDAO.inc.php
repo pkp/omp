@@ -13,7 +13,7 @@
  */
 
 import('classes.press.Press');
-import('lib.pkp.classes.core.ContextDAO');
+import('lib.pkp.classes.context.ContextDAO');
 
 class PressDAO extends ContextDAO {
 	/**

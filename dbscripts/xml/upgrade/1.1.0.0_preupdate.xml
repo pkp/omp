@@ -11,9 +11,15 @@
   *
   -->
 <data>
+	<!-- Bug #8095:  Standardize user groups and roles -->
 	<sql>
-		<!-- Bug #8095:  Standardize user groups and roles -->
 		<query driver="mysql">ALTER TABLE user_group_stage CHANGE COLUMN press_id context_id BIGINT NOT NULL</query>
 		<query driver="postgres7">ALTER TABLE user_group_stage RENAME COLUMN press_id TO context_id</query>
+	</sql>
+	<!-- Bug #8087: Move content management into PKP lib -->
+	<sql>
+		<query driver="mysql">ALTER TABLE footerlinks CHANGE COLUMN press_id context_id BIGINT NOT NULL</query>
+		<query driver="mysql">ALTER TABLE social_media CHANGE COLUMN press_id context_id BIGINT NOT NULL</query>
+		<query driver="mysql">ALTER TABLE footer_categories CHANGE COLUMN press_id context_id BIGINT NOT NULL</query>
 	</sql>
 </data>

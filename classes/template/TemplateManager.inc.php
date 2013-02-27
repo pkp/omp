@@ -80,11 +80,11 @@ class TemplateManager extends PKPTemplateManager {
 
 				// Include footer links if they have been defined.
 				$footerCategoryDao = DAORegistry::getDAO('FooterCategoryDAO');
-				$footerCategories = $footerCategoryDao->getNotEmptyByPressId($context->getId());
+				$footerCategories = $footerCategoryDao->getNotEmptyByContextId($context->getId());
 				$this->assign('footerCategories', $footerCategories->toArray());
 
 				$footerLinkDao = DAORegistry::getDAO('FooterLinkDAO');
-				$this->assign('maxLinks', $footerLinkDao->getLargestCategoryTotalByPressId($context->getId()));
+				$this->assign('maxLinks', $footerLinkDao->getLargestCategoryTotalbyContextId($context->getId()));
 				$this->assign('pageFooter', $context->getLocalizedSetting('pageFooter'));
 			} else {
 				// Add the site-wide logo, if set for this locale or the primary locale

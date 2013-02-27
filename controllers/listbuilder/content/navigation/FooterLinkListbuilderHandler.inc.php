@@ -41,12 +41,12 @@ class FooterLinkListbuilderHandler extends SetupListbuilderHandler {
 		parent::initialize($request);
 		AppLocale::requireComponents(LOCALE_COMPONENT_PKP_MANAGER);
 		$footerCategoryId = (int)$request->getUserVar('footerCategoryId');
-		$press = $request->getPress();
+		$context = $request->getContext();
 
 		$footerCategoryDao = DAORegistry::getDAO('FooterCategoryDAO');
-		$footerCategory = $footerCategoryDao->getById($footerCategoryId, $press->getId());
+		$footerCategory = $footerCategoryDao->getById($footerCategoryId, $context->getId());
 		if ($footerCategoryId && !isset($footerCategory)) {
-			fatalError('Footer Category does not exist within this press context.');
+			fatalError('Footer Category does not exist within this context.');
 		} else {
 			$this->_footerCategoryId = $footerCategoryId;
 		}
@@ -72,9 +72,9 @@ class FooterLinkListbuilderHandler extends SetupListbuilderHandler {
 	 * @see GridHandler::loadData()
 	 */
 	function loadData(&$request) {
-		$press = $this->getContext();
+		$context = $this->getContext();
 		$footerLinkDao = DAORegistry::getDAO('FooterLinkDAO');
-		return $footerLinkDao->getByCategoryId($this->_getFooterCategoryId(), $press->getId());
+		return $footerLinkDao->getByCategoryId($this->_getFooterCategoryId(), $context->getId());
 	}
 
 	/**
@@ -90,9 +90,9 @@ class FooterLinkListbuilderHandler extends SetupListbuilderHandler {
 
 		// Otherwise return from the $newRowId
 		$rowData = $this->getNewRowId($request);
-		import('controllers.grid.content.navigation.form.FooterCategoryForm');
-		$press = $request->getPress();
-		$footerCategoryForm = new FooterCategoryForm($press->getId());
+		import('lib.pkp.controllers.grid.content.navigation.form.FooterCategoryForm');
+		$context = $request->getContext();
+		$footerCategoryForm = new FooterCategoryForm($context->getId());
 		return $footerCategoryForm->getFooterLinkFromRowData($request, $rowData);
 	}
 

@@ -12,7 +12,7 @@
 {/strip}
 
 {if array_intersect(array(ROLE_ID_MANAGER), $userRoles)}
-	{assign var="isPressManager" value=true}
+	{assign var="isManager" value=true}
 {/if}
 
 <script type="text/javascript">
@@ -21,7 +21,7 @@
 		$('#catalogHeader').pkpHandler(
 			'$.pkp.pages.manageCatalog.ManageCatalogHeaderHandler',
 			{ldelim}
-				searchTabIndex: {if $isPressManager}4{else}3{/if},
+				searchTabIndex: {if $isManager}4{else}3{/if},
 				spotlightTabName: 'spotlightsTab',
 				seriesFetchUrlTemplate: '{url|escape:"javascript" op="series" path=SERIES_PATH escape=false}',
 				categoryFetchUrlTemplate: '{url|escape:"javascript" op="category" path=CATEGORY_PATH escape=false}',
@@ -83,7 +83,7 @@
 			<li><a href="{url op="homepage"}">{translate key="catalog.manage.homepage"}</a></li>
 			<li><a href="#categoryTab">{translate key="catalog.manage.category"}</a></li>
 			<li><a href="#seriesTab">{translate key="catalog.manage.series"}</a></li>
-			{if $isPressManager}<li><a href="#spotlightsTab">{translate key="spotlight.spotlights"}</a></li>{/if}
+			{if $isManager}<li><a href="#spotlightsTab">{translate key="spotlight.spotlights"}</a></li>{/if}
 			<li><a href="{url}">{translate key="search.searchResults"}</a></li>
 		</ul>
 		<div id="categoryTab">
@@ -136,7 +136,7 @@
 				{* This will be filled via JS when a series is chosen. *}
 			</div>
 		</div>
-		{if $isPressManager}
+		{if $isManager}
 			<div id="spotlightsTab">
 				<p>{translate key="catalog.manage.spotlightDescription"}</p>
 				{url|assign:spotlightsGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.content.spotlights.ManageSpotlightsGridHandler" op="fetchGrid"}

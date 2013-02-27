@@ -1,98 +1,26 @@
 <?php
 
 /**
- * @file classes/press/SocialMedia.inc.php
+ * @file classes/context/SocialMedia.inc.php
  *
  * Copyright (c) 2003-2013 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class SocialMedia
- * @ingroup press
+ * @ingroup context
  * @see SocialMediaDAO
  *
  * @brief Describes basic SocialMedia properties.
  */
 
-class SocialMedia extends DataObject {
+import('lib.pkp.classes.context.PKPSocialMedia');
+
+class SocialMedia extends PKPSocialMedia {
 	/**
 	 * Constructor.
 	 */
 	function SocialMedia() {
-		parent::DataObject();
-	}
-
-	/**
-	 * Get ID of press.
-	 * @return int
-	 */
-	function getPressId() {
-		return $this->getData('pressId');
-	}
-
-	/**
-	 * Set ID of press.
-	 * @param $pressId int
-	 */
-	function setPressId($pressId) {
-		return $this->setData('pressId', $pressId);
-	}
-
-	/**
-	 * Get media block code.
-	 * @return string
-	 */
-	function getCode() {
-		return $this->getData('code');
-	}
-
-	/**
-	 * Set media block code.
-	 * @param $path string
-	 */
-	function setCode($code) {
-		return $this->setData('code', $code);
-	}
-
-	/**
-	 * Get whether or not this should be included on a monograph's catalog page.
-	 * @return boolean
-	 */
-	function getIncludeInCatalog() {
-		return $this->getData('includeInCatalog');
-	}
-
-	/**
-	 * Set whether or not this should be included on a monograph's catalog page.
-	 * @param $path string
-	 */
-	function setIncludeInCatalog($includeInCatalog) {
-		return $this->setData('includeInCatalog', $includeInCatalog);
-	}
-
-	/**
-	 * Get localized platform name.
-	 * @return string
-	 */
-	function getLocalizedPlatform() {
-		return $this->getLocalizedData('platform');
-	}
-
-	/**
-	 * Get media platform.
-	 * @param $locale string
-	 * @return string
-	 */
-	function getPlatform($locale) {
-		return $this->getData('platform', $locale);
-	}
-
-	/**
-	 * Set media platform.
-	 * @param $title string
-	 * @param $locale string
-	 */
-	function setPlatform($platform, $locale) {
-		return $this->setData('platform', $platform, $locale);
+		parent::PKPSocialMedia();
 	}
 
 	/**
@@ -102,10 +30,10 @@ class SocialMedia extends DataObject {
 	 */
 	function replaceCodeVars($publishedMonograph = null) {
 
-		$application =& Application::getApplication();
-		$request =& $application->getRequest();
-		$router =& $request->getRouter();
-		$press =& $request->getPress();
+		$application = Application::getApplication();
+		$request = $application->getRequest();
+		$router = $request->getRouter();
+		$context = $request->getContext();
 
 		$code = $this->getCode();
 
