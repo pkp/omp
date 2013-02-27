@@ -39,7 +39,7 @@ class SocialMedia extends PKPSocialMedia {
 
 		$codeVariables = array(
 				'pressUrl' => $router->url($request, null, 'index'),
-				'pressName' => $press->getLocalizedName(),
+				'pressName' => $context->getLocalizedName(),
 			);
 
 		if (isset($publishedMonograph)) {
