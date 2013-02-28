@@ -114,7 +114,7 @@ class IndexHandler extends Handler {
 		$socialMediaDao =& DAORegistry::getDAO('SocialMediaDAO');
 		$socialMedia =& $socialMediaDao->getEnabledForContextByContextId($press->getId());
 		$blocks = array();
-		while ($media =& $socialMedia->next()) {
+		while ($media = $socialMedia->next()) {
 			$media->replaceCodeVars();
 			$blocks[] = $media->getCode();
 		}
