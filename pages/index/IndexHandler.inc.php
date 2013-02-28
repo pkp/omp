@@ -43,7 +43,7 @@ class IndexHandler extends Handler {
 		if ($user && !$targetPress && Validation::isSiteAdmin()) {
 			// If the user is a site admin and no press exists,
 			// send them to press administration to create one.
-			return $request->redirect(null, 'admin', 'presses');
+			return $request->redirect(null, 'admin', 'contexts');
 		}
 
 		// Public access.
