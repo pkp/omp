@@ -222,7 +222,7 @@ class PressGridHandler extends ContextGridHandler {
 	function _getRedirectEvent(&$request, $newPressPath, $openWizard) {
 		$dispatcher =& $request->getDispatcher();
 
-		$url = $dispatcher->url($request, ROUTE_PAGE, $newPressPath, 'admin', 'presses', null, array('openWizard' => $openWizard));
+		$url = $dispatcher->url($request, ROUTE_PAGE, $newPressPath, 'admin', 'contexts', null, array('openWizard' => $openWizard));
 		return $request->redirectUrlJson($url);
 	}
 
