@@ -187,6 +187,13 @@ class Application extends PKPApplication {
 	static function getContextDAO() {
 		return DAORegistry::getDAO('PressDAO');
 	}
+
+	/**
+	 * Get the submission DAO.
+	 */
+	static function getSubmissionDAO() {
+		return DAORegistry::getDAO('MonographDAO');
+	}
 }
 
 ?>

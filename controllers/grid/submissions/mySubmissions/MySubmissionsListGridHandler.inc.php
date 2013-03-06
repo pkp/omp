@@ -13,8 +13,8 @@
  */
 
 // Import grid base classes.
-import('controllers.grid.submissions.SubmissionsListGridHandler');
-import('controllers.grid.submissions.SubmissionsListGridRow');
+import('lib.pkp.controllers.grid.submissions.SubmissionsListGridHandler');
+import('lib.pkp.controllers.grid.submissions.SubmissionsListGridRow');
 
 // Import 'my submissions' list specific grid classes.
 import('controllers.grid.submissions.mySubmissions.MySubmissionsListGridCellProvider');

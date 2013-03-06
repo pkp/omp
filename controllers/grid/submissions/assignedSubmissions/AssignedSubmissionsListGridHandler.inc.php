@@ -13,8 +13,8 @@
  */
 
 // Import grid base classes.
-import('controllers.grid.submissions.SubmissionsListGridHandler');
-import('controllers.grid.submissions.SubmissionsListGridRow');
+import('lib.pkp.controllers.grid.submissions.SubmissionsListGridHandler');
+import('lib.pkp.controllers.grid.submissions.SubmissionsListGridRow');
 
 // Filter editor
 define('FILTER_EDITOR_ALL', 0);
