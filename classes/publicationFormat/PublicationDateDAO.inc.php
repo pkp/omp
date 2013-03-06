@@ -29,13 +29,13 @@ class PublicationDateDAO extends DAO {
 	 * @param $monographId optional int
 	 * @return PublicationDate
 	 */
-	function &getById($publicationDateId, $monographId = null){
+	function getById($publicationDateId, $monographId = null){
 		$sqlParams = array((int) $publicationDateId);
 		if ($monographId) {
 			$sqlParams[] = (int) $monographId;
 		}
 
-		$result =& $this->retrieve(
+		$result = $this->retrieve(
 			'SELECT p.*
 			FROM	publication_dates p
 				JOIN publication_formats pf ON (p.publication_format_id = pf.publication_format_id)
@@ -46,7 +46,7 @@ class PublicationDateDAO extends DAO {
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
-			$returner =& $this->_fromRow($result->GetRowAssoc(false));
+			$returner = $this->_fromRow($result->GetRowAssoc(false));
 		}
 		$result->Close();
 		return $returner;
@@ -57,14 +57,13 @@ class PublicationDateDAO extends DAO {
 	 * @param $publicationFormatId int
 	 * @return DAOResultFactory containing matching publication dates
 	 */
-	function &getByPublicationFormatId($publicationFormatId) {
-		$result =& $this->retrieveRange(
+	function getByPublicationFormatId($publicationFormatId) {
+		$result = $this->retrieveRange(
 			'SELECT * FROM publication_dates WHERE publication_format_id = ?',
 			(int) $publicationFormatId
 		);
 
-		$returner = new DAOResultFactory($result, $this, '_fromRow');
-		return $returner;
+		return new DAOResultFactory($result, $this, '_fromRow');
 	}
 
 	/**
@@ -81,7 +80,7 @@ class PublicationDateDAO extends DAO {
 	 * @param $callHooks boolean
 	 * @return PublicationDate
 	 */
-	function &_fromRow(&$row, $callHooks = true) {
+	function _fromRow($row, $callHooks = true) {
 		$publicationDate = $this->newDataObject();
 		$publicationDate->setId($row['publication_date_id']);
 		$publicationDate->setRole($row['role']);
@@ -98,7 +97,7 @@ class PublicationDateDAO extends DAO {
 	 * Insert a new publication date.
 	 * @param $publicationDate PublicationDate
 	 */
-	function insertObject(&$publicationDate) {
+	function insertObject($publicationDate) {
 		$this->update(
 			'INSERT INTO publication_dates
 				(publication_format_id, role, date_format, date)
@@ -120,7 +119,7 @@ class PublicationDateDAO extends DAO {
 	 * Update an existing publication date.
 	 * @param $publicationDate PublicationDate
 	 */
-	function updateObject(&$publicationDate) {
+	function updateObject($publicationDate) {
 		$this->update(
 			'UPDATE publication_dates
 				SET role = ?, date_format =?, date = ?

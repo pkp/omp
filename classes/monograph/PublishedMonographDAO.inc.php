@@ -30,7 +30,7 @@ class PublishedMonographDAO extends MonographDAO {
 	 * @param $rangeInfo object optional
 	 * @return DAOResultFactory
 	 */
-	function &getByPressId($pressId, $searchText = null, $rangeInfo = null) {
+	function getByPressId($pressId, $searchText = null, $rangeInfo = null) {
 		$primaryLocale = AppLocale::getPrimaryLocale();
 		$locale = AppLocale::getLocale();
 
@@ -48,7 +48,7 @@ class PublishedMonographDAO extends MonographDAO {
 			$params[] = $params[] = $params[] = "%$searchText%";
 		}
 
-		$result =& $this->retrieveRange(
+		$result = $this->retrieveRange(
 			'SELECT	' . ($searchText !== null?'DISTINCT ':'') . '
 				pm.*,
 				m.*,
@@ -74,8 +74,7 @@ class PublishedMonographDAO extends MonographDAO {
 			$rangeInfo
 		);
 
-		$returner = new DAOResultFactory($result, $this, '_fromRow');
-		return $returner;
+		return new DAOResultFactory($result, $this, '_fromRow');
 	}
 
 	/**
@@ -84,11 +83,11 @@ class PublishedMonographDAO extends MonographDAO {
 	 * @param $rangeInfo object optional
 	 * @return DAOResultFactory
 	 */
-	function &getPressFeatures($pressId, $rangeInfo = null) {
+	function getPressFeatures($pressId, $rangeInfo = null) {
 		$primaryLocale = AppLocale::getPrimaryLocale();
 		$locale = AppLocale::getLocale();
 
-		$result =& $this->retrieveRange(
+		$result = $this->retrieveRange(
 			'SELECT	pm.*,
 				m.*,
 				COALESCE(stl.setting_value, stpl.setting_value) AS series_title,
@@ -114,8 +113,7 @@ class PublishedMonographDAO extends MonographDAO {
 			$rangeInfo
 		);
 
-		$returner = new DAOResultFactory($result, $this, '_fromRow');
-		return $returner;
+		return new DAOResultFactory($result, $this, '_fromRow');
 	}
 
 	/**
@@ -125,7 +123,7 @@ class PublishedMonographDAO extends MonographDAO {
 	 * @param $rangeInfo object optional
 	 * @return DAOResultFactory
 	 */
-	function &getBySeriesId($seriesId, $pressId = null, $rangeInfo = null) {
+	function getBySeriesId($seriesId, $pressId = null, $rangeInfo = null) {
 		$primaryLocale = AppLocale::getPrimaryLocale();
 		$locale = AppLocale::getLocale();
 
@@ -142,7 +140,7 @@ class PublishedMonographDAO extends MonographDAO {
 
 		$params[] = REALLY_BIG_NUMBER; // For feature sorting
 
-		$result =& $this->retrieveRange(
+		$result = $this->retrieveRange(
 			'SELECT	pm.*,
 				m.*,
 				COALESCE(stl.setting_value, stpl.setting_value) AS series_title,
@@ -162,8 +160,7 @@ class PublishedMonographDAO extends MonographDAO {
 			$rangeInfo
 		);
 
-		$returner = new DAOResultFactory($result, $this, '_fromRow');
-		return $returner;
+		return new DAOResultFactory($result, $this, '_fromRow');
 	}
 
 	/**
@@ -173,7 +170,7 @@ class PublishedMonographDAO extends MonographDAO {
 	 * @param $rangeInfo object optional
 	 * @return DAOResultFactory
 	 */
-	function &getByCategoryId($categoryId, $pressId = null, $rangeInfo = null) {
+	function getByCategoryId($categoryId, $pressId = null, $rangeInfo = null) {
 		$primaryLocale = AppLocale::getPrimaryLocale();
 		$locale = AppLocale::getLocale();
 
@@ -189,7 +186,7 @@ class PublishedMonographDAO extends MonographDAO {
 
 		if ($pressId) $params[] = (int) $pressId;
 
-		$result =& $this->retrieveRange(
+		$result = $this->retrieveRange(
 			'SELECT	DISTINCT pm.*,
 				m.*,
 				COALESCE(stl.setting_value, stpl.setting_value) AS series_title,
@@ -213,8 +210,7 @@ class PublishedMonographDAO extends MonographDAO {
 			$rangeInfo
 		);
 
-		$returner = new DAOResultFactory($result, $this, '_fromRow');
-		return $returner;
+		return new DAOResultFactory($result, $this, '_fromRow');
 	}
 
 	/**
@@ -223,7 +219,7 @@ class PublishedMonographDAO extends MonographDAO {
 	 * @param $pressId int
 	 * @return PublishedMonograph object
 	 */
-	function &getById($monographId, $pressId = null, $metadataApprovedOnly = true) {
+	function getById($monographId, $pressId = null, $metadataApprovedOnly = true) {
 		$primaryLocale = AppLocale::getPrimaryLocale();
 		$locale = AppLocale::getLocale();
 		$params = array(
@@ -235,7 +231,7 @@ class PublishedMonographDAO extends MonographDAO {
 		);
 		if ($pressId) $params[] = (int) $pressId;
 
-		$result =& $this->retrieve(
+		$result = $this->retrieve(
 			'SELECT	m.*,
 				pm.*,
 				COALESCE(stl.setting_value, stpl.setting_value) AS series_title,
@@ -259,8 +255,6 @@ class PublishedMonographDAO extends MonographDAO {
 		}
 
 		$result->Close();
-		unset($result);
-
 		return $returner;
 	}
 
@@ -299,7 +293,7 @@ class PublishedMonographDAO extends MonographDAO {
 	 * Inserts a new published monograph into published_monographs table
 	 * @param PublishedMonograph object
 	 */
-	function insertObject(&$publishedMonograph) {
+	function insertObject($publishedMonograph) {
 
 		$this->update(
 			sprintf('INSERT INTO published_monographs

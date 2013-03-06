@@ -44,10 +44,10 @@ class ReviewerSubmissionMetadataHandler extends SubmissionMetadataHandler {
 	/**
 	 * @see classes/controllers/modals/submissionMetadata/SubmissionMetadataHandler::fetch()
 	 */
-	function fetch($args, &$request) {
-		$press =& $request->getPress();
+	function fetch($args, $request) {
+		$press = $request->getPress();
 
-		$reviewAssignment =& $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ASSIGNMENT);
+		$reviewAssignment = $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ASSIGNMENT);
 		$reviewMethod = $reviewAssignment->getReviewMethod();
 
 		if ($reviewMethod == SUBMISSION_REVIEW_METHOD_DOUBLEBLIND) {
@@ -58,7 +58,7 @@ class ReviewerSubmissionMetadataHandler extends SubmissionMetadataHandler {
 
 		$params = array('readOnly' => true, 'anonymous' => $anonymous, 'hideSubmit' => true);
 
-		return parent::fetch($args, $request, $params);
+		return parent::fetch($request, $args, $params);
 	}
 }
 

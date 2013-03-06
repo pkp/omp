@@ -29,7 +29,7 @@ class StageAssignmentDAO extends DAO {
 	 * @return StageAssignment
 	 */
 	function getById($stageAssignmentId) {
-		$result =& $this->retrieve(
+		$result = $this->retrieve(
 			$this->getBaseQueryForAssignmentSelection()
 			. 'WHERE stage_assignment_id = ?',
 			(int) $stageAssignmentId
@@ -92,7 +92,7 @@ class StageAssignmentDAO extends DAO {
 	function editorAssignedToStage($submissionId, $stageId = null) {
 		$params = array((int) $submissionId, ROLE_ID_MANAGER, ROLE_ID_SERIES_EDITOR);
 		if ($stageId) $params[] = (int) $stageId;
-		$result =& $this->retrieve(
+		$result = $this->retrieve(
 			'SELECT	COUNT(*)
 			FROM	stage_assignments sa
 				JOIN user_groups ug ON (sa.user_group_id = ug.user_group_id)
@@ -105,8 +105,6 @@ class StageAssignmentDAO extends DAO {
 		$returner = isset($result->fields[0]) && $result->fields[0] > 0 ? true : false;
 
 		$result->Close();
-		unset($result);
-
 		return $returner;
 	}
 
@@ -120,7 +118,7 @@ class StageAssignmentDAO extends DAO {
 	function build($submissionId, $userGroupId, $userId) {
 
 		// If one exists, fetch and return.
-		$stageAssignment =& $this->getBySubmissionAndStageId($submissionId, null, $userGroupId, $userId);
+		$stageAssignment = $this->getBySubmissionAndStageId($submissionId, null, $userGroupId, $userId);
 		if (!$stageAssignment->wasEmpty()) return $stageAssignment;
 
 		// Otherwise, build one.
@@ -147,7 +145,7 @@ class StageAssignmentDAO extends DAO {
 	 * @param $row array
 	 * @return StageAssignment
 	 */
-	function _fromRow(&$row) {
+	function _fromRow($row) {
 		$stageAssignment = $this->newDataObject();
 
 		$stageAssignment->setId($row['stage_assignment_id']);
@@ -165,7 +163,7 @@ class StageAssignmentDAO extends DAO {
 	 * @param $stageAssignment StageAssignment
 	 * @return bool
 	 */
-	function insertObject(&$stageAssignment) {
+	function insertObject($stageAssignment) {
 		return $this->update(
 			sprintf(
 				'INSERT INTO stage_assignments
@@ -257,7 +255,7 @@ class StageAssignmentDAO extends DAO {
 			$params[] = (int) $roleId;
 		}
 
-		$result =& $this->retrieve(
+		$result = $this->retrieve(
 			$this->getBaseQueryForAssignmentSelection() .
 			(isset($roleId)?' LEFT JOIN user_groups ug ON sa.user_group_id = ug.user_group_id ':'') .
 			'WHERE ' . (implode(' AND ', $conditions)),
@@ -270,7 +268,7 @@ class StageAssignmentDAO extends DAO {
 				if (!$submissionId && !$stageId && !$userGroupId && !$userId) return false;
 				// no matches were found.
 				if ($result->RecordCount() == 0) return false;
-				$returner =& $this->_fromRow($result->GetRowAssoc(false));
+				$returner = $this->_fromRow($result->GetRowAssoc(false));
 				$result->Close();
 		} else {
 			// In any other case, return a list of all assignments

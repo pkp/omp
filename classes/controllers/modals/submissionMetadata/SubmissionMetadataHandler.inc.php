@@ -46,9 +46,9 @@ class SubmissionMetadataHandler extends Handler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function fetch(&$request, $args, $params = null) {
+	function fetch($request, $args, $params = null) {
 		// Identify the submission
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		$monograph = $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		AppLocale::requireComponents(LOCALE_COMPONENT_APP_SUBMISSION);
 
 		// Identify the stage, if we have one.

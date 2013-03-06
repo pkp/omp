@@ -33,7 +33,7 @@ class ChapterAuthorDAO extends DAO {
 	 * @param $monographId int
 	 * @return DAOResultFactory
 	 */
-	function &getAuthors($monographId = null, $chapterId = null) {
+	function getAuthors($monographId = null, $chapterId = null) {
 		$params = array(
 			'affiliation', AppLocale::getPrimaryLocale(),
 			'affiliation', AppLocale::getLocale()
@@ -69,10 +69,8 @@ class ChapterAuthorDAO extends DAO {
 			(  isset($chapterId)?' mca.chapter_id = ?':'' ) .
 			' ORDER BY mca.chapter_id, mca.seq';
 
-		$result =& $this->retrieve($sql, $params);
-
-		$returner = new DAOResultFactory($result, $this, '_returnFromRow', array('id'));
-		return $returner;
+		$result = $this->retrieve($sql, $params);
+		return new DAOResultFactory($result, $this, '_returnFromRow', array('id'));
 	}
 
 	/**
@@ -85,7 +83,7 @@ class ChapterAuthorDAO extends DAO {
 		$params = array((int) $chapterId);
 		if ($monographId) $params[] = (int) $monographId;
 
-		$result =& $this->retrieve(
+		$result = $this->retrieve(
 			'SELECT author_id
 			FROM monograph_chapter_authors
 			WHERE chapter_id = ?
@@ -144,16 +142,24 @@ class ChapterAuthorDAO extends DAO {
 	}
 
 	/**
+	 * Construct and return a new data object.
+	 * @return ChapterAuthor
+	 */
+	function newDataObject() {
+		return new ChapterAuthor();
+	}
+
+	/**
 	 * Internal function to return an Author object from a row.
 	 * @param $row array
 	 * @return Author
 	 */
-	function _returnFromRow(&$row) {
+	function _returnFromRow($row) {
 		// Start with an Author object and copy the common elements
-		$authorDao =& DAORegistry::getDAO('AuthorDAO');
-		$author =& $authorDao->_returnAuthorFromRow($row);
+		$authorDao = DAORegistry::getDAO('AuthorDAO');
+		$author = $authorDao->_returnAuthorFromRow($row);
 
-		$chapterAuthor = new ChapterAuthor();
+		$chapterAuthor = $this->newDataObject();
 		$chapterAuthor->setId($author->getId());
 		$chapterAuthor->setSubmissionId($author->getSubmissionId());
 		$chapterAuthor->setFirstName($author->getFirstName());

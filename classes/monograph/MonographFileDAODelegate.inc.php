@@ -45,7 +45,7 @@ class MonographFileDAODelegate extends SubmissionFileDAODelegate {
 	 * @param $monographFile MonographFile
 	 * @return MonographFile
 	 */
-	function &insertObject(&$monographFile, $sourceFile, $isUpload = false) {
+	function insertObject(&$monographFile, $sourceFile, $isUpload = false) {
 		$fileId = $monographFile->getFileId();
 
 		if (!is_numeric($monographFile->getRevision())) {
@@ -129,7 +129,7 @@ class MonographFileDAODelegate extends SubmissionFileDAODelegate {
 	 * @param $monographFile MonographFile
 	 * @param $previousFile MonographFile
 	 */
-	function updateObject(&$monographFile, &$previousFile) {
+	function updateObject($monographFile, $previousFile) {
 		// Update the file in the database.
 		$this->update(
 			sprintf('UPDATE monograph_files
@@ -203,7 +203,7 @@ class MonographFileDAODelegate extends SubmissionFileDAODelegate {
 	/**
 	 * @see SubmissionFileDAODelegate::deleteObject()
 	 */
-	function deleteObject(&$submissionFile) {
+	function deleteObject($submissionFile) {
 		if (!$this->update(
 			'DELETE FROM monograph_files
 			 WHERE file_id = ? AND revision = ?',
@@ -214,7 +214,7 @@ class MonographFileDAODelegate extends SubmissionFileDAODelegate {
 
 		// if we've removed the last revision of this file, clean up
 		// the settings for this file as well.
-		$result =& $this->retrieve(
+		$result = $this->retrieve(
 			'SELECT * FROM monograph_files WHERE file_id = ?',
 			array((int)$submissionFile->getFileId())
 		);
@@ -243,7 +243,7 @@ class MonographFileDAODelegate extends SubmissionFileDAODelegate {
 	 * @see SubmissionFileDAODelegate::fromRow()
 	 * @return MonographFile
 	 */
-	function &fromRow(&$row) {
+	function fromRow($row) {
 		$monographFile = $this->newDataObject();
 		$monographFile->setFileId((int)$row['monograph_file_id']);
 		$monographFile->setRevision((int)$row['monograph_revision']);
@@ -300,7 +300,7 @@ class MonographFileDAODelegate extends SubmissionFileDAODelegate {
 	 * @param $monographFile MonographFile
 	 * @param $previousFile MonographFile
 	 */
-	function _updateDependentObjects(&$monographFile, &$previousFile) {
+	function _updateDependentObjects($monographFile, $previousFile) {
 		// If the file ids didn't change then we do not have to
 		// do anything.
 		if (
@@ -309,19 +309,18 @@ class MonographFileDAODelegate extends SubmissionFileDAODelegate {
 		) return;
 
 		// Update signoffs that refer to this file.
-		$signoffDao =& DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
-		$signoffFactory =& $signoffDao->getByFileRevision(
+		$signoffDao = DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
+		$signoffFactory = $signoffDao->getByFileRevision(
 			$previousFile->getFileId(), $previousFile->getRevision()
 		);
-		while ($signoff =& $signoffFactory->next()) { /* @var $signoff Signoff */
+		while ($signoff = $signoffFactory->next()) { /* @var $signoff Signoff */
 			$signoff->setFileId($monographFile->getFileId());
 			$signoff->setFileRevision($monographFile->getRevision());
 			$signoffDao->updateObject($signoff);
-			unset($signoff);
 		}
 
 		// Update file views that refer to this file.
-		$viewsDao =& DAORegistry::getDAO('ViewsDAO'); /* @var $viewsDao ViewsDAO */
+		$viewsDao = DAORegistry::getDAO('ViewsDAO'); /* @var $viewsDao ViewsDAO */
 		$viewsDao->moveViews(
 			ASSOC_TYPE_MONOGRAPH_FILE,
 			$previousFile->getFileIdAndRevision(), $monographFile->getFileIdAndRevision()
@@ -332,19 +331,18 @@ class MonographFileDAODelegate extends SubmissionFileDAODelegate {
 	 * Delete all objects that depend on the given file.
 	 * @param $monographFile MonographFile
 	 */
-	function _deleteDependentObjects(&$monographFile) {
+	function _deleteDependentObjects($monographFile) {
 		// Delete signoffs that refer to this file.
-		$signoffDao =& DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
-		$signoffFactory =& $signoffDao->getByFileRevision(
+		$signoffDao = DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
+		$signoffFactory = $signoffDao->getByFileRevision(
 			$monographFile->getFileId(), $monographFile->getRevision()
 		);
-		while ($signoff =& $signoffFactory->next()) { /* @var $signoff Signoff */
+		while ($signoff = $signoffFactory->next()) { /* @var $signoff Signoff */
 			$signoffDao->deleteObject($signoff);
-			unset($signoff);
 		}
 
 		// Delete file views that refer to this file.
-		$viewsDao =& DAORegistry::getDAO('ViewsDAO'); /* @var $viewsDao ViewsDAO */
+		$viewsDao = DAORegistry::getDAO('ViewsDAO'); /* @var $viewsDao ViewsDAO */
 		$viewsDao->deleteViews(
 			ASSOC_TYPE_MONOGRAPH_FILE, $monographFile->getFileIdAndRevision()
 		);

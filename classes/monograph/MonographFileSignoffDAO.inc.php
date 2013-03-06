@@ -31,9 +31,8 @@ class MonographFileSignoffDAO extends SignoffDAO {
 	/**
 	 * @see SignoffDAO::getById
 	 */
-	function &getById($signoffId) {
-		$returner =& parent::getById($signoffId, ASSOC_TYPE_MONOGRAPH_FILE);
-		return $returner;
+	function getById($signoffId) {
+		return parent::getById($signoffId, ASSOC_TYPE_MONOGRAPH_FILE);
 	}
 
 	/**
@@ -47,15 +46,14 @@ class MonographFileSignoffDAO extends SignoffDAO {
 	 * @param $fileRevision int
 	 * @return Signoff
 	 */
-	function &build($symbolic, $monographFileId, $userId = null,
+	function build($symbolic, $monographFileId, $userId = null,
 			$userGroupId = null, $fileId = null, $fileRevision = null) {
-		$returner =& parent::build(
+		return parent::build(
 			$symbolic,
 			ASSOC_TYPE_MONOGRAPH_FILE, $monographFileId,
 			$userId, $userGroupId,
 			$fileId, $fileRevision
 		);
-		return $returner;
 	}
 
 	/**
@@ -91,15 +89,14 @@ class MonographFileSignoffDAO extends SignoffDAO {
 	 * @param $fileRevision int
 	 * @return Signoff
 	 */
-	function &getBySymbolic($symbolic, $monographFileId, $userId = null,
+	function getBySymbolic($symbolic, $monographFileId, $userId = null,
 			$userGroupId = null, $fileId = null, $fileRevision = null) {
-		$returner = parent::getBySymbolic(
+		return parent::getBySymbolic(
 			$symbolic,
 			ASSOC_TYPE_MONOGRAPH_FILE, $monographFileId,
 			$userId, $userGroupId,
 			$fileId, $fileRevision
 		);
-		return $returner;
 	}
 
 	/**
@@ -146,10 +143,8 @@ class MonographFileSignoffDAO extends SignoffDAO {
 			$sql .= ' AND date_completed IS NULL';
 		}
 
-		$result =& $this->retrieve($sql, $params);
-
-		$returner = new DAOResultFactory($result, $this, '_fromRow', array('id'));
-		return $returner;
+		$result = $this->retrieve($sql, $params);
+		return new DAOResultFactory($result, $this, '_fromRow', array('id'));
 	}
 }
 

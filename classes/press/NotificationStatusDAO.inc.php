@@ -21,12 +21,12 @@ class NotificationStatusDAO extends DAO {
 		parent::DAO();
 	}
 
-	function &getPressNotifications($userId) {
+	function getPressNotifications($userId) {
 		$returner = array();
 
-		$result =& $this->retrieve(
+		$result = $this->retrieve(
 			'SELECT p.press_id AS press_id, n.press_id AS notification FROM presses p LEFT JOIN notification_status n ON p.press_id = n.press_id AND n.user_id = ? ORDER BY p.seq',
-			$userId
+			(int) $userId
 		);
 
 		while (!$result->EOF) {
@@ -36,8 +36,6 @@ class NotificationStatusDAO extends DAO {
 		}
 
 		$result->Close();
-		unset($result);
-
 		return $returner;
 	}
 
@@ -80,16 +78,15 @@ class NotificationStatusDAO extends DAO {
 	 * @param $pressId int
 	 * @return DAOResultFactory matching Users
 	 */
-	function &getNotifiableUsersByPressId($pressId) {
-		$userDao =& DAORegistry::getDAO('UserDAO');
+	function getNotifiableUsersByPressId($pressId) {
+		$userDao = DAORegistry::getDAO('UserDAO');
 
-		$result =& $this->retrieve(
+		$result = $this->retrieve(
 			'SELECT u.* FROM users u, notification_status n WHERE u.user_id = n.user_id AND n.press_id = ?',
-			$pressId
+			(int) $pressId
 		);
 
-		$returner = new DAOResultFactory($result, $userDao, '_returnUserFromRow');
-		return $returner;
+		return new DAOResultFactory($result, $userDao, '_returnUserFromRow');
 	}
 
 	/**
@@ -98,18 +95,15 @@ class NotificationStatusDAO extends DAO {
 	 * @return int
 	 */
 	function getNotifiableUsersCount($pressId) {
-		$userDao =& DAORegistry::getDAO('UserDAO');
+		$userDao = DAORegistry::getDAO('UserDAO');
 
-		$result =& $this->retrieve(
+		$result = $this->retrieve(
 			'SELECT count(*) FROM notification_status n WHERE n.press_id = ?',
-			$pressId
+			(int) $pressId
 		);
 
 		$returner = $result->fields[0];
-
 		$result->Close();
-		unset($result);
-
 		return $returner;
 	}
 }

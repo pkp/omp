@@ -30,20 +30,18 @@ class LibraryFileDAO extends DAO {
 	 * @param $libraryId int optional
 	 * @return LibraryFile
 	 */
-	function &getById($fileId) {
-		$result =& $this->retrieve(
+	function getById($fileId) {
+		$result = $this->retrieve(
 			'SELECT file_id, press_id, file_name, original_file_name, file_type, file_size, type, date_uploaded, monograph_id FROM library_files WHERE file_id = ?',
 			array((int) $fileId)
 		);
 
 		$returner = null;
 		if (isset($result) && $result->RecordCount() != 0) {
-			$returner =& $this->_fromRow($result->GetRowAssoc(false));
+			$returner = $this->_fromRow($result->GetRowAssoc(false));
 		}
 
 		$result->Close();
-		unset($result);
-
 		return $returner;
 	}
 
@@ -53,18 +51,17 @@ class LibraryFileDAO extends DAO {
 	 * @param $type (optional)
 	 * @return array LibraryFiles
 	 */
-	function &getByPressId($pressId, $type = null) {
+	function getByPressId($pressId, $type = null) {
 		$params = array((int) $pressId);
 		if (isset($type)) $params[] = (int) $type;
 
-		$result =& $this->retrieve(
+		$result = $this->retrieve(
 			'SELECT	*
 			FROM	library_files
 			WHERE	press_id = ? AND monograph_id = 0 ' . (isset($type)?' AND type = ?' : ''),
 			$params
 		);
-		$returner = new DAOResultFactory($result, $this, '_fromRow', array('id'));
-		return $returner;
+		return new DAOResultFactory($result, $this, '_fromRow', array('id'));
 	}
 
 	/**
@@ -74,19 +71,18 @@ class LibraryFileDAO extends DAO {
 	 * @param $pressId (optional) int
 	 * @return array LibraryFiles
 	 */
-	function &getByMonographId($monographId, $type = null, $pressId = null) {
+	function getByMonographId($monographId, $type = null, $pressId = null) {
 		$params = array((int) $monographId);
 		if (isset($type)) $params[] = (int) $type;
 		if (isset($pressId)) $params[] = (int) $pressId;
 
-		$result =& $this->retrieve(
-				'SELECT	*
-				FROM	library_files
-				WHERE	monograph_id = ? ' . (isset($pressId)?' AND press_id = ?' : '') . (isset($type)?' AND type = ?' : ''),
-				$params
+		$result = $this->retrieve(
+			'SELECT	*
+			FROM	library_files
+			WHERE	monograph_id = ? ' . (isset($pressId)?' AND press_id = ?' : '') . (isset($type)?' AND type = ?' : ''),
+			$params
 		);
-		$returner = new DAOResultFactory($result, $this, '_fromRow', array('id'));
-		return $returner;
+		return new DAOResultFactory($result, $this, '_fromRow', array('id'));
 	}
 
 	/**
@@ -123,7 +119,7 @@ class LibraryFileDAO extends DAO {
 	 * @param $row array
 	 * @return LibraryFile
 	 */
-	function &_fromRow(&$row) {
+	function _fromRow($row) {
 		$libraryFile = $this->newDataObject();
 
 		$libraryFile->setId($row['file_id']);
@@ -148,7 +144,7 @@ class LibraryFileDAO extends DAO {
 	 * @param $libraryFile LibraryFile
 	 * @return int
 	 */
-	function insertObject(&$libraryFile) {
+	function insertObject($libraryFile) {
 		$params = array(
 			(int) $libraryFile->getPressId(),
 			$libraryFile->getFileName(),
@@ -167,7 +163,7 @@ class LibraryFileDAO extends DAO {
 				VALUES
 				(?, ?, ?, ?, ?, ?, ?, %s, %s' . ($libraryFile->getId()?', ?':'') . ')',
 				$this->datetimeToDB($libraryFile->getDateUploaded()),
-					$this->datetimeToDB($libraryFile->getDateModified())
+				$this->datetimeToDB($libraryFile->getDateModified())
 			),
 			$params
 		);
@@ -183,7 +179,7 @@ class LibraryFileDAO extends DAO {
 	 * @param $monograph MonographFile
 	 * @return int
 	 */
-	function updateObject(&$libraryFile) {
+	function updateObject($libraryFile) {
 		$this->update(
 			sprintf('UPDATE	library_files
 				SET	press_id = ?,
@@ -241,8 +237,6 @@ class LibraryFileDAO extends DAO {
 
 		$returner = (isset($result->fields[0]) && $result->fields[0] > 0) ? true : false;
 		$result->Close();
-		unset($result);
-
 		return $returner;
 	}
 

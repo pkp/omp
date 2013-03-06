@@ -29,13 +29,13 @@ class IdentificationCodeDAO extends DAO {
 	 * @param $monographId optional int
 	 * @return IdentificationCode
 	 */
-	function &getById($identificationCodeId, $monographId = null){
+	function getById($identificationCodeId, $monographId = null){
 		$sqlParams = array((int) $identificationCodeId);
 		if ($monographId) {
 			$sqlParams[] = (int) $monographId;
 		}
 
-		$result =& $this->retrieve(
+		$result = $this->retrieve(
 			'SELECT	i.*
 			FROM	identification_codes i
 				JOIN publication_formats pf ON (i.publication_format_id = pf.publication_format_id)
@@ -46,7 +46,7 @@ class IdentificationCodeDAO extends DAO {
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
-			$returner =& $this->_fromRow($result->GetRowAssoc(false));
+			$returner = $this->_fromRow($result->GetRowAssoc(false));
 		}
 		$result->Close();
 		return $returner;
@@ -57,12 +57,11 @@ class IdentificationCodeDAO extends DAO {
 	 * @param $publicationFormatId int
 	 * @return DAOResultFactory containing matching identification codes
 	 */
-	function &getByPublicationFormatId($publicationFormatId) {
-		$result =& $this->retrieveRange(
+	function getByPublicationFormatId($publicationFormatId) {
+		$result = $this->retrieveRange(
 			'SELECT * FROM identification_codes WHERE publication_format_id = ?', (int) $publicationFormatId);
 
-		$returner = new DAOResultFactory($result, $this, '_fromRow');
-		return $returner;
+		return new DAOResultFactory($result, $this, '_fromRow');
 	}
 
 	/**
@@ -79,7 +78,7 @@ class IdentificationCodeDAO extends DAO {
 	 * @param $callHooks boolean
 	 * @return IdentificationCode
 	 */
-	function &_fromRow(&$row, $callHooks = true) {
+	function _fromRow($row, $callHooks = true) {
 		$identificationCode = $this->newDataObject();
 		$identificationCode->setId($row['identification_code_id']);
 		$identificationCode->setCode($row['code']);
@@ -95,7 +94,7 @@ class IdentificationCodeDAO extends DAO {
 	 * Insert a new identification code.
 	 * @param $identificationCode IdentificationCode
 	 */
-	function insertObject(&$identificationCode) {
+	function insertObject($identificationCode) {
 		$this->update(
 			'INSERT INTO identification_codes
 				(publication_format_id, code, value)
@@ -116,7 +115,7 @@ class IdentificationCodeDAO extends DAO {
 	 * Update an existing identification code.
 	 * @param $identificationCode IdentificationCode
 	 */
-	function updateObject(&$identificationCode) {
+	function updateObject($identificationCode) {
 		$this->update(
 			'UPDATE identification_codes
 				SET code = ?, value = ?

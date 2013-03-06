@@ -28,7 +28,7 @@ class OMPCompletedPaymentDAO extends DAO {
 		$params = array((int) $completedPaymentId);
 		if ($pressId) $params[] = (int) $pressId;
 
-		$result =& $this->retrieve(
+		$result = $this->retrieve(
 			'SELECT * FROM completed_payments WHERE completed_payment_id = ?' . ($pressId?' AND press_id = ?':''),
 			$params
 		);
@@ -82,7 +82,7 @@ class OMPCompletedPaymentDAO extends DAO {
 	 * @param string $fileIdAndRevision
 	 */
 	function hasPaidPurchaseFile ($userId, $fileIdAndRevision) {
-		$result =& $this->retrieve(
+		$result = $this->retrieve(
 			'SELECT count(*) FROM completed_payments WHERE payment_type = ? AND user_id = ? AND assoc_id = ?',
 			array(
 				PAYMENT_TYPE_PURCHASE_FILE,
@@ -106,7 +106,7 @@ class OMPCompletedPaymentDAO extends DAO {
 	 * @return object DAOResultFactory containing matching payments
 	 */
 	function &getPaymentsByPressId($pressId, $rangeInfo = null) {
-		$result =& $this->retrieveRange(
+		$result = $this->retrieveRange(
 			'SELECT * FROM completed_payments WHERE press_id = ? ORDER BY timestamp DESC',
 			(int) $pressId,
 			$rangeInfo

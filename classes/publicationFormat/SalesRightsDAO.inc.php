@@ -29,13 +29,13 @@ class SalesRightsDAO extends DAO {
 	 * @param $monographId optional int
 	 * @return SalesRights
 	 */
-	function &getById($salesRightsId, $monographId = null){
+	function getById($salesRightsId, $monographId = null){
 		$sqlParams = array((int) $salesRightsId);
 		if ($monographId) {
 			$sqlParams[] = (int) $monographId;
 		}
 
-		$result =& $this->retrieve(
+		$result = $this->retrieve(
 			'SELECT	s.*
 			FROM	sales_rights s
 				JOIN publication_formats pf ON (s.publication_format_id = pf.publication_format_id)
@@ -46,7 +46,7 @@ class SalesRightsDAO extends DAO {
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
-			$returner =& $this->_fromRow($result->GetRowAssoc(false));
+			$returner = $this->_fromRow($result->GetRowAssoc(false));
 		}
 		$result->Close();
 		return $returner;
@@ -57,12 +57,11 @@ class SalesRightsDAO extends DAO {
 	 * @param $publicationFormatId int
 	 * @return DAOResultFactory containing matching sales rights.
 	 */
-	function &getByPublicationFormatId($publicationFormatId) {
-		$result =& $this->retrieveRange(
+	function getByPublicationFormatId($publicationFormatId) {
+		$result = $this->retrieveRange(
 			'SELECT * FROM sales_rights WHERE publication_format_id = ?', (int) $publicationFormatId);
 
-		$returner = new DAOResultFactory($result, $this, '_fromRow');
-		return $returner;
+		return new DAOResultFactory($result, $this, '_fromRow');
 	}
 
 	/**
@@ -70,15 +69,15 @@ class SalesRightsDAO extends DAO {
 	 * @param $publicationFormatId int
 	 * @return SalesRights
 	 */
-	function &getROWByPublicationFormatId($publicationFormatId) {
-		$result =& $this->retrieve(
+	function getROWByPublicationFormatId($publicationFormatId) {
+		$result = $this->retrieve(
 			'SELECT * FROM sales_rights WHERE row_setting = ? AND publication_format_id = ?',
 			array(1, (int) $publicationFormatId)
 		);
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
-			$returner =& $this->_fromRow($result->GetRowAssoc(false));
+			$returner = $this->_fromRow($result->GetRowAssoc(false));
 		}
 		$result->Close();
 		return $returner;
@@ -98,7 +97,7 @@ class SalesRightsDAO extends DAO {
 	 * @param $callHooks boolean
 	 * @return SalesRights
 	 */
-	function &_fromRow(&$row, $callHooks = true) {
+	function _fromRow($row, $callHooks = true) {
 		$salesRights = $this->newDataObject();
 		$salesRights->setId($row['sales_rights_id']);
 		$salesRights->setType($row['type']);
@@ -119,7 +118,7 @@ class SalesRightsDAO extends DAO {
 	 * Insert a new sales rights entry.
 	 * @param $salesRights SalesRights
 	 */
-	function insertObject(&$salesRights) {
+	function insertObject($salesRights) {
 		$this->update(
 			'INSERT INTO sales_rights
 				(publication_format_id, type, row_setting, countries_included, countries_excluded, regions_included, regions_excluded)
@@ -144,7 +143,7 @@ class SalesRightsDAO extends DAO {
 	 * Update an existing sales rights entry.
 	 * @param $salesRights SalesRights
 	 */
-	function updateObject(&$salesRights) {
+	function updateObject($salesRights) {
 		$this->update(
 			'UPDATE sales_rights
 				SET type = ?,

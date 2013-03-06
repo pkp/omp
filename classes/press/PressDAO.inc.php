@@ -93,13 +93,12 @@ class PressDAO extends ContextDAO {
 	 * Retrieve all enabled presses
 	 * @return array Presses ordered by sequence
 	 */
-	function &getEnabledPresses() {
-		$result =& $this->retrieve(
+	function getEnabledPresses() {
+		$result = $this->retrieve(
 			'SELECT * FROM presses WHERE enabled=1 ORDER BY seq'
 		);
 
-		$resultFactory = new DAOResultFactory($result, $this, '_fromRow');
-		return $resultFactory;
+		return new DAOResultFactory($result, $this, '_fromRow');
 	}
 
 	/**
@@ -107,31 +106,31 @@ class PressDAO extends ContextDAO {
 	 * @param $pressId int
 	 */
 	function deleteById($pressId) {
-		$pressSettingsDao =& DAORegistry::getDAO('PressSettingsDAO');
+		$pressSettingsDao = DAORegistry::getDAO('PressSettingsDAO');
 		$pressSettingsDao->deleteById($pressId);
 
-		$seriesDao =& DAORegistry::getDAO('SeriesDAO');
+		$seriesDao = DAORegistry::getDAO('SeriesDAO');
 		$seriesDao->deleteByPressId($pressId);
 
-		$emailTemplateDao =& DAORegistry::getDAO('EmailTemplateDAO');
+		$emailTemplateDao = DAORegistry::getDAO('EmailTemplateDAO');
 		$emailTemplateDao->deleteEmailTemplatesByPress($pressId);
 
-		$monographDao =& DAORegistry::getDAO('MonographDAO');
+		$monographDao = DAORegistry::getDAO('MonographDAO');
 		$monographDao->deleteByPressId($pressId);
 
-		$pluginSettingsDao =& DAORegistry::getDAO('PluginSettingsDAO');
+		$pluginSettingsDao = DAORegistry::getDAO('PluginSettingsDAO');
 		$pluginSettingsDao->deleteByPressId($pressId);
 
-		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
+		$reviewFormDao = DAORegistry::getDAO('ReviewFormDAO');
 		$reviewFormDao->deleteByAssoc(ASSOC_TYPE_PRESS, $pressId);
 
-		$genreDao =& DAORegistry::getDAO('GenreDAO');
+		$genreDao = DAORegistry::getDAO('GenreDAO');
 		$genreDao->deleteByPressId($pressId);
 
-		$featureDao =& DAORegistry::getDAO('FeatureDAO');
+		$featureDao = DAORegistry::getDAO('FeatureDAO');
 		$featureDao->deleteByAssoc(ASSOC_TYPE_PRESS, $pressId);
 
-		$newReleaseDao =& DAORegistry::getDAO('NewReleaseDAO');
+		$newReleaseDao = DAORegistry::getDAO('NewReleaseDAO');
 		$newReleaseDao->deleteByAssoc(ASSOC_TYPE_PRESS, $pressId);
 
 		$this->update('DELETE FROM press_defaults WHERE press_id = ?', (int) $pressId);
@@ -150,7 +149,7 @@ class PressDAO extends ContextDAO {
 		// Keep this as a loop in case we add DOI support to other types later on.
 		$pubObjectDaos = array('PublicationFormatDAO');
 		foreach($pubObjectDaos as $daoName) {
-			$dao =& DAORegistry::getDAO($daoName);
+			$dao = DAORegistry::getDAO($daoName);
 			$dao->deleteAllPubIds($pressId, $pubIdType);
 			unset($dao);
 		}

@@ -32,23 +32,22 @@ class ChapterDAO extends DAO {
 	 * @param $monographId int optional
 	 * @return Chapter
 	 */
-	function &getChapter($chapterId, $monographId = null) {
+	function getChapter($chapterId, $monographId = null) {
 		$params = array((int) $chapterId);
 		if ($monographId !== null) {
 			$params[] = (int) $monographId;
 		}
 
-		$result =& $this->retrieve(
+		$result = $this->retrieve(
 			'SELECT * FROM monograph_chapters WHERE chapter_id = ?' . ($monographId !== null?' AND monograph_id = ? ':''),
 			$params
 		);
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
-			$returner =& $this->_returnFromRow($result->GetRowAssoc(false));
+			$returner = $this->_returnFromRow($result->GetRowAssoc(false));
 		}
 		$result->Close();
-		unset($result);
 		return $returner;
 	}
 
@@ -58,15 +57,14 @@ class ChapterDAO extends DAO {
 	 * @param $rangeInfo object RangeInfo object (optional)
 	 * @return DAOResultFactory
 	 */
-	function &getChapters($monographId, $rangeInfo = null) {
-		$result =& $this->retrieveRange(
+	function getChapters($monographId, $rangeInfo = null) {
+		$result = $this->retrieveRange(
 			'SELECT chapter_id, monograph_id, chapter_seq FROM monograph_chapters WHERE monograph_id = ? ORDER BY chapter_seq',
 			(int) $monographId,
 			$rangeInfo
 		);
 
-		$returner = new DAOResultFactory($result, $this, '_returnFromRow', array('id'));
-		return $returner;
+		return new DAOResultFactory($result, $this, '_returnFromRow', array('id'));
 	}
 
 	/**
@@ -90,7 +88,7 @@ class ChapterDAO extends DAO {
 	 * @param $row array
 	 * @return Chapter
 	 */
-	function &_returnFromRow(&$row) {
+	function _returnFromRow($row) {
 		$chapter = $this->newDataObject();
 		$chapter->setId($row['chapter_id']);
 		$chapter->setMonographId($row['monograph_id']);
@@ -116,7 +114,7 @@ class ChapterDAO extends DAO {
 	 * Insert a new board chapter.
 	 * @param $chapter Chapter
 	 */
-	function insertChapter(&$chapter) {
+	function insertChapter($chapter) {
 		$this->update(
 			'INSERT INTO monograph_chapters
 				(monograph_id, chapter_seq)
@@ -137,7 +135,7 @@ class ChapterDAO extends DAO {
 	 * Update an existing board chapter.
 	 * @param $chapter Chapter
 	 */
-	function updateObject(&$chapter) {
+	function updateObject($chapter) {
 		$returner = $this->update(
 			'UPDATE monograph_chapters
 				SET	monograph_id = ?,
@@ -158,7 +156,7 @@ class ChapterDAO extends DAO {
 	 * Delete a board chapter, including membership info
 	 * @param $chapter Chapter
 	 */
-	function deleteObject(&$chapter) {
+	function deleteObject($chapter) {
 		return $this->deleteById($chapter->getId());
 	}
 
@@ -179,10 +177,9 @@ class ChapterDAO extends DAO {
 	 * @param $monographId int
 	 */
 	function deleteByMonographId($monographId) {
-		$chapters =& $this->getChapters($monographId);
-		while ($chapter =& $chapters->next()) {
+		$chapters = $this->getChapters($monographId);
+		while ($chapter = $chapters->next()) {
 			$this->deleteObject($chapter);
-			unset($chapter);
 		}
 	}
 
@@ -191,7 +188,7 @@ class ChapterDAO extends DAO {
 	 * @param $monographId int
 	 */
 	function resequenceChapters($monographId = null) {
-		$result =& $this->retrieve(
+		$result = $this->retrieve(
 			'SELECT chapter_id FROM monograph_chapters' .
 			($monographId !== null?' WHERE monograph_id = ?':'') .
 			' ORDER BY seq',
@@ -212,7 +209,6 @@ class ChapterDAO extends DAO {
 		}
 
 		$result->Close();
-		unset($result);
 	}
 
 	/**

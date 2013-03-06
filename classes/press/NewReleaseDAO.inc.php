@@ -29,7 +29,7 @@ class NewReleaseDAO extends DAO {
 	 */
 	function getMonographIdsByAssoc($assocType, $assocId) {
 		$returner = array();
-		$result =& $this->retrieve(
+		$result = $this->retrieve(
 			'SELECT monograph_id FROM new_releases WHERE assoc_type = ? AND assoc_id = ?',
 			array((int) $assocType, (int) $assocId)
 		);
@@ -41,8 +41,6 @@ class NewReleaseDAO extends DAO {
 		}
 
 		$result->Close();
-		unset($result);
-
 		return $returner;
 	}
 
@@ -54,22 +52,20 @@ class NewReleaseDAO extends DAO {
 	 */
 	function getMonographsByAssoc($assocType, $assocId) {
 		$returner = array();
-		$result =& $this->retrieve(
-				'SELECT n.monograph_id FROM new_releases n, published_monographs pm
-				WHERE n.monograph_id = pm.monograph_id AND assoc_type = ? AND assoc_id = ? ORDER BY pm.date_published DESC',
-				array((int) $assocType, (int) $assocId)
+		$result = $this->retrieve(
+			'SELECT n.monograph_id FROM new_releases n, published_monographs pm
+			WHERE n.monograph_id = pm.monograph_id AND assoc_type = ? AND assoc_id = ? ORDER BY pm.date_published DESC',
+			array((int) $assocType, (int) $assocId)
 		);
 
-		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
+		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
 		while (!$result->EOF) {
 			list($monographId) = $result->fields;
-			$returner[] =& $publishedMonographDao->getById($monographId);
+			$returner[] = $publishedMonographDao->getById($monographId);
 			$result->MoveNext();
 		}
 
 		$result->Close();
-		unset($result);
-
 		return $returner;
 	}
 

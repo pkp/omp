@@ -29,7 +29,7 @@ class FeatureDAO extends DAO {
 	 */
 	function getMonographIdsByAssoc($assocType, $assocId) {
 		$returner = array();
-		$result =& $this->retrieve(
+		$result = $this->retrieve(
 			'SELECT monograph_id, seq FROM features WHERE assoc_type = ? AND assoc_id = ? ORDER BY seq',
 			array((int) $assocType, (int) $assocId)
 		);
@@ -41,8 +41,6 @@ class FeatureDAO extends DAO {
 		}
 
 		$result->Close();
-		unset($result);
-
 		return $returner;
 	}
 
@@ -131,7 +129,7 @@ class FeatureDAO extends DAO {
 	 */
 	function resequenceByAssoc($assocType, $assocId) {
 		$returner = array();
-		$result =& $this->retrieve(
+		$result = $this->retrieve(
 			'SELECT monograph_id FROM features WHERE assoc_type = ? AND assoc_id = ? ORDER BY seq',
 			array((int) $assocType, (int) $assocId)
 		);
@@ -153,8 +151,6 @@ class FeatureDAO extends DAO {
 		}
 
 		$result->Close();
-		unset($result);
-
 		return $returner;
 	}
 }

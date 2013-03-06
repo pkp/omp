@@ -36,16 +36,16 @@ class GenreDAO extends DefaultSettingDAO {
 	 * @param $genreId int
 	 * @return Genre
 	 */
-	function &getById($genreId, $pressId = null){
+	function getById($genreId, $pressId = null){
 		$sqlParams = array((int)$genreId);
 		if ($pressId) {
 			$sqlParams[] = (int)$pressId;
 		}
 
-		$result =& $this->retrieve('SELECT * FROM genres WHERE genre_id = ?'. ($pressId ? ' AND press_id = ?' : ''), $sqlParams);
+		$result = $this->retrieve('SELECT * FROM genres WHERE genre_id = ?'. ($pressId ? ' AND press_id = ?' : ''), $sqlParams);
 		$returner = null;
 		if ($result->RecordCount() != 0) {
-			$returner =& $this->_fromRow($result->GetRowAssoc(false));
+			$returner = $this->_fromRow($result->GetRowAssoc(false));
 		}
 		$result->Close();
 		return $returner;
@@ -58,13 +58,12 @@ class GenreDAO extends DefaultSettingDAO {
 	 * @param $rangeInfo object optional
 	 * @return DAOResultFactory containing matching genres
 	 */
-	function &getEnabledByPressId($pressId, $rangeInfo = null) {
-		$result =& $this->retrieveRange(
-			'SELECT * FROM genres WHERE enabled = ? AND press_id = ?', array(1, $pressId), $rangeInfo
+	function getEnabledByPressId($pressId, $rangeInfo = null) {
+		$result = $this->retrieveRange(
+			'SELECT * FROM genres WHERE enabled = ? AND press_id = ?', array(1, (int) $pressId), $rangeInfo
 		);
 
-		$returner = new DAOResultFactory($result, $this, '_fromRow', array('id'));
-		return $returner;
+		return new DAOResultFactory($result, $this, '_fromRow', array('id'));
 	}
 
 	/**
@@ -79,7 +78,7 @@ class GenreDAO extends DefaultSettingDAO {
 	 * Update the settings for this object
 	 * @param $genre object
 	 */
-	function updateLocaleFields(&$genre) {
+	function updateLocaleFields($genre) {
 		$this->updateDataObjectSettings('genre_settings', $genre, array(
 			'genre_id' => $genre->getId()
 		));
@@ -98,7 +97,7 @@ class GenreDAO extends DefaultSettingDAO {
 	 * @param $row array
 	 * @return Genre
 	 */
-	function &_fromRow(&$row) {
+	function _fromRow($row) {
 		$genre = $this->newDataObject();
 		$genre->setId($row['genre_id']);
 		$genre->setPressId($row['press_id']);
@@ -116,7 +115,7 @@ class GenreDAO extends DefaultSettingDAO {
 	 * Insert a new genre.
 	 * @param $genre Genre
 	 */
-	function insertObject(&$genre) {
+	function insertObject($genre) {
 		$this->update(
 			'INSERT INTO genres
 				(sortable, press_id, category)
@@ -140,7 +139,7 @@ class GenreDAO extends DefaultSettingDAO {
 	 * Update an existing genre.
 	 * @param $genre Genre
 	 */
-	function updateObject(&$genre) {
+	function updateObject($genre) {
 		$this->updateLocaleFields($genre);
 	}
 
@@ -243,7 +242,7 @@ class GenreDAO extends DefaultSettingDAO {
 	 * @param $locale string
 	 * @return array
 	 */
-	function &getSettingAttributes($node = null, $locale = null) {
+	function getSettingAttributes($node = null, $locale = null) {
 
 		if ($node == null) {
 			$settings = array('name', 'designation');

@@ -33,13 +33,12 @@ class MonographSearchDAO extends DAO {
 	function insertKeyword($keyword) {
 		static $monographSearchKeywordIds = array();
 		if (isset($monographSearchKeywordIds[$keyword])) return $monographSearchKeywordIds[$keyword];
-		$result =& $this->retrieve(
+		$result = $this->retrieve(
 			'SELECT keyword_id FROM monograph_search_keyword_list WHERE keyword_text = ?',
 			$keyword
 		);
 		if($result->RecordCount() == 0) {
 			$result->Close();
-			unset($result);
 			if ($this->update(
 				'INSERT INTO monograph_search_keyword_list (keyword_text) VALUES (?)',
 				$keyword,
@@ -53,7 +52,6 @@ class MonographSearchDAO extends DAO {
 		} else {
 			$keywordId = $result->fields[0];
 			$result->Close();
-			unset($result);
 		}
 
 		$monographSearchKeywordIds[$keyword] = $keywordId;
@@ -67,12 +65,11 @@ class MonographSearchDAO extends DAO {
 	 * @param $keywordId int
 	 * @return array of results (associative arrays)
 	 */
-	function &getPhraseResults(&$press, $phrase, $publishedFrom = null, $publishedTo = null, $type = null, $limit = 500, $cacheHours = 24) {
+	function getPhraseResults($press, $phrase, $publishedFrom = null, $publishedTo = null, $type = null, $limit = 500, $cacheHours = 24) {
 		import('lib.pkp.classes.db.DBRowIterator');
 		if (empty($phrase)) {
 			$results = false;
-			$returner = new DBRowIterator($results);
-			return $returner;
+			return new DBRowIterator($results);
 		}
 
 		$sqlFrom = '';
@@ -101,7 +98,7 @@ class MonographSearchDAO extends DAO {
 			$params[] = $press->getId();
 		}
 
-		$result =& $this->retrieveCached(
+		$result = $this->retrieveCached(
 			'SELECT
 				o.monograph_id,
 				COUNT(*) AS count
@@ -118,8 +115,7 @@ class MonographSearchDAO extends DAO {
 			3600 * $cacheHours // Cache for 24 hours
 		);
 
-		$returner = new DBRowIterator($result);
-		return $returner;
+		return new DBRowIterator($result);
 	}
 
 	/**
@@ -142,7 +138,7 @@ class MonographSearchDAO extends DAO {
 			$params[] = $assocId;
 		}
 
-		$result =& $this->retrieve($sql, $params);
+		$result = $this->retrieve($sql, $params);
 		while (!$result->EOF) {
 			$objectId = $result->fields[0];
 			$this->update('DELETE FROM monograph_search_object_keywords WHERE object_id = ?', $objectId);
@@ -150,7 +146,6 @@ class MonographSearchDAO extends DAO {
 			$result->MoveNext();
 		}
 		$result->Close();
-		unset($result);
 	}
 
 	/**
@@ -161,7 +156,7 @@ class MonographSearchDAO extends DAO {
 	 * @return int the object ID
 	 */
 	function insertObject($monographId, $type, $assocId, $keepExisting = false) {
-		$result =& $this->retrieve(
+		$result = $this->retrieve(
 			'SELECT object_id FROM monograph_search_objects WHERE monograph_id = ? AND type = ? AND assoc_id = ?',
 			array($monographId, $type, $assocId)
 		);

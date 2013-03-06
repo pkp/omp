@@ -28,11 +28,11 @@ class ReviewerSubmissionDAO extends MonographDAO {
 	 */
 	function ReviewerSubmissionDAO() {
 		parent::MonographDAO();
-		$this->authorDao =& DAORegistry::getDAO('AuthorDAO');
-		$this->userDao =& DAORegistry::getDAO('UserDAO');
-		$this->reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
-		$this->submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO');
-		$this->monographCommentDao =& DAORegistry::getDAO('MonographCommentDAO');
+		$this->authorDao = DAORegistry::getDAO('AuthorDAO');
+		$this->userDao = DAORegistry::getDAO('UserDAO');
+		$this->reviewAssignmentDao = DAORegistry::getDAO('ReviewAssignmentDAO');
+		$this->submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
+		$this->monographCommentDao = DAORegistry::getDAO('MonographCommentDAO');
 	}
 
 	/**
@@ -41,10 +41,10 @@ class ReviewerSubmissionDAO extends MonographDAO {
 	 * @param $reviewerId int
 	 * @return ReviewerSubmission
 	 */
-	function &getReviewerSubmission($reviewId) {
+	function getReviewerSubmission($reviewId) {
 		$primaryLocale = AppLocale::getPrimaryLocale();
 		$locale = AppLocale::getLocale();
-		$result =& $this->retrieve(
+		$result = $this->retrieve(
 			'SELECT	m.*,
 				r.*,
 				u.first_name, u.last_name,
@@ -70,12 +70,10 @@ class ReviewerSubmissionDAO extends MonographDAO {
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
-			$returner =& $this->_fromRow($result->GetRowAssoc(false));
+			$returner = $this->_fromRow($result->GetRowAssoc(false));
 		}
 
 		$result->Close();
-		unset($result);
-
 		return $returner;
 	}
 
@@ -92,15 +90,15 @@ class ReviewerSubmissionDAO extends MonographDAO {
 	 * @param $row array
 	 * @return ReviewerSubmission
 	 */
-	function &_fromRow(&$row) {
+	function _fromRow($row) {
 		// Get the ReviewerSubmission object, populated with Monograph data
-		$reviewerSubmission =& parent::_fromRow($row);
+		$reviewerSubmission = parent::_fromRow($row);
 
 		// Comments
 		$reviewerSubmission->setMostRecentPeerReviewComment($this->monographCommentDao->getMostRecentMonographComment($row['monograph_id'], COMMENT_TYPE_PEER_REVIEW, $row['review_id']));
 
 		// Editor Decisions
-		$decisions =& $this->getEditorDecisions($row['monograph_id']);
+		$decisions = $this->getEditorDecisions($row['monograph_id']);
 		$reviewerSubmission->setDecisions($decisions);
 
 		// Review Assignment
@@ -133,7 +131,7 @@ class ReviewerSubmissionDAO extends MonographDAO {
 	 * Update an existing review submission.
 	 * @param $reviewSubmission ReviewSubmission
 	 */
-	function updateReviewerSubmission(&$reviewerSubmission) {
+	function updateReviewerSubmission($reviewerSubmission) {
 		$this->update(
 			sprintf('UPDATE review_assignments
 				SET	submission_id = ?,
@@ -188,7 +186,7 @@ class ReviewerSubmissionDAO extends MonographDAO {
 	 * @param $rangeInfo object
 	 * @return array ReviewerSubmissions
 	 */
-	function &getReviewerSubmissionsByReviewerId($reviewerId, $pressId = null, $active = true, $rangeInfo = null, $sortBy = null, $sortDirection = SORT_DIRECTION_ASC) {
+	function getReviewerSubmissionsByReviewerId($reviewerId, $pressId = null, $active = true, $rangeInfo = null, $sortBy = null, $sortDirection = SORT_DIRECTION_ASC) {
 		$primaryLocale = AppLocale::getPrimaryLocale();
 		$locale = AppLocale::getLocale();
 		$sql = 'SELECT	m.*,
@@ -229,9 +227,8 @@ class ReviewerSubmissionDAO extends MonographDAO {
 		);
 		if ($pressId) $params[] = (int) $pressId;
 
-		$result =& $this->retrieveRange($sql, $params, $rangeInfo);
-		$returner = new DAOResultFactory($result, $this, '_fromRow');
-		return $returner;
+		$result = $this->retrieveRange($sql, $params, $rangeInfo);
+		return new DAOResultFactory($result, $this, '_fromRow');
 	}
 
 	/**
@@ -245,7 +242,7 @@ class ReviewerSubmissionDAO extends MonographDAO {
 		$submissionsCount[0] = 0;
 		$submissionsCount[1] = 0;
 
-		$result =& $this->retrieve(
+		$result = $this->retrieve(
 			'SELECT	r.date_completed, r.declined, r.cancelled
 			FROM	monographs m
 				LEFT JOIN review_assignments r ON (m.monograph_id = r.submission_id)
@@ -268,8 +265,6 @@ class ReviewerSubmissionDAO extends MonographDAO {
 		}
 
 		$result->Close();
-		unset($result);
-
 		return $submissionsCount;
 	}
 
@@ -281,7 +276,7 @@ class ReviewerSubmissionDAO extends MonographDAO {
 	function getEditorDecisions($monographId, $round = null) {
 		$params = array((int) $monographId);
 		if ($round) $params[] = (int) $round;
-		$result =& $this->retrieve(
+		$result = $this->retrieve(
 			'SELECT	edit_decision_id, editor_id, decision, date_decided
 			FROM	edit_decisions
 			WHERE	monograph_id = ?
@@ -302,8 +297,6 @@ class ReviewerSubmissionDAO extends MonographDAO {
 		}
 
 		$result->Close();
-		unset($result);
-
 		return $decisions;
 	}
 

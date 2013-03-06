@@ -27,7 +27,7 @@ class PluginSettingsDAO extends DAO {
 	 * @param $pluginName string
 	 * @return Cache
 	 */
-	function &_getCache($pressId, $pluginName) {
+	function _getCache($pressId, $pluginName) {
 		static $settingCache;
 
 		if (!isset($settingCache)) {
@@ -37,7 +37,7 @@ class PluginSettingsDAO extends DAO {
 			$settingCache[$pressId] = array();
 		}
 		if (!isset($settingCache[$pressId][$pluginName])) {
-			$cacheManager =& CacheManager::getManager();
+			$cacheManager = CacheManager::getManager();
 			$settingCache[$pressId][$pluginName] = $cacheManager->getCache(
 				'pluginSettings-' . $pressId, $pluginName,
 				array($this, '_cacheMiss')
@@ -57,7 +57,7 @@ class PluginSettingsDAO extends DAO {
 		$pluginName = strtolower_codesafe($pluginName);
 
 		// Retrieve the setting.
-		$cache =& $this->_getCache($pressId, $pluginName);
+		$cache = $this->_getCache($pressId, $pluginName);
 		return $cache->get($name);
 	}
 
@@ -67,10 +67,10 @@ class PluginSettingsDAO extends DAO {
 	 * @param $id string
 	 * @return mixed
 	 */
-	function _cacheMiss(&$cache, $id) {
+	function _cacheMiss($cache, $id) {
 		$contextParts = explode('-', $cache->getContext());
 		$pressId = array_pop($contextParts);
-		$settings =& $this->getPluginSettings($pressId, $cache->getCacheId());
+		$settings = $this->getPluginSettings($pressId, $cache->getCacheId());
 		if (!isset($settings[$id])) {
 			// Make sure that even null values are cached
 			$cache->setCache($id, null);
@@ -85,24 +85,23 @@ class PluginSettingsDAO extends DAO {
 	 * @param $pluginName string
 	 * @return array
 	 */
-	function &getPluginSettings($pressId, $pluginName) {
+	function getPluginSettings($pressId, $pluginName) {
 		// Normalize plug-in name to lower case.
 		$pluginName = strtolower_codesafe($pluginName);
 
-		$result =& $this->retrieve(
-			'SELECT setting_name, setting_value, setting_type FROM plugin_settings WHERE plugin_name = ? AND press_id = ?', array($pluginName, $pressId)
+		$result = $this->retrieve(
+			'SELECT setting_name, setting_value, setting_type FROM plugin_settings WHERE plugin_name = ? AND press_id = ?', array($pluginName, (int) $pressId)
 		);
 
 		$pluginSettings = array();
 		while (!$result->EOF) {
-			$row =& $result->getRowAssoc(false);
+			$row = $result->getRowAssoc(false);
 			$pluginSettings[$row['setting_name']] = $this->convertFromDB($row['setting_value'], $row['setting_type']);
 			$result->MoveNext();
 		}
 		$result->Close();
-		unset($result);
 
-		$cache =& $this->_getCache($pressId, $pluginName);
+		$cache = $this->_getCache($pressId, $pluginName);
 		$cache->setEntireCache($pluginSettings);
 
 		return $pluginSettings;
@@ -120,12 +119,12 @@ class PluginSettingsDAO extends DAO {
 		// Normalize the plug-in name to lower case.
 		$pluginName = strtolower_codesafe($pluginName);
 
-		$cache =& $this->_getCache($pressId, $pluginName);
+		$cache = $this->_getCache($pressId, $pluginName);
 		$cache->setCache($name, $value);
 
 		$result = $this->retrieve(
 			'SELECT COUNT(*) FROM plugin_settings WHERE plugin_name = ? AND setting_name = ? AND press_id = ?',
-			array($pluginName, $name, $pressId)
+			array($pluginName, $name, (int) $pressId)
 		);
 
 		$value = $this->convertToDB($value, $type);
@@ -135,7 +134,7 @@ class PluginSettingsDAO extends DAO {
 					(plugin_name, press_id, setting_name, setting_value, setting_type)
 					VALUES
 					(?, ?, ?, ?, ?)',
-				array($pluginName, $pressId, $name, $value, $type)
+				array($pluginName, (int) $pressId, $name, $value, $type)
 			);
 		} else {
 			$returner = $this->update(
@@ -143,13 +142,11 @@ class PluginSettingsDAO extends DAO {
 					setting_value = ?,
 					setting_type = ?
 					WHERE plugin_name = ? AND setting_name = ? AND press_id = ?',
-				array($value, $type, $pluginName, $name, $pressId)
+				array($value, $type, $pluginName, $name, (int) $pressId)
 			);
 		}
 
 		$result->Close();
-		unset($result);
-
 		return $returner;
 	}
 
@@ -163,12 +160,12 @@ class PluginSettingsDAO extends DAO {
 		// Normalize the plug-in name to lower case.
 		$pluginName = strtolower_codesafe($pluginName);
 
-		$cache =& $this->_getCache($pressId, $pluginName);
+		$cache = $this->_getCache($pressId, $pluginName);
 		$cache->setCache($name, null);
 
 		return $this->update(
 			'DELETE FROM plugin_settings WHERE plugin_name = ? AND setting_name = ? AND press_id = ?',
-			array($pluginName, $name, $pressId)
+			array($pluginName, $name, (int) $pressId)
 		);
 	}
 
@@ -181,12 +178,12 @@ class PluginSettingsDAO extends DAO {
 		// Normalize the plug-in name to lower case.
 		$pluginName = strtolower_codesafe($pluginName);
 
-		$cache =& $this->_getCache($pressId, $pluginName);
+		$cache = $this->_getCache($pressId, $pluginName);
 		$cache->flush();
 
 		return $this->update(
 			'DELETE FROM plugin_settings WHERE press_id = ? AND plugin_name = ?',
-			array($pressId, $pluginName)
+			array((int) $pressId, $pluginName)
 		);
 	}
 
@@ -196,7 +193,7 @@ class PluginSettingsDAO extends DAO {
 	 */
 	function deleteByPressId($pressId) {
 		return $this->update(
-			'DELETE FROM plugin_settings WHERE press_id = ?', $pressId
+			'DELETE FROM plugin_settings WHERE press_id = ?', (int) $pressId
 		);
 	}
 
@@ -220,11 +217,11 @@ class PluginSettingsDAO extends DAO {
 	 * @param $node object XMLNode <array> tag
 	 * @param $paramArray array Parameters to be replaced in key/value contents
 	 */
-	function &_buildObject (&$node, $paramArray = array()) {
+	function _buildObject ($node, $paramArray = array()) {
 		$value = array();
 		foreach ($node->getChildren() as $element) {
 			$key = $element->getAttribute('key');
-			$childArray =& $element->getChildByName('array');
+			$childArray = $element->getChildByName('array');
 			if (isset($childArray)) {
 				$content = $this->_buildObject($childArray, $paramArray);
 			} else {
@@ -254,21 +251,21 @@ class PluginSettingsDAO extends DAO {
 		}
 
 		// Check for existing settings and leave them if they are already in place.
-		$currentSettings =& $this->getPluginSettings($pressId, $pluginName);
+		$currentSettings = $this->getPluginSettings($pressId, $pluginName);
 
 		foreach ($tree->getChildren() as $setting) {
-			$nameNode =& $setting->getChildByName('name');
-			$valueNode =& $setting->getChildByName('value');
+			$nameNode = $setting->getChildByName('name');
+			$valueNode = $setting->getChildByName('value');
 
 			if (isset($nameNode) && isset($valueNode)) {
 				$type = $setting->getAttribute('type');
-				$name =& $nameNode->getValue();
+				$name = $nameNode->getValue();
 
 				// If the setting already exists, respect it.
 				if (isset($currentSettings[$name])) continue;
 
 				if ($type == 'object') {
-					$arrayNode =& $valueNode->getChildByName('array');
+					$arrayNode = $valueNode->getChildByName('array');
 					$value = $this->_buildObject($arrayNode, $paramArray);
 				} else {
 					$value = $this->_performReplacement($valueNode->getValue(), $paramArray);

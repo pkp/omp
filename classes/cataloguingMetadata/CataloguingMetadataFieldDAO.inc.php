@@ -37,11 +37,11 @@ class CataloguingMetadataFieldDAO extends DefaultSettingDAO {
 	 * @param $pressId int
 	 * @return CataloguingMetadataField
 	 */
-	function &getById($cataloguingMetadataFieldId, $pressId = null) {
+	function getById($cataloguingMetadataFieldId, $pressId = null) {
 		$params = array((int) $cataloguingMetadataFieldId);
 		if ($pressId) $params[] = (int) $pressId;
 
-		$result =& $this->retrieve(
+		$result = $this->retrieve(
 			'SELECT	*
 			FROM	cataloguing_metadata_fields
 			WHERE field_id = ?
@@ -51,7 +51,7 @@ class CataloguingMetadataFieldDAO extends DefaultSettingDAO {
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
-			$returner =& $this->_fromRow($result->GetRowAssoc(false));
+			$returner = $this->_fromRow($result->GetRowAssoc(false));
 		}
 		$result->Close();
 		return $returner;
@@ -61,8 +61,8 @@ class CataloguingMetadataFieldDAO extends DefaultSettingDAO {
 	 * Retrieve all enabled metadata fields
 	 * @return array CataloguingMetadataField
 	 */
-	function &getEnabledByPressId($pressId) {
-		$result =& $this->retrieve(
+	function getEnabledByPressId($pressId) {
+		$result = $this->retrieve(
 			'SELECT	*
 			FROM	cataloguing_metadata_fields
 			WHERE	enabled = ? AND
@@ -72,12 +72,10 @@ class CataloguingMetadataFieldDAO extends DefaultSettingDAO {
 
 		$returner = null;
 		while (!$result->EOF) {
-			$returner[] =& $this->_fromRow($result->GetRowAssoc(false));
+			$returner[] = $this->_fromRow($result->GetRowAssoc(false));
 			$result->MoveNext();
 		}
 		$result->Close();
-		unset($result);
-
 		return $returner;
 	}
 
@@ -112,7 +110,7 @@ class CataloguingMetadataFieldDAO extends DefaultSettingDAO {
 	 * @param $row array
 	 * @return CataloguingMetadataField
 	 */
-	function &_fromRow(&$row) {
+	function _fromRow($row) {
 		$cataloguingMetadataField = $this->newDataObject();
 		$cataloguingMetadataField->setPressId($row['press_id']);
 		$cataloguingMetadataField->setId($row['field_id']);
@@ -127,7 +125,7 @@ class CataloguingMetadataFieldDAO extends DefaultSettingDAO {
 	 * Insert a new field.
 	 * @param $cataloguingMetadataField CataloguingMetadataField
 	 */
-	function insertObject(&$cataloguingMetadataField) {
+	function insertObject($cataloguingMetadataField) {
 		$this->update(
 			'INSERT INTO cataloguing_metadata_fields
 				(press_id, enabled)
@@ -150,7 +148,7 @@ class CataloguingMetadataFieldDAO extends DefaultSettingDAO {
 	 * Update an existing field.
 	 * @param $cataloguingMetadataField CataloguingMetadataField
 	 */
-	function updateObject(&$cataloguingMetadataField) {
+	function updateObject($cataloguingMetadataField) {
 
 		$this->updateLocaleFields($cataloguingMetadataField);
 	}
@@ -243,7 +241,7 @@ class CataloguingMetadataFieldDAO extends DefaultSettingDAO {
 	 * @param $locale string
 	 * @return array
 	 */
-	function &getSettingAttributes($node = null, $locale = null) {
+	function getSettingAttributes($node = null, $locale = null) {
 		if ($node == null) {
 			$settings = array('name');
 		} else {

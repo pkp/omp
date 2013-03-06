@@ -29,11 +29,11 @@ class SeriesDAO extends DAO {
 	 * @param $pressId int optional
 	 * @return Series
 	 */
-	function &getById($seriesId, $pressId = null) {
+	function getById($seriesId, $pressId = null) {
 		$params = array((int) $seriesId);
 		if ($pressId) $params[] = (int) $pressId;
 
-		$result =& $this->retrieve(
+		$result = $this->retrieve(
 			'SELECT	*
 			FROM	series
 			WHERE	series_id = ?
@@ -47,8 +47,6 @@ class SeriesDAO extends DAO {
 		}
 
 		$result->Close();
-		unset($result);
-
 		return $returner;
 	}
 
@@ -58,20 +56,18 @@ class SeriesDAO extends DAO {
 	 * @param $pressId int
 	 * @return Series
 	 */
-	function &getByPath($path, $pressId) {
-		$returner = null;
-		$result =& $this->retrieve(
+	function getByPath($path, $pressId) {
+		$result = $this->retrieve(
 			'SELECT * FROM series WHERE path = ? AND press_id = ?',
 			array((string) $path, (int) $pressId)
 		);
 
+		$returner = null;
 		if ($result->RecordCount() != 0) {
-			$returner =& $this->_fromRow($result->GetRowAssoc(false));
+			$returner = $this->_fromRow($result->GetRowAssoc(false));
 		}
 
 		$result->Close();
-		unset($result);
-
 		return $returner;
 	}
 
@@ -116,7 +112,7 @@ class SeriesDAO extends DAO {
 	 * Update the localized fields for this table
 	 * @param $series object
 	 */
-	function updateLocaleFields(&$series) {
+	function updateLocaleFields($series) {
 		$this->updateDataObjectSettings(
 			'series_settings',
 			$series,
@@ -128,7 +124,7 @@ class SeriesDAO extends DAO {
 	 * Insert a new series.
 	 * @param $series Series
 	 */
-	function insertObject(&$series) {
+	function insertObject($series) {
 		$this->update(
 			'INSERT INTO series
 				(press_id, featured, path, image)
@@ -152,7 +148,7 @@ class SeriesDAO extends DAO {
 	 * @param $series Series
 	 */
 	function updateObject($series) {
-		$returner = $this->update(
+		$this->update(
 			'UPDATE series
 			SET	press_id = ?,
 				featured = ?,
@@ -168,14 +164,13 @@ class SeriesDAO extends DAO {
 			)
 		);
 		$this->updateLocaleFields($series);
-		return $returner;
 	}
 
 	/**
 	 * Delete an series.
 	 * @param $series Series
 	 */
-	function deleteObject(&$series) {
+	function deleteObject($series) {
 		return $this->deleteById($series->getId(), $series->getPressId());
 	}
 
@@ -188,11 +183,11 @@ class SeriesDAO extends DAO {
 		// Validate the $pressId, if supplied.
 		if (!$this->seriesExists($seriesId, $pressId)) return false;
 
-		$seriesEditorsDao =& DAORegistry::getDAO('SeriesEditorsDAO');
+		$seriesEditorsDao = DAORegistry::getDAO('SeriesEditorsDAO');
 		$seriesEditorsDao->deleteEditorsBySeriesId($seriesId, $pressId);
 
 		// Remove monographs from this series
-		$monographDao =& DAORegistry::getDAO('MonographDAO');
+		$monographDao = DAORegistry::getDAO('MonographDAO');
 		$monographDao->removeMonographsFromSeries($seriesId);
 
 		// Delete the series and settings.
@@ -207,10 +202,9 @@ class SeriesDAO extends DAO {
 	 * @param $pressId int
 	 */
 	function deleteByPressId($pressId) {
-		$series =& $this->getByPressId($pressId);
-		while (($series =& $series->next())) {
+		$series = $this->getByPressId($pressId);
+		while ($series = $series->next()) {
 			$this->deleteObject($series);
-			unset($series);
 		}
 	}
 
@@ -219,8 +213,8 @@ class SeriesDAO extends DAO {
 	 * arrays containing the series they edit.
 	 * @return array editorId => array(series they edit)
 	 */
-	function &getEditorSeries($pressId) {
-		$result =& $this->retrieve(
+	function getEditorSeries($pressId) {
+		$result = $this->retrieve(
 			'SELECT	a.*,
 				ae.user_id AS editor_id
 			FROM	series_editors ae,
@@ -234,19 +228,16 @@ class SeriesDAO extends DAO {
 		$returner = array();
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
-			$series =& $this->_fromRow($row);
+			$series = $this->_fromRow($row);
 			if (!isset($returner[$row['editor_id']])) {
 				$returner[$row['editor_id']] = array($series);
 			} else {
 				$returner[$row['editor_id']][] = $series;
 			}
 			$result->MoveNext();
-			unset($series);
 		}
 
 		$result->Close();
-		unset($result);
-
 		return $returner;
 	}
 
@@ -254,26 +245,25 @@ class SeriesDAO extends DAO {
 	 * Retrieve all series for a press.
 	 * @return DAOResultFactory containing Series ordered by sequence
 	 */
-	function &getByPressId($pressId, $rangeInfo = null) {
-		$result =& $this->retrieveRange(
+	function getByPressId($pressId, $rangeInfo = null) {
+		$result = $this->retrieveRange(
 			'SELECT * FROM series WHERE press_id = ?',
 			(int) $pressId,
 			$rangeInfo
 		);
 
-		$returner = new DAOResultFactory($result, $this, '_fromRow');
-		return $returner;
+		return new DAOResultFactory($result, $this, '_fromRow');
 	}
 
 	/**
 	 * Retrieve the IDs and titles of the series for a press in an associative array.
 	 * @return array
 	 */
-	function &getTitlesByPressId($pressId, $submittableOnly = false) {
+	function getTitlesByPressId($pressId, $submittableOnly = false) {
 		$seriesTitles = array();
 
-		$seriesIterator =& $this->getByPressId($pressId, null);
-		while (($series =& $seriesIterator->next())) {
+		$seriesIterator = $this->getByPressId($pressId, null);
+		while ($series = $seriesIterator->next()) {
 			if ($submittableOnly) {
 				if (!$series->getEditorRestricted()) {
 					$seriesTitles[$series->getId()] = join(' ', array($series->getLocalizedPrefix(), $series->getLocalizedTitle()));
@@ -281,7 +271,6 @@ class SeriesDAO extends DAO {
 			} else {
 				$seriesTitles[$series->getId()] = join(' ', array($series->getLocalizedPrefix(), $series->getLocalizedTitle()));
 			}
-			unset($series);
 		}
 
 		return $seriesTitles;
@@ -294,15 +283,13 @@ class SeriesDAO extends DAO {
 	 * @return boolean
 	 */
 	function seriesExists($seriesId, $pressId) {
-		$result =& $this->retrieve(
+		$result = $this->retrieve(
 			'SELECT COUNT(*) FROM series WHERE series_id = ? AND press_id = ?',
 			array((int) $seriesId, (int) $pressId)
 		);
 		$returner = isset($result->fields[0]) && $result->fields[0] == 1 ? true : false;
 
 		$result->Close();
-		unset($result);
-
 		return $returner;
 	}
 
@@ -356,22 +343,21 @@ class SeriesDAO extends DAO {
 		$params = array((int) $seriesId);
 		if ($pressId) $params[] = (int) $pressId;
 
-		$categoryDao =& DAORegistry::getDAO('CategoryDAO');
-		$result =& $this->retrieve(
+		$categoryDao = DAORegistry::getDAO('CategoryDAO');
+		$result = $this->retrieve(
 			'SELECT	c.*
 			FROM	categories c,
 				series_categories sc,
 				series s
 			WHERE	c.category_id = sc.category_id AND
 				s.series_id = ? AND
-			' . ($pressId?' c.press_id = s.press_id AND s.press_id = ? AND':'') . '
+				' . ($pressId?' c.press_id = s.press_id AND s.press_id = ? AND':'') . '
 				s.series_id = sc.series_id',
 			$params
 		);
 
 		// Delegate category creation to the category DAO.
-		$returner = new DAOResultFactory($result, $categoryDao, '_fromRow');
-		return $returner;
+		return new DAOResultFactory($result, $categoryDao, '_fromRow');
 	}
 
 	/**
@@ -383,8 +369,8 @@ class SeriesDAO extends DAO {
 		$params = array((int) $seriesId);
 		if ($pressId) $params[] = (int) $pressId;
 
-		$categoryDao =& DAORegistry::getDAO('CategoryDAO');
-		$result =& $this->retrieve(
+		$categoryDao = DAORegistry::getDAO('CategoryDAO');
+		$result = $this->retrieve(
 			'SELECT	c.*
 			FROM	series s
 				JOIN categories c ON (c.press_id = s.press_id)
@@ -396,8 +382,7 @@ class SeriesDAO extends DAO {
 		);
 
 		// Delegate category creation to the category DAO.
-		$returner = new DAOResultFactory($result, $categoryDao, '_fromRow');
-		return $returner;
+		return new DAOResultFactory($result, $categoryDao, '_fromRow');
 	}
 
 	/**
@@ -407,15 +392,13 @@ class SeriesDAO extends DAO {
 	 * @return boolean
 	 */
 	function categoryAssociationExists($seriesId, $categoryId) {
-		$result =& $this->retrieve(
+		$result = $this->retrieve(
 			'SELECT COUNT(*) FROM series_categories WHERE series_id = ? AND category_id = ?',
 			array((int) $seriesId, (int) $categoryId)
 		);
 		$returner = isset($result->fields[0]) && $result->fields[0] == 1 ? true : false;
 
 		$result->Close();
-		unset($result);
-
 		return $returner;
 	}
 }

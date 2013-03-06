@@ -25,7 +25,7 @@ class MonographDAO extends DAO {
 	 */
 	function MonographDAO() {
 		parent::DAO();
-		$this->authorDao =& DAORegistry::getDAO('AuthorDAO');
+		$this->authorDao = DAORegistry::getDAO('AuthorDAO');
 	}
 
 	/**
@@ -34,8 +34,8 @@ class MonographDAO extends DAO {
 	 * @param $id string
 	 * @return Monograph
 	 */
-	function _cacheMiss(&$cache, $id) {
-		$monograph =& $this->getMonograph($id, null, false);
+	function _cacheMiss($cache, $id) {
+		$monograph = $this->getMonograph($id, null, false);
 		$cache->setCache($id, $monograph);
 		return $monograph;
 	}
@@ -44,10 +44,10 @@ class MonographDAO extends DAO {
 	 * Get the monograph cache.
 	 * @return Cache
 	 */
-	function &_getCache() {
+	function _getCache() {
 		if (!isset($this->cache)) {
-			$cacheManager =& CacheManager::getManager();
-			$this->cache =& $cacheManager->getObjectCache('monographs', 0, array(&$this, '_cacheMiss'));
+			$cacheManager = CacheManager::getManager();
+			$this->cache = $cacheManager->getObjectCache('monographs', 0, array(&$this, '_cacheMiss'));
 		}
 		return $this->cache;
 	}
@@ -70,7 +70,7 @@ class MonographDAO extends DAO {
 	 * Update the localized fields for this object.
 	 * @param $monograph
 	 */
-	function updateLocaleFields(&$monograph) {
+	function updateLocaleFields($monograph) {
 		$this->updateDataObjectSettings('monograph_settings', $monograph, array(
 			'monograph_id' => $monograph->getId()
 		));
@@ -83,10 +83,10 @@ class MonographDAO extends DAO {
 	 * @param $useCache boolean optional
 	 * @return Monograph
 	 */
-	function &getById($monographId, $pressId = null, $useCache = false) {
+	function getById($monographId, $pressId = null, $useCache = false) {
 		if ($useCache) {
-			$cache =& $this->_getCache();
-			$returner =& $cache->get($monographId);
+			$cache = $this->_getCache();
+			$returner = $cache->get($monographId);
 			if ($returner && $pressId != null && $pressId != $returner->getPressId()) $returner = null;
 			return $returner;
 		}
@@ -102,7 +102,7 @@ class MonographDAO extends DAO {
 		);
 		if ($pressId) $params[] = (int) $pressId;
 
-		$result =& $this->retrieve(
+		$result = $this->retrieve(
 			'SELECT	m.*, pm.date_published,
 				COALESCE(stl.setting_value, stpl.setting_value) AS series_title,
 				COALESCE(sal.setting_value, sapl.setting_value) AS series_abbrev
@@ -124,8 +124,6 @@ class MonographDAO extends DAO {
 		}
 
 		$result->Close();
-		unset($result);
-
 		return $returner;
 	}
 
@@ -255,7 +253,7 @@ class MonographDAO extends DAO {
 	 * Delete monograph by id.
 	 * @param $monograph object Monograph
 	 */
-	function deleteObject(&$monograph) {
+	function deleteObject($monograph) {
 		return $this->deleteById($monograph->getId());
 	}
 
@@ -266,85 +264,82 @@ class MonographDAO extends DAO {
 	function deleteById($monographId) {
 		$this->authorDao->deleteAuthorsBySubmission($monographId);
 
-		$seriesEditorSubmissionDao =& DAORegistry::getDAO('SeriesEditorSubmissionDAO');
+		$seriesEditorSubmissionDao = DAORegistry::getDAO('SeriesEditorSubmissionDAO');
 		$seriesEditorSubmissionDao->deleteDecisionsByMonograph($monographId);
 		$seriesEditorSubmissionDao->deleteReviewRoundsByMonograph($monographId);
 
-		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+		$reviewAssignmentDao = DAORegistry::getDAO('ReviewAssignmentDAO');
 		$reviewAssignmentDao->deleteBySubmissionId($monographId);
 
 		// Delete chapters and assigned chapter authors.
-		$chapterDao =& DAORegistry::getDAO('ChapterDAO');
-		$chapters =& $chapterDao->getChapters($monographId);
-		while ($chapter =& $chapters->next()) {
+		$chapterDao = DAORegistry::getDAO('ChapterDAO');
+		$chapters = $chapterDao->getChapters($monographId);
+		while ($chapter = $chapters->next()) {
 			// also removes Chapter Author associations
 			$chapterDao->deleteObject($chapter);
 		}
 
 		// Delete controlled vocab lists assigned to this Monograph
-		$submissionKeywordDao =& DAORegistry::getDAO('SubmissionKeywordDAO');
-		$monographKeywordVocab =& $submissionKeywordDao->getBySymbolic(CONTROLLED_VOCAB_SUBMISSION_KEYWORD, ASSOC_TYPE_MONOGRAPH, $monographId);
+		$submissionKeywordDao = DAORegistry::getDAO('SubmissionKeywordDAO');
+		$monographKeywordVocab = $submissionKeywordDao->getBySymbolic(CONTROLLED_VOCAB_SUBMISSION_KEYWORD, ASSOC_TYPE_MONOGRAPH, $monographId);
 		if (isset($monographKeywordVocab)) {
 			$submissionKeywordDao->deleteObject($monographKeywordVocab);
 		}
 
-		$submissionDisciplineDao =& DAORegistry::getDAO('SubmissionDisciplineDAO');
-		$monographDisciplineVocab =& $submissionDisciplineDao->getBySymbolic(CONTROLLED_VOCAB_SUBMISSION_DISCIPLINE, ASSOC_TYPE_MONOGRAPH, $monographId);
+		$submissionDisciplineDao = DAORegistry::getDAO('SubmissionDisciplineDAO');
+		$monographDisciplineVocab = $submissionDisciplineDao->getBySymbolic(CONTROLLED_VOCAB_SUBMISSION_DISCIPLINE, ASSOC_TYPE_MONOGRAPH, $monographId);
 		if (isset($monographDisciplineVocab)) {
 			$submissionDisciplineDao->deleteObject($monographDisciplineVocab);
 		}
 
-		$submissionAgencyDao =& DAORegistry::getDAO('SubmissionAgencyDAO');
-		$monographAgencyVocab =& $submissionAgencyDao->getBySymbolic(CONTROLLED_VOCAB_SUBMISSION_AGENCY, ASSOC_TYPE_MONOGRAPH, $monographId);
+		$submissionAgencyDao = DAORegistry::getDAO('SubmissionAgencyDAO');
+		$monographAgencyVocab = $submissionAgencyDao->getBySymbolic(CONTROLLED_VOCAB_SUBMISSION_AGENCY, ASSOC_TYPE_MONOGRAPH, $monographId);
 		if (isset($monographAgencyVocab)) {
 			$submissionAgencyDao->deleteObject($monographAgencyVocab);
 		}
 
-		$submissionLanguageDao =& DAORegistry::getDAO('SubmissionLanguageDAO');
-		$monographLanguageVocab =& $submissionLanguageDao->getBySymbolic(CONTROLLED_VOCAB_SUBMISSION_LANGUAGE, ASSOC_TYPE_MONOGRAPH, $monographId);
+		$submissionLanguageDao = DAORegistry::getDAO('SubmissionLanguageDAO');
+		$monographLanguageVocab = $submissionLanguageDao->getBySymbolic(CONTROLLED_VOCAB_SUBMISSION_LANGUAGE, ASSOC_TYPE_MONOGRAPH, $monographId);
 		if (isset($monographLanguageVocab)) {
 			$submissionLanguageDao->deleteObject($monographLanguageVocab);
 		}
 
-		$submissionSubjectDao =& DAORegistry::getDAO('SubmissionSubjectDAO');
-		$monographSubjectVocab =& $submissionSubjectDao->getBySymbolic(CONTROLLED_VOCAB_SUBMISSION_SUBJECT, ASSOC_TYPE_MONOGRAPH, $monographId);
+		$submissionSubjectDao = DAORegistry::getDAO('SubmissionSubjectDAO');
+		$monographSubjectVocab = $submissionSubjectDao->getBySymbolic(CONTROLLED_VOCAB_SUBMISSION_SUBJECT, ASSOC_TYPE_MONOGRAPH, $monographId);
 		if (isset($monographSubjectVocab)) {
 			$submissionSubjectDao->deleteObject($monographSubjectVocab);
 		}
 
 		// Signoff DAOs
-		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
-		$monographFileSignoffDao =& DAORegistry::getDAO('MonographFileSignoffDAO');
+		$signoffDao = DAORegistry::getDAO('SignoffDAO');
+		$monographFileSignoffDao = DAORegistry::getDAO('MonographFileSignoffDAO');
 
 		// Delete Signoffs associated with a monogrpah file of this monograph.
 		$monographFileSignoffs = $monographFileSignoffDao->getAllByMonograph($monographId);
-		while ($signoff =& $monographFileSignoffs->next()) {
+		while ($signoff = $monographFileSignoffs->next()) {
 			$signoffDao->deleteObject($signoff);
-			unset($signoff);
 		}
 
 		// Delete the Signoffs associated with the monograph itself.
-		$monographSignoffs =& $signoffDao->getAllByAssocType(ASSOC_TYPE_MONOGRAPH, $monographId);
-		while ($signoff =& $monographSignoffs->next()) {
+		$monographSignoffs = $signoffDao->getAllByAssocType(ASSOC_TYPE_MONOGRAPH, $monographId);
+		while ($signoff = $monographSignoffs->next()) {
 			$signoffDao->deleteObject($signoff);
-			unset($signoff);
 		}
 
 		// Delete the stage assignments.
-		$stageAssignmentDao =& DAORegistry::getDAO('StageAssignmentDAO');
-		$stageAssignments =& $stageAssignmentDao->getBySubmissionAndStageId($monographId);
-		while ($stageAssignment =& $stageAssignments->next()) {
+		$stageAssignmentDao = DAORegistry::getDAO('StageAssignmentDAO');
+		$stageAssignments = $stageAssignmentDao->getBySubmissionAndStageId($monographId);
+		while ($stageAssignment = $stageAssignments->next()) {
 			$stageAssignmentDao->deleteObject($stageAssignment);
-			unset($stageAssignment);
 		}
 
 		// N.B. Files must be deleted after signoffs to identify monograph file signoffs.
 		// Delete monograph files.
-		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		$submissionFileDao->deleteAllRevisionsBySubmissionId($monographId);
 
 		// Delete monograph file directory.
-		$monograph =& $this->getById($monographId);
+		$monograph = $this->getById($monographId);
 		assert(is_a($monograph, 'Monograph'));
 
 		import('classes.file.MonographFileManager');
@@ -352,18 +347,18 @@ class MonographDAO extends DAO {
 		$monographFileManager->rmtree($monographFileManager->getBasePath());
 
 		// Delete any comments.
-		$monographCommentDao =& DAORegistry::getDAO('MonographCommentDAO');
+		$monographCommentDao = DAORegistry::getDAO('MonographCommentDAO');
 		$monographCommentDao->deleteByMonographId($monographId);
 
 		// Delete references to features or new releases.
-		$featureDao =& DAORegistry::getDAO('FeatureDAO');
+		$featureDao = DAORegistry::getDAO('FeatureDAO');
 		$featureDao->deleteByMonographId($monographId);
 
-		$newReleaseDao =& DAORegistry::getDAO('NewReleaseDAO');
+		$newReleaseDao = DAORegistry::getDAO('NewReleaseDAO');
 		$newReleaseDao->deleteByMonographId($monographId);
 
 		// Delete any outstanding notifications for this monograph
-		$notificationDao =& DAORegistry::getDAO('NotificationDAO');
+		$notificationDao = DAORegistry::getDAO('NotificationDAO');
 		$notificationDao->deleteByAssoc(ASSOC_TYPE_MONOGRAPH, $monographId);
 
 		$this->update('DELETE FROM monograph_settings WHERE monograph_id = ?', (int) $monographId);
@@ -375,11 +370,11 @@ class MonographDAO extends DAO {
 	 * @param $pressId int
 	 * @return DAOResultFactory containing matching Monographs
 	 */
-	function &getByPressId($pressId) {
+	function getByPressId($pressId) {
 		$primaryLocale = AppLocale::getPrimaryLocale();
 		$locale = AppLocale::getLocale();
 
-		$result =& $this->retrieve(
+		$result = $this->retrieve(
 			'SELECT	m.*, pm.date_published,
 				COALESCE(stl.setting_value, stpl.setting_value) AS series_title,
 				COALESCE(sal.setting_value, sapl.setting_value) AS series_abbrev
@@ -400,8 +395,7 @@ class MonographDAO extends DAO {
 			)
 		);
 
-		$returner = new DAOResultFactory($result, $this, '_fromRow');
-		return $returner;
+		return new DAOResultFactory($result, $this, '_fromRow');
 	}
 
 	/**
@@ -409,11 +403,11 @@ class MonographDAO extends DAO {
 	 * @param $pressId int
 	 * @return DAOResultFactory containing matching Monographs
 	 */
-	function &getUnpublishedMonographsByPressId($pressId) {
+	function getUnpublishedMonographsByPressId($pressId) {
 		$primaryLocale = AppLocale::getPrimaryLocale();
 		$locale = AppLocale::getLocale();
 
-		$result =& $this->retrieve(
+		$result = $this->retrieve(
 			'SELECT	m.*, pm.date_published,
 				COALESCE(stl.setting_value, stpl.setting_value) AS series_title,
 				COALESCE(sal.setting_value, sapl.setting_value) AS series_abbrev
@@ -436,8 +430,7 @@ class MonographDAO extends DAO {
 			)
 		);
 
-		$returner = new DAOResultFactory($result, $this, '_fromRow');
-		return $returner;
+		return new DAOResultFactory($result, $this, '_fromRow');
 	}
 
 	/**
@@ -447,12 +440,11 @@ class MonographDAO extends DAO {
 	function deleteByPressId($pressId) {
 		$monographs = $this->getByPressId($pressId);
 		import('classes.search.MonographSearchIndex');
-		while ($monograph =& $monographs->next()) {
+		while ($monograph = $monographs->next()) {
 			if ($monograph->getDatePublished()) {
 				MonographSearchIndex::deleteTextIndex($monograph->getId());
 			}
 			$this->deleteById($monograph->getId());
-			unset($monograph);
 		}
 	}
 
@@ -462,7 +454,7 @@ class MonographDAO extends DAO {
 	 * @param $pressId int optional
 	 * @return array Monographs
 	 */
-	function &getByUserId($userId, $pressId = null) {
+	function getByUserId($userId, $pressId = null) {
 		$primaryLocale = AppLocale::getPrimaryLocale();
 		$locale = AppLocale::getLocale();
 		$params = array(
@@ -472,9 +464,9 @@ class MonographDAO extends DAO {
 			'abbrev', $locale, // Series abbreviation
 			(int) $userId
 		);
-		if ($pressId) $params[] = $pressId;
+		if ($pressId) $params[] = (int) $pressId;
 
-		$result =& $this->retrieve(
+		$result = $this->retrieve(
 			'SELECT	m.*, pm.date_published,
 				COALESCE(atl.setting_value, atpl.setting_value) AS series_title,
 				COALESCE(aal.setting_value, aapl.setting_value) AS series_abbrev
@@ -490,8 +482,7 @@ class MonographDAO extends DAO {
 			$params
 		);
 
-		$returner = new DAOResultFactory($result, $this, '_fromRow');
-		return $returner;
+		return new DAOResultFactory($result, $this, '_fromRow');
 	}
 
 	/**
@@ -521,7 +512,7 @@ class MonographDAO extends DAO {
 	function flushCache() {
 		// Because both publishedMonographs and monographs are cached by
 		// monograph ID, flush both caches on update.
-		$cache =& $this->_getCache();
+		$cache = $this->_getCache();
 		$cache->flush();
 		unset($cache);
 
@@ -535,7 +526,7 @@ class MonographDAO extends DAO {
 	 * 	whose series will be included in the results (excluding others).
 	 * @return DAOResultFactory containing matching Monographs
 	 */
-	function &getMonographsBySeriesEditorId($pressId = null, $seriesEditorId = null) {
+	function getMonographsBySeriesEditorId($pressId = null, $seriesEditorId = null) {
 		$primaryLocale = AppLocale::getPrimaryLocale();
 		$locale = AppLocale::getLocale();
 
@@ -549,7 +540,7 @@ class MonographDAO extends DAO {
 		if ($seriesEditorId) $params[] = (int) $seriesEditorId;
 		if ($pressId) $params[] = (int) $pressId;
 
-		$result =& $this->retrieve(
+		$result = $this->retrieve(
 			'SELECT	m.*
 			FROM	monographs m
 				LEFT JOIN published_monographs pm ON m.monograph_id = pm.monograph_id
@@ -567,8 +558,7 @@ class MonographDAO extends DAO {
 			$params
 		);
 
-		$returner = new DAOResultFactory($result, $this, '_fromRow');
-		return $returner;
+		return new DAOResultFactory($result, $this, '_fromRow');
 	}
 
 	/**
@@ -605,10 +595,10 @@ class MonographDAO extends DAO {
 
 		// If any new release or feature object is associated
 		// with this category delete them.
-		$newReleaseDao =& DAORegistry::getDAO('NewReleaseDAO'); /* @var $newReleaseDao NewReleaseDAO */
+		$newReleaseDao = DAORegistry::getDAO('NewReleaseDAO'); /* @var $newReleaseDao NewReleaseDAO */
 		$newReleaseDao->deleteNewRelease($monographId, ASSOC_TYPE_CATEGORY, $categoryId);
 
-		$featureDao =& DAORegistry::getDAO('FeatureDAO'); /* @var $featureDao FeatureDAO */
+		$featureDao = DAORegistry::getDAO('FeatureDAO'); /* @var $featureDao FeatureDAO */
 		$featureDao->deleteFeature($monographId, ASSOC_TYPE_CATEGORY, $categoryId);
 	}
 
@@ -632,8 +622,8 @@ class MonographDAO extends DAO {
 		$params = array((int) $monographId);
 		if ($pressId) $params[] = (int) $pressId;
 
-		$categoryDao =& DAORegistry::getDAO('CategoryDAO');
-		$result =& $this->retrieve(
+		$categoryDao = DAORegistry::getDAO('CategoryDAO');
+		$result = $this->retrieve(
 			'SELECT	c.*
 			FROM	categories c,
 				monograph_categories mc,
@@ -646,8 +636,7 @@ class MonographDAO extends DAO {
 		);
 
 		// Delegate category creation to the category DAO.
-		$returner = new DAOResultFactory($result, $categoryDao, '_fromRow');
-		return $returner;
+		return new DAOResultFactory($result, $categoryDao, '_fromRow');
 	}
 
 	/**
@@ -659,10 +648,10 @@ class MonographDAO extends DAO {
 		$params = array((int) $monographId);
 		if ($pressId) $params[] = (int) $pressId;
 
-		$categoryDao =& DAORegistry::getDAO('CategoryDAO');
+		$categoryDao = DAORegistry::getDAO('CategoryDAO');
 		// The strange ORDER BY clause is to return subcategories
 		// immediately after their parent category's entry.
-		$result =& $this->retrieve(
+		$result = $this->retrieve(
 			'SELECT	c.*
 			FROM	monographs m
 				JOIN categories c ON (c.press_id = m.press_id)
@@ -675,8 +664,7 @@ class MonographDAO extends DAO {
 		);
 
 		// Delegate category creation to the category DAO.
-		$returner = new DAOResultFactory($result, $categoryDao, '_fromRow');
-		return $returner;
+		return new DAOResultFactory($result, $categoryDao, '_fromRow');
 	}
 
 	/**
@@ -686,15 +674,13 @@ class MonographDAO extends DAO {
 	 * @return boolean
 	 */
 	function categoryAssociationExists($monographId, $categoryId) {
-		$result =& $this->retrieve(
+		$result = $this->retrieve(
 			'SELECT COUNT(*) FROM monograph_categories WHERE monograph_id = ? AND category_id = ?',
 			array((int) $monographId, (int) $categoryId)
 		);
 		$returner = isset($result->fields[0]) && $result->fields[0] == 1 ? true : false;
 
 		$result->Close();
-		unset($result);
-
 		return $returner;
 	}
 }

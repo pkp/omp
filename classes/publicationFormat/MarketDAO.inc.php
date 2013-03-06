@@ -29,13 +29,13 @@ class MarketDAO extends DAO {
 	 * @param $monographId optional int
 	 * @return Market
 	 */
-	function &getById($marketId, $monographId = null){
+	function getById($marketId, $monographId = null){
 		$sqlParams = array((int) $marketId);
 		if ($monographId) {
 			$sqlParams[] = (int) $monographId;
 		}
 
-		$result =& $this->retrieve(
+		$result = $this->retrieve(
 			'SELECT	m.*
 			FROM	markets m
 				JOIN publication_formats pf ON (m.publication_format_id = pf.publication_format_id)
@@ -46,7 +46,7 @@ class MarketDAO extends DAO {
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
-			$returner =& $this->_fromRow($result->GetRowAssoc(false));
+			$returner = $this->_fromRow($result->GetRowAssoc(false));
 		}
 		$result->Close();
 		return $returner;
@@ -57,12 +57,11 @@ class MarketDAO extends DAO {
 	 * @param $publicationFormatId int
 	 * @return DAOResultFactory containing matching market.
 	 */
-	function &getByPublicationFormatId($publicationFormatId) {
-		$result =& $this->retrieveRange(
+	function getByPublicationFormatId($publicationFormatId) {
+		$result = $this->retrieveRange(
 			'SELECT * FROM markets WHERE publication_format_id = ?', (int) $publicationFormatId);
 
-		$returner = new DAOResultFactory($result, $this, '_fromRow');
-		return $returner;
+		return new DAOResultFactory($result, $this, '_fromRow');
 	}
 
 	/**
@@ -79,7 +78,7 @@ class MarketDAO extends DAO {
 	 * @param $callHooks boolean
 	 * @return Market
 	 */
-	function &_fromRow(&$row, $callHooks = true) {
+	function _fromRow($row, $callHooks = true) {
 		$market = $this->newDataObject();
 		$market->setId($row['market_id']);
 		$market->setCountriesIncluded(unserialize($row['countries_included']));
@@ -142,7 +141,7 @@ class MarketDAO extends DAO {
 	 * Update an existing market entry.
 	 * @param $market Market
 	 */
-	function updateObject(&$market) {
+	function updateObject($market) {
 		$this->update(
 			'UPDATE markets
 				SET countries_included = ?,

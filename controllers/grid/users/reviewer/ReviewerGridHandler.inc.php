@@ -424,7 +424,7 @@ class ReviewerGridHandler extends GridHandler {
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 
 		$reviewAssignment->setUnconsidered(REVIEW_ASSIGNMENT_UNCONSIDERED);
-		$result = $reviewAssignmentDao->updateReviewAssignment($reviewAssignment);
+		$result = $reviewAssignmentDao->updateObject($reviewAssignment);
 		$this->_updateReviewRoundStatus($reviewAssignment);
 
 		// log the unconsider.
@@ -475,9 +475,9 @@ class ReviewerGridHandler extends GridHandler {
 
 		// if the review assignment had been unconsidered, update the flag.
 		if ($reviewAssignment->getUnconsidered() == REVIEW_ASSIGNMENT_UNCONSIDERED) {
-			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+			$reviewAssignmentDao = DAORegistry::getDAO('ReviewAssignmentDAO');
 			$reviewAssignment->setUnconsidered(REVIEW_ASSIGNMENT_UNCONSIDERED_READ);
-			$reviewAssignmentDao->updateReviewAssignment($reviewAssignment);
+			$reviewAssignmentDao->updateObject($reviewAssignment);
 		}
 
 		$this->_updateReviewRoundStatus($reviewAssignment);
@@ -688,9 +688,9 @@ class ReviewerGridHandler extends GridHandler {
 	 */
 	function _updateReviewRoundStatus($reviewAssignment) {
 		// Update the review round status.
-		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
-		$reviewRound =& $reviewRoundDao->getReviewRoundById($reviewAssignment->getReviewRoundId());
-		$seriesEditorSubmission =& $this->getMonograph();
+		$reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO');
+		$reviewRound = $reviewRoundDao->getReviewRoundById($reviewAssignment->getReviewRoundId());
+		$seriesEditorSubmission = $this->getMonograph();
 		$seriesEditorSubmission->updateReviewAssignment($reviewAssignment);
 		$reviewAssignments = $seriesEditorSubmission->getReviewAssignments($reviewRound->getStageId(), $reviewRound->getRound());
 		$reviewRoundDao->updateStatus($reviewRound, $reviewAssignments);

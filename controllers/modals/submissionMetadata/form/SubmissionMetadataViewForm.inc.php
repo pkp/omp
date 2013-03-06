@@ -117,10 +117,10 @@ class SubmissionMetadataViewForm extends Form {
 	 * @param $request PKPRequest
 	 * return string
 	 */
-	function fetch(&$request) {
-		$monograph =& $this->getMonograph();
+	function fetch($request) {
+		$monograph = $this->getMonograph();
 
-		$templateMgr =& TemplateManager::getManager($request);
+		$templateMgr = TemplateManager::getManager($request);
 		$templateMgr->assign('monographId', $monograph->getId());
 		$templateMgr->assign('stageId', $this->getStageId());
 		$templateMgr->assign('formParams', $this->getFormParams());

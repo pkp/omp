@@ -178,19 +178,18 @@ class DefaultSettingDAO extends DAO {
 	 * @param $pressId int
 	 */
 	function &getDefaultSettingIds($pressId) {
-		$result =& $this->retrieve(
+		$result = $this->retrieve(
 			'SELECT '. $this->getPrimaryKeyColumnName() .', '. $this->getDefaultKey() .' FROM '. $this->getTableName() .'
-			WHERE press_id = ? AND '. $this->getDefaultKey() .' IS NOT NULL', $pressId
+			WHERE press_id = ? AND '. $this->getDefaultKey() .' IS NOT NULL',
+			(int) $pressId
 		);
 
 		$returner = null;
 		while (!$result->EOF) {
-			$returner[$result->fields[$this->getDefaultKey()]] =& $result->fields[$this->getPrimaryKeyColumnName()];
+			$returner[$result->fields[$this->getDefaultKey()]] = $result->fields[$this->getPrimaryKeyColumnName()];
 			$result->MoveNext();
 		}
 		$result->Close();
-		unset($result);
-
 		return $returner;
 	}
 
@@ -219,13 +218,13 @@ class DefaultSettingDAO extends DAO {
 		}
 
 		$sql = 'SELECT * FROM press_defaults WHERE press_id = ? AND assoc_type = ?';
-		$sqlParams = array($pressId, $this->getDefaultType());
+		$sqlParams = array((int) $pressId, $this->getDefaultType());
 		if ($locale) {
 			$sql .= ' AND locale = ?';
 			$sqlParams[] = $locale;
 		}
 
-		$result =& $this->retrieve($sql, $sqlParams);
+		$result = $this->retrieve($sql, $sqlParams);
 
 		$returner = null;
 		while (!$result->EOF) {
@@ -237,7 +236,6 @@ class DefaultSettingDAO extends DAO {
 				(?, ?, ?, ?, ?)',
 				array($defaultIds[$row['entry_key']], $row['locale'], $row['setting_name'], $row['setting_value'], $row['setting_type'])
 			);
-			unset($row);
 			$result->MoveNext();
 		}
 		$result->Close();

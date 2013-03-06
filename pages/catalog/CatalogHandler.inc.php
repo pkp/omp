@@ -175,12 +175,11 @@ class CatalogHandler extends Handler {
 
 		$resultsIterator =& MonographSearch::retrieveResults($press, $keywords);
 		$publishedMonographs = array();
-		while ($result =& $resultsIterator->next()) {
-			$publishedMonograph =& $result['publishedMonograph'];
+		while ($result = $resultsIterator->next()) {
+			$publishedMonograph = $result['publishedMonograph'];
 			if ($publishedMonograph) {
-				$publishedMonographs[$publishedMonograph->getId()] =& $publishedMonograph;
+				$publishedMonographs[$publishedMonograph->getId()] = $publishedMonograph;
 			}
-			unset($result, $publishedMonograph);
 		}
 		$templateMgr->assign('publishedMonographs', $publishedMonographs);
 

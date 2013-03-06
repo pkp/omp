@@ -29,12 +29,12 @@ class PublicationFormatDAO extends DAO {
 	 * @param $pressId optional int
 	 * @return PublicationFormat
 	 */
-	function &getById($publicationFormatId, $monographId = null, $pressId = null) {
+	function getById($publicationFormatId, $monographId = null, $pressId = null) {
 		$params = array((int) $publicationFormatId);
 		if ($monographId) $params[] = (int) $monographId;
 		if ($pressId) $params[] = (int) $pressId;
 
-		$result =& $this->retrieve(
+		$result = $this->retrieve(
 			'SELECT pf.*
 			FROM	publication_formats pf
 			' . ($pressId?' JOIN monographs m ON (m.monograph_id = pf.monograph_id)':'') . '
@@ -46,12 +46,10 @@ class PublicationFormatDAO extends DAO {
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
-			$returner =& $this->_fromRow($result->GetRowAssoc(false));
+			$returner = $this->_fromRow($result->GetRowAssoc(false));
 		}
 
 		$result->Close();
-		unset($result);
-
 		return $returner;
 	}
 
@@ -61,15 +59,14 @@ class PublicationFormatDAO extends DAO {
 	 * @return DAOResultFactory (PublicationFormat)
 	 */
 	function getByMonographId($monographId) {
-		$result =& $this->retrieve(
+		$result = $this->retrieve(
 			'SELECT *
 			FROM	publication_formats
 			WHERE	monograph_id = ?',
 			(int) $monographId
 		);
 
-		$returner = new DAOResultFactory($result, $this, '_fromRow');
-		return $returner;
+		return new DAOResultFactory($result, $this, '_fromRow');
 	}
 
 	/**
@@ -79,7 +76,7 @@ class PublicationFormatDAO extends DAO {
 	 */
 	function getByPressId($pressId) {
 		$params = array((int) $pressId);
-		$result =& $this->retrieve(
+		$result = $this->retrieve(
 			'SELECT pf.*
 			FROM	publication_formats pf
 			JOIN	monographs m ON (m.monograph_id = pf.monograph_id)
@@ -87,8 +84,7 @@ class PublicationFormatDAO extends DAO {
 			$params
 		);
 
-		$returner = new DAOResultFactory($result, $this, '_fromRow');
-		return $returner;
+		return new DAOResultFactory($result, $this, '_fromRow');
 	}
 
 	/**
@@ -97,15 +93,14 @@ class PublicationFormatDAO extends DAO {
 	 * @return DAOResultFactory (PublicationFormat)
 	 */
 	function getApprovedByMonographId($monographId) {
-		$result =& $this->retrieve(
-				'SELECT *
-				FROM	publication_formats
-				WHERE	monograph_id = ? AND is_approved = 1',
-				(int) $monographId
+		$result = $this->retrieve(
+			'SELECT *
+			FROM	publication_formats
+			WHERE	monograph_id = ? AND is_approved = 1',
+			(int) $monographId
 		);
 
-		$returner = new DAOResultFactory($result, $this, '_fromRow');
-		return $returner;
+		return new DAOResultFactory($result, $this, '_fromRow');
 	}
 
 	/**
@@ -115,8 +110,7 @@ class PublicationFormatDAO extends DAO {
 	function deleteById($publicationFormatId) {
 		// remove settings, then the association itself.
 		$this->update('DELETE FROM publication_format_settings WHERE publication_format_id = ?', (int) $publicationFormatId);
-		$result =& $this->update('DELETE FROM publication_formats WHERE publication_format_id = ?', (int) $publicationFormatId);
-		return $result; // needed for DAO::getDataChangedEvent test
+		return $this->update('DELETE FROM publication_formats WHERE publication_format_id = ?', (int) $publicationFormatId);
 	}
 
 	/**
@@ -314,8 +308,8 @@ class PublicationFormatDAO extends DAO {
 		$pressId = (int) $pressId;
 		$settingName = 'pub-id::'.$pubIdType;
 
-		$formats =& $this->getByPressId($pressId);
-		while ($format =& $formats->next()) {
+		$formats = $this->getByPressId($pressId);
+		while ($format = $formats->next()) {
 			$this->update(
 				'DELETE FROM publication_format_settings WHERE setting_name = ? AND publication_format_id = ?',
 				array(
@@ -323,7 +317,6 @@ class PublicationFormatDAO extends DAO {
 					(int)$format->getId()
 				)
 			);
-			unset($format);
 		}
 		$this->flushCache();
 	}
@@ -337,7 +330,7 @@ class PublicationFormatDAO extends DAO {
 	 * @param $pubId string
 	 */
 	function changePubId($formatId, $pubIdType, $pubId) {
-		$publicationFormat =& $this->getById($formatId);
+		$publicationFormat = $this->getById($formatId);
 		$publicationFormat->setData('pub-id::'.$pubIdType, $pubId);
 		$this->updateObject($publicationFormat);
 	}
@@ -354,7 +347,7 @@ class PublicationFormatDAO extends DAO {
 	 * @return boolean
 	 */
 	function pubIdExists($pubIdType, $pubId, $formatId, $pressId) {
-		$result =& $this->retrieve(
+		$result = $this->retrieve(
 			'SELECT COUNT(*)
 			FROM publication_format_settings pft
 			INNER JOIN publication_formats p ON pft.publication_format_id = p.publication_format_id

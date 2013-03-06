@@ -31,7 +31,7 @@ class UserStageAssignmentDAO extends UserDAO {
 	 * @return object DAOResultFactory
 	 */
 	function getUsersNotAssignedToStageInUserGroup($submissionId, $stageId, $userGroupId) {
-		$result =& $this->retrieve(
+		$result = $this->retrieve(
 			'SELECT	u.*
 			FROM	users u
 				LEFT JOIN user_user_groups uug ON (u.user_id = uug.user_id)
@@ -41,8 +41,7 @@ class UserStageAssignmentDAO extends UserDAO {
 				s.user_group_id IS NULL',
 			array((int) $submissionId, (int) $stageId, (int) $userGroupId));
 
-		$returner = new DAOResultFactory($result, $this, '_returnUserFromRowWithData');
-		return $returner;
+		return new DAOResultFactory($result, $this, '_returnUserFromRowWithData');
 	}
 
 	/**
@@ -64,7 +63,7 @@ class UserStageAssignmentDAO extends UserDAO {
 	 * @return bool
 	 */
 	function deleteAssignment($assignmentId) {
-		return $this->update('DELETE FROM stage_assignments WHERE stage_assignment_id = ?', $assignmentId);
+		return $this->update('DELETE FROM stage_assignments WHERE stage_assignment_id = ?', (int) $assignmentId);
 	}
 
 
@@ -89,7 +88,7 @@ class UserStageAssignmentDAO extends UserDAO {
 		if (isset($userId)) $params[] = (int) $userId;
 		if (isset($roleId)) $params[] = (int) $roleId;
 
-		$result =& $this->retrieve(
+		$result = $this->retrieve(
 			'SELECT u.*
 			FROM stage_assignments sa
 			INNER JOIN user_group_stage ugs ON (sa.user_group_id = ugs.user_group_id)
@@ -107,7 +106,8 @@ class UserStageAssignmentDAO extends UserDAO {
 		// 4 params and 1 search results, means calling context was seeking an individual user.
 		if ($result->RecordCount() == 1 && count($params) == 4) {
 			// If all parameters were specified, then seeking only one assignment.
-			$returner =& $this->_returnUserFromRowWithData($result->GetRowAssoc(false));
+			$returner = $this->_returnUserFromRowWithData($result->GetRowAssoc(false));
+			$result->Close();
 		} elseif ($result) {
 			$returner = new DAOResultFactory($result, $this, '_returnUserFromRowWithData');
 		}

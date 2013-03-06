@@ -38,7 +38,7 @@ class AuthorDAO extends PKPAuthorDAO {
 	 * @param $initial An initial the last names must begin with
 	 * @return array Authors ordered by sequence
 	 */
-	function &getAuthorsAlphabetizedByPress($pressId = null, $initial = null, $rangeInfo = null) {
+	function getAuthorsAlphabetizedByPress($pressId = null, $initial = null, $rangeInfo = null) {
 		$authors = array();
 		$params = array(
 			'affiliation', AppLocale::getPrimaryLocale(),
@@ -53,7 +53,7 @@ class AuthorDAO extends PKPAuthorDAO {
 			$initialSql = '';
 		}
 
-		$result =& $this->retrieveRange(
+		$result = $this->retrieveRange(
 			'SELECT DISTINCT
 				CAST(\'\' AS CHAR) AS url,
 				ma.author_id AS author_id,
@@ -84,8 +84,7 @@ class AuthorDAO extends PKPAuthorDAO {
 			$rangeInfo
 		);
 
-		$returner = new DAOResultFactory($result, $this, '_returnAuthorFromRow');
-		return $returner;
+		return new DAOResultFactory($result, $this, '_returnAuthorFromRow');
 	}
 
 	/**

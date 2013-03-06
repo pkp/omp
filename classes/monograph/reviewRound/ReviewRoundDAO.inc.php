@@ -117,7 +117,7 @@ class ReviewRoundDAO extends DAO {
 	 * @param $round int The review round to be retrieved.
 	 */
 	function getReviewRound($submissionId, $stageId, $round) {
-		$result =& $this->retrieve(
+		$result = $this->retrieve(
 				'SELECT * FROM review_rounds WHERE submission_id = ? AND stage_id = ? AND round = ?',
 				array((int)$submissionId, (int)$stageId, (int)$round));
 
@@ -134,14 +134,14 @@ class ReviewRoundDAO extends DAO {
 	 * @param int $reviewRoundId
 	 * @return ReviewRound
 	 */
-	function &getReviewRoundById($reviewRoundId) {
-		$result =& $this->retrieve(
+	function getReviewRoundById($reviewRoundId) {
+		$result = $this->retrieve(
 				'SELECT * FROM review_rounds WHERE review_round_id = ?',
 				array((int)$reviewRoundId));
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
-			$returner =& $this->_fromRow($result->GetRowAssoc(false));
+			$returner = $this->_fromRow($result->GetRowAssoc(false));
 		}
 		$result->Close();
 		return $returner;
@@ -152,8 +152,8 @@ class ReviewRoundDAO extends DAO {
 	 * @param $monographFileId int
 	 * @return ReviewRound
 	 */
-	function &getByMonographFileId($monographFileId) {
-		$result =& $this->retrieve(
+	function getByMonographFileId($monographFileId) {
+		$result = $this->retrieve(
 				'SELECT * FROM review_rounds rr
 				INNER JOIN review_round_files rrf
 				ON rr.review_round_id = rrf.review_round_id
@@ -162,7 +162,7 @@ class ReviewRoundDAO extends DAO {
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
-			$returner =& $this->_fromRow($result->GetRowAssoc(false));
+			$returner = $this->_fromRow($result->GetRowAssoc(false));
 		}
 		$result->Close();
 		return $returner;
@@ -175,14 +175,12 @@ class ReviewRoundDAO extends DAO {
 	 * @return boolean
 	 */
 	function reviewRoundExists($monographId, $stageId, $round) {
-		$result =& $this->retrieve(
+		$result = $this->retrieve(
 				'SELECT COUNT(*) FROM review_rounds WHERE submission_id = ? AND stage_id = ? AND round = ?',
 				array((int)$monographId, (int)$stageId, (int)$round));
 		$returner = isset($result->fields[0]) && $result->fields[0] == 1 ? true : false;
 
 		$result->Close();
-		unset($result);
-
 		return $returner;
 	}
 
@@ -192,21 +190,20 @@ class ReviewRoundDAO extends DAO {
 	 * @param $stageId int (optional)
 	 * @param $round int (optional)
 	 */
-	function &getByMonographId($monographId, $stageId = null, $round = null) {
+	function getByMonographId($monographId, $stageId = null, $round = null) {
 		$params = array($monographId);
 		if ($stageId) $params[] = $stageId;
 		if ($round) $params[] = $round;
 
-		$result =& $this->retrieve(
-				'SELECT * FROM review_rounds WHERE submission_id = ?' .
-				($stageId ? ' AND stage_id = ?' : '') .
-				($round ? ' AND round = ?' : '') .
-				' ORDER BY stage_id ASC, round ASC',
-				$params
-				);
+		$result = $this->retrieve(
+			'SELECT * FROM review_rounds WHERE submission_id = ?' .
+			($stageId ? ' AND stage_id = ?' : '') .
+			($round ? ' AND round = ?' : '') .
+			' ORDER BY stage_id ASC, round ASC',
+			$params
+		);
 
-		$returner = new DAOResultFactory($result, $this, '_fromRow');
-		return $returner;
+		return new DAOResultFactory($result, $this, '_fromRow');
 	}
 
 	/**
@@ -218,11 +215,13 @@ class ReviewRoundDAO extends DAO {
 	function getCurrentRoundByMonographId($monographId, $stageId = null) {
 		$params = array((int)$monographId);
 		if ($stageId) $params[] = (int) $stageId;
-		$result =& $this->retrieve('SELECT MAX(stage_id) as stage_id, MAX(round) as round
-									FROM review_rounds
-									WHERE submission_id = ?' .
-									($stageId ? ' AND stage_id = ?' : ''),
-									$params);
+		$result = $this->retrieve(
+			'SELECT MAX(stage_id) as stage_id, MAX(round) as round
+			FROM review_rounds
+			WHERE submission_id = ?' .
+			($stageId ? ' AND stage_id = ?' : ''),
+			$params
+		);
 		$returner = isset($result->fields['round']) ? (int)$result->fields['round'] : 1;
 		$result->Close();
 		return $returner;
@@ -234,10 +233,10 @@ class ReviewRoundDAO extends DAO {
 	 * @param $stageId int
 	 * @return ReviewRound
 	 */
-	function &getLastReviewRoundByMonographId($monographId, $stageId = null) {
+	function getLastReviewRoundByMonographId($monographId, $stageId = null) {
 		$params = array((int)$monographId);
 		if ($stageId) $params[] = (int) $stageId;
-		$result =& $this->retrieve(
+		$result = $this->retrieve(
 			'SELECT	*
 			FROM	review_rounds
 			WHERE	submission_id = ?
@@ -249,7 +248,7 @@ class ReviewRoundDAO extends DAO {
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
-			$returner =& $this->_fromRow($result->GetRowAssoc(false));
+			$returner = $this->_fromRow($result->GetRowAssoc(false));
 		}
 		$result->Close();
 		return $returner;
@@ -272,14 +271,14 @@ class ReviewRoundDAO extends DAO {
 	 * @param $reviewAssignments array Review round review assignments.
 	 * @param $status int
 	 */
-	function updateStatus(&$reviewRound, $reviewAssignments = array(), $status = null) {
+	function updateStatus($reviewRound, $reviewAssignments = array(), $status = null) {
 		assert(is_a($reviewRound, 'ReviewRound'));
 		$currentStatus = $reviewRound->getStatus();
 
 		if (is_null($status)) {
 			assert(is_array($reviewAssignments));
 
-			$viewsDao =& DAORegistry::getDAO('ViewsDAO'); /* @var $viewsDao ViewsDAO */
+			$viewsDao = DAORegistry::getDAO('ViewsDAO'); /* @var $viewsDao ViewsDAO */
 			$anyUnreadReview = false;
 			$anyIncompletedReview = false;
 
@@ -328,7 +327,7 @@ class ReviewRoundDAO extends DAO {
 
 			// Don't update the review round status if it isn't the
 			// stage's current one.
-			$lastReviewRound =& $this->getLastReviewRoundByMonographId($reviewRound->getSubmissionId(), $reviewRound->getStageId());
+			$lastReviewRound = $this->getLastReviewRoundByMonographId($reviewRound->getSubmissionId(), $reviewRound->getStageId());
 			if ($lastReviewRound->getId() != $reviewRound->getId()) {
 				return;
 			}
@@ -336,8 +335,9 @@ class ReviewRoundDAO extends DAO {
 
 		// Avoid unnecessary database access.
 		if ($status != $currentStatus) {
-			$params = array((int)$status, (int)$reviewRound->getId());
-			$this->update('UPDATE review_rounds SET status = ? WHERE review_round_id = ?', $params);
+			$this->update('UPDATE review_rounds SET status = ? WHERE review_round_id = ?',
+				array((int)$status, (int)$reviewRound->getId())
+			);
 			// Update the data in object too.
 			$reviewRound->setStatus($status);
 		}
@@ -367,7 +367,7 @@ class ReviewRoundDAO extends DAO {
 	 * @param $row array
 	 * @return Signoff
 	 */
-	function &_fromRow(&$row) {
+	function _fromRow(&$row) {
 		$reviewRound = $this->newDataObject();
 
 		$reviewRound->setId((int)$row['review_round_id']);

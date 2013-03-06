@@ -31,12 +31,12 @@ class CategoryDAO extends DAO {
 	 * @param $parentId int optional
 	 * @return Category
 	 */
-	function &getById($categoryId, $pressId = null, $parentId = null) {
+	function getById($categoryId, $pressId = null, $parentId = null) {
 		$params = array((int) $categoryId);
 		if ($pressId) $params[] = (int) $pressId;
 		if ($parentId) $params[] = (int) $parentId;
 
-		$result =& $this->retrieve(
+		$result = $this->retrieve(
 			'SELECT	*
 			FROM	categories
 			WHERE	category_id = ?
@@ -47,12 +47,9 @@ class CategoryDAO extends DAO {
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
-			$returner =& $this->_fromRow($result->GetRowAssoc(false));
+			$returner = $this->_fromRow($result->GetRowAssoc(false));
 		}
-
 		$result->Close();
-		unset($result);
-
 		return $returner;
 	}
 
@@ -62,20 +59,18 @@ class CategoryDAO extends DAO {
 	 * @param $pressId int
 	 * @return Category
 	 */
-	function &getByPath($path, $pressId) {
+	function getByPath($path, $pressId) {
 		$returner = null;
-		$result =& $this->retrieve(
+		$result = $this->retrieve(
 			'SELECT * FROM categories WHERE path = ? AND press_id = ?',
 			array((string) $path, (int) $pressId)
 		);
 
 		if ($result->RecordCount() != 0) {
-			$returner =& $this->_fromRow($result->GetRowAssoc(false));
+			$returner = $this->_fromRow($result->GetRowAssoc(false));
 		}
 
 		$result->Close();
-		unset($result);
-
 		return $returner;
 	}
 
@@ -86,11 +81,11 @@ class CategoryDAO extends DAO {
 	 * @param $locale string optional
 	 * @return Category
 	 */
-	function &getByTitle($categoryTitle, $pressId, $locale = null) {
+	function getByTitle($categoryTitle, $pressId, $locale = null) {
 		$params = array('title', $categoryTitle, (int) $pressId);
 		if ($locale) $params[] = $locale;
 
-		$result =& $this->retrieve(
+		$result = $this->retrieve(
 			'SELECT	a.*
 			FROM	categories a,
 				category_settings l
@@ -104,12 +99,10 @@ class CategoryDAO extends DAO {
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
-			$returner =& $this->_fromRow($result->GetRowAssoc(false));
+			$returner = $this->_fromRow($result->GetRowAssoc(false));
 		}
 
 		$result->Close();
-		unset($result);
-
 		return $returner;
 	}
 
@@ -119,14 +112,12 @@ class CategoryDAO extends DAO {
 	 * @return boolean
 	 */
 	function categoryExistsByPath($path) {
-		$result =& $this->retrieve(
+		$result = $this->retrieve(
 			'SELECT COUNT(*) FROM categories WHERE path = ?', $path
 		);
 		$returner = isset($result->fields[0]) && $result->fields[0] == 1 ? true : false;
 
 		$result->Close();
-		unset($result);
-
 		return $returner;
 	}
 
@@ -171,7 +162,7 @@ class CategoryDAO extends DAO {
 	 * Update the localized fields for this table
 	 * @param $category object
 	 */
-	function updateLocaleFields(&$category) {
+	function updateLocaleFields($category) {
 		$this->updateDataObjectSettings(
 			'category_settings', $category,
 			array(
@@ -185,7 +176,7 @@ class CategoryDAO extends DAO {
 	 * @param $category Category
 	 * @return int ID of the inserted category.
 	 */
-	function insertObject(&$category) {
+	function insertObject($category) {
 		$this->update(
 			'INSERT INTO categories
 				(press_id, parent_id, path, image)
@@ -232,7 +223,7 @@ class CategoryDAO extends DAO {
 	 * Delete an category.
 	 * @param $category Category
 	 */
-	function deleteObject(&$category) {
+	function deleteObject($category) {
 		return $this->deleteById(
 			$category->getId(),
 			$category->getPressId()
@@ -289,10 +280,10 @@ class CategoryDAO extends DAO {
 	 * Retrieve all categories for a press.
 	 * @return DAOResultFactory containing Category ordered by sequence
 	 */
-	function &getByPressId($pressId, $rangeInfo = null) {
+	function getByPressId($pressId, $rangeInfo = null) {
 		// The strange ORDER BY clause is to return subcategories
 		// immediately after their parent category's entry.
-		$result =& $this->retrieveRange(
+		$result = $this->retrieveRange(
 			'SELECT	*
 			FROM	categories
 			WHERE	press_id = ?
@@ -300,16 +291,15 @@ class CategoryDAO extends DAO {
 			array((int) $pressId)
 		);
 
-		$returner = new DAOResultFactory($result, $this, '_fromRow');
-		return $returner;
+		return new DAOResultFactory($result, $this, '_fromRow');
 	}
 
 	/**
 	 * Retrieve the number of categories for a press.
 	 * @return DAOResultFactory containing Category ordered by sequence
 	 */
-	function &getCountByPressId($pressId) {
-		$result =& $this->retrieve(
+	function getCountByPressId($pressId) {
+		$result = $this->retrieve(
 			'SELECT	COUNT(*)
 			FROM	categories
 			WHERE	press_id = ?',
@@ -317,9 +307,7 @@ class CategoryDAO extends DAO {
 		);
 
 		$returner = $result->fields[0];
-
 		$result->Close();
-		unset($result);
 		return $returner;
 	}
 
@@ -327,20 +315,18 @@ class CategoryDAO extends DAO {
 	 * Retrieve all categories for a parent category.
 	 * @return DAOResultFactory containing Category ordered by sequence
 	 */
-	function &getByParentId($parentId, $pressId = null, $rangeInfo = null) {
+	function getByParentId($parentId, $pressId = null, $rangeInfo = null) {
 		$params = array((int) $parentId);
 		if ($pressId) $params[] = (int) $pressId;
 
-		$result =& $this->retrieveRange(
+		$result = $this->retrieveRange(
 			'SELECT	*
 			FROM	categories
 			WHERE	parent_id = ?
 			' . ($pressId?' AND press_id = ?':''),
 			$params
 		);
-
-		$returner = new DAOResultFactory($result, $this, '_fromRow');
-		return $returner;
+		return new DAOResultFactory($result, $this, '_fromRow');
 	}
 
 	/**

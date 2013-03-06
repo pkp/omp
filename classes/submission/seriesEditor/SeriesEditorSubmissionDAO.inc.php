@@ -50,10 +50,10 @@ class SeriesEditorSubmissionDAO extends MonographDAO {
 	 * @param $monographId int
 	 * @return SeriesEditorSubmission
 	 */
-	function &getById($monographId) {
+	function getById($monographId) {
 		$primaryLocale = AppLocale::getPrimaryLocale();
 		$locale = AppLocale::getLocale();
-		$result =& $this->retrieve(
+		$result = $this->retrieve(
 			'SELECT	m.*,
 				COALESCE(stl.setting_value, stpl.setting_value) AS series_title,
 				COALESCE(sal.setting_value, sapl.setting_value) AS series_abbrev
@@ -75,12 +75,10 @@ class SeriesEditorSubmissionDAO extends MonographDAO {
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
-			$returner =& $this->_fromRow($result->GetRowAssoc(false));
+			$returner = $this->_fromRow($result->GetRowAssoc(false));
 		}
 
 		$result->Close();
-		unset($result);
-
 		return $returner;
 	}
 
@@ -285,7 +283,7 @@ class SeriesEditorSubmissionDAO extends MonographDAO {
 		if ($stageId) $params[] = (int) $stageId;
 		if ($round) $params[] = (int) $round;
 
-		$result =& $this->retrieve(
+		$result = $this->retrieve(
 			'SELECT	edit_decision_id, editor_id, decision,
 				date_decided, review_round_id, stage_id, round
 			FROM	edit_decisions
@@ -310,8 +308,6 @@ class SeriesEditorSubmissionDAO extends MonographDAO {
 			$result->MoveNext();
 		}
 		$result->Close();
-		unset($result);
-
 		return $decisions;
 	}
 
@@ -323,7 +319,7 @@ class SeriesEditorSubmissionDAO extends MonographDAO {
 	 * @return boolean
 	 */
 	function reviewerExists($reviewRoundId, $reviewerId) {
-		$result =& $this->retrieve(
+		$result = $this->retrieve(
 			'SELECT COUNT(*)
 			FROM	review_assignments
 			WHERE	review_round_id = ? AND
@@ -334,8 +330,6 @@ class SeriesEditorSubmissionDAO extends MonographDAO {
 		$returner = isset($result->fields[0]) && $result->fields[0] == 1 ? true : false;
 
 		$result->Close();
-		unset($result);
-
 		return $returner;
 	}
 
@@ -347,8 +341,8 @@ class SeriesEditorSubmissionDAO extends MonographDAO {
 	 * @param $round int
 	 * @return DAOResultFactory containing matching Users
 	 */
-	function &getReviewersForMonograph($pressId, $monographId, $round) {
-		$result =& $this->retrieve(
+	function getReviewersForMonograph($pressId, $monographId, $round) {
+		$result = $this->retrieve(
 			'SELECT	u.*
 			FROM	users u
 				LEFT JOIN user_user_groups uug ON (uug.user_id = u.user_id)
@@ -367,8 +361,7 @@ class SeriesEditorSubmissionDAO extends MonographDAO {
 			)
 		);
 
-		$returner = new DAOResultFactory($result, $this, '_returnReviewerUserFromRow');
-		return $returner;
+		return new DAOResultFactory($result, $this, '_returnReviewerUserFromRow');
 	}
 
 	/**
@@ -394,13 +387,13 @@ class SeriesEditorSubmissionDAO extends MonographDAO {
 	 * @param $name string
 	 * @return array matching Users
 	 */
-	function &getReviewersNotAssignedToMonograph($pressId, $monographId, &$reviewRound, $name = '') {
+	function getReviewersNotAssignedToMonograph($pressId, $monographId, &$reviewRound, $name = '') {
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 
 		$params = array((int) $pressId, ROLE_ID_REVIEWER, (int) $reviewRound->getStageId(), (int) $monographId, (int) $reviewRound->getId());
 		if (!empty($name)) $params[] = $params[] = $params[] = $params[] = "%$name%";
 
-		$result =& $this->retrieve(
+		$result = $this->retrieve(
 			'SELECT	DISTINCT u.*
 			FROM	users u
 				JOIN user_user_groups uug ON (uug.user_id = u.user_id)
@@ -415,8 +408,7 @@ class SeriesEditorSubmissionDAO extends MonographDAO {
 			$params
 		);
 
-		$returner = new DAOResultFactory($result, $this, '_returnReviewerUserFromRow');
-		return $returner;
+		return new DAOResultFactory($result, $this, '_returnReviewerUserFromRow');
 	}
 
 	/**
@@ -425,8 +417,8 @@ class SeriesEditorSubmissionDAO extends MonographDAO {
 	 * @param $pressId int
 	 * @return array matching Users
 	 */
-	function &getAllReviewers($pressId) {
-		$result =& $this->retrieve(
+	function getAllReviewers($pressId) {
+		$result = $this->retrieve(
 			'SELECT	u.*
 			FROM	users u
 				LEFT JOIN user_user_groups uug ON (uug.user_id = u.user_id)
@@ -437,9 +429,7 @@ class SeriesEditorSubmissionDAO extends MonographDAO {
 			array((int) $pressId, ROLE_ID_REVIEWER)
 		);
 
-		$returner = new DAOResultFactory($result, $this, '_returnReviewerUserFromRow');
-		return $returner;
-
+		return new DAOResultFactory($result, $this, '_returnReviewerUserFromRow');
 	}
 
 	/**
@@ -462,7 +452,7 @@ class SeriesEditorSubmissionDAO extends MonographDAO {
 		);
 
 		// Get number of reviews completed
-		$result =& $this->retrieve(
+		$result = $this->retrieve(
 			'SELECT	r.reviewer_id, COUNT(*) as completed_count
 			FROM	review_assignments r
 			WHERE	r.date_completed IS NOT NULL
@@ -474,10 +464,9 @@ class SeriesEditorSubmissionDAO extends MonographDAO {
 			$result->MoveNext();
 		}
 		$result->Close();
-		unset($result);
 
 		// Get average number of days per review and days since last review
-		$result =& $this->retrieve(
+		$result = $this->retrieve(
 			'SELECT	r.reviewer_id, r.date_completed, r.date_notified
 			FROM	review_assignments r
 			WHERE	r.date_notified IS NOT NULL AND
@@ -514,7 +503,7 @@ class SeriesEditorSubmissionDAO extends MonographDAO {
 		unset($result);
 
 		// Get number of currently active reviews
-		$result =& $this->retrieve(
+		$result = $this->retrieve(
 			'SELECT	r.reviewer_id, COUNT(*) AS incomplete
 			FROM	review_assignments r
 			WHERE	r.date_notified IS NOT NULL AND
@@ -552,8 +541,8 @@ class SeriesEditorSubmissionDAO extends MonographDAO {
 	 * @return array Users
 	 */
 	function getFilteredReviewers($pressId, $doneMin, $doneMax, $avgMin, $avgMax, $lastMin, $lastMax, $activeMin, $activeMax, $interests, $monographId = null, $reviewRoundId = null) {
-		$userDao =& DAORegistry::getDAO('UserDAO'); /* @var $userDao UserDAO */
-		$interestDao =& DAORegistry::getDAO('InterestDAO'); /* @var $interestDao InterestDAO */
+		$userDao = DAORegistry::getDAO('UserDAO'); /* @var $userDao UserDAO */
+		$interestDao = DAORegistry::getDAO('InterestDAO'); /* @var $interestDao InterestDAO */
 		$reviewerStats = $this->getReviewerStatistics($pressId);
 
 		// Get the IDs of the interests searched for
@@ -575,10 +564,10 @@ class SeriesEditorSubmissionDAO extends MonographDAO {
 
 		// If monographId is set, get the list of available reviewers to the monograph
 		if($monographId) {
-			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO'); /* @var $reviewAssignmentDao ReviewAssignmentDAO */
-			$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
-			$reviewRound =& $reviewRoundDao->getReviewRoundById($reviewRoundId);
-			$availableReviewerFactory =& $this->getReviewersNotAssignedToMonograph($pressId, $monographId, $reviewRound);
+			$reviewAssignmentDao = DAORegistry::getDAO('ReviewAssignmentDAO'); /* @var $reviewAssignmentDao ReviewAssignmentDAO */
+			$reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO');
+			$reviewRound = $reviewRoundDao->getReviewRoundById($reviewRoundId);
+			$availableReviewerFactory = $this->getReviewersNotAssignedToMonograph($pressId, $monographId, $reviewRound);
 			$availableReviewers = $availableReviewerFactory->toAssociativeArray();
 		}
 
@@ -623,14 +612,13 @@ class SeriesEditorSubmissionDAO extends MonographDAO {
 		$statistics = array();
 		$reviewerStatsPlaceholder = array('last_notified' => null, 'incomplete' => 0, 'total_span' => 0, 'completed_review_count' => 0, 'average_span' => 0);
 
-		$allReviewers =& $this->getAllReviewers($pressId);
-		while($reviewer =& $allReviewers->next()) {
-				$statistics[$reviewer->getId()] = $reviewerStatsPlaceholder;
-			unset($reviewer);
+		$allReviewers = $this->getAllReviewers($pressId);
+		while($reviewer = $allReviewers->next()) {
+			$statistics[$reviewer->getId()] = $reviewerStatsPlaceholder;
 		}
 
 		// Get counts of completed submissions
-		$result =& $this->retrieve(
+		$result = $this->retrieve(
 			'SELECT	r.reviewer_id, MAX(r.date_notified) AS last_notified
 			FROM	review_assignments r, monographs m
 			WHERE	r.submission_id = m.monograph_id AND
@@ -644,12 +632,10 @@ class SeriesEditorSubmissionDAO extends MonographDAO {
 			$statistics[$row['reviewer_id']]['last_notified'] = $this->datetimeFromDB($row['last_notified']);
 			$result->MoveNext();
 		}
-
 		$result->Close();
-		unset($result);
 
 		// Get completion status
-		$result =& $this->retrieve(
+		$result = $this->retrieve(
 			'SELECT	r.reviewer_id, COUNT(*) AS incomplete
 			FROM	review_assignments r, monographs m
 			WHERE	r.submission_id = m.monograph_id AND
@@ -668,10 +654,9 @@ class SeriesEditorSubmissionDAO extends MonographDAO {
 		}
 
 		$result->Close();
-		unset($result);
 
 		// Calculate time taken for completed reviews
-		$result =& $this->retrieve(
+		$result = $this->retrieve(
 			'SELECT	r.reviewer_id, r.date_notified, r.date_completed
 			FROM	review_assignments r, monographs m
 			WHERE	r.submission_id = m.monograph_id AND
@@ -701,8 +686,6 @@ class SeriesEditorSubmissionDAO extends MonographDAO {
 		}
 
 		$result->Close();
-		unset($result);
-
 		return $statistics;
 	}
 
@@ -714,7 +697,7 @@ class SeriesEditorSubmissionDAO extends MonographDAO {
 	function transferEditorDecisions($oldUserId, $newUserId) {
 		$this->update(
 			'UPDATE edit_decisions SET editor_id = ? WHERE editor_id = ?',
-			array($newUserId, $oldUserId)
+			array((int) $newUserId, (int) $oldUserId)
 		);
 	}
 }

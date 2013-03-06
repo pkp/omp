@@ -15,8 +15,6 @@
  * FIXME: NEAR; precedence w/o parents?; stemming; weighted counting
  */
 
-
-
 // Search types
 define('MONOGRAPH_SEARCH_AUTHOR',		0x00000001);
 define('MONOGRAPH_SEARCH_TITLE',		0x00000002);
@@ -42,8 +40,7 @@ class MonographSearch {
 	function parseQuery($query) {
 		$count = preg_match_all('/(\+|\-|)("[^"]+"|\(|\)|[^\s\)]+)/', $query, $matches);
 		$pos = 0;
-		$keywords = MonographSearch::_parseQuery($matches[1], $matches[2], $pos, $count);
-		return $keywords;
+		return MonographSearch::_parseQuery($matches[1], $matches[2], $pos, $count);
 	}
 
 	/**
@@ -98,7 +95,7 @@ class MonographSearch {
 	 * See implementation of retrieveResults for a description of this
 	 * function.
 	 */
-	function &_getMergedArray(&$press, &$keywords, $publishedFrom, $publishedTo, &$resultCount) {
+	function _getMergedArray($press, $keywords, $publishedFrom, $publishedTo, &$resultCount) {
 		$resultsPerKeyword = Config::getVar('search', 'results_per_keyword');
 		$resultCacheHours = Config::getVar('search', 'result_cache_hours');
 		if (!is_numeric($resultsPerKeyword)) $resultsPerKeyword = 100;
@@ -113,7 +110,7 @@ class MonographSearch {
 			if (!empty($keyword['-']))
 				$mergedKeywords['-'][] = array('type' => $type, '+' => array(), '' => $keyword['-'], '-' => array());
 		}
-		$mergedResults =& MonographSearch::_getMergedKeywordResults($press, $mergedKeywords, null, $publishedFrom, $publishedTo, $resultsPerKeyword, $resultCacheHours);
+		$mergedResults = MonographSearch::_getMergedKeywordResults($press, $mergedKeywords, null, $publishedFrom, $publishedTo, $resultsPerKeyword, $resultCacheHours);
 
 		$resultCount = count($mergedResults);
 		return $mergedResults;
@@ -122,7 +119,7 @@ class MonographSearch {
 	/**
 	 * Recursive helper for _getMergedArray.
 	 */
-	function &_getMergedKeywordResults(&$press, &$keyword, $type, $publishedFrom, $publishedTo, $resultsPerKeyword, $resultCacheHours) {
+	function _getMergedKeywordResults($press, $keyword, $type, $publishedFrom, $publishedTo, $resultsPerKeyword, $resultCacheHours) {
 		$mergedResults = null;
 
 		if (isset($keyword['type'])) {
@@ -130,7 +127,7 @@ class MonographSearch {
 		}
 
 		foreach ($keyword['+'] as $phrase) {
-			$results =& MonographSearch::_getMergedPhraseResults($press, $phrase, $type, $publishedFrom, $publishedTo, $resultsPerKeyword, $resultCacheHours);
+			$results = MonographSearch::_getMergedPhraseResults($press, $phrase, $type, $publishedFrom, $publishedTo, $resultsPerKeyword, $resultCacheHours);
 			if ($mergedResults === null) {
 				$mergedResults = $results;
 			} else {
@@ -150,7 +147,7 @@ class MonographSearch {
 
 		if (!empty($mergedResults) || empty($keyword['+'])) {
 			foreach ($keyword[''] as $phrase) {
-				$results =& MonographSearch::_getMergedPhraseResults($press, $phrase, $type, $publishedFrom, $publishedTo, $resultsPerKeyword, $resultCacheHours);
+				$results = MonographSearch::_getMergedPhraseResults($press, $phrase, $type, $publishedFrom, $publishedTo, $resultsPerKeyword, $resultCacheHours);
 				foreach ($results as $monographId => $count) {
 					if (isset($mergedResults[$monographId])) {
 						$mergedResults[$monographId] += $count;
@@ -161,7 +158,7 @@ class MonographSearch {
 			}
 
 			foreach ($keyword['-'] as $phrase) {
-				$results =& MonographSearch::_getMergedPhraseResults($press, $phrase, $type, $publishedFrom, $publishedTo, $resultsPerKeyword, $resultCacheHours);
+				$results = MonographSearch::_getMergedPhraseResults($press, $phrase, $type, $publishedFrom, $publishedTo, $resultsPerKeyword, $resultCacheHours);
 				foreach ($results as $monographId => $count) {
 					if (isset($mergedResults[$monographId])) {
 						unset($mergedResults[$monographId]);
@@ -176,15 +173,14 @@ class MonographSearch {
 	/**
 	 * Recursive helper for _getMergedArray.
 	 */
-	function &_getMergedPhraseResults(&$press, &$phrase, $type, $publishedFrom, $publishedTo, $resultsPerKeyword, $resultCacheHours) {
+	function _getMergedPhraseResults($press, $phrase, $type, $publishedFrom, $publishedTo, $resultsPerKeyword, $resultCacheHours) {
 		if (isset($phrase['+'])) {
-			$mergedResults =& MonographSearch::_getMergedKeywordResults($press, $phrase, $type, $publishedFrom, $publishedTo, $resultsPerKeyword, $resultCacheHours);
-			return $mergedResults;
+			return MonographSearch::_getMergedKeywordResults($press, $phrase, $type, $publishedFrom, $publishedTo, $resultsPerKeyword, $resultCacheHours);
 		}
 
 		$mergedResults = array();
-		$monographSearchDao =& DAORegistry::getDAO('MonographSearchDAO');
-		$results =& $monographSearchDao->getPhraseResults(
+		$monographSearchDao = DAORegistry::getDAO('MonographSearchDAO');
+		$results = $monographSearchDao->getPhraseResults(
 			$press,
 			$phrase,
 			$publishedFrom,
@@ -194,7 +190,7 @@ class MonographSearch {
 			$resultCacheHours
 		);
 		while (!$results->eof()) {
-			$result =& $results->next();
+			$result = $results->next();
 			$monographId = $result['monograph_id'];
 			if (!isset($mergedResults[$monographId])) {
 				$mergedResults[$monographId] = $result['count'];
@@ -209,12 +205,12 @@ class MonographSearch {
 	 * See implementation of retrieveResults for a description of this
 	 * function.
 	 */
-	function &_getSparseArray(&$mergedResults, $resultCount) {
+	function _getSparseArray($mergedResults, $resultCount) {
 		$results = array();
 		$i = 0;
 		foreach ($mergedResults as $monographId => $count) {
-				$frequencyIndicator = ($resultCount * $count) + $i++;
-				$results[$frequencyIndicator] = $monographId;
+			$frequencyIndicator = ($resultCount * $count) + $i++;
+			$results[$frequencyIndicator] = $monographId;
 		}
 		krsort($results);
 		return $results;
@@ -226,11 +222,11 @@ class MonographSearch {
 	 * Note that this function is also called externally to fetch
 	 * results for the title index, and possibly elsewhere.
 	 */
-	function &formatResults(&$results) {
-		$pressDao =& DAORegistry::getDAO('PressDAO');
-		$monographDao =& DAORegistry::getDAO('MonographDAO');
-		$seriesDao =& DAORegistry::getDAO('SeriesDAO');
-		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
+	function formatResults($results) {
+		$pressDao = DAORegistry::getDAO('PressDAO');
+		$monographDao = DAORegistry::getDAO('MonographDAO');
+		$seriesDao = DAORegistry::getDAO('SeriesDAO');
+		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
 
 		$publishedMonographCache = array();
 		$monographCache = array();
@@ -241,17 +237,17 @@ class MonographSearch {
 		foreach ($results as $monographId) {
 			// Get the monograph, storing in cache if necessary.
 			if (!isset($monographCache[$monographId])) {
-				$monographCache[$monographId] =& $monographDao->getById($monographId);
-				$publishedMonographCache[$monographId] =& $publishedMonographDao->getById($monographId);
+				$monographCache[$monographId] = $monographDao->getById($monographId);
+				$publishedMonographCache[$monographId] = $publishedMonographDao->getById($monographId);
 			}
 			unset($monograph, $publishedMonograph);
-			$monograph =& $monographCache[$monographId];
-			$publishedMonograph =& $publishedMonographCache[$monographId];
+			$monograph = $monographCache[$monographId];
+			$publishedMonograph = $publishedMonographCache[$monographId];
 
 			if ($monograph) {
 				$seriesId = $monograph->getSeriesId();
 				if (!isset($seriesCache[$seriesId])) {
-					$seriesCache[$seriesId] =& $seriesDao->getById($seriesId);
+					$seriesCache[$seriesId] = $seriesDao->getById($seriesId);
 				}
 
 				// Get the press, storing in cache if necessary.
@@ -262,10 +258,10 @@ class MonographSearch {
 
 				// Store the retrieved objects in the result array.
 				$returner[] = array(
-					'press' => &$pressCache[$pressId],
-					'monograph' => &$monograph,
-					'publishedMonograph' => &$publishedMonograph,
-					'seriesArrangment' => &$seriesCache[$seriesId]
+					'press' => $pressCache[$pressId],
+					'monograph' => $monograph,
+					'publishedMonograph' => $publishedMonograph,
+					'seriesArrangment' => $seriesCache[$seriesId]
 				);
 			}
 		}
@@ -285,13 +281,13 @@ class MonographSearch {
 	 * @param $publishedTo object Search-to date
 	 * @param $rangeInfo Information on the range of results to return
 	 */
-	function &retrieveResults(&$press, &$keywords, $publishedFrom = null, $publishedTo = null, $rangeInfo = null) {
+	function retrieveResults($press, $keywords, $publishedFrom = null, $publishedTo = null, $rangeInfo = null) {
 		// Fetch all the results from all the keywords into one array
 		// (mergedResults), where mergedResults[monograph_id]
 		// = sum of all the occurences for all keywords associated with
 		// that monograph ID.
 		// resultCount contains the sum of result counts for all keywords.
-		$mergedResults =& MonographSearch::_getMergedArray($press, $keywords, $publishedFrom, $publishedTo, $resultCount);
+		$mergedResults = MonographSearch::_getMergedArray($press, $keywords, $publishedFrom, $publishedTo, $resultCount);
 
 		// Convert mergedResults into an array (frequencyIndicator =>
 		// $monographId).
@@ -299,7 +295,7 @@ class MonographSearch {
 		// where higher is better, indicating the quality of the match.
 		// It is generated here in such a manner that matches with
 		// identical frequency do not collide.
-		$results =& MonographSearch::_getSparseArray($mergedResults, $resultCount);
+		$results = MonographSearch::_getSparseArray($mergedResults, $resultCount);
 
 		$totalResults = count($results);
 
@@ -319,12 +315,11 @@ class MonographSearch {
 
 		// Take the range of results and retrieve the Monograph, Press,
 		// and associated objects.
-		$results =& MonographSearch::formatResults($results);
+		$results = MonographSearch::formatResults($results);
 
 		// Return the appropriate iterator.
 		import('lib.pkp.classes.core.VirtualArrayIterator');
-		$returner = new VirtualArrayIterator($results, $totalResults, $page, $itemsPerPage);
-		return $returner;
+		return new VirtualArrayIterator($results, $totalResults, $page, $itemsPerPage);
 	}
 }
 

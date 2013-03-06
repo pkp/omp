@@ -29,23 +29,24 @@ class RepresentativeDAO extends DAO {
 	 * @param $monographId optional int
 	 * @return Representative
 	 */
-	function &getById($representativeId, $monographId = null){
+	function getById($representativeId, $monographId = null){
 		$sqlParams = array((int) $representativeId);
 		if ($monographId) {
 			$sqlParams[] = (int) $monographId;
 		}
 
-		$result =& $this->retrieve(
+		$result = $this->retrieve(
 			'SELECT r.*
 				FROM representatives r
 			JOIN published_monographs pm ON (r.monograph_id = pm.monograph_id)
 			WHERE r.representative_id = ?
 				' . ($monographId?' AND pm.monograph_id = ?':''),
-			$sqlParams);
+			$sqlParams
+		);
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
-			$returner =& $this->_fromRow($result->GetRowAssoc(false));
+			$returner = $this->_fromRow($result->GetRowAssoc(false));
 		}
 		$result->Close();
 		return $returner;
@@ -56,12 +57,11 @@ class RepresentativeDAO extends DAO {
 	 * @param $monographId int
 	 * @return DAOResultFactory containing matching representatives.
 	 */
-	function &getSuppliersByMonographId($monographId) {
-		$result =& $this->retrieveRange(
+	function getSuppliersByMonographId($monographId) {
+		$result = $this->retrieveRange(
 			'SELECT * FROM representatives WHERE monograph_id = ? AND is_supplier = ?', array((int) $monographId, 1));
 
-		$returner = new DAOResultFactory($result, $this, '_fromRow');
-		return $returner;
+		return new DAOResultFactory($result, $this, '_fromRow');
 	}
 
 	/**
@@ -69,12 +69,11 @@ class RepresentativeDAO extends DAO {
 	 * @param $monographId int
 	 * @return DAOResultFactory containing matching representatives.
 	 */
-	function &getAgentsByMonographId($monographId) {
-		$result =& $this->retrieveRange(
+	function getAgentsByMonographId($monographId) {
+		$result = $this->retrieveRange(
 				'SELECT * FROM representatives WHERE monograph_id = ? AND is_supplier = ?', array((int) $monographId, 0));
 
-		$returner = new DAOResultFactory($result, $this, '_fromRow');
-		return $returner;
+		return new DAOResultFactory($result, $this, '_fromRow');
 	}
 
 	/**
@@ -91,7 +90,7 @@ class RepresentativeDAO extends DAO {
 	 * @param $callHooks boolean
 	 * @return Representative
 	 */
-	function &_fromRow(&$row, $callHooks = true) {
+	function _fromRow($row, $callHooks = true) {
 		$representative = $this->newDataObject();
 		$representative->setId($row['representative_id']);
 		$representative->setRole($row['role']);
@@ -114,7 +113,7 @@ class RepresentativeDAO extends DAO {
 	 * Insert a new representative entry.
 	 * @param $representative Representative
 	 */
-	function insertObject(&$representative) {
+	function insertObject($representative) {
 		$this->update(
 			'INSERT INTO representatives
 				(monograph_id, role, representative_id_type, representative_id_value, name, phone, fax, email, url, is_supplier)
@@ -142,7 +141,7 @@ class RepresentativeDAO extends DAO {
 	 * Update an existing representative entry.
 	 * @param $representative Representative
 	 */
-	function updateObject(&$representative) {
+	function updateObject($representative) {
 		$this->update(
 			'UPDATE representatives
 				SET role = ?,
@@ -184,7 +183,7 @@ class RepresentativeDAO extends DAO {
 	 */
 	function deleteById($entryId) {
 		return $this->update(
-			'DELETE FROM representatives WHERE representative_id = ?', array((int) $entryId)
+			'DELETE FROM representatives WHERE representative_id = ?', (int) $entryId
 		);
 	}
 

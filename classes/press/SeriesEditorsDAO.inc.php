@@ -68,14 +68,14 @@ class SeriesEditorsDAO extends DAO {
 	 * @param $pressId int
 	 * @return array matching Users
 	 */
-	function &getEditorsBySeriesId($seriesId, $pressId) {
+	function getEditorsBySeriesId($seriesId, $pressId) {
 		$users = array();
 
-		$userDao =& DAORegistry::getDAO('UserDAO');
+		$userDao = DAORegistry::getDAO('UserDAO');
 
-		$result =& $this->retrieve(
-			'SELECT u.*, e.can_review AS can_review, e.can_edit AS can_edit FROM users AS u, series_editors AS e WHERE u.user_id = e.user_id AND e.press_id = ? AND e.series_id = ? ORDER BY last_name, first_name',
-			array($pressId, $seriesId)
+		$result = $this->retrieve(
+			'SELECT	u.*, e.can_review AS can_review, e.can_edit AS can_edit FROM users AS u, series_editors AS e WHERE u.user_id = e.user_id AND e.press_id = ? AND e.series_id = ? ORDER BY last_name, first_name',
+			array((int) $pressId, (int) $seriesId)
 		);
 
 		while (!$result->EOF) {
@@ -89,8 +89,6 @@ class SeriesEditorsDAO extends DAO {
 		}
 
 		$result->Close();
-		unset($result);
-
 		return $users;
 	}
 
@@ -100,12 +98,12 @@ class SeriesEditorsDAO extends DAO {
 	 * @param $seriesId int
 	 * @return array matching Users
 	 */
-	function &getEditorsNotInSeries($pressId, $seriesId) {
+	function getEditorsNotInSeries($pressId, $seriesId) {
 		$users = array();
 
-		$userDao =& DAORegistry::getDAO('UserDAO');
+		$userDao = DAORegistry::getDAO('UserDAO');
 
-		$result =& $this->retrieve(
+		$result = $this->retrieve(
 			'SELECT	u.*
 			FROM	users u
 				JOIN user_user_groups uug ON (u.user_id = uug.user_id)
@@ -117,7 +115,7 @@ class SeriesEditorsDAO extends DAO {
 		);
 
 		while (!$result->EOF) {
-			$users[] =& $userDao->_returnUserFromRow($result->GetRowAssoc(false));
+			$users[] = $userDao->_returnUserFromRow($result->GetRowAssoc(false));
 			$result->MoveNext();
 		}
 
@@ -176,14 +174,13 @@ class SeriesEditorsDAO extends DAO {
 	 * @return boolean
 	 */
 	function editorExists($pressId, $seriesId, $userId) {
-		$result =& $this->retrieve(
-			'SELECT COUNT(*) FROM series_editors WHERE press_id = ? AND series_id = ? AND user_id = ?', array($pressId, $seriesId, $userId)
+		$result = $this->retrieve(
+			'SELECT COUNT(*) FROM series_editors WHERE press_id = ? AND series_id = ? AND user_id = ?',
+			array((int) $pressId, (int) $seriesId, (int) $userId)
 		);
 		$returner = isset($result->fields[0]) && $result->fields[0] == 1 ? true : false;
 
 		$result->Close();
-		unset($result);
-
 		return $returner;
 	}
 }
