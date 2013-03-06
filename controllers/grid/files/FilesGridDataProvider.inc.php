@@ -96,8 +96,8 @@ class FilesGridDataProvider extends GridDataProvider {
 	// Protected helper methods
 	//
 	/**
-	 * Get the authorized monograph.
-	 * @return Monograph
+	 * Get the authorized submission.
+	 * @return Submission
 	 */
 	function &getMonograph() {
 		return $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);

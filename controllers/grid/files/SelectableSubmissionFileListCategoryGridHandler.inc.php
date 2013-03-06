@@ -20,7 +20,7 @@ import('controllers.grid.files.SubmissionFilesGridRow');
 import('controllers.grid.files.FileNameGridColumn');
 import('controllers.grid.files.SelectableSubmissionFileListCategoryGridRow');
 
-// Import monograph file class which contains the MONOGRAPH_FILE_* constants.
+// Import monograph file class which contains the SUBMISSION_FILE_* constants.
 import('classes.monograph.MonographFile');
 
 // Import the class that defines file grids capabilities.

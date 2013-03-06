@@ -195,7 +195,7 @@ class MonographSearchIndex {
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		import('classes.monograph.MonographFile'); // Constants
 		import('classes.search.MonographSearch'); // Constants
-		$files =& $submissionFileDao->getLatestRevisions($monograph->getId(), MONOGRAPH_FILE_PROOF);
+		$files =& $submissionFileDao->getLatestRevisions($monograph->getId(), SUBMISSION_FILE_PROOF);
 
 		foreach ($files as $file) {
 			if ($file->getFileId() && $file->getViewable()) {

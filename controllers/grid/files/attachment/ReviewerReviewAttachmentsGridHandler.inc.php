@@ -22,7 +22,7 @@ class ReviewerReviewAttachmentsGridHandler extends FileListGridHandler {
 		import('controllers.grid.files.attachment.ReviewerReviewAttachmentGridDataProvider');
 		// Pass in null stageId to be set in initialize from request var.
 		parent::FileListGridHandler(
-			new ReviewerReviewAttachmentGridDataProvider(MONOGRAPH_FILE_REVIEW_ATTACHMENT),
+			new ReviewerReviewAttachmentGridDataProvider(SUBMISSION_FILE_REVIEW_ATTACHMENT),
 			null,
 			FILE_GRID_ADD|FILE_GRID_DELETE
 		);

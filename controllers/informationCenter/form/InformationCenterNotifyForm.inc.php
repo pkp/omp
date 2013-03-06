@@ -214,7 +214,7 @@ class InformationCenterNotifyForm extends Form {
 						import('classes.monograph.MonographFile');
 						$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO');
 						$monographFileSignoffDao =& DAORegistry::getDAO('MonographFileSignoffDAO');
-						$monographFiles =& $submissionFileDao->getLatestRevisions($monograph->getId(), MONOGRAPH_FILE_COPYEDIT);
+						$monographFiles =& $submissionFileDao->getLatestRevisions($monograph->getId(), SUBMISSION_FILE_COPYEDIT);
 						foreach ($monographFiles as $monographFile) {
 							$signoffFactory =& $monographFileSignoffDao->getAllBySymbolic('SIGNOFF_COPYEDITING', $monographFile->getFileId());
 							while ($signoff =& $signoffFactory->next()) {

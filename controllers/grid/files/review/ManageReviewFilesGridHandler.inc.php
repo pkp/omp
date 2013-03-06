@@ -28,7 +28,7 @@ class ManageReviewFilesGridHandler extends SelectableSubmissionFileListCategoryG
 		import('controllers.grid.files.review.ReviewCategoryGridDataProvider');
 		// Pass in null stageId to be set in initialize from request var.
 		parent::SelectableSubmissionFileListCategoryGridHandler(
-			new ReviewCategoryGridDataProvider(MONOGRAPH_FILE_REVIEW_FILE),
+			new ReviewCategoryGridDataProvider(SUBMISSION_FILE_REVIEW_FILE),
 			null,
 			FILE_GRID_ADD|FILE_GRID_VIEW_NOTES
 		);

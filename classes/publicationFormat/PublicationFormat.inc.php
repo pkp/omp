@@ -319,7 +319,7 @@ class PublicationFormat extends DataObject {
 		import('classes.monograph.MonographFile'); // File constants
 		$stageMonographFiles =& $submissionFileDao->getLatestRevisionsByAssocId(
 				ASSOC_TYPE_PUBLICATION_FORMAT, $this->getId(),
-				$this->getMonographId(), MONOGRAPH_FILE_PROOF
+				$this->getMonographId(), SUBMISSION_FILE_PROOF
 		);
 
 		foreach ($stageMonographFiles as $monographFile) {

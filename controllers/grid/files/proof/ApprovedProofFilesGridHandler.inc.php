@@ -15,7 +15,7 @@
 // import grid signoff files grid base classes
 import('lib.pkp.classes.controllers.grid.GridHandler');
 
-// Import monograph file class which contains the MONOGRAPH_FILE_* constants.
+// Import monograph file class which contains the SUBMISSION_FILE_* constants.
 import('classes.monograph.MonographFile');
 
 // Import the various classes for this grid

@@ -177,7 +177,7 @@ class EditorDecisionForm extends Form {
 		// Add the selected files to the new round.
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 
-		// Bring in the MONOGRAPH_FILE_* constants.
+		// Bring in the SUBMISSION_FILE_* constants.
 		import('classes.monograph.MonographFile');
 		// Bring in the Manager (we need it).
 		import('classes.file.MonographFileManager');
@@ -188,7 +188,7 @@ class EditorDecisionForm extends Form {
 				foreach ($selectedFiles as $fileId) {
 					// Retrieve the file last revision number.
 					$revisionNumber = $submissionFileDao->getLatestRevisionNumber($fileId);
-					list($newFileId, $newRevision) = $monographFileManager->copyFileToFileStage($fileId, $revisionNumber, MONOGRAPH_FILE_REVIEW_FILE, null, true);
+					list($newFileId, $newRevision) = $monographFileManager->copyFileToFileStage($fileId, $revisionNumber, SUBMISSION_FILE_REVIEW_FILE, null, true);
 					$submissionFileDao->assignRevisionToReviewRound($newFileId, $newRevision, $reviewRound);
 				}
 			}

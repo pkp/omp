@@ -184,17 +184,17 @@ class SubmissionFilesCategoryGridDataProvider extends CategoryGridDataProvider {
 	function _getFileStageByStageId($stageId) {
 		switch($stageId) {
 			case WORKFLOW_STAGE_ID_SUBMISSION:
-				return MONOGRAPH_FILE_SUBMISSION;
+				return SUBMISSION_FILE_SUBMISSION;
 				break;
 			case WORKFLOW_STAGE_ID_INTERNAL_REVIEW:
 			case WORKFLOW_STAGE_ID_EXTERNAL_REVIEW:
-				return MONOGRAPH_FILE_REVIEW_FILE;
+				return SUBMISSION_FILE_REVIEW_FILE;
 				break;
 			case WORKFLOW_STAGE_ID_EDITING:
-				return MONOGRAPH_FILE_FINAL;
+				return SUBMISSION_FILE_FINAL;
 				break;
 			case WORKFLOW_STAGE_ID_PRODUCTION:
-				return MONOGRAPH_FILE_PRODUCTION_READY;
+				return SUBMISSION_FILE_PRODUCTION_READY;
 				break;
 			default:
 				break;

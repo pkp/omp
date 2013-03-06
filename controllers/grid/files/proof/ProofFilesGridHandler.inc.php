@@ -15,7 +15,7 @@
 // import grid signoff files grid base classes
 import('controllers.grid.files.signoff.SignoffFilesGridHandler');
 
-// Import monograph file class which contains the MONOGRAPH_FILE_* constants.
+// Import monograph file class which contains the SUBMISSION_FILE_* constants.
 import('classes.monograph.MonographFile');
 
 // Import MONOGRAPH_EMAIL_* constants.
@@ -28,7 +28,7 @@ class ProofFilesGridHandler extends SignoffFilesGridHandler {
 	function ProofFilesGridHandler() {
 		parent::SignoffFilesGridHandler(
 			WORKFLOW_STAGE_ID_PRODUCTION,
-			MONOGRAPH_FILE_PROOF,
+			SUBMISSION_FILE_PROOF,
 			'SIGNOFF_PROOFING',
 			MONOGRAPH_EMAIL_PROOFREAD_NOTIFY_AUTHOR,
 			ASSOC_TYPE_PUBLICATION_FORMAT

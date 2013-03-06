@@ -15,7 +15,7 @@
 // import grid signoff files grid base classes
 import('controllers.grid.files.signoff.SignoffFilesGridHandler');
 
-// Import monograph file class which contains the MONOGRAPH_FILE_* constants.
+// Import monograph file class which contains the SUBMISSION_FILE_* constants.
 import('classes.monograph.MonographFile');
 
 // Import MONOGRAPH_EMAIL_* constants.
@@ -28,7 +28,7 @@ class CopyeditingFilesGridHandler extends SignoffFilesGridHandler {
 	function CopyeditingFilesGridHandler() {
 		parent::SignoffFilesGridHandler(
 			WORKFLOW_STAGE_ID_EDITING,
-			MONOGRAPH_FILE_COPYEDIT,
+			SUBMISSION_FILE_COPYEDIT,
 			'SIGNOFF_COPYEDITING',
 			MONOGRAPH_EMAIL_COPYEDIT_NOTIFY_AUTHOR
 		);
@@ -49,7 +49,7 @@ class CopyeditingFilesGridHandler extends SignoffFilesGridHandler {
 		$router =& $request->getRouter();
 		if ($router->getRequestedOp($request) == 'approveCopyedit') {
 			import('classes.security.authorization.OmpMonographFileAccessPolicy');
-			$this->addPolicy(new OmpMonographFileAccessPolicy($request, $args, $roleAssignments, MONOGRAPH_FILE_ACCESS_MODIFY));
+			$this->addPolicy(new OmpMonographFileAccessPolicy($request, $args, $roleAssignments, SUBMISSION_FILE_ACCESS_MODIFY));
 		}
 
 		return parent::authorize($request, $args, $roleAssignments);

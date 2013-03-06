@@ -21,7 +21,7 @@ class CopyeditingFilesListbuilderHandler extends FilesListbuilderHandler {
 	function CopyeditingFilesListbuilderHandler() {
 		// Get access to the monograph file constants.
 		import('classes.monograph.MonographFile');
-		parent::FilesListbuilderHandler(MONOGRAPH_FILE_COPYEDIT);
+		parent::FilesListbuilderHandler(SUBMISSION_FILE_COPYEDIT);
 	}
 
 

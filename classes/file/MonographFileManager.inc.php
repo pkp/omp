@@ -205,7 +205,7 @@ class MonographFileManager extends BaseMonographFileManager {
 	/**
 	 * Upload the file and add it to the database.
 	 * @param $fileName string index into the $_FILES array
-	 * @param $fileStage int monograph file stage (one of the MONOGRAPH_FILE_* constants)
+	 * @param $fileStage int monograph file stage (one of the SUBMISSION_FILE_* constants)
 	 * @param $uploaderUserId int The id of the user that uploaded the file.
 	 * @param $uploaderUserGroupId int The id of the user group that the uploader acted in
 	 *  when uploading the file.
@@ -253,7 +253,7 @@ class MonographFileManager extends BaseMonographFileManager {
 	/**
 	 * Routine to instantiate and pre-populate a new monograph file.
 	 * @param $sourceFilePath string
-	 * @param $fileStage integer MONOGRAPH_FILE_...
+	 * @param $fileStage integer SUBMISSION_FILE_...
 	 * @param $revisedFileId integer optional
 	 * @param $genreId integer optional
 	 * @param $assocId integer optional

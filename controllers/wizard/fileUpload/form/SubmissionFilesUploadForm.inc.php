@@ -241,7 +241,7 @@ class SubmissionFilesUploadForm extends SubmissionFilesUploadBaseForm {
 			$user->getId(), $uploaderUserGroupId, $revisedFileId, $fileGenre, $assocType, $assocId
 		);
 
-		if ($monographFile && ($fileStage == MONOGRAPH_FILE_REVIEW_FILE || $fileStage == MONOGRAPH_FILE_REVIEW_ATTACHMENT || $fileStage == MONOGRAPH_FILE_REVIEW_REVISION)) {
+		if ($monographFile && ($fileStage == SUBMISSION_FILE_REVIEW_FILE || $fileStage == SUBMISSION_FILE_REVIEW_ATTACHMENT || $fileStage == SUBMISSION_FILE_REVIEW_REVISION)) {
 			// Add the uploaded review file to the review round.
 			$reviewRound =& $this->getReviewRound();
 			$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO');

@@ -30,7 +30,7 @@ class AddFileLinkAction extends BaseAddFileLinkAction {
 	 * @param $uploaderRoles array The ids of all roles allowed to upload
 	 *  in the context of this action.
 	 * @param $fileStage integer The file stage the file should be
-	 *  uploaded to (one of the MONOGRAPH_FILE_* constants).
+	 *  uploaded to (one of the SUBMISSION_FILE_* constants).
 	 * @param $assocType integer The type of the element the file should
 	 *  be associated with (one fo the ASSOC_TYPE_* constants).
 	 * @param $assocId integer The id of the element the file should be
@@ -66,44 +66,44 @@ class AddFileLinkAction extends BaseAddFileLinkAction {
 	 * for upload to different file stages.
 	 *
 	 * @param $fileStage integer One of the
-	 *  MONOGRAPH_FILE_* constants.
+	 *  SUBMISSION_FILE_* constants.
 	 * @return array
 	 */
 	function _getTextLabels($fileStage) {
 		static $textLabels = array(
-			MONOGRAPH_FILE_SUBMISSION => array(
+			SUBMISSION_FILE_SUBMISSION => array(
 				'wizardTitle' => 'submission.submit.uploadSubmissionFile',
 				'buttonLabel' => 'submission.addFile'
 			),
-			MONOGRAPH_FILE_REVIEW_FILE => array(
+			SUBMISSION_FILE_REVIEW_FILE => array(
 				'wizardTitle' => 'editor.submissionReview.uploadFile',
 				'buttonLabel' => 'editor.submissionReview.uploadFile'
 			),
-			MONOGRAPH_FILE_REVIEW_ATTACHMENT => array(
+			SUBMISSION_FILE_REVIEW_ATTACHMENT => array(
 				'wizardTitle' => 'editor.submissionReview.uploadAttachment',
 				'buttonLabel' => 'editor.submissionReview.uploadAttachment'
 			),
-			MONOGRAPH_FILE_REVIEW_REVISION => array(
+			SUBMISSION_FILE_REVIEW_REVISION => array(
 				'wizardTitle' => 'editor.submissionReview.uploadFile',
 				'buttonLabel' => 'submission.addFile'
 			),
-			MONOGRAPH_FILE_FINAL => array(
+			SUBMISSION_FILE_FINAL => array(
 				'wizardTitle' => 'submission.upload.finalDraft',
 				'buttonLabel' => 'submission.addFile'
 			),
-			MONOGRAPH_FILE_COPYEDIT => array(
+			SUBMISSION_FILE_COPYEDIT => array(
 				'wizardTitle' => 'submission.upload.copyeditedVersion',
 				'buttonLabel' => 'submission.addFile'
 			),
-			MONOGRAPH_FILE_FAIR_COPY => array(
+			SUBMISSION_FILE_FAIR_COPY => array(
 				'wizardTitle' => 'submission.upload.fairCopy',
 				'buttonLabel' => 'submission.addFile'
 			),
-			MONOGRAPH_FILE_PRODUCTION_READY => array(
+			SUBMISSION_FILE_PRODUCTION_READY => array(
 				'wizardTitle' => 'submission.upload.productionReady',
 				'buttonLabel' => 'submission.addFile'
 			),
-			MONOGRAPH_FILE_PROOF => array(
+			SUBMISSION_FILE_PROOF => array(
 				'wizardTitle' => 'submission.upload.proof',
 				'buttonLabel' => 'submission.addFile'
 			),

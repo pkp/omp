@@ -38,7 +38,7 @@ class MonographFileSubmissionStageRequiredPolicy extends MonographFileBaseAccess
 		if (!is_a($monographFile, 'MonographFile')) return AUTHORIZATION_DENY;
 
 		// Make sure that it's in the submission stage
-		if ($monographFile->getFileStage() != MONOGRAPH_FILE_SUBMISSION) return AUTHORIZATION_DENY;
+		if ($monographFile->getFileStage() != SUBMISSION_FILE_SUBMISSION) return AUTHORIZATION_DENY;
 
 		// Make sure the file belongs to the monograph in request.
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);

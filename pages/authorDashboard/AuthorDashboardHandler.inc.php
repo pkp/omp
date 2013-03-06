@@ -68,15 +68,15 @@ class AuthorDashboardHandler extends Handler {
 		$currentStage = $monograph->getStageId();
 		switch ($currentStage) {
 			case WORKFLOW_STAGE_ID_SUBMISSION:
-				$fileStage = MONOGRAPH_FILE_SUBMISSION;
+				$fileStage = SUBMISSION_FILE_SUBMISSION;
 				break;
 			case WORKFLOW_STAGE_ID_INTERNAL_REVIEW:
 			case WORKFLOW_STAGE_ID_EXTERNAL_REVIEW:
-				$fileStage = MONOGRAPH_FILE_REVIEW_REVISION;
+				$fileStage = SUBMISSION_FILE_REVIEW_REVISION;
 				break;
 
 			case WORKFLOW_STAGE_ID_EDITING:
-				$fileStage = MONOGRAPH_FILE_FINAL;
+				$fileStage = SUBMISSION_FILE_FINAL;
 				break;
 		}
 

@@ -23,7 +23,7 @@ class ProofFilesGridDataProvider extends SubmissionFilesGridDataProvider {
 	 * Constructor
 	 */
 	function ProofFilesGridDataProvider() {
-		parent::SubmissionFilesGridDataProvider(MONOGRAPH_FILE_PROOF);
+		parent::SubmissionFilesGridDataProvider(SUBMISSION_FILE_PROOF);
 	}
 
 

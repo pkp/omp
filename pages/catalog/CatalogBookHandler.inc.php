@@ -148,7 +148,7 @@ class CatalogBookHandler extends Handler {
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO');
 		list($fileId, $revision) = array_map(create_function('$a', 'return (int) $a;'), split('-', $fileIdAndRevision));
 		import('classes.monograph.MonographFile'); // File constants
-		$submissionFile =& $submissionFileDao->getRevision($fileId, $revision, MONOGRAPH_FILE_PROOF, $monographId);
+		$submissionFile =& $submissionFileDao->getRevision($fileId, $revision, SUBMISSION_FILE_PROOF, $monographId);
 		if (!$submissionFile || $submissionFile->getAssocType() != ASSOC_TYPE_PUBLICATION_FORMAT || $submissionFile->getAssocId() != $publicationFormatId || $submissionFile->getDirectSalesPrice() === null) {
 			fatalError('Invalid monograph file specified!');
 		}

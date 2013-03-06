@@ -192,7 +192,7 @@ class SignoffFileUploadForm extends Form {
 				);
 
 				// Upload the file.
-				// Bring in the MONOGRAPH_FILE_* constants
+				// Bring in the SUBMISSION_FILE_* constants
 				import('classes.monograph.MonographFile');
 
 				$press =& $request->getPress();
@@ -200,7 +200,7 @@ class SignoffFileUploadForm extends Form {
 				$monographFileManager = new MonographFileManager($press->getId(), $this->getMonographId());
 				$signoffFileId = $monographFileManager->temporaryFileToMonographFile(
 					$temporaryFile,
-					MONOGRAPH_FILE_NOTE, $signoff->getUserId(),
+					SUBMISSION_FILE_NOTE, $signoff->getUserId(),
 					$signoff->getUserGroupId(), $signoff->getAssocId(), null,
 					ASSOC_TYPE_NOTE, $noteId
 				);

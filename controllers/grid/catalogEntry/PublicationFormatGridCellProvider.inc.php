@@ -14,7 +14,7 @@
 
 import('lib.pkp.classes.controllers.grid.DataObjectGridCellProvider');
 
-// Import monograph file class which contains the MONOGRAPH_FILE_* constants.
+// Import monograph file class which contains the SUBMISSION_FILE_* constants.
 import('classes.monograph.MonographFile');
 
 class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
@@ -209,7 +209,7 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		$monographFiles =& $submissionFileDao->getLatestRevisionsByAssocId(
 			ASSOC_TYPE_PUBLICATION_FORMAT, $publicationFormatId,
-			$this->getMonographId(), MONOGRAPH_FILE_PROOF
+			$this->getMonographId(), SUBMISSION_FILE_PROOF
 		);
 
 		return $monographFiles;

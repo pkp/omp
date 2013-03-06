@@ -69,7 +69,7 @@ class OMPQueuedPayment extends QueuedPayment {
 				list($fileId, $revision) = explode('-', $this->getAssocId());
 				assert($fileId && $revision);
 				$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO');
-				$submissionFile =& $submissionFileDao->getRevision($fileId, $revision, MONOGRAPH_FILE_PROOF);
+				$submissionFile =& $submissionFileDao->getRevision($fileId, $revision, SUBMISSION_FILE_PROOF);
 				if (!$submissionFile || $submissionFile->getAssocType() !== ASSOC_TYPE_PUBLICATION_FORMAT) return false;
 
 				return $submissionFile->getLocalizedName();

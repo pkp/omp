@@ -138,11 +138,11 @@ class SubmissionFilesUploadBaseForm extends Form {
 				if (!is_a($this->getReviewRound(), 'ReviewRound')) assert(false);
 
 				// Can only upload submission files, review files, or review attachments.
-				if (!in_array($this->getData('fileStage'), array(MONOGRAPH_FILE_SUBMISSION, MONOGRAPH_FILE_REVIEW_FILE, MONOGRAPH_FILE_REVIEW_ATTACHMENT, MONOGRAPH_FILE_REVIEW_REVISION))) fatalError('Invalid file stage!');
+				if (!in_array($this->getData('fileStage'), array(SUBMISSION_FILE_SUBMISSION, SUBMISSION_FILE_REVIEW_FILE, SUBMISSION_FILE_REVIEW_ATTACHMENT, SUBMISSION_FILE_REVIEW_REVISION))) fatalError('Invalid file stage!');
 
 				// Hide the revision selector for review
 				// attachments to make it easier for reviewers
-				if ($this->getData('fileStage') == MONOGRAPH_FILE_REVIEW_ATTACHMENT) {
+				if ($this->getData('fileStage') == SUBMISSION_FILE_REVIEW_ATTACHMENT) {
 					$this->_monographFiles = array();
 				} else {
 					// Retrieve the monograph files for the given review round.

@@ -16,8 +16,8 @@ import('lib.pkp.classes.security.authorization.internal.ContextPolicy');
 import('lib.pkp.classes.security.authorization.RoleBasedHandlerOperationPolicy');
 
 // Define the bitfield for monograph file access levels
-define('MONOGRAPH_FILE_ACCESS_READ', 1);
-define('MONOGRAPH_FILE_ACCESS_MODIFY', 2);
+define('SUBMISSION_FILE_ACCESS_READ', 1);
+define('SUBMISSION_FILE_ACCESS_MODIFY', 2);
 
 class OmpMonographFileAccessPolicy extends ContextPolicy {
 	/**
@@ -25,7 +25,7 @@ class OmpMonographFileAccessPolicy extends ContextPolicy {
 	 * @param $request PKPRequest
 	 * @param $args array request parameters
 	 * @param $roleAssignments array
-	 * @param $mode int bitfield MONOGRAPH_FILE_ACCESS_...
+	 * @param $mode int bitfield SUBMISSION_FILE_ACCESS_...
 	 * @param $fileIdAndRevision string
 	 * @param $submissionParameterName string the request parameter we expect
 	 *  the submission id in.
@@ -33,7 +33,7 @@ class OmpMonographFileAccessPolicy extends ContextPolicy {
 	function OmpMonographFileAccessPolicy(&$request, $args, $roleAssignments, $mode, $fileIdAndRevision = null, $submissionParameterName = 'monographId') {
 		// TODO: Refine file access policies. Differentiate between
 		// read and modify access using bitfield:
-		// $mode & MONOGRAPH_FILE_ACCESS_...
+		// $mode & SUBMISSION_FILE_ACCESS_...
 
 		parent::ContextPolicy($request);
 
@@ -97,7 +97,7 @@ class OmpMonographFileAccessPolicy extends ContextPolicy {
 			$authorFileAccessOptionsPolicy->addPolicy(new MonographFileRequestedRevisionRequiredPolicy($request, $fileIdAndRevision));
 
 			// ...or if we don't want to modify the file...
-			if (!($mode & MONOGRAPH_FILE_ACCESS_MODIFY)) {
+			if (!($mode & SUBMISSION_FILE_ACCESS_MODIFY)) {
 
 				// 3c) ...and the file is at submission stage...
 				import('classes.security.authorization.internal.MonographFileSubmissionStageRequiredPolicy');
@@ -137,7 +137,7 @@ class OmpMonographFileAccessPolicy extends ContextPolicy {
 			// 2b) If the file is part of an assigned review, and we're not
 			// trying to modify it, allow.
 			import('classes.security.authorization.internal.MonographFileAssignedReviewerAccessPolicy');
-			if (!($mode & MONOGRAPH_FILE_ACCESS_MODIFY)) {
+			if (!($mode & SUBMISSION_FILE_ACCESS_MODIFY)) {
 				$reviewerFileAccessOptionsPolicy->addPolicy(new MonographFileAssignedReviewerAccessPolicy($request, $fileIdAndRevision));
 			}
 

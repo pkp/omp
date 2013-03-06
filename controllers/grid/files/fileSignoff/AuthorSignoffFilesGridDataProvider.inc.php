@@ -30,7 +30,7 @@ class AuthorSignoffFilesGridDataProvider extends SubmissionFilesGridDataProvider
 	 * Constructor
 	 */
 	function AuthorSignoffFilesGridDataProvider($symbolic, $stageId) {
-		parent::SubmissionFilesGridDataProvider(MONOGRAPH_FILE_PROOF);
+		parent::SubmissionFilesGridDataProvider(SUBMISSION_FILE_PROOF);
 
 		$this->setStageId($stageId);
 		$this->_symbolic = $symbolic;

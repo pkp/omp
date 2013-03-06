@@ -21,7 +21,7 @@ class ProofFilesListbuilderHandler extends FilesListbuilderHandler {
 	function ProofFilesListbuilderHandler() {
 		// Get access to the monograph file constants.
 		import('classes.monograph.MonographFile');
-		parent::FilesListbuilderHandler(MONOGRAPH_FILE_PROOF);
+		parent::FilesListbuilderHandler(SUBMISSION_FILE_PROOF);
 	}
 
 

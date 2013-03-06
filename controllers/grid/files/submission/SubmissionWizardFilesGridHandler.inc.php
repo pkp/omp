@@ -22,7 +22,7 @@ class SubmissionWizardFilesGridHandler extends FileListGridHandler {
 	function SubmissionWizardFilesGridHandler() {
 		import('controllers.grid.files.SubmissionFilesGridDataProvider');
 		parent::FileListGridHandler(new SubmissionFilesGridDataProvider(
-			MONOGRAPH_FILE_SUBMISSION),
+			SUBMISSION_FILE_SUBMISSION),
 			WORKFLOW_STAGE_ID_SUBMISSION,
 			FILE_GRID_ADD|FILE_GRID_DELETE|FILE_GRID_VIEW_NOTES
 		);

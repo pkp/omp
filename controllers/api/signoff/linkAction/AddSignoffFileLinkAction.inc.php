@@ -17,7 +17,7 @@
 
 import('lib.pkp.classes.linkAction.LinkAction');
 
-// Bring in MONOGRAPH_FILE_* constants
+// Bring in SUBMISSION_FILE_* constants
 import('classes.monograph.MonographFile');
 
 class AddSignoffFileLinkAction extends LinkAction {
@@ -47,7 +47,7 @@ class AddSignoffFileLinkAction extends LinkAction {
 		$actionArgs['stageId'] = $stageId;
 		$actionArgs['symbolic'] = $symbolic;
 		$actionArgs['signoffId'] = $signoffId;
-		$actionArgs['fileStage'] = MONOGRAPH_FILE_SIGNOFF;
+		$actionArgs['fileStage'] = SUBMISSION_FILE_SIGNOFF;
 
 		// Instantiate the file upload modal.
 		$dispatcher =& $request->getDispatcher();

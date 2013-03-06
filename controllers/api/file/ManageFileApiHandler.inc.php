@@ -35,7 +35,7 @@ class ManageFileApiHandler extends Handler {
 	//
 	function authorize(&$request, &$args, $roleAssignments) {
 		import('classes.security.authorization.OmpMonographFileAccessPolicy');
-		$this->addPolicy(new OmpMonographFileAccessPolicy($request, $args, $roleAssignments, MONOGRAPH_FILE_ACCESS_MODIFY));
+		$this->addPolicy(new OmpMonographFileAccessPolicy($request, $args, $roleAssignments, SUBMISSION_FILE_ACCESS_MODIFY));
 
 		return parent::authorize($request, $args, $roleAssignments);
 	}
@@ -107,7 +107,7 @@ class ManageFileApiHandler extends Handler {
 		$success = (boolean)$submissionFileDao->deleteRevisionById($monographFile->getFileId(), $monographFile->getRevision(), $monographFile->getFileStage(), $monograph->getId());
 
 		if ($success) {
-			if ($monographFile->getFileStage() == MONOGRAPH_FILE_REVIEW_REVISION) {
+			if ($monographFile->getFileStage() == SUBMISSION_FILE_REVIEW_REVISION) {
 				$notificationMgr->updateNotification(
 					$request,
 					array(NOTIFICATION_TYPE_PENDING_INTERNAL_REVISIONS, NOTIFICATION_TYPE_PENDING_EXTERNAL_REVISIONS),
@@ -128,7 +128,7 @@ class ManageFileApiHandler extends Handler {
 			}
 
 			// update the monograph's search index if this was a proof file
-			if ($monographFile->getFileStage() == MONOGRAPH_FILE_PROOF) {
+			if ($monographFile->getFileStage() == SUBMISSION_FILE_PROOF) {
 				if ($monograph->getDatePublished()) {
 					import('classes.search.MonographSearchIndex');
 					MonographSearchIndex::indexMonographFiles($monograph);

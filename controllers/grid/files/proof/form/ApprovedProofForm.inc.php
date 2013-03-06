@@ -38,7 +38,7 @@ class ApprovedProofForm extends Form {
 
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO');
 		list($fileId, $revision) = explode('-', $fileIdAndRevision);
-		$this->approvedProof =& $submissionFileDao->getRevision($fileId, $revision, MONOGRAPH_FILE_PROOF, $this->monograph->getId());
+		$this->approvedProof =& $submissionFileDao->getRevision($fileId, $revision, SUBMISSION_FILE_PROOF, $this->monograph->getId());
 		if (!$this->approvedProof->getViewable()) fatalError('Proof not approved!');
 
 		// matches currencies like:  1,500.50 1500.50 1,112.15 5,99 .99

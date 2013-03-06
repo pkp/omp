@@ -26,7 +26,7 @@ class SubmissionFilesGridDataProvider extends FilesGridDataProvider {
 
 	/**
 	 * Constructor
-	 * @param $fileStage integer One of the MONOGRAPH_FILE_* constants.
+	 * @param $fileStage integer One of the SUBMISSION_FILE_* constants.
 	 */
 	function SubmissionFilesGridDataProvider($fileStage, $viewableOnly = false) {
 		assert(is_numeric($fileStage) && $fileStage > 0);

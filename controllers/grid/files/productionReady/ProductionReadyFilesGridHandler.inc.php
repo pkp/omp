@@ -22,7 +22,7 @@ class ProductionReadyFilesGridHandler extends SubmissionFilesGridHandler {
 	function ProductionReadyFilesGridHandler() {
 		import('controllers.grid.files.SubmissionFilesGridDataProvider');
 		parent::SubmissionFilesGridHandler(
-			new SubmissionFilesGridDataProvider(MONOGRAPH_FILE_PRODUCTION_READY),
+			new SubmissionFilesGridDataProvider(SUBMISSION_FILE_PRODUCTION_READY),
 			WORKFLOW_STAGE_ID_PRODUCTION,
 			FILE_GRID_ADD|FILE_GRID_DELETE|FILE_GRID_VIEW_NOTES
 		);

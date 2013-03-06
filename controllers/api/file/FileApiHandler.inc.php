@@ -49,14 +49,14 @@ class FileApiHandler extends Handler {
 		if (!empty($monographFilesIdsArray)) {
 			$multipleMonographFileAccessPolicy = new PolicySet(COMBINING_DENY_OVERRIDES);
 			foreach ($monographFilesIdsArray as $fileIdAndRevision) {
-				$multipleMonographFileAccessPolicy->addPolicy(new OmpMonographFileAccessPolicy($request, $args, $roleAssignments, MONOGRAPH_FILE_ACCESS_READ, $fileIdAndRevision));
+				$multipleMonographFileAccessPolicy->addPolicy(new OmpMonographFileAccessPolicy($request, $args, $roleAssignments, SUBMISSION_FILE_ACCESS_READ, $fileIdAndRevision));
 			}
 			$this->addPolicy($multipleMonographFileAccessPolicy);
 		}else if (is_numeric($libraryFileId)) {
 			import('lib.pkp.classes.security.authorization.PkpContextAccessPolicy');
 			$this->addPolicy(new PkpContextAccessPolicy($request, $roleAssignments));
 		}else {
-			$this->addPolicy(new OmpMonographFileAccessPolicy($request, $args, $roleAssignments, MONOGRAPH_FILE_ACCESS_READ));
+			$this->addPolicy(new OmpMonographFileAccessPolicy($request, $args, $roleAssignments, SUBMISSION_FILE_ACCESS_READ));
 		}
 
 		return parent::authorize($request, $args, $roleAssignments);

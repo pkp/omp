@@ -34,10 +34,10 @@
 		</div>
 
 		<!-- Available files listbuilder -->
-		{if $fileStage == $smarty.const.MONOGRAPH_FILE_COPYEDIT}
+		{if $fileStage == $smarty.const.SUBMISSION_FILE_COPYEDIT}
 			{url|assign:filesListbuilderUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.files.CopyeditingFilesListbuilderHandler" op="fetch" monographId=$monographId}
 			{assign var="filesListbuilderId" value="copyeditingFilesListbuilder"}
-		{else $fileStage == $smarty.const.MONOGRAPH_FILE_PROOF}
+		{else $fileStage == $smarty.const.SUBMISSION_FILE_PROOF}
 			{url|assign:filesListbuilderUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.files.ProofFilesListbuilderHandler" op="fetch" monographId=$monographId publicationFormatId=$publicationFormatId escape=false}
 			{assign var="filesListbuilderId" value="proofFilesListbuilder"}
 		{/if}

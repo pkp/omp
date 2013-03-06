@@ -43,7 +43,7 @@ class MonographFileViewableReviewerResponseRequiredPolicy extends MonographFileB
 		if (!is_a($monographFile, 'MonographFile')) return AUTHORIZATION_DENY;
 
 		// Make sure that it's in the review stage
-		if ($monographFile->getFileStage() != MONOGRAPH_FILE_REVIEW_ATTACHMENT) return AUTHORIZATION_DENY;
+		if ($monographFile->getFileStage() != SUBMISSION_FILE_REVIEW_ATTACHMENT) return AUTHORIZATION_DENY;
 
 		// Make sure the file belongs to the monograph in request.
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);

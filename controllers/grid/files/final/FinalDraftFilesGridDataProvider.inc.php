@@ -20,7 +20,7 @@ class FinalDraftFilesGridDataProvider extends SubmissionFilesGridDataProvider {
 	 * Constructor
 	 */
 	function FinalDraftFilesGridDataProvider() {
-		parent::SubmissionFilesGridDataProvider(MONOGRAPH_FILE_FINAL);
+		parent::SubmissionFilesGridDataProvider(SUBMISSION_FILE_FINAL);
 
 		$this->setViewableOnly(true);
 	}

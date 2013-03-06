@@ -86,7 +86,7 @@ class PromoteForm extends EditorDecisionWithEmailForm {
 				// Move to the editing stage.
 				$seriesEditorAction->incrementWorkflowStage($seriesEditorSubmission, WORKFLOW_STAGE_ID_EDITING, $request);
 
-				// Bring in the MONOGRAPH_FILE_* constants.
+				// Bring in the SUBMISSION_FILE_* constants.
 				import('classes.monograph.MonographFile');
 				// Bring in the Manager (we need it).
 				import('classes.file.MonographFileManager');
@@ -97,7 +97,7 @@ class PromoteForm extends EditorDecisionWithEmailForm {
 				if(is_array($selectedFiles)) {
 					foreach ($selectedFiles as $fileId) {
 						$revisionNumber = $submissionFileDao->getLatestRevisionNumber($fileId);
-						$monographFileManager->copyFileToFileStage($fileId, $revisionNumber, MONOGRAPH_FILE_FINAL, null, true);
+						$monographFileManager->copyFileToFileStage($fileId, $revisionNumber, SUBMISSION_FILE_FINAL, null, true);
 					}
 				}
 
@@ -127,7 +127,7 @@ class PromoteForm extends EditorDecisionWithEmailForm {
 				// Move to the editing stage.
 				$seriesEditorAction->incrementWorkflowStage($seriesEditorSubmission, WORKFLOW_STAGE_ID_PRODUCTION, $request);
 
-				// Bring in the MONOGRAPH_FILE_* constants.
+				// Bring in the SUBMISSION_FILE_* constants.
 				import('classes.monograph.MonographFile');
 				// Bring in the Manager (we need it).
 				import('classes.file.MonographFileManager');
@@ -139,7 +139,7 @@ class PromoteForm extends EditorDecisionWithEmailForm {
 				if(is_array($selectedFiles)) {
 					foreach ($selectedFiles as $fileId) {
 						$revisionNumber = $submissionFileDao->getLatestRevisionNumber($fileId);
-						$monographFileManager->copyFileToFileStage($fileId, $revisionNumber, MONOGRAPH_FILE_PRODUCTION_READY);
+						$monographFileManager->copyFileToFileStage($fileId, $revisionNumber, SUBMISSION_FILE_PRODUCTION_READY);
 					}
 				}
 				// Send email to the author.

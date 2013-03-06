@@ -88,7 +88,7 @@ class ManageReviewFilesForm extends ManageSubmissionFilesForm {
 	 * that is currently being used by a grid inside this form.
 	 */
 	function execute($args, &$request, &$stageMonographFiles) {
-		parent::execute($args, $request, $stageMonographFiles, MONOGRAPH_FILE_REVIEW_FILE);
+		parent::execute($args, $request, $stageMonographFiles, SUBMISSION_FILE_REVIEW_FILE);
 	}
 }
 

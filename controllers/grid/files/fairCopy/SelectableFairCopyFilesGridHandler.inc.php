@@ -22,7 +22,7 @@ class SelectableFairCopyFilesGridHandler extends SelectableFileListGridHandler {
 		import('controllers.grid.files.SubmissionFilesGridDataProvider');
 		// Pass in null stageId to be set in initialize from request var.
 		parent::SelectableFileListGridHandler(
-			new SubmissionFilesGridDataProvider(MONOGRAPH_FILE_FAIR_COPY),
+			new SubmissionFilesGridDataProvider(SUBMISSION_FILE_FAIR_COPY),
 			null,
 			FILE_GRID_ADD|FILE_GRID_VIEW_NOTES
 		);

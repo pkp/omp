@@ -143,7 +143,7 @@ class NewSignoffNoteForm extends NewNoteForm {
 				);
 
 				// Upload the file.
-				// Bring in the MONOGRAPH_FILE_* constants
+				// Bring in the SUBMISSION_FILE_* constants
 				import('classes.monograph.MonographFile');
 
 				$press =& $request->getPress();
@@ -157,7 +157,7 @@ class NewSignoffNoteForm extends NewNoteForm {
 
 				$noteFileId = $monographFileManager->temporaryFileToMonographFile(
 					$temporaryFile,
-					MONOGRAPH_FILE_NOTE, $signoff->getUserId(),
+					SUBMISSION_FILE_NOTE, $signoff->getUserId(),
 					$signoff->getUserGroupId(), null, $signoffFile->getGenreId(),
 					ASSOC_TYPE_NOTE, $noteId
 				);

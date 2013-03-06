@@ -60,7 +60,7 @@ class EditorDecisionHandler extends Handler {
 		$router =& $request->getRouter();
 		if ($router->getRequestedOp($request) == 'saveApproveProof') {
 			import('classes.security.authorization.OmpMonographFileAccessPolicy');
-			$this->addPolicy(new OmpMonographFileAccessPolicy($request, $args, $roleAssignments, MONOGRAPH_FILE_ACCESS_MODIFY));
+			$this->addPolicy(new OmpMonographFileAccessPolicy($request, $args, $roleAssignments, SUBMISSION_FILE_ACCESS_MODIFY));
 		}
 
 		return parent::authorize($request, $args, $roleAssignments);

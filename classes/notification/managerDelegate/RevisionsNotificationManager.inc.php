@@ -92,7 +92,7 @@ abstract class RevisionsNotificationManager extends NotificationManagerDelegate 
 		$reviewRound =& $reviewRoundDao->getReviewRound($monographId, $stageId, $round);
 
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO');
-		$monographFiles =&  $submissionFileDao->getRevisionsByReviewRound($reviewRound, MONOGRAPH_FILE_REVIEW_REVISION);
+		$monographFiles =&  $submissionFileDao->getRevisionsByReviewRound($reviewRound, SUBMISSION_FILE_REVIEW_REVISION);
 
 		if (is_array($monographFiles)) {
 			foreach ($monographFiles as $file) {

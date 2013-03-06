@@ -151,7 +151,7 @@ class FileUploadWizardHandler extends FileManagementHandler {
 		}
 		if ($fileIdToValidate) {
 			import('classes.security.authorization.OmpMonographFileAccessPolicy');
-			$this->addPolicy(new OmpMonographFileAccessPolicy($request, $args, $roleAssignments, MONOGRAPH_FILE_ACCESS_READ, $fileIdToValidate));
+			$this->addPolicy(new OmpMonographFileAccessPolicy($request, $args, $roleAssignments, SUBMISSION_FILE_ACCESS_READ, $fileIdToValidate));
 		}
 
 		return parent::authorize($request, $args, $roleAssignments);
@@ -163,7 +163,7 @@ class FileUploadWizardHandler extends FileManagementHandler {
 	//
 	/**
 	 * Get the workflow stage file storage that
-	 * we upload files to. One of the MONOGRAPH_FILE_*
+	 * we upload files to. One of the SUBMISSION_FILE_*
 	 * constants.
 	 * @return integer
 	 */

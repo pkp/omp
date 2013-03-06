@@ -63,7 +63,7 @@ class OMPPaymentManager extends PaymentManager {
 				$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO');
 				list($fileId, $revision) = array_map(create_function('$a', 'return (int) $a;'), explode('-', $assocId));
 				import('classes.monograph.MonographFile'); // const
-				$submissionFile =& $submissionFileDao->getRevision($fileId, $revision, MONOGRAPH_FILE_PROOF);
+				$submissionFile =& $submissionFileDao->getRevision($fileId, $revision, SUBMISSION_FILE_PROOF);
 				assert($submissionFile);
 				$payment->setRequestUrl($this->request->url(null, 'catalog', 'download', array(
 					$submissionFile->getSubmissionId(),

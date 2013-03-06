@@ -21,7 +21,7 @@ class ManageFinalDraftFilesGridHandler extends SelectableSubmissionFileListCateg
 	function ManageFinalDraftFilesGridHandler() {
 		import('controllers.grid.files.SubmissionFilesCategoryGridDataProvider');
 		parent::SelectableSubmissionFileListCategoryGridHandler(
-			new SubmissionFilesCategoryGridDataProvider(MONOGRAPH_FILE_FINAL),
+			new SubmissionFilesCategoryGridDataProvider(SUBMISSION_FILE_FINAL),
 			WORKFLOW_STAGE_ID_EDITING,
 			FILE_GRID_ADD|FILE_GRID_DELETE|FILE_GRID_VIEW_NOTES
 		);

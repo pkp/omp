@@ -94,7 +94,7 @@ class ManageSubmissionFilesForm extends Form {
 					$fileId = $monographFile->getFileId();
 					$revision = $monographFile->getRevision();
 					list($newFileId, $newRevision) = $monographFileManager->copyFileToFileStage($fileId, $revision, $fileStage, null, true);
-					if ($fileStage == MONOGRAPH_FILE_REVIEW_FILE) {
+					if ($fileStage == SUBMISSION_FILE_REVIEW_FILE) {
 						$submissionFileDao->assignRevisionToReviewRound($newFileId, $newRevision, $this->getReviewRound());
 					}
 					$monographFile =& $submissionFileDao->getRevision($newFileId, $newRevision);
