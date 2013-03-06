@@ -19,28 +19,28 @@ class SubmissionSubmitStep2Form extends SubmissionSubmitForm {
 	/**
 	 * Constructor.
 	 */
-	function SubmissionSubmitStep2Form($press, $monograph) {
-		parent::SubmissionSubmitForm($press, $monograph, 2);
+	function SubmissionSubmitStep2Form($context, $submission) {
+		parent::SubmissionSubmitForm($context, $submission, 2);
 	}
 
 	/**
-	 * Save changes to monograph.
+	 * Save changes to submission.
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return int the monograph ID
+	 * @return int the submission ID
 	 */
 	function execute($args, &$request) {
-		// Update monograph
-		$monographDao =& DAORegistry::getDAO('MonographDAO');
-		$monograph =& $this->monograph;
+		// Update submission
+		$submissionDao = DAORegistry::getDAO('MonographDAO');
+		$submission = $this->submission;
 
-		if ($monograph->getSubmissionProgress() <= $this->step) {
-			$monograph->stampStatusModified();
-			$monograph->setSubmissionProgress($this->step + 1);
-			$monographDao->updateMonograph($monograph);
+		if ($submission->getSubmissionProgress() <= $this->step) {
+			$submission->stampStatusModified();
+			$submission->setSubmissionProgress($this->step + 1);
+			$submissionDao->updateObject($submission);
 		}
 
-		return $this->monographId;
+		return $this->submissionId;
 	}
 }
 

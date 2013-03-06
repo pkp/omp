@@ -176,7 +176,7 @@ class MonographDAO extends DAO {
 	 * @param Monograph object
 	 * @return Monograph Id int
 	 */
-	function insertMonograph(&$monograph) {
+	function insertObject($monograph) {
 		$monograph->stampModified();
 		$this->update(
 			sprintf('INSERT INTO monographs
@@ -212,7 +212,7 @@ class MonographDAO extends DAO {
 	 * updates a monograph
 	 * @param Monograph object
 	 */
-	function updateMonograph($monograph) {
+	function updateObject($monograph) {
 		$this->update(
 			sprintf('UPDATE monographs
 				SET	user_id = ?,

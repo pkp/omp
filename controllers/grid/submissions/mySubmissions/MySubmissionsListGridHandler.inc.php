@@ -40,7 +40,7 @@ class MySubmissionsListGridHandler extends SubmissionsListGridHandler {
 	function initialize(&$request) {
 		parent::initialize($request);
 
-		$titleColumn =& $this->getColumn('title');
+		$titleColumn = $this->getColumn('title');
 		$titleColumn->setCellProvider(new MySubmissionsListGridCellProvider());
 	}
 
@@ -54,15 +54,14 @@ class MySubmissionsListGridHandler extends SubmissionsListGridHandler {
 	function getSubmissions(&$request, $userId) {
 		$this->setTitle('submission.mySubmissions');
 
-		$monographDao =& DAORegistry::getDAO('MonographDAO');
+		$monographDao = DAORegistry::getDAO('MonographDAO');
 		$submissions = $monographDao->getByUserId($userId);
 		$data = array();
-		while ($submission =& $submissions->next()) {
+		while ($submission = $submissions->next()) {
 			if ($submission->getDatePublished() == null) {
 				$submissionId = $submission->getId();
-				$data[$submissionId] =& $submission;
+				$data[$submissionId] = $submission;
 			}
-			unset($submission);
 		}
 
 		return $data;

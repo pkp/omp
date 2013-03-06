@@ -10,7 +10,7 @@
 	{if !$readOnly}
 		{assign var="monographCategoriesContainer" value="monographCategoriesContainer-"|uniqid|escape}
 		<div id={$monographCategoriesContainer}>
-			{url|assign:monographCategoriesUrl router=$smarty.const.ROUTE_COMPONENT component="submission.CategoriesListbuilderHandler" op="fetch" monographId=$monographId readOnly=$readOnly escape=false}
+			{url|assign:monographCategoriesUrl router=$smarty.const.ROUTE_COMPONENT component="submission.CategoriesListbuilderHandler" op="fetch" submissionId=$submissionId readOnly=$readOnly escape=false}
 			{load_url_in_div id=$monographCategoriesContainer url=$monographCategoriesUrl}
 		</div>
 	{else}

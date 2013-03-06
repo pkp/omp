@@ -31,10 +31,10 @@ class NotificationManager extends PKPNotificationManager {
 	 * @see PKPNotificationManager::getNotificationUrl()
 	 */
 	public function getNotificationUrl(&$request, &$notification) {
-		$router =& $request->getRouter();
-		$dispatcher =& $router->getDispatcher();
+		$router = $request->getRouter();
+		$dispatcher = $router->getDispatcher();
 		$type = $notification->getType();
-		$pressDao =& DAORegistry::getDAO('PressDAO');
+		$pressDao = DAORegistry::getDAO('PressDAO');
 		$pressId = $notification->getContextId();
 		assert($pressId);
 		$press = $pressDao->getById($pressId);
@@ -52,57 +52,57 @@ class NotificationManager extends PKPNotificationManager {
 				return $dispatcher->url($request, ROUTE_PAGE, $press->getPath(), 'workflow', 'access', $notification->getAssocId());
 			case NOTIFICATION_TYPE_AUDITOR_REQUEST:
 			case NOTIFICATION_TYPE_COPYEDIT_ASSIGNMENT:
-				$signoffDao =& DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
+				$signoffDao = DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
 				$signoff = $signoffDao->getById($notification->getAssocId());
 				assert(is_a($signoff, 'Signoff') && $signoff->getAssocType() == ASSOC_TYPE_MONOGRAPH_FILE);
 
-				$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-				$monographFile =& $submissionFileDao->getLatestRevision($signoff->getAssocId());
+				$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+				$monographFile = $submissionFileDao->getLatestRevision($signoff->getAssocId());
 				assert(is_a($monographFile, 'MonographFile'));
 
-				$monographDao =& DAORegistry::getDAO('MonographDAO');
-				$monograph =& $monographDao->getById($monographFile->getMonographId());
+				$monographDao = DAORegistry::getDAO('MonographDAO');
+				$monograph = $monographDao->getById($monographFile->getMonographId());
 
 				// Get correct page (author dashboard or workflow), based
 				// on user roles (if only author, go to author dashboard).
-				import('controllers.grid.submissions.SubmissionsListGridCellProvider');
+				import('lib.pkp.controllers.grid.submissions.SubmissionsListGridCellProvider');
 				list($page, $operation) = SubmissionsListGridCellProvider::getPageAndOperationByUserRoles($request, $monograph);
 
 				// If workflow, get the correct operation (stage).
 				if ($page == 'workflow') {
 					$stageId = $signoffDao->getStageIdBySymbolic($signoff->getSymbolic());
-					$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+					$userGroupDao = DAORegistry::getDAO('UserGroupDAO');
 					$operation = $userGroupDao->getPathFromId($stageId);
 				}
 
 				return $dispatcher->url($request, ROUTE_PAGE, $press->getPath(), $page, $operation, $monographFile->getMonographId());
 			case NOTIFICATION_TYPE_REVIEW_ASSIGNMENT:
-				$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO'); /* @var $reviewAssignmentDao ReviewAssignmentDAO */
-				$reviewAssignment =& $reviewAssignmentDao->getById($notification->getAssocId());
+				$reviewAssignmentDao = DAORegistry::getDAO('ReviewAssignmentDAO'); /* @var $reviewAssignmentDao ReviewAssignmentDAO */
+				$reviewAssignment = $reviewAssignmentDao->getById($notification->getAssocId());
 				return $dispatcher->url($request, ROUTE_PAGE, $press->getPath(), 'reviewer', 'submission', $reviewAssignment->getSubmissionId());
 			case NOTIFICATION_TYPE_NEW_ANNOUNCEMENT:
 				assert($notification->getAssocType() == ASSOC_TYPE_ANNOUNCEMENT);
-				$announcementDao =& DAORegistry::getDAO('AnnouncementDAO'); /* @var $announcementDao AnnouncementDAO */
+				$announcementDao = DAORegistry::getDAO('AnnouncementDAO'); /* @var $announcementDao AnnouncementDAO */
 				$announcement = $announcementDao->getById($notification->getAssocId()); /* @var $announcement Announcement */
 				$pressId = $announcement->getAssocId();
-				$pressDao =& DAORegistry::getDAO('PressDAO'); /* @var $pressDao PressDAO */
-				$press =& $pressDao->getById($pressId);
+				$pressDao = DAORegistry::getDAO('PressDAO'); /* @var $pressDao PressDAO */
+				$press = $pressDao->getById($pressId);
 				return $dispatcher->url($request, ROUTE_PAGE, null, $press->getPath(), 'index', array($notification->getAssocId()));
 			case NOTIFICATION_TYPE_ALL_REVIEWS_IN:
 			case NOTIFICATION_TYPE_ALL_REVISIONS_IN:
 				assert($notification->getAssocType() == ASSOC_TYPE_REVIEW_ROUND && is_numeric($notification->getAssocId()));
-				$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
-				$reviewRound =& $reviewRoundDao->getReviewRoundById($notification->getAssocId());
+				$reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO');
+				$reviewRound = $reviewRoundDao->getReviewRoundById($notification->getAssocId());
 				assert(is_a($reviewRound, 'ReviewRound'));
 
-				$monographDao =& DAORegistry::getDAO('MonographDAO');
-				$monograph =& $monographDao->getById($reviewRound->getSubmissionId());
-				import('controllers.grid.submissions.SubmissionsListGridCellProvider');
+				$monographDao = DAORegistry::getDAO('MonographDAO');
+				$monograph = $monographDao->getById($reviewRound->getSubmissionId());
+				import('lib.pkp.controllers.grid.submissions.SubmissionsListGridCellProvider');
 				list($page, $operation) = SubmissionsListGridCellProvider::getPageAndOperationByUserRoles($request, $monograph);
 
 				if ($page == 'workflow') {
 					$stageId = $reviewRound->getStageId();
-					$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+					$userGroupDao = DAORegistry::getDAO('UserGroupDAO');
 					$operation = $userGroupDao->getPathFromId($stageId);
 				}
 
@@ -123,19 +123,19 @@ class NotificationManager extends PKPNotificationManager {
 		$type = $notification->getType();
 		assert(isset($type));
 		$contents = array();
-		$monographDao =& DAORegistry::getDAO('MonographDAO'); /* @var $monographDao MonographDAO */
+		$monographDao = DAORegistry::getDAO('MonographDAO'); /* @var $monographDao MonographDAO */
 
 		switch ($type) {
 			case NOTIFICATION_TYPE_MONOGRAPH_SUBMITTED:
 				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
-				$monograph =& $monographDao->getById($notification->getAssocId()); /* @var $monograph Monograph */
+				$monograph = $monographDao->getById($notification->getAssocId()); /* @var $monograph Monograph */
 				$title = $monograph->getLocalizedTitle();
 				return __('notification.type.monographSubmitted', array('title' => $title));
 			case NOTIFICATION_TYPE_REVIEWER_COMMENT:
 				assert($$notification->getAssocType() == ASSOC_TYPE_REVIEW_ASSIGNMENT && is_numeric($$notification->getAssocId()));
-				$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO'); /* @var $reviewAssignmentDao ReviewAssignmentDAO */
-				$reviewAssignment =& $reviewAssignmentDao->getById($notification->getAssocId());
-				$monograph =& $monographDao->getById($reviewAssignment->getSubmissionId()); /* @var $monograph Monograph */
+				$reviewAssignmentDao = DAORegistry::getDAO('ReviewAssignmentDAO'); /* @var $reviewAssignmentDao ReviewAssignmentDAO */
+				$reviewAssignment = $reviewAssignmentDao->getById($notification->getAssocId());
+				$monograph = $monographDao->getById($reviewAssignment->getSubmissionId()); /* @var $monograph Monograph */
 				$title = $monograph->getLocalizedTitle();
 				return __('notification.type.reviewerComment', array('title' => $title));
 			case NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_REQUIRED:
@@ -143,18 +143,18 @@ class NotificationManager extends PKPNotificationManager {
 				return __('notification.type.editorAssignmentTask');
 			case NOTIFICATION_TYPE_LAYOUT_ASSIGNMENT:
 				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
-				$monograph =& $monographDao->getById($notification->getAssocId());
+				$monograph = $monographDao->getById($notification->getAssocId());
 				return __('notification.type.layouteditorRequest', array('title' => $monograph->getLocalizedTitle()));
 			case NOTIFICATION_TYPE_INDEX_ASSIGNMENT:
 				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
-				$monograph =& $monographDao->getById($notification->getAssocId());
+				$monograph = $monographDao->getById($notification->getAssocId());
 				return __('notification.type.indexRequest', array('title' => $monograph->getLocalizedTitle()));
 			case NOTIFICATION_TYPE_REVIEW_ASSIGNMENT:
 				return __('notification.type.reviewAssignment');
 			case NOTIFICATION_TYPE_REVIEW_ROUND_STATUS:
 				assert($notification->getAssocType() == ASSOC_TYPE_REVIEW_ROUND && is_numeric($notification->getAssocId()));
-				$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
-				$reviewRound =& $reviewRoundDao->getReviewRoundById($notification->getAssocId());
+				$reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO');
+				$reviewRound = $reviewRoundDao->getReviewRoundById($notification->getAssocId());
 
 				AppLocale::requireComponents(LOCALE_COMPONENT_APP_EDITOR); // load review round status keys.
 				return __($reviewRound->getStatusKey());
@@ -167,10 +167,10 @@ class NotificationManager extends PKPNotificationManager {
 				}
 
 				assert($notification->getAssocType() == ASSOC_TYPE_REVIEW_ROUND && is_numeric($notification->getAssocId()));
-				$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
-				$reviewRound =& $reviewRoundDao->getReviewRoundById($notification->getAssocId());
+				$reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO');
+				$reviewRound = $reviewRoundDao->getReviewRoundById($notification->getAssocId());
 				assert(is_a($reviewRound, 'ReviewRound'));
-				$userGroupDao =& DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */
+				$userGroupDao = DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */
 				$stagesData = $userGroupDao->getWorkflowStageKeysAndPaths();
 				return __($localeKey, array('stage' => __($stagesData[$reviewRound->getStageId()]['translationKey'])));
 			case NOTIFICATION_TYPE_APPROVE_SUBMISSION:
@@ -203,8 +203,8 @@ class NotificationManager extends PKPNotificationManager {
 			case NOTIFICATION_TYPE_VISIT_CATALOG:
 				return __('notification.type.visitCatalogTitle');
 			case NOTIFICATION_TYPE_REVIEW_ROUND_STATUS:
-				$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
-				$reviewRound =& $reviewRoundDao->getReviewRoundById($notification->getAssocId());
+				$reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO');
+				$reviewRound = $reviewRoundDao->getReviewRoundById($notification->getAssocId());
 				return __('notification.type.roundStatusTitle', array('round' => $reviewRound->getRound()));
 			case NOTIFICATION_TYPE_CONFIGURE_PAYMENT_METHOD:
 				return __('notification.type.configurePaymentMethod.title');

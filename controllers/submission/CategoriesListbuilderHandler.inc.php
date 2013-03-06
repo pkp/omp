@@ -19,7 +19,7 @@ class CategoriesListbuilderHandler extends ListbuilderHandler {
 	var $_press;
 
 	/** @var The group ID for this listbuilder */
-	var $monographId;
+	var $submissionId;
 
 	/**
 	 * Constructor
@@ -45,34 +45,34 @@ class CategoriesListbuilderHandler extends ListbuilderHandler {
 	}
 
 	/**
-	 * Set the monograph ID
-	 * @param $monographId int
+	 * Set the submission ID
+	 * @param $submissionId int
 	 */
-	function setMonographId($monographId) {
-		$this->monographId = $monographId;
+	function setSubmissionId($submissionId) {
+		$this->submissionId = $submissionId;
 	}
 
 	/**
-	 * Get the monograph ID
+	 * Get the submission ID
 	 * @return int
 	 */
-	function getMonographId() {
-		return $this->monographId;
+	function getSubmissionId() {
+		return $this->submissionId;
 	}
 
 	/**
 	 * Set the current press
 	 * @param $press Press
 	 */
-	function setPress(&$press) {
-		$this->_press =& $press;
+	function setPress($press) {
+		$this->_press = $press;
 	}
 
 	/**
 	 * Get the current press
 	 * @return Press
 	 */
-	function &getPress() {
+	function getPress() {
 		return $this->_press;
 	}
 
@@ -81,12 +81,12 @@ class CategoriesListbuilderHandler extends ListbuilderHandler {
 	 * @param $request PKPRequest
 	 */
 	function loadData(&$request) {
-		$press =& $this->getPress();
-		$monographId = $this->getMonographId();
+		$press = $this->getPress();
+		$submissionId = $this->getSubmissionId();
 
-		if ($monographId) {
-			$monographDao =& DAORegistry::getDAO('MonographDAO');
-			$assignedCategories =& $monographDao->getCategories($monographId, $press->getId());
+		if ($submissionId) {
+			$submissionDao = DAORegistry::getDAO('MonographDAO');
+			$assignedCategories = $submissionDao->getCategories($submissionId, $press->getId());
 			return $assignedCategories;
 		}
 
@@ -97,34 +97,33 @@ class CategoriesListbuilderHandler extends ListbuilderHandler {
 	 * Get possible items to populate autosuggest list with
 	 */
 	function getOptions() {
-		$press =& $this->getPress();
-		$monographId = $this->getMonographId();
+		$press = $this->getPress();
+		$submissionId = $this->getSubmissionId();
 
-		if ($monographId) {
-			// Preexisting monograph
-			$monographDao =& DAORegistry::getDAO('MonographDAO');
-			$availableCategories =& $monographDao->getUnassignedCategories($monographId, $press->getId());
+		if ($submissionId) {
+			// Preexisting submission
+			$submissionDao = DAORegistry::getDAO('MonographDAO');
+			$availableCategories = $submissionDao->getUnassignedCategories($submissionId, $press->getId());
 		} else {
-			// New monograph
-			$categoryDao =& DAORegistry::getDAO('CategoryDAO');
-			$availableCategories =& $categoryDao->getByPressId($press->getId());
+			// New submission
+			$categoryDao = DAORegistry::getDAO('CategoryDAO');
+			$availableCategories = $categoryDao->getByPressId($press->getId());
 		}
 
 		$itemList = array(0 => array());
-		while ($category =& $availableCategories->next()) {
+		while ($category = $availableCategories->next()) {
 			$itemList[0][$category->getId()] = $category->getLocalizedTitle();
-			unset($category);
 		}
 		return $itemList;
 	}
 
 	/**
-	 * Preserve the monograph ID for internal listbuilder requests.
+	 * Preserve the submission ID for internal listbuilder requests.
 	 * @see GridHandler::getRequestArgs
 	 */
 	function getRequestArgs() {
 		$args = parent::getRequestArgs();
-		$args['monographId'] = $this->getMonographId();
+		$args['submissionId'] = $this->getSubmissionId();
 		return $args;
 	}
 
@@ -143,9 +142,9 @@ class CategoriesListbuilderHandler extends ListbuilderHandler {
 		// Otherwise return from the $newRowId
 		$newRowId = $this->getNewRowId($request);
 		$categoryId = $newRowId['name'];
-		$categoryDao =& DAORegistry::getDAO('CategoryDAO');
-		$press =& $request->getPress();
-		$category =& $categoryDao->getById($categoryId, $press->getId());
+		$categoryDao = DAORegistry::getDAO('CategoryDAO');
+		$press = $request->getPress();
+		$category = $categoryDao->getById($categoryId, $press->getId());
 		return $category;
 	}
 
@@ -171,7 +170,7 @@ class CategoriesListbuilderHandler extends ListbuilderHandler {
 		$this->setSaveType(LISTBUILDER_SAVE_TYPE_EXTERNAL);
 		$this->setSaveFieldName('categories');
 
-		$this->setMonographId($request->getUserVar('monographId'));
+		$this->setSubmissionId($request->getUserVar('submissionId'));
 
 		// Name column
 		$nameColumn = new ListbuilderGridColumn($this, 'name', 'common.name');

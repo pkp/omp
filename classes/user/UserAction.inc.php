@@ -31,12 +31,11 @@ class UserAction {
 	 * @param $newUserId int The user ID to receive all "assets" (i.e. submissions) from old user
 	 */
 	function mergeUsers($oldUserId, $newUserId) {
-		$monographDao =& DAORegistry::getDAO('MonographDAO');
-		$monographs =& $monographDao->getByUserId($oldUserId);
-		while ($monograph =& $monographs->next()) {
+		$monographDao = DAORegistry::getDAO('MonographDAO');
+		$monographs = $monographDao->getByUserId($oldUserId);
+		while ($monograph = $monographs->next()) {
 			$monograph->setUserId($newUserId);
-			$monographDao->updateMonograph($monograph);
-			unset($monograph);
+			$monographDao->updateObject($monograph);
 		}
 
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO');
@@ -84,11 +83,10 @@ class UserAction {
 		$monographEventLogDao->changeUser($oldUserId, $newUserId);
 
 		$monographCommentDao =& DAORegistry::getDAO('MonographCommentDAO');
-		$comments =& $monographCommentDao->getByUserId($oldUserId);
-		while ($comment =& $comments->next()) {
+		$comments = $monographCommentDao->getByUserId($oldUserId);
+		while ($comment = $comments->next()) {
 			$comment->setAuthorId($newUserId);
-			$monographCommentDao->updateMonographComment($comment);
-			unset($comment);
+			$monographCommentDao->updateObject($comment);
 		}
 
 		$accessKeyDao =& DAORegistry::getDAO('AccessKeyDAO');

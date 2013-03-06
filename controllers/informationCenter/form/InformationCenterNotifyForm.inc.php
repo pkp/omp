@@ -137,8 +137,8 @@ class InformationCenterNotifyForm extends Form {
 		$email = new MonographMailTemplate($monograph, $template, null, null, null, false);
 		$email->setFrom($fromUser->getEmail(), $fromUser->getFullName());
 
-		import('controllers.grid.submissions.SubmissionsListGridCellProvider');
-		$dispatcher =& $request->getDispatcher();
+		import('lib.pkp.controllers.grid.submissions.SubmissionsListGridCellProvider');
+		$dispatcher = $request->getDispatcher();
 
 		foreach ($newRowId as $id) {
 			$user = $userDao->getById($id);

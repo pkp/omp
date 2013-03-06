@@ -9,7 +9,7 @@
  * @class SubmissionSubmitStep3Form
  * @ingroup submission_form
  *
- * @brief Form for Step 3 of author monograph submission.
+ * @brief Form for Step 3 of author submission.
  */
 
 
@@ -24,20 +24,20 @@ class SubmissionSubmitStep3Form extends SubmissionSubmitForm {
 	/**
 	 * Constructor.
 	 */
-	function SubmissionSubmitStep3Form($press, $monograph) {
-		parent::SubmissionSubmitForm($press, $monograph, 3);
+	function SubmissionSubmitStep3Form($context, $submission) {
+		parent::SubmissionSubmitForm($context, $submission, 3);
 
 		$this->_metadataFormImplem = new SubmissionMetadataFormImplementation($this);
 
-		$this->_metadataFormImplem->addChecks($monograph);
+		$this->_metadataFormImplem->addChecks($submission);
 	}
 
 	/**
-	 * Initialize form data from current monograph.
+	 * Initialize form data from current submission.
 	 */
 	function initData() {
 
-		$this->_metadataFormImplem->initData($this->monograph);
+		$this->_metadataFormImplem->initData($this->submission);
 
 		return parent::initData();
 	}
@@ -54,21 +54,21 @@ class SubmissionSubmitStep3Form extends SubmissionSubmitForm {
 
 		// Load the series. This is used in the step 3 form to
 		// determine whether or not to display indexing options.
-		$seriesDao =& DAORegistry::getDAO('SeriesDAO');
-		$this->_data['series'] =& $seriesDao->getById($this->monograph->getSeriesId(), $this->monograph->getPressId());
+		$seriesDao = DAORegistry::getDAO('SeriesDAO');
+		$this->_data['series'] = $seriesDao->getById($this->submission->getSeriesId(), $this->submission->getContextId());
 	}
 
 	/**
 	 * Fetch the form
 	 */
 	function fetch($request) {
-		$templateMgr =& TemplateManager::getManager($request);
+		$templateMgr = TemplateManager::getManager($request);
 
-		$templateMgr->assign('isEditedVolume', $this->monograph->getWorkType() == WORK_TYPE_EDITED_VOLUME);
+		$templateMgr->assign('isEditedVolume', $this->submission->getWorkType() == WORK_TYPE_EDITED_VOLUME);
 
-		// If categories are configured for the press, present the LB.
-		$categoryDao =& DAORegistry::getDAO('CategoryDAO');
-		$templateMgr->assign('categoriesExist', $categoryDao->getCountByPressId($this->press->getId()) > 0);
+		// If categories are configured, present the LB.
+		$categoryDao = DAORegistry::getDAO('CategoryDAO');
+		$templateMgr->assign('categoriesExist', $categoryDao->getCountByPressId($this->context->getId()) > 0);
 
 		return parent::fetch($request);
 	}
@@ -82,56 +82,56 @@ class SubmissionSubmitStep3Form extends SubmissionSubmitForm {
 	}
 
 	/**
-	 * Save changes to monograph.
+	 * Save changes to submission.
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return int the monograph ID
+	 * @return int the submission ID
 	 */
 	function execute($args, &$request) {
 
-		// Execute monograph metadata related operations.
-		$this->_metadataFormImplem->execute($this->monograph, $request);
+		// Execute submission metadata related operations.
+		$this->_metadataFormImplem->execute($this->submission, $request);
 
 		// handle category assignment.
 		ListbuilderHandler::unpack($request, $this->getData('categories'));
 
-		// Get an updated version of the monograph.
-		$monographDao =& DAORegistry::getDAO('MonographDAO');
-		$monograph =& $monographDao->getById($this->monographId);
+		// Get an updated version of the submission.
+		$submissionDao = DAORegistry::getDAO('MonographDAO');
+		$submission = $submissionDao->getById($this->submissionId);
 
-		// Set other monograph data.
-		if ($monograph->getSubmissionProgress() <= $this->step) {
-			$monograph->setDateSubmitted(Core::getCurrentDate());
-			$monograph->stampStatusModified();
-			$monograph->setSubmissionProgress(0);
+		// Set other submission data.
+		if ($submission->getSubmissionProgress() <= $this->step) {
+			$submission->setDateSubmitted(Core::getCurrentDate());
+			$submission->stampStatusModified();
+			$submission->setSubmissionProgress(0);
 		}
 
-		// Save the monograph.
-		$monographDao->updateMonograph($monograph);
+		// Save the submission.
+		$submissionDao->updateObject($submission);
 
 		// Assign the default users to the submission workflow stage
 		import('classes.submission.seriesEditor.SeriesEditorAction');
 		$seriesEditorAction = new SeriesEditorAction();
-		$seriesEditorAction->assignDefaultStageParticipants($monograph, WORKFLOW_STAGE_ID_SUBMISSION, $request);
+		$seriesEditorAction->assignDefaultStageParticipants($submission, WORKFLOW_STAGE_ID_SUBMISSION, $request);
 
 		//
 		// Send a notification to associated users
 		//
 
-		$roleDao =& DAORegistry::getDAO('RoleDAO'); /* @var $roleDao RoleDAO */
+		$roleDao = DAORegistry::getDAO('RoleDAO'); /* @var $roleDao RoleDAO */
 
 		// Get the managers.
-		$pressManagers = $roleDao->getUsersByRoleId(ROLE_ID_MANAGER, $monograph->getPressId());
+		$managers = $roleDao->getUsersByRoleId(ROLE_ID_MANAGER, $submission->getContextId());
 
-		$pressManagersArray = $pressManagers->toAssociativeArray();
+		$managersArray = $managers->toAssociativeArray();
 
-		$allUserIds = array_keys($pressManagersArray);
+		$allUserIds = array_keys($managersArray);
 
 		$notificationManager = new NotificationManager();
 		foreach ($allUserIds as $userId) {
 			$notificationManager->createNotification(
 				$request, $userId, NOTIFICATION_TYPE_MONOGRAPH_SUBMITTED,
-				$monograph->getPressId(), ASSOC_TYPE_MONOGRAPH, $monograph->getId()
+				$submission->getContextId(), ASSOC_TYPE_MONOGRAPH, $submission->getId()
 			);
 
 			// Add TASK notification indicating that a submission is unassigned
@@ -139,30 +139,29 @@ class SubmissionSubmitStep3Form extends SubmissionSubmitForm {
 				$request,
 				$userId,
 				NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_REQUIRED,
-				$monograph->getPressId(),
+				$submission->getContextId(),
 				ASSOC_TYPE_MONOGRAPH,
-				$monograph->getId(),
+				$submission->getId(),
 				NOTIFICATION_LEVEL_TASK
 			);
 		}
 
 		// Send author notification email
 		import('classes.mail.MonographMailTemplate');
-		$mail = new MonographMailTemplate($monograph, 'SUBMISSION_ACK');
-		$authorMail = new MonographMailTemplate($monograph, 'SUBMISSION_ACK_NOT_USER');
+		$mail = new MonographMailTemplate($submission, 'SUBMISSION_ACK');
+		$authorMail = new MonographMailTemplate($submission, 'SUBMISSION_ACK_NOT_USER');
 
-		$press =& $request->getPress();
-
-		$router =& $request->getRouter();
+		$context = $request->getContext();
+		$router = $request->getRouter();
 		if ($mail->isEnabled()) {
-			// submission ack emails should be from the press contact.
-			$mail->setFrom($this->press->getSetting('contactEmail'), $this->press->getSetting('contactName'));
-			$authorMail->setFrom($this->press->getSetting('contactEmail'), $this->press->getSetting('contactName'));
+			// submission ack emails should be from the contact.
+			$mail->setFrom($this->context->getSetting('contactEmail'), $this->context->getSetting('contactName'));
+			$authorMail->setFrom($this->context->getSetting('contactEmail'), $this->context->getSetting('contactName'));
 
-			$user = $monograph->getUser();
-			$primaryAuthor = $monograph->getPrimaryAuthor();
+			$user = $submission->getUser();
+			$primaryAuthor = $submission->getPrimaryAuthor();
 			if (!isset($primaryAuthor)) {
-				$authors =& $monograph->getAuthors();
+				$authors = $submission->getAuthors();
 				$primaryAuthor = $authors[0];
 			}
 			$mail->addRecipient($user->getEmail(), $user->getFullName());
@@ -170,17 +169,17 @@ class SubmissionSubmitStep3Form extends SubmissionSubmitForm {
 			if ($user->getEmail() != $primaryAuthor->getEmail()) {
 				$authorMail->addRecipient($primaryAuthor->getEmail(), $primaryAuthor->getFullName());
 			}
-			if ($press->getSetting('copySubmissionAckPrimaryContact')) {
+			if ($context->getSetting('copySubmissionAckPrimaryContact')) {
 				$authorMail->addBcc(
-					$press->getSetting('contactEmail'),
-					$press->getSetting('contactName')
+					$context->getSetting('contactEmail'),
+					$context->getSetting('contactName')
 				);
 			}
-			if ($copyAddress = $press->getSetting('copySubmissionAckAddress')) {
+			if ($copyAddress = $context->getSetting('copySubmissionAckAddress')) {
 				$authorMail->addBcc($copyAddress);
 			}
 
-			$assignedAuthors = $monograph->getAuthors();
+			$assignedAuthors = $submission->getAuthors();
 
 			foreach ($assignedAuthors as $author) {
 				$authorEmail = $author->getEmail();
@@ -190,18 +189,18 @@ class SubmissionSubmitStep3Form extends SubmissionSubmitForm {
 					$authorMail->addRecipient($author->getEmail(), $author->getFullName());
 				}
 			}
-			$mail->bccAssignedSeriesEditors($monograph->getId(), WORKFLOW_STAGE_ID_SUBMISSION);
+			$mail->bccAssignedSeriesEditors($submission->getId(), WORKFLOW_STAGE_ID_SUBMISSION);
 
 			$mail->assignParams(array(
 				'authorName' => $user->getFullName(),
 				'authorUsername' => $user->getUsername(),
-				'editorialContactSignature' => $press->getSetting('contactName') . "\n" . $press->getLocalizedName(),
-				'submissionUrl' => $router->url($request, null, 'authorDashboard', 'submission', $monograph->getId()),
+				'editorialContactSignature' => $context->getSetting('contactName') . "\n" . $context->getLocalizedName(),
+				'submissionUrl' => $router->url($request, null, 'authorDashboard', 'submission', $submission->getId()),
 			));
 
 			$authorMail->assignParams(array(
 				'submitterName' => $user->getFullName(),
-				'editorialContactSignature' => $press->getSetting('contactName') . "\n" . $press->getLocalizedName(),
+				'editorialContactSignature' => $context->getSetting('contactName') . "\n" . $context->getLocalizedName(),
 			));
 
 			$mail->send($request);
@@ -217,37 +216,37 @@ class SubmissionSubmitStep3Form extends SubmissionSubmitForm {
 			array(NOTIFICATION_TYPE_APPROVE_SUBMISSION),
 			null,
 			ASSOC_TYPE_MONOGRAPH,
-			$monograph->getId()
+			$submission->getId()
 		);
 
 		// Log submission.
 		import('classes.log.MonographLog');
-		MonographLog::logEvent($request, $monograph, MONOGRAPH_LOG_MONOGRAPH_SUBMIT, 'submission.event.monographSubmitted');
+		MonographLog::logEvent($request, $submission, MONOGRAPH_LOG_MONOGRAPH_SUBMIT, 'submission.event.monographSubmitted');
 
-		return $this->monographId;
+		return $this->submissionId;
 	}
 
 	/**
-	 * Associate a category with a monograph.
+	 * Associate a category with a submission.
 	 * @see ListbuilderHandler::insertEntry
 	 */
 	function insertEntry(&$request, $newRowId) {
 
-		$application =& PKPApplication::getApplication();
-		$request =& $application->getRequest();
+		$application = PKPApplication::getApplication();
+		$request = $application->getRequest();
 
 		$categoryId = $newRowId['name'];
-		$categoryDao =& DAORegistry::getDAO('CategoryDAO');
-		$monographDao =& DAORegistry::getDAO('MonographDAO');
-		$press =& $request->getPress();
-		$monograph =& $this->monograph;
+		$categoryDao = DAORegistry::getDAO('CategoryDAO');
+		$submissionDao = DAORegistry::getDAO('MonographDAO');
+		$context = $request->getContext();
+		$submission = $this->submission;
 
-		$category =& $categoryDao->getById($categoryId, $press->getId());
+		$category = $categoryDao->getById($categoryId, $context->getId());
 		if (!$category) return true;
 
-		// Associate the category with the monograph
-		$monographDao->addCategory(
-				$monograph->getId(),
+		// Associate the category with the submission
+		$submissionDao->addCategory(
+				$submission->getId(),
 				$categoryId
 		);
 	}
@@ -258,15 +257,15 @@ class SubmissionSubmitStep3Form extends SubmissionSubmitForm {
 	 */
 	function deleteEntry(&$request, $rowId) {
 		if ($rowId) {
-			$categoryDao =& DAORegistry::getDAO('CategoryDAO');
-			$monographDao =& DAORegistry::getDAO('MonographDAO');
-			$category =& $categoryDao->getById($rowId);
+			$categoryDao = DAORegistry::getDAO('CategoryDAO');
+			$submissionDao = DAORegistry::getDAO('MonographDAO');
+			$category = $categoryDao->getById($rowId);
 			if (!is_a($category, 'Category')) {
 				assert(false);
 				return false;
 			}
-			$monograph =& $this->monograph;
-			$monographDao->removeCategory($monograph->getId(), $rowId);
+			$submission = $this->submission;
+			$submissionDao->removeCategory($submission->getId(), $rowId);
 		}
 
 		return true;

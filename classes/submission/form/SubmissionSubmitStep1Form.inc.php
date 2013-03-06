@@ -9,7 +9,7 @@
  * @class SubmissionSubmitStep1Form
  * @ingroup submission_form
  *
- * @brief Form for Step 1 of author monograph submission.
+ * @brief Form for Step 1 of author submission.
  */
 
 
@@ -19,20 +19,20 @@ class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
 	/**
 	 * Constructor.
 	 */
-	function SubmissionSubmitStep1Form($press, $monograph = null) {
-		parent::SubmissionSubmitForm($press, $monograph, 1);
+	function SubmissionSubmitStep1Form($context, $submission = null) {
+		parent::SubmissionSubmitForm($context, $submission, 1);
 
 		// Validation checks for this form
-		$supportedSubmissionLocales = $press->getSupportedSubmissionLocales();
-		if (!is_array($supportedSubmissionLocales) || count($supportedSubmissionLocales) < 1) $supportedSubmissionLocales = array($press->getPrimaryLocale());
+		$supportedSubmissionLocales = $context->getSupportedSubmissionLocales();
+		if (!is_array($supportedSubmissionLocales) || count($supportedSubmissionLocales) < 1) $supportedSubmissionLocales = array($context->getPrimaryLocale());
 		$this->addCheck(new FormValidatorInSet($this, 'locale', 'required', 'submission.submit.form.localeRequired', $supportedSubmissionLocales));
-		if ((boolean) $press->getSetting('copyrightNoticeAgree')) {
+		if ((boolean) $context->getSetting('copyrightNoticeAgree')) {
 			$this->addCheck(new FormValidator($this, 'copyrightNoticeAgree', 'required', 'submission.submit.copyrightNoticeAgreeRequired'));
 		}
 		$this->addCheck(new FormValidator($this, 'authorUserGroupId', 'required', 'user.authorization.userGroupRequired'));
 
 
-		foreach ($press->getLocalizedSetting('submissionChecklist') as $key => $checklistItem) {
+		foreach ($context->getLocalizedSetting('submissionChecklist') as $key => $checklistItem) {
 			$this->addCheck(new FormValidator($this, "checklist-$key", 'required', 'submission.submit.checklistErrors'));
 		}
 	}
@@ -50,37 +50,35 @@ class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
 		// submissions. Otherwise, display only series they are allowed
 		// to submit to.
 		$roleDao = DAORegistry::getDAO('RoleDAO');
-		$isEditor = $roleDao->userHasRole($this->press->getId(), $user->getId(), ROLE_ID_SERIES_EDITOR);
+		$isEditor = $roleDao->userHasRole($this->context->getId(), $user->getId(), ROLE_ID_SERIES_EDITOR);
 
-		// Get series for this press
+		// Get series for this context
 		$seriesDao = DAORegistry::getDAO('SeriesDAO');
-		$seriesOptions = array('0' => __('submission.submit.selectSeries')) + $seriesDao->getTitlesByPressId($this->press->getId());
+		$seriesOptions = array('0' => __('submission.submit.selectSeries')) + $seriesDao->getTitlesByPressId($this->context->getId());
 		$templateMgr->assign('seriesOptions', $seriesOptions);
 
 		$templateMgr->assign(
 			'supportedSubmissionLocaleNames',
-			$this->press->getSupportedSubmissionLocaleNames()
+			$this->context->getSupportedSubmissionLocaleNames()
 		);
 
-		// if this press has a copyright notice that the author must agree to, present the form items.
-		$press =& $request->getPress();
-		if ((boolean) $press->getSetting('copyrightNoticeAgree')) {
-			$templateMgr->assign('copyrightNotice', $press->getLocalizedSetting('copyrightNotice'));
+		// if this context has a copyright notice that the author must agree to, present the form items.
+		if ((boolean) $this->context->getSetting('copyrightNoticeAgree')) {
+			$templateMgr->assign('copyrightNotice', $this->context->getLocalizedSetting('copyrightNotice'));
 			$templateMgr->assign('copyrightNoticeAgree', true);
 		}
 
 		// Get list of user's author user groups.  If its more than one, we'll need to display an author user group selector
-		$userGroupAssignmentDao =& DAORegistry::getDAO('UserGroupAssignmentDAO');
-		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
-		$authorUserGroupAssignments =& $userGroupAssignmentDao->getByUserId($user->getId(), $this->press->getId(), ROLE_ID_AUTHOR);
+		$userGroupAssignmentDao = DAORegistry::getDAO('UserGroupAssignmentDAO');
+		$userGroupDao = DAORegistry::getDAO('UserGroupDAO');
+		$authorUserGroupAssignments = $userGroupAssignmentDao->getByUserId($user->getId(), $this->context->getId(), ROLE_ID_AUTHOR);
 		if(!$authorUserGroupAssignments->wasEmpty()) {
 			$authorUserGroupNames = array();
-			while($authorUserGroupAssignment =& $authorUserGroupAssignments->next()) {
-				$authorUserGroup =& $userGroupDao->getById($authorUserGroupAssignment->getUserGroupId());
+			while($authorUserGroupAssignment = $authorUserGroupAssignments->next()) {
+				$authorUserGroup = $userGroupDao->getById($authorUserGroupAssignment->getUserGroupId());
 				if ($userGroupDao->userGroupAssignedToStage($authorUserGroup->getId(), WORKFLOW_STAGE_ID_SUBMISSION)) {
 					$authorUserGroupNames[$authorUserGroup->getId()] = $authorUserGroup->getLocalizedName();
 				}
-				unset($authorUserGroupAssignment);
 			}
 			$templateMgr->assign('authorUserGroupOptions', $authorUserGroupNames);
 		} else {
@@ -88,11 +86,10 @@ class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
 			$userGroupNames = array();
 
 			// Add all manager user groups
-			$managerUserGroupAssignments =& $userGroupAssignmentDao->getByUserId($user->getId(), $this->press->getId(), ROLE_ID_MANAGER);
-			if($managerUserGroupAssignments) while($managerUserGroupAssignment =& $managerUserGroupAssignments->next()) {
-				$managerUserGroup =& $userGroupDao->getById($managerUserGroupAssignment->getUserGroupId());
+			$managerUserGroupAssignments = $userGroupAssignmentDao->getByUserId($user->getId(), $this->context->getId(), ROLE_ID_MANAGER);
+			if($managerUserGroupAssignments) while($managerUserGroupAssignment = $managerUserGroupAssignments->next()) {
+				$managerUserGroup = $userGroupDao->getById($managerUserGroupAssignment->getUserGroupId());
 				$userGroupNames[$managerUserGroup->getId()] = $managerUserGroup->getLocalizedName();
-				unset($managerUserGroupAssignment);
 			}
 
 			$templateMgr->assign('authorUserGroupOptions', $userGroupNames);
@@ -102,25 +99,25 @@ class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
 	}
 
 	/**
-	 * Initialize form data from current monograph.
+	 * Initialize form data from current submission.
 	 */
 	function initData() {
-		if (isset($this->monograph)) {
+		if (isset($this->submission)) {
 			$this->_data = array(
-				'seriesId' => $this->monograph->getSeriesId(),
-				'seriesPosition' => $this->monograph->getSeriesPosition(),
-				'locale' => $this->monograph->getLocale(),
-				'workType' => $this->monograph->getWorkType(),
-				'commentsToEditor' => $this->monograph->getCommentsToEditor()
+				'seriesId' => $this->submission->getSeriesId(),
+				'seriesPosition' => $this->submission->getSeriesPosition(),
+				'locale' => $this->submission->getLocale(),
+				'workType' => $this->submission->getWorkType(),
+				'commentsToEditor' => $this->submission->getCommentsToEditor()
 			);
 		} else {
-			$supportedSubmissionLocales = $this->press->getSupportedSubmissionLocales();
+			$supportedSubmissionLocales = $this->context->getSupportedSubmissionLocales();
 			// Try these locales in order until we find one that's
 			// supported to use as a default.
 			$tryLocales = array(
 				$this->getFormLocale(), // Current form locale
 				AppLocale::getLocale(), // Current UI locale
-				$this->press->getPrimaryLocale(), // Press locale
+				$this->context->getPrimaryLocale(), // Context locale
 				$supportedSubmissionLocales[array_shift(array_keys($supportedSubmissionLocales))] // Fallback: first one on the list
 			);
 			$this->_data = array();
@@ -141,7 +138,7 @@ class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
 		$vars = array(
 			'authorUserGroupId', 'locale', 'workType', 'copyrightNoticeAgree', 'seriesId', 'seriesPosition', 'commentsToEditor', 'copyrightNoticeAgree'
 		);
-		foreach ($this->press->getLocalizedSetting('submissionChecklist') as $key => $checklistItem) {
+		foreach ($this->context->getLocalizedSetting('submissionChecklist') as $key => $checklistItem) {
 			$vars[] = "checklist-$key";
 		}
 
@@ -152,47 +149,45 @@ class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
 	 * Save changes to submission.
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return int the monograph ID
+	 * @return int the submission ID
 	 */
-	function execute($args, &$request) {
-		$monographDao =& DAORegistry::getDAO('MonographDAO');
+	function execute($args, $request) {
+		$submissionDao = DAORegistry::getDAO('MonographDAO');
 
-		if (isset($this->monograph)) {
-			// Update existing monograph
-			$this->monograph->setSeriesId($this->getData('seriesId'));
-			$this->monograph->setSeriesPosition($this->getData('seriesPosition'));
-			$this->monograph->setLocale($this->getData('locale'));
-			$this->monograph->setCommentsToEditor($this->getData('commentsToEditor'));
-            $this->monograph->setWorkType($this->getData('workType'));
-			if ($this->monograph->getSubmissionProgress() <= $this->step) {
-				$this->monograph->stampStatusModified();
-				$this->monograph->setSubmissionProgress($this->step + 1);
+		if (isset($this->submission)) {
+			// Update existing submission
+			$this->submission->setSeriesId($this->getData('seriesId'));
+			$this->submission->setSeriesPosition($this->getData('seriesPosition'));
+			$this->submission->setLocale($this->getData('locale'));
+			$this->submission->setCommentsToEditor($this->getData('commentsToEditor'));
+            $this->submission->setWorkType($this->getData('workType'));
+			if ($this->submission->getSubmissionProgress() <= $this->step) {
+				$this->submission->stampStatusModified();
+				$this->submission->setSubmissionProgress($this->step + 1);
 			}
-			$monographDao->updateMonograph($this->monograph);
+			$submissionDao->updateObject($this->submission);
 		} else {
-			$user =& $request->getUser();
-			$press =& $request->getPress();
-
-			// Create new monograph
-			$this->monograph = new Monograph();
-			$this->monograph->setLocale($this->getData('locale'));
-			$this->monograph->setUserId($user->getId());
-			$this->monograph->setPressId($this->press->getId());
-			$this->monograph->setSeriesId($this->getData('seriesId'));
-			$this->monograph->setSeriesPosition($this->getData('seriesPosition'));
-			$this->monograph->stampStatusModified();
-			$this->monograph->setSubmissionProgress($this->step + 1);
-			$this->monograph->setLanguage(String::substr($this->monograph->getLocale(), 0, 2));
-			$this->monograph->setCommentsToEditor($this->getData('commentsToEditor'));
-			$this->monograph->setWorkType($this->getData('workType'));
-			$this->monograph->setStageId(WORKFLOW_STAGE_ID_SUBMISSION);
-			$this->monograph->setCopyrightNotice($press->getLocalizedSetting('copyrightNotice'), $this->getData('locale'));
-			// Insert the monograph
-			$this->monographId = $monographDao->insertMonograph($this->monograph);
+			// Create new submission
+			$this->submission = $submissionDao->newDataObject();
+			$this->submission->setLocale($this->getData('locale'));
+			$user = $request->getUser();
+			$this->submission->setUserId($user->getId());
+			$this->submission->setContextId($this->context->getId());
+			$this->submission->setSeriesId($this->getData('seriesId'));
+			$this->submission->setSeriesPosition($this->getData('seriesPosition'));
+			$this->submission->stampStatusModified();
+			$this->submission->setSubmissionProgress($this->step + 1);
+			$this->submission->setLanguage(String::substr($this->submission->getLocale(), 0, 2));
+			$this->submission->setCommentsToEditor($this->getData('commentsToEditor'));
+			$this->submission->setWorkType($this->getData('workType'));
+			$this->submission->setStageId(WORKFLOW_STAGE_ID_SUBMISSION);
+			$this->submission->setCopyrightNotice($this->context->getLocalizedSetting('copyrightNotice'), $this->getData('locale'));
+			// Insert the submission
+			$this->submissionId = $submissionDao->insertObject($this->submission);
 
 			// Set user to initial author
-			$authorDao =& DAORegistry::getDAO('AuthorDAO');
-			$author = new Author();
+			$authorDao = DAORegistry::getDAO('AuthorDAO');
+			$author = $authorDao->newDataObject();
 			$author->setFirstName($user->getFirstName());
 			$author->setMiddleName($user->getMiddleName());
 			$author->setLastName($user->getLastName());
@@ -207,15 +202,15 @@ class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
 			$authorUserGroupId = (int) $this->getData('authorUserGroupId');
 			$author->setUserGroupId($authorUserGroupId);
 
-			$author->setSubmissionId($this->monographId);
+			$author->setSubmissionId($this->submissionId);
 			$authorDao->insertAuthor($author);
 
 			// Assign the user author to the stage
-			$stageAssignmentDao =& DAORegistry::getDAO('StageAssignmentDAO');
-			$stageAssignmentDao->build($this->monographId, $authorUserGroupId, $user->getId());
+			$stageAssignmentDao = DAORegistry::getDAO('StageAssignmentDAO');
+			$stageAssignmentDao->build($this->submissionId, $authorUserGroupId, $user->getId());
 		}
 
-		return $this->monographId;
+		return $this->submissionId;
 	}
 }
 

@@ -29,27 +29,26 @@ class MonographCommentDAO extends DAO {
 	 * @param $commentType int
 	 * @return DAOResultFactory
 	 */
-	function &getMonographComments($monographId, $commentType = null, $assocId = null) {
+	function getMonographComments($monographId, $commentType = null, $assocId = null) {
 		if ($commentType == null) {
-			$result =& $this->retrieve(
-				'SELECT a.* FROM monograph_comments a WHERE monograph_id = ? ORDER BY date_posted', $monographId
+			$result = $this->retrieve(
+				'SELECT a.* FROM monograph_comments a WHERE monograph_id = ? ORDER BY date_posted', (int) $monographId
 			);
 		} else {
 			if ($assocId == null) {
-				$result =& $this->retrieve(
+				$result = $this->retrieve(
 					'SELECT a.* FROM monograph_comments a WHERE monograph_id = ? AND comment_type = ? ORDER BY date_posted',
-					array($monographId, $commentType)
+					array((int) $monographId, (int) $commentType)
 				);
 			} else {
-				$result =& $this->retrieve(
+				$result = $this->retrieve(
 					'SELECT a.* FROM monograph_comments a WHERE monograph_id = ? AND comment_type = ? AND assoc_id = ? ORDER BY date_posted',
-					array($monographId, $commentType, $assocId)
+					array((int) $monographId, (int) $commentType, (int) $assocId)
 				);
 			}
 		}
 
-		$returner = new DAOResultFactory($result, $this, '_returnMonographCommentFromRow');
-		return $returner;
+		return new DAOResultFactory($result, $this, '_returnMonographCommentFromRow');
 	}
 
 	/**
@@ -57,13 +56,12 @@ class MonographCommentDAO extends DAO {
 	 * @param $userId int
 	 * @return DAOResultFactory
 	 */
-	function &getByUserId($userId) {
-		$result =& $this->retrieve(
-			'SELECT a.* FROM monograph_comments a WHERE author_id = ? ORDER BY date_posted', $userId
+	function getByUserId($userId) {
+		$result = $this->retrieve(
+			'SELECT a.* FROM monograph_comments a WHERE author_id = ? ORDER BY date_posted', (int) $userId
 		);
 
-		$returner = new DAOResultFactory($result, $this, '_returnMonographCommentFromRow');
-		return $returner;
+		return new DAOResultFactory($result, $this, '_returnMonographCommentFromRow');
 	}
 
 	/**
@@ -73,18 +71,17 @@ class MonographCommentDAO extends DAO {
 	 * @param $reviewId int (optional) The review assignment Id the comment pertains to.
 	 * @return DAOResultFactory
 	 */
-	function &getReviewerCommentsByReviewerId($reviewerId, $monographId, $reviewId = null) {
-		$params = array($reviewerId, $monographId);
+	function getReviewerCommentsByReviewerId($reviewerId, $monographId, $reviewId = null) {
+		$params = array((int) $reviewerId, (int) $monographId);
 		if (isset($reviewId)) {
-			$params[] = $reviewId;
+			$params[] = (int) $reviewId;
 		}
-		$result =& $this->retrieve(
+		$result = $this->retrieve(
 			'SELECT a.* FROM monograph_comments a WHERE author_id = ? AND monograph_id = ?' . (isset($reviewId) ? ' AND assoc_id = ?' : '') . ' ORDER BY date_posted DESC',
 			$params
 		);
 
-		$returner = new DAOResultFactory($result, $this, '_returnMonographCommentFromRow');
-		return $returner;
+		return new DAOResultFactory($result, $this, '_returnMonographCommentFromRow');
 	}
 
 	/**
@@ -95,22 +92,22 @@ class MonographCommentDAO extends DAO {
 	 */
 	function getMostRecentMonographComment($monographId, $commentType = null, $assocId = null) {
 		if ($commentType == null) {
-			$result =& $this->retrieveLimit(
+			$result = $this->retrieveLimit(
 				'SELECT a.* FROM monograph_comments a WHERE monograph_id = ? ORDER BY date_posted DESC',
-				$monographId,
+				(int) $monographId,
 				1
 			);
 		} else {
 			if ($assocId == null) {
-				$result =& $this->retrieveLimit(
+				$result = $this->retrieveLimit(
 					'SELECT a.* FROM monograph_comments a WHERE monograph_id = ? AND comment_type = ? ORDER BY date_posted DESC',
-					array($monographId, $commentType),
+					array((int) $monographId, (int) $commentType),
 					1
 				);
 			} else {
-				$result =& $this->retrieveLimit(
+				$result = $this->retrieveLimit(
 					'SELECT a.* FROM monograph_comments a WHERE monograph_id = ? AND comment_type = ? AND assoc_id = ? ORDER BY date_posted DESC',
-					array($monographId, $commentType, $assocId),
+					array((int) $monographId, (int) $commentType, (int) $assocId),
 					1
 				);
 			}
@@ -118,12 +115,10 @@ class MonographCommentDAO extends DAO {
 
 		$returner = null;
 		if (isset($result) && $result->RecordCount() != 0) {
-			$returner =& $this->_returnMonographCommentFromRow($result->GetRowAssoc(false));
+			$returner = $this->_returnMonographCommentFromRow($result->GetRowAssoc(false));
 		}
 
 		$result->Close();
-		unset($result);
-
 		return $returner;
 	}
 
@@ -132,17 +127,23 @@ class MonographCommentDAO extends DAO {
 	 * @param $commentId int
 	 * @return MonographComment object
 	 */
-	function &getById($commentId) {
-		$result =& $this->retrieve(
+	function getById($commentId) {
+		$result = $this->retrieve(
 			'SELECT a.* FROM monograph_comments a WHERE comment_id = ?', $commentId
 		);
 
-		$monographComment =& $this->_returnMonographCommentFromRow($result->GetRowAssoc(false));
+		$monographComment = $this->_returnMonographCommentFromRow($result->GetRowAssoc(false));
 
 		$result->Close();
-		unset($result);
-
 		return $monographComment;
+	}
+
+	/**
+	 * Construct a new DataObject.
+	 * @return DataObject
+	 */
+	function newDataObject() {
+		return new MonographComment();
 	}
 
 	/**
@@ -150,8 +151,8 @@ class MonographCommentDAO extends DAO {
 	 * @param $row array
 	 * @return MonographComment object
 	 */
-	function &_returnMonographCommentFromRow($row) {
-		$monographComment = new MonographComment();
+	function _returnMonographCommentFromRow($row) {
+		$monographComment = $this->newDataObject();
 		$monographComment->setCommentId($row['comment_id']);
 		$monographComment->setCommentType($row['comment_type']);
 		$monographComment->setRoleId($row['role_id']);
@@ -174,7 +175,7 @@ class MonographCommentDAO extends DAO {
 	 * @param MonographNote object
 	 * @return Monograph Note Id int
 	 */
-	function insertMonographComment(&$monographComment) {
+	function insertObject($monographComment) {
 		$this->update(
 			sprintf('INSERT INTO monograph_comments
 				(comment_type, role_id, monograph_id, assoc_id, author_id, date_posted, date_modified, comment_title, comments, viewable)
@@ -182,14 +183,14 @@ class MonographCommentDAO extends DAO {
 				(?, ?, ?, ?, ?, %s, %s, ?, ?, ?)',
 				$this->datetimeToDB($monographComment->getDatePosted()), $this->datetimeToDB($monographComment->getDateModified())),
 			array(
-				$monographComment->getCommentType(),
-				$monographComment->getRoleId(),
-				$monographComment->getMonographId(),
-				$monographComment->getAssocId(),
-				$monographComment->getAuthorId(),
+				(int) $monographComment->getCommentType(),
+				(int) $monographComment->getRoleId(),
+				(int) $monographComment->getMonographId(),
+				(int) $monographComment->getAssocId(),
+				(int) $monographComment->getAuthorId(),
 				$monographComment->getCommentTitle(),
 				$monographComment->getComments(),
-				$monographComment->getViewable() === null ? 0 : $monographComment->getViewable()
+				(int) $monographComment->getViewable()
 			)
 		);
 
@@ -219,7 +220,8 @@ class MonographCommentDAO extends DAO {
 	 */
 	function deleteById($commentId) {
 		$this->update(
-			'DELETE FROM monograph_comments WHERE comment_id = ?', $commentId
+			'DELETE FROM monograph_comments WHERE comment_id = ?',
+			(int) $commentId
 		);
 	}
 
@@ -229,7 +231,8 @@ class MonographCommentDAO extends DAO {
 	 */
 	function deleteByMonographId($monographId) {
 		return $this->update(
-			'DELETE FROM monograph_comments WHERE monograph_id = ?', $monographId
+			'DELETE FROM monograph_comments WHERE monograph_id = ?',
+			(int) $monographId
 		);
 	}
 
@@ -254,15 +257,15 @@ class MonographCommentDAO extends DAO {
 				WHERE comment_id = ?',
 				$this->datetimeToDB($monographComment->getDatePosted()), $this->datetimeToDB($monographComment->getDateModified())),
 			array(
-				$monographComment->getCommentType(),
-				$monographComment->getRoleId(),
-				$monographComment->getMonographId(),
-				$monographComment->getAssocId(),
-				$monographComment->getAuthorId(),
+				(int) $monographComment->getCommentType(),
+				(int) $monographComment->getRoleId(),
+				(int) $monographComment->getMonographId(),
+				(int) $monographComment->getAssocId(),
+				(int) $monographComment->getAuthorId(),
 				$monographComment->getCommentTitle(),
 				$monographComment->getComments(),
-				$monographComment->getViewable() === null ? 1 : $monographComment->getViewable(),
-				$monographComment->getCommentId()
+				$monographComment->getViewable() === null ? 1 : (int) $monographComment->getViewable(),
+				(int) $monographComment->getCommentId()
 			)
 		);
 	}

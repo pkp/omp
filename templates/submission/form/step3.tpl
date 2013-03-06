@@ -20,19 +20,19 @@
 </script>
 
 <form class="pkp_form" id="submitStep3Form" method="post" action="{url op="saveStep" path=$submitStep}">
-	<input type="hidden" name="monographId" value="{$monographId|escape}" />
+	<input type="hidden" name="submissionId" value="{$submissionId|escape}" />
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="submitStep3FormNotification"}
 
 	{include file="core:submission/submissionMetadataFormTitleFields.tpl"}
 
 	{fbvFormArea id="contributors"}
 		<!--  Contributors -->
-		{url|assign:authorGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.users.author.AuthorGridHandler" op="fetchGrid" monographId=$monographId}
+		{url|assign:authorGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.users.author.AuthorGridHandler" op="fetchGrid" monographId=$submissionId}
 		{load_url_in_div id="authorsGridContainer" url="$authorGridUrl"}
 
 		<!--  Chapters -->
 		{if $isEditedVolume}
-			{url|assign:chaptersGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.users.chapter.ChapterGridHandler" op="fetchGrid" monographId=$monographId}
+			{url|assign:chaptersGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.users.chapter.ChapterGridHandler" op="fetchGrid" monographId=$submissionId}
 			{load_url_in_div id="chaptersGridContainer" url="$chaptersGridUrl"}
 		{/if}
 	{/fbvFormArea}

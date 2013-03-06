@@ -13,12 +13,12 @@
 	{rdelim});
 </script>
 <form class="pkp_form" id="submitStep2Form" method="post" action="{url op="saveStep" path=$submitStep}" enctype="multipart/form-data">
-	<input type="hidden" name="monographId" value="{$monographId|escape}" />
+	<input type="hidden" name="submissionId" value="{$submissionId|escape}" />
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="submitStep2FormNotification"}
 
 	<!-- Submission upload grid -->
 
-	{url|assign:submissionFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.submission.SubmissionWizardFilesGridHandler" op="fetchGrid" monographId=$monographId}
+	{url|assign:submissionFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.submission.SubmissionWizardFilesGridHandler" op="fetchGrid" monographId=$submissionId}
 	{load_url_in_div id="submissionFilesGridDiv" url=$submissionFilesGridUrl}
 
 	{if $currentPress->getSetting('supportPhone')}

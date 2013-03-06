@@ -26,7 +26,7 @@
 <div id="submitTabs">
 	<ul>
 		{foreach from=$steps key=step item=stepLocaleKey}
-			<li><a href="{url op="step" path=$step monographId=$monographId}">{$step}. {translate key=$stepLocaleKey}</a></li>
+			<li><a href="{url op="step" path=$step submissionId=$submissionId}">{$step}. {translate key=$stepLocaleKey}</a></li>
 		{/foreach}
 	</ul>
 </div>

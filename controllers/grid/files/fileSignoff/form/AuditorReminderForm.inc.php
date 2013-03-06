@@ -32,7 +32,7 @@ class AuditorReminderForm extends Form {
 	 */
 	function AuditorReminderForm(&$signoff, $monographId, $stageId, $publicationFormatId = null) {
 		parent::Form('controllers/grid/files/fileSignoff/form/auditorReminderForm.tpl');
-		$this->_signoff =& $signoff;
+		$this->_signoff = $signoff;
 		$this->_monographId = $monographId;
 		$this->_stageId = $stageId;
 		$this->_publicationFormatId = $publicationFormatId;
@@ -86,16 +86,16 @@ class AuditorReminderForm extends Form {
 	 * @param $request PKPRequest
 	 */
 	function initData($args, &$request) {
-		$userDao =& DAORegistry::getDAO('UserDAO');
-		$user =& $request->getUser();
-		$press =& $request->getPress();
+		$userDao = DAORegistry::getDAO('UserDAO');
+		$user = $request->getUser();
+		$press = $request->getPress();
 
-		$signoff =& $this->getSignoff();
+		$signoff = $this->getSignoff();
 		$auditorId = $signoff->getUserId();
-		$auditor =& $userDao->getById($auditorId);
+		$auditor = $userDao->getById($auditorId);
 
-		$monographDao =& DAORegistry::getDAO('MonographDAO');
-		$monograph =& $monographDao->getById($this->getMonographId());
+		$monographDao = DAORegistry::getDAO('MonographDAO');
+		$monograph = $monographDao->getById($this->getMonographId());
 
 		import('classes.mail.MonographMailTemplate');
 		$email = new MonographMailTemplate($monograph, 'REVIEW_REMIND');
@@ -106,10 +106,10 @@ class AuditorReminderForm extends Form {
 		if ($signoffDueDate == -1) $signoffDueDate = $dateFormatShort; // Default to something human-readable if no date specified
 		else $signoffDueDate = strftime($dateFormatShort, $signoffDueDate);
 
-		import('controllers.grid.submissions.SubmissionsListGridCellProvider');
+		import('lib.pkp.controllers.grid.submissions.SubmissionsListGridCellProvider');
 		list($page, $operation) = SubmissionsListGridCellProvider::getPageAndOperationByUserRoles($request, $monograph, $auditor->getId());
 
-		$dispatcher =& $request->getDispatcher();
+		$dispatcher = $request->getDispatcher();
 		$auditUrl = $dispatcher->url($request, ROUTE_PAGE, null, $page, $operation, array('monographId' => $monograph->getId()));
 
 		$paramArray = array(
@@ -146,13 +146,13 @@ class AuditorReminderForm extends Form {
 	 * @param $request PKPRequest
 	 */
 	function execute($args, &$request) {
-		$userDao =& DAORegistry::getDAO('UserDAO');
-		$monographDao =& DAORegistry::getDAO('MonographDAO');
+		$userDao = DAORegistry::getDAO('UserDAO');
+		$monographDao = DAORegistry::getDAO('MonographDAO');
 
-		$signoff =& $this->getSignoff();
+		$signoff = $this->getSignoff();
 		$auditorId = $signoff->getUserId();
-		$auditor =& $userDao->getById($auditorId);
-		$monograph =& $monographDao->getById($this->getMonographId());
+		$auditor = $userDao->getById($auditorId);
+		$monograph = $monographDao->getById($this->getMonographId());
 
 		import('classes.mail.MonographMailTemplate');
 		$email = new MonographMailTemplate($monograph, 'REVIEW_REMIND', null, null, null, false);

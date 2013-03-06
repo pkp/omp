@@ -213,7 +213,7 @@ class SeriesEditorSubmissionDAO extends MonographDAO {
 			$monograph->setLastModified($seriesEditorSubmission->getLastModified());
 			$monograph->setCommentsStatus($seriesEditorSubmission->getCommentsStatus());
 
-			parent::updateMonograph($monograph);
+			parent::updateObject($monograph);
 		}
 	}
 

@@ -63,7 +63,7 @@ class CatalogEntrySubmissionReviewForm extends SubmissionMetadataViewForm {
 		if ($this->getData('confirm')) {
 			// Update the monograph status.
 			$monograph->setStatus(STATUS_PUBLISHED);
-			$monographDao->updateMonograph($monograph);
+			$monographDao->updateObject($monograph);
 
 			if (!$isExistingEntry) {
 				unset($publishedMonograph);
@@ -118,7 +118,7 @@ class CatalogEntrySubmissionReviewForm extends SubmissionMetadataViewForm {
 			}
 
 			// regular submission without publish in catalog.
-			$monographDao->updateMonograph($monograph);
+			$monographDao->updateObject($monograph);
 		}
 	}
 }

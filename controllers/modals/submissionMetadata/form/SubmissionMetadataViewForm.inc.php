@@ -175,7 +175,7 @@ class SubmissionMetadataViewForm extends Form {
 		$this->_metadataFormImplem->execute($monograph, $request);
 		$monograph->setSeriesId($this->getData('seriesId'));
 		$monograph->setSeriesPosition($this->getData('seriesPosition'));
-		$monographDao->updateMonograph($monograph);
+		$monographDao->updateObject($monograph);
 
 		if ($monograph->getDatePublished()) {
 			import('classes.search.MonographSearchIndex');

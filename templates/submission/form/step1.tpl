@@ -14,7 +14,7 @@
 </script>
 
 <form class="pkp_form" id="submitStep1Form" method="post" action="{url op="saveStep" path=$submitStep}">
-{if $monographId}<input type="hidden" name="monographId" value="{$monographId|escape}"/>{/if}
+{if $submissionId}<input type="hidden" name="submissionId" value="{$submissionId|escape}"/>{/if}
 	<input type="hidden" name="submissionChecklist" value="1"/>
 
 {include file="controllers/notification/inPlaceNotification.tpl" notificationId="submitStep1FormNotification"}
@@ -33,7 +33,7 @@
 	{if $copyrightNoticeAgree}
 		{$copyrightNotice}
 		{fbvFormSection list="true"}
-			{fbvElement type="checkbox" id="copyrightNoticeAgree" required=true value=1 label="submission.submit.copyrightNoticeAgree" checked=$monographId}
+			{fbvElement type="checkbox" id="copyrightNoticeAgree" required=true value=1 label="submission.submit.copyrightNoticeAgree" checked=$submissionId}
 		{/fbvFormSection}
 	{/if}
 
@@ -69,7 +69,7 @@
 		{fbvFormSection list="true" label="submission.submit.submissionChecklist" description="submission.submit.submissionChecklistDescription" id="pkp_submissionChecklist"}
 			{foreach name=checklist from=$currentPress->getLocalizedSetting('submissionChecklist') key=checklistId item=checklistItem}
 				{if $checklistItem.content}
-					{fbvElement type="checkbox" id="checklist-$checklistId" required=true value=1 label=$checklistItem.content translate=false checked=$monographId}
+					{fbvElement type="checkbox" id="checklist-$checklistId" required=true value=1 label=$checklistItem.content translate=false checked=$submissionId}
 				{/if}
 			{/foreach}
 		{/fbvFormSection}

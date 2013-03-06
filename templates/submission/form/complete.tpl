@@ -7,7 +7,7 @@
  * The submission process has been completed; notify the author.
  *}
 <h2>{translate key="submission.submit.submissionComplete"}</h2>
-<p>{translate key="submission.submit.submissionCompleteThanks" pressName=$press->getLocalizedName()}</p>
+<p>{translate key="submission.submit.submissionCompleteThanks" pressName=$context->getLocalizedName()}</p>
 <div class="separator"></div>
 <h3>{translate key="submission.submit.whatNext"}</h3>
 <p>{translate key="submission.submit.whatNext.description"}</p>

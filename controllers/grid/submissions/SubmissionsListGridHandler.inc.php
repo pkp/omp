@@ -16,7 +16,7 @@
 import('lib.pkp.classes.controllers.grid.GridHandler');
 
 // Import submissions list grid specific classes.
-import('controllers.grid.submissions.SubmissionsListGridCellProvider');
+import('lib.pkp.controllers.grid.submissions.SubmissionsListGridCellProvider');
 
 // Access decision actions constants.
 import('classes.workflow.EditorDecisionActionsManager');
@@ -62,7 +62,7 @@ class SubmissionsListGridHandler extends GridHandler {
 		);
 
 		// Load submissions.
-		$user =& $request->getUser();
+		$user = $request->getUser();
 		$this->setGridDataElements($this->getSubmissions($request, $user->getId()));
 
 		// Fetch the authorized roles and determine if the user is a manager.
@@ -70,13 +70,13 @@ class SubmissionsListGridHandler extends GridHandler {
 		$this->_isManager = in_array(ROLE_ID_MANAGER, $authorizedRoles);
 
 		// If there is more than one press in the system, add a press column
-		$pressDao =& DAORegistry::getDAO('PressDAO');
+		$pressDao = DAORegistry::getDAO('PressDAO');
 		$presses = $pressDao->getAll();
 		$cellProvider = new SubmissionsListGridCellProvider($authorizedRoles);
 		if($presses->getCount() > 1) {
 			$this->addColumn(
 				new GridColumn(
-					'press',
+					'context',
 					'press.press',
 					null,
 					'controllers/grid/gridCell.tpl',
@@ -97,7 +97,7 @@ class SubmissionsListGridHandler extends GridHandler {
 		$this->addColumn(
 			new GridColumn(
 				'title',
-				'common.title',
+				'submission.title',
 				null,
 				'controllers/grid/gridCell.tpl',
 				$cellProvider,
@@ -128,17 +128,16 @@ class SubmissionsListGridHandler extends GridHandler {
 	 * @return string Serialized JSON object
 	 */
 	function deleteSubmission($args, &$request) {
-		$monographDao =& DAORegistry::getDAO('MonographDAO');
+		$monographDao = DAORegistry::getDAO('MonographDAO');
 		$monograph = $monographDao->getById(
 			(int) $request->getUserVar('monographId')
 		);
 
 		// If the submission is incomplete, or this is a manager, allow it to be deleted
 		if ($monograph && ($this->_isManager || $monograph->getSubmissionProgress() != 0)) {
-			$monographDao =& DAORegistry::getDAO('MonographDAO'); /* @var $monographDao MonographDAO */
 			$monographDao->deleteById($monograph->getId());
 
-			$user =& $request->getUser();
+			$user = $request->getUser();
 			NotificationManager::createTrivialNotification($user->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.removedSubmission')));
 			return DAO::getDataChangedEvent($monograph->getId());
 		} else {

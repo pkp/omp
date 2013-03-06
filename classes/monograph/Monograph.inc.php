@@ -72,6 +72,22 @@ class Monograph extends Submission {
 	}
 
 	/**
+	 * Get the context ID for this submission.
+	 * @return int
+	 */
+	function getContextId() {
+		return $this->getPressId();
+	}
+
+	/**
+	 * Set the context ID for this submission.
+	 * @param $contextId int
+	 */
+	function setContextId($contextId) {
+		return $this->setPressId($contextId);
+	}
+
+	/**
 	 * Get the series id.
 	 * @return int
 	 */

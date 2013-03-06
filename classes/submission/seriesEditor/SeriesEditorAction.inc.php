@@ -161,8 +161,8 @@ class SeriesEditorAction extends Action {
 	function incrementWorkflowStage(&$monograph, $newStage, &$request) {
 		// Change the monograph's workflow stage.
 		$monograph->setStageId($newStage);
-		$monographDao =& DAORegistry::getDAO('MonographDAO'); /* @var $monographDao MonographDAO */
-		$monographDao->updateMonograph($monograph);
+		$monographDao = DAORegistry::getDAO('MonographDAO'); /* @var $monographDao MonographDAO */
+		$monographDao->updateObject($monograph);
 
 		// Assign the default users to the next workflow stage.
 		$this->assignDefaultStageParticipants($monograph, $newStage, $request);

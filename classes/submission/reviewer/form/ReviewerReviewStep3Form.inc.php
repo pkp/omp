@@ -157,11 +157,11 @@ class ReviewerReviewStep3Form extends ReviewerReviewForm {
 			$comment->setDatePosted(Core::getCurrentDate());
 
 			// Persist the monograph comment.
-			$commentDao =& DAORegistry::getDAO('MonographCommentDAO');
-			$commentDao->insertMonographComment($comment);
+			$commentDao = DAORegistry::getDAO('MonographCommentDAO');
+			$commentDao->insertObject($comment);
 
-			$monographDao =& DAORegistry::getDAO('MonographDAO');
-			$monograph =& $monographDao->getById($reviewAssignment->getSubmissionId());
+			$monographDao = DAORegistry::getDAO('MonographDAO');
+			$monograph = $monographDao->getById($reviewAssignment->getSubmissionId());
 
 			$stageAssignmentDao =& DAORegistry::getDAO('StageAssignmentDAO');
 			$stageAssignments =& $stageAssignmentDao->getBySubmissionAndStageId($monograph->getId(), $monograph->getStageId());

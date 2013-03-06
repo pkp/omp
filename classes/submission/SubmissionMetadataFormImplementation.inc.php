@@ -144,7 +144,7 @@ class SubmissionMetadataFormImplementation {
 		$monograph->setSource($this->_parentForm->getData('source'), null); // Localized
 
 		// Save the monograph
-		$monographDao->updateMonograph($monograph);
+		$monographDao->updateObject($monograph);
 
 		// get the supported locale keys
 		$locales = array_keys($this->_parentForm->supportedLocales);

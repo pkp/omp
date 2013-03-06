@@ -20,30 +20,30 @@
 import('lib.pkp.classes.form.Form');
 
 class SubmissionSubmitForm extends Form {
-	/** @var $press Press */
-	var $press;
+	/** @var $context Context */
+	var $context;
 
-	/** @var int the ID of the monograph */
-	var $monographId;
+	/** @var int the ID of the submission */
+	var $submissionId;
 
-	/** @var Monograph current monograph */
-	var $monograph;
+	/** @var Submission current submission */
+	var $submission;
 
 	/** @var int the current step */
 	var $step;
 
 	/**
 	 * Constructor.
-	 * @param $monograph object
+	 * @param $submission object
 	 * @param $step int
 	 */
-	function SubmissionSubmitForm($press, $monograph, $step) {
+	function SubmissionSubmitForm($context, $submission, $step) {
 		parent::Form(sprintf('submission/form/step%d.tpl', $step));
 		$this->addCheck(new FormValidatorPost($this));
 		$this->step = (int) $step;
-		$this->monograph = $monograph;
-		$this->monographId = $monograph ? $monograph->getId() : null;
-		$this->press =& $press;
+		$this->submission = $submission;
+		$this->submissionId = $submission ? $submission->getId() : null;
+		$this->context = $context;
 	}
 
 	/**
@@ -52,11 +52,11 @@ class SubmissionSubmitForm extends Form {
 	function fetch($request) {
 		$templateMgr = TemplateManager::getManager($request);
 
-		$templateMgr->assign('monographId', $this->monographId);
+		$templateMgr->assign('submissionId', $this->submissionId);
 		$templateMgr->assign('submitStep', $this->step);
 
-		if (isset($this->monograph)) {
-			$submissionProgress = $this->monograph->getSubmissionProgress();
+		if (isset($this->submission)) {
+			$submissionProgress = $this->submission->getSubmissionProgress();
 		} else {
 			$submissionProgress = 1;
 		}

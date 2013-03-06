@@ -47,7 +47,7 @@ class FileAuditorForm extends Form {
 	 */
 	function FileAuditorForm($monograph, $fileStage, $stageId, $symbolic, $eventType, $assocId = null, $publicationFormatId = null) {
 		parent::Form('controllers/grid/files/signoff/form/addAuditor.tpl');
-		$this->_monograph =& $monograph;
+		$this->_monograph = $monograph;
 		$this->_fileStage = $fileStage;
 		$this->_stageId = $stageId;
 		$this->_symbolic = $symbolic;
@@ -151,7 +151,7 @@ class FileAuditorForm extends Form {
 		}
 		import('classes.mail.MonographMailTemplate');
 		$email = new MonographMailTemplate($monograph, 'AUDITOR_REQUEST');
-		$user =& $request->getUser();
+		$user = $request->getUser();
 		// Intentionally omit {$auditorName} for now -- see bug #7090
 		$email->assignParams(array(
 			'editorialContactSignature' => $user->getContactSignature(),
@@ -162,7 +162,7 @@ class FileAuditorForm extends Form {
 			),
 		));
 
-		$press =& $request->getPress();
+		$press = $request->getPress();
 		$this->setData('personalMessage', $email->getBody() . "\n" . $press->getSetting('emailSignature'));
 	}
 
@@ -188,18 +188,18 @@ class FileAuditorForm extends Form {
 		ListbuilderHandler::unpack($request, $this->getData('files'));
 
 		// Send the message to the user
-		$monograph =& $this->getMonograph();
+		$monograph = $this->getMonograph();
 		import('classes.mail.MonographMailTemplate');
 		$email = new MonographMailTemplate($monograph, 'AUDITOR_REQUEST', null, null, null, false);
 		$email->setBody($this->getData('personalMessage'));
 
-		$userDao =& DAORegistry::getDAO('UserDAO'); /* @var $userDao UserDAO */
+		$userDao = DAORegistry::getDAO('UserDAO'); /* @var $userDao UserDAO */
 		// FIXME: How to validate user IDs?
-		$user =& $userDao->getById($this->getData('userId'));
-		import('controllers.grid.submissions.SubmissionsListGridCellProvider');
+		$user = $userDao->getById($this->getData('userId'));
+		import('lib.pkp.controllers.grid.submissions.SubmissionsListGridCellProvider');
 		list($page, $operation) = SubmissionsListGridCellProvider::getPageAndOperationByUserRoles($request, $monograph, $user->getId());
 
-		$dispatcher =& $request->getDispatcher();
+		$dispatcher = $request->getDispatcher();
 		$auditUrl = $dispatcher->url($request, ROUTE_PAGE, null, $page, $operation, array('monographId' => $monograph->getId()));
 
 		// Other parameters assigned above; see bug #7090.
@@ -223,9 +223,9 @@ class FileAuditorForm extends Form {
 	function insertEntry(&$request, $newRowId) {
 		// Fetch and validate the file ID
 		$fileId = (int) $newRowId['name'];
-		$monograph =& $this->getMonograph();
-		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO');
-		$monographFile =& $submissionFileDao->getLatestRevision($fileId, null, $monograph->getId());
+		$monograph = $this->getMonograph();
+		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
+		$monographFile = $submissionFileDao->getLatestRevision($fileId, null, $monograph->getId());
 		assert($monographFile);
 
 		// FIXME: How to validate user IDs?
@@ -233,13 +233,13 @@ class FileAuditorForm extends Form {
 
 		// Fetch and validate user group ID
 		$userGroupId = (int) $this->getData('userGroupId');
-		$press =& $request->getPress();
-		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
-		$userGroup =& $userGroupDao->getById($userGroupId, $press->getId());
+		$press = $request->getPress();
+		$userGroupDao = DAORegistry::getDAO('UserGroupDAO');
+		$userGroup = $userGroupDao->getById($userGroupId, $press->getId());
 
 		// Build the signoff.
-		$monographFileSignoffDao =& DAORegistry::getDAO('MonographFileSignoffDAO');
-		$signoff =& $monographFileSignoffDao->build(
+		$monographFileSignoffDao = DAORegistry::getDAO('MonographFileSignoffDAO');
+		$signoff = $monographFileSignoffDao->build(
 			$this->getSymbolic(),
 			$monographFile->getFileId(),
 			$userId, $userGroup->getId()
@@ -268,8 +268,8 @@ class FileAuditorForm extends Form {
 		// log the add auditor event.
 		import('classes.log.MonographFileLog');
 		import('classes.log.MonographFileEventLogEntry'); // constants
-		$userDao =& DAORegistry::getDAO('UserDAO');
-		$user =& $userDao->getById($userId);
+		$userDao = DAORegistry::getDAO('UserDAO');
+		$user = $userDao->getById($userId);
 		if (isset($user)) {
 			MonographFileLog::logEvent($request, $monographFile, MONOGRAPH_LOG_FILE_AUDITOR_ASSIGN, 'submission.event.fileAuditorAdded', array('file' => $monographFile->getOriginalFileName(), 'name' => $user->getFullName(), 'username' => $user->getUsername()));
 		}

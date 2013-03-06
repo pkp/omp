@@ -13,7 +13,7 @@
  */
 
 import('lib.pkp.classes.controllers.grid.DataObjectGridCellProvider');
-import('controllers.grid.submissions.SubmissionsListGridCellProvider');
+import('lib.pkp.controllers.grid.submissions.SubmissionsListGridCellProvider');
 
 class MySubmissionsListGridCellProvider extends SubmissionsListGridCellProvider {
 	/**
@@ -33,25 +33,25 @@ class MySubmissionsListGridCellProvider extends SubmissionsListGridCellProvider 
 	 */
 	function getCellActions(&$request, &$row, &$column, $position = GRID_ACTION_POSITION_DEFAULT) {
 		if ( $column->getId() == 'title' ) {
-			$monograph =& $row->getData();
-			$router =& $request->getRouter();
-			$dispatcher =& $router->getDispatcher();
+			$submission = $row->getData();
+			$router = $request->getRouter();
+			$dispatcher = $router->getDispatcher();
 
-			$title = $monograph->getLocalizedTitle();
-			if ( empty($title) ) $title = __('common.untitled');
+			$title = $submission->getLocalizedTitle();
+			if (empty($title)) $title = __('common.untitled');
 
-			$pressId = $monograph->getPressId();
-			$pressDao = DAORegistry::getDAO('PressDAO');
-			$press = $pressDao->getById($pressId);
+			$contextId = $submission->getContextId();
+			$contextDao = Application::getContextDAO();
+			$context = $contextDao->getById($contextId);
 
-			if ($monograph->getSubmissionProgress() > 0 && $monograph->getSubmissionProgress() <= 3) {
-				$url = $dispatcher->url($request, ROUTE_PAGE, $press->getPath(),
-										'submission', 'wizard', $monograph->getSubmissionProgress(),
-										array('monographId' => $monograph->getId())
-										);
+			if ($submission->getSubmissionProgress() > 0) {
+				$url = $dispatcher->url($request, ROUTE_PAGE, $context->getPath(),
+					'submission', 'wizard', $submission->getSubmissionProgress(),
+					array('monographId' => $submission->getId())
+				);
 			} else {
-				list($page, $operation) = SubmissionsListGridCellProvider::getPageAndOperationByUserRoles($request, $monograph);
-				$url = $dispatcher->url($request, ROUTE_PAGE, $press->getPath(), $page, $operation, $monograph->getId());
+				list($page, $operation) = SubmissionsListGridCellProvider::getPageAndOperationByUserRoles($request, $submission);
+				$url = $dispatcher->url($request, ROUTE_PAGE, $context->getPath(), $page, $operation, $submission->getId());
 			}
 			import('lib.pkp.classes.linkAction.request.RedirectAction');
 			$action = new LinkAction(
