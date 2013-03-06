@@ -63,7 +63,7 @@ class CatalogBookHandler extends Handler {
 
 		// Get Social media blocks enabled for the catalog
 		$socialMediaDao =& DAORegistry::getDAO('SocialMediaDAO');
-		$socialMedia =& $socialMediaDao->getEnabledForCatalogByPressId($press->getId());
+		$socialMedia =& $socialMediaDao->getEnabledForContextByContextId($press->getId());
 		$blocks = array();
 		while ($media =& $socialMedia->next()) {
 			$media->replaceCodeVars($publishedMonograph);
