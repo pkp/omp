@@ -7,9 +7,9 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class UnassignedSubmissionsListGridHandler
- * @ingroup controllers_grid_submissions_pressEditor
+ * @ingroup controllers_grid_submissions_unassignedSubmissions
  *
- * @brief Handle press manager submissions list grid requests (unassigned submissions).
+ * @brief Handle unassigned submissions list grid requests.
  */
 
 // Import grid base classes.
@@ -56,50 +56,45 @@ class UnassignedSubmissionsListGridHandler extends SubmissionsListGridHandler {
 	/**
 	 * @see SubmissionListGridHandler::getSubmissions()
 	 */
-	function getSubmissions(&$request, $userId) {
-		$monographDao =& DAORegistry::getDAO('MonographDAO'); /* @var $monographDao MonographDAO */
+	function getSubmissions($request, $userId) {
+		$submissionDao = Application::getSubmissionDAO(); /* @var $submissionDao SubmissionDAO */
 
-		// Determine whether this is a Series Editor or Press Manager.
-		// Press Managers can access all submissions, Series Editors
+		// Determine whether this is a Series Editor or Manager.
+		// Managers can access all submissions, Series Editors
 		// only assigned submissions.
-		$user =& $request->getUser();
+		$user = $request->getUser();
 
-		// Get all monographs for all presses that user is
+		// Get all submissions for all contexts that user is
 		// enrolled in as manager or series editor.
-		$roleDao =& DAORegistry::getDAO('RoleDAO');
-		$pressDao =& DAORegistry::getDAO('PressDAO');
-		$presses = $pressDao->getAll();
+		$roleDao = DAORegistry::getDAO('RoleDAO');
+		$contextDao = Application::getContextDAO();
+		$contexts = $contextDao->getAll();
 
-		$accessibleMonographs = array();
-		while ($press =& $presses->next()) {
-			$isPressManager = $roleDao->userHasRole($press->getId(), $userId, ROLE_ID_MANAGER);
-			$isSeriesEditor = $roleDao->userHasRole($press->getId(), $userId, ROLE_ID_SERIES_EDITOR);
+		$accessibleSubmissions = array();
+		while ($context = $contexts->next()) {
+			$isManager = $roleDao->userHasRole($context->getId(), $userId, ROLE_ID_MANAGER);
+			$isSeriesEditor = $roleDao->userHasRole($context->getId(), $userId, ROLE_ID_SERIES_EDITOR);
 
-			if (!$isPressManager && !$isSeriesEditor) {
+			if (!$isManager && !$isSeriesEditor) {
 				continue;
 			}
 
-			$monographFactory =& $monographDao->getMonographsBySeriesEditorId(
-				$press->getId(),
-				$isPressManager?null:$userId
+			$submissionFactory = $submissionDao->getMonographsBySeriesEditorId(
+				$context->getId(),
+				$isManager?null:$userId
 			);
 
-			if (!$monographFactory->wasEmpty()) {
-				$stageAssignmentDao =& DAORegistry::getDAO('StageAssignmentDAO');
-				while ($monograph =& $monographFactory->next()) {
-					if ($monograph->getDatePublished() == null && !$stageAssignmentDao->editorAssignedToStage($monograph->getId())) {
-						$accessibleMonographs[$monograph->getId()] = $monograph;
+			if (!$submissionFactory->wasEmpty()) {
+				$stageAssignmentDao = DAORegistry::getDAO('StageAssignmentDAO');
+				while ($submission = $submissionFactory->next()) {
+					if ($submission->getDatePublished() == null && !$stageAssignmentDao->editorAssignedToStage($submission->getId())) {
+						$accessibleSubmissions[$submission->getId()] = $submission;
 					}
-					unset($monograph);
 				}
 			}
-
-			unset($press);
-			unset($monographs);
-			unset($monographFactory);
 		}
 
-		return $accessibleMonographs;
+		return $accessibleSubmissions;
 	}
 }
 
