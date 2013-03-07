@@ -124,16 +124,11 @@ class PressDAO extends ContextDAO {
 		$reviewFormDao = DAORegistry::getDAO('ReviewFormDAO');
 		$reviewFormDao->deleteByAssoc(ASSOC_TYPE_PRESS, $pressId);
 
-		$genreDao = DAORegistry::getDAO('GenreDAO');
-		$genreDao->deleteByPressId($pressId);
-
 		$featureDao = DAORegistry::getDAO('FeatureDAO');
 		$featureDao->deleteByAssoc(ASSOC_TYPE_PRESS, $pressId);
 
 		$newReleaseDao = DAORegistry::getDAO('NewReleaseDAO');
 		$newReleaseDao->deleteByAssoc(ASSOC_TYPE_PRESS, $pressId);
-
-		$this->update('DELETE FROM press_defaults WHERE press_id = ?', (int) $pressId);
 
 		parent::deleteById($pressId);
 	}

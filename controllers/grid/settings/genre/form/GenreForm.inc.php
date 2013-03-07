@@ -116,7 +116,7 @@ class GenreForm extends Form {
 		// Update or insert genre
 		if (!$this->getGenreId()) {
 			$genre = $genreDao->newDataObject();
-			$genre->setPressId($press->getId());
+			$genre->setContextId($press->getId());
 		} else {
 			$genre =& $genreDao->getById($this->getGenreId(), $press->getId());
 		}

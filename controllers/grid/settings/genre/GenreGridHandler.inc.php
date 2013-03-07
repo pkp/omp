@@ -113,7 +113,7 @@ class GenreGridHandler extends SetupGridHandler {
 		// Elements to be displayed in the grid
 		$press =& $request->getPress();
 		$genreDao =& DAORegistry::getDAO('GenreDAO');
-		$genresFactory =& $genreDao->getEnabledByPressId($press->getId(), self::getRangeInfo($request, $this->getId()));
+		$genresFactory =& $genreDao->getEnabledByContextId($press->getId(), self::getRangeInfo($request, $this->getId()));
 		return $genresFactory;
 	}
 
@@ -220,7 +220,7 @@ class GenreGridHandler extends SetupGridHandler {
 
 		// Restore all the genres in this press form the registry XML file
 		$genreDao =& DAORegistry::getDAO('GenreDAO');
-		$genreDao->restoreByPressId($press->getId());
+		$genreDao->restoreByContextId($press->getId());
 		return DAO::getDataChangedEvent();
 	}
 
