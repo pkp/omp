@@ -40,7 +40,7 @@ class NotificationManager extends PKPNotificationManager {
 		$press = $pressDao->getById($pressId);
 
 		switch ($type) {
-			case NOTIFICATION_TYPE_MONOGRAPH_SUBMITTED:
+			case NOTIFICATION_TYPE_SUBMISSION_SUBMITTED:
 			case NOTIFICATION_TYPE_METADATA_MODIFIED:
 			case NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_REQUIRED:
 				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
@@ -126,7 +126,7 @@ class NotificationManager extends PKPNotificationManager {
 		$monographDao = DAORegistry::getDAO('MonographDAO'); /* @var $monographDao MonographDAO */
 
 		switch ($type) {
-			case NOTIFICATION_TYPE_MONOGRAPH_SUBMITTED:
+			case NOTIFICATION_TYPE_SUBMISSION_SUBMITTED:
 				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
 				$monograph = $monographDao->getById($notification->getAssocId()); /* @var $monograph Monograph */
 				$title = $monograph->getLocalizedTitle();
@@ -217,7 +217,7 @@ class NotificationManager extends PKPNotificationManager {
 	 */
 	public function getIconClass(&$notification) {
 		switch ($notification->getType()) {
-			case NOTIFICATION_TYPE_MONOGRAPH_SUBMITTED:
+			case NOTIFICATION_TYPE_SUBMISSION_SUBMITTED:
 				return 'notifyIconNewPage';
 			case NOTIFICATION_TYPE_METADATA_MODIFIED:
 				return 'notifyIconEdit';

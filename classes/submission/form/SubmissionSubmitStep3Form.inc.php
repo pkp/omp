@@ -130,8 +130,8 @@ class SubmissionSubmitStep3Form extends SubmissionSubmitForm {
 		$notificationManager = new NotificationManager();
 		foreach ($allUserIds as $userId) {
 			$notificationManager->createNotification(
-				$request, $userId, NOTIFICATION_TYPE_MONOGRAPH_SUBMITTED,
-				$submission->getContextId(), ASSOC_TYPE_MONOGRAPH, $submission->getId()
+				$request, $userId, NOTIFICATION_TYPE_SUBMISSION_SUBMITTED,
+				$submission->getContextId(), ASSOC_TYPE_SUBMISSION, $submission->getId()
 			);
 
 			// Add TASK notification indicating that a submission is unassigned

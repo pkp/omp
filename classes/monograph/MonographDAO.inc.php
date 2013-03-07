@@ -526,7 +526,7 @@ class MonographDAO extends DAO {
 	 * 	whose series will be included in the results (excluding others).
 	 * @return DAOResultFactory containing matching Monographs
 	 */
-	function getMonographsBySeriesEditorId($pressId = null, $seriesEditorId = null) {
+	function getBySubEditorId($pressId = null, $seriesEditorId = null) {
 		$primaryLocale = AppLocale::getPrimaryLocale();
 		$locale = AppLocale::getLocale();
 
