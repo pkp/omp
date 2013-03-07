@@ -19,6 +19,9 @@ import('lib.pkp.classes.security.PKPRole');
 define('ROLE_ID_SERIES_EDITOR',		0x00000201);
 define('ROLE_PATH_SERIES_EDITOR',	'seriesEditor');
 
+/** Fill in the blanks for roles used in PKP lib */
+define('ROLE_ID_SUB_EDITOR',		ROLE_ID_SERIES_EDITOR);
+
 class Role extends PKPRole {
 	/**
 	 * Constructor.
