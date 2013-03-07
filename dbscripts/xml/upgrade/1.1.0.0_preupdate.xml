@@ -22,4 +22,11 @@
 		<query driver="mysql">ALTER TABLE social_media CHANGE COLUMN press_id context_id BIGINT NOT NULL</query>
 		<query driver="mysql">ALTER TABLE footer_categories CHANGE COLUMN press_id context_id BIGINT NOT NULL</query>
 	</sql>
+
+	<!-- Bug #8148: Move Genres, context defaults into PKP lib -->
+	<sql>
+		<rename table="genres" column="press_id" to="context_id" />
+		<rename table="press_defaults" column="press_id" to="context_id" />
+		<rename table="press_defaults" to="context_defaults" />
+	</sql>
 </data>
