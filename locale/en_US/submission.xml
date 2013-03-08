@@ -156,13 +156,6 @@
 	<message key="submission.signoff.noAvailableSignoffs">There are no files for you respond to at this time.</message>
 	<message key="submission.signoff.fileResponse">File Response</message>
 
-	<!-- Submission statuses -->
-	<message key="submission.status.editorial">In Copyediting</message>
-	<message key="submission.status.production">In Proofreading</message>
-	<message key="submission.status.review">In Review</message>
-	<message key="submission.status.submission">Awaiting Editor Decision</message>
-	<message key="submission.status.unassigned">Unassigned</message>
-
 	<!-- Artwork Files Grid -->
 	<message key="grid.artworkFile.caption">Caption</message>
 	<message key="grid.artworkFile.credit">Credit</message>

@@ -159,13 +159,6 @@
 	<message key="submission.signoff.noAvailableSignoffs">Aucun fichier n'est en attente de votre réponse pour le moment.</message>
 	<message key="submission.signoff.fileResponse">Réponse concernant le fichier</message>
 
-	<!-- Submission statuses -->
-	<message key="submission.status.editorial">En cours de révision</message>
-	<message key="submission.status.production">Épreuves en cours de correction</message>
-	<message key="submission.status.review">En cours d'évaluation</message>
-	<message key="submission.status.submission">En attente de la décision du rédacteur en chef</message>
-	<message key="submission.status.unassigned">Non assigné</message>
-
 	<!-- Artwork Files Grid -->
 	<message key="grid.artworkFile.caption">Sous-titre</message>
 	<message key="grid.artworkFile.credit">Mention de titre</message>
