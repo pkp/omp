@@ -32,8 +32,6 @@
 
 	<message key="admin.languages.confirmDisable">Vous souhaitez désactiver ce paramètre? Cela pourrait affecter les presses hébergées qui l'utilisent actuellement.</message>
 
-	<message key="admin.systemInfo.settingName">Fixation du nom</message>
-	<message key="admin.systemInfo.settingValue">Fixation de la valeur</message>
 	<message key="admin.systemVersion">Version OMP</message>
 	<message key="admin.systemConfiguration">Configuration OMP</message>
 	<message key="admin.systemConfigurationDescription"><![CDATA[Paramètres de configuration OMP pour <tt>config.inc.php</tt>.]]></message>

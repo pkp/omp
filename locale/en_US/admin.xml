@@ -32,8 +32,6 @@
 
 	<message key="admin.languages.confirmDisable">Are you sure you want to disable this locale? This may affect any hosted presses currently using the locale.</message>
 
-	<message key="admin.systemInfo.settingName">Setting Name</message>
-	<message key="admin.systemInfo.settingValue">Setting Value</message>
 	<message key="admin.systemVersion">OMP Version</message>
 	<message key="admin.systemConfiguration">OMP Configuration</message>
 	<message key="admin.systemConfigurationDescription"><![CDATA[OMP configuration settings from <tt>config.inc.php</tt>.]]></message>
