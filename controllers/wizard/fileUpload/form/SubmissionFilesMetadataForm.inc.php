@@ -134,7 +134,7 @@ class SubmissionFilesMetadataForm extends Form {
 			$note->setUserId($user->getId());
 
 			$note->setContents($this->getData('note'));
-			$note->setAssocType(ASSOC_TYPE_MONOGRAPH_FILE);
+			$note->setAssocType(ASSOC_TYPE_SUBMISSION_FILE);
 			$note->setAssocId($submissionFile->getFileId());
 
 			$noteId = $noteDao->insertObject($note);

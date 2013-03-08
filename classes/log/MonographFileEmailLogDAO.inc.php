@@ -30,7 +30,7 @@ class MonographFileEmailLogDAO extends EmailLogDAO {
 	 */
 	function newDataObject() {
 		$returner = new MonographFileEmailLogEntry();
-		$returner->setAssocType(ASSOC_TYPE_MONOGRAPH_FILE);
+		$returner->setAssocType(ASSOC_TYPE_SUBMISSION_FILE);
 		return $returner;
 	}
 
@@ -42,7 +42,7 @@ class MonographFileEmailLogDAO extends EmailLogDAO {
 	 * @return DAOResultFactory
 	 */
 	function getByEventType($fileId, $eventType, $userId = null) {
-		return parent::getByEventType(ASSOC_TYPE_MONOGRAPH_FILE, $fileId, $eventType, $userId);
+		return parent::getByEventType(ASSOC_TYPE_SUBMISSION_FILE, $fileId, $eventType, $userId);
 	}
 }
 

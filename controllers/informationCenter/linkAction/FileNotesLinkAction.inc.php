@@ -54,12 +54,12 @@ class FileNotesLinkAction extends FileLinkAction {
 		$noteDao =& DAORegistry::getDAO('NoteDAO');
 
 		// If no notes exist, display a dimmed icon.
-		if (!$noteDao->notesExistByAssoc(ASSOC_TYPE_MONOGRAPH_FILE, $monographFile->getFileId())) {
+		if (!$noteDao->notesExistByAssoc(ASSOC_TYPE_SUBMISSION_FILE, $monographFile->getFileId())) {
 			return 'notes_none';
 		}
 
 		// If new notes exist, display a bold icon.
-		if ($noteDao->unreadNotesExistByAssoc(ASSOC_TYPE_MONOGRAPH_FILE, $monographFile->getFileId(), $user->getId())) {
+		if ($noteDao->unreadNotesExistByAssoc(ASSOC_TYPE_SUBMISSION_FILE, $monographFile->getFileId(), $user->getId())) {
 			return 'notes_new';
 		}
 

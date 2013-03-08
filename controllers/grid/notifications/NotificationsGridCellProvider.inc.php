@@ -41,7 +41,7 @@ class NotificationsGridCellProvider extends PKPNotificationsGridCellProvider {
 					case ASSOC_TYPE_MONOGRAPH:
 						$monographId = $notification->getAssocId();
 						break;
-					case ASSOC_TYPE_MONOGRAPH_FILE:
+					case ASSOC_TYPE_SUBMISSION_FILE:
 						$fileId = $notification->getAssocId();
 						break;
 					case ASSOC_TYPE_SIGNOFF:
@@ -49,7 +49,7 @@ class NotificationsGridCellProvider extends PKPNotificationsGridCellProvider {
 						$signoff = $signoffDao->getById($notification->getAssocId());
 						if ($signoff->getAssocType() == ASSOC_TYPE_MONOGRAPH) {
 							$monographId = $signoff->getAssocId();
-						} elseif ($signoff->getAssocType() == ASSOC_TYPE_MONOGRAPH_FILE) {
+						} elseif ($signoff->getAssocType() == ASSOC_TYPE_SUBMISSION_FILE) {
 							$fileId = $signoff->getAssocId();
 						} else {
 							// Don't know of SIGNOFFs with other ASSOC types for TASKS

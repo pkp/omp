@@ -50,7 +50,7 @@ class ManageFileApiHandler extends Handler {
 	 * @return string a serialized JSON object
 	 */
 	function deleteFile($args, &$request) {
-		$monographFile =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH_FILE);
+		$monographFile =& $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION_FILE);
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		$stageId =& $request->getUserVar('stageId');
 		if ($stageId) {
@@ -63,7 +63,7 @@ class ManageFileApiHandler extends Handler {
 		assert($monographFile && $monograph); // Should have been validated already
 
 		$noteDao =& DAORegistry::getDAO('NoteDAO');
-		$notes =& $noteDao->getByAssoc(ASSOC_TYPE_MONOGRAPH_FILE, $monographFile->getFileId());
+		$notes =& $noteDao->getByAssoc(ASSOC_TYPE_SUBMISSION_FILE, $monographFile->getFileId());
 		while ($note =& $notes->next()) {
 			$noteDao->deleteById($note->getId());
 			unset($note);
@@ -71,7 +71,7 @@ class ManageFileApiHandler extends Handler {
 
 		// Delete all signoffs related with this file.
 		$signoffDao = DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
-		$signoffFactory =& $signoffDao->getAllByAssocType(ASSOC_TYPE_MONOGRAPH_FILE, $monographFile->getFileId());
+		$signoffFactory =& $signoffDao->getAllByAssocType(ASSOC_TYPE_SUBMISSION_FILE, $monographFile->getFileId());
 		$signoffs = $signoffFactory->toArray();
 		$notificationMgr = new NotificationManager();
 

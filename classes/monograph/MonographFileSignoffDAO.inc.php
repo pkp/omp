@@ -32,7 +32,7 @@ class MonographFileSignoffDAO extends SignoffDAO {
 	 * @see SignoffDAO::getById
 	 */
 	function getById($signoffId) {
-		return parent::getById($signoffId, ASSOC_TYPE_MONOGRAPH_FILE);
+		return parent::getById($signoffId, ASSOC_TYPE_SUBMISSION_FILE);
 	}
 
 	/**
@@ -50,7 +50,7 @@ class MonographFileSignoffDAO extends SignoffDAO {
 			$userGroupId = null, $fileId = null, $fileRevision = null) {
 		return parent::build(
 			$symbolic,
-			ASSOC_TYPE_MONOGRAPH_FILE, $monographFileId,
+			ASSOC_TYPE_SUBMISSION_FILE, $monographFileId,
 			$userId, $userGroupId,
 			$fileId, $fileRevision
 		);
@@ -65,7 +65,7 @@ class MonographFileSignoffDAO extends SignoffDAO {
 	 * @return boolean
 	 */
 	function signoffExists($symbolic, $monographFileId, $userId = null, $userGroupId = null) {
-		return parent::signoffExists($symbolic, ASSOC_TYPE_MONOGRAPH_FILE, $userId, $userGroupId);
+		return parent::signoffExists($symbolic, ASSOC_TYPE_SUBMISSION_FILE, $userId, $userGroupId);
 	}
 
 	/**
@@ -73,7 +73,7 @@ class MonographFileSignoffDAO extends SignoffDAO {
 	 */
 	function newDataObject() {
 		$signoff = parent::newDataObject();
-		$signoff->setAssocType(ASSOC_TYPE_MONOGRAPH_FILE);
+		$signoff->setAssocType(ASSOC_TYPE_SUBMISSION_FILE);
 		return $signoff;
 	}
 
@@ -93,7 +93,7 @@ class MonographFileSignoffDAO extends SignoffDAO {
 			$userGroupId = null, $fileId = null, $fileRevision = null) {
 		return parent::getBySymbolic(
 			$symbolic,
-			ASSOC_TYPE_MONOGRAPH_FILE, $monographFileId,
+			ASSOC_TYPE_SUBMISSION_FILE, $monographFileId,
 			$userId, $userGroupId,
 			$fileId, $fileRevision
 		);
@@ -109,7 +109,7 @@ class MonographFileSignoffDAO extends SignoffDAO {
 	 * @return DAOResultFactory
 	 */
 	function getAllBySymbolic($symbolic, $monographFileId = null, $userId = null, $userGroupId = null) {
-		return parent::getAllBySymbolic($symbolic, ASSOC_TYPE_MONOGRAPH_FILE, $monographFileId, $userId, $userGroupId);
+		return parent::getAllBySymbolic($symbolic, ASSOC_TYPE_SUBMISSION_FILE, $monographFileId, $userId, $userGroupId);
 	}
 
 	/**
@@ -123,7 +123,7 @@ class MonographFileSignoffDAO extends SignoffDAO {
 	 */
 	function getAllByMonograph($monographId, $symbolic = null, $userId = null, $userGroupId = null, $notCompletedOnly = false) {
 		$sql = 'SELECT s.* FROM signoffs s, monograph_files mf WHERE s.assoc_type = ? AND s.assoc_id = mf.file_id AND mf.monograph_id = ?';
-		$params = array(ASSOC_TYPE_MONOGRAPH_FILE, (int) $monographId);
+		$params = array(ASSOC_TYPE_SUBMISSION_FILE, (int) $monographId);
 
 		if ($symbolic) {
 			$sql .= ' AND s.symbolic = ?';

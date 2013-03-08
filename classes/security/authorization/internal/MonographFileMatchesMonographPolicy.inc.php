@@ -45,15 +45,15 @@ class MonographFileMatchesMonographPolicy extends MonographFileBaseAccessPolicy 
 		// Check if the monograph file belongs to the monograph.
 		if ($monographFile->getMonographId() == $monograph->getId()) {
 			// We add this monograph file to the context monograph files array.
-			$monographFilesArray = $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH_FILES);
+			$monographFilesArray = $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION_FILES);
 			if (is_null($monographFilesArray)) {
 				$monographFilesArray = array();
 			}
 			array_push($monographFilesArray, $monographFile);
-			$this->addAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH_FILES, $monographFilesArray);
+			$this->addAuthorizedContextObject(ASSOC_TYPE_SUBMISSION_FILES, $monographFilesArray);
 
 			// Save the monograph to the authorization context.
-			$this->addAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH_FILE, $monographFile);
+			$this->addAuthorizedContextObject(ASSOC_TYPE_SUBMISSION_FILE, $monographFile);
 			return AUTHORIZATION_PERMIT;
 		} else {
 			return AUTHORIZATION_DENY;

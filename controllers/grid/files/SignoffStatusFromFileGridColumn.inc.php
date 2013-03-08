@@ -130,7 +130,7 @@ class SignoffStatusFromFileGridColumn extends BaseSignoffStatusColumn {
 			foreach ($userIds as $userId) {
 				$signoffs =& $signoffDao->getAllBySymbolic(
 					$this->getSymbolic(),
-					ASSOC_TYPE_MONOGRAPH_FILE, $monographFile->getFileId(),
+					ASSOC_TYPE_SUBMISSION_FILE, $monographFile->getFileId(),
 					$userId
 				);
 
@@ -148,7 +148,7 @@ class SignoffStatusFromFileGridColumn extends BaseSignoffStatusColumn {
 					// no users means a blank column (should not happen).
 
 					$lastViewed = $viewsDao->getLastViewDate(
-						ASSOC_TYPE_MONOGRAPH_FILE, $monographFile->getFileIdAndRevision(),
+						ASSOC_TYPE_SUBMISSION_FILE, $monographFile->getFileIdAndRevision(),
 						$userId
 					);
 				}

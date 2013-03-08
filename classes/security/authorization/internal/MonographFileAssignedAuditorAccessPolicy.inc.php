@@ -43,7 +43,7 @@ class MonographFileAssignedAuditorAccessPolicy extends MonographFileBaseAccessPo
 		if (!is_a($monographFile, 'MonographFile')) return AUTHORIZATION_DENY;
 
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
-		$signoffsFactory =& $signoffDao->getAllByAssocType(ASSOC_TYPE_MONOGRAPH_FILE, $monographFile->getFileId(), null, $user->getId());
+		$signoffsFactory =& $signoffDao->getAllByAssocType(ASSOC_TYPE_SUBMISSION_FILE, $monographFile->getFileId(), null, $user->getId());
 
 		if ($signoffsFactory->wasEmpty()) {
 			return AUTHORIZATION_DENY;

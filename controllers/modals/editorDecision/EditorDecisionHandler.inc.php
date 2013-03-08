@@ -306,7 +306,7 @@ class EditorDecisionHandler extends Handler {
 	 * @param $request PKPRequest
 	 */
 	function saveApproveProof($args, &$request) {
-		$monographFile =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH_FILE);
+		$monographFile =& $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION_FILE);
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 
 		// Make sure we only alter files associated with a publication format.

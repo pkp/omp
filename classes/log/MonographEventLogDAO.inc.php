@@ -30,7 +30,7 @@ class MonographEventLogDAO extends EventLogDAO {
 	 */
 	function newDataObject() {
 		$returner = new MonographEventLogEntry();
-		$returner->setAssocType(ASSOC_TYPE_MONOGRAPH_FILE);
+		$returner->setAssocType(ASSOC_TYPE_SUBMISSION_FILE);
 		return $returner;
 	}
 

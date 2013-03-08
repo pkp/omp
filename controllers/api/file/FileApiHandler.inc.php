@@ -71,7 +71,7 @@ class FileApiHandler extends Handler {
 	 * @param $request Request
 	 */
 	function downloadFile($args, &$request) {
-		$monographFile =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH_FILE);
+		$monographFile =& $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION_FILE);
 		assert($monographFile); // Should have been validated already
 		import('classes.file.MonographFileManager');
 		$press =& $request->getPress();
@@ -126,7 +126,7 @@ class FileApiHandler extends Handler {
 	 * @param $request Request
 	 */
 	function viewFile($args, &$request) {
-		$monographFile =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH_FILE);
+		$monographFile =& $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION_FILE);
 		assert($monographFile); // Should have been validated already
 		import('classes.file.MonographFileManager');
 		$press =& $request->getPress();
@@ -141,7 +141,7 @@ class FileApiHandler extends Handler {
 	 */
 	function downloadAllFiles($args, &$request) {
 		// Retrieve the authorized objects.
-		$monographFiles = $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH_FILES);
+		$monographFiles = $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION_FILES);
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 
 		// Find out the paths of all files in this grid.
@@ -180,7 +180,7 @@ class FileApiHandler extends Handler {
 	 * @return string
 	 */
 	function recordDownload($args, &$request) {
-		$monographFiles = $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH_FILES);
+		$monographFiles = $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION_FILES);
 		$fileId = null;
 
 		foreach ($monographFiles as $monographFile) {

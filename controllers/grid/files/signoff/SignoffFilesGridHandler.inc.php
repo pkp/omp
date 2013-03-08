@@ -509,7 +509,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 		if($signoff && !$signoff->getDateCompleted()) {
 
 			$signoffUserId = $signoff->getUserId();
-			if ($signoff->getAssocType() == ASSOC_TYPE_MONOGRAPH_FILE) {
+			if ($signoff->getAssocType() == ASSOC_TYPE_SUBMISSION_FILE) {
 				$fileId = $signoff->getAssocId();
 			}
 			$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO');

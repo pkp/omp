@@ -114,7 +114,7 @@ class SignoffOnSignoffGridColumn extends BaseSignoffStatusColumn {
 				// Find out whether someone in the user group already downloaded
 				// (=viewed) the file.
 				$viewed = $viewed ||
-					$viewsDao->getLastViewDate(ASSOC_TYPE_MONOGRAPH_FILE, $fileIdAndRevision, $userId);
+					$viewsDao->getLastViewDate(ASSOC_TYPE_SUBMISSION_FILE, $fileIdAndRevision, $userId);
 			}
 			unset($signoff);
 		}

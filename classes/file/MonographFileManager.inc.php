@@ -111,7 +111,7 @@ class MonographFileManager extends BaseMonographFileManager {
 		if (is_a($user, 'User')) {
 			$viewsDao =& DAORegistry::getDAO('ViewsDAO');
 			$viewsDao->recordView(
-			ASSOC_TYPE_MONOGRAPH_FILE, $monographFile->getFileIdAndRevision(),
+			ASSOC_TYPE_SUBMISSION_FILE, $monographFile->getFileIdAndRevision(),
 			$user->getId()
 			);
 		}

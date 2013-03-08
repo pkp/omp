@@ -30,7 +30,7 @@ class MonographFileEventLogDAO extends EventLogDAO {
 	 */
 	function newDataObject() {
 		$returner = new MonographFileEventLogEntry();
-		$returner->setAssocType(ASSOC_TYPE_MONOGRAPH_FILE);
+		$returner->setAssocType(ASSOC_TYPE_SUBMISSION_FILE);
 		return $returner;
 	}
 
@@ -40,7 +40,7 @@ class MonographFileEventLogDAO extends EventLogDAO {
 	 * @return DAOResultFactory
 	 */
 	function &getByFileId($fileId) {
-		$returner =& $this->getByAssoc(ASSOC_TYPE_MONOGRAPH_FILE, $fileId);
+		$returner =& $this->getByAssoc(ASSOC_TYPE_SUBMISSION_FILE, $fileId);
 		return $returner;
 	}
 }

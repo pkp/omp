@@ -145,11 +145,11 @@ class SignoffInformationCenterHandler extends Handler {
 		$symbolic = (string) $request->getUserVar('symbolic');
 
 		$monographFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $monographFileDao SubmissionFileDAO */
-		$signoffsFactory =& $signoffDao->getAllBySymbolic($symbolic, ASSOC_TYPE_MONOGRAPH_FILE, null, $user->getId());
+		$signoffsFactory =& $signoffDao->getAllBySymbolic($symbolic, ASSOC_TYPE_SUBMISSION_FILE, null, $user->getId());
 
 		$signoffs = array();
 		while ($signoff =& $signoffsFactory->next()) { /* @var $signoff Signoff */
-			if (!$signoff->getDateCompleted() && $signoff->getAssocType() == ASSOC_TYPE_MONOGRAPH_FILE) {
+			if (!$signoff->getDateCompleted() && $signoff->getAssocType() == ASSOC_TYPE_SUBMISSION_FILE) {
 				$monographFile =& $monographFileDao->getLatestRevision($signoff->getAssocId()); /* @var $monographFile MonographFile */
 				if (is_a($monographFile, 'MonographFile')) {
 					if ($monographFile->getMonographId() == $monograph->getId()) {

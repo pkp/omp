@@ -100,7 +100,7 @@ class SignoffStatusFromSignoffGridColumn extends BaseSignoffStatusColumn {
 		// (=viewed) the file.
 		// no users means a blank column (should not happen).
 		$lastViewed = $viewsDao->getLastViewDate(
-			ASSOC_TYPE_MONOGRAPH_FILE, $monographFile->getFileIdAndRevision(),
+			ASSOC_TYPE_SUBMISSION_FILE, $monographFile->getFileIdAndRevision(),
 			$signoff->getUserId()
 		);
 

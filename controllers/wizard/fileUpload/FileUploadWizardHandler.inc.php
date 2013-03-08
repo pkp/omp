@@ -454,7 +454,7 @@ class FileUploadWizardHandler extends FileManagementHandler {
 		$monograph =& $this->getMonograph();
 
 		// Retrieve the monograph file.
-		$submissionFile =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH_FILE);
+		$submissionFile =& $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION_FILE);
 
 		// Import the meta-data form based on the file implementation.
 		if (is_a($submissionFile, 'ArtworkFile')) {

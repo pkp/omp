@@ -81,7 +81,7 @@ class CopyeditingFilesGridHandler extends SignoffFilesGridHandler {
 	 * @return string Serialized JSON object
 	 */
 	function approveCopyedit($args, &$request) {
-		$monographFile =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH_FILE);
+		$monographFile =& $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION_FILE);
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 
 		if ($monographFile->getViewable()) {

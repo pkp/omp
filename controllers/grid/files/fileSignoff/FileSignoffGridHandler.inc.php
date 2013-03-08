@@ -145,7 +145,7 @@ class FileSignoffGridHandler extends SubmissionFilesGridHandler {
 		// to this file revision.
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
 		$signoff =& $signoffDao->build(
-			$this->getSymbolic(), ASSOC_TYPE_MONOGRAPH_FILE, $submissionFile->getFileId(), $user->getId()
+			$this->getSymbolic(), ASSOC_TYPE_SUBMISSION_FILE, $submissionFile->getFileId(), $user->getId()
 		);
 		$signoff->setDateCompleted(Core::getCurrentDate());
 		$signoffDao->updateObject($signoff);

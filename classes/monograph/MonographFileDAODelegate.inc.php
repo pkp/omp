@@ -322,7 +322,7 @@ class MonographFileDAODelegate extends SubmissionFileDAODelegate {
 		// Update file views that refer to this file.
 		$viewsDao = DAORegistry::getDAO('ViewsDAO'); /* @var $viewsDao ViewsDAO */
 		$viewsDao->moveViews(
-			ASSOC_TYPE_MONOGRAPH_FILE,
+			ASSOC_TYPE_SUBMISSION_FILE,
 			$previousFile->getFileIdAndRevision(), $monographFile->getFileIdAndRevision()
 		);
 	}
@@ -344,7 +344,7 @@ class MonographFileDAODelegate extends SubmissionFileDAODelegate {
 		// Delete file views that refer to this file.
 		$viewsDao = DAORegistry::getDAO('ViewsDAO'); /* @var $viewsDao ViewsDAO */
 		$viewsDao->deleteViews(
-			ASSOC_TYPE_MONOGRAPH_FILE, $monographFile->getFileIdAndRevision()
+			ASSOC_TYPE_SUBMISSION_FILE, $monographFile->getFileIdAndRevision()
 		);
 	}
 }

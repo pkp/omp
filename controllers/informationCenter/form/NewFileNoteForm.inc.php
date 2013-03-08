@@ -33,7 +33,7 @@ class NewFileNoteForm extends NewNoteForm {
 	 * @return int
 	 */
 	function getAssocType() {
-		return ASSOC_TYPE_MONOGRAPH_FILE;
+		return ASSOC_TYPE_SUBMISSION_FILE;
 	}
 
 	/**

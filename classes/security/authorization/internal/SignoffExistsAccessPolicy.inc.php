@@ -64,7 +64,7 @@ class SignoffExistsAccessPolicy extends AuthorizationPolicy {
 				$signoff =& $newSignoff;
 				unset($newSignoff);
 				break;
-			case ASSOC_TYPE_MONOGRAPH_FILE:
+			case ASSOC_TYPE_SUBMISSION_FILE:
 				// Get the monograph file
 				$monographFile =& $monographFileDao->getLatestRevision($signoff->getAssocId());
 				if (!is_a($monographFile, 'MonographFile')) return AUTHORIZATION_DENY;

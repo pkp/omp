@@ -321,7 +321,7 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 		while($signoff =& $signoffsFactory->next()) {
 			if (($signoff->getSymbolic() != 'SIGNOFF_COPYEDITING' &&
 				$signoff->getSymbolic() != 'SIGNOFF_PROOFING') ||
-				$signoff->getAssocType() != ASSOC_TYPE_MONOGRAPH_FILE ||
+				$signoff->getAssocType() != ASSOC_TYPE_SUBMISSION_FILE ||
 				$signoff->getDateCompleted()) continue;
 			$monographFileId = $signoff->getAssocId();
 			$monographFile =& $submissionFileDao->getLatestRevision($monographFileId, null, $stageAssignment->getSubmissionId());

@@ -36,7 +36,7 @@ class MonographFileLog extends OmpLog {
 		$user =& $request->getUser();
 		if ($user) $entry->setUserId($user->getId());
 
-		$entry->setAssocType(ASSOC_TYPE_MONOGRAPH_FILE);
+		$entry->setAssocType(ASSOC_TYPE_SUBMISSION_FILE);
 		$entry->setAssocId($monographFile->getFileId());
 
 		// Set explicit parts of the log entry

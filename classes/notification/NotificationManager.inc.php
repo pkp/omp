@@ -54,7 +54,7 @@ class NotificationManager extends PKPNotificationManager {
 			case NOTIFICATION_TYPE_COPYEDIT_ASSIGNMENT:
 				$signoffDao = DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
 				$signoff = $signoffDao->getById($notification->getAssocId());
-				assert(is_a($signoff, 'Signoff') && $signoff->getAssocType() == ASSOC_TYPE_MONOGRAPH_FILE);
+				assert(is_a($signoff, 'Signoff') && $signoff->getAssocType() == ASSOC_TYPE_SUBMISSION_FILE);
 
 				$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 				$monographFile = $submissionFileDao->getLatestRevision($signoff->getAssocId());

@@ -148,7 +148,7 @@ class FileSignoffHandler extends FileManagementHandler {
 		// Get related objects for the form to authenticate
 		$monograph =& $this->getMonograph();
 		$stageId = $this->getStageId();
-		if ($signoff->getAssocType() != ASSOC_TYPE_MONOGRAPH_FILE) assert(false);
+		if ($signoff->getAssocType() != ASSOC_TYPE_SUBMISSION_FILE) assert(false);
 		$signoffFile =& $submissionFileDao->getLatestRevision($signoff->getAssocId());
 
 		// Set up the template
