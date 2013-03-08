@@ -45,7 +45,6 @@
 	<message key="manuscript.submissions">Manuscrits soumis</message>
 	<message key="submission.confirmSubmit">Vous souhaitez soumettre ce manuscrit à la presse?</message>
 	<message key="submission.files.downloadAll">Télécharger tous les fichiers</message>
-	<message key="submission.mySubmissions">Mes soumissions</message>
 	<message key="submission.metadata">Métadonnées</message>
 	<message key="submission.supportingAgencies">Agences de financement</message>
 	<message key="submission.previousAuthorMessages">Messages précédents</message>
