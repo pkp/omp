@@ -37,10 +37,10 @@ class EditorDecisionActionsManager {
 	function getActionLabels($decisions) {
 		$allDecisionsData = array();
 		$allDecisionsData =
-			EditorDecisionActionsManager::_submissionStageDecisions() +
-			EditorDecisionActionsManager::_internalReviewStageDecisions() +
-			EditorDecisionActionsManager::_externalReviewStageDecisions() +
-			EditorDecisionActionsManager::_editorialStageDecisions();
+			self::_submissionStageDecisions() +
+			self::_internalReviewStageDecisions() +
+			self::_externalReviewStageDecisions() +
+			self::_editorialStageDecisions();
 
 		$actionLabels = array();
 		foreach($decisions as $decision) {
@@ -65,7 +65,7 @@ class EditorDecisionActionsManager {
 		$editorDecisions = $seriesEditorSubmissionDao->getEditorDecisions($reviewRound->getSubmissionId(), $reviewRound->getStageId(), $reviewRound->getRound());
 
 		if (empty($decisions)) {
-			$decisions = array_keys(EditorDecisionActionsManager::_internalReviewStageDecisions());
+			$decisions = array_keys(self::_internalReviewStageDecisions());
 		}
 		$takenDecision = false;
 		foreach ($editorDecisions as $decision) {
@@ -85,13 +85,13 @@ class EditorDecisionActionsManager {
 	function getStageDecisions($stageId) {
 		switch ($stageId) {
 			case WORKFLOW_STAGE_ID_SUBMISSION:
-				return EditorDecisionActionsManager::_submissionStageDecisions();
+				return self::_submissionStageDecisions();
 			case WORKFLOW_STAGE_ID_INTERNAL_REVIEW:
-				return EditorDecisionActionsManager::_internalReviewStageDecisions();
+				return self::_internalReviewStageDecisions();
 			case WORKFLOW_STAGE_ID_EXTERNAL_REVIEW:
-				return EditorDecisionActionsManager::_externalReviewStageDecisions();
+				return self::_externalReviewStageDecisions();
 			case WORKFLOW_STAGE_ID_EDITING:
-				return EditorDecisionActionsManager::_editorialStageDecisions();
+				return self::_editorialStageDecisions();
 			default:
 				assert(false);
 		}
@@ -197,7 +197,7 @@ class EditorDecisionActionsManager {
 	 * @return array
 	 */
 	function _externalReviewStageDecisions() {
-		$decisions = EditorDecisionActionsManager::_internalReviewStageDecisions();
+		$decisions = self::_internalReviewStageDecisions();
 		unset($decisions[SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW]);
 		return $decisions;
 	}

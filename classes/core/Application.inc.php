@@ -149,7 +149,7 @@ class Application extends PKPApplication {
 			'SignoffDAO' => 'classes.signoff.SignoffDAO',
 			'SocialMediaDAO' => 'classes.press.SocialMediaDAO',
 			'SpotlightDAO' => 'classes.spotlight.SpotlightDAO',
-			'StageAssignmentDAO' => 'classes.stageAssignment.StageAssignmentDAO',
+			'StageAssignmentDAO' => 'lib.pkp.classes.stageAssignment.StageAssignmentDAO',
 			'SubmissionFileDAO' => 'classes.monograph.SubmissionFileDAO',
 			'UserGroupAssignmentDAO' => 'lib.pkp.classes.security.UserGroupAssignmentDAO',
 			'UserDAO' => 'classes.user.UserDAO',
