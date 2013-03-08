@@ -21,7 +21,7 @@
 	<message key="monograph.audience.rangeTo">Intervalle du public (à)</message>
 	<message key="monograph.audience.rangeExact">Intervalle du public (exact)</message>
 	<message key="monograph.description">Description</message>
-	<message key="monograph.authors">Auteurs</message>
+	<message key="submission.authors">Auteurs</message>
 	<message key="monograph.languages">Langues (anglais, français, espagnol)</message>
 	<message key="monograph.publicationFormats">Formats de publication </message>
 	<message key="monograph.carousel.publicationFormats">Formats:</message>
@@ -429,7 +429,7 @@ Sauvegarder.</li>
 	<!-- Common Press Terms -->
 	<message key="press.presses">Presses</message>
 	<message key="press.path">Chemin d'accès</message>
-	<message key="press.press">Presse</message>
+	<message key="context.context">Presse</message>
 	<message key="press.select">Choisir une presse…</message>
 
 	<!-- User -->
