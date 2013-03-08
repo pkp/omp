@@ -272,7 +272,7 @@ class SubmissionFilesUploadForm extends SubmissionFilesUploadBaseForm {
 	function &_retrieveGenreList(&$request) {
 		$context =& $request->getContext();
 		$genreDao =& DAORegistry::getDAO('GenreDAO'); /* @var $genreDao GenreDAO */
-		$genres =& $genreDao->getEnabledByPressId($context->getId());
+		$genres =& $genreDao->getEnabledByContextId($context->getId());
 
 		// Transform the genres into an array and
 		// assign them to the form.
