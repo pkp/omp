@@ -201,22 +201,6 @@ class Monograph extends Submission {
 		return $this->setData('hideAuthor', $hideAuthor);
 	}
 
-	/**
-	 * Get the monograph's current publication stage ID
-	 * @return int
-	 */
-	function getStageId() {
-		return $this->getData('stageId');
-	}
-
-	/**
-	 * Set the monograph's current publication stage ID
-	 * @param $stageId int
-	 */
-	function setStageId($stageId) {
-		return $this->setData('stageId', $stageId);
-	}
-
 
 	//
 	// Peer Review
