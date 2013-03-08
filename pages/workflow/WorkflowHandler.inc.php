@@ -139,7 +139,7 @@ class WorkflowHandler extends Handler {
 			new CatalogEntryLinkAction($request, $monograph->getId(), $stageId)
 		);
 
-		import('controllers.informationCenter.linkAction.SubmissionInfoCenterLinkAction');
+		import('lib.pkp.controllers.informationCenter.linkAction.SubmissionInfoCenterLinkAction');
 		$templateMgr->assign(
 			'submissionInformationCenterAction',
 			new SubmissionInfoCenterLinkAction($request, $monograph->getId())
