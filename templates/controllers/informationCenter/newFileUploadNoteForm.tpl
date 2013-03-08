@@ -17,7 +17,7 @@
 				$uploader: $('#plupload'),
 				resetUploader: true,
 				uploaderOptions: {ldelim}
-					uploadUrl: '{url|escape:javascript op="uploadFile" signoffId=$signoffId monographId=$monographId stageId=$stageId escape=false}',
+					uploadUrl: '{url|escape:javascript op="uploadFile" signoffId=$signoffId submissionId=$submissionId stageId=$stageId escape=false}',
 					baseUrl: '{$baseUrl|escape:javascript}'
 				{rdelim}
 			{rdelim});
@@ -26,7 +26,7 @@
 
 <div id="newNoteContainer">
 	<form class="pkp_form" id="uploadForm" action="{url router=$smarty.const.ROUTE_COMPONENT op="saveNote" params=$linkParams}" method="post">
-		<input type="hidden" name="monographId" value="{$monographId|escape}" />
+		<input type="hidden" name="submissionId" value="{$submissionId|escape}" />
 		<input type="hidden" name="stageId" value="{$stageId|escape}" />
 
 		{** Make sure there is at least one available signoff *}

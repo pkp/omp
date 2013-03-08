@@ -280,7 +280,7 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 	function _getLinkParams() {
 		return array(
 			'fileId' => $this->monographFile->getFileId(),
-			'monographId' => $this->monograph->getId(),
+			'submissionId' => $this->monograph->getId(),
 			'stageId' => $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE)
 		);
 	}

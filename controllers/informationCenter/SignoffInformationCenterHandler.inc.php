@@ -118,12 +118,12 @@ class SignoffInformationCenterHandler extends Handler {
 	 */
 	function viewNotes($args, &$request) {
 		$this->setupTemplate($request);
-		$signoff =& $this->getAuthorizedContextObject(ASSOC_TYPE_SIGNOFF);
+		$signoff = $this->getAuthorizedContextObject(ASSOC_TYPE_SIGNOFF);
 		$stageId = $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		$monograph = $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 
-		$templateMgr =& TemplateManager::getManager($request);
-		$templateMgr->assign('monographId', $monograph->getId());
+		$templateMgr = TemplateManager::getManager($request);
+		$templateMgr->assign('submissionId', $monograph->getId());
 		$templateMgr->assign('stageId', $stageId);
 		$templateMgr->assign('symbolic', (string) $request->getUserVar('symbolic'));
 		if ($signoff) {

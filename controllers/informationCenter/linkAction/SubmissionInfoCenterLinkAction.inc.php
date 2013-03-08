@@ -19,27 +19,27 @@ class SubmissionInfoCenterLinkAction extends LinkAction {
 	/**
 	 * Constructor
 	 * @param $request Request
-	 * @param $monographId int the ID of the monograph to present link for
+	 * @param $submissionId int the ID of the submission to present link for
 	 * to show information about.
 	 * @param $linkKey string optional locale key to display for link
 	 */
-	function SubmissionInfoCenterLinkAction(&$request, $monographId, $linkKey = 'informationCenter.bookInfo') {
+	function SubmissionInfoCenterLinkAction(&$request, $submissionId, $linkKey = 'informationCenter.bookInfo') {
 		// Instantiate the information center modal.
 
-		$monographDao =& DAORegistry::getDAO('MonographDAO');
-		$monograph =& $monographDao->getById($monographId);
+		$submissionDao = Application::getSubmissionDAO();
+		$submission = $submissionDao->getById($submissionId);
 
-		$primaryAuthor = $monograph->getPrimaryAuthor();
+		$primaryAuthor = $submission->getPrimaryAuthor();
 		if (!isset($primaryAuthor)) {
-			$authors =& $monograph->getAuthors();
+			$authors = $submission->getAuthors();
 			if (sizeof($authors) > 0) {
 				$primaryAuthor = $authors[0];
 			}
 		}
 
-		$title = (isset($primaryAuthor)) ? implode(', ', array($primaryAuthor->getLastName(), $monograph->getLocalizedTitle())) : $monograph->getLocalizedTitle();
+		$title = (isset($primaryAuthor)) ? implode(', ', array($primaryAuthor->getLastName(), $submission->getLocalizedTitle())) : $submission->getLocalizedTitle();
 
-		$dispatcher =& $request->getDispatcher();
+		$dispatcher = $request->getDispatcher();
 		import('lib.pkp.classes.linkAction.request.AjaxModal');
 		$ajaxModal = new AjaxModal(
 			$dispatcher->url(
@@ -47,7 +47,7 @@ class SubmissionInfoCenterLinkAction extends LinkAction {
 				'informationCenter.SubmissionInformationCenterHandler',
 				'viewInformationCenter',
 				null,
-				array('monographId' => $monographId)
+				array('submissionId' => $submissionId)
 			),
 			$title,
 			'modal_information'

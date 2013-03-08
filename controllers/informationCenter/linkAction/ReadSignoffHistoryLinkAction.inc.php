@@ -30,7 +30,7 @@ class ReadSignoffHistoryLinkAction extends LinkAction {
 
 		$actionArgs = array(
 			'signoffId' => $signoffId,
-			'monographId' => $monographId,
+			'submissionId' => $monographId,
 			'stageId' => $stageId
 		);
 		parent::LinkAction(

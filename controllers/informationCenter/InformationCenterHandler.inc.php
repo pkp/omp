@@ -57,7 +57,7 @@ class InformationCenterHandler extends Handler {
 	 */
 	function authorize(&$request, &$args, $roleAssignments) {
 		import('classes.security.authorization.OmpSubmissionAccessPolicy');
-		$this->addPolicy(new OmpSubmissionAccessPolicy($request, $args, $roleAssignments));
+		$this->addPolicy(new OmpSubmissionAccessPolicy($request, $args, $roleAssignments, 'submissionId'));
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 

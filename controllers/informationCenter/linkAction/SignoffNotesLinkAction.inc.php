@@ -30,7 +30,7 @@ class SignoffNotesLinkAction extends LinkAction {
 
 		$actionArgs = array(
 			'signoffId' => $signoff->getId(),
-			'monographId' => $monographId,
+			'submissionId' => $monographId,
 			'stageId' => $stageId
 		);
 

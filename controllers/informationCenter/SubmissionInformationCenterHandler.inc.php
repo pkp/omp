@@ -273,7 +273,7 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 	 * the delete note handler). Subclasses should implement.
 	 */
 	function _getLinkParams() {
-		return array('monographId' => $this->_monograph->getId());
+		return array('submissionId' => $this->_monograph->getId());
 	}
 
 	/**

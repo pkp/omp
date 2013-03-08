@@ -12,7 +12,7 @@
 		$('#notifyForm').pkpHandler(
 			'$.pkp.controllers.informationCenter.form.InformationCenterNotifyHandler',
 			{ldelim}
-				templateUrl: "{url|escape:'javascript' router=$smarty.const.ROUTE_COMPONENT component="informationCenter.SubmissionInformationCenterHandler" op='fetchTemplateBody' monographId=$monographId}"
+				templateUrl: "{url|escape:'javascript' router=$smarty.const.ROUTE_COMPONENT component="informationCenter.SubmissionInformationCenterHandler" op='fetchTemplateBody' submissionId=$submissionId}"
 			{rdelim}
 		);
 	{rdelim});

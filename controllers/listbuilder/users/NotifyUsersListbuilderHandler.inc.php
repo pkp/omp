@@ -48,9 +48,9 @@ class NotifyUsersListbuilderHandler extends ListbuilderHandler {
 	 * @see GridDataProvider::getRequestArgs()
 	 */
 	function getRequestArgs() {
-		$monograph =& $this->getMonograph();
+		$monograph = $this->getMonograph();
 		return array(
-			'monographId' => $monograph->getId(),
+			'submissionId' => $monograph->getId(),
 			'stageId' => $this->getStageId()
 		);
 	}
@@ -100,7 +100,7 @@ class NotifyUsersListbuilderHandler extends ListbuilderHandler {
 	 */
 	function authorize(&$request, &$args, $roleAssignments) {
 		import('classes.security.authorization.OmpSubmissionAccessPolicy');
-		$this->addPolicy(new OmpSubmissionAccessPolicy($request, $args, $roleAssignments));
+		$this->addPolicy(new OmpSubmissionAccessPolicy($request, $args, $roleAssignments, 'submissionId'));
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 
