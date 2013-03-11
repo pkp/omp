@@ -13,28 +13,15 @@
  */
 
 
-import('lib.pkp.classes.controllers.grid.CategoryGridDataProvider');
+import('lib.pkp.controllers.grid.files.submissionDocuments.PKPSubmissionDocumentsFilesGridDataProvider');
 
-class SubmissionDocumentsFilesGridDataProvider extends CategoryGridDataProvider {
+class SubmissionDocumentsFilesGridDataProvider extends PKPSubmissionDocumentsFilesGridDataProvider {
 
 	/**
 	 * Constructor
 	 */
 	function SubmissionDocumentsFilesGridDataProvider() {
-		parent::CategoryGridDataProvider();
-	}
-
-
-	//
-	// Getters and Setters
-	//
-
-	/**
-	 * Get the authorized monograph.
-	 * @return Monograph
-	 */
-	function &getMonograph() {
-		return $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		parent::PKPSubmissionDocumentsFilesGridDataProvider();
 	}
 
 	/**
@@ -42,32 +29,8 @@ class SubmissionDocumentsFilesGridDataProvider extends CategoryGridDataProvider 
 	 */
 	function getAuthorizationPolicy(&$request, $args, $roleAssignments) {
 		import('classes.security.authorization.OmpSubmissionAccessPolicy');
-		$policy = new OmpSubmissionAccessPolicy($request, $args, $roleAssignments);
+		$policy = new OmpSubmissionAccessPolicy($request, $args, $roleAssignments, 'submissionId');
 		return $policy;
-	}
-
-	/**
-	 * @see GridDataProvider::getRequestArgs()
-	 */
-	function getRequestArgs() {
-		$monograph =& $this->getMonograph();
-		return array(
-			'monographId' => $monograph->getId(),
-		);
-	}
-
-	/**
-	 * @see CategoryGridHandler::getCategoryData()
-	 */
-	function getCategoryData(&$fileType, $filter = null) {
-
-		// Retrieve all library files for the given submission document category.
-		$monograph =& $this->getMonograph();
-		import('classes.press.LibraryFile');
-		$libraryFileDao =& DAORegistry::getDAO('LibraryFileDAO'); /* @var $libraryFileDao LibraryFileDAO */
-		$libraryFiles =& $libraryFileDao->getByMonographId($monograph->getId(), $fileType);
-
-		return $libraryFiles->toAssociativeArray();
 	}
 }
 
