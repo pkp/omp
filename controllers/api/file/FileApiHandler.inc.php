@@ -85,7 +85,7 @@ class FileApiHandler extends Handler {
 	 * @param $request Request
 	 */
 	function downloadLibraryFile($args, &$request) {
-		import('classes.file.LibraryFileManager');
+		import('lib.pkp.classes.file.LibraryFileManager');
 		$press =& $request->getPress();
 		$libraryFileManager = new LibraryFileManager($press->getId());
 		$libraryFileDao =& DAORegistry::getDAO('LibraryFileDAO');
