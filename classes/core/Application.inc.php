@@ -109,7 +109,6 @@ class Application extends PKPApplication {
 			'FooterLinkDAO' => 'lib.pkp.classes.context.FooterLinkDAO',
 			'IdentificationCodeDAO' => 'classes.publicationFormat.IdentificationCodeDAO',
 			'LayoutAssignmentDAO' => 'submission.layoutAssignment.LayoutAssignmentDAO',
-			'LibraryFileDAO' => 'classes.press.LibraryFileDAO',
 			'MarketDAO' => 'classes.publicationFormat.MarketDAO',
 			'MonographCommentDAO' => 'classes.monograph.MonographCommentDAO',
 			'MonographDAO' => 'classes.monograph.MonographDAO',
