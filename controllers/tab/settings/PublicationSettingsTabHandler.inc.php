@@ -33,7 +33,7 @@ class PublicationSettingsTabHandler extends ManagerSettingsTabHandler {
 		));
 
 		// import the file type constants
-		import('classes.press.LibraryFile');
+		import('lib.pkp.classes.context.LibraryFile');
 	}
 }
 
