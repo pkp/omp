@@ -416,7 +416,7 @@ Sauvegarder.</li>
 	<message key="navigation.infoForLibrarians.long">Renseignements pour les bibliothécaires</message>
 	<message key="navigation.newReleases">Nouveautés</message>
 	<message key="navigation.published">Publié</message>
-	<message key="navigation.publicationProcess">Publication</message>
+	<message key="navigation.workflow">Workflow</message>
 	<message key="navigation.tools">Outils</message>
 	<message key="navigation.tools.importExport">Import/Export</message>
 	<message key="navigation.wizard">Guide intelligent</message>

@@ -48,7 +48,7 @@
 								<ul>
 									<li><a href="{url page="management" op="settings" path="press"}">{translate key="context.context"}</a></li>
 									<li><a href="{url page="management" op="settings" path="website"}">{translate key="navigation.website"}</a></li>
-									<li><a href="{url page="management" op="settings" path="publication"}">{translate key="navigation.publicationProcess"}</a></li>
+									<li><a href="{url page="management" op="settings" path="publication"}">{translate key="navigation.workflow"}</a></li>
 									<li><a href="{url page="management" op="settings" path="distribution"}">{translate key="navigation.distributionProcess"}</a></li>
 									<li><a href="{url page="management" op="settings" path="access"}">{translate key="navigation.access"}</a></li>
 								</ul>

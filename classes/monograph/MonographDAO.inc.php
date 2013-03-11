@@ -520,13 +520,13 @@ class MonographDAO extends DAO {
 	}
 
 	/**
-	 * Get all unassigned monographs for a press or all presses
+	 * Get all unassigned submissions for a context or all contexts
 	 * @param $pressId int optional the ID of the press to query.
-	 * @param $seriesEditorId int optional the ID of the series editor
+	 * @param $subEditorId int optional the ID of the sub editor
 	 * 	whose series will be included in the results (excluding others).
-	 * @return DAOResultFactory containing matching Monographs
+	 * @return DAOResultFactory containing matching Submissions
 	 */
-	function getBySubEditorId($pressId = null, $seriesEditorId = null) {
+	function getBySubEditorId($pressId = null, $subEditorId = null) {
 		$primaryLocale = AppLocale::getPrimaryLocale();
 		$locale = AppLocale::getLocale();
 
@@ -537,11 +537,11 @@ class MonographDAO extends DAO {
 			'abbrev', $locale, // Series abbreviation
 			(int) ROLE_ID_MANAGER
 		);
-		if ($seriesEditorId) $params[] = (int) $seriesEditorId;
+		if ($subEditorId) $params[] = (int) $subEditorId;
 		if ($pressId) $params[] = (int) $pressId;
 
 		$result = $this->retrieve(
-			'SELECT	m.*
+			'SELECT	m.*, pm.date_published
 			FROM	monographs m
 				LEFT JOIN published_monographs pm ON m.monograph_id = pm.monograph_id
 				LEFT JOIN series s ON s.series_id = m.series_id
@@ -551,7 +551,7 @@ class MonographDAO extends DAO {
 				LEFT JOIN series_settings sal ON (s.series_id = sal.series_id AND sal.setting_name = ? AND sal.locale = ?)
 				LEFT JOIN stage_assignments sa ON (m.monograph_id = sa.submission_id)
 				LEFT JOIN user_groups g ON (sa.user_group_id = g.user_group_id AND g.role_id = ?)
-				' . ($seriesEditorId?' JOIN series_editors se ON (se.press_id = m.press_id AND se.user_id = ? AND se.series_id = m.series_id)':'') . '
+				' . ($subEditorId?' JOIN series_editors se ON (se.press_id = m.press_id AND se.user_id = ? AND se.series_id = m.series_id)':'') . '
 			WHERE	m.date_submitted IS NOT NULL
 				' . ($pressId?' AND m.press_id = ?':'') . '
 			GROUP BY m.monograph_id',
