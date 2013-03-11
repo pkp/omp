@@ -24,7 +24,7 @@ import('controllers.grid.files.SelectableSubmissionFileListCategoryGridRow');
 import('classes.monograph.MonographFile');
 
 // Import the class that defines file grids capabilities.
-import('classes.controllers.grid.files.FilesGridCapabilities');
+import('lib.pkp.classes.controllers.grid.files.FilesGridCapabilities');
 
 class SelectableSubmissionFileListCategoryGridHandler extends CategoryGridHandler {
 
