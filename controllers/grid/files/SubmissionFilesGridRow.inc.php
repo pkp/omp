@@ -76,23 +76,23 @@ class SubmissionFilesGridRow extends GridRow {
 	function initialize(&$request, $template = 'controllers/grid/gridRow.tpl') {
 		parent::initialize($request, $template);
 
-		// Retrieve the monograph file.
+		// Retrieve the submission file.
 		$submissionFileData =& $this->getData();
 		assert(isset($submissionFileData['submissionFile']));
-		$monographFile =& $submissionFileData['submissionFile']; /* @var $monographFile MonographFile */
-		assert(is_a($monographFile, 'MonographFile'));
+		$submissionFile =& $submissionFileData['submissionFile']; /* @var $submissionFile SubmissionFile */
+		assert(is_a($submissionFile, 'SubmissionFile'));
 
 		// File grid row actions:
 		// 1) Delete file action.
 		if ($this->canDelete()) {
-			import('controllers.api.file.linkAction.DeleteFileLinkAction');
-			$this->addAction(new DeleteFileLinkAction($request, $monographFile, $this->getStageId()));
+			import('lib.pkp.controllers.api.file.linkAction.DeleteFileLinkAction');
+			$this->addAction(new DeleteFileLinkAction($request, $submissionFile, $this->getStageId()));
 		}
 
 		// 2) Information center action.
 		if ($this->canViewNotes()) {
 			import('controllers.informationCenter.linkAction.FileInfoCenterLinkAction');
-			$this->addAction(new FileInfoCenterLinkAction($request, $monographFile, $this->getStageId()));
+			$this->addAction(new FileInfoCenterLinkAction($request, $submissionFile, $this->getStageId()));
 		}
 	}
 }

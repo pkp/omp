@@ -67,7 +67,7 @@ class SignoffFilesGridCategoryRow extends GridCategoryRow {
 				)
 			);
 
-			import('controllers.api.file.linkAction.DeleteFileLinkAction');
+			import('lib.pkp.controllers.api.file.linkAction.DeleteFileLinkAction');
 			$this->addAction(new DeleteFileLinkAction($request, $monographFile, $this->_getStageId()));
 		}
 

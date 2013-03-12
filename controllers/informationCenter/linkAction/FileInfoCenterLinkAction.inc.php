@@ -15,7 +15,7 @@
  * @brief An action to open up the information center for a file.
  */
 
-import('controllers.api.file.linkAction.FileLinkAction');
+import('lib.pkp.controllers.api.file.linkAction.FileLinkAction');
 
 class FileInfoCenterLinkAction extends FileLinkAction {
 
