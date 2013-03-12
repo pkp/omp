@@ -11,7 +11,7 @@
  * @brief An action to download a file.
  */
 
-import('controllers.api.file.linkAction.FileLinkAction');
+import('lib.pkp.controllers.api.file.linkAction.FileLinkAction');
 
 class DownloadFileLinkAction extends FileLinkAction {
 
