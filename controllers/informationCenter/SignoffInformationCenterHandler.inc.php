@@ -228,7 +228,7 @@ class SignoffInformationCenterHandler extends Handler {
 		// Get any note files.
 		$noteFilesDownloadLink = array();
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /** @var $submissionFileDao SubmissionFileDAO */
-		import('controllers.api.file.linkAction.DownloadFileLinkAction');
+		import('lib.pkp.controllers.api.file.linkAction.DownloadFileLinkAction');
 		foreach ($notes as $noteId => $note) {
 			$file =& $submissionFileDao->getLatestRevisionsByAssocId(ASSOC_TYPE_NOTE, $noteId, $monograph->getId(), SUBMISSION_FILE_NOTE);
 			// We don't expect more than one file per note

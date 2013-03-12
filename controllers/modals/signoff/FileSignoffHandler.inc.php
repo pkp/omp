@@ -173,7 +173,7 @@ class FileSignoffHandler extends FileManagementHandler {
 			$responseFile =& $submissionFileDao->getRevision($signoff->getFileId(), $signoff->getFileRevision());
 			assert(is_a($responseFile, 'MonographFile'));
 
-			import('controllers.api.file.linkAction.DownloadFileLinkAction');
+			import('lib.pkp.controllers.api.file.linkAction.DownloadFileLinkAction');
 			$downloadFileAction = new DownloadFileLinkAction($request, $responseFile, $stageId);
 			$templateMgr->assign('downloadSignoffResponseFileAction', $downloadFileAction);
 		} else {

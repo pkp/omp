@@ -70,19 +70,19 @@ class FileNameGridColumn extends GridColumn {
 	function getCellActions(&$request, &$row, $position = GRID_ACTION_POSITION_DEFAULT) {
 		$cellActions = parent::getCellActions($request, $row, $position);
 
-		// Retrieve the monograph file.
+		// Retrieve the submission file.
 		$submissionFileData =& $row->getData();
 		assert(isset($submissionFileData['submissionFile']));
-		$monographFile = $submissionFileData['submissionFile']; /* @var $monographFile MonographFile */
+		$submissionFile = $submissionFileData['submissionFile']; /* @var $submissionFile SubmissionFile */
 
 		// Create the cell action to download a file.
-		import('controllers.api.file.linkAction.DownloadFileLinkAction');
-		$cellActions[] = new DownloadFileLinkAction($request, $monographFile, $this->_getStageId());
+		import('lib.pkp.controllers.api.file.linkAction.DownloadFileLinkAction');
+		$cellActions[] = new DownloadFileLinkAction($request, $submissionFile, $this->_getStageId());
 
 		if ($this->_getIncludeNotes()) {
 			import('controllers.informationCenter.linkAction.FileNotesLinkAction');
 			$user =& $request->getUser();
-			$cellActions[] = new FileNotesLinkAction($request, $monographFile, $user, $this->_getStageId(), $this->_removeHistoryTab);
+			$cellActions[] = new FileNotesLinkAction($request, $submissionFile, $user, $this->_getStageId(), $this->_removeHistoryTab);
 		}
 		return $cellActions;
 	}

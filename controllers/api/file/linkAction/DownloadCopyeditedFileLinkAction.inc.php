@@ -11,7 +11,7 @@
  * @brief An action to download a file.
  */
 
-import('controllers.api.file.linkAction.DownloadFileLinkAction');
+import('lib.pkp.controllers.api.file.linkAction.DownloadFileLinkAction');
 
 class DownloadCopyeditedFileLinkAction extends DownloadFileLinkAction {
 	/** @var $_user User */
