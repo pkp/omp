@@ -49,7 +49,7 @@ class FileListGridHandler extends SubmissionFilesGridHandler {
 		}
 
 		// The file list grid layout has an additional file genre column.
-		import('controllers.grid.files.fileList.FileGenreGridColumn');
+		import('lib.pkp.controllers.grid.files.fileList.FileGenreGridColumn');
 		$this->addColumn(new FileGenreGridColumn());
 	}
 }

@@ -192,7 +192,7 @@ class SelectableSubmissionFileListCategoryGridHandler extends CategoryGridHandle
 		$this->addColumn(new FileNameGridColumn($capabilities->canViewNotes(), $this->getStageId()));
 
 		// The file list grid layout has an additional file genre column.
-		import('controllers.grid.files.fileList.FileGenreGridColumn');
+		import('lib.pkp.controllers.grid.files.fileList.FileGenreGridColumn');
 		$this->addColumn(new FileGenreGridColumn());
 
 		// Set the no items row text
