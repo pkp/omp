@@ -101,7 +101,7 @@ class SubmissionFilesCategoryGridDataProvider extends CategoryGridDataProvider {
 		if ($stageId == WORKFLOW_STAGE_ID_INTERNAL_REVIEW || $stageId == WORKFLOW_STAGE_ID_EXTERNAL_REVIEW) {
 			if (is_null($reviewRound) || $reviewRound->getStageId() != $stageId) {
 				$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
-				$reviewRound =& $reviewRoundDao->getLastReviewRoundByMonographId($monograph->getId(), $stageId);
+				$reviewRound =& $reviewRoundDao->getLastReviewRoundBySubmissionId($monograph->getId(), $stageId);
 			}
 			$stageMonographFiles =& $submissionFileDao->getLatestNewRevisionsByReviewRound($reviewRound, $fileStage);
 		} else {

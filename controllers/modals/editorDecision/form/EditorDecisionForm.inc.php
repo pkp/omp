@@ -139,7 +139,7 @@ class EditorDecisionForm extends Form {
 		// If we already have review round for this stage,
 		// we create a new round after the last one.
 		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO'); /* @var $reviewRoundDao ReviewRoundDAO */
-		$lastReviewRound =& $reviewRoundDao->getLastReviewRoundByMonographId($monograph->getId(), $stageId);
+		$lastReviewRound =& $reviewRoundDao->getLastReviewRoundBySubmissionId($monograph->getId(), $stageId);
 		if ($lastReviewRound) {
 			$newRound = $lastReviewRound->getRound() + 1;
 		} else {

@@ -233,7 +233,7 @@ class ReviewRoundDAO extends DAO {
 	 * @param $stageId int
 	 * @return ReviewRound
 	 */
-	function getLastReviewRoundByMonographId($monographId, $stageId = null) {
+	function getLastReviewRoundBySubmissionId($monographId, $stageId = null) {
 		$params = array((int)$monographId);
 		if ($stageId) $params[] = (int) $stageId;
 		$result = $this->retrieve(
@@ -327,7 +327,7 @@ class ReviewRoundDAO extends DAO {
 
 			// Don't update the review round status if it isn't the
 			// stage's current one.
-			$lastReviewRound = $this->getLastReviewRoundByMonographId($reviewRound->getSubmissionId(), $reviewRound->getStageId());
+			$lastReviewRound = $this->getLastReviewRoundBySubmissionId($reviewRound->getSubmissionId(), $reviewRound->getStageId());
 			if ($lastReviewRound->getId() != $reviewRound->getId()) {
 				return;
 			}

@@ -167,7 +167,7 @@ class EditorDecisionWithEmailForm extends EditorDecisionForm {
 	function _updateReviewRoundStatus($seriesEditorSubmission, $status, $reviewRound = null) {
 		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO'); /* @var $reviewRoundDao ReviewRoundDAO */
 		if (!$reviewRound) {
-			$reviewRound =& $reviewRoundDao->getLastReviewRoundByMonographId($seriesEditorSubmission->getId());
+			$reviewRound =& $reviewRoundDao->getLastReviewRoundBySubmissionId($seriesEditorSubmission->getId());
 		}
 
 		// If we don't have a review round, it's because the monograph is being

@@ -298,7 +298,7 @@ class WorkflowHandler extends Handler {
 		if ($reviewRoundId) {
 			$actionArgs['reviewRoundId'] = $reviewRoundId;
 			$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
-			$lastReviewRound =& $reviewRoundDao->getLastReviewRoundByMonographId($monograph->getId(), $stageId);
+			$lastReviewRound =& $reviewRoundDao->getLastReviewRoundBySubmissionId($monograph->getId(), $stageId);
 		}
 
 		// If a review round was specified,

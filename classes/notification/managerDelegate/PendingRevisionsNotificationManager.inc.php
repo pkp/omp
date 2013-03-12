@@ -66,7 +66,7 @@ class PendingRevisionsNotificationManager extends RevisionsNotificationManager {
 		$monographDao = DAORegistry::getDAO('MonographDAO');
 		$monograph = $monographDao->getById($monographId);
 		$reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO');
-		$lastReviewRound = $reviewRoundDao->getLastReviewRoundByMonographId($monograph->getId(), $stageId);
+		$lastReviewRound = $reviewRoundDao->getLastReviewRoundBySubmissionId($monograph->getId(), $stageId);
 
 		import('controllers.api.file.linkAction.AddRevisionLinkAction');
 		AppLocale::requireComponents(LOCALE_COMPONENT_APP_EDITOR); // editor.review.uploadRevision

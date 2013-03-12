@@ -83,8 +83,8 @@ class AuthorDashboardHandler extends Handler {
 		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
 		$internalReviewRounds =& $reviewRoundDao->getByMonographId($monograph->getId(), WORKFLOW_STAGE_ID_INTERNAL_REVIEW);
 		$externalReviewRounds =& $reviewRoundDao->getByMonographId($monograph->getId(), WORKFLOW_STAGE_ID_EXTERNAL_REVIEW);
-		$lastInternalReviewRound =& $reviewRoundDao->getLastReviewRoundByMonographId($monograph->getId(), WORKFLOW_STAGE_ID_INTERNAL_REVIEW);
-		$lastExternalReviewRound =& $reviewRoundDao->getLastReviewRoundByMonographId($monograph->getId(), WORKFLOW_STAGE_ID_EXTERNAL_REVIEW);
+		$lastInternalReviewRound =& $reviewRoundDao->getLastReviewRoundBySubmissionId($monograph->getId(), WORKFLOW_STAGE_ID_INTERNAL_REVIEW);
+		$lastExternalReviewRound =& $reviewRoundDao->getLastReviewRoundBySubmissionId($monograph->getId(), WORKFLOW_STAGE_ID_EXTERNAL_REVIEW);
 		$lastInternalReviewRoundNumber = 0;
 		$lastExternalReviewRoundNumber = 0;
 		if ($lastInternalReviewRound) {
@@ -100,7 +100,7 @@ class AuthorDashboardHandler extends Handler {
 		$templateMgr->assign('lastReviewRoundNumber', $lastReviewRoundNumber);
 
 		// Get the last review round.
-		$lastReviewRound =& $reviewRoundDao->getLastReviewRoundByMonographId($monograph->getId(), $currentStage);
+		$lastReviewRound =& $reviewRoundDao->getLastReviewRoundBySubmissionId($monograph->getId(), $currentStage);
 
 		// Create and assign add file link action.
 		if ($fileStage && is_a($lastReviewRound, 'ReviewRound')) {
