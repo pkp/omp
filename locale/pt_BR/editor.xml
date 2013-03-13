@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../lib/pkp/dtd/locale.dtd">
+<!--
+  * locale/en_US/editor.xml
+  *
+  * Copyright (c) 2003-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the pt_BR (Portuguese - Brazilian) locale.
+  -->
+<locale name="pt_BR" full_name="Português (Brasil)">
+	<message key="editor.submissionLibrary.description"><![CDATA[Envie documentos que pertençam à avaliação e publicação desta submissão. Modelos para muitos desses documentos estão disponíveis na página <em>Ver biblioteca de documentos</em>.]]></message>
+	<message key="editor.pressSignoff">Homologação da editora</message>
+	<message key="editor.review.enrollReviewer">Cadastrar usuário existente como avaliador</message>
+	<message key="editor.review.enrollReviewer.short">Cadastrar existente</message>
+	<message key="editor.review.createReviewer">Incluir novo avaliador</message>
+	<message key="editor.review.notInitiated">O processo de avaliação não foi iniciado ainda.</message>
+	<message key="editor.signoff.approved">Aprovado</message>
+	<message key="editor.monograph.personalMessageToUser">Mensagem a ser enviada ao usuário</message>
+	<message key="editor.monograph.taskSchedule">Agenda de tarefas</message>
+	<message key="editor.monograph.taskDueDate">Prazo da tarefa</message>
+
+	<message key="editor.submissionArchive">Submissões</message>
+	<message key="editor.submissionReview.recordDecision">Registrar decisão editorial</message>
+	<message key="editor.submissionReview.reviewType">Tipo de revisão</message>
+	<message key="editor.submissionReview.skipEmail">Não enviar e-mail</message>
+	<message key="editor.submissionReview.open">Aberta</message>
+	<message key="editor.submissionReview.blind">Cega</message>
+	<message key="editor.submissionReview.doubleBlind">Duplamente cega</message>
+	<message key="editor.submissionReview.uploadFile">Enviar arquivo para revisão</message>
+	<message key="editor.submissionReview.uploadAttachment">Enviar arquivo</message>
+	<message key="editor.monograph.addReviewer">Incluir avaliador</message>
+	<message key="editor.monograph.returnToSimpleSearch">Voltar à busca simples</message>
+	<message key="editor.monograph.cancelReview">Cancelar solicitação</message>
+	<message key="editor.monograph.clearReview">Liberar avaliador</message>
+	<message key="editor.monograph.enterRecommendation">Recomendação</message>
+	<message key="editor.monograph.enterReviewerRecommendation">Digite a recomendação</message>
+	<message key="editor.monograph.recommendation">Recomendação</message>
+	<message key="editor.monograph.selectReviewer">Escolher avaliador</message>
+	<message key="editor.monograph.selectReviewerInstructions">Escolha um avaliador da lista acima e pressione o botão 'Designar avaliador' para continuar.</message>
+	<message key="editor.monograph.selectedReviewer">Avaliador escolhido</message>
+	<message key="editor.monograph.replaceReviewer">Substituir avaliador</message>
+	<message key="editor.monograph.editorToEnter">Editor informa recomendação/comentários pelo avaliador</message>
+	<message key="editor.monograph.uploadReviewForReviewer">Enviar revisão</message>
+	<message key="editor.monograph.peerReviewOptions">Opções de avaliação pelos pares</message>
+	<message key="editor.monograph.decision">Decisão</message>
+	<message key="editor.monograph.decision.accept">Aceitar</message>
+	<message key="editor.monograph.decision.requestRevisions">Revisões necessárias</message>
+	<message key="editor.monograph.decision.resubmit">Enviar novamente para avaliação</message>
+	<message key="editor.monograph.decision.decline">Rejeitar</message>
+	<message key="editor.monograph.decision.sendToProduction">Enviar para proudção</message>
+	<message key="editor.monograph.decision.sendInternalReview">Enviar para avaliação interna</message>
+	<message key="editor.monograph.decision.sendExternalReview">Enviar para avaliação externa</message>
+	<message key="editor.monograph.decision.approveProofs">Provas homologadas</message>
+	<message key="editor.monograph.decision.approveProofsDescription">A página de arquivo de prova deve ser marcada como aprovada para se tornar disponível. Deseja aprová-la?</message>
+	<message key="editor.monograph.decision.disapproveProofsDescription">A prova deste arquivo não estará mais disponível publicamente para baixar ou comprar. Deseja realmente prosseguir?</message>
+	<message key="editor.monograph.selectAttachments">Escolha os anexos de avaliação para disponibilizar ao autor</message>
+	<message key="editor.monograph.selectPromoteRevisions">Escolha as revisões a serem usadas no próximo estágio</message>
+	<message key="editor.monograph.selectFairCopy">Escolha os arquivos de edição aprovados para enviar à produção.</message>
+	<message key="editor.monograph.selectProofreadingFiles">Arquivos para leitura de provas</message>
+	<message key="editor.monograph.selectCopyedingFiles">Arquivos de edição de texto</message>
+	<message key="editor.monograph.roundStatus.revisionsRequested">Revisões solicitadas.</message>
+	<message key="editor.monograph.roundStatus.resubmitted">Submissão enviada novamente para avaliação.</message>
+	<message key="editor.monograph.roundStatus.sentToExternal">Enviada para avaliação externa.</message>
+	<message key="editor.monograph.roundStatus.accepted">Submissão aceita.</message>
+	<message key="editor.monograph.roundStatus.declined">Submissão rejeitada.</message>
+	<message key="editor.monograph.roundStatus.pendingReviewers">Aguardando avaliadores.</message>
+	<message key="editor.monograph.roundStatus.pendingReviews">Aguardando respostas dos avaliadores.</message>
+	<message key="editor.monograph.roundStatus.reviewsReady">Novos avaliadores prontos.</message>
+	<message key="editor.monograph.roundStatus.reviewsCompleted">Avaliações concluídas.</message>
+	<message key="editor.monograph.createNewRound">Criar nova rodada de avaliação</message>
+	<message key="editor.monograph.internalReview">Iniciar avaliação interna</message>
+	<message key="editor.monograph.internalReviewDescription">Iniciando avaliação interna para esta submissão. Arquivos que fazem parte da submissão são listados a seguir, para que os escolhidos sejam encaminhados para avaliação.</message>
+	<message key="editor.monograph.externalReview">Iniciar avaliação externa</message>
+	<message key="editor.monograph.externalReviewDescription">Iniciando avaliação externa para esta submissão. Arquivos que fazem parte da submissão são listados a seguir, para que os escolhidos sejam encaminhados para avaliação.</message>
+	<message key="editor.monograph.newRound">Nova rodada de avaliação</message>
+	<message key="editor.monograph.newRoundDescription">Iniciando avaliação externa para esta submissão. Arquivos não usados em outras rodadas estão listados a seguir. Por padrão, os avaliadores de outras rodadas foram escolhidos para participar desta nova rodada..</message>
+	<message key="editor.monograph.revisions">Revisões</message>
+	<message key="editor.monograph.revisionsDescription">Arquivos de submissão revisados são listados aqui , com o ícone de pasta aberto indicando quem enviou.</message>
+	<message key="editor.submissions.lastAssigned">Mais recente</message>
+	<message key="editor.monograph.review.manageReviewFilesDescription">Qualquer arquivo enviado anteriormente a qualquer estágio da submissão (incluindo editorial ou produção) pode ser escolhido para avaliação marcando o opção Incluir abaixo e pressionar em Buscar: todos os arquivos disponíveis serão listados e podem ser escolhidos para incluisão. Arquivos adicionais não enviados ao estágio ainda podem ser incluídos na lista usando a opção Enviar arquivo para avaliação.</message>
+	<message key="editor.monograph.review.reviewFilesDescription"><![CDATA[Estes são os arquivos que podem ser escolhidos para avaliação, ao <span class="pkp_help_title">Avaliadores</span>]]>.</message>
+	<message key="editor.monograph.review.reviewersDescription"><![CDATA[Use <em>+Incluir avaliador</em> para convidar leitores a avaliar submissões. O ícone de notebook indica que uma avaliação foi enviada, que é então marcada como <em>Considerada</em> após ser consultada. Quando avaliações estão atrasadas, um ícone de envelope vermelho aparecerá, como lembrete aos avaliadores.]]></message>
+	<message key="editor.monograph.fileList.includeAllStages">Incluir todos os arquivos de todos os estágiso do processo.</message>
+	<message key="editor.monograph.review.currentFiles">Arquivos de avaliação atuais para a rodada {$round}</message>
+	<message key="editor.monograph.final.selectFinalDraftFiles">Escolher versão final de arquivo</message>
+	<message key="editor.monograph.uploadSelectFiles">Enviar/escolher arquivos</message>
+	<message key="editor.monograph.final.manageFinalDraftFilesDescription">Qualquer arquivo enviado anteriormente a qualquer estágio da submissão pode ser incluído na lista de versão final de arquivos, marcando a opção Incluir a seguir e em seguida Buscar: todos os arquivos disponíveis serão listados e podem ser escolhidos para incluisão. Arquivos adicionais não enviados ao estágio ainda podem ser incluídos na lista usando a opção Enviar versão final de arquivo.</message>
+	<message key="editor.monograph.final.currentFiles">Versões finais atuais de arquivos</message>
+
+	<!-- Stage Participants grid -->
+	<message key="editor.monograph.noneAssigned">Nenhum designado</message>
+	<message key="editor.monograph.participant">Participante</message>
+	<message key="editor.monograph.stageParticipants">Participantes</message>
+	<message key="editor.monograph.addStageParticipant">Incluir participante</message>
+	<message key="editor.monograph.addStageParticipant.description"><![CDATA[Para incluir um participante a este estágio da submissão, escolha um grupo de usuários da lista e inclua o usuário.<br /><br />Nota: O usuário escolhido será incluído a todos os estágios designados ao grupo.]]></message>
+	<message key="editor.monograph.removeStageParticipant">Remover participante</message>
+	<message key="editor.monograph.removeStageParticipant.description"><![CDATA[O participante está prestes a ser removido de <strong>todos</strong> os estágios. Caso ele tenha tarefas de auditoria pendentes, elas também serão removidas.]]></message>
+	<message key="editor.monograph.addStageParticipant.form.userGroupRequired">É necessário escolher um grupo de usuários.</message>
+	<message key="editor.monograph.addStageParticipant.form.userRequired">É necessário escolher um usuário do grupo específicado.</message>
+
+
+	<message key="editor.monograph.copyediting.currentFiles">Arquivos atuais</message>
+	<message key="editor.monograph.copyediting.personalMessageToUser">Mensagem ao usuário</message>
+	
+	<!-- Editorial Legend -->
+	<message key="editor.monograph.legend.submissionActions">Ações de submissão</message>
+	<message key="editor.monograph.legend.submissionActionsDescription">Ações e opções gerais de submissão.</message>
+	<message key="editor.monograph.legend.sectionActions">Ações de seção</message>
+	<message key="editor.monograph.legend.sectionActionsDescription">Opções específicas a uma seção, como, por exemplo, o envio de arquivos ou inclusão de usuários.</message>
+	<message key="editor.monograph.legend.itemActions">Ações de item</message>
+	<message key="editor.monograph.legend.itemActionsDescription">Ações e opções específicas a um arquivo.</message>
+	<message key="editor.monograph.legend.catalogEntry">Ver e gerenciar entradas do catálogo de submissão, incluindo metadados e formatos de publicação</message>
+	<message key="editor.monograph.legend.bookInfo">Ver e gerenciar metadados, notas, notificações e histórico da submissão</message>
+	<message key="editor.monograph.legend.participants">Ver e gerenciar os participantes desta submissão: autores, editores, designers, entre outros</message>
+	<message key="editor.monograph.legend.add">Enviar arquivo para a seção</message>
+	<message key="editor.monograph.legend.add_user">Incluir usuário na seção</message>
+	<message key="editor.monograph.legend.settings">Ver e acessar configurações do item, como opções de informação e exclusão</message>
+	<message key="editor.monograph.legend.more_info">Mais informação: notas, opções de notificação e histórico do arquivo</message>
+	<message key="editor.monograph.legend.notes_none">Informação do arquivo: notas,  opções de notificação e histórico (Nenhuma nota incluída ainda)</message>
+	<message key="editor.monograph.legend.notes">Informação do arquivo: notas, opções de notificação e histórico (Nota disponíveis)</message>
+	<message key="editor.monograph.legend.notes_new">Informação do arquivo: notas, opções de notificação e histórico (Novas notas desde sua última visita)</message>
+	<message key="editor.monograph.legend.edit">Editar item</message>
+	<message key="editor.monograph.legend.delete">Excluir item</message>
+	<message key="editor.monograph.legend.in_progress">Ação em progresso ou não concluída ainda</message>
+	<message key="editor.monograph.legend.complete">Ação concluída</message>
+	<message key="editor.monograph.legend.uploaded">Arquivo enviado pelo papel na coluna título do grid</message>
+
+	<!-- Editorial related -->
+	<message key="editor.submission.introduction">No estágio Submissão, após consultar os arquivos enviados, o editor escolhe a ação apropriada (que inclui notificar o autor): Enviar para avaliação interna (implica em escolher arquivos para a avaliação interna); Enviar para avaliação externa (implica em escolher arquivos para avaliação externa); Aceitar (implica em escolher arquivos para o estágio editorial); Rejeitar (arquiva a submissão).</message>
+	<message key="editor.monograph.editorial.introduction"><![CDATA[No estágio Editorial, o editor de texto trabalha na versão final antes de enviar arquivos para a <span class="pkp_help_title">Edição de texto</span>, onde o autor e outros podem fazer suas avaliações, levando à preparação e envio de uma versão limpa da submissão editada para a <span class="pkp_help_title">Edição de texto</span>, que será então <em>Aprovada</em> por um editor e enviada ao estágio de Produção.]]></message>
+	<message key="editor.monograph.editorial.finalDraftDescription"><![CDATA[Para volumes editados, com autores distintos para cada capítulo, o arquivo de submissão pode ser dividido em arquivos por capítulo para edição de texto, sendo avaliados então pelos autores dos capítulos após serem enviados à <span class="pkp_help_title">Edição de texto</span>.]]></message>
+	<message key="editor.monograph.editorial.copyeditingDescription"><![CDATA[Designe os arquivos editados aos autores (e outros participantes caso necessário) para que façam suas considerações, com suas respostas e arquivos enviados listados no ícone de notebook. Estes são marcadas como <em>Considerados</em> pelo editor de texto, que preparará uma versão final limpa para enviar à <span class="pkp_help_title">Edição de texto</span>, onde o editor a marcará como aprovada, antes de enviá-la ao estágio Produção.]]></message>
+	<message key="editor.monograph.editorial.fairCopy">Texto limpo</message>
+	<message key="editor.monograph.editorial.fairCopyDescription">O editor de texto envia uma versão limpa da submissão para revisão pelo editor, antes de ser enviada para a produção.</message>
+	<message key="editor.monograph.editorial.approveCopyeditDescription">A versão editada precisa ser aprovada antes de ser enviada para Produção. Deseja aprovar este arquivo?</message>
+	<message key="editor.monograph.editorial.disapproveCopyeditDescription">Não aprovar este arquivo editado o tornará indisponível para envio à produção. Deseja realmente não aprovar este arquivo?</message>
+	<message key="editor.monograph.editorial.approveCopyeditFile">Aprovar arquivo editado</message>
+
+	<!-- Production/Proof related -->
+	<message key="editor.monograph.production.introduction"><![CDATA[No estágio Produção, o editor escolhe os formatos de livro (ex.: digital, capa macia, etc.) em <span class="pkp_help_title">Formatos de publicação</span>, para os quais o editor de layout prepara arquivos com qualidade de publicação para os arquivos em produção. Arquivos com qualidade de publicação são enviados para cada formato em <span class="pkp_help_title">Página de provas</span>, onde é realizada a leitura de provas. O livro se torna <em>Disponível</em> (isto é, publicado) para cada formato em <span class="pkp_help_title">Formatos de publicação</span>, após a prova ser marcada como aprovada em <em>Provas</em>, e a entrada do catálogo é marcada como incluída no catálogo de entradas do livro.]]></message>
+	<message key="editor.monograph.production.productionReadyFiles">Arquivos prontos para produção</message>
+	<message key="editor.monograph.production.productionReadyFilesDescription"><![CDATA[O editor de layout prepara os arquivos para cada formato de publicação e os envia à <span class="pkp_help_title">Página de provas</span> apropriada para leitura.]]></message>
+	<message key="editor.monograph.proofs">Provas</message>
+	<message key="editor.monograph.production.approvalAndPublishing">Aprovação e publicação</message>
+	<message key="editor.monograph.production.approvalAndPublishingDescription">Formatos de publicação distintos, como capa dura, capa macia e digital, podem ser enviados na seção Formatos de publicação a seguir. Use o grid de formatos de publicação como uma lista de verificação do que ainda é necessáiro fazer para publicar um formato.</message>
+	<message key="editor.monograph.production.publicationFormatDescription"><![CDATA[Incluir formatos de publicação (ex.: digital, brochura), para os quais o editor de layout deve prepara provas para leitura. As <em>Provas</em> devem ser marcadas como aprovadas e a entrada no <em>Catálogo</em> deve ser maracada como incluída no catálogo de entradas do livro antes de tornar um formato <em>Disponível</em> (isto é, publicado).]]></message>
+	<message key="editor.monograph.approvedProofs.edit">Estabelecer condições para baixar</message>
+	<message key="editor.monograph.approvedProofs.edit.linkTitle">Estabelecer termos</message>
+	<message key="editor.monograph.proof.reminder">Lembrete de leitura de prova</message>
+	<message key="editor.monograph.proof.addNote">Incluir resposta</message>
+
+	<!-- Add file or auditor to editor/audit grids -->
+	<message key="editor.monograph.addAuditor">Designar</message>
+	<message key="editor.monograph.addAuditorError">Ocorreu um erro ao tentar designar o auditor. Tente novamente.</message>
+	<message key="editor.monograph.fileAuditor.form.userRequired">É necessário escolher um usuário a ser designdo.</message>
+	<message key="editor.monograph.fileAuditor.form.fileRequired">É necessário escolher pelo menos um arquivo a ser designado ao usuário.</message>
+	<message key="editor.monograph.fileAuditor.form.messageRequired">Uma mensagem particular deve ser incluída.</message>
+	<message key="editor.monograph.fileAuditor.skipEmail">Não enviar e-mail ao auditor</message>
+	<message key="editor.monograph.noAuditRequested">Nenhuma solicitação de auditoria para este arquivo</message>
+
+	<!-- Review related -->
+	<message key="editor.review">Avaliação</message>
+	<message key="editor.internalReview.introduction">No estágio Avaliação interna, o editor designa avaliadores internos para avaliarem os arquivos de submissão e considera as avaliações resultantes, antes de escolher a ação apropriada (que inclui notificar o autor): Revisões necessárias (revisões avaliadas apenas pelo editor); Enviar novamente para avaliação (revisões iniciam uma nova rodada de avaliação); Enviar para avaliação externa (implica em escolher arquivos para avaliação externa); Aceitar (implica em escolher arquivos para a edição); ou Rejeitar (arquiva a submissão).</message>
+	<message key="editor.externalReview.introduction">No estágio Avaliação externa, o editor designa avaliadores externos à editora para avaliaremos arquivos de submissão e considera as avaliações resultantes, antes de escolher a ação apropriada (que inclui notificar o autor): Revisões necessárias (revisões avaliadas apenas pelo editor); Enviar novamente para avaliação (revisões iniciam uma nova rodada de avaliação); Enviar para avaliação externa (implica em escolher arquivos para avaliação externa); Aceitar (implica em escolher arquivos para a edição); ou Rejeitar (arquiva a submissão).</message>
+	<message key="editor.review.uploadRevision">Enviar revisão</message>
+	<message key="editor.review.uploadRevisionToRound">Enviar arquivo revisado</message>
+	<message key="editor.review.personalMessageToReviewer">Mensagem a ser enviada ao avaliador</message>
+	<message key="editor.review.personalMessageFromEditor">Mensagem do editor</message>
+	<message key="editor.review.NotifyAuthorAccept">Notificar o autor do aceite:</message>
+	<message key="editor.review.NotifyAuthorDecline">Notificar o autor da rejeição:</message>
+	<message key="editor.review.NotifyAuthorRevisions">Notificar o autor da necessidade de revisões:</message>
+	<message key="editor.review.NotifyAuthorResubmit">Notificar o autor que revisões exigirão uma nova rodada de avaliação:</message>
+	<message key="editor.review.NotifyAuthorExternal">Notificar o autor da decisão de realizar avaliação externa:</message>
+	<message key="editor.review.personalMessageToAuthor">Mensagem a ser enviada ao autor</message>
+	<message key="editor.review.importantDates">Datas importantes</message>
+	<message key="editor.review.dateAccepted">Data de aceitação da revisão</message>
+	<message key="editor.review.noReviews">Nenhuma avaliação pelos pares a ser importada</message>
+	<message key="editor.review.reminder">Lembrete de avaliação</message>
+	<message key="editor.review.thankReviewer">Agrader avaliador</message>
+	<message key="editor.review.reminderError">Erro ao enviar lembrete de avaliação</message>
+	<message key="editor.review.thankReviewerError">Erro ao enviar agradecimento ao avaliador</message>
+	<message key="editor.review.skipEmail">Não enviar mensagem ao avaliador</message>
+	<message key="editor.review.sendReminder">Enviar lembrete</message>
+	<message key="editor.review.reviewDueDate">Data de entrega da avaliação</message>
+	<message key="editor.review.reviewCompleted">Avaliação concluída</message>
+	<message key="editor.review.reviewerComments">Comentários do avaliador</message>
+	<message key="editor.review.days">Média de dias</message>
+	<message key="editor.review.mustSelect">É necessário escolher um avaliador</message>
+	<message key="editor.review.errorAddingReviewer">Ocorreu um erro incluindo o avlaiador. Tente novamente.</message>
+	<message key="editor.review.errorDeletingReviewer">Ocorreu um erro excluindo o avaliador. Tente novamente.</message>
+	<message key="editor.review.userGroupSelect">Inscrever usuário neste grupo de avaliadores</message>
+	<message key="editor.review.unconsiderReviewText">Deseja marcar esta avaliação como desconsiderada? O histórico da avaliação erá preservado.</message>
+	<message key="editor.review.unconsiderReview">Desconsiderar avaliação</message>
+	<message key="editor.review.errorUnconsideringReview">Ocorreu um erro marcando esta avaliação como desconsiderarda. Tente novamente.</message>
+	<message key="editor.review.readConfirmation">Uma vez lida a avaliação, pression "Confirmar" para indicar que o processo de avaliação pode prosseguir.</message>
+</locale>
