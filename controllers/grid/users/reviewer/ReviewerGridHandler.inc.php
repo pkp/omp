@@ -91,7 +91,8 @@ class ReviewerGridHandler extends GridHandler {
 			$reviewAssignment =& $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ASSIGNMENT);
 			$reviewRoundId = $reviewAssignment->getReviewRoundId();
 			$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
-			return $reviewRoundDao->getReviewRoundById($reviewRoundId);
+			$reviewRound = $reviewRoundDao->getReviewRoundById($reviewRoundId);
+			return $reviewRound;
 		}
 	}
 
