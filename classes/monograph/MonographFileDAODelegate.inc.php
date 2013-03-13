@@ -245,8 +245,8 @@ class MonographFileDAODelegate extends SubmissionFileDAODelegate {
 	 */
 	function fromRow($row) {
 		$monographFile = $this->newDataObject();
-		$monographFile->setFileId((int)$row['monograph_file_id']);
-		$monographFile->setRevision((int)$row['monograph_revision']);
+		$monographFile->setFileId((int)$row['submission_file_id']);
+		$monographFile->setRevision((int)$row['submission_revision']);
 		$monographFile->setAssocType(is_null($row['assoc_type']) ? null : (int)$row['assoc_type']);
 		$monographFile->setAssocId(is_null($row['assoc_id']) ? null : (int)$row['assoc_id']);
 		$monographFile->setSourceFileId(is_null($row['source_file_id']) ? null : (int)$row['source_file_id']);
@@ -265,7 +265,7 @@ class MonographFileDAODelegate extends SubmissionFileDAODelegate {
 		$monographFile->setDirectSalesPrice($row['direct_sales_price']);
 		$monographFile->setSalesType($row['sales_type']);
 
-		$this->getDataObjectSettings('monograph_file_settings', 'file_id', $row['monograph_file_id'], $monographFile);
+		$this->getDataObjectSettings('monograph_file_settings', 'file_id', $row['submission_file_id'], $monographFile);
 
 		return $monographFile;
 	}
