@@ -165,7 +165,7 @@ class MonographMailTemplate extends MailTemplate {
 	 * @param $stageId int
 	 */
 	function toAssignedSeriesEditors($monographId, $stageId) {
-		return $this->_addUsers($monographId, ROLE_ID_SERIES_EDITOR, $stageId, 'addRecipient');
+		return $this->_addUsers($monographId, ROLE_ID_SUB_EDITOR, $stageId, 'addRecipient');
 	}
 
 	/**
@@ -175,7 +175,7 @@ class MonographMailTemplate extends MailTemplate {
 	 * @return array of Users (note, this differs from OxS which returns EditAssignment objects)
 	 */
 	function ccAssignedSeriesEditors($monographId, $stageId) {
-		return $this->_addUsers($monographId, ROLE_ID_SERIES_EDITOR, $stageId, 'addCc');
+		return $this->_addUsers($monographId, ROLE_ID_SUB_EDITOR, $stageId, 'addCc');
 	}
 
 	/**
@@ -184,7 +184,7 @@ class MonographMailTemplate extends MailTemplate {
 	 * @param $stageId int
 	 */
 	function bccAssignedSeriesEditors($monographId, $stageId) {
-		return $this->_addUsers($monographId, ROLE_ID_SERIES_EDITOR, $stageId, 'addBcc');
+		return $this->_addUsers($monographId, ROLE_ID_SUB_EDITOR, $stageId, 'addBcc');
 	}
 
 	/**

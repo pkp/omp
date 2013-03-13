@@ -56,7 +56,7 @@ class SubmissionMetadataHandler extends Handler {
 
 		// prevent anyone but managers and editors from submitting the catalog entry form
 		$userRoles = $this->getAuthorizedContextObject(ASSOC_TYPE_USER_ROLES);
-		if (!array_intersect(array(ROLE_ID_MANAGER, ROLE_ID_SERIES_EDITOR), $userRoles)) {
+		if (!array_intersect(array(ROLE_ID_MANAGER, ROLE_ID_SUB_EDITOR), $userRoles)) {
 			$params['hideSubmit'] = true;
 			$params['readOnly'] = true;
 		}

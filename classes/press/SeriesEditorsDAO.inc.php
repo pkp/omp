@@ -111,7 +111,7 @@ class SeriesEditorsDAO extends DAO {
 				LEFT JOIN series_editors e ON (e.user_id = u.user_id AND e.press_id = ug.context_id AND e.series_id = ?)
 			WHERE	e.series_id IS NULL
 			ORDER BY last_name, first_name',
-			array(ROLE_ID_SERIES_EDITOR, (int) $pressId, (int) $seriesId)
+			array(ROLE_ID_SUB_EDITOR, (int) $pressId, (int) $seriesId)
 		);
 
 		while (!$result->EOF) {

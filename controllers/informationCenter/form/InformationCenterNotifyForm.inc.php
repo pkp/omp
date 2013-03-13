@@ -210,7 +210,7 @@ class InformationCenterNotifyForm extends Form {
 			case 'COPYEDIT_REQUEST':
 				while ($stageAssignment =& $stageAssignments->next()) {
 					$userGroup =& $userGroupDao->getById($stageAssignment->getUserGroupId());
-					if (in_array($userGroup->getRoleId(), array(ROLE_ID_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_ASSISTANT))) {
+					if (in_array($userGroup->getRoleId(), array(ROLE_ID_MANAGER, ROLE_ID_SUB_EDITOR, ROLE_ID_ASSISTANT))) {
 						import('classes.monograph.MonographFile');
 						$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO');
 						$monographFileSignoffDao =& DAORegistry::getDAO('MonographFileSignoffDAO');
@@ -236,7 +236,7 @@ class InformationCenterNotifyForm extends Form {
 			case 'LAYOUT_REQUEST':
 				while ($stageAssignment =& $stageAssignments->next()) {
 					$userGroup =& $userGroupDao->getById($stageAssignment->getUserGroupId());
-					if (in_array($userGroup->getRoleId(), array(ROLE_ID_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_ASSISTANT))) {
+					if (in_array($userGroup->getRoleId(), array(ROLE_ID_MANAGER, ROLE_ID_SUB_EDITOR, ROLE_ID_ASSISTANT))) {
 						$this->_addUploadTaskNotification($request, NOTIFICATION_TYPE_LAYOUT_ASSIGNMENT, $user->getId(), $monograph->getId());
 						return;
 					}
@@ -246,7 +246,7 @@ class InformationCenterNotifyForm extends Form {
 			case 'INDEX_REQUEST':
 				while ($stageAssignment =& $stageAssignments->next()) {
 					$userGroup =& $userGroupDao->getById($stageAssignment->getUserGroupId());
-					if (in_array($userGroup->getRoleId(), array(ROLE_ID_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_ASSISTANT))) {
+					if (in_array($userGroup->getRoleId(), array(ROLE_ID_MANAGER, ROLE_ID_SUB_EDITOR, ROLE_ID_ASSISTANT))) {
 						$this->_addUploadTaskNotification($request, NOTIFICATION_TYPE_INDEX_ASSIGNMENT, $user->getId(), $monograph->getId());
 						return;
 					}
@@ -310,7 +310,7 @@ class InformationCenterNotifyForm extends Form {
 
 			while ($stageAssignment =& $stageAssignments->next()) {
 				$userGroup =& $userGroupDao->getById($stageAssignment->getUserGroupId());
-				if (in_array($userGroup->getRoleId(), array(ROLE_ID_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_ASSISTANT))) {
+				if (in_array($userGroup->getRoleId(), array(ROLE_ID_MANAGER, ROLE_ID_SUB_EDITOR, ROLE_ID_ASSISTANT))) {
 					$notificationDao = DAORegistry::getDAO('NotificationDAO');
 					$notificationDao->deleteByAssoc(ASSOC_TYPE_MONOGRAPH, $monograph->getId(), $user->getId(), $task);
 					return;

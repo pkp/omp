@@ -21,7 +21,7 @@ class NotifyUsersListbuilderHandler extends ListbuilderHandler {
 	function NotifyUsersListbuilderHandler() {
 		parent::ListbuilderHandler();
 		$this->addRoleAssignment(
-			array(ROLE_ID_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_ASSISTANT, ROLE_ID_AUTHOR),
+			array(ROLE_ID_MANAGER, ROLE_ID_SUB_EDITOR, ROLE_ID_ASSISTANT, ROLE_ID_AUTHOR),
 			array('fetch', 'fetchRow', 'fetchOptions')
 		);
 	}

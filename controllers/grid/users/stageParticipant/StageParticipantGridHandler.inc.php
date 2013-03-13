@@ -33,7 +33,7 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 		);
 		// Managers and Editors additionally get administrative access
 		$this->addRoleAssignment(
-			array(ROLE_ID_MANAGER, ROLE_ID_SERIES_EDITOR),
+			array(ROLE_ID_MANAGER, ROLE_ID_SUB_EDITOR),
 			array_merge($peOps, array('addParticipant', 'deleteParticipant', 'saveParticipant', 'fetchUserList'))
 		);
 	}
@@ -79,7 +79,7 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 	function _canAdminister() {
 		// If the current role set includes Manager or Editor, grant.
 		return (boolean) array_intersect(
-			array(ROLE_ID_MANAGER, ROLE_ID_SERIES_EDITOR),
+			array(ROLE_ID_MANAGER, ROLE_ID_SUB_EDITOR),
 			$this->getAuthorizedContextObject(ASSOC_TYPE_USER_ROLES)
 		);
 	}
@@ -390,7 +390,7 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 		$pressId = $monograph->getPressId();
 
 		$filterSeriesEditors = false;
-		if ($roleId == ROLE_ID_SERIES_EDITOR && $seriesId) {
+		if ($roleId == ROLE_ID_SUB_EDITOR && $seriesId) {
 			$seriesEditorsDao =& DAORegistry::getDAO('SeriesEditorsDAO'); /* @var $seriesEditorsDao SeriesEditorsDAO */
 			// Flag to filter series editors only.
 			$filterSeriesEditors = true;

@@ -310,7 +310,7 @@ class Validation {
 	 * @return boolean
 	 */
 	static function isSeriesEditor($pressId = -1) {
-		return Validation::isAuthorized(ROLE_ID_SERIES_EDITOR, $pressId);
+		return Validation::isAuthorized(ROLE_ID_SUB_EDITOR, $pressId);
 	}
 
 	/**

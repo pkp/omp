@@ -27,7 +27,7 @@ class ReviewerSelectGridHandler extends GridHandler {
 	function ReviewerSelectGridHandler() {
 		parent::GridHandler();
 
-		$this->addRoleAssignment(array(ROLE_ID_SERIES_EDITOR, ROLE_ID_MANAGER, ROLE_ID_ASSISTANT),
+		$this->addRoleAssignment(array(ROLE_ID_SUB_EDITOR, ROLE_ID_MANAGER, ROLE_ID_ASSISTANT),
 				array('fetchGrid'));
 	}
 

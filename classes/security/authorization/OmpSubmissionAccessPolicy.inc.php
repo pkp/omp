@@ -48,10 +48,10 @@ class OmpSubmissionAccessPolicy extends ContextPolicy {
 		//
 		// Series editor role
 		//
-		if (isset($roleAssignments[ROLE_ID_SERIES_EDITOR])) {
+		if (isset($roleAssignments[ROLE_ID_SUB_EDITOR])) {
 			// 1) Series editors can access all operations on submissions ...
 			$seriesEditorSubmissionAccessPolicy = new PolicySet(COMBINING_DENY_OVERRIDES);
-			$seriesEditorSubmissionAccessPolicy->addPolicy(new RoleBasedHandlerOperationPolicy($request, ROLE_ID_SERIES_EDITOR, $roleAssignments[ROLE_ID_SERIES_EDITOR]));
+			$seriesEditorSubmissionAccessPolicy->addPolicy(new RoleBasedHandlerOperationPolicy($request, ROLE_ID_SUB_EDITOR, $roleAssignments[ROLE_ID_SUB_EDITOR]));
 
 			// 2) ... but only if the requested submission is part of their series.
 			import('classes.security.authorization.internal.SeriesAssignmentPolicy');

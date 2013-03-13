@@ -88,7 +88,7 @@ class UserAccessibleWorkflowStageRequiredPolicy extends AuthorizationPolicy {
 					$accessibleStageRoles[] = $roleId;
 					break;
 
-				case ROLE_ID_SERIES_EDITOR:
+				case ROLE_ID_SUB_EDITOR:
 					// The requested submission must be part of their series...
 					// and the requested workflow stage must be assigned to
 					// them in the press settings.

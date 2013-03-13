@@ -45,7 +45,7 @@ class OmpPublishedMonographAccessPolicy extends ContextPolicy {
 					$roleAssignments,
 					array( // Only permit these roles
 						ROLE_ID_MANAGER,
-						ROLE_ID_SERIES_EDITOR,
+						ROLE_ID_SUB_EDITOR,
 					)
 				),
 				$submissionParameterName

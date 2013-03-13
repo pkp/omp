@@ -26,7 +26,7 @@ class ManageCatalogHandler extends Handler {
 		parent::Handler();
 
 		$this->addRoleAssignment(
-			array(ROLE_ID_SERIES_EDITOR, ROLE_ID_MANAGER),
+			array(ROLE_ID_SUB_EDITOR, ROLE_ID_MANAGER),
 			array(
 				'index', // Container
 				'homepage', 'search',

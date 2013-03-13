@@ -37,7 +37,7 @@ class ApprovedProofFilesGridHandler extends GridHandler {
 		parent::GridHandler(new ApprovedProofFilesGridDataProvider());
 
 		$this->addRoleAssignment(
-			array(ROLE_ID_MANAGER, ROLE_ID_SERIES_EDITOR),
+			array(ROLE_ID_MANAGER, ROLE_ID_SUB_EDITOR),
 			array(
 				'fetchGrid', 'fetchRow',
 				'editApprovedProof', 'saveApprovedProof',

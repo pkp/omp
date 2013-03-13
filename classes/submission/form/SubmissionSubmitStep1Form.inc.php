@@ -50,7 +50,7 @@ class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
 		// submissions. Otherwise, display only series they are allowed
 		// to submit to.
 		$roleDao = DAORegistry::getDAO('RoleDAO');
-		$isEditor = $roleDao->userHasRole($this->context->getId(), $user->getId(), ROLE_ID_SERIES_EDITOR);
+		$isEditor = $roleDao->userHasRole($this->context->getId(), $user->getId(), ROLE_ID_SUB_EDITOR);
 
 		// Get series for this context
 		$seriesDao = DAORegistry::getDAO('SeriesDAO');

@@ -108,7 +108,7 @@ class SeriesForm extends Form {
 
 		$press =& $request->getPress();
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
-		$seriesEditorCount = $userGroupDao->getContextUsersCount($press->getId(), null, ROLE_ID_SERIES_EDITOR);
+		$seriesEditorCount = $userGroupDao->getContextUsersCount($press->getId(), null, ROLE_ID_SUB_EDITOR);
 		$templateMgr->assign('seriesEditorCount', $seriesEditorCount);
 
 		$categoryDao =& DAORegistry::getDAO('CategoryDAO');

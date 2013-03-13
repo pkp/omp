@@ -31,7 +31,7 @@
 			</td>
 			<td class="pkp_helpers_align_right">
 				{* Check that notes are deletable (i.e. not attached to files from previous stages) and the current user has permission to delete. *}
-				{if $notesDeletable && array_intersect(array(ROLE_ID_MANAGER, ROLE_ID_SERIES_EDITOR), $userRoles)}
+				{if $notesDeletable && array_intersect(array(ROLE_ID_MANAGER, ROLE_ID_SUB_EDITOR), $userRoles)}
 					<form class="pkp_form" id="{$formId}" action="{url op="deleteNote" noteId=$noteId params=$linkParams}">
 						{assign var=deleteNoteButtonId value="deleteNote-$noteId"}
 						{include file="linkAction/buttonConfirmationLinkAction.tpl" titleIcon="modal_delete" buttonSelector="#$deleteNoteButtonId" dialogText="informationCenter.deleteConfirm"}

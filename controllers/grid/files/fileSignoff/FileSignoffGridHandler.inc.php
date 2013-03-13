@@ -53,7 +53,7 @@ class FileSignoffGridHandler extends SubmissionFilesGridHandler {
 		// Set up the roles we may include as columns
 		$roles = array(
 			ROLE_ID_MANAGER => 'user.role.manager',
-			ROLE_ID_SERIES_EDITOR => 'user.role.seriesEditor',
+			ROLE_ID_SUB_EDITOR => 'user.role.seriesEditor',
 			ROLE_ID_ASSISTANT => 'user.role.pressAssistant'
 		);
 

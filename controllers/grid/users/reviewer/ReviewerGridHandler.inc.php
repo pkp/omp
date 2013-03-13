@@ -54,7 +54,7 @@ class ReviewerGridHandler extends GridHandler {
 		$nonPressManagerOperations = array_flip($nonPressManagerOperations);
 
 		$this->addRoleAssignment(
-			array(ROLE_ID_SERIES_EDITOR, ROLE_ID_ASSISTANT),
+			array(ROLE_ID_SUB_EDITOR, ROLE_ID_ASSISTANT),
 			$nonPressManagerOperations
 		);
 	}

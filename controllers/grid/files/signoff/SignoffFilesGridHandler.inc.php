@@ -56,7 +56,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 		$this->_assocId = $assocId;
 
 		$this->addRoleAssignment(
-			array(ROLE_ID_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_ASSISTANT),
+			array(ROLE_ID_MANAGER, ROLE_ID_SUB_EDITOR, ROLE_ID_ASSISTANT),
 			array(
 				'fetchGrid', 'fetchCategory', 'fetchRow', 'returnFileRow', 'returnSignoffRow',
 				'addAuditor', 'saveAddAuditor', 'getAuditorAutocomplete',
@@ -126,7 +126,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 		$this->addAction(new AddFileLinkAction(
 			$request, $monograph->getId(),
 			$this->getStageId(),
-			array(ROLE_ID_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_ASSISTANT),
+			array(ROLE_ID_MANAGER, ROLE_ID_SUB_EDITOR, ROLE_ID_ASSISTANT),
 			$this->getFileStage(),
 			$this->getAssocType(), $this->getAssocId()
 		));
@@ -712,7 +712,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 		// FIXME: is there a better way to do this?
 		$userIds = array();
 		$stageAssignmentDao = & DAORegistry::getDAO('StageAssignmentDAO'); /* @var $stageAssignmentDao StageAssignmentDAO */
-		$seriesEditorAssignments =& $stageAssignmentDao->getBySubmissionAndRoleId($monograph->getId(), ROLE_ID_SERIES_EDITOR, $this->getStageId());
+		$seriesEditorAssignments =& $stageAssignmentDao->getBySubmissionAndRoleId($monograph->getId(), ROLE_ID_SUB_EDITOR, $this->getStageId());
 		$assistantAssignments =& $stageAssignmentDao->getBySubmissionAndRoleId($monograph->getId(), ROLE_ID_ASSISTANT, $this->getStageId());
 
 		$allAssignments = array_merge(
