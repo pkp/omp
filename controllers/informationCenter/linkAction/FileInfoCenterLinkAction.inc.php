@@ -15,39 +15,45 @@
  * @brief An action to open up the information center for a file.
  */
 
-import('lib.pkp.controllers.api.file.linkAction.FileLinkAction');
+import('lib.pkp.controllers.informationCenter.linkAction.PKPFileInfoCenterLinkAction');
 
-class FileInfoCenterLinkAction extends FileLinkAction {
+class FileInfoCenterLinkAction extends PKPFileInfoCenterLinkAction {
 
 	/**
 	 * Constructor
 	 * @param $request Request
-	 * @param $monographFile MonographFile the monograph file
+	 * @param $submissionFile SubmissionFile the submission file
 	 * to show information about.
 	 * @param $stageId int (optional) The stage id that user is looking at.
 	 */
-	function FileInfoCenterLinkAction(&$request, &$monographFile, $stageId = null) {
-		// Instantiate the information center modal.
-		$router =& $request->getRouter();
-		import('lib.pkp.classes.linkAction.request.AjaxModal');
+	function FileInfoCenterLinkAction(&$request, &$submissionFile, $stageId = null) {
+		parent::PKPFileInfoCenterLinkAction(&$request, &$submissionFile, $stageId);
+	}
 
-		$title = (isset($monographFile)) ? implode(': ', array(__('informationCenter.bookInfo'), $monographFile->getLocalizedName())) : __('informationCenter.bookInfo');
+	/**
+	 * returns the modal for this link action.
+	 * @param $request PKPRequest
+	 * @param $submissionFile SubmissionFile
+	 * @param $stageId int
+	 * @return AjaxModal
+	 */
+	function getModal($request, $submissionFile, $stageId) {
+		import('lib.pkp.classes.linkAction.request.AjaxModal');
+		$router =& $request->getRouter();
+
+		$title = (isset($submissionFile)) ? implode(': ', array(__('informationCenter.bookInfo'), $submissionFile->getLocalizedName())) : __('informationCenter.bookInfo');
 
 		$ajaxModal = new AjaxModal(
 			$router->url(
 				$request, null,
 				'informationCenter.FileInformationCenterHandler', 'viewInformationCenter',
-				null, $this->getActionArgs($monographFile, $stageId)
+				null, $this->getActionArgs($submissionFile, $stageId)
 			),
 			$title,
 			'modal_information'
 		);
 
-		// Configure the file link action.
-		parent::FileLinkAction(
-			'moreInformation', $ajaxModal,
-			__('grid.action.moreInformation'), 'more_info'
-		);
+		return $ajaxModal;
 	}
 }
 
