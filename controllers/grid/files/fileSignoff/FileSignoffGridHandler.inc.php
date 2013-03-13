@@ -16,7 +16,7 @@
  *  signoff columns in addition to the file name.
  */
 
-import('controllers.grid.files.SubmissionFilesGridHandler');
+import('lib.pkp.controllers.grid.files.SubmissionFilesGridHandler');
 import('controllers.grid.files.SignoffStatusFromFileGridColumn');
 import('controllers.grid.files.UploaderUserGroupGridColumn');
 
@@ -45,7 +45,7 @@ class FileSignoffGridHandler extends SubmissionFilesGridHandler {
 	function initialize(&$request) {
 		parent::initialize($request);
 		$currentUser =& $request->getUser();
-		$monograph =& $this->getMonograph();
+		$monograph =& $this->getSubmission();
 
 		$stageAssignmentDao = & DAORegistry::getDAO('StageAssignmentDAO'); /* @var $stageAssignmentDao StageAssignmentDAO */
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */

@@ -51,7 +51,7 @@ class EditorReviewFilesGridHandler extends FileListGridHandler {
 	 * @return string Serialized JSON object
 	 */
 	function selectFiles($args, &$request) {
-		$monograph =& $this->getMonograph();
+		$monograph =& $this->getSubmission();
 
 		import('controllers.grid.files.review.form.ManageReviewFilesForm');
 		$manageReviewFilesForm = new ManageReviewFilesForm($monograph->getId(), $this->getRequestArg('stageId'), $this->getRequestArg('reviewRoundId'));

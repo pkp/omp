@@ -12,7 +12,7 @@
  * @brief Handle the fair copy files grid (displays copyedited files ready to move to proofreading)
  */
 
-import('controllers.grid.files.SubmissionFilesGridHandler');
+import('lib.pkp.controllers.grid.files.SubmissionFilesGridHandler');
 import('controllers.grid.files.UploaderUserGroupGridColumn');
 
 class ProductionReadyFilesGridHandler extends SubmissionFilesGridHandler {
