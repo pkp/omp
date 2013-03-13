@@ -13,7 +13,7 @@
  */
 
 
-import('controllers.grid.files.FilesGridDataProvider');
+import('lib.pkp.controllers.grid.files.FilesGridDataProvider');
 
 class SubmissionFilesGridDataProvider extends FilesGridDataProvider {
 
