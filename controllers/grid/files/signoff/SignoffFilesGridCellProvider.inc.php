@@ -55,7 +55,7 @@ class SignoffFilesGridCellProvider extends GridCellProvider {
 
 		switch ($column->getId()) {
 			case 'name':
-				import('controllers.grid.files.FileNameGridColumn');
+				import('lib.pkp.controllers.grid.files.FileNameGridColumn');
 				$fileNameColumn = new FileNameGridColumn(true, WORKFLOW_STAGE_ID_PRODUCTION, true);
 
 				// Set the row data as expected in FileNameGridColumn object.

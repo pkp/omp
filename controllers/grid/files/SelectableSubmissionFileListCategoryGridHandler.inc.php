@@ -17,7 +17,7 @@ import('lib.pkp.classes.controllers.grid.CategoryGridHandler');
 
 // Import submission files grid specific classes.
 import('controllers.grid.files.SubmissionFilesGridRow');
-import('controllers.grid.files.FileNameGridColumn');
+import('lib.pkp.controllers.grid.files.FileNameGridColumn');
 import('controllers.grid.files.SelectableSubmissionFileListCategoryGridRow');
 
 // Import monograph file class which contains the SUBMISSION_FILE_* constants.
