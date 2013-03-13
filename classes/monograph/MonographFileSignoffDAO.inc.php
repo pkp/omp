@@ -122,7 +122,7 @@ class MonographFileSignoffDAO extends SignoffDAO {
 	 * @return DAOResultFactory
 	 */
 	function getAllByMonograph($monographId, $symbolic = null, $userId = null, $userGroupId = null, $notCompletedOnly = false) {
-		$sql = 'SELECT s.* FROM signoffs s, monograph_files mf WHERE s.assoc_type = ? AND s.assoc_id = mf.file_id AND mf.monograph_id = ?';
+		$sql = 'SELECT s.* FROM signoffs s, submission_files sf WHERE s.assoc_type = ? AND s.assoc_id = sf.file_id AND sf.submission_id = ?';
 		$params = array(ASSOC_TYPE_SUBMISSION_FILE, (int) $monographId);
 
 		if ($symbolic) {

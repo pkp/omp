@@ -82,8 +82,8 @@ class MonographFileDAODelegate extends SubmissionFileDAODelegate {
 		}
 
 		$this->update(
-			sprintf('INSERT INTO monograph_files
-				(' . ($fileId ? 'file_id, ' : '') . 'revision, monograph_id, source_file_id, source_revision, file_type, file_size, original_file_name, file_stage, date_uploaded, date_modified, viewable, uploader_user_id, user_group_id, assoc_type, assoc_id, genre_id, direct_sales_price, sales_type)
+			sprintf('INSERT INTO submission_files
+				(' . ($fileId ? 'file_id, ' : '') . 'revision, submission_id, source_file_id, source_revision, file_type, file_size, original_file_name, file_stage, date_uploaded, date_modified, viewable, uploader_user_id, user_group_id, assoc_type, assoc_id, genre_id, direct_sales_price, sales_type)
 				VALUES
 				(' . ($fileId ? '?, ' : '') . '?, ?, ?, ?, ?, ?, ?, ?, %s, %s, ?, ?, ?, ?, ?, ?, ?, ?)',
 				$this->datetimeToDB($monographFile->getDateUploaded()), $this->datetimeToDB($monographFile->getDateModified())),
@@ -91,7 +91,7 @@ class MonographFileDAODelegate extends SubmissionFileDAODelegate {
 		);
 
 		if (!$fileId) {
-			$monographFile->setFileId($this->_getInsertId('monograph_files', 'file_id'));
+			$monographFile->setFileId($this->_getInsertId('submission_files', 'file_id'));
 		}
 
 		$this->updateLocaleFields($monographFile);
@@ -132,11 +132,11 @@ class MonographFileDAODelegate extends SubmissionFileDAODelegate {
 	function updateObject($monographFile, $previousFile) {
 		// Update the file in the database.
 		$this->update(
-			sprintf('UPDATE monograph_files
+			sprintf('UPDATE submission_files
 				SET
 					file_id = ?,
 					revision = ?,
-					monograph_id = ?,
+					submission_id = ?,
 					source_file_id = ?,
 					source_revision = ?,
 					file_type = ?,
@@ -205,7 +205,7 @@ class MonographFileDAODelegate extends SubmissionFileDAODelegate {
 	 */
 	function deleteObject($submissionFile) {
 		if (!$this->update(
-			'DELETE FROM monograph_files
+			'DELETE FROM submission_files
 			 WHERE file_id = ? AND revision = ?',
 			array(
 				(int)$submissionFile->getFileId(),
@@ -215,12 +215,12 @@ class MonographFileDAODelegate extends SubmissionFileDAODelegate {
 		// if we've removed the last revision of this file, clean up
 		// the settings for this file as well.
 		$result = $this->retrieve(
-			'SELECT * FROM monograph_files WHERE file_id = ?',
+			'SELECT * FROM submission_files WHERE file_id = ?',
 			array((int)$submissionFile->getFileId())
 		);
 
 		if ($result->RecordCount() == 0) {
-			$this->update('DELETE FROM monograph_file_settings WHERE file_id = ?',
+			$this->update('DELETE FROM submission_file_settings WHERE file_id = ?',
 			array((int) $submissionFile->getFileId()));
 		}
 
@@ -251,7 +251,7 @@ class MonographFileDAODelegate extends SubmissionFileDAODelegate {
 		$monographFile->setAssocId(is_null($row['assoc_id']) ? null : (int)$row['assoc_id']);
 		$monographFile->setSourceFileId(is_null($row['source_file_id']) ? null : (int)$row['source_file_id']);
 		$monographFile->setSourceRevision(is_null($row['source_revision']) ? null : (int)$row['source_revision']);
-		$monographFile->setMonographId((int)$row['monograph_id']);
+		$monographFile->setMonographId((int)$row['submission_id']);
 		$monographFile->setFileStage((int)$row['file_stage']);
 		$monographFile->setOriginalFileName($row['original_file_name']);
 		$monographFile->setFileType($row['file_type']);
@@ -265,7 +265,7 @@ class MonographFileDAODelegate extends SubmissionFileDAODelegate {
 		$monographFile->setDirectSalesPrice($row['direct_sales_price']);
 		$monographFile->setSalesType($row['sales_type']);
 
-		$this->getDataObjectSettings('monograph_file_settings', 'file_id', $row['submission_file_id'], $monographFile);
+		$this->getDataObjectSettings('submission_file_settings', 'file_id', $row['submission_file_id'], $monographFile);
 
 		return $monographFile;
 	}

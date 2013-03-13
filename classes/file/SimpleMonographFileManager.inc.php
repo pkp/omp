@@ -10,7 +10,7 @@
  * @ingroup file
  *
  * @brief Helper class for simple monograph file management tasks. Simple
- * 	monograph files are not backed in the usual monograph_files manner
+ * 	monograph files are not backed in the usual submission_files manner
  * 	and are not versioned.
  *
  * Monograph directory structure:
