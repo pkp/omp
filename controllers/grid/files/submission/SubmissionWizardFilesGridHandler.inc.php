@@ -13,7 +13,7 @@
  * The submission author and all press/editor roles have access to this grid.
  */
 
-import('controllers.grid.files.fileList.FileListGridHandler');
+import('lib.pkp.controllers.grid.files.fileList.FileListGridHandler');
 
 class SubmissionWizardFilesGridHandler extends FileListGridHandler {
 	/**

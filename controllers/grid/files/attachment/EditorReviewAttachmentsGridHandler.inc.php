@@ -12,7 +12,7 @@
  * @brief Editor's view of the Review Attachments Grid.
  */
 
-import('controllers.grid.files.fileList.FileListGridHandler');
+import('lib.pkp.controllers.grid.files.fileList.FileListGridHandler');
 
 class EditorReviewAttachmentsGridHandler extends FileListGridHandler {
 	/**

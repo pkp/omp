@@ -13,7 +13,7 @@
  */
 
 // Import the grid layout.
-import('controllers.grid.files.fileList.FileListGridHandler');
+import('lib.pkp.controllers.grid.files.fileList.FileListGridHandler');
 
 class AuthorSubmissionDetailsFilesGridHandler extends FileListGridHandler {
 	/**

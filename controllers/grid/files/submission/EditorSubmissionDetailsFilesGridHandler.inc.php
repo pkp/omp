@@ -12,7 +12,7 @@
  * @brief Handle submission file grid requests on the editor's submission details pages.
  */
 
-import('controllers.grid.files.fileList.FileListGridHandler');
+import('lib.pkp.controllers.grid.files.fileList.FileListGridHandler');
 
 class EditorSubmissionDetailsFilesGridHandler extends FileListGridHandler {
 	/**

@@ -12,7 +12,7 @@
  * @brief Handle the editor review file grid (displays files that are to be reviewed in the current round)
  */
 
-import('controllers.grid.files.fileList.FileListGridHandler');
+import('lib.pkp.controllers.grid.files.fileList.FileListGridHandler');
 
 class EditorReviewFilesGridHandler extends FileListGridHandler {
 

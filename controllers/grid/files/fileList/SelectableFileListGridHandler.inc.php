@@ -13,7 +13,7 @@
  * among grid entries.
  */
 
-import('controllers.grid.files.fileList.FileListGridHandler');
+import('lib.pkp.controllers.grid.files.fileList.FileListGridHandler');
 
 class SelectableFileListGridHandler extends FileListGridHandler {
 

@@ -12,7 +12,7 @@
  * @brief Handle file grid requests.
  */
 
-import('controllers.grid.files.fileList.FileListGridHandler');
+import('lib.pkp.controllers.grid.files.fileList.FileListGridHandler');
 
 class ReviewerReviewAttachmentsGridHandler extends FileListGridHandler {
 	/**

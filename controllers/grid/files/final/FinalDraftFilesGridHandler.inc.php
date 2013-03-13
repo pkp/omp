@@ -13,7 +13,7 @@
  */
 
 
-import('controllers.grid.files.fileList.FileListGridHandler');
+import('lib.pkp.controllers.grid.files.fileList.FileListGridHandler');
 
 class FinalDraftFilesGridHandler extends FileListGridHandler {
 	/**

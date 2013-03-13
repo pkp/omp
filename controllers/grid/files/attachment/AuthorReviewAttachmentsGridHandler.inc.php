@@ -13,7 +13,7 @@
  */
 
 import('lib.pkp.classes.controllers.grid.GridRow');
-import('controllers.grid.files.fileList.FileListGridHandler');
+import('lib.pkp.controllers.grid.files.fileList.FileListGridHandler');
 
 class AuthorReviewAttachmentsGridHandler extends FileListGridHandler {
 	/**
