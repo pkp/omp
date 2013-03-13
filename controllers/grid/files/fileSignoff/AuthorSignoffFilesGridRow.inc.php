@@ -13,7 +13,7 @@
  */
 
 // Import grid base classes.
-import('controllers.grid.files.SubmissionFilesGridRow');
+import('lib.pkp.controllers.grid.files.SubmissionFilesGridRow');
 
 class AuthorSignoffFilesGridRow extends SubmissionFilesGridRow {
 
