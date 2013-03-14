@@ -13,14 +13,14 @@
  */
 
 // Import the base Handler.
-import('classes.handler.Handler');
+import('lib.pkp.classes.file.PKPFileManagementHandler');
 
-class FileManagementHandler extends Handler {
+class FileManagementHandler extends PKPFileManagementHandler {
 	/**
 	 * Constructor
 	 */
 	function FileManagementHandler() {
-		parent::Handler();
+		parent::PKPFileManagementHandler();
 	}
 
 
@@ -33,38 +33,9 @@ class FileManagementHandler extends Handler {
 	function authorize(&$request, &$args, $roleAssignments) {
 		// Allow both reviewers (if in review) and press roles.
 		import('classes.security.authorization.OmpReviewStageAccessPolicy');
-		$this->addPolicy(new OmpReviewStageAccessPolicy($request, $args, $roleAssignments, 'monographId', $request->getUserVar('stageId')), true);
+		$this->addPolicy(new OmpReviewStageAccessPolicy($request, $args, $roleAssignments, 'submissionId', $request->getUserVar('stageId')), true);
 
 		return parent::authorize($request, $args, $roleAssignments);
-	}
-
-
-	/**
-	 * @see PKPHandler::initialize()
-	 */
-	function initialize(&$request, $args) {
-		parent::initialize($request, $args);
-	}
-
-
-	//
-	// Getters and Setters
-	//
-	/**
-	 * The monograph to which we upload files.
-	 * @return Monograph
-	 */
-	function &getMonograph() {
-		return $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-	}
-
-
-	/**
-	 * Get the authorized workflow stage.
-	 * @return integer One of the WORKFLOW_STAGE_ID_* constants.
-	 */
-	function getStageId() {
-		return $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
 	}
 }
 
