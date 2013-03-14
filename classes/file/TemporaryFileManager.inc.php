@@ -54,7 +54,7 @@ class TemporaryFileManager extends PKPTemporaryFileManager {
 			$temporaryFile->setOriginalFileName($monographFile->getOriginalFileName());
 			$temporaryFile->setDateUploaded(Core::getCurrentDate());
 
-			$temporaryFileDao->insertTemporaryFile($temporaryFile);
+			$temporaryFileDao->insertObject($temporaryFile);
 
 			return $temporaryFile;
 
