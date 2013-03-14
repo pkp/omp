@@ -188,7 +188,7 @@ class EditorDecisionWithEmailForm extends EditorDecisionForm {
 	 */
 	function _sendReviewMailToAuthor(&$seriesEditorSubmission, $emailKey, $request) {
 		// Send personal message to author.
-		$submitter =& $seriesEditorSubmission->getUser();
+		$submitter = $seriesEditorSubmission->getUser();
 		import('classes.mail.MonographMailTemplate');
 		$email = new MonographMailTemplate($seriesEditorSubmission, $emailKey, null, null, null, false);
 		$email->setBody($this->getData('personalMessage'));
@@ -197,7 +197,7 @@ class EditorDecisionWithEmailForm extends EditorDecisionForm {
 
 		$userStageAssignmentDao =& DAORegistry::getDAO('UserStageAssignmentDAO');
 		$authorStageParticipants = $userStageAssignmentDao->getUsersBySubmissionAndStageId($seriesEditorSubmission->getId(), $seriesEditorSubmission->getStageId(), null, ROLE_ID_AUTHOR);
-		while ($author =& $authorStageParticipants->next()) {
+		while ($author = $authorStageParticipants->next()) {
 			if (preg_match('{^' . quotemeta($submitter->getEmail()) . '$}', $author->getEmail())) {
 				$email->addRecipient($author->getEmail(), $author->getFullName());
 			} else {
