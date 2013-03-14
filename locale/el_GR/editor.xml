@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale/el_GR/editor.xml
+  *
+  * Copyright (c) 2003-2012 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the el_Gr (Greek) locale.
+  -->
+
+<locale name="el_GR" full_name = "Greek">
+	<message key="editor.submissionLibrary.description"><![CDATA[Μεταφόρτωση εγγράφων που σχετίζονται με την αξιολόγηση και δημοσίευση της υποβολής. Μπορείτε να αναζητήσετε πρότυπα για πολλά από τα έγγραφα επιλέγοντας το <em>Προβολή Βιβλιοθήκης Εγγράφων</em>.]]></message>
+	<message key="editor.pressSignoff">Υπογραφή Εκδόσεων</message>
+	<message key="editor.review.enrollReviewer">Ανάθεση ρόλου σε υπάρχον χρήστη ως Αξιολογητής</message>
+	<message key="editor.review.enrollReviewer.short">Ανάθεση ρόλου σε υπάρχον χρήστη</message>
+	<message key="editor.review.createReviewer">Δημιουργία Nέου Αξιολογητή</message>
+	<message key="editor.review.notInitiated">Η διαδικασία αξιολόγησης δεν έχει αρχίσει.</message>
+	<message key="editor.signoff.approved">Έχει Εγκριθεί</message>
+	<message key="editor.monograph.personalMessageToUser">Αποστολή μηνύματος στο χρήστη</message>
+	<message key="editor.monograph.taskSchedule">Χρονοδιάγραμμα Εργασιών</message>
+	<message key="editor.monograph.taskDueDate">Προθεσμία Εργασιών (Ημερομηνία)</message>
+
+	<message key="editor.submissionArchive">Αρχείο Υποβολών</message>
+	<message key="editor.submissionReview.recordDecision">Καταγραφή Απόφασης Συντακτικής Ομάδας</message>
+	<message key="editor.submissionReview.reviewType">Τύπος Αξιολόγησης</message>
+	<message key="editor.submissionReview.skipEmail">Παράλειψη email στον συγγραφέα</message>
+	<message key="editor.submissionReview.open">Ανοικτή</message>
+	<message key="editor.submissionReview.blind">Τυφλή</message>
+	<message key="editor.submissionReview.doubleBlind">Διπλή-"τυφλή" αξιολόγηση</message>
+	<message key="editor.submissionReview.uploadFile">Ανεβάστε το Αρχείο Αξιολόγησης</message>
+	<message key="editor.submissionReview.uploadAttachment">Ανέβασμα Αρχείου</message>
+	<message key="editor.monograph.addReviewer">Προσθήκη Αξιολογητή</message>
+	<message key="editor.monograph.returnToSimpleSearch">Επιστροφή στην Απλή Αναζήτηση</message>
+	<message key="editor.monograph.cancelReview">Ακύρωση Αιτήματος</message>
+	<message key="editor.monograph.clearReview">Καθαρισμός Αξιολογητή</message>
+	<message key="editor.monograph.enterRecommendation">Εισαγωγή Εισήγησης</message>
+	<message key="editor.monograph.enterReviewerRecommendation">Εισαγωγή εισήγησης αξιολογητή</message>
+	<message key="editor.monograph.recommendation">Εισαγωγή Εισήγησης</message>
+	<message key="editor.monograph.selectReviewer">Επιλογή Αξιολογητή</message>
+	<message key="editor.monograph.selectReviewerInstructions">Επιλέξτε έναν από τους παραπάνω αξιολογητές και πατήστε "Επιλογή Αξιολογητή" για να συνεχίσετε.</message>
+	<message key="editor.monograph.selectedReviewer">Έχει επιλεγεί Αξιολογητής</message>
+	<message key="editor.monograph.replaceReviewer">Αντικατάσταση Αξιολογητή</message>
+	<message key="editor.monograph.editorToEnter">Ο επιμελητής εισάγει συστάσεις/σχόλια για τον αξιολογητή</message>
+	<message key="editor.monograph.uploadReviewForReviewer">Ανέβασμα Αξιολόγησης</message>
+	<message key="editor.monograph.peerReviewOptions">Επιλογές αξιολόγησης απο ομότιμους αξιολογητές (Peer Review)</message>
+	<message key="editor.monograph.decision">Απόφαση</message>
+	<message key="editor.monograph.decision.accept">Αποδοχή Υποβολής</message>
+	<message key="editor.monograph.decision.requestRevisions">Αίτημα για αξιολογήσεις</message>
+	<message key="editor.monograph.decision.resubmit">Εκ νέου υποβολή για αξιολόγηση</message>
+	<message key="editor.monograph.decision.decline">Απόρριψη υποβολής</message>
+	<message key="editor.monograph.decision.sendToProduction">Αποστολή για Παραγωγή</message>
+	<message key="editor.monograph.decision.sendInternalReview">Αποστολή για Εσωτερική Αξιολόγηση</message>
+	<message key="editor.monograph.decision.sendExternalReview">Αποστολή για Εξωτερική Αξιολόγηση</message>
+	<message key="editor.monograph.decision.approveProofs">Έγκριση Τυπογραφικών Δοκιμίων</message>
+	<message key="editor.monograph.decision.approveProofsDescription">Η σελίδα με το αρχείο τυπογραφικού δοκιμίου πρέπει να τσεκαριστεί ότι έχει εγκριθεί για να γίνει Διαθέσιμο. Επιθυμείτε να εγκριθεί?</message>
+	<message key="editor.monograph.decision.disapproveProofsDescription">Το αρχείο με το τυπογραφικό δοκίμιο δεν θα είναι πλέον διαθέσιμο στο κοινό για λήψη ή για αγορά. Είστε σίγουροι ότι επιθυμείτε να το απορρίψετε?</message>
+	<message key="editor.monograph.selectAttachments">Επιλέξτε να μπορούν να δούν οι συγγραφείς τα αρχεία αξιολόγησης</message>
+	<message key="editor.monograph.selectPromoteRevisions">Επιλέξτε αξιολογήσεις ώστε να χρησιμοποιηθούν στο επόμενο στάδιο</message>
+	<message key="editor.monograph.selectFairCopy">Επιλέξτε αρχεία επιμελημένων κειμένων που έχουν εγκριθεί για να σταλούν για Παραγωγή.</message>
+	<message key="editor.monograph.selectProofreadingFiles">Αρχεία επιμέλειας τυπογραφικών δοκιμίων</message>
+	<message key="editor.monograph.selectCopyedingFiles">Αρχεία επιμέλειας κειμένων</message>
+	<message key="editor.monograph.roundStatus.revisionsRequested">Οι αξιολογήσεις έχουν ανατεθεί.</message>
+	<message key="editor.monograph.roundStatus.resubmitted">Εκ νέου υποβολή αρχείου για αξιολόγηση.</message>
+	<message key="editor.monograph.roundStatus.sentToExternal">Αποστολή για εξωτερική αξιολόγηση.</message>
+	<message key="editor.monograph.roundStatus.accepted">Η υποβολή έγινε αποδεκτή.</message>
+	<message key="editor.monograph.roundStatus.declined">Η υποβολή έχει απορριφθεί.</message>
+	<message key="editor.monograph.roundStatus.pendingReviewers">Αναμονή αξιολογήσεων.</message>
+	<message key="editor.monograph.roundStatus.pendingReviews">Αναμένονται απαντήσεις από αξιολογητές.</message>
+	<message key="editor.monograph.roundStatus.reviewsReady">Νέες αξιολογήσεις είναι έτοιμες.</message>
+	<message key="editor.monograph.roundStatus.reviewsCompleted">Οι αξιολογήσεις ολοκληρώθηκαν.</message>
+	<message key="editor.monograph.createNewRound">Δημιουργία νέου γύρου αξιολόγησης</message>
+	<message key="editor.monograph.internalReview">Έναρξη Εσωτερικής Αξιολόγησης</message>
+	<message key="editor.monograph.internalReviewDescription">Είτε έτοιμοι να ξεκινήσετε ένα γύρο εσωτερικής αξιολόγησης για την υποβολή. Τα αρχεία που αποτελούν μέρος της υποβολής παρατίθενται παρακάτω και μπορούν να επιλεγούν για αξιολόγηση.</message>
+	<message key="editor.monograph.externalReview">Έναρξη Εξωτερικής Αξιολόγησης</message>
+	<message key="editor.monograph.externalReviewDescription">Είτε έτοιμοι να ξεκινήσετε ένα γύρο εξωτερικής αξιολόγησης για την υποβολή. Τα αρχεία που αποτελούν μέρος της υποβολής παρατίθενται παρακάτω και μπορούν να επιλεγούν για αξιολόγηση.</message>
+	<message key="editor.monograph.newRound">Νέος Γύρος Αξιολόγησης</message>
+	<message key="editor.monograph.newRoundDescription">Είστε έοιμοι να ξεκινήσετε ένα νέο γύρο αξιολόγησης για την υποβολή. Παρακάτω παρατίθονται τα αρχεία που δεν χρησιμοποιήθηκαν σε άλλο γύρο αξιολόγησης. Εξ' ορισμού, οι αξιολογητές που συμμετείχαν σε προηγούμενους γύρους αξιολόγησης θα συμμετέχουν και στο νέο γύρο αξιολογήσεων.</message>
+	<message key="editor.monograph.revisions">Αναθεωρήσεις</message>
+	<message key="editor.monograph.revisionsDescription"> Εδώ εμφανίζονται τα αρχεία αναθεωρημένων υποβολών, ενώ το εικονίδιο με τον ανοικτό φάκελο υποδεικνύει ποιός έχει ανεβάσει το αρχείο.</message>
+	<message key="editor.submissions.lastAssigned">Πιο πρόσφατη</message>
+	<message key="editor.monograph.review.manageReviewFilesDescription">Τα αρχεία που έχουν μεταφορτωθεί σε κάθε στάδιο της υποβολής (είτε στην Σύνταξη ή την Παραγωγή) μπορούν να επιλεγούν για αξιολόγηση ελέγχοντας το checkbox που εμφανίζεται παρακάτω και πατώντας Αναζήτηση: όλα τα διαθέσιμα αρχεία θα εμφανιστούν σε λίστα και θα μπορούν να συμπεριληφθούν. Επιπλέον αρχεία που δεν έχουν μεταφορτωθεί σε κάποιο στάδιο, μπορούν να προστεθούν σε αυτή τη λίστα πατώντας τον σύνδεσμο «Ανέβασμα Αρχείου Αξιολόγησης».</message>
+	<message key="editor.monograph.review.reviewFilesDescription"><![CDATA[Τα αρχεία αυτά μπορούν να διατεθούν για αξιολόγηση, προσθέτοντας αξιολογητές στο <span class="pkp_help_title">Αξιολογητές</span>.]]></message>
+	<message key="editor.monograph.review.reviewersDescription"><![CDATA[Χρησιμοποιείστε <em>+Προσθήκη Αξιολογητή</em> για να προσκαλέσετε αναγνώστες να αξιολογήσουν αρχεία υποβολών. Το εικονίδιο με το σημειωματάριο (notebook icon)  υποδικνύει ότι μια αξιολόγηση έχει υποβληθεί, η οποία έχει τσεκαριστεί ως <em>Θεωρημένη (Considered)</em> μόλις ελεγχθεί. Όταν έχει περάσει η προθεσμία αξιολόγησης, ένας κόκκινος φάκελος θα εμφανιστεί για να στείλετε Υπενθύμιση στους αξιολογητές.]]></message>
+	<message key="editor.monograph.fileList.includeAllStages">Συμπεριλάβετε όλα τα αρχεία από όλα τα προσπελάσιμα στάδια της ροή εργασιών.</message>
+	<message key="editor.monograph.review.currentFiles">Τρέοχντα Αρχεία για τον γύρο αξιολόγησης {$round}</message>
+	<message key="editor.monograph.final.selectFinalDraftFiles">Επιλογή Αρχείων Τελικού Κειμένου</message>
+	<message key="editor.monograph.uploadSelectFiles">Ανέβασμα/ Επιλογή Αρχείων</message>
+	<message key="editor.monograph.final.manageFinalDraftFilesDescription">Τα αρχεία που έχουν  μεταφορτωθεί σε κάθε στάδιο της υποβολής μπορούν να προστεθούν στη λίστα Αρχείων Τελικής Έκδοσης  ελέγχοντας το checkbox που εμφανίζεται παρακάτω και πατώντας «Αναζήτηση»: όλα τα διαθέσιμα αρχεία θα εμφανιστούν σε λίστα και θα μπορούν να συμπεριληφθούν. Επιπλέον αρχεία που δεν έχουν μεταφορτωθεί σε κάποιο στάδιο, μπορούν να προστεθούν σε αυτή τη λίστα πατώντας τον σύνδεσμο «Ανέβασμα Τελικού Κειμένου»..</message>
+	<message key="editor.monograph.final.currentFiles">Τρέχοντα Αρχεία Τελικού Κειμένου</message>
+
+	<!-- Stage Participants grid -->
+	<message key="editor.monograph.noneAssigned">Καμία Ανάθεση</message>
+	<message key="editor.monograph.participant">Συμμετέχον</message>
+	<message key="editor.monograph.stageParticipants">Συμμετέχοντες</message>
+	<message key="editor.monograph.addStageParticipant">Προσθήκη Συμμετέχοντος</message>
+	<message key="editor.monograph.addStageParticipant.description"><![CDATA[ για να προσθέσετε έναν συμμετέχοντα χρήστη σε αυτό το στάδιο της υποβολής, επιλέξτε μια ομάδα χρηστών από το αναπτυσσόμενο μενού και μετά προσθήκη χρήστη.<br /><br />Σημείση: Ο χρήστης προστίθεται σε κάθε στάδιο των εργασιών, οι οποίες έχουν ανατεθεί στην ομάδα χρηστών που ανήκει.]]></message>
+	<message key="editor.monograph.removeStageParticipant">Κατάργηση Συμμετέχοντα (Remove Participant)</message>
+	<message key="editor.monograph.removeStageParticipant.description"><![CDATA[Κατάργηση αυτού του συμμετέχοντα από <strong>όλα</strong> τα στάδια. Η συγκεκριμένη ενέργεια θα καταργήσει τον χρήστη και από τα καθήκοντα του ελεγκτή (auditor).]]></message>
+	<message key="editor.monograph.addStageParticipant.form.userGroupRequired">Πρέπει να επιλέξετε μια ομάδα χρηστών.</message>
+	<message key="editor.monograph.addStageParticipant.form.userRequired">Πρέπει να επιλέξετε έναν χρήστη από συγκεκριμένη ομάδα χρηστών.</message>
+
+
+	<message key="editor.monograph.copyediting.currentFiles">Τρέχοντα Αρχεία</message>
+	<message key="editor.monograph.copyediting.personalMessageToUser">Μήνυμα σε χρήστη</message>
+	
+	<!-- Editorial Legend -->
+	<message key="editor.monograph.legend.submissionActions">Ενέργεια Υποβολής</message>
+	<message key="editor.monograph.legend.submissionActionsDescription">Συνολικές ενέργειες και επιλογές υποβολής.</message>
+	<message key="editor.monograph.legend.sectionActions">Ενέργειες Ενότητας (Section Actions)</message>
+	<message key="editor.monograph.legend.sectionActionsDescription">Επιλογές μιας συγκεκριμένης ενότητας, για παράδειγμα μεταφόρτωση αρχείων ή εγγραφή χρηστών.</message>
+	<message key="editor.monograph.legend.itemActions">Ενέργειες Στοιχείου</message>
+	<message key="editor.monograph.legend.itemActionsDescription">Ενέργειες και επιλογές που αφορούν ένα συγκεκριμένο αρχείο.</message>
+	<message key="editor.monograph.legend.catalogEntry">Προβολή και διαχείριση της καταχώρησης μιας υποβολής στον κατάλογο, συμπεριλαμβανομένων των μεταδεδομένων και των μορφότυπων δημοσίευσης.</message>
+	<message key="editor.monograph.legend.bookInfo">Προβολή και διαχείριση των μεταδεδομένων, των σημειώσεων, κοινοποιήσεων και του ιστορικού μιας υποβολής</message>
+	<message key="editor.monograph.legend.participants">Προβολή και Διαχείριση των συμμετεχόντων της υποβολής: συγγραφείς, επιμελητές, σχεδιαστές, και άλλων</message>
+	<message key="editor.monograph.legend.add">Ανεβάστε ένα αρχείο στην ενότητα</message>
+	<message key="editor.monograph.legend.add_user">Προσθήκη χρήστη στην ενότητα</message>
+	<message key="editor.monograph.legend.settings">Προβολή και πρόσβαση στις ρυθμίσεις στοιχείου, όπως πληροφορίες και επιλογές αφαίρεσης</message>
+	<message key="editor.monograph.legend.more_info">Επιπλέον πληροφορίες: σημειώσεις αρχείου, επιλογές κοινοποίησης και ιστορικό</message>
+	<message key="editor.monograph.legend.notes_none">Πληροφορίες αρχείου: σημειώσεις, επιλογές κοινοποίησης και ιστορικό (Δεν έχουν προστεθεί σημειώσεις ακόμα)</message>
+	<message key="editor.monograph.legend.notes">Πληροφορίες αρχείου: σημειώσεις, επιλογές κοινοποίησης και ιστορικό (Οι σημειώσεις είναι διαθέσιμες)</message>
+	<message key="editor.monograph.legend.notes_new">Πληροφορίες αρχείου: σημειώσεις, επιλογές κοινοποίησης και ιστορικό (Νέες σημειώσεις προστέθηκαν κατά την τελευταία επίσκεψη)</message>
+	<message key="editor.monograph.legend.edit">Επεξεργασία στοιχείου</message>
+	<message key="editor.monograph.legend.delete">Διαγραφή στοιχείου</message>
+	<message key="editor.monograph.legend.in_progress">Ενέργεια σε εξέλιξη ή δεν έχει ολοκληρωθεί</message>
+	<message key="editor.monograph.legend.complete">Ολοκληρώθηκε</message>
+	<message key="editor.monograph.legend.uploaded">File uploaded by the role in the grid column title</message>
+
+	<!-- Editorial related -->
+	<message key="editor.submission.introduction">Σε μια υποβολή, ο επιμελητής έκδοσης (editor), μετά από διαβούλευση των αρχείων που έχουν υποβληθεί, προβαίνει στις ακόλουθες ενέργειες συμπεριλαμβανομένου και την ενημέρωση του συγγραφέα: αποστολή για εσωτερική αξιολόγηση (επιλέγοντας και τα αρχεία για  εσωτερική αξιολόγηση), αποστολή για εξωτερική αξιολόγηση (επιλέγοντας και τα αρχεία για εξωτερική αξιολόγηση), αποδοχή υποβολής (συνεπάγεται και η επιλογή αρχείων για το στάδιο σύνταξης/δημοσίευσης) ή απόρριψη υποβολής (υποβολή στο αρχείο).</message>
+	<message key="editor.monograph.editorial.introduction"><![CDATA[Στη διαδικασία σύνταξης, ο επιμελητής κειμένων εργάζεται πάνω στην τελική επιμέλεια του κειμένου πριν μεταφορτώσει τα αρχεία στο <span class="pkp_help_title">Επιμέλεια Κειμένων</span>, εφόσον και οι συγγραφείς ή άλλοι τα έχουν ήδη αναθεωρήσει, προχωρώντας με αυτό τον τρόπο στην προετοιμασία και μεταφόρτωση <span class="pkp_help_title">Επιμέλεια Κειμένων</span> του τελικού επιμελημένου κειμένου της υποβολής. 'Επειτα θα πρέπει να <em>Έχει Εγκριθεί</em> από τον υπεύθυνο εκδότη και να σταλεί στο στάδιο Παραγωγής]]></message>
+	<message key="editor.monograph.editorial.finalDraftDescription"><![CDATA[Για τα έργα υπο επιμέλεια, με διαφορετικούς συγγραφείς για κάθε κεφάλαιο, τα αρχεία της υποβολής μπορούν χωριστούν σε αρχεία με το κάθε κεφάλαιο ξεχωριστά για την επιμέλεια τους, τα οποία αξιολογούνται ανα κεφάλαιο-συγγραφέα όταν τα αρχεία επιμελημένων κειμένων μεταφορτωθούν στο <span class="pkp_help_title">Επιμέλεια Κειμένων</span>.]]></message>
+	<message key="editor.monograph.editorial.copyeditingDescription"><![CDATA[Αναθέστε τα επιμελημένα κείμενα στον συγγραφέα (και σε άλλους συντελεστές αν χρειάζεται) ώστε να δουν τις αλλαγές και να απαντήσουν στα ερωτήματα των επιμελητών. Η απάντηση τους και τα ανεβασμένα αρχεία εμφανίζονται στο εικονίδιο των σημειώσεων. Οι πιθανές αλλαγές επισημαίνονται στο <em>Έχει αναθεωρηθεί</em> από τον επιμελητή κειμένων, ο οποίος στη συνέχεια ετοιμάζει τα τελικά επιμελημένα κείμενα και τα μεταφορτώνει στο <span class="pkp_help_title">Επιμέλεια Κειμένων</span>, από όπου ο επιμελητής έκδοσης εγκρίνει αυτά που έχουν αναθεωρηθεί, πριν τα στείλει στο στάδιο Παραγωγής.]]></message>
+	<message key="editor.monograph.editorial.fairCopy">Τελικό Αντίγραφο</message>
+	<message key="editor.monograph.editorial.fairCopyDescription">Ο επιμελητής κειμένων μεταφορτώνει ένα διορθωμένο ή τελικό αντίγραφο της υποβολής για έγκριση από τον επιμελητή έκδοσης, ώστε αυτό να σταλεί για την παραγωγή του.</message>
+	<message key="editor.monograph.editorial.approveCopyeditDescription">Τα αρχεία των επιμελημένων κειμένων απαιτείται να έχουν εγκριθεί πριν να σταλούν στο στάδιο της παραγωγής/δημοσίευσης. Επιθυμείτε να εγκρίνετε αυτό το αρχείο?</message>
+	<message key="editor.monograph.editorial.disapproveCopyeditDescription">Η απόρριψη ενός αρχείου επιμελημένου κειμένου θα το καταστήσει μη διαθέσιμο για το στάδιο της Παραγωγής. Επιθυμείτε να απορρίψετε αυτό το αρχείο?</message>
+	<message key="editor.monograph.editorial.approveCopyeditFile">Έγκριση αρχείου επιμελημένου κειμένου</message>
+
+	<!-- Production/Proof related -->
+	<message key="editor.monograph.production.introduction"><![CDATA[Στo στάδιο της Παραγωγής, ο επιμελητής έκδοσης επιλέγει τη μορφή του βιβλίου (πχ., ψηφιακό, χαρτόδετο, κλπ.) στο <span class="pkp_help_title">Μορφότυπα Έκδοσης</span>, όπου ο υπεύθυνος σελιδοποίησης (layout editor) βελτιώνει την ποιότητα των αρχείων που εγκρίθηκαν για παραγωγή. Τα σελιδοποιημένα αρχεία μεταφορτώνονται για κάθε τύπο αρχείου στη <span class="pkp_help_title">Σελίδα Τυπογραφικών Δοκιμίων</span>, όπου θα ετοιμαστούν τα τυπογραφικά δοκίμια. Το βιβλίο  είναι <em>Διαθέσιμο</em> για κάθε τύπο αρχείου στο <span class="pkp_help_title">Μορφότυπα Έκδοσης</span>, εφόσον τα <em>Τυπογραφικά Δοκίμια</em> έχουν τσεκαριστεί ότι έχουν εγκριθεί και εφόσον έχει ελεγχθεί  η Καταχώρηση στον Κατάλογο των εκδόσεων.]]></message>
+	<message key="editor.monograph.production.productionReadyFiles">Αρχεία Έτοιμα για Παραγωγή</message>
+	<message key="editor.monograph.production.productionReadyFilesDescription"><![CDATA[Ο επιμελητής σελιδοποίησης προετοιμάζει τα αρχεία για κάθε μορφή έκδοσης του βιβλίου και έπειτα τα μεταφορτώνει στη <span class="pkp_help_title">Σελίδα Τυπογραφικών Δοκιμίων</span> για τη διόρθωση των τυπογραφικών δοκιμίων.]]></message>
+	<message key="editor.monograph.proofs">Τυπογραφικά Δοκίμια</message>
+	<message key="editor.monograph.production.approvalAndPublishing">Αποδοχή και Δημοσίευση</message>
+	<message key="editor.monograph.production.approvalAndPublishingDescription">Διαφορετικές μορφές εκδόσεων, όπως σκληρόδετο (hardcover), χαρτόδετο (softcover) και ψηφιακό, μπορούν να μεταφορτωθούν παρακάτω στην ενότητα Μορφότυπα Έκδοσης. Μπορείτε να χρησιμοποιήσετε το παρακάτω πλέγμα (grid) ως μια λίστα επιλογών για το τι απομένει να γίνει για να εκδοθεί μια μορφή έκδοσης του βιβλίου. (Different publication formats, such as hardcover, softcover and digital, can be uploaded in the Publication Formats section below. You can use the publication formats grid below as a checklist for what still needs to be done to publish a publication format).</message>
+	<message key="editor.monograph.production.publicationFormatDescription"><![CDATA[Προσθέστε τα μορφότυπα έκδοσης (πχ. ψηφιακό, χαρτόδετο) τα οποία ο επιμελητής σελιδοποίησης ετοίμασε για τη διόρθωση τυπογραφικών δοκιμίων. Τα <em>Τυπογραφικά Δοκίμια</em> θα πρεπει να ελεγχθούν σύμφωνα με τα πρότυπα των εκδόσεων και η καταχώριση στον <em>Κατάλογο</em> πρέπει να είναι σύμφωνη με την εγκεκριμένη καταχώριση του βιβλίου, πριν να μπορεί ένα μορφότυπο να γίνει <em>διαθέσιμο</em> πχ. Δημοσιευμένο.]]></message>
+	<message key="editor.monograph.approvedProofs.edit">Καθορισμός Όρων για Λήψη Αρχείων</message>
+	<message key="editor.monograph.approvedProofs.edit.linkTitle">Καθορισμός Όρων</message>
+	<message key="editor.monograph.proof.reminder">Υπενθύμιση Τυπογραφικών Δοκιμίων</message>
+	<message key="editor.monograph.proof.addNote">Προσθήκη Απάντησης</message>
+
+	<!-- Add file or auditor to editor/audit grids -->
+	<message key="editor.monograph.addAuditor">Ανάθεση</message>
+	<message key="editor.monograph.addAuditorError">Παρουσιάστηκε σφάλμα κατά την ανάθεση ενός ελεγκτή. Παρακαλούμε προσπαθήστε πάλι.</message>
+	<message key="editor.monograph.fileAuditor.form.userRequired">Απαιτείται να επιλέξτε ένα χρήστη για ανάθεση.</message>
+	<message key="editor.monograph.fileAuditor.form.fileRequired">Απαιτείται να επιλέξτε τουλάχιστον ένα αρχείο για ανάθεση σε χρήστη.</message>
+	<message key="editor.monograph.fileAuditor.form.messageRequired">Απαιτείται να συμπεριλάβετε ένα προσωπικό μήνυμα.</message>
+	<message key="editor.monograph.fileAuditor.skipEmail">Να μην αποσταλεί email στον Ελεγκτή (Auditor)</message>
+	<message key="editor.monograph.noAuditRequested">Κανένα έλεγχος δεν έχει ζητηθεί για αυτό το αρχείο</message>
+
+	<!-- Review related -->
+	<message key="editor.review">Αξιολόγηση</message>
+	<message key="editor.internalReview.introduction">Στην Εσωτερική Αξιολόγηση, ο επιμελητή έκδοσης αναθέτει τα αρχεία της υποβολής στους εσωτερικούς αξιολογητές και βασίζεται στα αποτελέσματα της αξιολόγησης τους, πριν επιλέξει τις κατάλληλες ενέργειες (στις οποίες συμπεριλαμβάνεται η ενημέρωση του συγγραφέα): αίτηματα για αναθεωρήσεις (οι αναθεωρήσεις ελέγχονται μόνο από τον επιμελητή έκδοσης), εκ νέου υποβολή για αξιολόγηση (οι αναθεωρήσεις ξεκινούν ένα νέο γύρο αξιολογήσεων), αποστολή αιτήματος για εξωτερική αξιολόγηση (συνεπάγεται επιλογή αρχείων για εξωτερική αξιολόγηση), αποδοχή υποβολής (συνεπάγεται επιλογή αρχείων για το στάδιο Σύνταξης) ή απόρριψη υποβολής (υποβολή στο αρχείο).</message>
+	<message key="editor.externalReview.introduction">Στην Εξωτερική Αξιολόγηση, ο επιμελητής έκδοσης αναθέτει τα αρχεία της υποβολής στους εξωτερικούς αξιολογητές των εκδόσεων και βασίζεται στα αποτελέσματα της αξιολόγησης τους, πριν επιλέξει τις κατάλληλες ενέργειες (στις οποίες συμπεριλαμβάνεται η ενημέρωση του συγγραφέα): αίτηματα για αναθεωρήσεις  (οι αναθεωρήσεις ελέγχονται μόνο από τον επιμελητή έκδοσης), εκ νέου υποβολή για αξιολόγηση (οι αναθεωρήσεις ξεκινούν ένα νέο κύκλο αξιολογήσεων), αποδοχή υποβολής (συνεπάγεται επιλογή αρχείων για το στάδιο Σύνταξης) ή απόρριψη υποβολής (υποβολή στο αρχείο).</message>
+	<message key="editor.review.uploadRevision">Ανέβασμα Αξιολόγησης</message>
+	<message key="editor.review.uploadRevisionToRound">Ανέβασμα Αρχείου Αξιολόγησης</message>
+	<message key="editor.review.personalMessageToReviewer">Email για να σταλεί σε αξιολογητή</message>
+	<message key="editor.review.personalMessageFromEditor">Μήνυμα από τον επιμελητή έκδοσης</message>
+	<message key="editor.review.NotifyAuthorAccept">Ενημέρωση του συγγραφέα για την αποδοχή της υποβολής:</message>
+	<message key="editor.review.NotifyAuthorDecline">Ενημέρψση του συγγραφέα για την απόρριψη της υποβολής:</message>
+	<message key="editor.review.NotifyAuthorRevisions">Ενημέρωση του συγγραφέα για την ανάγκη αναθεώρησης:</message>
+	<message key="editor.review.NotifyAuthorResubmit">Ενημέρωση συγγραφέα για ανάγκη αναθεωρήσεων που  υποβάλλονται σε περαιτέρω αξιολόγηση:</message>
+	<message key="editor.review.NotifyAuthorExternal">Ενημέρωση του συγγραφέα για τη διεξαγωγή εξωτερικής αξιολόγησης:</message>
+	<message key="editor.review.personalMessageToAuthor">Email που θα σταλεί στον συγγραφέα</message>
+	<message key="editor.review.importantDates">Σημαντικές Ημερομηνίες</message>
+	<message key="editor.review.dateAccepted">Ημερομηνία Αποδοχής Αξιολόγησης (Review Acceptance Date)</message>
+	<message key="editor.review.noReviews">Δεν υπάρχει αξιολόγηση από ομότιμους (No peer reviews to import)</message>
+	<message key="editor.review.reminder">Υπενθύμιση Αξιολόγησης</message>
+	<message key="editor.review.thankReviewer">Ευχαριστήριο σε Αξιολογητή (Thank Reviewer)</message>
+	<message key="editor.review.reminderError">Παρουσιάστηκε σφάλμα στην αποστολή υπενθύμισης αξιολόγησης</message>
+	<message key="editor.review.thankReviewerError">Παρουσιάστηκε σφάλμα στην αποστολή ευχαρηστήριου μηνύματος σε Αξιολογητή</message>
+	<message key="editor.review.skipEmail">Να μην αποσταλεί email στον Αξιολογητή</message>
+	<message key="editor.review.sendReminder">Αποστολή Υπενθύμισης</message>
+	<message key="editor.review.reviewDueDate">Ημερομηνία Προθεσμίας Αξιολόγησης</message>
+	<message key="editor.review.reviewCompleted">Αξιολόγηση Ολοκληρώθηκε</message>
+	<message key="editor.review.reviewerComments">Σχόλια Αξιολογητή</message>
+	<message key="editor.review.days">Μέσος Όρος Ημερών (Average Days)</message>
+	<message key="editor.review.mustSelect">Απαιτείται η επιλογή αξιολογητή</message>
+	<message key="editor.review.errorAddingReviewer">Παρουσιάστηκε σφάλμα κατά την προσθήκη αξιολογητή. Παρακαλούμε προσπαθείστε πάλι.</message>
+	<message key="editor.review.errorDeletingReviewer">Παρουσιάστηκε σφάλμα κατά την αφαίρεση αξιολογητή. Παρακαλούμε προσπαθείστε πάλι.</message>
+	<message key="editor.review.userGroupSelect">Εγγραφή χρήστη σε αυτή τη ομάδα αξιολογητών</message>
+	<message key="editor.review.unconsiderReviewText">Επιθυμείτε να μη λάβετε υπόψη αυτή την αξιολόγηση?  Θα διατηρηθεί στο ιστορικό αξιολόγησης.</message>
+	<message key="editor.review.unconsiderReview">Μη λάβετε υπόψη σας αυτή την αξιολόγηση</message>
+	<message key="editor.review.errorUnconsideringReview">Παρουσιάστηκε σφάλμα θέτοντας αυτή την αξιολόγηση εκτός των αξιολογήσεων. Παρακαλούμε προσπαθήστε πάλι.</message>
+	<message key="editor.review.readConfirmation">Μόλις η αξιολόγηση διαβαστεί, πατήστε "Επιβεβαίωση" για να επισημάνετε ότι η διαδικασία αξιολόγησης μπορεί να προχωρήσει.</message>
+</locale>
