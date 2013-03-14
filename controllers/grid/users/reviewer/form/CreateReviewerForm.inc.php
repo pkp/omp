@@ -100,7 +100,7 @@ class CreateReviewerForm extends ReviewerForm {
 		}
 
 		$user->setDateRegistered(Core::getCurrentDate());
-		$reviewerId = $userDao->insertUser($user);
+		$reviewerId = $userDao->insertObject($user);
 
 		// Set the reviewerId in the Form for the parent class to use
 		$this->setData('reviewerId', $reviewerId);
