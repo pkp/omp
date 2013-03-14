@@ -203,7 +203,7 @@ class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
 			$author->setUserGroupId($authorUserGroupId);
 
 			$author->setSubmissionId($this->submissionId);
-			$authorDao->insertAuthor($author);
+			$authorDao->insertObject($author);
 
 			// Assign the user author to the stage
 			$stageAssignmentDao = DAORegistry::getDAO('StageAssignmentDAO');
