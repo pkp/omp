@@ -42,7 +42,7 @@ class SubmissionMetadataViewForm extends Form {
 	function SubmissionMetadataViewForm($monographId, $stageId = null, $formParams = null, $templateName = 'controllers/modals/submissionMetadata/form/submissionMetadataViewForm.tpl') {
 		parent::Form($templateName);
 
-		$monographDao =& DAORegistry::getDAO('MonographDAO');
+		$monographDao = DAORegistry::getDAO('MonographDAO');
 		$monograph = $monographDao->getById((int) $monographId);
 		if ($monograph) {
 			$this->_monograph = $monograph;
@@ -128,18 +128,18 @@ class SubmissionMetadataViewForm extends Form {
 		$templateMgr->assign('isPublished', $monograph->getDatePublished() != null ? true : false);
 
 		// Get series for this press
-		$seriesDao =& DAORegistry::getDAO('SeriesDAO');
+		$seriesDao = DAORegistry::getDAO('SeriesDAO');
 		$seriesOptions = array('0' => __('submission.submit.selectSeries')) + $seriesDao->getTitlesByPressId($monograph->getPressId());
 		$templateMgr->assign('seriesOptions', $seriesOptions);
 		$templateMgr->assign('seriesId', $monograph->getSeriesId());
 		$templateMgr->assign('seriesPosition', $monograph->getSeriesPosition());
 
 		// If categories are configured for the press, present the LB.
-		$categoryDao =& DAORegistry::getDAO('CategoryDAO');
+		$categoryDao = DAORegistry::getDAO('CategoryDAO');
 		$templateMgr->assign('categoriesExist', $categoryDao->getCountByPressId($monograph->getPressId()) > 0);
 
 		// also include the categories (for read only form views)
-		$monographDao =& DAORegistry::getDAO('MonographDAO');
+		$monographDao = DAORegistry::getDAO('MonographDAO');
 		$assignedCategories =& $monographDao->getCategories($monograph->getId(), $monograph->getPressId());
 		$templateMgr->assign('assignedCategories', $assignedCategories->toArray());
 
@@ -161,14 +161,14 @@ class SubmissionMetadataViewForm extends Form {
 	 */
 	function execute($request) {
 		$monograph =& $this->getMonograph();
-		$monographDao =& DAORegistry::getDAO('MonographDAO');
+		$monographDao = DAORegistry::getDAO('MonographDAO');
 
 		// Clean any new release or feature object that may
 		// exist associated with the current monograph series.
-		$newReleaseDao =& DAORegistry::getDAO('NewReleaseDAO'); /* @var $newReleaseDao NewReleaseDAO */
+		$newReleaseDao = DAORegistry::getDAO('NewReleaseDAO'); /* @var $newReleaseDao NewReleaseDAO */
 		$newReleaseDao->deleteNewRelease($monograph->getId(), ASSOC_TYPE_SERIES, $monograph->getSeriesId());
 
-		$featureDao =& DAORegistry::getDAO('FeatureDAO'); /* @var $featureDao FeatureDAO */
+		$featureDao = DAORegistry::getDAO('FeatureDAO'); /* @var $featureDao FeatureDAO */
 		$featureDao->deleteFeature($monograph->getId(), ASSOC_TYPE_SERIES, $monograph->getSeriesId());
 
 		// Execute monograph metadata related operations.
@@ -193,8 +193,8 @@ class SubmissionMetadataViewForm extends Form {
 		$request =& $application->getRequest();
 
 		$categoryId = $newRowId['name'];
-		$categoryDao =& DAORegistry::getDAO('CategoryDAO');
-		$monographDao =& DAORegistry::getDAO('MonographDAO');
+		$categoryDao = DAORegistry::getDAO('CategoryDAO');
+		$monographDao = DAORegistry::getDAO('MonographDAO');
 		$press =& $request->getPress();
 		$monograph =& $this->getMonograph();
 
@@ -214,8 +214,8 @@ class SubmissionMetadataViewForm extends Form {
 	 */
 	function deleteEntry(&$request, $rowId) {
 		if ($rowId) {
-			$categoryDao =& DAORegistry::getDAO('CategoryDAO');
-			$monographDao =& DAORegistry::getDAO('MonographDAO');
+			$categoryDao = DAORegistry::getDAO('CategoryDAO');
+			$monographDao = DAORegistry::getDAO('MonographDAO');
 			$category =& $categoryDao->getById($rowId);
 			if (!is_a($category, 'Category')) {
 				assert(false);

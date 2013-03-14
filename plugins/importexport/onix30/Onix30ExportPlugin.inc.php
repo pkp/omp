@@ -58,11 +58,11 @@ class Onix30ExportPlugin extends ImportExportPlugin {
 			case 'exportMonograph':
 
 				$publicationFormatId = (int) Request::getUserVar('publicationFormatId');
-				$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
+				$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
 				$publicationFormat =& $publicationFormatDao->getById($publicationFormatId);
 				if ($publicationFormat != null) {
 					$monographId = $publicationFormat->getMonographId();
-					$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
+					$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
 
 					/* check to make sure the requested Monograph is in this press */
 					$monograph =& $publishedMonographDao->getById($monographId, $press->getId());
@@ -75,7 +75,7 @@ class Onix30ExportPlugin extends ImportExportPlugin {
 			default:
 				// Display a list of monographs for export
 				AppLocale::requireComponents(LOCALE_COMPONENT_PKP_SUBMISSION);
-				$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
+				$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
 				$rangeInfo = Handler::getRangeInfo($request, 'monographs');
 				$monographs = $publishedMonographDao->getByPressId($press->getId())->toArray();
 
@@ -118,9 +118,9 @@ class Onix30ExportPlugin extends ImportExportPlugin {
 		$pressPath = array_shift($args);
 		$monographId = array_shift($args);
 
-		$pressDao =& DAORegistry::getDAO('PressDAO');
-		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
-		$userDao =& DAORegistry::getDAO('UserDAO');
+		$pressDao = DAORegistry::getDAO('PressDAO');
+		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
+		$userDao = DAORegistry::getDAO('UserDAO');
 
 		$press =& $pressDao->getByPath($pressPath);
 

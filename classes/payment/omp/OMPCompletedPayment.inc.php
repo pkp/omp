@@ -75,7 +75,7 @@ class OMPCompletedPayment extends Payment {
 	 * @return string
 	 */
 	function getName() {
-		$pressDao =& DAORegistry::getDAO('PressDAO');
+		$pressDao = DAORegistry::getDAO('PressDAO');
 		$press =& $pressDao->getById($this->getPressId());
 
 		switch ($this->type) {
@@ -93,7 +93,7 @@ class OMPCompletedPayment extends Payment {
 	 * @return string
 	 */
 	function getDescription() {
-		$pressDao =& DAORegistry::getDAO('PressDAO');
+		$pressDao = DAORegistry::getDAO('PressDAO');
 		$press =& $pressDao->getById($this->getPressId());
 
 		switch ($this->type) {

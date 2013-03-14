@@ -26,7 +26,7 @@ class SeriesAssignmentRule {
 	 * @return boolean
 	 */
 	function effect($pressId, $seriesId, $userId) {
-		$seriesEditorsDao =& DAORegistry::getDAO('SeriesEditorsDAO');
+		$seriesEditorsDao = DAORegistry::getDAO('SeriesEditorsDAO');
 		if ($seriesEditorsDao->editorExists($pressId, $seriesId, $userId)) {
 			return true;
 		} else {

@@ -64,7 +64,7 @@ class SelectMonographHandler extends Handler {
 	 */
 	function getSubmissions($args, &$request) {
 		$press =& $request->getPress();
-		$monographDao =& DAORegistry::getDAO('MonographDAO');
+		$monographDao = DAORegistry::getDAO('MonographDAO');
 		$submissionsIterator = $monographDao->getUnpublishedMonographsByPressId($press->getId());
 		$submissions = array();
 		while ($monograph =& $submissionsIterator->next()) {

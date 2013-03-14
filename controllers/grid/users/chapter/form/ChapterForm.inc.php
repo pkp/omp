@@ -111,7 +111,7 @@ class ChapterForm extends Form {
 	 * @see Form::execute()
 	 */
 	function execute() {
-		$chapterDao =& DAORegistry::getDAO('ChapterDAO');
+		$chapterDao = DAORegistry::getDAO('ChapterDAO');
 		$chapter =& $this->getChapter();
 
 		if ($chapter) {
@@ -150,7 +150,7 @@ class ChapterForm extends Form {
 		$sequence = (int) $newRowId['sequence'];
 
 		// Create a new chapter author.
-		$chapterAuthorDao =& DAORegistry::getDAO('ChapterAuthorDAO');
+		$chapterAuthorDao = DAORegistry::getDAO('ChapterAuthorDAO');
 		// FIXME: primary authors not set for chapter authors.
 		$chapterAuthorDao->insertChapterAuthor($authorId, $chapter->getId(), $monograph->getId(), false, $sequence);
 		return true;
@@ -178,7 +178,7 @@ class ChapterForm extends Form {
 		$authorId = (int) $rowId; // this is the authorId to remove and is already an integer
 		if ($authorId) {
 			// remove the chapter author.
-			$chapterAuthorDao =& DAORegistry::getDAO('ChapterAuthorDAO');
+			$chapterAuthorDao = DAORegistry::getDAO('ChapterAuthorDAO');
 			$chapterAuthorDao->deleteChapterAuthorById($authorId, $chapter->getId());
 			return true;
 		}

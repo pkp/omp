@@ -41,7 +41,7 @@ class AdminLanguageGridHandler extends PKPAdminLanguageGridHandler {
 		$site =& $request->getSite();
 		$siteSupportedLocales = $site->getSupportedLocales();
 
-		$pressDao =& DAORegistry::getDAO('PressDAO');
+		$pressDao = DAORegistry::getDAO('PressDAO');
 		$contexts = $pressDao->getAll()->toArray();
 		foreach ($contexts as $context) {
 			$primaryLocale = $context->getPrimaryLocale();
@@ -66,7 +66,7 @@ class AdminLanguageGridHandler extends PKPAdminLanguageGridHandler {
 	 * @return boolean
 	 */
 	function _canManage($request) {
-		$pressDao =& DAORegistry::getDAO('PressDAO');
+		$pressDao = DAORegistry::getDAO('PressDAO');
 		$presses = $pressDao->getAll();
 		$userRoles = $this->getAuthorizedContextObject(ASSOC_TYPE_USER_ROLES);
 		$press =& $request->getPress();

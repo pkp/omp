@@ -286,7 +286,7 @@ class EditorDecisionHandler extends Handler {
 		$press =& $request->getPress();
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		$publicationFormatId = $request->getUserVar('publicationFormatId');
-		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO'); /* @var $publicationFormatDao PublicationFormatDAO */
+		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO'); /* @var $publicationFormatDao PublicationFormatDAO */
 
 		$publicationFormat = $publicationFormatDao->getById($publicationFormatId, $monograph->getId(), $press->getId());
 		if (!is_a($publicationFormat, 'PublicationFormat')) {
@@ -327,13 +327,13 @@ class EditorDecisionHandler extends Handler {
 			import('classes.log.MonographEventLogEntry'); // constants
 			$user =& $request->getUser();
 
-			$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
+			$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
 			$publicationFormat =& $publicationFormatDao->getById($monographFile->getAssocId(), $monograph->getId());
 
 			MonographLog::logEvent($request, $monograph, MONOGRAPH_LOG_PROOFS_APPROVED, 'submission.event.proofsApproved', array('formatName' => $publicationFormat->getLocalizedName(),'name' => $user->getFullName(), 'username' => $user->getUsername()));
 		}
 
-		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO');
+		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
 		$submissionFileDao->updateObject($monographFile);
 
 		// update the monograph's file index
@@ -492,7 +492,7 @@ class EditorDecisionHandler extends Handler {
 		}
 
 		// Make sure user has access to the workflow stage.
-		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+		$userGroupDao = DAORegistry::getDAO('UserGroupDAO');
 		$redirectWorkflowStage = $userGroupDao->getIdFromPath($redirectOp);
 		$userAccessibleWorkflowStages = $this->getAuthorizedContextObject(ASSOC_TYPE_ACCESSIBLE_WORKFLOW_STAGES);
 		if (!array_key_exists($redirectWorkflowStage, $userAccessibleWorkflowStages)) {

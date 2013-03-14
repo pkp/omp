@@ -47,15 +47,15 @@ class CatalogEntrySubmissionReviewForm extends SubmissionMetadataViewForm {
 		parent::execute($request);
 
 		$monograph =& $this->getMonograph();
-		$monographDao =& DAORegistry::getDAO('MonographDAO');
-		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
+		$monographDao = DAORegistry::getDAO('MonographDAO');
+		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
 		$publishedMonograph =& $publishedMonographDao->getById($monograph->getId(), null, false);
 		$isExistingEntry = $publishedMonograph?true:false;
 
 		import('classes.publicationFormat.PublicationFormatTombstoneManager');
 		$publicationFormatTombstoneMgr = new PublicationFormatTombstoneManager();
 		$press =& $request->getPress();
-		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
+		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
 		$publicationFormatFactory =& $publicationFormatDao->getByMonographId($monograph->getId());
 		$publicationFormats =& $publicationFormatFactory->toAssociativeArray();
 		$notificationMgr = new NotificationManager();

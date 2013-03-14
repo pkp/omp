@@ -67,11 +67,11 @@ class AuthorSignoffFilesGridDataProvider extends SubmissionFilesGridDataProvider
 	 * @see GridHandler::loadData
 	 */
 	function &loadData() {
-		$monographFileSignoffDao =& DAORegistry::getDAO('MonographFileSignoffDAO');
+		$monographFileSignoffDao = DAORegistry::getDAO('MonographFileSignoffDAO');
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		$signoffs =& $monographFileSignoffDao->getAllByMonograph($monograph->getId(), $this->getSymbolic(), $this->getUserId());
 
-		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		while ($signoff =& $signoffs->next()) {
 			$monographFile =& $submissionFileDao->getLatestRevision($signoff->getAssocId(), null, $monograph->getId());
 			$preparedData[$signoff->getId()]['signoff'] =& $signoff;
@@ -92,7 +92,7 @@ class AuthorSignoffFilesGridDataProvider extends SubmissionFilesGridDataProvider
 	 */
 	function &getAddSignoffFile(&$request) {
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-		$signoffDao =& DAORegistry::getDAO('MonographFileSignoffDAO'); /* @var $signoffDao MonographFileSignoffDAO */
+		$signoffDao = DAORegistry::getDAO('MonographFileSignoffDAO'); /* @var $signoffDao MonographFileSignoffDAO */
 		$signoffFactory =& $signoffDao->getAllByMonograph($monograph->getId(), $this->getSymbolic(), $this->getUserId(), null, true);
 
 		$action = false;

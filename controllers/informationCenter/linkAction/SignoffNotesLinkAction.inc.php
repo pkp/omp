@@ -52,7 +52,7 @@ class SignoffNotesLinkAction extends LinkAction {
 	 * @param $user User
 	 */
 	function _getNoteState($signoff, $user) {
-		$noteDao =& DAORegistry::getDAO('NoteDAO');
+		$noteDao = DAORegistry::getDAO('NoteDAO');
 
 		// If no notes exist, display a dimmed icon.
 		if (!$noteDao->notesExistByAssoc(ASSOC_TYPE_SIGNOFF, $signoff->getId())) {

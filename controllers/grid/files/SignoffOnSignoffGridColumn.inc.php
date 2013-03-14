@@ -99,8 +99,8 @@ class SignoffOnSignoffGridColumn extends BaseSignoffStatusColumn {
 			return 'unfinished';
 		}
 
-		$signoffDao =& DAORegistry::getDAO('SignoffDAO'); /* @var $signoff SignoffDAO */
-		$viewsDao =& DAORegistry::getDAO('ViewsDAO'); /* @var $viewsDao ViewsDAO */
+		$signoffDao = DAORegistry::getDAO('SignoffDAO'); /* @var $signoff SignoffDAO */
+		$viewsDao = DAORegistry::getDAO('ViewsDAO'); /* @var $viewsDao ViewsDAO */
 		$viewed = false;
 		$fileIdAndRevision = $signoffInQuestion->getFileId() . '-' . $signoffInQuestion->getFileRevision();
 		foreach ($this->getUserIds() as $userId) {

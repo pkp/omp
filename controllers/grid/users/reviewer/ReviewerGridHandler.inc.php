@@ -90,7 +90,7 @@ class ReviewerGridHandler extends GridHandler {
 		} else {
 			$reviewAssignment =& $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ASSIGNMENT);
 			$reviewRoundId = $reviewAssignment->getReviewRoundId();
-			$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
+			$reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO');
 			$reviewRound = $reviewRoundDao->getReviewRoundById($reviewRoundId);
 			return $reviewRound;
 		}
@@ -338,7 +338,7 @@ class ReviewerGridHandler extends GridHandler {
 		$round = $reviewRound->getRound();
 		$term = $request->getUserVar('term');
 
-		$seriesEditorSubmissionDao =& DAORegistry::getDAO('SeriesEditorSubmissionDAO'); /* @var $seriesEditorSubmissionDao SeriesEditorSubmissionDAO */
+		$seriesEditorSubmissionDao = DAORegistry::getDAO('SeriesEditorSubmissionDAO'); /* @var $seriesEditorSubmissionDao SeriesEditorSubmissionDAO */
 		$reviewers =& $seriesEditorSubmissionDao->getReviewersNotAssignedToMonograph($press->getId(), $monograph->getId(), $reviewRound, $term);
 
 		$reviewerList = array();
@@ -365,7 +365,7 @@ class ReviewerGridHandler extends GridHandler {
 		$press =& $request->getPress();
 		$term = $request->getUserVar('term');
 
-		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */
+		$userGroupDao = DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */
 		$monograph =& $this->getMonograph();
 
 		$users =& $userGroupDao->getUsersNotInRole(ROLE_ID_REVIEWER, $press->getId(), $term);
@@ -402,7 +402,7 @@ class ReviewerGridHandler extends GridHandler {
 		$templateMgr->assign_by_ref('reviewAssignment', $reviewAssignment);
 
 		// Retrieve reviewer comment.
-		$monographCommentDao =& DAORegistry::getDAO('MonographCommentDAO');
+		$monographCommentDao = DAORegistry::getDAO('MonographCommentDAO');
 		$monographComments =& $monographCommentDao->getReviewerCommentsByReviewerId($reviewAssignment->getReviewerId(), $reviewAssignment->getSubmissionId(), $reviewAssignment->getId());
 		$templateMgr->assign_by_ref('reviewerComment', $monographComments->next());
 
@@ -422,7 +422,7 @@ class ReviewerGridHandler extends GridHandler {
 		$monograph =& $this->getMonograph();
 		$user =& $request->getUser();
 		$reviewAssignment =& $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ASSIGNMENT);
-		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+		$reviewAssignmentDao = DAORegistry::getDAO('ReviewAssignmentDAO');
 
 		$reviewAssignment->setUnconsidered(REVIEW_ASSIGNMENT_UNCONSIDERED);
 		$result = $reviewAssignmentDao->updateObject($reviewAssignment);
@@ -471,7 +471,7 @@ class ReviewerGridHandler extends GridHandler {
 
 		// Mark the latest read date of the review by the editor.
 		$user =& $request->getUser();
-		$viewsDao =& DAORegistry::getDAO('ViewsDAO');
+		$viewsDao = DAORegistry::getDAO('ViewsDAO');
 		$viewsDao->recordView(ASSOC_TYPE_REVIEW_RESPONSE, $reviewAssignment->getId(), $user->getId());
 
 		// if the review assignment had been unconsidered, update the flag.

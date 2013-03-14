@@ -35,7 +35,7 @@ class SignoffExistsAccessPolicy extends AuthorizationPolicy {
 	 */
 	function effect() {
 		// Check if the signoff exists
-		$signoffDao =& DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
+		$signoffDao = DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
 		$signoff = $signoffDao->getById($this->_request->getUserVar('signoffId'));
 		$baseSignoff =& $signoff;
 
@@ -47,9 +47,9 @@ class SignoffExistsAccessPolicy extends AuthorizationPolicy {
 		if (!is_a($press, 'Press')) return AUTHORIZATION_DENY;
 
 		// Ensure that the signoff belongs to the current press
-		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
-		$monographFileDao =& DAORegistry::getDAO('SubmissionFileDAO');
-		$monographDao =& DAORegistry::getDAO('MonographDAO');
+		$signoffDao = DAORegistry::getDAO('SignoffDAO');
+		$monographFileDao = DAORegistry::getDAO('SubmissionFileDAO');
+		$monographDao = DAORegistry::getDAO('MonographDAO');
 		while (true) switch ($signoff->getAssocType()) {
 			case ASSOC_TYPE_SIGNOFF:
 				// This signoff is attached to another signoff.

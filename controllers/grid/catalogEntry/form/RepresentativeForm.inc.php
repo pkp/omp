@@ -112,7 +112,7 @@ class RepresentativeForm extends Form {
 		$monograph =& $this->getMonograph();
 		$templateMgr->assign('monographId', $monograph->getId());
 		$representative =& $this->getRepresentative();
-		$onixCodelistItemDao =& DAORegistry::getDAO('ONIXCodelistItemDAO');
+		$onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO');
 		$templateMgr->assign('idTypeCodes', $onixCodelistItemDao->getCodes('List92')); // GLN, etc
 		$templateMgr->assign('agentRoleCodes', $onixCodelistItemDao->getCodes('List69')); // Sales Agent, etc
 		$templateMgr->assign('supplierRoleCodes', $onixCodelistItemDao->getCodes('List93')); // wholesaler, publisher to retailer, etc
@@ -161,7 +161,7 @@ class RepresentativeForm extends Form {
 	 * @see Form::execute()
 	 */
 	function execute() {
-		$representativeDao =& DAORegistry::getDAO('RepresentativeDAO');
+		$representativeDao = DAORegistry::getDAO('RepresentativeDAO');
 		$monograph = $this->getMonograph();
 		$representative =& $this->getRepresentative();
 

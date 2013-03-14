@@ -44,7 +44,7 @@ class PressManagerRequiredPolicy extends AuthorizationPolicy {
 		$stageId = $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
 		if (!is_numeric($stageId)) return AUTHORIZATION_DENY;
 
-		$stageAssignmentDao =& DAORegistry::getDAO('StageAssignmentDAO'); /* @var $stageAssignmentDao StageAssignmentDAO */
+		$stageAssignmentDao = DAORegistry::getDAO('StageAssignmentDAO'); /* @var $stageAssignmentDao StageAssignmentDAO */
 		if ($stageAssignmentDao->editorAssignedToStage($monograph->getId(), $stageId)) {
 			return AUTHORIZATION_PERMIT;
 		} else {

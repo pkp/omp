@@ -80,7 +80,7 @@ class AuthorDashboardHandler extends Handler {
 				break;
 		}
 
-		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
+		$reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO');
 		$internalReviewRounds =& $reviewRoundDao->getByMonographId($monograph->getId(), WORKFLOW_STAGE_ID_INTERNAL_REVIEW);
 		$externalReviewRounds =& $reviewRoundDao->getByMonographId($monograph->getId(), WORKFLOW_STAGE_ID_EXTERNAL_REVIEW);
 		$lastInternalReviewRound =& $reviewRoundDao->getLastReviewRoundBySubmissionId($monograph->getId(), WORKFLOW_STAGE_ID_INTERNAL_REVIEW);
@@ -114,7 +114,7 @@ class AuthorDashboardHandler extends Handler {
 
 		// If the submission is in or past the editorial stage,
 		// assign the editor's copyediting emails to the template
-		$monographEmailLogDao =& DAORegistry::getDAO('MonographEmailLogDAO');
+		$monographEmailLogDao = DAORegistry::getDAO('MonographEmailLogDAO');
 		$user =& $request->getUser();
 
 		if ($monograph->getStageId() >= WORKFLOW_STAGE_ID_EDITING) {
@@ -159,7 +159,7 @@ class AuthorDashboardHandler extends Handler {
 	 * @return string
 	 */
 	function readMonographEmail($args, &$request) {
-		$monographEmailLogDao =& DAORegistry::getDAO('MonographEmailLogDAO');
+		$monographEmailLogDao = DAORegistry::getDAO('MonographEmailLogDAO');
 		$user =& $request->getUser();
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		$monographEmailId = $request->getUserVar('monographEmailId');

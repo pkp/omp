@@ -79,7 +79,7 @@ class PublicationFormat extends DataObject {
 	 * @return string
 	 */
 	function getNameForONIXCode() {
-		$onixCodelistItemDao =& DAORegistry::getDAO('ONIXCodelistItemDAO');
+		$onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO');
 		$codes =& $onixCodelistItemDao->getCodes('List7'); // List7 is for object formats
 		return $codes[$this->getEntryKey()];
 	}
@@ -315,7 +315,7 @@ class PublicationFormat extends DataObject {
 	 */
 	function getCalculatedFileSize() {
 		$fileSize = 0;
-		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO');
+		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
 		import('classes.monograph.MonographFile'); // File constants
 		$stageMonographFiles =& $submissionFileDao->getLatestRevisionsByAssocId(
 				ASSOC_TYPE_PUBLICATION_FORMAT, $this->getId(),
@@ -344,7 +344,7 @@ class PublicationFormat extends DataObject {
 	 * @return DAOResultFactory SalesRights
 	 */
 	function getSalesRights() {
-		$salesRightsDao =& DAORegistry::getDAO('SalesRightsDAO');
+		$salesRightsDao = DAORegistry::getDAO('SalesRightsDAO');
 		$salesRights =& $salesRightsDao->getByPublicationFormatId($this->getId());
 		return $salesRights;
 	}
@@ -354,7 +354,7 @@ class PublicationFormat extends DataObject {
 	 * @return DAOResultFactory IdentificationCode
 	 */
 	function getIdentificationCodes() {
-		$identificationCodeDao =& DAORegistry::getDAO('IdentificationCodeDAO');
+		$identificationCodeDao = DAORegistry::getDAO('IdentificationCodeDAO');
 		$codes =& $identificationCodeDao->getByPublicationFormatId($this->getId());
 		return $codes;
 	}
@@ -364,7 +364,7 @@ class PublicationFormat extends DataObject {
 	 * @return Array PublicationDate
 	 */
 	function getPublicationDates() {
-		$publicationDateDao =& DAORegistry::getDAO('PublicationDateDAO');
+		$publicationDateDao = DAORegistry::getDAO('PublicationDateDAO');
 		$dates =& $publicationDateDao->getByPublicationFormatId($this->getId());
 		return $dates;
 	}
@@ -374,7 +374,7 @@ class PublicationFormat extends DataObject {
 	 * @return Array Market
 	 */
 	function getMarkets() {
-		$marketDao =& DAORegistry::getDAO('MarketDAO');
+		$marketDao = DAORegistry::getDAO('MarketDAO');
 		$markets =& $marketDao->getByPublicationFormatId($this->getId());
 		return $markets;
 	}
@@ -561,7 +561,7 @@ class PublicationFormat extends DataObject {
 	 * @return int
 	 */
 	function getPressId() {
-		$monographDao =& DAORegistry::getDAO('MonographDAO');
+		$monographDao = DAORegistry::getDAO('MonographDAO');
 		$monograph =& $monographDao->getById($this->getData('monographId'));
 		return $monograph->getPressId();
 	}

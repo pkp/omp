@@ -112,7 +112,7 @@ class GenreGridHandler extends SetupGridHandler {
 	function loadData($request, $filter) {
 		// Elements to be displayed in the grid
 		$press =& $request->getPress();
-		$genreDao =& DAORegistry::getDAO('GenreDAO');
+		$genreDao = DAORegistry::getDAO('GenreDAO');
 		$genresFactory =& $genreDao->getEnabledByContextId($press->getId(), self::getRangeInfo($request, $this->getId()));
 		return $genresFactory;
 	}
@@ -197,7 +197,7 @@ class GenreGridHandler extends SetupGridHandler {
 		// Identify the Genre to be deleted
 		$genre =& $this->_getGenreFromArgs($request, $args);
 
-		$genreDao =& DAORegistry::getDAO('GenreDAO');
+		$genreDao = DAORegistry::getDAO('GenreDAO');
 		$result = $genreDao->deleteObject($genre);
 
 		if ($result) {
@@ -219,7 +219,7 @@ class GenreGridHandler extends SetupGridHandler {
 		$press =& $request->getPress();
 
 		// Restore all the genres in this press form the registry XML file
-		$genreDao =& DAORegistry::getDAO('GenreDAO');
+		$genreDao = DAORegistry::getDAO('GenreDAO');
 		$genreDao->restoreByContextId($press->getId());
 		return DAO::getDataChangedEvent();
 	}

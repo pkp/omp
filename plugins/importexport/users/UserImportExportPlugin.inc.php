@@ -67,7 +67,7 @@ class UserImportExportPlugin extends ImportExportPlugin {
 		));
 
 		$templateMgr->assign_by_ref('plugin', $this);
-		$roleDao =& DAORegistry::getDAO('RoleDAO');
+		$roleDao = DAORegistry::getDAO('RoleDAO');
 
 		switch (array_shift($args)) {
 			case 'uploadImportXML':
@@ -94,7 +94,7 @@ class UserImportExportPlugin extends ImportExportPlugin {
 				$continueOnError = (bool) $request->getUserVar('continueOnError');
 				$temporaryFileId = $request->getUserVar('temporaryFileId');
 				if ($temporaryFileId) {
-					$temporaryFileDao =& DAORegistry::getDAO('TemporaryFileDAO');
+					$temporaryFileDao = DAORegistry::getDAO('TemporaryFileDAO');
 					$user =& $request->getUser();
 					$temporaryFile =& $temporaryFileDao->getTemporaryFile($temporaryFileId, $user->getId());
 					$temporaryFilePath = $temporaryFile->getFilePath();
@@ -244,8 +244,8 @@ class UserImportExportPlugin extends ImportExportPlugin {
 		$pressPath = array_shift($args);
 		$flags =& $args;
 
-		$pressDao =& DAORegistry::getDAO('PressDAO');
-		$userDao =& DAORegistry::getDAO('UserDAO');
+		$pressDao = DAORegistry::getDAO('PressDAO');
+		$userDao = DAORegistry::getDAO('UserDAO');
 
 		$press =& $pressDao->getByPath($pressPath);
 
@@ -289,7 +289,7 @@ class UserImportExportPlugin extends ImportExportPlugin {
 				break;
 			case 'export':
 				$this->import('UserExportDom');
-				$roleDao =& DAORegistry::getDAO('RoleDAO');
+				$roleDao = DAORegistry::getDAO('RoleDAO');
 				$rolePaths = null;
 				if (empty($args)) {
 					$users =& $roleDao->getUsersByRoleId(null, $press->getId());

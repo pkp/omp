@@ -55,7 +55,7 @@ class GenreForm extends Form {
 	function initData($args, &$request) {
 		$press =& $request->getPress();
 
-		$genreDao =& DAORegistry::getDAO('GenreDAO');
+		$genreDao = DAORegistry::getDAO('GenreDAO');
 
 		if($this->getGenreId()) {
 			$genre =& $genreDao->getById($this->getGenreId(), $press->getId());
@@ -110,7 +110,7 @@ class GenreForm extends Form {
 	 * @param $request PKPRequest
 	 */
 	function execute($args, &$request) {
-		$genreDao =& DAORegistry::getDAO('GenreDAO');
+		$genreDao = DAORegistry::getDAO('GenreDAO');
 		$press =& $request->getPress();
 
 		// Update or insert genre

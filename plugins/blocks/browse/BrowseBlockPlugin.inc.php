@@ -47,12 +47,12 @@ class BrowseBlockPlugin extends BlockPlugin {
 		$press =& $request->getPress();
 
 		// Provide a list of series to browse
-		$seriesDao =& DAORegistry::getDAO('SeriesDAO');
+		$seriesDao = DAORegistry::getDAO('SeriesDAO');
 		$series =& $seriesDao->getByPressId($press->getId());
 		$templateMgr->assign('browseSeries', $series);
 
 		// Provide a list of categories to browse
-		$categoryDao =& DAORegistry::getDAO('CategoryDAO');
+		$categoryDao = DAORegistry::getDAO('CategoryDAO');
 		$categories =& $categoryDao->getByPressId($press->getId());
 		$templateMgr->assign('browseCategories', $categories);
 

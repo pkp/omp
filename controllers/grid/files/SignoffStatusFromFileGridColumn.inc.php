@@ -124,8 +124,8 @@ class SignoffStatusFromFileGridColumn extends BaseSignoffStatusColumn {
 
 		} else {
 			// The current user has to sign off the file
-			$signoffDao =& DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
-			$viewsDao =& DAORegistry::getDAO('ViewsDAO'); /* @var $viewsDao ViewsDAO */
+			$signoffDao = DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
+			$viewsDao = DAORegistry::getDAO('ViewsDAO'); /* @var $viewsDao ViewsDAO */
 			$lastViewed = false;
 			foreach ($userIds as $userId) {
 				$signoffs =& $signoffDao->getAllBySymbolic(

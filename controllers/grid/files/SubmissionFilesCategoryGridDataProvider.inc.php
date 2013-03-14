@@ -90,7 +90,7 @@ class SubmissionFilesCategoryGridDataProvider extends CategoryGridDataProvider {
 	 * @see CategoryGridDataProvider::getCategoryData()
 	 */
 	function &getCategoryData($categoryDataElement, $filter = null, $reviewRound = null) {
-		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		$dataProvider =& $this->getDataProvider();
 		$monograph =& $dataProvider->getMonograph();
 		$stageId = $categoryDataElement;
@@ -100,7 +100,7 @@ class SubmissionFilesCategoryGridDataProvider extends CategoryGridDataProvider {
 		// For review stages, get the revisions of the review round that user is currently accessing.
 		if ($stageId == WORKFLOW_STAGE_ID_INTERNAL_REVIEW || $stageId == WORKFLOW_STAGE_ID_EXTERNAL_REVIEW) {
 			if (is_null($reviewRound) || $reviewRound->getStageId() != $stageId) {
-				$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
+				$reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO');
 				$reviewRound =& $reviewRoundDao->getLastReviewRoundBySubmissionId($monograph->getId(), $stageId);
 			}
 			$stageMonographFiles =& $submissionFileDao->getLatestNewRevisionsByReviewRound($reviewRound, $fileStage);

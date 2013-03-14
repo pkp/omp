@@ -111,7 +111,7 @@ class AddParticipantForm extends Form {
 		$userId = (int) $this->getData('userId');
 		$monograph =& $this->getMonograph();
 
-		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */
+		$userGroupDao = DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */
 		return parent::validate() && $userGroupDao->userInGroup($userId, $userGroupId) && $userGroupDao->getById($userGroupId, $monograph->getPressId());
 	}
 
@@ -121,8 +121,8 @@ class AddParticipantForm extends Form {
 	 * @return array($userGroupId, $userId)
 	 */
 	function execute() {
-		$stageAssignmentDao =& DAORegistry::getDAO('StageAssignmentDAO'); /* @var $stageAssignmentDao StageAssignmentDAO */
-		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */
+		$stageAssignmentDao = DAORegistry::getDAO('StageAssignmentDAO'); /* @var $stageAssignmentDao StageAssignmentDAO */
+		$userGroupDao = DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */
 
 		$monograph =& $this->getMonograph();
 		$userGroupId = (int) $this->getData('userGroupId');

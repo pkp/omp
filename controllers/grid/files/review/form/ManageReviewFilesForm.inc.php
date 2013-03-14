@@ -56,7 +56,7 @@ class ManageReviewFilesForm extends ManageSubmissionFilesForm {
 	 * @return ReviewRound
 	 */
 	function &getReviewRound() {
-		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
+		$reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO');
 		$reviewRound =& $reviewRoundDao->getReviewRoundById($this->getReviewRoundId());
 		return $reviewRound;
 	}

@@ -26,7 +26,7 @@ class ReviewerReviewStep3Form extends ReviewerReviewForm {
 
 		// Validation checks for this form
 		// FIXME #5123: Include when review form infrastructure is in place
-		//$reviewFormElementDao =& DAORegistry::getDAO('ReviewFormElementDAO');
+		//$reviewFormElementDao = DAORegistry::getDAO('ReviewFormElementDAO');
 		//$requiredReviewFormElementIds = $reviewFormElementDao->getRequiredReviewFormElementIds($this->reviewAssignment->getReviewFormId());
 		//$this->addCheck(new FormValidatorCustom($this, 'reviewFormResponses', 'required', 'reviewer.monograph.reviewFormResponse.form.responseRequired', create_function('$reviewFormResponses, $requiredReviewFormElementIds', 'foreach ($requiredReviewFormElementIds as $requiredReviewFormElementId) { if (!isset($reviewFormResponses[$requiredReviewFormElementId]) || $reviewFormResponses[$requiredReviewFormElementId] == \'\') return false; } return true;'), array($requiredReviewFormElementIds)));
 
@@ -37,7 +37,7 @@ class ReviewerReviewStep3Form extends ReviewerReviewForm {
 	function initData() {
 		$reviewAssignment =& $this->getReviewAssignment();
 		// Retrieve reviewer comment.
-		$monographCommentDao =& DAORegistry::getDAO('MonographCommentDAO');
+		$monographCommentDao = DAORegistry::getDAO('MonographCommentDAO');
 		$monographComments =& $monographCommentDao->getReviewerCommentsByReviewerId($reviewAssignment->getReviewerId(), $reviewAssignment->getSubmissionId(), $reviewAssignment->getId());
 		$this->setData('reviewerComment', $monographComments->next());
 	}
@@ -74,11 +74,11 @@ class ReviewerReviewStep3Form extends ReviewerReviewForm {
 		if($reviewAssignment->getReviewFormId()) {
 
 			// Get the review form components
-			$reviewFormElementDao =& DAORegistry::getDAO('ReviewFormElementDAO');
+			$reviewFormElementDao = DAORegistry::getDAO('ReviewFormElementDAO');
 			$reviewFormElements =& $reviewFormElementDao->getReviewFormElements($reviewAssignment->getReviewFormId());
-			$reviewFormResponseDao =& DAORegistry::getDAO('ReviewFormResponseDAO');
+			$reviewFormResponseDao = DAORegistry::getDAO('ReviewFormResponseDAO');
 			$reviewFormResponses =& $reviewFormResponseDao->getReviewReviewFormResponseValues($reviewAssignment->getReviewId());
-			$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
+			$reviewFormDao = DAORegistry::getDAO('ReviewFormDAO');
 			$reviewformid = $reviewAssignment->getReviewFormId();
 			$reviewForm =& $reviewFormDao->getReviewForm($reviewAssignment->getReviewFormId(), ASSOC_TYPE_PRESS, $press->getId());
 
@@ -107,7 +107,7 @@ class ReviewerReviewStep3Form extends ReviewerReviewForm {
 		$reviewAssignment =& $this->getReviewAssignment();
 		$notificationMgr = new NotificationManager();
 		if($reviewAssignment->getReviewFormId()) {
-			$reviewFormResponseDao =& DAORegistry::getDAO('ReviewFormResponseDAO');
+			$reviewFormResponseDao = DAORegistry::getDAO('ReviewFormResponseDAO');
 			/* FIXME #5123: Include when review form infrastructure is in place
 			$reviewFormResponses = $this->getData('reviewFormResponses');
 			if (is_array($reviewFormResponses)) foreach ($reviewFormResponses as $reviewFormElementId => $reviewFormResponseValue) {
@@ -115,7 +115,7 @@ class ReviewerReviewStep3Form extends ReviewerReviewForm {
 				if (!isset($reviewFormResponse)) {
 					$reviewFormResponse = new ReviewFormResponse();
 				}
-				$reviewFormElementDao =& DAORegistry::getDAO('ReviewFormElementDAO');
+				$reviewFormElementDao = DAORegistry::getDAO('ReviewFormElementDAO');
 				$reviewFormElement = $reviewFormElementDao->getReviewFormElement($reviewFormElementId);
 				$elementType = $reviewFormElement->getElementType();
 				switch ($elementType) {
@@ -163,7 +163,7 @@ class ReviewerReviewStep3Form extends ReviewerReviewForm {
 			$monographDao = DAORegistry::getDAO('MonographDAO');
 			$monograph = $monographDao->getById($reviewAssignment->getSubmissionId());
 
-			$stageAssignmentDao =& DAORegistry::getDAO('StageAssignmentDAO');
+			$stageAssignmentDao = DAORegistry::getDAO('StageAssignmentDAO');
 			$stageAssignments =& $stageAssignmentDao->getBySubmissionAndStageId($monograph->getId(), $monograph->getStageId());
 
 			while ($stageAssignment =& $stageAssignments->next()) {
@@ -183,11 +183,11 @@ class ReviewerReviewStep3Form extends ReviewerReviewForm {
 		$reviewAssignment->stampModified();
 
 		// Persist the updated review assignment.
-		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO'); /* @var $reviewAssignmentDao ReviewAssignmentDAO */
+		$reviewAssignmentDao = DAORegistry::getDAO('ReviewAssignmentDAO'); /* @var $reviewAssignmentDao ReviewAssignmentDAO */
 		$reviewAssignmentDao->updateObject($reviewAssignment);
 
 		// Update the review round status.
-		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO'); /* @var $reviewRoundDao ReviewRoundDAO */
+		$reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO'); /* @var $reviewRoundDao ReviewRoundDAO */
 		$reviewRound =& $reviewRoundDao->getReviewRoundById($reviewAssignment->getReviewRoundId());
 		$reviewAssignments = $reviewAssignmentDao->getByReviewRoundId($reviewRound->getId(), true);
 		$reviewRoundDao->updateStatus($reviewRound, $reviewAssignments);
@@ -202,7 +202,7 @@ class ReviewerReviewStep3Form extends ReviewerReviewForm {
 		);
 
 		// Remove the task
-		$notificationDao =& DAORegistry::getDAO('NotificationDAO');
+		$notificationDao = DAORegistry::getDAO('NotificationDAO');
 		$notificationDao->deleteByAssoc(
 			ASSOC_TYPE_REVIEW_ASSIGNMENT,
 			$reviewAssignment->getId(),

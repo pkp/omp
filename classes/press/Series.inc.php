@@ -212,7 +212,7 @@ class Series extends DataObject {
 	 * @return string
 	 */
 	function getEditorsString() {
-		$seriesEditorsDao =& DAORegistry::getDAO('SeriesEditorsDAO');
+		$seriesEditorsDao = DAORegistry::getDAO('SeriesEditorsDAO');
 		$editors = $seriesEditorsDao->getEditorsBySeriesId($this->getId(), $this->getPressId());
 
 		$separator = ', ';

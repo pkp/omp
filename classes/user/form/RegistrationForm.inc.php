@@ -73,7 +73,7 @@ class RegistrationForm extends Form {
 					$this->addCheck(new FormValidatorReCaptcha($this, 'recaptcha_challenge_field', 'recaptcha_response_field', Request::getRemoteAddr(), 'common.captchaField.badCaptcha'));
 				}
 
-				$authDao =& DAORegistry::getDAO('AuthSourceDAO');
+				$authDao = DAORegistry::getDAO('AuthSourceDAO');
 				$this->defaultAuth =& $authDao->getDefaultPlugin();
 				if (isset($this->defaultAuth)) {
 					$this->addCheck(new FormValidatorCustom($this, 'username', 'required', 'user.register.form.usernameExists', create_function('$username,$form,$auth', 'return (!$auth->userExists($username) || $auth->authenticate($username, $form->getData(\'password\')));'), array(&$this, $this->defaultAuth)));
@@ -104,15 +104,15 @@ class RegistrationForm extends Form {
 			}
 		}
 
-		$countryDao =& DAORegistry::getDAO('CountryDAO');
+		$countryDao = DAORegistry::getDAO('CountryDAO');
 		$countries =& $countryDao->getCountries();
 		$templateMgr->assign_by_ref('countries', $countries);
 
-		$userDao =& DAORegistry::getDAO('UserDAO');
+		$userDao = DAORegistry::getDAO('UserDAO');
 		$templateMgr->assign('genderOptions', $userDao->getGenderOptions());
 
 		if ($press) {
-			$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+			$userGroupDao = DAORegistry::getDAO('UserGroupDAO');
 
 			$templateMgr->assign_by_ref('reviewerUserGroups', $userGroupDao->getByRoleId($press->getId(), ROLE_ID_REVIEWER));
 			$templateMgr->assign_by_ref('authorUserGroups', $userGroupDao->getByRoleId($press->getId(), ROLE_ID_AUTHOR));
@@ -135,7 +135,7 @@ class RegistrationForm extends Form {
 	 * @see Form::getLocaleFieldNames
 	 */
 	function getLocaleFieldNames() {
-		$userDao =& DAORegistry::getDAO('UserDAO');
+		$userDao = DAORegistry::getDAO('UserDAO');
 		return $userDao->getLocaleFieldNames();
 	}
 
@@ -213,7 +213,7 @@ class RegistrationForm extends Form {
 
 		if ($this->existingUser) { // If using implicit auth - we hardwire that we are working on an existing user
 			// Existing user in the system
-			$userDao =& DAORegistry::getDAO('UserDAO');
+			$userDao = DAORegistry::getDAO('UserDAO');
 
 			if ($this->implicitAuth) { // If we are using implicit auth - then use the session username variable - rather than data from the form
 				$sessionManager =& SessionManager::getManager();
@@ -300,7 +300,7 @@ class RegistrationForm extends Form {
 		$request = $application->getRequest();
 		$press = $request->getPress();
 		if ($press) {
-			$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+			$userGroupDao = DAORegistry::getDAO('UserGroupDAO');
 			if ($press->getSetting('allowRegReviewer')) {
 				$reviewerGroup = $this->getData('reviewerGroup');
 				$reviewerUserGroupIds = $userGroupDao->getUserGroupIdsByRoleId(ROLE_ID_REVIEWER, $press->getId());
@@ -369,7 +369,7 @@ class RegistrationForm extends Form {
 		// duplicate insert error msg if there was a notification entry
 		// left over from a previous role.)
 		if (isset($allowedRoles['reader']) && $this->getData($allowedRoles['reader'])) {
-			$notificationStatusDao =& DAORegistry::getDAO('NotificationStatusDAO');
+			$notificationStatusDao = DAORegistry::getDAO('NotificationStatusDAO');
 			$notificationStatusDao->setPressNotifications($press->getId(), $userId, false);
 			$notificationStatusDao->setPressNotifications($press->getId(), $userId, true);
 		}

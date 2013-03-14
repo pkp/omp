@@ -51,7 +51,7 @@ class OMPPaymentManager extends PaymentManager {
 	 * @return QueuedPayment
 	 */
 	function &createQueuedPayment($pressId, $type, $userId, $assocId, $amount, $currencyCode = null) {
-		$pressDao =& DAORegistry::getDAO('PressDAO');
+		$pressDao = DAORegistry::getDAO('PressDAO');
 		$press =& $pressDao->getById($pressId);
 		assert($press);
 		$payment = new OMPQueuedPayment($amount, $press->getSetting('currency'), $userId, $assocId);
@@ -60,7 +60,7 @@ class OMPPaymentManager extends PaymentManager {
 
 	 	switch ($type) {
 			case PAYMENT_TYPE_PURCHASE_FILE:
-				$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO');
+				$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
 				list($fileId, $revision) = array_map(create_function('$a', 'return (int) $a;'), explode('-', $assocId));
 				import('classes.monograph.MonographFile'); // const
 				$submissionFile =& $submissionFileDao->getRevision($fileId, $revision, SUBMISSION_FILE_PROOF);
@@ -113,11 +113,11 @@ class OMPPaymentManager extends PaymentManager {
 				assert(false);
 		}
 
-		$ompCompletedPaymentDao =& DAORegistry::getDAO('OMPCompletedPaymentDAO');
+		$ompCompletedPaymentDao = DAORegistry::getDAO('OMPCompletedPaymentDAO');
 		$completedPayment =& $this->createCompletedPayment($queuedPayment, $payMethodPluginName);
 		$ompCompletedPaymentDao->insertCompletedPayment($completedPayment);
 
-		$queuedPaymentDao =& DAORegistry::getDAO('QueuedPaymentDAO');
+		$queuedPaymentDao = DAORegistry::getDAO('QueuedPaymentDAO');
 		$queuedPaymentDao->deleteQueuedPayment($queuedPayment->getId());
 
 		return $returner;

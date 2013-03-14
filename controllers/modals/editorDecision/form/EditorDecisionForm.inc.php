@@ -138,7 +138,7 @@ class EditorDecisionForm extends Form {
 
 		// If we already have review round for this stage,
 		// we create a new round after the last one.
-		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO'); /* @var $reviewRoundDao ReviewRoundDAO */
+		$reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO'); /* @var $reviewRoundDao ReviewRoundDAO */
 		$lastReviewRound =& $reviewRoundDao->getLastReviewRoundBySubmissionId($monograph->getId(), $stageId);
 		if ($lastReviewRound) {
 			$newRound = $lastReviewRound->getRound() + 1;
@@ -151,7 +151,7 @@ class EditorDecisionForm extends Form {
 		$reviewRound =& $reviewRoundDao->build($monograph->getId(), $stageId, $newRound, $status);
 
 		// Check for a notification already in place for the current review round.
-		$notificationDao =& DAORegistry::getDAO('NotificationDAO');
+		$notificationDao = DAORegistry::getDAO('NotificationDAO');
 		$notificationFactory =& $notificationDao->getByAssoc(
 			ASSOC_TYPE_REVIEW_ROUND,
 			$reviewRound->getId(),
@@ -175,7 +175,7 @@ class EditorDecisionForm extends Form {
 		}
 
 		// Add the selected files to the new round.
-		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 
 		// Bring in the SUBMISSION_FILE_* constants.
 		import('classes.monograph.MonographFile');

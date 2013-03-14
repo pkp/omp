@@ -29,7 +29,7 @@ class PageRouter extends PKPPageRouter {
 	 * @param $request PKPRequest the request to be routed
 	 */
 	function redirectHome(&$request) {
-		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+		$userGroupDao = DAORegistry::getDAO('UserGroupDAO');
 		$user = $request->getUser();
 		$userId = $user->getId();
 
@@ -47,7 +47,7 @@ class PageRouter extends PKPPageRouter {
 			$userGroups =& $userGroupDao->getByUserId($userId, CONTEXT_ID_NONE);
 
 			if($userGroups->getCount() == 1) {
-				$pressDao =& DAORegistry::getDAO('PressDAO');
+				$pressDao = DAORegistry::getDAO('PressDAO');
 				$userGroup =& $userGroups->next();
 				$press =& $pressDao->getById($userGroup->getContextId());
 				if (!isset($press)) $request->redirect('index', 'index');

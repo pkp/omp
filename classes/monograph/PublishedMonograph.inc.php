@@ -131,7 +131,7 @@ class PublishedMonograph extends Monograph {
 	 * @return array PublicationFormat
 	 */
 	function getPublicationFormats($onlyApproved = false) {
-		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
+		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
 		if ($onlyApproved) {
 			$formats = $publicationFormatDao->getApprovedByMonographId($this->getId());
 		} else {
@@ -178,7 +178,7 @@ class PublishedMonograph extends Monograph {
 	 * @return Iterator
 	 */
 	function getCategories() {
-		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
+		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
 		return $publishedMonographDao->getCategories(
 			$this->getId(),
 			$this->getPressId()
@@ -221,7 +221,7 @@ class PublishedMonograph extends Monograph {
 	 * @return Array Representative
 	 */
 	function getSuppliers() {
-		$representativeDao =& DAORegistry::getDAO('RepresentativeDAO');
+		$representativeDao = DAORegistry::getDAO('RepresentativeDAO');
 		$suppliers =& $representativeDao->getSuppliersByMonographId($this->getId());
 		return $suppliers;
 	}
@@ -231,7 +231,7 @@ class PublishedMonograph extends Monograph {
 	 * @return Array Representative
 	 */
 	function getAgents() {
-		$representativeDao =& DAORegistry::getDAO('RepresentativeDAO');
+		$representativeDao = DAORegistry::getDAO('RepresentativeDAO');
 		$agents =& $representativeDao->getAgentsByMonographId($this->getId());
 		return $agents;
 	}

@@ -47,7 +47,7 @@ abstract class RevisionsNotificationManager extends NotificationManagerDelegate 
 	 * @return mixed array or null
 	 */
 	protected function findValidPendingRevisionsDecision($monographId, $expectedStageId) {
-		$seriesEditorSubmissionDao =& DAORegistry::getDAO('SeriesEditorSubmissionDAO');
+		$seriesEditorSubmissionDao = DAORegistry::getDAO('SeriesEditorSubmissionDAO');
 		$editorDecisions = $seriesEditorSubmissionDao->getEditorDecisions($monographId);
 		$workingDecisions = array_reverse($editorDecisions);
 		$postReviewDecisions = array(SUBMISSION_EDITOR_DECISION_SEND_TO_PRODUCTION);
@@ -88,10 +88,10 @@ abstract class RevisionsNotificationManager extends NotificationManagerDelegate 
 		$round = $decision['round'];
 		$sentRevisions = false;
 
-		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
+		$reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO');
 		$reviewRound =& $reviewRoundDao->getReviewRound($monographId, $stageId, $round);
 
-		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO');
+		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
 		$monographFiles =&  $submissionFileDao->getRevisionsByReviewRound($reviewRound, SUBMISSION_FILE_REVIEW_REVISION);
 
 		if (is_array($monographFiles)) {

@@ -66,7 +66,7 @@ class PressGridHandler extends ContextGridHandler {
 	 */
 	function loadData(&$request) {
 		// Get all presses.
-		$pressDao =& DAORegistry::getDAO('PressDAO');
+		$pressDao = DAORegistry::getDAO('PressDAO');
 		$presses = $pressDao->getAll();
 
 		return $presses->toAssociativeArray();
@@ -138,7 +138,7 @@ class PressGridHandler extends ContextGridHandler {
 				if (is_null($pressId)) {
 					// CASE 1: new press created.
 					// Create notification related to payment method configuration.
-					$pressDao =& DAORegistry::getDAO('PressDAO');
+					$pressDao = DAORegistry::getDAO('PressDAO');
 					$newPress =& $pressDao->getByPath($newPressPath);
 					$notificationMgr->createNotification($request, null, NOTIFICATION_TYPE_CONFIGURE_PAYMENT_METHOD,
 						$newPress->getId(), ASSOC_TYPE_PRESS, $newPress->getId(), NOTIFICATION_LEVEL_NORMAL);
@@ -173,7 +173,7 @@ class PressGridHandler extends ContextGridHandler {
 
 		// Identify the press Id.
 		$pressId = $request->getUserVar('rowId');
-		$pressDao =& DAORegistry::getDAO('PressDAO');
+		$pressDao = DAORegistry::getDAO('PressDAO');
 		$press =& $pressDao->getById($pressId);
 
 		$json = new JSONMessage();

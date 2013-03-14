@@ -96,7 +96,7 @@ class IndexHandler extends Handler {
 			if ($enableAnnouncementsHomepage) {
 				$numAnnouncementsHomepage = $press->getSetting('numAnnouncementsHomepage');
 				$templateMgr->assign('enableAnnouncementsHomepage', true);
-				$announcementDao =& DAORegistry::getDAO('AnnouncementDAO');
+				$announcementDao = DAORegistry::getDAO('AnnouncementDAO');
 				$announcements =& $announcementDao->getAnnouncementsNotExpiredByAssocId(ASSOC_TYPE_PRESS, $press->getId());
 				$templateMgr->assign_by_ref('announcements', $announcements);
 				if (isset($numAnnouncementsHomepage)) {
@@ -106,12 +106,12 @@ class IndexHandler extends Handler {
 		}
 
 		// Include random spotlight items for the press home page.
-		$spotlightDao =& DAORegistry::getDAO('SpotlightDAO');
+		$spotlightDao = DAORegistry::getDAO('SpotlightDAO');
 		$spotlights = $spotlightDao->getRandomByPressId($press->getId(), MAX_SPOTLIGHTS_VISIBLE);
 		$templateMgr->assign('spotlights', $spotlights);
 
 		// Include any social media items that are configured for the press itself.
-		$socialMediaDao =& DAORegistry::getDAO('SocialMediaDAO');
+		$socialMediaDao = DAORegistry::getDAO('SocialMediaDAO');
 		$socialMedia =& $socialMediaDao->getEnabledForContextByContextId($press->getId());
 		$blocks = array();
 		while ($media = $socialMedia->next()) {

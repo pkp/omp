@@ -22,7 +22,7 @@ class Onix30ExportDom {
 
 	function &generateMonographDom(&$doc, &$press, &$monograph, &$publicationFormat) {
 
-		$onixCodelistItemDao =& DAORegistry::getDAO('ONIXCodelistItemDAO');
+		$onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO');
 
 		$unavailableString = __('plugins.importexport.onix30.unavailable');
 
@@ -168,7 +168,7 @@ class Onix30ExportDom {
 
 		/* --- Series information, if this monograph is part of one. --- */
 
-		$seriesDao =& DAORegistry::getDAO('SeriesDAO');
+		$seriesDao = DAORegistry::getDAO('SeriesDAO');
 		$series =& $seriesDao->getById($monograph->getSeriesId());
 		if ($series != null) {
 			XMLCustomWriter::createChildWithText($doc, $titleElementNode, 'PartNumber', $monograph->getSeriesPosition(), false);
@@ -206,7 +206,7 @@ class Onix30ExportDom {
 			$contributorNode =& XMLCustomWriter::createElement($doc, 'Contributor');
 			XMLCustomWriter::appendChild($descDetailNode, $contributorNode);
 			XMLCustomWriter::createChildWithText($doc, $contributorNode, 'SequenceNumber', $sequence);
-			$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+			$userGroupDao = DAORegistry::getDAO('UserGroupDAO');
 			$userGroup =& $userGroupDao->getById($author->getUserGroupId(), $monograph->getPressId());
 
 			$userGroupOnixMap = array('AU' => 'A01', 'VE' => 'B01', 'CA' => 'A01', 'Trans' => 'B06'); // From List17, ContributorRole types.
@@ -240,7 +240,7 @@ class Onix30ExportDom {
 
 		/* --- Add Language elements --- */
 
-		$monographLanguageDao =& DAORegistry::getDAO('MonographLanguageDAO');
+		$monographLanguageDao = DAORegistry::getDAO('MonographLanguageDAO');
 		$allLanguages =& $monographLanguageDao->getLanguages($monograph->getId(), array_keys(AppLocale::getSupportedFormLocales()));
 		$uniqueLanguages = array();
 		foreach ($allLanguages as $locale => $languages) {
@@ -294,7 +294,7 @@ class Onix30ExportDom {
 		XMLCustomWriter::createChildWithText($doc, $subjectNode, 'SubjectSchemeIdentifier', '12'); // 12 is BIC subject category code list
 		XMLCustomWriter::createChildWithText($doc, $subjectNode, 'SubjectSchemeVersion', '2'); // Version 2 of ^^
 
-		$monographSubjectDao =& DAORegistry::getDAO('MonographSubjectDAO');
+		$monographSubjectDao = DAORegistry::getDAO('MonographSubjectDAO');
 		$allSubjects =& $monographSubjectDao->getSubjects($monograph->getId(),  array_keys(AppLocale::getSupportedFormLocales()));
 		$uniqueSubjects = array();
 		foreach ($allSubjects as $locale => $subjects) {
@@ -433,7 +433,7 @@ class Onix30ExportDom {
 
 		/* --- Product Supply.  We create one of these per defined Market. --- */
 
-		$representativeDao =& DAORegistry::getDAO('RepresentativeDAO');
+		$representativeDao = DAORegistry::getDAO('RepresentativeDAO');
 		$markets =& $publicationFormat->getMarkets();
 
 		while ($market =& $markets->next()) {

@@ -69,8 +69,8 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter {
 		// meta-data framework. We're using the OAIDAO here because it
 		// contains cached entities and avoids extra database access if this
 		// adapter is called from an OAI context.
-		$oaiDao =& DAORegistry::getDAO('OAIDAO'); /* @var $oaiDao OAIDAO */
-		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
+		$oaiDao = DAORegistry::getDAO('OAIDAO'); /* @var $oaiDao OAIDAO */
+		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
 		$monograph =& $publishedMonographDao->getById($publicationFormat->getMonographId());
 		$press =& $oaiDao->getPress($monograph->getPressId());
 		$series =& $oaiDao->getSeries($monograph->getSeriesId()); /* @var $series Series */
@@ -134,7 +134,7 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter {
 		$this->_addLocalizedElements($dc11Description, 'dc:type', $types);
 
 		// Format
-		$onixCodelistItemDao =& DAORegistry::getDAO('ONIXCodelistItemDAO');
+		$onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO');
 		$entryKeys = $onixCodelistItemDao->getCodes('List7'); // List7 is for object formats
 		if ($publicationFormat->getEntryKey()) {
 			$formatName = $entryKeys[$publicationFormat->getEntryKey()];

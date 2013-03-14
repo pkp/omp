@@ -62,7 +62,7 @@ class CatalogEntryCatalogMetadataForm extends Form {
 	 */
 	function CatalogEntryCatalogMetadataForm($monographId, $userId, $stageId = null, $formParams = null) {
 		parent::Form('controllers/tab/catalogEntry/form/catalogMetadataFormFields.tpl');
-		$monographDao =& DAORegistry::getDAO('MonographDAO');
+		$monographDao = DAORegistry::getDAO('MonographDAO');
 		$this->_monograph = $monographDao->getById($monographId);
 
 		$this->_stageId = $stageId;
@@ -83,7 +83,7 @@ class CatalogEntryCatalogMetadataForm extends Form {
 		$templateMgr->assign('stageId', $this->getStageId());
 		$templateMgr->assign('formParams', $this->getFormParams());
 
-		$onixCodelistItemDao =& DAORegistry::getDAO('ONIXCodelistItemDAO');
+		$onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO');
 
 		// get the lists associated with the select elements on this form
 		$audienceCodes =& $onixCodelistItemDao->getCodes('List28');
@@ -118,7 +118,7 @@ class CatalogEntryCatalogMetadataForm extends Form {
 		);
 
 		$monograph =& $this->getMonograph();
-		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
+		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
 		$this->_publishedMonograph =& $publishedMonographDao->getById($monograph->getId(), null, false);
 	}
 
@@ -178,7 +178,7 @@ class CatalogEntryCatalogMetadataForm extends Form {
 		if ($temporaryFileId = $this->getData('temporaryFileId')) {
 			import('classes.file.TemporaryFileManager');
 			$temporaryFileManager = new TemporaryFileManager();
-			$temporaryFileDao =& DAORegistry::getDAO('TemporaryFileDAO');
+			$temporaryFileDao = DAORegistry::getDAO('TemporaryFileDAO');
 			$temporaryFile =& $temporaryFileDao->getTemporaryFile($temporaryFileId, $this->_userId);
 			if (	!$temporaryFile ||
 				!($this->_imageExtension = $temporaryFileManager->getImageExtension($temporaryFile->getFileType())) ||
@@ -200,7 +200,7 @@ class CatalogEntryCatalogMetadataForm extends Form {
 		parent::execute();
 
 		$monograph =& $this->getMonograph();
-		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
+		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
 		$publishedMonograph =& $publishedMonographDao->getById($monograph->getId(), null, false); /* @var $publishedMonograph PublishedMonograph */
 		$isExistingEntry = $publishedMonograph?true:false;
 		if (!$publishedMonograph) {
@@ -218,7 +218,7 @@ class CatalogEntryCatalogMetadataForm extends Form {
 		// If a cover image was uploaded, deal with it.
 		if ($temporaryFileId = $this->getData('temporaryFileId')) {
 			// Fetch the temporary file storing the uploaded library file
-			$temporaryFileDao =& DAORegistry::getDAO('TemporaryFileDAO');
+			$temporaryFileDao = DAORegistry::getDAO('TemporaryFileDAO');
 			$temporaryFile =& $temporaryFileDao->getTemporaryFile($temporaryFileId, $this->_userId);
 			$temporaryFilePath = $temporaryFile->getFilePath();
 			import('classes.file.SimpleMonographFileManager');

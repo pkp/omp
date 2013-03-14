@@ -49,13 +49,13 @@ class UserXMLParser {
 	 * @return array ImportedUsers the collection of users read from the file
 	 */
 	function &parseData($file) {
-		$roleDao =& DAORegistry::getDAO('RoleDAO');
+		$roleDao = DAORegistry::getDAO('RoleDAO');
 
 		$success = true;
 		$this->usersToImport = array();
 		$tree = $this->parser->parse($file);
 
-		$pressDao =& DAORegistry::getDAO('PressDAO');
+		$pressDao = DAORegistry::getDAO('PressDAO');
 		$press =& $pressDao->getById($this->pressId);
 		$pressPrimaryLocale = AppLocale::getPrimaryLocale();
 
@@ -185,11 +185,11 @@ class UserXMLParser {
 		$success = true;
 		$this->importedUsers = array();
 		$this->errors = array();
-		$pressDao =& DAORegistry::getDAO('PressDAO');
+		$pressDao = DAORegistry::getDAO('PressDAO');
 		$press =& $pressDao->getById($this->pressId);
 
-		$userDao =& DAORegistry::getDAO('UserDAO');
-		$roleDao =& DAORegistry::getDAO('RoleDAO');
+		$userDao = DAORegistry::getDAO('UserDAO');
+		$roleDao = DAORegistry::getDAO('RoleDAO');
 
 		if ($sendNotify) {
 			// Set up mail template to send to added users
@@ -254,7 +254,7 @@ class UserXMLParser {
 			// Enroll user in specified roles
 			// If the user is already enrolled in a role, that role is skipped
 
-			$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+			$userGroupDao = DAORegistry::getDAO('UserGroupDAO');
 
 			foreach ($user->getRoles() as $role) {
 				$userGroupIds =& $userGroupDao->getUserGroupIdsByRoleId($role->getRoleId(), $press->getId());
@@ -344,7 +344,7 @@ class UserXMLParser {
 	 * @param $user ImportedUser the user to be modified by this function
 	 */
 	function generateUsername(&$user) {
-		$userDao =& DAORegistry::getDAO('UserDAO');
+		$userDao = DAORegistry::getDAO('UserDAO');
 		$baseUsername = String::regexp_replace('/[^A-Z0-9]/i', '', $user->getLastName());
 		if (empty($baseUsername)) {
 			$baseUsername = String::regexp_replace('/[^A-Z0-9]/i', '', $user->getFirstName());

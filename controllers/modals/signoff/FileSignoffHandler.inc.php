@@ -97,7 +97,7 @@ class FileSignoffHandler extends FileManagementHandler {
 		}
 		$symbolic = $request->getUserVar('symbolic');
 		if ($symbolic) {
-			$signoffDao =& DAORegistry::getDAO('SignoffDAO');
+			$signoffDao = DAORegistry::getDAO('SignoffDAO');
 			$symbolics = $signoffDao->getAllSymbolics();
 			if (!in_array($symbolic, $symbolics)) {
 				return false;
@@ -135,8 +135,8 @@ class FileSignoffHandler extends FileManagementHandler {
 	 * @return string a serialized JSON object
 	 */
 	function readSignoff($args, &$request) {
-		$signoffDao =& DAORegistry::getDAO('MonographFileSignoffDAO');
-		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+		$signoffDao = DAORegistry::getDAO('MonographFileSignoffDAO');
+		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		$signoff =& $this->getAuthorizedContextObject(ASSOC_TYPE_SIGNOFF);
 
 		// Sanity check.
@@ -159,7 +159,7 @@ class FileSignoffHandler extends FileManagementHandler {
 		$templateMgr->assign('signoffFileName', $signoffFile->getLocalizedName());
 
 		// Check if there is a note and assign it for dispaly
-		$noteDao =& DAORegistry::getDAO('NoteDAO'); /* @var $noteDao NoteDAO */
+		$noteDao = DAORegistry::getDAO('NoteDAO'); /* @var $noteDao NoteDAO */
 		$notes =& $noteDao->getByAssoc(ASSOC_TYPE_SIGNOFF, $signoff->getId());
 		if (!$notes->wasEmpty()) {
 			$lastNote =& $notes->next();

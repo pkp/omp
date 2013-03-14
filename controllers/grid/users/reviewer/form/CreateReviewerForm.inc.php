@@ -73,7 +73,7 @@ class CreateReviewerForm extends ReviewerForm {
 	 * @param $request PKPRequest
 	 */
 	function execute($args, &$request) {
-		$userDao =& DAORegistry::getDAO('UserDAO');
+		$userDao = DAORegistry::getDAO('UserDAO');
 		$user = new User();
 
 		$user->setFirstName($this->getData('firstname'));
@@ -81,7 +81,7 @@ class CreateReviewerForm extends ReviewerForm {
 		$user->setLastName($this->getData('lastname'));
 		$user->setEmail($this->getData('email'));
 
-		$authDao =& DAORegistry::getDAO('AuthSourceDAO');
+		$authDao = DAORegistry::getDAO('AuthSourceDAO');
 		$auth =& $authDao->getDefaultPlugin();
 		$user->setAuthId($auth?$auth->getAuthId():0);
 		$user->setInlineHelp(1); // default new reviewers to having inline help visible
@@ -112,7 +112,7 @@ class CreateReviewerForm extends ReviewerForm {
 		$interestManager->setInterestsForUser($user, $interests);
 
 		// Assign the selected user group ID to the user
-		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */
+		$userGroupDao = DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */
 		$userGroupId = (int) $this->getData('userGroupId');
 		$userGroupDao->assignUserToGroup($reviewerId, $userGroupId);
 

@@ -117,7 +117,7 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 			case 'proofComplete':
 				return $this->isProofComplete($publicationFormat)?'completed':'new';
 			case 'isApproved':
-				$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
+				$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
 				$publishedMonograph =& $publishedMonographDao->getById($publicationFormat->getMonographId());
 				return ($publicationFormat->getIsApproved() && $publishedMonograph)?'completed':'new';
 			case 'isAvailable':
@@ -155,7 +155,7 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 				break;
 			case 'isAvailable':
 				$router =& $request->getRouter();
-				$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
+				$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
 				$publishedMonograph =& $publishedMonographDao->getById($publicationFormat->getMonographId());
 
 				// FIXME: Bug #7715
@@ -206,7 +206,7 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 	 * @return array
 	 */
 	function &getMonographFiles($publicationFormatId) {
-		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		$monographFiles =& $submissionFileDao->getLatestRevisionsByAssocId(
 			ASSOC_TYPE_PUBLICATION_FORMAT, $publicationFormatId,
 			$this->getMonographId(), SUBMISSION_FILE_PROOF

@@ -140,11 +140,11 @@ class SignoffInformationCenterHandler extends Handler {
 	 */
 	function getUserSignoffs($args, &$request) {
 		$user =& $request->getUser();
-		$signoffDao =& DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
+		$signoffDao = DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		$symbolic = (string) $request->getUserVar('symbolic');
 
-		$monographFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $monographFileDao SubmissionFileDAO */
+		$monographFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $monographFileDao SubmissionFileDAO */
 		$signoffsFactory =& $signoffDao->getAllBySymbolic($symbolic, ASSOC_TYPE_SUBMISSION_FILE, null, $user->getId());
 
 		$signoffs = array();
@@ -222,12 +222,12 @@ class SignoffInformationCenterHandler extends Handler {
 		$monograph =& $this->monograph;
 
 		$templateMgr =& TemplateManager::getManager($request);
-		$noteDao =& DAORegistry::getDAO('NoteDAO');
+		$noteDao = DAORegistry::getDAO('NoteDAO');
 		$notesFactory =& $noteDao->getByAssoc(ASSOC_TYPE_SIGNOFF, $signoff->getId());
 		$notes = $notesFactory->toAssociativeArray();
 		// Get any note files.
 		$noteFilesDownloadLink = array();
-		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /** @var $submissionFileDao SubmissionFileDAO */
+		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /** @var $submissionFileDao SubmissionFileDAO */
 		import('lib.pkp.controllers.api.file.linkAction.DownloadFileLinkAction');
 		foreach ($notes as $noteId => $note) {
 			$file =& $submissionFileDao->getLatestRevisionsByAssocId(ASSOC_TYPE_NOTE, $noteId, $monograph->getId(), SUBMISSION_FILE_NOTE);

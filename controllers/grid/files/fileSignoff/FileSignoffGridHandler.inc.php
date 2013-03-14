@@ -48,7 +48,7 @@ class FileSignoffGridHandler extends SubmissionFilesGridHandler {
 		$monograph =& $this->getSubmission();
 
 		$stageAssignmentDao = & DAORegistry::getDAO('StageAssignmentDAO'); /* @var $stageAssignmentDao StageAssignmentDAO */
-		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */
+		$userGroupDao = DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */
 
 		// Set up the roles we may include as columns
 		$roles = array(
@@ -98,7 +98,7 @@ class FileSignoffGridHandler extends SubmissionFilesGridHandler {
 
 		// Add a column for uploader User Groups not present in the previous groups
 		$uploaderUserGroupIds = array_diff($uploaderUserGroupIds, array_unique($userGroupIds));
-		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+		$userGroupDao = DAORegistry::getDAO('UserGroupDAO');
 		foreach ($uploaderUserGroupIds as $userGroupId) {
 			$userGroup =& $userGroupDao->getById($userGroupId);
 			assert(is_a($userGroup, 'UserGroup'));
@@ -143,7 +143,7 @@ class FileSignoffGridHandler extends SubmissionFilesGridHandler {
 
 		// Insert or update the sign off corresponding
 		// to this file revision.
-		$signoffDao =& DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
+		$signoffDao = DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
 		$signoff =& $signoffDao->build(
 			$this->getSymbolic(), ASSOC_TYPE_SUBMISSION_FILE, $submissionFile->getFileId(), $user->getId()
 		);

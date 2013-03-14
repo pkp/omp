@@ -152,15 +152,15 @@ class Spotlight extends DataObject {
 	function getSpotlightItem() {
 		switch ($this->getAssocType()) {
 			case SPOTLIGHT_TYPE_BOOK:
-				$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
+				$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
 				return $publishedMonographDao->getById($this->getAssocId(), $this->getPressId());
 				break;
 			case SPOTLIGHT_TYPE_SERIES:
-				$seriesDao =& DAORegistry::getDAO('SeriesDAO');
+				$seriesDao = DAORegistry::getDAO('SeriesDAO');
 				return $seriesDao->getById($this->getAssocId(), $this->getPressId());
 				break;
 			case SPOTLIGHT_TYPE_AUTHOR:
-				$authorDao =& DAORegistry::getDAO('AuthorDAO');
+				$authorDao = DAORegistry::getDAO('AuthorDAO');
 				return $authorDao->getAuthor($this->getAssocId());
 				break;
 			default:

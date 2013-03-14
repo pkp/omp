@@ -41,7 +41,7 @@ class RoleDAO extends PKPRoleDAO {
 	 * @return int
 	 */
 	function getPressUsersRoleCount($pressId, $roleId) {
-		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+		$userGroupDao = DAORegistry::getDAO('UserGroupDAO');
 		return $userGroupDao->getContextUsersCount($pressId, null, $roleId);
 	}
 

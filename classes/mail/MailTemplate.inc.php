@@ -41,7 +41,7 @@ class MailTemplate extends PKPMailTemplate {
 		$this->includeSignature = $includeSignature;
 
 		if (isset($this->emailKey)) {
-			$emailTemplateDao =& DAORegistry::getDAO('EmailTemplateDAO');
+			$emailTemplateDao = DAORegistry::getDAO('EmailTemplateDAO');
 			$emailTemplate =& $emailTemplateDao->getEmailTemplate($this->emailKey, $this->locale, $press == null ? 0 : $press->getId());
 		}
 

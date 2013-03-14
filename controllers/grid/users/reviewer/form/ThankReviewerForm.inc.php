@@ -49,7 +49,7 @@ class ThankReviewerForm extends Form {
 	 * @param $request PKPRequest
 	 */
 	function initData($args, &$request) {
-		$userDao =& DAORegistry::getDAO('UserDAO');
+		$userDao = DAORegistry::getDAO('UserDAO');
 		$user =& $request->getUser();
 		$press =& $request->getPress();
 
@@ -57,7 +57,7 @@ class ThankReviewerForm extends Form {
 		$reviewerId = $reviewAssignment->getReviewerId();
 		$reviewer =& $userDao->getById($reviewerId);
 
-		$monographDao =& DAORegistry::getDAO('MonographDAO');
+		$monographDao = DAORegistry::getDAO('MonographDAO');
 		$monograph =& $monographDao->getById($reviewAssignment->getSubmissionId());
 
 		import('classes.mail.MonographMailTemplate');
@@ -95,8 +95,8 @@ class ThankReviewerForm extends Form {
 	 * @param $request PKPRequest
 	 */
 	function execute($args, &$request) {
-		$userDao =& DAORegistry::getDAO('UserDAO');
-		$monographDao =& DAORegistry::getDAO('MonographDAO');
+		$userDao = DAORegistry::getDAO('UserDAO');
+		$monographDao = DAORegistry::getDAO('MonographDAO');
 
 		$reviewAssignment =& $this->getReviewAssignment();
 		$reviewerId = $reviewAssignment->getReviewerId();

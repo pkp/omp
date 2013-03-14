@@ -110,7 +110,7 @@ class MarketForm extends Form {
 		$monograph =& $this->getMonograph();
 		$templateMgr->assign('monographId', $monograph->getId());
 		$market =& $this->getMarket();
-		$onixCodelistItemDao =& DAORegistry::getDAO('ONIXCodelistItemDAO');
+		$onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO');
 		$templateMgr->assign_by_ref('countryCodes', $onixCodelistItemDao->getCodes('List91')); // countries (CA, US, GB, etc)
 		$templateMgr->assign_by_ref('regionCodes', $onixCodelistItemDao->getCodes('List49')); // regions (British Columbia, England, etc)
 		$templateMgr->assign_by_ref('publicationDateFormats', $onixCodelistItemDao->getCodes('List55')); // YYYYMMDD, YYMMDD, etc
@@ -121,7 +121,7 @@ class MarketForm extends Form {
 		$templateMgr->assign_by_ref('taxRateCodes', $onixCodelistItemDao->getCodes('List62')); // higher rate, standard rate, zero rate
 		$templateMgr->assign_by_ref('taxTypeCodes', $onixCodelistItemDao->getCodes('List171')); // VAT, GST
 
-		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
+		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
 		$publishedMonograph =& $publishedMonographDao->getById($monograph->getId());
 		$availableAgents =& $publishedMonograph->getAgents();
 		$agentOptions = array();
@@ -164,7 +164,7 @@ class MarketForm extends Form {
 			$templateMgr->assign('currencyCode', 'CAD');
 		}
 
-		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
+		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
 		$publicationFormat =& $publicationFormatDao->getById($publicationFormatId, $monograph->getId());
 
 		if ($publicationFormat) { // the format exists for this monograph
@@ -207,8 +207,8 @@ class MarketForm extends Form {
 	 * @see Form::execute()
 	 */
 	function execute() {
-		$marketDao =& DAORegistry::getDAO('MarketDAO');
-		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
+		$marketDao = DAORegistry::getDAO('MarketDAO');
+		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
 
 		$monograph = $this->getMonograph();
 		$market =& $this->getMarket();

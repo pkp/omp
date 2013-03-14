@@ -70,7 +70,7 @@ class ManageSubmissionFilesForm extends Form {
 	 */
 	function execute($args, &$request, &$stageMonographFiles, $fileStage) {
 		$selectedFiles = (array)$this->getData('selectedFiles');
-		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO');
+		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
 		$monographFiles =& $submissionFileDao->getLatestRevisions($this->getMonographId());
 
 		foreach ($monographFiles as $monographFile) {

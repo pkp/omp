@@ -71,7 +71,7 @@ class ProfileForm extends PKPProfileForm {
 		$user =& $request->getUser();
 
 		// User Groups
-		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+		$userGroupDao = DAORegistry::getDAO('UserGroupDAO');
 		$press =& $request->getPress();
 		if ($press) {
 			foreach (array(
@@ -95,11 +95,11 @@ class ProfileForm extends PKPProfileForm {
 			}
 		}
 
-		$notificationStatusDao =& DAORegistry::getDAO('NotificationStatusDAO');
+		$notificationStatusDao = DAORegistry::getDAO('NotificationStatusDAO');
 		$pressNotifications = $notificationStatusDao->getPressNotifications($user->getId());
 		$readerNotify = $request->getUserVar('pressNotify');
 
-		$pressDao =& DAORegistry::getDAO('PressDAO');
+		$pressDao = DAORegistry::getDAO('PressDAO');
 		$presses = $pressDao->getAll();
 		while ($thisPress =& $presses->next()) {
 			$thisPressId = $thisPress->getId();

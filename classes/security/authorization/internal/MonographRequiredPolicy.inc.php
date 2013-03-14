@@ -37,7 +37,7 @@ class MonographRequiredPolicy extends DataObjectRequiredPolicy {
 		if ($monographId === false) return AUTHORIZATION_DENY;
 
 		// Validate the monograph id.
-		$monographDao =& DAORegistry::getDAO('MonographDAO');
+		$monographDao = DAORegistry::getDAO('MonographDAO');
 		$monograph =& $monographDao->getById($monographId);
 		if (!is_a($monograph, 'Monograph')) return AUTHORIZATION_DENY;
 

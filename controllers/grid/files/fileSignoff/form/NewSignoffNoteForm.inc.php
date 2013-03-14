@@ -114,7 +114,7 @@ class NewSignoffNoteForm extends NewNoteForm {
 		$user =& $request->getUser();
 
 		// Retrieve the signoff we're working with.
-		$signoffDao =& DAORegistry::getDAO('MonographFileSignoffDAO');
+		$signoffDao = DAORegistry::getDAO('MonographFileSignoffDAO');
 		$signoff = $signoffDao->getById($this->getData('signoffId'));
 		assert(is_a($signoff, 'Signoff'));
 
@@ -123,7 +123,7 @@ class NewSignoffNoteForm extends NewNoteForm {
 		if ($temporaryFileId || $this->getData('newNote')) {
 			$user =& $request->getUser();
 
-			$noteDao =& DAORegistry::getDAO('NoteDAO');
+			$noteDao = DAORegistry::getDAO('NoteDAO');
 			$note = $noteDao->newDataObject();
 
 			$note->setUserId($user->getId());
@@ -136,7 +136,7 @@ class NewSignoffNoteForm extends NewNoteForm {
 			// Upload the file, if any, and associate it with the note.
 			if ($temporaryFileId) {
 				// Fetch the temporary file storing the uploaded library file
-				$temporaryFileDao =& DAORegistry::getDAO('TemporaryFileDAO');
+				$temporaryFileDao = DAORegistry::getDAO('TemporaryFileDAO');
 				$temporaryFile =& $temporaryFileDao->getTemporaryFile(
 					$temporaryFileId,
 					$user->getId()
@@ -151,7 +151,7 @@ class NewSignoffNoteForm extends NewNoteForm {
 				$monographFileManager = new MonographFileManager($press->getId(), $this->_monographId);
 
 				// Get the monograph file that is associated with the signoff.
-				$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /** @var $submissionFileDao SubmissionFileDAO */
+				$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /** @var $submissionFileDao SubmissionFileDAO */
 				$signoffFile =& $submissionFileDao->getLatestRevision($signoff->getAssocId());
 				assert(is_a($signoffFile, 'MonographFile'));
 
@@ -193,9 +193,9 @@ class NewSignoffNoteForm extends NewNoteForm {
 				// log the event.
 				import('classes.log.MonographFileLog');
 				import('classes.log.MonographFileEventLogEntry'); // constants
-				$monographDao =& DAORegistry::getDAO('MonographDAO');
+				$monographDao = DAORegistry::getDAO('MonographDAO');
 				$monograph =& $monographDao->getById($this->_monographId);
-				$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO');
+				$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
 				$monographFile =& $submissionFileDao->getLatestRevision($signoff->getFileId());
 
 				if (isset($monographFile)) {

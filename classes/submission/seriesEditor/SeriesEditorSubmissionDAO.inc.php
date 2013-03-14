@@ -35,14 +35,14 @@ class SeriesEditorSubmissionDAO extends MonographDAO {
 	 */
 	function SeriesEditorSubmissionDAO() {
 		parent::MonographDAO();
-		$this->authorDao =& DAORegistry::getDAO('AuthorDAO');
-		$this->userDao =& DAORegistry::getDAO('UserDAO');
-		$this->reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
-		$this->submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO');
-		$this->signoffDao =& DAORegistry::getDAO('SignoffDAO');
-		$this->monographEmailLogDao =& DAORegistry::getDAO('MonographEmailLogDAO');
-		$this->monographCommentDao =& DAORegistry::getDAO('MonographCommentDAO');
-		$this->reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
+		$this->authorDao = DAORegistry::getDAO('AuthorDAO');
+		$this->userDao = DAORegistry::getDAO('UserDAO');
+		$this->reviewAssignmentDao = DAORegistry::getDAO('ReviewAssignmentDAO');
+		$this->submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
+		$this->signoffDao = DAORegistry::getDAO('SignoffDAO');
+		$this->monographEmailLogDao = DAORegistry::getDAO('MonographEmailLogDAO');
+		$this->monographCommentDao = DAORegistry::getDAO('MonographCommentDAO');
+		$this->reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO');
 	}
 
 	/**
@@ -147,7 +147,7 @@ class SeriesEditorSubmissionDAO extends MonographDAO {
 		$editorDecisions = $seriesEditorSubmission->getDecisions();
 
 		// Update review stages editor decisions.
-		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO'); /* @var $reviewRoundDao ReviewRoundDAO */
+		$reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO'); /* @var $reviewRoundDao ReviewRoundDAO */
 		$reviewRounds =& $reviewRoundDao->getByMonographId($monographId);
 
 		while ($reviewRound =& $reviewRounds->next()) {
@@ -388,7 +388,7 @@ class SeriesEditorSubmissionDAO extends MonographDAO {
 	 * @return array matching Users
 	 */
 	function getReviewersNotAssignedToMonograph($pressId, $monographId, &$reviewRound, $name = '') {
-		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+		$reviewAssignmentDao = DAORegistry::getDAO('ReviewAssignmentDAO');
 
 		$params = array((int) $pressId, ROLE_ID_REVIEWER, (int) $reviewRound->getStageId(), (int) $monographId, (int) $reviewRound->getId());
 		if (!empty($name)) $params[] = $params[] = $params[] = $params[] = "%$name%";

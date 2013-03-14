@@ -114,7 +114,7 @@ class SalesRightsForm extends Form {
 		$monograph =& $this->getMonograph();
 		$templateMgr->assign('monographId', $monograph->getId());
 		$salesRights =& $this->getSalesRights();
-		$onixCodelistItemDao =& DAORegistry::getDAO('ONIXCodelistItemDAO');
+		$onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO');
 		$templateMgr->assign('countryCodes', $onixCodelistItemDao->getCodes('List91')); // countries (CA, US, GB, etc)
 		$templateMgr->assign('regionCodes', $onixCodelistItemDao->getCodes('List49')); // regions (British Columbia, England, etc)
 
@@ -133,7 +133,7 @@ class SalesRightsForm extends Form {
 			$publicationFormatId = (int) $request->getUserVar('publicationFormatId');
 		}
 
-		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
+		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
 		$publicationFormat =& $publicationFormatDao->getById($publicationFormatId, $monograph->getId());
 
 		if ($publicationFormat) { // the format exists for this monograph
@@ -175,8 +175,8 @@ class SalesRightsForm extends Form {
 	 * @see Form::execute()
 	 */
 	function execute() {
-		$salesRightsDao =& DAORegistry::getDAO('SalesRightsDAO');
-		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
+		$salesRightsDao = DAORegistry::getDAO('SalesRightsDAO');
+		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
 
 		$monograph = $this->getMonograph();
 		$salesRights =& $this->getSalesRights();

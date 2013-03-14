@@ -165,7 +165,7 @@ class EditorDecisionWithEmailForm extends EditorDecisionForm {
 	 * @param $status integer One of the REVIEW_ROUND_STATUS_* constants.
 	 */
 	function _updateReviewRoundStatus($seriesEditorSubmission, $status, $reviewRound = null) {
-		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO'); /* @var $reviewRoundDao ReviewRoundDAO */
+		$reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO'); /* @var $reviewRoundDao ReviewRoundDAO */
 		if (!$reviewRound) {
 			$reviewRound =& $reviewRoundDao->getLastReviewRoundBySubmissionId($seriesEditorSubmission->getId());
 		}
@@ -195,7 +195,7 @@ class EditorDecisionWithEmailForm extends EditorDecisionForm {
 		$email->addRecipient($submitter->getEmail(), $submitter->getFullName());
 		$email->setEventType(MONOGRAPH_EMAIL_EDITOR_NOTIFY_AUTHOR);
 
-		$userStageAssignmentDao =& DAORegistry::getDAO('UserStageAssignmentDAO');
+		$userStageAssignmentDao = DAORegistry::getDAO('UserStageAssignmentDAO');
 		$authorStageParticipants = $userStageAssignmentDao->getUsersBySubmissionAndStageId($seriesEditorSubmission->getId(), $seriesEditorSubmission->getStageId(), null, ROLE_ID_AUTHOR);
 		while ($author = $authorStageParticipants->next()) {
 			if (preg_match('{^' . quotemeta($submitter->getEmail()) . '$}', $author->getEmail())) {
@@ -210,7 +210,7 @@ class EditorDecisionWithEmailForm extends EditorDecisionForm {
 
 		if(is_a($reviewRound, 'ReviewRound')) {
 			// Retrieve review indexes.
-			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO'); /* @var $reviewAssignmentDao ReviewAssignmentDAO */
+			$reviewAssignmentDao = DAORegistry::getDAO('ReviewAssignmentDAO'); /* @var $reviewAssignmentDao ReviewAssignmentDAO */
 			$reviewIndexes =& $reviewAssignmentDao->getReviewIndexesForRound($seriesEditorSubmission->getId(), $reviewRound->getId());
 			assert(is_array($reviewIndexes));
 
@@ -220,7 +220,7 @@ class EditorDecisionWithEmailForm extends EditorDecisionForm {
 			$reviewIndexes[-1] = $lastIndex + 1;
 
 			// Attach the selected reviewer attachments to the email.
-			$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+			$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 			$selectedAttachments = $this->getData('selectedAttachments');
 			if(is_array($selectedAttachments)) {
 				foreach ($selectedAttachments as $fileId) {

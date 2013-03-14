@@ -31,7 +31,7 @@ class SelectableSubmissionFileListCategoryGridRow extends GridCategoryRow {
 	 */
 	function getCategoryLabel() {
 		$stageId = $this->getData();
-		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+		$userGroupDao = DAORegistry::getDAO('UserGroupDAO');
 		$stageTranslationKey = $userGroupDao->getTranslationKeyFromId($stageId);
 
 		return __($stageTranslationKey);

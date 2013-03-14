@@ -122,7 +122,7 @@ class NotifyUsersListbuilderHandler extends ListbuilderHandler {
 		// FIXME: Validate user ID?
 		$newRowId = $this->getNewRowId($request);
 		$userId = (int) $newRowId['name'];
-		$userDao =& DAORegistry::getDAO('UserDAO');
+		$userDao = DAORegistry::getDAO('UserDAO');
 		$user =& $userDao->getById($userId);
 		return $user;
 	}
@@ -137,7 +137,7 @@ class NotifyUsersListbuilderHandler extends ListbuilderHandler {
 			array()
 		);
 
-		$userStageAssignmentDao =& DAORegistry::getDAO('UserStageAssignmentDAO');
+		$userStageAssignmentDao = DAORegistry::getDAO('UserStageAssignmentDAO');
 		$monograph =& $this->getMonograph();
 
 		// FIXME: add stage id?
@@ -159,7 +159,7 @@ class NotifyUsersListbuilderHandler extends ListbuilderHandler {
 	 */
 	function loadData(&$request) {
 		$userId = (int) $request->getUserVar('userId');
-		$userStageAssignmentDao =& DAORegistry::getDAO('UserStageAssignmentDAO');
+		$userStageAssignmentDao = DAORegistry::getDAO('UserStageAssignmentDAO');
 		$monograph =& $this->getMonograph();
 
 		$users =& $userStageAssignmentDao->getUsersBySubmissionAndStageId($monograph->getId(), null, null, null, $userId);

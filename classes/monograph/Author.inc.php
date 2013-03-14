@@ -34,7 +34,7 @@ class Author extends PKPAuthor {
 	 */
 	function &getPublishedMonograph() {
 		$monographId = $this->getSubmissionId();
-		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
+		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
 		return $publishedMonographDao->getById($monographId);
 	}
 }

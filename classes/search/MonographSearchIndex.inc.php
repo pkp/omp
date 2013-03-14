@@ -32,7 +32,7 @@ class MonographSearchIndex {
 	 * @param $position int
 	 */
 	function indexObjectKeywords($objectId, $text, &$position) {
-		$searchDao =& DAORegistry::getDAO('MonographSearchDAO');
+		$searchDao = DAORegistry::getDAO('MonographSearchDAO');
 		$keywords =& MonographSearchIndex::filterKeywords($text);
 		for ($i = 0, $count = count($keywords); $i < $count; $i++) {
 			if ($searchDao->insertObjectKeyword($objectId, $keywords[$i], $position) !== null) {
@@ -49,7 +49,7 @@ class MonographSearchIndex {
 	 * @param $assocId int optional
 	 */
 	function updateTextIndex($monographId, $type, $text, $assocId = null) {
-			$searchDao =& DAORegistry::getDAO('MonographSearchDAO');
+			$searchDao = DAORegistry::getDAO('MonographSearchDAO');
 			$objectId = $searchDao->insertObject($monographId, $type, $assocId);
 			$position = 0;
 			MonographSearchIndex::indexObjectKeywords($objectId, $text, $position);
@@ -62,7 +62,7 @@ class MonographSearchIndex {
 	 * @param $fileId int
 	 */
 	function updateFileIndex($monographId, $type, $fileId) {
-		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		$file =& $submissionFileDao->getLatestRevision($fileId);
 
 		if (isset($file)) {
@@ -71,7 +71,7 @@ class MonographSearchIndex {
 
 		if (isset($parser)) {
 			if ($parser->open()) {
-				$searchDao =& DAORegistry::getDAO('MonographSearchDAO');
+				$searchDao = DAORegistry::getDAO('MonographSearchDAO');
 				$objectId = $searchDao->insertObject($monographId, $type, $fileId);
 
 				$position = 0;
@@ -92,7 +92,7 @@ class MonographSearchIndex {
 	 * @param $assocId int optional
 	 */
 	function deleteTextIndex($monographId, $type = null, $assocId = null) {
-		$searchDao =& DAORegistry::getDAO('MonographSearchDAO');
+		$searchDao = DAORegistry::getDAO('MonographSearchDAO');
 		return $searchDao->deleteMonographKeywords($monographId, $type, $assocId);
 	}
 
@@ -156,7 +156,7 @@ class MonographSearchIndex {
 	function indexMonographMetadata(&$monograph) {
 		// Build author keywords
 		$authorText = array();
-		$authorDao =& DAORegistry::getDAO('AuthorDAO');
+		$authorDao = DAORegistry::getDAO('AuthorDAO');
 		$authors = $authorDao->getAuthorsBySubmissionId($monograph->getId());
 		foreach ($authors as $author) {
 			array_push($authorText, $author->getFirstName());
@@ -192,7 +192,7 @@ class MonographSearchIndex {
 	 */
 	function indexMonographFiles(&$monograph) {
 		// Index galley files
-		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		import('classes.monograph.MonographFile'); // Constants
 		import('classes.search.MonographSearch'); // Constants
 		$files =& $submissionFileDao->getLatestRevisions($monograph->getId(), SUBMISSION_FILE_PROOF);
@@ -209,7 +209,7 @@ class MonographSearchIndex {
 	 * @param $monograph Monograph
 	 */
 	function clearMonographFiles(&$monograph) {
-		$searchDao =& DAORegistry::getDAO('MonographSearchDAO');
+		$searchDao = DAORegistry::getDAO('MonographSearchDAO');
 		$searchDao->deleteMonographKeywords($monograph->getId(), MONOGRAPH_SEARCH_GALLEY_FILE);
 	}
 
@@ -219,7 +219,7 @@ class MonographSearchIndex {
 	function rebuildIndex($log = false) {
 		// Clear index
 		if ($log) echo 'Clearing index ... ';
-		$searchDao =& DAORegistry::getDAO('MonographSearchDAO');
+		$searchDao = DAORegistry::getDAO('MonographSearchDAO');
 		// FIXME Abstract into MonographSearchDAO?
 		$searchDao->update('DELETE FROM monograph_search_object_keywords');
 		$searchDao->update('DELETE FROM monograph_search_objects');
@@ -229,8 +229,8 @@ class MonographSearchIndex {
 		if ($log) echo "done\n";
 
 		// Build index
-		$pressDao =& DAORegistry::getDAO('PressDAO');
-		$monographDao =& DAORegistry::getDAO('MonographDAO');
+		$pressDao = DAORegistry::getDAO('PressDAO');
+		$monographDao = DAORegistry::getDAO('MonographDAO');
 
 		$presses = $pressDao->getAll();
 		while (!$presses->eof()) {

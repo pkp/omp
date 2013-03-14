@@ -133,7 +133,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 
 		// Action to signoff on a file -- Lets user interact with their own rows.
 		$user =& $request->getUser();
-		$signoffDao =& DAORegistry::getDAO('MonographFileSignoffDAO'); /* @var $signoffDao MonographFileSignoffDAO */
+		$signoffDao = DAORegistry::getDAO('MonographFileSignoffDAO'); /* @var $signoffDao MonographFileSignoffDAO */
 		$signoffFactory =& $signoffDao->getAllByMonograph($monograph->getId(), $this->getSymbolic(), $user->getId(), null, true);
 		if (!$signoffFactory->wasEmpty()) {
 			import('controllers.api.signoff.linkAction.AddSignoffFileLinkAction');
@@ -146,7 +146,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 		$router =& $request->getRouter();
 
 		// Action to add a user -- Adds the user as a subcategory to the files selected in its modal
-		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		$monographFiles =& $submissionFileDao->getLatestRevisions($monograph->getId(), $this->getFileStage());
 
 		// The "Add Auditor" link should only be available if at least
@@ -305,7 +305,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 	function &loadData(&$request, $filter) {
 		// Grab the files to display as categories
 		$monograph =& $this->getMonograph();
-		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		if ($this->getAssocType() && $this->getAssocId()) {
 			$monographFiles =& $submissionFileDao->getLatestRevisionsByAssocId(
 				$this->getAssocType(), $this->getAssocId(),
@@ -348,7 +348,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 	 * @return array Signoffs
 	 */
 	function getCategoryData(&$monographFile) {
-		$monographFileSignoffDao =& DAORegistry::getDAO('MonographFileSignoffDAO');
+		$monographFileSignoffDao = DAORegistry::getDAO('MonographFileSignoffDAO');
 		$signoffFactory =& $monographFileSignoffDao->getAllBySymbolic($this->getSymbolic(), $monographFile->getFileId()); /* @var $signoffs DAOResultFactory */
 		$signoffs = $signoffFactory->toAssociativeArray();
 		return $signoffs;
@@ -454,8 +454,8 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 		$stageUsers = $stageAssignmentDao->getBySubmissionAndStageId($monograph->getId(), $this->getStageId());
 
 		$itemList = array();
-		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */
-		$userDao =& DAORegistry::getDAO('UserDAO');
+		$userGroupDao = DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */
+		$userDao = DAORegistry::getDAO('UserDAO');
 		$term =& $request->getUserVar('term');
 		while($stageUser =& $stageUsers->next()) {
 			$userGroup =& $userGroupDao->getById($stageUser->getUserGroupId());
@@ -512,11 +512,11 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 			if ($signoff->getAssocType() == ASSOC_TYPE_SUBMISSION_FILE) {
 				$fileId = $signoff->getAssocId();
 			}
-			$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO');
+			$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
 			$monographFile =& $submissionFileDao->getLatestRevision($fileId);
 
 			// Remove the signoff
-			$signoffDao =& DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
+			$signoffDao = DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
 			$signoffDao->deleteObjectById($signoff->getId());
 
 			// Trivial notifications.
@@ -552,7 +552,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 			// log the remove auditor event.
 			import('classes.log.MonographFileLog');
 			import('classes.log.MonographFileEventLogEntry'); // constants
-			$userDao =& DAORegistry::getDAO('UserDAO');
+			$userDao = DAORegistry::getDAO('UserDAO');
 			$signoffUser =& $userDao->getById($signoffUserId);
 
 			if (isset($signoffUser) && isset($monographFile)) {
@@ -576,7 +576,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 		if (!$rowSignoff) fatalError('Invalid Signoff given');
 
 		$user =& $request->getUser();
-		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
+		$signoffDao = DAORegistry::getDAO('SignoffDAO');
 		$signoff =& $signoffDao->build('SIGNOFF_SIGNOFF', ASSOC_TYPE_SIGNOFF, $rowSignoff->getId(), $user->getId());
 		$signoff->setDateCompleted(Core::getCurrentDate());
 		$signoffDao->updateObject($signoff);
@@ -594,7 +594,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 		// log the sign off sign off
 		import('classes.log.MonographFileLog');
 		import('classes.log.MonographFileEventLogEntry'); // constants
-		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO');
+		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
 		$monographFile =& $submissionFileDao->getLatestRevision($rowSignoff->getAssocId());
 		if (isset($monographFile)) {
 			MonographFileLog::logEvent($request, $monographFile, MONOGRAPH_LOG_FILE_SIGNOFF_SIGNOFF, 'submission.event.signoffSignoff', array('file' => $monographFile->getOriginalFileName(), 'name' => $user->getFullName(), 'username' => $user->getUsername()));
@@ -614,7 +614,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 		if (!$rowSignoff) fatalError('Invalid Signoff given');
 
 		$user =& $request->getUser();
-		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
+		$signoffDao = DAORegistry::getDAO('SignoffDAO');
 		$signoffOnSignoffFactory = $signoffDao->getAllByAssocType(ASSOC_TYPE_SIGNOFF, $rowSignoff->getId());
 		$signoffOnSignoff =& $signoffOnSignoffFactory->next();
 		if (!$signoffOnSignoff) fatalError('Invalid Signoff given');
@@ -727,7 +727,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 		// We need to manually include the press editor, because he has access
 		// to all submission and its workflow stages but not always with
 		// an stage assignment (editorial and production stages, for example).
-		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+		$userGroupDao = DAORegistry::getDAO('UserGroupDAO');
 		$pressManagerUserGroupsFactory =& $userGroupDao->getByRoleId($monograph->getPressId(), ROLE_ID_MANAGER);
 		while ($userGroup =& $pressManagerUserGroupsFactory->next()) {
 			$usersFactory =& $userGroupDao->getUsersById($userGroup->getId(), $monograph->getPressId());

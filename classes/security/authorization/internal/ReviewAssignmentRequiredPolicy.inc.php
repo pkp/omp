@@ -35,7 +35,7 @@ class ReviewAssignmentRequiredPolicy extends DataObjectRequiredPolicy {
 		$reviewId = (int)$this->getDataObjectId();
 		if (!$reviewId) return AUTHORIZATION_DENY;
 
-		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO'); /* @var $reviewAssignmentDao ReviewAssignmentDAO */
+		$reviewAssignmentDao = DAORegistry::getDAO('ReviewAssignmentDAO'); /* @var $reviewAssignmentDao ReviewAssignmentDAO */
 		$reviewAssignment =& $reviewAssignmentDao->getById($reviewId);
 		if (!is_a($reviewAssignment, 'ReviewAssignment')) return AUTHORIZATION_DENY;
 

@@ -70,7 +70,7 @@ class EditorAssignmentNotificationManager extends NotificationManagerDelegate {
 		$monographId = $assocId;
 
 		// Check for an existing NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_...
-		$notificationDao =& DAORegistry::getDAO('NotificationDAO');
+		$notificationDao = DAORegistry::getDAO('NotificationDAO');
 		$notificationFactory =& $notificationDao->getByAssoc(
 			ASSOC_TYPE_MONOGRAPH,
 			$monographId,
@@ -80,7 +80,7 @@ class EditorAssignmentNotificationManager extends NotificationManagerDelegate {
 		);
 
 		// Check for editor stage assignment.
-		$stageAssignmentDao =& DAORegistry::getDAO('StageAssignmentDAO');
+		$stageAssignmentDao = DAORegistry::getDAO('StageAssignmentDAO');
 		$editorAssigned = $stageAssignmentDao->editorAssignedToStage($monographId, $this->_getStageIdByNotificationType());
 
 		// Decide if we have to create or delete a notification.

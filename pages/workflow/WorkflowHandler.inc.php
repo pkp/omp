@@ -101,7 +101,7 @@ class WorkflowHandler extends Handler {
 		$stageId = $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
 
 		// Construct array with workflow stages data.
-		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+		$userGroupDao = DAORegistry::getDAO('UserGroupDAO');
 		$workflowStages = $userGroupDao->getWorkflowStageKeysAndPaths();
 
 		$templateMgr =& TemplateManager::getManager($request);
@@ -156,8 +156,8 @@ class WorkflowHandler extends Handler {
 	 */
 	function access($args, &$request) {
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
-		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
+		$userGroupDao = DAORegistry::getDAO('UserGroupDAO');
+		$reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO');
 
 		$stageId = $monograph->getStageId();
 		$accessibleWorkflowStages = $this->getAuthorizedContextObject(ASSOC_TYPE_ACCESSIBLE_WORKFLOW_STAGES);
@@ -249,7 +249,7 @@ class WorkflowHandler extends Handler {
 			NOTIFICATION_LEVEL_TRIVIAL => array()
 		);
 
-		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
+		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		$publicationFormats =& $publicationFormatDao->getByMonographId($monograph->getId());
 		$templateMgr->assign_by_ref('publicationFormats', $publicationFormats->toAssociativeArray());
@@ -265,7 +265,7 @@ class WorkflowHandler extends Handler {
 	 */
 	function productionFormatsTab(&$args, &$request) {
 		$templateMgr =& TemplateManager::getManager($request);
-		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
+		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		$publicationFormats =& $publicationFormatDao->getByMonographId($monograph->getId());
 		$templateMgr->assign_by_ref('$monograph', $monograph);
@@ -297,14 +297,14 @@ class WorkflowHandler extends Handler {
 		// cannot be recorded.
 		if ($reviewRoundId) {
 			$actionArgs['reviewRoundId'] = $reviewRoundId;
-			$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
+			$reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO');
 			$lastReviewRound =& $reviewRoundDao->getLastReviewRoundBySubmissionId($monograph->getId(), $stageId);
 		}
 
 		// If a review round was specified,
 
 		// If there is an editor assigned, retrieve stage decisions.
-		$stageAssignmentDao =& DAORegistry::getDAO('StageAssignmentDAO');
+		$stageAssignmentDao = DAORegistry::getDAO('StageAssignmentDAO');
 		if ($stageAssignmentDao->editorAssignedToStage($monograph->getId(), $stageId) && (!$reviewRoundId || $reviewRoundId == $lastReviewRound->getId())) {
 			import('classes.workflow.EditorDecisionActionsManager');
 			$decisions = EditorDecisionActionsManager::getStageDecisions($stageId);
@@ -350,7 +350,7 @@ class WorkflowHandler extends Handler {
 		$templateMgr =& TemplateManager::getManager($request);
 		$press =& $request->getPress();
 
-		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+		$userGroupDao = DAORegistry::getDAO('UserGroupDAO');
 		$workflowStages = $userGroupDao->getWorkflowStageKeysAndPaths();
 		$stageNotifications = array();
 		foreach (array_keys($workflowStages) as $stageId) {
@@ -360,11 +360,11 @@ class WorkflowHandler extends Handler {
 		$templateMgr->assign('stageNotifications', $stageNotifications);
 
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
+		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
 		$publishedMonograph =& $publishedMonographDao->getById($monograph->getId());
 		if ($publishedMonograph) { // first check, there's a published monograph
 			$publicationFormats =& $publishedMonograph->getPublicationFormats(true);
-			$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO');
+			$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
 			import('classes.monograph.MonographFile'); // constants
 
 			foreach ($publicationFormats as $format) { // there is at least one publication format.
@@ -395,7 +395,7 @@ class WorkflowHandler extends Handler {
 	function _notificationOptionsByStage(&$user, $stageId, $contextId) {
 
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-		$notificationDao =& DAORegistry::getDAO('NotificationDAO');
+		$notificationDao = DAORegistry::getDAO('NotificationDAO');
 
 		$signOffNotificationType = $this->_getSignoffNotificationTypeByStageId($stageId);
 		$editorAssignmentNotificationType = $this->_getEditorAssignmentNotificationTypeByStageId($stageId);
@@ -419,7 +419,7 @@ class WorkflowHandler extends Handler {
 		}
 
 		if ($stageId == WORKFLOW_STAGE_ID_INTERNAL_REVIEW || $stageId == WORKFLOW_STAGE_ID_EXTERNAL_REVIEW) {
-			$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
+			$reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO');
 			$reviewRounds =& $reviewRoundDao->getByMonographId($monograph->getId(), $stageId);
 			$notificationTypes = array(NOTIFICATION_TYPE_REVIEW_ROUND_STATUS, NOTIFICATION_TYPE_ALL_REVIEWS_IN);
 			while ($reviewRound =& $reviewRounds->next()) {
@@ -452,7 +452,7 @@ class WorkflowHandler extends Handler {
 		$templateMgr =& TemplateManager::getManager($request);
 
 		// Get all review rounds for this submission, on the current stage.
-		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
+		$reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO');
 		$reviewRoundsFactory =& $reviewRoundDao->getByMonographId($monograph->getId(), $selectedStageId);
 		if (!$reviewRoundsFactory->wasEmpty()) {
 			$reviewRoundsArray =& $reviewRoundsFactory->toAssociativeArray();
@@ -511,7 +511,7 @@ class WorkflowHandler extends Handler {
 		$operation = $router->getRequestedOp($request);
 
 		// Translate the operation to a workflow stage identifier.
-		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+		$userGroupDao = DAORegistry::getDAO('UserGroupDAO');
 		return $userGroupDao->getIdFromPath($operation);
 	}
 

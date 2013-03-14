@@ -104,8 +104,8 @@ class SignoffGridCellProvider extends GridCellProvider {
 	 * Build the cell label from the signoff object
 	 */
 	function _getLabel(&$signoff) {
-		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
-		$userDao =& DAORegistry::getDAO('UserDAO');
+		$userGroupDao = DAORegistry::getDAO('UserGroupDAO');
+		$userDao = DAORegistry::getDAO('UserDAO');
 		$userGroup =& $userGroupDao->getById($signoff->getUserGroupId());
 		$user =& $userDao->getById($signoff->getUserId());
 

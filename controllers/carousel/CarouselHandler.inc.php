@@ -52,7 +52,7 @@ class CarouselHandler extends Handler {
 		$templateMgr =& TemplateManager::getManager($request);
 
 		// Expose the featured monograph IDs and associated params
-		$featureDao =& DAORegistry::getDAO('FeatureDAO');
+		$featureDao = DAORegistry::getDAO('FeatureDAO');
 		$featuredMonographIds = $featureDao->getSequencesByAssoc(ASSOC_TYPE_PRESS, $press->getId());
 
 		if (empty($featuredMonographIds)) {
@@ -61,7 +61,7 @@ class CarouselHandler extends Handler {
 			$templateMgr->assign('featuredMonographIds', $featuredMonographIds);
 
 			// Fetch the monographs to display
-			$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
+			$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
 			$publishedMonographs =& $publishedMonographDao->getByPressId($press->getId());
 			$templateMgr->assign('publishedMonographs', $publishedMonographs->toAssociativeArray());
 

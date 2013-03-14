@@ -88,7 +88,7 @@ class CategoryForm extends Form {
 	 * Get all locale field names
 	 */
 	function getLocaleFieldNames() {
-		$categoryDao =& DAORegistry::getDAO('CategoryDAO');
+		$categoryDao = DAORegistry::getDAO('CategoryDAO');
 		return $categoryDao->getLocaleFieldNames();
 	}
 
@@ -96,7 +96,7 @@ class CategoryForm extends Form {
 	 * @see Form::initData()
 	 */
 	function initData() {
-		$categoryDao =& DAORegistry::getDAO('CategoryDAO');
+		$categoryDao = DAORegistry::getDAO('CategoryDAO');
 		$category = $categoryDao->getById($this->getCategoryId(), $this->getPressId());
 
 		if ($category) {
@@ -115,7 +115,7 @@ class CategoryForm extends Form {
 		if ($temporaryFileId = $this->getData('temporaryFileId')) {
 			import('classes.file.TemporaryFileManager');
 			$temporaryFileManager = new TemporaryFileManager();
-			$temporaryFileDao =& DAORegistry::getDAO('TemporaryFileDAO');
+			$temporaryFileDao = DAORegistry::getDAO('TemporaryFileDAO');
 			$temporaryFile =& $temporaryFileDao->getTemporaryFile($temporaryFileId, $this->_userId);
 			if (	!$temporaryFile ||
 				!($this->_imageExtension = $temporaryFileManager->getImageExtension($temporaryFile->getFileType())) ||
@@ -137,7 +137,7 @@ class CategoryForm extends Form {
 
 		// For path duplicate checking; excuse the current path.
 		if ($categoryId = $this->getCategoryId()) {
-			$categoryDao =& DAORegistry::getDAO('CategoryDAO');
+			$categoryDao = DAORegistry::getDAO('CategoryDAO');
 			$category =& $categoryDao->getById($categoryId, $this->getPressId());
 			$this->setData('oldPath', $category->getPath());
 		}
@@ -147,7 +147,7 @@ class CategoryForm extends Form {
 	 * @see Form::fetch()
 	 */
 	function fetch($request) {
-		$categoryDao =& DAORegistry::getDAO('CategoryDAO');
+		$categoryDao = DAORegistry::getDAO('CategoryDAO');
 		$press =& $request->getPress();
 		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->assign('categoryId', $this->getCategoryId());
@@ -183,7 +183,7 @@ class CategoryForm extends Form {
 	 */
 	function execute(&$request) {
 		$categoryId = $this->getCategoryId();
-		$categoryDao =& DAORegistry::getDAO('CategoryDAO');
+		$categoryDao = DAORegistry::getDAO('CategoryDAO');
 
 		// Get a category object to edit or create
 		if ($categoryId == null) {
@@ -202,7 +202,7 @@ class CategoryForm extends Form {
 		// Handle the image upload if there was one.
 		if ($temporaryFileId = $this->getData('temporaryFileId')) {
 			// Fetch the temporary file storing the uploaded library file
-			$temporaryFileDao =& DAORegistry::getDAO('TemporaryFileDAO');
+			$temporaryFileDao = DAORegistry::getDAO('TemporaryFileDAO');
 
 			$temporaryFile =& $temporaryFileDao->getTemporaryFile($temporaryFileId, $this->_userId);
 			$temporaryFilePath = $temporaryFile->getFilePath();

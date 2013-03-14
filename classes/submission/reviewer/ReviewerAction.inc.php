@@ -36,8 +36,8 @@ class ReviewerAction extends Action {
 	 * @param $send boolean
 	 */
 	function confirmReview($request, $reviewerSubmission, $decline, $send) {
-		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
-		$userDao =& DAORegistry::getDAO('UserDAO');
+		$reviewAssignmentDao = DAORegistry::getDAO('ReviewAssignmentDAO');
+		$userDao = DAORegistry::getDAO('UserDAO');
 
 		$reviewId = $reviewerSubmission->getReviewId();
 

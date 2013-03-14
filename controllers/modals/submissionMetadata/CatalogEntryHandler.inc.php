@@ -49,7 +49,7 @@ class CatalogEntryHandler extends Handler {
 	function initialize(&$request, $args = null) {
 		parent::initialize($request, $args);
 
-		$monographDao =& DAORegistry::getDAO('MonographDAO');
+		$monographDao = DAORegistry::getDAO('MonographDAO');
 		$this->_monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		$this->_stageId =& $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
 		$this->_tabPosition = (int) $request->getUserVar('tabPos');
@@ -127,14 +127,14 @@ class CatalogEntryHandler extends Handler {
 		$templateMgr->assign('stageId', $this->getStageId());
 
 		// check to see if this monograph has been published yet
-		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
+		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
 		$publishedMonograph =& $publishedMonographDao->getById($monograph->getId());
 		$tabPosition = (int) $this->getTabPosition();
 		$templateMgr->assign('selectedTab', $tabPosition);
 		$templateMgr->assign('selectedFormatId', $this->getSelectedFormatId());
 
 		// load in any publication formats assigned to this published monograph
-		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
+		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
 		$formats =& $publicationFormatDao->getByMonographId($monograph->getId());
 		$publicationFormats = array();
 		while ($publicationFormat =& $formats->next()) {
@@ -170,10 +170,10 @@ class CatalogEntryHandler extends Handler {
 	function fetchFormatInfo($args, $request) {
 		$monograph =& $this->getMonograph();
 		// check to see if this monograph has been published yet
-		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
+		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
 		$json = new JSONMessage();
 
-		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
+		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
 		$formats =& $publicationFormatDao->getByMonographId($monograph->getId());
 		$publicationFormats = array();
 		while ($format =& $formats->next()) {

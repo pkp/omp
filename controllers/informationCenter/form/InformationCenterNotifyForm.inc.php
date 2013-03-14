@@ -45,7 +45,7 @@ class InformationCenterNotifyForm extends Form {
 		if($this->itemType == ASSOC_TYPE_MONOGRAPH) {
 			$monographId = $this->itemId;
 		} else {
-			$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+			$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 			$monographFile =& $submissionFileDao->getLatestRevision($this->itemId);
 			$monographId = $monographFile->getMonographId();
 		}
@@ -65,7 +65,7 @@ class InformationCenterNotifyForm extends Form {
 			WORKFLOW_STAGE_ID_PRODUCTION => array('LAYOUT_REQUEST', 'LAYOUT_COMPLETE', 'INDEX_REQUEST', 'INDEX_COMPLETE', 'EDITOR_ASSIGN')
 		);
 
-		$monographDao =& DAORegistry::getDAO('MonographDAO');
+		$monographDao = DAORegistry::getDAO('MonographDAO');
 		$monograph =& $monographDao->getById($monographId);
 		$currentStageId = $monograph->getStageId();
 
@@ -115,18 +115,18 @@ class InformationCenterNotifyForm extends Form {
 	 */
 	function insertEntry(&$request, $newRowId) {
 
-		$userDao =& DAORegistry::getDAO('UserDAO');
+		$userDao = DAORegistry::getDAO('UserDAO');
 		$application =& Application::getApplication();
 		$request =& $application->getRequest(); // need to do this because the method version is null.
 		$fromUser =& $request->getUser();
 
-		$monographDao =& DAORegistry::getDAO('MonographDAO');
+		$monographDao = DAORegistry::getDAO('MonographDAO');
 		import('classes.mail.MonographMailTemplate');
 
 		if($this->itemType == ASSOC_TYPE_MONOGRAPH) {
 			$monographId = $this->itemId;
 		} else {
-			$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+			$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 			$monographFile =& $submissionFileDao->getLatestRevision($this->itemId);
 			$monographId = $monographFile->getMonographId();
 		}
@@ -201,8 +201,8 @@ class InformationCenterNotifyForm extends Form {
 	function _createNotifications(&$request, $monograph, $user, $template) {
 
 		$currentStageId = $monograph->getStageId();
-		$stageAssignmentDao =& DAORegistry::getDAO('StageAssignmentDAO');
-		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+		$stageAssignmentDao = DAORegistry::getDAO('StageAssignmentDAO');
+		$userGroupDao = DAORegistry::getDAO('UserGroupDAO');
 		$stageAssignments =& $stageAssignmentDao->getBySubmissionAndStageId($monograph->getId(), $monograph->getStageId(), null, $user->getId());
 		$notificationMgr = new NotificationManager();
 
@@ -212,8 +212,8 @@ class InformationCenterNotifyForm extends Form {
 					$userGroup =& $userGroupDao->getById($stageAssignment->getUserGroupId());
 					if (in_array($userGroup->getRoleId(), array(ROLE_ID_MANAGER, ROLE_ID_SUB_EDITOR, ROLE_ID_ASSISTANT))) {
 						import('classes.monograph.MonographFile');
-						$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO');
-						$monographFileSignoffDao =& DAORegistry::getDAO('MonographFileSignoffDAO');
+						$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
+						$monographFileSignoffDao = DAORegistry::getDAO('MonographFileSignoffDAO');
 						$monographFiles =& $submissionFileDao->getLatestRevisions($monograph->getId(), SUBMISSION_FILE_COPYEDIT);
 						foreach ($monographFiles as $monographFile) {
 							$signoffFactory =& $monographFileSignoffDao->getAllBySymbolic('SIGNOFF_COPYEDITING', $monographFile->getFileId());
@@ -264,7 +264,7 @@ class InformationCenterNotifyForm extends Form {
 	 * @param $monographId int
 	 */
 	private function _addUploadTaskNotification(&$request, $type, $userId, $monographId) {
-		$notificationDao =& DAORegistry::getDAO('NotificationDAO'); /* @var $notificationDao NotificationDAO */
+		$notificationDao = DAORegistry::getDAO('NotificationDAO'); /* @var $notificationDao NotificationDAO */
 		$notificationFactory =& $notificationDao->getByAssoc(
 				ASSOC_TYPE_MONOGRAPH,
 				$monographId,
@@ -304,8 +304,8 @@ class InformationCenterNotifyForm extends Form {
 		if ($currentStageId == WORKFLOW_STAGE_ID_PRODUCTION) {
 
 			$user =& $request->getUser();
-			$stageAssignmentDao =& DAORegistry::getDAO('StageAssignmentDAO');
-			$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+			$stageAssignmentDao = DAORegistry::getDAO('StageAssignmentDAO');
+			$userGroupDao = DAORegistry::getDAO('UserGroupDAO');
 			$stageAssignments =& $stageAssignmentDao->getBySubmissionAndStageId($monograph->getId(), $monograph->getStageId(), null, $user->getId());
 
 			while ($stageAssignment =& $stageAssignments->next()) {

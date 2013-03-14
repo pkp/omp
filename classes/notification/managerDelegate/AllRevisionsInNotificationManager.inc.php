@@ -29,7 +29,7 @@ class AllRevisionsInNotificationManager extends RevisionsNotificationManager {
 	 * @see NotificationManagerDelegate::updateNotification()
 	 */
 	public function updateNotification(&$request, $userIds, $assocType, $assocId) {
-		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
+		$reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO');
 		$reviewRound =& $reviewRoundDao->getReviewRoundById($assocId);
 		$monographId = $reviewRound->getSubmissionId();
 
@@ -69,7 +69,7 @@ class AllRevisionsInNotificationManager extends RevisionsNotificationManager {
 
 		$this->_removeAllRevisionsIn($request, $reviewRound);
 
-		$stageAssignmentDao =& DAORegistry::getDAO('StageAssignmentDAO');
+		$stageAssignmentDao = DAORegistry::getDAO('StageAssignmentDAO');
 		$stageAssignments = $stageAssignmentDao->getEditorsAssignedToStage($reviewRound->getSubmissionId(), $reviewRound->getStageId());
 		foreach ($stageAssignments as $stageAssignment) {
 			$userId = $stageAssignment->getUserId();
@@ -87,9 +87,9 @@ class AllRevisionsInNotificationManager extends RevisionsNotificationManager {
 	private function _removeAllRevisionsIn(&$request, &$reviewRound) {
 		$press =& $request->getPress();
 		$pressId = $press->getId();
-		$notificationDao =& DAORegistry::getDAO('NotificationDAO'); /* @var $notificationDao NotificationDAO */
+		$notificationDao = DAORegistry::getDAO('NotificationDAO'); /* @var $notificationDao NotificationDAO */
 
-		$stageAssignmentDao =& DAORegistry::getDAO('StageAssignmentDAO');
+		$stageAssignmentDao = DAORegistry::getDAO('StageAssignmentDAO');
 		$stageAssignments = $stageAssignmentDao->getEditorsAssignedToStage($reviewRound->getSubmissionId(), $reviewRound->getStageId());
 		foreach ($stageAssignments as $stageAssignment) {
 			$userId = $stageAssignment->getUserId();

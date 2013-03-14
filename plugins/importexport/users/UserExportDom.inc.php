@@ -26,7 +26,7 @@ class UserExportDom {
 	}
 
 	function &exportUsers(&$press, &$users, $allowedRoles = null) {
-		$roleDao =& DAORegistry::getDAO('RoleDAO');
+		$roleDao = DAORegistry::getDAO('RoleDAO');
 
 		import('lib.pkp.classes.user.InterestManager');
 		$interestManager = new InterestManager();

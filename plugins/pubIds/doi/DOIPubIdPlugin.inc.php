@@ -258,7 +258,7 @@ class DOIPubIdPlugin extends PubIdPlugin {
 		// Check whether we still have to retrieve the press from the database.
 		if (!$press || $press->getId() != $pressId) {
 			unset($press);
-			$pressDao =& DAORegistry::getDAO('PressDAO');
+			$pressDao = DAORegistry::getDAO('PressDAO');
 			$press =& $pressDao->getById($pressId);
 		}
 

@@ -29,11 +29,11 @@ class CopyeditAssignmentNotificationManager extends NotificationManagerDelegate 
 	 * @see NotificationManagerDelegate::getNotificationMessage()
 	 */
 	function getNotificationMessage(&$request, &$notification) {
-		$signoffDao =& DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
+		$signoffDao = DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
 		$signoff = $signoffDao->getById($notification->getAssocId());
 		assert($signoff->getAssocType() == ASSOC_TYPE_SUBMISSION_FILE);
 
-		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO');
+		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
 		$monographFile =& $submissionFileDao->getLatestRevision($signoff->getAssocId());
 		return __('notification.type.copyeditorRequest', array('file' => $monographFile->getLocalizedName()));
 	}
@@ -57,7 +57,7 @@ class CopyeditAssignmentNotificationManager extends NotificationManagerDelegate 
 
 		// Check for an existing notification.
 		$userId = current($userIds);
-		$notificationDao =& DAORegistry::getDAO('NotificationDAO'); /* @var $notificationDao NotificationDAO */
+		$notificationDao = DAORegistry::getDAO('NotificationDAO'); /* @var $notificationDao NotificationDAO */
 		$notificationFactory =& $notificationDao->getByAssoc(
 				ASSOC_TYPE_SIGNOFF,
 				$assocId,

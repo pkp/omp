@@ -59,7 +59,7 @@ class SubmissionMetadataFormImplementation {
 	 * @param $monograph Monograph
 	 */
 	function initData(&$monograph) {
-		$seriesDao =& DAORegistry::getDAO('SeriesDAO');
+		$seriesDao = DAORegistry::getDAO('SeriesDAO');
 
 		if (isset($monograph)) {
 			$formData = array(
@@ -86,11 +86,11 @@ class SubmissionMetadataFormImplementation {
 			$locales = array_keys($this->_parentForm->supportedLocales);
 
 			// load the persisted metadata controlled vocabularies
-			$submissionKeywordDao =& DAORegistry::getDAO('SubmissionKeywordDAO');
-			$submissionSubjectDao =& DAORegistry::getDAO('SubmissionSubjectDAO');
-			$submissionDisciplineDao =& DAORegistry::getDAO('SubmissionDisciplineDAO');
-			$submissionAgencyDao =& DAORegistry::getDAO('SubmissionAgencyDAO');
-			$submissionLanguageDao =& DAORegistry::getDAO('SubmissionLanguageDAO');
+			$submissionKeywordDao = DAORegistry::getDAO('SubmissionKeywordDAO');
+			$submissionSubjectDao = DAORegistry::getDAO('SubmissionSubjectDAO');
+			$submissionDisciplineDao = DAORegistry::getDAO('SubmissionDisciplineDAO');
+			$submissionAgencyDao = DAORegistry::getDAO('SubmissionAgencyDAO');
+			$submissionLanguageDao = DAORegistry::getDAO('SubmissionLanguageDAO');
 
 			$this->_parentForm->setData('subjects', $submissionSubjectDao->getSubjects($monograph->getId(), $locales));
 			$this->_parentForm->setData('keywords', $submissionKeywordDao->getKeywords($monograph->getId(), $locales));
@@ -128,7 +128,7 @@ class SubmissionMetadataFormImplementation {
 	 * @return Monograph
 	 */
 	function execute(&$monograph, &$request) {
-		$monographDao =& DAORegistry::getDAO('MonographDAO');
+		$monographDao = DAORegistry::getDAO('MonographDAO');
 
 		// Update monograph
 		$monograph->setTitle($this->_parentForm->getData('title'), null); // Localized
@@ -150,11 +150,11 @@ class SubmissionMetadataFormImplementation {
 		$locales = array_keys($this->_parentForm->supportedLocales);
 
 		// persist the metadata/keyword fields.
-		$submissionKeywordDao =& DAORegistry::getDAO('SubmissionKeywordDAO');
-		$submissionSubjectDao =& DAORegistry::getDAO('SubmissionSubjectDAO');
-		$submissionDisciplineDao =& DAORegistry::getDAO('SubmissionDisciplineDAO');
-		$submissionAgencyDao =& DAORegistry::getDAO('SubmissionAgencyDAO');
-		$submissionLanguageDao =& DAORegistry::getDAO('SubmissionLanguageDAO');
+		$submissionKeywordDao = DAORegistry::getDAO('SubmissionKeywordDAO');
+		$submissionSubjectDao = DAORegistry::getDAO('SubmissionSubjectDAO');
+		$submissionDisciplineDao = DAORegistry::getDAO('SubmissionDisciplineDAO');
+		$submissionAgencyDao = DAORegistry::getDAO('SubmissionAgencyDAO');
+		$submissionLanguageDao = DAORegistry::getDAO('SubmissionLanguageDAO');
 
 		$keywords = array();
 		$agencies = array();
@@ -182,7 +182,7 @@ class SubmissionMetadataFormImplementation {
 		$submissionSubjectDao->insertSubjects($subjects, $monograph->getId());
 
 		// Resequence the authors (this ensures a primary contact).
-		$authorDao =& DAORegistry::getDAO('AuthorDAO');
+		$authorDao = DAORegistry::getDAO('AuthorDAO');
 		$authorDao->resequenceAuthors($monograph->getId());
 
 		// Log the modification event.

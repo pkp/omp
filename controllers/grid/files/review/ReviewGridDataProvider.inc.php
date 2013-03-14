@@ -60,7 +60,7 @@ class ReviewGridDataProvider extends SubmissionFilesGridDataProvider {
 	function &loadData() {
 		// Get all review files assigned to this submission.
 		$reviewRound =& $this->getReviewRound();
-		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		$monographFiles =& $submissionFileDao->getLatestNewRevisionsByReviewRound($reviewRound, $this->getFileStage());
 		$data = $this->prepareSubmissionFileData($monographFiles, $this->_viewableOnly);
 

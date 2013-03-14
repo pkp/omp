@@ -26,12 +26,12 @@ class PublicationFormatTombstoneManager {
 	 * @param $press Press
 	 */
 	function insertTombstoneByPublicationFormat(&$publicationFormat, &$press) {
-		$monographDao =& DAORegistry::getDAO('MonographDAO');
+		$monographDao = DAORegistry::getDAO('MonographDAO');
 		$monograph =& $monographDao->getById($publicationFormat->getMonographId());
-		$seriesDao =& DAORegistry::getDAO('SeriesDAO');
+		$seriesDao = DAORegistry::getDAO('SeriesDAO');
 		$series =& $seriesDao->getById($monograph->getSeriesId());
 
-		$dataObjectTombstoneDao =& DAORegistry::getDAO('DataObjectTombstoneDAO');
+		$dataObjectTombstoneDao = DAORegistry::getDAO('DataObjectTombstoneDAO');
 		// delete publication format tombstone to ensure that there aren't
 		// more than one tombstone for this publication format
 		$dataObjectTombstoneDao->deleteByDataObjectId($publicationFormat->getId());
@@ -118,7 +118,7 @@ class PublicationFormatTombstoneManager {
 	 * @return DAOResultFactory
 	 */
 	function _getPublishedMonographFactoryByPressId($pressId) {
-		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
+		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
 		return $publishedMonographDao->getByPressId($pressId);
 	}
 }

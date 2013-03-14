@@ -96,7 +96,7 @@ class SubmissionFilesGridDataProvider extends FilesGridDataProvider {
 	function &loadData() {
 		// Retrieve all monograph files for the given file stage.
 		$monograph =& $this->getMonograph();
-		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		$monographFiles =& $submissionFileDao->getLatestRevisions($monograph->getId(), $this->getFileStage());
 		return $this->prepareSubmissionFileData($monographFiles, $this->_viewableOnly);
 	}

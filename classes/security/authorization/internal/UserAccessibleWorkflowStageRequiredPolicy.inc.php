@@ -43,7 +43,7 @@ class UserAccessibleWorkflowStageRequiredPolicy extends AuthorizationPolicy {
 		$userId = $user->getId();
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 
-		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+		$userGroupDao = DAORegistry::getDAO('UserGroupDAO');
 		$workflowStages = $userGroupDao->getWorkflowStageTranslationKeys();
 
 		$accessibleWorkflowStages = array();
@@ -76,7 +76,7 @@ class UserAccessibleWorkflowStageRequiredPolicy extends AuthorizationPolicy {
 	 */
 	function _getAccessibleStageRoles($userId, $pressId, &$monograph, $stageId) {
 		$stageAssignmentDao = & DAORegistry::getDAO('StageAssignmentDAO'); /* @var $stageAssignmentDao StageAssignmentDAO */
-		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+		$userGroupDao = DAORegistry::getDAO('UserGroupDAO');
 
 		$userRoles = $this->getAuthorizedContextObject(ASSOC_TYPE_USER_ROLES);
 

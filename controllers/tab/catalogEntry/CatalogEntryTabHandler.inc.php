@@ -172,7 +172,7 @@ class CatalogEntryTabHandler extends Handler {
 	function publicationMetadata($args, &$request) {
 
 		$publicationFormatId = (int) $request->getUserVar('publicationFormatId');
-		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
+		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
 
 		$monograph =& $this->getMonograph();
 		$stageId =& $this->getStageId();
@@ -224,8 +224,8 @@ class CatalogEntryTabHandler extends Handler {
 				$publicationFormatId =& $request->getUserVar('publicationFormatId');
 
 				// perform some validation to make sure this format is enabled and assigned to this monograph
-				$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
-				$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
+				$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
+				$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
 				$publishedMonograph =& $publishedMonographDao->getById($monograph->getId());
 				$formats =& $publicationFormatDao->getByMonographId($monograph->getId());
 				$form = null;

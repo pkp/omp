@@ -132,7 +132,7 @@ class ManageCatalogHandler extends Handler {
 		$templateMgr =& TemplateManager::getManager($request);
 
 		// Fetch the monographs to display
-		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
+		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
 		$publishedMonographs =& $publishedMonographDao->getByPressId($press->getId());
 		$templateMgr->assign('publishedMonographs', $publishedMonographs);
 
@@ -148,7 +148,7 @@ class ManageCatalogHandler extends Handler {
 	 */
 	function getCategories($args, &$request) {
 		$press =& $request->getPress();
-		$categoryDao =& DAORegistry::getDAO('CategoryDAO');
+		$categoryDao = DAORegistry::getDAO('CategoryDAO');
 		$categoryIterator =& $categoryDao->getByPressId($press->getId());
 		$categoryArray = array();
 		while ($category =& $categoryIterator->next()) {
@@ -167,7 +167,7 @@ class ManageCatalogHandler extends Handler {
 	 */
 	function getSeries($args, &$request) {
 		$press =& $request->getPress();
-		$seriesDao =& DAORegistry::getDAO('SeriesDAO');
+		$seriesDao = DAORegistry::getDAO('SeriesDAO');
 		$seriesIterator =& $seriesDao->getByPressId($press->getId());
 		$seriesArray = array();
 		while ($series =& $seriesIterator->next()) {
@@ -189,7 +189,7 @@ class ManageCatalogHandler extends Handler {
 		$press =& $request->getPress();
 
 		// Get the category
-		$categoryDao =& DAORegistry::getDAO('CategoryDAO');
+		$categoryDao = DAORegistry::getDAO('CategoryDAO');
 		$categoryPath = array_shift($args);
 		$category =& $categoryDao->getByPath($categoryPath, $press->getId());
 		$templateMgr->assign('category', $category);
@@ -201,12 +201,12 @@ class ManageCatalogHandler extends Handler {
 		);
 
 		// Fetch the monographs to display
-		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
+		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
 		$publishedMonographs =& $publishedMonographDao->getByCategoryId($category->getId(), $press->getId());
 		$templateMgr->assign('publishedMonographs', $publishedMonographs);
 
 		// Fetch the current features
-		$featureDao =& DAORegistry::getDAO('FeatureDAO');
+		$featureDao = DAORegistry::getDAO('FeatureDAO');
 		$features = $featureDao->getSequencesByAssoc(ASSOC_TYPE_CATEGORY, $category->getId());
 		$templateMgr->assign('features', $features);
 
@@ -226,7 +226,7 @@ class ManageCatalogHandler extends Handler {
 		$press =& $request->getPress();
 
 		// Get the series
-		$seriesDao =& DAORegistry::getDAO('SeriesDAO');
+		$seriesDao = DAORegistry::getDAO('SeriesDAO');
 		$seriesPath = array_shift($args);
 		$series =& $seriesDao->getByPath($seriesPath, $press->getId());
 		$templateMgr->assign('series', $series);
@@ -238,7 +238,7 @@ class ManageCatalogHandler extends Handler {
 		);
 
 		// Fetch the monographs to display
-		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
+		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
 		$publishedMonographs =& $publishedMonographDao->getBySeriesId($series->getId(), $press->getId());
 		$templateMgr->assign('publishedMonographs', $publishedMonographs);
 
@@ -260,7 +260,7 @@ class ManageCatalogHandler extends Handler {
 		$press =& $request->getPress();
 
 		// Fetch the monographs to display
-		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
+		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
 		$publishedMonographs =& $publishedMonographDao->getByPressId($press->getId(), $searchText);
 		$templateMgr->assign('publishedMonographs', $publishedMonographs);
 
@@ -292,7 +292,7 @@ class ManageCatalogHandler extends Handler {
 		// Validate the monograph ID
 		// FIXME: Can this be done with the auth framework without
 		// needing the policy throughout?
-		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
+		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
 		$publishedMonograph =& $publishedMonographDao->getById($monographId, $press->getId());
 		if (!$publishedMonograph) fatalError('Invalid monograph!');
 
@@ -304,13 +304,13 @@ class ManageCatalogHandler extends Handler {
 				break;
 			case ASSOC_TYPE_CATEGORY:
 				// Validate specified assocId
-				$categoryDao =& DAORegistry::getDAO('CategoryDAO');
+				$categoryDao = DAORegistry::getDAO('CategoryDAO');
 				$category =& $categoryDao->getById($assocId, $press->getId());
 				if (!$category) fatalError('Invalid category!');
 				break;
 			case ASSOC_TYPE_SERIES:
 				// Validate specified assocId
-				$seriesDao =& DAORegistry::getDAO('SeriesDAO');
+				$seriesDao = DAORegistry::getDAO('SeriesDAO');
 				$series =& $seriesDao->getById($assocId, $press->getId());
 				if (!$series) fatalError('Invalid series!');
 				break;
@@ -322,7 +322,7 @@ class ManageCatalogHandler extends Handler {
 
 		switch ($toggleType) {
 			case 'setFeatured':
-				$featureDao =& DAORegistry::getDAO('FeatureDAO');
+				$featureDao = DAORegistry::getDAO('FeatureDAO');
 				$featureDao->deleteFeature($monographId, $assocType, $assocId);
 
 				// If necessary, insert the new featured state and resequence.
@@ -334,7 +334,7 @@ class ManageCatalogHandler extends Handler {
 				}
 				break;
 			case 'setNewRelease':
-				$newReleaseDao =& DAORegistry::getDAO('NewReleaseDAO');
+				$newReleaseDao = DAORegistry::getDAO('NewReleaseDAO');
 				$newReleaseDao->deleteNewRelease($monographId, $assocType, $assocId);
 				if ($newState) {
 					$newReleaseDao->insertNewRelease($monographId, $assocType, $assocId);
@@ -380,11 +380,11 @@ class ManageCatalogHandler extends Handler {
 
 		// Expose the featured monograph IDs and associated params
 		if ($assocType) {
-			$featureDao =& DAORegistry::getDAO('FeatureDAO');
+			$featureDao = DAORegistry::getDAO('FeatureDAO');
 			$featuredMonographIds = $featureDao->getSequencesByAssoc($assocType, $assocId);
 			$templateMgr->assign('featuredMonographIds', $featuredMonographIds);
 
-			$newReleaseDao =& DAORegistry::getDAO('NewReleaseDAO');
+			$newReleaseDao = DAORegistry::getDAO('NewReleaseDAO');
 			$newReleaseMonographIds = $newReleaseDao->getMonographIdsByAssoc($assocType, $assocId);
 			$templateMgr->assign('newReleaseMonographIds', $newReleaseMonographIds);
 		}

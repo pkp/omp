@@ -109,7 +109,7 @@ class MonographFileManager extends BaseMonographFileManager {
 		$session =& $sessionManager->getUserSession();
 		$user =& $session->getUser();
 		if (is_a($user, 'User')) {
-			$viewsDao =& DAORegistry::getDAO('ViewsDAO');
+			$viewsDao = DAORegistry::getDAO('ViewsDAO');
 			$viewsDao->recordView(
 			ASSOC_TYPE_SUBMISSION_FILE, $monographFile->getFileIdAndRevision(),
 			$user->getId()
@@ -140,7 +140,7 @@ class MonographFileManager extends BaseMonographFileManager {
 
 		// Copy the temporary file to its final destination and persist
 		// its metadata to the database.
-		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		if (!$submissionFileDao->insertObject($monographFile, $sourceFile)) return false;
 
 		// Return the new file id.
@@ -158,7 +158,7 @@ class MonographFileManager extends BaseMonographFileManager {
 	function copyFileToFileStage($sourceFileId, $sourceRevision, $newFileStage, $destFileId = null, $viewable = false) {
 		if (HookRegistry::call('MonographFileManager::copyFileToFileStage', array(&$sourceFileId, &$sourceRevision, &$newFileStage, &$destFileId, &$result))) return $result;
 
-		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		$sourceFile =& $submissionFileDao->getRevision($sourceFileId, $sourceRevision); /* @var $sourceFile MonographFile */
 		if (!$sourceFile) return false;
 
@@ -246,7 +246,7 @@ class MonographFileManager extends BaseMonographFileManager {
 
 		// Copy the uploaded file to its final destination and
 		// persist its meta-data to the database.
-		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		return $submissionFileDao->insertObject($monographFile, $fileName, true);
 	}
 
@@ -264,7 +264,7 @@ class MonographFileManager extends BaseMonographFileManager {
 		$nullVar = null;
 
 		// Retrieve the submission file DAO.
-		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		// We either need a genre id or a revised file, otherwise
 		// we cannot identify the target file implementation.
 		assert($genreId || $revisedFileId);
@@ -355,7 +355,7 @@ class MonographFileManager extends BaseMonographFileManager {
 	 * @return MonographFile
 	 */
 	function &_getFile($fileId, $revision = null) {
-		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		if ($revision) {
 			$monographFile =& $submissionFileDao->getRevision($fileId, $revision);
 		} else {

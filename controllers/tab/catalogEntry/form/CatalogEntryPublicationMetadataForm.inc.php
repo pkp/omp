@@ -44,7 +44,7 @@ class CatalogEntryPublicationMetadataForm extends Form {
 	 */
 	function CatalogEntryPublicationMetadataForm($monographId, $publicationFormatId, $isPhysicalFormat = true, $stageId = null, $formParams = null) {
 		parent::Form('controllers/tab/catalogEntry/form/publicationMetadataFormFields.tpl');
-		$monographDao =& DAORegistry::getDAO('MonographDAO');
+		$monographDao = DAORegistry::getDAO('MonographDAO');
 		$this->_monograph = $monographDao->getById($monographId);
 
 		$this->_pubIdPluginHelper = new PubIdPluginHelper();
@@ -77,7 +77,7 @@ class CatalogEntryPublicationMetadataForm extends Form {
 		$templateMgr->assign('formParams', $this->getFormParams());
 		$templateMgr->assign('submissionApproved', $monograph->getDatePublished());
 
-		$onixCodelistItemDao =& DAORegistry::getDAO('ONIXCodelistItemDAO');
+		$onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO');
 
 		// Check if e-commerce is available
 		import('classes.payment.omp.OMPPaymentManager');
@@ -131,7 +131,7 @@ class CatalogEntryPublicationMetadataForm extends Form {
 			LOCALE_COMPONENT_APP_SUBMISSION
 		);
 
-		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
+		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
 		$monograph =& $this->getMonograph();
 		$publicationFormat =& $publicationFormatDao->getById($this->getPublicationFormatId(), $monograph->getId());
 		assert($publicationFormat);
@@ -206,7 +206,7 @@ class CatalogEntryPublicationMetadataForm extends Form {
 		parent::execute();
 
 		$monograph =& $this->getMonograph();
-		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
+		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
 		$publicationFormat =& $publicationFormatDao->getById($this->getPublicationFormatId(), $monograph->getId());
 		assert($publicationFormat);
 
@@ -224,7 +224,7 @@ class CatalogEntryPublicationMetadataForm extends Form {
 			MonographLog::logEvent($request, $monograph, MONOGRAPH_LOG_PUBLICATION_FORMAT_UNPUBLISH, 'submission.event.publicationFormatUnpublished', array('publicationFormatName' => $publicationFormat->getLocalizedName()));
 		} elseif (!$publicationFormat->getIsApproved() && $this->getData('isApproved')) {
 			// Wasn't approved and now it is. Delete tombstone.
-			$tombstoneDao =& DAORegistry::getDAO('DataObjectTombstoneDAO');
+			$tombstoneDao = DAORegistry::getDAO('DataObjectTombstoneDAO');
 			$tombstoneDao->deleteByDataObjectId($publicationFormat->getId());
 
 			// Log publish event.

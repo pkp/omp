@@ -129,7 +129,7 @@ class FilesListbuilderHandler extends ListbuilderHandler {
 		$newRowId = $this->getNewRowId($request);
 		$fileId = (int) $newRowId['name'];
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		import('classes.monograph.MonographFile'); // Bring in const
 		$monographFiles =& $submissionFileDao->getLatestRevisions($monograph->getId(), $this->getFileStage());
 		foreach ($monographFiles as $monographFile) {

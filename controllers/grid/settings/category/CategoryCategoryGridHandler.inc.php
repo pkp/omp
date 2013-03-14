@@ -115,7 +115,7 @@ class CategoryCategoryGridHandler extends CategoryGridHandler {
 	 */
 	function &loadData($request, $filter) {
 		// For top-level rows, only list categories without parents.
-		$categoryDao =& DAORegistry::getDAO('CategoryDAO');
+		$categoryDao = DAORegistry::getDAO('CategoryDAO');
 		$categoriesIterator =& $categoryDao->getByParentId(null, $this->_getPressId());
 
 		$categories = array();
@@ -158,7 +158,7 @@ class CategoryCategoryGridHandler extends CategoryGridHandler {
 	 */
 	function getCategoryData(&$category) {
 		$categoryId = $category->getId();
-		$categoryDao =& DAORegistry::getDAO('CategoryDAO');
+		$categoryDao = DAORegistry::getDAO('CategoryDAO');
 		$categoriesIterator =& $categoryDao->getByParentId($categoryId, $this->_getPressId());
 		$categories = $categoriesIterator->toAssociativeArray();
 		return $categories;
@@ -213,7 +213,7 @@ class CategoryCategoryGridHandler extends CategoryGridHandler {
 	 */
 	function deleteCategory($args, &$request) {
 		// Identify the category to be deleted
-		$categoryDao =& DAORegistry::getDAO('CategoryDAO');
+		$categoryDao = DAORegistry::getDAO('CategoryDAO');
 		$press =& $request->getPress();
 		$category =& $categoryDao->getById(
 			$request->getUserVar('categoryId'),

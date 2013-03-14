@@ -143,7 +143,7 @@ class MonographMailTemplate extends MailTemplate {
 		$entry->setBccs($this->getBccString());
 
 		// Add log entry
-		$logDao =& DAORegistry::getDAO('MonographEmailLogDAO');
+		$logDao = DAORegistry::getDAO('MonographEmailLogDAO');
 		$logEntryId = $logDao->insertObject($entry);
 
 		// Add attachments
@@ -198,13 +198,13 @@ class MonographMailTemplate extends MailTemplate {
 	function _addUsers($monographId, $roleId, $stageId, $method) {
 		assert(in_array($method, array('addRecipient', 'addCc', 'addBcc')));
 
-		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+		$userGroupDao = DAORegistry::getDAO('UserGroupDAO');
 		$userGroups =& $userGroupDao->getByRoleId($this->press->getId(), $roleId);
 
 		$returner = array();
 		// Cycle through all the userGroups for this role
 		while ( $userGroup =& $userGroups->next() ) {
-			$userStageAssignmentDao =& DAORegistry::getDAO('UserStageAssignmentDAO');
+			$userStageAssignmentDao = DAORegistry::getDAO('UserStageAssignmentDAO');
 			// FIXME: #6692# Should this be getting users just for a specific user group?
 			$users =& $userStageAssignmentDao->getUsersBySubmissionAndStageId($monographId, $stageId, $userGroup->getId());
 			while ($user =& $users->next()) {

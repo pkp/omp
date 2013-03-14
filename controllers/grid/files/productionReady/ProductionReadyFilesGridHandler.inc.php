@@ -65,7 +65,7 @@ class ProductionReadyFilesGridHandler extends SubmissionFilesGridHandler {
 		$uploaderUserGroupIds = array_unique($uploaderUserGroupIds);
 
 		// Add a Uploader UserGroup column for each group
-		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+		$userGroupDao = DAORegistry::getDAO('UserGroupDAO');
 		foreach ($uploaderUserGroupIds as $userGroupId) {
 			$userGroup =& $userGroupDao->getById($userGroupId);
 			assert(is_a($userGroup, 'UserGroup'));

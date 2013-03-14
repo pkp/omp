@@ -101,14 +101,14 @@ class IdentificationCodeGridHandler extends GridHandler {
 
 		// Retrieve the authorized monograph.
 		$this->setMonograph($this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH));
-		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
+		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
 		$publicationFormatId = null;
 
 		// Retrieve the associated publication format for this grid.
 		$identificationCodeId = (int) $request->getUserVar('identificationCodeId'); // set if editing or deleting a code
 
 		if ($identificationCodeId != '') {
-			$identificationCodeDao =& DAORegistry::getDAO('IdentificationCodeDAO');
+			$identificationCodeDao = DAORegistry::getDAO('IdentificationCodeDAO');
 			$identificationCode =& $identificationCodeDao->getById($identificationCodeId, $this->getMonograph()->getId());
 			if ($identificationCode) {
 				$publicationFormatId =& $identificationCode->getPublicationFormatId();
@@ -209,7 +209,7 @@ class IdentificationCodeGridHandler extends GridHandler {
 	 */
 	function &loadData($request, $filter = null) {
 		$publicationFormat =& $this->getPublicationFormat();
-		$identificationCodeDao =& DAORegistry::getDAO('IdentificationCodeDAO');
+		$identificationCodeDao = DAORegistry::getDAO('IdentificationCodeDAO');
 		$data =& $identificationCodeDao->getByPublicationFormatId($publicationFormat->getId());
 		return $data->toArray();
 	}
@@ -234,7 +234,7 @@ class IdentificationCodeGridHandler extends GridHandler {
 		$identificationCodeId = (int) $request->getUserVar('identificationCodeId');
 		$monograph =& $this->getMonograph();
 
-		$identificationCodeDao =& DAORegistry::getDAO('IdentificationCodeDAO');
+		$identificationCodeDao = DAORegistry::getDAO('IdentificationCodeDAO');
 		$identificationCode = $identificationCodeDao->getById($identificationCodeId, $monograph->getId());
 
 		// Form handling
@@ -257,7 +257,7 @@ class IdentificationCodeGridHandler extends GridHandler {
 		$identificationCodeId = $request->getUserVar('identificationCodeId');
 		$monograph =& $this->getMonograph();
 
-		$identificationCodeDao =& DAORegistry::getDAO('IdentificationCodeDAO');
+		$identificationCodeDao = DAORegistry::getDAO('IdentificationCodeDAO');
 		$identificationCode = $identificationCodeDao->getById($identificationCodeId, $monograph->getId());
 
 		// Form handling
@@ -309,7 +309,7 @@ class IdentificationCodeGridHandler extends GridHandler {
 		// Identify the code to be deleted
 		$identificationCodeId = $request->getUserVar('identificationCodeId');
 
-		$identificationCodeDao =& DAORegistry::getDAO('IdentificationCodeDAO');
+		$identificationCodeDao = DAORegistry::getDAO('IdentificationCodeDAO');
 		$identificationCode =& $identificationCodeDao->getById($identificationCodeId, $this->getMonograph()->getId());
 		if ($identificationCode != null) { // authorized
 

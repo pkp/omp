@@ -101,14 +101,14 @@ class MarketsGridHandler extends GridHandler {
 
 		// Retrieve the authorized monograph.
 		$this->setMonograph($this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH));
-		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
+		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
 		$publicationFormatId = null;
 
 		// Retrieve the associated publication format for this grid.
 		$marketId = (int) $request->getUserVar('marketId'); // set if editing or deleting a market entry
 
 		if ($marketId != '') {
-			$marketDao =& DAORegistry::getDAO('MarketDAO');
+			$marketDao = DAORegistry::getDAO('MarketDAO');
 			$market =& $marketDao->getById($marketId, $this->getMonograph()->getId());
 			if ($market) {
 				$publicationFormatId = $market->getPublicationFormatId();
@@ -217,7 +217,7 @@ class MarketsGridHandler extends GridHandler {
 	 */
 	function &loadData($request, $filter = null) {
 		$publicationFormat =& $this->getPublicationFormat();
-		$marketDao =& DAORegistry::getDAO('MarketDAO');
+		$marketDao = DAORegistry::getDAO('MarketDAO');
 		$data =& $marketDao->getByPublicationFormatId($publicationFormat->getId());
 		return $data->toArray();
 	}
@@ -242,7 +242,7 @@ class MarketsGridHandler extends GridHandler {
 		$marketId = (int) $request->getUserVar('marketId');
 		$monograph =& $this->getMonograph();
 
-		$marketDao =& DAORegistry::getDAO('MarketDAO');
+		$marketDao = DAORegistry::getDAO('MarketDAO');
 		$market = $marketDao->getById($marketId, $monograph->getId());
 
 		// Form handling
@@ -265,7 +265,7 @@ class MarketsGridHandler extends GridHandler {
 		$marketId = $request->getUserVar('marketId');
 		$monograph =& $this->getMonograph();
 
-		$marketDao =& DAORegistry::getDAO('MarketDAO');
+		$marketDao = DAORegistry::getDAO('MarketDAO');
 		$market = $marketDao->getById($marketId, $monograph->getId());
 
 		// Form handling
@@ -317,7 +317,7 @@ class MarketsGridHandler extends GridHandler {
 		// Identify the markets entry to be deleted
 		$marketId = $request->getUserVar('marketId');
 
-		$marketDao =& DAORegistry::getDAO('MarketDAO');
+		$marketDao = DAORegistry::getDAO('MarketDAO');
 		$market =& $marketDao->getById($marketId, $this->getMonograph()->getId());
 		if ($market != null) { // authorized
 

@@ -77,7 +77,7 @@ class MonographFileBaseAccessPolicy extends AuthorizationPolicy {
 		$cache =& $this->_getCache();
 		if (!isset($cache[$cacheId])) {
 			// Cache miss
-			$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO');
+			$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
 			if ($revision) {
 				$cache[$cacheId] =& $submissionFileDao->getRevision($fileId, $revision);
 			} else {

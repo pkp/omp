@@ -56,7 +56,7 @@ class SeriesForm extends Form {
 	function initData($args, &$request) {
 		$press =& $request->getPress();
 
-		$seriesDao =& DAORegistry::getDAO('SeriesDAO');
+		$seriesDao = DAORegistry::getDAO('SeriesDAO');
 		$seriesId = $this->getSeriesId();
 		if ($seriesId) {
 			$series =& $seriesDao->getById($seriesId, $press->getId());
@@ -83,7 +83,7 @@ class SeriesForm extends Form {
 		if ($temporaryFileId = $this->getData('temporaryFileId')) {
 			import('classes.file.TemporaryFileManager');
 			$temporaryFileManager = new TemporaryFileManager();
-			$temporaryFileDao =& DAORegistry::getDAO('TemporaryFileDAO');
+			$temporaryFileDao = DAORegistry::getDAO('TemporaryFileDAO');
 			$temporaryFile =& $temporaryFileDao->getTemporaryFile($temporaryFileId, $this->_userId);
 			if (	!$temporaryFile ||
 					!($this->_imageExtension = $temporaryFileManager->getImageExtension($temporaryFile->getFileType())) ||
@@ -107,11 +107,11 @@ class SeriesForm extends Form {
 		$templateMgr->assign('seriesId', $this->getSeriesId());
 
 		$press =& $request->getPress();
-		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+		$userGroupDao = DAORegistry::getDAO('UserGroupDAO');
 		$seriesEditorCount = $userGroupDao->getContextUsersCount($press->getId(), null, ROLE_ID_SUB_EDITOR);
 		$templateMgr->assign('seriesEditorCount', $seriesEditorCount);
 
-		$categoryDao =& DAORegistry::getDAO('CategoryDAO');
+		$categoryDao = DAORegistry::getDAO('CategoryDAO');
 		$categoryCount = $categoryDao->getCountByPressId($press->getId());
 		$templateMgr->assign('categoryCount', $categoryCount);
 		return parent::fetch($request);
@@ -131,7 +131,7 @@ class SeriesForm extends Form {
 	 * @param $request PKPRequest
 	 */
 	function execute($args, &$request) {
-		$seriesDao =& DAORegistry::getDAO('SeriesDAO');
+		$seriesDao = DAORegistry::getDAO('SeriesDAO');
 		$press =& $request->getPress();
 
 		// Get or create the series object
@@ -154,7 +154,7 @@ class SeriesForm extends Form {
 		// Handle the image upload if there was one.
 		if ($temporaryFileId = $this->getData('temporaryFileId')) {
 			// Fetch the temporary file storing the uploaded library file
-			$temporaryFileDao =& DAORegistry::getDAO('TemporaryFileDAO');
+			$temporaryFileDao = DAORegistry::getDAO('TemporaryFileDAO');
 
 			$temporaryFile =& $temporaryFileDao->getTemporaryFile($temporaryFileId, $this->_userId);
 			$temporaryFilePath = $temporaryFile->getFilePath();
@@ -276,7 +276,7 @@ class SeriesForm extends Form {
 		$seriesId = $this->getSeriesId();
 		$userId = array_shift($newRowId);
 
-		$seriesEditorsDao =& DAORegistry::getDAO('SeriesEditorsDAO');
+		$seriesEditorsDao = DAORegistry::getDAO('SeriesEditorsDAO');
 
 		// Make sure the membership doesn't already exist
 		if ($seriesEditorsDao->editorExists($press->getId(), $this->getSeriesId(), $userId)) {
@@ -295,7 +295,7 @@ class SeriesForm extends Form {
 	 * @param $rowId int
 	 */
 	function deleteSeriesEditorEntry(&$request, $rowId) {
-		$seriesEditorsDao =& DAORegistry::getDAO('SeriesEditorsDAO');
+		$seriesEditorsDao = DAORegistry::getDAO('SeriesEditorsDAO');
 		$press =& $request->getPress();
 
 		$seriesEditorsDao->deleteEditor($press->getId(), $this->getSeriesId(), $rowId);
@@ -324,7 +324,7 @@ class SeriesForm extends Form {
 		$seriesId = $this->getSeriesId();
 		$categoryId = array_shift($newRowId);
 
-		$seriesDao =& DAORegistry::getDAO('SeriesDAO');
+		$seriesDao = DAORegistry::getDAO('SeriesDAO');
 
 		// Make sure the membership doesn't already exist
 		if ($seriesDao->categoryAssociationExists($this->getSeriesId(), $categoryId)) {
@@ -343,7 +343,7 @@ class SeriesForm extends Form {
 	 * @param $rowId int
 	 */
 	function deleteCategoryEntry(&$request, $rowId) {
-		$seriesDao =& DAORegistry::getDAO('SeriesDAO');
+		$seriesDao = DAORegistry::getDAO('SeriesDAO');
 		$press =& $request->getPress();
 
 		$seriesDao->removeCategory($this->getSeriesId(), $rowId);

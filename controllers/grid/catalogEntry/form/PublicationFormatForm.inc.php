@@ -101,7 +101,7 @@ class PublicationFormatForm extends Form {
 
 
 		$templateMgr =& TemplateManager::getManager($request);
-		$onixCodelistItemDao =& DAORegistry::getDAO('ONIXCodelistItemDAO');
+		$onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO');
 		$templateMgr->assign('entryKeys', $onixCodelistItemDao->getCodes('List7')); // List7 is for object formats
 
 		$monograph =& $this->getMonograph();
@@ -131,7 +131,7 @@ class PublicationFormatForm extends Form {
 	 * @see Form::execute()
 	 */
 	function execute($request) {
-		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
+		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
 		$monograph = $this->getMonograph();
 		$publicationFormat =& $this->getPublicationFormat();
 		if (!$publicationFormat) {

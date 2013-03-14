@@ -58,7 +58,7 @@ class IdentificationCode extends DataObject {
 	 * @return string
 	 */
 	function getNameForONIXCode() {
-		$onixCodelistItemDao =& DAORegistry::getDAO('ONIXCodelistItemDAO');
+		$onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO');
 		$codes =& $onixCodelistItemDao->getCodes('List5'); // List5 is for ISBN, GTIN-13, etc.
 		return $codes[$this->getCode()];
 	}

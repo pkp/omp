@@ -109,7 +109,7 @@ class PubIdPlugin extends Plugin {
 					}
 				} elseif ($request->getUserVar('clearPubIds')) {
 					$form->readInputData();
-					$pressDao =& DAORegistry::getDAO('PressDAO');
+					$pressDao = DAORegistry::getDAO('PressDAO');
 					$pressDao->deleteAllPubIds($press->getId(), $this->getPubIdType());
 					$message = NOTIFICATION_TYPE_SUCCESS;
 					$messageParams = array('contents' => __('plugins.pubIds.doi.manager.settings.doiReassign.success'));
@@ -248,7 +248,7 @@ class PubIdPlugin extends Plugin {
 		// FIXME: Hack to ensure that we get a published article if possible.
 		// Remove this when we have migrated getBest...(), etc. to Article.
 		if (is_a($pubObject, 'PublicationFormat')) {
-			$publicationFormatDao =& DAORegistry::getDAO('PublishedFormatDAO'); /* @var $publicationFormatDao PublishedFormatDAO */
+			$publicationFormatDao = DAORegistry::getDAO('PublishedFormatDAO'); /* @var $publicationFormatDao PublishedFormatDAO */
 			$format =& $publicationFormatDao->getById($pubObject->getId());
 			if (is_a($format, 'PublicationFormat')) {
 				unset($pubObject);
@@ -270,7 +270,7 @@ class PubIdPlugin extends Plugin {
 					// FIXME: We temporarily have to use the published article
 					// DAO here until we've moved pubId-generation to the Article
 					// class.
-					$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDao'); /* @var $monographDao PublishedMonographDAO */
+					$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDao'); /* @var $monographDao PublishedMonographDAO */
 					$objectsToCheck =& $publicationFormatDao->getByPressId($pressId);
 					break;
 			}

@@ -42,7 +42,7 @@ class MonographPublishedPolicy extends AuthorizationPolicy {
 		if (!is_a($monograph, 'Monograph')) return AUTHORIZATION_DENY;
 
 		// Get the published monograph; store as authorized
-		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
+		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
 		$publishedMonograph =& $publishedMonographDao->getById($monograph->getId());
 		if (!is_a($publishedMonograph, 'PublishedMonograph')) return AUTHORIZATION_DENY;
 		$this->addAuthorizedContextObject(ASSOC_TYPE_PUBLISHED_MONOGRAPH, $publishedMonograph);

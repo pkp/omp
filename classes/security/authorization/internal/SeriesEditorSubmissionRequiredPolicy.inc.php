@@ -37,7 +37,7 @@ class SeriesEditorSubmissionRequiredPolicy extends DataObjectRequiredPolicy {
 		if ($monographId === false) return AUTHORIZATION_DENY;
 
 		// Validate the monograph id.
-		$seriesEditorSubmissionDao =& DAORegistry::getDAO('SeriesEditorSubmissionDAO');
+		$seriesEditorSubmissionDao = DAORegistry::getDAO('SeriesEditorSubmissionDAO');
 		$seriesEditorSubmission =& $seriesEditorSubmissionDao->getById($monographId);
 		if (!is_a($seriesEditorSubmission, 'SeriesEditorSubmission')) return AUTHORIZATION_DENY;
 

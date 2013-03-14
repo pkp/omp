@@ -36,7 +36,7 @@ class StageParticipantGridCellProvider extends DataObjectGridCellProvider {
 		switch ($column->getId()) {
 			case 'participants':
 				$stageAssignment =& $row->getData();
-				$userDao =& DAORegistry::getDAO('UserDAO'); /* @var $userDao UserDAO */
+				$userDao = DAORegistry::getDAO('UserDAO'); /* @var $userDao UserDAO */
 				$user =& $userDao->getById($stageAssignment->getUserId());
 				return array('label' => $user->getFullName());
 			default:

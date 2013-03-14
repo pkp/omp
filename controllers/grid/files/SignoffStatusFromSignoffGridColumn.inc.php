@@ -71,7 +71,7 @@ class SignoffStatusFromSignoffGridColumn extends BaseSignoffStatusColumn {
 	function &getMonographFile($row) {
 		$signoff =& $row->getData();
 		assert(is_a($signoff, 'SignOff'));
-		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		$monographFile =& $submissionFileDao->getLatestRevision($signoff->getAssocId());
 		assert(is_a($monographFile, 'MonographFile'));
 		return $monographFile;
@@ -94,7 +94,7 @@ class SignoffStatusFromSignoffGridColumn extends BaseSignoffStatusColumn {
 		}
 
 		// The current user has to sign off the file
-		$viewsDao =& DAORegistry::getDAO('ViewsDAO'); /* @var $viewsDao ViewsDAO */
+		$viewsDao = DAORegistry::getDAO('ViewsDAO'); /* @var $viewsDao ViewsDAO */
 
 		// Find out whether someone in the user group already downloaded
 		// (=viewed) the file.

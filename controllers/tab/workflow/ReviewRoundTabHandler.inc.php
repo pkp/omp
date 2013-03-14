@@ -101,7 +101,7 @@ class ReviewRoundTabHandler extends Handler {
 
 		// Assign editor decision actions to the template, only if
 		// user is accessing the last review round for this stage.
-		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
+		$reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO');
 
 		$notificationRequestOptions = array(
 			NOTIFICATION_LEVEL_NORMAL => array(

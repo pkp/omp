@@ -88,7 +88,7 @@ class ChapterAuthorListbuilderHandler extends ListbuilderHandler {
 		$this->setSaveFieldName('authors');
 
 		// Fetch and authorize chapter
-		$chapterDao =& DAORegistry::getDAO('ChapterDAO');
+		$chapterDao = DAORegistry::getDAO('ChapterDAO');
 		$monograph =& $this->getMonograph();
 		$chapter =& $chapterDao->getChapter(
 			$request->getUserVar('chapterId'),
@@ -146,7 +146,7 @@ class ChapterAuthorListbuilderHandler extends ListbuilderHandler {
 			$id = (int) $authorId['name'];
 		}
 
-		$authorDao =& DAORegistry::getDAO('AuthorDAO');
+		$authorDao = DAORegistry::getDAO('AuthorDAO');
 		$monograph =& $this->getMonograph();
 		$author =& $authorDao->getAuthor($id, $monograph->getId());
 		return $author;
@@ -187,7 +187,7 @@ class ChapterAuthorListbuilderHandler extends ListbuilderHandler {
 		if (!$this->getChapterId()) return array();
 
 		// Retrieve the contributors associated with this chapter to be displayed in the grid
-		$chapterAuthorDao =& DAORegistry::getDAO('ChapterAuthorDAO');
+		$chapterAuthorDao = DAORegistry::getDAO('ChapterAuthorDAO');
 		$chapterAuthors =& $chapterAuthorDao->getAuthors($monograph->getId(), $this->getChapterId());
 
 		return $chapterAuthors;

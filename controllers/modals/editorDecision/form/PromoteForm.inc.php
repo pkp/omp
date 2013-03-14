@@ -91,7 +91,7 @@ class PromoteForm extends EditorDecisionWithEmailForm {
 				// Bring in the Manager (we need it).
 				import('classes.file.MonographFileManager');
 
-				$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+				$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 
 				$selectedFiles = $this->getData('selectedFiles');
 				if(is_array($selectedFiles)) {
@@ -133,7 +133,7 @@ class PromoteForm extends EditorDecisionWithEmailForm {
 				import('classes.file.MonographFileManager');
 
 				// Move the revisions to the next stage
-				$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+				$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 
 				$selectedFiles = $this->getData('selectedFiles');
 				if(is_array($selectedFiles)) {

@@ -26,7 +26,7 @@ class MonographFileLog extends OmpLog {
 	 */
 	function logEvent(&$request, &$monographFile, $eventType, $messageKey, $params = array()) {
 		// Create a new entry object
-		$monographFileEventLogDao =& DAORegistry::getDAO('MonographFileEventLogDAO');
+		$monographFileEventLogDao = DAORegistry::getDAO('MonographFileEventLogDAO');
 		$entry = $monographFileEventLogDao->newDataObject();
 
 		// Set implicit parts of the log entry

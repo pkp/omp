@@ -101,14 +101,14 @@ class PublicationDateGridHandler extends GridHandler {
 
 		// Retrieve the authorized monograph.
 		$this->setMonograph($this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH));
-		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
+		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
 		$publicationFormatId = null;
 
 		// Retrieve the associated publication format for this grid.
 		$publicationDateId = (int) $request->getUserVar('publicationDateId'); // set if editing or deleting a date
 
 		if ($publicationDateId != '') {
-			$publicationDateDao =& DAORegistry::getDAO('PublicationDateDAO');
+			$publicationDateDao = DAORegistry::getDAO('PublicationDateDAO');
 			$publicationDate =& $publicationDateDao->getById($publicationDateId, $this->getMonograph()->getId());
 			if ($publicationDate) {
 				$publicationFormatId =& $publicationDate->getPublicationFormatId();
@@ -210,7 +210,7 @@ class PublicationDateGridHandler extends GridHandler {
 	 */
 	function &loadData($request, $filter = null) {
 		$publicationFormat =& $this->getPublicationFormat();
-		$publicationDateDao =& DAORegistry::getDAO('PublicationDateDAO');
+		$publicationDateDao = DAORegistry::getDAO('PublicationDateDAO');
 		$data =& $publicationDateDao->getByPublicationFormatId($publicationFormat->getId());
 		return $data->toArray();
 	}
@@ -235,7 +235,7 @@ class PublicationDateGridHandler extends GridHandler {
 		$publicationDateId = (int) $request->getUserVar('publicationDateId');
 		$monograph =& $this->getMonograph();
 
-		$publicationDateDao =& DAORegistry::getDAO('PublicationDateDAO');
+		$publicationDateDao = DAORegistry::getDAO('PublicationDateDAO');
 		$publicationDate = $publicationDateDao->getById($publicationDateId, $monograph->getId());
 
 		// Form handling
@@ -258,7 +258,7 @@ class PublicationDateGridHandler extends GridHandler {
 		$publicationDateId = $request->getUserVar('publicationDateId');
 		$monograph =& $this->getMonograph();
 
-		$publicationDateDao =& DAORegistry::getDAO('PublicationDateDAO');
+		$publicationDateDao = DAORegistry::getDAO('PublicationDateDAO');
 		$publicationDate = $publicationDateDao->getById($publicationDateId, $monograph->getId());
 
 		// Form handling
@@ -310,7 +310,7 @@ class PublicationDateGridHandler extends GridHandler {
 		// Identify the code to be deleted
 		$publicationDateId = $request->getUserVar('publicationDateId');
 
-		$publicationDateDao =& DAORegistry::getDAO('PublicationDateDAO');
+		$publicationDateDao = DAORegistry::getDAO('PublicationDateDAO');
 		$publicationDate =& $publicationDateDao->getById($publicationDateId, $this->getMonograph()->getId());
 		if ($publicationDate != null) { // authorized
 

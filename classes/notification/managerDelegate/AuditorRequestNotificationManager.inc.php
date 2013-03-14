@@ -29,11 +29,11 @@ class AuditorRequestNotificationManager extends NotificationManagerDelegate {
 	 * @see NotificationManagerDelegate::getNotificationMessage()
 	 */
 	function getNotificationMessage(&$request, &$notification) {
-		$signoffDao =& DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
+		$signoffDao = DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
 		$signoff = $signoffDao->getById($notification->getAssocId());
 		assert($signoff->getAssocType() == ASSOC_TYPE_SUBMISSION_FILE);
 
-		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO');
+		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
 		$monographFile =& $submissionFileDao->getLatestRevision($signoff->getAssocId());
 		return __('notification.type.auditorRequest', array('file' => $monographFile->getLocalizedName()));
 	}
@@ -54,7 +54,7 @@ class AuditorRequestNotificationManager extends NotificationManagerDelegate {
 		$userId = current($userIds);
 
 		// Check for an existing notification.
-		$notificationDao =& DAORegistry::getDAO('NotificationDAO');
+		$notificationDao = DAORegistry::getDAO('NotificationDAO');
 		$notificationFactory =& $notificationDao->getByAssoc(
 			ASSOC_TYPE_SIGNOFF,
 			$assocId,
@@ -63,7 +63,7 @@ class AuditorRequestNotificationManager extends NotificationManagerDelegate {
 		);
 
 		// Check for the complete state of the signoff.
-		$signoffDao =& DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
+		$signoffDao = DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
 		$signoff = $signoffDao->getById($assocId);
 
 		$signoffCompleted = false;

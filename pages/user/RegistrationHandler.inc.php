@@ -45,7 +45,7 @@ class RegistrationHandler extends UserHandler {
 			$regForm->initData();
 			$regForm->display($request);
 		} else {
-			$pressDao =& DAORegistry::getDAO('PressDAO');
+			$pressDao = DAORegistry::getDAO('PressDAO');
 			$presses =& $pressDao->getEnabledPresses(); //Enabled added
 
 			$templateMgr =& TemplateManager::getManager($request);
@@ -131,7 +131,7 @@ class RegistrationHandler extends UserHandler {
 		$accessKeyCode = array_shift($args);
 
 		$press =& $request->getPress();
-		$userDao =& DAORegistry::getDAO('UserDAO');
+		$userDao = DAORegistry::getDAO('UserDAO');
 		$user =& $userDao->getByUsername($username);
 		if (!$user) $request->redirect(null, 'login');
 
@@ -166,7 +166,7 @@ class RegistrationHandler extends UserHandler {
 	function validate(&$request) {
 		$press = $request->getPress();
 		if ($press != null) {
-			$pressSettingsDao =& DAORegistry::getDAO('PressSettingsDAO');
+			$pressSettingsDao = DAORegistry::getDAO('PressSettingsDAO');
 			if ($pressSettingsDao->getSetting($press->getId(), 'disableUserReg')) {
 				// Users cannot register themselves for this press
 				$this->registrationDisabled();

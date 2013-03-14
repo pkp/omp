@@ -268,7 +268,7 @@ class MonographFile extends SubmissionFile {
 	 */
 	function getFilePath() {
 		// Get the press ID
-		$monographDao =& DAORegistry::getDAO('MonographDAO');
+		$monographDao = DAORegistry::getDAO('MonographDAO');
 		$monograph =& $monographDao->getById($this->getMonographId());
 		if (!$monograph) return null;
 		$pressId = $monograph->getPressId();
@@ -324,7 +324,7 @@ class MonographFile extends SubmissionFile {
 			$genreName = '';
 			if ($currentIds['genreId']) {
 				$primaryLocale = AppLocale::getPrimaryLocale();
-				$genreDao =& DAORegistry::getDAO('GenreDAO'); /* @var $genreDao GenreDAO */
+				$genreDao = DAORegistry::getDAO('GenreDAO'); /* @var $genreDao GenreDAO */
 				$genre =& $genreDao->getById($currentIds['genreId']);
 				assert(is_a($genre, 'Genre'));
 				$genreName = $genre->getDesignation($primaryLocale).'_'.$genre->getName($primaryLocale).'-';

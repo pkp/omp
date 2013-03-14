@@ -38,10 +38,10 @@ class UserAction {
 			$monographDao->updateObject($monograph);
 		}
 
-		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO');
+		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
 		$submissionFileDao->transferOwnership($oldUserId, $newUserId);
 
-		$monographCommentDao =& DAORegistry::getDAO('MonographCommentDAO');
+		$monographCommentDao = DAORegistry::getDAO('MonographCommentDAO');
 		$comments =& $monographCommentDao->getByUserId($oldUserId);
 		while ($comment =& $comments->next()) {
 			$comment->setAuthorId($newUserId);
@@ -49,7 +49,7 @@ class UserAction {
 			unset($comment);
 		}
 
-		$noteDao =& DAORegistry::getDAO('NoteDAO');
+		$noteDao = DAORegistry::getDAO('NoteDAO');
 		$monographNotes =& $noteDao->getByUserId($oldUserId);
 		while ($monographNote =& $monographNotes->next()) {
 			$monographNote->setUserId($newUserId);
@@ -57,7 +57,7 @@ class UserAction {
 			unset($monographNote);
 		}
 
-		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
+		$signoffDao = DAORegistry::getDAO('SignoffDAO');
 		$stageSignoffs =& $signoffDao->getByUserId($oldUserId);
 		while ($stageSignoff =& $stageSignoffs->next()) {
 			$stageSignoff->setUserId($newUserId);
@@ -65,10 +65,10 @@ class UserAction {
 			unset($stageSignoff);
 		}
 
-		$seriesEditorSubmissionDao =& DAORegistry::getDAO('SeriesEditorSubmissionDAO');
+		$seriesEditorSubmissionDao = DAORegistry::getDAO('SeriesEditorSubmissionDAO');
 		$seriesEditorSubmissionDao->transferEditorDecisions($oldUserId, $newUserId);
 
-		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+		$reviewAssignmentDao = DAORegistry::getDAO('ReviewAssignmentDAO');
 		$reviewAssignments =& $reviewAssignmentDao->getByUserId($oldUserId);
 
 		foreach ($reviewAssignments as $reviewAssignment) {
@@ -77,38 +77,38 @@ class UserAction {
 			unset($reviewAssignment);
 		}
 
-		$monographEmailLogDao =& DAORegistry::getDAO('MonographEmailLogDAO');
+		$monographEmailLogDao = DAORegistry::getDAO('MonographEmailLogDAO');
 		$monographEmailLogDao->changeUser($oldUserId, $newUserId);
-		$monographEventLogDao =& DAORegistry::getDAO('MonographEventLogDAO');
+		$monographEventLogDao = DAORegistry::getDAO('MonographEventLogDAO');
 		$monographEventLogDao->changeUser($oldUserId, $newUserId);
 
-		$monographCommentDao =& DAORegistry::getDAO('MonographCommentDAO');
+		$monographCommentDao = DAORegistry::getDAO('MonographCommentDAO');
 		$comments = $monographCommentDao->getByUserId($oldUserId);
 		while ($comment = $comments->next()) {
 			$comment->setAuthorId($newUserId);
 			$monographCommentDao->updateObject($comment);
 		}
 
-		$accessKeyDao =& DAORegistry::getDAO('AccessKeyDAO');
+		$accessKeyDao = DAORegistry::getDAO('AccessKeyDAO');
 		$accessKeyDao->transferAccessKeys($oldUserId, $newUserId);
 
-		$notificationDao =& DAORegistry::getDAO('NotificationDAO');
+		$notificationDao = DAORegistry::getDAO('NotificationDAO');
 		$notificationDao->transferNotifications($oldUserId, $newUserId);
 
 		// Delete the old user and associated info.
-		$sessionDao =& DAORegistry::getDAO('SessionDAO');
+		$sessionDao = DAORegistry::getDAO('SessionDAO');
 		$sessionDao->deleteByUserId($oldUserId);
-		$temporaryFileDao =& DAORegistry::getDAO('TemporaryFileDAO');
+		$temporaryFileDao = DAORegistry::getDAO('TemporaryFileDAO');
 		$temporaryFileDao->deleteTemporaryFilesByUserId($oldUserId);
-		$notificationStatusDao =& DAORegistry::getDAO('NotificationStatusDAO');
+		$notificationStatusDao = DAORegistry::getDAO('NotificationStatusDAO');
 		$notificationStatusDao->deleteNotificationStatusByUserId($oldUserId);
-		$userSettingsDao =& DAORegistry::getDAO('UserSettingsDAO');
+		$userSettingsDao = DAORegistry::getDAO('UserSettingsDAO');
 		$userSettingsDao->deleteSettings($oldUserId);
-		$seriesEditorsDao =& DAORegistry::getDAO('SeriesEditorsDAO');
+		$seriesEditorsDao = DAORegistry::getDAO('SeriesEditorsDAO');
 		$seriesEditorsDao->deleteEditorsByUserId($oldUserId);
 
 		// Transfer old user's roles
-		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+		$userGroupDao = DAORegistry::getDAO('UserGroupDAO');
 		$userGroups =& $userGroupDao->getByUserId($oldUserId);
 		while( !$userGroups->eof() ) {
 			$userGroup =& $userGroups->next();
@@ -119,7 +119,7 @@ class UserAction {
 		}
 		$userGroupDao->deleteAssignmentsByUserId($oldUserId);
 
-		$userDao =& DAORegistry::getDAO('UserDAO');
+		$userDao = DAORegistry::getDAO('UserDAO');
 		$userDao->deleteUserById($oldUserId);
 	}
 }

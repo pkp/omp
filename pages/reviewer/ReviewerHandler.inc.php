@@ -50,7 +50,7 @@ class ReviewerHandler extends Handler {
 	 */
 	function submission($args, &$request) {
 		$reviewAssignment =& $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ASSIGNMENT); /* @var $reviewAssignment ReviewAssignment */
-		$reviewerSubmissionDao =& DAORegistry::getDAO('ReviewerSubmissionDAO'); /* @var $reviewerSubmissionDao ReviewerSubmissionDAO */
+		$reviewerSubmissionDao = DAORegistry::getDAO('ReviewerSubmissionDAO'); /* @var $reviewerSubmissionDao ReviewerSubmissionDAO */
 		$reviewerSubmission =& $reviewerSubmissionDao->getReviewerSubmission($reviewAssignment->getId());
 		assert(is_a($reviewerSubmission, 'ReviewerSubmission'));
 
@@ -73,7 +73,7 @@ class ReviewerHandler extends Handler {
 		$reviewId = (int) $reviewAssignment->getId();
 		assert(!empty($reviewId));
 
-		$reviewerSubmissionDao =& DAORegistry::getDAO('ReviewerSubmissionDAO'); /* @var $reviewerSubmissionDao ReviewerSubmissionDAO */
+		$reviewerSubmissionDao = DAORegistry::getDAO('ReviewerSubmissionDAO'); /* @var $reviewerSubmissionDao ReviewerSubmissionDAO */
 		$reviewerSubmission =& $reviewerSubmissionDao->getReviewerSubmission($reviewAssignment->getId());
 		assert(is_a($reviewerSubmission, 'ReviewerSubmission'));
 
@@ -119,7 +119,7 @@ class ReviewerHandler extends Handler {
 		$reviewAssignment =& $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ASSIGNMENT); /* @var $reviewAssignment ReviewAssignment */
 		if ($reviewAssignment->getDateCompleted()) fatalError('Review already completed!');
 
-		$reviewerSubmissionDao =& DAORegistry::getDAO('ReviewerSubmissionDAO');
+		$reviewerSubmissionDao = DAORegistry::getDAO('ReviewerSubmissionDAO');
 		$reviewerSubmission =& $reviewerSubmissionDao->getReviewerSubmission($reviewAssignment->getId());
 		assert(is_a($reviewerSubmission, 'ReviewerSubmission'));
 
@@ -147,7 +147,7 @@ class ReviewerHandler extends Handler {
 	function showDeclineReview($args, &$request) {
 		$reviewAssignment =& $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ASSIGNMENT); /* @var $reviewAssignment ReviewAssignment */
 
-		$reviewerSubmissionDao =& DAORegistry::getDAO('ReviewerSubmissionDAO');
+		$reviewerSubmissionDao = DAORegistry::getDAO('ReviewerSubmissionDAO');
 		$reviewerSubmission =& $reviewerSubmissionDao->getReviewerSubmission($reviewAssignment->getId());
 		assert(is_a($reviewerSubmission, 'ReviewerSubmission'));
 
@@ -171,12 +171,12 @@ class ReviewerHandler extends Handler {
 		$reviewId = (int) $reviewAssignment->getId();
 		$declineReviewMessage = $request->getUserVar('declineReviewMessage');
 
-		$reviewerSubmissionDao =& DAORegistry::getDAO('ReviewerSubmissionDAO');
+		$reviewerSubmissionDao = DAORegistry::getDAO('ReviewerSubmissionDAO');
 		$reviewerSubmission =& $reviewerSubmissionDao->getReviewerSubmission($reviewId);
 		assert(is_a($reviewerSubmission, 'ReviewerSubmission'));
 
 		// Save regret message
-		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+		$reviewAssignmentDao = DAORegistry::getDAO('ReviewAssignmentDAO');
 		$reviewAssignment = $reviewAssignmentDao->getById($reviewId);
 		assert(is_a($reviewAssignment, 'ReviewAssignment'));
 		$reviewAssignment->setRegretMessage($declineReviewMessage);

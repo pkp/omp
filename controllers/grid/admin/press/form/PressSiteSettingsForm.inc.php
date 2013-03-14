@@ -34,7 +34,7 @@ class PressSiteSettingsForm extends ContextSiteSettingsForm {
 	 */
 	function initData() {
 		if (isset($this->contextId)) {
-			$pressDao =& DAORegistry::getDAO('PressDAO');
+			$pressDao = DAORegistry::getDAO('PressDAO');
 			$press =& $pressDao->getById($this->contextId);
 
 			parent::initData($press);
@@ -50,7 +50,7 @@ class PressSiteSettingsForm extends ContextSiteSettingsForm {
 		parent::readInputData();
 
 		if ($this->contextId) {
-			$pressDao =& DAORegistry::getDAO('PressDAO');
+			$pressDao = DAORegistry::getDAO('PressDAO');
 			$press =& $pressDao->getById($this->contextId);
 			if ($press) $this->setData('oldPath', $press->getPath());
 		}
@@ -61,7 +61,7 @@ class PressSiteSettingsForm extends ContextSiteSettingsForm {
 	 * @param $request PKPRequest
 	 */
 	function execute($request) {
-		$pressDao =& DAORegistry::getDAO('PressDAO');
+		$pressDao = DAORegistry::getDAO('PressDAO');
 
 		if (isset($this->contextId)) {
 			$press =& $pressDao->getById($this->contextId); /* @var $press Press */
@@ -115,14 +115,14 @@ class PressSiteSettingsForm extends ContextSiteSettingsForm {
 			$installedLocales =& $site->getInstalledLocales();
 
 			// Install default genres
-			$genreDao =& DAORegistry::getDAO('GenreDAO');
+			$genreDao = DAORegistry::getDAO('GenreDAO');
 			$genreDao->installDefaults($contextId, $installedLocales); /* @var $genreDao GenreDAO */
 
 			// load the default user groups and stage assignments.
 			$this->_loadDefaultUserGroups($press->getId());
 
 			// Make the site administrator the press manager of newly created presses
-			$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+			$userGroupDao = DAORegistry::getDAO('UserGroupDAO');
 			$sessionManager =& SessionManager::getManager();
 			$userSession =& $sessionManager->getUserSession();
 			if ($userSession->getUserId() != null && $userSession->getUserId() != 0 && !empty($contextId)) {
@@ -132,7 +132,7 @@ class PressSiteSettingsForm extends ContextSiteSettingsForm {
 			}
 
 			// Install default press settings
-			$pressSettingsDao =& DAORegistry::getDAO('PressSettingsDAO');
+			$pressSettingsDao = DAORegistry::getDAO('PressSettingsDAO');
 			$titles = $this->getData('title');
 			AppLocale::requireComponents(LOCALE_COMPONENT_APP_DEFAULT, LOCALE_COMPONENT_PKP_DEFAULT);
 			$pressSettingsDao->installSettings($contextId, 'registry/pressSettings.xml', array(

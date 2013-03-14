@@ -88,7 +88,7 @@ class RepresentativesGridHandler extends CategoryGridHandler {
 		$representativeId = (int) $request->getUserVar('representativeId'); // set if editing or deleting a representative entry
 
 		if ($representativeId != '') {
-			$representativeDao =& DAORegistry::getDAO('RepresentativeDAO');
+			$representativeDao = DAORegistry::getDAO('RepresentativeDAO');
 			$representative =& $representativeDao->getById($representativeId, $this->getMonograph()->getId());
 			if (!isset($representative)) {
 				fatalError('Representative referenced outside of authorized monograph context!');
@@ -171,7 +171,7 @@ class RepresentativesGridHandler extends CategoryGridHandler {
 	 * @see CategoryGridHandler::getCategoryData()
 	 */
 	function getCategoryData($category) {
-		$representativeDao =& DAORegistry::getDAO('RepresentativeDAO');
+		$representativeDao = DAORegistry::getDAO('RepresentativeDAO');
 		$representatives = null;
 		if ($category['isSupplier']) {
 			$representatives =& $representativeDao->getSuppliersByMonographId($this->getMonograph()->getId());
@@ -232,7 +232,7 @@ class RepresentativesGridHandler extends CategoryGridHandler {
 		$representativeId = (int) $request->getUserVar('representativeId');
 		$monograph =& $this->getMonograph();
 
-		$representativeDao =& DAORegistry::getDAO('RepresentativeDAO');
+		$representativeDao = DAORegistry::getDAO('RepresentativeDAO');
 		$representative = $representativeDao->getById($representativeId, $monograph->getId());
 
 		// Form handling
@@ -255,7 +255,7 @@ class RepresentativesGridHandler extends CategoryGridHandler {
 		$representativeId = $request->getUserVar('representativeId');
 		$monograph =& $this->getMonograph();
 
-		$representativeDao =& DAORegistry::getDAO('RepresentativeDAO');
+		$representativeDao = DAORegistry::getDAO('RepresentativeDAO');
 		$representative = $representativeDao->getById($representativeId, $monograph->getId());
 
 		// Form handling
@@ -307,7 +307,7 @@ class RepresentativesGridHandler extends CategoryGridHandler {
 		// Identify the representative entry to be deleted
 		$representativeId = $request->getUserVar('representativeId');
 
-		$representativeDao =& DAORegistry::getDAO('RepresentativeDAO');
+		$representativeDao = DAORegistry::getDAO('RepresentativeDAO');
 		$representative =& $representativeDao->getById($representativeId, $this->getMonograph()->getId());
 		if ($representative != null) { // authorized
 

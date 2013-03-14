@@ -33,7 +33,7 @@ class MonographFileRequestedRevisionRequiredPolicy extends MonographFileBaseAcce
 	 */
 	function effect() {
 		$request =& $this->getRequest();
-		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO'); /* @var $reviewRoundDao ReviewRoundDAO */
+		$reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO'); /* @var $reviewRoundDao ReviewRoundDAO */
 
 		// Get the monograph file.
 		$monographFile =& $this->getMonographFile($request);
@@ -62,7 +62,7 @@ class MonographFileRequestedRevisionRequiredPolicy extends MonographFileBaseAcce
 		if ($reviewRound->getStageId() != $stageId) return AUTHORIZATION_DENY;
 
 		// Make sure that the last review round editor decision is request revisions.
-		$seriesEditorSubmissionDao =& DAORegistry::getDAO('SeriesEditorSubmissionDAO'); /* @var $seriesEditorSubmissionDao SeriesEditorSubmissionDAO */
+		$seriesEditorSubmissionDao = DAORegistry::getDAO('SeriesEditorSubmissionDAO'); /* @var $seriesEditorSubmissionDao SeriesEditorSubmissionDAO */
 		$reviewRoundDecisions = $seriesEditorSubmissionDao->getEditorDecisions($monographFile->getMonographId(), $reviewRound->getStageId(), $reviewRound->getRound());
 		if (empty($reviewRoundDecisions)) return AUTHORIZATION_DENY;
 		$lastEditorDecision = array_pop($reviewRoundDecisions);

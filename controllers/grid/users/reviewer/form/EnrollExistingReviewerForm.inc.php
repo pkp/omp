@@ -58,7 +58,7 @@ class EnrollExistingReviewerForm extends ReviewerForm {
 		$userId = (int) $this->getData('userId');
 
 		$userGroupId = (int) $this->getData('userGroupId');
-		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */
+		$userGroupDao = DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */
 		$userGroupDao->assignUserToGroup($userId, $userGroupId);
 
 		// Set the reviewerId in the Form for the parent class to use

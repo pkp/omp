@@ -94,7 +94,7 @@ class CopyeditingFilesGridHandler extends SignoffFilesGridHandler {
 			$monographFile->setViewable(true);
 		}
 
-		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO');
+		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
 		$submissionFileDao->updateObject($monographFile);
 
 		return DAO::getDataChangedEvent($monographFile->getId());

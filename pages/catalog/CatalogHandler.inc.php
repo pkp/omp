@@ -55,7 +55,7 @@ class CatalogHandler extends Handler {
 		$press =& $request->getPress();
 
 		// Fetch the monographs to display
-		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
+		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
 		$publishedMonographs =& $publishedMonographDao->getByPressId($press->getId());
 		$templateMgr->assign('publishedMonographs', $publishedMonographs->toAssociativeArray());
 
@@ -74,7 +74,7 @@ class CatalogHandler extends Handler {
 		$press =& $request->getPress();
 
 		// Provide a list of new releases to browse
-		$newReleaseDao =& DAORegistry::getDAO('NewReleaseDAO');
+		$newReleaseDao = DAORegistry::getDAO('NewReleaseDAO');
 		$newReleases =& $newReleaseDao->getMonographsByAssoc(ASSOC_TYPE_PRESS, $press->getId());
 		$templateMgr->assign('publishedMonographs', $newReleases);
 
@@ -94,24 +94,24 @@ class CatalogHandler extends Handler {
 		$this->setupTemplate($request);
 
 		// Get the category
-		$categoryDao =& DAORegistry::getDAO('CategoryDAO');
+		$categoryDao = DAORegistry::getDAO('CategoryDAO');
 		$categoryPath = array_shift($args);
 		$category =& $categoryDao->getByPath($categoryPath, $press->getId());
 		if (isset($category)) {
 			$templateMgr->assign('category', $category);
 
 			// Fetch the monographs to display
-			$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
+			$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
 			$publishedMonographs =& $publishedMonographDao->getByCategoryId($category->getId(), $press->getId());
 			$templateMgr->assign('publishedMonographs', $publishedMonographs->toAssociativeArray());
 
 			// Expose the featured monograph IDs and associated params
-			$featureDao =& DAORegistry::getDAO('FeatureDAO');
+			$featureDao = DAORegistry::getDAO('FeatureDAO');
 			$featuredMonographIds = $featureDao->getSequencesByAssoc(ASSOC_TYPE_CATEGORY, $category->getId());
 			$templateMgr->assign('featuredMonographIds', $featuredMonographIds);
 
 			// Provide a list of new releases to browse
-			$newReleaseDao =& DAORegistry::getDAO('NewReleaseDAO');
+			$newReleaseDao = DAORegistry::getDAO('NewReleaseDAO');
 			$newReleases =& $newReleaseDao->getMonographsByAssoc(ASSOC_TYPE_CATEGORY, $category->getId());
 			$templateMgr->assign('newReleasesMonographs', $newReleases);
 			// Display
@@ -131,23 +131,23 @@ class CatalogHandler extends Handler {
 		$this->setupTemplate($request);
 
 		// Get the series
-		$seriesDao =& DAORegistry::getDAO('SeriesDAO');
+		$seriesDao = DAORegistry::getDAO('SeriesDAO');
 		$seriesPath = array_shift($args);
 		$series =& $seriesDao->getByPath($seriesPath, $press->getId());
 		$templateMgr->assign('series', $series);
 
 		// Fetch the monographs to display
-		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
+		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
 		$publishedMonographs =& $publishedMonographDao->getBySeriesId($series->getId(), $press->getId());
 		$templateMgr->assign('publishedMonographs', $publishedMonographs->toAssociativeArray());
 
 		// Expose the featured monograph IDs and associated params
-		$featureDao =& DAORegistry::getDAO('FeatureDAO');
+		$featureDao = DAORegistry::getDAO('FeatureDAO');
 		$featuredMonographIds = $featureDao->getSequencesByAssoc(ASSOC_TYPE_SERIES, $series->getId());
 		$templateMgr->assign('featuredMonographIds', $featuredMonographIds);
 
 		// Provide a list of new releases to browse
-		$newReleaseDao =& DAORegistry::getDAO('NewReleaseDAO');
+		$newReleaseDao = DAORegistry::getDAO('NewReleaseDAO');
 		$newReleases =& $newReleaseDao->getMonographsByAssoc(ASSOC_TYPE_SERIES, $series->getId());
 		$templateMgr->assign('newReleasesMonographs', $newReleases);
 
@@ -200,7 +200,7 @@ class CatalogHandler extends Handler {
 		switch ($type) {
 			case 'category':
 				$path = '/categories/';
-				$categoryDao =& DAORegistry::getDAO('CategoryDAO');
+				$categoryDao = DAORegistry::getDAO('CategoryDAO');
 				$category = $categoryDao->getById($id, $press->getId());
 				if ($category) {
 					$imageInfo = $category->getImage();
@@ -208,7 +208,7 @@ class CatalogHandler extends Handler {
 				break;
 			case 'series':
 				$path = '/series/';
-				$seriesDao =& DAORegistry::getDAO('SeriesDAO');
+				$seriesDao = DAORegistry::getDAO('SeriesDAO');
 				$series = $seriesDao->getById($id, $press->getId());
 				if ($series) {
 					$imageInfo = $series->getImage();
@@ -238,7 +238,7 @@ class CatalogHandler extends Handler {
 		switch ($type) {
 			case 'category':
 				$path = '/categories/';
-				$categoryDao =& DAORegistry::getDAO('CategoryDAO');
+				$categoryDao = DAORegistry::getDAO('CategoryDAO');
 				$category = $categoryDao->getById($id, $press->getId());
 				if ($category) {
 					$imageInfo = $category->getImage();
@@ -246,7 +246,7 @@ class CatalogHandler extends Handler {
 				break;
 			case 'series':
 				$path = '/series/';
-				$seriesDao =& DAORegistry::getDAO('SeriesDAO');
+				$seriesDao = DAORegistry::getDAO('SeriesDAO');
 				$series = $seriesDao->getById($id, $press->getId());
 				if ($series) {
 					$imageInfo = $series->getImage();

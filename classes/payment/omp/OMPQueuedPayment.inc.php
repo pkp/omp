@@ -68,7 +68,7 @@ class OMPQueuedPayment extends QueuedPayment {
 			case PAYMENT_TYPE_PURCHASE_FILE:
 				list($fileId, $revision) = explode('-', $this->getAssocId());
 				assert($fileId && $revision);
-				$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO');
+				$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
 				$submissionFile =& $submissionFileDao->getRevision($fileId, $revision, SUBMISSION_FILE_PROOF);
 				if (!$submissionFile || $submissionFile->getAssocType() !== ASSOC_TYPE_PUBLICATION_FORMAT) return false;
 

@@ -63,10 +63,10 @@ class ReviewerGridCellProvider extends DataObjectGridCellProvider {
 				}
 
 				// Check if the somebody assigned to this monograph stage has read the review.
-				$monographDao =& DAORegistry::getDAO('MonographDAO');
-				$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
-				$userStageAssignmentDao =& DAORegistry::getDAO('UserStageAssignmentDAO');
-				$viewsDao =& DAORegistry::getDAO('ViewsDAO');
+				$monographDao = DAORegistry::getDAO('MonographDAO');
+				$userGroupDao = DAORegistry::getDAO('UserGroupDAO');
+				$userStageAssignmentDao = DAORegistry::getDAO('UserStageAssignmentDAO');
+				$viewsDao = DAORegistry::getDAO('ViewsDAO');
 
 				$monograph =& $monographDao->getById($reviewAssignment->getSubmissionId());
 
@@ -148,7 +148,7 @@ class ReviewerGridCellProvider extends DataObjectGridCellProvider {
 		$state = $this->getCellState($row, $column);
 		if ($state == 'linkReview') {
 			$user =& $request->getUser();
-			$monographDao =& DAORegistry::getDAO('MonographDAO');
+			$monographDao = DAORegistry::getDAO('MonographDAO');
 			$monograph =& $monographDao->getById($reviewAssignment->getSubmissionId());
 			import('controllers.review.linkAction.ReviewNotesLinkAction');
 			$action = new ReviewNotesLinkAction($request, $reviewAssignment, $monograph, $user);

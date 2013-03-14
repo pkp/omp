@@ -113,7 +113,7 @@ class IdentificationCodeForm extends Form {
 			$publicationFormatId = (int) $request->getUserVar('publicationFormatId');
 		}
 
-		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
+		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
 		$publicationFormat =& $publicationFormatDao->getById($publicationFormatId, $monograph->getId());
 
 		if ($publicationFormat) { // the format exists for this monograph
@@ -121,7 +121,7 @@ class IdentificationCodeForm extends Form {
 			$identificationCodes = $publicationFormat->getIdentificationCodes();
 			$assignedCodes = array_keys($identificationCodes->toAssociativeArray('code')); // currently assigned codes
 			if ($identificationCode) $assignedCodes = array_diff($assignedCodes, array($identificationCode->getCode())); // allow existing codes to keep their value
-			$onixCodelistItemDao =& DAORegistry::getDAO('ONIXCodelistItemDAO');
+			$onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO');
 
 			// since the pubId DOI plugin may be enabled, we give that precedence and remove DOI from here if that is the case.
 			$pubIdPlugins =& PluginRegistry::loadCategory('pubIds', true);
@@ -157,8 +157,8 @@ class IdentificationCodeForm extends Form {
 	 * @see Form::execute()
 	 */
 	function execute() {
-		$identificationCodeDao =& DAORegistry::getDAO('IdentificationCodeDAO');
-		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
+		$identificationCodeDao = DAORegistry::getDAO('IdentificationCodeDAO');
+		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
 
 		$monograph = $this->getMonograph();
 		$identificationCode =& $this->getIdentificationCode();

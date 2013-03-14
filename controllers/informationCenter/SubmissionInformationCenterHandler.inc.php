@@ -95,7 +95,7 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 	 */
 	function viewInformationCenter($args, &$request) {
 		// Get the latest history item to display in the header
-		$monographEventLogDao =& DAORegistry::getDAO('MonographEventLogDAO');
+		$monographEventLogDao = DAORegistry::getDAO('MonographEventLogDAO');
 		$monographEvents =& $monographEventLogDao->getByMonographId($this->_monograph->getId());
 		$lastEvent =& $monographEvents->next();
 
@@ -105,7 +105,7 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 			$templateMgr->assign_by_ref('lastEvent', $lastEvent);
 
 			// Get the user who posted the last note
-			$userDao =& DAORegistry::getDAO('UserDAO');
+			$userDao = DAORegistry::getDAO('UserDAO');
 			$user =& $userDao->getById($lastEvent->getUserId());
 			$templateMgr->assign_by_ref('lastEventUser', $user);
 		}
@@ -238,7 +238,7 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 		$templateMgr =& TemplateManager::getManager($request);
 
 		// Get all monograph events
-		$monographEventLogDao =& DAORegistry::getDAO('MonographEventLogDAO');
+		$monographEventLogDao = DAORegistry::getDAO('MonographEventLogDAO');
 		$monographEvents =& $monographEventLogDao->getByMonographId($this->_monograph->getId());
 		$templateMgr->assign_by_ref('eventLogEntries', $monographEvents);
 		$templateMgr->assign('historyListId', 'historyList');

@@ -132,7 +132,7 @@ class PublicationDateForm extends Form {
 			$templateMgr->assign('dateFormat', '20'); // YYYYMMDD Onix code as a default
 		}
 
-		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
+		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
 		$publicationFormat =& $publicationFormatDao->getById($publicationFormatId, $monograph->getId());
 
 		if ($publicationFormat) { // the format exists for this monograph
@@ -140,7 +140,7 @@ class PublicationDateForm extends Form {
 			$publicationDates = $publicationFormat->getPublicationDates();
 			$assignedRoles = array_keys($publicationDates->toAssociativeArray('role')); // currently assigned roles
 			if ($publicationDate) $assignedRoles = array_diff($assignedRoles, array($publicationDate->getRole())); // allow existing roles to keep their value
-			$onixCodelistItemDao =& DAORegistry::getDAO('ONIXCodelistItemDAO');
+			$onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO');
 			$roles =& $onixCodelistItemDao->getCodes('List163', $assignedRoles); // ONIX list for these
 			$templateMgr->assign_by_ref('publicationDateRoles', $roles);
 
@@ -173,8 +173,8 @@ class PublicationDateForm extends Form {
 	 * @see Form::execute()
 	 */
 	function execute() {
-		$publicationDateDao =& DAORegistry::getDAO('PublicationDateDAO');
-		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
+		$publicationDateDao = DAORegistry::getDAO('PublicationDateDAO');
+		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
 
 		$monograph = $this->getMonograph();
 		$publicationDate =& $this->getPublicationDate();

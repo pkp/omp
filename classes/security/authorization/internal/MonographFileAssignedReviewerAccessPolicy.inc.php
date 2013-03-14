@@ -42,7 +42,7 @@ class MonographFileAssignedReviewerAccessPolicy extends MonographFileBaseAccessP
 		$monographFile =& $this->getMonographFile($request);
 		if (!is_a($monographFile, 'MonographFile')) return AUTHORIZATION_DENY;
 
-		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+		$reviewAssignmentDao = DAORegistry::getDAO('ReviewAssignmentDAO');
 		$reviewAssignments =& $reviewAssignmentDao->getByUserId($user->getId());
 		$foundValid = false;
 		foreach ($reviewAssignments as $reviewAssignment) {

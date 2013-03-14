@@ -101,14 +101,14 @@ class SalesRightsGridHandler extends GridHandler {
 
 		// Retrieve the authorized monograph.
 		$this->setMonograph($this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH));
-		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
+		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
 		$publicationFormatId = null;
 
 		// Retrieve the associated publication format for this grid.
 		$salesRightsId = (int) $request->getUserVar('salesRightsId'); // set if editing or deleting a sales rights entry
 
 		if ($salesRightsId != '') {
-			$salesRightsDao =& DAORegistry::getDAO('SalesRightsDAO');
+			$salesRightsDao = DAORegistry::getDAO('SalesRightsDAO');
 			$salesRights =& $salesRightsDao->getById($salesRightsId, $this->getMonograph()->getId());
 			if ($salesRights) {
 				$publicationFormatId =& $salesRights->getPublicationFormatId();
@@ -209,7 +209,7 @@ class SalesRightsGridHandler extends GridHandler {
 	 */
 	function &loadData($request, $filter = null) {
 		$publicationFormat =& $this->getPublicationFormat();
-		$salesRightsDao =& DAORegistry::getDAO('SalesRightsDAO');
+		$salesRightsDao = DAORegistry::getDAO('SalesRightsDAO');
 		$data =& $salesRightsDao->getByPublicationFormatId($publicationFormat->getId());
 		return $data->toArray();
 	}
@@ -234,7 +234,7 @@ class SalesRightsGridHandler extends GridHandler {
 		$salesRightsId = (int) $request->getUserVar('salesRightsId');
 		$monograph =& $this->getMonograph();
 
-		$salesRightsDao =& DAORegistry::getDAO('SalesRightsDAO');
+		$salesRightsDao = DAORegistry::getDAO('SalesRightsDAO');
 		$salesRights = $salesRightsDao->getById($salesRightsId, $monograph->getId());
 
 		// Form handling
@@ -257,7 +257,7 @@ class SalesRightsGridHandler extends GridHandler {
 		$salesRightsId = $request->getUserVar('salesRightsId');
 		$monograph =& $this->getMonograph();
 
-		$salesRightsDao =& DAORegistry::getDAO('SalesRightsDAO');
+		$salesRightsDao = DAORegistry::getDAO('SalesRightsDAO');
 		$salesRights = $salesRightsDao->getById($salesRightsId, $monograph->getId());
 
 		// Form handling
@@ -309,7 +309,7 @@ class SalesRightsGridHandler extends GridHandler {
 		// Identify the sales rights entry to be deleted
 		$salesRightsId = $request->getUserVar('salesRightsId');
 
-		$salesRightsDao =& DAORegistry::getDAO('SalesRightsDAO');
+		$salesRightsDao = DAORegistry::getDAO('SalesRightsDAO');
 		$salesRights =& $salesRightsDao->getById($salesRightsId, $this->getMonograph()->getId());
 		if ($salesRights != null) { // authorized
 

@@ -137,7 +137,7 @@ class SubmissionFilesUploadForm extends SubmissionFilesUploadBaseForm {
 
 		// Retrieve the user's user groups.
 		$user =& $request->getUser();
-		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */
+		$userGroupDao = DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */
 		$assignedUserGroups =& $userGroupDao->getByUserId($user->getId(), $context->getId());
 
 		// Check which of these groups make sense in the context
@@ -244,7 +244,7 @@ class SubmissionFilesUploadForm extends SubmissionFilesUploadBaseForm {
 		if ($monographFile && ($fileStage == SUBMISSION_FILE_REVIEW_FILE || $fileStage == SUBMISSION_FILE_REVIEW_ATTACHMENT || $fileStage == SUBMISSION_FILE_REVIEW_REVISION)) {
 			// Add the uploaded review file to the review round.
 			$reviewRound =& $this->getReviewRound();
-			$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO');
+			$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
 			$submissionFileDao->assignRevisionToReviewRound($monographFile->getFileId(), $monographFile->getRevision(), $reviewRound);
 		}
 
@@ -271,7 +271,7 @@ class SubmissionFilesUploadForm extends SubmissionFilesUploadBaseForm {
 	 */
 	function &_retrieveGenreList(&$request) {
 		$context =& $request->getContext();
-		$genreDao =& DAORegistry::getDAO('GenreDAO'); /* @var $genreDao GenreDAO */
+		$genreDao = DAORegistry::getDAO('GenreDAO'); /* @var $genreDao GenreDAO */
 		$genres =& $genreDao->getEnabledByContextId($context->getId());
 
 		// Transform the genres into an array and

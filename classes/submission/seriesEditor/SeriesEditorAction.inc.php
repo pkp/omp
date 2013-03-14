@@ -39,7 +39,7 @@ class SeriesEditorAction extends Action {
 	 * @param $stageId int
 	 */
 	function recordDecision($request, $seriesEditorSubmission, $decision, $decisionLabels, $reviewRound = null, $stageId = null) {
-		$stageAssignmentDao =& DAORegistry::getDAO('StageAssignmentDAO');
+		$stageAssignmentDao = DAORegistry::getDAO('StageAssignmentDAO');
 
 		// Define the stage and round data.
 		if (!is_null($reviewRound)) {
@@ -62,7 +62,7 @@ class SeriesEditorAction extends Action {
 		// Sanity checks
 		if (!$editorAssigned || !isset($decisionLabels[$decision])) return false;
 
-		$seriesEditorSubmissionDao =& DAORegistry::getDAO('SeriesEditorSubmissionDAO');
+		$seriesEditorSubmissionDao = DAORegistry::getDAO('SeriesEditorSubmissionDAO');
 		$user =& $request->getUser();
 		$editorDecision = array(
 			'editDecisionId' => null,
@@ -99,7 +99,7 @@ class SeriesEditorAction extends Action {
 	 * @param $request Request
 	 */
 	function assignDefaultStageParticipants(&$monograph, $stageId, &$request) {
-		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+		$userGroupDao = DAORegistry::getDAO('UserGroupDAO');
 
 		// Managerial roles are skipped -- They have access by default and
 		//  are assigned for informational purposes only
@@ -111,7 +111,7 @@ class SeriesEditorAction extends Action {
 		//  stage in setup, iff there is only one user for the group,
 		//  automatically assign the user to the stage
 		// But skip authors and reviewers, since these are very monograph specific
-		$stageAssignmentDao =& DAORegistry::getDAO('StageAssignmentDAO');
+		$stageAssignmentDao = DAORegistry::getDAO('StageAssignmentDAO');
 		$submissionStageGroups =& $userGroupDao->getUserGroupsByStage($monograph->getPressId(), $stageId, true, true);
 		while ($userGroup =& $submissionStageGroups->next()) {
 			$users =& $userGroupDao->getUsersById($userGroup->getId());
@@ -178,9 +178,9 @@ class SeriesEditorAction extends Action {
 	 * @param $responseDueDate datetime optional
 	 */
 	function addReviewer($request, $seriesEditorSubmission, $reviewerId, &$reviewRound, $reviewDueDate = null, $responseDueDate = null, $reviewMethod = null) {
-		$seriesEditorSubmissionDao =& DAORegistry::getDAO('SeriesEditorSubmissionDAO');
-		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
-		$userDao =& DAORegistry::getDAO('UserDAO');
+		$seriesEditorSubmissionDao = DAORegistry::getDAO('SeriesEditorSubmissionDAO');
+		$reviewAssignmentDao = DAORegistry::getDAO('ReviewAssignmentDAO');
+		$userDao = DAORegistry::getDAO('UserDAO');
 
 		$reviewer =& $userDao->getById($reviewerId);
 
@@ -228,7 +228,7 @@ class SeriesEditorAction extends Action {
 			$notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.addedReviewer')));
 
 			// Update the review round status.
-			$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO'); /* @var $reviewRoundDao ReviewRoundDAO */
+			$reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO'); /* @var $reviewRoundDao ReviewRoundDAO */
 			$reviewAssignments = $seriesEditorSubmission->getReviewAssignments($stageId, $round);
 			$reviewRoundDao->updateStatus($reviewRound, $reviewAssignments);
 
@@ -253,10 +253,10 @@ class SeriesEditorAction extends Action {
 	 * @param $reviewId int
 	 */
 	function clearReview($request, $submissionId, $reviewId) {
-		$seriesEditorSubmissionDao =& DAORegistry::getDAO('SeriesEditorSubmissionDAO'); /* @var $seriesEditorSubmissionDao SeriesEditorSubmissionDAO */
+		$seriesEditorSubmissionDao = DAORegistry::getDAO('SeriesEditorSubmissionDAO'); /* @var $seriesEditorSubmissionDao SeriesEditorSubmissionDAO */
 		$seriesEditorSubmission =& $seriesEditorSubmissionDao->getById($submissionId);
-		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
-		$userDao =& DAORegistry::getDAO('UserDAO');
+		$reviewAssignmentDao = DAORegistry::getDAO('ReviewAssignmentDAO');
+		$userDao = DAORegistry::getDAO('UserDAO');
 
 		$reviewAssignment =& $reviewAssignmentDao->getById($reviewId);
 
@@ -266,7 +266,7 @@ class SeriesEditorAction extends Action {
 			$seriesEditorSubmission->removeReviewAssignment($reviewId);
 			$seriesEditorSubmissionDao->updateSeriesEditorSubmission($seriesEditorSubmission);
 
-			$notificationDao =& DAORegistry::getDAO('NotificationDAO');
+			$notificationDao = DAORegistry::getDAO('NotificationDAO');
 			$notificationDao->deleteByAssoc(
 				ASSOC_TYPE_REVIEW_ASSIGNMENT,
 				$reviewAssignment->getId(),
@@ -280,7 +280,7 @@ class SeriesEditorAction extends Action {
 			$notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.removedReviewer')));
 
 			// Update the review round status, if needed.
-			$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
+			$reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO');
 			$reviewRound =& $reviewRoundDao->getReviewRoundById($reviewAssignment->getReviewRoundId());
 			$reviewAssignments = $seriesEditorSubmission->getReviewAssignments($reviewRound->getStageId(), $reviewRound->getRound());
 			$reviewRoundDao->updateStatus($reviewRound, $reviewAssignments);
@@ -312,7 +312,7 @@ class SeriesEditorAction extends Action {
 	 * @param $logEntry boolean
 	 */
 	function setDueDates($request, $monograph, $reviewAssignment, $reviewDueDate = null, $responseDueDate = null, $logEntry = false) {
-		$userDao =& DAORegistry::getDAO('UserDAO');
+		$userDao = DAORegistry::getDAO('UserDAO');
 		$press =& $request->getContext();
 
 		$reviewer =& $userDao->getById($reviewAssignment->getReviewerId());
@@ -330,7 +330,7 @@ class SeriesEditorAction extends Action {
 
 			// update the assignment (with both the new dates)
 			$reviewAssignment->stampModified();
-			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO'); /* @var $reviewAssignmentDao ReviewAssignmentDAO */
+			$reviewAssignmentDao = DAORegistry::getDAO('ReviewAssignmentDAO'); /* @var $reviewAssignmentDao ReviewAssignmentDAO */
 			$reviewAssignmentDao->updateObject($reviewAssignment);
 
 			// N.B. Only logging Date Due
@@ -365,10 +365,10 @@ class SeriesEditorAction extends Action {
 	 * @return string
 	 */
 	function getPeerReviews($seriesEditorSubmission, $reviewRoundId) {
-		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
-		$monographCommentDao =& DAORegistry::getDAO('MonographCommentDAO');
-		$reviewFormResponseDao =& DAORegistry::getDAO('ReviewFormResponseDAO');
-		$reviewFormElementDao =& DAORegistry::getDAO('ReviewFormElementDAO');
+		$reviewAssignmentDao = DAORegistry::getDAO('ReviewAssignmentDAO');
+		$monographCommentDao = DAORegistry::getDAO('MonographCommentDAO');
+		$reviewFormResponseDao = DAORegistry::getDAO('ReviewFormResponseDAO');
+		$reviewFormElementDao = DAORegistry::getDAO('ReviewFormElementDAO');
 
 		$reviewAssignments =& $reviewAssignmentDao->getBySubmissionId($seriesEditorSubmission->getId(), $reviewRoundId);
 		$reviewIndexes =& $reviewAssignmentDao->getReviewIndexesForRound($seriesEditorSubmission->getId(), $reviewRoundId);

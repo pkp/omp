@@ -132,7 +132,7 @@ class ReviewerForm extends Form {
 		$reviewerId = (int) $request->getUserVar('reviewerId');
 		$press =& $request->getContext();
 		$reviewRound =& $this->getReviewRound();
-		$seriesEditorSubmissionDao =& DAORegistry::getDAO('SeriesEditorSubmissionDAO');
+		$seriesEditorSubmissionDao = DAORegistry::getDAO('SeriesEditorSubmissionDAO');
 		$monograph =& $seriesEditorSubmissionDao->getById($this->getMonographId());
 
 		// The reviewer id has been set
@@ -145,7 +145,7 @@ class ReviewerForm extends Form {
 		}
 
 		// Get review assignment related data;
-		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+		$reviewAssignmentDao = DAORegistry::getDAO('ReviewAssignmentDAO');
 		$reviewAssignment =& $reviewAssignmentDao->getReviewAssignment($reviewRound->getId(), $reviewerId);
 
 		// Get the review method (open, blind, or double-blind)
@@ -217,7 +217,7 @@ class ReviewerForm extends Form {
 
 		// Get the reviewer user groups for the create new reviewer/enroll existing user tabs
 		$press =& $request->getPress();
-		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */
+		$userGroupDao = DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */
 		$reviewRound =& $this->getReviewRound();
 		$reviewerUserGroups =& $userGroupDao->getUserGroupsByStage($press->getId(), $reviewRound->getStageId(), false, false, ROLE_ID_REVIEWER);
 		$userGroups = array();
@@ -262,7 +262,7 @@ class ReviewerForm extends Form {
 	 * @param $request PKPRequest
 	 */
 	function execute($args, &$request) {
-		$seriesEditorSubmissionDao =& DAORegistry::getDAO('SeriesEditorSubmissionDAO');
+		$seriesEditorSubmissionDao = DAORegistry::getDAO('SeriesEditorSubmissionDAO');
 		$submission =& $seriesEditorSubmissionDao->getById($this->getMonographId());
 		$press =& $request->getPress();
 
@@ -285,7 +285,7 @@ class ReviewerForm extends Form {
 		$seriesEditorAction->addReviewer($request, $submission, $reviewerId, $currentReviewRound, $reviewDueDate, $responseDueDate, $reviewMethod);
 
 		// Get the reviewAssignment object now that it has been added.
-		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO'); /* @var $reviewAssignmentDao ReviewAssignmentDAO */
+		$reviewAssignmentDao = DAORegistry::getDAO('ReviewAssignmentDAO'); /* @var $reviewAssignmentDao ReviewAssignmentDAO */
 		$reviewAssignment =& $reviewAssignmentDao->getReviewAssignment($currentReviewRound->getId(), $reviewerId);
 		$reviewAssignment->setDateNotified(Core::getCurrentDate());
 		$reviewAssignment->setCancelled(0);
@@ -355,7 +355,7 @@ class ReviewerForm extends Form {
 	 * @return boolean
 	 */
 	function _isValidReviewer(&$press, &$monograph, &$reviewRound, $reviewerId) {
-		$seriesEditorSubmissionDao =& DAORegistry::getDAO('SeriesEditorSubmissionDAO'); /* @var $seriesEditorSubmissionDao SeriesEditorSubmissionDAO */
+		$seriesEditorSubmissionDao = DAORegistry::getDAO('SeriesEditorSubmissionDAO'); /* @var $seriesEditorSubmissionDao SeriesEditorSubmissionDAO */
 		$reviewerFactory =& $seriesEditorSubmissionDao->getReviewersNotAssignedToMonograph($press->getId(), $monograph->getId(), $reviewRound);
 		$reviewersArray = $reviewerFactory->toAssociativeArray();
 		if (array_key_exists($reviewerId, $reviewersArray)) {

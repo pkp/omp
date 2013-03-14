@@ -39,7 +39,7 @@ class ApprovedProofFilesGridRow extends GridRow {
 		$fileId = $this->getId();
 		assert(!empty($fileId));
 
-		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO');
+		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
 		$proofFile =& $submissionFileDao->getLatestRevision($fileId);
 
 		if ($proofFile->getViewable()) {

@@ -62,7 +62,7 @@ class CatalogBookHandler extends Handler {
 		$templateMgr->assign('publishedMonograph', $publishedMonograph);
 
 		// Get Social media blocks enabled for the catalog
-		$socialMediaDao =& DAORegistry::getDAO('SocialMediaDAO');
+		$socialMediaDao = DAORegistry::getDAO('SocialMediaDAO');
 		$socialMedia =& $socialMediaDao->getEnabledForContextByContextId($press->getId());
 		$blocks = array();
 		while ($media =& $socialMedia->next()) {
@@ -74,7 +74,7 @@ class CatalogBookHandler extends Handler {
 
 		// add Chapters, if they exist.
 		if ($publishedMonograph->getWorkType() == WORK_TYPE_EDITED_VOLUME) {
-			$chapterDao =& DAORegistry::getDAO('ChapterDAO');
+			$chapterDao = DAORegistry::getDAO('ChapterDAO');
 			$chapters =& $chapterDao->getChapters($publishedMonograph->getId());
 			$templateMgr->assign_by_ref('chapters', $chapters->toAssociativeArray());
 		}
@@ -98,7 +98,7 @@ class CatalogBookHandler extends Handler {
 		// e-Commerce
 		import('classes.payment.omp.OMPPaymentManager');
 		$ompPaymentManager = new OMPPaymentManager($request);
-		$monographFileDao =& DAORegistry::getDAO('SubmissionFileDAO');
+		$monographFileDao = DAORegistry::getDAO('SubmissionFileDAO');
 		if ($ompPaymentManager->isConfigured()) {
 			$availableFiles = array_filter(
 				$monographFileDao->getLatestRevisions($publishedMonograph->getId()),
@@ -141,11 +141,11 @@ class CatalogBookHandler extends Handler {
 		$fileIdAndRevision = array_shift($args);
 
 		$publishedMonograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_PUBLISHED_MONOGRAPH);
-		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
+		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
 		$publicationFormat =& $publicationFormatDao->getById($publicationFormatId, $publishedMonograph->getId());
 		if (!$publicationFormat || !$publicationFormat->getIsApproved() || !$publicationFormat->getIsAvailable()) fatalError('Invalid publication format specified.');
 
-		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO');
+		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
 		list($fileId, $revision) = array_map(create_function('$a', 'return (int) $a;'), split('-', $fileIdAndRevision));
 		import('classes.monograph.MonographFile'); // File constants
 		$submissionFile =& $submissionFileDao->getRevision($fileId, $revision, SUBMISSION_FILE_PROOF, $monographId);
@@ -153,7 +153,7 @@ class CatalogBookHandler extends Handler {
 			fatalError('Invalid monograph file specified!');
 		}
 
-		$ompCompletedPaymentDao =& DAORegistry::getDAO('OMPCompletedPaymentDAO');
+		$ompCompletedPaymentDao = DAORegistry::getDAO('OMPCompletedPaymentDAO');
 		$user =& $request->getUser();
 		if ($submissionFile->getDirectSalesPrice() === '0' || ($user && $ompCompletedPaymentDao->hasPaidPurchaseFile($user->getId(), $fileIdAndRevision))) {
 			// Paid purchase or open access. Allow download.

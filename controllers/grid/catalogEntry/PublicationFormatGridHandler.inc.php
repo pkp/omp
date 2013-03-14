@@ -205,7 +205,7 @@ class PublicationFormatGridHandler extends GridHandler {
 	 */
 	function &loadData($request, $filter = null) {
 		$monograph =& $this->getMonograph();
-		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
+		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
 		$data =& $publicationFormatDao->getByMonographId($monograph->getId());
 		return $data->toAssociativeArray();
 	}
@@ -230,7 +230,7 @@ class PublicationFormatGridHandler extends GridHandler {
 		$publicationFormatId = (int) $request->getUserVar('publicationFormatId');
 		$monograph =& $this->getMonograph();
 
-		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
+		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
 		$publicationFormat = $publicationFormatDao->getById($publicationFormatId);
 
 		// Form handling
@@ -253,7 +253,7 @@ class PublicationFormatGridHandler extends GridHandler {
 		$publicationFormatId = (int) $request->getUserVar('publicationFormatId');
 		$monograph =& $this->getMonograph();
 
-		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
+		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
 		$publicationFormat = $publicationFormatDao->getById($publicationFormatId);
 
 		// Form handling
@@ -302,7 +302,7 @@ class PublicationFormatGridHandler extends GridHandler {
 	 */
 	function deleteFormat($args, &$request) {
 		$press =& $request->getPress();
-		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
+		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
 		$publicationFormat =& $publicationFormatDao->getById(
 			$request->getUserVar('publicationFormatId'),
 			null, // $pressId
@@ -345,7 +345,7 @@ class PublicationFormatGridHandler extends GridHandler {
 	 */
 	function setAvailable($args, &$request) {
 		$press =& $request->getPress();
-		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
+		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
 		$publicationFormat =& $publicationFormatDao->getById(
 			$request->getUserVar('publicationFormatId'),
 			null, // $monographId

@@ -41,7 +41,7 @@ class ReviewerReviewStep1Form extends ReviewerReviewForm {
 		$templateMgr->assign('competingInterestsText', $submission->getCompetingInterests());
 
 		// Add review assignment.
-		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+		$reviewAssignmentDao = DAORegistry::getDAO('ReviewAssignmentDAO');
 		$reviewAssignment = $reviewAssignmentDao->getById($submission->getReviewId());
 		$templateMgr->assign_by_ref('reviewAssignment', $reviewAssignment);
 
@@ -124,7 +124,7 @@ class ReviewerReviewStep1Form extends ReviewerReviewForm {
 		// Set review to next step.
 		$this->updateReviewStepAndSaveSubmission($reviewerSubmission);
 
-		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+		$reviewAssignmentDao = DAORegistry::getDAO('ReviewAssignmentDAO');
 		$reviewAssignment = $reviewAssignmentDao->getById($reviewerSubmission->getReviewId());
 		// if the reviewer has not previously confirmed the review, then
 		// Set that the reviewer has accepted the review.

@@ -36,7 +36,7 @@ class ApprovedProofForm extends Form {
 		$this->monograph =& $monograph;
 		$this->publicationFormat =& $publicationFormat;
 
-		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO');
+		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
 		list($fileId, $revision) = explode('-', $fileIdAndRevision);
 		$this->approvedProof =& $submissionFileDao->getRevision($fileId, $revision, SUBMISSION_FILE_PROOF, $this->monograph->getId());
 		if (!$this->approvedProof->getViewable()) fatalError('Proof not approved!');
@@ -88,7 +88,7 @@ class ApprovedProofForm extends Form {
 	 * @see Form::execute()
 	 */
 	function execute(&$request) {
-		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO');
+		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
 		$salesType = $this->getData('salesType');
 		if ($salesType === 'notAvailable') {
 			// Not available
