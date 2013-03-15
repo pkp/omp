@@ -62,7 +62,6 @@
 	<message key="submission.submit.newSubmissionMultiple">Start a New Submission in</message>
 	<message key="submission.submit.newSubmissionSingle">Start a New Submission in {$pressName}</message>
 	<message key="submission.submit.upload">Upload Submission</message>
-	<message key="submission.submit.uploadStep">1. Upload Submission</message>
 	<message key="submission.submit.upload.description">Upload files associated with this submission, including manuscript, prospectus, cover letter, artwork, etc. For edited volumes, as well as monographs, upload the manuscript as a single file, if feasible.</message>
 	<message key="submission.submit.cancelSubmission">You can complete this submission at a later date by selecting Active Submissions from the Author home.</message>
 	<message key="submission.submit.copyrightNoticeAgree">I agree to abide by the terms of the copyright statement.</message>
@@ -85,16 +84,13 @@
 	<message key="submission.submit.currentFile">Current file</message>
 	<message key="submission.submit.selectFile">Select File to Upload</message>
 	<message key="submission.submit.submissionFile">Submission File</message>
-	<message key="submission.submit.uploadSubmissionFile">Upload Submission File</message>
 	<message key="submission.submit.finishSubmission">Finish Submission</message>
 	<message key="submission.submit.submissionComplete">Submission complete</message>
 	<message key="submission.submit.submissionCompleteThanks">Thank you for your interest in publishing with {$pressName}.</message>
 	<message key="submission.submit.prepare">Prepare</message>
 	<message key="submission.submit.catalog">Catalog</message>
-	<message key="submission.submit.metadataStep">2. Metadata</message>
 	<message key="submission.submit.metadata">Metadata</message>
 	<message key="submission.submit.finishingUp">Finishing Up</message>
-	<message key="submission.submit.finishingUpStep">3. Finishing Up</message>
 	<message key="submission.submit.upload">Upload</message>
 	<message key="submission.submit.nextSteps">Next Steps</message>
 	<message key="submission.submit.coverNote">Cover Note to Editor</message>
@@ -113,40 +109,11 @@
 	<message key="submission.submit.placement.categoriesDescription">Select one of the press’s categories for which this work should be considered.</message>
 	<message key="submission.submit.submissionFiles">Submission Files</message>
 	<message key="submission.submit.fileInformation">File Information</message>
-	<message key="submission.submit.fileNameRequired">You must enter a file name for this file</message>
 	<message key="submission.submit.fileAdded">File Added</message>
 	<message key="submission.submit.newFile">Upload Another File</message>
 	<message key="submission.submit.userGroup">Submit in my role as...</message>
 	<message key="submission.submit.userGroupDescription">If you are submitting an Edited Volume, you should choose the volume editor role.</message>
 
-	<!-- File upload wizard -->
-	<message key="submission.upload.noteToAccompanyFile">Note to accompany file</message>
-	<message key="submission.upload.noGenre">Missing or invalid genre!</message>
-	<message key="submission.upload.invalidUserGroup">Missing or invalid user group!</message>
-	<message key="submission.upload.possibleRevision">Possible Duplication or Revision Detected</message>
-	<message key="submission.upload.possibleRevisionDescription"><![CDATA[<p>The name of the uploaded file resembles the name of the previously uploaded file "{$revisedFileName}." If the file just uploaded is to replace the earlier file, then select the file to be replaced in the pulldown. If the uploaded file is not to replace an earlier file, then set the pulldown at "Select file (to preserve history)."</p>]]></message>
-	<message key="submission.upload.revisingExistingFile">If a revision of a previously uploaded file...</message>
-	<message key="submission.upload.selectMandatoryFileToRevise">Please select the file you would like to revise.</message>
-	<message key="submission.upload.selectOptionalFileToRevise">If you are uploading a revision of an existing file, please indicate which file.</message>
-	<message key="submission.upload.uploadNewFile">Select file (to preserve history)</message>
-	<message key="submission.upload.fileContents">File Contents</message>
-	<message key="submission.upload.userGroup">Upload this file in my role as...</message>
-	<message key="submission.upload.userGroupDescription">If you are submitting an Edited Volume, you should upload all volume chapters individually, under your role as volume editor.</message>
-	<message key="submission.upload.selectBookElement">Select book element</message>
-	<message key="submission.upload.uploadLibraryFile">Upload a Library File</message>
-	<message key="submission.upload.libraryCategory">Submission Document Category</message>
-	
-	<!-- File uploads -->
-	<message key="submission.upload.finalDraft">Upload File</message>
-	<message key="submission.upload.copyeditedVersion">Upload Copyedited File</message>
-	<message key="submission.upload.fairCopy">Upload Fair Copy</message>
-	<message key="submission.upload.uploadFiles">Upload Files</message>
-	<message key="submission.upload.signoff">Upload a Response</message>
-	<message key="submission.upload.response.description">After reviewing the assigned file, record any comments on the file below, and/or upload an annotated copy of the file (or another file).</message>
-	<message key="submission.upload.productionReady">Upload a Production Ready File</message>
-	<message key="submission.upload.proof">Upload a Proof</message>
-	<message key="submission.upload.noAvailableReviewFiles">There are no files for you to revise at this time.</message>
-	
 	<!-- Read/Upload/Perform Signoff -->
 	<message key="submission.signoff.selectFile">Select the file you wish to signoff on</message>
 	<message key="submission.signoff.signoffOnFile">Signoff on this file</message>
