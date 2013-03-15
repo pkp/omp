@@ -104,7 +104,7 @@ class AuthorDashboardHandler extends Handler {
 
 		// Create and assign add file link action.
 		if ($fileStage && is_a($lastReviewRound, 'ReviewRound')) {
-			import('controllers.api.file.linkAction.AddFileLinkAction');
+			import('lib.pkp.controllers.api.file.linkAction.AddFileLinkAction');
 			$uploadFileAction = new AddFileLinkAction(
 				$request, $monograph->getId(), $currentStage,
 				array(ROLE_ID_AUTHOR), $fileStage, null, null, $lastReviewRound->getId());

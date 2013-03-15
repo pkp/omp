@@ -79,7 +79,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 	 */
 	function authorize(&$request, &$args, $roleAssignments) {
 		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
-		$this->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', $this->getStageId()));
+		$this->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'submissionId', $this->getStageId()));
 
 		// If a signoff ID was specified, authorize it.
 		if ($request->getUserVar('signoffId')) {
@@ -122,7 +122,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 
 		// Grid actions
 		// Action to add a file -- Adds a category row for the file
-		import('controllers.api.file.linkAction.AddFileLinkAction');
+		import('lib.pkp.controllers.api.file.linkAction.AddFileLinkAction');
 		$this->addAction(new AddFileLinkAction(
 			$request, $monograph->getId(),
 			$this->getStageId(),
@@ -287,7 +287,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 		$signoff =& $this->getAuthorizedContextObject(ASSOC_TYPE_SIGNOFF);
 		$args = array_merge(
 			parent::getRequestArgs(),
-			array('monographId' => $monograph->getId(),
+			array('submissionId' => $monograph->getId(),
 				'stageId' => $this->getStageId())
 		);
 

@@ -15,7 +15,7 @@
  * @brief An action to upload a revision of file currently under review.
  */
 
-import('controllers.api.file.linkAction.BaseAddFileLinkAction');
+import('lib.pkp.controllers.api.file.linkAction.BaseAddFileLinkAction');
 
 class AddRevisionLinkAction extends BaseAddFileLinkAction {
 
