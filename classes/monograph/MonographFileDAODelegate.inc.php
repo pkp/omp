@@ -37,7 +37,7 @@ class MonographFileDAODelegate extends SubmissionFileDAODelegate {
 	 * @see SubmissionFileDAODelegate::getSubmissionEntityName()
 	 */
 	function getSubmissionEntityName() {
-		return 'monograph';
+		return 'submission';
 	}
 
 	/**
