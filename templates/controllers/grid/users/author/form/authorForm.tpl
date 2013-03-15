@@ -38,7 +38,7 @@
 			{fbvElement type="select" label="common.country" id="country" inline=true from=$countries selected=$country translate=false size=$fbvStyles.size.MEDIUM defaultValue="" defaultLabel="" required=true}
 		{/fbvFormSection}
 		{fbvFormSection}
-			{fbvElement type="textArea" label="user.biography" id="biography" value=$biography|escape size=$fbvStyles.size.Large}
+			{fbvElement type="textArea" label="user.biography" id="biography" value=$biography size=$fbvStyles.size.Large rich=true}
 		{/fbvFormSection}
 	{/fbvFormArea}
 	{fbvFormArea id="submissionSpecific"}
