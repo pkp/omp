@@ -83,7 +83,7 @@ class OmpMonographFileAccessPolicy extends ContextPolicy {
 
 			// 2) ...if they are assigned to the workflow stage.
 			import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
-			$authorFileAccessPolicy->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', $request->getUserVar('stageId')));
+			$authorFileAccessPolicy->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'submissionId', $request->getUserVar('stageId')));
 
 			// 3) ...and if they meet one of the following requirements:
 			$authorFileAccessOptionsPolicy = new PolicySet(COMBINING_PERMIT_OVERRIDES);
@@ -159,7 +159,7 @@ class OmpMonographFileAccessPolicy extends ContextPolicy {
 
 			// 2) ... but only if they have been assigned to the submission workflow.
 			import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
-			$pressAssistantFileAccessPolicy->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', $request->getUserVar('stageId')));
+			$pressAssistantFileAccessPolicy->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'submissionId', $request->getUserVar('stageId')));
 			$fileAccessPolicy->addPolicy($pressAssistantFileAccessPolicy);
 		}
 
