@@ -76,7 +76,7 @@ class OmpSignoffAccessPolicy extends ContextPolicy {
 
 			// 2) ... but only if they have access to the workflow stage.
 			import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
-			$pressAssistantSignoffAccessPolicy->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', $stageId));
+			$pressAssistantSignoffAccessPolicy->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'submissionId', $stageId));
 			$signoffAccessPolicy->addPolicy($pressAssistantSignoffAccessPolicy);
 		}
 
@@ -92,7 +92,7 @@ class OmpSignoffAccessPolicy extends ContextPolicy {
 
 				// 2) ... but only if they are assigned to the workflow stage as an stage participant.
 				import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
-				$authorSignoffAccessPolicy->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', $stageId));
+				$authorSignoffAccessPolicy->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'submissionId', $stageId));
 				$signoffAccessPolicy->addPolicy($authorSignoffAccessPolicy);
 			}
 		}

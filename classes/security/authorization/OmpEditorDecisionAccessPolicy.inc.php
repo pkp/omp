@@ -22,7 +22,7 @@ class OmpEditorDecisionAccessPolicy extends ContextPolicy {
 	 * @param $submissionParameterName string
 	 * @param $stageId integer One of the WORKFLOW_STAGE_ID_* constants.
 	 */
-	function OmpEditorDecisionAccessPolicy(&$request, &$args, $roleAssignments, $submissionParameterName = 'monographId', $stageId) {
+	function OmpEditorDecisionAccessPolicy(&$request, &$args, $roleAssignments, $submissionParameterName = 'submissionId', $stageId) {
 		parent::ContextPolicy($request);
 
 		// A decision can only be made if there is a valid workflow stage
