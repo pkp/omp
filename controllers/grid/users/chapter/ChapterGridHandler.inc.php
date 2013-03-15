@@ -174,7 +174,7 @@ class ChapterGridHandler extends CategoryGridHandler {
 		$monograph =& $this->getMonograph();
 		return array_merge(
 			parent::getRequestArgs(),
-			array('monographId' => $monograph->getId())
+			array('submissionId' => $monograph->getId())
 		);
 	}
 

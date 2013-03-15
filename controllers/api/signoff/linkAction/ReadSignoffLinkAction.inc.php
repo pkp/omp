@@ -38,7 +38,7 @@ class ReadSignoffLinkAction extends LinkAction {
 
 		// Create the actionArgs array
 		$actionArgs = array();
-		$actionArgs['monographId'] = $monographId;
+		$actionArgs['submissionId'] = $monographId;
 		$actionArgs['stageId'] = $stageId;
 		$actionArgs['signoffId'] = $signoffId;
 

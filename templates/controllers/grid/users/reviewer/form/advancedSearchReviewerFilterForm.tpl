@@ -23,7 +23,7 @@
 <form class="pkp_form" id="reviewerFilterForm" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.users.reviewerSelect.ReviewerSelectGridHandler" op="fetchGrid"}" method="post" class="pkp_controllers_reviewerSelector">
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="advancedSearchReviewerFilterFormNotification"}
 	{fbvFormArea id="reviewerSearchForm"}
-		<input type="hidden" id="monographId" name="monographId" value="{$monographId|escape}" />
+		<input type="hidden" id="monographId" name="submissionId" value="{$submissionId|escape}" />
 		<input type="hidden" id="stageId" name="stageId" value="{$stageId|escape}" />
 		<input type="hidden" id="reviewRoundId" name="reviewRoundId" value="{$reviewRoundId|escape}" />
 		<input type="hidden" name="doneMin" value="0" />

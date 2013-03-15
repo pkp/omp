@@ -23,7 +23,7 @@
 <form class="pkp_form" id="{$publicationFormId|escape}" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT op="saveForm"}">
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId=$publicationFormId|concat:"-notification" requestOptions=$notificationRequestOptions}
 
-	<input type="hidden" name="monographId" value="{$monographId|escape}" />
+	<input type="hidden" name="submissionId" value="{$submissionId|escape}" />
 	<input type="hidden" name="stageId" value="{$stageId|escape}" />
 	<input type="hidden" name="tabPos" value="{$formParams.tabPos|escape}" />
 	<input type="hidden" name="publicationFormatId" value="{$publicationFormatId|escape}" />
@@ -40,7 +40,7 @@
 
 	{* E-commerce settings *}
 	{if $paymentConfigured}
-		{url|assign:approvedProofGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.proof.ApprovedProofFilesGridHandler" op="fetchGrid" monographId=$monographId publicationFormatId=$publicationFormatId escape=false}
+		{url|assign:approvedProofGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.proof.ApprovedProofFilesGridHandler" op="fetchGrid" submissionId=$submissionId publicationFormatId=$publicationFormatId escape=false}
 		{load_url_in_div id="approvedProofGrid-$publicationFormatId" url=$approvedProofGridUrl}
 	{/if}
 
@@ -48,7 +48,7 @@
 		{fbvFormSection}
 			<!-- Product Identification Codes -->
 			{assign var="divId" value="identificationCodeGridContainer"|concat:$publicationFormatId|escape}
-			{url|assign:identGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.catalogEntry.IdentificationCodeGridHandler" op="fetchGrid" monographId=$monographId publicationFormatId=$publicationFormatId escape=false}
+			{url|assign:identGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.catalogEntry.IdentificationCodeGridHandler" op="fetchGrid" submissionId=$submissionId publicationFormatId=$publicationFormatId escape=false}
 			{load_url_in_div id="$divId" url="$identGridUrl"}
 		{/fbvFormSection}
 	{/fbvFormArea}
@@ -57,7 +57,7 @@
 		{fbvFormSection}
 			<!-- Sales rights and regions -->
 			{assign var="divId" value="salesRightsGridContainer"|concat:$publicationFormatId|escape}
-			{url|assign:salesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.catalogEntry.SalesRightsGridHandler" op="fetchGrid" monographId=$monographId publicationFormatId=$publicationFormatId escape=false}
+			{url|assign:salesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.catalogEntry.SalesRightsGridHandler" op="fetchGrid" submissionId=$submissionId publicationFormatId=$publicationFormatId escape=false}
 			{load_url_in_div id="$divId" url="$salesGridUrl"}
 		{/fbvFormSection}
 	{/fbvFormArea}
@@ -66,7 +66,7 @@
 		{fbvFormSection}
 			<!-- Market regions -->
 			{assign var="divId" value="marketsGridContainer"|concat:$publicationFormatId|escape}
-			{url|assign:marketsGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.catalogEntry.MarketsGridHandler" op="fetchGrid" monographId=$monographId publicationFormatId=$publicationFormatId escape=false}
+			{url|assign:marketsGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.catalogEntry.MarketsGridHandler" op="fetchGrid" submissionId=$submissionId publicationFormatId=$publicationFormatId escape=false}
 			{load_url_in_div id="$divId" url="$marketsGridUrl"}
 		{/fbvFormSection}
 	{/fbvFormArea}
@@ -75,7 +75,7 @@
 		{fbvFormSection}
 			<!-- Product Publication/Embargo dates -->
 			{assign var="divId" value="publicationDateGridContainer"|concat:$publicationFormatId|escape}
-			{url|assign:dateGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.catalogEntry.PublicationDateGridHandler" op="fetchGrid" monographId=$monographId publicationFormatId=$publicationFormatId escape=false}
+			{url|assign:dateGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.catalogEntry.PublicationDateGridHandler" op="fetchGrid" submissionId=$submissionId publicationFormatId=$publicationFormatId escape=false}
 			{load_url_in_div id="$divId" url="$dateGridUrl"}
 		{/fbvFormSection}
 	{/fbvFormArea}

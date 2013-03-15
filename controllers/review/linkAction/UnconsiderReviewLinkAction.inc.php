@@ -31,7 +31,7 @@ class UnconsiderReviewLinkAction extends LinkAction {
 		$router =& $request->getRouter();
 
 		$actionArgs = array(
-			'monographId' => $reviewAssignment->getSubmissionId(),
+			'submissionId' => $reviewAssignment->getSubmissionId(),
 			'reviewAssignmentId' => $reviewAssignment->getId(),
 			'stageId' => $reviewAssignment->getStageId()
 		);

@@ -16,7 +16,7 @@
 
 <form class="pkp_form" id="sendReminderForm" method="post" action="{url op="sendReminder"}" >
 	{fbvFormArea id="sendReminder"}
-		<input type="hidden" name="monographId" value="{$monographId|escape}" />
+		<input type="hidden" name="submissionId" value="{$submissionId|escape}" />
 		<input type="hidden" name="stageId" value="{$stageId|escape}" />
 		<input type="hidden" name="signoffId" value="{$signoffId}" />
 		{* This form is used in production stage, where we need a publication format id *}

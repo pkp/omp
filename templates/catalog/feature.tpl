@@ -13,7 +13,7 @@
 {assign var=randomCounter value=0}
 {foreach from=$featuredMonographIds key=monographId item=featureSeq}
 	{if $randomCounter == $randomOffset}
-		{assign var=featuredMonograph value=$publishedMonographs.$monographId}
+		{assign var=featuredMonograph value=$publishedMonographs.$submissionId}
 	{/if}
 	{assign var=randomCounter value=$randomCounter+1}
 {/foreach}

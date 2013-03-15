@@ -14,7 +14,7 @@
 				trackFormChanges: true,
 				$uploader: $('#plupload_catalogMetadata'),
 				uploaderOptions: {ldelim}
-					uploadUrl: '{url|escape:javascript op="uploadCoverImage" escape=false stageId=$stageId monographId=$monographId}',
+					uploadUrl: '{url|escape:javascript op="uploadCoverImage" escape=false stageId=$stageId submissionId=$submissionId}',
 					baseUrl: '{$baseUrl|escape:javascript}'
 				{rdelim}
 			{rdelim}
@@ -25,7 +25,7 @@
 <form class="pkp_form" id="catalogMetadataEntryForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT op="saveForm"}">
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="catalogMetadataFormFieldsNotification"}
 
-	<input type="hidden" name="monographId" value="{$monographId|escape}" />
+	<input type="hidden" name="submissionId" value="{$submissionId|escape}" />
 	<input type="hidden" name="stageId" value="{$stageId|escape}" />
 	<input type="hidden" name="tabPos" value="1" />
 	<input type="hidden" name="displayedInContainer" value="{$formParams.displayedInContainer|escape}" />
@@ -36,7 +36,7 @@
 		<div id="plupload_catalogMetadata" class="pkp_helpers_threeQuarter pkp_helpers_align_right"></div>
 		<div class="pkp_helpers_align_left">
 			{capture assign="altTitle"}{translate key="monograph.currentCoverImage"}{/capture}
-			<img height="{$coverImage.thumbnailHeight}" width="{$coverImage.thumbnailWidth}" src="{url router=$smarty.const.ROUTE_COMPONENT component="submission.CoverHandler" op="thumbnail" monographId=$monographId random=$monographId|uniqid}" alt="{$altTitle|escape}" />
+			<img height="{$coverImage.thumbnailHeight}" width="{$coverImage.thumbnailWidth}" src="{url router=$smarty.const.ROUTE_COMPONENT component="submission.CoverHandler" op="thumbnail" submissionId=$submissionId random=$submissionId|uniqid}" alt="{$altTitle|escape}" />
 		</div>
 	{/fbvFormSection}
 
@@ -58,7 +58,7 @@
 		{fbvFormSection description="grid.catalogEntry.representativesDescription"}
 			<!-- Representatives -->
 			{assign var="divId" value="representativesGridContainer"|concat:$publicationFormatId|escape}
-			{url|assign:representativesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.catalogEntry.RepresentativesGridHandler" op="fetchGrid" monographId=$monographId}
+			{url|assign:representativesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.catalogEntry.RepresentativesGridHandler" op="fetchGrid" submissionId=$submissionId}
 			{load_url_in_div id="$divId" url="$representativesGridUrl"}
 		{/fbvFormSection}
 	{/fbvFormArea}
@@ -66,7 +66,7 @@
 	{fbvFormArea id="publicationFormats"}
 		{fbvFormSection}
 			<!--  Formats -->
-			{url|assign:formatGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.catalogEntry.PublicationFormatGridHandler" op="fetchGrid" monographId=$monographId inCatalogEntryModal=true escape=false}
+			{url|assign:formatGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.catalogEntry.PublicationFormatGridHandler" op="fetchGrid" submissionId=$submissionId inCatalogEntryModal=true escape=false}
 			{load_url_in_div id="formatsGridContainer"|uniqid url=$formatGridUrl}
 		{/fbvFormSection}
 	{/fbvFormArea}

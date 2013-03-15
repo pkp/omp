@@ -105,7 +105,7 @@ class PublicationFormatForm extends Form {
 		$templateMgr->assign('entryKeys', $onixCodelistItemDao->getCodes('List7')); // List7 is for object formats
 
 		$monograph =& $this->getMonograph();
-		$templateMgr->assign('monographId', $monograph->getId());
+		$templateMgr->assign('submissionId', $monograph->getId());
 		$publicationFormat =& $this->getPublicationFormat();
 		if ($publicationFormat != null) {
 			$templateMgr->assign('publicationFormatId', $publicationFormat->getId());

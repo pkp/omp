@@ -15,7 +15,7 @@ $(function() {ldelim}
 		{ldelim}
 			tabsUrl:'{url|escape:javascript router=$smarty.const.ROUTE_PAGE
 				op='productionFormatsTab'
-				monographId=$monograph->getId()
+				submissionId=$monograph->getId()
 				stageId=$smarty.const.WORKFLOW_STAGE_ID_PRODUCTION escape=false}',
 			{if $currentFormatTabId}currentFormatTabId: '{$currentFormatTabId}',{/if}
 			emptyLastTab: true,
@@ -30,7 +30,7 @@ $(function() {ldelim}
 				<a id="publication{$format->getId()|escape}"
 					href="{url router=$smarty.const.ROUTE_PAGE op="fetchPublicationFormat"
 					publicationFormatId=$format->getId()
-					monographId=$format->getMonographId()
+					submissionId=$format->getMonographId()
 					stageId=$smarty.const.WORKFLOW_STAGE_ID_PRODUCTION}">{$format->getLocalizedName()|escape}</a>
 			</li>
 		{/foreach}

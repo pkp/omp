@@ -112,7 +112,7 @@ class SalesRightsForm extends Form {
 		$publicationFormatId = null;
 
 		$monograph =& $this->getMonograph();
-		$templateMgr->assign('monographId', $monograph->getId());
+		$templateMgr->assign('submissionId', $monograph->getId());
 		$salesRights =& $this->getSalesRights();
 		$onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO');
 		$templateMgr->assign('countryCodes', $onixCodelistItemDao->getCodes('List91')); // countries (CA, US, GB, etc)

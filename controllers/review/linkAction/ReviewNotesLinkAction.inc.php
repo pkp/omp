@@ -32,7 +32,7 @@ class ReviewNotesLinkAction extends LinkAction {
 		$router =& $request->getRouter();
 		import('lib.pkp.classes.linkAction.request.AjaxModal');
 		$actionArgs = array(
-			'monographId' => $reviewAssignment->getSubmissionId(),
+			'submissionId' => $reviewAssignment->getSubmissionId(),
 			'reviewAssignmentId' => $reviewAssignment->getId(),
 			'stageId' => $reviewAssignment->getStageId()
 		);

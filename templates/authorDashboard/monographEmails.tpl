@@ -40,7 +40,7 @@
 										titleIcon: 'modal_information',
 										title: '{$monographEmail->getSubject()|escape:"javascript"}',
 										modalHandler: '$.pkp.controllers.modal.AjaxModalHandler',
-										url: '{url|escape:"javascript" router=$smarty.const.ROUTE_PAGE page="authorDashboard" op="readMonographEmail" monographId=$monograph->getId() stageId=$stageId reviewRoundId=$reviewRoundId monographEmailId=$monographEmail->getId() escape=false}'
+										url: '{url|escape:"javascript" router=$smarty.const.ROUTE_PAGE page="authorDashboard" op="readMonographEmail" submissionId=$monograph->getId() stageId=$stageId reviewRoundId=$reviewRoundId monographEmailId=$monographEmail->getId() escape=false}'
 									{rdelim}
 								{rdelim}
 							);

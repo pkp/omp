@@ -45,7 +45,7 @@ class PublicationFormatHandler extends Handler {
 
 		// Get the workflow stage policy
 		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
-		$stagePolicy = new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', WORKFLOW_STAGE_ID_PRODUCTION);
+		$stagePolicy = new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'submissionId', WORKFLOW_STAGE_ID_PRODUCTION);
 
 		// Add the Publication Format policy to the stage policy.
 		$stagePolicy->addPolicy($publicationFormatPolicy);

@@ -71,7 +71,7 @@ class AdvancedSearchReviewerFilterForm extends Form {
 		$this->_data = $filterData;
 
 		$monograph = $this->getMonograph();
-		$this->setData('monographId', $monograph->getId());
+		$this->setData('submissionId', $monograph->getId());
 		$this->setData('stageId', $this->getStageId());
 		$this->setData('reviewRoundId', $this->getReviewRoundId());
 

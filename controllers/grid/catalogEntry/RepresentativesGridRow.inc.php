@@ -45,7 +45,7 @@ class RepresentativesGridRow extends GridRow {
 			$router =& $request->getRouter();
 			$actionArgs = array_merge(
 				parent::getRequestArgs(),
-				array('monographId' => $monograph->getId(),
+				array('submissionId' => $monograph->getId(),
 				'representativeId' => $representative->getId())
 			);
 

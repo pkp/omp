@@ -23,7 +23,7 @@ class OmpReviewStageAccessPolicy extends ContextPolicy {
 	 * @param $submissionParameterName string
 	 * @param $stageId integer One of the WORKFLOW_STAGE_ID_* constants.
 	 */
-	function OmpReviewStageAccessPolicy(&$request, &$args, $roleAssignments, $submissionParameterName = 'monographId', $stageId) {
+	function OmpReviewStageAccessPolicy(&$request, &$args, $roleAssignments, $submissionParameterName = 'submissionId', $stageId) {
 		parent::ContextPolicy($request);
 
 		// Create a "permit overrides" policy set that specifies

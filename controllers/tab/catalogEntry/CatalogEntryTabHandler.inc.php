@@ -94,7 +94,7 @@ class CatalogEntryTabHandler extends Handler {
 	function authorize(&$request, &$args, $roleAssignments) {
 		$stageId = (int) $request->getUserVar('stageId');
 		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
-		$this->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', $stageId));
+		$this->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'submissionId', $stageId));
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 
@@ -257,7 +257,7 @@ class CatalogEntryTabHandler extends Handler {
 			if ($request->getUserVar('displayedInContainer')) {
 				$router =& $request->getRouter();
 				$dispatcher =& $router->getDispatcher();
-				$url = $dispatcher->url($request, ROUTE_COMPONENT, null, 'modals.submissionMetadata.CatalogEntryHandler', 'fetch', null, array('monographId' => $monograph->getId(), 'stageId' => $stageId, 'tabPos' => $this->getTabPosition(), 'hideHelp' => true));
+				$url = $dispatcher->url($request, ROUTE_COMPONENT, null, 'modals.submissionMetadata.CatalogEntryHandler', 'fetch', null, array('submissionId' => $monograph->getId(), 'stageId' => $stageId, 'tabPos' => $this->getTabPosition(), 'hideHelp' => true));
 				$json->setAdditionalAttributes(array('reloadContainer' => true, 'tabsUrl' => $url));
 				$json->setContent(true); // prevents modal closure
 				return $json->getString();

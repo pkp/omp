@@ -182,7 +182,7 @@ class SelectableSubmissionFileListCategoryGridHandler extends CategoryGridHandle
 		if ($capabilities->canDownloadAll() && $this->hasGridDataElements($request)) {
 			$monograph =& $this->getMonograph();
 			$stageId = $this->getStageId();
-			$linkParams = array('monographId' => $monograph->getId(), 'stageId' => $stageId);
+			$linkParams = array('submissionId' => $monograph->getId(), 'stageId' => $stageId);
 			$files =& $this->getFilesToDownload($request);
 
 			$this->addAction($capabilities->getDownloadAllAction($request, $files, $linkParams), GRID_ACTION_POSITION_BELOW);

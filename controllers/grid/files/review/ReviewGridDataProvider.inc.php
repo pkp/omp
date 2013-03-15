@@ -61,8 +61,8 @@ class ReviewGridDataProvider extends SubmissionFilesGridDataProvider {
 		// Get all review files assigned to this submission.
 		$reviewRound =& $this->getReviewRound();
 		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-		$monographFiles =& $submissionFileDao->getLatestNewRevisionsByReviewRound($reviewRound, $this->getFileStage());
-		$data = $this->prepareSubmissionFileData($monographFiles, $this->_viewableOnly);
+		$submissionFiles =& $submissionFileDao->getLatestNewRevisionsByReviewRound($reviewRound, $this->getFileStage());
+		$data = $this->prepareSubmissionFileData($submissionFiles, $this->_viewableOnly);
 
 		return $data;
 	}
@@ -75,7 +75,6 @@ class ReviewGridDataProvider extends SubmissionFilesGridDataProvider {
 	 */
 	function &getSelectAction($request) {
 		import('controllers.grid.files.fileList.linkAction.SelectReviewFilesLinkAction');
-		$monograph =& $this->getMonograph();
 		$reviewRound =& $this->getReviewRound();
 		$modalTitle = __('editor.monograph.review.currentFiles', array('round' => $reviewRound->getRound()));
 		$selectAction = new SelectReviewFilesLinkAction(
@@ -90,12 +89,12 @@ class ReviewGridDataProvider extends SubmissionFilesGridDataProvider {
 	 * @see FilesGridDataProvider::getAddFileAction()
 	 */
 	function &getAddFileAction($request) {
-		import('controllers.api.file.linkAction.AddFileLinkAction');
-		$monograph =& $this->getMonograph();
+		import('lib.pkp.controllers.api.file.linkAction.AddFileLinkAction');
+		$submission =& $this->getSubmission();
 		$reviewRound =& $this->getReviewRound();
 
 		$addFileAction = new AddFileLinkAction(
-			$request, $monograph->getId(), $this->getStageId(),
+			$request, $submission->getId(), $this->getStageId(),
 			$this->getUploaderRoles(), $this->getFileStage(),
 			null, null, $reviewRound->getId()
 		);

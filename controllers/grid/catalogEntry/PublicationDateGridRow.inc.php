@@ -45,7 +45,7 @@ class PublicationDateGridRow extends GridRow {
 		if ($publicationDate != null && is_numeric($publicationDate->getId())) {
 			$router =& $request->getRouter();
 			$actionArgs = array(
-				'monographId' => $monograph->getId(),
+				'submissionId' => $monograph->getId(),
 				'publicationDateId' => $publicationDate->getId()
 			);
 

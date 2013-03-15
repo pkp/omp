@@ -17,7 +17,7 @@
 
 <form class="pkp_form" id="readReviewForm" method="post" action="{url op="reviewRead"}">
 	<input type="hidden" name="reviewAssignmentId" value="{$reviewAssignment->getId()|escape}" />
-	<input type="hidden" name="monographId" value="{$reviewAssignment->getSubmissionId()|escape}" />
+	<input type="hidden" name="submissionId" value="{$reviewAssignment->getSubmissionId()|escape}" />
 	<input type="hidden" name="stageId" value="{$reviewAssignment->getStageId()|escape}" />
 	<p>{translate key="editor.review.readConfirmation"}</p>
 	<div id="reviewAssignment-{$reviewAssignment->getId()|escape}">
@@ -57,7 +57,7 @@
 	</div>
 	{fbvFormArea id="readReview"}
 		{fbvFormSection}
-			{url|assign:reviewAttachmentsGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.attachment.EditorReviewAttachmentsGridHandler" op="fetchGrid" monographId=$monograph->getId() reviewId=$reviewAssignment->getId() stageId=$reviewAssignment->getStageId() escape=false}
+			{url|assign:reviewAttachmentsGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.attachment.EditorReviewAttachmentsGridHandler" op="fetchGrid" submissionId=$monograph->getId() reviewId=$reviewAssignment->getId() stageId=$reviewAssignment->getStageId() escape=false}
 			{load_url_in_div id="readReviewAttachmentsGridContainer" url="$reviewAttachmentsGridUrl"}
 		{/fbvFormSection}
 		{fbvFormButtons id="closeButton" hideCancel=false submitText="common.confirm"}

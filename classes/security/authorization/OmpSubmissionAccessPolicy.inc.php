@@ -23,7 +23,7 @@ class OmpSubmissionAccessPolicy extends ContextPolicy {
 	 * @param $submissionParameterName string the request parameter we
 	 *  expect the submission id in.
 	 */
-	function OmpSubmissionAccessPolicy(&$request, $args, $roleAssignments, $submissionParameterName = 'monographId') {
+	function OmpSubmissionAccessPolicy(&$request, $args, $roleAssignments, $submissionParameterName = 'submissionId') {
 		parent::ContextPolicy($request);
 
 		// We need a submission in the request.

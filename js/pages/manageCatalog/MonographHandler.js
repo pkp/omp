@@ -27,7 +27,7 @@
 
 		// Initialize and save parameters.
 		this.parent($monographsContainer, options);
-		this.monographId_ = options.monographId;
+		this.submissionId_ = options.submissionId;
 		this.seq_ = options.seq;
 		this.setFeaturedUrlTemplate_ = options.setFeaturedUrlTemplate;
 		this.setNewReleaseUrlTemplate_ = options.setNewReleaseUrlTemplate;
@@ -105,7 +105,7 @@
 	 * @private
 	 * @type {number?}
 	 */
-	$.pkp.pages.manageCatalog.MonographHandler.prototype.monographId_ = null;
+	$.pkp.pages.manageCatalog.MonographHandler.prototype.submissionId_ = null;
 
 
 	/**
@@ -201,7 +201,7 @@
 	$.pkp.pages.manageCatalog.MonographHandler.prototype.getId =
 			function() {
 
-		return this.monographId_;
+		return this.submissionId_;
 	};
 
 

@@ -15,7 +15,7 @@
 </script>
 
 <form class="pkp_form" id="addPubDateForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.catalogEntry.PublicationDateGridHandler" op="updateDate"}">
-	<input type="hidden" name="monographId" value="{$monographId|escape}" />
+	<input type="hidden" name="submissionId" value="{$submissionId|escape}" />
 	<input type="hidden" name="publicationFormatId" value="{$publicationFormatId|escape}" />
 	<input type="hidden" name="publicationDateId" value="{$publicationDateId|escape}" />
 	{fbvFormArea id="addDate"}

@@ -146,14 +146,14 @@ class FileSignoffHandler extends FileManagementHandler {
 		}
 
 		// Get related objects for the form to authenticate
-		$monograph =& $this->getMonograph();
+		$monograph =& $this->getSubmission();
 		$stageId = $this->getStageId();
 		if ($signoff->getAssocType() != ASSOC_TYPE_SUBMISSION_FILE) assert(false);
 		$signoffFile =& $submissionFileDao->getLatestRevision($signoff->getAssocId());
 
 		// Set up the template
 		$templateMgr =& TemplateManager::getManager($request);
-		$templateMgr->assign('monographId', $monograph->getId());
+		$templateMgr->assign('submissionId', $monograph->getId());
 		$templateMgr->assign('stageId', $stageId);
 		$templateMgr->assign('signoffId', $signoff->getId());
 		$templateMgr->assign('signoffFileName', $signoffFile->getLocalizedName());
@@ -201,7 +201,7 @@ class FileSignoffHandler extends FileManagementHandler {
 	 * @return string a serialized JSON object
 	 */
 	function displayFileUploadForm($args, &$request) {
-		$monograph =& $this->getMonograph();
+		$monograph =& $this->getSubmission();
 
 		import('controllers.modals.signoff.form.SignoffFileUploadForm');
 		$fileForm = new SignoffFileUploadForm(
@@ -254,7 +254,7 @@ class FileSignoffHandler extends FileManagementHandler {
 			$json = new JSONMessage(true);
 			return $json->getString();
 		}
-		$monograph =& $this->getMonograph();
+		$monograph =& $this->getSubmission();
 
 		// Instantiate the file upload form.
 		import('controllers.modals.signoff.form.SignoffFileUploadForm');

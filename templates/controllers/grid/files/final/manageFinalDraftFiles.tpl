@@ -18,12 +18,12 @@
 <p>{translate key="editor.monograph.final.manageFinalDraftFilesDescription"}</p>
 
 <div id="existingFilesContainer">
-	<form class="pkp_form" id="manageFinalDraftFilesForm" action="{url component="grid.files.final.ManageFinalDraftFilesGridHandler" op="updateFinalDraftFiles" monographId=$monographId} method="post">
+	<form class="pkp_form" id="manageFinalDraftFilesForm" action="{url component="grid.files.final.ManageFinalDraftFilesGridHandler" op="updateFinalDraftFiles" submissionId=$submissionId} method="post">
 		{fbvFormArea id="manageFinalDraftFiles"}
 			{fbvFormSection}
-				<input type="hidden" name="monographId" value="{$monographId|escape}" />
+				<input type="hidden" name="submissionId" value="{$submissionId|escape}" />
 				<input type="hidden" name="stageId" value="{$smarty.const.WORKFLOW_STAGE_ID_EDITING}" />
-				{url|assign:availableReviewFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.final.ManageFinalDraftFilesGridHandler" op="fetchGrid" monographId=$monographId}
+				{url|assign:availableReviewFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.final.ManageFinalDraftFilesGridHandler" op="fetchGrid" submissionId=$submissionId}
 				{load_url_in_div id="availableReviewFilesGrid" url=$availableReviewFilesGridUrl}
 			{/fbvFormSection}
 

@@ -110,7 +110,7 @@ class AuditorReminderForm extends Form {
 		list($page, $operation) = SubmissionsListGridCellProvider::getPageAndOperationByUserRoles($request, $monograph, $auditor->getId());
 
 		$dispatcher = $request->getDispatcher();
-		$auditUrl = $dispatcher->url($request, ROUTE_PAGE, null, $page, $operation, array('monographId' => $monograph->getId()));
+		$auditUrl = $dispatcher->url($request, ROUTE_PAGE, null, $page, $operation, array('submissionId' => $monograph->getId()));
 
 		$paramArray = array(
 			'auditorName' => $auditor->getFullName(),
@@ -122,7 +122,7 @@ class AuditorReminderForm extends Form {
 		);
 		$email->assignParams($paramArray);
 
-		$this->setData('monographId', $monograph->getId());
+		$this->setData('submissionId', $monograph->getId());
 		$this->setData('stageId', $this->getStageId());
 		$this->setData('signoffId', $signoff->getId());
 		$this->setData('publicationFormatId', $this->getPublicationFormatId());

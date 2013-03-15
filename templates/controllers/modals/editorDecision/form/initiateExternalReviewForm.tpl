@@ -17,11 +17,11 @@
 
 <p>{translate key="editor.monograph.externalReviewDescription"}</p>
 <form class="pkp_form" id="initiateReview" method="post" action="{url op="saveExternalReview"}" >
-	<input type="hidden" name="monographId" value="{$monographId|escape}" />
+	<input type="hidden" name="submissionId" value="{$submissionId|escape}" />
 	<input type="hidden" name="stageId" value="{$stageId|escape}" />
 
 	<!-- Available submission files -->
-	{url|assign:filesForReviewUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.submission.SelectableSubmissionDetailsFilesGridHandler" op="fetchGrid" monographId=$monographId stageId=$stageId escape=false}
+	{url|assign:filesForReviewUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.submission.SelectableSubmissionDetailsFilesGridHandler" op="fetchGrid" submissionId=$submissionId stageId=$stageId escape=false}
 	{load_url_in_div id="filesForReviewGrid" url=$filesForReviewUrl}
 	{fbvFormButtons submitText="editor.monograph.decision.sendExternalReview"}
 </form>

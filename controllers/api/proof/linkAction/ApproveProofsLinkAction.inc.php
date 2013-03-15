@@ -31,7 +31,7 @@ class ApproveProofsLinkAction extends LinkAction {
 
 		// Create the actionArgs array
 		$actionArgs = array();
-		$actionArgs['monographId'] = $monographId;
+		$actionArgs['submissionId'] = $monographId;
 		$actionArgs['stageId'] = WORKFLOW_STAGE_ID_PRODUCTION;
 		$actionArgs['publicationFormatId'] = $publicationFormatId;
 

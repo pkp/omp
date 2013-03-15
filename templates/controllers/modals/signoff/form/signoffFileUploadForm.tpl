@@ -15,7 +15,7 @@
 			{ldelim}
 				$uploader: $('#plupload'),
 				uploaderOptions: {ldelim}
-					uploadUrl: '{url|escape:javascript op="uploadFile" monographId=$monographId stageId=$stageId escape=false}',
+					uploadUrl: '{url|escape:javascript op="uploadFile" submissionId=$submissionId stageId=$stageId escape=false}',
 					baseUrl: '{$baseUrl|escape:javascript}'
 				{rdelim}
 			{rdelim});
@@ -23,7 +23,7 @@
 </script>
 
 <form class="pkp_form" id="uploadForm" action="{url op="signoff"}" method="post">
-	<input type="hidden" name="monographId" value="{$monographId|escape}" />
+	<input type="hidden" name="submissionId" value="{$submissionId|escape}" />
 	<input type="hidden" name="stageId" value="{$stageId|escape}" />
 
 	{** Make sure there is at least one available signoff *}

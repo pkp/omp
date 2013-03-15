@@ -77,11 +77,11 @@ class ReviewReminderForm extends Form {
 			'editorialContactSignature' => $user->getContactSignature(),
 			'reviewerUserName' => $reviewer->getUsername(),
 			'passwordResetUrl' => $dispatcher->url($request, ROUTE_PAGE, null, 'login', 'resetPassword', $reviewer->getUsername(), array('confirm' => Validation::generatePasswordResetHash($reviewer->getId()))),
-			'submissionReviewUrl' => $dispatcher->url($request, ROUTE_PAGE, null, 'reviewer', 'submission', null, array('monographId' => $reviewAssignment->getSubmissionId()))
+			'submissionReviewUrl' => $dispatcher->url($request, ROUTE_PAGE, null, 'reviewer', 'submission', null, array('submissionId' => $reviewAssignment->getSubmissionId()))
 		);
 		$email->assignParams($paramArray);
 
-		$this->setData('monographId', $monograph->getId());
+		$this->setData('submissionId', $monograph->getId());
 		$this->setData('stageId', $reviewAssignment->getStageId());
 		$this->setData('reviewAssignmentId', $reviewAssignment->getId());
 		$this->setData('reviewAssignment', $reviewAssignment);

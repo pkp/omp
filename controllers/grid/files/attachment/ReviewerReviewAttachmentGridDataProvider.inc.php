@@ -48,7 +48,7 @@ class ReviewerReviewAttachmentGridDataProvider extends SubmissionFilesGridDataPr
 
 			$this->setUploaderRoles($roleAssignments);
 			import('classes.security.authorization.OmpReviewStageAccessPolicy');
-			$authorizationPolicy = new OmpReviewStageAccessPolicy($request, $args, $roleAssignments, 'monographId', $request->getUserVar('stageId'));
+			$authorizationPolicy = new OmpReviewStageAccessPolicy($request, $args, $roleAssignments, 'submissionId', $request->getUserVar('stageId'));
 			$paramName = 'assocId';
 		} else {
 			// Viewing from a press role perspective.
@@ -93,7 +93,7 @@ class ReviewerReviewAttachmentGridDataProvider extends SubmissionFilesGridDataPr
 	 * @see FilesGridDataProvider::getAddFileAction()
 	 */
 	function &getAddFileAction($request) {
-		import('controllers.api.file.linkAction.AddFileLinkAction');
+		import('lib.pkp.controllers.api.file.linkAction.AddFileLinkAction');
 		$monograph =& $this->getMonograph();
 
 		$reviewAssignmentDao = DAORegistry::getDAO('ReviewAssignmentDAO');

@@ -124,7 +124,7 @@ class ChapterAuthorListbuilderHandler extends ListbuilderHandler {
 	function getRequestArgs() {
 		$monograph =& $this->getMonograph();
 		return array(
-			'monographId' => $monograph->getId(),
+			'submissionId' => $monograph->getId(),
 			'chapterId' => $this->getChapterId()
 		);
 	}

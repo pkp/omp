@@ -32,7 +32,7 @@ class ReviewerViewMetadataLinkAction extends LinkAction {
 		$modal = new AjaxModal(
 				$dispatcher->url($request, ROUTE_COMPONENT, null,
 						'modals.submissionMetadata.ReviewerSubmissionMetadataHandler',
-						'fetch', null, array('monographId' => $monographId, 'reviewAssignmentId' => $reviewAssignmentId)),
+						'fetch', null, array('submissionId' => $monographId, 'reviewAssignmentId' => $reviewAssignmentId)),
 				__('reviewer.step1.viewAllDetails'), 'modal_information');
 
 		// Configure the link action.

@@ -50,7 +50,7 @@ class ManageSubmissionFilesForm extends Form {
 	 * @param $request PKPRequest
 	 */
 	function initData($args, &$request) {
-		$this->setData('monographId', $this->_monographId);
+		$this->setData('submissionId', $this->_monographId);
 	}
 
 	/**

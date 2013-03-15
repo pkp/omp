@@ -61,7 +61,7 @@ class ChapterGridCategoryRow extends GridCategoryRow {
 			if (!$this->isReadOnly()) {
 				$router =& $request->getRouter();
 				$actionArgs = array(
-					'monographId' => $monograph->getId(),
+					'submissionId' => $monograph->getId(),
 					'chapterId' => $chapterId
 				);
 

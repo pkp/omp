@@ -80,7 +80,7 @@ class SignoffFileUploadForm extends Form {
 	 * @see Form::initData()
 	 */
 	function initData(&$request) {
-		$this->setData('monographId', $this->getMonographId());
+		$this->setData('submissionId', $this->getMonographId());
 		$this->setData('stageId', $this->getStageId());
 	}
 

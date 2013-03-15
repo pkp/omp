@@ -67,7 +67,7 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 	function authorize(&$request, &$args, $roleAssignments) {
 		$stageId = (int) $request->getUserVar('stageId');
 		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
-		$this->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', $stageId));
+		$this->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'submissionId', $stageId));
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 
@@ -192,7 +192,7 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 		$monograph =& $this->getMonograph();
 		return array_merge(
 			parent::getRequestArgs(),
-			array('monographId' => $monograph->getId(),
+			array('submissionId' => $monograph->getId(),
 			'stageId' => $this->getStageId())
 		);
 	}

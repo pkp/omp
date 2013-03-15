@@ -16,7 +16,7 @@
 
 <form class="pkp_form" id="sendThankYouForm" method="post" action="{url op="thankReviewer"}" >
 	{fbvFormArea id="sendReminder"}
-		<input type="hidden" name="monographId" value="{$monographId|escape}" />
+		<input type="hidden" name="submissionId" value="{$submissionId|escape}" />
 		<input type="hidden" name="stageId" value="{$stageId|escape}" />
 		<input type="hidden" name="reviewAssignmentId" value="{$reviewAssignmentId}" />
 

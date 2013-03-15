@@ -31,7 +31,7 @@ class CatalogEntryLinkAction extends LinkAction {
 		import('lib.pkp.classes.linkAction.request.AjaxModal');
 
 		$actionArgs = array();
-		$actionArgs['monographId'] = $monographId;
+		$actionArgs['submissionId'] = $monographId;
 		$actionArgs['stageId'] = $stageId;
 		if ($selectedFormatId) {
 			$actionArgs['selectedFormatId'] = $selectedFormatId;

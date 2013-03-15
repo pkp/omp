@@ -138,7 +138,7 @@ class ReviewerGridCellProvider extends DataObjectGridCellProvider {
 	function getCellActions(&$request, &$row, &$column, $position = GRID_ACTION_POSITION_DEFAULT) {
 		$reviewAssignment =& $row->getData();
 		$actionArgs = array(
-			'monographId' => $reviewAssignment->getSubmissionId(),
+			'submissionId' => $reviewAssignment->getSubmissionId(),
 			'reviewAssignmentId' => $reviewAssignment->getId(),
 			'stageId' => $reviewAssignment->getStageId()
 		);

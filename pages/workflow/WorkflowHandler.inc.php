@@ -57,7 +57,7 @@ class WorkflowHandler extends Handler {
 		if ($operation == 'access') {
 			// Authorize requested monograph.
 			import('classes.security.authorization.internal.MonographRequiredPolicy');
-			$this->addPolicy(new MonographRequiredPolicy($request, $args, 'monographId'));
+			$this->addPolicy(new MonographRequiredPolicy($request, $args, 'submissionId'));
 
 			// This policy will deny access if user has no accessible workflow stage.
 			// Otherwise it will build an authorized object with all accessible
@@ -66,7 +66,7 @@ class WorkflowHandler extends Handler {
 			$this->addPolicy(new UserAccessibleWorkflowStageRequiredPolicy($request));
 		} else {
 			import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
-			$this->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', $this->_identifyStageId($request)));
+			$this->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'submissionId', $this->_identifyStageId($request)));
 		}
 
 		return parent::authorize($request, $args, $roleAssignments);
@@ -289,7 +289,7 @@ class WorkflowHandler extends Handler {
 		$stageId = $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
 
 		$actionArgs = array(
-			'monographId' => $monograph->getId(),
+			'submissionId' => $monograph->getId(),
 			'stageId' => (int) $stageId,
 		);
 		// If a review round was specified, include it in the args;
@@ -476,7 +476,7 @@ class WorkflowHandler extends Handler {
 							$request, ROUTE_COMPONENT, null,
 							'modals.editorDecision.EditorDecisionHandler',
 							'newReviewRound', null, array(
-								'monographId' => $monograph->getId(),
+								'submissionId' => $monograph->getId(),
 								'decision' => SUBMISSION_EDITOR_DECISION_RESUBMIT,
 								'stageId' => $selectedStageId,
 								'reviewRoundId' => $lastReviewRoundId

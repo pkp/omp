@@ -93,7 +93,7 @@ class ApprovedProofFilesGridHandler extends GridHandler {
 	 */
 	function authorize(&$request, &$args, $roleAssignments) {
 		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
-		$this->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', WORKFLOW_STAGE_ID_PRODUCTION));
+		$this->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'submissionId', WORKFLOW_STAGE_ID_PRODUCTION));
 
 		if (parent::authorize($request, $args, $roleAssignments)) {
 			$publicationFormatId = (int) $request->getUserVar('publicationFormatId');

@@ -50,7 +50,7 @@ class InformationCenterNotifyForm extends Form {
 			$monographId = $monographFile->getMonographId();
 		}
 
-		$templateMgr->assign_by_ref('monographId', $monographId);
+		$templateMgr->assign_by_ref('submissionId', $monographId);
 		$templateMgr->assign_by_ref('itemId', $this->itemId);
 
 		// All stages can choose the default template
@@ -146,7 +146,7 @@ class InformationCenterNotifyForm extends Form {
 				$email->addRecipient($user->getEmail(), $user->getFullName());
 				$email->setBody($this->getData('message'));
 				list($page, $operation) = SubmissionsListGridCellProvider::getPageAndOperationByUserRoles($request, $monograph, $user->getId());
-				$submissionUrl = $dispatcher->url($request, ROUTE_PAGE, null, $page, $operation, array('monographId' => $monograph->getId()));
+				$submissionUrl = $dispatcher->url($request, ROUTE_PAGE, null, $page, $operation, array('submissionId' => $monograph->getId()));
 
 				// these are for *_REQUEST emails
 				$email->assignParams(array(

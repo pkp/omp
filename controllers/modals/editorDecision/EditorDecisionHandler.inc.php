@@ -49,7 +49,7 @@ class EditorDecisionHandler extends Handler {
 	function authorize(&$request, &$args, $roleAssignments) {
 		$stageId = (int) $request->getUserVar('stageId');
 		import('classes.security.authorization.OmpEditorDecisionAccessPolicy');
-		$this->addPolicy(new OmpEditorDecisionAccessPolicy($request, $args, $roleAssignments, 'monographId', $stageId));
+		$this->addPolicy(new OmpEditorDecisionAccessPolicy($request, $args, $roleAssignments, 'submissionId', $stageId));
 
 		// Some operations need a review round id in request.
 		$reviewRoundOps = $this->_getReviewRoundOps();

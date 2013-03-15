@@ -7,5 +7,5 @@
  * Monograph Contributor grid form
  *
  *}
-{assign var="submissionIdFieldName" value="monographId"}
+{assign var="submissionIdFieldName" value="submissionId"}
 {include file="core:controllers/grid/users/author/form/authorForm.tpl"}

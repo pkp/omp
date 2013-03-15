@@ -73,7 +73,7 @@ class SignoffGridRow extends GridRow {
 						$router->url(
 							$request, null, null, 'deleteSignoff',
 							null, array_merge(array(
-								'monographId' => $monographId,
+								'submissionId' => $monographId,
 								'stageId' => $this->getStageId(),
 								'signoffId' => $rowId,
 								'fileId' => $copyeditedFileId

@@ -45,7 +45,7 @@ class MarketsGridRow extends GridRow {
 		if ($market != null && is_numeric($market->getId())) {
 			$router =& $request->getRouter();
 			$actionArgs = array(
-				'monographId' => $monograph->getId(),
+				'submissionId' => $monograph->getId(),
 				'marketId' => $market->getId()
 			);
 

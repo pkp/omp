@@ -27,12 +27,12 @@
 
 	{fbvFormArea id="contributors"}
 		<!--  Contributors -->
-		{url|assign:authorGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.users.author.AuthorGridHandler" op="fetchGrid" monographId=$submissionId}
+		{url|assign:authorGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.users.author.AuthorGridHandler" op="fetchGrid" submissionId=$submissionId}
 		{load_url_in_div id="authorsGridContainer" url="$authorGridUrl"}
 
 		<!--  Chapters -->
 		{if $isEditedVolume}
-			{url|assign:chaptersGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.users.chapter.ChapterGridHandler" op="fetchGrid" monographId=$submissionId}
+			{url|assign:chaptersGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.users.chapter.ChapterGridHandler" op="fetchGrid" submissionId=$submissionId}
 			{load_url_in_div id="chaptersGridContainer" url="$chaptersGridUrl"}
 		{/if}
 	{/fbvFormArea}

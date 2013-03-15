@@ -117,7 +117,7 @@ class PublicationDateForm extends Form {
 		$publicationFormatId = null;
 
 		$monograph =& $this->getMonograph();
-		$templateMgr->assign('monographId', $monograph->getId());
+		$templateMgr->assign('submissionId', $monograph->getId());
 		$publicationDate =& $this->getPublicationDate();
 
 		if ($publicationDate) {

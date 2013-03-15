@@ -23,7 +23,7 @@ class SelectSubmissionFilesLinkAction extends SelectFilesLinkAction {
 	 *  from which to select files.
 	 */
 	function SelectSubmissionFilesLinkAction(&$request, $monographId, $actionLabel) {
-		$actionArgs = array('monographId' => $monographId);
+		$actionArgs = array('submissionId' => $monographId);
 
 		parent::SelectFilesLinkAction($request, $actionArgs, $actionLabel);
 	}

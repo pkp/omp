@@ -40,7 +40,7 @@ class ReviewRoundTabHandler extends Handler {
 		$stageId = (int) $request->getUserVar('stageId'); // This is validated in OmpWorkflowStageAccessPolicy.
 
 		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
-		$this->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', $stageId));
+		$this->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'submissionId', $stageId));
 
 		// We need a review round id in request.
 		import('classes.security.authorization.internal.ReviewRoundRequiredPolicy');

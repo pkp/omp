@@ -95,7 +95,7 @@ class EditorDecisionWithEmailForm extends EditorDecisionForm {
 		}
 
 		$data = array(
-			'monographId' => $seriesEditorSubmission->getId(),
+			'submissionId' => $seriesEditorSubmission->getId(),
 			'decision' => $this->getDecision(),
 			'authorName' => $seriesEditorSubmission->getAuthorString(),
 			'personalMessage' => $email->getBody() . "\n" . $press->getSetting('emailSignature'),
@@ -136,7 +136,7 @@ class EditorDecisionWithEmailForm extends EditorDecisionForm {
 					$request, null, null,
 					'importPeerReviews', null,
 					array(
-						'monographId' => $submission->getId(),
+						'submissionId' => $submission->getId(),
 						'stageId' => $stageId,
 						'reviewRoundId' => $reviewRound->getId()
 					)

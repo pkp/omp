@@ -111,7 +111,7 @@ class EditorDecisionForm extends Form {
 
 		// Set the monograph.
 		$templateMgr =& TemplateManager::getManager($request);
-		$templateMgr->assign('monographId', $seriesEditorSubmission->getId());
+		$templateMgr->assign('submissionId', $seriesEditorSubmission->getId());
 		$templateMgr->assign_by_ref('monograph', $seriesEditorSubmission);
 
 		// Set the decision related data.

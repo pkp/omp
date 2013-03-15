@@ -22,7 +22,7 @@ class OmpPublishedMonographAccessPolicy extends ContextPolicy {
 	 * @param $submissionParameterName string the request parameter we
 	 *  expect the submission id in.
 	 */
-	function OmpPublishedMonographAccessPolicy(&$request, $args, $roleAssignments, $submissionParameterName = 'monographId') {
+	function OmpPublishedMonographAccessPolicy(&$request, $args, $roleAssignments, $submissionParameterName = 'submissionId') {
 		parent::ContextPolicy($request);
 
 		// Access may be made either as a member of the public, or

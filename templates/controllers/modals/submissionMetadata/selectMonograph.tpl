@@ -23,7 +23,7 @@
 		$('#selectMonographContainer').pkpHandler(
 			'$.pkp.controllers.modals.submissionMetadata.MonographlessCatalogEntryHandler',
 			{ldelim}
-				metadataFormUrlTemplate: '{url|escape:"javascript" router=$smarty.const.ROUTE_COMPONENT component="modals.submissionMetadata.CatalogEntryHandler" op="fetch" monographId=MONOGRAPH_ID stageId=STAGE_ID escape=false}'
+				metadataFormUrlTemplate: '{url|escape:"javascript" router=$smarty.const.ROUTE_COMPONENT component="modals.submissionMetadata.CatalogEntryHandler" op="fetch" submissionId=MONOGRAPH_ID stageId=STAGE_ID escape=false}'
 			{rdelim}
 		);
 	{rdelim});

@@ -36,7 +36,7 @@ class ReviewerGridRow extends GridRow {
 		// These parameters need not be validated as we're just
 		// passing them along to another request, where they will be
 		// checked before they're used.
-		$monographId = (int) $request->getUserVar('monographId');
+		$submissionId = (int) $request->getUserVar('submissionId');
 		$stageId = (int) $request->getUserVar('stageId');
 		$round = (int) $request->getUserVar('round');
 
@@ -46,7 +46,7 @@ class ReviewerGridRow extends GridRow {
 			// Only add row actions if this is an existing row
 			$router =& $request->getRouter();
 			$actionArgs = array(
-				'monographId' => $monographId,
+				'submissionId' => $submissionId,
 				'reviewAssignmentId' => $rowId,
 				'stageId' => $stageId,
 				'round' => $round

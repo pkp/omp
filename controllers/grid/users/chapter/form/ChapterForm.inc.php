@@ -85,7 +85,7 @@ class ChapterForm extends Form {
 		AppLocale::requireComponents(LOCALE_COMPONENT_APP_DEFAULT, LOCALE_COMPONENT_PKP_SUBMISSION);
 
 		$monograph =& $this->getMonograph();
-		$this->setData('monographId', $monograph->getId());
+		$this->setData('submissionId', $monograph->getId());
 
 		$chapter =& $this->getChapter();
 		if ($chapter) {

@@ -28,7 +28,7 @@ class AuthorViewMetadataLinkAction extends LinkAction {
 			new AjaxModal(
 				$dispatcher->url($request, ROUTE_COMPONENT, null,
 					'modals.submissionMetadata.AuthorSubmissionMetadataHandler',
-					'fetch', null, array('monographId' => $monographId)
+					'fetch', null, array('submissionId' => $monographId)
 				),
 				__('submission.viewMetadata'),
 				'modal_information'

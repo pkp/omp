@@ -28,14 +28,14 @@
 
 	<p class="pkp_help">{translate key="editor.monograph.production.introduction"}</p>
 
-	{url|assign:productionReadyFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.productionReady.ProductionReadyFilesGridHandler" op="fetchGrid" monographId=$monograph->getId() stageId=$stageId escape=false}
+	{url|assign:productionReadyFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.productionReady.ProductionReadyFilesGridHandler" op="fetchGrid" submissionId=$monograph->getId() stageId=$stageId escape=false}
 	{load_url_in_div id="productionReadyFilesGridDiv" url=$productionReadyFilesGridUrl}
 
 	{if array_intersect(array(ROLE_ID_MANAGER, ROLE_ID_SUB_EDITOR), $userRoles)}
 		{fbvFormArea id="publicationFormats"}
 			{fbvFormSection}
 				<!--  Formats -->
-				{url|assign:formatGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.catalogEntry.PublicationFormatGridHandler" op="fetchGrid" monographId=$monograph->getId()}
+				{url|assign:formatGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.catalogEntry.PublicationFormatGridHandler" op="fetchGrid" submissionId=$monograph->getId()}
 				{load_url_in_div id="formatsGridContainer"|uniqid url=$formatGridUrl}
 			{/fbvFormSection}
 		{/fbvFormArea}

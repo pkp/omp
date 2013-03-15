@@ -100,7 +100,7 @@ class IdentificationCodeForm extends Form {
 		$publicationFormatId = null;
 
 		$monograph =& $this->getMonograph();
-		$templateMgr->assign('monographId', $monograph->getId());
+		$templateMgr->assign('submissionId', $monograph->getId());
 		$identificationCode =& $this->getIdentificationCode();
 
 		if ($identificationCode) {

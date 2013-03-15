@@ -18,7 +18,7 @@
 </script>
 
 <form class="pkp_form" id="editChapterForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.users.chapter.ChapterGridHandler" op="updateChapter"}">
-	<input type="hidden" name="monographId" value="{$monographId|escape}" />
+	<input type="hidden" name="submissionId" value="{$submissionId|escape}" />
 	<input type="hidden" name="chapterId" value="{$chapterId|escape}" />
 
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="chapterFormNotification"}
@@ -32,7 +32,7 @@
 	{/fbvFormSection}
 
 	<!--  Chapter Contributors -->
-	{url|assign:chapterAuthorUrl router=$smarty.const.ROUTE_COMPONENT  component="listbuilder.users.ChapterAuthorListbuilderHandler" op="fetch" monographId=$monographId chapterId=$chapterId escape=false}
+	{url|assign:chapterAuthorUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.users.ChapterAuthorListbuilderHandler" op="fetch" submissionId=$submissionId chapterId=$chapterId escape=false}
 	{load_url_in_div id="chapterAuthorContainer" url=$chapterAuthorUrl}
 
 	{fbvFormButtons submitText="common.save"}

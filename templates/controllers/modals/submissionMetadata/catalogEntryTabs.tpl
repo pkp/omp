@@ -26,10 +26,10 @@
 <div id="newCatalogEntryTabs">
 	<ul>
 		<li>
-			<a title="submission" href="{url router=$smarty.const.ROUTE_COMPONENT component="tab.catalogEntry.CatalogEntryTabHandler" tab="submission" op="submissionMetadata" monographId="$monographId" stageId=$stageId tabPos="0"}">{translate key="submission.catalogEntry.monographMetadata"}</a>
+			<a title="submission" href="{url router=$smarty.const.ROUTE_COMPONENT component="tab.catalogEntry.CatalogEntryTabHandler" tab="submission" op="submissionMetadata" submissionId=$submissionId stageId=$stageId tabPos="0"}">{translate key="submission.catalogEntry.monographMetadata"}</a>
 		</li>
 		<li>
-			<a title="catalog" href="{url router=$smarty.const.ROUTE_COMPONENT component="tab.catalogEntry.CatalogEntryTabHandler" tab="catalog" op="catalogMetadata" monographId="$monographId" stageId=$stageId tabPos="1"}">{translate key="submission.catalogEntry.catalogMetadata"}</a>
+			<a title="catalog" href="{url router=$smarty.const.ROUTE_COMPONENT component="tab.catalogEntry.CatalogEntryTabHandler" tab="catalog" op="catalogMetadata" submissionId=$submissionId stageId=$stageId tabPos="1"}">{translate key="submission.catalogEntry.catalogMetadata"}</a>
 		</li>
 		{counter start=2 assign="counter"}
 		{foreach from=$publicationFormats item=format}
@@ -39,7 +39,7 @@
 					tab="publication"|concat:$format->getId()
 					op="publicationMetadata"
 					publicationFormatId=$format->getId()
-					monographId=$monographId
+					submissionId=$submissionId
 					stageId=$stageId
 					tabPos=$counter}">{$format->getLocalizedName()|escape}</a>
 			</li>

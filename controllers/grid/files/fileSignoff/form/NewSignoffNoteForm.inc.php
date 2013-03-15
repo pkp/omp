@@ -43,7 +43,7 @@ class NewSignoffNoteForm extends NewNoteForm {
 		$this->_stageId = $stageId;
 		$this->_actionArgs = array(
 			'signoffId' => $signoffId,
-			'monographId' => $monographId,
+			'submissionId' => $monographId,
 			'stageId' => $stageId
 		);
 	}
@@ -105,7 +105,7 @@ class NewSignoffNoteForm extends NewNoteForm {
 		$templateMgr->assign('signoffId', $this->signoffId);
 		$templateMgr->assign('symbolic', $this->_symbolic);
 		$templateMgr->assign('stageId', $this->_stageId);
-		$templateMgr->assign('monographId', $this->_monographId);
+		$templateMgr->assign('submissionId', $this->_monographId);
 
 		return parent::fetch($request);
 	}

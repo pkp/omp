@@ -115,7 +115,7 @@ class SignoffFilesGridCellProvider extends GridCellProvider {
 	function _getApprovedCellAction(&$request, &$monographFile, $cellState) {
 		$router =& $request->getRouter();
 		$actionArgs = array(
-			'monographId' => $monographFile->getMonographId(),
+			'submissionId' => $monographFile->getMonographId(),
 			'fileId' => $monographFile->getFileId(),
 			'stageId' => $this->getStageId()
 		);

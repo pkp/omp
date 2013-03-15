@@ -25,7 +25,7 @@ class SelectReviewFilesLinkAction extends SelectFilesLinkAction {
 	 * @param $modalTitle string the (optional) title to be used for the modal.
 	 */
 	function SelectReviewFilesLinkAction(&$request, $reviewRound, $actionLabel, $modalTitle = null) {
-		$actionArgs = array('monographId' => $reviewRound->getSubmissionId(),
+		$actionArgs = array('submissionId' => $reviewRound->getSubmissionId(),
 				'stageId' => $reviewRound->getStageId(), 'reviewRoundId' => $reviewRound->getId());
 
 		parent::SelectFilesLinkAction($request, $actionArgs, $actionLabel, $modalTitle);

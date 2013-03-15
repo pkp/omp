@@ -35,7 +35,7 @@ class ChapterGridCategoryRowCellProvider extends GridCellProvider {
 
 			$router =& $request->getRouter();
 			$actionArgs = array(
-				'monographId' => $monograph->getId(),
+				'submissionId' => $monograph->getId(),
 				'chapterId' => $chapter->getId()
 			);
 

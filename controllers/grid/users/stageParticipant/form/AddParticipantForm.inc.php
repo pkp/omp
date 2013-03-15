@@ -85,7 +85,7 @@ class AddParticipantForm extends Form {
 
 		// assign the vars required for the request
 		$monograph =& $this->getMonograph();
-		$templateMgr->assign('monographId', $monograph->getId());
+		$templateMgr->assign('submissionId', $monograph->getId());
 		$templateMgr->assign('stageId', $this->getStageId());
 
 		return parent::fetch($request);

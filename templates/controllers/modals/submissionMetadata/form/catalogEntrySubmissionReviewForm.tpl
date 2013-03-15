@@ -26,7 +26,7 @@
 	{assign var="notificationId" value="submissionMetadataViewFormNotification-"|uniqid|escape}
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId=$notificationId}
 
-	<input type="hidden" name="monographId" value="{$monographId|escape}" />
+	<input type="hidden" name="submissionId" value="{$submissionId|escape}" />
 	<input type="hidden" name="stageId" value="{$stageId|escape}" />
 	<input type="hidden" name="displayedInContainer" value="{$formParams.displayedInContainer|escape}" />
 	<input type="hidden" name="tab" value="submission" />
@@ -49,13 +49,13 @@
 	{if !$formParams.hideSubmit || !$formParams.anonymous}
 		{* generate a unique ID for the form *}
 		{assign var="authorsGridContainer" value="authorsGridContainer-"|uniqid|escape}
-		{url|assign:authorGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.users.author.AuthorGridHandler" op="fetchGrid" monographId=$monographId stageId=$stageId escape=false}
+		{url|assign:authorGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.users.author.AuthorGridHandler" op="fetchGrid" submissionId=$submissionId stageId=$stageId escape=false}
 		{load_url_in_div id=$authorsGridContainer url="$authorGridUrl"}
 
 		<!--  Chapters -->
 		{if $isEditedVolume}
 			{assign var="chaptersGridContainer" value="authorsGridContainer-"|uniqid|escape}
-			{url|assign:chaptersGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.users.chapter.ChapterGridHandler" op="fetchGrid" monographId=$monographId}
+			{url|assign:chaptersGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.users.chapter.ChapterGridHandler" op="fetchGrid" submissionId=$submissionId}
 			{load_url_in_div id=$chaptersGridContainer url="$chaptersGridUrl"}
 		{/if}
 	{/if}

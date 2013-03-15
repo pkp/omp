@@ -51,7 +51,7 @@ class ApprovedProofFilesGridRow extends GridRow {
 					new AjaxModal(
 						$router->url($request, null, null, 'editApprovedProof', null, array(
 							'fileId' => $fileId,
-							'monographId' => $request->getUserVar('monographId'),
+							'submissionId' => $request->getUserVar('monographId'),
 							'publicationFormatId' => $request->getUserVar('publicationFormatId'),
 						)),
 						__('editor.monograph.approvedProofs.edit'),

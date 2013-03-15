@@ -86,7 +86,7 @@ class AuthorGridHandler extends PKPAuthorGridHandler {
 	function getRequestArgs() {
 		$monograph =& $this->getSubmission();
 		return array(
-			'monographId' => $monograph->getId()
+			'submissionId' => $monograph->getId()
 		);
 	}
 
@@ -109,7 +109,7 @@ class AuthorGridHandler extends PKPAuthorGridHandler {
 	 * @return int
 	 */
 	function getRequestedSubmissionId(&$request) {
-		return $request->getUserVar('monographId');
+		return $request->getUserVar('submissionId');
 	}
 
 	/**
@@ -117,7 +117,7 @@ class AuthorGridHandler extends PKPAuthorGridHandler {
 	 * @return string
 	 */
 	function getSubmissionFieldIdName() {
-		return 'monographId';
+		return 'submissionId';
 	}
 }
 

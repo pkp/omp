@@ -21,7 +21,7 @@
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="approvedProofFormNotification"}
 	{fbvFormArea id="approvedProofInfo"}
 		<input type="hidden" name="fileId" value="{$fileId|escape}" />
-		<input type="hidden" name="monographId" value="{$monographId|escape}" />
+		<input type="hidden" name="submissionId" value="{$submissionId|escape}" />
 		<input type="hidden" name="publicationFormatId" value="{$publicationFormatId|escape}" />
 
 		{fbvFormSection for="priceType" list=true description="payment.directSales.price.description"}

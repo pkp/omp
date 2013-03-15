@@ -47,7 +47,7 @@ class SignoffFilesGridCategoryRow extends GridCategoryRow {
 
 			// Add the row actions.
 			$actionArgs = array(
-				'monographId' => $monographFile->getMonographId(),
+				'submissionId' => $monographFile->getMonographId(),
 				'fileId' => $monographFile->getFileId()
 			);
 

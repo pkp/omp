@@ -69,7 +69,7 @@ class CatalogEntryHandler extends Handler {
 	function authorize(&$request, &$args, $roleAssignments) {
 		$stageId = (int) $request->getUserVar('stageId');
 		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
-		$this->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', $stageId));
+		$this->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'submissionId', $stageId));
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 
@@ -123,7 +123,7 @@ class CatalogEntryHandler extends Handler {
 
 		$monograph =& $this->getMonograph();
 
-		$templateMgr->assign('monographId', $monograph->getId());
+		$templateMgr->assign('submissionId', $monograph->getId());
 		$templateMgr->assign('stageId', $this->getStageId());
 
 		// check to see if this monograph has been published yet
@@ -148,10 +148,10 @@ class CatalogEntryHandler extends Handler {
 		$router =& $request->getRouter();
 		$dispatcher =& $router->getDispatcher();
 
-		$tabsUrl = $dispatcher->url($request, ROUTE_COMPONENT, null, 'modals.submissionMetadata.CatalogEntryHandler', 'fetchFormatInfo', null, array('monographId' => $monograph->getId(), 'stageId' => $this->getStageId()));
+		$tabsUrl = $dispatcher->url($request, ROUTE_COMPONENT, null, 'modals.submissionMetadata.CatalogEntryHandler', 'fetchFormatInfo', null, array('submissionId' => $monograph->getId(), 'stageId' => $this->getStageId()));
 		$templateMgr->assign('tabsUrl', $tabsUrl);
 
-		$tabContentUrl = $dispatcher->url($request, ROUTE_COMPONENT, null, 'tab.catalogEntry.CatalogEntryTabHandler', 'publicationMetadata', null, array('monographId' => $monograph->getId(), 'stageId' => $this->getStageId()));
+		$tabContentUrl = $dispatcher->url($request, ROUTE_COMPONENT, null, 'tab.catalogEntry.CatalogEntryTabHandler', 'publicationMetadata', null, array('submissionId' => $monograph->getId(), 'stageId' => $this->getStageId()));
 		$templateMgr->assign('tabContentUrl', $tabContentUrl);
 		if ($request->getUserVar('hideHelp')) {
 			$templateMgr->assign('hideHelp', true);

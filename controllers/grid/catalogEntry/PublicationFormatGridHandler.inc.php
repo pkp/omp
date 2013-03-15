@@ -195,7 +195,7 @@ class PublicationFormatGridHandler extends GridHandler {
 		$monograph =& $this->getMonograph();
 
 		return array(
-			'monographId' => $monograph->getId(),
+			'submissionId' => $monograph->getId(),
 			'inCatalogEntryModal' => $this->getInCatalogEntryModal()
 		);
 	}

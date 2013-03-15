@@ -108,7 +108,7 @@ class MarketForm extends Form {
 		$publicationFormatId = null;
 
 		$monograph =& $this->getMonograph();
-		$templateMgr->assign('monographId', $monograph->getId());
+		$templateMgr->assign('submissionId', $monograph->getId());
 		$market =& $this->getMarket();
 		$onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO');
 		$templateMgr->assign_by_ref('countryCodes', $onixCodelistItemDao->getCodes('List91')); // countries (CA, US, GB, etc)

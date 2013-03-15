@@ -92,7 +92,7 @@ class SubmissionFilesCategoryGridDataProvider extends CategoryGridDataProvider {
 	function &getCategoryData($categoryDataElement, $filter = null, $reviewRound = null) {
 		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		$dataProvider =& $this->getDataProvider();
-		$monograph =& $dataProvider->getMonograph();
+		$monograph =& $dataProvider->getSubmission();
 		$stageId = $categoryDataElement;
 		$fileStage = $this->_getFileStageByStageId($stageId);
 		$stageMonographFiles = null;

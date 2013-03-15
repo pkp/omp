@@ -43,7 +43,7 @@ class AddSignoffFileLinkAction extends LinkAction {
 
 		// Create the actionArgs array
 		$actionArgs = array();
-		$actionArgs['monographId'] = $monographId;
+		$actionArgs['submissionId'] = $monographId;
 		$actionArgs['stageId'] = $stageId;
 		$actionArgs['symbolic'] = $symbolic;
 		$actionArgs['signoffId'] = $signoffId;

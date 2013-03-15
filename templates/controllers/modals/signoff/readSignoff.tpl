@@ -15,7 +15,7 @@
 </script>
 
 <form class="pkp_form" id="signoffForm" action="{url op="signoffRead"}" method="post">
-	<input type="hidden" name="monographId" value="{$monographId|escape}" />
+	<input type="hidden" name="submissionId" value="{$submissionId|escape}" />
 	<input type="hidden" name="stageId" value="{$stageId|escape}" />
 
 	{fbvFormArea id="signoff"}

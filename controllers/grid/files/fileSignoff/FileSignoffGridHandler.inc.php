@@ -45,7 +45,7 @@ class FileSignoffGridHandler extends SubmissionFilesGridHandler {
 	function initialize(&$request) {
 		parent::initialize($request);
 		$currentUser =& $request->getUser();
-		$monograph =& $this->getSubmission();
+		$submission =& $this->getSubmission();
 
 		$stageAssignmentDao = & DAORegistry::getDAO('StageAssignmentDAO'); /* @var $stageAssignmentDao StageAssignmentDAO */
 		$userGroupDao = DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */
@@ -69,7 +69,7 @@ class FileSignoffGridHandler extends SubmissionFilesGridHandler {
 		$userGroupIds = array();
 		foreach ($roles as $roleId => $roleName) {
 			$userIds = array();
-			$assignments =& $stageAssignmentDao->getBySubmissionAndRoleId($monograph->getId(), $roleId, $this->getStageId());
+			$assignments =& $stageAssignmentDao->getBySubmissionAndRoleId($submission->getId(), $roleId, $this->getStageId());
 
 			// Only include a role column if there is at least one user assigned from that role to this stage.
 			if (!$assignments->wasEmpty()) {
@@ -155,6 +155,14 @@ class FileSignoffGridHandler extends SubmissionFilesGridHandler {
 		NotificationManager::createTrivialNotification($user->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.signedFile')));
 
 		return DAO::getDataChangedEvent($fileId);
+	}
+
+	/**
+	 * Fetches the application-specific submission id field name, for forms.
+	 * @return string
+	 */
+	function getSubmissionFieldIdName() {
+		return 'monographId';
 	}
 }
 

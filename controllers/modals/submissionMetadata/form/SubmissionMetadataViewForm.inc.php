@@ -121,7 +121,7 @@ class SubmissionMetadataViewForm extends Form {
 		$monograph = $this->getMonograph();
 
 		$templateMgr = TemplateManager::getManager($request);
-		$templateMgr->assign('monographId', $monograph->getId());
+		$templateMgr->assign('submissionId', $monograph->getId());
 		$templateMgr->assign('stageId', $this->getStageId());
 		$templateMgr->assign('formParams', $this->getFormParams());
 		$templateMgr->assign('isEditedVolume', $monograph->getWorkType() == WORK_TYPE_EDITED_VOLUME);

@@ -174,7 +174,7 @@ class ReviewerForm extends Form {
 		$selectionType = (int) $request->getUserVar('selectionType');
 		$stageId = $reviewRound->getStageId();
 
-		$this->setData('monographId', $this->getMonographId());
+		$this->setData('submissionId', $this->getMonographId());
 		$this->setData('stageId', $stageId);
 		$this->setData('reviewMethod', $reviewMethod);
 		$this->setData('reviewRoundId', $reviewRound->getId());
@@ -191,7 +191,7 @@ class ReviewerForm extends Form {
 				'editorialContactSignature' => $user->getContactSignature(),
 				'signatureFullName' => $user->getFullname(),
 				'messageToReviewer' => __('reviewer.step1.requestBoilerplate'),
-				'submissionReviewUrl' => $dispatcher->url($request, ROUTE_PAGE, null, 'reviewer', 'submission', null, array('monographId' => $this->getMonographId()))
+				'submissionReviewUrl' => $dispatcher->url($request, ROUTE_PAGE, null, 'reviewer', 'submission', null, array('submissionId' => $this->getMonographId()))
 			));
 		}
 		$this->setData('personalMessage', $template->getBody() . "\n" . $press->getSetting('emailSignature'));
@@ -237,7 +237,7 @@ class ReviewerForm extends Form {
 	function readInputData() {
 		$this->readUserVars(array(
 			'selectionType',
-			'monographId',
+			'submissionId',
 			'personalMessage',
 			'responseDueDate',
 			'reviewDueDate',
@@ -331,7 +331,7 @@ class ReviewerForm extends Form {
 	function getSearchByNameAction(&$request) {
 		$reviewRound =& $this->getReviewRound();
 
-		$actionArgs['monographId'] = $this->getMonographId();
+		$actionArgs['submissionId'] = $this->getMonographId();
 		$actionArgs['stageId'] = $reviewRound->getStageId();
 		$actionArgs['reviewRoundId'] = $reviewRound->getId();
 		$actionArgs['selectionType'] = REVIEWER_SELECT_SEARCH_BY_NAME;

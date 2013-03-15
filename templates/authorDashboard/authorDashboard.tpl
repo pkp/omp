@@ -52,7 +52,7 @@
 		<div class="pkp_authorDashboard_stageContainer" id="submission">
 			<h3><a href="#">{translate key='submission.submission'}</a></h3>
 			<div id="submissionContent">
-				{url|assign:submissionFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.submission.AuthorSubmissionDetailsFilesGridHandler" op="fetchGrid" monographId=$monograph->getId()}
+				{url|assign:submissionFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.submission.AuthorSubmissionDetailsFilesGridHandler" op="fetchGrid" submissionId=$monograph->getId()}
 				{load_url_in_div id="submissionFilesGridDiv" url=$submissionFilesGridUrl}
 			</div>
 		</div>
@@ -93,7 +93,7 @@
 					{include file="authorDashboard/monographEmails.tpl" monographEmails=$copyeditingEmails}
 
 					<!-- Display copyediting files grid -->
-					{url|assign:copyeditingFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.copyedit.AuthorCopyeditingSignoffFilesGridHandler" op="fetchGrid" monographId=$monograph->getId() stageId=$smarty.const.WORKFLOW_STAGE_ID_EDITING escape=false}
+					{url|assign:copyeditingFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.copyedit.AuthorCopyeditingSignoffFilesGridHandler" op="fetchGrid" submissionId=$monograph->getId() stageId=$smarty.const.WORKFLOW_STAGE_ID_EDITING escape=false}
 					{load_url_in_div id="copyeditingFilesGridDiv" url=$copyeditingFilesGridUrl}
 				{else}
 					{translate key="monograph.stageNotInitiated"}
@@ -110,7 +110,7 @@
 					{include file="authorDashboard/monographEmails.tpl" monographEmails=$productionEmails}
 
 					<!-- Display production files grid -->
-					{url|assign:productionFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.proof.AuthorProofingSignoffFilesGridHandler" op="fetchGrid" monographId=$monograph->getId() stageId=$smarty.const.WORKFLOW_STAGE_ID_EDITING escape=false}
+					{url|assign:productionFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.proof.AuthorProofingSignoffFilesGridHandler" op="fetchGrid" submissionId=$monograph->getId() stageId=$smarty.const.WORKFLOW_STAGE_ID_EDITING escape=false}
 					{load_url_in_div id="productionFilesGridDiv" url=$productionFilesGridUrl}
 				{else}
 					{translate key="monograph.stageNotInitiated"}
@@ -123,7 +123,7 @@
 		<div class="pkp_authorDashboard_stageContainer" id="documents">
 			<h3><a href="#">{translate key='submission.documents'}</a></h3>
 			<div id="documentsContent">
-				{url|assign:documentsGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.submissionDocuments.SubmissionDocumentsFilesGridHandler" op="fetchGrid" monographId=$monograph->getId()}
+				{url|assign:documentsGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.submissionDocuments.SubmissionDocumentsFilesGridHandler" op="fetchGrid" submissionId=$monograph->getId()}
 				{load_url_in_div id="documentsGridDiv" url=$documentsGridUrl}
 			</div>
 		</div>

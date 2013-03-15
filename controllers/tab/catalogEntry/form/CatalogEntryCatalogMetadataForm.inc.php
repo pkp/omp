@@ -79,7 +79,7 @@ class CatalogEntryCatalogMetadataForm extends Form {
 		$monograph =& $this->getMonograph();
 
 		$templateMgr =& TemplateManager::getManager($request);
-		$templateMgr->assign('monographId', $this->getMonograph()->getId());
+		$templateMgr->assign('submissionId', $this->getMonograph()->getId());
 		$templateMgr->assign('stageId', $this->getStageId());
 		$templateMgr->assign('formParams', $this->getFormParams());
 

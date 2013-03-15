@@ -103,7 +103,7 @@ class StageParticipantGridRow extends GridRow {
 	 */
 	function getRequestArgs() {
 		return array(
-			'monographId' => $this->getMonograph()->getId(),
+			'submissionId' => $this->getMonograph()->getId(),
 			'stageId' => $this->_stageId,
 			'assignmentId' => $this->getId()
 		);

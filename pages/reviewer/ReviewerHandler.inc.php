@@ -154,7 +154,7 @@ class ReviewerHandler extends Handler {
 		$this->setupTemplate($request);
 
 		$templateMgr =& TemplateManager::getManager($request);
-		$templateMgr->assign('monographId', $reviewerSubmission->getId());
+		$templateMgr->assign('submissionId', $reviewerSubmission->getId());
 
 		return $templateMgr->fetchJson('reviewer/review/modal/regretMessage.tpl');
 	}

@@ -114,7 +114,7 @@ class ReviewerGridHandler extends GridHandler {
 
 		// Get the stage access policy
 		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
-		$ompWorkflowStageAccessPolicy = new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', $stageId);
+		$ompWorkflowStageAccessPolicy = new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'submissionId', $stageId);
 
 		// Add policy to ensure there is a review round id.
 		import('classes.security.authorization.internal.ReviewRoundRequiredPolicy');
@@ -209,7 +209,7 @@ class ReviewerGridHandler extends GridHandler {
 		$monograph =& $this->getMonograph();
 		$reviewRound =& $this->getReviewRound();
 		return array(
-			'monographId' => $monograph->getId(),
+			'submissionId' => $monograph->getId(),
 			'stageId' => $this->getStageId(),
 			'reviewRoundId' => $reviewRound->getId()
 		);
@@ -445,7 +445,7 @@ class ReviewerGridHandler extends GridHandler {
 				'log.review.reviewUnconsidered',
 				array(
 					'editorName' => $user->getFullName(),
-					'monographId' => $monograph->getId(),
+					'submissionId' => $monograph->getId(),
 					'round' => $reviewAssignment->getRound(),
 				)
 		);
@@ -594,7 +594,7 @@ class ReviewerGridHandler extends GridHandler {
 		$reviewAssignment =& $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ASSIGNMENT);
 
 		// Form handling.
-		import('controllers.grid.settings.user.form.UserEmailForm');
+		import('lib.pkp.controllers.grid.settings.user.form.UserEmailForm');
 		$userEmailForm = new UserEmailForm($reviewAssignment->getReviewerId());
 		$userEmailForm->initData($args, $request);
 

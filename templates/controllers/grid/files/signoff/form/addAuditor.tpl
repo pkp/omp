@@ -21,7 +21,7 @@
 
 		{include file="controllers/notification/inPlaceNotification.tpl" notificationId="addAuditorNotification"}
 
-		<input type="hidden" name="monographId" value="{$monographId|escape}" />
+		<input type="hidden" name="submissionId" value="{$submissionId|escape}" />
 		{if $publicationFormatId}
 			<input type="hidden" name="publicationFormatId" value="{$publicationFormatId|escape}" />
 		{/if}
@@ -35,10 +35,10 @@
 
 		<!-- Available files listbuilder -->
 		{if $fileStage == $smarty.const.SUBMISSION_FILE_COPYEDIT}
-			{url|assign:filesListbuilderUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.files.CopyeditingFilesListbuilderHandler" op="fetch" monographId=$monographId}
+			{url|assign:filesListbuilderUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.files.CopyeditingFilesListbuilderHandler" op="fetch" submissionId=$submissionId}
 			{assign var="filesListbuilderId" value="copyeditingFilesListbuilder"}
 		{else $fileStage == $smarty.const.SUBMISSION_FILE_PROOF}
-			{url|assign:filesListbuilderUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.files.ProofFilesListbuilderHandler" op="fetch" monographId=$monographId publicationFormatId=$publicationFormatId escape=false}
+			{url|assign:filesListbuilderUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.files.ProofFilesListbuilderHandler" op="fetch" submissionId=$submissionId publicationFormatId=$publicationFormatId escape=false}
 			{assign var="filesListbuilderId" value="proofFilesListbuilder"}
 		{/if}
 

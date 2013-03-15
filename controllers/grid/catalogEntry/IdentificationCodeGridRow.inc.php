@@ -45,7 +45,7 @@ class IdentificationCodeGridRow extends GridRow {
 		if ($identificationCode != null && is_numeric($identificationCode->getId())) {
 			$router =& $request->getRouter();
 			$actionArgs = array(
-				'monographId' => $monograph->getId(),
+				'submissionId' => $monograph->getId(),
 				'identificationCodeId' => $identificationCode->getId()
 			);
 

@@ -50,7 +50,7 @@ class FilesListbuilderHandler extends ListbuilderHandler {
 	 */
 	function authorize(&$request, &$args, $roleAssignments, $stageId) {
 		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
-		$this->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', $stageId), true);
+		$this->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'submissionId', $stageId), true);
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 
@@ -101,7 +101,7 @@ class FilesListbuilderHandler extends ListbuilderHandler {
 	function getRequestArgs() {
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		$args = parent::getRequestArgs();
-		$args['monographId'] = $monograph->getId();
+		$args['submissionId'] = $monograph->getId();
 		return $args;
 	}
 

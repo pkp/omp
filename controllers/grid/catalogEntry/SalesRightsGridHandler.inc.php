@@ -199,7 +199,7 @@ class SalesRightsGridHandler extends GridHandler {
 		$publicationFormat =& $this->getPublicationFormat();
 
 		return array(
-			'monographId' => $monograph->getId(),
+			'submissionId' => $monograph->getId(),
 			'publicationFormatId' => $publicationFormat->getId()
 		);
 	}

@@ -31,7 +31,7 @@ class AuthorGridRow extends PKPAuthorGridRow {
 	function getRequestArgs() {
 		$monograph =& $this->getSubmission();
 		return array(
-			'monographId' => $monograph->getId()
+			'submissionId' => $monograph->getId()
 		);
 	}
 
