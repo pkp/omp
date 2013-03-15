@@ -13,9 +13,9 @@
  */
 
 
-import('lib.pkp.controllers.grid.files.FilesGridDataProvider');
+import('lib.pkp.controllers.grid.files.PKPSubmissionFilesGridDataProvider');
 
-class SubmissionFilesGridDataProvider extends FilesGridDataProvider {
+class SubmissionFilesGridDataProvider extends PKPSubmissionFilesGridDataProvider {
 
 	/** @var integer */
 	var $_stageId;
@@ -29,32 +29,8 @@ class SubmissionFilesGridDataProvider extends FilesGridDataProvider {
 	 * @param $fileStage integer One of the SUBMISSION_FILE_* constants.
 	 */
 	function SubmissionFilesGridDataProvider($fileStage, $viewableOnly = false) {
-		assert(is_numeric($fileStage) && $fileStage > 0);
-		$this->_fileStage = (int)$fileStage;
-		parent::FilesGridDataProvider();
-
-		$this->setViewableOnly($viewableOnly);
+		parent::PKPSubmissionFilesGridDataProvider($fileStage, $viewableOnly);
 	}
-
-
-	//
-	// Getters and setters.
-	//
-	/**
-	 * Set the workflow stage.
-	 */
-	function setStageId($stageId) {
-		$this->_stageId = $stageId;
-	}
-
-	/**
-	 * Get the workflow stage.
-	 * @return integer
-	 */
-	function getStageId() {
-		return $this->_stageId;
-	}
-
 
 	//
 	// Implement template methods from GridDataProvider
@@ -66,56 +42,8 @@ class SubmissionFilesGridDataProvider extends FilesGridDataProvider {
 		$this->setUploaderRoles($roleAssignments);
 
 		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
-		$policy = new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', $this->getStageId());
+		$policy = new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'submissionId', $this->getStageId());
 		return $policy;
-	}
-
-	/**
-	 * @see GridDataProvider::getRequestArgs()
-	 */
-	function getRequestArgs() {
-		$monograph =& $this->getMonograph();
-		return array(
-			'monographId' => $monograph->getId(),
-			'stageId' => $this->getStageId(),
-			'fileStage' => $this->getFileStage()
-		);
-	}
-
-	/**
-	 * Get the file stage.
-	 * @return integer
-	 */
-	function getFileStage() {
-		return $this->_fileStage;
-	}
-
-	/**
-	 * @see GridDataProvider::loadData()
-	 */
-	function &loadData() {
-		// Retrieve all monograph files for the given file stage.
-		$monograph =& $this->getMonograph();
-		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-		$monographFiles =& $submissionFileDao->getLatestRevisions($monograph->getId(), $this->getFileStage());
-		return $this->prepareSubmissionFileData($monographFiles, $this->_viewableOnly);
-	}
-
-
-	//
-	// Overridden public methods from FilesGridDataProvider
-	//
-	/**
-	 * @see FilesGridDataProvider::getAddFileAction()
-	 */
-	function &getAddFileAction($request) {
-		import('controllers.api.file.linkAction.AddFileLinkAction');
-		$monograph =& $this->getMonograph();
-		$addFileAction = new AddFileLinkAction(
-			$request, $monograph->getId(), $this->getStageId(),
-			$this->getUploaderRoles(), $this->getFileStage()
-		);
-		return $addFileAction;
 	}
 }
 
