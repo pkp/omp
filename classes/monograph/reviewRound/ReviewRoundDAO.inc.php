@@ -50,7 +50,7 @@ class ReviewRoundDAO extends DAO {
 			$reviewRound->setStageId($stageId);
 			$reviewRound->setStatus($status);
 			$this->insertObject($reviewRound);
-			$reviewRound->setId($this->getInsertReviewRoundId());
+			$reviewRound->setId($this->getInsertId());
 
 			return $reviewRound;
 		} else {
@@ -258,7 +258,7 @@ class ReviewRoundDAO extends DAO {
 	 * Get the ID of the last inserted review round.
 	 * @return int
 	 */
-	function getInsertReviewRoundId() {
+	function getInsertId() {
 		return $this->_getInsertId('review_rounds', 'user_id');
 	}
 

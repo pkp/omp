@@ -63,7 +63,7 @@ class ReviewAssignmentDAO extends PKPReviewAssignmentDAO {
 	 * Get the ID of the last inserted review assignment.
 	 * @return int
 	 */
-	function getInsertReviewId() {
+	function getInsertId() {
 		return $this->_getInsertId('review_assignments', 'review_id');
 	}
 

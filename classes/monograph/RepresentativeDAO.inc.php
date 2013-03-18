@@ -133,7 +133,7 @@ class RepresentativeDAO extends DAO {
 			)
 		);
 
-		$representative->setId($this->getInsertRepresentativeId());
+		$representative->setId($this->getInsertId());
 		return $representative->getId();
 	}
 
@@ -191,7 +191,7 @@ class RepresentativeDAO extends DAO {
 	 * Get the ID of the last inserted representative entry.
 	 * @return int
 	 */
-	function getInsertRepresentativeId() {
+	function getInsertId() {
 		return $this->_getInsertId('representatives', 'representative_id');
 	}
 }

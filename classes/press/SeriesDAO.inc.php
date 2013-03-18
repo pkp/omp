@@ -138,7 +138,7 @@ class SeriesDAO extends DAO {
 			)
 		);
 
-		$series->setId($this->getInsertSeriesId());
+		$series->setId($this->getInsertId());
 		$this->updateLocaleFields($series);
 		return $series->getId();
 	}
@@ -297,7 +297,7 @@ class SeriesDAO extends DAO {
 	 * Get the ID of the last inserted series.
 	 * @return int
 	 */
-	function getInsertSeriesId() {
+	function getInsertId() {
 		return $this->_getInsertId('series', 'series_id');
 	}
 

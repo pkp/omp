@@ -134,7 +134,7 @@ class SpotlightDAO extends DAO {
 				(int) $spotlight->getPressId(),
 			)
 		);
-		$spotlight->setId($this->getInsertSpotlightId());
+		$spotlight->setId($this->getInsertId());
 		$this->updateLocaleFields($spotlight);
 		return $spotlight->getId();
 	}
@@ -334,7 +334,7 @@ class SpotlightDAO extends DAO {
 	 * Get the ID of the last inserted spotlight.
 	 * @return int
 	 */
-	function getInsertSpotlightId() {
+	function getInsertId() {
 		return $this->_getInsertId('spotlights', 'spotlight_id');
 	}
 }

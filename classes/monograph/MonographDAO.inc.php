@@ -200,7 +200,7 @@ class MonographDAO extends DAO {
 			)
 		);
 
-		$monograph->setId($this->getInsertMonographId());
+		$monograph->setId($this->getInsertId());
 		$this->updateLocaleFields($monograph);
 
 		return $monograph->getId();
@@ -502,7 +502,7 @@ class MonographDAO extends DAO {
 	 * Get the ID of the last inserted monograph.
 	 * @return int
 	 */
-	function getInsertMonographId() {
+	function getInsertId() {
 		return $this->_getInsertId('monographs', 'monograph_id');
 	}
 

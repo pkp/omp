@@ -126,7 +126,7 @@ class ChapterDAO extends DAO {
 			)
 		);
 
-		$chapter->setId($this->getInsertChapterId());
+		$chapter->setId($this->getInsertId());
 		$this->updateLocaleFields($chapter);
 		return $chapter->getId();
 	}
@@ -215,7 +215,7 @@ class ChapterDAO extends DAO {
 	 * Get the ID of the last inserted board chapter.
 	 * @return int
 	 */
-	function getInsertChapterId() {
+	function getInsertId() {
 		return $this->_getInsertId('chapters', 'chapter_id');
 	}
 }

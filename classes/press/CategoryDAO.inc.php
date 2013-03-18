@@ -190,7 +190,7 @@ class CategoryDAO extends DAO {
 			)
 		);
 
-		$category->setId($this->getInsertCategoryId());
+		$category->setId($this->getInsertId());
 		$this->updateLocaleFields($category);
 		return $category->getId();
 	}
@@ -333,7 +333,7 @@ class CategoryDAO extends DAO {
 	 * Get the ID of the last inserted category.
 	 * @return int
 	 */
-	function getInsertCategoryId() {
+	function getInsertId() {
 		return $this->_getInsertId('categories', 'category_id');
 	}
 }

@@ -111,7 +111,7 @@ class PublicationDateDAO extends DAO {
 			)
 		);
 
-		$publicationDate->setId($this->getInsertPublicationDateId());
+		$publicationDate->setId($this->getInsertId());
 		return $publicationDate->getId();
 	}
 
@@ -155,7 +155,7 @@ class PublicationDateDAO extends DAO {
 	 * Get the ID of the last inserted publication date.
 	 * @return int
 	 */
-	function getInsertPublicationDateId() {
+	function getInsertId() {
 		return $this->_getInsertId('publication_dates', 'publication_date_id');
 	}
 }

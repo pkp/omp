@@ -135,7 +135,7 @@ class SalesRightsDAO extends DAO {
 			)
 		);
 
-		$salesRights->setId($this->getInsertSalesRightsId());
+		$salesRights->setId($this->getInsertId());
 		return $salesRights->getId();
 	}
 
@@ -187,7 +187,7 @@ class SalesRightsDAO extends DAO {
 	 * Get the ID of the last inserted sales rights entry.
 	 * @return int
 	 */
-	function getInsertSalesRightsId() {
+	function getInsertId() {
 		return $this->_getInsertId('sales_rights', 'sales_rights_id');
 	}
 }

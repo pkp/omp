@@ -65,14 +65,14 @@ class OMPCompletedPaymentDAO extends DAO {
 			)
 		);
 
-		return $this->getInsertCompletedPaymentId();
+		return $this->getInsertId();
 	}
 
 	/**
 	 * Get the ID of the last inserted completed payment.
 	 * @return int
 	 */
-	function getInsertCompletedPaymentId() {
+	function getInsertId() {
 		return $this->_getInsertId('completed_payments', 'completed_payment_id');
 	}
 

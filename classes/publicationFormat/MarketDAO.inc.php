@@ -133,7 +133,7 @@ class MarketDAO extends DAO {
 			)
 		);
 
-		$market->setId($this->getInsertMarketId());
+		$market->setId($this->getInsertId());
 		return $market->getId();
 	}
 
@@ -203,7 +203,7 @@ class MarketDAO extends DAO {
 	 * Get the ID of the last inserted market entry.
 	 * @return int
 	 */
-	function getInsertMarketId() {
+	function getInsertId() {
 		return $this->_getInsertId('markets', 'market_id');
 	}
 }

@@ -194,7 +194,7 @@ class MonographCommentDAO extends DAO {
 			)
 		);
 
-		$monographComment->setCommentId($this->getInsertMonographCommentId());
+		$monographComment->setCommentId($this->getInsertId());
 		return $monographComment->getCommentId();
 	}
 
@@ -202,7 +202,7 @@ class MonographCommentDAO extends DAO {
 	 * Get the ID of the last inserted monograph comment.
 	 * @return int
 	 */
-	function getInsertMonographCommentId() {
+	function getInsertId() {
 		return $this->_getInsertId('monograph_comments', 'comment_id');
 	}
 

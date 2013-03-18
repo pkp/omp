@@ -107,7 +107,7 @@ class IdentificationCodeDAO extends DAO {
 			)
 		);
 
-		$identificationCode->setId($this->getInsertIdentificationCodeId());
+		$identificationCode->setId($this->getInsertId());
 		return $identificationCode->getId();
 	}
 
@@ -150,7 +150,7 @@ class IdentificationCodeDAO extends DAO {
 	 * Get the ID of the last inserted identification code.
 	 * @return int
 	 */
-	function getInsertIdentificationCodeId() {
+	function getInsertId() {
 		return $this->_getInsertId('identification_codes', 'identification_code_id');
 	}
 }
