@@ -357,6 +357,18 @@ class ReviewAssignmentDAO extends PKPReviewAssignmentDAO {
 		$result->Close();
 		return $reviewAssignments;
 	}
+
+	/**
+	 * Delete review assignment.
+	 * @param $reviewId int
+	 */
+	function deleteById($reviewId) {
+		parent::deleteById($reviewId);
+
+		// Delete any outstanding notifications for this monograph
+		$notificationDao = DAORegistry::getDAO('NotificationDAO');
+		$notificationDao->deleteByAssoc(ASSOC_TYPE_REVIEW_ASSIGNMENT, $reviewId);
+	}
 }
 
 ?>
