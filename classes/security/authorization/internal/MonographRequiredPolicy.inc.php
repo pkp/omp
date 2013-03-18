@@ -21,7 +21,7 @@ class MonographRequiredPolicy extends DataObjectRequiredPolicy {
 	 * @param $submissionParameterName string the request parameter we expect
 	 *  the submission id in.
 	 */
-	function MonographRequiredPolicy(&$request, &$args, $submissionParameterName = 'monographId', $operations = null) {
+	function MonographRequiredPolicy(&$request, &$args, $submissionParameterName = 'submissionId', $operations = null) {
 		parent::DataObjectRequiredPolicy($request, $args, $submissionParameterName, 'user.authorization.invalidMonograph', $operations);
 	}
 

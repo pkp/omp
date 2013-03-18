@@ -21,7 +21,7 @@ class SeriesEditorSubmissionRequiredPolicy extends DataObjectRequiredPolicy {
 	 * @param $args array
 	 * @param $submissionParameterName string
 	 */
-	function SeriesEditorSubmissionRequiredPolicy(&$request, &$args, $submissionParameterName = 'monographId', $operations = null) {
+	function SeriesEditorSubmissionRequiredPolicy(&$request, &$args, $submissionParameterName = 'submissionId', $operations = null) {
 		parent::DataObjectRequiredPolicy($request, $args, $submissionParameterName, 'user.authorization.invalidSeriesEditorSubmission', $operations);
 	}
 
