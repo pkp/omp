@@ -533,14 +533,9 @@
 	<message key="installer.installationInstructions"><![CDATA[
 		<p>Agradecemos por baixar o <strong>Open Monograph Press {$version}</strong>, software desenvolvido pelo Public Knowledge Project. Antes de continuar, leia o <a href="{$baseUrl}/docs/README">README</a> incluído no pacote. Para maiores informações sobre o Public Knowledge Project e seus projetos de software, visite a página do <a href="http://pkp.sfu.ca/" target="_blank">PKP</a>. Caso encontre falhas no sistema ou tenha perguntas técnicas sobre o Open Monograph Press, acesse o <a href="http://pkp.sfu.ca/support/forum" target="_blank">fórum de suporte</a> ou o <a href="http://pkp.sfu.ca/bugzilla/" target="_blank">sistema de relatório de erros</a> do PKP. Embora o fórum seja o método preferido de contato, aceitamos mensagens à equipe no endereço <a href="mailto:pkp.contact@gmail.com">pkp.contact@gmail.com</a>.</p>
 
-<!--
-
 <h4>Atualização</h4>
 
-<p>Caso esteja atualizando uma versão existente no OMP 0.x, <a href="{$upgradeUrl}">clique aqui</a> para proceder.</p>
-
--->
-]]></message>
+<p>Caso esteja atualizando uma versão existente no OMP 0.x, <a href="{$upgradeUrl}">clique aqui</a> para proceder.</p>]]></message>
 	<message key="installer.preInstallationInstructionsTitle">Antes de instalar</message>
 	<message key="installer.preInstallationInstructions"><![CDATA[<p>1. Os seguintes arquivos e pastas (e seus conteúdos) devem possuir permissão de escrita:</p>
 <ul>

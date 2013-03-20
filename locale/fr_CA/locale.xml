@@ -539,14 +539,9 @@ Sauvegarder.</li>
 	<message key="installer.installationInstructions"><![CDATA[
 <p>Merci d'avoir téléchargé <strong>Open Monograph Press {$version}</strong> du Public Knowledge Project. Avant de procéder, veuillez lire le fichier <a href="{$baseUrl}/docs/README">README</a> qui accompagne ce logiciel. Pour de plus amples renseignements sure le Public Knowledge Project et ses projets de logiciels, veuillez consulter le <a href="http://pkp.sfu.ca/" target="_blank">site Web du PKP</a>. Si vous rencontrez des bogues ou avez des questions d'ordre technique à poser à Open Monograph Press, consultez le <a href="http://pkp.sfu.ca/support/forum" target="_blank">forum</a> ou consultez le <a href="http://pkp.sfu.ca/bugzilla/" target="_blank">système de rapport sur les bogues</a> en ligne de PKP. Bien que le forum soit le mode préféré de communication, vous pouvez également envoyer un courriel à l'équipe au <a href="mailto:pkp.contact@gmail.com">pkp.contact@gmail.com</a>.</p>
 
-<!--
-
 <h4>Upgrade</h4>
 
-<p>S'il s'agit d'une mise à jour d'OMP 0.x, <a href="{$upgradeUrl}">cliquez ici</a> pour continuer.</p>
-
--->
-]]></message>
+<p>S'il s'agit d'une mise à jour d'OMP 0.x, <a href="{$upgradeUrl}">cliquez ici</a> pour continuer.</p>]]></message>
 	<message key="installer.preInstallationInstructionsTitle">Étapes de Pré-installation</message>
 	<message key="installer.preInstallationInstructions"><![CDATA[<p>1. Les fichiers et répertoires suivants (et leur contenu) doivent être inscriptibles:</p>
 <ul>

@@ -565,14 +565,9 @@ current password.<br /><br />Enter your email address below to reset your passwo
 	<message key="installer.installationInstructions"><![CDATA[
 <p>Thank you for downloading the Public Knowledge Project's <strong>Open Monograph Press {$version}</strong>. Before proceeding, please read the <a href="{$baseUrl}/docs/README">README</a> file included with this software. For more information about the Public Knowledge Project and its software projects, please visit the <a href="http://pkp.sfu.ca/" target="_blank">PKP web site</a>. If you have bug reports or technical support inquiries about Open Monograph Press, see the <a href="http://pkp.sfu.ca/support/forum" target="_blank">support forum</a> or visit PKP's online <a href="http://pkp.sfu.ca/bugzilla/" target="_blank">bug reporting system</a>. Although the support forum is the preferred method of contact, you can also email the team at <a href="mailto:pkp.contact@gmail.com">pkp.contact@gmail.com</a>.</p>
 
-<!--
-
 <h4>Upgrade</h4>
 
-<p>If you are upgrading an existing installation of OMP 0.x, <a href="{$upgradeUrl}">click here</a> to proceed.</p>
-
--->
-]]></message>
+<p>If you are upgrading an existing installation of OMP 0.x, <a href="{$upgradeUrl}">click here</a> to proceed.</p>]]></message>
 	<message key="installer.preInstallationInstructionsTitle">Pre-Installation Steps</message>
 	<message key="installer.preInstallationInstructions"><![CDATA[<p>1. The following files and directories (and their contents) must be made writable:</p>
 <ul>
