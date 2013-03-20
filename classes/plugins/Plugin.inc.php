@@ -33,13 +33,6 @@ class Plugin extends PKPPlugin {
 	 * @param $name
 	 */
 	function getSetting($pressId, $name) {
-		if (defined('RUNNING_UPGRADE')) {
-			// Bug #2504: Make sure plugin_settings table is not
-			// used if it's not available.
-			$versionDao =& DAORegistry::getDAO('VersionDAO');
-			$version =& $versionDao->getCurrentVersion();
-			if ($version->compare('2.1.0') < 0) return null;
-		}
 		return $this->getContextSpecificSetting(array($pressId), $name);
 	}
 
