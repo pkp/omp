@@ -14,7 +14,7 @@
 	<!-- General monograph keys -->
 	<message key="monograph.audience">Audience</message>
 	<message key="monograph.coverImage">Cover Image</message>
-	<message key="monograph.coverImage.uploadInstructions">Make sure that the image height is not bigger than 150% of it's width, otherwise the carousel will not show the entire cover.'</message>
+	<message key="monograph.coverImage.uploadInstructions">Make sure that the image height is not bigger than 150% of it's width, otherwise the carousel will not show the entire cover.</message>
 	<message key="monograph.currentCoverImage">Current Image</message>
 	<message key="monograph.audience.rangeQualifier">Audience Range Qualifier</message>
 	<message key="monograph.audience.rangeFrom">Audience Range (from)</message>
@@ -462,7 +462,6 @@
 	<message key="user.role.seriesEditor">Series Editor</message>
 	<message key="user.role.pressAssistant">Press Assistant</message>
 	<message key="user.role.copyeditor">Copyeditor</message>
-	<message key="user.role.seriesEditor">Series Editor</message>
 	<message key="user.role.seriesEditors">Series Editors</message>
 	<message key="user.role.proofreader">Proofreader</message>
 	<message key="user.role.author">Author</message>
@@ -473,7 +472,6 @@
 	<message key="user.role.reviewers">Reviewers</message>
 	<message key="user.role.managers">Press Managers</message>
 	<message key="user.role.editors">Editors</message>
-	<message key="user.role.seriesEditors">Series Editors</message>
 	<message key="user.role.copyeditors">Copyeditors</message>
 	<message key="user.role.proofreaders">Proofreaders</message>
 	<message key="user.role.authors">Authors</message>
@@ -491,8 +489,8 @@ current password.<br /><br />Enter your email address below to reset your passwo
 	<message key="informationCenter.addFileNote">Add to File</message>
 	<message key="informationCenter.addSubmissionNote">Add to Submission</message>
 	<message key="informationCenter.noNotes">There are no notes to display.</message>
-	<message key="informationCenter.currentNotes">Current Revision</message>
-	<message key="informationCenter.pastNotes">Earlier Revisions</message>
+	<message key="informationCenter.currentNotes">Current Notes</message>
+	<message key="informationCenter.pastNotes">Earlier Notes</message>
 	<message key="informationCenter.lastUpdated">Last Updated</message>
 	<message key="informationCenter.deleteConfirm">Are you sure you wish to delete this note?</message>
 	<message key="informationCenter.currentHistory">Current Revision</message>

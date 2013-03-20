@@ -339,7 +339,6 @@ Informe, se desesjar, o motivo do bloqueio.</message>
 	<message key="manager.setup.pressDescription">Apresentação</message>
 	<message key="manager.setup.pressDescription.description">A apresentação da editora deve ser incluída aqui. O texto aparecerá na página inicial da editora.</message>
 	<message key="manager.setup.pressArchiving">Arquivamento</message>
-	<message key="manager.setup.pressDescriptionDescription">Inclua um texto de 20 a 25 palavras em texto/HTML, que aparecerá logo abaixo dos links de navegação.</message>
 	<message key="manager.setup.pressHomepageContent">Conteúdo da página inicial da editora</message>
 	<message key="manager.setup.pressHomepageContentDescription">A página inicial da editora consiste, por padrão, de links de navegação. Conteúdo adicional pode ser incluído usando uma ou mais das opções a seguir, que aparecerão na ordem exibida.</message>
 	<message key="manager.setup.pressHomepageHeader">Cabeçalho</message>
@@ -511,11 +510,6 @@ Autores que publicam nesta editora concordam com os seguintes termos:
 </ol>]]></message>
 	<message key="manager.setup.subjectClassificationDescription"><![CDATA[[A editora usará um sistema de classificação de assunto disponível na web.<br />
 Título do sistema de classificação]]></message>
-	<message key="manager.setup.registerPressForIndexingDescription"><![CDATA[Para indexar o conteúdo da editora em bases de dados de sistemas de pesquisa distribuídos globalmente, <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">cadastre</a> sua página no <a href="http://pkp.sfu.ca/harvester/" target="_blank">coletador</a> de metadados do Public Knowledge Project. Esta ferramenta coleta os metadados de indexação de cada item publicado pela editora, permitindo a busca precisa e coletiva nos sistemas que adotam o <a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank">Protocolo de Coleta de Metadados do Open Archives Initiative</a>.
-<br /><br />
-Note que se o administrador do site já cadastrou o site no coletador do PKP, a editora estará automaticament indexada e não é necessário cadastrá-la.
-<br /><br />
-<a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Clique aqui</a> e informe o endereço <span class="highlight">{$siteUrl}</span> em <strong>Site URL</strong>, e o endereço <span class="highlight">{$oaiUrl}</span> em <strong>Base URL for OAI Archive</strong>.]]></message>
 		<message key="manager.setup.basicEditorialStepsDescription"><![CDATA[Passos: Fila de submissão &gt; Avaliação &gt; Edição &gt; Sumário.<br /><br />
 Escolha um modelo para lidar com os aspectos do processo editorial (Para designar um editor gerente e editor de séries, acesse Editores, na administração da editora.)]]></message>
 	<message key="manager.setup.referenceLinkingDescription"><![CDATA[<p>Para abilitar leitores a localizar versões online do trabalho citado pelo autor, estão disponíveis as opções a seguir.</p>

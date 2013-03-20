@@ -383,8 +383,6 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.pressDescription">Descripción de la editorial</message>
 	<message key="manager.setup.pressDescription.description">Una descripción general de la editorial debiera ser incluida aquí. Esta descripción estará disponible en la página de inicio de la editorial.</message>
 	<message key="manager.setup.pressArchiving">Press Archiving</message>
-	<message key="manager.setup.pressDescription">Descripción de la editorial</message>
-	<message key="manager.setup.pressDescriptionDescription">Add a brief 20-25 word description in text/HTML which will appear just below the navigation links.</message>
 	<message key="manager.setup.pressHomepageContent">Press Homepage Content</message>
 	<message key="manager.setup.pressHomepageContentDescription">The press homepage consists of navigation links by default. Additional homepage content can be appended by using one or all of the following options, which will appear in the order shown.</message>
 	<message key="manager.setup.pressHomepageHeader">Press Homepage Header</message>
@@ -556,11 +554,6 @@ Authors who publish with this press agree to the following terms:
 </ol>]]></message>
 	<message key="manager.setup.subjectClassificationDescription"><![CDATA[[Press will use a subject classification system available on the web.<br />
 Title of classification system]]></message>
-	<message key="manager.setup.registerPressForIndexingDescription"><![CDATA[To have the contents of this press indexed within a globally distributed system of research databases, <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">register</a> your press URL with the Public Knowledge Project metadata <a href="http://pkp.sfu.ca/harvester/" target="_blank">harvester</a>. This tool collects the metadata from each indexed item in this press, enabling accurate and collective searching among the research sites that adhere to the <a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank">Open Archives Initiative Protocol for Metadata Harvesting</a>.
-<br /><br />
-Note that if your site administrator has already registered this site with the PKP Harvester, your press will be indexed automatically and you do not need to register your press.
-<br /><br />
-<a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Click here</a> and enter <span class="highlight">{$siteUrl}</span> under <strong>Site URL</strong>, and <span class="highlight">{$oaiUrl}</span> under <strong>Base URL for OAI Archive</strong>.]]></message>
 	<message key="manager.setup.basicEditorialStepsDescription"><![CDATA[Steps: Submission Queue &gt; Submission Review &gt; Submission Editing &gt; Table of Contents.<br /><br />
 Select a model for handling these aspects of the editorial process. (To designate a Managing Editor and Series Editors, go to Editors in Press Management.)]]></message>
 	<message key="manager.setup.referenceLinkingDescription"><![CDATA[<p>To enable readers to locate online versions of the work cited by an author, the following options are available.</p>

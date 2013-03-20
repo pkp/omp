@@ -759,7 +759,7 @@ The submission "{$monographTitle}" to {$pressName} has been proofread by the aut
 3. Send the COMPLETE email in Proofreading Step 3 to the editor.
 
 {$pressName} URL: {$pressUrl}
-Subnmission URL: {$submissionUrl}
+Submission URL: {$submissionUrl}
 Username: {$layoutEditorUsername}
 
 If you are unable to undertake this work at this time or have any questions, please contact me. Thank you for your contribution to this press.

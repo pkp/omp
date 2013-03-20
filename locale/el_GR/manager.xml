@@ -380,8 +380,6 @@
 	<message key="manager.setup.pressDescription">Περιγραφή Εκδόσεων</message>
 	<message key="manager.setup.pressDescription.description">Μια γενική περιγραφή των Εκδόσεων θα πρέπει να περιλαμβάνεται εδώ. Αυτή η περιγραφή θα είναι διαθέσιμη στην αρχική σελίδα των εκδόσεων.</message>
 	<message key="manager.setup.pressArchiving">Αρχειοθέτηση Εκδόσεων</message>
-	<message key="manager.setup.pressDescription">Περιγραφή Εκδόσεων</message>
-	<message key="manager.setup.pressDescriptionDescription">Προσθέτε μια σύντομη περιγραφή 20-25 λέξεων με την μορφή απλού κειμένου ή HTML κώδικα που εμφανίζεται κάτω ακριβώς από τους συνδέσμους πλοήγησης.</message>
 	<message key="manager.setup.pressHomepageContent">Περιεχόμενα Αρχικής Σελίδας Εκδόσεων</message>
 	<message key="manager.setup.pressHomepageContentDescription">Εξ’ορισμού, η αρχική σελίδα των εκδόσεων αποτελείται από δεσμούς πλοήγησης. Η προσθήκη πρόσθετου περιεχομένου αρχικής σελίδας μπορεί να γίνει χρησιμοποιώντας κάποιες ή όλες τις ακόλουθες επιλογές, που θα εμφανιστούν με την σειρά αυτή.</message>
 	<message key="manager.setup.pressHomepageHeader">Κεφαλίδα Αρχικής Σελίδας Εκδόσεων</message>
@@ -553,11 +551,6 @@
 </ol>]]></message>
 	<message key="manager.setup.subjectClassificationDescription"><![CDATA[[Οι Εκδόσεις θα χρησιμοποιούν ένα σύστημα θεματικής ταξινόμησης διαθέσιμο στο διαδίκτυο.<br />
 Τίτλος Συστήματος Ταξινόμησης]]></message>
-	<message key="manager.setup.registerPressForIndexingDescription"><![CDATA[Για να ευρετηριάζονται τα περιεχόμενα των εκδόσεων, μέσω ενός αποκεντρωμένου συστήματος βάσεων δεδομένων ανά τον κόσμο, μπορείτε να <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">δηλώσετε</a> το URL της συλλογής στο Σύστημα Συλλογής Μεταδεδομένων <a href="http://pkp.sfu.ca/harvester/" target="_blank">harvester</a> του Public Knowledge Project. Το σύστημα συλλέγει τα μεταδεδομένα κάθε ευρετηριαζόμενου τεκμηρίου των εκδόσεων, ενεργοποιώντας τη δυνατότητα της ακριβής και συγκεντρωτικής αναζήτησης του περιεχομένου μεταξύ όλων των συλλογών που υλοποιούν το <a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank">Open Archives Initiative Protocol for Metadata Harvesting</a>.
-<br /><br />
-Έχετε υπόψη ότι αν ο διαχειριστής του συστήματος έχει ήδη δηλώσει τον ιστότοπο αυτό στο PKP Harvester, οι εκδόσεις σας θα ευρητηριάζονται αυτόματα και δεν απαιτείται η καταχώρηση του στο εν λόγω σύστημα.
-<br /><br />
-<a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Επιλέξτε εδώ</a> και εισάγαγετε <span class="highlight">{$siteUrl}</span> κάτω <strong>Site URL</strong>, και <span class="highlight">{$oaiUrl}</span> under <strong>Base URL for OAI Archive</strong>.]]></message>
 	<message key="manager.setup.basicEditorialStepsDescription"><![CDATA[Βήματα: Σειρά αναμονής Υποβολής &gt; Αξιολόγηση Υποβολής &gt; Διαμόρφωση Υποβολής &gt; Πίνακας Περιεχομένων.<br /><br />
 Επιλέξτε ένα μοντέλο για χειρισμό των διαφόρων φάσεων της διαδικασίας επιμέλειας. (Για να καθορίζετε επιμελητή διαχείρισης και επιμελητές σειρών, μεταβείτε στους «Επιμελητές» στη «Διαχείριση Εκδόσεων».)]]></message>
 	<message key="manager.setup.referenceLinkingDescription"><![CDATA[<p>Για να δίνεται η δυνατότητα στους αναγνώστες να εντοπίζουν online εκδόσεις των εργασιών που αναφέρονται από έναν συγγραφέα, οι παρακάτω επιλογές είναι διαθέσιμες.</p>
