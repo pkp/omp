@@ -10,14 +10,13 @@
   -->
 
 <install version="1.0.0.0">
-	<!-- PKP schema components -->
-
 	<!-- there are some column and table name changes that need to occur first. -->
 	<upgrade minversion="0.9.9.0" maxversion="1.0.0.0">
 		<!-- Upgrade prior versions to 1.1.0.0 -->
 		<data file="dbscripts/xml/upgrade/1.1.0.0_preupdate.xml" />
 	</upgrade>
 
+	<!-- PKP schema components -->
 	<schema file="lib/pkp/xml/schema/common.xml" />
 	<schema file="lib/pkp/xml/schema/scheduledTasks.xml" />
 	<schema file="lib/pkp/xml/schema/temporaryFiles.xml" />
