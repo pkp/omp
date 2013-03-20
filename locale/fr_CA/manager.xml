@@ -342,8 +342,6 @@ Soumission, Évaluation interne, Évaluation externe, Rédaction et Production.<
 	<message key="manager.setup.pressDescription">Description de la presse</message>
 	<message key="manager.setup.pressDescription.description">Une description générale de la presse devrait être ajoutée ici. Cette description sera disponible sur la page d'accueil de la presse.</message>
 	<message key="manager.setup.pressArchiving">Archivage de la presse</message>
-	<message key="manager.setup.pressDescription">Description de la presse</message>
-	<message key="manager.setup.pressDescriptionDescription">Ajoutez une brève description (20-25 mots) en texte/HTML, qui s'affichera directement sous les liens de navigation.</message>
 	<message key="manager.setup.pressHomepageContent">Contenu de la page d'accueil de la presse</message>
 	<message key="manager.setup.pressHomepageContentDescription">La page d'accueil de la presse contient les liens de navigation par défaut. Vous pouvez ajouter du texte sur la page d'accueil à l'aide d'une ou de toutes les options suivantes, qui s'afficheront dans l'ordre indiqué.</message>
 	<message key="manager.setup.pressHomepageHeader">En-tête de la page d'accueil de la presse</message>
@@ -518,12 +516,6 @@ Les auteurs dont les articles seront publiés par cette presse acceptent les con
 </ol>]]></message>
 	<message key="manager.setup.subjectClassificationDescription"><![CDATA[[La presse utilisera un système de classification idéologique disponible sur le Web. <br />
 Titre du système de classification]]></message>
-	<message key="manager.setup.registerPressForIndexingDescription"><![CDATA[Pour que le contenu de cette presse soit indexé dans un système de bases de données de recherche réparti à l'échelle mondiale,
-<a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">enregistrez</a> l'adresse URL de votre presse afin qu'elle soit utilisée pour la <a href="http://pkp.sfu.ca/harvester/" target="_blank">collecte</a> de métadonnées du Public Knowledge Project. Cet outil cueille les métadonnées de chaque élément indexé dans cette presse, ce qui facilite une recherche précise et collective parmi les sites de recherche qui adoptent le <a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank">protocole de l'Open Archives pour la collecte de métadonnées</a>.
-<br /><br />
-Veuillez noter que si ce site a déjà été enregistré auprès du PKP pour la collecte de métadonnées par votre administrateur de site, votre presse sera indexée automatiquement et vous n'avez pas à enregistrer votre presse.
-<br /><br />
-<a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Cliquez ici</a> et saisissez <span class="highlight">{$siteUrl}</span> dans <strong>Adresse URL du site</strong>, et <span class="highlight">{$oaiUrl}</span> dans <strong>Base URL pour les archives OAI </strong>.]]></message>
 	<message key="manager.setup.basicEditorialStepsDescription"><![CDATA[Étapes: Soumission en attente &gt; évaluation de la soumission &gt; révision de la soumission &gt; table des matières.<br /><br />
 Choisissez un modèle pour gérer ces aspects du processus éditorial. (Pour nommer un éditeur en chef et les rédacteurs de série, allez dans la rubrique Rédacteurs de Gestion de la presse.)]]></message>
 	<message key="manager.setup.referenceLinkingDescription"><![CDATA[<p>Pour permettre aux lecteurs de trouver les articles cités par l'auteur sur Internet, vous pouvez utiliser les options suivantes.</p>
