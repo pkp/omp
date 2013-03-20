@@ -128,7 +128,6 @@
 	<message key="submission.upload.invalidUserGroup">Grupo de usuário faltando ou inválido!</message>
 	<message key="submission.upload.possibleRevision">Detectada possível duplicação ou revisão</message>
 	<message key="submission.upload.possibleRevisionDescription"><![CDATA[<p>O nome do arquivo enviado lembra o nome do arquivo "{$revisedFileName}" enviado anteriormente. Caso o arquivo enviado seja para substituir um arquivo anterior, então escolha esse arquivo da lista. Caso o arquivo enviado não seja para substituir um arquivo anterior, escolha da lista a opção "Escolher arquivo (para preservar o histórico)".</p>]]></message>
-	<message key="submission.upload.revisingExistingFile">Caso seja uma nova versão de um arquivo anteriormente enviado...</message>
 	<message key="submission.upload.selectMandatoryFileToRevise">Escolha o arquivo que deseja revisar.</message>
 	<message key="submission.upload.selectOptionalFileToRevise">Caso esteja enviando a revisão de um arquivo existente, escolha qual arquivo.</message>
 	<message key="submission.upload.uploadNewFile">Escolher arquivo (para preservar histórico)</message>

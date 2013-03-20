@@ -137,7 +137,6 @@
 	<message key="submission.upload.invalidUserGroup">Ελλειπής ή άκυρη ομάδα χρηστών!</message>
 	<message key="submission.upload.possibleRevision">Πιθανές Αλληλεπικαλύψεις ή Αναθεωρήσεις</message>
 	<message key="submission.upload.possibleRevisionDescription"><![CDATA[<p>Το όνομα του αρχείου που ανεβάσατε είναι παρόμοιο με το όνομα  του αρχείου "{$revisedFileName}." Εάν το αρχείο που μόλις ανεβάσατε προκειτε να αντικαταστήσει προηγούμενο αρχείο, τότε επιλέξτε από το μενού επιλογής, το αρχείο που θα αντικαταστήσετε. Εάν το αρχείο που ανεβάσατε δεν πρόκειτε να αντικαταστήσει άλλο αρχείο, τότε επιλέξτε "Επιλογή αρχείου (για την τήρηση ιστορικού)."</p>]]></message>
-	<message key="submission.upload.revisingExistingFile">Εάν η αξιολόγηση ενός προηγούμενου αρχείου...</message>
 	<message key="submission.upload.selectMandatoryFileToRevise">Παρακαλούμε επιλέξτε το αρχείο που επιθυμείτε να αναθεωρηθεί.</message>
 	<message key="submission.upload.selectOptionalFileToRevise">Εάν ανεβάσατε την αναθεώρηση ενός υπάρχοντος αρχείου, παρακαλούμε επισημάνετε ποιο είναι το αρχείο.</message>
 	<message key="submission.upload.uploadNewFile">Επιλογή αρχείου (για την τήρηση ιστορικού)</message>

@@ -130,7 +130,6 @@
 	<message key="submission.upload.invalidUserGroup">Vous avez omis le groupe d'utilisateurs ou ce dernier n'est pas valide!</message>
 	<message key="submission.upload.possibleRevision">Il y a possibilité de duplication ou de révision. </message>
 	<message key="submission.upload.possibleRevisionDescription"><![CDATA[<p>Le nom du fichier téléchargé ressemble au nom du fichier téléchargé auparavant: "{$revisedFileName}." Si vous souhaitez que le fichier qui vient d'être téléchargé remplace le fichier précédent, sélectionnez le fichier à remplacer dans le menu déroulant. Si le fichier téléchargé ne doit pas remplacer un fichier téléchargé précédemment, choisissez "Sélectionner un fichier (pour conserver l'historique)" dans le menu déroulant.</p>]]></message>
-	<message key="submission.upload.revisingExistingFile">S'il s'agit d'une version révisée d'un fichier téléchargé auparavant...</message>
 	<message key="submission.upload.selectMandatoryFileToRevise">Veuillez sélectionner le fichier que vous souhaitez réviser.</message>
 	<message key="submission.upload.selectOptionalFileToRevise">Si vous téléchargez une version révisée d'un fichier existant, veuillez indiquer de quel fichier il s'agit.</message>
 	<message key="submission.upload.uploadNewFile">Sélectionner un fichier (pour conserver l'historique)</message>
