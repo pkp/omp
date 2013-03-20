@@ -225,5 +225,5 @@
 	<message key="submission.event.publicationMetadataUpdated">Os metadados do formato de publicação "{$formatName}" foram atualizados.</message>
 	<message key="submission.event.publicationFormatCreated">O formato de publicação "{$formatName}" foi criado.</message>
 	<message key="submission.event.publicationFormatRemoved">O formato de publicação "{$formatName}" foi excluído.</message>
-	<message key="submission.authorDashboard.description">Em cada estágio do processo listado a seguir, estão disponíveis informações sobre a situação do estátio, bem como os arquivos associados à submissão e correspondências associadas ao estágio. Pode ser solicitado o envio de uma versao revisada para um estágio em particular, ou auditar um arquivo enviado previamente, ações que podem ser realizadas em cada seção específicada do estágio./message>
+	<message key="submission.authorDashboard.description">Em cada estágio do processo listado a seguir, estão disponíveis informações sobre a situação do estátio, bem como os arquivos associados à submissão e correspondências associadas ao estágio. Pode ser solicitado o envio de uma versao revisada para um estágio em particular, ou auditar um arquivo enviado previamente, ações que podem ser realizadas em cada seção específicada do estágio.</message>
 </locale>

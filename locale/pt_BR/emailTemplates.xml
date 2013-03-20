@@ -423,7 +423,7 @@ Login: {$authorUsername}
 
 {$editorialContactSignature}
 </body>
-		<description>Esta mensagem é enviada pelo editor ou editor de série ao autor, notificando-o da decisão final sobre a submissão.</description>>
+		<description>Esta mensagem é enviada pelo editor ou editor de série ao autor, notificando-o da decisão final sobre a submissão.</description>
 	</email_text>
 	<email_text key="EDITOR_DECISION_RESUBMIT">
 		<subject>Decisão editorial</subject>
@@ -438,7 +438,7 @@ Login: {$authorUsername}
 
 {$editorialContactSignature}
 </body>
-		<description>Esta mensagem é enviada pelo editor ou editor de série ao autor, notificando-o da decisão final sobre a submissão.</description>>
+		<description>Esta mensagem é enviada pelo editor ou editor de série ao autor, notificando-o da decisão final sobre a submissão.</description>
 	</email_text>
 	<email_text key="EDITOR_DECISION_DECLINE">
 		<subject>Decisão editorial</subject>
@@ -453,7 +453,7 @@ Login: {$authorUsername}
 
 {$editorialContactSignature}
 </body>
-		<description>Esta mensagem é enviada pelo editor ou editor de série ao autor, notificando-o da decisão final sobre a submissão.</description>>
+		<description>Esta mensagem é enviada pelo editor ou editor de série ao autor, notificando-o da decisão final sobre a submissão.</description>
 	</email_text>
 	<email_text key="EDITOR_REVIEW">
 		<subject>Avaliação editorial </subject>
@@ -471,7 +471,7 @@ Login: {$authorUsername}
 Em caso de dúvidas, entre em contato.
 
 {$editorialContactSignature}</body>
-		<description>Esta mensagem é enviada pelo editor ou editor de série ao autor, notificando-o de que uma decisão sobre a submissão foi tomada.</description>>
+		<description>Esta mensagem é enviada pelo editor ou editor de série ao autor, notificando-o de que uma decisão sobre a submissão foi tomada.</description>
 
 	</email_text>
 	<email_text key="COPYEDIT_REQUEST">
