@@ -226,8 +226,8 @@ class Onix30ExportDom {
 
 		/* --- Add Language elements --- */
 
-		$monographLanguageDao =& DAORegistry::getDAO('MonographLanguageDAO');
-		$allLanguages =& $monographLanguageDao->getLanguages($monograph->getId(), array_keys(AppLocale::getSupportedFormLocales()));
+		$submissionLanguageDao =& DAORegistry::getDAO('SubmissionLanguageDAO');
+		$allLanguages =& $submissionLanguageDao->getLanguages($monograph->getId(), array_keys(AppLocale::getSupportedFormLocales()));
 		$uniqueLanguages = array();
 		foreach ($allLanguages as $locale => $languages) {
 			$uniqueLanguages = array_merge($uniqueLanguages, $languages);
@@ -280,8 +280,8 @@ class Onix30ExportDom {
 		XMLCustomWriter::createChildWithText($doc, $subjectNode, 'SubjectSchemeIdentifier', '12'); // 12 is BIC subject category code list
 		XMLCustomWriter::createChildWithText($doc, $subjectNode, 'SubjectSchemeVersion', '2'); // Version 2 of ^^
 
-		$monographSubjectDao =& DAORegistry::getDAO('MonographSubjectDAO');
-		$allSubjects =& $monographSubjectDao->getSubjects($monograph->getId(),  array_keys(AppLocale::getSupportedFormLocales()));
+		$submissionSubjectDao =& DAORegistry::getDAO('SubmissionSubjectDAO');
+		$allSubjects =& $submissionSubjectDao->getSubjects($monograph->getId(),  array_keys(AppLocale::getSupportedFormLocales()));
 		$uniqueSubjects = array();
 		foreach ($allSubjects as $locale => $subjects) {
 			$uniqueSubjects = array_merge($uniqueSubjects, $subjects);
@@ -293,11 +293,12 @@ class Onix30ExportDom {
 
 		/* --- Add Audience elements --- */
 
-		$audienceNode =& XMLCustomWriter::createElement($doc, 'Audience');
-		XMLCustomWriter::appendChild($descDetailNode, $audienceNode);
-		XMLCustomWriter::createChildWithText($doc, $audienceNode, 'AudienceCodeType', $monograph->getAudience());
-		XMLCustomWriter::createChildWithText($doc, $audienceNode, 'AudienceCodeValue', '01'); // 01 -> ONIX List 29 - ONIX Audience Codes using List 28 in previous field
-
+		if ($monograph->getAudience()) {
+			$audienceNode =& XMLCustomWriter::createElement($doc, 'Audience');
+			XMLCustomWriter::appendChild($descDetailNode, $audienceNode);
+			XMLCustomWriter::createChildWithText($doc, $audienceNode, 'AudienceCodeType', $monograph->getAudience());
+			XMLCustomWriter::createChildWithText($doc, $audienceNode, 'AudienceCodeValue', '01'); // 01 -> ONIX List 29 - ONIX Audience Codes using List 28 in previous field
+		}
 		/* --- Check to see if there are qualifiers for Audience, include them if so --- */
 
 		if ($monograph->getAudienceRangeQualifier() != '') {
@@ -431,11 +432,16 @@ class Onix30ExportDom {
 			$territoryNode =& XMLCustomWriter::createElement($doc, 'Territory');
 			XMLCustomWriter::appendChild($marketNode, $territoryNode);
 
-			if (sizeof($market->getRegionsIncluded()) > 0 && sizeof($market->getCountriesExcluded()) > 0) {
-				XMLCustomWriter::createChildWithText($doc, $territoryNode, 'RegionsIncluded', join(' ', $market->getRegionsIncluded()));
-				XMLCustomWriter::createChildWithText($doc, $territoryNode, 'CountriesExcluded', join(' ', $market->getCountriesExcluded()));
-			} else if (sizeof($market->getCountriesIncluded()) > 0) {
+			if (sizeof($market->getCountriesIncluded()) > 0) {
 				XMLCustomWriter::createChildWithText($doc, $territoryNode, 'CountriesIncluded', join(' ', $market->getCountriesIncluded()));
+			}
+
+			if (sizeof($market->getRegionsIncluded()) > 0) {
+				XMLCustomWriter::createChildWithText($doc, $territoryNode, 'RegionsIncluded', join(' ', $market->getRegionsIncluded()));
+			}
+
+			if (sizeof($market->getCountriesExcluded()) > 0) {
+				XMLCustomWriter::createChildWithText($doc, $territoryNode, 'CountriesExcluded', join(' ', $market->getCountriesExcluded()));
 			}
 
 			if (sizeof($market->getRegionsExcluded()) > 0) {
