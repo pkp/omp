@@ -37,7 +37,7 @@ class ReviewerReviewFilesGridDataProvider extends ReviewGridDataProvider {
 		$policy = new OmpSubmissionAccessPolicy($request, $args, $roleAssignments);
 
 		$stageId = $request->getUserVar('stageId');
-		import('classes.security.authorization.internal.WorkflowStageRequiredPolicy');
+		import('lib.pkp.classes.security.authorization.internal.WorkflowStageRequiredPolicy');
 		$policy->addPolicy(new WorkflowStageRequiredPolicy($stageId));
 
 		// Add policy to ensure there is a review round id.

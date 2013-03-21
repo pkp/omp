@@ -28,7 +28,7 @@ class OmpWorkflowStageAccessPolicy extends ContextPolicy {
 		parent::ContextPolicy($request);
 
 		// A workflow stage component requires a valid workflow stage.
-		import('classes.security.authorization.internal.WorkflowStageRequiredPolicy');
+		import('lib.pkp.classes.security.authorization.internal.WorkflowStageRequiredPolicy');
 		$this->addPolicy(new WorkflowStageRequiredPolicy($stageId));
 
 		// A workflow stage component can only be called if there's a

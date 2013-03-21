@@ -34,7 +34,7 @@ class OmpSignoffAccessPolicy extends ContextPolicy {
 		$this->addPolicy(new SignoffExistsAccessPolicy($request, $args));
 
 		// We need a valid workflow stage.
-		import('classes.security.authorization.internal.WorkflowStageRequiredPolicy');
+		import('lib.pkp.classes.security.authorization.internal.WorkflowStageRequiredPolicy');
 		$this->addPolicy(new WorkflowStageRequiredPolicy($stageId));
 
 		// Authors, press managers and series editors potentially have

@@ -75,7 +75,7 @@ class SignoffInformationCenterHandler extends Handler {
 		if ($request->getUserVar('signoffId')) {
 			$this->addPolicy(new OmpSignoffAccessPolicy($request, $args, $roleAssignments, $mode, $stageId));
 		} else if ($requestedOp == 'viewNotes' || $requestedOp == 'getUserSignoffs') {
-			import('classes.security.authorization.internal.WorkflowStageRequiredPolicy');
+			import('lib.pkp.classes.security.authorization.internal.WorkflowStageRequiredPolicy');
 			$this->addPolicy(new WorkflowStageRequiredPolicy($stageId));
 		} else {
 			return AUTHORIZATION_DENY;

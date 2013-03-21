@@ -37,7 +37,7 @@ class AuthorDashboardReviewRoundTabHandler extends AuthorDashboardHandler {
 		$stageId = (int)$request->getUserVar('stageId');
 
 		// Authorize stage id.
-		import('classes.security.authorization.internal.WorkflowStageRequiredPolicy');
+		import('lib.pkp.classes.security.authorization.internal.WorkflowStageRequiredPolicy');
 		$this->addPolicy(new WorkflowStageRequiredPolicy($stageId));
 
 		// We need a review round id in request.
