@@ -78,8 +78,8 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 	 * @param $roleAssignments array
 	 */
 	function authorize(&$request, &$args, $roleAssignments) {
-		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
-		$this->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'submissionId', $this->getStageId()));
+		import('classes.security.authorization.WorkflowStageAccessPolicy');
+		$this->addPolicy(new WorkflowStageAccessPolicy($request, $args, $roleAssignments, 'submissionId', $this->getStageId()));
 
 		// If a signoff ID was specified, authorize it.
 		if ($request->getUserVar('signoffId')) {

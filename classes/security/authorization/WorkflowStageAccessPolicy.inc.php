@@ -1,21 +1,19 @@
 <?php
 /**
- * @file classes/security/authorization/OmpWorkflowStageAccessPolicy.inc.php
+ * @file classes/security/authorization/WorkflowStageAccessPolicy.inc.php
  *
  * Copyright (c) 2000-2013 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class OmpWorkflowStageAccessPolicy
+ * @class WorkflowStageAccessPolicy
  * @ingroup security_authorization
  *
  * @brief Class to control access to OMP's submission workflow stage components
  */
 
-import('lib.pkp.classes.security.authorization.internal.ContextPolicy');
-import('lib.pkp.classes.security.authorization.PolicySet');
-import('lib.pkp.classes.security.authorization.RoleBasedHandlerOperationPolicy');
+import('lib.pkp.classes.security.authorization.internal.PKPWorkflowStageAccessPolicy');
 
-class OmpWorkflowStageAccessPolicy extends ContextPolicy {
+class WorkflowStageAccessPolicy extends PKPWorkflowStageAccessPolicy {
 	/**
 	 * Constructor
 	 * @param $request PKPRequest
@@ -24,12 +22,8 @@ class OmpWorkflowStageAccessPolicy extends ContextPolicy {
 	 * @param $submissionParameterName string
 	 * @param $stageId integer One of the WORKFLOW_STAGE_ID_* constants.
 	 */
-	function OmpWorkflowStageAccessPolicy(&$request, &$args, $roleAssignments, $submissionParameterName = 'submissionId', $stageId) {
-		parent::ContextPolicy($request);
-
-		// A workflow stage component requires a valid workflow stage.
-		import('lib.pkp.classes.security.authorization.internal.WorkflowStageRequiredPolicy');
-		$this->addPolicy(new WorkflowStageRequiredPolicy($stageId));
+	function WorkflowStageAccessPolicy(&$request, &$args, $roleAssignments, $submissionParameterName = 'submissionId', $stageId) {
+		parent::PKPWorkflowStageAccessPolicy($request, $args, $roleAssignments, $submissionParameterName, $stageId);
 
 		// A workflow stage component can only be called if there's a
 		// valid series editor submission in the request.

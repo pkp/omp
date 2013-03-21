@@ -65,8 +65,8 @@ class WorkflowHandler extends Handler {
 			import('classes.security.authorization.internal.UserAccessibleWorkflowStageRequiredPolicy');
 			$this->addPolicy(new UserAccessibleWorkflowStageRequiredPolicy($request));
 		} else {
-			import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
-			$this->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'submissionId', $this->_identifyStageId($request)));
+			import('classes.security.authorization.WorkflowStageAccessPolicy');
+			$this->addPolicy(new WorkflowStageAccessPolicy($request, $args, $roleAssignments, 'submissionId', $this->_identifyStageId($request)));
 		}
 
 		return parent::authorize($request, $args, $roleAssignments);

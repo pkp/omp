@@ -37,10 +37,10 @@ class ReviewRoundTabHandler extends Handler {
 	 * @see PKPHandler::authorize()
 	 */
 	function authorize(&$request, &$args, $roleAssignments) {
-		$stageId = (int) $request->getUserVar('stageId'); // This is validated in OmpWorkflowStageAccessPolicy.
+		$stageId = (int) $request->getUserVar('stageId'); // This is validated in WorkflowStageAccessPolicy.
 
-		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
-		$this->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'submissionId', $stageId));
+		import('classes.security.authorization.WorkflowStageAccessPolicy');
+		$this->addPolicy(new WorkflowStageAccessPolicy($request, $args, $roleAssignments, 'submissionId', $stageId));
 
 		// We need a review round id in request.
 		import('classes.security.authorization.internal.ReviewRoundRequiredPolicy');

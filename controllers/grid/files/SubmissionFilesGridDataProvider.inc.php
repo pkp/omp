@@ -41,8 +41,8 @@ class SubmissionFilesGridDataProvider extends PKPSubmissionFilesGridDataProvider
 	function getAuthorizationPolicy(&$request, $args, $roleAssignments) {
 		$this->setUploaderRoles($roleAssignments);
 
-		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
-		$policy = new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'submissionId', $this->getStageId());
+		import('classes.security.authorization.WorkflowStageAccessPolicy');
+		$policy = new WorkflowStageAccessPolicy($request, $args, $roleAssignments, 'submissionId', $this->getStageId());
 		return $policy;
 	}
 }

@@ -49,8 +49,8 @@ class FilesListbuilderHandler extends ListbuilderHandler {
 	 * @see PKPHandler::authorize()
 	 */
 	function authorize(&$request, &$args, $roleAssignments, $stageId) {
-		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
-		$this->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'submissionId', $stageId), true);
+		import('classes.security.authorization.WorkflowStageAccessPolicy');
+		$this->addPolicy(new WorkflowStageAccessPolicy($request, $args, $roleAssignments, 'submissionId', $stageId), true);
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 

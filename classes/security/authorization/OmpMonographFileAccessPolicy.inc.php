@@ -82,8 +82,8 @@ class OmpMonographFileAccessPolicy extends ContextPolicy {
 			$authorFileAccessPolicy->addPolicy(new RoleBasedHandlerOperationPolicy($request, ROLE_ID_AUTHOR, $roleAssignments[ROLE_ID_AUTHOR]));
 
 			// 2) ...if they are assigned to the workflow stage.
-			import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
-			$authorFileAccessPolicy->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'submissionId', $request->getUserVar('stageId')));
+			import('classes.security.authorization.WorkflowStageAccessPolicy');
+			$authorFileAccessPolicy->addPolicy(new WorkflowStageAccessPolicy($request, $args, $roleAssignments, 'submissionId', $request->getUserVar('stageId')));
 
 			// 3) ...and if they meet one of the following requirements:
 			$authorFileAccessOptionsPolicy = new PolicySet(COMBINING_PERMIT_OVERRIDES);
@@ -158,8 +158,8 @@ class OmpMonographFileAccessPolicy extends ContextPolicy {
 			$pressAssistantFileAccessPolicy->addPolicy(new RoleBasedHandlerOperationPolicy($request, ROLE_ID_ASSISTANT, $roleAssignments[ROLE_ID_ASSISTANT]));
 
 			// 2) ... but only if they have been assigned to the submission workflow.
-			import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
-			$pressAssistantFileAccessPolicy->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'submissionId', $request->getUserVar('stageId')));
+			import('classes.security.authorization.WorkflowStageAccessPolicy');
+			$pressAssistantFileAccessPolicy->addPolicy(new WorkflowStageAccessPolicy($request, $args, $roleAssignments, 'submissionId', $request->getUserVar('stageId')));
 			$fileAccessPolicy->addPolicy($pressAssistantFileAccessPolicy);
 		}
 

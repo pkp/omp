@@ -107,14 +107,14 @@ class ReviewerGridHandler extends GridHandler {
 	 * @param $roleAssignments array
 	 */
 	function authorize(&$request, &$args, $roleAssignments) {
-		$stageId = $request->getUserVar('stageId'); // This is being validated in OmpWorkflowStageAccessPolicy
+		$stageId = $request->getUserVar('stageId'); // This is being validated in WorkflowStageAccessPolicy
 
 		// Not all actions need a stageId. Some work off the reviewAssignment which has the type and round.
 		$this->_stageId = (int)$stageId;
 
 		// Get the stage access policy
-		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
-		$ompWorkflowStageAccessPolicy = new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'submissionId', $stageId);
+		import('classes.security.authorization.WorkflowStageAccessPolicy');
+		$ompWorkflowStageAccessPolicy = new WorkflowStageAccessPolicy($request, $args, $roleAssignments, 'submissionId', $stageId);
 
 		// Add policy to ensure there is a review round id.
 		import('classes.security.authorization.internal.ReviewRoundRequiredPolicy');

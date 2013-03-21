@@ -31,8 +31,8 @@ class OmpReviewStageAccessPolicy extends ContextPolicy {
 		$workflowStagePolicy = new PolicySet(COMBINING_PERMIT_OVERRIDES);
 
 		// Add the workflow policy, for editorial / press roles
-		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
-		$workflowStagePolicy->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, $submissionParameterName, $stageId));
+		import('classes.security.authorization.WorkflowStageAccessPolicy');
+		$workflowStagePolicy->addPolicy(new WorkflowStageAccessPolicy($request, $args, $roleAssignments, $submissionParameterName, $stageId));
 
 		if ($stageId == WORKFLOW_STAGE_ID_INTERNAL_REVIEW || $stageId == WORKFLOW_STAGE_ID_EXTERNAL_REVIEW) {
 			// Add the submission policy, for reviewer roles

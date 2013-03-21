@@ -75,8 +75,8 @@ class OmpSignoffAccessPolicy extends ContextPolicy {
 			$pressAssistantSignoffAccessPolicy->addPolicy(new RoleBasedHandlerOperationPolicy($request, ROLE_ID_ASSISTANT, $roleAssignments[ROLE_ID_ASSISTANT]));
 
 			// 2) ... but only if they have access to the workflow stage.
-			import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
-			$pressAssistantSignoffAccessPolicy->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'submissionId', $stageId));
+			import('classes.security.authorization.WorkflowStageAccessPolicy');
+			$pressAssistantSignoffAccessPolicy->addPolicy(new WorkflowStageAccessPolicy($request, $args, $roleAssignments, 'submissionId', $stageId));
 			$signoffAccessPolicy->addPolicy($pressAssistantSignoffAccessPolicy);
 		}
 
@@ -91,8 +91,8 @@ class OmpSignoffAccessPolicy extends ContextPolicy {
 				$authorSignoffAccessPolicy->addPolicy(new RoleBasedHandlerOperationPolicy($request, ROLE_ID_AUTHOR, $roleAssignments[ROLE_ID_AUTHOR]));
 
 				// 2) ... but only if they are assigned to the workflow stage as an stage participant.
-				import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
-				$authorSignoffAccessPolicy->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'submissionId', $stageId));
+				import('classes.security.authorization.WorkflowStageAccessPolicy');
+				$authorSignoffAccessPolicy->addPolicy(new WorkflowStageAccessPolicy($request, $args, $roleAssignments, 'submissionId', $stageId));
 				$signoffAccessPolicy->addPolicy($authorSignoffAccessPolicy);
 			}
 		}
