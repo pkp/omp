@@ -13,6 +13,9 @@
 <locale name="fr_CA" full_name="Français">
 
 	<!-- Languages -->
+ 	<message key="manager.language.ui">IU</message>
+	<message key="manager.language.submissions">Soumissions</message>
+ 	<message key="manager.language.forms">Formulaires</message>
 	<message key="manager.language.confirmDefaultSettingsOverwrite">Ceci remplacera tous les paramètres spécifiques aux données de la presse que vous aviez spécifiés pour ce paramètre.</message>
 	<message key="manager.languages.languageInstructions"><![CDATA[Les utilisateurs peuvent utiliser différentes langues dans OMP. De plus, OMP peut être multilingue: les utilisateurs peuvent basculer d'une langue à l'autre sur chaque page et ils peuvent saisir les données dans différentes langues.<br /><br/>Si une langue prise en charge par OMP n'apparait dans la liste, demandez à l'administrateur du site d'installer la langue à partir de l'interface d'administration du site. La documentation d'OMP contient des instructions sur la prise en charge de nouvelles langues.]]></message>
 	<message key="manager.languages.noneAvailable">Désolé, aucune autre langue n'est disponible. Contactez l'administrateur du site si vous souhaitez ajouter d'autres langues à cette presse.</message>
@@ -163,6 +166,10 @@ Soumission, Évaluation interne, Évaluation externe, Rédaction et Production.<
 
 	<!-- Press settings -->
 	<message key="manager.affiliationAndSupport">Parrainage</message>
+	
+	<!-- Website settings -->
+	<message key="manager.website.information">Renseignements</message>
+	<message key="manager.website.appearance">Apparence</message>
 
 	<!-- Publication Process settings -->
 	<message key="manager.publication.submissionStage">Soumission</message>
@@ -356,6 +363,10 @@ Soumission, Évaluation interne, Évaluation externe, Rédaction et Production.<
 	<message key="manager.setup.pageFooterDescription">Voici le bas de page de votre presse. Pour modifier ou mettre à jour le bas de page, copiez-collez le code HTML dans la zone d'entrée de texte ci-dessous. Vous pourriez par exemple ajouter une autre barre de navigation ou un compteur. Ce bas de page apparaitra sur chaque page.</message>
 	<message key="manager.setup.pageHeader">Page d'en-tête de la presse</message>
 	<message key="manager.setup.pageHeaderDescription">Une version graphique du titre de la presse (fichier .gif, .jpg, ou .png), qui peut être plus petite que celle utilisée sur la page d'accueil, peut être téléchargée afin que le titre apparaisse dans l'en-tête de chaque page de la presse et remplace la version textuelle qui apparait normalement.</message>
+	<message key="manager.setup.pressPageFooter">Titre de bas de page de la presse</message>
+	<message key="manager.setup.pressPageFooterDescription">Voici le titre de bas de page de votre presse. Pour le modifier, faites un copier-coller du code HTML dans la zone de texte ci-dessous. Vous pourriez ajouter une autre barre de navigation ou un compteur, par exemple. Ce bas de page s'affichera sur chaque page.</message>
+	<message key="manager.setup.pressPageHeader">En-tête de la page de la presse</message>
+	<message key="manager.setup.pressPageHeaderDescription">Une version graphique du titre de la presse et un logo (fichier .gif, .jpg ou .png), possiblement une version plus petite que celle utilisée sur la page d'accueil, peut être téléchargée et s'afficher dans l'en-tête de chaque page de la presse. Cette version remplacera la version écrite qui apparait par défaut.</message>
 	<message key="manager.setup.pressPolicies">Étape 2. Politiques de la presse</message>
 	<message key="manager.setup.pressSetup">Configuration de la presse</message>
 	<message key="manager.setup.pressSetupUpdated">La configuration de votre presse a été mise à jour.</message>
@@ -449,6 +460,7 @@ Soumission, Évaluation interne, Évaluation externe, Rédaction et Production.<
 	<message key="manager.setup.useImageLogoDescription">Il est possible de télécharger le logo de la presse et de l'utiliser avec la version graphique ou textuelle du titre configuré ci-dessus.</message>
 	<message key="manager.setup.useImageTitle">Image de titre</message>
 	<message key="manager.setup.usePressStyleSheet">Feuille de style de la presse</message>
+	<message key="manager.setup.pressStyleSheetDescription">Vous pouvez télécharger un autre fichier de feuilles de style en cascade (FSC) pour modifier l'apparence de votre presse.</message>
 	<message key="manager.setup.styleSheetDescription">Vous pouvez télécharger un autre fichier de feuilles de style en cascade (CSS) pour modifier l'apparence.</message>
 	<message key="manager.setup.useLayoutEditors">Un rédacteur metteur en page sera nommé pour préparer les fichiers HTML, PDF, etc. pour la publication électronique.</message>
 	<message key="manager.setup.useProofreaders">Un lecteur d'épreuves sera nommé pour vérifier (avec les auteurs) les épreuves en placard avant la publication.</message>

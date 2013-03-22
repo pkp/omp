@@ -31,6 +31,8 @@
 	<message key="submission.chaptersDescription">Vous pouvez ajouter la liste des chapitres ici et assigner des contributeurs à la liste des contributeurs ci-dessus. Ces contributeurs auront accès au chapitre pendant différentes étapes du processus de publication.</message>
 	<message key="submission.chapter.addChapter">Ajouter un chapitre</message>
 	<message key="submission.chapter.editChapter">Modifier un chapitre</message>
+	<message key="submission.contributors">Liste des contributeurs</message>
+	<message key="submission.contributorsDescription">La liste des contributeurs associés à cette soumission peut contenir d’autres auteurs, auteurs de chapitres d’un volume édité, rédacteurs en chef de volume et/ou traducteurs. Un contributeur apparaissant sur la liste peut être désigné à titre de récipiendaire principal du courrier adressé à la rédaction, mais ce contributeur ne doit pas nécessairement être l’auteur de l’article.</message>
 	<message key="submission.document">Document</message>
 	<message key="submission.overview">Aperçu de la soumission</message>
 	<message key="submission.copyediting">Révision</message>
@@ -80,6 +82,7 @@
 	<message key="submission.submit.submissionChecklistDescription">Les exigences suivantes en ce qui concerne les soumissions à cette presse doivent être cochées avant de poursuivre la procédure (les commentaires à l'intention du rédacteur en chef seront ajoutés ci-dessous).</message>
 	<message key="submission.submit.privacyStatement">Énoncé de confidentialité</message>
 	<message key="submission.submit.selectPrincipalContact">Personne-ressource à contacter pour les questions éditoriales.</message>
+	<message key="submission.submit.briefSummary">Bref sommaire du livre</message>
 	<message key="submission.submit.addAuthor">Ajouter un auteur</message>
 	<message key="submission.submit.contributorRole">Rôle du contributeur</message>
 	<message key="submission.submit.form.authorRequired">Il faut ajouter au moins un auteur.</message>
@@ -100,6 +103,8 @@
 	<message key="submission.submit.metadata">Métadonnées</message>
 	<message key="submission.submit.finishingUp">Terminer</message>
 	<message key="submission.submit.finishingUpStep">3. Terminer le processus</message>
+	<message key="submission.submit.metadataForm">Autres affinements</message>
+	<message key="submission.submit.metadataForm.tip">Add additional information for your submission.  Press 'enter' after each term.</message>
 	<message key="submission.submit.upload">Télécharger</message>
 	<message key="submission.submit.nextSteps">Prochaines étapes</message>
 	<message key="submission.submit.coverNote">Note de couverture pour le rédacteur en chef</message>
@@ -123,6 +128,7 @@
 	<message key="submission.submit.newFile">Télécharger un autre fichier</message>
 	<message key="submission.submit.userGroup">Soumettre selon mon rôle à titre de...</message>
 	<message key="submission.submit.userGroupDescription">S'il s'agit d'un volume édité, vous devriez choisir le rôle de rédacteur en chef du volume.</message>
+	<message key="submission.submit.titleAndSummary">Titre et sommaire</message>
 
 	<!-- File upload wizard -->
 	<message key="submission.upload.noteToAccompanyFile">Note qui accompagnera le fichier</message>
@@ -175,7 +181,8 @@
 
 	<!-- Chapters Grid -->
 	<message key="grid.chapters.title">Chapitres</message>
-
+	<message key="listbuilder.contributors.addContributor">Ajouter un contributeur</message>
+	
 	<!-- Copyediting Grid -->
 	<message key="grid.copyediting.deleteCopyeditorResponse">Supprimer le téléchargement du réviseur</message>
 	<message key="grid.copyediting.deleteSignoff">Rappeler un utilisateur</message>

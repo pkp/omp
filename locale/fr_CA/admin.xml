@@ -16,11 +16,14 @@
 	<message key="admin.settings.pressRedirectInstructions">Les requêtes envoyées au site central seront redirigées vers cette presse. Cela pourrait être utile si le site héberge une seule presse, par exemple.</message>
 	<message key="admin.settings.noPressRedirect">Ne pas rediriger</message>
 
+	<message key="admin.languages.installLocale">Installer le paramètre</message>
 	<message key="admin.languages.primaryLocaleInstructions">Ceci sera la langue par défaut pour le site et les presses hébergées.</message>
 	<message key="admin.languages.supportedLocalesInstructions">Choisissez les paramètres qui seront supportés sur le site. Toutes les presses hébergées sur le site pourront utiliser les paramètres sélectionnés. Ces derniers feront partie du menu de sélection de la langue apparaissant sur toutes les pages du site (lesquels peuvent être remplacés sur les pages d'une presse particulière). Si plusieurs paramètres ne sont pas sélectionnés, le bouton à bascule de la langue n'apparaitra pas et les presses n'auront pas accès aux paramètres de langue étendus.</message>
 	<message key="admin.locale.maybeIncomplete">*Les paramètres marqués pourraient être incomplets.</message>
 	<message key="admin.languages.confirmUninstall">Vous souhaitez désinstaller ce paramètre? Cela pourrait affecter les presses hébergées qui l'utilisent actuellement.</message>
 	<message key="admin.languages.installNewLocalesInstructions">Choisissez les autres paramètres de support que vous souhaitez installer dans ce système. Les paramètres doivent être installés avant de pouvoir être utilisés par les presses hébergées. Consultez la documentation de l'OMP pour de plus amples renseignements sur l'ajout de support pour les nouvelles langues.</message>
+	<message key="admin.languages.availableLocales">Paramètres disponibles</message>
+	<message key="admin.languages.downloadLocales">Télécharger des paramètres</message>
 	<message key="admin.languages.noLocalesToDownload">Aucun paramètre ne peut être téléchargé.</message>
 	<message key="admin.languages.downloadFailed">Le téléchargement du paramètre a échoué. Les messages d'erreur ci-dessous décrivent le problème.</message>
 	<message key="admin.languages.downloadUnavailable"><![CDATA[<p>Le téléchargement des modules de langues à partir du serveur Web du Public Knowledge Project n'est pas disponible pour le moment parce que:</p>

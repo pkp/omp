@@ -25,8 +25,13 @@
 	<message key="monograph.languages">Langues (anglais, français, espagnol)</message>
 	<message key="monograph.publicationFormats">Formats de publication </message>
 	<message key="monograph.carousel.publicationFormats">Formats:</message>
+	<message key="monograph.source">Source</message>	
+	<message key="monograph.source.tip">Est-ce que cette soumission dérive d'une autre ressource? Si oui, veuillez indiquer l'adresse URL de cette ressource ou la décrire.</message>
+	<message key="monograph.rights">Droits</message>
+	<message key="monograph.rights.tip">Vous pouvez ajouter un bref énoncé sur les droits d'accès associés à votre soumission, si vous le désirez.</message>
 	<message key="monograph.title">Titre du livre</message>
 	<message key="monograph.title.tip"><![CDATA[Par type de soumission, on entend des éléments comme 'image', 'texte' ou des désignations multimédias comme 'logiciel' ou 'interactif'. Veuillez choisir le type qui correspond le mieux à votre soumission. Vous trouverez des exemples au <a target="_blank" href="http://dublincore.org/documents/2001/04/12/usageguide/generic.shtml#type">http://dublincore.org/documents/2001/04/12/usageguide/generic.shtml#type</a>]]></message>
+	<message key="monograph.subtitle">Sous-titre</message>
 	<message key="monograph.type">Type de soumission</message>
 	<message key="monograph.pageProofs">Épreuves en page</message>
 	<message key="monograph.proofReadingDescription"><![CDATA[Le rédacteur metteur en page télécharge les fichiers prêts pour la production préparés ici afin de les rendre publiables. Utilisez <em>+Assigner</em> pour assigner les auteurs et les autres individus qui réviseront les épreuves en page. Les fichiers corrigés doivent être téléchargés pour approbation avant la publication.]]></message>
@@ -400,6 +405,7 @@ Sauvegarder.</li>
 	<message key="common.publicKnowledgeProject">Public Knowledge Project</message>
 	<message key="common.homePageHeader.altText">En-tête de la page d'accueil</message>
 	<message key="common.designation">Désignation</message>
+	<message key="common.name">Nom</message>
 	<message key="common.dimensionsInches"><![CDATA[{$width}"&nbsp;x&nbsp;{$height}" @ {$dpi} DPI/PPI]]></message>
 	<message key="common.dimensionsPixels">{$width} x {$height} pixels</message>
 
@@ -448,6 +454,8 @@ Sauvegarder.</li>
 	<message key="user.role.seriesEditor">Rédacteur/Rédactrice en chef de la série</message>
 	<message key="user.role.seriesEditors">Rédacteurs en chef de la série</message>
 	<message key="user.role.proofreader">Correcteur/Correctrice d'épreuves</message>
+	<message key="user.role.author">Auteur</message>
+	<message key="user.role.author_s">Auteur(s)</message>
 	<message key="user.role.productionEditor">Directeur/Directrice de la production</message>
 
 	<message key="user.role.managers">Directeurs de la presse</message>
@@ -724,6 +732,14 @@ Votre serveur supporte actuellement mbstring: <strong>{$supportsMBString}</stron
 	<message key="payment.directSales.download">Télécharger</message>
 	<message key="payment.directSales.monograph.name">Acheter la monographie ou le chapitre téléchargeable</message>
 	<message key="payment.directSales.monograph.description">Cette transaction représente l'achat d'un téléchargement direct d'une seule monographie ou d'un chapitre.</message>
+	<message key="monograph.coverage">Renseignements sur le champ</message>
+	<message key="monograph.coverage.tip">Les zones suivantes fournissent des renseignements sur le champ de votre soumission. Vous pouvez choisir des champs chronologiques (1920-1940; 17e siècle) et des champs géographiques ('Boston, MA' ou 'Nord de l'Angleterre'). Vous pouvez utiliser l'échantillon de la zone de champ pour ajouter un exemple pertinent tiré de votre article, si vous le désirez.</message>
+	<message key="monograph.coverage.chron">Chronologique</message>
+	<message key="monograph.coverage.geo">Géographique</message>
+	<message key="monograph.coverage.sample">Échantillon</message>
+	<message key="monograph.subjectClass">Sujet de la soumission</message>
+	<message key="monograph.subjectClass.tip">Veuillez décrire votre soumission en utilisant quelques phrases clés. Vous pouvez affiner le sujet à l'aide de mots clés spécifiques dans une autre partie du formulaire.</message>
+	<message key="monograph.subjects">Sujets</message>
 
 	<!-- Debug messages -->
 	<message key="debug.notes.currencyListLoad">La liste des devises "{$filename}" fut téléchargée à partir de XML</message>

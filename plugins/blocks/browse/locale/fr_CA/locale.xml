@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * plugins/blocks/browse/locale/fr_CA/locale.xml
+  *
+  * Copyright (c) 2003-2013 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for this plugin.
+  *
+  -->
+ 
+<locale name="fr_CA" full_name="Français">
+	<message key="plugins.block.browse">Explorer</message>
+	<message key="plugins.block.browse.category">Explorer une catégorie</message>
+	<message key="plugins.block.browse.series">Explorer une série</message>
+	<message key="plugins.block.browse.newReleases">Parcourir les nouveautés</message>
+</locale>
