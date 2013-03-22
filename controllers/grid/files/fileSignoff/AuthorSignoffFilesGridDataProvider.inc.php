@@ -13,7 +13,7 @@
  */
 
 
-import('controllers.grid.files.SubmissionFilesGridDataProvider');
+import('lib.pkp.controllers.grid.files.SubmissionFilesGridDataProvider');
 
 // Import file stage constants.
 import('classes.monograph.MonographFile');

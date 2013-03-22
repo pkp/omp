@@ -19,7 +19,7 @@ class FairCopyFilesGridHandler extends FileSignoffGridHandler {
 	 * Constructor
 	 */
 	function FairCopyFilesGridHandler() {
-		import('controllers.grid.files.SubmissionFilesGridDataProvider');
+		import('lib.pkp.controllers.grid.files.SubmissionFilesGridDataProvider');
 		parent::FileSignoffGridHandler(
 			new SubmissionFilesGridDataProvider(SUBMISSION_FILE_FAIR_COPY),
 			WORKFLOW_STAGE_ID_EDITING,

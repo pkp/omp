@@ -19,7 +19,7 @@ class EditorSubmissionDetailsFilesGridHandler extends FileListGridHandler {
 	 * Constructor
 	 */
 	function EditorSubmissionDetailsFilesGridHandler() {
-		import('controllers.grid.files.SubmissionFilesGridDataProvider');
+		import('lib.pkp.controllers.grid.files.SubmissionFilesGridDataProvider');
 		$dataProvider = new SubmissionFilesGridDataProvider(SUBMISSION_FILE_SUBMISSION);
 		parent::FileListGridHandler(
 			$dataProvider,

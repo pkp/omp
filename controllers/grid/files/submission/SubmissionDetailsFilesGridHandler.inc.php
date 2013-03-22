@@ -22,7 +22,7 @@ class SubmissionDetailsFilesGridHandler extends FileListGridHandler {
 	 *  FILE_GRID_* capabilities set.
 	 */
 	function SubmissionDetailsFilesGridHandler($capabilities) {
-		import('controllers.grid.files.SubmissionFilesGridDataProvider');
+		import('lib.pkp.controllers.grid.files.SubmissionFilesGridDataProvider');
 		$dataProvider = new SubmissionFilesGridDataProvider(SUBMISSION_FILE_SUBMISSION);
 		parent::FileListGridHandler($dataProvider, WORKFLOW_STAGE_ID_SUBMISSION, $capabilities);
 		$this->addRoleAssignment(
