@@ -42,7 +42,7 @@ class WorkflowStageAccessPolicy extends PKPWorkflowStageAccessPolicy {
 		$this->addPolicy($roleBasedPolicy);
 
 		// ... if they can access the requested workflow stage.
-		import('classes.security.authorization.internal.UserAccessibleWorkflowStagePolicy');
+		import('lib.pkp.classes.security.authorization.internal.UserAccessibleWorkflowStagePolicy');
 		$this->addPolicy(new UserAccessibleWorkflowStagePolicy($stageId));
 	}
 }
