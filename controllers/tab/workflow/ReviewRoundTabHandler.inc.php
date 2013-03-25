@@ -43,7 +43,7 @@ class ReviewRoundTabHandler extends Handler {
 		$this->addPolicy(new WorkflowStageAccessPolicy($request, $args, $roleAssignments, 'submissionId', $stageId));
 
 		// We need a review round id in request.
-		import('classes.security.authorization.internal.ReviewRoundRequiredPolicy');
+		import('lib.pkp.classes.security.authorization.internal.ReviewRoundRequiredPolicy');
 		$this->addPolicy(new ReviewRoundRequiredPolicy($request, $args));
 
 		return parent::authorize($request, $args, $roleAssignments);

@@ -46,7 +46,7 @@ class ReviewerSelectGridHandler extends GridHandler {
 		import('classes.security.authorization.WorkflowStageAccessPolicy');
 		$this->addPolicy(new WorkflowStageAccessPolicy($request, $args, $roleAssignments, 'submissionId', $stageId));
 
-		import('classes.security.authorization.internal.ReviewRoundRequiredPolicy');
+		import('lib.pkp.classes.security.authorization.internal.ReviewRoundRequiredPolicy');
 		$this->addPolicy(new ReviewRoundRequiredPolicy($request, $args));
 
 		return parent::authorize($request, $args, $roleAssignments);

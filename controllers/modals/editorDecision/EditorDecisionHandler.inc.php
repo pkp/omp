@@ -53,7 +53,7 @@ class EditorDecisionHandler extends Handler {
 
 		// Some operations need a review round id in request.
 		$reviewRoundOps = $this->_getReviewRoundOps();
-		import('classes.security.authorization.internal.ReviewRoundRequiredPolicy');
+		import('lib.pkp.classes.security.authorization.internal.ReviewRoundRequiredPolicy');
 		$this->addPolicy(new ReviewRoundRequiredPolicy($request, $args, 'reviewRoundId', $reviewRoundOps));
 
 		// Approve proof need monograph access policy.

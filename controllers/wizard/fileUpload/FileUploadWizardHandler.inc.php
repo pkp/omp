@@ -38,7 +38,7 @@ class FileUploadWizardHandler extends PKPFileUploadWizardHandler {
 
 		// Authorize review round id when this handler is used in review stages.
 		if ($stageId == WORKFLOW_STAGE_ID_INTERNAL_REVIEW || $stageId == WORKFLOW_STAGE_ID_EXTERNAL_REVIEW) {
-			import('classes.security.authorization.internal.ReviewRoundRequiredPolicy');
+			import('lib.pkp.classes.security.authorization.internal.ReviewRoundRequiredPolicy');
 			$this->addPolicy(new ReviewRoundRequiredPolicy($request, $args));
 		}
 

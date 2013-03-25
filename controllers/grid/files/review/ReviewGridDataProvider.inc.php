@@ -37,7 +37,7 @@ class ReviewGridDataProvider extends SubmissionFilesGridDataProvider {
 		$policy = parent::getAuthorizationPolicy($request, $args, $roleAssignments);
 
 		// Add policy to ensure there is a review round id.
-		import('classes.security.authorization.internal.ReviewRoundRequiredPolicy');
+		import('lib.pkp.classes.security.authorization.internal.ReviewRoundRequiredPolicy');
 		$policy->addPolicy(new ReviewRoundRequiredPolicy($request, $args));
 
 		return $policy;
