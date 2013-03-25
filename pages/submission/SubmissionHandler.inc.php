@@ -52,8 +52,8 @@ class SubmissionHandler extends PKPSubmissionHandler {
 			$this->addPolicy(new PkpContextAccessPolicy($request, $roleAssignments));
 		} else {
 			// Authorize editing of incomplete submissions.
-			import('classes.security.authorization.OmpSubmissionAccessPolicy');
-			$this->addPolicy(new OmpSubmissionAccessPolicy($request, $args, $roleAssignments, 'submissionId'));
+			import('classes.security.authorization.SubmissionAccessPolicy');
+			$this->addPolicy(new SubmissionAccessPolicy($request, $args, $roleAssignments, 'submissionId'));
 		}
 
 		// Do policy checking.

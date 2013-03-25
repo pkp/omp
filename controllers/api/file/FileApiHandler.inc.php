@@ -45,7 +45,7 @@ class FileApiHandler extends PKPFileApiHandler {
 	 * @param $args
 	 * @param $roleAssignments array
 	 * @param $fileIdAndRevision array optional
-	 * @return OmpSubmissionAccessPolicy
+	 * @return SubmissionAccessPolicy
 	 */
 	function _getAccessPolicy($request, $args, $roleAssignments, $fileIdAndRevision = null) {
 		return new SubmissionFileAccessPolicy($request, $args, $roleAssignments, SUBMISSION_FILE_ACCESS_READ);

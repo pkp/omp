@@ -47,8 +47,9 @@ class ReviewerReviewAttachmentGridDataProvider extends SubmissionFilesGridDataPr
 			assert($assocType == ASSOC_TYPE_REVIEW_ASSIGNMENT);
 
 			$this->setUploaderRoles($roleAssignments);
-			import('classes.security.authorization.OmpReviewStageAccessPolicy');
-			$authorizationPolicy = new OmpReviewStageAccessPolicy($request, $args, $roleAssignments, 'submissionId', $request->getUserVar('stageId'));
+			import('classes.security.authorization.ReviewStageAccessPolicy');
+
+			$authorizationPolicy = new ReviewStageAccessPolicy;($request, $args, $roleAssignments, 'submissionId', $request->getUserVar('stageId'));
 			$paramName = 'assocId';
 		} else {
 			// Viewing from a press role perspective.

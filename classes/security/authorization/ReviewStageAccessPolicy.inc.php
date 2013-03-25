@@ -1,11 +1,11 @@
 <?php
 /**
- * @file classes/security/authorization/OmpReviewStageAccessPolicy.inc.php
+ * @file classes/security/authorization/ReviewStageAccessPolicy.inc.php
  *
  * Copyright (c) 2000-2013 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class OmpReviewStageAccessPolicy
+ * @class ReviewStageAccessPolicy
  * @ingroup security_authorization
  *
  * @brief Class to control access to OMP's review stage components
@@ -14,7 +14,7 @@
 import('lib.pkp.classes.security.authorization.internal.ContextPolicy');
 import('lib.pkp.classes.security.authorization.PolicySet');
 
-class OmpReviewStageAccessPolicy extends ContextPolicy {
+class ReviewStageAccessPolicy extends ContextPolicy {
 	/**
 	 * Constructor
 	 * @param $request PKPRequest
@@ -23,7 +23,7 @@ class OmpReviewStageAccessPolicy extends ContextPolicy {
 	 * @param $submissionParameterName string
 	 * @param $stageId integer One of the WORKFLOW_STAGE_ID_* constants.
 	 */
-	function OmpReviewStageAccessPolicy(&$request, &$args, $roleAssignments, $submissionParameterName = 'submissionId', $stageId) {
+	function ReviewStageAccessPolicy(&$request, &$args, $roleAssignments, $submissionParameterName = 'submissionId', $stageId) {
 		parent::ContextPolicy($request);
 
 		// Create a "permit overrides" policy set that specifies
@@ -36,8 +36,8 @@ class OmpReviewStageAccessPolicy extends ContextPolicy {
 
 		if ($stageId == WORKFLOW_STAGE_ID_INTERNAL_REVIEW || $stageId == WORKFLOW_STAGE_ID_EXTERNAL_REVIEW) {
 			// Add the submission policy, for reviewer roles
-			import('classes.security.authorization.OmpSubmissionAccessPolicy');
-			$submissionPolicy = new OmpSubmissionAccessPolicy($request, $args, $roleAssignments, $submissionParameterName);
+			import('classes.security.authorization.SubmissionAccessPolicy');
+			$submissionPolicy = new SubmissionAccessPolicy($request, $args, $roleAssignments, $submissionParameterName);
 			$submissionPolicy->addPolicy(new WorkflowStageRequiredPolicy($stageId));
 			$workflowStagePolicy->addPolicy($submissionPolicy);
 		}

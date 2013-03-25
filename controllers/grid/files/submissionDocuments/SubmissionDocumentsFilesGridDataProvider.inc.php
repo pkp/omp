@@ -28,8 +28,8 @@ class SubmissionDocumentsFilesGridDataProvider extends PKPSubmissionDocumentsFil
 	 * @see GridDataProvider::getAuthorizationPolicy()
 	 */
 	function getAuthorizationPolicy(&$request, $args, $roleAssignments) {
-		import('classes.security.authorization.OmpSubmissionAccessPolicy');
-		$policy = new OmpSubmissionAccessPolicy($request, $args, $roleAssignments, 'submissionId');
+		import('classes.security.authorization.SubmissionAccessPolicy');
+		$policy = new SubmissionAccessPolicy($request, $args, $roleAssignments, 'submissionId');
 		return $policy;
 	}
 }

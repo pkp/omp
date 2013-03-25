@@ -37,9 +37,9 @@ class OmpPublishedMonographAccessPolicy extends ContextPolicy {
 		$monographAccessPolicy->addPolicy($publishedMonographAccessPolicy);
 
 		// Pre-publication access for editorial roles
-		import('classes.security.authorization.OmpSubmissionAccessPolicy');
+		import('classes.security.authorization.SubmissionAccessPolicy');
 		$monographAccessPolicy->addPolicy(
-			new OmpSubmissionAccessPolicy(
+			new SubmissionAccessPolicy(
 				$request, $args,
 				array_intersect_key(
 					$roleAssignments,

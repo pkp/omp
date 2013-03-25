@@ -27,8 +27,8 @@ class OmpAuthorDashboardAccessPolicy extends ContextPolicy {
 		$authorDashboardPolicy = new PolicySet(COMBINING_DENY_OVERRIDES);
 
 		// AuthorDashboard requires a valid monograph in request.
-		import('classes.security.authorization.OmpSubmissionAccessPolicy');
-		$authorDashboardPolicy->addPolicy(new OmpSubmissionAccessPolicy($request, $args, $roleAssignments), true);
+		import('classes.security.authorization.SubmissionAccessPolicy');
+		$authorDashboardPolicy->addPolicy(new SubmissionAccessPolicy($request, $args, $roleAssignments), true);
 
 		// Check if the user has an stage assignment with the monograph in request.
 		// Any workflow stage assignment is suficient to access the author dashboard.
