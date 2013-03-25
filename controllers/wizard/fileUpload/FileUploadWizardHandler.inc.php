@@ -71,8 +71,8 @@ class FileUploadWizardHandler extends PKPFileUploadWizardHandler {
 			return false;
 		}
 		if ($fileIdToValidate) {
-			import('classes.security.authorization.OmpMonographFileAccessPolicy');
-			$this->addPolicy(new OmpMonographFileAccessPolicy($request, $args, $roleAssignments, SUBMISSION_FILE_ACCESS_READ, $fileIdToValidate));
+			import('classes.security.authorization.SubmissionFileAccessPolicy');
+			$this->addPolicy(new SubmissionFileAccessPolicy($request, $args, $roleAssignments, SUBMISSION_FILE_ACCESS_READ, $fileIdToValidate));
 		}
 
 		return parent::authorize($request, $args, $roleAssignments);

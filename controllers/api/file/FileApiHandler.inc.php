@@ -18,7 +18,7 @@
 // Import the base handler.
 import('lib.pkp.controllers.api.file.PKPFileApiHandler');
 import('classes.file.MonographFileManager');
-import('classes.security.authorization.OmpMonographFileAccessPolicy');
+import('classes.security.authorization.SubmissionFileAccessPolicy');
 
 class FileApiHandler extends PKPFileApiHandler {
 
@@ -48,7 +48,7 @@ class FileApiHandler extends PKPFileApiHandler {
 	 * @return OmpSubmissionAccessPolicy
 	 */
 	function _getAccessPolicy($request, $args, $roleAssignments, $fileIdAndRevision = null) {
-		return new OmpMonographFileAccessPolicy($request, $args, $roleAssignments, SUBMISSION_FILE_ACCESS_READ);
+		return new SubmissionFileAccessPolicy($request, $args, $roleAssignments, SUBMISSION_FILE_ACCESS_READ);
 	}
 
 	/**
