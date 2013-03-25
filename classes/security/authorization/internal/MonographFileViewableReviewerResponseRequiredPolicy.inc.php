@@ -13,15 +13,15 @@
  *
  */
 
-import('classes.security.authorization.internal.MonographFileBaseAccessPolicy');
+import('lib.pkp.classes.security.authorization.internal.SubmissionFileBaseAccessPolicy');
 
-class MonographFileViewableReviewerResponseRequiredPolicy extends MonographFileBaseAccessPolicy {
+class MonographFileViewableReviewerResponseRequiredPolicy extends SubmissionFileBaseAccessPolicy {
 	/**
 	 * Constructor
 	 * @param $request PKPRequest
 	 */
 	function MonographFileViewableReviewerResponseRequiredPolicy(&$request, $fileIdAndRevision = null) {
-		parent::MonographFileBaseAccessPolicy($request, $fileIdAndRevision);
+		parent::SubmissionFileBaseAccessPolicy($request, $fileIdAndRevision);
 	}
 
 
@@ -39,7 +39,7 @@ class MonographFileViewableReviewerResponseRequiredPolicy extends MonographFileB
 		if (!is_a($user, 'PKPUser')) return AUTHORIZATION_DENY;
 
 		// Get the monograph file
-		$monographFile =& $this->getMonographFile($request);
+		$monographFile =& $this->getSubmissionFile($request);
 		if (!is_a($monographFile, 'MonographFile')) return AUTHORIZATION_DENY;
 
 		// Make sure that it's in the review stage

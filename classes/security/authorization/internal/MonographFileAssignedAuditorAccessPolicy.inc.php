@@ -13,15 +13,15 @@
  *
  */
 
-import('classes.security.authorization.internal.MonographFileBaseAccessPolicy');
+import('lib.pkp.classes.security.authorization.internal.SubmissionFileBaseAccessPolicy');
 
-class MonographFileAssignedAuditorAccessPolicy extends MonographFileBaseAccessPolicy {
+class MonographFileAssignedAuditorAccessPolicy extends SubmissionFileBaseAccessPolicy {
 	/**
 	 * Constructor
 	 * @param $request PKPRequest
 	 */
 	function MonographFileAssignedAuditorAccessPolicy(&$request, $fileIdAndRevision = null) {
-		parent::MonographFileBaseAccessPolicy($request, $fileIdAndRevision);
+		parent::SubmissionFileBaseAccessPolicy($request, $fileIdAndRevision);
 	}
 
 
@@ -39,7 +39,7 @@ class MonographFileAssignedAuditorAccessPolicy extends MonographFileBaseAccessPo
 		if (!is_a($user, 'PKPUser')) return AUTHORIZATION_DENY;
 
 		// Get the monograph file
-		$monographFile =& $this->getMonographFile($request);
+		$monographFile =& $this->getSubmissionFile($request);
 		if (!is_a($monographFile, 'MonographFile')) return AUTHORIZATION_DENY;
 
 		$signoffDao = DAORegistry::getDAO('SignoffDAO');

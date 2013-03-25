@@ -12,15 +12,15 @@
  *
  */
 
-import('classes.security.authorization.internal.MonographFileBaseAccessPolicy');
+import('lib.pkp.classes.security.authorization.internal.SubmissionFileBaseAccessPolicy');
 
-class MonographFileUploaderAccessPolicy extends MonographFileBaseAccessPolicy {
+class MonographFileUploaderAccessPolicy extends SubmissionFileBaseAccessPolicy {
 	/**
 	 * Constructor
 	 * @param $request PKPRequest
 	 */
 	function MonographFileUploaderAccessPolicy(&$request, $fileIdAndRevision = null) {
-		parent::MonographFileBaseAccessPolicy($request, $fileIdAndRevision);
+		parent::SubmissionFileBaseAccessPolicy($request, $fileIdAndRevision);
 	}
 
 
@@ -38,7 +38,7 @@ class MonographFileUploaderAccessPolicy extends MonographFileBaseAccessPolicy {
 		if (!is_a($user, 'PKPUser')) return AUTHORIZATION_DENY;
 
 		// Get the monograph file
-		$monographFile =& $this->getMonographFile($request);
+		$monographFile =& $this->getSubmissionFile($request);
 		if (!is_a($monographFile, 'MonographFile')) return AUTHORIZATION_DENY;
 
 		// Check if the uploader is the current user.

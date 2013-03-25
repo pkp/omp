@@ -14,15 +14,15 @@
  * authorization context.
  */
 
-import('classes.security.authorization.internal.MonographFileBaseAccessPolicy');
+import('lib.pkp.classes.security.authorization.internal.SubmissionFileBaseAccessPolicy');
 
-class MonographFileMatchesMonographPolicy extends MonographFileBaseAccessPolicy {
+class MonographFileMatchesMonographPolicy extends SubmissionFileBaseAccessPolicy {
 	/**
 	 * Constructor
 	 * @param $request PKPRequest
 	 */
 	function MonographFileMatchesMonographPolicy(&$request, $fileIdAndRevision = null) {
-		parent::MonographFileBaseAccessPolicy($request, $fileIdAndRevision);
+		parent::SubmissionFileBaseAccessPolicy($request, $fileIdAndRevision);
 	}
 
 
@@ -35,7 +35,7 @@ class MonographFileMatchesMonographPolicy extends MonographFileBaseAccessPolicy 
 	function effect() {
 		// Get the monograph file
 		$request =& $this->getRequest();
-		$monographFile =& $this->getMonographFile($request);
+		$monographFile =& $this->getSubmissionFile($request);
 		if (!is_a($monographFile, 'MonographFile')) return AUTHORIZATION_DENY;
 
 		// Get the monograph

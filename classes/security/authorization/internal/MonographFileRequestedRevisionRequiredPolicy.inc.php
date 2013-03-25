@@ -13,15 +13,15 @@
  *
  */
 
-import('classes.security.authorization.internal.MonographFileBaseAccessPolicy');
+import('lib.pkp.classes.security.authorization.internal.SubmissionFileBaseAccessPolicy');
 
-class MonographFileRequestedRevisionRequiredPolicy extends MonographFileBaseAccessPolicy {
+class MonographFileRequestedRevisionRequiredPolicy extends SubmissionFileBaseAccessPolicy {
 	/**
 	 * Constructor
 	 * @param $request PKPRequest
 	 */
 	function MonographFileRequestedRevisionRequiredPolicy(&$request, $fileIdAndRevision = null) {
-		parent::MonographFileBaseAccessPolicy($request, $fileIdAndRevision);
+		parent::SubmissionFileBaseAccessPolicy($request, $fileIdAndRevision);
 	}
 
 
@@ -36,7 +36,7 @@ class MonographFileRequestedRevisionRequiredPolicy extends MonographFileBaseAcce
 		$reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO'); /* @var $reviewRoundDao ReviewRoundDAO */
 
 		// Get the monograph file.
-		$monographFile =& $this->getMonographFile($request);
+		$monographFile =& $this->getSubmissionFile($request);
 		if (!is_a($monographFile, 'MonographFile')) return AUTHORIZATION_DENY;
 
 		// Make sure the file belongs to the monograph in request.
