@@ -1,0 +1,656 @@
+commit 7837cf93ddaa7a7ccbf868e58c51b81adb114183
+Author: Alec Smecher <alec@smecher.bc.ca>
+Date:   Thu Mar 21 11:07:09 2013 -0700
+
+    *8162* Commit submodule hash
+
+commit 82393e7cd98203ce386d6cfbc5b9f4ee672b710e
+Author: Jason Nugent <jason.nugent@gmail.com>
+Date:   Thu Mar 21 12:01:11 2013 -0300
+
+    ONIX improvements for validity, use new DAOs
+
+commit 04282621b563895a6cb6364c9d73cbeb43f7787f
+Author: Alec Smecher <alec@smecher.bc.ca>
+Date:   Wed Mar 20 16:23:26 2013 -0700
+
+    *8177* Fix upgrade settings fetches (apply to OMP 1.0b along with above patch for lib/pkp)
+
+commit 77bfa7aec2718c36f7348d4564fb1eb1dc1a4954
+Author: Alec Smecher <alec@smecher.bc.ca>
+Date:   Wed Mar 20 16:13:57 2013 -0700
+
+    *8162* Fix OMP upgrade
+
+commit 3831be79bd117b01ed4f4827a025e5a9a29e436e
+Author: Alec Smecher <alec@smecher.bc.ca>
+Date:   Wed Mar 20 15:20:47 2013 -0700
+
+    *8162* Dig out the upgrade process
+
+commit ee8a993262af09b80fa6b3b53f10f0975b028671
+Author: jmacgreg <jmacgreg@gmail.com>
+Date:   Wed Mar 20 10:25:07 2013 -0700
+
+    *8133* pt_BR validation fixes
+
+commit 18a833cd5257ae1afcb69990e014872f29ebccf9
+Author: jmacgreg <jmacgreg@gmail.com>
+Date:   Wed Mar 20 09:41:26 2013 -0700
+
+    *8110* Various typos and duplicates flagged by Ramon
+
+commit 9021caaea442828c16563b205abe93d5080480a6
+Author: jmacgreg <jmacgreg@gmail.com>
+Date:   Tue Mar 19 22:15:15 2013 -0700
+
+    *8176* Fixed mislabeled file upload modal
+
+commit e167856d67a3f698f09d99ca5434e694462adaa4
+Author: Alec Smecher <alec@smecher.bc.ca>
+Date:   Tue Mar 19 17:47:27 2013 -0700
+
+    *8165* Clarify mandatory/optional revision selection wording
+
+commit 67c69e3856fb078aa145b46d46ee43468d4ffc92
+Author: Alec Smecher <alec@smecher.bc.ca>
+Date:   Mon Mar 18 11:43:14 2013 -0700
+
+    *8164* Fix scrollable tabs interaction
+
+commit 69a5f1cfa268e68303c30720bb525adb69aa82f8
+Author: Alec Smecher <alec@smecher.bc.ca>
+Date:   Mon Mar 18 11:27:53 2013 -0700
+
+    *8167* Add missing notification delete code
+
+commit 24ada8b312c39a5bbb8326f49b9ac88f319ce93b
+Author: Jason Nugent <jason.nugent@gmail.com>
+Date:   Fri Mar 15 10:44:23 2013 -0300
+
+    *7788* include author bios in catalog
+
+commit 616c2db55c6b96fd3d66deb0dcf7436369a8e7c1
+Author: Alec Smecher <alec@smecher.bc.ca>
+Date:   Thu Mar 14 17:38:23 2013 -0700
+
+    *8159* Fixed validation problem
+
+commit 2c5909e95c6cc0a2d9df350a421aa3866a3f139a
+Author: Alec Smecher <alec@smecher.bc.ca>
+Date:   Thu Mar 14 17:14:46 2013 -0700
+
+    *8162* Version descriptors etc. for 1.0
+
+commit 429d20ae618b85fc51fba18f70e63bb6069bcb76
+Author: Alec Smecher <alec@smecher.bc.ca>
+Date:   Thu Mar 14 17:11:08 2013 -0700
+
+    *8162* Add UPGRADE document
+
+commit be37774df9efdb16d1b36b132217f5a0ef8f6c9f
+Author: Alec Smecher <alec@smecher.bc.ca>
+Date:   Thu Mar 14 16:57:46 2013 -0700
+
+    *8161* Fix overzealous tab initialization
+
+commit c75056122eed75a22653921f37c275f8c41a1c92
+Author: jmacgreg <jmacgreg@gmail.com>
+Date:   Thu Mar 14 15:16:15 2013 -0700
+
+    *8133* el_GR addition
+
+commit 6cca3867394627d94f64d294955495336b7262df
+Author: jmacgreg <jmacgreg@gmail.com>
+Date:   Wed Mar 13 16:01:59 2013 -0700
+
+    *8133* Adding es_ES, pt_BR
+
+commit 956763ed6502f1f68c98b1758394dc6f82852401
+Author: jmacgreg <jmacgreg@gmail.com>
+Date:   Wed Feb 27 23:12:00 2013 -0800
+
+    *8133* Initial fr_CA addition
+
+commit 8783267a28238a23c25f859278233c2ff6650903
+Author: Alec Smecher <alec@smecher.bc.ca>
+Date:   Thu Feb 21 15:40:36 2013 -0800
+
+    *8125* Allow managerial roles to delete submissions (fix role lists)
+
+commit fcf6786db2db57e91a4c1de14a30083e08f45bfb
+Author: Alec Smecher <alec@smecher.bc.ca>
+Date:   Thu Feb 21 14:00:05 2013 -0800
+
+    *8125* Allow managerial roles to delete submissions
+
+commit d76acaa40ad6a421aa3e2209d110d0c8f98706cb
+Author: Alec Smecher <alec@smecher.bc.ca>
+Date:   Wed Feb 20 16:51:08 2013 -0800
+
+    *8124* Update copyright dates to 2013
+
+commit 1bf505dc0c4bf36387b73f1e0180ef3f167c37e7
+Author: Jason Nugent <jason.nugent@gmail.com>
+Date:   Wed Jan 23 10:35:07 2013 -0400
+
+    let Editor/Series Editor have access to all stages by default
+
+commit d543d1f010f657d31a35e7be5d6b9369bb6fe36f
+Author: Jason Nugent <jason.nugent@gmail.com>
+Date:   Thu Jan 17 12:07:14 2013 -0400
+
+    *7887* make selector for choosing initial tab more robust
+
+commit 5f0e9576e91699818b604450e1fbc18cc532a562
+Author: Jason Nugent <jason.nugent@gmail.com>
+Date:   Wed Jan 16 13:05:00 2013 -0400
+
+    *7887* adjust DOM traversal for child elements of scrolling tabs
+
+commit 9d8d2dd455b542284ff27f494668137434af1f9a
+Author: Jason Nugent <jason.nugent@gmail.com>
+Date:   Wed Jan 16 10:05:45 2013 -0400
+
+    JS Linting
+
+commit e5adf8e714335b640bd5a0cc170ae1e066addbb7
+Author: Alec Smecher <alec@smecher.bc.ca>
+Date:   Tue Jan 15 11:52:53 2013 -0800
+
+    *7863* Use readonly for accessible but readonly multilingual inputs
+
+commit 6dc56004f63762be8f67f5fc3124b8c713c71391
+Author: Jason Nugent <jason.nugent@gmail.com>
+Date:   Tue Jan 15 13:47:13 2013 -0400
+
+    *7887* remove unnecessary scrollabletab function call
+
+commit fd5a9a674ba6036c8072649b22106933c5bf9ffb
+Author: Jason Nugent <jason.nugent@gmail.com>
+Date:   Tue Jan 15 11:28:14 2013 -0400
+
+    *7887* add scrolling functionality to tabs
+
+commit 8858f0ed95ffe277fe4e28adbea0babdcf99ebe7
+Author: Alec Smecher <alec@smecher.bc.ca>
+Date:   Fri Jan 11 10:28:02 2013 -0800
+
+    *7827* CSS fix for logo
+
+commit 51ed1dbfe70aa95524e07cbc307d22f5504da571
+Author: Alec Smecher <alec@smecher.bc.ca>
+Date:   Thu Jan 10 11:35:59 2013 -0800
+
+    *7885* Fixed Homepage form organization
+
+commit 6238a396678455989e1187c57c6ffa88cb5bd784
+Author: Alec Smecher <alec@smecher.bc.ca>
+Date:   Wed Jan 9 14:54:58 2013 -0800
+
+    *7907* Remove button in favour of checkbox trigger
+
+commit cdc2841ab941410b540fbcf122d3c4bbed5084c4
+Author: Alec Smecher <alec@smecher.bc.ca>
+Date:   Wed Jan 9 14:08:35 2013 -0800
+
+    *7804* Current stage more prominent
+
+commit c6f355ef2e188af2e72042c2183ebb82f2c54c45
+Author: Jason Nugent <jason.nugent@gmail.com>
+Date:   Wed Jan 9 14:30:21 2013 -0400
+
+    *7870* Add 'Content' tab, chapter information if available
+
+commit b6d7ed1d1bd41fd4c77bd9f5a49fa268401b9a56
+Author: Alec Smecher <alec@smecher.bc.ca>
+Date:   Tue Jan 8 17:18:06 2013 -0800
+
+    *7904* Add highlighting to unread notes
+
+commit 489da4a3d6e965cc53845f4d4b7a7f923a4afd5a
+Author: Jason Nugent <jason.nugent@gmail.com>
+Date:   Tue Jan 8 13:50:10 2013 -0400
+
+    *7953* remove unnecessary trigger since list is already pre-sorted
+
+commit a7e8b771985e6ad22096fc3561b0da7d0d22198b
+Author: Jason Nugent <jason.nugent@gmail.com>
+Date:   Mon Dec 10 10:25:02 2012 -0400
+
+    Add missing request parameter
+
+commit 309bf7c3f22604cf35622ee6c8071e15ea1f398c
+Author: Alec Smecher <alec@smecher.bc.ca>
+Date:   Mon Dec 3 09:40:05 2012 -0800
+
+    *8050* Fix in_array missing array cast
+
+commit 4d6ceb5f584bdc461b142b04bf65c0b2e91d07d1
+Author: Jason Nugent <jason.nugent@gmail.com>
+Date:   Fri Nov 16 08:02:47 2012 -0400
+
+    *8022* add username to user grid
+
+commit 2e2d8de09cc03e7160c34bd149794cc168d2fb05
+Author: Jason Nugent <jason.nugent@gmail.com>
+Date:   Thu Nov 15 11:36:45 2012 -0400
+
+    fix broken import for modals
+
+commit 321f5fd96b40001ad6b15268f9925093979c5eb3
+Author: Alec Smecher <alec@smecher.bc.ca>
+Date:   Tue Nov 6 11:29:45 2012 -0800
+
+    *8002* Fixed translation plugin warning
+
+commit 0d8867cb740cbcc5e955ddd77678ed7ba0cb219d
+Author: Jason Nugent <jason.nugent@gmail.com>
+Date:   Thu Nov 1 15:50:58 2012 -0300
+
+    *7983* remove getLocalizedFullTitle from Monograph
+
+commit a30e614cc419c835bce9a7c5d590707f317f927d
+Author: Alec Smecher <alec@smecher.bc.ca>
+Date:   Thu Nov 1 08:18:27 2012 -0700
+
+    *7995* Further hiding of itemsPerPage and numPageLinks
+
+commit 47b2f0aa36b106a0d01a0c8d9c3f949c41f95ad5
+Author: Jason Nugent <jason.nugent@gmail.com>
+Date:   Wed Oct 31 14:04:12 2012 -0300
+
+    *7991* refactor OMP to use PKP vocab classes, map assoc constant to submission, db upgrade script
+
+commit 8b8b357922034233662e61ab585116c21b557fa1
+Author: Jason Nugent <jason.nugent@gmail.com>
+Date:   Tue Oct 30 13:25:03 2012 -0300
+
+    refactor submission handler to subclass PKPSubmissionHandler
+
+commit 85c3540340352acd0f669b3526c4f8884bf9430c
+Author: Jason Nugent <jason.nugent@gmail.com>
+Date:   Mon Oct 15 16:58:38 2012 -0300
+
+    *7903* set default for availability to 'not set'
+
+commit da7f64ee71f3be71882b777a553e36e990df5744
+Author: Jason Nugent <jason.nugent@gmail.com>
+Date:   Wed Oct 10 07:59:52 2012 -0300
+
+    *7957* strip html from source parameter
+
+commit d9b024bfb71e38656108a7d604e3da16725425e9
+Author: Jason Nugent <jason.nugent@gmail.com>
+Date:   Mon Oct 8 13:32:06 2012 -0300
+
+    *7902* dynamically update the sidebar when appearance settings change
+
+commit 46bed2973dfd9c1a1c5fe441c284aa95582ec7cb
+Author: Alec Smecher <alec@smecher.bc.ca>
+Date:   Fri Oct 5 10:40:32 2012 -0700
+
+    *7952* More pass by reference
+
+commit d04a088972ca3ce007a10c96033289adda85c93d
+Author: Jason Nugent <jason.nugent@gmail.com>
+Date:   Thu Oct 4 15:53:23 2012 -0300
+
+    *7951* test for viewable flag in approved files grid rows
+
+commit 906a8671aeef5221858a81886fed8969753394bd
+Author: Jason Nugent <jason.nugent@gmail.com>
+Date:   Thu Oct 4 15:40:08 2012 -0300
+
+    *6339* remove inclusion of dead JS code
+
+commit 3ce99e731a0000125a908581e53a5f5156b9e29b
+Author: Jason Nugent <jason.nugent@gmail.com>
+Date:   Thu Oct 4 13:35:03 2012 -0300
+
+    *7869* display 'log in required' note on download page if not logged in
+
+commit a62a191585b8122836fac8220538b49c9fc278d5
+Author: Jason Nugent <jason.nugent@gmail.com>
+Date:   Wed Oct 3 10:35:36 2012 -0300
+
+    *7948* fix docs for server requirements
+
+commit 73c320ec82c9bd36a9025e1c125f9251fd4c82c8
+Author: Jason Nugent <jason.nugent@gmail.com>
+Date:   Tue Oct 2 13:46:13 2012 -0300
+
+    *7945* Use press name as title on press index page
+
+commit a00e0512598a51be0b51881a1e507bf98bc84d00
+Author: Alec Smecher <alec@smecher.bc.ca>
+Date:   Mon Oct 1 12:37:39 2012 -0700
+
+    *7947* Correct partially specified imports
+
+commit 5aceb2a58040ea184862df99ce685ec0f97faea2
+Author: Jason Nugent <jason.nugent@gmail.com>
+Date:   Mon Oct 1 15:55:23 2012 -0300
+
+    *7946* CSS changes for catalog search input
+
+commit 34f468359a56906a930229124e116e5d252a4367
+Author: Jason Nugent <jason.nugent@gmail.com>
+Date:   Sat Sep 29 20:30:35 2012 -0300
+
+    *7944* Test for press before fetching setting
+
+commit d602aa93a3ca4a0f3ac122650c19e505a9338a3f
+Author: Jason Nugent <jason.nugent@gmail.com>
+Date:   Wed Sep 26 10:35:43 2012 -0300
+
+    *7938* use getRequest instead of static call
+
+commit d0d73aaf942ffd931f623d1dc79da4d809018bfb
+Author: Alec Smecher <alec@smecher.bc.ca>
+Date:   Mon Sep 24 14:20:45 2012 -0700
+
+    *7932* Dereference symlinks on build
+
+commit 8979bd017eed98766e90a4c8411f51acbf8de48f
+Author: Alec Smecher <alec@smecher.bc.ca>
+Date:   Thu Sep 20 13:04:40 2012 -0700
+
+    *7922* Fix author retrieval on spotlight form
+commit c451d680b86eebca738f63c3c2b0c2bf35a355ee
+Author: Alec Smecher <alec@smecher.bc.ca>
+Date:   Wed Mar 20 16:22:53 2013 -0700
+
+    *8177* Fix upgrade settings fetches (apply in lib/pkp)
+
+commit da86fec9e17ee9b25dac62c0701a39d4baef727e
+Author: Alec Smecher <alec@smecher.bc.ca>
+Date:   Mon Mar 18 11:26:17 2013 -0700
+
+    *8167* De-dupe code
+
+commit 9966c5f6449a5978b6c97836a22b998d723d76f7
+Author: Alec Smecher <alec@smecher.bc.ca>
+Date:   Fri Mar 15 08:58:17 2013 -0700
+
+    Helpful notes for Alec
+
+commit 9a4875628439e5baffd2eefca49ba1654571323e
+Author: jmacgreg <jmacgreg@gmail.com>
+Date:   Thu Mar 14 20:56:01 2013 -0700
+
+    *8133* Minor fr_CA tuneups
+
+commit 48e0e4e2750789fb88a4bbbb3efd91668c285e38
+Author: Alec Smecher <alec@smecher.bc.ca>
+Date:   Thu Mar 14 16:57:34 2013 -0700
+
+    *8161* Fix overzealous tab initialization
+
+commit 518be483653c5309a8fbac3fb8aa6ce8ed2ae1d8
+Author: jmacgreg <jmacgreg@gmail.com>
+Date:   Wed Mar 13 17:10:50 2013 -0700
+
+    *8133* Fixed some incorrect patch deletions
+
+commit e9c7e896ff584fab5bf64e2cbaea5aba7e0a0f7c
+Author: jmacgreg <jmacgreg@gmail.com>
+Date:   Wed Mar 13 16:03:25 2013 -0700
+
+    *8133* Updating es_ES
+
+commit e6e753de4c72267638ebae12b67591d4c6bfdc74
+Author: jmacgreg <jmacgreg@gmail.com>
+Date:   Wed Mar 13 14:14:27 2013 -0700
+
+    *8133* updating lib/pkp locales
+
+commit 8e3c880a7a056a89cb5c794a41eefba9431c286c
+Author: michael-pkp <michael.pkp@gmail.com>
+Date:   Tue Mar 5 15:40:40 2013 -0500
+
+    *8144* PayPal payments never complete with site restriction enabled
+
+commit 3803e58e23dfd60e7342b58b743919faa15d77d9
+Author: Alec Smecher <alec@smecher.bc.ca>
+Date:   Thu Feb 28 07:40:55 2013 -0800
+
+    *8135* Standardize email key length
+
+commit 739c1333329ecadccf34e4ecd8ac1dccfa5a10e6
+Author: Alec Smecher <alec@smecher.bc.ca>
+Date:   Wed Feb 20 16:52:37 2013 -0800
+
+    *8124* Update copyright dates to 2013
+
+commit ab22d954f0367233179b4cb8cc2246cae88307ef
+Author: Jason Nugent <jason.nugent@gmail.com>
+Date:   Wed Jan 16 10:12:37 2013 -0400
+
+    JS Linting
+
+commit c099d6217abe032211dabda2dec937f0aec5cba8
+Author: Jason Nugent <jason.nugent@gmail.com>
+Date:   Wed Jan 16 10:11:35 2013 -0400
+
+    *7887* Disable scrolling on wizard tabs
+
+commit 1daae8806c711357505c984563a591c9305f19d9
+Author: Alec Smecher <alec@smecher.bc.ca>
+Date:   Tue Jan 15 11:43:04 2013 -0800
+
+    *7863* Use readonly for accessible but readonly multilingual inputs
+
+commit fe563e9a862a839f93fc2c1c144417045daecdcc
+Author: Jason Nugent <jason.nugent@gmail.com>
+Date:   Tue Jan 15 11:22:30 2013 -0400
+
+    *7887* introduce scrollabletab plugin
+
+commit 99a3baa5647ce6ef2414ef57f122c34eee1ea175
+Author: Jason Nugent <jason.nugent@gmail.com>
+Date:   Tue Jan 15 11:21:17 2013 -0400
+
+    *7887* fix setting of main content pane width, add scrolling to tabs
+
+commit 482318070acb63b038074aba1a5bb49881e3275d
+Author: Alec Smecher <alec@smecher.bc.ca>
+Date:   Mon Jan 14 09:27:35 2013 -0800
+
+    *7897* Standardize people icons to blue (no more grey)
+
+commit 2bcae590a43d1cf0205af6dc2954fff160135da1
+Author: Alec Smecher <alec@smecher.bc.ca>
+Date:   Fri Jan 11 10:27:41 2013 -0800
+
+    *7827* CSS fix for logo
+
+commit e0d94dd4c87ff12b7c674e7f2c62681becb8d53a
+Author: Alec Smecher <alec@smecher.bc.ca>
+Date:   Thu Jan 10 10:10:08 2013 -0800
+
+    *7859* Add rows and cols for textarea validation
+
+commit e5071de45113e5e61d9f3130f40c0992aee72a6e
+Author: Alec Smecher <alec@smecher.bc.ca>
+Date:   Wed Jan 9 14:04:07 2013 -0800
+
+    *7804* Current stage more prominent
+
+commit 23f0c92cbd60ba6f85b2760373877af6eadefb9e
+Author: Jason Nugent <jason.nugent@gmail.com>
+Date:   Wed Jan 9 14:33:07 2013 -0400
+
+    *7870* introduce locale key for Contents
+
+commit 40bb9d3b8cba0ca7bb8be5b44c7b5ac904808057
+Author: Alec Smecher <alec@smecher.bc.ca>
+Date:   Tue Jan 8 17:19:09 2013 -0800
+
+    *7904* Support reporting back an update status
+
+commit dc15a3ace4238166dc970be4c54dd6646b58920c
+Author: Jason Nugent <jason.nugent@gmail.com>
+Date:   Tue Jan 8 08:50:55 2013 -0400
+
+    *8063* prevent datepickers from becoming orphaned on modal close
+
+commit 96ea5f8ad78fee9fad7495a81968e6f27dc3cbf1
+Author: Bruno Beghelli <bruno.beghelli@gmail.com>
+Date:   Mon Sep 24 18:24:00 2012 -0300
+
+    *7918* Fixed tinyMCE and multilingual popover, introduced possibility to perform many outside click checks
+    
+    Conflicts:
+    
+    	js/controllers/SiteHandler.js
+
+commit 9535e8f09d4536714539d867e6aeb3529227fc39
+Author: Bruno Beghelli <bruno.beghelli@gmail.com>
+Date:   Mon Sep 24 18:07:36 2012 -0300
+
+    *7629* Fixed show errors timer when validator blur event was triggered by click on links (eg listbuilder add)
+
+commit 88547fc4fc7d087b34ce262ec16fd3d910c9b712
+Author: Bruno Beghelli <bruno.beghelli@gmail.com>
+Date:   Mon Sep 24 18:01:53 2012 -0300
+
+    *6725* Fixed triggering cancel wizard twice
+
+commit ddef27eafd0c1c3a472fd3cba955149602b97e61
+Author: Jason Nugent <jason.nugent@gmail.com>
+Date:   Fri Nov 9 10:55:20 2012 -0400
+
+    *7991* fix class imports
+
+commit f75b12824920325b6b2c7c20c7a09c5e1d6f635b
+Author: Jason Nugent <jason.nugent@gmail.com>
+Date:   Thu Nov 8 13:53:59 2012 -0400
+
+    include sidebar on 'not installed' list of allowed pages
+
+commit 2c3c8c2fdac285cfb0583223ad535c2c49f9eaf2
+Author: Jason Nugent <jason.nugent@gmail.com>
+Date:   Thu Nov 1 15:46:14 2012 -0300
+
+    *7983* add getLocalizedFullTitle to Submission class
+
+commit cfe770a0191afe6105a9273546ca679874796f93
+Author: Jason Nugent <jason.nugent@gmail.com>
+Date:   Thu Nov 1 11:09:04 2012 -0300
+
+    *7991* fix class name for import
+
+commit 50640e55866ab55e0d09a8b728a8b49133e4a6d0
+Author: Jason Nugent <jason.nugent@gmail.com>
+Date:   Thu Nov 1 10:24:25 2012 -0300
+
+    remove unused request parameter
+
+commit 1f940b715ffd0b59333724fc661e8309658c00fa
+Author: Jason Nugent <jason.nugent@gmail.com>
+Date:   Wed Oct 31 14:01:02 2012 -0300
+
+    *7991* introduce Submission metadata controlled vocab classes, new assocType for submissions
+
+commit 0a8f055680fce8ce164c311c4ae621acbd3a6c11
+Author: Jason Nugent <jason.nugent@gmail.com>
+Date:   Tue Oct 30 13:21:50 2012 -0300
+
+    Introduce PKPSubmissionHandler for ONIX codelist autocomplete support
+
+commit 3ffd6e376eed07e79478316e61c08ee9241f3ca6
+Author: Jason Nugent <jason.nugent@gmail.com>
+Date:   Tue Oct 30 11:15:42 2012 -0300
+
+    prevent multilingual popover from hiding autocomplete suggestions
+
+commit 1fd246e28406f3714c95896a4b13802061e9178e
+Author: Jason Nugent <jason.nugent@gmail.com>
+Date:   Fri Oct 19 10:16:58 2012 -0300
+
+    *7970* correct cast for authorId
+
+commit 5f37f8468278e74d27aa5b743382fe5e729cbae9
+Author: Bruno Beghelli <bruno.beghelli@gmail.com>
+Date:   Thu Oct 18 22:35:07 2012 -0300
+
+    *7969* Fixed showing form error notifications only in the next request
+
+commit e27887d32b7445507dc97bea586ca48f1ba8e48a
+Author: Jason Nugent <jason.nugent@gmail.com>
+Date:   Wed Oct 10 07:57:38 2012 -0300
+
+    *7957* strip html from source parameter
+
+commit 73aae4b92cbd37ae2278fe0952f9b2904a5b20ae
+Author: Jason Nugent <jason.nugent@gmail.com>
+Date:   Mon Oct 8 13:25:37 2012 -0300
+
+    *7902* let Sitehandler handle updateSidebar requests
+
+commit d5f2664339616422aa4735f9d2a4c98e14347172
+Author: Alec Smecher <alec@smecher.bc.ca>
+Date:   Fri Oct 5 10:16:41 2012 -0700
+
+    *7592* Fixed call time pass by reference
+
+commit 57ef7450c5cb887143d805ba89a80b70ae31eaba
+Author: Jason Nugent <jason.nugent@gmail.com>
+Date:   Fri Oct 5 10:37:47 2012 -0300
+
+    prevent accidental reuse of inDivClass parameter
+
+commit e60035f10a71f17e74d04ca9d72d892659e92d2b
+Author: Bruno Beghelli <bruno.beghelli@gmail.com>
+Date:   Thu Oct 4 16:33:06 2012 -0300
+
+    Fixed mock environment include directory string construction to avoid errors if no mock directory is accessible in application
+
+commit fdb6b9558a4ea36d45b00cdf8dffb4702b7f6816
+Author: Jason Nugent <jason.nugent@gmail.com>
+Date:   Thu Oct 4 15:48:03 2012 -0300
+
+    *7951* add 'no actions' message to grid rows
+
+commit 8e399236dbbc201200ba22959038eb9a24c12f00
+Author: Alec Smecher <alec@smecher.bc.ca>
+Date:   Mon Oct 1 12:36:17 2012 -0700
+
+    *7947* Correct partially specified imports
+
+commit 3e0fea0423e5679dc68f706a8b4855d0663aff68
+Author: Alec Smecher <alec@smecher.bc.ca>
+Date:   Thu Sep 27 07:44:25 2012 -0700
+
+    *7943* Fixed missing request parameters
+
+commit 0e970c0e132c6083f147654afc9e71e3ff4a9bf5
+Author: Alec Smecher <alec@smecher.bc.ca>
+Date:   Wed Sep 26 07:55:42 2012 -0700
+
+    *7939* Removed call time pass by reference
+
+commit d8a433438bd0e24c20f273747b8cfdd4abf46a46
+Author: Jason Nugent <jason.nugent@gmail.com>
+Date:   Wed Sep 26 10:26:54 2012 -0300
+
+    *7938* introduce getRequest method in PKPPlugin
+
+commit cd80670c90433cc48f84de57ddfa9862ad47cd4d
+Author: Bruno Beghelli <bruno.beghelli@gmail.com>
+Date:   Tue Sep 25 12:36:57 2012 -0300
+
+    *7934* Reverted changes in colspan that were hiding the other category row cells
+
+commit 5092acce17a032b79ba40f17cce11c641e385a05
+Author: Alec Smecher <alec@smecher.bc.ca>
+Date:   Thu Sep 20 13:05:39 2012 -0700
+
+    *7923* Make sure temp dir is created before using it
+
+commit 7ad7f99df1b276f2c0cd29530d54ad0536a61d17
+Author: Alec Smecher <alec@smecher.bc.ca>
+Date:   Thu Sep 20 13:03:56 2012 -0700
+
+    *7921* Fix selector for hidden field in auto complete
