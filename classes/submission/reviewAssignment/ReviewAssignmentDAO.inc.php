@@ -30,36 +30,6 @@ class ReviewAssignmentDAO extends PKPReviewAssignmentDAO {
 	}
 
 	/**
-	 * Get the last review round review assignment for a given user.
-	 * @param $monographId int
-	 * @param $reviewerId int
-	 * @return ReviewAssignment
-	 */
-	function getLastReviewRoundReviewAssignmentByReviewer($monographId, $reviewerId) {
-		$params = array(
-			(int) $monographId,
-			(int) $reviewerId
-		);
-
-		$result = $this->retrieve(
-			$this->_getSelectQuery() .
-			' WHERE	r.submission_id = ? AND
-				r.reviewer_id = ? AND
-				r.cancelled <> 1
-			ORDER BY r2.stage_id DESC, r2.round DESC LIMIT 1',
-			$params
-		);
-
-		$returner = null;
-		if ($result->RecordCount() != 0) {
-			$returner = $this->_fromRow($result->GetRowAssoc(false));
-		}
-
-		$result->Close();
-		return $returner;
-	}
-
-	/**
 	 * Get the ID of the last inserted review assignment.
 	 * @return int
 	 */
@@ -325,16 +295,6 @@ class ReviewAssignmentDAO extends PKPReviewAssignmentDAO {
 
 		$result->Close();
 		return $returner;
-	}
-
-	/**
-	 * Get sql query to select review assignments.
-	 * @return string
-	 */
-	function _getSelectQuery() {
-		return 'SELECT r.*, r2.review_revision, u.first_name, u.last_name FROM review_assignments r
-			LEFT JOIN users u ON (r.reviewer_id = u.user_id)
-			LEFT JOIN review_rounds r2 ON (r.review_round_id = r2.review_round_id)';
 	}
 
 	/**
