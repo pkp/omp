@@ -100,7 +100,7 @@ class SeriesEditorSubmissionDAO extends MonographDAO {
 		$seriesEditorSubmission =& parent::_fromRow($row);
 
 		// Editor Decisions
-		$reviewRounds =& $this->reviewRoundDao->getByMonographId($row['monograph_id']);
+		$reviewRounds =& $this->reviewRoundDao->getBySubmissionId($row['monograph_id']);
 		while ($reviewRound =& $reviewRounds->next()) {
 			$stageId = $reviewRound->getStageId();
 			$round = $reviewRound->getRound();
@@ -119,7 +119,7 @@ class SeriesEditorSubmissionDAO extends MonographDAO {
 		$seriesEditorSubmission->setMostRecentProofreadComment($this->monographCommentDao->getMostRecentMonographComment($row['monograph_id'], COMMENT_TYPE_PROOFREAD, $row['monograph_id']));
 
 		// Review Assignments
-		$reviewRounds =& $this->reviewRoundDao->getByMonographId($row['monograph_id']);
+		$reviewRounds =& $this->reviewRoundDao->getBySubmissionId($row['monograph_id']);
 		while ($reviewRound =& $reviewRounds->next()) {
 			$stageId = $reviewRound->getStageId();
 			$round = $reviewRound->getRound();
