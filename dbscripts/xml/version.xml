@@ -17,4 +17,5 @@
 	<date>2013-03-25</date>
 	<info>http://pkp.sfu.ca/omp/</info>
 	<package>http://pkp.sfu.ca/omp/download/omp-1.0.0.tar.gz</package>
+	<patch from="0.9.9.0">http://pkp.sfu.ca/omp/download/patch/omp-1.0b_to_1.0.0.patch.gz</patch>
 </version>
