@@ -38,8 +38,8 @@ class OmpMonographFileAccessPolicy extends ContextPolicy {
 		parent::ContextPolicy($request);
 
 		// We need a submission matching the file in the request.
-		import('classes.security.authorization.internal.MonographRequiredPolicy');
-		$this->addPolicy(new MonographRequiredPolicy($request, $args, $submissionParameterName));
+		import('lib.pkp.classes.security.authorization.internal.SubmissionRequiredPolicy');
+		$this->addPolicy(new SubmissionRequiredPolicy($request, $args, $submissionParameterName));
 		import('classes.security.authorization.internal.MonographFileMatchesMonographPolicy');
 		$this->addPolicy(new MonographFileMatchesMonographPolicy($request, $fileIdAndRevision));
 

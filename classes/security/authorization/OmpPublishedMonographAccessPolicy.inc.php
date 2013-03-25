@@ -30,8 +30,8 @@ class OmpPublishedMonographAccessPolicy extends ContextPolicy {
 		$monographAccessPolicy = new PolicySet(COMBINING_PERMIT_OVERRIDES);
 		// Published monograph access for the public
 		$publishedMonographAccessPolicy = new PolicySet(COMBINING_DENY_OVERRIDES);
-		import('classes.security.authorization.internal.MonographRequiredPolicy');
-		$publishedMonographAccessPolicy->addPolicy(new MonographRequiredPolicy($request, $args, $submissionParameterName));
+		import('lib.pkp.classes.security.authorization.internal.SubmissionRequiredPolicy');
+		$publishedMonographAccessPolicy->addPolicy(new SubmissionRequiredPolicy($request, $args, $submissionParameterName));
 		import('classes.security.authorization.internal.MonographPublishedPolicy');
 		$publishedMonographAccessPolicy->addPolicy(new MonographPublishedPolicy($request));
 		$monographAccessPolicy->addPolicy($publishedMonographAccessPolicy);

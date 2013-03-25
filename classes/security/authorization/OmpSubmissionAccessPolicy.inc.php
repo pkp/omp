@@ -27,8 +27,8 @@ class OmpSubmissionAccessPolicy extends ContextPolicy {
 		parent::ContextPolicy($request);
 
 		// We need a submission in the request.
-		import('classes.security.authorization.internal.MonographRequiredPolicy');
-		$this->addPolicy(new MonographRequiredPolicy($request, $args, $submissionParameterName));
+		import('lib.pkp.classes.security.authorization.internal.SubmissionRequiredPolicy');
+		$this->addPolicy(new SubmissionRequiredPolicy($request, $args, $submissionParameterName));
 
 		// Authors, press managers and series editors potentially have
 		// access to submissions. We'll have to define differentiated

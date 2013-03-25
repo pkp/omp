@@ -56,8 +56,8 @@ class WorkflowHandler extends Handler {
 
 		if ($operation == 'access') {
 			// Authorize requested monograph.
-			import('classes.security.authorization.internal.MonographRequiredPolicy');
-			$this->addPolicy(new MonographRequiredPolicy($request, $args, 'submissionId'));
+			import('lib.pkp.classes.security.authorization.internal.SubmissionRequiredPolicy');
+			$this->addPolicy(new SubmissionRequiredPolicy($request, $args, 'submissionId'));
 
 			// This policy will deny access if user has no accessible workflow stage.
 			// Otherwise it will build an authorized object with all accessible
