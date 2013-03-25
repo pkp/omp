@@ -59,15 +59,6 @@
 	<message key="editor.monograph.selectFairCopy">Select approved copy editing files to be sent to Production.</message>
 	<message key="editor.monograph.selectProofreadingFiles">Proofreading Files</message>
 	<message key="editor.monograph.selectCopyedingFiles">Copyediting Files</message>
-	<message key="editor.monograph.roundStatus.revisionsRequested">Revisions have been requested.</message>
-	<message key="editor.monograph.roundStatus.resubmitted">Submission has been resubmitted for review.</message>
-	<message key="editor.monograph.roundStatus.sentToExternal">Sent to external review.</message>
-	<message key="editor.monograph.roundStatus.accepted">Submission accepted.</message>
-	<message key="editor.monograph.roundStatus.declined">Submission declined.</message>
-	<message key="editor.monograph.roundStatus.pendingReviewers">Awaiting reviewers.</message>
-	<message key="editor.monograph.roundStatus.pendingReviews">Awaiting responses from reviewers.</message>
-	<message key="editor.monograph.roundStatus.reviewsReady">New reviews ready.</message>
-	<message key="editor.monograph.roundStatus.reviewsCompleted">Reviews completed.</message>
 	<message key="editor.monograph.createNewRound">Create New Review Round</message>
 	<message key="editor.monograph.internalReview">Initiate Internal Review</message>
 	<message key="editor.monograph.internalReviewDescription">You are about to initiate an internal review for this submission.  Files that are part of the submission are listed below and can be selected for review.</message>

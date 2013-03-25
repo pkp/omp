@@ -420,7 +420,7 @@ class WorkflowHandler extends Handler {
 
 		if ($stageId == WORKFLOW_STAGE_ID_INTERNAL_REVIEW || $stageId == WORKFLOW_STAGE_ID_EXTERNAL_REVIEW) {
 			$reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO');
-			$reviewRounds =& $reviewRoundDao->getByMonographId($monograph->getId(), $stageId);
+			$reviewRounds =& $reviewRoundDao->getBySubmissionId($monograph->getId(), $stageId);
 			$notificationTypes = array(NOTIFICATION_TYPE_REVIEW_ROUND_STATUS, NOTIFICATION_TYPE_ALL_REVIEWS_IN);
 			while ($reviewRound =& $reviewRounds->next()) {
 				foreach ($notificationTypes as $type) {
@@ -453,7 +453,7 @@ class WorkflowHandler extends Handler {
 
 		// Get all review rounds for this submission, on the current stage.
 		$reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO');
-		$reviewRoundsFactory =& $reviewRoundDao->getByMonographId($monograph->getId(), $selectedStageId);
+		$reviewRoundsFactory =& $reviewRoundDao->getBySubmissionId($monograph->getId(), $selectedStageId);
 		if (!$reviewRoundsFactory->wasEmpty()) {
 			$reviewRoundsArray =& $reviewRoundsFactory->toAssociativeArray();
 

@@ -81,8 +81,8 @@ class AuthorDashboardHandler extends Handler {
 		}
 
 		$reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO');
-		$internalReviewRounds =& $reviewRoundDao->getByMonographId($monograph->getId(), WORKFLOW_STAGE_ID_INTERNAL_REVIEW);
-		$externalReviewRounds =& $reviewRoundDao->getByMonographId($monograph->getId(), WORKFLOW_STAGE_ID_EXTERNAL_REVIEW);
+		$internalReviewRounds =& $reviewRoundDao->getBySubmissionId($monograph->getId(), WORKFLOW_STAGE_ID_INTERNAL_REVIEW);
+		$externalReviewRounds =& $reviewRoundDao->getBySubmissionId($monograph->getId(), WORKFLOW_STAGE_ID_EXTERNAL_REVIEW);
 		$lastInternalReviewRound =& $reviewRoundDao->getLastReviewRoundBySubmissionId($monograph->getId(), WORKFLOW_STAGE_ID_INTERNAL_REVIEW);
 		$lastExternalReviewRound =& $reviewRoundDao->getLastReviewRoundBySubmissionId($monograph->getId(), WORKFLOW_STAGE_ID_EXTERNAL_REVIEW);
 		$lastInternalReviewRoundNumber = 0;

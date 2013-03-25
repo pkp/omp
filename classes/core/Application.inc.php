@@ -130,7 +130,6 @@ class Application extends PKPApplication {
 			'ReviewFormDAO' => 'lib.pkp.classes.reviewForm.ReviewFormDAO',
 			'ReviewFormElementDAO' => 'lib.pkp.classes.reviewForm.ReviewFormElementDAO',
 			'ReviewFormResponseDAO' => 'lib.pkp.classes.reviewForm.ReviewFormResponseDAO',
-			'ReviewRoundDAO' => 'classes.monograph.reviewRound.ReviewRoundDAO',
 			'RoleDAO' => 'classes.security.RoleDAO',
 			'SalesRightsDAO' => 'classes.publicationFormat.SalesRightsDAO',
 			'SeriesDAO' => 'classes.press.SeriesDAO',

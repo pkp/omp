@@ -46,7 +46,7 @@ class MonographFileRequestedRevisionRequiredPolicy extends MonographFileBaseAcce
 
 		// Make sure the file is part of a review round
 		// with a requested revision decision.
-		$reviewRound =& $reviewRoundDao->getByMonographFileId($monographFile->getFileId());
+		$reviewRound =& $reviewRoundDao->getBySubmissionFileId($monographFile->getFileId());
 		if (!is_a($reviewRound, 'ReviewRound')) return AUTHORIZATION_DENY;
 		import('classes.workflow.EditorDecisionActionsManager');
 		if (!EditorDecisionActionsManager::getEditorTakenActionInReviewRound($reviewRound, array(SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS))) {
@@ -54,7 +54,7 @@ class MonographFileRequestedRevisionRequiredPolicy extends MonographFileBaseAcce
 		}
 
 		// Make sure that it's in the review stage.
-		$reviewRound =& $reviewRoundDao->getByMonographFileId($monographFile->getFileId());
+		$reviewRound =& $reviewRoundDao->getBySubmissionFileId($monographFile->getFileId());
 		if (!is_a($reviewRound, 'ReviewRound')) return AUTHORIZATION_DENY;
 
 		// Make sure review round stage is the same of the current stage in request.

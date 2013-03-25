@@ -148,7 +148,7 @@ class SeriesEditorSubmissionDAO extends MonographDAO {
 
 		// Update review stages editor decisions.
 		$reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO'); /* @var $reviewRoundDao ReviewRoundDAO */
-		$reviewRounds =& $reviewRoundDao->getByMonographId($monographId);
+		$reviewRounds =& $reviewRoundDao->getBySubmissionId($monographId);
 
 		while ($reviewRound =& $reviewRounds->next()) {
 			$stageId = $reviewRound->getStageId();
@@ -178,7 +178,7 @@ class SeriesEditorSubmissionDAO extends MonographDAO {
 		$removedReviewAssignments =& $seriesEditorSubmission->getRemovedReviewAssignments();
 
 		unset($reviewRounds);
-		$reviewRounds =& $reviewRoundDao->getByMonographId($monographId);
+		$reviewRounds =& $reviewRoundDao->getBySubmissionId($monographId);
 
 		while ($reviewRound =& $reviewRounds->next()) {
 			$stageId = $reviewRound->getStageId();
