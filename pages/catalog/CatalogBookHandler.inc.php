@@ -157,8 +157,8 @@ class CatalogBookHandler extends Handler {
 		$user =& $request->getUser();
 		if ($submissionFile->getDirectSalesPrice() === '0' || ($user && $ompCompletedPaymentDao->hasPaidPurchaseFile($user->getId(), $fileIdAndRevision))) {
 			// Paid purchase or open access. Allow download.
-			import('classes.file.MonographFileManager');
-			$monographFileManager = new MonographFileManager($press->getId(), $monographId);
+			import('lib.pkp.classes.file.SubmissionFileManager');
+			$monographFileManager = new SubmissionFileManager($press->getId(), $monographId);
 			return $monographFileManager->downloadFile($fileId, $revision);
 		}
 

@@ -147,15 +147,15 @@ class NewSignoffNoteForm extends NewNoteForm {
 				import('classes.monograph.MonographFile');
 
 				$press =& $request->getPress();
-				import('classes.file.MonographFileManager');
-				$monographFileManager = new MonographFileManager($press->getId(), $this->_monographId);
+				import('lib.pkp.classes.file.SubmissionFileManager');
+				$monographFileManager = new SubmissionFileManager($press->getId(), $this->_monographId);
 
 				// Get the monograph file that is associated with the signoff.
 				$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /** @var $submissionFileDao SubmissionFileDAO */
 				$signoffFile =& $submissionFileDao->getLatestRevision($signoff->getAssocId());
 				assert(is_a($signoffFile, 'MonographFile'));
 
-				$noteFileId = $monographFileManager->temporaryFileToMonographFile(
+				$noteFileId = $monographFileManager->temporaryFileToSubmissionFile(
 					$temporaryFile,
 					SUBMISSION_FILE_NOTE, $signoff->getUserId(),
 					$signoff->getUserGroupId(), null, $signoffFile->getGenreId(),

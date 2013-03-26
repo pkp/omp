@@ -196,9 +196,9 @@ class SignoffFileUploadForm extends Form {
 				import('classes.monograph.MonographFile');
 
 				$press =& $request->getPress();
-				import('classes.file.MonographFileManager');
-				$monographFileManager = new MonographFileManager($press->getId(), $this->getMonographId());
-				$signoffFileId = $monographFileManager->temporaryFileToMonographFile(
+				import('lib.pkp.classes.file.SubmissionFileManager');
+				$monographFileManager = new SubmissionFileManager($press->getId(), $this->getMonographId());
+				$signoffFileId = $monographFileManager->temporaryFileToSubmissionFile(
 					$temporaryFile,
 					SUBMISSION_FILE_NOTE, $signoff->getUserId(),
 					$signoff->getUserGroupId(), $signoff->getAssocId(), null,

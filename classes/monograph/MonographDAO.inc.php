@@ -342,8 +342,8 @@ class MonographDAO extends DAO {
 		$monograph = $this->getById($monographId);
 		assert(is_a($monograph, 'Monograph'));
 
-		import('classes.file.MonographFileManager');
-		$monographFileManager = new MonographFileManager($monograph->getPressId(), $monograph->getId());
+		import('lib.pkp.classes.file.SubmissionFileManager');
+		$monographFileManager = new SubmissionFileManager($monograph->getPressId(), $monograph->getId());
 		$monographFileManager->rmtree($monographFileManager->getBasePath());
 
 		// Delete any comments.

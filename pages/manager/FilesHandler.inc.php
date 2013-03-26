@@ -153,9 +153,9 @@ class FilesHandler extends ManagerHandler {
 	 */
 	function _getRealFilesDir($request, $currentDir) {
 		$press =& $request->getPress();
-		import('classes.file.PressFileManager');
+		import('lib.pkp.classes.file.ContextFileManager');
 		$pressFileManager = new PrivateFileManager($press->getId());
-		
+
 		return $privateFileManager->getBasePath() . $currentDir;
 	}
 

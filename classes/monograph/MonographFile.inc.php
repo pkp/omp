@@ -275,8 +275,8 @@ class MonographFile extends SubmissionFile {
 		unset($monograph);
 
 		// Construct the file path
-		import('classes.file.MonographFileManager');
-		$monographFileManager = new MonographFileManager($pressId, $this->getMonographId());
+		import('lib.pkp.classes.file.SubmissionFileManager');
+		$monographFileManager = new SubmissionFileManager($pressId, $this->getMonographId());
 		return $monographFileManager->getBasePath() . $this->_fileStageToPath($this->getFileStage()) . '/' . $this->getFileName();
 	}
 

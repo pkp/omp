@@ -17,14 +17,14 @@
  * [monograph id]/simple
  */
 
-import('classes.file.BaseMonographFileManager');
+import('lib.pkp.classes.file.BaseSubmissionFileManager');
 
-class SimpleMonographFileManager extends BaseMonographFileManager {
+class SimpleMonographFileManager extends BaseSubmissionFileManager {
 	/**
 	 * Constructor.
 	 */
 	function SimpleMonographFileManager($pressId, $monographId) {
-		parent::BaseMonographFileManager($pressId, $monographId);
+		parent::BaseSubmissionFileManager($pressId, $monographId);
 	}
 
 	/**

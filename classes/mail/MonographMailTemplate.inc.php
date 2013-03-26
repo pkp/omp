@@ -147,10 +147,10 @@ class MonographMailTemplate extends MailTemplate {
 		$logEntryId = $logDao->insertObject($entry);
 
 		// Add attachments
-		import('classes.file.MonographFileManager');
-		$monographFileManager = new MonographFileManager($monograph->getPressId(), $monograph->getId());
+		import('lib.pkp.classes.file.SubmissionFileManager');
+		$monographFileManager = new SubmissionFileManager($monograph->getPressId(), $monograph->getId());
 		foreach ($this->getAttachmentFiles() as $attachment) {
-			$monographFileManager->temporaryFileToMonographFile(
+			$monographFileManager->temporaryFileToSubmissionFile(
 				$attachment,
 				SUBMISSION_FILE_ATTACHMENT,
 				ASSOC_TYPE_SUBMISSION_EMAIL_LOG_ENTRY,

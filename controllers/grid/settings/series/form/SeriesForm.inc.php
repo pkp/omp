@@ -158,8 +158,8 @@ class SeriesForm extends Form {
 
 			$temporaryFile =& $temporaryFileDao->getTemporaryFile($temporaryFileId, $this->_userId);
 			$temporaryFilePath = $temporaryFile->getFilePath();
-			import('classes.file.PressFileManager');
-			$pressFileManager = new PressFileManager($press->getId());
+			import('lib.pkp.classes.file.ContextFileManager');
+			$pressFileManager = new ContextFileManager($press->getId());
 			$basePath = $pressFileManager->getBasePath() . '/series/';
 
 			// Delete the old file if it exists

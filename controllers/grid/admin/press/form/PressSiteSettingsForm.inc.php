@@ -107,8 +107,8 @@ class PressSiteSettingsForm extends ContextSiteSettingsForm {
 			$pressDao->resequence();
 
 			// Make the file directories for the press
-			import('classes.file.PressFileManager');
-			$pressFileManager = new PressFileManager($contextId);
+			import('lib.pkp.classes.file.ContextFileManager');
+			$pressFileManager = new ContextFileManager($contextId);
 			$pressFileManager->mkdir($pressFileManager->getBasePath());
 			$pressFileManager->mkdir($pressFileManager->getBasePath() . '/monographs');
 

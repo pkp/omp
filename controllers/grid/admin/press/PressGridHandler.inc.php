@@ -187,8 +187,8 @@ class PressGridHandler extends ContextGridHandler {
 
 			// Delete press file tree
 			// FIXME move this somewhere better.
-			import('classes.file.PressFileManager');
-			$pressFileManager = new PressFileManager($pressId);
+			import('lib.pkp.classes.file.ContextFileManager');
+			$pressFileManager = new ContextFileManager($pressId);
 			$pressFileManager->rmtree($pressFileManager->getBasePath());
 
 			import('classes.file.PublicFileManager');

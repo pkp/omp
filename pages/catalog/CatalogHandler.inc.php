@@ -220,8 +220,8 @@ class CatalogHandler extends Handler {
 		}
 
 		if ($imageInfo) {
-			import('classes.file.PressFileManager');
-			$pressFileManager = new PressFileManager($press->getId());
+			import('lib.pkp.classes.file.ContextFileManager');
+			$pressFileManager = new ContextFileManager($press->getId());
 			$pressFileManager->downloadFile($pressFileManager->getBasePath() . $path . $imageInfo['name'], null, true);
 		}
 	}
@@ -258,8 +258,8 @@ class CatalogHandler extends Handler {
 		}
 
 		if ($imageInfo) {
-			import('classes.file.PressFileManager');
-			$pressFileManager = new PressFileManager($press->getId());
+			import('lib.pkp.classes.file.ContextFileManager');
+			$pressFileManager = new ContextFileManager($press->getId());
 			$pressFileManager->downloadFile($pressFileManager->getBasePath() . $path . $imageInfo['thumbnailName'], null, true);
 		}
 	}

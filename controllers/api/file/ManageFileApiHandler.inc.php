@@ -58,11 +58,11 @@ class ManageFileApiHandler extends PKPManageFileApiHandler {
 	 * indexes the files associated with a submission.
 	 * @param $contextId int the context id.
 	 * @param $submissionId int the submission id.
-	 * @return MonographFileManager
+	 * @return SubmissionFileManager
 	 */
 	function getFileManager($contextId, $submissionId) {
-		import('classes.file.MonographFileManager');
-		return new MonographFileManager($contextId, $submissionId);
+		import('lib.pkp.classes.file.SubmissionFileManager');
+		return new SubmissionFileManager($contextId, $submissionId);
 	}
 
 	/**

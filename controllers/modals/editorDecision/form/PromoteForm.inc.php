@@ -74,8 +74,8 @@ class PromoteForm extends EditorDecisionWithEmailForm {
 		$seriesEditorAction->recordDecision($request, $seriesEditorSubmission, $decision, $actionLabels, $reviewRound);
 
 		// Identify email key and status of round.
-		import('classes.file.MonographFileManager');
-		$monographFileManager = new MonographFileManager($seriesEditorSubmission->getPressId(), $seriesEditorSubmission->getId());
+		import('lib.pkp.classes.file.SubmissionFileManager');
+		$monographFileManager = new SubmissionFileManager($seriesEditorSubmission->getPressId(), $seriesEditorSubmission->getId());
 		switch ($decision) {
 			case SUBMISSION_EDITOR_DECISION_ACCEPT:
 				$emailKey = 'EDITOR_DECISION_ACCEPT';
@@ -89,7 +89,7 @@ class PromoteForm extends EditorDecisionWithEmailForm {
 				// Bring in the SUBMISSION_FILE_* constants.
 				import('classes.monograph.MonographFile');
 				// Bring in the Manager (we need it).
-				import('classes.file.MonographFileManager');
+				import('lib.pkp.classes.file.SubmissionFileManager');
 
 				$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 
@@ -130,7 +130,7 @@ class PromoteForm extends EditorDecisionWithEmailForm {
 				// Bring in the SUBMISSION_FILE_* constants.
 				import('classes.monograph.MonographFile');
 				// Bring in the Manager (we need it).
-				import('classes.file.MonographFileManager');
+				import('lib.pkp.classes.file.SubmissionFileManager');
 
 				// Move the revisions to the next stage
 				$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */

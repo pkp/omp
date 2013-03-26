@@ -206,8 +206,8 @@ class CategoryForm extends Form {
 
 			$temporaryFile =& $temporaryFileDao->getTemporaryFile($temporaryFileId, $this->_userId);
 			$temporaryFilePath = $temporaryFile->getFilePath();
-			import('classes.file.PressFileManager');
-			$pressFileManager = new PressFileManager($this->getPressId());
+			import('lib.pkp.classes.file.ContextFileManager');
+			$pressFileManager = new ContextFileManager($this->getPressId());
 			$basePath = $pressFileManager->getBasePath() . '/categories/';
 
 			// Delete the old file if it exists

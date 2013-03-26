@@ -195,6 +195,13 @@ class Application extends PKPApplication {
 				WORKFLOW_STAGE_ID_PRODUCTION
 			);
 	}
+
+	/**
+	 * Get the file directory array map used by the application.
+	 */
+	static function getFileDirectories() {
+		return array('context' => '/presses/', 'submission' => '/monographs/');
+	}
 }
 
 ?>

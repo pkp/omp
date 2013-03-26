@@ -180,8 +180,8 @@ class EditorDecisionForm extends Form {
 		// Bring in the SUBMISSION_FILE_* constants.
 		import('classes.monograph.MonographFile');
 		// Bring in the Manager (we need it).
-		import('classes.file.MonographFileManager');
-		$monographFileManager = new MonographFileManager($monograph->getPressId(), $monograph->getId());
+		import('lib.pkp.classes.file.SubmissionFileManager');
+		$monographFileManager = new SubmissionFileManager($monograph->getPressId(), $monograph->getId());
 		foreach (array('selectedFiles', 'selectedAttachments') as $userVar) {
 			$selectedFiles = $this->getData($userVar);
 			if(is_array($selectedFiles)) {

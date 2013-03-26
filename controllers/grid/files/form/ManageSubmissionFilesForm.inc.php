@@ -87,9 +87,9 @@ class ManageSubmissionFilesForm extends Form {
 				// If the viewable flag is set to true...
 				if ($isViewable) {
 					// Make a copy of the file to the current file stage.
-					import('classes.file.MonographFileManager');
+					import('lib.pkp.classes.file.SubmissionFileManager');
 					$press =& $request->getPress();
-					$monographFileManager = new MonographFileManager($press->getId(), $monographFile->getMonographId());
+					$monographFileManager = new SubmissionFileManager($press->getId(), $monographFile->getMonographId());
 					// Split the file into file id and file revision.
 					$fileId = $monographFile->getFileId();
 					$revision = $monographFile->getRevision();

@@ -17,7 +17,7 @@
 
 // Import the base handler.
 import('lib.pkp.controllers.api.file.PKPFileApiHandler');
-import('classes.file.MonographFileManager');
+import('lib.pkp.classes.file.SubmissionFileManager');
 import('classes.security.authorization.SubmissionFileAccessPolicy');
 
 class FileApiHandler extends PKPFileApiHandler {
@@ -33,10 +33,10 @@ class FileApiHandler extends PKPFileApiHandler {
 	 * return the application specific file manager.
 	 * @param $contextId int the context for this manager.
 	 * @param $submissionId int the submission id.
-	 * @return MonographFileManager
+	 * @return SubmissionFileManager
 	 */
 	function _getFileManager($contextId, $submissionId) {
-		return new MonographFileManager($contextId, $submissionId);
+		return new SubmissionFileManager($contextId, $submissionId);
 	}
 
 	/**
@@ -57,7 +57,7 @@ class FileApiHandler extends PKPFileApiHandler {
 	 * @param $submissionFile MonographFile the file to record.
 	 */
 	function recordView($submissionFile) {
-		MonographFileManager::recordView($submissionFile);
+		SubmissionFileManager::recordView($submissionFile);
 	}
 }
 
