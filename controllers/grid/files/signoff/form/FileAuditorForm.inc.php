@@ -266,12 +266,12 @@ class FileAuditorForm extends Form {
 		);
 
 		// log the add auditor event.
-		import('classes.log.MonographFileLog');
-		import('classes.log.MonographFileEventLogEntry'); // constants
+		import('lib.pkp.classes.log.SubmissionFileLog');
+		import('lib.pkp.classes.log.SubmissionFileEventLogEntry'); // constants
 		$userDao = DAORegistry::getDAO('UserDAO');
 		$user = $userDao->getById($userId);
 		if (isset($user)) {
-			MonographFileLog::logEvent($request, $monographFile, MONOGRAPH_LOG_FILE_AUDITOR_ASSIGN, 'submission.event.fileAuditorAdded', array('file' => $monographFile->getOriginalFileName(), 'name' => $user->getFullName(), 'username' => $user->getUsername()));
+			SubmissionFileLog::logEvent($request, $monographFile, SUBMISSION_LOG_FILE_AUDITOR_ASSIGN, 'submission.event.fileAuditorAdded', array('file' => $monographFile->getOriginalFileName(), 'name' => $user->getFullName(), 'username' => $user->getUsername()));
 		}
 
 		$notificationMgr->updateNotification(

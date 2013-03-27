@@ -12,9 +12,9 @@
  * @brief Static class for adding / accessing monograph log entries.
  */
 
-import('classes.log.OmpLog');
+import('lib.pkp.classes.log.PkpLog');
 
-class MonographLog extends OmpLog {
+class MonographLog extends PkpLog {
 	/**
 	 * Add a new event log entry with the specified parameters
 	 * @param $request object

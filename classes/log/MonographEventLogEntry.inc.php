@@ -13,7 +13,7 @@
  * @brief Describes an entry in the monograph history log.
  */
 
-import('classes.log.OmpEventLogEntry');
+import('lib.pkp.classes.log.EventLogEntry');
 
 /**
  * Log entry event types. All types must be defined here.
@@ -56,12 +56,12 @@ define('MONOGRAPH_LOG_LAST_REVISION_DELETED', 	0x50000003);
 // Production events
 define('MONOGRAPH_LOG_PROOFS_APPROVED',		0x50000008);
 
-class MonographEventLogEntry extends OmpEventLogEntry {
+class MonographEventLogEntry extends EventLogEntry {
 	/**
 	 * Constructor.
 	 */
 	function MonographEventLogEntry() {
-		parent::OmpEventLogEntry();
+		parent::EventLogEntry();
 	}
 
 

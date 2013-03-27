@@ -241,15 +241,15 @@ class SignoffFileUploadForm extends Form {
 			);
 
 			// log the event.
-			import('classes.log.MonographFileLog');
-			import('classes.log.MonographFileEventLogEntry'); // constants
+			import('lib.pkp.classes.log.SubmissionFileLog');
+			import('lib.pkp.classes.log.SubmissionFileEventLogEntry'); // constants
 			$monographDao = DAORegistry::getDAO('MonographDAO');
 			$monograph =& $monographDao->getById($this->getMonographId());
 			$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
 			$monographFile =& $submissionFileDao->getLatestRevision($signoff->getFileId());
 
 			if (isset($monographFile)) {
-				MonographFileLog::logEvent($request, $monographFile, MONOGRAPH_LOG_FILE_AUDIT_UPLOAD, 'submission.event.fileAuditUploaded', array('file' => $monographFile->getOriginalFileName(), 'name' => $user->getFullName(), 'username' => $user->getUsername()));
+				SubmissionFileLog::logEvent($request, $monographFile, SUBMISSION_LOG_FILE_AUDIT_UPLOAD, 'submission.event.fileAuditUploaded', array('file' => $monographFile->getOriginalFileName(), 'name' => $user->getFullName(), 'username' => $user->getUsername()));
 			}
 			return $signoff->getId();
 		}

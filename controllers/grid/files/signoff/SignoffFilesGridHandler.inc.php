@@ -550,13 +550,13 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 			);
 
 			// log the remove auditor event.
-			import('classes.log.MonographFileLog');
-			import('classes.log.MonographFileEventLogEntry'); // constants
+			import('lib.pkp.classes.log.SubmissionFileLog');
+			import('lib.pkp.classes.log.SubmissionFileEventLogEntry'); // constants
 			$userDao = DAORegistry::getDAO('UserDAO');
 			$signoffUser =& $userDao->getById($signoffUserId);
 
 			if (isset($signoffUser) && isset($monographFile)) {
-				MonographFileLog::logEvent($request, $monographFile, MONOGRAPH_LOG_FILE_AUDITOR_CLEAR, 'submission.event.fileAuditorCleared', array('file' => $monographFile->getOriginalFileName(), 'name' => $signoffUser->getFullName(), 'username' => $signoffUser->getUsername()));
+				SubmissionFileLog::logEvent($request, $monographFile, SUBMISSION_LOG_FILE_AUDITOR_CLEAR, 'submission.event.fileAuditorCleared', array('file' => $monographFile->getOriginalFileName(), 'name' => $signoffUser->getFullName(), 'username' => $signoffUser->getUsername()));
 			}
 			return DAO::getDataChangedEvent($signoff->getId(), $signoff->getAssocId());
 		} else {
@@ -592,12 +592,12 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 		);
 
 		// log the sign off sign off
-		import('classes.log.MonographFileLog');
-		import('classes.log.MonographFileEventLogEntry'); // constants
+		import('lib.pkp.classes.log.SubmissionFileLog');
+		import('lib.pkp.classes.log.SubmissionFileEventLogEntry'); // constants
 		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
 		$monographFile =& $submissionFileDao->getLatestRevision($rowSignoff->getAssocId());
 		if (isset($monographFile)) {
-			MonographFileLog::logEvent($request, $monographFile, MONOGRAPH_LOG_FILE_SIGNOFF_SIGNOFF, 'submission.event.signoffSignoff', array('file' => $monographFile->getOriginalFileName(), 'name' => $user->getFullName(), 'username' => $user->getUsername()));
+			SubmissionFileLog::logEvent($request, $monographFile, SUBMISSION_LOG_FILE_SIGNOFF_SIGNOFF, 'submission.event.signoffSignoff', array('file' => $monographFile->getOriginalFileName(), 'name' => $user->getFullName(), 'username' => $user->getUsername()));
 		}
 		// Redraw the row.
 		return DAO::getDataChangedEvent($rowSignoff->getId(), $rowSignoff->getAssocId());

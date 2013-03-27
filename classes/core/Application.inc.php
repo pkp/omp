@@ -108,7 +108,6 @@ class Application extends PKPApplication {
 			'MonographEmailLogDAO' => 'classes.log.MonographEmailLogDAO',
 			'MonographEventLogDAO' => 'classes.log.MonographEventLogDAO',
 			'MonographFileEmailLogDAO' => 'classes.log.MonographFileEmailLogDAO',
-			'MonographFileEventLogDAO' => 'classes.log.MonographFileEventLogDAO',
 			'MonographFileSignoffDAO' => 'classes.monograph.MonographFileSignoffDAO',
 			'MonographSearchDAO' => 'classes.search.MonographSearchDAO',
 			'NewReleaseDAO' => 'classes.press.NewReleaseDAO',

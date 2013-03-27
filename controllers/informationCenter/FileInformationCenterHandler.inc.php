@@ -207,7 +207,7 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 		$this->setupTemplate($request);
 
 		// Get all monograph file events
-		$monographFileEventLogDao = DAORegistry::getDAO('MonographFileEventLogDAO');
+		$monographFileEventLogDao = DAORegistry::getDAO('SubmissionFileEventLogDAO');
 		$fileEvents =& $monographFileEventLogDao->getByFileId(
 			$this->monographFile->getFileId()
 		);
@@ -227,7 +227,7 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 		$this->setupTemplate($request);
 
 		$templateMgr =& TemplateManager::getManager($request);
-		$monographFileEventLogDao = DAORegistry::getDAO('MonographFileEventLogDAO');
+		$monographFileEventLogDao = DAORegistry::getDAO('SubmissionFileEventLogDAO');
 
 		$monographFile = $this->monographFile;
 		$events = array();
@@ -268,8 +268,8 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 				assert(false);
 		}
 
-		import('classes.log.MonographFileLog');
-		MonographFileLog::logEvent($request, $this->monographFile, $eventType, $logMessage);
+		import('lib.pkp.classes.log.SubmissionFileLog');
+		SubmissionFileLog::logEvent($request, $this->monographFile, $eventType, $logMessage);
 	}
 
 	/**
@@ -311,7 +311,7 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 		$templateMgr->assign('showEarlierEntries', true);
 
 		// Get the latest history item to display in the header
-		$monographEventLogDao = DAORegistry::getDAO('MonographFileEventLogDAO');
+		$monographEventLogDao = DAORegistry::getDAO('SubmissionFileEventLogDAO');
 		$fileEvents =& $monographEventLogDao->getByFileId($this->monographFile->getFileId());
 		$lastEvent =& $fileEvents->next();
 		if(isset($lastEvent)) {

@@ -74,11 +74,11 @@ class SubmissionFilesUploadForm extends PKPSubmissionFilesUploadForm {
 	 */
 	function _logEvent($request, $user, $submissionFile, $assocType, $revisedFileId, $fileStage) {
 		// log the upload event.
-		import('classes.log.MonographFileLog');
-		import('classes.log.MonographFileEventLogEntry'); // constants
+		import('lib.pkp.classes.log.SubmissionFileLog');
+		import('lib.pkp.classes.log.SubmissionFileEventLogEntry'); // constants
 		$localeKey = $revisedFileId ? 'submission.event.revisionUploaded' : 'submission.event.fileUploaded';
-		$assocType = $revisedFileId ? MONOGRAPH_LOG_FILE_REVISION_UPLOAD : MONOGRAPH_LOG_FILE_UPLOAD;
-		MonographFileLog::logEvent($request, $submissionFile, $assocType, $localeKey, array('fileStage' => $fileStage, 'revisedFileId' => $revisedFileId, 'fileId' => $submissionFile->getFileId(), 'fileRevision' => $submissionFile->getRevision(), 'originalFileName' => $submissionFile->getOriginalFileName(), 'submissionId' => $this->getData('submissionId'), 'username' => $user->getUsername()));
+		$assocType = $revisedFileId ? SUBMISSION_LOG_FILE_REVISION_UPLOAD : SUBMISSION_LOG_FILE_UPLOAD;
+		SubmissionFileLog::logEvent($request, $submissionFile, $assocType, $localeKey, array('fileStage' => $fileStage, 'revisedFileId' => $revisedFileId, 'fileId' => $submissionFile->getFileId(), 'fileRevision' => $submissionFile->getRevision(), 'originalFileName' => $submissionFile->getOriginalFileName(), 'submissionId' => $this->getData('submissionId'), 'username' => $user->getUsername()));
 	}
 }
 
