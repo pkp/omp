@@ -27,16 +27,6 @@ class Note extends PKPNote {
 	function Note() {
 		parent::PKPNote();
 	}
-
-	/**
-	 * Mark a note viewed.
-	 * @param $userId int
-	 * @return int RECORD_VIEW_RESULT_...
-	 */
-	function markViewed($userId) {
-		$viewsDao = DAORegistry::getDAO('ViewsDAO');
-		return $viewsDao->recordView(ASSOC_TYPE_NOTE, $this->getId(), $userId);
-	}
 }
 
 ?>
