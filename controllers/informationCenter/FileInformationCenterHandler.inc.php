@@ -12,9 +12,9 @@
  * @brief Handle requests to view the information center for a file.
  */
 
-import('controllers.informationCenter.InformationCenterHandler');
+import('lib.pkp.controllers.informationCenter.InformationCenterHandler');
 import('lib.pkp.classes.core.JSONMessage');
-import('classes.log.MonographEventLogEntry');
+import('classes.log.SubmissionEventLogEntry');
 
 class FileInformationCenterHandler extends InformationCenterHandler {
 	/** @var $monographFile object */
@@ -141,7 +141,7 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 			$json = new JSONMessage(true);
 
 			// Save to event log
-			$this->_logEvent($request, MONOGRAPH_LOG_NOTE_POSTED);
+			$this->_logEvent($request, SUBMISSION_LOG_NOTE_POSTED);
 
 			$user =& $request->getUser();
 			NotificationManager::createTrivialNotification($user->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.addedNote')));
@@ -184,7 +184,7 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 		if ($notifyForm->validate()) {
 			$noteId = $notifyForm->execute($request);
 
-			$this->_logEvent($request, MONOGRAPH_LOG_MESSAGE_SENT);
+			$this->_logEvent($request, SUBMISSION_LOG_MESSAGE_SENT);
 			$user =& $request->getUser();
 			NotificationManager::createTrivialNotification($user->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.sentNotification')));
 
@@ -253,15 +253,15 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 	/**
 	 * Log an event for this file
 	 * @param $request PKPRequest
-	 * @param $eventType int MONOGRAPH_LOG_...
+	 * @param $eventType int SUBMISSION_LOG_...
 	 */
 	function _logEvent ($request, $eventType) {
 		// Get the log event message
 		switch($eventType) {
-			case MONOGRAPH_LOG_NOTE_POSTED:
+			case SUBMISSION_LOG_NOTE_POSTED:
 				$logMessage = 'informationCenter.history.notePosted';
 				break;
-			case MONOGRAPH_LOG_MESSAGE_SENT:
+			case SUBMISSION_LOG_MESSAGE_SENT:
 				$logMessage = 'informationCenter.history.messageSent';
 				break;
 			default:

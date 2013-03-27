@@ -79,7 +79,7 @@ class UserAction {
 
 		$monographEmailLogDao = DAORegistry::getDAO('MonographEmailLogDAO');
 		$monographEmailLogDao->changeUser($oldUserId, $newUserId);
-		$monographEventLogDao = DAORegistry::getDAO('MonographEventLogDAO');
+		$monographEventLogDao = DAORegistry::getDAO('SubmissionEventLogDAO');
 		$monographEventLogDao->changeUser($oldUserId, $newUserId);
 
 		$monographCommentDao = DAORegistry::getDAO('MonographCommentDAO');

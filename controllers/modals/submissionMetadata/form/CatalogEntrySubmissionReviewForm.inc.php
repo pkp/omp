@@ -91,7 +91,7 @@ class CatalogEntrySubmissionReviewForm extends SubmissionMetadataViewForm {
 
 			// Log the publication event.
 			import('classes.log.MonographLog');
-			MonographLog::logEvent($request, $monograph, MONOGRAPH_LOG_METADATA_PUBLISH, 'submission.event.metadataPublished');
+			MonographLog::logEvent($request, $monograph, SUBMISSION_LOG_METADATA_PUBLISH, 'submission.event.metadataPublished');
 		} else {
 			if ($isExistingEntry) {
 				// Update the monograph status.
@@ -114,7 +114,7 @@ class CatalogEntrySubmissionReviewForm extends SubmissionMetadataViewForm {
 
 				// Log the unpublication event.
 				import('classes.log.MonographLog');
-				MonographLog::logEvent($request, $monograph, MONOGRAPH_LOG_METADATA_UNPUBLISH, 'submission.event.metadataUnpublished');
+				MonographLog::logEvent($request, $monograph, SUBMISSION_LOG_METADATA_UNPUBLISH, 'submission.event.metadataUnpublished');
 			}
 
 			// regular submission without publish in catalog.

@@ -221,7 +221,7 @@ class CatalogEntryPublicationMetadataForm extends Form {
 
 			// Log unpublish event.
 			import('classes.log.MonographLog');
-			MonographLog::logEvent($request, $monograph, MONOGRAPH_LOG_PUBLICATION_FORMAT_UNPUBLISH, 'submission.event.publicationFormatUnpublished', array('publicationFormatName' => $publicationFormat->getLocalizedName()));
+			MonographLog::logEvent($request, $monograph, SUBMISSION_LOG_PUBLICATION_FORMAT_UNPUBLISH, 'submission.event.publicationFormatUnpublished', array('publicationFormatName' => $publicationFormat->getLocalizedName()));
 		} elseif (!$publicationFormat->getIsApproved() && $this->getData('isApproved')) {
 			// Wasn't approved and now it is. Delete tombstone.
 			$tombstoneDao = DAORegistry::getDAO('DataObjectTombstoneDAO');
@@ -229,7 +229,7 @@ class CatalogEntryPublicationMetadataForm extends Form {
 
 			// Log publish event.
 			import('classes.log.MonographLog');
-			MonographLog::logEvent($request, $monograph, MONOGRAPH_LOG_PUBLICATION_FORMAT_PUBLISH, 'submission.event.publicationFormatPublished', array('publicationFormatName' => $publicationFormat->getLocalizedName()));
+			MonographLog::logEvent($request, $monograph, SUBMISSION_LOG_PUBLICATION_FORMAT_PUBLISH, 'submission.event.publicationFormatPublished', array('publicationFormatName' => $publicationFormat->getLocalizedName()));
 		}
 
 		// populate the published monograph with the cataloging metadata

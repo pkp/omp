@@ -155,8 +155,8 @@ class PublicationFormatForm extends Form {
 			$publicationFormatId = $publicationFormatDao->insertObject($publicationFormat);
 			// log the creation of the format.
 			import('classes.log.MonographLog');
-			import('classes.log.MonographEventLogEntry');
-			MonographLog::logEvent($request, $monograph, MONOGRAPH_LOG_PUBLICATION_FORMAT_CREATE, 'submission.event.publicationFormatCreated', array('formatName' => $publicationFormat->getLocalizedName()));
+			import('classes.log.SubmissionEventLogEntry');
+			MonographLog::logEvent($request, $monograph, SUBMISSION_LOG_PUBLICATION_FORMAT_CREATE, 'submission.event.publicationFormatCreated', array('formatName' => $publicationFormat->getLocalizedName()));
 		}
 
 		return $publicationFormatId;

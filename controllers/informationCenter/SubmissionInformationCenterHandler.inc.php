@@ -12,9 +12,9 @@
  * @brief Handle requests to view the information center for a submission.
  */
 
-import('controllers.informationCenter.InformationCenterHandler');
+import('lib.pkp.controllers.informationCenter.InformationCenterHandler');
 import('lib.pkp.classes.core.JSONMessage');
-import('classes.log.MonographEventLogEntry');
+import('classes.log.SubmissionEventLogEntry');
 
 class SubmissionInformationCenterHandler extends InformationCenterHandler {
 	/** @var $_monograph Monograph */
@@ -95,7 +95,7 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 	 */
 	function viewInformationCenter($args, &$request) {
 		// Get the latest history item to display in the header
-		$monographEventLogDao = DAORegistry::getDAO('MonographEventLogDAO');
+		$monographEventLogDao = DAORegistry::getDAO('SubmissionEventLogDAO');
 		$monographEvents =& $monographEventLogDao->getByMonographId($this->_monograph->getId());
 		$lastEvent =& $monographEvents->next();
 
@@ -148,7 +148,7 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 			// Save to event log
 			$user =& $request->getUser();
 			$userId = $user->getId();
-			$this->_logEvent($request, MONOGRAPH_LOG_NOTE_POSTED);
+			$this->_logEvent($request, SUBMISSION_LOG_NOTE_POSTED);
 		} else {
 			// Return a JSON string indicating failure
 			$json = new JSONMessage(false);
@@ -215,7 +215,7 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 			// (will clear the form on return)
 			$json = new JSONMessage(true);
 
-			$this->_logEvent($request, MONOGRAPH_LOG_MESSAGE_SENT);
+			$this->_logEvent($request, SUBMISSION_LOG_MESSAGE_SENT);
 			// Create trivial notification.
 			$currentUser =& $request->getUser();
 			$notificationMgr = new NotificationManager();
@@ -238,7 +238,7 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 		$templateMgr =& TemplateManager::getManager($request);
 
 		// Get all monograph events
-		$monographEventLogDao = DAORegistry::getDAO('MonographEventLogDAO');
+		$monographEventLogDao = DAORegistry::getDAO('SubmissionEventLogDAO');
 		$monographEvents =& $monographEventLogDao->getByMonographId($this->_monograph->getId());
 		$templateMgr->assign_by_ref('eventLogEntries', $monographEvents);
 		$templateMgr->assign('historyListId', 'historyList');
@@ -248,15 +248,15 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 	/**
 	 * Log an event for this file
 	 * @param $request PKPRequest
-	 * @param $eventType MONOGRAPH_LOG_...
+	 * @param $eventType SUBMISSION_LOG_...
 	 */
 	function _logEvent ($request, $eventType) {
 		// Get the log event message
 		switch($eventType) {
-			case MONOGRAPH_LOG_NOTE_POSTED:
+			case SUBMISSION_LOG_NOTE_POSTED:
 				$logMessage = 'informationCenter.history.notePosted';
 				break;
-			case MONOGRAPH_LOG_MESSAGE_SENT:
+			case SUBMISSION_LOG_MESSAGE_SENT:
 				$logMessage = 'informationCenter.history.messageSent';
 				break;
 			default:

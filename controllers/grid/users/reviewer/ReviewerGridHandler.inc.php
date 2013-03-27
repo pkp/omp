@@ -429,18 +429,18 @@ class ReviewerGridHandler extends GridHandler {
 
 		// log the unconsider.
 		import('classes.log.MonographLog');
-		import('classes.log.MonographEventLogEntry');
+		import('classes.log.SubmissionEventLogEntry');
 
-		$entry = new MonographEventLogEntry();
+		$entry = new SubmissionEventLogEntry();
 		$entry->setMonographId($reviewAssignment->getSubmissionId());
 		$entry->setUserId($user->getId());
 		$entry->setDateLogged(Core::getCurrentDate());
-		$entry->setEventType(MONOGRAPH_LOG_REVIEW_UNCONSIDERED);
+		$entry->setEventType(SUBMISSION_LOG_REVIEW_UNCONSIDERED);
 
 		MonographLog::logEvent(
 				$request,
 				$monograph,
-				MONOGRAPH_LOG_REVIEW_UNCONSIDERED,
+				SUBMISSION_LOG_REVIEW_UNCONSIDERED,
 				'log.review.reviewUnconsidered',
 				array(
 					'editorName' => $user->getFullName(),

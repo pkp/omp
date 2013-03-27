@@ -67,18 +67,18 @@ class ReviewerAction extends Action {
 
 				// Add log
 				import('classes.log.MonographLog');
-				import('classes.log.MonographEventLogEntry');
+				import('classes.log.SubmissionEventLogEntry');
 
-				$entry = new MonographEventLogEntry();
+				$entry = new SubmissionEventLogEntry();
 				$entry->setMonographId($reviewAssignment->getSubmissionId());
 				$entry->setUserId($reviewer->getId());
 				$entry->setDateLogged(Core::getCurrentDate());
-				$entry->setEventType($decline?MONOGRAPH_LOG_REVIEW_DECLINE:MONOGRAPH_LOG_REVIEW_ACCEPT);
+				$entry->setEventType($decline?SUBMISSION_LOG_REVIEW_DECLINE:SUBMISSION_LOG_REVIEW_ACCEPT);
 
 				MonographLog::logEvent(
 					$request,
 					$reviewerSubmission,
-					$decline?MONOGRAPH_LOG_REVIEW_DECLINE:MONOGRAPH_LOG_REVIEW_ACCEPT,
+					$decline?SUBMISSION_LOG_REVIEW_DECLINE:SUBMISSION_LOG_REVIEW_ACCEPT,
 					$decline?'log.review.reviewDeclined':'log.review.reviewAccepted',
 					array(
 						'reviewerName' => $reviewer->getFullName(),

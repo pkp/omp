@@ -85,9 +85,9 @@ class SeriesEditorAction extends Action {
 
 			// Add log.
 			import('classes.log.MonographLog');
-			import('classes.log.MonographEventLogEntry');
+			import('classes.log.SubmissionEventLogEntry');
 			AppLocale::requireComponents(LOCALE_COMPONENT_APP_COMMON, LOCALE_COMPONENT_APP_EDITOR);
-			MonographLog::logEvent($request, $seriesEditorSubmission, MONOGRAPH_LOG_EDITOR_DECISION, 'log.editor.decision', array('editorName' => $user->getFullName(), 'monographId' => $seriesEditorSubmission->getId(), 'decision' => __($decisionLabels[$decision])));
+			MonographLog::logEvent($request, $seriesEditorSubmission, SUBMISSION_LOG_EDITOR_DECISION, 'log.editor.decision', array('editorName' => $user->getFullName(), 'monographId' => $seriesEditorSubmission->getId(), 'decision' => __($decisionLabels[$decision])));
 		}
 		return $result;
 	}
@@ -242,8 +242,8 @@ class SeriesEditorAction extends Action {
 
 			// Add log
 			import('classes.log.MonographLog');
-			import('classes.log.MonographEventLogEntry');
-			MonographLog::logEvent($request, $seriesEditorSubmission, MONOGRAPH_LOG_REVIEW_ASSIGN, 'log.review.reviewerAssigned', array('reviewerName' => $reviewer->getFullName(), 'monographId' => $seriesEditorSubmission->getId(), 'stageId' => $stageId, 'round' => $round));
+			import('classes.log.SubmissionEventLogEntry');
+			MonographLog::logEvent($request, $seriesEditorSubmission, SUBMISSION_LOG_REVIEW_ASSIGN, 'log.review.reviewerAssigned', array('reviewerName' => $reviewer->getFullName(), 'monographId' => $seriesEditorSubmission->getId(), 'stageId' => $stageId, 'round' => $round));
 		}
 	}
 
@@ -295,8 +295,8 @@ class SeriesEditorAction extends Action {
 
 			// Add log
 			import('classes.log.MonographLog');
-			import('classes.log.MonographEventLogEntry');
-			MonographLog::logEvent($request, $seriesEditorSubmission, MONOGRAPH_LOG_REVIEW_CLEAR, 'log.review.reviewCleared', array('reviewerName' => $reviewer->getFullName(), 'monographId' => $seriesEditorSubmission->getId(), 'stageId' => $reviewAssignment->getStageId(), 'round' => $reviewAssignment->getRound()));
+			import('classes.log.SubmissionEventLogEntry');
+			MonographLog::logEvent($request, $seriesEditorSubmission, SUBMISSION_LOG_REVIEW_CLEAR, 'log.review.reviewCleared', array('reviewerName' => $reviewer->getFullName(), 'monographId' => $seriesEditorSubmission->getId(), 'stageId' => $reviewAssignment->getStageId(), 'round' => $reviewAssignment->getRound()));
 
 			return true;
 		} else return false;
@@ -337,11 +337,11 @@ class SeriesEditorAction extends Action {
 			if ($logEntry) {
 				// Add log
 				import('classes.log.MonographLog');
-				import('classes.log.MonographEventLogEntry');
+				import('classes.log.SubmissionEventLogEntry');
 				MonographLog::logEvent(
 					$request,
 					$monograph,
-					MONOGRAPH_LOG_REVIEW_SET_DUE_DATE,
+					SUBMISSION_LOG_REVIEW_SET_DUE_DATE,
 					'log.review.reviewDueDateSet',
 					array(
 						'reviewerName' => $reviewer->getFullName(),

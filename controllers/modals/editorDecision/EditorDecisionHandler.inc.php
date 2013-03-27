@@ -324,13 +324,13 @@ class EditorDecisionHandler extends Handler {
 
 			// Log the approve proof event.
 			import('classes.log.MonographLog');
-			import('classes.log.MonographEventLogEntry'); // constants
+			import('classes.log.SubmissionEventLogEntry'); // constants
 			$user =& $request->getUser();
 
 			$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
 			$publicationFormat =& $publicationFormatDao->getById($monographFile->getAssocId(), $monograph->getId());
 
-			MonographLog::logEvent($request, $monograph, MONOGRAPH_LOG_PROOFS_APPROVED, 'submission.event.proofsApproved', array('formatName' => $publicationFormat->getLocalizedName(),'name' => $user->getFullName(), 'username' => $user->getUsername()));
+			MonographLog::logEvent($request, $monograph, SUBMISSION_LOG_PROOFS_APPROVED, 'submission.event.proofsApproved', array('formatName' => $publicationFormat->getLocalizedName(),'name' => $user->getFullName(), 'username' => $user->getUsername()));
 		}
 
 		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');

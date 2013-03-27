@@ -17,7 +17,7 @@ import('classes.handler.Handler');
 
 // Import classes for logging.
 import('classes.log.MonographLog');
-import('classes.log.MonographEventLogEntry');
+import('classes.log.SubmissionEventLogEntry');
 
 class CatalogEntryTabHandler extends Handler {
 
@@ -217,7 +217,7 @@ class CatalogEntryTabHandler extends Handler {
 				$user =& $request->getUser();
 				$form = new CatalogEntryCatalogMetadataForm($monograph->getId(), $user->getId(), $stageId, array('displayedInContainer' => true, 'tabPos' => $this->getTabPosition()));
 				$notificationKey = 'notification.savedCatalogMetadata';
-				MonographLog::logEvent($request, $monograph, MONOGRAPH_LOG_CATALOG_METADATA_UPDATE, 'submission.event.catalogMetadataUpdated');
+				MonographLog::logEvent($request, $monograph, SUBMISSION_LOG_CATALOG_METADATA_UPDATE, 'submission.event.catalogMetadataUpdated');
 				break;
 			default: // publication format tabs
 				import('controllers.tab.catalogEntry.form.CatalogEntryPublicationMetadataForm');
@@ -233,7 +233,7 @@ class CatalogEntryTabHandler extends Handler {
 					if ($format->getId() == $publicationFormatId) {
 						$form = new CatalogEntryPublicationMetadataForm($monograph->getId(), $publicationFormatId, $format->getId(), $stageId, array('displayedInContainer' => true, 'tabPos' => $this->getTabPosition()));
 						$notificationKey = 'notification.savedPublicationFormatMetadata';
-						MonographLog::logEvent($request, $monograph, MONOGRAPH_LOG_PUBLICATION_FORMAT_METADATA_UPDATE, 'submission.event.publicationMetadataUpdated', array('formatName' => $format->getLocalizedName()));
+						MonographLog::logEvent($request, $monograph, SUBMISSION_LOG_PUBLICATION_FORMAT_METADATA_UPDATE, 'submission.event.publicationMetadataUpdated', array('formatName' => $format->getLocalizedName()));
 						break;
 					}
 				}

@@ -18,7 +18,7 @@ import('lib.pkp.classes.controllers.grid.CategoryGridHandler');
 // import stageParticipant grid specific classes
 import('controllers.grid.users.stageParticipant.StageParticipantGridRow');
 import('controllers.grid.users.stageParticipant.StageParticipantGridCategoryRow');
-import('classes.log.MonographEventLogEntry');
+import('classes.log.SubmissionEventLogEntry');
 
 class StageParticipantGridHandler extends CategoryGridHandler {
 	/**
@@ -284,7 +284,7 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 			$userDao = DAORegistry::getDAO('UserDAO');
 			$assignedUser =& $userDao->getById($userId);
 			import('classes.log.MonographLog');
-			MonographLog::logEvent($request, $monograph, MONOGRAPH_LOG_ADD_PARTICIPANT, 'submission.event.participantAdded', array('name' => $assignedUser->getFullName(), 'username' => $assignedUser->getUsername(), 'userGroupName' => $userGroup->getLocalizedName()));
+			MonographLog::logEvent($request, $monograph, SUBMISSION_LOG_ADD_PARTICIPANT, 'submission.event.participantAdded', array('name' => $assignedUser->getFullName(), 'username' => $assignedUser->getUsername(), 'userGroupName' => $userGroup->getLocalizedName()));
 
 			return DAO::getDataChangedEvent($userGroupId);
 		} else {
@@ -359,7 +359,7 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 		$userGroupDao = DAORegistry::getDAO('UserGroupDAO');
 		$userGroup =& $userGroupDao->getById($stageAssignment->getUserGroupId());
 		import('classes.log.MonographLog');
-		MonographLog::logEvent($request, $monograph, MONOGRAPH_LOG_REMOVE_PARTICIPANT, 'submission.event.participantRemoved', array('name' => $assignedUser->getFullName(), 'username' => $assignedUser->getUsername(), 'userGroupName' => $userGroup->getLocalizedName()));
+		MonographLog::logEvent($request, $monograph, SUBMISSION_LOG_REMOVE_PARTICIPANT, 'submission.event.participantRemoved', array('name' => $assignedUser->getFullName(), 'username' => $assignedUser->getUsername(), 'userGroupName' => $userGroup->getLocalizedName()));
 
 		// Redraw the category
 		return DAO::getDataChangedEvent($stageAssignment->getUserGroupId());
