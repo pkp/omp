@@ -19,7 +19,7 @@ class AuthorGridRow extends PKPAuthorGridRow {
 	/**
 	 * Constructor
 	 */
-	function AuthorGridRow(&$monograph, $readOnly = false) {
+	function AuthorGridRow($monograph, $readOnly = false) {
 		parent::PKPAuthorGridRow($monograph, $readOnly);
 	}
 

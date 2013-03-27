@@ -128,9 +128,8 @@ class SeriesGridHandler extends SetupGridHandler {
 	 * Get the row handler - override the default row handler
 	 * @return SeriesGridRow
 	 */
-	function &getRowInstance() {
-		$row = new SeriesGridRow();
-		return $row;
+	function getRowInstance() {
+		return new SeriesGridRow();
 	}
 
 	//

@@ -124,9 +124,8 @@ class GenreGridHandler extends SetupGridHandler {
 	 * @see GridHandler::getRowInstance()
 	 * @return GenreGridRow
 	 */
-	function &getRowInstance() {
-		$row = new GenreGridRow();
-		return $row;
+	function getRowInstance() {
+		return new GenreGridRow();
 	}
 
 	//

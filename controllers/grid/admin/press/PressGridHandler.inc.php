@@ -54,9 +54,8 @@ class PressGridHandler extends ContextGridHandler {
 	 * @see GridHandler::getRowInstance()
 	 * @return UserGridRow
 	 */
-	function &getRowInstance() {
-		$row = new PressGridRow();
-		return $row;
+	function getRowInstance() {
+		return new PressGridRow();
 	}
 
 	/**

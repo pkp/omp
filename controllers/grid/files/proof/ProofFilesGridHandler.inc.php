@@ -74,8 +74,8 @@ class ProofFilesGridHandler extends SignoffFilesGridHandler {
 	/**
 	 * @see SignoffFilesGridHandler::getRowInstance()
 	 */
-	function &getRowInstance() {
-		$row =& parent::getRowInstance();
+	function getRowInstance() {
+		$row = parent::getRowInstance();
 		$row->setRequestArgs($this->getRequestArgs());
 		return $row;
 	}

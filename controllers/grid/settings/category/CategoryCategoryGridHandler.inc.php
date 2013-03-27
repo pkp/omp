@@ -138,10 +138,9 @@ class CategoryCategoryGridHandler extends CategoryGridHandler {
 	 * @see GridHandler::getRowInstance()
 	 * @return CategoryGridRow
 	 */
-	function &getRowInstance() {
+	function getRowInstance() {
 		import('controllers.grid.settings.category.CategoryGridRow');
-		$row = new CategoryGridRow();
-		return $row;
+		return new CategoryGridRow();
 	}
 
 	/**

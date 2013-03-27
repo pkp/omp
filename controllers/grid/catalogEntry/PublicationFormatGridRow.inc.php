@@ -21,8 +21,8 @@ class PublicationFormatGridRow extends GridRow {
 	/**
 	 * Constructor
 	 */
-	function PublicationFormatGridRow(&$monograph) {
-		$this->_monograph =& $monograph;
+	function PublicationFormatGridRow($monograph) {
+		$this->_monograph = $monograph;
 		parent::GridRow();
 	}
 

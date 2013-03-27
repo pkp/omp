@@ -197,9 +197,8 @@ class ReviewerGridHandler extends GridHandler {
 	 * @see GridHandler::getRowInstance()
 	 * @return ReviewerGridRow
 	 */
-	function &getRowInstance() {
-		$row = new ReviewerGridRow();
-		return $row;
+	function getRowInstance() {
+		return new ReviewerGridRow();
 	}
 
 	/**

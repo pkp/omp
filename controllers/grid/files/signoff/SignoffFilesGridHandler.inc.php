@@ -366,9 +366,8 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 	 * Get the row handler - override the default row handler
 	 * @return CopyeditingFilesGridRow
 	 */
-	function &getRowInstance() {
-		$row = new SignoffGridRow($this->getStageId());
-		return $row;
+	function getRowInstance() {
+		return new SignoffGridRow($this->getStageId());
 	}
 
 

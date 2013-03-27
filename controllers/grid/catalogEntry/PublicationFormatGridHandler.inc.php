@@ -180,10 +180,8 @@ class PublicationFormatGridHandler extends GridHandler {
 	 * @see GridHandler::getRowInstance()
 	 * @return PublicationFormatGridRow
 	 */
-	function &getRowInstance() {
-		$monograph =& $this->getMonograph();
-		$row = new PublicationFormatGridRow($monograph);
-		return $row;
+	function getRowInstance() {
+		return new PublicationFormatGridRow($this->getMonograph());
 	}
 
 	/**

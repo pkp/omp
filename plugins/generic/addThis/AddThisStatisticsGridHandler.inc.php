@@ -123,11 +123,10 @@ class AddThisStatisticsGridHandler extends GridHandler {
 	 * @see GridHandler::getRowInstance()
 	 * @return AddThisStatisticsGridRow
 	 */
-	function &getRowInstance() {
-		$plugin =& $this->getPlugin();
+	function getRowInstance() {
+		$plugin = $this->getPlugin();
 		$plugin->import('AddThisStatisticsGridRow');
-		$row = new AddThisStatisticsGridRow();
-		return $row;
+		return new AddThisStatisticsGridRow();
 	}
 
 	/**

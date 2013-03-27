@@ -110,9 +110,8 @@ class ApprovedProofFilesGridHandler extends GridHandler {
 	 * Get the row handler - override the default row handler
 	 * @return ApprovedProofFilesGridRow
 	 */
-	function &getRowInstance() {
-		$row = new ApprovedProofFilesGridRow();
-		return $row;
+	function getRowInstance() {
+		return new ApprovedProofFilesGridRow();
 	}
 	/**
 	 * @see GridHandler::getRequestArgs()

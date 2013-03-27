@@ -185,9 +185,8 @@ class PublicationDateGridHandler extends GridHandler {
 	 * @see GridHandler::getRowInstance()
 	 * @return PublicationDateGridRow
 	 */
-	function &getRowInstance() {
-		$row = new PublicationDateGridRow($this->getMonograph());
-		return $row;
+	function getRowInstance() {
+		return new PublicationDateGridRow($this->getMonograph());
 	}
 
 	/**
@@ -284,7 +283,7 @@ class PublicationDateGridHandler extends GridHandler {
 			$notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => $notificationContent));
 
 			// Prepare the grid row data
-			$row =& $this->getRowInstance();
+			$row = $this->getRowInstance();
 			$row->setGridId($this->getId());
 			$row->setId($publicationDateId);
 			$row->setData($publicationDate);

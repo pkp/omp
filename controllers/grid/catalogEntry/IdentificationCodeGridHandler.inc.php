@@ -184,9 +184,8 @@ class IdentificationCodeGridHandler extends GridHandler {
 	 * @see GridHandler::getRowInstance()
 	 * @return IdentificationCodeGridRow
 	 */
-	function &getRowInstance() {
-		$row = new IdentificationCodeGridRow($this->getMonograph());
-		return $row;
+	function getRowInstance() {
+		return new IdentificationCodeGridRow($this->getMonograph());
 	}
 
 	/**
@@ -283,7 +282,7 @@ class IdentificationCodeGridHandler extends GridHandler {
 			$notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => $notificationContent));
 
 			// Prepare the grid row data
-			$row =& $this->getRowInstance();
+			$row = $this->getRowInstance();
 			$row->setGridId($this->getId());
 			$row->setId($identificationCodeId);
 			$row->setData($identificationCode);
