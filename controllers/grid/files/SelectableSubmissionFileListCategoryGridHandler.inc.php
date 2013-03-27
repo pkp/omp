@@ -123,9 +123,8 @@ class SelectableSubmissionFileListCategoryGridHandler extends CategoryGridHandle
 	/**
 	 * @see CategoryGridHandler::getCategoryRowInstance()
 	 */
-	function &getCategoryRowInstance() {
-		$row = new SelectableSubmissionFileListCategoryGridRow();
-		return $row;
+	function getCategoryRowInstance() {
+		return new SelectableSubmissionFileListCategoryGridRow();
 	}
 
 

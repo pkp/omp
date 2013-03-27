@@ -148,9 +148,8 @@ class CategoryCategoryGridHandler extends CategoryGridHandler {
 	 * @see CategoryGridHandler::geCategorytRowInstance()
 	 * @return CategoryGridCategoryRow
 	 */
-	function &getCategoryRowInstance() {
-		$row = new CategoryGridCategoryRow();
-		return $row;
+	function getCategoryRowInstance() {
+		return new CategoryGridCategoryRow();
 	}
 
 	/**

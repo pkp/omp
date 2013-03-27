@@ -86,10 +86,9 @@ class AuthorProofingSignoffFilesGridHandler extends CategoryGridHandler {
 	/**
 	 * @see CategoryGridHandler::getCategoryRowInstance()
 	 */
-	function &getCategoryRowInstance() {
+	function getCategoryRowInstance() {
 		import('controllers.grid.files.proof.AuthorProofingGridCategoryRow');
-		$row = new AuthorProofingGridCategoryRow();
-		return $row;
+		return new AuthorProofingGridCategoryRow();
 	}
 }
 

@@ -162,9 +162,8 @@ class RepresentativesGridHandler extends CategoryGridHandler {
 	 * @see CategoryGridHandler::getCategoryRowInstance()
 	 * @return RepresentativesGridCategoryRow
 	 */
-	function &getCategoryRowInstance() {
-		$row = new RepresentativesGridCategoryRow();
-		return $row;
+	function getCategoryRowInstance() {
+		return new RepresentativesGridCategoryRow();
 	}
 
 	/**

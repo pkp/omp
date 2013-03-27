@@ -172,10 +172,9 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 	/**
 	 * @see CategoryGridHandler::getCategoryRowInstance()
 	 */
-	function &getCategoryRowInstance() {
-		$monograph =& $this->getMonograph();
-		$row = new StageParticipantGridCategoryRow($monograph, $this->getStageId());
-		return $row;
+	function getCategoryRowInstance() {
+		$monograph = $this->getMonograph();
+		return new StageParticipantGridCategoryRow($monograph, $this->getStageId());
 	}
 
 	/**

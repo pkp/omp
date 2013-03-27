@@ -223,8 +223,8 @@ class ChapterGridHandler extends CategoryGridHandler {
 	/**
 	 * @see CategoryGridHandler::getCategoryRowInstance()
 	 */
-	function &getCategoryRowInstance() {
-		$monograph =& $this->getMonograph();
+	function getCategoryRowInstance() {
+		$monograph = $this->getMonograph();
 		$row = new ChapterGridCategoryRow($monograph, $this->getReadOnly());
 		import('controllers.grid.users.chapter.ChapterGridCategoryRowCellProvider');
 		$row->setCellProvider(new ChapterGridCategoryRowCellProvider());
