@@ -144,7 +144,6 @@ class Application extends PKPApplication {
 			'UserDAO' => 'classes.user.UserDAO',
 			'UserSettingsDAO' => 'classes.user.UserSettingsDAO',
 			'UserStageAssignmentDAO' => 'classes.user.UserStageAssignmentDAO',
-			'ViewsDAO' => 'classes.views.ViewsDAO',
 		));
 	}
 
