@@ -26,16 +26,6 @@ class ManageFileApiHandler extends PKPManageFileApiHandler {
 	}
 
 	//
-	// Implement methods from PKPHandler
-	//
-	function authorize(&$request, &$args, $roleAssignments) {
-		import('classes.security.authorization.SubmissionFileAccessPolicy');
-		$this->addPolicy(new SubmissionFileAccessPolicy($request, $args, $roleAssignments, SUBMISSION_FILE_ACCESS_MODIFY));
-
-		return parent::authorize($request, $args, $roleAssignments);
-	}
-
-	//
 	// Subclassed methods
 	//
 
@@ -54,16 +44,6 @@ class ManageFileApiHandler extends PKPManageFileApiHandler {
 		}
 	}
 
-	/**
-	 * indexes the files associated with a submission.
-	 * @param $contextId int the context id.
-	 * @param $submissionId int the submission id.
-	 * @return SubmissionFileManager
-	 */
-	function getFileManager($contextId, $submissionId) {
-		import('lib.pkp.classes.file.SubmissionFileManager');
-		return new SubmissionFileManager($contextId, $submissionId);
-	}
 
 	/**
 	 * logs the deletion event using app-specific logging classes.
