@@ -60,7 +60,7 @@ class ManageReviewFilesGridHandler extends SelectableSubmissionFileListCategoryG
 		$manageReviewFilesForm->readInputData();
 
 		if ($manageReviewFilesForm->validate()) {
-			$dataProvider =& $this->getDataProvider();
+			$dataProvider = $this->getDataProvider();
 			$manageReviewFilesForm->execute($args, $request, $dataProvider->getCategoryData($this->getStageId()));
 
 			$this->setupTemplate($request);

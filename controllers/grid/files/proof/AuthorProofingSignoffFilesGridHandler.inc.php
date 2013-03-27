@@ -35,8 +35,8 @@ class AuthorProofingSignoffFilesGridHandler extends CategoryGridHandler {
 	function initialize($request, $args) {
 		parent::initialize($request);
 
-		$dataProvider =& $this->getDataProvider();
-		$user =& $request->getUser();
+		$dataProvider = $this->getDataProvider();
+		$user = $request->getUser();
 		$dataProvider->setUserId($user->getId());
 
 		AppLocale::requireComponents(

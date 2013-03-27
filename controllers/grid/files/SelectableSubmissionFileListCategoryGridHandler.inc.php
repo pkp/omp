@@ -143,7 +143,7 @@ class SelectableSubmissionFileListCategoryGridHandler extends CategoryGridHandle
 			$this->_stageId = $stageId;
 		}
 
-		$dataProvider =& $this->getDataProvider();
+		$dataProvider = $this->getDataProvider();
 		$dataProvider->setStageId($this->getStageId());
 
 		return parent::authorize($request, $args, $roleAssignments);
@@ -166,7 +166,7 @@ class SelectableSubmissionFileListCategoryGridHandler extends CategoryGridHandle
 
 		// Add grid actions
 		$capabilities = $this->getCapabilities();
-		$dataProvider =& $this->getDataProvider();
+		$dataProvider = $this->getDataProvider();
 
 		if($capabilities->canManage()) {
 			$this->addAction($dataProvider->getSelectAction($request));
@@ -228,7 +228,7 @@ class SelectableSubmissionFileListCategoryGridHandler extends CategoryGridHandle
 	 * @return array
 	 */
 	function getFilesToDownload(&$request) {
-		$dataProvider =& $this->getDataProvider();
+		$dataProvider = $this->getDataProvider();
 		$workflowStages = $this->getGridDataElements($request);
 
 		// Get the monograph files to be downloaded.
@@ -247,7 +247,7 @@ class SelectableSubmissionFileListCategoryGridHandler extends CategoryGridHandle
 		$submissionFile =& $gridDataElement['submissionFile'];
 
 		// Check for special cases when the file needs to be unselected.
-		$dataProvider =& $this->getDataProvider();
+		$dataProvider = $this->getDataProvider();
 		if ($dataProvider->getFileStage() != $submissionFile->getFileStage()) {
 			return false;
 		} elseif ($currentStageId == WORKFLOW_STAGE_ID_INTERNAL_REVIEW || $currentStageId == WORKFLOW_STAGE_ID_EXTERNAL_REVIEW) {

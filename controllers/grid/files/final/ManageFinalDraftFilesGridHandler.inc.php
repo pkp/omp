@@ -63,7 +63,7 @@ class ManageFinalDraftFilesGridHandler extends SelectableSubmissionFileListCateg
 		$manageFinalDraftFilesForm->readInputData();
 
 		if ($manageFinalDraftFilesForm->validate()) {
-			$dataProvider =& $this->getDataProvider();
+			$dataProvider = $this->getDataProvider();
 			$manageFinalDraftFilesForm->execute($args, $request, $dataProvider->getCategoryData($this->getStageId()));
 
 			// Let the calling grid reload itself

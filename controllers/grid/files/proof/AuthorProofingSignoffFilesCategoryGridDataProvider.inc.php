@@ -34,7 +34,7 @@ class AuthorProofingSignoffFilesCategoryGridDataProvider extends CategoryGridDat
 	 * @param $userId int
 	 */
 	function setUserId($userId) {
-		$dataProvider =& $this->getDataProvider();
+		$dataProvider = $this->getDataProvider();
 		$dataProvider->setUserId($userId);
 	}
 
@@ -42,7 +42,7 @@ class AuthorProofingSignoffFilesCategoryGridDataProvider extends CategoryGridDat
 	 * @see GridDataProvider::getAuthorizationPolicy()
 	 */
 	function getAuthorizationPolicy($request, $args, $roleAssignments) {
-		$dataProvider =& $this->getDataProvider();
+		$dataProvider = $this->getDataProvider();
 		return $dataProvider->getAuthorizationPolicy($request, $args, $roleAssignments);
 	}
 
@@ -50,9 +50,8 @@ class AuthorProofingSignoffFilesCategoryGridDataProvider extends CategoryGridDat
 	 * @see GridDataProvider::getRequestArgs()
 	 */
 	function getRequestArgs() {
-		$dataProvider =& $this->getDataProvider();
-		$args = $dataProvider->getRequestArgs();
-		return $args;
+		$dataProvider = $this->getDataProvider();
+		return $dataProvider->getRequestArgs();
 	}
 
 	/**
@@ -70,8 +69,8 @@ class AuthorProofingSignoffFilesCategoryGridDataProvider extends CategoryGridDat
 	 * @see CategoryGridDataProvider::getCategoryData()
 	 */
 	function &getCategoryData(&$publicationFormat, $filter = null) {
-		$dataProvider =& $this->getDataProvider();
-		$signoffFiles =& $dataProvider->loadData();
+		$dataProvider = $this->getDataProvider();
+		$signoffFiles = $dataProvider->loadData();
 
 		$categoryData = array();
 		foreach ($signoffFiles as $signoffId => $objects) {
@@ -92,7 +91,7 @@ class AuthorProofingSignoffFilesCategoryGridDataProvider extends CategoryGridDat
 	 * @see AuthorSignoffFilesGridDataProvider::getAddFileAction()
 	 */
 	function &getAddSignoffFile($request) {
-		$dataProvider =& $this->getDataProvider();
+		$dataProvider = $this->getDataProvider();
 		return $dataProvider->getAddSignoffFile($request);
 	}
 }

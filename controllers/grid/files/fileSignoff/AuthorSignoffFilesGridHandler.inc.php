@@ -40,7 +40,7 @@ class AuthorSignoffFilesGridHandler extends GridHandler {
 	 * @return int
 	 */
 	function getStageId() {
-		$dataProvider =& $this->getDataProvider();
+		$dataProvider = $this->getDataProvider();
 		return $dataProvider->getStageId();
 	}
 
@@ -62,7 +62,7 @@ class AuthorSignoffFilesGridHandler extends GridHandler {
 
 		$user =& $request->getUser();
 
-		$gridDataProvider =& $this->getDataProvider(); /* @var $gridDataProvider AuthorSignoffFilesGridDataProvider */
+		$gridDataProvider = $this->getDataProvider(); /* @var $gridDataProvider AuthorSignoffFilesGridDataProvider */
 		$gridDataProvider->setUserId($user->getId());
 
 		$addSignoffFileLinkAction = $gridDataProvider->getAddSignoffFile($request);
