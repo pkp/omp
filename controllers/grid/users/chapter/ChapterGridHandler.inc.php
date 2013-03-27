@@ -68,7 +68,7 @@ class ChapterGridHandler extends CategoryGridHandler {
 	 * @param boolean
 	 */
 	function setReadOnly($readOnly) {
-		$this->_readOnly =& $readOnly;
+		$this->_readOnly = $readOnly;
 	}
 
 
