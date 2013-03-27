@@ -29,9 +29,6 @@ define('ASSOC_TYPE_SERIES',			0x000020E);
 
 define('CONTEXT_PRESS', 1);
 
-// To expose ORDER_CATEGORY_GRID_... constants via JS
-import('lib.pkp.classes.controllers.grid.feature.OrderCategoryGridItemsFeature');
-
 class Application extends PKPApplication {
 	/**
 	 * Constructor
