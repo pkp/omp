@@ -121,8 +121,8 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 	function viewNotes($args, &$request) {
 		$this->setupTemplate($request);
 
-		import('controllers.informationCenter.form.NewMonographNoteForm');
-		$notesForm = new NewMonographNoteForm($this->_monograph->getId());
+		import('lib.pkp.controllers.informationCenter.form.NewSubmissionNoteForm');
+		$notesForm = new NewSubmissionNoteForm($this->_monograph->getId());
 		$notesForm->initData();
 
 		$json = new JSONMessage(true, $notesForm->fetch($request));
@@ -137,8 +137,8 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 	function saveNote($args, &$request) {
 		$this->setupTemplate($request);
 
-		import('controllers.informationCenter.form.NewMonographNoteForm');
-		$notesForm = new NewMonographNoteForm($this->_monograph->getId());
+		import('lib.pkp.controllers.informationCenter.form.NewSubmissionNoteForm');
+		$notesForm = new NewSubmissionNoteForm($this->_monograph->getId());
 		$notesForm->readInputData();
 
 		if ($notesForm->validate()) {
