@@ -532,10 +532,7 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="notification.addedReviewer">Reviewer added.</message>
 	<message key="notification.addedStageParticipant">User added as a stage participant.</message>
 	<message key="notification.removedReviewer">Reviewer removed.</message>
-	<message key="notification.sentNotification">Notification sent.</message>
 	<message key="notification.reviewAcknowledged">Review marked as acknowledged. Email not sent.</message>
-	<message key="notification.addedNote">Note posted.</message>
-	<message key="notification.removedNote">Note deleted.</message>
 	<message key="notification.addedSpotlight">Spotlight added.</message>
 	<message key="notification.editedSpotlight">Spotlight edited.</message>
 	<message key="notification.removedSpotlight">Spotlight removed.</message>
