@@ -312,10 +312,10 @@ class MonographDAO extends DAO {
 
 		// Signoff DAOs
 		$signoffDao = DAORegistry::getDAO('SignoffDAO');
-		$monographFileSignoffDao = DAORegistry::getDAO('MonographFileSignoffDAO');
+		$monographFileSignoffDao = DAORegistry::getDAO('SubmissionFileSignoffDAO');
 
 		// Delete Signoffs associated with a monogrpah file of this monograph.
-		$monographFileSignoffs = $monographFileSignoffDao->getAllByMonograph($monographId);
+		$monographFileSignoffs = $monographFileSignoffDao->getAllBySubmission($monographId);
 		while ($signoff = $monographFileSignoffs->next()) {
 			$signoffDao->deleteObject($signoff);
 		}

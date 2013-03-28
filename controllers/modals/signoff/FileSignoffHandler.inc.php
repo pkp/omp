@@ -135,7 +135,7 @@ class FileSignoffHandler extends FileManagementHandler {
 	 * @return string a serialized JSON object
 	 */
 	function readSignoff($args, &$request) {
-		$signoffDao = DAORegistry::getDAO('MonographFileSignoffDAO');
+		$signoffDao = DAORegistry::getDAO('SubmissionFileSignoffDAO');
 		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		$signoff =& $this->getAuthorizedContextObject(ASSOC_TYPE_SIGNOFF);
 

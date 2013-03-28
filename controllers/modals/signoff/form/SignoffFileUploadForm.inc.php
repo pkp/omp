@@ -90,7 +90,7 @@ class SignoffFileUploadForm extends Form {
 	 */
 	function fetch($request) {
 		$templateMgr =& TemplateManager::getManager($request);
-		$signoffDao = DAORegistry::getDAO('MonographFileSignoffDAO'); /* @var $signoffDao MonographFileSignoffDAO */
+		$signoffDao = DAORegistry::getDAO('SubmissionFileSignoffDAO'); /* @var $signoffDao SubmissionFileSignoffDAO */
 		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 
 		$signoffId = $this->getSignoffId();
@@ -109,7 +109,7 @@ class SignoffFileUploadForm extends Form {
 		} else {
 			// No signoff specified, look at all available signoffs
 			$user =& $request->getUser();
-			$signoffs =& $signoffDao->getAllByMonograph($this->getMonographId(), $this->getSymbolic(), $user->getId(), null, true);
+			$signoffs =& $signoffDao->getAllBySubmission($this->getMonographId(), $this->getSymbolic(), $user->getId(), null, true);
 			$availableSignoffs = array();
 			while ($signoff =& $signoffs->next()) {
 				$submissionFile =& $submissionFileDao->getLatestRevision($signoff->getAssocId());
@@ -163,7 +163,7 @@ class SignoffFileUploadForm extends Form {
 		$user =& $request->getUser();
 
 		// Retrieve the signoff we're working with.
-		$signoffDao = DAORegistry::getDAO('MonographFileSignoffDAO');
+		$signoffDao = DAORegistry::getDAO('SubmissionFileSignoffDAO');
 		$signoff = $signoffDao->getById($this->getData('signoffId'));
 		assert(is_a($signoff, 'Signoff'));
 

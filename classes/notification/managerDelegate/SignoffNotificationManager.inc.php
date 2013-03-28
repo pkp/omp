@@ -83,8 +83,8 @@ class SignoffNotificationManager extends NotificationManagerDelegate {
 
 		// Check for any active signoff with the $symbolic value.
 		$symbolic = $this->_getSymbolicByType();
-		$monographFileSignOffDao = DAORegistry::getDAO('MonographFileSignoffDAO');
-		$signoffFactory =& $monographFileSignOffDao->getAllByMonograph($monographId, $symbolic, $userId);
+		$monographFileSignOffDao = DAORegistry::getDAO('SubmissionFileSignoffDAO');
+		$signoffFactory =& $monographFileSignOffDao->getAllBySubmission($monographId, $symbolic, $userId);
 		$activeSignoffs = false;
 		if (!$signoffFactory->wasEmpty()) {
 			// Loop through signoffs and check for active ones on this press.

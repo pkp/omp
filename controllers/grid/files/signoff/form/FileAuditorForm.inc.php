@@ -238,7 +238,7 @@ class FileAuditorForm extends Form {
 		$userGroup = $userGroupDao->getById($userGroupId, $press->getId());
 
 		// Build the signoff.
-		$monographFileSignoffDao = DAORegistry::getDAO('MonographFileSignoffDAO');
+		$monographFileSignoffDao = DAORegistry::getDAO('SubmissionFileSignoffDAO');
 		$signoff = $monographFileSignoffDao->build(
 			$this->getSymbolic(),
 			$monographFile->getFileId(),
