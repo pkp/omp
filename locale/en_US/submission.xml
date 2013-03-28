@@ -82,7 +82,6 @@
 	<message key="submission.submit.form.abstractRequired">Please enter a brief summary of your monograph.</message>
 	<message key="submission.submit.form.contributorRoleRequired">Please select the contributor's role.</message>
 	<message key="submission.submit.currentFile">Current file</message>
-	<message key="submission.submit.selectFile">Select File to Upload</message>
 	<message key="submission.submit.submissionFile">Submission File</message>
 	<message key="submission.submit.finishSubmission">Finish Submission</message>
 	<message key="submission.submit.submissionComplete">Submission complete</message>
@@ -107,10 +106,6 @@
 	<message key="submission.submit.placement.seriesPositionDescription">Books in series are usually kept in the reverse order in which they are published, to give a sense of the series developing as well as keeping the current at the front.</message>
 	<message key="submission.submit.placement.categories">Categories</message>
 	<message key="submission.submit.placement.categoriesDescription">Select one of the press’s categories for which this work should be considered.</message>
-	<message key="submission.submit.submissionFiles">Submission Files</message>
-	<message key="submission.submit.fileInformation">File Information</message>
-	<message key="submission.submit.fileAdded">File Added</message>
-	<message key="submission.submit.newFile">Upload Another File</message>
 	<message key="submission.submit.userGroup">Submit in my role as...</message>
 	<message key="submission.submit.userGroupDescription">If you are submitting an Edited Volume, you should choose the volume editor role.</message>
 
@@ -151,13 +146,6 @@
 	<message key="submission.catalogEntry.monographMetadata">Monograph</message>
 	<message key="submission.catalogEntry.catalogMetadata">Catalog</message>
 	<message key="submission.catalogEntry.publicationMetadata">Publication Format</message>
-
-	<!-- Information Center -->
-	<message key="submission.informationCenter.submissionInfo">Submission Info</message>
-	<message key="submission.informationCenter.metadata">Metadata</message>
-	<message key="submission.informationCenter.notes">Notes</message>
-	<message key="submission.informationCenter.notify">Notify</message>
-	<message key="submission.informationCenter.history">History</message>
 
 	<!-- Log events -->
 	<message key="submission.event.monographSubmitted">The monograph is submitted.</message>
