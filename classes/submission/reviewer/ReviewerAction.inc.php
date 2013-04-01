@@ -56,7 +56,7 @@ class ReviewerAction extends Action {
 			if (!$email->isEnabled() || ($send && !$email->hasErrors())) {
 				HookRegistry::call('ReviewerAction::confirmReview', array(&$request, &$reviewerSubmission, &$email, $decline));
 				if ($email->isEnabled()) {
-					$email->setEventType($decline?MONOGRAPH_EMAIL_REVIEW_DECLINE:MONOGRAPH_EMAIL_REVIEW_CONFIRM);
+					$email->setEventType($decline?SUBMISSION_EMAIL_REVIEW_DECLINE:SUBMISSION_EMAIL_REVIEW_CONFIRM);
 					$email->send($request);
 				}
 

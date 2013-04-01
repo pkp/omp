@@ -40,7 +40,7 @@ class SeriesEditorSubmissionDAO extends MonographDAO {
 		$this->reviewAssignmentDao = DAORegistry::getDAO('ReviewAssignmentDAO');
 		$this->submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
 		$this->signoffDao = DAORegistry::getDAO('SignoffDAO');
-		$this->monographEmailLogDao = DAORegistry::getDAO('MonographEmailLogDAO');
+		$this->monographEmailLogDao = DAORegistry::getDAO('SubmissionEmailLogDAO');
 		$this->monographCommentDao = DAORegistry::getDAO('MonographCommentDAO');
 		$this->reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO');
 	}

@@ -193,7 +193,7 @@ class EditorDecisionWithEmailForm extends EditorDecisionForm {
 		$email = new MonographMailTemplate($seriesEditorSubmission, $emailKey, null, null, null, false);
 		$email->setBody($this->getData('personalMessage'));
 		$email->addRecipient($submitter->getEmail(), $submitter->getFullName());
-		$email->setEventType(MONOGRAPH_EMAIL_EDITOR_NOTIFY_AUTHOR);
+		$email->setEventType(SUBMISSION_EMAIL_EDITOR_NOTIFY_AUTHOR);
 
 		$userStageAssignmentDao = DAORegistry::getDAO('UserStageAssignmentDAO');
 		$authorStageParticipants = $userStageAssignmentDao->getUsersBySubmissionAndStageId($seriesEditorSubmission->getId(), $seriesEditorSubmission->getStageId(), null, ROLE_ID_AUTHOR);

@@ -114,17 +114,17 @@ class AuthorDashboardHandler extends Handler {
 
 		// If the submission is in or past the editorial stage,
 		// assign the editor's copyediting emails to the template
-		$monographEmailLogDao = DAORegistry::getDAO('MonographEmailLogDAO');
+		$monographEmailLogDao = DAORegistry::getDAO('SubmissionEmailLogDAO');
 		$user =& $request->getUser();
 
 		if ($monograph->getStageId() >= WORKFLOW_STAGE_ID_EDITING) {
-			$copyeditingEmails =& $monographEmailLogDao->getByEventType($monograph->getId(), MONOGRAPH_EMAIL_COPYEDIT_NOTIFY_AUTHOR, $user->getId());
+			$copyeditingEmails =& $monographEmailLogDao->getByEventType($monograph->getId(), SUBMISSION_EMAIL_COPYEDIT_NOTIFY_AUTHOR, $user->getId());
 			$templateMgr->assign_by_ref('copyeditingEmails', $copyeditingEmails);
 		}
 
 		// Same for production stage.
 		if ($monograph->getStageId() == WORKFLOW_STAGE_ID_PRODUCTION) {
-			$productionEmails =& $monographEmailLogDao->getByEventType($monograph->getId(), MONOGRAPH_EMAIL_PROOFREAD_NOTIFY_AUTHOR, $user->getId());
+			$productionEmails =& $monographEmailLogDao->getByEventType($monograph->getId(), SUBMISSION_EMAIL_PROOFREAD_NOTIFY_AUTHOR, $user->getId());
 			$templateMgr->assign_by_ref('productionEmails', $productionEmails);
 		}
 
@@ -159,12 +159,12 @@ class AuthorDashboardHandler extends Handler {
 	 * @return string
 	 */
 	function readMonographEmail($args, &$request) {
-		$monographEmailLogDao = DAORegistry::getDAO('MonographEmailLogDAO');
+		$monographEmailLogDao = DAORegistry::getDAO('SubmissionEmailLogDAO');
 		$user =& $request->getUser();
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		$monographEmailId = $request->getUserVar('monographEmailId');
 
-		$monographEmailFactory =& $monographEmailLogDao->getByEventType($monograph->getId(), MONOGRAPH_EMAIL_EDITOR_NOTIFY_AUTHOR, $user->getId());
+		$monographEmailFactory =& $monographEmailLogDao->getByEventType($monograph->getId(), SUBMISSION_EMAIL_EDITOR_NOTIFY_AUTHOR, $user->getId());
 		while ($email =& $monographEmailFactory->next()) { // validate the email id for this user.
 			if ($email->getId() == $monographEmailId) {
 				$templateMgr =& TemplateManager::getManager($request);

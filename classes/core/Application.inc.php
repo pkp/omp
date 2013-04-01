@@ -102,7 +102,6 @@ class Application extends PKPApplication {
 			'MarketDAO' => 'classes.publicationFormat.MarketDAO',
 			'MonographCommentDAO' => 'classes.monograph.MonographCommentDAO',
 			'MonographDAO' => 'classes.monograph.MonographDAO',
-			'MonographEmailLogDAO' => 'classes.log.MonographEmailLogDAO',
 			'MonographFileEmailLogDAO' => 'classes.log.MonographFileEmailLogDAO',
 			'MonographSearchDAO' => 'classes.search.MonographSearchDAO',
 			'NewReleaseDAO' => 'classes.press.NewReleaseDAO',

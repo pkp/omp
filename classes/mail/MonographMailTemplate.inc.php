@@ -17,7 +17,7 @@
 
 
 import('classes.mail.MailTemplate');
-import('classes.log.MonographEmailLogEntry'); // Bring in log constants
+import('classes.log.SubmissionEmailLogEntry'); // Bring in log constants
 
 class MonographMailTemplate extends MailTemplate {
 
@@ -115,7 +115,7 @@ class MonographMailTemplate extends MailTemplate {
 	 */
 	function log($request = null) {
 		import('classes.log.MonographLog');
-		$entry = new MonographEmailLogEntry();
+		$entry = new SubmissionEmailLogEntry();
 		$monograph =& $this->monograph;
 
 		// Event data
@@ -143,7 +143,7 @@ class MonographMailTemplate extends MailTemplate {
 		$entry->setBccs($this->getBccString());
 
 		// Add log entry
-		$logDao = DAORegistry::getDAO('MonographEmailLogDAO');
+		$logDao = DAORegistry::getDAO('SubmissionEmailLogDAO');
 		$logEntryId = $logDao->insertObject($entry);
 
 		// Add attachments

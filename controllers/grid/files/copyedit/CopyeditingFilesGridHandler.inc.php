@@ -18,7 +18,7 @@ import('controllers.grid.files.signoff.SignoffFilesGridHandler');
 // Import monograph file class which contains the SUBMISSION_FILE_* constants.
 import('classes.monograph.MonographFile');
 
-// Import MONOGRAPH_EMAIL_* constants.
+// Import SUBMISSION_EMAIL_* constants.
 import('classes.mail.MonographMailTemplate');
 
 class CopyeditingFilesGridHandler extends SignoffFilesGridHandler {
@@ -30,7 +30,7 @@ class CopyeditingFilesGridHandler extends SignoffFilesGridHandler {
 			WORKFLOW_STAGE_ID_EDITING,
 			SUBMISSION_FILE_COPYEDIT,
 			'SIGNOFF_COPYEDITING',
-			MONOGRAPH_EMAIL_COPYEDIT_NOTIFY_AUTHOR
+			SUBMISSION_EMAIL_COPYEDIT_NOTIFY_AUTHOR
 		);
 
 		$this->addRoleAssignment(

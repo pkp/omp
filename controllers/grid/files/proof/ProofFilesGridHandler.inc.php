@@ -18,7 +18,7 @@ import('controllers.grid.files.signoff.SignoffFilesGridHandler');
 // Import monograph file class which contains the SUBMISSION_FILE_* constants.
 import('classes.monograph.MonographFile');
 
-// Import MONOGRAPH_EMAIL_* constants.
+// Import SUBMISSION_EMAIL_* constants.
 import('classes.mail.MonographMailTemplate');
 
 class ProofFilesGridHandler extends SignoffFilesGridHandler {
@@ -30,7 +30,7 @@ class ProofFilesGridHandler extends SignoffFilesGridHandler {
 			WORKFLOW_STAGE_ID_PRODUCTION,
 			SUBMISSION_FILE_PROOF,
 			'SIGNOFF_PROOFING',
-			MONOGRAPH_EMAIL_PROOFREAD_NOTIFY_AUTHOR,
+			SUBMISSION_EMAIL_PROOFREAD_NOTIFY_AUTHOR,
 			ASSOC_TYPE_PUBLICATION_FORMAT
 		);
 

@@ -37,7 +37,7 @@ class MonographFileEmailLogDAO extends EmailLogDAO {
 	/**
 	 * Get monograph file email log entries by file ID and event type.
 	 * @param $fileId int
-	 * @param $eventType int MONOGRAPH_EMAIL_...
+	 * @param $eventType int SUBMISSION_EMAIL_...
 	 * @param $userId int optional Return only emails sent to this user.
 	 * @return DAOResultFactory
 	 */

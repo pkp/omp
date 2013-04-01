@@ -221,7 +221,7 @@ class SubmissionSubmitStep3Form extends SubmissionSubmitForm {
 
 		// Log submission.
 		import('classes.log.MonographLog');
-		MonographLog::logEvent($request, $submission, SUBMISSION_LOG_MONOGRAPH_SUBMIT, 'submission.event.monographSubmitted');
+		MonographLog::logEvent($request, $submission, SUBMISSION_LOG_SUBMISSION_SUBMIT, 'submission.event.monographSubmitted');
 
 		return $this->submissionId;
 	}
