@@ -134,16 +134,6 @@ You may optionally provide the user with a reason for disabling their account.</
 	This task must be performed by a site administrator.
 	]]></message>
 
-	<!-- Library Files -->
-	<message key="settings.libraryFiles.fileRequired">A library file is required. Please ensure that you have chosen and uploaded a file.</message>
-	<message key="settings.libraryFiles.nameRequired">A name is required for this library file.</message>
-	<message key="settings.libraryFiles.typeRequired">A file type is required for this library file.</message>
-	<message key="settings.libraryFiles.category.contracts">Contracts</message>
-	<message key="settings.libraryFiles.category.marketing">Marketing</message>
-	<message key="settings.libraryFiles.category.permissions">Permissions</message>
-	<message key="settings.libraryFiles.category.reports">Reports</message>
-	<message key="settings.libraryFiles.category.other">Other</message>
-
 	<!--  Genre grid settings -->
 	<message key="grid.action.addGenre">Add a Genre</message>
 	<message key="grid.action.editGenre">Edit this Genre</message>
@@ -443,8 +433,6 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.masthead">Masthead</message>
 	<message key="manager.setup.masthead.description">The Masthead should contain a list of editors, managing directors, and other individuals associated with the press. Information entered here will appear in About the Press.</message>
 	<message key="manager.setup.files">Files</message>
-	<message key="manager.setup.submissionDocuments">Submission Documents</message>
-	<message key="manager.setup.libraryDescription"><![CDATA[These files have been prepared by the press as templates and guides for use as part of the <span class="pkp_help_title">Submission Documents</span>.]]></message>
 	<message key="manager.setup.productionTemplates">Production Templates</message>
 	<message key="manager.files.note">Note: The Files Browser is an advanced feature that allows the files and directories associated with a press to be viewed and manipulated directly.</message>
 	<message key="manager.setup.authorCopyrightNotice.sample"><![CDATA[<h3>Proposed Creative Commons Copyright Notices</h3>
