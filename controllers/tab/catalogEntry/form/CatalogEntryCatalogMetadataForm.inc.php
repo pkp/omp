@@ -176,7 +176,7 @@ class CatalogEntryCatalogMetadataForm extends Form {
 	function validate() {
 		// If a cover image was uploaded, make sure it's valid
 		if ($temporaryFileId = $this->getData('temporaryFileId')) {
-			import('classes.file.TemporaryFileManager');
+			import('lib.pkp.classes.file.TemporaryFileManager');
 			$temporaryFileManager = new TemporaryFileManager();
 			$temporaryFileDao = DAORegistry::getDAO('TemporaryFileDAO');
 			$temporaryFile =& $temporaryFileDao->getTemporaryFile($temporaryFileId, $this->_userId);
@@ -270,7 +270,7 @@ class CatalogEntryCatalogMetadataForm extends Form {
 			));
 
 			// Clean up the temporary file
-			import('classes.file.TemporaryFileManager');
+			import('lib.pkp.classes.file.TemporaryFileManager');
 			$temporaryFileManager = new TemporaryFileManager();
 			$temporaryFileManager->deleteFile($temporaryFileId, $this->_userId);
 		}

@@ -113,10 +113,10 @@ class CategoryForm extends Form {
 	 */
 	function validate() {
 		if ($temporaryFileId = $this->getData('temporaryFileId')) {
-			import('classes.file.TemporaryFileManager');
+			import('lib.pkp.classes.file.TemporaryFileManager');
 			$temporaryFileManager = new TemporaryFileManager();
 			$temporaryFileDao = DAORegistry::getDAO('TemporaryFileDAO');
-			$temporaryFile =& $temporaryFileDao->getTemporaryFile($temporaryFileId, $this->_userId);
+			$temporaryFile = $temporaryFileDao->getTemporaryFile($temporaryFileId, $this->_userId);
 			if (	!$temporaryFile ||
 				!($this->_imageExtension = $temporaryFileManager->getImageExtension($temporaryFile->getFileType())) ||
 				!($this->_sizeArray = getimagesize($temporaryFile->getFilePath())) ||
@@ -265,7 +265,7 @@ class CategoryForm extends Form {
 			));
 
 			// Clean up the temporary file
-			import('classes.file.TemporaryFileManager');
+			import('lib.pkp.classes.file.TemporaryFileManager');
 			$temporaryFileManager = new TemporaryFileManager();
 			$temporaryFileManager->deleteFile($temporaryFileId, $this->_userId);
 		}

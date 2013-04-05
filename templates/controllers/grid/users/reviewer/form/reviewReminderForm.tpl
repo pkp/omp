@@ -18,7 +18,7 @@
 	{fbvFormArea id="sendReminder"}
 		<input type="hidden" name="submissionId" value="{$submissionId|escape}" />
 		<input type="hidden" name="stageId" value="{$stageId|escape}" />
-		<input type="hidden" name="reviewAssignmentId" value="{$reviewAssignmentId}" />
+		<input type="hidden" name="reviewAssignmentId" value="{$reviewAssignmentId|escape}" />
 
 		{fbvFormSection title="user.role.reviewer"}
 			{fbvElement type="text" id="reviewerName" value=$reviewerName disabled="true"}

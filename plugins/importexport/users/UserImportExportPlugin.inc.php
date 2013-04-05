@@ -71,8 +71,8 @@ class UserImportExportPlugin extends ImportExportPlugin {
 
 		switch (array_shift($args)) {
 			case 'uploadImportXML':
-				$user =& $request->getUser();
-				import('classes.file.TemporaryFileManager');
+				$user = $request->getUser();
+				import('lib.pkp.classes.file.TemporaryFileManager');
 				$temporaryFileManager = new TemporaryFileManager();
 				$temporaryFile = $temporaryFileManager->handleUpload('uploadedFile', $user->getId());
 				if ($temporaryFile) {

@@ -275,14 +275,10 @@ class CatalogEntryTabHandler extends Handler {
 	 * @param $request PKPRequest
 	 * @return string
 	 */
-	function uploadCoverImage($args, &$request) {
-		$router =& $request->getRouter();
-		$context = $request->getContext();
-		$user =& $request->getUser();
+	function uploadCoverImage($args, $request) {
+		$user = $request->getUser();
 
-		$monograph =& $this->getMonograph();
-
-		import('classes.file.TemporaryFileManager');
+		import('lib.pkp.classes.file.TemporaryFileManager');
 		$temporaryFileManager = new TemporaryFileManager();
 		$temporaryFile = $temporaryFileManager->handleUpload('uploadedFile', $user->getId());
 		if ($temporaryFile) {

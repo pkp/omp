@@ -223,10 +223,10 @@ class FileSignoffHandler extends FileManagementHandler {
 	 * @param $request Request
 	 * @return string a serialized JSON object
 	 */
-	function uploadFile($args, &$request) {
-		$user =& $request->getUser();
+	function uploadFile($args, $request) {
+		$user = $request->getUser();
 
-		import('classes.file.TemporaryFileManager');
+		import('lib.pkp.classes.file.TemporaryFileManager');
 		$temporaryFileManager = new TemporaryFileManager();
 		$temporaryFile = $temporaryFileManager->handleUpload('uploadedFile', $user->getId());
 		if ($temporaryFile) {

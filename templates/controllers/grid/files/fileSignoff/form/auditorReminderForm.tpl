@@ -18,7 +18,7 @@
 	{fbvFormArea id="sendReminder"}
 		<input type="hidden" name="submissionId" value="{$submissionId|escape}" />
 		<input type="hidden" name="stageId" value="{$stageId|escape}" />
-		<input type="hidden" name="signoffId" value="{$signoffId}" />
+		<input type="hidden" name="signoffId" value="{$signoffId|escape}" />
 		{* This form is used in production stage, where we need a publication format id *}
 		{if $publicationFormatId}
 			<input type="hidden" name="publicationFormatId" value="{$publicationFormatId}" />

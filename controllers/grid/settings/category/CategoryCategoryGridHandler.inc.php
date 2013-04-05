@@ -232,11 +232,9 @@ class CategoryCategoryGridHandler extends CategoryGridHandler {
 	 * @param $args array
 	 */
 	function uploadImage($args, &$request) {
-		$router =& $request->getRouter();
-		$context = $request->getContext();
-		$user =& $request->getUser();
+		$user = $request->getUser();
 
-		import('classes.file.TemporaryFileManager');
+		import('lib.pkp.classes.file.TemporaryFileManager');
 		$temporaryFileManager = new TemporaryFileManager();
 		$temporaryFile = $temporaryFileManager->handleUpload('uploadedFile', $user->getId());
 		if ($temporaryFile) {
