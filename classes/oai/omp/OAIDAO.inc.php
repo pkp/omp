@@ -210,8 +210,8 @@ class OAIDAO extends PKPOAIDAO {
 	 * @see lib/pkp/classes/oai/PKPOAIDAO::setOAIData()
 	 */
 	function &setOAIData(&$record, &$row, $isRecord = true) {
-		$press =& $this->getPress($row['press_id']);
-		$series =& $this->getSeries($row['series_id']);
+		$press = $this->getPress($row['press_id']);
+		$series = $this->getSeries($row['series_id']);
 		$publicationFormatId = $row['data_object_id'];
 
 		$record->identifier = $this->oai->publicationFormatIdToIdentifier($publicationFormatId);
@@ -219,7 +219,7 @@ class OAIDAO extends PKPOAIDAO {
 
 		if ($isRecord) {
 			$publicationFormat =& $this->_publicationFormatDao->getById($publicationFormatId);
-			$monograph =& $this->_publishedMonographDao->getById($publicationFormat->getMonographId());
+			$monograph = $this->_publishedMonographDao->getById($publicationFormat->getMonographId());
 			$record->setData('publicationFormat', $publicationFormat);
 			$record->setData('monograph', $monograph);
 			$record->setData('press', $press);

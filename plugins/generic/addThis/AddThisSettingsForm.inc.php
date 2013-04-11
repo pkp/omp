@@ -75,8 +75,8 @@ class AddThisSettingsForm extends Form {
 	 * Initialize form data from the plugin.
 	 */
 	function initData() {
-		$plugin =& $this->getPlugin();
-		$press =& $this->getPress();
+		$plugin = $this->getPlugin();
+		$press = $this->getPress();
 
 		if (isset($plugin)) {
 			$this->_data = array(
@@ -93,10 +93,10 @@ class AddThisSettingsForm extends Form {
 	 * @see Form::fetch()
 	 */
 	function fetch($request) {
-		$plugin =& $this->getPlugin();
-		$press =& $this->getPress();
+		$plugin = $this->getPlugin();
+		$press = $this->getPress();
 
-		$templateMgr =& TemplateManager::getManager($request);
+		$templateMgr = TemplateManager::getManager($request);
 		$templateMgr->assign('pluginName', $plugin->getName());
 		$templateMgr->assign('pluginBaseUrl', $request->getBaseUrl() . '/' . $plugin->getPluginPath());
 
@@ -136,8 +136,8 @@ class AddThisSettingsForm extends Form {
 	 * @see Form::execute()
 	 */
 	function execute() {
-		$plugin =& $this->getPlugin();
-		$press =& $this->getPress();
+		$plugin = $this->getPlugin();
+		$press = $this->getPress();
 
 		$press->updateSetting('addThisDisplayStyle', trim($this->getData('addThisDisplayStyle'), "\"\';"), 'string');
 		$press->updateSetting('addThisProfileId', trim($this->getData('addThisProfileId'), "\"\';"), 'string');

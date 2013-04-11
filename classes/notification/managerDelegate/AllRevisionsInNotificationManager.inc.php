@@ -64,7 +64,7 @@ class AllRevisionsInNotificationManager extends RevisionsNotificationManager {
 	 * @param $reviewRound ReviewRound
 	 */
 	private function _addAllRevisionsIn($request, &$reviewRound) {
-		$press =& $request->getPress();
+		$press = $request->getPress();
 		$pressId = $press->getId();
 
 		$this->_removeAllRevisionsIn($request, $reviewRound);
@@ -85,7 +85,7 @@ class AllRevisionsInNotificationManager extends RevisionsNotificationManager {
 	 * @param $reviewRound ReviewRound
 	 */
 	private function _removeAllRevisionsIn($request, &$reviewRound) {
-		$press =& $request->getPress();
+		$press = $request->getPress();
 		$pressId = $press->getId();
 		$notificationDao = DAORegistry::getDAO('NotificationDAO'); /* @var $notificationDao NotificationDAO */
 

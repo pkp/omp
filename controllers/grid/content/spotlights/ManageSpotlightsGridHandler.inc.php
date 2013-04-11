@@ -80,9 +80,9 @@ class ManageSpotlightsGridHandler extends GridHandler {
 
 		$spotlightId = $request->getUserVar('spotlightId');
 		if ($spotlightId) {
-			$press =& $request->getPress();
+			$press = $request->getPress();
 			$spotlightDao = DAORegistry::getDAO('SpotlightDAO');
-			$spotlight =& $spotlightDao->getById($spotlightId);
+			$spotlight = $spotlightDao->getById($spotlightId);
 			if ($spotlight == null || $spotlight->getPressId() != $press->getId()) {
 				return false;
 			}
@@ -107,7 +107,7 @@ class ManageSpotlightsGridHandler extends GridHandler {
 		// Set the no items row text
 		$this->setEmptyRowText('spotlight.noneExist');
 
-		$press =& $request->getPress();
+		$press = $request->getPress();
 		$this->setPress($press);
 
 		// Columns
@@ -143,7 +143,7 @@ class ManageSpotlightsGridHandler extends GridHandler {
 		);
 
 		// Add grid action.
-		$router =& $request->getRouter();
+		$router = $request->getRouter();
 		import('lib.pkp.classes.linkAction.request.AjaxModal');
 		$this->addAction(
 			new LinkAction(
@@ -176,7 +176,7 @@ class ManageSpotlightsGridHandler extends GridHandler {
 	function loadData($request, $filter = null) {
 
 		$spotlightDao = DAORegistry::getDAO('SpotlightDAO');
-		$press =& $this->getPress();
+		$press = $this->getPress();
 		return $spotlightDao->getByPressId($press->getId());
 	}
 
@@ -186,7 +186,7 @@ class ManageSpotlightsGridHandler extends GridHandler {
 	 * @return array
 	 */
 	function getRequestArgs() {
-		$press =& $this->getPress();
+		$press = $this->getPress();
 		return array(
 			'pressId' => $press->getId()
 		);
@@ -208,7 +208,7 @@ class ManageSpotlightsGridHandler extends GridHandler {
 	 */
 	function editSpotlight($args, $request) {
 		$spotlightId = (int)$request->getUserVar('spotlightId');
-		$press =& $request->getPress();
+		$press = $request->getPress();
 		$pressId = $press->getId();
 
 		$spotlightForm = new SpotlightForm($pressId, $spotlightId);
@@ -228,7 +228,7 @@ class ManageSpotlightsGridHandler extends GridHandler {
 		// Identify the spotlight entry to be updated
 		$spotlightId = $request->getUserVar('spotlightId');
 
-		$press =& $this->getPress();
+		$press = $this->getPress();
 
 		$spotlightDao = DAORegistry::getDAO('SpotlightDAO');
 		$spotlight = $spotlightDao->getById($spotlightId, $press->getId());
@@ -251,7 +251,7 @@ class ManageSpotlightsGridHandler extends GridHandler {
 			}
 
 			// Create trivial notification.
-			$currentUser =& $request->getUser();
+			$currentUser = $request->getUser();
 			$notificationMgr = new NotificationManager();
 			$notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => $notificationContent));
 
@@ -283,14 +283,14 @@ class ManageSpotlightsGridHandler extends GridHandler {
 		$spotlightId = $request->getUserVar('spotlightId');
 
 		$spotlightDao = DAORegistry::getDAO('SpotlightDAO');
-		$press =& $this->getPress();
+		$press = $this->getPress();
 		$spotlight =& $spotlightDao->getById($spotlightId, $press->getId());
 		if ($spotlight != null) { // authorized
 
 			$result = $spotlightDao->deleteObject($spotlight);
 
 			if ($result) {
-				$currentUser =& $request->getUser();
+				$currentUser = $request->getUser();
 				$notificationMgr = new NotificationManager();
 				$notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.removedSpotlight')));
 				return DAO::getDataChangedEvent();
@@ -312,7 +312,7 @@ class ManageSpotlightsGridHandler extends GridHandler {
 
 		$name = $request->getUserVar('name');
 
-		$press =& $this->getPress();
+		$press = $this->getPress();
 
 		$itemList = array();
 
@@ -321,8 +321,8 @@ class ManageSpotlightsGridHandler extends GridHandler {
 		$matches = array();
 
 		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
-		$publishedMonographs =& $publishedMonographDao->getByPressId($press->getId());
-		while ($monograph =& $publishedMonographs->next()) {
+		$publishedMonographs = $publishedMonographDao->getByPressId($press->getId());
+		while ($monograph = $publishedMonographs->next()) {
 			if ($name == '' || preg_match('/'. preg_quote($name, '/') . '/i', $monograph->getLocalizedTitle())) {
 				$matches[] = array('label' => $monograph->getLocalizedTitle(), 'value' => $monograph->getId() . ':' . SPOTLIGHT_TYPE_BOOK);
 			}
@@ -351,10 +351,10 @@ class ManageSpotlightsGridHandler extends GridHandler {
 		$matches = array();
 
 		$authorDao = DAORegistry::getDAO('AuthorDAO');
-		$authors =& $authorDao->getAuthorsAlphabetizedByPress($press->getId());
-		while ($author =& $authors->next()) {
+		$authors = $authorDao->getAuthorsAlphabetizedByPress($press->getId());
+		while ($author = $authors->next()) {
 			if ($name == '' || preg_match('/'. preg_quote($name, '/') . '/i', $author->getFullName())) {
-				$publishedMonograph =& $publishedMonographDao->getById($author->getSubmissionId());
+				$publishedMonograph = $publishedMonographDao->getById($author->getSubmissionId());
 				if ($publishedMonograph) { // only include Authors if they are authors on published monographs.
 					$matches[] = array('label' => $author->getFullName() . ' (' . $publishedMonograph->getLocalizedTitle() . ')', 'value' => $author->getId() . ':' . SPOTLIGHT_TYPE_AUTHOR);
 				}

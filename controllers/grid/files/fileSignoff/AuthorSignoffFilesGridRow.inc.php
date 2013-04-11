@@ -36,12 +36,12 @@ class AuthorSignoffFilesGridRow extends SubmissionFilesGridRow {
 		parent::initialize($request);
 
 		// Get this row's signoff
-		$rowData =& $this->getData();
-		$signoff =& $rowData['signoff'];
-		$submissionFile =& $rowData['submissionFile'];
+		$rowData = $this->getData();
+		$signoff = $rowData['signoff'];
+		$submissionFile = $rowData['submissionFile'];
 
 		// Get the current user
-		$user =& $request->getUser();
+		$user = $request->getUser();
 
 		// Grid only displays current users' signoffs.
 		assert($user->getId() == $signoff->getUserId());

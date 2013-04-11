@@ -38,9 +38,9 @@ class ApproveSubmissionNotificationManager extends NotificationManagerDelegate {
 	public function updateNotification($request, $userIds, $assocType, $assocId) {
 		$monographId = $assocId;
 		$monographDao = DAORegistry::getDAO('MonographDAO');
-		$monograph =& $monographDao->getById($monographId);
+		$monograph = $monographDao->getById($monographId);
 
-		$press =& $request->getPress();
+		$press = $request->getPress();
 		$pressId = $press->getId();
 		$notificationDao = DAORegistry::getDAO('NotificationDAO');
 

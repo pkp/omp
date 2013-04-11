@@ -49,17 +49,17 @@ class ChapterGridCategoryRow extends GridCategoryRow {
 		parent::initialize($request);
 
 		// Retrieve the monograph id from the request
-		$monograph =& $this->getMonograph();
+		$monograph = $this->getMonograph();
 
 		// Is this a new row or an existing row?
 		$chapterId = $this->getId();
 		if (!empty($chapterId) && is_numeric($chapterId)) {
-			$chapter =& $this->getData();
-			$this->_chapter =& $chapter;
+			$chapter = $this->getData();
+			$this->_chapter = $chapter;
 
 			// Only add row actions if this is an existing row and the grid is not 'read only'
 			if (!$this->isReadOnly()) {
-				$router =& $request->getRouter();
+				$router = $request->getRouter();
 				$actionArgs = array(
 					'submissionId' => $monograph->getId(),
 					'chapterId' => $chapterId

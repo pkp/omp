@@ -65,14 +65,14 @@ class SignoffStatusFromFileGridColumn extends BaseSignoffStatusColumn {
 		$actions = array();
 		if (in_array($status, array('accepted', 'new')) && $this->_allowSignoffs) {
 			// Retrieve the submission file.
-			$monographFile =& $this->getMonographFile($row);
+			$monographFile = $this->getMonographFile($row);
 
 			// Assemble the request arguments for the signoff action.
 			$actionArgs = $this->getRequestArgs();
 			$actionArgs['fileId'] = $monographFile->getFileId();
 
 			// Instantiate the signoff action.
-			$router =& $request->getRouter();
+			$router = $request->getRouter();
 			import('lib.pkp.classes.linkAction.request.AjaxAction');
 			$signoffAction = new LinkAction(
 				'fileSignoff',
@@ -115,8 +115,8 @@ class SignoffStatusFromFileGridColumn extends BaseSignoffStatusColumn {
 	 * @param $row GridRow
 	 * @return string
 	 */
-	function _getSignoffStatus(&$row) {
-		$monographFile =& $this->getMonographFile($row);
+	function _getSignoffStatus($row) {
+		$monographFile = $this->getMonographFile($row);
 
 		$userIds = $this->getUserIds();
 		if (in_array($monographFile->getUploaderUserId(), $userIds)) {

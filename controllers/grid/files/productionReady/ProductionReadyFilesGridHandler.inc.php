@@ -52,13 +52,13 @@ class ProductionReadyFilesGridHandler extends SubmissionFilesGridHandler {
 		$this->setTitle('editor.monograph.production.productionReadyFiles');
 		$this->setInstructions('editor.monograph.production.productionReadyFilesDescription');
 
-		$currentUser =& $request->getUser();
+		$currentUser = $request->getUser();
 
 		// Get all the uploader user group id's
 		$uploaderUserGroupIds = array();
-		$dataElements =& $this->getGridDataElements($request);
+		$dataElements = $this->getGridDataElements($request);
 		foreach ($dataElements as $id => $rowElement) {
-			$submissionFile =& $rowElement['submissionFile'];
+			$submissionFile = $rowElement['submissionFile'];
 			$uploaderUserGroupIds[] = $submissionFile->getUserGroupId();
 		}
 		// Make sure each is only present once

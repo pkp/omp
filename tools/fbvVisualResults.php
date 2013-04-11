@@ -18,8 +18,8 @@ define('INDEX_FILE_LOCATION', dirname(dirname(__FILE__)) . '/index.php');
 chdir(dirname(INDEX_FILE_LOCATION)); /* Change to base directory */
 require('lib/pkp/includes/bootstrap.inc.php');
 
-$application =& PKPApplication::getApplication();
-$request =& $application->getRequest();
+$application = PKPApplication::getApplication();
+$request = $application->getRequest();
 
 // FIXME: Write and use a CLIRouter here (see classdoc)
 import('classes.core.PageRouter');

@@ -59,7 +59,7 @@ class UserXMLParser {
 		$press =& $pressDao->getById($this->pressId);
 		$pressPrimaryLocale = AppLocale::getPrimaryLocale();
 
-		$site =& Request::getSite();
+		$site = Request::getSite();
 		$siteSupportedLocales = $site->getSupportedLocales();
 
 		if ($tree !== false) {
@@ -257,7 +257,7 @@ class UserXMLParser {
 			$userGroupDao = DAORegistry::getDAO('UserGroupDAO');
 
 			foreach ($user->getRoles() as $role) {
-				$userGroupIds =& $userGroupDao->getUserGroupIdsByRoleId($role->getRoleId(), $press->getId());
+				$userGroupIds = $userGroupDao->getUserGroupIdsByRoleId($role->getRoleId(), $press->getId());
 				foreach ($userGroupIds as $userGroupId) {
 					if (!$userGroupDao->userInGroup($user->getId(), $userGroupId)) {
 						if (!$userGroupDao->assignUserToGroup($user->getId(), $userGroupId, $press->getId())) {

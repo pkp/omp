@@ -140,7 +140,7 @@ class SubmissionMetadataViewForm extends Form {
 
 		// also include the categories (for read only form views)
 		$monographDao = DAORegistry::getDAO('MonographDAO');
-		$assignedCategories =& $monographDao->getCategories($monograph->getId(), $monograph->getPressId());
+		$assignedCategories = $monographDao->getCategories($monograph->getId(), $monograph->getPressId());
 		$templateMgr->assign('assignedCategories', $assignedCategories->toArray());
 
 		return parent::fetch($request);
@@ -160,7 +160,7 @@ class SubmissionMetadataViewForm extends Form {
 	 * @param $request PKPRequest
 	 */
 	function execute($request) {
-		$monograph =& $this->getMonograph();
+		$monograph = $this->getMonograph();
 		$monographDao = DAORegistry::getDAO('MonographDAO');
 
 		// Clean any new release or feature object that may
@@ -189,16 +189,16 @@ class SubmissionMetadataViewForm extends Form {
 	 */
 	function insertEntry($request, $newRowId) {
 
-		$application =& PKPApplication::getApplication();
-		$request =& $application->getRequest();
+		$application = PKPApplication::getApplication();
+		$request = $application->getRequest();
 
 		$categoryId = $newRowId['name'];
 		$categoryDao = DAORegistry::getDAO('CategoryDAO');
 		$monographDao = DAORegistry::getDAO('MonographDAO');
-		$press =& $request->getPress();
-		$monograph =& $this->getMonograph();
+		$press = $request->getPress();
+		$monograph = $this->getMonograph();
 
-		$category =& $categoryDao->getById($categoryId, $press->getId());
+		$category = $categoryDao->getById($categoryId, $press->getId());
 		if (!$category) return true;
 
 		// Associate the category with the monograph
@@ -216,12 +216,12 @@ class SubmissionMetadataViewForm extends Form {
 		if ($rowId) {
 			$categoryDao = DAORegistry::getDAO('CategoryDAO');
 			$monographDao = DAORegistry::getDAO('MonographDAO');
-			$category =& $categoryDao->getById($rowId);
+			$category = $categoryDao->getById($rowId);
 			if (!is_a($category, 'Category')) {
 				assert(false);
 				return false;
 			}
-			$monograph =& $this->getMonograph();
+			$monograph = $this->getMonograph();
 			$monographDao->removeCategory($monograph->getId(), $rowId);
 		}
 

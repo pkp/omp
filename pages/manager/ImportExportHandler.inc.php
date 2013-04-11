@@ -34,7 +34,7 @@ class ImportExportHandler extends ManagerHandler {
 		$this->setupTemplate($request, true);
 
 		PluginRegistry::loadCategory(IMPORTEXPORT_PLUGIN_CATEGORY);
-		$templateMgr =& TemplateManager::getManager($request);
+		$templateMgr = TemplateManager::getManager($request);
 
 		if (array_shift($args) === 'plugin') {
 			$pluginName = array_shift($args);

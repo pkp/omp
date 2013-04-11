@@ -46,7 +46,7 @@ class MailTemplate extends PKPMailTemplate {
 		}
 
 		$userSig = '';
-		$user =& Request::getUser();
+		$user = Request::getUser();
 		if ($user) {
 			$userSig = $user->getLocalizedSignature();
 			if (!empty($userSig)) $userSig = "\n" . $userSig;
@@ -91,11 +91,11 @@ class MailTemplate extends PKPMailTemplate {
 		}
 
 		// Default "From" to user if available, otherwise site/press principal contact
-		$user =& Request::getUser();
+		$user = Request::getUser();
 		if ($user) {
 			$this->setFrom($user->getEmail(), $user->getFullName());
 		} elseif ($press == null) {
-			$site =& Request::getSite();
+			$site = Request::getSite();
 			$this->setFrom($site->getLocalizedContactEmail(), $site->getLocalizedContactName());
 
 		} else {
@@ -121,7 +121,7 @@ class MailTemplate extends PKPMailTemplate {
 			$paramArray['pressName'] = $this->press->getLocalizedName();
 			$paramArray['principalContactSignature'] = $this->press->getSetting('contactName');
 		} else {
-			$site =& Request::getSite();
+			$site = Request::getSite();
 			$paramArray['principalContactSignature'] = $site->getLocalizedContactName();
 		}
 		if (!isset($paramArray['pressUrl'])) $paramArray['pressUrl'] = Request::url(Request::getRequestedPressPath());
@@ -136,7 +136,7 @@ class MailTemplate extends PKPMailTemplate {
 	 * @return void
 	 */
 	function displayEditForm($formActionUrl, $hiddenFormParams = null, $alternateTemplate = null, $additionalParameters = array()) {
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr = TemplateManager::getManager();
 		$templateMgr->assign('helpTopicId', 'press.managementPages.emails');
 
 		parent::displayEditForm($formActionUrl, $hiddenFormParams, $alternateTemplate, $additionalParameters);

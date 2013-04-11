@@ -179,10 +179,10 @@ class SelectableSubmissionFileListCategoryGridHandler extends CategoryGridHandle
 
 		// Test whether the tar binary is available for the export to work, if so, add 'download all' grid action
 		if ($capabilities->canDownloadAll() && $this->hasGridDataElements($request)) {
-			$monograph =& $this->getMonograph();
+			$monograph = $this->getMonograph();
 			$stageId = $this->getStageId();
 			$linkParams = array('submissionId' => $monograph->getId(), 'stageId' => $stageId);
-			$files =& $this->getFilesToDownload($request);
+			$files = $this->getFilesToDownload($request);
 
 			$this->addAction($capabilities->getDownloadAllAction($request, $files, $linkParams), GRID_ACTION_POSITION_BELOW);
 		}

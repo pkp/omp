@@ -87,8 +87,8 @@ class ReviewerReviewForm extends Form {
 	function fetch($request) {
 		$reviewAssignment =& $this->getReviewAssignment();
 
-		$templateMgr =& TemplateManager::getManager($request);
-		$templateMgr->assign_by_ref('submission', $this->getReviewerSubmission());
+		$templateMgr = TemplateManager::getManager($request);
+		$templateMgr->assign('submission', $this->getReviewerSubmission());
 		$templateMgr->assign('reviewIsComplete', (boolean) $reviewAssignment->getDateCompleted());
 		$templateMgr->assign('step', $this->getStep());
 		return parent::fetch($request);

@@ -113,12 +113,12 @@ class PublicationDateForm extends Form {
 	 */
 	function fetch($request) {
 
-		$templateMgr =& TemplateManager::getManager($request);
+		$templateMgr = TemplateManager::getManager($request);
 		$publicationFormatId = null;
 
-		$monograph =& $this->getMonograph();
+		$monograph = $this->getMonograph();
 		$templateMgr->assign('submissionId', $monograph->getId());
-		$publicationDate =& $this->getPublicationDate();
+		$publicationDate = $this->getPublicationDate();
 
 		if ($publicationDate) {
 			$publicationFormatId = $publicationDate->getPublicationFormatId();

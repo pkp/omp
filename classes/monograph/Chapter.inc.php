@@ -125,10 +125,9 @@ class Chapter extends DataObject {
 	 * Get all authors of this chapter.
 	 * @return array Authors
 	 */
-	function &getAuthors() {
+	function getAuthors() {
 		$chapterAuthorDao = DAORegistry::getDAO('ChapterAuthorDAO'); /* @var $chapterAuthorDao ChapterAuthorDAO */
-		$returner =& $chapterAuthorDao->getAuthors($this->getMonographId(), $this->getId());
-		return $returner;
+		return $chapterAuthorDao->getAuthors($this->getMonographId(), $this->getId());
 	}
 
 	/**
@@ -136,8 +135,8 @@ class Chapter extends DataObject {
 	 * @return string
 	 */
 	function getAuthorNamesAsString() {
-		$authors =& $this->getAuthors();
-		while ($author =& $authors->next()) {
+		$authors = $this->getAuthors();
+		while ($author = $authors->next()) {
 			$authorNames[] = $author->getFullName();
 		}
 		return join(', ', $authorNames);

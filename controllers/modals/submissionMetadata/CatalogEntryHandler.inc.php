@@ -119,9 +119,9 @@ class CatalogEntryHandler extends Handler {
 	 * @param $request PKPRequest
 	 */
 	function fetch($args, $request) {
-		$templateMgr =& TemplateManager::getManager($request);
+		$templateMgr = TemplateManager::getManager($request);
 
-		$monograph =& $this->getMonograph();
+		$monograph = $this->getMonograph();
 
 		$templateMgr->assign('submissionId', $monograph->getId());
 		$templateMgr->assign('stageId', $this->getStageId());
@@ -143,10 +143,10 @@ class CatalogEntryHandler extends Handler {
 
 		$templateMgr->assign_by_ref('publicationFormats', $publicationFormats);
 
-		$application =& Application::getApplication();
-		$request =& $application->getRequest();
-		$router =& $request->getRouter();
-		$dispatcher =& $router->getDispatcher();
+		$application = Application::getApplication();
+		$request = $application->getRequest();
+		$router = $request->getRouter();
+		$dispatcher = $router->getDispatcher();
 
 		$tabsUrl = $dispatcher->url($request, ROUTE_COMPONENT, null, 'modals.submissionMetadata.CatalogEntryHandler', 'fetchFormatInfo', null, array('submissionId' => $monograph->getId(), 'stageId' => $this->getStageId()));
 		$templateMgr->assign('tabsUrl', $tabsUrl);
@@ -168,15 +168,15 @@ class CatalogEntryHandler extends Handler {
 	 * @param $request Request
 	 */
 	function fetchFormatInfo($args, $request) {
-		$monograph =& $this->getMonograph();
+		$monograph = $this->getMonograph();
 		// check to see if this monograph has been published yet
 		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
 		$json = new JSONMessage();
 
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
-		$formats =& $publicationFormatDao->getByMonographId($monograph->getId());
+		$formats = $publicationFormatDao->getByMonographId($monograph->getId());
 		$publicationFormats = array();
-		while ($format =& $formats->next()) {
+		while ($format = $formats->next()) {
 			$publicationFormats[$format->getId()] = $format->getLocalizedName();
 		}
 		$json->setStatus(true);

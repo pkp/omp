@@ -132,9 +132,9 @@ class AddThisStatisticsGridHandler extends GridHandler {
 	/**
 	 * @see GridHandler::loadData
 	 */
-	function &loadData($request, $filter = null) {
-		$plugin =& $this->getPlugin();
-		$press =& $request->getPress();
+	function loadData($request, $filter = null) {
+		$plugin = $this->getPlugin();
+		$press = $request->getPress();
 
 		$addThisProfileId = $press->getSetting('addThisProfileId');
 		$addThisUsername = $press->getSetting('addThisUsername');

@@ -27,7 +27,7 @@ class PublicationFormatTombstoneManager {
 	 */
 	function insertTombstoneByPublicationFormat(&$publicationFormat, &$press) {
 		$monographDao = DAORegistry::getDAO('MonographDAO');
-		$monograph =& $monographDao->getById($publicationFormat->getMonographId());
+		$monograph = $monographDao->getById($publicationFormat->getMonographId());
 		$seriesDao = DAORegistry::getDAO('SeriesDAO');
 		$series =& $seriesDao->getById($monograph->getSeriesId());
 

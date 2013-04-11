@@ -37,12 +37,12 @@ class SpotlightsGridRow extends GridRow {
 		// Do the default initialization
 		parent::initialize($request);
 
-		$press =& $this->getPress();
+		$press = $this->getPress();
 
 		// Is this a new row or an existing row?
 		$spotlight = $this->_data;
 		if ($spotlight != null && is_numeric($spotlight->getId())) {
-			$router =& $request->getRouter();
+			$router = $request->getRouter();
 			$actionArgs = array(
 				'pressId' => $press->getId(),
 				'spotlightId' => $spotlight->getId()

@@ -44,7 +44,7 @@ class ReviewerGridRow extends GridRow {
 		$rowId = $this->getId();
 		if (!empty($rowId) && is_numeric($rowId)) {
 			// Only add row actions if this is an existing row
-			$router =& $request->getRouter();
+			$router = $request->getRouter();
 			$actionArgs = array(
 				'submissionId' => $submissionId,
 				'reviewAssignmentId' => $rowId,

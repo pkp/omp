@@ -33,7 +33,7 @@ class PageRouter extends PKPPageRouter {
 		$user = $request->getUser();
 		$userId = $user->getId();
 
-		if ($press =& $this->getContext($request, 1)) {
+		if ($press = $this->getContext($request, 1)) {
 			// The user is in the press context, see if they have zero or one roles only
 			$userGroups =& $userGroupDao->getByUserId($userId, $press->getId());
 			if($userGroups->getCount() <= 1) {
@@ -48,8 +48,8 @@ class PageRouter extends PKPPageRouter {
 
 			if($userGroups->getCount() == 1) {
 				$pressDao = DAORegistry::getDAO('PressDAO');
-				$userGroup =& $userGroups->next();
-				$press =& $pressDao->getById($userGroup->getContextId());
+				$userGroup = $userGroups->next();
+				$press = $pressDao->getById($userGroup->getContextId());
 				if (!isset($press)) $request->redirect('index', 'index');
 				if ($userGroup->getRoleId() == ROLE_ID_READER) $request->redirect(null, 'index');
 			}

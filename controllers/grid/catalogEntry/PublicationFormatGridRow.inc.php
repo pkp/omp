@@ -38,13 +38,13 @@ class PublicationFormatGridRow extends GridRow {
 		parent::initialize($request);
 
 		// Retrieve the monograph from the request
-		$monograph =& $this->getMonograph();
+		$monograph = $this->getMonograph();
 
 		// Is this a new row or an existing row?
 		$publicationFormat = $this->_data;
 		if ($publicationFormat && is_numeric($publicationFormat->getId())) {
 
-			$router =& $request->getRouter();
+			$router = $request->getRouter();
 			$actionArgs = array(
 				'submissionId' => $monograph->getId(),
 				'publicationFormatId' => $publicationFormat->getId()

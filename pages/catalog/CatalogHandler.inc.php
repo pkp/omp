@@ -50,13 +50,13 @@ class CatalogHandler extends Handler {
 	 * @param $request PKPRequest
 	 */
 	function index($args, $request) {
-		$templateMgr =& TemplateManager::getManager($request);
+		$templateMgr = TemplateManager::getManager($request);
 		$this->setupTemplate($request);
-		$press =& $request->getPress();
+		$press = $request->getPress();
 
 		// Fetch the monographs to display
 		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
-		$publishedMonographs =& $publishedMonographDao->getByPressId($press->getId());
+		$publishedMonographs = $publishedMonographDao->getByPressId($press->getId());
 		$templateMgr->assign('publishedMonographs', $publishedMonographs->toAssociativeArray());
 
 		// Display
@@ -69,13 +69,13 @@ class CatalogHandler extends Handler {
 	 * @param $request PKPRequest
 	 */
 	function newReleases($args, $request) {
-		$templateMgr =& TemplateManager::getManager($request);
+		$templateMgr = TemplateManager::getManager($request);
 		$this->setupTemplate($request);
-		$press =& $request->getPress();
+		$press = $request->getPress();
 
 		// Provide a list of new releases to browse
 		$newReleaseDao = DAORegistry::getDAO('NewReleaseDAO');
-		$newReleases =& $newReleaseDao->getMonographsByAssoc(ASSOC_TYPE_PRESS, $press->getId());
+		$newReleases = $newReleaseDao->getMonographsByAssoc(ASSOC_TYPE_PRESS, $press->getId());
 		$templateMgr->assign('publishedMonographs', $newReleases);
 
 		// Display
@@ -89,8 +89,8 @@ class CatalogHandler extends Handler {
 	 * @return string
 	 */
 	function category($args, $request) {
-		$templateMgr =& TemplateManager::getManager($request);
-		$press =& $request->getPress();
+		$templateMgr = TemplateManager::getManager($request);
+		$press = $request->getPress();
 		$this->setupTemplate($request);
 
 		// Get the category
@@ -112,7 +112,7 @@ class CatalogHandler extends Handler {
 
 			// Provide a list of new releases to browse
 			$newReleaseDao = DAORegistry::getDAO('NewReleaseDAO');
-			$newReleases =& $newReleaseDao->getMonographsByAssoc(ASSOC_TYPE_CATEGORY, $category->getId());
+			$newReleases = $newReleaseDao->getMonographsByAssoc(ASSOC_TYPE_CATEGORY, $category->getId());
 			$templateMgr->assign('newReleasesMonographs', $newReleases);
 			// Display
 		}
@@ -126,14 +126,14 @@ class CatalogHandler extends Handler {
 	 * @return string
 	 */
 	function series($args, $request) {
-		$templateMgr =& TemplateManager::getManager($request);
-		$press =& $request->getPress();
+		$templateMgr = TemplateManager::getManager($request);
+		$press = $request->getPress();
 		$this->setupTemplate($request);
 
 		// Get the series
 		$seriesDao = DAORegistry::getDAO('SeriesDAO');
 		$seriesPath = array_shift($args);
-		$series =& $seriesDao->getByPath($seriesPath, $press->getId());
+		$series = $seriesDao->getByPath($seriesPath, $press->getId());
 		$templateMgr->assign('series', $series);
 
 		// Fetch the monographs to display
@@ -148,7 +148,7 @@ class CatalogHandler extends Handler {
 
 		// Provide a list of new releases to browse
 		$newReleaseDao = DAORegistry::getDAO('NewReleaseDAO');
-		$newReleases =& $newReleaseDao->getMonographsByAssoc(ASSOC_TYPE_SERIES, $series->getId());
+		$newReleases = $newReleaseDao->getMonographsByAssoc(ASSOC_TYPE_SERIES, $series->getId());
 		$templateMgr->assign('newReleasesMonographs', $newReleases);
 
 		// Display
@@ -162,8 +162,8 @@ class CatalogHandler extends Handler {
 	 * @return string
 	 */
 	function results($args, $request) {
-		$templateMgr =& TemplateManager::getManager($request);
-		$press =& $request->getPress();
+		$templateMgr = TemplateManager::getManager($request);
+		$press = $request->getPress();
 		$this->setupTemplate($request);
 
 		$query = $request->getUserVar('query');
@@ -192,7 +192,7 @@ class CatalogHandler extends Handler {
 	 */
 	function fullSize($args, $request) {
 
-		$press =& $request->getPress();
+		$press = $request->getPress();
 		$type = $request->getUserVar('type');
 		$id = $request->getUserVar('id');
 		$imageInfo = array();
@@ -230,7 +230,7 @@ class CatalogHandler extends Handler {
 	 * Serve the thumbnail for a category or series.
 	 */
 	function thumbnail($args, $request) {
-		$press =& $request->getPress();
+		$press = $request->getPress();
 		$type = $request->getUserVar('type');
 		$id = $request->getUserVar('id');
 		$imageInfo = array();
@@ -268,8 +268,8 @@ class CatalogHandler extends Handler {
 	 * Set up the basic template.
 	 */
 	function setupTemplate($request) {
-		$templateMgr =& TemplateManager::getManager($request);
-		$press =& $request->getPress();
+		$templateMgr = TemplateManager::getManager($request);
+		$press = $request->getPress();
 		if ($press) {
 			$templateMgr->assign('currency', $press->getSetting('currency'));
 		}

@@ -53,7 +53,7 @@ class ManagerHandler extends Handler {
 	function index($args, $request) {
 		$this->setupTemplate($request);
 
-		$templateMgr =& TemplateManager::getManager($request);
+		$templateMgr = TemplateManager::getManager($request);
 		$templateMgr->display('manager/index.tpl');
 	}
 }

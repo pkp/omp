@@ -89,7 +89,7 @@ class RepresentativesGridHandler extends CategoryGridHandler {
 
 		if ($representativeId != '') {
 			$representativeDao = DAORegistry::getDAO('RepresentativeDAO');
-			$representative =& $representativeDao->getById($representativeId, $this->getMonograph()->getId());
+			$representative = $representativeDao->getById($representativeId, $this->getMonograph()->getId());
 			if (!isset($representative)) {
 				fatalError('Representative referenced outside of authorized monograph context!');
 			}
@@ -108,7 +108,7 @@ class RepresentativesGridHandler extends CategoryGridHandler {
 		$this->setTitle('grid.catalogEntry.representatives');
 
 		// Grid actions
-		$router =& $request->getRouter();
+		$router = $request->getRouter();
 		$actionArgs = $this->getRequestArgs();
 		$this->addAction(
 			new LinkAction(
@@ -172,9 +172,9 @@ class RepresentativesGridHandler extends CategoryGridHandler {
 		$representativeDao = DAORegistry::getDAO('RepresentativeDAO');
 		$representatives = null;
 		if ($category['isSupplier']) {
-			$representatives =& $representativeDao->getSuppliersByMonographId($this->getMonograph()->getId());
+			$representatives = $representativeDao->getSuppliersByMonographId($this->getMonograph()->getId());
 		} else {
-			$representatives =& $representativeDao->getAgentsByMonographId($this->getMonograph()->getId());
+			$representatives = $representativeDao->getAgentsByMonographId($this->getMonograph()->getId());
 		}
 		return $representatives->toAssociativeArray();
 	}
@@ -228,7 +228,7 @@ class RepresentativesGridHandler extends CategoryGridHandler {
 	function editRepresentative($args, $request) {
 		// Identify the representative entry to be updated
 		$representativeId = (int) $request->getUserVar('representativeId');
-		$monograph =& $this->getMonograph();
+		$monograph = $this->getMonograph();
 
 		$representativeDao = DAORegistry::getDAO('RepresentativeDAO');
 		$representative = $representativeDao->getById($representativeId, $monograph->getId());
@@ -251,7 +251,7 @@ class RepresentativesGridHandler extends CategoryGridHandler {
 	function updateRepresentative($args, $request) {
 		// Identify the representative entry to be updated
 		$representativeId = $request->getUserVar('representativeId');
-		$monograph =& $this->getMonograph();
+		$monograph = $this->getMonograph();
 
 		$representativeDao = DAORegistry::getDAO('RepresentativeDAO');
 		$representative = $representativeDao->getById($representativeId, $monograph->getId());
@@ -274,7 +274,7 @@ class RepresentativesGridHandler extends CategoryGridHandler {
 			}
 
 			// Create trivial notification.
-			$currentUser =& $request->getUser();
+			$currentUser = $request->getUser();
 			$notificationMgr = new NotificationManager();
 			$notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => $notificationContent));
 
@@ -306,13 +306,13 @@ class RepresentativesGridHandler extends CategoryGridHandler {
 		$representativeId = $request->getUserVar('representativeId');
 
 		$representativeDao = DAORegistry::getDAO('RepresentativeDAO');
-		$representative =& $representativeDao->getById($representativeId, $this->getMonograph()->getId());
+		$representative = $representativeDao->getById($representativeId, $this->getMonograph()->getId());
 		if ($representative != null) { // authorized
 
 			$result = $representativeDao->deleteObject($representative);
 
 			if ($result) {
-				$currentUser =& $request->getUser();
+				$currentUser = $request->getUser();
 				$notificationMgr = new NotificationManager();
 				$notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.removedRepresentative')));
 				return DAO::getDataChangedEvent($representative->getId(), (int) $representative->getIsSupplier());

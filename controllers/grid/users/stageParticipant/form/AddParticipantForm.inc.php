@@ -71,8 +71,8 @@ class AddParticipantForm extends Form {
 	 * @see Form::fetch()
 	 */
 	function fetch($request) {
-		$templateMgr =& TemplateManager::getManager($request);
-		$userGroups =& $this->getUserGroups();
+		$templateMgr = TemplateManager::getManager($request);
+		$userGroups = $this->getUserGroups();
 
 		$userGroupOptions = array();
 		foreach ($userGroups as $userGroupId => $userGroup) {
@@ -84,7 +84,7 @@ class AddParticipantForm extends Form {
 		$templateMgr->assign('selectedUserGroupId', array_shift(array_keys($userGroupOptions)));
 
 		// assign the vars required for the request
-		$monograph =& $this->getMonograph();
+		$monograph = $this->getMonograph();
 		$templateMgr->assign('submissionId', $monograph->getId());
 		$templateMgr->assign('stageId', $this->getStageId());
 
@@ -109,7 +109,7 @@ class AddParticipantForm extends Form {
 	function validate() {
 		$userGroupId = (int) $this->getData('userGroupId');
 		$userId = (int) $this->getData('userId');
-		$monograph =& $this->getMonograph();
+		$monograph = $this->getMonograph();
 
 		$userGroupDao = DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */
 		return parent::validate() && $userGroupDao->userInGroup($userId, $userGroupId) && $userGroupDao->getById($userGroupId, $monograph->getPressId());
@@ -124,7 +124,7 @@ class AddParticipantForm extends Form {
 		$stageAssignmentDao = DAORegistry::getDAO('StageAssignmentDAO'); /* @var $stageAssignmentDao StageAssignmentDAO */
 		$userGroupDao = DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */
 
-		$monograph =& $this->getMonograph();
+		$monograph = $this->getMonograph();
 		$userGroupId = (int) $this->getData('userGroupId');
 		$userId = (int) $this->getData('userId');
 

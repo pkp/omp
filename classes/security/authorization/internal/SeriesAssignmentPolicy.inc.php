@@ -37,12 +37,12 @@ class SeriesAssignmentPolicy extends AuthorizationPolicy {
 	 */
 	function effect() {
 		// Get the user
-		$user =& $this->_request->getUser();
+		$user = $this->_request->getUser();
 		if (!is_a($user, 'PKPUser')) return AUTHORIZATION_DENY;
 
 		// Get the press
-		$router =& $this->_request->getRouter();
-		$press =& $router->getContext($this->_request);
+		$router = $this->_request->getRouter();
+		$press = $router->getContext($this->_request);
 		if (!is_a($press, 'Press')) return AUTHORIZATION_DENY;
 
 		// Get the monograph

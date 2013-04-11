@@ -51,7 +51,7 @@ class WorkflowHandler extends Handler {
 	 * @see PKPHandler::authorize()
 	 */
 	function authorize($request, &$args, $roleAssignments) {
-		$router =& $request->getRouter();
+		$router = $request->getRouter();
 		$operation = $router->getRequestedOp($request);
 
 		if ($operation == 'access') {
@@ -76,7 +76,7 @@ class WorkflowHandler extends Handler {
 	 * @see PKPHandler::initialize()
 	 */
 	function initialize($request, $args) {
-		$router =& $request->getRouter();
+		$router = $request->getRouter();
 		$operation = $router->getRequestedOp($request);
 
 		if ($operation != 'access') {
@@ -95,7 +95,7 @@ class WorkflowHandler extends Handler {
 		parent::setupTemplate($request);
 		AppLocale::requireComponents(LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_APP_SUBMISSION, LOCALE_COMPONENT_APP_EDITOR, LOCALE_COMPONENT_PKP_GRID);
 
-		$router =& $request->getRouter();
+		$router = $request->getRouter();
 
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		$stageId = $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
@@ -104,7 +104,7 @@ class WorkflowHandler extends Handler {
 		$userGroupDao = DAORegistry::getDAO('UserGroupDAO');
 		$workflowStages = $userGroupDao->getWorkflowStageKeysAndPaths();
 
-		$templateMgr =& TemplateManager::getManager($request);
+		$templateMgr = TemplateManager::getManager($request);
 
 		// Assign the authorized monograph.
 		$templateMgr->assign_by_ref('monograph', $monograph);
@@ -184,7 +184,7 @@ class WorkflowHandler extends Handler {
 
 		assert(!is_null($stagePath));
 
-		$router =& $request->getRouter();
+		$router = $request->getRouter();
 		$request->redirectUrl($router->url($request, null, 'workflow', $stagePath, $monograph->getId()));
 	}
 	/**
@@ -194,7 +194,7 @@ class WorkflowHandler extends Handler {
 	 */
 	function submission($args, $request) {
 		// Render the view.
-		$templateMgr =& TemplateManager::getManager($request);
+		$templateMgr = TemplateManager::getManager($request);
 		$templateMgr->display('workflow/submission.tpl');
 	}
 
@@ -205,7 +205,7 @@ class WorkflowHandler extends Handler {
 	 */
 	function internalReview($args, $request) {
 		// Use different ops so we can identify stage by op.
-		$templateMgr =& TemplateManager::getManager($request);
+		$templateMgr = TemplateManager::getManager($request);
 		$templateMgr->assign('reviewRoundOp', 'internalReviewRound');
 		return $this->_review($args, $request);
 	}
@@ -217,7 +217,7 @@ class WorkflowHandler extends Handler {
 	 */
 	function externalReview($args, $request) {
 		// Use different ops so we can identify stage by op.
-		$templateMgr =& TemplateManager::getManager($request);
+		$templateMgr = TemplateManager::getManager($request);
 		$templateMgr->assign('reviewRoundOp', 'externalReviewRound');
 		return $this->_review($args, $request);
 	}
@@ -229,7 +229,7 @@ class WorkflowHandler extends Handler {
 	 */
 	function editorial(&$args, $request) {
 		// Render the view.
-		$templateMgr =& TemplateManager::getManager($request);
+		$templateMgr = TemplateManager::getManager($request);
 		$templateMgr->display('workflow/editorial.tpl');
 	}
 
@@ -239,7 +239,7 @@ class WorkflowHandler extends Handler {
 	 * @param $args array
 	 */
 	function production(&$args, $request) {
-		$templateMgr =& TemplateManager::getManager($request);
+		$templateMgr = TemplateManager::getManager($request);
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		$notificationRequestOptions = array(
 			NOTIFICATION_LEVEL_NORMAL => array(
@@ -264,7 +264,7 @@ class WorkflowHandler extends Handler {
 	 * @param $args array
 	 */
 	function productionFormatsTab(&$args, $request) {
-		$templateMgr =& TemplateManager::getManager($request);
+		$templateMgr = TemplateManager::getManager($request);
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		$publicationFormats =& $publicationFormatDao->getByMonographId($monograph->getId());
@@ -314,7 +314,7 @@ class WorkflowHandler extends Handler {
 
 		// Iterate through the editor decisions and create a link action for each decision.
 		$editorActions = array();
-		$dispatcher =& $request->getDispatcher();
+		$dispatcher = $request->getDispatcher();
 		import('lib.pkp.classes.linkAction.request.AjaxModal');
 		foreach($decisions as $decision => $action) {
 			$actionArgs['decision'] = $decision;
@@ -334,7 +334,7 @@ class WorkflowHandler extends Handler {
 		}
 
 		// Assign the actions to the template.
-		$templateMgr =& TemplateManager::getManager($request);
+		$templateMgr = TemplateManager::getManager($request);
 		$templateMgr->assign('editorActions', $editorActions);
 		$templateMgr->assign('stageId', $stageId);
 		return $templateMgr->fetchJson('workflow/editorialLinkActions.tpl');
@@ -347,8 +347,8 @@ class WorkflowHandler extends Handler {
 	 */
 	function submissionProgressBar($args, $request) {
 		// Assign the actions to the template.
-		$templateMgr =& TemplateManager::getManager($request);
-		$press =& $request->getPress();
+		$templateMgr = TemplateManager::getManager($request);
+		$press = $request->getPress();
 
 		$userGroupDao = DAORegistry::getDAO('UserGroupDAO');
 		$workflowStages = $userGroupDao->getWorkflowStageKeysAndPaths();
@@ -359,11 +359,11 @@ class WorkflowHandler extends Handler {
 
 		$templateMgr->assign('stageNotifications', $stageNotifications);
 
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		$monograph = $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
-		$publishedMonograph =& $publishedMonographDao->getById($monograph->getId());
+		$publishedMonograph = $publishedMonographDao->getById($monograph->getId());
 		if ($publishedMonograph) { // first check, there's a published monograph
-			$publicationFormats =& $publishedMonograph->getPublicationFormats(true);
+			$publicationFormats = $publishedMonograph->getPublicationFormats(true);
 			$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
 			import('classes.monograph.MonographFile'); // constants
 
@@ -446,10 +446,10 @@ class WorkflowHandler extends Handler {
 	 */
 	function _review($args, $request) {
 		// Retrieve the authorized submission and stage id.
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		$monograph = $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		$selectedStageId = $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
 
-		$templateMgr =& TemplateManager::getManager($request);
+		$templateMgr = TemplateManager::getManager($request);
 
 		// Get all review rounds for this submission, on the current stage.
 		$reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO');
@@ -468,7 +468,7 @@ class WorkflowHandler extends Handler {
 			$templateMgr->assign('lastReviewRoundNumber', $lastReviewRoundNumber);
 
 			if ($monograph->getStageId() == $selectedStageId) {
-				$dispatcher =& $request->getDispatcher();
+				$dispatcher = $request->getDispatcher();
 				$newRoundAction = new LinkAction(
 					'newRound',
 					new AjaxModal(
@@ -507,7 +507,7 @@ class WorkflowHandler extends Handler {
 		}
 
 		// Retrieve the requested operation.
-		$router =& $request->getRouter();
+		$router = $request->getRouter();
 		$operation = $router->getRequestedOp($request);
 
 		// Translate the operation to a workflow stage identifier.

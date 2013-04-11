@@ -66,7 +66,7 @@ class SignoffNotificationManager extends NotificationManagerDelegate {
 			return false;
 		}
 
-		$press =& $request->getPress();
+		$press = $request->getPress();
 		$contextId = $press->getId();
 		$monographId = $assocId;
 		$userId = current($userIds);

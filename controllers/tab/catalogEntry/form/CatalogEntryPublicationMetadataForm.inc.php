@@ -66,10 +66,10 @@ class CatalogEntryPublicationMetadataForm extends Form {
 	 * return string
 	 */
 	function fetch($request) {
-		$monograph =& $this->getMonograph();
-		$press =& $request->getPress();
+		$monograph = $this->getMonograph();
+		$press = $request->getPress();
 
-		$templateMgr =& TemplateManager::getManager($request);
+		$templateMgr = TemplateManager::getManager($request);
 		$templateMgr->assign('submissionId', $monograph->getId());
 		$templateMgr->assign('publicationFormatId', (int) $this->getPublicationFormatId());
 		$templateMgr->assign('isPhysicalFormat', (int) $this->getPhysicalFormat()); // included to load format-specific template
@@ -132,7 +132,7 @@ class CatalogEntryPublicationMetadataForm extends Form {
 		);
 
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
-		$monograph =& $this->getMonograph();
+		$monograph = $this->getMonograph();
 		$publicationFormat =& $publicationFormatDao->getById($this->getPublicationFormatId(), $monograph->getId());
 		assert($publicationFormat);
 
@@ -205,7 +205,7 @@ class CatalogEntryPublicationMetadataForm extends Form {
 	function execute($request) {
 		parent::execute();
 
-		$monograph =& $this->getMonograph();
+		$monograph = $this->getMonograph();
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
 		$publicationFormat =& $publicationFormatDao->getById($this->getPublicationFormatId(), $monograph->getId());
 		assert($publicationFormat);
@@ -214,7 +214,7 @@ class CatalogEntryPublicationMetadataForm extends Form {
 		if ($publicationFormat->getIsApproved() && !$this->getData('isApproved')) {
 			// Publication format was approved and its being disabled. Create
 			// a tombstone for it.
-			$press =& $request->getPress();
+			$press = $request->getPress();
 			import('classes.publicationFormat.PublicationFormatTombstoneManager');
 			$publicationFormatTombstoneMgr = new PublicationFormatTombstoneManager();
 			$publicationFormatTombstoneMgr->insertTombstoneByPublicationFormat($publicationFormat, $press);

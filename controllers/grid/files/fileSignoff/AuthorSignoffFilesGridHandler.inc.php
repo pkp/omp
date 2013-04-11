@@ -60,7 +60,7 @@ class AuthorSignoffFilesGridHandler extends GridHandler {
 			LOCALE_COMPONENT_APP_SUBMISSION
 		);
 
-		$user =& $request->getUser();
+		$user = $request->getUser();
 
 		$gridDataProvider = $this->getDataProvider(); /* @var $gridDataProvider AuthorSignoffFilesGridDataProvider */
 		$gridDataProvider->setUserId($user->getId());

@@ -176,11 +176,13 @@ class ReviewerSelectGridHandler extends GridHandler {
 		$activeMax = $reviewerValues['activeMax'];
 
 		$seriesEditorSubmissionDao = DAORegistry::getDAO('SeriesEditorSubmissionDAO');
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-		$reviewRound =& $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ROUND);
-		$data =& $seriesEditorSubmissionDao->getFilteredReviewers($monograph->getPressId(), $doneMin, $doneMax, $avgMin, $avgMax,
-					$lastMin, $lastMax, $activeMin, $activeMax, $interests, $monograph->getId(), $reviewRound->getId());
-		return $data;
+		$monograph = $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		$reviewRound = $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ROUND);
+		return $seriesEditorSubmissionDao->getFilteredReviewers(
+			$monograph->getPressId(), $doneMin, $doneMax, $avgMin, $avgMax,
+			$lastMin, $lastMax, $activeMin, $activeMax, $interests,
+			$monograph->getId(), $reviewRound->getId()
+		);
 	}
 
 	/**

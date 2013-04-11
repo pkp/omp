@@ -21,8 +21,8 @@ class MarketsGridRow extends GridRow {
 	/**
 	 * Constructor
 	 */
-	function MarketsGridRow(&$monograph) {
-		$this->_monograph =& $monograph;
+	function MarketsGridRow($monograph) {
+		$this->_monograph = $monograph;
 		parent::GridRow();
 	}
 
@@ -37,13 +37,13 @@ class MarketsGridRow extends GridRow {
 		// Do the default initialization
 		parent::initialize($request);
 
-		$monograph =& $this->getMonograph();
+		$monograph = $this->getMonograph();
 
 		// Is this a new row or an existing row?
 		$market = $this->_data;
 
 		if ($market != null && is_numeric($market->getId())) {
-			$router =& $request->getRouter();
+			$router = $request->getRouter();
 			$actionArgs = array(
 				'submissionId' => $monograph->getId(),
 				'marketId' => $market->getId()

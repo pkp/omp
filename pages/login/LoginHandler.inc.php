@@ -27,13 +27,13 @@ class LoginHandler extends PKPLoginHandler {
 
 		if (isset($args[0]) && !empty($args[0])) {
 			$userId = (int)$args[0];
-			$user =& $request->getUser();
+			$user = $request->getUser();
 
 			if (!Validation::canAdminister($userId, $user->getId())) {
 				$this->setupTemplate($request);
 				// We don't have administrative rights
 				// over this user. Display an error.
-				$templateMgr =& TemplateManager::getManager($request);
+				$templateMgr = TemplateManager::getManager($request);
 				$templateMgr->assign('pageTitle', 'manager.people');
 				$templateMgr->assign('errorMsg', 'manager.people.noAdministrativeRights');
 				$templateMgr->assign('backLink', $request->url(null, null, 'people', 'all'));
@@ -100,8 +100,8 @@ class LoginHandler extends PKPLoginHandler {
 	 * @param MailTemplate $mail
 	 */
 	function _setMailFrom($request, &$mail) {
-		$site =& $request->getSite();
-		$press =& $request->getPress();
+		$site = $request->getSite();
+		$press = $request->getPress();
 
 		// Set the sender based on the current context
 		if ($press && $press->getSetting('supportEmail')) {

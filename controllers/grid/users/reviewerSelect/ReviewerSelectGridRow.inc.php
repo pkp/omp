@@ -47,9 +47,9 @@ class ReviewerSelectGridRow extends GridRow {
 	 */
 	function initialize($request) {
 		parent::initialize($request);
-		$press =& $request->getPress();
+		$press = $request->getPress();
 
-		$user =& $this->getData();
+		$user = $this->getData();
 		$this->setId($user->getId());
 
 		$seriesEditorSubmissionDao = DAORegistry::getDAO('SeriesEditorSubmissionDAO');

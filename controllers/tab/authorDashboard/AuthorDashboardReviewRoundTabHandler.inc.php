@@ -59,7 +59,7 @@ class AuthorDashboardReviewRoundTabHandler extends AuthorDashboardHandler {
 	 */
 	function fetchReviewRoundInfo($args, $request) {
 		$this->setupTemplate($request);
-		$templateMgr =& TemplateManager::getManager($request);
+		$templateMgr = TemplateManager::getManager($request);
 
 		$stageId = $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
 		if ($stageId !== WORKFLOW_STAGE_ID_INTERNAL_REVIEW && $stageId !== WORKFLOW_STAGE_ID_EXTERNAL_REVIEW) {
@@ -84,10 +84,10 @@ class AuthorDashboardReviewRoundTabHandler extends AuthorDashboardHandler {
 		import('classes.workflow.EditorDecisionActionsManager');
 		if(EditorDecisionActionsManager::getEditorTakenActionInReviewRound($reviewRound)) {
 			$monographEmailLogDao = DAORegistry::getDAO('SubmissionEmailLogDAO');
-			$user =& $request->getUser();
-			$monographEmailFactory =& $monographEmailLogDao->getByEventType($monograph->getId(), SUBMISSION_EMAIL_EDITOR_NOTIFY_AUTHOR, $user->getId());
+			$user = $request->getUser();
+			$monographEmailFactory = $monographEmailLogDao->getByEventType($monograph->getId(), SUBMISSION_EMAIL_EDITOR_NOTIFY_AUTHOR, $user->getId());
 
-			$templateMgr->assign_by_ref('monographEmails', $monographEmailFactory);
+			$templateMgr->assign('monographEmails', $monographEmailFactory);
 			$templateMgr->assign('showReviewAttachments', true);
 		}
 

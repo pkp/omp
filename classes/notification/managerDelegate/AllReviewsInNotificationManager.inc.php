@@ -43,7 +43,7 @@ class AllReviewsInNotificationManager extends NotificationManagerDelegate {
 		$stageAssignments = $stageAssignmentDao->getEditorsAssignedToStage($reviewRound->getSubmissionId(), $reviewRound->getStageId());
 
 		$notificationDao = DAORegistry::getDAO('NotificationDAO'); /* @var $notificationDao NotificationDAO */
-		$press =& $request->getPress();
+		$press = $request->getPress();
 		$pressId = $press->getId();
 
 		foreach ($stageAssignments as $stageAssignment) {

@@ -41,7 +41,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		$this->testFile = tempnam(TMP_FILES, 'SubmissionFile');
 
 		// Register a mock monograph DAO.
-		$monographDao =& $this->getMock('MonographDAO', array('getMonograph'));
+		$monographDao = $this->getMock('MonographDAO', array('getMonograph'));
 		$monograph = new Monograph();
 		$monograph->setId(SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID);
 		$monograph->setPressId(SUBMISSION_FILE_DAO_TEST_PRESS_ID);
@@ -458,7 +458,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 				self::fail();
 		}
 		$genre = new Genre();
-		$press =& Request::getPress();
+		$press = Request::getPress();
 		$genre->setPressId($press->getId());
 		$genre->setId($genreId);
 		$genre->setName($name, 'en_US');

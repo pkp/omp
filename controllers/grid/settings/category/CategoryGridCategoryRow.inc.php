@@ -43,7 +43,7 @@ class CategoryGridCategoryRow extends GridCategoryRow {
 
 			// Only add row actions if this is an existing row
 			import('lib.pkp.classes.linkAction.request.RemoteActionConfirmationModal');
-			$router =& $request->getRouter();
+			$router = $request->getRouter();
 			$this->addAction(
 				new LinkAction(
 					'deleteCategory',

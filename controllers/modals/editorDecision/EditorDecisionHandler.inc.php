@@ -57,7 +57,7 @@ class EditorDecisionHandler extends Handler {
 		$this->addPolicy(new ReviewRoundRequiredPolicy($request, $args, 'reviewRoundId', $reviewRoundOps));
 
 		// Approve proof need monograph access policy.
-		$router =& $request->getRouter();
+		$router = $request->getRouter();
 		if ($router->getRequestedOp($request) == 'saveApproveProof') {
 			import('classes.security.authorization.SubmissionFileAccessPolicy');
 			$this->addPolicy(new SubmissionFileAccessPolicy($request, $args, $roleAssignments, SUBMISSION_FILE_ACCESS_MODIFY));
@@ -283,8 +283,8 @@ class EditorDecisionHandler extends Handler {
 	 */
 	function approveProofs($args, $request) {
 		$this->setupTemplate($request);
-		$press =& $request->getPress();
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		$press = $request->getPress();
+		$monograph = $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		$publicationFormatId = $request->getUserVar('publicationFormatId');
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO'); /* @var $publicationFormatDao PublicationFormatDAO */
 
@@ -293,9 +293,9 @@ class EditorDecisionHandler extends Handler {
 			fatalError('Invalid publication format id!');
 		}
 
-		$templateMgr =& TemplateManager::getManager($request);
-		$templateMgr->assign_by_ref('publicationFormat', $publicationFormat);
-		$templateMgr->assign_by_ref('monograph', $monograph);
+		$templateMgr = TemplateManager::getManager($request);
+		$templateMgr->assign('publicationFormat', $publicationFormat);
+		$templateMgr->assign('monograph', $monograph);
 
 		return $templateMgr->fetchJson('controllers/modals/editorDecision/approveProofs.tpl');
 	}
@@ -325,10 +325,10 @@ class EditorDecisionHandler extends Handler {
 			// Log the approve proof event.
 			import('classes.log.MonographLog');
 			import('classes.log.SubmissionEventLogEntry'); // constants
-			$user =& $request->getUser();
+			$user = $request->getUser();
 
 			$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
-			$publicationFormat =& $publicationFormatDao->getById($monographFile->getAssocId(), $monograph->getId());
+			$publicationFormat = $publicationFormatDao->getById($monographFile->getAssocId(), $monograph->getId());
 
 			MonographLog::logEvent($request, $monograph, SUBMISSION_LOG_PROOFS_APPROVED, 'submission.event.proofsApproved', array('formatName' => $publicationFormat->getLocalizedName(),'name' => $user->getFullName(), 'username' => $user->getUsername()));
 		}
@@ -420,7 +420,7 @@ class EditorDecisionHandler extends Handler {
 			}
 
 			if ($redirectOp) {
-				$dispatcher =& $this->getDispatcher();
+				$dispatcher = $this->getDispatcher();
 				$redirectUrl = $dispatcher->url($request, ROUTE_PAGE, null, 'workflow', $redirectOp, array($monograph->getId()));
 				return $request->redirectUrlJson($redirectUrl);
 			} else {

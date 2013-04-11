@@ -71,7 +71,7 @@ class ManageSubmissionFilesForm extends Form {
 	function execute($args, $request, &$stageMonographFiles, $fileStage) {
 		$selectedFiles = (array)$this->getData('selectedFiles');
 		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
-		$monographFiles =& $submissionFileDao->getLatestRevisions($this->getMonographId());
+		$monographFiles = $submissionFileDao->getLatestRevisions($this->getMonographId());
 
 		foreach ($monographFiles as $monographFile) {
 			// Get the viewable flag value.
@@ -88,7 +88,7 @@ class ManageSubmissionFilesForm extends Form {
 				if ($isViewable) {
 					// Make a copy of the file to the current file stage.
 					import('lib.pkp.classes.file.SubmissionFileManager');
-					$press =& $request->getPress();
+					$press = $request->getPress();
 					$monographFileManager = new SubmissionFileManager($press->getId(), $monographFile->getMonographId());
 					// Split the file into file id and file revision.
 					$fileId = $monographFile->getFileId();

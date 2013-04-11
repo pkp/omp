@@ -62,7 +62,7 @@ class AddThisPlugin extends GenericPlugin {
 	 * @return LinkAction
 	 */
 	function getManagementVerbLinkAction($request, $verb) {
-		$router =& $request->getRouter();
+		$router = $request->getRouter();
 
 		list($verbName, $verbLocalized) = $verb;
 
@@ -82,9 +82,9 @@ class AddThisPlugin extends GenericPlugin {
 	 * Define the management functionality for this plugin.
 	 */
 	function manage($verb, $args, &$message, &$messageParams, &$pluginModalContent = null) {
-		$request =& $this->getRequest();
-		$press =& $request->getPress();
-		$templateMgr =& TemplateManager::getManager($request);
+		$request = $this->getRequest();
+		$press = $request->getPress();
+		$templateMgr = TemplateManager::getManager($request);
 
 		switch ($verb) {
 
@@ -138,11 +138,11 @@ class AddThisPlugin extends GenericPlugin {
 	 * @param array $params
 	 */
 	function callbackSharingDisplay($hookName, $params) {
-		$templateMgr =& $params[1];
+		$templateMgr = $params[1];
 		$output =& $params[2];
 
-		$request =& $this->getRequest();
-		$press =& $request->getPress();
+		$request = $this->getRequest();
+		$press = $request->getPress();
 
 		$templateMgr->assign('addThisProfileId', $press->getSetting('addThisProfileId'));
 		$templateMgr->assign('addThisUsername', $press->getSetting('addThisUsername'));

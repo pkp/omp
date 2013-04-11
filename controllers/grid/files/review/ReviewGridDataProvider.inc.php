@@ -57,14 +57,12 @@ class ReviewGridDataProvider extends SubmissionFilesGridDataProvider {
 	/**
 	 * @see GridDataProvider::loadData()
 	 */
-	function &loadData() {
+	function loadData() {
 		// Get all review files assigned to this submission.
-		$reviewRound =& $this->getReviewRound();
+		$reviewRound = $this->getReviewRound();
 		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-		$submissionFiles =& $submissionFileDao->getLatestNewRevisionsByReviewRound($reviewRound, $this->getFileStage());
-		$data = $this->prepareSubmissionFileData($submissionFiles, $this->_viewableOnly);
-
-		return $data;
+		$submissionFiles = $submissionFileDao->getLatestNewRevisionsByReviewRound($reviewRound, $this->getFileStage());
+		return $this->prepareSubmissionFileData($submissionFiles, $this->_viewableOnly);
 	}
 
 	//
@@ -73,32 +71,30 @@ class ReviewGridDataProvider extends SubmissionFilesGridDataProvider {
 	/**
 	 * @see FilesGridDataProvider::getSelectAction()
 	 */
-	function &getSelectAction($request) {
+	function getSelectAction($request) {
 		import('controllers.grid.files.fileList.linkAction.SelectReviewFilesLinkAction');
-		$reviewRound =& $this->getReviewRound();
+		$reviewRound = $this->getReviewRound();
 		$modalTitle = __('editor.monograph.review.currentFiles', array('round' => $reviewRound->getRound()));
-		$selectAction = new SelectReviewFilesLinkAction(
+		return new SelectReviewFilesLinkAction(
 			$request, $reviewRound,
 			__('editor.monograph.uploadSelectFiles'),
 			$modalTitle
 		);
-		return $selectAction;
 	}
 
 	/**
 	 * @see FilesGridDataProvider::getAddFileAction()
 	 */
-	function &getAddFileAction($request) {
+	function getAddFileAction($request) {
 		import('lib.pkp.controllers.api.file.linkAction.AddFileLinkAction');
-		$submission =& $this->getSubmission();
-		$reviewRound =& $this->getReviewRound();
+		$submission = $this->getSubmission();
+		$reviewRound = $this->getReviewRound();
 
-		$addFileAction = new AddFileLinkAction(
+		return new AddFileLinkAction(
 			$request, $submission->getId(), $this->getStageId(),
 			$this->getUploaderRoles(), $this->getFileStage(),
 			null, null, $reviewRound->getId()
 		);
-		return $addFileAction;
 	}
 
 	/**

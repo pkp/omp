@@ -74,7 +74,7 @@ class ManageCatalogHandler extends Handler {
 	 */
 	function index($args, $request) {
 		// Render the view.
-		$templateMgr =& TemplateManager::getManager($request);
+		$templateMgr = TemplateManager::getManager($request);
 
 		import('controllers.modals.submissionMetadata.linkAction.MonographlessCatalogEntryLinkAction');
 		$catalogEntryAction = new MonographlessCatalogEntryLinkAction($request);
@@ -83,7 +83,7 @@ class ManageCatalogHandler extends Handler {
 		import('lib.pkp.classes.linkAction.LinkAction');
 		import('lib.pkp.classes.linkAction.request.AjaxModal');
 
-		$dispatcher =& $request->getDispatcher();
+		$dispatcher = $request->getDispatcher();
 
 		$manageCategoriesLinkAction =
 			new LinkAction(
@@ -123,13 +123,13 @@ class ManageCatalogHandler extends Handler {
 	 */
 	function homepage($args, $request) {
 		// Set up the monograph list template
-		$press =& $request->getPress();
+		$press = $request->getPress();
 		$this->_setupMonographsTemplate(
 			true, 'homepage', 'catalog.manage.homepageDescription',
 			ASSOC_TYPE_PRESS, $press->getId()
 		);
 
-		$templateMgr =& TemplateManager::getManager($request);
+		$templateMgr = TemplateManager::getManager($request);
 
 		// Fetch the monographs to display
 		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
@@ -147,7 +147,7 @@ class ManageCatalogHandler extends Handler {
 	 * @return string
 	 */
 	function getCategories($args, $request) {
-		$press =& $request->getPress();
+		$press = $request->getPress();
 		$categoryDao = DAORegistry::getDAO('CategoryDAO');
 		$categoryIterator =& $categoryDao->getByPressId($press->getId());
 		$categoryArray = array();
@@ -166,13 +166,12 @@ class ManageCatalogHandler extends Handler {
 	 * @return string
 	 */
 	function getSeries($args, $request) {
-		$press =& $request->getPress();
+		$press = $request->getPress();
 		$seriesDao = DAORegistry::getDAO('SeriesDAO');
-		$seriesIterator =& $seriesDao->getByPressId($press->getId());
+		$seriesIterator = $seriesDao->getByPressId($press->getId());
 		$seriesArray = array();
-		while ($series =& $seriesIterator->next()) {
+		while ($series = $seriesIterator->next()) {
 			$seriesArray[$series->getPath()] = $series->getLocalizedTitle();
-			unset($series);
 		}
 		$json = new JSONMessage(true, $seriesArray);
 		return $json->getString();
@@ -185,13 +184,13 @@ class ManageCatalogHandler extends Handler {
 	 * @return string
 	 */
 	function category($args, $request) {
-		$templateMgr =& TemplateManager::getManager($request);
-		$press =& $request->getPress();
+		$templateMgr = TemplateManager::getManager($request);
+		$press = $request->getPress();
 
 		// Get the category
 		$categoryDao = DAORegistry::getDAO('CategoryDAO');
 		$categoryPath = array_shift($args);
-		$category =& $categoryDao->getByPath($categoryPath, $press->getId());
+		$category = $categoryDao->getByPath($categoryPath, $press->getId());
 		$templateMgr->assign('category', $category);
 
 		// Set up the monograph list template
@@ -202,7 +201,7 @@ class ManageCatalogHandler extends Handler {
 
 		// Fetch the monographs to display
 		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
-		$publishedMonographs =& $publishedMonographDao->getByCategoryId($category->getId(), $press->getId());
+		$publishedMonographs = $publishedMonographDao->getByCategoryId($category->getId(), $press->getId());
 		$templateMgr->assign('publishedMonographs', $publishedMonographs);
 
 		// Fetch the current features
@@ -222,8 +221,8 @@ class ManageCatalogHandler extends Handler {
 	 * @return string
 	 */
 	function series($args, $request) {
-		$templateMgr =& TemplateManager::getManager($request);
-		$press =& $request->getPress();
+		$templateMgr = TemplateManager::getManager($request);
+		$press = $request->getPress();
 
 		// Get the series
 		$seriesDao = DAORegistry::getDAO('SeriesDAO');
@@ -256,12 +255,12 @@ class ManageCatalogHandler extends Handler {
 		$searchText = array_shift($args);
 		$this->_setupMonographsTemplate(false, 'search');
 
-		$templateMgr =& TemplateManager::getManager($request);
-		$press =& $request->getPress();
+		$templateMgr = TemplateManager::getManager($request);
+		$press = $request->getPress();
 
 		// Fetch the monographs to display
 		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
-		$publishedMonographs =& $publishedMonographDao->getByPressId($press->getId(), $searchText);
+		$publishedMonographs = $publishedMonographDao->getByPressId($press->getId(), $searchText);
 		$templateMgr->assign('publishedMonographs', $publishedMonographs);
 
 		// Display the monograph list
@@ -275,7 +274,7 @@ class ManageCatalogHandler extends Handler {
 	 * @return string
 	 */
 	function toggle($args, $request) {
-		$press =& $request->getPress();
+		$press = $request->getPress();
 
 		// Identification of item to set new state state on
 		$monographId = (int) array_shift($args);
@@ -366,7 +365,7 @@ class ManageCatalogHandler extends Handler {
 		// Loadubmission locale content for monograph listing
 		AppLocale::requireComponents(LOCALE_COMPONENT_APP_SUBMISSION, LOCALE_COMPONENT_PKP_SUBMISSION);
 
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr = TemplateManager::getManager();
 		import('lib.pkp.classes.linkAction.request.NullAction');
 
 		// Feature action (if enabled)

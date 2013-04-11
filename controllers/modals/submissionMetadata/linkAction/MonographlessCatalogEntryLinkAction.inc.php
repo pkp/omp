@@ -21,8 +21,8 @@ class MonographlessCatalogEntryLinkAction extends LinkAction {
 	 * @param $request Request
 	 */
 	function MonographlessCatalogEntryLinkAction($request) {
-		$router =& $request->getRouter();
-		$dispatcher =& $router->getDispatcher();
+		$router = $request->getRouter();
+		$dispatcher = $router->getDispatcher();
 
 		AppLocale::requireComponents(LOCALE_COMPONENT_APP_SUBMISSION);
 

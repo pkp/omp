@@ -89,7 +89,7 @@ class SubmissionMetadataHandler extends Handler {
 			$submissionMetadataViewForm->execute($request);
 			// Create trivial notification.
 			$notificationManager = new NotificationManager();
-			$user =& $request->getUser();
+			$user = $request->getUser();
 			$notificationManager->createTrivialNotification($user->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.savedSubmissionMetadata')));
 		} else {
 			$json->setStatus(false);

@@ -84,10 +84,10 @@ class ChapterForm extends Form {
 	function initData() {
 		AppLocale::requireComponents(LOCALE_COMPONENT_APP_DEFAULT, LOCALE_COMPONENT_PKP_SUBMISSION);
 
-		$monograph =& $this->getMonograph();
+		$monograph = $this->getMonograph();
 		$this->setData('submissionId', $monograph->getId());
 
-		$chapter =& $this->getChapter();
+		$chapter = $this->getChapter();
 		if ($chapter) {
 			$this->setData('chapterId', $chapter->getId());
 			$this->setData('title', $chapter->getTitle());
@@ -119,7 +119,7 @@ class ChapterForm extends Form {
 			$chapter->setSubtitle($this->getData('subtitle'), null); //Localized
 			$chapterDao->updateObject($chapter);
 		} else {
-			$monograph =& $this->getMonograph();
+			$monograph = $this->getMonograph();
 
 			$chapter = $chapterDao->newDataObject();
 			$chapter->setMonographId($monograph->getId());
@@ -144,8 +144,8 @@ class ChapterForm extends Form {
 	 * @return boolean
 	 */
 	function insertEntry($request, $newRowId) {
-		$monograph =& $this->getMonograph();
-		$chapter =& $this->getChapter();
+		$monograph = $this->getMonograph();
+		$chapter = $this->getChapter();
 		$authorId = (int) $newRowId['name'];
 		$sequence = (int) $newRowId['sequence'];
 

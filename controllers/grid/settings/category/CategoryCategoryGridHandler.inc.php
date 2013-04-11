@@ -70,8 +70,8 @@ class CategoryCategoryGridHandler extends CategoryGridHandler {
 
 		parent::initialize($request);
 
-		$press =& $request->getPress();
-		$this->_pressId =& $press->getId();
+		$press = $request->getPress();
+		$this->_pressId = $press->getId();
 
 		AppLocale::requireComponents(LOCALE_COMPONENT_APP_MANAGER);
 
@@ -81,7 +81,7 @@ class CategoryCategoryGridHandler extends CategoryGridHandler {
 		$this->setInstructions('manager.setup.categories.description');
 
 		// Add grid-level actions.
-		$router =& $request->getRouter();
+		$router = $request->getRouter();
 		$this->addAction(
 			new LinkAction(
 				'addCategory',
@@ -113,18 +113,11 @@ class CategoryCategoryGridHandler extends CategoryGridHandler {
 	/**
 	 * @see GridHandler::loadData
 	 */
-	function &loadData($request, $filter) {
+	function loadData($request, $filter) {
 		// For top-level rows, only list categories without parents.
 		$categoryDao = DAORegistry::getDAO('CategoryDAO');
-		$categoriesIterator =& $categoryDao->getByParentId(null, $this->_getPressId());
-
-		$categories = array();
-		while ($category =& $categoriesIterator->next()) {
-			$categories[$category->getId()] =& $category;
-			unset($category);
-		}
-
-		return $categories;
+		$categoriesIterator = $categoryDao->getByParentId(null, $this->_getPressId());
+		return $categoriesIterator->toAssociativeArray();
 	}
 
 	/**
@@ -157,7 +150,7 @@ class CategoryCategoryGridHandler extends CategoryGridHandler {
 	function getCategoryData(&$category) {
 		$categoryId = $category->getId();
 		$categoryDao = DAORegistry::getDAO('CategoryDAO');
-		$categoriesIterator =& $categoryDao->getByParentId($categoryId, $this->_getPressId());
+		$categoriesIterator = $categoryDao->getByParentId($categoryId, $this->_getPressId());
 		$categories = $categoriesIterator->toAssociativeArray();
 		return $categories;
 	}
@@ -212,8 +205,8 @@ class CategoryCategoryGridHandler extends CategoryGridHandler {
 	function deleteCategory($args, $request) {
 		// Identify the category to be deleted
 		$categoryDao = DAORegistry::getDAO('CategoryDAO');
-		$press =& $request->getPress();
-		$category =& $categoryDao->getById(
+		$press = $request->getPress();
+		$category = $categoryDao->getById(
 			$request->getUserVar('categoryId'),
 			$press->getId()
 		);

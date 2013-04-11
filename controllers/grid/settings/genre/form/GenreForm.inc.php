@@ -53,7 +53,7 @@ class GenreForm extends Form {
 	 * @param $request PKPRequest
 	 */
 	function initData($args, $request) {
-		$press =& $request->getPress();
+		$press = $request->getPress();
 
 		$genreDao = DAORegistry::getDAO('GenreDAO');
 
@@ -87,7 +87,7 @@ class GenreForm extends Form {
 	 * @see Form::fetch()
 	 */
 	function fetch($request) {
-		$templateMgr =& TemplateManager::getManager($request);
+		$templateMgr = TemplateManager::getManager($request);
 		$templateMgr->assign('monographFileCategories', array(GENRE_CATEGORY_DOCUMENT => __('submission.document'),
 					GENRE_CATEGORY_ARTWORK => __('submission.art')));
 
@@ -111,7 +111,7 @@ class GenreForm extends Form {
 	 */
 	function execute($args, $request) {
 		$genreDao = DAORegistry::getDAO('GenreDAO');
-		$press =& $request->getPress();
+		$press = $request->getPress();
 
 		// Update or insert genre
 		if (!$this->getGenreId()) {

@@ -22,7 +22,7 @@ class IdentificationCodeGridRow extends GridRow {
 	 * Constructor
 	 */
 	function IdentificationCodeGridRow(&$monograph) {
-		$this->_monograph =& $monograph;
+		$this->_monograph = $monograph;
 		parent::GridRow();
 	}
 
@@ -37,13 +37,13 @@ class IdentificationCodeGridRow extends GridRow {
 		// Do the default initialization
 		parent::initialize($request);
 
-		$monograph =& $this->getMonograph();
+		$monograph = $this->getMonograph();
 
 		// Is this a new row or an existing row?
 		$identificationCode = $this->_data;
 
 		if ($identificationCode != null && is_numeric($identificationCode->getId())) {
-			$router =& $request->getRouter();
+			$router = $request->getRouter();
 			$actionArgs = array(
 				'submissionId' => $monograph->getId(),
 				'identificationCodeId' => $identificationCode->getId()

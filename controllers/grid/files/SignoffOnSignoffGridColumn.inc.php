@@ -33,14 +33,14 @@ class SignoffOnSignoffGridColumn extends BaseSignoffStatusColumn {
 	 */
 	function getCellActions($request, $row) {
 		$status = $this->_getSignoffStatus($row);
-		$signoff =& $row->getData();
-		$user =& $request->getUser();
+		$signoff = $row->getData();
+		$user = $request->getUser();
 
 		// Assemble the request arguments for the signoff action.
 		$actionArgs = $this->getRequestArgs();
 		$actionArgs['signoffId'] = $signoff->getId();
 
-		$router =& $request->getRouter();
+		$router = $request->getRouter();
 		$actions = array();
 
 		switch ($status) {
@@ -91,7 +91,7 @@ class SignoffOnSignoffGridColumn extends BaseSignoffStatusColumn {
 	 * @param $row GridRow
 	 * @return string
 	 */
-	function _getSignoffStatus(&$row) {
+	function _getSignoffStatus($row) {
 		$signoffInQuestion =& $row->getData();
 
 		// Disabled status until the signoff is completed.

@@ -50,20 +50,20 @@ class ThankReviewerForm extends Form {
 	 */
 	function initData($args, $request) {
 		$userDao = DAORegistry::getDAO('UserDAO');
-		$user =& $request->getUser();
-		$press =& $request->getPress();
+		$user = $request->getUser();
+		$press = $request->getPress();
 
-		$reviewAssignment =& $this->getReviewAssignment();
+		$reviewAssignment = $this->getReviewAssignment();
 		$reviewerId = $reviewAssignment->getReviewerId();
-		$reviewer =& $userDao->getById($reviewerId);
+		$reviewer = $userDao->getById($reviewerId);
 
 		$monographDao = DAORegistry::getDAO('MonographDAO');
-		$monograph =& $monographDao->getById($reviewAssignment->getSubmissionId());
+		$monograph = $monographDao->getById($reviewAssignment->getSubmissionId());
 
 		import('classes.mail.MonographMailTemplate');
 		$email = new MonographMailTemplate($monograph, 'REVIEW_ACK');
 
-		$dispatcher =& $request->getDispatcher();
+		$dispatcher = $request->getDispatcher();
 		$paramArray = array(
 			'reviewerName' => $reviewer->getFullName(),
 			'editorialContactSignature' => $user->getContactSignature(),
@@ -98,10 +98,10 @@ class ThankReviewerForm extends Form {
 		$userDao = DAORegistry::getDAO('UserDAO');
 		$monographDao = DAORegistry::getDAO('MonographDAO');
 
-		$reviewAssignment =& $this->getReviewAssignment();
+		$reviewAssignment = $this->getReviewAssignment();
 		$reviewerId = $reviewAssignment->getReviewerId();
-		$reviewer =& $userDao->getById($reviewerId);
-		$monograph =& $monographDao->getById($reviewAssignment->getSubmissionId());
+		$reviewer = $userDao->getById($reviewerId);
+		$monograph = $monographDao->getById($reviewAssignment->getSubmissionId());
 
 		import('classes.mail.MonographMailTemplate');
 		$email = new MonographMailTemplate($monograph, 'REVIEW_ACK', null, null, null, false);

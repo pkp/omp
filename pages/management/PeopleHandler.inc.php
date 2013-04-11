@@ -33,7 +33,7 @@ class PeopleHandler extends ManagementHandler {
 		$this->validate();
 		$this->setupTemplate($request, true);
 
-		$templateMgr =& TemplateManager::getManager($request);
+		$templateMgr = TemplateManager::getManager($request);
 
 		$userDao = DAORegistry::getDAO('UserDAO');
 		$userId = isset($args[0]) ? $args[0] : 0;
@@ -46,8 +46,8 @@ class PeopleHandler extends ManagementHandler {
 		if ($user != null) {
 			$templateMgr->assign('currentUrl', $request->url(null, null, 'userProfile', $user->getId()));
 
-			$site =& $request->getSite();
-			$press =& $request->getPress();
+			$site = $request->getSite();
+			$press = $request->getPress();
 
 			$countryDao = DAORegistry::getDAO('CountryDAO');
 			$country = null;

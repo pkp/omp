@@ -42,7 +42,7 @@ class CategoryGridRow extends GridRow {
 				$this->getRequestArgs(),
 				array('categoryId' => $rowData->getId())
 			);
-			$router =& $request->getRouter();
+			$router = $request->getRouter();
 
 			$this->addAction(new LinkAction(
 				'editCategory',

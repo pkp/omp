@@ -99,7 +99,7 @@ class NewSignoffNoteForm extends NewNoteForm {
 	 * @see NewNoteForm::fetch()
 	 */
 	function fetch($request) {
-		$templateMgr =& TemplateManager::getManager($request);
+		$templateMgr = TemplateManager::getManager($request);
 		$templateMgr->assign('linkParams', $this->_actionArgs);
 		$templateMgr->assign('showEarlierEntries', false);
 		$templateMgr->assign('signoffId', $this->signoffId);
@@ -111,7 +111,7 @@ class NewSignoffNoteForm extends NewNoteForm {
 	}
 
 	function execute($request, $userRoles) {
-		$user =& $request->getUser();
+		$user = $request->getUser();
 
 		// Retrieve the signoff we're working with.
 		$signoffDao = DAORegistry::getDAO('SubmissionFileSignoffDAO');
@@ -121,8 +121,6 @@ class NewSignoffNoteForm extends NewNoteForm {
 		// Insert the note, if existing content and/or file.
 		$temporaryFileId = $this->getData('temporaryFileId');
 		if ($temporaryFileId || $this->getData('newNote')) {
-			$user =& $request->getUser();
-
 			$noteDao = DAORegistry::getDAO('NoteDAO');
 			$note = $noteDao->newDataObject();
 
@@ -146,7 +144,7 @@ class NewSignoffNoteForm extends NewNoteForm {
 				// Bring in the SUBMISSION_FILE_* constants
 				import('classes.monograph.MonographFile');
 
-				$press =& $request->getPress();
+				$press = $request->getPress();
 				import('lib.pkp.classes.file.SubmissionFileManager');
 				$monographFileManager = new SubmissionFileManager($press->getId(), $this->_monographId);
 

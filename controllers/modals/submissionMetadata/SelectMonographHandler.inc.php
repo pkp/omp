@@ -51,7 +51,7 @@ class SelectMonographHandler extends Handler {
 	 * @param $request PKPRequest
 	 */
 	function fetch($args, $request) {
-		$templateMgr =& TemplateManager::getManager($request);
+		$templateMgr = TemplateManager::getManager($request);
 		AppLocale::requireComponents(LOCALE_COMPONENT_APP_SUBMISSION); // submission.select
 		$json = new JSONMessage(true, $templateMgr->fetch('controllers/modals/submissionMetadata/selectMonograph.tpl'));
 		return $json->getString();
@@ -63,7 +63,7 @@ class SelectMonographHandler extends Handler {
 	 * @param $request PKPRequest
 	 */
 	function getSubmissions($args, $request) {
-		$press =& $request->getPress();
+		$press = $request->getPress();
 		$monographDao = DAORegistry::getDAO('MonographDAO');
 		$submissionsIterator = $monographDao->getUnpublishedMonographsByPressId($press->getId());
 		$submissions = array();

@@ -33,7 +33,7 @@ class CategoryListbuilderGridCellProvider extends GridCellProvider {
 	 * @param $column GridColumn
 	 * @return array
 	 */
-	function getTemplateVarsFromRowColumn(&$row, $column) {
+	function getTemplateVarsFromRowColumn($row, $column) {
 		$category =& $row->getData();
 		$columnId = $column->getId();
 		assert((is_a($category, 'Category')) && !empty($columnId));

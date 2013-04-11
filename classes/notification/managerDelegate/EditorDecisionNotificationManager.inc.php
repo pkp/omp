@@ -67,7 +67,7 @@ class EditorDecisionNotificationManager extends NotificationManagerDelegate {
 	 * @see NotificationManagerDelegate::updateNotification()
 	 */
 	public function updateNotification($request, $userIds, $assocType, $assocId) {
-		$press =& $request->getPress();
+		$press = $request->getPress();
 
 		// Get the monograph submitter id.
 		$userId = current($userIds);

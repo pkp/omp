@@ -88,12 +88,12 @@ class Validation {
 			}
 
 			// The user is valid, mark user as logged in in current session
-			$sessionManager =& SessionManager::getManager();
+			$sessionManager = SessionManager::getManager();
 
 			// Regenerate session ID first
 			$sessionManager->regenerateSessionId();
 
-			$session =& $sessionManager->getUserSession();
+			$session = $sessionManager->getUserSession();
 			$session->setSessionVar('userId', $user->getId());
 			$session->setUserId($user->getId());
 			$session->setSessionVar('username', $user->getUsername());
@@ -116,8 +116,8 @@ class Validation {
 	 * @return boolean
 	 */
 	static function logout() {
-		$sessionManager =& SessionManager::getManager();
-		$session =& $sessionManager->getUserSession();
+		$sessionManager = SessionManager::getManager();
+		$session = $sessionManager->getUserSession();
 		$session->unsetSessionVar('userId');
 		$session->unsetSessionVar('signedInAs');
 		$session->setUserId(null);
@@ -280,8 +280,8 @@ class Validation {
 	 * @return boolean
 	 */
 	static function isLoggedIn() {
-		$sessionManager =& SessionManager::getManager();
-		$session =& $sessionManager->getUserSession();
+		$sessionManager = SessionManager::getManager();
+		$session = $sessionManager->getUserSession();
 
 		$userId = $session->getUserId();
 		return isset($userId) && !empty($userId);

@@ -33,7 +33,7 @@ class MonographLog extends PkpLog {
 		$entry->setDateLogged(Core::getCurrentDate());
 		$entry->setIPAddress($request->getRemoteAddr());
 
-		$user =& $request->getUser();
+		$user = $request->getUser();
 		if ($user) $entry->setUserId($user->getId());
 
 		$entry->setAssocType(ASSOC_TYPE_MONOGRAPH);

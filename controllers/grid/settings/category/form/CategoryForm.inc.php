@@ -44,8 +44,8 @@ class CategoryForm extends Form {
 		$this->_pressId = $pressId;
 		$this->_categoryId = $categoryId;
 
-		$request =& Application::getRequest();
-		$user =& $request->getUser();
+		$request = Application::getRequest();
+		$user = $request->getUser();
 		$this->_userId = $user->getId();
 
 		// Validation checks for this form
@@ -138,7 +138,7 @@ class CategoryForm extends Form {
 		// For path duplicate checking; excuse the current path.
 		if ($categoryId = $this->getCategoryId()) {
 			$categoryDao = DAORegistry::getDAO('CategoryDAO');
-			$category =& $categoryDao->getById($categoryId, $this->getPressId());
+			$category = $categoryDao->getById($categoryId, $this->getPressId());
 			$this->setData('oldPath', $category->getPath());
 		}
 	}
@@ -148,8 +148,8 @@ class CategoryForm extends Form {
 	 */
 	function fetch($request) {
 		$categoryDao = DAORegistry::getDAO('CategoryDAO');
-		$press =& $request->getPress();
-		$templateMgr =& TemplateManager::getManager($request);
+		$press = $request->getPress();
+		$templateMgr = TemplateManager::getManager($request);
 		$templateMgr->assign('categoryId', $this->getCategoryId());
 
 		// Provide a list of root categories to the template

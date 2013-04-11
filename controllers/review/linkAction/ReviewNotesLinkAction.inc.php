@@ -29,7 +29,7 @@ class ReviewNotesLinkAction extends LinkAction {
 	 */
 	function ReviewNotesLinkAction($request, &$reviewAssignment, &$monograph, $user) {
 		// Instantiate the information center modal.
-		$router =& $request->getRouter();
+		$router = $request->getRouter();
 		import('lib.pkp.classes.linkAction.request.AjaxModal');
 		$actionArgs = array(
 			'submissionId' => $reviewAssignment->getSubmissionId(),

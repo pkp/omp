@@ -22,8 +22,8 @@ class HandlerValidatorPress extends HandlerValidatorPolicy {
 	 * @see HandlerValidator::HandlerValidator()
 	 */
 	function HandlerValidatorPress(&$handler, $redirectToLogin = false, $message = null, $additionalArgs = array()) {
-		$application =& PKPApplication::getApplication();
-		$request =& $application->getRequest();
+		$application = PKPApplication::getApplication();
+		$request = $application->getRequest();
 		$policy = new ContextRequiredPolicy($request, $message);
 		parent::HandlerValidatorPolicy($policy, $handler, $redirectToLogin, $message, $additionalArgs);
 	}

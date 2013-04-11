@@ -109,7 +109,7 @@ class MarketsGridHandler extends GridHandler {
 
 		if ($marketId != '') {
 			$marketDao = DAORegistry::getDAO('MarketDAO');
-			$market =& $marketDao->getById($marketId, $this->getMonograph()->getId());
+			$market = $marketDao->getById($marketId, $this->getMonograph()->getId());
 			if ($market) {
 				$publicationFormatId = $market->getPublicationFormatId();
 			}
@@ -117,7 +117,7 @@ class MarketsGridHandler extends GridHandler {
 			$publicationFormatId = (int) $request->getUserVar('publicationFormatId');
 		}
 
-		$publicationFormat =& $publicationFormatDao->getById($publicationFormatId, $this->getMonograph()->getId());
+		$publicationFormat = $publicationFormatDao->getById($publicationFormatId, $this->getMonograph()->getId());
 
 		if ($publicationFormat) {
 			$this->setPublicationFormat($publicationFormat);
@@ -138,7 +138,7 @@ class MarketsGridHandler extends GridHandler {
 		$this->setTitle('grid.catalogEntry.markets');
 
 		// Grid actions
-		$router =& $request->getRouter();
+		$router = $request->getRouter();
 		$actionArgs = $this->getRequestArgs();
 		$this->addAction(
 			new LinkAction(
@@ -202,8 +202,8 @@ class MarketsGridHandler extends GridHandler {
 	 * @return array
 	 */
 	function getRequestArgs() {
-		$monograph =& $this->getMonograph();
-		$publicationFormat =& $this->getPublicationFormat();
+		$monograph = $this->getMonograph();
+		$publicationFormat = $this->getPublicationFormat();
 
 		return array(
 			'submissionId' => $monograph->getId(),
@@ -214,10 +214,10 @@ class MarketsGridHandler extends GridHandler {
 	/**
 	 * @see GridHandler::loadData
 	 */
-	function &loadData($request, $filter = null) {
-		$publicationFormat =& $this->getPublicationFormat();
+	function loadData($request, $filter = null) {
+		$publicationFormat = $this->getPublicationFormat();
 		$marketDao = DAORegistry::getDAO('MarketDAO');
-		$data =& $marketDao->getByPublicationFormatId($publicationFormat->getId());
+		$data = $marketDao->getByPublicationFormatId($publicationFormat->getId());
 		return $data->toArray();
 	}
 
@@ -239,7 +239,7 @@ class MarketsGridHandler extends GridHandler {
 	function editMarket($args, $request) {
 		// Identify the market entry to be updated
 		$marketId = (int) $request->getUserVar('marketId');
-		$monograph =& $this->getMonograph();
+		$monograph = $this->getMonograph();
 
 		$marketDao = DAORegistry::getDAO('MarketDAO');
 		$market = $marketDao->getById($marketId, $monograph->getId());
@@ -262,7 +262,7 @@ class MarketsGridHandler extends GridHandler {
 	function updateMarket($args, $request) {
 		// Identify the market entry to be updated
 		$marketId = $request->getUserVar('marketId');
-		$monograph =& $this->getMonograph();
+		$monograph = $this->getMonograph();
 
 		$marketDao = DAORegistry::getDAO('MarketDAO');
 		$market = $marketDao->getById($marketId, $monograph->getId());
@@ -285,7 +285,7 @@ class MarketsGridHandler extends GridHandler {
 			}
 
 			// Create trivial notification.
-			$currentUser =& $request->getUser();
+			$currentUser = $request->getUser();
 			$notificationMgr = new NotificationManager();
 			$notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => $notificationContent));
 
@@ -317,13 +317,13 @@ class MarketsGridHandler extends GridHandler {
 		$marketId = $request->getUserVar('marketId');
 
 		$marketDao = DAORegistry::getDAO('MarketDAO');
-		$market =& $marketDao->getById($marketId, $this->getMonograph()->getId());
+		$market = $marketDao->getById($marketId, $this->getMonograph()->getId());
 		if ($market != null) { // authorized
 
 			$result = $marketDao->deleteObject($market);
 
 			if ($result) {
-				$currentUser =& $request->getUser();
+				$currentUser = $request->getUser();
 				$notificationMgr = new NotificationManager();
 				$notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.removedMarket')));
 				return DAO::getDataChangedEvent();

@@ -89,8 +89,8 @@ class ChapterAuthorListbuilderHandler extends ListbuilderHandler {
 
 		// Fetch and authorize chapter
 		$chapterDao = DAORegistry::getDAO('ChapterDAO');
-		$monograph =& $this->getMonograph();
-		$chapter =& $chapterDao->getChapter(
+		$monograph = $this->getMonograph();
+		$chapter = $chapterDao->getChapter(
 			$request->getUserVar('chapterId'),
 			$monograph->getId()
 		);
@@ -122,7 +122,7 @@ class ChapterAuthorListbuilderHandler extends ListbuilderHandler {
 	 * @see GridDataProvider::getRequestArgs()
 	 */
 	function getRequestArgs() {
-		$monograph =& $this->getMonograph();
+		$monograph = $this->getMonograph();
 		return array(
 			'submissionId' => $monograph->getId(),
 			'chapterId' => $this->getChapterId()
@@ -147,7 +147,7 @@ class ChapterAuthorListbuilderHandler extends ListbuilderHandler {
 		}
 
 		$authorDao = DAORegistry::getDAO('AuthorDAO');
-		$monograph =& $this->getMonograph();
+		$monograph = $this->getMonograph();
 		$author =& $authorDao->getAuthor($id, $monograph->getId());
 		return $author;
 	}
@@ -161,8 +161,8 @@ class ChapterAuthorListbuilderHandler extends ListbuilderHandler {
 			array()
 		);
 
-		$monograph =& $this->getMonograph();
-		$authors =& $monograph->getAuthors();
+		$monograph = $this->getMonograph();
+		$authors = $monograph->getAuthors();
 
 		foreach ($authors as $author) {
 			$items[0][$author->getId()] = $author->getFullName();
@@ -181,14 +181,14 @@ class ChapterAuthorListbuilderHandler extends ListbuilderHandler {
 	 * @param PKPRequest $request
 	 */
 	function loadData($request, $filter) {
-		$monograph =& $this->getMonograph();
+		$monograph = $this->getMonograph();
 
 		// If it's a new chapter, it has no authors.
 		if (!$this->getChapterId()) return array();
 
 		// Retrieve the contributors associated with this chapter to be displayed in the grid
 		$chapterAuthorDao = DAORegistry::getDAO('ChapterAuthorDAO');
-		$chapterAuthors =& $chapterAuthorDao->getAuthors($monograph->getId(), $this->getChapterId());
+		$chapterAuthors = $chapterAuthorDao->getAuthors($monograph->getId(), $this->getChapterId());
 
 		return $chapterAuthors;
 	}

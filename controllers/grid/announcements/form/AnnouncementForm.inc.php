@@ -56,12 +56,12 @@ class AnnouncementForm extends PKPAnnouncementForm {
 	 * @see Form::fetch()
 	 */
 	function fetch($request) {
-		$templateMgr =& TemplateManager::getManager($request);
+		$templateMgr = TemplateManager::getManager($request);
 		$templateMgr->assign('readOnly', $this->isReadOnly());
 		$templateMgr->assign('selectedTypeId', $this->getData('typeId'));
 
 		$announcementDao = DAORegistry::getDAO('AnnouncementDAO');
-		$announcement =& $announcementDao->getById($this->announcementId);
+		$announcement = $announcementDao->getById($this->announcementId);
 		$templateMgr->assign_by_ref('announcement', $announcement);
 
 		$announcementTypeDao = DAORegistry::getDAO('AnnouncementTypeDAO');

@@ -88,10 +88,10 @@ class RegistrationForm extends Form {
 	 * Display the form.
 	 */
 	function display($request) {
-		$templateMgr =& TemplateManager::getManager($request);
-		$site =& $request->getSite();
+		$templateMgr = TemplateManager::getManager($request);
+		$site = $request->getSite();
 		$templateMgr->assign('minPasswordLength', $site->getMinPasswordLength());
-		$press =& $request->getPress();
+		$press = $request->getPress();
 
 		if ($this->captchaEnabled) {
 			if ($this->captchaEnabled) {
@@ -124,7 +124,7 @@ class RegistrationForm extends Form {
 
 		$templateMgr->assign('source', $request->getUserVar('source'));
 
-		$site =& $request->getSite();
+		$site = $request->getSite();
 		$templateMgr->assign('availableLocales', $site->getSupportedLocaleNames());
 
 		$templateMgr->assign('helpTopicId', 'user.registerAndProfile');
@@ -216,12 +216,12 @@ class RegistrationForm extends Form {
 			$userDao = DAORegistry::getDAO('UserDAO');
 
 			if ($this->implicitAuth) { // If we are using implicit auth - then use the session username variable - rather than data from the form
-				$sessionManager =& SessionManager::getManager();
-				$session =& $sessionManager->getUserSession();
+				$sessionManager = SessionManager::getManager();
+				$session = $sessionManager->getUserSession();
 
-				$user =& $userDao->getByUsername($session->getSessionVar('username'));
+				$user = $userDao->getByUsername($session->getSessionVar('username'));
 			} else {
-				$user =& $userDao->getByUsername($this->getData('username'));
+				$user = $userDao->getByUsername($this->getData('username'));
 			}
 
 			if (!$user) return false;
@@ -251,7 +251,7 @@ class RegistrationForm extends Form {
 			$user->setCountry($this->getData('country'));
 			$user->setInlineHelp(1); // default new users to having inline help visible.
 
-			$site =& $request->getSite();
+			$site = $request->getSite();
 			$availableLocales = $site->getSupportedLocales();
 
 			$locales = array();
@@ -290,8 +290,8 @@ class RegistrationForm extends Form {
 			$interestManager = new InterestManager();
 			$interestManager->setInterestsForUser($user, $interests);
 
-			$sessionManager =& SessionManager::getManager();
-			$session =& $sessionManager->getUserSession();
+			$sessionManager = SessionManager::getManager();
+			$session = $sessionManager->getUserSession();
 			$session->setSessionVar('username', $user->getUsername());
 		}
 
@@ -381,8 +381,8 @@ class RegistrationForm extends Form {
 	 * @param MailTemplate $mail
 	 */
 	function _setMailFrom($request, &$mail) {
-		$site =& $request->getSite();
-		$press =& $request->getPress();
+		$site = $request->getSite();
+		$press = $request->getPress();
 
 		// Set the sender based on the current context
 		if ($press && $press->getSetting('supportEmail')) {

@@ -49,10 +49,10 @@ class SpotlightForm extends Form {
 	 * @see Form::fetch()
 	 */
 	function fetch($request) {
-		$templateMgr =& TemplateManager::getManager($request);
+		$templateMgr = TemplateManager::getManager($request);
 
 		$spotlightDao = DAORegistry::getDAO('SpotlightDAO');
-		$spotlight =& $spotlightDao->getById($this->getSpotlightId());
+		$spotlight = $spotlightDao->getById($this->getSpotlightId());
 		$templateMgr->assign_by_ref('spotlight', $spotlight);
 		$templateMgr->assign('pressId', $this->getPressId());
 
@@ -83,7 +83,7 @@ class SpotlightForm extends Form {
 
 		$spotlightDao = DAORegistry::getDAO('SpotlightDAO');
 
-		$spotlight =& $spotlightDao->getById($this->getSpotlightId(), $this->getPressId());
+		$spotlight = $spotlightDao->getById($this->getSpotlightId(), $this->getPressId());
 
 		if (!$spotlight) {
 			// this is a new spotlight
@@ -142,17 +142,17 @@ class SpotlightForm extends Form {
 		switch ($assocType) {
 			case SPOTLIGHT_TYPE_BOOK:
 				$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
-				$publishedMonograph =& $publishedMonographDao->getById($assocId, $this->getPressId());
+				$publishedMonograph = $publishedMonographDao->getById($assocId, $this->getPressId());
 				$returner = isset($publishedMonograph) ? $publishedMonograph->getLocalizedTitle() : '';
 				break;
 			case SPOTLIGHT_TYPE_SERIES:
 				$seriesDao = DAORegistry::getDAO('SeriesDAO');
-				$series =& $seriesDao->getById($assocId, $this->getPressId());
+				$series = $seriesDao->getById($assocId, $this->getPressId());
 				$returner = isset($series) ? $series->getLocalizedTitle() : '';
 				break;
 			case SPOTLIGHT_TYPE_AUTHOR:
 				$authorDao = DAORegistry::getDAO('AuthorDAO');
-				$author =& $authorDao->getAuthor($assocId);
+				$author = $authorDao->getAuthor($assocId);
 				$returner = isset($author) ? $author->getFullName() : '';
 				break;
 			default:

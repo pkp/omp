@@ -65,7 +65,7 @@ class CitationGridHandler extends PKPCitationGridHandler {
 	 * @see PKPCitationGridHandler::exportCitations()
 	 */
 	function exportCitations($args, $request) {
-		$dispatcher =& $this->getDispatcher();
+		$dispatcher = $this->getDispatcher();
 		$articleMetadataUrl = $dispatcher->url($request, ROUTE_PAGE, null, 'editor', 'viewMetadata', $this->getAssocId());
 		$noCitationsFoundMessage = __("submission.citations.editor.pleaseImportCitationsFirst", array('articleMetadataUrl' => $articleMetadataUrl));
 		return parent::exportCitations($args, $request, $noCitationsFoundMessage);

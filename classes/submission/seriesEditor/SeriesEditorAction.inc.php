@@ -63,7 +63,7 @@ class SeriesEditorAction extends Action {
 		if (!$editorAssigned || !isset($decisionLabels[$decision])) return false;
 
 		$seriesEditorSubmissionDao = DAORegistry::getDAO('SeriesEditorSubmissionDAO');
-		$user =& $request->getUser();
+		$user = $request->getUser();
 		$editorDecision = array(
 			'editDecisionId' => null,
 			'editorId' => $user->getId(),
@@ -112,11 +112,11 @@ class SeriesEditorAction extends Action {
 		//  automatically assign the user to the stage
 		// But skip authors and reviewers, since these are very monograph specific
 		$stageAssignmentDao = DAORegistry::getDAO('StageAssignmentDAO');
-		$submissionStageGroups =& $userGroupDao->getUserGroupsByStage($monograph->getPressId(), $stageId, true, true);
-		while ($userGroup =& $submissionStageGroups->next()) {
-			$users =& $userGroupDao->getUsersById($userGroup->getId());
+		$submissionStageGroups = $userGroupDao->getUserGroupsByStage($monograph->getPressId(), $stageId, true, true);
+		while ($userGroup = $submissionStageGroups->next()) {
+			$users = $userGroupDao->getUsersById($userGroup->getId());
 			if($users->getCount() == 1) {
-				$user =& $users->next();
+				$user = $users->next();
 				$stageAssignmentDao->build($monograph->getId(), $userGroup->getId(), $user->getId());
 			}
 		}
@@ -139,16 +139,15 @@ class SeriesEditorAction extends Action {
 
 		// Author roles
 		// Assign only the submitter in whatever ROLE_ID_AUTHOR capacity they were assigned previously
-		$submitterAssignments =& $stageAssignmentDao->getBySubmissionAndStageId($monograph->getId(), null, null, $monograph->getUserId());
-		while ($assignment =& $submitterAssignments->next()) {
-			$userGroup =& $userGroupDao->getById($assignment->getUserGroupId());
+		$submitterAssignments = $stageAssignmentDao->getBySubmissionAndStageId($monograph->getId(), null, null, $monograph->getUserId());
+		while ($assignment = $submitterAssignments->next()) {
+			$userGroup = $userGroupDao->getById($assignment->getUserGroupId());
 			if ($userGroup->getRoleId() == ROLE_ID_AUTHOR) {
 				$stageAssignmentDao->build($monograph->getId(), $userGroup->getId(), $assignment->getUserId());
 				// Only assign them once, since otherwise we'll one assignment for each previous stage.
 				// And as long as they are assigned once, they will get access to their monograph.
 				break;
 			}
-			unset($assignment, $userGroup);
 		}
 	}
 
@@ -223,7 +222,7 @@ class SeriesEditorAction extends Action {
 			);
 
 			// Insert a trivial notification to indicate the reviewer was added successfully.
-			$currentUser =& $request->getUser();
+			$currentUser = $request->getUser();
 			$notificationMgr = new NotificationManager();
 			$notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.addedReviewer')));
 
@@ -275,7 +274,7 @@ class SeriesEditorAction extends Action {
 			);
 
 			// Insert a trivial notification to indicate the reviewer was removed successfully.
-			$currentUser =& $request->getUser();
+			$currentUser = $request->getUser();
 			$notificationMgr = new NotificationManager();
 			$notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.removedReviewer')));
 
@@ -313,9 +312,9 @@ class SeriesEditorAction extends Action {
 	 */
 	function setDueDates($request, $monograph, $reviewAssignment, $reviewDueDate = null, $responseDueDate = null, $logEntry = false) {
 		$userDao = DAORegistry::getDAO('UserDAO');
-		$press =& $request->getContext();
+		$press = $request->getContext();
 
-		$reviewer =& $userDao->getById($reviewAssignment->getReviewerId());
+		$reviewer = $userDao->getById($reviewAssignment->getReviewerId());
 		if (!isset($reviewer)) return false;
 
 		if ($reviewAssignment->getSubmissionId() == $monograph->getId() && !HookRegistry::call('SeriesEditorAction::setDueDates', array(&$reviewAssignment, &$reviewer, &$reviewDueDate, &$responseDueDate))) {
@@ -380,7 +379,7 @@ class SeriesEditorAction extends Action {
 			// If the reviewer has completed the assignment, then import the review.
 			if ($reviewAssignment->getDateCompleted() != null && !$reviewAssignment->getCancelled()) {
 				// Get the comments associated with this review assignment
-				$monographComments =& $monographCommentDao->getMonographComments($seriesEditorSubmission->getId(), COMMENT_TYPE_PEER_REVIEW, $reviewAssignment->getId());
+				$monographComments = $monographCommentDao->getMonographComments($seriesEditorSubmission->getId(), COMMENT_TYPE_PEER_REVIEW, $reviewAssignment->getId());
 
 				$body .= "\n\n$textSeparator\n";
 				// If it is not a double blind review, show reviewer's name.

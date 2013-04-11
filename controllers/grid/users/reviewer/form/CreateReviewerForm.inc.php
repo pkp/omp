@@ -121,7 +121,7 @@ class CreateReviewerForm extends ReviewerForm {
 			import('classes.mail.MailTemplate');
 			$mail = new MailTemplate('REVIEWER_REGISTER');
 			if ($mail->isEnabled()) {
-				$press =& $request->getPress();
+				$press = $request->getPress();
 				$mail->setFrom($press->getSetting('contactEmail'), $press->getSetting('contactName'));
 				$mail->assignParams(array('username' => $this->getData('username'), 'password' => $password, 'userFullName' => $user->getFullName()));
 				$mail->addRecipient($user->getEmail(), $user->getFullName());

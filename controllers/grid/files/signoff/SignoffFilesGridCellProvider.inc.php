@@ -48,7 +48,7 @@ class SignoffFilesGridCellProvider extends GridCellProvider {
 	/**
 	 * @see GridCellProvider::getCellActions()
 	 */
-	function getCellActions($request, &$row, &$column, $position = GRID_ACTION_POSITION_DEFAULT) {
+	function getCellActions($request, $row, $column, $position = GRID_ACTION_POSITION_DEFAULT) {
 		$actions = array();
 		$monographFile =& $row->getData();
 		assert(is_a($monographFile, 'MonographFile'));
@@ -80,7 +80,7 @@ class SignoffFilesGridCellProvider extends GridCellProvider {
 	 * @param $column GridColumn
 	 * @return array
 	 */
-	function getTemplateVarsFromRowColumn(&$row, &$column) {
+	function getTemplateVarsFromRowColumn($row, $column) {
 		$columnId = $column->getId();
 		$rowData =& $row->getData(); /* @var $rowData MonographFile */
 		assert(is_a($rowData, 'MonographFile') && !empty($columnId));
@@ -96,7 +96,7 @@ class SignoffFilesGridCellProvider extends GridCellProvider {
 	}
 
 
-	function getCellState(&$row, &$column) {
+	function getCellState($row, $column) {
 		$columnId = $column->getId();
 		$rowData =& $row->getData();
 		switch ($columnId) {
@@ -113,7 +113,7 @@ class SignoffFilesGridCellProvider extends GridCellProvider {
 	 * @param $monographFile MonographFile
 	 */
 	function _getApprovedCellAction($request, &$monographFile, $cellState) {
-		$router =& $request->getRouter();
+		$router = $request->getRouter();
 		$actionArgs = array(
 			'submissionId' => $monographFile->getMonographId(),
 			'fileId' => $monographFile->getFileId(),

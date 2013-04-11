@@ -81,7 +81,7 @@ class AuditorRequestNotificationManager extends NotificationManagerDelegate {
 			$notification =& $notificationFactory->next();
 			$notificationDao->deleteObject($notification);
 		}  else if (!$signoffCompleted && $notificationFactory->wasEmpty()) {
-			$press =& $request->getPress();
+			$press = $request->getPress();
 			$this->createNotification(
 				$request,
 				$userId,

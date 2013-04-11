@@ -63,13 +63,13 @@ class SignoffInformationCenterHandler extends Handler {
 		$this->addPolicy(new SubmissionAccessPolicy($request, $args, $roleAssignments));
 
 		import('classes.security.authorization.OmpSignoffAccessPolicy');
-		$router =& $request->getRouter();
+		$router = $request->getRouter();
 		$mode = SIGNOFF_ACCESS_READ;
 		if ($router->getRequestedOp($request) == 'saveNote') {
 			$mode = SIGNOFF_ACCESS_MODIFY;
 		}
 
-		$router =& $request->getRouter();
+		$router = $request->getRouter();
 		$requestedOp = $router->getRequestedOp($request);
 		$stageId = $request->getUserVar('stageId');
 		if ($request->getUserVar('signoffId')) {
@@ -100,12 +100,12 @@ class SignoffInformationCenterHandler extends Handler {
 	 */
 	function viewSignoffHistory($args, $request) {
 		$this->setupTemplate($request);
-		$user =& $request->getUser();
+		$user = $request->getUser();
 
-		$signoff =& $this->getAuthorizedContextObject(ASSOC_TYPE_SIGNOFF);
+		$signoff = $this->getAuthorizedContextObject(ASSOC_TYPE_SIGNOFF);
 
-		$templateMgr =& TemplateManager::getManager($request);
-		$templateMgr->assign_by_ref('signoff', $signoff);
+		$templateMgr = TemplateManager::getManager($request);
+		$templateMgr->assign('signoff', $signoff);
 
 		return $templateMgr->fetchJson('controllers/informationCenter/signoffHistory.tpl');
 	}
@@ -139,9 +139,9 @@ class SignoffInformationCenterHandler extends Handler {
 	 * @return string Serialized JSON object
 	 */
 	function getUserSignoffs($args, $request) {
-		$user =& $request->getUser();
+		$user = $request->getUser();
 		$signoffDao = DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		$monograph = $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		$symbolic = (string) $request->getUserVar('symbolic');
 
 		$monographFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $monographFileDao SubmissionFileDAO */
@@ -218,10 +218,10 @@ class SignoffInformationCenterHandler extends Handler {
 	 */
 	function listNotes($args, $request) {
 		$this->setupTemplate($request);
-		$signoff =& $this->signoff;
-		$monograph =& $this->monograph;
+		$signoff = $this->signoff;
+		$monograph = $this->monograph;
 
-		$templateMgr =& TemplateManager::getManager($request);
+		$templateMgr = TemplateManager::getManager($request);
 		$noteDao = DAORegistry::getDAO('NoteDAO');
 		$notesFactory =& $noteDao->getByAssoc(ASSOC_TYPE_SIGNOFF, $signoff->getId());
 		$notes = $notesFactory->toAssociativeArray();
@@ -240,7 +240,7 @@ class SignoffInformationCenterHandler extends Handler {
 			}
 		}
 
-		$user =& $request->getUser();
+		$user = $request->getUser();
 
 		import('lib.pkp.classes.core.ArrayItemIterator');
 		$templateMgr->assign('notes', new ArrayItemIterator($notes));

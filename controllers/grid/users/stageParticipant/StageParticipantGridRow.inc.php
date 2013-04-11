@@ -51,7 +51,7 @@ class StageParticipantGridRow extends GridRow {
 		$rowId = $this->getId();
 		if (!empty($rowId) && is_numeric($rowId)) {
 			// Only add row actions if this is an existing row.
-			$router =& $request->getRouter();
+			$router = $request->getRouter();
 
 			import('lib.pkp.classes.linkAction.request.RemoteActionConfirmationModal');
 			if ($this->_canAdminister) $this->addAction(
@@ -69,9 +69,9 @@ class StageParticipantGridRow extends GridRow {
 			);
 
 			import('controllers.informationCenter.linkAction.NotifyLinkAction');
-			$monograph =& $this->getMonograph();
+			$monograph = $this->getMonograph();
 			$stageId = $this->getStageId();
-			$stageAssignment =& $this->getData();
+			$stageAssignment = $this->getData();
 			$userId = $stageAssignment->getUserId();
 			$this->addAction(new NotifyLinkAction($request, $monograph, $stageId, $userId));
 		}

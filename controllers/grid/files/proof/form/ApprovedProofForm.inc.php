@@ -51,16 +51,16 @@ class ApprovedProofForm extends Form {
 	// Extended methods from Form
 	//
 	function fetch($request) {
-		$templateMgr =& TemplateManager::getManager($request);
+		$templateMgr = TemplateManager::getManager($request);
 		$templateMgr->assign('fileId', $this->approvedProof->getFileIdAndRevision());
 		$templateMgr->assign('submissionId', $this->monograph->getId());
 		$templateMgr->assign('publicationFormatId', $this->publicationFormat->getId());
 
 		$salesTypes = array(
-					'openAccess' => 'payment.directSales.openAccess',
-					'directSales' => 'payment.directSales.directSales',
-					'notAvailable' => 'payment.directSales.notAvailable',
-				);
+			'openAccess' => 'payment.directSales.openAccess',
+			'directSales' => 'payment.directSales.directSales',
+			'notAvailable' => 'payment.directSales.notAvailable',
+		);
 
 		$templateMgr->assign('salesTypes', $salesTypes);
 		$templateMgr->assign('salesType', $this->approvedProof->getSalesType());

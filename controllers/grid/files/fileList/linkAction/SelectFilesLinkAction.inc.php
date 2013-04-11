@@ -29,7 +29,7 @@ class SelectFilesLinkAction extends LinkAction {
 		// the file selection grid.
 		import('lib.pkp.classes.linkAction.request.AjaxModal');
 		$modalTitle = isset($modalTitle) ? $modalTitle : $actionLabel;
-		$router =& $request->getRouter();
+		$router = $request->getRouter();
 		$ajaxModal = new AjaxModal(
 				$router->url($request, null, null, 'selectFiles', null, $actionArgs),
 				$modalTitle, 'modal_add_file');

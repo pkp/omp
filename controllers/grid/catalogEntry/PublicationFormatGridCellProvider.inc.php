@@ -69,7 +69,7 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 	 * @param $column GridColumn
 	 * @return array
 	 */
-	function getTemplateVarsFromRowColumn(&$row, $column) {
+	function getTemplateVarsFromRowColumn($row, $column) {
 		$publicationFormat =& $row->getData();
 		$columnId = $column->getId();
 		assert(is_a($publicationFormat, 'DataObject') && !empty($columnId));
@@ -92,7 +92,7 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 	 * @return boolean
 	 */
 	function isProofComplete(&$publicationFormat) {
-		$monographFiles =& $this->getMonographFiles($publicationFormat->getId());
+		$monographFiles = $this->getMonographFiles($publicationFormat->getId());
 		$proofComplete = false;
 		// If we have at least one viewable file, we consider
 		// proofs as approved.
@@ -111,14 +111,14 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 	 * @param $column GridColumn
 	 * @return string
 	 */
-	function getCellState(&$row, &$column) {
+	function getCellState($row, $column) {
 		$publicationFormat =& $row->getData();
 		switch ($column->getId()) {
 			case 'proofComplete':
 				return $this->isProofComplete($publicationFormat)?'completed':'new';
 			case 'isApproved':
 				$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
-				$publishedMonograph =& $publishedMonographDao->getById($publicationFormat->getMonographId());
+				$publishedMonograph = $publishedMonographDao->getById($publicationFormat->getMonographId());
 				return ($publicationFormat->getIsApproved() && $publishedMonograph)?'completed':'new';
 			case 'isAvailable':
 				return $publicationFormat->getIsAvailable()?'completed':'new';
@@ -154,13 +154,13 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 				}
 				break;
 			case 'isAvailable':
-				$router =& $request->getRouter();
+				$router = $request->getRouter();
 				$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
-				$publishedMonograph =& $publishedMonographDao->getById($publicationFormat->getMonographId());
+				$publishedMonograph = $publishedMonographDao->getById($publicationFormat->getMonographId());
 
 				// FIXME: Bug #7715
 				$warningMarkup = '';
-				$templateMgr =& TemplateManager::getManager();
+				$templateMgr = TemplateManager::getManager();
 				$templateMgr->assign('notificationStyleClass', 'notifyWarning');
 				$templateMgr->assign('notificationTitle', __('common.warning'));
 				if (!$publishedMonograph) {

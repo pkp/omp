@@ -44,10 +44,10 @@ class FileSignoffGridHandler extends SubmissionFilesGridHandler {
 	 */
 	function initialize($request) {
 		parent::initialize($request);
-		$currentUser =& $request->getUser();
-		$submission =& $this->getSubmission();
+		$currentUser = $request->getUser();
+		$submission = $this->getSubmission();
 
-		$stageAssignmentDao = & DAORegistry::getDAO('StageAssignmentDAO'); /* @var $stageAssignmentDao StageAssignmentDAO */
+		$stageAssignmentDao = DAORegistry::getDAO('StageAssignmentDAO'); /* @var $stageAssignmentDao StageAssignmentDAO */
 		$userGroupDao = DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */
 
 		// Set up the roles we may include as columns
@@ -139,7 +139,7 @@ class FileSignoffGridHandler extends SubmissionFilesGridHandler {
 		assert(is_a($submissionFile, 'SubmissionFile'));
 
 		// Retrieve the user.
-		$user =& $request->getUser();
+		$user = $request->getUser();
 
 		// Insert or update the sign off corresponding
 		// to this file revision.
@@ -151,7 +151,6 @@ class FileSignoffGridHandler extends SubmissionFilesGridHandler {
 		$signoffDao->updateObject($signoff);
 
 		$this->setupTemplate($request);
-		$user =& $request->getUser();
 		NotificationManager::createTrivialNotification($user->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.signedFile')));
 
 		return DAO::getDataChangedEvent($fileId);

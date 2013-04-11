@@ -21,8 +21,8 @@ class SalesRightsGridRow extends GridRow {
 	/**
 	 * Constructor
 	 */
-	function SalesRightsGridRow(&$monograph) {
-		$this->_monograph =& $monograph;
+	function SalesRightsGridRow($monograph) {
+		$this->_monograph = $monograph;
 		parent::GridRow();
 	}
 
@@ -37,13 +37,13 @@ class SalesRightsGridRow extends GridRow {
 		// Do the default initialization
 		parent::initialize($request);
 
-		$monograph =& $this->getMonograph();
+		$monograph = $this->getMonograph();
 
 		// Is this a new row or an existing row?
 		$salesRights = $this->_data;
 
 		if ($salesRights != null && is_numeric($salesRights->getId())) {
-			$router =& $request->getRouter();
+			$router = $request->getRouter();
 			$actionArgs = array(
 				'submissionId' => $monograph->getId(),
 				'salesRightsId' => $salesRights->getId()

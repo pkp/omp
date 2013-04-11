@@ -50,7 +50,7 @@ class ProofFilesGridHandler extends SignoffFilesGridHandler {
 
 		parent::initialize($request);
 
-		$router =& $request->getRouter();
+		$router = $request->getRouter();
 
 		$this->addAction(
 			new LinkAction(

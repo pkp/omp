@@ -115,7 +115,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 			LOCALE_COMPONENT_APP_SUBMISSION
 		);
 
-		$monograph =& $this->getMonograph();
+		$monograph = $this->getMonograph();
 
 		// Bring in file constants
 		import('classes.monograph.MonographFile');
@@ -132,7 +132,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 		));
 
 		// Action to signoff on a file -- Lets user interact with their own rows.
-		$user =& $request->getUser();
+		$user = $request->getUser();
 		$signoffDao = DAORegistry::getDAO('SubmissionFileSignoffDAO'); /* @var $signoffDao SubmissionFileSignoffDAO */
 		$signoffFactory =& $signoffDao->getAllBySubmission($monograph->getId(), $this->getSymbolic(), $user->getId(), null, true);
 		if (!$signoffFactory->wasEmpty()) {
@@ -143,7 +143,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 				__('submission.upload.signoff'), __('submission.upload.signoff')));
 		}
 
-		$router =& $request->getRouter();
+		$router = $request->getRouter();
 
 		// Action to add a user -- Adds the user as a subcategory to the files selected in its modal
 		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
@@ -283,8 +283,8 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 	 * @see GridDataProvider::getRequestArgs()
 	 */
 	function getRequestArgs() {
-		$monograph =& $this->getMonograph();
-		$signoff =& $this->getAuthorizedContextObject(ASSOC_TYPE_SIGNOFF);
+		$monograph = $this->getMonograph();
+		$signoff = $this->getAuthorizedContextObject(ASSOC_TYPE_SIGNOFF);
 		$args = array_merge(
 			parent::getRequestArgs(),
 			array('submissionId' => $monograph->getId(),
@@ -302,17 +302,17 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 	/**
 	 * @see GridHandler::loadData
 	 */
-	function &loadData($request, $filter) {
+	function loadData($request, $filter) {
 		// Grab the files to display as categories
-		$monograph =& $this->getMonograph();
+		$monograph = $this->getMonograph();
 		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		if ($this->getAssocType() && $this->getAssocId()) {
-			$monographFiles =& $submissionFileDao->getLatestRevisionsByAssocId(
+			$monographFiles = $submissionFileDao->getLatestRevisionsByAssocId(
 				$this->getAssocType(), $this->getAssocId(),
 				$monograph->getId(), $this->getFileStage()
 			);
 		} else {
-			$monographFiles =& $submissionFileDao->getLatestRevisions($monograph->getId(), $this->getFileStage());
+			$monographFiles = $submissionFileDao->getLatestRevisions($monograph->getId(), $this->getFileStage());
 		}
 
 		// $monographFiles is keyed on file and revision, for the grid we need to key on file only
@@ -382,12 +382,12 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 	 */
 	function addAuditor($args, $request) {
 		// Identify the monograph being worked on
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		$monograph = $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 
 		// Form handling
-		$router =& $request->getRouter();
+		$router = $request->getRouter();
 		$autocompleteUrl = $router->url($request, null, null, 'getAuditorAutocomplete', null, $this->getRequestArgs());
-		$templateMgr =& TemplateManager::getManager($request);
+		$templateMgr = TemplateManager::getManager($request);
 		$templateMgr->assign('autocompleteUrl', $autocompleteUrl);
 
 		import('controllers.grid.files.signoff.form.FileAuditorForm');
@@ -426,7 +426,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 			$auditorForm->execute($request);
 
 			// Create trivial notification.
-			$currentUser =& $request->getUser();
+			$currentUser = $request->getUser();
 			NotificationManager::createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.addedAuditor')));
 
 			// We need to refresh the whole grid because multiple files can be assigned at once.
@@ -455,10 +455,10 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 		$itemList = array();
 		$userGroupDao = DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */
 		$userDao = DAORegistry::getDAO('UserDAO');
-		$term =& $request->getUserVar('term');
-		while($stageUser =& $stageUsers->next()) {
-			$userGroup =& $userGroupDao->getById($stageUser->getUserGroupId());
-			$user =& $userDao->getById($stageUser->getUserId());
+		$term = $request->getUserVar('term');
+		while($stageUser = $stageUsers->next()) {
+			$userGroup = $userGroupDao->getById($stageUser->getUserGroupId());
+			$user = $userDao->getById($stageUser->getUserId());
 			$term = preg_quote($term, '/');
 			if ($term == '' || preg_match('/' . $term .'/i', $user->getFullName()) || preg_match('/' . $term .'/i', $userGroup->getLocalizedName())) {
 				$itemList[] = array(
@@ -466,7 +466,6 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 					'value' => $user->getId() . '-' . $stageUser->getUserGroupId()
 				);
 			}
-			unset($stageUser, $userGroup, $user);
 		}
 
 		if (count($itemList) == 0) {
@@ -519,7 +518,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 			$signoffDao->deleteObjectById($signoff->getId());
 
 			// Trivial notifications.
-			$user =& $request->getUser();
+			$user = $request->getUser();
 			NotificationManager::createTrivialNotification($user->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.removedAuditor')));
 
 			$notificationMgr = new NotificationManager();
@@ -574,9 +573,9 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 		$rowSignoff =& $this->getAuthorizedContextObject(ASSOC_TYPE_SIGNOFF);
 		if (!$rowSignoff) fatalError('Invalid Signoff given');
 
-		$user =& $request->getUser();
+		$user = $request->getUser();
 		$signoffDao = DAORegistry::getDAO('SignoffDAO');
-		$signoff =& $signoffDao->build('SIGNOFF_SIGNOFF', ASSOC_TYPE_SIGNOFF, $rowSignoff->getId(), $user->getId());
+		$signoff = $signoffDao->build('SIGNOFF_SIGNOFF', ASSOC_TYPE_SIGNOFF, $rowSignoff->getId(), $user->getId());
 		$signoff->setDateCompleted(Core::getCurrentDate());
 		$signoffDao->updateObject($signoff);
 
@@ -612,10 +611,10 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 		$rowSignoff =& $this->getAuthorizedContextObject(ASSOC_TYPE_SIGNOFF);
 		if (!$rowSignoff) fatalError('Invalid Signoff given');
 
-		$user =& $request->getUser();
+		$user = $request->getUser();
 		$signoffDao = DAORegistry::getDAO('SignoffDAO');
 		$signoffOnSignoffFactory = $signoffDao->getAllByAssocType(ASSOC_TYPE_SIGNOFF, $rowSignoff->getId());
-		$signoffOnSignoff =& $signoffOnSignoffFactory->next();
+		$signoffOnSignoff = $signoffOnSignoffFactory->next();
 		if (!$signoffOnSignoff) fatalError('Invalid Signoff given');
 
 		$signoffDao->deleteObject($signoffOnSignoff);
@@ -632,7 +631,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 	 */
 	function viewLibrary($args, $request) {
 
-		$templateMgr =& TemplateManager::getManager($request);
+		$templateMgr = TemplateManager::getManager($request);
 		$templateMgr->assign('canEdit', false);
 		return $templateMgr->fetchJson('controllers/tab/settings/library.tpl');
 	}
@@ -687,7 +686,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 			$json = new JSONMessage(true);
 
 			// Insert a trivial notification to indicate the auditor was reminded successfully.
-			$currentUser =& $request->getUser();
+			$currentUser = $request->getUser();
 			$notificationMgr = new NotificationManager();
 			$notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.sentNotification')));
 		} else {
@@ -727,14 +726,12 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 		// to all submission and its workflow stages but not always with
 		// an stage assignment (editorial and production stages, for example).
 		$userGroupDao = DAORegistry::getDAO('UserGroupDAO');
-		$pressManagerUserGroupsFactory =& $userGroupDao->getByRoleId($monograph->getPressId(), ROLE_ID_MANAGER);
-		while ($userGroup =& $pressManagerUserGroupsFactory->next()) {
-			$usersFactory =& $userGroupDao->getUsersById($userGroup->getId(), $monograph->getPressId());
-			while ($user =& $usersFactory->next()) {
+		$pressManagerUserGroupsFactory = $userGroupDao->getByRoleId($monograph->getPressId(), ROLE_ID_MANAGER);
+		while ($userGroup = $pressManagerUserGroupsFactory->next()) {
+			$usersFactory = $userGroupDao->getUsersById($userGroup->getId(), $monograph->getPressId());
+			while ($user = $usersFactory->next()) {
 				$userIds[] = $user->getId();
-				unset($user);
 			}
-			unset($userGroup);
 		}
 
 		return array_unique($userIds);

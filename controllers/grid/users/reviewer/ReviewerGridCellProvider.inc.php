@@ -35,7 +35,7 @@ class ReviewerGridCellProvider extends DataObjectGridCellProvider {
 	 * @param $column GridColumn
 	 * @return string
 	 */
-	function getCellState(&$row, &$column) {
+	function getCellState($row, $column) {
 		$reviewAssignment =& $row->getData();
 		$columnId = $column->getId();
 		assert(is_a($reviewAssignment, 'DataObject') && !empty($columnId));
@@ -68,10 +68,10 @@ class ReviewerGridCellProvider extends DataObjectGridCellProvider {
 				$userStageAssignmentDao = DAORegistry::getDAO('UserStageAssignmentDAO');
 				$viewsDao = DAORegistry::getDAO('ViewsDAO');
 
-				$monograph =& $monographDao->getById($reviewAssignment->getSubmissionId());
+				$monograph = $monographDao->getById($reviewAssignment->getSubmissionId());
 
 				// Get the user groups for this stage
-				$userGroups =& $userGroupDao->getUserGroupsByStage(
+				$userGroups = $userGroupDao->getUserGroupsByStage(
 					$monograph->getPressId(),
 					$reviewAssignment->getStageId(),
 					true,
@@ -82,7 +82,7 @@ class ReviewerGridCellProvider extends DataObjectGridCellProvider {
 					if ($roleId != ROLE_ID_MANAGER && $roleId != ROLE_ID_SUB_EDITOR) continue;
 
 					// Get the users assigned to this stage and user group
-					$stageUsers =& $userStageAssignmentDao->getUsersBySubmissionAndStageId(
+					$stageUsers = $userStageAssignmentDao->getUsersBySubmissionAndStageId(
 						$reviewAssignment->getSubmissionId(),
 						$reviewAssignment->getStageId(),
 						$userGroup->getId()
@@ -114,7 +114,7 @@ class ReviewerGridCellProvider extends DataObjectGridCellProvider {
 	 * @param $column GridColumn
 	 * @return array
 	 */
-	function getTemplateVarsFromRowColumn(&$row, $column) {
+	function getTemplateVarsFromRowColumn($row, $column) {
 		$element =& $row->getData();
 		$columnId = $column->getId();
 		assert(is_a($element, 'DataObject') && !empty($columnId));
@@ -135,7 +135,7 @@ class ReviewerGridCellProvider extends DataObjectGridCellProvider {
 	 * @param $column GridColumn
 	 * @return array an array of LinkAction instances
 	 */
-	function getCellActions($request, &$row, &$column, $position = GRID_ACTION_POSITION_DEFAULT) {
+	function getCellActions($request, $row, $column, $position = GRID_ACTION_POSITION_DEFAULT) {
 		$reviewAssignment =& $row->getData();
 		$actionArgs = array(
 			'submissionId' => $reviewAssignment->getSubmissionId(),
@@ -143,13 +143,13 @@ class ReviewerGridCellProvider extends DataObjectGridCellProvider {
 			'stageId' => $reviewAssignment->getStageId()
 		);
 
-		$router =& $request->getRouter();
+		$router = $request->getRouter();
 		$action = false;
 		$state = $this->getCellState($row, $column);
 		if ($state == 'linkReview') {
-			$user =& $request->getUser();
+			$user = $request->getUser();
 			$monographDao = DAORegistry::getDAO('MonographDAO');
-			$monograph =& $monographDao->getById($reviewAssignment->getSubmissionId());
+			$monograph = $monographDao->getById($reviewAssignment->getSubmissionId());
 			import('controllers.review.linkAction.ReviewNotesLinkAction');
 			$action = new ReviewNotesLinkAction($request, $reviewAssignment, $monograph, $user);
 

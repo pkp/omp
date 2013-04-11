@@ -32,7 +32,7 @@ class FileListbuilderGridCellProvider extends GridCellProvider {
 	 * @param $column GridColumn
 	 * @return array
 	 */
-	function getTemplateVarsFromRowColumn(&$row, $column) {
+	function getTemplateVarsFromRowColumn($row, $column) {
 		$file =& $row->getData();
 		$columnId = $column->getId();
 		assert(is_a($file, 'SubmissionFile') && !empty($columnId));

@@ -53,7 +53,7 @@ class ReviewerForm extends Form {
 	 * @return int monographId
 	 */
 	function getMonographId() {
-		$monograph =& $this->getMonograph();
+		$monograph = $this->getMonograph();
 		return $monograph->getId();
 	}
 
@@ -130,10 +130,10 @@ class ReviewerForm extends Form {
 	 */
 	function initData($args, $request) {
 		$reviewerId = (int) $request->getUserVar('reviewerId');
-		$press =& $request->getContext();
-		$reviewRound =& $this->getReviewRound();
+		$press = $request->getContext();
+		$reviewRound = $this->getReviewRound();
 		$seriesEditorSubmissionDao = DAORegistry::getDAO('SeriesEditorSubmissionDAO');
-		$monograph =& $seriesEditorSubmissionDao->getById($this->getMonographId());
+		$monograph = $seriesEditorSubmissionDao->getById($this->getMonographId());
 
 		// The reviewer id has been set
 		if (!empty($reviewerId)) {
@@ -183,9 +183,9 @@ class ReviewerForm extends Form {
 		import('classes.mail.MonographMailTemplate');
 		$template = new MonographMailTemplate($monograph, 'REVIEW_REQUEST');
 		if ($template) {
-			$user =& $request->getUser();
-			$dispatcher =& $request->getDispatcher();
-			$press =& $request->getPress();
+			$user = $request->getUser();
+			$dispatcher = $request->getDispatcher();
+			$press = $request->getPress();
 			$template->assignParams(array(
 				'pressUrl' => $dispatcher->url($request, ROUTE_PAGE, $press->getPath()),
 				'editorialContactSignature' => $user->getContactSignature(),
@@ -211,19 +211,18 @@ class ReviewerForm extends Form {
 		$reviewAssignmentDao = DAORegistry::getDAO('ReviewAssignmentDAO');
 		$reviewMethods = $reviewAssignmentDao->getReviewMethodsTranslationKeys();
 
-		$templateMgr =& TemplateManager::getManager($request);
+		$templateMgr = TemplateManager::getManager($request);
 		$templateMgr->assign('reviewMethods', $reviewMethods);
 		$templateMgr->assign('reviewerActions', $this->getReviewerFormActions());
 
 		// Get the reviewer user groups for the create new reviewer/enroll existing user tabs
-		$press =& $request->getPress();
+		$press = $request->getPress();
 		$userGroupDao = DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */
-		$reviewRound =& $this->getReviewRound();
-		$reviewerUserGroups =& $userGroupDao->getUserGroupsByStage($press->getId(), $reviewRound->getStageId(), false, false, ROLE_ID_REVIEWER);
+		$reviewRound = $this->getReviewRound();
+		$reviewerUserGroups = $userGroupDao->getUserGroupsByStage($press->getId(), $reviewRound->getStageId(), false, false, ROLE_ID_REVIEWER);
 		$userGroups = array();
-		while($userGroup =& $reviewerUserGroups->next()) {
+		while($userGroup = $reviewerUserGroups->next()) {
 			$userGroups[$userGroup->getId()] = $userGroup->getLocalizedName();
-			unset($userGroup);
 		}
 
 		$this->setData('userGroups', $userGroups);
@@ -263,10 +262,10 @@ class ReviewerForm extends Form {
 	 */
 	function execute($args, $request) {
 		$seriesEditorSubmissionDao = DAORegistry::getDAO('SeriesEditorSubmissionDAO');
-		$submission =& $seriesEditorSubmissionDao->getById($this->getMonographId());
-		$press =& $request->getPress();
+		$submission = $seriesEditorSubmissionDao->getById($this->getMonographId());
+		$press = $request->getPress();
 
-		$currentReviewRound =& $this->getReviewRound();
+		$currentReviewRound = $this->getReviewRound();
 		$stageId = $currentReviewRound->getStageId();
 		$reviewDueDate = $this->getData('reviewDueDate');
 		$responseDueDate = $this->getData('responseDueDate');
@@ -297,12 +296,12 @@ class ReviewerForm extends Form {
 		$mail = new MonographMailTemplate($submission, 'REVIEW_REQUEST', null, null, null, false);
 
 		if ($mail->isEnabled() && !$this->getData('skipEmail')) {
-			$userDao = & DAORegistry::getDAO('UserDAO'); /* @var $userDao UserDAO */
-			$reviewer =& $userDao->getById($reviewerId);
+			$userDao = DAORegistry::getDAO('UserDAO'); /* @var $userDao UserDAO */
+			$reviewer = $userDao->getById($reviewerId);
 			$user = $request->getUser();
 			$mail->addRecipient($reviewer->getEmail(), $reviewer->getFullName());
 			$mail->setBody($this->getData('personalMessage'));
-			$dispatcher =& $request->getDispatcher();
+			$dispatcher = $request->getDispatcher();
 
 			// assign the remaining parameters
 			$paramArray = array(

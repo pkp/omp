@@ -44,7 +44,7 @@ class ApprovedProofFilesGridRow extends GridRow {
 
 		if ($proofFile->getViewable()) {
 			// Actions
-			$router =& $request->getRouter();
+			$router = $request->getRouter();
 			$this->addAction(
 				new LinkAction(
 					'editApprovedProof',

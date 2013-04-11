@@ -24,7 +24,7 @@ class ViewCompetingInterestGuidelinesLinkAction extends LinkAction {
 	 * @param $request Request
 	 */
 	function ViewCompetingInterestGuidelinesLinkAction($request) {
-		$press =& $request->getPress();
+		$press = $request->getPress();
 		// Instantiate the view competing interests modal.
 		import('lib.pkp.classes.linkAction.request.ConfirmationModal');
 		$viewCompetingInterestsModal = new ConfirmationModal(

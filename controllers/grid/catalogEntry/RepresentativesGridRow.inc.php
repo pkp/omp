@@ -22,7 +22,7 @@ class RepresentativesGridRow extends GridRow {
 	 * Constructor
 	 */
 	function RepresentativesGridRow(&$monograph) {
-		$this->_monograph =& $monograph;
+		$this->_monograph = $monograph;
 		parent::GridRow();
 	}
 
@@ -37,12 +37,12 @@ class RepresentativesGridRow extends GridRow {
 		// Do the default initialization
 		parent::initialize($request);
 
-		$monograph =& $this->getMonograph();
+		$monograph = $this->getMonograph();
 
 		// Is this a new row or an existing row?
 		$representative = $this->_data;
 		if ($representative != null && is_numeric($representative->getId())) {
-			$router =& $request->getRouter();
+			$router = $request->getRouter();
 			$actionArgs = array_merge(
 				parent::getRequestArgs(),
 				array('submissionId' => $monograph->getId(),

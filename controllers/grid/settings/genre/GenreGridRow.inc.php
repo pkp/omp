@@ -35,7 +35,7 @@ class GenreGridRow extends GridRow {
 		// Is this a new row or an existing row?
 		$rowId = $this->getId();
 		if (!empty($rowId) && is_numeric($rowId)) {
-			$router =& $request->getRouter();
+			$router = $request->getRouter();
 			$actionArgs = array(
 				'gridId' => $this->getGridId(),
 				'genreId' => $rowId

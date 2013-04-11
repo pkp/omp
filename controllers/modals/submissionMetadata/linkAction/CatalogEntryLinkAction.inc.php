@@ -27,7 +27,7 @@ class CatalogEntryLinkAction extends LinkAction {
 	 */
 	function CatalogEntryLinkAction($request, $monographId, $stageId, $selectedFormatId = null, $image = 'information') {
 		// Instantiate the modal.
-		$dispatcher =& $request->getDispatcher();
+		$dispatcher = $request->getDispatcher();
 		import('lib.pkp.classes.linkAction.request.AjaxModal');
 
 		$actionArgs = array();

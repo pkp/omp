@@ -93,7 +93,7 @@ class ReviewerAction extends Action {
 					$assignedEditors = $email->ccAssignedEditors($reviewerSubmission->getId());
 					$reviewingSeriesEditors = $email->toAssignedReviewingSeriesEditors($reviewerSubmission->getId());
 					if (empty($assignedEditors) && empty($reviewingSeriesEditors)) {
-						$press =& $request->getPress();
+						$press = $request->getPress();
 						$email->addRecipient($press->getSetting('contactEmail'), $press->getSetting('contactName'));
 						$editorialContactName = $press->getSetting('contactName');
 					} else {

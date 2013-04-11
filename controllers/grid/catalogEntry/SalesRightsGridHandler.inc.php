@@ -109,7 +109,7 @@ class SalesRightsGridHandler extends GridHandler {
 
 		if ($salesRightsId != '') {
 			$salesRightsDao = DAORegistry::getDAO('SalesRightsDAO');
-			$salesRights =& $salesRightsDao->getById($salesRightsId, $this->getMonograph()->getId());
+			$salesRights = $salesRightsDao->getById($salesRightsId, $this->getMonograph()->getId());
 			if ($salesRights) {
 				$publicationFormatId =& $salesRights->getPublicationFormatId();
 			}
@@ -117,7 +117,7 @@ class SalesRightsGridHandler extends GridHandler {
 			$publicationFormatId = (int) $request->getUserVar('publicationFormatId');
 		}
 
-		$monograph =& $this->getMonograph();
+		$monograph = $this->getMonograph();
 		$publicationFormat =& $publicationFormatDao->getById($publicationFormatId, $monograph->getId());
 
 		if ($publicationFormat) {
@@ -139,7 +139,7 @@ class SalesRightsGridHandler extends GridHandler {
 		$this->setTitle('grid.catalogEntry.salesRights');
 
 		// Grid actions
-		$router =& $request->getRouter();
+		$router = $request->getRouter();
 		$actionArgs = $this->getRequestArgs();
 		$this->addAction(
 			new LinkAction(
@@ -194,7 +194,7 @@ class SalesRightsGridHandler extends GridHandler {
 	 * @return array
 	 */
 	function getRequestArgs() {
-		$monograph =& $this->getMonograph();
+		$monograph = $this->getMonograph();
 		$publicationFormat =& $this->getPublicationFormat();
 
 		return array(
@@ -206,10 +206,10 @@ class SalesRightsGridHandler extends GridHandler {
 	/**
 	 * @see GridHandler::loadData
 	 */
-	function &loadData($request, $filter = null) {
-		$publicationFormat =& $this->getPublicationFormat();
+	function loadData($request, $filter = null) {
+		$publicationFormat = $this->getPublicationFormat();
 		$salesRightsDao = DAORegistry::getDAO('SalesRightsDAO');
-		$data =& $salesRightsDao->getByPublicationFormatId($publicationFormat->getId());
+		$data = $salesRightsDao->getByPublicationFormatId($publicationFormat->getId());
 		return $data->toArray();
 	}
 
@@ -231,7 +231,7 @@ class SalesRightsGridHandler extends GridHandler {
 	function editRights($args, $request) {
 		// Identify the sales rights entry to be updated
 		$salesRightsId = (int) $request->getUserVar('salesRightsId');
-		$monograph =& $this->getMonograph();
+		$monograph = $this->getMonograph();
 
 		$salesRightsDao = DAORegistry::getDAO('SalesRightsDAO');
 		$salesRights = $salesRightsDao->getById($salesRightsId, $monograph->getId());
@@ -254,7 +254,7 @@ class SalesRightsGridHandler extends GridHandler {
 	function updateRights($args, $request) {
 		// Identify the sales rights entry to be updated
 		$salesRightsId = $request->getUserVar('salesRightsId');
-		$monograph =& $this->getMonograph();
+		$monograph = $this->getMonograph();
 
 		$salesRightsDao = DAORegistry::getDAO('SalesRightsDAO');
 		$salesRights = $salesRightsDao->getById($salesRightsId, $monograph->getId());
@@ -277,7 +277,7 @@ class SalesRightsGridHandler extends GridHandler {
 			}
 
 			// Create trivial notification.
-			$currentUser =& $request->getUser();
+			$currentUser = $request->getUser();
 			$notificationMgr = new NotificationManager();
 			$notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => $notificationContent));
 
@@ -309,13 +309,13 @@ class SalesRightsGridHandler extends GridHandler {
 		$salesRightsId = $request->getUserVar('salesRightsId');
 
 		$salesRightsDao = DAORegistry::getDAO('SalesRightsDAO');
-		$salesRights =& $salesRightsDao->getById($salesRightsId, $this->getMonograph()->getId());
+		$salesRights = $salesRightsDao->getById($salesRightsId, $this->getMonograph()->getId());
 		if ($salesRights != null) { // authorized
 
 			$result = $salesRightsDao->deleteObject($salesRights);
 
 			if ($result) {
-				$currentUser =& $request->getUser();
+				$currentUser = $request->getUser();
 				$notificationMgr = new NotificationManager();
 				$notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.removedSalesRights')));
 				return DAO::getDataChangedEvent();

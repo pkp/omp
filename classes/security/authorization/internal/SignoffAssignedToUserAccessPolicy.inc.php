@@ -35,11 +35,11 @@ class SignoffAssignedToUserAccessPolicy extends AuthorizationPolicy {
 	 */
 	function effect() {
 		// A signoff should already be in the context.
-		$signoff =& $this->getAuthorizedContextObject(ASSOC_TYPE_SIGNOFF);
+		$signoff = $this->getAuthorizedContextObject(ASSOC_TYPE_SIGNOFF);
 		if (!is_a($signoff, 'Signoff')) return AUTHORIZATION_DENY;
 
 		// Check that there is a currently logged in user.
-		$user =& $this->_request->getUser();
+		$user = $this->_request->getUser();
 		if (!is_a($user, 'User')) return AUTHORIZATION_DENY;
 
 		// Check if the signoff is assigned to the user.

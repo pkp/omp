@@ -50,7 +50,7 @@ class AddSignoffFileLinkAction extends LinkAction {
 		$actionArgs['fileStage'] = SUBMISSION_FILE_SIGNOFF;
 
 		// Instantiate the file upload modal.
-		$dispatcher =& $request->getDispatcher();
+		$dispatcher = $request->getDispatcher();
 		import('lib.pkp.classes.linkAction.request.WizardModal');
 		$modal = new AjaxModal(
 			$dispatcher->url(

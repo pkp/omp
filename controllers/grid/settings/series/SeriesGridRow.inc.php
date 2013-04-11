@@ -37,7 +37,7 @@ class SeriesGridRow extends GridRow {
 		// Is this a new row or an existing row?
 		$seriesId = $this->getId();
 		if (!empty($seriesId) && is_numeric($seriesId)) {
-			$router =& $request->getRouter();
+			$router = $request->getRouter();
 
 			import('lib.pkp.classes.linkAction.request.AjaxModal');
 			$this->addAction(

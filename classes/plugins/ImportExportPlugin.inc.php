@@ -51,7 +51,7 @@ class ImportExportPlugin extends Plugin {
 	 * @param $args Array The array of arguments the user supplied.
 	 */
 	function display($args, $request) {
-		$templateManager =& TemplateManager::getManager($request);
+		$templateManager = TemplateManager::getManager($request);
 		$templateManager->register_function('plugin_url', array(&$this, 'smartyPluginUrl'));
 	}
 
@@ -88,8 +88,8 @@ class ImportExportPlugin extends Plugin {
 	 * @see Plugin::getManagementVerbLinkAction()
 	 */
 	function getManagementVerbLinkAction($request, $verb) {
-		$router =& $request->getRouter();
-		$dispatcher =& $router->getDispatcher();
+		$router = $request->getRouter();
+		$dispatcher = $router->getDispatcher();
 
 		list($verbName, $verbLocaleKey) = $verb;
 

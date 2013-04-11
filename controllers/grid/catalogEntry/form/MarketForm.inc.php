@@ -104,12 +104,12 @@ class MarketForm extends Form {
 	 */
 	function fetch($request) {
 
-		$templateMgr =& TemplateManager::getManager($request);
+		$templateMgr = TemplateManager::getManager($request);
 		$publicationFormatId = null;
 
-		$monograph =& $this->getMonograph();
+		$monograph = $this->getMonograph();
 		$templateMgr->assign('submissionId', $monograph->getId());
-		$market =& $this->getMarket();
+		$market = $this->getMarket();
 		$onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO');
 		$templateMgr->assign_by_ref('countryCodes', $onixCodelistItemDao->getCodes('List91')); // countries (CA, US, GB, etc)
 		$templateMgr->assign_by_ref('regionCodes', $onixCodelistItemDao->getCodes('List49')); // regions (British Columbia, England, etc)

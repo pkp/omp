@@ -37,8 +37,8 @@ class SeriesForm extends Form {
 	function SeriesForm($seriesId = null) {
 		$this->setSeriesId($seriesId);
 
-		$request =& Application::getRequest();
-		$user =& $request->getUser();
+		$request = Application::getRequest();
+		$user = $request->getUser();
 		$this->_userId = $user->getId();
 
 		parent::Form('controllers/grid/settings/series/form/seriesForm.tpl');
@@ -54,7 +54,7 @@ class SeriesForm extends Form {
 	 * @param $request PKPRequest
 	 */
 	function initData($args, $request) {
-		$press =& $request->getPress();
+		$press = $request->getPress();
 
 		$seriesDao = DAORegistry::getDAO('SeriesDAO');
 		$seriesId = $this->getSeriesId();
@@ -103,10 +103,10 @@ class SeriesForm extends Form {
 	 * @see Form::fetch()
 	 */
 	function fetch($request) {
-		$templateMgr =& TemplateManager::getManager($request);
+		$templateMgr = TemplateManager::getManager($request);
 		$templateMgr->assign('seriesId', $this->getSeriesId());
 
-		$press =& $request->getPress();
+		$press = $request->getPress();
 		$userGroupDao = DAORegistry::getDAO('UserGroupDAO');
 		$seriesEditorCount = $userGroupDao->getContextUsersCount($press->getId(), null, ROLE_ID_SUB_EDITOR);
 		$templateMgr->assign('seriesEditorCount', $seriesEditorCount);
@@ -132,7 +132,7 @@ class SeriesForm extends Form {
 	 */
 	function execute($args, $request) {
 		$seriesDao = DAORegistry::getDAO('SeriesDAO');
-		$press =& $request->getPress();
+		$press = $request->getPress();
 
 		// Get or create the series object
 		if ($this->getSeriesId()) {
@@ -272,7 +272,7 @@ class SeriesForm extends Form {
 	 * @see ListbuilderHandler::insertEntry
 	 */
 	function insertSeriesEditorEntry($request, $newRowId) {
-		$press =& $request->getPress();
+		$press = $request->getPress();
 		$seriesId = $this->getSeriesId();
 		$userId = array_shift($newRowId);
 
@@ -296,7 +296,7 @@ class SeriesForm extends Form {
 	 */
 	function deleteSeriesEditorEntry($request, $rowId) {
 		$seriesEditorsDao = DAORegistry::getDAO('SeriesEditorsDAO');
-		$press =& $request->getPress();
+		$press = $request->getPress();
 
 		$seriesEditorsDao->deleteEditor($press->getId(), $this->getSeriesId(), $rowId);
 		return true;
@@ -320,7 +320,7 @@ class SeriesForm extends Form {
 	 * @see ListbuilderHandler::insertEntry
 	 */
 	function insertCategoryEntry($request, $newRowId) {
-		$press =& $request->getPress();
+		$press = $request->getPress();
 		$seriesId = $this->getSeriesId();
 		$categoryId = array_shift($newRowId);
 
@@ -344,7 +344,7 @@ class SeriesForm extends Form {
 	 */
 	function deleteCategoryEntry($request, $rowId) {
 		$seriesDao = DAORegistry::getDAO('SeriesDAO');
-		$press =& $request->getPress();
+		$press = $request->getPress();
 
 		$seriesDao->removeCategory($this->getSeriesId(), $rowId);
 		return true;

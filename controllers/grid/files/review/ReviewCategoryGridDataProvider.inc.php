@@ -71,7 +71,7 @@ class ReviewCategoryGridDataProvider extends SubmissionFilesCategoryGridDataProv
 	/**
 	 * @see ReviewGridDataProvider::getSelectAction()
 	 */
-	function &getSelectAction($request) {
+	function getSelectAction($request) {
 		$gridDataProvider = $this->getDataProvider();
 		return $gridDataProvider->getSelectAction($request);
 	}

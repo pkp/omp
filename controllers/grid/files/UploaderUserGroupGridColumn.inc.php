@@ -50,9 +50,9 @@ class UploaderUserGroupGridColumn extends GridColumn {
 	 * @see ColumnBasedGridCellProvider::getTemplateVarsFromRowColumn()
 	 */
 	function getTemplateVarsFromRow($row) {
-		$rowData =& $row->getData();
-		$userGroup =& $this->getUserGroup();
-		$submissionFile =& $rowData['submissionFile'];
+		$rowData = $row->getData();
+		$userGroup = $this->getUserGroup();
+		$submissionFile = $rowData['submissionFile'];
 		if ($submissionFile->getUserGroupId() == $userGroup->getId()) {
 			return array('status' => 'uploaded');
 		}

@@ -38,12 +38,12 @@ class SubmissionFileRequestedRevisionRequiredPolicy extends PKPSubmissionFileReq
 			return AUTHORIZATION_DENY;
 		}
 
-		$request =& $this->getRequest();
+		$request = $this->getRequest();
 		$reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO'); /* @var $reviewRoundDao ReviewRoundDAO */
 
 		// Get the submission file.
-		$submissionFile =& $this->getSubmissionFile($request);
-		$reviewRound =& $reviewRoundDao->getBySubmissionFileId($submissionFile->getFileId());
+		$submissionFile = $this->getSubmissionFile($request);
+		$reviewRound = $reviewRoundDao->getBySubmissionFileId($submissionFile->getFileId());
 
 		// Make sure that the last review round editor decision is request revisions.
 		$seriesEditorSubmissionDao = DAORegistry::getDAO('SeriesEditorSubmissionDAO'); /* @var $seriesEditorSubmissionDao SeriesEditorSubmissionDAO */

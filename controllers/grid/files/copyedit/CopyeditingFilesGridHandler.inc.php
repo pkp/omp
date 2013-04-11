@@ -46,7 +46,7 @@ class CopyeditingFilesGridHandler extends SignoffFilesGridHandler {
 	 */
 	function authorize($request, &$args, $roleAssignments) {
 		// Approve copyediting file needs monograph access policy.
-		$router =& $request->getRouter();
+		$router = $request->getRouter();
 		if ($router->getRequestedOp($request) == 'approveCopyedit') {
 			import('classes.security.authorization.SubmissionFileAccessPolicy');
 			$this->addPolicy(new SubmissionFileAccessPolicy($request, $args, $roleAssignments, SUBMISSION_FILE_ACCESS_MODIFY));

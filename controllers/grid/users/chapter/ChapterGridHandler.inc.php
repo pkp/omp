@@ -101,7 +101,7 @@ class ChapterGridHandler extends CategoryGridHandler {
 
 		if (!$this->getReadOnly()) {
 			// Grid actions
-			$router =& $request->getRouter();
+			$router = $request->getRouter();
 			$actionArgs = $this->getRequestArgs();
 
 			$this->addAction(
@@ -155,7 +155,7 @@ class ChapterGridHandler extends CategoryGridHandler {
 	 * @see GridHandler::initFeatures()
 	 */
 	function initFeatures($request, $args) {
-		$monograph =& $this->getMonograph();
+		$monograph = $this->getMonograph();
 		$userRoles = $this->getAuthorizedContextObject(ASSOC_TYPE_USER_ROLES);
 
 		if ($monograph->getDateSubmitted() == null || array_intersect(array(ROLE_ID_MANAGER, ROLE_ID_SUB_EDITOR), $userRoles)) {
@@ -171,7 +171,7 @@ class ChapterGridHandler extends CategoryGridHandler {
 	 * @see GridDataProvider::getRequestArgs()
 	 */
 	function getRequestArgs() {
-		$monograph =& $this->getMonograph();
+		$monograph = $this->getMonograph();
 		return array_merge(
 			parent::getRequestArgs(),
 			array('submissionId' => $monograph->getId())
@@ -189,10 +189,10 @@ class ChapterGridHandler extends CategoryGridHandler {
 	/**
 	 * @see GridHandler::loadData
 	 */
-	function &loadData($request, $filter) {
-		$monograph =& $this->getMonograph();
+	function loadData($request, $filter) {
+		$monograph = $this->getMonograph();
 		$chapterDao = DAORegistry::getDAO('ChapterDAO');
-		$chapters =& $chapterDao->getChapters($monograph->getId());
+		$chapters = $chapterDao->getChapters($monograph->getId());
 		return $chapters->toAssociativeArray();
 	}
 
@@ -235,9 +235,8 @@ class ChapterGridHandler extends CategoryGridHandler {
 	 * @see CategoryGridHandler::getCategoryData()
 	 */
 	function getCategoryData(&$chapter) {
-		$authorFactory =& $chapter->getAuthors(); /* @var $authorFactory DAOResultFactory */
-		$authors = $authorFactory->toAssociativeArray();
-		return $authors;
+		$authorFactory = $chapter->getAuthors(); /* @var $authorFactory DAOResultFactory */
+		return $authorFactory->toAssociativeArray();
 	}
 
 	/**
@@ -251,7 +250,7 @@ class ChapterGridHandler extends CategoryGridHandler {
 	 * @see CategoryGridHandler::setDataElementInCategorySequence()
 	 */
 	function setDataElementInCategorySequence($chapterId, $author, $newSequence) {
-		$monograph =& $this->getMonograph();
+		$monograph = $this->getMonograph();
 
 		// Remove the chapter author id.
 		$chapterAuthorDao = DAORegistry::getDAO('ChapterAuthorDAO');
@@ -284,7 +283,7 @@ class ChapterGridHandler extends CategoryGridHandler {
 	 * @return string Serialized JSON object
 	 */
 	function editChapter($args, $request) {
-		$chapter =& $this->_getChapterFromRequest($request);
+		$chapter = $this->_getChapterFromRequest($request);
 
 		// Form handling
 		import('controllers.grid.users.chapter.form.ChapterForm');
@@ -303,7 +302,7 @@ class ChapterGridHandler extends CategoryGridHandler {
 	 */
 	function updateChapter($args, $request) {
 		// Identify the chapter to be updated
-		$chapter =& $this->_getChapterFromRequest($request);
+		$chapter = $this->_getChapterFromRequest($request);
 
 		// Form initialization
 		import('controllers.grid.users.chapter.form.ChapterForm');
@@ -334,7 +333,7 @@ class ChapterGridHandler extends CategoryGridHandler {
 	 */
 	function deleteChapter($args, $request) {
 		// Identify the chapter to be deleted
-		$chapter =& $this->_getChapterFromRequest($request);
+		$chapter = $this->_getChapterFromRequest($request);
 		$chapterId = $chapter->getId();
 
 		// remove Authors assigned to this chapter first
@@ -359,11 +358,10 @@ class ChapterGridHandler extends CategoryGridHandler {
 	/**
 	 * Fetch and validate the chapter from the request arguments
 	 */
-	function &_getChapterFromRequest($request) {
-		$monograph =& $this->getMonograph();
+	function _getChapterFromRequest($request) {
+		$monograph = $this->getMonograph();
 		$chapterDao = DAORegistry::getDAO('ChapterDAO');
-		$chapter =& $chapterDao->getChapter((int) $request->getUserVar('chapterId'), $monograph->getId());
-		return $chapter;
+		return $chapterDao->getChapter((int) $request->getUserVar('chapterId'), $monograph->getId());
 	}
 }
 

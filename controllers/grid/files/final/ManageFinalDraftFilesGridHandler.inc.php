@@ -56,7 +56,7 @@ class ManageFinalDraftFilesGridHandler extends SelectableSubmissionFileListCateg
 	 * @return string Serialized JSON object
 	 */
 	function updateFinalDraftFiles($args, $request) {
-		$monograph =& $this->getMonograph();
+		$monograph = $this->getMonograph();
 
 		import('controllers.grid.files.final.form.ManageFinalDraftFilesForm');
 		$manageFinalDraftFilesForm = new ManageFinalDraftFilesForm($monograph->getId());

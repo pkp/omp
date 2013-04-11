@@ -66,17 +66,16 @@ class AuthorSignoffFilesGridDataProvider extends SubmissionFilesGridDataProvider
 	/**
 	 * @see GridHandler::loadData
 	 */
-	function &loadData() {
+	function loadData() {
 		$monographFileSignoffDao = DAORegistry::getDAO('SubmissionFileSignoffDAO');
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-		$signoffs =& $monographFileSignoffDao->getAllBySubmission($monograph->getId(), $this->getSymbolic(), $this->getUserId());
+		$monograph = $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		$signoffs = $monographFileSignoffDao->getAllBySubmission($monograph->getId(), $this->getSymbolic(), $this->getUserId());
 
 		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-		while ($signoff =& $signoffs->next()) {
-			$monographFile =& $submissionFileDao->getLatestRevision($signoff->getAssocId(), null, $monograph->getId());
-			$preparedData[$signoff->getId()]['signoff'] =& $signoff;
-			$preparedData[$signoff->getId()]['submissionFile'] =& $monographFile;
-			unset($signoff, $monographFile);
+		while ($signoff = $signoffs->next()) {
+			$monographFile = $submissionFileDao->getLatestRevision($signoff->getAssocId(), null, $monograph->getId());
+			$preparedData[$signoff->getId()]['signoff'] = $signoff;
+			$preparedData[$signoff->getId()]['submissionFile'] = $monographFile;
 		}
 
 		return $preparedData;
@@ -93,16 +92,16 @@ class AuthorSignoffFilesGridDataProvider extends SubmissionFilesGridDataProvider
 	function &getAddSignoffFile($request) {
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		$signoffDao = DAORegistry::getDAO('SubmissionFileSignoffDAO'); /* @var $signoffDao SubmissionFileSignoffDAO */
-		$signoffFactory =& $signoffDao->getAllBySubmission($monograph->getId(), $this->getSymbolic(), $this->getUserId(), null, true);
+		$signoffFactory = $signoffDao->getAllBySubmission($monograph->getId(), $this->getSymbolic(), $this->getUserId(), null, true);
 
 		$action = false;
 		if (!$signoffFactory->wasEmpty()) {
 			import('controllers.api.signoff.linkAction.AddSignoffFileLinkAction');
 			$action = new AddSignoffFileLinkAction(
-									$request, $monograph->getId(),
-									$this->getStageId(), $this->getSymbolic(), null,
-									__('submission.upload.signoff'), __('submission.upload.signoff')
-									);
+				$request, $monograph->getId(),
+				$this->getStageId(), $this->getSymbolic(), null,
+				__('submission.upload.signoff'), __('submission.upload.signoff')
+			);
 		}
 
 		return $action;

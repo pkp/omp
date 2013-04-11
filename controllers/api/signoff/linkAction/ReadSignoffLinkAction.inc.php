@@ -43,7 +43,7 @@ class ReadSignoffLinkAction extends LinkAction {
 		$actionArgs['signoffId'] = $signoffId;
 
 		// Instantiate the file upload modal.
-		$dispatcher =& $request->getDispatcher();
+		$dispatcher = $request->getDispatcher();
 		import('lib.pkp.classes.linkAction.request.WizardModal');
 		$modal = new AjaxModal(
 			$dispatcher->url(

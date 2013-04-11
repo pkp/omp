@@ -29,7 +29,7 @@ class OMPPaymentManager extends PaymentManager {
 	 */
 	function OMPPaymentManager($request) {
 		parent::PaymentManager($request);
-		$this->press =& $request->getPress();
+		$this->press = $request->getPress();
 	}
 
 	/**

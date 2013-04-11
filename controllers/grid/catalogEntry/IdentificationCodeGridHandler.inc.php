@@ -109,7 +109,7 @@ class IdentificationCodeGridHandler extends GridHandler {
 
 		if ($identificationCodeId != '') {
 			$identificationCodeDao = DAORegistry::getDAO('IdentificationCodeDAO');
-			$identificationCode =& $identificationCodeDao->getById($identificationCodeId, $this->getMonograph()->getId());
+			$identificationCode = $identificationCodeDao->getById($identificationCodeId, $this->getMonograph()->getId());
 			if ($identificationCode) {
 				$publicationFormatId =& $identificationCode->getPublicationFormatId();
 			}
@@ -117,7 +117,7 @@ class IdentificationCodeGridHandler extends GridHandler {
 			$publicationFormatId = (int) $request->getUserVar('publicationFormatId');
 		}
 
-		$publicationFormat =& $publicationFormatDao->getById($publicationFormatId, $this->getMonograph()->getId());
+		$publicationFormat = $publicationFormatDao->getById($publicationFormatId, $this->getMonograph()->getId());
 
 		if ($publicationFormat) {
 			$this->setPublicationFormat($publicationFormat);
@@ -138,7 +138,7 @@ class IdentificationCodeGridHandler extends GridHandler {
 		$this->setTitle('monograph.publicationFormat.productIdentifierType');
 
 		// Grid actions
-		$router =& $request->getRouter();
+		$router = $request->getRouter();
 		$actionArgs = $this->getRequestArgs();
 		$this->addAction(
 			new LinkAction(
@@ -194,8 +194,8 @@ class IdentificationCodeGridHandler extends GridHandler {
 	 * @return array
 	 */
 	function getRequestArgs() {
-		$monograph =& $this->getMonograph();
-		$publicationFormat =& $this->getPublicationFormat();
+		$monograph = $this->getMonograph();
+		$publicationFormat = $this->getPublicationFormat();
 
 		return array(
 			'submissionId' => $monograph->getId(),
@@ -206,10 +206,10 @@ class IdentificationCodeGridHandler extends GridHandler {
 	/**
 	 * @see GridHandler::loadData
 	 */
-	function &loadData($request, $filter = null) {
-		$publicationFormat =& $this->getPublicationFormat();
+	function loadData($request, $filter = null) {
+		$publicationFormat = $this->getPublicationFormat();
 		$identificationCodeDao = DAORegistry::getDAO('IdentificationCodeDAO');
-		$data =& $identificationCodeDao->getByPublicationFormatId($publicationFormat->getId());
+		$data = $identificationCodeDao->getByPublicationFormatId($publicationFormat->getId());
 		return $data->toArray();
 	}
 
@@ -231,7 +231,7 @@ class IdentificationCodeGridHandler extends GridHandler {
 	function editCode($args, $request) {
 		// Identify the code to be updated
 		$identificationCodeId = (int) $request->getUserVar('identificationCodeId');
-		$monograph =& $this->getMonograph();
+		$monograph = $this->getMonograph();
 
 		$identificationCodeDao = DAORegistry::getDAO('IdentificationCodeDAO');
 		$identificationCode = $identificationCodeDao->getById($identificationCodeId, $monograph->getId());
@@ -254,7 +254,7 @@ class IdentificationCodeGridHandler extends GridHandler {
 	function updateCode($args, $request) {
 		// Identify the code to be updated
 		$identificationCodeId = $request->getUserVar('identificationCodeId');
-		$monograph =& $this->getMonograph();
+		$monograph = $this->getMonograph();
 
 		$identificationCodeDao = DAORegistry::getDAO('IdentificationCodeDAO');
 		$identificationCode = $identificationCodeDao->getById($identificationCodeId, $monograph->getId());
@@ -277,7 +277,7 @@ class IdentificationCodeGridHandler extends GridHandler {
 			}
 
 			// Create trivial notification.
-			$currentUser =& $request->getUser();
+			$currentUser = $request->getUser();
 			$notificationMgr = new NotificationManager();
 			$notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => $notificationContent));
 
@@ -309,13 +309,13 @@ class IdentificationCodeGridHandler extends GridHandler {
 		$identificationCodeId = $request->getUserVar('identificationCodeId');
 
 		$identificationCodeDao = DAORegistry::getDAO('IdentificationCodeDAO');
-		$identificationCode =& $identificationCodeDao->getById($identificationCodeId, $this->getMonograph()->getId());
+		$identificationCode = $identificationCodeDao->getById($identificationCodeId, $this->getMonograph()->getId());
 		if ($identificationCode != null) { // authorized
 
 			$result = $identificationCodeDao->deleteObject($identificationCode);
 
 			if ($result) {
-				$currentUser =& $request->getUser();
+				$currentUser = $request->getUser();
 				$notificationMgr = new NotificationManager();
 				$notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.removedIdentificationCode')));
 				return DAO::getDataChangedEvent();

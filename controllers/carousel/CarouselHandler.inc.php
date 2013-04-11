@@ -48,8 +48,8 @@ class CarouselHandler extends Handler {
 	function fetch($args, $request) {
 		$this->setupTemplate($request);
 
-		$press =& $request->getPress();
-		$templateMgr =& TemplateManager::getManager($request);
+		$press = $request->getPress();
+		$templateMgr = TemplateManager::getManager($request);
 
 		// Expose the featured monograph IDs and associated params
 		$featureDao = DAORegistry::getDAO('FeatureDAO');

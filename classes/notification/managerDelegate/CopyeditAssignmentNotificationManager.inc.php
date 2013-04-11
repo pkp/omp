@@ -72,7 +72,7 @@ class CopyeditAssignmentNotificationManager extends NotificationManagerDelegate 
 		} else if ($signoff && !$signedOff && $notificationFactory->wasEmpty && $userId) {
 			// Original signoff still present and signoff on that is not completed,
 			// create notification.
-			$press =& $request->getPress();
+			$press = $request->getPress();
 			$this->createNotification(
 				$request,
 				$userId,

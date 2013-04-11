@@ -32,7 +32,7 @@ class ReviewerReviewStep1Form extends ReviewerReviewForm {
 	 * @see Form::fetch()
 	 */
 	function fetch($request) {
-		$templateMgr =& TemplateManager::getManager($request);
+		$templateMgr = TemplateManager::getManager($request);
 
 		// Add submission parameters.
 		$submission =& $this->getReviewerSubmission();
@@ -46,7 +46,7 @@ class ReviewerReviewStep1Form extends ReviewerReviewForm {
 		$templateMgr->assign_by_ref('reviewAssignment', $reviewAssignment);
 
 		// Add press parameters.
-		$press =& $this->request->getPress();
+		$press = $this->request->getPress();
 		$templateMgr->assign_by_ref('press', $press);
 
 		// Add reviewer request text.
@@ -64,7 +64,7 @@ class ReviewerReviewStep1Form extends ReviewerReviewForm {
 		import('lib.pkp.classes.linkAction.request.AjaxModal');
 		import('lib.pkp.classes.linkAction.request.ConfirmationModal');
 
-		$dispatcher =& $request->getDispatcher();
+		$dispatcher = $request->getDispatcher();
 		// "View metadata" action.
 		import('controllers.modals.submissionMetadata.linkAction.ReviewerViewMetadataLinkAction');
 		$viewMetadataLinkAction = new ReviewerViewMetadataLinkAction($request, $reviewAssignment->getSubmissionId(), $reviewAssignment->getId());

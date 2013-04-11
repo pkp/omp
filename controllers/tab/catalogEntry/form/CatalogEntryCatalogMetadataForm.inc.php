@@ -76,9 +76,9 @@ class CatalogEntryCatalogMetadataForm extends Form {
 	 * return string
 	 */
 	function fetch($request) {
-		$monograph =& $this->getMonograph();
+		$monograph = $this->getMonograph();
 
-		$templateMgr =& TemplateManager::getManager($request);
+		$templateMgr = TemplateManager::getManager($request);
 		$templateMgr->assign('submissionId', $this->getMonograph()->getId());
 		$templateMgr->assign('stageId', $this->getStageId());
 		$templateMgr->assign('formParams', $this->getFormParams());
@@ -117,7 +117,7 @@ class CatalogEntryCatalogMetadataForm extends Form {
 			LOCALE_COMPONENT_APP_SUBMISSION
 		);
 
-		$monograph =& $this->getMonograph();
+		$monograph = $this->getMonograph();
 		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
 		$this->_publishedMonograph =& $publishedMonographDao->getById($monograph->getId(), null, false);
 	}
@@ -199,9 +199,9 @@ class CatalogEntryCatalogMetadataForm extends Form {
 	function execute($request) {
 		parent::execute();
 
-		$monograph =& $this->getMonograph();
+		$monograph = $this->getMonograph();
 		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
-		$publishedMonograph =& $publishedMonographDao->getById($monograph->getId(), null, false); /* @var $publishedMonograph PublishedMonograph */
+		$publishedMonograph = $publishedMonographDao->getById($monograph->getId(), null, false); /* @var $publishedMonograph PublishedMonograph */
 		$isExistingEntry = $publishedMonograph?true:false;
 		if (!$publishedMonograph) {
 			$publishedMonograph = $publishedMonographDao->newDataObject();

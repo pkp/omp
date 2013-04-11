@@ -31,9 +31,9 @@ class FinalDraftFilesGridDataProvider extends SubmissionFilesGridDataProvider {
 	/**
 	 * @see FilesGridDataProvider::getSelectAction()
 	 */
-	function &getSelectAction($request) {
+	function getSelectAction($request) {
 		import('controllers.grid.files.fileList.linkAction.SelectFilesLinkAction');
-		$submission =& $this->getSubmission();
+		$submission = $this->getSubmission();
 		$actionArgs = array(
 			'submissionId' => $submission->getId(),
 			'stageId' => $this->getStageId()

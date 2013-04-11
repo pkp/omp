@@ -28,12 +28,12 @@ class ChapterGridCategoryRowCellProvider extends GridCellProvider {
 	/**
 	 * @see GridCellProvider::getCellActions()
 	 */
-	function getCellActions($request, &$row, &$column) {
+	function getCellActions($request, $row, $column) {
 		if ($column->getId() == 'name' && !$row->isReadOnly()) {
-			$chapter =& $row->getData();
-			$monograph =& $row->getMonograph();
+			$chapter = $row->getData();
+			$monograph = $row->getMonograph();
 
-			$router =& $request->getRouter();
+			$router = $request->getRouter();
 			$actionArgs = array(
 				'submissionId' => $monograph->getId(),
 				'chapterId' => $chapter->getId()
@@ -55,7 +55,7 @@ class ChapterGridCategoryRowCellProvider extends GridCellProvider {
 	/**
 	 * @see GridCellProvider::getTemplateVarsFromRowColumn()
 	 */
-	function getTemplateVarsFromRowColumn(&$row, $column) {
+	function getTemplateVarsFromRowColumn($row, $column) {
 		// If row is not read only, the cell will contains a link
 		// action. See getCellActions() above.
 		if ($column->getId() == 'name' && $row->isReadOnly()) {

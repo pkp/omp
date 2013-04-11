@@ -200,14 +200,14 @@ class Onix30ExportDom {
 
 		/* --- Contributor information --- */
 
-		$authors =& $monograph->getAuthors(); // sorts by sequence.
+		$authors = $monograph->getAuthors(); // sorts by sequence.
 		$sequence = 1;
 		foreach ($authors as $author) {
 			$contributorNode =& XMLCustomWriter::createElement($doc, 'Contributor');
 			XMLCustomWriter::appendChild($descDetailNode, $contributorNode);
 			XMLCustomWriter::createChildWithText($doc, $contributorNode, 'SequenceNumber', $sequence);
 			$userGroupDao = DAORegistry::getDAO('UserGroupDAO');
-			$userGroup =& $userGroupDao->getById($author->getUserGroupId(), $monograph->getPressId());
+			$userGroup = $userGroupDao->getById($author->getUserGroupId(), $monograph->getPressId());
 
 			$userGroupOnixMap = array('AU' => 'A01', 'VE' => 'B01', 'CA' => 'A01', 'Trans' => 'B06'); // From List17, ContributorRole types.
 

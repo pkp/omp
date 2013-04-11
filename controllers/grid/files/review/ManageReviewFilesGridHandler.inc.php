@@ -53,7 +53,7 @@ class ManageReviewFilesGridHandler extends SelectableSubmissionFileListCategoryG
 	 * @return string Serialized JSON object
 	 */
 	function updateReviewFiles($args, $request) {
-		$monograph =& $this->getMonograph();
+		$monograph = $this->getMonograph();
 
 		import('controllers.grid.files.review.form.ManageReviewFilesForm');
 		$manageReviewFilesForm = new ManageReviewFilesForm($monograph->getId(), $this->getRequestArg('stageId'), $this->getRequestArg('reviewRoundId'));
@@ -64,7 +64,7 @@ class ManageReviewFilesGridHandler extends SelectableSubmissionFileListCategoryG
 			$manageReviewFilesForm->execute($args, $request, $dataProvider->getCategoryData($this->getStageId()));
 
 			$this->setupTemplate($request);
-			$user =& $request->getUser();
+			$user = $request->getUser();
 			NotificationManager::createTrivialNotification($user->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.updatedReviewFiles')));
 
 			// Let the calling grid reload itself

@@ -48,9 +48,9 @@ class SignoffGridCellProvider extends GridCellProvider {
 	 * @param $column GridColumn
 	 * @return array an array of LinkAction instances
 	 */
-	function getCellActions($request, &$row, &$column, $position = GRID_ACTION_POSITION_DEFAULT) {
+	function getCellActions($request, $row, $column, $position = GRID_ACTION_POSITION_DEFAULT) {
 		if ($column->getId() == 'name') {
-			$user =& $request->getUser();
+			$user = $request->getUser();
 			$actionArgs = array_merge($row->getRequestArgs(),
 				array('signoffId' => $row->getId()));
 			$signoff =& $row->getData();
@@ -88,7 +88,7 @@ class SignoffGridCellProvider extends GridCellProvider {
 	 * @param $column GridColumn
 	 * @return array
 	 */
-	function getTemplateVarsFromRowColumn(&$row, &$column) {
+	function getTemplateVarsFromRowColumn($row, $column) {
 		$signoff =& $row->getData();  /* @var $element Signoff */
 		$columnId = $column->getId();
 		assert(is_a($signoff, 'Signoff') && !empty($columnId));
@@ -103,11 +103,11 @@ class SignoffGridCellProvider extends GridCellProvider {
 	/**
 	 * Build the cell label from the signoff object
 	 */
-	function _getLabel(&$signoff) {
+	function _getLabel($signoff) {
 		$userGroupDao = DAORegistry::getDAO('UserGroupDAO');
 		$userDao = DAORegistry::getDAO('UserDAO');
-		$userGroup =& $userGroupDao->getById($signoff->getUserGroupId());
-		$user =& $userDao->getById($signoff->getUserId());
+		$userGroup = $userGroupDao->getById($signoff->getUserGroupId());
+		$user = $userDao->getById($signoff->getUserId());
 
 		return $user->getFullName() . ' (' . $userGroup->getLocalizedName() . ')';
 	}

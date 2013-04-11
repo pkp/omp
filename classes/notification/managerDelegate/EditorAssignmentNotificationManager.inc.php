@@ -65,7 +65,7 @@ class EditorAssignmentNotificationManager extends NotificationManagerDelegate {
 	 * Every user that have access to the stage should see the notification.
 	 */
 	public function updateNotification($request, $userIds, $assocType, $assocId) {
-		$press =& $request->getPress();
+		$press = $request->getPress();
 		$notificationType = $this->getNotificationType();
 		$monographId = $assocId;
 

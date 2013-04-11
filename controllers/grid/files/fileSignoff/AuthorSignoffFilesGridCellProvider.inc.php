@@ -51,7 +51,7 @@ class AuthorSignoffFilesGridCellProvider extends GridCellProvider {
 	 * @param $row GridRow
 	 * @return Signoff
 	 */
-	function &getSignoff(&$row) {
+	function &getSignoff($row) {
 		$rowData =& $row->getData();
 		assert(is_a($rowData['signoff'], 'Signoff'));
 		return $rowData['signoff'];
@@ -62,7 +62,7 @@ class AuthorSignoffFilesGridCellProvider extends GridCellProvider {
 	 * @param $row GridRow
 	 * @return MonographFile
 	 */
-	function &getSubmissionFile(&$row) {
+	function &getSubmissionFile($row) {
 		$rowData =& $row->getData();
 		assert(is_a($rowData['submissionFile'], 'MonographFile'));
 		return $rowData['submissionFile'];
@@ -75,10 +75,10 @@ class AuthorSignoffFilesGridCellProvider extends GridCellProvider {
 	 * @param $column GridColumn
 	 * @return array an array of LinkAction instances
 	 */
-	function getCellActions($request, &$row, &$column, $position = GRID_ACTION_POSITION_DEFAULT) {
+	function getCellActions($request, $row, $column, $position = GRID_ACTION_POSITION_DEFAULT) {
 		if ($column->getId() == 'response') {
-			$signoff =& $this->getSignoff($row);
-			$monograph =& $this->getMonograph();
+			$signoff = $this->getSignoff($row);
+			$monograph = $this->getMonograph();
 			if (!$signoff->getDateCompleted()) {
 				import('controllers.api.signoff.linkAction.AddSignoffFileLinkAction');
 				$addFileAction = new AddSignoffFileLinkAction(

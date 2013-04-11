@@ -96,17 +96,17 @@ class PublicationFormatForm extends Form {
 	 * @see Form::fetch()
 	 */
 	function fetch($request) {
-		$format =& $this->getPublicationFormat();
-		$press =& $request->getPress();
+		$format = $this->getPublicationFormat();
+		$press = $request->getPress();
 
 
-		$templateMgr =& TemplateManager::getManager($request);
+		$templateMgr = TemplateManager::getManager($request);
 		$onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO');
 		$templateMgr->assign('entryKeys', $onixCodelistItemDao->getCodes('List7')); // List7 is for object formats
 
-		$monograph =& $this->getMonograph();
+		$monograph = $this->getMonograph();
 		$templateMgr->assign('submissionId', $monograph->getId());
-		$publicationFormat =& $this->getPublicationFormat();
+		$publicationFormat = $this->getPublicationFormat();
 		if ($publicationFormat != null) {
 			$templateMgr->assign('publicationFormatId', $publicationFormat->getId());
 		}

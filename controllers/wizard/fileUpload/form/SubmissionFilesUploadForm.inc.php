@@ -50,7 +50,7 @@ class SubmissionFilesUploadForm extends PKPSubmissionFilesUploadForm {
 	 * @return SubmissionFile
 	 */
 	function _uploadFile($request, $user, $uploaderUserGroupId, $revisedFileId, $fileGenre, $assocType, $assocId) {
-		$press =& $request->getPress();
+		$press = $request->getPress();
 		import('lib.pkp.classes.file.SubmissionFileManager');
 		$monographFileManager = new SubmissionFileManager($press->getId(), $this->getData('submissionId'));
 		$fileStage = $this->getData('fileStage');

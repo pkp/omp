@@ -107,9 +107,9 @@ class RepresentativeForm extends Form {
 	 */
 	function fetch($request) {
 
-		$templateMgr =& TemplateManager::getManager($request);
+		$templateMgr = TemplateManager::getManager($request);
 
-		$monograph =& $this->getMonograph();
+		$monograph = $this->getMonograph();
 		$templateMgr->assign('submissionId', $monograph->getId());
 		$representative =& $this->getRepresentative();
 		$onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO');

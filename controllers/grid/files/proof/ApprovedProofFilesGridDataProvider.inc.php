@@ -44,12 +44,11 @@ class ApprovedProofFilesGridDataProvider extends GridDataProvider {
 	/**
 	 * @see GridDataProvider::loadData
 	 */
-	function &loadData() {
+	function loadData() {
 		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-		$publicationFormat =& $this->getAuthorizedContextObject(ASSOC_TYPE_PUBLICATION_FORMAT);
-		$submissionFiles = $submissionFileDao->getLatestRevisionsByAssocId(ASSOC_TYPE_PUBLICATION_FORMAT, $publicationFormat->getId(), $monograph->getId(), SUBMISSION_FILE_PROOF);
-		return $submissionFiles;
+		$monograph = $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		$publicationFormat = $this->getAuthorizedContextObject(ASSOC_TYPE_PUBLICATION_FORMAT);
+		return $submissionFileDao->getLatestRevisionsByAssocId(ASSOC_TYPE_PUBLICATION_FORMAT, $publicationFormat->getId(), $monograph->getId(), SUBMISSION_FILE_PROOF);
 	}
 
 	/**

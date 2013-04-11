@@ -89,7 +89,7 @@ class SignoffFileUploadForm extends Form {
 	 * @see Form::fetch()
 	 */
 	function fetch($request) {
-		$templateMgr =& TemplateManager::getManager($request);
+		$templateMgr = TemplateManager::getManager($request);
 		$signoffDao = DAORegistry::getDAO('SubmissionFileSignoffDAO'); /* @var $signoffDao SubmissionFileSignoffDAO */
 		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 
@@ -108,15 +108,14 @@ class SignoffFileUploadForm extends Form {
 			$templateMgr->assign('signoffFileName', $submissionFile->getLocalizedName());
 		} else {
 			// No signoff specified, look at all available signoffs
-			$user =& $request->getUser();
-			$signoffs =& $signoffDao->getAllBySubmission($this->getMonographId(), $this->getSymbolic(), $user->getId(), null, true);
+			$user = $request->getUser();
+			$signoffs = $signoffDao->getAllBySubmission($this->getMonographId(), $this->getSymbolic(), $user->getId(), null, true);
 			$availableSignoffs = array();
-			while ($signoff =& $signoffs->next()) {
-				$submissionFile =& $submissionFileDao->getLatestRevision($signoff->getAssocId());
+			while ($signoff = $signoffs->next()) {
+				$submissionFile = $submissionFileDao->getLatestRevision($signoff->getAssocId());
 				assert(is_a($submissionFile, 'MonographFile'));
 
 				$availableSignoffs[$signoff->getId()] = $submissionFile->getLocalizedName();
-				unset($signoff);
 			}
 
 			// Only one, act as if it had been specified originally.
@@ -160,7 +159,7 @@ class SignoffFileUploadForm extends Form {
 	 * @return MonographFile if successful, otherwise null
 	 */
 	function execute($request) {
-		$user =& $request->getUser();
+		$user = $request->getUser();
 
 		// Retrieve the signoff we're working with.
 		$signoffDao = DAORegistry::getDAO('SubmissionFileSignoffDAO');
@@ -170,7 +169,7 @@ class SignoffFileUploadForm extends Form {
 		// Insert the note, if existing content and/or file.
 		$temporaryFileId = $this->getData('temporaryFileId');
 		if ($temporaryFileId || $this->getData('newNote')) {
-			$user =& $request->getUser();
+			$user = $request->getUser();
 
 			$noteDao = DAORegistry::getDAO('NoteDAO');
 			$note = $noteDao->newDataObject();
@@ -195,7 +194,7 @@ class SignoffFileUploadForm extends Form {
 				// Bring in the SUBMISSION_FILE_* constants
 				import('classes.monograph.MonographFile');
 
-				$press =& $request->getPress();
+				$press = $request->getPress();
 				import('lib.pkp.classes.file.SubmissionFileManager');
 				$monographFileManager = new SubmissionFileManager($press->getId(), $this->getMonographId());
 				$signoffFileId = $monographFileManager->temporaryFileToSubmissionFile(
@@ -244,9 +243,9 @@ class SignoffFileUploadForm extends Form {
 			import('lib.pkp.classes.log.SubmissionFileLog');
 			import('lib.pkp.classes.log.SubmissionFileEventLogEntry'); // constants
 			$monographDao = DAORegistry::getDAO('MonographDAO');
-			$monograph =& $monographDao->getById($this->getMonographId());
+			$monograph = $monographDao->getById($this->getMonographId());
 			$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
-			$monographFile =& $submissionFileDao->getLatestRevision($signoff->getFileId());
+			$monographFile = $submissionFileDao->getLatestRevision($signoff->getFileId());
 
 			if (isset($monographFile)) {
 				SubmissionFileLog::logEvent($request, $monographFile, SUBMISSION_LOG_FILE_AUDIT_UPLOAD, 'submission.event.fileAuditUploaded', array('file' => $monographFile->getOriginalFileName(), 'name' => $user->getFullName(), 'username' => $user->getUsername()));

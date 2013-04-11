@@ -36,7 +36,7 @@ class ApprovedProofFilesGridCellProvider extends DataObjectGridCellProvider {
 	 * @param $column GridColumn
 	 * @return array
 	 */
-	function getTemplateVarsFromRowColumn(&$row, $column) {
+	function getTemplateVarsFromRowColumn($row, $column) {
 		switch ($column->getId()) {
 			case 'name':
 				$approvedProofFile =& $row->getData();

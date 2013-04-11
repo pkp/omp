@@ -25,7 +25,7 @@ class SignoffNotesLinkAction extends LinkAction {
 	 */
 	function SignoffNotesLinkAction($request, $signoff, $monographId, $stageId) {
 		// Instantiate the redirect action request.
-		$dispatcher =& $request->getDispatcher();
+		$dispatcher = $request->getDispatcher();
 		import('lib.pkp.classes.linkAction.request.AjaxModal');
 
 		$actionArgs = array(
@@ -34,8 +34,8 @@ class SignoffNotesLinkAction extends LinkAction {
 			'stageId' => $stageId
 		);
 
-		$user =& $request->getUser();
-		$router =& $request->getRouter();
+		$user = $request->getUser();
+		$router = $request->getRouter();
 
 		$ajaxModal = new AjaxModal(
 			$dispatcher->url($request, ROUTE_COMPONENT, null, 'informationCenter.SignoffInformationCenterHandler',

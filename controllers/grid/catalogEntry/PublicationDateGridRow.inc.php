@@ -37,13 +37,13 @@ class PublicationDateGridRow extends GridRow {
 		// Do the default initialization
 		parent::initialize($request);
 
-		$monograph =& $this->getMonograph();
+		$monograph = $this->getMonograph();
 
 		// Is this a new row or an existing row?
 		$publicationDate = $this->_data;
 
 		if ($publicationDate != null && is_numeric($publicationDate->getId())) {
-			$router =& $request->getRouter();
+			$router = $request->getRouter();
 			$actionArgs = array(
 				'submissionId' => $monograph->getId(),
 				'publicationDateId' => $publicationDate->getId()

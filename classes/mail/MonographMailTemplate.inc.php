@@ -69,7 +69,7 @@ class MonographMailTemplate extends MailTemplate {
 	function send($request = null) {
 		if (parent::send(false)) {
 			if (!isset($this->skip) || !$this->skip) $this->log($request);
-			$user =& Request::getUser();
+			$user = Request::getUser();
 			if ($this->attachmentsEnabled) $this->_clearAttachments($user->getId());
 			return true;
 		} else {
@@ -126,7 +126,7 @@ class MonographMailTemplate extends MailTemplate {
 
 		// User data
 		if ($request) {
-			$user =& $request->getUser();
+			$user = $request->getUser();
 			$entry->setSenderId($user == null ? 0 : $user->getId());
 			$entry->setIPAddress($request->getRemoteAddr());
 		} else {
@@ -206,11 +206,10 @@ class MonographMailTemplate extends MailTemplate {
 		while ( $userGroup =& $userGroups->next() ) {
 			$userStageAssignmentDao = DAORegistry::getDAO('UserStageAssignmentDAO');
 			// FIXME: #6692# Should this be getting users just for a specific user group?
-			$users =& $userStageAssignmentDao->getUsersBySubmissionAndStageId($monographId, $stageId, $userGroup->getId());
-			while ($user =& $users->next()) {
+			$users = $userStageAssignmentDao->getUsersBySubmissionAndStageId($monographId, $stageId, $userGroup->getId());
+			while ($user = $users->next()) {
 				$this->$method($user->getEmail(), $user->getFullName());
-				$returner[] =& $user;
-				unset($user);
+				$returner[] = $user;
 			}
 			unset($userGroup);
 		}

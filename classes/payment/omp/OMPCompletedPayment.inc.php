@@ -76,7 +76,7 @@ class OMPCompletedPayment extends Payment {
 	 */
 	function getName() {
 		$pressDao = DAORegistry::getDAO('PressDAO');
-		$press =& $pressDao->getById($this->getPressId());
+		$press = $pressDao->getById($this->getPressId());
 
 		switch ($this->type) {
 			case PAYMENT_TYPE_PURCHASE_FILE:
@@ -94,7 +94,7 @@ class OMPCompletedPayment extends Payment {
 	 */
 	function getDescription() {
 		$pressDao = DAORegistry::getDAO('PressDAO');
-		$press =& $pressDao->getById($this->getPressId());
+		$press = $pressDao->getById($this->getPressId());
 
 		switch ($this->type) {
 			case PAYMENT_TYPE_PURCHASE_FILE:

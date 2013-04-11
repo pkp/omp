@@ -99,7 +99,7 @@ class BaseSignoffStatusColumn extends GridColumn {
 	 * @param $row GridRow
 	 * @return string
 	 */
-	function _getSignoffStatus(&$row) {
+	function _getSignoffStatus($row) {
 		assert(false); // Abstract method
 	}
 }

@@ -32,12 +32,12 @@ class ReviewRevisionsGridDataProvider extends ReviewGridDataProvider {
 	/**
 	 * @see GridDataProvider::loadData()
 	 */
-	function &loadData() {
+	function loadData() {
 		// Grab the files that are new (incoming) revisions
 		// of those currently assigned to the review round.
-		$reviewRound =& $this->getReviewRound();
+		$reviewRound = $this->getReviewRound();
 		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-		$monographFiles =& $submissionFileDao->getLatestNewRevisionsByReviewRound($reviewRound, $this->getFileStage());
+		$monographFiles = $submissionFileDao->getLatestNewRevisionsByReviewRound($reviewRound, $this->getFileStage());
 		return $this->prepareSubmissionFileData($monographFiles);
 	}
 
@@ -48,13 +48,12 @@ class ReviewRevisionsGridDataProvider extends ReviewGridDataProvider {
 	/**
 	 * @see FilesGridDataProvider::getAddFileAction()
 	 */
-	function &getAddFileAction($request) {
+	function getAddFileAction($request) {
 		import('controllers.api.file.linkAction.AddRevisionLinkAction');
-		$reviewRound =& $this->getReviewRound();
-		$addFileAction = new AddRevisionLinkAction(
+		$reviewRound = $this->getReviewRound();
+		return new AddRevisionLinkAction(
 			$request, $reviewRound, $this->getUploaderRoles()
 		);
-		return $addFileAction;
 	}
 }
 

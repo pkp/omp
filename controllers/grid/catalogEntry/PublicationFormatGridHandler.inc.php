@@ -115,7 +115,7 @@ class PublicationFormatGridHandler extends GridHandler {
 		);
 
 		// Grid actions
-		$router =& $request->getRouter();
+		$router = $request->getRouter();
 		$actionArgs = $this->getRequestArgs();
 		$this->addAction(
 			new LinkAction(
@@ -131,7 +131,7 @@ class PublicationFormatGridHandler extends GridHandler {
 		);
 
 		// Columns
-		$monograph =& $this->getMonograph();
+		$monograph = $this->getMonograph();
 		$cellProvider = new PublicationFormatGridCellProvider($monograph->getId(), $this->getInCatalogEntryModal());
 		$this->addColumn(
 			new GridColumn(
@@ -190,7 +190,7 @@ class PublicationFormatGridHandler extends GridHandler {
 	 * @return array
 	 */
 	function getRequestArgs() {
-		$monograph =& $this->getMonograph();
+		$monograph = $this->getMonograph();
 
 		return array(
 			'submissionId' => $monograph->getId(),
@@ -201,10 +201,10 @@ class PublicationFormatGridHandler extends GridHandler {
 	/**
 	 * @see GridHandler::loadData
 	 */
-	function &loadData($request, $filter = null) {
-		$monograph =& $this->getMonograph();
+	function loadData($request, $filter = null) {
+		$monograph = $this->getMonograph();
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
-		$data =& $publicationFormatDao->getByMonographId($monograph->getId());
+		$data = $publicationFormatDao->getByMonographId($monograph->getId());
 		return $data->toAssociativeArray();
 	}
 
@@ -226,7 +226,7 @@ class PublicationFormatGridHandler extends GridHandler {
 	function editFormat($args, $request) {
 		// Identify the format to be updated
 		$publicationFormatId = (int) $request->getUserVar('publicationFormatId');
-		$monograph =& $this->getMonograph();
+		$monograph = $this->getMonograph();
 
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
 		$publicationFormat = $publicationFormatDao->getById($publicationFormatId);
@@ -249,7 +249,7 @@ class PublicationFormatGridHandler extends GridHandler {
 	function updateFormat($args, $request) {
 		// Identify the format to be updated
 		$publicationFormatId = (int) $request->getUserVar('publicationFormatId');
-		$monograph =& $this->getMonograph();
+		$monograph = $this->getMonograph();
 
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
 		$publicationFormat = $publicationFormatDao->getById($publicationFormatId);
@@ -272,12 +272,12 @@ class PublicationFormatGridHandler extends GridHandler {
 			}
 
 			// Create trivial notification.
-			$currentUser =& $request->getUser();
+			$currentUser = $request->getUser();
 			$notificationMgr = new NotificationManager();
 			$notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => $notificationContent));
 
 			// Prepare the grid row data
-			$row =& $this->getRowInstance();
+			$row = $this->getRowInstance();
 			$row->setGridId($this->getId());
 			$row->setId($publicationFormatId);
 			$row->setData($publicationFormat);
@@ -299,9 +299,9 @@ class PublicationFormatGridHandler extends GridHandler {
 	 * @return string Serialized JSON object
 	 */
 	function deleteFormat($args, $request) {
-		$press =& $request->getPress();
+		$press = $request->getPress();
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
-		$publicationFormat =& $publicationFormatDao->getById(
+		$publicationFormat = $publicationFormatDao->getById(
 			$request->getUserVar('publicationFormatId'),
 			null, // $pressId
 			$press->getId() // Make sure to validate the press context
@@ -315,10 +315,9 @@ class PublicationFormatGridHandler extends GridHandler {
 			// Create a tombstone for this publication format.
 			import('classes.publicationFormat.PublicationFormatTombstoneManager');
 			$publicationFormatTombstoneMgr = new PublicationFormatTombstoneManager();
-			$press =& $request->getPress();
 			$publicationFormatTombstoneMgr->insertTombstoneByPublicationFormat($publicationFormat, $press);
 
-			$currentUser =& $request->getUser();
+			$currentUser = $request->getUser();
 			$notificationMgr = new NotificationManager();
 			$notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.removedPublicationFormat')));
 
@@ -342,7 +341,7 @@ class PublicationFormatGridHandler extends GridHandler {
 	 * @return string Serialized JSON object
 	 */
 	function setAvailable($args, $request) {
-		$press =& $request->getPress();
+		$press = $request->getPress();
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
 		$publicationFormat =& $publicationFormatDao->getById(
 			$request->getUserVar('publicationFormatId'),

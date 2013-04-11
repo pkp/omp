@@ -32,7 +32,7 @@ class NotifyLinkAction extends LinkAction {
 		$requestArgs['tab'] = 'notify';
 
 		import('lib.pkp.classes.linkAction.request.AjaxModal');
-		$router =& $request->getRouter();
+		$router = $request->getRouter();
 		$ajaxModal = new AjaxModal(
 			$router->url(
 				$request, null,

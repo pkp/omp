@@ -48,7 +48,7 @@ class IndexHandler extends Handler {
 
 		// Public access.
 		$this->setupTemplate($request);
-		$templateMgr =& TemplateManager::getManager($request);
+		$templateMgr = TemplateManager::getManager($request);
 		$templateMgr->assign('helpTopicId', 'user.home');
 
 		if ($press) {

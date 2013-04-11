@@ -55,7 +55,7 @@ class GenreGridHandler extends SetupGridHandler {
 		$this->setInstructions('grid.genres.description');
 
 		// Add grid-level actions
-		$router =& $request->getRouter();
+		$router = $request->getRouter();
 		$actionArgs = array('gridId' => $this->getId());
 
 		import('lib.pkp.classes.linkAction.request.AjaxModal');
@@ -111,10 +111,9 @@ class GenreGridHandler extends SetupGridHandler {
 	 */
 	function loadData($request, $filter) {
 		// Elements to be displayed in the grid
-		$press =& $request->getPress();
+		$press = $request->getPress();
 		$genreDao = DAORegistry::getDAO('GenreDAO');
-		$genresFactory =& $genreDao->getEnabledByContextId($press->getId(), self::getRangeInfo($request, $this->getId()));
-		return $genresFactory;
+		return $genreDao->getEnabledByContextId($press->getId(), self::getRangeInfo($request, $this->getId()));
 	}
 
 	//
@@ -169,13 +168,13 @@ class GenreGridHandler extends SetupGridHandler {
 	 */
 	function updateGenre($args, $request) {
 		$genreId = isset($args['genreId']) ? (int) $args['genreId'] : null;
-		$press =& $request->getPress();
+		$press = $request->getPress();
 
 		import('controllers.grid.settings.genre.form.GenreForm');
 		$genreForm = new GenreForm($genreId);
 		$genreForm->readInputData();
 
-		$router =& $request->getRouter();
+		$router = $request->getRouter();
 
 		if ($genreForm->validate()) {
 			$genreForm->execute($args, $request);
@@ -215,7 +214,7 @@ class GenreGridHandler extends SetupGridHandler {
 	 * @return string
 	 */
 	function restoreGenres($args, $request) {
-		$press =& $request->getPress();
+		$press = $request->getPress();
 
 		// Restore all the genres in this press form the registry XML file
 		$genreDao = DAORegistry::getDAO('GenreDAO');

@@ -28,7 +28,7 @@ class UnconsiderReviewLinkAction extends LinkAction {
 	 */
 	function UnconsiderReviewLinkAction($request, &$reviewAssignment, &$monograph) {
 		// Instantiate the information center modal.
-		$router =& $request->getRouter();
+		$router = $request->getRouter();
 
 		$actionArgs = array(
 			'submissionId' => $reviewAssignment->getSubmissionId(),

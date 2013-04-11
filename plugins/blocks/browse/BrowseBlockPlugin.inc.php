@@ -43,8 +43,8 @@ class BrowseBlockPlugin extends BlockPlugin {
 	 * @param $templateMgr PKPTemplateManager
 	 * @return string
 	 */
-	function getContents(&$templateMgr, $request = null) {
-		$press =& $request->getPress();
+	function getContents($templateMgr, $request = null) {
+		$press = $request->getPress();
 
 		// Provide a list of series to browse
 		$seriesDao = DAORegistry::getDAO('SeriesDAO');

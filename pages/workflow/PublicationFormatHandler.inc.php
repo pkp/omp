@@ -70,7 +70,7 @@ class PublicationFormatHandler extends Handler {
 		parent::setupTemplate($request);
 		AppLocale::requireComponents(LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_APP_SUBMISSION, LOCALE_COMPONENT_APP_EDITOR);
 
-		$templateMgr =& TemplateManager::getManager($request);
+		$templateMgr = TemplateManager::getManager($request);
 
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		$stageId = $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
@@ -93,7 +93,7 @@ class PublicationFormatHandler extends Handler {
 	 */
 	function fetchPublicationFormat($args, $request) {
 		// Fetch the template
-		$templateMgr =& TemplateManager::getManager($request);
+		$templateMgr = TemplateManager::getManager($request);
 		return $templateMgr->fetchJson('workflow/publicationFormat.tpl');
 	}
 }

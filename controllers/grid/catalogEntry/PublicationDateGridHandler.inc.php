@@ -109,7 +109,7 @@ class PublicationDateGridHandler extends GridHandler {
 
 		if ($publicationDateId != '') {
 			$publicationDateDao = DAORegistry::getDAO('PublicationDateDAO');
-			$publicationDate =& $publicationDateDao->getById($publicationDateId, $this->getMonograph()->getId());
+			$publicationDate = $publicationDateDao->getById($publicationDateId, $this->getMonograph()->getId());
 			if ($publicationDate) {
 				$publicationFormatId =& $publicationDate->getPublicationFormatId();
 			}
@@ -117,7 +117,7 @@ class PublicationDateGridHandler extends GridHandler {
 			$publicationFormatId = (int) $request->getUserVar('publicationFormatId');
 		}
 
-		$monograph =& $this->getMonograph();
+		$monograph = $this->getMonograph();
 		$publicationFormat =& $publicationFormatDao->getById($publicationFormatId, $monograph->getId());
 
 		if ($publicationFormat) {
@@ -139,7 +139,7 @@ class PublicationDateGridHandler extends GridHandler {
 		$this->setTitle('grid.catalogEntry.publicationDates');
 
 		// Grid actions
-		$router =& $request->getRouter();
+		$router = $request->getRouter();
 		$actionArgs = $this->getRequestArgs();
 		$this->addAction(
 			new LinkAction(
@@ -195,7 +195,7 @@ class PublicationDateGridHandler extends GridHandler {
 	 * @return array
 	 */
 	function getRequestArgs() {
-		$monograph =& $this->getMonograph();
+		$monograph = $this->getMonograph();
 		$publicationFormat =& $this->getPublicationFormat();
 
 		return array(
@@ -207,10 +207,10 @@ class PublicationDateGridHandler extends GridHandler {
 	/**
 	 * @see GridHandler::loadData
 	 */
-	function &loadData($request, $filter = null) {
-		$publicationFormat =& $this->getPublicationFormat();
+	function loadData($request, $filter = null) {
+		$publicationFormat = $this->getPublicationFormat();
 		$publicationDateDao = DAORegistry::getDAO('PublicationDateDAO');
-		$data =& $publicationDateDao->getByPublicationFormatId($publicationFormat->getId());
+		$data = $publicationDateDao->getByPublicationFormatId($publicationFormat->getId());
 		return $data->toArray();
 	}
 
@@ -232,7 +232,7 @@ class PublicationDateGridHandler extends GridHandler {
 	function editDate($args, $request) {
 		// Identify the date to be updated
 		$publicationDateId = (int) $request->getUserVar('publicationDateId');
-		$monograph =& $this->getMonograph();
+		$monograph = $this->getMonograph();
 
 		$publicationDateDao = DAORegistry::getDAO('PublicationDateDAO');
 		$publicationDate = $publicationDateDao->getById($publicationDateId, $monograph->getId());
@@ -255,7 +255,7 @@ class PublicationDateGridHandler extends GridHandler {
 	function updateDate($args, $request) {
 		// Identify the code to be updated
 		$publicationDateId = $request->getUserVar('publicationDateId');
-		$monograph =& $this->getMonograph();
+		$monograph = $this->getMonograph();
 
 		$publicationDateDao = DAORegistry::getDAO('PublicationDateDAO');
 		$publicationDate = $publicationDateDao->getById($publicationDateId, $monograph->getId());
@@ -278,7 +278,7 @@ class PublicationDateGridHandler extends GridHandler {
 			}
 
 			// Create trivial notification.
-			$currentUser =& $request->getUser();
+			$currentUser = $request->getUser();
 			$notificationMgr = new NotificationManager();
 			$notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => $notificationContent));
 
@@ -310,13 +310,13 @@ class PublicationDateGridHandler extends GridHandler {
 		$publicationDateId = $request->getUserVar('publicationDateId');
 
 		$publicationDateDao = DAORegistry::getDAO('PublicationDateDAO');
-		$publicationDate =& $publicationDateDao->getById($publicationDateId, $this->getMonograph()->getId());
+		$publicationDate = $publicationDateDao->getById($publicationDateId, $this->getMonograph()->getId());
 		if ($publicationDate != null) { // authorized
 
 			$result = $publicationDateDao->deleteObject($publicationDate);
 
 			if ($result) {
-				$currentUser =& $request->getUser();
+				$currentUser = $request->getUser();
 				$notificationMgr = new NotificationManager();
 				$notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.removedPublicationDate')));
 				return DAO::getDataChangedEvent();

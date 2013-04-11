@@ -51,11 +51,11 @@ class SignoffGridRow extends GridRow {
 		$monographId = $monographFile->getMonographId();
 		$copyeditedFileId = $signoff->getFileId();
 
-		$user =& $request->getUser();
+		$user = $request->getUser();
 
 		if (!empty($rowId) && is_numeric($rowId)) {
 			// Actions
-			$router =& $request->getRouter();
+			$router = $request->getRouter();
 			$actionArgs = array_merge($this->getRequestArgs(),
 				array('signoffId' => $rowId));
 

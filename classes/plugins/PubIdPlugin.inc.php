@@ -72,8 +72,8 @@ class PubIdPlugin extends Plugin {
 	 * @see PKPPlugin::manage()
 	 */
 	function manage($verb, $args, &$message, &$messageParams, &$pluginModalContent = null) {
-		$request =& $this->getRequest();
-		$templateManager =& TemplateManager::getManager($request);
+		$request = $this->getRequest();
+		$templateManager = TemplateManager::getManager($request);
 		$templateManager->register_function('plugin_url', array(&$this, 'smartyPluginUrl'));
 		if (!$this->getEnabled() && $verb != 'enable') return false;
 		switch ($verb) {
@@ -90,7 +90,7 @@ class PubIdPlugin extends Plugin {
 				return false;
 
 			case 'settings':
-				$press =& $request->getPress();
+				$press = $request->getPress();
 
 				$settingsFormName = $this->getSettingsFormName();
 				$settingsFormNameParts = explode('.', $settingsFormName);
@@ -374,9 +374,9 @@ class PubIdPlugin extends Plugin {
 	 */
 	function getEnabled($pressId = null) {
 		if (!$pressId) {
-			$request =& $this->getRequest();
-			$router =& $request->getRouter();
-			$press =& $router->getContext($request);
+			$request = $this->getRequest();
+			$router = $request->getRouter();
+			$press = $router->getContext($request);
 
 			if (!$press) return false;
 			$pressId = $press->getid();
@@ -389,8 +389,8 @@ class PubIdPlugin extends Plugin {
 	 * @param $enabled boolean
 	 */
 	function setEnabled($enabled) {
-		$request =& $this->getRequest();
-		$press =& $request->getPress();
+		$request = $this->getRequest();
+		$press = $request->getPress();
 		if ($press) {
 			$this->updateSetting(
 				$press->getId(),

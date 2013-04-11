@@ -79,7 +79,7 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 			$submissionMetadataViewForm->execute($request);
 			// Create trivial notification.
 			$notificationManager = new NotificationManager();
-			$user =& $request->getUser();
+			$user = $request->getUser();
 			$notificationManager->createTrivialNotification($user->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.savedSubmissionMetadata')));
 		} else {
 			$json->setStatus(false);
@@ -96,17 +96,17 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 	function viewInformationCenter($args, $request) {
 		// Get the latest history item to display in the header
 		$monographEventLogDao = DAORegistry::getDAO('SubmissionEventLogDAO');
-		$monographEvents =& $monographEventLogDao->getByMonographId($this->_monograph->getId());
-		$lastEvent =& $monographEvents->next();
+		$monographEvents = $monographEventLogDao->getByMonographId($this->_monograph->getId());
+		$lastEvent = $monographEvents->next();
 
 		// Assign variables to the template manager and display
-		$templateMgr =& TemplateManager::getManager($request);
+		$templateMgr = TemplateManager::getManager($request);
 		if(isset($lastEvent)) {
 			$templateMgr->assign_by_ref('lastEvent', $lastEvent);
 
 			// Get the user who posted the last note
 			$userDao = DAORegistry::getDAO('UserDAO');
-			$user =& $userDao->getById($lastEvent->getUserId());
+			$user = $userDao->getById($lastEvent->getUserId());
 			$templateMgr->assign_by_ref('lastEventUser', $user);
 		}
 
@@ -146,7 +146,7 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 			$json = new JSONMessage(true);
 
 			// Save to event log
-			$user =& $request->getUser();
+			$user = $request->getUser();
 			$userId = $user->getId();
 			$this->_logEvent($request, SUBMISSION_LOG_NOTE_POSTED);
 		} else {
@@ -183,9 +183,9 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 		import('classes.mail.MonographMailTemplate');
 		$template = new MonographMailTemplate($this->_monograph, $templateId);
 		if ($template) {
-			$user =& $request->getUser();
-			$dispatcher =& $request->getDispatcher();
-			$press =& $request->getPress();
+			$user = $request->getUser();
+			$dispatcher = $request->getDispatcher();
+			$press = $request->getPress();
 			$template->assignParams(array(
 				'pressUrl' => $dispatcher->url($request, ROUTE_PAGE, $press->getPath()),
 				'editorialContactSignature' => $user->getContactSignature(),
@@ -217,7 +217,7 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 
 			$this->_logEvent($request, SUBMISSION_LOG_MESSAGE_SENT);
 			// Create trivial notification.
-			$currentUser =& $request->getUser();
+			$currentUser = $request->getUser();
 			$notificationMgr = new NotificationManager();
 			$notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('informationCenter.history.messageSent')));
 		} else {
@@ -235,7 +235,7 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 	 */
 	function listHistory($args, $request) {
 		$this->setupTemplate($request);
-		$templateMgr =& TemplateManager::getManager($request);
+		$templateMgr = TemplateManager::getManager($request);
 
 		// Get all monograph events
 		$monographEventLogDao = DAORegistry::getDAO('SubmissionEventLogDAO');

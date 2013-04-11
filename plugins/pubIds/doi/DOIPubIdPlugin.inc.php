@@ -62,7 +62,7 @@ class DOIPubIdPlugin extends PubIdPlugin {
 	 * @return LinkAction
 	 */
 	function getManagementVerbLinkAction($request, $verb) {
-		$router =& $request->getRouter();
+		$router = $request->getRouter();
 
 		list($verbName, $verbLocalized) = $verb;
 
@@ -99,7 +99,7 @@ class DOIPubIdPlugin extends PubIdPlugin {
 			return null;
 		}
 
-		$press =& $this->_getPress($pressId);
+		$press = $this->_getPress($pressId);
 		if (!$press) return null;
 		$pressId = $press->getId();
 
@@ -251,9 +251,9 @@ class DOIPubIdPlugin extends PubIdPlugin {
 		assert(is_numeric($pressId));
 
 		// Get the press object from the context (optimized).
-		$request =& $this->getRequest();
-		$router =& $request->getRouter();
-		$press =& $router->getContext($request); /* @var $press Press */
+		$request = $this->getRequest();
+		$router = $request->getRouter();
+		$press = $router->getContext($request); /* @var $press Press */
 
 		// Check whether we still have to retrieve the press from the database.
 		if (!$press || $press->getId() != $pressId) {

@@ -42,7 +42,7 @@ class SeriesEditorSubmissionRequiredPolicy extends DataObjectRequiredPolicy {
 		if (!is_a($seriesEditorSubmission, 'SeriesEditorSubmission')) return AUTHORIZATION_DENY;
 
 		// Validate that this monograph belongs to the current press.
-		$press =& $this->_request->getPress();
+		$press = $this->_request->getPress();
 		if ($press->getId() !== $seriesEditorSubmission->getPressId()) return AUTHORIZATION_DENY;
 
 		// Save the monograph to the authorization context.

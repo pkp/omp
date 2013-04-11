@@ -43,7 +43,7 @@ class SignoffExistsAccessPolicy extends AuthorizationPolicy {
 		if (!is_a($signoff, 'Signoff')) return AUTHORIZATION_DENY;
 
 		// Check that we know what the current press is
-		$press =& $this->_request->getPress();
+		$press = $this->_request->getPress();
 		if (!is_a($press, 'Press')) return AUTHORIZATION_DENY;
 
 		// Ensure that the signoff belongs to the current press
@@ -70,7 +70,7 @@ class SignoffExistsAccessPolicy extends AuthorizationPolicy {
 				if (!is_a($monographFile, 'MonographFile')) return AUTHORIZATION_DENY;
 
 				// Get the monograph
-				$monograph =& $monographDao->getById($monographFile->getSubmissionId(), $press->getId());
+				$monograph = $monographDao->getById($monographFile->getSubmissionId(), $press->getId());
 				if (!is_a($monograph, 'Monograph')) return AUTHORIZATION_DENY;
 
 				// Integrity checks OK. Permit.

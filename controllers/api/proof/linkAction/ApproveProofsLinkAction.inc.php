@@ -35,7 +35,7 @@ class ApproveProofsLinkAction extends LinkAction {
 		$actionArgs['stageId'] = WORKFLOW_STAGE_ID_PRODUCTION;
 		$actionArgs['publicationFormatId'] = $publicationFormatId;
 
-		$dispatcher =& $request->getDispatcher();
+		$dispatcher = $request->getDispatcher();
 		$modal = new AjaxModal(
 			$dispatcher->url(
 				$request, ROUTE_COMPONENT, null,

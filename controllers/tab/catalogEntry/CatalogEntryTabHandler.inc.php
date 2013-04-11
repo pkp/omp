@@ -112,8 +112,8 @@ class CatalogEntryTabHandler extends Handler {
 
 		import('controllers.modals.submissionMetadata.form.CatalogEntrySubmissionReviewForm');
 
-		$monograph =& $this->getMonograph();
-		$stageId =& $this->getStageId();
+		$monograph = $this->getMonograph();
+		$stageId = $this->getStageId();
 
 		$catalogEntrySubmissionReviewForm = new CatalogEntrySubmissionReviewForm($monograph->getId(), $stageId, array('displayedInContainer' => true));
 
@@ -152,9 +152,9 @@ class CatalogEntryTabHandler extends Handler {
 	function catalogMetadata($args, $request) {
 		import('controllers.tab.catalogEntry.form.CatalogEntryCatalogMetadataForm');
 
-		$monograph =& $this->getMonograph();
-		$stageId =& $this->getStageId();
-		$user =& $request->getUser();
+		$monograph = $this->getMonograph();
+		$stageId = $this->getStageId();
+		$user = $request->getUser();
 
 		$catalogEntryCatalogMetadataForm = new CatalogEntryCatalogMetadataForm($monograph->getId(), $user->getId(), $stageId, array('displayedInContainer' => true));
 
@@ -174,8 +174,8 @@ class CatalogEntryTabHandler extends Handler {
 		$publicationFormatId = (int) $request->getUserVar('publicationFormatId');
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
 
-		$monograph =& $this->getMonograph();
-		$stageId =& $this->getStageId();
+		$monograph = $this->getMonograph();
+		$stageId = $this->getStageId();
 
 		$publicationFormat =& $publicationFormatDao->getById($publicationFormatId, $monograph->getId());
 
@@ -201,8 +201,8 @@ class CatalogEntryTabHandler extends Handler {
 		$json = new JSONMessage();
 		$form = null;
 
-		$monograph =& $this->getMonograph();
-		$stageId =& $this->getStageId();
+		$monograph = $this->getMonograph();
+		$stageId = $this->getStageId();
 		$notificationKey = null;
 
 		switch ($this->getCurrentTab()) {
@@ -214,14 +214,14 @@ class CatalogEntryTabHandler extends Handler {
 				break;
 			case 'catalog':
 				import('controllers.tab.catalogEntry.form.CatalogEntryCatalogMetadataForm');
-				$user =& $request->getUser();
+				$user = $request->getUser();
 				$form = new CatalogEntryCatalogMetadataForm($monograph->getId(), $user->getId(), $stageId, array('displayedInContainer' => true, 'tabPos' => $this->getTabPosition()));
 				$notificationKey = 'notification.savedCatalogMetadata';
 				MonographLog::logEvent($request, $monograph, SUBMISSION_LOG_CATALOG_METADATA_UPDATE, 'submission.event.catalogMetadataUpdated');
 				break;
 			default: // publication format tabs
 				import('controllers.tab.catalogEntry.form.CatalogEntryPublicationMetadataForm');
-				$publicationFormatId =& $request->getUserVar('publicationFormatId');
+				$publicationFormatId = $request->getUserVar('publicationFormatId');
 
 				// perform some validation to make sure this format is enabled and assigned to this monograph
 				$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
@@ -246,7 +246,7 @@ class CatalogEntryTabHandler extends Handler {
 				$form->execute($request);
 				// Create trivial notification in place on the form
 				$notificationManager = new NotificationManager();
-				$user =& $request->getUser();
+				$user = $request->getUser();
 				$notificationManager->createTrivialNotification($user->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __($notificationKey)));
 			} else {
 				// Could not validate; redisplay the form.
@@ -255,8 +255,8 @@ class CatalogEntryTabHandler extends Handler {
 			}
 
 			if ($request->getUserVar('displayedInContainer')) {
-				$router =& $request->getRouter();
-				$dispatcher =& $router->getDispatcher();
+				$router = $request->getRouter();
+				$dispatcher = $router->getDispatcher();
 				$url = $dispatcher->url($request, ROUTE_COMPONENT, null, 'modals.submissionMetadata.CatalogEntryHandler', 'fetch', null, array('submissionId' => $monograph->getId(), 'stageId' => $stageId, 'tabPos' => $this->getTabPosition(), 'hideHelp' => true));
 				$json->setAdditionalAttributes(array('reloadContainer' => true, 'tabsUrl' => $url));
 				$json->setContent(true); // prevents modal closure

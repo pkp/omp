@@ -53,8 +53,8 @@ class CatalogBookHandler extends Handler {
 	 * @param $request PKPRequest
 	 */
 	function book($args, $request) {
-		$templateMgr =& TemplateManager::getManager($request);
-		$press =& $request->getPress();
+		$templateMgr = TemplateManager::getManager($request);
+		$press = $request->getPress();
 		$this->setupTemplate($request);
 		AppLocale::requireComponents(LOCALE_COMPONENT_APP_SUBMISSION); // submission.synopsis
 
@@ -133,16 +133,16 @@ class CatalogBookHandler extends Handler {
 	 * @param $request PKPRequest
 	 */
 	function download($args, $request) {
-		$press =& $request->getPress();
+		$press = $request->getPress();
 		$this->setupTemplate($request);
 
 		$monographId = (int) array_shift($args); // Validated thru auth
 		$publicationFormatId = (int) array_shift($args);
 		$fileIdAndRevision = array_shift($args);
 
-		$publishedMonograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_PUBLISHED_MONOGRAPH);
+		$publishedMonograph = $this->getAuthorizedContextObject(ASSOC_TYPE_PUBLISHED_MONOGRAPH);
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
-		$publicationFormat =& $publicationFormatDao->getById($publicationFormatId, $publishedMonograph->getId());
+		$publicationFormat = $publicationFormatDao->getById($publicationFormatId, $publishedMonograph->getId());
 		if (!$publicationFormat || !$publicationFormat->getIsApproved() || !$publicationFormat->getIsAvailable()) fatalError('Invalid publication format specified.');
 
 		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
@@ -154,7 +154,7 @@ class CatalogBookHandler extends Handler {
 		}
 
 		$ompCompletedPaymentDao = DAORegistry::getDAO('OMPCompletedPaymentDAO');
-		$user =& $request->getUser();
+		$user = $request->getUser();
 		if ($submissionFile->getDirectSalesPrice() === '0' || ($user && $ompCompletedPaymentDao->hasPaidPurchaseFile($user->getId(), $fileIdAndRevision))) {
 			// Paid purchase or open access. Allow download.
 			import('lib.pkp.classes.file.SubmissionFileManager');

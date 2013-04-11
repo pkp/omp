@@ -128,7 +128,7 @@ class SubmissionFilesCategoryGridDataProvider extends CategoryGridDataProvider {
 	/**
 	 * @see SubmissionFilesGridDataProvider::getAddFileAction()
 	 */
-	function &getAddFileAction($request) {
+	function getAddFileAction($request) {
 		$dataProvider = $this->getDataProvider();
 		return $dataProvider->getAddFileAction($request);
 	}

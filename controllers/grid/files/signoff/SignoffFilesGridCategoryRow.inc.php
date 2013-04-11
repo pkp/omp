@@ -51,7 +51,7 @@ class SignoffFilesGridCategoryRow extends GridCategoryRow {
 				'fileId' => $monographFile->getFileId()
 			);
 
-			$router =& $request->getRouter();
+			$router = $request->getRouter();
 
 			$this->addAction(
 				new LinkAction(

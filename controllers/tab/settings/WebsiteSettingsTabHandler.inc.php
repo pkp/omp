@@ -178,7 +178,7 @@ class WebsiteSettingsTabHandler extends ManagerSettingsTabHandler {
 			return $json->getString();
 		}
 
-		$press =& $request->getPress();
+		$press = $request->getPress();
 		$pressSettingsDao = DAORegistry::getDAO('PressSettingsDAO');
 		$pressSettingsDao->reloadLocalizedDefaultSettings(
 			$press->getId(), 'registry/pressSettings.xml',

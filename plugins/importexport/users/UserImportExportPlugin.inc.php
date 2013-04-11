@@ -48,8 +48,8 @@ class UserImportExportPlugin extends ImportExportPlugin {
 	}
 
 	function display($args, $request) {
-		$templateMgr =& TemplateManager::getManager($request);
-		$press =& $request->getPress();
+		$templateMgr = TemplateManager::getManager($request);
+		$press = $request->getPress();
 
 		parent::display($args, $request);
 
@@ -95,7 +95,7 @@ class UserImportExportPlugin extends ImportExportPlugin {
 				$temporaryFileId = $request->getUserVar('temporaryFileId');
 				if ($temporaryFileId) {
 					$temporaryFileDao = DAORegistry::getDAO('TemporaryFileDAO');
-					$user =& $request->getUser();
+					$user = $request->getUser();
 					$temporaryFile =& $temporaryFileDao->getTemporaryFile($temporaryFileId, $user->getId());
 					$temporaryFilePath = $temporaryFile->getFilePath();
 					if ($temporaryFilePath  !== false) {
@@ -199,11 +199,11 @@ class UserImportExportPlugin extends ImportExportPlugin {
 				break;
 			case 'exportAll':
 				$this->import('UserExportDom');
-				$users =& $roleDao->getUsersByRoleId(null, $press->getId());
-				$users =& $users->toArray();
+				$users = $roleDao->getUsersByRoleId(null, $press->getId());
+				$users = $users->toArray();
 
 				$userExportDom = new UserExportDom();
-				$doc =& $userExportDom->exportUsers($press, $users);
+				$doc = $userExportDom->exportUsers($press, $users);
 				header("Content-Type: application/xml");
 				header("Cache-Control: private");
 				header("Content-Disposition: attachment; filename=\"users.xml\"");
@@ -215,7 +215,7 @@ class UserImportExportPlugin extends ImportExportPlugin {
 				$rolePaths = array();
 				foreach ($request->getUserVar('roles') as $rolePath) {
 					$roleId = $roleDao->getRoleIdFromPath($rolePath);
-					$thisRoleUsers =& $roleDao->getUsersByRoleId($roleId, $press->getId());
+					$thisRoleUsers = $roleDao->getUsersByRoleId($roleId, $press->getId());
 					foreach ($thisRoleUsers->toArray() as $user) {
 						$users[$user->getId()] = $user;
 					}
@@ -292,14 +292,14 @@ class UserImportExportPlugin extends ImportExportPlugin {
 				$roleDao = DAORegistry::getDAO('RoleDAO');
 				$rolePaths = null;
 				if (empty($args)) {
-					$users =& $roleDao->getUsersByRoleId(null, $press->getId());
-					$users =& $users->toArray();
+					$users = $roleDao->getUsersByRoleId(null, $press->getId());
+					$users = $users->toArray();
 				} else {
 					$users = array();
 					$rolePaths = array();
 					foreach ($args as $rolePath) {
 						$roleId = $roleDao->getRoleIdFromPath($rolePath);
-						$thisRoleUsers =& $roleDao->getUsersByRoleId($roleId, $press->getId());
+						$thisRoleUsers = $roleDao->getUsersByRoleId($roleId, $press->getId());
 						foreach ($thisRoleUsers->toArray() as $user) {
 							$users[$user->getId()] = $user;
 						}

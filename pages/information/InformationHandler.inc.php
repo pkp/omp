@@ -65,7 +65,7 @@ class InformationHandler extends Handler {
 				return;
 		}
 
-		$templateMgr =& TemplateManager::getManager($request);
+		$templateMgr = TemplateManager::getManager($request);
 		$templateMgr->assign('pageCrumbTitle', $pageCrumbTitle);
 		$templateMgr->assign('pageTitle', $pageTitle);
 		$templateMgr->assign('content', $content);
@@ -102,7 +102,7 @@ class InformationHandler extends Handler {
 		parent::setupTemplate($request);
 		AppLocale::requireComponents(LOCALE_COMPONENT_APP_MANAGER); // FIXME needed?
 		if (!$press->getSetting('restrictSiteAccess')) {
-			$templateMgr =& TemplateManager::getManager($request);
+			$templateMgr = TemplateManager::getManager($request);
 			$templateMgr->setCacheability(CACHEABILITY_PUBLIC);
 		}
 	}

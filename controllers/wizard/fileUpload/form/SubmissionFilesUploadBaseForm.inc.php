@@ -49,7 +49,7 @@ class SubmissionFilesUploadBaseForm extends PKPSubmissionFilesUploadBaseForm {
 					$this->getAssocId(), $this->getData('submissionId'), $this->getData('fileStage'));
 			} else {
 				// Check with the parent class for things besides publication formats.
-				$this->_submissionFiles =& parent::getSubmissionFiles();
+				$this->_submissionFiles = parent::getSubmissionFiles();
 			}
 		}
 

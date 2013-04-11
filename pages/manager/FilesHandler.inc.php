@@ -61,8 +61,8 @@ class FilesHandler extends ManagerHandler {
 				closedir($dh);
 			}
 			ksort($files);
-			$templateMgr =& TemplateManager::getManager($request);
-			$templateMgr->assign_by_ref('files', $files);
+			$templateMgr = TemplateManager::getManager($request);
+			$templateMgr->assign('files', $files);
 			$templateMgr->assign('currentDir', $currentDir);
 			$templateMgr->assign('parentDir', $parentDir);
 			$templateMgr->assign('helpTopicId','press.managementPages.fileBrowser');
@@ -152,7 +152,7 @@ class FilesHandler extends ManagerHandler {
 	 * @return string
 	 */
 	function _getRealFilesDir($request, $currentDir) {
-		$press =& $request->getPress();
+		$press = $request->getPress();
 		import('lib.pkp.classes.file.ContextFileManager');
 		$pressFileManager = new PrivateFileManager($press->getId());
 

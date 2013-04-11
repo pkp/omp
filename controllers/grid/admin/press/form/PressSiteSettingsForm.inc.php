@@ -98,7 +98,7 @@ class PressSiteSettingsForm extends ContextSiteSettingsForm {
 			$series = null;
 		} else {
 			$isNewPress = true;
-			$site =& $request->getSite();
+			$site = $request->getSite();
 
 			// Give it a default primary locale
 			$press->setPrimaryLocale($site->getPrimaryLocale());
@@ -123,8 +123,8 @@ class PressSiteSettingsForm extends ContextSiteSettingsForm {
 
 			// Make the site administrator the press manager of newly created presses
 			$userGroupDao = DAORegistry::getDAO('UserGroupDAO');
-			$sessionManager =& SessionManager::getManager();
-			$userSession =& $sessionManager->getUserSession();
+			$sessionManager = SessionManager::getManager();
+			$userSession = $sessionManager->getUserSession();
 			if ($userSession->getUserId() != null && $userSession->getUserId() != 0 && !empty($contextId)) {
 				// get the default site admin user group
 				$managerUserGroup =& $userGroupDao->getDefaultByRoleId($contextId, ROLE_ID_MANAGER);

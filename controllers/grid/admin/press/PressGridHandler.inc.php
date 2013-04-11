@@ -127,7 +127,7 @@ class PressGridHandler extends ContextGridHandler {
 
 			// Create the notification.
 			$notificationMgr = new NotificationManager();
-			$user =& $request->getUser();
+			$user = $request->getUser();
 			$notificationMgr->createTrivialNotification($user->getId());
 
 			// Check for the two cases above.
@@ -168,12 +168,12 @@ class PressGridHandler extends ContextGridHandler {
 	 */
 	function deleteContext($args, $request) {
 		// Identify the current context.
-		$context =& $request->getContext();
+		$context = $request->getContext();
 
 		// Identify the press Id.
 		$pressId = $request->getUserVar('rowId');
 		$pressDao = DAORegistry::getDAO('PressDAO');
-		$press =& $pressDao->getById($pressId);
+		$press = $pressDao->getById($pressId);
 
 		$json = new JSONMessage();
 
@@ -197,7 +197,7 @@ class PressGridHandler extends ContextGridHandler {
 			// If user is deleting the same press where he is...
 			if($context->getId() == $pressId) {
 				// return a redirect js event to index handler.
-				$dispatcher =& $request->getDispatcher();
+				$dispatcher = $request->getDispatcher();
 				$url = $dispatcher->url($request, ROUTE_PAGE, null, 'index');
 				return $request->redirectUrlJson($url);
 			}

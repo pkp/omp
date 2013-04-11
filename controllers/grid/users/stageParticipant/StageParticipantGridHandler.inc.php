@@ -114,7 +114,7 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 		// The "Add stage participant" grid action is available to
 		// Editors and Managers only
 		if ($this->_canAdminister()) {
-			$router =& $request->getRouter();
+			$router = $request->getRouter();
 			$this->addAction(
 				new LinkAction(
 					'requestAccount',
@@ -141,7 +141,7 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 	 */
 	function getCategoryData(&$userGroup) {
 		// Retrieve useful objects.
-		$monograph =& $this->getMonograph();
+		$monograph = $this->getMonograph();
 		$stageId = $this->getStageId();
 
 		$stageAssignmentDao = DAORegistry::getDAO('StageAssignmentDAO'); /* @var $stageAssignmentDao StageAssignmentDAO */
@@ -188,7 +188,7 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 	 * @see GridHandler::getRequestArgs()
 	 */
 	function getRequestArgs() {
-		$monograph =& $this->getMonograph();
+		$monograph = $this->getMonograph();
 		return array_merge(
 			parent::getRequestArgs(),
 			array('submissionId' => $monograph->getId(),
@@ -200,9 +200,9 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 	 * @see GridHandler::loadData()
 	 */
 	function loadData($request, $filter) {
-		$userGroupDao = & DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */
-		$press =& $request->getPress();
-		$userGroups =& $userGroupDao->getUserGroupsByStage($press->getId(), $this->getStageId(), false, true);
+		$userGroupDao = DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */
+		$press = $request->getPress();
+		$userGroups = $userGroupDao->getUserGroupsByStage($press->getId(), $this->getStageId(), false, true);
 
 		return $userGroups;
 	}
@@ -218,9 +218,9 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 	 * @return string Serialized JSON object
 	 */
 	function addParticipant($args, $request) {
-		$monograph =& $this->getMonograph();
+		$monograph = $this->getMonograph();
 		$stageId = $this->getStageId();
-		$userGroups =& $this->getGridDataElements($request);
+		$userGroups = $this->getGridDataElements($request);
 
 		import('controllers.grid.users.stageParticipant.form.AddParticipantForm');
 		$form = new AddParticipantForm($monograph, $stageId, $userGroups);
@@ -238,7 +238,7 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 	 * @return string Serialized JSON object
 	 */
 	function saveParticipant($args, $request) {
-		$monograph =& $this->getMonograph();
+		$monograph = $this->getMonograph();
 		$stageId = $this->getStageId();
 		$userGroups =& $this->getGridDataElements($request);
 
@@ -278,7 +278,7 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 			}
 
 			// Create trivial notification.
-			$user =& $request->getUser();
+			$user = $request->getUser();
 			$notificationMgr->createTrivialNotification($user->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.addedStageParticipant')));
 
 			// Log addition.
@@ -301,12 +301,12 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 	 * @return void
 	 */
 	function deleteParticipant($args, $request) {
-		$monograph =& $this->getMonograph();
+		$monograph = $this->getMonograph();
 		$stageId = $this->getStageId();
 		$assignmentId = (int) $request->getUserVar('assignmentId');
 
 		$stageAssignmentDao = DAORegistry::getDAO('StageAssignmentDAO'); /* @var $stageAssignmentDao StageAssignmentDAO */
-		$stageAssignment =& $stageAssignmentDao->getById($assignmentId);
+		$stageAssignment = $stageAssignmentDao->getById($assignmentId);
 		if (!$stageAssignment || $stageAssignment->getSubmissionId() != $monograph->getId()) {
 			fatalError('Invalid Assignment');
 		}
@@ -323,7 +323,7 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 				$signoff->getAssocType() != ASSOC_TYPE_SUBMISSION_FILE ||
 				$signoff->getDateCompleted()) continue;
 			$monographFileId = $signoff->getAssocId();
-			$monographFile =& $submissionFileDao->getLatestRevision($monographFileId, null, $stageAssignment->getSubmissionId());
+			$monographFile = $submissionFileDao->getLatestRevision($monographFileId, null, $stageAssignment->getSubmissionId());
 			if (is_a($monographFile, 'MonographFile')) {
 				$signoffDao->deleteObject($signoff);
 			}
@@ -356,9 +356,9 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 
 		// Log removal.
 		$userDao = DAORegistry::getDAO('UserDAO');
-		$assignedUser =& $userDao->getById($userId);
+		$assignedUser = $userDao->getById($userId);
 		$userGroupDao = DAORegistry::getDAO('UserGroupDAO');
-		$userGroup =& $userGroupDao->getById($stageAssignment->getUserGroupId());
+		$userGroup = $userGroupDao->getById($stageAssignment->getUserGroupId());
 		import('classes.log.MonographLog');
 		MonographLog::logEvent($request, $monograph, SUBMISSION_LOG_REMOVE_PARTICIPANT, 'submission.event.participantRemoved', array('name' => $assignedUser->getFullName(), 'username' => $assignedUser->getUsername(), 'userGroupName' => $userGroup->getLocalizedName()));
 
@@ -373,13 +373,13 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 	 * @return JSON string
 	 */
 	function fetchUserList($args, $request) {
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH); /* @var $monograph Monograph */
+		$monograph = $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH); /* @var $monograph Monograph */
 		$stageId = $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
 
 		$userGroupId = (int) $request->getUserVar('userGroupId');
 
 		$userStageAssignmentDao = DAORegistry::getDAO('UserStageAssignmentDAO'); /* @var $userStageAssignmentDao UserStageAssignmentDAO */
-		$users =& $userStageAssignmentDao->getUsersNotAssignedToStageInUserGroup($monograph->getId(), $stageId, $userGroupId);
+		$users = $userStageAssignmentDao->getUsersNotAssignedToStageInUserGroup($monograph->getId(), $stageId, $userGroupId);
 
 		$userGroupDao = DAORegistry::getDAO('UserGroupDAO');
 		$userGroup =& $userGroupDao->getById($userGroupId);

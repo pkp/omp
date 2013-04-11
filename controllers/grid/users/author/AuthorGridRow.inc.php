@@ -29,7 +29,7 @@ class AuthorGridRow extends PKPAuthorGridRow {
 	 * @return array
 	 */
 	function getRequestArgs() {
-		$monograph =& $this->getSubmission();
+		$monograph = $this->getSubmission();
 		return array(
 			'submissionId' => $monograph->getId()
 		);
@@ -42,15 +42,15 @@ class AuthorGridRow extends PKPAuthorGridRow {
 	 * @return boolean
 	 */
 	function allowedToCreateUser($request) {
-		$submission =& $this->getSubmission();
+		$submission = $this->getSubmission();
 
-		$user =& $request->getUser();
+		$user = $request->getUser();
 		$stageAssignmentDao = DAORegistry::getDAO('StageAssignmentDAO');
 		$userGroupDao = DAORegistry::getDAO('UserGroupDAO');
 
 		$stageAssignments =& $stageAssignmentDao->getBySubmissionAndStageId($submission->getId(), $submission->getStageId(), null, $user->getId());
-		while ($stageAssignment =& $stageAssignments->next()) {
-			$userGroup =& $userGroupDao->getById($stageAssignment->getUserGroupId());
+		while ($stageAssignment = $stageAssignments->next()) {
+			$userGroup = $userGroupDao->getById($stageAssignment->getUserGroupId());
 			if (in_array($userGroup->getRoleId(), array(ROLE_ID_MANAGER, ROLE_ID_SUB_EDITOR, ROLE_ID_ASSISTANT))) {
 				return true;
 				break;

@@ -58,13 +58,13 @@ class EditorDecisionWithEmailForm extends EditorDecisionForm {
 	 * @param $actionLabels array
 	 */
 	function initData($args, $request, $actionLabels) {
-		$press =& $request->getPress();
-		$router =& $request->getRouter();
-		$dispatcher =& $router->getDispatcher();
+		$press = $request->getPress();
+		$router = $request->getRouter();
+		$dispatcher = $router->getDispatcher();
 
 		$seriesEditorSubmission =& $this->getSeriesEditorSubmission();
 		$submitter = $seriesEditorSubmission->getUser();
-		$user =& $request->getUser();
+		$user = $request->getUser();
 
 		import('classes.mail.MonographMailTemplate');
 		$emailKeys = array(
@@ -127,7 +127,7 @@ class EditorDecisionWithEmailForm extends EditorDecisionForm {
 		// If we have a review round, then we are in a review stage.
 		if (is_a($reviewRound, 'ReviewRound')) {
 			// URL to retrieve peer reviews:
-			$router =& $request->getRouter();
+			$router = $request->getRouter();
 			$submission =& $this->getSeriesEditorSubmission();
 			$stageId = $reviewRound->getStageId();
 			$this->setData(
@@ -148,7 +148,7 @@ class EditorDecisionWithEmailForm extends EditorDecisionForm {
 		// save operation to allow the EditorDecisionHandler authorize the review
 		// round object.
 		if ($this->getSaveFormOperation()) {
-			$templateMgr =& TemplateManager::getManager($request);
+			$templateMgr = TemplateManager::getManager($request);
 			$templateMgr->assign('saveFormOperation', $this->getSaveFormOperation());
 		}
 
@@ -260,8 +260,8 @@ class EditorDecisionWithEmailForm extends EditorDecisionForm {
 
 		// Send the email.
 		if (!$this->getData('skipEmail')) {
-			$router =& $request->getRouter();
-			$dispatcher =& $router->getDispatcher();
+			$router = $request->getRouter();
+			$dispatcher = $router->getDispatcher();
 			$paramArray = array(
 				'authorUsername' => $submitter->getUsername(),
 				'submissionUrl' => $dispatcher->url($request, ROUTE_PAGE, null, 'authorDashboard', 'submission', $seriesEditorSubmission->getId()),

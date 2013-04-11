@@ -40,10 +40,10 @@ class SignoffStatusFromSignoffGridColumn extends BaseSignoffStatusColumn {
 		$actions = array();
 		if (in_array($status, array('accepted', 'new'))) {
 			// Retrieve the submission file.
-			$monographFile =& $this->getMonographFile($row);
+			$monographFile = $this->getMonographFile($row);
 
 			// Retrieve the signoff
-			$signoff =& $row->getData();
+			$signoff = $row->getData();
 
 			// Action to signoff on a file -- Lets user interact with their own rows.;
 			import('controllers.api.signoff.linkAction.AddSignoffFileLinkAction');
@@ -85,9 +85,9 @@ class SignoffStatusFromSignoffGridColumn extends BaseSignoffStatusColumn {
 	 * @param $row GridRow
 	 * @return string
 	 */
-	function _getSignoffStatus(&$row) {
-		$monographFile =& $this->getMonographFile($row);
-		$signoff =& $row->getData();
+	function _getSignoffStatus($row) {
+		$monographFile = $this->getMonographFile($row);
+		$signoff = $row->getData();
 
 		if ($signoff->getDateCompleted()) {
 			return 'completed';

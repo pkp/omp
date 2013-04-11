@@ -84,7 +84,7 @@ class AuthorGridHandler extends PKPAuthorGridHandler {
 	 * @return array
 	 */
 	function getRequestArgs() {
-		$monograph =& $this->getSubmission();
+		$monograph = $this->getSubmission();
 		return array(
 			'submissionId' => $monograph->getId()
 		);
@@ -95,7 +95,7 @@ class AuthorGridHandler extends PKPAuthorGridHandler {
 	 * @return boolean
 	 */
 	function hasAddAction() {
-		$monograph =& $this->getSubmission();
+		$monograph = $this->getSubmission();
 		$userRoles = $this->getAuthorizedContextObject(ASSOC_TYPE_USER_ROLES);
 		if ($monograph->getDateSubmitted() == null || array_intersect(array(ROLE_ID_MANAGER, ROLE_ID_SUB_EDITOR), $userRoles))
 			return true;
