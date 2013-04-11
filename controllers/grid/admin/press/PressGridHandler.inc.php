@@ -32,7 +32,7 @@ class PressGridHandler extends ContextGridHandler {
 	/**
 	 * @see PKPHandler::initialize()
 	 */
-	function initialize(&$request) {
+	function initialize($request) {
 		// Load user-related translations.
 		AppLocale::requireComponents(
 			LOCALE_COMPONENT_APP_ADMIN,
@@ -63,7 +63,7 @@ class PressGridHandler extends ContextGridHandler {
 	 * @param $request PKPRequest
 	 * @return array Grid data.
 	 */
-	function loadData(&$request) {
+	function loadData($request) {
 		// Get all presses.
 		$pressDao = DAORegistry::getDAO('PressDAO');
 		$presses = $pressDao->getAll();
@@ -74,7 +74,7 @@ class PressGridHandler extends ContextGridHandler {
 	/**
 	 * @see lib/pkp/classes/controllers/grid/GridHandler::setDataElementSequence()
 	 */
-	function setDataElementSequence(&$request, $rowId, &$press, $newSequence) {
+	function setDataElementSequence($request, $rowId, &$press, $newSequence) {
 		$pressDao = DAORegistry::getDAO('PressDAO'); /* @var $pressDao PressDAO */
 		$press->setSequence($newSequence);
 		$pressDao->updateObject($press);
@@ -90,7 +90,7 @@ class PressGridHandler extends ContextGridHandler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function editContext($args, &$request) {
+	function editContext($args, $request) {
 
 		// Identify the press Id.
 		$pressId = $request->getUserVar('rowId');
@@ -166,7 +166,7 @@ class PressGridHandler extends ContextGridHandler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function deleteContext($args, &$request) {
+	function deleteContext($args, $request) {
 		// Identify the current context.
 		$context =& $request->getContext();
 
@@ -218,8 +218,8 @@ class PressGridHandler extends ContextGridHandler {
 	 * @param $newPressPath string
 	 * @param $openWizard boolean
 	 */
-	function _getRedirectEvent(&$request, $newPressPath, $openWizard) {
-		$dispatcher =& $request->getDispatcher();
+	function _getRedirectEvent($request, $newPressPath, $openWizard) {
+		$dispatcher = $request->getDispatcher();
 
 		$url = $dispatcher->url($request, ROUTE_PAGE, $newPressPath, 'admin', 'contexts', null, array('openWizard' => $openWizard));
 		return $request->redirectUrlJson($url);

@@ -112,7 +112,7 @@ class SelectableSubmissionFileListCategoryGridHandler extends CategoryGridHandle
 	/**
 	 * @see GridHandler::getFilterSelectionData()
 	 */
-	function getFilterSelectionData(&$request) {
+	function getFilterSelectionData($request) {
 		return array('allStages' => $request->getUserVar('allStages') ? true : false);
 	}
 
@@ -134,7 +134,7 @@ class SelectableSubmissionFileListCategoryGridHandler extends CategoryGridHandle
 	/**
 	 * @see PKPHandler::authorize()
 	 */
-	function authorize(&$request, &$args, $roleAssignments) {
+	function authorize($request, &$args, $roleAssignments) {
 		// Set the stage id from the request parameter if not set previously.
 		if (!$this->getStageId()) {
 			$stageId = (int) $request->getUserVar('stageId');
@@ -152,7 +152,7 @@ class SelectableSubmissionFileListCategoryGridHandler extends CategoryGridHandle
 	/**
 	 * @see PKPHandler::initialize()
 	 */
-	function initialize(&$request) {
+	function initialize($request) {
 		parent::initialize($request);
 
 		// Load translations.
@@ -227,7 +227,7 @@ class SelectableSubmissionFileListCategoryGridHandler extends CategoryGridHandle
 	 * @param $request Request
 	 * @return array
 	 */
-	function getFilesToDownload(&$request) {
+	function getFilesToDownload($request) {
 		$dataProvider = $this->getDataProvider();
 		$workflowStages = $this->getGridDataElements($request);
 

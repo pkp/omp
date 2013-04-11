@@ -46,7 +46,7 @@ class CatalogEntryHandler extends Handler {
 	/**
 	 * @see PKPHandler::initialize()
 	 */
-	function initialize(&$request, $args = null) {
+	function initialize($request, $args = null) {
 		parent::initialize($request, $args);
 
 		$monographDao = DAORegistry::getDAO('MonographDAO');
@@ -66,7 +66,7 @@ class CatalogEntryHandler extends Handler {
 	 * @param $args array
 	 * @param $roleAssignments array
 	 */
-	function authorize(&$request, &$args, $roleAssignments) {
+	function authorize($request, &$args, $roleAssignments) {
 		$stageId = (int) $request->getUserVar('stageId');
 		import('classes.security.authorization.WorkflowStageAccessPolicy');
 		$this->addPolicy(new WorkflowStageAccessPolicy($request, $args, $roleAssignments, 'submissionId', $stageId));

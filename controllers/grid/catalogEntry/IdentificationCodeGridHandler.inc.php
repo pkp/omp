@@ -86,7 +86,7 @@ class IdentificationCodeGridHandler extends GridHandler {
 	 * @param $args array
 	 * @param $roleAssignments array
 	 */
-	function authorize(&$request, &$args, $roleAssignments) {
+	function authorize($request, &$args, $roleAssignments) {
 		import('classes.security.authorization.SubmissionAccessPolicy');
 		$this->addPolicy(new SubmissionAccessPolicy($request, $args, $roleAssignments));
 		return parent::authorize($request, $args, $roleAssignments);
@@ -96,7 +96,7 @@ class IdentificationCodeGridHandler extends GridHandler {
 	 * Configure the grid
 	 * @param $request PKPRequest
 	 */
-	function initialize(&$request) {
+	function initialize($request) {
 		parent::initialize($request);
 
 		// Retrieve the authorized monograph.
@@ -228,7 +228,7 @@ class IdentificationCodeGridHandler extends GridHandler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function editCode($args, &$request) {
+	function editCode($args, $request) {
 		// Identify the code to be updated
 		$identificationCodeId = (int) $request->getUserVar('identificationCodeId');
 		$monograph =& $this->getMonograph();
@@ -251,7 +251,7 @@ class IdentificationCodeGridHandler extends GridHandler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function updateCode($args, &$request) {
+	function updateCode($args, $request) {
 		// Identify the code to be updated
 		$identificationCodeId = $request->getUserVar('identificationCodeId');
 		$monograph =& $this->getMonograph();
@@ -303,7 +303,7 @@ class IdentificationCodeGridHandler extends GridHandler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function deleteCode($args, &$request) {
+	function deleteCode($args, $request) {
 
 		// Identify the code to be deleted
 		$identificationCodeId = $request->getUserVar('identificationCodeId');

@@ -29,7 +29,7 @@ class PeopleHandler extends ManagementHandler {
 	 * Display a user's profile.
 	 * @param $args array first parameter is the ID or username of the user to display
 	 */
-	function userProfile($args, &$request) {
+	function userProfile($args, $request) {
 		$this->validate();
 		$this->setupTemplate($request, true);
 

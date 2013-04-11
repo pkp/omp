@@ -36,7 +36,7 @@ class SubmissionHandler extends PKPSubmissionHandler {
 	 * @param $args array
 	 * @param $roleAssignments array
 	 */
-	function authorize(&$request, &$args, $roleAssignments) {
+	function authorize($request, &$args, $roleAssignments) {
 		// The policy for the submission handler depends on the
 		// step currently requested.
 		$step = isset($args[0]) ? (int) $args[0] : 1;

@@ -38,7 +38,7 @@ class CategoriesListbuilderHandler extends ListbuilderHandler {
 	 * @param $args array
 	 * @param $roleAssignments array
 	 */
-	function authorize(&$request, &$args, $roleAssignments) {
+	function authorize($request, &$args, $roleAssignments) {
 		import('lib.pkp.classes.security.authorization.PkpContextAccessPolicy');
 		$this->addPolicy(new PkpContextAccessPolicy($request, $roleAssignments));
 		return parent::authorize($request, $args, $roleAssignments);
@@ -80,7 +80,7 @@ class CategoriesListbuilderHandler extends ListbuilderHandler {
 	 * Load the list from an external source into the grid structure
 	 * @param $request PKPRequest
 	 */
-	function loadData(&$request) {
+	function loadData($request) {
 		$press = $this->getPress();
 		$submissionId = $this->getSubmissionId();
 
@@ -133,7 +133,7 @@ class CategoriesListbuilderHandler extends ListbuilderHandler {
 	 * Get the data element that corresponds to the current request
 	 * Allow for a blank $rowId for when creating a not-yet-persisted row
 	 */
-	function getRowDataElement(&$request, $rowId) {
+	function getRowDataElement($request, $rowId) {
 		// fallback on the parent if a rowId is found
 		if ( !empty($rowId) ) {
 			return parent::getRowDataElement($request, $rowId);
@@ -155,7 +155,7 @@ class CategoriesListbuilderHandler extends ListbuilderHandler {
 	 * Configure the grid
 	 * @param PKPRequest $request
 	 */
-	function initialize(&$request) {
+	function initialize($request) {
 		parent::initialize($request);
 		AppLocale::requireComponents(
 			LOCALE_COMPONENT_PKP_MANAGER, 

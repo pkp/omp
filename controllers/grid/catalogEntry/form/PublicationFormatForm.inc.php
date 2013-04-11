@@ -95,7 +95,7 @@ class PublicationFormatForm extends Form {
 	 * Fetch the form.
 	 * @see Form::fetch()
 	 */
-	function fetch(&$request) {
+	function fetch($request) {
 		$format =& $this->getPublicationFormat();
 		$press =& $request->getPress();
 

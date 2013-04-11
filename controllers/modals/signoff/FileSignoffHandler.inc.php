@@ -51,7 +51,7 @@ class FileSignoffHandler extends FileManagementHandler {
 	/**
 	 * @see PKPHandler::initialize()
 	 */
-	function initialize(&$request, $args) {
+	function initialize($request, $args) {
 		parent::initialize($request, $args);
 
 		// Already validated in authorize, if present.
@@ -72,7 +72,7 @@ class FileSignoffHandler extends FileManagementHandler {
 	/**
 	 * @see PKPHandler::authorize()
 	 */
-	function authorize(&$request, &$args, $roleAssignments) {
+	function authorize($request, &$args, $roleAssignments) {
 		import('classes.security.authorization.OmpSignoffAccessPolicy');
 
 		// Check the operation to define the access mode.
@@ -134,7 +134,7 @@ class FileSignoffHandler extends FileManagementHandler {
 	 * @param $request Request
 	 * @return string a serialized JSON object
 	 */
-	function readSignoff($args, &$request) {
+	function readSignoff($args, $request) {
 		$signoffDao = DAORegistry::getDAO('SubmissionFileSignoffDAO');
 		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		$signoff =& $this->getAuthorizedContextObject(ASSOC_TYPE_SIGNOFF);
@@ -188,7 +188,7 @@ class FileSignoffHandler extends FileManagementHandler {
 	 * Mark the signoff as viewed?
 	 * For now, this is doing nothing (obviously).
 	 */
-	function signoffRead($args, &$request) {
+	function signoffRead($args, $request) {
 		$json = new JSONMessage(true);
 		return $json->getString();
 	}
@@ -200,7 +200,7 @@ class FileSignoffHandler extends FileManagementHandler {
 	 * @param $request Request
 	 * @return string a serialized JSON object
 	 */
-	function displayFileUploadForm($args, &$request) {
+	function displayFileUploadForm($args, $request) {
 		$monograph =& $this->getSubmission();
 
 		import('controllers.modals.signoff.form.SignoffFileUploadForm');
@@ -248,7 +248,7 @@ class FileSignoffHandler extends FileManagementHandler {
 	 * @param $request
 	 * @return string
 	 */
-	function signoff($args, &$request) {
+	function signoff($args, $request) {
 		// Check for the case the form was displayed with no signoffs
 		if ($request->getUserVar('noSignoffs')) {
 			$json = new JSONMessage(true);

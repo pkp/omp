@@ -26,7 +26,7 @@ class PressGridRow extends ContextGridRow {
 	 * Get the delete context row locale key.
 	 * @return string
 	 */
-	function initialize(&$request) {
+	function initialize($request) {
 		parent::initialize($request);
 		$element = $this->getData();
 		if (Validation::isPressManager($element->getId())) {

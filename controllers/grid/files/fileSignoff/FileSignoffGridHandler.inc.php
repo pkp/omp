@@ -42,7 +42,7 @@ class FileSignoffGridHandler extends SubmissionFilesGridHandler {
 	/**
 	 * @see PKPHandler::initialize()
 	 */
-	function initialize(&$request) {
+	function initialize($request) {
 		parent::initialize($request);
 		$currentUser =& $request->getUser();
 		$submission =& $this->getSubmission();
@@ -127,7 +127,7 @@ class FileSignoffGridHandler extends SubmissionFilesGridHandler {
 	 * @param $args array
 	 * @param $request Request
 	 */
-	function signOffFile($args, &$request) {
+	function signOffFile($args, $request) {
 		// Retrieve the file to be signed off.
 		$fileId = (int)$request->getUserVar('fileId');
 

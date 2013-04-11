@@ -48,7 +48,7 @@ class AuthorGridHandler extends PKPAuthorGridHandler {
 	 * @param $args array
 	 * @param $roleAssignments array
 	 */
-	function authorize(&$request, &$args, $roleAssignments) {
+	function authorize($request, &$args, $roleAssignments) {
 		import('classes.security.authorization.SubmissionAccessPolicy');
 		$this->addPolicy(new SubmissionAccessPolicy($request, $args, $roleAssignments));
 		return parent::authorize($request, $args, $roleAssignments);
@@ -58,7 +58,7 @@ class AuthorGridHandler extends PKPAuthorGridHandler {
 	 * Configure the grid
 	 * @param $request PKPRequest
 	 */
-	function initialize(&$request) {
+	function initialize($request) {
 
 		// Retrieve the authorized monograph.
 		$this->setSubmission($this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH));
@@ -108,7 +108,7 @@ class AuthorGridHandler extends PKPAuthorGridHandler {
 	 * @param PKPRequest $request
 	 * @return int
 	 */
-	function getRequestedSubmissionId(&$request) {
+	function getRequestedSubmissionId($request) {
 		return $request->getUserVar('submissionId');
 	}
 

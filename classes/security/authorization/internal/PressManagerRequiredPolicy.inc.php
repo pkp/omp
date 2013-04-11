@@ -24,7 +24,7 @@ class PressManagerRequiredPolicy extends AuthorizationPolicy {
 	 * Constructor
 	 * @param $request PKPRequest
 	 */
-	function PressManagerRequiredPolicy(&$request) {
+	function PressManagerRequiredPolicy($request) {
 		parent::AuthorizationPolicy('user.authorization.pressManagerRequired');
 		$this->_request =& $request;
 	}

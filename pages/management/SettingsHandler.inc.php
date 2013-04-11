@@ -46,7 +46,7 @@ class SettingsHandler extends ManagementHandler {
 	 * @param $request PKPRequest
 	 * @param $args array
 	 */
-	function index($args, &$request) {
+	function index($args, $request) {
 		$templateMgr = TemplateManager::getManager($request);
 		$this->setupTemplate($request);
 		$templateMgr->display('management/settings/index.tpl');
@@ -57,7 +57,7 @@ class SettingsHandler extends ManagementHandler {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function categories($args, &$request) {
+	function categories($args, $request) {
 		$this->setupTemplate($request);
 
 		$templateMgr = TemplateManager::getManager($request);
@@ -70,7 +70,7 @@ class SettingsHandler extends ManagementHandler {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function series($args, &$request) {
+	function series($args, $request) {
 		$this->setupTemplate($request);
 
 		$templateMgr = TemplateManager::getManager($request);
@@ -83,7 +83,7 @@ class SettingsHandler extends ManagementHandler {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function settings($args, &$request) {
+	function settings($args, $request) {
 		$path = array_shift($args);
 		switch($path) {
 			case 'index':
@@ -114,7 +114,7 @@ class SettingsHandler extends ManagementHandler {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function access($args, &$request) {
+	function access($args, $request) {
 		$templateMgr = TemplateManager::getManager($request);
 		$this->setupTemplate($request);
 		$templateMgr->display('management/settings/access.tpl');
@@ -125,7 +125,7 @@ class SettingsHandler extends ManagementHandler {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function press($args, &$request) {
+	function press($args, $request) {
 		$templateMgr = TemplateManager::getManager($request);
 		$this->setupTemplate($request);
 		$templateMgr->display('management/settings/press.tpl');
@@ -136,7 +136,7 @@ class SettingsHandler extends ManagementHandler {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function website($args, &$request) {
+	function website($args, $request) {
 		$templateMgr = TemplateManager::getManager($request);
 		$this->setupTemplate($request);
 		$press = $request->getPress();
@@ -149,7 +149,7 @@ class SettingsHandler extends ManagementHandler {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function publication($args, &$request) {
+	function publication($args, $request) {
 		$templateMgr = TemplateManager::getManager($request);
 		$this->setupTemplate($request);
 		$templateMgr->display('management/settings/workflow.tpl');
@@ -160,7 +160,7 @@ class SettingsHandler extends ManagementHandler {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function distribution($args, &$request) {
+	function distribution($args, $request) {
 		$templateMgr = TemplateManager::getManager($request);
 		$this->setupTemplate($request);
 		$templateMgr->display('management/settings/distribution.tpl');

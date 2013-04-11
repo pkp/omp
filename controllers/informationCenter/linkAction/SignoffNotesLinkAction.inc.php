@@ -23,7 +23,7 @@ class SignoffNotesLinkAction extends LinkAction {
 	 * @param $monographId int The signoff monograph id.
 	 * @param $stageId int The signoff stage id.
 	 */
-	function SignoffNotesLinkAction(&$request, $signoff, $monographId, $stageId) {
+	function SignoffNotesLinkAction($request, $signoff, $monographId, $stageId) {
 		// Instantiate the redirect action request.
 		$dispatcher =& $request->getDispatcher();
 		import('lib.pkp.classes.linkAction.request.AjaxModal');

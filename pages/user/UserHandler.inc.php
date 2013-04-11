@@ -25,7 +25,7 @@ class UserHandler extends PKPUserHandler {
 	/**
 	 * @see PKPHandler::initialize()
 	 */
-	function initialize(&$request, &$args) {
+	function initialize($request, &$args) {
 		AppLocale::requireComponents(LOCALE_COMPONENT_PKP_GRID);
 		parent::initialize($request, $args);
 	}

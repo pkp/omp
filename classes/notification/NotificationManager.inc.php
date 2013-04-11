@@ -30,7 +30,7 @@ class NotificationManager extends PKPNotificationManager {
 	/**
 	 * @see PKPNotificationManager::getNotificationUrl()
 	 */
-	public function getNotificationUrl(&$request, &$notification) {
+	public function getNotificationUrl($request, $notification) {
 		$router = $request->getRouter();
 		$dispatcher = $router->getDispatcher();
 		$type = $notification->getType();
@@ -119,7 +119,7 @@ class NotificationManager extends PKPNotificationManager {
 	/**
 	 * @see PKPNotificationManager::getNotificationMessage()
 	 */
-	public function getNotificationMessage(&$request, &$notification) {
+	public function getNotificationMessage($request, $notification) {
 		$type = $notification->getType();
 		assert(isset($type));
 		$contents = array();
@@ -192,7 +192,7 @@ class NotificationManager extends PKPNotificationManager {
 	/**
 	 * @see PKPNotificationManager::getNotificationTitle()
 	 */
-	public function getNotificationTitle(&$notification) {
+	public function getNotificationTitle($notification) {
 		$type = $notification->getType();
 		assert(isset($type));
 
@@ -215,7 +215,7 @@ class NotificationManager extends PKPNotificationManager {
 	/**
 	 * @see PKPNotificationManager::getIconClass()
 	 */
-	public function getIconClass(&$notification) {
+	public function getIconClass($notification) {
 		switch ($notification->getType()) {
 			case NOTIFICATION_TYPE_SUBMISSION_SUBMITTED:
 				return 'notifyIconNewPage';
@@ -230,7 +230,7 @@ class NotificationManager extends PKPNotificationManager {
 	/**
 	 * @see PKPNotificationManager::getStyleClass()
 	 */
-	public function getStyleClass(&$notification) {
+	public function getStyleClass($notification) {
 		switch ($notification->getType()) {
 			case NOTIFICATION_TYPE_LAYOUT_ASSIGNMENT:
 			case NOTIFICATION_TYPE_INDEX_ASSIGNMENT:

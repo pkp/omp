@@ -35,7 +35,7 @@ class GenreGridHandler extends SetupGridHandler {
 	 * Configure the grid
 	 * @param $request PKPRequest
 	 */
-	function initialize(&$request) {
+	function initialize($request) {
 		parent::initialize($request);
 
 		// Load language components
@@ -136,7 +136,7 @@ class GenreGridHandler extends SetupGridHandler {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function addGenre($args, &$request) {
+	function addGenre($args, $request) {
 		// Calling editGenre with an empty row id will add a new Genre.
 		return $this->editGenre($args, $request);
 	}
@@ -147,7 +147,7 @@ class GenreGridHandler extends SetupGridHandler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function editGenre($args, &$request) {
+	function editGenre($args, $request) {
 		$genreId = isset($args['genreId']) ? (int) $args['genreId'] : null;
 
 		$this->setupTemplate($request);
@@ -167,7 +167,7 @@ class GenreGridHandler extends SetupGridHandler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function updateGenre($args, &$request) {
+	function updateGenre($args, $request) {
 		$genreId = isset($args['genreId']) ? (int) $args['genreId'] : null;
 		$press =& $request->getPress();
 
@@ -192,7 +192,7 @@ class GenreGridHandler extends SetupGridHandler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function deleteGenre($args, &$request) {
+	function deleteGenre($args, $request) {
 		// Identify the Genre to be deleted
 		$genre =& $this->_getGenreFromArgs($request, $args);
 
@@ -214,7 +214,7 @@ class GenreGridHandler extends SetupGridHandler {
 	 * @param $request PKPRequest
 	 * @return string
 	 */
-	function restoreGenres($args, &$request) {
+	function restoreGenres($args, $request) {
 		$press =& $request->getPress();
 
 		// Restore all the genres in this press form the registry XML file

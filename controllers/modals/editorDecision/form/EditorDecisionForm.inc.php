@@ -99,7 +99,7 @@ class EditorDecisionForm extends Form {
 	/**
 	 * @see Form::fetch()
 	 */
-	function fetch(&$request) {
+	function fetch($request) {
 		$seriesEditorSubmission =& $this->getSeriesEditorSubmission();
 
 		$reviewRound =& $this->getReviewRound();
@@ -134,7 +134,7 @@ class EditorDecisionForm extends Form {
 	 * @param $status integer One of the REVIEW_ROUND_STATUS_* constants.
 	 * @return $newRound integer The round number of the new review round.
 	 */
-	function _initiateReviewRound(&$monograph, $stageId, &$request, $status = null) {
+	function _initiateReviewRound(&$monograph, $stageId, $request, $status = null) {
 
 		// If we already have review round for this stage,
 		// we create a new round after the last one.

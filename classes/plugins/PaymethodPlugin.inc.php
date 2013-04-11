@@ -88,7 +88,7 @@ class PaymethodPlugin extends Plugin {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function handle($args, &$request) {
+	function handle($args, $request) {
 		// Subclass should override.
 		$request->redirect(null, null, 'index');
 	}

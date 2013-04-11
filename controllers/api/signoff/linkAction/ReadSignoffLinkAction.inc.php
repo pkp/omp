@@ -33,7 +33,7 @@ class ReadSignoffLinkAction extends LinkAction {
 	 *  upload wizard.
 	 * @param $buttonLabel string The link action's button label.
 	 */
-	function ReadSignoffLinkAction(&$request, $monographId, $stageId, $signoffId,
+	function ReadSignoffLinkAction($request, $monographId, $stageId, $signoffId,
 										$modalTitle, $buttonLabel, $image = null) {
 
 		// Create the actionArgs array

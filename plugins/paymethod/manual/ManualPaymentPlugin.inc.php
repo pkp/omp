@@ -81,7 +81,7 @@ class ManualPaymentPlugin extends PaymethodPlugin {
 	/**
 	 * @see PaymentPlugin::displayPaymentForm
 	 */
-	function displayPaymentForm($queuedPaymentId, &$queuedPayment, &$request) {
+	function displayPaymentForm($queuedPaymentId, &$queuedPayment, $request) {
 		if (!$this->isConfigured()) return false;
 		$press =& $request->getPress();
 		AppLocale::requireComponents(LOCALE_COMPONENT_APP_COMMON);
@@ -105,7 +105,7 @@ class ManualPaymentPlugin extends PaymethodPlugin {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function handle($args, &$request) {
+	function handle($args, $request) {
 		$press =& $request->getPress();
 		$templateMgr =& TemplateManager::getManager($request);
 		$user =& $request->getUser();

@@ -57,7 +57,7 @@ class SubmissionFilesCategoryGridDataProvider extends CategoryGridDataProvider {
 	/**
 	 * @see GridDataProvider::getAuthorizationPolicy()
 	 */
-	function getAuthorizationPolicy(&$request, $args, $roleAssignments) {
+	function getAuthorizationPolicy($request, $args, $roleAssignments) {
 		// Get the submission files grid data provider authorization policy.
 		$dataProvider = $this->getDataProvider();
 		$policy = $dataProvider->getAuthorizationPolicy($request, $args, $roleAssignments);

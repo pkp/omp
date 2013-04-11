@@ -32,7 +32,7 @@ class ReviewerReviewFilesGridDataProvider extends ReviewGridDataProvider {
 	 * Override the parent class, which defines a Workflow policy, to allow
 	 * reviewer access to this grid.
 	 */
-	function getAuthorizationPolicy(&$request, $args, $roleAssignments) {
+	function getAuthorizationPolicy($request, $args, $roleAssignments) {
 		import('classes.security.authorization.SubmissionAccessPolicy');
 		$policy = new SubmissionAccessPolicy($request, $args, $roleAssignments);
 

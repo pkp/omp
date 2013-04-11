@@ -28,14 +28,14 @@ class ApproveSubmissionNotificationManager extends NotificationManagerDelegate {
 	/**
 	 * @see NotificationManagerDelegate::getStyleClass()
 	 */
-	public function getStyleClass(&$notification) {
+	public function getStyleClass($notification) {
 		return NOTIFICATION_STYLE_CLASS_WARNING;
 	}
 
 	/**
 	 * @see NotificationManagerDelegate::updateNotification()
 	 */
-	public function updateNotification(&$request, $userIds, $assocType, $assocId) {
+	public function updateNotification($request, $userIds, $assocType, $assocId) {
 		$monographId = $assocId;
 		$monographDao = DAORegistry::getDAO('MonographDAO');
 		$monograph =& $monographDao->getById($monographId);

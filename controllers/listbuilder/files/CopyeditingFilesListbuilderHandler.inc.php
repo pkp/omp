@@ -31,7 +31,7 @@ class CopyeditingFilesListbuilderHandler extends FilesListbuilderHandler {
 	/**
 	 * @see PKPHandler::authorize()
 	 */
-	function authorize(&$request, &$args, $roleAssignments) {
+	function authorize($request, &$args, $roleAssignments) {
 		return parent::authorize($request, $args, $roleAssignments, WORKFLOW_STAGE_ID_EDITING);
 	}
 
@@ -42,7 +42,7 @@ class CopyeditingFilesListbuilderHandler extends FilesListbuilderHandler {
 	/**
 	 * @see FilesListbuilderHandler::initialize
 	 */
-	function initialize(&$request) {
+	function initialize($request) {
 		parent::initialize($request);
 		AppLocale::requireComponents(LOCALE_COMPONENT_APP_EDITOR);
 		$this->setTitle('editor.monograph.selectCopyedingFiles');

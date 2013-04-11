@@ -74,7 +74,7 @@ class NotificationSettingsForm extends PKPNotificationSettingsForm {
 	/*
 	 * Display the form
 	 */
-	function display(&$request) {
+	function display($request) {
 		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->assign('notificationSettingCategories', $this->_getNotificationSettingCategories());
 		$templateMgr->assign('notificationSettings',  $this->_getNotificationSettingsMap());
@@ -84,7 +84,7 @@ class NotificationSettingsForm extends PKPNotificationSettingsForm {
 	/**
 	 * Save site settings.
 	 */
-	function execute(&$request) {
+	function execute($request) {
 		$user = $request->getUser();
 		$userId = $user->getId();
 		$press =& $request->getPress();

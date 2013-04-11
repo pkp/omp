@@ -38,7 +38,7 @@ class SubmissionDetailsFilesGridHandler extends FileListGridHandler {
 	/**
 	 * @see PKPHandler::initialize()
 	 */
-	function initialize(&$request, $additionalActionArgs = array()) {
+	function initialize($request, $additionalActionArgs = array()) {
 		// Basic grid configuration
 		$this->setTitle('submission.submit.submissionFiles');
 

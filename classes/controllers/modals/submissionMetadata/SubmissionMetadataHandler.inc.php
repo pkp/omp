@@ -75,7 +75,7 @@ class SubmissionMetadataHandler extends Handler {
 	 * @param $args array
 	 * @param $request Request
 	 */
-	function saveForm($args, &$request) {
+	function saveForm($args, $request) {
 		$monographId = $request->getUserVar('monographId');
 
 		// Form handling

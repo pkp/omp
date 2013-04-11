@@ -26,7 +26,7 @@ class AddRevisionLinkAction extends BaseAddFileLinkAction {
 	 * @param $uploaderRoles array The ids of all roles allowed to upload
 	 *  in the context of this action.
 	 */
-	function AddRevisionLinkAction(&$request, &$reviewRound, $uploaderRoles) {
+	function AddRevisionLinkAction($request, $reviewRound, $uploaderRoles) {
 		// Bring in the monograph file constants.
 		import('classes.monograph.MonographFile');
 

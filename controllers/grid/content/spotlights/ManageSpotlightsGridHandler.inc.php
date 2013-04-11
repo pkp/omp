@@ -73,7 +73,7 @@ class ManageSpotlightsGridHandler extends GridHandler {
 	 * @param $args array
 	 * @param $roleAssignments array
 	 */
-	function authorize(&$request, &$args, $roleAssignments) {
+	function authorize($request, &$args, $roleAssignments) {
 		import('lib.pkp.classes.security.authorization.PkpContextAccessPolicy');
 		$this->addPolicy(new PkpContextAccessPolicy($request, $roleAssignments));
 		$returner = parent::authorize($request, $args, $roleAssignments);
@@ -95,7 +95,7 @@ class ManageSpotlightsGridHandler extends GridHandler {
 	 * Configure the grid
 	 * @param $request PKPRequest
 	 */
-	function initialize(&$request) {
+	function initialize($request) {
 		parent::initialize($request);
 
 		// Load locale components.
@@ -196,7 +196,7 @@ class ManageSpotlightsGridHandler extends GridHandler {
 	// Public Spotlights Grid Actions
 	//
 
-	function addSpotlight($args, &$request) {
+	function addSpotlight($args, $request) {
 		return $this->editSpotlight($args, $request);
 	}
 
@@ -206,7 +206,7 @@ class ManageSpotlightsGridHandler extends GridHandler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function editSpotlight($args, &$request) {
+	function editSpotlight($args, $request) {
 		$spotlightId = (int)$request->getUserVar('spotlightId');
 		$press =& $request->getPress();
 		$pressId = $press->getId();
@@ -224,7 +224,7 @@ class ManageSpotlightsGridHandler extends GridHandler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function updateSpotlight($args, &$request) {
+	function updateSpotlight($args, $request) {
 		// Identify the spotlight entry to be updated
 		$spotlightId = $request->getUserVar('spotlightId');
 
@@ -277,7 +277,7 @@ class ManageSpotlightsGridHandler extends GridHandler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function deleteSpotlight($args, &$request) {
+	function deleteSpotlight($args, $request) {
 
 		// Identify the entry to be deleted
 		$spotlightId = $request->getUserVar('spotlightId');
@@ -308,7 +308,7 @@ class ManageSpotlightsGridHandler extends GridHandler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function itemAutocomplete($args, &$request) {
+	function itemAutocomplete($args, $request) {
 
 		$name = $request->getUserVar('name');
 

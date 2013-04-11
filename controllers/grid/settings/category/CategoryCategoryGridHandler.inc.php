@@ -54,7 +54,7 @@ class CategoryCategoryGridHandler extends CategoryGridHandler {
 	 * @param $args array
 	 * @param $roleAssignments array
 	 */
-	function authorize(&$request, &$args, $roleAssignments) {
+	function authorize($request, &$args, $roleAssignments) {
 		import('lib.pkp.classes.security.authorization.PkpContextAccessPolicy');
 		$this->addPolicy(new PkpContextAccessPolicy($request, $roleAssignments));
 		return parent::authorize($request, $args, $roleAssignments);
@@ -66,7 +66,7 @@ class CategoryCategoryGridHandler extends CategoryGridHandler {
 	 * Configure the grid
 	 * @param $request PKPRequest
 	 */
-	function initialize(&$request) {
+	function initialize($request) {
 
 		parent::initialize($request);
 
@@ -167,7 +167,7 @@ class CategoryCategoryGridHandler extends CategoryGridHandler {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function addCategory($args, &$request) {
+	function addCategory($args, $request) {
 		return $this->editCategory($args, $request);
 	}
 
@@ -176,7 +176,7 @@ class CategoryCategoryGridHandler extends CategoryGridHandler {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function editCategory($args, &$request) {
+	function editCategory($args, $request) {
 		$categoryForm = $this->_getCategoryForm($request);
 
 		$categoryForm->initData();
@@ -190,7 +190,7 @@ class CategoryCategoryGridHandler extends CategoryGridHandler {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function updateCategory($args, &$request) {
+	function updateCategory($args, $request) {
 		$categoryForm = $this->_getCategoryForm($request);
 
 		$categoryForm->readInputData();
@@ -209,7 +209,7 @@ class CategoryCategoryGridHandler extends CategoryGridHandler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function deleteCategory($args, &$request) {
+	function deleteCategory($args, $request) {
 		// Identify the category to be deleted
 		$categoryDao = DAORegistry::getDAO('CategoryDAO');
 		$press =& $request->getPress();
@@ -231,7 +231,7 @@ class CategoryCategoryGridHandler extends CategoryGridHandler {
 	 * @param $request PKPRequest
 	 * @param $args array
 	 */
-	function uploadImage($args, &$request) {
+	function uploadImage($args, $request) {
 		$user = $request->getUser();
 
 		import('lib.pkp.classes.file.TemporaryFileManager');
@@ -257,7 +257,7 @@ class CategoryCategoryGridHandler extends CategoryGridHandler {
 	 * @param $request Request
 	 * @return UserGroupForm
 	 */
-	function _getCategoryForm(&$request) {
+	function _getCategoryForm($request) {
 		// Get the category ID.
 		$categoryId = (int) $request->getUserVar('categoryId');
 

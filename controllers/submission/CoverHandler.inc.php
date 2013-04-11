@@ -34,7 +34,7 @@ class CoverHandler extends PKPHandler {
 	 * @param $args array
 	 * @param $roleAssignments array
 	 */
-	function authorize(&$request, &$args, $roleAssignments) {
+	function authorize($request, &$args, $roleAssignments) {
 		import('classes.security.authorization.OmpPublishedMonographAccessPolicy');
 		$this->addPolicy(new OmpPublishedMonographAccessPolicy($request, $args, $roleAssignments));
 		return parent::authorize($request, $args, $roleAssignments);
@@ -75,7 +75,7 @@ class CoverHandler extends PKPHandler {
 	/**
 	 * Serve the cover image for a published monograph.
 	 */
-	function cover($args, &$request) {
+	function cover($args, $request) {
 		$publishedMonograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_PUBLISHED_MONOGRAPH);
 		if (!$coverImage = $publishedMonograph->getCoverImage()) {
 			// Can't use Request::redirectUrl; FireFox doesn't
@@ -92,7 +92,7 @@ class CoverHandler extends PKPHandler {
 	/**
 	 * Serve the cover thumbnail for a published monograph.
 	 */
-	function thumbnail($args, &$request) {
+	function thumbnail($args, $request) {
 		$publishedMonograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_PUBLISHED_MONOGRAPH);
 		if (!$coverImage = $publishedMonograph->getCoverImage()) {
 			// Can't use Request::redirectUrl; FireFox doesn't
@@ -109,7 +109,7 @@ class CoverHandler extends PKPHandler {
 	/**
 	 * Serve the cover catalog image for a published monograph.
 	 */
-	function catalog($args, &$request) {
+	function catalog($args, $request) {
 		$publishedMonograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_PUBLISHED_MONOGRAPH);
 		if (!$coverImage = $publishedMonograph->getCoverImage()) {
 			// Can't use Request::redirectUrl; FireFox doesn't

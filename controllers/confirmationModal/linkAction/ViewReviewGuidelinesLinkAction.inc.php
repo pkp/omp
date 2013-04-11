@@ -23,7 +23,7 @@ class ViewReviewGuidelinesLinkAction extends LinkAction {
 	 * Constructor
 	 * @param $request Request
 	 */
-	function ViewReviewGuidelinesLinkAction(&$request) {
+	function ViewReviewGuidelinesLinkAction($request) {
 		$press =& $request->getPress();
 		// Instantiate the view review guidelines confirmation modal.
 		import('lib.pkp.classes.linkAction.request.ConfirmationModal');

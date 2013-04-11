@@ -50,7 +50,7 @@ class WorkflowHandler extends Handler {
 	/**
 	 * @see PKPHandler::authorize()
 	 */
-	function authorize(&$request, &$args, $roleAssignments) {
+	function authorize($request, &$args, $roleAssignments) {
 		$router =& $request->getRouter();
 		$operation = $router->getRequestedOp($request);
 
@@ -75,7 +75,7 @@ class WorkflowHandler extends Handler {
 	/**
 	 * @see PKPHandler::initialize()
 	 */
-	function initialize(&$request, $args) {
+	function initialize($request, $args) {
 		$router =& $request->getRouter();
 		$operation = $router->getRequestedOp($request);
 
@@ -154,7 +154,7 @@ class WorkflowHandler extends Handler {
 	 * Redirect users to their most appropriate
 	 * monograph workflow stage.
 	 */
-	function access($args, &$request) {
+	function access($args, $request) {
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		$userGroupDao = DAORegistry::getDAO('UserGroupDAO');
 		$reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO');
@@ -192,7 +192,7 @@ class WorkflowHandler extends Handler {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function submission($args, &$request) {
+	function submission($args, $request) {
 		// Render the view.
 		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->display('workflow/submission.tpl');
@@ -203,7 +203,7 @@ class WorkflowHandler extends Handler {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function internalReview($args, &$request) {
+	function internalReview($args, $request) {
 		// Use different ops so we can identify stage by op.
 		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->assign('reviewRoundOp', 'internalReviewRound');
@@ -215,7 +215,7 @@ class WorkflowHandler extends Handler {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function externalReview($args, &$request) {
+	function externalReview($args, $request) {
 		// Use different ops so we can identify stage by op.
 		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->assign('reviewRoundOp', 'externalReviewRound');
@@ -227,7 +227,7 @@ class WorkflowHandler extends Handler {
 	 * @param $request PKPRequest
 	 * @param $args array
 	 */
-	function editorial(&$args, &$request) {
+	function editorial(&$args, $request) {
 		// Render the view.
 		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->display('workflow/editorial.tpl');
@@ -238,7 +238,7 @@ class WorkflowHandler extends Handler {
 	 * @param $request PKPRequest
 	 * @param $args array
 	 */
-	function production(&$args, &$request) {
+	function production(&$args, $request) {
 		$templateMgr =& TemplateManager::getManager($request);
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		$notificationRequestOptions = array(
@@ -263,7 +263,7 @@ class WorkflowHandler extends Handler {
 	 * @param $request PKPRequest
 	 * @param $args array
 	 */
-	function productionFormatsTab(&$args, &$request) {
+	function productionFormatsTab(&$args, $request) {
 		$templateMgr =& TemplateManager::getManager($request);
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
@@ -280,7 +280,7 @@ class WorkflowHandler extends Handler {
 	 * @param $args array
 	 * @param $request Request
 	 */
-	function editorDecisionActions($args, &$request) {
+	function editorDecisionActions($args, $request) {
 		AppLocale::requireComponents(LOCALE_COMPONENT_APP_EDITOR);
 		$reviewRoundId = (int) $request->getUserVar('reviewRoundId');
 
@@ -345,7 +345,7 @@ class WorkflowHandler extends Handler {
 	 * @param $args array
 	 * @param $request Request
 	 */
-	function submissionProgressBar($args, &$request) {
+	function submissionProgressBar($args, $request) {
 		// Assign the actions to the template.
 		$templateMgr =& TemplateManager::getManager($request);
 		$press =& $request->getPress();
@@ -444,7 +444,7 @@ class WorkflowHandler extends Handler {
 	 * @param $request PKPRequest
 	 * @param $args array
 	 */
-	function _review($args, &$request) {
+	function _review($args, $request) {
 		// Retrieve the authorized submission and stage id.
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		$selectedStageId = $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
@@ -501,7 +501,7 @@ class WorkflowHandler extends Handler {
 	 * @param $request Request
 	 * @return integer One of the WORKFLOW_STAGE_* constants.
 	 */
-	function _identifyStageId(&$request) {
+	function _identifyStageId($request) {
 		if ($stageId = $request->getUserVar('stageId')) {
 			return (int) $stageId;
 		}

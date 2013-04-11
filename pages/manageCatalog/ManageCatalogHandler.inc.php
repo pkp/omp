@@ -47,7 +47,7 @@ class ManageCatalogHandler extends Handler {
 	 * @param $args array
 	 * @param $roleAssignments array
 	 */
-	function authorize(&$request, &$args, $roleAssignments) {
+	function authorize($request, &$args, $roleAssignments) {
 		import('lib.pkp.classes.security.authorization.PKPSiteAccessPolicy');
 		$this->addPolicy(new PKPSiteAccessPolicy($request, null, $roleAssignments));
 		return parent::authorize($request, $args, $roleAssignments);
@@ -56,7 +56,7 @@ class ManageCatalogHandler extends Handler {
 	/**
 	 * @see PKPHandler::initialize()
 	 */
-	function initialize(&$request, $args) {
+	function initialize($request, $args) {
 		$this->setupTemplate($request);
 
 		// Call parent method.
@@ -72,7 +72,7 @@ class ManageCatalogHandler extends Handler {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function index($args, &$request) {
+	function index($args, $request) {
 		// Render the view.
 		$templateMgr =& TemplateManager::getManager($request);
 
@@ -121,7 +121,7 @@ class ManageCatalogHandler extends Handler {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function homepage($args, &$request) {
+	function homepage($args, $request) {
 		// Set up the monograph list template
 		$press =& $request->getPress();
 		$this->_setupMonographsTemplate(
@@ -146,7 +146,7 @@ class ManageCatalogHandler extends Handler {
 	 * @param $request PKPRequest
 	 * @return string
 	 */
-	function getCategories($args, &$request) {
+	function getCategories($args, $request) {
 		$press =& $request->getPress();
 		$categoryDao = DAORegistry::getDAO('CategoryDAO');
 		$categoryIterator =& $categoryDao->getByPressId($press->getId());
@@ -165,7 +165,7 @@ class ManageCatalogHandler extends Handler {
 	 * @param $request PKPRequest
 	 * @return string
 	 */
-	function getSeries($args, &$request) {
+	function getSeries($args, $request) {
 		$press =& $request->getPress();
 		$seriesDao = DAORegistry::getDAO('SeriesDAO');
 		$seriesIterator =& $seriesDao->getByPressId($press->getId());
@@ -184,7 +184,7 @@ class ManageCatalogHandler extends Handler {
 	 * @param $request PKPRequest
 	 * @return string
 	 */
-	function category($args, &$request) {
+	function category($args, $request) {
 		$templateMgr =& TemplateManager::getManager($request);
 		$press =& $request->getPress();
 
@@ -221,7 +221,7 @@ class ManageCatalogHandler extends Handler {
 	 * @param $request PKPRequest
 	 * @return string
 	 */
-	function series($args, &$request) {
+	function series($args, $request) {
 		$templateMgr =& TemplateManager::getManager($request);
 		$press =& $request->getPress();
 
@@ -252,7 +252,7 @@ class ManageCatalogHandler extends Handler {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function search($args, &$request) {
+	function search($args, $request) {
 		$searchText = array_shift($args);
 		$this->_setupMonographsTemplate(false, 'search');
 
@@ -274,7 +274,7 @@ class ManageCatalogHandler extends Handler {
 	 * @param $request PKPRequest
 	 * @return string
 	 */
-	function toggle($args, &$request) {
+	function toggle($args, $request) {
 		$press =& $request->getPress();
 
 		// Identification of item to set new state state on

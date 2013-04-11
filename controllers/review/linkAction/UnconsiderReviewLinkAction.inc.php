@@ -26,7 +26,7 @@ class UnconsiderReviewLinkAction extends LinkAction {
 	 * to show information about.
 	 * @param $monograph Monograph The reviewed monograph.
 	 */
-	function UnconsiderReviewLinkAction(&$request, &$reviewAssignment, &$monograph) {
+	function UnconsiderReviewLinkAction($request, &$reviewAssignment, &$monograph) {
 		// Instantiate the information center modal.
 		$router =& $request->getRouter();
 

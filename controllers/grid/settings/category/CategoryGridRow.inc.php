@@ -28,7 +28,7 @@ class CategoryGridRow extends GridRow {
 	/**
 	 * @see GridRow::initialize()
 	 */
-	function initialize(&$request) {
+	function initialize($request) {
 		parent::initialize($request);
 
 		$rowData =& $this->getData(); // a Category object

@@ -40,7 +40,7 @@ class OAIHandler extends Handler {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function index($args, &$request) {
+	function index($args, $request) {
 		PluginRegistry::loadCategory('oaiMetadataFormats', true);
 
 		$oai = new PressOAI(new OAIConfig($request->getRequestUrl(), Config::getVar('oai', 'repository_id')));

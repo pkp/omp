@@ -45,7 +45,7 @@ class ReviewerSelectGridRow extends GridRow {
 	 * @see GridRow::initialize()
 	 * @param $request PKPRequest
 	 */
-	function initialize(&$request) {
+	function initialize($request) {
 		parent::initialize($request);
 		$press =& $request->getPress();
 

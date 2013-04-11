@@ -31,7 +31,7 @@ class ProofFilesListbuilderHandler extends FilesListbuilderHandler {
 	/**
 	 * @see PKPHandler::authorize()
 	 */
-	function authorize(&$request, &$args, $roleAssignments) {
+	function authorize($request, &$args, $roleAssignments) {
 		import('classes.security.authorization.internal.PublicationFormatRequiredPolicy');
 		$this->addPolicy(new PublicationFormatRequiredPolicy($request, $args));
 		return parent::authorize($request, $args, $roleAssignments, WORKFLOW_STAGE_ID_PRODUCTION);
@@ -42,7 +42,7 @@ class ProofFilesListbuilderHandler extends FilesListbuilderHandler {
 	 * Configure the grid
 	 * @param PKPRequest $request
 	 */
-	function initialize(&$request) {
+	function initialize($request) {
 		parent::initialize($request);
 		AppLocale::requireComponents(LOCALE_COMPONENT_APP_EDITOR);
 		$this->setTitle('editor.monograph.selectProofreadingFiles');

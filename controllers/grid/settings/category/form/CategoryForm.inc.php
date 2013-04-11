@@ -181,7 +181,7 @@ class CategoryForm extends Form {
 	/**
 	 * @see Form::execute()
 	 */
-	function execute(&$request) {
+	function execute($request) {
 		$categoryId = $this->getCategoryId();
 		$categoryDao = DAORegistry::getDAO('CategoryDAO');
 

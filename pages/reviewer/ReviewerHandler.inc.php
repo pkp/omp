@@ -37,7 +37,7 @@ class ReviewerHandler extends Handler {
 	 * @param $args array
 	 * @param $roleAssignments array
 	 */
-	function authorize(&$request, &$args, $roleAssignments) {
+	function authorize($request, &$args, $roleAssignments) {
 		import('classes.security.authorization.SubmissionAccessPolicy');
 		$this->addPolicy(new SubmissionAccessPolicy($request, $args, $roleAssignments));
 		return parent::authorize($request, $args, $roleAssignments);
@@ -48,7 +48,7 @@ class ReviewerHandler extends Handler {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function submission($args, &$request) {
+	function submission($args, $request) {
 		$reviewAssignment =& $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ASSIGNMENT); /* @var $reviewAssignment ReviewAssignment */
 		$reviewerSubmissionDao = DAORegistry::getDAO('ReviewerSubmissionDAO'); /* @var $reviewerSubmissionDao ReviewerSubmissionDAO */
 		$reviewerSubmission =& $reviewerSubmissionDao->getReviewerSubmission($reviewAssignment->getId());
@@ -68,7 +68,7 @@ class ReviewerHandler extends Handler {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function step($args, &$request) {
+	function step($args, $request) {
 		$reviewAssignment =& $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ASSIGNMENT); /* @var $reviewAssignment ReviewAssignment */
 		$reviewId = (int) $reviewAssignment->getId();
 		assert(!empty($reviewId));
@@ -112,7 +112,7 @@ class ReviewerHandler extends Handler {
 	 * @param $args array first parameter is the step being saved
 	 * @param $request PKPRequest
 	 */
-	function saveStep($args, &$request) {
+	function saveStep($args, $request) {
 		$step = (int)$request->getUserVar('step');
 		if ($step<1 || $step>3) fatalError('Invalid step!');
 
@@ -144,7 +144,7 @@ class ReviewerHandler extends Handler {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function showDeclineReview($args, &$request) {
+	function showDeclineReview($args, $request) {
 		$reviewAssignment =& $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ASSIGNMENT); /* @var $reviewAssignment ReviewAssignment */
 
 		$reviewerSubmissionDao = DAORegistry::getDAO('ReviewerSubmissionDAO');
@@ -164,7 +164,7 @@ class ReviewerHandler extends Handler {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function saveDeclineReview($args, &$request) {
+	function saveDeclineReview($args, $request) {
 		$reviewAssignment =& $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ASSIGNMENT); /* @var $reviewAssignment ReviewAssignment */
 		if ($reviewAssignment->getDateCompleted()) fatalError('Review already completed!');
 

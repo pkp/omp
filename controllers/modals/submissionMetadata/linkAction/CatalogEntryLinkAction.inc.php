@@ -25,7 +25,7 @@ class CatalogEntryLinkAction extends LinkAction {
 	 * none is passed, the first catalog entry tab will be opened.
 	 * @param $image string
 	 */
-	function CatalogEntryLinkAction(&$request, $monographId, $stageId, $selectedFormatId = null, $image = 'information') {
+	function CatalogEntryLinkAction($request, $monographId, $stageId, $selectedFormatId = null, $image = 'information') {
 		// Instantiate the modal.
 		$dispatcher =& $request->getDispatcher();
 		import('lib.pkp.classes.linkAction.request.AjaxModal');

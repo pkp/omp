@@ -48,7 +48,7 @@ class SignoffGridCellProvider extends GridCellProvider {
 	 * @param $column GridColumn
 	 * @return array an array of LinkAction instances
 	 */
-	function getCellActions(&$request, &$row, &$column, $position = GRID_ACTION_POSITION_DEFAULT) {
+	function getCellActions($request, &$row, &$column, $position = GRID_ACTION_POSITION_DEFAULT) {
 		if ($column->getId() == 'name') {
 			$user =& $request->getUser();
 			$actionArgs = array_merge($row->getRequestArgs(),

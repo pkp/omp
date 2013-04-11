@@ -27,7 +27,7 @@ class ApproveProofsLinkAction extends LinkAction {
 	 * @param $title string Locale key
 	 * @param $image string
 	 */
-	function ApproveProofsLinkAction(&$request, $monographId, $publicationFormatId, $image = null) {
+	function ApproveProofsLinkAction($request, $monographId, $publicationFormatId, $image = null) {
 
 		// Create the actionArgs array
 		$actionArgs = array();

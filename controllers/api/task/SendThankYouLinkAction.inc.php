@@ -24,7 +24,7 @@ class SendThankYouLinkAction extends LinkAction {
 	 * @param $request Request
 	 * @param $actionArgs array The action arguments.
 	 */
-	function SendThankYouLinkAction(&$request, $modalTitle, $actionArgs) {
+	function SendThankYouLinkAction($request, $modalTitle, $actionArgs) {
 		// Instantiate the send thank you modal.
 		$router =& $request->getRouter();
 		import('lib.pkp.classes.linkAction.request.AjaxModal');

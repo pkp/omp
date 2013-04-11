@@ -46,7 +46,7 @@ class SendReviewsForm extends EditorDecisionWithEmailForm {
 	/**
 	 * @see Form::initData()
 	 */
-	function initData($args, &$request) {
+	function initData($args, $request) {
 		$actionLabels = EditorDecisionActionsManager::getActionLabels($this->_getDecisions());
 
 		return parent::initData($args, $request, $actionLabels);
@@ -55,7 +55,7 @@ class SendReviewsForm extends EditorDecisionWithEmailForm {
 	/**
 	 * @see Form::execute()
 	 */
-	function execute($args, &$request) {
+	function execute($args, $request) {
 		// Retrieve the submission.
 		$seriesEditorSubmission =& $this->getSeriesEditorSubmission();
 

@@ -52,7 +52,7 @@ class ApprovedProofFilesGridHandler extends GridHandler {
 	 * Configure the grid
 	 * @param PKPRequest $request
 	 */
-	function initialize(&$request) {
+	function initialize($request) {
 		// Basic grid configuration
 		$this->setId('proofFiles-' . $this->publicationFormat->getId());
 		AppLocale::requireComponents(LOCALE_COMPONENT_APP_EDITOR);
@@ -91,7 +91,7 @@ class ApprovedProofFilesGridHandler extends GridHandler {
 	/**
 	 * @see PKPHandler::authorize()
 	 */
-	function authorize(&$request, &$args, $roleAssignments) {
+	function authorize($request, &$args, $roleAssignments) {
 		import('classes.security.authorization.WorkflowStageAccessPolicy');
 		$this->addPolicy(new WorkflowStageAccessPolicy($request, $args, $roleAssignments, 'submissionId', WORKFLOW_STAGE_ID_PRODUCTION));
 
@@ -126,7 +126,7 @@ class ApprovedProofFilesGridHandler extends GridHandler {
 	//
 	// Public handler methods
 	//
-	function editApprovedProof($args, &$request) {
+	function editApprovedProof($args, $request) {
 		$this->initialize($request);
 
 		import('controllers.grid.files.proof.form.ApprovedProofForm');
@@ -137,7 +137,7 @@ class ApprovedProofFilesGridHandler extends GridHandler {
 		return $json->getString();
 	}
 
-	function saveApprovedProof($args, &$request) {
+	function saveApprovedProof($args, $request) {
 		import('controllers.grid.files.proof.form.ApprovedProofForm');
 		$approvedProofForm = new ApprovedProofForm($this->monograph, $this->publicationFormat, $request->getUserVar('fileId'));
 		$approvedProofForm->readInputData();

@@ -25,7 +25,7 @@ class ReviewerViewMetadataLinkAction extends LinkAction {
 	 * @param $monographId integer
 	 * @param $reviewAssignmentId integer
 	 */
-	function ReviewerViewMetadataLinkAction(&$request, $monographId, $reviewAssignmentId) {
+	function ReviewerViewMetadataLinkAction($request, $monographId, $reviewAssignmentId) {
 		// Instantiate the meta-data modal.
 		$dispatcher =& $request->getDispatcher();
 		import('lib.pkp.classes.linkAction.request.AjaxModal');

@@ -45,7 +45,7 @@ class SignoffInformationCenterHandler extends Handler {
 	/**
 	 * @see PKPHandler::initialize()
 	 */
-	function initialize(&$request, $args = null) {
+	function initialize($request, $args = null) {
 		parent::initialize($request, $args);
 
 		// Fetch the monograph and file to display information about
@@ -98,7 +98,7 @@ class SignoffInformationCenterHandler extends Handler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function viewSignoffHistory($args, &$request) {
+	function viewSignoffHistory($args, $request) {
 		$this->setupTemplate($request);
 		$user =& $request->getUser();
 
@@ -116,7 +116,7 @@ class SignoffInformationCenterHandler extends Handler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function viewNotes($args, &$request) {
+	function viewNotes($args, $request) {
 		$this->setupTemplate($request);
 		$signoff = $this->getAuthorizedContextObject(ASSOC_TYPE_SIGNOFF);
 		$stageId = $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
@@ -138,7 +138,7 @@ class SignoffInformationCenterHandler extends Handler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function getUserSignoffs($args, &$request) {
+	function getUserSignoffs($args, $request) {
 		$user =& $request->getUser();
 		$signoffDao = DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
@@ -171,7 +171,7 @@ class SignoffInformationCenterHandler extends Handler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function fetchNotesForm($args, &$request) {
+	function fetchNotesForm($args, $request) {
 		$this->setupTemplate($request);
 		$signoff =& $this->getAuthorizedContextObject(ASSOC_TYPE_SIGNOFF);
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
@@ -189,7 +189,7 @@ class SignoffInformationCenterHandler extends Handler {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function saveNote($args, &$request) {
+	function saveNote($args, $request) {
 		$this->setupTemplate($request);
 		$signoff =& $this->signoff;
 		$monograph =& $this->monograph;
@@ -216,7 +216,7 @@ class SignoffInformationCenterHandler extends Handler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function listNotes($args, &$request) {
+	function listNotes($args, $request) {
 		$this->setupTemplate($request);
 		$signoff =& $this->signoff;
 		$monograph =& $this->monograph;

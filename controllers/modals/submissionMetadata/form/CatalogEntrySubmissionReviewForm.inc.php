@@ -43,7 +43,7 @@ class CatalogEntrySubmissionReviewForm extends SubmissionMetadataViewForm {
 	/**
 	 * Save the metadata and create a catalog entry.
 	 */
-	function execute(&$request) {
+	function execute($request) {
 		parent::execute($request);
 
 		$monograph =& $this->getMonograph();

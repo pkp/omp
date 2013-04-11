@@ -56,7 +56,7 @@ class FinalDraftFilesGridHandler extends FileListGridHandler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function selectFiles($args, &$request) {
+	function selectFiles($args, $request) {
 		$monograph =& $this->getSubmission();
 
 		import('controllers.grid.files.final.form.ManageFinalDraftFilesForm');

@@ -32,7 +32,7 @@ class AuthorDashboardHandler extends Handler {
 	/**
 	 * @see PKPHandler::authorize()
 	 */
-	function authorize(&$request, &$args, $roleAssignments) {
+	function authorize($request, &$args, $roleAssignments) {
 		import('classes.security.authorization.OmpAuthorDashboardAccessPolicy');
 		$this->addPolicy(new OmpAuthorDashboardAccessPolicy($request, $args, $roleAssignments), true);
 
@@ -48,7 +48,7 @@ class AuthorDashboardHandler extends Handler {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function submission($args, &$request) {
+	function submission($args, $request) {
 		// Pass the authorized monograph on to the template.
 		$this->setupTemplate($request);
 		$templateMgr =& TemplateManager::getManager($request);
@@ -158,7 +158,7 @@ class AuthorDashboardHandler extends Handler {
 	 * @param $request Request
 	 * @return string
 	 */
-	function readMonographEmail($args, &$request) {
+	function readMonographEmail($args, $request) {
 		$monographEmailLogDao = DAORegistry::getDAO('SubmissionEmailLogDAO');
 		$user =& $request->getUser();
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);

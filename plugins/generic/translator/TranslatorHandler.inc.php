@@ -36,7 +36,7 @@ class TranslatorHandler extends Handler {
 		return 'locale/' . $locale . '/emailTemplates.xml';
 	}
 
-	function index($args, &$request) {
+	function index($args, $request) {
 		$this->validate();
 		$plugin =& $this->plugin;
 		$this->setupTemplate($request, false);
@@ -62,7 +62,7 @@ class TranslatorHandler extends Handler {
 		$templateMgr->assign('helpTopicId', 'plugins.generic.TranslatorPlugin');
 	}
 
-	function edit($args, &$request) {
+	function edit($args, $request) {
 		$this->validate();
 		$plugin =& $this->plugin;
 		$this->setupTemplate($request);
@@ -92,7 +92,7 @@ class TranslatorHandler extends Handler {
 		return $templateMgr->fetchJson($plugin->getTemplatePath() . 'locale.tpl');
 	}
 
-	function check($args, &$request) {
+	function check($args, $request) {
 		$this->validate();
 		$plugin =& $this->plugin;
 		$this->setupTemplate($request);
@@ -125,7 +125,7 @@ class TranslatorHandler extends Handler {
 	 * Export the locale files to the browser as a tarball.
 	 * Requires tar (configured in config.inc.php) for operation.
 	 */
-	function export($args, &$request) {
+	function export($args, $request) {
 		$this->validate();
 		$plugin =& $this->plugin;
 		$this->setupTemplate($request);
@@ -136,7 +136,7 @@ class TranslatorHandler extends Handler {
 		TranslatorAction::export($locale);
 	}
 
-	function saveLocaleChanges($args, &$request) {
+	function saveLocaleChanges($args, $request) {
 		$this->validate();
 		$plugin =& $this->plugin;
 		$this->setupTemplate($request);
@@ -206,7 +206,7 @@ class TranslatorHandler extends Handler {
 		return LegacyPluginHelper::redirect($request->getUserVar('redirectUrl'));
 	}
 
-	function downloadLocaleFile($args, &$request) {
+	function downloadLocaleFile($args, $request) {
 		$this->validate();
 		$plugin =& $this->plugin;
 		$this->setupTemplate($request);
@@ -225,7 +225,7 @@ class TranslatorHandler extends Handler {
 		readfile($filename);
 	}
 
-	function editLocaleFile($args, &$request) {
+	function editLocaleFile($args, $request) {
 		$this->validate();
 		$plugin =& $this->plugin;
 		$this->setupTemplate($request);
@@ -276,7 +276,7 @@ class TranslatorHandler extends Handler {
 		return $templateMgr->fetchJson($plugin->getTemplatePath() . 'localeFile.tpl');
 	}
 
-	function editMiscFile($args, &$request) {
+	function editMiscFile($args, $request) {
 		$this->validate();
 		$plugin =& $this->plugin;
 		$this->setupTemplate($request);
@@ -298,7 +298,7 @@ class TranslatorHandler extends Handler {
 		return $templateMgr->fetchJson($plugin->getTemplatePath() . 'editMiscFile.tpl');
 	}
 
-	function saveLocaleFile($args, &$request) {
+	function saveLocaleFile($args, $request) {
 		$this->validate();
 		$plugin =& $this->plugin;
 		$this->setupTemplate($request);
@@ -326,7 +326,7 @@ class TranslatorHandler extends Handler {
 		return LegacyPluginHelper::redirect($request->getUserVar('redirectUrl'));
 	}
 
-	function deleteLocaleKey($args, &$request) {
+	function deleteLocaleKey($args, $request) {
 		$this->validate();
 		$plugin =& $this->plugin;
 		$this->setupTemplate($request);
@@ -347,7 +347,7 @@ class TranslatorHandler extends Handler {
 		return $this->editLocaleFile(array($locale, urlencode($filename)));
 	}
 
-	function saveMiscFile($args, &$request) {
+	function saveMiscFile($args, $request) {
 		$this->validate();
 		$plugin =& $this->plugin;
 		$this->setupTemplate($request);
@@ -369,7 +369,7 @@ class TranslatorHandler extends Handler {
 		return $this->edit(array($locale));
 	}
 
-	function editEmail($args, &$request) {
+	function editEmail($args, $request) {
 		$this->validate();
 		$plugin =& $this->plugin;
 		$this->setupTemplate($request);
@@ -392,7 +392,7 @@ class TranslatorHandler extends Handler {
 		return $templateMgr->fetchJson($plugin->getTemplatePath() . 'editEmail.tpl');
 	}
 
-	function createFile($args, &$request) {
+	function createFile($args, $request) {
 		$this->validate();
 		$plugin =& $this->plugin;
 		$this->setupTemplate($request);
@@ -411,7 +411,7 @@ class TranslatorHandler extends Handler {
 		return LegacyPluginHelper::redirect($request->getUserVar('redirectUrl'));
 	}
 
-	function deleteEmail($args, &$request) {
+	function deleteEmail($args, $request) {
 		$this->validate();
 		$plugin =& $this->plugin;
 		$this->setupTemplate($request);
@@ -436,7 +436,7 @@ class TranslatorHandler extends Handler {
 		return LegacyPluginHelper::redirect($request->url(null, null, 'edit', $locale, null, 'emails'));
 	}
 
-	function saveEmail($args, &$request) {
+	function saveEmail($args, $request) {
 		$this->validate();
 		$plugin =& $this->plugin;
 		$this->setupTemplate($request);

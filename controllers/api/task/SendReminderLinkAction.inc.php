@@ -24,7 +24,7 @@ class SendReminderLinkAction extends LinkAction {
 	 * @param $request Request
 	 * @param $actionArgs array The action arguments.
 	 */
-	function SendReminderLinkAction(&$request, $modalTitle, $actionArgs) {
+	function SendReminderLinkAction($request, $modalTitle, $actionArgs) {
 		// Instantiate the send review modal.
 		$router =& $request->getRouter();
 		import('lib.pkp.classes.linkAction.request.AjaxModal');

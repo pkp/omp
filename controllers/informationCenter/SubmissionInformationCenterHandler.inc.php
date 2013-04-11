@@ -30,7 +30,7 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 	/**
 	 * Fetch and store away objects
 	 */
-	function initialize(&$request, $args = null) {
+	function initialize($request, $args = null) {
 		parent::initialize($request, $args);
 
 		// Fetch the monograph to display information about
@@ -42,7 +42,7 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function metadata($args, &$request) {
+	function metadata($args, $request) {
 		$this->setupTemplate($request);
 
 		import('controllers.modals.submissionMetadata.form.SubmissionMetadataViewForm');
@@ -65,7 +65,7 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function saveForm($args, &$request) {
+	function saveForm($args, $request) {
 		$this->setupTemplate($request);
 
 		import('controllers.modals.submissionMetadata.form.SubmissionMetadataViewForm');
@@ -93,7 +93,7 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function viewInformationCenter($args, &$request) {
+	function viewInformationCenter($args, $request) {
 		// Get the latest history item to display in the header
 		$monographEventLogDao = DAORegistry::getDAO('SubmissionEventLogDAO');
 		$monographEvents =& $monographEventLogDao->getByMonographId($this->_monograph->getId());
@@ -118,7 +118,7 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function viewNotes($args, &$request) {
+	function viewNotes($args, $request) {
 		$this->setupTemplate($request);
 
 		import('lib.pkp.controllers.informationCenter.form.NewSubmissionNoteForm');
@@ -134,7 +134,7 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function saveNote($args, &$request) {
+	function saveNote($args, $request) {
 		$this->setupTemplate($request);
 
 		import('lib.pkp.controllers.informationCenter.form.NewSubmissionNoteForm');
@@ -162,7 +162,7 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function viewNotify($args, &$request) {
+	function viewNotify($args, $request) {
 		$this->setupTemplate($request);
 
 		import('controllers.informationCenter.form.InformationCenterNotifyForm');
@@ -178,7 +178,7 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function fetchTemplateBody($args, &$request) {
+	function fetchTemplateBody($args, $request) {
 		$templateId = $request->getUserVar('template');
 		import('classes.mail.MonographMailTemplate');
 		$template = new MonographMailTemplate($this->_monograph, $templateId);
@@ -202,7 +202,7 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function sendNotification ($args, &$request) {
+	function sendNotification ($args, $request) {
 		$this->setupTemplate($request);
 
 		import('controllers.informationCenter.form.InformationCenterNotifyForm');
@@ -233,7 +233,7 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function listHistory($args, &$request) {
+	function listHistory($args, $request) {
 		$this->setupTemplate($request);
 		$templateMgr =& TemplateManager::getManager($request);
 

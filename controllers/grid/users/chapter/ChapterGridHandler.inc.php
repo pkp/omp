@@ -81,7 +81,7 @@ class ChapterGridHandler extends CategoryGridHandler {
 	 * @param $args array
 	 * @param $roleAssignments array
 	 */
-	function authorize(&$request, &$args, $roleAssignments) {
+	function authorize($request, &$args, $roleAssignments) {
 		import('classes.security.authorization.SubmissionAccessPolicy');
 		$this->addPolicy(new SubmissionAccessPolicy($request, $args, $roleAssignments));
 		return parent::authorize($request, $args, $roleAssignments);
@@ -91,7 +91,7 @@ class ChapterGridHandler extends CategoryGridHandler {
 	 * Configure the grid
 	 * @param $request PKPRequest
 	 */
-	function initialize(&$request) {
+	function initialize($request) {
 		parent::initialize($request);
 
 		$this->setTitle('submission.chapters');
@@ -189,7 +189,7 @@ class ChapterGridHandler extends CategoryGridHandler {
 	/**
 	 * @see GridHandler::loadData
 	 */
-	function &loadData(&$request, $filter) {
+	function &loadData($request, $filter) {
 		$monograph =& $this->getMonograph();
 		$chapterDao = DAORegistry::getDAO('ChapterDAO');
 		$chapters =& $chapterDao->getChapters($monograph->getId());
@@ -271,7 +271,7 @@ class ChapterGridHandler extends CategoryGridHandler {
 	 * @param $args array
 	 * @param $request Request
 	 */
-	function addChapter($args, &$request) {
+	function addChapter($args, $request) {
 		// Calling editChapter() with an empty row id will add
 		// a new chapter.
 		return $this->editChapter($args, $request);
@@ -283,7 +283,7 @@ class ChapterGridHandler extends CategoryGridHandler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function editChapter($args, &$request) {
+	function editChapter($args, $request) {
 		$chapter =& $this->_getChapterFromRequest($request);
 
 		// Form handling
@@ -301,7 +301,7 @@ class ChapterGridHandler extends CategoryGridHandler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function updateChapter($args, &$request) {
+	function updateChapter($args, $request) {
 		// Identify the chapter to be updated
 		$chapter =& $this->_getChapterFromRequest($request);
 
@@ -332,7 +332,7 @@ class ChapterGridHandler extends CategoryGridHandler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function deleteChapter($args, &$request) {
+	function deleteChapter($args, $request) {
 		// Identify the chapter to be deleted
 		$chapter =& $this->_getChapterFromRequest($request);
 		$chapterId = $chapter->getId();
@@ -359,7 +359,7 @@ class ChapterGridHandler extends CategoryGridHandler {
 	/**
 	 * Fetch and validate the chapter from the request arguments
 	 */
-	function &_getChapterFromRequest(&$request) {
+	function &_getChapterFromRequest($request) {
 		$monograph =& $this->getMonograph();
 		$chapterDao = DAORegistry::getDAO('ChapterDAO');
 		$chapter =& $chapterDao->getChapter((int) $request->getUserVar('chapterId'), $monograph->getId());

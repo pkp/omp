@@ -23,7 +23,7 @@ class ReadSignoffHistoryLinkAction extends LinkAction {
 	 * @param $monographId int The signoff monograph id.
 	 * @param $stageId int The signoff stage id.
 	 */
-	function ReadSignoffHistoryLinkAction(&$request, $signoffId, $monographId, $stageId) {
+	function ReadSignoffHistoryLinkAction($request, $signoffId, $monographId, $stageId) {
 		// Instantiate the redirect action request.
 		$dispatcher =& $request->getDispatcher();
 		import('lib.pkp.classes.linkAction.request.AjaxModal');

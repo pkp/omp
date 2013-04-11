@@ -96,7 +96,7 @@ class AnnouncementForm extends PKPAnnouncementForm {
 	/**
 	 * @see PKPAnnouncementForm::execute()
 	 */
-	function execute(&$request) {
+	function execute($request) {
 		$announcement = parent::execute();
 		$pressId = $this->getContextId();
 

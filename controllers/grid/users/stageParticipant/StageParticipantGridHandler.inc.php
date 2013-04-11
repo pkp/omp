@@ -64,7 +64,7 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 	/**
 	 * @see PKPHandler::authorize()
 	 */
-	function authorize(&$request, &$args, $roleAssignments) {
+	function authorize($request, &$args, $roleAssignments) {
 		$stageId = (int) $request->getUserVar('stageId');
 		import('classes.security.authorization.WorkflowStageAccessPolicy');
 		$this->addPolicy(new WorkflowStageAccessPolicy($request, $args, $roleAssignments, 'submissionId', $stageId));
@@ -88,7 +88,7 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 	/**
 	 * @see PKPHandler::initialize()
 	 */
-	function initialize(&$request) {
+	function initialize($request) {
 		parent::initialize($request);
 
 		// Load submission-specific translations
@@ -217,7 +217,7 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function addParticipant($args, &$request) {
+	function addParticipant($args, $request) {
 		$monograph =& $this->getMonograph();
 		$stageId = $this->getStageId();
 		$userGroups =& $this->getGridDataElements($request);
@@ -237,7 +237,7 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function saveParticipant($args, &$request) {
+	function saveParticipant($args, $request) {
 		$monograph =& $this->getMonograph();
 		$stageId = $this->getStageId();
 		$userGroups =& $this->getGridDataElements($request);
@@ -300,7 +300,7 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 	 * @param $request
 	 * @return void
 	 */
-	function deleteParticipant($args, &$request) {
+	function deleteParticipant($args, $request) {
 		$monograph =& $this->getMonograph();
 		$stageId = $this->getStageId();
 		$assignmentId = (int) $request->getUserVar('assignmentId');
@@ -372,7 +372,7 @@ class StageParticipantGridHandler extends CategoryGridHandler {
 	 * @param $request Request
 	 * @return JSON string
 	 */
-	function fetchUserList($args, &$request) {
+	function fetchUserList($args, $request) {
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH); /* @var $monograph Monograph */
 		$stageId = $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
 

@@ -38,7 +38,7 @@ class PressSettingsTabHandler extends ManagerSettingsTabHandler {
 	/**
 	 * @see PKPHandler::initialize()
 	 */
-	function initialize(&$request, $args = null) {
+	function initialize($request, $args = null) {
 		parent::initialize($request, $args);
 
 		// Load grid-specific translations

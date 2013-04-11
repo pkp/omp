@@ -38,7 +38,7 @@ class InitiateReviewForm extends EditorDecisionForm {
 	/**
 	 * @see Form::execute()
 	 */
-	function execute($args, &$request) {
+	function execute($args, $request) {
 		// Retrieve the submission.
 		$seriesEditorSubmission =& $this->getSeriesEditorSubmission();
 

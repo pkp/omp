@@ -32,7 +32,7 @@ class AuthorSignoffFilesGridRow extends SubmissionFilesGridRow {
 	/**
 	 * @see GridRow::initialize
 	 */
-	function initialize(&$request) {
+	function initialize($request) {
 		parent::initialize($request);
 
 		// Get this row's signoff

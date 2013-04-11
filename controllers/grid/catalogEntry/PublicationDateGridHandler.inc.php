@@ -86,7 +86,7 @@ class PublicationDateGridHandler extends GridHandler {
 	 * @param $args array
 	 * @param $roleAssignments array
 	 */
-	function authorize(&$request, &$args, $roleAssignments) {
+	function authorize($request, &$args, $roleAssignments) {
 		import('classes.security.authorization.SubmissionAccessPolicy');
 		$this->addPolicy(new SubmissionAccessPolicy($request, $args, $roleAssignments));
 		return parent::authorize($request, $args, $roleAssignments);
@@ -96,7 +96,7 @@ class PublicationDateGridHandler extends GridHandler {
 	 * Configure the grid
 	 * @param $request PKPRequest
 	 */
-	function initialize(&$request) {
+	function initialize($request) {
 		parent::initialize($request);
 
 		// Retrieve the authorized monograph.
@@ -229,7 +229,7 @@ class PublicationDateGridHandler extends GridHandler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function editDate($args, &$request) {
+	function editDate($args, $request) {
 		// Identify the date to be updated
 		$publicationDateId = (int) $request->getUserVar('publicationDateId');
 		$monograph =& $this->getMonograph();
@@ -252,7 +252,7 @@ class PublicationDateGridHandler extends GridHandler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function updateDate($args, &$request) {
+	function updateDate($args, $request) {
 		// Identify the code to be updated
 		$publicationDateId = $request->getUserVar('publicationDateId');
 		$monograph =& $this->getMonograph();
@@ -304,7 +304,7 @@ class PublicationDateGridHandler extends GridHandler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function deleteDate($args, &$request) {
+	function deleteDate($args, $request) {
 
 		// Identify the code to be deleted
 		$publicationDateId = $request->getUserVar('publicationDateId');

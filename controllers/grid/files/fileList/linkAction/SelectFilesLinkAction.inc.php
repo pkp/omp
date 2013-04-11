@@ -24,7 +24,7 @@ class SelectFilesLinkAction extends LinkAction {
 	 * @param $actionLabel string The localized label of the link action.
 	 * @param $modalTitle string the (optional) title to be used for the modal.
 	 */
-	function SelectFilesLinkAction(&$request, $actionArgs, $actionLabel, $modalTitle = null) {
+	function SelectFilesLinkAction($request, $actionArgs, $actionLabel, $modalTitle = null) {
 		// Create an ajax action request that'll contain
 		// the file selection grid.
 		import('lib.pkp.classes.linkAction.request.AjaxModal');

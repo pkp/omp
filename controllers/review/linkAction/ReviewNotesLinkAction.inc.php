@@ -27,7 +27,7 @@ class ReviewNotesLinkAction extends LinkAction {
 	 * @param $monograph Monograph The reviewed monograph.
 	 * @param $user User The user.
 	 */
-	function ReviewNotesLinkAction(&$request, &$reviewAssignment, &$monograph, $user) {
+	function ReviewNotesLinkAction($request, &$reviewAssignment, &$monograph, $user) {
 		// Instantiate the information center modal.
 		$router =& $request->getRouter();
 		import('lib.pkp.classes.linkAction.request.AjaxModal');

@@ -38,7 +38,7 @@ class CreateReviewerForm extends ReviewerForm {
 	 * Fetch the form.
 	 * @see Form::fetch()
 	 */
-	function fetch(&$request) {
+	function fetch($request) {
 
 		$searchByNameAction = $this->getSearchByNameAction($request);
 
@@ -72,7 +72,7 @@ class CreateReviewerForm extends ReviewerForm {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function execute($args, &$request) {
+	function execute($args, $request) {
 		$userDao = DAORegistry::getDAO('UserDAO');
 		$user = new User();
 

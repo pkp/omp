@@ -37,7 +37,7 @@ class CatalogBookHandler extends Handler {
 	 * @param $args array
 	 * @param $roleAssignments array
 	 */
-	function authorize(&$request, &$args, $roleAssignments) {
+	function authorize($request, &$args, $roleAssignments) {
 		import('classes.security.authorization.OmpPublishedMonographAccessPolicy');
 		$this->addPolicy(new OmpPublishedMonographAccessPolicy($request, $args, $roleAssignments));
 		return parent::authorize($request, $args, $roleAssignments);
@@ -52,7 +52,7 @@ class CatalogBookHandler extends Handler {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function book($args, &$request) {
+	function book($args, $request) {
 		$templateMgr =& TemplateManager::getManager($request);
 		$press =& $request->getPress();
 		$this->setupTemplate($request);
@@ -132,7 +132,7 @@ class CatalogBookHandler extends Handler {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function download($args, &$request) {
+	function download($args, $request) {
 		$press =& $request->getPress();
 		$this->setupTemplate($request);
 

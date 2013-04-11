@@ -98,7 +98,7 @@ class SeriesEditorAction extends Action {
 	 * @param $stageId int
 	 * @param $request Request
 	 */
-	function assignDefaultStageParticipants(&$monograph, $stageId, &$request) {
+	function assignDefaultStageParticipants(&$monograph, $stageId, $request) {
 		$userGroupDao = DAORegistry::getDAO('UserGroupDAO');
 
 		// Managerial roles are skipped -- They have access by default and
@@ -158,7 +158,7 @@ class SeriesEditorAction extends Action {
 	 * @param $newStage integer One of the WORKFLOW_STAGE_* constants.
 	 * @param $request Request
 	 */
-	function incrementWorkflowStage(&$monograph, $newStage, &$request) {
+	function incrementWorkflowStage(&$monograph, $newStage, $request) {
 		// Change the monograph's workflow stage.
 		$monograph->setStageId($newStage);
 		$monographDao = DAORegistry::getDAO('MonographDAO'); /* @var $monographDao MonographDAO */

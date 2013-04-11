@@ -57,7 +57,7 @@ class EditorDecisionWithEmailForm extends EditorDecisionForm {
 	 * @see Form::initData()
 	 * @param $actionLabels array
 	 */
-	function initData($args, &$request, $actionLabels) {
+	function initData($args, $request, $actionLabels) {
 		$press =& $request->getPress();
 		$router =& $request->getRouter();
 		$dispatcher =& $router->getDispatcher();
@@ -119,7 +119,7 @@ class EditorDecisionWithEmailForm extends EditorDecisionForm {
 	/**
 	 * @see Form::fetch()
 	 */
-	function fetch(&$request) {
+	function fetch($request) {
 		// No all decision forms need a review round.
 		// Try to get a review round.
 		$reviewRound =& $this->getReviewRound();

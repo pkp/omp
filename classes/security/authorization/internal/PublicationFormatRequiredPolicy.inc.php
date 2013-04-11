@@ -21,7 +21,7 @@ class PublicationFormatRequiredPolicy extends DataObjectRequiredPolicy {
 	 * @param $submissionParameterName string the request parameter we expect
 	 *  the submission id in.
 	 */
-	function PublicationFormatRequiredPolicy(&$request, &$args, $parameterName = 'publicationFormatId', $operations = null) {
+	function PublicationFormatRequiredPolicy($request, &$args, $parameterName = 'publicationFormatId', $operations = null) {
 		parent::DataObjectRequiredPolicy($request, $args, $parameterName, 'user.authorization.invalidPublicationFormat', $operations);
 	}
 

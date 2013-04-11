@@ -127,7 +127,7 @@ class SubmissionMetadataFormImplementation {
 	 * @param $request PKPRequest
 	 * @return Monograph
 	 */
-	function execute(&$monograph, &$request) {
+	function execute(&$monograph, $request) {
 		$monographDao = DAORegistry::getDAO('MonographDAO');
 
 		// Update monograph

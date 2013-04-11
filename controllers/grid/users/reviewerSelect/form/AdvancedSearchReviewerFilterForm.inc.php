@@ -67,7 +67,7 @@ class AdvancedSearchReviewerFilterForm extends Form {
 	 * @param $filterData array
 	 * @param $request PKPRequest
 	 */
-	function initData($filterData, &$request) {
+	function initData($filterData, $request) {
 		$this->_data = $filterData;
 
 		$monograph = $this->getMonograph();

@@ -143,7 +143,7 @@ class ChapterForm extends Form {
 	 * @param $newRowId mixed New entry with data to persist
 	 * @return boolean
 	 */
-	function insertEntry(&$request, $newRowId) {
+	function insertEntry($request, $newRowId) {
 		$monograph =& $this->getMonograph();
 		$chapter =& $this->getChapter();
 		$authorId = (int) $newRowId['name'];
@@ -162,7 +162,7 @@ class ChapterForm extends Form {
 	 * the this on Listbuilder unpack function was set to this
 	 * form.
 	 */
-	function updateEntry(&$request, $rowId, $newRowId) {
+	function updateEntry($request, $rowId, $newRowId) {
 		if (!$this->deleteEntry($request, $rowId)) return false;
 		return $this->insertEntry($request, $newRowId);
 	}
@@ -173,7 +173,7 @@ class ChapterForm extends Form {
 	 * @param $rowId mixed ID of row to modify
 	 * @return boolean
 	 */
-	function deleteEntry(&$request, $rowId) {
+	function deleteEntry($request, $rowId) {
 		$chapter = $this->getChapter();
 		$authorId = (int) $rowId; // this is the authorId to remove and is already an integer
 		if ($authorId) {

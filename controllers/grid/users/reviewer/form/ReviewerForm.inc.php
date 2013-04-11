@@ -128,7 +128,7 @@ class ReviewerForm extends Form {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function initData($args, &$request) {
+	function initData($args, $request) {
 		$reviewerId = (int) $request->getUserVar('reviewerId');
 		$press =& $request->getContext();
 		$reviewRound =& $this->getReviewRound();
@@ -205,7 +205,7 @@ class ReviewerForm extends Form {
 	 * @param $request PKPRequest
 	 * @see Form::fetch()
 	 */
-	function fetch(&$request) {
+	function fetch($request) {
 
 		// Get the review method options.
 		$reviewAssignmentDao = DAORegistry::getDAO('ReviewAssignmentDAO');
@@ -261,7 +261,7 @@ class ReviewerForm extends Form {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function execute($args, &$request) {
+	function execute($args, $request) {
 		$seriesEditorSubmissionDao = DAORegistry::getDAO('SeriesEditorSubmissionDAO');
 		$submission =& $seriesEditorSubmissionDao->getById($this->getMonographId());
 		$press =& $request->getPress();
@@ -328,7 +328,7 @@ class ReviewerForm extends Form {
 	 * @param $request Request
 	 * @return LinkAction
 	 */
-	function getSearchByNameAction(&$request) {
+	function getSearchByNameAction($request) {
 		$reviewRound =& $this->getReviewRound();
 
 		$actionArgs['submissionId'] = $this->getMonographId();

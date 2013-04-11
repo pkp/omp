@@ -30,7 +30,7 @@ class PreparedEmailsGridRow extends PKPPreparedEmailsGridRow {
 	 * @param $request PKPRequest
 	 * @return int Press ID.
 	 */
-	function getContextId(&$request) {
+	function getContextId($request) {
 		$press =& $request->getPress();
 		return $press->getId();
 	}

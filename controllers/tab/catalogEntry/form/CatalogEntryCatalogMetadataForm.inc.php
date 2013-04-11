@@ -75,7 +75,7 @@ class CatalogEntryCatalogMetadataForm extends Form {
 	 * @param $request PKPRequest
 	 * return string
 	 */
-	function fetch(&$request) {
+	function fetch($request) {
 		$monograph =& $this->getMonograph();
 
 		$templateMgr =& TemplateManager::getManager($request);
@@ -196,7 +196,7 @@ class CatalogEntryCatalogMetadataForm extends Form {
 	 * Save the metadata and store the catalog data for this published
 	 * monograph.
 	 */
-	function execute(&$request) {
+	function execute($request) {
 		parent::execute();
 
 		$monograph =& $this->getMonograph();

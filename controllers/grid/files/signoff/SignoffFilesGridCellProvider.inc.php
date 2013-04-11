@@ -48,7 +48,7 @@ class SignoffFilesGridCellProvider extends GridCellProvider {
 	/**
 	 * @see GridCellProvider::getCellActions()
 	 */
-	function getCellActions(&$request, &$row, &$column, $position = GRID_ACTION_POSITION_DEFAULT) {
+	function getCellActions($request, &$row, &$column, $position = GRID_ACTION_POSITION_DEFAULT) {
 		$actions = array();
 		$monographFile =& $row->getData();
 		assert(is_a($monographFile, 'MonographFile'));
@@ -112,7 +112,7 @@ class SignoffFilesGridCellProvider extends GridCellProvider {
 	 * @param $request Request
 	 * @param $monographFile MonographFile
 	 */
-	function _getApprovedCellAction(&$request, &$monographFile, $cellState) {
+	function _getApprovedCellAction($request, &$monographFile, $cellState) {
 		$router =& $request->getRouter();
 		$actionArgs = array(
 			'submissionId' => $monographFile->getMonographId(),

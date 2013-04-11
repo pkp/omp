@@ -46,7 +46,7 @@ class EditorDecisionHandler extends Handler {
 	/**
 	 * @see PKPHandler::authorize()
 	 */
-	function authorize(&$request, &$args, $roleAssignments) {
+	function authorize($request, &$args, $roleAssignments) {
 		$stageId = (int) $request->getUserVar('stageId');
 		import('classes.security.authorization.OmpEditorDecisionAccessPolicy');
 		$this->addPolicy(new OmpEditorDecisionAccessPolicy($request, $args, $roleAssignments, 'submissionId', $stageId));
@@ -69,7 +69,7 @@ class EditorDecisionHandler extends Handler {
 	/**
 	 * @see PKPHandler::initialize()
 	 */
-	function initialize(&$request, $args) {
+	function initialize($request, $args) {
 		AppLocale::requireComponents(
 			LOCALE_COMPONENT_APP_COMMON,
 			LOCALE_COMPONENT_APP_EDITOR,
@@ -87,7 +87,7 @@ class EditorDecisionHandler extends Handler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function newReviewRound($args, &$request) {
+	function newReviewRound($args, $request) {
 		return $this->_initiateEditorDecision($args, $request, 'NewReviewRoundForm');
 	}
 
@@ -97,7 +97,7 @@ class EditorDecisionHandler extends Handler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function saveNewReviewRound($args, &$request) {
+	function saveNewReviewRound($args, $request) {
 		// Retrieve the authorized monograph.
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		// FIXME: this can probably all be managed somewhere.
@@ -119,7 +119,7 @@ class EditorDecisionHandler extends Handler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function internalReview($args, &$request) {
+	function internalReview($args, $request) {
 		return $this->_initiateEditorDecision($args, $request, 'InitiateInternalReviewForm');
 	}
 
@@ -129,7 +129,7 @@ class EditorDecisionHandler extends Handler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function saveInternalReview($args, &$request) {
+	function saveInternalReview($args, $request) {
 		assert($this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE) == WORKFLOW_STAGE_ID_SUBMISSION);
 		return $this->_saveEditorDecision(
 			$args, $request, 'InitiateInternalReviewForm',
@@ -144,7 +144,7 @@ class EditorDecisionHandler extends Handler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function externalReview($args, &$request) {
+	function externalReview($args, $request) {
 		return $this->_initiateEditorDecision($args, $request, 'InitiateExternalReviewForm');
 	}
 
@@ -154,7 +154,7 @@ class EditorDecisionHandler extends Handler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function saveExternalReview($args, &$request) {
+	function saveExternalReview($args, $request) {
 		assert($this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE) == WORKFLOW_STAGE_ID_SUBMISSION);
 		return $this->_saveEditorDecision(
 			$args, $request, 'InitiateExternalReviewForm',
@@ -169,7 +169,7 @@ class EditorDecisionHandler extends Handler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function sendReviews($args, &$request) {
+	function sendReviews($args, $request) {
 		return $this->_initiateEditorDecision($args, $request, 'SendReviewsForm');
 	}
 
@@ -182,7 +182,7 @@ class EditorDecisionHandler extends Handler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function sendReviewsInReview($args, &$request) {
+	function sendReviewsInReview($args, $request) {
 		return $this->_initiateEditorDecision($args, $request, 'SendReviewsForm');
 	}
 
@@ -192,7 +192,7 @@ class EditorDecisionHandler extends Handler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function saveSendReviews($args, &$request) {
+	function saveSendReviews($args, $request) {
 		return $this->_saveEditorDecision($args, $request, 'SendReviewsForm');
 	}
 
@@ -202,7 +202,7 @@ class EditorDecisionHandler extends Handler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function saveSendReviewsInReview($args, &$request) {
+	function saveSendReviewsInReview($args, $request) {
 		return $this->_saveEditorDecision($args, $request, 'SendReviewsForm');
 	}
 
@@ -212,7 +212,7 @@ class EditorDecisionHandler extends Handler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function promote($args, &$request) {
+	function promote($args, $request) {
 		return $this->_initiateEditorDecision($args, $request, 'PromoteForm');
 	}
 
@@ -224,7 +224,7 @@ class EditorDecisionHandler extends Handler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function promoteInReview($args, &$request) {
+	function promoteInReview($args, $request) {
 		return $this->_initiateEditorDecision($args, $request, 'PromoteForm');
 	}
 
@@ -234,7 +234,7 @@ class EditorDecisionHandler extends Handler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function savePromote($args, &$request) {
+	function savePromote($args, $request) {
 		return $this->_saveGeneralPromote($args, $request);
 	}
 
@@ -245,7 +245,7 @@ class EditorDecisionHandler extends Handler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function savePromoteInReview($args, &$request) {
+	function savePromoteInReview($args, $request) {
 		return $this->_saveGeneralPromote($args, $request);
 	}
 
@@ -255,7 +255,7 @@ class EditorDecisionHandler extends Handler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function importPeerReviews($args, &$request) {
+	function importPeerReviews($args, $request) {
 		// Retrieve the authorized submission.
 		$seriesEditorSubmission =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 
@@ -281,7 +281,7 @@ class EditorDecisionHandler extends Handler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function approveProofs($args, &$request) {
+	function approveProofs($args, $request) {
 		$this->setupTemplate($request);
 		$press =& $request->getPress();
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
@@ -305,7 +305,7 @@ class EditorDecisionHandler extends Handler {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function saveApproveProof($args, &$request) {
+	function saveApproveProof($args, $request) {
 		$monographFile =& $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION_FILE);
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 
@@ -354,7 +354,7 @@ class EditorDecisionHandler extends Handler {
 	 * @param $formName string Name of form to call
 	 * @return string Serialized JSON object
 	 */
-	private function _initiateEditorDecision($args, &$request, $formName) {
+	private function _initiateEditorDecision($args, $request, $formName) {
 		// Retrieve the decision
 		$decision = (int)$request->getUserVar('decision');
 
@@ -375,7 +375,7 @@ class EditorDecisionHandler extends Handler {
 	 *  redirect to if successful (if any).
 	 * @return string Serialized JSON object
 	 */
-	private function _saveEditorDecision($args, &$request, $formName, $redirectOp = null, $decision = null) {
+	private function _saveEditorDecision($args, $request, $formName, $redirectOp = null, $decision = null) {
 		// Retrieve the authorized monograph.
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		// Retrieve the decision
@@ -476,7 +476,7 @@ class EditorDecisionHandler extends Handler {
 		}
 	}
 
-	private function _saveGeneralPromote($args, &$request) {
+	private function _saveGeneralPromote($args, $request) {
 		// Redirect to the next workflow page after
 		// promoting the submission.
 		$decision = (int)$request->getUserVar('decision');

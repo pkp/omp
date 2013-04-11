@@ -25,7 +25,7 @@ class MonographPublishedPolicy extends AuthorizationPolicy {
 	 * Constructor
 	 * @param $request PKPRequest
 	 */
-	function MonographPublishedPolicy(&$request) {
+	function MonographPublishedPolicy($request) {
 		parent::AuthorizationPolicy('user.authorization.monographAuthor');
 		$this->_request =& $request;
 	}

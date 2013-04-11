@@ -39,7 +39,7 @@ class SelectMonographHandler extends Handler {
 	 * @param $args array
 	 * @param $roleAssignments array
 	 */
-	function authorize(&$request, &$args, $roleAssignments) {
+	function authorize($request, &$args, $roleAssignments) {
 		import('lib.pkp.classes.security.authorization.PKPSiteAccessPolicy');
 		$this->addPolicy(new PKPSiteAccessPolicy($request, null, $roleAssignments));
 		return parent::authorize($request, $args, $roleAssignments);
@@ -50,7 +50,7 @@ class SelectMonographHandler extends Handler {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function fetch($args, &$request) {
+	function fetch($args, $request) {
 		$templateMgr =& TemplateManager::getManager($request);
 		AppLocale::requireComponents(LOCALE_COMPONENT_APP_SUBMISSION); // submission.select
 		$json = new JSONMessage(true, $templateMgr->fetch('controllers/modals/submissionMetadata/selectMonograph.tpl'));
@@ -62,7 +62,7 @@ class SelectMonographHandler extends Handler {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function getSubmissions($args, &$request) {
+	function getSubmissions($args, $request) {
 		$press =& $request->getPress();
 		$monographDao = DAORegistry::getDAO('MonographDAO');
 		$submissionsIterator = $monographDao->getUnpublishedMonographsByPressId($press->getId());

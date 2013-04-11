@@ -106,7 +106,7 @@ class ReviewerGridHandler extends GridHandler {
 	 * @param $args array
 	 * @param $roleAssignments array
 	 */
-	function authorize(&$request, &$args, $roleAssignments) {
+	function authorize($request, &$args, $roleAssignments) {
 		$stageId = $request->getUserVar('stageId'); // This is being validated in WorkflowStageAccessPolicy
 
 		// Not all actions need a stageId. Some work off the reviewAssignment which has the type and round.
@@ -132,7 +132,7 @@ class ReviewerGridHandler extends GridHandler {
 	 * Configure the grid
 	 * @param $request PKPRequest
 	 */
-	function initialize(&$request) {
+	function initialize($request) {
 		parent::initialize($request);
 
 		// Load submission-specific translations
@@ -234,7 +234,7 @@ class ReviewerGridHandler extends GridHandler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function showReviewerForm($args, &$request) {
+	function showReviewerForm($args, $request) {
 		$json = new JSONMessage(true, $this->_fetchReviewerForm($args, $request));
 		return $json->getString();
 	}
@@ -245,7 +245,7 @@ class ReviewerGridHandler extends GridHandler {
 	 * @param $request Request
 	 * @return string JSON
 	 */
-	function reloadReviewerForm($args, &$request) {
+	function reloadReviewerForm($args, $request) {
 		$json = new JSONMessage(true);
 		$json->setEvent('refreshForm', $this->_fetchReviewerForm($args, $request));
 		return $json->getString();
@@ -257,7 +257,7 @@ class ReviewerGridHandler extends GridHandler {
 	 * @param $request Request
 	 * @return string Serialized JSON object
 	 */
-	function createReviewer($args, &$request) {
+	function createReviewer($args, $request) {
 		return $this->updateReviewer($args, $request);
 	}
 
@@ -267,7 +267,7 @@ class ReviewerGridHandler extends GridHandler {
 	 * @param $request Request
 	 * @return string Serialized JSON object
 	 */
-	function enrollReviewer($args, &$request) {
+	function enrollReviewer($args, $request) {
 		return $this->updateReviewer($args, $request);
 	}
 
@@ -277,7 +277,7 @@ class ReviewerGridHandler extends GridHandler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function updateReviewer($args, &$request) {
+	function updateReviewer($args, $request) {
 		$selectionType = $request->getUserVar('selectionType');
 		$formClassName = $this->_getReviewerFormClassName($selectionType);
 
@@ -302,7 +302,7 @@ class ReviewerGridHandler extends GridHandler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function deleteReviewer($args, &$request) {
+	function deleteReviewer($args, $request) {
 		// Delete the review assignment.
 		// NB: SeriesEditorAction::clearReview() will check that this review
 		// id is actually attached to the monograph so no need for further
@@ -329,7 +329,7 @@ class ReviewerGridHandler extends GridHandler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function getReviewersNotAssignedToMonograph($args, &$request) {
+	function getReviewersNotAssignedToMonograph($args, $request) {
 		$press =& $request->getPress();
 		$monograph =& $this->getMonograph();
 		$stageId = $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
@@ -360,7 +360,7 @@ class ReviewerGridHandler extends GridHandler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function getUsersNotAssignedAsReviewers($args, &$request) {
+	function getUsersNotAssignedAsReviewers($args, $request) {
 		$press =& $request->getPress();
 		$term = $request->getUserVar('term');
 
@@ -390,7 +390,7 @@ class ReviewerGridHandler extends GridHandler {
 	 * @param $request PKPRequest
 	 * @return string serialized JSON object
 	 */
-	function readReview($args, &$request) {
+	function readReview($args, $request) {
 		$templateMgr =& TemplateManager::getManager($request);
 
 		// Retrieve monograph.
@@ -415,7 +415,7 @@ class ReviewerGridHandler extends GridHandler {
 	 * @param $request PKPRequest
 	 * @return string serialized JSON object
 	 */
-	function unconsiderReview($args, &$request) {
+	function unconsiderReview($args, $request) {
 
 		// This resets the state of the review to 'unread', but does not delete note history.
 		$monograph =& $this->getMonograph();
@@ -464,7 +464,7 @@ class ReviewerGridHandler extends GridHandler {
 	 * @param $request PKPRequest
 	 * @return string serialized JSON object
 	 */
-	function reviewRead($args, &$request) {
+	function reviewRead($args, $request) {
 		// Retrieve review assignment.
 		$reviewAssignment =& $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ASSIGNMENT); /* @var $reviewAssignment ReviewAssignment */
 
@@ -491,7 +491,7 @@ class ReviewerGridHandler extends GridHandler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function editThankReviewer($args, &$request) {
+	function editThankReviewer($args, $request) {
 		// Identify the review assignment being updated.
 		$reviewAssignment =& $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ASSIGNMENT);
 
@@ -511,7 +511,7 @@ class ReviewerGridHandler extends GridHandler {
 	 * @param $request PKPRequest
 	 * @return string serialized JSON object
 	 */
-	function thankReviewer($args, &$request) {
+	function thankReviewer($args, $request) {
 		// Identify the review assignment being updated.
 		$reviewAssignment =& $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ASSIGNMENT);
 
@@ -541,7 +541,7 @@ class ReviewerGridHandler extends GridHandler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function editReminder($args, &$request) {
+	function editReminder($args, $request) {
 		// Identify the review assignment being updated.
 		$reviewAssignment =& $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ASSIGNMENT);
 
@@ -561,7 +561,7 @@ class ReviewerGridHandler extends GridHandler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function sendReminder($args, &$request) {
+	function sendReminder($args, $request) {
 		$reviewAssignment =& $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ASSIGNMENT);
 
 		// Form handling
@@ -587,7 +587,7 @@ class ReviewerGridHandler extends GridHandler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function sendEmail($args, &$request) {
+	function sendEmail($args, $request) {
 		$user =& $request->getUser();
 
 		$reviewAssignment =& $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ASSIGNMENT);
@@ -608,7 +608,7 @@ class ReviewerGridHandler extends GridHandler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function reviewHistory($args, &$request) {
+	function reviewHistory($args, $request) {
 		$user =& $request->getUser();
 
 		$reviewAssignment =& $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ASSIGNMENT);
@@ -630,7 +630,7 @@ class ReviewerGridHandler extends GridHandler {
 	 * @param $request Request
 	 * @return String
 	 */
-	function _fetchReviewerForm($args, &$request) {
+	function _fetchReviewerForm($args, $request) {
 		$selectionType = $request->getUserVar('selectionType');
 		assert(!empty($selectionType));
 		$formClassName = $this->_getReviewerFormClassName($selectionType);

@@ -28,7 +28,7 @@ class PageRouter extends PKPPageRouter {
 	 * Redirect to user home page (or the user group home page if the user has one user group).
 	 * @param $request PKPRequest the request to be routed
 	 */
-	function redirectHome(&$request) {
+	function redirectHome($request) {
 		$userGroupDao = DAORegistry::getDAO('UserGroupDAO');
 		$user = $request->getUser();
 		$userId = $user->getId();

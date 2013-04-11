@@ -105,7 +105,7 @@ class RepresentativeForm extends Form {
 	 * Fetch the form.
 	 * @see Form::fetch()
 	 */
-	function fetch(&$request) {
+	function fetch($request) {
 
 		$templateMgr =& TemplateManager::getManager($request);
 

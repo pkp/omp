@@ -86,7 +86,7 @@ class SalesRightsGridHandler extends GridHandler {
 	 * @param $args array
 	 * @param $roleAssignments array
 	 */
-	function authorize(&$request, &$args, $roleAssignments) {
+	function authorize($request, &$args, $roleAssignments) {
 		import('classes.security.authorization.SubmissionAccessPolicy');
 		$this->addPolicy(new SubmissionAccessPolicy($request, $args, $roleAssignments));
 		return parent::authorize($request, $args, $roleAssignments);
@@ -96,7 +96,7 @@ class SalesRightsGridHandler extends GridHandler {
 	 * Configure the grid
 	 * @param $request PKPRequest
 	 */
-	function initialize(&$request) {
+	function initialize($request) {
 		parent::initialize($request);
 
 		// Retrieve the authorized monograph.
@@ -228,7 +228,7 @@ class SalesRightsGridHandler extends GridHandler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function editRights($args, &$request) {
+	function editRights($args, $request) {
 		// Identify the sales rights entry to be updated
 		$salesRightsId = (int) $request->getUserVar('salesRightsId');
 		$monograph =& $this->getMonograph();
@@ -251,7 +251,7 @@ class SalesRightsGridHandler extends GridHandler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function updateRights($args, &$request) {
+	function updateRights($args, $request) {
 		// Identify the sales rights entry to be updated
 		$salesRightsId = $request->getUserVar('salesRightsId');
 		$monograph =& $this->getMonograph();
@@ -303,7 +303,7 @@ class SalesRightsGridHandler extends GridHandler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function deleteRights($args, &$request) {
+	function deleteRights($args, $request) {
 
 		// Identify the sales rights entry to be deleted
 		$salesRightsId = $request->getUserVar('salesRightsId');

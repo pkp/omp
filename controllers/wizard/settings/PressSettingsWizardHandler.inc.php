@@ -39,7 +39,7 @@ class PressSettingsWizardHandler extends Handler {
 	/**
 	 * @see PKPHandler::authorize()
 	 */
-	function authorize(&$request, &$args, $roleAssignments) {
+	function authorize($request, &$args, $roleAssignments) {
 		import('lib.pkp.classes.security.authorization.PkpContextAccessPolicy');
 		$this->addPolicy(new PkpContextAccessPolicy($request, $roleAssignments));
 		return parent::authorize($request, $args, $roleAssignments);
@@ -55,7 +55,7 @@ class PressSettingsWizardHandler extends Handler {
 	 * @param $request Request
 	 * @return string a serialized JSON object
 	 */
-	function startWizard($args, &$request) {
+	function startWizard($args, $request) {
 		$templateMgr =& TemplateManager::getManager($request);
 		AppLocale::requireComponents(
 			LOCALE_COMPONENT_APP_MANAGER,

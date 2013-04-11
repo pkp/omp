@@ -46,7 +46,7 @@ class FairCopyFilesGridHandler extends FileSignoffGridHandler {
 	/**
 	 * @see PKPHandler::initialize()
 	 */
-	function initialize(&$request) {
+	function initialize($request) {
 		parent::initialize($request);
 
 		$this->setTitle('editor.monograph.editorial.fairCopy');

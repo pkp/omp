@@ -50,7 +50,7 @@ class AuthorSignoffFilesGridHandler extends GridHandler {
 	/**
 	 * @see PKPHandler::initialize()
 	 */
-	function initialize(&$request) {
+	function initialize($request) {
 		parent::initialize($request);
 
 		AppLocale::requireComponents(

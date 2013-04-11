@@ -29,7 +29,7 @@ class SubmissionSubmitStep2Form extends SubmissionSubmitForm {
 	 * @param $request PKPRequest
 	 * @return int the submission ID
 	 */
-	function execute($args, &$request) {
+	function execute($args, $request) {
 		// Update submission
 		$submissionDao = DAORegistry::getDAO('MonographDAO');
 		$submission = $this->submission;

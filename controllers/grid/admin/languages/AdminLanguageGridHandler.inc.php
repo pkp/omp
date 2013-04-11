@@ -27,7 +27,7 @@ class AdminLanguageGridHandler extends PKPAdminLanguageGridHandler {
 	/**
 	 * @see PKPHandler::initialize()
 	 */
-	function initialize(&$request) {
+	function initialize($request) {
 		parent::initialize($request);
 		AppLocale::requireComponents(LOCALE_COMPONENT_APP_ADMIN);
 	}
@@ -37,7 +37,7 @@ class AdminLanguageGridHandler extends PKPAdminLanguageGridHandler {
 	 * installed presses, based on site locale settings.
 	 * @param $request object
 	 */
-	function _updateContextLocaleSettings(&$request) {
+	function _updateContextLocaleSettings($request) {
 		$site =& $request->getSite();
 		$siteSupportedLocales = $site->getSupportedLocales();
 

@@ -40,7 +40,7 @@ class ReviewerSelectGridHandler extends GridHandler {
 	 * @param $args array
 	 * @param $roleAssignments array
 	 */
-	function authorize(&$request, &$args, $roleAssignments) {
+	function authorize($request, &$args, $roleAssignments) {
 		$stageId = (int)$request->getUserVar('stageId');
 
 		import('classes.security.authorization.WorkflowStageAccessPolicy');
@@ -56,7 +56,7 @@ class ReviewerSelectGridHandler extends GridHandler {
 	 * Configure the grid
 	 * @param $request PKPRequest
 	 */
-	function initialize(&$request) {
+	function initialize($request) {
 		parent::initialize($request);
 
 		AppLocale::requireComponents(
@@ -154,14 +154,14 @@ class ReviewerSelectGridHandler extends GridHandler {
 	/**
 	 * @see GridHandler::renderFilter()
 	 */
-	function renderFilter(&$request) {
+	function renderFilter($request) {
 		return parent::renderFilter($request, $this->getFilterSelectionData($request));
 	}
 
 	/**
 	 * @see GridHandler::loadData()
 	 */
-	function loadData(&$request, $filter) {
+	function loadData($request, $filter) {
 		$interests = $filter['interestSearchKeywords'];
 		$reviewerValues = $filter['reviewerValues'];
 
@@ -187,7 +187,7 @@ class ReviewerSelectGridHandler extends GridHandler {
 	 * @see GridHandler::getFilterSelectionData()
 	 * @return array Filter selection data.
 	 */
-	function getFilterSelectionData(&$request) {
+	function getFilterSelectionData($request) {
 		$form = $this->getFilterForm();
 
 		// Only read form data if the clientSubmit flag has been checked

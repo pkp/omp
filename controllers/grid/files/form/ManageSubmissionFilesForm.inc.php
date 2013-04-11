@@ -49,7 +49,7 @@ class ManageSubmissionFilesForm extends Form {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function initData($args, &$request) {
+	function initData($args, $request) {
 		$this->setData('submissionId', $this->_monographId);
 	}
 
@@ -68,7 +68,7 @@ class ManageSubmissionFilesForm extends Form {
 	 * @stageMonographFiles array The files that belongs to a file stage
 	 * that is currently being used by a grid inside this form.
 	 */
-	function execute($args, &$request, &$stageMonographFiles, $fileStage) {
+	function execute($args, $request, &$stageMonographFiles, $fileStage) {
 		$selectedFiles = (array)$this->getData('selectedFiles');
 		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
 		$monographFiles =& $submissionFileDao->getLatestRevisions($this->getMonographId());

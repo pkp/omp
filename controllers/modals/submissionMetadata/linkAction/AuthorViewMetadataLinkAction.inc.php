@@ -20,7 +20,7 @@ class AuthorViewMetadataLinkAction extends LinkAction {
 	 * @param $request Request
 	 * @param $monographId integer The submission to show meta-data for.
 	 */
-	function AuthorViewMetadataLinkAction(&$request, $monographId) {
+	function AuthorViewMetadataLinkAction($request, $monographId) {
 		$dispatcher =& $request->getDispatcher();
 		import('lib.pkp.classes.linkAction.request.AjaxModal');
 		parent::LinkAction(

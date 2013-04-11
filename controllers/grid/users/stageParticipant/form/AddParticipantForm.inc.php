@@ -70,7 +70,7 @@ class AddParticipantForm extends Form {
 	 * Fetch the form.
 	 * @see Form::fetch()
 	 */
-	function fetch(&$request) {
+	function fetch($request) {
 		$templateMgr =& TemplateManager::getManager($request);
 		$userGroups =& $this->getUserGroups();
 

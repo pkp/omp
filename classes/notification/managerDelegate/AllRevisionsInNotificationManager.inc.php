@@ -28,7 +28,7 @@ class AllRevisionsInNotificationManager extends RevisionsNotificationManager {
 	/**
 	 * @see NotificationManagerDelegate::updateNotification()
 	 */
-	public function updateNotification(&$request, $userIds, $assocType, $assocId) {
+	public function updateNotification($request, $userIds, $assocType, $assocId) {
 		$reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO');
 		$reviewRound =& $reviewRoundDao->getReviewRoundById($assocId);
 		$monographId = $reviewRound->getSubmissionId();
@@ -63,7 +63,7 @@ class AllRevisionsInNotificationManager extends RevisionsNotificationManager {
 	 * @param $request Request
 	 * @param $reviewRound ReviewRound
 	 */
-	private function _addAllRevisionsIn(&$request, &$reviewRound) {
+	private function _addAllRevisionsIn($request, &$reviewRound) {
 		$press =& $request->getPress();
 		$pressId = $press->getId();
 
@@ -84,7 +84,7 @@ class AllRevisionsInNotificationManager extends RevisionsNotificationManager {
 	 * @param $request Request
 	 * @param $reviewRound ReviewRound
 	 */
-	private function _removeAllRevisionsIn(&$request, &$reviewRound) {
+	private function _removeAllRevisionsIn($request, &$reviewRound) {
 		$press =& $request->getPress();
 		$pressId = $press->getId();
 		$notificationDao = DAORegistry::getDAO('NotificationDAO'); /* @var $notificationDao NotificationDAO */

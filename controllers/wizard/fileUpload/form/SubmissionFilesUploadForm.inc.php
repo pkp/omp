@@ -28,7 +28,7 @@ class SubmissionFilesUploadForm extends PKPSubmissionFilesUploadForm {
 	 * @param $reviewRound ReviewRound
 	 * @param $revisedFileId integer
 	 */
-	function SubmissionFilesUploadForm(&$request, $submissionId, $stageId, $uploaderRoles, $fileStage,
+	function SubmissionFilesUploadForm($request, $submissionId, $stageId, $uploaderRoles, $fileStage,
 			$revisionOnly = false, $reviewRound = null, $revisedFileId = null, $assocType = null, $assocId = null) {
 		parent::PKPSubmissionFilesUploadForm(
 			$request, $submissionId, $stageId, $uploaderRoles, $fileStage, $revisionOnly, $reviewRound, $revisedFileId, $assocType, $assocId

@@ -58,7 +58,7 @@ class ReviewerReviewStep3Form extends ReviewerReviewForm {
 	/**
 	 * @see Form::fetch()
 	 */
-	function fetch(&$request) {
+	function fetch($request) {
 		$templateMgr =& TemplateManager::getManager($request);
 
 		$reviewAssignment =& $this->getReviewAssignment();
@@ -103,7 +103,7 @@ class ReviewerReviewStep3Form extends ReviewerReviewForm {
 	 * @see Form::execute()
 	 * @param $request PKPRequest
 	 */
-	function execute(&$request) {
+	function execute($request) {
 		$reviewAssignment =& $this->getReviewAssignment();
 		$notificationMgr = new NotificationManager();
 		if($reviewAssignment->getReviewFormId()) {

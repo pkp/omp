@@ -86,7 +86,7 @@ class MarketsGridHandler extends GridHandler {
 	 * @param $args array
 	 * @param $roleAssignments array
 	 */
-	function authorize(&$request, &$args, $roleAssignments) {
+	function authorize($request, &$args, $roleAssignments) {
 		import('classes.security.authorization.SubmissionAccessPolicy');
 		$this->addPolicy(new SubmissionAccessPolicy($request, $args, $roleAssignments));
 		return parent::authorize($request, $args, $roleAssignments);
@@ -96,7 +96,7 @@ class MarketsGridHandler extends GridHandler {
 	 * Configure the grid
 	 * @param $request PKPRequest
 	 */
-	function initialize(&$request) {
+	function initialize($request) {
 		parent::initialize($request);
 
 		// Retrieve the authorized monograph.
@@ -236,7 +236,7 @@ class MarketsGridHandler extends GridHandler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function editMarket($args, &$request) {
+	function editMarket($args, $request) {
 		// Identify the market entry to be updated
 		$marketId = (int) $request->getUserVar('marketId');
 		$monograph =& $this->getMonograph();
@@ -259,7 +259,7 @@ class MarketsGridHandler extends GridHandler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function updateMarket($args, &$request) {
+	function updateMarket($args, $request) {
 		// Identify the market entry to be updated
 		$marketId = $request->getUserVar('marketId');
 		$monograph =& $this->getMonograph();
@@ -311,7 +311,7 @@ class MarketsGridHandler extends GridHandler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function deleteMarket($args, &$request) {
+	function deleteMarket($args, $request) {
 
 		// Identify the markets entry to be deleted
 		$marketId = $request->getUserVar('marketId');

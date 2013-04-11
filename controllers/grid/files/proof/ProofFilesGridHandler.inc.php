@@ -44,7 +44,7 @@ class ProofFilesGridHandler extends SignoffFilesGridHandler {
 	 * Configure the grid
 	 * @param PKPRequest $request
 	 */
-	function initialize(&$request) {
+	function initialize($request) {
 		$publicationFormat =& $this->getPublicationFormat();
 		$this->setAssocId($publicationFormat->getId());
 

@@ -28,14 +28,14 @@ class AllReviewsInNotificationManager extends NotificationManagerDelegate {
 	/**
 	 * @see NotificationManagerDelegate::getStyleClass()
 	 */
-	public function getStyleClass(&$notification) {
+	public function getStyleClass($notification) {
 		return NOTIFICATION_STYLE_CLASS_WARNING;
 	}
 
 	/**
 	 * @see NotificationManagerDelegate::updateNotification()
 	 */
-	public function updateNotification(&$request, $userIds, $assocType, $assocId) {
+	public function updateNotification($request, $userIds, $assocType, $assocId) {
 		$reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO');
 		$reviewRound =& $reviewRoundDao->getReviewRoundById($assocId);
 

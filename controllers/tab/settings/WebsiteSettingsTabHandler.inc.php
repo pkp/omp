@@ -46,7 +46,7 @@ class WebsiteSettingsTabHandler extends ManagerSettingsTabHandler {
 	/**
 	 * @see SettingsTabHandler::showTab
 	 */
-	function showTab($args, &$request) {
+	function showTab($args, $request) {
 		$workingContexts = $this->getWorkingContexts($request);
 
 		$multipleContexts = false;
@@ -66,7 +66,7 @@ class WebsiteSettingsTabHandler extends ManagerSettingsTabHandler {
 	 * @param $args array
 	 * @return string JSON message
 	 */
-	function showFileUploadForm($args, &$request) {
+	function showFileUploadForm($args, $request) {
 		$fileUploadForm =& $this->_getFileUploadForm($request);
 		$fileUploadForm->initData($request);
 
@@ -80,7 +80,7 @@ class WebsiteSettingsTabHandler extends ManagerSettingsTabHandler {
 	 * @param $request PKPRequest
 	 * @return string
 	 */
-	function uploadFile($args, &$request) {
+	function uploadFile($args, $request) {
 		$fileUploadForm =& $this->_getFileUploadForm($request);
 		$json = new JSONMessage();
 
@@ -104,7 +104,7 @@ class WebsiteSettingsTabHandler extends ManagerSettingsTabHandler {
 	 * @param $request PKPRequest
 	 * @return string
 	 */
-	function saveFile($args, &$request) {
+	function saveFile($args, $request) {
 		$fileUploadForm =& $this->_getFileUploadForm($request);
 		$fileUploadForm->readInputData();
 
@@ -125,7 +125,7 @@ class WebsiteSettingsTabHandler extends ManagerSettingsTabHandler {
 	 * @param $request PKPRequest
 	 * @return string
 	 */
-	function deleteFile($args, &$request) {
+	function deleteFile($args, $request) {
 		$settingName = $request->getUserVar('fileSettingName');
 
 		$tabForm = $this->getTabForm();
@@ -145,7 +145,7 @@ class WebsiteSettingsTabHandler extends ManagerSettingsTabHandler {
 	 * @param $request Request
 	 * @return string
 	 */
-	function fetchFile($args, &$request) {
+	function fetchFile($args, $request) {
 		// Get the setting name.
 		$settingName = $args['settingName'];
 
@@ -170,7 +170,7 @@ class WebsiteSettingsTabHandler extends ManagerSettingsTabHandler {
 	 * @param $args array
 	 * @param $request object
 	 */
-	function reloadLocalizedDefaultSettings($args, &$request) {
+	function reloadLocalizedDefaultSettings($args, $request) {
 		// make sure the locale is valid
 		$locale = $request->getUserVar('localeToLoad');
 		if ( !AppLocale::isLocaleValid($locale) ) {

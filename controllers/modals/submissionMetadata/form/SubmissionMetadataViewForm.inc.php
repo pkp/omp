@@ -102,7 +102,7 @@ class SubmissionMetadataViewForm extends Form {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function initData($args, &$request) {
+	function initData($args, $request) {
 		AppLocale::requireComponents(
 			LOCALE_COMPONENT_APP_COMMON,
 			LOCALE_COMPONENT_PKP_SUBMISSION,
@@ -187,7 +187,7 @@ class SubmissionMetadataViewForm extends Form {
 	 * Associate a category with a monograph.
 	 * @see ListbuilderHandler::insertEntry
 	 */
-	function insertEntry(&$request, $newRowId) {
+	function insertEntry($request, $newRowId) {
 
 		$application =& PKPApplication::getApplication();
 		$request =& $application->getRequest();
@@ -212,7 +212,7 @@ class SubmissionMetadataViewForm extends Form {
 	 * Delete a category association.
 	 * @see ListbuilderHandler::deleteEntry
 	 */
-	function deleteEntry(&$request, $rowId) {
+	function deleteEntry($request, $rowId) {
 		if ($rowId) {
 			$categoryDao = DAORegistry::getDAO('CategoryDAO');
 			$monographDao = DAORegistry::getDAO('MonographDAO');

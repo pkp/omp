@@ -28,7 +28,7 @@ class AuditorRequestNotificationManager extends NotificationManagerDelegate {
 	/**
 	 * @see NotificationManagerDelegate::getNotificationMessage()
 	 */
-	function getNotificationMessage(&$request, &$notification) {
+	function getNotificationMessage($request, $notification) {
 		$signoffDao = DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
 		$signoff = $signoffDao->getById($notification->getAssocId());
 		assert($signoff->getAssocType() == ASSOC_TYPE_SUBMISSION_FILE);
@@ -41,7 +41,7 @@ class AuditorRequestNotificationManager extends NotificationManagerDelegate {
 	/**
 	 * @see NotificationManagerDelegate::getStyleClass()
 	 */
-	function getStyleClass(&$notification) {
+	function getStyleClass($notification) {
 		return NOTIFICATION_STYLE_CLASS_WARNING;
 	}
 
@@ -50,7 +50,7 @@ class AuditorRequestNotificationManager extends NotificationManagerDelegate {
 	 *
 	 * Create one notification for each user auditor signoff.
 	 */
-	public function updateNotification(&$request, $userIds, $assocType, $assocId) {
+	public function updateNotification($request, $userIds, $assocType, $assocId) {
 		$userId = current($userIds);
 
 		// Check for an existing notification.

@@ -27,7 +27,7 @@ class InformationHandler extends Handler {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function index($args, &$request) {
+	function index($args, $request) {
 		$this->validate();
 		$press = $request->getPress();
 		if ($press == null) $request->redirect('index');
@@ -74,23 +74,23 @@ class InformationHandler extends Handler {
 		$templateMgr->display('information/information.tpl');
 	}
 
-	function readers($args, &$request) {
+	function readers($args, $request) {
 		$this->index(array('readers'), $request);
 	}
 
-	function authors($args, &$request) {
+	function authors($args, $request) {
 		$this->index(array('authors'), $request);
 	}
 
-	function librarians($args, &$request) {
+	function librarians($args, $request) {
 		$this->index(array('librarians'), $request);
 	}
 
-	function competingInterestPolicy($args, &$request) {
+	function competingInterestPolicy($args, $request) {
 		return $this->index(array('competingInterestPolicy'), $request);
 	}
 
-	function sampleCopyrightWording($args, &$request) {
+	function sampleCopyrightWording($args, $request) {
 		$this->index(array('sampleCopyrightWording'), $request);
 	}
 

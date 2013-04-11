@@ -33,7 +33,7 @@ class AuthorDashboardReviewRoundTabHandler extends AuthorDashboardHandler {
 	/**
 	 * @see PKPHandler::authorize()
 	 */
-	function authorize(&$request, &$args, $roleAssignments) {
+	function authorize($request, &$args, $roleAssignments) {
 		$stageId = (int)$request->getUserVar('stageId');
 
 		// Authorize stage id.
@@ -57,7 +57,7 @@ class AuthorDashboardReviewRoundTabHandler extends AuthorDashboardHandler {
 	 * @param $request Request
 	 * @return string
 	 */
-	function fetchReviewRoundInfo($args, &$request) {
+	function fetchReviewRoundInfo($args, $request) {
 		$this->setupTemplate($request);
 		$templateMgr =& TemplateManager::getManager($request);
 

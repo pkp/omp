@@ -41,7 +41,7 @@ class SearchByNameReviewerForm extends ReviewerForm {
 	 * Fetch the form
 	 * @see Form::fetch
 	 */
-	function fetch(&$request) {
+	function fetch($request) {
 		// Pass along the request vars
 		$actionArgs = $request->getUserVars();
 		$reviewRound =& $this->getReviewRound();

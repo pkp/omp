@@ -141,7 +141,7 @@ class FileAuditorForm extends Form {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function initData($args, &$request) {
+	function initData($args, $request) {
 		$monograph = $this->getMonograph();
 		$this->setData('submissionId', $monograph->getId());
 		$this->setData('fileStage', $this->getFileStage());
@@ -182,7 +182,7 @@ class FileAuditorForm extends Form {
 	 * Assign user to copyedit the selected files
 	 * @see Form::execute()
 	 */
-	function execute(&$request) {
+	function execute($request) {
 		// Decode the "files" list
 		import('lib.pkp.classes.controllers.listbuilder.ListbuilderHandler');
 		ListbuilderHandler::unpack($request, $this->getData('files'));
@@ -220,7 +220,7 @@ class FileAuditorForm extends Form {
 	 * Persist a signoff insertion
 	 * @see ListbuilderHandler::insertEntry
 	 */
-	function insertEntry(&$request, $newRowId) {
+	function insertEntry($request, $newRowId) {
 		// Fetch and validate the file ID
 		$fileId = (int) $newRowId['name'];
 		$monograph = $this->getMonograph();
@@ -287,7 +287,7 @@ class FileAuditorForm extends Form {
 	 * Delete a signoff
 	 * Noop: we just want client side delete.
 	 */
-	function deleteEntry(&$request, $rowId) {
+	function deleteEntry($request, $rowId) {
 		return true;
 	}
 }

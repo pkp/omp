@@ -84,7 +84,7 @@ class PublicationFormatGridHandler extends GridHandler {
 	 * @param $args array
 	 * @param $roleAssignments array
 	 */
-	function authorize(&$request, &$args, $roleAssignments) {
+	function authorize($request, &$args, $roleAssignments) {
 		import('classes.security.authorization.SubmissionAccessPolicy');
 		$this->addPolicy(new SubmissionAccessPolicy($request, $args, $roleAssignments));
 		return parent::authorize($request, $args, $roleAssignments);
@@ -94,7 +94,7 @@ class PublicationFormatGridHandler extends GridHandler {
 	 * Configure the grid
 	 * @param $request PKPRequest
 	 */
-	function initialize(&$request) {
+	function initialize($request) {
 		parent::initialize($request);
 
 		$this->setTitle('monograph.publicationFormats');
@@ -223,7 +223,7 @@ class PublicationFormatGridHandler extends GridHandler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function editFormat($args, &$request) {
+	function editFormat($args, $request) {
 		// Identify the format to be updated
 		$publicationFormatId = (int) $request->getUserVar('publicationFormatId');
 		$monograph =& $this->getMonograph();
@@ -246,7 +246,7 @@ class PublicationFormatGridHandler extends GridHandler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function updateFormat($args, &$request) {
+	function updateFormat($args, $request) {
 		// Identify the format to be updated
 		$publicationFormatId = (int) $request->getUserVar('publicationFormatId');
 		$monograph =& $this->getMonograph();
@@ -298,7 +298,7 @@ class PublicationFormatGridHandler extends GridHandler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function deleteFormat($args, &$request) {
+	function deleteFormat($args, $request) {
 		$press =& $request->getPress();
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
 		$publicationFormat =& $publicationFormatDao->getById(
@@ -341,7 +341,7 @@ class PublicationFormatGridHandler extends GridHandler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function setAvailable($args, &$request) {
+	function setAvailable($args, $request) {
 		$press =& $request->getPress();
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
 		$publicationFormat =& $publicationFormatDao->getById(

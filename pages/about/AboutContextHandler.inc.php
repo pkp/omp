@@ -26,7 +26,7 @@ class AboutContextHandler extends Handler {
 	/**
 	 * @see PKPHandler::authorize()
 	 */
-	function authorize(&$request, &$args, $roleAssignments) {
+	function authorize($request, &$args, $roleAssignments) {
 		$context = $request->getContext();
 		if (!$context || !$context->getSetting('restrictSiteAccess')) {
 			$templateMgr = TemplateManager::getManager($request);

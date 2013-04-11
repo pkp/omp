@@ -35,7 +35,7 @@ class IndexHandler extends Handler {
 	 * @param $args array
 	 * @param $request Request
 	 */
-	function index($args, &$request) {
+	function index($args, $request) {
 		$targetPress = $this->getTargetContext($request);
 		$press = $request->getPress();
 		$user = $request->getUser();

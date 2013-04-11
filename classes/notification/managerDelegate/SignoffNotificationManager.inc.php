@@ -25,14 +25,14 @@ class SignoffNotificationManager extends NotificationManagerDelegate {
 		parent::NotificationManagerDelegate($notificationType);
 	}
 
-	public function getNotificationTitle(&$notification) {
+	public function getNotificationTitle($notification) {
 		return __('notification.type.signoff');
 	}
 
 	/**
 	 * @see NotificationManagerDelegate::getNotificationMessage($notification)
 	 */
-	public function getNotificationMessage(&$request, &$notification) {
+	public function getNotificationMessage($request, $notification) {
 		AppLocale::requireComponents(LOCALE_COMPONENT_APP_SUBMISSION);
 		return __('submission.upload.signoff');
 	}
@@ -40,7 +40,7 @@ class SignoffNotificationManager extends NotificationManagerDelegate {
 	/**
 	 * @see NotificationManagerDelegate::getNotificationContents()
 	 */
-	public function getNotificationContents(&$request, &$notification) {
+	public function getNotificationContents($request, $notification) {
 		$notificationMessage = $this->getNotificationMessage($request, $notification);
 		switch($notification->getType()) {
 			case NOTIFICATION_TYPE_SIGNOFF_COPYEDIT:
@@ -52,7 +52,7 @@ class SignoffNotificationManager extends NotificationManagerDelegate {
 		}
 	}
 
-	public function getStyleClass(&$notification) {
+	public function getStyleClass($notification) {
 		return NOTIFICATION_STYLE_CLASS_WARNING;
 	}
 

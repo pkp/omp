@@ -34,7 +34,7 @@ class ManageFinalDraftFilesForm extends ManageSubmissionFilesForm {
 	 * @param $request PKPRequest
 	 * @return array a list of all monograph files marked as "final".
 	 */
-	function execute($args, &$request, &$stageMonographFiles) {
+	function execute($args, $request, &$stageMonographFiles) {
 		parent::execute($args, $request, $stageMonographFiles, SUBMISSION_FILE_FINAL);
 	}
 }

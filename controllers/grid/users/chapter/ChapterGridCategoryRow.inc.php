@@ -44,7 +44,7 @@ class ChapterGridCategoryRow extends GridCategoryRow {
 	 * @see GridCategoryRow::initialize()
 	 * @param $request PKPRequest
 	 */
-	function initialize(&$request) {
+	function initialize($request) {
 		// Do the default initialization
 		parent::initialize($request);
 

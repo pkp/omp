@@ -28,7 +28,7 @@ class RegistrationHandler extends UserHandler {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function register($args, &$request) {
+	function register($args, $request) {
 		$this->validate($request);
 		$this->setupTemplate($request, true);
 
@@ -60,7 +60,7 @@ class RegistrationHandler extends UserHandler {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function registerUser($args, &$request) {
+	function registerUser($args, $request) {
 		$this->validate($request);
 		$this->setupTemplate($request, true);
 		import('classes.user.form.RegistrationForm');
@@ -112,7 +112,7 @@ class RegistrationHandler extends UserHandler {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function registrationDisabled($args, &$request) {
+	function registrationDisabled($args, $request) {
 		$this->setupTemplate($request, true);
 		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->assign('pageTitle', 'user.register');
@@ -126,7 +126,7 @@ class RegistrationHandler extends UserHandler {
 	 * Check credentials and activate a new user
 	 * @author Marc Bria <marc.bria@uab.es>
 	 */
-	function activateUser($args, &$request) {
+	function activateUser($args, $request) {
 		$username = array_shift($args);
 		$accessKeyCode = array_shift($args);
 
@@ -163,7 +163,7 @@ class RegistrationHandler extends UserHandler {
 	 * Validation check.
 	 * Checks if press allows user registration.
 	 */
-	function validate(&$request) {
+	function validate($request) {
 		$press = $request->getPress();
 		if ($press != null) {
 			$pressSettingsDao = DAORegistry::getDAO('PressSettingsDAO');

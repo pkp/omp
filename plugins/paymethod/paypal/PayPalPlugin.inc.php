@@ -114,7 +114,7 @@ class PayPalPlugin extends PaymethodPlugin {
 	 * @param $queuedPayment QueuedPayment
 	 * @param $request PKPRequest
 	 */
-	function displayPaymentForm($queuedPaymentId, &$queuedPayment, &$request) {
+	function displayPaymentForm($queuedPaymentId, &$queuedPayment, $request) {
 		if (!$this->isConfigured()) return false;
 		$press =& $request->getPress();
 		$user =& $request->getUser();
@@ -152,7 +152,7 @@ class PayPalPlugin extends PaymethodPlugin {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function handle($args, &$request) {
+	function handle($args, $request) {
 		$templateMgr =& TemplateManager::getManager($request);
 		$press =& $request->getPress();
 		if (!$press) return parent::handle($args, $request);

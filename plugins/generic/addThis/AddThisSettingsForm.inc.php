@@ -92,7 +92,7 @@ class AddThisSettingsForm extends Form {
 	 * Fetch the form.
 	 * @see Form::fetch()
 	 */
-	function fetch(&$request) {
+	function fetch($request) {
 		$plugin =& $this->getPlugin();
 		$press =& $this->getPress();
 

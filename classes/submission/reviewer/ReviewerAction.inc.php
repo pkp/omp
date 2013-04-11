@@ -54,7 +54,7 @@ class ReviewerAction extends Action {
 			// key, in which case the user is not technically logged in
 			$email->setFrom($reviewer->getEmail(), $reviewer->getFullName());
 			if (!$email->isEnabled() || ($send && !$email->hasErrors())) {
-				HookRegistry::call('ReviewerAction::confirmReview', array(&$request, &$reviewerSubmission, &$email, $decline));
+				HookRegistry::call('ReviewerAction::confirmReview', array($request, &$reviewerSubmission, &$email, $decline));
 				if ($email->isEnabled()) {
 					$email->setEventType($decline?SUBMISSION_EMAIL_REVIEW_DECLINE:SUBMISSION_EMAIL_REVIEW_CONFIRM);
 					$email->send($request);

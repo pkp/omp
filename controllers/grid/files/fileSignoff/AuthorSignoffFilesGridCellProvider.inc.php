@@ -75,7 +75,7 @@ class AuthorSignoffFilesGridCellProvider extends GridCellProvider {
 	 * @param $column GridColumn
 	 * @return array an array of LinkAction instances
 	 */
-	function getCellActions(&$request, &$row, &$column, $position = GRID_ACTION_POSITION_DEFAULT) {
+	function getCellActions($request, &$row, &$column, $position = GRID_ACTION_POSITION_DEFAULT) {
 		if ($column->getId() == 'response') {
 			$signoff =& $this->getSignoff($row);
 			$monograph =& $this->getMonograph();

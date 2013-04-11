@@ -53,7 +53,7 @@ class MastheadForm extends ContextSettingsForm {
 	 * @see ContextSettingsForm::initData.
 	 * @param $request Request
 	 */
-	function initData(&$request) {
+	function initData($request) {
 		parent::initData($request);
 
 		$press = $request->getPress();
@@ -71,7 +71,7 @@ class MastheadForm extends ContextSettingsForm {
 	 * @see ContextSettingsForm::execute()
 	 * @param $request Request
 	 */
-	function execute(&$request) {
+	function execute($request) {
 		$press = $request->getPress();
 
 		if ($press->getEnabled() !== $this->getData('pressEnabled')) {

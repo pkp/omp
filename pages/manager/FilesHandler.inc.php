@@ -30,7 +30,7 @@ class FilesHandler extends ManagerHandler {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function files($args, &$request) {
+	function files($args, $request) {
 		$this->setupTemplate($request, true);
 
 		import('lib.pkp.classes.file.PrivateFileManager');
@@ -75,7 +75,7 @@ class FilesHandler extends ManagerHandler {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function fileUpload($args, &$request) {
+	function fileUpload($args, $request) {
 		$this->_parseDirArg($args, $currentDir, $parentDir);
 		$currentPath = $this->_getRealFilesDir($request, $currentDir);
 
@@ -95,7 +95,7 @@ class FilesHandler extends ManagerHandler {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function fileMakeDir($args, &$request) {
+	function fileMakeDir($args, $request) {
 		$this->_parseDirArg($args, $currentDir, $parentDir);
 
 		if ($dirName = $request->getUserVar('dirName')) {
@@ -115,7 +115,7 @@ class FilesHandler extends ManagerHandler {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function fileDelete($args, &$request) {
+	function fileDelete($args, $request) {
 		$this->_parseDirArg($args, $currentDir, $parentDir);
 		$currentPath = $this->_getRealFilesDir($request, $currentDir);
 

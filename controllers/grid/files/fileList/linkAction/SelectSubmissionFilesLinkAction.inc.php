@@ -22,7 +22,7 @@ class SelectSubmissionFilesLinkAction extends SelectFilesLinkAction {
 	 * @param $monographId integer The id of the monograph
 	 *  from which to select files.
 	 */
-	function SelectSubmissionFilesLinkAction(&$request, $monographId, $actionLabel) {
+	function SelectSubmissionFilesLinkAction($request, $monographId, $actionLabel) {
 		$actionArgs = array('submissionId' => $monographId);
 
 		parent::SelectFilesLinkAction($request, $actionArgs, $actionLabel);

@@ -30,7 +30,7 @@ class EnrollExistingReviewerForm extends ReviewerForm {
 	 * Fetch the form.
 	 * @see Form::fetch()
 	 */
-	function fetch(&$request) {
+	function fetch($request) {
 
 		$searchByNameAction = $this->getSearchByNameAction($request);
 
@@ -53,7 +53,7 @@ class EnrollExistingReviewerForm extends ReviewerForm {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function execute($args, &$request) {
+	function execute($args, $request) {
 		// Assign a reviewer user group to an existing non-reviewer
 		$userId = (int) $this->getData('userId');
 

@@ -87,7 +87,7 @@ class SubmissionSubmitStep3Form extends SubmissionSubmitForm {
 	 * @param $request PKPRequest
 	 * @return int the submission ID
 	 */
-	function execute($args, &$request) {
+	function execute($args, $request) {
 
 		// Execute submission metadata related operations.
 		$this->_metadataFormImplem->execute($this->submission, $request);
@@ -230,7 +230,7 @@ class SubmissionSubmitStep3Form extends SubmissionSubmitForm {
 	 * Associate a category with a submission.
 	 * @see ListbuilderHandler::insertEntry
 	 */
-	function insertEntry(&$request, $newRowId) {
+	function insertEntry($request, $newRowId) {
 
 		$application = PKPApplication::getApplication();
 		$request = $application->getRequest();
@@ -255,7 +255,7 @@ class SubmissionSubmitStep3Form extends SubmissionSubmitForm {
 	 * Delete a category association.
 	 * @see ListbuilderHandler::deleteEntry
 	 */
-	function deleteEntry(&$request, $rowId) {
+	function deleteEntry($request, $rowId) {
 		if ($rowId) {
 			$categoryDao = DAORegistry::getDAO('CategoryDAO');
 			$submissionDao = DAORegistry::getDAO('MonographDAO');

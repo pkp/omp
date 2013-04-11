@@ -33,7 +33,7 @@ class ReviewerReviewAttachmentGridDataProvider extends SubmissionFilesGridDataPr
 	/**
 	 * @see GridDataProvider::getAuthorizationPolicy()
 	 */
-	function getAuthorizationPolicy(&$request, $args, $roleAssignments) {
+	function getAuthorizationPolicy($request, $args, $roleAssignments) {
 		import('classes.security.authorization.internal.ReviewAssignmentRequiredPolicy');
 
 		// Need to use the reviewId because this grid can either be

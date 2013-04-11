@@ -35,7 +35,7 @@ class SeriesGridHandler extends SetupGridHandler {
 	 * Configure the grid
 	 * @param $request PKPRequest
 	 */
-	function initialize(&$request) {
+	function initialize($request) {
 		parent::initialize($request);
 		$press = $request->getPress();
 
@@ -140,7 +140,7 @@ class SeriesGridHandler extends SetupGridHandler {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function addSeries($args, &$request) {
+	function addSeries($args, $request) {
 		// Calling editSeries with an empty ID will add
 		// a new series.
 		return $this->editSeries($args, $request);
@@ -152,7 +152,7 @@ class SeriesGridHandler extends SetupGridHandler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function editSeries($args, &$request) {
+	function editSeries($args, $request) {
 		$seriesId = isset($args['seriesId']) ? $args['seriesId'] : null;
 		$this->setupTemplate($request);
 
@@ -169,7 +169,7 @@ class SeriesGridHandler extends SetupGridHandler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function updateSeries($args, &$request) {
+	function updateSeries($args, $request) {
 		$seriesId = $request->getUserVar('seriesId');
 		$press = $request->getPress();
 
@@ -192,7 +192,7 @@ class SeriesGridHandler extends SetupGridHandler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function deleteSeries($args, &$request) {
+	function deleteSeries($args, $request) {
 		$press = $request->getPress();
 
 		$seriesDao = DAORegistry::getDAO('SeriesDAO');

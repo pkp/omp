@@ -24,7 +24,7 @@ class MonographLog extends PkpLog {
 	 * @param $params array optional
 	 * @return object MonographLogEntry iff the event was logged
 	 */
-	function logEvent(&$request, &$monograph, $eventType, $messageKey, $params = array()) {
+	function logEvent($request, &$monograph, $eventType, $messageKey, $params = array()) {
 		// Create a new entry object
 		$monographEventLogDao = DAORegistry::getDAO('SubmissionEventLogDAO');
 		$entry = $monographEventLogDao->newDataObject();

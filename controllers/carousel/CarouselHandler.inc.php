@@ -28,7 +28,7 @@ class CarouselHandler extends Handler {
 	}
 
 
-	function authorize(&$request, &$args, $roleAssignments) {
+	function authorize($request, &$args, $roleAssignments) {
 		import('lib.pkp.classes.security.authorization.ContextRequiredPolicy');
 		$this->addPolicy(new ContextRequiredPolicy($request));
 
@@ -45,7 +45,7 @@ class CarouselHandler extends Handler {
 	 * @param $request Request
 	 * @return string the serialized grid JSON message
 	 */
-	function fetch($args, &$request) {
+	function fetch($args, $request) {
 		$this->setupTemplate($request);
 
 		$press =& $request->getPress();

@@ -60,7 +60,7 @@ class CopyeditingFilesGridHandler extends SignoffFilesGridHandler {
 	 * Configure the grid
 	 * @param PKPRequest $request
 	 */
-	function initialize(&$request) {
+	function initialize($request) {
 		parent::initialize($request);
 
 		$this->setTitle('submission.copyediting');
@@ -80,7 +80,7 @@ class CopyeditingFilesGridHandler extends SignoffFilesGridHandler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function approveCopyedit($args, &$request) {
+	function approveCopyedit($args, $request) {
 		$monographFile =& $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION_FILE);
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 

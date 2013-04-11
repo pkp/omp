@@ -87,7 +87,7 @@ class RegistrationForm extends Form {
 	/**
 	 * Display the form.
 	 */
-	function display(&$request) {
+	function display($request) {
 		$templateMgr =& TemplateManager::getManager($request);
 		$site =& $request->getSite();
 		$templateMgr->assign('minPasswordLength', $site->getMinPasswordLength());

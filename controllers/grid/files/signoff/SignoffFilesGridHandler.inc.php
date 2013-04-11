@@ -77,7 +77,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 	 * @param $args array
 	 * @param $roleAssignments array
 	 */
-	function authorize(&$request, &$args, $roleAssignments) {
+	function authorize($request, &$args, $roleAssignments) {
 		import('classes.security.authorization.WorkflowStageAccessPolicy');
 		$this->addPolicy(new WorkflowStageAccessPolicy($request, $args, $roleAssignments, 'submissionId', $this->getStageId()));
 
@@ -104,7 +104,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 	 * Configure the grid
 	 * @param PKPRequest $request
 	 */
-	function initialize(&$request) {
+	function initialize($request) {
 		parent::initialize($request);
 
 		AppLocale::requireComponents(
@@ -302,7 +302,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 	/**
 	 * @see GridHandler::loadData
 	 */
-	function &loadData(&$request, $filter) {
+	function &loadData($request, $filter) {
 		// Grab the files to display as categories
 		$monograph =& $this->getMonograph();
 		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
@@ -380,7 +380,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function addAuditor($args, &$request) {
+	function addAuditor($args, $request) {
 		// Identify the monograph being worked on
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 
@@ -414,7 +414,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function saveAddAuditor($args, &$request) {
+	function saveAddAuditor($args, $request) {
 		// Identify the monograph being worked on
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 
@@ -444,7 +444,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function getAuditorAutocomplete($args, &$request) {
+	function getAuditorAutocomplete($args, $request) {
 		// Identify the Monograph we are working with
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 
@@ -484,7 +484,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function returnSignoffRow($args, &$request) {
+	function returnSignoffRow($args, $request) {
 		$signoff =& $this->getAuthorizedContextObject(ASSOC_TYPE_SIGNOFF);
 
 		if($signoff) {
@@ -502,7 +502,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 	 * @param $request PKPRequest
 	 * @return string
 	 */
-	function deleteSignoff($args, &$request) {
+	function deleteSignoff($args, $request) {
 		$signoff =& $this->getAuthorizedContextObject(ASSOC_TYPE_SIGNOFF);
 
 		if($signoff && !$signoff->getDateCompleted()) {
@@ -570,7 +570,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 	 * @param $args array
 	 * @param $request Request
 	 */
-	function signOffsignOff($args, &$request) {
+	function signOffsignOff($args, $request) {
 		$rowSignoff =& $this->getAuthorizedContextObject(ASSOC_TYPE_SIGNOFF);
 		if (!$rowSignoff) fatalError('Invalid Signoff given');
 
@@ -608,7 +608,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function deleteSignOffSignOff($args, &$request) {
+	function deleteSignOffSignOff($args, $request) {
 		$rowSignoff =& $this->getAuthorizedContextObject(ASSOC_TYPE_SIGNOFF);
 		if (!$rowSignoff) fatalError('Invalid Signoff given');
 
@@ -630,7 +630,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function viewLibrary($args, &$request) {
+	function viewLibrary($args, $request) {
 
 		$templateMgr =& TemplateManager::getManager($request);
 		$templateMgr->assign('canEdit', false);
@@ -643,7 +643,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function editReminder($args, &$request) {
+	function editReminder($args, $request) {
 		// Identify the signoff.
 		$signoff =& $this->getAuthorizedContextObject(ASSOC_TYPE_SIGNOFF);
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
@@ -669,7 +669,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function sendReminder($args, &$request) {
+	function sendReminder($args, $request) {
 		$signoff =& $this->getAuthorizedContextObject(ASSOC_TYPE_SIGNOFF);
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 

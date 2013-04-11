@@ -28,7 +28,7 @@ class EditorDecisionNotificationManager extends NotificationManagerDelegate {
 	/**
 	 * @see NotificationManagerDelegate::getNotificationMessage()
 	 */
-	function getNotificationMessage(&$request, &$notification) {
+	function getNotificationMessage($request, $notification) {
 		switch ($notification->getType()) {
 			case NOTIFICATION_TYPE_EDITOR_DECISION_INTERNAL_REVIEW:
 				return __('notification.type.editorDecisionInternalReview');
@@ -52,21 +52,21 @@ class EditorDecisionNotificationManager extends NotificationManagerDelegate {
 	/**
 	 * @see NotificationManagerDelegate::getStyleClass()
 	 */
-	function getStyleClass(&$notification) {
+	function getStyleClass($notification) {
 		return NOTIFICATION_STYLE_CLASS_INFORMATION;
 	}
 
 	/**
 	 * @see NotificationManagerDelegate::getNotificationTitle()
 	 */
-	function getNotificationTitle(&$notification) {
+	function getNotificationTitle($notification) {
 		return __('notification.type.editorDecisionTitle');
 	}
 
 	/**
 	 * @see NotificationManagerDelegate::updateNotification()
 	 */
-	public function updateNotification(&$request, $userIds, $assocType, $assocId) {
+	public function updateNotification($request, $userIds, $assocType, $assocId) {
 		$press =& $request->getPress();
 
 		// Get the monograph submitter id.

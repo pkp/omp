@@ -28,7 +28,7 @@ class EditorAssignmentNotificationManager extends NotificationManagerDelegate {
 	/**
 	 * @see NotificationManagerDelegate::getNotificationMessage($notification)
 	 */
-	public function getNotificationMessage(&$request, &$notification) {
+	public function getNotificationMessage($request, $notification) {
 		switch ($notification->getType()) {
 			case NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_SUBMISSION:
 			case NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_INTERNAL_REVIEW:
@@ -44,7 +44,7 @@ class EditorAssignmentNotificationManager extends NotificationManagerDelegate {
 	/**
 	 * @see NotificationManagerDelegate::getStyleClass()
 	 */
-	public function getStyleClass(&$notification) {
+	public function getStyleClass($notification) {
 		return NOTIFICATION_STYLE_CLASS_WARNING;
 	}
 

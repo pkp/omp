@@ -37,7 +37,7 @@ class NewReviewRoundForm extends EditorDecisionForm {
 	 * @see Form::execute()
 	 * @return integer The new review round number
 	 */
-	function execute($args, &$request) {
+	function execute($args, $request) {
 		// Retrieve the submission.
 		$seriesEditorSubmission =& $this->getSeriesEditorSubmission();
 

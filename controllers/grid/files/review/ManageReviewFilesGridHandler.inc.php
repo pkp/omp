@@ -52,7 +52,7 @@ class ManageReviewFilesGridHandler extends SelectableSubmissionFileListCategoryG
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function updateReviewFiles($args, &$request) {
+	function updateReviewFiles($args, $request) {
 		$monograph =& $this->getMonograph();
 
 		import('controllers.grid.files.review.form.ManageReviewFilesForm');

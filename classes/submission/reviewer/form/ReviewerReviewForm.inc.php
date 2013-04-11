@@ -84,7 +84,7 @@ class ReviewerReviewForm extends Form {
 	/**
 	 * @see Form::fetch()
 	 */
-	function fetch(&$request) {
+	function fetch($request) {
 		$reviewAssignment =& $this->getReviewAssignment();
 
 		$templateMgr =& TemplateManager::getManager($request);

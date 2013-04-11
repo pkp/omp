@@ -21,7 +21,7 @@ class OmpAuthorDashboardAccessPolicy extends ContextPolicy {
 	 * @param $args array request arguments
 	 * @param $roleAssignments array
 	 */
-	function OmpAuthorDashboardAccessPolicy(&$request, &$args, $roleAssignments) {
+	function OmpAuthorDashboardAccessPolicy($request, &$args, $roleAssignments) {
 		parent::ContextPolicy($request);
 
 		$authorDashboardPolicy = new PolicySet(COMBINING_DENY_OVERRIDES);

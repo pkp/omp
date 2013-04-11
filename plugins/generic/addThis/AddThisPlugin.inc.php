@@ -61,7 +61,7 @@ class AddThisPlugin extends GenericPlugin {
 	 * Define management link actions for the settings verb.
 	 * @return LinkAction
 	 */
-	function getManagementVerbLinkAction(&$request, $verb) {
+	function getManagementVerbLinkAction($request, $verb) {
 		$router =& $request->getRouter();
 
 		list($verbName, $verbLocalized) = $verb;

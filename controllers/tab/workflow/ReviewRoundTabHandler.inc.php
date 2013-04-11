@@ -36,7 +36,7 @@ class ReviewRoundTabHandler extends Handler {
 	/**
 	 * @see PKPHandler::authorize()
 	 */
-	function authorize(&$request, &$args, $roleAssignments) {
+	function authorize($request, &$args, $roleAssignments) {
 		$stageId = (int) $request->getUserVar('stageId'); // This is validated in WorkflowStageAccessPolicy.
 
 		import('classes.security.authorization.WorkflowStageAccessPolicy');
@@ -54,7 +54,7 @@ class ReviewRoundTabHandler extends Handler {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function internalReviewRound($args, &$request) {
+	function internalReviewRound($args, $request) {
 		return $this->_reviewRound($args, $request);
 	}
 
@@ -63,7 +63,7 @@ class ReviewRoundTabHandler extends Handler {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function externalReviewRound($args, &$request) {
+	function externalReviewRound($args, $request) {
 		return $this->_reviewRound($args, $request);
 	}
 
@@ -85,7 +85,7 @@ class ReviewRoundTabHandler extends Handler {
 	 * @param $request PKPRequest
 	 * @param $args array
 	 */
-	function _reviewRound($args, &$request) {
+	function _reviewRound($args, $request) {
 		$this->setupTemplate($request);
 
 		// Retrieve the authorized submission, stage id and review round.

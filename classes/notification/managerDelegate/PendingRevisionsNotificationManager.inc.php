@@ -28,7 +28,7 @@ class PendingRevisionsNotificationManager extends RevisionsNotificationManager {
 	/**
 	 * @see NotificationManagerDelegate::getNotificationUrl()
 	 */
-	public function getNotificationUrl(&$request, &$notification) {
+	public function getNotificationUrl($request, $notification) {
 		$monographDao = DAORegistry::getDAO('MonographDAO');
 		$monograph = $monographDao->getById($notification->getAssocId());
 
@@ -48,7 +48,7 @@ class PendingRevisionsNotificationManager extends RevisionsNotificationManager {
 	/**
 	 * @see NotificationManagerDelegate::getNotificationMessage()
 	 */
-	public function getNotificationMessage(&$request, &$notification) {
+	public function getNotificationMessage($request, $notification) {
 		$stageData = $this->_getStageDataByType();
 		$stageKey = $stageData['translationKey'];
 
@@ -58,7 +58,7 @@ class PendingRevisionsNotificationManager extends RevisionsNotificationManager {
 	/**
 	 * @see NotificationManagerDelegate::getNotificationContents()
 	 */
-	public function getNotificationContents(&$request, &$notification) {
+	public function getNotificationContents($request, $notification) {
 		$stageData = $this->_getStageDataByType();
 		$stageId = $stageData['id'];
 		$monographId = $notification->getAssocId();
@@ -81,7 +81,7 @@ class PendingRevisionsNotificationManager extends RevisionsNotificationManager {
 	/**
 	 * @see NotificationManagerDelegate::getNotificationTitle()
 	 */
-	public function getNotificationTitle(&$notification) {
+	public function getNotificationTitle($notification) {
 		$stageData = $this->_getStageDataByType();
 		$stageKey = $stageData['translationKey'];
 		return __('notification.type.pendingRevisions.title', array('stage' => __($stageKey)));
@@ -90,7 +90,7 @@ class PendingRevisionsNotificationManager extends RevisionsNotificationManager {
 	/**
 	 * @see NotificationManagerDelegate::updateNotification()
 	 */
-	public function updateNotification(&$request, $userIds, $assocType, $assocId) {
+	public function updateNotification($request, $userIds, $assocType, $assocId) {
 		$userId = current($userIds);
 		$monographId = $assocId;
 		$stageData = $this->_getStageDataByType();

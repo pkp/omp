@@ -22,7 +22,7 @@ class SignoffAssignedToUserAccessPolicy extends AuthorizationPolicy {
 	 * Constructor
 	 * @param $request PKPRequest
 	 */
-	function SignoffAssignedToUserAccessPolicy(&$request) {
+	function SignoffAssignedToUserAccessPolicy($request) {
 		parent::AuthorizationPolicy('user.authorization.monographSignoff');
 		$this->_request =& $request;
 	}

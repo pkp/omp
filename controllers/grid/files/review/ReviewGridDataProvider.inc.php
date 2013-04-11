@@ -32,7 +32,7 @@ class ReviewGridDataProvider extends SubmissionFilesGridDataProvider {
 	/**
 	 * @see GridDataProvider::getAuthorizationPolicy()
 	 */
-	function getAuthorizationPolicy(&$request, $args, $roleAssignments) {
+	function getAuthorizationPolicy($request, $args, $roleAssignments) {
 		// Get the parent authorization policy.
 		$policy = parent::getAuthorizationPolicy($request, $args, $roleAssignments);
 

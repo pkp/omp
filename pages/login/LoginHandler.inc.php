@@ -20,7 +20,7 @@ class LoginHandler extends PKPLoginHandler {
 	 * @param $args array ($userId)
 	 * @param $request PKPRequest
 	 */
-	function signInAsUser($args, &$request) {
+	function signInAsUser($args, $request) {
 		$this->addCheck(new HandlerValidatorPress($this));
 		$this->addCheck(new HandlerValidatorRoles($this, true, null, null, array(ROLE_ID_SITE_ADMIN, ROLE_ID_MANAGER)));
 		$this->validate();
@@ -62,7 +62,7 @@ class LoginHandler extends PKPLoginHandler {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function signOutAsUser($args, &$request) {
+	function signOutAsUser($args, $request) {
 		$this->validate();
 
 		$session =& $request->getSession();

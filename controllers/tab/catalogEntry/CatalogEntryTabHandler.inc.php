@@ -78,7 +78,7 @@ class CatalogEntryTabHandler extends Handler {
 	/**
 	 * @see PKPHandler::initialize()
 	 */
-	function initialize(&$request) {
+	function initialize($request) {
 		$this->setCurrentTab($request->getUserVar('tab'));
 		$this->_monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		$this->_stageId =& $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
@@ -91,7 +91,7 @@ class CatalogEntryTabHandler extends Handler {
 	/**
 	 * @see PKPHandler::authorize()
 	 */
-	function authorize(&$request, &$args, $roleAssignments) {
+	function authorize($request, &$args, $roleAssignments) {
 		$stageId = (int) $request->getUserVar('stageId');
 		import('classes.security.authorization.WorkflowStageAccessPolicy');
 		$this->addPolicy(new WorkflowStageAccessPolicy($request, $args, $roleAssignments, 'submissionId', $stageId));
@@ -108,7 +108,7 @@ class CatalogEntryTabHandler extends Handler {
 	 * @param $args array
 	 * @return string JSON message
 	 */
-	function submissionMetadata($args, &$request) {
+	function submissionMetadata($args, $request) {
 
 		import('controllers.modals.submissionMetadata.form.CatalogEntrySubmissionReviewForm');
 
@@ -149,7 +149,7 @@ class CatalogEntryTabHandler extends Handler {
 	 * @param $args array
 	 * @return string JSON message
 	 */
-	function catalogMetadata($args, &$request) {
+	function catalogMetadata($args, $request) {
 		import('controllers.tab.catalogEntry.form.CatalogEntryCatalogMetadataForm');
 
 		$monograph =& $this->getMonograph();
@@ -169,7 +169,7 @@ class CatalogEntryTabHandler extends Handler {
 	 * @param $args array
 	 * @return string JSON message
 	 */
-	function publicationMetadata($args, &$request) {
+	function publicationMetadata($args, $request) {
 
 		$publicationFormatId = (int) $request->getUserVar('publicationFormatId');
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
@@ -197,7 +197,7 @@ class CatalogEntryTabHandler extends Handler {
 	 * @param $args array
 	 * @return string JSON message
 	 */
-	function saveForm($args, &$request) {
+	function saveForm($args, $request) {
 		$json = new JSONMessage();
 		$form = null;
 

@@ -70,7 +70,7 @@ class ManageReviewFilesForm extends ManageSubmissionFilesForm {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function initData($args, &$request) {
+	function initData($args, $request) {
 		$this->setData('stageId', $this->getStageId());
 		$this->setData('reviewRoundId', $this->getReviewRoundId());
 
@@ -87,7 +87,7 @@ class ManageReviewFilesForm extends ManageSubmissionFilesForm {
 	 * @stageMonographFiles array The files that belongs to a file stage
 	 * that is currently being used by a grid inside this form.
 	 */
-	function execute($args, &$request, &$stageMonographFiles) {
+	function execute($args, $request, &$stageMonographFiles) {
 		parent::execute($args, $request, $stageMonographFiles, SUBMISSION_FILE_REVIEW_FILE);
 	}
 }

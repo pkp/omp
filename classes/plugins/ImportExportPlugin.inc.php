@@ -87,7 +87,7 @@ class ImportExportPlugin extends Plugin {
 	/**
 	 * @see Plugin::getManagementVerbLinkAction()
 	 */
-	function getManagementVerbLinkAction(&$request, $verb) {
+	function getManagementVerbLinkAction($request, $verb) {
 		$router =& $request->getRouter();
 		$dispatcher =& $router->getDispatcher();
 

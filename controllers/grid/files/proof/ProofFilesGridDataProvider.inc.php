@@ -33,7 +33,7 @@ class ProofFilesGridDataProvider extends SubmissionFilesGridDataProvider {
 	/**
 	 * @see GridDataProvider::getAuthorizationPolicy()
 	 */
-	function getAuthorizationPolicy(&$request, $args, $roleAssignments) {
+	function getAuthorizationPolicy($request, $args, $roleAssignments) {
 		// Retrieve the current policy.
 		$authorizationPolicy = parent::getAuthorizationPolicy($request, $args, $roleAssignments);
 

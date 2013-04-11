@@ -34,7 +34,7 @@ class CatalogHandler extends Handler {
 	/**
 	 * @see PKPHandler::authorize()
 	 */
-	function authorize(&$request, &$args, $roleAssignments) {
+	function authorize($request, &$args, $roleAssignments) {
 		import('lib.pkp.classes.security.authorization.ContextRequiredPolicy');
 		$this->addPolicy(new ContextRequiredPolicy($request));
 		return parent::authorize($request, $args, $roleAssignments);
@@ -49,7 +49,7 @@ class CatalogHandler extends Handler {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function index($args, &$request) {
+	function index($args, $request) {
 		$templateMgr =& TemplateManager::getManager($request);
 		$this->setupTemplate($request);
 		$press =& $request->getPress();
@@ -68,7 +68,7 @@ class CatalogHandler extends Handler {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function newReleases($args, &$request) {
+	function newReleases($args, $request) {
 		$templateMgr =& TemplateManager::getManager($request);
 		$this->setupTemplate($request);
 		$press =& $request->getPress();
@@ -88,7 +88,7 @@ class CatalogHandler extends Handler {
 	 * @param $request PKPRequest
 	 * @return string
 	 */
-	function category($args, &$request) {
+	function category($args, $request) {
 		$templateMgr =& TemplateManager::getManager($request);
 		$press =& $request->getPress();
 		$this->setupTemplate($request);
@@ -125,7 +125,7 @@ class CatalogHandler extends Handler {
 	 * @param $request PKPRequest
 	 * @return string
 	 */
-	function series($args, &$request) {
+	function series($args, $request) {
 		$templateMgr =& TemplateManager::getManager($request);
 		$press =& $request->getPress();
 		$this->setupTemplate($request);
@@ -161,7 +161,7 @@ class CatalogHandler extends Handler {
 	 * @param $request PKPRequest
 	 * @return string
 	 */
-	function results($args, &$request) {
+	function results($args, $request) {
 		$templateMgr =& TemplateManager::getManager($request);
 		$press =& $request->getPress();
 		$this->setupTemplate($request);
@@ -190,7 +190,7 @@ class CatalogHandler extends Handler {
 	/**
 	 * Serve the image for a category or series.
 	 */
-	function fullSize($args, &$request) {
+	function fullSize($args, $request) {
 
 		$press =& $request->getPress();
 		$type = $request->getUserVar('type');
@@ -229,7 +229,7 @@ class CatalogHandler extends Handler {
 	/**
 	 * Serve the thumbnail for a category or series.
 	 */
-	function thumbnail($args, &$request) {
+	function thumbnail($args, $request) {
 		$press =& $request->getPress();
 		$type = $request->getUserVar('type');
 		$id = $request->getUserVar('id');

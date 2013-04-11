@@ -69,7 +69,7 @@ class RepresentativesGridHandler extends CategoryGridHandler {
 	 * @param $args array
 	 * @param $roleAssignments array
 	 */
-	function authorize(&$request, &$args, $roleAssignments) {
+	function authorize($request, &$args, $roleAssignments) {
 		import('classes.security.authorization.SubmissionAccessPolicy');
 		$this->addPolicy(new SubmissionAccessPolicy($request, $args, $roleAssignments));
 		return parent::authorize($request, $args, $roleAssignments);
@@ -79,7 +79,7 @@ class RepresentativesGridHandler extends CategoryGridHandler {
 	 * Configure the grid
 	 * @param $request PKPRequest
 	 */
-	function initialize(&$request) {
+	function initialize($request) {
 		parent::initialize($request);
 
 		// Retrieve the authorized monograph.
@@ -225,7 +225,7 @@ class RepresentativesGridHandler extends CategoryGridHandler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function editRepresentative($args, &$request) {
+	function editRepresentative($args, $request) {
 		// Identify the representative entry to be updated
 		$representativeId = (int) $request->getUserVar('representativeId');
 		$monograph =& $this->getMonograph();
@@ -248,7 +248,7 @@ class RepresentativesGridHandler extends CategoryGridHandler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function updateRepresentative($args, &$request) {
+	function updateRepresentative($args, $request) {
 		// Identify the representative entry to be updated
 		$representativeId = $request->getUserVar('representativeId');
 		$monograph =& $this->getMonograph();
@@ -300,7 +300,7 @@ class RepresentativesGridHandler extends CategoryGridHandler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function deleteRepresentative($args, &$request) {
+	function deleteRepresentative($args, $request) {
 
 		// Identify the representative entry to be deleted
 		$representativeId = $request->getUserVar('representativeId');

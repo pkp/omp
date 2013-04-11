@@ -28,7 +28,7 @@ class CopyeditAssignmentNotificationManager extends NotificationManagerDelegate 
 	/**
 	 * @see NotificationManagerDelegate::getNotificationMessage()
 	 */
-	function getNotificationMessage(&$request, &$notification) {
+	function getNotificationMessage($request, $notification) {
 		$signoffDao = DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
 		$signoff = $signoffDao->getById($notification->getAssocId());
 		assert($signoff->getAssocType() == ASSOC_TYPE_SUBMISSION_FILE);
@@ -41,7 +41,7 @@ class CopyeditAssignmentNotificationManager extends NotificationManagerDelegate 
 	/**
 	 * @see NotificationManagerDelegate::updateNotification()
 	 */
-	public function updateNotification(&$request, $userIds, $assocType, $assocId) {
+	public function updateNotification($request, $userIds, $assocType, $assocId) {
 		$signoffDao = DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
 
 		// Get the signoff that user needs to signoff.

@@ -79,7 +79,7 @@ class SignoffFileUploadForm extends Form {
 	/**
 	 * @see Form::initData()
 	 */
-	function initData(&$request) {
+	function initData($request) {
 		$this->setData('submissionId', $this->getMonographId());
 		$this->setData('stageId', $this->getStageId());
 	}
@@ -145,7 +145,7 @@ class SignoffFileUploadForm extends Form {
 	/**
 	 * @see Form::validate()
 	 */
-	function validate(&$request) {
+	function validate($request) {
 		// FIXME: this should go in a FormValidator in the constructor.
 		$signoffId = $this->getSignoffId();
 		return (is_numeric($signoffId) && $signoffId > 0);

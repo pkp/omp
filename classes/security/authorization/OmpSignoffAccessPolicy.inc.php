@@ -26,7 +26,7 @@ class OmpSignoffAccessPolicy extends ContextPolicy {
 	 * @param $mode int bitfield SIGNOFF_ACCESS_...
 	 * @param $stageId int
 	 */
-	function OmpSignoffAccessPolicy(&$request, $args, $roleAssignments, $mode, $stageId) {
+	function OmpSignoffAccessPolicy($request, $args, $roleAssignments, $mode, $stageId) {
 		parent::ContextPolicy($request);
 
 		// We need a submission matching the file in the request.
