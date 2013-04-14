@@ -15,7 +15,7 @@
 import('lib.pkp.classes.form.Form');
 
 // Define review round and review stage id constants.
-import('classes.monograph.reviewRound.ReviewRound');
+import('lib.pkp.classes.submission.reviewRound.ReviewRound');
 
 class EditorDecisionForm extends Form {
 	/** @var SeriesEditorSubmission The submission associated with the editor decision **/
