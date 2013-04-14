@@ -13,7 +13,7 @@
  */
 
 
-import('controllers.informationCenter.form.NewNoteForm');
+import('lib.pkp.controllers.informationCenter.form.NewNoteForm');
 
 class NewSignoffNoteForm extends NewNoteForm {
 	/** @var $signoffId int The ID of the signoff to attach the note to */
