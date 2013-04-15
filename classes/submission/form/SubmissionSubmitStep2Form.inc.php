@@ -12,8 +12,7 @@
  * @brief Form for Step 2 of author manuscript submission.
  */
 
-
-import('classes.submission.form.SubmissionSubmitForm');
+import('lib.pkp.classes.submission.form.SubmissionSubmitForm');
 
 class SubmissionSubmitStep2Form extends SubmissionSubmitForm {
 	/**

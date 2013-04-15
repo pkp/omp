@@ -12,8 +12,7 @@
  * @brief Form for Step 3 of author submission.
  */
 
-
-import('classes.submission.form.SubmissionSubmitForm');
+import('lib.pkp.classes.submission.form.SubmissionSubmitForm');
 import('classes.submission.SubmissionMetadataFormImplementation');
 
 class SubmissionSubmitStep3Form extends SubmissionSubmitForm {

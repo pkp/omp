@@ -12,8 +12,7 @@
  * @brief Form for Step 1 of author submission.
  */
 
-
-import('classes.submission.form.SubmissionSubmitForm');
+import('lib.pkp.classes.submission.form.SubmissionSubmitForm');
 
 class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
 	/**
