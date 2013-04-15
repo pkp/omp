@@ -51,7 +51,7 @@ class ONIXCodelistItemDAO extends DAO {
 		return $cache;
 	}
 
-	function _cacheMiss(&$cache, $id) {
+	function _cacheMiss($cache, $id) {
 		$allCodelistItems =& Registry::get('all' . $this->getListName() . 'CodelistItems', true, null);
 		if ($allCodelistItems === null) {
 			// Add a locale load to the debug notes.

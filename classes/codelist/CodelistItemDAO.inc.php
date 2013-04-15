@@ -47,7 +47,7 @@ class CodelistItemDAO extends DAO {
 		return $cache;
 	}
 
-	function _cacheMiss(&$cache, $id) {
+	function _cacheMiss($cache, $id) {
 		$allCodelistItems =& Registry::get('all' . $this->getName() . 'CodelistItems', true, null);
 		if ($allCodelistItems === null) {
 			// Add a locale load to the debug notes.
