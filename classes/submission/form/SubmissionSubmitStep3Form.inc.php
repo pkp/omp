@@ -12,41 +12,26 @@
  * @brief Form for Step 3 of author submission.
  */
 
-import('lib.pkp.classes.submission.form.SubmissionSubmitForm');
+import('lib.pkp.classes.submission.form.PKPSubmissionSubmitStep3Form');
 import('classes.submission.SubmissionMetadataFormImplementation');
 
-class SubmissionSubmitStep3Form extends SubmissionSubmitForm {
-
-	/** @var SubmissionMetadataFormImplementation */
-	var $_metadataFormImplem;
-
+class SubmissionSubmitStep3Form extends PKPSubmissionSubmitStep3Form {
 	/**
 	 * Constructor.
 	 */
 	function SubmissionSubmitStep3Form($context, $submission) {
-		parent::SubmissionSubmitForm($context, $submission, 3);
-
-		$this->_metadataFormImplem = new SubmissionMetadataFormImplementation($this);
-
-		$this->_metadataFormImplem->addChecks($submission);
-	}
-
-	/**
-	 * Initialize form data from current submission.
-	 */
-	function initData() {
-
-		$this->_metadataFormImplem->initData($this->submission);
-
-		return parent::initData();
+		parent::PKPSubmissionSubmitStep3Form(
+			$context,
+			$submission,
+			new SubmissionMetadataFormImplementation($this)
+		);
 	}
 
 	/**
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
-
-		$this->_metadataFormImplem->readInputData();
+		parent::readInputData();
 
 		// Include category information.
 		$this->readUserVars(array('categories'));
@@ -73,11 +58,16 @@ class SubmissionSubmitStep3Form extends SubmissionSubmitForm {
 	}
 
 	/**
-	 * Get the names of fields for which data should be localized
-	 * @return array
+	 * Assign the default participants.
+	 * @param $submission Submission
+	 * @param $request PKPRequest
 	 */
-	function getLocaleFieldNames() {
-		$this->_metadataFormImplem->getLocaleFieldNames();
+	function assignDefaultParticipants($submission, $request) {
+		// Assign the default users to the submission workflow stage
+		import('classes.submission.seriesEditor.SeriesEditorAction');
+		$seriesEditorAction = new SeriesEditorAction();
+		$seriesEditorAction->assignDefaultStageParticipants($submission, WORKFLOW_STAGE_ID_SUBMISSION, $request);
+		parent::assignDefaultParticipants();
 	}
 
 	/**
@@ -87,63 +77,10 @@ class SubmissionSubmitStep3Form extends SubmissionSubmitForm {
 	 * @return int the submission ID
 	 */
 	function execute($args, $request) {
-
-		// Execute submission metadata related operations.
-		$this->_metadataFormImplem->execute($this->submission, $request);
+		parent::execute($args, $request);
 
 		// handle category assignment.
 		ListbuilderHandler::unpack($request, $this->getData('categories'));
-
-		// Get an updated version of the submission.
-		$submissionDao = DAORegistry::getDAO('MonographDAO');
-		$submission = $submissionDao->getById($this->submissionId);
-
-		// Set other submission data.
-		if ($submission->getSubmissionProgress() <= $this->step) {
-			$submission->setDateSubmitted(Core::getCurrentDate());
-			$submission->stampStatusModified();
-			$submission->setSubmissionProgress(0);
-		}
-
-		// Save the submission.
-		$submissionDao->updateObject($submission);
-
-		// Assign the default users to the submission workflow stage
-		import('classes.submission.seriesEditor.SeriesEditorAction');
-		$seriesEditorAction = new SeriesEditorAction();
-		$seriesEditorAction->assignDefaultStageParticipants($submission, WORKFLOW_STAGE_ID_SUBMISSION, $request);
-
-		//
-		// Send a notification to associated users
-		//
-
-		$roleDao = DAORegistry::getDAO('RoleDAO'); /* @var $roleDao RoleDAO */
-
-		// Get the managers.
-		$managers = $roleDao->getUsersByRoleId(ROLE_ID_MANAGER, $submission->getContextId());
-
-		$managersArray = $managers->toAssociativeArray();
-
-		$allUserIds = array_keys($managersArray);
-
-		$notificationManager = new NotificationManager();
-		foreach ($allUserIds as $userId) {
-			$notificationManager->createNotification(
-				$request, $userId, NOTIFICATION_TYPE_SUBMISSION_SUBMITTED,
-				$submission->getContextId(), ASSOC_TYPE_SUBMISSION, $submission->getId()
-			);
-
-			// Add TASK notification indicating that a submission is unassigned
-			$notificationManager->createNotification(
-				$request,
-				$userId,
-				NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_REQUIRED,
-				$submission->getContextId(),
-				ASSOC_TYPE_MONOGRAPH,
-				$submission->getId(),
-				NOTIFICATION_LEVEL_TASK
-			);
-		}
 
 		// Send author notification email
 		import('classes.mail.MonographMailTemplate');
@@ -209,14 +146,6 @@ class SubmissionSubmitStep3Form extends SubmissionSubmitForm {
 				$authorMail->send($request);
 			}
 		}
-
-		$notificationManager->updateNotification(
-			$request,
-			array(NOTIFICATION_TYPE_APPROVE_SUBMISSION),
-			null,
-			ASSOC_TYPE_MONOGRAPH,
-			$submission->getId()
-		);
 
 		// Log submission.
 		import('classes.log.MonographLog');
