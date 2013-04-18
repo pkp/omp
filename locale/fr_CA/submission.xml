@@ -92,7 +92,7 @@
 	<message key="submission.submit.uploadSubmissionFile">Télécharger le fichier de soumission</message>
 	<message key="submission.submit.finishSubmission">Terminer la soumission</message>
 	<message key="submission.submit.submissionComplete">Soumission complète</message>
-	<message key="submission.submit.submissionCompleteThanks">Merci d'avoir envoyé votre article à {$pressName}.</message>
+	<message key="submission.submit.submissionCompleteThanks">Merci d'avoir envoyé votre article à {$contextName}.</message>
 	<message key="submission.submit.prepare">Préparer</message>
 	<message key="submission.submit.catalog">Catalogue</message>
 	<message key="submission.submit.metadataStep">2. Métadonnées</message>
