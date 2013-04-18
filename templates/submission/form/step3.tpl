@@ -6,40 +6,16 @@
  *
  * Step 3 of author monograph submission.
  *}
-<script type="text/javascript">
-	$(function() {ldelim}
-		// Attach the JS form handler.
-		$('#submitStep3Form').pkpHandler(
-			'$.pkp.pages.submission.SubmissionStep3FormHandler',
-			{ldelim}
-				isEditedVolume: {if $isEditedVolume}true{else}false{/if},
-				chaptersGridContainer: 'chaptersGridContainer',
-				authorsGridContainer: 'authorsGridContainer'
-			{rdelim});
-	{rdelim});
-</script>
+{capture assign="additionalContributorsFields"}
+	<!--  Chapters -->
+	{if $isEditedVolume}
+		{url|assign:chaptersGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.users.chapter.ChapterGridHandler" op="fetchGrid" submissionId=$submissionId}
+		{load_url_in_div id="chaptersGridContainer" url="$chaptersGridUrl"}
+	{/if}
+{/capture}
 
-<form class="pkp_form" id="submitStep3Form" method="post" action="{url op="saveStep" path=$submitStep}">
-	<input type="hidden" name="submissionId" value="{$submissionId|escape}" />
-	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="submitStep3FormNotification"}
-
-	{include file="core:submission/submissionMetadataFormTitleFields.tpl"}
-
-	{fbvFormArea id="contributors"}
-		<!--  Contributors -->
-		{url|assign:authorGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.users.author.AuthorGridHandler" op="fetchGrid" submissionId=$submissionId}
-		{load_url_in_div id="authorsGridContainer" url="$authorGridUrl"}
-
-		<!--  Chapters -->
-		{if $isEditedVolume}
-			{url|assign:chaptersGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.users.chapter.ChapterGridHandler" op="fetchGrid" submissionId=$submissionId}
-			{load_url_in_div id="chaptersGridContainer" url="$chaptersGridUrl"}
-		{/if}
-	{/fbvFormArea}
-
+{capture assign="additionalFormFields"}
 	{include file="submission/form/categories.tpl"}
+{/capture}
 
-	{include file="core:submission/submissionMetadataFormFields.tpl"}
-
-	{fbvFormButtons id="step3Buttons" submitText="submission.submit.finishSubmission" confirmSubmit="submission.confirmSubmit"}
-</form>
+{include file="core:submission/form/step3.tpl"}
