@@ -240,8 +240,8 @@ class Onix30ExportDom {
 
 		/* --- Add Language elements --- */
 
-		$submissionLanguageDao =& DAORegistry::getDAO('SubmissionLanguageDAO');
-		$allLanguages =& $submissionLanguageDao->getLanguages($monograph->getId(), array_keys(AppLocale::getSupportedFormLocales()));
+		$submissionLanguageDao = DAORegistry::getDAO('SubmissionLanguageDAO');
+		$allLanguages = $submissionLanguageDao->getLanguages($monograph->getId(), array_keys(AppLocale::getSupportedFormLocales()));
 		$uniqueLanguages = array();
 		foreach ($allLanguages as $locale => $languages) {
 			$uniqueLanguages = array_merge($uniqueLanguages, $languages);
