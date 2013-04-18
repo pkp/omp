@@ -94,6 +94,7 @@
 <script src="{$baseUrl}/lib/pkp/js/pages/header/ContextSwitcherFormHandler.js"></script>
 <script src="{$baseUrl}/lib/pkp/js/pages/header/HeaderHandler.js"></script>
 <script src="{$baseUrl}/lib/pkp/js/pages/admin/ContextsHandler.js"></script>
+<script src="{$baseUrl}/lib/pkp/js/pages/submission/SubmissionTabHandler.js"></script>
 <script src="{$baseUrl}/lib/pkp/js/controllers/grid/settings/user/form/UserFormHandler.js"></script>
 <script src="{$baseUrl}/lib/pkp/js/controllers/tab/settings/siteAccessOptions/form/SiteAccessOptionsFormHandler.js"></script>
 <script src="{$baseUrl}/lib/pkp/js/controllers/dashboard/form/DashboardTaskFormHandler.js"></script>
@@ -130,7 +131,6 @@
 <script src="{$baseUrl}/js/pages/workflow/ProductionHandler.js"></script>
 <script src="{$baseUrl}/js/pages/workflow/EditorDecisionsHandler.js"></script>
 <script src="{$baseUrl}/js/pages/reviewer/ReviewerTabHandler.js"></script>
-<script src="{$baseUrl}/js/pages/submission/SubmissionTabHandler.js"></script>
 <script src="{$baseUrl}/js/pages/submission/SubmissionStep3FormHandler.js"></script>
 
 {* Our own plug-in (depends on classes) *}
