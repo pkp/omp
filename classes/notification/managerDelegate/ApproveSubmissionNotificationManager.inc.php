@@ -36,9 +36,9 @@ class ApproveSubmissionNotificationManager extends NotificationManagerDelegate {
 	 * @see NotificationManagerDelegate::updateNotification()
 	 */
 	public function updateNotification($request, $userIds, $assocType, $assocId) {
-		$monographId = $assocId;
-		$monographDao = DAORegistry::getDAO('MonographDAO');
-		$monograph = $monographDao->getById($monographId);
+		$submissionId = $assocId;
+		$submissionDao = Application::getSubmissionDAO();
+		$submission = $submissionDao->getById($submissionId);
 
 		$context = $request->getContext();
 		$contextId = $context->getId();
@@ -50,12 +50,12 @@ class ApproveSubmissionNotificationManager extends NotificationManagerDelegate {
 			NOTIFICATION_TYPE_VISIT_CATALOG => true,
 		);
 
-		$isPublished = (boolean) $monograph->getDatePublished();
+		$isPublished = (boolean) $submission->getDatePublished();
 
 		foreach ($notificationTypes as $type => $forPublicationState) {
 			$notificationFactory = $notificationDao->getByAssoc(
 				ASSOC_TYPE_SUBMISSION,
-				$monographId,
+				$submissionId,
 				null,
 				$type,
 				$contextId
@@ -70,7 +70,7 @@ class ApproveSubmissionNotificationManager extends NotificationManagerDelegate {
 					$type,
 					$contextId,
 					ASSOC_TYPE_SUBMISSION,
-					$monographId,
+					$submissionId,
 					NOTIFICATION_LEVEL_NORMAL
 				);
 			} elseif ($notification && $isPublished != $forPublicationState) {

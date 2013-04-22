@@ -34,8 +34,8 @@ class AuditorRequestNotificationManager extends NotificationManagerDelegate {
 		assert($signoff->getAssocType() == ASSOC_TYPE_SUBMISSION_FILE);
 
 		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
-		$monographFile = $submissionFileDao->getLatestRevision($signoff->getAssocId());
-		return __('notification.type.auditorRequest', array('file' => $monographFile->getLocalizedName()));
+		$submissionFile = $submissionFileDao->getLatestRevision($signoff->getAssocId());
+		return __('notification.type.auditorRequest', array('file' => $submissionFile->getLocalizedName()));
 	}
 
 	/**

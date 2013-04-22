@@ -69,7 +69,7 @@ class EditorDecisionNotificationManager extends NotificationManagerDelegate {
 	public function updateNotification($request, $userIds, $assocType, $assocId) {
 		$context = $request->getContext();
 
-		// Get the monograph submitter id.
+		// Get the submitter id.
 		$userId = current($userIds);
 
 		// Remove any existing editor decision notifications.

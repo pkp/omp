@@ -13,7 +13,7 @@
  */
 
 import('lib.pkp.classes.notification.NotificationManagerDelegate');
-import('classes.monograph.MonographFile'); // Bring file stage constants.
+import('lib.pkp.classes.submission.SubmissionFile'); // Bring file stage constants.
 import('classes.workflow.EditorDecisionActionsManager'); // Access decision actions constants.
 
 abstract class RevisionsNotificationManager extends NotificationManagerDelegate {
@@ -40,15 +40,15 @@ abstract class RevisionsNotificationManager extends NotificationManagerDelegate 
 	//
 	/**
 	 * Find any still valid pending revisions decision for the passed
-	 * monograph id. A valid decision is one that is not overriden by any
+	 * submission id. A valid decision is one that is not overriden by any
 	 * other decision.
-	 * @param $monographId int
+	 * @param $submissionId int
 	 * @param $expectedStageId int
 	 * @return mixed array or null
 	 */
-	protected function findValidPendingRevisionsDecision($monographId, $expectedStageId) {
+	protected function findValidPendingRevisionsDecision($submissionId, $expectedStageId) {
 		$seriesEditorSubmissionDao = DAORegistry::getDAO('SeriesEditorSubmissionDAO');
-		$editorDecisions = $seriesEditorSubmissionDao->getEditorDecisions($monographId);
+		$editorDecisions = $seriesEditorSubmissionDao->getEditorDecisions($submissionId);
 		$workingDecisions = array_reverse($editorDecisions);
 		$postReviewDecisions = array(SUBMISSION_EDITOR_DECISION_SEND_TO_PRODUCTION);
 		$pendingRevisionDecision = null;
@@ -80,22 +80,22 @@ abstract class RevisionsNotificationManager extends NotificationManagerDelegate 
 	 * Find any file upload that's a revision and can be considered as
 	 * a pending revisions decision response.
 	 * @param $decision array
-	 * @param $monographId int
+	 * @param $submissionId int
 	 * @return boolean
 	 */
-	protected function responseExists($decision, $monographId) {
+	protected function responseExists($decision, $submissionId) {
 		$stageId = $decision['stageId'];
 		$round = $decision['round'];
 		$sentRevisions = false;
 
 		$reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO');
-		$reviewRound = $reviewRoundDao->getReviewRound($monographId, $stageId, $round);
+		$reviewRound = $reviewRoundDao->getReviewRound($submissionId, $stageId, $round);
 
 		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
-		$monographFiles =  $submissionFileDao->getRevisionsByReviewRound($reviewRound, SUBMISSION_FILE_REVIEW_REVISION);
+		$submissionFiles =  $submissionFileDao->getRevisionsByReviewRound($reviewRound, SUBMISSION_FILE_REVIEW_REVISION);
 
-		if (is_array($monographFiles)) {
-			foreach ($monographFiles as $file) {
+		if (is_array($submissionFiles)) {
+			foreach ($submissionFiles as $file) {
 				if ($file->getDateUploaded() > $decision['dateDecided']) {
 					$sentRevisions = true;
 					break;

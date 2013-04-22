@@ -34,8 +34,8 @@ class CopyeditAssignmentNotificationManager extends NotificationManagerDelegate 
 		assert($signoff->getAssocType() == ASSOC_TYPE_SUBMISSION_FILE);
 
 		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
-		$monographFile = $submissionFileDao->getLatestRevision($signoff->getAssocId());
-		return __('notification.type.copyeditorRequest', array('file' => $monographFile->getLocalizedName()));
+		$submissionFile = $submissionFileDao->getLatestRevision($signoff->getAssocId());
+		return __('notification.type.copyeditorRequest', array('file' => $submissionFile->getLocalizedName()));
 	}
 
 	/**

@@ -59,7 +59,7 @@ class EditorAssignmentNotificationManager extends NotificationManagerDelegate {
 	 * @see NotificationManagerDelegate::updateNotification()
 	 *
 	 * If we have a stage without a manager role user, then
-	 * a notification must be inserted or maintained for the monograph.
+	 * a notification must be inserted or maintained for the submission.
 	 * If a user with this role is assigned to the stage, the notification
 	 * should be deleted.
 	 * Every user that have access to the stage should see the notification.
@@ -67,13 +67,13 @@ class EditorAssignmentNotificationManager extends NotificationManagerDelegate {
 	public function updateNotification($request, $userIds, $assocType, $assocId) {
 		$context = $request->getContext();
 		$notificationType = $this->getNotificationType();
-		$monographId = $assocId;
+		$submissionId = $assocId;
 
 		// Check for an existing NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_...
 		$notificationDao = DAORegistry::getDAO('NotificationDAO');
 		$notificationFactory = $notificationDao->getByAssoc(
 			ASSOC_TYPE_SUBMISSION,
-			$monographId,
+			$submissionId,
 			null,
 			$notificationType,
 			$context->getId()
@@ -81,7 +81,7 @@ class EditorAssignmentNotificationManager extends NotificationManagerDelegate {
 
 		// Check for editor stage assignment.
 		$stageAssignmentDao = DAORegistry::getDAO('StageAssignmentDAO');
-		$editorAssigned = $stageAssignmentDao->editorAssignedToStage($monographId, $this->_getStageIdByNotificationType());
+		$editorAssigned = $stageAssignmentDao->editorAssignedToStage($submissionId, $this->_getStageIdByNotificationType());
 
 		// Decide if we have to create or delete a notification.
 		if ($editorAssigned && !$notificationFactory->wasEmpty()) {
@@ -92,7 +92,7 @@ class EditorAssignmentNotificationManager extends NotificationManagerDelegate {
 			// Create a notification.
 			$this->createNotification(
 				$request, null, $notificationType, $context->getId(), ASSOC_TYPE_SUBMISSION,
-				$monographId, NOTIFICATION_LEVEL_TASK);
+				$submissionId, NOTIFICATION_LEVEL_TASK);
 		}
 	}
 

@@ -31,13 +31,13 @@ class AllRevisionsInNotificationManager extends RevisionsNotificationManager {
 	public function updateNotification($request, $userIds, $assocType, $assocId) {
 		$reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO');
 		$reviewRound = $reviewRoundDao->getReviewRoundById($assocId);
-		$monographId = $reviewRound->getSubmissionId();
+		$submissionId = $reviewRound->getSubmissionId();
 
-		$pendingRevisionDecision = $this->findValidPendingRevisionsDecision($monographId, $reviewRound->getStageId());
+		$pendingRevisionDecision = $this->findValidPendingRevisionsDecision($submissionId, $reviewRound->getStageId());
 		$removeNotifications = false;
 
 		if ($pendingRevisionDecision) {
-			if ($this->responseExists($pendingRevisionDecision, $monographId)) {
+			if ($this->responseExists($pendingRevisionDecision, $submissionId)) {
 				// Some user already uploaded a revision.
 				$this->_addAllRevisionsIn($request, $reviewRound);
 			} else {

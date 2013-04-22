@@ -68,14 +68,14 @@ class SignoffNotificationManager extends NotificationManagerDelegate {
 
 		$context = $request->getContext();
 		$contextId = $context->getId();
-		$monographId = $assocId;
+		$submissionId = $assocId;
 		$userId = current($userIds);
 
 		// Check for an existing NOTIFICATION_TYPE_SIGNOFF_...
 		$notificationDao = DAORegistry::getDAO('NotificationDAO');
 		$notificationFactory = $notificationDao->getByAssoc(
 			ASSOC_TYPE_SUBMISSION,
-			$monographId,
+			$submissionId,
 			$userId,
 			$notificationType,
 			$contextId
@@ -83,8 +83,8 @@ class SignoffNotificationManager extends NotificationManagerDelegate {
 
 		// Check for any active signoff with the $symbolic value.
 		$symbolic = $this->_getSymbolicByType();
-		$monographFileSignOffDao = DAORegistry::getDAO('SubmissionFileSignoffDAO');
-		$signoffFactory = $monographFileSignOffDao->getAllBySubmission($monographId, $symbolic, $userId);
+		$submissionFileSignOffDao = DAORegistry::getDAO('SubmissionFileSignoffDAO');
+		$signoffFactory = $submissionFileSignOffDao->getAllBySubmission($submissionId, $symbolic, $userId);
 		$activeSignoffs = false;
 		if (!$signoffFactory->wasEmpty()) {
 			// Loop through signoffs and check for active ones on this context.
@@ -110,7 +110,7 @@ class SignoffNotificationManager extends NotificationManagerDelegate {
 				$notificationType,
 				$contextId,
 				ASSOC_TYPE_SUBMISSION,
-				$monographId,
+				$submissionId,
 				NOTIFICATION_LEVEL_TASK
 			);
 		}
@@ -129,10 +129,10 @@ class SignoffNotificationManager extends NotificationManagerDelegate {
 	 * @return string
 	 */
 	private function _getSignoffNotificationContents($request, $notification, $symbolic, $message) {
-		$monographId = $notification->getAssocId();
+		$submissionId = $notification->getAssocId();
 
-		$monographDao = DAORegistry::getDAO('MonographDAO');
-		$monograph = $monographDao->getById($monographId);
+		$submissionDao = Application::getSubmissionDAO();
+		$submission = $submissionDao->getById($submissionId);
 
 		// Get the stage id, based on symbolic.
 		$signoffDao = DAORegistry::getDAO('SignoffDAO');
@@ -140,7 +140,7 @@ class SignoffNotificationManager extends NotificationManagerDelegate {
 
 		import('controllers.api.signoff.linkAction.AddSignoffFileLinkAction');
 		$signoffFileLinkAction = new AddSignoffFileLinkAction(
-			$request, $monographId,
+			$request, $submissionId,
 			$stageId, $symbolic, null,
 			$message, $message
 		);

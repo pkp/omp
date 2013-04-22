@@ -29,11 +29,11 @@ class PendingRevisionsNotificationManager extends RevisionsNotificationManager {
 	 * @see NotificationManagerDelegate::getNotificationUrl()
 	 */
 	public function getNotificationUrl($request, $notification) {
-		$monographDao = DAORegistry::getDAO('MonographDAO');
-		$monograph = $monographDao->getById($notification->getAssocId());
+		$submissionDao = Application::getSubmissionDAO();
+		$submission = $submissionDao->getById($notification->getAssocId());
 
 		import('lib.pkp.controllers.grid.submissions.SubmissionsListGridCellProvider');
-		list($page, $operation) = SubmissionsListGridCellProvider::getPageAndOperationByUserRoles($request, $monograph);
+		list($page, $operation) = SubmissionsListGridCellProvider::getPageAndOperationByUserRoles($request, $submission);
 
 		if ($page == 'workflow') {
 			$stageData = $this->_getStageDataByType();
@@ -42,7 +42,7 @@ class PendingRevisionsNotificationManager extends RevisionsNotificationManager {
 
 		$router = $request->getRouter();
 		$dispatcher = $router->getDispatcher();
-		return $dispatcher->url($request, ROUTE_PAGE, null, $page, $operation, $monograph->getId());
+		return $dispatcher->url($request, ROUTE_PAGE, null, $page, $operation, $submission->getId());
 	}
 
 	/**
@@ -61,12 +61,12 @@ class PendingRevisionsNotificationManager extends RevisionsNotificationManager {
 	public function getNotificationContents($request, $notification) {
 		$stageData = $this->_getStageDataByType();
 		$stageId = $stageData['id'];
-		$monographId = $notification->getAssocId();
+		$submissionId = $notification->getAssocId();
 
-		$monographDao = DAORegistry::getDAO('MonographDAO');
-		$monograph = $monographDao->getById($monographId);
+		$submissionDao = Application::getSubmissionDAO();
+		$submission = $submissionDao->getById($submissionId);
 		$reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO');
-		$lastReviewRound = $reviewRoundDao->getLastReviewRoundBySubmissionId($monograph->getId(), $stageId);
+		$lastReviewRound = $reviewRoundDao->getLastReviewRoundBySubmissionId($submission->getId(), $stageId);
 
 		import('controllers.api.file.linkAction.AddRevisionLinkAction');
 		AppLocale::requireComponents(LOCALE_COMPONENT_APP_EDITOR); // editor.review.uploadRevision
@@ -92,15 +92,15 @@ class PendingRevisionsNotificationManager extends RevisionsNotificationManager {
 	 */
 	public function updateNotification($request, $userIds, $assocType, $assocId) {
 		$userId = current($userIds);
-		$monographId = $assocId;
+		$submissionId = $assocId;
 		$stageData = $this->_getStageDataByType();
 		$expectedStageId = $stageData['id'];
 
-		$pendingRevisionDecision = $this->findValidPendingRevisionsDecision($monographId, $expectedStageId);
+		$pendingRevisionDecision = $this->findValidPendingRevisionsDecision($submissionId, $expectedStageId);
 		$removeNotifications = false;
 
 		if ($pendingRevisionDecision) {
-			if ($this->responseExists($pendingRevisionDecision, $monographId)) {
+			if ($this->responseExists($pendingRevisionDecision, $submissionId)) {
 				// Some user already uploaded a revision. Flag to delete any existing notification.
 				$removeNotifications = true;
 			} else {
@@ -112,7 +112,7 @@ class PendingRevisionsNotificationManager extends RevisionsNotificationManager {
 					NOTIFICATION_LEVEL_TASK,
 					$this->getNotificationType(),
 					ASSOC_TYPE_SUBMISSION,
-					$monographId,
+					$submissionId,
 					$userId
 				);
 			}
@@ -125,7 +125,7 @@ class PendingRevisionsNotificationManager extends RevisionsNotificationManager {
 		if ($removeNotifications) {
 			$context = $request->getContext();
 			$notificationDao = DAORegistry::getDAO('NotificationDAO');
-			$notificationDao->deleteByAssoc(ASSOC_TYPE_SUBMISSION, $monographId, $userId, $this->getNotificationType(), $context->getId());
+			$notificationDao->deleteByAssoc(ASSOC_TYPE_SUBMISSION, $submissionId, $userId, $this->getNotificationType(), $context->getId());
 		}
 	}
 
