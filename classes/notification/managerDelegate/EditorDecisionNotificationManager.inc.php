@@ -67,24 +67,24 @@ class EditorDecisionNotificationManager extends NotificationManagerDelegate {
 	 * @see NotificationManagerDelegate::updateNotification()
 	 */
 	public function updateNotification($request, $userIds, $assocType, $assocId) {
-		$press = $request->getPress();
+		$context = $request->getContext();
 
 		// Get the monograph submitter id.
 		$userId = current($userIds);
 
 		// Remove any existing editor decision notifications.
 		$notificationDao = DAORegistry::getDAO('NotificationDAO');
-		$notificationFactory =& $notificationDao->getByAssoc(
+		$notificationFactory = $notificationDao->getByAssoc(
 			ASSOC_TYPE_SUBMISSION,
 			$assocId,
 			$userId,
 			null,
-			$press->getId()
+			$context->getId()
 		);
 
 		$editorDecisionNotificationTypes = $this->_getAllEditorDecisionNotificationTypes();
 		while(!$notificationFactory->eof()) {
-			$notification =& $notificationFactory->next();
+			$notification = $notificationFactory->next();
 			if (in_array($notification->getType(), $editorDecisionNotificationTypes)) {
 				$notificationDao->deleteObject($notification);
 			}
@@ -95,7 +95,7 @@ class EditorDecisionNotificationManager extends NotificationManagerDelegate {
 			$request,
 			$userId,
 			$this->getNotificationType(),
-			$press->getId(),
+			$context->getId(),
 			ASSOC_TYPE_SUBMISSION,
 			$assocId,
 			NOTIFICATION_LEVEL_NORMAL

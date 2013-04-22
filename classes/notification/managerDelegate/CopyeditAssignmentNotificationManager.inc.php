@@ -34,7 +34,7 @@ class CopyeditAssignmentNotificationManager extends NotificationManagerDelegate 
 		assert($signoff->getAssocType() == ASSOC_TYPE_SUBMISSION_FILE);
 
 		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
-		$monographFile =& $submissionFileDao->getLatestRevision($signoff->getAssocId());
+		$monographFile = $submissionFileDao->getLatestRevision($signoff->getAssocId());
 		return __('notification.type.copyeditorRequest', array('file' => $monographFile->getLocalizedName()));
 	}
 
@@ -58,7 +58,7 @@ class CopyeditAssignmentNotificationManager extends NotificationManagerDelegate 
 		// Check for an existing notification.
 		$userId = current($userIds);
 		$notificationDao = DAORegistry::getDAO('NotificationDAO'); /* @var $notificationDao NotificationDAO */
-		$notificationFactory =& $notificationDao->getByAssoc(
+		$notificationFactory = $notificationDao->getByAssoc(
 				ASSOC_TYPE_SIGNOFF,
 				$assocId,
 				$userId,
@@ -69,15 +69,15 @@ class CopyeditAssignmentNotificationManager extends NotificationManagerDelegate 
 			// Already signed the sign off or the original signoff
 			// is deleted, remove all notifications, no matter for which user.
 			$notificationDao->deleteByAssoc(ASSOC_TYPE_SIGNOFF, $assocId, null, NOTIFICATION_TYPE_COPYEDIT_ASSIGNMENT);
-		} else if ($signoff && !$signedOff && $notificationFactory->wasEmpty && $userId) {
+		} else if ($signoff && !$signedOff && $notificationFactory->wasEmpty() && $userId) {
 			// Original signoff still present and signoff on that is not completed,
 			// create notification.
-			$press = $request->getPress();
+			$context = $request->getContext();
 			$this->createNotification(
 				$request,
 				$userId,
 				NOTIFICATION_TYPE_COPYEDIT_ASSIGNMENT,
-				$press->getId(),
+				$context->getId(),
 				ASSOC_TYPE_SIGNOFF,
 				$assocId,
 				NOTIFICATION_LEVEL_TASK

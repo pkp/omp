@@ -34,7 +34,7 @@ class AuditorRequestNotificationManager extends NotificationManagerDelegate {
 		assert($signoff->getAssocType() == ASSOC_TYPE_SUBMISSION_FILE);
 
 		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
-		$monographFile =& $submissionFileDao->getLatestRevision($signoff->getAssocId());
+		$monographFile = $submissionFileDao->getLatestRevision($signoff->getAssocId());
 		return __('notification.type.auditorRequest', array('file' => $monographFile->getLocalizedName()));
 	}
 
@@ -55,7 +55,7 @@ class AuditorRequestNotificationManager extends NotificationManagerDelegate {
 
 		// Check for an existing notification.
 		$notificationDao = DAORegistry::getDAO('NotificationDAO');
-		$notificationFactory =& $notificationDao->getByAssoc(
+		$notificationFactory = $notificationDao->getByAssoc(
 			ASSOC_TYPE_SIGNOFF,
 			$assocId,
 			$userId,
@@ -78,15 +78,15 @@ class AuditorRequestNotificationManager extends NotificationManagerDelegate {
 
 		// Decide if we have to create or delete a notification.
 		if (($signoffCompleted || $removed) && !$notificationFactory->wasEmpty()) {
-			$notification =& $notificationFactory->next();
+			$notification = $notificationFactory->next();
 			$notificationDao->deleteObject($notification);
 		}  else if (!$signoffCompleted && $notificationFactory->wasEmpty()) {
-			$press = $request->getPress();
+			$context = $request->getContext();
 			$this->createNotification(
 				$request,
 				$userId,
 				NOTIFICATION_TYPE_AUDITOR_REQUEST,
-				$press->getId(),
+				$context->getId(),
 				ASSOC_TYPE_SIGNOFF,
 				$assocId,
 				NOTIFICATION_LEVEL_TASK

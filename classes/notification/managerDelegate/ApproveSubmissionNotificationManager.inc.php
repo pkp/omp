@@ -40,8 +40,8 @@ class ApproveSubmissionNotificationManager extends NotificationManagerDelegate {
 		$monographDao = DAORegistry::getDAO('MonographDAO');
 		$monograph = $monographDao->getById($monographId);
 
-		$press = $request->getPress();
-		$pressId = $press->getId();
+		$context = $request->getContext();
+		$contextId = $context->getId();
 		$notificationDao = DAORegistry::getDAO('NotificationDAO');
 
 		$notificationTypes = array(
@@ -53,14 +53,14 @@ class ApproveSubmissionNotificationManager extends NotificationManagerDelegate {
 		$isPublished = (boolean) $monograph->getDatePublished();
 
 		foreach ($notificationTypes as $type => $forPublicationState) {
-			$notificationFactory =& $notificationDao->getByAssoc(
+			$notificationFactory = $notificationDao->getByAssoc(
 				ASSOC_TYPE_SUBMISSION,
 				$monographId,
 				null,
 				$type,
-				$pressId
+				$contextId
 			);
-			$notification =& $notificationFactory->next();
+			$notification = $notificationFactory->next();
 
 			if (!$notification && $isPublished == $forPublicationState) {
 				// Create notification.
@@ -68,7 +68,7 @@ class ApproveSubmissionNotificationManager extends NotificationManagerDelegate {
 					$request,
 					null,
 					$type,
-					$pressId,
+					$contextId,
 					ASSOC_TYPE_SUBMISSION,
 					$monographId,
 					NOTIFICATION_LEVEL_NORMAL
@@ -77,7 +77,6 @@ class ApproveSubmissionNotificationManager extends NotificationManagerDelegate {
 				// Delete existing notification.
 				$notificationDao->deleteObject($notification);
 			}
-			unset($notificationFactory, $notification);
 		}
 	}
 }

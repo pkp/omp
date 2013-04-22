@@ -105,10 +105,10 @@ class PendingRevisionsNotificationManager extends RevisionsNotificationManager {
 				$removeNotifications = true;
 			} else {
 				// Create or update a pending revision task notification.
-				$press = $request->getPress();
+				$context = $request->getContext();
 				$notificationDao = DAORegistry::getDAO('NotificationDAO'); /* @var $notificationDao NotificationDAO */
 				$notificationDao->build(
-					$press->getId(),
+					$context->getId(),
 					NOTIFICATION_LEVEL_TASK,
 					$this->getNotificationType(),
 					ASSOC_TYPE_SUBMISSION,
@@ -123,9 +123,9 @@ class PendingRevisionsNotificationManager extends RevisionsNotificationManager {
 		}
 
 		if ($removeNotifications) {
-			$press = $request->getPress();
+			$context = $request->getContext();
 			$notificationDao = DAORegistry::getDAO('NotificationDAO');
-			$notificationDao->deleteByAssoc(ASSOC_TYPE_SUBMISSION, $monographId, $userId, $this->getNotificationType(), $press->getId());
+			$notificationDao->deleteByAssoc(ASSOC_TYPE_SUBMISSION, $monographId, $userId, $this->getNotificationType(), $context->getId());
 		}
 	}
 

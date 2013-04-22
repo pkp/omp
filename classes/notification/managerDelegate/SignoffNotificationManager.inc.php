@@ -66,14 +66,14 @@ class SignoffNotificationManager extends NotificationManagerDelegate {
 			return false;
 		}
 
-		$press = $request->getPress();
-		$contextId = $press->getId();
+		$context = $request->getContext();
+		$contextId = $context->getId();
 		$monographId = $assocId;
 		$userId = current($userIds);
 
 		// Check for an existing NOTIFICATION_TYPE_SIGNOFF_...
 		$notificationDao = DAORegistry::getDAO('NotificationDAO');
-		$notificationFactory =& $notificationDao->getByAssoc(
+		$notificationFactory = $notificationDao->getByAssoc(
 			ASSOC_TYPE_SUBMISSION,
 			$monographId,
 			$userId,
@@ -84,24 +84,23 @@ class SignoffNotificationManager extends NotificationManagerDelegate {
 		// Check for any active signoff with the $symbolic value.
 		$symbolic = $this->_getSymbolicByType();
 		$monographFileSignOffDao = DAORegistry::getDAO('SubmissionFileSignoffDAO');
-		$signoffFactory =& $monographFileSignOffDao->getAllBySubmission($monographId, $symbolic, $userId);
+		$signoffFactory = $monographFileSignOffDao->getAllBySubmission($monographId, $symbolic, $userId);
 		$activeSignoffs = false;
 		if (!$signoffFactory->wasEmpty()) {
-			// Loop through signoffs and check for active ones on this press.
+			// Loop through signoffs and check for active ones on this context.
 			while (!$signoffFactory->eof()) {
-				$workingSignoff =& $signoffFactory->next();
+				$workingSignoff = $signoffFactory->next();
 				if (!$workingSignoff->getDateCompleted()) {
 					$activeSignoffs = true;
 					break;
 				}
-				unset($workingSignoff);
 			}
 		}
 
 		// Decide if we need to create or delete a notification.
 		if (!$activeSignoffs && !$notificationFactory->wasEmpty()) {
 			// No signoff but found notification, delete it.
-			$notification =& $notificationFactory->next();
+			$notification = $notificationFactory->next();
 			$notificationDao->deleteObject($notification);
 		} else if ($activeSignoffs && $notificationFactory->wasEmpty()) {
 			// At least one signoff not completed and no notification, create one.
@@ -133,7 +132,7 @@ class SignoffNotificationManager extends NotificationManagerDelegate {
 		$monographId = $notification->getAssocId();
 
 		$monographDao = DAORegistry::getDAO('MonographDAO');
-		$monograph =& $monographDao->getById($monographId);
+		$monograph = $monographDao->getById($monographId);
 
 		// Get the stage id, based on symbolic.
 		$signoffDao = DAORegistry::getDAO('SignoffDAO');

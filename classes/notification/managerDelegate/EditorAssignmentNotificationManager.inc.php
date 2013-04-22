@@ -58,25 +58,25 @@ class EditorAssignmentNotificationManager extends NotificationManagerDelegate {
 	/**
 	 * @see NotificationManagerDelegate::updateNotification()
 	 *
-	 * If we have a stage without a press manager role user, then
+	 * If we have a stage without a manager role user, then
 	 * a notification must be inserted or maintained for the monograph.
 	 * If a user with this role is assigned to the stage, the notification
 	 * should be deleted.
 	 * Every user that have access to the stage should see the notification.
 	 */
 	public function updateNotification($request, $userIds, $assocType, $assocId) {
-		$press = $request->getPress();
+		$context = $request->getContext();
 		$notificationType = $this->getNotificationType();
 		$monographId = $assocId;
 
 		// Check for an existing NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_...
 		$notificationDao = DAORegistry::getDAO('NotificationDAO');
-		$notificationFactory =& $notificationDao->getByAssoc(
+		$notificationFactory = $notificationDao->getByAssoc(
 			ASSOC_TYPE_SUBMISSION,
 			$monographId,
 			null,
 			$notificationType,
-			$press->getId()
+			$context->getId()
 		);
 
 		// Check for editor stage assignment.
@@ -86,12 +86,12 @@ class EditorAssignmentNotificationManager extends NotificationManagerDelegate {
 		// Decide if we have to create or delete a notification.
 		if ($editorAssigned && !$notificationFactory->wasEmpty()) {
 			// Delete the notification.
-			$notification =& $notificationFactory->next();
+			$notification = $notificationFactory->next();
 			$notificationDao->deleteObject($notification);
 		} else if (!$editorAssigned && $notificationFactory->wasEmpty()) {
 			// Create a notification.
 			$this->createNotification(
-				$request, null, $notificationType, $press->getId(), ASSOC_TYPE_SUBMISSION,
+				$request, null, $notificationType, $context->getId(), ASSOC_TYPE_SUBMISSION,
 				$monographId, NOTIFICATION_LEVEL_TASK);
 		}
 	}
