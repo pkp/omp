@@ -152,6 +152,8 @@ class SubmissionMetadataViewForm extends Form {
 	function readInputData() {
 		$this->_metadataFormImplem->readInputData();
 		$this->readUserVars(array('categories', 'seriesId', 'seriesPosition'));
+		$application = PKPApplication::getApplication();
+		$request = $application->getRequest();
 		ListbuilderHandler::unpack($request, $this->getData('categories'));
 	}
 
