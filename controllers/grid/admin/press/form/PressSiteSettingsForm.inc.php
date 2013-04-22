@@ -112,7 +112,7 @@ class PressSiteSettingsForm extends ContextSiteSettingsForm {
 			$pressFileManager->mkdir($pressFileManager->getBasePath());
 			$pressFileManager->mkdir($pressFileManager->getBasePath() . '/monographs');
 
-			$installedLocales =& $site->getInstalledLocales();
+			$installedLocales = $site->getInstalledLocales();
 
 			// Install default genres
 			$genreDao = DAORegistry::getDAO('GenreDAO');
@@ -121,15 +121,7 @@ class PressSiteSettingsForm extends ContextSiteSettingsForm {
 			// load the default user groups and stage assignments.
 			$this->_loadDefaultUserGroups($press->getId());
 
-			// Make the site administrator the press manager of newly created presses
-			$userGroupDao = DAORegistry::getDAO('UserGroupDAO');
-			$sessionManager = SessionManager::getManager();
-			$userSession = $sessionManager->getUserSession();
-			if ($userSession->getUserId() != null && $userSession->getUserId() != 0 && !empty($contextId)) {
-				// get the default site admin user group
-				$managerUserGroup =& $userGroupDao->getDefaultByRoleId($contextId, ROLE_ID_MANAGER);
-				$userGroupDao->assignUserToGroup($userSession->getUserId(), $managerUserGroup->getId());
-			}
+			$this->_assignManagerGroup($press->getId());
 
 			// Install default press settings
 			$pressSettingsDao = DAORegistry::getDAO('PressSettingsDAO');
