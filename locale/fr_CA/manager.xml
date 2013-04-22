@@ -275,7 +275,7 @@ Soumission, Évaluation interne, Évaluation externe, Rédaction et Production.<
 	<message key="manager.setup.enableUserRegistration.reviewer">Évaluateurs (évaluent les soumissions )</message>
 	<message key="manager.setup.focusAndScope">Objectif et portée</message>
 	<message key="manager.setup.focusAndScope.description">Saisir un énoncé qui s'affichera dans la section À propos de cette presse et indiquera aux auteurs, aux lecteurs et aux bibliothécaires l'éventail des monographies et autres articles qui seront publiés par la presse.</message>
-	<message key="manager.setup.focusAndScopeOfPress">Objectif et portée de la presse</message>
+	<message key="manager.setup.focusAndScope">Objectif et portée de la presse</message>
 	<message key="manager.setup.focusScope">Objectif et portée</message>
 	<message key="manager.setup.focusScopeDescription"><![CDATA[<strong>EXEMPLE DE DONNÉES HTML</strong>]]></message>
 	<message key="manager.setup.forAuthorsToIndexTheirWork">Permet aux auteurs d'indexer leur travail</message>
