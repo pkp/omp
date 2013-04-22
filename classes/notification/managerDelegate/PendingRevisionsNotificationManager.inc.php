@@ -111,7 +111,7 @@ class PendingRevisionsNotificationManager extends RevisionsNotificationManager {
 					$press->getId(),
 					NOTIFICATION_LEVEL_TASK,
 					$this->getNotificationType(),
-					ASSOC_TYPE_MONOGRAPH,
+					ASSOC_TYPE_SUBMISSION,
 					$monographId,
 					$userId
 				);
@@ -125,7 +125,7 @@ class PendingRevisionsNotificationManager extends RevisionsNotificationManager {
 		if ($removeNotifications) {
 			$press = $request->getPress();
 			$notificationDao = DAORegistry::getDAO('NotificationDAO');
-			$notificationDao->deleteByAssoc(ASSOC_TYPE_MONOGRAPH, $monographId, $userId, $this->getNotificationType(), $press->getId());
+			$notificationDao->deleteByAssoc(ASSOC_TYPE_SUBMISSION, $monographId, $userId, $this->getNotificationType(), $press->getId());
 		}
 	}
 

@@ -44,10 +44,10 @@ class SignoffNotificationManager extends NotificationManagerDelegate {
 		$notificationMessage = $this->getNotificationMessage($request, $notification);
 		switch($notification->getType()) {
 			case NOTIFICATION_TYPE_SIGNOFF_COPYEDIT:
-				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
+				assert($notification->getAssocType() == ASSOC_TYPE_SUBMISSION && is_numeric($notification->getAssocId()));
 				return $this->_getSignoffNotificationContents($request, $notification, 'SIGNOFF_COPYEDITING', $notificationMessage);
 			case NOTIFICATION_TYPE_SIGNOFF_PROOF:
-				assert($notification->getAssocType() == ASSOC_TYPE_MONOGRAPH && is_numeric($notification->getAssocId()));
+				assert($notification->getAssocType() == ASSOC_TYPE_SUBMISSION && is_numeric($notification->getAssocId()));
 				return $this->_getSignoffNotificationContents($request, $notification, 'SIGNOFF_PROOFING', $notificationMessage);
 		}
 	}
@@ -74,7 +74,7 @@ class SignoffNotificationManager extends NotificationManagerDelegate {
 		// Check for an existing NOTIFICATION_TYPE_SIGNOFF_...
 		$notificationDao = DAORegistry::getDAO('NotificationDAO');
 		$notificationFactory =& $notificationDao->getByAssoc(
-			ASSOC_TYPE_MONOGRAPH,
+			ASSOC_TYPE_SUBMISSION,
 			$monographId,
 			$userId,
 			$notificationType,
@@ -110,7 +110,7 @@ class SignoffNotificationManager extends NotificationManagerDelegate {
 				$userId,
 				$notificationType,
 				$contextId,
-				ASSOC_TYPE_MONOGRAPH,
+				ASSOC_TYPE_SUBMISSION,
 				$monographId,
 				NOTIFICATION_LEVEL_TASK
 			);

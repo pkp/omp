@@ -54,7 +54,7 @@ class ApproveSubmissionNotificationManager extends NotificationManagerDelegate {
 
 		foreach ($notificationTypes as $type => $forPublicationState) {
 			$notificationFactory =& $notificationDao->getByAssoc(
-				ASSOC_TYPE_MONOGRAPH,
+				ASSOC_TYPE_SUBMISSION,
 				$monographId,
 				null,
 				$type,
@@ -69,7 +69,7 @@ class ApproveSubmissionNotificationManager extends NotificationManagerDelegate {
 					null,
 					$type,
 					$pressId,
-					ASSOC_TYPE_MONOGRAPH,
+					ASSOC_TYPE_SUBMISSION,
 					$monographId,
 					NOTIFICATION_LEVEL_NORMAL
 				);

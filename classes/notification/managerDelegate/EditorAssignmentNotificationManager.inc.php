@@ -72,7 +72,7 @@ class EditorAssignmentNotificationManager extends NotificationManagerDelegate {
 		// Check for an existing NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_...
 		$notificationDao = DAORegistry::getDAO('NotificationDAO');
 		$notificationFactory =& $notificationDao->getByAssoc(
-			ASSOC_TYPE_MONOGRAPH,
+			ASSOC_TYPE_SUBMISSION,
 			$monographId,
 			null,
 			$notificationType,
@@ -91,7 +91,7 @@ class EditorAssignmentNotificationManager extends NotificationManagerDelegate {
 		} else if (!$editorAssigned && $notificationFactory->wasEmpty()) {
 			// Create a notification.
 			$this->createNotification(
-				$request, null, $notificationType, $press->getId(), ASSOC_TYPE_MONOGRAPH,
+				$request, null, $notificationType, $press->getId(), ASSOC_TYPE_SUBMISSION,
 				$monographId, NOTIFICATION_LEVEL_TASK);
 		}
 	}

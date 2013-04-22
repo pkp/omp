@@ -75,7 +75,7 @@ class EditorDecisionNotificationManager extends NotificationManagerDelegate {
 		// Remove any existing editor decision notifications.
 		$notificationDao = DAORegistry::getDAO('NotificationDAO');
 		$notificationFactory =& $notificationDao->getByAssoc(
-			ASSOC_TYPE_MONOGRAPH,
+			ASSOC_TYPE_SUBMISSION,
 			$assocId,
 			$userId,
 			null,
@@ -96,7 +96,7 @@ class EditorDecisionNotificationManager extends NotificationManagerDelegate {
 			$userId,
 			$this->getNotificationType(),
 			$press->getId(),
-			ASSOC_TYPE_MONOGRAPH,
+			ASSOC_TYPE_SUBMISSION,
 			$assocId,
 			NOTIFICATION_LEVEL_NORMAL
 		);
