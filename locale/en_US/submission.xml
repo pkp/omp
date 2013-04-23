@@ -68,8 +68,6 @@
 	<message key="submission.submit.copyrightNoticeAgree">I agree to abide by the terms of the copyright statement.</message>
 	<message key="submission.submit.selectSeries">Select series...</message>
 	<message key="submission.submit.seriesPosition">Position within this series (i.e., Book 2, or Volume 2)</message>
-	<message key="submission.submit.submissionLocale">Submission Language</message>
-	<message key="submission.submit.submissionLocaleDescription">This press accepts submissions in several languages. Choose the primary language of the submission from the pulldown below.</message>
 	<message key="submission.submit.form.localeRequired">Please select a submission language.</message>
 	<message key="submission.submit.submissionChecklist">Submission Checklist</message>
 	<message key="submission.submit.submissionChecklistDescription">The following requirements for submissions to this press need to be completed and checked off before proceeding (comments to the editor can be added below).</message>

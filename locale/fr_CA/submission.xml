@@ -72,8 +72,6 @@
 	<message key="submission.submit.howToSubmitNoPhone"><![CDATA[Vous avez des problèmes? Contactez <a href="mailto:{$supportEmail}">{$supportName}</a> pour obtenir de l'aide.]]></message>
 	<message key="submission.submit.selectSeries">Choisir une série...</message>
 	<message key="submission.submit.seriesPosition">Position dans cette série (ex: livre 2 ou Volume 2)</message>
-	<message key="submission.submit.submissionLocale">Langue de la soumission</message>
-	<message key="submission.submit.submissionLocaleDescription">Cette presse accepte les soumissions dans plusieurs langues. Veuillez sélectionner la langue principale de cette soumission à partir du menu déroulant.</message>
 	<message key="submission.submit.form.localeRequired">Veuillez choisir une langue pour la soumission.</message>
 	<message key="submission.submit.submissionChecklist">Liste de vérification pour la soumission</message>
 	<message key="submission.submit.submissionChecklistDescription">Les exigences suivantes en ce qui concerne les soumissions à cette presse doivent être cochées avant de poursuivre la procédure (les commentaires à l'intention du rédacteur en chef seront ajoutés ci-dessous).</message>
