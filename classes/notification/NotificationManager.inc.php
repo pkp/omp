@@ -267,59 +267,23 @@ class NotificationManager extends PKPNotificationManager {
 	 */
 	protected function getMgrDelegate($notificationType, $assocType, $assocId) {
 		switch ($notificationType) {
-			case NOTIFICATION_TYPE_SIGNOFF_COPYEDIT:
-			case NOTIFICATION_TYPE_SIGNOFF_PROOF:
-				assert($assocType == ASSOC_TYPE_MONOGRAPH && is_numeric($assocId));
-				import('classes.notification.managerDelegate.SignoffNotificationManager');
-				return new SignoffNotificationManager($notificationType);
-			case NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_SUBMISSION:
 			case NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_INTERNAL_REVIEW:
-			case NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_EXTERNAL_REVIEW:
-			case NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_EDITING:
-			case NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_PRODUCTION:
-				assert($assocType == ASSOC_TYPE_MONOGRAPH && is_numeric($assocId));
-				import('classes.notification.managerDelegate.EditorAssignmentNotificationManager');
+				assert($assocType == ASSOC_TYPE_SUBMISSION && is_numeric($assocId));
+				import('lib.pkp.classes.notification.managerDelegate.EditorAssignmentNotificationManager');
 				return new EditorAssignmentNotificationManager($notificationType);
-			case NOTIFICATION_TYPE_AUDITOR_REQUEST:
-				assert($assocType == ASSOC_TYPE_SIGNOFF && is_numeric($assocId));
-				import('classes.notification.managerDelegate.AuditorRequestNotificationManager');
-				return new AuditorRequestNotificationManager($notificationType);
-			case NOTIFICATION_TYPE_COPYEDIT_ASSIGNMENT:
-				assert($assocType == ASSOC_TYPE_SIGNOFF && is_numeric($assocId));
-				import('classes.notification.managerDelegate.CopyeditAssignmentNotificationManager');
-				return new CopyeditAssignmentNotificationManager($notificationType);
 			case NOTIFICATION_TYPE_EDITOR_DECISION_INTERNAL_REVIEW:
-			case NOTIFICATION_TYPE_EDITOR_DECISION_ACCEPT:
-			case NOTIFICATION_TYPE_EDITOR_DECISION_EXTERNAL_REVIEW:
-			case NOTIFICATION_TYPE_EDITOR_DECISION_PENDING_REVISIONS:
-			case NOTIFICATION_TYPE_EDITOR_DECISION_RESUBMIT:
-			case NOTIFICATION_TYPE_EDITOR_DECISION_DECLINE:
-			case NOTIFICATION_TYPE_EDITOR_DECISION_SEND_TO_PRODUCTION:
-				assert($assocType == ASSOC_TYPE_MONOGRAPH && is_numeric($assocId));
-				import('classes.notification.managerDelegate.EditorDecisionNotificationManager');
+				assert($assocType == ASSOC_TYPE_SUBMISSION && is_numeric($assocId));
+				import('lib.pkp.classes.notification.managerDelegate.EditorDecisionNotificationManager');
 				return new EditorDecisionNotificationManager($notificationType);
 			case NOTIFICATION_TYPE_PENDING_INTERNAL_REVISIONS:
-			case NOTIFICATION_TYPE_PENDING_EXTERNAL_REVISIONS:
-				assert($assocType == ASSOC_TYPE_MONOGRAPH && is_numeric($assocId));
-				import('classes.notification.managerDelegate.PendingRevisionsNotificationManager');
-				return new PendingRevisionsNotificationManager($notificationType);
-			case NOTIFICATION_TYPE_ALL_REVISIONS_IN:
-				assert($assocType == ASSOC_TYPE_REVIEW_ROUND && is_numeric($assocId));
-				import('classes.notification.managerDelegate.AllRevisionsInNotificationManager');
-				return new AllRevisionsInNotificationManager($notificationType);
-			case NOTIFICATION_TYPE_ALL_REVIEWS_IN:
-				assert($assocType == ASSOC_TYPE_REVIEW_ROUND && is_numeric($assocId));
-				import('classes.notification.managerDelegate.AllReviewsInNotificationManager');
-				return new AllReviewsInNotificationManager($notificationType);
-			case NOTIFICATION_TYPE_APPROVE_SUBMISSION:
 			case NOTIFICATION_TYPE_FORMAT_NEEDS_APPROVED_SUBMISSION:
 			case NOTIFICATION_TYPE_VISIT_CATALOG:
-				assert($assocType == ASSOC_TYPE_MONOGRAPH && is_numeric($assocId));
-				import('classes.notification.managerDelegate.ApproveSubmissionNotificationManager');
+				assert($assocType == ASSOC_TYPE_SUBMISSION && is_numeric($assocId));
+				import('lib.pkp.classes.notification.managerDelegate.ApproveSubmissionNotificationManager');
 				return new ApproveSubmissionNotificationManager($notificationType);
-			default:
-				return parent::getMgrDelegate($notificationType, $assocType, $assocId);
 		}
+		// Otherwise, fall back on parent class
+		return parent::getMgrDelegate($notificationType, $assocType, $assocId);
 	}
 }
 
