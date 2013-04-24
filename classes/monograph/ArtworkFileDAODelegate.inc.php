@@ -128,8 +128,8 @@ class ArtworkFileDAODelegate extends MonographFileDAODelegate {
 	 * @see SubmissionFileDAODelegate::fromRow()
 	 * @return ArtworkFile
 	 */
-	function &fromRow($row) {
-		$artworkFile =& parent::fromRow($row);
+	function fromRow($row) {
+		$artworkFile = parent::fromRow($row);
 		$artworkFile->setCredit($row['credit']);
 		$artworkFile->setCaption($row['caption']);
 		$artworkFile->setChapterId(is_null($row['chapter_id']) ? null : (int)$row['chapter_id']);

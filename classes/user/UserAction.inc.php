@@ -42,39 +42,35 @@ class UserAction {
 		$submissionFileDao->transferOwnership($oldUserId, $newUserId);
 
 		$monographCommentDao = DAORegistry::getDAO('MonographCommentDAO');
-		$comments =& $monographCommentDao->getByUserId($oldUserId);
-		while ($comment =& $comments->next()) {
+		$comments = $monographCommentDao->getByUserId($oldUserId);
+		while ($comment = $comments->next()) {
 			$comment->setAuthorId($newUserId);
 			$monographCommentDao->updateObject($comment);
-			unset($comment);
 		}
 
 		$noteDao = DAORegistry::getDAO('NoteDAO');
-		$monographNotes =& $noteDao->getByUserId($oldUserId);
-		while ($monographNote =& $monographNotes->next()) {
+		$monographNotes = $noteDao->getByUserId($oldUserId);
+		while ($monographNote = $monographNotes->next()) {
 			$monographNote->setUserId($newUserId);
 			$noteDao->updateObject($monographNote);
-			unset($monographNote);
 		}
 
 		$signoffDao = DAORegistry::getDAO('SignoffDAO');
-		$stageSignoffs =& $signoffDao->getByUserId($oldUserId);
-		while ($stageSignoff =& $stageSignoffs->next()) {
+		$stageSignoffs = $signoffDao->getByUserId($oldUserId);
+		while ($stageSignoff = $stageSignoffs->next()) {
 			$stageSignoff->setUserId($newUserId);
 			$signoffDao->updateObject($stageSignoff);
-			unset($stageSignoff);
 		}
 
-		$seriesEditorSubmissionDao = DAORegistry::getDAO('SeriesEditorSubmissionDAO');
-		$seriesEditorSubmissionDao->transferEditorDecisions($oldUserId, $newUserId);
+		$editDecisionDao = DAORegistry::getDAO('EditDecisionDAO');
+		$editDecisionDao->transferEditorDecisions($oldUserId, $newUserId);
 
 		$reviewAssignmentDao = DAORegistry::getDAO('ReviewAssignmentDAO');
-		$reviewAssignments =& $reviewAssignmentDao->getByUserId($oldUserId);
+		$reviewAssignments = $reviewAssignmentDao->getByUserId($oldUserId);
 
 		foreach ($reviewAssignments as $reviewAssignment) {
 			$reviewAssignment->setReviewerId($newUserId);
 			$reviewAssignmentDao->updateObject($reviewAssignment);
-			unset($reviewAssignment);
 		}
 
 		$monographEmailLogDao = DAORegistry::getDAO('MonographEmailLogDAO');
@@ -109,13 +105,12 @@ class UserAction {
 
 		// Transfer old user's roles
 		$userGroupDao = DAORegistry::getDAO('UserGroupDAO');
-		$userGroups =& $userGroupDao->getByUserId($oldUserId);
-		while( !$userGroups->eof() ) {
-			$userGroup =& $userGroups->next();
+		$userGroups = $userGroupDao->getByUserId($oldUserId);
+		while(!$userGroups->eof()) {
+			$userGroup = $userGroups->next();
 			if (!$userGroupDao->userInGroup($newUserId, $userGroup->getId())) {
 				$userGroupDao->assignUserToGroup($newUserId, $userGroup->getId());
 			}
-			unset($userGroup);
 		}
 		$userGroupDao->deleteAssignmentsByUserId($oldUserId);
 

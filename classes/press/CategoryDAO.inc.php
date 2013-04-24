@@ -134,7 +134,7 @@ class CategoryDAO extends DAO {
 	 * @param $row array
 	 * @return Category
 	 */
-	function _fromRow(&$row) {
+	function _fromRow($row) {
 		$category = $this->newDataObject();
 
 		$category->setId($row['category_id']);

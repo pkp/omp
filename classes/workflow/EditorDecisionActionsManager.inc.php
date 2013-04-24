@@ -61,8 +61,8 @@ class EditorDecisionActionsManager {
 	 * @return boolean
 	 */
 	function getEditorTakenActionInReviewRound($reviewRound, $decisions = array()) {
-		$seriesEditorSubmissionDao = DAORegistry::getDAO('SeriesEditorSubmissionDAO');
-		$editorDecisions = $seriesEditorSubmissionDao->getEditorDecisions($reviewRound->getSubmissionId(), $reviewRound->getStageId(), $reviewRound->getRound());
+		$editDecisionDao = DAORegistry::getDAO('EditDecisionDAO');
+		$editorDecisions = $editDecisionDao->getEditorDecisions($reviewRound->getSubmissionId(), $reviewRound->getStageId(), $reviewRound->getRound());
 
 		if (empty($decisions)) {
 			$decisions = array_keys(self::_internalReviewStageDecisions());

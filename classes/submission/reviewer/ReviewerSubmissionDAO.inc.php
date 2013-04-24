@@ -98,7 +98,8 @@ class ReviewerSubmissionDAO extends MonographDAO {
 		$reviewerSubmission->setMostRecentPeerReviewComment($this->monographCommentDao->getMostRecentMonographComment($row['monograph_id'], COMMENT_TYPE_PEER_REVIEW, $row['review_id']));
 
 		// Editor Decisions
-		$decisions = $this->getEditorDecisions($row['monograph_id']);
+		$editDecisionDao = DAORegistry::getDAO('EditDecisionDAO');
+		$decisions = $editDecisionDao->getEditorDecisions($row['monograph_id']);
 		$reviewerSubmission->setDecisions($decisions);
 
 		// Review Assignment
@@ -266,38 +267,6 @@ class ReviewerSubmissionDAO extends MonographDAO {
 
 		$result->Close();
 		return $submissionsCount;
-	}
-
-	/**
-	 * Get the editor decisions for a review round of a monograph.
-	 * @param $monographId int
-	 * @param $round int
-	 */
-	function getEditorDecisions($monographId, $round = null) {
-		$params = array((int) $monographId);
-		if ($round) $params[] = (int) $round;
-		$result = $this->retrieve(
-			'SELECT	edit_decision_id, editor_id, decision, date_decided
-			FROM	edit_decisions
-			WHERE	submission_id = ?
-				' . ($round?' AND round = ?':'') . '
-			ORDER BY date_decided ASC',
-			$params
-		);
-
-		$decisions = array();
-		while (!$result->EOF) {
-			$decisions[] = array(
-				'editDecisionId' => $result->fields['edit_decision_id'],
-				'editorId' => $result->fields['editor_id'],
-				'decision' => $result->fields['decision'],
-				'dateDecided' => $this->datetimeFromDB($result->fields['date_decided'])
-			);
-			$result->MoveNext();
-		}
-
-		$result->Close();
-		return $decisions;
 	}
 
 	/**

@@ -138,7 +138,7 @@ class SubmissionFileDAO extends PKPSubmissionFileDAO {
 	/**
 	 * @see PKPSubmissionFileDAO::fromRow()
 	 */
-	function &fromRow($row) {
+	function fromRow($row) {
 		// Identify the appropriate file implementation for the
 		// given row.
 		if (isset($row['artwork_file_id']) && is_numeric($row['artwork_file_id'])) {

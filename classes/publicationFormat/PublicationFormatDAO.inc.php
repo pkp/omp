@@ -139,7 +139,7 @@ class PublicationFormatDAO extends DAO {
 	 * @param $callHooks boolean
 	 * @return PublicationFormat
 	 */
-	function &_fromRow(&$row, $callHooks = true) {
+	function _fromRow($row, $callHooks = true) {
 		$publicationFormat = $this->newDataObject();
 
 		// Add the additional Publication Format data
