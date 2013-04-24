@@ -227,7 +227,7 @@ class SeriesEditorSubmissionDAO extends MonographDAO {
 			$this->update(
 				sprintf(
 					'INSERT INTO edit_decisions
-					(monograph_id, review_round_id, stage_id, round, editor_id, decision, date_decided)
+					(submission_id, review_round_id, stage_id, round, editor_id, decision, date_decided)
 					VALUES (?, ?, ?, ?, ?, ?, %s)',
 					$this->datetimeToDB($editorDecision['dateDecided'])
 				),
@@ -254,7 +254,7 @@ class SeriesEditorSubmissionDAO extends MonographDAO {
 	 */
 	function deleteDecisionsByMonograph($monographId) {
 		return $this->update(
-			'DELETE FROM edit_decisions WHERE monograph_id = ?',
+			'DELETE FROM edit_decisions WHERE submission_id = ?',
 			(int) $monographId
 		);
 	}
@@ -287,7 +287,7 @@ class SeriesEditorSubmissionDAO extends MonographDAO {
 			'SELECT	edit_decision_id, editor_id, decision,
 				date_decided, review_round_id, stage_id, round
 			FROM	edit_decisions
-			WHERE	monograph_id = ?
+			WHERE	submission_id = ?
 				' . ($stageId?' AND stage_id = ?':'') . '
 				' . ($round?' AND round = ?':'') . '
 			ORDER BY date_decided ASC',

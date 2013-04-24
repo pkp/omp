@@ -279,7 +279,7 @@ class ReviewerSubmissionDAO extends MonographDAO {
 		$result = $this->retrieve(
 			'SELECT	edit_decision_id, editor_id, decision, date_decided
 			FROM	edit_decisions
-			WHERE	monograph_id = ?
+			WHERE	submission_id = ?
 				' . ($round?' AND round = ?':'') . '
 			ORDER BY date_decided ASC',
 			$params
