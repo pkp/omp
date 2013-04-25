@@ -82,6 +82,9 @@ class SubmissionSubmitStep3Form extends PKPSubmissionSubmitStep3Form {
 		// handle category assignment.
 		ListbuilderHandler::unpack($request, $this->getData('categories'));
 
+		$submissionDao = Application::getSubmissionDAO();
+		$submission = $submissionDao->getById($this->submissionId);
+
 		// Send author notification email
 		import('classes.mail.MonographMailTemplate');
 		$mail = new MonographMailTemplate($submission, 'SUBMISSION_ACK');
