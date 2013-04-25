@@ -462,7 +462,6 @@ Soumission, Évaluation interne, Évaluation externe, Rédaction et Production.<
 	<message key="manager.setup.genres">Genres</message>
 	<message key="manager.setup.newGenre">Nouveau genre de monographie</message>
 	<message key="manager.setup.newGenreDescription">Pour créer un nouveau genre, veuillez remplir le formulaire ci-dessous et cliquer le bouton "Créer".</message>
-	<message key="manager.setup.genres.sortable">Permettre aux fichiers de ce type d'être classés par composante (ex.: chapitre)</message>
 	<message key="manager.setup.deleteSelected">Supprimer la sélection</message>
 	<message key="manager.setup.restoreDefaults">Rétablir les paramètres par défaut</message>
 	<message key="manager.setup.prospectus">Prospectus</message>

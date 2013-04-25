@@ -401,7 +401,6 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.genres">Genres</message>
 	<message key="manager.setup.newGenre">New Monograph Genre</message>
 	<message key="manager.setup.newGenreDescription">To create a new genre, fill out the form below and click the 'Create' button.</message>
-	<message key="manager.setup.genres.sortable">Allow files of this type to be sorted by component (e.g. by chapter)</message>
 	<message key="manager.setup.deleteSelected">Delete Selected</message>
 	<message key="manager.setup.restoreDefaults">Restore Default Settings</message>
 	<message key="manager.setup.prospectus">Prospectus Guide</message>
