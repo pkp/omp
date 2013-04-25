@@ -171,12 +171,6 @@ Soumission, Évaluation interne, Évaluation externe, Rédaction et Production.<
 	<message key="manager.publication.productionStage">Production</message>
 	<message key="manager.publication.emails">Courriels</message>
 
-	<!--  Genre grid settings -->
-	<message key="grid.action.addGenre">Ajouter un genre</message>
-	<message key="grid.action.editGenre">Modifier ce genre</message>
-	<message key="grid.action.deleteGenre">Supprimer ce genre</message>
-	<message key="grid.action.restoreGenres">Restaurer les paramètres par défaut des genres.</message>
-
 	<!-- Distribution Process settings -->
 	<message key="manager.distribution.indexing">Indexage</message>
 
@@ -471,13 +465,11 @@ Soumission, Évaluation interne, Évaluation externe, Rédaction et Production.<
 	<message key="manager.setup.genres.sortable">Permettre aux fichiers de ce type d'être classés par composante (ex.: chapitre)</message>
 	<message key="manager.setup.deleteSelected">Supprimer la sélection</message>
 	<message key="manager.setup.restoreDefaults">Rétablir les paramètres par défaut</message>
-	<message key="manager.setup.groupType">Groupement par type de fichier</message>
 	<message key="manager.setup.prospectus">Prospectus</message>
 	<message key="manager.setup.prospectusDescription">Le prospectus est un document rédigé par la presse qui aide les auteurs à décrire les documents soumis de façon à ce que la presse puisse déterminer la valeur de la soumission. Un prospectus peut contenir plusieurs éléments, comme les débouchés commerciaux ou la valeur théorique. Dans tous les cas, la presse devrait rédiger un prospectus qui s'ajoutera à son agenda de publication.</message>
 	<message key="manager.setup.submitToCategories">Accepter les soumissions par catégorie</message>
 	<message key="manager.setup.submitToSeries">Accepter les soumissions de série</message>
 	<message key="manager.setup.issnDescription"><![CDATA[L'indice ISSN (International Standard Serial Number) est un nombre de huit chiffres qui identifie les publications périodiques en tant que telles, y compris les journaux électroniques. Il est géré par un réseau international de centres nationaux coordonnés par un centre international basé à Paris, et appuyé par l'Unesco et le gouvernement de la France. Pour obtenir un indice ISSN, vous devez consulter ce  <a href="http://www.issn.org" target="_blank">site Web</a>.  Ceci peut être fait à tout moment.]]></message>
-	<message key="manager.setup.sortableByComponent">Peut être trié par composante</message>
 	<message key="manager.setup.cataloguingMetadata">Métadonnées de catalogage</message>
 	<message key="manager.setup.currentFormats">Formats actuels</message>
 	<message key="manager.setup.category">Catégorie</message>

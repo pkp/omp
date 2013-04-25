@@ -256,7 +256,6 @@
 	<message key="grid.action.createPress">Create a new Press</message>
 	<message key="grid.action.addCode">Añadir código</message>
 	<message key="grid.action.addSpotlight">Añadir destacado</message>
-	<message key="grid.action.addGenre">Add Genre</message>
 	<message key="grid.action.publicationFormatTab">Show the publication format tab</message>
 	<message key="grid.action.bookInfo">Submission Info</message>
 	<message key="grid.action.moreAnnouncements">Go to press announcements page</message>
@@ -411,7 +410,6 @@
 	<message key="common.publicKnowledgeProject">Public Knowledge Project</message>
 	<message key="common.homePageHeader.altText">Homepage Header</message>
 	<message key="common.pressHomepageImage.altText">Press Homepage Image</message>
-	<message key="common.designation">Designation</message>
 	<message key="common.name">Nombre</message>
 	<message key="common.dimensionsInches"><![CDATA[{$width}"&nbsp;x&nbsp;{$height}" @ {$dpi} DPI/PPI]]></message>
 	<message key="common.dimensionsPixels">{$width} x {$height} pixels</message>

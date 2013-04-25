@@ -243,7 +243,6 @@
 	<message key="grid.action.createPress">Créer une nouvelle presse</message>
 	<message key="grid.action.addCode">Ajouter un code</message>
 	<message key="grid.action.addSpotlight">Ajouter un titre à la rubrique Sous les projecteurs</message>
-	<message key="grid.action.addGenre">Ajouter un genre</message>
 	<message key="grid.action.publicationFormatTab">Afficher l'onglet du format de publication</message>
 	<message key="grid.action.bookInfo">Renseignements sur la soumission</message>
 	<message key="grid.action.moreAnnouncements">Consulter la page des communiqués de presse</message>
@@ -395,7 +394,6 @@ Sauvegarder.</li>
 	<message key="common.omp">OMP</message>
 	<message key="common.publicKnowledgeProject">Public Knowledge Project</message>
 	<message key="common.homePageHeader.altText">En-tête de la page d'accueil</message>
-	<message key="common.designation">Désignation</message>
 	<message key="common.dimensionsInches"><![CDATA[{$width}"&nbsp;x&nbsp;{$height}" @ {$dpi} DPI/PPI]]></message>
 	<message key="common.dimensionsPixels">{$width} x {$height} pixels</message>
 

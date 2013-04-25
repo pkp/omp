@@ -134,12 +134,6 @@ You may optionally provide the user with a reason for disabling their account.</
 	This task must be performed by a site administrator.
 	]]></message>
 
-	<!--  Genre grid settings -->
-	<message key="grid.action.addGenre">Add a Genre</message>
-	<message key="grid.action.editGenre">Edit this Genre</message>
-	<message key="grid.action.deleteGenre">Delete this Genre</message>
-	<message key="grid.action.restoreGenres">Restore the Genres to the default settings</message>
-
 	<!-- System setup -->
 	<message key="manager.system">System Settings</message>
 	<message key="manager.system.archiving">Archiving</message>
@@ -410,13 +404,11 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.genres.sortable">Allow files of this type to be sorted by component (e.g. by chapter)</message>
 	<message key="manager.setup.deleteSelected">Delete Selected</message>
 	<message key="manager.setup.restoreDefaults">Restore Default Settings</message>
-	<message key="manager.setup.groupType">File type grouping</message>
 	<message key="manager.setup.prospectus">Prospectus Guide</message>
 	<message key="manager.setup.prospectusDescription">The prospectus guide is a press prepared document that helps the author describe the submitted materials in a way that allows a press to determine the value of the submission. A prospectus can include a lot of items- from marketing potential to theoretical value; in any case, a press should create a prospectus guide that complements their publishing agenda.</message>
 	<message key="manager.setup.submitToCategories">Allow category submissions</message>
 	<message key="manager.setup.submitToSeries">Allow series submissions</message>
 	<message key="manager.setup.issnDescription"><![CDATA[The ISSN (International Standard Serial Number) is an eight-digit number which identifies periodical publications as such, including electronic serials. It is managed by a world wide network of National Centres coordinated by an International Centre based in Paris, backed by Unesco and the French Government. A number can be obtained from the <a href="http://www.issn.org" target="_blank">ISSN web site</a>.  This can be done at any point in operating the press.]]></message>
-	<message key="manager.setup.sortableByComponent">Sortable by component</message>
 	<message key="manager.setup.cataloguingMetadata">Cataloguing Metadata</message>
 	<message key="manager.setup.currentFormats">Current Formats</message>
 	<message key="manager.setup.category">Category</message>

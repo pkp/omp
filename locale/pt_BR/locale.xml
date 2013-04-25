@@ -241,7 +241,6 @@
 	<message key="grid.action.createPress">Incluir nova editora</message>
 	<message key="grid.action.addCode">Incluir código</message>
 	<message key="grid.action.addSpotlight">Incluir destaque</message>
-	<message key="grid.action.addGenre">Incluir gênero</message>
 	<message key="grid.action.publicationFormatTab">Exibir a aba de formato de publicação</message>
 	<message key="grid.action.bookInfo">Dados da submissão</message>
 	<message key="grid.action.moreAnnouncements">Acessar página de notícias</message>
@@ -395,7 +394,6 @@
 	<message key="common.omp">OMP</message>
 	<message key="common.publicKnowledgeProject">Public Knowledge Project</message>
 	<message key="common.homePageHeader.altText">Cabeçalho da página inicial</message>
-	<message key="common.designation">Designação</message>
 	<message key="common.dimensionsInches"><![CDATA[{$width}"&nbsp;x&nbsp;{$height}" @ {$dpi} DPI/PPI]]></message>
 	<message key="common.dimensionsPixels">{$width} x {$height} pixels</message>
 
