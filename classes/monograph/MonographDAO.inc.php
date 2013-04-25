@@ -264,11 +264,11 @@ class MonographDAO extends DAO {
 	function deleteById($monographId) {
 		$this->authorDao->deleteAuthorsBySubmission($monographId);
 
-		$seriesEditorSubmissionDao = DAORegistry::getDAO('SeriesEditorSubmissionDAO');
-		$seriesEditorSubmissionDao->deleteReviewRoundsByMonograph($monographId);
+		$reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO');
+		$reviewRoundDao->deleteBySubmissionId($monographId);
 
 		$editDecisionDao = DAORegistry::getDAO('EditDecisionDAO');
-		$editDecisionDao->deleteDecisionsBySubmission($monographId);
+		$editDecisionDao->deleteDecisionsBySubmissionId($monographId);
 
 		$reviewAssignmentDao = DAORegistry::getDAO('ReviewAssignmentDAO');
 		$reviewAssignmentDao->deleteBySubmissionId($monographId);

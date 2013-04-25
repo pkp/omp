@@ -219,18 +219,6 @@ class SeriesEditorSubmissionDAO extends MonographDAO {
 	// Miscellaneous
 	//
 	/**
-	 * Delete review rounds monograph.
-	 * FIXME: Move to ReviewRoundDAO, see #6455.
-	 * @param $monographId int
-	 */
-	function deleteReviewRoundsByMonograph($monographId) {
-		return $this->update(
-			'DELETE FROM review_rounds WHERE submission_id = ?',
-			(int) $monographId
-		);
-	}
-
-	/**
 	 * Check if a reviewer is assigned to a specified monograph.
 	 * FIXME: Move to ReviewAssigmentDAO, see #6455.
 	 * @param $reviewRoundId int
