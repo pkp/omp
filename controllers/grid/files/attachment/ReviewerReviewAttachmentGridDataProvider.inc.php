@@ -49,7 +49,7 @@ class ReviewerReviewAttachmentGridDataProvider extends SubmissionFilesGridDataPr
 			$this->setUploaderRoles($roleAssignments);
 			import('classes.security.authorization.ReviewStageAccessPolicy');
 
-			$authorizationPolicy = new ReviewStageAccessPolicy;($request, $args, $roleAssignments, 'submissionId', $request->getUserVar('stageId'));
+			$authorizationPolicy = new ReviewStageAccessPolicy($request, $args, $roleAssignments, 'submissionId', $request->getUserVar('stageId'));
 			$paramName = 'assocId';
 		} else {
 			// Viewing from a press role perspective.
