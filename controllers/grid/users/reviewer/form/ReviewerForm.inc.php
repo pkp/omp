@@ -354,8 +354,8 @@ class ReviewerForm extends Form {
 	 * @return boolean
 	 */
 	function _isValidReviewer(&$press, &$monograph, &$reviewRound, $reviewerId) {
-		$seriesEditorSubmissionDao = DAORegistry::getDAO('SeriesEditorSubmissionDAO'); /* @var $seriesEditorSubmissionDao SeriesEditorSubmissionDAO */
-		$reviewerFactory =& $seriesEditorSubmissionDao->getReviewersNotAssignedToMonograph($press->getId(), $monograph->getId(), $reviewRound);
+		$userDao = DAORegistry::getDAO('UserDAO'); /* @var $userDao UserDAO */
+		$reviewerFactory =& $userDao->getReviewersNotAssignedToSubmission($press->getId(), $monograph->getId(), $reviewRound);
 		$reviewersArray = $reviewerFactory->toAssociativeArray();
 		if (array_key_exists($reviewerId, $reviewersArray)) {
 			return true;

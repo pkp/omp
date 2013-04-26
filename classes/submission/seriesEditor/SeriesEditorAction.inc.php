@@ -185,7 +185,8 @@ class SeriesEditorAction extends Action {
 
 		// Check to see if the requested reviewer is not already
 		// assigned to review this monograph.
-		$assigned = $seriesEditorSubmissionDao->reviewerExists($reviewRound->getId(), $reviewerId);
+
+		$assigned = $reviewAssignmentDao->reviewerExists($reviewRound->getId(), $reviewerId);
 
 		// Only add the reviewer if he has not already
 		// been assigned to review this monograph.

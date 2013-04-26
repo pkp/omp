@@ -52,8 +52,8 @@ class ReviewerSelectGridRow extends GridRow {
 		$user = $this->getData();
 		$this->setId($user->getId());
 
-		$seriesEditorSubmissionDao = DAORegistry::getDAO('SeriesEditorSubmissionDAO');
-		$this->reviewerStats =& $seriesEditorSubmissionDao->getReviewerStatistics($press->getId());
+		$reviewAssignmentDao = DAORegistry::getDAO('ReviewAssignmentDAO');
+		$this->reviewerStats =& $reviewAssignmentDao->getReviewerStatistics($press->getId());
 	}
 }
 ?>

@@ -175,10 +175,10 @@ class ReviewerSelectGridHandler extends GridHandler {
 		$activeMin = $reviewerValues['activeMin'];
 		$activeMax = $reviewerValues['activeMax'];
 
-		$seriesEditorSubmissionDao = DAORegistry::getDAO('SeriesEditorSubmissionDAO');
+		$userDao = DAORegistry::getDAO('UserDAO');
 		$monograph = $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		$reviewRound = $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ROUND);
-		return $seriesEditorSubmissionDao->getFilteredReviewers(
+		return $userDao->getFilteredReviewers(
 			$monograph->getPressId(), $doneMin, $doneMax, $avgMin, $avgMax,
 			$lastMin, $lastMax, $activeMin, $activeMax, $interests,
 			$monograph->getId(), $reviewRound->getId()
@@ -226,8 +226,8 @@ class ReviewerSelectGridHandler extends GridHandler {
 
 		$filterData['interestSearchKeywords'] = null;
 
-		$seriesEditorSubmissionDao = DAORegistry::getDAO('SeriesEditorSubmissionDAO');
-		$reviewerValues = $seriesEditorSubmissionDao->getAnonymousReviewerStatistics();
+		$reviewAssignmentDao = DAORegistry::getDAO('ReviewAssignmentDAO');
+		$reviewerValues = $reviewAssignmentDao->getAnonymousReviewerStatistics();
 		$filterData['reviewerValues'] = $reviewerValues;
 
 		return $filterData;
