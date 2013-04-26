@@ -73,14 +73,6 @@ class ProductionReadyFilesGridHandler extends SubmissionFilesGridHandler {
 			unset($userGroup);
 		}
 	}
-
-	/**
-	 * Fetches the application-specific submission id field name, for forms.
-	 * @return string
-	 */
-	function getSubmissionFieldIdName() {
-		return 'monographId';
-	}
 }
 
 ?>

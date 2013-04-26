@@ -59,15 +59,10 @@ class AuthorGridHandler extends PKPAuthorGridHandler {
 	 * @param $request PKPRequest
 	 */
 	function initialize($request) {
-
-		// Retrieve the authorized monograph.
-		$this->setSubmission($this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH));
-
 		// Load submission-specific translations
 		AppLocale::requireComponents(
 			LOCALE_COMPONENT_APP_SUBMISSION,
-			LOCALE_COMPONENT_APP_DEFAULT,
-			LOCALE_COMPONENT_PKP_DEFAULT
+			LOCALE_COMPONENT_APP_DEFAULT
 		);
 
 		parent::initialize($request);
@@ -77,19 +72,6 @@ class AuthorGridHandler extends PKPAuthorGridHandler {
 	//
 	// Overridden methods from GridHandler
 	//
-
-	/**
-	 * Get the arguments that will identify the data in the grid
-	 * In this case, the monograph.
-	 * @return array
-	 */
-	function getRequestArgs() {
-		$monograph = $this->getSubmission();
-		return array(
-			'submissionId' => $monograph->getId()
-		);
-	}
-
 	/**
 	 * Determines if there should be an 'add user' action on this grid.
 	 * @return boolean
@@ -101,23 +83,6 @@ class AuthorGridHandler extends PKPAuthorGridHandler {
 			return true;
 		else
 			return false;
-	}
-
-	/**
-	 * Fetches the application-specific submission id from the request object.
-	 * @param PKPRequest $request
-	 * @return int
-	 */
-	function getRequestedSubmissionId($request) {
-		return $request->getUserVar('submissionId');
-	}
-
-	/**
-	 * Fetches the application-specific submission id field name, for forms.
-	 * @return string
-	 */
-	function getSubmissionFieldIdName() {
-		return 'submissionId';
 	}
 }
 

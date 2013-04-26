@@ -155,14 +155,6 @@ class FileSignoffGridHandler extends SubmissionFilesGridHandler {
 
 		return DAO::getDataChangedEvent($fileId);
 	}
-
-	/**
-	 * Fetches the application-specific submission id field name, for forms.
-	 * @return string
-	 */
-	function getSubmissionFieldIdName() {
-		return 'monographId';
-	}
 }
 
 ?>
