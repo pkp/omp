@@ -167,7 +167,7 @@ class PayPalPlugin extends PaymethodPlugin {
 			$contactEmail = $press->getSetting('contactEmail');
 		}
 		$mail = new MailTemplate('PAYPAL_INVESTIGATE_PAYMENT');
-		$mail->setFrom($contactEmail, $contactName);
+		$mail->setReplyTo($contactEmail, $contactName);
 		$mail->addRecipient($contactEmail, $contactName);
 
 		$paymentStatus = $request->getUserVar('payment_status');

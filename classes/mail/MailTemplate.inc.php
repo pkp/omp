@@ -93,11 +93,11 @@ class MailTemplate extends PKPMailTemplate {
 		// Default "From" to user if available, otherwise site/press principal contact
 		$user = Request::getUser();
 		if ($user) {
-			$this->setFrom($user->getEmail(), $user->getFullName());
-		} elseif ($press == null) {
+			$this->setReplyTo($user->getEmail(), $user->getFullName());
+		}
+		if (!$press) {
 			$site = Request::getSite();
 			$this->setFrom($site->getLocalizedContactEmail(), $site->getLocalizedContactName());
-
 		} else {
 			$this->setFrom($press->getSetting('contactEmail'), $press->getSetting('contactName'));
 		}
@@ -150,19 +150,24 @@ class MailTemplate extends PKPMailTemplate {
 	 */
 	function send($clearAttachments = true) {
 		if (isset($this->press)) {
-			//If {$templateSignature} exists in the body of the
-			// message, replace it with the press signature;
-			// otherwise just append it. This is here to
-			// accomodate MIME-encoded messages or other cases
-			// where the signature cannot just be appended.
+			//If {$templateSignature} and/or {$templateHeader}
+			// exist in the body of the message, replace it with
+			// the press signature; otherwise just pre/append
+			// them. This is here to accomodate MIME-encoded
+			// messages or other cases where the signature cannot
+			// just be appended.
+			$header = $this->journal->getSetting('emailHeader');
+			if (strstr($this->getBody(), '{$templateHeader}') === false) {
+				$this->setBody($header . "\n" . $this->getBody());
+			} else {
+				$this->setBody(str_replace('{$templateHeader}', $header, $this->getBody()));
+			}
 
-			// Include the signature if wanted, otherwise replace the variable with an empty string.
-			$signature = $this->includeSignature ? $this->press->getSetting('emailSignature') : '';
-			$searchString = '{$templateSignature}';
-			if (strstr($this->getBody(), $searchString) === false) {
+			$signature = $this->journal->getSetting('emailSignature');
+			if (strstr($this->getBody(), '{$templateSignature}') === false) {
 				$this->setBody($this->getBody() . "\n" . $signature);
 			} else {
-				$this->setBody(str_replace($searchString, $signature, $this->getBody()));
+				$this->setBody(str_replace('{$templateSignature}', $signature, $this->getBody()));
 			}
 
 			$envelopeSender = $this->press->getSetting('envelopeSender');

@@ -125,7 +125,7 @@ class ManualPaymentPlugin extends PaymethodPlugin {
 				$contactName = $press->getSetting('contactName');
 				$contactEmail = $press->getSetting('contactEmail');
 				$mail = new MailTemplate('MANUAL_PAYMENT_NOTIFICATION');
-				$mail->setFrom($contactEmail, $contactName);
+				$mail->setReplyTo($contactEmail, $contactName);
 				$mail->addRecipient($contactEmail, $contactName);
 				$mail->assignParams(array(
 					'pressName' => $press->getLocalizedName(),

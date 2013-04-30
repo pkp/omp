@@ -196,7 +196,7 @@ class UserXMLParser {
 			import('classes.mail.MailTemplate');
 			$mail = new MailTemplate('USER_REGISTER');
 
-			$mail->setFrom($press->getSetting('contactEmail'), $press->getSetting('contactName'));
+			$mail->setReplyTo($press->getSetting('contactEmail'), $press->getSetting('contactName'));
 		}
 
 		for ($i=0, $count=count($this->usersToImport); $i < $count; $i++) {

@@ -52,7 +52,7 @@ class ReviewerAction extends Action {
 			$email = new MonographMailTemplate($reviewerSubmission, $decline?'REVIEW_DECLINE':'REVIEW_CONFIRM');
 			// Must explicitly set sender because we may be here on an access
 			// key, in which case the user is not technically logged in
-			$email->setFrom($reviewer->getEmail(), $reviewer->getFullName());
+			$email->setReplyTo($reviewer->getEmail(), $reviewer->getFullName());
 			if (!$email->isEnabled() || ($send && !$email->hasErrors())) {
 				HookRegistry::call('ReviewerAction::confirmReview', array($request, &$reviewerSubmission, &$email, $decline));
 				if ($email->isEnabled()) {
