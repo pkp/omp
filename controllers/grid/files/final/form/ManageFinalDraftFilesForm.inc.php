@@ -12,16 +12,16 @@
  * @brief Form to add files to the final draft files grid
  */
 
-import('controllers.grid.files.form.ManageSubmissionFilesForm');
+import('lib.pkp.controllers.grid.files.form.ManageSubmissionFilesForm');
 
 class ManageFinalDraftFilesForm extends ManageSubmissionFilesForm {
 
 	/**
 	 * Constructor.
-	 * @param $monograph Monograph
+	 * @param $submissionId int Submission ID.
 	 */
-	function ManageFinalDraftFilesForm($monographId) {
-		parent::ManageSubmissionFilesForm($monographId, 'controllers/grid/files/final/manageFinalDraftFiles.tpl');
+	function ManageFinalDraftFilesForm($submissionId) {
+		parent::ManageSubmissionFilesForm($submissionId, 'controllers/grid/files/final/manageFinalDraftFiles.tpl');
 	}
 
 
@@ -32,10 +32,10 @@ class ManageFinalDraftFilesForm extends ManageSubmissionFilesForm {
 	 * Save Selection of Final Draft files
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return array a list of all monograph files marked as "final".
+	 * @return array a list of all submission files marked as "final".
 	 */
-	function execute($args, $request, &$stageMonographFiles) {
-		parent::execute($args, $request, $stageMonographFiles, SUBMISSION_FILE_FINAL);
+	function execute($args, $request, $stageSubmissionFiles) {
+		parent::execute($args, $request, $stageSubmissionFiles, SUBMISSION_FILE_FINAL);
 	}
 }
 

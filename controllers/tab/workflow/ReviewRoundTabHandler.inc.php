@@ -89,7 +89,7 @@ class ReviewRoundTabHandler extends Handler {
 		$this->setupTemplate($request);
 
 		// Retrieve the authorized submission, stage id and review round.
-		$monograph = $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		$submission = $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION);
 		$stageId = $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
 		$reviewRound = $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ROUND);
 
@@ -97,7 +97,7 @@ class ReviewRoundTabHandler extends Handler {
 		$templateMgr = TemplateManager::getManager($request);
 		$templateMgr->assign('stageId', $stageId);
 		$templateMgr->assign('reviewRoundId', $reviewRound->getId());
-		$templateMgr->assign_by_ref('monograph', $monograph);
+		$templateMgr->assign('submission', $submission);
 
 		// Assign editor decision actions to the template, only if
 		// user is accessing the last review round for this stage.

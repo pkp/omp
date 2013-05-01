@@ -51,10 +51,10 @@ class EditorReviewFilesGridHandler extends FileListGridHandler {
 	 * @return string Serialized JSON object
 	 */
 	function selectFiles($args, $request) {
-		$monograph = $this->getSubmission();
+		$submission = $this->getSubmission();
 
-		import('controllers.grid.files.review.form.ManageReviewFilesForm');
-		$manageReviewFilesForm = new ManageReviewFilesForm($monograph->getId(), $this->getRequestArg('stageId'), $this->getRequestArg('reviewRoundId'));
+		import('lib.pkp.controllers.grid.files.review.form.ManageReviewFilesForm');
+		$manageReviewFilesForm = new ManageReviewFilesForm($submission->getId(), $this->getRequestArg('stageId'), $this->getRequestArg('reviewRoundId'));
 
 		$manageReviewFilesForm->initData($args, $request);
 		$json = new JSONMessage(true, $manageReviewFilesForm->fetch($request));

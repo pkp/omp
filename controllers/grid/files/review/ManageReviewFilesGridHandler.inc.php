@@ -55,7 +55,7 @@ class ManageReviewFilesGridHandler extends SelectableSubmissionFileListCategoryG
 	function updateReviewFiles($args, $request) {
 		$submission = $this->getSubmission();
 
-		import('controllers.grid.files.review.form.ManageReviewFilesForm');
+		import('lib.pkp.controllers.grid.files.review.form.ManageReviewFilesForm');
 		$manageReviewFilesForm = new ManageReviewFilesForm($submission->getId(), $this->getRequestArg('stageId'), $this->getRequestArg('reviewRoundId'));
 		$manageReviewFilesForm->readInputData();
 
