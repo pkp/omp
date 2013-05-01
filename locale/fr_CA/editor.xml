@@ -70,7 +70,6 @@
 	<message key="editor.monograph.roundStatus.pendingReviewers">En attente d'évaluateurs.</message>
 	<message key="editor.monograph.roundStatus.pendingReviews">En attente des commentaires des évaluateurs.</message>
 	<message key="editor.monograph.roundStatus.reviewsReady">Les nouvelles révisions sont prêtes.</message>
-	<message key="editor.monograph.roundStatus.reviewsCompleted">Les révisions sont terminées.</message>
 	<message key="editor.monograph.createNewRound">Créer une nouvelle série de révisions.</message>
 	<message key="editor.monograph.internalReview">Procéder à l'évaluation interne</message>
 	<message key="editor.monograph.internalReviewDescription">Vous entamez le processus d'évaluation interne de cette soumission. La liste des fichiers faisant partie de cette soumission est affichée ci-dessous. Ils peuvent être sélectionnés pour être révisés.</message>
