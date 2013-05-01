@@ -53,7 +53,7 @@ class ManageReviewFilesGridHandler extends SelectableSubmissionFileListCategoryG
 	 * @return string Serialized JSON object
 	 */
 	function updateReviewFiles($args, $request) {
-		$monograph = $this->getMonograph();
+		$monograph = $this->getSubmission();
 
 		import('controllers.grid.files.review.form.ManageReviewFilesForm');
 		$manageReviewFilesForm = new ManageReviewFilesForm($monograph->getId(), $this->getRequestArg('stageId'), $this->getRequestArg('reviewRoundId'));
