@@ -44,7 +44,7 @@ class SearchByNameReviewerForm extends ReviewerForm {
 	function fetch($request) {
 		// Pass along the request vars
 		$actionArgs = $request->getUserVars();
-		$reviewRound =& $this->getReviewRound();
+		$reviewRound = $this->getReviewRound();
 		$actionArgs['reviewRoundId'] = $reviewRound->getId();
 		$actionArgs['selectionType'] = REVIEWER_SELECT_ADVANCED_SEARCH;
 		// but change the selectionType for each action

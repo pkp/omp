@@ -83,15 +83,15 @@ class ReviewerGridHandler extends GridHandler {
 	 * Get review round object.
 	 * @return ReviewRound
 	 */
-	function &getReviewRound() {
-		$reviewRound =& $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ROUND);
+	function getReviewRound() {
+		$reviewRound = $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ROUND);
 		if (is_a($reviewRound, 'ReviewRound')) {
 			return $reviewRound;
 		} else {
-			$reviewAssignment =& $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ASSIGNMENT);
+			$reviewAssignment = $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ASSIGNMENT);
 			$reviewRoundId = $reviewAssignment->getReviewRoundId();
 			$reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO');
-			$reviewRound = $reviewRoundDao->getReviewRoundById($reviewRoundId);
+			$reviewRound = $reviewRoundDao->getById($reviewRoundId);
 			return $reviewRound;
 		}
 	}
@@ -220,7 +220,7 @@ class ReviewerGridHandler extends GridHandler {
 	function loadData($request, $filter) {
 		// Get the existing review assignments for this monograph
 		$monograph = $this->getMonograph(); /* @var $monograph SeriesEditorSubmission */
-		$reviewRound =& $this->getReviewRound();
+		$reviewRound = $this->getReviewRound();
 		return $monograph->getReviewAssignments($this->getStageId(), $reviewRound->getRound());
 	}
 
@@ -687,7 +687,7 @@ class ReviewerGridHandler extends GridHandler {
 	function _updateReviewRoundStatus($reviewAssignment) {
 		// Update the review round status.
 		$reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO');
-		$reviewRound = $reviewRoundDao->getReviewRoundById($reviewAssignment->getReviewRoundId());
+		$reviewRound = $reviewRoundDao->getById($reviewAssignment->getReviewRoundId());
 		$seriesEditorSubmission = $this->getMonograph();
 		$seriesEditorSubmission->updateReviewAssignment($reviewAssignment);
 		$reviewAssignments = $seriesEditorSubmission->getReviewAssignments($reviewRound->getStageId(), $reviewRound->getRound());

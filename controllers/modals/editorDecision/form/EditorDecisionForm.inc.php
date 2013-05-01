@@ -64,7 +64,7 @@ class EditorDecisionForm extends Form {
 	 * Get the submission
 	 * @return SeriesEditorSubmission
 	 */
-	function &getSeriesEditorSubmission() {
+	function getSeriesEditorSubmission() {
 		return $this->_seriesEditorSubmission;
 	}
 
@@ -80,7 +80,7 @@ class EditorDecisionForm extends Form {
 	 * Get the review round object.
 	 * @return ReviewRound
 	 */
-	function &getReviewRound() {
+	function getReviewRound() {
 		return $this->_reviewRound;
 	}
 
@@ -100,9 +100,9 @@ class EditorDecisionForm extends Form {
 	 * @see Form::fetch()
 	 */
 	function fetch($request) {
-		$seriesEditorSubmission =& $this->getSeriesEditorSubmission();
+		$seriesEditorSubmission = $this->getSeriesEditorSubmission();
 
-		$reviewRound =& $this->getReviewRound();
+		$reviewRound = $this->getReviewRound();
 		if (is_a($reviewRound, 'ReviewRound')) {
 			$this->setData('reviewRoundId', $reviewRound->getId());
 		}

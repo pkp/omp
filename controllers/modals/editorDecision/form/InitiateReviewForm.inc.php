@@ -40,7 +40,7 @@ class InitiateReviewForm extends EditorDecisionForm {
 	 */
 	function execute($args, $request) {
 		// Retrieve the submission.
-		$seriesEditorSubmission =& $this->getSeriesEditorSubmission();
+		$seriesEditorSubmission = $this->getSeriesEditorSubmission();
 
 		// Record the decision.
 		import('classes.workflow.EditorDecisionActionsManager');

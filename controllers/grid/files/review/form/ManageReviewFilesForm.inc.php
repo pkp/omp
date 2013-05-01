@@ -55,10 +55,9 @@ class ManageReviewFilesForm extends ManageSubmissionFilesForm {
 	/**
 	 * @return ReviewRound
 	 */
-	function &getReviewRound() {
+	function getReviewRound() {
 		$reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO');
-		$reviewRound =& $reviewRoundDao->getReviewRoundById($this->getReviewRoundId());
-		return $reviewRound;
+		return $reviewRoundDao->getById($this->getReviewRoundId());
 	}
 
 
@@ -74,7 +73,7 @@ class ManageReviewFilesForm extends ManageSubmissionFilesForm {
 		$this->setData('stageId', $this->getStageId());
 		$this->setData('reviewRoundId', $this->getReviewRoundId());
 
-		$reviewRound =& $this->getReviewRound();
+		$reviewRound = $this->getReviewRound();
 		$this->setData('round', $reviewRound->getRound());
 
 		parent::initData($args, $request);

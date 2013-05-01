@@ -92,7 +92,7 @@ class NotificationManager extends PKPNotificationManager {
 			case NOTIFICATION_TYPE_ALL_REVISIONS_IN:
 				assert($notification->getAssocType() == ASSOC_TYPE_REVIEW_ROUND && is_numeric($notification->getAssocId()));
 				$reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO');
-				$reviewRound = $reviewRoundDao->getReviewRoundById($notification->getAssocId());
+				$reviewRound = $reviewRoundDao->getById($notification->getAssocId());
 				assert(is_a($reviewRound, 'ReviewRound'));
 
 				$monographDao = DAORegistry::getDAO('MonographDAO');
@@ -154,7 +154,7 @@ class NotificationManager extends PKPNotificationManager {
 			case NOTIFICATION_TYPE_REVIEW_ROUND_STATUS:
 				assert($notification->getAssocType() == ASSOC_TYPE_REVIEW_ROUND && is_numeric($notification->getAssocId()));
 				$reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO');
-				$reviewRound = $reviewRoundDao->getReviewRoundById($notification->getAssocId());
+				$reviewRound = $reviewRoundDao->getById($notification->getAssocId());
 
 				AppLocale::requireComponents(LOCALE_COMPONENT_APP_EDITOR); // load review round status keys.
 				return __($reviewRound->getStatusKey());
@@ -168,7 +168,7 @@ class NotificationManager extends PKPNotificationManager {
 
 				assert($notification->getAssocType() == ASSOC_TYPE_REVIEW_ROUND && is_numeric($notification->getAssocId()));
 				$reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO');
-				$reviewRound = $reviewRoundDao->getReviewRoundById($notification->getAssocId());
+				$reviewRound = $reviewRoundDao->getById($notification->getAssocId());
 				assert(is_a($reviewRound, 'ReviewRound'));
 				$userGroupDao = DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */
 				$stagesData = $userGroupDao->getWorkflowStageKeysAndPaths();
@@ -204,7 +204,7 @@ class NotificationManager extends PKPNotificationManager {
 				return __('notification.type.visitCatalogTitle');
 			case NOTIFICATION_TYPE_REVIEW_ROUND_STATUS:
 				$reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO');
-				$reviewRound = $reviewRoundDao->getReviewRoundById($notification->getAssocId());
+				$reviewRound = $reviewRoundDao->getById($notification->getAssocId());
 				return __('notification.type.roundStatusTitle', array('round' => $reviewRound->getRound()));
 			case NOTIFICATION_TYPE_CONFIGURE_PAYMENT_METHOD:
 				return __('notification.type.configurePaymentMethod.title');

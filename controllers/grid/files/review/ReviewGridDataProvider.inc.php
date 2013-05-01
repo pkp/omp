@@ -101,8 +101,8 @@ class ReviewGridDataProvider extends SubmissionFilesGridDataProvider {
 	 * Get the review round object.
 	 * @return ReviewRound
 	 */
-	function &getReviewRound() {
-		$reviewRound =& $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ROUND);
+	function getReviewRound() {
+		$reviewRound = $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ROUND);
 		return $reviewRound;
 	}
 }

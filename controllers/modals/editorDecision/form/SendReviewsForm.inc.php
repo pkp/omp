@@ -57,13 +57,13 @@ class SendReviewsForm extends EditorDecisionWithEmailForm {
 	 */
 	function execute($args, $request) {
 		// Retrieve the submission.
-		$seriesEditorSubmission =& $this->getSeriesEditorSubmission();
+		$seriesEditorSubmission = $this->getSeriesEditorSubmission();
 
 		// Get this form decision actions labels.
 		$actionLabels = EditorDecisionActionsManager::getActionLabels($this->_getDecisions());
 
 		// Record the decision.
-		$reviewRound =& $this->getReviewRound();
+		$reviewRound = $this->getReviewRound();
 		$decision = $this->getDecision();
 		$stageId = $this->getStageId();
 		import('classes.submission.seriesEditor.SeriesEditorAction');

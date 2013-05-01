@@ -281,7 +281,7 @@ class SeriesEditorAction extends Action {
 
 			// Update the review round status, if needed.
 			$reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO');
-			$reviewRound =& $reviewRoundDao->getReviewRoundById($reviewAssignment->getReviewRoundId());
+			$reviewRound = $reviewRoundDao->getById($reviewAssignment->getReviewRoundId());
 			$reviewAssignments = $seriesEditorSubmission->getReviewAssignments($reviewRound->getStageId(), $reviewRound->getRound());
 			$reviewRoundDao->updateStatus($reviewRound, $reviewAssignments);
 

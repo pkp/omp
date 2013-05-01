@@ -97,11 +97,10 @@ class ManageSubmissionFilesForm extends Form {
 					if ($fileStage == SUBMISSION_FILE_REVIEW_FILE) {
 						$submissionFileDao->assignRevisionToReviewRound($newFileId, $newRevision, $this->getReviewRound());
 					}
-					$monographFile =& $submissionFileDao->getRevision($newFileId, $newRevision);
+					$monographFile = $submissionFileDao->getRevision($newFileId, $newRevision);
 				}
 			}
 			$submissionFileDao->updateObject($monographFile);
-			unset($monographFile);
 		}
 	}
 }

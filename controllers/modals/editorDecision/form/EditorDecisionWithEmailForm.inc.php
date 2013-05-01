@@ -62,7 +62,7 @@ class EditorDecisionWithEmailForm extends EditorDecisionForm {
 		$router = $request->getRouter();
 		$dispatcher = $router->getDispatcher();
 
-		$seriesEditorSubmission =& $this->getSeriesEditorSubmission();
+		$seriesEditorSubmission = $this->getSeriesEditorSubmission();
 		$submitter = $seriesEditorSubmission->getUser();
 		$user = $request->getUser();
 
@@ -89,7 +89,7 @@ class EditorDecisionWithEmailForm extends EditorDecisionForm {
 		$email->assignParams($paramArray);
 
 		// If we are in review stage we need a review round.
-		$reviewRound =& $this->getReviewRound();
+		$reviewRound = $this->getReviewRound();
 		if (is_a($reviewRound, 'ReviewRound')) {
 			$this->setData('reviewRoundId', $reviewRound->getId());
 		}
@@ -122,13 +122,13 @@ class EditorDecisionWithEmailForm extends EditorDecisionForm {
 	function fetch($request) {
 		// No all decision forms need a review round.
 		// Try to get a review round.
-		$reviewRound =& $this->getReviewRound();
+		$reviewRound = $this->getReviewRound();
 
 		// If we have a review round, then we are in a review stage.
 		if (is_a($reviewRound, 'ReviewRound')) {
 			// URL to retrieve peer reviews:
 			$router = $request->getRouter();
-			$submission =& $this->getSeriesEditorSubmission();
+			$submission = $this->getSeriesEditorSubmission();
 			$stageId = $reviewRound->getStageId();
 			$this->setData(
 				'peerReviewUrl',
@@ -206,7 +206,7 @@ class EditorDecisionWithEmailForm extends EditorDecisionForm {
 		}
 
 		// Get review round.
-		$reviewRound =& $this->getReviewRound();
+		$reviewRound = $this->getReviewRound();
 
 		if(is_a($reviewRound, 'ReviewRound')) {
 			// Retrieve review indexes.

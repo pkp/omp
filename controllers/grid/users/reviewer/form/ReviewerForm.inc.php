@@ -69,7 +69,7 @@ class ReviewerForm extends Form {
 	 * Get the ReviewRound
 	 * @return ReviewRound
 	 */
-	function &getReviewRound() {
+	function getReviewRound() {
 		return $this->_reviewRound;
 	}
 
@@ -328,7 +328,7 @@ class ReviewerForm extends Form {
 	 * @return LinkAction
 	 */
 	function getSearchByNameAction($request) {
-		$reviewRound =& $this->getReviewRound();
+		$reviewRound = $this->getReviewRound();
 
 		$actionArgs['submissionId'] = $this->getMonographId();
 		$actionArgs['stageId'] = $reviewRound->getStageId();
