@@ -156,14 +156,14 @@ class MailTemplate extends PKPMailTemplate {
 			// them. This is here to accomodate MIME-encoded
 			// messages or other cases where the signature cannot
 			// just be appended.
-			$header = $this->journal->getSetting('emailHeader');
+			$header = $this->press->getSetting('emailHeader');
 			if (strstr($this->getBody(), '{$templateHeader}') === false) {
 				$this->setBody($header . "\n" . $this->getBody());
 			} else {
 				$this->setBody(str_replace('{$templateHeader}', $header, $this->getBody()));
 			}
 
-			$signature = $this->journal->getSetting('emailSignature');
+			$signature = $this->press->getSetting('emailSignature');
 			if (strstr($this->getBody(), '{$templateSignature}') === false) {
 				$this->setBody($this->getBody() . "\n" . $signature);
 			} else {
