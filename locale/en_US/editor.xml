@@ -82,7 +82,6 @@
 	<!-- Stage Participants grid -->
 	<message key="editor.monograph.noneAssigned">None Assigned</message>
 	<message key="editor.monograph.participant">Participant</message>
-	<message key="editor.monograph.stageParticipants">Participants</message>
 	<message key="editor.monograph.addStageParticipant">Add Participant</message>
 	<message key="editor.monograph.addStageParticipant.description"><![CDATA[To add a participant to this stage of the submission, select a user group from the drop-down menu, then add a user.<br /><br />Note: The user will be added to all stages for which this user group is assigned.]]></message>
 	<message key="editor.monograph.removeStageParticipant">Remove Participant</message>

@@ -62,7 +62,7 @@ class WorkflowHandler extends PKPWorkflowHandler {
 		$templateMgr = TemplateManager::getManager($request);
 
 		// Assign the authorized monograph.
-		$templateMgr->assign_by_ref('monograph', $monograph);
+		$templateMgr->assign_by_ref('submission', $monograph);
 
 		// Assign workflow stages related data.
 		$templateMgr->assign('stageId', $stageId);
@@ -90,7 +90,7 @@ class WorkflowHandler extends PKPWorkflowHandler {
 
 		import('controllers.modals.submissionMetadata.linkAction.CatalogEntryLinkAction');
 		 $templateMgr->assign(
-			'catalogEntryAction',
+			'submissionEntryAction',
 			new CatalogEntryLinkAction($request, $monograph->getId(), $stageId)
 		);
 
@@ -152,7 +152,7 @@ class WorkflowHandler extends PKPWorkflowHandler {
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		$publicationFormats =& $publicationFormatDao->getByMonographId($monograph->getId());
-		$templateMgr->assign_by_ref('$monograph', $monograph);
+		$templateMgr->assign_by_ref('submission', $monograph);
 		$templateMgr->assign_by_ref('publicationFormats', $publicationFormats->toAssociativeArray());
 		$templateMgr->assign('currentFormatTabId', (int) $request->getUserVar('currentFormatTabId'));
 

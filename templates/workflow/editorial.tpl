@@ -11,15 +11,15 @@
 {/strip}
 
 <div id="editorial">
-	{url|assign:copyeditingEditorDecisionsUrl op="editorDecisionActions" submissionId=$monograph->getId() stageId=$stageId contextId="copyediting" escape=false}
+	{url|assign:copyeditingEditorDecisionsUrl op="editorDecisionActions" submissionId=$submission->getId() stageId=$stageId contextId="copyediting" escape=false}
 	{load_url_in_div id="copyeditingEditorDecisionsDiv" url=$copyeditingEditorDecisionsUrl class="editorDecisionActions"}
 
 	<p class="pkp_help">{translate key="editor.monograph.editorial.introduction"}</p>
 
-	{url|assign:finalDraftGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.final.FinalDraftFilesGridHandler" op="fetchGrid" submissionId=$monograph->getId() stageId=$stageId escape=false}
+	{url|assign:finalDraftGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.final.FinalDraftFilesGridHandler" op="fetchGrid" submissionId=$submission->getId() stageId=$stageId escape=false}
 	{load_url_in_div id="finalDraftGrid" url=$finalDraftGridUrl}
 
-	{url|assign:copyeditingGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.copyedit.CopyeditingFilesGridHandler" op="fetchGrid" submissionId=$monograph->getId() escape=false}
+	{url|assign:copyeditingGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.copyedit.CopyeditingFilesGridHandler" op="fetchGrid" submissionId=$submission->getId() escape=false}
 	{load_url_in_div id="copyeditingGrid" url=$copyeditingGridUrl}
 
 </div>

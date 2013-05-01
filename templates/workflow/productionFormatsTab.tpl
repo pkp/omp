@@ -15,7 +15,7 @@ $(function() {ldelim}
 		{ldelim}
 			tabsUrl:'{url|escape:javascript router=$smarty.const.ROUTE_PAGE
 				op='productionFormatsTab'
-				submissionId=$monograph->getId()
+				submissionId=$submission->getId()
 				stageId=$smarty.const.WORKFLOW_STAGE_ID_PRODUCTION escape=false}',
 			{if $currentFormatTabId}currentFormatTabId: '{$currentFormatTabId}',{/if}
 			emptyLastTab: true,

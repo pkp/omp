@@ -77,7 +77,7 @@ class PublicationFormatHandler extends Handler {
 		$publicationFormat =& $this->getAuthorizedContextObject(ASSOC_TYPE_PUBLICATION_FORMAT);
 
 		// Assign the authorized monograph.
-		$templateMgr->assign_by_ref('monograph', $monograph);
+		$templateMgr->assign_by_ref('submission', $monograph);
 		$templateMgr->assign('stageId', $stageId);
 		$templateMgr->assign_by_ref('publicationFormat', $publicationFormat);
 	}

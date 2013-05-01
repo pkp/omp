@@ -8,6 +8,6 @@
  *}
 {assign var="publicationFormatId" value=$publicationFormat->getId()}
 
-{url|assign:proofGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.proof.ProofFilesGridHandler" op="fetchGrid" submissionId=$monograph->getId() publicationFormatId=$publicationFormatId escape=false}
+{url|assign:proofGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.proof.ProofFilesGridHandler" op="fetchGrid" submissionId=$submission->getId() publicationFormatId=$publicationFormatId escape=false}
 {assign var=proofContainerId value='proofGrid-'|concat:$publicationFormatId|concat:'-'|uniqid}
 {load_url_in_div id=$proofContainerId url=$proofGridUrl}
