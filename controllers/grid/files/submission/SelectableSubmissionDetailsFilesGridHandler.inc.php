@@ -12,7 +12,7 @@
  * @brief Handle submission file grid requests in the editor's 'promote submission' modal.
  */
 
-import('controllers.grid.files.fileList.SelectableFileListGridHandler');
+import('lib.pkp.controllers.grid.files.fileList.SelectableFileListGridHandler');
 
 class SelectableSubmissionDetailsFilesGridHandler extends SelectableFileListGridHandler {
 	/**

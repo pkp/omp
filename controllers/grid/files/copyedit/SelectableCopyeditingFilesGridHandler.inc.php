@@ -12,7 +12,7 @@
  * @brief Handle copyediting files grid requests to promote to production stage.
  */
 
-import('controllers.grid.files.fileList.SelectableFileListGridHandler');
+import('lib.pkp.controllers.grid.files.fileList.SelectableFileListGridHandler');
 
 class SelectableCopyeditingFilesGridHandler extends SelectableFileListGridHandler {
 	/**

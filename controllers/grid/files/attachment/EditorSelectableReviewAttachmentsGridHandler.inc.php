@@ -12,7 +12,7 @@
  * @brief Selectable review attachment grid requests (editor's perspective).
  */
 
-import('controllers.grid.files.fileList.SelectableFileListGridHandler');
+import('lib.pkp.controllers.grid.files.fileList.SelectableFileListGridHandler');
 
 class EditorSelectableReviewAttachmentsGridHandler extends SelectableFileListGridHandler {
 	/**

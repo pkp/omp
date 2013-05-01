@@ -13,7 +13,7 @@
  *   Used for selecting files to send to external review or editorial stages.
  */
 
-import('controllers.grid.files.fileList.SelectableFileListGridHandler');
+import('lib.pkp.controllers.grid.files.fileList.SelectableFileListGridHandler');
 
 class SelectableReviewRevisionsGridHandler extends SelectableFileListGridHandler {
 	/**
