@@ -72,7 +72,7 @@ class ReviewGridDataProvider extends SubmissionFilesGridDataProvider {
 	 * @see FilesGridDataProvider::getSelectAction()
 	 */
 	function getSelectAction($request) {
-		import('controllers.grid.files.fileList.linkAction.SelectReviewFilesLinkAction');
+		import('lib.pkp.controllers.grid.files.fileList.linkAction.SelectReviewFilesLinkAction');
 		$reviewRound = $this->getReviewRound();
 		$modalTitle = __('editor.submission.review.currentFiles', array('round' => $reviewRound->getRound()));
 		return new SelectReviewFilesLinkAction(
