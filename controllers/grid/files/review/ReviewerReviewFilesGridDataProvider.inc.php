@@ -12,8 +12,7 @@
  * @brief Provide reviewer access to review file data for review file grids.
  */
 
-
-import('controllers.grid.files.review.ReviewGridDataProvider');
+import('lib.pkp.controllers.grid.files.review.ReviewGridDataProvider');
 
 class ReviewerReviewFilesGridDataProvider extends ReviewGridDataProvider {
 	/**

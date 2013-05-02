@@ -20,7 +20,7 @@ class SelectableReviewRevisionsGridHandler extends SelectableFileListGridHandler
 	 * Constructor
 	 */
 	function SelectableReviewRevisionsGridHandler() {
-		import('controllers.grid.files.review.ReviewRevisionsGridDataProvider');
+		import('lib.pkp.controllers.grid.files.review.ReviewRevisionsGridDataProvider');
 		// Pass in null stageId to be set in initialize from request var.
 		parent::SelectableFileListGridHandler(
 			new ReviewRevisionsGridDataProvider(),

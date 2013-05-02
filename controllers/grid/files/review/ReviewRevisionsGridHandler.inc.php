@@ -22,7 +22,7 @@ class ReviewRevisionsGridHandler extends FileSignoffGridHandler {
 	function ReviewRevisionsGridHandler($roleAssignments) {
 		assert(is_array($roleAssignments));
 
-		import('controllers.grid.files.review.ReviewRevisionsGridDataProvider');
+		import('lib.pkp.controllers.grid.files.review.ReviewRevisionsGridDataProvider');
 		// Pass in null stageId to be set in initialize from request var.
 		parent::FileSignoffGridHandler(
 			new ReviewRevisionsGridDataProvider(),

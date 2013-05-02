@@ -19,7 +19,7 @@ class EditorSelectableReviewAttachmentsGridHandler extends SelectableFileListGri
 	 * Constructor
 	 */
 	function EditorSelectableReviewAttachmentsGridHandler() {
-		import('controllers.grid.files.review.ReviewGridDataProvider');
+		import('lib.pkp.controllers.grid.files.review.ReviewGridDataProvider');
 		// Pass in null stageId to be set in initialize from request var.
 		parent::SelectableFileListGridHandler(
 			new ReviewGridDataProvider(SUBMISSION_FILE_REVIEW_ATTACHMENT),
