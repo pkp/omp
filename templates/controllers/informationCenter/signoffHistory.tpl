@@ -19,7 +19,7 @@
 			{/if}
 
 			{if $signoff->getDateUnderway() != ''}
-				<tr><td>{translate key="monograph.task.responseDueDate"}</td><td>{$signoff->getDateUnderway()|date_format:$datetimeFormatShort}</td></tr>
+				<tr><td>{translate key="submission.task.responseDueDate"}</td><td>{$signoff->getDateUnderway()|date_format:$datetimeFormatShort}</td></tr>
 			{/if}
 
 			{if $signoff->getDateCompleted() != ''}

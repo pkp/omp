@@ -32,7 +32,7 @@
 			{fbvElement type="textarea" id="message" value=$message}
 		{/fbvFormSection}
 		{fbvFormSection title="editor.monograph.taskSchedule"}
-			{fbvElement type="text" id="dateNotified" label="reviewer.monograph.reviewRequestDate" value=$signoff->getDateNotified()|date_format:$dateFormatShort disabled=true inline=true size=$fbvStyles.size.SMALL}
+			{fbvElement type="text" id="dateNotified" label="reviewer.submission.reviewRequestDate" value=$signoff->getDateNotified()|date_format:$dateFormatShort disabled=true inline=true size=$fbvStyles.size.SMALL}
 			{fbvElement type="text" id="dateDue" label="editor.monograph.taskDueDate" value=$signoff->getDateUnderway()|date_format:$dateFormatShort disabled=true inline=true size=$fbvStyles.size.SMALL}
 		{/fbvFormSection}
 		{fbvFormButtons submitText="editor.review.sendReminder"}

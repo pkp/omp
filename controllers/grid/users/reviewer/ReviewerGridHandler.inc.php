@@ -155,10 +155,10 @@ class ReviewerGridHandler extends GridHandler {
 				'addReviewer',
 				new AjaxModal(
 					$router->url($request, null, null, 'showReviewerForm', null, $actionArgs),
-					__('editor.monograph.addReviewer'),
+					__('editor.submission.addReviewer'),
 					'modal_add_user'
 					),
-				__('editor.monograph.addReviewer'),
+				__('editor.submission.addReviewer'),
 				'add_user'
 				)
 			);
@@ -328,7 +328,7 @@ class ReviewerGridHandler extends GridHandler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function getReviewersNotAssignedToMonograph($args, $request) {
+	function getReviewersNotAssignedToSubmission($args, $request) {
 		$press = $request->getPress();
 		$submission = $this->getSubmission();
 		$stageId = $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
@@ -676,7 +676,7 @@ class ReviewerGridHandler extends GridHandler {
 		return array(
 			'fetchGrid', 'fetchRow', 'showReviewerForm', 'reloadReviewerForm',
 			 'createReviewer', 'enrollReviewer', 'updateReviewer',
-			'getReviewersNotAssignedToMonograph', 'getUsersNotAssignedAsReviewers'
+			'getReviewersNotAssignedToSubmission', 'getUsersNotAssignedAsReviewers'
 		);
 	}
 

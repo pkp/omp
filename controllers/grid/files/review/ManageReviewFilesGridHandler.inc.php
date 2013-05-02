@@ -47,7 +47,7 @@ class ManageReviewFilesGridHandler extends SelectableSubmissionFileListCategoryG
 	// Public handler methods
 	//
 	/**
-	 * Save 'manage review files' form
+	 * Save 'manage review files' form.
 	 * @param $args array
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
