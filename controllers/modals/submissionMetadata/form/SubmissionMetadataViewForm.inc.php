@@ -12,104 +12,18 @@
  * @brief Displays a submission's metadata view.
  */
 
-import('lib.pkp.classes.form.Form');
+import('lib.pkp.controllers.modals.submissionMetadata.form.PKPSubmissionMetadataViewForm');
 
-// Use this class to handle the submission metadata.
-import('classes.submission.SubmissionMetadataFormImplementation');
-
-class SubmissionMetadataViewForm extends Form {
-
-	/** The monograph used to show metadata information **/
-	var $_monograph;
-
-	/** The current stage id **/
-	var $_stageId;
-
-	/**
-	 * Parameters to configure the form template.
-	 */
-	var $_formParams;
-
-	/** @var SubmissionMetadataFormImplementation */
-	var $_metadataFormImplem;
+class SubmissionMetadataViewForm extends PKPSubmissionMetadataViewForm {
 
 	/**
 	 * Constructor.
-	 * @param $monographId integer
+	 * @param $submissionId integer
 	 * @param $stageId integer
 	 * @param $formParams array
 	 */
-	function SubmissionMetadataViewForm($monographId, $stageId = null, $formParams = null, $templateName = 'controllers/modals/submissionMetadata/form/submissionMetadataViewForm.tpl') {
-		parent::Form($templateName);
-
-		$monographDao = DAORegistry::getDAO('MonographDAO');
-		$monograph = $monographDao->getById((int) $monographId);
-		if ($monograph) {
-			$this->_monograph = $monograph;
-		}
-
-		$this->_stageId = $stageId;
-
-		$this->_formParams = $formParams;
-
-		$this->_metadataFormImplem = new SubmissionMetadataFormImplementation($this);
-
-		// Validation checks for this form
-		$this->_metadataFormImplem->addChecks($monograph);
-		$this->addCheck(new FormValidatorPost($this));
-	}
-
-	//
-	// Getters and Setters
-	//
-	/**
-	 * Get the Monograph
-	 * @return Monograph
-	 */
-	function &getMonograph() {
-		return $this->_monograph;
-	}
-
-	/**
-	 * Get the Stage Id
-	 * @return int
-	 */
-	function getStageId() {
-		return $this->_stageId;
-	}
-
-	/**
-	 * Get the extra form parameters.
-	 */
-	function getFormParams() {
-		return $this->_formParams;
-	}
-
-
-	//
-	// Overridden template methods
-	//
-	/**
-	 * Get the names of fields for which data should be localized
-	 * @return array
-	 */
-	function getLocaleFieldNames() {
-		$this->_metadataFormImplem->getLocaleFieldNames();
-	}
-
-	/**
-	 * Initialize form data with the author name and the monograph id.
-	 * @param $args array
-	 * @param $request PKPRequest
-	 */
-	function initData($args, $request) {
-		AppLocale::requireComponents(
-			LOCALE_COMPONENT_APP_COMMON,
-			LOCALE_COMPONENT_PKP_SUBMISSION,
-			LOCALE_COMPONENT_APP_SUBMISSION
-		);
-
-		$this->_metadataFormImplem->initData($this->getMonograph());
+	function SubmissionMetadataViewForm($submissionId, $stageId = null, $formParams = null, $templateName = 'controllers/modals/submissionMetadata/form/submissionMetadataViewForm.tpl') {
+		parent::PKPSubmissionMetadataViewForm($submissionId, $stageId, $formParams, $templateName);
 	}
 
 	/**
@@ -118,29 +32,24 @@ class SubmissionMetadataViewForm extends Form {
 	 * return string
 	 */
 	function fetch($request) {
-		$monograph = $this->getMonograph();
-
+		$submission = $this->getSubmission();
 		$templateMgr = TemplateManager::getManager($request);
-		$templateMgr->assign('submissionId', $monograph->getId());
-		$templateMgr->assign('stageId', $this->getStageId());
-		$templateMgr->assign('formParams', $this->getFormParams());
-		$templateMgr->assign('isEditedVolume', $monograph->getWorkType() == WORK_TYPE_EDITED_VOLUME);
-		$templateMgr->assign('isPublished', $monograph->getDatePublished() != null ? true : false);
+		$templateMgr->assign('isEditedVolume', $submission->getWorkType() == WORK_TYPE_EDITED_VOLUME);
 
 		// Get series for this press
 		$seriesDao = DAORegistry::getDAO('SeriesDAO');
-		$seriesOptions = array('0' => __('submission.submit.selectSeries')) + $seriesDao->getTitlesByPressId($monograph->getPressId());
+		$seriesOptions = array('0' => __('submission.submit.selectSeries')) + $seriesDao->getTitlesByPressId($submission->getContextId());
 		$templateMgr->assign('seriesOptions', $seriesOptions);
-		$templateMgr->assign('seriesId', $monograph->getSeriesId());
-		$templateMgr->assign('seriesPosition', $monograph->getSeriesPosition());
+		$templateMgr->assign('seriesId', $submission->getSeriesId());
+		$templateMgr->assign('seriesPosition', $submission->getSeriesPosition());
 
 		// If categories are configured for the press, present the LB.
 		$categoryDao = DAORegistry::getDAO('CategoryDAO');
-		$templateMgr->assign('categoriesExist', $categoryDao->getCountByPressId($monograph->getPressId()) > 0);
+		$templateMgr->assign('categoriesExist', $categoryDao->getCountByPressId($submission->getContextId()) > 0);
 
 		// also include the categories (for read only form views)
-		$monographDao = DAORegistry::getDAO('MonographDAO');
-		$assignedCategories = $monographDao->getCategories($monograph->getId(), $monograph->getPressId());
+		$submissionDao = Application::getSubmissionDAO();
+		$assignedCategories = $submissionDao->getCategories($submission->getId(), $submission->getContextId());
 		$templateMgr->assign('assignedCategories', $assignedCategories->toArray());
 
 		return parent::fetch($request);
@@ -150,7 +59,7 @@ class SubmissionMetadataViewForm extends Form {
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
-		$this->_metadataFormImplem->readInputData();
+		parent::readInputData();
 		$this->readUserVars(array('categories', 'seriesId', 'seriesPosition'));
 		$application = PKPApplication::getApplication();
 		$request = $application->getRequest();
@@ -158,35 +67,34 @@ class SubmissionMetadataViewForm extends Form {
 	}
 
 	/**
-	 * Save changes to monograph.
+	 * Save changes to submission.
 	 * @param $request PKPRequest
 	 */
 	function execute($request) {
-		$monograph = $this->getMonograph();
-		$monographDao = DAORegistry::getDAO('MonographDAO');
+		parent::execute($request);
+		$submission = $this->getSubmission();
+		$submissionDao = Application::getSubmissionDAO();
 
 		// Clean any new release or feature object that may
-		// exist associated with the current monograph series.
+		// exist associated with the current submission series.
 		$newReleaseDao = DAORegistry::getDAO('NewReleaseDAO'); /* @var $newReleaseDao NewReleaseDAO */
-		$newReleaseDao->deleteNewRelease($monograph->getId(), ASSOC_TYPE_SERIES, $monograph->getSeriesId());
+		$newReleaseDao->deleteNewRelease($submission->getId(), ASSOC_TYPE_SERIES, $submission->getSeriesId());
 
 		$featureDao = DAORegistry::getDAO('FeatureDAO'); /* @var $featureDao FeatureDAO */
-		$featureDao->deleteFeature($monograph->getId(), ASSOC_TYPE_SERIES, $monograph->getSeriesId());
+		$featureDao->deleteFeature($submission->getId(), ASSOC_TYPE_SERIES, $submission->getSeriesId());
 
-		// Execute monograph metadata related operations.
-		$this->_metadataFormImplem->execute($monograph, $request);
-		$monograph->setSeriesId($this->getData('seriesId'));
-		$monograph->setSeriesPosition($this->getData('seriesPosition'));
-		$monographDao->updateObject($monograph);
+		$submission->setSeriesId($this->getData('seriesId'));
+		$submission->setSeriesPosition($this->getData('seriesPosition'));
+		$submissionDao->updateObject($submission);
 
-		if ($monograph->getDatePublished()) {
+		if ($submission->getDatePublished()) {
 			import('classes.search.MonographSearchIndex');
-			MonographSearchIndex::indexMonographMetadata($monograph);
+			MonographSearchIndex::indexMonographMetadata($submission);
 		}
 	}
 
 	/**
-	 * Associate a category with a monograph.
+	 * Associate a category with a submission.
 	 * @see ListbuilderHandler::insertEntry
 	 */
 	function insertEntry($request, $newRowId) {
@@ -196,16 +104,16 @@ class SubmissionMetadataViewForm extends Form {
 
 		$categoryId = $newRowId['name'];
 		$categoryDao = DAORegistry::getDAO('CategoryDAO');
-		$monographDao = DAORegistry::getDAO('MonographDAO');
-		$press = $request->getPress();
-		$monograph = $this->getMonograph();
+		$submissionDao = Application::getSubmissionDAO();
+		$context = $request->getContext();
+		$submission = $this->getSubmission();
 
-		$category = $categoryDao->getById($categoryId, $press->getId());
+		$category = $categoryDao->getById($categoryId, $context->getId());
 		if (!$category) return true;
 
-		// Associate the category with the monograph
-		$monographDao->addCategory(
-			$monograph->getId(),
+		// Associate the category with the submission
+		$submissionDao->addCategory(
+			$submission->getId(),
 			$categoryId
 		);
 	}
@@ -217,14 +125,14 @@ class SubmissionMetadataViewForm extends Form {
 	function deleteEntry($request, $rowId) {
 		if ($rowId) {
 			$categoryDao = DAORegistry::getDAO('CategoryDAO');
-			$monographDao = DAORegistry::getDAO('MonographDAO');
+			$submissionDao = Application::getSubmissionDAO();
 			$category = $categoryDao->getById($rowId);
 			if (!is_a($category, 'Category')) {
 				assert(false);
 				return false;
 			}
-			$monograph = $this->getMonograph();
-			$monographDao->removeCategory($monograph->getId(), $rowId);
+			$submission = $this->getSubmission();
+			$submissionDao->removeCategory($submission->getId(), $rowId);
 		}
 
 		return true;

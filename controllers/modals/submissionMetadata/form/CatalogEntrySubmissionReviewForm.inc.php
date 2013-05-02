@@ -46,7 +46,7 @@ class CatalogEntrySubmissionReviewForm extends SubmissionMetadataViewForm {
 	function execute($request) {
 		parent::execute($request);
 
-		$monograph = $this->getMonograph();
+		$monograph = $this->getSubmission();
 		$monographDao = DAORegistry::getDAO('MonographDAO');
 		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
 		$publishedMonograph = $publishedMonographDao->getById($monograph->getId(), null, false);

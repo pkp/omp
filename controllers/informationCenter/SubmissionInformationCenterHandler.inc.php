@@ -12,29 +12,14 @@
  * @brief Handle requests to view the information center for a submission.
  */
 
-import('lib.pkp.controllers.informationCenter.InformationCenterHandler');
-import('lib.pkp.classes.core.JSONMessage');
-import('classes.log.SubmissionEventLogEntry');
+import('lib.pkp.controllers.informationCenter.PKPSubmissionInformationCenterHandler');
 
-class SubmissionInformationCenterHandler extends InformationCenterHandler {
-	/** @var $_monograph Monograph */
-	var $_monograph;
-
+class SubmissionInformationCenterHandler extends PKPSubmissionInformationCenterHandler {
 	/**
 	 * Constructor
 	 */
 	function SubmissionInformationCenterHandler() {
-		parent::InformationCenterHandler();
-	}
-
-	/**
-	 * Fetch and store away objects
-	 */
-	function initialize($request, $args = null) {
-		parent::initialize($request, $args);
-
-		// Fetch the monograph to display information about
-		$this->_monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		parent::PKPSubmissionInformationCenterHandler();
 	}
 
 	/**
@@ -53,7 +38,7 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 			$params['hideSubmit'] = true;
 			$params['readOnly'] = true;
 		}
-		$submissionMetadataViewForm = new SubmissionMetadataViewForm($this->_monograph->getId(), null, $params);
+		$submissionMetadataViewForm = new SubmissionMetadataViewForm($this->_submission->getId(), null, $params);
 		$submissionMetadataViewForm->initData($args, $request);
 
 		$json = new JSONMessage(true, $submissionMetadataViewForm->fetch($request));
@@ -69,7 +54,7 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 		$this->setupTemplate($request);
 
 		import('controllers.modals.submissionMetadata.form.SubmissionMetadataViewForm');
-		$submissionMetadataViewForm = new SubmissionMetadataViewForm($this->_monograph->getId());
+		$submissionMetadataViewForm = new SubmissionMetadataViewForm($this->_submission->getId());
 
 		$json = new JSONMessage();
 
@@ -88,90 +73,6 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 		return $json->getString();
 	}
 
-	/**
-	 * Display the main information center modal.
-	 * @param $args array
-	 * @param $request PKPRequest
-	 */
-	function viewInformationCenter($args, $request) {
-		// Get the latest history item to display in the header
-		$monographEventLogDao = DAORegistry::getDAO('SubmissionEventLogDAO');
-		$monographEvents = $monographEventLogDao->getByMonographId($this->_monograph->getId());
-		$lastEvent = $monographEvents->next();
-
-		// Assign variables to the template manager and display
-		$templateMgr = TemplateManager::getManager($request);
-		if(isset($lastEvent)) {
-			$templateMgr->assign_by_ref('lastEvent', $lastEvent);
-
-			// Get the user who posted the last note
-			$userDao = DAORegistry::getDAO('UserDAO');
-			$user = $userDao->getById($lastEvent->getUserId());
-			$templateMgr->assign_by_ref('lastEventUser', $user);
-		}
-
-		return parent::viewInformationCenter($request);
-	}
-
-	/**
-	 * Display the notes tab.
-	 * @param $args array
-	 * @param $request PKPRequest
-	 */
-	function viewNotes($args, $request) {
-		$this->setupTemplate($request);
-
-		import('lib.pkp.controllers.informationCenter.form.NewSubmissionNoteForm');
-		$notesForm = new NewSubmissionNoteForm($this->_monograph->getId());
-		$notesForm->initData();
-
-		$json = new JSONMessage(true, $notesForm->fetch($request));
-		return $json->getString();
-	}
-
-	/**
-	 * Save a note.
-	 * @param $args array
-	 * @param $request PKPRequest
-	 */
-	function saveNote($args, $request) {
-		$this->setupTemplate($request);
-
-		import('lib.pkp.controllers.informationCenter.form.NewSubmissionNoteForm');
-		$notesForm = new NewSubmissionNoteForm($this->_monograph->getId());
-		$notesForm->readInputData();
-
-		if ($notesForm->validate()) {
-			$notesForm->execute($request);
-			$json = new JSONMessage(true);
-
-			// Save to event log
-			$user = $request->getUser();
-			$userId = $user->getId();
-			$this->_logEvent($request, SUBMISSION_LOG_NOTE_POSTED);
-		} else {
-			// Return a JSON string indicating failure
-			$json = new JSONMessage(false);
-		}
-
-		return $json->getString();
-	}
-
-	/**
-	 * Display the notify tab.
-	 * @param $args array
-	 * @param $request PKPRequest
-	 */
-	function viewNotify($args, $request) {
-		$this->setupTemplate($request);
-
-		import('controllers.informationCenter.form.InformationCenterNotifyForm');
-		$notifyForm = new InformationCenterNotifyForm($this->_monograph->getId(), ASSOC_TYPE_MONOGRAPH);
-		$notifyForm->initData();
-
-		$json = new JSONMessage(true, $notifyForm->fetch($request));
-		return $json->getString();
-	}
 
 	/**
 	 * Fetches an email template's message body and returns it via AJAX.
@@ -181,68 +82,20 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 	function fetchTemplateBody($args, $request) {
 		$templateId = $request->getUserVar('template');
 		import('classes.mail.MonographMailTemplate');
-		$template = new MonographMailTemplate($this->_monograph, $templateId);
+		$template = new MonographMailTemplate($this->_submission, $templateId);
 		if ($template) {
 			$user = $request->getUser();
 			$dispatcher = $request->getDispatcher();
-			$press = $request->getPress();
+			$context = $request->getContext();
 			$template->assignParams(array(
-				'pressUrl' => $dispatcher->url($request, ROUTE_PAGE, $press->getPath()),
+				'pressUrl' => $dispatcher->url($request, ROUTE_PAGE, $context->getPath()),
 				'editorialContactSignature' => $user->getContactSignature(),
 				'signatureFullName' => $user->getFullname(),
 			));
 
-			$json = new JSONMessage(true, $template->getBody() . "\n" . $press->getSetting('emailSignature'));
+			$json = new JSONMessage(true, $template->getBody() . "\n" . $context->getSetting('emailSignature'));
 			return $json->getString();
 		}
-	}
-
-	/**
-	 * Send a notification from the notify tab.
-	 * @param $args array
-	 * @param $request PKPRequest
-	 */
-	function sendNotification ($args, $request) {
-		$this->setupTemplate($request);
-
-		import('controllers.informationCenter.form.InformationCenterNotifyForm');
-		$notifyForm = new InformationCenterNotifyForm($this->_monograph->getId(), ASSOC_TYPE_MONOGRAPH);
-		$notifyForm->readInputData();
-
-		if ($notifyForm->validate()) {
-			$noteId = $notifyForm->execute($request);
-			// Return a JSON string indicating success
-			// (will clear the form on return)
-			$json = new JSONMessage(true);
-
-			$this->_logEvent($request, SUBMISSION_LOG_MESSAGE_SENT);
-			// Create trivial notification.
-			$currentUser = $request->getUser();
-			$notificationMgr = new NotificationManager();
-			$notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('informationCenter.history.messageSent')));
-		} else {
-			// Return a JSON string indicating failure
-			$json = new JSONMessage(false);
-		}
-
-		return $json->getString();
-	}
-
-	/**
-	 * Fetch the contents of the event log.
-	 * @param $args array
-	 * @param $request PKPRequest
-	 */
-	function listHistory($args, $request) {
-		$this->setupTemplate($request);
-		$templateMgr = TemplateManager::getManager($request);
-
-		// Get all monograph events
-		$monographEventLogDao = DAORegistry::getDAO('SubmissionEventLogDAO');
-		$monographEvents =& $monographEventLogDao->getByMonographId($this->_monograph->getId());
-		$templateMgr->assign_by_ref('eventLogEntries', $monographEvents);
-		$templateMgr->assign('historyListId', 'historyList');
-		return $templateMgr->fetchJson('controllers/informationCenter/historyList.tpl');
 	}
 
 	/**
@@ -264,32 +117,7 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 		}
 
 		import('classes.log.MonographLog');
-		MonographLog::logEvent($request, $this->_monograph, $eventType, $logMessage);
-	}
-
-	/**
-	 * Get an array representing link parameters that subclasses
-	 * need to have passed to their various handlers (i.e. monograph ID to
-	 * the delete note handler). Subclasses should implement.
-	 */
-	function _getLinkParams() {
-		return array('submissionId' => $this->_monograph->getId());
-	}
-
-	/**
-	 * Get the association ID for this information center view
-	 * @return int
-	 */
-	function _getAssocId() {
-		return $this->_monograph->getId();
-	}
-
-	/**
-	 * Get the association type for this information center view
-	 * @return int
-	 */
-	function _getAssocType() {
-		return ASSOC_TYPE_MONOGRAPH;
+		MonographLog::logEvent($request, $this->_submission, $eventType, $logMessage);
 	}
 }
 
