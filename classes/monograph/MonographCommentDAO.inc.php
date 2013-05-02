@@ -27,6 +27,7 @@ class MonographCommentDAO extends DAO {
 	 * Retrieve MonographComments by monograph id
 	 * @param $monographId int
 	 * @param $commentType int
+	 * @param $assocId int
 	 * @return DAOResultFactory
 	 */
 	function getMonographComments($monographId, $commentType = null, $assocId = null) {

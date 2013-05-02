@@ -16,21 +16,21 @@
 import('lib.pkp.classes.controllers.grid.GridHandler');
 
 // import reviewer grid specific classes
-import('controllers.grid.users.reviewer.ReviewerGridCellProvider');
-import('controllers.grid.users.reviewer.ReviewerGridRow');
+import('lib.pkp.controllers.grid.users.reviewer.ReviewerGridCellProvider');
+import('lib.pkp.controllers.grid.users.reviewer.ReviewerGridRow');
 
 // Reviewer selection types
 define('REVIEWER_SELECT_SEARCH_BY_NAME',		0x00000001);
 define('REVIEWER_SELECT_ADVANCED_SEARCH',		0x00000002);
-define('REVIEWER_SELECT_CREATE',				0x00000003);
+define('REVIEWER_SELECT_CREATE',			0x00000003);
 define('REVIEWER_SELECT_ENROLL_EXISTING',		0x00000004);
 
 class ReviewerGridHandler extends GridHandler {
 
-	/** @var Monograph */
-	var $_monograph;
+	/** @var $_submission Submission */
+	var $_submission;
 
-	/** @var integer */
+	/** @var $_stageId integer */
 	var $_stageId;
 
 
@@ -64,11 +64,11 @@ class ReviewerGridHandler extends GridHandler {
 	// Getters and Setters
 	//
 	/**
-	 * Get the authorized monograph.
-	 * @return Monograph
+	 * Get the authorized submission.
+	 * @return Submission
 	 */
-	function &getMonograph() {
-		return $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+	function getSubmission() {
+		return $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION);
 	}
 
 	/**
@@ -205,10 +205,10 @@ class ReviewerGridHandler extends GridHandler {
 	 * @see GridHandler::getRequestArgs()
 	 */
 	function getRequestArgs() {
-		$monograph = $this->getMonograph();
+		$submission = $this->getSubmission();
 		$reviewRound = $this->getReviewRound();
 		return array(
-			'submissionId' => $monograph->getId(),
+			'submissionId' => $submission->getId(),
 			'stageId' => $this->getStageId(),
 			'reviewRoundId' => $reviewRound->getId()
 		);
@@ -218,10 +218,10 @@ class ReviewerGridHandler extends GridHandler {
 	 * @see GridHandler::loadData()
 	 */
 	function loadData($request, $filter) {
-		// Get the existing review assignments for this monograph
-		$monograph = $this->getMonograph(); /* @var $monograph SeriesEditorSubmission */
+		// Get the existing review assignments for this submission
+		$submission = $this->getSubmission(); /* @var $submission Submission */
 		$reviewRound = $this->getReviewRound();
-		return $monograph->getReviewAssignments($this->getStageId(), $reviewRound->getRound());
+		return $submission->getReviewAssignments($this->getStageId(), $reviewRound->getRound());
 	}
 
 
@@ -283,11 +283,10 @@ class ReviewerGridHandler extends GridHandler {
 
 		// Form handling
 		import('controllers.grid.users.reviewer.form.' . $formClassName );
-		$reviewerForm = new $formClassName($this->getMonograph(), $this->getReviewRound());
+		$reviewerForm = new $formClassName($this->getSubmission(), $this->getReviewRound());
 		$reviewerForm->readInputData();
 		if ($reviewerForm->validate()) {
-			$reviewAssignment =& $reviewerForm->execute($args, $request);
-
+			$reviewAssignment = $reviewerForm->execute($args, $request);
 			return DAO::getDataChangedEvent($reviewAssignment->getId());
 		} else {
 			// There was an error, redisplay the form
@@ -305,13 +304,13 @@ class ReviewerGridHandler extends GridHandler {
 	function deleteReviewer($args, $request) {
 		// Delete the review assignment.
 		// NB: SeriesEditorAction::clearReview() will check that this review
-		// id is actually attached to the monograph so no need for further
+		// id is actually attached to the submission so no need for further
 		// validation here.
-		$monograph = $this->getMonograph();
+		$submission = $this->getSubmission();
 		$reviewAssignment = $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ASSIGNMENT);
 		import('classes.submission.seriesEditor.SeriesEditorAction');
 		$seriesEditorAction = new SeriesEditorAction();
-		$result = $seriesEditorAction->clearReview($request, $monograph->getId(), $reviewAssignment->getId());
+		$result = $seriesEditorAction->clearReview($request, $submission->getId(), $reviewAssignment->getId());
 
 		// Render the result.
 		if ($result) {
@@ -331,19 +330,18 @@ class ReviewerGridHandler extends GridHandler {
 	 */
 	function getReviewersNotAssignedToMonograph($args, $request) {
 		$press = $request->getPress();
-		$monograph = $this->getMonograph();
+		$submission = $this->getSubmission();
 		$stageId = $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
 		$reviewRound = $this->getReviewRound();
 		$round = $reviewRound->getRound();
 		$term = $request->getUserVar('term');
 
 		$userDao = DAORegistry::getDAO('UserDAO'); /* @var $userDao UserDAO */
-		$reviewers =& $userDao->getReviewersNotAssignedToSubmission($press->getId(), $monograph->getId(), $reviewRound, $term);
+		$reviewers = $userDao->getReviewersNotAssignedToSubmission($press->getId(), $submission->getId(), $reviewRound, $term);
 
 		$reviewerList = array();
-		while($reviewer =& $reviewers->next()) {
+		while($reviewer = $reviewers->next()) {
 			$reviewerList[] = array('label' => $reviewer->getFullName(), 'value' => $reviewer->getId());
-			unset($reviewer);
 		}
 
 		if (count($reviewerList) == 0) {
@@ -365,14 +363,13 @@ class ReviewerGridHandler extends GridHandler {
 		$term = $request->getUserVar('term');
 
 		$userGroupDao = DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */
-		$monograph = $this->getMonograph();
+		$submission = $this->getSubmission();
 
 		$users = $userGroupDao->getUsersNotInRole(ROLE_ID_REVIEWER, $press->getId(), $term);
 
 		$userList = array();
-		while ($user =& $users->next()) {
+		while ($user = $users->next()) {
 			$userList[] = array('label' => $user->getFullName(), 'value' => $user->getId());
-			unset($user);
 		}
 
 		if (count($userList) == 0) {
@@ -393,12 +390,12 @@ class ReviewerGridHandler extends GridHandler {
 	function readReview($args, $request) {
 		$templateMgr = TemplateManager::getManager($request);
 
-		// Retrieve monograph.
-		$templateMgr->assign_by_ref('monograph', $this->getMonograph());
+		// Assign submission to template.
+		$templateMgr->assign('submission', $this->getSubmission());
 
 		// Retrieve review assignment.
-		$reviewAssignment =& $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ASSIGNMENT);
-		$templateMgr->assign_by_ref('reviewAssignment', $reviewAssignment);
+		$reviewAssignment = $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ASSIGNMENT);
+		$templateMgr->assign('reviewAssignment', $reviewAssignment);
 
 		// Retrieve reviewer comment.
 		$monographCommentDao = DAORegistry::getDAO('MonographCommentDAO');
@@ -418,9 +415,9 @@ class ReviewerGridHandler extends GridHandler {
 	function unconsiderReview($args, $request) {
 
 		// This resets the state of the review to 'unread', but does not delete note history.
-		$monograph = $this->getMonograph();
+		$submission = $this->getSubmission();
 		$user = $request->getUser();
-		$reviewAssignment =& $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ASSIGNMENT);
+		$reviewAssignment = $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ASSIGNMENT);
 		$reviewAssignmentDao = DAORegistry::getDAO('ReviewAssignmentDAO');
 
 		$reviewAssignment->setUnconsidered(REVIEW_ASSIGNMENT_UNCONSIDERED);
@@ -438,15 +435,15 @@ class ReviewerGridHandler extends GridHandler {
 		$entry->setEventType(SUBMISSION_LOG_REVIEW_UNCONSIDERED);
 
 		MonographLog::logEvent(
-				$request,
-				$monograph,
-				SUBMISSION_LOG_REVIEW_UNCONSIDERED,
-				'log.review.reviewUnconsidered',
-				array(
-					'editorName' => $user->getFullName(),
-					'submissionId' => $monograph->getId(),
-					'round' => $reviewAssignment->getRound(),
-				)
+			$request,
+			$submission,
+			SUBMISSION_LOG_REVIEW_UNCONSIDERED,
+			'log.review.reviewUnconsidered',
+			array(
+				'editorName' => $user->getFullName(),
+				'submissionId' => $submission->getId(),
+				'round' => $reviewAssignment->getRound(),
+			)
 		);
 
 		// Render the result.
@@ -493,7 +490,7 @@ class ReviewerGridHandler extends GridHandler {
 	 */
 	function editThankReviewer($args, $request) {
 		// Identify the review assignment being updated.
-		$reviewAssignment =& $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ASSIGNMENT);
+		$reviewAssignment = $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ASSIGNMENT);
 
 		// Initialize form.
 		import('controllers.grid.users.reviewer.form.ThankReviewerForm');
@@ -513,7 +510,7 @@ class ReviewerGridHandler extends GridHandler {
 	 */
 	function thankReviewer($args, $request) {
 		// Identify the review assignment being updated.
-		$reviewAssignment =& $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ASSIGNMENT);
+		$reviewAssignment = $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ASSIGNMENT);
 
 		// Form handling
 		import('controllers.grid.users.reviewer.form.ThankReviewerForm');
@@ -543,7 +540,7 @@ class ReviewerGridHandler extends GridHandler {
 	 */
 	function editReminder($args, $request) {
 		// Identify the review assignment being updated.
-		$reviewAssignment =& $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ASSIGNMENT);
+		$reviewAssignment = $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ASSIGNMENT);
 
 		// Initialize form.
 		import('controllers.grid.users.reviewer.form.ReviewReminderForm');
@@ -562,7 +559,7 @@ class ReviewerGridHandler extends GridHandler {
 	 * @return string Serialized JSON object
 	 */
 	function sendReminder($args, $request) {
-		$reviewAssignment =& $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ASSIGNMENT);
+		$reviewAssignment = $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ASSIGNMENT);
 
 		// Form handling
 		import('controllers.grid.users.reviewer.form.ReviewReminderForm');
@@ -589,8 +586,7 @@ class ReviewerGridHandler extends GridHandler {
 	 */
 	function sendEmail($args, $request) {
 		$user = $request->getUser();
-
-		$reviewAssignment =& $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ASSIGNMENT);
+		$reviewAssignment = $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ASSIGNMENT);
 
 		// Form handling.
 		import('lib.pkp.controllers.grid.settings.user.form.UserEmailForm');
@@ -636,7 +632,7 @@ class ReviewerGridHandler extends GridHandler {
 
 		// Form handling.
 		import('controllers.grid.users.reviewer.form.' . $formClassName );
-		$reviewerForm = new $formClassName($this->getMonograph(), $this->getReviewRound());
+		$reviewerForm = new $formClassName($this->getSubmission(), $this->getReviewRound());
 		$reviewerForm->initData($args, $request);
 		$reviewerForm->setUserRoles($userRoles);
 
@@ -677,8 +673,11 @@ class ReviewerGridHandler extends GridHandler {
 	 */
 	function _getReviewRoundOps() {
 		// Define operations that need a review round policy.
-		return array('fetchGrid', 'fetchRow', 'showReviewerForm', 'reloadReviewerForm', 'createReviewer', 'enrollReviewer', 'updateReviewer',
-								'getReviewersNotAssignedToMonograph', 'getUsersNotAssignedAsReviewers');
+		return array(
+			'fetchGrid', 'fetchRow', 'showReviewerForm', 'reloadReviewerForm',
+			 'createReviewer', 'enrollReviewer', 'updateReviewer',
+			'getReviewersNotAssignedToMonograph', 'getUsersNotAssignedAsReviewers'
+		);
 	}
 
 	/**
@@ -688,9 +687,9 @@ class ReviewerGridHandler extends GridHandler {
 		// Update the review round status.
 		$reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO');
 		$reviewRound = $reviewRoundDao->getById($reviewAssignment->getReviewRoundId());
-		$seriesEditorSubmission = $this->getMonograph();
-		$seriesEditorSubmission->updateReviewAssignment($reviewAssignment);
-		$reviewAssignments = $seriesEditorSubmission->getReviewAssignments($reviewRound->getStageId(), $reviewRound->getRound());
+		$submission = $this->getSubmission();
+		$submission->updateReviewAssignment($reviewAssignment);
+		$reviewAssignments = $submission->getReviewAssignments($reviewRound->getStageId(), $reviewRound->getRound());
 		$reviewRoundDao->updateStatus($reviewRound, $reviewAssignments);
 	}
 }
