@@ -32,7 +32,7 @@ class ReviewerReviewFilesGridHandler extends FileListGridHandler {
 		);
 
 		// Set the grid title.
-		$this->setTitle('reviewer.monograph.reviewFiles');
+		$this->setTitle('reviewer.submission.reviewFiles');
 	}
 }
 

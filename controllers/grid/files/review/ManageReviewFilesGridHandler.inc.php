@@ -25,7 +25,7 @@ class ManageReviewFilesGridHandler extends SelectableSubmissionFileListCategoryG
 	 * Constructor
 	 */
 	function ManageReviewFilesGridHandler() {
-		import('controllers.grid.files.review.ReviewCategoryGridDataProvider');
+		import('lib.pkp.controllers.grid.files.review.ReviewCategoryGridDataProvider');
 		// Pass in null stageId to be set in initialize from request var.
 		parent::SelectableSubmissionFileListCategoryGridHandler(
 			new ReviewCategoryGridDataProvider(SUBMISSION_FILE_REVIEW_FILE),
@@ -39,7 +39,7 @@ class ManageReviewFilesGridHandler extends SelectableSubmissionFileListCategoryG
 		);
 
 		// Set the grid title.
-		$this->setTitle('reviewer.monograph.reviewFiles');
+		$this->setTitle('reviewer.submission.reviewFiles');
 	}
 
 
