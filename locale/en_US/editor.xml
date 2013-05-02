@@ -78,18 +78,6 @@
 	<message key="editor.monograph.uploadSelectFiles">Upload/Select Files</message>
 	<message key="editor.monograph.final.manageFinalDraftFilesDescription">Any files that have already been uploaded to any submission stage can be added to the Final Draft Files listing by checking the Include checkbox below and clicking Search: all available files will be listed and can be chosen for inclusion. Additional files not already uploaded to a stage can be added to the listing by clicking the Upload A Final Draft link.</message>
 	<message key="editor.monograph.final.currentFiles">Current Final Draft Files</message>
-
-	<!-- Stage Participants grid -->
-	<message key="editor.monograph.noneAssigned">None Assigned</message>
-	<message key="editor.monograph.participant">Participant</message>
-	<message key="editor.monograph.addStageParticipant">Add Participant</message>
-	<message key="editor.monograph.addStageParticipant.description"><![CDATA[To add a participant to this stage of the submission, select a user group from the drop-down menu, then add a user.<br /><br />Note: The user will be added to all stages for which this user group is assigned.]]></message>
-	<message key="editor.monograph.removeStageParticipant">Remove Participant</message>
-	<message key="editor.monograph.removeStageParticipant.description"><![CDATA[You are about to remove this participant from <strong>all</strong> stages. If the user also have pending auditor tasks, they will be removed too.]]></message>
-	<message key="editor.monograph.addStageParticipant.form.userGroupRequired">You must select a user group.</message>
-	<message key="editor.monograph.addStageParticipant.form.userRequired">You must select a user for the specified user group.</message>
-
-
 	<message key="editor.monograph.copyediting.currentFiles">Current Files</message>
 	<message key="editor.monograph.copyediting.personalMessageToUser">Message to user</message>
 	

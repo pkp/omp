@@ -91,18 +91,6 @@
 	<message key="editor.monograph.uploadSelectFiles">Télécharger/Sélectionner les fichiers</message>
 	<message key="editor.monograph.final.manageFinalDraftFilesDescription">Un fichier qui a été téléchargé à une étape du processus de soumission, peu importe laquelle, peut être ajouté à la liste des fichiers d'épreuves finales. Il suffit de cocher la case Ajouter ci-dessous, puis de cliquer Recherche: tous les fichiers disponibles seront affichés et peuvent être choisis pour être ajoutés. Les autres fichiers qui n'ont pas déjà été téléchargés à une certaine étape du processus peuvent être ajoutés à cette liste en cliquant sur le lien Télécharger une épreuve finale.</message>
 	<message key="editor.monograph.final.currentFiles">Fichiers courants d'épreuves finales</message>
-
-	<!-- Stage Participants grid -->
-	<message key="editor.monograph.noneAssigned">Aucun n'a été attribué</message>
-	<message key="editor.monograph.participant">Participant</message>
-	<message key="editor.monograph.addStageParticipant">Ajouter un participant</message>
-	<message key="editor.monograph.addStageParticipant.description"><![CDATA[Pour ajouter un participant à cette étape du processus de soumission, sélectionner un groupe d'utilisateurs à partir du menu déroulant, puis ajouter un utilisateur.<br /><br />Note: L'utilisateur sera ajouté à toutes les étapes attribuées à ce groupe d'utilisateurs.]]></message>
-	<message key="editor.monograph.removeStageParticipant">Supprimer un participant</message>
-	<message key="editor.monograph.removeStageParticipant.description"><![CDATA[Vous souhaitez que ce participant ne fasse plus partie de <strong>toutes</strong> les étapes? Si cet utilisateur a des tâches de vérification en cours, elles seront également supprimées.]]></message>
-	<message key="editor.monograph.addStageParticipant.form.userGroupRequired">Vous devez choisir un groupe d'utilisateurs.</message>
-	<message key="editor.monograph.addStageParticipant.form.userRequired">Vous devez choisir un utilisateur pour le groupe d'utilisateurs choisi.</message>
-
-
 	<message key="editor.monograph.copyediting.currentFiles">Fichiers en cours</message>
 	<message key="editor.monograph.copyediting.personalMessageToUser">Message à l'utilisateur</message>
 	
