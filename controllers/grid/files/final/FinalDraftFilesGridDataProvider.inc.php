@@ -32,7 +32,7 @@ class FinalDraftFilesGridDataProvider extends SubmissionFilesGridDataProvider {
 	 * @see FilesGridDataProvider::getSelectAction()
 	 */
 	function getSelectAction($request) {
-		import('controllers.grid.files.fileList.linkAction.SelectFilesLinkAction');
+		import('lib.pkp.controllers.grid.files.fileList.linkAction.SelectFilesLinkAction');
 		$submission = $this->getSubmission();
 		$actionArgs = array(
 			'submissionId' => $submission->getId(),
@@ -40,7 +40,7 @@ class FinalDraftFilesGridDataProvider extends SubmissionFilesGridDataProvider {
 		);
 		$selectAction = new SelectFilesLinkAction(
 			$request, $actionArgs,
-			__('editor.monograph.uploadSelectFiles')
+			__('editor.submission.uploadSelectFiles')
 		);
 		return $selectAction;
 	}

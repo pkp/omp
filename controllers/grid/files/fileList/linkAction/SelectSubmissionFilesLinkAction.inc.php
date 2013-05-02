@@ -12,7 +12,7 @@
  *  files from a file list grid.
  */
 
-import('controllers.grid.files.fileList.linkAction.SelectFilesLinkAction');
+import('lib.pkp.controllers.grid.files.fileList.linkAction.SelectFilesLinkAction');
 
 class SelectSubmissionFilesLinkAction extends SelectFilesLinkAction {
 

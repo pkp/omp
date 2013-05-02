@@ -33,10 +33,9 @@ class SelectableReviewRevisionsGridHandler extends SelectableFileListGridHandler
 			array('fetchGrid', 'fetchRow')
 		);
 
-		// Set the grid title.
-		$this->setTitle('editor.monograph.revisions');
-
-		$this->setInstructions('editor.monograph.selectPromoteRevisions');
+		// Set the grid information.
+		$this->setTitle('editor.submission.revisions');
+		$this->setInstructions('editor.submission.selectPromoteRevisions');
 	}
 }
 

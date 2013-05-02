@@ -29,6 +29,7 @@
 	<message key="editor.submissionReview.open">Open</message>
 	<message key="editor.submissionReview.blind">Blind</message>
 	<message key="editor.submissionReview.doubleBlind">Double-blind</message>
+	<message key="editor.submissionReview.restrictFiles">Restrict Available Files</message>
 	<message key="editor.submission.addReviewer">Add Reviewer</message>
 	<message key="editor.monograph.returnToSimpleSearch">Return to Simple Search</message>
 	<message key="editor.monograph.cancelReview">Cancel Request</message>
@@ -55,7 +56,7 @@
 	<message key="editor.monograph.decision.approveProofsDescription">The page proof file must be checked as approved to be made Available. Do you want to approve it?</message>
 	<message key="editor.monograph.decision.disapproveProofsDescription">This file proof will no longer be publicly available for download or purchase. Do you want to disapprove it?</message>
 	<message key="editor.monograph.selectAttachments">Select the review attachments for the author to see</message>
-	<message key="editor.monograph.selectPromoteRevisions">Select revisions to use in the next stage</message>
+	<message key="editor.submission.selectPromoteRevisions">Select revisions to use in the next stage</message>
 	<message key="editor.monograph.selectFairCopy">Select approved copy editing files to be sent to Production.</message>
 	<message key="editor.monograph.selectProofreadingFiles">Proofreading Files</message>
 	<message key="editor.monograph.selectCopyedingFiles">Copyediting Files</message>
@@ -66,16 +67,16 @@
 	<message key="editor.monograph.externalReviewDescription">You are about to initiate an external review for this submission.  Files that are part of the submission are listed below and can be selected for review.</message>
 	<message key="editor.submission.newRound">New Review Round</message>
 	<message key="editor.monograph.newRoundDescription">You are about to create a new review round for this submission.  Files that have not been used in other review rounds are listed below.  By default, the reviewers from the previous review round have been selected to participate in this new review round.</message>
-	<message key="editor.monograph.revisions">Revisions</message>
+	<message key="editor.submission.revisions">Revisions</message>
 	<message key="editor.monograph.revisionsDescription">Revised submission files appear here, with the open folder icon indicating who uploaded the file.</message>
 	<message key="editor.submissions.lastAssigned">Latest</message>
 	<message key="editor.submission.review.manageReviewFilesDescription">Any files that have already been uploaded to any submission stage (even Editorial or Production) can be chosen for review by checking the Include checkbox below and clicking Search: all available files will be listed and can be chosen for inclusion. Additional files not already uploaded to a stage can be added to this listing by clicking the Upload Review File link.</message>
 	<message key="editor.monograph.review.reviewFilesDescription"><![CDATA[These are the files that can be selected for review, when adding reviewers in <span class="pkp_help_title">Reviewers</span>]]>.</message>
 	<message key="editor.monograph.review.reviewersDescription"><![CDATA[Use <em>+Add Reviewer</em> to invite readers to review the submission files. The notebook icon indicates that a review has been submitted, which is then checked <em>Considered</em> after it has been consulted. When reviews are overdue, a red envelope icon appears for reminding reviewers.]]></message>
 	<message key="editor.monograph.fileList.includeAllStages">Include all files from all accessible workflow stages.</message>
-	<message key="editor.monograph.review.currentFiles">Current Review Files For Round {$round}</message>
+	<message key="editor.submission.review.currentFiles">Current Review Files For Round {$round}</message>
 	<message key="editor.monograph.final.selectFinalDraftFiles">Select Final Draft Files</message>
-	<message key="editor.monograph.uploadSelectFiles">Upload/Select Files</message>
+	<message key="editor.submission.uploadSelectFiles">Upload/Select Files</message>
 	<message key="editor.monograph.final.manageFinalDraftFilesDescription">Any files that have already been uploaded to any submission stage can be added to the Final Draft Files listing by checking the Include checkbox below and clicking Search: all available files will be listed and can be chosen for inclusion. Additional files not already uploaded to a stage can be added to the listing by clicking the Upload A Final Draft link.</message>
 	<message key="editor.monograph.final.currentFiles">Current Final Draft Files</message>
 	<message key="editor.monograph.copyediting.currentFiles">Current Files</message>

@@ -58,7 +58,7 @@
 	<message key="editor.monograph.decision.approveProofsDescription">Il faut indiquer que le fichier d'épreuve en page a été approuvé pour qu'il soit disponible. Souhaitez-vous l'approuver?</message>
 	<message key="editor.monograph.decision.disapproveProofsDescription">Ce fichier d'épreuve ne pourra plus être téléchargé ou acheté par le public. Souhaitez-vous le désapprouver?</message>
 	<message key="editor.monograph.selectAttachments">Choisir les fichiers d'évaluation que l'auteur pourra consulter</message>
-	<message key="editor.monograph.selectPromoteRevisions">Choisir les révisions qui seront utilisées à la prochaine étape</message>
+	<message key="editor.submission.selectPromoteRevisions">Choisir les révisions qui seront utilisées à la prochaine étape</message>
 	<message key="editor.monograph.selectFairCopy">Choisir les fichiers de révision approuvés qui seront envoyés pour la publication.</message>
 	<message key="editor.monograph.selectProofreadingFiles">Fichiers d'épreuves</message>
 	<message key="editor.monograph.selectCopyedingFiles">Fichiers de travail éditorial</message>
@@ -78,7 +78,7 @@
 	<message key="editor.submission.newRound">Nouvelle série de révisions</message>
 	<message key="editor.monograph.newRoundDescription">Vous êtes sur le point de créer une nouvelle série de révisions pour cette soumission. Les fichiers qui n'ont pas été utilisés dans les autres séries de révisions apparaissent dans la liste suivante. Par défaut, les évaluateurs de la série précédente ont été sélectionnés pour participer à cette nouvelle série de révisions.</message>
 	
-<message key="editor.monograph.revisions">Révisions</message>
+	<message key="editor.submission.revisions">Révisions</message>
 	<message key="editor.monograph.revisionsDescription">Les fichiers révisés de la soumission sont affichés ici. L'icône Ouvrir le dossier indique qui a téléchargé le fichier.</message>
 	<message key="editor.submissions.lastAssigned">Le plus récent</message>
 	<message key="editor.submission.review.manageReviewFilesDescription">Tous les fichiers qui ont déjà été téléchargés à une étape du processus de soumission (même à une étape d'édition ou de publication) peuvent être choisis pour révision. Il suffit de cocher la case Ajouter ci-dessous, puis de cliquer Recherche: tous les fichiers disponibles seront affichés et peuvent être choisis pour être ajoutés. Les autres fichiers qui n'ont pas déjà été téléchargés à une certaine étape du processus peuvent être ajoutés à cette liste en cliquant sur le lien Télécharger le fichier d'évaluation.</message>
@@ -86,9 +86,9 @@
 	<message key="editor.monograph.review.reviewersDescription"><![CDATA[Utilisez <em>Ajouter un évaluateur</em> pour inviter des lecteurs à examiner les fichiers soumis. L'icône en forme de carnet indique qu'on a soumis un fichier pour l'évaluation. Celui-ci indiquera <em>Considéré</em> lorsqu'il aura été consulté. Si les évaluations sont en retard, l'icône d'une enveloppe rouge s'affichera à titre de rappel pour les évaluateurs.]]></message>	
 
 	<message key="editor.monograph.fileList.includeAllStages">Inclure tous les fichiers de toutes les étapes de production accessibles.</message>
-	<message key="editor.monograph.review.currentFiles">{$round}e série de révision des fichiers.</message>
+	<message key="editor.submission.review.currentFiles">{$round}e série de révision des fichiers.</message>
 	<message key="editor.monograph.final.selectFinalDraftFiles">Choisir les fichiers d'épreuves finales</message>
-	<message key="editor.monograph.uploadSelectFiles">Télécharger/Sélectionner les fichiers</message>
+	<message key="editor.submission.uploadSelectFiles">Télécharger/Sélectionner les fichiers</message>
 	<message key="editor.monograph.final.manageFinalDraftFilesDescription">Un fichier qui a été téléchargé à une étape du processus de soumission, peu importe laquelle, peut être ajouté à la liste des fichiers d'épreuves finales. Il suffit de cocher la case Ajouter ci-dessous, puis de cliquer Recherche: tous les fichiers disponibles seront affichés et peuvent être choisis pour être ajoutés. Les autres fichiers qui n'ont pas déjà été téléchargés à une certaine étape du processus peuvent être ajoutés à cette liste en cliquant sur le lien Télécharger une épreuve finale.</message>
 	<message key="editor.monograph.final.currentFiles">Fichiers courants d'épreuves finales</message>
 	<message key="editor.monograph.copyediting.currentFiles">Fichiers en cours</message>

@@ -25,7 +25,7 @@ class WorkflowReviewRevisionsGridHandler extends ReviewRevisionsGridHandler {
 		);
 		parent::ReviewRevisionsGridHandler($roleAssignments);
 
-		$this->setTitle('editor.monograph.revisions');
+		$this->setTitle('editor.submission.revisions');
 		$this->setInstructions('editor.monograph.revisionsDescription');
 	}
 }
