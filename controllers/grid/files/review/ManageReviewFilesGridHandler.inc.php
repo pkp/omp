@@ -13,7 +13,7 @@
  */
 
 // import grid base classes
-import('controllers.grid.files.SelectableSubmissionFileListCategoryGridHandler');
+import('lib.pkp.controllers.grid.files.SelectableSubmissionFileListCategoryGridHandler');
 
 class ManageReviewFilesGridHandler extends SelectableSubmissionFileListCategoryGridHandler {
 

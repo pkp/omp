@@ -12,7 +12,7 @@
  * @brief Handle the editor review file selection grid (selects which files to send to review or to next review round)
  */
 
-import('controllers.grid.files.SelectableSubmissionFileListCategoryGridHandler');
+import('lib.pkp.controllers.grid.files.SelectableSubmissionFileListCategoryGridHandler');
 
 class ManageFinalDraftFilesGridHandler extends SelectableSubmissionFileListCategoryGridHandler {
 	/**
