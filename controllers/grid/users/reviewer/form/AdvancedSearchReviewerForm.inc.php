@@ -20,7 +20,7 @@ class AdvancedSearchReviewerForm extends ReviewerForm {
 	 * @param $monograph Monograph
 	 * @param $reviewRound ReviewRound
 	 */
-	function AdvancedSearchReviewerForm(&$monograph, &$reviewRound) {
+	function AdvancedSearchReviewerForm($monograph, $reviewRound) {
 		parent::ReviewerForm($monograph, $reviewRound);
 		$this->setTemplate('controllers/grid/users/reviewer/form/advancedSearchReviewerForm.tpl');
 
@@ -42,7 +42,6 @@ class AdvancedSearchReviewerForm extends ReviewerForm {
 	 * @see Form::fetch()
 	 */
 	function fetch($request) {
-
 		$searchByNameAction = $this->getSearchByNameAction($request);
 
 		$this->setReviewerFormAction($searchByNameAction);

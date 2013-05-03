@@ -20,7 +20,7 @@ class SearchByNameReviewerForm extends ReviewerForm {
 	 * @param $monograph Monograph
 	 * @param $reviewRound ReviewRound
 	 */
-	function SearchByNameReviewerForm(&$monograph, &$reviewRound) {
+	function SearchByNameReviewerForm($monograph, $reviewRound) {
 		parent::ReviewerForm($monograph, $reviewRound);
 		$this->setTemplate('controllers/grid/users/reviewer/form/searchByNameReviewerForm.tpl');
 
@@ -49,11 +49,12 @@ class SearchByNameReviewerForm extends ReviewerForm {
 		$actionArgs['selectionType'] = REVIEWER_SELECT_ADVANCED_SEARCH;
 		// but change the selectionType for each action
 		$advancedSearchAction = new LinkAction(
-									'advancedSearch',
-									new AjaxAction($request->url(null, null, 'reloadReviewerForm', null, $actionArgs)),
-									__('manager.reviewerSearch.advancedSearch.short'),
-									'user_search'
-								);
+			'advancedSearch',
+			new AjaxAction($request->url(null, null, 'reloadReviewerForm', null, $actionArgs)),
+			__('manager.reviewerSearch.advancedSearch.short'),
+			'user_search'
+		);
+
 		$this->setReviewerFormAction($advancedSearchAction);
 
 		// Only add actions to forms where user can operate.
@@ -61,20 +62,22 @@ class SearchByNameReviewerForm extends ReviewerForm {
 			$actionArgs['selectionType'] = REVIEWER_SELECT_CREATE;
 			// but change the selectionType for each action
 			$advancedSearchAction = new LinkAction(
-										'selectCreate',
-										new AjaxAction($request->url(null, null, 'reloadReviewerForm', null, $actionArgs)),
-										__('editor.review.createReviewer'),
-										'add_user'
-									);
+				'selectCreate',
+				new AjaxAction($request->url(null, null, 'reloadReviewerForm', null, $actionArgs)),
+				__('editor.review.createReviewer'),
+				'add_user'
+			);
+
 			$this->setReviewerFormAction($advancedSearchAction);
 			$actionArgs['selectionType'] = REVIEWER_SELECT_ENROLL_EXISTING;
 			// but change the selectionType for each action
 			$advancedSearchAction = new LinkAction(
-										'enrolExisting',
-										new AjaxAction($request->url(null, null, 'reloadReviewerForm', null, $actionArgs)),
-										__('editor.review.enrollReviewer.short'),
-										'enroll_user'
-									);
+				'enrolExisting',
+				new AjaxAction($request->url(null, null, 'reloadReviewerForm', null, $actionArgs)),
+				__('editor.review.enrollReviewer.short'),
+				'enroll_user'
+			);
+
 			$this->setReviewerFormAction($advancedSearchAction);
 		}
 

@@ -21,9 +21,9 @@ class ThankReviewerForm extends Form {
 	/**
 	 * Constructor.
 	 */
-	function ThankReviewerForm(&$reviewAssignment) {
+	function ThankReviewerForm($reviewAssignment) {
 		parent::Form('controllers/grid/users/reviewer/form/thankReviewerForm.tpl');
-		$this->_reviewAssignment =& $reviewAssignment;
+		$this->_reviewAssignment = $reviewAssignment;
 
 		// Validation checks for this form
 		$this->addCheck(new FormValidatorPost($this));
@@ -36,7 +36,7 @@ class ThankReviewerForm extends Form {
 	 * Get the Monograph
 	 * @return ReviewAssignment
 	 */
-	function &getReviewAssignment() {
+	function getReviewAssignment() {
 		return $this->_reviewAssignment;
 	}
 
@@ -110,7 +110,7 @@ class ThankReviewerForm extends Form {
 		$email->setBody($this->getData('message'));
 
 		if (!$this->getData('skipEmail')) {
-			HookRegistry::call('SeriesEditorAction::thankReviewer', array(&$monograph, &$reviewAssignment, &$email));
+			HookRegistry::call('ThankReviewerForm::thankReviewer', array(&$monograph, &$reviewAssignment, &$email));
 			$email->send($request);
 		}
 

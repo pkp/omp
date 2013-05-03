@@ -21,9 +21,9 @@ class ReviewReminderForm extends Form {
 	/**
 	 * Constructor.
 	 */
-	function ReviewReminderForm(&$reviewAssignment) {
+	function ReviewReminderForm($reviewAssignment) {
 		parent::Form('controllers/grid/users/reviewer/form/reviewReminderForm.tpl');
-		$this->_reviewAssignment =& $reviewAssignment;
+		$this->_reviewAssignment = $reviewAssignment;
 
 		// Validation checks for this form
 		$this->addCheck(new FormValidatorPost($this));
@@ -33,10 +33,10 @@ class ReviewReminderForm extends Form {
 	// Getters and Setters
 	//
 	/**
-	 * Get the Monograph
+	 * Get the review assignment
 	 * @return ReviewAssignment
 	 */
-	function &getReviewAssignment() {
+	function getReviewAssignment() {
 		return $this->_reviewAssignment;
 	}
 

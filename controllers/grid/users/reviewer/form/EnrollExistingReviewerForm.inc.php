@@ -18,7 +18,7 @@ class EnrollExistingReviewerForm extends ReviewerForm {
 	/**
 	 * Constructor.
 	 */
-	function EnrollExistingReviewerForm(&$monograph, &$reviewRound) {
+	function EnrollExistingReviewerForm($monograph, $reviewRound) {
 		parent::ReviewerForm($monograph, $reviewRound);
 		$this->setTemplate('controllers/grid/users/reviewer/form/enrollExistingReviewerForm.tpl');
 
@@ -31,7 +31,6 @@ class EnrollExistingReviewerForm extends ReviewerForm {
 	 * @see Form::fetch()
 	 */
 	function fetch($request) {
-
 		$searchByNameAction = $this->getSearchByNameAction($request);
 
 		$this->setReviewerFormAction($searchByNameAction);

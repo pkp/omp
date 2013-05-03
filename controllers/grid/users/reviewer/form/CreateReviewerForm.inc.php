@@ -20,7 +20,7 @@ class CreateReviewerForm extends ReviewerForm {
 	 * @param $monograph Monograph
 	 * @param $reviewRound ReviewRound
 	 */
-	function CreateReviewerForm(&$monograph, &$reviewRound) {
+	function CreateReviewerForm($monograph, $reviewRound) {
 		parent::ReviewerForm($monograph, $reviewRound);
 		$this->setTemplate('controllers/grid/users/reviewer/form/createReviewerForm.tpl');
 
@@ -82,7 +82,7 @@ class CreateReviewerForm extends ReviewerForm {
 		$user->setEmail($this->getData('email'));
 
 		$authDao = DAORegistry::getDAO('AuthSourceDAO');
-		$auth =& $authDao->getDefaultPlugin();
+		$auth = $authDao->getDefaultPlugin();
 		$user->setAuthId($auth?$auth->getAuthId():0);
 		$user->setInlineHelp(1); // default new reviewers to having inline help visible
 

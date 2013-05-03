@@ -33,7 +33,7 @@ class ReviewerForm extends Form {
 	 * @param $monograph Monograph
 	 * @param $reviewRound ReviewRound
 	 */
-	function ReviewerForm(&$monograph, &$reviewRound) {
+	function ReviewerForm($monograph, $reviewRound) {
 		parent::Form('controllers/grid/users/reviewer/form/defaultReviewerForm.tpl');
 		$this->setMonograph($monograph);
 		$this->setReviewRound($reviewRound);
@@ -61,7 +61,7 @@ class ReviewerForm extends Form {
 	 * Get the Monograph
 	 * @return Monograph
 	 */
-	function &getMonograph() {
+	function getMonograph() {
 		return $this->_monograph;
 	}
 
@@ -77,16 +77,16 @@ class ReviewerForm extends Form {
 	 * Set the Monograph
 	 * @param $monograph Monograph
 	 */
-	function setMonograph(&$monograph) {
-		$this->_monograph =& $monograph;
+	function setMonograph($monograph) {
+		$this->_monograph = $monograph;
 	}
 
 	/**
 	 * Set the ReviewRound
 	 * @param $reviewRound ReviewRound
 	 */
-	function setReviewRound(&$reviewRound) {
-		$this->_reviewRound =& $reviewRound;
+	function setReviewRound($reviewRound) {
+		$this->_reviewRound = $reviewRound;
 	}
 
 	/**
@@ -94,7 +94,7 @@ class ReviewerForm extends Form {
 	 * @param $action LinkAction
 	 */
 	function setReviewerFormAction($action) {
-		$this->_reviewerFormActions[$action->getId()] =& $action;
+		$this->_reviewerFormActions[$action->getId()] = $action;
 	}
 
 	/**
@@ -138,15 +138,15 @@ class ReviewerForm extends Form {
 		// The reviewer id has been set
 		if (!empty($reviewerId)) {
 			if ($this->_isValidReviewer($press, $monograph, $reviewRound, $reviewerId)) {
-				$userDao = & DAORegistry::getDAO('UserDAO'); /* @var $userDao UserDAO */
-				$reviewer =& $userDao->getById($reviewerId);
+				$userDao = DAORegistry::getDAO('UserDAO'); /* @var $userDao UserDAO */
+				$reviewer = $userDao->getById($reviewerId);
 				$this->setData('userNameString', sprintf('%s (%s)', $reviewer->getFullname(), $reviewer->getUsername()));
 			}
 		}
 
 		// Get review assignment related data;
 		$reviewAssignmentDao = DAORegistry::getDAO('ReviewAssignmentDAO');
-		$reviewAssignment =& $reviewAssignmentDao->getReviewAssignment($reviewRound->getId(), $reviewerId);
+		$reviewAssignment = $reviewAssignmentDao->getReviewAssignment($reviewRound->getId(), $reviewerId);
 
 		// Get the review method (open, blind, or double-blind)
 		if (isset($reviewAssignment) && $reviewAssignment->getReviewMethod() != false) {
@@ -206,7 +206,6 @@ class ReviewerForm extends Form {
 	 * @see Form::fetch()
 	 */
 	function fetch($request) {
-
 		// Get the review method options.
 		$reviewAssignmentDao = DAORegistry::getDAO('ReviewAssignmentDAO');
 		$reviewMethods = $reviewAssignmentDao->getReviewMethodsTranslationKeys();
@@ -285,7 +284,7 @@ class ReviewerForm extends Form {
 
 		// Get the reviewAssignment object now that it has been added.
 		$reviewAssignmentDao = DAORegistry::getDAO('ReviewAssignmentDAO'); /* @var $reviewAssignmentDao ReviewAssignmentDAO */
-		$reviewAssignment =& $reviewAssignmentDao->getReviewAssignment($currentReviewRound->getId(), $reviewerId);
+		$reviewAssignment = $reviewAssignmentDao->getReviewAssignment($currentReviewRound->getId(), $reviewerId);
 		$reviewAssignment->setDateNotified(Core::getCurrentDate());
 		$reviewAssignment->setCancelled(0);
 		$reviewAssignment->stampModified();
@@ -353,9 +352,9 @@ class ReviewerForm extends Form {
 	 * @param $reviewerId int
 	 * @return boolean
 	 */
-	function _isValidReviewer(&$press, &$monograph, &$reviewRound, $reviewerId) {
+	function _isValidReviewer($press, $monograph, $reviewRound, $reviewerId) {
 		$userDao = DAORegistry::getDAO('UserDAO'); /* @var $userDao UserDAO */
-		$reviewerFactory =& $userDao->getReviewersNotAssignedToSubmission($press->getId(), $monograph->getId(), $reviewRound);
+		$reviewerFactory = $userDao->getReviewersNotAssignedToSubmission($press->getId(), $monograph->getId(), $reviewRound);
 		$reviewersArray = $reviewerFactory->toAssociativeArray();
 		if (array_key_exists($reviewerId, $reviewersArray)) {
 			return true;
