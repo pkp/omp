@@ -299,7 +299,7 @@ class ReviewerForm extends Form {
 		$reviewFilesDao = DAORegistry::getDAO('ReviewFilesDAO');
 		foreach ($submissionFiles as $submissionFile) {
 			if (in_array($submissionFile->getFileId(), $selectedFiles)) {
-				$reviewFilesDao->grant($reviewAssignment->getId(), $submissionFile->getFileId(), $submissionFile->getRevision());
+				$reviewFilesDao->grant($reviewAssignment->getId(), $submissionFile->getFileId());
 			}
 		}
 

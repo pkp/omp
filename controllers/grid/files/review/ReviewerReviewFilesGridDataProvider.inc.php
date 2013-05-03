@@ -60,8 +60,7 @@ class ReviewerReviewFilesGridDataProvider extends ReviewGridDataProvider {
 		$reviewFilesDao = DAORegistry::getDAO('ReviewFilesDAO');
 		$reviewAssignment = $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ASSIGNMENT);
 		foreach ($submissionFileData as $fileId => $fileData) {
-			$submissionFile = $fileData['submissionFile'];
-			if (!$reviewFilesDao->check($reviewAssignment->getId(), $fileId, $submissionFile->getRevision())) {
+			if (!$reviewFilesDao->check($reviewAssignment->getId(), $fileId)) {
 				// Not permitted; remove from list.
 				unset($submissionFileData[$fileId]);
 			}
