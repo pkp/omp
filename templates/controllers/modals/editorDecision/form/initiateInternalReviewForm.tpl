@@ -23,5 +23,5 @@
 	<!-- Available submission files -->
 	{url|assign:filesForReviewUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.submission.SelectableSubmissionDetailsFilesGridHandler" op="fetchGrid" submissionId=$submissionId stageId=$stageId escape=false}
 	{load_url_in_div id="filesForReviewGrid" url=$filesForReviewUrl}
-	{fbvFormButtons submitText="editor.monograph.decision.sendInternalReview"}
+	{fbvFormButtons submitText="editor.submission.decision.sendInternalReview"}
 </form>

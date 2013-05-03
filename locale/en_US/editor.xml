@@ -44,17 +44,6 @@
 	<message key="editor.monograph.editorToEnter">Editor to enter recommendation/comments for reviewer</message>
 	<message key="editor.monograph.uploadReviewForReviewer">Upload review</message>
 	<message key="editor.monograph.peerReviewOptions">Peer Review Options</message>
-	<message key="editor.monograph.decision">Decision</message>
-	<message key="editor.monograph.decision.accept">Accept Submission</message>
-	<message key="editor.monograph.decision.requestRevisions">Request Revisions</message>
-	<message key="editor.monograph.decision.resubmit">Resubmit for Review</message>
-	<message key="editor.monograph.decision.decline">Decline Submission</message>
-	<message key="editor.monograph.decision.sendToProduction">Send To Production</message>
-	<message key="editor.monograph.decision.sendInternalReview">Send to Internal Review</message>
-	<message key="editor.monograph.decision.sendExternalReview">Send to External Review</message>
-	<message key="editor.monograph.decision.approveProofs">Approve Proofs</message>
-	<message key="editor.monograph.decision.approveProofsDescription">The page proof file must be checked as approved to be made Available. Do you want to approve it?</message>
-	<message key="editor.monograph.decision.disapproveProofsDescription">This file proof will no longer be publicly available for download or purchase. Do you want to disapprove it?</message>
 	<message key="editor.monograph.selectAttachments">Select the review attachments for the author to see</message>
 	<message key="editor.submission.selectPromoteRevisions">Select revisions to use in the next stage</message>
 	<message key="editor.monograph.selectFairCopy">Select approved copy editing files to be sent to Production.</message>

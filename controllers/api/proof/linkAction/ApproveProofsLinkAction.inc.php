@@ -42,13 +42,13 @@ class ApproveProofsLinkAction extends LinkAction {
 				'modals.editorDecision.EditorDecisionHandler',
 				'approveProofs', null,
 				$actionArgs),
-			__('editor.monograph.decision.approveProofs'),
+			__('editor.submission.decision.approveProofs'),
 			'modal_approve_proofs'
 		);
 
 		$toolTip = ($image == 'completed') ? __('grid.action.proofApproved') : null;
 		// Configure the link action.
-		parent::LinkAction('approveProofs-' . $publicationFormatId, $modal, __('editor.monograph.decision.approveProofs'), $image, $toolTip);
+		parent::LinkAction('approveProofs-' . $publicationFormatId, $modal, __('editor.submission.decision.approveProofs'), $image, $toolTip);
 	}
 }
 

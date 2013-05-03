@@ -138,7 +138,7 @@ class SignoffFilesGridCellProvider extends GridCellProvider {
 					$remoteActionUrl, 'modal_approve_file');
 
 				return new LinkAction('approveCopyedit-' . $monographFile->getFileId(),
-					$modal, __('editor.monograph.decision.approveProofs'), 'task ' . $cellState);
+					$modal, __('editor.submission.decision.approveProofs'), 'task ' . $cellState);
 
 			case WORKFLOW_STAGE_ID_PRODUCTION:
 				$remoteActionUrl = $router->url(
@@ -147,17 +147,17 @@ class SignoffFilesGridCellProvider extends GridCellProvider {
 				);
 
 				if ($cellState == 'new') {
-					$approveText = __('editor.monograph.decision.approveProofsDescription');
+					$approveText = __('editor.submission.decision.approveProofsDescription');
 				} else {
-					$approveText = __('editor.monograph.decision.disapproveProofsDescription');
+					$approveText = __('editor.submission.decision.disapproveProofsDescription');
 				}
 
-				$modal = new RemoteActionConfirmationModal($approveText, __('editor.monograph.decision.approveProofs'),
+				$modal = new RemoteActionConfirmationModal($approveText, __('editor.submission.decision.approveProofs'),
 					$remoteActionUrl, 'modal_approve_file');
 
 				$toolTip = ($cellState == 'completed') ? __('grid.action.pageProofApproved') : null;
 				return new LinkAction('approveProof-' . $monographFile->getFileId(),
-					$modal, __('editor.monograph.decision.approveProofs'), 'task ' . $cellState, $toolTip);
+					$modal, __('editor.submission.decision.approveProofs'), 'task ' . $cellState, $toolTip);
 		}
 	}
 }

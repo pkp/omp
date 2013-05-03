@@ -45,18 +45,6 @@
 	<message key="editor.monograph.editorToEnter">Le rédacteur en chef doit saisir sa recommandation et ses commentaires pour l'évaluateur</message>
 	<message key="editor.monograph.uploadReviewForReviewer">Télécharger l'évaluation</message>
 	<message key="editor.monograph.peerReviewOptions">Options d'évaluation par les pairs</message>
-	<message key="editor.monograph.decision">Décision</message>
-	<message key="editor.monograph.decision.accept">Accepter la soumission</message>
-	<message key="editor.monograph.decision.requestRevisions">Demande de révision</message>
-	<message key="editor.monograph.decision.resubmit">Resoumettre pour révision</message>
-	<message key="editor.monograph.decision.decline">Refus de la soumission</message>
-	<message key="editor.monograph.decision.sendToProduction">Envoyer pour publication</message>
-	<message key="editor.monograph.decision.sendInternalReview">Envoyer à l'évaluateur interne</message>
-	<message key="editor.monograph.decision.sendExternalReview">Envoyer à l'évaluateur externe</message>
-	<message key="editor.monograph.decision.approveProofs">Approuver les épreuves</message>
-
-	<message key="editor.monograph.decision.approveProofsDescription">Il faut indiquer que le fichier d'épreuve en page a été approuvé pour qu'il soit disponible. Souhaitez-vous l'approuver?</message>
-	<message key="editor.monograph.decision.disapproveProofsDescription">Ce fichier d'épreuve ne pourra plus être téléchargé ou acheté par le public. Souhaitez-vous le désapprouver?</message>
 	<message key="editor.monograph.selectAttachments">Choisir les fichiers d'évaluation que l'auteur pourra consulter</message>
 	<message key="editor.submission.selectPromoteRevisions">Choisir les révisions qui seront utilisées à la prochaine étape</message>
 	<message key="editor.monograph.selectFairCopy">Choisir les fichiers de révision approuvés qui seront envoyés pour la publication.</message>
