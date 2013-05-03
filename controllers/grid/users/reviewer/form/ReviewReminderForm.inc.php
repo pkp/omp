@@ -52,17 +52,17 @@ class ReviewReminderForm extends Form {
 	function initData($args, $request) {
 		$userDao = DAORegistry::getDAO('UserDAO');
 		$user = $request->getUser();
-		$press = $request->getPress();
+		$context = $request->getContext();
 
 		$reviewAssignment = $this->getReviewAssignment();
 		$reviewerId = $reviewAssignment->getReviewerId();
 		$reviewer = $userDao->getById($reviewerId);
 
-		$monographDao = DAORegistry::getDAO('MonographDAO');
-		$monograph = $monographDao->getById($reviewAssignment->getSubmissionId());
+		$submissionDao = Application::getSubmissionDAO();
+		$submission = $submissionDao->getById($reviewAssignment->getSubmissionId());
 
 		import('classes.mail.MonographMailTemplate');
-		$email = new MonographMailTemplate($monograph, 'REVIEW_REMIND');
+		$email = new MonographMailTemplate($submission, 'REVIEW_REMIND');
 
 		// Format the review due date
 		$reviewDueDate = strtotime($reviewAssignment->getDateDue());
@@ -81,12 +81,12 @@ class ReviewReminderForm extends Form {
 		);
 		$email->assignParams($paramArray);
 
-		$this->setData('submissionId', $monograph->getId());
+		$this->setData('submissionId', $submission->getId());
 		$this->setData('stageId', $reviewAssignment->getStageId());
 		$this->setData('reviewAssignmentId', $reviewAssignment->getId());
 		$this->setData('reviewAssignment', $reviewAssignment);
 		$this->setData('reviewerName', $reviewer->getFullName() . ' <' . $reviewer->getEmail() . '>');
-		$this->setData('message', $email->getBody() . "\n" . $press->getSetting('emailSignature'));
+		$this->setData('message', $email->getBody() . "\n" . $context->getSetting('emailSignature'));
 	}
 
 	/**
@@ -105,15 +105,15 @@ class ReviewReminderForm extends Form {
 	 */
 	function execute($args, $request) {
 		$userDao = DAORegistry::getDAO('UserDAO');
-		$monographDao = DAORegistry::getDAO('MonographDAO');
+		$submissionDao = Application::getSubmissionDAO();
 
 		$reviewAssignment = $this->getReviewAssignment();
 		$reviewerId = $reviewAssignment->getReviewerId();
 		$reviewer = $userDao->getById($reviewerId);
-		$monograph = $monographDao->getById($reviewAssignment->getSubmissionId());
+		$submission = $submissionDao->getById($reviewAssignment->getSubmissionId());
 
 		import('classes.mail.MonographMailTemplate');
-		$email = new MonographMailTemplate($monograph, 'REVIEW_REMIND', null, null, null, false);
+		$email = new MonographMailTemplate($submission, 'REVIEW_REMIND', null, null, null, false);
 
 		$email->addRecipient($reviewer->getEmail(), $reviewer->getFullName());
 		$email->setBody($this->getData('message'));

@@ -16,8 +16,8 @@
 import('lib.pkp.classes.form.Form');
 
 class ReviewerForm extends Form {
-	/** The monograph associated with the review assignment **/
-	var $_monograph;
+	/** The submission associated with the review assignment **/
+	var $_submission;
 
 	/** The review round associated with the review assignment **/
 	var $_reviewRound;
@@ -30,12 +30,12 @@ class ReviewerForm extends Form {
 
 	/**
 	 * Constructor.
-	 * @param $monograph Monograph
+	 * @param $submission Submission
 	 * @param $reviewRound ReviewRound
 	 */
-	function ReviewerForm($monograph, $reviewRound) {
+	function ReviewerForm($submission, $reviewRound) {
 		parent::Form('controllers/grid/users/reviewer/form/defaultReviewerForm.tpl');
-		$this->setMonograph($monograph);
+		$this->setSubmission($submission);
 		$this->setReviewRound($reviewRound);
 
 		// Validation checks for this form
@@ -49,20 +49,20 @@ class ReviewerForm extends Form {
 	// Getters and Setters
 	//
 	/**
-	 * Get the Monograph Id
-	 * @return int monographId
+	 * Get the submission Id
+	 * @return int submissionId
 	 */
-	function getMonographId() {
-		$monograph = $this->getMonograph();
-		return $monograph->getId();
+	function getSubmissionId() {
+		$submission = $this->getSubmission();
+		return $submission->getId();
 	}
 
 	/**
-	 * Get the Monograph
-	 * @return Monograph
+	 * Get the submission
+	 * @return Submission
 	 */
-	function getMonograph() {
-		return $this->_monograph;
+	function getSubmission() {
+		return $this->_submission;
 	}
 
 	/**
@@ -74,11 +74,11 @@ class ReviewerForm extends Form {
 	}
 
 	/**
-	 * Set the Monograph
-	 * @param $monograph Monograph
+	 * Set the submission
+	 * @param $submission Submission
 	 */
-	function setMonograph($monograph) {
-		$this->_monograph = $monograph;
+	function setSubmission($submission) {
+		$this->_submission = $submission;
 	}
 
 	/**
@@ -130,14 +130,14 @@ class ReviewerForm extends Form {
 	 */
 	function initData($args, $request) {
 		$reviewerId = (int) $request->getUserVar('reviewerId');
-		$press = $request->getContext();
+		$context = $request->getContext();
 		$reviewRound = $this->getReviewRound();
 		$seriesEditorSubmissionDao = DAORegistry::getDAO('SeriesEditorSubmissionDAO');
-		$monograph = $seriesEditorSubmissionDao->getById($this->getMonographId());
+		$submission = $seriesEditorSubmissionDao->getById($this->getSubmissionId());
 
 		// The reviewer id has been set
 		if (!empty($reviewerId)) {
-			if ($this->_isValidReviewer($press, $monograph, $reviewRound, $reviewerId)) {
+			if ($this->_isValidReviewer($context, $submission, $reviewRound, $reviewerId)) {
 				$userDao = DAORegistry::getDAO('UserDAO'); /* @var $userDao UserDAO */
 				$reviewer = $userDao->getById($reviewerId);
 				$this->setData('userNameString', sprintf('%s (%s)', $reviewer->getFullname(), $reviewer->getUsername()));
@@ -160,13 +160,13 @@ class ReviewerForm extends Form {
 		if (isset($reviewAssignment) && $reviewAssignment->getDueDate() != null) {
 			$reviewDueDate = strftime(Config::getVar('general', 'date_format_short'), strtotime($reviewAssignment->getDueDate()));
 		} else {
-			$numWeeks = max((int) $press->getSetting('numWeeksPerReview'), 4);
+			$numWeeks = max((int) $context->getSetting('numWeeksPerReview'), 4);
 			$reviewDueDate = strftime(Config::getVar('general', 'date_format_short'), strtotime('+' . $numWeeks . ' week'));
 		}
 		if (isset($reviewAssignment) && $reviewAssignment->getResponseDueDate() != null) {
 			$responseDueDate = strftime(Config::getVar('general', 'date_format_short'), strtotime($reviewAssignment->getResponseDueDate()));
 		} else {
-			$numWeeks = max((int) $press->getSetting('numWeeksPerResponse'), 3);
+			$numWeeks = max((int) $context->getSetting('numWeeksPerResponse'), 3);
 			$responseDueDate = strftime(Config::getVar('general', 'date_format_short'), strtotime('+' . $numWeeks . ' week'));
 		}
 
@@ -174,27 +174,27 @@ class ReviewerForm extends Form {
 		$selectionType = (int) $request->getUserVar('selectionType');
 		$stageId = $reviewRound->getStageId();
 
-		$this->setData('submissionId', $this->getMonographId());
+		$this->setData('submissionId', $this->getSubmissionId());
 		$this->setData('stageId', $stageId);
 		$this->setData('reviewMethod', $reviewMethod);
 		$this->setData('reviewRoundId', $reviewRound->getId());
 		$this->setData('reviewerId', $reviewerId);
 
 		import('classes.mail.MonographMailTemplate');
-		$template = new MonographMailTemplate($monograph, 'REVIEW_REQUEST');
+		$template = new MonographMailTemplate($submission, 'REVIEW_REQUEST');
 		if ($template) {
 			$user = $request->getUser();
 			$dispatcher = $request->getDispatcher();
-			$press = $request->getPress();
+			$context = $request->getContext();
 			$template->assignParams(array(
-				'pressUrl' => $dispatcher->url($request, ROUTE_PAGE, $press->getPath()),
+				'pressUrl' => $dispatcher->url($request, ROUTE_PAGE, $context->getPath()),
 				'editorialContactSignature' => $user->getContactSignature(),
 				'signatureFullName' => $user->getFullname(),
 				'messageToReviewer' => __('reviewer.step1.requestBoilerplate'),
-				'submissionReviewUrl' => $dispatcher->url($request, ROUTE_PAGE, null, 'reviewer', 'submission', null, array('submissionId' => $this->getMonographId()))
+				'submissionReviewUrl' => $dispatcher->url($request, ROUTE_PAGE, null, 'reviewer', 'submission', null, array('submissionId' => $this->getSubmissionId()))
 			));
 		}
-		$this->setData('personalMessage', $template->getBody() . "\n" . $press->getSetting('emailSignature'));
+		$this->setData('personalMessage', $template->getBody() . "\n" . $context->getSetting('emailSignature'));
 		$this->setData('responseDueDate', $responseDueDate);
 		$this->setData('reviewDueDate', $reviewDueDate);
 		$this->setData('selectionType', $selectionType);
@@ -215,10 +215,10 @@ class ReviewerForm extends Form {
 		$templateMgr->assign('reviewerActions', $this->getReviewerFormActions());
 
 		// Get the reviewer user groups for the create new reviewer/enroll existing user tabs
-		$press = $request->getPress();
+		$context = $request->getContext();
 		$userGroupDao = DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */
 		$reviewRound = $this->getReviewRound();
-		$reviewerUserGroups = $userGroupDao->getUserGroupsByStage($press->getId(), $reviewRound->getStageId(), false, false, ROLE_ID_REVIEWER);
+		$reviewerUserGroups = $userGroupDao->getUserGroupsByStage($context->getId(), $reviewRound->getStageId(), false, false, ROLE_ID_REVIEWER);
 		$userGroups = array();
 		while($userGroup = $reviewerUserGroups->next()) {
 			$userGroups[$userGroup->getId()] = $userGroup->getLocalizedName();
@@ -261,8 +261,8 @@ class ReviewerForm extends Form {
 	 */
 	function execute($args, $request) {
 		$seriesEditorSubmissionDao = DAORegistry::getDAO('SeriesEditorSubmissionDAO');
-		$submission = $seriesEditorSubmissionDao->getById($this->getMonographId());
-		$press = $request->getPress();
+		$submission = $seriesEditorSubmissionDao->getById($this->getSubmissionId());
+		$context = $request->getContext();
 
 		$currentReviewRound = $this->getReviewRound();
 		$stageId = $currentReviewRound->getStageId();
@@ -272,7 +272,7 @@ class ReviewerForm extends Form {
 		// Get reviewer id and validate it.
 		$reviewerId = (int) $this->getData('reviewerId');
 
-		if (!$this->_isValidReviewer($press, $submission, $currentReviewRound, $reviewerId)) {
+		if (!$this->_isValidReviewer($context, $submission, $currentReviewRound, $reviewerId)) {
 			fatalError('Invalid reviewer id.');
 		}
 
@@ -329,7 +329,7 @@ class ReviewerForm extends Form {
 	function getSearchByNameAction($request) {
 		$reviewRound = $this->getReviewRound();
 
-		$actionArgs['submissionId'] = $this->getMonographId();
+		$actionArgs['submissionId'] = $this->getSubmissionId();
 		$actionArgs['stageId'] = $reviewRound->getStageId();
 		$actionArgs['reviewRoundId'] = $reviewRound->getId();
 		$actionArgs['selectionType'] = REVIEWER_SELECT_SEARCH_BY_NAME;
@@ -348,13 +348,15 @@ class ReviewerForm extends Form {
 	//
 	/**
 	 * Check if a given user id is enrolled in reviewer user group.
-	 * @param $press Press
+	 * @param $context Context
+	 * @param $submission Submission
+	 * @param $reviewRound ReviewRound
 	 * @param $reviewerId int
 	 * @return boolean
 	 */
-	function _isValidReviewer($press, $monograph, $reviewRound, $reviewerId) {
+	function _isValidReviewer($context, $submission, $reviewRound, $reviewerId) {
 		$userDao = DAORegistry::getDAO('UserDAO'); /* @var $userDao UserDAO */
-		$reviewerFactory = $userDao->getReviewersNotAssignedToSubmission($press->getId(), $monograph->getId(), $reviewRound);
+		$reviewerFactory = $userDao->getReviewersNotAssignedToSubmission($context->getId(), $submission->getId(), $reviewRound);
 		$reviewersArray = $reviewerFactory->toAssociativeArray();
 		if (array_key_exists($reviewerId, $reviewersArray)) {
 			return true;

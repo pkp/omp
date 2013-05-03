@@ -33,7 +33,7 @@ class ThankReviewerForm extends Form {
 	// Getters and Setters
 	//
 	/**
-	 * Get the Monograph
+	 * Get the review assignment
 	 * @return ReviewAssignment
 	 */
 	function getReviewAssignment() {
@@ -51,17 +51,17 @@ class ThankReviewerForm extends Form {
 	function initData($args, $request) {
 		$userDao = DAORegistry::getDAO('UserDAO');
 		$user = $request->getUser();
-		$press = $request->getPress();
+		$context = $request->getContext();
 
 		$reviewAssignment = $this->getReviewAssignment();
 		$reviewerId = $reviewAssignment->getReviewerId();
 		$reviewer = $userDao->getById($reviewerId);
 
-		$monographDao = DAORegistry::getDAO('MonographDAO');
-		$monograph = $monographDao->getById($reviewAssignment->getSubmissionId());
+		$submissionDao = Application::getSubmissionDAO();
+		$submission = $submissionDao->getById($reviewAssignment->getSubmissionId());
 
 		import('classes.mail.MonographMailTemplate');
-		$email = new MonographMailTemplate($monograph, 'REVIEW_ACK');
+		$email = new MonographMailTemplate($submission, 'REVIEW_ACK');
 
 		$dispatcher = $request->getDispatcher();
 		$paramArray = array(
@@ -73,12 +73,12 @@ class ThankReviewerForm extends Form {
 		);
 		$email->assignParams($paramArray);
 
-		$this->setData('submissionId', $monograph->getId());
+		$this->setData('submissionId', $submission->getId());
 		$this->setData('stageId', $reviewAssignment->getStageId());
 		$this->setData('reviewAssignmentId', $reviewAssignment->getId());
 		$this->setData('reviewAssignment', $reviewAssignment);
 		$this->setData('reviewerName', $reviewer->getFullName() . ' <' . $reviewer->getEmail() . '>');
-		$this->setData('message', $email->getBody() . "\n" . $press->getSetting('emailSignature'));
+		$this->setData('message', $email->getBody() . "\n" . $context->getSetting('emailSignature'));
 	}
 
 	/**
@@ -96,21 +96,21 @@ class ThankReviewerForm extends Form {
 	 */
 	function execute($args, $request) {
 		$userDao = DAORegistry::getDAO('UserDAO');
-		$monographDao = DAORegistry::getDAO('MonographDAO');
+		$submissionDao = Application::getSubmissionDAO();
 
 		$reviewAssignment = $this->getReviewAssignment();
 		$reviewerId = $reviewAssignment->getReviewerId();
 		$reviewer = $userDao->getById($reviewerId);
-		$monograph = $monographDao->getById($reviewAssignment->getSubmissionId());
+		$submission = $submissionDao->getById($reviewAssignment->getSubmissionId());
 
 		import('classes.mail.MonographMailTemplate');
-		$email = new MonographMailTemplate($monograph, 'REVIEW_ACK', null, null, null, false);
+		$email = new MonographMailTemplate($submission, 'REVIEW_ACK', null, null, null, false);
 
 		$email->addRecipient($reviewer->getEmail(), $reviewer->getFullName());
 		$email->setBody($this->getData('message'));
 
 		if (!$this->getData('skipEmail')) {
-			HookRegistry::call('ThankReviewerForm::thankReviewer', array(&$monograph, &$reviewAssignment, &$email));
+			HookRegistry::call('ThankReviewerForm::thankReviewer', array(&$submission, &$reviewAssignment, &$email));
 			$email->send($request);
 		}
 

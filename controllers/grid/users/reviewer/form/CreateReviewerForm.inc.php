@@ -17,11 +17,11 @@ import('controllers.grid.users.reviewer.form.ReviewerForm');
 class CreateReviewerForm extends ReviewerForm {
 	/**
 	 * Constructor.
-	 * @param $monograph Monograph
+	 * @param $submission Submission
 	 * @param $reviewRound ReviewRound
 	 */
-	function CreateReviewerForm($monograph, $reviewRound) {
-		parent::ReviewerForm($monograph, $reviewRound);
+	function CreateReviewerForm($submission, $reviewRound) {
+		parent::ReviewerForm($submission, $reviewRound);
 		$this->setTemplate('controllers/grid/users/reviewer/form/createReviewerForm.tpl');
 
 		$this->addCheck(new FormValidator($this, 'firstname', 'required', 'user.profile.form.firstNameRequired'));
@@ -39,7 +39,6 @@ class CreateReviewerForm extends ReviewerForm {
 	 * @see Form::fetch()
 	 */
 	function fetch($request) {
-
 		$searchByNameAction = $this->getSearchByNameAction($request);
 
 		$this->setReviewerFormAction($searchByNameAction);
@@ -121,8 +120,8 @@ class CreateReviewerForm extends ReviewerForm {
 			import('classes.mail.MailTemplate');
 			$mail = new MailTemplate('REVIEWER_REGISTER');
 			if ($mail->isEnabled()) {
-				$press = $request->getPress();
-				$mail->setReplyTo($press->getSetting('contactEmail'), $press->getSetting('contactName'));
+				$context = $request->getContext();
+				$mail->setReplyTo($context->getSetting('contactEmail'), $context->getSetting('contactName'));
 				$mail->assignParams(array('username' => $this->getData('username'), 'password' => $password, 'userFullName' => $user->getFullName()));
 				$mail->addRecipient($user->getEmail(), $user->getFullName());
 				$mail->send($request);
