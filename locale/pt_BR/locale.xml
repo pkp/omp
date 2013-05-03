@@ -245,7 +245,6 @@
 	<message key="grid.action.bookInfo">Dados da submissão</message>
 	<message key="grid.action.moreAnnouncements">Acessar página de notícias</message>
 	<message key="grid.action.monographEmail">Clique para ler esta mensagem</message>
-	<message key="grid.action.viewLibrary">Ver biblioteca de documentos</message>
 	<message key="grid.action.viewSignoffNotes">Ver notas de homologação</message>
 	<message key="grid.action.fileUnconsider">Correções realizadas na prova. Esta tarefa pode ser desconsiderada.</message>
 	<message key="grid.action.approveProofs">Ver grid de provas</message>

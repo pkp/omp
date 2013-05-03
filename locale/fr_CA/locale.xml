@@ -247,7 +247,6 @@
 	<message key="grid.action.bookInfo">Renseignements sur la soumission</message>
 	<message key="grid.action.moreAnnouncements">Consulter la page des communiqués de presse</message>
 	<message key="grid.action.monographEmail">Cliquer pour lire ce courriel</message>
-	<message key="grid.action.viewLibrary">Visionner la bibliothèque de documents</message>
 	<message key="grid.action.viewSignoffNotes">Visionner les notes de certification de conformité</message>
 	<message key="grid.action.fileUnconsider">Les épreuves ont été corrigées. Vous pourriez ne pas tenir compte de cette tâche.</message>
 	<message key="grid.action.approveProofs">Visionner la grille des épreuves</message>

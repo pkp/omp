@@ -215,7 +215,6 @@
 	<message key="grid.action.bookInfo">Submission Info</message>
 	<message key="grid.action.moreAnnouncements">Go to press announcements page</message>
 	<message key="grid.action.monographEmail">Click to read this email</message>
-	<message key="grid.action.viewLibrary">View Document Library</message>
 	<message key="grid.action.viewSignoffNotes">View signoff notes</message>
 	<message key="grid.action.fileUnconsider">Proofing corrections made. You may unconsider this task</message>
 	<message key="grid.action.approveProofs">View the proofs grid</message>
