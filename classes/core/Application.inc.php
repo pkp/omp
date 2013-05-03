@@ -178,6 +178,13 @@ class Application extends PKPApplication {
 	}
 
 	/**
+	 * Get the DAO for ROLE_ID_SUB_EDITOR roles.
+	 */
+	static function getSubEditorDAO() {
+		return DAORegistry::getDAO('SeriesEditorDAO');
+	}
+
+	/**
 	 * Get the stages used by the application.
 	 */
 	static function getApplicationStages() {
