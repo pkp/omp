@@ -107,7 +107,7 @@
 <script src="{$baseUrl}/lib/pkp/js/pages/workflow/SubmissionHeaderHandler.js"></script>
 <script src="{$baseUrl}/lib/pkp/js/pages/workflow/EditorDecisionsHandler.js"></script>
 <script src="{$baseUrl}/lib/pkp/js/pages/workflow/ProductionHandler.js"></script>
-<script src="{$baseUrl}/js/controllers/grid/users/reviewer/AdvancedReviewerSearchHandler.js"></script>
+<script src="{$baseUrl}/lib/pkp/js/controllers/grid/users/reviewer/AdvancedReviewerSearchHandler.js"></script>
 <script src="{$baseUrl}/lib/pkp/js/controllers/grid/users/stageParticipant/form/AddParticipantFormHandler.js"></script>
 <script src="{$baseUrl}/js/controllers/grid/content/spotlights/form/SpotlightFormHandler.js"></script>
 <script src="{$baseUrl}/js/controllers/grid/files/signoff/form/AddAuditorFormHandler.js"></script>
