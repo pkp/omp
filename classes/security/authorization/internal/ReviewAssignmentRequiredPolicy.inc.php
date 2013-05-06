@@ -40,9 +40,10 @@ class ReviewAssignmentRequiredPolicy extends DataObjectRequiredPolicy {
 		if (!is_a($reviewAssignment, 'ReviewAssignment')) return AUTHORIZATION_DENY;
 
 		// Ensure that the review assignment actually belongs to the
-		// authorized monograph.
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-		if ($reviewAssignment->getSubmissionId() != $monograph->getId()) AUTHORIZATION_DENY;
+		// authorized submission.
+		$submission = $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION);
+		assert(is_a($submission, 'Submission'));
+		if ($reviewAssignment->getSubmissionId() != $submission->getId()) AUTHORIZATION_DENY;
 
 		// Ensure that the review assignment is for this workflow stage
 		$stageId = $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
