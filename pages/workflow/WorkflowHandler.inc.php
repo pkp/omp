@@ -40,69 +40,6 @@ class WorkflowHandler extends PKPWorkflowHandler {
 
 
 	//
-	// Implement template methods from PKPHandler
-	//
-	/**
-	 * Setup variables for the template
-	 * @param $request Request
-	 */
-	function setupTemplate($request) {
-		parent::setupTemplate($request);
-		AppLocale::requireComponents(LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_APP_SUBMISSION, LOCALE_COMPONENT_APP_EDITOR, LOCALE_COMPONENT_PKP_GRID);
-
-		$router = $request->getRouter();
-
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-		$stageId = $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
-
-		// Construct array with workflow stages data.
-		$userGroupDao = DAORegistry::getDAO('UserGroupDAO');
-		$workflowStages = $userGroupDao->getWorkflowStageKeysAndPaths();
-
-		$templateMgr = TemplateManager::getManager($request);
-
-		// Assign the authorized monograph.
-		$templateMgr->assign_by_ref('submission', $monograph);
-
-		// Assign workflow stages related data.
-		$templateMgr->assign('stageId', $stageId);
-		$templateMgr->assign('monographStageId', $monograph->getStageId());
-		$templateMgr->assign('workflowStages', $workflowStages);
-
-		// Get the right notifications type based on current stage id.
-		$notificationMgr = new NotificationManager();
-		$editorAssignmentNotificationType = $this->_getEditorAssignmentNotificationTypeByStageId($stageId);
-
-		// Define the workflow notification options.
-		$notificationRequestOptions = array(
-			NOTIFICATION_LEVEL_TASK => array(
-				$editorAssignmentNotificationType => array(ASSOC_TYPE_MONOGRAPH, $monograph->getId())
-			),
-			NOTIFICATION_LEVEL_TRIVIAL => array()
-		);
-
-		$signoffNotificationType = $this->_getSignoffNotificationTypeByStageId($stageId);
-		if (!is_null($signoffNotificationType)) {
-			$notificationRequestOptions[NOTIFICATION_LEVEL_TASK][$signoffNotificationType] = array(ASSOC_TYPE_MONOGRAPH, $monograph->getId());
-		}
-
-		$templateMgr->assign('workflowNotificationRequestOptions', $notificationRequestOptions);
-
-		import('controllers.modals.submissionMetadata.linkAction.CatalogEntryLinkAction');
-		 $templateMgr->assign(
-			'submissionEntryAction',
-			new CatalogEntryLinkAction($request, $monograph->getId(), $stageId)
-		);
-
-		import('lib.pkp.controllers.informationCenter.linkAction.SubmissionInfoCenterLinkAction');
-		$templateMgr->assign(
-			'submissionInformationCenterAction',
-			new SubmissionInfoCenterLinkAction($request, $monograph->getId())
-		);
-	}
-
-
-	//
 	// Public handler methods
 	//
 	/**
