@@ -5,7 +5,7 @@
  * Copyright (c) 2003-2013 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class CatalogEntryLinkAction
+ * @class SubmissionEntryLinkAction
  * @ingroup controllers_modals_submissionMetadata_linkAction
  *
  * @brief An action to open a modal to allow addition of a submission to the catalog.
@@ -13,7 +13,7 @@
 
 import('lib.pkp.classes.linkAction.LinkAction');
 
-class CatalogEntryLinkAction extends LinkAction {
+class SubmissionEntryLinkAction extends LinkAction {
 
 	/**
 	 * Constructor
@@ -25,7 +25,7 @@ class CatalogEntryLinkAction extends LinkAction {
 	 * none is passed, the first catalog entry tab will be opened.
 	 * @param $image string
 	 */
-	function CatalogEntryLinkAction($request, $monographId, $stageId, $selectedFormatId = null, $image = 'information') {
+	function SubmissionEntryLinkAction($request, $monographId, $stageId, $selectedFormatId = null, $image = 'information') {
 		// Instantiate the modal.
 		$dispatcher = $request->getDispatcher();
 		import('lib.pkp.classes.linkAction.request.AjaxModal');

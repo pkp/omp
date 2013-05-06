@@ -149,8 +149,8 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 					$toolTip = ($this->getCellState($row, $column) == 'completed') ? __('grid.action.formatInCatalogEntry') : null;
 					return array(new LinkAction('publicationFormatTab', new NullAction(), __('monograph.publicationFormat.openTab'), $this->getCellState($row, $column), $toolTip));
 				} else {
-					import('controllers.modals.submissionMetadata.linkAction.CatalogEntryLinkAction');
-					return array(new CatalogEntryLinkAction($request, $monographId, WORKFLOW_STAGE_ID_PRODUCTION, $publicationFormatId, $this->getCellState($row, $column)));
+					import('controllers.modals.submissionMetadata.linkAction.SubmissionEntryLinkAction');
+					return array(new SubmissionEntryLinkAction($request, $monographId, WORKFLOW_STAGE_ID_PRODUCTION, $publicationFormatId, $this->getCellState($row, $column)));
 				}
 				break;
 			case 'isAvailable':
