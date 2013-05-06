@@ -296,6 +296,41 @@ class ReviewerGridHandler extends GridHandler {
 	}
 
 	/**
+	 * Manage reviewer access to files
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return string Serialized JSON object
+	 */
+	function limitFiles($args, $request) {
+		import('controllers.grid.users.reviewer.form.LimitFilesForm');
+		$reviewAssignment = $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ASSIGNMENT);
+		$limitFilesForm = new LimitFilesForm($reviewAssignment);
+		$limitFilesForm->initData();
+		$json = new JSONMessage(true, $limitFilesForm->fetch($request));
+		return $json->getString();
+	}
+
+	/**
+	 * Save a change to reviewer access to files
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return string Serialized JSON object
+	 */
+	function updateLimitFiles($args, $request) {
+		import('controllers.grid.users.reviewer.form.LimitFilesForm');
+		$reviewAssignment = $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ASSIGNMENT);
+		$limitFilesForm = new LimitFilesForm($reviewAssignment);
+		$limitFilesForm->readInputData();
+		if ($limitFilesForm->validate()) {
+			$limitFilesForm->execute();
+			$json = new JSONMessage(true);
+		} else {
+			$json = new JSONMessage(false);
+		}
+		return $json->getString();
+	}
+
+	/**
 	 * Delete a reviewer
 	 * @param $args array
 	 * @param $request PKPRequest
@@ -663,7 +698,7 @@ class ReviewerGridHandler extends GridHandler {
 	 */
 	function _getReviewAssignmentOps() {
 		// Define operations that need a review assignment policy.
-		return array('readReview', 'reviewHistory', 'reviewRead', 'editThankReviewer', 'thankReviewer', 'editReminder', 'sendReminder', 'deleteReviewer', 'sendEmail', 'unconsiderReview');
+		return array('readReview', 'reviewHistory', 'reviewRead', 'editThankReviewer', 'thankReviewer', 'editReminder', 'sendReminder', 'deleteReviewer', 'sendEmail', 'unconsiderReview', 'limitFiles', 'updateLimitFiles');
 
 	}
 
