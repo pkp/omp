@@ -56,7 +56,7 @@ class EditorDecisionHandler extends Handler {
 		import('lib.pkp.classes.security.authorization.internal.ReviewRoundRequiredPolicy');
 		$this->addPolicy(new ReviewRoundRequiredPolicy($request, $args, 'reviewRoundId', $reviewRoundOps));
 
-		// Approve proof need monograph access policy.
+		// Approve proof need submission access policy.
 		$router = $request->getRouter();
 		if ($router->getRequestedOp($request) == 'saveApproveProof') {
 			import('classes.security.authorization.SubmissionFileAccessPolicy');
@@ -98,8 +98,8 @@ class EditorDecisionHandler extends Handler {
 	 * @return string Serialized JSON object
 	 */
 	function saveNewReviewRound($args, $request) {
-		// Retrieve the authorized monograph.
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		// Retrieve the authorized submission.
+		$submission = $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION);
 		// FIXME: this can probably all be managed somewhere.
 		$stageId = $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
 		if ($stageId == WORKFLOW_STAGE_ID_INTERNAL_REVIEW) {
@@ -257,10 +257,10 @@ class EditorDecisionHandler extends Handler {
 	 */
 	function importPeerReviews($args, $request) {
 		// Retrieve the authorized submission.
-		$seriesEditorSubmission =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		$seriesEditorSubmission = $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION);
 
 		// Retrieve the current review round.
-		$reviewRound =& $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ROUND);
+		$reviewRound = $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ROUND);
 
 		// Retrieve peer reviews.
 		import('classes.submission.seriesEditor.SeriesEditorAction');
@@ -283,44 +283,44 @@ class EditorDecisionHandler extends Handler {
 	 */
 	function approveProofs($args, $request) {
 		$this->setupTemplate($request);
-		$press = $request->getPress();
-		$monograph = $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		$context = $request->getContext();
+		$submission = $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION);
 		$publicationFormatId = $request->getUserVar('publicationFormatId');
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO'); /* @var $publicationFormatDao PublicationFormatDAO */
 
-		$publicationFormat = $publicationFormatDao->getById($publicationFormatId, $monograph->getId(), $press->getId());
+		$publicationFormat = $publicationFormatDao->getById($publicationFormatId, $submission->getId(), $context->getId());
 		if (!is_a($publicationFormat, 'PublicationFormat')) {
 			fatalError('Invalid publication format id!');
 		}
 
 		$templateMgr = TemplateManager::getManager($request);
 		$templateMgr->assign('publicationFormat', $publicationFormat);
-		$templateMgr->assign('monograph', $monograph);
+		$templateMgr->assign('submission', $submission);
 
 		return $templateMgr->fetchJson('controllers/modals/editorDecision/approveProofs.tpl');
 	}
 
 	/**
-	 * Approve a proof monograph file.
+	 * Approve a proof submission file.
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
 	function saveApproveProof($args, $request) {
-		$monographFile =& $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION_FILE);
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		$submissionFile = $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION_FILE);
+		$submission = $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION);
 
 		// Make sure we only alter files associated with a publication format.
-		if ($monographFile->getAssocType() !== ASSOC_TYPE_PUBLICATION_FORMAT) {
+		if ($submissionFile->getAssocType() !== ASSOC_TYPE_PUBLICATION_FORMAT) {
 			fatalError('The requested file is not associated with any publication format.');
 		}
-		if ($monographFile->getViewable()) {
+		if ($submissionFile->getViewable()) {
 
 			// No longer expose the file to readers.
-			$monographFile->setViewable(false);
+			$submissionFile->setViewable(false);
 		} else {
 
 			// Expose the file to readers (e.g. via e-commerce).
-			$monographFile->setViewable(true);
+			$submissionFile->setViewable(true);
 
 			// Log the approve proof event.
 			import('classes.log.MonographLog');
@@ -328,20 +328,20 @@ class EditorDecisionHandler extends Handler {
 			$user = $request->getUser();
 
 			$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
-			$publicationFormat = $publicationFormatDao->getById($monographFile->getAssocId(), $monograph->getId());
+			$publicationFormat = $publicationFormatDao->getById($submissionFile->getAssocId(), $submission->getId());
 
-			MonographLog::logEvent($request, $monograph, SUBMISSION_LOG_PROOFS_APPROVED, 'submission.event.proofsApproved', array('formatName' => $publicationFormat->getLocalizedName(),'name' => $user->getFullName(), 'username' => $user->getUsername()));
+			MonographLog::logEvent($request, $submission, SUBMISSION_LOG_PROOFS_APPROVED, 'submission.event.proofsApproved', array('formatName' => $publicationFormat->getLocalizedName(),'name' => $user->getFullName(), 'username' => $user->getUsername()));
 		}
 
 		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
-		$submissionFileDao->updateObject($monographFile);
+		$submissionFileDao->updateObject($submissionFile);
 
-		// update the monograph's file index
+		// update the submission's file index
 		import('classes.search.MonographSearchIndex');
-		MonographSearchIndex::clearMonographFiles($monograph);
-		MonographSearchIndex::indexMonographFiles($monograph);
+		MonographSearchIndex::clearMonographFiles($submission);
+		MonographSearchIndex::indexMonographFiles($submission);
 
-		return DAO::getDataChangedEvent($monographFile->getId());
+		return DAO::getDataChangedEvent($submissionFile->getId());
 	}
 
 	//
@@ -376,8 +376,8 @@ class EditorDecisionHandler extends Handler {
 	 * @return string Serialized JSON object
 	 */
 	private function _saveEditorDecision($args, $request, $formName, $redirectOp = null, $decision = null) {
-		// Retrieve the authorized monograph.
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		// Retrieve the authorized submission.
+		$submission = $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION);
 		// Retrieve the decision
 		if (is_null($decision)) {
 			$decision = (int)$request->getUserVar('decision');
@@ -395,12 +395,12 @@ class EditorDecisionHandler extends Handler {
 				$request,
 				array($editorDecisionNotificationType,
 					NOTIFICATION_TYPE_PENDING_INTERNAL_REVISIONS, NOTIFICATION_TYPE_PENDING_EXTERNAL_REVISIONS),
-				array($monograph->getUserId()),
-				ASSOC_TYPE_MONOGRAPH,
-				$monograph->getId()
+				array($submission->getUserId()),
+				ASSOC_TYPE_SUBMISSION,
+				$submission->getId()
 			);
 
-			$reviewRound =& $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ROUND);
+			$reviewRound = $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ROUND);
 			if ($reviewRound) {
 				$notificationMgr->updateNotification(
 					$request,
@@ -421,7 +421,7 @@ class EditorDecisionHandler extends Handler {
 
 			if ($redirectOp) {
 				$dispatcher = $this->getDispatcher();
-				$redirectUrl = $dispatcher->url($request, ROUTE_PAGE, null, 'workflow', $redirectOp, array($monograph->getId()));
+				$redirectUrl = $dispatcher->url($request, ROUTE_PAGE, null, 'workflow', $redirectOp, array($submission->getId()));
 				return $request->redirectUrlJson($redirectUrl);
 			} else {
 				// Needed to update review round status notifications.
@@ -448,15 +448,15 @@ class EditorDecisionHandler extends Handler {
 	 * @return EditorDecisionForm
 	 */
 	private function _getEditorDecisionForm($formName, $decision) {
-		// Retrieve the authorized monograph.
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		// Retrieve the authorized submission.
+		$submission = $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION);
 		// Retrieve the stage id
 		$stageId = $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
 
 		import("controllers.modals.editorDecision.form.$formName");
 		if ($stageId == WORKFLOW_STAGE_ID_INTERNAL_REVIEW || $stageId == WORKFLOW_STAGE_ID_EXTERNAL_REVIEW) {
-			$reviewRound =& $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ROUND);
-			$editorDecisionForm = new $formName($monograph, $decision, $stageId, $reviewRound);
+			$reviewRound = $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ROUND);
+			$editorDecisionForm = new $formName($submission, $decision, $stageId, $reviewRound);
 			// We need a different save operation in review stages to authorize
 			// the review round object.
 			if (is_a($editorDecisionForm, 'PromoteForm')) {
@@ -465,7 +465,7 @@ class EditorDecisionHandler extends Handler {
 				$editorDecisionForm->setSaveFormOperation('saveSendReviewsInReview');
 			}
 		} else {
-			$editorDecisionForm = new $formName($monograph, $decision, $stageId);
+			$editorDecisionForm = new $formName($submission, $decision, $stageId);
 		}
 
 		if (is_a($editorDecisionForm, $formName)) {
