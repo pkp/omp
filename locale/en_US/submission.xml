@@ -53,9 +53,6 @@
 	<message key="grid.action.deleteChapter">Delete this chapter</message>
 
 	<!-- workflow navigation keys -->
-	<message key="submission.currentStage">Current stage</message>
-	<message key="submission.noActionRequired">No action required</message>
-	<message key="submission.actionNeeded">Needs action</message>
 	<message key="submission.productionReady">Book available</message>
 
 	<!-- Submission wizard -->

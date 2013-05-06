@@ -242,7 +242,6 @@
 	<message key="grid.action.addCode">Incluir código</message>
 	<message key="grid.action.addSpotlight">Incluir destaque</message>
 	<message key="grid.action.publicationFormatTab">Exibir a aba de formato de publicação</message>
-	<message key="grid.action.bookInfo">Dados da submissão</message>
 	<message key="grid.action.moreAnnouncements">Acessar página de notícias</message>
 	<message key="grid.action.monographEmail">Clique para ler esta mensagem</message>
 	<message key="grid.action.viewSignoffNotes">Ver notas de homologação</message>

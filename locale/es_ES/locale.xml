@@ -257,7 +257,6 @@
 	<message key="grid.action.addCode">Añadir código</message>
 	<message key="grid.action.addSpotlight">Añadir destacado</message>
 	<message key="grid.action.publicationFormatTab">Show the publication format tab</message>
-	<message key="grid.action.bookInfo">Submission Info</message>
 	<message key="grid.action.moreAnnouncements">Go to press announcements page</message>
 	<message key="grid.action.monographEmail">Click to read this email</message>
 	<message key="grid.action.viewSignoffNotes">View signoff notes</message>
