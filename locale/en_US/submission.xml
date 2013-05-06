@@ -77,8 +77,6 @@
 	<message key="submission.submit.form.contributorRoleRequired">Please select the contributor's role.</message>
 	<message key="submission.submit.currentFile">Current file</message>
 	<message key="submission.submit.submissionFile">Submission File</message>
-	<message key="submission.submit.submissionComplete">Submission complete</message>
-	<message key="submission.submit.submissionCompleteThanks">Thank you for your interest in publishing with {$contextName}.</message>
 	<message key="submission.submit.prepare">Prepare</message>
 	<message key="submission.submit.catalog">Catalog</message>
 	<message key="submission.submit.metadata">Metadata</message>
@@ -87,12 +85,7 @@
 	<message key="submission.submit.nextSteps">Next Steps</message>
 	<message key="submission.submit.coverNote">Cover Note to Editor</message>
 	<message key="submission.submit.generalInformation">General Information</message>
-	<message key="submission.submit.whatNext">What Happens Next?</message>
 	<message key="submission.submit.whatNext.description">The press has been notified of your submission, and you've been emailed a confirmation for your records.  Once the editor has reviewed the submission, they will contact you.</message>
-	<message key="submission.submit.whatNext.forNow">For now, you can:</message>
-	<message key="submission.submit.whatNext.review">Review this submission</message>
-	<message key="submission.submit.whatNext.create">Create a new submission</message>
-	<message key="submission.submit.whatNext.return">Return to your dashboard</message>
 	<message key="submission.submit.checklistErrors">Please read and check off the items in the submission checklist.  There are {$itemsRemaining} items left unchecked.</message>
 	<message key="submission.submit.placement">Submission Placement</message>
 	<message key="submission.submit.placement.seriesDescription">If the book should also be considered for a series...</message>
