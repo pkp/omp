@@ -30,8 +30,8 @@ class OmpEditorDecisionAccessPolicy extends ContextPolicy {
 		$this->addPolicy(new WorkflowStageAccessPolicy($request, $args, $roleAssignments, $submissionParameterName, $stageId));
 
 		// An editor decision can only be made if there is a press editor assigned to the stage
-		import('classes.security.authorization.internal.PressManagerRequiredPolicy');
-		$this->addPolicy(new PressManagerRequiredPolicy($request));
+		import('lib.pkp.classes.security.authorization.internal.ManagerRequiredPolicy');
+		$this->addPolicy(new ManagerRequiredPolicy($request));
 	}
 }
 
