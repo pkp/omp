@@ -16,7 +16,6 @@
 	<message key="editor.review.enrollReviewer">Enroll an Existing User as Reviewer</message>
 	<message key="editor.review.enrollReviewer.short">Enroll Existing User</message>
 	<message key="editor.review.createReviewer">Create New Reviewer</message>
-	<message key="editor.review.notInitiated">The review process has not yet been initiated.</message>
 	<message key="editor.signoff.approved">Approved</message>
 	<message key="editor.monograph.personalMessageToUser">Email to be sent to user</message>
 	<message key="editor.monograph.taskSchedule">Task schedule</message>
