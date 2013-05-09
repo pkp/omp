@@ -13,39 +13,19 @@
  */
 
 // Import the base Handler.
-import('classes.handler.Handler');
+import('lib.pkp.controllers.tab.publicationEntry.PublicationEntryTabHandler');
 
-// Import classes for logging.
-import('classes.log.MonographLog');
-import('classes.log.SubmissionEventLogEntry');
-
-class CatalogEntryTabHandler extends Handler {
-
-
-	/** @var string */
-	var $_currentTab;
-
-	/** @var Monograph object */
-	var $_monograph;
-
-	/** @var int stageId */
-	var $_stageId;
-
-	/** @var int */
-	var $_tabPosition;
-
+class CatalogEntryTabHandler extends PublicationEntryTabHandler {
 	/**
 	 * Constructor
 	 */
 	function CatalogEntryTabHandler() {
-		parent::Handler();
+		parent::PublicationEntryTabHandler();
 		$this->addRoleAssignment(
 			array(ROLE_ID_SUB_EDITOR, ROLE_ID_MANAGER),
 			array(
-				'submissionMetadata',
 				'catalogMetadata',
 				'publicationMetadata',
-				'saveForm',
 				'uploadCoverImage',
 			)
 		);
@@ -53,95 +33,8 @@ class CatalogEntryTabHandler extends Handler {
 
 
 	//
-	// Getters and Setters
-	//
-	/**
-	 * Get the current tab name.
-	 * @return string
-	 */
-	function getCurrentTab() {
-		return $this->_currentTab;
-	}
-
-	/**
-	 * Set the current tab name.
-	 * @param $currentTab string
-	 */
-	function setCurrentTab($currentTab) {
-		$this->_currentTab = $currentTab;
-	}
-
-
-	//
-	// Extended methods from Handler
-	//
-	/**
-	 * @see PKPHandler::initialize()
-	 */
-	function initialize($request) {
-		$this->setCurrentTab($request->getUserVar('tab'));
-		$this->_monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-		$this->_stageId =& $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
-		$this->_tabPosition = (int) $request->getUserVar('tabPos');
-
-		AppLocale::requireComponents(LOCALE_COMPONENT_APP_COMMON, LOCALE_COMPONENT_APP_SUBMISSION);
-		$this->setupTemplate($request);
-	}
-
-	/**
-	 * @see PKPHandler::authorize()
-	 */
-	function authorize($request, &$args, $roleAssignments) {
-		$stageId = (int) $request->getUserVar('stageId');
-		import('classes.security.authorization.WorkflowStageAccessPolicy');
-		$this->addPolicy(new WorkflowStageAccessPolicy($request, $args, $roleAssignments, 'submissionId', $stageId));
-		return parent::authorize($request, $args, $roleAssignments);
-	}
-
-
-	//
 	// Public handler methods
 	//
-	/**
-	 * Show the original submission metadata form.
-	 * @param $request Request
-	 * @param $args array
-	 * @return string JSON message
-	 */
-	function submissionMetadata($args, $request) {
-
-		import('controllers.modals.submissionMetadata.form.CatalogEntrySubmissionReviewForm');
-
-		$monograph = $this->getMonograph();
-		$stageId = $this->getStageId();
-
-		$catalogEntrySubmissionReviewForm = new CatalogEntrySubmissionReviewForm($monograph->getId(), $stageId, array('displayedInContainer' => true));
-
-		$catalogEntrySubmissionReviewForm->initData($args, $request);
-		$json = new JSONMessage(true, $catalogEntrySubmissionReviewForm->fetch($request));
-		return $json->getString();
-	}
-
-	/**
-	 * @return the authorized monograph for this handler
-	 */
-	function getMonograph() {
-		return $this->_monograph;
-	}
-
-	/**
-	 * @return the authorized workflow stage id for this handler
-	 */
-	function getStageId() {
-		return $this->_stageId;
-	}
-
-	/**
-	 * @return the current tab position
-	 */
-	function getTabPosition() {
-		return $this->_tabPosition;
-	}
 
 	/**
 	 * Show the catalog metadata form.
@@ -152,11 +45,11 @@ class CatalogEntryTabHandler extends Handler {
 	function catalogMetadata($args, $request) {
 		import('controllers.tab.catalogEntry.form.CatalogEntryCatalogMetadataForm');
 
-		$monograph = $this->getMonograph();
+		$submission = $this->getSubmission();
 		$stageId = $this->getStageId();
 		$user = $request->getUser();
 
-		$catalogEntryCatalogMetadataForm = new CatalogEntryCatalogMetadataForm($monograph->getId(), $user->getId(), $stageId, array('displayedInContainer' => true));
+		$catalogEntryCatalogMetadataForm = new CatalogEntryCatalogMetadataForm($submission->getId(), $user->getId(), $stageId, array('displayedInContainer' => true));
 
 		$catalogEntryCatalogMetadataForm->initData($args, $request);
 		$json = new JSONMessage(true, $catalogEntryCatalogMetadataForm->fetch($request));
@@ -174,10 +67,10 @@ class CatalogEntryTabHandler extends Handler {
 		$publicationFormatId = (int) $request->getUserVar('publicationFormatId');
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
 
-		$monograph = $this->getMonograph();
+		$submission = $this->getSubmission();
 		$stageId = $this->getStageId();
 
-		$publicationFormat =& $publicationFormatDao->getById($publicationFormatId, $monograph->getId());
+		$publicationFormat =& $publicationFormatDao->getById($publicationFormatId, $submission->getId());
 
 		if (!$publicationFormat) {
 			$json = new JSONMessage(false, __('monograph.publicationFormat.formatDoesNotExist'));
@@ -185,88 +78,10 @@ class CatalogEntryTabHandler extends Handler {
 		}
 
 		import('controllers.tab.catalogEntry.form.CatalogEntryPublicationMetadataForm');
-		$catalogEntryPublicationMetadataForm = new CatalogEntryPublicationMetadataForm($monograph->getId(), $publicationFormatId, $publicationFormat->getPhysicalFormat(), $stageId, array('displayedInContainer' => true, 'tabPos' => $this->getTabPosition()));
+		$catalogEntryPublicationMetadataForm = new CatalogEntryPublicationMetadataForm($submission->getId(), $publicationFormatId, $publicationFormat->getPhysicalFormat(), $stageId, array('displayedInContainer' => true, 'tabPos' => $this->getTabPosition()));
 		$catalogEntryPublicationMetadataForm->initData($args, $request);
 		$json = new JSONMessage(true, $catalogEntryPublicationMetadataForm->fetch($request));
 		return $json->getString();
-	}
-
-	/**
-	 * Save the forms handled by this Handler.
-	 * @param $request Request
-	 * @param $args array
-	 * @return string JSON message
-	 */
-	function saveForm($args, $request) {
-		$json = new JSONMessage();
-		$form = null;
-
-		$monograph = $this->getMonograph();
-		$stageId = $this->getStageId();
-		$notificationKey = null;
-
-		switch ($this->getCurrentTab()) {
-
-			case 'submission':
-				import('controllers.modals.submissionMetadata.form.CatalogEntrySubmissionReviewForm');
-				$form = new CatalogEntrySubmissionReviewForm($monograph->getId(), $stageId, array('displayedInContainer' => true));
-				$notificationKey = 'notification.savedSubmissionMetadata';
-				break;
-			case 'catalog':
-				import('controllers.tab.catalogEntry.form.CatalogEntryCatalogMetadataForm');
-				$user = $request->getUser();
-				$form = new CatalogEntryCatalogMetadataForm($monograph->getId(), $user->getId(), $stageId, array('displayedInContainer' => true, 'tabPos' => $this->getTabPosition()));
-				$notificationKey = 'notification.savedCatalogMetadata';
-				MonographLog::logEvent($request, $monograph, SUBMISSION_LOG_CATALOG_METADATA_UPDATE, 'submission.event.catalogMetadataUpdated');
-				break;
-			default: // publication format tabs
-				import('controllers.tab.catalogEntry.form.CatalogEntryPublicationMetadataForm');
-				$publicationFormatId = $request->getUserVar('publicationFormatId');
-
-				// perform some validation to make sure this format is enabled and assigned to this monograph
-				$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
-				$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
-				$publishedMonograph =& $publishedMonographDao->getById($monograph->getId());
-				$formats =& $publicationFormatDao->getByMonographId($monograph->getId());
-				$form = null;
-				while ($format =& $formats->next()) {
-					if ($format->getId() == $publicationFormatId) {
-						$form = new CatalogEntryPublicationMetadataForm($monograph->getId(), $publicationFormatId, $format->getId(), $stageId, array('displayedInContainer' => true, 'tabPos' => $this->getTabPosition()));
-						$notificationKey = 'notification.savedPublicationFormatMetadata';
-						MonographLog::logEvent($request, $monograph, SUBMISSION_LOG_PUBLICATION_FORMAT_METADATA_UPDATE, 'submission.event.publicationMetadataUpdated', array('formatName' => $format->getLocalizedName()));
-						break;
-					}
-				}
-				break;
-		}
-
-		if ($form) { // null if we didn't have a valid tab
-			$form->readInputData($request);
-			if($form->validate()) {
-				$form->execute($request);
-				// Create trivial notification in place on the form
-				$notificationManager = new NotificationManager();
-				$user = $request->getUser();
-				$notificationManager->createTrivialNotification($user->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __($notificationKey)));
-			} else {
-				// Could not validate; redisplay the form.
-				$json->setStatus(true);
-				$json->setContent($form->fetch($request));
-			}
-
-			if ($request->getUserVar('displayedInContainer')) {
-				$router = $request->getRouter();
-				$dispatcher = $router->getDispatcher();
-				$url = $dispatcher->url($request, ROUTE_COMPONENT, null, 'modals.submissionMetadata.CatalogEntryHandler', 'fetch', null, array('submissionId' => $monograph->getId(), 'stageId' => $stageId, 'tabPos' => $this->getTabPosition(), 'hideHelp' => true));
-				$json->setAdditionalAttributes(array('reloadContainer' => true, 'tabsUrl' => $url));
-				$json->setContent(true); // prevents modal closure
-				return $json->getString();
-			} else {
-				return $json->getString(); // closes the modal
-			}
-		} else {
-			fatalError('Unknown or unassigned format id!');
-		}
 	}
 
 	/**
@@ -291,6 +106,64 @@ class CatalogEntryTabHandler extends Handler {
 		}
 
 		return $json->getString();
+	}
+
+	/**
+	 * Get the form for a particular tab.
+	 */
+	function _getFormFromCurrentTab(&$form, &$notificationKey, $request) {
+		parent::_getFormFromCurrentTab($form, $notificationKey, $request); // give PKP-lib a chance to set the form and key.
+
+		if (!$form) { // nothing applicable in parent.
+			$submission = $this->getSubmission();
+			switch ($this->getCurrentTab()) {
+				case 'catalog':
+					import('controllers.tab.catalogEntry.form.CatalogEntryCatalogMetadataForm');
+					$user = $request->getUser();
+					$form = new CatalogEntryCatalogMetadataForm($submission->getId(), $user->getId(), $this->getStageId(), array('displayedInContainer' => true, 'tabPos' => $this->getTabPosition()));
+					$notificationKey = 'notification.savedCatalogMetadata';
+					PkpLog::logEvent($request, $submission, SUBMISSION_LOG_CATALOG_METADATA_UPDATE, 'submission.event.catalogMetadataUpdated');
+					break;
+				default: // publication format tabs
+					import('controllers.tab.catalogEntry.form.CatalogEntryPublicationMetadataForm');
+				$publicationFormatId = $request->getUserVar('publicationFormatId');
+
+				// perform some validation to make sure this format is enabled and assigned to this monograph
+				$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
+				$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
+				$publishedMonograph =& $publishedMonographDao->getById($submission->getId());
+				$formats =& $publicationFormatDao->getByMonographId($submission->getId());
+				$form = null;
+				while ($format =& $formats->next()) {
+					if ($format->getId() == $publicationFormatId) {
+						$form = new CatalogEntryPublicationMetadataForm($submission->getId(), $publicationFormatId, $format->getId(), $this->getStageId(), array('displayedInContainer' => true, 'tabPos' => $this->getTabPosition()));
+						$notificationKey = 'notification.savedPublicationFormatMetadata';
+						PkpLog::logEvent($request, $submission, SUBMISSION_LOG_PUBLICATION_FORMAT_METADATA_UPDATE, 'submission.event.publicationMetadataUpdated', array('formatName' => $format->getLocalizedName()));
+						break;
+					}
+				}
+				break;
+			}
+		}
+	}
+
+	/**
+	 * Returns an instance of the form used for reviewing a submission's 'submission' metadata.
+	 * @see PublicationEntryTabHandler::_getPublicationEntrySubmissionReviewForm()
+	 * @return PKPForm
+	 */
+	function _getPublicationEntrySubmissionReviewForm() {
+		$submission = $this->getSubmission();
+		import('controllers.modals.submissionMetadata.form.CatalogEntrySubmissionReviewForm');
+		return new CatalogEntrySubmissionReviewForm($submission->getId(), $this->getStageId(), array('displayedInContainer' => true));
+	}
+
+	/**
+	 * return a string to the Handler for this modal.
+	 * @return String
+	 */
+	function _getHandlerClassPath() {
+		return 'modals.submissionMetadata.CatalogEntryHandler';
 	}
 }
 
