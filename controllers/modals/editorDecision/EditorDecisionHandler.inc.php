@@ -174,49 +174,6 @@ class EditorDecisionHandler extends PKPEditorDecisionHandler {
 	//
 	// Private helper methods
 	//
-	/**
-	 * Get operations that need a review round id policy.
-	 * @return array
-	 */
-	protected function _getReviewRoundOps() {
-		return array('promoteInReview', 'savePromoteInReview', 'newReviewRound', 'saveNewReviewRound', 'sendReviewsInReview', 'saveSendReviewsInReview', 'importPeerReviews');
-	}
-
-	/**
-	 * Get an instance of an editor decision form.
-	 * @param $formName string
-	 * @param $decision int
-	 * @return EditorDecisionForm
-	 */
-	protected function _getEditorDecisionForm($formName, $decision) {
-		// Retrieve the authorized submission.
-		$submission = $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION);
-		// Retrieve the stage id
-		$stageId = $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
-
-		import("controllers.modals.editorDecision.form.$formName");
-		if ($stageId == WORKFLOW_STAGE_ID_INTERNAL_REVIEW || $stageId == WORKFLOW_STAGE_ID_EXTERNAL_REVIEW) {
-			$reviewRound = $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ROUND);
-			$editorDecisionForm = new $formName($submission, $decision, $stageId, $reviewRound);
-			// We need a different save operation in review stages to authorize
-			// the review round object.
-			if (is_a($editorDecisionForm, 'PromoteForm')) {
-				$editorDecisionForm->setSaveFormOperation('savePromoteInReview');
-			} else if (is_a($editorDecisionForm, 'SendReviewsForm')) {
-				$editorDecisionForm->setSaveFormOperation('saveSendReviewsInReview');
-			}
-		} else {
-			$editorDecisionForm = new $formName($submission, $decision, $stageId);
-		}
-
-		if (is_a($editorDecisionForm, $formName)) {
-			return $editorDecisionForm;
-		} else {
-			assert(false);
-			return null;
-		}
-	}
-
 	protected function _saveGeneralPromote($args, $request) {
 		// Redirect to the next workflow page after
 		// promoting the submission.
@@ -268,6 +225,14 @@ class EditorDecisionHandler extends PKPEditorDecisionHandler {
 				assert(false);
 				return null;
 		}
+	}
+
+	/**
+	 * Get review-related stage IDs.
+	 * @return array
+	 */
+	protected function _getReviewStages() {
+		return array(WORKFLOW_STAGE_ID_INTERNAL_REVIEW, WORKFLOW_STAGE_ID_EXTERNAL_REVIEW);
 	}
 }
 
