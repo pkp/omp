@@ -19,12 +19,12 @@ class InitiateExternalReviewForm extends InitiateReviewForm {
 
 	/**
 	 * Constructor.
-	 * @param $seriesEditorSubmission SeriesEditorSubmission
+	 * @param $submission Submission
 	 * @param $decision int SUBMISSION_EDITOR_DECISION_...
 	 * @param $stageId int WORKFLOW_STAGE_ID_...
 	 */
-	function InitiateExternalReviewForm($seriesEditorSubmission, $decision, $stageId) {
-		parent::InitiateReviewForm($seriesEditorSubmission, $decision, $stageId, 'controllers/modals/editorDecision/form/initiateExternalReviewForm.tpl');
+	function InitiateExternalReviewForm($submission, $decision, $stageId) {
+		parent::InitiateReviewForm($submission, $decision, $stageId, 'controllers/modals/editorDecision/form/initiateExternalReviewForm.tpl');
 	}
 
 	/**

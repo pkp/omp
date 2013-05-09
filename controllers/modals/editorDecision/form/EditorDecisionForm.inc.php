@@ -18,8 +18,8 @@ import('lib.pkp.classes.form.Form');
 import('lib.pkp.classes.submission.reviewRound.ReviewRound');
 
 class EditorDecisionForm extends Form {
-	/** @var SeriesEditorSubmission The submission associated with the editor decision **/
-	var $_seriesEditorSubmission;
+	/** @var Submission The submission associated with the editor decision **/
+	var $_submission;
 
 	/** @var int The StageId where the decision is being made **/
 	var $_stageId;
@@ -33,14 +33,14 @@ class EditorDecisionForm extends Form {
 
 	/**
 	 * Constructor.
-	 * @param $seriesEditorSubmission SeriesEditorSubmission
+	 * @param $submission Submission
 	 * @param $stageId int
 	 * @param $template string The template to display
 	 * @param $reviewRound ReviewRound
 	 */
-	function EditorDecisionForm(&$seriesEditorSubmission, $decision, $stageId, $template, $reviewRound = null) {
+	function EditorDecisionForm($submission, $decision, $stageId, $template, $reviewRound = null) {
 		parent::Form($template);
-		$this->_seriesEditorSubmission = $seriesEditorSubmission;
+		$this->_submission = $submission;
 		$this->_stageId = $stageId;
 		$this->_reviewRound = $reviewRound;
 		$this->_decision = $decision;
@@ -62,10 +62,10 @@ class EditorDecisionForm extends Form {
 
 	/**
 	 * Get the submission
-	 * @return SeriesEditorSubmission
+	 * @return Submission
 	 */
-	function getSeriesEditorSubmission() {
-		return $this->_seriesEditorSubmission;
+	function getSubmission() {
+		return $this->_submission;
 	}
 
 	/**
@@ -100,7 +100,7 @@ class EditorDecisionForm extends Form {
 	 * @see Form::fetch()
 	 */
 	function fetch($request) {
-		$seriesEditorSubmission = $this->getSeriesEditorSubmission();
+		$submission = $this->getSubmission();
 
 		$reviewRound = $this->getReviewRound();
 		if (is_a($reviewRound, 'ReviewRound')) {
@@ -109,10 +109,10 @@ class EditorDecisionForm extends Form {
 
 		$this->setData('stageId', $this->getStageId());
 
-		// Set the monograph.
+		// Set the submission.
 		$templateMgr = TemplateManager::getManager($request);
-		$templateMgr->assign('submissionId', $seriesEditorSubmission->getId());
-		$templateMgr->assign('monograph', $seriesEditorSubmission);
+		$templateMgr->assign('submissionId', $submission->getId());
+		$templateMgr->assign('submission', $submission);
 
 		// Set the decision related data.
 		$stageDecisions = EditorDecisionActionsManager::getStageDecisions($this->getStageId());
@@ -128,18 +128,18 @@ class EditorDecisionForm extends Form {
 	/**
 	 * Initiate a new review round and add selected files
 	 * to it. Also saves the new round to the submission.
-	 * @param $monograph Monograph
+	 * @param $submission Submission
 	 * @param $stageId integer One of the WORKFLOW_STAGE_ID_* constants.
 	 * @param $request Request
 	 * @param $status integer One of the REVIEW_ROUND_STATUS_* constants.
 	 * @return $newRound integer The round number of the new review round.
 	 */
-	function _initiateReviewRound(&$monograph, $stageId, $request, $status = null) {
+	function _initiateReviewRound($submission, $stageId, $request, $status = null) {
 
 		// If we already have review round for this stage,
 		// we create a new round after the last one.
 		$reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO'); /* @var $reviewRoundDao ReviewRoundDAO */
-		$lastReviewRound =& $reviewRoundDao->getLastReviewRoundBySubmissionId($monograph->getId(), $stageId);
+		$lastReviewRound = $reviewRoundDao->getLastReviewRoundBySubmissionId($submission->getId(), $stageId);
 		if ($lastReviewRound) {
 			$newRound = $lastReviewRound->getRound() + 1;
 		} else {
@@ -148,16 +148,16 @@ class EditorDecisionForm extends Form {
 		}
 
 		// Create a new review round.
-		$reviewRound =& $reviewRoundDao->build($monograph->getId(), $stageId, $newRound, $status);
+		$reviewRound = $reviewRoundDao->build($submission->getId(), $stageId, $newRound, $status);
 
 		// Check for a notification already in place for the current review round.
 		$notificationDao = DAORegistry::getDAO('NotificationDAO');
-		$notificationFactory =& $notificationDao->getByAssoc(
+		$notificationFactory = $notificationDao->getByAssoc(
 			ASSOC_TYPE_REVIEW_ROUND,
 			$reviewRound->getId(),
 			null,
 			NOTIFICATION_TYPE_REVIEW_ROUND_STATUS,
-			$monograph->getPressId()
+			$submission->getContextId()
 		);
 
 		// Create round status notification if there is no notification already.
@@ -167,7 +167,7 @@ class EditorDecisionForm extends Form {
 				$request,
 				null,
 				NOTIFICATION_TYPE_REVIEW_ROUND_STATUS,
-				$monograph->getPressId(),
+				$submission->getContextId(),
 				ASSOC_TYPE_REVIEW_ROUND,
 				$reviewRound->getId(),
 				NOTIFICATION_LEVEL_NORMAL
@@ -178,17 +178,17 @@ class EditorDecisionForm extends Form {
 		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 
 		// Bring in the SUBMISSION_FILE_* constants.
-		import('classes.monograph.MonographFile');
+		import('lib.pkp.classes.submission.SubmissionFile');
 		// Bring in the Manager (we need it).
 		import('lib.pkp.classes.file.SubmissionFileManager');
-		$monographFileManager = new SubmissionFileManager($monograph->getPressId(), $monograph->getId());
+		$submissionFileManager = new SubmissionFileManager($submission->getContextId(), $submission->getId());
 		foreach (array('selectedFiles', 'selectedAttachments') as $userVar) {
 			$selectedFiles = $this->getData($userVar);
 			if(is_array($selectedFiles)) {
 				foreach ($selectedFiles as $fileId) {
 					// Retrieve the file last revision number.
 					$revisionNumber = $submissionFileDao->getLatestRevisionNumber($fileId);
-					list($newFileId, $newRevision) = $monographFileManager->copyFileToFileStage($fileId, $revisionNumber, SUBMISSION_FILE_REVIEW_FILE, null, true);
+					list($newFileId, $newRevision) = $submissionFileManager->copyFileToFileStage($fileId, $revisionNumber, SUBMISSION_FILE_REVIEW_FILE, null, true);
 					$submissionFileDao->assignRevisionToReviewRound($newFileId, $newRevision, $reviewRound);
 				}
 			}

@@ -21,14 +21,14 @@ class EditorDecisionWithEmailForm extends EditorDecisionForm {
 
 	/**
 	 * Constructor.
-	 * @param $seriesEditorSubmission SeriesEditorSubmission
+	 * @param $submission Submission
 	 * @param $decision integer
 	 * @param $stageId integer
 	 * @param $template string The template to display
 	 * @param $reviewRound ReviewRound
 	 */
-	function EditorDecisionWithEmailForm(&$seriesEditorSubmission, $decision, $stageId, $template, $reviewRound = null) {
-		parent::EditorDecisionForm($seriesEditorSubmission, $decision, $stageId, $template, $reviewRound);
+	function EditorDecisionWithEmailForm($submission, $decision, $stageId, $template, $reviewRound = null) {
+		parent::EditorDecisionForm($submission, $decision, $stageId, $template, $reviewRound);
 	}
 
 	//
@@ -58,33 +58,33 @@ class EditorDecisionWithEmailForm extends EditorDecisionForm {
 	 * @param $actionLabels array
 	 */
 	function initData($args, $request, $actionLabels) {
-		$press = $request->getPress();
+		$context = $request->getContext();
 		$router = $request->getRouter();
 		$dispatcher = $router->getDispatcher();
 
-		$seriesEditorSubmission = $this->getSeriesEditorSubmission();
-		$submitter = $seriesEditorSubmission->getUser();
+		$submission = $this->getSubmission();
+		$submitter = $submission->getUser();
 		$user = $request->getUser();
 
 		import('classes.mail.MonographMailTemplate');
 		$emailKeys = array(
-				SUBMISSION_EDITOR_DECISION_ACCEPT => 'EDITOR_DECISION_ACCEPT',
-				SUBMISSION_EDITOR_DECISION_DECLINE => 'EDITOR_DECISION_DECLINE',
-				SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW => 'EDITOR_DECISION_SEND_TO_EXTERNAL',
-				SUBMISSION_EDITOR_DECISION_RESUBMIT => 'EDITOR_DECISION_RESUBMIT',
-				SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS => 'EDITOR_DECISION_REVISIONS',
-				SUBMISSION_EDITOR_DECISION_SEND_TO_PRODUCTION => 'EDITOR_DECISION_SEND_TO_PRODUCTION',
-			);
+			SUBMISSION_EDITOR_DECISION_ACCEPT => 'EDITOR_DECISION_ACCEPT',
+			SUBMISSION_EDITOR_DECISION_DECLINE => 'EDITOR_DECISION_DECLINE',
+			SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW => 'EDITOR_DECISION_SEND_TO_EXTERNAL',
+			SUBMISSION_EDITOR_DECISION_RESUBMIT => 'EDITOR_DECISION_RESUBMIT',
+			SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS => 'EDITOR_DECISION_REVISIONS',
+			SUBMISSION_EDITOR_DECISION_SEND_TO_PRODUCTION => 'EDITOR_DECISION_SEND_TO_PRODUCTION',
+		);
 
-		$email = new MonographMailTemplate($seriesEditorSubmission, $emailKeys[$this->getDecision()]);
+		$email = new MonographMailTemplate($submission, $emailKeys[$this->getDecision()]);
 
 		$paramArray = array(
 			'authorName' => $submitter->getFullName(),
-			'pressName' => $press->getLocalizedName(),
-			'monographTitle' => $seriesEditorSubmission->getLocalizedTitle(),
+			'pressName' => $context->getLocalizedName(),
+			'monographTitle' => $submission->getLocalizedTitle(),
 			'editorialContactSignature' => $user->getContactSignature(),
 			'authorUsername' => $submitter->getUsername(),
-			'submissionUrl' => $dispatcher->url($request, ROUTE_PAGE, null, 'authorDashboard', 'submission', $seriesEditorSubmission->getId()),
+			'submissionUrl' => $dispatcher->url($request, ROUTE_PAGE, null, 'authorDashboard', 'submission', $submission->getId()),
 		);
 		$email->assignParams($paramArray);
 
@@ -95,10 +95,10 @@ class EditorDecisionWithEmailForm extends EditorDecisionForm {
 		}
 
 		$data = array(
-			'submissionId' => $seriesEditorSubmission->getId(),
+			'submissionId' => $submission->getId(),
 			'decision' => $this->getDecision(),
-			'authorName' => $seriesEditorSubmission->getAuthorString(),
-			'personalMessage' => $email->getBody() . "\n" . $press->getSetting('emailSignature'),
+			'authorName' => $submission->getAuthorString(),
+			'personalMessage' => $email->getBody() . "\n" . $context->getSetting('emailSignature'),
 			'actionLabel' => $actionLabels[$this->getDecision()]
 		);
 		foreach($data as $key => $value) {
@@ -128,7 +128,7 @@ class EditorDecisionWithEmailForm extends EditorDecisionForm {
 		if (is_a($reviewRound, 'ReviewRound')) {
 			// URL to retrieve peer reviews:
 			$router = $request->getRouter();
-			$submission = $this->getSeriesEditorSubmission();
+			$submission = $this->getSubmission();
 			$stageId = $reviewRound->getStageId();
 			$this->setData(
 				'peerReviewUrl',
@@ -161,16 +161,16 @@ class EditorDecisionWithEmailForm extends EditorDecisionForm {
 	//
 	/**
 	 * Retrieve the last review round and update it with the new status.
-	 * @param $seriesEditorSubmission SeriesEditorSubmission
+	 * @param $submission Submission
 	 * @param $status integer One of the REVIEW_ROUND_STATUS_* constants.
 	 */
-	function _updateReviewRoundStatus($seriesEditorSubmission, $status, $reviewRound = null) {
+	function _updateReviewRoundStatus($submission, $status, $reviewRound = null) {
 		$reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO'); /* @var $reviewRoundDao ReviewRoundDAO */
 		if (!$reviewRound) {
-			$reviewRound =& $reviewRoundDao->getLastReviewRoundBySubmissionId($seriesEditorSubmission->getId());
+			$reviewRound = $reviewRoundDao->getLastReviewRoundBySubmissionId($submission->getId());
 		}
 
-		// If we don't have a review round, it's because the monograph is being
+		// If we don't have a review round, it's because the submission is being
 		// accepted without starting any of the review stages. In that case we
 		// do nothing.
 		if (is_a($reviewRound, 'ReviewRound')) {
@@ -182,21 +182,21 @@ class EditorDecisionWithEmailForm extends EditorDecisionForm {
 	 * Sends an email with a personal message and the selected
 	 * review attachements to the author. Also marks review attachments
 	 * selected by the editor as "viewable" for the author.
-	 * @param $seriesEditorSubmission SeriesEditorSubmission
+	 * @param $submission Submission
 	 * @param $emailKey string An email template.
 	 * @param $request PKPRequest
 	 */
-	function _sendReviewMailToAuthor(&$seriesEditorSubmission, $emailKey, $request) {
+	function _sendReviewMailToAuthor($submission, $emailKey, $request) {
 		// Send personal message to author.
-		$submitter = $seriesEditorSubmission->getUser();
+		$submitter = $submission->getUser();
 		import('classes.mail.MonographMailTemplate');
-		$email = new MonographMailTemplate($seriesEditorSubmission, $emailKey, null, null, null, false);
+		$email = new MonographMailTemplate($submission, $emailKey, null, null, null, false);
 		$email->setBody($this->getData('personalMessage'));
 		$email->addRecipient($submitter->getEmail(), $submitter->getFullName());
 		$email->setEventType(SUBMISSION_EMAIL_EDITOR_NOTIFY_AUTHOR);
 
 		$userStageAssignmentDao = DAORegistry::getDAO('UserStageAssignmentDAO');
-		$authorStageParticipants = $userStageAssignmentDao->getUsersBySubmissionAndStageId($seriesEditorSubmission->getId(), $seriesEditorSubmission->getStageId(), null, ROLE_ID_AUTHOR);
+		$authorStageParticipants = $userStageAssignmentDao->getUsersBySubmissionAndStageId($submission->getId(), $submission->getStageId(), null, ROLE_ID_AUTHOR);
 		while ($author = $authorStageParticipants->next()) {
 			if (preg_match('{^' . quotemeta($submitter->getEmail()) . '$}', $author->getEmail())) {
 				$email->addRecipient($author->getEmail(), $author->getFullName());
@@ -211,7 +211,7 @@ class EditorDecisionWithEmailForm extends EditorDecisionForm {
 		if(is_a($reviewRound, 'ReviewRound')) {
 			// Retrieve review indexes.
 			$reviewAssignmentDao = DAORegistry::getDAO('ReviewAssignmentDAO'); /* @var $reviewAssignmentDao ReviewAssignmentDAO */
-			$reviewIndexes =& $reviewAssignmentDao->getReviewIndexesForRound($seriesEditorSubmission->getId(), $reviewRound->getId());
+			$reviewIndexes = $reviewAssignmentDao->getReviewIndexesForRound($submission->getId(), $reviewRound->getId());
 			assert(is_array($reviewIndexes));
 
 			// Add a review index for review attachments not associated with
@@ -225,14 +225,14 @@ class EditorDecisionWithEmailForm extends EditorDecisionForm {
 			if(is_array($selectedAttachments)) {
 				foreach ($selectedAttachments as $fileId) {
 
-					// Retrieve the monograph file.
-					$monographFile =& $submissionFileDao->getLatestRevision($fileId);
-					assert(is_a($monographFile, 'MonographFile'));
+					// Retrieve the submission file.
+					$submissionFile = $submissionFileDao->getLatestRevision($fileId);
+					assert(is_a($submissionFile, 'SubmissionFile'));
 
 					// Check the association information.
-					if($monographFile->getAssocType() == ASSOC_TYPE_REVIEW_ASSIGNMENT) {
+					if($submissionFile->getAssocType() == ASSOC_TYPE_REVIEW_ASSIGNMENT) {
 						// The review attachment has been uploaded by a reviewer.
-						$reviewAssignmentId = $monographFile->getAssocId();
+						$reviewAssignmentId = $submissionFile->getAssocId();
 						assert(is_numeric($reviewAssignmentId));
 					} else {
 						// The review attachment has been uploaded by the editor.
@@ -246,14 +246,14 @@ class EditorDecisionWithEmailForm extends EditorDecisionForm {
 
 					// Add the attachment to the email.
 					$email->addAttachment(
-						$monographFile->getFilePath(),
-						String::enumerateAlphabetically($reviewIndex).'-'.$monographFile->getOriginalFileName()
+						$submissionFile->getFilePath(),
+						String::enumerateAlphabetically($reviewIndex).'-'.$submissionFile->getOriginalFileName()
 					);
 
-					// Update monograph file to set viewable as true, so author
+					// Update submission file to set viewable as true, so author
 					// can view the file on their submission summary page.
-					$monographFile->setViewable(true);
-					$submissionFileDao->updateObject($monographFile);
+					$submissionFile->setViewable(true);
+					$submissionFileDao->updateObject($submissionFile);
 				}
 			}
 		}
@@ -264,7 +264,7 @@ class EditorDecisionWithEmailForm extends EditorDecisionForm {
 			$dispatcher = $router->getDispatcher();
 			$paramArray = array(
 				'authorUsername' => $submitter->getUsername(),
-				'submissionUrl' => $dispatcher->url($request, ROUTE_PAGE, null, 'authorDashboard', 'submission', $seriesEditorSubmission->getId()),
+				'submissionUrl' => $dispatcher->url($request, ROUTE_PAGE, null, 'authorDashboard', 'submission', $submission->getId()),
 			);
 			$email->assignParams($paramArray);
 			$email->send($request);

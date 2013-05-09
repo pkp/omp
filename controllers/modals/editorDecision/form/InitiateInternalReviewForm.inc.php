@@ -18,12 +18,12 @@ import('controllers.modals.editorDecision.form.InitiateReviewForm');
 class InitiateInternalReviewForm extends InitiateReviewForm {
 	/**
 	 * Constructor.
-	 * @param $seriesEditorSubmission SeriesEditorSubmission
+	 * @param $submission Submission
 	 * @param $decision int SUBMISSION_EDITOR_DECISION_...
 	 * @param $stageId int WORKFLOW_STAGE_ID_...
 	 */
-	function InitiateInternalReviewForm($seriesEditorSubmission, $decision, $stageId) {
-		parent::InitiateReviewForm($seriesEditorSubmission, $decision, $stageId, 'controllers/modals/editorDecision/form/initiateInternalReviewForm.tpl');
+	function InitiateInternalReviewForm($submission, $decision, $stageId) {
+		parent::InitiateReviewForm($submission, $decision, $stageId, 'controllers/modals/editorDecision/form/initiateInternalReviewForm.tpl');
 	}
 
 	/**

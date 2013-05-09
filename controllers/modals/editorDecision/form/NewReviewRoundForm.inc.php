@@ -19,12 +19,12 @@ class NewReviewRoundForm extends EditorDecisionForm {
 
 	/**
 	 * Constructor.
-	 * @param $seriesEditorSubmission SeriesEditorSubmission
+	 * @param $submission Submission
 	 * @param $decision int
 	 * @param stageid int
 	 */
-	function NewReviewRoundForm(&$seriesEditorSubmission, $decision = SUBMISSION_EDITOR_DECISION_RESUBMIT, $stageId = null, &$reviewRound) {
-		parent::EditorDecisionForm($seriesEditorSubmission, $decision, $stageId, 'controllers/modals/editorDecision/form/newReviewRoundForm.tpl', $reviewRound);
+	function NewReviewRoundForm($submission, $decision = SUBMISSION_EDITOR_DECISION_RESUBMIT, $stageId = null, $reviewRound) {
+		parent::EditorDecisionForm($submission, $decision, $stageId, 'controllers/modals/editorDecision/form/newReviewRoundForm.tpl', $reviewRound);
 		// WARNING: this constructor may be invoked dynamically by
 		// EditorDecisionHandler::_instantiateEditorDecision.
 	}
@@ -39,7 +39,7 @@ class NewReviewRoundForm extends EditorDecisionForm {
 	 */
 	function execute($args, $request) {
 		// Retrieve the submission.
-		$seriesEditorSubmission = $this->getSeriesEditorSubmission();
+		$submission = $this->getSubmission();
 
 		// Get this form decision actions labels.
 		$actionLabels = EditorDecisionActionsManager::getActionLabels($this->_getDecisions());
@@ -48,7 +48,7 @@ class NewReviewRoundForm extends EditorDecisionForm {
 		$reviewRound = $this->getReviewRound();
 		import('classes.submission.seriesEditor.SeriesEditorAction');
 		$seriesEditorAction = new SeriesEditorAction();
-		$seriesEditorAction->recordDecision($request, $seriesEditorSubmission, SUBMISSION_EDITOR_DECISION_RESUBMIT, $actionLabels, $reviewRound);
+		$seriesEditorAction->recordDecision($request, $submission, SUBMISSION_EDITOR_DECISION_RESUBMIT, $actionLabels, $reviewRound);
 
 		// Update the review round status.
 		$reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO');
@@ -56,7 +56,7 @@ class NewReviewRoundForm extends EditorDecisionForm {
 
 		// Create a new review round.
 		$newRound = $this->_initiateReviewRound(
-			$seriesEditorSubmission, $seriesEditorSubmission->getStageId(),
+			$submission, $submission->getStageId(),
 			$request, REVIEW_ROUND_STATUS_PENDING_REVIEWERS
 		);
 

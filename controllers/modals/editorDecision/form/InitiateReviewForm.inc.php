@@ -18,10 +18,10 @@ class InitiateReviewForm extends EditorDecisionForm {
 
 	/**
 	 * Constructor.
-	 * @param $seriesEditorSubmission SeriesEditorSubmission
+	 * @param $submission Submission
 	 */
-	function InitiateReviewForm($seriesEditorSubmission, $decision, $stageId, $template) {
-		parent::EditorDecisionForm($seriesEditorSubmission, $decision, $stageId, $template);
+	function InitiateReviewForm($submission, $decision, $stageId, $template) {
+		parent::EditorDecisionForm($submission, $decision, $stageId, $template);
 	}
 
 	/**
@@ -40,22 +40,22 @@ class InitiateReviewForm extends EditorDecisionForm {
 	 */
 	function execute($args, $request) {
 		// Retrieve the submission.
-		$seriesEditorSubmission = $this->getSeriesEditorSubmission();
+		$submission = $this->getSubmission();
 
 		// Record the decision.
 		import('classes.workflow.EditorDecisionActionsManager');
 		$actionLabels = EditorDecisionActionsManager::getActionLabels(array($this->_decision));
 		import('classes.submission.seriesEditor.SeriesEditorAction');
 		$seriesEditorAction = new SeriesEditorAction();
-		$seriesEditorAction->recordDecision($request, $seriesEditorSubmission, $this->_decision, $actionLabels);
+		$seriesEditorAction->recordDecision($request, $submission, $this->_decision, $actionLabels);
 
 		// Move to the internal review stage.
 		import('classes.submission.seriesEditor.SeriesEditorAction');
 		$seriesEditorAction = new SeriesEditorAction();
-		$seriesEditorAction->incrementWorkflowStage($seriesEditorSubmission, $this->_getStageId(), $request);
+		$seriesEditorAction->incrementWorkflowStage($submission, $this->_getStageId(), $request);
 
 		// Create an initial internal review round.
-		$this->_initiateReviewRound($seriesEditorSubmission, $this->_getStageId(), $request, REVIEW_ROUND_STATUS_PENDING_REVIEWERS);
+		$this->_initiateReviewRound($submission, $this->_getStageId(), $request, REVIEW_ROUND_STATUS_PENDING_REVIEWERS);
 	}
 }
 
