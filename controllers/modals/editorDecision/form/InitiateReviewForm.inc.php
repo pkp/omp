@@ -12,7 +12,7 @@
  * @brief Form for creating the first review round for a submission
  */
 
-import('controllers.modals.editorDecision.form.EditorDecisionForm');
+import('lib.pkp.classes.controllers.modals.editorDecision.form.EditorDecisionForm');
 
 class InitiateReviewForm extends EditorDecisionForm {
 

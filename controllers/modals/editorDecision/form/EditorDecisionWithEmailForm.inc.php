@@ -12,7 +12,7 @@
  * @brief Base class for the editor decision forms.
  */
 
-import('controllers.modals.editorDecision.form.EditorDecisionForm');
+import('lib.pkp.classes.controllers.modals.editorDecision.form.EditorDecisionForm');
 
 class EditorDecisionWithEmailForm extends EditorDecisionForm {
 

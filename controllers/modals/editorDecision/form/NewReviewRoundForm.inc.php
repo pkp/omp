@@ -12,7 +12,7 @@
  * @brief Form for creating a new review round (after the first)
  */
 
-import('controllers.modals.editorDecision.form.EditorDecisionForm');
+import('lib.pkp.classes.controllers.modals.editorDecision.form.EditorDecisionForm');
 import('classes.monograph.reviewRound.ReviewRound');
 
 class NewReviewRoundForm extends EditorDecisionForm {
