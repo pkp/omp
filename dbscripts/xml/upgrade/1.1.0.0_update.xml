@@ -43,4 +43,9 @@
 		<query>UPDATE press_settings SET setting_name = 'styleSheet' WHERE setting_name = 'pressStyleSheet'</query>
 		<query>UPDATE press_settings SET setting_name = 'currency' WHERE setting_name = 'pressCurrency'</query>
 	</sql>
+	<!-- Bug #8163: Allow restriction of review files in assignments -->
+	<sql>
+		<!-- For existing assignments, all files are permitted. -->
+		<query>INSERT INTO review_files (file_id, review_id) SELECT DISTINCT rrf.file_id, ra.review_id FROM review_round_files rrf, review_assignments ra WHERE ra.review_round_id = rrf.review_round_id</query>
+	</sql>
 </data>
