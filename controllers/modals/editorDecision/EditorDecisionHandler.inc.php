@@ -261,6 +261,13 @@ class EditorDecisionHandler extends PKPEditorDecisionHandler {
 	protected function _getReviewStages() {
 		return array(WORKFLOW_STAGE_ID_INTERNAL_REVIEW, WORKFLOW_STAGE_ID_EXTERNAL_REVIEW);
 	}
+
+	/**
+	 * Get review-related decision notifications.
+	 */
+	protected function _getReviewNotificationTypes() {
+		return array(NOTIFICATION_TYPE_PENDING_INTERNAL_REVISIONS, NOTIFICATION_TYPE_PENDING_EXTERNAL_REVISIONS);
+	}
 }
 
 ?>
