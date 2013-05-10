@@ -663,7 +663,6 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="notification.signedFile">Το αρχείο έχει θεωρηθεί.</message>
 	<message key="notification.updatedReviewFiles">Αναθεωρήστε τα ενημερωμένα αρχεία.</message>
 	<message key="notification.savedCatalogMetadata">Τα μεταδεδομένα του Καταλόγου έχουν αποθηκευτεί.</message>
-	<message key="notification.savedSubmissionMetadata">Τα μεταδεδομένα της υποβολής έχουν αποθηκευτεί.</message>
 	<message key="notification.savedPublicationFormatMetadata">Τα μεταδεδομένα του μορφότυπου της έκδοσης έχουν αποθηκευτεί.</message>
 	<message key="notification.uploadedResponse">Η απάντηση έχει μεταφορτωθεί (uploaded).</message>
 	<message key="notification.mailListDescription">Καταχωρήστε τη διεύθυνση του ηλεκτονικού σας ταχυδρομείου για να λάβετε ενημέρωση όταν προστεθεί νέο περιεχόμενο στις εκδόσεις μας.</message>
