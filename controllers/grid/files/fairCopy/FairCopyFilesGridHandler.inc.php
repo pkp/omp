@@ -12,7 +12,7 @@
  * @brief Handle the fair copy files grid (displays copyedited files ready to move to proofreading)
  */
 
-import('controllers.grid.files.fileSignoff.FileSignoffGridHandler');
+import('lib.pkp.controllers.grid.files.fileSignoff.FileSignoffGridHandler');
 
 class FairCopyFilesGridHandler extends FileSignoffGridHandler {
 	/**

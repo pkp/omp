@@ -241,7 +241,7 @@
 	<message key="user.role.editor">Editor</message>
 	<message key="user.role.pressEditor">Editor editorial</message>
 	<message key="user.role.seriesEditor">Editor de serie</message>
-	<message key="user.role.pressAssistant">Asistente editorial</message>
+	<message key="user.role.assistant">Asistente editorial</message>
 	<message key="user.role.copyeditor">Copyeditor</message>
 	<message key="user.role.seriesEditors">Editores de series</message>
 	<message key="user.role.proofreader">Corrector de pruebas</message>

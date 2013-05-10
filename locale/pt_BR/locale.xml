@@ -433,7 +433,7 @@
 	<!-- OMP-specific Roles -->
 	<message key="user.role.manager">Gerente da Editora</message>
 	<message key="user.role.pressEditor">Editor</message>
-	<message key="user.role.pressAssistant">Assistente da Editora</message>
+	<message key="user.role.assistant">Assistente da Editora</message>
 	<message key="user.role.copyeditor">Editor de texto</message>
 	<message key="user.role.seriesEditor">Editor de Série</message>
 	<message key="user.role.seriesEditors">Editores de Série</message>

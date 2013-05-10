@@ -450,7 +450,7 @@
 	<message key="user.role.editor">Επιμελητής</message>
 	<message key="user.role.pressEditor">Επιμελητής Εκδόσεων</message>
 	<message key="user.role.seriesEditor">Επιμελητής Σειράς</message>
-	<message key="user.role.pressAssistant">Βοηθός Εκδόσεων</message>
+	<message key="user.role.assistant">Βοηθός Εκδόσεων</message>
 	<message key="user.role.copyeditor">Επιμελητής Κειμένων</message>
 	<message key="user.role.seriesEditor">Επιμελητής Σειράς</message>
 	<message key="user.role.seriesEditors">Επιμελητές Σειράς</message>

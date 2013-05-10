@@ -12,7 +12,7 @@
  * @brief Display to authors the file revisions that they have uploaded.
  */
 
-import('controllers.grid.files.review.ReviewRevisionsGridHandler');
+import('lib.pkp.controllers.grid.files.review.ReviewRevisionsGridHandler');
 
 class AuthorReviewRevisionsGridHandler extends ReviewRevisionsGridHandler {
 	/**
@@ -26,7 +26,7 @@ class AuthorReviewRevisionsGridHandler extends ReviewRevisionsGridHandler {
 		parent::ReviewRevisionsGridHandler($roleAssignments);
 
 		$this->setTitle('editor.submission.revisions');
-		$this->setInstructions('editor.monograph.revisionsDescription');
+		$this->setInstructions('editor.submission.revisionsDescription');
 	}
 }
 
