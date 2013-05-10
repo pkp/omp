@@ -44,7 +44,7 @@ class ReviewerReviewFilesGridDataProvider extends ReviewGridDataProvider {
 		$policy->addPolicy(new ReviewRoundRequiredPolicy($request, $args));
 
 		// Add policy to ensure there is a review assignment for certain operations.
-		import('classes.security.authorization.internal.ReviewAssignmentRequiredPolicy');
+		import('lib.pkp.classes.security.authorization.internal.ReviewAssignmentRequiredPolicy');
 		$policy->addPolicy(new ReviewAssignmentRequiredPolicy($request, $args, 'reviewAssignmentId'));
 
 		return $policy;

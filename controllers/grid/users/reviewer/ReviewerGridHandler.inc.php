@@ -121,7 +121,7 @@ class ReviewerGridHandler extends GridHandler {
 		$ompWorkflowStageAccessPolicy->addPolicy(new ReviewRoundRequiredPolicy($request, $args, 'reviewRoundId', $this->_getReviewRoundOps()));
 
 		// Add policy to ensure there is a review assignment for certain operations.
-		import('classes.security.authorization.internal.ReviewAssignmentRequiredPolicy');
+		import('lib.pkp.classes.security.authorization.internal.ReviewAssignmentRequiredPolicy');
 		$ompWorkflowStageAccessPolicy->addPolicy(new ReviewAssignmentRequiredPolicy($request, $args, 'reviewAssignmentId', $this->_getReviewAssignmentOps()));
 		$this->addPolicy($ompWorkflowStageAccessPolicy);
 
