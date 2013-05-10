@@ -65,7 +65,7 @@ class SignoffGridCellProvider extends GridCellProvider {
 
 			if (!$signoff->getDateCompleted() && $signoff->getUserId() == $user->getId()) {
 				// User own the unfinished signoff, let it complete the task.
-				import('controllers.api.signoff.linkAction.AddSignoffFileLinkAction');
+				import('lib.pkp.controllers.api.signoff.linkAction.AddSignoffFileLinkAction');
 				$addFileAction = new AddSignoffFileLinkAction(
 					$request, $this->getMonographId(),
 					$this->getStageId(), $signoff->getSymbolic(), $signoff->getId(),

@@ -89,7 +89,7 @@ class SignoffGridRow extends GridRow {
 			// If signoff has not been completed, allow the user to upload if it is their signoff (i.e. their copyediting assignment)
 			if (!$signoff->getDateCompleted() && $signoff->getUserId() == $user->getId()) {
 				if ($signoff->getUserId() == $user->getId()) {
-					import('controllers.api.signoff.linkAction.AddSignoffFileLinkAction');
+					import('lib.pkp.controllers.api.signoff.linkAction.AddSignoffFileLinkAction');
 					$this->addAction(new AddSignoffFileLinkAction(
 						$request, $monographId,
 						$this->getStageId(), $signoff->getSymbolic(), $signoff->getId(),

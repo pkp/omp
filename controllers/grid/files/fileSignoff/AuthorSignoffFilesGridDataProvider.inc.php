@@ -96,7 +96,7 @@ class AuthorSignoffFilesGridDataProvider extends SubmissionFilesGridDataProvider
 
 		$action = false;
 		if (!$signoffFactory->wasEmpty()) {
-			import('controllers.api.signoff.linkAction.AddSignoffFileLinkAction');
+			import('lib.pkp.controllers.api.signoff.linkAction.AddSignoffFileLinkAction');
 			$action = new AddSignoffFileLinkAction(
 				$request, $monograph->getId(),
 				$this->getStageId(), $this->getSymbolic(), null,

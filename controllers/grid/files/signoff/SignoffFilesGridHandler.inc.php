@@ -136,7 +136,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 		$signoffDao = DAORegistry::getDAO('SubmissionFileSignoffDAO'); /* @var $signoffDao SubmissionFileSignoffDAO */
 		$signoffFactory =& $signoffDao->getAllBySubmission($monograph->getId(), $this->getSymbolic(), $user->getId(), null, true);
 		if (!$signoffFactory->wasEmpty()) {
-			import('controllers.api.signoff.linkAction.AddSignoffFileLinkAction');
+			import('lib.pkp.controllers.api.signoff.linkAction.AddSignoffFileLinkAction');
 			$this->addAction(new AddSignoffFileLinkAction(
 				$request, $monograph->getId(),
 				$this->getStageId(), $this->getSymbolic(), null,
@@ -182,7 +182,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 		);
 
 		// Add the considered column (signoff).
-		import('controllers.grid.files.SignoffOnSignoffGridColumn');
+		import('lib.pkp.controllers.grid.files.SignoffOnSignoffGridColumn');
 		$this->addColumn(new SignoffOnSignoffGridColumn('common.considered', $userIds, $this->getRequestArgs(), array('hoverTitle' => true)));
 
 		// Add approved column (make the file visible). This column

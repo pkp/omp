@@ -50,7 +50,7 @@ class AuthorSignoffFilesGridRow extends SubmissionFilesGridRow {
 		$this->addAction(new ReadSignoffHistoryLinkAction($request, $signoff->getId(), $submissionFile->getMonographId(), $this->getStageId()));
 
 		if (!$signoff->getDateCompleted()) {
-			import('controllers.api.signoff.linkAction.AddSignoffFileLinkAction');
+			import('lib.pkp.controllers.api.signoff.linkAction.AddSignoffFileLinkAction');
 			$this->addAction(new AddSignoffFileLinkAction(
 				$request, $submissionFile->getMonographId(),
 				$this->getStageId(), $signoff->getSymbolic(), $signoff->getId(),

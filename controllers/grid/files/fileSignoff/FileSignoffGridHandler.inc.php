@@ -17,8 +17,8 @@
  */
 
 import('lib.pkp.controllers.grid.files.SubmissionFilesGridHandler');
-import('controllers.grid.files.SignoffStatusFromFileGridColumn');
-import('controllers.grid.files.UploaderUserGroupGridColumn');
+import('lib.pkp.controllers.grid.files.SignoffStatusFromFileGridColumn');
+import('lib.pkp.controllers.grid.files.UploaderUserGroupGridColumn');
 
 class FileSignoffGridHandler extends SubmissionFilesGridHandler {
 	/** @var integer */
@@ -61,7 +61,7 @@ class FileSignoffGridHandler extends SubmissionFilesGridHandler {
 		$uploaderUserGroupIds = array();
 		$dataElements =& $this->getGridDataElements($request);
 		foreach ($dataElements as $id => $rowElement) {
-			$submissionFile =& $rowElement['submissionFile'];
+			$submissionFile = $rowElement['submissionFile'];
 			$uploaderUserGroupIds[] = $submissionFile->getUserGroupId();
 		}
 		$uploaderUserGroupIds = array_unique($uploaderUserGroupIds);
@@ -69,14 +69,13 @@ class FileSignoffGridHandler extends SubmissionFilesGridHandler {
 		$userGroupIds = array();
 		foreach ($roles as $roleId => $roleName) {
 			$userIds = array();
-			$assignments =& $stageAssignmentDao->getBySubmissionAndRoleId($submission->getId(), $roleId, $this->getStageId());
+			$assignments = $stageAssignmentDao->getBySubmissionAndRoleId($submission->getId(), $roleId, $this->getStageId());
 
 			// Only include a role column if there is at least one user assigned from that role to this stage.
 			if (!$assignments->wasEmpty()) {
-				while ($assignment =& $assignments->next()) {
+				while ($assignment = $assignments->next()) {
 					$userIds[] = $assignment->getUserId();
 					$userGroupIds[] = $assignment->getUserGroupId();
-					unset($assignment);
 				}
 
 				$userIds = array_unique($userIds);
@@ -100,10 +99,9 @@ class FileSignoffGridHandler extends SubmissionFilesGridHandler {
 		$uploaderUserGroupIds = array_diff($uploaderUserGroupIds, array_unique($userGroupIds));
 		$userGroupDao = DAORegistry::getDAO('UserGroupDAO');
 		foreach ($uploaderUserGroupIds as $userGroupId) {
-			$userGroup =& $userGroupDao->getById($userGroupId);
+			$userGroup = $userGroupDao->getById($userGroupId);
 			assert(is_a($userGroup, 'UserGroup'));
 			$this->addColumn(new UploaderUserGroupGridColumn($userGroup));
-			unset($userGroup);
 		}
 	}
 
@@ -132,10 +130,10 @@ class FileSignoffGridHandler extends SubmissionFilesGridHandler {
 		$fileId = (int)$request->getUserVar('fileId');
 
 		// Make sure that the file revision is in the grid.
-		$submissionFiles =& $this->getGridDataElements($request);
+		$submissionFiles = $this->getGridDataElements($request);
 		if (!isset($submissionFiles[$fileId])) fatalError('Invalid file id!');
 		assert(isset($submissionFiles[$fileId]['submissionFile']));
-		$submissionFile =& $submissionFiles[$fileId]['submissionFile'];
+		$submissionFile = $submissionFiles[$fileId]['submissionFile'];
 		assert(is_a($submissionFile, 'SubmissionFile'));
 
 		// Retrieve the user.
@@ -144,7 +142,7 @@ class FileSignoffGridHandler extends SubmissionFilesGridHandler {
 		// Insert or update the sign off corresponding
 		// to this file revision.
 		$signoffDao = DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
-		$signoff =& $signoffDao->build(
+		$signoff = $signoffDao->build(
 			$this->getSymbolic(), ASSOC_TYPE_SUBMISSION_FILE, $submissionFile->getFileId(), $user->getId()
 		);
 		$signoff->setDateCompleted(Core::getCurrentDate());

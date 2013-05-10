@@ -13,7 +13,7 @@
  */
 
 import('lib.pkp.controllers.grid.files.SubmissionFilesGridHandler');
-import('controllers.grid.files.UploaderUserGroupGridColumn');
+import('lib.pkp.controllers.grid.files.UploaderUserGroupGridColumn');
 
 class ProductionReadyFilesGridHandler extends SubmissionFilesGridHandler {
 	/**
@@ -67,10 +67,9 @@ class ProductionReadyFilesGridHandler extends SubmissionFilesGridHandler {
 		// Add a Uploader UserGroup column for each group
 		$userGroupDao = DAORegistry::getDAO('UserGroupDAO');
 		foreach ($uploaderUserGroupIds as $userGroupId) {
-			$userGroup =& $userGroupDao->getById($userGroupId);
+			$userGroup = $userGroupDao->getById($userGroupId);
 			assert(is_a($userGroup, 'UserGroup'));
 			$this->addColumn(new UploaderUserGroupGridColumn($userGroup));
-			unset($userGroup);
 		}
 	}
 }

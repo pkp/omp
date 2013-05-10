@@ -80,7 +80,7 @@ class AuthorSignoffFilesGridCellProvider extends GridCellProvider {
 			$signoff = $this->getSignoff($row);
 			$monograph = $this->getMonograph();
 			if (!$signoff->getDateCompleted()) {
-				import('controllers.api.signoff.linkAction.AddSignoffFileLinkAction');
+				import('lib.pkp.controllers.api.signoff.linkAction.AddSignoffFileLinkAction');
 				$addFileAction = new AddSignoffFileLinkAction(
 								$request, $monograph->getId(),
 								$this->getStageId(), $signoff->getSymbolic(), $signoff->getId(),
