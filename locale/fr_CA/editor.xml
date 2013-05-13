@@ -66,7 +66,6 @@
 	
 	<message key="editor.submissions.lastAssigned">Le plus récent</message>
 	<message key="editor.submission.review.manageReviewFilesDescription">Tous les fichiers qui ont déjà été téléchargés à une étape du processus de soumission (même à une étape d'édition ou de publication) peuvent être choisis pour révision. Il suffit de cocher la case Ajouter ci-dessous, puis de cliquer Recherche: tous les fichiers disponibles seront affichés et peuvent être choisis pour être ajoutés. Les autres fichiers qui n'ont pas déjà été téléchargés à une certaine étape du processus peuvent être ajoutés à cette liste en cliquant sur le lien Télécharger le fichier d'évaluation.</message>
-	<message key="editor.monograph.review.reviewersDescription"><![CDATA[Utilisez <em>Ajouter un évaluateur</em> pour inviter des lecteurs à examiner les fichiers soumis. L'icône en forme de carnet indique qu'on a soumis un fichier pour l'évaluation. Celui-ci indiquera <em>Considéré</em> lorsqu'il aura été consulté. Si les évaluations sont en retard, l'icône d'une enveloppe rouge s'affichera à titre de rappel pour les évaluateurs.]]></message>	
 
 	<message key="editor.monograph.fileList.includeAllStages">Inclure tous les fichiers de toutes les étapes de production accessibles.</message>
 	<message key="editor.submission.review.currentFiles">{$round}e série de révision des fichiers.</message>

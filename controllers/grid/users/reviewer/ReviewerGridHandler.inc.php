@@ -144,7 +144,7 @@ class ReviewerGridHandler extends GridHandler {
 		);
 
 		$this->setTitle('user.role.reviewers');
-		$this->setInstructions('editor.monograph.review.reviewersDescription');
+		$this->setInstructions('editor.submission.review.reviewersDescription');
 
 		// Grid actions
 		import('lib.pkp.classes.linkAction.request.AjaxModal');
@@ -302,7 +302,7 @@ class ReviewerGridHandler extends GridHandler {
 	 * @return string Serialized JSON object
 	 */
 	function limitFiles($args, $request) {
-		import('controllers.grid.users.reviewer.form.LimitFilesForm');
+		import('lib.pkp.controllers.grid.users.reviewer.form.LimitFilesForm');
 		$reviewAssignment = $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ASSIGNMENT);
 		$limitFilesForm = new LimitFilesForm($reviewAssignment);
 		$limitFilesForm->initData();
@@ -317,7 +317,7 @@ class ReviewerGridHandler extends GridHandler {
 	 * @return string Serialized JSON object
 	 */
 	function updateLimitFiles($args, $request) {
-		import('controllers.grid.users.reviewer.form.LimitFilesForm');
+		import('lib.pkp.controllers.grid.users.reviewer.form.LimitFilesForm');
 		$reviewAssignment = $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ASSIGNMENT);
 		$limitFilesForm = new LimitFilesForm($reviewAssignment);
 		$limitFilesForm->readInputData();
