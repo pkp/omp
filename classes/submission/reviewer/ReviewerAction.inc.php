@@ -82,7 +82,7 @@ class ReviewerAction extends Action {
 					$decline?'log.review.reviewDeclined':'log.review.reviewAccepted',
 					array(
 						'reviewerName' => $reviewer->getFullName(),
-						'monographId' => $reviewAssignment->getSubmissionId(),
+						'submissionId' => $reviewAssignment->getSubmissionId(),
 						'round' => $reviewAssignment->getRound()
 					)
 				);

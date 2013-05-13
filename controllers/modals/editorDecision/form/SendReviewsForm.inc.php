@@ -21,12 +21,12 @@ import('classes.workflow.EditorDecisionActionsManager');
 class SendReviewsForm extends EditorDecisionWithEmailForm {
 	/**
 	 * Constructor.
-	 * @param $seriesEditorSubmission SeriesEditorSubmission
+	 * @param $submission Submission
 	 * @param $decision int
 	 * @param $stageId int
 	 * @param $reviewRound ReviewRound
 	 */
-	function SendReviewsForm($seriesEditorSubmission, $decision, $stageId, $reviewRound = null) {
+	function SendReviewsForm($submission, $decision, $stageId, $reviewRound = null) {
 		if (!in_array($decision, $this->_getDecisions())) {
 			fatalError('Invalid decision!');
 		}
@@ -34,7 +34,7 @@ class SendReviewsForm extends EditorDecisionWithEmailForm {
 		$this->setSaveFormOperation('saveSendReviews');
 
 		parent::EditorDecisionWithEmailForm(
-			$seriesEditorSubmission, $decision, $stageId,
+			$submission, $decision, $stageId,
 			'controllers/modals/editorDecision/form/sendReviewsForm.tpl', $reviewRound
 		);
 	}
@@ -57,7 +57,7 @@ class SendReviewsForm extends EditorDecisionWithEmailForm {
 	 */
 	function execute($args, $request) {
 		// Retrieve the submission.
-		$seriesEditorSubmission = $this->getSeriesEditorSubmission();
+		$submission = $this->getSubmission();
 
 		// Get this form decision actions labels.
 		$actionLabels = EditorDecisionActionsManager::getActionLabels($this->_getDecisions());
@@ -68,7 +68,7 @@ class SendReviewsForm extends EditorDecisionWithEmailForm {
 		$stageId = $this->getStageId();
 		import('classes.submission.seriesEditor.SeriesEditorAction');
 		$seriesEditorAction = new SeriesEditorAction();
-		$seriesEditorAction->recordDecision($request, $seriesEditorSubmission, $decision, $actionLabels, $reviewRound, $stageId);
+		$seriesEditorAction->recordDecision($request, $submission, $decision, $actionLabels, $reviewRound, $stageId);
 
 		// Identify email key and status of round.
 		switch ($decision) {
@@ -91,10 +91,10 @@ class SendReviewsForm extends EditorDecisionWithEmailForm {
 				fatalError('Unsupported decision!');
 		}
 
-		$this->_updateReviewRoundStatus($seriesEditorSubmission, $status, $reviewRound);
+		$this->_updateReviewRoundStatus($submission, $status, $reviewRound);
 
 		// Send email to the author.
-		$this->_sendReviewMailToAuthor($seriesEditorSubmission, $emailKey, $request);
+		$this->_sendReviewMailToAuthor($submission, $emailKey, $request);
 	}
 
 	//

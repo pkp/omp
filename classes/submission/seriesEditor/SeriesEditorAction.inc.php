@@ -29,68 +29,6 @@ class SeriesEditorAction extends Action {
 	//
 	// Actions.
 	//
-	/**
-	 * Records an editor's submission decision.
-	 * @param $request PKPRequest
-	 * @param $seriesEditorSubmission SeriesEditorSubmission
-	 * @param $decision integer
-	 * @param $decisionLabels array(DECISION_CONSTANT => decision.locale.key, ...)
-	 * @param $reviewRound ReviewRound Current review round that user is taking the decision, if any.
-	 * @param $stageId int
-	 */
-	function recordDecision($request, $seriesEditorSubmission, $decision, $decisionLabels, $reviewRound = null, $stageId = null) {
-		$stageAssignmentDao = DAORegistry::getDAO('StageAssignmentDAO');
-
-		// Define the stage and round data.
-		if (!is_null($reviewRound)) {
-			$stageId = $reviewRound->getStageId();
-			$round = $reviewRound->getRound();
-		} else {
-			$round = REVIEW_ROUND_NONE;
-			if ($stageId == null) {
-				// We consider that the decision is being made for the current
-				// submission stage.
-				$stageId = $seriesEditorSubmission->getStageId();
-			}
-		}
-
-		$editorAssigned = $stageAssignmentDao->editorAssignedToStage(
-			$seriesEditorSubmission->getId(),
-			$stageId
-		);
-
-		// Sanity checks
-		if (!$editorAssigned || !isset($decisionLabels[$decision])) return false;
-
-		$seriesEditorSubmissionDao = DAORegistry::getDAO('SeriesEditorSubmissionDAO');
-		$user = $request->getUser();
-		$editorDecision = array(
-			'editDecisionId' => null,
-			'editorId' => $user->getId(),
-			'decision' => $decision,
-			'dateDecided' => date(Core::getCurrentDate())
-		);
-
-		$result = true;
-		if (!HookRegistry::call('SeriesEditorAction::recordDecision', array(&$seriesEditorSubmission, &$editorDecision, &$result))) {
-			$seriesEditorSubmission->setStatus(STATUS_QUEUED);
-			$seriesEditorSubmission->stampStatusModified();
-			$seriesEditorSubmission->addDecision(
-				$editorDecision,
-				$stageId,
-				$round
-			);
-
-			$seriesEditorSubmissionDao->updateSeriesEditorSubmission($seriesEditorSubmission);
-
-			// Add log.
-			import('lib.pkp.classes.log.SubmissionLog');
-			import('classes.log.SubmissionEventLogEntry');
-			AppLocale::requireComponents(LOCALE_COMPONENT_APP_COMMON, LOCALE_COMPONENT_APP_EDITOR);
-			SubmissionLog::logEvent($request, $seriesEditorSubmission, SUBMISSION_LOG_EDITOR_DECISION, 'log.editor.decision', array('editorName' => $user->getFullName(), 'monographId' => $seriesEditorSubmission->getId(), 'decision' => __($decisionLabels[$decision])));
-		}
-		return $result;
-	}
 
 	/**
 	 * Assign the default participants to a workflow stage.
@@ -243,7 +181,7 @@ class SeriesEditorAction extends Action {
 			// Add log
 			import('lib.pkp.classes.log.SubmissionLog');
 			import('classes.log.SubmissionEventLogEntry');
-			SubmissionLog::logEvent($request, $seriesEditorSubmission, SUBMISSION_LOG_REVIEW_ASSIGN, 'log.review.reviewerAssigned', array('reviewerName' => $reviewer->getFullName(), 'monographId' => $seriesEditorSubmission->getId(), 'stageId' => $stageId, 'round' => $round));
+			SubmissionLog::logEvent($request, $seriesEditorSubmission, SUBMISSION_LOG_REVIEW_ASSIGN, 'log.review.reviewerAssigned', array('reviewerName' => $reviewer->getFullName(), 'submissionId' => $seriesEditorSubmission->getId(), 'stageId' => $stageId, 'round' => $round));
 		}
 	}
 
@@ -296,7 +234,7 @@ class SeriesEditorAction extends Action {
 			// Add log
 			import('lib.pkp.classes.log.SubmissionLog');
 			import('classes.log.SubmissionEventLogEntry');
-			SubmissionLog::logEvent($request, $seriesEditorSubmission, SUBMISSION_LOG_REVIEW_CLEAR, 'log.review.reviewCleared', array('reviewerName' => $reviewer->getFullName(), 'monographId' => $seriesEditorSubmission->getId(), 'stageId' => $reviewAssignment->getStageId(), 'round' => $reviewAssignment->getRound()));
+			SubmissionLog::logEvent($request, $seriesEditorSubmission, SUBMISSION_LOG_REVIEW_CLEAR, 'log.review.reviewCleared', array('reviewerName' => $reviewer->getFullName(), 'submissionId' => $seriesEditorSubmission->getId(), 'stageId' => $reviewAssignment->getStageId(), 'round' => $reviewAssignment->getRound()));
 
 			return true;
 		} else return false;
@@ -349,7 +287,7 @@ class SeriesEditorAction extends Action {
 							Config::getVar('general', 'date_format_short'),
 							strtotime($reviewAssignment->getDateDue())
 						),
-						'monographId' => $monograph->getId(),
+						'submissionId' => $monograph->getId(),
 						'stageId' => $reviewAssignment->getStageId(),
 						'round' => $reviewAssignment->getRound()
 					)

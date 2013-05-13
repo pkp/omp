@@ -48,4 +48,8 @@
 		<!-- For existing assignments, all files are permitted. -->
 		<query>INSERT INTO review_files (file_id, review_id) SELECT DISTINCT rrf.file_id, ra.review_id FROM review_round_files rrf, review_assignments ra WHERE ra.review_round_id = rrf.review_round_id</query>
 	</sql>
+	<!-- Bug #8212: Log generalization from monograph to submission -->
+	<sql>
+		<query>UPDATE event_log_settings SET setting_name = 'submissionId' WHERE setting_name = 'monographId'</query>
+	</sql>
 </data>
