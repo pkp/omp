@@ -122,7 +122,7 @@ class CatalogEntryTabHandler extends PublicationEntryTabHandler {
 					$user = $request->getUser();
 					$form = new CatalogEntryCatalogMetadataForm($submission->getId(), $user->getId(), $this->getStageId(), array('displayedInContainer' => true, 'tabPos' => $this->getTabPosition()));
 					$notificationKey = 'notification.savedCatalogMetadata';
-					PkpLog::logEvent($request, $submission, SUBMISSION_LOG_CATALOG_METADATA_UPDATE, 'submission.event.catalogMetadataUpdated');
+					SubmissionLog::logEvent($request, $submission, SUBMISSION_LOG_CATALOG_METADATA_UPDATE, 'submission.event.catalogMetadataUpdated');
 					break;
 				default: // publication format tabs
 					import('controllers.tab.catalogEntry.form.CatalogEntryPublicationMetadataForm');
@@ -138,7 +138,7 @@ class CatalogEntryTabHandler extends PublicationEntryTabHandler {
 					if ($format->getId() == $publicationFormatId) {
 						$form = new CatalogEntryPublicationMetadataForm($submission->getId(), $publicationFormatId, $format->getId(), $this->getStageId(), array('displayedInContainer' => true, 'tabPos' => $this->getTabPosition()));
 						$notificationKey = 'notification.savedPublicationFormatMetadata';
-						PkpLog::logEvent($request, $submission, SUBMISSION_LOG_PUBLICATION_FORMAT_METADATA_UPDATE, 'submission.event.publicationMetadataUpdated', array('formatName' => $format->getLocalizedName()));
+						SubmissionLog::logEvent($request, $submission, SUBMISSION_LOG_PUBLICATION_FORMAT_METADATA_UPDATE, 'submission.event.publicationMetadataUpdated', array('formatName' => $format->getLocalizedName()));
 						break;
 					}
 				}

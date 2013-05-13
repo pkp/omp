@@ -460,7 +460,7 @@ class ReviewerGridHandler extends GridHandler {
 		$this->_updateReviewRoundStatus($reviewAssignment);
 
 		// log the unconsider.
-		import('classes.log.MonographLog');
+		import('lib.pkp.classes.log.SubmissionLog');
 		import('classes.log.SubmissionEventLogEntry');
 
 		$entry = new SubmissionEventLogEntry();
@@ -469,7 +469,7 @@ class ReviewerGridHandler extends GridHandler {
 		$entry->setDateLogged(Core::getCurrentDate());
 		$entry->setEventType(SUBMISSION_LOG_REVIEW_UNCONSIDERED);
 
-		MonographLog::logEvent(
+		SubmissionLog::logEvent(
 			$request,
 			$submission,
 			SUBMISSION_LOG_REVIEW_UNCONSIDERED,

@@ -151,8 +151,8 @@ class SubmissionSubmitStep3Form extends PKPSubmissionSubmitStep3Form {
 		}
 
 		// Log submission.
-		import('classes.log.MonographLog');
-		MonographLog::logEvent($request, $submission, SUBMISSION_LOG_SUBMISSION_SUBMIT, 'submission.event.monographSubmitted');
+		import('lib.pkp.classes.log.SubmissionLog');
+		SubmissionLog::logEvent($request, $submission, SUBMISSION_LOG_SUBMISSION_SUBMIT, 'submission.event.monographSubmitted');
 
 		return $this->submissionId;
 	}

@@ -84,10 +84,10 @@ class SeriesEditorAction extends Action {
 			$seriesEditorSubmissionDao->updateSeriesEditorSubmission($seriesEditorSubmission);
 
 			// Add log.
-			import('classes.log.MonographLog');
+			import('lib.pkp.classes.log.SubmissionLog');
 			import('classes.log.SubmissionEventLogEntry');
 			AppLocale::requireComponents(LOCALE_COMPONENT_APP_COMMON, LOCALE_COMPONENT_APP_EDITOR);
-			MonographLog::logEvent($request, $seriesEditorSubmission, SUBMISSION_LOG_EDITOR_DECISION, 'log.editor.decision', array('editorName' => $user->getFullName(), 'monographId' => $seriesEditorSubmission->getId(), 'decision' => __($decisionLabels[$decision])));
+			SubmissionLog::logEvent($request, $seriesEditorSubmission, SUBMISSION_LOG_EDITOR_DECISION, 'log.editor.decision', array('editorName' => $user->getFullName(), 'monographId' => $seriesEditorSubmission->getId(), 'decision' => __($decisionLabels[$decision])));
 		}
 		return $result;
 	}
@@ -241,9 +241,9 @@ class SeriesEditorAction extends Action {
 			);
 
 			// Add log
-			import('classes.log.MonographLog');
+			import('lib.pkp.classes.log.SubmissionLog');
 			import('classes.log.SubmissionEventLogEntry');
-			MonographLog::logEvent($request, $seriesEditorSubmission, SUBMISSION_LOG_REVIEW_ASSIGN, 'log.review.reviewerAssigned', array('reviewerName' => $reviewer->getFullName(), 'monographId' => $seriesEditorSubmission->getId(), 'stageId' => $stageId, 'round' => $round));
+			SubmissionLog::logEvent($request, $seriesEditorSubmission, SUBMISSION_LOG_REVIEW_ASSIGN, 'log.review.reviewerAssigned', array('reviewerName' => $reviewer->getFullName(), 'monographId' => $seriesEditorSubmission->getId(), 'stageId' => $stageId, 'round' => $round));
 		}
 	}
 
@@ -294,9 +294,9 @@ class SeriesEditorAction extends Action {
 			);
 
 			// Add log
-			import('classes.log.MonographLog');
+			import('lib.pkp.classes.log.SubmissionLog');
 			import('classes.log.SubmissionEventLogEntry');
-			MonographLog::logEvent($request, $seriesEditorSubmission, SUBMISSION_LOG_REVIEW_CLEAR, 'log.review.reviewCleared', array('reviewerName' => $reviewer->getFullName(), 'monographId' => $seriesEditorSubmission->getId(), 'stageId' => $reviewAssignment->getStageId(), 'round' => $reviewAssignment->getRound()));
+			SubmissionLog::logEvent($request, $seriesEditorSubmission, SUBMISSION_LOG_REVIEW_CLEAR, 'log.review.reviewCleared', array('reviewerName' => $reviewer->getFullName(), 'monographId' => $seriesEditorSubmission->getId(), 'stageId' => $reviewAssignment->getStageId(), 'round' => $reviewAssignment->getRound()));
 
 			return true;
 		} else return false;
@@ -336,9 +336,9 @@ class SeriesEditorAction extends Action {
 			// N.B. Only logging Date Due
 			if ($logEntry) {
 				// Add log
-				import('classes.log.MonographLog');
+				import('lib.pkp.classes.log.SubmissionLog');
 				import('classes.log.SubmissionEventLogEntry');
-				MonographLog::logEvent(
+				SubmissionLog::logEvent(
 					$request,
 					$monograph,
 					SUBMISSION_LOG_REVIEW_SET_DUE_DATE,

@@ -64,9 +64,9 @@ class ManageFileApiHandler extends PKPManageFileApiHandler {
 		}
 
 		if ($submissionFile->getRevision() == 1 && $submissionFile->getSourceFileId() == null) {
-			import('classes.log.MonographLog');
+			import('lib.pkp.classes.log.SubmissionLog');
 			import('classes.log.SubmissionEventLogEntry'); // constants
-			MonographLog::logEvent($request, $submission, SUBMISSION_LOG_LAST_REVISION_DELETED, 'submission.event.lastRevisionDeleted', array('title' => $submissionFile->getOriginalFileName(), 'submissionId' => $submissionFile->getSubmissionId(), 'username' => $user->getUsername()));
+			SubmissionLog::logEvent($request, $submission, SUBMISSION_LOG_LAST_REVISION_DELETED, 'submission.event.lastRevisionDeleted', array('title' => $submissionFile->getOriginalFileName(), 'submissionId' => $submissionFile->getSubmissionId(), 'username' => $user->getUsername()));
 		}
 
 	}

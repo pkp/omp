@@ -114,9 +114,9 @@ class MonographMailTemplate extends MailTemplate {
 	 * Save the email in the monograph email log.
 	 */
 	function log($request = null) {
-		import('classes.log.MonographLog');
+		import('lib.pkp.classes.log.SubmissionLog');
 		$entry = new SubmissionEmailLogEntry();
-		$monograph =& $this->monograph;
+		$monograph = $this->monograph;
 
 		// Event data
 		$entry->setEventType($this->logEventType);

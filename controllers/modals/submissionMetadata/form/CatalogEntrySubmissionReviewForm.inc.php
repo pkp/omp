@@ -90,8 +90,8 @@ class CatalogEntrySubmissionReviewForm extends SubmissionMetadataViewForm {
 			MonographSearchIndex::indexMonographMetadata($monograph);
 
 			// Log the publication event.
-			import('classes.log.MonographLog');
-			MonographLog::logEvent($request, $monograph, SUBMISSION_LOG_METADATA_PUBLISH, 'submission.event.metadataPublished');
+			import('lib.pkp.classes.log.SubmissionLog');
+			SubmissionLog::logEvent($request, $monograph, SUBMISSION_LOG_METADATA_PUBLISH, 'submission.event.metadataPublished');
 		} else {
 			if ($isExistingEntry) {
 				// Update the monograph status.
@@ -113,8 +113,8 @@ class CatalogEntrySubmissionReviewForm extends SubmissionMetadataViewForm {
 				$publicationFormatTombstoneMgr->insertTombstonesByPublicationFormats($publicationFormats, $press);
 
 				// Log the unpublication event.
-				import('classes.log.MonographLog');
-				MonographLog::logEvent($request, $monograph, SUBMISSION_LOG_METADATA_UNPUBLISH, 'submission.event.metadataUnpublished');
+				import('lib.pkp.classes.log.SubmissionLog');
+				SubmissionLog::logEvent($request, $monograph, SUBMISSION_LOG_METADATA_UNPUBLISH, 'submission.event.metadataUnpublished');
 			}
 
 			// regular submission without publish in catalog.

@@ -66,7 +66,7 @@ class ReviewerAction extends Action {
 				$reviewAssignmentDao->updateObject($reviewAssignment);
 
 				// Add log
-				import('classes.log.MonographLog');
+				import('lib.pkp.classes.log.SubmissionLog');
 				import('classes.log.SubmissionEventLogEntry');
 
 				$entry = new SubmissionEventLogEntry();
@@ -75,7 +75,7 @@ class ReviewerAction extends Action {
 				$entry->setDateLogged(Core::getCurrentDate());
 				$entry->setEventType($decline?SUBMISSION_LOG_REVIEW_DECLINE:SUBMISSION_LOG_REVIEW_ACCEPT);
 
-				MonographLog::logEvent(
+				SubmissionLog::logEvent(
 					$request,
 					$reviewerSubmission,
 					$decline?SUBMISSION_LOG_REVIEW_DECLINE:SUBMISSION_LOG_REVIEW_ACCEPT,

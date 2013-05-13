@@ -322,9 +322,9 @@ class PublicationFormatGridHandler extends GridHandler {
 			$notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.removedPublicationFormat')));
 
 			// log the deletion of the format.
-			import('classes.log.MonographLog');
+			import('lib.pkp.classes.log.SubmissionLog');
 			import('classes.log.SubmissionEventLogEntry');
-			MonographLog::logEvent($request, $this->getMonograph(), SUBMISSION_LOG_PUBLICATION_FORMAT_REMOVE, 'submission.event.publicationFormatRemoved', array('formatName' => $publicationFormat->getLocalizedName()));
+			SubmissionLog::logEvent($request, $this->getMonograph(), SUBMISSION_LOG_PUBLICATION_FORMAT_REMOVE, 'submission.event.publicationFormatRemoved', array('formatName' => $publicationFormat->getLocalizedName()));
 
 			return DAO::getDataChangedEvent();
 		} else {
@@ -355,9 +355,9 @@ class PublicationFormatGridHandler extends GridHandler {
 			$publicationFormatDao->updateObject($publicationFormat);
 
 			// log the state changing of the format.
-			import('classes.log.MonographLog');
+			import('lib.pkp.classes.log.SubmissionLog');
 			import('classes.log.SubmissionEventLogEntry');
-			MonographLog::logEvent(
+			SubmissionLog::logEvent(
 				$request, $this->getMonograph(),
 				$newAvailableState?SUBMISSION_LOG_PUBLICATION_FORMAT_AVAILABLE:SUBMISSION_LOG_PUBLICATION_FORMAT_UNAVAILABLE,
 				$newAvailableState?'submission.event.publicationFormatMadeAvailable':'submission.event.publicationFormatMadeUnavailable',

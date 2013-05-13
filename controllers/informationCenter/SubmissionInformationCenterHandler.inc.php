@@ -116,8 +116,8 @@ class SubmissionInformationCenterHandler extends PKPSubmissionInformationCenterH
 				assert(false);
 		}
 
-		import('classes.log.MonographLog');
-		MonographLog::logEvent($request, $this->_submission, $eventType, $logMessage);
+		import('lib.pkp.classes.log.SubmissionLog');
+		SubmissionLog::logEvent($request, $this->_submission, $eventType, $logMessage);
 	}
 }
 
