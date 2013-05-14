@@ -12,7 +12,7 @@
  * @brief Form for searching (by name) and adding a reviewer to a submission
  */
 
-import('controllers.grid.users.reviewer.form.ReviewerForm');
+import('lib.pkp.controllers.grid.users.reviewer.form.ReviewerForm');
 
 class SearchByNameReviewerForm extends ReviewerForm {
 	/**

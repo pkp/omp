@@ -25,6 +25,14 @@ class UserDAO extends PKPUserDAO {
 	function UserDAO() {
 		parent::PKPUserDAO();
 	}
+
+	/**
+	 * Create a new data object
+	 * @return User
+	 */
+	function newDataObject() {
+		return new User();
+	}
 }
 
 ?>

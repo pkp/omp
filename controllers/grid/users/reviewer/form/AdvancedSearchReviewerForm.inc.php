@@ -12,7 +12,7 @@
  * @brief Form for an advanced search and for adding a reviewer to a submission.
  */
 
-import('controllers.grid.users.reviewer.form.ReviewerForm');
+import('lib.pkp.controllers.grid.users.reviewer.form.ReviewerForm');
 
 class AdvancedSearchReviewerForm extends ReviewerForm {
 	/**

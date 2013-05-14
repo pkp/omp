@@ -12,7 +12,7 @@
  * @brief Form for creating and subsequently adding a reviewer to a submission.
  */
 
-import('controllers.grid.users.reviewer.form.ReviewerForm');
+import('lib.pkp.controllers.grid.users.reviewer.form.ReviewerForm');
 
 class CreateReviewerForm extends ReviewerForm {
 	/**
@@ -73,7 +73,7 @@ class CreateReviewerForm extends ReviewerForm {
 	 */
 	function execute($args, $request) {
 		$userDao = DAORegistry::getDAO('UserDAO');
-		$user = new User();
+		$user = $userDao->newDataObject();
 
 		$user->setFirstName($this->getData('firstname'));
 		$user->setMiddleName($this->getData('middlename'));

@@ -12,7 +12,7 @@
  * @brief Form for enrolling an existing reviewer and adding them to a submission.
  */
 
-import('controllers.grid.users.reviewer.form.ReviewerForm');
+import('lib.pkp.controllers.grid.users.reviewer.form.ReviewerForm');
 
 class EnrollExistingReviewerForm extends ReviewerForm {
 	/**
