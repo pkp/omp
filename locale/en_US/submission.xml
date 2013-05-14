@@ -75,7 +75,6 @@
 	<message key="submission.submit.form.titleRequired">Please enter the title of your monograph.</message>
 	<message key="submission.submit.form.abstractRequired">Please enter a brief summary of your monograph.</message>
 	<message key="submission.submit.form.contributorRoleRequired">Please select the contributor's role.</message>
-	<message key="submission.submit.currentFile">Current file</message>
 	<message key="submission.submit.submissionFile">Submission File</message>
 	<message key="submission.submit.prepare">Prepare</message>
 	<message key="submission.submit.catalog">Catalog</message>

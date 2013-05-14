@@ -81,7 +81,6 @@
 	<message key="submission.submit.form.titleRequired">Veuillez saisir le titre de votre monographie.</message>
 	<message key="submission.submit.form.abstractRequired">Veuillez saisir un bref résumé de votre monographie.</message>
 	<message key="submission.submit.form.contributorRoleRequired">Veuillez sélectionner le rôle du contributeur.</message>
-	<message key="submission.submit.currentFile">Fichier en cours</message>
 	<message key="submission.submit.selectFile">Choisir un fichier à télécharger</message>
 	<message key="submission.submit.submissionFile">Fichier de soumission</message>
 	<message key="submission.submit.uploadSubmissionFile">Télécharger le fichier de soumission</message>
