@@ -107,62 +107,6 @@ class SeriesEditorAction extends Action {
 	}
 
 	/**
-	 * Sets the due date for a review assignment.
-	 * @param $request PKPRequest
-	 * @param $monograph Object
-	 * @param $reviewId int
-	 * @param $dueDate string
-	 * @param $numWeeks int
-	 * @param $logEntry boolean
-	 */
-	function setDueDates($request, $monograph, $reviewAssignment, $reviewDueDate = null, $responseDueDate = null, $logEntry = false) {
-		$userDao = DAORegistry::getDAO('UserDAO');
-		$press = $request->getContext();
-
-		$reviewer = $userDao->getById($reviewAssignment->getReviewerId());
-		if (!isset($reviewer)) return false;
-
-		if ($reviewAssignment->getSubmissionId() == $monograph->getId() && !HookRegistry::call('SeriesEditorAction::setDueDates', array(&$reviewAssignment, &$reviewer, &$reviewDueDate, &$responseDueDate))) {
-
-			// Set the review due date
-			$defaultNumWeeks = $press->getSetting('numWeeksPerReview');
-			$reviewAssignment->setDateDue(DAO::formatDateToDB($reviewDueDate, $defaultNumWeeks, false));
-
-			// Set the response due date
-			$defaultNumWeeks = $press->getSetting('numWeeksPerReponse');
-			$reviewAssignment->setDateResponseDue(DAO::formatDateToDB($responseDueDate, $defaultNumWeeks, false));
-
-			// update the assignment (with both the new dates)
-			$reviewAssignment->stampModified();
-			$reviewAssignmentDao = DAORegistry::getDAO('ReviewAssignmentDAO'); /* @var $reviewAssignmentDao ReviewAssignmentDAO */
-			$reviewAssignmentDao->updateObject($reviewAssignment);
-
-			// N.B. Only logging Date Due
-			if ($logEntry) {
-				// Add log
-				import('lib.pkp.classes.log.SubmissionLog');
-				import('classes.log.SubmissionEventLogEntry');
-				SubmissionLog::logEvent(
-					$request,
-					$monograph,
-					SUBMISSION_LOG_REVIEW_SET_DUE_DATE,
-					'log.review.reviewDueDateSet',
-					array(
-						'reviewerName' => $reviewer->getFullName(),
-						'dueDate' => strftime(
-							Config::getVar('general', 'date_format_short'),
-							strtotime($reviewAssignment->getDateDue())
-						),
-						'submissionId' => $monograph->getId(),
-						'stageId' => $reviewAssignment->getStageId(),
-						'round' => $reviewAssignment->getRound()
-					)
-				);
-			}
-		}
-	}
-
-	/**
 	 * Get the text of all peer reviews for a submission
 	 * @param $seriesEditorSubmission SeriesEditorSubmission
 	 * @param $reviewRoundId int
