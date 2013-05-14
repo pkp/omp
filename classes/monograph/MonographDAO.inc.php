@@ -349,8 +349,8 @@ class MonographDAO extends DAO {
 		$monographFileManager->rmtree($monographFileManager->getBasePath());
 
 		// Delete any comments.
-		$monographCommentDao = DAORegistry::getDAO('MonographCommentDAO');
-		$monographCommentDao->deleteByMonographId($monographId);
+		$submissionCommentDao = DAORegistry::getDAO('SubmissionCommentDAO');
+		$submissionCommentDao->deleteBySubmissionId($monographId);
 
 		// Delete references to features or new releases.
 		$featureDao = DAORegistry::getDAO('FeatureDAO');

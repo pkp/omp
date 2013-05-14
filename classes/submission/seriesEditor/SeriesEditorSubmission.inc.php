@@ -223,7 +223,7 @@ class SeriesEditorSubmission extends Monograph {
 
 	/**
 	 * Get most recent editor decision comment.
-	 * @return MonographComment
+	 * @return SubmissionComment
 	 */
 	function getMostRecentEditorDecisionComment() {
 		return $this->getData('mostRecentEditorDecisionComment');
@@ -231,7 +231,7 @@ class SeriesEditorSubmission extends Monograph {
 
 	/**
 	 * Set most recent editor decision comment.
-	 * @param $mostRecentEditorDecisionComment MonographComment
+	 * @param $mostRecentEditorDecisionComment SubmissionComment
 	 */
 	function setMostRecentEditorDecisionComment($mostRecentEditorDecisionComment) {
 		return $this->setData('mostRecentEditorDecisionComment', $mostRecentEditorDecisionComment);
@@ -239,7 +239,7 @@ class SeriesEditorSubmission extends Monograph {
 
 	/**
 	 * Get most recent copyedit comment.
-	 * @return MonographComment
+	 * @return SubmissionComment
 	 */
 	function getMostRecentCopyeditComment() {
 		return $this->getData('mostRecentCopyeditComment');
@@ -247,7 +247,7 @@ class SeriesEditorSubmission extends Monograph {
 
 	/**
 	 * Set most recent copyedit comment.
-	 * @param $mostRecentCopyeditComment MonographComment
+	 * @param $mostRecentCopyeditComment SubmissionComment
 	 */
 	function setMostRecentCopyeditComment($mostRecentCopyeditComment) {
 		return $this->setData('mostRecentCopyeditComment', $mostRecentCopyeditComment);
@@ -255,7 +255,7 @@ class SeriesEditorSubmission extends Monograph {
 
 	/**
 	 * Get most recent layout comment.
-	 * @return MonographComment
+	 * @return SubmissionComment
 	 */
 	function getMostRecentLayoutComment() {
 		return $this->getData('mostRecentLayoutComment');
@@ -263,7 +263,7 @@ class SeriesEditorSubmission extends Monograph {
 
 	/**
 	 * Set most recent layout comment.
-	 * @param $mostRecentLayoutComment MonographComment
+	 * @param $mostRecentLayoutComment SubmissionComment
 	 */
 	function setMostRecentLayoutComment($mostRecentLayoutComment) {
 		return $this->setData('mostRecentLayoutComment', $mostRecentLayoutComment);
@@ -271,7 +271,7 @@ class SeriesEditorSubmission extends Monograph {
 
 	/**
 	 * Get most recent proofread comment.
-	 * @return MonographComment
+	 * @return SubmissionComment
 	 */
 	function getMostRecentProofreadComment() {
 		return $this->getData('mostRecentProofreadComment');
@@ -279,7 +279,7 @@ class SeriesEditorSubmission extends Monograph {
 
 	/**
 	 * Set most recent proofread comment.
-	 * @param $mostRecentProofreadComment MonographComment
+	 * @param $mostRecentProofreadComment SubmissionComment
 	 */
 	function setMostRecentProofreadComment($mostRecentProofreadComment) {
 		return $this->setData('mostRecentProofreadComment', $mostRecentProofreadComment);

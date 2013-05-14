@@ -41,11 +41,11 @@ class UserAction {
 		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
 		$submissionFileDao->transferOwnership($oldUserId, $newUserId);
 
-		$monographCommentDao = DAORegistry::getDAO('MonographCommentDAO');
-		$comments = $monographCommentDao->getByUserId($oldUserId);
+		$submissionCommentDao = DAORegistry::getDAO('SubmissionCommentDAO');
+		$comments = $submissionCommentDao->getByUserId($oldUserId);
 		while ($comment = $comments->next()) {
 			$comment->setAuthorId($newUserId);
-			$monographCommentDao->updateObject($comment);
+			$submissionCommentDao->updateObject($comment);
 		}
 
 		$noteDao = DAORegistry::getDAO('NoteDAO');
@@ -77,13 +77,6 @@ class UserAction {
 		$monographEmailLogDao->changeUser($oldUserId, $newUserId);
 		$monographEventLogDao = DAORegistry::getDAO('SubmissionEventLogDAO');
 		$monographEventLogDao->changeUser($oldUserId, $newUserId);
-
-		$monographCommentDao = DAORegistry::getDAO('MonographCommentDAO');
-		$comments = $monographCommentDao->getByUserId($oldUserId);
-		while ($comment = $comments->next()) {
-			$comment->setAuthorId($newUserId);
-			$monographCommentDao->updateObject($comment);
-		}
 
 		$accessKeyDao = DAORegistry::getDAO('AccessKeyDAO');
 		$accessKeyDao->transferAccessKeys($oldUserId, $newUserId);

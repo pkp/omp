@@ -27,7 +27,7 @@ class SeriesEditorSubmissionDAO extends MonographDAO {
 	var $submissionFileDao;
 	var $signoffDao;
 	var $monographEmailLogDao;
-	var $monographCommentDao;
+	var $submissionCommentDao;
 	var $reviewRoundDao;
 
 	/**
@@ -41,7 +41,7 @@ class SeriesEditorSubmissionDAO extends MonographDAO {
 		$this->submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
 		$this->signoffDao = DAORegistry::getDAO('SignoffDAO');
 		$this->monographEmailLogDao = DAORegistry::getDAO('SubmissionEmailLogDAO');
-		$this->monographCommentDao = DAORegistry::getDAO('MonographCommentDAO');
+		$this->submissionCommentDao = DAORegistry::getDAO('SubmissionCommentDAO');
 		$this->reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO');
 	}
 
@@ -113,10 +113,10 @@ class SeriesEditorSubmissionDAO extends MonographDAO {
 		}
 
 		// Comments
-		$seriesEditorSubmission->setMostRecentEditorDecisionComment($this->monographCommentDao->getMostRecentMonographComment($row['monograph_id'], COMMENT_TYPE_EDITOR_DECISION, $row['monograph_id']));
-		$seriesEditorSubmission->setMostRecentCopyeditComment($this->monographCommentDao->getMostRecentMonographComment($row['monograph_id'], COMMENT_TYPE_COPYEDIT, $row['monograph_id']));
-		$seriesEditorSubmission->setMostRecentLayoutComment($this->monographCommentDao->getMostRecentMonographComment($row['monograph_id'], COMMENT_TYPE_LAYOUT, $row['monograph_id']));
-		$seriesEditorSubmission->setMostRecentProofreadComment($this->monographCommentDao->getMostRecentMonographComment($row['monograph_id'], COMMENT_TYPE_PROOFREAD, $row['monograph_id']));
+		$seriesEditorSubmission->setMostRecentEditorDecisionComment($this->submissionCommentDao->getMostRecentSubmissionComment($row['monograph_id'], COMMENT_TYPE_EDITOR_DECISION, $row['monograph_id']));
+		$seriesEditorSubmission->setMostRecentCopyeditComment($this->submissionCommentDao->getMostRecentSubmissionComment($row['monograph_id'], COMMENT_TYPE_COPYEDIT, $row['monograph_id']));
+		$seriesEditorSubmission->setMostRecentLayoutComment($this->submissionCommentDao->getMostRecentSubmissionComment($row['monograph_id'], COMMENT_TYPE_LAYOUT, $row['monograph_id']));
+		$seriesEditorSubmission->setMostRecentProofreadComment($this->submissionCommentDao->getMostRecentSubmissionComment($row['monograph_id'], COMMENT_TYPE_PROOFREAD, $row['monograph_id']));
 
 		// Review Assignments
 		$reviewRounds =& $this->reviewRoundDao->getBySubmissionId($row['monograph_id']);

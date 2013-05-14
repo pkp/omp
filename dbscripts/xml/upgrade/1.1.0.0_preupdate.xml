@@ -36,4 +36,8 @@
 		<rename table="monograph_file_settings" to="submission_file_settings" />
 		<rename table="edit_decisions" column="monograph_id" to="submission_id" />
 	</sql>
+	<!-- Bug #8212: Rename monograph_comments to submission_comments -->
+		<rename table="monograph_comments" column="monograph_id" to="submission_id" />
+		<rename table="monograph_comments" to="submission_comments" />
+	</sql>
 </data>

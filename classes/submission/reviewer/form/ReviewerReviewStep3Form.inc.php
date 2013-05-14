@@ -37,9 +37,9 @@ class ReviewerReviewStep3Form extends ReviewerReviewForm {
 	function initData() {
 		$reviewAssignment = $this->getReviewAssignment();
 		// Retrieve reviewer comment.
-		$monographCommentDao = DAORegistry::getDAO('MonographCommentDAO');
-		$monographComments = $monographCommentDao->getReviewerCommentsByReviewerId($reviewAssignment->getReviewerId(), $reviewAssignment->getSubmissionId(), $reviewAssignment->getId());
-		$this->setData('reviewerComment', $monographComments->next());
+		$submissionCommentDao = DAORegistry::getDAO('SubmissionCommentDAO');
+		$submissionComments = $submissionCommentDao->getReviewerCommentsByReviewerId($reviewAssignment->getReviewerId(), $reviewAssignment->getSubmissionId(), $reviewAssignment->getId());
+		$this->setData('reviewerComment', $submissionComments->next());
 	}
 
 	//
@@ -145,11 +145,12 @@ class ReviewerReviewStep3Form extends ReviewerReviewForm {
 			} */
 		} else {
 			// Create a monograph comment with the review.
-			$comment = new MonographComment();
+			$submissionCommentDao = DAORegistry::getDAO('SubmissionCommentDAO');
+			$comment = $submissionCommentDao->newDataObject();
 			$comment->setCommentType(COMMENT_TYPE_PEER_REVIEW);
 			$comment->setRoleId(ROLE_ID_REVIEWER);
 			$comment->setAssocId($reviewAssignment->getId());
-			$comment->setMonographId($reviewAssignment->getSubmissionId());
+			$comment->setSubmissionId($reviewAssignment->getSubmissionId());
 			$comment->setAuthorId($reviewAssignment->getReviewerId());
 			$comment->setComments($this->getData('comments'));
 			$comment->setCommentTitle('');
@@ -157,21 +158,19 @@ class ReviewerReviewStep3Form extends ReviewerReviewForm {
 			$comment->setDatePosted(Core::getCurrentDate());
 
 			// Persist the monograph comment.
-			$commentDao = DAORegistry::getDAO('MonographCommentDAO');
-			$commentDao->insertObject($comment);
+			$submissionCommentDao->insertObject($comment);
 
 			$monographDao = DAORegistry::getDAO('MonographDAO');
 			$monograph = $monographDao->getById($reviewAssignment->getSubmissionId());
 
 			$stageAssignmentDao = DAORegistry::getDAO('StageAssignmentDAO');
-			$stageAssignments =& $stageAssignmentDao->getBySubmissionAndStageId($monograph->getId(), $monograph->getStageId());
+			$stageAssignments = $stageAssignmentDao->getBySubmissionAndStageId($monograph->getId(), $monograph->getStageId());
 
-			while ($stageAssignment =& $stageAssignments->next()) {
+			while ($stageAssignment = $stageAssignments->next()) {
 				$notificationMgr->createNotification(
 					$request, $stageAssignment->getUserId(), NOTIFICATION_TYPE_REVIEWER_COMMENT,
 					$monograph->getPressId(), ASSOC_TYPE_REVIEW_ASSIGNMENT, $reviewAssignment->getId()
 				);
-				unset($stageAssignment);
 			}
 		}
 

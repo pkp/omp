@@ -18,7 +18,7 @@ import('lib.pkp.classes.submission.reviewAssignment.PKPReviewAssignmentDAO');
 
 class ReviewAssignmentDAO extends PKPReviewAssignmentDAO {
 	var $submissionFileDao;
-	var $monographCommentsDao;
+	var $submissionCommentsDao;
 
 	/**
 	 * Constructor.
@@ -26,7 +26,7 @@ class ReviewAssignmentDAO extends PKPReviewAssignmentDAO {
 	function ReviewAssignmentDAO() {
 		parent::PKPReviewAssignmentDAO();
 		$this->submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
-		$this->monographCommentDao = DAORegistry::getDAO('MonographCommentDAO');
+		$this->submissionCommentDao = DAORegistry::getDAO('SubmissionCommentDAO');
 	}
 
 	/**
@@ -80,7 +80,7 @@ class ReviewAssignmentDAO extends PKPReviewAssignmentDAO {
 		$reviewAssignment = parent::_fromRow($row);
 
 		// Comments
-		$reviewAssignment->setMostRecentPeerReviewComment($this->monographCommentDao->getMostRecentMonographComment($row['submission_id'], COMMENT_TYPE_PEER_REVIEW, $row['review_id']));
+		$reviewAssignment->setMostRecentPeerReviewComment($this->submissionCommentDao->getMostRecentSubmissionComment($row['submission_id'], COMMENT_TYPE_PEER_REVIEW, $row['review_id']));
 
 		HookRegistry::call('ReviewAssignmentDAO::_fromRow', array(&$reviewAssignment, &$row));
 		return $reviewAssignment;

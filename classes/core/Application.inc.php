@@ -100,7 +100,7 @@ class Application extends PKPApplication {
 			'IdentificationCodeDAO' => 'classes.publicationFormat.IdentificationCodeDAO',
 			'LayoutAssignmentDAO' => 'submission.layoutAssignment.LayoutAssignmentDAO',
 			'MarketDAO' => 'classes.publicationFormat.MarketDAO',
-			'MonographCommentDAO' => 'classes.monograph.MonographCommentDAO',
+			'SubmissionCommentDAO' => 'lib.pkp.classes.submission.SubmissionCommentDAO',
 			'MonographDAO' => 'classes.monograph.MonographDAO',
 			'MonographFileEmailLogDAO' => 'classes.log.MonographFileEmailLogDAO',
 			'MonographSearchDAO' => 'classes.search.MonographSearchDAO',
@@ -190,12 +190,12 @@ class Application extends PKPApplication {
 	static function getApplicationStages() {
 		// We leave out WORKFLOW_STAGE_ID_PUBLISHED since it technically is not a 'stage'.
 		return array(
-				WORKFLOW_STAGE_ID_SUBMISSION,
-				WORKFLOW_STAGE_ID_INTERNAL_REVIEW,
-				WORKFLOW_STAGE_ID_EXTERNAL_REVIEW,
-				WORKFLOW_STAGE_ID_EDITING,
-				WORKFLOW_STAGE_ID_PRODUCTION
-			);
+			WORKFLOW_STAGE_ID_SUBMISSION,
+			WORKFLOW_STAGE_ID_INTERNAL_REVIEW,
+			WORKFLOW_STAGE_ID_EXTERNAL_REVIEW,
+			WORKFLOW_STAGE_ID_EDITING,
+			WORKFLOW_STAGE_ID_PRODUCTION
+		);
 	}
 
 	/**

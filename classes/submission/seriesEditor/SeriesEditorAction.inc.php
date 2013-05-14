@@ -36,7 +36,7 @@ class SeriesEditorAction extends Action {
 	 * @param $stageId int
 	 * @param $request Request
 	 */
-	function assignDefaultStageParticipants(&$monograph, $stageId, $request) {
+	function assignDefaultStageParticipants($submission, $stageId, $request) {
 		$userGroupDao = DAORegistry::getDAO('UserGroupDAO');
 
 		// Managerial roles are skipped -- They have access by default and
@@ -48,28 +48,29 @@ class SeriesEditorAction extends Action {
 		// Press roles -- For each press role user group assigned to this
 		//  stage in setup, iff there is only one user for the group,
 		//  automatically assign the user to the stage
-		// But skip authors and reviewers, since these are very monograph specific
+		// But skip authors and reviewers, since these are very submission specific
 		$stageAssignmentDao = DAORegistry::getDAO('StageAssignmentDAO');
-		$submissionStageGroups = $userGroupDao->getUserGroupsByStage($monograph->getPressId(), $stageId, true, true);
+		$submissionStageGroups = $userGroupDao->getUserGroupsByStage($submission->getContextId(), $stageId, true, true);
 		while ($userGroup = $submissionStageGroups->next()) {
 			$users = $userGroupDao->getUsersById($userGroup->getId());
 			if($users->getCount() == 1) {
 				$user = $users->next();
-				$stageAssignmentDao->build($monograph->getId(), $userGroup->getId(), $user->getId());
+				$stageAssignmentDao->build($submission->getId(), $userGroup->getId(), $user->getId());
 			}
 		}
 
 		$notificationMgr = new NotificationManager();
 		$notificationMgr->updateNotification(
 			$request,
-			array(NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_SUBMISSION,
+			array(
+				NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_SUBMISSION,
 				NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_INTERNAL_REVIEW,
 				NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_EXTERNAL_REVIEW,
 				NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_EDITING,
 				NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_PRODUCTION),
 			null,
-			ASSOC_TYPE_MONOGRAPH,
-			$monograph->getId()
+			ASSOC_TYPE_SUBMISSION,
+			$submission->getId()
 		);
 
 		// Reviewer roles -- Do nothing. Reviewers are not included in the stage participant list, they
@@ -77,13 +78,13 @@ class SeriesEditorAction extends Action {
 
 		// Author roles
 		// Assign only the submitter in whatever ROLE_ID_AUTHOR capacity they were assigned previously
-		$submitterAssignments = $stageAssignmentDao->getBySubmissionAndStageId($monograph->getId(), null, null, $monograph->getUserId());
+		$submitterAssignments = $stageAssignmentDao->getBySubmissionAndStageId($submission->getId(), null, null, $submission->getUserId());
 		while ($assignment = $submitterAssignments->next()) {
 			$userGroup = $userGroupDao->getById($assignment->getUserGroupId());
 			if ($userGroup->getRoleId() == ROLE_ID_AUTHOR) {
-				$stageAssignmentDao->build($monograph->getId(), $userGroup->getId(), $assignment->getUserId());
+				$stageAssignmentDao->build($submission->getId(), $userGroup->getId(), $assignment->getUserId());
 				// Only assign them once, since otherwise we'll one assignment for each previous stage.
-				// And as long as they are assigned once, they will get access to their monograph.
+				// And as long as they are assigned once, they will get access to their submission.
 				break;
 			}
 		}
@@ -186,61 +187,6 @@ class SeriesEditorAction extends Action {
 	}
 
 	/**
-	 * Clears a review assignment from a submission.
-	 * @param $seriesEditorSubmission object
-	 * @param $reviewId int
-	 */
-	function clearReview($request, $submissionId, $reviewId) {
-		$seriesEditorSubmissionDao = DAORegistry::getDAO('SeriesEditorSubmissionDAO'); /* @var $seriesEditorSubmissionDao SeriesEditorSubmissionDAO */
-		$seriesEditorSubmission =& $seriesEditorSubmissionDao->getById($submissionId);
-		$reviewAssignmentDao = DAORegistry::getDAO('ReviewAssignmentDAO');
-		$userDao = DAORegistry::getDAO('UserDAO');
-
-		$reviewAssignment =& $reviewAssignmentDao->getById($reviewId);
-
-		if (isset($reviewAssignment) && $reviewAssignment->getSubmissionId() == $seriesEditorSubmission->getId() && !HookRegistry::call('SeriesEditorAction::clearReview', array(&$seriesEditorSubmission, $reviewAssignment))) {
-			$reviewer =& $userDao->getById($reviewAssignment->getReviewerId());
-			if (!isset($reviewer)) return false;
-			$seriesEditorSubmission->removeReviewAssignment($reviewId);
-			$seriesEditorSubmissionDao->updateSeriesEditorSubmission($seriesEditorSubmission);
-
-			$notificationDao = DAORegistry::getDAO('NotificationDAO');
-			$notificationDao->deleteByAssoc(
-				ASSOC_TYPE_REVIEW_ASSIGNMENT,
-				$reviewAssignment->getId(),
-				$reviewAssignment->getReviewerId(),
-				NOTIFICATION_TYPE_REVIEW_ASSIGNMENT
-			);
-
-			// Insert a trivial notification to indicate the reviewer was removed successfully.
-			$currentUser = $request->getUser();
-			$notificationMgr = new NotificationManager();
-			$notificationMgr->createTrivialNotification($currentUser->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.removedReviewer')));
-
-			// Update the review round status, if needed.
-			$reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO');
-			$reviewRound = $reviewRoundDao->getById($reviewAssignment->getReviewRoundId());
-			$reviewAssignments = $seriesEditorSubmission->getReviewAssignments($reviewRound->getStageId(), $reviewRound->getRound());
-			$reviewRoundDao->updateStatus($reviewRound, $reviewAssignments);
-
-			$notificationMgr->updateNotification(
-				$request,
-				array(NOTIFICATION_TYPE_ALL_REVIEWS_IN),
-				null,
-				ASSOC_TYPE_REVIEW_ROUND,
-				$reviewRound->getId()
-			);
-
-			// Add log
-			import('lib.pkp.classes.log.SubmissionLog');
-			import('classes.log.SubmissionEventLogEntry');
-			SubmissionLog::logEvent($request, $seriesEditorSubmission, SUBMISSION_LOG_REVIEW_CLEAR, 'log.review.reviewCleared', array('reviewerName' => $reviewer->getFullName(), 'submissionId' => $seriesEditorSubmission->getId(), 'stageId' => $reviewAssignment->getStageId(), 'round' => $reviewAssignment->getRound()));
-
-			return true;
-		} else return false;
-	}
-
-	/**
 	 * Sets the due date for a review assignment.
 	 * @param $request PKPRequest
 	 * @param $monograph Object
@@ -304,7 +250,7 @@ class SeriesEditorAction extends Action {
 	 */
 	function getPeerReviews($seriesEditorSubmission, $reviewRoundId) {
 		$reviewAssignmentDao = DAORegistry::getDAO('ReviewAssignmentDAO');
-		$monographCommentDao = DAORegistry::getDAO('MonographCommentDAO');
+		$submissionCommentDao = DAORegistry::getDAO('SubmissionCommentDAO');
 		$reviewFormResponseDao = DAORegistry::getDAO('ReviewFormResponseDAO');
 		$reviewFormElementDao = DAORegistry::getDAO('ReviewFormElementDAO');
 
@@ -318,7 +264,7 @@ class SeriesEditorAction extends Action {
 			// If the reviewer has completed the assignment, then import the review.
 			if ($reviewAssignment->getDateCompleted() != null && !$reviewAssignment->getCancelled()) {
 				// Get the comments associated with this review assignment
-				$monographComments = $monographCommentDao->getMonographComments($seriesEditorSubmission->getId(), COMMENT_TYPE_PEER_REVIEW, $reviewAssignment->getId());
+				$submissionComments = $submissionCommentDao->getSubmissionComments($seriesEditorSubmission->getId(), COMMENT_TYPE_PEER_REVIEW, $reviewAssignment->getId());
 
 				$body .= "\n\n$textSeparator\n";
 				// If it is not a double blind review, show reviewer's name.
@@ -328,12 +274,11 @@ class SeriesEditorAction extends Action {
 					$body .= __('submission.comments.importPeerReviews.reviewerLetter', array('reviewerLetter' => String::enumerateAlphabetically($reviewIndexes[$reviewAssignment->getId()]))) . "\n";
 				}
 
-				while ($comment =& $monographComments->next()) {
+				while ($comment = $submissionComments->next()) {
 					// If the comment is viewable by the author, then add the comment.
 					if ($comment->getViewable()) {
 						$body .= String::html2text($comment->getComments()) . "\n\n";
 					}
-					unset($comment);
 				}
 				$body .= "$textSeparator\n\n";
 
@@ -342,7 +287,7 @@ class SeriesEditorAction extends Action {
 
 
 					$reviewFormElements =& $reviewFormElementDao->getReviewFormElements($reviewFormId);
-					if(!$monographComments) {
+					if(!$submissionComments) {
 						$body .= "$textSeparator\n";
 
 						$body .= __('submission.comments.importPeerReviews.reviewerLetter', array('reviewerLetter' => String::enumerateAlphabetically($reviewIndexes[$reviewAssignment->getId()]))) . "\n\n";

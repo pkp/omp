@@ -13,8 +13,6 @@
  * @brief ReviewerSubmission class.
  */
 
-
-
 import('classes.monograph.Monograph');
 
 class ReviewerSubmission extends Monograph {
@@ -22,7 +20,7 @@ class ReviewerSubmission extends Monograph {
 	/** @var array MonographFiles reviewer file revisions of this monograph */
 	var $reviewerFileRevisions;
 
-	/** @var array MonographComments peer review comments of this monograph */
+	/** @var array SubmissionComments peer review comments of this monograph */
 	var $peerReviewComments;
 
 	/** @var array the editor decisions of this monograph */
@@ -398,7 +396,7 @@ class ReviewerSubmission extends Monograph {
 
 	/**
 	 * Get most recent peer review comment.
-	 * @return MonographComment
+	 * @return SubmissionComment
 	 */
 	function getMostRecentPeerReviewComment() {
 		return $this->getData('peerReviewComment');
@@ -406,7 +404,7 @@ class ReviewerSubmission extends Monograph {
 
 	/**
 	 * Set most recent peer review comment.
-	 * @param $peerReviewComment MonographComment
+	 * @param $peerReviewComment SubmissionComment
 	 */
 	function setMostRecentPeerReviewComment($peerReviewComment) {
 		return $this->setData('peerReviewComment', $peerReviewComment);
