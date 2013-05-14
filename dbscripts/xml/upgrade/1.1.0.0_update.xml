@@ -51,5 +51,6 @@
 	<!-- Bug #8212: Log generalization from monograph to submission -->
 	<sql>
 		<query>UPDATE event_log_settings SET setting_name = 'submissionId' WHERE setting_name = 'monographId'</query>
+		<query>UPDATE event_log SET message='submission.event.submissionSubmitted' WHERE message='submission.event.monographSubmitted'</query>
 	</sql>
 </data>
