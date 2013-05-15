@@ -13,7 +13,6 @@
 <locale name="fr_CA" full_name = "Français">
 	<message key="editor.submissionLibrary.description"><![CDATA[Télécharger les documents qui concernent la révision et la publication de cette soumission. Des modèles ont été créés pour plusieurs de ces documents. Il suffit de cliquer sur <em>Visionner la bibliothèque de documents</em>.]]></message>
 	<message key="editor.pressSignoff">Fermeture de session de la presse</message>
-	<message key="editor.review.enrollReviewer">Enregistrer un utilisateur actuel à titre d'évaluateur</message>
 	<message key="editor.signoff.approved">Approuvé</message>
 	<message key="editor.monograph.personalMessageToUser">Un courriel sera envoyé à l'utilisateur</message>
 	<message key="editor.monograph.taskSchedule">Calendrier de la tâche</message>
