@@ -88,7 +88,7 @@ class SubmissionInformationCenterHandler extends PKPSubmissionInformationCenterH
 			$dispatcher = $request->getDispatcher();
 			$context = $request->getContext();
 			$template->assignParams(array(
-				'pressUrl' => $dispatcher->url($request, ROUTE_PAGE, $context->getPath()),
+				'contextUrl' => $dispatcher->url($request, ROUTE_PAGE, $context->getPath()),
 				'editorialContactSignature' => $user->getContactSignature(),
 				'signatureFullName' => $user->getFullname(),
 			));

@@ -53,4 +53,22 @@
 		<query>UPDATE event_log_settings SET setting_name = 'submissionId' WHERE setting_name = 'monographId'</query>
 		<query>UPDATE event_log SET message='submission.event.submissionSubmitted' WHERE message='submission.event.monographSubmitted'</query>
 	</sql>
+	<!-- Bug #8212: Refactor MailTemplate code into PKP lib -->
+	<sql>
+		<!-- pressName becomes contextName -->
+		<query>UPDATE email_templates_default_data SET body=REPLACE(body, '{$pressName}', '{$contextName}'), subject=REPLACE(subject, '{$pressName}', '{$contextName}')</query>
+		<query>UPDATE email_templates_data SET body=REPLACE(body, '{$pressName}', '{$contextName}'), subject=REPLACE(subject, '{$pressName}', '{$contextName}')</query>
+		<!-- pressUrl becomes contextUrl -->
+		<query>UPDATE email_templates_default_data SET body=REPLACE(body, '{$pressUrl}', '{$contextUrl}'), subject=REPLACE(subject, '{$pressUrl}', '{$contextUrl}')</query>
+		<query>UPDATE email_templates_data SET body=REPLACE(body, '{$pressUrl}', '{$contextUrl}'), subject=REPLACE(subject, '{$pressUrl}', '{$contextUrl}')</query>
+		<!-- monographTitle becomes submissionTitle -->
+		<query>UPDATE email_templates_default_data SET body=REPLACE(body, '{$monographTitle}', '{$submissionTitle}'), subject=REPLACE(subject, '{$monographTitle}', '{$submissionTitle}')</query>
+		<query>UPDATE email_templates_data SET body=REPLACE(body, '{$monographTitle}', '{$submissionTitle}'), subject=REPLACE(subject, '{$monographTitle}', '{$submissionTitle}')</query>
+		<!-- monographId becomes submissionId -->
+		<query>UPDATE email_templates_default_data SET body=REPLACE(body, '{$monographId}', '{$submissionId}'), subject=REPLACE(subject, '{$monographId}', '{$submissionId}')</query>
+		<query>UPDATE email_templates_data SET body=REPLACE(body, '{$monographId}', '{$submissionId}'), subject=REPLACE(subject, '{$monographId}', '{$submissionId}')</query>
+		<!-- monographAbstract becomes submissionAbstract -->
+		<query>UPDATE email_templates_default_data SET body=REPLACE(body, '{$monographAbstract}', '{$submissionAbstract}'), subject=REPLACE(subject, '{$monographAbstract}', '{$submissionAbstract}')</query>
+		<query>UPDATE email_templates_data SET body=REPLACE(body, '{$monographAbstract}', '{$submissionAbstract}'), subject=REPLACE(subject, '{$monographAbstract}', '{$submissionAbstract}')</query>
+	</sql>
 </data>

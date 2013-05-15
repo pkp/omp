@@ -120,7 +120,7 @@ class ManualPaymentPlugin extends PaymethodPlugin {
 
 		switch ($op) {
 			case 'notify':
-				import('classes.mail.MailTemplate');
+				import('lib.pkp.classes.mail.MailTemplate');
 				AppLocale::requireComponents(LOCALE_COMPONENT_APP_COMMON);
 				$contactName = $press->getSetting('contactName');
 				$contactEmail = $press->getSetting('contactEmail');

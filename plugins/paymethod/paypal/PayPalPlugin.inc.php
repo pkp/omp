@@ -158,7 +158,8 @@ class PayPalPlugin extends PaymethodPlugin {
 		if (!$press) return parent::handle($args, $request);
 
 		// Just in case we need to contact someone
-		import('classes.mail.MailTemplate');
+		import('lib.pkp.classes.mail.MailTemplate');
+
 		// Prefer technical support contact
 		$contactName = $press->getSetting('supportName');
 		$contactEmail = $press->getSetting('supportEmail');

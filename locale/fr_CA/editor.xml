@@ -30,7 +30,6 @@
 	<message key="editor.submissionReview.doubleBlind">Examen en double aveugle</message>
 	<message key="editor.submissionReview.uploadFile">Télécharger le fichier d'évaluation</message>
 	<message key="editor.submissionReview.uploadAttachment">Télécharger le fichier</message>
-	<message key="editor.monograph.returnToSimpleSearch">Revenir en mode de recherche simple</message>
 	<message key="editor.monograph.cancelReview">Annuler la requête</message>
 	<message key="editor.monograph.clearReview">Supprimer l'évaluateur</message>
 	<message key="editor.monograph.enterRecommendation">Saisir la recommendation</message>

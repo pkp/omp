@@ -9,211 +9,61 @@
  * @class MonographMailTemplate
  * @ingroup mail
  *
- * @brief Subclass of MailTemplate for sending emails related to monographs.
+ * @brief Subclass of MailTemplate for sending emails related to submissions.
  *
- * This allows for monograph-specific functionality like logging, etc.
+ * This allows for submission-specific functionality like logging, etc.
  */
 
-
-
-import('classes.mail.MailTemplate');
+import('lib.pkp.classes.mail.SubmissionMailTemplate');
 import('classes.log.SubmissionEmailLogEntry'); // Bring in log constants
 
-class MonographMailTemplate extends MailTemplate {
-
-	/** @var object the associated monograph */
-	var $monograph;
-
-	/** @var object the associated press */
-	var $press;
-
-	/** @var int Event type of this email for logging purposes */
-	var $logEventType;
-
+class MonographMailTemplate extends SubmissionMailTemplate {
 	/**
 	 * Constructor.
-	 * @param $monograph object
+	 * @param $submission Submission
 	 * @param $emailKey string optional
 	 * @param $locale string optional
 	 * @param $enableAttachments boolean optional
-	 * @param $press object optional
+	 * @param $context object optional
 	 * @param $includeSignature boolean optional
 	 * @see MailTemplate::MailTemplate()
 	 */
-	function MonographMailTemplate($monograph, $emailKey = null, $locale = null, $enableAttachments = null, $press = null, $includeSignature = true) {
-		parent::MailTemplate($emailKey, $locale, $enableAttachments, $press, $includeSignature);
-		$this->monograph = $monograph;
+	function MonographMailTemplate($submission, $emailKey = null, $locale = null, $enableAttachments = null, $context = null, $includeSignature = true) {
+		parent::SubmissionMailTemplate($submission, $emailKey, $locale, $enableAttachments, $context, $includeSignature);
 	}
 
 	function assignParams($paramArray = array()) {
-		$monograph =& $this->monograph;
-
-		$application = PKPApplication::getApplication();
-		$request = $application->getRequest();
-		$press = isset($this->press)?$this->press:$request->getPress();
-
-		$paramArray['monographTitle'] = strip_tags($monograph->getLocalizedTitle());
-		$paramArray['monographId'] = $monograph->getId();
-		$paramArray['pressName'] = strip_tags($press->getLocalizedName());
-		$paramArray['seriesName'] = strip_tags($monograph->getSeriesTitle());
-		$paramArray['monographAbstract'] = String::html2text($monograph->getLocalizedAbstract());
-		$paramArray['authorString'] = strip_tags($monograph->getAuthorString());
-
+		$submission = $this->submission;
+		$paramArray['seriesName'] = strip_tags($submission->getSeriesTitle());
 		parent::assignParams($paramArray);
 	}
 
 	/**
-	 * @see parent::send()
-	 * @param $request PKPRequest optional (used for logging purposes)
-	 */
-	function send($request = null) {
-		if (parent::send(false)) {
-			if (!isset($this->skip) || !$this->skip) $this->log($request);
-			$user = Request::getUser();
-			if ($this->attachmentsEnabled) $this->_clearAttachments($user->getId());
-			return true;
-		} else {
-			return false;
-		}
-	}
-
-	/**
-	 * @see parent::sendWithParams()
-	 */
-	function sendWithParams($paramArray) {
-		$savedSubject = $this->getSubject();
-		$savedBody = $this->getBody();
-
-		$this->assignParams($paramArray);
-
-		$ret = $this->send();
-
-		$this->setSubject($savedSubject);
-		$this->setBody($savedBody);
-
-		return $ret;
-	}
-
-	/**
-	 * Add logging properties to this email.
-	 * @param $eventType int
-	 */
-	function setEventType($eventType) {
-		$this->logEventType = $eventType;
-	}
-
-	/**
-	 * Set the press this message is associated with.
-	 * @param $press object
-	 */
-	function setPress($press) {
-		$this->press = $press;
-	}
-
-	/**
-	 * Save the email in the monograph email log.
-	 */
-	function log($request = null) {
-		import('lib.pkp.classes.log.SubmissionLog');
-		$entry = new SubmissionEmailLogEntry();
-		$monograph = $this->monograph;
-
-		// Event data
-		$entry->setEventType($this->logEventType);
-		$entry->setAssocType(ASSOC_TYPE_MONOGRAPH);
-		$entry->setAssocId($monograph->getId());
-		$entry->setDateSent(Core::getCurrentDate());
-
-		// User data
-		if ($request) {
-			$user = $request->getUser();
-			$entry->setSenderId($user == null ? 0 : $user->getId());
-			$entry->setIPAddress($request->getRemoteAddr());
-		} else {
-			// No user supplied -- this is e.g. a cron-automated email
-			$entry->setSenderId(0);
-		}
-
-		// Email data
-		$entry->setSubject($this->getSubject());
-		$entry->setBody($this->getBody());
-		$entry->setFrom($this->getFromString(false));
-		$entry->setRecipients($this->getRecipientString());
-		$entry->setCcs($this->getCcString());
-		$entry->setBccs($this->getBccString());
-
-		// Add log entry
-		$logDao = DAORegistry::getDAO('SubmissionEmailLogDAO');
-		$logEntryId = $logDao->insertObject($entry);
-
-		// Add attachments
-		import('lib.pkp.classes.file.SubmissionFileManager');
-		$monographFileManager = new SubmissionFileManager($monograph->getPressId(), $monograph->getId());
-		foreach ($this->getAttachmentFiles() as $attachment) {
-			$monographFileManager->temporaryFileToSubmissionFile(
-				$attachment,
-				SUBMISSION_FILE_ATTACHMENT,
-				ASSOC_TYPE_SUBMISSION_EMAIL_LOG_ENTRY,
-				$logEntryId
-			);
-		}
-	}
-
-	/**
 	 *  Send this email to all assigned series editors in the given stage
-	 * @param $monographId int
+	 * @param $submissionId int
 	 * @param $stageId int
 	 */
-	function toAssignedSeriesEditors($monographId, $stageId) {
-		return $this->_addUsers($monographId, ROLE_ID_SUB_EDITOR, $stageId, 'addRecipient');
+	function toAssignedSeriesEditors($submissionId, $stageId) {
+		return $this->toAssignedSubEditors($submissionId, $stageId);
 	}
 
 	/**
-	 *  CC this email to all assigned series editors in the given stage
-	 * @param $monographId int
+	 * CC this email to all assigned series editors in the given stage
+	 * @param $submissionId int
 	 * @param $stageId int
 	 * @return array of Users (note, this differs from OxS which returns EditAssignment objects)
 	 */
-	function ccAssignedSeriesEditors($monographId, $stageId) {
-		return $this->_addUsers($monographId, ROLE_ID_SUB_EDITOR, $stageId, 'addCc');
+	function ccAssignedSeriesEditors($submissionId, $stageId) {
+		return $this->ccAssignedSubEditors($submissionId, $stageId);
 	}
 
 	/**
-	 *  BCC this email to all assigned series editors in the given stage
-	 * @param $monographId int
+	 * BCC this email to all assigned series editors in the given stage
+	 * @param $submissionId int
 	 * @param $stageId int
 	 */
-	function bccAssignedSeriesEditors($monographId, $stageId) {
-		return $this->_addUsers($monographId, ROLE_ID_SUB_EDITOR, $stageId, 'addBcc');
-	}
-
-	/**
-	 * Private method to fetch the requested users and add to the email
-	 * @param $monographId int
-	 * @param $roleId int
-	 * @param $stageId int
-	 * @param $method string one of addRecipient, addCC, or addBCC
-	 * @return array of Users (note, this differs from OxS which returns EditAssignment objects)
-	 */
-	function _addUsers($monographId, $roleId, $stageId, $method) {
-		assert(in_array($method, array('addRecipient', 'addCc', 'addBcc')));
-
-		$userGroupDao = DAORegistry::getDAO('UserGroupDAO');
-		$userGroups =& $userGroupDao->getByRoleId($this->press->getId(), $roleId);
-
-		$returner = array();
-		// Cycle through all the userGroups for this role
-		while ( $userGroup =& $userGroups->next() ) {
-			$userStageAssignmentDao = DAORegistry::getDAO('UserStageAssignmentDAO');
-			// FIXME: #6692# Should this be getting users just for a specific user group?
-			$users = $userStageAssignmentDao->getUsersBySubmissionAndStageId($monographId, $stageId, $userGroup->getId());
-			while ($user = $users->next()) {
-				$this->$method($user->getEmail(), $user->getFullName());
-				$returner[] = $user;
-			}
-			unset($userGroup);
-		}
-		return $returner;
+	function bccAssignedSeriesEditors($submissionId, $stageId) {
+		return $this->bccAssignedSubEditors($submissionId, $stageId);
 	}
 }
 
