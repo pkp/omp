@@ -236,10 +236,6 @@
 	<message key="reviewer.monograph.continueToStepThree">Continue to Step #3</message>
 	<message key="reviewer.monograph.submitReview">Submit Review</message>
 	<message key="reviewer.monograph.schedule">Schedule</message>
-	<message key="reviewer.submission.reviewSchedule">Review Schedule</message>
-	<message key="reviewer.submission.reviewRequestDate">Editor's Request</message>
-	<message key="reviewer.submission.responseDueDate">Response Due Date</message>
-	<message key="reviewer.submission.reviewDueDate">Review Due Date</message>
 	<message key="reviewer.monograph.reviewerGuidelines">Reviewer Guidelines</message>
 	<message key="reviewer.monograph.enterCompetingInterests">This press has a policy for disclosure of potential competing interests from its reviewers.  Please take a moment to review this policy.</message>
 	<message key="reviewer.monograph.viewCompetingInterests">View Competing Interests Policy</message>

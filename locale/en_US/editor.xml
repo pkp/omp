@@ -113,7 +113,6 @@
 	<message key="editor.internalReview.introduction">In Internal Review, the editor assigns reviewers internal to the submission files and considers the resulting reviews, before selecting the appropriate action (which includes notifying the author): Request Revisions (revisions reviewed by editor alone); Resubmit for Review (revisions initiate another round of reviews); Send External Review (entails selecting files for External Review); Accept for Submission (entails selecting files for Editorial stage); or Decline Submission (archives submission).</message>
 	<message key="editor.externalReview.introduction">In External Review, the editor assign reviewers external to the press to the submission files and consider the resulting reviews, before selecting the appropriate action (which includes notifying the author): Request Revisions (revisions reviewed by editor alone); Resubmit for Review (revisions initiate another round of reviews); Accept for Submission (entails selecting files for Editorial stage); or Decline Submission (editor archives submission).</message>
 	<message key="editor.review.uploadRevision">Upload Revision</message>
-	<message key="editor.review.personalMessageToReviewer">Email to be sent to reviewer</message>
 	<message key="editor.review.personalMessageFromEditor">Message from the editor</message>
 	<message key="editor.review.NotifyAuthorAccept">Notify the author of acceptance:</message>
 	<message key="editor.review.NotifyAuthorDecline">Notify the author of decision to decline submission:</message>
@@ -121,7 +120,6 @@
 	<message key="editor.review.NotifyAuthorResubmit">Notify the author of need for revisions that will be subject to further review:</message>
 	<message key="editor.review.NotifyAuthorExternal">Notify the author of decision to conduct external review:</message>
 	<message key="editor.review.personalMessageToAuthor">Email to be sent to author</message>
-	<message key="editor.review.importantDates">Important Dates</message>
 	<message key="editor.review.dateAccepted">Review Acceptance Date</message>
 	<message key="editor.review.noReviews">No peer reviews to import</message>
 	<message key="editor.review.reminder">Review Reminder</message>

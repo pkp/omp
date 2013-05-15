@@ -133,7 +133,6 @@
 	<message key="editor.externalReview.introduction">Pendant l'évaluation externe, le rédacteur en chef choisit des évaluateurs qui ne font pas partie de la presse pour chaque fichier soumis et tient compte de leurs commentaires avant de choisir une action appropriée (qui comprend l'envoi d'un avis à l'auteur): À réviser (les révisions ne seront examinées que par le rédacteur en chef); Soumettre à nouveau pour révision (une nouvelle série de révisions sera entreprise); Accepter la soumission (il faut choisir les fichiers qui seront envoyés au rédacteur en chef); ou Refuser la soumission (le rédacteur en chef archive la soumission).</message>
 	
 	<message key="editor.review.uploadRevision">Télécharger l'évaluation</message>
-	<message key="editor.review.personalMessageToReviewer">Envoyer un courriel à l'évaluateur</message>
 	<message key="editor.review.personalMessageFromEditor">Message du rédacteur en chef</message>
 	<message key="editor.review.NotifyAuthorAccept">Informer l'auteur que la soumission a été acceptée:</message>
 	<message key="editor.review.NotifyAuthorDecline">Informer l'auteur que la soumission a été refusée:</message>
@@ -141,17 +140,12 @@
 	<message key="editor.review.NotifyAuthorResubmit">Informer l'auteur que la soumission doit être révisée et que ces révisions seront réexaminées:</message>
 	<message key="editor.review.NotifyAuthorExternal">Informer l'auteur que la soumission sera envoyée à un évaluateur externe:</message>
 	<message key="editor.review.personalMessageToAuthor">Envoyer un courriel à l'auteur</message>
-	<message key="editor.review.importantDates">Dates importantes</message>
 	<message key="editor.review.dateAccepted">Revoir la date d'acceptation</message>
 	<message key="editor.review.noReviews">Aucune évaluation par les pairs à importer</message>
 	<message key="editor.review.reminder">Rappel d'évaluation</message>
 	<message key="editor.review.thankReviewer">Remercier l'évaluateur</message>
 	<message key="editor.review.reminderError">Erreur d'envoi du rappel d'évaluation</message>
 	<message key="editor.review.thankReviewerError">Erreur d'envoi du remerciement à l'évaluateur</message>
-	<message key="editor.review.skipEmail">Ne pas envoyer un courriel à l'évaluateur</message>
-	<message key="editor.review.sendReminder">Envoyer un rappel</message>
-	<message key="editor.review.reviewDueDate">Date d'échéance de l'évaluation</message>
-	<message key="editor.review.reviewCompleted">Évaluation terminée</message>
 	<message key="editor.review.reviewerComments">Commentaires de l'évaluateur</message>
 	<message key="editor.review.days">Moyenne des jours</message>
 	<message key="editor.review.mustSelect">Vous devez choisir un évaluateur</message>

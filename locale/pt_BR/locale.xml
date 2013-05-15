@@ -266,10 +266,6 @@
 	<message key="reviewer.monograph.continueToStepThree">Continuar para o passo #3</message>
 	<message key="reviewer.monograph.submitReview">Enviar avaliação</message>
 	<message key="reviewer.monograph.schedule">Cronograma</message>
-	<message key="reviewer.submission.reviewSchedule">Cronograma da avaliação</message>
-	<message key="reviewer.submission.reviewRequestDate">Solicitação do editor</message>
-	<message key="reviewer.submission.responseDueDate">Data de entrega da resposta</message>
-	<message key="reviewer.submission.reviewDueDate">Data de entrega da avaliação</message>
 	<message key="reviewer.monograph.reviewerGuidelines">Diretrizes para avaliadores</message>
 	<message key="reviewer.monograph.enterCompetingInterests">Esta editora adota a política de divulgação de potenciais conflitos de interesses dos seus avaliadores.  Leia esta política com atenção.</message>
 	<message key="reviewer.monograph.viewCompetingInterests">Ver política de conflito de interesses</message>

@@ -281,10 +281,6 @@
 	<message key="reviewer.monograph.continueToStepThree">Συνεχίστε στο Βήμα #3</message>
 	<message key="reviewer.monograph.submitReview">Υποβολή Αξιολόγησης</message>
 	<message key="reviewer.monograph.schedule">Πρόγραμμα</message>
-	<message key="reviewer.submission.reviewSchedule">Πρόγραμμα Αξιολόγησης</message>
-	<message key="reviewer.submission.reviewRequestDate">Αίτημα υπεύθυνου έκδοσης</message>
-	<message key="reviewer.submission.responseDueDate">Ημερομηνία Προθεσμίας Απάντησης</message>
-	<message key="reviewer.submission.reviewDueDate">Ημερομηνία Προθεσμίας Αξιολόγησης</message>
 	<message key="reviewer.monograph.reviewerGuidelines">Οδηγίες Αξιολογητή</message>
 	<message key="reviewer.monograph.enterCompetingInterests">Οι συγκεκριμένες εκδόσεις έχουν ως πολιτική να ζητούν από τους αξιολογητές να γνωστοποιήσουν αν υπάρχουν συγκρουόμενα συμφέροντα αναφορικά με τις ερευνητικές δραστηριότητες και ενδιαφέροντα. Παρακαλούμε να αφιερώσετε λίγο χρόνο για να διαβάσετε τη συγκεκριμένη πολιτική.</message>
 	<message key="reviewer.monograph.viewCompetingInterests">Προβολή Πολιτικής για Συγκρουόμενα Συμφέροντα</message>

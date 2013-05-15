@@ -268,10 +268,6 @@
 	<message key="reviewer.monograph.continueToStepThree">Passer à la troisième étape</message>
 	<message key="reviewer.monograph.submitReview">Soumettre l'évaluation</message>
 	<message key="reviewer.monograph.schedule">Calendrier</message>
-	<message key="reviewer.submission.reviewSchedule">Examiner le calendrier</message>
-	<message key="reviewer.submission.reviewRequestDate">Requête du rédacteur en chef</message>
-	<message key="reviewer.submission.responseDueDate">Date limite de la réponse</message>
-	<message key="reviewer.submission.reviewDueDate">Date limite de l'évaluation</message>
 	<message key="reviewer.monograph.reviewerGuidelines">Lignes directrices de l'évaluateur</message>
 	<message key="reviewer.monograph.enterCompetingInterests">Cette presse a adopté une politique stipulant que ses évaluateurs doivent divulguer toute possibilité d'intérêt concurrentiel. Nous vous prions de prendre un moment pour lire cette politique.</message>
 	<message key="reviewer.monograph.viewCompetingInterests">Visionner la politique concernant les intérêts concurrentiels.</message>
