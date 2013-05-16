@@ -22,7 +22,6 @@
 	<message key="submission.editorial">Rédaction</message>
 	<message key="submission.production">Production</message>
 	<message key="submission.published">Prêt pour la production</message>
-	<message key="submission.finalDraft">Fichiers des ébauches finales</message>
 	<message key="submission.fairCopy">Copie au net</message>
 	<message key="submission.art">Illustrations</message>
 	<message key="submission.artwork.permissions">Permissions</message>

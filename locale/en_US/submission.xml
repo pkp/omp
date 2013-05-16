@@ -22,7 +22,6 @@
 	<message key="submission.workType.editedVolume">Edited Volume</message>
 	<message key="submission.workType.authoredWork">Monograph</message>
 	<message key="submission.published">Production Ready</message>
-	<message key="submission.finalDraft">Final Draft Files</message>
 	<message key="submission.fairCopy">Fair Copy</message>
 	<message key="submission.art">Artwork</message>
 	<message key="submission.artwork.permissions">Permissions</message>
