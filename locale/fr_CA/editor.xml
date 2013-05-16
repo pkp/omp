@@ -86,7 +86,6 @@
 	<!-- Editorial related -->
 	<message key="editor.submission.introduction">Au moment de soumettre un fichier, le rédacteur en chef, après avoir consulté les fichiers soumis, choisit l'action appropriée (qui comprend envoyer un avis à l'auteur): Acheminer pour évaluation interne (exige la sélection des fichiers pour l'évaluation interne); Acheminer pour évaluation externe (exige la sélection des fichiers pour l'évaluation externe); Accepter la soumission (exige la sélection des fichiers pour l'étape de rédaction); ou Refuser la soumission (archivage de la soumission).</message>
 	
-	<message key="editor.monograph.editorial.introduction"><![CDATA[Dans la section Rédaction, le réviseur de textes examine les épreuves finales avant de les télécharger dans la rubrique <span class="pkp_help_title">Révision</span>. L'auteur et d'autres personnes ont accès aux fichiers dans <span class="pkp_help_title">Révision</span> afin que l'on puisse éventuellement préparer et télécharger les copies au net de la soumission. Elles seront ensuite <em>Approuvées</em> par un rédacteur en chef, et passeront à l'étape de publication.]]></message>
 
 	<message key="editor.monograph.editorial.finalDraftDescription"><![CDATA[Pour les ouvrages dans lesquels les chapitres ont été écrits par des auteurs différents, le fichier de soumission peut être divisé en fichiers-chapitres pour l'étape de révision. Ces fichiers seront ensuite examinés par les auteurs des chapitres après avoir été téléchargés dans <span class="pkp_help_title">Révision</span>.]]></message>
 	
