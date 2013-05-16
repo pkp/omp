@@ -16,7 +16,7 @@
 import('controllers.grid.files.signoff.SignoffFilesGridHandler');
 
 // Import monograph file class which contains the SUBMISSION_FILE_* constants.
-import('classes.monograph.MonographFile');
+import('lib.pkp.classes.submission.SubmissionFile');
 
 // Import SUBMISSION_EMAIL_* constants.
 import('classes.mail.MonographMailTemplate');

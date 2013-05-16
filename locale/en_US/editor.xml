@@ -79,9 +79,6 @@
 	<message key="editor.monograph.editorial.copyeditingDescription"><![CDATA[Assign the copyedited files to authors (and others as needed) to review changes and answer queries, with their responses and uploaded files appearing in the notebook icon. These are marked <em>Considered</em> by the copyeditor, who then prepares a final copyedited fair copy to upload to <span class="pkp_help_title">Copyediting</span>, which the editor checks Approved, before sending to the Production stage.]]></message>
 	<message key="editor.monograph.editorial.fairCopy">Fair Copy</message>
 	<message key="editor.monograph.editorial.fairCopyDescription">The copyeditor uploads a clean or fair copy of the submission for review by the editor, prior to sending it to Production.</message>
-	<message key="editor.monograph.editorial.approveCopyeditDescription">The copyedited file needs to be approved before it can be sent to the Production stage. Do you want to approve this file?</message>
-	<message key="editor.monograph.editorial.disapproveCopyeditDescription">Disapproving this copyedited file will make it unavailable to send to production stage. Do you want to disapprove this file?</message>
-	<message key="editor.monograph.editorial.approveCopyeditFile">Approve copyedited file</message>
 
 	<!-- Production/Proof related -->
 	<message key="editor.monograph.production.introduction"><![CDATA[In Production, the editor selects book formats (e.g., digital, paperback, etc.) in <span class="pkp_help_title">Publication Formats</span>, for which the layout editor prepares publication-quality files based on the production ready files. The publication-quality files are uploaded for each format in <span class="pkp_help_title">Page Proofs</span>, where they are proof read. The book is made <em>Available</em> (i.e., published) for each format in <span class="pkp_help_title">Publication Formats</span>, after the <em>Proofs</em> is checked as approved, and the Catalog entry is checked as included in the book’s catalog entry.]]></message>
@@ -93,17 +90,14 @@
 	<message key="editor.monograph.production.publicationFormatDescription"><![CDATA[Add publication formats (e.g., digital, paperback) for which the layout editor prepares page proofs for proofreading. The <em>Proofs</em> need to be checked as approved and the <em>Catalog</em> entry for the format needs to be checked as posted in the book’s catalog entry, before a format can be made <em>Available</em> (i.e., published).]]></message>
 	<message key="editor.monograph.approvedProofs.edit">Set Terms for Downloading</message>
 	<message key="editor.monograph.approvedProofs.edit.linkTitle">Set Terms</message>
-	<message key="editor.monograph.proof.reminder">Proof reminder</message>
 	<message key="editor.monograph.proof.addNote">Add response</message>
 
 	<!-- Add file or auditor to editor/audit grids -->
-	<message key="editor.monograph.addAuditor">Assign</message>
 	<message key="editor.monograph.addAuditorError">There was an error trying to assign the auditor. Please Try again.</message>
 	<message key="editor.monograph.fileAuditor.form.userRequired">You must select a user to assign.</message>
 	<message key="editor.monograph.fileAuditor.form.fileRequired">You must select at least one file to assign the user to.</message>
 	<message key="editor.monograph.fileAuditor.form.messageRequired">You must include a personal message.</message>
 	<message key="editor.monograph.fileAuditor.skipEmail">Do not send email to the Auditor</message>
-	<message key="editor.monograph.noAuditRequested">No audit requested for this file</message>
 
 	<!-- Review related -->
 	<message key="editor.review">Review</message>

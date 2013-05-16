@@ -16,10 +16,10 @@
 import('lib.pkp.classes.controllers.grid.CategoryGridHandler');
 
 // import copyediting grid specific classes
-import('controllers.grid.files.signoff.SignoffFilesGridCategoryRow');
-import('controllers.grid.files.signoff.SignoffGridRow');
-import('controllers.grid.files.signoff.SignoffGridCellProvider');
-import('controllers.grid.files.signoff.SignoffFilesGridCellProvider');
+import('lib.pkp.controllers.grid.files.signoff.SignoffFilesGridCategoryRow');
+import('lib.pkp.controllers.grid.files.signoff.SignoffGridRow');
+import('lib.pkp.controllers.grid.files.signoff.SignoffGridCellProvider');
+import('lib.pkp.controllers.grid.files.signoff.SignoffFilesGridCellProvider');
 
 // Link actions
 import('lib.pkp.classes.linkAction.request.AjaxModal');
@@ -115,16 +115,16 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 			LOCALE_COMPONENT_APP_SUBMISSION
 		);
 
-		$monograph = $this->getMonograph();
+		$submission = $this->getSubmission();
 
 		// Bring in file constants
-		import('classes.monograph.MonographFile');
+		import('lib.pkp.classes.submission.SubmissionFile');
 
 		// Grid actions
 		// Action to add a file -- Adds a category row for the file
 		import('lib.pkp.controllers.api.file.linkAction.AddFileLinkAction');
 		$this->addAction(new AddFileLinkAction(
-			$request, $monograph->getId(),
+			$request, $submission->getId(),
 			$this->getStageId(),
 			array(ROLE_ID_MANAGER, ROLE_ID_SUB_EDITOR, ROLE_ID_ASSISTANT),
 			$this->getFileStage(),
@@ -134,11 +134,11 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 		// Action to signoff on a file -- Lets user interact with their own rows.
 		$user = $request->getUser();
 		$signoffDao = DAORegistry::getDAO('SubmissionFileSignoffDAO'); /* @var $signoffDao SubmissionFileSignoffDAO */
-		$signoffFactory =& $signoffDao->getAllBySubmission($monograph->getId(), $this->getSymbolic(), $user->getId(), null, true);
+		$signoffFactory = $signoffDao->getAllBySubmission($submission->getId(), $this->getSymbolic(), $user->getId(), null, true);
 		if (!$signoffFactory->wasEmpty()) {
 			import('lib.pkp.controllers.api.signoff.linkAction.AddSignoffFileLinkAction');
 			$this->addAction(new AddSignoffFileLinkAction(
-				$request, $monograph->getId(),
+				$request, $submission->getId(),
 				$this->getStageId(), $this->getSymbolic(), null,
 				__('submission.upload.signoff'), __('submission.upload.signoff')));
 		}
@@ -147,19 +147,19 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 
 		// Action to add a user -- Adds the user as a subcategory to the files selected in its modal
 		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-		$monographFiles =& $submissionFileDao->getLatestRevisions($monograph->getId(), $this->getFileStage());
+		$submissionFiles = $submissionFileDao->getLatestRevisions($submission->getId(), $this->getFileStage());
 
 		// The "Add Auditor" link should only be available if at least
 		// one file already exists.
-		if (!empty($monographFiles)) {
+		if (!empty($submissionFiles)) {
 			$this->addAction(new LinkAction(
 				'addAuditor',
 				new AjaxModal(
 					$router->url($request, null, null, 'addAuditor', null, $this->getRequestArgs()),
-					__('editor.monograph.addAuditor'),
+					__('editor.submission.addAuditor'),
 					'modal_add_user'
 				),
-				__('editor.monograph.addAuditor'),
+				__('editor.submission.addAuditor'),
 				'add_user'
 			));
 		}
@@ -176,7 +176,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 				'common.file',
 				null,
 				'controllers/grid/gridCell.tpl',
-				new SignoffGridCellProvider($monograph->getId(), $this->getStageId()),
+				new SignoffGridCellProvider($submission->getId(), $this->getStageId()),
 				array('alignment' => COLUMN_ALIGNMENT_LEFT, 'width' => 60)
 			)
 		);
@@ -205,11 +205,11 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 	// Getters and Setters
 	//
 	/**
-	 * Get the monograph associated with this chapter grid.
-	 * @return Monograph
+	 * Get the submission associated with this chapter grid.
+	 * @return Submission
 	 */
-	function &getMonograph() {
-		return $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+	function getSubmission() {
+		return $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION);
 	}
 
 
@@ -283,11 +283,11 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 	 * @see GridDataProvider::getRequestArgs()
 	 */
 	function getRequestArgs() {
-		$monograph = $this->getMonograph();
+		$submission = $this->getSubmission();
 		$signoff = $this->getAuthorizedContextObject(ASSOC_TYPE_SIGNOFF);
 		$args = array_merge(
 			parent::getRequestArgs(),
-			array('submissionId' => $monograph->getId(),
+			array('submissionId' => $submission->getId(),
 				'stageId' => $this->getStageId())
 		);
 
@@ -304,22 +304,22 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 	 */
 	function loadData($request, $filter) {
 		// Grab the files to display as categories
-		$monograph = $this->getMonograph();
+		$submission = $this->getSubmission();
 		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		if ($this->getAssocType() && $this->getAssocId()) {
-			$monographFiles = $submissionFileDao->getLatestRevisionsByAssocId(
+			$submissionFiles = $submissionFileDao->getLatestRevisionsByAssocId(
 				$this->getAssocType(), $this->getAssocId(),
-				$monograph->getId(), $this->getFileStage()
+				$submission->getId(), $this->getFileStage()
 			);
 		} else {
-			$monographFiles = $submissionFileDao->getLatestRevisions($monograph->getId(), $this->getFileStage());
+			$submissionFiles = $submissionFileDao->getLatestRevisions($submission->getId(), $this->getFileStage());
 		}
 
-		// $monographFiles is keyed on file and revision, for the grid we need to key on file only
+		// $submissionFiles is keyed on file and revision, for the grid we need to key on file only
 		// since the grid shows only the most recent revision.
 		$data = array();
-		foreach ($monographFiles as $monographFile) {
-			$data[$monographFile->getFileId()] = $monographFile;
+		foreach ($submissionFiles as $submissionFile) {
+			$data[$submissionFile->getFileId()] = $submissionFile;
 		}
 		return $data;
 	}
@@ -334,8 +334,8 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 	 */
 	function getCategoryRowInstance() {
 		$row = new SignoffFilesGridCategoryRow($this->getStageId());
-		$monograph = $this->getMonograph();
-		$row->setCellProvider(new SignoffFilesGridCellProvider($monograph->getId(), $this->getStageId()));
+		$submission = $this->getSubmission();
+		$row->setCellProvider(new SignoffFilesGridCellProvider($submission->getId(), $this->getStageId()));
 		$row->addFlag('gridRowStyle', true);
 		return $row;
 	}
@@ -344,12 +344,12 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 	/**
 	 * Get all the signoffs for this category.
 	 * @see CategoryGridHandler::getCategoryData()
-	 * @param $monographFile MonographFile
+	 * @param $submissionFile SubmissionFile
 	 * @return array Signoffs
 	 */
-	function getCategoryData(&$monographFile) {
-		$monographFileSignoffDao = DAORegistry::getDAO('SubmissionFileSignoffDAO');
-		$signoffFactory =& $monographFileSignoffDao->getAllBySymbolic($this->getSymbolic(), $monographFile->getFileId()); /* @var $signoffs DAOResultFactory */
+	function getCategoryData($submissionFile) {
+		$submissionFileSignoffDao = DAORegistry::getDAO('SubmissionFileSignoffDAO');
+		$signoffFactory = $submissionFileSignoffDao->getAllBySymbolic($this->getSymbolic(), $submissionFile->getFileId()); /* @var $signoffs DAOResultFactory */
 		$signoffs = $signoffFactory->toAssociativeArray();
 		return $signoffs;
 	}
@@ -381,8 +381,8 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 	 * @return string Serialized JSON object
 	 */
 	function addAuditor($args, $request) {
-		// Identify the monograph being worked on
-		$monograph = $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		// Identify the submission being worked on
+		$submission = $this->getSubmission();
 
 		// Form handling
 		$router = $request->getRouter();
@@ -391,12 +391,12 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 		$templateMgr->assign('autocompleteUrl', $autocompleteUrl);
 
 		import('controllers.grid.files.signoff.form.FileAuditorForm');
-		$publicationFormat =& $this->getPublicationFormat();
+		$publicationFormat = $this->getPublicationFormat();
 		$publicationFormatId = null;
 		if (is_a($publicationFormat, 'PublicationFormat')) {
 			$publicationFormatId = $publicationFormat->getId();
 		}
-		$auditorForm = new FileAuditorForm($monograph, $this->getFileStage(), $this->getStageId(), $this->getSymbolic(), $this->getEventType(), $this->getAssocId(), $publicationFormatId);
+		$auditorForm = new FileAuditorForm($submission, $this->getFileStage(), $this->getStageId(), $this->getSymbolic(), $this->getEventType(), $this->getAssocId(), $publicationFormatId);
 		if ($auditorForm->isLocaleResubmit()) {
 			$auditorForm->readInputData();
 		} else {
@@ -415,12 +415,12 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 	 * @return string Serialized JSON object
 	 */
 	function saveAddAuditor($args, $request) {
-		// Identify the monograph being worked on
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		// Identify the submission being worked on
+		$submission = $this->getSubmission();
 
 		// Form handling
 		import('controllers.grid.files.signoff.form.FileAuditorForm');
-		$auditorForm = new FileAuditorForm($monograph, $this->getFileStage(), $this->getStageId(), $this->getSymbolic(), $this->getEventType(), $this->getAssocId());
+		$auditorForm = new FileAuditorForm($submission, $this->getFileStage(), $this->getStageId(), $this->getSymbolic(), $this->getEventType(), $this->getAssocId());
 		$auditorForm->readInputData();
 		if ($auditorForm->validate()) {
 			$auditorForm->execute($request);
@@ -445,12 +445,12 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 	 * @return string Serialized JSON object
 	 */
 	function getAuditorAutocomplete($args, $request) {
-		// Identify the Monograph we are working with
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		// Identify the submission we are working with
+		$submission = $this->getSubmission();
 
 		// Retrieve the users for the autocomplete control: Any user assigned to this stage
-		$stageAssignmentDao = & DAORegistry::getDAO('StageAssignmentDAO'); /* @var $stageAssignmentDao StageAssignmentDAO */
-		$stageUsers = $stageAssignmentDao->getBySubmissionAndStageId($monograph->getId(), $this->getStageId());
+		$stageAssignmentDao = DAORegistry::getDAO('StageAssignmentDAO'); /* @var $stageAssignmentDao StageAssignmentDAO */
+		$stageUsers = $stageAssignmentDao->getBySubmissionAndStageId($submission->getId(), $this->getStageId());
 
 		$itemList = array();
 		$userGroupDao = DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */
@@ -484,7 +484,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 	 * @return string Serialized JSON object
 	 */
 	function returnSignoffRow($args, $request) {
-		$signoff =& $this->getAuthorizedContextObject(ASSOC_TYPE_SIGNOFF);
+		$signoff = $this->getAuthorizedContextObject(ASSOC_TYPE_SIGNOFF);
 
 		if($signoff) {
 			return DAO::getDataChangedEvent();
@@ -502,7 +502,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 	 * @return string
 	 */
 	function deleteSignoff($args, $request) {
-		$signoff =& $this->getAuthorizedContextObject(ASSOC_TYPE_SIGNOFF);
+		$signoff = $this->getAuthorizedContextObject(ASSOC_TYPE_SIGNOFF);
 
 		if($signoff && !$signoff->getDateCompleted()) {
 
@@ -511,7 +511,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 				$fileId = $signoff->getAssocId();
 			}
 			$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
-			$monographFile =& $submissionFileDao->getLatestRevision($fileId);
+			$submissionFile = $submissionFileDao->getLatestRevision($fileId);
 
 			// Remove the signoff
 			$signoffDao = DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
@@ -543,18 +543,18 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 				$request,
 				array(NOTIFICATION_TYPE_SIGNOFF_COPYEDIT, NOTIFICATION_TYPE_SIGNOFF_PROOF),
 				array($signoff->getUserId()),
-				ASSOC_TYPE_MONOGRAPH,
-				$monographFile->getSubmissionId()
+				ASSOC_TYPE_SUBMISSION,
+				$submissionFile->getSubmissionId()
 			);
 
 			// log the remove auditor event.
 			import('lib.pkp.classes.log.SubmissionFileLog');
 			import('lib.pkp.classes.log.SubmissionFileEventLogEntry'); // constants
 			$userDao = DAORegistry::getDAO('UserDAO');
-			$signoffUser =& $userDao->getById($signoffUserId);
+			$signoffUser = $userDao->getById($signoffUserId);
 
-			if (isset($signoffUser) && isset($monographFile)) {
-				SubmissionFileLog::logEvent($request, $monographFile, SUBMISSION_LOG_FILE_AUDITOR_CLEAR, 'submission.event.fileAuditorCleared', array('file' => $monographFile->getOriginalFileName(), 'name' => $signoffUser->getFullName(), 'username' => $signoffUser->getUsername()));
+			if (isset($signoffUser) && isset($submissionFile)) {
+				SubmissionFileLog::logEvent($request, $submissionFile, SUBMISSION_LOG_FILE_AUDITOR_CLEAR, 'submission.event.fileAuditorCleared', array('file' => $submissionFile->getOriginalFileName(), 'name' => $signoffUser->getFullName(), 'username' => $signoffUser->getUsername()));
 			}
 			return DAO::getDataChangedEvent($signoff->getId(), $signoff->getAssocId());
 		} else {
@@ -570,7 +570,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 	 * @param $request Request
 	 */
 	function signOffsignOff($args, $request) {
-		$rowSignoff =& $this->getAuthorizedContextObject(ASSOC_TYPE_SIGNOFF);
+		$rowSignoff = $this->getAuthorizedContextObject(ASSOC_TYPE_SIGNOFF);
 		if (!$rowSignoff) fatalError('Invalid Signoff given');
 
 		$user = $request->getUser();
@@ -593,9 +593,9 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 		import('lib.pkp.classes.log.SubmissionFileLog');
 		import('lib.pkp.classes.log.SubmissionFileEventLogEntry'); // constants
 		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
-		$monographFile =& $submissionFileDao->getLatestRevision($rowSignoff->getAssocId());
-		if (isset($monographFile)) {
-			SubmissionFileLog::logEvent($request, $monographFile, SUBMISSION_LOG_FILE_SIGNOFF_SIGNOFF, 'submission.event.signoffSignoff', array('file' => $monographFile->getOriginalFileName(), 'name' => $user->getFullName(), 'username' => $user->getUsername()));
+		$submissionFile = $submissionFileDao->getLatestRevision($rowSignoff->getAssocId());
+		if (isset($submissionFile)) {
+			SubmissionFileLog::logEvent($request, $submissionFile, SUBMISSION_LOG_FILE_SIGNOFF_SIGNOFF, 'submission.event.signoffSignoff', array('file' => $submissionFile->getOriginalFileName(), 'name' => $user->getFullName(), 'username' => $user->getUsername()));
 		}
 		// Redraw the row.
 		return DAO::getDataChangedEvent($rowSignoff->getId(), $rowSignoff->getAssocId());
@@ -608,7 +608,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 	 * @return string Serialized JSON object
 	 */
 	function deleteSignOffSignOff($args, $request) {
-		$rowSignoff =& $this->getAuthorizedContextObject(ASSOC_TYPE_SIGNOFF);
+		$rowSignoff = $this->getAuthorizedContextObject(ASSOC_TYPE_SIGNOFF);
 		if (!$rowSignoff) fatalError('Invalid Signoff given');
 
 		$user = $request->getUser();
@@ -624,7 +624,7 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 
 
 	/**
-	 * Load the (read only) press file library.
+	 * Load the (read only) file library.
 	 * @param $args array
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
@@ -644,17 +644,17 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 	 */
 	function editReminder($args, $request) {
 		// Identify the signoff.
-		$signoff =& $this->getAuthorizedContextObject(ASSOC_TYPE_SIGNOFF);
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		$signoff = $this->getAuthorizedContextObject(ASSOC_TYPE_SIGNOFF);
+		$submission = $this->getSubmission();
 
 		// Initialize form.
 		import('controllers.grid.files.fileSignoff.form.AuditorReminderForm');
-		$publicationFormat =& $this->getPublicationFormat();
+		$publicationFormat = $this->getPublicationFormat();
 		$publicationFormatId = null;
 		if (is_a($publicationFormat, 'PublicationFormat')) {
 			$publicationFormatId = $publicationFormat->getId();
 		}
-		$auditorReminderForm = new AuditorReminderForm($signoff, $monograph->getId(), $this->getStageId(), $publicationFormatId);
+		$auditorReminderForm = new AuditorReminderForm($signoff, $submission->getId(), $this->getStageId(), $publicationFormatId);
 		$auditorReminderForm->initData($args, $request);
 
 		// Render form.
@@ -669,17 +669,17 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 	 * @return string Serialized JSON object
 	 */
 	function sendReminder($args, $request) {
-		$signoff =& $this->getAuthorizedContextObject(ASSOC_TYPE_SIGNOFF);
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		$signoff = $this->getAuthorizedContextObject(ASSOC_TYPE_SIGNOFF);
+		$submission = $this->getSubmission();
 
 		// Form handling
 		import('controllers.grid.files.fileSignoff.form.AuditorReminderForm');
-		$publicationFormat =& $this->getPublicationFormat();
+		$publicationFormat = $this->getPublicationFormat();
 		$publicationFormatId = null;
 		if (is_a($publicationFormat, 'PublicationFormat')) {
 			$publicationFormatId = $publicationFormat->getId();
 		}
-		$auditorReminderForm = new AuditorReminderForm($signoff, $monograph->getId(), $this->getStageId(), $publicationFormatId);
+		$auditorReminderForm = new AuditorReminderForm($signoff, $submission->getId(), $this->getStageId(), $publicationFormatId);
 		$auditorReminderForm->readInputData();
 		if ($auditorReminderForm->validate()) {
 			$auditorReminderForm->execute($args, $request);
@@ -704,17 +704,17 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 	 * @return array
 	 */
 	function _getSignoffCapableUsersId() {
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		$submission = $this->getSubmission();
 
-		// Get all the users that are assigned to the stage (managers, series editors, and assistants)
+		// Get all the users that are assigned to the stage (managers, sub editors, and assistants)
 		// FIXME: is there a better way to do this?
 		$userIds = array();
-		$stageAssignmentDao = & DAORegistry::getDAO('StageAssignmentDAO'); /* @var $stageAssignmentDao StageAssignmentDAO */
-		$seriesEditorAssignments =& $stageAssignmentDao->getBySubmissionAndRoleId($monograph->getId(), ROLE_ID_SUB_EDITOR, $this->getStageId());
-		$assistantAssignments =& $stageAssignmentDao->getBySubmissionAndRoleId($monograph->getId(), ROLE_ID_ASSISTANT, $this->getStageId());
+		$stageAssignmentDao = DAORegistry::getDAO('StageAssignmentDAO'); /* @var $stageAssignmentDao StageAssignmentDAO */
+		$subEditorAssignments = $stageAssignmentDao->getBySubmissionAndRoleId($submission->getId(), ROLE_ID_SUB_EDITOR, $this->getStageId());
+		$assistantAssignments = $stageAssignmentDao->getBySubmissionAndRoleId($submission->getId(), ROLE_ID_ASSISTANT, $this->getStageId());
 
 		$allAssignments = array_merge(
-			$seriesEditorAssignments->toArray(),
+			$subEditorAssignments->toArray(),
 			$assistantAssignments->toArray()
 		);
 
@@ -722,13 +722,13 @@ class SignoffFilesGridHandler extends CategoryGridHandler {
 			$userIds[] = $assignment->getUserId();
 		}
 
-		// We need to manually include the press editor, because he has access
+		// We need to manually include the editor, because he has access
 		// to all submission and its workflow stages but not always with
 		// an stage assignment (editorial and production stages, for example).
 		$userGroupDao = DAORegistry::getDAO('UserGroupDAO');
-		$pressManagerUserGroupsFactory = $userGroupDao->getByRoleId($monograph->getPressId(), ROLE_ID_MANAGER);
-		while ($userGroup = $pressManagerUserGroupsFactory->next()) {
-			$usersFactory = $userGroupDao->getUsersById($userGroup->getId(), $monograph->getPressId());
+		$managerUserGroupsFactory = $userGroupDao->getByRoleId($submission->getContextId(), ROLE_ID_MANAGER);
+		while ($userGroup = $managerUserGroupsFactory->next()) {
+			$usersFactory = $userGroupDao->getUsersById($userGroup->getId(), $submission->getContextId());
 			while ($user = $usersFactory->next()) {
 				$userIds[] = $user->getId();
 			}

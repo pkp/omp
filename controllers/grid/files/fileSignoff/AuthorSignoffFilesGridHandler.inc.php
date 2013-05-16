@@ -75,8 +75,8 @@ class AuthorSignoffFilesGridHandler extends GridHandler {
 		$this->addColumn(new FileNameGridColumn(true, $this->getStageId()));
 
 		import('controllers.grid.files.fileSignoff.AuthorSignoffFilesGridCellProvider');
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-		$cellProvider = new AuthorSignoffFilesGridCellProvider($monograph, $this->getStageId());
+		$submission = $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION);
+		$cellProvider = new AuthorSignoffFilesGridCellProvider($submission, $this->getStageId());
 
 		// Add a column to show whether the author uploaded a copyedited version of the file
 		$this->addColumn(
