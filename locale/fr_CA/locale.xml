@@ -261,16 +261,14 @@
 	<message key="reviewer.step1.request">Requête d'évaluation</message>
 	<message key="reviewer.step1.requestBoilerplate">Vous avez été choisi en tant qu'évaluateur potentiel pour la soumission suivante. Voici un aperçu de la soumission ainsi que les échéanciers de cette évaluation. Nous espérons que vous serez en mesure de participer.</message>
 	<message key="reviewer.step1.viewAllDetails">Visionner tous les détails de la soumission</message>
-	<message key="reviewer.monograph.reviewerFiles">Fichiers de l'évaluateur</message>
+	<message key="reviewer.submission.reviewerFiles">Fichiers de l'évaluateur</message>
 	<message key="reviewer.submission.declineReview">Refuser la requête d'évaluation</message>
 	<message key="reviewer.submission.declineReviewMessage">Vous pouvez indiquer au rédacteur en chef pourquoi vous avez refusé d'évaluer cette soumission dans le champ ci-dessous.</message>
 	<message key="reviewer.submission.acceptReview">Accepter l'évaluation, passer à la deuxième étape</message>
 	<message key="reviewer.submission.continueToStepThree">Passer à la troisième étape</message>
 	<message key="reviewer.submission.submitReview">Soumettre l'évaluation</message>
-	<message key="reviewer.monograph.schedule">Calendrier</message>
 	<message key="reviewer.submission.reviewerGuidelines">Lignes directrices de l'évaluateur</message>
 	<message key="reviewer.submission.enterCompetingInterests">Cette presse a adopté une politique stipulant que ses évaluateurs doivent divulguer toute possibilité d'intérêt concurrentiel. Nous vous prions de prendre un moment pour lire cette politique.</message>
-	<message key="reviewer.monograph.viewCompetingInterests">Visionner la politique concernant les intérêts concurrentiels.</message>
 	<message key="reviewer.submission.noCompetingInterests">Je n'ai pas d'intérêts concurrentiels.</message>
 	<message key="reviewer.submission.hasCompetingInterests">Il est possible que j'aie des intérêts concurrentiels (spécifier ci-dessous)</message>
 	<message key="reviewer.submission.competingInterests">Intérêts concurrentiels</message>
