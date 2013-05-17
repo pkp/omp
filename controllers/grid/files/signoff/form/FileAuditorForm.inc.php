@@ -15,8 +15,8 @@
 import('lib.pkp.classes.form.Form');
 
 class FileAuditorForm extends Form {
-	/** The monograph associated with the submission contributor being edited **/
-	var $_monograph;
+	/** The submission associated with the submission contributor being edited **/
+	var $_submission;
 
 	/** @var int */
 	var $_fileStage;
@@ -45,9 +45,9 @@ class FileAuditorForm extends Form {
 	/**
 	 * Constructor.
 	 */
-	function FileAuditorForm($monograph, $fileStage, $stageId, $symbolic, $eventType, $assocId = null, $publicationFormatId = null) {
+	function FileAuditorForm($submission, $fileStage, $stageId, $symbolic, $eventType, $assocId = null, $publicationFormatId = null) {
 		parent::Form('controllers/grid/files/signoff/form/addAuditor.tpl');
-		$this->_monograph = $monograph;
+		$this->_submission = $submission;
 		$this->_fileStage = $fileStage;
 		$this->_stageId = $stageId;
 		$this->_symbolic = $symbolic;
@@ -62,11 +62,11 @@ class FileAuditorForm extends Form {
 	}
 
 	/**
-	 * Get the monograph
-	 * @return Monograph
+	 * Get the submission
+	 * @return Submission
 	 */
-	function getMonograph() {
-		return $this->_monograph;
+	function getSubmission() {
+		return $this->_submission;
 	}
 
 	/**
@@ -142,28 +142,27 @@ class FileAuditorForm extends Form {
 	 * @param $request PKPRequest
 	 */
 	function initData($args, $request) {
-		$monograph = $this->getMonograph();
-		$this->setData('submissionId', $monograph->getId());
+		$submission = $this->getSubmission();
+		$this->setData('submissionId', $submission->getId());
 		$this->setData('fileStage', $this->getFileStage());
 		$this->setData('assocId', $this->getAssocId());
 		if ($this->getPublicationFormatId()) {
 			$this->setData('publicationFormatId', $this->getPublicationFormatId());
 		}
-		import('classes.mail.MonographMailTemplate');
-		$email = new MonographMailTemplate($monograph, 'AUDITOR_REQUEST');
+		import('lib.pkp.classes.mail.SubmissionMailTemplate');
+		$email = new SubmissionMailTemplate($submission, 'AUDITOR_REQUEST');
 		$user = $request->getUser();
 		// Intentionally omit {$auditorName} for now -- see bug #7090
 		$email->assignParams(array(
 			'editorialContactSignature' => $user->getContactSignature(),
-			'monographTitle' => $monograph->getSeriesTitle(),
 			'weekLaterDate' => strftime(
 				Config::getVar('general', 'date_format_short'),
 				time() + 604800 // 60 * 60 * 24 * 7 seconds
 			),
 		));
 
-		$press = $request->getPress();
-		$this->setData('personalMessage', $email->getBody() . "\n" . $press->getSetting('emailSignature'));
+		$context = $request->getContext();
+		$this->setData('personalMessage', $email->getBody() . "\n" . $context->getSetting('emailSignature'));
 	}
 
 	/**
@@ -188,19 +187,19 @@ class FileAuditorForm extends Form {
 		ListbuilderHandler::unpack($request, $this->getData('files'));
 
 		// Send the message to the user
-		$monograph = $this->getMonograph();
-		import('classes.mail.MonographMailTemplate');
-		$email = new MonographMailTemplate($monograph, 'AUDITOR_REQUEST', null, null, null, false);
+		$submission = $this->getSubmission();
+		import('lib.pkp.classes.mail.SubmissionMailTemplate');
+		$email = new SubmissionMailTemplate($submission, 'AUDITOR_REQUEST', null, null, null, false);
 		$email->setBody($this->getData('personalMessage'));
 
 		$userDao = DAORegistry::getDAO('UserDAO'); /* @var $userDao UserDAO */
 		// FIXME: How to validate user IDs?
 		$user = $userDao->getById($this->getData('userId'));
 		import('lib.pkp.controllers.grid.submissions.SubmissionsListGridCellProvider');
-		list($page, $operation) = SubmissionsListGridCellProvider::getPageAndOperationByUserRoles($request, $monograph, $user->getId());
+		list($page, $operation) = SubmissionsListGridCellProvider::getPageAndOperationByUserRoles($request, $submission, $user->getId());
 
 		$dispatcher = $request->getDispatcher();
-		$auditUrl = $dispatcher->url($request, ROUTE_PAGE, null, $page, $operation, array('submissionId' => $monograph->getId()));
+		$auditUrl = $dispatcher->url($request, ROUTE_PAGE, null, $page, $operation, array('submissionId' => $submission->getId()));
 
 		// Other parameters assigned above; see bug #7090.
 		$email->assignParams(array(
@@ -223,25 +222,25 @@ class FileAuditorForm extends Form {
 	function insertEntry($request, $newRowId) {
 		// Fetch and validate the file ID
 		$fileId = (int) $newRowId['name'];
-		$monograph = $this->getMonograph();
+		$submission = $this->getSubmission();
 		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
-		$monographFile = $submissionFileDao->getLatestRevision($fileId, null, $monograph->getId());
-		assert($monographFile);
+		$submissionFile = $submissionFileDao->getLatestRevision($fileId, null, $submission->getId());
+		assert($submissionFile);
 
 		// FIXME: How to validate user IDs?
 		$userId = (int) $this->getData('userId');
 
 		// Fetch and validate user group ID
 		$userGroupId = (int) $this->getData('userGroupId');
-		$press = $request->getPress();
+		$context = $request->getContext();
 		$userGroupDao = DAORegistry::getDAO('UserGroupDAO');
-		$userGroup = $userGroupDao->getById($userGroupId, $press->getId());
+		$userGroup = $userGroupDao->getById($userGroupId, $context->getId());
 
 		// Build the signoff.
-		$monographFileSignoffDao = DAORegistry::getDAO('SubmissionFileSignoffDAO');
-		$signoff = $monographFileSignoffDao->build(
+		$submissionFileSignoffDao = DAORegistry::getDAO('SubmissionFileSignoffDAO');
+		$signoff = $submissionFileSignoffDao->build(
 			$this->getSymbolic(),
-			$monographFile->getFileId(),
+			$submissionFile->getFileId(),
 			$userId, $userGroup->getId()
 		); /* @var $signoff Signoff */
 
@@ -251,7 +250,7 @@ class FileAuditorForm extends Form {
 		// Set the date response due (stored as date underway in signoffs table)
 		$dueDateParts = explode('-', $this->getData('responseDueDate'));
 		$signoff->setDateUnderway(date('Y-m-d H:i:s', mktime(0, 0, 0, $dueDateParts[0], $dueDateParts[1], $dueDateParts[2])));
-		$monographFileSignoffDao->updateObject($signoff);
+		$submissionFileSignoffDao->updateObject($signoff);
 
 		$this->_signoffId = $signoff->getId();
 		$this->_fileId = $signoff->getAssocId();
@@ -271,15 +270,15 @@ class FileAuditorForm extends Form {
 		$userDao = DAORegistry::getDAO('UserDAO');
 		$user = $userDao->getById($userId);
 		if (isset($user)) {
-			SubmissionFileLog::logEvent($request, $monographFile, SUBMISSION_LOG_FILE_AUDITOR_ASSIGN, 'submission.event.fileAuditorAdded', array('file' => $monographFile->getOriginalFileName(), 'name' => $user->getFullName(), 'username' => $user->getUsername()));
+			SubmissionFileLog::logEvent($request, $submissionFile, SUBMISSION_LOG_FILE_AUDITOR_ASSIGN, 'submission.event.fileAuditorAdded', array('file' => $submissionFile->getOriginalFileName(), 'name' => $user->getFullName(), 'username' => $user->getUsername()));
 		}
 
 		$notificationMgr->updateNotification(
 			$request,
 			array(NOTIFICATION_TYPE_SIGNOFF_COPYEDIT, NOTIFICATION_TYPE_SIGNOFF_PROOF),
 			array($signoff->getUserId()),
-			ASSOC_TYPE_MONOGRAPH,
-			$monograph->getId()
+			ASSOC_TYPE_SUBMISSION,
+			$submission->getId()
 		);
 	}
 

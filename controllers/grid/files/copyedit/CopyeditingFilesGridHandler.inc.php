@@ -15,11 +15,11 @@
 // import grid signoff files grid base classes
 import('controllers.grid.files.signoff.SignoffFilesGridHandler');
 
-// Import monograph file class which contains the SUBMISSION_FILE_* constants.
+// Import submission file class which contains the SUBMISSION_FILE_* constants.
 import('lib.pkp.classes.submission.SubmissionFile');
 
 // Import SUBMISSION_EMAIL_* constants.
-import('classes.mail.MonographMailTemplate');
+import('lib.pkp.classes.mail.SubmissionMailTemplate');
 
 class CopyeditingFilesGridHandler extends SignoffFilesGridHandler {
 	/**
@@ -45,7 +45,7 @@ class CopyeditingFilesGridHandler extends SignoffFilesGridHandler {
 	 * @see SignoffFilesGridHandler::authorize()
 	 */
 	function authorize($request, &$args, $roleAssignments) {
-		// Approve copyediting file needs monograph access policy.
+		// Approve copyediting file needs submission access policy.
 		$router = $request->getRouter();
 		if ($router->getRequestedOp($request) == 'approveCopyedit') {
 			import('classes.security.authorization.SubmissionFileAccessPolicy');
@@ -64,7 +64,7 @@ class CopyeditingFilesGridHandler extends SignoffFilesGridHandler {
 		parent::initialize($request);
 
 		$this->setTitle('submission.copyediting');
-		$this->setInstructions('editor.monograph.editorial.copyeditingDescription');
+		$this->setInstructions('editor.submission.editorial.copyeditingDescription');
 
 		// Basic grid configuration
 		$this->setId('copyeditingFiles');
@@ -81,23 +81,21 @@ class CopyeditingFilesGridHandler extends SignoffFilesGridHandler {
 	 * @return string Serialized JSON object
 	 */
 	function approveCopyedit($args, $request) {
-		$monographFile =& $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION_FILE);
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		$submissionFile = $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION_FILE);
+		$submission = $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION);
 
-		if ($monographFile->getViewable()) {
-
+		if ($submissionFile->getViewable()) {
 			// No longer expose the file to be sent to next stage.
-			$monographFile->setViewable(false);
+			$submissionFile->setViewable(false);
 		} else {
-
 			// Expose the file.
-			$monographFile->setViewable(true);
+			$submissionFile->setViewable(true);
 		}
 
 		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
-		$submissionFileDao->updateObject($monographFile);
+		$submissionFileDao->updateObject($submissionFile);
 
-		return DAO::getDataChangedEvent($monographFile->getId());
+		return DAO::getDataChangedEvent($submissionFile->getId());
 	}
 }
 

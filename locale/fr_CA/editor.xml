@@ -89,7 +89,6 @@
 
 	<message key="editor.submission.editorial.finalDraftDescription"><![CDATA[Pour les ouvrages dans lesquels les chapitres ont été écrits par des auteurs différents, le fichier de soumission peut être divisé en fichiers-chapitres pour l'étape de révision. Ces fichiers seront ensuite examinés par les auteurs des chapitres après avoir été téléchargés dans <span class="pkp_help_title">Révision</span>.]]></message>
 	
-	<message key="editor.monograph.editorial.copyeditingDescription"><![CDATA[Assigner les fichiers révisés à leurs auteurs (et à d'autres personnes, le cas échéant) afin qu'ils examinent les modifications et répondent aux questions. Leurs réponses et fichiers téléchargés s'afficheront dans l'icône Carnet. Ils seront identifiés <em>Considéré</em> par le réviseur, qui préparera ensuite une copie au net finale qui pourra être téléchargée dans <span class="pkp_help_title">Révision</span>. Le rédacteur en chef vérifiera cette copie et l'approuvera, puis elle passera à l'étape de publication.]]></message>
 	<message key="editor.monograph.editorial.fairCopy">Copie au net</message>
 	<message key="editor.monograph.editorial.fairCopyDescription">Le réviseur télécharge une copie au net de la soumission qui sera ensuite examinée par le rédacteur en chef, avant de passer à l'étape de publication.</message>
 
@@ -110,7 +109,7 @@
 	<message key="editor.monograph.proof.addNote">Ajouter une réponse</message>
 
 	<!-- Add file or auditor to editor/audit grids -->
-	<message key="editor.monograph.addAuditorError">Erreur: l'auditeur n'a pas pu être assigné. Essayez encore.</message>
+	<message key="editor.submission.addAuditorError">Erreur: l'auditeur n'a pas pu être assigné. Essayez encore.</message>
 	<message key="editor.monograph.fileAuditor.form.userRequired">Vous devez choisir un utilisateur à qui l'ouvrage sera attribué.</message>
 	<message key="editor.monograph.fileAuditor.form.fileRequired">Vous devez choisir au moins un fichier qui sera assigné à l'utilisateur.</message>
 	<message key="editor.monograph.fileAuditor.form.messageRequired">Vous devez ajouter un message personnalisé.</message>
