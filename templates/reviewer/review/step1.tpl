@@ -45,7 +45,7 @@
 		</div>
 	<br /><br />
 	{if $competingInterestsAction}
-		{fbvFormSection label="reviewer.monograph.competingInterests" description="reviewer.monograph.enterCompetingInterests"}
+		{fbvFormSection label="reviewer.submission.competingInterests" description="reviewer.submission.enterCompetingInterests"}
 			<div class="pkp_linkActions">
 				{include file="linkAction/linkAction.tpl" action=$competingInterestsAction contextId="reviewStep1"}
 			</div>
@@ -70,7 +70,7 @@
 	{if $reviewAssignment->getDateConfirmed()}
 		{fbvFormButtons hideCancel=true submitText="common.saveAndContinue" submitDisabled=$reviewIsComplete}
 	{else}
-		{fbvFormButtons submitText="reviewer.monograph.acceptReview" cancelText="reviewer.monograph.declineReview" cancelAction=$declineReviewAction submitDisabled=$reviewIsComplete}
+		{fbvFormButtons submitText="reviewer.monograph.acceptReview" cancelText="reviewer.submission.declineReview" cancelAction=$declineReviewAction submitDisabled=$reviewIsComplete}
 	{/if}
 {/fbvFormArea}
 </form>
