@@ -262,10 +262,6 @@
 	<!-- Login -->
 	<message key="user.login.registerNewAccount">Crear cuenta</message>
 
-	<!-- Information Center -->
-	<message key="informationCenter.bookInfo">Información</message>
-	<message key="informationCenter.composeNote">Compose Note</message>
-
 	<!-- Registration -->
 	<message key="user.register.completeForm">Completa el siguiente formulario para crear una cuenta en la editorial.</message>
 	<message key="user.register.privacyStatement">Declaración de privacidad</message>
