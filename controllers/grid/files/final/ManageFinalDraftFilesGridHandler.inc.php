@@ -56,10 +56,10 @@ class ManageFinalDraftFilesGridHandler extends SelectableSubmissionFileListCateg
 	 * @return string Serialized JSON object
 	 */
 	function updateFinalDraftFiles($args, $request) {
-		$monograph = $this->getSubmission();
+		$submission = $this->getSubmission();
 
 		import('lib.pkp.controllers.grid.files.final.form.ManageFinalDraftFilesForm');
-		$manageFinalDraftFilesForm = new ManageFinalDraftFilesForm($monograph->getId());
+		$manageFinalDraftFilesForm = new ManageFinalDraftFilesForm($submission->getId());
 		$manageFinalDraftFilesForm->readInputData();
 
 		if ($manageFinalDraftFilesForm->validate()) {
