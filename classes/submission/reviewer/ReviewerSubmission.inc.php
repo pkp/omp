@@ -17,13 +17,13 @@ import('classes.monograph.Monograph');
 
 class ReviewerSubmission extends Monograph {
 
-	/** @var array MonographFiles reviewer file revisions of this monograph */
+	/** @var array SubmissionFile reviewer file revisions of this submission */
 	var $reviewerFileRevisions;
 
-	/** @var array SubmissionComments peer review comments of this monograph */
+	/** @var array SubmissionComments peer review comments of this submission */
 	var $peerReviewComments;
 
-	/** @var array the editor decisions of this monograph */
+	/** @var array the editor decisions of this submission */
 	var $editorDecisions;
 
 	/**
@@ -38,7 +38,7 @@ class ReviewerSubmission extends Monograph {
 	 */
 
 	/**
-	 * Get the competing interests for this monograph.
+	 * Get the competing interests for this submission.
 	 * @return string
 	 */
 	function getCompetingInterests() {
