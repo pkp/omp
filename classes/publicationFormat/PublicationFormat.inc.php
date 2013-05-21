@@ -13,17 +13,14 @@
  * @brief A publication format for a monograph.
  */
 
-import('lib.pkp.classes.core.DataObject');
+import('lib.pkp.classes.submission.Representation');
 
-class PublicationFormat extends DataObject {
+class PublicationFormat extends Representation {
 	/**
 	 * Constructor.
 	 */
 	function PublicationFormat() {
-		// Switch on meta-data adapter support.
-		$this->setHasLoadableAdapters(true);
-
-		parent::DataObject();
+		parent::Representation();
 	}
 
 	/**
@@ -80,64 +77,24 @@ class PublicationFormat extends DataObject {
 	 */
 	function getNameForONIXCode() {
 		$onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO');
-		$codes =& $onixCodelistItemDao->getCodes('List7'); // List7 is for object formats
+		$codes = $onixCodelistItemDao->getCodes('List7'); // List7 is for object formats
 		return $codes[$this->getEntryKey()];
 	}
-	/**
-	 * Get sequence of format in format listings for the monograph.
-	 * @return float
-	 */
-	function getSeq() {
-		return $this->getData('seq');
-	}
 
 	/**
-	 * Set sequence of format in format listings for the monograph.
-	 * @param $sequence float
-	 */
-	function setSeq($seq) {
-		return $this->setData('seq', $seq);
-	}
-
-	/**
-	 * Get "localized" format name (if applicable).
-	 * @return string
-	 */
-	function getLocalizedName() {
-		return $this->getLocalizedData('name');
-	}
-
-	/**
-	 * Get the format name (if applicable).
-	 * @return string
-	 */
-	function getName() {
-		return $this->getData('name');
-	}
-
-	/**
-	 * Set name.
-	 * @param $name string
-	 * @param $locale
-	 */
-	function setName($name) {
-		return $this->setData('name', $name);
-	}
-
-	/**
-	 * set monograph id.
+	 * Set monograph id.
 	 * @param $monographId int
 	 */
 	function setMonographId($monographId) {
-		return $this->setData('monographId', $monographId);
+		return parent::setSubmissionId($monographId);
 	}
 
 	/**
-	 * get monograph id
+	 * Get monograph id
 	 * @return int
 	 */
 	function getMonographId() {
-		return $this->getData('monographId');
+		return parent::getSubmissionId();
 	}
 
 	/**
@@ -317,9 +274,9 @@ class PublicationFormat extends DataObject {
 		$fileSize = 0;
 		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
 		import('classes.monograph.MonographFile'); // File constants
-		$stageMonographFiles =& $submissionFileDao->getLatestRevisionsByAssocId(
-				ASSOC_TYPE_PUBLICATION_FORMAT, $this->getId(),
-				$this->getMonographId(), SUBMISSION_FILE_PROOF
+		$stageMonographFiles = $submissionFileDao->getLatestRevisionsByAssocId(
+			ASSOC_TYPE_PUBLICATION_FORMAT, $this->getId(),
+			$this->getMonographId(), SUBMISSION_FILE_PROOF
 		);
 
 		foreach ($stageMonographFiles as $monographFile) {
@@ -345,8 +302,7 @@ class PublicationFormat extends DataObject {
 	 */
 	function getSalesRights() {
 		$salesRightsDao = DAORegistry::getDAO('SalesRightsDAO');
-		$salesRights =& $salesRightsDao->getByPublicationFormatId($this->getId());
-		return $salesRights;
+		return $salesRightsDao->getByPublicationFormatId($this->getId());
 	}
 
 	/**
@@ -355,8 +311,7 @@ class PublicationFormat extends DataObject {
 	 */
 	function getIdentificationCodes() {
 		$identificationCodeDao = DAORegistry::getDAO('IdentificationCodeDAO');
-		$codes =& $identificationCodeDao->getByPublicationFormatId($this->getId());
-		return $codes;
+		return $identificationCodeDao->getByPublicationFormatId($this->getId());
 	}
 
 	/**
@@ -365,8 +320,7 @@ class PublicationFormat extends DataObject {
 	 */
 	function getPublicationDates() {
 		$publicationDateDao = DAORegistry::getDAO('PublicationDateDAO');
-		$dates =& $publicationDateDao->getByPublicationFormatId($this->getId());
-		return $dates;
+		return $publicationDateDao->getByPublicationFormatId($this->getId());
 	}
 
 	/**
@@ -375,9 +329,9 @@ class PublicationFormat extends DataObject {
 	 */
 	function getMarkets() {
 		$marketDao = DAORegistry::getDAO('MarketDAO');
-		$markets =& $marketDao->getByPublicationFormatId($this->getId());
-		return $markets;
+		return $marketDao->getByPublicationFormatId($this->getId());
 	}
+
 	/**
 	 * Get the product form detail code (ONIX value) for the format used for this format (List151).
 	 * @return string
@@ -515,8 +469,8 @@ class PublicationFormat extends DataObject {
 	 */
 	function hasNeededONIXFields() {
 		// ONIX requires one identification code and a market region with a defined price.
-		$assignedIdentificationCodes =& $this->getIdentificationCodes();
-		$assignedMarkets =& $this->getMarkets();
+		$assignedIdentificationCodes = $this->getIdentificationCodes();
+		$assignedMarkets = $this->getMarkets();
 
 		$errors = array();
 		if ($assignedMarkets->wasEmpty()) {
@@ -527,8 +481,7 @@ class PublicationFormat extends DataObject {
 			$errors[] = 'monograph.publicationFormat.noCodesAssigned';
 		}
 
-		$errors = array_merge($errors, $this->_checkRequiredFieldsAssigned());
-		return $errors;
+		return array_merge($errors, $this->_checkRequiredFieldsAssigned());
 	}
 
 	/**
@@ -561,31 +514,7 @@ class PublicationFormat extends DataObject {
 	 * @return int
 	 */
 	function getPressId() {
-		$monographDao = DAORegistry::getDAO('MonographDAO');
-		$monograph =& $monographDao->getById($this->getData('monographId'));
-		return $monograph->getPressId();
-	}
-
-	/**
-	 * Get stored public ID of the submission.
-	 * @param $pubIdType string One of the NLM pub-id-type values or
-	 * 'other::something' if not part of the official NLM list
-	 * (see <http://dtd.nlm.nih.gov/publishing/tag-library/n-4zh0.html>).
-	 * @return int
-	 */
-	function getStoredPubId($pubIdType) {
-		return $this->getData('pub-id::'.$pubIdType);
-	}
-
-	/**
-	 * Set the stored public ID of the submission.
-	 * @param $pubIdType string One of the NLM pub-id-type values or
-	 * 'other::something' if not part of the official NLM list
-	 * (see <http://dtd.nlm.nih.gov/publishing/tag-library/n-4zh0.html>).
-	 * @param $pubId string
-	 */
-	function setStoredPubId($pubIdType, $pubId) {
-		return $this->setData('pub-id::'.$pubIdType, $pubId);
+		return $this->getContextId();
 	}
 }
 
