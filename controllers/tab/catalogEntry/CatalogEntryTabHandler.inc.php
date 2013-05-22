@@ -77,8 +77,8 @@ class CatalogEntryTabHandler extends PublicationEntryTabHandler {
 			return $json->getString();
 		}
 
-		import('controllers.tab.catalogEntry.form.CatalogEntryPublicationMetadataForm');
-		$catalogEntryPublicationMetadataForm = new CatalogEntryPublicationMetadataForm($submission->getId(), $publicationFormatId, $publicationFormat->getPhysicalFormat(), $stageId, array('displayedInContainer' => true, 'tabPos' => $this->getTabPosition()));
+		import('controllers.tab.catalogEntry.form.CatalogEntryFormatMetadataForm');
+		$catalogEntryPublicationMetadataForm = new CatalogEntryFormatMetadataForm($submission->getId(), $publicationFormatId, $publicationFormat->getPhysicalFormat(), $stageId, array('displayedInContainer' => true, 'tabPos' => $this->getTabPosition()));
 		$catalogEntryPublicationMetadataForm->initData($args, $request);
 		$json = new JSONMessage(true, $catalogEntryPublicationMetadataForm->fetch($request));
 		return $json->getString();
@@ -125,7 +125,7 @@ class CatalogEntryTabHandler extends PublicationEntryTabHandler {
 					SubmissionLog::logEvent($request, $submission, SUBMISSION_LOG_CATALOG_METADATA_UPDATE, 'submission.event.catalogMetadataUpdated');
 					break;
 				default: // publication format tabs
-					import('controllers.tab.catalogEntry.form.CatalogEntryPublicationMetadataForm');
+					import('controllers.tab.catalogEntry.form.CatalogEntryFormatMetadataForm');
 				$publicationFormatId = $request->getUserVar('publicationFormatId');
 
 				// perform some validation to make sure this format is enabled and assigned to this monograph
@@ -136,7 +136,7 @@ class CatalogEntryTabHandler extends PublicationEntryTabHandler {
 				$form = null;
 				while ($format =& $formats->next()) {
 					if ($format->getId() == $publicationFormatId) {
-						$form = new CatalogEntryPublicationMetadataForm($submission->getId(), $publicationFormatId, $format->getId(), $this->getStageId(), array('displayedInContainer' => true, 'tabPos' => $this->getTabPosition()));
+						$form = new CatalogEntryFormatMetadataForm($submission->getId(), $publicationFormatId, $format->getId(), $this->getStageId(), array('displayedInContainer' => true, 'tabPos' => $this->getTabPosition()));
 						$notificationKey = 'notification.savedPublicationFormatMetadata';
 						SubmissionLog::logEvent($request, $submission, SUBMISSION_LOG_PUBLICATION_FORMAT_METADATA_UPDATE, 'submission.event.publicationMetadataUpdated', array('formatName' => $format->getLocalizedName()));
 						break;

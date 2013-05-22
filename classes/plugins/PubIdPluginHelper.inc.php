@@ -18,7 +18,7 @@ class PubIdPluginHelper {
 	/**
 	 * Validate the additional form fields from public identifier plugins.
 	 * @param $pressId int
-	 * @param $form object CatalogEntryPublicationMetadataForm
+	 * @param $form object CatalogEntryFormatMetadataForm
 	 * @param $pubObject object A PublicationFormat object
 	 */
 	function validate($pressId, &$form, &$pubObject) {
@@ -39,7 +39,7 @@ class PubIdPluginHelper {
 
 	/**
 	 * Init the additional form fields from public identifier plugins.
-	 * @param $form object CatalogEntryPublicationMetadataForm 
+	 * @param $form object CatalogEntryFormatMetadataForm
 	 * @param $pubObject object A PublicationFormat object
 	 */
 	function init(&$form, &$pubObject) {
@@ -56,7 +56,7 @@ class PubIdPluginHelper {
 
 	/**
 	 * Read the additional input data from public identifier plugins.
-	 * @param $form object CatalogEntryPublicationMetadataForm
+	 * @param $form object CatalogEntryFormatMetadataForm
 	 */
 	function readInputData(&$form) {
 		$pubIdPlugins =& PluginRegistry::loadCategory('pubIds', true);
@@ -69,7 +69,7 @@ class PubIdPluginHelper {
 
 	/**
 	 * Set the additional data from public identifier plugins.
-	 * @param $form object CatalogEntryPublicationMetadataForm
+	 * @param $form object CatalogEntryFormatMetadataForm
 	 * @param $pubObject object A PublicationFormat object
 	 */
 	function execute(&$form, &$pubObject) {

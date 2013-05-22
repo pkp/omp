@@ -1,13 +1,13 @@
 <?php
 
 /**
- * @file controllers/tab/catalogEntry/form/CatalogEntryPublicationMetadataForm.inc.php
+ * @file controllers/tab/catalogEntry/form/CatalogEntryFormatMetadataForm.inc.php
  *
  * Copyright (c) 2003-2013 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class CatalogEntryPublicationMetadataForm
- * @ingroup controllers_tab_catalogEntry_form_CatalogEntryPublicationMetadataForm
+ * @class CatalogEntryFormatMetadataForm
+ * @ingroup controllers_tab_catalogEntry_form
  *
  * @brief Parent class for forms used by the various publication formats.
  */
@@ -15,7 +15,7 @@
 import('lib.pkp.classes.form.Form');
 import('classes.plugins.PubIdPluginHelper');
 
-class CatalogEntryPublicationMetadataForm extends Form {
+class CatalogEntryFormatMetadataForm extends Form {
 
 	/** The monograph used to show metadata information **/
 	var $_monograph;
@@ -42,7 +42,7 @@ class CatalogEntryPublicationMetadataForm extends Form {
 	 * @param $stageId integer
 	 * @param $formParams array
 	 */
-	function CatalogEntryPublicationMetadataForm($monographId, $publicationFormatId, $isPhysicalFormat = true, $stageId = null, $formParams = null) {
+	function CatalogEntryFormatMetadataForm($monographId, $publicationFormatId, $isPhysicalFormat = true, $stageId = null, $formParams = null) {
 		parent::Form('controllers/tab/catalogEntry/form/publicationMetadataFormFields.tpl');
 		$monographDao = DAORegistry::getDAO('MonographDAO');
 		$this->_monograph = $monographDao->getById($monographId);
