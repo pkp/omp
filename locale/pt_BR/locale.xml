@@ -398,7 +398,6 @@
 	<message key="navigation.catalog.administration.categories">Categorias</message>
 	<message key="navigation.catalog.administration.series">Séries</message>
 	<message key="navigation.distributionProcess">Distribuição</message>
-	<message key="navigation.goBack">Voltar</message>
 	<message key="navigation.infoForAuthors">Para autores</message>
 	<message key="navigation.infoForLibrarians">Para bibliotecários</message>
 	<message key="navigation.infoForAuthors.long">Informações aos autores</message>

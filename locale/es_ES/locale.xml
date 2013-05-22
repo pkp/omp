@@ -220,7 +220,6 @@
 	<message key="navigation.catalog.administration">Administración del catálogo</message>
 	<message key="navigation.catalog.administration.categories">Categorías</message>
 	<message key="navigation.distributionProcess">Distribución</message>
-	<message key="navigation.goBack">Volver</message>
 	<message key="navigation.infoForAuthors">Para autores</message>
 	<message key="navigation.infoForLibrarians">Para bibliotecas</message>
 	<message key="navigation.infoForAuthors.long">Información para autores</message>

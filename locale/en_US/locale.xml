@@ -314,7 +314,6 @@
 	<message key="navigation.catalog.administration">Catalog Administration</message>
 	<message key="navigation.catalog.administration.categories">Categories</message>
 	<message key="navigation.catalog.administration.series">Series</message>
-	<message key="navigation.goBack">Go Back</message>
 	<message key="navigation.infoForAuthors">For Authors</message>
 	<message key="navigation.infoForLibrarians">For Librarians</message>
 	<message key="navigation.infoForAuthors.long">Information For Authors</message>

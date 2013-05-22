@@ -398,7 +398,6 @@ Sauvegarder.</li>
 	<message key="navigation.catalog.administration.categories">Catégories</message>
 	<message key="navigation.catalog.administration.series">Série</message>
 	<message key="navigation.distributionProcess">Distribution</message>
-	<message key="navigation.goBack">Retour</message>
 	<message key="navigation.infoForAuthors">Pour les auteurs</message>
 	<message key="navigation.infoForLibrarians">Pour les bibliothécaires</message>
 	<message key="navigation.infoForAuthors.long">Renseignements pour les auteurs</message>

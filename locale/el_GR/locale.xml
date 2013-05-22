@@ -413,7 +413,6 @@
 	<message key="navigation.catalog.administration.categories">Κατηγορίες</message>
 	<message key="navigation.catalog.administration.series">Σειρές</message>
 	<message key="navigation.distributionProcess">Διανομή</message>
-	<message key="navigation.goBack">Επιστροφή</message>
 	<message key="navigation.infoForAuthors">Για Συγγραφείς</message>
 	<message key="navigation.infoForLibrarians">Για Βιβλιοθηκονόμους</message>
 	<message key="navigation.infoForAuthors.long">Πληροφορίες για Συγγραφείς</message>
