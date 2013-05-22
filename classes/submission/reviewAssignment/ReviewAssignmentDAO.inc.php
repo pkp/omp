@@ -127,28 +127,6 @@ class ReviewAssignmentDAO extends PKPReviewAssignmentDAO {
 	}
 
 	/**
-	 *
-	 * Retrieve review assignments for the passed review round id.
-	 * @param $reviewRoundId int
-	 * @param $excludeCancelled boolean
-	 * @return array
-	 */
-	function getByReviewRoundId($reviewRoundId, $excludeCancelled = false) {
-		$params = array((int)$reviewRoundId);
-
-		$query = $this->_getSelectQuery() .
-			' WHERE r.review_round_id = ?';
-
-		if ($excludeCancelled) {
-			$query .= ' AND (r.cancelled = 0 OR r.cancelled IS NULL)';
-		}
-
-		$query .= ' ORDER BY review_id';
-
-		return $this->_getReviewAssignmentsArray($query, $params);
-	}
-
-	/**
 	 * @see PKPReviewAssignmentDAO::getBySubmissionId()
 	 */
 	function getBySubmissionId($submissionId, $reviewRoundId = null, $stageId = null) {
@@ -372,27 +350,6 @@ class ReviewAssignmentDAO extends PKPReviewAssignmentDAO {
 
 		$result->Close();
 		return $statistics;
-	}
-
-	/**
-	 * Retrieve review assignments from table usign the passed
-	 * sql query and parameters.
-	 * @param $query string
-	 * @param $queryParams array
-	 * @return array
-	 */
-	function _getReviewAssignmentsArray($query, $queryParams) {
-		$reviewAssignments = array();
-
-		$result = $this->retrieve($query, $queryParams);
-
-		while (!$result->EOF) {
-			$reviewAssignments[$result->fields['review_id']] = $this->_fromRow($result->GetRowAssoc(false));
-			$result->MoveNext();
-		}
-
-		$result->Close();
-		return $reviewAssignments;
 	}
 
 	/**
