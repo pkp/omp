@@ -261,7 +261,6 @@
 	<message key="reviewer.step1.request">Requête d'évaluation</message>
 	<message key="reviewer.step1.requestBoilerplate">Vous avez été choisi en tant qu'évaluateur potentiel pour la soumission suivante. Voici un aperçu de la soumission ainsi que les échéanciers de cette évaluation. Nous espérons que vous serez en mesure de participer.</message>
 	<message key="reviewer.step1.viewAllDetails">Visionner tous les détails de la soumission</message>
-	<message key="reviewer.submission.reviewerFiles">Fichiers de l'évaluateur</message>
 	<message key="reviewer.submission.declineReview">Refuser la requête d'évaluation</message>
 	<message key="reviewer.submission.declineReviewMessage">Vous pouvez indiquer au rédacteur en chef pourquoi vous avez refusé d'évaluer cette soumission dans le champ ci-dessous.</message>
 	<message key="reviewer.submission.acceptReview">Accepter l'évaluation, passer à la deuxième étape</message>

@@ -259,7 +259,6 @@
 	<message key="reviewer.step1.request">Solicitação de avaliação</message>
 	<message key="reviewer.step1.requestBoilerplate">Você foi escolhido como um candidato a avaliar a seguinte submissão. Veja a seguir uma visão geral da submissão, bem como o cronograma para esta avaliação. Esperamos que tenha disponibilidade para participar.</message>
 	<message key="reviewer.step1.viewAllDetails">Ver todos os detalhes da submissão</message>
-	<message key="reviewer.submission.reviewerFiles">Arquivos do avaliador</message>
 	<message key="reviewer.submission.declineReview">Recusar solicitação de avaliação</message>
 	<message key="reviewer.submission.declineReviewMessage">Caso deseje, informe o editor o motivo de sua recusa no campo a seguir.</message>
 	<message key="reviewer.submission.acceptReview">Aceitar avaliação, continuar para o passo #2</message>

@@ -274,7 +274,6 @@
 	<message key="reviewer.step1.request">Αίτημα για αξιολόγηση</message>
 	<message key="reviewer.step1.requestBoilerplate">Έχετε επιλεγεί ως αξιολογητής για την ακόλουθη υποβολή. Ακολουθεί μια περίληψη της υποβολής, καθώς και το χρονοδιάγραμμα για την ολοκλήρωση της αξιολόγησης. Ελπίζουμε να είστε σε θέση να συμμετέχετε.</message>
 	<message key="reviewer.step1.viewAllDetails">Προβολή όλων των λεπτομερειών της υποβολής</message>
-	<message key="reviewer.submission.reviewerFiles">Αρχεία Αξιολογητών</message>
 	<message key="reviewer.submission.declineReview">Απόρριψη αιτήματος αξιολόγησης</message>
 	<message key="reviewer.submission.declineReviewMessage">Μπορείτε να επισημάνετε στον υπεύθυνο έκδοσης τους λόγους μη αποδοχής της αξιολόγησης στο παρακάτω πεδίο.</message>
 	<message key="reviewer.submission.acceptReview">Άποδοχή Αξιολόγησης, Συνεχίστε στο Βήμα #2</message>
