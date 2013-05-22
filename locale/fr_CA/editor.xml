@@ -115,7 +115,6 @@
 	<message key="editor.monograph.fileAuditor.skipEmail">N'envoyez pas de courriels au vérificateur.</message>
 
 	<!-- Review related -->
-	<message key="editor.review">Évaluation</message>
 	<message key="editor.internalReview.introduction">Pendant l'évaluation interne, le rédacteur en chef choisit des évaluateurs internes pour chaque fichier soumis et tient compte de leurs commentaires avant de choisir une action appropriée (qui comprend l'envoi d'un avis à l'auteur): À réviser (les révisions ne seront examinées que par le rédacteur en chef); Soumettre à nouveau pour révision (une nouvelle série de révisions sera entreprise); Envoyer à l'évaluateur externe (il faut choisir les fichiers qui seront envoyés à l'évaluateur externe); Accepter la soumission (il faut choisir les fichiers qui seront envoyés au rédacteur en chef); ou Refuser la soumission (archiver la soumission).</message>
 	
 	<message key="editor.externalReview.introduction">Pendant l'évaluation externe, le rédacteur en chef choisit des évaluateurs qui ne font pas partie de la presse pour chaque fichier soumis et tient compte de leurs commentaires avant de choisir une action appropriée (qui comprend l'envoi d'un avis à l'auteur): À réviser (les révisions ne seront examinées que par le rédacteur en chef); Soumettre à nouveau pour révision (une nouvelle série de révisions sera entreprise); Accepter la soumission (il faut choisir les fichiers qui seront envoyés au rédacteur en chef); ou Refuser la soumission (le rédacteur en chef archive la soumission).</message>
