@@ -20,7 +20,6 @@
 	<message key="monograph.audience.rangeFrom">Intervalle du public (de)</message>
 	<message key="monograph.audience.rangeTo">Intervalle du public (à)</message>
 	<message key="monograph.audience.rangeExact">Intervalle du public (exact)</message>
-	<message key="submission.description">Description</message>
 	<message key="monograph.languages">Langues (anglais, français, espagnol)</message>
 	<message key="monograph.publicationFormats">Formats de publication </message>
 	<message key="monograph.carousel.publicationFormats">Formats:</message>

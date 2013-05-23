@@ -20,7 +20,6 @@
 	<message key="monograph.audience.rangeFrom">Audience Range (from)</message>
 	<message key="monograph.audience.rangeTo">Audience Range (to)</message>
 	<message key="monograph.audience.rangeExact">Audience Range (exact)</message>
-	<message key="submission.description">Description</message>
 	<message key="monograph.languages">Languages (English, French, Spanish)</message>
 	<message key="monograph.publicationFormats">Publication Formats</message>
 	<message key="monograph.carousel.publicationFormats">Formats:</message>

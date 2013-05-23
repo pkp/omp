@@ -31,7 +31,6 @@
 	<message key="submission.chapter.addChapter">Ajouter un chapitre</message>
 	<message key="submission.chapter.editChapter">Modifier un chapitre</message>
 	<message key="submission.document">Document</message>
-	<message key="submission.overview">Aperçu de la soumission</message>
 	<message key="submission.copyediting">Révision</message>
 	<message key="submission.copyedit">Réviser</message>
 	<message key="submission.publicationFormats">Formats de publication</message>
