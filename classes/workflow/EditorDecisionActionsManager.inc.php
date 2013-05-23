@@ -220,6 +220,21 @@ class EditorDecisionActionsManager {
 
 		return $decisions;
 	}
+
+	/**
+	 * Get the stage-level notification type constants.
+	 * @return array
+	 */
+	static function getStageNotifications() {
+		static $notifications = array(
+			NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_SUBMISSION,
+			NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_INTERNAL_REVIEW,
+			NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_EXTERNAL_REVIEW,
+			NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_EDITING,
+			NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_PRODUCTION
+		);
+		return $notifications;
+	}
 }
 
 ?>
