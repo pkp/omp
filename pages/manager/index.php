@@ -17,11 +17,6 @@
 
 
 switch ($op) {
-
-	case 'index':
-		import('pages.manager.ManagerHandler');
-		define('HANDLER_CLASS', 'Managerhandler');
-		break;
 	//
 	// Files Browser
 	//

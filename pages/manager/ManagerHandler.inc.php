@@ -44,18 +44,6 @@ class ManagerHandler extends Handler {
 		AppLocale::requireComponents(LOCALE_COMPONENT_PKP_MANAGER, LOCALE_COMPONENT_APP_MANAGER);
 		parent::setupTemplate($request);
 	}
-
-	/**
-	 * Default index page.
-	 * @param $args array
-	 * @param $request PKPRequest
-	 */
-	function index($args, $request) {
-		$this->setupTemplate($request);
-
-		$templateMgr = TemplateManager::getManager($request);
-		$templateMgr->display('manager/index.tpl');
-	}
 }
 
 ?>
