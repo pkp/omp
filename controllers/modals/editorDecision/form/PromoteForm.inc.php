@@ -50,7 +50,7 @@ class PromoteForm extends EditorDecisionWithEmailForm {
 	function initData($args, $request) {
 		$actionLabels = EditorDecisionActionsManager::getActionLabels($this->_getDecisions());
 
-		$seriesEditorSubmission = $this->getSeriesEditorSubmission();
+		$seriesEditorSubmission = $this->getSubmission();
 		$this->setData('stageId', $this->getStageId());
 
 		return parent::initData($args, $request, $actionLabels);
@@ -61,7 +61,7 @@ class PromoteForm extends EditorDecisionWithEmailForm {
 	 */
 	function execute($args, $request) {
 		// Retrieve the submission.
-		$seriesEditorSubmission = $this->getSeriesEditorSubmission();
+		$seriesEditorSubmission = $this->getSubmission();
 
 		// Get this form decision actions labels.
 		$actionLabels = EditorDecisionActionsManager::getActionLabels($this->_getDecisions());
