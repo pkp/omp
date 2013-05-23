@@ -13,7 +13,7 @@
  *  resubmit for review), or to decline the submission.
  */
 
-import('controllers.modals.editorDecision.form.EditorDecisionWithEmailForm');
+import('lib.pkp.controllers.modals.editorDecision.form.EditorDecisionWithEmailForm');
 
 // Access decision actions constants.
 import('classes.workflow.EditorDecisionActionsManager');

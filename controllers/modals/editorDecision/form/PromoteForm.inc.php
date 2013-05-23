@@ -12,7 +12,7 @@
  * @brief Form for promoting a submission (to external review or editing)
  */
 
-import('controllers.modals.editorDecision.form.EditorDecisionWithEmailForm');
+import('lib.pkp.controllers.modals.editorDecision.form.EditorDecisionWithEmailForm');
 
 // Access decision actions constants.
 import('classes.workflow.EditorDecisionActionsManager');
@@ -75,7 +75,7 @@ class PromoteForm extends EditorDecisionWithEmailForm {
 
 		// Identify email key and status of round.
 		import('lib.pkp.classes.file.SubmissionFileManager');
-		$monographFileManager = new SubmissionFileManager($seriesEditorSubmission->getPressId(), $seriesEditorSubmission->getId());
+		$submissionFileManager = new SubmissionFileManager($seriesEditorSubmission->getContextId(), $seriesEditorSubmission->getId());
 		switch ($decision) {
 			case SUBMISSION_EDITOR_DECISION_ACCEPT:
 				$emailKey = 'EDITOR_DECISION_ACCEPT';
@@ -87,7 +87,7 @@ class PromoteForm extends EditorDecisionWithEmailForm {
 				$seriesEditorAction->incrementWorkflowStage($seriesEditorSubmission, WORKFLOW_STAGE_ID_EDITING, $request);
 
 				// Bring in the SUBMISSION_FILE_* constants.
-				import('classes.monograph.MonographFile');
+				import('lib.pkp.classes.submission.SubmissionFile');
 				// Bring in the Manager (we need it).
 				import('lib.pkp.classes.file.SubmissionFileManager');
 
@@ -97,7 +97,7 @@ class PromoteForm extends EditorDecisionWithEmailForm {
 				if(is_array($selectedFiles)) {
 					foreach ($selectedFiles as $fileId) {
 						$revisionNumber = $submissionFileDao->getLatestRevisionNumber($fileId);
-						$monographFileManager->copyFileToFileStage($fileId, $revisionNumber, SUBMISSION_FILE_FINAL, null, true);
+						$submissionFileManager->copyFileToFileStage($fileId, $revisionNumber, SUBMISSION_FILE_FINAL, null, true);
 					}
 				}
 
@@ -128,7 +128,7 @@ class PromoteForm extends EditorDecisionWithEmailForm {
 				$seriesEditorAction->incrementWorkflowStage($seriesEditorSubmission, WORKFLOW_STAGE_ID_PRODUCTION, $request);
 
 				// Bring in the SUBMISSION_FILE_* constants.
-				import('classes.monograph.MonographFile');
+				import('lib.pkp.classes.submission.SubmissionFile');
 				// Bring in the Manager (we need it).
 				import('lib.pkp.classes.file.SubmissionFileManager');
 
@@ -139,7 +139,7 @@ class PromoteForm extends EditorDecisionWithEmailForm {
 				if(is_array($selectedFiles)) {
 					foreach ($selectedFiles as $fileId) {
 						$revisionNumber = $submissionFileDao->getLatestRevisionNumber($fileId);
-						$monographFileManager->copyFileToFileStage($fileId, $revisionNumber, SUBMISSION_FILE_PRODUCTION_READY);
+						$submissionFileManager->copyFileToFileStage($fileId, $revisionNumber, SUBMISSION_FILE_PRODUCTION_READY);
 					}
 				}
 				// Send email to the author.

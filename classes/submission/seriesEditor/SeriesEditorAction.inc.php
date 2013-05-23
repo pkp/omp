@@ -91,19 +91,19 @@ class SeriesEditorAction extends Action {
 	}
 
 	/**
-	 * Increment a monograph's workflow stage.
-	 * @param $monograph Monograph
+	 * Increment a submission's workflow stage.
+	 * @param $submission Submission
 	 * @param $newStage integer One of the WORKFLOW_STAGE_* constants.
 	 * @param $request Request
 	 */
-	function incrementWorkflowStage(&$monograph, $newStage, $request) {
-		// Change the monograph's workflow stage.
-		$monograph->setStageId($newStage);
-		$monographDao = DAORegistry::getDAO('MonographDAO'); /* @var $monographDao MonographDAO */
-		$monographDao->updateObject($monograph);
+	function incrementWorkflowStage($submission, $newStage, $request) {
+		// Change the submission's workflow stage.
+		$submission->setStageId($newStage);
+		$submissionDao = Application::getSubmissionDAO();
+		$submissionDao->updateObject($submission);
 
 		// Assign the default users to the next workflow stage.
-		$this->assignDefaultStageParticipants($monograph, $newStage, $request);
+		$this->assignDefaultStageParticipants($submission, $newStage, $request);
 	}
 
 	/**
