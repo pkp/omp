@@ -19,7 +19,7 @@ class ReviewerSubmissionMetadataHandler extends PKPReviewerSubmissionMetadataHan
 	 * Constructor.
 	 */
 	function ReviewerSubmissionMetadataHandler() {
-		parent::PKPSubmissionMetadataHandler();
+		parent::PKPReviewerSubmissionMetadataHandler();
 	}
 
 	//
