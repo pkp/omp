@@ -56,7 +56,7 @@ class AuthorDashboardHandler extends Handler {
 		$templateMgr->assign('submission', $submission);
 
 		// "View metadata" action.
-		import('controllers.modals.submissionMetadata.linkAction.AuthorViewMetadataLinkAction');
+		import('lib.pkp.controllers.modals.submissionMetadata.linkAction.AuthorViewMetadataLinkAction');
 		$viewMetadataAction = new AuthorViewMetadataLinkAction($request, $submission->getId());
 		$templateMgr->assign('viewMetadataAction', $viewMetadataAction);
 
@@ -100,7 +100,7 @@ class AuthorDashboardHandler extends Handler {
 		$templateMgr->assign('lastReviewRoundNumber', $lastReviewRoundNumber);
 
 		// Get the last review round.
-		$lastReviewRound =& $reviewRoundDao->getLastReviewRoundBySubmissionId($submission->getId(), $currentStage);
+		$lastReviewRound = $reviewRoundDao->getLastReviewRoundBySubmissionId($submission->getId(), $currentStage);
 
 		// Create and assign add file link action.
 		if ($fileStage && is_a($lastReviewRound, 'ReviewRound')) {
