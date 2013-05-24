@@ -30,7 +30,7 @@ class OmpSignoffAccessPolicy extends ContextPolicy {
 		parent::ContextPolicy($request);
 
 		// We need a submission matching the file in the request.
-		import('classes.security.authorization.internal.SignoffExistsAccessPolicy');
+		import('lib.pkp.classes.security.authorization.internal.SignoffExistsAccessPolicy');
 		$this->addPolicy(new SignoffExistsAccessPolicy($request, $args));
 
 		// We need a valid workflow stage.
