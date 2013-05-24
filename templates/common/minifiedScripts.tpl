@@ -124,7 +124,7 @@
 <script src="{$baseUrl}/js/controllers/catalog/form/CatalogMetadataFormHandler.js"></script>
 <script src="{$baseUrl}/js/controllers/monographList/MonographListHandler.js"></script>
 <script src="{$baseUrl}/js/pages/authorDashboard/AuthorDashboardHandler.js"></script>
-<script src="{$baseUrl}/js/pages/authorDashboard/MonographEmailHandler.js"></script>
+<script src="{$baseUrl}/js/pages/authorDashboard/SubmissionEmailHandler.js"></script>
 <script src="{$baseUrl}/js/pages/catalog/CarouselHandler.js"></script>
 <script src="{$baseUrl}/js/pages/catalog/MonographPublicListHandler.js"></script>
 <script src="{$baseUrl}/js/pages/manageCatalog/ManageCatalogHeaderHandler.js"></script>

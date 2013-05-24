@@ -4,12 +4,12 @@
 
 
 /**
- * @file js/pages/authorDashboard/MonographEmailHandler.js
+ * @file js/pages/authorDashboard/SubmissionEmailHandler.js
  *
  * Copyright (c) 2000-2013 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class MonographEmailHandler
+ * @class SubmissionEmailHandler
  * @ingroup js_pages_authorDashboard
  *
  * @brief Handler for reading monograph emails within the author dashboard.
@@ -22,20 +22,20 @@
 	 *
 	 * @extends $.pkp.controllers.linkAction.LinkActionHandler
 	 *
-	 * @param {jQueryObject} $monographEmailContainer The container for
+	 * @param {jQueryObject} $submissionEmailContainer The container for
 	 *  the monograph email link.
 	 * @param {Object} options Handler options.
 	 */
-	$.pkp.pages.authorDashboard.MonographEmailHandler =
-			function($monographEmailContainer, options) {
+	$.pkp.pages.authorDashboard.SubmissionEmailHandler =
+			function($submissionEmailContainer, options) {
 
-		this.parent($monographEmailContainer, options);
+		this.parent($submissionEmailContainer, options);
 
-		$monographEmailContainer.find('a[id^="monographEmail"]').click(
+		$submissionEmailContainer.find('a[id^="submissionEmail"]').click(
 				this.callbackWrapper(this.activateAction));
 	};
 	$.pkp.classes.Helper.inherits(
-			$.pkp.pages.authorDashboard.MonographEmailHandler,
+			$.pkp.pages.authorDashboard.SubmissionEmailHandler,
 			$.pkp.controllers.linkAction.LinkActionHandler);
 
 

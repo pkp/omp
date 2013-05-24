@@ -244,7 +244,7 @@
 	<message key="grid.action.addSpotlight">Ajouter un titre à la rubrique Sous les projecteurs</message>
 	<message key="grid.action.publicationFormatTab">Afficher l'onglet du format de publication</message>
 	<message key="grid.action.moreAnnouncements">Consulter la page des communiqués de presse</message>
-	<message key="grid.action.monographEmail">Cliquer pour lire ce courriel</message>
+	<message key="grid.action.submissionEmail">Cliquer pour lire ce courriel</message>
 	<message key="grid.action.viewSignoffNotes">Visionner les notes de certification de conformité</message>
 	<message key="grid.action.fileUnconsider">Les épreuves ont été corrigées. Vous pourriez ne pas tenir compte de cette tâche.</message>
 	<message key="grid.action.approveProofs">Visionner la grille des épreuves</message>

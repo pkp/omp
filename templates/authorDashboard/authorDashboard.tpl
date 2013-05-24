@@ -90,7 +90,7 @@
 			<div id="copyeditingContent">
 				{if $stageId >= $smarty.const.WORKFLOW_STAGE_ID_EDITING}
 					<!-- Display editor's message to the author -->
-					{include file="authorDashboard/monographEmails.tpl" monographEmails=$copyeditingEmails}
+					{include file="authorDashboard/submissionEmails.tpl" submissionEmails=$copyeditingEmails}
 
 					<!-- Display copyediting files grid -->
 					{url|assign:copyeditingFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.copyedit.AuthorCopyeditingSignoffFilesGridHandler" op="fetchGrid" submissionId=$monograph->getId() stageId=$smarty.const.WORKFLOW_STAGE_ID_EDITING escape=false}
@@ -107,7 +107,7 @@
 			<h3><a href="#">{translate key='submission.production'}</a></h3>
 			<div id="productionContent">
 				{if $stageId >= $smarty.const.WORKFLOW_STAGE_ID_PRODUCTION}
-					{include file="authorDashboard/monographEmails.tpl" monographEmails=$productionEmails}
+					{include file="authorDashboard/submissionEmails.tpl" submissionEmails=$productionEmails}
 
 					<!-- Display production files grid -->
 					{url|assign:productionFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.proof.AuthorProofingSignoffFilesGridHandler" op="fetchGrid" submissionId=$monograph->getId() stageId=$smarty.const.WORKFLOW_STAGE_ID_EDITING escape=false}

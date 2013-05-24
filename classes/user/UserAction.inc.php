@@ -73,10 +73,10 @@ class UserAction {
 			$reviewAssignmentDao->updateObject($reviewAssignment);
 		}
 
-		$monographEmailLogDao = DAORegistry::getDAO('MonographEmailLogDAO');
-		$monographEmailLogDao->changeUser($oldUserId, $newUserId);
-		$monographEventLogDao = DAORegistry::getDAO('SubmissionEventLogDAO');
-		$monographEventLogDao->changeUser($oldUserId, $newUserId);
+		$submissionEmailLogDao = DAORegistry::getDAO('SubmissionEmailLogDAO');
+		$submissionEmailLogDao->changeUser($oldUserId, $newUserId);
+		$submissionEventLogDao = DAORegistry::getDAO('SubmissionEventLogDAO');
+		$submissionEventLogDao->changeUser($oldUserId, $newUserId);
 
 		$accessKeyDao = DAORegistry::getDAO('AccessKeyDAO');
 		$accessKeyDao->transferAccessKeys($oldUserId, $newUserId);

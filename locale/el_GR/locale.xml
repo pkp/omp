@@ -258,7 +258,7 @@
 	<message key="grid.action.addSpotlight">Προσθήκη στη Βιτρίνα</message>
 	<message key="grid.action.publicationFormatTab">Προβολή ετικέτας του μορφότυπου δημοσίευσης</message>
 	<message key="grid.action.moreAnnouncements">Πήγαινε στη σελίδα ανακοινώσεων των εκδόσεων</message>
-	<message key="grid.action.monographEmail">Επιλέξτε για να διαβάσετε αυτό το email</message>
+	<message key="grid.action.submissionEmail">Επιλέξτε για να διαβάσετε αυτό το email</message>
 	<message key="grid.action.viewSignoffNotes">Προβολή σημειώσεων υπογραφής(email)</message>
 	<message key="grid.action.fileUnconsider">Οι διορθώσεις τυπογραφικού δοκιμίου έγιναν. Μπορείτε να μην θεωρήσετε αυτή την εργασία.</message>
 	<message key="grid.action.approveProofs">Προβολή πλέγματος (grid) τυπογραφικών δοκιμίων</message>

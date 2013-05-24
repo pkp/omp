@@ -22,7 +22,7 @@ class AuthorDashboardHandler extends Handler {
 	 */
 	function AuthorDashboardHandler() {
 		parent::Handler();
-		$this->addRoleAssignment($this->_getAssignmentRoles(), array('submission', 'readMonographEmail'));
+		$this->addRoleAssignment($this->_getAssignmentRoles(), array('submission', 'readSubmissionEmail'));
 	}
 
 
@@ -114,17 +114,17 @@ class AuthorDashboardHandler extends Handler {
 
 		// If the submission is in or past the editorial stage,
 		// assign the editor's copyediting emails to the template
-		$monographEmailLogDao = DAORegistry::getDAO('SubmissionEmailLogDAO');
+		$submissionEmailLogDao = DAORegistry::getDAO('SubmissionEmailLogDAO');
 		$user = $request->getUser();
 
 		if ($monograph->getStageId() >= WORKFLOW_STAGE_ID_EDITING) {
-			$copyeditingEmails =& $monographEmailLogDao->getByEventType($monograph->getId(), SUBMISSION_EMAIL_COPYEDIT_NOTIFY_AUTHOR, $user->getId());
+			$copyeditingEmails = $submissionEmailLogDao->getByEventType($monograph->getId(), SUBMISSION_EMAIL_COPYEDIT_NOTIFY_AUTHOR, $user->getId());
 			$templateMgr->assign_by_ref('copyeditingEmails', $copyeditingEmails);
 		}
 
 		// Same for production stage.
 		if ($monograph->getStageId() == WORKFLOW_STAGE_ID_PRODUCTION) {
-			$productionEmails =& $monographEmailLogDao->getByEventType($monograph->getId(), SUBMISSION_EMAIL_PROOFREAD_NOTIFY_AUTHOR, $user->getId());
+			$productionEmails = $submissionEmailLogDao->getByEventType($monograph->getId(), SUBMISSION_EMAIL_PROOFREAD_NOTIFY_AUTHOR, $user->getId());
 			$templateMgr->assign_by_ref('productionEmails', $productionEmails);
 		}
 
@@ -158,18 +158,18 @@ class AuthorDashboardHandler extends Handler {
 	 * @param $request Request
 	 * @return string
 	 */
-	function readMonographEmail($args, $request) {
-		$monographEmailLogDao = DAORegistry::getDAO('SubmissionEmailLogDAO');
+	function readSubmissionEmail($args, $request) {
+		$submissionEmailLogDao = DAORegistry::getDAO('SubmissionEmailLogDAO');
 		$user = $request->getUser();
 		$monograph = $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-		$monographEmailId = $request->getUserVar('monographEmailId');
+		$submissionEmailId = $request->getUserVar('submissionEmailId');
 
-		$monographEmailFactory =& $monographEmailLogDao->getByEventType($monograph->getId(), SUBMISSION_EMAIL_EDITOR_NOTIFY_AUTHOR, $user->getId());
-		while ($email =& $monographEmailFactory->next()) { // validate the email id for this user.
-			if ($email->getId() == $monographEmailId) {
+		$submissionEmailFactory = $submissionEmailLogDao->getByEventType($monograph->getId(), SUBMISSION_EMAIL_EDITOR_NOTIFY_AUTHOR, $user->getId());
+		while ($email = $submissionEmailFactory->next()) { // validate the email id for this user.
+			if ($email->getId() == $submissionEmailId) {
 				$templateMgr = TemplateManager::getManager($request);
-				$templateMgr->assign_by_ref('monographEmail', $email);
-				return $templateMgr->fetchJson('authorDashboard/monographEmail.tpl');
+				$templateMgr->assign('submissionEmail', $email);
+				return $templateMgr->fetchJson('authorDashboard/submissionEmail.tpl');
 			}
 		}
 	}
