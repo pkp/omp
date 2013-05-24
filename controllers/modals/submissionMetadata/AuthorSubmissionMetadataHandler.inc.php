@@ -12,7 +12,7 @@
  * @brief Display submission metadata to authors.
  */
 
-import('classes.controllers.modals.submissionMetadata.SubmissionMetadataHandler');
+import('lib.pkp.classes.controllers.modals.submissionMetadata.SubmissionMetadataHandler');
 
 // import JSON class for use with all AJAX requests
 import('lib.pkp.classes.core.JSONMessage');
@@ -39,6 +39,16 @@ class AuthorSubmissionMetadataHandler extends SubmissionMetadataHandler {
 		import('classes.security.authorization.SubmissionAccessPolicy');
 		$this->addPolicy(new SubmissionAccessPolicy($request, $args, $roleAssignments));
 		return parent::authorize($request, $args, $roleAssignments);
+	}
+
+	/**
+	 * Get an instance of the metadata form to be used by this handler.
+	 * @param $submissionId int
+	 * @return Form
+	 */
+	function getFormInstance($submissionId, $stageId = null, $params = null) {
+		import('controllers.modals.submissionMetadata.form.CatalogEntrySubmissionReviewForm');
+		return new CatalogEntrySubmissionReviewForm($submissionId, $stageId, $params);
 	}
 }
 

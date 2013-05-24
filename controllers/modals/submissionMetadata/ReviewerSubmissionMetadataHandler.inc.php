@@ -12,18 +12,14 @@
  * @brief Display submission metadata to reviewers.
  */
 
-import('classes.controllers.modals.submissionMetadata.SubmissionMetadataHandler');
+import('lib.pkp.classes.controllers.modals.submissionMetadata.PKPReviewerSubmisionMetadataHandler');
 
-// import JSON class for use with all AJAX requests
-import('lib.pkp.classes.core.JSONMessage');
-
-class ReviewerSubmissionMetadataHandler extends SubmissionMetadataHandler {
+class ReviewerSubmissionMetadataHandler extends PKPReviewerSubmissionMetadataHandler {
 	/**
 	 * Constructor.
 	 */
 	function ReviewerSubmissionMetadataHandler() {
-		parent::SubmissionMetadataHandler();
-		$this->addRoleAssignment(array(ROLE_ID_REVIEWER), array('fetch'));
+		parent::PKPSubmissionMetadataHandler();
 	}
 
 	//
@@ -42,23 +38,13 @@ class ReviewerSubmissionMetadataHandler extends SubmissionMetadataHandler {
 	}
 
 	/**
-	 * @see classes/controllers/modals/submissionMetadata/SubmissionMetadataHandler::fetch()
+	 * Get an instance of the metadata form to be used by this handler.
+	 * @param $submissionId int
+	 * @return Form
 	 */
-	function fetch($args, $request) {
-		$press = $request->getPress();
-
-		$reviewAssignment = $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ASSIGNMENT);
-		$reviewMethod = $reviewAssignment->getReviewMethod();
-
-		if ($reviewMethod == SUBMISSION_REVIEW_METHOD_DOUBLEBLIND) {
-			$anonymous = true;
-		} else { /* SUBMISSION_REVIEW_METHOD_BLIND or _OPEN */
-			$anonymous = false;
-		}
-
-		$params = array('readOnly' => true, 'anonymous' => $anonymous, 'hideSubmit' => true);
-
-		return parent::fetch($request, $args, $params);
+	function getFormInstance($submissionId, $stageId = null, $params = null) {
+		import('controllers.modals.submissionMetadata.form.CatalogEntrySubmissionReviewForm');
+		return new CatalogEntrySubmissionReviewForm($submissionId, $stageId, $params);
 	}
 }
 
