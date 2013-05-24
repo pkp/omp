@@ -18,9 +18,9 @@ class AuthorViewMetadataLinkAction extends LinkAction {
 	/**
 	 * Constructor
 	 * @param $request Request
-	 * @param $monographId integer The submission to show meta-data for.
+	 * @param $submissionId integer The submission to show meta-data for.
 	 */
-	function AuthorViewMetadataLinkAction($request, $monographId) {
+	function AuthorViewMetadataLinkAction($request, $submissionId) {
 		$dispatcher = $request->getDispatcher();
 		import('lib.pkp.classes.linkAction.request.AjaxModal');
 		parent::LinkAction(
@@ -28,7 +28,7 @@ class AuthorViewMetadataLinkAction extends LinkAction {
 			new AjaxModal(
 				$dispatcher->url($request, ROUTE_COMPONENT, null,
 					'modals.submissionMetadata.AuthorSubmissionMetadataHandler',
-					'fetch', null, array('submissionId' => $monographId)
+					'fetch', null, array('submissionId' => $submissionId)
 				),
 				__('submission.viewMetadata'),
 				'modal_information'

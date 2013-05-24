@@ -48,7 +48,7 @@ class SubmissionMetadataHandler extends Handler {
 	 */
 	function fetch($request, $args, $params = null) {
 		// Identify the submission
-		$monograph = $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		$submission = $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION);
 		AppLocale::requireComponents(LOCALE_COMPONENT_APP_SUBMISSION);
 
 		// Identify the stage, if we have one.
@@ -62,7 +62,7 @@ class SubmissionMetadataHandler extends Handler {
 		}
 
 		// Form handling
-		$submissionMetadataViewForm = $this->getFormInstance($monograph->getId(), $stageId, $params);
+		$submissionMetadataViewForm = $this->getFormInstance($submission->getId(), $stageId, $params);
 
 		$submissionMetadataViewForm->initData($args, $request);
 
@@ -76,10 +76,10 @@ class SubmissionMetadataHandler extends Handler {
 	 * @param $request Request
 	 */
 	function saveForm($args, $request) {
-		$monographId = $request->getUserVar('monographId');
+		$submissionId = $request->getUserVar('submissionId');
 
 		// Form handling
-		$submissionMetadataViewForm = $this->getFormInstance($monographId);
+		$submissionMetadataViewForm = $this->getFormInstance($submissionId);
 
 		$json = new JSONMessage();
 
@@ -100,12 +100,12 @@ class SubmissionMetadataHandler extends Handler {
 
 	/**
 	 * Get an instance of the metadata form to be used by this handler.
-	 * @param $monographId int
+	 * @param $submissionId int
 	 * @return Form
 	 */
-	function getFormInstance($monographId, $stageId = null, $params = null) {
+	function getFormInstance($submissionId, $stageId = null, $params = null) {
 		import('controllers.modals.submissionMetadata.form.CatalogEntrySubmissionReviewForm');
-		return new CatalogEntrySubmissionReviewForm($monographId, $stageId, $params);
+		return new CatalogEntrySubmissionReviewForm($submissionId, $stageId, $params);
 	}
 }
 
