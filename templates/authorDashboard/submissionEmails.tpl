@@ -4,7 +4,7 @@
  * Copyright (c) 2003-2013 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * Display monograph emails to authors.
+ * Display submission emails to authors.
  *}
 
 {if $submissionEmails && $submissionEmails->getCount()}
@@ -40,7 +40,7 @@
 										titleIcon: 'modal_information',
 										title: '{$submissionEmail->getSubject()|escape:"javascript"}',
 										modalHandler: '$.pkp.controllers.modal.AjaxModalHandler',
-										url: '{url|escape:"javascript" router=$smarty.const.ROUTE_PAGE page="authorDashboard" op="readSubmissionEmail" submissionId=$monograph->getId() stageId=$stageId reviewRoundId=$reviewRoundId submissionEmailId=$submissionEmail->getId() escape=false}'
+										url: '{url|escape:"javascript" router=$smarty.const.ROUTE_PAGE page="authorDashboard" op="readSubmissionEmail" submissionId=$submission->getId() stageId=$stageId reviewRoundId=$reviewRoundId submissionEmailId=$submissionEmail->getId() escape=false}'
 									{rdelim}
 								{rdelim}
 							);

@@ -49,23 +49,23 @@ class AuthorDashboardHandler extends Handler {
 	 * @param $request PKPRequest
 	 */
 	function submission($args, $request) {
-		// Pass the authorized monograph on to the template.
+		// Pass the authorized submission on to the template.
 		$this->setupTemplate($request);
 		$templateMgr = TemplateManager::getManager($request);
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-		$templateMgr->assign_by_ref('monograph', $monograph);
+		$submission = $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION);
+		$templateMgr->assign('submission', $submission);
 
 		// "View metadata" action.
 		import('controllers.modals.submissionMetadata.linkAction.AuthorViewMetadataLinkAction');
-		$viewMetadataAction = new AuthorViewMetadataLinkAction($request, $monograph->getId());
+		$viewMetadataAction = new AuthorViewMetadataLinkAction($request, $submission->getId());
 		$templateMgr->assign('viewMetadataAction', $viewMetadataAction);
 
-		// Import monograph file to define file stages.
-		import('classes.monograph.MonographFile');
+		// Import submission file to define file stages.
+		import('lib.pkp.classes.submission.SubmissionFile');
 
 		// Workflow-stage specific "upload file" action.
 		$fileStage = null;
-		$currentStage = $monograph->getStageId();
+		$currentStage = $submission->getStageId();
 		switch ($currentStage) {
 			case WORKFLOW_STAGE_ID_SUBMISSION:
 				$fileStage = SUBMISSION_FILE_SUBMISSION;
@@ -81,10 +81,10 @@ class AuthorDashboardHandler extends Handler {
 		}
 
 		$reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO');
-		$internalReviewRounds =& $reviewRoundDao->getBySubmissionId($monograph->getId(), WORKFLOW_STAGE_ID_INTERNAL_REVIEW);
-		$externalReviewRounds =& $reviewRoundDao->getBySubmissionId($monograph->getId(), WORKFLOW_STAGE_ID_EXTERNAL_REVIEW);
-		$lastInternalReviewRound =& $reviewRoundDao->getLastReviewRoundBySubmissionId($monograph->getId(), WORKFLOW_STAGE_ID_INTERNAL_REVIEW);
-		$lastExternalReviewRound =& $reviewRoundDao->getLastReviewRoundBySubmissionId($monograph->getId(), WORKFLOW_STAGE_ID_EXTERNAL_REVIEW);
+		$internalReviewRounds = $reviewRoundDao->getBySubmissionId($submission->getId(), WORKFLOW_STAGE_ID_INTERNAL_REVIEW);
+		$externalReviewRounds = $reviewRoundDao->getBySubmissionId($submission->getId(), WORKFLOW_STAGE_ID_EXTERNAL_REVIEW);
+		$lastInternalReviewRound = $reviewRoundDao->getLastReviewRoundBySubmissionId($submission->getId(), WORKFLOW_STAGE_ID_INTERNAL_REVIEW);
+		$lastExternalReviewRound = $reviewRoundDao->getLastReviewRoundBySubmissionId($submission->getId(), WORKFLOW_STAGE_ID_EXTERNAL_REVIEW);
 		$lastInternalReviewRoundNumber = 0;
 		$lastExternalReviewRoundNumber = 0;
 		if ($lastInternalReviewRound) {
@@ -100,13 +100,13 @@ class AuthorDashboardHandler extends Handler {
 		$templateMgr->assign('lastReviewRoundNumber', $lastReviewRoundNumber);
 
 		// Get the last review round.
-		$lastReviewRound =& $reviewRoundDao->getLastReviewRoundBySubmissionId($monograph->getId(), $currentStage);
+		$lastReviewRound =& $reviewRoundDao->getLastReviewRoundBySubmissionId($submission->getId(), $currentStage);
 
 		// Create and assign add file link action.
 		if ($fileStage && is_a($lastReviewRound, 'ReviewRound')) {
 			import('lib.pkp.controllers.api.file.linkAction.AddFileLinkAction');
 			$uploadFileAction = new AddFileLinkAction(
-				$request, $monograph->getId(), $currentStage,
+				$request, $submission->getId(), $currentStage,
 				array(ROLE_ID_AUTHOR), $fileStage, null, null, $lastReviewRound->getId());
 			$templateMgr->assign('uploadFileAction', $uploadFileAction);
 		}
@@ -117,33 +117,33 @@ class AuthorDashboardHandler extends Handler {
 		$submissionEmailLogDao = DAORegistry::getDAO('SubmissionEmailLogDAO');
 		$user = $request->getUser();
 
-		if ($monograph->getStageId() >= WORKFLOW_STAGE_ID_EDITING) {
-			$copyeditingEmails = $submissionEmailLogDao->getByEventType($monograph->getId(), SUBMISSION_EMAIL_COPYEDIT_NOTIFY_AUTHOR, $user->getId());
+		if ($submission->getStageId() >= WORKFLOW_STAGE_ID_EDITING) {
+			$copyeditingEmails = $submissionEmailLogDao->getByEventType($submission->getId(), SUBMISSION_EMAIL_COPYEDIT_NOTIFY_AUTHOR, $user->getId());
 			$templateMgr->assign_by_ref('copyeditingEmails', $copyeditingEmails);
 		}
 
 		// Same for production stage.
-		if ($monograph->getStageId() == WORKFLOW_STAGE_ID_PRODUCTION) {
-			$productionEmails = $submissionEmailLogDao->getByEventType($monograph->getId(), SUBMISSION_EMAIL_PROOFREAD_NOTIFY_AUTHOR, $user->getId());
+		if ($submission->getStageId() == WORKFLOW_STAGE_ID_PRODUCTION) {
+			$productionEmails = $submissionEmailLogDao->getByEventType($submission->getId(), SUBMISSION_EMAIL_PROOFREAD_NOTIFY_AUTHOR, $user->getId());
 			$templateMgr->assign_by_ref('productionEmails', $productionEmails);
 		}
 
 		// Define the notification options.
-		$monographAssocTypeAndIdArray = array(ASSOC_TYPE_MONOGRAPH, $monograph->getId());
+		$submissionAssocTypeAndIdArray = array(ASSOC_TYPE_SUBMISSION, $submission->getId());
 		$notificationRequestOptions = array(
 			NOTIFICATION_LEVEL_TASK => array(
-				NOTIFICATION_TYPE_SIGNOFF_COPYEDIT => $monographAssocTypeAndIdArray,
-				NOTIFICATION_TYPE_SIGNOFF_PROOF => $monographAssocTypeAndIdArray,
-				NOTIFICATION_TYPE_PENDING_EXTERNAL_REVISIONS => $monographAssocTypeAndIdArray,
-				NOTIFICATION_TYPE_PENDING_INTERNAL_REVISIONS => $monographAssocTypeAndIdArray),
+				NOTIFICATION_TYPE_SIGNOFF_COPYEDIT => $submissionAssocTypeAndIdArray,
+				NOTIFICATION_TYPE_SIGNOFF_PROOF => $submissionAssocTypeAndIdArray,
+				NOTIFICATION_TYPE_PENDING_EXTERNAL_REVISIONS => $submissionAssocTypeAndIdArray,
+				NOTIFICATION_TYPE_PENDING_INTERNAL_REVISIONS => $submissionAssocTypeAndIdArray),
 			NOTIFICATION_LEVEL_NORMAL => array(
-				NOTIFICATION_TYPE_EDITOR_DECISION_INTERNAL_REVIEW => $monographAssocTypeAndIdArray,
-				NOTIFICATION_TYPE_EDITOR_DECISION_ACCEPT => $monographAssocTypeAndIdArray,
-				NOTIFICATION_TYPE_EDITOR_DECISION_EXTERNAL_REVIEW => $monographAssocTypeAndIdArray,
-				NOTIFICATION_TYPE_EDITOR_DECISION_PENDING_REVISIONS => $monographAssocTypeAndIdArray,
-				NOTIFICATION_TYPE_EDITOR_DECISION_RESUBMIT => $monographAssocTypeAndIdArray,
-				NOTIFICATION_TYPE_EDITOR_DECISION_DECLINE => $monographAssocTypeAndIdArray,
-				NOTIFICATION_TYPE_EDITOR_DECISION_SEND_TO_PRODUCTION => $monographAssocTypeAndIdArray),
+				NOTIFICATION_TYPE_EDITOR_DECISION_INTERNAL_REVIEW => $submissionAssocTypeAndIdArray,
+				NOTIFICATION_TYPE_EDITOR_DECISION_ACCEPT => $submissionAssocTypeAndIdArray,
+				NOTIFICATION_TYPE_EDITOR_DECISION_EXTERNAL_REVIEW => $submissionAssocTypeAndIdArray,
+				NOTIFICATION_TYPE_EDITOR_DECISION_PENDING_REVISIONS => $submissionAssocTypeAndIdArray,
+				NOTIFICATION_TYPE_EDITOR_DECISION_RESUBMIT => $submissionAssocTypeAndIdArray,
+				NOTIFICATION_TYPE_EDITOR_DECISION_DECLINE => $submissionAssocTypeAndIdArray,
+				NOTIFICATION_TYPE_EDITOR_DECISION_SEND_TO_PRODUCTION => $submissionAssocTypeAndIdArray),
 			NOTIFICATION_LEVEL_TRIVIAL => array()
 		);
 		$templateMgr->assign('authorDashboardNotificationRequestOptions', $notificationRequestOptions);
@@ -153,7 +153,7 @@ class AuthorDashboardHandler extends Handler {
 
 
 	/**
-	 * Fetches information about a specific monograph email and returns it.
+	 * Fetches information about a specific email and returns it.
 	 * @param $args array
 	 * @param $request Request
 	 * @return string
@@ -161,10 +161,10 @@ class AuthorDashboardHandler extends Handler {
 	function readSubmissionEmail($args, $request) {
 		$submissionEmailLogDao = DAORegistry::getDAO('SubmissionEmailLogDAO');
 		$user = $request->getUser();
-		$monograph = $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		$submission = $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION);
 		$submissionEmailId = $request->getUserVar('submissionEmailId');
 
-		$submissionEmailFactory = $submissionEmailLogDao->getByEventType($monograph->getId(), SUBMISSION_EMAIL_EDITOR_NOTIFY_AUTHOR, $user->getId());
+		$submissionEmailFactory = $submissionEmailLogDao->getByEventType($submission->getId(), SUBMISSION_EMAIL_EDITOR_NOTIFY_AUTHOR, $user->getId());
 		while ($email = $submissionEmailFactory->next()) { // validate the email id for this user.
 			if ($email->getId() == $submissionEmailId) {
 				$templateMgr = TemplateManager::getManager($request);

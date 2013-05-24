@@ -4,7 +4,7 @@
  * Copyright (c) 2003-2013 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * Render a single monograph email.
+ * Render a single submission email.
  *}
 <blockquote>
 	<div id="email-{$submissionEmail->getId()}">

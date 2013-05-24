@@ -28,7 +28,7 @@
 	<message key="monograph.type">Tipo de submissão</message>
 	<message key="monograph.pageProofs">Página de provas</message>
 	<message key="monograph.proofReadingDescription"><![CDATA[O editor de layout envia os arquivos prontos para produção aqui. Use <em>+Designar</em> para encaminhar as provas a autores e outros participantes, com versões corrigidas enviadas para aprovação antes da publicação.]]></message>
-	<message key="monograph.stageNotInitiated">Estágio não iniciado.</message>
+	<message key="submission.stageNotInitiated">Estágio não iniciado.</message>
 	<message key="monograph.attachedFile">Arquivo anexado</message>
 	<message key="monograph.task.addNote">Incluir para questionamentos</message>
 	<message key="submission.task.responseDueDate">Data de entrega da resposta</message>

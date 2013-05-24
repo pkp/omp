@@ -28,7 +28,7 @@
 	<message key="monograph.type">Type de soumission</message>
 	<message key="monograph.pageProofs">Épreuves en page</message>
 	<message key="monograph.proofReadingDescription"><![CDATA[Le rédacteur metteur en page télécharge les fichiers prêts pour la production préparés ici afin de les rendre publiables. Utilisez <em>+Assigner</em> pour assigner les auteurs et les autres individus qui réviseront les épreuves en page. Les fichiers corrigés doivent être téléchargés pour approbation avant la publication.]]></message>
-	<message key="monograph.stageNotInitiated">Étape non initiée.</message>
+	<message key="submission.stageNotInitiated">Étape non initiée.</message>
 	<message key="monograph.attachedFile">Fichier joint</message>
 	<message key="monograph.task.addNote">Ajouter à la tâche</message>
 	<message key="submission.task.responseDueDate">Date de réponse</message>
