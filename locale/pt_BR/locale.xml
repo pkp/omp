@@ -621,14 +621,7 @@ Suporte à biblioteca mbstring: <strong>{$supportsMBString}</strong>]]></message
 	<message key="notification.type.indexRequest">Solicitação de criação de sumário de "{$title}".</message>
 	<message key="notification.type.reviewAssignment">Avaliação pendente.</message>
 	<message key="notification.type.signoff">Auditoria pendente.</message>
-	<message key="notification.type.editorDecisionTitle">Última decisão editorial.</message>
 	<message key="notification.type.editorDecisionInternalReview">Avaliação interna iniciada.</message>
-	<message key="notification.type.editorDecisionAccept">Submissão aceita.</message>
-	<message key="notification.type.editorDecisionExternalReview">Avaliação externa iniciada.</message>
-	<message key="notification.type.editorDecisionPendingRevisions">Revisão requerida.</message>
-	<message key="notification.type.editorDecisionResubmit">Enviar novamente para avaliação.</message>
-	<message key="notification.type.editorDecisionDecline">Submissão rejeitada.</message>
-	<message key="notification.type.editorDecisionSendToProduction">Processo de produção iniciado.</message>
 	<message key="notification.type.roundStatusTitle">Situação da rodada {$round}</message>
 	<message key="notification.type.pendingRevisions">Revisões para consideração no estágio {$stage}.</message>
 	<message key="notification.type.pendingRevisions.title">Revisões enviadas ao estágio {$stage}.</message>

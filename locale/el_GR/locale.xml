@@ -666,14 +666,7 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="notification.type.indexRequest">Έχετε κληθεί να ευρετηριάσετε το "{$title}".</message>
 	<message key="notification.type.reviewAssignment">Έχετε μια αξιολόγηση σε εκκρεμότητα.</message>
 	<message key="notification.type.signoff">Έχετε έναν έλεγχο σε εκκρεμότητα.</message>
-	<message key="notification.type.editorDecisionTitle">Πρόσφατη απόφαση επιμελητή</message>
 	<message key="notification.type.editorDecisionInternalReview">Η διαδικασία εσωτερικής αξιολόγησης έχει ξεκινήσει.</message>
-	<message key="notification.type.editorDecisionAccept">Η υποβολή έχει γίνει αποδεκτή.</message>
-	<message key="notification.type.editorDecisionExternalReview">Η διαδικασία εξωτερικής αξιολόγησης έχει ξεκινήσει.</message>
-	<message key="notification.type.editorDecisionPendingRevisions">Η αναθεώρηση έχει απαιτηθεί.</message>
-	<message key="notification.type.editorDecisionResubmit">Εκ νέου υποβολή για αξιολόγηση.</message>
-	<message key="notification.type.editorDecisionDecline">Η υποβολή έχει απορριφθεί.</message>
-	<message key="notification.type.editorDecisionSendToProduction">Η διαδικασία παραγωγής έχει ξεκινήσει.</message>
 	<message key="notification.type.roundStatusTitle">Κατάσταση γύρου {$round}.</message>
 	<message key="notification.type.pendingRevisions">Απαιτούνται αναθεωρήσεις στο {$stage}.</message>
 	<message key="notification.type.pendingRevisions.title">Ανθεωρήσεις έχουν υποβληθεί στο {$stage}.</message>
