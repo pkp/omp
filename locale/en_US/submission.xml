@@ -143,5 +143,4 @@
 	<message key="submission.event.publicationMetadataUpdated">The publication format metadata for "{$formatName}" was updated.</message>
 	<message key="submission.event.publicationFormatCreated">The publication format "{$formatName}" was created.</message>
 	<message key="submission.event.publicationFormatRemoved">The publication format "{$formatName}" was removed.</message>
-	<message key="submission.authorDashboard.description">In each initiated workflow stage listed below you will find information on the stage's status, as well as any associated submission files and correspondence associated with that stage. You may be asked to upload a revised file to a particular stage, or audit a file that has been previously uploaded, both actions which can be completed within the stage section specified.</message>
 </locale>

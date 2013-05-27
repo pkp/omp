@@ -200,5 +200,4 @@
 	<message key="submission.event.publicationMetadataUpdated">Les métadonnées du format de publication pour  "{$formatName}" ont été mises à jour.</message>
 	<message key="submission.event.publicationFormatCreated">Le format de publication "{$formatName}" a été créé.</message>
 	<message key="submission.event.publicationFormatRemoved">Le format de publication "{$formatName}" a été supprimé.</message>
-	<message key="submission.authorDashboard.description">Pour chaque étape du flux des travaux ci-dessous, vous trouverez des renseignements sur l'état des travaux de cette étape ainsi que sur tous les fichiers de soumission et de correspondance associés à cette étape. On pourrait vous demander de télécharger un fichier révisé à une étape particulière, ou de vérifier un fichier qui a déjà été téléchargé. Ces deux actions peuvent être complétées pendant l'étape spécifiée. </message>
 </locale>
