@@ -73,7 +73,7 @@ class FileSignoffHandler extends FileManagementHandler {
 	 * @see PKPHandler::authorize()
 	 */
 	function authorize($request, &$args, $roleAssignments) {
-		import('classes.security.authorization.OmpSignoffAccessPolicy');
+		import('classes.security.authorization.SignoffAccessPolicy');
 
 		// Check the operation to define the access mode.
 		$router = $request->getRouter();
@@ -93,7 +93,7 @@ class FileSignoffHandler extends FileManagementHandler {
 		if ($request->getUserVar('signoffId')) {
 			// This will be authorized in WorkflowStageAccessPolicy
 			$stageId = (int) $request->getUserVar('stageId');
-			$this->addPolicy(new OmpSignoffAccessPolicy($request, $args, $roleAssignments, $mode, $stageId));
+			$this->addPolicy(new SignoffAccessPolicy($request, $args, $roleAssignments, $mode, $stageId));
 		}
 		$symbolic = $request->getUserVar('symbolic');
 		if ($symbolic) {

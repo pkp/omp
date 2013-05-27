@@ -62,7 +62,7 @@ class SignoffInformationCenterHandler extends Handler {
 		import('classes.security.authorization.SubmissionAccessPolicy');
 		$this->addPolicy(new SubmissionAccessPolicy($request, $args, $roleAssignments));
 
-		import('classes.security.authorization.OmpSignoffAccessPolicy');
+		import('classes.security.authorization.SignoffAccessPolicy');
 		$router = $request->getRouter();
 		$mode = SIGNOFF_ACCESS_READ;
 		if ($router->getRequestedOp($request) == 'saveNote') {
@@ -73,7 +73,7 @@ class SignoffInformationCenterHandler extends Handler {
 		$requestedOp = $router->getRequestedOp($request);
 		$stageId = $request->getUserVar('stageId');
 		if ($request->getUserVar('signoffId')) {
-			$this->addPolicy(new OmpSignoffAccessPolicy($request, $args, $roleAssignments, $mode, $stageId));
+			$this->addPolicy(new SignoffAccessPolicy($request, $args, $roleAssignments, $mode, $stageId));
 		} else if ($requestedOp == 'viewNotes' || $requestedOp == 'getUserSignoffs') {
 			import('lib.pkp.classes.security.authorization.internal.WorkflowStageRequiredPolicy');
 			$this->addPolicy(new WorkflowStageRequiredPolicy($stageId));
