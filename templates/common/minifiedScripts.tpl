@@ -110,7 +110,7 @@
 <script src="{$baseUrl}/lib/pkp/js/controllers/grid/users/reviewer/AdvancedReviewerSearchHandler.js"></script>
 <script src="{$baseUrl}/lib/pkp/js/controllers/grid/users/stageParticipant/form/AddParticipantFormHandler.js"></script>
 <script src="{$baseUrl}/lib/pkp/js/pages/reviewer/ReviewerTabHandler.js"></script>
-<script src="{$baseUrl}/lib/pkp/js/pages/authorDashboard/AuthorDashboardHandler.js"></script>
+<script src="{$baseUrl}/lib/pkp/js/pages/authorDashboard/PKPAuthorDashboardHandler.js"></script>
 <script src="{$baseUrl}/js/controllers/grid/content/spotlights/form/SpotlightFormHandler.js"></script>
 <script src="{$baseUrl}/js/controllers/grid/files/signoff/form/AddAuditorFormHandler.js"></script>
 <script src="{$baseUrl}/js/controllers/modals/editorDecision/ApproveProofsHandler.js"></script>
@@ -132,6 +132,7 @@
 <script src="{$baseUrl}/js/pages/manageCatalog/ManageCatalogSearchFormHandler.js"></script>
 <script src="{$baseUrl}/js/pages/manageCatalog/MonographManagementListHandler.js"></script>
 <script src="{$baseUrl}/js/pages/manageCatalog/MonographHandler.js"></script>
+<script src="{$baseUrl}/js/pages/authorDashboard/AuthorDashboardHandler.js"></script>
 
 {* Our own plug-in (depends on classes) *}
 <script src="{$baseUrl}/lib/pkp/js/lib/jquery/plugins/jquery.pkp.js"></script>
