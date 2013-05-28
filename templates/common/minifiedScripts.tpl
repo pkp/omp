@@ -110,6 +110,7 @@
 <script src="{$baseUrl}/lib/pkp/js/pages/workflow/ProductionHandler.js"></script>
 <script src="{$baseUrl}/lib/pkp/js/controllers/grid/users/reviewer/AdvancedReviewerSearchHandler.js"></script>
 <script src="{$baseUrl}/lib/pkp/js/controllers/grid/users/stageParticipant/form/AddParticipantFormHandler.js"></script>
+<script src="{$baseUrl}/lib/pkp/js/controllers/grid/files/SelectableSubmissionFileListCategoryGridFilterHandler.js"></script>
 <script src="{$baseUrl}/lib/pkp/js/pages/reviewer/ReviewerTabHandler.js"></script>
 <script src="{$baseUrl}/lib/pkp/js/pages/authorDashboard/PKPAuthorDashboardHandler.js"></script>
 <script src="{$baseUrl}/js/controllers/grid/content/spotlights/form/SpotlightFormHandler.js"></script>
@@ -119,7 +120,6 @@
 <script src="{$baseUrl}/js/controllers/modals/catalogEntry/form/PublicationFormatMetadataFormHandler.js"></script>
 <script src="{$baseUrl}/js/controllers/modals/submissionMetadata/MonographlessCatalogEntryHandler.js"></script>
 <script src="{$baseUrl}/js/controllers/grid/files/proof/form/ApprovedProofFormHandler.js"></script>
-<script src="{$baseUrl}/js/controllers/grid/files/SelectableSubmissionFileListCategoryGridFilterHandler.js"></script>
 <script src="{$baseUrl}/js/controllers/tab/catalogEntry/CatalogEntryTabHandler.js"></script>
 <script src="{$baseUrl}/js/controllers/tab/publicationFormat/PublicationFormatsTabHandler.js"></script>
 <script src="{$baseUrl}/js/controllers/catalog/form/CatalogMetadataFormHandler.js"></script>
