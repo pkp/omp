@@ -13,19 +13,17 @@
  * @brief Operations for retrieving and modifying Monograph objects.
  */
 
-
 import('classes.monograph.Monograph');
+import('lib.pkp.classes.submission.SubmissionDAO');
 
-class MonographDAO extends DAO {
-	var $authorDao;
+class MonographDAO extends SubmissionDAO {
 	var $cache;
 
 	/**
 	 * Constructor.
 	 */
 	function MonographDAO() {
-		parent::DAO();
-		$this->authorDao = DAORegistry::getDAO('AuthorDAO');
+		parent::SubmissionDAO();
 	}
 
 	/**
@@ -57,12 +55,8 @@ class MonographDAO extends DAO {
 	 * @return array
 	 */
 	function getLocaleFieldNames() {
-		return array(
-			'title', 'subtitle', 'cleanTitle', 'prefix',
-			'abstract',
-			'discipline', 'subjectClass', 'subject',
-			'coverageGeo', 'coverageChron', 'coverageSample',
-			'type', 'sponsor', 'rights', 'source', 'copyrightNotice',
+		return parent::getLocaleFieldNames() + array(
+			'copyrightNotice',
 		);
 	}
 
@@ -133,26 +127,14 @@ class MonographDAO extends DAO {
 	 * @return Monograph
 	 */
 	function _fromRow($row) {
-		$monograph = $this->newDataObject();
+		$monograph = parent::_fromRow($row);
 
 		$monograph->setId($row['monograph_id']);
-		$monograph->setLocale($row['locale']);
-		$monograph->setUserId($row['user_id']);
 		$monograph->setPressId($row['press_id']);
-		$monograph->setStatus($row['status']);
 		$monograph->setSeriesId($row['series_id']);
 		$monograph->setSeriesPosition($row['series_position']);
 		$monograph->setSeriesAbbrev(isset($row['series_abbrev'])?$row['series_abbrev']:null);
-		$monograph->setLanguage($row['language']);
-		$monograph->setCommentsToEditor($row['comments_to_ed']);
-		$monograph->setDateSubmitted($row['date_submitted']);
-		$monograph->setDateStatusModified($this->datetimeFromDB($row['date_status_modified']));
-		$monograph->setLastModified($this->datetimeFromDB($row['last_modified']));
-		$monograph->setStageId($row['stage_id']);
-		$monograph->setStatus($row['status']);
-		$monograph->setSubmissionProgress($row['submission_progress']);
 		$monograph->setWorkType($row['edited_volume']);
-		$monograph->setDatePublished($this->datetimeFromDB(isset($row['date_published'])?$row['date_published']:null));
 
 		$this->getDataObjectSettings('monograph_settings', 'monograph_id', $row['monograph_id'], $monograph);
 
@@ -250,28 +232,11 @@ class MonographDAO extends DAO {
 	}
 
 	/**
-	 * Delete monograph by id.
-	 * @param $monograph object Monograph
-	 */
-	function deleteObject($monograph) {
-		return $this->deleteById($monograph->getId());
-	}
-
-	/**
 	 * Delete an monograph by ID.
 	 * @param $monographId int
 	 */
 	function deleteById($monographId) {
-		$this->authorDao->deleteAuthorsBySubmission($monographId);
-
-		$reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO');
-		$reviewRoundDao->deleteBySubmissionId($monographId);
-
-		$editDecisionDao = DAORegistry::getDAO('EditDecisionDAO');
-		$editDecisionDao->deleteDecisionsBySubmissionId($monographId);
-
-		$reviewAssignmentDao = DAORegistry::getDAO('ReviewAssignmentDAO');
-		$reviewAssignmentDao->deleteBySubmissionId($monographId);
+		parent::deleteById($monographId);
 
 		// Delete chapters and assigned chapter authors.
 		$chapterDao = DAORegistry::getDAO('ChapterDAO');
@@ -281,76 +246,13 @@ class MonographDAO extends DAO {
 			$chapterDao->deleteObject($chapter);
 		}
 
-		// Delete controlled vocab lists assigned to this Monograph
-		$submissionKeywordDao = DAORegistry::getDAO('SubmissionKeywordDAO');
-		$monographKeywordVocab = $submissionKeywordDao->getBySymbolic(CONTROLLED_VOCAB_SUBMISSION_KEYWORD, ASSOC_TYPE_MONOGRAPH, $monographId);
-		if (isset($monographKeywordVocab)) {
-			$submissionKeywordDao->deleteObject($monographKeywordVocab);
-		}
-
-		$submissionDisciplineDao = DAORegistry::getDAO('SubmissionDisciplineDAO');
-		$monographDisciplineVocab = $submissionDisciplineDao->getBySymbolic(CONTROLLED_VOCAB_SUBMISSION_DISCIPLINE, ASSOC_TYPE_MONOGRAPH, $monographId);
-		if (isset($monographDisciplineVocab)) {
-			$submissionDisciplineDao->deleteObject($monographDisciplineVocab);
-		}
-
-		$submissionAgencyDao = DAORegistry::getDAO('SubmissionAgencyDAO');
-		$monographAgencyVocab = $submissionAgencyDao->getBySymbolic(CONTROLLED_VOCAB_SUBMISSION_AGENCY, ASSOC_TYPE_MONOGRAPH, $monographId);
-		if (isset($monographAgencyVocab)) {
-			$submissionAgencyDao->deleteObject($monographAgencyVocab);
-		}
-
-		$submissionLanguageDao = DAORegistry::getDAO('SubmissionLanguageDAO');
-		$monographLanguageVocab = $submissionLanguageDao->getBySymbolic(CONTROLLED_VOCAB_SUBMISSION_LANGUAGE, ASSOC_TYPE_MONOGRAPH, $monographId);
-		if (isset($monographLanguageVocab)) {
-			$submissionLanguageDao->deleteObject($monographLanguageVocab);
-		}
-
-		$submissionSubjectDao = DAORegistry::getDAO('SubmissionSubjectDAO');
-		$monographSubjectVocab = $submissionSubjectDao->getBySymbolic(CONTROLLED_VOCAB_SUBMISSION_SUBJECT, ASSOC_TYPE_MONOGRAPH, $monographId);
-		if (isset($monographSubjectVocab)) {
-			$submissionSubjectDao->deleteObject($monographSubjectVocab);
-		}
-
-		// Signoff DAOs
-		$signoffDao = DAORegistry::getDAO('SignoffDAO');
-		$monographFileSignoffDao = DAORegistry::getDAO('SubmissionFileSignoffDAO');
-
-		// Delete Signoffs associated with a monogrpah file of this monograph.
-		$monographFileSignoffs = $monographFileSignoffDao->getAllBySubmission($monographId);
-		while ($signoff = $monographFileSignoffs->next()) {
-			$signoffDao->deleteObject($signoff);
-		}
-
-		// Delete the Signoffs associated with the monograph itself.
-		$monographSignoffs = $signoffDao->getAllByAssocType(ASSOC_TYPE_MONOGRAPH, $monographId);
-		while ($signoff = $monographSignoffs->next()) {
-			$signoffDao->deleteObject($signoff);
-		}
-
-		// Delete the stage assignments.
-		$stageAssignmentDao = DAORegistry::getDAO('StageAssignmentDAO');
-		$stageAssignments = $stageAssignmentDao->getBySubmissionAndStageId($monographId);
-		while ($stageAssignment = $stageAssignments->next()) {
-			$stageAssignmentDao->deleteObject($stageAssignment);
-		}
-
-		// N.B. Files must be deleted after signoffs to identify monograph file signoffs.
-		// Delete monograph files.
-		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-		$submissionFileDao->deleteAllRevisionsBySubmissionId($monographId);
-
 		// Delete monograph file directory.
 		$monograph = $this->getById($monographId);
-		assert(is_a($monograph, 'Monograph'));
+		assert(is_a($monograph, 'Submission'));
 
 		import('lib.pkp.classes.file.SubmissionFileManager');
 		$monographFileManager = new SubmissionFileManager($monograph->getPressId(), $monograph->getId());
 		$monographFileManager->rmtree($monographFileManager->getBasePath());
-
-		// Delete any comments.
-		$submissionCommentDao = DAORegistry::getDAO('SubmissionCommentDAO');
-		$submissionCommentDao->deleteBySubmissionId($monographId);
 
 		// Delete references to features or new releases.
 		$featureDao = DAORegistry::getDAO('FeatureDAO');
@@ -358,10 +260,6 @@ class MonographDAO extends DAO {
 
 		$newReleaseDao = DAORegistry::getDAO('NewReleaseDAO');
 		$newReleaseDao->deleteByMonographId($monographId);
-
-		// Delete any outstanding notifications for this monograph
-		$notificationDao = DAORegistry::getDAO('NotificationDAO');
-		$notificationDao->deleteByAssoc(ASSOC_TYPE_MONOGRAPH, $monographId);
 
 		$this->update('DELETE FROM monograph_settings WHERE monograph_id = ?', (int) $monographId);
 		$this->update('DELETE FROM monographs WHERE monograph_id = ?', (int) $monographId);
