@@ -228,7 +228,6 @@
 	<message key="grid.action.addFormat">Προσθήκη μορφότυπου δημοσίευσης</message>
 	<message key="grid.action.approveProof">Έγκριση του τυπογραφικού δοκιμίου για ευρετηρίαση και ένταξη του στον κατάλογο.</message>
 	<message key="grid.action.pageProofApproved">Το αρχείο με τις σελίδες τυπογραφικού δοκιμίου είναι έτοιμο για δημοσίευση</message>
-	<message key="grid.action.approveCopyedit">Εγκρίνετε αυτό το αρχείο με το επιμελημένο κείμενο για να αποσταλεί στο επόμενο στάδιο</message>
 	<message key="grid.action.addAnnouncement">Προσθήκη Ανακοίνωσης</message>
 	<message key="grid.action.showReviewPolicy">Διαβάστε την τρέχουσα πολιτική αξιολόγησης</message>
 	<message key="grid.action.newCatalogEntry">Νέα Καταχώριση στον Κατάλογο</message>

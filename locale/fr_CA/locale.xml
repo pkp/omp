@@ -214,7 +214,6 @@
 	<message key="grid.action.addFormat">Ajouter un format de publication</message>
 	<message key="grid.action.approveProof">Approuver l'épreuve afin qu'elle soit indexée et ajoutée au catalogue.</message>
 	<message key="grid.action.pageProofApproved">Le fichier d'épreuves de mise en page est prêt à être publié</message>
-	<message key="grid.action.approveCopyedit">Approuver ce fichier révisé afin qu'il soit envoyé à l'étape suivante.</message>
 	<message key="grid.action.addAnnouncement">Ajouter une annonce</message>
 	<message key="grid.action.showReviewPolicy">Lire la politique en cours concernant l'évaluation</message>
 	<message key="grid.action.newCatalogEntry">Nouvelle entrée de catalogue</message>

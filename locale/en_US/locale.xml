@@ -183,7 +183,6 @@
 	<message key="grid.action.addFormat">Add publication format</message>
 	<message key="grid.action.approveProof">Approve the proof for indexing and inclusion in the catalog</message>
 	<message key="grid.action.pageProofApproved">Page proofs file is ready for publication</message>
-	<message key="grid.action.approveCopyedit">Approve this copyedit file for sending it to the next stage</message>
 	<message key="grid.action.addAnnouncement">Add an Announcement</message>
 	<message key="grid.action.newCatalogEntry">New Catalog Entry</message>
 	<message key="grid.action.publicCatalog">View this item in the catalog</message>

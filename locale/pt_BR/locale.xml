@@ -213,7 +213,6 @@
 	<message key="grid.action.addFormat">Incluir formato de publicação</message>
 	<message key="grid.action.approveProof">Homologar a prova para indexação e inclusão no catálogo</message>
 	<message key="grid.action.pageProofApproved">Arquivo na página de provas está pronto para publicação</message>
-	<message key="grid.action.approveCopyedit">Aprovar este arquivo editado para envio ao próximo estágio</message>
 	<message key="grid.action.addAnnouncement">Incluir not´cia</message>
 	<message key="grid.action.showReviewPolicy">Ler a política de avaliação atual</message>
 	<message key="grid.action.newCatalogEntry">Nova entrada de catálogo</message>
