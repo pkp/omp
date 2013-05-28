@@ -12,10 +12,6 @@
 
 <locale name="en_US" full_name = "English">
 	<message key="editor.pressSignoff">Press signoff</message>
-	<message key="editor.monograph.personalMessageToUser">Email to be sent to user</message>
-	<message key="editor.monograph.taskSchedule">Task schedule</message>
-	<message key="editor.monograph.taskDueDate">Task Due Date</message>
-
 	<message key="editor.submissionArchive">Submission Archive</message>
 	<message key="editor.submissionReview.recordDecision">Record Editorial Decision</message>
 	<message key="editor.monograph.cancelReview">Cancel Request</message>

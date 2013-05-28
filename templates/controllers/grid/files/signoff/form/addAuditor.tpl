@@ -50,12 +50,12 @@
 
 		<!-- Message to user -->
 		{fbvFormSection}
-			{fbvElement type="textarea" name="personalMessage" id="personalMessage" label="editor.monograph.copyediting.personalMessageToUser" value=$personalMessage height=$fbvStyles.height.TALL}
+			{fbvElement type="textarea" name="personalMessage" id="personalMessage" label="editor.submission.copyediting.personalMessageToUser" value=$personalMessage height=$fbvStyles.height.TALL}
 		{/fbvFormSection}
 
 		<!-- skip email checkbox -->
 		{fbvFormSection for="skipEmail" size=$fbvStyles.size.MEDIUM list=true}
-			{fbvElement type="checkbox" id="skipEmail" name="skipEmail" label="editor.monograph.fileAuditor.skipEmail"}
+			{fbvElement type="checkbox" id="skipEmail" name="skipEmail" label="editor.submission.fileAuditor.skipEmail"}
 		{/fbvFormSection}
 		{fbvFormButtons}
 	</form>
