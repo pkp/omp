@@ -12,7 +12,7 @@
  * @brief Class for selecting files to add a user to for copyediting.
  */
 
-import('controllers.listbuilder.files.FilesListbuilderHandler');
+import('lib.pkp.controllers.listbuilder.files.FilesListbuilderHandler');
 
 class ProofFilesListbuilderHandler extends FilesListbuilderHandler {
 	/**
