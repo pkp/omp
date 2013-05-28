@@ -135,7 +135,6 @@
 	<message key="submission.upload.copyeditedVersion">Télécharger le fichier révisé</message>
 	<message key="submission.upload.fairCopy">Télécharger la copie au net</message>
 	<message key="submission.upload.uploadFiles">Télécharger les fichiers</message>
-	<message key="submission.upload.signoff">Télécharger une réponse</message>
 	<message key="submission.upload.response.description">Après avoir visionné le fichier assigné, saisissez tous vos commentaires dans le fichier ci-dessous, et/ou téléchargez une copie annotée du fichier (ou un autre fichier).</message>
 	<message key="submission.upload.productionReady">Télécharger un fichier prêt pour la production</message>
 	<message key="submission.upload.proof">Télécharger une épreuve</message>

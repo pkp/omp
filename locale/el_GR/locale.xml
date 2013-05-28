@@ -584,8 +584,6 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="log.imported">Ο/Η {$userName} έχει εισάγει τη μονογραφία {$monographId}.</message>
 
 	<!-- Notifications -->
-	<message key="notification.addedAuditor">Ο Ελγκτής (Autidor) έχει προστεθεί.</message>
-	<message key="notification.removedAuditor">Ο Ελγκτής (Autidor) έχει αφαιρεθεί.</message>
 	<message key="notification.addedAuthor">Ο Συγγραφέας έχει προστεθεί.</message>
 	<message key="notification.addedIdentificationCode">Ο κωδικός ταυτοποίησης (Identification Code) έχει προστεθεί.</message>
 	<message key="notification.editedIdentificationCode">Ο κωδικός ταυτοποίησης (Identification Code) επεξεργάστηκε.</message>

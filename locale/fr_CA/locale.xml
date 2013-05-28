@@ -565,8 +565,6 @@ Votre serveur supporte actuellement mbstring: <strong>{$supportsMBString}</stron
 	<message key="log.imported">{$userName} a importé la monographie {$monographId}.</message>
 
 	<!-- Notifications -->
-	<message key="notification.addedAuditor">Un vérificateur a été ajouté.</message>
-	<message key="notification.removedAuditor">Le vérificateur a été supprimé.</message>
 	<message key="notification.addedIdentificationCode">Un code d'identification a été ajouté.</message>
 	<message key="notification.editedIdentificationCode">Le code d'identification a été modifié.</message>
 	<message key="notification.removedIdentificationCode">Le code d'identification a été supprimé.</message>

@@ -12,11 +12,9 @@
  * @brief Form for sending a singoff reminder to an auditor.
  */
 
-import('lib.pkp.classes.form.Form');
+import('lib.pkp.controllers.grid.files.fileSignoff.form.PKPAuditorReminderForm');
 
-class AuditorReminderForm extends Form {
-	/** The signoff associated with the auditor */
-	var $_signoff;
+class AuditorReminderForm extends PKPAuditorReminderForm {
 
 	/** The monograph id */
 	var $_monographId;
@@ -30,11 +28,8 @@ class AuditorReminderForm extends Form {
 	/**
 	 * Constructor.
 	 */
-	function AuditorReminderForm(&$signoff, $monographId, $stageId, $publicationFormatId = null) {
-		parent::Form('controllers/grid/files/fileSignoff/form/auditorReminderForm.tpl');
-		$this->_signoff = $signoff;
-		$this->_monographId = $monographId;
-		$this->_stageId = $stageId;
+	function AuditorReminderForm(&$signoff, $submissionId, $stageId, $publicationFormatId = null) {
+		parent::PKPAuditorReminderForm($signoff, $submissionId, $stageId);
 		$this->_publicationFormatId = $publicationFormatId;
 
 		// Validation checks for this form
@@ -44,30 +39,6 @@ class AuditorReminderForm extends Form {
 	//
 	// Getters and Setters
 	//
-	/**
-	 * Get the signoff
-	 * @return Signoff
-	 */
-	function &getSignoff() {
-		return $this->_signoff;
-	}
-
-	/**
-	 * Get the monograph id.
-	 * @return int
-	 */
-	function getMonographId() {
-		return $this->_monographId;
-	}
-
-	/**
-	 * Get the stage id.
-	 * @return int
-	 */
-	function getStageId() {
-		return $this->_stageId;
-	}
-
 	/**
 	 * Get the publication format id.
 	 * @return int
@@ -86,80 +57,18 @@ class AuditorReminderForm extends Form {
 	 * @param $request PKPRequest
 	 */
 	function initData($args, $request) {
-		$userDao = DAORegistry::getDAO('UserDAO');
-		$user = $request->getUser();
-		$press = $request->getPress();
-
-		$signoff = $this->getSignoff();
-		$auditorId = $signoff->getUserId();
-		$auditor = $userDao->getById($auditorId);
-
-		$monographDao = DAORegistry::getDAO('MonographDAO');
-		$monograph = $monographDao->getById($this->getMonographId());
-
-		import('classes.mail.MonographMailTemplate');
-		$email = new MonographMailTemplate($monograph, 'REVIEW_REMIND');
-
-		// Format the review due date
-		$signoffDueDate = strtotime($signoff->getDateUnderway());
-		$dateFormatShort = Config::getVar('general', 'date_format_short');
-		if ($signoffDueDate == -1) $signoffDueDate = $dateFormatShort; // Default to something human-readable if no date specified
-		else $signoffDueDate = strftime($dateFormatShort, $signoffDueDate);
-
-		import('lib.pkp.controllers.grid.submissions.SubmissionsListGridCellProvider');
-		list($page, $operation) = SubmissionsListGridCellProvider::getPageAndOperationByUserRoles($request, $monograph, $auditor->getId());
-
-		$dispatcher = $request->getDispatcher();
-		$auditUrl = $dispatcher->url($request, ROUTE_PAGE, null, $page, $operation, array('submissionId' => $monograph->getId()));
-
-		$paramArray = array(
-			'auditorName' => $auditor->getFullName(),
-			'signoffDueDate' => $signoffDueDate,
-			'editorialContactSignature' => $user->getContactSignature(),
-			'auditorUserName' => $auditor->getUsername(),
-			'passwordResetUrl' => $dispatcher->url($request, ROUTE_PAGE, null, 'login', 'resetPassword', $auditor->getUsername(), array('confirm' => Validation::generatePasswordResetHash($auditor->getId()))),
-			'submissionAuditUrl' => $auditUrl
-		);
-		$email->assignParams($paramArray);
-
-		$this->setData('submissionId', $monograph->getId());
-		$this->setData('stageId', $this->getStageId());
-		$this->setData('signoffId', $signoff->getId());
+		parent::initData($args, $request);
 		$this->setData('publicationFormatId', $this->getPublicationFormatId());
-		$this->setData('signoff', $signoff);
-		$this->setData('auditorName', $auditor->getFullName());
-		$this->setData('message', $email->getBody() . "\n" . $press->getSetting('emailSignature'));
 	}
 
 	/**
-	 * Assign form data to user-submitted data.
-	 * @see Form::readInputData()
+	 * Return a context-specific instance of the mail template.
+	 * @return MonographMailTemplate
 	 */
-	function readInputData() {
-		$this->readUserVars(array('message'));
-
-	}
-
-	/**
-	 * Save review assignment
-	 * @param $args array
-	 * @param $request PKPRequest
-	 */
-	function execute($args, $request) {
-		$userDao = DAORegistry::getDAO('UserDAO');
-		$monographDao = DAORegistry::getDAO('MonographDAO');
-
-		$signoff = $this->getSignoff();
-		$auditorId = $signoff->getUserId();
-		$auditor = $userDao->getById($auditorId);
-		$monograph = $monographDao->getById($this->getMonographId());
-
+	function _getMailTemplate($submission) {
 		import('classes.mail.MonographMailTemplate');
-		$email = new MonographMailTemplate($monograph, 'REVIEW_REMIND', null, null, null, false);
-
-		$email->addRecipient($auditor->getEmail(), $auditor->getFullName());
-		$email->setBody($this->getData('message'));
-		$email->send($request);
+		$email = new MonographMailTemplate($submission, 'REVIEW_REMIND', null, null, null, false);
+		return $email;
 	}
 }
 

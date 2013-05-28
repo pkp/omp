@@ -12,7 +12,6 @@
 
 <locale name="en_US" full_name = "English">
 	<message key="editor.pressSignoff">Press signoff</message>
-	<message key="editor.signoff.approved">Approved</message>
 	<message key="editor.monograph.personalMessageToUser">Email to be sent to user</message>
 	<message key="editor.monograph.taskSchedule">Task schedule</message>
 	<message key="editor.monograph.taskDueDate">Task Due Date</message>
@@ -88,13 +87,6 @@
 	<message key="editor.monograph.approvedProofs.edit">Set Terms for Downloading</message>
 	<message key="editor.monograph.approvedProofs.edit.linkTitle">Set Terms</message>
 	<message key="editor.monograph.proof.addNote">Add response</message>
-
-	<!-- Add file or auditor to editor/audit grids -->
-	<message key="editor.submission.addAuditorError">There was an error trying to assign the auditor. Please Try again.</message>
-	<message key="editor.monograph.fileAuditor.form.userRequired">You must select a user to assign.</message>
-	<message key="editor.monograph.fileAuditor.form.fileRequired">You must select at least one file to assign the user to.</message>
-	<message key="editor.monograph.fileAuditor.form.messageRequired">You must include a personal message.</message>
-	<message key="editor.monograph.fileAuditor.skipEmail">Do not send email to the Auditor</message>
 
 	<!-- Review related -->
 	<message key="editor.internalReview.introduction">In Internal Review, the editor assigns reviewers internal to the submission files and considers the resulting reviews, before selecting the appropriate action (which includes notifying the author): Request Revisions (revisions reviewed by editor alone); Resubmit for Review (revisions initiate another round of reviews); Send External Review (entails selecting files for External Review); Accept for Submission (entails selecting files for Editorial stage); or Decline Submission (archives submission).</message>

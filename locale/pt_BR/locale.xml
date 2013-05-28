@@ -554,8 +554,6 @@ Suporte à biblioteca mbstring: <strong>{$supportsMBString}</strong>]]></message
 	<message key="log.imported">{$userName} importou a monografia {$monographId}.</message>
 
 	<!-- Notifications -->
-	<message key="notification.addedAuditor">Auditor incluído.</message>
-	<message key="notification.removedAuditor">Auditor excluído.</message>
 	<message key="notification.addedIdentificationCode">Código de identificação incluído.</message>
 	<message key="notification.editedIdentificationCode">Código de identificação editado.</message>
 	<message key="notification.removedIdentificationCode">Código de identificação excluído.</message>

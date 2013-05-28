@@ -12,7 +12,6 @@
 
 <locale name="fr_CA" full_name = "Français">
 	<message key="editor.pressSignoff">Fermeture de session de la presse</message>
-	<message key="editor.signoff.approved">Approuvé</message>
 	<message key="editor.monograph.personalMessageToUser">Un courriel sera envoyé à l'utilisateur</message>
 	<message key="editor.monograph.taskSchedule">Calendrier de la tâche</message>
 	<message key="editor.monograph.taskDueDate">Date d'échéance de la tâche</message>
@@ -106,13 +105,6 @@
 	<message key="editor.monograph.approvedProofs.edit.linkTitle">Choisir les modalités</message>
 	<message key="editor.monograph.proof.addNote">Ajouter une réponse</message>
 
-	<!-- Add file or auditor to editor/audit grids -->
-	<message key="editor.submission.addAuditorError">Erreur: l'auditeur n'a pas pu être assigné. Essayez encore.</message>
-	<message key="editor.monograph.fileAuditor.form.userRequired">Vous devez choisir un utilisateur à qui l'ouvrage sera attribué.</message>
-	<message key="editor.monograph.fileAuditor.form.fileRequired">Vous devez choisir au moins un fichier qui sera assigné à l'utilisateur.</message>
-	<message key="editor.monograph.fileAuditor.form.messageRequired">Vous devez ajouter un message personnalisé.</message>
-	<message key="editor.monograph.fileAuditor.skipEmail">N'envoyez pas de courriels au vérificateur.</message>
-
 	<!-- Review related -->
 	<message key="editor.internalReview.introduction">Pendant l'évaluation interne, le rédacteur en chef choisit des évaluateurs internes pour chaque fichier soumis et tient compte de leurs commentaires avant de choisir une action appropriée (qui comprend l'envoi d'un avis à l'auteur): À réviser (les révisions ne seront examinées que par le rédacteur en chef); Soumettre à nouveau pour révision (une nouvelle série de révisions sera entreprise); Envoyer à l'évaluateur externe (il faut choisir les fichiers qui seront envoyés à l'évaluateur externe); Accepter la soumission (il faut choisir les fichiers qui seront envoyés au rédacteur en chef); ou Refuser la soumission (archiver la soumission).</message>
 	
@@ -130,7 +122,6 @@
 	<message key="editor.review.noReviews">Aucune évaluation par les pairs à importer</message>
 	<message key="editor.review.reminder">Rappel d'évaluation</message>
 	<message key="editor.review.thankReviewer">Remercier l'évaluateur</message>
-	<message key="editor.review.reminderError">Erreur d'envoi du rappel d'évaluation</message>
 	<message key="editor.review.thankReviewerError">Erreur d'envoi du remerciement à l'évaluateur</message>
 	<message key="editor.review.reviewerComments">Commentaires de l'évaluateur</message>
 	<message key="editor.review.days">Moyenne des jours</message>
