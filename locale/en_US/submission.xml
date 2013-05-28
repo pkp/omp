@@ -31,7 +31,6 @@
 	<message key="submission.chapter.addChapter">Add Chapter</message>
 	<message key="submission.chapter.editChapter">Edit Chapter</message>
 	<message key="submission.document">Document</message>
-	<message key="submission.copyediting">Copyediting</message>
 	<message key="submission.copyedit">Copyedit</message>
 	<message key="submission.publicationFormats">Publication Formats</message>
 	<message key="submission.proofs">Proofs</message>
