@@ -27,30 +27,6 @@ class MonographDAO extends SubmissionDAO {
 	}
 
 	/**
-	 * Callback for a cache miss.
-	 * @param $cache Cache
-	 * @param $id string
-	 * @return Monograph
-	 */
-	function _cacheMiss($cache, $id) {
-		$monograph = $this->getMonograph($id, null, false);
-		$cache->setCache($id, $monograph);
-		return $monograph;
-	}
-
-	/**
-	 * Get the monograph cache.
-	 * @return Cache
-	 */
-	function _getCache() {
-		if (!isset($this->cache)) {
-			$cacheManager = CacheManager::getManager();
-			$this->cache = $cacheManager->getObjectCache('submissions', 0, array(&$this, '_cacheMiss'));
-		}
-		return $this->cache;
-	}
-
-	/**
 	 * Get a list of fields for which localized data is supported
 	 * @return array
 	 */
@@ -58,16 +34,6 @@ class MonographDAO extends SubmissionDAO {
 		return parent::getLocaleFieldNames() + array(
 			'copyrightNotice',
 		);
-	}
-
-	/**
-	 * Update the localized fields for this object.
-	 * @param $monograph
-	 */
-	function updateLocaleFields($monograph) {
-		$this->updateDataObjectSettings('submission_settings', $monograph, array(
-			'submission_id' => $monograph->getId()
-		));
 	}
 
 	/**
@@ -129,14 +95,11 @@ class MonographDAO extends SubmissionDAO {
 	function _fromRow($row) {
 		$monograph = parent::_fromRow($row);
 
-		$monograph->setId($row['submission_id']);
 		$monograph->setPressId($row['press_id']);
 		$monograph->setSeriesId($row['series_id']);
 		$monograph->setSeriesPosition($row['series_position']);
 		$monograph->setSeriesAbbrev(isset($row['series_abbrev'])?$row['series_abbrev']:null);
 		$monograph->setWorkType($row['edited_volume']);
-
-		$this->getDataObjectSettings('submission_settings', 'submission_id', $monograph->getId(), $monograph);
 
 		HookRegistry::call('MonographDAO::_fromRow', array(&$monograph, &$row));
 
@@ -260,9 +223,6 @@ class MonographDAO extends SubmissionDAO {
 
 		$newReleaseDao = DAORegistry::getDAO('NewReleaseDAO');
 		$newReleaseDao->deleteByMonographId($monographId);
-
-		$this->update('DELETE FROM submission_settings WHERE submission_id = ?', (int) $monographId);
-		$this->update('DELETE FROM submissions WHERE submission_id = ?', (int) $monographId);
 	}
 
 	/**
@@ -396,27 +356,6 @@ class MonographDAO extends SubmissionDAO {
 		);
 
 		$this->flushCache();
-	}
-
-	/**
-	 * Get the ID of the last inserted monograph.
-	 * @return int
-	 */
-	function getInsertId() {
-		return $this->_getInsertId('submissions', 'submission_id');
-	}
-
-	/**
-	 * Flush the monograph cache.
-	 */
-	function flushCache() {
-		// Because both published_submissions and submissions are
-		// cached by submission ID, flush both caches on update.
-		$cache = $this->_getCache();
-		$cache->flush();
-		unset($cache);
-
-		//TODO: flush cache of PublishedMonographDAO once created
 	}
 
 	/**
