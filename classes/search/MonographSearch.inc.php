@@ -191,7 +191,7 @@ class MonographSearch {
 		);
 		while (!$results->eof()) {
 			$result = $results->next();
-			$monographId = $result['monograph_id'];
+			$monographId = $result['submission_id'];
 			if (!isset($mergedResults[$monographId])) {
 				$mergedResults[$monographId] = $result['count'];
 			} else {
@@ -283,7 +283,7 @@ class MonographSearch {
 	 */
 	function retrieveResults($press, $keywords, $publishedFrom = null, $publishedTo = null, $rangeInfo = null) {
 		// Fetch all the results from all the keywords into one array
-		// (mergedResults), where mergedResults[monograph_id]
+		// (mergedResults), where mergedResults[submission_id]
 		// = sum of all the occurences for all keywords associated with
 		// that monograph ID.
 		// resultCount contains the sum of result counts for all keywords.

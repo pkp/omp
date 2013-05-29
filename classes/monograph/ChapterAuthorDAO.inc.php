@@ -41,33 +41,33 @@ class ChapterAuthorDAO extends DAO {
 		if (isset($monographId)) $params[] = (int) $monographId;
 		if (isset($chapterId)) $params[] = (int) $chapterId;
 		// get all the monograph_author fields,
-		// but replace the primary_contact and seq with monograph_chapter_authors.primary_contact
+		// but replace the primary_contact and seq with submission_chapter_authors.primary_contact
 
-		$sql = 'SELECT	ma.author_id,
-				ma.submission_id,
-				mca.chapter_id,
-				mca.primary_contact,
-				mca.seq,
-				ma.first_name,
-				ma.middle_name,
-				ma.last_name,
+		$sql = 'SELECT	a.author_id,
+				a.submission_id,
+				sca.chapter_id,
+				sca.primary_contact,
+				sca.seq,
+				a.first_name,
+				a.middle_name,
+				a.last_name,
 				asl.setting_value AS affiliation_l,
 				asl.locale,
 				aspl.setting_value AS affiliation_pl,
 				aspl.locale AS primary_locale,
-				ma.country,
-				ma.email,
-				ma.url,
-				ma.user_group_id
-			FROM	authors ma
-				JOIN monograph_chapter_authors mca ON (ma.author_id = mca.author_id)
-				LEFT JOIN author_settings aspl ON (mca.author_id = aspl.author_id AND aspl.setting_name = ? AND aspl.locale = ?)
-				LEFT JOIN author_settings asl ON (mca.author_id = asl.author_id AND asl.setting_name = ? AND asl.locale = ?)' .
+				a.country,
+				a.email,
+				a.url,
+				a.user_group_id
+			FROM	authors a
+				JOIN submission_chapter_authors sca ON (a.author_id = sca.author_id)
+				LEFT JOIN author_settings aspl ON (sca.author_id = aspl.author_id AND aspl.setting_name = ? AND aspl.locale = ?)
+				LEFT JOIN author_settings asl ON (sca.author_id = asl.author_id AND asl.setting_name = ? AND asl.locale = ?)' .
 			( (count($params)> 0)?' WHERE':'' ) .
-			(  isset($monographId)?' ma.submission_id = ?':'' ) .
+			(  isset($monographId)?' a.submission_id = ?':'' ) .
 			(  (isset($monographId) && isset($chapterId))?' AND':'' ) .
-			(  isset($chapterId)?' mca.chapter_id = ?':'' ) .
-			' ORDER BY mca.chapter_id, mca.seq';
+			(  isset($chapterId)?' sca.chapter_id = ?':'' ) .
+			' ORDER BY sca.chapter_id, sca.seq';
 
 		$result = $this->retrieve($sql, $params);
 		return new DAOResultFactory($result, $this, '_returnFromRow', array('id'));
@@ -85,9 +85,9 @@ class ChapterAuthorDAO extends DAO {
 
 		$result = $this->retrieve(
 			'SELECT author_id
-			FROM monograph_chapter_authors
+			FROM submission_chapter_authors
 			WHERE chapter_id = ?
-			' . ($monographId?' AND monograph_id = ?':''),
+			' . ($monographId?' AND submission_id = ?':''),
 			$params
 		);
 
@@ -112,8 +112,8 @@ class ChapterAuthorDAO extends DAO {
 	function insertChapterAuthor($authorId, $chapterId, $monographId, $isPrimary = false, $sequence = 0) {
 		//FIXME: How to handle sequence?
 		$this->update(
-			'INSERT INTO monograph_chapter_authors
-				(author_id, chapter_id, monograph_id, primary_contact, seq)
+			'INSERT INTO submission_chapter_authors
+				(author_id, chapter_id, submission_id, primary_contact, seq)
 				VALUES
 				(?, ?, ?, ?, ?)',
 			array(
@@ -135,7 +135,7 @@ class ChapterAuthorDAO extends DAO {
 		if ($chapterId) $params[] = (int) $chapterId;
 
 		$this->update(
-			'DELETE FROM monograph_chapter_authors WHERE author_id = ?' .
+			'DELETE FROM submission_chapter_authors WHERE author_id = ?' .
 			($chapterId?' AND chapter_id = ?':''),
 			$params
 		);

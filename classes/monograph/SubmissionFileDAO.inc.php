@@ -73,7 +73,7 @@ class SubmissionFileDAO extends PKPSubmissionFileDAO {
 				af.file_id AS artwork_file_id, af.revision AS artwork_revision,
 				sf.*, af.*
 			FROM	submission_files sf
-				LEFT JOIN monograph_artwork_files af ON sf.file_id = af.file_id AND sf.revision = af.revision ';
+				LEFT JOIN submission_artwork_files af ON sf.file_id = af.file_id AND sf.revision = af.revision ';
 	}
 
 

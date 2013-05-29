@@ -30,7 +30,7 @@ class FeatureDAO extends DAO {
 	function getMonographIdsByAssoc($assocType, $assocId) {
 		$returner = array();
 		$result = $this->retrieve(
-			'SELECT monograph_id, seq FROM features WHERE assoc_type = ? AND assoc_id = ? ORDER BY seq',
+			'SELECT submission_id, seq FROM features WHERE assoc_type = ? AND assoc_id = ? ORDER BY seq',
 			array((int) $assocType, (int) $assocId)
 		);
 
@@ -64,7 +64,7 @@ class FeatureDAO extends DAO {
 	function insertFeature($monographId, $assocType, $assocId, $seq) {
 		$this->update(
 			'INSERT INTO features
-				(monograph_id, assoc_type, assoc_id, seq)
+				(submission_id, assoc_type, assoc_id, seq)
 				VALUES
 				(?, ?, ?, ?)',
 			array(
@@ -83,7 +83,7 @@ class FeatureDAO extends DAO {
 	 */
 	function deleteByMonographId($monographId) {
 		$this->update(
-			'DELETE FROM features WHERE monograph_id = ?',
+			'DELETE FROM features WHERE submission_id = ?',
 			(int) $monographId
 		);
 	}
@@ -109,7 +109,7 @@ class FeatureDAO extends DAO {
 	function deleteFeature($monographId, $assocType, $assocId) {
 		$this->update(
 			'DELETE FROM features
-			WHERE	monograph_id = ? AND
+			WHERE	submission_id = ? AND
 				assoc_type = ? AND
 				assoc_id = ?',
 			array(
@@ -130,14 +130,14 @@ class FeatureDAO extends DAO {
 	function resequenceByAssoc($assocType, $assocId) {
 		$returner = array();
 		$result = $this->retrieve(
-			'SELECT monograph_id FROM features WHERE assoc_type = ? AND assoc_id = ? ORDER BY seq',
+			'SELECT submission_id FROM features WHERE assoc_type = ? AND assoc_id = ? ORDER BY seq',
 			array((int) $assocType, (int) $assocId)
 		);
 
 		for ($i=2; !$result->EOF; $i+=2) {
 			list($monographId) = $result->fields;
 			$this->update(
-				'UPDATE features SET seq = ? WHERE monograph_id = ? AND assoc_type = ? AND assoc_id = ?',
+				'UPDATE features SET seq = ? WHERE submission_id = ? AND assoc_type = ? AND assoc_id = ?',
 				array(
 					$i,
 					$monographId,

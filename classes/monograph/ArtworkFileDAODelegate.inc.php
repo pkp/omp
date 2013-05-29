@@ -44,7 +44,7 @@ class ArtworkFileDAODelegate extends MonographFileDAODelegate {
 
 		// Now insert the artwork-specific data.
 		$this->update(
-			'INSERT INTO monograph_artwork_files
+			'INSERT INTO submission_artwork_files
 				(file_id, revision, caption, chapter_id, contact_author, copyright_owner, copyright_owner_contact, credit, permission_file_id, permission_terms)
 			VALUES
 				(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
@@ -76,7 +76,7 @@ class ArtworkFileDAODelegate extends MonographFileDAODelegate {
 
 		// Now update the artwork file table.
 		$this->update(
-			'UPDATE monograph_artwork_files
+			'UPDATE submission_artwork_files
 				SET
 					file_id = ?,
 					revision = ?,
@@ -116,7 +116,7 @@ class ArtworkFileDAODelegate extends MonographFileDAODelegate {
 
 		// Delete the artwork file entry.
 		return $this->update(
-			'DELETE FROM monograph_artwork_files
+			'DELETE FROM submission_artwork_files
 			 WHERE file_id = ? AND revision = ?',
 			array(
 				(int)$submissionFile->getFileId(),

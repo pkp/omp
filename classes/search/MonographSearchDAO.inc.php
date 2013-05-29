@@ -34,18 +34,18 @@ class MonographSearchDAO extends DAO {
 		static $monographSearchKeywordIds = array();
 		if (isset($monographSearchKeywordIds[$keyword])) return $monographSearchKeywordIds[$keyword];
 		$result = $this->retrieve(
-			'SELECT keyword_id FROM monograph_search_keyword_list WHERE keyword_text = ?',
+			'SELECT keyword_id FROM submission_search_keyword_list WHERE keyword_text = ?',
 			$keyword
 		);
 		if($result->RecordCount() == 0) {
 			$result->Close();
 			if ($this->update(
-				'INSERT INTO monograph_search_keyword_list (keyword_text) VALUES (?)',
+				'INSERT INTO submission_search_keyword_list (keyword_text) VALUES (?)',
 				$keyword,
 				true,
 				false
 			)) {
-				$keywordId = $this->_getInsertId('monograph_search_keyword_list', 'keyword_id');
+				$keywordId = $this->_getInsertId('submission_search_keyword_list', 'keyword_id');
 			} else {
 				$keywordId = null; // Bug #2324
 			}
@@ -80,7 +80,7 @@ class MonographSearchDAO extends DAO {
 				$sqlFrom .= ', ';
 				$sqlWhere .= ' AND ';
 			}
-			$sqlFrom .= 'monograph_search_object_keywords o'.$i.' NATURAL JOIN monograph_search_keyword_list k'.$i;
+			$sqlFrom .= 'submission_search_object_keywords o'.$i.' NATURAL JOIN submission_search_keyword_list k'.$i;
 			if (strstr($phrase[$i], '%') === false) $sqlWhere .= 'k'.$i.'.keyword_text = ?';
 			else $sqlWhere .= 'k'.$i.'.keyword_text LIKE ?';
 			if ($i > 0) $sqlWhere .= ' AND o0.object_id = o'.$i.'.object_id AND o0.pos+'.$i.' = o'.$i.'.pos';
@@ -100,15 +100,15 @@ class MonographSearchDAO extends DAO {
 
 		$result = $this->retrieveCached(
 			'SELECT
-				o.monograph_id,
+				o.submission_id,
 				COUNT(*) AS count
 			FROM
-				monographs m,
-				published_monographs pm,
-				monograph_search_objects o NATURAL JOIN ' . $sqlFrom . '
+				submissions s,
+				published_submissions ps,
+				submission_search_objects o NATURAL JOIN ' . $sqlFrom . '
 			WHERE
-				m.monograph_id = pm.monograph_id AND o.monograph_id = m.monograph_id AND ' . $sqlWhere . '
-			GROUP BY o.monograph_id
+				s.submission_id = ps.submission_id AND o.submission_id = s.submission_id AND ' . $sqlWhere . '
+			GROUP BY o.submission_id
 			ORDER BY count DESC
 			LIMIT ' . $limit,
 			$params,
@@ -125,7 +125,7 @@ class MonographSearchDAO extends DAO {
 	 * @param $assocId int optional
 	 */
 	function deleteMonographKeywords($monographId, $type = null, $assocId = null) {
-		$sql = 'SELECT object_id FROM monograph_search_objects WHERE monograph_id = ?';
+		$sql = 'SELECT object_id FROM submission_search_objects WHERE submission_id = ?';
 		$params = array($monographId);
 
 		if (isset($type)) {
@@ -141,8 +141,8 @@ class MonographSearchDAO extends DAO {
 		$result = $this->retrieve($sql, $params);
 		while (!$result->EOF) {
 			$objectId = $result->fields[0];
-			$this->update('DELETE FROM monograph_search_object_keywords WHERE object_id = ?', $objectId);
-			$this->update('DELETE FROM monograph_search_objects WHERE object_id = ?', $objectId);
+			$this->update('DELETE FROM submission_search_object_keywords WHERE object_id = ?', $objectId);
+			$this->update('DELETE FROM submission_search_objects WHERE object_id = ?', $objectId);
 			$result->MoveNext();
 		}
 		$result->Close();
@@ -157,20 +157,20 @@ class MonographSearchDAO extends DAO {
 	 */
 	function insertObject($monographId, $type, $assocId, $keepExisting = false) {
 		$result = $this->retrieve(
-			'SELECT object_id FROM monograph_search_objects WHERE monograph_id = ? AND type = ? AND assoc_id = ?',
+			'SELECT object_id FROM submission_search_objects WHERE submission_id = ? AND type = ? AND assoc_id = ?',
 			array($monographId, $type, $assocId)
 		);
 		if ($result->RecordCount() == 0) {
 			$this->update(
-				'INSERT INTO monograph_search_objects (monograph_id, type, assoc_id) VALUES (?, ?, ?)',
+				'INSERT INTO submission_search_objects (submission_id, type, assoc_id) VALUES (?, ?, ?)',
 				array($monographId, $type, (int) $assocId)
 			);
-			$objectId = $this->_getInsertId('monograph_search_objects', 'object_id');
+			$objectId = $this->_getInsertId('submission_search_objects', 'object_id');
 
 		} else {
 			$objectId = $result->fields[0];
 			$this->update(
-				'DELETE FROM monograph_search_object_keywords WHERE object_id = ?',
+				'DELETE FROM submission_search_object_keywords WHERE object_id = ?',
 				$objectId
 			);
 		}
@@ -191,7 +191,7 @@ class MonographSearchDAO extends DAO {
 		$keywordId = $this->insertKeyword($keyword);
 		if ($keywordId === null) return null; // Bug #2324
 		$this->update(
-			'INSERT INTO monograph_search_object_keywords (object_id, keyword_id, pos) VALUES (?, ?, ?)',
+			'INSERT INTO submission_search_object_keywords (object_id, keyword_id, pos) VALUES (?, ?, ?)',
 			array($objectId, $keywordId, $position)
 		);
 		return $keywordId;

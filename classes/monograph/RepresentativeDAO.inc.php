@@ -38,9 +38,9 @@ class RepresentativeDAO extends DAO {
 		$result = $this->retrieve(
 			'SELECT r.*
 				FROM representatives r
-			JOIN published_monographs pm ON (r.monograph_id = pm.monograph_id)
+			JOIN published_submissions ps ON (r.submission_id = ps.submission_id)
 			WHERE r.representative_id = ?
-				' . ($monographId?' AND pm.monograph_id = ?':''),
+				' . ($monographId?' AND ps.submission_id = ?':''),
 			$sqlParams
 		);
 
@@ -59,7 +59,7 @@ class RepresentativeDAO extends DAO {
 	 */
 	function getSuppliersByMonographId($monographId) {
 		$result = $this->retrieveRange(
-			'SELECT * FROM representatives WHERE monograph_id = ? AND is_supplier = ?', array((int) $monographId, 1));
+			'SELECT * FROM representatives WHERE submission_id = ? AND is_supplier = ?', array((int) $monographId, 1));
 
 		return new DAOResultFactory($result, $this, '_fromRow');
 	}
@@ -71,7 +71,7 @@ class RepresentativeDAO extends DAO {
 	 */
 	function getAgentsByMonographId($monographId) {
 		$result = $this->retrieveRange(
-				'SELECT * FROM representatives WHERE monograph_id = ? AND is_supplier = ?', array((int) $monographId, 0));
+				'SELECT * FROM representatives WHERE submission_id = ? AND is_supplier = ?', array((int) $monographId, 0));
 
 		return new DAOResultFactory($result, $this, '_fromRow');
 	}
@@ -102,7 +102,7 @@ class RepresentativeDAO extends DAO {
 		$representative->setEmail($row['email']);
 		$representative->setUrl($row['url']);
 		$representative->setIsSupplier($row['is_supplier']);
-		$representative->setMonographId($row['monograph_id']);
+		$representative->setMonographId($row['submission_id']);
 
 		if ($callHooks) HookRegistry::call('RepresentativeDAO::_fromRow', array(&$representative, &$row));
 
@@ -116,7 +116,7 @@ class RepresentativeDAO extends DAO {
 	function insertObject($representative) {
 		$this->update(
 			'INSERT INTO representatives
-				(monograph_id, role, representative_id_type, representative_id_value, name, phone, fax, email, url, is_supplier)
+				(submission_id, role, representative_id_type, representative_id_value, name, phone, fax, email, url, is_supplier)
 			VALUES
 				(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
 			array(

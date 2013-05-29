@@ -30,7 +30,7 @@ class NewReleaseDAO extends DAO {
 	function getMonographIdsByAssoc($assocType, $assocId) {
 		$returner = array();
 		$result = $this->retrieve(
-			'SELECT monograph_id FROM new_releases WHERE assoc_type = ? AND assoc_id = ?',
+			'SELECT submission_id FROM new_releases WHERE assoc_type = ? AND assoc_id = ?',
 			array((int) $assocType, (int) $assocId)
 		);
 
@@ -53,8 +53,12 @@ class NewReleaseDAO extends DAO {
 	function getMonographsByAssoc($assocType, $assocId) {
 		$returner = array();
 		$result = $this->retrieve(
-			'SELECT n.monograph_id FROM new_releases n, published_monographs pm
-			WHERE n.monograph_id = pm.monograph_id AND assoc_type = ? AND assoc_id = ? ORDER BY pm.date_published DESC',
+			'SELECT	n.submission_id
+			FROM	new_releases n,
+				published_submissions ps
+			WHERE	n.submission_id = ps.submission_id AND
+				n.assoc_type = ? AND n.assoc_id = ?
+			ORDER BY ps.date_published DESC',
 			array((int) $assocType, (int) $assocId)
 		);
 
@@ -78,7 +82,7 @@ class NewReleaseDAO extends DAO {
 	function insertNewRelease($monographId, $assocType, $assocId) {
 		$this->update(
 			'INSERT INTO new_releases
-				(monograph_id, assoc_type, assoc_id)
+				(submission_id, assoc_type, assoc_id)
 				VALUES
 				(?, ?, ?)',
 			array(
@@ -96,7 +100,7 @@ class NewReleaseDAO extends DAO {
 	 */
 	function deleteByMonographId($monographId) {
 		$this->update(
-			'DELETE FROM new_releases WHERE monograph_id = ?',
+			'DELETE FROM new_releases WHERE submission_id = ?',
 			(int) $monographId
 		);
 	}
@@ -122,7 +126,7 @@ class NewReleaseDAO extends DAO {
 	function deleteNewRelease($monographId, $assocType, $assocId) {
 		$this->update(
 			'DELETE FROM new_releases
-			WHERE	monograph_id = ? AND
+			WHERE	submission_id = ? AND
 				assoc_type = ? AND
 				assoc_id = ?',
 			array(

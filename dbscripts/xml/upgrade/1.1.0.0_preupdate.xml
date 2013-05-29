@@ -36,8 +36,39 @@
 		<rename table="monograph_file_settings" to="submission_file_settings" />
 		<rename table="edit_decisions" column="monograph_id" to="submission_id" />
 	</sql>
-	<!-- Bug #8212: Rename monograph_comments to submission_comments -->
+	<!-- Bug #8235: Rename monographs to submissions -->
+	<sql>
+		<!-- monograph_comments table -->
 		<rename table="monograph_comments" column="monograph_id" to="submission_id" />
 		<rename table="monograph_comments" to="submission_comments" />
+		<!-- monographs table -->
+		<rename table="monographs" column="monograph_id" to="submission_id" />
+		<rename table="monographs" to="submissions" />
+		<!-- monograph_categories table -->
+		<rename table="monograph_categories" column="monograph_id" to="submission_id" />
+		<rename table="monograph_categories" to="submission_categories" />
+		<!-- monograph_settings table -->
+		<rename table="monograph_settings" column="monograph_id" to="submission_id" />
+		<rename table="monograph_settings" to="submission_settings" />
+		<!-- published_monographs table -->
+		<rename table="published_monographs" column="monograph_id" to="submission_id" />
+		<rename table="published_monographs" to="published_submissions" />
+		<!-- monograph_chapters table -->
+		<rename table="monograph_chapters" column="monograph_id" to="submission_id" />
+		<rename table="monograph_chapters" to="submission_chapters" />
+		<!-- monograph_search_objects -->
+		<rename table="monograph_search_objects" column="monograph_id" to="submission_id" />
+		<rename table="monograph_search_objects" to="submission_search_objects" />
+		<!-- various table renames -->
+		<rename table="monograph_search_object_keywords" to="submission_search_object_keywords" />
+		<rename table="monograph_chapter_settings" to="submission_chapter_settings" />
+		<rename table="monograph_artwork_files" to="submission_artwork_files" />
+		<rename table="monograph_chapter_authors" to="submission_chapter_authors" />
+		<rename table="monograph_search_keyword_list" to="submission_search_keyword_list" />
+		<!-- various monograph_id columns -->
+		<rename table="representatives" column="monograph_id" to="submission_id" />
+		<rename table="features" column="monograph_id" to="submission_id" />
+		<rename table="new_releases" column="monograph_id" to="submission_id" />
+		<rename table="publication_formats" column="monograph_id" to="submission_id" />
 	</sql>
 </data>

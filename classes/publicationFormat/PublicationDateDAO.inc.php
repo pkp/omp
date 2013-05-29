@@ -40,7 +40,7 @@ class PublicationDateDAO extends DAO {
 			FROM	publication_dates p
 				JOIN publication_formats pf ON (p.publication_format_id = pf.publication_format_id)
 			WHERE p.publication_date_id = ?
-				' . ($monographId?' AND pf.monograph_id = ?':''),
+				' . ($monographId?' AND pf.submission_id = ?':''),
 			$sqlParams
 		);
 

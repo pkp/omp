@@ -256,7 +256,7 @@ class CategoryDAO extends DAO {
 
 			// remove any monograph assignments for this category.
 			$this->update(
-				'DELETE FROM monograph_categories WHERE category_id = ?',
+				'DELETE FROM submission_categories WHERE category_id = ?',
 				array((int) $categoryId)
 			);
 		}

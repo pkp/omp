@@ -45,7 +45,7 @@ class MonographDAO extends SubmissionDAO {
 	function _getCache() {
 		if (!isset($this->cache)) {
 			$cacheManager = CacheManager::getManager();
-			$this->cache = $cacheManager->getObjectCache('monographs', 0, array(&$this, '_cacheMiss'));
+			$this->cache = $cacheManager->getObjectCache('submissions', 0, array(&$this, '_cacheMiss'));
 		}
 		return $this->cache;
 	}
@@ -65,8 +65,8 @@ class MonographDAO extends SubmissionDAO {
 	 * @param $monograph
 	 */
 	function updateLocaleFields($monograph) {
-		$this->updateDataObjectSettings('monograph_settings', $monograph, array(
-			'monograph_id' => $monograph->getId()
+		$this->updateDataObjectSettings('submission_settings', $monograph, array(
+			'submission_id' => $monograph->getId()
 		));
 	}
 
@@ -97,17 +97,17 @@ class MonographDAO extends SubmissionDAO {
 		if ($pressId) $params[] = (int) $pressId;
 
 		$result = $this->retrieve(
-			'SELECT	m.*, pm.date_published,
+			'SELECT	m.*, ps.date_published,
 				COALESCE(stl.setting_value, stpl.setting_value) AS series_title,
 				COALESCE(sal.setting_value, sapl.setting_value) AS series_abbrev
-			FROM	monographs m
+			FROM	submissions m
 				LEFT JOIN series s ON s.series_id = m.series_id
 				LEFT JOIN series_settings stpl ON (s.series_id = stpl.series_id AND stpl.setting_name = ? AND stpl.locale = ?)
 				LEFT JOIN series_settings stl ON (s.series_id = stl.series_id AND stl.setting_name = ? AND stl.locale = ?)
 				LEFT JOIN series_settings sapl ON (s.series_id = sapl.series_id AND sapl.setting_name = ? AND sapl.locale = ?)
 				LEFT JOIN series_settings sal ON (s.series_id = sal.series_id AND sal.setting_name = ? AND sal.locale = ?)
-				LEFT JOIN published_monographs pm ON (m.monograph_id = pm.monograph_id)
-			WHERE	m.monograph_id = ?
+				LEFT JOIN published_submissions ps ON (m.submission_id = ps.submission_id)
+			WHERE	m.submission_id = ?
 				' . ($pressId?' AND m.press_id = ?':''),
 			$params
 		);
@@ -129,14 +129,14 @@ class MonographDAO extends SubmissionDAO {
 	function _fromRow($row) {
 		$monograph = parent::_fromRow($row);
 
-		$monograph->setId($row['monograph_id']);
+		$monograph->setId($row['submission_id']);
 		$monograph->setPressId($row['press_id']);
 		$monograph->setSeriesId($row['series_id']);
 		$monograph->setSeriesPosition($row['series_position']);
 		$monograph->setSeriesAbbrev(isset($row['series_abbrev'])?$row['series_abbrev']:null);
 		$monograph->setWorkType($row['edited_volume']);
 
-		$this->getDataObjectSettings('monograph_settings', 'monograph_id', $row['monograph_id'], $monograph);
+		$this->getDataObjectSettings('submission_settings', 'submission_id', $monograph->getId(), $monograph);
 
 		HookRegistry::call('MonographDAO::_fromRow', array(&$monograph, &$row));
 
@@ -152,14 +152,14 @@ class MonographDAO extends SubmissionDAO {
 	}
 
 	/**
-	 * inserts a new monograph into monographs table
+	 * inserts a new monograph into submissions table
 	 * @param Monograph object
 	 * @return Monograph Id int
 	 */
 	function insertObject($monograph) {
 		$monograph->stampModified();
 		$this->update(
-			sprintf('INSERT INTO monographs
+			sprintf('INSERT INTO submissions
 				(locale, user_id, press_id, series_id, series_position, language, comments_to_ed, date_submitted, date_status_modified, last_modified, status, submission_progress, stage_id, pages, hide_author, comments_status, edited_volume)
 				VALUES
 				(?, ?, ?, ?, ?, ?, ?, %s, %s, %s, ?, ?, ?, ?, ?, ?, ?)',
@@ -194,7 +194,7 @@ class MonographDAO extends SubmissionDAO {
 	 */
 	function updateObject($monograph) {
 		$this->update(
-			sprintf('UPDATE monographs
+			sprintf('UPDATE submissions
 				SET	user_id = ?,
 					series_id = ?,
 					series_position = ?,
@@ -210,7 +210,7 @@ class MonographDAO extends SubmissionDAO {
 					edited_volume = ?,
 					hide_author = ?
 
-				WHERE	monograph_id = ?',
+				WHERE	submission_id = ?',
 				$this->datetimeToDB($monograph->getDateSubmitted()), $this->datetimeToDB($monograph->getDateStatusModified()), $this->datetimeToDB($monograph->getLastModified())),
 			array(
 				(int) $monograph->getUserId(),
@@ -261,8 +261,8 @@ class MonographDAO extends SubmissionDAO {
 		$newReleaseDao = DAORegistry::getDAO('NewReleaseDAO');
 		$newReleaseDao->deleteByMonographId($monographId);
 
-		$this->update('DELETE FROM monograph_settings WHERE monograph_id = ?', (int) $monographId);
-		$this->update('DELETE FROM monographs WHERE monograph_id = ?', (int) $monographId);
+		$this->update('DELETE FROM submission_settings WHERE submission_id = ?', (int) $monographId);
+		$this->update('DELETE FROM submissions WHERE submission_id = ?', (int) $monographId);
 	}
 
 	/**
@@ -275,16 +275,16 @@ class MonographDAO extends SubmissionDAO {
 		$locale = AppLocale::getLocale();
 
 		$result = $this->retrieve(
-			'SELECT	m.*, pm.date_published,
+			'SELECT	m.*, ps.date_published,
 				COALESCE(stl.setting_value, stpl.setting_value) AS series_title,
 				COALESCE(sal.setting_value, sapl.setting_value) AS series_abbrev
-			FROM	monographs m
+			FROM	submissions m
 				LEFT JOIN series s ON s.series_id = m.series_id
 				LEFT JOIN series_settings stpl ON (s.series_id = stpl.series_id AND stpl.setting_name = ? AND stpl.locale = ?)
 				LEFT JOIN series_settings stl ON (s.series_id = stl.series_id AND stl.setting_name = ? AND stl.locale = ?)
 				LEFT JOIN series_settings sapl ON (s.series_id = sapl.series_id AND sapl.setting_name = ? AND sapl.locale = ?)
 				LEFT JOIN series_settings sal ON (s.series_id = sal.series_id AND sal.setting_name = ? AND sal.locale = ?)
-				LEFT JOIN published_monographs pm ON (m.monograph_id = pm.monograph_id)
+				LEFT JOIN published_submissions ps ON (m.submission_id = ps.submission_id)
 			WHERE	m.press_id = ?',
 			array(
 				'title', $primaryLocale, // Series title
@@ -308,18 +308,18 @@ class MonographDAO extends SubmissionDAO {
 		$locale = AppLocale::getLocale();
 
 		$result = $this->retrieve(
-			'SELECT	m.*, pm.date_published,
+			'SELECT	m.*, ps.date_published,
 				COALESCE(stl.setting_value, stpl.setting_value) AS series_title,
 				COALESCE(sal.setting_value, sapl.setting_value) AS series_abbrev
-			FROM	monographs m
+			FROM	submissions m
 				LEFT JOIN series s ON s.series_id = m.series_id
 				LEFT JOIN series_settings stpl ON (s.series_id = stpl.series_id AND stpl.setting_name = ? AND stpl.locale = ?)
 				LEFT JOIN series_settings stl ON (s.series_id = stl.series_id AND stl.setting_name = ? AND stl.locale = ?)
 				LEFT JOIN series_settings sapl ON (s.series_id = sapl.series_id AND sapl.setting_name = ? AND sapl.locale = ?)
 				LEFT JOIN series_settings sal ON (s.series_id = sal.series_id AND sal.setting_name = ? AND sal.locale = ?)
-				LEFT JOIN published_monographs pm ON (m.monograph_id = pm.monograph_id)
+				LEFT JOIN published_submissions ps ON (m.submission_id = ps.submission_id)
 			WHERE	m.press_id = ? AND
-				(pm.monograph_id IS NULL OR pm.date_published IS NULL) AND
+				(ps.submission_id IS NULL OR ps.date_published IS NULL) AND
 				m.submission_progress = 0',
 			array(
 				'title', $primaryLocale, // Series title
@@ -367,16 +367,16 @@ class MonographDAO extends SubmissionDAO {
 		if ($pressId) $params[] = (int) $pressId;
 
 		$result = $this->retrieve(
-			'SELECT	m.*, pm.date_published,
+			'SELECT	m.*, ps.date_published,
 				COALESCE(atl.setting_value, atpl.setting_value) AS series_title,
 				COALESCE(aal.setting_value, aapl.setting_value) AS series_abbrev
-			FROM	monographs m
+			FROM	submissions m
 				LEFT JOIN series aa ON (aa.series_id = m.series_id)
 				LEFT JOIN series_settings atpl ON (aa.series_id = atpl.series_id AND atpl.setting_name = ? AND atpl.locale = ?)
 				LEFT JOIN series_settings atl ON (aa.series_id = atl.series_id AND atl.setting_name = ? AND atl.locale = ?)
 				LEFT JOIN series_settings aapl ON (aa.series_id = aapl.series_id AND aapl.setting_name = ? AND aapl.locale = ?)
 				LEFT JOIN series_settings aal ON (aa.series_id = aal.series_id AND aal.setting_name = ? AND aal.locale = ?)
-				LEFT JOIN published_monographs pm ON (m.monograph_id = pm.monograph_id)
+				LEFT JOIN published_submissions ps ON (m.submission_id = ps.submission_id)
 			WHERE	m.user_id = ?' .
 				(isset($pressId)?' AND m.press_id = ?':''),
 			$params
@@ -391,7 +391,7 @@ class MonographDAO extends SubmissionDAO {
 	 */
 	function removeMonographsFromSeries($seriesId) {
 		$this->update(
-			'UPDATE monographs SET series_id = null WHERE series_id = ?',
+			'UPDATE submissions SET series_id = null WHERE series_id = ?',
 			(int) $seriesId
 		);
 
@@ -403,20 +403,20 @@ class MonographDAO extends SubmissionDAO {
 	 * @return int
 	 */
 	function getInsertId() {
-		return $this->_getInsertId('monographs', 'monograph_id');
+		return $this->_getInsertId('submissions', 'submission_id');
 	}
 
 	/**
 	 * Flush the monograph cache.
 	 */
 	function flushCache() {
-		// Because both publishedMonographs and monographs are cached by
-		// monograph ID, flush both caches on update.
+		// Because both published_submissions and submissions are
+		// cached by submission ID, flush both caches on update.
 		$cache = $this->_getCache();
 		$cache->flush();
 		unset($cache);
 
-		//TODO: flush cache of publishedMonographDAO once created
+		//TODO: flush cache of PublishedMonographDAO once created
 	}
 
 	/**
@@ -441,20 +441,20 @@ class MonographDAO extends SubmissionDAO {
 		if ($pressId) $params[] = (int) $pressId;
 
 		$result = $this->retrieve(
-			'SELECT	m.*, pm.date_published
-			FROM	monographs m
-				LEFT JOIN published_monographs pm ON m.monograph_id = pm.monograph_id
+			'SELECT	m.*, ps.date_published
+			FROM	submissions m
+				LEFT JOIN published_submissions ps ON m.submission_id = ps.submission_id
 				LEFT JOIN series s ON s.series_id = m.series_id
 				LEFT JOIN series_settings stpl ON (s.series_id = stpl.series_id AND stpl.setting_name = ? AND stpl.locale = ?)
 				LEFT JOIN series_settings stl ON (s.series_id = stl.series_id AND stl.setting_name = ? AND stl.locale = ?)
 				LEFT JOIN series_settings sapl ON (s.series_id = sapl.series_id AND sapl.setting_name = ? AND sapl.locale = ?)
 				LEFT JOIN series_settings sal ON (s.series_id = sal.series_id AND sal.setting_name = ? AND sal.locale = ?)
-				LEFT JOIN stage_assignments sa ON (m.monograph_id = sa.submission_id)
+				LEFT JOIN stage_assignments sa ON (m.submission_id = sa.submission_id)
 				LEFT JOIN user_groups g ON (sa.user_group_id = g.user_group_id AND g.role_id = ?)
 				' . ($subEditorId?' JOIN series_editors se ON (se.press_id = m.press_id AND se.user_id = ? AND se.series_id = m.series_id)':'') . '
 			WHERE	m.date_submitted IS NOT NULL
 				' . ($pressId?' AND m.press_id = ?':'') . '
-			GROUP BY m.monograph_id',
+			GROUP BY m.submission_id',
 			$params
 		);
 
@@ -468,8 +468,8 @@ class MonographDAO extends SubmissionDAO {
 	 */
 	function addCategory($monographId, $categoryId) {
 		$this->update(
-			'INSERT INTO monograph_categories
-				(monograph_id, category_id)
+			'INSERT INTO submission_categories
+				(submission_id, category_id)
 			VALUES
 				(?, ?)',
 			array(
@@ -486,7 +486,7 @@ class MonographDAO extends SubmissionDAO {
 	 */
 	function removeCategory($monographId, $categoryId) {
 		$this->update(
-			'DELETE FROM monograph_categories WHERE monograph_id = ? AND category_id = ?',
+			'DELETE FROM submission_categories WHERE submission_id = ? AND category_id = ?',
 			array(
 				(int) $monographId,
 				(int) $categoryId
@@ -508,7 +508,7 @@ class MonographDAO extends SubmissionDAO {
 	 */
 	function removeCategories($monographId) {
 		$this->update(
-			'DELETE FROM monograph_categories WHERE monograph_id = ?',
+			'DELETE FROM submission_categories WHERE submission_id = ?',
 			(int) $monographId
 		);
 	}
@@ -526,12 +526,12 @@ class MonographDAO extends SubmissionDAO {
 		$result = $this->retrieve(
 			'SELECT	c.*
 			FROM	categories c,
-				monograph_categories mc,
-				monographs m
-			WHERE	c.category_id = mc.category_id AND
-				m.monograph_id = ? AND
-			' . ($pressId?' c.press_id = m.press_id AND m.press_id = ? AND':'') . '
-				m.monograph_id = mc.monograph_id',
+				submission_categories sc,
+				submissions s
+			WHERE	c.category_id = sc.category_id AND
+				s.submission_id = ? AND
+			' . ($pressId?' c.press_id = s.press_id AND s.press_id = ? AND':'') . '
+				s.submission_id = sc.submission_id',
 			$params
 		);
 
@@ -553,12 +553,12 @@ class MonographDAO extends SubmissionDAO {
 		// immediately after their parent category's entry.
 		$result = $this->retrieve(
 			'SELECT	c.*
-			FROM	monographs m
-				JOIN categories c ON (c.press_id = m.press_id)
-				LEFT JOIN monograph_categories mc ON (m.monograph_id = mc.monograph_id AND mc.category_id = c.category_id)
-			WHERE	m.monograph_id = ? AND
-				' . ($pressId?' m.press_id = ? AND':'') . '
-				mc.monograph_id IS NULL
+			FROM	submissions s
+				JOIN categories c ON (c.press_id = s.press_id)
+				LEFT JOIN submission_categories sc ON (s.submission_id = sc.submission_id AND sc.category_id = c.category_id)
+			WHERE	s.submission_id = ? AND
+				' . ($pressId?' s.press_id = ? AND':'') . '
+				sc.submission_id IS NULL
 			ORDER BY CASE WHEN c.parent_id = 0 THEN c.category_id * 2 ELSE (c.parent_id * 2) + 1 END ASC',
 			$params
 		);
@@ -575,7 +575,7 @@ class MonographDAO extends SubmissionDAO {
 	 */
 	function categoryAssociationExists($monographId, $categoryId) {
 		$result = $this->retrieve(
-			'SELECT COUNT(*) FROM monograph_categories WHERE monograph_id = ? AND category_id = ?',
+			'SELECT COUNT(*) FROM submission_categories WHERE submission_id = ? AND category_id = ?',
 			array((int) $monographId, (int) $categoryId)
 		);
 		$returner = isset($result->fields[0]) && $result->fields[0] == 1 ? true : false;

@@ -50,8 +50,8 @@ class ReviewerSubmissionDAO extends MonographDAO {
 				u.first_name, u.last_name,
 				COALESCE(stl.setting_value, stpl.setting_value) AS series_title,
 				COALESCE(sal.setting_value, sapl.setting_value) AS series_abbrev
-			FROM	monographs m
-				LEFT JOIN review_assignments r ON (m.monograph_id = r.submission_id)
+			FROM	submissions m
+				LEFT JOIN review_assignments r ON (m.submission_id = r.submission_id)
 				LEFT JOIN series s ON (s.series_id = m.series_id)
 				LEFT JOIN users u ON (r.reviewer_id = u.user_id)
 				LEFT JOIN series_settings stpl ON (s.series_id = stpl.series_id AND stpl.setting_name = ? AND stpl.locale = ?)
@@ -95,11 +95,11 @@ class ReviewerSubmissionDAO extends MonographDAO {
 		$reviewerSubmission = parent::_fromRow($row);
 
 		// Comments
-		$reviewerSubmission->setMostRecentPeerReviewComment($this->submissionCommentDao->getMostRecentSubmissionComment($row['monograph_id'], COMMENT_TYPE_PEER_REVIEW, $row['review_id']));
+		$reviewerSubmission->setMostRecentPeerReviewComment($this->submissionCommentDao->getMostRecentSubmissionComment($row['submission_id'], COMMENT_TYPE_PEER_REVIEW, $row['review_id']));
 
 		// Editor Decisions
 		$editDecisionDao = DAORegistry::getDAO('EditDecisionDAO');
-		$decisions = $editDecisionDao->getEditorDecisions($row['monograph_id']);
+		$decisions = $editDecisionDao->getEditorDecisions($row['submission_id']);
 		$reviewerSubmission->setDecisions($decisions);
 
 		// Review Assignment
@@ -196,9 +196,9 @@ class ReviewerSubmissionDAO extends MonographDAO {
 				atl.setting_value AS submission_title,
 				COALESCE(stl.setting_value, stpl.setting_value) AS series_title,
 				COALESCE(sal.setting_value, sapl.setting_value) AS series_abbrev
-			FROM	monographs m
-				LEFT JOIN review_assignments r ON (m.monograph_id = r.submission_id)
-				LEFT JOIN monograph_settings atl ON (atl.monograph_id = m.monograph_id AND atl.setting_name = ? AND atl.locale = ?)
+			FROM	submissions m
+				LEFT JOIN review_assignments r ON (m.submission_id = r.submission_id)
+				LEFT JOIN submission_settings atl ON (atl.submission_id = m.submission_id AND atl.setting_name = ? AND atl.locale = ?)
 				LEFT JOIN series s ON (s.series_id = m.series_id)
 				LEFT JOIN users u ON (r.reviewer_id = u.user_id)
 				LEFT JOIN series_settings stpl ON (s.series_id = stpl.series_id AND stpl.setting_name = ? AND stpl.locale = ?)
@@ -245,8 +245,8 @@ class ReviewerSubmissionDAO extends MonographDAO {
 
 		$result = $this->retrieve(
 			'SELECT	r.date_completed, r.declined, r.cancelled
-			FROM	monographs m
-				LEFT JOIN review_assignments r ON (m.monograph_id = r.submission_id)
+			FROM	submissions m
+				LEFT JOIN review_assignments r ON (m.submission_id = r.submission_id)
 				LEFT JOIN series s ON (s.series_id = m.series_id)
 				LEFT JOIN users u ON (r.reviewer_id = u.user_id)
 				LEFT JOIN review_rounds r2 ON (r.submission_id = r2.submission_id AND r.stage_id = r2.stage_id AND r.round = r2.round)
@@ -276,7 +276,7 @@ class ReviewerSubmissionDAO extends MonographDAO {
 	 */
 	function getSortMapping($heading) {
 		switch ($heading) {
-			case 'id': return 'm.monograph_id';
+			case 'id': return 'm.submission_id';
 			case 'assignDate': return 'r.date_assigned';
 			case 'dueDate': return 'r.date_due';
 			case 'section': return 'section_abbrev';

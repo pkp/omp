@@ -39,7 +39,7 @@ class ChapterDAO extends DAO {
 		}
 
 		$result = $this->retrieve(
-			'SELECT * FROM monograph_chapters WHERE chapter_id = ?' . ($monographId !== null?' AND monograph_id = ? ':''),
+			'SELECT * FROM submission_chapters WHERE chapter_id = ?' . ($monographId !== null?' AND submission_id = ? ':''),
 			$params
 		);
 
@@ -59,7 +59,7 @@ class ChapterDAO extends DAO {
 	 */
 	function getChapters($monographId, $rangeInfo = null) {
 		$result = $this->retrieveRange(
-			'SELECT chapter_id, monograph_id, chapter_seq FROM monograph_chapters WHERE monograph_id = ? ORDER BY chapter_seq',
+			'SELECT chapter_id, submission_id, chapter_seq FROM submission_chapters WHERE submission_id = ? ORDER BY chapter_seq',
 			(int) $monographId,
 			$rangeInfo
 		);
@@ -91,9 +91,9 @@ class ChapterDAO extends DAO {
 	function _returnFromRow($row) {
 		$chapter = $this->newDataObject();
 		$chapter->setId($row['chapter_id']);
-		$chapter->setMonographId($row['monograph_id']);
+		$chapter->setMonographId($row['submission_id']);
 		$chapter->setSequence($row['chapter_seq']);
-		$this->getDataObjectSettings('monograph_chapter_settings', 'chapter_id', $row['chapter_id'], $chapter);
+		$this->getDataObjectSettings('submission_chapter_settings', 'chapter_id', $row['chapter_id'], $chapter);
 
 		HookRegistry::call('ChapterDAO::_returnFromRow', array(&$chapter, &$row));
 
@@ -104,8 +104,8 @@ class ChapterDAO extends DAO {
 	 * Update the settings for this object
 	 * @param $chapter object
 	 */
-	function updateLocaleFields(&$chapter) {
-		$this->updateDataObjectSettings('monograph_chapter_settings', $chapter, array(
+	function updateLocaleFields($chapter) {
+		$this->updateDataObjectSettings('submission_chapter_settings', $chapter, array(
 			'chapter_id' => $chapter->getId()
 		));
 	}
@@ -116,8 +116,8 @@ class ChapterDAO extends DAO {
 	 */
 	function insertChapter($chapter) {
 		$this->update(
-			'INSERT INTO monograph_chapters
-				(monograph_id, chapter_seq)
+			'INSERT INTO submission_chapters
+				(submission_id, chapter_seq)
 				VALUES
 				(?, ?)',
 			array(
@@ -136,9 +136,9 @@ class ChapterDAO extends DAO {
 	 * @param $chapter Chapter
 	 */
 	function updateObject($chapter) {
-		$returner = $this->update(
-			'UPDATE monograph_chapters
-				SET	monograph_id = ?,
+		$this->update(
+			'UPDATE submission_chapters
+				SET	submission_id = ?,
 					chapter_seq = ?
 				WHERE
 					chapter_id = ?',
@@ -149,7 +149,6 @@ class ChapterDAO extends DAO {
 			)
 		);
 		$this->updateLocaleFields($chapter);
-		return $returner;
 	}
 
 	/**
@@ -157,7 +156,7 @@ class ChapterDAO extends DAO {
 	 * @param $chapter Chapter
 	 */
 	function deleteObject($chapter) {
-		return $this->deleteById($chapter->getId());
+		$this->deleteById($chapter->getId());
 	}
 
 	/**
@@ -165,10 +164,9 @@ class ChapterDAO extends DAO {
 	 * @param $chapterId int
 	 */
 	function deleteById($chapterId) {
-		$returner1 = $this->update('DELETE FROM monograph_chapter_authors WHERE chapter_id = ?', (int) $chapterId);
-		$returner2 = $this->update('DELETE FROM monograph_chapter_settings WHERE chapter_id = ?', (int) $chapterId);
-		$returner3 = $this->update('DELETE FROM monograph_chapters WHERE chapter_id = ?', (int) $chapterId);
-		return ($returner1 && $returner2 && $returner3);
+		$this->update('DELETE FROM submission_chapter_authors WHERE chapter_id = ?', (int) $chapterId);
+		$this->update('DELETE FROM submission_chapter_settings WHERE chapter_id = ?', (int) $chapterId);
+		$this->update('DELETE FROM submission_chapters WHERE chapter_id = ?', (int) $chapterId);
 	}
 
 	/**
@@ -189,8 +187,8 @@ class ChapterDAO extends DAO {
 	 */
 	function resequenceChapters($monographId = null) {
 		$result = $this->retrieve(
-			'SELECT chapter_id FROM monograph_chapters' .
-			($monographId !== null?' WHERE monograph_id = ?':'') .
+			'SELECT chapter_id FROM submission_chapters' .
+			($monographId !== null?' WHERE submission_id = ?':'') .
 			' ORDER BY seq',
 			($monographId !== null)?(int) $monographId:null
 		);
@@ -198,7 +196,7 @@ class ChapterDAO extends DAO {
 		for ($i=1; !$result->EOF; $i++) {
 			list($chapterId) = $result->fields;
 			$this->update(
-				'UPDATE monograph_chapters SET chapter_seq = ? WHERE chapter_id = ?',
+				'UPDATE submission_chapters SET chapter_seq = ? WHERE chapter_id = ?',
 				array(
 					(int) $i,
 					(int) $chapterId

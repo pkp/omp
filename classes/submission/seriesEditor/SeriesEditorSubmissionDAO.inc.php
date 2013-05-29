@@ -57,13 +57,13 @@ class SeriesEditorSubmissionDAO extends MonographDAO {
 			'SELECT	m.*,
 				COALESCE(stl.setting_value, stpl.setting_value) AS series_title,
 				COALESCE(sal.setting_value, sapl.setting_value) AS series_abbrev
-			FROM	monographs m
+			FROM	submissions m
 				LEFT JOIN series s ON (s.series_id = m.series_id)
 				LEFT JOIN series_settings stpl ON (s.series_id = stpl.series_id AND stpl.setting_name = ? AND stpl.locale = ?)
 				LEFT JOIN series_settings stl ON (s.series_id = stl.series_id AND stl.setting_name = ? AND stl.locale = ?)
 				LEFT JOIN series_settings sapl ON (s.series_id = sapl.series_id AND sapl.setting_name = ? AND sapl.locale = ?)
 				LEFT JOIN series_settings sal ON (s.series_id = sal.series_id AND sal.setting_name = ? AND sal.locale = ?)
-			WHERE	m.monograph_id = ?',
+			WHERE	m.submission_id = ?',
 			array(
 				'title', $primaryLocale, // Series title
 				'title', $locale, // Series title
@@ -100,31 +100,31 @@ class SeriesEditorSubmissionDAO extends MonographDAO {
 		$seriesEditorSubmission = parent::_fromRow($row);
 
 		// Editor Decisions
-		$reviewRounds = $this->reviewRoundDao->getBySubmissionId($row['monograph_id']);
+		$reviewRounds = $this->reviewRoundDao->getBySubmissionId($row['submission_id']);
 		$editDecisionDao = DAORegistry::getDAO('EditDecisionDAO');
 		while ($reviewRound = $reviewRounds->next()) {
 			$stageId = $reviewRound->getStageId();
 			$round = $reviewRound->getRound();
 			$seriesEditorSubmission->setDecisions(
-				$editDecisionDao->getEditorDecisions($row['monograph_id'], $stageId, $round),
+				$editDecisionDao->getEditorDecisions($row['submission_id'], $stageId, $round),
 				$stageId,
 				$round
 			);
 		}
 
 		// Comments
-		$seriesEditorSubmission->setMostRecentEditorDecisionComment($this->submissionCommentDao->getMostRecentSubmissionComment($row['monograph_id'], COMMENT_TYPE_EDITOR_DECISION, $row['monograph_id']));
-		$seriesEditorSubmission->setMostRecentCopyeditComment($this->submissionCommentDao->getMostRecentSubmissionComment($row['monograph_id'], COMMENT_TYPE_COPYEDIT, $row['monograph_id']));
-		$seriesEditorSubmission->setMostRecentLayoutComment($this->submissionCommentDao->getMostRecentSubmissionComment($row['monograph_id'], COMMENT_TYPE_LAYOUT, $row['monograph_id']));
-		$seriesEditorSubmission->setMostRecentProofreadComment($this->submissionCommentDao->getMostRecentSubmissionComment($row['monograph_id'], COMMENT_TYPE_PROOFREAD, $row['monograph_id']));
+		$seriesEditorSubmission->setMostRecentEditorDecisionComment($this->submissionCommentDao->getMostRecentSubmissionComment($row['submission_id'], COMMENT_TYPE_EDITOR_DECISION, $row['submission_id']));
+		$seriesEditorSubmission->setMostRecentCopyeditComment($this->submissionCommentDao->getMostRecentSubmissionComment($row['submission_id'], COMMENT_TYPE_COPYEDIT, $row['submission_id']));
+		$seriesEditorSubmission->setMostRecentLayoutComment($this->submissionCommentDao->getMostRecentSubmissionComment($row['submission_id'], COMMENT_TYPE_LAYOUT, $row['submission_id']));
+		$seriesEditorSubmission->setMostRecentProofreadComment($this->submissionCommentDao->getMostRecentSubmissionComment($row['submission_id'], COMMENT_TYPE_PROOFREAD, $row['submission_id']));
 
 		// Review Assignments
-		$reviewRounds = $this->reviewRoundDao->getBySubmissionId($row['monograph_id']);
+		$reviewRounds = $this->reviewRoundDao->getBySubmissionId($row['submission_id']);
 		while ($reviewRound = $reviewRounds->next()) {
 			$stageId = $reviewRound->getStageId();
 			$round = $reviewRound->getRound();
 			$seriesEditorSubmission->setReviewAssignments(
-				$this->reviewAssignmentDao->getBySubmissionId($row['monograph_id'], $reviewRound->getId()),
+				$this->reviewAssignmentDao->getBySubmissionId($row['submission_id'], $reviewRound->getId()),
 				$stageId,
 				$round
 			);

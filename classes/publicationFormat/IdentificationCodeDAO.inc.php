@@ -40,7 +40,7 @@ class IdentificationCodeDAO extends DAO {
 			FROM	identification_codes i
 				JOIN publication_formats pf ON (i.publication_format_id = pf.publication_format_id)
 			WHERE i.identification_code_id = ?
-				' . ($monographId?' AND pf.monograph_id = ?':''),
+				' . ($monographId?' AND pf.submission_id = ?':''),
 			$sqlParams
 		);
 

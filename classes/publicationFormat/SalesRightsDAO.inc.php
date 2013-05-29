@@ -40,7 +40,7 @@ class SalesRightsDAO extends DAO {
 			FROM	sales_rights s
 				JOIN publication_formats pf ON (s.publication_format_id = pf.publication_format_id)
 			WHERE s.sales_rights_id = ?
-				' . ($monographId?' AND pf.monograph_id = ?':''),
+				' . ($monographId?' AND pf.submission_id = ?':''),
 			$sqlParams
 		);
 

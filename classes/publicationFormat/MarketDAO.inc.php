@@ -40,7 +40,7 @@ class MarketDAO extends DAO {
 			FROM	markets m
 				JOIN publication_formats pf ON (m.publication_format_id = pf.publication_format_id)
 			WHERE	m.market_id = ?
-				' . ($monographId?' AND pf.monograph_id = ?':''),
+				' . ($monographId?' AND pf.submission_id = ?':''),
 			$sqlParams
 		);
 

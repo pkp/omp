@@ -221,9 +221,9 @@ class MonographSearchIndex {
 		if ($log) echo 'Clearing index ... ';
 		$searchDao = DAORegistry::getDAO('MonographSearchDAO');
 		// FIXME Abstract into MonographSearchDAO?
-		$searchDao->update('DELETE FROM monograph_search_object_keywords');
-		$searchDao->update('DELETE FROM monograph_search_objects');
-		$searchDao->update('DELETE FROM monograph_search_keyword_list');
+		$searchDao->update('DELETE FROM submission_search_object_keywords');
+		$searchDao->update('DELETE FROM submission_search_objects');
+		$searchDao->update('DELETE FROM submission_search_keyword_list');
 		$searchDao->setCacheDir(Config::getVar('files', 'files_dir') . '/_db');
 		$searchDao->_dataSource->CacheFlush();
 		if ($log) echo "done\n";
@@ -233,25 +233,23 @@ class MonographSearchIndex {
 		$monographDao = DAORegistry::getDAO('MonographDAO');
 
 		$presses = $pressDao->getAll();
-		while (!$presses->eof()) {
-			$press =& $presses->next();
+		while ($press = $presses->next()) {
+			$press = $presses->next();
 			$numIndexed = 0;
 
 			if ($log) echo "Indexing \"", $press->getLocalizedName(), "\" ... ";
 
-			$monographs =& $monographDao->getByPressId($press->getId());
+			$monographs = $monographDao->getByPressId($press->getId());
 			while (!$monographs->eof()) {
-				$monograph =& $monographs->next();
+				$monograph = $monographs->next();
 				if ($monograph->getDatePublished()) {
 					MonographSearchIndex::indexMonographMetadata($monograph);
 					MonographSearchIndex::indexMonographFiles($monograph);
 					$numIndexed++;
 				}
-				unset($monograph);
 			}
 
 			if ($log) echo $numIndexed, " monographs indexed\n";
-			unset($press);
 		}
 	}
 

@@ -50,26 +50,26 @@ class PublishedMonographDAO extends MonographDAO {
 
 		$result = $this->retrieveRange(
 			'SELECT	' . ($searchText !== null?'DISTINCT ':'') . '
-				pm.*,
+				ps.*,
 				m.*,
 				COALESCE(stl.setting_value, stpl.setting_value) AS series_title,
 				COALESCE(sal.setting_value, sapl.setting_value) AS series_abbrev,
 				COALESCE(f.seq, ?) AS order_by
-			FROM	published_monographs pm
-				JOIN monographs m ON pm.monograph_id = m.monograph_id
+			FROM	published_submissions ps
+				JOIN submissions m ON ps.submission_id = m.submission_id
 				LEFT JOIN series s ON s.series_id = m.series_id
 				LEFT JOIN series_settings stpl ON (s.series_id = stpl.series_id AND stpl.setting_name = ? AND stpl.locale = ?)
 				LEFT JOIN series_settings stl ON (s.series_id = stl.series_id AND stl.setting_name = ? AND stl.locale = ?)
 				LEFT JOIN series_settings sapl ON (s.series_id = sapl.series_id AND sapl.setting_name = ? AND sapl.locale = ?)
 				LEFT JOIN series_settings sal ON (s.series_id = sal.series_id AND sal.setting_name = ? AND sal.locale = ?)
 				' . ($searchText !== null?'
-					LEFT JOIN authors a ON m.monograph_id = a.submission_id
-					LEFT JOIN monograph_settings mt ON (mt.monograph_id = m.monograph_id AND mt.setting_name = \'title\')
+					LEFT JOIN authors a ON m.submission_id = a.submission_id
+					LEFT JOIN submission_settings mt ON (mt.submission_id = m.submission_id AND mt.setting_name = \'title\')
 				':'') . '
-				LEFT JOIN features f ON (f.monograph_id = m.monograph_id AND f.assoc_type = ? AND f.assoc_id = m.press_id)
-			WHERE	pm.date_published IS NOT NULL AND m.press_id = ?
+				LEFT JOIN features f ON (f.submission_id = m.submission_id AND f.assoc_type = ? AND f.assoc_id = m.press_id)
+			WHERE	ps.date_published IS NOT NULL AND m.press_id = ?
 				' . ($searchText !== null?' AND (mt.setting_value LIKE ? OR a.first_name LIKE ? OR a.last_name LIKE ?)':'') . '
-			ORDER BY order_by, pm.date_published',
+			ORDER BY order_by, ps.date_published',
 			$params,
 			$rangeInfo
 		);
@@ -88,20 +88,20 @@ class PublishedMonographDAO extends MonographDAO {
 		$locale = AppLocale::getLocale();
 
 		$result = $this->retrieveRange(
-			'SELECT	pm.*,
+			'SELECT	ps.*,
 				m.*,
 				COALESCE(stl.setting_value, stpl.setting_value) AS series_title,
 				COALESCE(sal.setting_value, sapl.setting_value) AS series_abbrev
-			FROM	published_monographs pm
-				JOIN monographs m ON pm.monograph_id = m.monograph_id
+			FROM	published_submissions ps
+				JOIN submissions m ON ps.submission_id = m.submission_id
 				LEFT JOIN series s ON s.series_id = m.series_id
 				LEFT JOIN series_settings stpl ON (s.series_id = stpl.series_id AND stpl.setting_name = ? AND stpl.locale = ?)
 				LEFT JOIN series_settings stl ON (s.series_id = stl.series_id AND stl.setting_name = ? AND stl.locale = ?)
 				LEFT JOIN series_settings sapl ON (s.series_id = sapl.series_id AND sapl.setting_name = ? AND sapl.locale = ?)
 				LEFT JOIN series_settings sal ON (s.series_id = sal.series_id AND sal.setting_name = ? AND sal.locale = ?)
-				JOIN features f ON (f.monograph_id = m.monograph_id AND f.assoc_type = ? AND f.assoc_id = m.press_id)
-			WHERE	pm.date_published IS NOT NULL AND m.press_id = ?
-			ORDER BY f.seq, pm.date_published',
+				JOIN features f ON (f.submission_id = m.submission_id AND f.assoc_type = ? AND f.assoc_id = m.press_id)
+			WHERE	ps.date_published IS NOT NULL AND m.press_id = ?
+			ORDER BY f.seq, ps.date_published',
 			array(
 				'title', $primaryLocale, // Series title
 				'title', $locale, // Series title
@@ -141,21 +141,21 @@ class PublishedMonographDAO extends MonographDAO {
 		$params[] = REALLY_BIG_NUMBER; // For feature sorting
 
 		$result = $this->retrieveRange(
-			'SELECT	pm.*,
+			'SELECT	ps.*,
 				m.*,
 				COALESCE(stl.setting_value, stpl.setting_value) AS series_title,
 				COALESCE(sal.setting_value, sapl.setting_value) AS series_abbrev
-			FROM	published_monographs pm
-				JOIN monographs m ON pm.monograph_id = m.monograph_id
+			FROM	published_submissions ps
+				JOIN submissions m ON ps.submission_id = m.submission_id
 				JOIN series s ON s.series_id = m.series_id
 				LEFT JOIN series_settings stpl ON (s.series_id = stpl.series_id AND stpl.setting_name = ? AND stpl.locale = ?)
 				LEFT JOIN series_settings stl ON (s.series_id = stl.series_id AND stl.setting_name = ? AND stl.locale = ?)
 				LEFT JOIN series_settings sapl ON (s.series_id = sapl.series_id AND sapl.setting_name = ? AND sapl.locale = ?)
 				LEFT JOIN series_settings sal ON (s.series_id = sal.series_id AND sal.setting_name = ? AND sal.locale = ?)
-				LEFT JOIN features f ON (f.monograph_id = m.monograph_id AND f.assoc_type = ? AND f.assoc_id = s.series_id)
-			WHERE	pm.date_published IS NOT NULL AND s.series_id = ?
+				LEFT JOIN features f ON (f.submission_id = m.submission_id AND f.assoc_type = ? AND f.assoc_id = s.series_id)
+			WHERE	ps.date_published IS NOT NULL AND s.series_id = ?
 				' . ($pressId?' AND m.press_id = ?':'' ) . '
-			ORDER BY COALESCE(f.seq, ?) ASC, pm.date_published',
+			ORDER BY COALESCE(f.seq, ?) ASC, ps.date_published',
 			$params,
 			$rangeInfo
 		);
@@ -187,25 +187,25 @@ class PublishedMonographDAO extends MonographDAO {
 		if ($pressId) $params[] = (int) $pressId;
 
 		$result = $this->retrieveRange(
-			'SELECT	DISTINCT pm.*,
+			'SELECT	DISTINCT ps.*,
 				m.*,
 				COALESCE(stl.setting_value, stpl.setting_value) AS series_title,
 				COALESCE(sal.setting_value, sapl.setting_value) AS series_abbrev,
 				COALESCE(f.seq, ?) AS order_by
-			FROM	published_monographs pm
-				JOIN monographs m ON pm.monograph_id = m.monograph_id
+			FROM	published_submissions ps
+				JOIN submissions m ON ps.submission_id = m.submission_id
 				LEFT JOIN series s ON s.series_id = m.series_id
 				LEFT JOIN series_settings stpl ON (s.series_id = stpl.series_id AND stpl.setting_name = ? AND stpl.locale = ?)
 				LEFT JOIN series_settings stl ON (s.series_id = stl.series_id AND stl.setting_name = ? AND stl.locale = ?)
 				LEFT JOIN series_settings sapl ON (s.series_id = sapl.series_id AND sapl.setting_name = ? AND sapl.locale = ?)
 				LEFT JOIN series_settings sal ON (s.series_id = sal.series_id AND sal.setting_name = ? AND sal.locale = ?)
-				LEFT JOIN monograph_categories mc ON (mc.monograph_id = m.monograph_id AND mc.category_id = ?)
+				LEFT JOIN submission_categories mc ON (mc.submission_id = m.submission_id AND mc.category_id = ?)
 				LEFT JOIN series_categories sca ON (sca.series_id = s.series_id)
 				LEFT JOIN categories sc ON (sc.category_id = sca.category_id AND sc.category_id = ?)
-				LEFT JOIN features f ON (f.monograph_id = m.monograph_id AND f.assoc_type = ? AND f.assoc_id = ?)
-			WHERE	pm.date_published IS NOT NULL AND (sc.category_id IS NOT NULL OR mc.category_id IS NOT NULL)
+				LEFT JOIN features f ON (f.submission_id = m.submission_id AND f.assoc_type = ? AND f.assoc_id = ?)
+			WHERE	ps.date_published IS NOT NULL AND (sc.category_id IS NOT NULL OR mc.category_id IS NOT NULL)
 				' . ($pressId?' AND m.press_id = ?':'' ) . '
-			ORDER BY order_by, pm.date_published',
+			ORDER BY order_by, ps.date_published',
 			$params,
 			$rangeInfo
 		);
@@ -233,19 +233,19 @@ class PublishedMonographDAO extends MonographDAO {
 
 		$result = $this->retrieve(
 			'SELECT	m.*,
-				pm.*,
+				ps.*,
 				COALESCE(stl.setting_value, stpl.setting_value) AS series_title,
 				COALESCE(sal.setting_value, sapl.setting_value) AS series_abbrev
-			FROM	monographs m
-				JOIN published_monographs pm ON (pm.monograph_id = m.monograph_id)
+			FROM	submissions m
+				JOIN published_submissions ps ON (ps.submission_id = m.submission_id)
 				LEFT JOIN series s ON s.series_id = m.series_id
 				LEFT JOIN series_settings stpl ON (s.series_id = stpl.series_id AND stpl.setting_name = ? AND stpl.locale = ?)
 				LEFT JOIN series_settings stl ON (s.series_id = stl.series_id AND stl.setting_name = ? AND stl.locale = ?)
 				LEFT JOIN series_settings sapl ON (s.series_id = sapl.series_id AND sapl.setting_name = ? AND sapl.locale = ?)
 				LEFT JOIN series_settings sal ON (s.series_id = sal.series_id AND sal.setting_name = ? AND sal.locale = ?)
-			WHERE	m.monograph_id = ?
+			WHERE	m.submission_id = ?
 				' . ($pressId?' AND m.press_id = ?':'')
-				. ($metadataApprovedOnly?' AND pm.date_published IS NOT NULL':''),
+				. ($metadataApprovedOnly?' AND ps.date_published IS NOT NULL':''),
 			$params
 		);
 
@@ -290,14 +290,14 @@ class PublishedMonographDAO extends MonographDAO {
 
 
 	/**
-	 * Inserts a new published monograph into published_monographs table
+	 * Inserts a new published monograph into published_submissions table
 	 * @param PublishedMonograph object
 	 */
 	function insertObject($publishedMonograph) {
 
 		$this->update(
-			sprintf('INSERT INTO published_monographs
-				(monograph_id, date_published, audience, audience_range_qualifier, audience_range_from, audience_range_to, audience_range_exact, cover_image)
+			sprintf('INSERT INTO published_submissions
+				(submission_id, date_published, audience, audience_range_qualifier, audience_range_from, audience_range_to, audience_range_exact, cover_image)
 				VALUES
 				(?, %s, ?, ?, ?, ?, ?, ?)',
 				$this->datetimeToDB($publishedMonograph->getDatePublished())),
@@ -319,7 +319,7 @@ class PublishedMonographDAO extends MonographDAO {
 	 */
 	function deleteById($monographId) {
 		$this->update(
-			'DELETE FROM published_monographs WHERE monograph_id = ?',
+			'DELETE FROM published_submissions WHERE submission_id = ?',
 			(int) $monographId
 		);
 	}
@@ -330,7 +330,7 @@ class PublishedMonographDAO extends MonographDAO {
 	 */
 	function updateObject($publishedMonograph) {
 		$this->update(
-			sprintf('UPDATE	published_monographs
+			sprintf('UPDATE	published_submissions
 				SET	date_published = %s,
 					audience = ?,
 					audience_range_qualifier = ?,
@@ -338,7 +338,7 @@ class PublishedMonographDAO extends MonographDAO {
 					audience_range_to = ?,
 					audience_range_exact = ?,
 					cover_image = ?
-				WHERE	monograph_id = ?',
+				WHERE	submission_id = ?',
 				$this->datetimeToDB($publishedMonograph->getDatePublished())),
 			array(
 				$publishedMonograph->getAudience(),

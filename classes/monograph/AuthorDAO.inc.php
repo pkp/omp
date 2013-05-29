@@ -48,7 +48,7 @@ class AuthorDAO extends PKPAuthorDAO {
 		if (isset($pressId)) $params[] = $pressId;
 		if (isset($initial)) {
 			$params[] = String::strtolower($initial) . '%';
-			$initialSql = ' AND LOWER(ma.last_name) LIKE LOWER(?)';
+			$initialSql = ' AND LOWER(a.last_name) LIKE LOWER(?)';
 		} else {
 			$initialSql = '';
 		}
@@ -56,30 +56,30 @@ class AuthorDAO extends PKPAuthorDAO {
 		$result = $this->retrieveRange(
 			'SELECT DISTINCT
 				CAST(\'\' AS CHAR) AS url,
-				ma.author_id AS author_id,
-				ma.submission_id AS submission_id,
+				a.author_id AS author_id,
+				a.submission_id AS submission_id,
 				CAST(\'\' AS CHAR) AS email,
 				0 AS primary_contact,
 				0 AS seq,
-				ma.first_name AS first_name,
-				ma.middle_name AS middle_name,
-				ma.last_name AS last_name,
+				a.first_name AS first_name,
+				a.middle_name AS middle_name,
+				a.last_name AS last_name,
 				asl.setting_value AS affiliation_l,
 				asl.locale,
 				aspl.setting_value AS affiliation_pl,
 				aspl.locale AS primary_locale,
-				ma.suffix AS suffix,
-				ma.user_group_id AS user_group_id,
-				ma.country
-			FROM	authors ma
-				LEFT JOIN author_settings aspl ON (ma.author_id = aspl.author_id AND aspl.setting_name = ? AND aspl.locale = ?)
-				LEFT JOIN author_settings asl ON (ma.author_id = asl.author_id AND asl.setting_name = ? AND asl.locale = ?)
-				JOIN monographs a ON (ma.submission_id = a.monograph_id)
-			WHERE	a.status = ' . STATUS_PUBLISHED . ' ' .
-				(isset($pressId)?'AND a.press_id = ? ':'') . '
-				AND (ma.last_name IS NOT NULL AND ma.last_name <> \'\')' .
+				a.suffix AS suffix,
+				a.user_group_id AS user_group_id,
+				a.country
+			FROM	authors a
+				LEFT JOIN author_settings aspl ON (a.author_id = aspl.author_id AND aspl.setting_name = ? AND aspl.locale = ?)
+				LEFT JOIN author_settings asl ON (a.author_id = asl.author_id AND asl.setting_name = ? AND asl.locale = ?)
+				JOIN submissions s ON (a.submission_id = s.submission_id)
+			WHERE	s.status = ' . STATUS_PUBLISHED . ' ' .
+				(isset($pressId)?'AND s.press_id = ? ':'') . '
+				AND (a.last_name IS NOT NULL AND a.last_name <> \'\')' .
 				$initialSql . '
-			ORDER BY ma.last_name, ma.first_name',
+			ORDER BY a.last_name, a.first_name',
 			$params,
 			$rangeInfo
 		);

@@ -37,10 +37,10 @@ class PublicationFormatDAO extends DAO {
 		$result = $this->retrieve(
 			'SELECT pf.*
 			FROM	publication_formats pf
-			' . ($pressId?' JOIN monographs m ON (m.monograph_id = pf.monograph_id)':'') . '
+			' . ($pressId?' JOIN submissions s ON (s.submission_id = pf.submission_id)':'') . '
 			WHERE	pf.publication_format_id = ?' .
-			($monographId?' AND pf.monograph_id = ?':'') .
-			($pressId?' AND m.press_id = ?':''),
+			($monographId?' AND pf.submission_id = ?':'') .
+			($pressId?' AND s.press_id = ?':''),
 			$params
 		);
 
@@ -62,7 +62,7 @@ class PublicationFormatDAO extends DAO {
 		$result = $this->retrieve(
 			'SELECT *
 			FROM	publication_formats
-			WHERE	monograph_id = ?',
+			WHERE	submission_id = ?',
 			(int) $monographId
 		);
 
@@ -79,8 +79,8 @@ class PublicationFormatDAO extends DAO {
 		$result = $this->retrieve(
 			'SELECT pf.*
 			FROM	publication_formats pf
-			JOIN	monographs m ON (m.monograph_id = pf.monograph_id)
-			WHERE m.press_id = ?',
+			JOIN	submissions s ON (s.submission_id = pf.submission_id)
+			WHERE	s.press_id = ?',
 			$params
 		);
 
@@ -96,7 +96,7 @@ class PublicationFormatDAO extends DAO {
 		$result = $this->retrieve(
 			'SELECT *
 			FROM	publication_formats
-			WHERE	monograph_id = ? AND is_approved = 1',
+			WHERE	submission_id = ? AND is_approved = 1',
 			(int) $monographId
 		);
 
@@ -148,7 +148,7 @@ class PublicationFormatDAO extends DAO {
 		$publicationFormat->setPhysicalFormat($row['physical_format']);
 		$publicationFormat->setSeq($row['seq']);
 		$publicationFormat->setId($row['publication_format_id']);
-		$publicationFormat->setMonographId($row['monograph_id']);
+		$publicationFormat->setSubmissionId($row['submission_id']);
 		$publicationFormat->setFileSize($row['file_size']);
 		$publicationFormat->setFrontMatter($row['front_matter']);
 		$publicationFormat->setBackMatter($row['back_matter']);
@@ -182,7 +182,7 @@ class PublicationFormatDAO extends DAO {
 	function insertObject(&$publicationFormat) {
 		$this->update(
 			'INSERT INTO publication_formats
-				(is_approved, entry_key, physical_format, monograph_id, seq, file_size, front_matter, back_matter, height, height_unit_code, width, width_unit_code, thickness, thickness_unit_code, weight, weight_unit_code, product_composition_code, product_form_detail_code, country_manufacture_code, imprint, product_availability_code, technical_protection_code, returnable_indicator_code, is_available)
+				(is_approved, entry_key, physical_format, submission_id, seq, file_size, front_matter, back_matter, height, height_unit_code, width, width_unit_code, thickness, thickness_unit_code, weight, weight_unit_code, product_composition_code, product_form_detail_code, country_manufacture_code, imprint, product_availability_code, technical_protection_code, returnable_indicator_code, is_available)
 			VALUES
 				(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
 			array(
@@ -351,8 +351,8 @@ class PublicationFormatDAO extends DAO {
 			'SELECT COUNT(*)
 			FROM publication_format_settings pft
 			INNER JOIN publication_formats p ON pft.publication_format_id = p.publication_format_id
-			INNER JOIN monographs m ON p.monograph_id = m.monograph_id
-			WHERE pft.setting_name = ? and pft.setting_value = ? and p.monograph_id <> ? AND m.press_id = ?',
+			INNER JOIN submissions s ON p.submission_id = s.submission_id
+			WHERE pft.setting_name = ? and pft.setting_value = ? and p.submission_id <> ? AND s.press_id = ?',
 			array(
 				'pub-id::'.$pubIdType,
 				$pubId,

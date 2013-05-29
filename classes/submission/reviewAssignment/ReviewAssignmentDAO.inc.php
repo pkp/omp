@@ -45,9 +45,9 @@ class ReviewAssignmentDAO extends PKPReviewAssignmentDAO {
 		$averageQualityRatings = array();
 		$result = $this->retrieve(
 			'SELECT	r.reviewer_id, AVG(r.quality) AS average, COUNT(r.quality) AS count
-			FROM	review_assignments r, monographs a
-			WHERE	r.submission_id = a.monograph_id AND
-				a.press_id = ?
+			FROM	review_assignments r, submissions s
+			WHERE	r.submission_id = s.submission_id AND
+				s.press_id = ?
 			GROUP BY r.reviewer_id',
 			(int) $pressId
 		);
@@ -282,12 +282,12 @@ class ReviewAssignmentDAO extends PKPReviewAssignmentDAO {
 
 		// Get counts of completed submissions
 		$result = $this->retrieve(
-				'SELECT	r.reviewer_id, MAX(r.date_notified) AS last_notified
-				FROM	review_assignments r, monographs m
-				WHERE	r.submission_id = m.monograph_id AND
-				m.press_id = ?
-				GROUP BY r.reviewer_id',
-				(int) $contextId
+			'SELECT	r.reviewer_id, MAX(r.date_notified) AS last_notified
+			FROM	review_assignments r, submissions s
+			WHERE	r.submission_id = s.submission_id AND
+				s.press_id = ?
+			GROUP BY r.reviewer_id',
+			(int) $contextId
 		);
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
@@ -300,12 +300,12 @@ class ReviewAssignmentDAO extends PKPReviewAssignmentDAO {
 		// Get completion status
 		$result = $this->retrieve(
 				'SELECT	r.reviewer_id, COUNT(*) AS incomplete
-				FROM	review_assignments r, monographs m
-				WHERE	r.submission_id = m.monograph_id AND
+				FROM	review_assignments r, submissions s
+				WHERE	r.submission_id = s.submission_id AND
 				r.date_notified IS NOT NULL AND
 				r.date_completed IS NULL AND
 				r.cancelled = 0 AND
-				m.press_id = ?
+				s.press_id = ?
 				GROUP BY r.reviewer_id',
 				(int) $contextId
 		);
@@ -320,14 +320,14 @@ class ReviewAssignmentDAO extends PKPReviewAssignmentDAO {
 
 		// Calculate time taken for completed reviews
 		$result = $this->retrieve(
-				'SELECT	r.reviewer_id, r.date_notified, r.date_completed
-				FROM	review_assignments r, monographs m
-				WHERE	r.submission_id = m.monograph_id AND
+			'SELECT	r.reviewer_id, r.date_notified, r.date_completed
+			FROM	review_assignments r, submissions s
+			WHERE	r.submission_id = s.submission_id AND
 				r.date_notified IS NOT NULL AND
 				r.date_completed IS NOT NULL AND
 				r.declined = 0 AND
-				m.press_id = ?',
-				(int) $contextId
+				s.press_id = ?',
+			(int) $contextId
 		);
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
