@@ -494,7 +494,6 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="notification.updatedReviewFiles">Review files updated.</message>
 	<message key="notification.savedCatalogMetadata">Catalog metadata saved.</message>
 	<message key="notification.savedPublicationFormatMetadata">Publication format metadata saved.</message>
-	<message key="notification.uploadedResponse">Response uploaded.</message>
 	<message key="notification.mailListDescription">Enter your email address to be notified when new content is added to the press.</message>
 	<message key="notification.notificationsPublicDescription">This page includes updates associated with this press, such as new monographs or series. You may subscribe to these notifications through RSS feeds (by clicking on the images to the right), or <![CDATA[  <a href="{$emailUrl}">through email.</a>]]></message>
 	<message key="notification.proofsApproved">Proofs approved.</message>

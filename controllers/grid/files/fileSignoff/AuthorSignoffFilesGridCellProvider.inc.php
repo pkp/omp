@@ -91,7 +91,7 @@ class AuthorSignoffFilesGridCellProvider extends GridCellProvider {
 				return array($addFileAction);
 			}
 
-			import('controllers.informationCenter.linkAction.SignoffNotesLinkAction');
+			import('lib.pkp.controllers.informationCenter.linkAction.SignoffNotesLinkAction');
 			return array(new SignoffNotesLinkAction($request, $signoff, $monograph->getId(), $this->getStageId()));
 		}
 

@@ -632,7 +632,6 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="notification.updatedReviewFiles">Αναθεωρήστε τα ενημερωμένα αρχεία.</message>
 	<message key="notification.savedCatalogMetadata">Τα μεταδεδομένα του Καταλόγου έχουν αποθηκευτεί.</message>
 	<message key="notification.savedPublicationFormatMetadata">Τα μεταδεδομένα του μορφότυπου της έκδοσης έχουν αποθηκευτεί.</message>
-	<message key="notification.uploadedResponse">Η απάντηση έχει μεταφορτωθεί (uploaded).</message>
 	<message key="notification.mailListDescription">Καταχωρήστε τη διεύθυνση του ηλεκτονικού σας ταχυδρομείου για να λάβετε ενημέρωση όταν προστεθεί νέο περιεχόμενο στις εκδόσεις μας.</message>
 	<message key="notification.notificationsPublicDescription"><![CDATA[Αυτή η σελίδα παρουσιάζει σημαντικές πληροφορίες σχετικά με αυτές τις εκδόσεις, όπως τη δημοσίευση νέων μονογραφιών ή σειρών. Μπορείτε να εγγραφείτε ώστε να λαμβάνετε αυτές τις ειδοποιήσεις μέσω ροής RSS (πατώντας τις εικόνες στα δεξιά), ή μέσω <a href="{$emailUrl}">email.</a>]]></message>
 	<message key="notification.proofsApproved">Το Τυπογραφικό δοκίμιο έχει εγκριθεί.</message>
