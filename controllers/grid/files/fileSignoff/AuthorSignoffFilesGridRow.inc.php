@@ -46,7 +46,7 @@ class AuthorSignoffFilesGridRow extends SubmissionFilesGridRow {
 		// Grid only displays current users' signoffs.
 		assert($user->getId() == $signoff->getUserId());
 
-		import('controllers.informationCenter.linkAction.ReadSignoffHistoryLinkAction');
+		import('lib.pkp.controllers.informationCenter.linkAction.ReadSignoffHistoryLinkAction');
 		$this->addAction(new ReadSignoffHistoryLinkAction($request, $signoff->getId(), $submissionFile->getMonographId(), $this->getStageId()));
 
 		if (!$signoff->getDateCompleted()) {
