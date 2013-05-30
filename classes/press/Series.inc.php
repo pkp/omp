@@ -13,12 +13,14 @@
  * @brief Describes basic series properties.
  */
 
-class Series extends DataObject {
+import('lib.pkp.classes.context.PKPSection');
+
+class Series extends PKPSection {
 	/**
 	 * Constructor.
 	 */
 	function Series() {
-		parent::DataObject();
+		parent::PKPSection();
 	}
 
 	/**
@@ -26,7 +28,7 @@ class Series extends DataObject {
 	 * @return int
 	 */
 	function getPressId() {
-		return $this->getData('pressId');
+		return $this->getContextId();
 	}
 
 	/**
@@ -34,31 +36,7 @@ class Series extends DataObject {
 	 * @param $pressId int
 	 */
 	function setPressId($pressId) {
-		return $this->setData('pressId', $pressId);
-	}
-
-	/**
-	 * Get path to series (in URL).
-	 * @return string
-	 */
-	function getPath() {
-		return $this->getData('path');
-	}
-
-	/**
-	 * Set path to series (in URL).
-	 * @param $path string
-	 */
-	function setPath($path) {
-		return $this->setData('path', $path);
-	}
-
-	/**
-	 * Get localized title of the series.
-	 * @return string
-	 */
-	function getLocalizedTitle() {
-		return $this->getLocalizedData('title');
+		return $this->setContextId($pressId);
 	}
 
 	/**
@@ -78,24 +56,6 @@ class Series extends DataObject {
 		}
 
 		return $fullTitle;
-	}
-
-	/**
-	 * Get title of series.
-	 * @param $locale string
-	 * @return string
-	 */
-	function getTitle($locale) {
-		return $this->getData('title', $locale);
-	}
-
-	/**
-	 * Set title of series.
-	 * @param $title string
-	 * @param $locale string
-	 */
-	function setTitle($title, $locale) {
-		return $this->setData('title', $title, $locale);
 	}
 
 	/**

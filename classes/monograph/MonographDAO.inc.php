@@ -17,8 +17,6 @@ import('classes.monograph.Monograph');
 import('lib.pkp.classes.submission.SubmissionDAO');
 
 class MonographDAO extends SubmissionDAO {
-	var $cache;
-
 	/**
 	 * Constructor.
 	 */
@@ -44,12 +42,8 @@ class MonographDAO extends SubmissionDAO {
 	 * @return Monograph
 	 */
 	function getById($monographId, $pressId = null, $useCache = false) {
-		if ($useCache) {
-			$cache = $this->_getCache();
-			$returner = $cache->get($monographId);
-			if ($returner && $pressId != null && $pressId != $returner->getPressId()) $returner = null;
-			return $returner;
-		}
+		$submission = parent::getById($monographId, $pressId, $useCache);
+		if ($submission) return $submission;
 
 		$primaryLocale = AppLocale::getPrimaryLocale();
 		$locale = AppLocale::getLocale();
@@ -67,12 +61,12 @@ class MonographDAO extends SubmissionDAO {
 				COALESCE(stl.setting_value, stpl.setting_value) AS series_title,
 				COALESCE(sal.setting_value, sapl.setting_value) AS series_abbrev
 			FROM	submissions m
+				LEFT JOIN published_submissions ps ON (m.submission_id = ps.submission_id)
 				LEFT JOIN series s ON s.series_id = m.series_id
 				LEFT JOIN series_settings stpl ON (s.series_id = stpl.series_id AND stpl.setting_name = ? AND stpl.locale = ?)
 				LEFT JOIN series_settings stl ON (s.series_id = stl.series_id AND stl.setting_name = ? AND stl.locale = ?)
 				LEFT JOIN series_settings sapl ON (s.series_id = sapl.series_id AND sapl.setting_name = ? AND sapl.locale = ?)
 				LEFT JOIN series_settings sal ON (s.series_id = sal.series_id AND sal.setting_name = ? AND sal.locale = ?)
-				LEFT JOIN published_submissions ps ON (m.submission_id = ps.submission_id)
 			WHERE	m.submission_id = ?
 				' . ($pressId?' AND m.press_id = ?':''),
 			$params
