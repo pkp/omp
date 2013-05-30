@@ -28,7 +28,6 @@
 	<message key="monograph.type">Tipo de submissão</message>
 	<message key="monograph.pageProofs">Página de provas</message>
 	<message key="monograph.proofReadingDescription"><![CDATA[O editor de layout envia os arquivos prontos para produção aqui. Use <em>+Designar</em> para encaminhar as provas a autores e outros participantes, com versões corrigidas enviadas para aprovação antes da publicação.]]></message>
-	<message key="monograph.attachedFile">Arquivo anexado</message>
 	<message key="monograph.task.addNote">Incluir para questionamentos</message>
 	<message key="submission.task.responseDueDate">Data de entrega da resposta</message>
 	<message key="monograph.accessLogoOpen.altText">Acesso aberto</message>
@@ -242,8 +241,6 @@
 	<message key="grid.action.publicationFormatTab">Exibir a aba de formato de publicação</message>
 	<message key="grid.action.moreAnnouncements">Acessar página de notícias</message>
 	<message key="grid.action.submissionEmail">Clique para ler esta mensagem</message>
-	<message key="grid.action.viewSignoffNotes">Ver notas de homologação</message>
-	<message key="grid.action.fileUnconsider">Correções realizadas na prova. Esta tarefa pode ser desconsiderada.</message>
 	<message key="grid.action.approveProofs">Ver grid de provas</message>
 	<message key="grid.action.proofApproved">Prova de formato produzida</message>
 	<message key="grid.action.availablePublicationFormat">Des/Aprovar este formato</message>
@@ -616,7 +613,6 @@ Suporte à biblioteca mbstring: <strong>{$supportsMBString}</strong>]]></message
 	<message key="notification.type.layouteditorRequest">Solicitação de revisão dos layouts de "{$title}".</message>
 	<message key="notification.type.indexRequest">Solicitação de criação de sumário de "{$title}".</message>
 	<message key="notification.type.reviewAssignment">Avaliação pendente.</message>
-	<message key="notification.type.signoff">Auditoria pendente.</message>
 	<message key="notification.type.editorDecisionInternalReview">Avaliação interna iniciada.</message>
 	<message key="notification.type.roundStatusTitle">Situação da rodada {$round}</message>
 	<message key="notification.type.pendingRevisions">Revisões para consideração no estágio {$stage}.</message>

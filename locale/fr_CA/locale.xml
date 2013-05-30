@@ -28,7 +28,6 @@
 	<message key="monograph.type">Type de soumission</message>
 	<message key="monograph.pageProofs">Épreuves en page</message>
 	<message key="monograph.proofReadingDescription"><![CDATA[Le rédacteur metteur en page télécharge les fichiers prêts pour la production préparés ici afin de les rendre publiables. Utilisez <em>+Assigner</em> pour assigner les auteurs et les autres individus qui réviseront les épreuves en page. Les fichiers corrigés doivent être téléchargés pour approbation avant la publication.]]></message>
-	<message key="monograph.attachedFile">Fichier joint</message>
 	<message key="monograph.task.addNote">Ajouter à la tâche</message>
 	<message key="submission.task.responseDueDate">Date de réponse</message>
 	<message key="monograph.accessLogoOpen.altText">Accès libre</message>
@@ -243,8 +242,6 @@
 	<message key="grid.action.publicationFormatTab">Afficher l'onglet du format de publication</message>
 	<message key="grid.action.moreAnnouncements">Consulter la page des communiqués de presse</message>
 	<message key="grid.action.submissionEmail">Cliquer pour lire ce courriel</message>
-	<message key="grid.action.viewSignoffNotes">Visionner les notes de certification de conformité</message>
-	<message key="grid.action.fileUnconsider">Les épreuves ont été corrigées. Vous pourriez ne pas tenir compte de cette tâche.</message>
 	<message key="grid.action.approveProofs">Visionner la grille des épreuves</message>
 	<message key="grid.action.proofApproved">Le format a été vérifié</message>
 	<message key="grid.action.availablePublicationFormat">Approuver/ne pas approuver ce format</message>
@@ -628,7 +625,6 @@ Votre serveur supporte actuellement mbstring: <strong>{$supportsMBString}</stron
 	<message key="notification.type.layouteditorRequest">On vous a demandé de réviser la mise en page de "{$title}".</message>
 	<message key="notification.type.indexRequest">On vous a demandé de créer un index pour "{$title}".</message>
 	<message key="notification.type.reviewAssignment">Vous avez une évaluation en attente.</message>
-	<message key="notification.type.signoff">Vous avez une vérification en attente.</message>
 	<message key="notification.type.editorDecisionInternalReview">Le processus d'évaluation interne a débuté.</message>
 	<message key="notification.type.roundStatusTitle">Statut de la série {$round} </message>
 	<message key="notification.type.pendingRevisions">Vous devez tenir compte des révisions à cette étape: {$stage}.</message>

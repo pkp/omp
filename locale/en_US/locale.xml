@@ -26,7 +26,6 @@
 	<message key="monograph.type">Type of Submission</message>
 	<message key="monograph.pageProofs">Page Proofs</message>
 	<message key="monograph.proofReadingDescription"><![CDATA[The layout editor uploads the production-ready files that have been prepared for publication here. Use <em>+Assign</em> to designate authors and others to proofread the page proofs, with corrected files uploaded for approval prior to publication.]]></message>
-	<message key="monograph.attachedFile">Attached file</message>
 	<message key="monograph.task.addNote">Add to task</message>
 	<message key="monograph.accessLogoOpen.altText">Open Access</message>
 
@@ -210,8 +209,6 @@
 	<message key="grid.action.publicationFormatTab">Show the publication format tab</message>
 	<message key="grid.action.moreAnnouncements">Go to press announcements page</message>
 	<message key="grid.action.submissionEmail">Click to read this email</message>
-	<message key="grid.action.viewSignoffNotes">View signoff notes</message>
-	<message key="grid.action.fileUnconsider">Proofing corrections made. You may unconsider this task</message>
 	<message key="grid.action.approveProofs">View the proofs grid</message>
 	<message key="grid.action.proofApproved">Format has been proofed</message>
 	<message key="grid.action.availablePublicationFormat">Approve/disapprove this format</message>
@@ -516,7 +513,6 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="notification.type.layouteditorRequest">You have been asked to review layouts for "{$title}".</message>
 	<message key="notification.type.indexRequest">You have been asked to create an index for "{$title}".</message>
 	<message key="notification.type.reviewAssignment">You have a review pending.</message>
-	<message key="notification.type.signoff">You have an audit pending.</message>
 	<message key="notification.type.editorDecisionInternalReview">Internal review process started.</message>
 	<message key="notification.type.editorDecisionSendToProduction">Production process started.</message>
 	<message key="notification.type.roundStatusTitle">Round {$round} Status</message>
