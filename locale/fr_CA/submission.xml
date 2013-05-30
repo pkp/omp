@@ -139,13 +139,6 @@
 	<message key="submission.upload.proof">Télécharger une épreuve</message>
 	<message key="submission.upload.noAvailableReviewFiles">Vous n'avez aucun fichier à évaluer pour le moment.</message>
 	
-	<!-- Read/Upload/Perform Signoff -->
-	<message key="submission.signoff.selectFile">Sélectionnez le fichier que vous souhaitez utiliser pour fermer la session.</message>
-	<message key="submission.signoff.signoffOnFile">Session fermée avec ce fichier</message>
-	<message key="submission.signoff.signedOffOnFile">Session fermée sur ce fichier</message>
-	<message key="submission.signoff.noAvailableSignoffs">Aucun fichier n'est en attente de votre réponse pour le moment.</message>
-	<message key="submission.signoff.fileResponse">Réponse concernant le fichier</message>
-
 	<!-- Artwork Files Grid -->
 	<message key="grid.artworkFile.caption">Sous-titre</message>
 	<message key="grid.artworkFile.credit">Mention de titre</message>

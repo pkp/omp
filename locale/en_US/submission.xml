@@ -90,13 +90,6 @@
 	<message key="submission.submit.userGroup">Submit in my role as...</message>
 	<message key="submission.submit.userGroupDescription">If you are submitting an Edited Volume, you should choose the volume editor role.</message>
 
-	<!-- Read/Upload/Perform Signoff -->
-	<message key="submission.signoff.selectFile">Select the file you wish to signoff on</message>
-	<message key="submission.signoff.signoffOnFile">Signoff on this file</message>
-	<message key="submission.signoff.signedOffOnFile">Signed off on this file</message>
-	<message key="submission.signoff.noAvailableSignoffs">There are no files for you respond to at this time.</message>
-	<message key="submission.signoff.fileResponse">File Response</message>
-
 	<!-- Artwork Files Grid -->
 	<message key="grid.artworkFile.caption">Caption</message>
 	<message key="grid.artworkFile.credit">Credit</message>
