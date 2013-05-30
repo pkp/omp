@@ -25,6 +25,7 @@ class SignoffAccessPolicy extends PKPSignoffAccessPolicy {
 	function SignoffAccessPolicy($request, $args, $roleAssignments, $mode, $stageId) {
 		parent::PKPSignoffAccessPolicy($request, $args, $roleAssignments, $mode, $stageId);
 
+		$signoffAccessPolicy = $this->_baseSignoffAccessPolicy;
 		//
 		// Series editor role
 		//
