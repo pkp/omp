@@ -26,7 +26,6 @@ class SettingsHandler extends ManagementHandler {
 			array(
 				'index',
 				'categories',
-				'series',
 				'settings',
 				'access',
 				'press',
@@ -62,19 +61,6 @@ class SettingsHandler extends ManagementHandler {
 
 		$templateMgr = TemplateManager::getManager($request);
 		$jsonMessage = new JSONMessage(true, $templateMgr->fetch('management/categories.tpl'));
-		return $jsonMessage->getString();
-	}
-
-	/**
-	 * Display series admin page.
-	 * @param $args array
-	 * @param $request PKPRequest
-	 */
-	function series($args, $request) {
-		$this->setupTemplate($request);
-
-		$templateMgr = TemplateManager::getManager($request);
-		$jsonMessage = new JSONMessage(true, $templateMgr->fetch('management/series.tpl'));
 		return $jsonMessage->getString();
 	}
 

@@ -28,6 +28,7 @@ class PressSettingsTabHandler extends ManagerSettingsTabHandler {
 			'contact' => 'lib.pkp.controllers.tab.settings.contact.form.ContactForm',
 			'policies' => 'lib.pkp.controllers.tab.settings.policies.form.PoliciesForm',
 			'guidelines' => 'lib.pkp.controllers.tab.settings.guidelines.form.GuidelinesForm',
+			'series' => 'management/series.tpl',
 			'affiliationAndSupport' => 'lib.pkp.controllers.tab.settings.affiliation.form.AffiliationForm',
 		));
 	}
