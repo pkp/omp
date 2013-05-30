@@ -88,8 +88,7 @@
 	<message key="editor.submission.production.introduction"><![CDATA[À l'étape de publication, le rédacteur en chef choisit le format du livre (ex.: numérique, couverture souple, etc.) dans 
  <span class="pkp_help_title">Formats de publication</span>. Le rédacteur metteur en page préparera ensuite des fichiers publiables à partir des fichiers destinés à la publication. Les fichiers publiables sont téléchargés pour chaque format dans <span class="pkp_help_title">Épreuves</span>, où ils seront révisés. Le livre est <em>Disponible</em> (c'est-à-dire publié) pour chacun des formats dans <span class="pkp_help_title">Formats de publication</span>, lorsque les <em>Épreuves</em> ont été vérifiées et approuvées, et on indique que l'entrée de catalogue a été ajoutée à l'entrée de catalogue du livre.]]></message>
 	
-	<message key="editor.monograph.production.productionReadyFiles">Fichiers publiables</message>
-	<message key="editor.monograph.production.productionReadyFilesDescription"><![CDATA[Le rédacteur metteur en page prépare ces fichiers pour chaque format de publication, puis il télécharge les  <span class="pkp_help_title">Épreuves</span> appropriées pour révision.]]></message>
+	<message key="editor.submission.production.productionReadyFilesDescription"><![CDATA[Le rédacteur metteur en page prépare ces fichiers pour chaque format de publication, puis il télécharge les  <span class="pkp_help_title">Épreuves</span> appropriées pour révision.]]></message>
 	
 	<message key="editor.monograph.proofs">Épreuves</message>
 	<message key="editor.monograph.production.approvalAndPublishing">Approbation et publication</message>
