@@ -23,27 +23,6 @@ class SignoffDAO extends PKPSignoffDAO {
 	function SignoffDAO() {
 		parent::PKPSignoffDAO();
 	}
-
-
-	//
-	// Public methods.
-	//
-	/**
-	 * Get the related stage id by symbolic.
-	 * @return int
-	 */
-	function getStageIdBySymbolic($symbolic) {
-		switch ($symbolic) {
-			case 'SIGNOFF_COPYEDITING':
-				return WORKFLOW_STAGE_ID_EDITING;
-				break;
-			case 'SIGNOFF_PROOFING':
-				return WORKFLOW_STAGE_ID_PRODUCTION;
-				break;
-			default:
-				assert(false);
-		}
-	}
 }
 
 ?>
