@@ -54,16 +54,16 @@ class PublicationFormatDAO extends DAO {
 	}
 
 	/**
-	 * Retrieves a list of publication formats for a published monograph
-	 * @param int $monographId
+	 * Retrieves a list of publication formats for a submission
+	 * @param int $submissionId int
 	 * @return DAOResultFactory (PublicationFormat)
 	 */
-	function getByMonographId($monographId) {
+	function getBySubmissionId($submissionId) {
 		$result = $this->retrieve(
 			'SELECT *
 			FROM	publication_formats
 			WHERE	submission_id = ?',
-			(int) $monographId
+			(int) $submissionId
 		);
 
 		return new DAOResultFactory($result, $this, '_fromRow');
@@ -88,16 +88,16 @@ class PublicationFormatDAO extends DAO {
 	}
 
 	/**
-	 * Retrieves a list of approved publication formats for a published monograph
-	 * @param int $monographId
+	 * Retrieves a list of approved publication formats for a published submission
+	 * @param int $submissionId
 	 * @return DAOResultFactory (PublicationFormat)
 	 */
-	function getApprovedByMonographId($monographId) {
+	function getApprovedBySubmissionId($submissionId) {
 		$result = $this->retrieve(
 			'SELECT *
 			FROM	publication_formats
 			WHERE	submission_id = ? AND is_approved = 1',
-			(int) $monographId
+			(int) $submissionId
 		);
 
 		return new DAOResultFactory($result, $this, '_fromRow');

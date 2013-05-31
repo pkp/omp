@@ -71,9 +71,9 @@ class WorkflowHandler extends PKPWorkflowHandler {
 		);
 
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-		$publicationFormats =& $publicationFormatDao->getByMonographId($monograph->getId());
-		$templateMgr->assign_by_ref('publicationFormats', $publicationFormats->toAssociativeArray());
+		$submission = $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION);
+		$publicationFormats = $publicationFormatDao->getBySubmissionId($submission->getId());
+		$templateMgr->assign('publicationFormats', $publicationFormats->toAssociativeArray());
 
 		$templateMgr->assign('productionNotificationRequestOptions', $notificationRequestOptions);
 		$templateMgr->display('workflow/production.tpl');
@@ -87,10 +87,10 @@ class WorkflowHandler extends PKPWorkflowHandler {
 	function productionFormatsTab(&$args, $request) {
 		$templateMgr = TemplateManager::getManager($request);
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-		$publicationFormats =& $publicationFormatDao->getByMonographId($monograph->getId());
-		$templateMgr->assign_by_ref('submission', $monograph);
-		$templateMgr->assign_by_ref('publicationFormats', $publicationFormats->toAssociativeArray());
+		$submission = $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION);
+		$publicationFormats = $publicationFormatDao->getBySubmissionId($submission->getId());
+		$templateMgr->assign('submission', $submission);
+		$templateMgr->assign('publicationFormats', $publicationFormats->toAssociativeArray());
 		$templateMgr->assign('currentFormatTabId', (int) $request->getUserVar('currentFormatTabId'));
 
 		return $templateMgr->fetchJson('workflow/productionFormatsTab.tpl');

@@ -38,9 +38,8 @@ class SubmissionEventLogDAO extends PKPSubmissionEventLogDAO {
 	 * @param $submissionId int
 	 * @return DAOResultFactory
 	 */
-	function &getByMonographId($submissionId) {
-		$returner =& $this->getByAssoc(ASSOC_TYPE_SUBMISSION, $submissionId);
-		return $returner;
+	function getBySubmissionId($submissionId) {
+		return $this->getByAssoc(ASSOC_TYPE_SUBMISSION, $submissionId);
 	}
 }
 

@@ -131,10 +131,10 @@ class CatalogEntryTabHandler extends PublicationEntryTabHandler {
 				// perform some validation to make sure this format is enabled and assigned to this monograph
 				$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
 				$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
-				$publishedMonograph =& $publishedMonographDao->getById($submission->getId());
-				$formats =& $publicationFormatDao->getByMonographId($submission->getId());
+				$publishedMonograph = $publishedMonographDao->getById($submission->getId());
+				$formats = $publicationFormatDao->getBySubmissionId($submission->getId());
 				$form = null;
-				while ($format =& $formats->next()) {
+				while ($format = $formats->next()) {
 					if ($format->getId() == $publicationFormatId) {
 						$form = new CatalogEntryFormatMetadataForm($submission->getId(), $publicationFormatId, $format->getId(), $this->getStageId(), array('displayedInContainer' => true, 'tabPos' => $this->getTabPosition()));
 						$notificationKey = 'notification.savedPublicationFormatMetadata';

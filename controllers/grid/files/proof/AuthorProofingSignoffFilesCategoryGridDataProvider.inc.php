@@ -58,9 +58,9 @@ class AuthorProofingSignoffFilesCategoryGridDataProvider extends CategoryGridDat
 	 * @see GridDataProvider::loadData()
 	 */
 	function loadData() {
-		$monograph = $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		$submission = $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION);
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
-		$publicationFormatFactory =& $publicationFormatDao->getByMonographId($monograph->getId());
+		$publicationFormatFactory = $publicationFormatDao->getBySubmissionId($submission->getId());
 
 		return $publicationFormatFactory->toAssociativeArray();
 	}

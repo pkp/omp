@@ -126,16 +126,16 @@ class PublishedMonograph extends Monograph {
 	}
 
 	/**
-	 * Retrieves the assigned publication formats for this mongraph
-	 * @param $onlyApproved boolean whether to fetch only those that are in the catalog.
+	 * Retrieves the assigned publication formats for this submission
+	 * @param $onlyApproved boolean whether to fetch only those that are approved for publication.
 	 * @return array PublicationFormat
 	 */
 	function getPublicationFormats($onlyApproved = false) {
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
 		if ($onlyApproved) {
-			$formats = $publicationFormatDao->getApprovedByMonographId($this->getId());
+			$formats = $publicationFormatDao->getApprovedBySubmissionId($this->getId());
 		} else {
-			$formats = $publicationFormatDao->getByMonographId($this->getId());
+			$formats = $publicationFormatDao->getBySubmissionId($this->getId());
 		}
 		return $formats->toArray();
 	}

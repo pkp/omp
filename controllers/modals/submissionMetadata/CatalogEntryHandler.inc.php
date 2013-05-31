@@ -67,10 +67,10 @@ class CatalogEntryHandler extends PublicationEntryHandler {
 
 		// load in any publication formats assigned to this published monograph
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
-		$formats =& $publicationFormatDao->getByMonographId($submission->getId());
+		$formats = $publicationFormatDao->getBySubmissionId($submission->getId());
 		$publicationFormats = array();
-		while ($publicationFormat =& $formats->next()) {
-			$publicationFormats[] =& $publicationFormat;
+		while ($publicationFormat = $formats->next()) {
+			$publicationFormats[] = $publicationFormat;
 		}
 
 		$templateMgr->assign_by_ref('publicationFormats', $publicationFormats);
@@ -103,7 +103,7 @@ class CatalogEntryHandler extends PublicationEntryHandler {
 		$json = new JSONMessage();
 
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
-		$formats = $publicationFormatDao->getByMonographId($submission->getId());
+		$formats = $publicationFormatDao->getBySubmissionId($submission->getId());
 		$publicationFormats = array();
 		while ($format = $formats->next()) {
 			$publicationFormats[$format->getId()] = $format->getLocalizedName();

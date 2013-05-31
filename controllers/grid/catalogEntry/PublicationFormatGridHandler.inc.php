@@ -24,8 +24,8 @@ import('controllers.grid.catalogEntry.PublicationFormatGridRow');
 import('lib.pkp.classes.linkAction.request.AjaxModal');
 
 class PublicationFormatGridHandler extends GridHandler {
-	/** @var Monograph */
-	var $_monograph;
+	/** @var Submission */
+	var $_submission;
 
 	/** @var boolean */
 	var $_inCatalogEntryModal;
@@ -50,19 +50,19 @@ class PublicationFormatGridHandler extends GridHandler {
 	// Getters/Setters
 	//
 	/**
-	 * Get the monograph associated with this publication format grid.
-	 * @return Monograph
+	 * Get the submission associated with this publication format grid.
+	 * @return Submission
 	 */
-	function &getMonograph() {
-		return $this->_monograph;
+	function getSubmission() {
+		return $this->_submission;
 	}
 
 	/**
-	 * Set the Monograph
-	 * @param Monograph
+	 * Set the submission
+	 * @param $submission Submission
 	 */
-	function setMonograph($monograph) {
-		$this->_monograph =& $monograph;
+	function setSubmission($submission) {
+		$this->_submission = $submission;
 	}
 
 	/**
@@ -101,8 +101,8 @@ class PublicationFormatGridHandler extends GridHandler {
 		$this->setInstructions('editor.monograph.production.publicationFormatDescription');
 		$this->_inCatalogEntryModal = (boolean) $request->getUserVar('inCatalogEntryModal');
 
-		// Retrieve the authorized monograph.
-		$this->setMonograph($this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH));
+		// Retrieve the authorized submission.
+		$this->setSubmission($this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION));
 
 		// Load submission-specific translations
 		AppLocale::requireComponents(
@@ -131,8 +131,8 @@ class PublicationFormatGridHandler extends GridHandler {
 		);
 
 		// Columns
-		$monograph = $this->getMonograph();
-		$cellProvider = new PublicationFormatGridCellProvider($monograph->getId(), $this->getInCatalogEntryModal());
+		$submission = $this->getSubmission();
+		$cellProvider = new PublicationFormatGridCellProvider($submission->getId(), $this->getInCatalogEntryModal());
 		$this->addColumn(
 			new GridColumn(
 				'name',
@@ -181,19 +181,19 @@ class PublicationFormatGridHandler extends GridHandler {
 	 * @return PublicationFormatGridRow
 	 */
 	function getRowInstance() {
-		return new PublicationFormatGridRow($this->getMonograph());
+		return new PublicationFormatGridRow($this->getSubmission());
 	}
 
 	/**
 	 * Get the arguments that will identify the data in the grid
-	 * In this case, the monograph.
+	 * In this case, the submission.
 	 * @return array
 	 */
 	function getRequestArgs() {
-		$monograph = $this->getMonograph();
+		$submission = $this->getSubmission();
 
 		return array(
-			'submissionId' => $monograph->getId(),
+			'submissionId' => $submission->getId(),
 			'inCatalogEntryModal' => $this->getInCatalogEntryModal()
 		);
 	}
@@ -202,9 +202,9 @@ class PublicationFormatGridHandler extends GridHandler {
 	 * @see GridHandler::loadData
 	 */
 	function loadData($request, $filter = null) {
-		$monograph = $this->getMonograph();
+		$submission = $this->getSubmission();
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
-		$data = $publicationFormatDao->getByMonographId($monograph->getId());
+		$data = $publicationFormatDao->getBySubmissionId($submission->getId());
 		return $data->toAssociativeArray();
 	}
 
@@ -226,14 +226,14 @@ class PublicationFormatGridHandler extends GridHandler {
 	function editFormat($args, $request) {
 		// Identify the format to be updated
 		$publicationFormatId = (int) $request->getUserVar('publicationFormatId');
-		$monograph = $this->getMonograph();
+		$submission = $this->getSubmission();
 
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
 		$publicationFormat = $publicationFormatDao->getById($publicationFormatId);
 
 		// Form handling
 		import('controllers.grid.catalogEntry.form.PublicationFormatForm');
-		$publicationFormatForm = new PublicationFormatForm($monograph, $publicationFormat);
+		$publicationFormatForm = new PublicationFormatForm($submission, $publicationFormat);
 		$publicationFormatForm->initData();
 
 		$json = new JSONMessage(true, $publicationFormatForm->fetch($request));
@@ -249,14 +249,14 @@ class PublicationFormatGridHandler extends GridHandler {
 	function updateFormat($args, $request) {
 		// Identify the format to be updated
 		$publicationFormatId = (int) $request->getUserVar('publicationFormatId');
-		$monograph = $this->getMonograph();
+		$submission = $this->getSubmission();
 
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
 		$publicationFormat = $publicationFormatDao->getById($publicationFormatId);
 
 		// Form handling
 		import('controllers.grid.catalogEntry.form.PublicationFormatForm');
-		$publicationFormatForm = new PublicationFormatForm($monograph, $publicationFormat);
+		$publicationFormatForm = new PublicationFormatForm($submission, $publicationFormat);
 		$publicationFormatForm->readInputData();
 		if ($publicationFormatForm->validate()) {
 			$publicationFormatId = $publicationFormatForm->execute($request);
@@ -299,12 +299,12 @@ class PublicationFormatGridHandler extends GridHandler {
 	 * @return string Serialized JSON object
 	 */
 	function deleteFormat($args, $request) {
-		$press = $request->getPress();
+		$context = $request->getContext();
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
 		$publicationFormat = $publicationFormatDao->getById(
 			$request->getUserVar('publicationFormatId'),
-			null, // $pressId
-			$press->getId() // Make sure to validate the press context
+			null, // $submissionId
+			$context->getId() // Make sure to validate the context
 		);
 		$result = false;
 		if ($publicationFormat) {
@@ -315,7 +315,7 @@ class PublicationFormatGridHandler extends GridHandler {
 			// Create a tombstone for this publication format.
 			import('classes.publicationFormat.PublicationFormatTombstoneManager');
 			$publicationFormatTombstoneMgr = new PublicationFormatTombstoneManager();
-			$publicationFormatTombstoneMgr->insertTombstoneByPublicationFormat($publicationFormat, $press);
+			$publicationFormatTombstoneMgr->insertTombstoneByPublicationFormat($publicationFormat, $context);
 
 			$currentUser = $request->getUser();
 			$notificationMgr = new NotificationManager();
@@ -324,7 +324,7 @@ class PublicationFormatGridHandler extends GridHandler {
 			// log the deletion of the format.
 			import('lib.pkp.classes.log.SubmissionLog');
 			import('classes.log.SubmissionEventLogEntry');
-			SubmissionLog::logEvent($request, $this->getMonograph(), SUBMISSION_LOG_PUBLICATION_FORMAT_REMOVE, 'submission.event.publicationFormatRemoved', array('formatName' => $publicationFormat->getLocalizedName()));
+			SubmissionLog::logEvent($request, $this->getSubmission(), SUBMISSION_LOG_PUBLICATION_FORMAT_REMOVE, 'submission.event.publicationFormatRemoved', array('formatName' => $publicationFormat->getLocalizedName()));
 
 			return DAO::getDataChangedEvent();
 		} else {
@@ -341,12 +341,12 @@ class PublicationFormatGridHandler extends GridHandler {
 	 * @return string Serialized JSON object
 	 */
 	function setAvailable($args, $request) {
-		$press = $request->getPress();
+		$context = $request->getContext();
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
 		$publicationFormat =& $publicationFormatDao->getById(
 			$request->getUserVar('publicationFormatId'),
-			null, // $monographId
-			$press->getId() // Make sure to validate the context.
+			null, // $submissionId
+			$context->getId() // Make sure to validate the context.
 		);
 
 		if ($publicationFormat) {
@@ -358,7 +358,7 @@ class PublicationFormatGridHandler extends GridHandler {
 			import('lib.pkp.classes.log.SubmissionLog');
 			import('classes.log.SubmissionEventLogEntry');
 			SubmissionLog::logEvent(
-				$request, $this->getMonograph(),
+				$request, $this->getSubmission(),
 				$newAvailableState?SUBMISSION_LOG_PUBLICATION_FORMAT_AVAILABLE:SUBMISSION_LOG_PUBLICATION_FORMAT_UNAVAILABLE,
 				$newAvailableState?'submission.event.publicationFormatMadeAvailable':'submission.event.publicationFormatMadeUnavailable',
 				array('publicationFormatName' => $publicationFormat->getLocalizedName())
@@ -373,7 +373,7 @@ class PublicationFormatGridHandler extends GridHandler {
 				$publicationFormatTombstoneMgr->deleteTombstonesByPublicationFormats(array($publicationFormat));
 			} else {
 				// Create a tombstone for this publication format.
-				$publicationFormatTombstoneMgr->insertTombstoneByPublicationFormat($publicationFormat, $press);
+				$publicationFormatTombstoneMgr->insertTombstoneByPublicationFormat($publicationFormat, $context);
 			}
 
 			return DAO::getDataChangedEvent($publicationFormat->getId());
