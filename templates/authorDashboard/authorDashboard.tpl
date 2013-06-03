@@ -52,7 +52,7 @@
 		<div class="pkp_authorDashboard_stageContainer" id="submission">
 			<h3><a href="#">{translate key='submission.submission'}</a></h3>
 			<div id="submissionContent">
-				{url|assign:submissionFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.submission.AuthorSubmissionDetailsFilesGridHandler" op="fetchGrid" monographId=$monograph->getId()}
+				{url|assign:submissionFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.submission.AuthorSubmissionDetailsFilesGridHandler" op="fetchGrid" monographId=$monograph->getId() escape=false}
 				{load_url_in_div id="submissionFilesGridDiv" url=$submissionFilesGridUrl}
 			</div>
 		</div>
@@ -123,7 +123,7 @@
 		<div class="pkp_authorDashboard_stageContainer" id="documents">
 			<h3><a href="#">{translate key='submission.documents'}</a></h3>
 			<div id="documentsContent">
-				{url|assign:documentsGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.submissionDocuments.SubmissionDocumentsFilesGridHandler" op="fetchGrid" monographId=$monograph->getId()}
+				{url|assign:documentsGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.submissionDocuments.SubmissionDocumentsFilesGridHandler" op="fetchGrid" monographId=$monograph->getId() escape=false}
 				{load_url_in_div id="documentsGridDiv" url=$documentsGridUrl}
 			</div>
 		</div>

@@ -23,7 +23,7 @@
 
 	<!-- Submission upload grid -->
 
-	{url|assign:submissionFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.submission.SubmissionWizardFilesGridHandler" op="fetchGrid" monographId=$monographId}
+	{url|assign:submissionFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.submission.SubmissionWizardFilesGridHandler" op="fetchGrid" monographId=$monographId escape=false}
 	{load_url_in_div id="submissionFilesGridDiv" url=$submissionFilesGridUrl}
 
 	{if $pressSettings.supportPhone}

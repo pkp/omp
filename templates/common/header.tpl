@@ -118,7 +118,7 @@
 					{/if}
 				</div>
 
-				{url|assign:fetchSidebarUrl page="sidebar"}
+				{url|assign:fetchSidebarUrl page="sidebar" escape=false}
 				{load_url_in_div id="sidebarContainer" url=$fetchSidebarUrl}
 
 				<script type="text/javascript">

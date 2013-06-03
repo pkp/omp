@@ -36,10 +36,10 @@
 		{/fbvFormSection}
 	{/fbvFormArea}
 
-	{url|assign:announcementTypeGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.content.announcements.AnnouncementTypeGridHandler" op="fetchGrid"}
+	{url|assign:announcementTypeGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.content.announcements.AnnouncementTypeGridHandler" op="fetchGrid" escape=false}
 	{load_url_in_div id="announcementTypeGridContainer" url="$announcementTypeGridUrl"}
 
-	{url|assign:announcementGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.content.announcements.ManageAnnouncementGridHandler" op="fetchGrid"}
+	{url|assign:announcementGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.content.announcements.ManageAnnouncementGridHandler" op="fetchGrid" escape=false}
 	{load_url_in_div id="announcementGridContainer" url="$announcementGridUrl"}
 
 	{fbvFormButtons id="announcementSettingsFormSubmit" submitText="common.save" hideCancel=true}

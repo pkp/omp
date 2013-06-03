@@ -27,7 +27,7 @@
 		</div>
 	{/if}
 
-	{url|assign:pressesUrl router=$smarty.const.ROUTE_COMPONENT component="grid.admin.press.PressGridHandler" op="fetchGrid"}
+	{url|assign:pressesUrl router=$smarty.const.ROUTE_COMPONENT component="grid.admin.press.PressGridHandler" op="fetchGrid" escape=false}
 	{load_url_in_div id="pressGridContainer" url=$pressesUrl}
 </div>
 
