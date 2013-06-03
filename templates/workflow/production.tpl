@@ -35,7 +35,7 @@
 		{fbvFormArea id="publicationFormats"}
 			{fbvFormSection}
 				<!--  Formats -->
-				{url|assign:formatGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.catalogEntry.PublicationFormatGridHandler" op="fetchGrid" submissionId=$submission->getId()}
+				{url|assign:formatGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.catalogEntry.PublicationFormatGridHandler" op="fetchGrid" submissionId=$submission->getId() escape=false}
 				{load_url_in_div id="formatsGridContainer"|uniqid url=$formatGridUrl}
 			{/fbvFormSection}
 		{/fbvFormArea}

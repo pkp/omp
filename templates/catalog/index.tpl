@@ -12,7 +12,7 @@
 {/strip}
 
 {* Include the carousel view of featured content *}
-{url|assign:carouselUrl router=$smarty.const.ROUTE_COMPONENT component="carousel.CarouselHandler" op="fetch"}
+{url|assign:carouselUrl router=$smarty.const.ROUTE_COMPONENT component="carousel.CarouselHandler" op="fetch" escape=false}
 {load_url_in_div id="carousel" url=$carouselUrl}
 
 {* Include the full monograph list *}

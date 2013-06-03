@@ -40,7 +40,7 @@
 		<!--  Chapters -->
 		{if $isEditedVolume}
 			{assign var="chaptersGridContainer" value="chaptersGridContainer-"|uniqid|escape}
-			{url|assign:chaptersGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.users.chapter.ChapterGridHandler" op="fetchGrid" submissionId=$submissionId}
+			{url|assign:chaptersGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.users.chapter.ChapterGridHandler" op="fetchGrid" submissionId=$submissionId escape=false}
 			{load_url_in_div id=$chaptersGridContainer url="$chaptersGridUrl"}
 		{/if}
 	{/if}

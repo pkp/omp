@@ -58,7 +58,7 @@
 		{fbvFormSection description="grid.catalogEntry.representativesDescription"}
 			<!-- Representatives -->
 			{assign var="divId" value="representativesGridContainer"|concat:$publicationFormatId|escape}
-			{url|assign:representativesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.catalogEntry.RepresentativesGridHandler" op="fetchGrid" submissionId=$submissionId}
+			{url|assign:representativesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.catalogEntry.RepresentativesGridHandler" op="fetchGrid" submissionId=$submissionId escape=false}
 			{load_url_in_div id="$divId" url="$representativesGridUrl"}
 		{/fbvFormSection}
 	{/fbvFormArea}
