@@ -17,18 +17,6 @@
  * @brief Class for a Monograph.
  */
 
-
-// Submission status constants
-define('STATUS_ARCHIVED', 0);
-define('STATUS_QUEUED', 1);
-define('STATUS_PUBLISHED', 3);
-define('STATUS_DECLINED', 4);
-
-define ('STATUS_QUEUED_UNASSIGNED', 5);
-define ('STATUS_QUEUED_REVIEW', 6);
-define ('STATUS_QUEUED_EDITING', 7);
-define ('STATUS_INCOMPLETE', 8);
-
 define('WORK_TYPE_EDITED_VOLUME', 1);
 define('WORK_TYPE_AUTHORED_WORK', 2);
 
@@ -42,9 +30,6 @@ class Monograph extends Submission {
 	 * Constructor.
 	 */
 	function Monograph() {
-		// Switch on meta-data adapter support.
-		$this->setHasLoadableAdapters(true);
-
 		parent::Submission();
 	}
 
@@ -144,42 +129,6 @@ class Monograph extends Submission {
 		$this->setData('seriesPosition', $seriesPosition);
 	}
 
-	/**
-	 * Get comments to editor.
-	 * @return string
-	 */
-	function getCommentsToEditor() {
-		return $this->getData('commentsToEditor');
-	}
-
-	/**
-	 * Set comments to editor.
-	 * @param $commentsToEditor string
-	 */
-	function setCommentsToEditor($commentsToEditor) {
-		return $this->setData('commentsToEditor', $commentsToEditor);
-	}
-
-	/**
-	 * Return boolean indicating if author should be hidden in contributor statement.
-	 * @return boolean
-	 */
-	function getHideAuthor() {
-		return $this->getData('hideAuthor');
-	}
-
-	/**
-	 * Set if author should be hidden in the contributor statement.
-	 * @param $hideAuthor boolean
-	 */
-	function setHideAuthor($hideAuthor) {
-		return $this->setData('hideAuthor', $hideAuthor);
-	}
-
-
-	//
-	// Peer Review
-	//
 	/**
 	 * Get the work type (constant in WORK_TYPE_...)
 	 * @return int
