@@ -171,9 +171,9 @@ class CatalogHandler extends Handler {
 
 		// Fetch the monographs to display
 		import('classes.search.MonographSearch');
-		$keywords = array(MonographSearch::parseQuery($query));
+		$monographSearch = new MonographSearch();
+		$resultsIterator = $monographSearch->retrieveResults($press, array(null => $query));
 
-		$resultsIterator =& MonographSearch::retrieveResults($press, $keywords);
 		$publishedMonographs = array();
 		while ($result = $resultsIterator->next()) {
 			$publishedMonograph = $result['publishedMonograph'];

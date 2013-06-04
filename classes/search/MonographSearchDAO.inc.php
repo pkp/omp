@@ -13,50 +13,15 @@
  * @brief DAO class for monograph search index.
  */
 
-
-
 import('classes.search.MonographSearch');
+import('lib.pkp.classes.search.SubmissionSearchDAO');
 
-class MonographSearchDAO extends DAO {
+class MonographSearchDAO extends SubmissionSearchDAO {
 	/**
 	 * Constructor
 	 */
 	function MonographSearchDAO() {
-		parent::DAO();
-	}
-
-	/**
-	 * Add a word to the keyword list (if it doesn't already exist).
-	 * @param $keyword string
-	 * @return int the keyword ID
-	 */
-	function insertKeyword($keyword) {
-		static $monographSearchKeywordIds = array();
-		if (isset($monographSearchKeywordIds[$keyword])) return $monographSearchKeywordIds[$keyword];
-		$result = $this->retrieve(
-			'SELECT keyword_id FROM submission_search_keyword_list WHERE keyword_text = ?',
-			$keyword
-		);
-		if($result->RecordCount() == 0) {
-			$result->Close();
-			if ($this->update(
-				'INSERT INTO submission_search_keyword_list (keyword_text) VALUES (?)',
-				$keyword,
-				true,
-				false
-			)) {
-				$keywordId = $this->_getInsertId('submission_search_keyword_list', 'keyword_id');
-			} else {
-				$keywordId = null; // Bug #2324
-			}
-		} else {
-			$keywordId = $result->fields[0];
-			$result->Close();
-		}
-
-		$monographSearchKeywordIds[$keyword] = $keywordId;
-
-		return $keywordId;
+		parent::SubmissionSearchDAO();
 	}
 
 	/**
@@ -94,12 +59,12 @@ class MonographSearchDAO extends DAO {
 		}
 
 		if (!empty($press)) {
-			$sqlWhere .= ' AND m.press_id = ?';
+			$sqlWhere .= ' AND s.press_id = ?';
 			$params[] = $press->getId();
 		}
 
 		$result = $this->retrieveCached(
-			'SELECT
+			$sql = 'SELECT
 				o.submission_id,
 				COUNT(*) AS count
 			FROM
@@ -116,85 +81,6 @@ class MonographSearchDAO extends DAO {
 		);
 
 		return new DBRowIterator($result);
-	}
-
-	/**
-	 * Delete all keywords for an monograph object.
-	 * @param $monographId int
-	 * @param $type int optional
-	 * @param $assocId int optional
-	 */
-	function deleteMonographKeywords($monographId, $type = null, $assocId = null) {
-		$sql = 'SELECT object_id FROM submission_search_objects WHERE submission_id = ?';
-		$params = array($monographId);
-
-		if (isset($type)) {
-			$sql .= ' AND type = ?';
-			$params[] = $type;
-		}
-
-		if (isset($assocId)) {
-			$sql .= ' AND assoc_id = ?';
-			$params[] = $assocId;
-		}
-
-		$result = $this->retrieve($sql, $params);
-		while (!$result->EOF) {
-			$objectId = $result->fields[0];
-			$this->update('DELETE FROM submission_search_object_keywords WHERE object_id = ?', $objectId);
-			$this->update('DELETE FROM submission_search_objects WHERE object_id = ?', $objectId);
-			$result->MoveNext();
-		}
-		$result->Close();
-	}
-
-	/**
-	 * Add an monograph object to the index (if already exists, indexed keywords are cleared).
-	 * @param $monographId int
-	 * @param $type int
-	 * @param $assocId int
-	 * @return int the object ID
-	 */
-	function insertObject($monographId, $type, $assocId, $keepExisting = false) {
-		$result = $this->retrieve(
-			'SELECT object_id FROM submission_search_objects WHERE submission_id = ? AND type = ? AND assoc_id = ?',
-			array($monographId, $type, $assocId)
-		);
-		if ($result->RecordCount() == 0) {
-			$this->update(
-				'INSERT INTO submission_search_objects (submission_id, type, assoc_id) VALUES (?, ?, ?)',
-				array($monographId, $type, (int) $assocId)
-			);
-			$objectId = $this->_getInsertId('submission_search_objects', 'object_id');
-
-		} else {
-			$objectId = $result->fields[0];
-			$this->update(
-				'DELETE FROM submission_search_object_keywords WHERE object_id = ?',
-				$objectId
-			);
-		}
-		$result->Close();
-		unset($result);
-
-		return $objectId;
-	}
-
-	/**
-	 * Index an occurrence of a keyword in an object.s
-	 * @param $objectId int
-	 * @param $keyword string
-	 * @param $position int
-	 * @return $keywordId
-	 */
-	function insertObjectKeyword($objectId, $keyword, $position) {
-		$keywordId = $this->insertKeyword($keyword);
-		if ($keywordId === null) return null; // Bug #2324
-		$this->update(
-			'INSERT INTO submission_search_object_keywords (object_id, keyword_id, pos) VALUES (?, ?, ?)',
-			array($objectId, $keywordId, $position)
-		);
-		return $keywordId;
 	}
 }
 
