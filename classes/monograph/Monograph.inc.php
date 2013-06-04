@@ -49,13 +49,6 @@ class Monograph extends Submission {
 	}
 
 	/**
-	 * @see Submission::getAssocType()
-	 */
-	function getAssocType() {
-		return ASSOC_TYPE_MONOGRAPH;
-	}
-
-	/**
 	 * get press id
 	 * @return int
 	 */
