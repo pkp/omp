@@ -38,7 +38,7 @@ class Monograph extends Submission {
 	 * @return int
 	 */
 	function getPressId() {
-		return $this->getData('pressId');
+		return $this->getContextId();
 	}
 
 	/**
@@ -46,23 +46,7 @@ class Monograph extends Submission {
 	 * @param $pressId int
 	 */
 	function setPressId($pressId) {
-		return $this->setData('pressId', $pressId);
-	}
-
-	/**
-	 * Get the context ID for this submission.
-	 * @return int
-	 */
-	function getContextId() {
-		return $this->getPressId();
-	}
-
-	/**
-	 * Set the context ID for this submission.
-	 * @param $contextId int
-	 */
-	function setContextId($contextId) {
-		return $this->setPressId($contextId);
+		return $this->setContextId($pressId);
 	}
 
 	/**

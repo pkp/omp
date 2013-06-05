@@ -81,7 +81,7 @@ class CatalogBookHandler extends Handler {
 		// determine which pubId plugins are enabled.
 		$pubIdPlugins =& PluginRegistry::loadCategory('pubIds', true);
 		$enabledPubIdTypes = array();
-		foreach ($pubIdPlugins as $plugin) {
+		foreach ((array) $pubIdPlugins as $plugin) {
 			if ($plugin->getEnabled()) {
 				$enabledPubIdTypes[] = $plugin->getPubIdType();
 				// check to see if the format has a pubId set.  If not, generate one.

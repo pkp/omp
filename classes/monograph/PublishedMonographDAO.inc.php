@@ -34,14 +34,13 @@ class PublishedMonographDAO extends MonographDAO {
 		$primaryLocale = AppLocale::getPrimaryLocale();
 		$locale = AppLocale::getLocale();
 
-		$params = array(
-			REALLY_BIG_NUMBER,
-			'title', $primaryLocale, // Series title
-			'title', $locale, // Series title
-			'abbrev', $primaryLocale, // Series abbreviation
-			'abbrev', $locale, // Series abbreviation
-			ASSOC_TYPE_PRESS,
-			(int) $pressId
+		$params = array_merge(
+			array(REALLY_BIG_NUMBER),
+			$this->_getFetchParameters(),
+			array(
+				ASSOC_TYPE_PRESS,
+				(int) $pressId
+			)
 		);
 
 		if ($searchText !== null) {
@@ -51,24 +50,19 @@ class PublishedMonographDAO extends MonographDAO {
 		$result = $this->retrieveRange(
 			'SELECT	' . ($searchText !== null?'DISTINCT ':'') . '
 				ps.*,
-				m.*,
-				COALESCE(stl.setting_value, stpl.setting_value) AS series_title,
-				COALESCE(sal.setting_value, sapl.setting_value) AS series_abbrev,
-				COALESCE(f.seq, ?) AS order_by
+				s.*,
+				COALESCE(f.seq, ?) AS order_by,
+				' . $this->_getFetchColumns() . '
 			FROM	published_submissions ps
-				JOIN submissions m ON ps.submission_id = m.submission_id
-				LEFT JOIN series s ON s.series_id = m.series_id
-				LEFT JOIN series_settings stpl ON (s.series_id = stpl.series_id AND stpl.setting_name = ? AND stpl.locale = ?)
-				LEFT JOIN series_settings stl ON (s.series_id = stl.series_id AND stl.setting_name = ? AND stl.locale = ?)
-				LEFT JOIN series_settings sapl ON (s.series_id = sapl.series_id AND sapl.setting_name = ? AND sapl.locale = ?)
-				LEFT JOIN series_settings sal ON (s.series_id = sal.series_id AND sal.setting_name = ? AND sal.locale = ?)
+				JOIN submissions s ON ps.submission_id = s.submission_id
+				' . $this->_getFetchJoins() . '
 				' . ($searchText !== null?'
-					LEFT JOIN authors a ON m.submission_id = a.submission_id
-					LEFT JOIN submission_settings mt ON (mt.submission_id = m.submission_id AND mt.setting_name = \'title\')
+					LEFT JOIN authors a ON s.submission_id = a.submission_id
+					LEFT JOIN submission_settings st ON (st.submission_id = s.submission_id AND st.setting_name = \'title\')
 				':'') . '
-				LEFT JOIN features f ON (f.submission_id = m.submission_id AND f.assoc_type = ? AND f.assoc_id = m.press_id)
-			WHERE	ps.date_published IS NOT NULL AND m.press_id = ?
-				' . ($searchText !== null?' AND (mt.setting_value LIKE ? OR a.first_name LIKE ? OR a.last_name LIKE ?)':'') . '
+				LEFT JOIN features f ON (f.submission_id = s.submission_id AND f.assoc_type = ? AND f.assoc_id = s.context_id)
+			WHERE	ps.date_published IS NOT NULL AND s.context_id = ?
+				' . ($searchText !== null?' AND (st.setting_value LIKE ? OR a.first_name LIKE ? OR a.last_name LIKE ?)':'') . '
 			ORDER BY order_by, ps.date_published',
 			$params,
 			$rangeInfo
@@ -84,32 +78,21 @@ class PublishedMonographDAO extends MonographDAO {
 	 * @return DAOResultFactory
 	 */
 	function getPressFeatures($pressId, $rangeInfo = null) {
-		$primaryLocale = AppLocale::getPrimaryLocale();
-		$locale = AppLocale::getLocale();
-
+		$params = array_merge(
+			$this->_getFetchColumns(),
+			array(ASSOC_TYPE_PRESS, (int) $pressId)
+		);
 		$result = $this->retrieveRange(
 			'SELECT	ps.*,
-				m.*,
-				COALESCE(stl.setting_value, stpl.setting_value) AS series_title,
-				COALESCE(sal.setting_value, sapl.setting_value) AS series_abbrev
+				s.*,
+				' . $this->_getFetchColumns() . '
 			FROM	published_submissions ps
-				JOIN submissions m ON ps.submission_id = m.submission_id
-				LEFT JOIN series s ON s.series_id = m.series_id
-				LEFT JOIN series_settings stpl ON (s.series_id = stpl.series_id AND stpl.setting_name = ? AND stpl.locale = ?)
-				LEFT JOIN series_settings stl ON (s.series_id = stl.series_id AND stl.setting_name = ? AND stl.locale = ?)
-				LEFT JOIN series_settings sapl ON (s.series_id = sapl.series_id AND sapl.setting_name = ? AND sapl.locale = ?)
-				LEFT JOIN series_settings sal ON (s.series_id = sal.series_id AND sal.setting_name = ? AND sal.locale = ?)
-				JOIN features f ON (f.submission_id = m.submission_id AND f.assoc_type = ? AND f.assoc_id = m.press_id)
-			WHERE	ps.date_published IS NOT NULL AND m.press_id = ?
+				JOIN submissions s ON ps.submission_id = s.submission_id
+				' . $this->_getFetchJoins() . '
+				JOIN features f ON (f.submission_id = s.submission_id AND f.assoc_type = ? AND f.assoc_id = s.context_id)
+			WHERE	ps.date_published IS NOT NULL AND s.context_id = ?
 			ORDER BY f.seq, ps.date_published',
-			array(
-				'title', $primaryLocale, // Series title
-				'title', $locale, // Series title
-				'abbrev', $primaryLocale, // Series abbreviation
-				'abbrev', $locale, // Series abbreviation
-				ASSOC_TYPE_PRESS,
-				(int) $pressId
-			),
+			$params,
 			$rangeInfo
 		);
 
@@ -124,16 +107,9 @@ class PublishedMonographDAO extends MonographDAO {
 	 * @return DAOResultFactory
 	 */
 	function getBySeriesId($seriesId, $pressId = null, $rangeInfo = null) {
-		$primaryLocale = AppLocale::getPrimaryLocale();
-		$locale = AppLocale::getLocale();
-
-		$params = array(
-			'title', $primaryLocale, // Series title
-			'title', $locale, // Series title
-			'abbrev', $primaryLocale, // Series abbreviation
-			'abbrev', $locale, // Series abbreviation
-			ASSOC_TYPE_SERIES,
-			(int) $seriesId
+		$params = array_merge(
+			$this->_getFetchParameters(),
+			array(ASSOC_TYPE_SERIES, (int) $seriesId)
 		);
 
 		if ($pressId) $params[] = (int) $pressId;
@@ -142,19 +118,14 @@ class PublishedMonographDAO extends MonographDAO {
 
 		$result = $this->retrieveRange(
 			'SELECT	ps.*,
-				m.*,
-				COALESCE(stl.setting_value, stpl.setting_value) AS series_title,
-				COALESCE(sal.setting_value, sapl.setting_value) AS series_abbrev
+				s.*,
+				' . $this->_getFetchColumns() . '
 			FROM	published_submissions ps
-				JOIN submissions m ON ps.submission_id = m.submission_id
-				JOIN series s ON s.series_id = m.series_id
-				LEFT JOIN series_settings stpl ON (s.series_id = stpl.series_id AND stpl.setting_name = ? AND stpl.locale = ?)
-				LEFT JOIN series_settings stl ON (s.series_id = stl.series_id AND stl.setting_name = ? AND stl.locale = ?)
-				LEFT JOIN series_settings sapl ON (s.series_id = sapl.series_id AND sapl.setting_name = ? AND sapl.locale = ?)
-				LEFT JOIN series_settings sal ON (s.series_id = sal.series_id AND sal.setting_name = ? AND sal.locale = ?)
-				LEFT JOIN features f ON (f.submission_id = m.submission_id AND f.assoc_type = ? AND f.assoc_id = s.series_id)
-			WHERE	ps.date_published IS NOT NULL AND s.series_id = ?
-				' . ($pressId?' AND m.press_id = ?':'' ) . '
+				JOIN submissions s ON ps.submission_id = s.submission_id
+				' . $this->_getFetchJoins() . '
+				JOIN features f ON (f.submission_id = s.submission_id AND f.assoc_type = ? AND f.assoc_id = se.series_id)
+			WHERE	ps.date_published IS NOT NULL AND se.series_id = ?
+				' . ($pressId?' AND s.context_id = ?':'' ) . '
 			ORDER BY COALESCE(f.seq, ?) ASC, ps.date_published',
 			$params,
 			$rangeInfo
@@ -171,40 +142,31 @@ class PublishedMonographDAO extends MonographDAO {
 	 * @return DAOResultFactory
 	 */
 	function getByCategoryId($categoryId, $pressId = null, $rangeInfo = null) {
-		$primaryLocale = AppLocale::getPrimaryLocale();
-		$locale = AppLocale::getLocale();
-
-		$params = array(
-			REALLY_BIG_NUMBER,
-			'title', $primaryLocale, // Series title
-			'title', $locale, // Series title
-			'abbrev', $primaryLocale, // Series abbreviation
-			'abbrev', $locale, // Series abbreviation
-			(int) $categoryId, (int) $categoryId, (int) $categoryId,
-			ASSOC_TYPE_SERIES
+		$params = array_merge(
+			array(REALLY_BIG_NUMBER),
+			$this->_getFetchParameters(),
+			array(
+				(int) $categoryId, (int) $categoryId, (int) $categoryId,
+				ASSOC_TYPE_SERIES
+			)
 		);
 
 		if ($pressId) $params[] = (int) $pressId;
 
 		$result = $this->retrieveRange(
 			'SELECT	DISTINCT ps.*,
-				m.*,
-				COALESCE(stl.setting_value, stpl.setting_value) AS series_title,
-				COALESCE(sal.setting_value, sapl.setting_value) AS series_abbrev,
-				COALESCE(f.seq, ?) AS order_by
+				s.*,
+				COALESCE(f.seq, ?) AS order_by,
+				' . $this->_getFetchColumns() . '
 			FROM	published_submissions ps
-				JOIN submissions m ON ps.submission_id = m.submission_id
-				LEFT JOIN series s ON s.series_id = m.series_id
-				LEFT JOIN series_settings stpl ON (s.series_id = stpl.series_id AND stpl.setting_name = ? AND stpl.locale = ?)
-				LEFT JOIN series_settings stl ON (s.series_id = stl.series_id AND stl.setting_name = ? AND stl.locale = ?)
-				LEFT JOIN series_settings sapl ON (s.series_id = sapl.series_id AND sapl.setting_name = ? AND sapl.locale = ?)
-				LEFT JOIN series_settings sal ON (s.series_id = sal.series_id AND sal.setting_name = ? AND sal.locale = ?)
-				LEFT JOIN submission_categories mc ON (mc.submission_id = m.submission_id AND mc.category_id = ?)
-				LEFT JOIN series_categories sca ON (sca.series_id = s.series_id)
-				LEFT JOIN categories sc ON (sc.category_id = sca.category_id AND sc.category_id = ?)
-				LEFT JOIN features f ON (f.submission_id = m.submission_id AND f.assoc_type = ? AND f.assoc_id = ?)
-			WHERE	ps.date_published IS NOT NULL AND (sc.category_id IS NOT NULL OR mc.category_id IS NOT NULL)
-				' . ($pressId?' AND m.press_id = ?':'' ) . '
+				JOIN submissions m ON ps.submission_id = s.submission_id
+				' . $this->_getFetchJoins() . '
+				LEFT JOIN submission_categories sc ON (sc.submission_id = s.submission_id AND sc.category_id = ?)
+				LEFT JOIN series_categories sca ON (sca.series_id = se.series_id)
+				LEFT JOIN categories c ON (c.category_id = sca.category_id AND c.category_id = ?)
+				LEFT JOIN features f ON (f.submission_id = s.submission_id AND f.assoc_type = ? AND f.assoc_id = ?)
+			WHERE	ps.date_published IS NOT NULL AND (c.category_id IS NOT NULL OR sc.category_id IS NOT NULL)
+				' . ($pressId?' AND s.context_id = ?':'' ) . '
 			ORDER BY order_by, ps.date_published',
 			$params,
 			$rangeInfo
@@ -220,31 +182,19 @@ class PublishedMonographDAO extends MonographDAO {
 	 * @return PublishedMonograph object
 	 */
 	function getById($monographId, $pressId = null, $metadataApprovedOnly = true) {
-		$primaryLocale = AppLocale::getPrimaryLocale();
-		$locale = AppLocale::getLocale();
-		$params = array(
-			'title', $primaryLocale, // Series title
-			'title', $locale, // Series title
-			'abbrev', $primaryLocale, // Series abbreviation
-			'abbrev', $locale, // Series abbreviation
-			(int) $monographId
-		);
+		$params = $this->_getFetchParameters();
+		$params[] = (int) $monographId;
 		if ($pressId) $params[] = (int) $pressId;
 
 		$result = $this->retrieve(
-			'SELECT	m.*,
+			'SELECT	s.*,
 				ps.*,
-				COALESCE(stl.setting_value, stpl.setting_value) AS series_title,
-				COALESCE(sal.setting_value, sapl.setting_value) AS series_abbrev
-			FROM	submissions m
-				JOIN published_submissions ps ON (ps.submission_id = m.submission_id)
-				LEFT JOIN series s ON s.series_id = m.series_id
-				LEFT JOIN series_settings stpl ON (s.series_id = stpl.series_id AND stpl.setting_name = ? AND stpl.locale = ?)
-				LEFT JOIN series_settings stl ON (s.series_id = stl.series_id AND stl.setting_name = ? AND stl.locale = ?)
-				LEFT JOIN series_settings sapl ON (s.series_id = sapl.series_id AND sapl.setting_name = ? AND sapl.locale = ?)
-				LEFT JOIN series_settings sal ON (s.series_id = sal.series_id AND sal.setting_name = ? AND sal.locale = ?)
-			WHERE	m.submission_id = ?
-				' . ($pressId?' AND m.press_id = ?':'')
+				' . $this->_getFetchColumns() . '
+			FROM	submissions s
+				JOIN published_submissions ps ON (ps.submission_id = s.submission_id)
+				' . $this->_getFetchJoins() . '
+			WHERE	s.submission_id = ?
+				' . ($pressId?' AND s.context_id = ?':'')
 				. ($metadataApprovedOnly?' AND ps.date_published IS NOT NULL':''),
 			$params
 		);

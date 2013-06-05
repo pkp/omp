@@ -13,14 +13,13 @@
 <data>
 	<!-- Bug #8095:  Standardize user groups and roles -->
 	<sql>
-		<query driver="mysql">ALTER TABLE user_group_stage CHANGE COLUMN press_id context_id BIGINT NOT NULL</query>
-		<query driver="postgres7">ALTER TABLE user_group_stage RENAME COLUMN press_id TO context_id</query>
+		<rename table="user_group_stage" column="press_id" to="context_id" />
 	</sql>
 	<!-- Bug #8087: Move content management into PKP lib -->
 	<sql>
-		<query driver="mysql">ALTER TABLE footerlinks CHANGE COLUMN press_id context_id BIGINT NOT NULL</query>
-		<query driver="mysql">ALTER TABLE social_media CHANGE COLUMN press_id context_id BIGINT NOT NULL</query>
-		<query driver="mysql">ALTER TABLE footer_categories CHANGE COLUMN press_id context_id BIGINT NOT NULL</query>
+		<rename table="footerlinks" column="press_id" to="context_id" />
+		<rename table="social_media" column="press_id" to="context_id" />
+		<rename table="footer_categories" column="press_id" to="context_id" />
 	</sql>
 
 	<!-- Bug #8148: Move Genres, context, submission defaults into PKP lib -->
@@ -70,5 +69,7 @@
 		<rename table="features" column="monograph_id" to="submission_id" />
 		<rename table="new_releases" column="monograph_id" to="submission_id" />
 		<rename table="publication_formats" column="monograph_id" to="submission_id" />
+		<!-- various press_id columns -->
+		<rename table="submissions" column="press_id" to="context_id" />
 	</sql>
 </data>

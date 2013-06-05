@@ -205,7 +205,7 @@ class ReviewerSubmissionDAO extends MonographDAO {
 				LEFT JOIN series_settings stl ON (s.series_id = stl.series_id AND stl.setting_name = ? AND stl.locale = ?)
 				LEFT JOIN series_settings sapl ON (s.series_id = sapl.series_id AND sapl.setting_name = ? AND sapl.locale = ?)
 				LEFT JOIN series_settings sal ON (s.series_id = sal.series_id AND sal.setting_name = ? AND sal.locale = ?)
-			WHERE r.reviewer_id = ? ' . ($pressId?	' AND m.press_id = ? ':'') .
+			WHERE r.reviewer_id = ? ' . ($pressId?	' AND m.context_id = ? ':'') .
 				'AND r.date_notified IS NOT NULL';
 
 		if ($active) {
@@ -250,7 +250,7 @@ class ReviewerSubmissionDAO extends MonographDAO {
 				LEFT JOIN series s ON (s.series_id = m.series_id)
 				LEFT JOIN users u ON (r.reviewer_id = u.user_id)
 				LEFT JOIN review_rounds r2 ON (r.submission_id = r2.submission_id AND r.stage_id = r2.stage_id AND r.round = r2.round)
-			WHERE	m.press_id = ? AND
+			WHERE	m.context_id = ? AND
 				r.reviewer_id = ? AND
 				r.date_notified IS NOT NULL',
 			array((int) $pressId, (int) $reviewerId)
