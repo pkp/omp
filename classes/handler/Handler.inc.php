@@ -46,9 +46,10 @@ class Handler extends PKPHandler {
 	 * a request needs to have one in its context but may be in a site-level
 	 * context as specified in the URL.
 	 * @param $request Request
+	 * @param $bestGuess true iff the function should make a best guess if no single context is appropriate
 	 * @return mixed Either a Press or null if none could be determined.
 	 */
-	function getTargetContext($request) {
+	function getTargetContext($request, $bestGuess = true) {
 		// Get the requested path.
 		$router = $request->getRouter();
 		$requestedPath = $router->getRequestedContextPath($request);
@@ -67,7 +68,7 @@ class Handler extends PKPHandler {
 			if (!$press && $pressesCount > 1) {
 				// Decide wich press to return.
 				$user = $request->getUser();
-				if ($user) {
+				if ($user && $bestGuess) {
 					// We have a user (private access).
 					$press = $this->getFirstUserContext($user, $presses->toArray());
 				}
