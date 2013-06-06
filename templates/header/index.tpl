@@ -7,4 +7,5 @@
  * Common site header div contents.
  *}
 {assign var="logoImage" value="templates/images/structure/omp_logo.png"}
+{url|assign:"homeUrl" page="index"}
 {include file="core:header/index.tpl"}
