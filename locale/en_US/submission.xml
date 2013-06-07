@@ -103,10 +103,6 @@
 
 	<!-- Copyediting Grid -->
 	<message key="grid.copyediting.deleteCopyeditorResponse">Delete Copyeditor Upload</message>
-	<message key="grid.copyediting.deleteSignoff">Unassign User</message>
-
-	<!-- Proofreading Grid -->
-	<message key="grid.noAuditors">No Auditors</message>
 
 	<!-- Submission-specific catalog info -->
 	<message key="submission.catalogEntry">Catalog</message>

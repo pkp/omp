@@ -152,10 +152,6 @@
 
 	<!-- Copyediting Grid -->
 	<message key="grid.copyediting.deleteCopyeditorResponse">Supprimer le téléchargement du réviseur</message>
-	<message key="grid.copyediting.deleteSignoff">Rappeler un utilisateur</message>
-
-	<!-- Proofreading Grid -->
-	<message key="grid.noAuditors">Aucun vérificateur</message>
 
 	<!-- Submission-specific catalog info -->
 	<message key="submission.catalogEntry">Catalogue</message>
