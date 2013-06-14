@@ -269,10 +269,9 @@ class CategoryDAO extends DAO {
 	 * @param $pressId int
 	 */
 	function deleteByPressId($pressId) {
-		$categories =& $this->getByPressId($pressId);
-		while ($category =& $categories->next()) {
+		$categories = $this->getByPressId($pressId);
+		while ($category = $categories->next()) {
 			$this->deleteObject($category, $pressId);
-			unset($category);
 		}
 	}
 

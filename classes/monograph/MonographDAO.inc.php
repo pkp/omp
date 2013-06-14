@@ -169,6 +169,9 @@ class MonographDAO extends SubmissionDAO {
 
 		$newReleaseDao = DAORegistry::getDAO('NewReleaseDAO');
 		$newReleaseDao->deleteByMonographId($monographId);
+
+		import('classes.search.MonographSearchIndex');
+		MonographSearchIndex::deleteTextIndex($monograph->getId());
 	}
 
 	/**
@@ -202,21 +205,6 @@ class MonographDAO extends SubmissionDAO {
 		);
 
 		return new DAOResultFactory($result, $this, '_fromRow');
-	}
-
-	/**
-	 * Delete all monographs by press ID.
-	 * @param $pressId int
-	 */
-	function deleteByPressId($pressId) {
-		$monographs = $this->getByPressId($pressId);
-		import('classes.search.MonographSearchIndex');
-		while ($monograph = $monographs->next()) {
-			if ($monograph->getDatePublished()) {
-				MonographSearchIndex::deleteTextIndex($monograph->getId());
-			}
-			$this->deleteById($monograph->getId());
-		}
 	}
 
 	/**
