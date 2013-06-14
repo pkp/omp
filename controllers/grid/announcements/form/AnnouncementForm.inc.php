@@ -105,9 +105,8 @@ class AnnouncementForm extends PKPAnnouncementForm {
 		$notificationUsers = array();
 		$allUsers = $userGroupDao->getUsersByContextId($pressId);
 		while (!$allUsers->eof()) {
-			$user =& $allUsers->next();
+			$user = $allUsers->next();
 			$notificationUsers[] = array('id' => $user->getId());
-			unset($user);
 		}
 		$notificationManager = new NotificationManager();
 		foreach ($notificationUsers as $userRole) {
