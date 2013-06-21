@@ -17,6 +17,13 @@ import('lib.pkp.classes.core.PKPPageRouter');
 
 class PageRouter extends PKPPageRouter {
 	/**
+	 * Constructor
+	 */
+	function PageRouter() {
+		parent::PKPPageRouter();
+	}
+
+	/**
 	 * get the cacheable pages
 	 * @return array
 	 */
