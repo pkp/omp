@@ -54,10 +54,11 @@ class SeriesEditorSubmissionDAO extends MonographDAO {
 		$primaryLocale = AppLocale::getPrimaryLocale();
 		$locale = AppLocale::getLocale();
 		$result = $this->retrieve(
-			'SELECT	m.*,
+			'SELECT	m.*, ps.date_published,
 				COALESCE(stl.setting_value, stpl.setting_value) AS series_title,
 				COALESCE(sal.setting_value, sapl.setting_value) AS series_abbrev
 			FROM	submissions m
+				LEFT JOIN published_submissions ps ON (ps.submission_id = m.submission_id)
 				LEFT JOIN series s ON (s.series_id = m.series_id)
 				LEFT JOIN series_settings stpl ON (s.series_id = stpl.series_id AND stpl.setting_name = ? AND stpl.locale = ?)
 				LEFT JOIN series_settings stl ON (s.series_id = stl.series_id AND stl.setting_name = ? AND stl.locale = ?)
