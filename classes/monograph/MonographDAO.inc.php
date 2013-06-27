@@ -222,21 +222,24 @@ class MonographDAO extends SubmissionDAO {
 
 	/**
 	 * Get all unassigned submissions for a context or all contexts
-	 * @param $contextId int optional the ID of the context to query.
+	 * @param $contextId mixed optional the ID of the journal to query, or an array containing possible context ids.
 	 * @param $subEditorId int optional the ID of the sub editor
 	 * 	whose series will be included in the results (excluding others).
+	 * @param $includeDeclined boolean optional include submissions which have STATUS_DECLINED
+	 * @param $includePublished boolean optional include submissions which are published
+	 * @param $rangeInfo DBRangeInfo
 	 * @return DAOResultFactory containing matching Submissions
 	 */
-	function getBySubEditorId($contextId = null, $subEditorId = null) {
+	function getBySubEditorId($contextId = null, $subEditorId = null, $includeDeclined = true, $includePublished = true, $rangeInfo = null) {
 		$primaryLocale = AppLocale::getPrimaryLocale();
 		$locale = AppLocale::getLocale();
 
 		$params = $this->_getFetchParameters();
 		$params[] = (int) ROLE_ID_MANAGER;
 		if ($subEditorId) $params[] = (int) $subEditorId;
-		if ($contextId) $params[] = (int) $contextId;
+		if ($contextId && is_int($contextId)) $params[] = (int) $contextId;
 
-		$result = $this->retrieve(
+		$result = $this->retrieveRange(
 			'SELECT	s.*, ps.date_published,
 				' . $this->_getFetchColumns() . '
 			FROM	submissions s
@@ -245,10 +248,14 @@ class MonographDAO extends SubmissionDAO {
 				LEFT JOIN stage_assignments sa ON (s.submission_id = sa.submission_id)
 				LEFT JOIN user_groups g ON (sa.user_group_id = g.user_group_id AND g.role_id = ?)
 				' . ($subEditorId?' JOIN series_editors se ON (se.press_id = s.context_id AND se.user_id = ? AND se.series_id = s.series_id)':'') . '
-			WHERE	s.date_submitted IS NOT NULL
-				' . ($contextId?' AND s.context_id = ?':'') . '
+			WHERE	s.date_submitted IS NOT NULL'
+			. (!$includeDeclined?' AND s.status <> ' . STATUS_DECLINED : '' )
+			. (!$includePublished?' AND ps.date_published IS NULL' : '' )
+			. ($contextId && !is_array($contextId)?' AND s.context_id = ?':'')
+			. ($contextId && is_array($contextId)?' AND s.context_id IN  (' . join(',', array_map(array($this,'_arrayWalkIntCast'), $contextId)) . ')':'') . '
 			GROUP BY s.submission_id',
-			$params
+			$params,
+			$rangeInfo
 		);
 
 		return new DAOResultFactory($result, $this, '_fromRow');
