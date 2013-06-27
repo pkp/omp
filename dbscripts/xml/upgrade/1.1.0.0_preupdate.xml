@@ -11,7 +11,7 @@
   *
   -->
 <data>
-	<!-- Bug #8095:  Standardize user groups and roles -->
+	<!-- Bug #8095: Standardize user groups and roles -->
 	<sql>
 		<rename table="user_group_stage" column="press_id" to="context_id" />
 	</sql>

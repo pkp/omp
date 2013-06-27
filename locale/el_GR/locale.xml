@@ -463,11 +463,11 @@
 
 	<!-- Registration -->
 	<message key="user.register.completeForm">Συμπληρώστε τη φόρμα για να εγγραφείτε στις εκδόσεις.</message>
-	<message key="user.register.selectPress">Επιλέξτε μια έκδοση για να εγγραφείτε</message>
-	<message key="user.register.noPresses">Δεν υπάρχουν εκδόσεις στις οποίες μπορείτε να εγγραφείτε στον ιστότοπο αυτό.</message>
+	<message key="user.register.selectContext">Επιλέξτε μια έκδοση για να εγγραφείτε</message>
+	<message key="user.register.noContexts">Δεν υπάρχουν εκδόσεις στις οποίες μπορείτε να εγγραφείτε στον ιστότοπο αυτό.</message>
 	<message key="user.register.privacyStatement">Πολιτική Προστασίας Προσωπικών Δεδομένων</message>
-	<message key="user.register.alreadyRegisteredOtherPress"><![CDATA[<a href="{$registerUrl}">Πατήστε εδώ</a> εάν είστε ήδη εγγεγραμμένος χρήστης σε αυτή ή άλλη έκδοση της συλλογής]]></message>
-	<message key="user.register.notAlreadyRegisteredOtherPress"><![CDATA[<a href="{$registerUrl}">Πατήστε εδώ</a> εάν <strong>δεν</strong> είστε ήδη εγγεγραμμένος σε αυτή ή άλλη έκδοση της συλλογής]]></message>
+	<message key="user.register.alreadyRegisteredOtherContext"><![CDATA[<a href="{$registerUrl}">Πατήστε εδώ</a> εάν είστε ήδη εγγεγραμμένος χρήστης σε αυτή ή άλλη έκδοση της συλλογής]]></message>
+	<message key="user.register.notAlreadyRegisteredOtherContext"><![CDATA[<a href="{$registerUrl}">Πατήστε εδώ</a> εάν <strong>δεν</strong> είστε ήδη εγγεγραμμένος σε αυτή ή άλλη έκδοση της συλλογής]]></message>
 	<message key="user.register.loginToRegister">Εισάγετε το υπάρχον όνομα χρήστη και τον κωδικό πρόσβασής σας για να εγγραφείτε σε αυτή την έκδοση.</message>
 	<message key="user.register.registrationDisabled">Οι εκδόσεις αυτές προς το παρόν δεν αποδέχεται εγγραφές χρηστών.</message>
 	<message key="user.register.form.passwordLengthTooShort">Ο κωδικός πρόσβασης που εισάγατε περιέχει λιγότερους χαρακτήρες από τον ελάχιστο επιτρεπτό αριθμό χαρακτήρων.</message>

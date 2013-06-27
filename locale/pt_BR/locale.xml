@@ -434,11 +434,11 @@
 
 	<!-- Registration -->
 	<message key="user.register.completeForm">Preencha o formulário para se cadastrar nesta editora.</message>
-	<message key="user.register.selectPress">Escolha a editora na qual deseja se cadastrar</message>
-	<message key="user.register.noPresses">Não há editoras disponíveis para realizar cadastro.</message>
+	<message key="user.register.selectContext">Escolha a editora na qual deseja se cadastrar</message>
+	<message key="user.register.noContexts">Não há editoras disponíveis para realizar cadastro.</message>
 	<message key="user.register.privacyStatement">Declaração de privacidade</message>
-	<message key="user.register.alreadyRegisteredOtherPress"><![CDATA[<a href="{$registerUrl}">Clique aqui</a> caso já possua um cadastro nesta ou outra editora hospedada neste site.]]></message>
-	<message key="user.register.notAlreadyRegisteredOtherPress"><![CDATA[<a href="{$registerUrl}">Clique aqui</a> caso <strong>não</strong> possua um cadastro nesta ou outra editora nesta site.]]></message>
+	<message key="user.register.alreadyRegisteredOtherContext"><![CDATA[<a href="{$registerUrl}">Clique aqui</a> caso já possua um cadastro nesta ou outra editora hospedada neste site.]]></message>
+	<message key="user.register.notAlreadyRegisteredOtherContext"><![CDATA[<a href="{$registerUrl}">Clique aqui</a> caso <strong>não</strong> possua um cadastro nesta ou outra editora nesta site.]]></message>
 	<message key="user.register.loginToRegister">Informe seu login e senha atuais para se cadastrar nesta editora.</message>
 	<message key="user.register.registrationDisabled">Esta editora não está aceitando cadastros no momento.</message>
 	<message key="user.register.form.passwordLengthTooShort">A senha informada não possui a quantidade de caracteres necessária.</message>

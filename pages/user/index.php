@@ -33,7 +33,7 @@ switch ($op) {
 	case 'register':
 	case 'registerUser':
 	case 'activateUser':
-		import('pages.user.RegistrationHandler');
+		import('lib.pkp.pages.user.RegistrationHandler');
 		define('HANDLER_CLASS', 'RegistrationHandler');
 		break;
 	//

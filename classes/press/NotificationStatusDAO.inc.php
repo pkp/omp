@@ -12,7 +12,6 @@
  * @brief Operations for retrieving and modifying users' press notification status.
  */
 
-
 class NotificationStatusDAO extends DAO {
 	/**
 	 * Constructor
@@ -25,7 +24,8 @@ class NotificationStatusDAO extends DAO {
 		$returner = array();
 
 		$result = $this->retrieve(
-			'SELECT p.press_id AS press_id, n.press_id AS notification FROM presses p LEFT JOIN notification_status n ON p.press_id = n.press_id AND n.user_id = ? ORDER BY p.seq',
+			'SELECT p.press_id, n.press_id AS notification FROM presses p LEFT JOIN notification_status n ON p.press_id = n.press_id AND n.user_id = ? ORDER BY p.seq',
+
 			(int) $userId
 		);
 
@@ -49,7 +49,7 @@ class NotificationStatusDAO extends DAO {
 		return $this->update(
 			($notificationStatus ? 'INSERT INTO notification_status (user_id, press_id) VALUES (?, ?)':
 			'DELETE FROM notification_status WHERE user_id = ? AND press_id = ?'),
-			array($userId, $pressId)
+			array((int) $userId, (int) $pressId)
 		);
 	}
 
@@ -57,9 +57,9 @@ class NotificationStatusDAO extends DAO {
 	 * Delete notification status entries by press ID
 	 * @param $pressId int
 	 */
-	function deleteNotificationStatusByPress($pressId) {
+	function deleteByPressId($pressId) {
 		return $this->update(
-			'DELETE FROM notification_status WHERE press_id = ?', $pressId
+			'DELETE FROM notification_status WHERE press_id = ?', (int) $pressId
 		);
 	}
 
@@ -67,9 +67,9 @@ class NotificationStatusDAO extends DAO {
 	 * Delete notification status entries by user ID
 	 * @param $userId int
 	 */
-	function deleteNotificationStatusByUserId($userId) {
+	function deleteByUserId($userId) {
 		return $this->update(
-			'DELETE FROM notification_status WHERE user_id = ?', $userId
+			'DELETE FROM notification_status WHERE user_id = ?', (int) $userId
 		);
 	}
 

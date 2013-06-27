@@ -88,9 +88,9 @@ class UserAction {
 		$sessionDao = DAORegistry::getDAO('SessionDAO');
 		$sessionDao->deleteByUserId($oldUserId);
 		$temporaryFileDao = DAORegistry::getDAO('TemporaryFileDAO');
-		$temporaryFileDao->deleteTemporaryFilesByUserId($oldUserId);
+		$temporaryFileDao->deleteByUserId($oldUserId);
 		$notificationStatusDao = DAORegistry::getDAO('NotificationStatusDAO');
-		$notificationStatusDao->deleteNotificationStatusByUserId($oldUserId);
+		$notificationStatusDao->deleteByUserId($oldUserId);
 		$userSettingsDao = DAORegistry::getDAO('UserSettingsDAO');
 		$userSettingsDao->deleteSettings($oldUserId);
 		$seriesEditorsDao = DAORegistry::getDAO('SeriesEditorsDAO');

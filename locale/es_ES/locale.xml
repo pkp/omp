@@ -264,7 +264,7 @@
 	<!-- Registration -->
 	<message key="user.register.completeForm">Completa el siguiente formulario para crear una cuenta en la editorial.</message>
 	<message key="user.register.privacyStatement">Declaración de privacidad</message>
-	<message key="user.register.alreadyRegisteredOtherPress"><![CDATA[<a href="{$registerUrl}">Haz clic aquí</a> si ya tienes cuenta en este sitio.]]></message>
+	<message key="user.register.alreadyRegisteredOtherContext"><![CDATA[<a href="{$registerUrl}">Haz clic aquí</a> si ya tienes cuenta en este sitio.]]></message>
 	<message key="user.register.reviewerInterests">Identificar los intereses de la revisión (áreas sustantivas y métodos de investigación):</message>
 
 	<!-- About The Press -->
