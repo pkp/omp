@@ -93,6 +93,13 @@ class SendReviewsForm extends EditorDecisionWithEmailForm {
 
 		$this->_updateReviewRoundStatus($seriesEditorSubmission, $status, $reviewRound);
 
+		// Update the submission status
+		if ($decision == SUBMISSION_EDITOR_DECISION_DECLINE) {
+			$seriesEditorSubmission->setStatus(STATUS_DECLINED);
+			$monographDao =& DAORegistry::getDAO('MonographDAO');
+			$monographDao->updateMonograph($seriesEditorSubmission);
+		}
+
 		// Send email to the author.
 		$this->_sendReviewMailToAuthor($seriesEditorSubmission, $emailKey, $request);
 	}

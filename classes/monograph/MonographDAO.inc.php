@@ -502,6 +502,44 @@ class MonographDAO extends DAO {
 	}
 
 	/**
+	 * Get all submissions for a status.
+	 * @param $status int
+	 * @param $pressId mixed optional
+	 * @return array Submissions
+	 */
+	function getByStatus($status, $pressId = null) {
+		$primaryLocale = AppLocale::getPrimaryLocale();
+		$locale = AppLocale::getLocale();
+		$params = array(
+			'title', $primaryLocale, // Series title
+			'title', $locale, // Series title
+			'abbrev', $primaryLocale, // Series abbreviation
+			'abbrev', $locale, // Series abbreviation
+			(int) $status
+		);
+		if ($pressId) $params[] = $pressId;
+
+		$result =& $this->retrieve(
+			'SELECT	m.*, pm.date_published,
+				COALESCE(atl.setting_value, atpl.setting_value) AS series_title,
+				COALESCE(aal.setting_value, aapl.setting_value) AS series_abbrev
+			FROM	monographs m
+				LEFT JOIN series aa ON (aa.series_id = m.series_id)
+				LEFT JOIN series_settings atpl ON (aa.series_id = atpl.series_id AND atpl.setting_name = ? AND atpl.locale = ?)
+				LEFT JOIN series_settings atl ON (aa.series_id = atl.series_id AND atl.setting_name = ? AND atl.locale = ?)
+				LEFT JOIN series_settings aapl ON (aa.series_id = aapl.series_id AND aapl.setting_name = ? AND aapl.locale = ?)
+				LEFT JOIN series_settings aal ON (aa.series_id = aal.series_id AND aal.setting_name = ? AND aal.locale = ?)
+				LEFT JOIN published_monographs pm ON (m.monograph_id = pm.monograph_id)
+			WHERE	m.status = ?' .
+				(isset($pressId)?' AND m.press_id = ?':''),
+			$params
+		);
+
+		$returner = new DAOResultFactory($result, $this, '_fromRow');
+		return $returner;
+	}
+
+	/**
 	 * Remove all monographs from an series.
 	 * @param $seriesId int
 	 */

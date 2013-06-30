@@ -171,6 +171,7 @@
 	<message key="submission.status.review">In Review</message>
 	<message key="submission.status.submission">Awaiting Editor Decision</message>
 	<message key="submission.status.unassigned">Unassigned</message>
+	<message key="submission.status.declined">Declined</message>
 
 	<!-- Artwork Files Grid -->
 	<message key="grid.artworkFile.caption">Caption</message>

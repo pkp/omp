@@ -110,6 +110,13 @@ class AssignedSubmissionsListGridHandler extends SubmissionsListGridHandler {
 			unset($reviewerSubmission);
 		}
 
+		// Filter archived submissions
+		foreach ($data as $monographId => $monograph) {
+			if ($monograph->getStatus() == STATUS_DECLINED) {
+				unset($data[$monographId]);
+			}
+		}
+
 		return $data;
 	}
 }
