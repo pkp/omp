@@ -28,7 +28,8 @@ switch ($op) {
 	// Press Management
 	//
 	case 'contexts':
-		import('pages.admin.AdminContextHandler');
+	case 'startWizard':
+		import('lib.pkp.pages.admin.AdminContextHandler');
 		define('HANDLER_CLASS', 'AdminContextHandler');
 		break;
 	//
