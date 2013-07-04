@@ -130,7 +130,6 @@ class Application extends PKPApplication {
 			'SeriesDAO' => 'classes.press.SeriesDAO',
 			'SeriesEditorsDAO' => 'classes.press.SeriesEditorsDAO',
 			'SeriesEditorSubmissionDAO' => 'classes.submission.seriesEditor.SeriesEditorSubmissionDAO',
-			'SignoffDAO' => 'classes.signoff.SignoffDAO',
 			'SocialMediaDAO' => 'classes.press.SocialMediaDAO',
 			'SpotlightDAO' => 'classes.spotlight.SpotlightDAO',
 			'StageAssignmentDAO' => 'lib.pkp.classes.stageAssignment.StageAssignmentDAO',
