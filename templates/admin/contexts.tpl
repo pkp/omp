@@ -20,7 +20,6 @@
 </script>
 
 <div id="contexts">
-
 	{if $openWizardLinkAction}
 		<div id="{$openWizardLinkAction->getId()}" class="pkp_linkActions inline">
 			{include file="linkAction/linkAction.tpl" action=$openWizardLinkAction contextId="contexts" selfActivate=true}

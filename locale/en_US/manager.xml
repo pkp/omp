@@ -88,7 +88,6 @@
 
 	<!-- Settings management -->
 	<message key="manager.settings">Settings</message>
-	<message key="manager.settings.wizard">Settings Wizard</message>
 	<message key="manager.settings.pressSettings">Press Settings</message>
 	<message key="manager.settings.press">Press</message>
 	<message key="manager.settings.pressDescription"><![CDATA[All settings specific to the press (masthead, contact, policies, guidelines, affiliation & support, categories and series).]]></message>

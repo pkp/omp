@@ -88,7 +88,6 @@
 
 	<!-- Settings management -->
 	<message key="manager.settings">Paramètres</message>
-	<message key="manager.settings.wizard">Assistant de paramétrage</message>
 	<message key="manager.settings.pressSettings">Paramètres de la presse</message>
 	<message key="manager.settings.press">Presse</message>
 	<message key="manager.settings.pressDescription"><![CDATA[Tous les paramètres spécifiques à la presse (bloc générique du titre, coordonnées, politiques, lignes directrices, affiliation & support, catégories et séries).]]></message>
