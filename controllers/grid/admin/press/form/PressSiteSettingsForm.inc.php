@@ -20,40 +20,7 @@ class PressSiteSettingsForm extends ContextSiteSettingsForm {
 	 * @param $contextId omit for a new press
 	 */
 	function PressSiteSettingsForm($contextId = null) {
-		parent::ContextSiteSettingsForm('admin/pressSettings.tpl', $contextId);
-
-		// Validation checks for this form
-		$this->addCheck(new FormValidatorLocale($this, 'name', 'required', 'admin.presses.form.titleRequired'));
-		$this->addCheck(new FormValidator($this, 'path', 'required', 'admin.presses.form.pathRequired'));
-		$this->addCheck(new FormValidatorAlphaNum($this, 'path', 'required', 'admin.presses.form.pathAlphaNumeric'));
-		$this->addCheck(new FormValidatorCustom($this, 'path', 'required', 'admin.presses.form.pathExists', create_function('$path,$form,$pressDao', 'return !$pressDao->existsByPath($path) || ($form->getData(\'oldPath\') != null && $form->getData(\'oldPath\') == $path);'), array(&$this, DAORegistry::getDAO('PressDAO'))));
-	}
-
-	/**
-	 * Initialize form data from current settings.
-	 */
-	function initData() {
-		if (isset($this->contextId)) {
-			$pressDao = DAORegistry::getDAO('PressDAO');
-			$press =& $pressDao->getById($this->contextId);
-
-			parent::initData($press);
-		} else {
-			parent::initData();
-		}
-	}
-
-	/**
-	 * Assign form data to user-submitted data.
-	 */
-	function readInputData() {
-		parent::readInputData();
-
-		if ($this->contextId) {
-			$pressDao = DAORegistry::getDAO('PressDAO');
-			$press =& $pressDao->getById($this->contextId);
-			if ($press) $this->setData('oldPath', $press->getPath());
-		}
+		parent::ContextSiteSettingsForm($contextId);
 	}
 
 	/**
@@ -64,7 +31,7 @@ class PressSiteSettingsForm extends ContextSiteSettingsForm {
 		$pressDao = DAORegistry::getDAO('PressDAO');
 
 		if (isset($this->contextId)) {
-			$press =& $pressDao->getById($this->contextId); /* @var $press Press */
+			$press = $pressDao->getById($this->contextId); /* @var $press Press */
 
 			import('classes.publicationFormat.PublicationFormatTombstoneManager');
 			$publicationFormatTombstoneMgr = new PublicationFormatTombstoneManager();
