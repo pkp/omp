@@ -289,7 +289,6 @@
 	<message key="about.aboutThisPublishingSystem">Acerca de este sistema de publicación</message>
 	<message key="about.aboutOMPPress"><![CDATA[<p>Esta editorial utiliza Open Monograph Press {$ompVersion}, una aplicación web para la gestión y publicación en editoriales científicas. Este software es de código abierto y es desarrollado, mantenido y distribuido gratuitamente por <a href="http://pkp.sfu.ca/">Public Knowledge Project</a> bajo GNU General Public License.</p><p>La versión actual es la {$ompVersion}, instalación realizada el 17 de septiembre de 2012, con la aplicación posterior de los siguientes <a target="_blank" href="http://pkp.sfu.ca/wiki/index.php/OMP_1.0b_Recommended_Patches">parches recomendados</a> por PKP: <ul><li>#7921 (25 de septiembre de 2012)</li><li>#7922 (25 de septiembre de 2012)</li><li>#7923 (25 de septiembre de 2012)</li><li>#7939 (26 de septiembre)</li><li>#7944 (29 de septiembre)</li><li>#7946 (1 de octubre de 2012)</li><li>#7952 (5 de octubre de 2012) - <em>Pendiente</em></li><li>#7957 (11 de octubre de 2012)</li><li>#7995 (1 de noviembre de 2012)</li></ul></p>]]></message>
 
-	<message key="notification.type.editorAssignmentTask">Una monografía ha sido propuesta y se necesita asignarle un Editor.</message>
 	<message key="notification.type.visitCatalogTitle">Gestión del catálogo</message>
 
 	<message key="payment.directSales">Descarga del sitio web</message>

@@ -504,7 +504,6 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="notification.type.site">Site Events</message>
 	<message key="notification.type.submissions">Submission Events</message>
 	<message key="notification.type.userComment">A reader has made a comment on "{$title}".</message>
-	<message key="notification.type.editorAssignment">An editor must be assigned before review is initiated. Please add editor using Participants link above.</message>
 	<message key="notification.type.editorAssignmentTask">A new monograph has been submitted to which an editor needs to be assigned.</message>
 	<message key="notification.type.editorAssignmentEditing">A production editor must be assigned before editorial process is initiated. Please add production editor using Participants link above.</message>
 	<message key="notification.type.editorAssignmentProduction">A production editor must be assigned before production process can be initiated. Please add production editor via the Participants link above.</message>
