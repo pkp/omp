@@ -41,7 +41,6 @@
 	<message key="editor.monograph.internalReview">Procéder à l'évaluation interne</message>
 	<message key="editor.monograph.internalReviewDescription">Vous entamez le processus d'évaluation interne de cette soumission. La liste des fichiers faisant partie de cette soumission est affichée ci-dessous. Ils peuvent être sélectionnés pour être révisés.</message>
 	<message key="editor.monograph.externalReview">Procéder à l'évaluation externe</message>
-	<message key="editor.submission.newRound">Nouvelle série de révisions</message>
 	<message key="editor.monograph.newRoundDescription">Vous êtes sur le point de créer une nouvelle série de révisions pour cette soumission. Les fichiers qui n'ont pas été utilisés dans les autres séries de révisions apparaissent dans la liste suivante. Par défaut, les évaluateurs de la série précédente ont été sélectionnés pour participer à cette nouvelle série de révisions.</message>
 	
 	<message key="editor.submissions.lastAssigned">Le plus récent</message>
