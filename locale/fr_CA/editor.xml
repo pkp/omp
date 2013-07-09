@@ -13,7 +13,6 @@
 <locale name="fr_CA" full_name = "Français">
 	<message key="editor.pressSignoff">Fermeture de session de la presse</message>
 	<message key="editor.submissionArchive">Archives des soumissions</message>
-	<message key="editor.submissionReview.recordDecision">Enregistrement des décisions éditoriales</message>
 	<message key="editor.monograph.cancelReview">Annuler la requête</message>
 	<message key="editor.monograph.clearReview">Supprimer l'évaluateur</message>
 	<message key="editor.monograph.enterRecommendation">Saisir la recommendation</message>
