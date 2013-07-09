@@ -532,7 +532,7 @@ Suporte à biblioteca mbstring: <strong>{$supportsMBString}</strong>]]></message
 <p>Caso deseje receber avisos e atualizações, <strong>cadastre-se na página <a href="http://pkp.sfu.ca/omp/register" target="_blank">http://pkp.sfu.ca/omp/register</a>.</strong> Caso tenha perguntas ou comentários, visite o <a href="http://pkp.sfu.ca/support/forum" target="_blank">fórum de suporte</a>.</p>]]></message>
 <message key="installer.upgradeComplete"><![CDATA[<p>Atualização do OMP para a versão {$version} concluída com successo.</p>
 <p>Não se esqueça de alterar a variável "installed" em seu arquivo de configuração config.inc.php de volta para <em>On</em>.</p>
-<p>Caso não tenha se cadastrado ainda e deseje receber avisos e atualizações, <strong>>cadastre-se na página <a href="http://pkp.sfu.ca/omp/register" target="_blank">http://pkp.sfu.ca/omp/register</a>.</strong>  Caso tenha perguntas ou comentários, visite o <a href="http://pkp.sfu.ca/support/forum" target="_blank">fórum de suporte</a>.</p>]]></message>
+<p>Caso não tenha se cadastrado ainda e deseje receber avisos e atualizações, <strong>cadastre-se na página <a href="http://pkp.sfu.ca/omp/register" target="_blank">http://pkp.sfu.ca/omp/register</a>.</strong>  Caso tenha perguntas ou comentários, visite o <a href="http://pkp.sfu.ca/support/forum" target="_blank">fórum de suporte</a>.</p>]]></message>
 	<!-- Monograph Logs -->
 	<message key="log.review.reviewerAssigned">{$reviewerName} designado para avaliar a submissão {$monographId} na rodada de avaliação {$round}.</message>
 	<message key="log.review.reviewCleared">A rodada de avaliação {$round} de {$reviewerName} para a submissão {$monographId} foi liberada.</message>
@@ -606,7 +606,7 @@ Suporte à biblioteca mbstring: <strong>{$supportsMBString}</strong>]]></message
 	<message key="notification.type.userComment">Um leitor comentou sobre "{$title}".</message>
 	<message key="notification.type.editorAssignmentTask">Um editor precisa ser designado à nova monografia submetida.</message>
 	<message key="notification.type.editorAssignmentEditing">Um editor de produção deve ser designado antes de iniciar o processo editorial. Inclua um editor de produção usando o link de Participantes acima.</message>
-	<message key="notification.type.editorAssignmentProduction">>Um editor de produção deve ser designado antes de iniciar o processo de produção. Inclua um editor de produção usando o link de Participantes acima.</message>
+	<message key="notification.type.editorAssignmentProduction">Um editor de produção deve ser designado antes de iniciar o processo de produção. Inclua um editor de produção usando o link de Participantes acima.</message>
 	<message key="notification.type.auditorRequest">Solicitação de auditoria de "{$file}"</message>
 	<message key="notification.type.copyeditorRequest">Solicitação de edição de texto de "{$file}".</message>
 	<message key="notification.type.layouteditorRequest">Solicitação de revisão dos layouts de "{$title}".</message>
