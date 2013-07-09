@@ -87,6 +87,8 @@ class UnassignedSubmissionsListGridHandler extends SubmissionsListGridHandler {
 			if (!$monographFactory->wasEmpty()) {
 				$stageAssignmentDao =& DAORegistry::getDAO('StageAssignmentDAO');
 				while ($monograph =& $monographFactory->next()) {
+					if ($monograph->getStatus() == STATUS_DECLINED) continue;
+
 					if ($monograph->getDatePublished() == null && !$stageAssignmentDao->editorAssignedToStage($monograph->getId())) {
 						$accessibleMonographs[$monograph->getId()] = $monograph;
 					}
