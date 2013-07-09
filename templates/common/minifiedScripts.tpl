@@ -81,6 +81,7 @@
 <script src="{$baseUrl}/lib/pkp/js/controllers/modal/AjaxModalHandler.js"></script>
 <script src="{$baseUrl}/lib/pkp/js/controllers/modal/AjaxLegacyPluginModalHandler.js"></script>
 <script src="{$baseUrl}/lib/pkp/js/controllers/modal/WizardModalHandler.js"></script>
+<script src="{$baseUrl}/lib/pkp/js/controllers/modal/editorDecision/form/EditorDecisionFormHandler.js"></script>
 <script src="{$baseUrl}/lib/pkp/js/controllers/linkAction/LinkActionHandler.js"></script>
 <script src="{$baseUrl}/lib/pkp/js/controllers/wizard/WizardHandler.js"></script>
 
@@ -115,7 +116,6 @@
 <script src="{$baseUrl}/lib/pkp/js/pages/authorDashboard/PKPAuthorDashboardHandler.js"></script>
 <script src="{$baseUrl}/js/controllers/grid/content/spotlights/form/SpotlightFormHandler.js"></script>
 <script src="{$baseUrl}/js/controllers/modals/editorDecision/ApproveProofsHandler.js"></script>
-<script src="{$baseUrl}/js/controllers/modals/editorDecision/form/EditorDecisionFormHandler.js"></script>
 <script src="{$baseUrl}/js/controllers/modals/catalogEntry/form/RepresentativeFormHandler.js"></script>
 <script src="{$baseUrl}/js/controllers/modals/catalogEntry/form/PublicationFormatMetadataFormHandler.js"></script>
 <script src="{$baseUrl}/js/controllers/modals/submissionMetadata/MonographlessCatalogEntryHandler.js"></script>
