@@ -25,7 +25,6 @@
 	<message key="editor.monograph.editorToEnter">Editor to enter recommendation/comments for reviewer</message>
 	<message key="editor.monograph.uploadReviewForReviewer">Upload review</message>
 	<message key="editor.monograph.peerReviewOptions">Peer Review Options</message>
-	<message key="editor.monograph.selectAttachments">Select the review attachments for the author to see</message>
 	<message key="editor.submission.selectPromoteRevisions">Select revisions to use in the next stage</message>
 	<message key="editor.monograph.selectFairCopy">Select approved copy editing files to be sent to Production.</message>
 	<message key="editor.monograph.selectProofreadingFiles">Proofreading Files</message>
