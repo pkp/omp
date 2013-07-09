@@ -25,7 +25,6 @@
 	<message key="editor.monograph.uploadReviewForReviewer">Télécharger l'évaluation</message>
 	<message key="editor.monograph.peerReviewOptions">Options d'évaluation par les pairs</message>
 	<message key="editor.submission.selectPromoteRevisions">Choisir les révisions qui seront utilisées à la prochaine étape</message>
-	<message key="editor.monograph.selectFairCopy">Choisir les fichiers de révision approuvés qui seront envoyés pour la publication.</message>
 	<message key="editor.monograph.selectProofreadingFiles">Fichiers d'épreuves</message>
 	<message key="editor.monograph.roundStatus.revisionsRequested">Des révisions ont été demandées.</message>
 	<message key="editor.monograph.roundStatus.resubmitted">La soumission n'a pas été présentée à nouveau pour examen.</message>
