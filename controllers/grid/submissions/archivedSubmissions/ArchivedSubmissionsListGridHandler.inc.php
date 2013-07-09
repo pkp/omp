@@ -77,10 +77,7 @@ class ArchivedSubmissionsListGridHandler extends SubmissionsListGridHandler {
 				continue;
 			}
 
-			$monographFactory = &$monographDao->getByStatus(
-				STATUS_DECLINED,
-			    $press->getId()
-			);
+			$monographFactory =& $monographDao->getByStatus(STATUS_DECLINED, $press->getId());
 
 			if (!$monographFactory->wasEmpty()) {
 				while ($monograph =& $monographFactory->next()) {

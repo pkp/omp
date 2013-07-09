@@ -517,7 +517,7 @@ class MonographDAO extends DAO {
 			'abbrev', $locale, // Series abbreviation
 			(int) $status
 		);
-		if ($pressId) $params[] = $pressId;
+		if ($pressId) $params[] = (int) $pressId;
 
 		$result =& $this->retrieve(
 			'SELECT	m.*, pm.date_published,
@@ -531,7 +531,7 @@ class MonographDAO extends DAO {
 				LEFT JOIN series_settings aal ON (aa.series_id = aal.series_id AND aal.setting_name = ? AND aal.locale = ?)
 				LEFT JOIN published_monographs pm ON (m.monograph_id = pm.monograph_id)
 			WHERE	m.status = ?' .
-				(isset($pressId)?' AND m.press_id = ?':''),
+				($pressId?' AND m.press_id = ?':''),
 			$params
 		);
 
