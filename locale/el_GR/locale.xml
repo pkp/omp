@@ -299,7 +299,6 @@
 	<message key="review.ensuringBlindReview">Διασφάλιση "τυφλής" αξιολόγησης</message>
 
 	<!-- Review Attachments -->
-	<message key="grid.reviewAttachments.title">Συνημμένα Αξιολογητή</message>
 	<message key="grid.reviewAttachments.add">Προσθήκη Συνημμένου για Αξιολόγηση</message>
 	<message key="grid.reviewAttachments.availableFiles">Διαθέσιμα Αρχεία</message>
 

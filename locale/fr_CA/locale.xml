@@ -288,7 +288,6 @@ Sauvegarder.</li>
 	<message key="review.ensuringBlindReview">Assurer une évaluation à l'aveugle</message>
 
 	<!-- Review Attachments -->
-	<message key="grid.reviewAttachments.title">Pièces jointes de l'évaluateur</message>
 	<message key="grid.reviewAttachments.add">Ajouter une pièce jointe à l'évaluation</message>
 	<message key="grid.reviewAttachments.availableFiles">Fichiers disponibles</message>
 

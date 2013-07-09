@@ -286,7 +286,6 @@
 	<message key="review.ensuringBlindReview">Assegurando uma avaliação cega</message>
 
 	<!-- Review Attachments -->
-	<message key="grid.reviewAttachments.title">Anexos do avaliador</message>
 	<message key="grid.reviewAttachments.add">Incluir anexo à avaliação</message>
 	<message key="grid.reviewAttachments.availableFiles">Arquivos disponíveis</message>
 
