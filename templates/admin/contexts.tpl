@@ -26,7 +26,7 @@
 		</div>
 	{/if}
 
-	{url|assign:contextsUrl router=$smarty.const.ROUTE_COMPONENT component="grid.admin.press.PressGridHandler" op="fetchGrid" escape=false}
+	{url|assign:contextsUrl router=$smarty.const.ROUTE_COMPONENT component="grid.admin.context.ContextGridHandler" op="fetchGrid" escape=false}
 	{load_url_in_div id="contextGridContainer" url=$contextsUrl}
 </div>
 

@@ -38,7 +38,7 @@
 	<message key="admin.presses.pressSettings">Configuration de la presse</message>
 	<message key="admin.presses.noneCreated">Aucune presse n'a été créée.</message>
 	<message key="admin.contexts.confirmDelete">Vous voulez supprimer cette presse et tout son contenu de façon permanente?</message>
-	<message key="admin.presses.create">Créer une presse</message>
+	<message key="admin.contexts.create">Créer une presse</message>
 	<message key="admin.presses.createInstructions">Vous serez automatiquement nommé gestionnaire de cette presse. Après avoir créé une nouvelle presse, vous serez redirigé vers son assistant de paramétrage pour terminer la configuration initiale de la presse.</message>
 	<message key="admin.presses.urlWillBe">L'adresse URL de la presse sera {$sampleUrl}</message>
 	<message key="admin.contexts.form.titleRequired">Vous devez choisir un titre.</message>
