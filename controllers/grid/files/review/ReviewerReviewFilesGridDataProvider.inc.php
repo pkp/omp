@@ -44,7 +44,30 @@ class ReviewerReviewFilesGridDataProvider extends ReviewGridDataProvider {
 		import('classes.security.authorization.internal.ReviewRoundRequiredPolicy');
 		$policy->addPolicy(new ReviewRoundRequiredPolicy($request, $args));
 
+		// Add policy to ensure there is a review assignment for certain operations.
+		import('classes.security.authorization.internal.ReviewAssignmentRequiredPolicy');
+		$policy->addPolicy(new ReviewAssignmentRequiredPolicy($request, $args, 'reviewAssignmentId'));
+
 		return $policy;
+	}
+
+	/**
+	 * @see ReviewerReviewFilesGridDataProvider
+	 * Extend the parent class to filter out review round files that aren't allowed
+	 * for this reviewer according to ReviewFilesDAO.
+	 */
+	function loadData() {
+		$submissionFileData = parent::loadData();
+		$reviewFilesDao = DAORegistry::getDAO('ReviewFilesDAO');
+		$reviewAssignment = $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ASSIGNMENT);
+		foreach ($submissionFileData as $fileId => $fileData) {
+			$submissionFile = $fileData['submissionFile'];
+			if (!$reviewFilesDao->check($reviewAssignment->getId(), $fileId)) {
+				// Not permitted; remove from list.
+				unset($submissionFileData[$fileId]);
+			}
+		}
+		return $submissionFileData;
 	}
 }
 

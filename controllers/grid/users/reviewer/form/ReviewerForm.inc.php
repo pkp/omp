@@ -247,6 +247,7 @@ class ReviewerForm extends Form {
 			'interestsTextOnly',
 			'reviewRoundId',
 			'stageId',
+			'selectedFiles',
 		));
 
 		$keywords = $this->getData('keywords');
@@ -291,6 +292,18 @@ class ReviewerForm extends Form {
 		$reviewAssignment->setCancelled(0);
 		$reviewAssignment->stampModified();
 		$reviewAssignmentDao->updateObject($reviewAssignment);
+
+		// Grant access for this review to all selected files.
+		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
+		import('classes.monograph.MonographFile'); // File constants
+		$submissionFiles = $submissionFileDao->getLatestNewRevisionsByReviewRound($currentReviewRound, MONOGRAPH_FILE_REVIEW_FILE);
+		$selectedFiles = (array) $this->getData('selectedFiles');
+		$reviewFilesDao = DAORegistry::getDAO('ReviewFilesDAO');
+		foreach ($submissionFiles as $submissionFile) {
+			if (in_array($submissionFile->getFileId(), $selectedFiles)) {
+				$reviewFilesDao->grant($reviewAssignment->getId(), $submissionFile->getFileId());
+			}
+		}
 
 		// Notify the reviewer via email.
 		import('classes.mail.MonographMailTemplate');

@@ -29,8 +29,13 @@
 	<message key="editor.submissionReview.open">Open</message>
 	<message key="editor.submissionReview.blind">Blind</message>
 	<message key="editor.submissionReview.doubleBlind">Double-blind</message>
+	<message key="editor.submissionReview.restrictFiles">Restrict Available Files</message>
+	<message key="editor.submissionReview.restrictFiles.gridTitle">Available Review Files</message>
+	<message key="editor.submissionReview.restrictFiles.gridDescription">If this reviewer should not be granted access to all of the review files listed, ensure that only the relevant files are checked.</message>
 	<message key="editor.submissionReview.uploadFile">Upload Review File</message>
 	<message key="editor.submissionReview.uploadAttachment">Upload File</message>
+	<message key="editor.submissionReview.limitFiles">Manage Available Files</message>
+	<message key="editor.submissionReview.limitFiles.link">Files</message>
 	<message key="editor.monograph.addReviewer">Add Reviewer</message>
 	<message key="editor.monograph.returnToSimpleSearch">Return to Simple Search</message>
 	<message key="editor.monograph.cancelReview">Cancel Request</message>

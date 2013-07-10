@@ -44,25 +44,22 @@ class MonographFileAssignedReviewerAccessPolicy extends MonographFileBaseAccessP
 
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		$reviewAssignments =& $reviewAssignmentDao->getByUserId($user->getId());
-		$foundValid = false;
+		$reviewFilesDao = DAORegistry::getDAO('ReviewFilesDAO');
 		foreach ($reviewAssignments as $reviewAssignment) {
 			if (!$reviewAssignment->getDateConfirmed()) continue;
 
 			if (
 				$monographFile->getSubmissionId() == $reviewAssignment->getSubmissionId() &&
 				$monographFile->getFileStage() == MONOGRAPH_FILE_REVIEW_FILE &&
-				$monographFile->getViewable()
+				$monographFile->getViewable() &&
+				$reviewFilesDao->check($reviewAssignment->getId(), $monographFile->getFileId())
 			) {
-				$foundValid = true;
+				return AUTHORIZATION_PERMIT;
 			}
 		}
 
-		// Check if the uploader is the current user.
-		if ($foundValid) {
-			return AUTHORIZATION_PERMIT;
-		} else {
-			return AUTHORIZATION_DENY;
-		}
+		// If a pass condition wasn't found above, deny access.
+		return AUTHORIZATION_DENY;
 	}
 }
 

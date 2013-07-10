@@ -9,7 +9,7 @@
   * Upgrade descriptor file.
   -->
 
-<install version="1.0.0.0">
+<install version="1.0.1.0">
 	<!-- PKP schema components -->
 	<schema file="lib/pkp/xml/schema/common.xml" />
 	<schema file="lib/pkp/xml/schema/scheduledTasks.xml" />
@@ -31,9 +31,15 @@
 	<schema file="dbscripts/xml/omp_schema.xml" />
 
 	<upgrade minversion="0.9.9.0" maxversion="0.9.9.9">
-		<!-- 0.9.9.0 (1.0b) to 1.0.0.0 -->
+		<!-- 0.9.9-0 (1.0b) to 1.0.0-0 -->
 		<data file="dbscripts/xml/upgrade/1.0.0.0_update.xml" />
 		<note file="docs/release-notes/README-1.0.0" />
+	</upgrade>
+
+	<upgrade minversion="0.9.9.0" maxversion="1.0.0.0">
+		<!-- 1.0.0-0 to 1.0.1-0 -->
+		<data file="dbscripts/xml/upgrade/1.0.1.0_update.xml" />
+		<note file="docs/release-notes/README-1.0.1" />
 	</upgrade>
 
 	<!-- Update plugin configuration - should be done as the final upgrade task -->

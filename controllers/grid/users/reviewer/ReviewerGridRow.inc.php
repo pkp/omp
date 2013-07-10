@@ -72,11 +72,23 @@ class ReviewerGridRow extends GridRow {
 					new AjaxModal(
 						$router->url($request, null, null, 'sendEmail', null, $actionArgs),
 						__('grid.user.email'),
-						'modal_email',
-						true
+						'modal_email'
 					),
 				__('grid.user.email'),
 				'notify'
+				)
+			);
+
+			$this->addAction(
+				new LinkAction(
+					'manageAccess',
+					new AjaxModal(
+						$router->url($request, null, null, 'limitFiles', null, $actionArgs),
+						__('editor.submissionReview.limitFiles'),
+						'modal_add_file'
+					),
+					__('editor.submissionReview.limitFiles.link'),
+					'edit'
 				)
 			);
 
