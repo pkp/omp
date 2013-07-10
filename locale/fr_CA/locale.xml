@@ -350,7 +350,6 @@ Sauvegarder.</li>
 	-->
 	<message key="common.prefix">Préfixe</message>
 	<message key="common.preview">Prévisualiser</message>
-	<message key="common.quality">Qualité</message>
 	<message key="common.sendEmail">Envoyer un courriel</message>
 	<message key="common.tasks">Tâches</message>
 	<message key="common.list">Liste</message>
@@ -377,8 +376,6 @@ Sauvegarder.</li>
 	<message key="common.omp">OMP</message>
 	<message key="common.publicKnowledgeProject">Public Knowledge Project</message>
 	<message key="common.homePageHeader.altText">En-tête de la page d'accueil</message>
-	<message key="common.dimensionsInches"><![CDATA[{$width}"&nbsp;x&nbsp;{$height}" @ {$dpi} DPI/PPI]]></message>
-	<message key="common.dimensionsPixels">{$width} x {$height} pixels</message>
 
 	<!-- Navigation -->
 	<message key="navigation.management">Gestion</message>

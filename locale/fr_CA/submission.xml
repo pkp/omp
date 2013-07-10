@@ -139,14 +139,6 @@
 	<message key="submission.upload.proof">Télécharger une épreuve</message>
 	<message key="submission.upload.noAvailableReviewFiles">Vous n'avez aucun fichier à évaluer pour le moment.</message>
 	
-	<!-- Artwork Files Grid -->
-	<message key="grid.artworkFile.caption">Sous-titre</message>
-	<message key="grid.artworkFile.credit">Mention de titre</message>
-	<message key="grid.artworkFile.copyrightOwner">Propriétaire du droit d'auteur</message>
-	<message key="grid.artworkFile.copyrightContact">Coordonnées (si autre que l'auteur/l'éditeur)</message>
-	<message key="grid.artworkFile.permissionTerms">Conditions d'utilisation</message>
-	<message key="grid.artworkFile.placement">Emplacement dans le livre</message>
-
 	<!-- Chapters Grid -->
 	<message key="grid.chapters.title">Chapitres</message>
 

@@ -90,14 +90,6 @@
 	<message key="submission.submit.userGroup">Submit in my role as...</message>
 	<message key="submission.submit.userGroupDescription">If you are submitting an Edited Volume, you should choose the volume editor role.</message>
 
-	<!-- Artwork Files Grid -->
-	<message key="grid.artworkFile.caption">Caption</message>
-	<message key="grid.artworkFile.credit">Credit</message>
-	<message key="grid.artworkFile.copyrightOwner">Copyright Owner</message>
-	<message key="grid.artworkFile.copyrightContact">Contact Info (if not author/publisher)</message>
-	<message key="grid.artworkFile.permissionTerms">Permission Terms</message>
-	<message key="grid.artworkFile.placement">Placement in book</message>
-
 	<!-- Chapters Grid -->
 	<message key="grid.chapters.title">Chapters</message>
 
