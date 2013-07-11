@@ -504,7 +504,6 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="notification.type.copyeditorRequest">You have been asked to review copyedits for "{$file}".</message>
 	<message key="notification.type.layouteditorRequest">You have been asked to review layouts for "{$title}".</message>
 	<message key="notification.type.indexRequest">You have been asked to create an index for "{$title}".</message>
-	<message key="notification.type.reviewAssignment">You have a review pending.</message>
 	<message key="notification.type.editorDecisionInternalReview">Internal review process started.</message>
 	<message key="notification.type.editorDecisionSendToProduction">Production process started.</message>
 	<message key="notification.type.roundStatusTitle">Round {$round} Status</message>

@@ -132,7 +132,7 @@ class NotificationManager extends PKPNotificationManager {
 				$title = $monograph->getLocalizedTitle();
 				return __('notification.type.monographSubmitted', array('title' => $title));
 			case NOTIFICATION_TYPE_REVIEWER_COMMENT:
-				assert($$notification->getAssocType() == ASSOC_TYPE_REVIEW_ASSIGNMENT && is_numeric($$notification->getAssocId()));
+				assert($notification->getAssocType() == ASSOC_TYPE_REVIEW_ASSIGNMENT && is_numeric($notification->getAssocId()));
 				$reviewAssignmentDao = DAORegistry::getDAO('ReviewAssignmentDAO'); /* @var $reviewAssignmentDao ReviewAssignmentDAO */
 				$reviewAssignment = $reviewAssignmentDao->getById($notification->getAssocId());
 				$monograph = $monographDao->getById($reviewAssignment->getSubmissionId()); /* @var $monograph Monograph */
