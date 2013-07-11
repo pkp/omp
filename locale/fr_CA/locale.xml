@@ -575,8 +575,6 @@ Votre serveur supporte actuellement mbstring: <strong>{$supportsMBString}</stron
 	<message key="notification.addedMarket">Un marché a été ajouté.</message>
 	<message key="notification.editedMarket">Le marché a été modifié.</message>
 	<message key="notification.removedMarket">Le marché a été supprimé.</message>
-	<message key="notification.addedReviewer">Un évaluateur a été ajouté.</message>
-	<message key="notification.addedStageParticipant">L'utilisateur a été ajouté à titre de participant.</message>
 	<message key="notification.editedUser">L'utilisateur a été modifié.</message>
 	<message key="notification.removedReviewer">L'évaluateur a été supprimé.</message>
 	<message key="notification.sentNotification">Un avis a été envoyé.</message>

@@ -475,8 +475,6 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="notification.addedMarket">Market added.</message>
 	<message key="notification.editedMarket">Market edited.</message>
 	<message key="notification.removedMarket">Market removed.</message>
-	<message key="notification.addedReviewer">Reviewer added.</message>
-	<message key="notification.addedStageParticipant">User added as a stage participant.</message>
 	<message key="notification.removedReviewer">Reviewer removed.</message>
 	<message key="notification.reviewAcknowledged">Review marked as acknowledged. Email not sent.</message>
 	<message key="notification.addedSpotlight">Spotlight added.</message>
