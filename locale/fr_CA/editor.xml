@@ -34,11 +34,9 @@
 	<message key="editor.monograph.roundStatus.pendingReviewers">En attente d'évaluateurs.</message>
 	<message key="editor.monograph.roundStatus.pendingReviews">En attente des commentaires des évaluateurs.</message>
 	<message key="editor.monograph.roundStatus.reviewsReady">Les nouvelles révisions sont prêtes.</message>
-	<message key="editor.monograph.createNewRound">Créer une nouvelle série de révisions.</message>
 	<message key="editor.monograph.internalReview">Procéder à l'évaluation interne</message>
 	<message key="editor.monograph.internalReviewDescription">Vous entamez le processus d'évaluation interne de cette soumission. La liste des fichiers faisant partie de cette soumission est affichée ci-dessous. Ils peuvent être sélectionnés pour être révisés.</message>
 	<message key="editor.monograph.externalReview">Procéder à l'évaluation externe</message>
-	<message key="editor.monograph.newRoundDescription">Vous êtes sur le point de créer une nouvelle série de révisions pour cette soumission. Les fichiers qui n'ont pas été utilisés dans les autres séries de révisions apparaissent dans la liste suivante. Par défaut, les évaluateurs de la série précédente ont été sélectionnés pour participer à cette nouvelle série de révisions.</message>
 	
 	<message key="editor.submissions.lastAssigned">Le plus récent</message>
 	<message key="editor.submission.review.manageReviewFilesDescription">Tous les fichiers qui ont déjà été téléchargés à une étape du processus de soumission (même à une étape d'édition ou de publication) peuvent être choisis pour révision. Il suffit de cocher la case Ajouter ci-dessous, puis de cliquer Recherche: tous les fichiers disponibles seront affichés et peuvent être choisis pour être ajoutés. Les autres fichiers qui n'ont pas déjà été téléchargés à une certaine étape du processus peuvent être ajoutés à cette liste en cliquant sur le lien Télécharger le fichier d'évaluation.</message>

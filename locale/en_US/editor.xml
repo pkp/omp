@@ -26,11 +26,9 @@
 	<message key="editor.monograph.peerReviewOptions">Peer Review Options</message>
 	<message key="editor.submission.selectPromoteRevisions">Select revisions to use in the next stage</message>
 	<message key="editor.monograph.selectProofreadingFiles">Proofreading Files</message>
-	<message key="editor.monograph.createNewRound">Create New Review Round</message>
 	<message key="editor.monograph.internalReview">Initiate Internal Review</message>
 	<message key="editor.monograph.internalReviewDescription">You are about to initiate an internal review for this submission.  Files that are part of the submission are listed below and can be selected for review.</message>
 	<message key="editor.monograph.externalReview">Initiate External Review</message>
-	<message key="editor.monograph.newRoundDescription">You are about to create a new review round for this submission.  Files that have not been used in other review rounds are listed below.  By default, the reviewers from the previous review round have been selected to participate in this new review round.</message>
 	<message key="editor.submissions.lastAssigned">Latest</message>
 	<message key="editor.submission.review.manageReviewFilesDescription">Any files that have already been uploaded to any submission stage (even Editorial or Production) can be chosen for review by checking the Include checkbox below and clicking Search: all available files will be listed and can be chosen for inclusion. Additional files not already uploaded to a stage can be added to this listing by clicking the Upload Review File link.</message>
 	<message key="editor.monograph.final.selectFinalDraftFiles">Select Final Draft Files</message>
