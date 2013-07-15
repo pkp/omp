@@ -110,7 +110,6 @@
 	<message key="manager.users.availableRoles">Available Roles</message>
 	<message key="manager.users.currentRoles">Current Roles</message>
 	<message key="manager.users.selectRole">Select Role</message>
-	<message key="manager.users.roleRequired">You need to select at least one role to be associated with this user.</message>
 	<message key="manager.people.allEnrolledUsers">Users Enrolled in this Press</message>
 	<message key="manager.people.allPresses">All Presses</message>
 	<message key="manager.people.allSiteUsers">Enroll a User from this Site in this Press</message>
