@@ -26,8 +26,8 @@
 
 	{fbvFormArea id="notificationMailList"}
 		{fbvFormSection title="user.email" for="email" required="true"}
-			{fbvElement type="text" id="email" value=$email|escape size=$fbvStyles.size.MEDIUM} <br />
-			{fbvElement type="text" label="user.confirmEmail" id="confirmEmail" value=$confirmEmail|escape size=$fbvStyles.size.MEDIUM}
+			{fbvElement type="text" id="email" value=$email size=$fbvStyles.size.MEDIUM} <br />
+			{fbvElement type="text" label="user.confirmEmail" id="confirmEmail" value=$confirmEmail size=$fbvStyles.size.MEDIUM}
 		{/fbvFormSection}
 	{/fbvFormArea}
 

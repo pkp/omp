@@ -26,9 +26,9 @@
 		<p>{translate key="plugins.generic.addThis.form.registerLink"}</p>
 	{fbvFormArea id="addThisStatistics" title="plugins.generic.addThis.settings.statistics" class="border"}
 		{fbvFormSection for="addThisStatistics"}
-			{fbvElement type="text" label="plugins.generic.addThis.form.profileId" id="addThisProfileId" value=$addThisProfileId|escape size=$fbvStyles.size.MEDIUM}
-			{fbvElement type="text" label="plugins.generic.addThis.form.username" id="addThisUsername" value=$addThisUsername|escape size=$fbvStyles.size.MEDIUM}
-			{fbvElement type="text" password="true" label="plugins.generic.addThis.form.password" value=$addThisPassword|escape id="addThisPassword" size=$fbvStyles.size.MEDIUM}
+			{fbvElement type="text" label="plugins.generic.addThis.form.profileId" id="addThisProfileId" value=$addThisProfileId size=$fbvStyles.size.MEDIUM}
+			{fbvElement type="text" label="plugins.generic.addThis.form.username" id="addThisUsername" value=$addThisUsername size=$fbvStyles.size.MEDIUM}
+			{fbvElement type="text" password="true" label="plugins.generic.addThis.form.password" value=$addThisPassword id="addThisPassword" size=$fbvStyles.size.MEDIUM}
 		{/fbvFormSection}
 
 		{fbvFormButtons submitText="common.save"}

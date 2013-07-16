@@ -12,6 +12,6 @@
 	{/fbvFormSection}
 
 	{fbvFormSection label="submission.submit.seriesPosition" description="submission.submit.placement.seriesPositionDescription"}
-		{fbvElement type="text" id="seriesPosition" name="seriesPosition" value=$seriesPosition|escape maxlength="255" disabled=$readOnly}
+		{fbvElement type="text" id="seriesPosition" name="seriesPosition" value=$seriesPosition maxlength="255" disabled=$readOnly}
 	{/fbvFormSection}
 {/if}

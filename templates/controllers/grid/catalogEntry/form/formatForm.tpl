@@ -19,7 +19,7 @@
 	<input type="hidden" name="publicationFormatId" value="{$publicationFormatId|escape}" />
 	{fbvFormArea id="addFormat" class="border" title="grid.catalogEntry.publicationFormatDetails"}
 		{fbvFormSection for="title"}
-			{fbvElement type="text" required="true" id="name" label="common.name" value=$name|escape multilingual="true" size=$fbvStyles.size.MEDIUM inline=true}
+			{fbvElement type="text" required="true" id="name" label="common.name" value=$name multilingual="true" size=$fbvStyles.size.MEDIUM inline=true}
 			{fbvElement type="select" label="grid.catalogEntry.publicationFormatType" from=$entryKeys selected=$entryKey id="entryKey" translate=false size=$fbvStyles.size.MEDIUM inline=true}
 		{/fbvFormSection}
 		{fbvFormSection for="publicationFormat" size=$fbvStyles.size.MEDIUM list=true}

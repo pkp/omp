@@ -30,19 +30,19 @@
 			{fbvElement type="select" from=$supplierRoleCodes selected=$role id="supplierRole" translate=false inline="true" class=$supplierClass size=$fbvStyles.size.MEDIUM defaultValue="" defaultLabel=""}
 		{/fbvFormSection}
 		{fbvFormSection title="grid.catalogEntry.representativeName" for="name" required="true"}
-			{fbvElement type="text" id="name" value=$name|escape size=$fbvStyles.size.MEDIUM}
+			{fbvElement type="text" id="name" value=$name size=$fbvStyles.size.MEDIUM}
 		{/fbvFormSection}
 		{fbvFormSection}
 			{fbvElement type="select" label="grid.catalogEntry.representativeIdType" from=$idTypeCodes selected=$representativeIdType id="representativeIdType" defaultValue="" defaultLabel="" translate=false size=$fbvStyles.size.MEDIUM inline="true"}
-			{fbvElement type="text" id="representativeIdValue" label="grid.catalogEntry.representativeIdValue" value=$representativeIdValue|escape size=$fbvStyles.size.MEDIUM inline="true"}
+			{fbvElement type="text" id="representativeIdValue" label="grid.catalogEntry.representativeIdValue" value=$representativeIdValue size=$fbvStyles.size.MEDIUM inline="true"}
 		{/fbvFormSection}
 		{fbvFormSection}
-			{fbvElement type="text" id="phone" label="grid.catalogEntry.representativePhone" value=$phone|escape size=$fbvStyles.size.MEDIUM inline="true"}
-			{fbvElement type="text" id="fax" label="grid.catalogEntry.representativeFax" value=$fax|escape size=$fbvStyles.size.MEDIUM inline="true"}
+			{fbvElement type="text" id="phone" label="grid.catalogEntry.representativePhone" value=$phone size=$fbvStyles.size.MEDIUM inline="true"}
+			{fbvElement type="text" id="fax" label="grid.catalogEntry.representativeFax" value=$fax size=$fbvStyles.size.MEDIUM inline="true"}
 		{/fbvFormSection}
 		{fbvFormSection}
-			{fbvElement type="text" id="email" label="grid.catalogEntry.representativeEmail" value=$email|escape size=$fbvStyles.size.MEDIUM inline="true"}
-			{fbvElement type="text" id="url" label="grid.catalogEntry.representativeWebsite" value=$url|escape size=$fbvStyles.size.MEDIUM inline="true"}
+			{fbvElement type="text" id="email" label="grid.catalogEntry.representativeEmail" value=$email size=$fbvStyles.size.MEDIUM inline="true"}
+			{fbvElement type="text" id="url" label="grid.catalogEntry.representativeWebsite" value=$url size=$fbvStyles.size.MEDIUM inline="true"}
 		{/fbvFormSection}
 		{fbvFormButtons}
 	{/fbvFormArea}

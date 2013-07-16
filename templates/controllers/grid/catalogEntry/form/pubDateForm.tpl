@@ -20,7 +20,7 @@
 	<input type="hidden" name="publicationDateId" value="{$publicationDateId|escape}" />
 	{fbvFormArea id="addDate"}
 		{fbvFormSection title="grid.catalogEntry.dateValue" for="date" required="true"}
-			{fbvElement type="text" id="date" value=$date|escape size=$fbvStyles.size.MEDIUM}
+			{fbvElement type="text" id="date" value=$date size=$fbvStyles.size.MEDIUM}
 		{/fbvFormSection}
 		{fbvFormSection title="grid.catalogEntry.dateFormat" for="dateFormat" required="true" size=$fbvStyles.size.MEDIUM}
 			{fbvElement type="select" from=$publicationDateFormats selected=$dateFormat id="dateFormat" translate=false}

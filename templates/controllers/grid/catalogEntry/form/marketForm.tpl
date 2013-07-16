@@ -22,7 +22,7 @@
 	<!-- Collect a Date for this Market (availability, stock, re-issue, etc) -->
 	{fbvFormArea id="dateArea" class="border"}
 		{fbvFormSection title="grid.catalogEntry.dateValue" for="date" required="true"}
-			{fbvElement type="text" id="date" value=$date|escape size=$fbvStyles.size.SMALL inline="true"}
+			{fbvElement type="text" id="date" value=$date size=$fbvStyles.size.SMALL inline="true"}
 			{fbvElement type="select" label="grid.catalogEntry.dateFormat" from=$publicationDateFormats selected=$dateFormat id="dateFormat" translate=false size=$fbvStyles.size.SMALL inline="true"}
 			{fbvElement type="select" label="grid.catalogEntry.dateRole" from=$publicationDateRoles selected=$dateRole id="dateRole" translate=false inline="true" size=$fbvStyles.size.SMALL}
 		{/fbvFormSection}
