@@ -40,7 +40,7 @@ class PublicationFormatDAO extends DAO {
 			' . ($pressId?' JOIN submissions s ON (s.submission_id = pf.submission_id)':'') . '
 			WHERE	pf.publication_format_id = ?' .
 			($monographId?' AND pf.submission_id = ?':'') .
-			($pressId?' AND s.press_id = ?':''),
+			($pressId?' AND s.context_id = ?':''),
 			$params
 		);
 
@@ -80,7 +80,7 @@ class PublicationFormatDAO extends DAO {
 			'SELECT pf.*
 			FROM	publication_formats pf
 			JOIN	submissions s ON (s.submission_id = pf.submission_id)
-			WHERE	s.press_id = ?',
+			WHERE	s.context_id = ?',
 			$params
 		);
 
@@ -352,7 +352,7 @@ class PublicationFormatDAO extends DAO {
 			FROM publication_format_settings pft
 			INNER JOIN publication_formats p ON pft.publication_format_id = p.publication_format_id
 			INNER JOIN submissions s ON p.submission_id = s.submission_id
-			WHERE pft.setting_name = ? and pft.setting_value = ? and p.submission_id <> ? AND s.press_id = ?',
+			WHERE pft.setting_name = ? and pft.setting_value = ? and p.submission_id <> ? AND s.context_id = ?',
 			array(
 				'pub-id::'.$pubIdType,
 				$pubId,

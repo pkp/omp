@@ -47,7 +47,7 @@ class ReviewAssignmentDAO extends PKPReviewAssignmentDAO {
 			'SELECT	r.reviewer_id, AVG(r.quality) AS average, COUNT(r.quality) AS count
 			FROM	review_assignments r, submissions s
 			WHERE	r.submission_id = s.submission_id AND
-				s.press_id = ?
+				s.context_id = ?
 			GROUP BY r.reviewer_id',
 			(int) $pressId
 		);
@@ -285,7 +285,7 @@ class ReviewAssignmentDAO extends PKPReviewAssignmentDAO {
 			'SELECT	r.reviewer_id, MAX(r.date_notified) AS last_notified
 			FROM	review_assignments r, submissions s
 			WHERE	r.submission_id = s.submission_id AND
-				s.press_id = ?
+				s.context_id = ?
 			GROUP BY r.reviewer_id',
 			(int) $contextId
 		);
@@ -305,7 +305,7 @@ class ReviewAssignmentDAO extends PKPReviewAssignmentDAO {
 				r.date_notified IS NOT NULL AND
 				r.date_completed IS NULL AND
 				r.cancelled = 0 AND
-				s.press_id = ?
+				s.context_id = ?
 				GROUP BY r.reviewer_id',
 				(int) $contextId
 		);
@@ -326,7 +326,7 @@ class ReviewAssignmentDAO extends PKPReviewAssignmentDAO {
 				r.date_notified IS NOT NULL AND
 				r.date_completed IS NOT NULL AND
 				r.declined = 0 AND
-				s.press_id = ?',
+				s.context_id = ?',
 			(int) $contextId
 		);
 		while (!$result->EOF) {

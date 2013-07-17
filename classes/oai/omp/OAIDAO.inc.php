@@ -182,9 +182,9 @@ class OAIDAO extends PKPOAIDAO {
 		list($pressId, $seriesId) = $setIds;
 		return 'LEFT JOIN publication_formats pf ON (m.i=0' . (isset($publicationFormatId) ? ' AND pf.publication_format_id = ?' : '') . ')
 			LEFT JOIN published_submissions ps ON (ps.submission_id = pf.submission_id)
-			LEFT JOIN submissions ms ON (ms.submission_id = ps.submission_id' . (isset($pressId) ? ' AND ms.press_id = ?' : '') . (isset($seriesId) && $seriesId != 0 ? ' AND ms.series_id = ?' : '') .')
+			LEFT JOIN submissions ms ON (ms.submission_id = ps.submission_id' . (isset($pressId) ? ' AND ms.context_id = ?' : '') . (isset($seriesId) && $seriesId != 0 ? ' AND ms.series_id = ?' : '') .')
 			LEFT JOIN series s ON (s.series_id = ms.series_id)
-			LEFT JOIN presses p ON (p.press_id = ms.press_id)
+			LEFT JOIN presses p ON (p.press_id = ms.context_id)
 			LEFT JOIN data_object_tombstones dot ON (m.i = 1' . (isset($publicationFormatId) ? ' AND dot.data_object_id = ?' : '') . (isset($set) ? ' AND dot.set_spec = ?' : '') . ')
 			LEFT JOIN data_object_tombstone_oai_set_objects tsop ON ' . (isset($pressId) ? '(tsop.tombstone_id = dot.tombstone_id AND tsop.assoc_type = ' . ASSOC_TYPE_PRESS . ' AND tsop.assoc_id = ?)' : 'tsop.assoc_id = null') .
 			' LEFT JOIN data_object_tombstone_oai_set_objects tsos ON ' . (isset($seriesId) ? '(tsos.tombstone_id = dot.tombstone_id AND tsos.assoc_type = ' . ASSOC_TYPE_SERIES . ' AND tsos.assoc_id = ?)' : 'tsos.assoc_id = null');

@@ -59,7 +59,7 @@ class MonographSearchDAO extends SubmissionSearchDAO {
 		}
 
 		if (!empty($press)) {
-			$sqlWhere .= ' AND s.press_id = ?';
+			$sqlWhere .= ' AND s.context_id = ?';
 			$params[] = $press->getId();
 		}
 

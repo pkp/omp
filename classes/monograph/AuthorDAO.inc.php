@@ -76,7 +76,7 @@ class AuthorDAO extends PKPAuthorDAO {
 				LEFT JOIN author_settings asl ON (a.author_id = asl.author_id AND asl.setting_name = ? AND asl.locale = ?)
 				JOIN submissions s ON (a.submission_id = s.submission_id)
 			WHERE	s.status = ' . STATUS_PUBLISHED . ' ' .
-				(isset($pressId)?'AND s.press_id = ? ':'') . '
+				(isset($pressId)?'AND s.context_id = ? ':'') . '
 				AND (a.last_name IS NOT NULL AND a.last_name <> \'\')' .
 				$initialSql . '
 			ORDER BY a.last_name, a.first_name',
