@@ -104,6 +104,7 @@
 <script src="{$baseUrl}/lib/pkp/js/controllers/informationCenter/NotesHandler.js"></script>
 <script src="{$baseUrl}/lib/pkp/js/controllers/informationCenter/form/InformationCenterNotifyHandler.js"></script>
 <script src="{$baseUrl}/lib/pkp/js/controllers/informationCenter/SignoffNotesHandler.js"></script>
+<script src="{$baseUrl}/lib/pkp/js/pages/submission/SubmissionStep2FormHandler.js"></script>
 <script src="{$baseUrl}/lib/pkp/js/pages/submission/SubmissionStep3FormHandler.js"></script>
 <script src="{$baseUrl}/lib/pkp/js/pages/workflow/WorkflowHandler.js"></script>
 <script src="{$baseUrl}/lib/pkp/js/pages/workflow/SubmissionHeaderHandler.js"></script>
