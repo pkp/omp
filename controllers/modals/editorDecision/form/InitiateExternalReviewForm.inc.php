@@ -13,7 +13,7 @@
  *  review (skipping internal)
  */
 
-import('controllers.modals.editorDecision.form.InitiateReviewForm');
+import('lib.pkp.controllers.modals.editorDecision.form.InitiateReviewForm');
 
 class InitiateExternalReviewForm extends InitiateReviewForm {
 
