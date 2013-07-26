@@ -7,10 +7,9 @@
  * generated automatically from the OMP source code.
  *
  * The design of Open %Monograph press is heavily structured for
- * maintainability, flexibility and robustness. For this reason it may seem
- * complex when first approached. Those familiar with Sun's Enterprise Java
- * Beans technology or the Model-View-Controller (MVC) pattern will note many
- * similarities.
+ * maintainability, flexibility and robustness. Those familiar with Sun's
+ * Enterprise Java Beans technology or the Model-View-Controller (MVC) pattern
+ * will note many similarities.
  *
  * As in a MVC structure, data storage and representation, user interface
  * presentation, and control are separated into different layers. The major
@@ -20,6 +19,8 @@
  * - Page classes, which receive requests from users' web browsers, delegate
  *   any required processing to various other classes, and call up the
  *   appropriate Smarty template to generate a response;
+ * - Controllers, which implement reusable pieces of content e.g. for AJAX
+ *   subrequests.
  * - Action classes, which are used by the Page classes to perform non-trivial
  *   processing of user requests;
  * - Model classes, which implement PHP objects representing the system's
@@ -40,8 +41,7 @@
  * that may be useful:
  * - The docs/README document
  * - The PKP support forum at http://pkp.sfu.ca/support/forum
- * - The technical reference (and other documents), available at
- *   http://pkp.sfu.ca/omp_documentation
+ * - Documentation available at http://pkp.sfu.ca/omp_documentation
  *
  * @file index.php
  *
