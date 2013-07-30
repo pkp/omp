@@ -24,18 +24,6 @@ class AuthorGridRow extends PKPAuthorGridRow {
 	}
 
 	/**
-	 * Get the base arguments that will identify the data in the grid
-	 * In this case, the monograph.
-	 * @return array
-	 */
-	function getRequestArgs() {
-		$monograph = $this->getSubmission();
-		return array(
-			'submissionId' => $monograph->getId()
-		);
-	}
-
-	/**
 	 * Determines whether the current user can create user accounts from authors present
 	 * in the grid.
 	 * @param PKPRequest $request
