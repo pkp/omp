@@ -47,7 +47,7 @@ class NotificationSettingsForm extends PKPNotificationSettingsForm {
 		return array(
 			NOTIFICATION_TYPE_SUBMISSION_SUBMITTED => array('settingName' => 'notificationMonographSubmitted',
 				'emailSettingName' => 'emailNotificationMonographSubmitted',
-				'settingKey' => 'notification.type.monographSubmitted'),
+				'settingKey' => 'notification.type.submissionSubmitted'),
 			NOTIFICATION_TYPE_METADATA_MODIFIED => array('settingName' => 'notificationMetadataModified',
 				'emailSettingName' => 'emailNotificationMetadataModified',
 				'settingKey' => 'notification.type.metadataModified'),

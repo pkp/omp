@@ -640,7 +640,7 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="notification.localeSettingsSaved">Οι ρυθμίσεις γλώσσας έχουν αποθηκευθεί.</message>
 	<message key="notification.removedSubmission">Η Υποβολή έχει διαγραφεί.</message>
 	<!-- Notification Types -->
-	<message key="notification.type.monographSubmitted">Μια νέα μονογραφία, "{$title}," έχει υποβληθεί.</message>
+	<message key="notification.type.submissionSubmitted">Μια νέα μονογραφία, "{$title}," έχει υποβληθεί.</message>
 	<message key="notification.type.editing">Διόρθωση Γεγονότων</message>
 	<message key="notification.type.metadataModified">Τα μεταδεδομένα του "{$title}" έχουν μεταβληθεί.</message>
 	<message key="notification.type.reviewerComment">Ένας Αξιολογητής έχει σχολιάσει το "{$title}".</message>

@@ -488,7 +488,7 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="notification.proofsApproved">Proofs approved.</message>
 	<message key="notification.removedSubmission">Submission deleted.</message>
 	<!-- Notification Types -->
-	<message key="notification.type.monographSubmitted">A new monograph, "{$title}," has been submitted.</message>
+	<message key="notification.type.submissionSubmitted">A new monograph, "{$title}," has been submitted.</message>
 	<message key="notification.type.editing">Editing Events</message>
 	<message key="notification.type.metadataModified">"{$title}'s" metadata has been modified.</message>
 	<message key="notification.type.reviewerComment">A reviewer has commented on "{$title}".</message>

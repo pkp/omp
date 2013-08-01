@@ -600,7 +600,7 @@ Votre serveur supporte actuellement mbstring: <strong>{$supportsMBString}</stron
 	<message key="notification.removedSubmission">La soumission a été supprimée.</message>
 	
 <!-- Notification Types -->
-	<message key="notification.type.monographSubmitted">Une nouvelle monographie, "{$title}," a été soumise.</message>
+	<message key="notification.type.submissionSubmitted">Une nouvelle monographie, "{$title}," a été soumise.</message>
 	<message key="notification.type.editing">Modifications</message>
 	<message key="notification.type.metadataModified">Les métadonnées de "{$title}" ont été modifiées.</message>
 	<message key="notification.type.reviewerComment">Un évaluateur a commenté "{$title}".</message>

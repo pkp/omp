@@ -595,7 +595,7 @@ Suporte à biblioteca mbstring: <strong>{$supportsMBString}</strong>]]></message
 	<message key="notification.proofsApproved">Provas homologadas.</message>
 	<message key="notification.removedSubmission">Submissão excluída.</message>
 	<!-- Notification Types -->
-	<message key="notification.type.monographSubmitted">Uma nova monografia, "{$title}", foi enviada.</message>
+	<message key="notification.type.submissionSubmitted">Uma nova monografia, "{$title}", foi enviada.</message>
 	<message key="notification.type.editing">Eventos da edição</message>
 	<message key="notification.type.metadataModified">Os metadados de "{$title}" foram alterados.</message>
 	<message key="notification.type.reviewerComment">Um avaliador comentou sobre "{$title}".</message>
