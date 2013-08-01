@@ -37,11 +37,6 @@ class NotificationManager extends PKPNotificationManager {
 		$context = $contextDao->getById($notification->getContextId());
 
 		switch ($notification->getType()) {
-			case NOTIFICATION_TYPE_SUBMISSION_SUBMITTED:
-			case NOTIFICATION_TYPE_METADATA_MODIFIED:
-			case NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_REQUIRED:
-				assert($notification->getAssocType() == ASSOC_TYPE_SUBMISSION && is_numeric($notification->getAssocId()));
-				return $dispatcher->url($request, ROUTE_PAGE, $context->getPath(), 'workflow', 'submission', $notification->getAssocId());
 			case NOTIFICATION_TYPE_LAYOUT_ASSIGNMENT:
 			case NOTIFICATION_TYPE_INDEX_ASSIGNMENT:
 			case NOTIFICATION_TYPE_APPROVE_SUBMISSION:
@@ -118,19 +113,12 @@ class NotificationManager extends PKPNotificationManager {
 		$submissionDao = Application::getSubmissionDAO();
 
 		switch ($notification->getType()) {
-			case NOTIFICATION_TYPE_SUBMISSION_SUBMITTED:
-				assert($notification->getAssocType() == ASSOC_TYPE_SUBMISSION && is_numeric($notification->getAssocId()));
-				$submission = $submissionDao->getById($notification->getAssocId()); /* @var $submission Submission */
-				return __('notification.type.submissionSubmitted', array('title' => $submission->getLocalizedTitle()));
 			case NOTIFICATION_TYPE_REVIEWER_COMMENT:
 				assert($notification->getAssocType() == ASSOC_TYPE_REVIEW_ASSIGNMENT && is_numeric($notification->getAssocId()));
 				$reviewAssignmentDao = DAORegistry::getDAO('ReviewAssignmentDAO'); /* @var $reviewAssignmentDao ReviewAssignmentDAO */
 				$reviewAssignment = $reviewAssignmentDao->getById($notification->getAssocId());
 				$submission = $submissionDao->getById($reviewAssignment->getSubmissionId()); /* @var $submission Submission */
 				return __('notification.type.reviewerComment', array('title' => $submission->getLocalizedTitle()));
-			case NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_REQUIRED:
-				assert($notification->getAssocType() == ASSOC_TYPE_SUBMISSION && is_numeric($notification->getAssocId()));
-				return __('notification.type.editorAssignmentTask');
 			case NOTIFICATION_TYPE_LAYOUT_ASSIGNMENT:
 				assert($notification->getAssocType() == ASSOC_TYPE_SUBMISSION && is_numeric($notification->getAssocId()));
 				$submission = $submissionDao->getById($notification->getAssocId());
@@ -204,10 +192,6 @@ class NotificationManager extends PKPNotificationManager {
 	 */
 	public function getIconClass($notification) {
 		switch ($notification->getType()) {
-			case NOTIFICATION_TYPE_SUBMISSION_SUBMITTED:
-				return 'notifyIconNewPage';
-			case NOTIFICATION_TYPE_METADATA_MODIFIED:
-				return 'notifyIconEdit';
 			case NOTIFICATION_TYPE_REVIEWER_COMMENT:
 				return 'notifyIconNewComment';
 		}
@@ -227,7 +211,6 @@ class NotificationManager extends PKPNotificationManager {
 			case NOTIFICATION_TYPE_APPROVE_SUBMISSION:
 			case NOTIFICATION_TYPE_VISIT_CATALOG:
 			case NOTIFICATION_TYPE_FORMAT_NEEDS_APPROVED_SUBMISSION:
-			case NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_REQUIRED:
 				return NOTIFICATION_STYLE_CLASS_INFORMATION;
 		}
 		return parent::getStyleClass($notification);
