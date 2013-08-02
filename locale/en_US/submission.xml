@@ -48,9 +48,6 @@
 	<message key="grid.action.editChapter">Edit this chapter</message>
 	<message key="grid.action.deleteChapter">Delete this chapter</message>
 
-	<!-- workflow navigation keys -->
-	<message key="submission.productionReady">Book available</message>
-
 	<!-- Submission wizard -->
 	<message key="submission.submit">Start New Book Submission</message>
 	<message key="submission.submit.newSubmissionMultiple">Start a New Submission in</message>

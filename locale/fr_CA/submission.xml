@@ -49,9 +49,6 @@
 	<message key="grid.action.editChapter">Modifier ce chapitre</message>
 	<message key="grid.action.deleteChapter">Supprimer ce chapitre</message>
 
-	<!-- workflow navigation keys -->
-	<message key="submission.productionReady">Livre disponible</message>
-
 	<!-- Submission wizard -->
 	<message key="submission.submit">Entreprendre une nouvelle soumission de livre</message>
 	<message key="submission.submit.newSubmissionMultiple">Commencer une nouvelle soumission dans</message>
