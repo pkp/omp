@@ -44,6 +44,7 @@ class NotificationManager extends PKPNotificationManager {
 				return $dispatcher->url($request, ROUTE_PAGE, $context->getPath(), 'workflow', 'access', $notification->getAssocId());
 			case NOTIFICATION_TYPE_AUDITOR_REQUEST:
 			case NOTIFICATION_TYPE_COPYEDIT_ASSIGNMENT:
+				assert($notification->getAssocType() == ASSOC_TYPE_SIGNOFF);
 				$signoffDao = DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
 				$signoff = $signoffDao->getById($notification->getAssocId());
 				assert(is_a($signoff, 'Signoff') && $signoff->getAssocType() == ASSOC_TYPE_SUBMISSION_FILE);
