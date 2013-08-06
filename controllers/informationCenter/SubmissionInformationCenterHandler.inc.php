@@ -73,31 +73,6 @@ class SubmissionInformationCenterHandler extends PKPSubmissionInformationCenterH
 		return $json->getString();
 	}
 
-
-	/**
-	 * Fetches an email template's message body and returns it via AJAX.
-	 * @param $args array
-	 * @param $request PKPRequest
-	 */
-	function fetchTemplateBody($args, $request) {
-		$templateId = $request->getUserVar('template');
-		import('classes.mail.MonographMailTemplate');
-		$template = new MonographMailTemplate($this->_submission, $templateId);
-		if ($template) {
-			$user = $request->getUser();
-			$dispatcher = $request->getDispatcher();
-			$context = $request->getContext();
-			$template->assignParams(array(
-				'contextUrl' => $dispatcher->url($request, ROUTE_PAGE, $context->getPath()),
-				'editorialContactSignature' => $user->getContactSignature(),
-				'signatureFullName' => $user->getFullname(),
-			));
-
-			$json = new JSONMessage(true, $template->getBody() . "\n" . $context->getSetting('emailSignature'));
-			return $json->getString();
-		}
-	}
-
 	/**
 	 * Log an event for this file
 	 * @param $request PKPRequest
@@ -108,9 +83,6 @@ class SubmissionInformationCenterHandler extends PKPSubmissionInformationCenterH
 		switch($eventType) {
 			case SUBMISSION_LOG_NOTE_POSTED:
 				$logMessage = 'informationCenter.history.notePosted';
-				break;
-			case SUBMISSION_LOG_MESSAGE_SENT:
-				$logMessage = 'informationCenter.history.messageSent';
 				break;
 			default:
 				assert(false);
