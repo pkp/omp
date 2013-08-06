@@ -507,8 +507,6 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="notification.type.roundStatusTitle">Round {$round} Status</message>
 	<message key="notification.type.pendingRevisions">You have revisions to consider in {$stage}.</message>
 	<message key="notification.type.pendingRevisions.title">Revisions submitted to {$stage}.</message>
-	<message key="notification.type.allReviewsIn">All reviews in and a decision is needed in {$stage}.</message>
-	<message key="notification.type.allRevisionsIn">A revised file has been uploaded for your editorial consideration in {$stage}.</message>
 	<message key="notification.type.approveSubmission">This submission is currently awaiting approval in the Catalog Entry tool before it will appear in the public catalog.</message>
 	<message key="notification.type.approveSubmissionTitle">Awaiting approval.</message>
 	<message key="notification.type.formatNeedsApprovedSubmission">The metadata for the catalog entry must be approved before the publication format is included in the catalog. To approve catalog metadata, click on Monograph tab above.</message>

@@ -79,25 +79,6 @@ class NotificationManager extends PKPNotificationManager {
 				$announcement = $announcementDao->getById($notification->getAssocId()); /* @var $announcement Announcement */
 				$context = $contextDao->getById($announcement->getAssocId());
 				return $dispatcher->url($request, ROUTE_PAGE, null, $context->getPath(), 'index', array($notification->getAssocId()));
-			case NOTIFICATION_TYPE_ALL_REVIEWS_IN:
-			case NOTIFICATION_TYPE_ALL_REVISIONS_IN:
-				assert($notification->getAssocType() == ASSOC_TYPE_REVIEW_ROUND && is_numeric($notification->getAssocId()));
-				$reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO');
-				$reviewRound = $reviewRoundDao->getById($notification->getAssocId());
-				assert(is_a($reviewRound, 'ReviewRound'));
-
-				$submissionDao = Application::getSubmissionDAO();
-				$submission = $submissionDao->getById($reviewRound->getSubmissionId());
-				import('lib.pkp.controllers.grid.submissions.SubmissionsListGridCellProvider');
-				list($page, $operation) = SubmissionsListGridCellProvider::getPageAndOperationByUserRoles($request, $submission);
-
-				if ($page == 'workflow') {
-					$stageId = $reviewRound->getStageId();
-					$userGroupDao = DAORegistry::getDAO('UserGroupDAO');
-					$operation = $userGroupDao->getPathFromId($stageId);
-				}
-
-				return $dispatcher->url($request, ROUTE_PAGE, $context->getPath(), $page, $operation, $submission->getId());
 			case NOTIFICATION_TYPE_APPROVE_SUBMISSION:
 				break;
 			case NOTIFICATION_TYPE_VISIT_CATALOG:
@@ -137,21 +118,6 @@ class NotificationManager extends PKPNotificationManager {
 
 				AppLocale::requireComponents(LOCALE_COMPONENT_APP_EDITOR); // load review round status keys.
 				return __($reviewRound->getStatusKey());
-			case NOTIFICATION_TYPE_ALL_REVIEWS_IN:
-			case NOTIFICATION_TYPE_ALL_REVISIONS_IN:
-				if ($notification->getType() == NOTIFICATION_TYPE_ALL_REVIEWS_IN) {
-					$localeKey = 'notification.type.allReviewsIn';
-				} else {
-					$localeKey = 'notification.type.allRevisionsIn';
-				}
-
-				assert($notification->getAssocType() == ASSOC_TYPE_REVIEW_ROUND && is_numeric($notification->getAssocId()));
-				$reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO');
-				$reviewRound = $reviewRoundDao->getById($notification->getAssocId());
-				assert(is_a($reviewRound, 'ReviewRound'));
-				$userGroupDao = DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */
-				$stagesData = $userGroupDao->getWorkflowStageKeysAndPaths();
-				return __($localeKey, array('stage' => __($stagesData[$reviewRound->getStageId()]['translationKey'])));
 			case NOTIFICATION_TYPE_APPROVE_SUBMISSION:
 				assert($notification->getAssocType() == ASSOC_TYPE_SUBMISSION && is_numeric($notification->getAssocId()));
 				return __('notification.type.approveSubmission');

@@ -615,8 +615,6 @@ Suporte à biblioteca mbstring: <strong>{$supportsMBString}</strong>]]></message
 	<message key="notification.type.roundStatusTitle">Situação da rodada {$round}</message>
 	<message key="notification.type.pendingRevisions">Revisões para consideração no estágio {$stage}.</message>
 	<message key="notification.type.pendingRevisions.title">Revisões enviadas ao estágio {$stage}.</message>
-	<message key="notification.type.allReviewsIn">Todas as avaliações entregues e aguardando decisão final no estágio {$stage}.</message>
-	<message key="notification.type.allRevisionsIn">Um arquivo revisado foi enviado para avaliação editorial no estágio {$stage}.</message>
 	<message key="notification.type.approveSubmission">Submissão atualmente aguardando aprovação na ferramenta de entrada de catálogo antes de ser publicada no catálogo.</message>
 	<message key="notification.type.approveSubmissionTitle">Aguardando aprovação.</message>
 	<message key="notification.type.formatNeedsApprovedSubmission">Os metadados para a entrada do catálogo devem ser aprovados antes de incluir o formato de publicação. Para aprovar os metadados, clique na aba Monografia acima.</message>
