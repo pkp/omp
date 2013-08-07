@@ -591,7 +591,6 @@ Votre serveur supporte actuellement mbstring: <strong>{$supportsMBString}</stron
 	<message key="notification.addedSocialMedia">Réseau de média social ajouté.</message>
 	<message key="notification.editedSocialMedia">Réseau de média social modifié.</message>
 	<message key="notification.removedSocialMedia">Réseau de média social supprimé.</message>
-	<message key="notification.signedFile">Fichier considéré.</message>
 	<message key="notification.savedCatalogMetadata">Les métadonnées du catalogue ont été sauvegardées.</message>
 	<message key="notification.savedPublicationFormatMetadata">Les métadonnées du format de publication ont été sauvegardées.</message>
 	<message key="notification.mailListDescription">Indiquez votre adresse courriel afin de recevoir un avis lorsqu'on ajoutera de nouveaux titres à la presse.</message>

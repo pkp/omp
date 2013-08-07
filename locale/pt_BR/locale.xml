@@ -586,7 +586,6 @@ Suporte à biblioteca mbstring: <strong>{$supportsMBString}</strong>]]></message
 	<message key="notification.addedSocialMedia">Rede social incluído</message>
 	<message key="notification.editedSocialMedia">Rede social editada.</message>
 	<message key="notification.removedSocialMedia">Rede social excluída.</message>
-	<message key="notification.signedFile">Arquivo considerado.</message>
 	<message key="notification.updatedReviewFiles">Arquivos de avaliação atualizados.</message>
 	<message key="notification.savedCatalogMetadata">Metadados do catálogo salvos.</message>
 	<message key="notification.savedPublicationFormatMetadata">Metadados do formato de publicação salvos.</message>

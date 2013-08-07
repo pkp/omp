@@ -624,7 +624,6 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="notification.addedSocialMedia">Το κοινονικό δίκτυο έχει προστεθεί.</message>
 	<message key="notification.editedSocialMedia">Το κοινονικό δίκτυο έχει επεξεργαστεί.</message>
 	<message key="notification.removedSocialMedia">Το κοινονικό δίκτυο έχει αφαιρεθεί.</message>
-	<message key="notification.signedFile">Το αρχείο έχει θεωρηθεί.</message>
 	<message key="notification.updatedReviewFiles">Αναθεωρήστε τα ενημερωμένα αρχεία.</message>
 	<message key="notification.savedCatalogMetadata">Τα μεταδεδομένα του Καταλόγου έχουν αποθηκευτεί.</message>
 	<message key="notification.savedPublicationFormatMetadata">Τα μεταδεδομένα του μορφότυπου της έκδοσης έχουν αποθηκευτεί.</message>
