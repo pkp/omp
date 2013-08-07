@@ -650,7 +650,6 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="notification.type.editorAssignmentTask">Μία νέα μονογραφία έχει υποβληθεί και έιναι απαραίτητο να ανατεθεί σε έναν επιμελητή.</message>
 	<message key="notification.type.editorAssignmentEditing">Για να ξεκινήσει η διαδικασία  σύνταξης/επιμέλειας μιας υποβολής πρέπει αυτή να ανατεθεί σε ένα επιμελητή. Παρακαλούμε προσθέστε έναν επιμελητή επιλέγοντας τον παραπάνω σύνδεσμο με τους Συμμετέχοντες.</message>
 	<message key="notification.type.editorAssignmentProduction">Για να ξεκινήσει η διαδικασία  παραγωγής μιας υποβολής πρέπει αυτή να ανατεθεί σε ένα επιμελητή παραγωγής (production editor). Παρακαλούμε προσθέστε έναν επιμελητή παραγωγής επιλέγοντας τον παραπάνω σύνδεσμο με τους Συμμετέχοντες.</message>
-	<message key="notification.type.auditorRequest">Έχετε κληθεί για τον έλεγχο του αρχείου "{$file}"</message>
 	<message key="notification.type.copyeditorRequest">Έχετε κληθεί να θεωρήσετε την επιμέλεια κειμένων για το "{$file}".</message>
 	<message key="notification.type.layouteditorRequest">Έχετε κληθεί να θεωρήσετε την επιμέλεια σελιδοποίησης για το "{$title}".</message>
 	<message key="notification.type.indexRequest">Έχετε κληθεί να ευρετηριάσετε το "{$title}".</message>
