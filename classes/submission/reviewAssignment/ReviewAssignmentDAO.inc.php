@@ -93,69 +93,6 @@ class ReviewAssignmentDAO extends PKPReviewAssignmentDAO {
 		return 'r.review_round_id = r2.review_round_id';
 	}
 
-	//
-	// Override methods from PKPSubmissionFileDAO
-	// FIXME *6902* Move this code to PKPReviewAssignmentDAO after the review round
-	// refactoring is ported to other applications.
-	/**
-	 * Retrieve a review assignment by review round and reviewer.
-	 * @param $reviewRoundId int
-	 * @param $reviewerId int
-	 * @return ReviewAssignment
-	 */
-	function getReviewAssignment($reviewRoundId, $reviewerId) {
-		$params = array(
-		(int) $reviewRoundId,
-		(int) $reviewerId
-		);
-
-		$result = $this->retrieve(
-			$this->_getSelectQuery() .
-			' WHERE	r.review_round_id = ? AND
-				r.reviewer_id = ? AND
-				r.cancelled <> 1',
-			$params
-		);
-
-		$returner = null;
-		if ($result->RecordCount() != 0) {
-			$returner = $this->_fromRow($result->GetRowAssoc(false));
-		}
-
-		$result->Close();
-		return $returner;
-	}
-
-	/**
-	 * @see PKPReviewAssignmentDAO::getBySubmissionId()
-	 */
-	function getBySubmissionId($submissionId, $reviewRoundId = null, $stageId = null) {
-		$query = $this->_getSelectQuery() .
-			' WHERE	r.submission_id = ?';
-
-		$orderBy = ' ORDER BY review_id';
-
-		$queryParams[] = (int) $submissionId;
-
-		if ($reviewRoundId != null) {
-			$query .= ' AND r2.review_round_id = ?';
-			$queryParams[] = (int) $reviewRoundId;
-		} else {
-			$orderBy .= ', r2.review_round_id';
-		}
-
-		if ($stageId != null) {
-			$query .= ' AND r2.stage_id = ?';
-			$queryParams[] = (int) $stageId;
-		} else {
-			$orderBy .= ', r2.stage_id';
-		}
-
-		$query .= $orderBy;
-
-		return $this->_getReviewAssignmentsArray($query, $queryParams);
-	}
-
 	/**
 	 * @see PKPReviewAssignmentDAO::getReviewerIdsBySubmissionId()
 	 */
