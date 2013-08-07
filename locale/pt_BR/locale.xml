@@ -275,7 +275,6 @@
 	<message key="reviewer.aboutDueDates">Sobre as datas de entregas</message>
 	<message key="reviewer.aboutDueDates.text">O editor solicita que aceite ou recuse a responsabilidade de avaliação antes da data de entrega e conclua sua avaliação até a data de entrega da avaliação.</message>
 	<message key="workflow.review.internalReview">Avaliação interna</message>
-	<message key="workflow.review.externalReview">Avaliação externa</message>
 	<message key="review.blindPeerReview">
 		<![CDATA[<p>Para assegurar a integridade da avaliação pelos pares cega de submissões a esta editora, todos os esforços devem ser tomados para preservar a identidade de autores e avaliadores. Isto exique que autores, editores e avaliadores (que enviam documentos ao sistema como parte de suas atividades) tomem as seguintes precauções em relação ao texto e às propriedades digitais do arquivo:</p>
 		<ul><li>Os autores do documento excluíram seus omes do texto, adotando "Autor" e ano usado em suas referências e notas de rodapé, em vez do nome do autor, título do artigo, entre outros.</li>

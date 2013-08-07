@@ -276,7 +276,6 @@
 	<message key="reviewer.aboutDueDates">À propos des dates limites</message>
 	<message key="reviewer.aboutDueDates.text">Le rédacteur en chef demande que vous acceptiez ou refusiez d'évaluer la soumission avant la date limite de réponse, et que vous complétiez l'évaluation avant la date limite d'évaluation.</message>
 	<message key="workflow.review.internalReview">Évaluation interne</message>
-	<message key="workflow.review.externalReview">Évaluation externe</message>
 	<message key="review.blindPeerReview">
 		<![CDATA[<p>Afin d'assurer l'intégrité de l'examen aveugle par les pairs de la soumission à cette presse, aucun effort ne devrait être ménagé pour que l'on ne révèle pas l'identité des évaluateurs aux auteurs, et vice-versa. Pour ce faire, les auteurs, les éditeurs et les évaluateurs (qui téléchargent des documents dans le cadre du processus d'évaluation) doivent s'assurer qu'ils ont respecté les étapes suivantes en ce qui a trait aux propriétés des textes et des fichiers:</p>
 		<ul><li>Les auteurs du document ont effacé leur nom du texte et ont utilisé le terme "auteur" et l'année dans les références et les notes en bas de page, au lieu du nom de l'auteur, du titre de l'article, etc.</li>

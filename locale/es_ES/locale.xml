@@ -142,7 +142,6 @@
 	<!-- Used in submission review -->
 	<message key="reviewer.reviewSteps.guidelines">2. Directrices</message>
 	<message key="workflow.review.internalReview">Revisión interna</message>
-	<message key="workflow.review.externalReview">Revisión externa</message>
 
 	<!-- Review Attachments -->
 	<message key="grid.reviewAttachments.availableFiles">Ficheros disponibles</message>
