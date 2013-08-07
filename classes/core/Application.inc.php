@@ -120,7 +120,7 @@ class Application extends PKPApplication {
 			'QualifierDAO' => 'classes.codelist.QualifierDAO',
 			'QueuedPaymentDAO' => 'lib.pkp.classes.payment.QueuedPaymentDAO',
 			'RepresentativeDAO' => 'classes.monograph.RepresentativeDAO',
-			'ReviewAssignmentDAO' => 'classes.submission.reviewAssignment.ReviewAssignmentDAO',
+			'ReviewAssignmentDAO' => 'lib.pkp.classes.submission.reviewAssignment.ReviewAssignmentDAO',
 			'ReviewerSubmissionDAO' => 'classes.submission.reviewer.ReviewerSubmissionDAO',
 			'ReviewFormDAO' => 'lib.pkp.classes.reviewForm.ReviewFormDAO',
 			'ReviewFormElementDAO' => 'lib.pkp.classes.reviewForm.ReviewFormElementDAO',
