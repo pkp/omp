@@ -189,31 +189,6 @@ class ReviewAssignmentDAO extends PKPReviewAssignmentDAO {
 		return $reviewAssignments;
 	}
 
-	/**
-	 * @see PKPReviewAssignmentDAO::getReviewIndexesForRound()
-	 */
-	function getReviewIndexesForRound($submissionId, $reviewRoundId) {
-		$result = $this->retrieve(
-			'SELECT	review_id
-			FROM	review_assignments
-			WHERE	submission_id = ? AND
-				review_round_id = ? AND
-				(cancelled = 0 OR cancelled IS NULL)
-			ORDER BY review_id',
-			array((int) $submissionId, (int) $reviewRoundId)
-		);
-
-		$index = 0;
-		$returner = array();
-		while (!$result->EOF) {
-			$row = $result->GetRowAssoc(false);
-			$returner[$row['review_id']] = $index++;
-			$result->MoveNext();
-		}
-
-		$result->Close();
-		return $returner;
-	}
 
 	/**
 	 * @see PKPReviewAssignmentDAO::getLastModifiedByRound()
