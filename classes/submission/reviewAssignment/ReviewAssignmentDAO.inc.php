@@ -30,60 +30,11 @@ class ReviewAssignmentDAO extends PKPReviewAssignmentDAO {
 	}
 
 	/**
-	 * Get the ID of the last inserted review assignment.
-	 * @return int
-	 */
-	function getInsertId() {
-		return $this->_getInsertId('review_assignments', 'review_id');
-	}
-
-	/**
-	 * Get the average quality ratings and number of ratings for all users of a press.
-	 * @return array
-	 */
-	function getAverageQualityRatings($pressId) {
-		$averageQualityRatings = array();
-		$result = $this->retrieve(
-			'SELECT	r.reviewer_id, AVG(r.quality) AS average, COUNT(r.quality) AS count
-			FROM	review_assignments r, submissions s
-			WHERE	r.submission_id = s.submission_id AND
-				s.context_id = ?
-			GROUP BY r.reviewer_id',
-			(int) $pressId
-		);
-
-		while (!$result->EOF) {
-			$row = $result->GetRowAssoc(false);
-			$averageQualityRatings[$row['reviewer_id']] = array('average' => $row['average'], 'count' => $row['count']);
-			$result->MoveNext();
-		}
-
-		$result->Close();
-		return $averageQualityRatings;
-	}
-
-	/**
 	 * Construct a new data object corresponding to this DAO.
 	 * @return ReviewAssignment
 	 */
 	function newDataObject() {
 		return new ReviewAssignment();
-	}
-
-
-	/**
-	 * Internal function to return a review assignment object from a row.
-	 * @param $row array
-	 * @return ReviewAssignment
-	 */
-	function _fromRow($row) {
-		$reviewAssignment = parent::_fromRow($row);
-
-		// Comments
-		$reviewAssignment->setMostRecentPeerReviewComment($this->submissionCommentDao->getMostRecentSubmissionComment($row['submission_id'], COMMENT_TYPE_PEER_REVIEW, $row['review_id']));
-
-		HookRegistry::call('ReviewAssignmentDAO::_fromRow', array(&$reviewAssignment, &$row));
-		return $reviewAssignment;
 	}
 
 	/**

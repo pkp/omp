@@ -389,26 +389,6 @@ class ReviewerSubmission extends Monograph {
 	function setStep($step) {
 		return $this->setData('step', $step);
 	}
-
-	//
-	// Comments
-	//
-
-	/**
-	 * Get most recent peer review comment.
-	 * @return SubmissionComment
-	 */
-	function getMostRecentPeerReviewComment() {
-		return $this->getData('peerReviewComment');
-	}
-
-	/**
-	 * Set most recent peer review comment.
-	 * @param $peerReviewComment SubmissionComment
-	 */
-	function setMostRecentPeerReviewComment($peerReviewComment) {
-		return $this->setData('peerReviewComment', $peerReviewComment);
-	}
 }
 
 ?>

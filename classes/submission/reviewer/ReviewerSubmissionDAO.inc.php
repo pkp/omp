@@ -94,9 +94,6 @@ class ReviewerSubmissionDAO extends MonographDAO {
 		// Get the ReviewerSubmission object, populated with Monograph data
 		$reviewerSubmission = parent::_fromRow($row);
 
-		// Comments
-		$reviewerSubmission->setMostRecentPeerReviewComment($this->submissionCommentDao->getMostRecentSubmissionComment($row['submission_id'], COMMENT_TYPE_PEER_REVIEW, $row['review_id']));
-
 		// Editor Decisions
 		$editDecisionDao = DAORegistry::getDAO('EditDecisionDAO');
 		$decisions = $editDecisionDao->getEditorDecisions($row['submission_id']);
