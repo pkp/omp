@@ -23,14 +23,12 @@
 	<message key="submission.production">Production</message>
 	<message key="submission.published">Prêt pour la production</message>
 	<message key="submission.fairCopy">Copie au net</message>
-	<message key="submission.art">Illustrations</message>
 	<message key="submission.artwork.permissions">Permissions</message>
 	<message key="submission.chapter">Chapitre</message>
 	<message key="submission.chapters">Chapitres</message>
 	<message key="submission.chaptersDescription">Vous pouvez ajouter la liste des chapitres ici et assigner des contributeurs à la liste des contributeurs ci-dessus. Ces contributeurs auront accès au chapitre pendant différentes étapes du processus de publication.</message>
 	<message key="submission.chapter.addChapter">Ajouter un chapitre</message>
 	<message key="submission.chapter.editChapter">Modifier un chapitre</message>
-	<message key="submission.document">Document</message>
 	<message key="submission.copyedit">Réviser</message>
 	<message key="submission.publicationFormats">Formats de publication</message>
 	<message key="submission.proofs">Épreuves</message>
