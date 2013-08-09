@@ -173,24 +173,6 @@ Une première évaluation de "{$submissionTitle}" a révélé que cette soumissi
 
 {$editorialContactSignature}</body>
 	</email_text>
-	<email_text key="SUBMISSION_COMMENT">
-		<subject>Commentaires sur la soumission</subject>
-		<body>{$name}:
-
-{$commentName} a ajouté un commentaire à la soumission "{$submissionTitle}" de la presse {$contextName}.
-
-{$comments}</body>
-		<description>Ce courriel informe les participants concernés qu'un nouveau commentaire a été ajouté à une soumission.</description>
-	</email_text>
-	<email_text key="SUBMISSION_DECISION_REVIEWERS">
-		<subject>Décision concernant "{$submissionTitle}"</subject>
-		<body>À titre d'évaluateur de la soumission "{$submissionTitle}" pour la presse {$contextName}, je vous fais parvenir les évaluations et les décisions éditoriales envoyées à l'auteur en ce qui concerne cet article. Merci d'avoir contribué à ce processus.
-
-{$editorialContactSignature}
-
-{$comments}</body>
-		<description>Ce courriel informe les évaluateurs d'une soumission que le processus d'évaluation est terminé. Il contient des renseignements sur la monographie et la décision prise, et remercie les évaluateurs de leur contribution.</description>
-	</email_text>
 	<email_text key="EDITOR_ASSIGN">
 		<subject>Travail éditorial</subject>
 		<body>{$editorialContactName}:
@@ -465,24 +447,6 @@ Nom d'utilisateur: {$authorUsername}
 </body>
 		<description>Ce courriel est envoyé par un rédacteur en chef à un auteur pour signaler que l'on a pris une décision finale concernant sa soumission.</description>
 	</email_text>
-	<email_text key="EDITOR_REVIEW">
-		<subject>Révision de votre manuscript</subject>
-		<body>{$authorName}:
-
-Votre monographie "{$submissionTitle}" a été évaluée. Nous avons décidé de...
-
-{$comments}.
-
-Pour lire d'autres commentaires sur votre article, basés sur l'évaluation par les pairs et le processus éditorial, il suffit d'ouvrir une session sur le site Web de la presse:
-
-URL de la soumission: {$submissionUrl}
-Nom d'utilisateur: {$authorUsername}
-
-Si vous avez des questions, n'hésitez pas à me contacter.
-
-{$editorialContactSignature}</body>
-		<description>Ce courriel est envoyé par un rédacteur en chef à un auteur pour l'informer que l'on a pris une décision concernant sa soumission.</description>
-	</email_text>
 	<email_text key="COPYEDIT_REQUEST">
 		<subject>Requête de révision</subject>
 		<body>{$copyeditorName}:
@@ -502,125 +466,6 @@ Nom d'utilisateur: {$copyeditorUsername}
 
 {$editorialContactSignature}</body>
 		<description>Ce courriel est envoyé par le rédacteur en chef d'une série au réviseur de la soumission afin qu'il entame de processus de révision, lorsque l'évaluation par les pairs est terminée. Il explique comment accéder à la soumission.</description>
-	</email_text>
-	<email_text key="COPYEDIT_COMPLETE">
-		<subject>Révision terminée</subject>
-		<body>{$editorialContactName}:
-
-Votre article "{$submissionTitle}" pour la presse {$contextName} a été révisé. Pour lire les commentaires des réviseurs et répondre aux questions que l'on vous a posées, veuillez suivre les étapes suivantes:
-
-1. Cliquez sure le lien URL de la soumission ci-dessous avec votre nom d'utilisateur et mot de passe (utilisez le lien Oublié, au besoin).  
-2. Cliquez sur le fichier dans 1. Premier fichier de révision pour télécharger et ouvrir la version révisée de l'article. 
-3. Lisez les révisions. Au moment de modifier le fichier dans Word, assurez-vous d'avoir activé l'option Suivi des modifications. Répondez aux questions. 
-4. Sauvegardez votre fichier sur votre bureau et téléchargez-le dans 2. Révision de l'auteur.
-5. Cliquez sur l'icône courriel COMPLET et envoyez un courriel au rédacteur en chef.
-
-Ceci est votre dernière chance d'apporter des modifications importantes à votre article. Plus tard, on vous demandera de relire les épreuves en placard. Mais à cette étape, vous ne pourrez que corriger des erreurs typographiques ou de mise en page mineures.
-
-
-URL du manuscrit: {$submissionEditingUrl}
-Nom d'utilisateur: {$authorUsername}
-
-Si vous ne pouvez pas corriger votre article en ce moment ou si vous avez des questions, n'hésitez pas à me contacter. Merci d'avoir contribué à cette presse.
-
-
-{$copyeditorName}</body>
-	</email_text>
-	<email_text key="COPYEDIT_ACK">
-		<subject>Accusé de réception de la revision</subject>
-		<body>{$copyeditorName}:
-
-
-Merci d'avoir révisé l'article "{$submissionTitle}" pour la presse {$contextName}. Cet article permettra à la presse de publier un ouvrage de qualité.
-
-{$editorialContactSignature}</body>
-		<description>Ce courriel est envoyé par le rédacteur en chef d'une série au réviseur d'un article pour lui indiquer que le processus de révision est terminé et pour le remercier de son aide.</description>
-	</email_text>
-	<email_text key="COPYEDIT_AUTHOR_REQUEST">
-		<subject>Requête d'examen de la révision</subject>
-		<body>{$authorName}:
-
-Les premières étapes de révision de votre soumission "{$submissionTitle}" pour la presse {$contextName} sont terminées. Vous pouvez consulter ces révisions en suivant les étapes suivantes:
-
-1. Cliquez sur le lien URL de la soumission ci-dessous.
-2. Ouvrez une session sur la presse et cliquez sur le fichier qui apparait à l'étape 1.
-3. Ouvrez la soumission téléchargée.
-4. Révisez le texte, y compris les suggestions et les questions s'adressant à l'auteur.
-5. Apportez les corrections nécessaires pour améliorer votre texte.
-6. Lorsque vous avez terminé, téléchargez le fichier à l'étape 2.
-7. Cliquez sur MÉTADONNÉES pour vérifier l'indexage des renseignements, afin de vous assurez qu'ils sont complets et exacts.
-8. Envoyez le courriel COMPLET au rédacteur en chef et au réviseur.
-
-
-
-URL de la soumission: {$submissionCopyeditingUrl}
-Nom d'utilisateur: {$authorUsername}
-
-Ceci est votre dernière chance d'apporter des modifications importantes à votre article. Plus tard, on vous demandera de relire les épreuves en placard. Mais à cette étape, vous ne pourrez que corriger des erreurs typographiques ou de mise en page mineures.
-
-
-Si vous ne pouvez pas corriger votre article en ce moment ou si vous avez des questions, n'hésitez pas à me contacter. Merci d'avoir contribué à cette presse.
-
-{$editorialContactSignature}</body>
-		<description>Ce courriel est envoyé par le rédacteur en chef d'une série à l'auteur d'un article pour lui demander de corriger son article avant de l'envoyer au réviseur. Le courriel explique comment ouvrir le fichier du manuscrit et rappelle à l'auteur qu'il ne pourra plus apporter des changements majeurs à son article après cette étape.</description>
-	</email_text>
-	<email_text key="COPYEDIT_AUTHOR_COMPLETE">
-		<subject>Examen de la révision complété</subject>
-		<body>{$editorialContactName}:
-
-J'ai relu et corrigé la version révisée de mon article  "{$submissionTitle}" pour la presse {$contextName}. Mon article peut désormais passer à l'étape finale de révision et de mise en page.
-
-Merci de votre contribution à mon travail.
-
-{$authorName}</body>
-		<description>Ce courriel est envoyé par l'auteur au rédacteur en chef d'une série pour signaler à ce dernier que le processus de révision est terminé.</description>
-	</email_text>
-	<email_text key="COPYEDIT_AUTHOR_ACK">
-		<subject>Accusé de réception de l'examen de la révision</subject>
-		<body>{$authorName}:
-
-Merci d'avoir révisé votre soumission "{$submissionTitle}" pour la presse {$contextName}. Nous sommes très heureux d'avoir la chance de publier votre article.
-
-{$editorialContactSignature}</body>
-		<description>Ce courriel est envoyé par le rédacteur en chef d'une série à l'auteur pour confirmer que le processus de révision est terminé et le remercier de sa contribution.</description>
-	</email_text>
-	<email_text key="COPYEDIT_FINAL_REQUEST">
-		<subject>Révision finale</subject>
-		<body>{$copyeditorName}:
-
-L'auteur et le rédacteur en chef ont terminé la révision de l'article "{$submissionTitle}" pour la presse {$contextName}. Une "copie au propre" doit maintenant être préparée pour la mise en page. Veuillez suivre les étapes suivantes:
-
-1. Cliquez sur le lien URL de la soumission ci-dessous.
-2. Ouvrez une session sur la presse et cliquez sur le fichier qui apparait à l'étape 2.
-3. Ouvrez le fichier téléchargé et ajoutez toutes les révisions et réponses aux questions.
-4. Sauvegardez la copie au propre et téléchargez-là à l'étape 3. Révision.
-5. Cliquez sur MÉTADONNÉES pour vérifier l'indexage des renseignements (et sauvegarder les corrections).
-6. Envoyez le courriel COMPLET au rédacteur en chef.
-
-{$contextName} URL: {$contextUrl}
-URL de la soumission: {$submissionCopyeditingUrl}
-Nom d'utilisateur: {$copyeditorUsername}
-
-{$editorialContactSignature}</body>
-		<description>Ce courriel est envoyé au réviseur par le rédacteur en chef d'une série pour lui demander d'effectuer une dernière révision de la soumission avant de passer à la mise en page.</description>
-	</email_text>
-	<email_text key="COPYEDIT_FINAL_COMPLETE">
-		<subject>Révision finale complétée</subject>
-		<body>{$editorialContactName}:
-
-J'ai préparé une version au propre et révisée du manuscrit "{$submissionTitle}" par la presse {$contextName}. Il peut maintenant passer à l'étape de mise en page et on peut préparer les épreuves en placard.
-
-{$copyeditorName}</body>
-		<description>Ce courriel est envoyé par le réviseur au rédacteur en chef d'une série pour lui indiquer que l'étape finale de révision est terminée et que l'on peut commencer la mise en page.</description>
-	</email_text>
-	<email_text key="COPYEDIT_FINAL_ACK">
-		<subject>Accusé de réception de la révision finale</subject>
-		<body>{$copyeditorName}:
-
-Merci d'avoir révisé le manuscrit "{$submissionTitle}" pour la presse {$contextName}. La préparation de la "copie au propre" pour la mise en page est une étape importante du processus de publication.
-
-{$editorialContactSignature}</body>
-		<description>Ce courriel est envoyé au réviseur par le rédacteur en chef d'une série pour confirmer qu'il a bien reçu les dernières révisions et le remercier de son aide.</description>
 	</email_text>
 	<email_text key="LAYOUT_REQUEST">
 		<subject>Requête des épreuves en placard</subject>
@@ -652,15 +497,6 @@ Si vous avez questions, n'hésitez pas à me contacter.
 {$signatureFullName}</body>
 		<description>Ce courriel est envoyé par le rédacteur metteur en page au rédacteur d'une série pour l'informer que la mise en page du manuscrit est terminée.</description>
 	</email_text>
-	<email_text key="LAYOUT_ACK">
-		<subject>Accusé de réception de la mise en page</subject>
-		<body>{$layoutEditorName}:
-
-Merci d'avoir préparé les épreuves en placard du manuscrit "{$submissionTitle}" pour la presse {$contextName}. Il s'agit d'une étape importante du processus de publication.
-
-{$editorialContactSignature}</body>
-		<description>Ce courriel est envoyé au rédacteur metteur en page par le rédacteur en chef d'une série pour confirmer que la mise en page est terminée et le remercier de son aide.</description>
-	</email_text>
 	<email_text key="INDEX_REQUEST">
 		<subject>Requête d'indexage</subject>
 		<body>{$indexerName}:
@@ -690,122 +526,6 @@ Si vous avez questions, n'hésitez pas à me contacter.
 
 {$signatureFullName}</body>
 		<description>Ce courriel est envoyé par l'indexateur au rédacteur en chef d'une série pour lui indiquer que l'indexage est terminé.</description>
-	</email_text>
-	<email_text key="PROOFREAD_AUTHOR_REQUEST">
-		<subject>Requête de révision (auteur)</subject>
-		<body>{$authorName}:
-
-Votre soumission intitulée "{$submissionTitle}" pour la presse {$contextName} doit être révisée. Pour ce faire, veuillez suivre les étapes suivantes: 
-
-1. Cliquez sur le lien URL de la soumission ci-dessous.
-2. Ouvrez une session sur la presse et lisez les INSTRUCTIONS DE RÉVISION.
-3. Cliquez sur VISIONNER L'ÉPREUVE dans Mise en page, et révisez l'épreuve en placard dans un ou plusieurs des formats utilisés.
-4. Saisissez les corrections (typographiques et de formatage) dans Corrections de l'épreuve.
-5. Sauvegardez et envoyez les corrections par courriel au rédacteur metteur en page et au réviseur.
-6. Envoyez le courriel COMPLET au rédacteur en chef.
-
-URL de la soumission: {$submissionUrl}
-Nom d'utilisateur: {$authorUsername}
-
-{$editorialContactSignature}</body>
-		<description>Ce courriel est envoyé à l'auteur par le rédacteur en chef d'une série pour lui indiquer que les épreuves en placard de la monographie doivent être révisées. Il contient des renseignements sur la monographie et explique comment y accéder.</description>
-	</email_text>
-	<email_text key="PROOFREAD_AUTHOR_COMPLETE">
-		<subject>Révision complétée (auteur)</subject>
-		<body>{$editorialContactName}:
-
-J'ai révisé les épreuves en placard de mon manuscrit "{$submissionTitle}" pour la presse {$contextName}. Les épreuves en placard sont prêtes, et le réviseur et le rédacteur metteur en page peuvent ajouter les dernières corrections.
-
-{$authorName}</body>
-		<description>Ce courriel est envoyé par l'auteur au réviseur et au rédacteur en chef pour leur indiquer que l'auteur a révisé les épreuves, et que la section commentaires de la monographie contient les détails pertinents.</description>
-	</email_text>
-	<email_text key="PROOFREAD_AUTHOR_ACK">
-		<subject>Accusé de réception de révision (auteur)</subject>
-		<body>{$authorName}:
-
-Merci d'avoir révisé les épreuves en placard de votre manuscrit "{$submissionTitle}" dans la presse {$contextName}. Votre article sera publié sous peu.
-
-Si vous êtes abonné à notre service de notification, vous recevrez une table des matières par courriel dès qu'elle sera publiée. Si vous avez questions, n'hésitez pas à me contacter.
-
-{$editorialContactSignature}</body>
-		<description>Ce courriel est envoyé à l'auteur par le rédacteur en chef d'une série pour confirmer que la première ronde de révisions est terminée et le remercier de sa contribution.</description>
-	</email_text>
-	<email_text key="PROOFREAD_REQUEST">
-		<subject>Requête de révision</subject>
-		<body>{$proofreaderName}:
-
-La soumission "{$submissionTitle}" pour la presse {$contextName} doit désormais être révisée. Veuillez suivre les étapes suivantes:
-
-1. Cliquez sur le lien URL de la soumission ci-dessous.
-2. Ouvrez une session sur la presse et lisez les INSTRUCTIONS DE RÉVISION.
-3. Cliquez sur VISIONNER L'ÉPREUVE dans Mise en page, et révisez l'épreuve en placard dans un ou plusieurs des formats utilisés
-4. Saisissez les corrections (typographiques et de formatage) dans Corrections de l'épreuve.
-5. Sauvegardez et envoyez les corrections par courriel au rédacteur metteur en page et au réviseur.
-6. Envoyez le courriel COMPLET au rédacteur en chef.
-
-URL du manuscrit: {$submissionUrl}
-Nom d'utilisateur: {$proofreaderUsername}
-
-Si vous ne pouvez pas faire ce travail en ce moment ou si vous avez des questions, n'hésitez pas à me contacter. Merci d'avoir contribué à cette presse.
-
-{$editorialContactSignature}</body>
-		<description>Ce courriel envoyé par le rédacteur en chef d'une série au réviseur lui demande de réviser les épreuves en placard d'une monographie. Il contient des renseignements sur la monographie et explique comment y accéder.</description>
-	</email_text>
-	<email_text key="PROOFREAD_COMPLETE">
-		<subject>Révision complétée</subject>
-		<body>{$editorialContactName}:
-
-Les épreuves en placard du manuscrit "{$submissionTitle}" pour la presse {$contextName} ont été révisées. Le rédacteur metteur en page peut désormais apporter les corrections finales.
-
-{$proofreaderName}</body>
-		<description>Ce courriel est envoyé par le réviseur au rédacteur en chef d'une série pour lui indiquer que le processus de révision est terminé.</description>
-	</email_text>
-	<email_text key="PROOFREAD_ACK">
-		<subject>Accusé de réception de la revision</subject>
-		<body>{$proofreaderName}:
-
-Merci d'avoir révisé les épreuves en placard du manuscrit "{$submissionTitle}" pour la presse {$contextName}. Cet article représente une contribution importante à la qualité de cette presse.
-
-{$editorialContactSignature}</body>
-		<description>Ce courriel envoyé par le rédacteur en chef d'une série au réviseur confirme que le processus de révision est terminé et remercie le réviseur pour son aide.</description>
-	</email_text>
-	<email_text key="PROOFREAD_LAYOUT_REQUEST">
-		<subject>Requête de révision (rédacteur metteur en page)</subject>
-		<body>{$layoutEditorName}:
-
-La soumission "{$submissionTitle}" à la presse {$contextName} a été révisée par l'auteur et le réviseur, et toutes les corrections doivent maintenant être apportées en suivant les étapes suivantes:
-
-1. Cliquez sur le lien URL de la soumission ci-dessous.
-2. Ouvrez une session sur la presse et consultez Corrections de la révision pour créer les épreuves en placard corrigées.
-3. Téléchargez les épreuves en placard révisées.
-4. Envoyez le courriel COMPLET au rédacteur en chef à l'étape 3. Révision.
-
-{$contextName} URL: {$contextUrl}
-URL de la soumission: {$submissionUrl}
-Nom d'utilisateur: {$layoutEditorUsername}
-
-Si vous ne pouvez pas faire ce travail en ce moment ou si vous avez des questions, n'hésitez pas à me contacter. Merci d'avoir contribué à cette presse.
-
-{$editorialContactSignature}</body>
-		<description>Ce courriel est envoyé par le rédacteur en chef d'une série au rédacteur metteur en page pour lui indiquer que les épreuves en placard d'une monographie peuvent passer à l'étape de révision finale. Il contient des renseignements sur la monographie et explique comment y accéder.</description>
-	</email_text>
-	<email_text key="PROOFREAD_LAYOUT_COMPLETE">
-		<subject>Révision complétée (rédacteur metteur en page)</subject>
-		<body>{$editorialContactName}:
-
-Les épreuves en placard ont été corrigées, après avoir été révisées, pour le manuscrit "{$submissionTitle}" de la presse {$contextName}. Cet article peut maintenant être publié.
-
-{$layoutEditorName}</body>
-		<description>Ce courriel est envoyé par le rédacteur metteur en page au rédacteur en chef d'une série pour lui indiquer que les dernières étapes de révision sont terminées et que la monographie peut maintenant être publiée.</description>
-	</email_text>
-	<email_text key="PROOFREAD_LAYOUT_ACK">
-		<subject>Accusé de reception de révision (rédacteur metteur en page)</subject>
-		<body>{$layoutEditorName}:
-
-Merci d'avoir révisé les corrections des épreuves en placard du manuscrit intitulé "{$submissionTitle}" pour la presse {$contextName}. Il s'agit d'une contribution importante au travail de cette presse.
-
-{$editorialContactSignature}</body>
-		<description>Ce courriel est envoyé par le rédacteur en chef d'une série au rédacteur metteur en page pour confirmer la fin du processus de révision et le remercier de sa contribution.</description>
 	</email_text>
 	<email_text key="EMAIL_LINK">
 		<subject>Manuscrit susceptible d'intéresser</subject>
