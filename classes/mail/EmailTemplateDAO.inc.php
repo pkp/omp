@@ -26,13 +26,12 @@ class EmailTemplateDAO extends PKPEmailTemplateDAO {
 
 	/**
 	 * Retrieve a base email template by key.
-	 * @param $emailKey string
-	 * @param $pressId int
-	 * @return BaseEmailTemplate
+	 * @param $emailKey string Email key
+	 * @param $pressId int Press ID
+	 * @return BaseEmailTemplate Email template
 	 */
-	function &getBaseEmailTemplate($emailKey, $pressId) {
-		$returner =& parent::getBaseEmailTemplate($emailKey, ASSOC_TYPE_PRESS, $pressId);
-		return $returner;
+	function getBaseEmailTemplate($emailKey, $pressId) {
+		return parent::getBaseEmailTemplate($emailKey, ASSOC_TYPE_PRESS, $pressId);
 	}
 
 	/**
@@ -41,9 +40,8 @@ class EmailTemplateDAO extends PKPEmailTemplateDAO {
 	 * @param $pressId int
 	 * @return LocaleEmailTemplate
 	 */
-	function &getLocaleEmailTemplate($emailKey, $pressId) {
-		$returner =& parent::getLocaleEmailTemplate($emailKey, ASSOC_TYPE_PRESS, $pressId);
-		return $returner;
+	function getLocaleEmailTemplate($emailKey, $pressId) {
+		return parent::getLocaleEmailTemplate($emailKey, ASSOC_TYPE_PRESS, $pressId);
 	}
 
 	/**
@@ -53,9 +51,8 @@ class EmailTemplateDAO extends PKPEmailTemplateDAO {
 	 * @param $pressId int
 	 * @return EmailTemplate
 	 */
-	function &getEmailTemplate($emailKey, $locale, $pressId) {
-		$returner =& parent::getEmailTemplate($emailKey, $locale, ASSOC_TYPE_PRESS, $pressId);
-		return $returner;
+	function getEmailTemplate($emailKey, $locale, $pressId) {
+		return parent::getEmailTemplate($emailKey, $locale, ASSOC_TYPE_PRESS, $pressId);
 	}
 
 	/**
@@ -74,9 +71,8 @@ class EmailTemplateDAO extends PKPEmailTemplateDAO {
 	 * @param $rangeInfo object optional
 	 * @return array Email templates
 	 */
-	function &getEmailTemplates($locale, $pressId, $rangeInfo = null) {
-		$returner =& parent::getEmailTemplates($locale, ASSOC_TYPE_PRESS, $pressId, $rangeInfo);
-		return $returner;
+	function getEmailTemplates($locale, $pressId, $rangeInfo = null) {
+		return parent::getEmailTemplates($locale, ASSOC_TYPE_PRESS, $pressId, $rangeInfo);
 	}
 
 	/**
