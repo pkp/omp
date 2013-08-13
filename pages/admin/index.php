@@ -33,13 +33,6 @@ switch ($op) {
 		define('HANDLER_CLASS', 'AdminContextHandler');
 		break;
 	//
-	// Merge users
-	//
-	case 'mergeUsers':
-		import('lib.pkp.pages.admin.AdminPeopleHandler');
-		define('HANDLER_CLASS', 'AdminPeopleHandler');
-		break;
-	//
 	// Administrative functions
 	//
 	case 'systemInfo':
