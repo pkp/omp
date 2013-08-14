@@ -569,7 +569,6 @@ Suporte à biblioteca mbstring: <strong>{$supportsMBString}</strong>]]></message
 	<message key="notification.editedUser">Usuário editado.</message>
 	<message key="notification.removedReviewer">Avaliador excluído.</message>
 	<message key="notification.sentNotification">Notificação enviada.</message>
-	<message key="notification.reviewAcknowledged">Avaliação marcada como reconhecida. Mensagem não enviada.</message>
 	<message key="notification.addedNote">Nota publicada.</message>
 	<message key="notification.removedNote">Nota excluída.</message>
 	<message key="notification.removedFile">Arquivo excluído.</message>

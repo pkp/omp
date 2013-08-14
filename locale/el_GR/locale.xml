@@ -601,7 +601,6 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="notification.editedUser">Τα στοιχεία του Χρήστη έχουν επεξεργαστεί.</message>
 	<message key="notification.removedReviewer">Ο Αξιολογητής έχει αφαιρεθεί.</message>
 	<message key="notification.sentNotification">Η ειδοποίηση έχει σταλεί.</message>
-	<message key="notification.reviewAcknowledged">Ο αξιολογητής επισημάνθηκε ως άγνωστος. Το Email δεν αποστέλλεται.</message>
 	<message key="notification.addedNote">Το Σημείωμα αναρτήθηκε.</message>
 	<message key="notification.removedNote">Το Σημείωμα διαγράφηκε.</message>
 	<message key="notification.removedFile">Το αρχείο έχει διαγραφεί.</message>
