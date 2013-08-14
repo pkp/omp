@@ -20,6 +20,7 @@ class HeaderHandler extends PKPHeaderHandler {
 	 */
 	function HeaderHandler() {
 		parent::PKPHeaderHandler();
+		AppLocale::requireComponents(LOCALE_COMPONENT_PKP_MANAGER); // manager.website etc.
 	}
 
 }
