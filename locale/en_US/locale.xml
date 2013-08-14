@@ -282,7 +282,6 @@
 	<message key="common.moreInfo">More Information</message>
 	<message key="common.plusMore">+ More</message>
 	
-	<message key="grid.action.itemWorkflow">Go to this submission's workflow</message>
 
 	<message key="common.listbuilder.completeForm">Please fill out the form completely.</message>
 	<message key="common.listbuilder.selectValidOption">Please select a valid option from the list.</message>

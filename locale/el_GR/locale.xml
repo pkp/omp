@@ -372,7 +372,6 @@
 	
 	<message key="dashboard.tasks">Εργασίες</message>
 	<message key="dashboard.submissions">Υποβολές</message>
-	<message key="grid.action.itemWorkflow">Πήγαινε στο ροή εργασιών της υποβολής</message>
 
 	<message key="common.queue.long.submissionsUnassigned">Μη ανατιθέμενες Υποβολές</message>
 	<message key="common.queue.long.myAssigned">Ανατιθέμενες Υποβολές</message>

@@ -361,7 +361,6 @@ Sauvegarder.</li>
 	
 	<message key="dashboard.tasks">Tâches</message>
 	<message key="dashboard.submissions">Soumissions</message>
-	<message key="grid.action.itemWorkflow">Aller au flux des travaux de cette soumission.</message>
 
 	<message key="common.listbuilder.completeForm">Veuillez remplir le formulaire au complet.</message>
 	<message key="common.listbuilder.selectValidOption">Veuillez choisir une option valide à partir de la liste.</message>

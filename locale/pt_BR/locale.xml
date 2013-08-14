@@ -360,7 +360,6 @@
 	
 	<message key="dashboard.tasks">Tarefas</message>
 	<message key="dashboard.submissions">Submissões</message>
-	<message key="grid.action.itemWorkflow">Acessar o fluxograma de trabalho desta submissão</message>
 
 	<message key="common.queue.long.submissionsUnassigned">Submissões não designadas</message>
 	<message key="common.queue.long.myAssigned">Minhas submissões designadas</message>
