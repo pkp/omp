@@ -599,7 +599,6 @@ Suporte à biblioteca mbstring: <strong>{$supportsMBString}</strong>]]></message
 	<message key="notification.type.submissions">Eventos da submissão</message>
 	<message key="notification.type.userComment">Um leitor comentou sobre "{$title}".</message>
 	<message key="notification.type.editorAssignmentTask">Um editor precisa ser designado à nova monografia submetida.</message>
-	<message key="notification.type.editorAssignmentEditing">Um editor de produção deve ser designado antes de iniciar o processo editorial. Inclua um editor de produção usando o link de Participantes acima.</message>
 	<message key="notification.type.copyeditorRequest">Solicitação de edição de texto de "{$file}".</message>
 	<message key="notification.type.layouteditorRequest">Solicitação de revisão dos layouts de "{$title}".</message>
 	<message key="notification.type.indexRequest">Solicitação de criação de sumário de "{$title}".</message>
