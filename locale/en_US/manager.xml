@@ -206,7 +206,7 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.emailHeaderDescription">The prepared emails that are sent by the system on behalf of the press will begin with the following header. These emails will be addressed from the Principal Contact, so it's important to clarify that the Primary Contact is not necessarily responsible for the message content, which may be sent on behalf of a different user.</message>
 	<message key="manager.setup.emailSignature">Signature</message>
 	<message key="manager.setup.emailSignatureDescription">The prepared emails that are sent by the system on behalf of the press will have the following signature added to the end. The body of the prepared emails are available for editing below.</message>
-	<message key="manager.setup.enableAnnouncements">Enable Press Managers to add press announcements.</message>
+	<message key="manager.setup.enableAnnouncements">Enable announcements.</message>
 	<message key="manager.setup.enableAnnouncementsHomepage1">Display</message>
 	<message key="manager.setup.enableAnnouncementsHomepage2">of the most recent announcements on the press homepage.</message>
 	<message key="manager.setup.enablePressInstructions">Enable this press to appear publicly on the site</message>
