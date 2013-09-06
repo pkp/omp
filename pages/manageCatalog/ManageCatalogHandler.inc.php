@@ -125,6 +125,7 @@ class ManageCatalogHandler extends Handler {
 		// Set up the monograph list template
 		$press = $request->getPress();
 		$this->_setupMonographsTemplate(
+			$request,
 			true, 'homepage', 'catalog.manage.homepageDescription',
 			ASSOC_TYPE_PRESS, $press->getId()
 		);
@@ -195,6 +196,7 @@ class ManageCatalogHandler extends Handler {
 
 		// Set up the monograph list template
 		$this->_setupMonographsTemplate(
+			$request,
 			true, 'category', 'catalog.manage.categoryDescription',
 			ASSOC_TYPE_CATEGORY, $category->getId()
 		);
@@ -232,6 +234,7 @@ class ManageCatalogHandler extends Handler {
 
 		// Set up the monograph list template
 		$this->_setupMonographsTemplate(
+			$request,
 			true, 'series', 'catalog.manage.seriesDescription',
 			ASSOC_TYPE_SERIES, $series->getId()
 		);
@@ -253,7 +256,7 @@ class ManageCatalogHandler extends Handler {
 	 */
 	function search($args, $request) {
 		$searchText = array_shift($args);
-		$this->_setupMonographsTemplate(false, 'search');
+		$this->_setupMonographsTemplate($request, false, 'search');
 
 		$templateMgr = TemplateManager::getManager($request);
 		$press = $request->getPress();
@@ -353,6 +356,7 @@ class ManageCatalogHandler extends Handler {
 	//
 	/**
 	 * Set up template including link actions for the catalog view
+	 * @param $request PKPRequest
 	 * @param $includeFeatureAction boolean
 	 * @param $listName string Unique identifier of monograph list (for
 	 *  disambiguation of HTML element IDs)
@@ -361,11 +365,11 @@ class ManageCatalogHandler extends Handler {
 	 *  (ASSOC_TYPE_...) (optional)
 	 * @param $assocId Association ID of features to fetch (optional)
 	 */
-	function _setupMonographsTemplate($includeFeatureAction, $listName, $messageKey = null, $assocType = null, $assocId = null) {
+	function _setupMonographsTemplate($request, $includeFeatureAction, $listName, $messageKey = null, $assocType = null, $assocId = null) {
 		// Loadubmission locale content for monograph listing
 		AppLocale::requireComponents(LOCALE_COMPONENT_APP_SUBMISSION, LOCALE_COMPONENT_PKP_SUBMISSION);
 
-		$templateMgr = TemplateManager::getManager();
+		$templateMgr = TemplateManager::getManager($request);
 		import('lib.pkp.classes.linkAction.request.NullAction');
 
 		// Feature action (if enabled)
