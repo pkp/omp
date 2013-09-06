@@ -197,7 +197,7 @@ class MonographDAO extends SubmissionDAO {
 				' . $this->_getFetchColumns() . '
 			FROM	submissions s
 				LEFT JOIN published_submissions ps ON (s.submission_id = ps.submission_id)
-				' . $this->getFetchJoins() . '
+				' . $this->_getFetchJoins() . '
 			WHERE	s.context_id = ? AND
 				(ps.submission_id IS NULL OR ps.date_published IS NULL) AND
 				s.submission_progress = 0',
