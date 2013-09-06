@@ -38,7 +38,7 @@ class NotificationManager extends PKPNotificationManager {
 
 		switch ($notification->getType()) {
 			case NOTIFICATION_TYPE_VISIT_CATALOG:
-				return $dispatcher->url($request, ROUTE_PAGE, 'manageCatalog');
+				return $dispatcher->url($request, ROUTE_PAGE, $context->getPath(), 'manageCatalog');
 		}
 
 		return parent::getNotificationUrl($request, $notification);
