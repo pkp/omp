@@ -669,7 +669,6 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="user.authorization.seriesAssignment">Προσπαθείτε να αποκτήσετε πρόσβαση σε μια μονογραφία που δεν είναι μέρος της σειράς που επιμελείστε.</message>
 	<message key="user.authorization.workflowStageAssignmentMissing">Η πρόσβαση δεν είναι δυνατή! Δεν έχετε ανάθεση σε αυτό το στάδιο της ροής εργασιών.</message>
 	<message key="user.authorization.workflowStageSettingMissing">Η πρόσβαση δεν είναι δυνατή! Η ομάδα χρηστών που πρόσφατα ενεργείτε μέσω αυτής δεν έχει ζητηθεί σε αυτό το στάδιο ροής εργασιών. Παρακαλούμε ελέγξτε τις ρυθμίσεις των εκδόσεων.</message>
-	<message key="user.authorization.authorRoleMissing">Δεν σας έχουν δωθεί πρόσφατα τα ανάλογα δικαιώματα για να δείτε την υποβολή. Παρακαλούμε επεξεργαστείτε το προφίλ σας για να βεβαιωθείτε ότι σας έχουν εκχωρηθεί οι κατάλληλοι ρόλοι μέσω του "Σύνδεση Ως".</message>
 
 	<message key="payment.directSales">Λήψη αρχείου (Download) από τον Ιστότοπο των Εκδόσεων</message>
 	<message key="payment.directSales.price">Τιμή</message>

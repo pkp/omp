@@ -628,7 +628,6 @@ Votre serveur supporte actuellement mbstring: <strong>{$supportsMBString}</stron
 	<message key="user.authorization.seriesAssignment">Vous tentez d'avoir accès à une monographie qui ne fait pas partie de votre série.</message>
 	<message key="user.authorization.workflowStageAssignmentMissing">Accès refusé! On ne vous a pas assigné de travail à cette étape.</message>
 	<message key="user.authorization.workflowStageSettingMissing">Accès refusé! Le groupe d'utilisateurs auquel vous appartenez n'a pas accès à cette étape du travail. Veuillez vérifier vos paramètres de presse.</message>
-	<message key="user.authorization.authorRoleMissing">Vos privilèges actuels ne vous permettent pas de visionner cette soumission. Veuillez modifier votre profil pour vous assurer que l'on vous a assigné les rôles appropriés dans la section "S'inscrire comme".</message>
 
 	<message key="payment.directSales">Télécharger à partir du site Web de la presse</message>
 	<message key="payment.directSales.price">Prix</message>

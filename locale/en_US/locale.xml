@@ -517,7 +517,6 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="user.authorization.seriesAssignment">You are trying to access a monograph that is not part of your series.</message>
 	<message key="user.authorization.workflowStageAssignmentMissing">Access denied! You have not been assigned to this workflow stage.</message>
 	<message key="user.authorization.workflowStageSettingMissing">Access denied! The user group you are currently acting under has not been assigned to this workflow stage. Please check your press settings.</message>
-	<message key="user.authorization.authorRoleMissing">You do not currently have sufficient privileges to view the submission. Please edit your profile to ensure that you have been granted the appropriate roles under "Register As".</message>
 
 	<message key="payment.directSales">Download From Press Website</message>
 	<message key="payment.directSales.price">Price</message>

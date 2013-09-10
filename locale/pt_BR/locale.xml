@@ -624,7 +624,6 @@ Suporte à biblioteca mbstring: <strong>{$supportsMBString}</strong>]]></message
 	<message key="user.authorization.seriesAssignment">Tentativa de acesso a monografia que não faz parte de sua série.</message>
 	<message key="user.authorization.workflowStageAssignmentMissing">Acesso negado! Não foi designado a este estágio do processo.</message>
 	<message key="user.authorization.workflowStageSettingMissing">Acesso negado! O grupo de usuários no qual está atuando atualmente não foi designado a este estágio do processo. Verifique as configurações da editora.</message>
-	<message key="user.authorization.authorRoleMissing">Sem privlégios suficientes para ver a submissão. Edite seu perfil para garantir que tenha os papéis apropriadas em "Cadastrar-se como".</message>
 
 	<message key="payment.directSales">Baixar do site da editora</message>
 	<message key="payment.directSales.price">Preço</message>
