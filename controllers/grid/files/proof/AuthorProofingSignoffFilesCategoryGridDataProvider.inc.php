@@ -12,19 +12,15 @@
  * @brief Provide access to author signoff proofing files data for category grids.
  */
 
-
 import('lib.pkp.classes.controllers.grid.CategoryGridDataProvider');
 
 class AuthorProofingSignoffFilesCategoryGridDataProvider extends CategoryGridDataProvider {
 
 	/**
 	 * Constructor
-	 * @param $dataProviderInitParams array Other parameters to initiate the grid
-	 * data provider that this category grid data provider will use to implement
-	 * common behaviours and data.
 	 */
 	function AuthorProofingSignoffFilesCategoryGridDataProvider() {
-		import("controllers.grid.files.fileSignoff.AuthorSignoffFilesGridDataProvider");
+		import('lib.pkp.controllers.grid.files.fileSignoff.AuthorSignoffFilesGridDataProvider');
 		$gridDataProvider = new AuthorSignoffFilesGridDataProvider('SIGNOFF_PROOFING', WORKFLOW_STAGE_ID_PRODUCTION);
 		$this->setDataProvider($gridDataProvider);
 	}
@@ -68,7 +64,7 @@ class AuthorProofingSignoffFilesCategoryGridDataProvider extends CategoryGridDat
 	/**
 	 * @see CategoryGridDataProvider::getCategoryData()
 	 */
-	function &getCategoryData(&$publicationFormat, $filter = null) {
+	function &getCategoryData($publicationFormat, $filter = null) {
 		$dataProvider = $this->getDataProvider();
 		$signoffFiles = $dataProvider->loadData();
 

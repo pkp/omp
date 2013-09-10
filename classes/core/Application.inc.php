@@ -14,7 +14,6 @@
  *
  */
 
-
 import('lib.pkp.classes.core.PKPApplication');
 
 define('PHP_REQUIRED_VERSION', '4.2.0');

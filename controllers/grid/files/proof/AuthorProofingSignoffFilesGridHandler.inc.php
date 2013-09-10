@@ -56,9 +56,9 @@ class AuthorProofingSignoffFilesGridHandler extends CategoryGridHandler {
 		import('lib.pkp.controllers.grid.files.FileNameGridColumn');
 		$this->addColumn(new FileNameGridColumn(true, WORKFLOW_STAGE_ID_PRODUCTION));
 
-		import('controllers.grid.files.fileSignoff.AuthorSignoffFilesGridCellProvider');
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-		$cellProvider = new AuthorSignoffFilesGridCellProvider($monograph, WORKFLOW_STAGE_ID_PRODUCTION);
+		import('lib.pkp.controllers.grid.files.fileSignoff.AuthorSignoffFilesGridCellProvider');
+		$submission = $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		$cellProvider = new AuthorSignoffFilesGridCellProvider($submission, WORKFLOW_STAGE_ID_PRODUCTION);
 
 		// Add a column to show whether the author uploaded a signoff.
 		$this->addColumn(
