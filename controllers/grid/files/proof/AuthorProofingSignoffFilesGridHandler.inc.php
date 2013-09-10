@@ -78,7 +78,7 @@ class AuthorProofingSignoffFilesGridHandler extends CategoryGridHandler {
 	 * @see GridHandler::getRowInstance()
 	 */
 	function getRowInstance() {
-		import('controllers.grid.files.fileSignoff.AuthorSignoffFilesGridRow');
+		import('lib.pkp.controllers.grid.files.fileSignoff.AuthorSignoffFilesGridRow');
 		return new AuthorSignoffFilesGridRow(WORKFLOW_STAGE_ID_PRODUCTION);
 	}
 
