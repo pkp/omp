@@ -26,7 +26,7 @@
 	<message key="monograph.title">Título do livro</message>
 	<message key="monograph.title.tip"><![CDATA[O tipo de submissão é normalmente 'imagem', 'texto', ou outro tipo de multimídia, incluindo 'software' ou 'interativo'.  Escolha o mais relevante para sua submissão. Exemplos podem ser encontrados em <a target="_blank" href="http://dublincore.org/documents/2001/04/12/usageguide/generic.shtml#type">http://dublincore.org/documents/2001/04/12/usageguide/generic.shtml#type</a>]]></message>
 	<message key="monograph.type">Tipo de submissão</message>
-	<message key="monograph.pageProofs">Página de provas</message>
+	<message key="submission.pageProofs">Página de provas</message>
 	<message key="monograph.proofReadingDescription"><![CDATA[O editor de layout envia os arquivos prontos para produção aqui. Use <em>+Designar</em> para encaminhar as provas a autores e outros participantes, com versões corrigidas enviadas para aprovação antes da publicação.]]></message>
 	<message key="monograph.task.addNote">Incluir para questionamentos</message>
 	<message key="submission.task.responseDueDate">Data de entrega da resposta</message>

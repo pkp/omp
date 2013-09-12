@@ -35,7 +35,7 @@
 	<message key="monograph.title.tip"><![CDATA[El tipo de propuesta suele ser 'imagen', 'texto', u otros tipos multimedia, incluyendo 'software' o 'interactivo'. Por favor, elija el más relevante para la propuesta. Se pueden encontrar ejemplos en <a target="_blank" href="http://dublincore.org/documents/2001/04/12/usageguide/generic.shtml#type">http://dublincore.org/documents/2001/04/12/usageguide/generic.shtml#type</a>]]></message>
 	<message key="monograph.subtitle">Subtítulo</message>
 	<message key="monograph.type">Tipo de propuesta</message>
-	<message key="monograph.pageProofs">Pruebas de imprenta</message>
+	<message key="submission.pageProofs">Pruebas de imprenta</message>
 	<message key="monograph.proofReadingDescription"><![CDATA[El maquetador añade aquí los ficheros preparados para producción que han sido preparados para publicación. Utiliza <em>+Asignar</em> para designar a los autores y a otras personas que vayan a realizar la corrección de pruebas, con los ficheros corregidos añadidos para su aprobación antes de su publicación.]]></message>
 
 	<!--  Metadata field description keys -->

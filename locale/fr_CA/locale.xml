@@ -26,7 +26,7 @@
 	<message key="monograph.title">Titre du livre</message>
 	<message key="monograph.title.tip"><![CDATA[Par type de soumission, on entend des éléments comme 'image', 'texte' ou des désignations multimédias comme 'logiciel' ou 'interactif'. Veuillez choisir le type qui correspond le mieux à votre soumission. Vous trouverez des exemples au <a target="_blank" href="http://dublincore.org/documents/2001/04/12/usageguide/generic.shtml#type">http://dublincore.org/documents/2001/04/12/usageguide/generic.shtml#type</a>]]></message>
 	<message key="monograph.type">Type de soumission</message>
-	<message key="monograph.pageProofs">Épreuves en page</message>
+	<message key="submission.pageProofs">Épreuves en page</message>
 	<message key="monograph.proofReadingDescription"><![CDATA[Le rédacteur metteur en page télécharge les fichiers prêts pour la production préparés ici afin de les rendre publiables. Utilisez <em>+Assigner</em> pour assigner les auteurs et les autres individus qui réviseront les épreuves en page. Les fichiers corrigés doivent être téléchargés pour approbation avant la publication.]]></message>
 	<message key="monograph.task.addNote">Ajouter à la tâche</message>
 	<message key="submission.task.responseDueDate">Date de réponse</message>

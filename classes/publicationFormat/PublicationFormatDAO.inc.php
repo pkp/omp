@@ -13,13 +13,14 @@
  */
 
 import('classes.publicationFormat.PublicationFormat');
+import('lib.pkp.classes.submission.RepresentationDAO');
 
-class PublicationFormatDAO extends DAO {
+class PublicationFormatDAO extends RepresentationDAO {
 	/**
 	 * Constructor
 	 */
 	function PublicationFormatDAO() {
-		parent::DAO();
+		parent::RepresentationDAO();
 	}
 
 	/**

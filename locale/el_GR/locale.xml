@@ -41,7 +41,7 @@
 	<message key="monograph.title.tip"><![CDATA[Το περιεχόμενο της υποβολής αφορά συνήθως αρχεία με 'εικόνα', 'κείμενο', ή άλλο πολυμεσικό αρχείο συμπεριλαμβανομένου 'λογισμικό' ή 'διαδραστική εφαρμογή'. Παρακαλούμε επιλέξτε τον πιο σχετικό με τον τύπο της υποβολής σας.  Παραδείγματα μπορούν να βρεθούν στο <a target="_blank" href="http://dublincore.org/documents/2001/04/12/usageguide/generic.shtml#type">http://dublincore.org/documents/2001/04/12/usageguide/generic.shtml#type</a>]]></message>
 	<message key="monograph.subtitle">Υπότιτλος</message>
 	<message key="monograph.type">Τύπος Υποβολής</message>
-	<message key="monograph.pageProofs">Σελίδα Τυπογραφικών Δοκιμίων</message>
+	<message key="submission.pageProofs">Σελίδα Τυπογραφικών Δοκιμίων</message>
 	<message key="monograph.proofReadingDescription"><![CDATA[Ο επιμελητής σελιδοποίησης ανεβάζει τα αρχεία για το στάδιο-παραγωγής που έχουν ετοιμαστεί για δημοσίευση εδώ. Επιλέξτε <em>+Ανάθεση</em> για να ορίσετε συγγραφείς και άλλους να διορθώσουν και να ελέγξουν τα τυπογραφικά δοκίμια ώστε τα διορθωμένα αρχεία να μεταφορτωθούν για έγκριση πριν τη δημοσίευση.]]></message>
 	<message key="monograph.task.addNote">Προσθήκη Ανάθεσης</message>
 	<message key="submission.task.responseDueDate">Προθεσμία Ημερομηνίας Απάντησης</message>

@@ -20,9 +20,9 @@ define('PHP_REQUIRED_VERSION', '4.2.0');
 
 define('ASSOC_TYPE_MONOGRAPH',			ASSOC_TYPE_SUBMISSION);
 define('ASSOC_TYPE_PUBLISHED_MONOGRAPH',	ASSOC_TYPE_PUBLISHED_SUBMISSION);
+define('ASSOC_TYPE_PUBLICATION_FORMAT',		ASSOC_TYPE_REPRESENTATION);
 
 define('ASSOC_TYPE_PRESS',			0x0000200);
-define('ASSOC_TYPE_PUBLICATION_FORMAT',		0x0000209);
 define('ASSOC_TYPE_CATEGORY',			0x000020D);
 define('ASSOC_TYPE_SERIES',			0x000020E);
 
@@ -173,6 +173,13 @@ class Application extends PKPApplication {
 	 */
 	static function getSubmissionDAO() {
 		return DAORegistry::getDAO('MonographDAO');
+	}
+
+	/**
+	 * Get the representation DAO.
+	 */
+	static function getRepresentationDAO() {
+		return DAORegistry::getDAO('PublicationFormatDAO');
 	}
 
 	/**
