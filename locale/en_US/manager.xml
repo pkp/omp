@@ -292,7 +292,6 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.pressHomepageHeaderDescription">Choose between a text representation of the press name, or a graphic version of the press title (.gif, .jpg, or .png files accepted). This header and the optional accompanying logo will only appear on the press home page.  The default header expects a size of 180px x 90px.</message>
 	<message key="manager.setup.pressInitials">Press Initials</message>
 	<message key="manager.setup.layout">Press Layout</message>
-	<message key="manager.setup.layoutDescription">Choose a press theme and select layout components here. A press style sheet may also be uploaded, which can be used to override style data in the system-wide style sheets and theme style sheet (if a theme is chosen).</message>
 	<message key="manager.setup.logo">Press Logo</message>
 	<message key="manager.setup.logo.altText">Press Logo</message>
 	<message key="manager.setup.pageFooter">Press Page Footer</message>

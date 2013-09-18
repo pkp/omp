@@ -109,7 +109,6 @@ class Application extends PKPApplication {
 			'OAIDAO' => 'classes.oai.omp.OAIDAO',
 			'OMPCompletedPaymentDAO' => 'classes.payment.omp.OMPCompletedPaymentDAO',
 			'ONIXCodelistItemDAO' => 'classes.codelist.ONIXCodelistItemDAO',
-			'PluginSettingsDAO' => 'classes.plugins.PluginSettingsDAO',
 			'PressDAO' => 'classes.press.PressDAO',
 			'PressSettingsDAO' => 'classes.press.PressSettingsDAO',
 			'ProductionAssignmentDAO' => 'classes.submission.productionAssignment.ProductionAssignmentDAO',

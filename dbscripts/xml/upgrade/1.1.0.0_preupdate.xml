@@ -11,6 +11,11 @@
   *
   -->
 <data>
+	<!-- Bug #8265: Rename plugin_settings.press_id to context_id -->
+	<sql>
+		<rename table="plugin_settings" column="press_id" to="context_id" />
+	</sql>
+
 	<!-- Bug #8095: Standardize user groups and roles -->
 	<sql>
 		<rename table="user_group_stage" column="press_id" to="context_id" />

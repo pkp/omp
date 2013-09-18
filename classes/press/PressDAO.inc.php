@@ -122,7 +122,7 @@ class PressDAO extends ContextDAO {
 		$monographDao->deleteByContextId($pressId);
 
 		$pluginSettingsDao = DAORegistry::getDAO('PluginSettingsDAO');
-		$pluginSettingsDao->deleteByPressId($pressId);
+		$pluginSettingsDao->deleteByContextId($pressId);
 
 		$reviewFormDao = DAORegistry::getDAO('ReviewFormDAO');
 		$reviewFormDao->deleteByAssoc(ASSOC_TYPE_PRESS, $pressId);

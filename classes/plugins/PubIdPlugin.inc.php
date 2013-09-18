@@ -12,8 +12,7 @@
  * @brief Abstract class for public identifiers plugins
  */
 
-
-import('classes.plugins.Plugin');
+import('lib.pkp.classes.plugins.Plugin');
 
 class PubIdPlugin extends Plugin {
 
