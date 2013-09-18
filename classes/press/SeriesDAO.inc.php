@@ -246,9 +246,19 @@ class SeriesDAO extends DAO {
 	 * @return DAOResultFactory containing Series ordered by sequence
 	 */
 	function getByPressId($pressId, $rangeInfo = null) {
+
+		$params[] = 'title';
+		$params[] = AppLocale::getPrimaryLocale();
+		$params[] = 'title';
+		$params[] = AppLocale::getLocale();
+		$params[] = (int) $pressId;
+
 		$result = $this->retrieveRange(
-			'SELECT * FROM series WHERE press_id = ?',
-			(int) $pressId,
+			'SELECT s.*, COALESCE(stpl.setting_value, stl.setting_value) AS series_title FROM series s
+			LEFT JOIN series_settings stpl ON (s.series_id = stpl.series_id AND stpl.setting_name = ? AND stpl.locale = ?)
+			LEFT JOIN series_settings stl ON (s.series_id = stl.series_id AND stl.setting_name = ? AND stl.locale = ?)
+			WHERE press_id = ? ORDER BY series_title',
+			$params,
 			$rangeInfo
 		);
 
