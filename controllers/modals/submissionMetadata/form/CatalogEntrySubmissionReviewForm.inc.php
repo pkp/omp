@@ -28,6 +28,13 @@ class CatalogEntrySubmissionReviewForm extends SubmissionMetadataViewForm {
 	function CatalogEntrySubmissionReviewForm($monographId, $stageId = null, $formParams = null) {
 		parent::SubmissionMetadataViewForm($monographId, $stageId, $formParams, 'controllers/modals/submissionMetadata/form/catalogEntrySubmissionReviewForm.tpl');
 		AppLocale::requireComponents(LOCALE_COMPONENT_APP_COMMON, LOCALE_COMPONENT_APP_SUBMISSION);
+		if ($formParams['expeditedSubmission']) {
+			// If we are expediting, make the confirmation checkbox mandatory.
+			$request = Application::getRequest();
+			$context = $request->getContext();
+			$this->addCheck(new FormValidator($this, 'confirm', 'required', 'submission.catalogEntry.confirm.required'));
+			$this->addCheck(new FormValidatorRegExp($this, 'price', 'optional', 'grid.catalogEntry.validPriceRequired', '/^(([1-9]\d{0,2}(,\d{3})*|[1-9]\d*|0|)(.\d{2})?|([1-9]\d{0,2}(,\d{3})*|[1-9]\d*|0|)(.\d{2})?)$/'));
+		}
 	}
 
 	/**
@@ -38,6 +45,24 @@ class CatalogEntrySubmissionReviewForm extends SubmissionMetadataViewForm {
 
 		// Read in the additional confirmation checkbox
 		$this->readUserVars(array('confirm'));
+	}
+
+	/**
+	 * @see SubmissionMetadataViewForm::fetch()
+	 */
+	function fetch($request) {
+
+		$templateMgr = TemplateManager::getManager($request);
+
+		// Make this available for expedited submissions.
+		$salesTypes = array(
+			'openAccess' => 'payment.directSales.openAccess',
+			'directSales' => 'payment.directSales.directSales',
+			'notAvailable' => 'payment.directSales.notAvailable',
+		);
+
+		$templateMgr->assign('salesTypes', $salesTypes);
+		return parent::fetch($request);
 	}
 
 	/**

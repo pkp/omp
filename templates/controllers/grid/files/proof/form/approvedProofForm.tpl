@@ -24,16 +24,7 @@
 		<input type="hidden" name="submissionId" value="{$submissionId|escape}" />
 		<input type="hidden" name="publicationFormatId" value="{$publicationFormatId|escape}" />
 
-		{fbvFormSection for="priceType" list=true description="payment.directSales.price.description"}
-			{foreach from=$salesTypes key=salesTypeKey item=salesType}
-				{fbvElement type="radio" name="salesType" value=$salesTypeKey label=$salesType id=$salesTypeKey}
-			{/foreach}
-		{/fbvFormSection}
-
-		{fbvFormSection for="price" size=$fbvStyles.size.MEDIUM inline=true}
-			{translate|assign:"priceLabel" key="payment.directSales.priceCurrency" currency=$currentPress->getSetting('currency')}
-			{fbvElement type="text" id="price" label=$priceLabel subLabelTranslate=false value=$price maxlength="255"}
-		{/fbvFormSection}
+		{include file="controllers/grid/files/proof/form/approvedProofFormFields.tpl"}
 	{/fbvFormArea}
 	{fbvFormButtons id="saveApprovedProofForm" submitText="common.save"}
 </form>

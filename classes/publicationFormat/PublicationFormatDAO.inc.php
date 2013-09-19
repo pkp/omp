@@ -179,6 +179,7 @@ class PublicationFormatDAO extends RepresentationDAO {
 	/**
 	 * Insert a publication format.
 	 * @param $publicationFormat PublicationFormat
+	 * @return int the publication format id.
 	 */
 	function insertObject(&$publicationFormat) {
 		$this->update(
@@ -216,6 +217,8 @@ class PublicationFormatDAO extends RepresentationDAO {
 
 		$publicationFormat->setId($this->_getInsertId('publication_formats', 'publication_format_id'));
 		$this->updateLocaleFields($publicationFormat);
+
+		return $publicationFormat->getId();
 	}
 
 	/**

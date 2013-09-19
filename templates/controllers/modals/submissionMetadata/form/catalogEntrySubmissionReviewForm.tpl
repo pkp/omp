@@ -21,8 +21,13 @@
 		);
 	{rdelim});
 </script>
-
-<form class="pkp_form" id="{$submissionMetadataViewFormId}" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT op="saveForm"}">
+<form class="pkp_form" id="{$submissionMetadataViewFormId}" method="post"
+	{if $formParams.expeditedSubmission}
+		action="{url router=$smarty.const.ROUTE_PAGE op="expedite"}"
+	{else}
+		action="{url router=$smarty.const.ROUTE_COMPONENT op="saveForm"}"
+	{/if}
+>
 	{assign var="notificationId" value="submissionMetadataViewFormNotification-"|uniqid|escape}
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId=$notificationId}
 
@@ -36,6 +41,13 @@
 			{if $isPublished}{assign var=confirm value=true}{else}{assign var=confirm value=false}{/if}
 			{fbvElement type="checkbox" id="confirm" checked=$confirm label="submission.catalogEntry.confirm" value="confirm"}
 		{/fbvFormSection}
+	{/if}
+
+	{if $formParams.expeditedSubmission}
+		{* pull in the approved proof form fields so the Editor has a chance to set a price and the access status *}
+		{fbvFormArea id="approvedProofInfo"}
+		{include file="controllers/grid/files/proof/form/approvedProofFormFields.tpl"}
+		{/fbvFormArea}
 	{/if}
 
 	{include file="submission/form/seriesAndCategories.tpl" readOnly=$formParams.readOnly}
