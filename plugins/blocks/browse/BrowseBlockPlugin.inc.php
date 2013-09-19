@@ -60,6 +60,7 @@ class BrowseBlockPlugin extends BlockPlugin {
 		// so that we can highlight the current selection in the
 		// dropdown.
 		$router = $request->getRouter();
+		/* Bug #8427
 		switch ($router->getRequestedPage($request) . '/' . $router->getRequestedOp($request)) {
 			case 'catalog/category':
 				$path = $router->getRequestedArgs($request);
@@ -70,6 +71,7 @@ class BrowseBlockPlugin extends BlockPlugin {
 				if (isset($path[0])) $templateMgr->assign('browseBlockSelectedSeries', $path[0]);
 				break;
 		}
+		*/
 
 		return parent::getContents($templateMgr);
 	}
