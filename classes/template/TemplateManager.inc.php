@@ -49,7 +49,7 @@ class TemplateManager extends PKPTemplateManager {
 			$this->assign('publicFilesDir', $siteFilesDir); // May be overridden by press
 
 			$siteStyleFilename = $publicFileManager->getSiteFilesPath() . '/' . $site->getSiteStyleFilename();
-			if (file_exists($siteStyleFilename)) $this->addStyleSheet($this->request->getBaseUrl() . '/' . $siteStyleFilename);
+			if (file_exists($siteStyleFilename)) $this->addStyleSheet($this->request->getBaseUrl() . '/' . $siteStyleFilename, STYLE_SEQUENCE_LAST);
 
 			if (isset($context)) {
 				$this->assign('currentPress', $context);
@@ -72,9 +72,9 @@ class TemplateManager extends PKPTemplateManager {
 				$this->assign('enableAnnouncements', $context->getSetting('enableAnnouncements'));
 
 				// Assign stylesheets and footer
-				$styleSheet = $context->getSetting('styleSheet');
-				if ($styleSheet) {
-					$this->addStyleSheet($this->request->getBaseUrl() . '/' . $publicFileManager->getContextFilesPath($context->getId(), $context->getId()) . '/' . $styleSheet['uploadName']);
+				$contextStyleSheet = $context->getSetting('styleSheet');
+				if ($contextStyleSheet) {
+					$this->addStyleSheet($this->request->getBaseUrl() . '/' . $publicFileManager->getContextFilesPath($context->getId(), $context->getId()) . '/' . $contextStyleSheet['uploadName'], STYLE_SEQUENCE_LAST);
 				}
 
 				// Include footer links if they have been defined.
@@ -94,6 +94,16 @@ class TemplateManager extends PKPTemplateManager {
 				$this->assign('siteTitle', $site->getLocalizedTitle());
 			}
 		}
+	}
+
+	/**
+	 * Initialize the template manager.
+	 */
+	function initialize() {
+		// Add uncompilable styles
+		$this->addStyleSheet($this->request->getBaseUrl() . '/styles/lib.css', STYLE_SEQUENCE_CORE);
+
+		parent::initialize();
 	}
 }
 
