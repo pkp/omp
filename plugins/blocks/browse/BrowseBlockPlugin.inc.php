@@ -59,19 +59,15 @@ class BrowseBlockPlugin extends BlockPlugin {
 		// If we're currently viewing a series or catalog, detect it
 		// so that we can highlight the current selection in the
 		// dropdown.
-		$router = $request->getRouter();
-		/* Bug #8427
-		switch ($router->getRequestedPage($request) . '/' . $router->getRequestedOp($request)) {
-			case 'catalog/category':
-				$path = $router->getRequestedArgs($request);
-				if (isset($path[0])) $templateMgr->assign('browseBlockSelectedCategory', $path[0]);
+
+		switch ($request->getUserVar('type') ) {
+			case 'category':
+				$templateMgr->assign('browseBlockSelectedCategory', $request->getUserVar('path'));
 				break;
-			case 'catalog/series':
-				$path = $router->getRequestedArgs($request);
-				if (isset($path[0])) $templateMgr->assign('browseBlockSelectedSeries', $path[0]);
+			case 'series':
+				$templateMgr->assign('browseBlockSelectedSeries', $request->getUserVar('path'));
 				break;
 		}
-		*/
 
 		return parent::getContents($templateMgr);
 	}

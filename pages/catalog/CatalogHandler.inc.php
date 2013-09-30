@@ -99,6 +99,8 @@ class CatalogHandler extends Handler {
 		$category =& $categoryDao->getByPath($categoryPath, $press->getId());
 		if (isset($category)) {
 			$templateMgr->assign('category', $category);
+			$additionalArgs = array('type' => 'category', 'path' => $category->getPath());
+			$templateMgr->assign_by_ref('additionalArgs', $additionalArgs);
 
 			// Fetch the monographs to display
 			$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
@@ -135,6 +137,8 @@ class CatalogHandler extends Handler {
 		$seriesPath = array_shift($args);
 		$series = $seriesDao->getByPath($seriesPath, $press->getId());
 		$templateMgr->assign('series', $series);
+		$additionalArgs = array('type' => 'series', 'path' => $series->getPath());
+		$templateMgr->assign_by_ref('additionalArgs', $additionalArgs);
 
 		// Fetch the monographs to display
 		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
