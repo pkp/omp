@@ -159,7 +159,7 @@ class PublishedMonographDAO extends MonographDAO {
 				COALESCE(f.seq, ?) AS order_by,
 				' . $this->_getFetchColumns() . '
 			FROM	published_submissions ps
-				JOIN submissions m ON ps.submission_id = s.submission_id
+				JOIN submissions s ON ps.submission_id = s.submission_id
 				' . $this->_getFetchJoins() . '
 				LEFT JOIN submission_categories sc ON (sc.submission_id = s.submission_id AND sc.category_id = ?)
 				LEFT JOIN series_categories sca ON (sca.series_id = se.series_id)
