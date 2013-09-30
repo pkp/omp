@@ -18,16 +18,6 @@
 
 switch ($op) {
 	//
-	// Files Browser
-	//
-	case 'files':
-	case 'fileUpload':
-	case 'fileMakeDir':
-	case 'fileDelete':
-		import('pages.manager.FilesHandler');
-		define('HANDLER_CLASS', 'FilesHandler');
-		break;
-	//
 	// Import/Export
 	//
 	case 'importexport':
