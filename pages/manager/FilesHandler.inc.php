@@ -65,7 +65,6 @@ class FilesHandler extends ManagerHandler {
 			$templateMgr->assign('files', $files);
 			$templateMgr->assign('currentDir', $currentDir);
 			$templateMgr->assign('parentDir', $parentDir);
-			$templateMgr->assign('helpTopicId','press.managementPages.fileBrowser');
 			$templateMgr->display('manager/files/index.tpl');
 		}
 	}

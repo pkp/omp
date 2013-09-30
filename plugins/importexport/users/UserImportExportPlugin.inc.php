@@ -88,7 +88,6 @@ class UserImportExportPlugin extends ImportExportPlugin {
 			break;
 			case 'confirm':
 				$this->import('UserXMLParser');
-				$templateMgr->assign('helpTopicId', 'press.users.importUsers');
 
 				$sendNotify = (bool) $request->getUserVar('sendNotify');
 				$continueOnError = (bool) $request->getUserVar('continueOnError');

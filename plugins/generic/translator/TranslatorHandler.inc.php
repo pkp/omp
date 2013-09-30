@@ -57,9 +57,7 @@ class TranslatorHandler extends Handler {
 
 	function setupTemplate($request, $subclass = true) {
 		parent::setupTemplate($request);
-		$templateMgr = TemplateManager::getManager($request);
 		AppLocale::requireComponents(LOCALE_COMPONENT_PKP_ADMIN, LOCALE_COMPONENT_PKP_MANAGER);
-		$templateMgr->assign('helpTopicId', 'plugins.generic.TranslatorPlugin');
 	}
 
 	function edit($args, $request) {
