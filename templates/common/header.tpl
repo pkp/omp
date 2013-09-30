@@ -28,6 +28,10 @@
 	<link rel="stylesheet" type="text/css" media="all" href="{$baseUrl}/styles/lib.css" />
 	<link rel="stylesheet" type="text/css" media="all" href="{$baseUrl}/styles/compiled.css" />
 
+	{* FIXME: This should eventually be moved into a theme plugin. *}
+	<link rel="stylesheet" type="text/css" media="all" href="{$baseUrl}/lib/pkp/styles/themes/default/theme.css" />
+	<link rel="stylesheet" type="text/css" media="all" href="{$baseUrl}/lib/pkp/styles/lib/selectBox/jquery.selectBox.css" />
+
 	{foreach from=$stylesheets item=cssUrl}
 		<link rel="stylesheet" href="{$cssUrl}" type="text/css" />
 	{/foreach}
@@ -83,10 +87,6 @@
 	{else}
 		{include file="common/minifiedScripts.tpl"}
 	{/if}
-
-	{* FIXME: This should eventually be moved into a theme plugin. *}
-	<link rel="stylesheet" type="text/css" media="all" href="{$baseUrl}/lib/pkp/styles/themes/default/theme.css" />
-	<link rel="stylesheet" type="text/css" media="all" href="{$baseUrl}/lib/pkp/styles/lib/selectBox/jquery.selectBox.css" />
 
 	{$additionalHeadData}
 </head>
