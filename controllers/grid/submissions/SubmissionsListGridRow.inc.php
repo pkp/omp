@@ -34,25 +34,24 @@ class SubmissionsListGridRow extends GridRow {
 	 * Configure the grid row
 	 * @param $request PKPRequest
 	 */
-	function initialize($request) {
+	function initialize(&$request) {
 		parent::initialize($request);
 
 		$rowId = $this->getId();
 
 		if (!empty($rowId) && is_numeric($rowId)) {
 			// 1) Delete submission action.
-			$submissionDao = Application::getSubmissionDAO();
-			$context = $request->getContext();
-			$submission = $submissionDao->getById($rowId, $context->getId());
-			assert(is_a($submission, 'Submission'));
-			if ($submission->getSubmissionProgress() != 0 || $this->_isManager) {
-				$router = $request->getRouter();
+			$monographDao =& DAORegistry::getDAO('MonographDAO'); /* @var $monographDao MonographDAO */
+			$monograph =& $monographDao->getById($rowId);
+			assert(is_a($monograph, 'Monograph'));
+			if ($monograph->getSubmissionProgress() != 0 || $this->_isManager) {
+				$router =& $request->getRouter();
 				import('lib.pkp.classes.linkAction.request.RemoteActionConfirmationModal');
 				$confirmationModal = new RemoteActionConfirmationModal(
 						__('common.confirmDelete'), __('common.delete'),
 						$router->url(
 							$request, null, null,
-							'deleteSubmission', null, array('submissionId' => $rowId)
+							'deleteSubmission', null, array('monographId' => $rowId)
 						),
 						'modal_delete'
 					);

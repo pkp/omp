@@ -127,19 +127,18 @@ class SubmissionsListGridHandler extends GridHandler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function deleteSubmission($args, $request) {
-		$submissionDao = Application::getSubmissionDAO();
-		$context = $request->getContext();
-		$submission = $submissionDao->getById(
-			$request->getUserVar('submissionId'),
-			$context->getId()
+	function deleteSubmission($args, &$request) {
+		$monographDao =& DAORegistry::getDAO('MonographDAO');
+		$monograph = $monographDao->getById(
+			(int) $request->getUserVar('monographId')
 		);
 
 		// If the submission is incomplete, or this is a manager, allow it to be deleted
-		if ($submission && ($this->_isManager || $submission->getSubmissionProgress() != 0)) {
-			$submissionDao->deleteById($submission->getId());
+		if ($monograph && ($this->_isManager || $monograph->getSubmissionProgress() != 0)) {
+			$monographDao =& DAORegistry::getDAO('MonographDAO'); /* @var $monographDao MonographDAO */
+			$monographDao->deleteById($monograph->getId());
 
-			$user = $request->getUser();
+			$user =& $request->getUser();
 			NotificationManager::createTrivialNotification($user->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('notification.removedSubmission')));
 			return DAO::getDataChangedEvent($monograph->getId());
 		} else {
