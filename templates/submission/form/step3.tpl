@@ -10,7 +10,7 @@
 	<!--  Chapters -->
 	{if $isEditedVolume}
 		{url|assign:chaptersGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.users.chapter.ChapterGridHandler" op="fetchGrid" submissionId=$submissionId escape=false}
-		{load_url_in_div id="chaptersGridContainer" url="$chaptersGridUrl"}
+		{load_url_in_div id="chaptersGridContainer" url=$chaptersGridUrl}
 	{/if}
 {/capture}
 

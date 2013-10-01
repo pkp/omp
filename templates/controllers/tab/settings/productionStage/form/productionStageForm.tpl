@@ -35,7 +35,7 @@
 			{fbvElement type="select" from=$codeTypes selected=$codeType translate=false id="codeType" defaultValue="" defaultLabel=""}
 		{/fbvFormSection}
 		{fbvFormSection description="manager.settings.publisherCode" for="codeValue"}
-			{fbvElement type="text" id="codeValue" value="$codeValue"}
+			{fbvElement type="text" id="codeValue" value=$codeValue}
 		{/fbvFormSection}
 	{/fbvFormArea}
 

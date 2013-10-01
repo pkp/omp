@@ -16,6 +16,6 @@
 
 <form class="pkp_form" id="statisticsDisplayForm">
 	{url|assign:addThisStatisticsGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.plugins.SettingsPluginGridHandler" op="plugin" category="generic" plugin="AddThisPlugin" verb="showStatistics" escape=false}
-	{load_url_in_div id="addThisStatisticsGridContainer" url="$addThisStatisticsGridUrl"}
+	{load_url_in_div id="addThisStatisticsGridContainer" url=$addThisStatisticsGridUrl}
 	{fbvElement type="button" id="cancelFormButton" label="common.close"}
 </form>

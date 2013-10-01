@@ -140,7 +140,7 @@
 			<div id="spotlightsTab">
 				<p>{translate key="catalog.manage.spotlightDescription"}</p>
 				{url|assign:spotlightsGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.content.spotlights.ManageSpotlightsGridHandler" op="fetchGrid" escape=false}
-				{load_url_in_div id="spotlightsGridContainer" url="$spotlightsGridUrl"}
+				{load_url_in_div id="spotlightsGridContainer" url=$spotlightsGridUrl}
 			</div>
 		{/if}
 	</div>

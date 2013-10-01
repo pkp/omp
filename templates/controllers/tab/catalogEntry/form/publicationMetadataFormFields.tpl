@@ -49,7 +49,7 @@
 			<!-- Product Identification Codes -->
 			{assign var="divId" value="identificationCodeGridContainer"|concat:$publicationFormatId|escape}
 			{url|assign:identGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.catalogEntry.IdentificationCodeGridHandler" op="fetchGrid" submissionId=$submissionId publicationFormatId=$publicationFormatId escape=false}
-			{load_url_in_div id="$divId" url="$identGridUrl"}
+			{load_url_in_div id=$divId url=$identGridUrl}
 		{/fbvFormSection}
 	{/fbvFormArea}
 
@@ -58,7 +58,7 @@
 			<!-- Sales rights and regions -->
 			{assign var="divId" value="salesRightsGridContainer"|concat:$publicationFormatId|escape}
 			{url|assign:salesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.catalogEntry.SalesRightsGridHandler" op="fetchGrid" submissionId=$submissionId publicationFormatId=$publicationFormatId escape=false}
-			{load_url_in_div id="$divId" url="$salesGridUrl"}
+			{load_url_in_div id=$divId url=$salesGridUrl}
 		{/fbvFormSection}
 	{/fbvFormArea}
 
@@ -67,7 +67,7 @@
 			<!-- Market regions -->
 			{assign var="divId" value="marketsGridContainer"|concat:$publicationFormatId|escape}
 			{url|assign:marketsGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.catalogEntry.MarketsGridHandler" op="fetchGrid" submissionId=$submissionId publicationFormatId=$publicationFormatId escape=false}
-			{load_url_in_div id="$divId" url="$marketsGridUrl"}
+			{load_url_in_div id=$divId url=$marketsGridUrl}
 		{/fbvFormSection}
 	{/fbvFormArea}
 
@@ -76,7 +76,7 @@
 			<!-- Product Publication/Embargo dates -->
 			{assign var="divId" value="publicationDateGridContainer"|concat:$publicationFormatId|escape}
 			{url|assign:dateGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.catalogEntry.PublicationDateGridHandler" op="fetchGrid" submissionId=$submissionId publicationFormatId=$publicationFormatId escape=false}
-			{load_url_in_div id="$divId" url="$dateGridUrl"}
+			{load_url_in_div id=$divId url=$dateGridUrl}
 		{/fbvFormSection}
 	{/fbvFormArea}
 
@@ -101,7 +101,7 @@
 
 	{foreach from=$pubIdPlugins item=pubIdPlugin}
 		{assign var=pubIdMetadataFile value=$pubIdPlugin->getPubIdMetadataFile()}
-		{include file="$pubIdMetadataFile" pubObject=$publicationFormat}
+		{include file=$pubIdMetadataFile pubObject=$publicationFormat}
 	{/foreach}
 
 	{if $isPhysicalFormat}
