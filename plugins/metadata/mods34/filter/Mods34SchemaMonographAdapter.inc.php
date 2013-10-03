@@ -73,7 +73,7 @@ class Mods34SchemaMonographAdapter extends Mods34SchemaSubmissionAdapter {
 	 * @see MetadataDataObjectAdapter::extractMetadataFromDataObject()
 	 * @param $monograph Monograph
 	 */
-	function &extractMetadataFromDataObject(&$monograph) {
+	function extractMetadataFromDataObject($monograph) {
 		assert(is_a($monograph, 'Monograph'));
 
 		// Define the role of the author(s) of the monograph object
@@ -85,7 +85,7 @@ class Mods34SchemaMonographAdapter extends Mods34SchemaSubmissionAdapter {
 			// Marcrelator author role
 			$authorMarcrelatorRole = 'aut';
 		}
-		$mods34Description =& parent::extractMetadataFromDataObject($monograph, $authorMarcrelatorRole);
+		$mods34Description = parent::extractMetadataFromDataObject($monograph, $authorMarcrelatorRole);
 
 		// Publication date
 		$publicationDate = $monograph->getDatePublished();

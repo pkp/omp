@@ -58,7 +58,7 @@ class Dc11SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter {
 	 * @param $publicationFormat PublicationFormat
 	 * @return MetadataDescription
 	 */
-	function &extractMetadataFromDataObject(&$publicationFormat) {
+	function extractMetadataFromDataObject($publicationFormat) {
 		assert(is_a($publicationFormat, 'PublicationFormat'));
 
 		AppLocale::requireComponents(LOCALE_COMPONENT_APP_COMMON);
