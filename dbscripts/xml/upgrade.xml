@@ -13,7 +13,7 @@
 	<!-- there are some column and table name changes that need to occur first. -->
 	<upgrade minversion="0.9.9.0" maxversion="1.0.0.0">
 		<!-- Upgrade prior versions to 1.1.0.0 -->
-		<data file="dbscripts/xml/upgrade/1.1.0.0_preupdate.xml" />
+		<data file="dbscripts/xml/upgrade/1.1.0.0_preupdate.xml" condition="return $installer->columnExists('plugin_settings', 'press_id');" />
 	</upgrade>
 
 	<!-- PKP schema components -->
