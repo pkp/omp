@@ -97,9 +97,12 @@ class SeriesEditorAction extends Action {
 	 * @param $monograph Monograph
 	 * @param $stageId int
 	 * @param $request Request
+	 * @return array the assigned roles
 	 */
 	function assignDefaultStageParticipants(&$monograph, $stageId, &$request) {
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+
+		$assignedRoles = array();
 
 		// Managerial roles are skipped -- They have access by default and
 		//  are assigned for informational purposes only
@@ -118,6 +121,7 @@ class SeriesEditorAction extends Action {
 			if($users->getCount() == 1) {
 				$user =& $users->next();
 				$stageAssignmentDao->build($monograph->getId(), $userGroup->getId(), $user->getId());
+				$assignedRoles[] = $userGroup->getRoleId();
 			}
 		}
 
@@ -135,12 +139,15 @@ class SeriesEditorAction extends Action {
 			$userGroup =& $userGroupDao->getById($assignment->getUserGroupId());
 			if ($userGroup->getRoleId() == ROLE_ID_AUTHOR) {
 				$stageAssignmentDao->build($monograph->getId(), $userGroup->getId(), $assignment->getUserId());
+				$assignedRoles[] = ROLE_ID_AUTHOR;;
 				// Only assign them once, since otherwise we'll one assignment for each previous stage.
 				// And as long as they are assigned once, they will get access to their monograph.
 				break;
 			}
 			unset($assignment, $userGroup);
 		}
+
+		return $assignedRoles;
 	}
 
 	/**

@@ -112,7 +112,7 @@ class SubmissionSubmitStep3Form extends SubmissionSubmitForm {
 		// Assign the default users to the submission workflow stage
 		import('classes.submission.seriesEditor.SeriesEditorAction');
 		$seriesEditorAction = new SeriesEditorAction();
-		$seriesEditorAction->assignDefaultStageParticipants($monograph, WORKFLOW_STAGE_ID_SUBMISSION, $request);
+		$assignedRoles = $seriesEditorAction->assignDefaultStageParticipants($monograph, WORKFLOW_STAGE_ID_SUBMISSION, $request);
 
 		//
 		// Send a notification to associated users
@@ -134,16 +134,18 @@ class SubmissionSubmitStep3Form extends SubmissionSubmitForm {
 				$monograph->getPressId(), ASSOC_TYPE_MONOGRAPH, $monograph->getId()
 			);
 
-			// Add TASK notification indicating that a submission is unassigned
-			$notificationManager->createNotification(
-				$request,
-				$userId,
-				NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_REQUIRED,
-				$monograph->getPressId(),
-				ASSOC_TYPE_MONOGRAPH,
-				$monograph->getId(),
-				NOTIFICATION_LEVEL_TASK
-			);
+			// Add TASK notification indicating that a submission is unassigned, if no press managers were assigned already.
+			if (!in_array(ROLE_ID_PRESS_MANAGER, $assignedRoles)) {
+				$notificationManager->createNotification(
+					$request,
+					$userId,
+					NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_REQUIRED,
+					$monograph->getPressId(),
+					ASSOC_TYPE_MONOGRAPH,
+					$monograph->getId(),
+					NOTIFICATION_LEVEL_TASK
+				);
+			}
 		}
 
 		// Send author notification email
