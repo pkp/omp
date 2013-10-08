@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://pkp.sfu.ca" xmlns:pkp="http://pkp.sfu.ca">
+
+	<!--
+	  - Base the native import/export schema on the PKP submission model.
+	  -->
+	<include schemaLocation="../../../lib/pkp/plugins/importexport/native/pkp-native.xsd" />
+
+	<!-- Allow the use of "monograph" in place of "submission" -->
+	<element name="monograph" substitutionGroup="pkp:submission" />
+	<element name="monographs" substitutionGroup="pkp:submissions" />
+</schema>
