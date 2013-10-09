@@ -1,16 +1,13 @@
 <?php
-/**
- * @defgroup plugins_metadata_native_filter Native XML export filter
- */
 
 /**
- * @file plugins/metadata/native/filter/MonographNativeXmlFilter.inc.php
+ * @file plugins/importexport/native/filter/MonographNativeXmlFilter.inc.php
  *
  * Copyright (c) 2000-2013 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class MonographNativeXmlFilter
- * @ingroup plugins_importexport_native_filter
+ * @ingroup plugins_importexport_native
  *
  * @brief Class that converts a Monograph to a Native XML document.
  */
@@ -36,42 +33,6 @@ class MonographNativeXmlFilter extends SubmissionNativeXmlFilter {
 	 */
 	function getClassName() {
 		return 'plugins.importexport.native.filter.MonographNativeXmlFilter';
-	}
-
-
-	//
-	// Implement template methods from SubmissionNativeXmlFilter
-	//
-	/**
-	 * Get the submission node name
-	 * @return string
-	 */
-	function getSubmissionNodeName() {
-		return 'monograph';
-	}
-
-	/**
-	 * Get the submissions node name
-	 * @return string
-	 */
-	function getSubmissionsNodeName() {
-		return 'monographs';
-	}
-
-	/**
-	 * Get the namespace URN
-	 * @return string
-	 */
-	function getNamespace() {
-		return 'http://pkp.sfu.ca';
-	}
-
-	/**
-	 * Get the schema filename.
-	 * @return string
-	 */
-	function getSchemaFilename() {
-		return 'native.xsd';
 	}
 }
 

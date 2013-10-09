@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file plugins/importexport/naive/NativeImportExportPlugin.inc.php
+ * @file plugins/importexport/native/NativeImportExportPlugin.inc.php
  *
  * Copyright (c) 2003-2013 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -31,6 +31,7 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 	function register($category, $path) {
 		$success = parent::register($category, $path);
 		$this->addLocaleData();
+		$this->import('NativeImportExportDeployment');
 		return $success;
 	}
 
@@ -123,6 +124,7 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 		$nativeExportFilters = $filterDao->getObjectsByGroup('monograph=>native-xml');
 		assert(count($nativeExportFilters) == 1); // Assert only a single serialization filter
 		$exportFilter = array_shift($nativeExportFilters);
+		$exportFilter->setDeployment(new NativeImportExportDeployment());
 		$submissions = array();
 		foreach ($submissionIds as $submissionId) {
 			$submission = $submissionDao->getById($submissionId, $context->getId());
@@ -144,6 +146,7 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 		$nativeImportFilters = $filterDao->getObjectsByGroup('native-xml=>monograph');
 		assert(count($nativeImportFilters) == 1); // Assert only a single unserialization filter
 		$importFilter = array_shift($nativeImportFilters);
+		$importFilter->setDeployment(new NativeImportExportDeployment());
 
 		return $importFilter->execute($importXml);
 	}
