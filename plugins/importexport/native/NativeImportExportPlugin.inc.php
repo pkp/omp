@@ -121,7 +121,7 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 			$submission = $submissionDao->getById($submissionId, $context->getId());
 			if (!$submission) continue;
 			$submissionXml = $exportFilter->execute($submission);
-			$xml .= $submissionXml;
+			$xml .= $submissionXml->saveXml();
 		}
 		return $xml;
 	}

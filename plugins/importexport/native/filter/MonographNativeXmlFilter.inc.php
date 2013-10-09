@@ -51,6 +51,14 @@ class MonographNativeXmlFilter extends SubmissionNativeXmlFilter {
 	}
 
 	/**
+	 * Get the submissions node name
+	 * @return string
+	 */
+	function getSubmissionsNodeName() {
+		return 'monographs';
+	}
+
+	/**
 	 * Get the namespace URN
 	 * @return string
 	 */
