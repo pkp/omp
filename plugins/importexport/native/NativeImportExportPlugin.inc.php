@@ -117,12 +117,14 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 		$nativeExportFilters = $filterDao->getObjectsByGroup('monograph=>native-xml');
 		assert(count($nativeExportFilters) == 1); // Assert only a single serialization filter
 		$exportFilter = array_shift($nativeExportFilters);
+		$submissions = array();
 		foreach ($submissionIds as $submissionId) {
 			$submission = $submissionDao->getById($submissionId, $context->getId());
-			if (!$submission) continue;
-			$submissionXml = $exportFilter->execute($submission);
-			$xml .= $submissionXml->saveXml();
+			if ($submission) $submissions[] = $submission;
 		}
+		$submissionXml = $exportFilter->execute($submissions);
+		if ($submissionXml) $xml = $submissionXml->saveXml();
+		else fatalError('Could not convert submissions.');
 		return $xml;
 	}
 }

@@ -11,16 +11,16 @@
   -->
 <filterConfig>
 	<filterGroups>
-		<!-- Native XML output -->
+		<!-- Single monograph native XML output -->
 		<filterGroup
 			symbolic="monograph=>native-xml"
 			displayName="plugins.importexport.native.displayName"
 			description="plugins.importexport.native.description"
-			inputType="class::classes.monograph.Monograph"
+			inputType="class::classes.monograph.Monograph[]"
 			outputType="xml::schema(plugins/importexport/native/native.xsd)" />
 	</filterGroups>
 	<filters>
-		<!-- MODS 3.4 XML output -->
+		<!-- Single monograph native XML output -->
 		<filter
 			inGroup="monograph=>native-xml"
 			class="plugins.importexport.native.filter.MonographNativeXmlFilter"
