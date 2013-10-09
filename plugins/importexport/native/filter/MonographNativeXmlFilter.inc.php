@@ -1,6 +1,6 @@
 <?php
 /**
- * @defgroup plugins_metadata_native_filter Native XML submission filter
+ * @defgroup plugins_metadata_native_filter Native XML export filter
  */
 
 /**

@@ -11,19 +11,31 @@
   -->
 <filterConfig>
 	<filterGroups>
-		<!-- Single monograph native XML output -->
+		<!-- Native XML output -->
 		<filterGroup
 			symbolic="monograph=>native-xml"
 			displayName="plugins.importexport.native.displayName"
 			description="plugins.importexport.native.description"
 			inputType="class::classes.monograph.Monograph[]"
 			outputType="xml::schema(plugins/importexport/native/native.xsd)" />
+		<!-- Native XML intput -->
+		<filterGroup
+			symbolic="native-xml=>monograph"
+			displayName="plugins.importexport.native.displayName"
+			description="plugins.importexport.native.description"
+			inputType="xml::schema(plugins/importexport/native/native.xsd)"
+			outputType="class::classes.monograph.Monograph[]" />
 	</filterGroups>
 	<filters>
-		<!-- Single monograph native XML output -->
+		<!-- Native XML output -->
 		<filter
 			inGroup="monograph=>native-xml"
 			class="plugins.importexport.native.filter.MonographNativeXmlFilter"
+			isTemplate="0" />
+		<!-- Native XML input -->
+		<filter
+			inGroup="native-xml=>monograph"
+			class="plugins.importexport.native.filter.NativeXmlMonographFilter"
 			isTemplate="0" />
 	</filters>
 </filterConfig>

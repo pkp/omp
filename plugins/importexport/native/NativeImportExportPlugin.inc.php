@@ -87,10 +87,16 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 				}
 
 				return $json->getString();
-				break;
 			case 'import':
-				fatalError('FIXME import unimplemented');
-				break;
+				$temporaryFileId = $request->getUserVar('temporaryFileId');
+				$temporaryFileDao = DAORegistry::getDAO('TemporaryFileDAO');
+				$user = $request->getUser();
+				$temporaryFile = $temporaryFileDao->getTemporaryFile($temporaryFileId, $user->getId());
+				$temporaryFilePath = $temporaryFile->getFilePath();
+				$submissions = $this->importSubmissions(file_get_contents($temporaryFilePath), $press);
+				$templateMgr->assign('submissions', $submissions);
+				$json = new JSONMessage(true, $templateMgr->fetch($this->getTemplatePath() . 'results.tpl'));
+				return $json->getString();
 			case 'export':
 				$exportXml = $this->exportSubmissions(
 					(array) $request->getUserVar('selectedSubmissions'),
@@ -126,6 +132,20 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 		if ($submissionXml) $xml = $submissionXml->saveXml();
 		else fatalError('Could not convert submissions.');
 		return $xml;
+	}
+
+	/**
+	 * Get the XML for a set of submissions.
+	 * @param $importXml string XML contents to import
+	 * @return array Set of imported submissions
+	 */
+	function importSubmissions($importXml, $context) {
+		$filterDao = DAORegistry::getDAO('FilterDAO');
+		$nativeImportFilters = $filterDao->getObjectsByGroup('native-xml=>monograph');
+		assert(count($nativeImportFilters) == 1); // Assert only a single unserialization filter
+		$importFilter = array_shift($nativeImportFilters);
+
+		return $importFilter->execute($importXml);
 	}
 }
 
