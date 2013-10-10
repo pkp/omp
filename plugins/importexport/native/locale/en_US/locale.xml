@@ -14,6 +14,7 @@
 	<message key="plugins.importexport.native.displayName">Native XML Plugin</message>
 	<message key="plugins.importexport.native.description">Import and export books in OMP's native XML format.</message>
 	<message key="plugins.importexport.native.import">Import</message>
-	<message key="plugins.importexport.native.import.instructions">INSTRUCTIONS GO HERE</message>
+	<message key="plugins.importexport.native.import.instructions">Please select an XML file to upload and press "Start Upload". When the upload has completed, press "OK" to import the document into OMP.</message>
 	<message key="plugins.importexport.native.export">Export</message>
+	<message key="plugins.importexport.native.importComplete">The import completed successfully. The following items were imported:</message>
 </locale>
