@@ -124,7 +124,7 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 		$nativeExportFilters = $filterDao->getObjectsByGroup('monograph=>native-xml');
 		assert(count($nativeExportFilters) == 1); // Assert only a single serialization filter
 		$exportFilter = array_shift($nativeExportFilters);
-		$exportFilter->setDeployment(new NativeImportExportDeployment());
+		$exportFilter->setDeployment(new NativeImportExportDeployment($context));
 		$submissions = array();
 		foreach ($submissionIds as $submissionId) {
 			$submission = $submissionDao->getById($submissionId, $context->getId());
@@ -146,7 +146,7 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 		$nativeImportFilters = $filterDao->getObjectsByGroup('native-xml=>monograph');
 		assert(count($nativeImportFilters) == 1); // Assert only a single unserialization filter
 		$importFilter = array_shift($nativeImportFilters);
-		$importFilter->setDeployment(new NativeImportExportDeployment());
+		$importFilter->setDeployment(new NativeImportExportDeployment($context));
 
 		return $importFilter->execute($importXml);
 	}

@@ -18,9 +18,10 @@ import('lib.pkp.plugins.importexport.native.PKPNativeImportExportDeployment');
 class NativeImportExportDeployment extends PKPNativeImportExportDeployment {
 	/**
 	 * Constructor
+	 * @param $context Context
 	 */
-	function NativeImportExportDeployment() {
-		parent::PKPNativeImportExportDeployment();
+	function NativeImportExportDeployment($context) {
+		parent::PKPNativeImportExportDeployment($context);
 	}
 
 	//
