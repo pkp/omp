@@ -23,20 +23,6 @@ class Author extends PKPAuthor {
 	function Author() {
 		parent::PKPAuthor();
 	}
-
-	//
-	// Get/set methods
-	//
-
-	/**
-	 * Return the published monograph associated with this author.
-	 * @return PublishedMonograph
-	 */
-	function &getPublishedMonograph() {
-		$monographId = $this->getSubmissionId();
-		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
-		return $publishedMonographDao->getById($monographId);
-	}
 }
 
 ?>
