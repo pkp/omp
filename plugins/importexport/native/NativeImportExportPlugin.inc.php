@@ -131,6 +131,7 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 	 * Get the XML for a set of submissions.
 	 * @param $submissionIds array Array of submission IDs
 	 * @param $context Context
+	 * @param $user User
 	 * @return string XML contents representing the supplied submission IDs.
 	 */
 	function exportSubmissions($submissionIds, $context, $user) {
