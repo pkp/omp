@@ -1,10 +1,6 @@
 <?php
 
 /**
- * @defgroup plugins_importexport_native Native XML import/export plugin
- */
-
-/**
  * @file plugins/importexport/native/index.php
  *
  * Copyright (c) 2003-2013 John Willinsky
