@@ -19,9 +19,10 @@ class NativeImportExportDeployment extends PKPNativeImportExportDeployment {
 	/**
 	 * Constructor
 	 * @param $context Context
+	 * @param $user User
 	 */
-	function NativeImportExportDeployment($context) {
-		parent::PKPNativeImportExportDeployment($context);
+	function NativeImportExportDeployment($context, $user) {
+		parent::PKPNativeImportExportDeployment($context, $user);
 	}
 
 	//

@@ -25,6 +25,7 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 	/**
 	 * Called as a plugin is registered to the registry
 	 * @param $category String Name of category plugin was registered to
+	 * @param $path string
 	 * @return boolean True iff plugin initialized successfully; if false,
 	 * 	the plugin will not be registered.
 	 */
@@ -52,14 +53,27 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 		return 'NativeImportExportPlugin';
 	}
 
+	/**
+	 * Get the display name.
+	 * @return string
+	 */
 	function getDisplayName() {
 		return __('plugins.importexport.native.displayName');
 	}
 
+	/**
+	 * Get the display description.
+	 * @return string
+	 */
 	function getDescription() {
 		return __('plugins.importexport.native.description');
 	}
 
+	/**
+	 * Display the plugin.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 */
 	function display($args, $request) {
 		$templateMgr = TemplateManager::getManager($request);
 		$press = $request->getPress();
@@ -94,14 +108,15 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 				$user = $request->getUser();
 				$temporaryFile = $temporaryFileDao->getTemporaryFile($temporaryFileId, $user->getId());
 				$temporaryFilePath = $temporaryFile->getFilePath();
-				$submissions = $this->importSubmissions(file_get_contents($temporaryFilePath), $press);
+				$submissions = $this->importSubmissions(file_get_contents($temporaryFilePath), $press, $user);
 				$templateMgr->assign('submissions', $submissions);
 				$json = new JSONMessage(true, $templateMgr->fetch($this->getTemplatePath() . 'results.tpl'));
 				return $json->getString();
 			case 'export':
 				$exportXml = $this->exportSubmissions(
 					(array) $request->getUserVar('selectedSubmissions'),
-					$request->getContext()
+					$request->getContext(),
+					$request->getUser()
 				);
 				header('Content-type: application/xml');
 				echo $exportXml;
@@ -115,16 +130,17 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 	/**
 	 * Get the XML for a set of submissions.
 	 * @param $submissionIds array Array of submission IDs
+	 * @param $context Context
 	 * @return string XML contents representing the supplied submission IDs.
 	 */
-	function exportSubmissions($submissionIds, $context) {
+	function exportSubmissions($submissionIds, $context, $user) {
 		$submissionDao = Application::getSubmissionDAO();
 		$xml = '';
 		$filterDao = DAORegistry::getDAO('FilterDAO');
 		$nativeExportFilters = $filterDao->getObjectsByGroup('monograph=>native-xml');
 		assert(count($nativeExportFilters) == 1); // Assert only a single serialization filter
 		$exportFilter = array_shift($nativeExportFilters);
-		$exportFilter->setDeployment(new NativeImportExportDeployment($context));
+		$exportFilter->setDeployment(new NativeImportExportDeployment($context, $user));
 		$submissions = array();
 		foreach ($submissionIds as $submissionId) {
 			$submission = $submissionDao->getById($submissionId, $context->getId());
@@ -139,14 +155,16 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 	/**
 	 * Get the XML for a set of submissions.
 	 * @param $importXml string XML contents to import
+	 * @param $context Context
+	 * @param $user User
 	 * @return array Set of imported submissions
 	 */
-	function importSubmissions($importXml, $context) {
+	function importSubmissions($importXml, $context, $user) {
 		$filterDao = DAORegistry::getDAO('FilterDAO');
 		$nativeImportFilters = $filterDao->getObjectsByGroup('native-xml=>monograph');
 		assert(count($nativeImportFilters) == 1); // Assert only a single unserialization filter
 		$importFilter = array_shift($nativeImportFilters);
-		$importFilter->setDeployment(new NativeImportExportDeployment($context));
+		$importFilter->setDeployment(new NativeImportExportDeployment($context, $user));
 
 		return $importFilter->execute($importXml);
 	}

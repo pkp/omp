@@ -13,12 +13,11 @@
  */
 
 import('lib.pkp.plugins.importexport.native.filter.SubmissionNativeXmlFilter');
-import('lib.pkp.classes.xml.XMLCustomWriter');
 
 class MonographNativeXmlFilter extends SubmissionNativeXmlFilter {
 	/**
 	 * Constructor
-	 * $filterGroup FilterGroup
+	 * @param $filterGroup FilterGroup
 	 */
 	function MonographNativeXmlFilter($filterGroup) {
 		parent::SubmissionNativeXmlFilter($filterGroup);

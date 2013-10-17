@@ -1,26 +1,26 @@
 <?php
 
 /**
- * @file plugins/importexport/native/filter/NativeXmlMonographFilter.inc.php
+ * @file plugins/importexport/native/filter/NativeXmlAuthorFilter.inc.php
  *
  * Copyright (c) 2000-2013 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class NativeXmlMonographFilter
+ * @class NativeXmlAuthorFilter
  * @ingroup plugins_importexport_native
  *
  * @brief Class that converts a Native XML document to a set of monographs.
  */
 
-import('lib.pkp.plugins.importexport.native.filter.NativeXmlSubmissionFilter');
+import('lib.pkp.plugins.importexport.native.filter.NativeXmlPKPAuthorFilter');
 
-class NativeXmlMonographFilter extends NativeXmlSubmissionFilter {
+class NativeXmlAuthorFilter extends NativeXmlPKPAuthorFilter {
 	/**
 	 * Constructor
 	 * @param $filterGroup FilterGroup
 	 */
-	function NativeXmlMonographFilter($filterGroup) {
-		parent::NativeXmlSubmissionFilter($filterGroup);
+	function NativeXmlAuthorFilter($filterGroup) {
+		parent::NativeXmlPKPAuthorFilter($filterGroup);
 	}
 
 
@@ -31,7 +31,7 @@ class NativeXmlMonographFilter extends NativeXmlSubmissionFilter {
 	 * @copydoc PersistableFilter::getClassName()
 	 */
 	function getClassName() {
-		return 'plugins.importexport.native.filter.NativeXmlMonographFilter';
+		return 'plugins.importexport.native.filter.NativeXmlAuthorFilter';
 	}
 }
 

@@ -11,31 +11,55 @@
   -->
 <filterConfig>
 	<filterGroups>
-		<!-- Native XML output -->
+		<!-- Native XML monograph output -->
 		<filterGroup
 			symbolic="monograph=>native-xml"
 			displayName="plugins.importexport.native.displayName"
 			description="plugins.importexport.native.description"
 			inputType="class::classes.monograph.Monograph[]"
 			outputType="xml::schema(plugins/importexport/native/native.xsd)" />
-		<!-- Native XML intput -->
+		<!-- Native XML monograph input -->
 		<filterGroup
 			symbolic="native-xml=>monograph"
 			displayName="plugins.importexport.native.displayName"
 			description="plugins.importexport.native.description"
 			inputType="xml::schema(plugins/importexport/native/native.xsd)"
 			outputType="class::classes.monograph.Monograph[]" />
+		<!-- Native XML author output -->
+		<filterGroup
+			symbolic="author=>native-xml"
+			displayName="plugins.importexport.native.displayName"
+			description="plugins.importexport.native.description"
+			inputType="class::classes.monograph.Author[]"
+			outputType="xml::schema(plugins/importexport/native/native.xsd)" />
+		<!-- Native XML author input -->
+		<filterGroup
+			symbolic="native-xml=>author"
+			displayName="plugins.importexport.native.displayName"
+			description="plugins.importexport.native.description"
+			inputType="xml::schema(plugins/importexport/native/native.xsd)"
+			outputType="class::classes.monograph.Author[]" />
 	</filterGroups>
 	<filters>
-		<!-- Native XML output -->
+		<!-- Native XML monograph output -->
 		<filter
 			inGroup="monograph=>native-xml"
 			class="plugins.importexport.native.filter.MonographNativeXmlFilter"
 			isTemplate="0" />
-		<!-- Native XML input -->
+		<!-- Native XML monograph input -->
 		<filter
 			inGroup="native-xml=>monograph"
 			class="plugins.importexport.native.filter.NativeXmlMonographFilter"
+			isTemplate="0" />
+		<!-- Native XML author output -->
+		<filter
+			inGroup="author=>native-xml"
+			class="plugins.importexport.native.filter.AuthorNativeXmlFilter"
+			isTemplate="0" />
+		<!-- Native XML monograph input -->
+		<filter
+			inGroup="native-xml=>author"
+			class="plugins.importexport.native.filter.NativeXmlAuthorFilter"
 			isTemplate="0" />
 	</filters>
 </filterConfig>
