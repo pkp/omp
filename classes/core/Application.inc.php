@@ -208,6 +208,13 @@ class Application extends PKPApplication {
 	static function getFileDirectories() {
 		return array('context' => '/presses/', 'submission' => '/monographs/');
 	}
+
+	/**
+	 * Returns the context type for this application.
+	 */
+	static function getContextAssocType() {
+		return ASSOC_TYPE_PRESS;
+	}
 }
 
 ?>
