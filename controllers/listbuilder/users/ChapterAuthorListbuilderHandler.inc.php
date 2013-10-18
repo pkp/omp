@@ -105,7 +105,7 @@ class ChapterAuthorListbuilderHandler extends ListbuilderHandler {
 		// Name column
 		$nameColumn = new ListbuilderGridColumn($this, 'name', 'common.name');
 		// We can reuse the User cell provider because getFullName
-		import('controllers.listbuilder.users.UserListbuilderGridCellProvider');
+		import('lib.pkp.controllers.listbuilder.users.UserListbuilderGridCellProvider');
 		$nameColumn->setCellProvider(new UserListbuilderGridCellProvider());
 		$this->addColumn($nameColumn);
 	}
