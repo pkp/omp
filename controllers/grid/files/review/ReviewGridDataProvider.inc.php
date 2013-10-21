@@ -21,8 +21,7 @@ class ReviewGridDataProvider extends SubmissionFilesGridDataProvider {
 	 * Constructor
 	 */
 	function ReviewGridDataProvider($fileStageId, $viewableOnly = false) {
-		$this->_viewableOnly = $viewableOnly;
-		parent::SubmissionFilesGridDataProvider($fileStageId);
+		parent::SubmissionFilesGridDataProvider($fileStageId, $viewableOnly);
 	}
 
 
