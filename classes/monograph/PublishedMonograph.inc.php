@@ -164,12 +164,8 @@ class PublishedMonograph extends Monograph {
 	 * @return boolean
 	 */
 	function hasPublicationFormats() {
-		$formats =& $this->getPublicationFormats();
-		if (sizeof($formats) > 0) {
-			return true;
-		} else {
-			return false;
-		}
+		$formats = $this->getPublicationFormats();
+		return (sizeof($formats) > 0);
 	}
 
 	/**
@@ -209,7 +205,7 @@ class PublishedMonograph extends Monograph {
 	 * @return boolean
 	 */
 	function isAvailable() {
-		$publicationFormats =& $this->getPublicationFormats(true);
+		$publicationFormats = $this->getPublicationFormats(true);
 		if (sizeof($publicationFormats) > 0 && $this->isMetadataApproved()) {
 			return true;
 		}
@@ -222,8 +218,7 @@ class PublishedMonograph extends Monograph {
 	 */
 	function getSuppliers() {
 		$representativeDao = DAORegistry::getDAO('RepresentativeDAO');
-		$suppliers =& $representativeDao->getSuppliersByMonographId($this->getId());
-		return $suppliers;
+		return $representativeDao->getSuppliersByMonographId($this->getId());
 	}
 
 	/**
@@ -232,8 +227,7 @@ class PublishedMonograph extends Monograph {
 	 */
 	function getAgents() {
 		$representativeDao = DAORegistry::getDAO('RepresentativeDAO');
-		$agents =& $representativeDao->getAgentsByMonographId($this->getId());
-		return $agents;
+		return $representativeDao->getAgentsByMonographId($this->getId());
 	}
 }
 

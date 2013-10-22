@@ -33,6 +33,14 @@ class NativeXmlMonographFilter extends NativeXmlSubmissionFilter {
 	function getClassName() {
 		return 'plugins.importexport.native.filter.NativeXmlMonographFilter';
 	}
+
+	/**
+	 * Get the published submission DAO for this application.
+	 * @return DAO
+	 */
+	function getPublishedSubmissionDAO() {
+		return DAORegistry::getDAO('PublishedMonographDAO');
+	}
 }
 
 ?>
