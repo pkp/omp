@@ -210,10 +210,36 @@ class ReviewerForm extends Form {
 		// Get the review method options.
 		$reviewAssignmentDao = DAORegistry::getDAO('ReviewAssignmentDAO');
 		$reviewMethods = $reviewAssignmentDao->getReviewMethodsTranslationKeys();
+		$submission = $this->getMonograph();
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('reviewMethods', $reviewMethods);
 		$templateMgr->assign('reviewerActions', $this->getReviewerFormActions());
+
+		// Allow the default template
+		$templateKeys[] = 'REVIEW_REQUEST';
+
+		// Determine if the current user can use any custom templates defined.
+		$user = $request->getUser();
+		$roleDao = DAORegistry::getDAO('RoleDAO');
+
+		$userRoles = $roleDao->getByUserId($user->getId(), $this->getMonographId());
+		foreach ($userRoles as $userRole) {
+			if (in_array($userRole->getId(), array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_ASSISTANT))) {
+				$emailTemplateDao = DAORegistry::getDAO('EmailTemplateDAO');
+				$customTemplates = $emailTemplateDao->getCustomTemplateKeys(ASSOC_TYPE_PRESS, $submission->getPressId());
+				$templateKeys = array_merge($templateKeys, $customTemplates);
+				break;
+			}
+		}
+
+		foreach ($templateKeys as $templateKey) {
+			$template = new MonographMailTemplate($submission, $templateKey, null, null, null, false);
+			$template->assignParams(array());
+			$templates[$templateKey] = $template->getSubject();
+		}
+
+		$templateMgr->assign('templates', $templates);
 
 		// Get the reviewer user groups for the create new reviewer/enroll existing user tabs
 		$press =& $request->getPress();
@@ -243,6 +269,7 @@ class ReviewerForm extends Form {
 			'reviewDueDate',
 			'reviewMethod',
 			'skipEmail',
+			'template',
 			'keywords',
 			'interestsTextOnly',
 			'reviewRoundId',
@@ -307,7 +334,7 @@ class ReviewerForm extends Form {
 
 		// Notify the reviewer via email.
 		import('classes.mail.MonographMailTemplate');
-		$mail = new MonographMailTemplate($submission, 'REVIEW_REQUEST', null, null, null, false);
+		$mail = new MonographMailTemplate($submission, $this->getData('template'), null, null, null, false);
 
 		if ($mail->isEnabled() && !$this->getData('skipEmail')) {
 			$userDao = & DAORegistry::getDAO('UserDAO'); /* @var $userDao UserDAO */

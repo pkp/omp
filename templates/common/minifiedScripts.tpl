@@ -88,6 +88,7 @@
 <script type="text/javascript" src="{$baseUrl}/lib/pkp/js/controllers/wizard/fileUpload/form/FileUploadFormHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/lib/pkp/js/controllers/wizard/fileUpload/form/RevisionConfirmationHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/js/controllers/grid/users/reviewer/AdvancedReviewerSearchHandler.js"></script>
+<script type="text/javascript" src="{$baseUrl}/js/controllers/grid/users/reviewer/form/AddReviewerFormHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/js/controllers/grid/users/stageParticipant/form/AddParticipantFormHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/js/controllers/grid/content/spotlights/form/SpotlightFormHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/js/controllers/grid/files/signoff/form/AddAuditorFormHandler.js"></script>

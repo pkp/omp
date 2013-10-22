@@ -20,6 +20,12 @@
 </script>
 
 <div class="reviewerFormFooterContainer">
+	<!--  message template choice -->
+	{fbvFormSection title="informationCenter.notify.chooseMessage" for="template" size=$fbvStyles.size.medium}
+		{fbvElement type="select" from=$templates translate=false id="template" defaultValue="" defaultLabel=""}
+	{/fbvFormSection}
+
+
 	<!--  Message to reviewer textarea -->
 	{fbvFormSection title="editor.review.personalMessageToReviewer" for="personalMessage"}
 		{fbvElement type="textarea" name="personalMessage" id="personalMessage" value=$personalMessage|escape}

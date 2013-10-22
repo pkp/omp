@@ -656,6 +656,31 @@ class ReviewerGridHandler extends GridHandler {
 	}
 
 
+	/**
+	 * Fetches an email template's message body and returns it via AJAX.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 */
+	function fetchTemplateBody($args, $request) {
+		$templateId = $request->getUserVar('template');
+		import('classes.mail.MonographMailTemplate');
+		$template = new MonographMailTemplate($this->getMonograph(), $templateId);
+		if ($template) {
+			$user = $request->getUser();
+			$dispatcher = $request->getDispatcher();
+			$context = $request->getContext();
+
+			$template->assignParams(array(
+					'editorialContactSignature' => $user->getContactSignature(),
+					'signatureFullName' => $user->getFullname(),
+				));
+
+			$json = new JSONMessage(true, $template->getBody() . "\n" . $context->getSetting('emailSignature'));
+			return $json->getString();
+		}
+	}
+
+
 	//
 	// Private helper methods
 	//
@@ -715,7 +740,7 @@ class ReviewerGridHandler extends GridHandler {
 	function _getReviewRoundOps() {
 		// Define operations that need a review round policy.
 		return array('fetchGrid', 'fetchRow', 'showReviewerForm', 'reloadReviewerForm', 'createReviewer', 'enrollReviewer', 'updateReviewer',
-								'getReviewersNotAssignedToMonograph', 'getUsersNotAssignedAsReviewers');
+								'getReviewersNotAssignedToMonograph', 'getUsersNotAssignedAsReviewers', 'fetchTemplateBody');
 	}
 
 	/**

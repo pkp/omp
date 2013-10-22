@@ -53,8 +53,25 @@ class InformationCenterNotifyForm extends Form {
 		$templateMgr->assign_by_ref('monographId', $monographId);
 		$templateMgr->assign_by_ref('itemId', $this->itemId);
 
+		$monographDao =& DAORegistry::getDAO('MonographDAO');
+		$monograph =& $monographDao->getById($monographId);
+
 		// All stages can choose the default template
 		$templateKeys = array('NOTIFICATION_CENTER_DEFAULT');
+
+		// Determine if the current user can use any custom templates defined.
+		$user = $request->getUser();
+		$roleDao = DAORegistry::getDAO('RoleDAO');
+		$userRoles = $roleDao->getByUserId($user->getId(), $monograph->getPressId());
+		foreach ($userRoles as $userRole) {
+			if (in_array($userRole->getId(), array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_ASSISTANT))) {
+			$emailTemplateDao = DAORegistry::getDAO('EmailTemplateDAO');
+			$customTemplates = $emailTemplateDao->getCustomTemplateKeys(ASSOC_TYPE_PRESS, $monograph->getPressId());
+			$templateKeys = array_merge($templateKeys, $customTemplates);
+			break;
+		}
+	}
+
 
 		// template keys indexed by stageId
 		$stageTemplates = array(
@@ -65,8 +82,6 @@ class InformationCenterNotifyForm extends Form {
 			WORKFLOW_STAGE_ID_PRODUCTION => array('LAYOUT_REQUEST', 'LAYOUT_COMPLETE', 'INDEX_REQUEST', 'INDEX_COMPLETE', 'EDITOR_ASSIGN')
 		);
 
-		$monographDao =& DAORegistry::getDAO('MonographDAO');
-		$monograph =& $monographDao->getById($monographId);
 		$currentStageId = $monograph->getStageId();
 
 		$templateKeys = array_merge($templateKeys, $stageTemplates[$currentStageId]);
