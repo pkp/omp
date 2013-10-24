@@ -98,10 +98,10 @@ class CatalogBookHandler extends Handler {
 		// e-Commerce
 		import('classes.payment.omp.OMPPaymentManager');
 		$ompPaymentManager = new OMPPaymentManager($request);
-		$monographFileDao = DAORegistry::getDAO('SubmissionFileDAO');
+		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
 		if ($ompPaymentManager->isConfigured()) {
 			$availableFiles = array_filter(
-				$monographFileDao->getLatestRevisions($publishedMonograph->getId()),
+				$submissionFileDao->getLatestRevisions($publishedMonograph->getId()),
 				create_function('$a', 'return $a->getViewable() && $a->getDirectSalesPrice() !== null && $a->getAssocType() == ASSOC_TYPE_PUBLICATION_FORMAT;')
 			);
 			$availableFilesByPublicationFormat = array();
