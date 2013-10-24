@@ -9,4 +9,7 @@
 	<!-- Allow the use of "monograph" in place of "submission" -->
 	<element name="monograph" substitutionGroup="pkp:submission" />
 	<element name="monographs" substitutionGroup="pkp:submissions" />
+
+	<!-- Configure the use of the "publication_format" representation -->
+	<element name="publication_format" substitutionGroup="pkp:representation" />
 </schema>

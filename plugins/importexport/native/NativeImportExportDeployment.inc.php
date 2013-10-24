@@ -45,6 +45,13 @@ class NativeImportExportDeployment extends PKPNativeImportExportDeployment {
 	}
 
 	/**
+	 * Get the representation node name
+	 */
+	function getRepresentationNodeName() {
+		return 'publication_format';
+	}
+
+	/**
 	 * Get the schema filename.
 	 * @return string
 	 */

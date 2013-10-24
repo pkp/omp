@@ -39,6 +39,13 @@
 			description="plugins.importexport.native.description"
 			inputType="xml::schema(plugins/importexport/native/native.xsd)"
 			outputType="class::classes.monograph.Author[]" />
+		<!-- Publication Format native XML output -->
+		<filterGroup
+			symbolic="publication-format=>native-xml"
+			displayName="plugins.importexport.native.displayName"
+			description="plugins.importexport.native.description"
+			inputType="class::classes.publicationFormat.PublicationFormat"
+			outputType="xml::schema(plugins/importexport/native/native.xsd)" />
 	</filterGroups>
 	<filters>
 		<!-- Native XML monograph output -->
@@ -60,6 +67,11 @@
 		<filter
 			inGroup="native-xml=>author"
 			class="plugins.importexport.native.filter.NativeXmlAuthorFilter"
+			isTemplate="0" />
+		<!-- Native XML publication format output -->
+		<filter
+			inGroup="publication-format=>native-xml"
+			class="plugins.importexport.native.filter.PublicationFormatNativeXmlFilter"
 			isTemplate="0" />
 	</filters>
 </filterConfig>

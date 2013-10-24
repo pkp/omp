@@ -33,6 +33,18 @@ class MonographNativeXmlFilter extends SubmissionNativeXmlFilter {
 	function getClassName() {
 		return 'plugins.importexport.native.filter.MonographNativeXmlFilter';
 	}
+
+
+	//
+	// Implement abstract methods from SubmissionNativeXmlFilter
+	//
+	/**
+	 * Get the representation export filter group name
+	 * @return string
+	 */
+	function getRepresentationExportFilterGroupName() {
+		return 'publication-format=>native-xml';
+	}
 }
 
 ?>
