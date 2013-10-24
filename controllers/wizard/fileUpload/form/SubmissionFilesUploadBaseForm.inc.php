@@ -43,9 +43,9 @@ class SubmissionFilesUploadBaseForm extends PKPSubmissionFilesUploadBaseForm {
 		if (is_null($this->_submissionFiles)) {
 			if ($this->getStageId() == WORKFLOW_STAGE_ID_PRODUCTION &&
 				$this->getAssocType() == ASSOC_TYPE_PUBLICATION_FORMAT && is_int($this->getAssocId())) {
-				$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+				$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 				// Retrieve only the submission files with the same publication format.
-				$this->_submissionFiles =& $submissionFileDao->getLatestRevisionsByAssocId(ASSOC_TYPE_PUBLICATION_FORMAT,
+				$this->_submissionFiles = $submissionFileDao->getLatestRevisionsByAssocId(ASSOC_TYPE_PUBLICATION_FORMAT,
 					$this->getAssocId(), $this->getData('submissionId'), $this->getData('fileStage'));
 			} else {
 				// Check with the parent class for things besides publication formats.

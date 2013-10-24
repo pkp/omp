@@ -56,11 +56,11 @@ class ProofFilesListbuilderHandler extends FilesListbuilderHandler {
 	 */
 	function getOptions() {
 		import('classes.monograph.MonographFile');
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-		$publicationFormat =& $this->getAuthorizedContextObject(ASSOC_TYPE_PUBLICATION_FORMAT);
+		$monograph = $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		$publicationFormat = $this->getAuthorizedContextObject(ASSOC_TYPE_PUBLICATION_FORMAT);
 
 		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-		$monographFiles =& $submissionFileDao->getLatestRevisionsByAssocId(
+		$monographFiles = $submissionFileDao->getLatestRevisionsByAssocId(
 				ASSOC_TYPE_PUBLICATION_FORMAT, $publicationFormat->getId(),
 				$monograph->getId(), $this->getFileStage()
 			);

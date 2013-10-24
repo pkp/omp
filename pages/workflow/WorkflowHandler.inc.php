@@ -127,7 +127,7 @@ class WorkflowHandler extends PKPWorkflowHandler {
 			foreach ($publicationFormats as $format) { // there is at least one publication format.
 				if ($format->getIsApproved()) { // it's ready to be included in the catalog
 
-					$monographFiles =& $submissionFileDao->getLatestRevisionsByAssocId(
+					$monographFiles = $submissionFileDao->getLatestRevisionsByAssocId(
 							ASSOC_TYPE_PUBLICATION_FORMAT, $format->getId(),
 							$publishedMonograph->getId()
 					);

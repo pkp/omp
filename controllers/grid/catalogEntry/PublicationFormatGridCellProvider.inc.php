@@ -207,7 +207,7 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 	 */
 	function &getMonographFiles($publicationFormatId) {
 		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-		$monographFiles =& $submissionFileDao->getLatestRevisionsByAssocId(
+		$monographFiles = $submissionFileDao->getLatestRevisionsByAssocId(
 			ASSOC_TYPE_PUBLICATION_FORMAT, $publicationFormatId,
 			$this->getMonographId(), SUBMISSION_FILE_PROOF
 		);
