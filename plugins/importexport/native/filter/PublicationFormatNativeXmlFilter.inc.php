@@ -33,6 +33,24 @@ class PublicationFormatNativeXmlFilter extends RepresentationNativeXmlFilter {
 	function getClassName() {
 		return 'plugins.importexport.native.filter.PublicationFormatNativeXmlFilter';
 	}
+
+	//
+	// Extend functions in RepresentationNativeXmlFilter
+	//
+	/**
+	 * Create and return a representation node. Extend the parent class
+	 * with publication format specific data.
+	 * @param $doc DOMDocument
+	 * @param $representation Representation
+	 * @return DOMElement
+	 */
+	function createRepresentationNode($doc, $representation) {
+		$representationNode = parent::createRepresentationNode($doc, $representation);
+		$representationNode->setAttribute('approved', $representation->getIsApproved()?'true':'false');
+		$representationNode->setAttribute('physical_format', $representation->getPhysicalFormat()?'true':'false');
+
+		return $representationNode;
+	}
 }
 
 ?>

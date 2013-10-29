@@ -41,7 +41,7 @@ class PublicationFormat extends Representation {
 
 	/**
 	 * get physical format flag
-	 * @return int
+	 * @return bool
 	 */
 	function getPhysicalFormat() {
 		return $this->getData('physicalFormat');
@@ -49,7 +49,7 @@ class PublicationFormat extends Representation {
 
 	/**
 	 * set physical format flag
-	 * @param $physicalFormat int
+	 * @param $physicalFormat bool
 	 */
 	function setPhysicalFormat($physicalFormat) {
 		return $this->setData('physicalFormat', $physicalFormat);

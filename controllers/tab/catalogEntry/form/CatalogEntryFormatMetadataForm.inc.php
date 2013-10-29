@@ -72,7 +72,7 @@ class CatalogEntryFormatMetadataForm extends Form {
 		$templateMgr = TemplateManager::getManager($request);
 		$templateMgr->assign('submissionId', $monograph->getId());
 		$templateMgr->assign('publicationFormatId', (int) $this->getPublicationFormatId());
-		$templateMgr->assign('isPhysicalFormat', (int) $this->getPhysicalFormat()); // included to load format-specific template
+		$templateMgr->assign('isPhysicalFormat', (bool) $this->getPhysicalFormat()); // included to load format-specific template
 		$templateMgr->assign('stageId', $this->getStageId());
 		$templateMgr->assign('formParams', $this->getFormParams());
 		$templateMgr->assign('submissionApproved', $monograph->getDatePublished());
@@ -281,11 +281,12 @@ class CatalogEntryFormatMetadataForm extends Form {
 
 	/**
 	 * Get physical format setting
-	 * @return int
+	 * @return bool
 	 */
 	function getPhysicalFormat() {
 		return $this->_isPhysicalFormat;
 	}
+
 	/**
 	 * Get the publication format id
 	 * @return int

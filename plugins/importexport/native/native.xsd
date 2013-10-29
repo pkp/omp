@@ -11,5 +11,14 @@
 	<element name="monographs" substitutionGroup="pkp:submissions" />
 
 	<!-- Configure the use of the "publication_format" representation -->
-	<element name="publication_format" substitutionGroup="pkp:representation" />
+	<element name="publication_format" substitutionGroup="pkp:representation">
+		<complexType>
+			<complexContent>
+				<extension base="pkp:representation">
+					<attribute name="approved" type="boolean" />
+					<attribute name="physical_format" type="boolean" />
+				</extension>
+			</complexContent>
+		</complexType>
+	</element>
 </schema>
