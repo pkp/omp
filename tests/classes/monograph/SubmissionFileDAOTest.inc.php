@@ -462,7 +462,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		$genre->setPressId($press->getId());
 		$genre->setId($genreId);
 		$genre->setName($name, 'en_US');
-		$genre->setDesignation($designation, 'en_US');
+		$genre->setDesignation($designation);
 		$genre->setCategory($category);
 		return $genre;
 	}
