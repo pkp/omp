@@ -51,6 +51,21 @@ class PublicationFormatNativeXmlFilter extends RepresentationNativeXmlFilter {
 
 		return $representationNode;
 	}
+
+	/**
+	 * Get the available submission files for a representation
+	 * @param $representation Representation
+	 * @return array
+	 */
+	function getFiles($representation) {
+		$deployment = $this->getDeployment();
+		$submission = $deployment->getSubmission();
+		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
+		return array_filter(
+			$submissionFileDao->getLatestRevisions($submission->getId()),
+			create_function('$a', 'return $a->getAssocType() == ASSOC_TYPE_PUBLICATION_FORMAT && $a->getAssocId() == ' . ((int) $representation->getId()) . ';')
+		);
+	}
 }
 
 ?>
