@@ -32,6 +32,7 @@
 						<element name="credit" type="string" minOccurs="0" maxOccurs="1" />
 						<element name="copyright_owner" type="string" minOccurs="0" maxOccurs="1" />
 						<element name="copyright_owner_contact" type="string" minOccurs="0" maxOccurs="1" />
+						<element name="permission_terms" type="string" minOccurs="0" maxOccurs="1" />
 					</sequence>
 				</extension>
 			</complexContent>
