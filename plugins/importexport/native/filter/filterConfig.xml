@@ -48,10 +48,16 @@
 			outputType="xml::schema(plugins/importexport/native/native.xsd)" />
 		<!-- Submission file native XML output -->
 		<filterGroup
-			symbolic="submission-file=>native-xml"
+			symbolic="ArtworkFile=>native-xml"
 			displayName="plugins.importexport.native.displayName"
 			description="plugins.importexport.native.description"
-			inputType="class::lib.pkp.classes.submission.SubmissionFile"
+			inputType="class::classes.monograph.ArtworkFile"
+			outputType="xml::schema(plugins/importexport/native/native.xsd)" />
+		<filterGroup
+			symbolic="MonographFile=>native-xml"
+			displayName="plugins.importexport.native.displayName"
+			description="plugins.importexport.native.description"
+			inputType="class::classes.monograph.MonographFile"
 			outputType="xml::schema(plugins/importexport/native/native.xsd)" />
 	</filterGroups>
 	<filters>
@@ -82,7 +88,11 @@
 			isTemplate="0" />
 		<!-- Native XML submission file output -->
 		<filter
-			inGroup="submission-file=>native-xml"
+			inGroup="ArtworkFile=>native-xml"
+			class="plugins.importexport.native.filter.ArtworkFileNativeXmlFilter"
+			isTemplate="0" />
+		<filter
+			inGroup="MonographFile=>native-xml"
 			class="lib.pkp.plugins.importexport.native.filter.SubmissionFileNativeXmlFilter"
 			isTemplate="0" />
 	</filters>
