@@ -386,8 +386,8 @@ Informe, se desesjar, o motivo do bloqueio.</message>
 	<message key="manager.setup.reviewOptions.automatedRemindersDisabled"><![CDATA[<strong>Nota:</strong> Para ativar estas opções, o administrador do site deve habilitar a opção <tt>scheduled_tasks</tt> no arquivo de configuração do OMP. Configurações adicionais no servidor podem ser necessárias para oferecer suporte à funcionalidade (que pode não ser possível em todos os servidores), conforme indicado na documentação do OMP.]]></message>
 	<message key="manager.setup.reviewOptions.blindReview">Avaliação cega</message>
 	<message key="manager.setup.reviewOptions.noteOnModification">Os valores padrão podem ser alterados para qualquer submissão durante o processo editorial.</message>
-	<message key="manager.setup.reviewOptions.numWeeksPerReview">Tempo permitido para responder (semanas)</message>
-	<message key="manager.setup.reviewOptions.numWeeksPerResponse">Tempo permitido para concluir (semanas)</message>
+	<message key="manager.setup.reviewOptions.numWeeksPerResponse">Tempo permitido para responder (semanas)</message>
+	<message key="manager.setup.reviewOptions.numWeeksPerReview">Tempo permitido para concluir (semanas)</message>
 	<message key="manager.setup.reviewOptions.onQuality">Editores classificarão os avaliadores em escal de cinco pontos após cada avaliação.</message>
 	<message key="manager.setup.reviewOptions.remindForInvite">Enviar lembrete caso o avaliador não tenha respondido a uma solicitação dentro do seguinte prazo (dias):</message>
 	<message key="manager.setup.reviewOptions.remindForSubmit">Enviar lembrete caso o avaliador não tenha enviado sua recomendação dentro do seguinte prazo (dias):</message>
