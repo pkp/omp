@@ -383,8 +383,8 @@ Soumission, Évaluation interne, Évaluation externe, Rédaction et Production.<
 
 	<message key="manager.setup.reviewOptions.blindReview">Évaluation aveugle</message>
 	<message key="manager.setup.reviewOptions.noteOnModification">Ces valeurs par défaut peuvent être modifiées pour toute les soumissions tout au long du processus éditorial.</message>
-	<message key="manager.setup.reviewOptions.numWeeksPerReview">Temps de réponse alloué aux évaluateurs (semaines)</message>
-	<message key="manager.setup.reviewOptions.numWeeksPerResponse">Temps alloué pour terminer l'évaluation (semaines) </message>
+	<message key="manager.setup.reviewOptions.numWeeksPerResponse">Temps de réponse alloué aux évaluateurs (semaines)</message>
+	<message key="manager.setup.reviewOptions.numWeeksPerReview">Temps alloué pour terminer l'évaluation (semaines) </message>
 	<message key="manager.setup.reviewOptions.onQuality">Les rédacteurs en chef accorderont une note à l'aide d'une échelle de qualité de 1 à 5 pour chaque évaluation.</message>
 	<message key="manager.setup.reviewOptions.remindForInvite">Envoyer un rappel si un évaluateur n'a pas répondu à la demande d'évaluation dans les délais suivants (jours):</message>
 	<message key="manager.setup.reviewOptions.remindForSubmit">Envoyer un rappel si un évaluateur n'a pas soumis sa recommandation dans les délais suivants (jours):</message>

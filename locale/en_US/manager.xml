@@ -328,8 +328,6 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.reviewOptions.automatedRemindersDisabled"><![CDATA[<strong>Note:</strong> To activate these options, the site administrator must enable the <tt>scheduled_tasks</tt> option in the OMP configuration file. Additional server configuration may be required to support this functionality (which may not be possible on all servers), as indicated in the OMP documentation.]]></message>
 	<message key="manager.setup.reviewOptions.blindReview">Blind Review</message>
 	<message key="manager.setup.reviewOptions.noteOnModification">These default values can be modified for any submission during the editorial process.</message>
-	<message key="manager.setup.reviewOptions.numWeeksPerReview">Time allowed for review responses (weeks)</message>
-	<message key="manager.setup.reviewOptions.numWeeksPerResponse">Time allowed for review completion (weeks)</message>
 	<message key="manager.setup.reviewOptions.onQuality">Editors will rate reviewers on a five-point quality scale after each review.</message>
 	<message key="manager.setup.reviewOptions.restrictReviewerFileAccess">Reviewers will have access to the submission file only after agreeing to review it.</message>
 	<message key="manager.setup.reviewOptions.reviewerAccess">Reviewer Access</message>
