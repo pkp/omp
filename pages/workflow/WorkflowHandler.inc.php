@@ -209,7 +209,7 @@ class WorkflowHandler extends PKPWorkflowHandler {
 								$submissionFile->setSalesType('openAccess');
 								break;
 							default:
-								$submissionFile->setDirectSalesPrice($this->getUerVar('price'));
+								$submissionFile->setDirectSalesPrice($request->getUserVar('price'));
 								$submissionFile->setSalesType('directSales');
 						}
 

@@ -28,7 +28,7 @@ class CatalogEntrySubmissionReviewForm extends SubmissionMetadataViewForm {
 	function CatalogEntrySubmissionReviewForm($monographId, $stageId = null, $formParams = null) {
 		parent::SubmissionMetadataViewForm($monographId, $stageId, $formParams, 'controllers/modals/submissionMetadata/form/catalogEntrySubmissionReviewForm.tpl');
 		AppLocale::requireComponents(LOCALE_COMPONENT_APP_COMMON, LOCALE_COMPONENT_APP_SUBMISSION);
-		if ($formParams['expeditedSubmission']) {
+		if (array_key_exists('expeditedSubmission', $formParams)) {
 			// If we are expediting, make the confirmation checkbox mandatory.
 			$request = Application::getRequest();
 			$context = $request->getContext();
