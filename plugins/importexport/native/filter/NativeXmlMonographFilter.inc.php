@@ -41,6 +41,43 @@ class NativeXmlMonographFilter extends NativeXmlSubmissionFilter {
 	function getPublishedSubmissionDAO() {
 		return DAORegistry::getDAO('PublishedMonographDAO');
 	}
+
+	/**
+	 * Handle an element whose parent is the submission element.
+	 * @param $n DOMElement
+	 * @param $submission Submission
+	 */
+	function handleChildElement($n, $submission) {
+		switch ($n->tagName) {
+			case 'artwork_file':
+				$this->parseSubmissionFile($n, $submission);
+				break;
+		}
+	}
+
+	/**
+	 * Get the import filter for a given element.
+	 * @param $elementName string Name of XML element
+	 * @return Filter
+	 */
+	function getImportFilter($elementName) {
+		switch ($elementName) {
+			case 'submission_file':
+				$importClass='SubmissionFile';
+				break;
+			case 'artwork_file':
+				$importClass='ArtworkFile';
+				break;
+			default:
+				fatalError('Unknown submission file node ' . $elementName);
+		}
+		// Caps on class name for consistency with imports, whose filter
+		// group names are generated implicitly.
+		$filterDao = DAORegistry::getDAO('FilterDAO');
+		$importFilters = $filterDao->getObjectsByGroup('native-xml=>' . $importClass);
+		$importFilter = array_shift($importFilters);
+		return $importFilter;
+	}
 }
 
 ?>

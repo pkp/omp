@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE filterConfig SYSTEM "../../../../dtd/filterConfig.dtd">
+<!DOCTYPE filterConfig SYSTEM "../../../../lib/pkp/dtd/filterConfig.dtd">
 
 <!--
   * filterConfig.xml
@@ -53,6 +53,21 @@
 			description="plugins.importexport.native.description"
 			inputType="class::classes.monograph.ArtworkFile"
 			outputType="xml::schema(plugins/importexport/native/native.xsd)" />
+		<!-- Monograph file native XML input -->
+		<filterGroup
+			symbolic="native-xml=>SubmissionFile"
+			displayName="plugins.importexport.native.displayName"
+			description="plugins.importexport.native.description"
+			inputType="xml::schema(plugins/importexport/native/native.xsd)"
+			outputType="class::classes.monograph.MonographFile" />
+		<!-- Artwork file native XML input -->
+		<filterGroup
+			symbolic="native-xml=>ArtworkFile"
+			displayName="plugins.importexport.native.displayName"
+			description="plugins.importexport.native.description"
+			inputType="xml::schema(plugins/importexport/native/native.xsd)"
+			outputType="class::classes.monograph.ArtworkFile" />
+		<!-- Monograph file native XML output -->
 		<filterGroup
 			symbolic="MonographFile=>native-xml"
 			displayName="plugins.importexport.native.displayName"
@@ -85,6 +100,16 @@
 		<filter
 			inGroup="publication-format=>native-xml"
 			class="plugins.importexport.native.filter.PublicationFormatNativeXmlFilter"
+			isTemplate="0" />
+		<!-- Native XML monograph file input -->
+		<filter
+			inGroup="native-xml=>SubmissionFile"
+			class="plugins.importexport.native.filter.NativeXmlMonographFileFilter"
+			isTemplate="0" />
+		<!-- Native XML artwork file input -->
+		<filter
+			inGroup="native-xml=>ArtworkFile"
+			class="plugins.importexport.native.filter.NativeXmlArtworkFileFilter"
 			isTemplate="0" />
 		<!-- Native XML submission file output -->
 		<filter
