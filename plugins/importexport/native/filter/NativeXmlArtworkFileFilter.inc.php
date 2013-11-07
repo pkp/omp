@@ -61,20 +61,30 @@ class NativeXmlArtworkFileFilter extends NativeXmlMonographFileFilter {
 	 * Handle a child node of the submission file element; add new files, if
 	 * any, to $submissionFiles
 	 * @param $node DOMElement
-	 * @param $submission Submission
 	 * @param $stageId int SUBMISSION_FILE_...
 	 * @param $submissionFiles array
 	 */
-	function handleChildElement($node, $submission, $stageId, &$submissionFiles) {
+	function handleChildElement($node, $stageId, &$submissionFiles) {
 		switch ($node->tagName) {
-			case 'revision':
-				$submissionFiles[] = $this->handleRevisionElement($node, $stageId);
+			case 'caption':
+				$submissionFiles[count($submissionFiles)-1]->setCaption($node->textContent);
+				break;
+			case 'credit':
+				$submissionFiles[count($submissionFiles)-1]->setCredit($node->textContent);
+				break;
+			case 'copyright_owner':
+				$submissionFiles[count($submissionFiles)-1]->setCopyrightOwner($node->textContent);
+				break;
+			case 'copyright_owner_contact':
+				$submissionFiles[count($submissionFiles)-1]->setCopyrightOwnerContact($node->textContent);
+				break;
+			case 'permission_terms':
+				$submissionFiles[count($submissionFiles)-1]->setPermissionTerms($node->textContent);
 				break;
 			default:
-				fatalError('Unknown element ' . $node->tagName);
+				return parent::handleChildElement($node, $stageId, $submissionFiles);
 		}
 	}
-
 }
 
 ?>
