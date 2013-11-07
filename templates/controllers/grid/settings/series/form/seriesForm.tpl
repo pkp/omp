@@ -72,14 +72,14 @@
 			{/if}
 		{/fbvFormSection}
 
-			{fbvFormSection for="context" inline=true size=$fbvStyles.size.MEDIUM}
-				{if $seriesEditorCount > 0}{* only include the series editor listbuilder if there are series editors available *}
-					<div id="seriesEditorsContainer">
-						{url|assign:seriesEditorsUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.SeriesEditorsListbuilderHandler" op="fetch" seriesId=$seriesId escape=false}
-						{load_url_in_div id="seriesEditorsContainer" url=$seriesEditorsUrl}
-					</div>
-				{/if}
-			{/fbvFormSection}
+		{fbvFormSection for="context" inline=true size=$fbvStyles.size.MEDIUM}
+			{if $seriesEditorCount > 0}{* only include the series editor listbuilder if there are series editors available *}
+				<div id="seriesEditorsContainer">
+					{url|assign:seriesEditorsUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.SeriesEditorsListbuilderHandler" op="fetch" seriesId=$seriesId escape=false}
+					{load_url_in_div id="seriesEditorsContainer" url=$seriesEditorsUrl}
+				</div>
+			{/if}
+		{/fbvFormSection}
 
 		{capture assign="instruct"}
 			{url|assign:"sampleUrl" router=$smarty.const.ROUTE_PAGE page="catalog" op="series" path="Path"}
