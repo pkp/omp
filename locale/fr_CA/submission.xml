@@ -42,7 +42,6 @@
 	<message key="submission.files.downloadAll">Télécharger tous les fichiers</message>
 	<message key="submission.metadata">Métadonnées</message>
 	<message key="submission.supportingAgencies">Agences de financement</message>
-	<message key="submission.previousAuthorMessages">Messages précédents</message>
 	<message key="grid.action.addChapter">Créer un nouveau chapitre</message>
 	<message key="grid.action.editChapter">Modifier ce chapitre</message>
 	<message key="grid.action.deleteChapter">Supprimer ce chapitre</message>
