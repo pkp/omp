@@ -195,16 +195,15 @@ class Application extends PKPApplication {
 						return 'monograph_id';
 					}
 					break;
-					case 'postgres':
-						$checkResult = $pluginSettingsDao->retrieve('SELECT column_name FROM information_schema.columns WHERE table_name= ? AND column_name= ?', array('plugin_settings', 'context_id'));
+				case 'postgres':
+					$checkResult = $pluginSettingsDao->retrieve('SELECT column_name FROM information_schema.columns WHERE table_name= ? AND column_name= ?', array('plugin_settings', 'context_id'));
 					if ($checkResult->NumRows() == 0) {
 						return 'monograph_id';
 					}
 					break;
 			}
-		} else {
-			return 'context_id';
 		}
+		return 'context_id';
 	}
 
 	/**
