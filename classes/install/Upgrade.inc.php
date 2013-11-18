@@ -79,11 +79,11 @@ class Upgrade extends Installer {
 						if ($dryrun) {
 							echo "Need to rename \"$discoveredFilename\" to \"$generatedFilename\".\n";
 						} else {
-							rename($basePath . $discoveredFilename, $basePath . $generatedFilename);
+							rename($discoveredFilename, $basePath . $generatedFilename);
 						}
 					} else {
 						// 0 results matched.
-						die("Unable to find a match for \"$globPattern\".\n");
+						fatalError("Unable to find a match for \"$globPattern\".\n");
 					}
 				}
 			}
