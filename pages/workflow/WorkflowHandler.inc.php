@@ -234,10 +234,11 @@ class WorkflowHandler extends PKPWorkflowHandler {
 	/**
 	 * Determine if a particular stage has a notification pending.  If so, return true.
 	 * This is used to set the CSS class of the submission progress bar.
-	 * @param PKPUser $user
-	 * @param int $stageId
+	 * @param $user PKPUser
+	 * @param $stageId int
+	 * @param $contextId int
 	 */
-	function _notificationOptionsByStage(&$user, $stageId, $contextId) {
+	function _notificationOptionsByStage($user, $stageId, $contextId) {
 
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		$notificationDao = DAORegistry::getDAO('NotificationDAO');
