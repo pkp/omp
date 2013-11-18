@@ -179,7 +179,7 @@ class MonographDAO extends SubmissionDAO {
 	 * @param $pressId int
 	 * @return DAOResultFactory containing matching Monographs
 	 */
-	function getByPressId($contextId) {
+	function getByPressId($pressId) {
 		return parent::getByContextId($pressId);
 	}
 
