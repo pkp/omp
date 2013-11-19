@@ -36,9 +36,9 @@ class SeriesEditorsDAO extends DAO {
 				VALUES
 				(?, ?, ?, ?, ?)',
 			array(
-				$pressId,
-				$seriesId,
-				$userId,
+				(int) $pressId,
+				(int) $seriesId,
+				(int) $userId,
 				$canReview ? 1 : 0,
 				$canEdit ? 1 : 0
 			)
@@ -55,9 +55,9 @@ class SeriesEditorsDAO extends DAO {
 		return $this->update(
 			'DELETE FROM series_editors WHERE press_id = ? AND series_id = ? AND user_id = ?',
 			array(
-				$pressId,
-				$seriesId,
-				$userId
+				(int) $pressId,
+				(int) $seriesId,
+				(int) $userId
 			)
 		);
 	}
@@ -137,7 +137,7 @@ class SeriesEditorsDAO extends DAO {
 		);
 		else return $this->update(
 			'DELETE FROM series_editors WHERE series_id = ?',
-			$seriesId
+			(int) $seriesId
 		);
 	}
 
@@ -147,7 +147,8 @@ class SeriesEditorsDAO extends DAO {
 	 */
 	function deleteEditorsByPressId($pressId) {
 		return $this->update(
-			'DELETE FROM series_editors WHERE press_id = ?', $pressId
+			'DELETE FROM series_editors WHERE press_id = ?',
+			(int) $pressId
 		);
 	}
 
@@ -160,9 +161,9 @@ class SeriesEditorsDAO extends DAO {
 	function deleteEditorsByUserId($userId, $pressId  = null, $seriesId = null) {
 		return $this->update(
 			'DELETE FROM series_editors WHERE user_id = ?' . (isset($pressId) ? ' AND press_id = ?' : '') . (isset($seriesId) ? ' AND series_id = ?' : ''),
-			isset($pressId) && isset($seriesId) ? array($userId, $pressId, $seriesId)
-			: (isset($pressId) ? array($userId, $pressId)
-			: (isset($seriesId) ? array($userId, $seriesId) : $userId))
+			isset($pressId) && isset($seriesId) ? array((int) $userId, (int) $pressId, (int) $seriesId)
+			: (isset($pressId) ? array((int) $userId, (int) $pressId)
+			: (isset($seriesId) ? array((int) $userId, (int) $seriesId) : (int) $userId))
 		);
 	}
 
