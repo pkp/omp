@@ -20,8 +20,6 @@ class TranslatorPlugin extends GenericPlugin {
 	function register($category, $path) {
 		if (parent::register($category, $path)) {
 			if ($this->getEnabled()) {
-				// FIXME Need to introduce the OMP Help class.
-				// $this->addHelpData();
 				HookRegistry::register ('LoadHandler', array(&$this, 'handleRequest'));
 			}
 			return true;
