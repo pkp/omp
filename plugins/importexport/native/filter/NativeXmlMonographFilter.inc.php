@@ -52,6 +52,8 @@ class NativeXmlMonographFilter extends NativeXmlSubmissionFilter {
 			case 'artwork_file':
 				$this->parseSubmissionFile($n, $submission);
 				break;
+			default:
+				parent::handleChildElement($n, $submission);
 		}
 	}
 
