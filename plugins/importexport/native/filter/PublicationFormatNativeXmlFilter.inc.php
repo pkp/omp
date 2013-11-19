@@ -46,63 +46,10 @@ class PublicationFormatNativeXmlFilter extends RepresentationNativeXmlFilter {
 	 */
 	function createRepresentationNode($doc, $representation) {
 		$representationNode = parent::createRepresentationNode($doc, $representation);
-		$onixRootNode = $this->createONIXMessageNode($doc, $representation);
-		$representationNode->appendChild($onixRootNode);
 		$representationNode->setAttribute('approved', $representation->getIsApproved()?'true':'false');
 		$representationNode->setAttribute('physical_format', $representation->getPhysicalFormat()?'true':'false');
 
 		return $representationNode;
-	}
-
-	/**
-	 * Create and return a node representing the ONIX metadata for this publication format.
-	 * @param $doc DOMDocument
-	 * @param $representation Representation
-	 * @return DOMElement
-	 */
-	function createONIXMessageNode($doc, $representation) {
-		$deployment = $this->getDeployment();
-		$context = $deployment->getContext();
-
-		$onixRootNode = $doc->createElementNS($deployment->getNamespace(), 'ONIXMessage');
-		$onixRootNode->setAttribute('release', '3.0');
-		$onixRootNode->setAttribute('namespace', 'http://ns.editeur.org/onix/3.0/reference');
-
-		$headNode = $doc->createElementNS($deployment->getNamespace(), 'Header');
-		$senderNode = $doc->createElementNS($deployment->getNamespace(), 'Sender');
-
-		// Assemble SenderIdentifier element.
-		$senderIdentifierNode = $doc->createElementNS($deployment->getNamespace(), 'SenderIdentifier');
-		$senderIdTypeNode = $doc->createElementNS($deployment->getNamespace(), 'SenderIDType');
-		$senderIdTypeNode->appendChild($doc->createTextNode($context->getSetting('codeType')));
-		$senderIdValueNode = $doc->createElementNS($deployment->getNamespace(), 'SenderIDValue');
-		$senderIdValueNode->appendChild($doc->createTextNode($context->getSetting('codeValue')));
-
-		$senderIdentifierNode->appendChild($senderIdTypeNode);
-		$senderIdentifierNode->appendChild($senderIdValueNode);
-		$senderNode->appendChild($senderIdentifierNode);
-
-		// Assemble SenderName element.
-		$senderNameNode = $doc->createElementNS($deployment->getNamespace(), 'SenderName');
-		$senderNameNode->appendChild($doc->createTextNode($context->getLocalizedName()));
-		$contactNameNode = $doc->createElementNS($deployment->getNamespace(), 'ContactName');
-		$contactNameNode->appendChild($doc->createTextNode($context->getContactName()));
-		$contactEmailNode = $doc->createElementNS($deployment->getNamespace(), 'EmailAddress');
-		$contactEmailNode->appendChild($doc->createTextNode($context->getContactEmail()));
-
-		$senderNode->appendChild($senderNameNode);
-		$senderNode->appendChild($contactNameNode);
-		$senderNode->appendChild($contactEmailNode);
-
-		$headNode->appendChild($senderNode);
-
-		// add SentDateTime element.
-		$sentDateTimeNode = $doc->createElementNS($deployment->getNamespace(), 'SentDateTime');
-		$sentDateTimeNode->appendChild($doc->createTextNode(date('Ymd')));
-		$headNode->appendChild($sentDateTimeNode);
-
-		$onixRootNode->appendChild($headNode);
-		return $onixRootNode;
 	}
 
 	/**
