@@ -1,20 +1,25 @@
 <?xml version="1.0"?>
-<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://pkp.sfu.ca" xmlns:pkp="http://pkp.sfu.ca" elementFormDefault="qualified">
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://pkp.sfu.ca" xmlns:pkp="http://pkp.sfu.ca" xmlns:onix="http://ns.editeur.org/onix/3.0/reference" elementFormDefault="qualified">
 
 	<!--
 	  - Base the native import/export schema on the PKP submission model.
 	  -->
 	<include schemaLocation="../../../lib/pkp/plugins/importexport/native/pkp-native.xsd" />
+	<import namespace="http://ns.editeur.org/onix/3.0/reference" schemaLocation="../onix30/ONIX_BookProduct_3.0_reference.xsd" />
 
 	<!-- Allow the use of "monograph" in place of "submission" -->
 	<element name="monograph" substitutionGroup="pkp:submission" />
 	<element name="monographs" substitutionGroup="pkp:submissions" />
+	<element name="Product" substitutionGroup="onix:Product" />
 
 	<!-- Configure the use of the "publication_format" representation -->
 	<element name="publication_format" substitutionGroup="pkp:representation">
 		<complexType>
 			<complexContent>
 				<extension base="pkp:representation">
+					<sequence>
+						<element maxOccurs="1" minOccurs="0" name="Product"/>
+					</sequence>
 					<attribute name="approved" type="boolean"/>
 					<attribute name="physical_format" type="boolean"/>
 				</extension>

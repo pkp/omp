@@ -74,6 +74,12 @@
 			description="plugins.importexport.native.description"
 			inputType="class::classes.monograph.MonographFile"
 			outputType="xml::schema(plugins/importexport/native/native.xsd)" />
+		<filterGroup
+			symbolic="monograph=>onix30-xml"
+			displayName="plugins.importexport.onix30.displayName"
+			description="plugins.importexport.onix30.description"
+			inputType="class::classes.monograph.Monograph"
+			outputType="xml::schema(plugins/importexport/onix30/ONIX_BookProduct_3.0_reference.xsd)" />
 	</filterGroups>
 	<filters>
 		<!-- Native XML monograph output -->
@@ -119,6 +125,11 @@
 		<filter
 			inGroup="MonographFile=>native-xml"
 			class="lib.pkp.plugins.importexport.native.filter.SubmissionFileNativeXmlFilter"
+			isTemplate="0" />
+		<!-- ONIX 3.0 XML monograph output -->
+		<filter
+			inGroup="monograph=>onix30-xml"
+			class="plugins.importexport.onix30.filter.MonographONIX30XmlFilter"
 			isTemplate="0" />
 	</filters>
 </filterConfig>
