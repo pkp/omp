@@ -59,7 +59,7 @@ class Upgrade extends Installer {
 				$submissionFileManager = new SubmissionFileManager($context->getId(), $submission->getId());
 				$submissionFiles = $submissionFileDao->getBySubmissionId($submission->getId());
 				foreach ($submissionFiles as $submissionFile) {
-					$generatedFilename = $submissionFile->getFileName();
+					$generatedFilename = $submissionFile->getServerFileName();
 					$basePath = $submissionFileManager->getBasePath() . $submissionFile->_fileStageToPath($submissionFile->getFileStage()) . '/';
 					$globPattern = $submissionFile->getSubmissionId() . '-' .
 						'*' . '_' . '*' . '-' . // Genre name and designation globbed
