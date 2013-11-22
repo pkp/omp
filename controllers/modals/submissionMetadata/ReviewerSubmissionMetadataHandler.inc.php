@@ -12,7 +12,7 @@
  * @brief Display submission metadata to reviewers.
  */
 
-import('lib.pkp.classes.controllers.modals.submissionMetadata.PKPReviewerSubmisionMetadataHandler');
+import('lib.pkp.classes.controllers.modals.submissionMetadata.PKPReviewerSubmissionMetadataHandler');
 
 class ReviewerSubmissionMetadataHandler extends PKPReviewerSubmissionMetadataHandler {
 	/**
