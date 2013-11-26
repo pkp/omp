@@ -13,4 +13,3 @@
 		<li>{$submission->getLocalizedTitle()|strip_unsafe_html}</li>
 	{/foreach}
 </ul>
-<a href="{plugin_url path="index"}">{translate key="common.back"}</a>

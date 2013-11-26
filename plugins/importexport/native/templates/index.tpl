@@ -14,10 +14,13 @@
 <script type="text/javascript">
 	// Attach the JS file tab handler.
 	$(function() {ldelim}
-		$('#importTabs').pkpHandler('$.pkp.controllers.TabHandler');
+		$('#importExportTabs').pkpHandler('$.pkp.controllers.TabHandler', {ldelim}
+			notScrollable: true
+		{rdelim});
+		$('#importExportTabs').tabs('option', 'cache', true);
 	{rdelim});
 </script>
-<div id="importTabs">
+<div id="importExportTabs">
 	<ul>
 		<li><a href="#import-tab">{translate key="plugins.importexport.native.import"}</a></li>
 		<li><a href="#export-tab">{translate key="plugins.importexport.native.export"}</a></li>
@@ -37,7 +40,7 @@
 				);
 			{rdelim});
 		</script>
-		<form id="importXmlForm" class="pkp_form" action="{plugin_url path="import"}" method="post">
+		<form id="importXmlForm" class="pkp_form" action="{plugin_url path="importBounce"}" method="post">
 			{fbvFormArea id="importForm"}
 				{* Container for uploaded file *}
 				<input type="hidden" name="temporaryFileId" id="temporaryFileId" value="" />
@@ -70,6 +73,5 @@
 		</form>
 	</div>
 </div>
-
 
 {include file="common/footer.tpl"}

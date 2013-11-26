@@ -102,11 +102,22 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 				}
 
 				return $json->getString();
+			case 'importBounce':
+				$json = new JSONMessage(true);
+				$json->setEvent('addTab', array(
+					'title' => __('plugins.importexport.native.results'),
+					'url' => $request->url(null, null, null, array('plugin', $this->getName(), 'import'), array('temporaryFileId' => $request->getUserVar('temporaryFileId'))),
+				));
+				return $json->getString();
 			case 'import':
 				$temporaryFileId = $request->getUserVar('temporaryFileId');
 				$temporaryFileDao = DAORegistry::getDAO('TemporaryFileDAO');
 				$user = $request->getUser();
 				$temporaryFile = $temporaryFileDao->getTemporaryFile($temporaryFileId, $user->getId());
+				if (!$temporaryFile) {
+					$json = new JSONMessage(true, __('plugins.inportexport.native.uploadFile'));
+					return $json->getString();
+				}
 				$temporaryFilePath = $temporaryFile->getFilePath();
 				$submissions = $this->importSubmissions(file_get_contents($temporaryFilePath), $press, $user);
 				$templateMgr->assign('submissions', $submissions);
