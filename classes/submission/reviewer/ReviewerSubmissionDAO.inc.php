@@ -45,12 +45,13 @@ class ReviewerSubmissionDAO extends MonographDAO {
 		$primaryLocale = AppLocale::getPrimaryLocale();
 		$locale = AppLocale::getLocale();
 		$result = $this->retrieve(
-			'SELECT	m.*,
+			'SELECT	m.*, pm.date_published,
 				r.*,
 				u.first_name, u.last_name,
 				COALESCE(stl.setting_value, stpl.setting_value) AS series_title,
 				COALESCE(sal.setting_value, sapl.setting_value) AS series_abbrev
 			FROM	submissions m
+				LEFT JOIN published_submissions pm ON (m.submission_id = pm.submission_id)
 				LEFT JOIN review_assignments r ON (m.submission_id = r.submission_id)
 				LEFT JOIN series s ON (s.series_id = m.series_id)
 				LEFT JOIN users u ON (r.reviewer_id = u.user_id)
@@ -187,13 +188,14 @@ class ReviewerSubmissionDAO extends MonographDAO {
 	function getReviewerSubmissionsByReviewerId($reviewerId, $pressId = null, $active = true, $skipDeclined = true, $rangeInfo = null, $sortBy = null, $sortDirection = SORT_DIRECTION_ASC) {
 		$primaryLocale = AppLocale::getPrimaryLocale();
 		$locale = AppLocale::getLocale();
-		$sql = 'SELECT	m.*,
+		$sql = 'SELECT	m.*, pm.date_published,
 				r.*,
 				u.first_name, u.last_name,
 				atl.setting_value AS submission_title,
 				COALESCE(stl.setting_value, stpl.setting_value) AS series_title,
 				COALESCE(sal.setting_value, sapl.setting_value) AS series_abbrev
 			FROM	submissions m
+				LEFT JOIN published_submissions ON (pm.submission_id = m.submission_id)
 				LEFT JOIN review_assignments r ON (m.submission_id = r.submission_id)
 				LEFT JOIN submission_settings atl ON (atl.submission_id = m.submission_id AND atl.setting_name = ? AND atl.locale = ?)
 				LEFT JOIN series s ON (s.series_id = m.series_id)
