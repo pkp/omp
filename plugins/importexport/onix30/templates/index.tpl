@@ -22,19 +22,10 @@
 		<li><a href="#export-tab">{translate key="plugins.importexport.native.export"}</a></li>
 	</ul>
 	<div id="export-tab">
-		<script type="text/javascript">
-			$(function() {ldelim}
-				// Attach the form handler.
-				$('#exportXmlForm').pkpHandler('$.pkp.controllers.form.FormHandler');
-			{rdelim});
-		</script>
-		<form id="exportXmlForm" class="pkp_form" action="{plugin_url path="export"}" method="post">
-			{fbvFormArea id="exportForm"}
-				{url|assign:submissionsListGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.submissions.exportableSubmissions.ExportableSubmissionsListGridHandler" op="fetchGrid"}
-				{load_url_in_div id="submissionsListGridContainer" url=$submissionsListGridUrl}
-				{fbvFormButtons hideCancel="true"}
-			{/fbvFormArea}
-		</form>
+		{fbvFormArea id="exportForm"}
+			{url|assign:submissionsListGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.submissions.exportableSubmissions.ExportableSubmissionsListGridHandler" op="fetchGrid" pluginName="Onix30ExportPlugin" hideSelectColumn="true" escape=false}
+			{load_url_in_div id="submissionsListGridContainer" url=$submissionsListGridUrl}
+		{/fbvFormArea}
 	</div>
 </div>
 
