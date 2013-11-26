@@ -13,10 +13,11 @@
 
 
 
+
 	/**
 	 * @constructor
 	 *
-	 * @extends $.pkp.classes.Handler
+	 * @extends $.pkp.pages.authorDashboard.PKPAuthorDashboardHandler
 	 *
 	 * @param {jQueryObject} $dashboard The HTML element encapsulating
 	 *  the author dashboard page.
@@ -35,7 +36,7 @@
 
 
 	//
-	// Private static properties
+	// Public static properties
 	//
 	/**
 	 * An object that assigns stage identifiers to the
@@ -45,8 +46,9 @@
 	 * @const
 	 * FIXME: Is there a less verbose way to define this object?
 	 */
-	$.pkp.pages.authorDashboard.AuthorDashboardHandler.CSS_SELECTORS_ = $.pkp.pages.authorDashboard.PKPAuthorDashboardHandler.CSS_SELECTORS_;
-	$.pkp.pages.authorDashboard.AuthorDashboardHandler.CSS_SELECTORS_[
+	$.pkp.pages.authorDashboard.AuthorDashboardHandler.CSS_SELECTORS =
+			$.pkp.pages.authorDashboard.PKPAuthorDashboardHandler.CSS_SELECTORS;
+	$.pkp.pages.authorDashboard.AuthorDashboardHandler.CSS_SELECTORS[
 			$.pkp.cons.WORKFLOW_STAGE_ID_INTERNAL_REVIEW] = '#internalReview';
 
 

@@ -14,11 +14,6 @@
  */
 (function($) {
 
-	/** @type {Object} */
-	$.pkp.controllers.modals = $.pkp.controllers.modals ||
-			{ editorDecision: { } };
-
-
 
 	/**
 	 * @constructor
