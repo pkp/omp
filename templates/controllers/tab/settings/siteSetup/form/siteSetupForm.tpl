@@ -69,7 +69,7 @@
 	{/fbvFormArea}
 	{fbvFormArea id="appearance"}
 		{fbvFormSection title="admin.settings.siteStyleSheet" inline=true size=$fbvStyles.size.MEDIUM}
-			<div id="{$uploadCssLinkAction->getId()} class="pkp_linkActions">
+			<div id="{$uploadCssLinkAction->getId()}" class="pkp_linkActions">
 				{include file="linkAction/linkAction.tpl" action=$uploadCssLinkAction contextId="siteSetupForm"}
 			</div>
 			<div id="siteStyleSheet">
@@ -86,6 +86,6 @@
 	{url|assign:"siteUrl" router=$smarty.const.ROUTE_PAGE page="index"}
 	<p>{translate key="admin.settings.oaiRegistrationDescription" siteUrl=$siteUrl oaiUrl=$oaiUrl}</p>
 
-	<p><span class="formRequired">{translate key="common.requiredField"}</span></p>
 	{fbvFormButtons id="siteSetupFormSubmit" submitText="common.save" hideCancel=true}
 </form>
+<p><span class="formRequired">{translate key="common.requiredField"}</span></p>

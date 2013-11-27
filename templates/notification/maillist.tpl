@@ -34,8 +34,6 @@
 	{url|assign:cancelUrl page="notification"}
 	{fbvFormButtons submitText="form.submit" cancelUrl=$cancelUrl}
 </form>
-
-</form>
+<p><span class="formRequired">{translate key="common.requiredField"}</span></p>
 
 {include file="common/footer.tpl"}
-

@@ -52,9 +52,10 @@
 			{fbvFormButtons}
 		{/fbvFormArea}
 	{else}
-		{** Put a marker in place so the form just closes with no attempt to validate **}
+		{* Put a marker in place so the form just closes with no attempt to validate *}
 		<input type="hidden" name="noSignoffs" value="1" />
 		{translate key="submission.signoff.noAvailableSignoffs"}
 		{fbvFormButtons id="closeButton" hideCancel=true submitText="common.close"}
 	{/if}
 </form>
+<p><span class="formRequired">{translate key="common.requiredField"}</span></p>

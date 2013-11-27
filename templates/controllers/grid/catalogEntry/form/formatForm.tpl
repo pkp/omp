@@ -28,3 +28,4 @@
 	{/fbvFormArea}
 	{fbvFormButtons}
 </form>
+<p><span class="formRequired">{translate key="common.requiredField"}</span></p>

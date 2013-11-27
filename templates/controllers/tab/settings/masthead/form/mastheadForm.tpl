@@ -52,3 +52,4 @@
 		{fbvFormButtons id="mastheadFormSubmit" submitText="common.save" hideCancel=true}
 	{/if}
 </form>
+<p><span class="formRequired">{translate key="common.requiredField"}</span></p>

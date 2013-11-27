@@ -41,7 +41,7 @@
 			{fbvElement type="checkbox" id="enabled" checked=$enabled value="1" label="admin.presses.enablePressInstructions"}
 		{/fbvFormSection}
 
-		<p><span class="formRequired">{translate key="common.requiredField"}</span></p>
 		{fbvFormButtons id="pressSettingsFormSubmit" submitText="common.save"}
 	{/fbvFormArea}
 </form>
+<p><span class="formRequired">{translate key="common.requiredField"}</span></p>
