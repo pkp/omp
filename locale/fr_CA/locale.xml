@@ -653,4 +653,6 @@ Votre serveur supporte actuellement mbstring: <strong>{$supportsMBString}</stron
 
 	<!-- RT Entities -->
 	<message key="rt.metadata.pkp.peerReviewed">Article revu par les pairs</message>
+
+	<message key="manager.series.restricted">Limité</message>
 </locale>

@@ -649,4 +649,5 @@ Suporte à biblioteca mbstring: <strong>{$supportsMBString}</strong>]]></message
 
 	<!-- RT Entities -->
 	<message key="rt.metadata.pkp.peerReviewed">Artigo avaliado pelos pares</message>
+	<message key="manager.series.restricted">Restringida</message>
 </locale>

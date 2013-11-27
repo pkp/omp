@@ -62,6 +62,10 @@
 		 	{fbvElement type="textarea" multilingual=true id="description" value=$description rich=true}
 		{/fbvFormSection}
 
+		{fbvFormSection list="true"}
+			{fbvElement type="checkbox" id="restricted" value=1 label="manager.series.restricted" checked=$restricted}
+		{/fbvFormSection}
+
 		<input type="hidden" name="seriesId" value="{$seriesId|escape}"/>
 		{fbvFormSection for="context" inline=true size=$fbvStyles.size.MEDIUM}
 			{if $categoryCount > 0}

@@ -72,6 +72,7 @@ class SeriesForm extends Form {
 				'prefix' => $series->getPrefix(null),
 				'subtitle' => $series->getSubtitle(null),
 				'image' => $series->getImage(),
+				'restricted' => $series->getEditorRestricted(),
 			);
 		}
 	}
@@ -122,7 +123,7 @@ class SeriesForm extends Form {
 	 * @see Form::readInputData()
 	 */
 	function readInputData() {
-		$this->readUserVars(array('seriesId', 'path', 'featured', 'title', 'description', 'seriesEditors', 'categories', 'prefix', 'subtitle', 'temporaryFileId'));
+		$this->readUserVars(array('seriesId', 'path', 'featured', 'restricted', 'title', 'description', 'seriesEditors', 'categories', 'prefix', 'subtitle', 'temporaryFileId'));
 	}
 
 	/**
@@ -150,6 +151,7 @@ class SeriesForm extends Form {
 		$series->setDescription($this->getData('description'), null); // Localized
 		$series->setPrefix($this->getData('prefix'), null); // Localized
 		$series->setSubtitle($this->getData('subtitle'), null); // Localized
+		$series->setEditorRestricted($this->getData('restricted'));
 
 		// Handle the image upload if there was one.
 		if ($temporaryFileId = $this->getData('temporaryFileId')) {

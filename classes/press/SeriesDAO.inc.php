@@ -92,6 +92,7 @@ class SeriesDAO extends DAO {
 		$series->setFeatured($row['featured']);
 		$series->setPath($row['path']);
 		$series->setImage(unserialize($row['image']));
+		$series->setEditorRestricted($row['editor_restricted']);
 
 		$this->getDataObjectSettings('series_settings', 'series_id', $row['series_id'], $series);
 
@@ -127,14 +128,15 @@ class SeriesDAO extends DAO {
 	function insertObject($series) {
 		$this->update(
 			'INSERT INTO series
-				(press_id, featured, path, image)
+				(press_id, featured, path, image, editor_restricted)
 			VALUES
-				(?, ?, ?, ?)',
+				(?, ?, ?, ?, ?)',
 			array(
 				(int) $series->getPressId(),
 				(int) $series->getFeatured(),
 				(string) $series->getPath(),
 				serialize($series->getImage() ? $series->getImage() : array()),
+				(int) $series->getEditorRestricted(),
 			)
 		);
 
@@ -153,13 +155,15 @@ class SeriesDAO extends DAO {
 			SET	press_id = ?,
 				featured = ?,
 				path = ?,
-				image = ?
+				image = ?,
+				editor_restricted = ?
 			WHERE	series_id = ?',
 			array(
 				(int) $series->getPressId(),
 				(int) $series->getFeatured(),
 				(string) $series->getPath(),
 				serialize($series->getImage() ? $series->getImage() : array()),
+				(int) $series->getEditorRestricted(),
 				(int) $series->getId(),
 			)
 		);

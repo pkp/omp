@@ -299,6 +299,10 @@
 			<NOTNULL/>
 			<DEFAULT VALUE="0"/>
 		</field>
+		<field name="editor_restricted" type="I1">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
 		<field name="path" type="C2" size="255">
 			<NOTNULL />
 		</field>

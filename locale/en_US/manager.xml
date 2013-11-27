@@ -85,6 +85,7 @@
 	<message key="manager.series.seriesTitle">Series Title</message>
 	<message key="manager.series.noSeriesEditors"><![CDATA[There are no series editors yet.  Add this role to at least one user via Management > Settings > Users &amp; Roles first.]]></message>
 	<message key="manager.series.noCategories"><![CDATA[There are no categories yet.  If you wish to assign categories to this series, close this modal and click on the 'Categories' tab and create one first.]]></message>
+	<message key="manager.series.restricted">Restricted</message>
 
 	<!-- Settings management -->
 	<message key="manager.settings">Settings</message>

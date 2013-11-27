@@ -304,4 +304,5 @@
 	<message key="payment.directSales.purchase">Comprar ({$amount} {$currency})</message>
 	<message key="payment.directSales.download">Descargar</message>
 	<message key="payment.directSales.monograph.name">Comprar libro o descargar capítulo</message>
+	<message key="manager.series.restricted">Restringida</message>
 </locale>
