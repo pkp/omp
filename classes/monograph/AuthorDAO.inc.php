@@ -84,7 +84,7 @@ class AuthorDAO extends PKPAuthorDAO {
 			$rangeInfo
 		);
 
-		return new DAOResultFactory($result, $this, '_returnAuthorFromRow');
+		return new DAOResultFactory($result, $this, '_fromRow');
 	}
 
 	/**

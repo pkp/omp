@@ -157,7 +157,7 @@ class ChapterAuthorDAO extends DAO {
 	function _returnFromRow($row) {
 		// Start with an Author object and copy the common elements
 		$authorDao = DAORegistry::getDAO('AuthorDAO');
-		$author = $authorDao->_returnAuthorFromRow($row);
+		$author = $authorDao->_fromRow($row);
 
 		$chapterAuthor = $this->newDataObject();
 		$chapterAuthor->setId($author->getId());
