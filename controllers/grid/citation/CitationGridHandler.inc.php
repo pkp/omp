@@ -50,10 +50,10 @@ class CitationGridHandler extends PKPCitationGridHandler {
 	 */
 	function initialize($request, $args) {
 		// Associate the citation editor with the authorized article.
-		$this->setAssocType(ASSOC_TYPE_ARTICLE);
-		$article =& $this->getAuthorizedContextObject(ASSOC_TYPE_ARTICLE);
-		assert(is_a($article, 'Article'));
-		$this->setAssocObject($article);
+		$this->setAssocType(ASSOC_TYPE_SUBMISSION);
+		$article = $this->getAuthorizedContextObject(ASSOC_TYPE_SUBMISSION);
+		assert(is_a($article, 'Submission'));
+		$this->setAssocObject($submission);
 
 		parent::initialize($request, $args);
 	}
