@@ -1,4 +1,14 @@
 <?xml version="1.0"?>
+
+<!--
+  * plugins/importexport/native/native.xsd
+  *
+  * Copyright (c) 2003-2013 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Schema describing native XML import/export elements specific to OMP
+  -->
+
 <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://pkp.sfu.ca" xmlns:pkp="http://pkp.sfu.ca" xmlns:onix="http://ns.editeur.org/onix/3.0/reference" elementFormDefault="qualified">
 
 	<!--
