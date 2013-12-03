@@ -46,6 +46,13 @@
 			description="plugins.importexport.native.description"
 			inputType="class::classes.publicationFormat.PublicationFormat"
 			outputType="xml::schema(plugins/importexport/native/native.xsd)" />
+		<!-- Publication Format native XML input -->
+		<filterGroup
+			symbolic="native-xml=>publication-format"
+			displayName="plugins.importexport.native.displayName"
+			description="plugins.importexport.native.description"
+			inputType="xml::schema(plugins/importexport/native/native.xsd)"
+			outputType="class::classes.publicationFormat.PublicationFormat[]" />
 		<!-- Submission file native XML output -->
 		<filterGroup
 			symbolic="ArtworkFile=>native-xml"
@@ -106,6 +113,11 @@
 		<filter
 			inGroup="publication-format=>native-xml"
 			class="plugins.importexport.native.filter.PublicationFormatNativeXmlFilter"
+			isTemplate="0" />
+		<!-- Native XML publication format input -->
+		<filter
+			inGroup="native-xml=>publication-format"
+			class="plugins.importexport.native.filter.NativeXmlPublicationFormatFilter"
 			isTemplate="0" />
 		<!-- Native XML monograph file input -->
 		<filter

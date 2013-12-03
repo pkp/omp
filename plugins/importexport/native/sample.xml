@@ -1,7 +1,154 @@
-<?xml version="1.0"?>
-
-<monograph xmlns="http://pkp.sfu.ca" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pkp.sfu.ca submission.xsd">
-	<id>123</id>
-	<title locale="en_US">My Test Title</title>
-	<abstract locale="en_US">My Test Abstract</abstract>
+<?xml version="1.0" encoding="UTF-8"?>
+<monograph xmlns="http://pkp.sfu.ca" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:onix="http://ns.editeur.org/onix/3.0/reference" locale="en_US"
+	date_published="2013-11-18" xsi:schemaLocation="http://pkp.sfu.ca native.xsd">
+	<id type="internal">1</id>
+	<title locale="en_US">Submission Title</title>
+	<prefix locale="en_US">Prefix</prefix>
+	<subtitle locale="en_US">the subtitle</subtitle>
+	<abstract locale="en_US">the abstract</abstract>
+	<authors xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://pkp.sfu.ca native.xsd">
+		<author primary_contact="true" user_group="Author">
+			<firstname>John</firstname>
+			<lastname>Public</lastname>
+			<email>john_q_public@email.com</email>
+		</author>
+	</authors>
+	<submission_file xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		stage="submission" id="1" xsi:schemaLocation="http://pkp.sfu.ca native.xsd">
+		<revision number="1" genre="Book Manuscript" filename="Submission.pdf"
+			viewable="true" date_uploaded="2013-11-05" date_modified="2013-11-05"
+			user_group="Author" uploader="author_username">
+			<name locale="en_US">Submission Title</name>
+			<embed encoding="base64">base64 encoded file contents go here</embed>
+		</revision>
+	</submission_file>
+	<submission_file xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		stage="proof" id="2" xsi:schemaLocation="http://pkp.sfu.ca native.xsd">
+		<revision number="1" genre="Book Manuscript" filename="Submission.pdf"
+			viewable="true" date_uploaded="2013-11-05" date_modified="2013-11-05"
+			direct_sales_price="10" user_group="Author" uploader="author_username">
+			<name locale="en_US">Submission Title</name>
+			<embed encoding="base64">base64 encoded file contents go here</embed>
+		</revision>
+	</submission_file>
+	<publication_format xmlns:onix="http://ns.editeur.org/onix/3.0/reference"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" approved="true"
+		physical_format="false" xsi:schemaLocation="http://pkp.sfu.ca native.xsd">
+		<name locale="en_US">PDF</name>
+		<seq>1000</seq>
+		<submission_file_ref id="2" revision="1" />
+		<Product xmlns:xs="http://www.w3.org/2001/XMLSchema"
+			xmlns:onix="http://ns.editeur.org/onix/3.0/reference">
+			<onix:ProductIdentifier xmlns="http://ns.editeur.org/onix/3.0/reference">
+				<onix:ProductIDType>24</onix:ProductIDType>
+				<onix:IDValue>1234567891012</onix:IDValue>
+			</onix:ProductIdentifier>
+			<onix:DescriptiveDetail xmlns="http://ns.editeur.org/onix/3.0/reference">
+				<onix:ProductComposition>00</onix:ProductComposition>
+				<onix:ProductForm>DA</onix:ProductForm>
+				<onix:ProductFormDetail>B121</onix:ProductFormDetail>
+				<onix:EpubTechnicalProtection>00</onix:EpubTechnicalProtection>
+				<onix:TitleDetail>
+					<onix:TitleType>01</onix:TitleType>
+					<onix:TitleElement>
+						<onix:TitleElementLevel>01</onix:TitleElementLevel>
+						<onix:TitlePrefix>Prefi</onix:TitlePrefix>
+						<onix:TitleWithoutPrefix>Submission Title</onix:TitleWithoutPrefix>
+						<onix:Subtitle>submission prefix</onix:Subtitle>
+					</onix:TitleElement>
+				</onix:TitleDetail>
+				<onix:Extent>
+					<onix:ExtentType>08</onix:ExtentType>
+					<onix:ExtentValue>0.3</onix:ExtentValue>
+					<onix:ExtentUnit>05</onix:ExtentUnit>
+				</onix:Extent>
+				<onix:Audience>
+					<onix:AudienceCodeType>02</onix:AudienceCodeType>
+					<onix:AudienceCodeValue>01</onix:AudienceCodeValue>
+				</onix:Audience>
+				<onix:AudienceRange>
+					<onix:AudienceRangeQualifier>26</onix:AudienceRangeQualifier>
+					<onix:AudienceRangePrecision>03</onix:AudienceRangePrecision>
+					<onix:AudienceRangeValue>K</onix:AudienceRangeValue>
+					<onix:AudienceRangePrecision>04</onix:AudienceRangePrecision>
+					<onix:AudienceRangeValue>2</onix:AudienceRangeValue>
+				</onix:AudienceRange>
+			</onix:DescriptiveDetail>
+			<onix:PublishingDetail xmlns="http://ns.editeur.org/onix/3.0/reference">
+				<onix:Publisher>
+					<onix:PublishingRole>01</onix:PublishingRole>
+					<onix:PublisherName>My Press</onix:PublisherName>
+					<onix:Website>
+						<onix:WebsiteRole>18</onix:WebsiteRole>
+						<onix:WebsiteLink>http://your-website.com/mypress/index.php/MYPRESS
+						</onix:WebsiteLink>
+					</onix:Website>
+				</onix:Publisher>
+				<onix:CityOfPublication>My City, My Province
+				</onix:CityOfPublication>
+				<onix:PublishingDate>
+					<onix:PublishingDateRole>11</onix:PublishingDateRole>
+					<onix:Date dateformat="20">20130101</onix:Date>
+				</onix:PublishingDate>
+				<onix:SalesRights>
+					<onix:SalesRightsType>07</onix:SalesRightsType>
+					<onix:Territory>
+						<onix:CountriesIncluded>CA</onix:CountriesIncluded>
+					</onix:Territory>
+				</onix:SalesRights>
+				<onix:ROWSalesRightsType>03</onix:ROWSalesRightsType>
+			</onix:PublishingDetail>
+			<onix:ProductSupply xmlns="http://ns.editeur.org/onix/3.0/reference">
+				<onix:Market>
+					<onix:Territory>
+						<onix:RegionsIncluded>ROW</onix:RegionsIncluded>
+					</onix:Territory>
+				</onix:Market>
+				<onix:MarketPublishingDetail>
+					<onix:PublisherRepresentative>
+						<onix:AgentRole>05</onix:AgentRole>
+						<onix:AgentName>Agent Name</onix:AgentName>
+						<onix:Website>
+							<onix:WebsiteRole>18</onix:WebsiteRole>
+							<onix:WebsiteLink>http://agent-website.com</onix:WebsiteLink>
+						</onix:Website>
+					</onix:PublisherRepresentative>
+					<onix:MarketPublishingStatus>04</onix:MarketPublishingStatus>
+					<onix:MarketDate>
+						<onix:MarketDateRole>01</onix:MarketDateRole>
+						<onix:DateFormat>20</onix:DateFormat>
+						<onix:Date>20130101</onix:Date>
+					</onix:MarketDate>
+				</onix:MarketPublishingDetail>
+				<onix:SupplyDetail>
+					<onix:Supplier>
+						<onix:SupplierRole>12</onix:SupplierRole>
+						<onix:SupplierName>Supplier Name</onix:SupplierName>
+						<onix:TelephoneNumber>5551234567</onix:TelephoneNumber>
+						<onix:FaxNumber>5551235678</onix:FaxNumber>
+						<onix:EmailAddress>supplier-email</onix:EmailAddress>
+						<onix:Website>
+							<onix:WebsiteRole>18</onix:WebsiteRole>
+							<onix:WebsiteLink>http://supplier-website.com</onix:WebsiteLink>
+						</onix:Website>
+					</onix:Supplier>
+					<onix:ProductAvailability>20</onix:ProductAvailability>
+					<onix:Price>
+						<onix:PriceType>03</onix:PriceType>
+						<onix:Discount>
+							<onix:DiscountPercent>5</onix:DiscountPercent>
+						</onix:Discount>
+						<onix:PriceAmount>10</onix:PriceAmount>
+						<onix:Tax>
+							<onix:TaxType>02</onix:TaxType>
+							<onix:TaxRateCode>S</onix:TaxRateCode>
+						</onix:Tax>
+						<onix:CurrencyCode>CAD</onix:CurrencyCode>
+					</onix:Price>
+				</onix:SupplyDetail>
+			</onix:ProductSupply>
+		</Product>
+	</publication_format>
 </monograph>

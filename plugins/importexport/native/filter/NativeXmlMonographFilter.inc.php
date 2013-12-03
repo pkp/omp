@@ -52,6 +52,9 @@ class NativeXmlMonographFilter extends NativeXmlSubmissionFilter {
 			case 'artwork_file':
 				$this->parseSubmissionFile($n, $submission);
 				break;
+			case 'publication_format':
+				$this->parsePublicationFormat($n, $submission);
+				break;
 			default:
 				parent::handleChildElement($n, $submission);
 		}
@@ -70,6 +73,9 @@ class NativeXmlMonographFilter extends NativeXmlSubmissionFilter {
 			case 'artwork_file':
 				$importClass='ArtworkFile';
 				break;
+			case 'publication_format':
+				$importClass='PublicationFormat';
+				break;
 			default:
 				fatalError('Unknown submission file node ' . $elementName);
 		}
@@ -79,6 +85,25 @@ class NativeXmlMonographFilter extends NativeXmlSubmissionFilter {
 		$importFilters = $filterDao->getObjectsByGroup('native-xml=>' . $importClass);
 		$importFilter = array_shift($importFilters);
 		return $importFilter;
+	}
+
+	/**
+	 * Parse a publication format and add it to the submission.
+	 * @param $n DOMElement
+	 * @param $submission Submission
+	 */
+	function parsePublicationFormat($n, $submission) {
+		$importFilter = $this->getImportFilter($n->tagName);
+		assert($importFilter); // There should be a filter
+
+		import('plugins.importexport.native.Onix30ExportDeployment');
+		$existingDeployment = $this->getDeployment();
+		$onixDeployment = new Onix30ExportDeployment(Request::getContext(), Request::getUser());
+		$onixDeployment->setSubmission($existingDeployment->getSubmission());
+		$importFilter->setDeployment($onixDeployment);
+		$formatDoc = new DOMDocument();
+		$formatDoc->appendChild($formatDoc->importNode($n, true));
+		return $importFilter->execute($formatDoc);
 	}
 }
 
