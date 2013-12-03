@@ -540,9 +540,7 @@
 		<field name="physical_format" type="I1">
 			<DEFAULT VALUE="1"/>
 		</field>
-		<field name="entry_key" type="C2" size="64">
-			<NOTNULL/>
-		</field>
+		<field name="entry_key" type="C2" size="64"/>
 		<field name="seq" type="F">
 			<NOTNULL/>
 			<DEFAULT VALUE="0"/>
