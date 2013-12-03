@@ -18,7 +18,15 @@
 	<import namespace="http://ns.editeur.org/onix/3.0/reference" schemaLocation="../onix30/ONIX_BookProduct_3.0_reference.xsd" />
 
 	<!-- Allow the use of "monograph" in place of "submission" -->
-	<element name="monograph" substitutionGroup="pkp:submission" />
+	<element name="monograph" substitutionGroup="pkp:submission">
+		<complexType>
+			<complexContent>
+				<extension base="pkp:submission">
+					<attribute name="series" type="normalizedString" />
+				</extension>
+			</complexContent>
+		</complexType>
+	</element>
 	<element name="monographs" substitutionGroup="pkp:submissions" />
 	<element name="Product" substitutionGroup="onix:Product" />
 

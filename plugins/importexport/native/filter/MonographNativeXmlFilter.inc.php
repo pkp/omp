@@ -45,6 +45,29 @@ class MonographNativeXmlFilter extends SubmissionNativeXmlFilter {
 	function getRepresentationExportFilterGroupName() {
 		return 'publication-format=>native-xml';
 	}
+
+	//
+	// Submission conversion functions
+	//
+	/**
+	 * Create and return a submission node.
+	 * @param $doc DOMDocument
+	 * @param $submission Submission
+	 * @return DOMElement
+	 */
+	function createSubmissionNode($doc, $submission) {
+		$submissionNode = parent::createSubmissionNode($doc, $submission);
+
+		// Add the series, if one is designated.
+		if ($seriesId = $submission->getSeriesId()) {
+			$seriesDao = DAORegistry::getDAO('SeriesDAO');
+			$series = $seriesDao->getById($seriesId, $submission->getContextId());
+			assert($series);
+			$submissionNode->setAttribute('series', $series->getPath());
+		}
+
+		return $submissionNode;
+	}
 }
 
 ?>

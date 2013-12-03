@@ -43,6 +43,25 @@ class NativeXmlMonographFilter extends NativeXmlSubmissionFilter {
 	}
 
 	/**
+	 * Populate the submission object from the node
+	 * @param $submission Submission
+	 * @param $node DOMElement
+	 * @return Submission
+	 */
+	function populateObject($submission, $node) {
+		$seriesPath = $node->getAttribute('series');
+		if ($seriesPath !== '') {
+			$seriesDao = DAORegistry::getDAO('SeriesDAO');
+			$series = $seriesDao->getByPath($seriesPath, $submission->getContextId());
+			if (!$series) {
+				fatalError('Could not find a series with the path "' . $seriesPath . '"!');
+			}
+			$submission->setSeriesId($series->getId());
+		}
+		return parent::populateObject($submission, $node);
+	}
+
+	/**
 	 * Handle an element whose parent is the submission element.
 	 * @param $n DOMElement
 	 * @param $submission Submission
