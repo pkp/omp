@@ -182,10 +182,10 @@ class NativeXmlPublicationFormatFilter extends NativeXmlRepresentationFilter {
 					assert($territoryNodeList->length == 1);
 					$territoryNode = $territoryNodeList->item(0);
 					for ($o = $territoryNode->firstChild; $o !== null; $o=$o->nextSibling) if (is_a($o, 'DOMElement')) switch($o->tagName) {
-						case 'onix:RegionsIncluded': $salesRights->setRegionsIncluded(split('/\s+/', $o->textContent)); break;
-						case 'onix:CountriesIncluded': $salesRights->setCountriesIncluded(split('/\s+/', $o->textContent)); break;
-						case 'onix:RegionsExcluded': $salesRights->setRegionsExcluded(split('/\s+/', $o->textContent)); break;
-						case 'onix:CountriesExcluded': $salesRights->setCountriesExcluded(split('/\s+/', $o->textContent)); break;
+						case 'onix:RegionsIncluded': $salesRights->setRegionsIncluded(preg_split('/\s+/', $o->textContent)); break;
+						case 'onix:CountriesIncluded': $salesRights->setCountriesIncluded(preg_split('/\s+/', $o->textContent)); break;
+						case 'onix:RegionsExcluded': $salesRights->setRegionsExcluded(preg_split('/\s+/', $o->textContent)); break;
+						case 'onix:CountriesExcluded': $salesRights->setCountriesExcluded(preg_split('/\s+/', $o->textContent)); break;
 					}
 				}
 			}
@@ -209,10 +209,10 @@ class NativeXmlPublicationFormatFilter extends NativeXmlRepresentationFilter {
 				assert($territoryNodeList->length == 1);
 				$territoryNode = $territoryNodeList->item(0);
 				for ($o = $territoryNode->firstChild; $o !== null; $o=$o->nextSibling) if (is_a($o, 'DOMElement')) switch($o->tagName) {
-					case 'onix:RegionsIncluded': $market->setRegionsIncluded(split('/\s+/', $o->textContent)); break;
-					case 'onix:CountriesIncluded': $market->setCountriesIncluded(split('/\s+/', $o->textContent)); break;
-					case 'onix:RegionsExcluded': $market->setRegionsExcluded(split('/\s+/', $o->textContent)); break;
-					case 'onix:CountriesExcluded': $market->setCountriesExcluded(split('/\s+/', $o->textContent)); break;
+					case 'onix:RegionsIncluded': $market->setRegionsIncluded(preg_split('/\s+/', $o->textContent)); break;
+					case 'onix:CountriesIncluded': $market->setCountriesIncluded(preg_split('/\s+/', $o->textContent)); break;
+					case 'onix:RegionsExcluded': $market->setRegionsExcluded(preg_split('/\s+/', $o->textContent)); break;
+					case 'onix:CountriesExcluded': $market->setCountriesExcluded(preg_split('/\s+/', $o->textContent)); break;
 				}
 
 				// Market date information.
