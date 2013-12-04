@@ -146,7 +146,7 @@ class CatalogBookHandler extends Handler {
 		if (!$publicationFormat || !$publicationFormat->getIsApproved() || !$publicationFormat->getIsAvailable()) fatalError('Invalid publication format specified.');
 
 		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
-		list($fileId, $revision) = array_map(create_function('$a', 'return (int) $a;'), split('-', $fileIdAndRevision));
+		list($fileId, $revision) = array_map(create_function('$a', 'return (int) $a;'), preg_split('/-/', $fileIdAndRevision));
 		import('classes.monograph.MonographFile'); // File constants
 		$submissionFile =& $submissionFileDao->getRevision($fileId, $revision, SUBMISSION_FILE_PROOF, $monographId);
 		if (!$submissionFile || $submissionFile->getAssocType() != ASSOC_TYPE_PUBLICATION_FORMAT || $submissionFile->getAssocId() != $publicationFormatId || $submissionFile->getDirectSalesPrice() === null) {

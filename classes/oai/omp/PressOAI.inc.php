@@ -91,7 +91,7 @@ class PressOAI extends OAI {
 	 * @return int
 	 */
 	function setSpecToSeriesId($setSpec, $pressId = null) {
-		$tmpArray = split(':', $setSpec);
+		$tmpArray = preg_split('/:/', $setSpec);
 		if (count($tmpArray) == 1) {
 			list($pressSpec) = $tmpArray;
 			$pressSpec = urldecode($pressSpec);
