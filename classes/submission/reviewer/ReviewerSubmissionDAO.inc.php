@@ -195,7 +195,7 @@ class ReviewerSubmissionDAO extends MonographDAO {
 				COALESCE(stl.setting_value, stpl.setting_value) AS series_title,
 				COALESCE(sal.setting_value, sapl.setting_value) AS series_abbrev
 			FROM	submissions m
-				LEFT JOIN published_submissions ON (pm.submission_id = m.submission_id)
+				LEFT JOIN published_submissions pm ON (pm.submission_id = m.submission_id)
 				LEFT JOIN review_assignments r ON (m.submission_id = r.submission_id)
 				LEFT JOIN submission_settings atl ON (atl.submission_id = m.submission_id AND atl.setting_name = ? AND atl.locale = ?)
 				LEFT JOIN series s ON (s.series_id = m.series_id)
