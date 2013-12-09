@@ -23,7 +23,7 @@ class SeriesGridHandler extends SetupGridHandler {
 		parent::SetupGridHandler();
 		$this->addRoleAssignment(
 			array(ROLE_ID_MANAGER),
-			array('fetchGrid', 'fetchRow', 'addSeries', 'editSeries', 'updateSeries', 'deleteSeries')
+			array('fetchGrid', 'fetchRow', 'addSeries', 'editSeries', 'updateSeries', 'deleteSeries', 'saveSequence')
 		);
 	}
 
@@ -125,11 +125,37 @@ class SeriesGridHandler extends SetupGridHandler {
 	// Overridden methods from GridHandler
 	//
 	/**
+	 * @copydoc GridHandler::initFeatures()
+	 */
+	function initFeatures($request, $args) {
+		import('lib.pkp.classes.controllers.grid.feature.OrderGridItemsFeature');
+		return array(new OrderGridItemsFeature());
+	}
+
+	/**
 	 * Get the row handler - override the default row handler
 	 * @return SeriesGridRow
 	 */
 	function getRowInstance() {
 		return new SeriesGridRow();
+	}
+
+	/**
+	 * @copydoc GridHandler::getDataElementSequence()
+	 */
+	function getDataElementSequence($row) {
+		return $row['seq'];
+	}
+
+	/**
+	 * @copydoc GridHandler::setDataElementSequence()
+	 */
+	function setDataElementSequence($request, $rowId, $gridDataElement, $newSequence) {
+		$seriesDao = DAORegistry::getDAO('SeriesDAO');
+		$press = $request->getPress();
+		$series = $seriesDao->getById($rowId, $press->getId());
+		$series->setSequence($newSequence);
+		$seriesDao->updateObject($series);
 	}
 
 	//

@@ -167,6 +167,22 @@ class Series extends PKPSection {
 	}
 
 	/**
+	 * Get sequence of series.
+	 * @return float
+	 */
+	function getSequence() {
+		return $this->getData('sequence');
+	}
+
+	/**
+	 * Set sequence of series.
+	 * @param $sequence float
+	 */
+	function setSequence($sequence) {
+		return $this->setData('sequence', $sequence);
+	}
+
+	/**
 	 * Returns a string with the full name of all series
 	 * editors, separated by a comma.
 	 * @return string

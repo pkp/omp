@@ -295,6 +295,10 @@
 		<field name="press_id" type="I8">
 			<NOTNULL/>
 		</field>
+		<field name="seq" type="F">
+			<!-- NOTNULL not included for the sake of 1.1 upgrade, which didn't include this column -->
+			<DEFAULT VALUE="0"/>
+		</field>
 		<field name="featured" type="I1">
 			<NOTNULL/>
 			<DEFAULT VALUE="0"/>
