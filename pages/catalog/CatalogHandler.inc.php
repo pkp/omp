@@ -142,7 +142,7 @@ class CatalogHandler extends Handler {
 
 		// Fetch the monographs to display
 		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
-		$publishedMonographs =& $publishedMonographDao->getBySeriesId($series->getId(), $press->getId());
+		$publishedMonographs = $publishedMonographDao->getBySeriesId($series->getId(), $press->getId());
 		$templateMgr->assign('publishedMonographs', $publishedMonographs->toAssociativeArray());
 
 		// Expose the featured monograph IDs and associated params
