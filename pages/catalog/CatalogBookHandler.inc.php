@@ -58,14 +58,14 @@ class CatalogBookHandler extends Handler {
 		$this->setupTemplate($request);
 		AppLocale::requireComponents(LOCALE_COMPONENT_APP_SUBMISSION); // submission.synopsis
 
-		$publishedMonograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_PUBLISHED_MONOGRAPH);
+		$publishedMonograph = $this->getAuthorizedContextObject(ASSOC_TYPE_PUBLISHED_MONOGRAPH);
 		$templateMgr->assign('publishedMonograph', $publishedMonograph);
 
 		// Get Social media blocks enabled for the catalog
 		$socialMediaDao = DAORegistry::getDAO('SocialMediaDAO');
 		$socialMedia =& $socialMediaDao->getEnabledForContextByContextId($press->getId());
 		$blocks = array();
-		while ($media =& $socialMedia->next()) {
+		while ($media = $socialMedia->next()) {
 			$media->replaceCodeVars($publishedMonograph);
 			$blocks[] = $media->getCode();
 		}
@@ -75,17 +75,17 @@ class CatalogBookHandler extends Handler {
 		// add Chapters, if they exist.
 		if ($publishedMonograph->getWorkType() == WORK_TYPE_EDITED_VOLUME) {
 			$chapterDao = DAORegistry::getDAO('ChapterDAO');
-			$chapters =& $chapterDao->getChapters($publishedMonograph->getId());
+			$chapters = $chapterDao->getChapters($publishedMonograph->getId());
 			$templateMgr->assign_by_ref('chapters', $chapters->toAssociativeArray());
 		}
 		// determine which pubId plugins are enabled.
-		$pubIdPlugins =& PluginRegistry::loadCategory('pubIds', true);
+		$pubIdPlugins = PluginRegistry::loadCategory('pubIds', true);
 		$enabledPubIdTypes = array();
 		foreach ((array) $pubIdPlugins as $plugin) {
 			if ($plugin->getEnabled()) {
 				$enabledPubIdTypes[] = $plugin->getPubIdType();
 				// check to see if the format has a pubId set.  If not, generate one.
-				$publicationFormats =& $publishedMonograph->getPublicationFormats(true);
+				$publicationFormats = $publishedMonograph->getPublicationFormats(true);
 				foreach ($publicationFormats as $publicationFormat) {
 					if ($publicationFormat->getStoredPubId($plugin->getPubIdType()) == '') {
 						$plugin->getPubId($publicationFormat);
@@ -121,6 +121,12 @@ class CatalogBookHandler extends Handler {
 			// Expose variables to template
 			$templateMgr->assign('availableFiles', $availableFilesByPublicationFormat);
 			$templateMgr->assign('useCollapsedView', $useCollapsedView);
+		}
+
+		if ($seriesId = $publishedMonograph->getSeriesId()) {
+			$seriesDao = DAORegistry::getDAO('SeriesDAO');
+			$series = $seriesDao->getById($seriesId, $publishedMonograph->getContextId());
+			$templateMgr->assign('series', $series);
 		}
 
 		// Display

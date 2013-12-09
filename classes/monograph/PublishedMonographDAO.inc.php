@@ -123,7 +123,7 @@ class PublishedMonographDAO extends MonographDAO {
 			FROM	published_submissions ps
 				JOIN submissions s ON ps.submission_id = s.submission_id
 				' . $this->_getFetchJoins() . '
-				JOIN features f ON (f.submission_id = s.submission_id AND f.assoc_type = ? AND f.assoc_id = se.series_id)
+				LEFT JOIN features f ON (f.submission_id = s.submission_id AND f.assoc_type = ? AND f.assoc_id = se.series_id)
 			WHERE	ps.date_published IS NOT NULL AND se.series_id = ?
 				' . ($pressId?' AND s.context_id = ?':'' ) . '
 			ORDER BY COALESCE(f.seq, ?) ASC, ps.date_published',

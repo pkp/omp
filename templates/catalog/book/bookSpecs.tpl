@@ -27,6 +27,10 @@
 					{include file="catalog/book/bookPublicationFormatInfo.tpl" publicationFormat=$publicationFormat availableFiles=$availableFiles}
 				{/foreach}
 			{/if}
+			{if $series}
+				<div class="seriesLink">{translate key="series.series"}: <a href="{url page="catalog" op="series" path=$series->getPath()}">{$series->getLocalizedFullTitle()}</a></div>
+			{/if}
+
 		</div>
 
 		{if count($publicationFormats) > 1}
