@@ -14,8 +14,8 @@
 {url|assign:editUrl page="management" op="settings" path="press" anchor="masthead"}
 {include file="common/linkToEditPage.tpl" editUrl=$editUrl}
 
-{if $currentPress->getLocalizedSetting('masthead') != ''}
-	{$currentPress->getLocalizedSetting('masthead')}
+{if not empty($editorialTeamInfo.masthead)}
+	{$editorialTeamInfo.masthead}
 {/if}
 
 {include file="common/footer.tpl"}

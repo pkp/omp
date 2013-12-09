@@ -13,8 +13,9 @@
  */
 
 import('classes.handler.Handler');
+import('lib.pkp.classes.pages.about.IAboutContextInfoProvider');
 
-class AboutContextHandler extends Handler {
+class AboutContextHandler extends Handler implements IAboutContextInfoProvider {
 	/**
 	 * Constructor
 	 */
@@ -47,8 +48,7 @@ class AboutContextHandler extends Handler {
 		$settingsDao = DAORegistry::getDAO('PressSettingsDAO');
 		$context = $request->getContext();
 		$templateMgr = TemplateManager::getManager($request);
-		$templateMgr->assign('pressSettings', $settingsDao->getSettings($context->getId()));
-		$contextSettings = $settingsDao->getSettings($context->getId());
+		$templateMgr->assign('contactInfo', AboutContextHandler::getContactInfo($context));
 		$templateMgr->display('about/contact.tpl');
 	}
 
@@ -58,7 +58,10 @@ class AboutContextHandler extends Handler {
 	 * @param $request PKPRequest
 	 */
 	function description($args, $request) {
+		$context = $request->getContext();
+
 		$templateMgr = TemplateManager::getManager($request);
+		$templateMgr->assign('descriptionInfo', AboutContextHandler::getDescriptionInfo($context));
 		$templateMgr->display('about/description.tpl');
 	}
 
@@ -70,10 +73,7 @@ class AboutContextHandler extends Handler {
 	function sponsorship($args, $request) {
 		$context = $request->getContext();
 		$templateMgr = TemplateManager::getManager($request);
-		$templateMgr->assign('contributorNote', $context->getLocalizedSetting('contributorNote'));
-		$templateMgr->assign('contributors', $context->getSetting('contributors'));
-		$templateMgr->assign('sponsorNote', $context->getLocalizedSetting('sponsorNote'));
-		$templateMgr->assign('sponsors', $context->getSetting('sponsors'));
+		$templateMgr->assign('sponsorshipInfo', AboutContextHandler::getSponsorshipInfo($context));
 		$templateMgr->display('about/sponsorship.tpl');
 	}
 
@@ -83,7 +83,9 @@ class AboutContextHandler extends Handler {
 	 * @param $request PKPRequest
 	 */
 	function editorialTeam($args, $request) {
+		$context = $request->getContext();
 		$templateMgr = TemplateManager::getManager($request);
+		$templateMgr->assign('editorialTeamInfo', AboutContextHandler::getEditorialTeamInfo($context));
 		$templateMgr->display('about/editorialTeam.tpl');
 	}
 
@@ -93,7 +95,9 @@ class AboutContextHandler extends Handler {
 	 * @param $request PKPRequest
 	 */
 	function editorialPolicies($args, $request) {
+		$context = $request->getContext();
 		$templateMgr = TemplateManager::getManager($request);
+		$templateMgr->assign('editorialPoliciesInfo', AboutContextHandler::getEditorialPoliciesInfo($context));
 		$templateMgr->display('about/editorialPolicies.tpl');
 	}
 
@@ -106,13 +110,154 @@ class AboutContextHandler extends Handler {
 		$settingsDao = DAORegistry::getDAO('PressSettingsDAO');
 		$context = $request->getContext();
 		$templateMgr = TemplateManager::getManager($request);
+		$templateMgr->assign('submissionInfo', AboutContextHandler::getSubmissionsInfo($context));
+		$templateMgr->display('about/submissions.tpl');
+	}
+
+
+	//
+	// Static protected methods.
+	//
+	/**
+	* Get contact information used by contact operation.
+	* @param $context Press
+	* @return Array
+	*/
+	static protected function getContactInfo($context) {
+		$pressSettings = $context->getSettings();
+		$contactSettingNames = array('mailingAddress', 'contactPhone',
+				'contactFax', 'contactEmail', 'contactName', 'supportName',
+				'supportPhone', 'supportEmail');
+		$contactSettings = array_intersect_key($pressSettings, array_fill_keys($contactSettingNames, null));
+
+		// Remove empty elements.
+		$contactSettings = array_filter($contactSettings);
+
+		$contactLocalizedSettingNames = array('contactTitle', 'contactAffiliation', 'contactMailingAddress',
+				'contactTitle', 'contactAffiliation', 'contactMailingAddress');
+
+		foreach ($contactLocalizedSettingNames as $settingName) {
+			$settingValue = $context->getLocalizedSetting($settingName);
+			if ($settingValue) {
+				$contactSettings[$settingName] = $settingValue;
+			}
+		}
+
+		return $contactSettings;
+	}
+
+	/**
+	 * Get description information used by description operation.
+	 * @param $context Press
+	 * @return Array
+	 */
+	static protected function getDescriptionInfo($context) {
+		$descriptionSettings =  array(
+				'description' => $context->getLocalizedSetting('description')
+		);
+
+		// Remove empty elements.
+		$descriptionSettings = array_filter($descriptionSettings);
+		return $descriptionSettings;
+	}
+
+	/**
+	 * Get sponsorship information used by sponsorship operation.
+	 * @param $context Press
+	 * @return Array
+	 */
+	static protected function getSponsorshipInfo($context) {
+		$sponsorshipSettings = array(
+				'contributorNote' => $context->getLocalizedSetting('contributorNote'),
+				'contributors' => $context->getSetting('contributors'),
+				'sponsorNote' => $context->getLocalizedSetting('sponsorNote'),
+				'sponsors' => $context->getSetting('sponsors')
+		);
+
+		// Remove empty elements.
+		$sponsorshipSettings = array_filter($sponsorshipSettings);
+		return $sponsorshipSettings;
+	}
+
+	/**
+	 * Get editorial team information used by editorial team operation.
+	 * @param $context Press
+	 * @return Array
+	 */
+	static protected function getEditorialTeamInfo($context) {
+		$editorialTeamInfo = array(
+				'masthead' => $context->getLocalizedSetting('masthead')
+		);
+
+		// Remove empty elements.
+		$editorialTeamInfo = array_filter($editorialTeamInfo);
+		return $editorialTeamInfo;
+	}
+
+	/**
+	 * Get editorial policies information used by editorial
+	 * policies operation.
+	 * @param $context Press
+	 * @return Array
+	 */
+	static protected function getEditorialPoliciesInfo($context) {
+		$editorialPoliciesSettingNames = array('focusScopeDesc', 'reviewPolicy',
+				'openAccessPolicy', 'customAboutItems');
+
+		$editorialPoliciesInfo = array();
+
+		foreach ($editorialPoliciesSettingNames as $settingName) {
+			$settingValue = $context->getLocalizedSetting($settingName);
+			if ($settingValue) {
+				$editorialPoliciesInfo[$settingName] = $settingValue;
+			}
+		}
+
+		return $editorialPoliciesInfo;
+	}
+
+	/**
+	 * Get submissions information used by submissions operation.
+	 * @param $context Press
+	 */
+	static protected function getSubmissionsInfo($context) {
+		$submissionSettingNames = array('authorGuidelines', 'copyrightNotice', 'privacyStatement');
+
+		$submissionInfo = array();
+
+		foreach ($submissionSettingNames as $settingName) {
+			$settingValue = $context->getLocalizedSetting($settingName);
+			if ($settingValue) {
+				$editorialPoliciesInfo[$settingName] = $settingValue;
+			}
+		}
+
 		$submissionChecklist = $context->getLocalizedSetting('submissionChecklist');
 		if (!empty($submissionChecklist)) {
 			ksort($submissionChecklist);
 			reset($submissionChecklist);
+			$submissionInfo['checklist'] = $submissionChecklist;
 		}
-		$templateMgr->assign('submissionChecklist', $submissionChecklist);
-		$templateMgr->display('about/submissions.tpl');
+
+		return $submissionInfo;
+	}
+
+
+	//
+	// Static public methods.
+	//
+	/**
+	* @see IAboutContextInfoProvider::getAboutInfo()
+	*/
+	static function getAboutInfo($context) {
+		return array(
+			'contact' => AboutContextHandler::getContactInfo($context),
+			'description' => AboutContextHandler::getDescriptionInfo($context),
+			'sponsorship' => AboutContextHandler::getSponsorshipInfo($context),
+			'editorialTeam' => AboutContextHandler::getEditorialTeamInfo($context),
+			'editorialPolicies' => AboutContextHandler::getEditorialPoliciesInfo($context),
+			'submissions' => AboutContextHandler::getSubmissionsInfo($context)
+		);
 	}
 }
 

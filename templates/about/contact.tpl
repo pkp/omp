@@ -14,55 +14,55 @@
 {url|assign:editUrl page="management" op="settings" path="press" anchor="contact"}
 {include file="common/linkToEditPage.tpl" editUrl=$editUrl}
 
-{if !empty($pressSettings.mailingAddress)}
+{if !empty($contactInfo.mailingAddress)}
 <h3>{translate key="common.mailingAddress"}</h3>
 <p>
-	{$pressSettings.mailingAddress|nl2br}
+	{$contactInfo.mailingAddress|nl2br}
 </p>
 <div class="separator"></div>
 {/if}
 
-{if not ($currentPress->getLocalizedSetting('contactTitle') == '' && $currentPress->getLocalizedSetting('contactAffiliation') == '' && $currentPress->getLocalizedSetting('contactMailingAddress') == '' && empty($pressSettings.contactPhone) && empty($pressSettings.contactFax) && empty($pressSettings.contactEmail))}
+{if not ($contactInfo.contactTitle == '' && $contactInfo.contactAffiliation == '' && $contactInfo.contactMailingAddress == '' && empty($contactInfo.contactPhone) && empty($contactInfo.contactFax) && empty($contactInfo.contactEmail))}
 <h3>{translate key="about.contact.principalContact"}</h3>
 <p>
-	{if !empty($pressSettings.contactName)}
-		<strong>{$pressSettings.contactName|escape}</strong><br />
+	{if !empty($contactInfo.contactName)}
+		<strong>{$contactInfo.contactName|escape}</strong><br />
 	{/if}
 
-	{assign var=s value=$currentPress->getLocalizedSetting('contactTitle')}
+	{assign var=s value=$contactInfo.contactTitle}
 	{if $s}{$s|escape}<br />{/if}
 
-	{assign var=s value=$currentPress->getLocalizedSetting('contactAffiliation')}
+	{assign var=s value=$contactInfo.contactAffiliation}
 	{if $s}{$s|strip_unsafe_html}{/if}
 
-	{assign var=s value=$currentPress->getLocalizedSetting('contactMailingAddress')}
+	{assign var=s value=$contactInfo.contactMailingAddress}
 	{if $s}{$s|strip_unsafe_html}{/if}
 </p>
 <p>
-	{if !empty($pressSettings.contactPhone)}
-		{translate key="about.contact.phone"}: {$pressSettings.contactPhone|escape}<br />
+	{if !empty($contactInfo.contactPhone)}
+		{translate key="about.contact.phone"}: {$contactInfo.contactPhone|escape}<br />
 	{/if}
-	{if !empty($pressSettings.contactFax)}
-		{translate key="about.contact.fax"}: {$pressSettings.contactFax|escape}<br />
+	{if !empty($contactInfo.contactFax)}
+		{translate key="about.contact.fax"}: {$contactInfo.contactFax|escape}<br />
 	{/if}
-	{if !empty($pressSettings.contactEmail)}
-		{translate key="about.contact.email"}: {mailto address=$pressSettings.contactEmail|escape encode="hex"}
+	{if !empty($contactInfo.contactEmail)}
+		{translate key="about.contact.email"}: {mailto address=$contactInfo.contactEmail|escape encode="hex"}
 	{/if}
 </p>
 <div class="separator"></div>
 {/if}
 
-{if not (empty($pressSettings.supportName) && empty($pressSettings.supportPhone) && empty($pressSettings.supportEmail))}
+{if not (empty($contactInfo.supportName) && empty($contactInfo.supportPhone) && empty($contactInfo.supportEmail))}
 <h3>{translate key="about.contact.supportContact"}</h3>
 <p>
-	{if !empty($pressSettings.supportName)}
-		<strong>{$pressSettings.supportName|escape}</strong><br />
+	{if !empty($contactInfo.supportName)}
+		<strong>{$contactInfo.supportName|escape}</strong><br />
 	{/if}
-	{if !empty($pressSettings.supportPhone)}
-		{translate key="about.contact.phone"}: {$pressSettings.supportPhone|escape}<br />
+	{if !empty($contactInfo.supportPhone)}
+		{translate key="about.contact.phone"}: {$contactInfo.supportPhone|escape}<br />
 	{/if}
-	{if !empty($pressSettings.supportEmail)}
-		{translate key="about.contact.email"}: {mailto address=$pressSettings.supportEmail|escape encode="hex"}<br />
+	{if !empty($contactInfo.supportEmail)}
+		{translate key="about.contact.email"}: {mailto address=$contactInfo.supportEmail|escape encode="hex"}<br />
 	{/if}
 </p>
 {/if}

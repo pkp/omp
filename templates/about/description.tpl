@@ -15,7 +15,7 @@
 {include file="common/linkToEditPage.tpl" editUrl=$editUrl}
 
 <div id="description">
-	{$currentPress->getLocalizedSetting('description')|nl2br}
+	{$descriptionInfo.description|nl2br}
 </div>
 
 {include file="common/footer.tpl"}

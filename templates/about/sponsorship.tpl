@@ -14,14 +14,14 @@
 {url|assign:editUrl page="management" op="settings" path="press" anchor="affiliationAndSupport"}
 {include file="common/linkToEditPage.tpl" editUrl=$editUrl}
 
-{if not (empty($sponsorNote) && empty($sponsors))}
+{if not (empty($sponsorshipInfo.sponsorNote) && empty($sponsorshipInfo.sponsors))}
 <div id="sponsors">
 <h3>{translate key="about.sponsors"}</h3>
 
-{if $sponsorNote}<p>{$sponsorNote|nl2br}</p>{/if}
+{if $sponsorshipInfo.sponsorNote}<p>{$sponsorshipInfo.sponsorNote|nl2br}</p>{/if}
 
 <ul>
-	{foreach from=$sponsors item=sponsor}
+	{foreach from=$sponsorshipInfo.sponsors item=sponsor}
 	{if $sponsor.url}
 		<li><a href="{$sponsor.url|escape}">{$sponsor.institution|escape}</a></li>
 	{else}
@@ -33,14 +33,14 @@
 <div class="separator"></div>
 {/if}
 
-{if not (empty($contributorNote) && empty($contributors))}
+{if not (empty($sponsorshipInfo.contributorNote) && empty($sponsorshipInfo.contributors))}
 <div id="contributors">
 <h3>{translate key="about.contributors"}</h3>
 
-{if $contributorNote}<p>{$contributorNote|nl2br}</p>{/if}
+{if $sponsorshipInfo.contributorNote}<p>{$sponsorshipInfo.contributorNote|nl2br}</p>{/if}
 
 <ul>
-	{foreach from=$contributors item=contributor}
+	{foreach from=$sponsorshipInfo.contributors item=contributor}
 	{if $contributor.institution}
 		{if $contributor.url}
 			<li><a href="{$contributor.url|escape}">{$contributor.institution|escape}</a></li>
