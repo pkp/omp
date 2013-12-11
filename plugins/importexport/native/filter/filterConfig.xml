@@ -86,7 +86,7 @@
 			displayName="plugins.importexport.onix30.displayName"
 			description="plugins.importexport.onix30.description"
 			inputType="class::classes.monograph.Monograph"
-			outputType="xml::schema(plugins/importexport/onix30/ONIX_BookProduct_3.0_reference.xsd)" />
+			outputType="xml::schema(plugins/importexport/native/ONIX_BookProduct_3.0_reference_notstrict.xsd)" />
 	</filterGroups>
 	<filters>
 		<!-- Native XML monograph output -->

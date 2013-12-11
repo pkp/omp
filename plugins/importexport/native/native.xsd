@@ -15,7 +15,7 @@
 	  - Base the native import/export schema on the PKP submission model.
 	  -->
 	<include schemaLocation="../../../lib/pkp/plugins/importexport/native/pkp-native.xsd" />
-	<import namespace="http://ns.editeur.org/onix/3.0/reference" schemaLocation="../onix30/ONIX_BookProduct_3.0_reference.xsd" />
+	<import namespace="http://ns.editeur.org/onix/3.0/reference" schemaLocation="ONIX_BookProduct_3.0_reference_notstrict.xsd" />
 
 	<!-- Allow the use of "monograph" in place of "submission" -->
 	<element name="monograph" substitutionGroup="pkp:submission">

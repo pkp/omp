@@ -1,0 +1,13 @@
+--- onix30/ONIX_BookProduct_3.0_reference.xsd	2013-12-11 13:35:19.000000000 -0400
++++ native/ONIX_BookProduct_3.0_reference_notstrict.xsd	2013-12-11 13:34:46.000000000 -0400
+@@ -5655,8 +5655,8 @@
+ 	<xs:element name="Product">
+ 		<xs:complexType>
+ 			<xs:sequence>
+-				<xs:group ref="gp.record_metadata"/>
+-				<xs:group ref="gp.product_numbers"/>
++				<xs:group minOccurs="0" ref="gp.record_metadata"/>
++				<xs:group minOccurs="0" ref="gp.product_numbers"/>
+ 				<xs:element minOccurs="0" ref="DescriptiveDetail"/>
+ 				<xs:element minOccurs="0" ref="CollateralDetail"/>
+ 				<xs:element minOccurs="0" ref="ContentDetail"/>
