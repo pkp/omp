@@ -214,7 +214,7 @@ class MonographONIX30XmlFilter extends NativeExportFilter {
 			$descDetailNode->appendChild($this->_buildTextNode($doc, 'CountryOfManufacture', $publicationFormat->getCountryManufactureCode()));
 		}
 
-		if (!$publicationFormat->getPhysicalFormat()) {
+		if (!$publicationFormat->getPhysicalFormat() && $publicationFormat->getTechnicalProtectionCode() != '') {
 			$descDetailNode->appendChild($this->_buildTextNode($doc, 'EpubTechnicalProtection', $publicationFormat->getTechnicalProtectionCode()));
 		}
 
@@ -240,7 +240,7 @@ class MonographONIX30XmlFilter extends NativeExportFilter {
 			$titleElementNode->appendChild($this->_buildTextNode($doc, 'PartNumber', $submission->getSeriesPosition()));
 
 			if ($series->getLocalizedPrefix() == '' || $series->getLocalizedTitle() == '') {
-				$titleElementNode->appendChild($this->_buildTextNode($doc, 'TitleText', join(' ', array($series->getLocalizedPrefix(), $series->getLocalizedTitle()))));
+				$titleElementNode->appendChild($this->_buildTextNode($doc, 'TitleText', trim(join(' ', array($series->getLocalizedPrefix(), $series->getLocalizedTitle())))));
 			} else {
 				if ($series->getLocalizedPrefix() != '') {
 					$titleElementNode->appendChild($this->_buildTextNode($doc, 'TitlePrefix', $series->getLocalizedPrefix()));
@@ -266,7 +266,7 @@ class MonographONIX30XmlFilter extends NativeExportFilter {
 		$productTitleDetailNode->appendChild($titleElementNode);
 
 		if ($submission->getLocalizedPrefix() == '' || $submission->getLocalizedTitle() == '') {
-			$titleElementNode->appendChild($this->_buildTextNode($doc, 'TitleText', join(' ', array($submission->getLocalizedPrefix(), $submission->getLocalizedTitle()))));
+			$titleElementNode->appendChild($this->_buildTextNode($doc, 'TitleText', trim(join(' ', array($submission->getLocalizedPrefix(), $submission->getLocalizedTitle())))));
 		} else {
 			if ($submission->getLocalizedPrefix() != '') {
 				$titleElementNode->appendChild($this->_buildTextNode($doc, 'TitlePrefix', $submission->getLocalizedPrefix()));
@@ -297,7 +297,11 @@ class MonographONIX30XmlFilter extends NativeExportFilter {
 			$contributorNode->appendChild($this->_buildTextNode($doc, 'PersonName', $author->getFullName()));
 			$contributorNode->appendChild($this->_buildTextNode($doc, 'PersonNameInverted', $author->getFullName(true)));
 			$contributorNode->appendChild($this->_buildTextNode($doc, 'NamesBeforeKey', trim(join(' ', array($author->getFirstName(), $author->getMiddleName())))));
-			$contributorNode->appendChild($this->_buildTextNode($doc, 'KeyNames', $author->getLastName()));
+			if ($author->getLastName() != '') {
+				$contributorNode->appendChild($this->_buildTextNode($doc, 'KeyNames', $author->getLastName()));
+			} else {
+				$contributorNode->appendChild($this->_buildTextNode($doc, 'KeyNames', $author->getFullName()));
+			}
 
 			if ($author->getSuffix() != '') {
 				$contributorNode->appendChild($this->_buildTextNode($doc, 'SuffixToKey', $author->getSuffix()));
@@ -388,7 +392,7 @@ class MonographONIX30XmlFilter extends NativeExportFilter {
 		}
 
 		if (sizeof($uniqueSubjects) > 0) {
-			$subjectNode->appendChild($this->_buildTextNode($doc, 'SubjectCode', join(' ', $uniqueSubjects)));
+			$subjectNode->appendChild($this->_buildTextNode($doc, 'SubjectCode', trim(join(' ', $uniqueSubjects))));
 		}
 
 		/* --- Add Audience elements --- */
@@ -507,14 +511,14 @@ class MonographONIX30XmlFilter extends NativeExportFilter {
 				$salesRightsNode->appendChild($territoryNode);
 
 				if (sizeof($salesRights->getRegionsIncluded()) > 0 && sizeof($salesRights->getCountriesExcluded()) > 0) {
-					$territoryNode->appendChild($this->_buildTextNode($doc, 'RegionsIncluded', join(' ', $salesRights->getRegionsIncluded())));
-					$territoryNode->appendChild($this->_buildTextNode($doc, 'CountriesExcluded', join(' ', $salesRights->getCountriesExcluded())));
+					$territoryNode->appendChild($this->_buildTextNode($doc, 'RegionsIncluded', trim(join(' ', $salesRights->getRegionsIncluded()))));
+					$territoryNode->appendChild($this->_buildTextNode($doc, 'CountriesExcluded', trim(join(' ', $salesRights->getCountriesExcluded()))));
 				} else if (sizeof($salesRights->getCountriesIncluded()) > 0) {
-					$territoryNode->appendChild($this->_buildTextNode($doc, 'CountriesIncluded', join(' ', $salesRights->getCountriesIncluded())));
+					$territoryNode->appendChild($this->_buildTextNode($doc, 'CountriesIncluded', trim(join(' ', $salesRights->getCountriesIncluded()))));
 				}
 
 				if (sizeof($salesRights->getRegionsExcluded()) > 0) {
-					$territoryNode->appendChild($this->_buildTextNode($doc, 'RegionsExcluded', join(' ', $salesRights->getRegionsExcluded())));
+					$territoryNode->appendChild($this->_buildTextNode($doc, 'RegionsExcluded', trim(join(' ', $salesRights->getRegionsExcluded()))));
 				}
 
 				unset($territoryNode);
@@ -545,19 +549,19 @@ class MonographONIX30XmlFilter extends NativeExportFilter {
 			$marketNode->appendChild($territoryNode);
 
 			if (sizeof($market->getCountriesIncluded()) > 0) {
-				$territoryNode->appendChild($this->_buildTextNode($doc, 'CountriesIncluded', join(' ', $market->getCountriesIncluded())));
+				$territoryNode->appendChild($this->_buildTextNode($doc, 'CountriesIncluded', trim(join(' ', $market->getCountriesIncluded()))));
 			}
 
 			if (sizeof($market->getRegionsIncluded()) > 0) {
-				$territoryNode->appendChild($this->_buildTextNode($doc, 'RegionsIncluded', join(' ', $market->getRegionsIncluded())));
+				$territoryNode->appendChild($this->_buildTextNode($doc, 'RegionsIncluded', trim(join(' ', $market->getRegionsIncluded()))));
 			}
 
 			if (sizeof($market->getCountriesExcluded()) > 0) {
-				$territoryNode->appendChild($this->_buildTextNode($doc, 'CountriesExcluded', join(' ', $market->getCountriesExcluded())));
+				$territoryNode->appendChild($this->_buildTextNode($doc, 'CountriesExcluded', trim(join(' ', $market->getCountriesExcluded()))));
 			}
 
 			if (sizeof($market->getRegionsExcluded()) > 0) {
-				$territoryNode->appendChild($this->_buildTextNode($doc, 'RegionsExcluded', join(' ', $market->getRegionsExcluded())));
+				$territoryNode->appendChild($this->_buildTextNode($doc, 'RegionsExcluded', trim(join(' ', $market->getRegionsExcluded()))));
 			}
 
 			unset($marketNode);
