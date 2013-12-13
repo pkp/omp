@@ -263,7 +263,7 @@ class PublicationFormatGridHandler extends GridHandler {
 
 			if(!isset($publicationFormat)) {
 				// This is a new format
-				$publicationFormat =& $publicationFormatDao->getById($publicationFormatId);
+				$publicationFormat = $publicationFormatDao->getById($publicationFormatId);
 				// New added format action notification content.
 				$notificationContent = __('notification.addedPublicationFormat');
 			} else {
@@ -343,7 +343,7 @@ class PublicationFormatGridHandler extends GridHandler {
 	function setAvailable($args, $request) {
 		$context = $request->getContext();
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
-		$publicationFormat =& $publicationFormatDao->getById(
+		$publicationFormat = $publicationFormatDao->getById(
 			$request->getUserVar('publicationFormatId'),
 			null, // $submissionId
 			$context->getId() // Make sure to validate the context.

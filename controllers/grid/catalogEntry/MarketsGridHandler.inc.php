@@ -276,7 +276,7 @@ class MarketsGridHandler extends GridHandler {
 
 			if(!isset($market)) {
 				// This is a new entry
-				$market =& $marketDao->getById($marketId, $monograph->getId());
+				$market = $marketDao->getById($marketId, $monograph->getId());
 				// New added entry action notification content.
 				$notificationContent = __('notification.addedMarket');
 			} else {

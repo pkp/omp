@@ -70,7 +70,7 @@ class CatalogEntryTabHandler extends PublicationEntryTabHandler {
 		$submission = $this->getSubmission();
 		$stageId = $this->getStageId();
 
-		$publicationFormat =& $publicationFormatDao->getById($publicationFormatId, $submission->getId());
+		$publicationFormat = $publicationFormatDao->getById($publicationFormatId, $submission->getId());
 
 		if (!$publicationFormat) {
 			$json = new JSONMessage(false, __('monograph.publicationFormat.formatDoesNotExist'));

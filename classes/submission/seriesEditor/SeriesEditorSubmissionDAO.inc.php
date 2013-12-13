@@ -201,7 +201,7 @@ class SeriesEditorSubmissionDAO extends MonographDAO {
 
 		// Update monograph
 		if ($seriesEditorSubmission->getId()) {
-			$monograph =& parent::getById($monographId);
+			$monograph = parent::getById($monographId);
 
 			// Only update fields that can actually be edited.
 			$monograph->setSeriesId($seriesEditorSubmission->getSeriesId());

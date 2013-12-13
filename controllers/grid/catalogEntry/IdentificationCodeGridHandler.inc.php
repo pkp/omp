@@ -268,7 +268,7 @@ class IdentificationCodeGridHandler extends GridHandler {
 
 			if(!isset($identificationCode)) {
 				// This is a new code
-				$identificationCode =& $identificationCodeDao->getById($identificationCodeId, $monograph->getId());
+				$identificationCode = $identificationCodeDao->getById($identificationCodeId, $monograph->getId());
 				// New added code action notification content.
 				$notificationContent = __('notification.addedIdentificationCode');
 			} else {

@@ -52,7 +52,7 @@ class OMPPaymentManager extends PaymentManager {
 	 */
 	function &createQueuedPayment($pressId, $type, $userId, $assocId, $amount, $currencyCode = null) {
 		$pressDao = DAORegistry::getDAO('PressDAO');
-		$press =& $pressDao->getById($pressId);
+		$press = $pressDao->getById($pressId);
 		assert($press);
 		$payment = new OMPQueuedPayment($amount, $press->getSetting('currency'), $userId, $assocId);
 		$payment->setPressId($pressId);

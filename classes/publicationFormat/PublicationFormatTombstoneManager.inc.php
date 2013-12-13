@@ -29,7 +29,7 @@ class PublicationFormatTombstoneManager {
 		$monographDao = DAORegistry::getDAO('MonographDAO');
 		$monograph = $monographDao->getById($publicationFormat->getMonographId());
 		$seriesDao = DAORegistry::getDAO('SeriesDAO');
-		$series =& $seriesDao->getById($monograph->getSeriesId());
+		$series = $seriesDao->getById($monograph->getSeriesId());
 
 		$dataObjectTombstoneDao = DAORegistry::getDAO('DataObjectTombstoneDAO');
 		// delete publication format tombstone to ensure that there aren't

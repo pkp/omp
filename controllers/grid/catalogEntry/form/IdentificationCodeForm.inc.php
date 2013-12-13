@@ -114,7 +114,7 @@ class IdentificationCodeForm extends Form {
 		}
 
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
-		$publicationFormat =& $publicationFormatDao->getById($publicationFormatId, $monograph->getId());
+		$publicationFormat = $publicationFormatDao->getById($publicationFormatId, $monograph->getId());
 
 		if ($publicationFormat) { // the format exists for this monograph
 			$templateMgr->assign('publicationFormatId', $publicationFormatId);
@@ -162,7 +162,7 @@ class IdentificationCodeForm extends Form {
 
 		$monograph = $this->getMonograph();
 		$identificationCode =& $this->getIdentificationCode();
-		$publicationFormat =& $publicationFormatDao->getById($this->getData('publicationFormatId', $monograph->getId()));
+		$publicationFormat = $publicationFormatDao->getById($this->getData('publicationFormatId', $monograph->getId()));
 
 		if (!$identificationCode) {
 			// this is a new code to this published monograph

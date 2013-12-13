@@ -119,7 +119,7 @@ class CatalogEntryCatalogMetadataForm extends Form {
 
 		$monograph = $this->getMonograph();
 		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
-		$this->_publishedMonograph =& $publishedMonographDao->getById($monograph->getId(), null, false);
+		$this->_publishedMonograph = $publishedMonographDao->getById($monograph->getId(), null, false);
 	}
 
 

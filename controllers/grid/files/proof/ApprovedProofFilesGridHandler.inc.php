@@ -98,8 +98,8 @@ class ApprovedProofFilesGridHandler extends GridHandler {
 		if (parent::authorize($request, $args, $roleAssignments)) {
 			$publicationFormatId = (int) $request->getUserVar('publicationFormatId');
 			$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
-			$this->monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-			$this->publicationFormat =& $publicationFormatDao->getById($publicationFormatId, $this->monograph->getId());
+			$this->monograph = $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+			$this->publicationFormat = $publicationFormatDao->getById($publicationFormatId, $this->monograph->getId());
 
 			return true;
 		}

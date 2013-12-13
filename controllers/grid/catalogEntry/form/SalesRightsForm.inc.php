@@ -134,7 +134,7 @@ class SalesRightsForm extends Form {
 		}
 
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
-		$publicationFormat =& $publicationFormatDao->getById($publicationFormatId, $monograph->getId());
+		$publicationFormat = $publicationFormatDao->getById($publicationFormatId, $monograph->getId());
 
 		if ($publicationFormat) { // the format exists for this monograph
 			$templateMgr->assign('publicationFormatId', $publicationFormatId);
@@ -179,8 +179,8 @@ class SalesRightsForm extends Form {
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
 
 		$monograph = $this->getMonograph();
-		$salesRights =& $this->getSalesRights();
-		$publicationFormat =& $publicationFormatDao->getById($this->getData('publicationFormatId'), $monograph->getId());
+		$salesRights = $this->getSalesRights();
+		$publicationFormat = $publicationFormatDao->getById($this->getData('publicationFormatId'), $monograph->getId());
 
 		if (!$salesRights) {
 			// this is a new assigned format to this published monograph

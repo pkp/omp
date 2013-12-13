@@ -242,7 +242,7 @@ class ManageSpotlightsGridHandler extends GridHandler {
 
 			if(!isset($spotlight)) {
 				// This is a new entry
-				$spotlight =& $spotlightDao->getById($spotlightId, $press->getId());
+				$spotlight = $spotlightDao->getById($spotlightId, $press->getId());
 				// New added entry action notification content.
 				$notificationContent = __('notification.addedSpotlight');
 			} else {
@@ -284,7 +284,7 @@ class ManageSpotlightsGridHandler extends GridHandler {
 
 		$spotlightDao = DAORegistry::getDAO('SpotlightDAO');
 		$press = $this->getPress();
-		$spotlight =& $spotlightDao->getById($spotlightId, $press->getId());
+		$spotlight = $spotlightDao->getById($spotlightId, $press->getId());
 		if ($spotlight != null) { // authorized
 
 			$result = $spotlightDao->deleteObject($spotlight);

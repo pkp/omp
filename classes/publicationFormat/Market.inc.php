@@ -297,8 +297,8 @@ class Market extends DataObject {
 	 */
 	function getAssignedRepresentativeNames() {
 		$representativeDao = DAORegistry::getDAO('RepresentativeDAO');
-		$agent =& $representativeDao->getById($this->getAgentId());
-		$supplier =& $representativeDao->getById($this->getSupplierId());
+		$agent = $representativeDao->getById($this->getAgentId());
+		$supplier = $representativeDao->getById($this->getSupplierId());
 
 		$returner = '';
 

@@ -56,7 +56,7 @@ class UserXMLParser {
 		$tree = $this->parser->parse($file);
 
 		$pressDao = DAORegistry::getDAO('PressDAO');
-		$press =& $pressDao->getById($this->pressId);
+		$press = $pressDao->getById($this->pressId);
 		$pressPrimaryLocale = AppLocale::getPrimaryLocale();
 
 		$site = Request::getSite();
@@ -186,7 +186,7 @@ class UserXMLParser {
 		$this->importedUsers = array();
 		$this->errors = array();
 		$pressDao = DAORegistry::getDAO('PressDAO');
-		$press =& $pressDao->getById($this->pressId);
+		$press = $pressDao->getById($this->pressId);
 
 		$userDao = DAORegistry::getDAO('UserDAO');
 		$roleDao = DAORegistry::getDAO('RoleDAO');

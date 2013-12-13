@@ -118,7 +118,7 @@ class PublicationDateGridHandler extends GridHandler {
 		}
 
 		$monograph = $this->getMonograph();
-		$publicationFormat =& $publicationFormatDao->getById($publicationFormatId, $monograph->getId());
+		$publicationFormat = $publicationFormatDao->getById($publicationFormatId, $monograph->getId());
 
 		if ($publicationFormat) {
 			$this->setPublicationFormat($publicationFormat);
@@ -269,7 +269,7 @@ class PublicationDateGridHandler extends GridHandler {
 
 			if(!isset($publicationDate)) {
 				// This is a new code
-				$publicationDate =& $publicationDateDao->getById($publicationDateId, $monograph->getId());
+				$publicationDate = $publicationDateDao->getById($publicationDateId, $monograph->getId());
 				// New added code action notification content.
 				$notificationContent = __('notification.addedPublicationDate');
 			} else {

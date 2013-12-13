@@ -41,7 +41,7 @@ class PublicationFormatRequiredPolicy extends DataObjectRequiredPolicy {
 
 		// Make sure the publication format belongs to the monograph.
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
-		$publicationFormat =& $publicationFormatDao->getById($publicationFormatId, $monograph->getId());
+		$publicationFormat = $publicationFormatDao->getById($publicationFormatId, $monograph->getId());
 		if (!is_a($publicationFormat, 'PublicationFormat')) return AUTHORIZATION_DENY;
 
 		// Save the publication format to the authorization context.

@@ -51,7 +51,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		DAORegistry::registerDAO('MonographDAO', $monographDao);
 
 		// Register a mock genre DAO.
-		$genreDao =& $this->getMock('GenreDAO', array('getById'));
+		$genreDao = $this->getMock('GenreDAO', array('getById'));
 		DAORegistry::registerDAO('GenreDAO', $genreDao);
 		$genreDao->expects($this->any())
 		         ->method('getById')

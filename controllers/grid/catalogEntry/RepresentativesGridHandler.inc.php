@@ -265,7 +265,7 @@ class RepresentativesGridHandler extends CategoryGridHandler {
 
 			if(!isset($representative)) {
 				// This is a new entry
-				$representative =& $representativeDao->getById($representativeId, $monograph->getId());
+				$representative = $representativeDao->getById($representativeId, $monograph->getId());
 				// New added entry action notification content.
 				$notificationContent = __('notification.addedRepresentative');
 			} else {

@@ -295,7 +295,7 @@ class ManageCatalogHandler extends Handler {
 		// FIXME: Can this be done with the auth framework without
 		// needing the policy throughout?
 		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
-		$publishedMonograph =& $publishedMonographDao->getById($monographId, $press->getId());
+		$publishedMonograph = $publishedMonographDao->getById($monographId, $press->getId());
 		if (!$publishedMonograph) fatalError('Invalid monograph!');
 
 		// Determine the assoc type and ID to be used.
@@ -307,13 +307,13 @@ class ManageCatalogHandler extends Handler {
 			case ASSOC_TYPE_CATEGORY:
 				// Validate specified assocId
 				$categoryDao = DAORegistry::getDAO('CategoryDAO');
-				$category =& $categoryDao->getById($assocId, $press->getId());
+				$category = $categoryDao->getById($assocId, $press->getId());
 				if (!$category) fatalError('Invalid category!');
 				break;
 			case ASSOC_TYPE_SERIES:
 				// Validate specified assocId
 				$seriesDao = DAORegistry::getDAO('SeriesDAO');
-				$series =& $seriesDao->getById($assocId, $press->getId());
+				$series = $seriesDao->getById($assocId, $press->getId());
 				if (!$series) fatalError('Invalid series!');
 				break;
 			default:

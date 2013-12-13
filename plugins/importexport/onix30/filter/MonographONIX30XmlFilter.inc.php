@@ -235,7 +235,7 @@ class MonographONIX30XmlFilter extends NativeExportFilter {
 		/* --- Series information, if this monograph is part of one. --- */
 
 		$seriesDao = DAORegistry::getDAO('SeriesDAO');
-		$series =& $seriesDao->getById($submission->getSeriesId());
+		$series = $seriesDao->getById($submission->getSeriesId());
 		if ($series != null) {
 			$titleElementNode->appendChild($this->_buildTextNode($doc, 'PartNumber', $submission->getSeriesPosition()));
 

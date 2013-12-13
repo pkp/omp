@@ -248,7 +248,7 @@ class PubIdPlugin extends Plugin {
 		// Remove this when we have migrated getBest...(), etc. to Article.
 		if (is_a($pubObject, 'PublicationFormat')) {
 			$publicationFormatDao = DAORegistry::getDAO('PublishedFormatDAO'); /* @var $publicationFormatDao PublishedFormatDAO */
-			$format =& $publicationFormatDao->getById($pubObject->getId());
+			$format = $publicationFormatDao->getById($pubObject->getId());
 			if (is_a($format, 'PublicationFormat')) {
 				unset($pubObject);
 				$pubObject =& $format;

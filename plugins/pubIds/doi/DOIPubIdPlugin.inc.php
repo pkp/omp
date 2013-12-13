@@ -259,7 +259,7 @@ class DOIPubIdPlugin extends PubIdPlugin {
 		if (!$press || $press->getId() != $pressId) {
 			unset($press);
 			$pressDao = DAORegistry::getDAO('PressDAO');
-			$press =& $pressDao->getById($pressId);
+			$press = $pressDao->getById($pressId);
 		}
 
 		return $press;

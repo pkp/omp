@@ -133,7 +133,7 @@ class CatalogEntryFormatMetadataForm extends Form {
 
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
 		$monograph = $this->getMonograph();
-		$publicationFormat =& $publicationFormatDao->getById($this->getPublicationFormatId(), $monograph->getId());
+		$publicationFormat = $publicationFormatDao->getById($this->getPublicationFormatId(), $monograph->getId());
 		assert($publicationFormat);
 
 		$this->_data = array(
@@ -207,7 +207,7 @@ class CatalogEntryFormatMetadataForm extends Form {
 
 		$monograph = $this->getMonograph();
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
-		$publicationFormat =& $publicationFormatDao->getById($this->getPublicationFormatId(), $monograph->getId());
+		$publicationFormat = $publicationFormatDao->getById($this->getPublicationFormatId(), $monograph->getId());
 		assert($publicationFormat);
 
 		// Manage tombstones for the publication format.

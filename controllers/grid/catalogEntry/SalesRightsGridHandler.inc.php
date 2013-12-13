@@ -118,7 +118,7 @@ class SalesRightsGridHandler extends GridHandler {
 		}
 
 		$monograph = $this->getMonograph();
-		$publicationFormat =& $publicationFormatDao->getById($publicationFormatId, $monograph->getId());
+		$publicationFormat = $publicationFormatDao->getById($publicationFormatId, $monograph->getId());
 
 		if ($publicationFormat) {
 			$this->setPublicationFormat($publicationFormat);
@@ -268,7 +268,7 @@ class SalesRightsGridHandler extends GridHandler {
 
 			if(!isset($salesRights)) {
 				// This is a new entry
-				$salesRights =& $salesRightsDao->getById($salesRightsId, $monograph->getId());
+				$salesRights = $salesRightsDao->getById($salesRightsId, $monograph->getId());
 				// New added entry action notification content.
 				$notificationContent = __('notification.addedSalesRights');
 			} else {

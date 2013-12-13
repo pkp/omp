@@ -59,7 +59,7 @@ class SeriesForm extends Form {
 		$seriesDao = DAORegistry::getDAO('SeriesDAO');
 		$seriesId = $this->getSeriesId();
 		if ($seriesId) {
-			$series =& $seriesDao->getById($seriesId, $press->getId());
+			$series = $seriesDao->getById($seriesId, $press->getId());
 		}
 
 		if (isset($series) ) {
@@ -137,7 +137,7 @@ class SeriesForm extends Form {
 
 		// Get or create the series object
 		if ($this->getSeriesId()) {
-			$series =& $seriesDao->getById($this->getSeriesId(), $press->getId());
+			$series = $seriesDao->getById($this->getSeriesId(), $press->getId());
 		} else {
 			import('classes.press.Series');
 			$series = new Series();

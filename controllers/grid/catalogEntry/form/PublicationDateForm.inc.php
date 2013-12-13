@@ -133,7 +133,7 @@ class PublicationDateForm extends Form {
 		}
 
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
-		$publicationFormat =& $publicationFormatDao->getById($publicationFormatId, $monograph->getId());
+		$publicationFormat = $publicationFormatDao->getById($publicationFormatId, $monograph->getId());
 
 		if ($publicationFormat) { // the format exists for this monograph
 			$templateMgr->assign('publicationFormatId', $publicationFormatId);
@@ -177,8 +177,8 @@ class PublicationDateForm extends Form {
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
 
 		$monograph = $this->getMonograph();
-		$publicationDate =& $this->getPublicationDate();
-		$publicationFormat =& $publicationFormatDao->getById($this->getData('publicationFormatId'), $monograph->getId());
+		$publicationDate = $this->getPublicationDate();
+		$publicationFormat = $publicationFormatDao->getById($this->getData('publicationFormatId'), $monograph->getId());
 
 		if (!$publicationDate) {
 			// this is a new publication date for this published monograph

@@ -59,9 +59,9 @@ class OAIDAO extends PKPOAIDAO {
 	 * @param $pressId int
 	 * @return Press
 	 */
-	function &getPress($pressId) {
+	function getPress($pressId) {
 		if (!isset($this->_pressCache[$pressId])) {
-			$this->_pressCache[$pressId] =& $this->_pressDao->getById($pressId);
+			$this->_pressCache[$pressId] = $this->_pressDao->getById($pressId);
 		}
 		return $this->_pressCache[$pressId];
 	}
@@ -71,9 +71,9 @@ class OAIDAO extends PKPOAIDAO {
 	 * @param $seriesId int
 	 * @return Series
 	 */
-	function &getSeries($seriesId) {
+	function getSeries($seriesId) {
 		if (!isset($this->_seriesCache[$seriesId])) {
-			$this->_seriesCache[$seriesId] =& $this->_seriesDao->getById($seriesId);
+			$this->_seriesCache[$seriesId] = $this->_seriesDao->getById($seriesId);
 		}
 		return $this->_seriesCache[$seriesId];
 	}
@@ -218,7 +218,7 @@ class OAIDAO extends PKPOAIDAO {
 		$record->sets = array(urlencode($press->getPath()) . ($series?':' . urlencode($series->getPath()):''));
 
 		if ($isRecord) {
-			$publicationFormat =& $this->_publicationFormatDao->getById($publicationFormatId);
+			$publicationFormat = $this->_publicationFormatDao->getById($publicationFormatId);
 			$monograph = $this->_publishedMonographDao->getById($publicationFormat->getMonographId());
 			$record->setData('publicationFormat', $publicationFormat);
 			$record->setData('monograph', $monograph);

@@ -111,31 +111,31 @@ class MarketForm extends Form {
 		$templateMgr->assign('submissionId', $monograph->getId());
 		$market = $this->getMarket();
 		$onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO');
-		$templateMgr->assign_by_ref('countryCodes', $onixCodelistItemDao->getCodes('List91')); // countries (CA, US, GB, etc)
-		$templateMgr->assign_by_ref('regionCodes', $onixCodelistItemDao->getCodes('List49')); // regions (British Columbia, England, etc)
-		$templateMgr->assign_by_ref('publicationDateFormats', $onixCodelistItemDao->getCodes('List55')); // YYYYMMDD, YYMMDD, etc
-		$templateMgr->assign_by_ref('publicationDateRoles', $onixCodelistItemDao->getCodes('List163'));
-		$templateMgr->assign_by_ref('currencyCodes', $onixCodelistItemDao->getCodes('List96')); // GBP, USD, CAD, etc
-		$templateMgr->assign_by_ref('priceTypeCodes', $onixCodelistItemDao->getCodes('List58')); // without tax, with tax, etc
+		$templateMgr->assign('countryCodes', $onixCodelistItemDao->getCodes('List91')); // countries (CA, US, GB, etc)
+		$templateMgr->assign('regionCodes', $onixCodelistItemDao->getCodes('List49')); // regions (British Columbia, England, etc)
+		$templateMgr->assign('publicationDateFormats', $onixCodelistItemDao->getCodes('List55')); // YYYYMMDD, YYMMDD, etc
+		$templateMgr->assign('publicationDateRoles', $onixCodelistItemDao->getCodes('List163'));
+		$templateMgr->assign('currencyCodes', $onixCodelistItemDao->getCodes('List96')); // GBP, USD, CAD, etc
+		$templateMgr->assign('priceTypeCodes', $onixCodelistItemDao->getCodes('List58')); // without tax, with tax, etc
 		$templateMgr->assign_by_ref('extentTypeCodes',$onixCodelistItemDao->getCodes('List23')); // word count, FM page count, BM page count, main page count, etc
 		$templateMgr->assign_by_ref('taxRateCodes', $onixCodelistItemDao->getCodes('List62')); // higher rate, standard rate, zero rate
 		$templateMgr->assign_by_ref('taxTypeCodes', $onixCodelistItemDao->getCodes('List171')); // VAT, GST
 
 		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
-		$publishedMonograph =& $publishedMonographDao->getById($monograph->getId());
-		$availableAgents =& $publishedMonograph->getAgents();
+		$publishedMonograph = $publishedMonographDao->getById($monograph->getId());
+		$availableAgents = $publishedMonograph->getAgents();
 		$agentOptions = array();
-		while ($agent =& $availableAgents->next()) {
+		while ($agent = $availableAgents->next()) {
 			$agentOptions[$agent->getId()] = $agent->getName();
 		}
-		$templateMgr->assign_by_ref('availableAgents', $agentOptions);
+		$templateMgr->assign('availableAgents', $agentOptions);
 
-		$availableSuppliers =& $publishedMonograph->getSuppliers();
+		$availableSuppliers = $publishedMonograph->getSuppliers();
 		$supplierOptions = array();
-		while ($supplier =& $availableSuppliers->next()) {
+		while ($supplier = $availableSuppliers->next()) {
 			$supplierOptions[$supplier->getId()] = $supplier->getName();
 		}
-		$templateMgr->assign_by_ref('availableSuppliers', $supplierOptions);
+		$templateMgr->assign('availableSuppliers', $supplierOptions);
 
 		if ($market) {
 			$publicationFormatId = $market->getPublicationFormatId();
@@ -165,7 +165,7 @@ class MarketForm extends Form {
 		}
 
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
-		$publicationFormat =& $publicationFormatDao->getById($publicationFormatId, $monograph->getId());
+		$publicationFormat = $publicationFormatDao->getById($publicationFormatId, $monograph->getId());
 
 		if ($publicationFormat) { // the format exists for this monograph
 			$templateMgr->assign('publicationFormatId', $publicationFormatId);
@@ -211,8 +211,8 @@ class MarketForm extends Form {
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
 
 		$monograph = $this->getMonograph();
-		$market =& $this->getMarket();
-		$publicationFormat =& $publicationFormatDao->getById($this->getData('publicationFormatId'), $monograph->getId());
+		$market = $this->getMarket();
+		$publicationFormat = $publicationFormatDao->getById($this->getData('publicationFormatId'), $monograph->getId());
 
 		if (!$market) {
 			// this is a new assigned format to this published monograph
