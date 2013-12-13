@@ -161,7 +161,7 @@ class Spotlight extends DataObject {
 				break;
 			case SPOTLIGHT_TYPE_AUTHOR:
 				$authorDao = DAORegistry::getDAO('AuthorDAO');
-				return $authorDao->getAuthor($this->getAssocId());
+				return $authorDao->getById($this->getAssocId());
 				break;
 			default:
 				assert(false);

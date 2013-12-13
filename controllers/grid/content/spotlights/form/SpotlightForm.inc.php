@@ -152,7 +152,7 @@ class SpotlightForm extends Form {
 				break;
 			case SPOTLIGHT_TYPE_AUTHOR:
 				$authorDao = DAORegistry::getDAO('AuthorDAO');
-				$author = $authorDao->getAuthor($assocId);
+				$author = $authorDao->getById($assocId);
 				$returner = isset($author) ? $author->getFullName() : '';
 				break;
 			default:

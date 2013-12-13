@@ -148,8 +148,7 @@ class ChapterAuthorListbuilderHandler extends ListbuilderHandler {
 
 		$authorDao = DAORegistry::getDAO('AuthorDAO');
 		$monograph = $this->getMonograph();
-		$author =& $authorDao->getAuthor($id, $monograph->getId());
-		return $author;
+		return $authorDao->getById($id, $monograph->getId());
 	}
 
 	/**
