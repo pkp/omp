@@ -101,6 +101,7 @@ class PressSiteSettingsForm extends ContextSiteSettingsForm {
 				'pressName' => $titles[$site->getPrimaryLocale()]
 			));
 		}
+		$press->updateSetting('supportedLocales', $site->getSupportedLocales());
 		$press->updateSetting('name', $this->getData('name'), 'string', true);
 		$press->updateSetting('description', $this->getData('description'), 'string', true);
 
