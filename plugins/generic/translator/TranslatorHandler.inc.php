@@ -41,7 +41,7 @@ class TranslatorHandler extends Handler {
 		$plugin =& $this->plugin;
 		$this->setupTemplate($request, false);
 
-		$rangeInfo = Handler::getRangeInfo('locales');
+		$rangeInfo = $this->getRangeInfo($request, 'locales');
 
 		$templateMgr = TemplateManager::getManager($request);
 		import('lib.pkp.classes.core.ArrayItemIterator');
@@ -75,9 +75,9 @@ class TranslatorHandler extends Handler {
 
 		$templateMgr = TemplateManager::getManager($request);
 
-		$localeFilesRangeInfo = Handler::getRangeInfo('localeFiles');
-		$miscFilesRangeInfo = Handler::getRangeInfo('miscFiles');
-		$emailsRangeInfo = Handler::getRangeInfo('emails');
+		$localeFilesRangeInfo = $this->getRangeInfo($request, 'localeFiles');
+		$miscFilesRangeInfo = $this->getRangeInfo($request, 'miscFiles');
+		$emailsRangeInfo = $this->getRangeInfo($request, 'emails');
 
 		import('lib.pkp.classes.core.ArrayItemIterator');
 		$templateMgr->assign('localeFiles', new ArrayItemIterator($localeFiles, $localeFilesRangeInfo->getPage(), $localeFilesRangeInfo->getCount()));
@@ -242,7 +242,7 @@ class TranslatorHandler extends Handler {
 		}
 
 		import('lib.pkp.classes.file.EditableLocaleFile');
-		$localeContentsRangeInfo = Handler::getRangeInfo('localeContents');
+		$localeContentsRangeInfo = $this->getRangeInfo($request, 'localeContents');
 		$localeContents = EditableLocaleFile::load($filename);
 
 		// Handle a search, if one was executed.
