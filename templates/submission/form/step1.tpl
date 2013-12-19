@@ -9,8 +9,8 @@
 {capture assign="additionalFormContent1"}
 	<!-- Submission Type -->
 	{fbvFormSection list="true" label="submission.workType" description="submission.workType.description"}
-		{fbvElement type="radio" name="workType" id="isEditedVolume-0" value=$smarty.const.WORK_TYPE_AUTHORED_WORK checked=$workType|compare:$smarty.const.WORK_TYPE_AUTHORED_WORK label="submission.workType.authoredWork"}
-		{fbvElement type="radio" name="workType" id="isEditedVolume-1" value=$smarty.const.WORK_TYPE_EDITED_VOLUME  checked=$workType|compare:$smarty.const.WORK_TYPE_EDITED_VOLUME label="submission.workType.editedVolume"}
+		{fbvElement type="radio" name="workType" id="isEditedVolume-0" value=$smarty.const.WORK_TYPE_AUTHORED_WORK checked=$workType|compare:$smarty.const.WORK_TYPE_EDITED_VOLUME:false:true label="submission.workType.authoredWork" disabled=$submissionId}{* "checked" is inverted; matches empty and WORK_TYPE_AUTHORED_WORK *}
+		{fbvElement type="radio" name="workType" id="isEditedVolume-1" value=$smarty.const.WORK_TYPE_EDITED_VOLUME checked=$workType|compare:$smarty.const.WORK_TYPE_EDITED_VOLUME label="submission.workType.editedVolume" disabled=$submissionId}
 	{/fbvFormSection}
 {/capture}
 {capture assign="additionalFormContent2"}
