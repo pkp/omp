@@ -28,6 +28,7 @@ switch ($op) {
 		break;
 	case 'book':
 	case 'download':
+	case 'view':
 		define('HANDLER_CLASS', 'CatalogBookHandler');
 		import('pages.catalog.CatalogBookHandler');
 		break;

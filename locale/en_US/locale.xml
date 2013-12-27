@@ -542,4 +542,8 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 
 	<!-- RT Entities -->
 	<message key="rt.metadata.pkp.peerReviewed">Peer-reviewed Article</message>
+
+	<!-- General plugin information -->
+	<message key="plugins.categories.viewableFiles">Published File Plugins</message>
+	<message key="plugins.categories.viewableFiles.description">Published File Plugins add support for displaying different document types inline, e.g. using PDF embedding.</message>
 </locale>
