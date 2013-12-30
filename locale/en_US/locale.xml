@@ -546,4 +546,5 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<!-- General plugin information -->
 	<message key="plugins.categories.viewableFiles">Published File Plugins</message>
 	<message key="plugins.categories.viewableFiles.description">Published File Plugins add support for displaying different document types inline, e.g. using PDF embedding.</message>
+	 <message key="submission.pdf.download">Download this PDF file</message>
 </locale>
