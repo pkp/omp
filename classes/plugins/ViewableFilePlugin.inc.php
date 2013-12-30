@@ -84,6 +84,7 @@ class ViewableFilePlugin extends GenericPlugin {
 
 		if ($this->canHandle($publishedMonograph, $submissionFile)) {
 			$this->displaySubmissionFile($publishedMonograph, $submissionFile);
+			return true;
 		}
 
 		return false;

@@ -177,7 +177,10 @@ class CatalogBookHandler extends Handler {
 			// handle the document.
 			if ($view) {
 				PluginRegistry::loadCategory('viewableFiles', true);
-				HookRegistry::call('CatalogBookHandler::view', array(&$this, &$publishedMonograph, &$submissionFile));
+				if (HookRegistry::call('CatalogBookHandler::view', array(&$this, &$publishedMonograph, &$submissionFile))) {
+					// If the plugin handled the hook, prevent further default activity.
+					exit();
+				}
 			}
 
 			// Inline viewer not available, or viewing not wanted.
