@@ -39,7 +39,7 @@ class PublicationDateForm extends Form {
 						'$date, $form, $onixCodelistItemDao',
 						'$dateFormat = $form->getData(\'dateFormat\');
 						if (!$dateFormat) return false;
-						$dateFormats =& $onixCodelistItemDao->getCodes(\'List55\');
+						$dateFormats = $onixCodelistItemDao->getCodes(\'List55\');
 						$format = $dateFormats[$dateFormat];
 						if (stristr($format, \'string\') && $date != \'\') return true;
 						$format = preg_replace(\'/\s*\(H\)/i\', \'\', $format);
@@ -59,7 +59,7 @@ class PublicationDateForm extends Form {
 	 * Get the date
 	 * @return PublicationDate
 	 */
-	function &getPublicationDate() {
+	function getPublicationDate() {
 		return $this->_publicationDate;
 	}
 
@@ -68,14 +68,14 @@ class PublicationDateForm extends Form {
 	 * @param @publicationDate PublicationDate
 	 */
 	function setPublicationDate($publicationDate) {
-		$this->_publicationDate =& $publicationDate;
+		$this->_publicationDate = $publicationDate;
 	}
 
 	/**
 	 * Get the Monograph
 	 * @return Monograph
 	 */
-	function &getMonograph() {
+	function getMonograph() {
 		return $this->_monograph;
 	}
 
@@ -84,7 +84,7 @@ class PublicationDateForm extends Form {
 	 * @param Monograph
 	 */
 	function setMonograph($monograph) {
-		$this->_monograph =& $monograph;
+		$this->_monograph = $monograph;
 	}
 
 
@@ -95,7 +95,7 @@ class PublicationDateForm extends Form {
 	 * Initialize form data from the publication date.
 	 */
 	function initData() {
-		$date =& $this->getPublicationDate();
+		$date = $this->getPublicationDate();
 
 		if ($date) {
 			$this->_data = array(
@@ -141,12 +141,12 @@ class PublicationDateForm extends Form {
 			$assignedRoles = array_keys($publicationDates->toAssociativeArray('role')); // currently assigned roles
 			if ($publicationDate) $assignedRoles = array_diff($assignedRoles, array($publicationDate->getRole())); // allow existing roles to keep their value
 			$onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO');
-			$roles =& $onixCodelistItemDao->getCodes('List163', $assignedRoles); // ONIX list for these
-			$templateMgr->assign_by_ref('publicationDateRoles', $roles);
+			$roles = $onixCodelistItemDao->getCodes('List163', $assignedRoles); // ONIX list for these
+			$templateMgr->assign('publicationDateRoles', $roles);
 
 			//load our date formats
-			$dateFormats =& $onixCodelistItemDao->getCodes('List55');
-			$templateMgr->assign_by_ref('publicationDateFormats', $dateFormats);
+			$dateFormats = $onixCodelistItemDao->getCodes('List55');
+			$templateMgr->assign('publicationDateFormats', $dateFormats);
 		} else {
 			fatalError('Format not in authorized monograph');
 		}

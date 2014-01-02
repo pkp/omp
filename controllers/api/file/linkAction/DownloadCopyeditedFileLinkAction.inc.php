@@ -27,8 +27,8 @@ class DownloadCopyeditedFileLinkAction extends DownloadFileLinkAction {
 	 *  link to.
 	 */
 	function DownloadCopyeditedFileLinkAction($request, $monographFile, $user, $userGroup) {
-		$this->_user =& $user;
-		$this->_userGroup =& $userGroup;
+		$this->_user = $user;
+		$this->_userGroup = $userGroup;
 
 		parent::DownloadFileLinkAction($request, $monographFile);
 	}

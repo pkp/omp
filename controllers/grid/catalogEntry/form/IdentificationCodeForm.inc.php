@@ -52,14 +52,14 @@ class IdentificationCodeForm extends Form {
 	 * @param @identificationCode IdentificationCode
 	 */
 	function setIdentificationCode($identificationCode) {
-		$this->_identificationCode =& $identificationCode;
+		$this->_identificationCode = $identificationCode;
 	}
 
 	/**
 	 * Get the Monograph
 	 * @return Monograph
 	 */
-	function &getMonograph() {
+	function getMonograph() {
 		return $this->_monograph;
 	}
 
@@ -68,7 +68,7 @@ class IdentificationCodeForm extends Form {
 	 * @param Monograph
 	 */
 	function setMonograph($monograph) {
-		$this->_monograph =& $monograph;
+		$this->_monograph = $monograph;
 	}
 
 
@@ -79,7 +79,7 @@ class IdentificationCodeForm extends Form {
 	 * Initialize form data from the identification code.
 	 */
 	function initData() {
-		$code =& $this->getIdentificationCode();
+		$code = $this->getIdentificationCode();
 
 		if ($code) {
 			$this->_data = array(
@@ -101,7 +101,7 @@ class IdentificationCodeForm extends Form {
 
 		$monograph = $this->getMonograph();
 		$templateMgr->assign('submissionId', $monograph->getId());
-		$identificationCode =& $this->getIdentificationCode();
+		$identificationCode = $this->getIdentificationCode();
 
 		if ($identificationCode) {
 			$publicationFormatId = $identificationCode->getPublicationFormatId();
@@ -124,13 +124,13 @@ class IdentificationCodeForm extends Form {
 			$onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO');
 
 			// since the pubId DOI plugin may be enabled, we give that precedence and remove DOI from here if that is the case.
-			$pubIdPlugins =& PluginRegistry::loadCategory('pubIds', true);
+			$pubIdPlugins = PluginRegistry::loadCategory('pubIds', true);
 			foreach ($pubIdPlugins as $plugin) {
 				if ($plugin->getEnabled() && $plugin->getPubIdType() == 'doi') {
 					$assignedCodes[] = '06'; // 06 is DOI in ONIX-speak.
 				}
 			}
-			$codes =& $onixCodelistItemDao->getCodes('List5', $assignedCodes); // ONIX list for these
+			$codes = $onixCodelistItemDao->getCodes('List5', $assignedCodes); // ONIX list for these
 			$templateMgr->assign_by_ref('identificationCodes', $codes);
 		} else {
 			fatalError('Format not in authorized monograph');
@@ -161,7 +161,7 @@ class IdentificationCodeForm extends Form {
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
 
 		$monograph = $this->getMonograph();
-		$identificationCode =& $this->getIdentificationCode();
+		$identificationCode = $this->getIdentificationCode();
 		$publicationFormat = $publicationFormatDao->getById($this->getData('publicationFormatId', $monograph->getId()));
 
 		if (!$identificationCode) {

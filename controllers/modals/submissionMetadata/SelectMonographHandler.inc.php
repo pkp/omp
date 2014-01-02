@@ -67,9 +67,8 @@ class SelectMonographHandler extends Handler {
 		$monographDao = DAORegistry::getDAO('MonographDAO');
 		$submissionsIterator = $monographDao->getUnpublishedMonographsByPressId($press->getId());
 		$submissions = array();
-		while ($monograph =& $submissionsIterator->next()) {
+		while ($monograph = $submissionsIterator->next()) {
 			$submissions[$monograph->getId()] = $monograph->getLocalizedTitle();
-			unset($monograph);
 		}
 
 		$jsonMessage = new JSONMessage(true, $submissions);

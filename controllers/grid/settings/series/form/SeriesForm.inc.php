@@ -158,7 +158,7 @@ class SeriesForm extends Form {
 			// Fetch the temporary file storing the uploaded library file
 			$temporaryFileDao = DAORegistry::getDAO('TemporaryFileDAO');
 
-			$temporaryFile =& $temporaryFileDao->getTemporaryFile($temporaryFileId, $this->_userId);
+			$temporaryFile = $temporaryFileDao->getTemporaryFile($temporaryFileId, $this->_userId);
 			$temporaryFilePath = $temporaryFile->getFilePath();
 			import('lib.pkp.classes.file.ContextFileManager');
 			$pressFileManager = new ContextFileManager($press->getId());

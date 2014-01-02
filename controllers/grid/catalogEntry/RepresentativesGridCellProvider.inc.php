@@ -33,8 +33,7 @@ class RepresentativesGridCellProvider extends DataObjectGridCellProvider {
 	 * @return array
 	 */
 	function getTemplateVarsFromRowColumn($row, $column) {
-		$data =& $row->getData();
-		$element =& $data;
+		$element = $row->getData();
 
 		$columnId = $column->getId();
 		assert(is_a($element, 'DataObject') && !empty($columnId));

@@ -32,7 +32,7 @@ class ChapterGridCategoryRow extends GridCategoryRow {
 	 * Constructor
 	 */
 	function ChapterGridCategoryRow(&$monograph, $readOnly = false) {
-		$this->_monograph =& $monograph;
+		$this->_monograph = $monograph;
 		$this->_readOnly = $readOnly;
 		parent::GridCategoryRow();
 	}

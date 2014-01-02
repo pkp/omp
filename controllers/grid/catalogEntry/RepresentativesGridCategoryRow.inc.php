@@ -35,7 +35,7 @@ class RepresentativesGridCategoryRow extends GridCategoryRow {
 	 * return string
 	 */
 	function getCategoryLabel() {
-		$data =& $this->getData();
+		$data = $this->getData();
 		return __($data['name']);
 	}
 }

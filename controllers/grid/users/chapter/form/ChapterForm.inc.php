@@ -55,7 +55,7 @@ class ChapterForm extends Form {
 	 * @param $monograph Monograph
 	 */
 	function setMonograph($monograph) {
-		$this->_monograph =& $monograph;
+		$this->_monograph = $monograph;
 	}
 
 	/**
@@ -71,7 +71,7 @@ class ChapterForm extends Form {
 	 * @param $chapter Chapter
 	 */
 	function setChapter($chapter) {
-		$this->_chapter =& $chapter;
+		$this->_chapter = $chapter;
 	}
 
 	//
@@ -112,7 +112,7 @@ class ChapterForm extends Form {
 	 */
 	function execute() {
 		$chapterDao = DAORegistry::getDAO('ChapterDAO');
-		$chapter =& $this->getChapter();
+		$chapter = $this->getChapter();
 
 		if ($chapter) {
 			$chapter->setTitle($this->getData('title'), null); //Localized

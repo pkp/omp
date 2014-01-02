@@ -49,7 +49,7 @@ class MarketsGridHandler extends GridHandler {
 	 * Get the monograph associated with this grid.
 	 * @return Monograph
 	 */
-	function &getMonograph() {
+	function getMonograph() {
 		return $this->_monograph;
 	}
 
@@ -58,14 +58,14 @@ class MarketsGridHandler extends GridHandler {
 	 * @param Monograph
 	 */
 	function setMonograph($monograph) {
-		$this->_monograph =& $monograph;
+		$this->_monograph = $monograph;
 	}
 
 	/**
 	 * Get the publication format assocated with these markets
 	 * @return PublicationFormat
 	 */
-	function &getPublicationFormat() {
+	function getPublicationFormat() {
 		return $this->_publicationFormat;
 	}
 
@@ -74,7 +74,7 @@ class MarketsGridHandler extends GridHandler {
 	 * @param PublicationFormat
 	 */
 	function setPublicationFormat($publicationFormat) {
-		$this->_publicationFormat =& $publicationFormat;
+		$this->_publicationFormat = $publicationFormat;
 	}
 
 	//

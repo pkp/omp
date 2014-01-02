@@ -31,7 +31,7 @@ class CategoryGridRow extends GridRow {
 	function initialize($request) {
 		parent::initialize($request);
 
-		$rowData =& $this->getData(); // a Category object
+		$rowData = $this->getData(); // a Category object
 		assert($rowData != null);
 
 		$rowId = $this->getId();

@@ -39,7 +39,7 @@ class CategoryGridCategoryRow extends GridCategoryRow {
 		// Is this a new row or an existing row?
 		$categoryId = $this->getId();
 		if (!empty($categoryId) && is_numeric($categoryId)) {
-			$category =& $this->getData();
+			$category = $this->getData();
 
 			// Only add row actions if this is an existing row
 			import('lib.pkp.classes.linkAction.request.RemoteActionConfirmationModal');

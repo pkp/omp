@@ -102,7 +102,7 @@ class SignoffFileUploadForm extends Form {
 		if (isset($signoff)) {
 			$templateMgr->assign('signoffId', $signoff->getId());
 
-			$submissionFile =& $submissionFileDao->getLatestRevision($signoff->getAssocId());
+			$submissionFile = $submissionFileDao->getLatestRevision($signoff->getAssocId());
 			assert(is_a($submissionFile, 'MonographFile'));
 
 			$templateMgr->assign('signoffFileName', $submissionFile->getLocalizedName());
@@ -185,7 +185,7 @@ class SignoffFileUploadForm extends Form {
 			if ($temporaryFileId) {
 				// Fetch the temporary file storing the uploaded library file
 				$temporaryFileDao = DAORegistry::getDAO('TemporaryFileDAO');
-				$temporaryFile =& $temporaryFileDao->getTemporaryFile(
+				$temporaryFile = $temporaryFileDao->getTemporaryFile(
 					$temporaryFileId,
 					$user->getId()
 				);

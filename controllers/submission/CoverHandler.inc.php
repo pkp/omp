@@ -60,15 +60,15 @@ class CoverHandler extends PKPHandler {
 	 * Set the current press
 	 * @param $press Press
 	 */
-	function setPress(&$press) {
-		$this->_press =& $press;
+	function setPress($press) {
+		$this->_press = $press;
 	}
 
 	/**
 	 * Get the current press
 	 * @return Press
 	 */
-	function &getPress() {
+	function getPress() {
 		return $this->_press;
 	}
 
@@ -76,7 +76,7 @@ class CoverHandler extends PKPHandler {
 	 * Serve the cover image for a published monograph.
 	 */
 	function cover($args, $request) {
-		$publishedMonograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_PUBLISHED_MONOGRAPH);
+		$publishedMonograph = $this->getAuthorizedContextObject(ASSOC_TYPE_PUBLISHED_MONOGRAPH);
 		if (!$coverImage = $publishedMonograph->getCoverImage()) {
 			// Can't use Request::redirectUrl; FireFox doesn't
 			// seem to like it for images.
@@ -93,7 +93,7 @@ class CoverHandler extends PKPHandler {
 	 * Serve the cover thumbnail for a published monograph.
 	 */
 	function thumbnail($args, $request) {
-		$publishedMonograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_PUBLISHED_MONOGRAPH);
+		$publishedMonograph = $this->getAuthorizedContextObject(ASSOC_TYPE_PUBLISHED_MONOGRAPH);
 		if (!$coverImage = $publishedMonograph->getCoverImage()) {
 			// Can't use Request::redirectUrl; FireFox doesn't
 			// seem to like it for images.
@@ -110,7 +110,7 @@ class CoverHandler extends PKPHandler {
 	 * Serve the cover catalog image for a published monograph.
 	 */
 	function catalog($args, $request) {
-		$publishedMonograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_PUBLISHED_MONOGRAPH);
+		$publishedMonograph = $this->getAuthorizedContextObject(ASSOC_TYPE_PUBLISHED_MONOGRAPH);
 		if (!$coverImage = $publishedMonograph->getCoverImage()) {
 			// Can't use Request::redirectUrl; FireFox doesn't
 			// seem to like it for images.

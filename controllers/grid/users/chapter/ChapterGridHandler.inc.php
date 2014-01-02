@@ -313,7 +313,7 @@ class ChapterGridHandler extends CategoryGridHandler {
 		if ($chapterForm->validate()) {
 			$chapterForm->execute();
 
-			$newChapter =& $chapterForm->getChapter();
+			$newChapter = $chapterForm->getChapter();
 
 			return DAO::getDataChangedEvent($newChapter->getId());
 		} else {

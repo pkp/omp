@@ -86,16 +86,16 @@ class CatalogEntryCatalogMetadataForm extends Form {
 		$onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO');
 
 		// get the lists associated with the select elements on this form
-		$audienceCodes =& $onixCodelistItemDao->getCodes('List28');
-		$audienceRangeQualifiers =& $onixCodelistItemDao->getCodes('List30');
-		$audienceRanges =& $onixCodelistItemDao->getCodes('List77');
+		$audienceCodes = $onixCodelistItemDao->getCodes('List28');
+		$audienceRangeQualifiers = $onixCodelistItemDao->getCodes('List30');
+		$audienceRanges = $onixCodelistItemDao->getCodes('List77');
 
 		// assign these lists to the form for select options
 		$templateMgr->assign('audienceCodes', $audienceCodes);
 		$templateMgr->assign('audienceRangeQualifiers', $audienceRangeQualifiers);
 		$templateMgr->assign('audienceRanges', $audienceRanges);
 
-		$publishedMonograph =& $this->getPublishedMonograph();
+		$publishedMonograph = $this->getPublishedMonograph();
 		if ($publishedMonograph) {
 
 			// pre-select the existing values on the form.
@@ -179,7 +179,7 @@ class CatalogEntryCatalogMetadataForm extends Form {
 			import('lib.pkp.classes.file.TemporaryFileManager');
 			$temporaryFileManager = new TemporaryFileManager();
 			$temporaryFileDao = DAORegistry::getDAO('TemporaryFileDAO');
-			$temporaryFile =& $temporaryFileDao->getTemporaryFile($temporaryFileId, $this->_userId);
+			$temporaryFile = $temporaryFileDao->getTemporaryFile($temporaryFileId, $this->_userId);
 			if (	!$temporaryFile ||
 				!($this->_imageExtension = $temporaryFileManager->getImageExtension($temporaryFile->getFileType())) ||
 				!($this->_sizeArray = getimagesize($temporaryFile->getFilePath())) ||
@@ -219,7 +219,7 @@ class CatalogEntryCatalogMetadataForm extends Form {
 		if ($temporaryFileId = $this->getData('temporaryFileId')) {
 			// Fetch the temporary file storing the uploaded library file
 			$temporaryFileDao = DAORegistry::getDAO('TemporaryFileDAO');
-			$temporaryFile =& $temporaryFileDao->getTemporaryFile($temporaryFileId, $this->_userId);
+			$temporaryFile = $temporaryFileDao->getTemporaryFile($temporaryFileId, $this->_userId);
 			$temporaryFilePath = $temporaryFile->getFilePath();
 			import('classes.file.SimpleMonographFileManager');
 			$simpleMonographFileManager = new SimpleMonographFileManager($monograph->getPressId(), $publishedMonograph->getId());

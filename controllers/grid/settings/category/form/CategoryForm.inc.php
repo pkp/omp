@@ -153,15 +153,14 @@ class CategoryForm extends Form {
 		$templateMgr->assign('categoryId', $this->getCategoryId());
 
 		// Provide a list of root categories to the template
-		$rootCategoriesIterator =& $categoryDao->getByParentId(0, $press->getId());
+		$rootCategoriesIterator = $categoryDao->getByParentId(0, $press->getId());
 		$rootCategories = array(0 => __('common.none'));
-		while ($category =& $rootCategoriesIterator->next()) {
+		while ($category = $rootCategoriesIterator->next()) {
 			$categoryId = $category->getId();
 			if ($categoryId != $this->getCategoryId()) {
 				// Don't permit time travel paradox
 				$rootCategories[$categoryId] = $category->getLocalizedTitle();
 			}
-			unset($category);
 		}
 		$templateMgr->assign('rootCategories', $rootCategories);
 
@@ -169,7 +168,7 @@ class CategoryForm extends Form {
 		// if so, prevent the user from giving it a parent.
 		// (Forced two-level maximum tree depth.)
 		if ($this->getCategoryId()) {
-			$children =& $categoryDao->getByParentId($this->getCategoryId(), $press->getId());
+			$children = $categoryDao->getByParentId($this->getCategoryId(), $press->getId());
 			if ($children->next()) {
 				$templateMgr->assign('cannotSelectChild', true);
 			}
@@ -204,7 +203,7 @@ class CategoryForm extends Form {
 			// Fetch the temporary file storing the uploaded library file
 			$temporaryFileDao = DAORegistry::getDAO('TemporaryFileDAO');
 
-			$temporaryFile =& $temporaryFileDao->getTemporaryFile($temporaryFileId, $this->_userId);
+			$temporaryFile = $temporaryFileDao->getTemporaryFile($temporaryFileId, $this->_userId);
 			$temporaryFilePath = $temporaryFile->getFilePath();
 			import('lib.pkp.classes.file.ContextFileManager');
 			$pressFileManager = new ContextFileManager($this->getPressId());

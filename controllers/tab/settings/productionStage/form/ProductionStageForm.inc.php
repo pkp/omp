@@ -42,7 +42,7 @@ class ProductionStageForm extends ContextSettingsForm {
 	function fetch($request, $params = null) {
 		$templateMgr = TemplateManager::getManager($request);
 		$onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO');
-		$codeTypes =& $onixCodelistItemDao->getCodes('List44'); // Name code types for publisher
+		$codeTypes = $onixCodelistItemDao->getCodes('List44'); // Name code types for publisher
 		$templateMgr->assign('codeTypes', $codeTypes);
 
 		return parent::fetch($request);

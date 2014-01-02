@@ -56,14 +56,14 @@ class RepresentativeForm extends Form {
 	 * @param @representative Representative
 	 */
 	function setRepresentative($representative) {
-		$this->_representative =& $representative;
+		$this->_representative = $representative;
 	}
 
 	/**
 	 * Get the Monograph
 	 * @return Monograph
 	 */
-	function &getMonograph() {
+	function getMonograph() {
 		return $this->_monograph;
 	}
 
@@ -72,7 +72,7 @@ class RepresentativeForm extends Form {
 	 * @param Monograph
 	 */
 	function setMonograph($monograph) {
-		$this->_monograph =& $monograph;
+		$this->_monograph = $monograph;
 	}
 
 
@@ -83,7 +83,7 @@ class RepresentativeForm extends Form {
 	 * Initialize form data from the representative entry.
 	 */
 	function initData() {
-		$representative =& $this->getRepresentative();
+		$representative = $this->getRepresentative();
 
 		if ($representative) {
 			$this->_data = array(
@@ -111,7 +111,7 @@ class RepresentativeForm extends Form {
 
 		$monograph = $this->getMonograph();
 		$templateMgr->assign('submissionId', $monograph->getId());
-		$representative =& $this->getRepresentative();
+		$representative = $this->getRepresentative();
 		$onixCodelistItemDao = DAORegistry::getDAO('ONIXCodelistItemDAO');
 		$templateMgr->assign('idTypeCodes', $onixCodelistItemDao->getCodes('List92')); // GLN, etc
 		$templateMgr->assign('agentRoleCodes', $onixCodelistItemDao->getCodes('List69')); // Sales Agent, etc
@@ -163,7 +163,7 @@ class RepresentativeForm extends Form {
 	function execute() {
 		$representativeDao = DAORegistry::getDAO('RepresentativeDAO');
 		$monograph = $this->getMonograph();
-		$representative =& $this->getRepresentative();
+		$representative = $this->getRepresentative();
 
 		if (!$representative) {
 			// this is a new representative for this monograph

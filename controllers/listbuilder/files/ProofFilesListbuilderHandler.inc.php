@@ -72,7 +72,7 @@ class ProofFilesListbuilderHandler extends FilesListbuilderHandler {
 	 * @see FilesListbuilderHandler::getRequestArgs
 	 */
 	function getRequestArgs() {
-		$publicationFormat =& $this->getAuthorizedContextObject(ASSOC_TYPE_PUBLICATION_FORMAT);
+		$publicationFormat = $this->getAuthorizedContextObject(ASSOC_TYPE_PUBLICATION_FORMAT);
 		$args = parent::getRequestArgs();
 		$args['publicationFormatId'] = $publicationFormat->getId();
 		return $args;

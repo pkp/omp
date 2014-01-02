@@ -59,7 +59,7 @@ class ChapterGridCategoryRowCellProvider extends GridCellProvider {
 		// If row is not read only, the cell will contains a link
 		// action. See getCellActions() above.
 		if ($column->getId() == 'name' && $row->isReadOnly()) {
-			$chapter =& $row->getData();
+			$chapter = $row->getData();
 			$label = $chapter->getLocalizedTitle();
 		} else {
 			$label = '';

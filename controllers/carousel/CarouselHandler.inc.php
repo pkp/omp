@@ -62,7 +62,7 @@ class CarouselHandler extends Handler {
 
 			// Fetch the monographs to display
 			$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
-			$publishedMonographs =& $publishedMonographDao->getByPressId($press->getId());
+			$publishedMonographs = $publishedMonographDao->getByPressId($press->getId());
 			$templateMgr->assign('publishedMonographs', $publishedMonographs->toAssociativeArray());
 
 			// Render the carousel.

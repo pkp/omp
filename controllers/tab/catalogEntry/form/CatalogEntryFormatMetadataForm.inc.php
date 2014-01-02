@@ -105,7 +105,7 @@ class CatalogEntryFormatMetadataForm extends Form {
 		}
 
 		// consider public identifiers
-		$pubIdPlugins =& PluginRegistry::loadCategory('pubIds', true);
+		$pubIdPlugins = PluginRegistry::loadCategory('pubIds', true);
 		$templateMgr->assign('pubIdPlugins', $pubIdPlugins);
 
 		// Notification options.
@@ -162,7 +162,7 @@ class CatalogEntryFormatMetadataForm extends Form {
 		);
 
 		// initialize the pubId fields.
-		$pubIdPluginHelper =& $this->_getPubIdPluginHelper();
+		$pubIdPluginHelper = $this->_getPubIdPluginHelper();
 		$pubIdPluginHelper->init($this, $publicationFormat);
 	}
 
@@ -195,7 +195,7 @@ class CatalogEntryFormatMetadataForm extends Form {
 		));
 
 		// consider the additional field names from the public identifer plugins
-		$pubIdPluginHelper =& $this->_getPubIdPluginHelper();
+		$pubIdPluginHelper = $this->_getPubIdPluginHelper();
 		$pubIdPluginHelper->readInputData($this);
 	}
 
@@ -254,7 +254,7 @@ class CatalogEntryFormatMetadataForm extends Form {
 		$publicationFormat->setIsApproved($this->getData('isApproved')?true:false);
 
 		// consider the additional field names from the public identifer plugins
-		$pubIdPluginHelper =& $this->_getPubIdPluginHelper();
+		$pubIdPluginHelper = $this->_getPubIdPluginHelper();
 		$pubIdPluginHelper->execute($this, $publicationFormat);
 
 		$publicationFormatDao->updateObject($publicationFormat);

@@ -137,7 +137,7 @@ class FileSignoffHandler extends FileManagementHandler {
 	function readSignoff($args, $request) {
 		$signoffDao = DAORegistry::getDAO('SubmissionFileSignoffDAO');
 		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-		$signoff =& $this->getAuthorizedContextObject(ASSOC_TYPE_SIGNOFF);
+		$signoff = $this->getAuthorizedContextObject(ASSOC_TYPE_SIGNOFF);
 
 		// Sanity check.
 		if (!$signoff) {
@@ -160,9 +160,9 @@ class FileSignoffHandler extends FileManagementHandler {
 
 		// Check if there is a note and assign it for dispaly
 		$noteDao = DAORegistry::getDAO('NoteDAO'); /* @var $noteDao NoteDAO */
-		$notes =& $noteDao->getByAssoc(ASSOC_TYPE_SIGNOFF, $signoff->getId());
+		$notes = $noteDao->getByAssoc(ASSOC_TYPE_SIGNOFF, $signoff->getId());
 		if (!$notes->wasEmpty()) {
-			$lastNote =& $notes->next();
+			$lastNote = $notes->next();
 			$templateMgr->assign('noteText', $lastNote->getContents());
 		} else {
 			$templateMgr->assign('noteText', '');
@@ -170,7 +170,7 @@ class FileSignoffHandler extends FileManagementHandler {
 
 		// Check if there is a response file and assign it for download
 		if ($signoff->getFileId() && $signoff->getFileRevision()) {
-			$responseFile =& $submissionFileDao->getRevision($signoff->getFileId(), $signoff->getFileRevision());
+			$responseFile = $submissionFileDao->getRevision($signoff->getFileId(), $signoff->getFileRevision());
 			assert(is_a($responseFile, 'MonographFile'));
 
 			import('lib.pkp.controllers.api.file.linkAction.DownloadFileLinkAction');
