@@ -212,7 +212,7 @@ class MarketsGridHandler extends GridHandler {
 	}
 
 	/**
-	 * @see GridHandler::loadData
+	 * @copydoc GridHandler::loadData
 	 */
 	function loadData($request, $filter = null) {
 		$publicationFormat = $this->getPublicationFormat();
