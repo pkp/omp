@@ -106,7 +106,6 @@
 	<message key="submission.catalogEntry.publicationMetadata">Publication Format</message>
 
 	<!-- Log events -->
-	<message key="submission.event.monographSubmitted">The monograph is submitted.</message>
 	<message key="submission.event.participantAdded">"{$name}" ({$username}) is added as a {$userGroupName}.</message>
 	<message key="submission.event.participantRemoved">"{$name}" ({$username}) is removed as a {$userGroupName}.</message>
 	<message key="submission.event.metadataPublished">The monograph's metadata is approved for publication.</message>
