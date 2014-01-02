@@ -15,7 +15,6 @@
 // import grid base classes
 import('lib.pkp.classes.controllers.grid.GridHandler');
 
-
 // import format grid specific classes
 import('controllers.grid.catalogEntry.MarketsGridCellProvider');
 import('controllers.grid.catalogEntry.MarketsGridRow');
@@ -100,7 +99,8 @@ class MarketsGridHandler extends GridHandler {
 		parent::initialize($request);
 
 		// Retrieve the authorized monograph.
-		$this->setMonograph($this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH));
+		$monograph = $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		$this->setMonograph($monograph);
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
 		$publicationFormatId = null;
 
@@ -109,7 +109,7 @@ class MarketsGridHandler extends GridHandler {
 
 		if ($marketId != '') {
 			$marketDao = DAORegistry::getDAO('MarketDAO');
-			$market = $marketDao->getById($marketId, $this->getMonograph()->getId());
+			$market = $marketDao->getById($marketId, $monograph->getId());
 			if ($market) {
 				$publicationFormatId = $market->getPublicationFormatId();
 			}
@@ -117,7 +117,7 @@ class MarketsGridHandler extends GridHandler {
 			$publicationFormatId = (int) $request->getUserVar('publicationFormatId');
 		}
 
-		$publicationFormat = $publicationFormatDao->getById($publicationFormatId, $this->getMonograph()->getId());
+		$publicationFormat = $publicationFormatDao->getById($publicationFormatId, $monograph->getId());
 
 		if ($publicationFormat) {
 			$this->setPublicationFormat($publicationFormat);
@@ -225,7 +225,11 @@ class MarketsGridHandler extends GridHandler {
 	//
 	// Public  Market Grid Actions
 	//
-
+	/**
+	 * Add a new market
+	 * @param $args array
+	 * @param $request PKPRequest
+	 */
 	function addMarket($args, $request) {
 		return $this->editMarket($args, $request);
 	}

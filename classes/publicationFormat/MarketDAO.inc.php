@@ -107,7 +107,7 @@ class MarketDAO extends DAO {
 	 * Insert a new market entry.
 	 * @param $market Market
 	 */
-	function insertObject(&$market) {
+	function insertObject($market) {
 		$this->update(
 			'INSERT INTO markets
 				(publication_format_id, countries_included, countries_excluded, regions_included, regions_excluded, market_date_role, market_date_format, market_date, price, discount, price_type_code, currency_code, tax_rate_code, tax_type_code, agent_id, supplier_id)
@@ -190,7 +190,7 @@ class MarketDAO extends DAO {
 	}
 
 	/**
-	 * delete a market entry by id.
+	 * Delete a market entry by id.
 	 * @param $entryId int
 	 */
 	function deleteById($entryId) {
