@@ -160,7 +160,6 @@
 	<message key="submission.informationCenter.history">Historique</message>
 
 	<!-- Log events -->
-	<message key="submission.event.monographSubmitted">La monographie a été soumise.</message>
 	<message key="submission.event.participantAdded">"{$name}" ({$username}) fait partie du groupe {$userGroupName}.</message>
 	<message key="submission.event.participantRemoved">"{$name}" ({$username}) ne fait plus partie du groupe {$userGroupName}.</message>
 	<message key="submission.event.metadataPublished">Les métadonnées de la monographie ont été approuvées pour la publication.</message>
