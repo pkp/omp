@@ -47,7 +47,7 @@ class RepresentativesGridHandler extends CategoryGridHandler {
 	 * Get the monograph associated with this grid.
 	 * @return Monograph
 	 */
-	function &getMonograph() {
+	function getMonograph() {
 		return $this->_monograph;
 	}
 
@@ -56,7 +56,7 @@ class RepresentativesGridHandler extends CategoryGridHandler {
 	 * @param Monograph
 	 */
 	function setMonograph($monograph) {
-		$this->_monograph =& $monograph;
+		$this->_monograph = $monograph;
 	}
 
 

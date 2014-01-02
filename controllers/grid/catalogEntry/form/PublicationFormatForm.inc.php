@@ -42,7 +42,7 @@ class PublicationFormatForm extends Form {
 	 * Get the format
 	 * @return PublicationFormat
 	 */
-	function &getPublicationFormat() {
+	function getPublicationFormat() {
 		return $this->_publicationFormat;
 	}
 
@@ -51,14 +51,14 @@ class PublicationFormatForm extends Form {
 	 * @param @format PublicationFormat
 	 */
 	function setPublicationFormat($publicationFormat) {
-		$this->_publicationFormat =& $publicationFormat;
+		$this->_publicationFormat = $publicationFormat;
 	}
 
 	/**
 	 * Get the Monograph
 	 * @return Monograph
 	 */
-	function &getMonograph() {
+	function getMonograph() {
 		return $this->_monograph;
 	}
 
@@ -67,7 +67,7 @@ class PublicationFormatForm extends Form {
 	 * @param Monograph
 	 */
 	function setMonograph($monograph) {
-		$this->_monograph =& $monograph;
+		$this->_monograph = $monograph;
 	}
 
 
@@ -78,7 +78,7 @@ class PublicationFormatForm extends Form {
 	 * Initialize form data from the associated publication format.
 	 */
 	function initData() {
-		$format =& $this->getPublicationFormat();
+		$format = $this->getPublicationFormat();
 
 		if ($format) {
 			$this->_data = array(
@@ -133,7 +133,7 @@ class PublicationFormatForm extends Form {
 	function execute($request) {
 		$publicationFormatDao = DAORegistry::getDAO('PublicationFormatDAO');
 		$monograph = $this->getMonograph();
-		$publicationFormat =& $this->getPublicationFormat();
+		$publicationFormat = $this->getPublicationFormat();
 		if (!$publicationFormat) {
 			// this is a new format to this published monograph
 			$publicationFormat = $publicationFormatDao->newDataObject();

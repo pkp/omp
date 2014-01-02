@@ -70,7 +70,7 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 	 * @return array
 	 */
 	function getTemplateVarsFromRowColumn($row, $column) {
-		$publicationFormat =& $row->getData();
+		$publicationFormat = $row->getData();
 		$columnId = $column->getId();
 		assert(is_a($publicationFormat, 'DataObject') && !empty($columnId));
 		switch ($columnId) {
@@ -112,7 +112,7 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 	 * @return string
 	 */
 	function getCellState($row, $column) {
-		$publicationFormat =& $row->getData();
+		$publicationFormat = $row->getData();
 		switch ($column->getId()) {
 			case 'proofComplete':
 				return $this->isProofComplete($publicationFormat)?'completed':'new';
@@ -131,7 +131,7 @@ class PublicationFormatGridCellProvider extends DataObjectGridCellProvider {
 	 * @see GridCellProvider::getCellActions()
 	 */
 	function getCellActions($request, $row, $column) {
-		$publicationFormat =& $row->getData();
+		$publicationFormat = $row->getData();
 		$actionArgs = array(
 			'submissionId' => $publicationFormat->getMonographId(),
 			'publicationFormatId' => $publicationFormat->getId()

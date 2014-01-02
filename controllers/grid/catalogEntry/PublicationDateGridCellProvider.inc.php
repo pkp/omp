@@ -33,7 +33,7 @@ class PublicationDateGridCellProvider extends DataObjectGridCellProvider {
 	 * @return array
 	 */
 	function getTemplateVarsFromRowColumn($row, $column) {
-		$element =& $row->getData();
+		$element = $row->getData();
 		$columnId = $column->getId();
 		assert(is_a($element, 'DataObject') && !empty($columnId));
 		switch ($columnId) {

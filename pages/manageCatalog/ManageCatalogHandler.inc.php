@@ -150,11 +150,10 @@ class ManageCatalogHandler extends Handler {
 	function getCategories($args, $request) {
 		$press = $request->getPress();
 		$categoryDao = DAORegistry::getDAO('CategoryDAO');
-		$categoryIterator =& $categoryDao->getByPressId($press->getId());
+		$categoryIterator = $categoryDao->getByPressId($press->getId());
 		$categoryArray = array();
-		while ($category =& $categoryIterator->next()) {
+		while ($category = $categoryIterator->next()) {
 			$categoryArray[$category->getPath()] = $category->getLocalizedTitle();
-			unset($category);
 		}
 		$json = new JSONMessage(true, $categoryArray);
 		return $json->getString();

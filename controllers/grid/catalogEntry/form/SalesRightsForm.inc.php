@@ -51,7 +51,7 @@ class SalesRightsForm extends Form {
 	 * Get the entry
 	 * @return SalesRights
 	 */
-	function &getSalesRights() {
+	function getSalesRights() {
 		return $this->_salesRights;
 	}
 
@@ -60,14 +60,14 @@ class SalesRightsForm extends Form {
 	 * @param @salesRights SalesRights
 	 */
 	function setSalesRights($salesRights) {
-		$this->_salesRights =& $salesRights;
+		$this->_salesRights = $salesRights;
 	}
 
 	/**
 	 * Get the Monograph
 	 * @return Monograph
 	 */
-	function &getMonograph() {
+	function getMonograph() {
 		return $this->_monograph;
 	}
 
@@ -76,7 +76,7 @@ class SalesRightsForm extends Form {
 	 * @param Monograph
 	 */
 	function setMonograph($monograph) {
-		$this->_monograph =& $monograph;
+		$this->_monograph = $monograph;
 	}
 
 
@@ -87,7 +87,7 @@ class SalesRightsForm extends Form {
 	 * Initialize form data from the sales rights entry.
 	 */
 	function initData() {
-		$salesRights =& $this->getSalesRights();
+		$salesRights = $this->getSalesRights();
 
 		if ($salesRights) {
 			$this->_data = array(
@@ -144,8 +144,8 @@ class SalesRightsForm extends Form {
 
 			if ($salesRights) $assignedTypes = array_diff($assignedTypes, array($salesRights->getType())); // allow existing codes to keep their value
 
-			$types =& $onixCodelistItemDao->getCodes('List46', $assignedTypes); // ONIX list for these
-			$templateMgr->assign_by_ref('salesRights', $types);
+			$types = $onixCodelistItemDao->getCodes('List46', $assignedTypes); // ONIX list for these
+			$templateMgr->assign('salesRights', $types);
 		} else {
 			fatalError('Format not in authorized monograph');
 		}

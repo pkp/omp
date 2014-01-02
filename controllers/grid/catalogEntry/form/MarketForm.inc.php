@@ -43,7 +43,7 @@ class MarketForm extends Form {
 	 * Get the entry
 	 * @return Market
 	 */
-	function &getMarket() {
+	function getMarket() {
 		return $this->_market;
 	}
 
@@ -52,14 +52,14 @@ class MarketForm extends Form {
 	 * @param @market Market
 	 */
 	function setMarket($market) {
-		$this->_market =& $market;
+		$this->_market = $market;
 	}
 
 	/**
 	 * Get the Monograph
 	 * @return Monograph
 	 */
-	function &getMonograph() {
+	function getMonograph() {
 		return $this->_monograph;
 	}
 
@@ -68,7 +68,7 @@ class MarketForm extends Form {
 	 * @param Monograph
 	 */
 	function setMonograph($monograph) {
-		$this->_monograph =& $monograph;
+		$this->_monograph = $monograph;
 	}
 
 
@@ -79,7 +79,7 @@ class MarketForm extends Form {
 	 * Initialize form data from the market entry.
 	 */
 	function initData() {
-		$market =& $this->getMarket();
+		$market = $this->getMarket();
 
 		if ($market) {
 			$this->_data = array(

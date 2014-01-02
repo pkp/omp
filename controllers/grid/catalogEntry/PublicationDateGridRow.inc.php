@@ -20,9 +20,10 @@ class PublicationDateGridRow extends GridRow {
 
 	/**
 	 * Constructor
+	 * @param $monograph Monograph
 	 */
-	function PublicationDateGridRow(&$monograph) {
-		$this->_monograph =& $monograph;
+	function PublicationDateGridRow($monograph) {
+		$this->_monograph = $monograph;
 		parent::GridRow();
 	}
 

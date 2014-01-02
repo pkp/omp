@@ -179,7 +179,7 @@ class SeriesEditorSubmissionDAO extends MonographDAO {
 		unset($reviewRounds);
 		$reviewRounds =& $reviewRoundDao->getBySubmissionId($monographId);
 
-		while ($reviewRound =& $reviewRounds->next()) {
+		while ($reviewRound = $reviewRounds->next()) {
 			$stageId = $reviewRound->getStageId();
 			$round = $reviewRound->getRound();
 			foreach ($seriesEditorSubmission->getReviewAssignments($stageId, $round) as $reviewAssignment) {
@@ -191,7 +191,6 @@ class SeriesEditorSubmissionDAO extends MonographDAO {
 					$this->reviewAssignmentDao->insertObject($reviewAssignment);
 				}
 			}
-			unset($reviewRound);
 		}
 
 		// Remove deleted review assignments

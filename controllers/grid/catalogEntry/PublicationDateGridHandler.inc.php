@@ -49,7 +49,7 @@ class PublicationDateGridHandler extends GridHandler {
 	 * Get the monograph associated with this grid.
 	 * @return Monograph
 	 */
-	function &getMonograph() {
+	function getMonograph() {
 		return $this->_monograph;
 	}
 
@@ -58,14 +58,14 @@ class PublicationDateGridHandler extends GridHandler {
 	 * @param Monograph
 	 */
 	function setMonograph($monograph) {
-		$this->_monograph =& $monograph;
+		$this->_monograph = $monograph;
 	}
 
 	/**
 	 * Get the publication format assocated with these dates
 	 * @return PublicationFormat
 	 */
-	function &getPublicationFormat() {
+	function getPublicationFormat() {
 		return $this->_publicationFormat;
 	}
 
@@ -74,7 +74,7 @@ class PublicationDateGridHandler extends GridHandler {
 	 * @param PublicationFormat
 	 */
 	function setPublicationFormat($publicationFormat) {
-		$this->_publicationFormat =& $publicationFormat;
+		$this->_publicationFormat = $publicationFormat;
 	}
 
 	//
@@ -111,7 +111,7 @@ class PublicationDateGridHandler extends GridHandler {
 			$publicationDateDao = DAORegistry::getDAO('PublicationDateDAO');
 			$publicationDate = $publicationDateDao->getById($publicationDateId, $this->getMonograph()->getId());
 			if ($publicationDate) {
-				$publicationFormatId =& $publicationDate->getPublicationFormatId();
+				$publicationFormatId = $publicationDate->getPublicationFormatId();
 			}
 		} else { // empty form for new Date
 			$publicationFormatId = (int) $request->getUserVar('publicationFormatId');
@@ -196,7 +196,7 @@ class PublicationDateGridHandler extends GridHandler {
 	 */
 	function getRequestArgs() {
 		$monograph = $this->getMonograph();
-		$publicationFormat =& $this->getPublicationFormat();
+		$publicationFormat = $this->getPublicationFormat();
 
 		return array(
 			'submissionId' => $monograph->getId(),

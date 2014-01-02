@@ -49,7 +49,7 @@ class SalesRightsGridHandler extends GridHandler {
 	 * Get the monograph associated with this grid.
 	 * @return Monograph
 	 */
-	function &getMonograph() {
+	function getMonograph() {
 		return $this->_monograph;
 	}
 
@@ -58,14 +58,14 @@ class SalesRightsGridHandler extends GridHandler {
 	 * @param Monograph
 	 */
 	function setMonograph($monograph) {
-		$this->_monograph =& $monograph;
+		$this->_monograph = $monograph;
 	}
 
 	/**
 	 * Get the publication format assocated with these sales rights
 	 * @return PublicationFormat
 	 */
-	function &getPublicationFormat() {
+	function getPublicationFormat() {
 		return $this->_publicationFormat;
 	}
 
@@ -74,7 +74,7 @@ class SalesRightsGridHandler extends GridHandler {
 	 * @param PublicationFormat
 	 */
 	function setPublicationFormat($publicationFormat) {
-		$this->_publicationFormat =& $publicationFormat;
+		$this->_publicationFormat = $publicationFormat;
 	}
 
 	//
@@ -111,7 +111,7 @@ class SalesRightsGridHandler extends GridHandler {
 			$salesRightsDao = DAORegistry::getDAO('SalesRightsDAO');
 			$salesRights = $salesRightsDao->getById($salesRightsId, $this->getMonograph()->getId());
 			if ($salesRights) {
-				$publicationFormatId =& $salesRights->getPublicationFormatId();
+				$publicationFormatId = $salesRights->getPublicationFormatId();
 			}
 		} else { // empty form for new SalesRights
 			$publicationFormatId = (int) $request->getUserVar('publicationFormatId');
@@ -195,7 +195,7 @@ class SalesRightsGridHandler extends GridHandler {
 	 */
 	function getRequestArgs() {
 		$monograph = $this->getMonograph();
-		$publicationFormat =& $this->getPublicationFormat();
+		$publicationFormat = $this->getPublicationFormat();
 
 		return array(
 			'submissionId' => $monograph->getId(),

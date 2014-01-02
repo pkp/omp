@@ -72,9 +72,8 @@ class AnnouncementForm extends PKPAnnouncementForm {
 		if (!$announcementTypeFactory->wasEmpty()) {
 			$announcementTypeOptions = array(0 => __('common.none'));
 		}
-		while ($announcementType =& $announcementTypeFactory->next()) {
+		while ($announcementType = $announcementTypeFactory->next()) {
 			$announcementTypeOptions[$announcementType->getId()] = $announcementType->getLocalizedTypeName();
-			unset($announcementType);
 		}
 		$templateMgr->assign('announcementTypes', $announcementTypeOptions);
 
