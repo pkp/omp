@@ -7,7 +7,7 @@
  * List of operations this plugin can perform
  *}
 {strip}
-{assign var="pageTitle" value="plugins.importexport.native.displayName"}
+{assign var="pageTitle" value="plugins.importexport.users.displayName"}
 {include file="common/header.tpl"}
 {/strip}
 
@@ -22,8 +22,8 @@
 </script>
 <div id="importExportTabs">
 	<ul>
-		<li><a href="#import-tab">{translate key="plugins.importexport.native.import"}</a></li>
-		<li><a href="#export-tab">{translate key="plugins.importexport.native.export"}</a></li>
+		<li><a href="#import-tab">{translate key="plugins.importexport.users.import.importUsers"}</a></li>
+		<li><a href="#export-tab">{translate key="plugins.importexport.users.export.exportUsers"}</a></li>
 	</ul>
 	<div id="import-tab">
 		<script type="text/javascript">
@@ -44,7 +44,7 @@
 			{fbvFormArea id="importForm"}
 				{* Container for uploaded file *}
 				<input type="hidden" name="temporaryFileId" id="temporaryFileId" value="" />
-				<p>{translate key="plugins.importexport.native.import.instructions"}</p>
+				<p>{translate key="plugins.importexport.users.import.instructions"}</p>
 
 				<input type="hidden" name="temporaryFileId" id="temporaryFileId" value="" />
 				{fbvFormArea id="file"}
