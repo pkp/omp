@@ -23,24 +23,6 @@ class SubmissionEventLogDAO extends PKPSubmissionEventLogDAO {
 		parent::PKPSubmissionEventLogDAO();
 	}
 
-	/**
-	 * Generate a new DataObject
-	 * @return SubmissionEventLogEntry
-	 */
-	function newDataObject() {
-		$returner = new SubmissionEventLogEntry();
-		$returner->setAssocType(ASSOC_TYPE_SUBMISSION_FILE);
-		return $returner;
-	}
-
-	/**
-	 * Get submission event log entries by submission ID
-	 * @param $submissionId int
-	 * @return DAOResultFactory
-	 */
-	function getBySubmissionId($submissionId) {
-		return $this->getByAssoc(ASSOC_TYPE_SUBMISSION, $submissionId);
-	}
 }
 
 ?>
