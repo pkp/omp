@@ -20,31 +20,13 @@
 	<message key="monograph.audience.rangeFrom">Εύρος Κοινού (από)</message>
 	<message key="monograph.audience.rangeTo">Εύρος Κοινού (σε)</message>
 	<message key="monograph.audience.rangeExact">Εύρος Κοινού (ακριβής)</message>
-	<message key="submission.description">Περιγραφή</message>
-	<message key="monograph.authors">Συγγραφείς</message>
-	<message key="monograph.coverage">Κάλυψη Πληροφοριών</message>
-	<message key="monograph.coverage.tip">Το επόμενο πεδίο παρέχει πληροφορίες σχετικά με την κάλυψη των πεδίων της υποβολής σας. Η κάλυψη αναφέρεται στη χρονολογική ή ιστορική κάλυψη (1920-1940, 17ος αιώνας), και σχετικών γεω-χωρικών ή γεωγραφικών όρων («Αθήνα, Ελλάδα», ή «Κρήτη»).  Εάν το επιθυμείτε, μπορείτε να δείτε το δείγμα  ερευνητικής εργασίας ως βοήθημα για να ορίσετε σχετικά παραδείγματα για τη δική σας εργασία.</message>
-	<message key="monograph.coverage.chron">Χρονολογική ή ιστορική</message>
-	<message key="monograph.coverage.geo">Χωροταξική κάλυψη</message>
-	<message key="monograph.coverage.sample">Χαρακτηριστικά ερευνητικού δείγματος</message>
 	<message key="monograph.languages">Γλώσσες (Αγγλικά, Γαλλικά, Ισπανικά)</message>
 	<message key="monograph.publicationFormats">Μορφές Δημοσίευσης</message>
 	<message key="monograph.carousel.publicationFormats">Μορφότυπα:</message>
-	<message key="monograph.source">Πηγή</message>
-	<message key="monograph.source.tip">Η υποβολή προέρχεται από άλλη πηγή? Εάν ναι, μπορείτε να εισάγετε το URL ή να περιγράψετε τη συγκεκριμένη πηγή.</message>
-	<message key="monograph.subjectClass">Θέμα Υποβολής</message>
-	<message key="monograph.subjectClass.tip">Παρακαλούμε περιγράψετε την υποβολή σας με μερικές φράσεις-κλειδιά. Μπορείτε να βελτιώσετε την περιγραφή του θέματος της υποβολής σας εισάγοντας λέξεις-κλειδιά σε επόμενο στάδιο συμπλήρωσης της φόρμας.</message>
-	<message key="monograph.subjects">Λέξεις κλειδιά</message>
-	<message key="monograph.rights">Δικαιώματα</message>
-	<message key="monograph.rights.tip">Εάν επιθυμείτε, μπορείτε να καταχωρήσετε μια σύντομη δήλωση σχετικά με τα δικαιώματα πρόσβασης που αφορούν αυτή την υποβολή.</message>
-	<message key="monograph.title">Τίτλος Βιβλίου</message>
-	<message key="monograph.title.tip"><![CDATA[Το περιεχόμενο της υποβολής αφορά συνήθως αρχεία με 'εικόνα', 'κείμενο', ή άλλο πολυμεσικό αρχείο συμπεριλαμβανομένου 'λογισμικό' ή 'διαδραστική εφαρμογή'. Παρακαλούμε επιλέξτε τον πιο σχετικό με τον τύπο της υποβολής σας.  Παραδείγματα μπορούν να βρεθούν στο <a target="_blank" href="http://dublincore.org/documents/2001/04/12/usageguide/generic.shtml#type">http://dublincore.org/documents/2001/04/12/usageguide/generic.shtml#type</a>]]></message>
-	<message key="monograph.subtitle">Υπότιτλος</message>
 	<message key="monograph.type">Τύπος Υποβολής</message>
 	<message key="submission.pageProofs">Σελίδα Τυπογραφικών Δοκιμίων</message>
 	<message key="monograph.proofReadingDescription"><![CDATA[Ο επιμελητής σελιδοποίησης ανεβάζει τα αρχεία για το στάδιο-παραγωγής που έχουν ετοιμαστεί για δημοσίευση εδώ. Επιλέξτε <em>+Ανάθεση</em> για να ορίσετε συγγραφείς και άλλους να διορθώσουν και να ελέγξουν τα τυπογραφικά δοκίμια ώστε τα διορθωμένα αρχεία να μεταφορτωθούν για έγκριση πριν τη δημοσίευση.]]></message>
 	<message key="monograph.task.addNote">Προσθήκη Ανάθεσης</message>
-	<message key="submission.task.responseDueDate">Προθεσμία Ημερομηνίας Απάντησης</message>
 	<message key="monograph.accessLogoOpen.altText">Ανοικτή Πρόσβαση</message>
 
 
@@ -186,32 +168,7 @@
 	<message key="grid.action.addSpotlight">Προσθήκη Βιτρίνας</message>
 
 	<!-- Content Management - Footer grid keys -->
-	<message key="grid.content.navigation.footer">Υποσέλιδο</message>
-	<message key="grid.content.navigation.footer.noneExist">Δεν υπάρχει τρέχον υποσέλιδο.</message>
-	<message key="grid.content.navigation.footer.addCategory">Προσθήκη Κατηγορίας Υποσέλιδου</message>
-	<message key="grid.action.deleteFooterCategory">Διαγραφή Κατηγορίας Υποσέλιδου</message>
-	<message key="grid.content.navigation.footer.FooterLink">Σύνδεσμοι Υποσέλιδου</message>
-	<message key="grid.content.navigation.footer.editCategory">Επεξεργασία Κατηγορίας</message>
-	<message key="grid.content.navigation.footer.deleteCategory">Διαγραφή Κατηγορίας</message>
-	<message key="grid.content.navigation.footer.deleteCategoryConfirm">Είστε σίγουροι ότι επιθυμείτε να διαγράψετε αυτή την κατηγορία; Η ενέργεια δεν μπορεί να αναιρεθεί και οι σύνδεσμοι σε αυτή την κατηγορία θα αφαιρεθούν.</message>
-	<message key="grid.content.navigation.footer.titleRequired">Απαιτείται ένας τίτλος.</message>
-	<message key="grid.content.navigation.footer.descriptionRequired">Απαιτείται μία περιγραφή.</message>
-	<message key="grid.content.navigation.footer.pathRequired">Απαιτείται μια διαδρομή και πρέπει να είναι μοναδική.</message>
-	<message key="grid.content.navigation.footer.pathInUse">Αυτή η διαδρομή χρησιμοποιείται από άλλη κατηγορία.</message>
-	<message key="grid.action.addFooterCategoryLink">Προσθήκη νέας κατηγορίας υποσέλιδου</message>
-	<message key="grid.action.editFooterCategory">Επεξεργασία της κατηγορίας υποσέλιδου</message>
-
 	<!-- Content Management - Social Media keys -->
-	<message key="grid.content.navigation.socialMedia">Κοινωνικά Μέσα</message>
-	<message key="grid.content.navigation.socialMedia.platform">Πλατφόρμα</message>
-	<message key="grid.content.navigation.socialMedia.code">Μπλοκ κώδικα κοινωνικού δικτύου</message>
-	<message key="grid.content.navigation.socialMedia.platformRequired">Πρέπει να εισάγετε τον τίτλο της πλατφόρμας(Facebook, Google+, κλπ).</message>
-	<message key="grid.content.navigation.socialMedia.codeRequired">Πρέπει να εισάγετε τον κώδικα που επιθυμείτε να χρησιμοποιήσετε για την προβολή αυτού του κοινονικού δικτύου.</message>
-	<message key="grid.content.navigation.socialMedia.addSocialLink">Προσθήκη συνδέσμου κοινωνικού δικτύου</message>
-	<message key="grid.content.navigation.socialMedia.includeInCatalog">Χρήση αυτού για κάθε μονογραφία που εκδόθηκε στον κατάλογο?</message>
-	<message key="grid.content.navigation.socialMedia.inCatalog">Used In Catalog</message>
-	<message key="grid.action.addMedia">Προσθήκη ενός νέου τύπου κοινωνικού μέσου</message>
-
 	<!-- Editorial policies -->
 	<message key="manager.series.open">Ανοικτές Υποβολές</message>
 	<message key="manager.series.indexed">Έχει ευρετηριαστεί</message>
@@ -228,7 +185,6 @@
 	<message key="grid.action.approveProof">Έγκριση του τυπογραφικού δοκιμίου για ευρετηρίαση και ένταξη του στον κατάλογο.</message>
 	<message key="grid.action.pageProofApproved">Το αρχείο με τις σελίδες τυπογραφικού δοκιμίου είναι έτοιμο για δημοσίευση</message>
 	<message key="grid.action.addAnnouncement">Προσθήκη Ανακοίνωσης</message>
-	<message key="grid.action.showReviewPolicy">Διαβάστε την τρέχουσα πολιτική αξιολόγησης</message>
 	<message key="grid.action.newCatalogEntry">Νέα Καταχώριση στον Κατάλογο</message>
 	<message key="grid.action.publicCatalog">Προβολή αυτού του στοιχείου στον κατάλογο</message>
 	<message key="grid.action.feature">Εναλλαγή εμφάνισης στα προτεινόμενα βιβλία</message>
@@ -249,8 +205,6 @@
 	<message key="grid.action.addDate">Προσθήκη ημερομηνίας δημοσίευσης</message>
 	<message key="grid.action.editDate">Επεξεργασία ημερομηνίας</message>
 	<message key="grid.action.deleteDate">Διαγραφή της ημερομηνία</message>
-	<message key="grid.action.toggleHelp">Toggle the display of inline help</message>
-	<message key="grid.action.createPress">Δημιουργία νέων εκδόσεων</message>
 	<message key="grid.action.addCode">Προσθήκη Κωδικού</message>
 	<message key="grid.action.addSpotlight">Προσθήκη στη Βιτρίνα</message>
 	<message key="grid.action.publicationFormatTab">Προβολή ετικέτας του μορφότυπου δημοσίευσης</message>
@@ -262,41 +216,6 @@
 	<message key="grid.action.formatAvailable">Το μορφότυπο είναι διαθέσιμο και έχει δημοσιευθεί</message>
 
 	<!-- Used in submission review -->
-	<message key="reviewer.reviewSteps.request">1. Άίτημα</message>
-	<message key="reviewer.reviewSteps.guidelines">2. Οδηγίες</message>
-	<message key="reviewer.reviewSteps.download"><![CDATA[3. Λήψη Αρχείων & Αξιολόγηση]]></message>
-	<message key="reviewer.reviewSteps.completion">4. Ολοκλήρωση</message>
-	<message key="reviewer.step1.request">Αίτημα για αξιολόγηση</message>
-	<message key="reviewer.step1.requestBoilerplate">Έχετε επιλεγεί ως αξιολογητής για την ακόλουθη υποβολή. Ακολουθεί μια περίληψη της υποβολής, καθώς και το χρονοδιάγραμμα για την ολοκλήρωση της αξιολόγησης. Ελπίζουμε να είστε σε θέση να συμμετέχετε.</message>
-	<message key="reviewer.step1.viewAllDetails">Προβολή όλων των λεπτομερειών της υποβολής</message>
-	<message key="reviewer.submission.declineReview">Απόρριψη αιτήματος αξιολόγησης</message>
-	<message key="reviewer.submission.declineReviewMessage">Μπορείτε να επισημάνετε στον υπεύθυνο έκδοσης τους λόγους μη αποδοχής της αξιολόγησης στο παρακάτω πεδίο.</message>
-	<message key="reviewer.submission.acceptReview">Άποδοχή Αξιολόγησης, Συνεχίστε στο Βήμα #2</message>
-	<message key="reviewer.submission.continueToStepThree">Συνεχίστε στο Βήμα #3</message>
-	<message key="reviewer.submission.submitReview">Υποβολή Αξιολόγησης</message>
-	<message key="reviewer.submission.reviewerGuidelines">Οδηγίες Αξιολογητή</message>
-	<message key="reviewer.submission.enterCompetingInterests">Οι συγκεκριμένες εκδόσεις έχουν ως πολιτική να ζητούν από τους αξιολογητές να γνωστοποιήσουν αν υπάρχουν συγκρουόμενα συμφέροντα αναφορικά με τις ερευνητικές δραστηριότητες και ενδιαφέροντα. Παρακαλούμε να αφιερώσετε λίγο χρόνο για να διαβάσετε τη συγκεκριμένη πολιτική.</message>
-	<message key="reviewer.submission.noCompetingInterests">Δεν έχω κανένα συγκρουόμενο συμφέρον</message>
-	<message key="reviewer.submission.hasCompetingInterests">Πιθανόν να έχω συγκρουόμενα συμφέροντα (Προσδιορίστε παρακάτω)</message>
-	<message key="reviewer.submission.competingInterests">Συγκρουόμενα Συμφέροντα (Competing Interests-CI)</message>
-	<message key="reviewer.submission.guidelines">Οδηγίες Αξιολόγησης</message>
-	<message key="reviewer.submission.noGuidelines">Οι εκδόσεις δεν έχουν θέσει κατευθυντήριες γραμμές για αξιολόγηση.</message>
-	<message key="reviewer.submission.downloadDescription">Επιλέξτε τα ονόματα των αρχείων για να κατεβάσετε και να δείτε (σην οθόνη ή εκτυπώνοντας τα) τα αρχεία που σχετίζονται με αυτή την υποβολή.</message>
-	<message key="reviewer.submission.reviewDescription">Καταχωρείστε (ή κάντε επικόλληση) την αξιολόγηση σας γι' αυτή την υποβολή στην παρακάτω φόρμα</message>
-	<message key="reviewer.submission.uploadDescription">Συμπληρωματικά μπορείτε να ανεβάσετε συμβουλευτικά αρχεία για τον Εκδότη ή/και τους συγγραφείς, συμπεριλαμβανομένων και τη σχολιασμένη έκδοση των αρχείων.</message>
-	<message key="reviewer.complete">Η Αξιολόγηση έχει υποβληθεί</message>
-	<message key="reviewer.confirmSubmit">Είστε σίγουροι ότι επιθυμείτε να υποβάλετε αυτή την αξιολόγηση στις εκδόσεις;</message>
-	<message key="reviewer.complete.whatNext">Ευχαριστούμε για την ολοκλήρωση της αξιολόγησης της υποβολής. Η αξιολόγηση σας έχει υποβληθεί με επιτυχία. Εκτιμούμε τη συμβολή σας στην ποιότητα των έργων που δημεσιεύουμε. Ο υπεύθυνος των εκδόσεων μπορεί να επικοινωνήσει μαζί σας για περισσότερες πληροφορίες αν κριθεί αναγκαίο.</message>
-	<message key="reviewer.aboutDueDates">Σχετικά με τις Ημερομηνίες Προθεσμίας</message>
-	<message key="reviewer.aboutDueDates.text">Ο επιμελητής σας ζητά να αποδεχτείτε ή να απορρίψετε το αίτημα για αξιολόγηση πριν την ημερομηνία προθεσμίας απάντησης και να ολοκληρώσετε την αξιολόγηση μέσα στην ημερομηνία προθεσμίας της αξιολόγησης.</message>
-	<message key="workflow.review.internalReview">Εσωτερική Αξιολόγηση</message>
-	<message key="review.blindPeerReview"><![CDATA[<p>Για τη διασφάλιση της ακεραιότητας της διαδικασίας αξιολόγησης μιας υποβολής σε αυτές τις εκδόσεις, θα πρέπει να καταβληθεί κάθε δυνατή προσπάθεια να μην γίνουν γνωστές οι ταυτότητες μεταξύ των συγγραφέων και των αξιολογητών. Αυτός ο σκοπός εμπλέκει τους συγγραφείς, τους επιμελητές και τους αξιολογητές (οι οποίοι ανεβάζουν αρχεία και τεκμήρια ως μέρος της αξιολόγησης) στον έλεγχο των παρακάτω βημάτων αναφορικά με τις ιδιότητες των κειμένων και των αντίστοιχων αρχείων:</p>
-		<ul><li>Οι συγγραφείς θα πρέπει να έχουν διαγράψει τα ονόματά τους από το κείμενο της υποβολής, και τα πεδία "Συγγραφέας" και έτος να χρησιμοποιούνται στις αναφορές και στις υποσημειώσεις αντί για τα ονόματα των συγγραφέων, τους τίτλους των άρθρων κλπ.</li>
-		<li>Στην περίπτωση αρχείων Microsoft Office, η ταυτότητα του συγγραφέα θα πρέπει να απομακρυνθεί από τις ιδιότητες του αρχείου (στο μενού εντολών Αρχείο στο Word), με τον ακόλουθο τρόπο: Αρχείο &gt; Αποθήκευση ως &gt; Εργαλεία (η Επιλογές σε Mac) &gt; Επιλογές Ασφαλείας (Ασφάλεια) &gt; Κατάργηση προσωπικών πληροφοριών από τις ιδιότητες αρχείου κατά την αποθήκευση  &gt; Αποθήκευση.</li>
-		<li>Στην περίπτωση αρχείων PDF, τα ονόματα των συγγραφέων θα πρέπει να απομακρυνθούν από τις Ιδιότητες Αρχείου στο μενού εντολών Αρχείο του Adobe Acrobat.</li>
-		</ul>]]></message>
-	<message key="review.ensuringBlindReview">Διασφάλιση "τυφλής" αξιολόγησης</message>
-
 	<!-- Review Attachments -->
 	<message key="grid.reviewAttachments.add">Προσθήκη Συνημμένου για Αξιολόγηση</message>
 	<message key="grid.reviewAttachments.availableFiles">Διαθέσιμα Αρχεία</message>
@@ -357,25 +276,11 @@
 	-->
 	<message key="common.prefix">Πρόθημα</message>
 	<message key="common.preview">Προεπισκόπηση</message>
-	<message key="common.quality">Ποιότητα</message>
-	<message key="common.sendEmail">Αποστολή Email</message>
-	<message key="common.takeMeThere">Πήγαινέ με εκεί</message>
-	<message key="common.confirmDelete">Είστε σίγουροι ότι επιθυμείτε να διαγράψετε αυτό το τεκμήριο. Η ενέργεια αυτή δεν είναι αναστρέψιμη.</message>
-	<message key="common.tasks">Αναθέσεις</message>
-	<message key="common.list">Λίστα</message>
-	<message key="common.grid">Πλέγμα (Grid)</message>
 	<message key="common.feature">Προβολή</message>
 	<message key="common.searchCatalog">Αναζήτηση στον κατάλογο</message>
-	<message key="common.navigation">Πλοήγηση</message>
 	<message key="common.moreInfo">Περισσότερες Πληροφορίες</message>
 	<message key="common.plusMore">+ Περισσότερα</message>
 	
-	<message key="dashboard.tasks">Εργασίες</message>
-	<message key="dashboard.submissions">Υποβολές</message>
-
-	<message key="common.queue.long.submissionsUnassigned">Μη ανατιθέμενες Υποβολές</message>
-	<message key="common.queue.long.myAssigned">Ανατιθέμενες Υποβολές</message>
-
 	<message key="common.listbuilder.completeForm">Παρακαλούμε συμπληρώστε όλα τα πεδία της φόρμας.</message>
 	<message key="common.listbuilder.selectValidOption">Παρακαλούμε κάνετε μια έγκυρη επιλογή από τη λίστα.</message>
 	<message key="common.listbuilder.itemExists">Δεν μπορείτε να προσθέσετε το ίδιο στοιχείο δύο φορές.</message>
@@ -386,16 +291,8 @@
 	<!-- Common Messages -->
 	<message key="common.openMonographPress">Open Monograph Press</message>
 	<message key="common.omp">OMP</message>
-	<message key="common.pageHeader.altText">Κεφαλίδα Σελίδας</message>
-	<message key="common.publicKnowledgeProject">Public Knowledge Project</message>
 	<message key="common.homePageHeader.altText">Κεφαλίδα Ιστοσελίδας</message>
-	<message key="common.pressHomepageImage.altText">Εικόνα Αρχικής σελίδας Εκδόσεων</message>
-	<message key="common.name"></message>
-	<message key="common.dimensionsInches"><![CDATA[{$width}"&nbsp;x&nbsp;{$height}" @ {$dpi} DPI/PPI]]></message>
-	<message key="common.dimensionsPixels">{$width} x {$height} pixels</message>
-
 	<!-- Navigation -->
-	<message key="navigation.management">Διαχείριση</message>
 	<message key="navigation.catalog">Κατάλογος</message>
 	<message key="navigation.competingInterestPolicy">Πολιτική Συγκουόμενων Συμφερόντων</message>
 	<message key="navigation.catalog.manage">Διαχείριση</message>
@@ -403,35 +300,25 @@
 	<message key="navigation.catalog.administration">Διαχείριση Καταλόγου</message>
 	<message key="navigation.catalog.administration.categories">Κατηγορίες</message>
 	<message key="navigation.catalog.administration.series">Σειρές</message>
-	<message key="navigation.distributionProcess">Διανομή</message>
 	<message key="navigation.infoForAuthors">Για Συγγραφείς</message>
 	<message key="navigation.infoForLibrarians">Για Βιβλιοθηκονόμους</message>
 	<message key="navigation.infoForAuthors.long">Πληροφορίες για Συγγραφείς</message>
 	<message key="navigation.infoForLibrarians.long">Πληροφορίες για Βιβλιοθηκονόμους</message>
 	<message key="navigation.newReleases">Νέες Κυκλοφορίες</message>
 	<message key="navigation.published">Δημοσιευμένα</message>
-	<message key="navigation.publicationProcess">Publication</message>
-	<message key="navigation.tools">Εργαλεία</message>
-	<message key="navigation.tools.importExport">Εισαγωγή/Εξαγωγή</message>
 	<message key="navigation.wizard">Οδηγός</message>
 	<message key="navigation.linksAndMedia">Σύνδεσμοι και Κοινωνικά Μέσα</message>
 
 	<!-- Common Press Terms -->
 	<message key="press.presses">Εκδόσεις</message>
 	<message key="press.path">Διαδρομή</message>
-	<message key="press.press">Εκδόσεις</message>
-	<message key="press.select">Επιλογή Εκδόσεων...</message>
-
 	<!-- User -->
 	<message key="user.noRoles.submitMonograph">Υποβολή μιας πρότασης</message>
 	<message key="user.noRoles.submitMonographRegClosed">Υποβολή μιας Μονογραφίας: η εγγραφή Συγγραφέα είναο προς το παρόν απενεργοποιημένη.</message>
 	<message key="user.noRoles.regReviewer">Εγγραφείτε ως Αξιολογητής</message>
 	<message key="user.noRoles.regReviewerClosed">Εγγραφείτε ως Αξιολογητής: Η εγγραφή αξιολογητών είναι προς το παρόν απενεργοποιημένη</message>
-	<message key="user.noRoles.selectUsersWithoutRoles">Συμπεριλάβετε χρήστες χωρίς ρόλο σε αυτές τις εκδόσεις</message>
-
 	<!-- Roles -->
 	<message key="user.role.manager">Διαχειριστής Εκδόσεων</message>
-	<message key="user.role.editor">Επιμελητής</message>
 	<message key="user.role.pressEditor">Επιμελητής Εκδόσεων</message>
 	<message key="user.role.seriesEditor">Επιμελητής Σειράς</message>
 	<message key="user.role.assistant">Βοηθός Εκδόσεων</message>
@@ -439,25 +326,16 @@
 	<message key="user.role.seriesEditor">Επιμελητής Σειράς</message>
 	<message key="user.role.seriesEditors">Επιμελητές Σειράς</message>
 	<message key="user.role.proofreader">Επιμελητής Τυπογραφικών Δοκιμίων</message>
-	<message key="user.role.author">Συγγραφέας</message>
-	<message key="user.role.author_s">Συγγραφέας/είς</message>
-	<message key="user.role.reviewer">Αξιολογητής</message>
 	<message key="user.role.productionEditor">Επιμελητής Παραγωγής</message>
 
-	<message key="user.role.reviewers">Αξιολογητές</message>
 	<message key="user.role.managers">Διαχειριστές Εκδόσεων</message>
 	<message key="user.role.editors">Επιμελητές</message>
 	<message key="user.role.seriesEditors">Επιμελητές Σειράς</message>
 	<message key="user.role.copyeditors">Επιμελητές Κειμένων</message>
 	<message key="user.role.proofreaders">Επιμελητές Τυπογραφικών Δοκιμίων</message>
-	<message key="user.role.authors">Συγγραφείς</message>
 	<message key="user.role.productionEditors">Επιμελητές Παραγωγής</message>
 
 	<!-- Login -->
-	<message key="user.login.registerNewAccount">Δεν είστε χρήστης; Εγγραφείτε στην συλλογή.</message>
-	<message key="user.login.resetPasswordInstructions"><![CDATA[Για λόγους  ασφαλείας το σύστημα στέλνει email για αλλαγή του Κωδικού  Πρόσβασης (password) στους εγγεγραμμένους χρήστες, από το να τους υπενθυμίζει το
-τρέχον κωδικό πρόσβασης.<br /><br />Εισάγετε τη διεύθυνση του ηλεκτρονικού ταχυδρομείου σας παρακάτω, για να αλλάξετε  τον κωδικό πρόσβασής σας. Ένα μήνυμα επιβεβαίωσης θα σταλεί σε αυτή τη διεύθυνση.]]></message>
-
 	<!-- Registration -->
 	<message key="user.register.completeForm">Συμπληρώστε τη φόρμα για να εγγραφείτε στις εκδόσεις.</message>
 	<message key="user.register.selectContext">Επιλέξτε μια έκδοση για να εγγραφείτε</message>
@@ -482,11 +360,9 @@
 	<message key="about.pressContact">Επικοινωνία</message>
 	<message key="about.aboutThePress">Σχετικά με τις εκδόσεις</message>
 	<message key="about.editorialTeam">Συντακτική ομάδα</message>
-	<message key="about.description">Περιγραφή</message>
 	<message key="about.editorialPolicies">Πολιτικές έκδοσης</message>
 	<message key="about.focusAndScope">Επίκεντρο και Σκοπός</message>
 	<message key="about.seriesPolicies">Πολιτικές σειρών και κατηγοριών</message>
-	<message key="about.guidelines">Κατευθυντήριες Οδηγίες</message>
 	<message key="about.submissions">Υποβολές</message>
 	<message key="about.sponsors">Χορηγοί</message>
 	<message key="about.contributors">Πηγές υποστήριξης</message>
@@ -549,8 +425,6 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="installer.additionalLocalesInstructions">Επιλογή άλλων πρόσθετων γλωσσών για υποστήριξη στο συγκεκριμένο σύστημα. Οι γλώσσες αυτές θα είναι διαθέσιμες για χρήση από εκδόσεις που φιλοξενούνται στον ιστότοπο. Πρόσθετες γλώσσες μπορούν να εγκαταστασθούν ανά πάσα στιγμή από τη διεπαφή διαχείρισης. Γλώσσες που μαρκάρονται με * ίσως να μην είναι ολοκληρωμένες.</message>
 	<message key="installer.filesDirInstructions"><![CDATA[Enter full pathname to an existing directory where uploaded files are to be kept. This directory should not be directly web-accessible. <strong>Please ensure that this directory exists and is writable prior to installation.</strong> Windows path names should use forward slashes, e.g. "C:/mypress/files".]]></message>
 	<message key="installer.databaseSettingsInstructions">OMP requires access to a SQL database to store its data. See the system requirements above for a list of supported databases. In the fields below, provide the settings to be used to connect to the database.</message>
-	<message key="installer.installOMP">Install Open Monograph Press</message>
-	<message key="installer.upgradeOMP">Upgrade Open Monograph Press</message>
 	<message key="installer.overwriteConfigFileInstructions"><![CDATA[<h4>IMPORTANT!</h4>
 <p>The installer could not automatically overwrite the configuration file. Before attempting to use the system, please open <tt>config.inc.php</tt> in a suitable text editor and replace its contents with the contents of the text field below.</p>]]></message>
 	<message key="installer.installationComplete"><![CDATA[<p>Installation of OMP has completed successfully.</p>
@@ -559,7 +433,6 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="installer.upgradeComplete"><![CDATA[<p>Upgrade of OMP to version {$version} has completed successfully.</p>
 <p>Don't forget to set the "installed" setting in your config.inc.php configuration file back to <em>On</em>.</p>
 <p>If you haven't already registered and wish to receive news and updates, <strong>please register at <a href="http://pkp.sfu.ca/omp/register" target="_blank">http://pkp.sfu.ca/omp/register</a>.</strong> If you have questions or comments, please visit the <a href="http://pkp.sfu.ca/support/forum" target="_blank">support forum</a>.</p>]]></message>
-	<message key="installer.configureXSLMessage"><![CDATA[<p>Your PHP installation does not have the XSL module enabled. Either enable it, or configure the xslt_command parameter in your config.inc.php file.</p>]]></message>
 	<!-- Monograph Logs -->
 	<message key="log.review.reviewCleared">Εκκαθαρίστηκε ο γύρος αξιολόγησης {$round} από τον/ην {$reviewerName} για την υποβολή {$monographId}.</message>
 	<message key="log.review.reviewDueDateSet">Η ημερομηνία προθεσμίας για τον γύρο αξιολόγησης {$round} της υποβολής {$monographId} από τον/ην {$reviewerName} έχει οριστεί η {$dueDate}.</message>
@@ -576,7 +449,6 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="log.imported">Ο/Η {$userName} έχει εισάγει τη μονογραφία {$monographId}.</message>
 
 	<!-- Notifications -->
-	<message key="notification.addedAuthor">Ο Συγγραφέας έχει προστεθεί.</message>
 	<message key="notification.addedIdentificationCode">Ο κωδικός ταυτοποίησης (Identification Code) έχει προστεθεί.</message>
 	<message key="notification.editedIdentificationCode">Ο κωδικός ταυτοποίησης (Identification Code) επεξεργάστηκε.</message>
 	<message key="notification.removedIdentificationCode">Ο κωδικός ταυτοποίησης (Identification Code) έχει αφαιρεθεί.</message>
@@ -595,44 +467,15 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="notification.addedMarket">Η Αγορά έχει προστεθεί.</message>
 	<message key="notification.editedMarket">Τα στοιχεία της Αγοράς έχουν επεξεργαστεί.</message>
 	<message key="notification.removedMarket">Η Αγορά έχει αφαιρεθεί.</message>
-	<message key="notification.addedReviewer">Ο Αξιολογητής έχει προστεθεί.</message>
-	<message key="notification.addedStageParticipant">Ο χρήστης έχει προστεθεί ως συμμετέχων σε ένα στάδιο.</message>
-	<message key="notification.editedAuthor">Τα στοιχεία του Συγγραφέα έχουν επεξεργαστεί.</message>
-	<message key="notification.editedUser">Τα στοιχεία του Χρήστη έχουν επεξεργαστεί.</message>
-	<message key="notification.removedReviewer">Ο Αξιολογητής έχει αφαιρεθεί.</message>
-	<message key="notification.sentNotification">Η ειδοποίηση έχει σταλεί.</message>
-	<message key="notification.addedNote">Το Σημείωμα αναρτήθηκε.</message>
-	<message key="notification.removedNote">Το Σημείωμα διαγράφηκε.</message>
-	<message key="notification.removedFile">Το αρχείο έχει διαγραφεί.</message>
-	<message key="notification.addedAnnouncementType">Ο τύπος Ανακοίνωσης έχει προστεθεί.</message>
-	<message key="notification.editedAnnouncementType">Ο τύπος Ανακοίνωσης έχει επεξεργαστεί.</message>
-	<message key="notification.removedAnnouncementType">Ο τύπος Ανακοίνωσης έχει αφαιρεθεί.</message>
-	<message key="notification.addedAnnouncement">Η ανακοίνωση έχει προστεθεί.</message>
-	<message key="notification.editedAnnouncement">Η Ανακοίνωση έχει επεξεργαστεί.</message>
-	<message key="notification.removedAnnouncement">Η Ανακοίνωση έχει αφαιρεθεί.</message>
 	<message key="notification.addedSpotlight">Η Βιτρίνα έχει προστεθεί.</message>
 	<message key="notification.editedSpotlight">Η Βιτρίνα έχει επεξεργαστεί.</message>
 	<message key="notification.removedSpotlight">Η Βιτρίνα έχει αφαιρεθεί.</message>
 	<message key="notification.removedFooterLink">Ο Σύνδεσμος του Υποσέλιδου έχει αφαιρεθεί.</message>
-	<message key="notification.addedFooterCategory">Η Κατηγορία έχει προστεθεί.</message>
-	<message key="notification.editedFooterCategory">Η Κατηγορία έχει επεξεργαστεί.</message>
-	<message key="notification.removedFooterCategory">Η Κατηγορία έχει αφαιρεθεί.</message>
-	<message key="notification.addedSocialMedia">Το κοινονικό δίκτυο έχει προστεθεί.</message>
-	<message key="notification.editedSocialMedia">Το κοινονικό δίκτυο έχει επεξεργαστεί.</message>
-	<message key="notification.removedSocialMedia">Το κοινονικό δίκτυο έχει αφαιρεθεί.</message>
-	<message key="notification.updatedReviewFiles">Αναθεωρήστε τα ενημερωμένα αρχεία.</message>
 	<message key="notification.savedCatalogMetadata">Τα μεταδεδομένα του Καταλόγου έχουν αποθηκευτεί.</message>
 	<message key="notification.savedPublicationFormatMetadata">Τα μεταδεδομένα του μορφότυπου της έκδοσης έχουν αποθηκευτεί.</message>
 	<message key="notification.mailListDescription">Καταχωρήστε τη διεύθυνση του ηλεκτονικού σας ταχυδρομείου για να λάβετε ενημέρωση όταν προστεθεί νέο περιεχόμενο στις εκδόσεις μας.</message>
 	<message key="notification.notificationsPublicDescription"><![CDATA[Αυτή η σελίδα παρουσιάζει σημαντικές πληροφορίες σχετικά με αυτές τις εκδόσεις, όπως τη δημοσίευση νέων μονογραφιών ή σειρών. Μπορείτε να εγγραφείτε ώστε να λαμβάνετε αυτές τις ειδοποιήσεις μέσω ροής RSS (πατώντας τις εικόνες στα δεξιά), ή μέσω <a href="{$emailUrl}">email.</a>]]></message>
 	<message key="notification.proofsApproved">Το Τυπογραφικό δοκίμιο έχει εγκριθεί.</message>
-	<message key="notification.localeEnabled">Η γλώσσα έχει ενεργοποιηθεί.</message>
-	<message key="notification.localeDisabled">Η γλώσσα έχει απενεροποιηθεί.</message>
-	<message key="notification.primaryLocaleDefined">Τα {$locale} έχουν οριστεί ως κύρια γλώσσα.</message>
-	<message key="notification.localeInstalled">Όλες οι επιλεγμένες γλώσσα(ες) εγκαταστάθηκαν και ενεργοποιήθηκαν.</message>
-	<message key="notification.localeUninstalled">Η γλώσσα {$locale} απεγκαταστάθηκε.</message>
-	<message key="notification.localeReloaded">Η γλώσσα {$locale} επαναφορτώθηκε.</message>
-	<message key="notification.localeSettingsSaved">Οι ρυθμίσεις γλώσσας έχουν αποθηκευθεί.</message>
 	<message key="notification.removedSubmission">Η Υποβολή έχει διαγραφεί.</message>
 	<!-- Notification Types -->
 	<message key="notification.type.submissionSubmitted">Μια νέα μονογραφία, "{$title}," έχει υποβληθεί.</message>
@@ -647,7 +490,6 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="notification.type.copyeditorRequest">Έχετε κληθεί να θεωρήσετε την επιμέλεια κειμένων για το "{$file}".</message>
 	<message key="notification.type.layouteditorRequest">Έχετε κληθεί να θεωρήσετε την επιμέλεια σελιδοποίησης για το "{$title}".</message>
 	<message key="notification.type.indexRequest">Έχετε κληθεί να ευρετηριάσετε το "{$title}".</message>
-	<message key="notification.type.reviewAssignment">Έχετε μια αξιολόγηση σε εκκρεμότητα.</message>
 	<message key="notification.type.editorDecisionInternalReview">Η διαδικασία εσωτερικής αξιολόγησης έχει ξεκινήσει.</message>
 	<message key="notification.type.roundStatusTitle">Κατάσταση γύρου {$round}.</message>
 	<message key="notification.type.approveSubmission">Αυτή η υποβολή αναμένει πρόσφατα για Καταχώριση στον Κατάλογο πριν αυτή εμφανιστεί δημόσια στον κατάλογο.</message>
@@ -665,7 +507,6 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="user.authorization.monographFile">Έχετε απαγορεύσει την πρόσβαση στο συγκεκριμένο αρχείο της μονογραφίας.</message>
 	<message key="user.authorization.invalidMonograph">Μη έγκυρη μονογραφία ή δεν έχει ζητηθεί η μονογραφία!</message>
 	<message key="user.authorization.invalidSeriesEditorSubmission">Μη έγκυρη υποβολή επιμελητή σειράς ή δεν έχει ζητηθεί υποβολή επιμελητή σειράς! </message>
-	<message key="user.authorization.noPress">Δεν υπάρχει καμία έκδοση!</message>
 	<message key="user.authorization.seriesAssignment">Προσπαθείτε να αποκτήσετε πρόσβαση σε μια μονογραφία που δεν είναι μέρος της σειράς που επιμελείστε.</message>
 	<message key="user.authorization.workflowStageAssignmentMissing">Η πρόσβαση δεν είναι δυνατή! Δεν έχετε ανάθεση σε αυτό το στάδιο της ροής εργασιών.</message>
 	<message key="user.authorization.workflowStageSettingMissing">Η πρόσβαση δεν είναι δυνατή! Η ομάδα χρηστών που πρόσφατα ενεργείτε μέσω αυτής δεν έχει ζητηθεί σε αυτό το στάδιο ροής εργασιών. Παρακαλούμε ελέγξτε τις ρυθμίσεις των εκδόσεων.</message>
