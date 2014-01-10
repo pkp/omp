@@ -373,7 +373,6 @@
 	<message key="manager.setup.userRegistration">Εγγραφή Χρήστη</message>
 	<message key="manager.setup.useTextTitle">Κείμενο τίτλου</message>
 	<message key="manager.setup.volumePerYear">Τόμοι ανά έτος</message>
-	<message key="manager.setup.registerPressForIndexing">Εγγραφή εκδόσεων για ευρετηρίαση (Metadata Harvesting)</message>
 	<message key="manager.setup.publicationFormat.code">Μορφότυπο (format)</message>
 	<message key="manager.setup.publicationFormat.codeRequired">Απαιτείτε επιλογή Μορφότυπου (format)</message>
 	<message key="manager.setup.publicationFormat.nameRequired">Απαιτείται ένα όνομα για αυτή το Μορφότυπο(format).</message>
