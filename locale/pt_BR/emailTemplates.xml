@@ -167,25 +167,7 @@ A avaliação do trabalho "{$monographTitle}" deixou claro que esta submissão n
 
 {$editorialContactSignature}</body>
 	</email_text>
-	<email_text key="SUBMISSION_COMMENT">
-		<subject>Comentário sobre a submissão</subject>
-		<body>{$name},
-
-{$commentName} inclui o seguinte comentário sobre a submissão "{$monographTitle}" na editora {$pressName}:
-
-{$comments}</body>
-		<description>Esta mensagem notifica vários envolvidos no processo editorial da submissão, de que um novo comentário foi enviado.</description>
-	</email_text>
-	<email_text key="SUBMISSION_DECISION_REVIEWERS">
-		<subject>Decisão sobre "{$monographTitle}"</subject>
-		<body>Como responsável pela submissão "{$monographTitle}" à editora {$pressName}, encaminho as avaliações e decisão editorial enviada ao autor deste trabalho. Agradecemos novamente por sua importante contribuição, fundamental para a qualidade do processo.
-
-{$editorialContactSignature}
-
-{$comments}</body>
-		<description>Esta mensagem notifica os avaliadores que o processo de avaliação da submissão foi concluído. Inclui informações sobre a monografia e a decisão editorial tomada, bem como agradece aos avaliadores pela suas contribuições.</description>
-	</email_text>
-	<email_text key="EDITOR_ASSIGN">
+			<email_text key="EDITOR_ASSIGN">
 		<subject>Tarefa editorial</subject>
 		<body>{$editorialContactName},
 
@@ -455,26 +437,7 @@ Login: {$authorUsername}
 </body>
 		<description>Esta mensagem é enviada pelo editor ou editor de série ao autor, notificando-o da decisão final sobre a submissão.</description>
 	</email_text>
-	<email_text key="EDITOR_REVIEW">
-		<subject>Avaliação editorial </subject>
-		<body>{$authorName},
-
-A avaliação editorial sobre a submissão "{$monographTitle}" foi tomada. A decisão é...
-
-{$comments}.
-
-Comentários adicionais sobre o trabalho, baseados na avaliação editorial e pelos pares, estão disponíveis no sistema:
-
-Página da submissão: {$submissionUrl}
-Login: {$authorUsername}
-
-Em caso de dúvidas, entre em contato.
-
-{$editorialContactSignature}</body>
-		<description>Esta mensagem é enviada pelo editor ou editor de série ao autor, notificando-o de que uma decisão sobre a submissão foi tomada.</description>
-
-	</email_text>
-	<email_text key="COPYEDIT_REQUEST">
+		<email_text key="COPYEDIT_REQUEST">
 		<subject>Solicitação de edição de texto</subject>
 		<body>{$copyeditorName},
 
@@ -493,123 +456,7 @@ Login: {$copyeditorUsername}
 {$editorialContactSignature}</body>
 		<description>Esta mensagem é enviada pelo editor de série ao editor de texto da submissão, solicitando o início da edição de texto. Fornece informações sobre a submissão e como acessá-la.</description>
 	</email_text>
-	<email_text key="COPYEDIT_COMPLETE">
-		<subject>Edição de texto concluída</subject>
-		<body>{$editorialContactName},
-
-A edição de texto da submissão "{$monographTitle}", enviada à editora {$pressName}, foi concluída. Para avaliar as alterações propostas e responder às perguntas ao autor, siga os seguintes passos:
-
-1. Acesse o sistema da editora no endereço abaixo com seu login e sua senha (use o link Esqueceu a senha caso necessário).
-2. Baixe o arquivo em 1. Arquivo da edição de texto inicial e abra a versão editada.
-3. Avalie as edições, fazendo alterações usando Controlar alterações no Word, e responda às perguntas.
-4. Salve o arquivo no seu computador e envie-o para 2. Edição de texto do autor.
-5. Pressione o ícone de mensagem sob CONCLUÍDA e envie-a ao editor.
-
-Esta é a última oportunidade que terá para realizar alterações significativas. Em um momento posterior, será necessário realizar a leitura de provas, estágio no qual apenas erros gráficos ou tipográficos poderão ser corrigidos.
-
-Página do manuscrito: {$submissionEditingUrl}
-Login: {$authorUsername}
-
-Caso não possa assumir esta tarefa no momento ou em caso de dúvidas, entre em contato. 
-
-Sua contribuição é essencial para a qualidade das publicações desta editora.
-
-{$copyeditorName}</body>
-	</email_text>
-	<email_text key="COPYEDIT_ACK">
-		<subject>Agradecimento pela edição de texto</subject>
-		<body>{$copyeditorName},
-
-Agradecemos pela edição de texto do manuscrito "{$monographTitle}", enviado à editora ($pressName}. Sua contribuição é de grande valia para a qualidade do trabalho desta editora.
-
-{$editorialContactSignature}</body>
-		<description>Esta mensagem é enviada pelo editor de série ao editor de texto da submissão, agradecendo pela conclusão da edição de texto e informando o recebimento do trabalho.</description>
-	</email_text>
-	<email_text key="COPYEDIT_AUTHOR_REQUEST">
-		<subject>Solicitação de revisão da edição de texto</subject>
-		<body>{$authorName},
-
-Sua submissão "{$monographTitle}" enviada à editora ($pressName} passou pelo primeiro estágio de edição de texto, que está disponível para revisão, conforme os seguintes passos:
-
-1. Acesse a página da submissão abaixo.
-2. Acesse o sistema e baixe o arquivo disponível no passo 1..
-3. Abra o arquivo de submissão baixado.
-4. Revise o texto, incluindo propostas de edição e as perguntas ao autor.
-5. Faça as alterações que considerar importantes para melhorar o texto.
-6. Após concluir, envie o arquivo ao passo 2.
-7. Clique em METADADOS para verificar as informações de indexação (salvando qualquer correção)..
-8. Envie a mensagem CONCLUÍDA ao editor and copyeditor.
-
-Página da submissão: {$submissionCopyeditingUrl}
-Login: {$authorUsername}
-
-Esta é a última oportunidade que terá para realizar alterações significativas. Em um momento posterior, será necessário realizar a leitura de provas, estágio no qual apenas erros gráficos ou tipográficos poderão ser corrigidos.
-
-Caso não possa assumir esta tarefa no momento ou em caso de dúvidas, entre em contato. 
-
-Sua contribuição é essencial para a qualidade das publicações desta editora.
-
-
-{$editorialContactSignature}</body>
-		<description>Esta mensagem é enviada pelo editor de sério ao autor, solicitando a verificação do trabalho do editor de texto. Fornece acesso a informações sobre o manuscrito e avisa que é a última oportunidade para o autor realizar alterações significativas.</description>
-	</email_text>
-	<email_text key="COPYEDIT_AUTHOR_COMPLETE">
-		<subject>Conclusão da avaliação da edição de texto</subject>
-		<body>{$editorialContactName},
-
-Concluí a revisão da edição de texto do manuscrito "{$monographTitle}", enviado à editora ($pressName}, e está pronto para a rodada final de edição e preparação do layout.
-
-Agradeço as contribuições para o meu trabalho,
-{$authorName}</body>
-		<description>Esta mensagem é enviada pelo autor ao editor de série, notificando-o da conclusão da edição de texto por parte do autor.</description>
-	</email_text>
-	<email_text key="COPYEDIT_AUTHOR_ACK">
-		<subject>Agradecimento pela revisão da edição de texto</subject>
-		<body>{$authorName},
-
-Agradecemos pela revisão da edição de texto do manuscrito "{$monographTitle}", enviado à editora ($pressName}. Estamos na expectativa de publicar seu trabalho em breve.
-
-{$editorialContactSignature}</body>
-		<description>Esta mensagem é enviada pelo editor de série ao autor, confirmando a conclusão da edição de texto pelo autor e agradecendo-o por sua contribuição à editora.</description>
-	</email_text>
-	<email_text key="COPYEDIT_FINAL_REQUEST">
-		<subject>Revisão final da edição de texto</subject>
-		<body>{$copyeditorName},
-
-O autor e o editor concluíram a revisão da edição de texto do trabalho "{$monographTitle}", enviado à editora ($pressName}. Uma "cópia limpa" precisa ser preparada para enviar ao Layout, conforme os passos a seguir:
-1. Acesse a página da submissão abaixo.
-2. Acesse o sistema e baixe o arquivo disponível no passo 2.
-3. Abra o arquivo baixado e incorpore todas as edições de texto e respostas à dúvidas.
-4. Salve uma versão limpa e envie ao passo 3 da edição de texto.
-5. Clique em METADADOS para verificar as informações de indexação por completude e precisão.
-6. Envie a mensagem CONCLUÍDA ao editor.
-
-Página da editora {$pressName}: {$pressUrl}
-Página da submissão: {$submissionCopyeditingUrl}
-Login: {$copyeditorUsername}
-
-{$editorialContactSignature}</body>
-		<description>Esta mensagem é enviada pelo editor de série ao editor de texto, solicitando a rodada final de edição na submissão, antes de enviá-la ao processo de layout.</description>
-	</email_text>
-	<email_text key="COPYEDIT_FINAL_COMPLETE">
-		<subject>Conclusão da revisão final da edição de texto</subject>
-		<body>{$editorialContactName},
-
-Está pronta a versão limpma e editada do manuscrito "{$monographTitle}", enviado à editora ($pressName}. Está pronta parao layout e preparação das composições finais.
-
-{$copyeditorName}</body>
-		<description>Esta mensagem é enviada pelo editor de texto ao editor de série, notificando da conclusão da rodada final de edição, e que o processo de layout pode ser iniciado.</description>
-	</email_text>
-	<email_text key="COPYEDIT_FINAL_ACK">
-		<subject>Agradecimento pela revisão final</subject>
-		<body>{$copyeditorName},
-
-Agradecemos pela conclusão da edição de texto do manuscrito "{$monographTitle}", enviado à editora ($pressName}. A preparação da "cópia limpa" para o layout é de suma importância ao nosso processo editorial.
-
-{$editorialContactSignature}</body>
-		<description>Esta mensagem é enviada pelo editor de série ao editor de texto, agradecendo pela conclusão da rodada final de edição e por sua contribuição aos trabalhos da editora.</description>
-	</email_text>
-	<email_text key="LAYOUT_REQUEST">
+									<email_text key="LAYOUT_REQUEST">
 		<subject>Solicitação de composição</subject>
 		<body>{$layoutEditorName}.
 
@@ -638,16 +485,7 @@ Em caso de dúvidas, entre em contato.
 {$signatureFullName}</body>
 		<description>Esta mensagem é enviada pelo editor de layout ao editor de série, notificando-o da conclusão da criação das composições.</description>
 	</email_text>
-	<email_text key="LAYOUT_ACK">
-		<subject>Agradecimento pelo layout</subject>
-		<body>{$layoutEditorName},
-
-Agradecemos por produzir as composições para o manuscrito "{$monographTitle}", enviado à editora ($pressName}. Este é uma contribuição fundamental para o nosso processo de publicação.
-
-{$editorialContactSignature}</body>
-		<description>Esta mensagem é enviada pelo editor de série ao editor de layout, agradecendo pela produção das composições e por sua contriguição aos trabalhos da editora.</description>
-	</email_text>
-	<email_text key="INDEX_REQUEST">
+		<email_text key="INDEX_REQUEST">
 		<subject>Solicitação de índice</subject>
 		<body>{$indexerName},
 
@@ -676,120 +514,7 @@ Em caso de dúvidas, entre em contato.
 {$signatureFullName}</body>
 		<description>Esta mensagem é enviada pelo indexador ao editor de série, notificando da criação dos índices para a submissão.</description>
 	</email_text>
-	<email_text key="PROOFREAD_AUTHOR_REQUEST">
-		<subject>Solicitação ao autor de leitura de provas</subject>
-		<body>{$authorName},
-
-Sua submissão "{$monographTitle}", enviada à editora {$pressName}, precisa passar pela leitura de provas conforme os seguintes passos:
-1. Acesse a página da submissão abaixo.
-2. Acesse o sistema e veja as INSTRUÇÕES PARA LEITURA DE PROVAS
-3. Clique em VER PROVA no layout e verifique a composição nos formatos disponíveis.
-4. Informe correções tipográficas ou de formato em Correções de leitura de prova.
-5. Salve e envie suas correções ao editor de layout e leitor de provas.
-6. Envie a mensagem CONCLUÍDA ao editor.
-
-Página da submissão: {$submissionUrl}
-Login: {$authorUsername}
-
-{$editorialContactSignature}</body>
-		<description>Esta mensagem é enviada pelo editor de série ao autor, notificando-o da necessidade de fazer a leitura de provas da submissão. Fornece informações sobre a monografia e como acessá-la.</description>
-	</email_text>
-	<email_text key="PROOFREAD_AUTHOR_COMPLETE">
-		<subject>Leitura de provas concluída pelo autor</subject>
-		<body>{$editorialContactName},
-
-Concluí a leitura de provas do meu manuscrito "{$monographTitle}", enviado à editora ($pressName}. As composições estão prontas para as correções finais a serem realizadas pelo leitor de provas e pelo editor de layout.
-
-{$authorName}</body>
-		<description>Esta mensagem é enviada pelo autor ao leitor de provas e ao editor, notificando-os de que concluiu a leitura de provas, disponibilizando os detalhes nos comentários da monografia.</description>
-	</email_text>
-	<email_text key="PROOFREAD_AUTHOR_ACK">
-		<subject>Agradecimento ao autor pela leitura de provas</subject>
-		<body>{$authorName},
-
-Agradecemos pela leitura de provas do seu manuscrito "{$monographTitle}", enviado à editora {$pressName}. Estamos na expectativa de publicar seu trabalho em breve.
-
-Caso assine nosso serviço de notificações, receberá uma mensagem com o sumário assim que for publicado. Em caso de dúvidas, entre em contato.
-
-{$editorialContactSignature}</body>
-		<description>Esta mensagem é enviada pelo editor de série ao autor, agradecendo pela conclusão da leitura de provas inicial e pela sua contribuição aos trabalhos da editora.</description>
-	</email_text>
-	<email_text key="PROOFREAD_REQUEST">
-		<subject>Solicitação de leitura de provas</subject>
-		<body>{$proofreaderName},
-
-A submissão "{$monographTitle}", enviada à editora {$pressName}, precisa passar pela leitura de provas conforme os seguintes passos:
-1. Acesse a página da submissão abaixo.
-2. Acesse o sistema e veja as INSTRUÇÕES PARA LEITURA DE PROVAS
-3. Clique em VER PROVA no layout e verifique a composição nos formatos disponíveis.
-4. Informe correções tipográficas ou de formato em Correções de leitura de prova.
-5. Salve e envie suas correções ao editor de layout e leitor de provas.
-6. Envie a mensagem CONCLUÍDA ao editor
-
-Página do manuscrito: {$submissionUrl}
-Login: {$proofreaderUsername}
-
-Caso não tenha disponibilidade para assumir esta tarefa no momento, ou em caso de dúvidas, entre em contato. Agradecemos sua contribuição aos trabalhos da editora.
-
-{$editorialContactSignature}</body>
-		<description>Esta mensagem é enviada pelo editor de série ao leitor de provas, solicitando a leitura de provas das composições da monografia. Fornece informações sobre a monografia e como acessá-la.</description>
-	</email_text>
-	<email_text key="PROOFREAD_COMPLETE">
-		<subject>Leitura de provas concluída</subject>
-		<body>{$editorialContactName},
-
-A leitura de provas do manuscrito "{$monographTitle}", enviado à editora ($pressName}, está concluída. As composições estão prontas para receberem as correções finais pelo editor de layout.
-
-{$proofreaderName}</body>
-		<description>Esta mensagem é enviada pelo leitor de provas ao editor de série, notificando-o da conclusão do processo de leitura de provas.</description>
-	</email_text>
-	<email_text key="PROOFREAD_ACK">
-		<subject>Agradecimento pela leitura de provas</subject>
-		<body>{$proofreaderName},
-
-Agradecemos pela leitura de provas das composições do manuscrito "{$monographTitle}", enviado à editora ($pressName}. Sua contribuição é fundamental para a qualidade das publicações desta editora.
-
-{$editorialContactSignature}</body>
-		<description>Esta mensagem é enviada pelo editor de série ao leitor de provas, agradecendo-o pela conclusão da tarefa e por sua importante contribuição aos trabalhos da editora.</description>
-	</email_text>
-	<email_text key="PROOFREAD_LAYOUT_REQUEST">
-		<subject>Solicitação ao editor de layout de leitura de provas</subject>
-		<body>{$layoutEditorName},
-
-A submissão "{$monographTitle}", enviada à editora  {$pressName}, recebeu a leitura de provas pelo autor e leitor de provas, e quaisquer correções vem ser realizadas conforme os seguintes passos:
-1. Acesse a página da submissão abaixo.
-2. Acesse o sistema e consulte as Correções da leitura de provas, preparando composições corrigidas.
-3. Envie ao sistema as novas composições.
-3. Envie a mensagem CONCLUÍDA na leitura de provas ao editor.
-
-Página da editora {$pressName}: {$pressUrl}
-Página da submissão: {$submissionUrl}
-Login: {$layoutEditorUsername}
-
-Caso não tenha disponibilidade para assumir esta tarefa no momento, ou em caso de dúvidas, entre em contato. Agradecemos sua contribuição aos trabalhos da editora.
-
-{$editorialContactSignature}</body>
-		<description>Esta mensagem é enviada pelo editor de série ao editor de layout, notificando-o da necessidade realizar a leitura de provas final. freading. Fornece informações sobre a monografia e como acessá-la.</description>
-	</email_text>
-	<email_text key="PROOFREAD_LAYOUT_COMPLETE">
-		<subject>Leitura de provas concluída pelo editor de layout</subject>
-		<body>{$editorialContactName},
-
-As composições foram corrigidas, após a leitura de provas do manuscrito "{$monographTitle}", enviado à editora ($pressName}. Este trabalho está pronto para publicação.
-
-{$layoutEditorName}</body>
-		<description>Esta mensagem é enviada pelo editor de layout ao editor de série, notificando-o da conclusão da leitura de provas e que a monografia está pronta para publicação.</description>
-	</email_text>
-	<email_text key="PROOFREAD_LAYOUT_ACK">
-		<subject>Agradecimento ao editor de layout pela leitura de provas</subject>
-		<body>{$layoutEditorName},
-
-Agradecemos pela conclusão das correções nas composições associadas ao manuscrito "{$monographTitle}", enviado à editora ($pressName}. Sua contribuição é fundamental para a qualidade do trabalho publicado por esta editora.
-
-{$editorialContactSignature}</body>
-		<description>Esta mensagem é enviada pelo editor de série ao editor de layout, agradecendo pela conclusão da leitura de provas e suas correções, bem como por sua importante contribuição aos trabalhos da editora.</description>
-	</email_text>
-	<email_text key="EMAIL_LINK">
+										<email_text key="EMAIL_LINK">
 		<subject>Manuscrito de seu interesse</subject>
 		<body>Pensei que poderia se interessar em ler o "{$monographTitle}", escrito por {$authorName} e publicado no v.{$volume} n.{$number} {$year} da editora {$pressName}, disponível no endereço "{$monographUrl}".</body>
 		<description>Este modelo de mensagem fornece aos leitores cadastrados a oportunidade e enviar a sua rede informações sobre a monografia que podem ser de interesse. Está disponível por meio das ferramentas de leitura, habilitadas pelo Gerenete da editora na página de administração das ferramentas de leitura.</description>

@@ -86,7 +86,6 @@
 
 	<!-- Settings management -->
 	<message key="manager.settings">Configurações</message>
-	<message key="manager.settings.wizard">Guia de configuração</message>
 	<message key="manager.settings.pressSettings">Configurações da editora</message>
 	<message key="manager.settings.press">Editora</message>
 	<message key="manager.settings.pressDescription"><![CDATA[Todas as configurações específicas à editora (expediente, contato, políticas, diretrizes, patrocínio & apoio, categorias e séries).]]></message>
@@ -109,7 +108,6 @@
 	<message key="manager.users.availableRoles">Papéis disponíveis</message>
 	<message key="manager.users.currentRoles">Papéis atuais</message>
 	<message key="manager.users.selectRole">Escolher papel</message>
-	<message key="manager.users.roleRequired">É necessário atribuir pelo menos um papel para o usuário.</message>
 	<message key="manager.people.allEnrolledUsers">Usuários cadadstrados nesta editora</message>
 	<message key="manager.people.allPresses">Todas as editoras</message>
 	<message key="manager.people.allSiteUsers">Cadastrar usuário do site nesta editora</message>
@@ -133,61 +131,13 @@ Informe, se desesjar, o motivo do bloqueio.</message>
 	]]></message>
 
 	<!-- Library Files -->
-	<message key="settings.libraryFiles.fileRequired">É necessário informar um arquivo de biblioteca. Certifique-se de escolher e enviar um arquivo.</message>
-	<message key="settings.libraryFiles.nameRequired">É necessário informar o nome do arquivo de biblioteca.</message>
-	<message key="settings.libraryFiles.typeRequired">É necessário informar o tipo de arquivo de biblioteca.</message>
-	<message key="settings.libraryFiles.category.contracts">Contratos</message>
-	<message key="settings.libraryFiles.category.marketing">Marketing</message>
-	<message key="settings.libraryFiles.category.permissions">Permissões</message>
-	<message key="settings.libraryFiles.category.reports">Relatórios</message>
-	<message key="settings.libraryFiles.category.other">Outro</message>
-
 	<!-- Users and Roles settings page -->
-	<message key="settings.roles.roleName">Papel</message>
 	<message key="settings.roles.gridDescription">Papéis são grupos de usuários na editora, que possuem diferentes níveis de acesso e fluxos de trabalho associados dentro da editora. Existem cinco níveis de permissão distintos: Gerentes de editora possuem acesso a tudo na editora (todo o conteúdo e configurações); Editores possuem acesso a todo o conteúdo dentro de suas séries; Assistentes possuem acesso a todas as monografias designadas explicitamente a eles por um editor; Avaliadores podem ver e executar avaliações designadas a eles; e Autores podem ver e interagir com um conjunto de informações limitadas em suas próprias submissões. Além disso, existem cinco estágios distintos de tarefas aos quais papéis podem ter acesso: Submissão, Avaliação interna, Avaliação externa, Edição e Produção.</message>
-	<message key="settings.roles.roleAbbrev">Abreviatura</message>
-	<message key="settings.roles.assignedStages">Estágios designados</message>
-	<message key="settings.roles.stages">Estágios</message>
-	<message key="settings.roles.listRoles">Listar papéis de</message>
-	<message key="settings.roles.roleDetails">Detalhes</message>
-	<message key="settings.roles.from">Nível de permissão</message>
-	<message key="settings.roles.removeText">Está prestes a excluir este papel da editora. Esta operação também excluirá todas as configurações e atividades de usuários relacionadas ao papel. Deseja realmente continuar?</message>
-	<message key="settings.roles.nameRequired">É necessário definir um nome para o papel.</message>
-	<message key="settings.roles.abbrevRequired">É necessário definir uma abreviatura.</message>
-	<message key="settings.roles.uniqueName">É necessário definir um nome único para o papel.</message>
-	<message key="settings.roles.uniqueAbbrev">É necessário definir uma abreviatura única.</message>
-	<message key="settings.roles.roleIdRequired">É necessário definir o nível de permissão.</message>
-	<message key="settings.roles.stageIdRequired">É necessário definir o estágio designado ao papel.</message>
-	<message key="manager.siteAccessOptions.siteAccessOptions">Opções de acesso ao site</message>
-
 	<!-- Press settings -->
-	<message key="manager.affiliationAndSupport">Patrocinador</message>
-
 	<!-- Publication Process settings -->
-	<message key="manager.publication.submissionStage">Submissão</message>
-	<message key="manager.publication.reviewStage">Avaliação</message>
-	<message key="manager.publication.editorialStage">Edição</message>
-	<message key="manager.publication.productionStage">Produção</message>
-	<message key="manager.publication.emails">E-mails</message>
-
 	<!--  Genre grid settings -->
-	<message key="grid.action.addGenre">Incluir gênero</message>
-	<message key="grid.action.editGenre">Editar gênero</message>
-	<message key="grid.action.deleteGenre">Excluir gênero</message>
-	<message key="grid.action.restoreGenres">Restaurar as configurações padrão de gênero</message>
-
 	<!-- Distribution Process settings -->
-	<message key="manager.distribution.indexing">Indexação</message>
-
 	<!-- Payment Method settings -->
-	<message key="manager.paymentMethod">Pagamentos</message>
-	<message key="manager.paymentMethod.title">Forma de pagamento</message>
-	<message key="manager.paymentMethod.description">Escolha da lista de formas de pagamento disponíveis. A área a seguir será atualizada de acordo com a seleção.</message>
-	<message key="manager.paymentMethod.none">Nenhuma forma de pagamento escolhida.</message>
-	<message key="manager.paymentMethod.method">Forma de pagamento</message>
-	<message key="manager.paymentMethod.currency">Moeda</message>
-	<message key="manager.paymentMethod.currency.description">Pagamentos feitos diretamente pelo site serão denominados na moeda escolhida.</message>
-
 	<!-- System setup -->
 	<message key="manager.system">Configurações do sistema</message>
 	<message key="manager.system.archiving">Arquivamento</message>
@@ -218,12 +168,10 @@ Informe, se desesjar, o motivo do bloqueio.</message>
 	<message key="manager.setup.authorCopyrightNotice">Aviso de direito autoral</message>
 	<message key="manager.setup.authorCopyrightNoticeAgree">Exigir que autores concordem e aceitem o aviso de direito autoral como parte do processo de submissão.</message>
 	<message key="manager.setup.authorCopyrightNotice.description"><![CDATA[O aviso de direito autoral a seguir aparecerá na página Sobre a editora, e nos metadados de cada item publicado. Embora seja de respponsabilidade da editora definir a natureza de seu acordo de direito autoral com os autores, o Public Knowledge Project recomenda o uso de uma licença <a href="http://creativecommons.org" target="_blank" class="action">Creative Commons</a>. Para isso, uma <a href="{$sampleCopyrightWordingUrl}" target="_blank" class="action">proposta de aviso de direito autoral</a> é apresentada, que pode ser copiada e colada no campo para que as editoras possam (a) oferecer acesso aberto, (b) oferecer acesso aberto adiado, ou (c) não oferecer acesso aberto.]]></message>
-	<message key="manager.setup.authorGuidelines">Diretrizes para autores</message>
 	<message key="manager.setup.authorGuidelines.description"><![CDATA[Defina os padrões bibliográficos e de formatação que devem ser adotados pelos autores aos submeter trabalhos a esta editora (ex.: <em>Manual de Publicação da Associação Americana de Psicologia</em>, 5 edição, 2001). Geralmente é útil apresentar exemplos de formatos de citação a serem usados nas submissões, comuns a editoras e livros.]]></message>
 	<message key="manager.setup.contributor">Contribuidor</message>
 	<message key="manager.setup.contributors">Apoio</message>
 	<message key="manager.setup.contributors.description">Agências ou organizações que oferecem apoio financeiro ou outro tipo de recurso para a editora, aparecerão em Sobre a editora e podem ser acompanhadas por uma nota de agradecimento.</message>
-	<message key="manager.setup.contributors.note">Inclua no campo uma nota descrevendo o relacionamento e as políticas entre a editora e as agências de apoio. Isto aparecerá na lista de Apoio na página Sobre.</message>
 	<message key="manager.setup.copyediting">Editores de texto</message>
 	<message key="manager.setup.copyeditInstructions">Instruções</message>
 	<message key="manager.setup.copyeditInstructionsDescription">As instruções de edição de texto estarão disponíveis para editores de texto, autores e editores de seção, durante o estágio de edição. Segu um modelo de instruções em HTML, que pode ser modificado ou substituído pelo gerente da editora a qualquer momento (em HTML ou texto puro).</message>
@@ -274,7 +222,6 @@ Informe, se desesjar, o motivo do bloqueio.</message>
 	<message key="manager.setup.enableUserRegistration.reviewer">Avaliadores (disponíveis para avaliar submissões)</message>
 	<message key="manager.setup.focusAndScope">Foco e escopo</message>
 	<message key="manager.setup.focusAndScope.description">Informe a seguir um texto, que aparecerá na página Sobre a editora, que apresenta a autores, leitores e bibliotecários as características das monografias e outros itens publicados pela editora.</message>
-	<message key="manager.setup.focusAndScopeOfPress">Foco e escopo da editora</message>
 	<message key="manager.setup.focusScope">Foco e escopo</message>
 	<message key="manager.setup.focusScopeDescription"><![CDATA[<strong>DADOS HTML DE EXEMPLO</strong>]]></message>
 	<message key="manager.setup.forAuthorsToIndexTheirWork">Para a indexação dos trabalhos pelos autores</message>
@@ -335,7 +282,6 @@ Informe, se desesjar, o motivo do bloqueio.</message>
 	<message key="manager.setup.peerReview.description">Defina a política de avaliação pelos pares para os leitores e autores, incluindo o número de avaliadores normalmente usado na avaliação de uma submissão, os critérios julgados pelos avalidores, tempo padrão para realização de uma avaliação, bem como os princípios de recrutamento de avaliadores. O conteúdo aparecerá na página Sobre a editora.</message>
 	<message key="manager.setup.policies">Políticas</message>
 	<message key="manager.setup.policies.description">Foco, avaliação pelos pares seções, privacidade, segurança e itens adicionais sobre a editora.</message>
-	<message key="manager.setup.pressAppearanceDescription">Vários componentes do visual da editora podem ser configurados nesta página, incluíndo elementos de cabeçalho e rodapé, o tema e folha de estilos, assim como a forma de exibição de listas para os usuários.</message>
 	<message key="manager.setup.pressDescription">Apresentação</message>
 	<message key="manager.setup.pressDescription.description">A apresentação da editora deve ser incluída aqui. O texto aparecerá na página inicial da editora.</message>
 	<message key="manager.setup.pressArchiving">Arquivamento</message>
@@ -345,10 +291,6 @@ Informe, se desesjar, o motivo do bloqueio.</message>
 	<message key="manager.setup.pressHomepageHeader.altText">Cabeçalho da página inicial da editora</message>
 	<message key="manager.setup.pressHomepageHeaderDescription">Escolha entre uma representação textual ou gráfica do nome da editora (arquivos permitidos são .gif, .jpg, ou .png). Este cabeçalho e o logotipo opcional serão apresentados paenas na página inicial. O cabeçalho padrão espera tamanhos de imagem de 180px x 90px.</message>
 	<message key="manager.setup.pressInitials">Sigla</message>
-	<message key="manager.setup.pressLayout">Layout</message>
-	<message key="manager.setup.pressLayoutDescription">Escolha um tema e os componentes aqui. Uma folha de estilos pode ser enviada também, o que se sobreporá aos estilos do sistema de forma geral, incluindo os usados por padrão e qualquer tema, caso algum seja adotado.</message>
-	<message key="manager.setup.pressLogo">Logotipo</message>
-	<message key="manager.setup.pressLogo.altText">Logotipo da editora</message>
 	<message key="manager.setup.pageFooter">Rodapé</message>
 	<message key="manager.setup.pageFooterDescription">Este é o rodapé da editora. Para alterar ou atualizar o rodapé, cole código HTML no campo a seguir. Exemplos podem incluir outra barra de navegação, um contador, etc. O rodapé aparecerá em todas as páginas.</message>
 	<message key="manager.setup.pageHeader">Cabeçalho interno</message>
@@ -358,7 +300,6 @@ Informe, se desesjar, o motivo do bloqueio.</message>
 	<message key="manager.setup.pressSetupUpdated">As configurações foram atualizadas.</message>
 	<message key="manager.setup.styleSheetInvalid">Formato de folha de estilo inválido. O formato é .css.</message>
 	<message key="manager.setup.pressTheme">Tema</message>
-	<message key="manager.setup.pressName">Nome</message>
 	<message key="manager.setup.principalContact">Contato principal</message>
 	<message key="manager.setup.principalContactDescription">Esta posição, que pode ser considerada como o editor científico, editor-chefe, ou algum outro cargo administrativo, será apresentado na página inicial na seção Contato, junto com o contato de suporte técnico.</message>
 	<message key="manager.setup.printIssn">ISSN impresso</message>
@@ -374,30 +315,21 @@ Informe, se desesjar, o motivo do bloqueio.</message>
 	<message key="manager.setup.publisherDescription">O nome da organização que publica o conteúdo da editora aparecerá na página Sobre a editora.</message>
 	<message key="manager.setup.referenceLinking">Conectando referências</message>
 	<message key="manager.setup.refLinkInstructions.description">Instruções de layout para conectar referências</message>
-	<message key="manager.setup.registerPressForIndexing">Cadastrar editora para indexação (coleta de metadados)</message>
 	<message key="manager.setup.restrictMonographAccess">Usuários devem se cadastrar e acessar o sistema para ver o conteúdo de acesso aberto.</message>
 	<message key="manager.setup.restrictSiteAccess">Usuários devem se cadastrar e acessar o sistema para ver o site da editora.</message>
 	<message key="manager.setup.reviewGuidelines">Diretrizes de avaliação</message>
 	<message key="manager.setup.reviewGuidelinesDescription"><![CDATA[As diretrizes de avaliação definirão os critérios a serem julgados em uma submissão, para garantir sua publicação, e podem incluir instruções especiais para preparar uma avaliação efetiva e construtiva. Ao realizar uma avaliação, os avaliadores terão, por padrão, dois campos de texto aberto, o primeiro de conteúdo "para autor e editor," e o segundo "para o editor." Opcionalmente, o gerente pode criar formulários de avaliação na área específica. Em todos os casos, os editores terão a opção de incluir as avaliações ao se comunicarem com o autor.]]></message>
-	<message key="manager.setup.competingInterests">Conflito de interesses</message>
-	<message key="manager.setup.competingInterestsDescription">Avaliadores deverão seguir as políticas de publicidade de conflito de interesses especificadas a seguir.</message> <!-- FIXME #6843 (JM): should this just reference reviewers? -->
-	<message key="manager.setup.reviewOptions">Opções de avaliação</message>
 	<message key="manager.setup.reviewOptions.automatedReminders">Lembretes automáticos (disponíveis nos modelos de mensagens do OMP) podem ser enviados aos avaliadores em dois momentos (enquanto o editor pode sempre se comunicar diretamente com o avaliador, a qualquer momento).</message>
 	<message key="manager.setup.reviewOptions.automatedRemindersDisabled"><![CDATA[<strong>Nota:</strong> Para ativar estas opções, o administrador do site deve habilitar a opção <tt>scheduled_tasks</tt> no arquivo de configuração do OMP. Configurações adicionais no servidor podem ser necessárias para oferecer suporte à funcionalidade (que pode não ser possível em todos os servidores), conforme indicado na documentação do OMP.]]></message>
 	<message key="manager.setup.reviewOptions.blindReview">Avaliação cega</message>
 	<message key="manager.setup.reviewOptions.noteOnModification">Os valores padrão podem ser alterados para qualquer submissão durante o processo editorial.</message>
-	<message key="manager.setup.reviewOptions.numWeeksPerResponse">Tempo permitido para responder (semanas)</message>
-	<message key="manager.setup.reviewOptions.numWeeksPerReview">Tempo permitido para concluir (semanas)</message>
 	<message key="manager.setup.reviewOptions.onQuality">Editores classificarão os avaliadores em escal de cinco pontos após cada avaliação.</message>
-	<message key="manager.setup.reviewOptions.remindForInvite">Enviar lembrete caso o avaliador não tenha respondido a uma solicitação dentro do seguinte prazo (dias):</message>
-	<message key="manager.setup.reviewOptions.remindForSubmit">Enviar lembrete caso o avaliador não tenha enviado sua recomendação dentro do seguinte prazo (dias):</message>
 	<message key="manager.setup.reviewOptions.restrictReviewerFileAccess">Avaliadores terão acesso ao arquivo de submissão somente após concordar em avaliá-la.</message>
 	<message key="manager.setup.reviewOptions.reviewerAccess">Acesso do avaliador</message>
 	<message key="manager.setup.reviewOptions.reviewerAccessKeysEnabled">Habilitar acesso com um clique.</message>
 	<message key="manager.setup.reviewOptions.reviewerAccessKeysEnabled.description"><![CDATA[<strong>Nota:</strong> O convite aos avaliadores conterá um endereço especial que os leverá diretamente à página de avaliação da submissão (com o acesso a outras páginas exigindo o login). Por motivos de segurança, os editores não podem modificar os destinatários ou incluir CCs ou BCCs antes de enviar os convites aos avaliadores.]]></message>
 	<message key="manager.setup.reviewOptions.reviewerRatings">Classificação do avaliador</message>
 	<message key="manager.setup.reviewOptions.reviewerReminders">Lembretes ao avaliador</message>
-	<message key="manager.setup.reviewOptions.neverSendReminder">Nunca lembrar</message>
 	<message key="manager.setup.reviewOptions.reviewTime">Tempo de avaliação</message>
 	<message key="manager.setup.reviewOptions.showEnsuringLink">Oferecer links sobre como assegurar uma avaliação cega segura a autores e avaliadores ao enviar arquivos.</message>
 	<message key="manager.setup.reviewPolicy">Política de avaliação</message>
@@ -417,9 +349,7 @@ Informe, se desesjar, o motivo do bloqueio.</message>
 	<message key="manager.setup.selectSectionDescription">A seção para a qual o item deverá ser considerado.</message>
 	<message key="manager.setup.showGalleyLinksDescription">Sempre exibir os links para as composições e identificar se são de acesso restrito.</message>
 	<message key="manager.setup.siteAccess">Restrições de acesso adicionais ao site e ao conteúdo</message>
-	<message key="manager.setup.sponsors">Patrocínio</message>
 	<message key="manager.setup.sponsors.description">O nome das organizaçõess (ex.: associações de pesquisa, departamentos de universidades, cooperativas, etc.) que patrocinam a editora aparecerá na página Sobre a editora e pode ser acompanhado de uma nota de agradecimento.</message>
-	<message key="manager.setup.sponsors.note">Caso deseje, inclua uma nota descrevendo o relacionamento e políticas do patrocínio; ela aparecerá junto à lista de patrocinadores na página Sobre.</message>
 	<message key="manager.setup.stepsToPressSite">Cinco passos para montar o site da editora</message>
 	<message key="manager.setup.subjectClassification">Classificação de assunto</message>
 	<message key="manager.setup.subjectClassificationExamples">(Ex.: Classificação de assunto da matemática; Classificação da Biblioteca do Congresso Americano)</message>
@@ -442,8 +372,6 @@ Informe, se desesjar, o motivo do bloqueio.</message>
 	<message key="manager.setup.useImageLogo">Logotipo</message>
 	<message key="manager.setup.useImageLogoDescription">Um logotipo opcional pode ser enviado e usado junto à imagem ou texto definido para o título, configurado anteriormente.</message>
 	<message key="manager.setup.useImageTitle">Imagem de título</message>
-	<message key="manager.setup.usePressStyleSheet">Folha de estilos da editora</message>
-	<message key="manager.setup.styleSheetDescription">Envie, opcionalmente, um arquivo de folha de estilos em cascata (CSS) para alterar o visual.</message>
 	<message key="manager.setup.useLayoutEditors">Um editor de layout será designado para preparar os arquivos nos formatos HTML, PDF, etc., para publicação eletrônica.</message>
 	<message key="manager.setup.useProofreaders">Um leitor de provas será designado para verificar (junto com os autores) as composições finais antes da publicação.</message>
 	<message key="manager.setup.userRegistration">Cadastro de usuário</message>
@@ -462,16 +390,13 @@ Informe, se desesjar, o motivo do bloqueio.</message>
 	<message key="manager.setup.genres">Gêneros</message>
 	<message key="manager.setup.newGenre">Novo gênero de monografia</message>
 	<message key="manager.setup.newGenreDescription">Para criar um gênerio, preencha o formulário a seguir e pressione no botão 'Criar'.</message>
-	<message key="manager.setup.genres.sortable">Permitir que arquivos deste tipo sejam ordenados por componente (ex.: por capítulo)</message>
 	<message key="manager.setup.deleteSelected">Excluir os marcados</message>
 	<message key="manager.setup.restoreDefaults">Restaurar configurações padrão</message>
-	<message key="manager.setup.groupType">Agrupamento de tipo de arquivo</message>
 	<message key="manager.setup.prospectus">Guia de prospecto</message>
 	<message key="manager.setup.prospectusDescription">O guia de prospecto é um documento para auxiliar o autor a descrever o material enviado de forma a permitir à editora determinar o valor da submissão. Prospectos podem incluir muitos itens - do ponto de vista do potencial de marketing ou valor teórico; em qualquer caso, a editora deve criar um guia de prospoecto que complemente sua pauta de publicação.</message>
 	<message key="manager.setup.submitToCategories">Permitir submissão de categoria</message>
 	<message key="manager.setup.submitToSeries">Permitir submissão de séries</message>
 	<message key="manager.setup.issnDescription"><![CDATA[O ISSN (International Standard Serial Number) é um código de oito dígitos que identifica que uma publicações é seriada, incluíndo publicações eletrônicas. É administrado por uma rede mundial de Centros Nacionais coordenados pelo Centro Internacional em Paris, com apoio da Unesco e do governo francês. O número pode ser obtido do <a href="http://www.issn.org" target="_blank">site do ISSN</a>. Esta ação pode ser realizada a qualquer momento.]]></message>
-	<message key="manager.setup.sortableByComponent">Ordenável por componente</message>
 	<message key="manager.setup.cataloguingMetadata">Metadados de catalogação</message>
 	<message key="manager.setup.currentFormats">Formatos atuais</message>
 	<message key="manager.setup.category">Categoria</message>
@@ -488,8 +413,6 @@ Informe, se desesjar, o motivo do bloqueio.</message>
 	<message key="manager.setup.masthead">Expediente</message>
 	<message key="manager.setup.masthead.description">O expediente deve conter a lista de editores, diretores e outros indivíduos associados à editora. Os dados informados aqui serão publicados na página Sobre a editora.</message>
 	<message key="manager.setup.files">Arquivos</message>
-	<message key="manager.setup.submissionDocuments">Documentos de submissão</message>
-	<message key="manager.setup.libraryDescription"><![CDATA[Os arquivos foram preparados pela editora como modelos e guias a serem usados como parte dos <span class="pkp_help_title">Documentos de submissão</span>.]]></message>
 	<message key="manager.setup.productionTemplates">Modelos de produção</message>
 	<message key="manager.files.note">Nota: O navegador de arquivos é uma funcionalidade avançada que permite o acesso e manipulação direta de pastas e arquivos associados à editora diretamente.</message>
 	<message key="manager.setup.authorCopyrightNotice.sample"><![CDATA[<h3>Proposta de aviso de direito autoral Creative Commons</h3>
@@ -518,10 +441,4 @@ Escolha um modelo para lidar com os aspectos do processo editorial (Para designa
 	<li><strong>Inclua uma ferramenta de leitura</strong><p>O Gerente da editora pode incluir a opção "Encontrar referências" na ferramenta de leitura que acompanha cada item publicado, permitindo aos leitores colar o título da referência e buscá-la em bases de dados pré-definidas.</p></li>
 	<li><strong>Embutir links nas referências</strong><p>O editor de layout pode incluir links nas referências que podem ser encontradas online, de acordo com as seguintes instruções (que podem ser personalizadas).</p></li>
 </ol>]]></message>
-	<message key="manager.setup.registerPressForIndexingDescription"><![CDATA[[Para indexar o conteúdo da editora em bases de dados de sistemas de pesquisa distribuídos globalmente, <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">cadastre</a> sua página no <a href="http://pkp.sfu.ca/harvester/" target="_blank">coletador</a> de metadados do Public Knowledge Project. Esta ferramenta coleta os metadados de indexação de cada item publicado pela editora, permitindo a busca precisa e coletiva nos sistemas que adotam o <a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank">Protocolo de Coleta de Metadados do Open Archives Initiative</a>.
-<br /><br />
-Note que se o administrador do site já cadastrou o site no coletador do PKP, a editora estará automaticament indexada e não é necessário cadastrá-la.
-<br /><br />
-<a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Clique aqui</a> e informe o endereço <span class="highlight">{$siteUrl}</span> em <strong>Site URL</strong>, e o endereço <span class="highlight">{$oaiUrl}</span> em <strong>Base URL for OAI Archive</strong>.]]></message>
-
 </locale>

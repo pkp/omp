@@ -30,34 +30,16 @@
 
 	<message key="admin.languages.confirmDisable">Are you sure you want to disable this locale? This may affect any hosted presses currently using the locale.</message>
 
-	<message key="admin.systemInfo.settingName">Setting Name</message>
-	<message key="admin.systemInfo.settingValue">Setting Value</message>
 	<message key="admin.systemVersion">OMP Version</message>
 	<message key="admin.systemConfiguration">OMP Configuration</message>
 	<message key="admin.systemConfigurationDescription"><![CDATA[OMP configuration settings from <tt>config.inc.php</tt>.]]></message>
 	<message key="admin.presses.pressSettings">Press Settings</message>
 	<message key="admin.presses.noneCreated">No presses have been created.</message>
-	<message key="admin.presses.confirmDelete">Are you sure you want to permanently delete this press and all of its contents?</message>
-	<message key="admin.presses.create">Create Press</message>
 	<message key="admin.presses.createInstructions">You will automatically be enrolled as the manager of this press. After creating a new press, you will be redirected to its settings wizard, to complete the initial press setup.</message>
 	<message key="admin.presses.urlWillBe">The press URL will be {$sampleUrl}</message>
-	<message key="admin.presses.form.titleRequired">A title is required.</message>
-	<message key="admin.presses.form.pathRequired">A path is required.</message>
-	<message key="admin.presses.form.pathAlphaNumeric">The path can contain only alphanumeric characters, underscores, and hyphens, and must begin and end with an alphanumeric character.</message>
-	<message key="admin.presses.form.pathExists">The selected path is already in use by another press.</message>
 	<message key="admin.presses.enablePressInstructions">Enable this press to appear publicly on the site</message>
 	<message key="admin.presses.pressDescription">Press description</message>
 	<message key="admin.presses.addPress">Add Press</message>
-
-	<message key="admin.mergeUsers">Merge Users</message>
-	<message key="admin.mergeUsers.mergeUser">Merge User</message>
-	<message key="admin.mergeUsers.mergeIntoUser">Merge into this User</message>
-	<message key="admin.mergeUsers.into.description">Now, you must select a user to whom to attribute the previous user's authorships, editing assignments, etc.</message>
-	<message key="admin.mergeUsers.from.description">Select a user to merge into another user account (e.g., when someone has two user accounts). The account selected first will be deleted and its submissions, assignments, etc. will be attributed to the second account.</message>
-	<message key="admin.mergeUsers.allUsers">All Enrolled Users</message>
-	<message key="admin.mergeUsers.mergeUserSelect.confirm">Are you sure you wish to merge this user with another one?  You will choose the next user on the following screen.</message>
-	<message key="admin.mergeUsers.confirm">Are you sure you wish to merge the account with the username "{$oldUsername}" into the account with the username "{$newUsername}"? The account with the username "{$oldUsername}" will not exist afterwards. This action is not reversible.</message>
-	<message key="admin.mergeUsers.noneEnrolled">No users exist with that role.</message>
 
 	<message key="admin.settings.oaiRegistrationDescription"><![CDATA[To have the contents of all presses hosted on this site indexed within a globally distributed system of research databases, <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">register</a> your site's URL with the Public Knowledge Project metadata <a href="http://pkp.sfu.ca/harvester/" target="_blank">harvester</a>. This tool collects the metadata from each indexed item in this press, enabling accurate and collective searching among the research sites that adhere to the <a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank">Open Archives Initiative Protocol for Metadata Harvesting</a>.
 <br /><br />
