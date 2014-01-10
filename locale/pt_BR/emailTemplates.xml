@@ -13,7 +13,7 @@
 		<subject>Solicitação de auditoria em manuscrito</subject>
 		<body>{$auditorName},
 
-Novos arquivos foram enviados para o manuscrito "{$monographTitle}", e solicito sua auditoria. É importante para nós que os participantes avaliem o manuscrito a cada estágio.
+Novos arquivos foram enviados para o manuscrito "{$submissionTitle}", e solicito sua auditoria. É importante para nós que os participantes avaliem o manuscrito a cada estágio.
 
 Os arquivos estão disponíveis no endereço:
 
@@ -90,7 +90,7 @@ Nova senha: {$password}
 		<subject>Cadastro na editora</subject>
 		<body>{$userFullName},
 
-Seu cadastro foi realizado com sucesso na editora {$pressName}. Nesta mensagem estão incluídos seu login e senha, necessário para acesso ao sistema e executar as atividades editoriais relacionadas. Exclua seu cadastro desta lista a qualquer momento, repondendo a esta mensagem ou enviando solicitação ao endereço de resposta.
+Seu cadastro foi realizado com sucesso na editora {$contextName}. Nesta mensagem estão incluídos seu login e senha, necessário para acesso ao sistema e executar as atividades editoriais relacionadas. Exclua seu cadastro desta lista a qualquer momento, repondendo a esta mensagem ou enviando solicitação ao endereço de resposta.
 
 Login: {$username}
 Senha: {$password}
@@ -103,7 +103,7 @@ Atenciosamente,
 		<subject>Validar seu cadastro</subject>
 		<body>{$userFullName},
 
-Seu cadastro foi realizado com sucesso na editora {$pressName}, mas é necessário validar seu e-mail antes de poder acessar o sistema. Para isto, basta seguir o link:
+Seu cadastro foi realizado com sucesso na editora {$contextName}, mas é necessário validar seu e-mail antes de poder acessar o sistema. Para isto, basta seguir o link:
 
 {$activateUrl}
 
@@ -112,8 +112,8 @@ Atenciosamente,
 		<description>Esta mensagem é enviada a  novos usuários cadastrados, como boas-vindas e permitir a validação do cadastro.</description>
 	</email_text>
 	<email_text key="REVIEWER_REGISTER">
-		<subject>Cadastro como avaliador da editora {$pressName}</subject>
-		<body>Por sua vasta experiência e conhecimento, tomamos a liberdade de cadastrá-lo como avaliador na base de dados da editora {$pressName}. Isto não implica, de forma alguma, em qualquer compromisso de sua parte, apenas nos permite contactá-lo para encaminhar possíveis avaliações. Ao ser convidado para realizar uma avaliação, terá a oportunidade de ler o título e resumo do trabalho, bem como indicar se aceita ou não o convite. Solicite a qualquer tempo a remoção do seu nome de nossa base de avaliadores.
+		<subject>Cadastro como avaliador da editora {$contextName}</subject>
+		<body>Por sua vasta experiência e conhecimento, tomamos a liberdade de cadastrá-lo como avaliador na base de dados da editora {$contextName}. Isto não implica, de forma alguma, em qualquer compromisso de sua parte, apenas nos permite contactá-lo para encaminhar possíveis avaliações. Ao ser convidado para realizar uma avaliação, terá a oportunidade de ler o título e resumo do trabalho, bem como indicar se aceita ou não o convite. Solicite a qualquer tempo a remoção do seu nome de nossa base de avaliadores.
 
 A seguir, informamos seu login e sua senha, usados em todas as atividades editoriais na editora. Use-os para atualizar seu perfil, por exemplo, incluindo a área de interesse para avaliação.
 
@@ -128,7 +128,7 @@ Atenciosamente,
 		<subject>Novo livro publicado</subject>
 		<body>Caros leitores,
 
-{$pressName} acabou de publicar seu último livro, disponível na página {$pressUrl}. Convidamos todos a avaliar o sumário nesta mensagem e em seguida visitar o site para ver as monografias e encontrar os itens de seu interesse.
+{$contextName} acabou de publicar seu último livro, disponível na página {$contextUrl}. Convidamos todos a avaliar o sumário nesta mensagem e em seguida visitar o site para ver as monografias e encontrar os itens de seu interesse.
 
 Agradecendo pelo seu apoio contínuo ao nosso trabalho,
 {$editorialContactSignature}</body>
@@ -138,7 +138,7 @@ Agradecendo pelo seu apoio contínuo ao nosso trabalho,
 		<subject>Agradecimento pela submissão</subject>
 		<body>{$authorName},
 
-Agradecmos a submissão do seu manuscrito, "{$monographTitle}" à editora {$pressName}. Por meio de nosso sistema online de adminstração, poderá acompanhar o progresso através das estapas do processo editorial, acessando o sistema com as informações a seguir:
+Agradecmos a submissão do seu manuscrito, "{$submissionTitle}" à editora {$contextName}. Por meio de nosso sistema online de adminstração, poderá acompanhar o progresso através das estapas do processo editorial, acessando o sistema com as informações a seguir:
 
 Página do manuscrito: {$submissionUrl}
 Login: {$authorUsername}
@@ -152,7 +152,7 @@ Em caso de dúvidas, entre em contato. Agradecemos por considerar nossa editora 
 		<subject>Agradecimento pela submissão</subject>
 		<body>Olá,
 
-{$submitterName} submeteu o manuscrito "{$monographTitle}" à editora {$pressName}. 
+{$submitterName} submeteu o manuscrito "{$submissionTitle}" à editora {$contextName}. 
 
 Em caso de dúvidas, entre em contato. Agradecemos por considerar nossa editora como um veículo para seus trabalhos.
 
@@ -163,7 +163,7 @@ Em caso de dúvidas, entre em contato. Agradecemos por considerar nossa editora 
 		<subject>Submissão rejeitada</subject>
 		<body>{$authorName},
 
-A avaliação do trabalho "{$monographTitle}" deixou claro que esta submissão não se adequa ao foco e escopo da editora {$pressName}. Recomendamos que consulte as informações na nossa página Sobre, bem como o seu atual conteúdo, para conhecer melhor sobre o tipo de trabalho publicado. Sugerimos também submeter este trabalho a outra editora mais apropriada.
+A avaliação do trabalho "{$submissionTitle}" deixou claro que esta submissão não se adequa ao foco e escopo da editora {$contextName}. Recomendamos que consulte as informações na nossa página Sobre, bem como o seu atual conteúdo, para conhecer melhor sobre o tipo de trabalho publicado. Sugerimos também submeter este trabalho a outra editora mais apropriada.
 
 {$editorialContactSignature}</body>
 	</email_text>
@@ -171,7 +171,7 @@ A avaliação do trabalho "{$monographTitle}" deixou claro que esta submissão n
 		<subject>Tarefa editorial</subject>
 		<body>{$editorialContactName},
 
-A submissão "{$monographTitle}" a editora {$pressName} está sob sua responsabilidade para acompanhamento durante o processo editorial, como editor.
+A submissão "{$submissionTitle}" a editora {$contextName} está sob sua responsabilidade para acompanhamento durante o processo editorial, como editor.
 
 Página da submissão: {$submissionUrl}
 Login: {$editorUsername}
@@ -205,7 +205,7 @@ Atenciosamente,
 		<subject>Solicitação de avaliação</subject>
 		<body>{$reviewerName},
 
-Acreditamos que será um excelente avaliador para o manuscrito "{$monographTitle}", enviado à editora {$pressName}. O resumo da submissão está incluído na mensagem e esperamos que considere assumir esta importante tarefa para nós.
+Acreditamos que será um excelente avaliador para o manuscrito "{$submissionTitle}", enviado à editora {$contextName}. O resumo da submissão está incluído na mensagem e esperamos que considere assumir esta importante tarefa para nós.
 
 Acesse o sistema até {$weekLaterDate} para indicar se aceitará ou não realizar a avaliação, bem como acessar a submissão e registrar sua avaliação e recomendação.
 
@@ -219,7 +219,7 @@ Agradecemos por considerar nossa solicitação.
 
 
 
-"{$monographTitle}"
+"{$submissionTitle}"
 
 {$abstractTermIfEnabled}
 {$monographAbstract}</body>
@@ -229,7 +229,7 @@ Agradecemos por considerar nossa solicitação.
 		<subject>Solicitação de avaliação</subject>
 		<body>{$reviewerName},
 
-Acreditamos que será um excelente avaliador para o manuscrito "{$monographTitle}" e esperamos que considere assumir esta importante tarefa para nós. As diretrizes de avaliação da editora estão em apenso e a submissão está em anexo à mensagemo. Sua avlaiação e sua recomendação devem ser encaminhados a este endereço até {$reviewDueDate}.
+Acreditamos que será um excelente avaliador para o manuscrito "{$submissionTitle}" e esperamos que considere assumir esta importante tarefa para nós. As diretrizes de avaliação da editora estão em apenso e a submissão está em anexo à mensagemo. Sua avlaiação e sua recomendação devem ser encaminhados a este endereço até {$reviewDueDate}.
 
 Por favor responda a esta mensagem até {$weekLaterDate} se está disponível ou não para realizar a avaliação.
 
@@ -248,7 +248,7 @@ Diretrizes para avaliação
 		<subject>Solicitação de avaliação cancelada</subject>
 		<body>{$reviewerName},
 
-Decidimos neste momento cancelar nossa solicitação de avaliação da submissão "{$monographTitle}" à editora {$pressName}. Lamentamos qualquer inconveniente que isto possa causar e esperamos que possamos solicitar novamente sua ajuda no futuro.
+Decidimos neste momento cancelar nossa solicitação de avaliação da submissão "{$submissionTitle}" à editora {$contextName}. Lamentamos qualquer inconveniente que isto possa causar e esperamos que possamos solicitar novamente sua ajuda no futuro.
 
 Em caso de dúvidas, entre em contato.
 
@@ -259,7 +259,7 @@ Em caso de dúvidas, entre em contato.
 		<subject>Disponível para avaliação</subject>
 		<body>{$editorialContactName},
 
-Estou disponível e aceito realizar a avaliação da submissão "{$monographTitle}", enviado à editora {$pressName}. Agradeço por considerar meu perfil para avaliação, e planejo concluir a avaliação até {$reviewDueDate}, se não antes.
+Estou disponível e aceito realizar a avaliação da submissão "{$submissionTitle}", enviado à editora {$contextName}. Agradeço por considerar meu perfil para avaliação, e planejo concluir a avaliação até {$reviewDueDate}, se não antes.
 
 {$reviewerName}</body>
 		<description>Esta mensagem é enviada pelo avaliador em resposta à solicitação do editor de série pela solicitação de avaliação, notificando de sua disponibilidade e aceitação de realizar a avaliação até a data de entrega.</description>
@@ -268,7 +268,7 @@ Estou disponível e aceito realizar a avaliação da submissão "{$monographTitl
 		<subject>Indisponível para avaliação</subject>
 		<body>{$editorialContactName},
 
-Lamento informar que não estou disponível neste momento para avaliar a submissão "{$monographTitle}", enviada à editora {$pressName}. Agradeço por considerar meu perfil, e sinta-se à vontade para entrar em contato novamente em oportunidade futura.
+Lamento informar que não estou disponível neste momento para avaliar a submissão "{$submissionTitle}", enviada à editora {$contextName}. Agradeço por considerar meu perfil, e sinta-se à vontade para entrar em contato novamente em oportunidade futura.
 
 {$reviewerName}</body>
 		<description>Esta mensagem é enviada pelo avaliador em resposta à solicitação do editor de série pela solicitação de avaliação, notificando de sua disponibilidade e recusando realizar a avaliação.</description>
@@ -277,7 +277,7 @@ Lamento informar que não estou disponível neste momento para avaliar a submiss
 		<subject>Conclusão da avaliação</subject>
 		<body>{$editorialContactName},
 
-Está concluída minha avaliação da monografia "{$monographTitle}" à editora {$pressName}, e enviei minha recomendação, "{$recommendation}."
+Está concluída minha avaliação da monografia "{$submissionTitle}" à editora {$contextName}, e enviei minha recomendação, "{$recommendation}."
 
 {$reviewerName}</body>
 		<description>Esta mensagem é enviada pelo avaliador ao editor de série, informando da conclusão da avaliação e que seus comentário e recomendação foram registrados no sistema.</description>
@@ -286,7 +286,7 @@ Está concluída minha avaliação da monografia "{$monographTitle}" à editora 
 		<subject>Agradecimento pela avaliação</subject>
 		<body>{$reviewerName},
 
-Agradecmos por concluir a avaliação da submissão "{$monographTitle}" à editora {$pressName}. Sua contribuição é essencial para a qualidade do trabalho publicado por esta editora.
+Agradecmos por concluir a avaliação da submissão "{$submissionTitle}" à editora {$contextName}. Sua contribuição é essencial para a qualidade do trabalho publicado por esta editora.
 
 {$editorialContactSignature}</body>
 		<description>Esta mensagem é enviada pelo editor de série confirmando o recebimento da avaliação e agradecendo o avaliador por sua contribuição.</description>
@@ -295,7 +295,7 @@ Agradecmos por concluir a avaliação da submissão "{$monographTitle}" à edito
 		<subject>Avaliação pendente</subject>
 		<body>{$reviewerName},
 
-Este é apenas um lembrete sobre nossa solicitação de avaliar a submissão "{$monographTitle}", enviada à editora {$pressName}. Esperamos que possa concluí-la até {$reviewDueDate}, e agradeceríamos muito recebê-la assim que estiver concluída.
+Este é apenas um lembrete sobre nossa solicitação de avaliar a submissão "{$submissionTitle}", enviada à editora {$contextName}. Esperamos que possa concluí-la até {$reviewDueDate}, e agradeceríamos muito recebê-la assim que estiver concluída.
 
 Caso não tenha seu login ou senha de acesso ao sistema, use o endereço a seguir para redefinir sua senha (que será encaminhada junto com seu login). {$passwordResetUrl}
 
@@ -312,7 +312,7 @@ Confirme sua disponibilidade em concluir esta contribuição vital aos trabalhos
 		<subject>Lembrete de avaliação pendente</subject>
 		<body>{$reviewerName},
 
-Este é apenas um lembrete sobre nossa solicitação de avaliar a submissão "{$monographTitle}", enviada à editora {$pressName}. Esperamos que possa concluí-la até {$reviewDueDate}, e agradeceríamos muito recebê-la assim que estiver concluída.
+Este é apenas um lembrete sobre nossa solicitação de avaliar a submissão "{$submissionTitle}", enviada à editora {$contextName}. Esperamos que possa concluí-la até {$reviewDueDate}, e agradeceríamos muito recebê-la assim que estiver concluída.
 
 Página da submissão: {$submissionReviewUrl}
 
@@ -325,7 +325,7 @@ Confirme sua disponibilidade em concluir esta contribuição vital aos trabalhos
 		<subject>Avaliação pendente - Lembrete automático</subject>
 		<body>{$reviewerName},
 
-Este é apenas um lembrete de nossa solicitação de avaliar a submissão "{$monographTitle}", enviada à editora {$pressName}. Esperamos que possa concluí-la até {$reviewDueDate}. Esta mensagem é gerada e enviada automaticamente passado o prazo de entrega. Ainda assim, agradeceríamos recebê-la assim que estiver concluída
+Este é apenas um lembrete de nossa solicitação de avaliar a submissão "{$submissionTitle}", enviada à editora {$contextName}. Esperamos que possa concluí-la até {$reviewDueDate}. Esta mensagem é gerada e enviada automaticamente passado o prazo de entrega. Ainda assim, agradeceríamos recebê-la assim que estiver concluída
 
 Caso não tenha seu login ou senha de acesso ao sistema, use o endereço a seguir para redefinir sua senha (que será encaminhada junto com seu login). {$passwordResetUrl}
 
@@ -340,7 +340,7 @@ Confirme sua disponibilidade em concluir esta contribuição vital aos trabalhos
 		<subject>Avaliação pendente - Lembrete automático</subject>
 		<body>{$reviewerName},
 
-Este é apenas um lembrete de nossa solicitação de avaliar a submissão "{$monographTitle}", enviada à editora {$pressName}. Esperamos que possa concluí-la até {$reviewDueDate}. Esta mensagem é gerada e enviada automaticamente passado o prazo de entrega. Ainda assim, agradeceríamos recebê-la assim que estiver concluída.
+Este é apenas um lembrete de nossa solicitação de avaliar a submissão "{$submissionTitle}", enviada à editora {$contextName}. Esperamos que possa concluí-la até {$reviewDueDate}. Esta mensagem é gerada e enviada automaticamente passado o prazo de entrega. Ainda assim, agradeceríamos recebê-la assim que estiver concluída.
 
 Página da submissão: {$submissionReviewUrl}
 
@@ -353,7 +353,7 @@ Confirme sua disponibilidade em concluir esta contribuição vital aos trabalhos
 		<subject>Decisão editorial</subject>
 		<body>{$authorName},
 
-A decisão editorial sobre a submissão à editora {$pressName}, "{$monographTitle}", foi tomada.
+A decisão editorial sobre a submissão à editora {$contextName}, "{$submissionTitle}", foi tomada.
 
 A decisão é:
 
@@ -368,7 +368,7 @@ Login: {$authorUsername}
 		<subject>Decisão editorial</subject>
 		<body>{$authorName},
 
-A decisão editorial sobre a submissão à editora {$pressName}, "{$monographTitle}", foi tomada.
+A decisão editorial sobre a submissão à editora {$contextName}, "{$submissionTitle}", foi tomada.
 
 A decisão é:
 
@@ -383,7 +383,7 @@ Login: {$authorUsername}
 		<subject>Decisão editorial</subject>
 		<body>{$authorName},
 
-A edição do manuscrito "{$monographTitle}" foi concluída. O trabalho será enviado à produção.
+A edição do manuscrito "{$submissionTitle}" foi concluída. O trabalho será enviado à produção.
 
 Página do manuscrito: {$submissionUrl}
 Login: {$authorUsername}
@@ -396,7 +396,7 @@ Login: {$authorUsername}
 		<subject>Decisão editorial</subject>
 		<body>{$authorName},
 
-A decisão editorial sobre a submissão à editora {$pressName}, "{$monographTitle}", foi tomada.
+A decisão editorial sobre a submissão à editora {$contextName}, "{$submissionTitle}", foi tomada.
 
 A decisão é:
 
@@ -411,7 +411,7 @@ Login: {$authorUsername}
 		<subject>Decisão editorial</subject>
 		<body>{$authorName},
 
-A decisão editorial sobre a submissão à editora {$pressName}, "{$monographTitle}", foi tomada.
+A decisão editorial sobre a submissão à editora {$contextName}, "{$submissionTitle}", foi tomada.
 
 A decisão é:
 
@@ -426,7 +426,7 @@ Login: {$authorUsername}
 		<subject>Decisão editorial</subject>
 		<body>{$authorName}:
 
-A decisão editorial sobre a submissão à editora {$pressName}, "{$monographTitle}", foi tomada.
+A decisão editorial sobre a submissão à editora {$contextName}, "{$submissionTitle}", foi tomada.
 
 A decisão é:
 
@@ -441,7 +441,7 @@ Login: {$authorUsername}
 		<subject>Solicitação de edição de texto</subject>
 		<body>{$copyeditorName},
 
-Solicito realizar a edição de texto da submissão "{$monographTitle}" à editora {$pressName}, conforme os seguintes passos:
+Solicito realizar a edição de texto da submissão "{$submissionTitle}" à editora {$contextName}, conforme os seguintes passos:
 1. Acesse a página da submissão abaixo.
 2. Acesse o sistema e baixe o arquivo disponível no passo 1.
 3. Consulte as instruções para edição de texto disponíveis na página.
@@ -449,7 +449,7 @@ Solicito realizar a edição de texto da submissão "{$monographTitle}" à edito
 5. Salve o arquivo editado e envie-o ao passo 1 da edição de texto.
 6. Envie a mensagem CONCLUÍDA ao editor.
 
-Página da editora {$pressName}: {$pressUrl}
+Página da editora {$contextName}: {$contextUrl}
 Página da submissão: {$submissionCopyeditingUrl}
 Login: {$copyeditorUsername}
 
@@ -460,12 +460,12 @@ Login: {$copyeditorUsername}
 		<subject>Solicitação de composição</subject>
 		<body>{$layoutEditorName}.
 
-A submissão "{$monographTitle}", enviada à editora {$pressName}, precisa agora ser transformada em composição final conforme os seguintes passos:
+A submissão "{$submissionTitle}", enviada à editora {$contextName}, precisa agora ser transformada em composição final conforme os seguintes passos:
 1. Acesse a página da submissão abaixo.
 2. Acesse o sistema e use o arquivo de versão de layout disponível para produzir a composição de acordo com esse padrão.
 3. Envie a mensagem CONCLUÍDA ao editor.
 
-Página da editora {$pressName}: {$pressUrl}
+Página da editora {$contextName}: {$contextUrl}
 Página da submissão: {$submissionUrl}
 Login: {$layoutEditorUsername}
 
@@ -478,7 +478,7 @@ Caso não tenha disponibilidade para assumir esta tarefa no momento, ou em caso 
 		<subject>Composição de layout concluída</subject>
 		<body>{$editorialContactName},
 
-As composições solicitadas para o manuscrito "{$monographTitle}", enviado à editora ($pressName}, estão prontas para leitura de provas.
+As composições solicitadas para o manuscrito "{$submissionTitle}", enviado à editora ($pressName}, estão prontas para leitura de provas.
 
 Em caso de dúvidas, entre em contato.
 
@@ -489,12 +489,12 @@ Em caso de dúvidas, entre em contato.
 		<subject>Solicitação de índice</subject>
 		<body>{$indexerName},
 
-A submissão "{$monographTitle}", enviada à editora {$pressName}, precisa da produção de índices conforme os seguintes passos:
+A submissão "{$submissionTitle}", enviada à editora {$contextName}, precisa da produção de índices conforme os seguintes passos:
 1. Acesse a página da submissão abaixo.
 2. Acesse o sistema e use o arquivo de provas de página para criar composições conforme o padrão.
 3. Envie a mensagem CONCLUÍDA ao editor.
 
-Página da editora {$pressName}: {$pressUrl}
+Página da editora {$contextName}: {$contextUrl}
 Página da submissão: {$submissionUrl}
 Login: {$indexerUsername}
 
@@ -507,7 +507,7 @@ Caso não tenha disponibilidade para assumir esta tarefa no momento, ou em caso 
 		<subject>Composição de índices concluída</subject>
 		<body>{$editorialContactName},
 
-A composição dos índices solicitados para o manuscrito "{$monographTitle}", enviado à editora ($pressName}, está concluída e pronta para leitura de provas.
+A composição dos índices solicitados para o manuscrito "{$submissionTitle}", enviado à editora ($pressName}, está concluída e pronta para leitura de provas.
 
 Em caso de dúvidas, entre em contato.
 
@@ -516,12 +516,12 @@ Em caso de dúvidas, entre em contato.
 	</email_text>
 										<email_text key="EMAIL_LINK">
 		<subject>Manuscrito de seu interesse</subject>
-		<body>Pensei que poderia se interessar em ler o "{$monographTitle}", escrito por {$authorName} e publicado no v.{$volume} n.{$number} {$year} da editora {$pressName}, disponível no endereço "{$monographUrl}".</body>
+		<body>Pensei que poderia se interessar em ler o "{$submissionTitle}", escrito por {$authorName} e publicado no v.{$volume} n.{$number} {$year} da editora {$contextName}, disponível no endereço "{$monographUrl}".</body>
 		<description>Este modelo de mensagem fornece aos leitores cadastrados a oportunidade e enviar a sua rede informações sobre a monografia que podem ser de interesse. Está disponível por meio das ferramentas de leitura, habilitadas pelo Gerenete da editora na página de administração das ferramentas de leitura.</description>
 	</email_text>
 		<email_text key="NOTIFY_SUBMISSION">
 		<subject>Notificação de submissão</subject>
-		<body>Você recebeu uma nova mensagem de {$sender} com relação à monografia "{$monographTitle}" ({$monographDetailsUrl}):
+		<body>Você recebeu uma nova mensagem de {$sender} com relação à monografia "{$submissionTitle}" ({$monographDetailsUrl}):
 
 		{$message}
 
@@ -530,7 +530,7 @@ Em caso de dúvidas, entre em contato.
 	</email_text>
 		<email_text key="NOTIFY_FILE">
 		<subject>Notificação de arquivo de submissão</subject>
-		<body>Você recebeu uma nova mensagem de {$sender} com relação ao arquivo "{$fileName}" da monografia "{$monographTitle}" ({$monographDetailsUrl}):
+		<body>Você recebeu uma nova mensagem de {$sender} com relação ao arquivo "{$fileName}" da monografia "{$submissionTitle}" ({$monographDetailsUrl}):
 
 		{$message}
 
@@ -538,7 +538,7 @@ Em caso de dúvidas, entre em contato.
 		<description>Notificação de usuário enviada pela janela modal do centro de informações de arquivos submissão.</description>
 	</email_text>
 		<email_text key="NOTIFICATION_CENTER_DEFAULT">
-		<subject>Uma mensagem sobre a editora {$pressName}</subject>
+		<subject>Uma mensagem sobre a editora {$contextName}</subject>
 		<body>Informe sua mensagem aqui.</body>
 		<description>Uma mensagem padrão em branco, a ser usada no centro de mensagens.</description>
 	</email_text>
