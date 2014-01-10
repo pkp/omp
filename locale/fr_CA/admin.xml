@@ -49,16 +49,6 @@
 	<message key="admin.presses.pressDescription">Description de la presse</message>
 	<message key="admin.presses.addPress">Ajouter la presse</message>
 
-	<message key="admin.mergeUsers">Fusionner les utilisateurs</message>
-	<message key="admin.mergeUsers.mergeUser">Fusionner l'utilisateur</message>
-	<message key="admin.mergeUsers.mergeIntoUser">Fusionner dans cet utilisateur</message>
-	<message key="admin.mergeUsers.into.description">Maintenant, vous devez choisir un utilisateur à qui vous assignerez la paternité, les modifications, etc. de l'ancien utilisateur.</message>
-	<message key="admin.mergeUsers.from.description">Choisissez un utilisateur qui sera fusionné à un autre compte d'utilisateur (ex.: lorsqu'une personne a deux comptes d'utilisateur). Le premier compte sélectionné sera supprimé et ses soumissions, contributions, etc. seront attribuées au deuxième compte.</message>
-	<message key="admin.mergeUsers.allUsers">Tous les utilisateurs inscrits</message>
-	<message key="admin.mergeUsers.mergeUserSelect.confirm">Vous souhaitez fusionner cet utilisateur à un autre? Vous pourrez choisir le nouvel utilisateur sur l'écran suivant.</message>
-	<message key="admin.mergeUsers.confirm">Vous souhaitez ajouter le compte de l'utilisateur "{$oldUsername}" au compte de l'utilisateur "{$newUsername}"? Le compte "{$oldUsername}" n'existera plus après cette opération. Cette opération n'est pas réversible.</message>
-	<message key="admin.mergeUsers.noneEnrolled">Aucun utilisateur doté de ce rôle n'existe.</message>
-
 	<message key="admin.settings.oaiRegistrationDescription"><![CDATA[Pour que le contenu de cette presse soit indexé dans un système de bases de données de recherche réparti à l'échelle mondiale, <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">enregistrez</a> l'adresse URL de votre presse afin qu'elle soit utilisée pour la <a href="http://pkp.sfu.ca/harvester/" target="_blank">collecte</a> de métadonnées du Public Knowledge Project. Cet outil cueille les métadonnées de chaque élément indexé dans cette presse, ce qui facilite une recherche précise et collective parmi les sites de recherche qui adoptent le <a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank">protocole de l'Open Archives pour la collecte de métadonnées</a>.
 <br /><br />
 <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Cliquez ici</a> et saisissez <span class="highlight">{$siteUrl}</span> dans <strong>l'adresse URL du site</strong>, et <span class="highlight">{$oaiUrl}</span> dans <strong>Base URL pour les archives OAI.</strong>.

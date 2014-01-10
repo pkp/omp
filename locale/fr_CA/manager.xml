@@ -16,7 +16,7 @@
 	<message key="manager.language.confirmDefaultSettingsOverwrite">Ceci remplacera tous les paramètres spécifiques aux données de la presse que vous aviez spécifiés pour ce paramètre.</message>
 	<message key="manager.languages.languageInstructions"><![CDATA[Les utilisateurs peuvent utiliser différentes langues dans OMP. De plus, OMP peut être multilingue: les utilisateurs peuvent basculer d'une langue à l'autre sur chaque page et ils peuvent saisir les données dans différentes langues.<br /><br/>Si une langue prise en charge par OMP n'apparait dans la liste, demandez à l'administrateur du site d'installer la langue à partir de l'interface d'administration du site. La documentation d'OMP contient des instructions sur la prise en charge de nouvelles langues.]]></message>
 	<message key="manager.languages.noneAvailable">Désolé, aucune autre langue n'est disponible. Contactez l'administrateur du site si vous souhaitez ajouter d'autres langues à cette presse.</message>
-	<message key="manager.languages.primaryLocaleInstructions">Cette langue sera la langue par défaut du site de la presse.</message>	
+	<message key="manager.languages.primaryLocaleInstructions">Cette langue sera la langue par défaut du site de la presse.</message>
 
 	<!-- Review forms -->
 	<message key="manager.reviewForms">Formulaires d'évaluation</message>
@@ -130,57 +130,15 @@
 	Cette tâche doit être effectuée par un administrateur du site.]]></message>
 
 	<!-- Library Files -->
-	<message key="settings.libraryFiles.fileRequired">Un fichier bibliothèque est requis. Assurez-vous d'avoir choisi et téléchargé un fichier.</message>
-	<message key="settings.libraryFiles.nameRequired">Vous devez nommer ce fichier bibliothèque.</message>
-	<message key="settings.libraryFiles.typeRequired">Vous devez choisir un type de fichier pour ce fichier bibliothèque.</message>
-	<message key="settings.libraryFiles.category.contracts">Contrats</message>
-	<message key="settings.libraryFiles.category.marketing">Marketing</message>
-	<message key="settings.libraryFiles.category.permissions">Permissions</message>
-	<message key="settings.libraryFiles.category.reports">Rapports</message>
-	<message key="settings.libraryFiles.category.other">Autres</message>
-
 	<!-- Users and Roles settings page -->
-	<message key="settings.roles.roleName">Rôle</message>
 	<message key="settings.roles.gridDescription">Les rôles représentent des groupes d'utilisateurs de la presse à qui l'on a donné accès à différents niveaux d'autorisation et de flux de travaux au sein de la presse. Il existe cinq niveaux d'autorisation: les directeurs de la presse ont accès à tout le contenu de la presse (contenu et paramètres); les rédacteurs en chef de la presse ont accès à tout le contenu de leur série; les adjoints de presse ont accès à toutes les monographies leur ayant été explicitement assignées par un rédacteur en chef; les évaluateurs peuvent visionner et effectuer les évaluations leur ayant été assignées; et les auteurs peuvent visionner et interagir avec un nombre restreint de renseignements concernant leurs soumissions. De plus, les tâches sont divisées en cinq étapes auxquelles les rôles peuvent avoir accès:
 Soumission, Évaluation interne, Évaluation externe, Rédaction et Production.</message>
-	<message key="settings.roles.roleAbbrev">Abbréviation</message>
-	<message key="settings.roles.assignedStages">Étapes assignées</message>
-	<message key="settings.roles.stages">Étapes</message>
-	<message key="settings.roles.listRoles">Liste des rôles de</message>
-	<message key="settings.roles.roleDetails">Détails des rôles</message>
-	<message key="settings.roles.from">Niveau d'autorisation</message>
-	<message key="settings.roles.removeText">Vous êtes sur le point de supprimer ce rôle de cette presse. Cette opération supprimera également tous les paramètres et toutes les tâches des utilisateurs associés à ce rôle. Souhaitez-vous continuer?
-</message>
-	<message key="settings.roles.nameRequired">Vous devez nommer ce rôle.</message>
-	<message key="settings.roles.abbrevRequired">Vous devez définir une abréviation pour ce rôle.</message>
-	<message key="settings.roles.uniqueName">Vous devez préciser un nom unique pour ce rôle.</message>
-	<message key="settings.roles.uniqueAbbrev">L'abbréviation de ce rôle doit être unique.</message>
-	<message key="settings.roles.roleIdRequired">Vous devez préciser un niveau de permission pour ce rôle.</message>
-	<message key="settings.roles.stageIdRequired">Vous devez préciser une étape qui sera ensuite assignée.</message>
-	<message key="manager.siteAccessOptions.siteAccessOptions">Options d'accès au site</message>
-
 	<!-- Press settings -->
-	<message key="manager.affiliationAndSupport">Parrainage</message>
-
+	<!-- Website settings -->
 	<!-- Publication Process settings -->
-	<message key="manager.publication.submissionStage">Soumission</message>
-	<message key="manager.publication.reviewStage">Évaluation</message>
-	<message key="manager.publication.editorialStage">Révision</message>
-	<message key="manager.publication.productionStage">Production</message>
-	<message key="manager.publication.emails">Courriels</message>
-
+	<!--  Genre grid settings -->
 	<!-- Distribution Process settings -->
-	<message key="manager.distribution.indexing">Indexage</message>
-
 	<!-- Payment Method settings -->
-	<message key="manager.paymentMethod">Paiement</message>
-	<message key="manager.paymentMethod.title">Modes de paiement</message>
-	<message key="manager.paymentMethod.description">Choisir à partir de la liste de modes de paiement disponibles. La zone ci-dessous s'ajustera en conséquence.</message>
-	<message key="manager.paymentMethod.none">Aucun mode de paiement n'a été sélectionné</message>
-	<message key="manager.paymentMethod.method">Mode de paiement</message>
-	<message key="manager.paymentMethod.currency">Devise</message>
-	<message key="manager.paymentMethod.currency.description">Les paiements effectués sur ce site Web seront dans la devise sélectionnée.</message>
-
 	<!-- System setup -->
 	<message key="manager.system">Paramètres du système</message>
 	<message key="manager.system.archiving">Archivage</message>
@@ -212,12 +170,10 @@ Soumission, Évaluation interne, Évaluation externe, Rédaction et Production.<
 	<message key="manager.setup.authorCopyrightNoticeAgree">Le processus de soumission exige que les auteurs souscrivent à l'avis de droit d'auteur.</message>
 	<message key="manager.setup.authorCopyrightNotice.description"><![CDATA[L'avis de droit d'auteur saisi ci-dessous s'affichera dans À propos de cette presse et dans les métadonnées de chaque article publié. Bien qu'il en revienne à la presse d'établir la nature de son avis de droit d'auteur, le Public Knowledge Project recommande d'utiliser la licence <a href="http://creativecommons.org" target="_blank" class="action">Creative Commons</a>. À cette fin, on fournit un <a href="{$sampleCopyrightWordingUrl}" target="_blank" class="action">modèle suggérant la formulation de l'avis de droit d'auteur</a> qui peut être copié-collé dans l'espace ci-dessous par les presses qui (a) offrent l'accès libre, (b), offrent l'accès libre différé, ou (c) n'offrent pas l'accès libre.]]></message>
 
-	<message key="manager.setup.authorGuidelines">Lignes directrices à l'intention des auteurs</message>
 	<message key="manager.setup.authorGuidelines.description"><![CDATA[Énoncer les normes bibliographiques et d'édition que les auteurs doivent utiliser lorsqu'ils soumettent un article à la presse (ex: <em>manuel d'édition de l'American Psychological Association</em>, 5e édition, 2001). Il est souvent utile de fournir des exemples des styles de citation couramment utilisés par les presses et les livres et qui doivent être utilisés dans les soumissions.]]></message>
 	<message key="manager.setup.contributor">Contributeur</message>
 	<message key="manager.setup.contributors">Sources de financement</message>
 	<message key="manager.setup.contributors.description">Les noms des agences ou organismes qui fournissent une aide financière ou en nature à la presse apparaitront dans la section À propos de cette presse et pourraient être accompagnés d'un mot de remerciement.</message>
-	<message key="manager.setup.contributors.note">Vous pouvez ajouter une note décrivant le rapport et la politique établis entre vous et votre source de financement. Cette note apparaitra dans la liste Sources de financement sur votre page À propos de.</message>
 	<message key="manager.setup.copyediting">Réviseurs de textes</message>
 	<message key="manager.setup.copyeditInstructions">Instructions pour la révision</message>
 	<message key="manager.setup.copyeditInstructionsDescription">Les réviseurs de textes, les auteurs et les rédacteurs en chef de la section auront accès aux Instructions pour la révision à l'étape de révision de la soumission. Voici l'ensemble des instructions par défaut en HTML, qui peuvent être modifiées ou remplacées par le directeur de la presse en tout temps (en HTML ou texte clair).</message>
@@ -330,7 +286,6 @@ Soumission, Évaluation interne, Évaluation externe, Rédaction et Production.<
 	<message key="manager.setup.peerReview.description">Présentez les grandes lignes de la politique et du processus d'évaluation par les pairs pour les lecteurs et les auteurs, y compris le nombre d'évaluateurs auquel on fait normalement appel pour évaluer une soumission, les critères utilisés par les évaluateurs pour évaluer les soumissions, les délais habituels pour mener les évaluations et les principes de recrutement des évaluateurs. Ces renseignements s'afficheront dans la section À propos de cette presse.</message>
 	<message key="manager.setup.policies">Politiques</message>
 	<message key="manager.setup.policies.description">Centre d'intérêt, évaluation par les pairs, sections, confidentialité, sécurité et autres renseignements.</message>
-	<message key="manager.setup.pressAppearanceDescription">Divers éléments liés à la presse peuvent être configurés sur cette page, y compris les éléments de l'en-tête et du bas de page, le style et le thème de la presse, et comment les listes de renseignements sont présentées aux utilisateurs.</message>
 	<message key="manager.setup.pressDescription">Description de la presse</message>
 	<message key="manager.setup.pressDescription.description">Une description générale de la presse devrait être ajoutée ici. Cette description sera disponible sur la page d'accueil de la presse.</message>
 	<message key="manager.setup.pressArchiving">Archivage de la presse</message>
@@ -340,10 +295,6 @@ Soumission, Évaluation interne, Évaluation externe, Rédaction et Production.<
 	<message key="manager.setup.pressHomepageHeader.altText">En-tête de la page d'accueil de la presse</message>
 	<message key="manager.setup.pressHomepageHeaderDescription">Choisir entre une représentation textuelle du nom de la presse ou une version graphique du titre (fichiers .gif, .jpg, ou .png acceptés). Cette en-tête et le logo d'accompagnement optionnel s'afficheront uniquement sur la page d'accueil de la presse. L'en-tête par défaut mesure 180px x 90px.</message>
 	<message key="manager.setup.pressInitials">Sigles de la presse</message>
-	<message key="manager.setup.pressLayout">Mise en page de la presse</message>
-	<message key="manager.setup.pressLayoutDescription">Choisir un thème pour la presse et sélectionner les éléments de la mise en page ici. Vous pouvez également télécharger une feuille de style pour la presse, qui peut être utilisée pour remplacer les données de style dans les feuilles de style générales du système et la page de feuille de style (si un thème a été choisi).</message>
-	<message key="manager.setup.pressLogo">Logo de la presse</message>
-	<message key="manager.setup.pressLogo.altText">Logo de la presse</message>
 	<message key="manager.setup.pageFooter">Bas de page de la presse</message>
 	<message key="manager.setup.pageFooterDescription">Voici le bas de page de votre presse. Pour modifier ou mettre à jour le bas de page, copiez-collez le code HTML dans la zone d'entrée de texte ci-dessous. Vous pourriez par exemple ajouter une autre barre de navigation ou un compteur. Ce bas de page apparaitra sur chaque page.</message>
 	<message key="manager.setup.pageHeader">Page d'en-tête de la presse</message>
@@ -353,7 +304,6 @@ Soumission, Évaluation interne, Évaluation externe, Rédaction et Production.<
 	<message key="manager.setup.pressSetupUpdated">La configuration de votre presse a été mise à jour.</message>
 	<message key="manager.setup.styleSheetInvalid">Feuille de style non valide. Le format accepté est .css.</message>
 	<message key="manager.setup.pressTheme">Thème de la presse</message>
-	<message key="manager.setup.pressName">Nom de la presse</message>
 	<message key="manager.setup.principalContact">Principale personne-ressource</message>
 	<message key="manager.setup.principalContactDescription">Cet individu peut être rédacteur principal, rédacteur en chef, directeur de la publication ou employé administratif, et son nom apparaitra sur la page d'accueil de la presse dans la section Pour nous contacter, avec le nom du responsable du soutien technique.</message>
 	<message key="manager.setup.printIssn">ISSN version imprimée</message>
@@ -369,32 +319,22 @@ Soumission, Évaluation interne, Évaluation externe, Rédaction et Production.<
 	<message key="manager.setup.publisherDescription">Le nom de l'organisation qui publie la presse apparaitra dans la page À propos de cette presse.</message>
 	<message key="manager.setup.referenceLinking">Liens de référence</message>
 	<message key="manager.setup.refLinkInstructions.description">Instructions de mise en page pour les liens de référence</message>
-	<message key="manager.setup.registerPressForIndexing">Inscription de la presse pour l'indexage (collecte de métadonnées)</message>
 	<message key="manager.setup.restrictMonographAccess">Les utilisateurs doivent s'inscrire et ouvrir une session pour visionner le contenu à libre accès.</message>
 	<message key="manager.setup.restrictSiteAccess">Les utilisateurs doivent être inscrits et ouvrir une session pour visionner le site de la presse.</message>
 	<message key="manager.setup.reviewGuidelines">Lignes directrices pour l'évaluation</message>
 	<message key="manager.setup.reviewGuidelinesDescription"><![CDATA[Les lignes directrices pour l'évaluation fourniront aux évaluateurs les critères nécessaires pour déterminer si une soumission peut être publiée par la presse. Elles peuvent aussi contenir des instructions spéciales qui aideront l'évaluateur à rédiger une évaluation efficace et utile. Lors de l'évaluation, les évaluateurs auront accès à deux zones d'entrée de texte, la première "pour l'auteur et le rédacteur en chef" et la seconde "pour le rédacteur en chef". Ou bien, le directeur de la presse peut créer un formulaire d'évaluation dans la section Formulaires d'évaluation. Dans tous les cas, les rédacteurs pourront, s'ils le désirent, joindre les évaluations à leur correspondance avec l'auteur.]]></message>
-	<message key="manager.setup.competingInterests">Intérêts concurrentiels</message>
-	<message key="manager.setup.competingInterestsDescription">On demande aux évaluateurs de respecter la politique concernant les intérêts concurrentiels mentionnée ci-dessous.</message> <!-- FIXME #6843 (JM): should this just reference reviewers? -->
-	
-	<message key="manager.setup.reviewOptions">Options d'évaluation</message>
 	<message key="manager.setup.reviewOptions.automatedReminders">Des rappels peuvent être envoyés automatiquement par courriel aux évaluateurs (disponible dans les courriels par défaut d'OMP) à deux moments, mais le rédacteur en chef peut envoyer un courriel directement à l'évaluateur en tout temps.</message>
 	<message key="manager.setup.reviewOptions.automatedRemindersDisabled"><![CDATA[<strong>Note:</strong> Pour activer ces options, l'administrateur du site doit activer l'option <tt>scheduled_tasks</tt> dans le fichier de configuration OMP. Il pourrait s'avérer nécessaire d'intégrer d'autres configurations au serveur pour supporter cette fonctionnalité (qui n'est peut-être pas possible sur tous les serveurs), tel qu'indiqué dans les documents d'OMP.]]></message>
 
 	<message key="manager.setup.reviewOptions.blindReview">Évaluation aveugle</message>
 	<message key="manager.setup.reviewOptions.noteOnModification">Ces valeurs par défaut peuvent être modifiées pour toute les soumissions tout au long du processus éditorial.</message>
-	<message key="manager.setup.reviewOptions.numWeeksPerResponse">Temps de réponse alloué aux évaluateurs (semaines)</message>
-	<message key="manager.setup.reviewOptions.numWeeksPerReview">Temps alloué pour terminer l'évaluation (semaines) </message>
 	<message key="manager.setup.reviewOptions.onQuality">Les rédacteurs en chef accorderont une note à l'aide d'une échelle de qualité de 1 à 5 pour chaque évaluation.</message>
-	<message key="manager.setup.reviewOptions.remindForInvite">Envoyer un rappel si un évaluateur n'a pas répondu à la demande d'évaluation dans les délais suivants (jours):</message>
-	<message key="manager.setup.reviewOptions.remindForSubmit">Envoyer un rappel si un évaluateur n'a pas soumis sa recommandation dans les délais suivants (jours):</message>
 	<message key="manager.setup.reviewOptions.restrictReviewerFileAccess">Les évaluateurs auront accès au fichier de soumission uniquement s'ils acceptent de l'évaluer.</message>
 	<message key="manager.setup.reviewOptions.reviewerAccess">Accès des évaluateurs</message>
 	<message key="manager.setup.reviewOptions.reviewerAccessKeysEnabled">Activer l'accès en un seul clic pour les évaluateurs</message>
 	<message key="manager.setup.reviewOptions.reviewerAccessKeysEnabled.description"><![CDATA[<strong>Note:</strong> Le courriel d'invitation envoyé aux évaluateurs contiendra une adresse URL spéciale qui les transférera directement à la page d'évaluation de la soumission (ils devront ouvrir une session pour avoir accès aux autres pages du site). Pour des raisons de sécurité en ce qui concerne cette option, les rédacteurs en chef ne peuvent pas modifier les adresses courriel ou choisir les options CC et BC avant d'envoyer les invitations aux évaluateurs.]]></message>
 	<message key="manager.setup.reviewOptions.reviewerRatings">Cotes des évaluateurs</message>
 	<message key="manager.setup.reviewOptions.reviewerReminders">Rappels aux évaluateurs</message>
-	<message key="manager.setup.reviewOptions.neverSendReminder">Ne jamais envoyer de rappel</message>
 	<message key="manager.setup.reviewOptions.reviewTime">Délai d'évaluation</message>
 	<message key="manager.setup.reviewOptions.showEnsuringLink">Fournir les liens concernant l'évaluation aveugle sur les pages où les auteurs et les évaluateurs téléchargent les fichiers.</message>
 	<message key="manager.setup.reviewPolicy">Politique concernant l'évaluation</message>
@@ -414,9 +354,7 @@ Soumission, Évaluation interne, Évaluation externe, Rédaction et Production.<
 	<message key="manager.setup.selectSectionDescription">La section de la presse à laquelle on pourrait ajouter l'article en question.</message>
 	<message key="manager.setup.showGalleyLinksDescription">Toujours afficher les liens des épreuves en placard et indiquer les réserves de consultation.</message>
 	<message key="manager.setup.siteAccess">Autres réserves de consultation du site et de son contenu.</message>
-	<message key="manager.setup.sponsors">Organismes parrains</message>
 	<message key="manager.setup.sponsors.description">Les noms des organismes (ex.: associations universitaires, départements universitaires, coopératives, etc.) qui parrainent la presse apparaitront dans la section À propos de cette presse et peuvent être accompagnés d'une note de remerciement.</message>
-	<message key="manager.setup.sponsors.note">Vous pouvez ajouter une note décrivant votre rapport avec votre parrain et la politique concernant le parrainage. Ceci s'affichera dans la liste de vos parrains sur la page À propos de.</message>
 	<message key="manager.setup.stepsToPressSite">Cinq étapes pour établir le site Web d'une presse</message>
 	<message key="manager.setup.subjectClassification">Classification des domaines</message>
 	<message key="manager.setup.subjectClassificationExamples">(ex.: Mathematics Subject Classification (MSC); classification de la Bibliothèque du Congrès)</message>
@@ -428,7 +366,7 @@ Soumission, Évaluation interne, Évaluation externe, Rédaction et Production.<
 	<message key="manager.setup.submissionPreparationChecklistDescription">Après avoir envoyé leur soumission à la presse, on demande aux auteurs de cocher tous les éléments de la liste de vérification avant d'envoyer leur soumission. La liste de vérification est aussi disponible dans la section Lignes directrices à l'intention des auteurs, dans la rubrique À propos de cette presse. La liste peut être modifiée ci-dessous, mais tous les éléments apparaissant sur la liste doivent être cochés avant que les auteurs puissent envoyer leur soumission.</message>
 	<message key="maganer.setup.submissionChecklistItemRequired">Vous devez cocher cet élément sur la liste.</message>
 	<message key="manager.setup.workflow">Flux des travaux</message>
-	
+
 	<message key="manager.setup.submissions.description">Lignes directrices à l'intention des auteurs, droit d'auteur et indexage (y compris l'inscription).</message>
 	<message key="manager.setup.technicalSupportContact">Support technique</message>
 	<message key="manager.setup.technicalSupportContactDescription">Le nom de cette personne sera ajouté à la page Contactez-nous pour les rédacteurs, auteurs et évaluateurs. Cette personne devrait bien connaitre le système et être en mesure de travailler sous les angles respectifs de tous les utilisateurs. Ce système exige peu de soutien technique, alors il s'agit d'un poste à temps partiel. Par exemple, il est possible qu'à l'occasion, les auteurs et les évaluateurs éprouvent des difficultés avec les instructions ou les formats de fichiers, ou qu'il soit nécessaire de s'assurer que la presse est sauvegardée régulièrement sur le serveur.</message>
@@ -440,8 +378,6 @@ Soumission, Évaluation interne, Évaluation externe, Rédaction et Production.<
 	<message key="manager.setup.useImageLogo">Logo de la presse</message>
 	<message key="manager.setup.useImageLogoDescription">Il est possible de télécharger le logo de la presse et de l'utiliser avec la version graphique ou textuelle du titre configuré ci-dessus.</message>
 	<message key="manager.setup.useImageTitle">Image de titre</message>
-	<message key="manager.setup.usePressStyleSheet">Feuille de style de la presse</message>
-	<message key="manager.setup.styleSheetDescription">Vous pouvez télécharger un autre fichier de feuilles de style en cascade (CSS) pour modifier l'apparence.</message>
 	<message key="manager.setup.useLayoutEditors">Un rédacteur metteur en page sera nommé pour préparer les fichiers HTML, PDF, etc. pour la publication électronique.</message>
 	<message key="manager.setup.useProofreaders">Un lecteur d'épreuves sera nommé pour vérifier (avec les auteurs) les épreuves en placard avant la publication.</message>
 	<message key="manager.setup.userRegistration">Inscription des utilisateurs</message>
@@ -483,8 +419,6 @@ Soumission, Évaluation interne, Évaluation externe, Rédaction et Production.<
 	<message key="manager.setup.masthead">Bloc générique</message>
 	<message key="manager.setup.masthead.description">Le bloc générique devrait contenir la liste des rédacteurs en chef, directeurs généraux et autres individus associés à la presse. Les renseignements saisis ici s'afficheront dans la section À propos de cette presse.</message>
 	<message key="manager.setup.files">Fichier</message>
-	<message key="manager.setup.submissionDocuments">Documents de soumission</message>
-	<message key="manager.setup.libraryDescription"><![CDATA[Ces fichiers ont été préparés par la presse à titre de modèles et de guides pour être utilisés dans les <span class="pkp_help_title">Documents de soumission</span>.]]></message>
 	<message key="manager.setup.productionTemplates">Modèles de production</message>
 	<message key="manager.files.note">Note: Le navigateur Fichiers est une fonctionnalité avancée qui permet de visionner et de manipuler directement les fichiers et les répertoires associés à la presse.</message>
 	<message key="manager.setup.authorCopyrightNotice.sample"><![CDATA[<h3>Avis de droit d'auteur proposés par Creative Commons</h3>
@@ -513,11 +447,4 @@ Choisissez un modèle pour gérer ces aspects du processus éditorial. (Pour nom
 	<li><strong>Ajouter un outil de lecture</strong><p>Le directeur de la presse peut ajouter "Trouver les références" aux outils de lecture qui accompagnent les articles publiés, ce qui permet aux lecteurs de faire un copier-coller du titre d'un article cité par l'auteur et d'effectuer une recherche dans les bases de données de recherche présélectionnées.</p></li>
 	<li><strong>Intégrer des liens dans les références</strong><p>Le rédacteur metteur en page peut ajouter un lien vers les références disponibles en ligne à l'aide des instructions suivantes (qui peuvent être modifiées).</p></li>
 </ol>]]></message>
-	<message key="manager.setup.registerPressForIndexingDescription"><![CDATA[Pour que le contenu de cette presse soit indexé dans un système de bases de données de recherche réparti à l'échelle mondiale,
-<a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">enregistrez</a> l'adresse URL de votre presse afin qu'elle soit utilisée pour la <a href="http://pkp.sfu.ca/harvester/" target="_blank">collecte</a> de métadonnées du Public Knowledge Project. Cet outil cueille les métadonnées de chaque élément indexé dans cette presse, ce qui facilite une recherche précise et collective parmi les sites de recherche qui adoptent le <a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank">protocole de l'Open Archives pour la collecte de métadonnées</a>.
-<br /><br />
-Veuillez noter que si ce site a déjà été enregistré auprès du PKP pour la collecte de métadonnées par votre administrateur de site, votre presse sera indexée automatiquement et vous n'avez pas à enregistrer votre presse.
-<br /><br />
-<a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Cliquez ici</a> et saisissez <span class="highlight">{$siteUrl}</span> dans <strong>Adresse URL du site</strong>, et <span class="highlight">{$oaiUrl}</span> dans <strong>Base URL pour les archives OAI</strong>.]]></message>
-
 </locale>

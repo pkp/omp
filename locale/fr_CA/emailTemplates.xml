@@ -214,7 +214,7 @@ Merci de votre intérêt à évaluer des articles pour notre presse.
 Je crois que vous seriez un excellent évaluateur pour le manuscrit "{$submissionTitle}" soumis à la presse {$contextName}. Vous trouverez ci-dessous le résumé de l'article. J'espère que vous accepterez cette tâche importante du processus de publication.
 
 Veuillez ouvrir une session sur le site Web d'ici le {$weekLaterDate} pour indiquer si vous acceptez ou refusez d'évaluer l'article. Ceci vous permettra également d'accéder à la soumission, et de saisir votre évaluation et vos recommandations.
- 
+
 L'évaluation doit être terminée d'ici le {$reviewDueDate}.
 
 URL de la soumission: {$submissionReviewUrl}
@@ -334,7 +334,7 @@ Nous vous prions de confirmer si vous êtes encore disponible pour participer à
 	<email_text key="REVIEW_REMIND_AUTO">
 		<subject>Rappel automatique d'évaluation d'une soumission</subject>
 		<body>{$reviewerName}:
- 
+
 Nous vous remercions d'avoir accepté d'évaluer "{$submissionTitle}" pour la presse {$contextName}. Veuillez noter que cette évaluation doit nous parvenir avant le {$reviewDueDate}. Ce courriel a été généré et envoyé automatiquement parce que vous avez dépassé la date d'échéance. Toutefois, nous vous serions reconnaissants si vous pouviez nous faire parvenir votre évaluation dans les plus brefs délais.
 
 Si vous n'avez plus votre nom d'utilisateur et mot de passe pour le site Web, vous pouvez réinitialiser votre mot de passe en cliquant sur le lien suivant. Votre mot de passe et nom d'utilisateur vous seront envoyés par courriel. {$passwordResetUrl}

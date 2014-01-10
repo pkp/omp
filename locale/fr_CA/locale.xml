@@ -23,13 +23,10 @@
 	<message key="monograph.languages">Langues (anglais, français, espagnol)</message>
 	<message key="monograph.publicationFormats">Formats de publication </message>
 	<message key="monograph.carousel.publicationFormats">Formats:</message>
-	<message key="monograph.title">Titre du livre</message>
-	<message key="monograph.title.tip"><![CDATA[Par type de soumission, on entend des éléments comme 'image', 'texte' ou des désignations multimédias comme 'logiciel' ou 'interactif'. Veuillez choisir le type qui correspond le mieux à votre soumission. Vous trouverez des exemples au <a target="_blank" href="http://dublincore.org/documents/2001/04/12/usageguide/generic.shtml#type">http://dublincore.org/documents/2001/04/12/usageguide/generic.shtml#type</a>]]></message>
 	<message key="monograph.type">Type de soumission</message>
 	<message key="submission.pageProofs">Épreuves en page</message>
 	<message key="monograph.proofReadingDescription"><![CDATA[Le rédacteur metteur en page télécharge les fichiers prêts pour la production préparés ici afin de les rendre publiables. Utilisez <em>+Assigner</em> pour assigner les auteurs et les autres individus qui réviseront les épreuves en page. Les fichiers corrigés doivent être téléchargés pour approbation avant la publication.]]></message>
 	<message key="monograph.task.addNote">Ajouter à la tâche</message>
-	<message key="submission.task.responseDueDate">Date de réponse</message>
 	<message key="monograph.accessLogoOpen.altText">Accès libre</message>
 
 
@@ -71,7 +68,7 @@
 
 	<message key="monograph.publicationFormat.formatDoesNotExist"><![CDATA[<p>Le format de publication que vous avez choisi n'existe plus pour cette monographie.</p>]]></message>
 	<message key="monograph.publicationFormat.openTab">Ouvrir l'onglet du format de publication.</message>
-	
+
 <!-- assigned publication format grid and form keys  -->
 	<message key="grid.catalogEntry.publicationFormatType">Format de publication</message>
 	<message key="grid.catalogEntry.nameRequired">Vous devez choisir un nom.</message>
@@ -172,32 +169,7 @@
 	<message key="grid.action.addSpotlight">Ajouter un titre à la rubrique Sous les projecteurs</message>
 
 	<!-- Content Management - Footer grid keys -->
-	<message key="grid.content.navigation.footer">Bas de page</message>
-	<message key="grid.content.navigation.footer.noneExist">Il n'existe aucun bas de page actuellement.</message>
-	<message key="grid.content.navigation.footer.addCategory">Ajouter une catégorie</message>
-	<message key="grid.action.deleteFooterCategory">Supprimer la catégorie du bas de page</message>
-	<message key="grid.content.navigation.footer.FooterLink">Liens du bas de page</message>
-	<message key="grid.content.navigation.footer.editCategory">Modifier la catégorie</message>
-	<message key="grid.content.navigation.footer.deleteCategory">Supprimer la catégorie</message>
-	<message key="grid.content.navigation.footer.deleteCategoryConfirm">Vous voulez supprimer cette catégorie? Cette opération n'est pas réversible et les liens dans cette catégorie seront également supprimés.</message>
-	<message key="grid.content.navigation.footer.titleRequired">Un titre est exigé.</message>
-	<message key="grid.content.navigation.footer.descriptionRequired">Une description est exigée.</message>
-	<message key="grid.content.navigation.footer.pathRequired">Un chemin d'accès est exigé et il doit être unique.</message>
-	<message key="grid.content.navigation.footer.pathInUse">Ce chemin d'accès est actuellement utilisé par une autre catégorie.</message>
-	<message key="grid.action.addFooterCategoryLink">Ajouter une nouvelle catégorie de bas de page</message>
-	<message key="grid.action.editFooterCategory">Modifier cette catégorie de bas de page</message>
-
 	<!-- Content Management - Social Media keys -->
-	<message key="grid.content.navigation.socialMedia">Média social</message>
-	<message key="grid.content.navigation.socialMedia.platform">Plateforme</message>
-	<message key="grid.content.navigation.socialMedia.code">Bloc de code du partage social</message>
-	<message key="grid.content.navigation.socialMedia.platformRequired">Vous devez indiquer le titre de la plateforme (Facebook, Google+, etc).</message>
-	<message key="grid.content.navigation.socialMedia.codeRequired">Vous devez saisir le code que vous souhaitez utiliser pour afficher ce réseau social.</message>
-	<message key="grid.content.navigation.socialMedia.addSocialLink">Ajouter un lien social</message>
-	<message key="grid.content.navigation.socialMedia.includeInCatalog">Vous souhaitez utiliser ceci pour chaque monographie publiée dans le catalogue?</message>
-	<message key="grid.content.navigation.socialMedia.inCatalog">Utilisé dans le catalogue</message>
-	<message key="grid.action.addMedia">Ajouter un nouveau type de média social</message>
-
 	<!-- Editorial policies -->
 	<message key="manager.series.open">Soumissions libres</message>
 	<message key="manager.series.indexed">Indexé</message>
@@ -214,7 +186,6 @@
 	<message key="grid.action.approveProof">Approuver l'épreuve afin qu'elle soit indexée et ajoutée au catalogue.</message>
 	<message key="grid.action.pageProofApproved">Le fichier d'épreuves de mise en page est prêt à être publié</message>
 	<message key="grid.action.addAnnouncement">Ajouter une annonce</message>
-	<message key="grid.action.showReviewPolicy">Lire la politique en cours concernant l'évaluation</message>
 	<message key="grid.action.newCatalogEntry">Nouvelle entrée de catalogue</message>
 	<message key="grid.action.publicCatalog">Visionner ce titre dans le catalogue</message>
 	<message key="grid.action.feature">Basculer l'affichage Manchette</message>
@@ -235,8 +206,6 @@
 	<message key="grid.action.addDate">Ajouter une date de publication</message>
 	<message key="grid.action.editDate">Modifier cette date</message>
 	<message key="grid.action.deleteDate">Supprimer cette date</message>
-	<message key="grid.action.toggleHelp">Basculer l'affichage d'aide incorporé</message>
-	<message key="grid.action.createPress">Créer une nouvelle presse</message>
 	<message key="grid.action.addCode">Ajouter un code</message>
 	<message key="grid.action.addSpotlight">Ajouter un titre à la rubrique Sous les projecteurs</message>
 	<message key="grid.action.publicationFormatTab">Afficher l'onglet du format de publication</message>
@@ -248,44 +217,6 @@
 	<message key="grid.action.formatAvailable">Le format est disponible et publié</message>
 
 	<!-- Used in submission review -->
-	<message key="reviewer.reviewSteps.request">1. Requête</message>
-	<message key="reviewer.reviewSteps.guidelines">2. Lignes directrices</message>
-	<message key="reviewer.reviewSteps.download">3. Télécharger &amp; Évaluer</message>
-	<message key="reviewer.reviewSteps.completion">4. Exécution</message>
-	<message key="reviewer.step1.request">Requête d'évaluation</message>
-	<message key="reviewer.step1.requestBoilerplate">Vous avez été choisi en tant qu'évaluateur potentiel pour la soumission suivante. Voici un aperçu de la soumission ainsi que les échéanciers de cette évaluation. Nous espérons que vous serez en mesure de participer.</message>
-	<message key="reviewer.step1.viewAllDetails">Visionner tous les détails de la soumission</message>
-	<message key="reviewer.submission.declineReview">Refuser la requête d'évaluation</message>
-	<message key="reviewer.submission.declineReviewMessage">Vous pouvez indiquer au rédacteur en chef pourquoi vous avez refusé d'évaluer cette soumission dans le champ ci-dessous.</message>
-	<message key="reviewer.submission.acceptReview">Accepter l'évaluation, passer à la deuxième étape</message>
-	<message key="reviewer.submission.continueToStepThree">Passer à la troisième étape</message>
-	<message key="reviewer.submission.submitReview">Soumettre l'évaluation</message>
-	<message key="reviewer.submission.reviewerGuidelines">Lignes directrices de l'évaluateur</message>
-	<message key="reviewer.submission.enterCompetingInterests">Cette presse a adopté une politique stipulant que ses évaluateurs doivent divulguer toute possibilité d'intérêt concurrentiel. Nous vous prions de prendre un moment pour lire cette politique.</message>
-	<message key="reviewer.submission.noCompetingInterests">Je n'ai pas d'intérêts concurrentiels.</message>
-	<message key="reviewer.submission.hasCompetingInterests">Il est possible que j'aie des intérêts concurrentiels (spécifier ci-dessous)</message>
-	<message key="reviewer.submission.competingInterests">Intérêts concurrentiels</message>
-	<message key="reviewer.submission.guidelines">Lignes directrices concernant l'évaluation</message>
-	<message key="reviewer.submission.noGuidelines">Cette presse n'a pas établi de lignes directrices pour ses évaluateurs.</message>
-	<message key="reviewer.submission.downloadDescription">Cliquez sur les noms des fichiers pour télécharger et évaluer (à l'écran, ou vous pouvez les imprimer) les fichiers associés à cette soumission.</message>
-	<message key="reviewer.submission.reviewDescription">Saisir (ou faire un copier-coller) de votre évaluation de cette soumission dans le formulaire ci-dessous.</message>
-	<message key="reviewer.submission.uploadDescription">De plus, vous pouvez télécharger les fichiers pour le rédacteur en chef et/ou l'auteur afin de les consulter, y compris les versions corrigées des fichiers d'évaluation originaux.</message>
-	<message key="reviewer.complete">Évaluation soumise</message>
-	<message key="reviewer.confirmSubmit">Vous souhaitez envoyer cette évaluation à la presse?</message>
-	<message key="reviewer.complete.whatNext">Merci d'avoir évalué cette soumission. Votre évaluation a bien été reçue. Nous apprécions votre contribution à la qualité du travail que nous publions. Le rédacteur en chef pourrait vous contacter à nouveau pour obtenir de plus amples renseignements, le cas échéant.</message>
-	<message key="reviewer.aboutDueDates">À propos des dates limites</message>
-	<message key="reviewer.aboutDueDates.text">Le rédacteur en chef demande que vous acceptiez ou refusiez d'évaluer la soumission avant la date limite de réponse, et que vous complétiez l'évaluation avant la date limite d'évaluation.</message>
-	<message key="workflow.review.internalReview">Évaluation interne</message>
-	<message key="review.blindPeerReview">
-		<![CDATA[<p>Afin d'assurer l'intégrité de l'examen aveugle par les pairs de la soumission à cette presse, aucun effort ne devrait être ménagé pour que l'on ne révèle pas l'identité des évaluateurs aux auteurs, et vice-versa. Pour ce faire, les auteurs, les éditeurs et les évaluateurs (qui téléchargent des documents dans le cadre du processus d'évaluation) doivent s'assurer qu'ils ont respecté les étapes suivantes en ce qui a trait aux propriétés des textes et des fichiers:</p>
-		<ul><li>Les auteurs du document ont effacé leur nom du texte et ont utilisé le terme "auteur" et l'année dans les références et les notes en bas de page, au lieu du nom de l'auteur, du titre de l'article, etc.</li>
-		<li>Pour les documents Microsoft Office, il faut également enlever l'identification de l'auteur des propriétés du fichier (voir le menu Fichier dans Word) en cliquant les options suivantes, en commençant par Fichier dans le menu principal de l'application Microsoft: Fichier &gt; Enregistrer sous &gt; Outils (ou Options sur Mac) &gt; Sécurité &gt; Supprimer les renseignements personnels apparaissant dans les propriétés du fichier et sauvegarder;
-Sauvegarder.</li>
-		<li>Pour les fichiers en format PDF, les noms des auteurs doivent également être supprimés à partir des Propriétés du document, que l'on retrouve dans le menu Fichier du menu principal d'Adobe Acrobat.</li>
-		</ul>]]>
-	</message>
-	<message key="review.ensuringBlindReview">Assurer une évaluation à l'aveugle</message>
-
 	<!-- Review Attachments -->
 	<message key="grid.reviewAttachments.add">Ajouter une pièce jointe à l'évaluation</message>
 	<message key="grid.reviewAttachments.availableFiles">Fichiers disponibles</message>
@@ -349,18 +280,10 @@ Sauvegarder.</li>
 	-->
 	<message key="common.prefix">Préfixe</message>
 	<message key="common.preview">Prévisualiser</message>
-	<message key="common.sendEmail">Envoyer un courriel</message>
-	<message key="common.tasks">Tâches</message>
-	<message key="common.list">Liste</message>
-	<message key="common.grid">Grille</message>
 	<message key="common.feature">En vedette</message>
 	<message key="common.searchCatalog">Recherche dans le catalogue</message>
-	<message key="common.navigation">Navigation</message>
 	<message key="common.moreInfo">Informations supplémentaires</message>
 	<message key="common.plusMore">+ Plus</message>
-	
-	<message key="dashboard.tasks">Tâches</message>
-	<message key="dashboard.submissions">Soumissions</message>
 
 	<message key="common.listbuilder.completeForm">Veuillez remplir le formulaire au complet.</message>
 	<message key="common.listbuilder.selectValidOption">Veuillez choisir une option valide à partir de la liste.</message>
@@ -372,11 +295,8 @@ Sauvegarder.</li>
 	<!-- Common Messages -->
 	<message key="common.openMonographPress">Open Monograph Press</message>
 	<message key="common.omp">OMP</message>
-	<message key="common.publicKnowledgeProject">Public Knowledge Project</message>
 	<message key="common.homePageHeader.altText">En-tête de la page d'accueil</message>
-
 	<!-- Navigation -->
-	<message key="navigation.management">Gestion</message>
 	<message key="navigation.catalog">Catalogue</message>
 	<message key="navigation.competingInterestPolicy">Politique concernant les intérêts concurrentiels</message>
 	<message key="navigation.catalog.manage">Gérer</message>
@@ -384,16 +304,12 @@ Sauvegarder.</li>
 	<message key="navigation.catalog.administration">Administration du catalogue</message>
 	<message key="navigation.catalog.administration.categories">Catégories</message>
 	<message key="navigation.catalog.administration.series">Série</message>
-	<message key="navigation.distributionProcess">Distribution</message>
 	<message key="navigation.infoForAuthors">Pour les auteurs</message>
 	<message key="navigation.infoForLibrarians">Pour les bibliothécaires</message>
 	<message key="navigation.infoForAuthors.long">Renseignements pour les auteurs</message>
 	<message key="navigation.infoForLibrarians.long">Renseignements pour les bibliothécaires</message>
 	<message key="navigation.newReleases">Nouveautés</message>
 	<message key="navigation.published">Publié</message>
-	<message key="navigation.workflow">Workflow</message>
-	<message key="navigation.tools">Outils</message>
-	<message key="navigation.tools.importExport">Import/Export</message>
 	<message key="navigation.wizard">Guide intelligent</message>
 	<message key="navigation.linksAndMedia">Liens et médias sociaux</message>
 
@@ -401,15 +317,11 @@ Sauvegarder.</li>
 	<message key="press.presses">Presses</message>
 	<message key="press.path">Chemin d'accès</message>
 	<message key="context.context">Presse</message>
-	<message key="press.select">Choisir une presse…</message>
-
 	<!-- User -->
 	<message key="user.noRoles.submitMonograph">Soumettre une soumission</message>
 	<message key="user.noRoles.submitMonographRegClosed">Soumettre une monographie: l'inscription des auteurs est actuellement désactivée.</message>
 	<message key="user.noRoles.regReviewer">S'enregistrer à titre d'évaluateur</message>
 	<message key="user.noRoles.regReviewerClosed">S'enregistrer à titre d'évaluateur: l'inscription des évaluateurs est actuellement désactivée.</message>
-	<message key="user.noRoles.selectUsersWithoutRoles">Ajouter des utilisateurs qui ne jouent aucun rôle dans cette presse.</message>
-
 	<!-- OMP-specific Roles -->
 	<message key="user.role.manager">Directeur/Directrice de la presse</message>
 	<message key="user.role.pressEditor">Rédacteur/Rédactrice en chef de la presse</message>
@@ -427,6 +339,7 @@ Sauvegarder.</li>
 	<message key="user.role.proofreaders">Correcteurs d'épreuves</message>
 	<message key="user.role.productionEditors">Directeurs de la production</message>
 
+	<!-- Information Center -->
 	<!-- Registration -->
 	<message key="user.register.completeForm">Veuillez remplir ce formulaire pour vous inscrire auprès de cette presse.</message>
 	<message key="user.register.selectContext">Choisir une presse pour l'inscription</message>
@@ -451,11 +364,9 @@ Sauvegarder.</li>
 	<message key="about.pressContact">Pour contacter la presse</message>
 	<message key="about.aboutThePress">À propos de cette presse</message>
 	<message key="about.editorialTeam">Équipe de rédaction</message>
-	<message key="about.description">Description</message>
 	<message key="about.editorialPolicies">Politiques rédactionnelles</message>
 	<message key="about.focusAndScope">Objectif et portée</message>
 	<message key="about.seriesPolicies">Politiques concernant la série et les catégories</message>
-	<message key="about.guidelines">Guides</message>
 	<message key="about.submissions">Soumissions</message>
 	<message key="about.sponsors">Parrains</message>
 	<message key="about.contributors">Sources de financement</message>
@@ -512,32 +423,32 @@ Sauvegarder.</li>
 <p>On <strong>recommande fortement</strong> que vous conserviez une copie de sauvegarde de votre base de données, de vos répertoires de fichiers et de votre répertoire d'installation OMP avant de continuer.</p>
 
 <p>Si vous êtes en <a href="http://www.php.net/features.safe-mode" target="_blank">mode sans échec PHP</a>, assurez-vous que la directive max_execution_time de votre fichier de configuration php.ini soit fixée à une limite élevée. Si vous atteignez cette limite de temps ou une autre limite (ex.: la directive "Timeout" d'Apache), le processus de mise à jour sera interrompu et vous devrez intervenir manuellement.</p>]]></message>
-	
+
 <message key="installer.localeSettingsInstructions"><![CDATA[Pour un soutien Unicode (UTF-8) complet, choisissez UTF-8 pour tous les paramètres de caractères. Veuillez noter que ce soutien exige actuellement un serveur de base de données MySQL >= 4.1.1 ou PostgreSQL >= 9.1.5. Veuillez également noter qu'un support Unicode complet exige la bibliothèque <a href="http://www.php.net/mbstring" target="_blank">mbstring</a> (activée par défaut dans les installations PHP les plus récentes). Vous pourriez rencontrer des problèmes si vous utilisez des jeux de caractères étendus, car il est possible que votre serveur ne puisse pas satisfaire ces exigences.
 
 <br /><br />
 Votre serveur supporte actuellement mbstring: <strong>{$supportsMBString}</strong>]]></message>
 	<message key="installer.allowFileUploads"><![CDATA[Votre serveur permet de télécharger des fichiers: <strong>{$allowFileUploads}</strong>]]></message>
 	<message key="installer.maxFileUploadSize"><![CDATA[Votre serveur permet de télécharger des fichiers dont la taille maximale est: <strong>{$maxFileUploadSize}</strong>]]></message>
-	
+
 	<message key="installer.localeInstructions">La langue principalement utilisée par ce système. Veuillez consulter le document d'OMP si vous souhaitez obtenir un soutien dans une langue qui n'apparait pas dans cette liste.</message>
 	<message key="installer.additionalLocalesInstructions">Sélectionnez d'autres langues qui bénéficieront d'un soutien dans ce système. Ces langues pourront être utilisées par les presses hébergées sur ce site. D'autres langues peuvent être installées en tout temps à partir de l'interface de gestion du site. Les paramètres marqués d'une étoile (*) pourraient être incomplets.</message>
-	
+
 	<message key="installer.filesDirInstructions"><![CDATA[Saisir un chemin d'accès complet vers un répertoire existant où les fichiers téléchargés seront stockés. Ce répertoire ne devrait pas être accessible directement par le Web.
 <strong>Assurez-vous que ce répertoire existe et est inscriptible avant l'installation.</strong> Les noms de chemin devraient contenir des barres obliques, ex.: "C:/mypress/files".]]></message>
-	
+
 	<message key="installer.databaseSettingsInstructions">OMP requiert l'accès à une base de données SQL pour stocker ses données. Consultez les exigences système ci-haut pour obtenir la liste des bases de données supportées. Dans les champs ci-dessous, indiquez les paramètres qui seront utilisés pour brancher la base de données.</message>
 	<message key="installer.upgradeApplication">Mise à jour d'Open Monograph Press</message>
 	<message key="installer.overwriteConfigFileInstructions"><![CDATA[<h4>IMPORTANT!</h4>
 <p>Le programme d'installation n'a pas pu réécrire automatiquement le fichier de configuration. Avant de tenter d'utiliser le système, veuillez ouvrir <tt>config.inc.php</tt> dans un éditeur de texte approprié et remplacer son contenu par le contenu de la zone de texte ci-dessous.</p>]]></message>
-	
+
 	<message key="installer.installationComplete"><![CDATA[<p>L'installation d'OMP est terminée.</p>
 <p>Pour utiliser le système, <a href="{$loginUrl}">ouvrez une session</a> en utilisant le nom d'utilisateur et mot de passe saisis sur la page précédente.</p>
 <p>Si vous souhaitez recevoir des nouvelles et des mises à jour, <strong>veuillez vous inscrire au <a href="http://pkp.sfu.ca/omp/register" target="_blank">http://pkp.sfu.ca/omp/register</a>.</strong> Si vous avez des questions ou commentaires, veuillez consultez le <a href="http://pkp.sfu.ca/support/forum" target="_blank">forum</a>.</p>]]></message>
 	<message key="installer.upgradeComplete"><![CDATA[<p>La mise à jour de la version OMP {$version} est terminée.</p>
 <p>N'oubliez pas de remettre le paramètre "installed" à <em>On</em> dans votre fichier de configuration config.inc.php.</p>
 <p>Si vous n'êtes pas déjà inscrit et souhaitez recevoir des nouvelles et des mises à jour, <strong>veuillez vous inscrire au <a href="http://pkp.sfu.ca/omp/register" target="_blank">http://pkp.sfu.ca/omp/register</a></strong>. Si vous avez des questions ou commentaires, veuillez consultez le <a href="http://pkp.sfu.ca/support/forum" target="_blank">forum</a>.</p>]]></message>
-	
+
 	<!-- Monograph Logs -->
 	<message key="log.review.reviewCleared">La {$round}e série de révisions par {$reviewerName} de la soumission {$monographId} a été acceptée.</message>
 	<message key="log.review.reviewDueDateSet">La date limite pour la {$round}e série de révisions de la soumission {$monographId} par {$reviewerName} est {$dueDate}.</message>
@@ -572,29 +483,18 @@ Votre serveur supporte actuellement mbstring: <strong>{$supportsMBString}</stron
 	<message key="notification.addedMarket">Un marché a été ajouté.</message>
 	<message key="notification.editedMarket">Le marché a été modifié.</message>
 	<message key="notification.removedMarket">Le marché a été supprimé.</message>
-	<message key="notification.editedUser">L'utilisateur a été modifié.</message>
-	<message key="notification.sentNotification">Un avis a été envoyé.</message>
-	<message key="notification.addedNote">Note publiée.</message>
-	<message key="notification.removedNote">Note supprimée.</message>
-	<message key="notification.removedFile">Fichier supprimé.</message>
 	<message key="notification.addedSpotlight">Ajout à la rubrique "Sous les projecteurs".</message>
 	<message key="notification.editedSpotlight">Modification dans la rubrique "Sous les projecteurs".</message>
 	<message key="notification.removedSpotlight">Titre supprimé de la rubrique "Sous les projecteurs".</message>
 	<message key="notification.removedFooterLink">Lien en bas de page supprimé.</message>
-	<message key="notification.addedFooterCategory">Catégorie ajoutée.</message>
-	<message key="notification.editedFooterCategory">Catégorie modifiée.</message>
-	<message key="notification.removedFooterCategory">Catégorie supprimée.</message>
-	<message key="notification.addedSocialMedia">Réseau de média social ajouté.</message>
-	<message key="notification.editedSocialMedia">Réseau de média social modifié.</message>
-	<message key="notification.removedSocialMedia">Réseau de média social supprimé.</message>
 	<message key="notification.savedCatalogMetadata">Les métadonnées du catalogue ont été sauvegardées.</message>
 	<message key="notification.savedPublicationFormatMetadata">Les métadonnées du format de publication ont été sauvegardées.</message>
 	<message key="notification.mailListDescription">Indiquez votre adresse courriel afin de recevoir un avis lorsqu'on ajoutera de nouveaux titres à la presse.</message>
 	<message key="notification.notificationsPublicDescription">Cette page contient les mises à jour de cette presse, comme les nouvelles monographies ou séries. Vous pouvez vous abonner à ces avis par les fils RSS (en cliquant sur les images à droite), ou <![CDATA[  <a href="{$emailUrl}">par courriel.</a>]]></message>
 	<message key="notification.proofsApproved">Épreuves approuvées.</message>
 	<message key="notification.removedSubmission">La soumission a été supprimée.</message>
-	
-<!-- Notification Types -->
+
+	<!-- Notification Types -->
 	<message key="notification.type.submissionSubmitted">Une nouvelle monographie, "{$title}," a été soumise.</message>
 	<message key="notification.type.editing">Modifications</message>
 	<message key="notification.type.metadataModified">Les métadonnées de "{$title}" ont été modifiées.</message>
@@ -628,7 +528,6 @@ Votre serveur supporte actuellement mbstring: <strong>{$supportsMBString}</stron
 	<message key="user.authorization.seriesAssignment">Vous tentez d'avoir accès à une monographie qui ne fait pas partie de votre série.</message>
 	<message key="user.authorization.workflowStageAssignmentMissing">Accès refusé! On ne vous a pas assigné de travail à cette étape.</message>
 	<message key="user.authorization.workflowStageSettingMissing">Accès refusé! Le groupe d'utilisateurs auquel vous appartenez n'a pas accès à cette étape du travail. Veuillez vérifier vos paramètres de presse.</message>
-
 	<message key="payment.directSales">Télécharger à partir du site Web de la presse</message>
 	<message key="payment.directSales.price">Prix</message>
 	<message key="payment.directSales.availability">Disponibilité</message>
@@ -646,7 +545,6 @@ Votre serveur supporte actuellement mbstring: <strong>{$supportsMBString}</stron
 	<message key="payment.directSales.download">Télécharger</message>
 	<message key="payment.directSales.monograph.name">Acheter la monographie ou le chapitre téléchargeable</message>
 	<message key="payment.directSales.monograph.description">Cette transaction représente l'achat d'un téléchargement direct d'une seule monographie ou d'un chapitre.</message>
-
 	<!-- Debug messages -->
 	<message key="debug.notes.currencyListLoad">La liste des devises "{$filename}" fut téléchargée à partir de XML</message>
 	<message key="debug.notes.helpMappingLoad">Le fichier de mappage d'aide XML {$filename} a été téléchargé à nouveau pour trouver {$id}.</message>
@@ -654,5 +552,4 @@ Votre serveur supporte actuellement mbstring: <strong>{$supportsMBString}</stron
 	<!-- RT Entities -->
 	<message key="rt.metadata.pkp.peerReviewed">Article revu par les pairs</message>
 
-	<message key="manager.series.restricted">Limité</message>
 </locale>
