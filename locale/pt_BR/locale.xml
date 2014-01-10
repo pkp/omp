@@ -18,7 +18,7 @@
 	<message key="monograph.audience.rangeFrom">Faixa de audiência (de)</message>
 	<message key="monograph.audience.rangeTo">Faixa de audiência (para)</message>
 	<message key="monograph.audience.rangeExact">Faixa de audiência (exato)</message>
-	<message key="submission.description">Descrição</message>
+	<message key="monograph.description">Descrição</message>
 	<message key="monograph.authors">Autores</message>
 	<message key="monograph.languages">Idiomas (Inglês, francês, espanhol)</message>
 	<message key="monograph.publicationFormats">Formatos de publicação</message>
@@ -26,10 +26,12 @@
 	<message key="monograph.title">Título do livro</message>
 	<message key="monograph.title.tip"><![CDATA[O tipo de submissão é normalmente 'imagem', 'texto', ou outro tipo de multimídia, incluindo 'software' ou 'interativo'.  Escolha o mais relevante para sua submissão. Exemplos podem ser encontrados em <a target="_blank" href="http://dublincore.org/documents/2001/04/12/usageguide/generic.shtml#type">http://dublincore.org/documents/2001/04/12/usageguide/generic.shtml#type</a>]]></message>
 	<message key="monograph.type">Tipo de submissão</message>
-	<message key="submission.pageProofs">Página de provas</message>
+	<message key="monograph.pageProofs">Página de provas</message>
 	<message key="monograph.proofReadingDescription"><![CDATA[O editor de layout envia os arquivos prontos para produção aqui. Use <em>+Designar</em> para encaminhar as provas a autores e outros participantes, com versões corrigidas enviadas para aprovação antes da publicação.]]></message>
+	<message key="monograph.stageNotInitiated">Estágio não iniciado.</message>
+	<message key="monograph.attachedFile">Arquivo anexado</message>
 	<message key="monograph.task.addNote">Incluir para questionamentos</message>
-	<message key="submission.task.responseDueDate">Data de entrega da resposta</message>
+	<message key="monograph.task.responseDueDate">Data de entrega da resposta</message>
 	<message key="monograph.accessLogoOpen.altText">Acesso aberto</message>
 
 
@@ -212,6 +214,7 @@
 	<message key="grid.action.addFormat">Incluir formato de publicação</message>
 	<message key="grid.action.approveProof">Homologar a prova para indexação e inclusão no catálogo</message>
 	<message key="grid.action.pageProofApproved">Arquivo na página de provas está pronto para publicação</message>
+	<message key="grid.action.approveCopyedit">Aprovar este arquivo editado para envio ao próximo estágio</message>
 	<message key="grid.action.addAnnouncement">Incluir not´cia</message>
 	<message key="grid.action.showReviewPolicy">Ler a política de avaliação atual</message>
 	<message key="grid.action.newCatalogEntry">Nova entrada de catálogo</message>
@@ -238,9 +241,14 @@
 	<message key="grid.action.createPress">Incluir nova editora</message>
 	<message key="grid.action.addCode">Incluir código</message>
 	<message key="grid.action.addSpotlight">Incluir destaque</message>
+	<message key="grid.action.addGenre">Incluir gênero</message>
 	<message key="grid.action.publicationFormatTab">Exibir a aba de formato de publicação</message>
+	<message key="grid.action.bookInfo">Dados da submissão</message>
 	<message key="grid.action.moreAnnouncements">Acessar página de notícias</message>
-	<message key="grid.action.submissionEmail">Clique para ler esta mensagem</message>
+	<message key="grid.action.monographEmail">Clique para ler esta mensagem</message>
+	<message key="grid.action.viewLibrary">Ver biblioteca de documentos</message>
+	<message key="grid.action.viewSignoffNotes">Ver notas de homologação</message>
+	<message key="grid.action.fileUnconsider">Correções realizadas na prova. Esta tarefa pode ser desconsiderada.</message>
 	<message key="grid.action.approveProofs">Ver grid de provas</message>
 	<message key="grid.action.proofApproved">Prova de formato produzida</message>
 	<message key="grid.action.availablePublicationFormat">Des/Aprovar este formato</message>
@@ -254,27 +262,36 @@
 	<message key="reviewer.step1.request">Solicitação de avaliação</message>
 	<message key="reviewer.step1.requestBoilerplate">Você foi escolhido como um candidato a avaliar a seguinte submissão. Veja a seguir uma visão geral da submissão, bem como o cronograma para esta avaliação. Esperamos que tenha disponibilidade para participar.</message>
 	<message key="reviewer.step1.viewAllDetails">Ver todos os detalhes da submissão</message>
-	<message key="reviewer.submission.declineReview">Recusar solicitação de avaliação</message>
-	<message key="reviewer.submission.declineReviewMessage">Caso deseje, informe o editor o motivo de sua recusa no campo a seguir.</message>
-	<message key="reviewer.submission.acceptReview">Aceitar avaliação, continuar para o passo #2</message>
-	<message key="reviewer.submission.continueToStepThree">Continuar para o passo #3</message>
-	<message key="reviewer.submission.submitReview">Enviar avaliação</message>
-	<message key="reviewer.submission.reviewerGuidelines">Diretrizes para avaliadores</message>
-	<message key="reviewer.submission.enterCompetingInterests">Esta editora adota a política de divulgação de potenciais conflitos de interesses dos seus avaliadores.  Leia esta política com atenção.</message>
-	<message key="reviewer.submission.noCompetingInterests">Não existe conflito de interesses</message>
-	<message key="reviewer.submission.hasCompetingInterests">Pode haver conflito de interesses (especificar a seguir)</message>
-	<message key="reviewer.submission.competingInterests">Conflito de interesses</message>
-	<message key="reviewer.submission.guidelines">Diretrizes para avaliadores</message>
-	<message key="reviewer.submission.noGuidelines">Esta editora não definiu nenhuma diretriz para avaliadores.</message>
-	<message key="reviewer.submission.downloadDescription">Clique no nome do arquivo para baixá-lo e faça a avaliação dos arquivos associados a esta submissão (eletronicamente ou por meio de impressão).</message>
-	<message key="reviewer.submission.reviewDescription">Digite (ou cole) sua avalação desta submissão no campo a seguir.</message>
-	<message key="reviewer.submission.uploadDescription">Além disso, é possível enviar arquivos para consulta do editor e/ou do autor, incluindo versões revisadas dos originais.</message>
+	<message key="reviewer.monograph.reviewFiles">Arquivos da avaliação</message>
+	<message key="reviewer.monograph.reviewerFiles">Arquivos do avaliador</message>
+	<message key="reviewer.monograph.declineReview">Recusar solicitação de avaliação</message>
+	<message key="reviewer.monograph.declineReviewMessage">Caso deseje, informe o editor o motivo de sua recusa no campo a seguir.</message>
+	<message key="reviewer.monograph.acceptReview">Aceitar avaliação, continuar para o passo #2</message>
+	<message key="reviewer.monograph.continueToStepThree">Continuar para o passo #3</message>
+	<message key="reviewer.monograph.submitReview">Enviar avaliação</message>
+	<message key="reviewer.monograph.schedule">Cronograma</message>
+	<message key="reviewer.monograph.reviewSchedule">Cronograma da avaliação</message>
+	<message key="reviewer.monograph.reviewRequestDate">Solicitação do editor</message>
+	<message key="reviewer.monograph.responseDueDate">Data de entrega da resposta</message>
+	<message key="reviewer.monograph.reviewDueDate">Data de entrega da avaliação</message>
+	<message key="reviewer.monograph.reviewerGuidelines">Diretrizes para avaliadores</message>
+	<message key="reviewer.monograph.enterCompetingInterests">Esta editora adota a política de divulgação de potenciais conflitos de interesses dos seus avaliadores.  Leia esta política com atenção.</message>
+	<message key="reviewer.monograph.viewCompetingInterests">Ver política de conflito de interesses</message>
+	<message key="reviewer.monograph.noCompetingInterests">Não existe conflito de interesses</message>
+	<message key="reviewer.monograph.hasCompetingInterests">Pode haver conflito de interesses (especificar a seguir)</message>
+	<message key="reviewer.monograph.competingInterests">Conflito de interesses</message>
+	<message key="reviewer.monograph.guidelines">Diretrizes para avaliadores</message>
+	<message key="reviewer.monograph.noGuidelines">Esta editora não definiu nenhuma diretriz para avaliadores.</message>
+	<message key="reviewer.monograph.downloadDescription">Clique no nome do arquivo para baixá-lo e faça a avaliação dos arquivos associados a esta submissão (eletronicamente ou por meio de impressão).</message>
+	<message key="reviewer.monograph.reviewDescription">Digite (ou cole) sua avalação desta submissão no campo a seguir.</message>
+	<message key="reviewer.monograph.uploadDescription">Além disso, é possível enviar arquivos para consulta do editor e/ou do autor, incluindo versões revisadas dos originais.</message>
 	<message key="reviewer.complete">Avaliação enviada</message>
 	<message key="reviewer.confirmSubmit">Deseja realmente enviar esta avaliação?</message>
 	<message key="reviewer.complete.whatNext">Agradecemos pela conclusão de sua avaliação. Ela foi enviada com sucesso. Sua contribuição é de extrema valia para a qualidade de nossas publicações! O editor poderá entrar em contato novamente caso precise de maiores informações.</message>
 	<message key="reviewer.aboutDueDates">Sobre as datas de entregas</message>
 	<message key="reviewer.aboutDueDates.text">O editor solicita que aceite ou recuse a responsabilidade de avaliação antes da data de entrega e conclua sua avaliação até a data de entrega da avaliação.</message>
 	<message key="workflow.review.internalReview">Avaliação interna</message>
+	<message key="workflow.review.externalReview">Avaliação externa</message>
 	<message key="review.blindPeerReview">
 		<![CDATA[<p>Para assegurar a integridade da avaliação pelos pares cega de submissões a esta editora, todos os esforços devem ser tomados para preservar a identidade de autores e avaliadores. Isto exique que autores, editores e avaliadores (que enviam documentos ao sistema como parte de suas atividades) tomem as seguintes precauções em relação ao texto e às propriedades digitais do arquivo:</p>
 		<ul><li>Os autores do documento excluíram seus omes do texto, adotando "Autor" e ano usado em suas referências e notas de rodapé, em vez do nome do autor, título do artigo, entre outros.</li>
@@ -285,6 +302,7 @@
 	<message key="review.ensuringBlindReview">Assegurando uma avaliação cega</message>
 
 	<!-- Review Attachments -->
+	<message key="grid.reviewAttachments.title">Anexos do avaliador</message>
 	<message key="grid.reviewAttachments.add">Incluir anexo à avaliação</message>
 	<message key="grid.reviewAttachments.availableFiles">Arquivos disponíveis</message>
 
@@ -360,6 +378,7 @@
 	
 	<message key="dashboard.tasks">Tarefas</message>
 	<message key="dashboard.submissions">Submissões</message>
+	<message key="grid.action.itemWorkflow">Acessar o fluxograma de trabalho desta submissão</message>
 
 	<message key="common.queue.long.submissionsUnassigned">Submissões não designadas</message>
 	<message key="common.queue.long.myAssigned">Minhas submissões designadas</message>
@@ -376,6 +395,7 @@
 	<message key="common.omp">OMP</message>
 	<message key="common.publicKnowledgeProject">Public Knowledge Project</message>
 	<message key="common.homePageHeader.altText">Cabeçalho da página inicial</message>
+	<message key="common.designation">Designação</message>
 	<message key="common.dimensionsInches"><![CDATA[{$width}"&nbsp;x&nbsp;{$height}" @ {$dpi} DPI/PPI]]></message>
 	<message key="common.dimensionsPixels">{$width} x {$height} pixels</message>
 
@@ -389,6 +409,7 @@
 	<message key="navigation.catalog.administration.categories">Categorias</message>
 	<message key="navigation.catalog.administration.series">Séries</message>
 	<message key="navigation.distributionProcess">Distribuição</message>
+	<message key="navigation.goBack">Voltar</message>
 	<message key="navigation.infoForAuthors">Para autores</message>
 	<message key="navigation.infoForLibrarians">Para bibliotecários</message>
 	<message key="navigation.infoForAuthors.long">Informações aos autores</message>
@@ -417,7 +438,7 @@
 	<!-- OMP-specific Roles -->
 	<message key="user.role.manager">Gerente da Editora</message>
 	<message key="user.role.pressEditor">Editor</message>
-	<message key="user.role.assistant">Assistente da Editora</message>
+	<message key="user.role.pressAssistant">Assistente da Editora</message>
 	<message key="user.role.copyeditor">Editor de texto</message>
 	<message key="user.role.seriesEditor">Editor de Série</message>
 	<message key="user.role.seriesEditors">Editores de Série</message>
@@ -429,13 +450,33 @@
 	<message key="user.role.proofreaders">Leitores de prova</message>
 	<message key="user.role.productionEditors">Editores de produção</message>
 
+	<!-- Information Center -->
+	<message key="informationCenter.informationCenter">Central de informações</message>
+	<message key="informationCenter.bookInfo">Info</message>
+	<message key="informationCenter.composeNote">Compor nota</message>
+	<message key="informationCenter.addFileNote">Incluir no arquivo</message>
+	<message key="informationCenter.addSubmissionNote">Incluir na submissão</message>
+	<message key="informationCenter.noNotes">Nenhuma nota a ser exibida.</message>
+	<message key="informationCenter.currentNotes">Revisão atual</message>
+	<message key="informationCenter.pastNotes">Revisões anteriores</message>
+	<message key="informationCenter.lastUpdated">Última atualização</message>
+	<message key="informationCenter.deleteConfirm">Deseja realmente excluir esta nota?</message>
+	<message key="informationCenter.currentHistory">Último evento</message>
+	<message key="informationCenter.pastHistory">Eventos anteriores</message>
+	<message key="informationCenter.history.noItems">Nenhum evento registrado.</message>
+	<message key="informationCenter.history.notePosted">Nova nota publicada.</message>
+	<message key="informationCenter.history.messageSent">Notificação enviada aos usuários.</message>
+	<message key="informationCenter.notify.chooseMessage">Escolha a mensagem padrão a ser usada, o preencha o formulário abaixo.</message>
+	<message key="informationCenter.notify.message">Mensagem</message>
+	<message key="informationCenter.notify.warning">Assegure-se de preencher o campo mensagem e escolher pelo menos um destinatário.</message>
+
 	<!-- Registration -->
 	<message key="user.register.completeForm">Preencha o formulário para se cadastrar nesta editora.</message>
-	<message key="user.register.selectContext">Escolha a editora na qual deseja se cadastrar</message>
-	<message key="user.register.noContexts">Não há editoras disponíveis para realizar cadastro.</message>
+	<message key="user.register.selectPress">Escolha a editora na qual deseja se cadastrar</message>
+	<message key="user.register.noPresses">Não há editoras disponíveis para realizar cadastro.</message>
 	<message key="user.register.privacyStatement">Declaração de privacidade</message>
-	<message key="user.register.alreadyRegisteredOtherContext"><![CDATA[<a href="{$registerUrl}">Clique aqui</a> caso já possua um cadastro nesta ou outra editora hospedada neste site.]]></message>
-	<message key="user.register.notAlreadyRegisteredOtherContext"><![CDATA[<a href="{$registerUrl}">Clique aqui</a> caso <strong>não</strong> possua um cadastro nesta ou outra editora nesta site.]]></message>
+	<message key="user.register.alreadyRegisteredOtherPress"><![CDATA[<a href="{$registerUrl}">Clique aqui</a> caso já possua um cadastro nesta ou outra editora hospedada neste site.]]></message>
+	<message key="user.register.notAlreadyRegisteredOtherPress"><![CDATA[<a href="{$registerUrl}">Clique aqui</a> caso <strong>não</strong> possua um cadastro nesta ou outra editora nesta site.]]></message>
 	<message key="user.register.loginToRegister">Informe seu login e senha atuais para se cadastrar nesta editora.</message>
 	<message key="user.register.registrationDisabled">Esta editora não está aceitando cadastros no momento.</message>
 	<message key="user.register.form.passwordLengthTooShort">A senha informada não possui a quantidade de caracteres necessária.</message>
@@ -529,14 +570,15 @@ Suporte à biblioteca mbstring: <strong>{$supportsMBString}</strong>]]></message
 <p>Caso deseje receber avisos e atualizações, <strong>cadastre-se na página <a href="http://pkp.sfu.ca/omp/register" target="_blank">http://pkp.sfu.ca/omp/register</a>.</strong> Caso tenha perguntas ou comentários, visite o <a href="http://pkp.sfu.ca/support/forum" target="_blank">fórum de suporte</a>.</p>]]></message>
 <message key="installer.upgradeComplete"><![CDATA[<p>Atualização do OMP para a versão {$version} concluída com successo.</p>
 <p>Não se esqueça de alterar a variável "installed" em seu arquivo de configuração config.inc.php de volta para <em>On</em>.</p>
-<p>Caso não tenha se cadastrado ainda e deseje receber avisos e atualizações, <strong>cadastre-se na página <a href="http://pkp.sfu.ca/omp/register" target="_blank">http://pkp.sfu.ca/omp/register</a>.</strong>  Caso tenha perguntas ou comentários, visite o <a href="http://pkp.sfu.ca/support/forum" target="_blank">fórum de suporte</a>.</p>]]></message>
+<p>Caso não tenha se cadastrado ainda e deseje receber avisos e atualizações, <strong>>cadastre-se na página <a href="http://pkp.sfu.ca/omp/register" target="_blank">http://pkp.sfu.ca/omp/register</a>.</strong>  Caso tenha perguntas ou comentários, visite o <a href="http://pkp.sfu.ca/support/forum" target="_blank">fórum de suporte</a>.</p>]]></message>
 	<!-- Monograph Logs -->
+	<message key="log.review.reviewerAssigned">{$reviewerName} designado para avaliar a submissão {$monographId} na rodada de avaliação {$round}.</message>
 	<message key="log.review.reviewCleared">A rodada de avaliação {$round} de {$reviewerName} para a submissão {$monographId} foi liberada.</message>
 	<message key="log.review.reviewDueDateSet">A data de entrega da rodada {$round} de avaliação da submissão {$monographId} por {$reviewerName} foi definida para {$dueDate}.</message>
 	<message key="log.review.reviewDeclined">{$reviewerName} recusou realizar a rodada {$round} de avaliação da submissão {$monographId}.</message>
 	<message key="log.review.reviewAccepted">{$reviewerName} aceitou realizar a rodada {$round} de avaliação da submissão {$monographId}.</message>
 	<message key="log.review.reviewUnconsidered">{$editorName} marcou realizar a rodada {$round} de avaliação da submissão {$monographId} como não considerada.</message>
-	<message key="log.editor.decision">Decisão editorial ({$decision}) para a monografia {$submissionId} foi registrada por {$editorName}.</message>
+	<message key="log.editor.decision">Decisão editorial ({$decision}) para a monografia {$monographId} foi registrada por {$editorName}.</message>
 	<message key="log.editor.archived">A submissão {$monographId} foi arquivada.</message>
 	<message key="log.editor.restored">A sumissão {$monographId} foi restaurada para a fila.</message>
 	<message key="log.editor.editorAssigned">{$editorName} foi designado como editor da submissão {$monographId}.</message>
@@ -546,6 +588,8 @@ Suporte à biblioteca mbstring: <strong>{$supportsMBString}</strong>]]></message
 	<message key="log.imported">{$userName} importou a monografia {$monographId}.</message>
 
 	<!-- Notifications -->
+	<message key="notification.addedAuditor">Auditor incluído.</message>
+	<message key="notification.removedAuditor">Auditor excluído.</message>
 	<message key="notification.addedIdentificationCode">Código de identificação incluído.</message>
 	<message key="notification.editedIdentificationCode">Código de identificação editado.</message>
 	<message key="notification.removedIdentificationCode">Código de identificação excluído.</message>
@@ -569,6 +613,7 @@ Suporte à biblioteca mbstring: <strong>{$supportsMBString}</strong>]]></message
 	<message key="notification.editedUser">Usuário editado.</message>
 	<message key="notification.removedReviewer">Avaliador excluído.</message>
 	<message key="notification.sentNotification">Notificação enviada.</message>
+	<message key="notification.reviewAcknowledged">Avaliação marcada como reconhecida. Mensagem não enviada.</message>
 	<message key="notification.addedNote">Nota publicada.</message>
 	<message key="notification.removedNote">Nota excluída.</message>
 	<message key="notification.removedFile">Arquivo excluído.</message>
@@ -582,15 +627,18 @@ Suporte à biblioteca mbstring: <strong>{$supportsMBString}</strong>]]></message
 	<message key="notification.addedSocialMedia">Rede social incluído</message>
 	<message key="notification.editedSocialMedia">Rede social editada.</message>
 	<message key="notification.removedSocialMedia">Rede social excluída.</message>
+	<message key="notification.signedFile">Arquivo considerado.</message>
 	<message key="notification.updatedReviewFiles">Arquivos de avaliação atualizados.</message>
 	<message key="notification.savedCatalogMetadata">Metadados do catálogo salvos.</message>
+	<message key="notification.savedSubmissionMetadata">Metadados da submissão salvos.</message>
 	<message key="notification.savedPublicationFormatMetadata">Metadados do formato de publicação salvos.</message>
+	<message key="notification.uploadedResponse">Resposta enviada.</message>
 	<message key="notification.mailListDescription">Informe seu endereço de e-mail para ser notificado quando da publicação de novo conteúdo pela editora.</message>
 	<message key="notification.notificationsPublicDescription">Esta página inclui atualizações associadas a esta editora, como novas monografias ou séries. Caso deseje, assine as notificações via canais RSS (clicando nas imagens à direita), ou <![CDATA[<a href="{$emailUrl}">via e-mail.</a>]]></message>
 	<message key="notification.proofsApproved">Provas homologadas.</message>
 	<message key="notification.removedSubmission">Submissão excluída.</message>
 	<!-- Notification Types -->
-	<message key="notification.type.submissionSubmitted">Uma nova monografia, "{$title}", foi enviada.</message>
+	<message key="notification.type.monographSubmitted">Uma nova monografia, "{$title}", foi enviada.</message>
 	<message key="notification.type.editing">Eventos da edição</message>
 	<message key="notification.type.metadataModified">Os metadados de "{$title}" foram alterados.</message>
 	<message key="notification.type.reviewerComment">Um avaliador comentou sobre "{$title}".</message>
@@ -598,13 +646,29 @@ Suporte à biblioteca mbstring: <strong>{$supportsMBString}</strong>]]></message
 	<message key="notification.type.site">Eventos do site</message>
 	<message key="notification.type.submissions">Eventos da submissão</message>
 	<message key="notification.type.userComment">Um leitor comentou sobre "{$title}".</message>
+	<message key="notification.type.editorAssignment">Um editor deve ser designado antes de iniciar a avaliação. Inclua um editor usando o link de Participantes acima.</message>
 	<message key="notification.type.editorAssignmentTask">Um editor precisa ser designado à nova monografia submetida.</message>
+	<message key="notification.type.editorAssignmentEditing">Um editor de produção deve ser designado antes de iniciar o processo editorial. Inclua um editor de produção usando o link de Participantes acima.</message>
+	<message key="notification.type.editorAssignmentProduction">>Um editor de produção deve ser designado antes de iniciar o processo de produção. Inclua um editor de produção usando o link de Participantes acima.</message>
+	<message key="notification.type.auditorRequest">Solicitação de auditoria de "{$file}"</message>
 	<message key="notification.type.copyeditorRequest">Solicitação de edição de texto de "{$file}".</message>
 	<message key="notification.type.layouteditorRequest">Solicitação de revisão dos layouts de "{$title}".</message>
 	<message key="notification.type.indexRequest">Solicitação de criação de sumário de "{$title}".</message>
 	<message key="notification.type.reviewAssignment">Avaliação pendente.</message>
+	<message key="notification.type.signoff">Auditoria pendente.</message>
+	<message key="notification.type.editorDecisionTitle">Última decisão editorial.</message>
 	<message key="notification.type.editorDecisionInternalReview">Avaliação interna iniciada.</message>
+	<message key="notification.type.editorDecisionAccept">Submissão aceita.</message>
+	<message key="notification.type.editorDecisionExternalReview">Avaliação externa iniciada.</message>
+	<message key="notification.type.editorDecisionPendingRevisions">Revisão requerida.</message>
+	<message key="notification.type.editorDecisionResubmit">Enviar novamente para avaliação.</message>
+	<message key="notification.type.editorDecisionDecline">Submissão rejeitada.</message>
+	<message key="notification.type.editorDecisionSendToProduction">Processo de produção iniciado.</message>
 	<message key="notification.type.roundStatusTitle">Situação da rodada {$round}</message>
+	<message key="notification.type.pendingRevisions">Revisões para consideração no estágio {$stage}.</message>
+	<message key="notification.type.pendingRevisions.title">Revisões enviadas ao estágio {$stage}.</message>
+	<message key="notification.type.allReviewsIn">Todas as avaliações entregues e aguardando decisão final no estágio {$stage}.</message>
+	<message key="notification.type.allRevisionsIn">Um arquivo revisado foi enviado para avaliação editorial no estágio {$stage}.</message>
 	<message key="notification.type.approveSubmission">Submissão atualmente aguardando aprovação na ferramenta de entrada de catálogo antes de ser publicada no catálogo.</message>
 	<message key="notification.type.approveSubmissionTitle">Aguardando aprovação.</message>
 	<message key="notification.type.formatNeedsApprovedSubmission">Os metadados para a entrada do catálogo devem ser aprovados antes de incluir o formato de publicação. Para aprovar os metadados, clique na aba Monografia acima.</message>
@@ -624,6 +688,7 @@ Suporte à biblioteca mbstring: <strong>{$supportsMBString}</strong>]]></message
 	<message key="user.authorization.seriesAssignment">Tentativa de acesso a monografia que não faz parte de sua série.</message>
 	<message key="user.authorization.workflowStageAssignmentMissing">Acesso negado! Não foi designado a este estágio do processo.</message>
 	<message key="user.authorization.workflowStageSettingMissing">Acesso negado! O grupo de usuários no qual está atuando atualmente não foi designado a este estágio do processo. Verifique as configurações da editora.</message>
+	<message key="user.authorization.authorRoleMissing">Sem privlégios suficientes para ver a submissão. Edite seu perfil para garantir que tenha os papéis apropriadas em "Cadastrar-se como".</message>
 
 	<message key="payment.directSales">Baixar do site da editora</message>
 	<message key="payment.directSales.price">Preço</message>
@@ -649,5 +714,4 @@ Suporte à biblioteca mbstring: <strong>{$supportsMBString}</strong>]]></message
 
 	<!-- RT Entities -->
 	<message key="rt.metadata.pkp.peerReviewed">Artigo avaliado pelos pares</message>
-	<message key="manager.series.restricted">Restringida</message>
 </locale>
